@@ -1,0 +1,28 @@
+.page-reservation .km-step-end {
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+    margin-top: 100px;
+}
+
+.page-reservation .km-content {
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+}
+
+.page-reservation .km-step-end img {
+    display: inline-block;
+    margin: 95px 0 60px 0;
+}
+
+.bg-white-secondary{
+    background-color:#fff;
+    box-shadow:0 4px 4px rgba(0,0,0,.25);
+    transition:background-color .5s ease 0s;
+    height: 100px;
+}
+
+.bg-white-secondary a{
+    color: #000 !important;
+}

@@ -1,0 +1,28 @@
+@media (max-width: 992px){
+	.wpf-container {
+	    margin: 0px !important;
+	}
+}
+@media (max-width: 650px){
+	.vlz_destacados_contenedor {
+	    width: 50%;
+	}
+}
+@media (max-width: 500px){
+	.vlz_nav_cont {
+	    overflow: auto;
+    	margin: 0px 0px 25px;
+	}
+	.vlz_nav_cont_interno{
+		width: 1000px;
+	}
+	.vlz_bloquear_map{
+		display: block;
+	}
+}
+
+@media (max-width: 400px){
+	.vlz_destacados_contenedor {
+	    width: 100%;
+	}
+}

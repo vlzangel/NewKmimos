@@ -1,0 +1,40 @@
+.fechas_box{
+	overflow: hidden;
+}
+.fechas_item{
+	float: left;
+	width: 33.33333333%;
+	box-sizing: border-box;
+	padding: 5px;
+	overflow: hidden;
+	position: relative;
+}
+.fechas_item i{
+    position: absolute;
+    top: 13px;
+    font-size: 25px;
+    color: #777;
+    left: 10px;
+}
+
+.fechas_item input,
+.fechas_item select
+{
+	width: 100%;
+    border: solid 1px #CCC;
+    font-size: 16px;
+    padding: 10px 10px 10px 35px;
+    cursor: pointer;
+}
+
+.fechas_item select{
+	width: 100%;
+    border: solid 1px #CCC;
+    font-size: 16px;
+    padding: 10px;
+    outline: none !important;
+}
+
+.fechas_item select:focus{
+    outline: none !important;
+}

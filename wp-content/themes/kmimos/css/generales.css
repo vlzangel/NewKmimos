@@ -1,0 +1,145 @@
+/*
+    Modal mas servicios
+*/
+
+    .modal_login{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999999999999999;
+        background-color: rgba(0,0,0,0.8);
+        display: none;
+    }
+
+    .modal_login .modal_container{
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .modal_login .modal_box{
+        position: relative;
+        display: block;
+        width: 80%;
+        height: auto;
+        background-color: #FFF;
+        margin: 0px auto;
+        max-width: 400px;
+        border: solid 3px #333;
+        border-radius: 5px;
+        padding: 40px 0px 0px;
+    }
+
+    #form_login{
+        padding: 0px;
+    }
+
+    #close_login{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 15px;
+        border: solid 1px #FFF;
+        color: #333;
+        background: #FFF;
+        padding: 2px 4px;
+        border-radius: 0px;
+        cursor: pointer;
+        width: 35px;
+    }
+
+    .modal_login .form_box{
+        padding: 0px 20px 0px;
+    }
+
+    .modal_login .botones_box{
+        text-align: right;
+        padding: 10px 20px 20px;
+    }
+
+    .modal_login .botones_box span{
+        display: inline-block;
+        padding: 5px 20px;
+        border: solid 1px #51dcb6;
+        background: #51dcb6;
+        cursor: pointer;
+        color: #FFF;
+    }
+
+    .modal_login .botones_box span:{
+        background: #44bf9d;
+    }
+
+/*  Clases globales */
+
+    .theme_button {
+        color: #FFF;
+        background-color: #59c9a8;
+        border-color: #59c9a8;
+    }
+
+    .theme_border {
+        border-color: #59c9a8;
+    }
+
+    .kmisaldo{
+        padding: 10px 0px;
+        font-size: 15px;
+        border-bottom: solid 2px #59c9a8;
+        margin-bottom: 10px;
+    }
+
+    .vlz_img_portada{ position: relative; height: 150px; overflow: hidden; border: solid 1px #ccc; background: #EEE; }
+    .vlz_img_portada_fondo{ position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 50; background-size: cover; background-position: center; background-repeat: no-repeat; background-color: transparent; filter: blur(2px); transition: all .5s ease; }
+    .vlz_img_portada_normal{ position: absolute; top: 0px; left: 0px; width: 100%; height: calc( 100% - 25px ); z-index: 100; background-size: contain; background-position: center; background-repeat: no-repeat; background-color: transparent; margin: 10px 0px; transition: all .5s ease; }
+    .vlz_cambiar_portada{ position: absolute; bottom: 10px; right: 10px; width: auto; padding: 10px; font-size: 16px; color: #FFF; background: #23475e; border: solid 1px #fff; z-index: 200; }
+    .vlz_cambiar_portada input{ position: absolute; top: -24px; left: 0px; width: 100%; height: 167%; z-index: 100; opacity: 0; cursor: pointer; }
+    .vlz_img_portada_cargando{
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: rgba(0,0,0,0.8);
+        margin: 0px;
+        transition: all .5s ease;
+        filter: blur(2px);
+    }
+    
+
+/* Validaciones */
+
+    .no_error{
+        display: none;
+    }
+
+    .error{
+        border: solid 1px #777;
+        border-top: 0;
+        position: absolute;
+        background: #ffcece;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 3px;
+        font-size: 11px;
+        border-radius: 0px 0px 3px 3px;
+    }
+
+    input[type=number]::-webkit-outer-spin-button,
+
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield;
+    }

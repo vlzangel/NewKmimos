@@ -1,0 +1,27 @@
+@media (max-width: 992px){
+
+}
+
+@media (max-width: 768px){
+	.menu_perfil {
+	    display: none;
+	}
+	.main {
+	    width: 100%;
+	}
+	.vlz_img_portada_perfil {
+	    height: 300px;
+	}
+}
+
+@media (max-width: 480px){
+    .inputs_containers section {
+	    width: 100%;
+	}
+}
+
+@media (max-width: 350px){
+	.vlz_img_portada_perfil {
+	    height: 250px;
+	}
+}

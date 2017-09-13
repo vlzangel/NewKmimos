@@ -1,0 +1,52 @@
+.km-img{
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #292929;
+    height: 150px;
+}
+
+#mapa{
+    height: 400px;
+}
+
+h1 a{
+    color: #000;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+h1 a:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+.rating img {
+    width: 20px;
+}
+
+.km-sellos.maps{
+    padding: 10px 0px 0px;
+}
+
+.km-sellos.maps .km-sellos{
+    padding: 0px;
+}
+
+h1.maps {
+    margin: 0;
+    padding: 5px 0 0 0;
+    font-size: 14px;
+    font-family: Gotham-Pro-Bold,arial,sans-serif;
+    text-transform: uppercase;
+}
+.km-opciones.maps {
+    width: 100%;
+    padding: 10px 0 0 0!important;
+    text-align: left;
+}
+#map .km-opciones .precio {
+    color: #6a2499;
+    font-size: 17px;
+    text-align: left;
+}

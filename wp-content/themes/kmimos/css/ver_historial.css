@@ -1,0 +1,53 @@
+.main *{
+	font-size: 13px;
+	font-family: "Roboto Condensed",Arial, Helvetica, sans-serif;
+}
+.volver{
+    color: #59c9a8;
+    margin: 0px;
+    display: inline-block;
+}
+.vlz_titulos_superior{
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom: solid 2px #59c9a8;
+	font-weight: 600;
+}
+.vlz_titulos_tablas {
+    background: #59c9a8;
+    padding: 8px;
+    color: #FFF;
+    font-weight: 600;
+}
+.vlz_contenido_tablas {
+    padding: 5px;
+	text-align: left;
+}
+.vlz_contenido_tablas th{
+	text-align: left;
+}
+.desglose td{
+    padding: 5px !important;
+}
+.row_mitad,
+.row_full
+{
+	overflow: hidden;
+	margin-bottom: 10px; 
+}
+.row_mitad section{
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+    padding: 3px;
+}
+.row_full section{
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+    padding: 3px;
+}
+
+section {
+    text-align: left !important;
+}
