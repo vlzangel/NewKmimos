@@ -12,10 +12,10 @@ function menu(){
 	var w = $(window).width();
 	if($(this).scrollTop() > 10) {
 		$('.bg-transparent').addClass('bg-white');
-		$('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo-negro.png');
+		$('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
 
 
-		$('.navbar-toggle img').attr('src', HOME+'/images/new/km-navbar-mobile-negro.svg');
+		$('.navbar-toggle img').attr('src', HOME+'images/new/km-navbar-mobile-negro.svg');
 		$('.nav-sesion .km-avatar').attr('src', AVATAR);
 		$('.nav-sesion .dropdown-toggle img').css('width','40px');
 		$('.nav li a').css('padding','10px 15px 8px');
@@ -34,9 +34,9 @@ function menu(){
 		}
 	} else {
 		$('.bg-transparent').removeClass('bg-white');
-		$('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo.png');
+		$('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo.png');
 
-		$('.navbar-toggle img').attr('src', HOME+'/images/new/km-navbar-mobile.svg');		
+		$('.navbar-toggle img').attr('src', HOME+'images/new/km-navbar-mobile.svg');		
 		$('.nav-sesion .km-avatar').attr('src', AVATAR);
 		$('.nav li a').css('padding','19px 15px 15px');
 		$('.nav-sesion .dropdown-toggle img').css('width','45px');
@@ -47,7 +47,7 @@ function menu(){
 		$('.navbar').css('padding-top', '30px');
 
 		$('.bg-white-secondary').css('height','100px');
-		$('.bg-white-secondary .navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo-negro.png');
+		$('.bg-white-secondary .navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
 
 		if( w >= 768 ){
 			$('a.km-nav-link, .nav-login li a').css('color','white');
@@ -170,11 +170,11 @@ $(document).ready(function(){
 	  buildPager: function(slideIndex){
 		switch(slideIndex){
 		  case 0:
-			return '<img src="'+HOME+'/images/new/km-testimoniales/thumbs/testimonial-1.jpg">';
+			return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-1.jpg">';
 		  case 1:
-			return '<img src="'+HOME+'/images/new/km-testimoniales/thumbs/testimonial-2.jpg">';
+			return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-2.jpg">';
 		  case 2:
-			return '<img src="'+HOME+'/images/new/km-testimoniales/thumbs/testimonial-3.jpg">';
+			return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-3.jpg">';
 		}
 	  }
 	});
