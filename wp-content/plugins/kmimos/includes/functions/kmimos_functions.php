@@ -1,5 +1,51 @@
 <?php
+	function get_coordenadas(){
+		//COORDENADAS
+	    global $wpdb;
+	    $result_coord = $wpdb->get_results("
+	        SELECT
+	            locations.clave AS clave,
+	            locations.valor AS valor
+	        FROM
+	            kmimos_opciones AS locations
+	        WHERE
+	            locations.clave LIKE 'municipio%'
+	            OR
+	            locations.clave LIKE 'estado%'
+	        ORDER BY
+	            locations.id ASC"
+	    );
 
+	    $state=array();
+	    $locale=array();
+	    foreach($result_coord as $data){
+	        $clave = $data->clave;
+	        $valor = unserialize($data->valor);
+	        //var_dump(strpos($clave,'estado'));
+
+	        if(strpos($clave,'estado_') !== false){
+	            $id=str_replace('estado_','',$clave);
+	            $state[$id]=array(
+	                'lat'=>$valor['referencia']->lat,
+	                'lng'=>$valor['referencia']->lng
+	            );
+	        }
+
+	        if(strpos($clave,'municipio_') !== false){
+	            $id=str_replace('municipio_','',$clave);
+	            $locale[$id]=array(
+	                'lat'=>$valor['referencia']->lat,
+	                'lng'=>$valor['referencia']->lng
+	            );
+	        }
+	    }
+
+	    $coordenadas=[];
+	    $coordenadas['state']=$state;
+	    $coordenadas['locale']=$locale;
+
+	    return json_encode( $coordenadas );
+	}
 
 	function get_estados_municipios(){
 		require_once('vlz_config.php');

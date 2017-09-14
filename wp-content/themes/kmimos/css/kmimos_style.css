@@ -1933,6 +1933,20 @@ a.km-btn-comentario {
     position: relative;
     color: white;
 }
+.km-datos-municipio-opcion,
+.km-datos-estado-opcion{
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .2px;
+    font-family: Gotham-Pro-Regular, Arial, serif;
+    border-bottom: 1px solid #ccc;
+    padding-left: 0px;
+}
 
 
 
@@ -5071,6 +5085,25 @@ a.km-btn-comentario {
 .km-box-form .content-placeholder .label-placeholder {
     width:100%
 }
+
+.km-group-checkbox label,
+.km-calendario label{
+    padding-top: 20px;
+    color: #a1a1a1;
+    font-size: 15px;
+    font-weight: 600;
+}
+.km-calendario input {
+    width:100%;
+    padding:0px 0 3px 25px;
+    border:none;
+    border-bottom:1px solid #ccc;
+    margin:0;
+    background:#fff;
+    background-image:url(../images/new/icon/icon-calendario.svg);
+    background-repeat:no-repeat;
+}
+
 .km-fecha-nacimiento input {
     width:100%;
     padding:24px 0 3px 25px;
@@ -8234,7 +8267,7 @@ button.close {
 
 .km-resultados-grid .km-item-resultado .km-descripcion{
     padding: 10px 16px;
-    min-height: 125px;
+    min-height: 177px;
 }
 
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos{

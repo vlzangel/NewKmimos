@@ -1,9 +1,7 @@
 <?php
 $HTML .= '
 <script>
-  function statusChangeCallback(response) {
-    console.log(response);
-  }
+  function statusChangeCallback(response) {}
 
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
@@ -53,9 +51,11 @@ $HTML .= '
           $( ".social_lastname" ).val( response.last_name );
           $( ".social_email" ).val( response.email );
           $( ".social_firstname" ).val( response.name );
-          $(".social-next-step").click();
+          $( ".social-next-step" ).click();
+          console.log("conectado");
         });
         FB.logout();
+
       }
     });
 
@@ -64,7 +64,6 @@ $HTML .= '
   function login_facebook(){
     FB.getLoginStatus(function(response) {
       if (response.status == \'connected\') {
-        console.log("connected");
         KmimosAPI();
       }else{
         login();

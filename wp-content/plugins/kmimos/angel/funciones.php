@@ -140,7 +140,7 @@
                                 </div>
 
                                 <div class="slide-buttons">
-                                    <a href="'.$url.'">CONÓCELO +</a>
+                                    <a href="#" role="button" data-name="'.$nombre.'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke" style="height:auto;">CONÓCELO +</a>
                                     <a href="'.$url.'">RESERVAR</a>
                                 </div>
                             </div>
@@ -462,7 +462,7 @@
                                 </div>
                             </div>
 
-                            <div class="km-opciones">
+                            <div class="km-opciones row">
                                 <div class="precio">Desde MXN $ '.$cuidador->precio.'</div>
                                 <a href="#" role="button" data-name="'.utf8_encode($cuidador->titulo).'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke">CONÓCELO +</a>
                                 <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new basic">RESERVA</a>
