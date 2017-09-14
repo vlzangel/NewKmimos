@@ -140,7 +140,7 @@
                                 </div>
 
                                 <div class="slide-buttons">
-                                    <a href="#" role="button" data-name="'.utf8_encode($cuidador->titulo).'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke" style="height:auto;">CONÓCELO +</a>
+                                    <a href="#" role="button" data-name="'.$nombre.'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke" style="height:auto;">CONÓCELO +</a>
                                     <a href="'.$url.'">RESERVAR</a>
                                 </div>
                             </div>

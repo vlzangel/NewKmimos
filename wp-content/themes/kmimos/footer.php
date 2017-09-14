@@ -98,7 +98,7 @@ $HTML = '
     wp_footer();
 
     /* BEGIN ESTADOS Y MUNICIPIOS */
-    $HTML .= get_estados_municipios();
+    $HTML = get_estados_municipios();
     /* END ESTADOS Y MUNICIPIOS */
 
     $HTML .= "
