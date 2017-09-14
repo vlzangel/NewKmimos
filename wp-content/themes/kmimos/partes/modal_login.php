@@ -1,4 +1,5 @@
-<?php	
+<?php
+$datos = kmimos_get_info_syte();
 	$HTML .='
 		<!-- POPUP INICIAR SESIÓN -->
 		<div id="popup-iniciar-sesion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -50,7 +51,7 @@
 						
 						
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
+						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (55) 6892-2182</p>
 						<hr>
 						<div class="row">
 							<div class="col-xs-12 col-sm-5">
@@ -65,19 +66,21 @@
 					<div class="popuphide popup-olvidaste-contrasena">
 						<p class="popup-tit">¿OLVIDASTE TU CONTRASEÑA?</p>
 						<p>No te preocupes, a todos nos pasa. Ingresa tu correo electrónico y listo!</p>
-					<form id="form_recuperar">	
-						<div class="km-box-form">
-							<div class="content-placeholder">
-								<div class="label-placeholder">
-									<input type="text" id="usuario" placeholder="Correo El&eacute;ctronico" class="input-label-placeholder">
-								</div>
+						<form id="form_recuperar">
+							<div class="km-box-form">
+								<div class="content-placeholder">
+									<div class="label-placeholder" style="margin: 20px 0;">
+										<input type="text" id="usuario" placeholder="Ingresar dirección de email"  maxlength="50" class="input-label-placeholder" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+									</div>
 									<div class="botones_box">
-		                 			<a href="#" id="login_submit" class="km-btn-basic">ENVIAR CONTRASEÑA</a>
-		                 		</div>
+										<button type="submit" style=" outline: none; border: none; width: 100%;" id="login_submit" class="km-btn-basic recover_pass">ENVIAR CONTRASEÑA</button>
+									</div>
+									<div class="response"></div>
+								</div>
 							</div>
-						</div>
-					</form>
+						</form>
 					</div>
+
 				</div>
 			</div>
 		</div>
