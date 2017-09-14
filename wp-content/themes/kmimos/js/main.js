@@ -296,6 +296,7 @@ $(document).ready(function(){
 		$(this).toggleClass('km-servicio-opcionactivo');
 	});
 
+
 	$(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
 		e.preventDefault();
 		var el = $(this);

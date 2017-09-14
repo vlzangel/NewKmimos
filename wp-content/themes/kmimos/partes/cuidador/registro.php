@@ -49,33 +49,33 @@
 					<div class="content-placeholder">
 						<div class="label-placeholder">
 							<label>Nombre</label>
-							<input type="text" data-charset="xlf" name="nombres" value="" class="input-label-placeholder social_firstname">
-							<small data-error="nombres" style="visibility: hidden;"></small>
+							<input type="text" data-charset="xlf" name="rc_nombres" value="" class="input-label-placeholder social_firstname">
+							<small data-error="rc_nombres" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Apellido</label>
-							<input type="text" data-charset="xlf" name="apellidos" value="" class="input-label-placeholder social_lastname">
-							<small data-error="apellidos" style="visibility: hidden;"></small>
+							<input type="text" data-charset="xlf" name="rc_apellidos" value="" class="input-label-placeholder social_lastname">
+							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>IFE/Documento de Identidad</label>
-							<input type="text" data-charset="num" name="ife" value="" class="input-label-placeholder">
-							<small data-error="ife" style="visibility: hidden;"></small>
+							<input type="text" data-charset="num" name="rc_ife" value="" class="input-label-placeholder">
+							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Correo electrónico</label>
-							<input type="email" name="email" data-charset="cormlfnum" autocomplete="off" type='text' id='email_1' value="" class="social_email input-label-placeholder">
-							<small data-error="email" style="visibility: hidden;"></small>
+							<input type="email" name="rc_email" data-charset="cormlfnum" autocomplete="off" type='text' id='email_1' value="" class="social_email input-label-placeholder">
+							<small data-error="rc_email" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Crea tu contraseña</label>
-							<input type="password" data-clear name="clave" value="" class="input-label-placeholder">
-							<small data-error="clave" style="visibility: hidden;"></small>
+							<input type="password" data-clear name="rc_clave" value="" class="input-label-placeholder">
+							<small data-error="rc_clave" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Teléfono</label>
-							<input type="text" name="telefono" data-charset="num" minlength="7" maxlength="15" value="" class="input-label-placeholder">
-							<small data-error="telefono" style="visibility: hidden;"></small>
+							<input type="text" name="rc_telefono" data-charset="num" minlength="7" maxlength="15" value="" class="input-label-placeholder">
+							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
 					</div>
 				</div>
@@ -129,15 +129,15 @@
 				</a>
 				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
 
-            	<input class="hidden" type="file" id="portada" name="portada" accept="image/*" />
-	            <input class="hidden" type="text" id="vlz_img_perfil" name="vlz_img_perfil" value="">
+            	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
+	            <input class="hidden" type="text" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="">
 
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
 				
-				<textarea name="descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con seguro de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
+				<textarea name="rc_descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con seguro de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
 				</textarea>
-				<small data-error="descripcion" style="visibility: hidden;"></small>
+				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
 
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-paso1">SIGUIENTE</a>
 				<!-- <a href="#km-registro-tip1" class="km-registro-tip" role="button" data-toggle="modal"></a> -->
@@ -170,7 +170,7 @@
 					<div class="content-placeholder">
 						<div class="label-placeholder">
 							<label>Estado</label>
-							<select class="km-datos-estado-opcion km-select-custom" name="estado">
+							<select class="km-datos-estado-opcion km-select-custom" name="rc_estado">
 								<option value="">Selección de Estado</option>
 								<?php
 									global $wpdb;
@@ -182,21 +182,20 @@
 								    echo $str_estados = utf8_decode($str_estados);
 								?>
 							</select>
-							<small data-error="estado" style="visibility: hidden;"></small>
+							<small data-error="rc_estado" style="visibility: hidden;"></small>
 
 						</div>
 						<div class="label-placeholder">
 							<label>Municipio</label>
-							<select class="km-datos-municipio-opcion km-select-custom" name="municipio">
+							<select class="km-datos-municipio-opcion km-select-custom" name="rc_municipio">
 								<option value="">Selección de Municipio</option>
 							</select>
-							<small data-error="municipio" style="visibility: hidden;"></small>
-							<!-- input type="text" name="municipio" value="" class="input-label-placeholder" -->
+							<small data-error="rc_municipio" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Dirección</label>
-							<input type="text" name="direccion" value="" class="input-label-placeholder">
-							<small data-error="direccion" style="visibility: hidden;"></small>
+							<input type="text" name="rc_direccion" value="" class="input-label-placeholder">
+							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
 					</div>
 				</div>
@@ -232,12 +231,13 @@
 							<div class="km-content-step">
 								<div class="km-content-new-pet">
 									<div class="km-quantity">
-										<a href="#" class="km-minus disabled">-</a>
 
+										<a href="#" id="cr_minus" class="km-minus km-plus disabled">+</a>
 										<span class="km-number">1</span>
-										<input type="text" name="num_mascota" value="0" style="display:none;">
+										<a href="#" id="cr_plus" class="km-plus">-</a>
 
-										<a href="#" class="km-plus">+</a>
+										<input  type="text" name="rc_num_mascota" value="1" 
+												style="display:none;">
 									</div>
 								</div>
 							</div>
