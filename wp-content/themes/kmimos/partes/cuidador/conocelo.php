@@ -12,7 +12,7 @@ $mascotas = kmimos_get_my_pets($user_id);
 		<div class="modal-content">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<div class="popup-iniciar-sesion-1">
-				<p class="popup-tit">Solicitud para conocer al <span id="modal-name-cuidador"></span></p>
+				<p class="popup-tit">Solicitud para conocer a <span id="modal-name-cuidador"></span></p>
 				<div>
 					<p>Para poder conocer al cuidador primero tienes que:</p>
 					<ol>

@@ -1,11 +1,13 @@
 $(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(e){
+    $( '#modal-name-cuidador' ).html( $(this).data('name') );
+    $( '[name="post_id"]' ).html( $(this).data('id') );
     $($(this).data('target')).modal('show');
+
 });
 
 $(document).on("click", '[data-id="enviar_datos"]' ,function(e){
         e.preventDefault();     
     var a = HOME+"/procesos/cuidador/conocer-cuidador.php";
-
     jQuery.post( a, jQuery("#conoce_cuidador").serialize(), function( data ) {
         console.log(data);
         if( data > 0 ){
