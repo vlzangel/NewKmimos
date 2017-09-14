@@ -109,6 +109,7 @@ $HTML = '
         </script>
 
         <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
+        <script>startApp();</script>
     ";
 
     echo comprimir_styles($HTML);

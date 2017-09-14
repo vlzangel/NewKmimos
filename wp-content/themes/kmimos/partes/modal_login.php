@@ -47,7 +47,6 @@
 							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 							CONÉCTATE CON GOOGLE
 						</a>
-						<script>//startApp();</script>
 						
 						
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
