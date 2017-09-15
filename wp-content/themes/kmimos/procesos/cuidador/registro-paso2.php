@@ -19,6 +19,7 @@
     $municipio = $rc_municipio;
     $vlz_img_perfil = $rc_vlz_img_perfil;
     $direccion = $rc_direccion;
+    $descripcion = $rc_descripcion;
     $num_mascota = $rc_num_mascota; 
 
     $hoy = date("Y-m-d H:i:s");
