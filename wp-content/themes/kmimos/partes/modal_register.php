@@ -66,7 +66,7 @@ $HTML .='
 							<div class="content-placeholder">
 								<input type="text" id="id_login_face" name="id_login_face" class="hidden">
 								<input type="text" id="id_login_gmail" name="id_login_gmail" class="hidden">
-								<div class="km-datos-foto" id="km-datos-foto-profile"></div>
+								<div class="km-datos-foto" id="km-datos-foto-profile" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;"></div>
 								<input type="file" class="hidden" id="carga_foto_profile" accept="image/*">
 								<input type="hidden" id="img_profile" name="img_profile" value="">
 								<div class="label-placeholder">
@@ -117,7 +117,7 @@ $HTML .='
 									</select>
 								</div>
 								<div class="km-datos-mascota">
-									<select name="referido" class="km-datos-mascota-opcion" data-title="Debes seleccionar una opción" required>
+									<select id="referido" name="referido" class="km-datos-mascota-opcion" data-title="Debes seleccionar una opción" required>
 										<option value="">Selecciona una opción</option>
 										'.$referidos_options.'
 									</select>
@@ -146,7 +146,7 @@ $HTML .='
 						<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 						<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
 
-						<div class="km-datos-foto" id="km-datos-foto"></div>
+						<div class="km-datos-foto" id="km-datos-foto" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;"></div>
 						<input type="file" class="hidden" id="carga_foto" accept="image/*">
 						<input type="hidden" id="img_pet" name="img_pet" value="">
 

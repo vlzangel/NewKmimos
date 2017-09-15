@@ -168,8 +168,10 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		 	movil = $("#movil").val(), 
 		 	genero = $("#genero").val(), 
 		 	edad = $("#edad").val(), 
-		 	fumador = $("#fumador").val();
-		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador];
+		 	fumador = $("#fumador").val(),
+				referido = $("#referido").val(),
+				img_profile = $("#img_profile").val();
+		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
 		if (nombre != "" && apellido != "" && ife != "" && email !="" && pass != "" && movil != ""
 		       	&& genero != "" && edad != "" && fumador !="") {
 				$(".popup-registrarte-nuevo-correo").hide();
@@ -183,7 +185,9 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 					'movil': campos[5],
 					'gender': campos[6],
 					'age': campos[7],
-					'smoker': campos[8]};
+					'smoker': campos[8],
+					'referido': campos[9],
+					'img_profile': campos[10]};
 
 			globalData = getGlobalData('/procesos/login/registro.php','post', datos);
 			console.log(globalData);
