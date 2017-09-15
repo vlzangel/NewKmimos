@@ -13,6 +13,14 @@
         if($value == ''){ $_POST[$key] = 0; }
     }
     extract($_POST);
+
+    $email = $rc_email;
+    $estado = $rc_estado;
+    $municipio = $rc_municipio;
+    $vlz_img_perfil = $rc_vlz_img_perfil;
+    $direccion = $rc_direccion;
+    $num_mascota = $rc_num_mascota; 
+
     $hoy = date("Y-m-d H:i:s");
 
     if ($conn->connect_error) {
