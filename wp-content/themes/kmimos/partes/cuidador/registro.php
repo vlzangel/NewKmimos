@@ -244,9 +244,9 @@
 								<div class="km-content-new-pet">
 									<div class="km-quantity">
 
-										<a href="#" id="cr_minus" class="km-minus km-plus disabled">+</a>
+										<a href="#" id="cr_minus" class="km-minus km-plus disabled">-</a>
 										<span class="km-number">1</span>
-										<a href="#" id="cr_plus" class="km-plus">-</a>
+										<a href="#" id="cr_plus" class="km-plus">+</a>
 
 										<input  type="text" name="rc_num_mascota" value="1" 
 												style="display:none;">
