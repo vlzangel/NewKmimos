@@ -54,7 +54,7 @@
     // END DATA DEFAULT
 
     if ($conn->connect_error) {
-        echo json_encode(['error'=>'NO','msg'=>'Error de conexion']);
+        echo json_encode(['error'=>'NO','msg'=>'Error de conexion', 'fields'=>[]]);
     }else{
         // Valores default
         foreach ($_POST as $key => $value) {
@@ -83,11 +83,17 @@
             while($datos = $existe_users->fetch_assoc()){
                 if( strtolower($datos['user_email']) == strtolower($email) ){
                     $msg .= "Este E-mail [{$email}] ya esta en uso\n";
-                    $fields[] = [ 'name'=>'email', 'msg'=>"Este E-mail [{$email}] ya esta en uso"];
+                    $fields[] = [ 'name'=>'email', 'msg'=>"Este E-mail {$email} ya esta en uso"];
                 }
                 if( strtolower($datos['user_login']) == strtolower($username) ){
                     $msg .= "Este nombre de Usuario [{$username}] ya esta en uso\n";
-                    $fields[] = [ 'name'=>'nickname', 'msg'=>"Este  nombre de Usuario [{$username}] ya esta en uso"];
+                    $fields[] = [ 'name'=>'nickname', 'msg'=>"Este  nombre de Usuario {$username} ya esta en uso"];
+                }
+            }
+            while($datos = $existe_cuidador->fetch_assoc()){
+                if( strtolower($datos['email']) == strtolower($email) ){
+                    $msg .= "Este E-mail [{$email}] ya esta en uso\n";
+                    $fields[] = [ 'name'=>'email', 'msg'=>"Este E-mail {$email} ya esta en uso"];
                 }
             }
 
@@ -131,7 +137,7 @@
             );
             
             // Registro en iLernus
-            // $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
+            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
             $sql = "
                 INSERT INTO cuidadores VALUES (
@@ -220,6 +226,7 @@
                 $sql = "
                     INSERT INTO wp_usermeta VALUES
                          (NULL, ".$user_id.", 'user_favorites',      '')
+                        ,(NULL, ".$user_id.", 'user_pass',          '".$clave."')
                         ,(NULL, ".$user_id.", 'user_phone',          '".$telefono."')
                         ,(NULL, ".$user_id.", 'user_mobile',         '".$telefono."')
                         ,(NULL, ".$user_id.", 'user_country', 'México')
@@ -234,8 +241,8 @@
                         ,(NULL, ".$user_id.", 'show_admin_bar_front', 'false')
                         ,(NULL, ".$user_id.", 'wp_capabilities',     'a:1:{s:6:\"vendor\";b:1;}')
                         ,(NULL, ".$user_id.", 'wp_user_level',       '0')                        
-                        ,(NULL, ".$user_id.", 'google_auth_id' , $google_auth_id  )
-                        ,(NULL, ".$user_id.", 'facebook_auth_id' , $facebook_auth_id)
+                        ,(NULL, ".$user_id.", 'google_auth_id' , '".$google_auth_id."'  )
+                        ,(NULL, ".$user_id.", 'facebook_auth_id' , '".$facebook_auth_id."')
                         ;
                 ";
                 $conn->query( $sql );
@@ -297,7 +304,8 @@
                 // Respuesta
                 $error = array(
                     "error"         => "NO",
-                    "msg"           => $mensaje_web
+                    "msg"           => $mensaje_web, 
+                    'fields'=>[]
                 );
                 echo "(".json_encode( $error ).")";
 
@@ -305,7 +313,8 @@
                 // Error registro en iLernus
                 $error = array(
                     "error" => "SI",
-                    "msg"   => "No se ha podido completar el registro."
+                    "msg"   => "No se ha podido completar el registro.", 
+                    'fields'=>[]
                 );
                 echo "(".json_encode( $error ).")";
             }

@@ -25,6 +25,17 @@ jQuery( document ).ready(function() {
    	});
 });
 
+function social_auth( f ){
+    jQuery.get(HOME+"/procesos/login/login_social_id.php?init="+f, function(e){
+        if( e ){
+        console.log("as");
+            location.reload();
+        }else{
+            $('[data-error="auth"]').html(e);
+        }
+    });
+}
+
 function logear(){
     jQuery.post( 
         HOME+"/procesos/login/login.php", 

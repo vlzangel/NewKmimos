@@ -46,11 +46,18 @@ $HTML .= '
     FB.getLoginStatus(function(response) {
       if (response.status == \'connected\') {
         FB.api(\'/me\', {fields: \'first_name, last_name, email, name, id\'}, function(response) {
+
           $( ".social_facebook_id" ).val( response.id );
+
           $( ".social_firstname" ).val( response.first_name );
+          $(\'.social_firstname\').parent(\'div\').addClass(\'focused\');
+
           $( ".social_lastname" ).val( response.last_name );
+          $(\'.social_lastname\').parent(\'div\').addClass(\'focused\');
+
           $( ".social_email" ).val( response.email );
-          $( ".social_firstname" ).val( response.name );
+          $(\'.social_email\').parent(\'div\').addClass(\'focused\');
+                    
           $( ".social-next-step" ).click();
           console.log("conectado");
         });
@@ -69,7 +76,15 @@ $HTML .= '
         login();
       }
     });
-  
+  }
+  function auth_facebook(){
+     FB.login(function(response) {
+      if (response.authResponse) {
+        FB.api(\'/me\', {fields: \'first_name, last_name, email, name, id\'}, function(response) {
+          social_auth( response.id );
+        });
+      }
+    });
   }
 
 </script>';
