@@ -33,7 +33,7 @@ $datos = kmimos_get_info_syte();
 							</form>
 
 							<div class="col-xs-12 col-sm-8" style="text-align: right;">
-								<a href="#" class="show_modal km-btn-contrasena-olvidada" data-modal="#revover_pass">¿OLVIDASTE TU CONTRASEÑA?</a>
+								<a href="#" class="km-btn-contraseña-olvidada">¿OLVIDASTE TU CONTRASEÑA?</a>
 							</div>
 						</div>
 						<div class="line-o">
@@ -44,7 +44,7 @@ $datos = kmimos_get_info_syte();
 							<img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">
 							CONÉCTATE CON FACEBOOK
 						</a>
-						<a href="#" class="km-btn-border" id="customBtn">
+						<a href="#" class="google_auth km-btn-border" id="customBtn">
 							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 							CONÉCTATE CON GOOGLE
 						</a>

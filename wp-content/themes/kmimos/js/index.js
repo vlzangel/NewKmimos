@@ -185,8 +185,8 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 					'age': campos[7],
 					'smoker': campos[8]};
 
-			// globalData = getGlobalData('/procesos/login/registro.php','post', datos); 
-			// console.log(globalData);
+			globalData = getGlobalData('/procesos/login/registro.php','post', datos);
+			console.log(globalData);
 		}else {
          	alert("Revise sus datos por favor, debe llenar todos los campos");
         }

@@ -31,7 +31,7 @@ $HTML .='
 							REGISTRARME CON FACEBOOK
 						</a>
 						
-						<a href="#" class="km-btn-border" id="customBtn1">
+						<a href="#" class="google_auth km-btn-border" id="customBtn1">
 							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 							REGISTRARME CON GOOGLE
 						</a>
@@ -54,12 +54,12 @@ $HTML .='
 								<p>¿Ya tienes una cuenta?</p>
 							</div>
 							<div class="col-xs-7">
-								<a href="#" class="km-btn-border" data-toggle="modal" data-target="#popup-iniciar-sesion"><b>INICIAR SESIÓN</b></a>
+								<a href="#" class="modal_show km-btn-border" data-modal="#popup-iniciar-sesion"><b>INICIAR SESIÓN</b></a>
 							</div>
 						</div>
 					</div>
 				<div class="popuphide popup-registrarte-nuevo-correo">
-					<p style="color: #979797; text-align: center;">Regístrate por <a href="#" onclick="login_facebook();">Facebook</a> o <a href="#" id="customBtn2">Google</a></a></p>
+					<p style="color: #979797; text-align: center;">Regístrate por <a href="#" onclick="login_facebook();">Facebook</a> o <a href="#" class="google_auth" id="customBtn2">Google</a></a></p>
 						<h3 style="margin: 0; text-align: center;">Completa tus datos</h3>
 					<form id="form_nuevo_cliente" name="form_nuevo_cliente" enctype="multipart/form-data" method="POST">	
 						<div class="km-box-form">
@@ -138,7 +138,7 @@ $HTML .='
 							<p>¿Ya tienes una cuenta?</p>
 						</div>
 						<div class="col-xs-7">
-							<a href="#" class="km-btn-border km-link-login"><b>INICIAR SESIÓN</b></a>
+							<a href="#" class="modal-show km-btn-border km-link-login" data-modal="#popup-iniciar-sesion"><b>INICIAR SESIÓN</b></a>
 						</div>
 					</div>
 				</div>
