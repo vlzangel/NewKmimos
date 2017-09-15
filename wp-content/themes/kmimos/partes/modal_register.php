@@ -138,7 +138,7 @@ $HTML .='
 							<p>¿Ya tienes una cuenta?</p>
 						</div>
 						<div class="col-xs-7">
-							<a href="#" class="modal-show km-btn-border km-link-login" data-modal="#popup-iniciar-sesion"><b>INICIAR SESIÓN</b></a>
+							<a href="#" class="modal_show km-btn-border km-link-login" data-modal="#popup-iniciar-sesion"><b>INICIAR SESIÓN</b></a>
 						</div>
 					</div>
 				</div>
@@ -171,7 +171,7 @@ $HTML .='
 									<input type="text" name="color_mascota" id="color_mascota" class="input-label-placeholder">
 								</div>
 								<div class="km-fecha-nacimiento">
-									<input type="text" name="date_from" id="date_from" placeholder="Fecha de Nacimiento" class="date_from">
+									<input type="text" name="date_from" id="datepets" placeholder="Fecha de Nacimiento" class="date_from" readonly>
 								</div>
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion" name="genero_mascota" id="genero_mascota">

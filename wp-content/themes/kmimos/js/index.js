@@ -204,6 +204,15 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		$("#carga_foto").trigger("click");
 		document.addEventListener('change',cargaImagen, false);
 	});
+
+	jQuery('#datepets').datepick({
+		dateFormat: 'dd/mm/yyyy',
+		minDate: fecha,
+		onSelect: function(xdate) {		},
+		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+		firstDay: 1,
+		onmonthsToShow: [1, 1]
+	});
 	
 	$("#nombre_mascota").blur(function(){
 		if($("#nombre_mascota").val().length == 0){		
