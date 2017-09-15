@@ -1,5 +1,23 @@
 <?php
 $datos = kmimos_get_info_syte();
+$referidos = get_referred_list_options();
+$referidos_options = "";
+foreach ($referidos as $key => $value) {
+	$selected="";
+	if(array_key_exists("wlabel",$_SESSION)){
+		$wlabel=$_SESSION['wlabel'];
+
+		if($key=='Volaris' && $wlabel=='volaris'){
+			$selected='selected';
+
+		}else if($key=='Vintermex' && $wlabel=='viajesintermex'){
+			$selected='selected';
+		}
+	}
+
+	$referidos_options.= "<option value='{$key}' $selected>{$value}</option>";
+}
+
 $HTML .='
 	<!-- POPUPS REGISTRARTE -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="myModal" style="padding: 40px;">
@@ -53,11 +71,11 @@ $HTML .='
 								<input type="hidden" id="img_profile" name="img_profile" value="">
 								<div class="label-placeholder">
 									<label>Nombre</label>
-									<input type="text" id="nombre" name="nombre" class="input-label-placeholder" data-charset="alf">
+									<input type="text" id="nombre" name="nombre" maxlength="30" class="input-label-placeholder" pattern=".{3,}">
 								</div>
 								<div class="label-placeholder">
 									<label>Apellido</label>
-									<input type="text" name="apellido" id="apellido" class="input-label-placeholder" data-charset="alf">
+									<input type="text" name="apellido" id="apellido" maxlength="30" class="input-label-placeholder" pattern=".{3,}">
 								</div>
 								<div class="label-placeholder">
 									<label>IFE/Documento de Identidad</label>
@@ -65,7 +83,7 @@ $HTML .='
 								</div>
 								<div class="label-placeholder">
 									<label>Correo electrónico</label>
-									<input type="mail" name="email_1" id="email_1" class="input-label-placeholder" data-charset="espalfnum">
+									<input type="email" name="email_1" id="email_1" class="input-label-placeholder" data-charset="espalfnum" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
 									<span id="resultado"></span>
 								</div>
 								<div class="label-placeholder">
@@ -98,6 +116,14 @@ $HTML .='
 										<option value="NO">No</option>
 									</select>
 								</div>
+								<div class="km-datos-mascota">
+									<select name="referido" class="km-datos-mascota-opcion" data-title="Debes seleccionar una opción" required>
+										<option value="">Selecciona una opción</option>
+										'.$referidos_options.'
+									</select>
+								</div>
+
+
 							</div>
 						</div>
 					</form>

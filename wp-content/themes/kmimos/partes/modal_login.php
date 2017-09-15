@@ -33,7 +33,7 @@ $datos = kmimos_get_info_syte();
 							</form>
 
 							<div class="col-xs-12 col-sm-8" style="text-align: right;">
-								<a href="#" class="km-btn-contraseña-olvidada">¿OLVIDASTE TU CONTRASEÑA?</a>
+								<a href="#" class="show_modal km-btn-contrasena-olvidada" data-modal="#revover_pass">¿OLVIDASTE TU CONTRASEÑA?</a>
 							</div>
 						</div>
 						<div class="line-o">
@@ -60,7 +60,7 @@ $datos = kmimos_get_info_syte();
 								<p>REGÍSTRATE AHORA - Es Gratis</p>
 							</div>
 							<div class="col-xs-12 col-sm-7">
-								<a href="#myModal" class="km-btn-border" data-toggle="modal" data-target="#myModal"><b>REGÍSTRATE</b></a>
+								<a href="#myModal" class="modal_show km-btn-border"  data-modal="#myModal"><b>REGÍSTRATE</b></a>
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@ $datos = kmimos_get_info_syte();
 							<div class="km-box-form">
 								<div class="content-placeholder">
 									<div class="label-placeholder" style="margin: 20px 0;">
-										<input type="text" id="usuario" placeholder="Ingresar dirección de email"  maxlength="50" class="input-label-placeholder" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+										<input type="text" id="usuario" placeholder="Ingresar dirección de email"  maxlength="30" class="input-label-placeholder" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
 									</div>
 									<div class="botones_box">
 										<button type="submit" style=" outline: none; border: none; width: 100%;" id="login_submit" class="km-btn-basic recover_pass">ENVIAR CONTRASEÑA</button>

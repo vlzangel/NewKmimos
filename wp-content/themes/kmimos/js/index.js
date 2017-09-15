@@ -34,7 +34,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		switch($("#ife").val().length) {
 		case 0:
 			$("#ife").parent('div').css('color','red');
-			$("#ife").after('<span name="sp-ife">Debe ingresar su ife</span>').css('color','red');
+			$("#ife").after('<span name="sp-ife">Debe ingresar su IFE</span>').css('color','red');
 			$("#ife").focus(function() { $("[name='sp-ife']").hide(); });
 			break;
 		case 11:
@@ -44,7 +44,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 			break;
 		default:
 			$("#ife").parent('div').css('color','red');
-			$("#ife").after('<span name="sp-ife">Su ife debe contener 11 dígitos</span>').css('color','red');
+			$("#ife").after('<span name="sp-ife">Su IFE debe contener 11 dígitos</span>').css('color','red');
 			$("#ife").focus(function() { $("[name='sp-ife']").hide(); });
 		}
 	});
@@ -466,6 +466,7 @@ $('[data-charset]').on({
 		$(".popup-iniciar-sesion-1").hide();
 		$(".popup-olvidaste-contrasena").fadeIn("fast");
 	});
+
 	$(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
 		e.preventDefault();
 
@@ -532,21 +533,9 @@ function cargaImagenProfile(evt){
 	}
 }
 
-function getAjaxData(url,method, datos){
-	return $.ajax({
-		data: datos,
-		type: method,
-		url: HOME+url,
-		async:false,
-		success: function(data){
-			return data;
-		}
-	}).responseText;
-}
-
 //RECOVER PASSWORD
 $(document).on('click','#login_submit.recover_pass',function(e){
-	$(this).closest('form').submit();
+	//$(this).closest('form').submit();
 });
 
 $("form#form_recuperar").submit(function(){
