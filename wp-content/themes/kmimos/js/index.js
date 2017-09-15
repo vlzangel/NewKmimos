@@ -196,7 +196,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 
 $("#popup-registrarte-datos-mascota").ready(function(){
 	
-	$(".km-datos-foto").on('click', function(){
+	$("#km-datos-foto").on('click', function(){
 		$("#carga_foto").trigger("click");
 		document.addEventListener('change',cargaImagen, false);
 	});
@@ -492,6 +492,7 @@ function cargaImagen(evt){
 		 	//Creamos la imagen.
 		 	$("#km-datos-foto").css("background-image", "url("+e.target.result+")");
 		 	$("#km-datos-foto").addClass("img-circle");
+			$("#img_pet").val(e.target.result);
 		 	//document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
 		 	};
 		 })(f);
@@ -499,3 +500,71 @@ function cargaImagen(evt){
 		 reader.readAsDataURL(f);
 	}
 }
+
+
+
+//IMAGE PROFILE
+$("#km-datos-foto-profile").on('click', function(){
+	$("#carga_foto_profile").trigger("click");
+	document.addEventListener('change',cargaImagenProfile, false);
+});
+
+function cargaImagenProfile(evt){
+	var files = evt.target.files;
+
+	// obtenemos la imagen del campo file
+	for (var i = 0, f; f = files[i]; i++) {
+		//Solo admitimos imágenes.
+		if (!f.type.match('image.*')) {
+			continue;
+		}
+		var reader = new FileReader();
+
+		reader.onload = (function(theFile){
+			return function(e){
+				//Creamos la imagen.
+				$("#km-datos-foto-profile").css("background-image", "url("+e.target.result+")");
+				$("#km-datos-foto-profile").addClass("img-circle");
+				$("#img_profile").val(e.target.result);
+				//document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+			};
+		})(f);
+
+		reader.readAsDataURL(f);
+	}
+}
+
+function getAjaxData(url,method, datos){
+	return $.ajax({
+		data: datos,
+		type: method,
+		url: HOME+url,
+		async:false,
+		success: function(data){
+			return data;
+		}
+	}).responseText;
+}
+
+//RECOVER PASSWORD
+$(document).on('click','#login_submit.recover_pass',function(e){
+	$(this).closest('form').submit();
+});
+
+$("form#form_recuperar").submit(function(){
+
+	var data_email = $(this).find("#usuario").val();
+	if (data_email != ""){
+		var datos = {
+			'email': data_email
+		};
+
+		var result = getAjaxData('/procesos/login/recuperar.php','post', datos);
+		$(this).find(".response").html(result);
+		console.log(result);
+
+	}else {
+		$(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");
+		//alert("Revise sus datos por favor, debe llenar todos los campos");
+	}
+});
