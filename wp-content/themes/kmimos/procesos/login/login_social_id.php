@@ -36,12 +36,12 @@
 		    $info['user_password']  = sanitize_text_field($user->clave);
 		    $user_signon = wp_signon( $info, true );
 		    wp_set_auth_cookie($user_signon->ID);
-			echo 'AUTH';
+			echo json_encode(['status'=>'true', 'msg'=>'Autenticado']);
 		}else{
-			echo 'No se puede iniciar sesion';
+			echo json_encode(['status'=>'false', 'msg'=>'No se puede iniciar sesion']);
 		}
 	}else{
-		echo 'Ningun usuario esta asociado a esta cuenta';
+		echo json_encode(['status'=>'false', 'msg'=>'Ningun usuario esta asociado a esta cuenta']);
 	}
 
 ?>

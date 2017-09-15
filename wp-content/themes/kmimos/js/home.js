@@ -3,6 +3,47 @@ var hasGPS=false;
 (function($) {
     'use strict';
 
+
+    $('[data-target="patitas-felices"]').on('click', function(){
+
+        if( $('#cp_email').val() != '' && $('#cp_nombre').val() != ''){
+
+            $('#cp_loading').removeClass('hidden');
+            $.ajax( RAIZ+"landing/registro-usuario.php?email="+$('#cp_email').val()+"&name="+$('#cp_nombre').val()+"&referencia=kmimos-home" )
+            .done(function(e) {
+                if( e == 1 ){
+                    $('#msg').html('¡Felicidades, ya formas parte de nuestro Club!');
+                    $('#cp_loading').addClass('hidden');
+                    window.open( RAIZ+"/referidos/compartir/?e="+$('#email').val(), '_blank' ); 
+                }
+            })
+            .fail(function() {
+                $('#msg').html('Registro: No pudimos completar su solicitud, intente nuevamente');
+                $('#cp_loading').addClass('hidden');
+            });  
+
+        }else{
+           
+            var danger_color =  '#c71111';
+            var border_color =  '#c71111';
+            var visible = 'visible';
+ 
+            $('[data-error="cp_nombre"]').css('visibility', visible);
+            $('[data-error="cp_nombre"]').css('color', danger_color);
+            $('[data-error="cp_nombre"]').html(msg);
+            $('[name="cp_nombre"]').css('border-bottom', '1px solid ' + border_color);
+            $('[name="cp_nombre"]').css('color', danger_color);
+
+            $('[data-error="cp_email"]').css('visibility', visible);
+            $('[data-error="cp_email"]').css('color', danger_color);
+            $('[data-error="cp_email"]').html(msg);
+            $('[name="cp_email"]').css('border-bottom', '1px solid ' + border_color);
+            $('[name="cp_email"]').css('color', danger_color);
+
+        }
+    });
+
+
     $('.adicionales_button').on('click', function(){
         console.log( "Hola");
         if( $('.modal_servicios').css('display') == 'none' ){

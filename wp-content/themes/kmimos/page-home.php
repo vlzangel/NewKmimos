@@ -49,6 +49,7 @@
 
 			<div class="container">
 				<div class="km-credibilidad-titular">
+					<h1 style="font-size: 0px;">No somos pensión para perros ni hotel para perros. Somos mucho mejor porque tenemos cuidadores certificados para perros.</h1>				
 					<p>A LA FAMILIA SE LE CUIDA, POR ELLO LE DAMOS A TU MASCOTA CUIDADO Y AMOR</p>
 					<h2>tu mascota regresa feliz</h2>
 				</div>
@@ -169,7 +170,7 @@
 													</div>
 												</div>
 											</div>
-											<a id="buscar_no" class="km-link" style="color: black; display:block; margin-top: 30px;">NO DESEO POR AHORA, GRACIAS</a>
+											<a href="javascript:;" id="buscar_no" class="km-link" style="color: black; display:block; margin-top: 30px;">NO DESEO POR AHORA, GRACIAS</a>
 										</div>
 									</div>
 								</div>
@@ -195,7 +196,7 @@
 							<div class="col-xs-8 col-sm-12">
 								<div class="km-beneficios-text">
 									<h5>CUIDADORES CERTIFICADOS</h5>
-									<p>Certificación bajo estándares internacionales. Respaldando su integridad y experiencia con perros. Siendo capacitados también en la <a class="km-link" href="#">Academia Kmimos.</a></p>
+									<p>Certificación bajo estándares internacionales. Respaldando su integridad y experiencia con perros. Siendo capacitados también en la Academia Kmimos.</p>
 								</div>
 							</div>
 						</div>
@@ -310,13 +311,23 @@
 					<div class="col-xs-12 col-sm-6">
 						<h4>CLUB DE LAS</h4>
 						<h2>Patitas Felices</h2>
-						<div class="box-form">
-							<form>
-								<input placeholder="NOMBRES Y APELLIDOS" type="text" required="">
-								<input placeholder="EMAIL" type="email" required="">
-							</form>
+						<div class="km-box-form">
+							<div class="content-placeholder">
+								<div class="label-placeholder">
+									<label>Nombres y apellidos</label>
+									<input type="text" id="cp_nombre" value="" class="input-label-placeholder">
+								</div>
+								<div class="label-placeholder">
+									<label>E-mail</label>
+									<input type="email" id="cp_email" value="" class="input-label-placeholder">
+								</div>
+							</div>
 						</div>
-						<a href="#" class="km-btn-primary ">INSCRÍBETE Y GANA</a>
+						<a href="javascript:;" data-target="patitas-felices" class="km-btn-primary">INSCRÍBETE Y GANA</a>
+						<span class="hidden" id="loading">Enviando datos.</span>
+						<div class="col-xs-12 loading hidden">
+							<div class="" id="msg">mensaje</div>
+						</div>
 					</div>
 					<div class="hidden-xs col-sm-3">
 						<img src="'.getTema().'/images/new/km-club-perro.jpg" width="100%">
@@ -332,10 +343,10 @@
 				<h2>Vacations Mode On</h2>
 				<div class="row">
 					<div class="col-xs-12 col-sm-6">
-						<a href="#" style="background-color: white;"><img src="'.getTema().'/images/new/km-logos/logo-hotel.jpg"></a>
+						<a href="http://www.fiestamericana.com/en/home" style="background-color: white;"><img src="'.getTema().'/images/new/km-logos/logo-hotel.jpg"></a>
 					</div>
 					<div class="col-xs-12 col-sm-6">
-						<a href="#" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.jpg"></a>
+						<a href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.jpg"></a>
 					</div>
 				</div>
 			</div>

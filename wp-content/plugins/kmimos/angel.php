@@ -73,7 +73,11 @@
 	            "pais"      => "México",
 	            "titulo"    => "Kmimos México",
 	            "email"     => "contactomex@kmimos.la",
-	            "telefono"  => "+52 (55) 1791.4931<br>+52 (55) 66319264",
+
+                "telefono" => "(01) 55 4742 3162",
+                "telefono_sincosto" => "(01) 800 056 4667",
+                "whatsapp"=> "+52 (55) 6892 2182", 
+
 	            "twitter"   => "kmimosmx",
 	            "facebook"  => "Kmimosmx",
 	            "instagram" => "kmimosmx",

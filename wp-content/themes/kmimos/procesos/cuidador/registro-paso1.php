@@ -165,13 +165,14 @@
                     '{$edades_aceptadas}',
                     '{$comportamientos_aceptados}',
                     '{$hospedaje}',
-                    '',
+                    0,
                     'a:0:{}',
                     'a:0:{}',
                     '0',
                     '0'
                 );
             ";
+
             if( $conn->query( utf8_decode( $sql ) ) ){
                 $cuidador_id = $conn->insert_id;
                 $hoy = date("Y-m-d H:i:s");     

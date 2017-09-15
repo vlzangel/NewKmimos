@@ -12,14 +12,16 @@ $HTML = '
                     <div class="col-xs-12 col-sm-6">
                         <h5>ENTÉRATE DE LOS ÚLTIMOS CUIDADOS PARA TU MASCOTA</h5>
                         <p>¡Inscríbete a nuestro blog y conócelas!</p>
+<form onsubmit="form_subscribe(this); return false;">
                         <div class="km-inscripcion">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Ingresa tu correo">
+                                <input type="text" name="email" class="form-control" placeholder="Ingresa tu correo">
                                 <span class="input-group-btn">
-                                    <button class="btn" type="button">INSCRIBIRME AL BLOG</button>
+                                    <button class="btn" type="submit">INSCRIBIRME AL BLOG</button>
                                 </span>
                             </div>
                         </div>
+</form>
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         <h5>SERVICIOS</h5>
@@ -29,9 +31,12 @@ $HTML = '
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         <h5>CONTÁCTANOS</h5>
-                        <p>Tlf: +52 (55) 4742-3162</p>
-                        <p>WhatsApp: +52 (55) 6892-2182</p>
-                        <p>Email: contactomex@kmimos.la</p>
+                        
+                        <p>Telef. Local: '.$datos['telefono'].'</p>
+                        <p>Llamada Sin Costo: '.$datos['telefono_sincosto'].'</p>
+                        <p>WhatsApp: '.$datos['whatsapp'].'</p>
+                        <p>Email: '.$datos['email'].'</p>
+
                         <div class="km-icon-redes">
                             <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path class="cls-1" d="M12.5,0A12.5,12.5,0,1,0,25,12.5,12.5,12.5,0,0,0,12.5,0Zm3.66,7.56H14.41c-.61,0-.74.25-.74.89V10h2.49l-.25,2.7H13.67v8H10.48v-8H8.82V10h1.66V7.83c0-2,1.07-3.07,3.47-3.07h2.21Z"/></svg></a>
                         </div>
@@ -114,6 +119,11 @@ $HTML = '
 
         <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
         <script>startApp();</script>
+
+        <!-- Asignar Alt a Imagenes -->
+        <script type='text/javascript'>
+            $('img').attr('alt', '".get_bloginfo('title', false)."');
+        </script>        
     ";
 
     echo comprimir_styles($HTML);

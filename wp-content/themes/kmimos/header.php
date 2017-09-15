@@ -1,4 +1,7 @@
-<?php include 'pre-header.php'; ?><!doctype html><html lang="es-ES" class="no-js"><head><title>Kmimos</title><meta charset="UTF-8"><?php 
+<?php include 'pre-header.php'; ?><!doctype html><html lang="es-ES" class="no-js"><head>
+
+	<title> <?php bloginfo('title'); ?> </title>
+	<meta charset="UTF-8"><?php 
 	$HTML = '';	
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
 		header('X-UA-Compatible: IE=edge,chrome=1');

@@ -110,6 +110,12 @@ p {
 	padding-top: 11px!important;
 	padding-bottom: 11px!important;
 }
+.loading{
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top:15px;
+}
 .km-btn-primary {
 	background-color: #7DD1C4;
 	border-bottom: 3px solid #33e1be;
