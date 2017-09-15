@@ -97,7 +97,11 @@ $HTML = '
  
     wp_footer();
 
-    $HTML = "
+    /* BEGIN ESTADOS Y MUNICIPIOS */
+    $HTML = get_estados_municipios();
+    /* END ESTADOS Y MUNICIPIOS */
+
+    $HTML .= "
         <script type='text/javascript'>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -109,6 +113,7 @@ $HTML = '
         </script>
 
         <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
+        <script>startApp();</script>
     ";
 
     echo comprimir_styles($HTML);

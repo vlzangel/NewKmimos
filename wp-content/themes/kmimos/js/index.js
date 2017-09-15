@@ -432,31 +432,33 @@ function getGlobalData(url,method, datos){
 	}).responseText;
 }
 
-$('[data-charset]').on({
-    keypress : function(e){
-            var tipo= $(this).attr('data-charset');
-            if(tipo!='undefined' || tipo!=''){
-                var cadena = "";
+// Validar tipos e datos en los campos
+jQuery( document ).on('keypress', '[data-charset]', function(e){
+	mensaje( $(this).attr('name'), '', true );
+    var tipo= $(this).attr('data-charset');
 
-                if(tipo.indexOf('alf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ"; }
-                if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ "; }
-                if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
-                if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
-                if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
-                if(tipo.indexOf('cor')>-1 ){ cadena = cadena + "@"; }
-                if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
+    if(tipo!='undefined' || tipo!=''){
+        var cadena = "";
 
-                var key = e.which,
-                    keye = e.keyCode,
-                    tecla = String.fromCharCode(key).toLowerCase(),
-                    letras = cadena;
-                if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
-                    e.preventDefault();
-                }
-            }   
+        if(tipo.indexOf('alf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ"; }
+        if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ "; }
+        if(tipo.indexOf('mlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyz"; }
+        if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
+        if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
+        if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
+        if(tipo.indexOf('cor')>-1 ){ cadena = cadena + ".-_@"; }
+        if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
+
+        var key = e.which,
+            keye = e.keyCode,
+            tecla = String.fromCharCode(key).toLowerCase(),
+            letras = cadena;
+
+        if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
+            e.preventDefault();
         }
-	});
-
+    }   
+});
 
 
 // POPUP INICIAR SESIÓN

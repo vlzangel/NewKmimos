@@ -20,12 +20,10 @@
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
-
 	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 
 	wp_head();
-	//include_once("partes/head/script_facebook_auth.php");
-	//include_once("partes/head/script_google_auth.php");
+
 	global $post;
 	$reserrvacion_page = "";
 	if( 
@@ -47,6 +45,15 @@
 	){
 		$reserrvacion_page = "page-reservation";
 	}
+    include_once("partes/head/script_google_auth.php");
+    include_once("partes/head/script_facebook_auth.php");
+
+    $coordenadas = get_coordenadas();
+    $HTML .= "<script type='text/javascript'>
+    	var Coordsearch = JSON.parse("; 
+    $HTML .= "'".$coordenadas."'";
+    $HTML .= ");</script>";
+
 
 	$HTML .= '
 		<script type="text/javascript"> 
@@ -95,7 +102,7 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="'.get_home_url().'"/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-							<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
+							<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
 
 							'.$menus_movil.'
 
