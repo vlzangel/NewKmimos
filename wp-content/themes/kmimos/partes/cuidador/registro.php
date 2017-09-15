@@ -17,8 +17,8 @@
 						<p class="text-line">o</p>
 						<div class="bg-line"></div>
 					</div>
-					<a href="javascript:;" onClick="auth_facebook();" class="km-btn-fb"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg">AUTH CON FACEBOOK</a>
-					<a href="#" class="google_login km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg">AUTH CON GOOGLE </a>
+					<a href="javascript:;" onClick="auth_facebook();" class="km-btn-fb"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg"> CONÉCTATE CON FACEBOOK</a>
+					<a href="#" class="google_login km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg"> CONÉCTATE CON GOOGLE</a>
 				
 				</div>
 
