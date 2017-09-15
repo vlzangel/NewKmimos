@@ -8,7 +8,19 @@
 				<a href="javascript:;" onClick="login_facebook();" class="km-btn-fb"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg">REGISTRARME CON FACEBOOK</a>
 				
 				<a href="#"  id="registro_cuidador_google" class="google_auth km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg">REGISTRARME CON GOOGLE</a>
+
+
+
+				<div class="row hidden">
+					
+					<div class="line-o">
+						<p class="text-line">o</p>
+						<div class="bg-line"></div>
+					</div>
+					<a href="javascript:;" onClick="auth_facebook();" class="km-btn-fb"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg">AUTH CON FACEBOOK</a>
+					<a href="#" class="google_login km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg">AUTH CON GOOGLE </a>
 				
+				</div>
 
 
 				<div class="line-o">

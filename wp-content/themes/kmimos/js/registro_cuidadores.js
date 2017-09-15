@@ -24,41 +24,12 @@ $(document).on("click", '.popup-registro-cuidador .km-btn-popup-registro-cuidado
 	$(".popup-registro-cuidador-correo").fadeIn("fast");
 });
 
-
-
-	$(document).on("click", '[data-id="km-minus-ext"]', function ( e ) {
-		console.log('asd');
-		operacionAlg( $(this), "-" );
-	});
-	$(document).on("click", '[data-id="km-plus-ext"]', function ( e ) {
-		console.log('asd');
-		operacionAlg( $(this), "+" );
-	});
-
-function operacionAlg( _this, operator, cant = 1  ){
-	var el = _this;
-	var div = el.parent();
-	var span = $(".km-number", div);
-	var input = $("input", div);
-	var valor = 0;
-	if ( span.html() > 0 ) {	
-		if( operator == '+' ){
-			valor = parseInt(span.html()) + cant;
-		}else{
-			valor = parseInt(span.html()) - cant;
-		}
-	}
-	span.html( valor );
-	input.val( valor );
-	
-
-	console.log(input.val());
-
-	if ( span.html() <= 0 ) {
-		el.addClass("disabled");
-	}
-}	
-
+$(document).on("click", '[data-id="km-minus-ext"]', function ( e ) {
+	operacionAlg( $(this), "-" );
+});
+$(document).on("click", '[data-id="km-plus-ext"]', function ( e ) {
+	operacionAlg( $(this), "+" );
+});
 
 $("#cr_minus").on('click', function(){
 	e.preventDefault();
@@ -94,6 +65,29 @@ $("#cr_plus").on('click', function(){
 	}
 });
 
+function operacionAlg( _this, operator, cant = 1  ){
+	var el = _this;
+	var div = el.parent();
+	var span = $(".km-number", div);
+	var input = $("input", div);
+	var valor = 0;
+	if ( span.html() > 0 ) {	
+		if( operator == '+' ){
+			valor = parseInt(span.html()) + cant;
+		}else{
+			valor = parseInt(span.html()) - cant;
+		}
+	}
+	span.html( valor );
+	input.val( valor );
+	
+	console.log(input.val());
+
+	if ( span.html() <= 0 ) {
+		el.addClass("disabled");
+	}
+}	
+
 function convertData_registrocuidador(){
 		return {
 			'email': $('[name="rc_email"]').val(),
@@ -111,7 +105,9 @@ function convertData_registrocuidador(){
 			'municipio': $('[name="rc_municipio"]').val(),
 			'municipio': $('[name="rc_municipio"]').val(),
 			'direccion': $('[name="rc_direccion"]').val(),
-			'num_mascota': $('[name="rc_num_mascota"]').val()
+			'num_mascota': $('[name="rc_num_mascota"]').val(),
+			'facebook_auth_id': $('[name="facebook_auth_id"]').val(),
+			'google_auth_id': $('[name="google_auth_id"]').val()
 		};
 }
 
@@ -133,8 +129,8 @@ $(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-
 		jQuery.post( a, d, function( data ) {
 			data = eval(data);
 			if( data['error'] == "SI" ){
-				console.log(data['fields'].size );
-				if( data['fields'].length > 0 ){
+				 console.log(data);
+				if( data['fields']!= 'null' ){
 					$.each(data['fields'], function(id, val){
 						mensaje( val['name'],val['msg']  );
 					});
@@ -287,17 +283,17 @@ function mensaje( label, msg='', reset=false ){
 		border_color = '#ccc';
 		visible = 'hidden';
 	}
-	$('[data-error="'+label+'"]').css('visibility', visible);
-	$('[data-error="'+label+'"]').css('color', danger_color);
-	$('[data-error="'+label+'"]').html(msg);
-	$( '[name="'+label+'"]' ).css('border-bottom', '1px solid ' + border_color);
-	$( '[name="'+label+'"]' ).css('color', danger_color);
+	$('[data-error="rc_'+label+'"]').css('visibility', visible);
+	$('[data-error="rc_'+label+'"]').css('color', danger_color);
+	$('[data-error="rc_'+label+'"]').html(msg);
+	$( '[name="rc_'+label+'"]' ).css('border-bottom', '1px solid ' + border_color);
+	$( '[name="rc_'+label+'"]' ).css('color', danger_color);
 }
 function km_cuidador_validar( fields ){
 	var status = true;
 	if( fields.length > 0 ){
 		$.each( fields, function(id, val){
-			if($('[name="'+val+'"]').val() == ''){
+			if($('[name="rc_'+val+'"]').val() == ''){
 				mensaje(val, 'Este campo no puede estar vacio');
 				status = false;
 			}else{
