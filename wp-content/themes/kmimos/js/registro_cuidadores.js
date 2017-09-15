@@ -23,70 +23,55 @@ $(document).on("click", '.popup-registro-cuidador .km-btn-popup-registro-cuidado
 	$(".popup-registro-cuidador").hide();
 	$(".popup-registro-cuidador-correo").fadeIn("fast");
 });
-
-$(document).on("click", '[data-id="km-minus-ext"]', function ( e ) {
-	operacionAlg( $(this), "-" );
-});
-$(document).on("click", '[data-id="km-plus-ext"]', function ( e ) {
-	operacionAlg( $(this), "+" );
-});
-
-$("#cr_minus").on('click', function(){
+ 
+$("#cr_minus").on('click', function(e){
 	e.preventDefault();
 	var el = $(this);
-	var div = el.parent();
-	var span = $(".km-number", div);
-	var input = $("input", div);
-	if ( span.html() > 0 ) {
-		var valor = parseInt(span.html()) - 1;
-		span.html( valor );
-		input.val( valor );
-	}
+console.log(el.hasClass('disabled'));
+	if( !el.hasClass('disabled') ){
+		var div = el.parent();
+		var span = $(".km-number", div);
+		var input = $("input", div);
+		if ( span.html() > 0 ) {
+			$("#cr_plus").removeClass('disabled');
+			var valor = parseInt(span.html()) - 1;
+			span.html( valor );
+			input.val( valor );
+		}
 
-	if ( span.html() <= 0 ) {
-		el.addClass("disabled");
-	}
-});
-
-$("#cr_plus").on('click', function(){
-	e.preventDefault();
-	var el = $(this);
-	var div = el.parent();
-	var span = $(".km-number", div);
-	var input = $("input", div);
-	if ( span.html() > 0 ) {
-		var valor = parseInt(span.html()) - 1;
-		span.html( valor );
-		input.val( valor );
-	}
-
-	if ( span.html() <= 0 ) {
-		el.addClass("disabled");
-	}
-});
-
-function operacionAlg( _this, operator, cant = 1  ){
-	var el = _this;
-	var div = el.parent();
-	var span = $(".km-number", div);
-	var input = $("input", div);
-	var valor = 0;
-	if ( span.html() > 0 ) {	
-		if( operator == '+' ){
-			valor = parseInt(span.html()) + cant;
-		}else{
-			valor = parseInt(span.html()) - cant;
+		if ( span.html() <= 0 ) {
+			el.addClass("disabled");
+			
+			span.html( 1 );
+			input.val( 1 );			
 		}
 	}
-	span.html( valor );
-	input.val( valor );
-	
-	console.log(input.val());
+});
 
-	if ( span.html() <= 0 ) {
-		el.addClass("disabled");
+$("#cr_plus").on('click', function(e){
+	e.preventDefault();
+	var el = $(this);
+console.log(el.hasClass('disabled'));	
+	if( !el.hasClass('disabled') ){
+		var div = el.parent();
+		var span = $(".km-number", div);
+		var input = $("input", div);
+		if ( span.html() > 0 ) {
+			$("#cr_minus").removeClass('disabled');
+			var valor = parseInt(span.html()) + 1;
+			span.html( valor );
+			input.val( valor );
+		}
+
+		if ( span.html() <= 0 || span.html() >= 6) {
+			el.addClass("disabled");
+			span.html( 6 );
+			input.val( 6 );	
+		}
 	}
-}	
+});
+
+ 
 
 function convertData_registrocuidador(){
 		return {
@@ -290,6 +275,76 @@ function mensaje( label, msg='', reset=false ){
 	$( '[name="rc_'+label+'"]' ).css('color', danger_color);
 }
 function km_cuidador_validar( fields ){
+
+	var fields_lenght = {
+		'email': { 
+			'min': 5,
+			'max': 200,
+			'msg': 'Longitud invalida'
+		},
+
+		'nombres': { 
+			'min': 2,
+			'max': 200,
+			'msg': 'Longitud invalida'
+		},
+
+		'apellidos': { 
+			'min': 2,
+			'max': 200,
+			'msg': 'Longitud invalida'
+		},
+
+		'ife': { 
+			'min': 11,
+			'max': 11,
+			'msg': 'Longitud invalida'
+		},
+
+		'clave': { 
+			'min': 1,
+			'max': 200,
+			'msg': 'Longitud invalida'
+		},
+
+		'telefono': { 
+			'min': 7,
+			'max': 15,
+			'msg': 'Longitud invalida'
+		},
+
+		'descripcion': { 
+			'min': 10,
+			'max': 600,
+			'msg': 'Longitud invalida'
+		},
+
+		'estado': { 
+			'min': 1,
+			'max': 200,
+			'msg': 'Longitud invalida'
+		},
+
+		'municipio': { 
+			'min': 1,
+			'max': 200,
+			'msg': 'Longitud invalida'
+		},
+
+		'direccion': { 
+			'min': 2,
+			'max': 300,
+			'msg': 'Longitud invalida'
+		},
+
+		'num_mascota': { 
+			'min': 1,
+			'max': 200,
+			'msg': 'Longitud invalida'
+		}
+
+	};
+
 	var status = true;
 	if( fields.length > 0 ){
 		$.each( fields, function(id, val){
@@ -299,6 +354,7 @@ function km_cuidador_validar( fields ){
 			}else{
 				mensaje(val, '', true);
 			}
+
 		});
 	}
 	return status;
