@@ -11,14 +11,7 @@
     date_default_timezone_set('America/Mexico_City');
 	$conn = new mysqli($host, $user, $pass, $db);
 	$errores = array();
-    extract($_POST);
-
-    $email = $rc_email;
-    $nombres = $rc_nombres;
-    $apellidos = $rc_apellidos;
-    $ife = $rc_ife;
-    $clave = $rc_clave;
-    $telefono = $rc_telefono;
+    
 
 
     // BEGIN DATA DEFAULT
@@ -68,7 +61,16 @@
         foreach ($_POST as $key => $value) {
             if($value == ''){ $_POST[$key] = 0; }
         }
-        extract($_POST);
+
+extract($_POST);
+
+    $email = $rc_email;
+    $nombres = $rc_nombres;
+    $apellidos = $rc_apellidos;
+    $ife = $rc_ife;
+    $clave = $rc_clave;
+    $telefono = $rc_telefono;
+
         $username = $email;
 
         if( preg_match("/[\+]{1,}/", $email) || !filter_var($email, FILTER_VALIDATE_EMAIL) ){
