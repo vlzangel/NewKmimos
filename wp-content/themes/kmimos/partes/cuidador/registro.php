@@ -142,7 +142,7 @@
 				<a href="#" data-load='portada'>
 					<img class="img-circle" id="perfil-img" src="<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg">
 				</a>
-				<div class="kmimos_cargando" style="visibility: hidden; ">
+				<div class="kmimos_cargando" style="visibility: hidden;">
 					<span>Cargando...</span>
 				</div>
 				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
