@@ -15,6 +15,7 @@
 	}
 
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script>';
 
 	wp_enqueue_style( 'style', getTema()."/style.css", array(), "1.0.0" );
 

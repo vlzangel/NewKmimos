@@ -74,8 +74,8 @@
 						</div>
 						<div class="label-placeholder">
 							<label>IFE/Documento de Identidad</label>
-							<input type="text" data-charset="num" name="rc_ife" value="" class="input-label-placeholder">
-							<small data-error="rc_ife"  maxlength="11" minlength="11"  style="visibility: hidden;"></small>
+							<input type="text"  maxlength="11" minlength="11" data-charset="num" name="rc_ife" value="" class="input-label-placeholder">
+							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Correo electrónico</label>
@@ -142,6 +142,9 @@
 				<a href="#" data-load='portada'>
 					<img class="img-circle" id="perfil-img" src="<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg">
 				</a>
+				<div class="kmimos_cargando" style="visibility: hidden; ">
+					<span>Cargando...</span>
+				</div>
 				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
 
             	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />

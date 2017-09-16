@@ -13,6 +13,14 @@
 	$errores = array();
     extract($_POST);
 
+    $email = $rc_email;
+    $nombres = $rc_nombres;
+    $apellidos = $rc_apellidos;
+    $ife = $rc_ife;
+    $clave = $rc_clave;
+    $telefono = $rc_telefono;
+
+
     // BEGIN DATA DEFAULT
     $mascotas_cuidador = array(
         "pequenos" => 0,
