@@ -35,22 +35,22 @@
 				auth2.attachClickHandler(element, {},
 				    function(googleUser) {
 
-						$(\'.social_google_id\').val( googleUser.getBasicProfile().getId() );
+						jQuery(\'.social_google_id\').val( googleUser.getBasicProfile().getId() );
 
-				      	$(\'.social_email\').val( googleUser.getBasicProfile().getEmail() );
-						$(\'.social_email\').parent(\'div\').addClass(\'focused\');
+				      	jQuery(\'.social_email\').val( googleUser.getBasicProfile().getEmail() );
+						jQuery(\'.social_email\').parent(\'div\').addClass(\'focused\');
 						
 						var name = googleUser.getBasicProfile().getName().split(" ");
 						if( name.length > 0 ){
-					      	$(\'.social_firstname\').val( name[0] );
-							$(\'.social_firstname\').parent(\'div\').addClass(\'focused\');
+					      	jQuery(\'.social_firstname\').val( name[0] );
+							jQuery(\'.social_firstname\').parent(\'div\').addClass(\'focused\');
 						}
 						if( name.length > 1 ){
-					      	$(\'.social_lastname\').val( name[1] );
-							$(\'.social_lastname\').parent(\'div\').addClass(\'focused\');
+					      	jQuery(\'.social_lastname\').val( name[1] );
+							jQuery(\'.social_lastname\').parent(\'div\').addClass(\'focused\');
 					    }
 
-					    $(".social-next-step").click();
+					    jQuery(".social-next-step").click();
 
 				    }, function(error) {});
 			}
@@ -58,7 +58,7 @@
 				auth2.attachClickHandler(element, {},
 				    function(googleUser) {
 
-						$(\'.social_google_id\').val( googleUser.getBasicProfile().getId() );
+						jQuery(\'.social_google_id\').val( googleUser.getBasicProfile().getId() );
 
 				      	social_auth( googleUser.getBasicProfile().getId() );
 

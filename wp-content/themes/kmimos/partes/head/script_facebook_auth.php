@@ -47,18 +47,18 @@ $HTML .= '
       if (response.status == \'connected\') {
         FB.api(\'/me\', {fields: \'first_name, last_name, email, name, id\'}, function(response) {
 
-          $( ".social_facebook_id" ).val( response.id );
+          jQuery( ".social_facebook_id" ).val( response.id );
 
-          $( ".social_firstname" ).val( response.first_name );
-          $(\'.social_firstname\').parent(\'div\').addClass(\'focused\');
+          jQuery( ".social_firstname" ).val( response.first_name );
+          jQuery(\'.social_firstname\').parent(\'div\').addClass(\'focused\');
 
-          $( ".social_lastname" ).val( response.last_name );
-          $(\'.social_lastname\').parent(\'div\').addClass(\'focused\');
+          jQuery( ".social_lastname" ).val( response.last_name );
+          jQuery(\'.social_lastname\').parent(\'div\').addClass(\'focused\');
 
-          $( ".social_email" ).val( response.email );
-          $(\'.social_email\').parent(\'div\').addClass(\'focused\');
+          jQuery( ".social_email" ).val( response.email );
+          jQuery(\'.social_email\').parent(\'div\').addClass(\'focused\');
                     
-          $( ".social-next-step" ).click();
+          jQuery( ".social-next-step" ).click();
           console.log("conectado");
         });
         FB.logout();
