@@ -122,7 +122,7 @@ $HTML = '
 
         <!-- Asignar Alt a Imagenes -->
         <script type='text/javascript'>
-            $('img').attr('alt', '".get_bloginfo('title', false)."');
+            jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
         </script>        
     ";
 
