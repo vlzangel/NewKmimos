@@ -16,14 +16,14 @@
 
 				    var obj = document.getElementsByClassName("google_auth");
 					if( obj.length > 0){
-					  $.each( obj, function(i, o){ 
+					  jQuery.each( obj, function(i, o){ 
 					  	attachSignin(o);
 					  });
 					}
 
 				    var obj = document.getElementsByClassName("google_login");
 					if( obj.length > 0){
-					  $.each( obj, function(i, o){ 
+					  jQuery.each( obj, function(i, o){ 
 					  	attachSignon(o);
 					  });
 					}

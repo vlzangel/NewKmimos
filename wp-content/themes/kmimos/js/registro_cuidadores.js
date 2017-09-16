@@ -27,7 +27,6 @@ $(document).on("click", '.popup-registro-cuidador .km-btn-popup-registro-cuidado
 $("#cr_minus").on('click', function(e){
 	e.preventDefault();
 	var el = $(this);
-console.log(el.hasClass('disabled'));
 	if( !el.hasClass('disabled') ){
 		var div = el.parent();
 		var span = $(".km-number", div);
@@ -40,10 +39,7 @@ console.log(el.hasClass('disabled'));
 		}
 
 		if ( span.html() <= 0 ) {
-			el.addClass("disabled");
-			
-			span.html( 1 );
-			input.val( 1 );			
+			el.addClass("disabled");			
 		}
 	}
 });
@@ -51,19 +47,19 @@ console.log(el.hasClass('disabled'));
 $("#cr_plus").on('click', function(e){
 	e.preventDefault();
 	var el = $(this);
-console.log(el.hasClass('disabled'));	
+
 	if( !el.hasClass('disabled') ){
 		var div = el.parent();
 		var span = $(".km-number", div);
 		var input = $("input", div);
-		if ( span.html() > 0 ) {
+		if ( span.html() >= 0 ) {
 			$("#cr_minus").removeClass('disabled');
 			var valor = parseInt(span.html()) + 1;
 			span.html( valor );
 			input.val( valor );
 		}
 
-		if ( span.html() <= 0 || span.html() >= 6) {
+		if ( span.html() >= 6) {
 			el.addClass("disabled");
 			span.html( 6 );
 			input.val( 6 );	
@@ -73,54 +69,52 @@ console.log(el.hasClass('disabled'));
 
  
 
-function convertData_registrocuidador(){
-		return {
-			'email': $('[name="rc_email"]').val(),
-			'nombres': $('[name="rc_nombres"]').val(),
-			'apellidos': $('[name="rc_apellidos"]').val(),
-			'ife': $('[name="rc_ife"]').val(),
-			'clave': $('[name="rc_clave"]').val(),
-			'telefono': $('[name="telefono"]').val(),	
-			'longitude': $('[name="longitude"]').val(),
-			'latitude': $('[name="latitude"]').val(),
-			'portada': $('[name="rc_portada"]').val(),
-			'vlz_img_perfil': $('[name="rc_vlz_img_perfil"]').val(),
-			'descripcion': $('[name="rc_descripcion"]').val(),
-			'estado': $('[name="rc_estado"]').val(),
-			'municipio': $('[name="rc_municipio"]').val(),
-			'municipio': $('[name="rc_municipio"]').val(),
-			'direccion': $('[name="rc_direccion"]').val(),
-			'num_mascota': $('[name="rc_num_mascota"]').val(),
-			'facebook_auth_id': $('[name="facebook_auth_id"]').val(),
-			'google_auth_id': $('[name="google_auth_id"]').val()
-		};
-}
+// function convertData_registrocuidador(){
+// 		return {
+// 			'email': $('[name="rc_email"]').val(),
+// 			'nombres': $('[name="rc_nombres"]').val(),
+// 			'apellidos': $('[name="rc_apellidos"]').val(),
+// 			'ife': $('[name="rc_ife"]').val(),
+// 			'clave': $('[name="rc_clave"]').val(),
+// 			'telefono': $('[name="telefono"]').val(),	
+// 			'longitude': $('[name="longitude"]').val(),
+// 			'latitude': $('[name="latitude"]').val(),
+// 			'portada': $('[name="rc_portada"]').val(),
+// 			'vlz_img_perfil': $('[name="rc_vlz_img_perfil"]').val(),
+// 			'descripcion': $('[name="rc_descripcion"]').val(),
+// 			'estado': $('[name="rc_estado"]').val(),
+// 			'municipio': $('[name="rc_municipio"]').val(),
+// 			'municipio': $('[name="rc_municipio"]').val(),
+// 			'direccion': $('[name="rc_direccion"]').val(),
+// 			'num_mascota': $('[name="rc_num_mascota"]').val(),
+// 			'facebook_auth_id': $('[name="facebook_auth_id"]').val(),
+// 			'google_auth_id': $('[name="google_auth_id"]').val()
+// 		};
+// }
 
 $(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-cuidador-correo', function ( e ) {
 	e.preventDefault();		
 	var a = HOME+"/procesos/cuidador/registro-paso1.php";
 	var obj = $(this);
-		obj.html('Enviando datos');
 
 	$('input').css('border-bottom', '#ccc');
 	$('[data-error]').css('visibility', 'hidden');
 
 	var list = ['rc_email','rc_nombres','rc_apellidos','rc_ife','rc_email','rc_clave','rc_telefono'];
 	var valid = km_cuidador_validar(list);
-	// jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
 
 	if( valid ){
-		var d = convertData_registrocuidador();
-		jQuery.post( a, d, function( data ) {
+		obj.html('Enviando datos');
+		jQuery.post( a, $('#vlz_form_nuevo_cuidador').serialize(), function( data ) {
 			data = eval(data);
 			if( data['error'] == "SI" ){
-				 console.log(data);
+				 
 				if( data['fields']!= 'null' ){
 					$.each(data['fields'], function(id, val){
 						mensaje( val['name'],val['msg']  );
 					});
 				}
-				obj.html('SIGUENTE');
+				obj.html('SIGUIENTE');
 			}else{
 				$('[data-target="name"]').html( $('[name="rc_nombres"]').val() );
 				$(".popup-registro-cuidador-correo").hide();
@@ -194,14 +188,14 @@ $(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-registro-c
 		jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
 			data = eval(data);
 			if( data['error'] == "SI" ){
-				console.log(data['fields'].size );
+				
 				if( data['fields'].length > 0 ){
 					$.each(data['fields'], function(id, val){
-						console.log(val);
+						
 						mensaje( val['name'],val['msg']  );
 					});
 				}
-				obj.html('SIGUENTE');
+				obj.html('SIGUIENTE');
 			}else{
 				$(".popup-registro-cuidador-paso3").hide();
 				$(".popup-registro-exitoso-final").fadeIn("fast");
@@ -268,91 +262,33 @@ function mensaje( label, msg='', reset=false ){
 		border_color = '#ccc';
 		visible = 'hidden';
 	}
-	$('[data-error="rc_'+label+'"]').css('visibility', visible);
-	$('[data-error="rc_'+label+'"]').css('color', danger_color);
-	$('[data-error="rc_'+label+'"]').html(msg);
-	$( '[name="rc_'+label+'"]' ).css('border-bottom', '1px solid ' + border_color);
-	$( '[name="rc_'+label+'"]' ).css('color', danger_color);
+	$('[data-error="'+label+'"]').css('visibility', visible);
+	$('[data-error="'+label+'"]').css('color', danger_color);
+	$('[data-error="'+label+'"]').html(msg);
+	$( '[name="'+label+'"]' ).css('border-bottom', '1px solid ' + border_color);
+	$( '[name="'+label+'"]' ).css('color', danger_color);
 }
 function km_cuidador_validar( fields ){
-
-	var fields_lenght = {
-		'email': { 
-			'min': 5,
-			'max': 200,
-			'msg': 'Longitud invalida'
-		},
-
-		'nombres': { 
-			'min': 2,
-			'max': 200,
-			'msg': 'Longitud invalida'
-		},
-
-		'apellidos': { 
-			'min': 2,
-			'max': 200,
-			'msg': 'Longitud invalida'
-		},
-
-		'ife': { 
-			'min': 11,
-			'max': 11,
-			'msg': 'Longitud invalida'
-		},
-
-		'clave': { 
-			'min': 1,
-			'max': 200,
-			'msg': 'Longitud invalida'
-		},
-
-		'telefono': { 
-			'min': 7,
-			'max': 15,
-			'msg': 'Longitud invalida'
-		},
-
-		'descripcion': { 
-			'min': 10,
-			'max': 600,
-			'msg': 'Longitud invalida'
-		},
-
-		'estado': { 
-			'min': 1,
-			'max': 200,
-			'msg': 'Longitud invalida'
-		},
-
-		'municipio': { 
-			'min': 1,
-			'max': 200,
-			'msg': 'Longitud invalida'
-		},
-
-		'direccion': { 
-			'min': 2,
-			'max': 300,
-			'msg': 'Longitud invalida'
-		},
-
-		'num_mascota': { 
-			'min': 1,
-			'max': 200,
-			'msg': 'Longitud invalida'
-		}
-
-	};
 
 	var status = true;
 	if( fields.length > 0 ){
 		$.each( fields, function(id, val){
-			if($('[name="rc_'+val+'"]').val() == ''){
-				mensaje(val, 'Este campo no puede estar vacio');
-				status = false;
+			var m = '';
+			// validar vacio
+			if( $('[name="'+val+'"]').val() == '' ){
+				m = 'Este campo no puede estar vacio';
+			}
+			// validar longitud
+			if( m == ''){
+				m = rc_validar_longitud( val );
+				console.log( val );
+			}
+
+			if( m == ''){
+				mensaje(val, m, true);
 			}else{
-				mensaje(val, '', true);
+				mensaje(val, m);
+				status = false;
 			}
 
 		});
@@ -360,6 +296,57 @@ function km_cuidador_validar( fields ){
 	return status;
 }
 
+function validar_longitud( val, min, max, type, err_msg){
+	result = '';
+	var value = 0;
+	switch( type ){
+		case 'int':
+			value = val;
+			break;
+		case 'string':
+			value = val.length;
+			break;
+	}
+
+	if( value < min || value > max ){
+		result = err_msg;
+	}
+	return result;
+}
+function rc_validar_longitud( field ){
+	var result = '';
+	var val = $('[name="'+field+'"]').val();
+	switch( field ){
+			case 'rc_email':  
+				result = validar_longitud( val, 10, 100, 'string', 'Debe estar entre 10 y 100 caracteres');
+				break;
+
+			case 'rc_nombres':
+				result = validar_longitud( val, 2, 100, 'string', 'Debe estar entre 2 y 100 caracteres');
+				break;
+
+			case 'rc_apellidos':
+				result = validar_longitud( val, 2, 100, 'string', 'Debe estar entre 2 y 100 caracteres');
+				break;
+
+			case 'rc_ife':
+				result = validar_longitud( val, 11, 11, 'string', 'Debe tener 13 digitos');
+				break;
+
+			case 'rc_clave':
+				result = validar_longitud( val, 1, 200, 'string', 'Debe estar entre 1 y 200 caracteres');
+				break;
+
+			case 'rc_telefono':
+				result = validar_longitud( val, 7, 15, 'string', 'Debe estar entre 7 y 15 caracteres');
+				break;
+
+			case 'rc_descripcion':
+				result = validar_longitud( val, 1, 600, 'string', 'Debe estar entre 1 y 100 caracteres');
+				break;
+	};
+	return result;
+}
 
 function vista_previa(evt) {
   	var files = evt.target.files;
@@ -370,7 +357,9 @@ function vista_previa(evt) {
        	var reader = new FileReader();
        	reader.onload = (function(theFile) {
            return function(e) {
-           		jQuery(".kmimos_cargando").css("display", "block");
+
+           		jQuery(".kmimos_cargando").css("visibility", "visible");
+
     			redimencionar(e.target.result, function(img_reducida){
     				var a = RAIZ+"imgs/vlz_subir_img.php";
     				var img_pre = jQuery("#vlz_img_perfil").val();
@@ -379,7 +368,7 @@ function vista_previa(evt) {
 			      		jQuery("#perfil-img").attr("src", RAIZ+"imgs/Temp/"+url);
 	        			jQuery("#vlz_img_perfil").val( url );
 
-	           			// jQuery(".kmimos_cargando").css("display", "none");
+		           		jQuery(".kmimos_cargando").css("visibility", "hidden");
 			      	});
     			});
            };
