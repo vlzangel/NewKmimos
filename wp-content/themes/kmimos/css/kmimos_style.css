@@ -878,7 +878,7 @@ button.close {
 .km-select-custom{
 	position: relative;
 	border: solid 1px #e5e5e5;
-	#background-color: #FFF;
+	background-color: #FFF;
 	background-size: 14px 13px;
 	background-repeat: no-repeat;
 	background-position: calc(100% - 9px) 50%;
@@ -1951,6 +1951,7 @@ a.km-btn-comentario {
     letter-spacing: .2px;
     font-family: Gotham-Pro-Regular, Arial, serif;
     border-bottom: 1px solid #ccc;
+    border-left:0px solid transparent;
     padding-left: 0px;
 }
 
@@ -2016,7 +2017,7 @@ a.km-btn-comentario {
 }
 
 #popup-registro-cuidador1 .modal-content {
-	padding: 40px 20px;
+	/*padding: 40px 20px;*/
 }
 
 .km-btn-basic {
@@ -5204,6 +5205,8 @@ a.km-btn-comentario {
     color:rgba(0, 0, 0, .2);
     border-color:rgba(0, 0, 0, .2)
 }
+.cr_minus,
+.cr_plus,
 .km-cantidad .km-minus, .km-cantidad .km-plus {
     width:20px;
     color:#33e1be;
@@ -5484,10 +5487,12 @@ footer .km-icon-redes {
 .page-reservation .km-content-step .km-content-new-pet:first-child {
     border-radius:5px;
 }
+.cr_minus,
 .page-reservation .km-content-step .km-content-new-pet .km-minus, .page-reservation .km-content-step .km-content-new-pet .km-number, .page-reservation .km-content-step .km-content-new-pet .km-plus {
     float:left
 }
-.page-reservation .km-content-step .km-content-new-pet .km-minus, .page-reservation .km-content-step .km-content-new-pet .km-plus {
+.cr_minus,
+.cr_plus, .page-reservation .km-content-step .km-content-new-pet .km-minus, .page-reservation .km-content-step .km-content-new-pet .km-plus {
     width:20px;
     color:#33e1be;
     font-size:16px;
@@ -8820,7 +8825,7 @@ a.km-btn-comentario {
 }
 
 .popup-registro-exitoso, .popup-registro-exitoso-final {
-    background: url(../images/km-registro/registro-exitoso.jpg) no-repeat;
+    background: url(../images/new/km-registro/registro-exitoso.jpg) no-repeat;
     height: 650px;
     background-size: cover;
     background-position: center center;
@@ -8839,6 +8844,7 @@ a.km-btn-comentario {
 }
 .popup-registro-cuidador-paso1 a img {
     width: 150px;
+    height: 150px;
     margin-bottom: 30PX;
 }
 .popup-registro-cuidador-paso1 textarea {
@@ -8870,7 +8876,9 @@ a.km-btn-comentario {
     color: rgba(0, 0, 0, 0.2);
     border-color: rgba(0, 0, 0, 0.2);
 }
-.km-cantidad .km-minus, .km-cantidad .km-plus{
+
+.cr_minus,
+.cr_plus,.km-cantidad .km-minus, .km-cantidad .km-plus{
     width: 20px;
     color: #33E1BE;
     font-size: 16px;
