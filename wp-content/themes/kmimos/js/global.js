@@ -55,6 +55,30 @@ function logear(){
     );
 }
 
+function getAjaxData(url,method, datos){
+    return $.ajax({
+        data: datos,
+        type: method,
+        url: HOME+url,
+        async:false,
+        success: function(data){
+            return data;
+        }
+    }).responseText;
+}
+
+//MODAL SHOW
+jQuery(document).on('click',' a.modal_show ',function(e){
+    modal_show(this)
+});
+function modal_show(element){
+    var modal = jQuery(element).data('modal');
+    //jQuery('.modal').css("display", "");
+    jQuery('.modal').modal('hide');
+    jQuery(modal).modal("show");
+}
+
+
 function show_login_modal(seccion){
 	switch(seccion){
         case "login":
@@ -93,6 +117,7 @@ function subirImg(evt){
     var padre = jQuery(this).parent().parent();
     getRealMime(this.files[0]).then(function(MIME){
         if( MIME.match("image.*") ){
+
             padre.children('.vlz_img_portada_cargando').css("display", "block");
             var reader = new FileReader();
             reader.onload = (function(theFile) {

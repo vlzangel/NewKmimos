@@ -8,6 +8,7 @@
 
 	wp_set_password( $clave_1, $user_id );
 
+
 	$sql = "SELECT ID FROM wp_users WHERE ID = '{$user_id}'";
 	$data = $wpdb->get_row($sql);
 

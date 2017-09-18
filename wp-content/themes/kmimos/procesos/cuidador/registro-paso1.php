@@ -202,9 +202,13 @@ extract($_POST);
                         '".$nombres." ".$apellidos."'
                     );
                 ";
+                
 
                 $conn->query( utf8_decode( $new_user ) );
                 $user_id = $conn->insert_id;
+
+                $wp_user = new WP_User( $user_id );
+                $wp_user->set_role( 'vendor' );
 
                 //WHITE_LABEL
                 $referido = '';
@@ -309,8 +313,8 @@ extract($_POST);
                 include( '../../partes/email/mensaje_email_registro_cuidador.php' );
 
                 // Envio de Email
-                $mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);
-                wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
+                // $mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);
+                // wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
 
                 // Respuesta
                 $error = array(
