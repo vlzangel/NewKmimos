@@ -22,8 +22,7 @@
 					<a href="#" class="google_login km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg"> CONÉCTATE CON GOOGLE</a>
 				
 				</div>
-				*/ 
-				?>
+				*/ ?>
 
 
 				<div class="line-o">
