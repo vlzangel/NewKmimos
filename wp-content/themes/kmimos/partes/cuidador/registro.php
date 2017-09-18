@@ -30,7 +30,9 @@
 					<p class="text-line">o</p>
 					<div class="bg-line"></div>
 				</div>
-				<a href="#" class="social-next-step  km-btn-correo km-btn-popup-registro-cuidador"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail-blanco.svg">REGISTRARME POR CORREO ELECTRÓNICO</a>
+				<a href="#" data-target="social-next-step" class="km-btn-correo km-btn-popup-registro-cuidador">
+					<img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail-blanco.svg">REGISTRARME POR CORREO ELECTRÓNICO
+				</a>
 				<p style="color: #979797">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">

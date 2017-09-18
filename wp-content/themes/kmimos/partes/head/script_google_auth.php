@@ -50,7 +50,7 @@
 							jQuery(\'.social_lastname\').parent(\'div\').addClass(\'focused\');
 					    }
 
-					    jQuery(".social-next-step").click();
+					    $(\'[data-target="social-next-step"]\').click();
 
 				    }, function(error) {});
 			}
