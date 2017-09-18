@@ -1,5 +1,23 @@
 <?php
 $datos = kmimos_get_info_syte();
+$referidos = get_referred_list_options();
+$referidos_options = "";
+foreach ($referidos as $key => $value) {
+	$selected="";
+	if(array_key_exists("wlabel",$_SESSION)){
+		$wlabel=$_SESSION['wlabel'];
+
+		if($key=='Volaris' && $wlabel=='volaris'){
+			$selected='selected';
+
+		}else if($key=='Vintermex' && $wlabel=='viajesintermex'){
+			$selected='selected';
+		}
+	}
+
+	$referidos_options.= "<option value='{$key}' $selected>{$value}</option>";
+}
+
 $HTML .='
 	<!-- POPUPS REGISTRARTE -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="myModal" style="padding: 40px;">
@@ -13,7 +31,7 @@ $HTML .='
 							REGISTRARME CON FACEBOOK
 						</a>
 						
-						<a href="#" class="km-btn-border" id="customBtn1">
+						<a href="#" class="google_auth km-btn-border" id="customBtn1">
 							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 							REGISTRARME CON GOOGLE
 						</a>
@@ -36,36 +54,37 @@ $HTML .='
 								<p>¿Ya tienes una cuenta?</p>
 							</div>
 							<div class="col-xs-7">
-								<a href="#" class="km-btn-border" data-toggle="modal" data-target="#popup-iniciar-sesion"><b>INICIAR SESIÓN</b></a>
+								<a href="#" class="modal_show km-btn-border" data-modal="#popup-iniciar-sesion"><b>INICIAR SESIÓN</b></a>
 							</div>
 						</div>
 					</div>
 				<div class="popuphide popup-registrarte-nuevo-correo">
-					<p style="color: #979797; text-align: center;">Regístrate por <a href="#" onclick="login_facebook();">Facebook</a> o <a href="#" id="customBtn2">Google</a></a></p>
+					<p style="color: #979797; text-align: center;">Regístrate por <a href="#" onclick="login_facebook();">Facebook</a> o <a href="#" class="google_auth" id="customBtn2">Google</a></a></p>
 						<h3 style="margin: 0; text-align: center;">Completa tus datos</h3>
 					<form id="form_nuevo_cliente" name="form_nuevo_cliente" enctype="multipart/form-data" method="POST">	
 						<div class="km-box-form">
 							<div class="content-placeholder">
 								<input type="text" id="id_login_face" name="id_login_face" class="hidden">
 								<input type="text" id="id_login_gmail" name="id_login_gmail" class="hidden">
-								<div class="km-datos-foto" id="km-datos-foto-profile"></div>
+								<div class="km-datos-foto" id="km-datos-foto-profile" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;"></div>
 								<input type="file" class="hidden" id="carga_foto_profile" accept="image/*">
 								<input type="hidden" id="img_profile" name="img_profile" value="">
 								<div class="label-placeholder">
 									<label>Nombre</label>
-									<input type="text" id="nombre" name="nombre" class="input-label-placeholder" data-charset="alf">
+									<input type="text" id="nombre" name="nombre" maxlength="30" class="input-label-placeholder" pattern=".{3,}">
 								</div>
 								<div class="label-placeholder">
 									<label>Apellido</label>
-									<input type="text" name="apellido" id="apellido" class="input-label-placeholder" data-charset="alf">
+									<input type="text" name="apellido" id="apellido" maxlength="30" class="input-label-placeholder" pattern=".{3,}">
 								</div>
+
 								<div class="label-placeholder">
 									<label>IFE/Documento de Identidad</label>
 									<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="11">
 								</div>
 								<div class="label-placeholder">
 									<label>Correo electrónico</label>
-									<input type="mail" name="email_1" id="email_1" class="input-label-placeholder" data-charset="espalfnum">
+									<input type="email" name="email_1" id="email_1" class="input-label-placeholder" data-charset="espalfnum" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
 									<span id="resultado"></span>
 								</div>
 								<div class="label-placeholder">
@@ -98,6 +117,14 @@ $HTML .='
 										<option value="NO">No</option>
 									</select>
 								</div>
+								<div class="km-datos-mascota">
+									<select id="referido" name="referido" class="km-datos-mascota-opcion" data-title="Debes seleccionar una opción" required>
+										<option value="">Selecciona una opción</option>
+										'.$referidos_options.'
+									</select>
+								</div>
+
+
 							</div>
 						</div>
 					</form>
@@ -112,7 +139,7 @@ $HTML .='
 							<p>¿Ya tienes una cuenta?</p>
 						</div>
 						<div class="col-xs-7">
-							<a href="#" class="km-btn-border km-link-login"><b>INICIAR SESIÓN</b></a>
+							<a href="#" class="modal_show km-btn-border km-link-login" data-modal="#popup-iniciar-sesion"><b>INICIAR SESIÓN</b></a>
 						</div>
 					</div>
 				</div>
@@ -120,7 +147,7 @@ $HTML .='
 						<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 						<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
 
-						<div class="km-datos-foto" id="km-datos-foto"></div>
+						<div class="km-datos-foto" id="km-datos-foto" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;"></div>
 						<input type="file" class="hidden" id="carga_foto" accept="image/*">
 						<input type="hidden" id="img_pet" name="img_pet" value="">
 
@@ -145,7 +172,7 @@ $HTML .='
 									<input type="text" name="color_mascota" id="color_mascota" class="input-label-placeholder">
 								</div>
 								<div class="km-fecha-nacimiento">
-									<input type="text" name="date_from" id="date_from" placeholder="Fecha de Nacimiento" class="date_from">
+									<input type="text" name="date_from" id="datepets" placeholder="Fecha de Nacimiento" class="date_from" readonly>
 								</div>
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion" name="genero_mascota" id="genero_mascota">
