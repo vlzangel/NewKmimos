@@ -22,8 +22,7 @@
 					<a href="#" class="google_login km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg"> CONÉCTATE CON GOOGLE</a>
 				
 				</div>
-				*/ 
-				?>
+				*/ ?>
 
 
 				<div class="line-o">
@@ -171,7 +170,7 @@
 						</li>
 						<li class="line"></li>
 						<li>
-							<span data-step="2" class="number active">2</span>
+							<span class="number active">2</span>
 						</li>
 						<li class="line"></li>
 						<li>
@@ -227,11 +226,11 @@
 				<div class="page-reservation" style="background-color: transparent; margin-bottom: 30px;">
 					<ul class="steps-numbers">
 						<li>
-							<span class="number checked">1</span>
+							<span data-step="1" class="number checked">1</span>
 						</li>
 						<li class="line"></li>
 						<li>
-							<span class="number checked">2</span>
+							<span data-step="2" class="number checked">2</span>
 						</li>
 						<li class="line"></li>
 						<li>
