@@ -92,7 +92,7 @@
                 $user_photo = 1;
                 $img = end(explode(',', $img_profile));
                 $sImagen = base64_decode($img);
-                $dir = "../../../../uploads/avatares_clientes/{$user_id}/";
+                $dir = "../../../../../uploads/avatares_clientes/{$user_id}/";
                 @mkdir($dir);
                 file_put_contents($dir.'temp.jpg', $sImagen);
                 $sExt = mime_content_type( $dir.'temp.jpg' );
@@ -120,7 +120,6 @@
                 $name_photo=$name_photo.'.jpg';
             }
 
-            
             $sql = "
                 INSERT INTO wp_usermeta VALUES
                     (NULL, {$user_id}, 'user_pass',           '{$password}'),
@@ -134,6 +133,7 @@
                     (NULL, {$user_id}, 'last_name',           '{$lastname}'),
                     (NULL, {$user_id}, 'user_age',           '{$age}'),
                     (NULL, {$user_id}, 'user_smoker',           '{$smoker}'),
+                    (NULL, {$user_id}, 'user_referred',       '{$referido}'),
                     (NULL, {$user_id}, 'rich_editing',        'true'),
                     (NULL, {$user_id}, 'comment_shortcuts',   'false'),
                     (NULL, {$user_id}, 'admin_color',         'fresh'),
@@ -143,8 +143,7 @@
                     (NULL, {$user_id}, 'wp_user_level',       '0');
             ";
             $conn->query( utf8_decode( $sql ) );
-
-            echo $user_id;
+            //echo $user_id;
 
         }
         

@@ -33,15 +33,15 @@ strong{
 	background: #fff;
 }*/
 
-#waypoint{
+/*#waypoint{
 /*	background: #00D9AE;
 	background-image: url("../img/bg-section1a.jpg");
-*/
+
 	background-position: center;
 	background-attachment: fixed ;
     background-size: 100%;
     background-repeat: no-repeat;
-}
+}*/
 
 .bg-black{
 	background: black;
@@ -188,6 +188,7 @@ strong{
 	color: #fff;
 	font-weight: lighter;
 	height: 34vh;
+	overflow: hidden;
 }
 #section-1 .pull-right{
 	align-items: right;
@@ -317,6 +318,7 @@ strong{
     font-family: 'PoetsenOne', sans-serif;
     margin-top: -5%;
 	font-family: 'PoetsenOne', sans-serif;
+	/*overflow: hidden;*/
 }
 #tu-mascota p{
 	color: #a1126d!important;
@@ -381,6 +383,7 @@ strong{
 	font-weight: normal!important;
 	font-family: 'Lato', sans-serif!important;
 	padding: 20px 0px 0px 0px;
+	overflow: hidden;
 }
 
 #section-5 div article
@@ -461,6 +464,7 @@ strong{
 	color: #fff;
 	font-weight: lighter;
 	padding: 20px 0px 20px 0px;
+	overflow: hidden;
 }
 #section-6 h1{
 	font-family: "PoetsenOne";
@@ -522,6 +526,7 @@ strong{
 #section-7{
 	padding: 50px 0px 50px 0px;
 	text-align: center;
+	overflow: hidden;
 }
 .section-7-principal{
 	font-size: 27px; 
@@ -550,6 +555,7 @@ footer{
 	color: #fff;
 	padding-top: 30px;
 /*	background: url("../img/Back.png") no-repeat no-repeat bottom right; */
+	overflow: hidden;
 }
 footer h1{
     font-size: 28pt;
@@ -603,6 +609,7 @@ footer aside{
 	background: none !important;
 	font-family: "PoetsenOne";
 	font-weight: normal;
+	margin-left: 30%;
 }
 
 
@@ -716,9 +723,9 @@ footer aside{
 	}
 	#tu-mascota p{
 	    font-size: 15px;	
-	    width: 45%;
-	   	margin-top: -23%;
-    	margin-left: 212px;
+	    width: 60%;
+	   	margin-top: -50%;
+    	margin-left: 216px;
 	}
 	#section-4-cuadro h2{
 		font-size: 25px!important;
@@ -852,7 +859,17 @@ footer aside{
     	font-size: 13pt;
 	}
 	#section-4-cuadro{
-		padding: 15px;
+		padding: 1%;
+	    width: 30%;
+	    margin-left: -7%;
+	    margin-top: -43%;
+	    border-radius: 10px;
+	}
+	#tu-mascota p {
+	    font-size: 20px;
+	    width: 70%;
+	    margin-top: -47%;
+	    margin-left: 242px;
 	}
 	#section-4-cuadro h2{
 		font-size: 60px;
@@ -865,6 +882,12 @@ footer aside{
 		font-size: 16px;
 		margin:0px;
 		color: black;
+	}
+	#tu-mascota p{
+	    font-size: 15px;
+    	width: 70%;
+    	margin-top: -50%;
+    	margin-left: 180px;
 	}
 	#section-4-cuadro .monto{
 		color: #00ace6;
@@ -1013,6 +1036,7 @@ footer aside{
 	    border-radius: 15px;
 	    padding: 5px;
 	}
+
 	#section-6-action article,
 	#section-6-action div,
 	#section-7 article,
@@ -1041,8 +1065,15 @@ footer aside{
 	#section-4-cuadro span {
 	    font-size: 3px!important;
 	}
-
 }
+/*@media (max-width: 414px){
+	#tu-mascota p {
+	    font-size: 20px;
+	    width: 70%;
+	    margin-top: -47%;
+	    margin-left: 242px;
+	}
+}*/
 /*
 Phones (<768px)
 Small  (≥768px)	
