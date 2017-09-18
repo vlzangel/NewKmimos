@@ -77,6 +77,7 @@ $HTML .='
 									<label>Apellido</label>
 									<input type="text" name="apellido" id="apellido" maxlength="30" class="input-label-placeholder" pattern=".{3,}">
 								</div>
+
 								<div class="label-placeholder">
 									<label>IFE/Documento de Identidad</label>
 									<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="11">
