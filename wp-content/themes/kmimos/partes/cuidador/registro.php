@@ -93,6 +93,17 @@
 							<input type="text" name="rc_telefono" data-charset="num" minlength="7" maxlength="15" value="" class="input-label-placeholder">
 							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
+						<div class="label-placeholder">
+							<label>¿Cómo nos conoció?</label>
+							<select class="km-datos-estado-opcion km-select-custom" name="rc_referred">
+								<option value="">¿Cómo nos conoció?</option>
+								<?php $list = get_referred_list_options();
+									foreach( $list as $key => $item ){ ?>
+									<option value="<?php echo $key; ?>"><?php echo $item; ?></option>
+								<?php } ?>
+							</select>
+							<small data-error="rc_telefono" style="visibility: hidden;"></small>
+						</div>
 					</div>
 				</div>
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-correo">SIGUIENTE</a>

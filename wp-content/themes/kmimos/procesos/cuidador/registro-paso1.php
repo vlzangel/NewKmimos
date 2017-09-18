@@ -70,6 +70,7 @@ extract($_POST);
     $ife = $rc_ife;
     $clave = $rc_clave;
     $telefono = $rc_telefono;
+    $referido = $rc_referred;
 
         $username = $email;
 
@@ -211,7 +212,6 @@ extract($_POST);
                 $wp_user->set_role( 'vendor' );
 
                 //WHITE_LABEL
-                $referido = '';
                 if (!isset($_SESSION)) {
                     session_start();
                 }
