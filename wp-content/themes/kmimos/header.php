@@ -134,7 +134,7 @@
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 						<img class="km-avatar" src="'.$avatar.'" width="40">
 					</button>
-					<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'images/new/km-logos/km-logo.png" height="60" style="height: 60px;"></a>
+					<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60" style="height: 60px;"></a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">

@@ -34,7 +34,7 @@ function menu(){
 		}
 	} else {
 		$('.bg-transparent').removeClass('bg-white');
-		$('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo.png');
+		$('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo.png');
 
 		$('.navbar-toggle img').attr('src', HOME+'images/new/km-navbar-mobile.svg');		
 		$('.nav-sesion .km-avatar').attr('src', AVATAR);

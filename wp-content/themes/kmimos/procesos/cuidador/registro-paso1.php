@@ -202,9 +202,13 @@ extract($_POST);
                         '".$nombres." ".$apellidos."'
                     );
                 ";
+                
 
                 $conn->query( utf8_decode( $new_user ) );
                 $user_id = $conn->insert_id;
+
+                $wp_user = new WP_User( $user_id );
+                $wp_user->set_role( 'vendor' );
 
                 //WHITE_LABEL
                 $referido = '';

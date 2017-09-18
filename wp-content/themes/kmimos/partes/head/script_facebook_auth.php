@@ -39,13 +39,13 @@ $HTML .= '
           KmimosAPI();
         }
       }
-    });
+    }, {scope: \'public_profile,email\'});
   }
 
   function KmimosAPI() {
     FB.getLoginStatus(function(response) {
       if (response.status == "connected") {
-        FB.api("/me", {fields: "first_name, last_name, email, name, id"}, function(response) {
+        FB.api("/me", {fields: "first_name,last_name,email,name,id"}, function(response) {
 
           jQuery( ".social_facebook_id" ).val( response.id );
 
@@ -58,8 +58,8 @@ $HTML .= '
           jQuery( ".social_email" ).val( response.email );
           jQuery(".social_email").parent("div").addClass("focused");
                     
-          jQuery( ".social-next-step" ).click();
-          console.log("conectado");
+          $( \'[data-target="social-next-step"]\' ).click();
+
         });
         FB.logout();
 
@@ -78,13 +78,13 @@ $HTML .= '
     });
   }
   function auth_facebook(){
-     FB.login(function(response) {
+    FB.login(function(response) {
       if (response.authResponse) {
         FB.api("/me", {fields: "first_name, last_name, email, name, id"}, function(response) {
           social_auth( response.id );
         });
       }
-    });
+    }, {scope: \'public_profile,email\'});
   }
 
 </script>';

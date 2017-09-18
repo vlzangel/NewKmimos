@@ -107,11 +107,10 @@ $(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-
 		obj.html('Enviando datos');
 		jQuery.post( a, $('#vlz_form_nuevo_cuidador').serialize(), function( data ) {
 			data = eval(data);
-			if( data['error'] == "SI" ){
-				 
-				if( data['fields']!= 'null' ){
+			if( data['error'] == "SI" ){				 
+				if( data['fields'] != 'null' ){
 					$.each(data['fields'], function(id, val){
-						mensaje( val['name'],val['msg']  );
+						mensaje( "rc_"+val['name'],val['msg']  );
 					});
 				}
 				obj.html('SIGUIENTE');
@@ -281,7 +280,6 @@ function km_cuidador_validar( fields ){
 			// validar longitud
 			if( m == ''){
 				m = rc_validar_longitud( val );
-				console.log( val );
 			}
 
 			if( m == ''){
@@ -342,6 +340,10 @@ function rc_validar_longitud( field ){
 				break;
 
 			case 'rc_descripcion':
+				result = validar_longitud( val, 1, 600, 'string', 'Debe estar entre 1 y 100 caracteres');
+				break;
+
+			case 'rc_direccion':
 				result = validar_longitud( val, 1, 600, 'string', 'Debe estar entre 1 y 100 caracteres');
 				break;
 	};
