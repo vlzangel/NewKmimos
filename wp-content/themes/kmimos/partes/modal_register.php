@@ -1,4 +1,5 @@
-<?php 
+<?php
+$datos = kmimos_get_info_syte();
 $HTML .='
 	<!-- POPUPS REGISTRARTE -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="myModal" style="padding: 40px;">
@@ -47,6 +48,9 @@ $HTML .='
 							<div class="content-placeholder">
 								<input type="text" id="id_login_face" name="id_login_face" class="hidden">
 								<input type="text" id="id_login_gmail" name="id_login_gmail" class="hidden">
+								<div class="km-datos-foto" id="km-datos-foto-profile"></div>
+								<input type="file" class="hidden" id="carga_foto_profile" accept="image/*">
+								<input type="hidden" id="img_profile" name="img_profile" value="">
 								<div class="label-placeholder">
 									<label>Nombre</label>
 									<input type="text" id="nombre" name="nombre" class="input-label-placeholder" data-charset="alf">
@@ -83,8 +87,8 @@ $HTML .='
 									<select class="km-datos-mascota-opcion" name="edad" id="edad">
 										<option value="">Edad</option>
 										<option value="18-25">18-25 años</option>
-										<option value="25-35">25-35 años</option>
-										<option value="Mayor-46">Mayor 46 años</option>
+										<option value="25-35">26-35 años</option>
+										<option value="Mayor-46">Mayor 36 años</option>
 									</select>
 								</div>
 								<div class="km-datos-mascota">
@@ -101,7 +105,7 @@ $HTML .='
 					<a href="#" id="siguiente" class="km-btn-correo km-btn-popup-registrarte-nuevo-correo">SIGUIENTE</a>
 					<div id="resp"></div>
 					<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-					<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;"src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
+					<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;"src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (55) 6892-2182</p>
 						<hr>
 					<div class="row">
 						<div class="col-xs-5">
@@ -115,9 +119,11 @@ $HTML .='
 				<div class="popuphide popup-registrarte-datos-mascota">
 						<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 						<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
-						<div class="km-datos-foto" id="km-datos-foto">
-						</div>
+
+						<div class="km-datos-foto" id="km-datos-foto"></div>
 						<input type="file" class="hidden" id="carga_foto" accept="image/*">
+						<input type="hidden" id="img_pet" name="img_pet" value="">
+
 						<div class="km-box-form">
 							<div class="content-placeholder">
 								<div class="label-placeholder">
@@ -221,10 +227,10 @@ $HTML .='
 						</div>
 						<a href="#" class="km-btn-correo km-btn-popup-registrarte-datos-mascota">REGISTRARME</a>
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
+						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (55) 6892-2182</p>
 					</div>
 					<div class="popuphide popup-registrarte-final">
-						<h3 style="margin: 0; text-align: center;">¡FELICIDADES MARÍA,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
+						<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
 						<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
 						<a href="index-sesion.html" class="km-btn-correo">REGRESAR AL INICIO</a>
 					</div>

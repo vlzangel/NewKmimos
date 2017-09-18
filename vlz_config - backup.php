@@ -24,5 +24,5 @@
 	$host = "localhost";
 	$user = "root";
 	$pass = "";
-	$db = "qa_pro_kmimos.mx";
+	$db = "kmimos_mx_new";
 ?>

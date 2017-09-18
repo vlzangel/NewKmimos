@@ -130,9 +130,9 @@
 	add_filter( 'wc_add_to_cart_message', '__return_null()' );
 
 	function modify_jquery() {
-		wp_deregister_script('jquery');
-		wp_register_script('jquery', get_template_directory_uri().'/js/jquery.js', false, '1.0.0');
-		wp_enqueue_script('jquery');
+//		wp_deregister_script('jquery');
+//		wp_register_script('jquery', get_template_directory_uri().'/js/jquery.js', false, '1.0.0');
+//		wp_enqueue_script('jquery');
 	}
 	add_action('wp_enqueue_scripts', 'modify_jquery');
 

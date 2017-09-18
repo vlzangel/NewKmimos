@@ -1,4 +1,7 @@
-<?php include 'pre-header.php'; ?><!doctype html><html lang="es-ES" class="no-js"><head><title>Kmimos</title><meta charset="UTF-8"><?php 
+<?php include 'pre-header.php'; ?><!doctype html><html lang="es-ES" class="no-js"><head>
+
+	<title> <?php bloginfo('title'); ?> </title>
+	<meta charset="UTF-8"><?php 
 	$HTML = '';	
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
 		header('X-UA-Compatible: IE=edge,chrome=1');
@@ -12,6 +15,7 @@
 	}
 
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script>';
 
 	wp_enqueue_style( 'style', getTema()."/style.css", array(), "1.0.0" );
 
@@ -20,12 +24,10 @@
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
-
 	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 
 	wp_head();
-	//include_once("partes/head/script_facebook_auth.php");
-	//include_once("partes/head/script_google_auth.php");
+
 	global $post;
 	$reserrvacion_page = "";
 	if( 
@@ -47,6 +49,15 @@
 	){
 		$reserrvacion_page = "page-reservation";
 	}
+    include_once("partes/head/script_google_auth.php");
+    include_once("partes/head/script_facebook_auth.php");
+
+    $coordenadas = get_coordenadas();
+    $HTML .= "<script type='text/javascript'>
+    	var Coordsearch = JSON.parse("; 
+    $HTML .= "'".$coordenadas."'";
+    $HTML .= ");</script>";
+
 
 	$HTML .= '
 		<script type="text/javascript"> 
@@ -95,7 +106,7 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="'.get_home_url().'"/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-							<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
+							<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
 
 							'.$menus_movil.'
 
