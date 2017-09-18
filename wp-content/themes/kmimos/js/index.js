@@ -196,7 +196,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 					'img_profile': campos[10]};
 
 			globalData = getGlobalData('/procesos/login/registro.php','post', datos);
-			console.log(globalData);
+			//console.log(globalData);
 		}else {
          	alert("Revise sus datos por favor, debe llenar todos los campos");
         }
@@ -390,11 +390,12 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 			pet_sterilized = $("#km-check-1").val(),
 			pet_sociable = $("#km-check-2").val(),
 			aggresive_humans = $("#km-check-3").val(),
-			aggresive_pets = $("#km-check-4").val();
+			aggresive_pets = $("#km-check-4").val(),
+			img_pet = $("#img_pet").val();
 	
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
 					date_from,genero_mascota,tamano_mascota,pet_sterilized,
-					pet_sociable,aggresive_humans,aggresive_pets];
+					pet_sociable,aggresive_humans,aggresive_pets,img_pet];
 		if (nombre_mascota != "" && tipo_mascota != "" && raza_mascota != "" && color_mascota !="" 
         	&& date_from != "" && genero_mascota != "" && tamano_mascota != "") {
         		$(".popup-registrarte-datos-mascota").hide();
@@ -403,18 +404,20 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		      		'name_pet': campos_pet[0],
 		            'type_pet': campos_pet[1],
 		            'race_pet': campos_pet[2],
-		            'colour_pet': campos_pet[3],
+		            'color_pet': campos_pet[3],
 		            'date_birth': campos_pet[4],
-		            'gender_pet': campos_pet[5],
+					'gender_pet': campos_pet[5],
 		            'size_pet': campos_pet[6],
 		            'pet_sterilized': campos_pet[7],
 		            'pet_sociable': campos_pet[8],
 		            'aggresive_humans': campos_pet[9],
 		            'aggresive_pets': campos_pet[10],
+					'img_pet': campos_pet[11],
 		            'userid': globalData
 		        };
-		    // console.log(datos);  
-		    getGlobalData('/procesos/login/registro_pet.php','post', datos);
+
+			var data = getGlobalData('/procesos/login/registro_pet.php','post', datos);
+			//console.log(data);
         }else {
         	alert("Revise sus datos por favor, debe llenar todos los campos");
         }
