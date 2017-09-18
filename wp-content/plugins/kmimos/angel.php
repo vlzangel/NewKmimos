@@ -73,7 +73,11 @@
 	            "pais"      => "México",
 	            "titulo"    => "Kmimos México",
 	            "email"     => "contactomex@kmimos.la",
-	            "telefono"  => "+52 (55) 1791.4931<br>+52 (55) 66319264",
+
+                "telefono" => "(01) 55 4742 3162",
+                "telefono_sincosto" => "(01) 800 056 4667",
+                "whatsapp"=> "+52 (55) 6892 2182", 
+
 	            "twitter"   => "kmimosmx",
 	            "facebook"  => "Kmimosmx",
 	            "instagram" => "kmimosmx",
@@ -282,15 +286,18 @@
             $user = new WP_User( $user_id );
             if( $user->roles[0] == "vendor" ){
                 $id = $wpdb->get_var("SELECT id FROM cuidadores WHERE user_id = {$user_id}");
-                $sub_path = "cuidadores/avatares/miniatura/{$id}_";
+                $sub_path = "cuidadores/avatares/miniatura/{$id}/";
+                $sub_path = "cuidadores/avatares/{$id}/";
             }else{
                 $sub_path = "avatares_clientes/{$user_id}/";
             }
-            
+
+
             $name_photo = get_user_meta($user_id, "name_photo", true);
             if( empty($name_photo)  ){ $name_photo = "0"; }
             if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg";  }
             $base = path_base();
+
 
             if( file_exists($base."/wp-content/uploads/{$sub_path}{$name_photo}") ){
                 $img = get_home_url()."/wp-content/uploads/{$sub_path}{$name_photo}";

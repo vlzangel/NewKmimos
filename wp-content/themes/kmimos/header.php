@@ -1,4 +1,7 @@
-<?php include 'pre-header.php'; ?><!doctype html><html lang="es-ES" class="no-js"><head><title>Kmimos</title><meta charset="UTF-8"><?php 
+<?php include 'pre-header.php'; ?><!doctype html><html lang="es-ES" class="no-js"><head>
+
+	<title> <?php bloginfo('title'); ?> </title>
+	<meta charset="UTF-8"><?php 
 	$HTML = '';	
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
 		header('X-UA-Compatible: IE=edge,chrome=1');
@@ -12,6 +15,7 @@
 	}
 
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script>';
 
 	wp_enqueue_style( 'style', getTema()."/style.css", array(), "1.0.0" );
 
@@ -130,7 +134,7 @@
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 						<img class="km-avatar" src="'.$avatar.'" width="40">
 					</button>
-					<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'images/new/km-logos/km-logo.png" height="60" style="height: 60px;"></a>
+					<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60" style="height: 60px;"></a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">

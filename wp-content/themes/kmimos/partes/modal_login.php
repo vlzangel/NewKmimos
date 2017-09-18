@@ -40,12 +40,21 @@ $datos = kmimos_get_info_syte();
 							<p class="text-line">o</p>
 							<div class="bg-line"></div>
 						</div>
-						<a href="#" class="km-btn-fb" onclick="login_facebook();">
+						
+
+						<a href="javascript:;" onClick="auth_facebook();" class="km-btn-fb">
 							<img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">
+							 CONÉCTATE CON FACEBOOK
+						</a>
+						<a href="#" class="google_login km-btn-border">
+							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
+							CONÉCTATE CON GOOGLE
+						</a>
+
+						<a href="#" class="hidden km-btn-fb" onclick="login_facebook();">
 							CONÉCTATE CON FACEBOOK
 						</a>
-						<a href="#" class="km-btn-border" id="customBtn">
-							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
+						<a href="#" class="hidden km-btn-border" id="customBtn">
 							CONÉCTATE CON GOOGLE
 						</a>
 						

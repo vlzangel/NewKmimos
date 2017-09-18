@@ -11,7 +11,8 @@
     date_default_timezone_set('America/Mexico_City');
 	$conn = new mysqli($host, $user, $pass, $db);
 	$errores = array();
-    extract($_POST);
+    
+
 
     // BEGIN DATA DEFAULT
     $mascotas_cuidador = array(
@@ -54,13 +55,22 @@
     // END DATA DEFAULT
 
     if ($conn->connect_error) {
-        echo json_encode(['error'=>'NO','msg'=>'Error de conexion']);
+        echo json_encode(['error'=>'NO','msg'=>'Error de conexion', 'fields'=>[]]);
     }else{
         // Valores default
         foreach ($_POST as $key => $value) {
             if($value == ''){ $_POST[$key] = 0; }
         }
-        extract($_POST);
+
+extract($_POST);
+
+    $email = $rc_email;
+    $nombres = $rc_nombres;
+    $apellidos = $rc_apellidos;
+    $ife = $rc_ife;
+    $clave = $rc_clave;
+    $telefono = $rc_telefono;
+
         $username = $email;
 
         if( preg_match("/[\+]{1,}/", $email) || !filter_var($email, FILTER_VALIDATE_EMAIL) ){
@@ -83,11 +93,17 @@
             while($datos = $existe_users->fetch_assoc()){
                 if( strtolower($datos['user_email']) == strtolower($email) ){
                     $msg .= "Este E-mail [{$email}] ya esta en uso\n";
-                    $fields[] = [ 'name'=>'email', 'msg'=>"Este E-mail [{$email}] ya esta en uso"];
+                    $fields[] = [ 'name'=>'email', 'msg'=>"Este E-mail {$email} ya esta en uso"];
                 }
                 if( strtolower($datos['user_login']) == strtolower($username) ){
                     $msg .= "Este nombre de Usuario [{$username}] ya esta en uso\n";
-                    $fields[] = [ 'name'=>'nickname', 'msg'=>"Este  nombre de Usuario [{$username}] ya esta en uso"];
+                    $fields[] = [ 'name'=>'nickname', 'msg'=>"Este  nombre de Usuario {$username} ya esta en uso"];
+                }
+            }
+            while($datos = $existe_cuidador->fetch_assoc()){
+                if( strtolower($datos['email']) == strtolower($email) ){
+                    $msg .= "Este E-mail [{$email}] ya esta en uso\n";
+                    $fields[] = [ 'name'=>'email', 'msg'=>"Este E-mail {$email} ya esta en uso"];
                 }
             }
 
@@ -131,7 +147,7 @@
             );
             
             // Registro en iLernus
-            // $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
+            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
             $sql = "
                 INSERT INTO cuidadores VALUES (
@@ -151,7 +167,7 @@
                     '',
                     '',
                     '0',
-                    '6',
+                    '0',
                     '08:00:00',
                     '18:00:00',
                     '{$mascotas_cuidador}',
@@ -159,13 +175,14 @@
                     '{$edades_aceptadas}',
                     '{$comportamientos_aceptados}',
                     '{$hospedaje}',
-                    '',
+                    0,
                     'a:0:{}',
                     'a:0:{}',
                     '0',
                     '0'
                 );
             ";
+
             if( $conn->query( utf8_decode( $sql ) ) ){
                 $cuidador_id = $conn->insert_id;
                 $hoy = date("Y-m-d H:i:s");     
@@ -185,9 +202,13 @@
                         '".$nombres." ".$apellidos."'
                     );
                 ";
+                
 
                 $conn->query( utf8_decode( $new_user ) );
                 $user_id = $conn->insert_id;
+
+                $wp_user = new WP_User( $user_id );
+                $wp_user->set_role( 'vendor' );
 
                 //WHITE_LABEL
                 $referido = '';
@@ -220,6 +241,7 @@
                 $sql = "
                     INSERT INTO wp_usermeta VALUES
                          (NULL, ".$user_id.", 'user_favorites',      '')
+                        ,(NULL, ".$user_id.", 'user_pass',          '".$clave."')
                         ,(NULL, ".$user_id.", 'user_phone',          '".$telefono."')
                         ,(NULL, ".$user_id.", 'user_mobile',         '".$telefono."')
                         ,(NULL, ".$user_id.", 'user_country', 'México')
@@ -234,8 +256,8 @@
                         ,(NULL, ".$user_id.", 'show_admin_bar_front', 'false')
                         ,(NULL, ".$user_id.", 'wp_capabilities',     'a:1:{s:6:\"vendor\";b:1;}')
                         ,(NULL, ".$user_id.", 'wp_user_level',       '0')                        
-                        ,(NULL, ".$user_id.", 'google_auth_id' , $google_auth_id  )
-                        ,(NULL, ".$user_id.", 'facebook_auth_id' , $facebook_auth_id)
+                        ,(NULL, ".$user_id.", 'google_auth_id' , '".$google_auth_id."'  )
+                        ,(NULL, ".$user_id.", 'facebook_auth_id' , '".$facebook_auth_id."')
                         ;
                 ";
                 $conn->query( $sql );
@@ -291,13 +313,14 @@
                 include( '../../partes/email/mensaje_email_registro_cuidador.php' );
 
                 // Envio de Email
-                $mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);
-                wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
+                // $mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);
+                // wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
 
                 // Respuesta
                 $error = array(
                     "error"         => "NO",
-                    "msg"           => $mensaje_web
+                    "msg"           => $mensaje_web, 
+                    'fields'=>[]
                 );
                 echo "(".json_encode( $error ).")";
 
@@ -305,7 +328,8 @@
                 // Error registro en iLernus
                 $error = array(
                     "error" => "SI",
-                    "msg"   => "No se ha podido completar el registro."
+                    "msg"   => "No se ha podido completar el registro.", 
+                    'fields'=>[]
                 );
                 echo "(".json_encode( $error ).")";
             }
