@@ -132,7 +132,7 @@ $(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-registro-c
 
 $(document).on("click", '.popup-registro-cuidador-paso2 .km-btn-popup-registro-cuidador-paso2', function ( e ) {
 	e.preventDefault();
-	var list = ['rc_estado', 'rc_municipio', 'rc_direccion'];
+	var list = ['rc_estado', 'rc_municipio'];
 	var valid = km_cuidador_validar(list);
 	if( valid ){
 		$(".popup-registro-cuidador-paso2").hide();
