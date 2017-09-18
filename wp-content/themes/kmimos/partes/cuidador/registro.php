@@ -45,7 +45,7 @@
 						<p>¿Ya tienes una cuenta?</p>
 					</div>
 					<div class="col-xs-7">
-						<a href="#" data-target="#login" class="km-btn-border"><b>INICIAR SESIÓN</b></a>
+						<a href="javascrip:;" data-modal="#popup-iniciar-sesion" class="modal_show km-btn-border"><b>INICIAR SESIÓN</b></a>
 					</div>
 				</div>
 			</div>

@@ -68,14 +68,15 @@ function getAjaxData(url,method, datos){
 }
 
 //MODAL SHOW
-jQuery(document).on('click',' a.modal_show ',function(e){
+jQuery(document).on('click', '.modal_show' ,function(e){
     modal_show(this)
 });
 function modal_show(element){
-    var modal = jQuery(element).data('modal');
+    var modal = $(element).data('modal');
     //jQuery('.modal').css("display", "");
-    jQuery('.modal').modal('hide');
-    jQuery(modal).modal("show");
+    $('.modal').modal('hide');
+    $(modal).modal("show");
+console.log(modal);    
 }
 
 
