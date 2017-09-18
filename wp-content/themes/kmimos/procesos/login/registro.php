@@ -90,9 +90,10 @@
             if( $img_profile != "" ){
                 $name_photo = time();
                 $user_photo = 1;
-                $img = end(explode(',', $img_profile));
+                $img_exlode = explode(',', $img_profile);
+                $img = end($img_exlode);
                 $sImagen = base64_decode($img);
-                $dir = "../../../../../uploads/avatares_clientes/{$user_id}/";
+                $dir = "../../../../uploads/avatares_clientes/{$user_id}/";
                 @mkdir($dir);
                 file_put_contents($dir.'temp.jpg', $sImagen);
                 $sExt = mime_content_type( $dir.'temp.jpg' );
@@ -143,7 +144,7 @@
                     (NULL, {$user_id}, 'wp_user_level',       '0');
             ";
             $conn->query( utf8_decode( $sql ) );
-            //echo $user_id;
+            echo $user_id;
 
         }
         

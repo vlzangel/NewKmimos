@@ -119,7 +119,7 @@ $HTML .='
 								</div>
 								<div class="km-datos-mascota">
 									<select id="referido" name="referido" class="km-datos-mascota-opcion" data-title="Debes seleccionar una opción" required>
-										<option value="">Selecciona una opción</option>
+										<option value="">Donde nos conocio?</option>
 										'.$referidos_options.'
 									</select>
 								</div>
