@@ -34,7 +34,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		switch($("#ife").val().length) {
 		case 0:
 			$("#ife").parent('div').css('color','red');
-			$("#ife").after('<span name="sp-ife">Debe ingresar su ife</span>').css('color','red');
+			$("#ife").after('<span name="sp-ife">Debe ingresar su IFE</span>').css('color','red');
 			$("#ife").focus(function() { $("[name='sp-ife']").hide(); });
 			break;
 		case 11:
@@ -44,7 +44,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 			break;
 		default:
 			$("#ife").parent('div').css('color','red');
-			$("#ife").after('<span name="sp-ife">Su ife debe contener 11 dígitos</span>').css('color','red');
+			$("#ife").after('<span name="sp-ife">Su IFE debe contener 11 dígitos</span>').css('color','red');
 			$("#ife").focus(function() { $("[name='sp-ife']").hide(); });
 		}
 	});
@@ -168,8 +168,10 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		 	movil = $("#movil").val(), 
 		 	genero = $("#genero").val(), 
 		 	edad = $("#edad").val(), 
-		 	fumador = $("#fumador").val();
-		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador];
+		 	fumador = $("#fumador").val(),
+				referido = $("#referido").val(),
+				img_profile = $("#img_profile").val();
+		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
 		if (nombre != "" && apellido != "" && ife != "" && email !="" && pass != "" && movil != ""
 		       	&& genero != "" && edad != "" && fumador !="") {
 				$(".popup-registrarte-nuevo-correo").hide();
@@ -183,10 +185,12 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 					'movil': campos[5],
 					'gender': campos[6],
 					'age': campos[7],
-					'smoker': campos[8]};
+					'smoker': campos[8],
+					'referido': campos[9],
+					'img_profile': campos[10]};
 
-			// globalData = getGlobalData('/procesos/login/registro.php','post', datos); 
-			// console.log(globalData);
+			globalData = getGlobalData('/procesos/login/registro.php','post', datos);
+			console.log(globalData);
 		}else {
          	alert("Revise sus datos por favor, debe llenar todos los campos");
         }
@@ -199,6 +203,15 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 	$("#km-datos-foto").on('click', function(){
 		$("#carga_foto").trigger("click");
 		document.addEventListener('change',cargaImagen, false);
+	});
+
+	jQuery('#datepets').datepick({
+		dateFormat: 'dd/mm/yyyy',
+		minDate: fecha,
+		onSelect: function(xdate) {		},
+		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+		firstDay: 1,
+		onmonthsToShow: [1, 1]
 	});
 	
 	$("#nombre_mascota").blur(function(){
@@ -468,6 +481,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
 		$(".popup-iniciar-sesion-1").hide();
 		$(".popup-olvidaste-contrasena").fadeIn("fast");
 	});
+
 	$(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
 		e.preventDefault();
 
@@ -534,21 +548,9 @@ function cargaImagenProfile(evt){
 	}
 }
 
-function getAjaxData(url,method, datos){
-	return $.ajax({
-		data: datos,
-		type: method,
-		url: HOME+url,
-		async:false,
-		success: function(data){
-			return data;
-		}
-	}).responseText;
-}
-
 //RECOVER PASSWORD
 $(document).on('click','#login_submit.recover_pass',function(e){
-	$(this).closest('form').submit();
+	//$(this).closest('form').submit();
 });
 
 $("form#form_recuperar").submit(function(){
