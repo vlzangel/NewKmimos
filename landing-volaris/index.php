@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/kmimos.css">
+        <link rel="stylesheet" href="js/image/image-easyload.css">
 
     <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -167,8 +168,6 @@
 
 	</script>
 
-
-	<link rel="stylesheet" href="js/image/image-easyload.css">
     </head>
     <body id="waypoint">       
        	<div class="col-sm-12">
@@ -198,7 +197,6 @@
 							<!-- <h3 class="color-volaris">DE DESCUENTO</h3> -->
 							<!-- <span>En tu primera reserva</span> -->
 						</article>
-
 					</div>
 				</section>
 				<section id="section-5" class="col-sm-12 bg-volaris" style="padding-right: 0px;">
