@@ -69,7 +69,7 @@
 		}
 	</style>
 
-	<!--<script type='text/javascript'>
+	<script type='text/javascript'>
 		//Subscribe
 		function SubscribeSite(){
 			clearTimeout(SubscribeTime);
@@ -166,7 +166,7 @@
 			}
 		}
 
-	</script>-->
+	</script>
 	
     </head>
     <body id="waypoint">       
@@ -184,7 +184,7 @@
 								<span class="color-volaris">VOLARIS</span>, si te suscribes HOY:
 							</h2>
 						</article> -->
-						<article id="tu-mascota" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+						<article id="tu-mascota" class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
 							<p>Tu mascota regresa feliz</p>
 						</article> 
 						
@@ -350,7 +350,7 @@
 						<div class="row">
 							<section id="section-6" class="text-center">
 								<div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center color-volaris">
-									<h1 class="hidden-xs" style="width: 53%;">P&iacute;cale al video de abajo, te va a encantar <br> la nueva alianza VOLARIS - KMIMOS</h1>
+									<h1 class="hidden-xs" style="width: 100-%;">P&iacute;cale al video de abajo, te va a encantar <br> la nueva alianza VOLARIS - KMIMOS</h1>
 									<h1 class="hidden-lg hidden-sm hidden-md" style="width: 100%;">P&iacute;cale al video de abajo, te va a encantar la nueva alianza VOLARIS - KMIMOS</h1>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3" id="video">
