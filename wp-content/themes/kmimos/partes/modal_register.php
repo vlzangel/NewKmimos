@@ -259,7 +259,7 @@ $HTML .='
 					<div class="popuphide popup-registrarte-final">
 						<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
 						<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
-						<a href="index-sesion.html" class="km-btn-correo">REGRESAR AL INICIO</a>
+						<a href="#" class="modal_show km-btn-correo" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a>
 					</div>
 				</div>
 			</div>
