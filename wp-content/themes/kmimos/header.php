@@ -26,7 +26,9 @@
 	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
 	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 
+
 	wp_head();
+
 
 	global $post;
 	$reserrvacion_page = "";
@@ -76,12 +78,12 @@
 
 	if( !isset($MENU["head"]) ){
 		$menus_normal = '
-			<li><a style="padding-right: 15px" data-toggle="modal" data-target="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
-			<li><a  style="padding-left: 15px; border-left: 1px solid white;" data-toggle="modal" data-target="#myModal">REGISTRARME</a></li>
+			<li><a class="modal_show" style="padding-right: 15px" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
+			<li><a class="modal_show" style="padding-left: 15px; border-left: 1px solid white;" data-toggle="modal" data-modal="#myModal">REGISTRARME</a></li>
 		';
 		$menus_movil = '
-			<li><a class="km-nav-link hidden-sm hidden-md hidden-lg" data-toggle="modal" data-target="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
-			<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg" data-toggle="modal" data-target="#myModal">REGISTRARME</a></li>
+			<li><a class="modal_show km-nav-link hidden-sm hidden-md hidden-lg" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
+			<li><a href="#" class="modal_show km-nav-link hidden-sm hidden-md hidden-lg" data-modal=#myModal">REGISTRARME</a></li>
 		';
 	}else{
 		$menus_normal = $MENU["head"].$MENU["body"].$MENU["footer"];

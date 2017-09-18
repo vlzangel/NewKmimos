@@ -2008,6 +2008,7 @@ a.km-btn-comentario {
     width: 100%;
     height: 40px;
     border: none;
+	color:#555 !important;
     font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.2px;
@@ -5067,12 +5068,13 @@ a.km-btn-comentario {
     margin-bottom:0;
     font-weight:700
 }
-.km-box-form .label-placeholder input {
+.km-datos-mascota select {
     z-index:1;
     position:relative;
     width:100%;
     height:40px;
     border:none;
+	color: #555 !important;
     font-size:15px;
     font-weight:500;
     letter-spacing:.2px;
@@ -8999,15 +9001,22 @@ textarea.vlz_input {
     -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
-@media (max-width: 992px)
-style.css?ver=1.0:5507
-.jj_desc {
-    height: 120px!important;
+@media (max-width: 992px){
+	.jj_desc {
+		height: 120px!important;
+	}
 }
-@media (max-width: 992px)
-style.css?ver=1.0:5496
-.vlz_input {
-    height: 50px!important;
-    /* padding: 1px 1px 0px 0px!important; */
-    font-size: 14px!important;
+
+@media (max-width: 992px){
+	.vlz_input {
+		height: 50px!important;
+		/* padding: 1px 1px 0px 0px!important; */
+		font-size: 14px!important;
+	}
+}
+
+@media (max-width: 768px){
+	a.km-nav-link {
+		color: #555 !important;
+	}
 }
