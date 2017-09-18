@@ -62,6 +62,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 			var campo = {
 				'email': email
 			}
+
 			$.ajax({
 	        data:  campo, //datos que se envian a traves de ajax
 	        url:   HOME+'/procesos/login/main.php',//HOME+"/procesos/login/validate_email.php", //archivo que recibe la peticion
@@ -76,10 +77,15 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 	                    $("#resultado").css('color','red');
 	                    $("#email_1").parent('div').css('color','red');
 	                    $("#email_1").css('color','red');
-	                }else{
+	                }else if (response == 'NO'){
 	                    $("#resultado").html("E-mail disponible!");
 	                    $("#resultado").css('color','green');
-	                }
+	                }else if (response == 'NO_MAIL'){
+						$("#resultado").html("E-mail no es correcto!");
+						$("#resultado").css('color','red');
+						$("#email_1").parent('div').css('color','red');
+						$("#email_1").css('color','red');
+					}
 	        }
 	    }); 
 		}
