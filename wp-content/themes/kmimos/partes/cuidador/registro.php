@@ -102,7 +102,7 @@
 									<option value="<?php echo $key; ?>"><?php echo $item; ?></option>
 								<?php } ?>
 							</select>
-							<small data-error="rc_telefono" style="visibility: hidden;"></small>
+							<small data-error="rc_referred" style="visibility: hidden;"></small>
 						</div>
 					</div>
 				</div>
