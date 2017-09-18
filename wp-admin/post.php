@@ -147,8 +147,8 @@ case 'edit':
 	if ( ! wp_check_post_lock( $post->ID ) ) {
 		$active_post_lock = wp_set_post_lock( $post->ID );
 
-		// if ( 'attachment' !== $post_type )
-			//wp_enqueue_script('autosave');
+		if ( 'attachment' !== $post_type )
+			wp_enqueue_script('autosave');
 	}
 
 	if ( is_multisite() ) {
