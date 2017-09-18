@@ -62,4 +62,5 @@
 	   		header("location: ".get_home_url()."/perfil-usuario/?ua=profile");
 		}
 	}
-?>
+
+    

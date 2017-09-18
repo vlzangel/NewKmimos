@@ -34,7 +34,7 @@ function menu(){
 		}
 	} else {
 		$('.bg-transparent').removeClass('bg-white');
-		$('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo.png');
+		$('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo.png');
 
 		$('.navbar-toggle img').attr('src', HOME+'images/new/km-navbar-mobile.svg');		
 		$('.nav-sesion .km-avatar').attr('src', AVATAR);
@@ -295,6 +295,7 @@ $(document).ready(function(){
 	$('.km-servicio-opcion').on('click', function(e) {
 		$(this).toggleClass('km-servicio-opcionactivo');
 	});
+
 
 	$(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
 		e.preventDefault();

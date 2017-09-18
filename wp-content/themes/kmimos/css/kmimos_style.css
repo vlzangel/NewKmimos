@@ -110,6 +110,12 @@ p {
 	padding-top: 11px!important;
 	padding-bottom: 11px!important;
 }
+.loading{
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top:15px;
+}
 .km-btn-primary {
 	background-color: #7DD1C4;
 	border-bottom: 3px solid #33e1be;
@@ -872,7 +878,7 @@ button.close {
 .km-select-custom{
 	position: relative;
 	border: solid 1px #e5e5e5;
-	#background-color: #FFF;
+	background-color: #FFF;
 	background-size: 14px 13px;
 	background-repeat: no-repeat;
 	background-position: calc(100% - 9px) 50%;
@@ -1933,6 +1939,21 @@ a.km-btn-comentario {
     position: relative;
     color: white;
 }
+.km-datos-municipio-opcion,
+.km-datos-estado-opcion{
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .2px;
+    font-family: Gotham-Pro-Regular, Arial, serif;
+    border-bottom: 1px solid #ccc;
+    border-left:0px solid transparent;
+    padding-left: 0px;
+}
 
 
 
@@ -1997,7 +2018,7 @@ a.km-btn-comentario {
 }
 
 #popup-registro-cuidador1 .modal-content {
-	padding: 40px 20px;
+	/*padding: 40px 20px;*/
 }
 
 .km-btn-basic {
@@ -5073,6 +5094,25 @@ a.km-btn-comentario {
 .km-box-form .content-placeholder .label-placeholder {
     width:100%
 }
+
+.km-group-checkbox label,
+.km-calendario label{
+    padding-top: 20px;
+    color: #a1a1a1;
+    font-size: 15px;
+    font-weight: 600;
+}
+.km-calendario input {
+    width:100%;
+    padding:0px 0 3px 25px;
+    border:none;
+    border-bottom:1px solid #ccc;
+    margin:0;
+    background:#fff;
+    background-image:url(../images/new/icon/icon-calendario.svg);
+    background-repeat:no-repeat;
+}
+
 .km-fecha-nacimiento input {
     width:100%;
     padding:24px 0 3px 25px;
@@ -5167,6 +5207,8 @@ a.km-btn-comentario {
     color:rgba(0, 0, 0, .2);
     border-color:rgba(0, 0, 0, .2)
 }
+.cr_minus,
+.cr_plus,
 .km-cantidad .km-minus, .km-cantidad .km-plus {
     width:20px;
     color:#33e1be;
@@ -5447,10 +5489,12 @@ footer .km-icon-redes {
 .page-reservation .km-content-step .km-content-new-pet:first-child {
     border-radius:5px;
 }
+.cr_minus,
 .page-reservation .km-content-step .km-content-new-pet .km-minus, .page-reservation .km-content-step .km-content-new-pet .km-number, .page-reservation .km-content-step .km-content-new-pet .km-plus {
     float:left
 }
-.page-reservation .km-content-step .km-content-new-pet .km-minus, .page-reservation .km-content-step .km-content-new-pet .km-plus {
+.cr_minus,
+.cr_plus, .page-reservation .km-content-step .km-content-new-pet .km-minus, .page-reservation .km-content-step .km-content-new-pet .km-plus {
     width:20px;
     color:#33e1be;
     font-size:16px;
@@ -8236,7 +8280,7 @@ button.close {
 
 .km-resultados-grid .km-item-resultado .km-descripcion{
     padding: 10px 16px;
-    min-height: 125px;
+    min-height: 177px;
 }
 
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos{
@@ -8783,7 +8827,7 @@ a.km-btn-comentario {
 }
 
 .popup-registro-exitoso, .popup-registro-exitoso-final {
-    background: url(../images/km-registro/registro-exitoso.jpg) no-repeat;
+    background: url(../images/new/km-registro/registro-exitoso.jpg) no-repeat;
     height: 650px;
     background-size: cover;
     background-position: center center;
@@ -8802,6 +8846,7 @@ a.km-btn-comentario {
 }
 .popup-registro-cuidador-paso1 a img {
     width: 150px;
+    height: 150px;
     margin-bottom: 30PX;
 }
 .popup-registro-cuidador-paso1 textarea {
@@ -8833,7 +8878,9 @@ a.km-btn-comentario {
     color: rgba(0, 0, 0, 0.2);
     border-color: rgba(0, 0, 0, 0.2);
 }
-.km-cantidad .km-minus, .km-cantidad .km-plus{
+
+.cr_minus,
+.cr_plus,.km-cantidad .km-minus, .km-cantidad .km-plus{
     width: 20px;
     color: #33E1BE;
     font-size: 16px;
