@@ -16,6 +16,7 @@
 		if ($pos === false) {
 		    $tipo = "nuevo";
 		}
+		$tipo = "nuevo";
 
         $_SESSION['kmimos_recuperar'] = array( $xuser->ID, $xuser->user_email, $tipo);
         header("location: ".get_home_url()."/restablecer/");
