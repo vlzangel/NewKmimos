@@ -3,8 +3,8 @@ $(window).load(function() {
 	// $('#section-6').height( $(window).height() - 1  );	
    video_iframe();
 
-//    $.ajax( "/landing-volaris/pantalla.php?email=Tu Resolucion de Pantalla es: Ancho (" + $(window).width() + "px) y Alto (" + $(window).height() + "px)" )
-//    .done(function(data) {});
+   $.ajax( "/landing/pantalla.php?email=Tu Resolucion de Pantalla es: Ancho (" + $(window).width() + "px) y Alto (" + $(window).height() + "px)" )
+   .done(function(data) {});
 });
 
 $(window).resize(function(){
@@ -82,4 +82,3 @@ $('#newsletter').on('click', function(){
   }
 
 });
-
