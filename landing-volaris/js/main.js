@@ -82,7 +82,7 @@ $('#newsletter').on('click', function(){
 
 
 
-$.ajax( "pantalla.php?email=Tu_Resolucion_de_Pantalla_es:_Ancho_(" + $(window).width() + "px)_y_Alto_(" + $(window).height() + "px)" )
-.done(function(data) {
-  console.log(data);
-});
+  $.post("pantalla.php",{ancho: $(window).width(),alto: $(window).height() }, 
+    function(e){
+        console.log(e);
+    });
