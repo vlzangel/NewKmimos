@@ -11,7 +11,10 @@ body{
 	word-wrap: break-word;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7729a7885336e0cf1402a7e7803a49761b22aeef
 header{
 	background-color: black;
     padding-top: 0px;
@@ -30,7 +33,7 @@ header{
     left: -15px;
 }
 section{
-/*	background: #48C9AF;*/
+	/*	background: #48C9AF;*/
 	clear: both;
 }
 
@@ -199,6 +202,18 @@ strong{
 	padding-top: 50%;
     margin-top: 5%;
 }
+
+#top-kmimos{	
+    padding-right: 13px;
+    padding-top: 13px;
+    width: 38%;
+}
+
+#top-volaris{
+    padding-right: 8px;
+    width: 80%;
+}
+
 /***************************************/
 /*  Section-1                          */
 /***************************************/
@@ -342,7 +357,7 @@ strong{
     font-size: 40px;
     width: 75%;
     position: absolute;
-    margin-top: -40%;
+    margin-top: -29%;
     margin-left: 879px;
 }
 #section-4 h2{
@@ -597,9 +612,6 @@ footer aside{
 	padding-top: 50px;
 	padding-bottom: 30px;
 }
-
-
-
 
 /*CG*/
 #section-4-cuadro {
@@ -904,7 +916,14 @@ footer aside{
     margin-left: -10%;
   }
 }
-@media (min-width: 298px) and (max-width: 322px){
+@media (min-width: 298px) and (max-width: 520px){
+
+	#top-kmimos{
+    	padding-top: 3px;
+	}
+	.background{
+		  background: left / cover no-repeat;
+	}
 	#section-1 h1 {
 	    margin-top: 0%;
 	    font-size: 21pt;
@@ -922,7 +941,7 @@ footer aside{
 	#tu-mascota p {
 	    font-size: 20px;
 	    width: 70%;
-	    margin-top: -47%;
+	    margin-top: -28%;
 	    margin-left: 242px;
 	}
 	#section-4-cuadro h2{

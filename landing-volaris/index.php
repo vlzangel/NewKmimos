@@ -165,6 +165,7 @@
 				});
 			}
 		}
+<<<<<<< HEAD
 
 	</script>-->
     </head>
@@ -180,6 +181,22 @@
 
    		</header>
        	<div class="col-sm-12">
+=======
+	</script>
+
+    </head>
+    <body id="waypoint">
+    	<div id="top-content" style="background:#000;padding-left: 0px;padding-right: 0px;">
+	    	<div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;">
+	    		<img id="top-volaris" src="img/logo-top-volaris.jpg" class="img-responsive pull-left" >
+	    	</div>
+	    	<div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;">
+	    		<img id="top-kmimos" src="img/logo.png" class="img-responsive pull-right">
+	    	</div>
+	    	<div class="clearfix"></div>
+    	</div>
+       	<div class="col-sm-12">       		
+>>>>>>> 7729a7885336e0cf1402a7e7803a49761b22aeef
     	   	<div class="row">       		
 				<section id="section-4" class="col-xs-12">
 				<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>
