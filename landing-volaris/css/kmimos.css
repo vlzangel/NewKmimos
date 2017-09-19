@@ -924,7 +924,6 @@ footer aside{
 	    position: relative;
 	    margin-left: -10%;
 	  }}
-
 @media (min-width: 377px) and (max-width: 767px) {
 	#tu-mascota p {
 	    font-size: 20px;
@@ -967,9 +966,7 @@ footer aside{
 		font-size: 21px;
 	    padding: 20px 0px 20px 0px;
 	    margin-bottom: 0px;
-	}
-}  
-
+	}}  
 @media (max-width: 376px)	{
 	#tu-mascota p {
 		font-size: 15px;

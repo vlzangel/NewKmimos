@@ -203,9 +203,9 @@
 							Para obtener tu cup&oacute;n de descuento, debes hacer uno de estos sencillos pasos
 						</article>
 					</dir>
-					<div class="row" style="margin:0px;">
-						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 move">
-							<label class="col-xs-offset-2 col-xs-2 col-md-1 text-right">
+					<div class="container">
+						<article class="col-xs-12 col-sm-11 col-md-5 col-md-5 col-lg-5 move">
+							<label class="col-xs-offset-2 col-xs-2 col-md-2 text-right">
 								1.</label>
 							<p class="col-xs-9 col-md-10">
 
@@ -229,8 +229,11 @@
 								</div>
 							</div>
 						</article>
-						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 move">
-							<label class="col-xs-offset-2 col-xs-2 col-md-1 text-right">
+						<article class="col-xs-12 col-sm-offset-5 col-sm-2 col-md-offset-5 col-md-1 col-lg-offset-5 col-lg-2 text-center" style="font-size: 50px;">
+							 ó 
+						</article>
+						<article class="col-xs-12 col-sm-11 col-md-6 col-md-5 col-lg-5 move">
+							<label class="col-xs-offset-2 col-xs-2 col-md-2 text-right">
 								2.</label>
 							<p class="col-xs-9 col-md-10">
 								Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.
