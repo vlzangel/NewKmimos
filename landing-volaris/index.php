@@ -69,7 +69,7 @@
 		}
 	</style>
 
-	<script type='text/javascript'>
+	<!--<script type='text/javascript'>
 		//Subscribe
 		function SubscribeSite(){
 			clearTimeout(SubscribeTime);
@@ -166,12 +166,20 @@
 			}
 		}
 
-	</script>
-
+	</script>-->
     </head>
     <body id="waypoint">       
-       	<div class="col-sm-12">
+    	<header>
+			<div class="col-md-10 col-xs-6">
+				<img src="img/logo-volaris1.png" class="logo-volaris-header hidden-xs">
+				<img src="img/logo-volaris-1.png" class="logo-volaris-header hidden-lg hidden-sm hidden-md">
+			</div>
+   	 		<div class="col-md-2 col-xs-6">
+   	 			<img src="img/logo-kmimos.png" class="logo">
+   	 		</div>
 
+   		</header>
+       	<div class="col-sm-12">
     	   	<div class="row">       		
 				<section id="section-4" class="col-xs-12">
 				<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>

@@ -12,13 +12,22 @@ body{
 }
 
 
-
 header{
-	background: #00B190;
-	text-align: center;
-	padding-top: 15px;
-	padding-bottom: 20px;
-	clear: both;
+	background-color: black;
+    padding-top: 0px;
+    clear: both;
+    overflow: hidden;
+}
+.logo{
+	width: 45%;
+	top: 8px;
+	position: relative;
+}
+.logo-volaris-header{
+	width: 75%;
+    position: relative;
+    top: 0px;
+    left: -15px;
 }
 section{
 /*	background: #48C9AF;*/
@@ -692,9 +701,7 @@ footer aside{
 		width: 70%;
 		padding:10px;
 	}
-	.logo{
-		width: 45%;
-	}
+	
 	.text-right{
 		text-align: center!important;
 	}
@@ -711,6 +718,24 @@ footer aside{
 	
 }
 @media (max-width: 768px){ 
+	header{
+		background-color: black;
+	    padding-top: 0px;
+	    clear: both;
+	    overflow: hidden;
+	}
+	.logo{
+		width: 40%;
+		top: 0px;
+		left: 50%;
+		position: relative;
+	}
+	.logo-volaris-header{
+		width: 75%;
+	    position: relative;
+	    top: 0px;
+	    left: -15px;
+	}
 	#top-image img{
 		margin-top: 30vh;
 	}
@@ -830,9 +855,7 @@ footer aside{
 	.btn-kmimos{
 	    font-size: 14pt;
 	}
-	.logo{
-		width: 30%;
-	}
+	
 	.img-kmimos{
 		width: 80%;
 		padding:20px;
