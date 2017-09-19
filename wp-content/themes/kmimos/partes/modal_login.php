@@ -80,8 +80,9 @@ $datos = kmimos_get_info_syte();
 						<form id="form_recuperar">
 							<div class="km-box-form">
 								<div class="content-placeholder">
-									<div class="label-placeholder" style="margin: 20px 0;">
-										<input type="text" id="usuario" placeholder="Ingresar dirección de email"  maxlength="30" class="input-label-placeholder" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+									<div class="label-placeholder verify" style="margin: 20px 0;">
+										<input type="text" id="usuario" data-verify="noactive" placeholder="Ingresar dirección de email"  maxlength="30" class="verify_mail input-label-placeholder" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+										<span class="verify_result"></span>
 									</div>
 									<div class="botones_box">
 										<button type="submit" style=" outline: none; border: none; width: 100%;" id="login_submit" class="km-btn-basic recover_pass">ENVIAR CONTRASEÑA</button>

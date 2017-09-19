@@ -1,8 +1,7 @@
 <?php
 $datos = kmimos_get_info_syte();
+//<script src="'.getTema().'/js/jquery.min.js"></script>
 $HTML = '
-        <script src="'.getTema().'/js/jquery.min.js"></script>
-        
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
         <script type="text/javascript" src="'.getTema().'/js/bootstrap.min.js"></script>
         <!-- SECCIÓN FOOTER -->

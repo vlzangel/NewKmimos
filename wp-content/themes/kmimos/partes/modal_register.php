@@ -82,10 +82,10 @@ $HTML .='
 									<label>IFE/Documento de Identidad</label>
 									<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="11">
 								</div>
-								<div class="label-placeholder">
+								<div class="label-placeholder verify">
 									<label>Correo electrónico</label>
-									<input type="email" name="email_1" id="email_1" class="input-label-placeholder" data-charset="espalfnum" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
-									<span id="resultado"></span>
+									<input type="email" name="email_1" data-verify="active" id="email_1" class="verify_mail input-label-placeholder" data-charset="espalfnum" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+									<span class="verify_result"></span>
 								</div>
 								<div class="label-placeholder">
 									<label>Crea tu contraseña</label>
