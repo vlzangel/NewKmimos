@@ -666,8 +666,19 @@ footer aside{
 @media (min-width: 992px)	{
 	.img-kmimos{
 		width: 80%;
-	}}
-@media (min-width: 769px) and (max-width: 991px){
+	}
+	#tu-mascota p{
+		    font-size: 33px;
+    width: 75%;
+    position: absolute;
+    margin-top: -24%;
+    margin-left: 54px;
+	}
+	#section-4-cuadro {
+    width: 29%;
+	}
+}
+/*@media (min-width: 769px) and (max-width: 991px){
 	#top-image img{
 		margin-top: 20vh;
 	}
@@ -712,15 +723,40 @@ footer aside{
 	}
 	.circulo{
 		background: transparent;
-	}}
-@media (max-width: 768px)	{
+	}
+	#section-4{
+		padding-top: 47%;
+	}
+	#section-4-cuadro{
+	    width: 34%;
+	    background: #fff;
+	    border-radius: 30px;
+	    padding: 10px;
+	    text-align: center;
+	    margin-left: -2%;
+	    position: absolute;
+	    margin-top: -10%;
+	}
+	#tu-mascota p {
+    color: #a1126d!important;
+    font-size: 26px;
+    width: 50%;
+    position: absolute;
+    margin-top: -18%;
+    margin-left: 157px;
+	}
+}*/
+@media (min-width: 768px) and (max-width: 991px){
+	.full-width{
+		width: 100%;
+	}
 	#top-image img{
 		margin-top: 30vh;
 	}
 	#section-1{
 		float: none!important;
 		margin-top:20px;
-	    height: 30vh;
+	    height: 23vh;
 	}
 	#section-1 h1{
 		font-size: 27pt;
@@ -745,27 +781,28 @@ footer aside{
 	    padding-top: 64%;
 	}
 	#section-4-cuadro{
-		width: 30%;
-	    padding: 1%;
-	    margin-left: -6%;
-	    margin-top: -40%;
-	    border-radius: 15px;
+		width: 32%;
+		padding: 1%;
+		margin-top: -35%;
+		border-radius: 15px;
 	}
 	#section-4-cuadro p{
-		font-size: 12px!important;
+		font-size: 25px!important;
     	color: #969191;
 	}
 	#tu-mascota p{
-	    font-size: 15px;	
-	    width: 60%;
-	   	margin-top: -50%;
-    	margin-left: 216px;
+    color: #a1126d!important;
+    font-size: 27px;
+    width: 171px;
+    position: absolute;
+    margin-top: -30%;
+    margin-left: 50%;
 	}
 	#section-4-cuadro h2{
-		font-size: 25px!important;
+		font-size: 72px!important;
 	}	
 	#section-4-cuadro .monto{
-		font-size: 33px!important; 
+		font-size: 89px!important; 
 	}
 	#section4-logo{
 		width: 100px!important;
@@ -775,8 +812,12 @@ footer aside{
 		margin: 0 auto;
 	}
 	#section-5 .title{
-		font-size: 16px;
-		margin-left: 2%;
+		color: #230016 !important;
+		font-size: 24px;
+		background: none !important;
+		font-family: "PoetsenOne";
+		font-weight: normal;
+		margin-left: 30%;
 	}
 	#section-5 input{
 		padding: 16px!important;
@@ -797,7 +838,7 @@ footer aside{
 	    font-size: 43px!important;
 	}
 	#section-5 p {
-	    font-size: 18px;
+	    font-size: 23px;
 	}
 	.move{margin-left: 8%;}
 	.move1{margin-left: 4%;}
@@ -874,21 +915,33 @@ footer aside{
 		max-width:100%;
 		height:100%;
 	}
-  #section-5 span.o.lg{
-  	display: none;
-  }
-  #section-5 span.o.xs{
-  	display: block;
-  	font-size: 49px;
-    position: relative;
-    margin-left: -10%;
-  }}
-@media (max-width: 415px)	{
+	  #section-5 span.o.lg{
+	  	display: none;
+	  }
+	  #section-5 span.o.xs{
+	  	display: block;
+	  	font-size: 49px;
+	    position: relative;
+	    margin-left: -10%;
+	  }}
+@media (min-width: 377px) and (max-width: 767px){
 	#tu-mascota p {
 	    font-size: 15px;
 	    width: 60%;
 	    margin-top: -30%;
 	    margin-left: 78px;
+	}
+	#section-4-cuadro p{
+	    font-size: 13px!important;
+  		color: #969191;
+	}
+	#section-4-cuadro h2 {
+    	font-size: 31px!important;
+    	margin: 0px;
+	}
+	#section-4-cuadro .monto {
+    	color: #00ace6;
+    	font-size: 38px!important;
 	}
 	#section-4-cuadro {
 	    width: 30%;
@@ -896,7 +949,26 @@ footer aside{
 	    margin-left: -6%;
 	    margin-top: -30%;
 	    border-radius: 15px;
-	}}  
+	}
+	#section-5 .title {
+	    color: #230016 !important;
+	    font-size: 15px;
+	    background: none !important;
+	    font-family: "PoetsenOne";
+	    font-weight: normal;
+	    margin-left: 30%;
+	    margin-top: -13px;
+	} 
+	#article-1-button {
+		margin-top:20px;
+	}
+	#section1-footer h3 {
+		font-size: 21px;
+	    padding: 20px 0px 20px 0px;
+	    margin-bottom: 0px;
+	}
+}  
+
 @media (max-width: 376px)	{
 	#tu-mascota p {
 		font-size: 15px;
