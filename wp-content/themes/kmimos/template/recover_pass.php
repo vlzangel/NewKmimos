@@ -81,7 +81,6 @@
 												
 												</div>
 
-
 												<div class="vlz_contenedor_botones_footer">
 													<div class="vlz_bloqueador"></div>
 													<input type='button' id="vlz_boton_recuperar" class="km-btn-basic" style=" outline: none; border: none; width: 100%;" value='Recuperar' />

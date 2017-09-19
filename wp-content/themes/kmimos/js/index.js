@@ -585,8 +585,9 @@ $(document).on('click','#login_submit.recover_pass',function(e){
 });
 
 $("form#form_recuperar").submit(function(){
-	var data_email = $(this).find("#usuario").val();
-	if (data_email != "" && data_email.hasClass('correctly')){
+	var mail = $(this).find("#usuario");
+	var data_email = mail.val();
+	if (data_email != "" && mail.hasClass('correctly')){
 		var datos = {
 			'email': data_email
 		};
