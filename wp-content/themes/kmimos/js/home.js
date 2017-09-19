@@ -8,14 +8,35 @@ var hasGPS=false;
 
         if( $('#cp_email').val() != '' && $('#cp_nombre').val() != ''){
 
+            $('#msg').html('Enviando solicitud.');
             $('#cp_loading').removeClass('hidden');
+            $('#cp_loading').fadeIn(1500);
+
             $.ajax( RAIZ+"landing/registro-usuario.php?email="+$('#cp_email').val()+"&name="+$('#cp_nombre').val()+"&referencia=kmimos-home" )
             .done(function(e) {
-                if( e == 1 ){
-                    $('#msg').html('¡Felicidades, ya formas parte de nuestro Club!');
-                    $('#cp_loading').addClass('hidden');
-                    window.open( RAIZ+"/referidos/compartir/?e="+$('#email').val(), '_blank' ); 
+                var redirect = RAIZ+"/referidos/compartir/?e="+$('#cp_email').val();
+                switch ($.trim(e)){
+                    case '0':
+                        $('#msg').html('¡No pudimos completar su solicitud!');
+                        break;
+                    case '1':
+                        $('#msg').html('¡Felicidades, ya formas parte de nuestro Club!');
+                        $('a[data-redirect="patitas-felices"]').attr('href', redirect);
+                        $('a[data-redirect="patitas-felices"]').click();
+                        window.open( redirect, '_blank' );
+                        break;
+                    case '2':
+                        $('#msg').html('¡Ya formas parte de nuestro Club!');
+                        $('a[data-redirect="patitas-felices"]').attr('href', redirect);
+                        $('a[data-redirect="patitas-felices"]').click();
+                        window.open( redirect, '_blank' );
+                        break;
+                    default:
+                        break;
                 }
+                setTimeout(function() {
+                    $('#cp_loading').fadeOut(1500);
+                },3000);
             })
             .fail(function() {
                 $('#msg').html('Registro: No pudimos completar su solicitud, intente nuevamente');

@@ -10,7 +10,7 @@
 	if ($conn->connect_error) {
         echo 'false';
 	}else{
-		
+
         $existen = $conn->query( "SELECT * FROM wp_users WHERE ID = '{$userid}'" );
         if( $existen->num_rows > 0 ){
 
@@ -18,7 +18,8 @@
             $photo_pet = "";
             if( $img_pet != "" ){
                 $photo_pet = time();
-                $img = end(explode(',', $img_pet));
+                $img_exlode = explode(',', $img_pet);
+                $img = end($img_exlode);
                 $sImagen = base64_decode($img);
                 $tmp_user_id = ($userid) - 5000;
                 $dir = "../../../../uploads/mypet/{$tmp_user_id}/";

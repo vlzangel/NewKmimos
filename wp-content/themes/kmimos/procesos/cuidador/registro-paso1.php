@@ -12,8 +12,6 @@
 	$conn = new mysqli($host, $user, $pass, $db);
 	$errores = array();
     
-
-
     // BEGIN DATA DEFAULT
     $mascotas_cuidador = array(
         "pequenos" => 0,
@@ -62,15 +60,15 @@
             if($value == ''){ $_POST[$key] = 0; }
         }
 
-extract($_POST);
+        extract($_POST);
 
-    $email = $rc_email;
-    $nombres = $rc_nombres;
-    $apellidos = $rc_apellidos;
-    $ife = $rc_ife;
-    $clave = $rc_clave;
-    $telefono = $rc_telefono;
-    $referido = $rc_referred;
+        $email = $rc_email;
+        $nombres = $rc_nombres;
+        $apellidos = $rc_apellidos;
+        $ife = $rc_ife;
+        $clave = $rc_clave;
+        $telefono = $rc_telefono;
+        $referido = $rc_referred;
 
         $username = $email;
 

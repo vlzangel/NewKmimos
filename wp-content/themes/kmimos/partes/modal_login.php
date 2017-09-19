@@ -58,6 +58,7 @@ $datos = kmimos_get_info_syte();
 						<a href="#" class="hidden km-btn-border" id="customBtn">
 							CONÉCTATE CON GOOGLE
 						</a>
+
 						
 						
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
