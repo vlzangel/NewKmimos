@@ -229,7 +229,7 @@
 								</div>
 							</div>
 						</article>
-						<article class="col-xs-12 col-sm-offset-5 col-sm-2 col-md-offset-5 col-md-1 col-lg-offset-5 col-lg-2 text-center" style="font-size: 50px;">
+						<article class="col-xs-12 col-sm-offset-5 col-sm-2 col-md-offset-0 col-md-1 col-lg-2 text-center" style="font-size: 50px;">
 							 ó 
 						</article>
 						<article class="col-xs-12 col-sm-11 col-md-6 col-md-5 col-lg-5 move">
