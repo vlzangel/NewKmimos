@@ -1,6 +1,4 @@
-<?php
-
-$html = '
+<?php $html = '
 	<!DOCTYPE html>
 	<html>
 	<head>

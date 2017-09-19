@@ -324,9 +324,8 @@
 							</div>
 						</div>
 						<a href="javascript:;" data-target="patitas-felices" class="km-btn-primary">INSCRÍBETE Y GANA</a>
-						<span class="hidden" id="loading">Enviando datos.</span>
-						<div class="col-xs-12 loading hidden">
-							<div class="" id="msg">mensaje</div>
+						<div class="col-xs-12 loading hidden" id="cp_loading">
+							<div class="" id="msg">Enviando solicitud...</div>
 						</div>
 					</div>
 					<div class="hidden-xs col-sm-3">
