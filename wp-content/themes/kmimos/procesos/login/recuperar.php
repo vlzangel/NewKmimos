@@ -95,11 +95,9 @@ $message_mail=str_replace('[url]',$url_activate,$message_mail);
 //$message_mail=htmlentities($message_mail);
 
 //MAIL
-require_once ABSPATH . WPINC . '/class-phpmailer.php';
-require_once ABSPATH . WPINC . '/class-smtp.php';
-$subjet='Cambiar contraseña en Kmimos';var_dump($user_email);
+$subjet='Cambiar contraseña en Kmimos';
 $message=kmimos_get_email_html($subjet, $message_mail, 'Saludos,', false, true);
-var_dump(wp_mail($user_email,  $subjet, $message));
+wp_mail($user_email,  $subjet, $message);
 
 echo 'Hemos enviado los pasos para restablecer la contraseña a tu correo.';
 exit();
