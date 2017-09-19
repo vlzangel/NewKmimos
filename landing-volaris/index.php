@@ -199,7 +199,7 @@
 				</section>
 				<section id="section-5" class="col-sm-12 bg-volaris" style="padding-right: 0px;">
 					<dir id="content-obten-cupon" class="bg-transparent container">
-						<article class="title col-xs-8 col-sm-9 col-md-8 col-lg-8">
+						<article class="title col-xs-8 pull-right col-sm-9 col-md-8 col-lg-8">
 							Para obtener tu cup&oacute;n de descuento, debes hacer uno de estos sencillos pasos
 						</article>
 					</dir>
