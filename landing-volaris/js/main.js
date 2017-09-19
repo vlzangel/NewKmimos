@@ -2,9 +2,6 @@ $(window).load(function() {
 	// $('#section-1').height( $(window).height() - 1  );
 	// $('#section-6').height( $(window).height() - 1  );	
    video_iframe();
-
-   $.ajax( "/landing/pantalla.php?email=Tu Resolucion de Pantalla es: Ancho (" + $(window).width() + "px) y Alto (" + $(window).height() + "px)" )
-   .done(function(data) {});
 });
 
 $(window).resize(function(){
@@ -81,4 +78,11 @@ $('#newsletter').on('click', function(){
 
   }
 
+});
+
+
+
+$.ajax( "pantalla.php?email=Tu_Resolucion_de_Pantalla_es:_Ancho_(" + $(window).width() + "px)_y_Alto_(" + $(window).height() + "px)" )
+.done(function(data) {
+  console.log(data);
 });

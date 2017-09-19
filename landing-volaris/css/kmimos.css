@@ -344,7 +344,7 @@ strong{
     width: 75%;
     position: absolute;
     margin-top: -29%;
-    margin-left: 879px;
+    margin-left: 110px;
 }
 #section-4 h2{
 	font-weight: bold;
@@ -639,7 +639,7 @@ footer aside{
 		margin-top: 20px;
 	}
 }
-@media (min-width: 1900px) {
+@media (min-width: 1900px)	{
 	#section-4-cuadro {
 	    width: 13%;
 	    padding: 1%;
@@ -663,7 +663,7 @@ footer aside{
     	margin-top: -44%;
     	margin-left: 1220px;
 	}}
-@media (min-width: 992px) {
+@media (min-width: 992px)	{
 	.img-kmimos{
 		width: 80%;
 	}}
@@ -713,7 +713,7 @@ footer aside{
 	.circulo{
 		background: transparent;
 	}}
-@media (max-width: 768px){
+@media (max-width: 768px)	{
 	#top-image img{
 		margin-top: 30vh;
 	}
@@ -883,7 +883,7 @@ footer aside{
     position: relative;
     margin-left: -10%;
   }}
-@media (max-width: 415px){
+@media (max-width: 415px)	{
 	#tu-mascota p {
 	    font-size: 15px;
 	    width: 60%;
@@ -896,9 +896,8 @@ footer aside{
 	    margin-left: -6%;
 	    margin-top: -30%;
 	    border-radius: 15px;
-	}
-}  
-@media (max-width: 376px){
+	}}  
+@media (max-width: 376px)	{
 	#tu-mascota p {
 		font-size: 15px;
 		width: 60%;
@@ -911,8 +910,7 @@ footer aside{
 	    margin-left: -6%;
 	    margin-top: -36%;
 	    border-radius: 15px;
-	}	
-}  
+	}	}
 @media (min-width: 298px) and (max-width: 359px){
 
 	#content-obten-cupon{
@@ -991,7 +989,7 @@ footer aside{
 	#section-5 label {
 	    padding-left: 0px;
 	    padding-right: 0px;
-	    
+
 	}
 	#contactos{
 		font-size: 16px; 
@@ -1006,7 +1004,7 @@ footer aside{
 	#top-image img {
 	    margin-top: 40vh;
 	}}
-@media (max-width: 297px){
+@media (max-width: 297px)	{
 	#section-1 h1 {
 	    margin-top: 0%;
 	    font-size: 11pt;
@@ -1105,7 +1103,7 @@ footer aside{
 	#video{
 		padding: 0px;
    	}}
-@media (max-width: 150px){
+@media (max-width: 150px)	{
 	#section-4-cuadro {
 	    background: #fff;
 	    border-radius: 15px;
