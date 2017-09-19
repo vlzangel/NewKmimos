@@ -183,7 +183,7 @@
 				<section id="section-4" class="col-xs-12">
 				<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>
 					<div class="container full-width" >
-						<article id="tu-mascota" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 pull-right">
+						<article id="tu-mascota" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 text-center pull-right">
 							<p>Tu mascota regresa feliz</p>
 						</article> 
 						

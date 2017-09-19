@@ -675,7 +675,8 @@ footer aside{
     margin-left: 54px;
 	}
 	#section-4-cuadro {
-    width: 29%;
+	    /*width: 29%;*/
+	    width: 23%;
 	}
 }
 /*@media (min-width: 769px) and (max-width: 991px){
