@@ -6,11 +6,11 @@ if(file_exists($config)){
     include_once($config);
 }
 
+
 add_filter( 'wp_mail_content_type','recover_set_content_type' );
 function recover_set_content_type(){
     return "text/html";
 }
-
 
 
 $email = $_POST['email'];
@@ -95,9 +95,11 @@ $message_mail=str_replace('[url]',$url_activate,$message_mail);
 //$message_mail=htmlentities($message_mail);
 
 //MAIL
-$subjet='Cambiar contraseña en Kmimos';
+require_once ABSPATH . WPINC . '/class-phpmailer.php';
+require_once ABSPATH . WPINC . '/class-smtp.php';
+$subjet='Cambiar contraseña en Kmimos';var_dump($user_email);
 $message=kmimos_get_email_html($subjet, $message_mail, 'Saludos,', false, true);
-wp_mail($user_email,  $subjet, $message);
+var_dump(wp_mail($user_email,  $subjet, $message));
 
 echo 'Hemos enviado los pasos para restablecer la contraseña a tu correo.';
 exit();
