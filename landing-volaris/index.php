@@ -69,7 +69,7 @@
 		}
 	</style>
 
-	<script type='text/javascript'>
+	<!--<script type='text/javascript'>
 		//Subscribe
 		function SubscribeSite(){
 			clearTimeout(SubscribeTime);
@@ -165,6 +165,23 @@
 				});
 			}
 		}
+<<<<<<< HEAD
+
+	</script>-->
+    </head>
+    <body id="waypoint">       
+    	<header>
+			<div class="col-md-10 col-xs-6">
+				<img src="img/logo-volaris1.png" class="logo-volaris-header hidden-xs">
+				<img src="img/logo-volaris-1.png" class="logo-volaris-header hidden-lg hidden-sm hidden-md">
+			</div>
+   	 		<div class="col-md-2 col-xs-6">
+   	 			<img src="img/logo-kmimos.png" class="logo">
+   	 		</div>
+
+   		</header>
+       	<div class="col-sm-12">
+=======
 	</script>
 
     </head>
@@ -179,6 +196,7 @@
 	    	<div class="clearfix"></div>
     	</div>
        	<div class="col-sm-12">       		
+>>>>>>> 7729a7885336e0cf1402a7e7803a49761b22aeef
     	   	<div class="row">       		
 				<section id="section-4" class="col-xs-12">
 				<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>
