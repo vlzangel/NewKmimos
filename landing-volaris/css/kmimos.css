@@ -634,6 +634,11 @@ footer aside{
 /***************************************/
 
 /*@media (min-width: 2560px) {*/
+@media (orientation: landscape) {
+	#article-1-button{
+		margin-top: 20px;
+	}
+}
 @media (min-width: 1900px) {
 	#section-4-cuadro {
 	    width: 13%;
@@ -657,14 +662,12 @@ footer aside{
     	width: 80%;
     	margin-top: -44%;
     	margin-left: 1220px;
-	}
-}
-@media (min-width: 992px) { 
+	}}
+@media (min-width: 992px) {
 	.img-kmimos{
 		width: 80%;
-	}
-}
-@media (min-width: 769px) and (max-width: 991px){ 
+	}}
+@media (min-width: 769px) and (max-width: 991px){
 	#top-image img{
 		margin-top: 20vh;
 	}
@@ -709,10 +712,8 @@ footer aside{
 	}
 	.circulo{
 		background: transparent;
-	}
-	
-}
-@media (max-width: 768px){ 
+	}}
+@media (max-width: 768px){
 	#top-image img{
 		margin-top: 30vh;
 	}
@@ -881,9 +882,38 @@ footer aside{
   	font-size: 49px;
     position: relative;
     margin-left: -10%;
-  }
-}
-@media (min-width: 298px) and (max-width: 520px){
+  }}
+@media (max-width: 415px){
+	#tu-mascota p {
+	    font-size: 15px;
+	    width: 60%;
+	    margin-top: -30%;
+	    margin-left: 78px;
+	}
+	#section-4-cuadro {
+	    width: 30%;
+	    padding: 1%;
+	    margin-left: -6%;
+	    margin-top: -30%;
+	    border-radius: 15px;
+	}
+}  
+@media (max-width: 376px){
+	#tu-mascota p {
+		font-size: 15px;
+		width: 60%;
+		margin-top: -34%;
+		margin-left: 65px;
+	}
+	#section-4-cuadro {
+	    width: 30%;
+	    padding: 1%;
+	    margin-left: -6%;
+	    margin-top: -36%;
+	    border-radius: 15px;
+	}	
+}  
+@media (min-width: 298px) and (max-width: 359px){
 
 	#content-obten-cupon{
 		padding-right: 0px;  
@@ -919,8 +949,8 @@ footer aside{
 	#tu-mascota p {
 	    font-size: 13px;
 	    width: 70%;
-	    margin-top: -48px;
-	    margin-left: 214px;
+	    margin-top: -44px;
+	    margin-left: 52px;
 	}
 	#section-4-cuadro h2{
 		font-size: 60px;
@@ -961,6 +991,7 @@ footer aside{
 	#section-5 label {
 	    padding-left: 0px;
 	    padding-right: 0px;
+	    
 	}
 	#contactos{
 		font-size: 16px; 
@@ -974,8 +1005,7 @@ footer aside{
 	}
 	#top-image img {
 	    margin-top: 40vh;
-	}
-}
+	}}
 @media (max-width: 297px){
 	#section-1 h1 {
 	    margin-top: 0%;
@@ -1074,8 +1104,7 @@ footer aside{
 
 	#video{
 		padding: 0px;
-   	}
-}
+   	}}
 @media (max-width: 150px){
 	#section-4-cuadro {
 	    background: #fff;
@@ -1110,16 +1139,9 @@ footer aside{
 	}
 	#section-4-cuadro span {
 	    font-size: 3px!important;
-	}
-}
-/*@media (max-width: 414px){
-	#tu-mascota p {
-	    font-size: 20px;
-	    width: 70%;
-	    margin-top: -47%;
-	    margin-left: 242px;
-	}
-}*/
+	}}
+
+
 /*
 Phones (<768px)
 Small  (≥768px)	

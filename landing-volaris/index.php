@@ -192,7 +192,7 @@
 								<span class="color-volaris">VOLARIS</span>, si te suscribes HOY:
 							</h2>
 						</article> -->
-						<article id="tu-mascota" class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+						<article id="tu-mascota" class="col-xs-6 col-sm-4 col-md-4 col-lg-4 pull-right">
 							<p>Tu mascota regresa feliz</p>
 						</article> 
 						
@@ -214,7 +214,7 @@
 					</dir>
 					<div class="row" style="margin:0px;">
 						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 move">
-							<label class="col-xs-offset-2 col-xs-1 col-md-1 text-right">
+							<label class="col-xs-offset-2 col-xs-2 col-md-1 text-right">
 								1.</label>
 							<p class="col-xs-9 col-md-10">
 
@@ -241,9 +241,7 @@
 						</article>
 						<span class="o lg"><strong><i>&oacute;</i></strong></span>
 						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 move1">
-							<label class="col-xs-offset-2 col-xs-1 col-md-1 text-right hidden-xs">
-								2.</label>
-							<label class="col-xs-offset-2 col-xs-1 col-md-1 text-right hidden-lg hidden-md hidden-sm" style="font-size: 33px!important;">
+							<label class="col-xs-offset-2 col-xs-2 col-md-1 text-right">
 								2.</label>
 							<p class="col-xs-9 col-md-10">
 								Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.
