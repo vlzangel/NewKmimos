@@ -917,10 +917,10 @@ footer aside{
 	    border-radius: 10px;
 	}
 	#tu-mascota p {
-	 font-size: 13px;
-    width: 70%;
-    margin-top: -34%;
-    margin-left: 216px;
+	    font-size: 13px;
+	    width: 70%;
+	    margin-top: -48px;
+	    margin-left: 214px;
 	}
 	#section-4-cuadro h2{
 		font-size: 60px;
@@ -934,12 +934,7 @@ footer aside{
 		margin:0px;
 		color: black;
 	}
-	#tu-mascota p{
-	    font-size: 15px;
-    	width: 70%;
-    	margin-top: -50%;
-    	margin-left: 180px;
-	}
+	
 	#section-4-cuadro .monto{
 		color: #00ace6;
 		font-size: 60pt; 
