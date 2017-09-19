@@ -118,6 +118,7 @@ function subirImg(evt){
     var padre = jQuery(this).parent().parent();
     getRealMime(this.files[0]).then(function(MIME){
         if( MIME.match("image.*") ){
+
             padre.children('.vlz_img_portada_cargando').css("display", "block");
             var reader = new FileReader();
             reader.onload = (function(theFile) {

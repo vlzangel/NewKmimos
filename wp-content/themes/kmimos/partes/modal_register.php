@@ -77,6 +77,7 @@ $HTML .='
 									<label>Apellido</label>
 									<input type="text" name="apellido" id="apellido" maxlength="30" class="input-label-placeholder" pattern=".{3,}">
 								</div>
+
 								<div class="label-placeholder">
 									<label>IFE/Documento de Identidad</label>
 									<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="11">
@@ -118,7 +119,7 @@ $HTML .='
 								</div>
 								<div class="km-datos-mascota">
 									<select id="referido" name="referido" class="km-datos-mascota-opcion" data-title="Debes seleccionar una opción" required>
-										<option value="">Selecciona una opción</option>
+										<option value="">Donde nos conocio?</option>
 										'.$referidos_options.'
 									</select>
 								</div>
@@ -258,7 +259,7 @@ $HTML .='
 					<div class="popuphide popup-registrarte-final">
 						<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
 						<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
-						<a href="index-sesion.html" class="km-btn-correo">REGRESAR AL INICIO</a>
+						<a href="#" class="modal_show km-btn-correo" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a>
 					</div>
 				</div>
 			</div>

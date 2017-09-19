@@ -12,6 +12,7 @@ function recover_set_content_type(){
 }
 
 
+
 $email = $_POST['email'];
 $conn = new mysqli($host, $user, $pass, $db);
 $message = '';
