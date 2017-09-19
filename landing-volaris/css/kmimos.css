@@ -885,6 +885,11 @@ footer aside{
 }
 @media (min-width: 298px) and (max-width: 520px){
 
+	#content-obten-cupon{
+		padding-right: 0px;  
+		margin-bottom: 5px;
+	    margin-top: 30px;
+	}
 	#top-volaris{
     	padding-right: 8px;
 	    width: 89%;
@@ -912,10 +917,10 @@ footer aside{
 	    border-radius: 10px;
 	}
 	#tu-mascota p {
-	    font-size: 20px;
-	    width: 70%;
-	    margin-top: -28%;
-	    margin-left: 242px;
+	 font-size: 13px;
+    width: 70%;
+    margin-top: -34%;
+    margin-left: 216px;
 	}
 	#section-4-cuadro h2{
 		font-size: 60px;
