@@ -3,7 +3,7 @@
 	// Wordpress
     define('WP_USE_THEMES', false);
 
-    require('../wp-blog-header.php');
+    require('../wp-load.php');
     //date_default_timezone_set('America/Mexico_City');
     global $wpdb;
 	
@@ -113,7 +113,6 @@
 	    # Email de Nuevo registro kmimos
 	    # ********************************************
 		require_once('email_template/club-nuevo-usuario.php');
-	    //$message = kmimos_get_email_html("Registro de Nuevo Usuario.", $mensaje_mail, '', true, true);
 	    wp_mail( 
 	    	$email, 
 	    	"Kmimos Mexico – Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", 
@@ -134,6 +133,7 @@
 	    $estatus_registro = 1;
 	    $notificaciones = "Nuevo Usuario Registrado.";
 	}else{
+		$estatus_registro = 2;
 		if(!empty($referencia)){
 		    # ********************************************
 		    # El usuario ya existe 
@@ -165,3 +165,4 @@
 	}
 
 print_r($estatus_registro);
+

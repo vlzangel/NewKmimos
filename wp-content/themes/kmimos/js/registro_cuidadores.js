@@ -67,31 +67,6 @@ $("#cr_plus").on('click', function(e){
 	}
 });
 
- 
-
-// function convertData_registrocuidador(){
-// 		return {
-// 			'email': $('[name="rc_email"]').val(),
-// 			'nombres': $('[name="rc_nombres"]').val(),
-// 			'apellidos': $('[name="rc_apellidos"]').val(),
-// 			'ife': $('[name="rc_ife"]').val(),
-// 			'clave': $('[name="rc_clave"]').val(),
-// 			'telefono': $('[name="telefono"]').val(),	
-// 			'longitude': $('[name="longitude"]').val(),
-// 			'latitude': $('[name="latitude"]').val(),
-// 			'portada': $('[name="rc_portada"]').val(),
-// 			'vlz_img_perfil': $('[name="rc_vlz_img_perfil"]').val(),
-// 			'descripcion': $('[name="rc_descripcion"]').val(),
-// 			'estado': $('[name="rc_estado"]').val(),
-// 			'municipio': $('[name="rc_municipio"]').val(),
-// 			'municipio': $('[name="rc_municipio"]').val(),
-// 			'direccion': $('[name="rc_direccion"]').val(),
-// 			'num_mascota': $('[name="rc_num_mascota"]').val(),
-// 			'facebook_auth_id': $('[name="facebook_auth_id"]').val(),
-// 			'google_auth_id': $('[name="google_auth_id"]').val()
-// 		};
-// }
-
 $(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-cuidador-correo', function ( e ) {
 	e.preventDefault();		
 	var a = HOME+"/procesos/cuidador/registro-paso1.php";
@@ -100,7 +75,7 @@ $(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-
 	$('input').css('border-bottom', '#ccc');
 	$('[data-error]').css('visibility', 'hidden');
 
-	var list = ['rc_email','rc_nombres','rc_apellidos','rc_ife','rc_email','rc_clave','rc_telefono'];
+	var list = ['rc_email','rc_nombres','rc_apellidos','rc_ife','rc_email','rc_clave','rc_telefono', 'rc_referred'];
 	var valid = km_cuidador_validar(list);
 
 	if( valid ){
@@ -132,14 +107,18 @@ $(document).on("click", '.popup-registro-exitoso .km-btn-popup-registro-exitoso'
 
 $(document).on("click", '[data-step="1"]', function ( e ) {
 	e.preventDefault();
-
-	var list = ['rc_descripcion'];
-	var valid = km_cuidador_validar(list);
-	if( valid ){
-		$(".popup-registro-cuidador-paso1").hide();
-		$(".popup-registro-cuidador-paso2").fadeIn("fast");		
-	}
+	$(".popup-registro-cuidador-paso3").hide();
+	$(".popup-registro-cuidador-paso2").hide();
+	$(".popup-registro-cuidador-paso1").fadeIn("fast");
 });
+
+$(document).on("click", '[data-step="2"]', function ( e ) {
+	e.preventDefault();
+	$(".popup-registro-cuidador-paso1").hide();
+	$(".popup-registro-cuidador-paso3").hide();
+	$(".popup-registro-cuidador-paso2").fadeIn("fast");
+});
+
 $(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-registro-cuidador-paso1', function ( e ) {
 	e.preventDefault();
 
@@ -151,18 +130,9 @@ $(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-registro-c
 	}
 });
 
-$(document).on("click", '[data-step="2"]', function ( e ) {
-	e.preventDefault();
-	var list = ['rc_estado', 'rc_municipio', 'rc_direccion'];
-	var valid = km_cuidador_validar(list);
-	if( valid ){
-		$(".popup-registro-cuidador-paso2").hide();
-		$(".popup-registro-cuidador-paso3").fadeIn("fast");
-	}
-});
 $(document).on("click", '.popup-registro-cuidador-paso2 .km-btn-popup-registro-cuidador-paso2', function ( e ) {
 	e.preventDefault();
-	var list = ['rc_estado', 'rc_municipio', 'rc_direccion'];
+	var list = ['rc_estado', 'rc_municipio'];
 	var valid = km_cuidador_validar(list);
 	if( valid ){
 		$(".popup-registro-cuidador-paso2").hide();
@@ -201,14 +171,12 @@ $(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-registro-c
 			}
 		});
 	}
-
-
 });
+
 // POPUP REGISTRO CUIDADOR
 jQuery( document ).on('click', "[data-load='portada']", function(e){
 	$('#portada').click();
 });
-
 
 jQuery(document).on('change', 'select[name="rc_estado"]', function(e){
 	var state=jQuery(this).val();
@@ -246,7 +214,6 @@ jQuery(document).on('change', 'select[name="rc_municipio"]', function(e){
 	}
 });
 
-
 // km_cuidador_validar DATOS
 jQuery( document ).on('keypress', '[data-clear]', function(e){
 	mensaje( $(this).attr('rc_name'), '', true );
@@ -267,6 +234,7 @@ function mensaje( label, msg='', reset=false ){
 	$( '[name="'+label+'"]' ).css('border-bottom', '1px solid ' + border_color);
 	$( '[name="'+label+'"]' ).css('color', danger_color);
 }
+
 function km_cuidador_validar( fields ){
 
 	var status = true;
@@ -311,6 +279,7 @@ function validar_longitud( val, min, max, type, err_msg){
 	}
 	return result;
 }
+
 function rc_validar_longitud( field ){
 	var result = '';
 	var val = $('[name="'+field+'"]').val();
@@ -344,13 +313,17 @@ function rc_validar_longitud( field ){
 				break;
 
 			case 'rc_direccion':
-				result = validar_longitud( val, 1, 600, 'string', 'Debe estar entre 1 y 100 caracteres');
+				result = validar_longitud( val, 1, 600, 'string', 'Debe estar entre 5 y 300 caracteres');
 				break;
 	};
 	return result;
 }
 
 function vista_previa(evt) {
+	
+	jQuery("#perfil-img").attr("src", HOME+"images/cargando.gif" );
+    jQuery(".kmimos_cargando").css("visibility", "visible");
+
   	var files = evt.target.files;
   	for (var i = 0, f; f = files[i]; i++) {  
        	if (!f.type.match("image.*")) {
@@ -360,22 +333,29 @@ function vista_previa(evt) {
        	reader.onload = (function(theFile) {
            return function(e) {
 
-           		jQuery(".kmimos_cargando").css("visibility", "visible");
 
     			redimencionar(e.target.result, function(img_reducida){
     				var a = RAIZ+"imgs/vlz_subir_img.php";
     				var img_pre = jQuery("#vlz_img_perfil").val();
-    				jQuery.post( a, {img: img_reducida, previa: img_pre}, function( url ){
-
+    				
+    				 $.ajax({
+                      async:true, 
+                      cache:false, 
+                      type: 'POST',   
+                      url: a,
+                      data: {img: img_reducida, previa: img_pre}, 
+                      success:  function(url){
 			      		jQuery("#perfil-img").attr("src", RAIZ+"imgs/Temp/"+url);
 	        			jQuery("#vlz_img_perfil").val( url );
-
 		           		jQuery(".kmimos_cargando").css("visibility", "hidden");
-			      	});
+                      },
+                      beforeSend:function(){},
+                      error:function(objXMLHttpRequest){}
+                    });
     			});
            };
-       })(f);
-       reader.readAsDataURL(f);
+		})(f);
+		reader.readAsDataURL(f);
    	}
 }      
 document.getElementById("portada").addEventListener("change", vista_previa, false);

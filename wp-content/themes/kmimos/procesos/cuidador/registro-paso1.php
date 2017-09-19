@@ -12,8 +12,6 @@
 	$conn = new mysqli($host, $user, $pass, $db);
 	$errores = array();
     
-
-
     // BEGIN DATA DEFAULT
     $mascotas_cuidador = array(
         "pequenos" => 0,
@@ -62,14 +60,15 @@
             if($value == ''){ $_POST[$key] = 0; }
         }
 
-extract($_POST);
+        extract($_POST);
 
-    $email = $rc_email;
-    $nombres = $rc_nombres;
-    $apellidos = $rc_apellidos;
-    $ife = $rc_ife;
-    $clave = $rc_clave;
-    $telefono = $rc_telefono;
+        $email = $rc_email;
+        $nombres = $rc_nombres;
+        $apellidos = $rc_apellidos;
+        $ife = $rc_ife;
+        $clave = $rc_clave;
+        $telefono = $rc_telefono;
+        $referido = $rc_referred;
 
         $username = $email;
 
@@ -211,7 +210,6 @@ extract($_POST);
                 $wp_user->set_role( 'vendor' );
 
                 //WHITE_LABEL
-                $referido = '';
                 if (!isset($_SESSION)) {
                     session_start();
                 }
@@ -313,8 +311,8 @@ extract($_POST);
                 include( '../../partes/email/mensaje_email_registro_cuidador.php' );
 
                 // Envio de Email
-                // $mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);
-                // wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
+                $mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);
+                wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
 
                 // Respuesta
                 $error = array(
