@@ -738,7 +738,7 @@ input::-webkit-input-placeholder, button {
 }
 form {
 	box-sizing: border-box;
-	padding-bottom: 40px;
+	/*padding-bottom: 40px;*/
 }
 form h1 {
 	box-sizing: border-box;
@@ -5049,7 +5049,7 @@ a.km-btn-comentario {
     z-index:999999
 }
 .km-box-form {
-    margin-bottom:20px
+    /*margin-bottom:20px;*/
 }
 .km-box-form .label-placeholder {
     position:relative;
