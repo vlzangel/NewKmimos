@@ -190,14 +190,14 @@ strong{
 }
 
 #top-kmimos{	
-    padding-right: 13px;
-    padding-top: 13px;
-    width: 38%;
+	padding-right: 11px;
+    padding-top: 7px;
+    width: 21%;
 }
 
 #top-volaris{
     padding-right: 8px;
-    width: 80%;
+    width: 55%;
 }
 
 /***************************************/
@@ -633,12 +633,8 @@ footer aside{
 /*  Media                              */
 /***************************************/
 
-
-
-
-
-
-@media (min-width: 2560px) {
+/*@media (min-width: 2560px) {*/
+@media (min-width: 1560px) {
 	#section-4-cuadro {
 	    width: 13%;
 	    padding: 1%;
@@ -664,7 +660,6 @@ footer aside{
 	}
 }
 @media (min-width: 992px) { 
-
 	.img-kmimos{
 		width: 80%;
 	}
@@ -890,9 +885,15 @@ footer aside{
 }
 @media (min-width: 298px) and (max-width: 520px){
 
+	#top-volaris{
+    	padding-right: 8px;
+	    width: 89%;
+	}
 	#top-kmimos{
     	padding-top: 3px;
-	}
+		padding-right: 19px;
+    	width: 41%;
+    }
 	.background{
 		  background: left / cover no-repeat;
 	}
