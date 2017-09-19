@@ -180,6 +180,16 @@ strong{
 	height: 100vh;
 	z-index:-1;
 }
+.background{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background: center / cover no-repeat; 
+	padding-top: 50%;
+    margin-top: 5%;
+}
 /***************************************/
 /*  Section-1                          */
 /***************************************/
@@ -311,14 +321,12 @@ strong{
 #section-4{
 	/*background: #ccc!important;*/
 	/*padding: 30px 0px 30px 0px;*/
-	background-image: url(../img/fondo-sc4.jpg);
+	background-image: url('');
     padding-top: 50%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     font-family: 'PoetsenOne', sans-serif;
     margin-top: -5%;
-	font-family: 'PoetsenOne', sans-serif;
-	/*overflow: hidden;*/
 }
 #tu-mascota p{
 	color: #a1126d!important;
@@ -333,14 +341,14 @@ strong{
 	font-size: 40px;
 }
 #section-4-cuadro{
-	width: 22%;
+	width: 20%;
 	background: #fff;
     border-radius: 30px;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     margin-left: -1%;
     position: absolute;
-    margin-top: -24%;
+    margin-top: -20%;
 
 }
 #section-4-cuadro p{
@@ -589,7 +597,7 @@ footer aside{
 	z-index: 1;
 }
 #section-5 {
-	margin-top: -10px;
+	margin-top: 55px;
 }
 #section-5 p{
 	font-weight: lighter;
@@ -623,7 +631,30 @@ footer aside{
 
 
 
-@media (min-width: 1200px) { 
+@media (min-width: 2560px) {
+	#section-4-cuadro {
+	    width: 13%;
+	    padding: 1%;
+	    margin-left: -10%;
+	    margin-top: -12%;
+	    border-radius: 15px;
+	}
+	#section-4-cuadro p{
+		font-size: 30px!important;
+    	color: #969191;
+	}
+	#section-4-cuadro h2{
+		font-size: 70px!important;
+	}	
+	#section-4-cuadro .monto{
+		font-size: 95px!important; 
+	}
+	#tu-mascota p{
+	    font-size: 50px;
+    	width: 80%;
+    	margin-top: -44%;
+    	margin-left: 1220px;
+	}
 }
 @media (min-width: 992px) { 
 

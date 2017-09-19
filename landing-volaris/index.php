@@ -10,7 +10,6 @@
 	}
 
 ?>
-
 <!DOCTYPE html>
 <html> 
     <head>
@@ -28,6 +27,7 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/kmimos.css">
+        <link rel="stylesheet" href="js/image/image-easyload.css">
 
     <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -167,13 +167,14 @@
 		}
 
 	</script>
-	
+
     </head>
     <body id="waypoint">       
        	<div class="col-sm-12">
 
     	   	<div class="row">       		
 				<section id="section-4" class="col-xs-12">
+				<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>
 					<div class="container">
 						<!-- <article class="col-xs-6 col-sm-6 col-md-4 text-right pull-right">
 							<img src="img/logo.png" class="img-responsive" id="section4-logo">
@@ -196,7 +197,6 @@
 							<!-- <h3 class="color-volaris">DE DESCUENTO</h3> -->
 							<!-- <span>En tu primera reserva</span> -->
 						</article>
-
 					</div>
 				</section>
 				<section id="section-5" class="col-sm-12 bg-volaris" style="padding-right: 0px;">
@@ -414,5 +414,8 @@
 		  crossorigin="anonymous"></script>
 	    <script src="js/wow.js  "></script>
 	    <script src="js/main.js?v=1.0.0"></script>
+	    <script src="js/scroll/scroll_visible/scroll-visible.js"></script>
+		<script src="js/image/image-load.js"></script>
+		<script src="js/image/image-easyload.js"></script>
     </body>
 </html>
