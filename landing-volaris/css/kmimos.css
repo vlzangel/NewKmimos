@@ -924,15 +924,16 @@ footer aside{
 	    position: relative;
 	    margin-left: -10%;
 	  }}
-@media (min-width: 377px) and (max-width: 767px){
+
+@media (min-width: 377px) and (max-width: 767px) {
 	#tu-mascota p {
-	    font-size: 15px;
+	    font-size: 20px;
 	    width: 60%;
 	    margin-top: -30%;
 	    margin-left: 78px;
 	}
 	#section-4-cuadro p{
-	    font-size: 13px!important;
+	    font-size: 15px!important;
   		color: #969191;
 	}
 	#section-4-cuadro h2 {
@@ -947,7 +948,7 @@ footer aside{
 	    width: 30%;
 	    padding: 1%;
 	    margin-left: -6%;
-	    margin-top: -30%;
+	    margin-top: -26%;
 	    border-radius: 15px;
 	}
 	#section-5 .title {
