@@ -487,7 +487,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
         if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
         if(tipo.indexOf('cor')>-1 ){ cadena = cadena + ".-_@"; }
         if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
-        if(tipo.indexOf('dir')>-1 ){ cadena = cadena + "-,"; }
+        if(tipo.indexOf('dir')>-1 ){ cadena = cadena + ","; }
 
         var key = e.which,
             keye = e.keyCode,
