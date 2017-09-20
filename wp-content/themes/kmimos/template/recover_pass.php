@@ -31,14 +31,14 @@
 		if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} ?>
 
 		<div class="pf-blogpage-spacing pfb-top"></div>
-		<section role="main" class="blog-full-width">
+		<section role="main" class="blog-full-width" style="overflow: hidden;">
 			<div class="pf-container">
 				<div class="pf-row">
 					<div class="col-lg-12">
 
 						
 
-							<form id="vlz_form_recuperar" class="km-box-form" enctype="multipart/form-data" method="POST">
+							<form id="vlz_form_recuperar" class="km-box-form" enctype="multipart/form-data" method="POST" onsubmit="return false;">
 
 								<?php
 									$datos = $_SESSION['kmimos_recuperar'];
