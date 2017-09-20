@@ -5,8 +5,17 @@ function playVideo(e) {
 	$('.km-testimonial-text').css('display','none');
 	$('.img-testimoniales').css('display','none');
 	$('video').css('display','block');
-
 }
+
+$('.control-video').on('click', function(e){
+	var p = $(this).parent();
+	var v = $('video', p).get(0)
+	v.pause();
+	v.currentTime = 0;
+	$('.km-testimonial-text').css('display','block');
+	$('.img-testimoniales').css('display','block');
+	$('video').css('display','none');
+})
 
 function menu(){
 	var w = $(window).width();
