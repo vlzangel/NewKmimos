@@ -147,7 +147,7 @@ class Reservas {
             (NULL, '{$id_order}', '_order_key',                             'wc_order_{$token}'),
             (NULL, '{$id_order}', '_order_stock_reduced',                   '1'),
             (NULL, '{$id_order}', '_cart_discount_tax',                     '0'),
-            (NULL, '{$id_order}', '_cart_discount',                         '0'),
+            (NULL, '{$id_order}', '_cart_discount',                         '{$descuento}'),
             (NULL, '{$id_order}', '_order_version',                         '2.5.5'),
             (NULL, '{$id_order}', '_payment_method',                        '{$metodo_pago}'),
             (NULL, '{$id_order}', '_recorded_sales',                        'yes'),
@@ -197,7 +197,6 @@ class Reservas {
 
         $deposito = serialize($deposito);
 
-        // $deposito = str_replace('"', '\"', $deposito);
         $mascotas = str_replace('"', '\"', $mascotas);
 
         $sql = "
@@ -225,6 +224,22 @@ class Reservas {
         $this->sql = $sql;
 
         $this->db->multi_query( utf8_decode($sql) );
+    }
+
+    function aplicarCupones($order, $cupones){
+
+        foreach ($cupones as $key => $cupon) {
+            $this->db->query( utf8_decode( "INSERT INTO wp_woocommerce_order_items VALUES (NULL, '{$cupon[0]}', 'coupon', '{$order}');" ) );
+            $id_item = $this->db->insert_id();
+            
+            $sql = "
+                INSERT INTO wp_woocommerce_order_itemmeta VALUES
+                    (NULL, '{$id_item}', 'discount_amount',     '{$cupon[1]}'),
+                    (NULL, '{$id_item}', 'discount_amount_tax', '0');
+            ";
+            $this->db->multi_query( utf8_decode($sql) );
+        }
+
     }
 
 }

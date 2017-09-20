@@ -5346,8 +5346,13 @@ footer .km-icon-redes {
     background:rgba(242, 242, 242, .5);
     font-family:Lato, Arial
 }
-.page-reservation .km-content-step .km-content-new-pet .km-services-content .km-services::after, .page-reservation .km-content-step .km-content-new-pet .km-services-total::after, .page-reservation .km-content-step .km-quantity-height::after, .page-reservation .km-content-step .km-quantity::after, .page-reservation .km-content::after, .page-reservation::after {
-    content:"";
+.page-reservation .km-content-step .km-content-new-pet .km-services-content .km-services::after, 
+.page-reservation .km-content-step .km-content-new-pet .km-services-total::after, 
+.page-reservation .km-content-step .km-quantity-height::after, 
+.page-reservation .km-content-step .km-quantity::after, 
+.page-reservation .km-content::after, .page-reservation::after 
+{    
+	content:"";
     clear:both;
     display:table
 }
