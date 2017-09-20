@@ -17,8 +17,6 @@
 	$HTML .= "
 	<script type=\"text/javascript\">
 	    var checkparam = {$checkparam};
-
-		//Subscribe
 		function SubscribePopUp_Create(html){
 		    var element = '#message.Msubscribe';
 		    if(jQuery(element).length==0){
