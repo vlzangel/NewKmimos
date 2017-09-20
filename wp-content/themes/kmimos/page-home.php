@@ -253,7 +253,7 @@
 									<source src="'.getTema().'/images/new/videos/km-home/km-video.mp4" type="video/mp4">
 									<source src="'.getTema().'/images/new/videos/km-home/km-video.ogv" type="video/ogg">
 								</video>
-								<img class="img-testimoniales" src="'.getTema().'/images/new/km-testimoniales/testimonial-1.jpg">
+								<img class="img-testimoniales control-video" src="'.getTema().'/images/new/km-testimoniales/testimonial-1.jpg">
 							</div>
 						</li>
 						<li>

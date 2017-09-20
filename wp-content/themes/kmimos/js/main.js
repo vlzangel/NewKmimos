@@ -6,16 +6,19 @@ function playVideo(e) {
 	$('.img-testimoniales').css('display','none');
 	$('video').css('display','block');
 }
-
-$('.control-video').on('click', function(e){
-	var p = $(this).parent();
-	var v = $('video', p).get(0)
-	v.pause();
-	v.currentTime = 0;
+function stopVideo(){
+	$.each( $('video'), function(i, e){
+		e.pause();
+		e.currentTime = 0;
+	});
 	$('.km-testimonial-text').css('display','block');
 	$('.img-testimoniales').css('display','block');
-	$('video').css('display','none');
-})
+	$('video').css('display','none');	
+}
+
+$(document).on('click', '.control-video', function(e){
+	stopVideo();
+});
 
 function menu(){
 	var w = $(window).width();
