@@ -478,7 +478,7 @@ function getGlobalData(url,method, datos){
 
 // Validar tipos e datos en los campos
 jQuery( document ).on('keypress', '[data-charset]', function(e){
-	mensaje( $(this).attr('name'), '', true );
+
     var tipo= $(this).attr('data-charset');
 
     if(tipo!='undefined' || tipo!=''){
@@ -492,6 +492,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
         if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
         if(tipo.indexOf('cor')>-1 ){ cadena = cadena + ".-_@"; }
         if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
+        if(tipo.indexOf('dir')>-1 ){ cadena = cadena + "-,"; }
 
         var key = e.which,
             keye = e.keyCode,
@@ -501,7 +502,10 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
         if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
             e.preventDefault();
         }
-    }   
+    }
+
+	mensaje( $(this).attr('name'), '', true );
+   
 });
 
 

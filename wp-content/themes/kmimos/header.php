@@ -101,7 +101,8 @@
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 							<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
 						</button>
-						
+						<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60" style="height: 60px;"></a>
+
 					</div>
 					<ul class="hidden-xs nav-login">
 						'.$menus_normal.'

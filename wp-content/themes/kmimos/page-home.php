@@ -60,10 +60,10 @@
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">
 							<div class="col-xs-12 col-sm-6">
-								<div class="km-select-custom km-select-ubicacion km-fechas" style="height: 48px">
+								<div class="km-select-custom km-select-custom-home km-select-ubicacion km-fechas" style="height: 48px">
 									<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
-									<input type="text" id="ubicacion_txt" class="km-fechas" style="background: transparent; border: 0px; padding: 14px 0 14px 15px;" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
-									<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />
+									<input type="text" id="ubicacion_txt" class="km-fechas" style="background: transparent; border: 0px; padding: 14px 0 14px 15px;" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" data-charset="xlfdir" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
+									<input type="hidden" id="ubicacion" name="ubicacion" data-charset="xlfdir" value="'.$busqueda["ubicacion"].'" />
 									<div id="ubicacion_list"></div>
 								</div>
 							</div>
@@ -239,7 +239,7 @@
 					<ul class="bxslider">
 						<li>
 							<div>
-								<div class="overlay"></div>
+								<div class="overlay control-video"></div>
 								<div class="km-testimonial-text">
 									<div class="km-video-testimonial">
 										<a href="Javascript: void(0);" onclick="playVideo(this)"><img src="'.getTema().'/images/new/icon/icon-video.svg" width="55"></a>
@@ -248,7 +248,7 @@
 									<div class="km-autor">JUAN RODRÍGUEZ - México D.F</div>
 									<div class="km-autor-descripcion">Cuidador Certificado</div>
 								</div>
-								<video>
+								<video controls="controls">
 									<source src="'.getTema().'/images/new/videos/km-home/km-video.webm" type="video/webm">
 									<source src="'.getTema().'/images/new/videos/km-home/km-video.mp4" type="video/mp4">
 									<source src="'.getTema().'/images/new/videos/km-home/km-video.ogv" type="video/ogg">
@@ -258,7 +258,7 @@
 						</li>
 						<li>
 							<div>
-								<div class="overlay"></div>
+								<div class="overlay control-video"></div>
 								<div class="km-testimonial-text">
 									<div class="km-video-testimonial">
 										<a href="Javascript: void(0);" onclick="playVideo(this)"><img src="'.getTema().'/images/new/icon/icon-video.svg" width="55"></a>
@@ -277,7 +277,7 @@
 						</li>
 						<li>
 							<div>
-								<div class="overlay"></div>
+								<div class="overlay control-video"></div>
 								<div class="km-testimonial-text">
 									<div class="km-video-testimonial">
 										<a href="Javascript: void(0);" onclick="playVideo(this)"><img src="'.getTema().'/images/new/icon/icon-video.svg" width="55"></a>
