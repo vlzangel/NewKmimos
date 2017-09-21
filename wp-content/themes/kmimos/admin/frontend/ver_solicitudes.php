@@ -42,7 +42,7 @@
 					<div style="padding: 20px 0px">
 						<section>
 							<div class="vlz_titulos_superior">
-								<a href="'.get_home_url().'/perfil-usuario/solicitudes/" style="color: #00d2b7; border: solid 1px; padding: 3px 10px; margin: 0px; display: inline-block;">
+								<a href="'.get_home_url().'/perfil-usuario/solicitudes/" class="volver">
 									Volver
 								</a> - Detalles de la Solicitud - '.$orden.'
 							</div>
@@ -136,6 +136,13 @@
 							</table>
 						</section>
 
+						<section>
+							<div class="vlz_titulos_superior bottom">
+								<a href="'.get_home_url().'/perfil-usuario/solicitudes/" class="volver">
+									Volver
+								</a> - Detalles de la Solicitud - '.$orden.'
+							</div>
+						</section>
 					</div>
 				</div>
 			</div>
