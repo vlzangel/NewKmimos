@@ -7,7 +7,8 @@
         }
 	}
 
-	$img = end(explode(',', $img));
+    $imgx = explode(',', $img);
+	$img = end($imgx);
     $sImagen = base64_decode($img);
 
     $dir = "Temp/";
