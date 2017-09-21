@@ -24,7 +24,7 @@ $HTML = '
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         <h5>SERVICIOS</h5>
-                        <p><a href="'.get_home_url().'/blog">Blog</a></p>
+                        <p><a href="https://kmimos.com.mx/blog">Blog</a></p>
                         <p><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros">Quiero ser cuidador</a></p>
                         <p><a href="'.get_home_url().'/busqueda">Buscar cuidador certificado</a></p>
                     </div>

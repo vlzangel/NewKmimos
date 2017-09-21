@@ -70,7 +70,7 @@
 #step_2,
 #step_3
 {
-    display: none;
+   display: none;
 }
 
 #reserva_btn_next_2{
@@ -108,4 +108,51 @@ div#tienda_box {
 div#tienda_box img {
     width: 90%;
     margin-bottom: 15px;
+}
+
+.km-cupones{
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.km-cupones > div {
+    display: inline-block;
+    width: 50%;
+    float: left;
+    height: 40px;
+}
+
+.km-cupones input {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 3px 0px 0px 3px;
+    border: solid 1px #5fc4b0;
+}
+
+.km-cupones span{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background: #5fc4b0;
+    color: #FFF;
+    height: 100%;
+    padding: 10px;
+    border-radius: 0px 3px 3px 0px;
+    border: solid 1px #5fc4b0;
+    border-left: 0;
+}
+
+.cupones_desglose{
+    display: none;
+}
+
+.atras{
+    position: absolute;
+    left: 45px;
+    border: solid 1px #CCC;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
 }

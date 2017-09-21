@@ -23,6 +23,7 @@
 		"cantidades",
 		"transporte",
 		"adicionales",
+		"cupones",
 	);
 
 	$parametros = array();
@@ -43,18 +44,37 @@
     $inicio = strtotime( $fechas->inicio );
     $fecha_formato = date('d', $inicio)." ".$meses[date('n', $inicio)-1]. ", ".date('Y', $inicio) ;
 
+    $descuentos = 0;
+    foreach ($cupones as $key => $value) {
+    	$descuentos += $value[1];
+    }
+
     if( $pagar->metodo != "deposito" ){
 	    $deposito = array(
 			"enable" => "no"
 	    );
     }else{
+
+	    $pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
+		$pagoCuidador = ( $pagar->total / 1.2);
+		if( $pre17 <= $descuentos ){
+			if( $pre17 < $descuentos ){
+				$reciduo = $pre17-$descuentos;
+				$pagoCuidador += $reciduo;
+			}
+			$pre17 = 0;
+		}else{
+			$pre17 -= $descuentos;
+		}
+
 	    $deposito = array(
-	    	"deposit" => ( $pagar->total - ( $pagar->total / 1.2) ),
+	    	"deposit" => $pre17,
 			"enable" => "yes",
 			"ratio" => 1,
-			"remaining" => ( $pagar->total / 1.2),
+			"remaining" => $pagoCuidador,
 			"total" => $pagar->total
 	    );
+
     }
 
     $tamanos = array(
@@ -105,7 +125,11 @@
 		"mascotas" 				=> $mascotas,
 		"deposito" 				=> $deposito,
 		"status_reserva" 		=> "unpaid",
-		"status_orden" 			=> "wc-pending"
+		"status_orden" 			=> "wc-pending",
+
+		"descuento"				=> $descuentos,
+		"pre17"					=> $pre17,
+		"pagoCuidador"			=> $pagoCuidador,
 	);
 
     $data_cliente = array();
@@ -137,6 +161,8 @@
     $reservar = new Reservas($db, $data_reserva);
 
     $id_orden = $reservar->new_reserva();
+
+    $reservar->aplicarCupones($id_orden, $cupones);
     
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 

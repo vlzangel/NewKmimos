@@ -5,8 +5,20 @@ function playVideo(e) {
 	$('.km-testimonial-text').css('display','none');
 	$('.img-testimoniales').css('display','none');
 	$('video').css('display','block');
-
 }
+function stopVideo(){
+	$.each( $('video'), function(i, e){
+		e.pause();
+		e.currentTime = 0;
+	});
+	$('.km-testimonial-text').css('display','block');
+	$('.img-testimoniales').css('display','block');
+	$('video').css('display','none');	
+}
+
+$(document).on('click', '.control-video', function(e){
+	stopVideo();
+});
 
 function menu(){
 	var w = $(window).width();
@@ -371,11 +383,15 @@ $(document).ready(function(){
 
 		if ( el.hasClass("km-option-deposit") ) {
 			$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
+			$(".page-reservation .km-services-total").slideUp("fast");
+			
 			CARRITO["pagar"]["metodo"] = "deposito";
 		} else {
 			$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
+			$(".page-reservation .km-services-total").slideDown("fast");
 			CARRITO["pagar"]["metodo"] = "completo";
 		}
+		
 	});
 
 	$(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {

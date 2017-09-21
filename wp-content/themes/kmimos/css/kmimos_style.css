@@ -875,18 +875,19 @@ button.close {
 	box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
 }
 
+
 .km-select-custom{
 	position: relative;
 	border: solid 1px #e5e5e5;
+	/*border-right: 1px solid rgba(0, 0, 0, .2);*/
 	background-color: #FFF;
 	background-size: 14px 13px;
 	background-repeat: no-repeat;
 	background-position: calc(100% - 9px) 50%;
 	background-image: url(../images/new/km-arrow-form.svg);
-	border-right: 1px solid rgba(0, 0, 0, .2);
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
-	border-radius: 6px;
+	border-radius: 6px 6px 6px 6px!important;
 	appearance:none;
 	-moz-appearance:none;
 	-webkit-appearance:none;
@@ -2518,6 +2519,7 @@ footer input:focus{
         margin-right:3%
     }
 }
+
 @media all and (max-width:427px) {
     .km-resultados-grid .km-item-resultado {
         width:100%
@@ -2600,7 +2602,6 @@ footer input:focus{
 	.km-resultados-lista .km-item-resultado .km-contenedor-descripcion-opciones{
 		width: 100%;
 	}
-
 }
 
 @media all and (max-width: 380px) {
@@ -2612,10 +2613,7 @@ footer input:focus{
 		margin-right: 0;
 		margin-bottom: 2%;
 	}
-
-
 }
-
 
 @media all and (max-width: 767px) {
 	.km-costo{
@@ -5333,8 +5331,13 @@ footer .km-icon-redes {
     background:rgba(242, 242, 242, .5);
     font-family:Lato, Arial
 }
-.page-reservation .km-content-step .km-content-new-pet .km-services-content .km-services::after, .page-reservation .km-content-step .km-content-new-pet .km-services-total::after, .page-reservation .km-content-step .km-quantity-height::after, .page-reservation .km-content-step .km-quantity::after, .page-reservation .km-content::after, .page-reservation::after {
-    content:"";
+.page-reservation .km-content-step .km-content-new-pet .km-services-content .km-services::after, 
+.page-reservation .km-content-step .km-content-new-pet .km-services-total::after, 
+.page-reservation .km-content-step .km-quantity-height::after, 
+.page-reservation .km-content-step .km-quantity::after, 
+.page-reservation .km-content::after, .page-reservation::after 
+{    
+	content:"";
     clear:both;
     display:table
 }
@@ -7651,6 +7654,9 @@ button.close {
     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
 }
 
+.km-select-custom-home{
+	border: solid 1px #e5e5e5!important;
+}
 .km-select-custom{
     border: none;
     background-color: #FFF;
@@ -9019,4 +9025,31 @@ textarea.vlz_input {
 	a.km-nav-link {
 		color: #555 !important;
 	}
+}
+
+
+/* Modal Subscribe - HOME */
+#PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}
+#PageSubscribe .exit{float: right; cursor: pointer;}
+#PageSubscribe .section{ width: 50%; padding: 10px; float: left; font-size: 17px; text-align: left;}
+#PageSubscribe .section.section1{font-size: 20px;}
+#PageSubscribe .section.section1 span{font-size: 25px;}
+#PageSubscribe .section.section1 .images{padding:10px 0; text-align: center;}
+#PageSubscribe .section.section3{width: 100%; font-size: 17px; font-weight: bold; text-align: center;}
+#PageSubscribe .section.section2{}
+#PageSubscribe .section.section2 .message{font-size: 15px; border: none; background: none; opacity:0; visible: hidden; transition: all .3s;}
+#PageSubscribe .section.section2 .message.show{opacity:1; visible:visible;}
+#PageSubscribe .section.section2 .icon{width: 30px; padding: 5px 0;}
+#PageSubscribe .section.section2 .subscribe {margin: 20px 0;  }
+#PageSubscribe .section.section2 form{margin: 0; display:flex;}
+#PageSubscribe .section.section2 input,
+#PageSubscribe .section.section2 button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+#PageSubscribe .section.section2 button {padding: 10px;  width: 40px;}
+
+@media screen and (max-width:480px), screen and (max-device-width:480px) {
+    #PageSubscribe { top: 15px;}
+    #PageSubscribe .section{ width: 100%; padding: 10px 0; font-size: 12px;}
+    #PageSubscribe .section.section1 {font-size: 15px;}
+    #PageSubscribe .section.section1 span {font-size: 20px;}
+    #PageSubscribe .section.section3 {font-size: 12px;}
 }
