@@ -146,7 +146,7 @@
 						<li class="dropdown hidden-xs">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 0px;">
 							<!-- <img src="'.$avatar.'" style="width: 45px;"> -->
-							<div style="width:50px; height:50px; border-radius: 50%; background:url('.$avatar.') center/cover no-repeat;"></div>
+							<div style="width:40px; height:40px; border-radius: 50%; background:url('.$avatar.') center/cover no-repeat;"></div>
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="'.get_home_url().'/perfil-usuario/" style="padding: 19px 15px 15px;">MI PERFIL</a></li>
