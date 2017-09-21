@@ -1410,20 +1410,6 @@ div#ubicacion_list div:hover {
 	background-image: url(../images/new/bg-foto-resultados.png);
 }
 
-.km-foto .km-contenedor-favorito a{
-	top: 8px;
-	right: 8px;
-	width: 16px;
-	height: 15px;
-	position: absolute;
-	background: url(../images/new/icon/icon-favorito.png) no-repeat center center;
-}
-
-.km-foto .km-contenedor-favorito a:hover,
-.km-foto .km-contenedor-favorito a.active{
-	background-image: url(../images/new/icon/icon-favorito-color.png);
-}
-
 .km-ranking::after{
 	content: "";
 	clear: both;
@@ -4728,6 +4714,7 @@ button.close {
     background:#7dd1c4;
     color:#fff
 }
+
 .showMap {
     display:block!important
 }
@@ -8150,7 +8137,8 @@ button.close {
     width: 53px;
     height: 53px;
     position: absolute;
-    background-image: url(../images/bg-foto-resultados.png);
+    /*background-image: url(../images/bg-foto-resultados.png);*/
+	background: linear-gradient(45deg, transparent 50% , #FFF 50%);
 }
 
 .km-foto .km-contenedor-favorito a{
@@ -8159,12 +8147,24 @@ button.close {
     width: 16px;
     height: 15px;
     position: absolute;
-    background: url(../images/icon/icon-favorito.png) no-repeat center center;
 }
 
-.km-foto .km-contenedor-favorito a:hover,
-.km-foto .km-contenedor-favorito a.active{
-    background-image: url(../images/icon/icon-favorito-color.png);
+.km-link-favorito{
+	color: #8f5bb3 !important;
+}
+
+.km-link-favorito:hover i.fa:before,
+.km-link-favorito[data-active="true"] i.fa:before{
+	content: "\f004" !important;
+}
+
+
+.km-foto .km-img {
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #292929;
+	height: 150px;
 }
 
 .km-ranking::after{

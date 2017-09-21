@@ -24,3 +24,25 @@ jQuery( document ).ready(function() {
     });
 
 });
+
+
+$(document).on('click','.km-link-favorito',function(){
+    var fav = $(this);
+    var fav_num = $(this).data('num');
+    var fav_active = $(this).data('active');
+
+    var data = {
+        'action': 'get_favorites',
+        'item': fav_num,
+        'active': fav_active,
+        'security': ''
+    };
+
+    var result = getAjaxData('/procesos/generales/favorites.php','post', data);
+        result = jQuery.parseJSON(result);
+
+    fav.data('active',result['active']);
+    fav.attr('data-active',result['active']);
+    //fav.addClass(result['active']);
+    console.log(result);
+});
