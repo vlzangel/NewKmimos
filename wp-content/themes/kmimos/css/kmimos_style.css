@@ -8997,6 +8997,27 @@ textarea.vlz_input {
 }
 
 
+/*BoxComment*/
+.BoxComment{
+	overflow: hidden;
+	margin: 20px 0;
+	display:none;
+}
+.BoxComment textarea,
+.BoxComment input{
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0;
+}
+.BoxComment textarea{
+	height: 100px;
+}
+.BoxComment input.button{
+	width: auto;
+	border: none;
+}
+
+
 /* Modal Subscribe - HOME */
 #PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}
 #PageSubscribe .exit{float: right; cursor: pointer;}

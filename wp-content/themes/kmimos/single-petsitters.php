@@ -419,30 +419,30 @@
 				</div>
 			</div>
 		</div>
-
-		<div id="km-comentario" class="km-ficha-info">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-sm-offset-3 col-sm-6">
-						<div class="km-review">
-							<p class="km-tit-ficha">COMENTARIOS</p>
-							<div class="km-calificacion">0</div>
-							<div class="km-calificacion-icono">
-								<div class="km-calificacion-bond"></div>
-								<p>0% Lo recomienda</p>
-							</div>
-						</div>
-
-						<a href="#" class="km-btn-comentario">ESCRIBE UN COMENTARIO</a>
-
-						<div id="comentarios_box"> </div>
-					</div>
-				</div>
-			</div>
-		</div>
  	';
 
 	echo comprimir_styles($HTML);
-
-	get_footer(); 
 ?>
+
+<div id="km-comentario" class="km-ficha-info">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-offset-3 col-sm-6">
+				<div class="km-review">
+					<p class="km-tit-ficha">COMENTARIOS</p>
+					<div class="km-calificacion">0</div>
+					<div class="km-calificacion-icono">
+						<div class="km-calificacion-bond"></div>
+						<p>0% Lo recomienda</p>
+					</div>
+				</div>
+
+				<a href="javascript:;" class="km-btn-comentario" onclick="jQuery('.BoxComment').fadeToggle();">ESCRIBE UN COMENTARIO</a>
+				<div class="BoxComment"><?php comments_template('/template/comment.php'); ?></div>
+				<div id="comentarios_box"> </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php get_footer(); ?>
