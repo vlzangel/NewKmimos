@@ -5,12 +5,14 @@
 
     wp_enqueue_style('beneficios_kmimos', getTema()."/css/busqueda.css", array(), '1.0.0');
 	wp_enqueue_style('beneficios_responsive', getTema()."/css/responsive/busqueda_responsive.css", array(), '1.0.0');
-
 	wp_enqueue_script('buscar_home', getTema()."/js/busqueda.js", array(), '1.0.0');
 
     get_header();
-
     if( !isset($_SESSION)){ session_start(); }
+
+    include_once( 'procesos/busqueda/buscar.php' );
+
+
 
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
 
@@ -81,7 +83,7 @@
 
 		<div class="container contentenedor-buscador-todos">
 			<div class="km-contentido-formulario-buscador">
-				<form class="km-formulario-buscador" action="'.getTema().'/procesos/busqueda/buscar.php" method="post">
+				<form class="km-formulario-buscador" action="'.get_home_url().'/busqueda" method="post">
 					<div class="km-bloque-cajas">
 						<div class="km-div-ubicacion">
 							<div class="km-select-custom km-select-ubicacion" style="border-right: 0px; height: 47px;">

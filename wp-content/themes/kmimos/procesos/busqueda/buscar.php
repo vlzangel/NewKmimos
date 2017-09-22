@@ -1,9 +1,16 @@
 <?php
-	include("../../../../../vlz_config.php");
-	include("../funciones/db.php");
 
+	include(__DIR__."/../../../../../vlz_config.php");
+	include(__DIR__."/../funciones/db.php");
+	
 	$conn = new mysqli($host, $user, $pass, $db);
-	$db = new db($conn);
+	$db = new db($conn); 
+
+	$ubicaciones_inner = '';
+	$nombre_inner = '';
+	$ubicaciones_filtro = "";
+	$latitud = (isset($latitud))? $latitud: "";
+	$longitud = (isset($longitud))? $longitud: "";
 
 	extract($_POST);
 
@@ -16,29 +23,42 @@
     /* Fin Filtros por fechas */
 
     /* Filtros por servicios y tamaños */
-	    if( isset($servicios) ){ foreach ($servicios as $key => $value) { if( $value != "hospedaje" ){ $condiciones .= " AND adicionales LIKE '%".$value."%'"; } } }
-	    if( isset($tamanos) ){ foreach ($tamanos as $key => $value) { $condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; } }
+	    if( isset($servicios) ){ 
+	    	foreach ($servicios as $key => $value) { 
+	    		if( $value != "hospedaje" ){ 
+	    			$condiciones .= " AND adicionales LIKE '%".$value."%'"; 
+	    		} 
+	    	} 
+	    }
+	    if( isset($tamanos) ){
+	    	foreach ($tamanos as $key => $value) {
+	     		$condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; 
+	     	} 
+	    }
     /* Fin Filtros por servicios y tamaños */
 
     /* Filtro nombre  */
 	    if( isset($nombre) ){ 
 	    	if( $nombre != "" ){ 
 	    		$nombre_inner = "INNER JOIN wp_posts AS nom ON ( nom.ID = cuidadores.id_post)";
-	    		$condiciones .= " AND nom.post_title LIKE '".$nombre."%' "; 
+	    		$condiciones .= " AND nom.post_title LIKE '%".$nombre."%' "; 
 	    	} 
 	   	}
     /* Fin Filtro nombre */
 
     /* Filtros por rangos */
+    if( isset($rangos) ){
 	    if( $rangos[0] != "" ){ $condiciones .= " AND (hospedaje_desde*1.2) >= '".$rangos[0]."' "; }
 	    if( $rangos[1] != "" ){ $condiciones .= " AND (hospedaje_desde*1.2) <= '".$rangos[1]."' "; }
 	    if( $rangos[2] != "" ){ $anio_1 = date("Y")-$rangos[2]; $condiciones .= " AND experiencia <= '".$anio_1."' "; }
 	    if( $rangos[3] != "" ){ $anio_2 = date("Y")-$rangos[3]; $condiciones .= " AND experiencia >= '".$anio_2."' "; }
 	    if( $rangos[4] != "" ){ $condiciones .= " AND rating >= '".$rangos[4]."' "; }
 	    if( $rangos[5] != "" ){ $condiciones .= " AND rating <= '".$rangos[5]."' "; }
+	}
     /* Fin Filtros por rangos */
 
     /* Ordenamientos */
+    	$orderby = ( isset($orderby) )? $orderby : 'rating_desc' ;
 	    switch ($orderby) {
 	    	case 'rating_desc':
 	    		$orderby = "rating DESC, valoraciones DESC";
@@ -68,11 +88,10 @@
     /* Fin Ordenamientos */
 
     /* Filtro de busqueda */
-
     	$ubicacion = explode("_", $ubicacion);
-    	$estados = $ubicacion[0];
-    	$municipios = $ubicacion[1];
-
+    	$estados = (count($ubicacion)>0)? $ubicacion[0] : '';
+    	$municipios = (count($ubicacion)>1)? $ubicacion[1]: '';
+	    
 	    if( 
 	    	// $tipo_busqueda == "otra-localidad" && 
 	    	$estados != "" && 
@@ -188,11 +207,12 @@
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
-	/* echo "<pre>";
-    	print_r( $_POST );
-    	print_r( $ubicacion );
-    	print_r( $cuidadores );
-    echo "</pre>";*/
+	//echo "<pre>";
+	//    print_r( $sql );
+	//    	print_r( $_POST );
+	//    	print_r( $ubicacion );
+	//    	print_r( $cuidadores );
+	//echo "</pre>";
 
     /* Funciones */
 
@@ -227,5 +247,5 @@
 
     /* FIN Funciones */
 
-	header("location: {$home}busqueda/");
+	//header("location: {$home}busqueda/");
 ?>

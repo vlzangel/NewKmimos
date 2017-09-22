@@ -275,7 +275,7 @@ section {
 	padding: 0px 10px 0px 10px;
 }
 .nav li {
-	padding: 10px 0px 10px 10px;
+	padding: 10px 0px 0px 10px;
 }
 .nav>li>a {
 	line-height: 100%!important;
@@ -2462,7 +2462,7 @@ footer input:focus{
 	.km-caja-resultados .km-columna-izq,
 	.km-caja-resultados .km-columna-der{
 		float: none;
-		width: 100%;
+		width: 100%!important;
 	}
 
 	.km-caja-resultados .km-columna-der{
