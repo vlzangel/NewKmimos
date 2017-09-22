@@ -132,7 +132,7 @@
 						<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
 						<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">REGISTRARME</a></li>
 
-						<li class="hidden-sm hidden-md hidden-lg"><a href="km-resultado.html" class="km-nav-link">BUSCAR CUIDADOR</a></li>						
+						<li class="hidden-sm hidden-md hidden-lg"><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-nav-link">BUSCAR CUIDADOR</a></li>						
 						<li><a href="km-cuidador.html" class="km-btn-primary">QUIERO SER CUIDADOR</a></li>';
 					}else{
 						$HTML .= '	

@@ -10,11 +10,15 @@
     get_header();
     if( !isset($_SESSION)){ session_start(); }
 
+
     include_once( 'procesos/busqueda/buscar.php' );
-
-
-
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
+
+
+    $servicios_adicionales = servicios_adicionales();
+    foreach ($servicios_adicionales as $opt_key => $opt_value) {
+	    $option_servicios_adicionales .= '<option value="'.$opt_key.'">'.$opt_value['label'].'</option>';
+    }
 
 	$pagina = vlz_get_page();
 	$destacados = get_destacados();
@@ -109,7 +113,19 @@
 							FILTRAR BÚSQUEDA
 						</div>
 						<div class="km-cajas-filtro">
-							<div class="km-caja-filtro">
+							
+							<div class="km-caja-filtro ">
+								<div class="btn-group">
+								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    TIPO DE SERVICIO</span>
+								  </button>
+								  <ul class="dropdown-menu">
+								    <li><a><input type="checkbox" name="servicios[]" value="">Opcion 1</a></li>
+								  </ul>
+								</div>
+							</div>
+
+							<div class="km-caja-filtro hidden">
 								<select class="km-select-custom" name="">
 									<option>TIPO DE SERVICIO</option>
 									<option>TIPO A</option>
@@ -117,7 +133,19 @@
 								</select>
 							</div>
 
+
 							<div class="km-caja-filtro">
+								<div class="btn-group">
+								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    TAMAÑO DE MASCOTA</span>
+								  </button>
+								  <ul class="dropdown-menu">
+								    <li> <input type="checkbox" name="servicios[]" value="">Opcion 1</li>
+								  </ul>
+								</div>
+							</div>
+
+							<div class="hidden km-caja-filtro">
 								<select class="km-select-custom" name="">
 									<option>TAMAÑO DE MASCOTA</option>
 									<option>TAMAÑO A</option>
@@ -126,11 +154,14 @@
 							</div>
 
 							<div class="km-caja-filtro">
-								<select class="km-select-custom" name="">
-									<option>SERVICIOS ADICIONALES</option>
-									<option>SERVICIO A</option>
-									<option>SERVICIO B</option>
-								</select>
+								<div class="btn-group">
+								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    SERVICIOS ADICIONALES</span>
+								  </button>
+								  <ul class="dropdown-menu">
+								    <li> <input type="checkbox" name="servicios[]" value="">Opcion 1</li>
+								  </ul>
+								</div>
 							</div>
 
 							<div class="km-caja-filtro">
