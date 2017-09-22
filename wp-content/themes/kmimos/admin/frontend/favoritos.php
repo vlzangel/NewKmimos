@@ -38,9 +38,9 @@
         $CONTENIDO .= '</div>';
     }else{
         $CONTENIDO .=  '
-            <p class="favoritos_vacio">
+            <h1 class="favoritos_vacio">
                 No tienes ningún favorito agregado
-            </p>';
+            </h1>';
     }
 
 ?>

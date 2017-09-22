@@ -1,3 +1,12 @@
+<style>
+    .content_rating{margin: 100px auto; width: 600px; text-align: center;}
+    .fila_rate div { display: inline-block; text-align: center; height: 30px; vertical-align: top; height: 100px;}
+    .fila_rate div img { width: 30px; margin-top: -30px; }
+    .fila_rate div input.huesito { display: none; }
+    .reset_rate { margin-right: 40px; display: none !important;}
+</style>
+<div class="content_rating">
+
 <?php
 
 global $current_user;
@@ -42,9 +51,11 @@ $user_id = $current_user->ID;
         update_comment_meta( $comment_id, 'cleanliness', $_POST['limpieza'] );
         update_comment_meta( $comment_id, 'trust', $_POST['confianza'] );
         vlz_actualizar_ratings($petsitter_id);
+
         echo '<h1>Valoración Enviada</h1>';
         echo "<p>Gracias por regalarnos tu evaluación, es sumamente importante para Kmimos y todos los que somos parte de esta comunidad saber lo que opinas del servicio que has recibido.</p>";
         echo '<a class="kmi_link" href="'.get_home_url().'/perfil-usuario/?ua=invoices">Volver a mis reservas</a>';
+
     
     }elseif(isset($_GET['id'])){
         $post_id = $_GET['id'];
@@ -63,33 +74,27 @@ $user_id = $current_user->ID;
                 }else{
                     $desde = get_post_meta($post_id,'_booking_start',true);
                     $hasta = get_post_meta($post_id,'_booking_end',true);
-                    $lleno = get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png';
-                    $vacio = '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/vacio.png">';
+                    $lleno = get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg';
+                    $vacio = '<img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso.svg">';
                     $petsitter = get_post( $post_id );
                     ?>
-                        <style>
-                            .fila_rate div { display: inline-block; text-align: center; height: 30px; vertical-align: top; height: 100px;}
-                            .fila_rate div img { width: 30px; margin-top: -30px; }
-                            .fila_rate div input.huesito { display: none; }
-                            .reset_rate { margin-right: 40px; }
-                        </style>
                         <h1>Valoración del servicio:</h1>
                         <h2><?php echo $servicio->post_title; ?></h2>
-                        <h4><?php 
+                        <h5><?php
                             echo "Desde: ".substr($desde,6,2)."/".substr($desde,4,2)."/".substr($desde,0,4); 
                             echo ", Hasta: ".substr($hasta,6,2)."/".substr($hasta,4,2)."/".substr($hasta,0,4); 
                         ?>
-                        </h4>
+                        </h5>
                         <p>Te pedimos evalúes del 1 al 5 con huesitos, los siguientes rubros. Considerando que 1 es la calificación más baja y 5 la más alta.</p>
-                        <form id="request_form" method="post" action="<?php echo get_home_url(); ?>/valorar-cuidador/">
+                        <form id="request_form" method="post" action="<?php echo get_home_url(); ?>/valorar-cuidador/" class="lbl-ui" style=" max-width: 400px; margin: 0 auto;">
                             <h3>Sección de cuidado:</h3>
                             <p><strong>¿Cómo consideras que fue el cuidado que recibió tu peludo?</strong></p>
                             <div class="fila_rate" data-section="cuidado">
-                                <div class="reset_rate cuidado" data-section="cuidado"><label for="cuidado_0"><h4>No Aplica</h4></label><br><input type="radio" id="cuidado_0" name="cuidado" value="0" checked></div>
-                                <?php 
+                                <div class="reset_rate cuidado" data-section="cuidado"><label for="cuidado_0"><h5>No Aplica</h5></label><br><input type="radio" id="cuidado_0" name="cuidado" value="0" checked></div>
+                                <?php
                                     for($i=1;$i<=5;$i++){ ?>
                                     <div class="select_rate cuidado" data-rate="<?php echo $i;?>" data-section="cuidado">
-                                        <label for="cuidado_<?php echo $i;?>"><h4><?php echo $i;?></h4></label><br>
+                                        <label for="cuidado_<?php echo $i;?>"><h5><?php echo $i;?></h5></label><br>
                                         <input type="radio" id="cuidado_<?php echo $i;?>" name="cuidado" value="<?php echo $i;?>" class="huesito"><br><?php echo $vacio;?>
                                     </div>
                                 <?php    
@@ -101,13 +106,13 @@ $user_id = $current_user->ID;
                             <div class="fila_rate" data-section="puntualidad">
                                 <div class="reset_rate puntualidad" data-section="puntualidad">
                                     <label for="puntualidad_0">
-                                    <h4>No Aplica</h4></label><br>
+                                    <h5>No Aplica</h5></label><br>
                                     <input type="radio" id="puntualidad_0" name="puntualidad" value="0" checked>
                                 </div>
                                 <?php 
                                 for($i=1;$i<=5;$i++){ ?>
                                     <div class="select_rate puntualidad" data-rate="<?php echo $i;?>" data-section="puntualidad">
-                                        <label for="puntualidad_<?php echo $i;?>"><h4><?php echo $i;?></h4></label><br>
+                                        <label for="puntualidad_<?php echo $i;?>"><h5><?php echo $i;?></h5></label><br>
                                         <input type="radio" id="puntualidad_<?php echo $i;?>" name="puntualidad" value="<?php echo $i;?>" class="huesito"><br>
                                         <?php echo $vacio;?>
                                     </div>
@@ -118,13 +123,13 @@ $user_id = $current_user->ID;
                             <p><strong>¿Cuál es el nivel de higiene y seguridad que consideras que tiene el hogar del cuidador?</strong></p> 
                             <div class="fila_rate" data-section="limpieza">
                                 <div class="reset_rate limpieza" data-section="limpieza">
-                                    <label for="limpieza_0"><h4>No Aplica</h4></label><br>
+                                    <label for="limpieza_0"><h5>No Aplica</h5></label><br>
                                     <input type="radio" id="limpieza_0" name="limpieza" value="0" checked>
                                 </div>
                                 <?php 
                                 for($i=1;$i<=5;$i++){ ?>
                                     <div class="select_rate limpieza" data-rate="<?php echo $i;?>" data-section="limpieza">
-                                        <label for="limpieza_<?php echo $i;?>"><h4><?php echo $i;?></h4></label><br>
+                                        <label for="limpieza_<?php echo $i;?>"><h5><?php echo $i;?></h5></label><br>
                                         <input type="radio" id="limpieza_<?php echo $i;?>" name="limpieza" value="<?php echo $i;?>" class="huesito"><br>
                                         <?php echo $vacio;?>
                                     </div>
@@ -135,13 +140,13 @@ $user_id = $current_user->ID;
                             <p><strong>¿Qué tan confiable consideras que tu cuidador es?</strong></p>
                             <div class="fila_rate" data-section="confianza">
                                 <div class="reset_rate confianza" data-section="confianza">
-                                    <label for="confianza_0"><h4>No Aplica</h4></label><br>
+                                    <label for="confianza_0"><h5>No Aplica</h5></label><br>
                                     <input type="radio" id="confianza_0" name="confianza" value="0" checked>
                                 </div>
                                 <?php 
                                 for($i=1;$i<=5;$i++){ ?>
                                     <div class="select_rate confianza" data-rate="<?php echo $i;?>" data-section="confianza">
-                                        <label for="confianza_<?php echo $i;?>"><h4><?php echo $i;?></h4></label><br>
+                                        <label for="confianza_<?php echo $i;?>"><h5><?php echo $i;?></h5></label><br>
                                         <input type="radio" id="confianza_<?php echo $i;?>" name="confianza" value="<?php echo $i;?>" class="huesito"><br>
                                         <?php echo $vacio;?>
                                     </div>
@@ -154,7 +159,7 @@ $user_id = $current_user->ID;
                             <br>
                             <input type="hidden" name="funcion" value="rate">
                             <input type="hidden" name="id" value="<?php echo $post_id; ?>">
-                            <input type="submit" id="request-button" class="boton_aplicar_filtros" value="Enviar valoración">
+                            <input type="submit" id="request-button" class="km-btn-primary boton_aplicar_filtros" value="Enviar valoración">
                         </form>
                     <?php
 
@@ -166,6 +171,7 @@ $user_id = $current_user->ID;
             
     }
 ?>
+</div>
 <script>
     jQuery.noConflict(); 
     jQuery(document).ready(document).ready(function() {
@@ -174,7 +180,7 @@ $user_id = $current_user->ID;
             var section = jQuery(this).attr("data-section");
             if(values[section]=='0'){
                 jQuery(".select_rate."+section+" > img").each(function(index){
-                    jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/rating/vacio.png");
+                    jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/icons/icon-hueso.svg");
                 });
             }
         });
@@ -183,7 +189,7 @@ $user_id = $current_user->ID;
             var section = jQuery(this).attr("data-section");
             if(values[section]=='0'){
                 jQuery(".select_rate."+section+" > img").each(function(index){
-                    jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/rating/vacio.png");
+                    jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/icons/icon-hueso.svg");
                 });
             }
         });
@@ -191,7 +197,7 @@ $user_id = $current_user->ID;
         jQuery(".reset_rate").on("click",function(){
             var section = jQuery(this).attr("data-section");
             jQuery(".select_rate."+section+" > img").each(function(index){
-                jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/rating/vacio.png");
+                jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/icons/icon-hueso.svg");
             });
             values[section]='0';
         });
@@ -201,13 +207,13 @@ $user_id = $current_user->ID;
             var section = jQuery(this).attr("data-section");
             console.log('Seleccionando '+rate+' en la seccion '+section);
             jQuery(".select_rate."+section+" > img").each(function(index){
-                jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/rating/vacio.png");
+                jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/icons/icon-hueso.svg");
             });
             jQuery("#"+section+"_"+rate).prop("checked",true);
             values[section]=rate;
             jQuery(".select_rate."+section+" > img").each(function(index){
-                if(index < rate) jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/rating/100.png");
-                else jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/rating/vacio.png");
+                if(index < rate) jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg");
+                else jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/icons/icon-hueso.svg");
             });
         });
 
@@ -218,8 +224,8 @@ $user_id = $current_user->ID;
             if(values[section]=='0'){
                 console.log('Activando hasta '+rate+' en la seccion '+section+', seleccionado '+values[section]);
                 jQuery(".select_rate."+section+" > img").each(function(index){
-                    if(index < rate) jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/rating/100.png");
-                    else jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/rating/vacio.png");
+                    if(index < rate) jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg");
+                    else jQuery(this).attr("src","<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/icons/icon-hueso.svg");
                 });
             }
         });

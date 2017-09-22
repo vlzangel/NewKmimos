@@ -114,6 +114,13 @@
 
 		$email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = {$id_user}");
 
+		$saldo = getSaldo();
+
+		$saldoTXT = "";
+		if( $saldo["saldo"][0] > 0 ){
+			$saldoTXT = "var saldo = ['".$saldo["saldo"]."', '".$saldo["saldo"][0]."'];";
+		}
+
 		echo "
 		<script> 
 			var SERVICIO_ID = '".get_the_ID()."';
@@ -123,6 +130,7 @@
 			var cliente = '".$id_user."'; 
 			var cuidador = '".$cuidador->id_post."'; 
 			var email = '".$email."'; 
+			{$saldoTXT}
 		</script>";
 
 		$HTML .= '
@@ -185,9 +193,10 @@
 
 				<div id="step_2" class="km-col-steps">
 
-					<div id="atras_1" class="atras"> < </div>
-
 					<div class="km-col-content">
+
+						<div id="atras_1" class="atras"> < </div>
+
 						<ul class="steps-numbers">
 							<li>
 								<span class="number checked">1</span>
@@ -235,7 +244,10 @@
 
 							</div>
 
-							<div class="cupones_desglose km-option-resume"></div>
+							<div class="cupones_desglose km-option-resume">
+								<span class="label-resume">Descuentos</span>
+								<div></div>
+							</div>
 
 							<div class="km-services-total">
 								<span class="km-text-total">TOTAL</span>
@@ -298,7 +310,7 @@
 
 						<div class="km-cupones">
 							<div>
-								<input type="text" id="cupon">
+								<input type="text" id="cupon" value="'.$saldo["cupon"].'">
 							</div>
 							<div class="">
 								<span id="cupon_btn">Cup&oacute;n</span>
@@ -315,9 +327,10 @@
 
 				<div id="step_3" class="km-col-steps">
 
-					<div id="atras_2" class="atras"> < </div>
-
 					<div class="km-col-content">
+
+						<div id="atras_2" class="atras"> < </div>
+
 						<ul class="steps-numbers">
 							<li>
 								<span class="number checked">1</span>
@@ -500,6 +513,10 @@
 	 	';
 
 		echo comprimir_styles($HTML);
+
+		echo "<pre>";
+			print_r($saldo);
+		echo "</pre>";
 
     get_footer(); 
 ?>

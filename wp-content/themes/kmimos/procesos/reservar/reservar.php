@@ -195,6 +195,15 @@ class Reservas {
             $mascotas .= "(NULL, '{$id_item}', '{$key}', '{$value}'),";
         }
 
+        $adicionales = "";
+        foreach ($this->data["adicionales"] as $key => $value) {
+            $adicionales .= "(NULL, '{$id_item}', '{$key}', '{$value}'),";
+        }
+
+        if( $transporte != "" ){
+            $transporte = "(NULL, '{$id_item}', 'Servicios de Transportación (precio por grupo) (&#36;{$transporte[1]})', '{$transporte[0]}'),";
+        }
+
         $deposito = serialize($deposito);
 
         $mascotas = str_replace('"', '\"', $mascotas);
@@ -205,6 +214,8 @@ class Reservas {
             (NULL, '{$id_item}', 'Duración', '{$duracion_formato}'),
 
             {$mascotas}
+            {$adicionales}
+            {$transporte}
 
             (NULL, '{$id_item}', '_line_total',    '{$monto}'),
             (NULL, '{$id_item}', '_line_subtotal', '{$monto}'),
@@ -231,13 +242,15 @@ class Reservas {
         foreach ($cupones as $key => $cupon) {
             $this->db->query( utf8_decode( "INSERT INTO wp_woocommerce_order_items VALUES (NULL, '{$cupon[0]}', 'coupon', '{$order}');" ) );
             $id_item = $this->db->insert_id();
-            
+
             $sql = "
                 INSERT INTO wp_woocommerce_order_itemmeta VALUES
                     (NULL, '{$id_item}', 'discount_amount',     '{$cupon[1]}'),
                     (NULL, '{$id_item}', 'discount_amount_tax', '0');
             ";
             $this->db->multi_query( utf8_decode($sql) );
+
+            // TODO: Agregar meta de uso de cupon
         }
 
     }

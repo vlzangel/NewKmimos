@@ -207,7 +207,7 @@
                 $user_id = $conn->insert_id;
 
                 $wp_user = new WP_User( $user_id );
-                $wp_user->set_role( 'vendor' );
+                $wp_user->set_role( 'subscriber' );
 
                 //WHITE_LABEL
                 if (!isset($_SESSION)) {

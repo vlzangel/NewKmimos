@@ -1,11 +1,11 @@
 <?php
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
-	include_once($raiz."/wp-load.php");
+	//include_once($raiz."/wp-load.php");
 
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");
 	include_once("../funciones/config.php");
-	include_once("../../lib/openpay/Openpay.php");
+	//include_once("../../lib/openpay/Openpay.php");
 
 	include_once("reservar.php");
 
@@ -35,8 +35,6 @@
 	extract($parametros);
 
 	$informacion = serialize($parametros);
-
-	$num_mascotas = $cantidades->cantidad;
 
 	$time = time();
     $hoy = date("Y-m-d H:i:s", $time);
@@ -71,7 +69,7 @@
 	    	"deposit" => $pre17,
 			"enable" => "yes",
 			"ratio" => 1,
-			"remaining" => $pagoCuidador,
+			"remaining" => ($pagoCuidador+$descuentos),
 			"total" => $pagar->total
 	    );
 
@@ -84,16 +82,22 @@
     	"gigantes" => "Gigantes"
     );
 
-    $mascotas = array();
+    $mascotas = array(); $num_mascotas = array();
     foreach ($cantidades as $key => $value) {
     	if( $key != "cantidad" ){
 	    	if( is_array($value) ){
 	    		if( $value[0] > 0 ){
 	    			$mascotas[ "Mascotas ".$tamanos[ $key ] ] = $value[0];
+	    			if( $value[0]+0 > 0 ){
+		    			$mascota = $db->get_var("SELECT ID FROM wp_posts WHERE post_type = 'bookable_person' AND post_name LIKE '%{$key}%' AND post_parent = '{$pagar->servicio}' ");
+		    			$num_mascotas[$mascota] = $value[0];
+	    			}
 	    		}
 	    	}
     	}
     }
+
+    $num_mascotas = serialize($num_mascotas);
 
     $diaNoche = "d&iacute;a";
 	if( $pagar->tipo_servicio == "hospedaje" ){
@@ -105,6 +109,38 @@
     }else{
     	$fechas->duracion .= " ".$diaNoche;
     }
+
+    function generarAdicionales($adicionales){
+    	$resultado = array();
+    	foreach ($adicionales as $key => $value) {
+    		if( $value > 0 ){
+	    		switch ($key) {
+			        case 'bano':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Baño (precio por mascota)";
+			        break;
+			        
+			        case 'corte':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Corte de Pelo y Uñas (precio por mascota)";
+			        break;
+			        
+			        case 'visita_al_veterinario':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Visita al Veterinario (precio por mascota)";
+			        break;
+			        
+			        case 'limpieza_dental':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Limpieza Dental (precio por mascota)";
+			        break;
+			        
+			        case 'acupuntura':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Acupuntura (precio por mascota)";
+			        break;
+			    }
+    		}
+	    }
+    	return $resultado;
+    }
+
+    $adicionales = generarAdicionales($adicionales);
 
     $data_reserva = array(
 		"servicio" 				=> $pagar->servicio,
@@ -123,6 +159,8 @@
 		"moneda" 				=> "MXN",
 		"duracion_formato" 		=> $fechas->duracion,
 		"mascotas" 				=> $mascotas,
+		"adicionales" 			=> $adicionales,
+		"transporte" 			=> $transporte,
 		"deposito" 				=> $deposito,
 		"status_reserva" 		=> "unpaid",
 		"status_orden" 			=> "wc-pending",
@@ -157,13 +195,20 @@
     foreach ($xdata_cliente as $key => $value) {
     	$data_cliente[ $value->meta_key ] = utf8_encode($value->meta_value);
     }
-
-    $reservar = new Reservas($db, $data_reserva);
+	
+	$reservar = new Reservas($db, $data_reserva);
 
     $id_orden = $reservar->new_reserva();
 
     $reservar->aplicarCupones($id_orden, $cupones);
+
+    $db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
+
+    echo json_encode(array(
+		"pagar"  => $pagar
+	));
     
+    /*
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
@@ -312,6 +357,8 @@
 
 				$charge = $customer->charges->create($chargeRequest);
 
+				$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
+
    				echo json_encode(array(
    					"user_id" => $customer->id,
 					"pdf" => "https://sandbox-dashboard.openpay.mx/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference,
@@ -329,5 +376,6 @@
 			"Data"  => $_POST
 		));
 	}
+	*/
 
 ?>

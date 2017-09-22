@@ -222,8 +222,8 @@
 	function getTransporte($data){
 		$resultado = "";
 		$transportes = array(
-			"transportacion_sencilla" => "Transportaci&oacute;n Sencilla",
-			"transportacion_redonda" => "Transportaci&oacute;n Redonda"
+			"transportacion_sencilla" => "Transp. Sencillo",
+			"transportacion_redonda" => "Transp. Redondo"
 		);
 		$rutas = array(
 			"corto" => "Rutas Cortas",
@@ -236,7 +236,7 @@
 				foreach ($data[$key] as $ruta => $precio) {
 					if( $precio > 0 ){
 						$opciones .= '
-							<option value="'.($precio*1.2).'">
+							<option value="'.($precio*1.2).'" data-value="'.$value.' - '.$rutas[ $ruta ].'">
 								'.$rutas[ $ruta ].' ( $'.($precio*1.2).' )
 				 			</option>
 						';
@@ -270,5 +270,21 @@
 			}
 		}
 		return $resultado;
+	}
+
+	function getSaldo(){
+		$current_user = wp_get_current_user();
+		$user_id = $current_user->ID;
+
+		global $wpdb;
+
+		$saldo = get_user_meta($user_id, "kmisaldo", true);
+
+		$cupon = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_name = 'saldo-{$user_id}' ");
+		kmimos_cupon_saldo($saldo);
+		return array(
+			"saldo" => $saldo,
+			"cupon" => "saldo-".$user_id
+		);
 	}
 ?>
