@@ -1687,7 +1687,7 @@ if(!function_exists('kmimos_draw_rating')){
         if($votes =='' || $votes == 0 || $rating ==''){ 
             $html .= '<div id="rating">';
             for ($i=0; $i<5; $i++){ 
-                $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/vacio.png">';
+                $html .= '<img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg">';
             }
             $html .= '</div>';
             $html .= '<div style="clear:both"><sup>Este cuidador no ha sido valorado</sup></div>';
@@ -1695,24 +1695,24 @@ if(!function_exists('kmimos_draw_rating')){
             $html .= '<div id="rating">';
             for ($i=0; $i<5; $i++){ 
                 if(intval($rating)>$i) { 
-                    $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png">';
+                    $html .= '<img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg">';
                 } else if(intval($rating)<$i) {
-                    $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
+                    $html .= '<img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso.svg">';
                 } else {
                     $residuo = ($rating-$i)*100+12.5;
                     $residuo = intval($residuo/25);
                     switch($residuo){
                         case 3: // 75% 
-                            $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/75.png">';
+                            $html .= '<img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg">';
                         break;
                         case 2: // 50% 
-                            $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/50.png">';
+                            $html .= '<img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg">';
                         break;
                         case 3: // 25% 
-                            $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/25.png">';
+                            $html .= '<img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso.svg">';
                         break;
                         default: // 0% 
-                            $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
+                            $html .= '<img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso.svg">';
                         break;
                     }
                 }
