@@ -165,6 +165,7 @@
 				});
 			}
 		}
+
 	</script>
 
     </head>
@@ -179,6 +180,7 @@
 	    	<div class="clearfix"></div>
     	</div>
        	<div class="col-sm-12">       		
+
     	   	<div class="row">       		
 				<section id="section-4" class="col-xs-12">
 				<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>
@@ -198,11 +200,11 @@
 					</div>
 				</section>
 				<section id="section-5" class="col-sm-12 bg-volaris" style="padding-right: 0px;">
-					<dir id="content-obten-cupon" class="bg-transparent container">
-						<article class="title col-xs-7 pull-right col-sm-9 col-md-8 col-lg-8">
+					<div id="content-obten-cupon" class="bg-transparent container">
+						<article class="title col-xs-9 pull-right col-sm-9 col-md-8 col-lg-8">
 							Para obtener tu cup&oacute;n de descuento, debes hacer uno de estos sencillos pasos
 						</article>
-					</dir>
+					</div>
 					<div class="container">
 						<article class="col-xs-12 col-sm-11 col-md-5 col-md-5 col-lg-5 move">
 							<label class="col-xs-offset-2 col-xs-2 col-md-2 text-right">
@@ -313,7 +315,7 @@
 					</section>
 					
 					<article id="proceso-reserva" class="bg-volaris col-xs-12 text-center">
-						<h1 style="font-family: 'PoetsenOne', sans-serif; font-size: 2.5em; ">¿Cómo es el proceso para reservar?</h1>
+						<h1>¿Cómo es el proceso para reservar?</h1>
 					</article>
 
 					<section class="col-sm-12" id="section-7">
@@ -392,8 +394,14 @@
 								<!-- <span> 01 8000 564667 (KMIMOS)</span> -->
 								<!-- <span>Whatsapp: (55) 6892 2182 </span>-->
 								<span>contactomex@kmimos.la</span>
-								<img src="img/logo.png" class="img-responsive logo-kmimos"  >
-								<img src="img/logo-volaris.png" class="img-responsive logo-volaris" >
+								<aside class="col-xs-12">
+									<div class="col-xs-12">
+										<img src="img/logo.png" class="logo-kmimos"  >
+									</div>
+									<div class="col-xs-12">
+										<img src="img/logo-volaris.png" class="logo-volaris" >
+									</div>
+								</aside>
 							</article>
 						</div>
 					</section>
