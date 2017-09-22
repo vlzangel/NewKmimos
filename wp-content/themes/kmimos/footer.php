@@ -1,9 +1,6 @@
 <?php
 $datos = kmimos_get_info_syte();
-//<script src="'.getTema().'/js/jquery.min.js"></script>
 $HTML = '
-        <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
-        <script type="text/javascript" src="'.getTema().'/js/bootstrap.min.js"></script>
         <!-- SECCIÓN FOOTER -->
         <footer>
             <div class="container">
@@ -49,9 +46,11 @@ $HTML = '
                 </div>
             </div>
         </footer>
+        <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
     ';
 
-    //wp_enqueue_script('bootstrap.minjs', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('boostrap_js_plugins', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
+
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');

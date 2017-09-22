@@ -190,9 +190,13 @@
             global $wpdb;
             $id_user = get_current_user_id()+0;
             if( $id_user > 0 ){
-                $favoritos = get_user_meta( $id_user, 'user_favorites', true );
+                $rf = $wpdb->get_row("SELECT * FROM wp_usermeta WHERE ( user_id = $id_user AND meta_key = 'user_favorites'");
+                preg_match_all('#"(.*?)"#i', $rf->favoritos, $favoritos);
+                if( isset($favoritos[1]) ){
+                    $favoritos = $favoritos[1];
+                }
             }
-            return json_decode($favoritos,true);
+            return $favoritos;
         }
     }
     
@@ -345,7 +349,7 @@
                         if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
                         $MENU["body"] .=
                             '<li>
-                                <a href="'.$value["url"].'" class="">
+                                <a href="'.$value["url"].'" class="pd-tb11 menu-link">
                                     '.$icono.'
                                     '.$value["name"].'
                                 </a>
@@ -428,10 +432,8 @@
         }
 
         $fav_check = 'false';
-        $favtitle_text = esc_html__('Agregar a favoritos','kmimos');
         if (in_array($cuidador->id_post, $favoritos)) {
-            $fav_check = 'true';
-            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+            $fav_check = 'true'; $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
         }
 
         switch ($disenio) {
@@ -441,9 +443,7 @@
                         <div class="km-foto">
                             <div class="km-img" style="background-image: url('.$img.');"></div>
                             <span class="km-contenedor-favorito">
-                                <a href="javascript:;" class="km-link-favorito" data-num="'.$cuidador->id_post.'" data-active="'.$fav_check.'" title="'.$favtitle_text.'>
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </a>
+                                <a href="#" class="km-link-favorito active"></a>
                             </span>
                         </div>
 
@@ -477,9 +477,7 @@
                         <div class="km-foto">
                             <div class="km-img" style="background-image: url('.$img.');"></div>
                             <span class="km-contenedor-favorito">
-                                <a href="javascript:;" class="km-link-favorito" data-num="'.$cuidador->id_post.'" data-active="'.$fav_check.'" title="'.$favtitle_text.'">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </a>
+                                <a href="#" class="km-link-favorito active"></a>
                             </span>
                         </div>
                         <div class="km-descripcion">
