@@ -2,9 +2,10 @@
 	<h3 id="reply-title" class="comment-reply-title">
 		Deja un comentario
 	</h3>
-	<form action="<?php echo get_home_url(); ?>/wp-comments-post.php" method="post" id="commentform" class="comment-form golden-forms">
-		<p class="comment-notes"><span id="email-notes">
-			Tu dirección de correo electrónico no será publicada.</span> Los campos necesarios están marcados <span class="required">*</span>
+	<form action="/" onsubmit="return false;" method="post" id="commentform" class="comment-form golden-forms">
+		<p class="comment-notes">
+			<span id="email-notes">Tu dirección de correo electrónico no será publicada.</span>
+			Los campos necesarios están marcados <span class="required">*</span>
 		</p>
 
 		<textarea id="comment" name="comment" class="textarea" placeholder="Tu comentario" required></textarea>
@@ -19,14 +20,4 @@
 		</p>
 	</form>
 </div>
-<script type="text/javascript">
-	jQuery("#commentform").submit(function(e){
-
-		if( jQuery("#g-recaptcha-response").val() == "" ){
-			event.preventDefault();
-			alert( "Debes validar el CAPTCHA para continuar." );
-		}
-
-	});
-</script>
     
