@@ -80,7 +80,7 @@
 		$cuidador_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$cuidador->id_post );
 		$servicio_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$servicio_id );
 
-	    $precios = "xx";
+	    $precios = "";
 	    
 		$adicionales = unserialize($cuidador->adicionales);
 
@@ -185,6 +185,8 @@
 
 				<div id="step_2" class="km-col-steps">
 
+					<div id="atras_1" class="atras"> < </div>
+
 					<div class="km-col-content">
 						<ul class="steps-numbers">
 							<li>
@@ -233,6 +235,8 @@
 
 							</div>
 
+							<div class="cupones_desglose km-option-resume"></div>
+
 							<div class="km-services-total">
 								<span class="km-text-total">TOTAL</span>
 								<span class="km-price-total">$420.00</span>
@@ -267,18 +271,37 @@
 
 						<div class="km-detail-paid-deposit">
 							<div class="km-detail-paid-line-one">
+								<span class="km-detail-label">SUBTOTAL</span>
+								<span id="" class="sub_total km-detail-value"></span>
+							</div>
+
+							<div class="km-detail-paid-line-one">
+								<span class="km-detail-label">DESCUENTO</span>
+								<span id="" class="descuento km-detail-value">$0.00</span>
+							</div>
+
+							<div class="km-detail-paid-line-one">
 								<span class="km-detail-label">TOTAL</span>
-								<span id="monto_total" class="km-detail-value">$975.00</span>
+								<span id="" class="monto_total km-detail-value"></span>
 							</div>
 
 							<div class="km-detail-paid-line-two">
 								<span class="km-detail-label">MONTO A PAGAR <b>EN EFECTIVO AL CUIDADOR</b></span>
-								<span id="pago_cuidador" class="km-detail-value">$809.25</span>
+								<span id="" class="pago_cuidador km-detail-value">$809.25</span>
 							</div>
 
 							<div class="km-detail-paid-line-three">
 								<span class="km-detail-label">PAGUE AHORA</span>
-								<span id="pago_17" class="km-detail-value">$165.75</span>
+								<span id="" class="pago_17 km-detail-value">$165.75</span>
+							</div>
+						</div>
+
+						<div class="km-cupones">
+							<div>
+								<input type="text" id="cupon">
+							</div>
+							<div class="">
+								<span id="cupon_btn">Cup&oacute;n</span>
 							</div>
 						</div>
 
@@ -291,6 +314,9 @@
 				</div>
 
 				<div id="step_3" class="km-col-steps">
+
+					<div id="atras_2" class="atras"> < </div>
+
 					<div class="km-col-content">
 						<ul class="steps-numbers">
 							<li>
@@ -307,8 +333,7 @@
 						</ul>
 
 						<div class="km-title-step">
-							ESTOY TRABAJANDO EN ESTA PANTALLA<!-- <br>
-							RESUMEN DE TU RESERVA -->
+							RESUMEN DE TU RESERVA
 						</div>
 
 						<div class="km-tab-content" style="display: block;">
@@ -334,10 +359,40 @@
 									<div class="items_reservados"></div>
 								</div>
 
+								<div class="cupones_desglose km-option-resume"></div>
+
 								<div class="km-services-total">
 									<span class="km-text-total">TOTAL</span>
 									<span class="km-price-total"></span>
 								</div>
+
+								<div class="km-detail-paid-deposit">
+									<div class="km-detail-paid-line-one">
+										<span class="km-detail-label">SUBTOTAL</span>
+										<span id="" class="sub_total km-detail-value"></span>
+									</div>
+
+									<div class="km-detail-paid-line-one">
+										<span class="km-detail-label">DESCUENTO</span>
+										<span id="" class="descuento km-detail-value">$0.00</span>
+									</div>
+
+									<div class="km-detail-paid-line-one">
+										<span class="km-detail-label">TOTAL</span>
+										<span id="" class="monto_total km-detail-value"></span>
+									</div>
+
+									<div class="km-detail-paid-line-two">
+										<span class="km-detail-label">MONTO A PAGAR <b>EN EFECTIVO AL CUIDADOR</b></span>
+										<span id="" class="pago_cuidador km-detail-value">$809.25</span>
+									</div>
+
+									<div class="km-detail-paid-line-three">
+										<span class="km-detail-label">PAGUE AHORA</span>
+										<span id="" class="pago_17 km-detail-value">$165.75</span>
+									</div>
+								</div>
+
 							</div>
 						</div>
 
@@ -391,14 +446,14 @@
 
 								<div class="km-term-conditions">
 									<label>
-										<input type="checkbox" name="term-conditions" value="1">
+										<input type="checkbox" id="term-conditions" name="term-conditions" value="1">
 										Acepto los términos y condiciones
 									</label>
 								</div>
 							</div>
 						</div>
 
-						<a id="reserva_btn_next_3" href="#" class="km-end-btn-form vlz_btn_reservar">
+						<a id="reserva_btn_next_3" href="#" class="km-end-btn-form vlz_btn_reservar disabled">
 							TERMINAR RESERVA
 						</a>
 

@@ -6,11 +6,11 @@ if(file_exists($config)){
     include_once($config);
 }
 
+
 add_filter( 'wp_mail_content_type','recover_set_content_type' );
 function recover_set_content_type(){
     return "text/html";
 }
-
 
 
 $email = $_POST['email'];

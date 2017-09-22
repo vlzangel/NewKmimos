@@ -49,16 +49,21 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
-	$("#email_1").blur(function(){
-		if($("#email_1").val().length == 0){		
-			$("#email_1").parent('div').css('color','red');
-			$("#email_1").after('<span name="sp-email">Ingrese su email</span>').css('color','red');
-			$("#email_1").focus(function() { $("[name='sp-email']").hide(); });
+	$(".verify_mail").blur(function(){
+		var verify = $(this).closest('.verify');
+		var verify_mail = $(this);
+		var verify_result = $(verify).find('.verify_result');
+		var verify_data = verify_mail.data('verify');
+
+		if(verify_mail.val().length == 0){
+			verify_mail.parent('div').css('color','red');
+			verify_mail.after('<span name="sp-email">Ingrese su email</span>').css('color','red');
+			verify_mail.focus(function() { $("[name='sp-email']").hide(); });
 		}else{
-			$("#email_1").css('color','green');
-			$("#email_1").parent('div').css('color','green');
+			verify_mail.css('color','green');
+			verify_mail.parent('div').css('color','green');
 			$("[name='sp-email']").hide();
-			var email = $("#email_1").val();
+			var email = verify_mail.val();
 			var campo = {
 				'email': email
 			}
@@ -68,23 +73,40 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 	        url:   HOME+'/procesos/login/main.php',//HOME+"/procesos/login/validate_email.php", //archivo que recibe la peticion
 	        type:  'post', //método de envio
 	        beforeSend: function () { // carga mientras va hacer la consulta
-	                $("#resultado").html("Procesando, espere por favor...");
-	                $("#resultado").css('color','green');
+				verify_result.html("Procesando, espere por favor...");
+				verify_result.css('color','green');
 	        },
 	        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
 	                if (response == 'SI') {
-	                    $("#resultado").html("Este E-mail ya esta en uso");
-	                    $("#resultado").css('color','red');
-	                    $("#email_1").parent('div').css('color','red');
-	                    $("#email_1").css('color','red');
+						verify_result.html("Este E-mail ya esta en uso");
+						verify_result.css('color','red');
+						verify_mail.parent('div').css('color','red');
+						verify_mail.css('color','red');
+						verify_mail.removeClass('correctly');
+
+						if(verify_data=='noactive'){
+							verify_result.html("E-mail correcto!");
+							verify_result.css('color','green');
+							verify_mail.addClass('correctly');
+						}
+
 	                }else if (response == 'NO'){
-	                    $("#resultado").html("E-mail disponible!");
-	                    $("#resultado").css('color','green');
+						verify_result.html("E-mail disponible!");
+						verify_result.css('color','green');
+						verify_mail.addClass('correctly');
+
+						if(verify_data=='noactive'){
+							verify_result.html("Este E-mail no existe");
+							verify_result.css('color','red');
+							verify_mail.removeClass('correctly');
+						}
+
 	                }else if (response == 'NO_MAIL'){
-						$("#resultado").html("E-mail no es correcto!");
-						$("#resultado").css('color','red');
-						$("#email_1").parent('div').css('color','red');
-						$("#email_1").css('color','red');
+						verify_result.html("E-mail no es correcto!");
+						verify_result.css('color','red');
+						verify_mail.parent('div').css('color','red');
+						verify_mail.css('color','red');
+						verify_mail.removeClass('correctly');
 					}
 	        }
 	    }); 
@@ -456,7 +478,7 @@ function getGlobalData(url,method, datos){
 
 // Validar tipos e datos en los campos
 jQuery( document ).on('keypress', '[data-charset]', function(e){
-	mensaje( $(this).attr('name'), '', true );
+
     var tipo= $(this).attr('data-charset');
 
     if(tipo!='undefined' || tipo!=''){
@@ -470,6 +492,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
         if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
         if(tipo.indexOf('cor')>-1 ){ cadena = cadena + ".-_@"; }
         if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
+        if(tipo.indexOf('dir')>-1 ){ cadena = cadena + ","; }
 
         var key = e.which,
             keye = e.keyCode,
@@ -479,7 +502,10 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
         if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
             e.preventDefault();
         }
-    }   
+    }
+
+	mensaje( $(this).attr('name'), '', true );
+   
 });
 
 
@@ -563,9 +589,9 @@ $(document).on('click','#login_submit.recover_pass',function(e){
 });
 
 $("form#form_recuperar").submit(function(){
-
-	var data_email = $(this).find("#usuario").val();
-	if (data_email != ""){
+	var mail = $(this).find("#usuario");
+	var data_email = mail.val();
+	if (data_email != "" && mail.hasClass('correctly')){
 		var datos = {
 			'email': data_email
 		};
@@ -578,4 +604,5 @@ $("form#form_recuperar").submit(function(){
 		$(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");
 		//alert("Revise sus datos por favor, debe llenar todos los campos");
 	}
+	return false;
 });

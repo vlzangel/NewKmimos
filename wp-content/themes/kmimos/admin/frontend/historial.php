@@ -66,7 +66,7 @@
 				//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
 				if($orden_status=='wc-pending') {
 
-				}else if($orden_status == 'wc-on-hold' && $_metas['_payment_method'][0] == 'openpay_stores'){
+				}else if($orden_status == 'wc-on-hold' && ( $_metas['_payment_method'][0] == 'openpay_stores' || $_metas['_payment_method'][0] == 'tienda' ) ){
 
 					$pdf = array();
 

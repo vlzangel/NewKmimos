@@ -1,8 +1,7 @@
 <?php
 $datos = kmimos_get_info_syte();
+//<script src="'.getTema().'/js/jquery.min.js"></script>
 $HTML = '
-        <script src="'.getTema().'/js/jquery.min.js"></script>
-        
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
         <script type="text/javascript" src="'.getTema().'/js/bootstrap.min.js"></script>
         <!-- SECCIÓN FOOTER -->
@@ -25,7 +24,7 @@ $HTML = '
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         <h5>SERVICIOS</h5>
-                        <p><a href="'.get_home_url().'/blog">Blog</a></p>
+                        <p><a href="https://kmimos.com.mx/blog">Blog</a></p>
                         <p><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros">Quiero ser cuidador</a></p>
                         <p><a href="'.get_home_url().'/busqueda">Buscar cuidador certificado</a></p>
                     </div>
@@ -52,12 +51,13 @@ $HTML = '
         </footer>
     ';
 
-    wp_enqueue_script('bootstrap.minjs', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", array("jquery"), '1.0.0');
+    //wp_enqueue_script('bootstrap.minjs', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
     wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
 
     if(  $_SESSION['admin_sub_login'] == 'YES' ){
         $HTML .= "

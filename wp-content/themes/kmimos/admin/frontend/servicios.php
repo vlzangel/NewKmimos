@@ -75,14 +75,14 @@
     	}
 
     	if( $status_servicios[ $key ] == 'publish' ){
-    		$boton = "<input type='button' value='Activado' class='vlz_activador vlz_activado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='1' >";
+    		$boton = "<input type='button' value='Activado' class='vlz_activador km-btn-primary vlz_activado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='1' >";
     	}else{
-    		$boton = "<input type='button' value='Desactivado' class='vlz_activador vlz_desactivado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='0' >";
+    		$boton = "<input type='button' value='Desactivado' class='vlz_activador km-btn-primary vlz_desactivado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='0' >";
     	}
 
     	$precios_adicionales .= "
     		<div class='vlz_seccion'>
-    			<div class='vlz_titulo_seccion'>".$value."  {$boton} </div>
+    			<div class='vlz_titulo_seccion container_btn'>".$value."  {$boton} </div>
     			<div class='vlz_seccion_interna'>
     				".$temp."
     			</div>
@@ -121,7 +121,7 @@
 	}
 	$transporte_sencillo_str .= "
 		<div class='vlz_celda_50'>
-			<div class='vlz_titulo_seccion'>Transportación Sencilla</div>
+			<div class='vlz_titulo_seccion container_btn'>Transportación Sencilla</div>
 			<div class='vlz_seccion_interna'>
     			".$temp."
     		</div>
@@ -140,7 +140,7 @@
 	}
 	$transporte_redondo_str .= "
 		<div class='vlz_celda_50'>
-			<div class='vlz_titulo_seccion'>Transportación Redonda</div>
+			<div class='vlz_titulo_seccion container_btn'>Transportación Redonda</div>
 			<div class='vlz_seccion_interna'>
     			".$temp."
     		</div>
@@ -148,9 +148,9 @@
 	";
 
 	if( $status_servicios[ "hospedaje" ] == 'publish' ){
-		$boton = "<input type='button' value='Activado' class='vlz_activador vlz_activado' id='status_hospedaje' > <input type='hidden' id='oculto_status_hospedaje' name='status_hospedaje' value='1' >";
+		$boton = "<input type='button' value='Activado' class='vlz_activador km-btn-primary vlz_activado' id='status_hospedaje' > <input type='hidden' id='oculto_status_hospedaje' name='status_hospedaje' value='1' >";
 	}else{
-		$boton = "<input type='button' value='Desactivado' class='vlz_activador vlz_desactivado' id='status_hospedaje' > <input type='hidden' id='oculto_status_hospedaje' name='status_hospedaje' value='0' >";
+		$boton = "<input type='button' value='Desactivado' class='vlz_activador km-btn-primary vlz_desactivado' id='status_hospedaje' > <input type='hidden' id='oculto_status_hospedaje' name='status_hospedaje' value='0' >";
 	}
 
 	$CONTENIDO .= $stylos."
@@ -158,7 +158,7 @@
     	<input type='hidden' name='accion' value='update_servicios'>
     	<div>
     		<div class='vlz_seccion'>
-    			<div class='vlz_titulo_seccion'>Tamaños de Mascotas</div>
+    			<div class='vlz_titulo_seccion container_btn'>Tamaños de Mascotas</div>
     			<div class='vlz_seccion_interna'>
     				<div class='vlz_celda_25 vlz_celda_25_x'>
 	    				<strong>Pequeños</strong> (0.0 - 25.0 cm)
@@ -175,7 +175,7 @@
     			</div>
     		</div>
     		<div class='vlz_seccion'>
-    			<div class='vlz_titulo_seccion'>Hospedaje <!-- {$boton} --> </div>
+    			<div class='vlz_titulo_seccion container_btn'>Hospedaje <!-- {$boton} --> </div>
     			<div class='vlz_seccion_interna' id='precios_hospedaje'>
     				".$hospedaje."
     			</div>
@@ -190,7 +190,7 @@
         			".$transporte_redondo_str."
     			</div>
 
-    			<div class='vlz_titulo_seccion'>Servicos Extras</div>
+    			<div class='vlz_titulo_seccion container_btn'>Servicos Extras</div>
     			<div class='vlz_seccion_interna'>
     				".$adicionales_extra_str."
     			</div>

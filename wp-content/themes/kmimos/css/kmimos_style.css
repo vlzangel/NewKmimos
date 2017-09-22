@@ -511,7 +511,7 @@ section {
 	border-radius: 8px;
 	margin: 0;
 	background: white;
-	background-image: url(../images/new/icon/icon-calendario.svg);
+	background-image: url(../images/icons/icon-calendario.svg);
 	background-repeat: no-repeat;
 	background-position: 20px center!important;
 }
@@ -738,7 +738,7 @@ input::-webkit-input-placeholder, button {
 }
 form {
 	box-sizing: border-box;
-	padding-bottom: 40px;
+	/*padding-bottom: 40px;*/
 }
 form h1 {
 	box-sizing: border-box;
@@ -875,18 +875,19 @@ button.close {
 	box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
 }
 
+
 .km-select-custom{
 	position: relative;
 	border: solid 1px #e5e5e5;
+	/*border-right: 1px solid rgba(0, 0, 0, .2);*/
 	background-color: #FFF;
 	background-size: 14px 13px;
 	background-repeat: no-repeat;
 	background-position: calc(100% - 9px) 50%;
 	background-image: url(../images/new/km-arrow-form.svg);
-	border-right: 1px solid rgba(0, 0, 0, .2);
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
-	border-radius: 6px;
+	border-radius: 6px 6px 6px 6px!important;
 	appearance:none;
 	-moz-appearance:none;
 	-webkit-appearance:none;
@@ -1004,11 +1005,11 @@ div#ubicacion_list div:hover {
 }
 
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a{
-	background-image: url(../images/new/icon/icon-hueso-yellow.svg);
+	background-image: url(../images/icons/icon-hueso-yellow.svg);
 }
 
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a.active{
-	background-image: url(../images/new/icon/icon-hueso-color-yellow.svg);
+	background-image: url(../images/icons/icon-hueso-color-yellow.svg);
 }
 
 .km-search-slider .item-slide .slide-content .slide-buttons a{
@@ -1148,14 +1149,14 @@ div#ubicacion_list div:hover {
 	padding-left: 15px;
 	padding-right: 15px;
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
-	background-image: url(../images/new/icon/icon-calendario.svg)!important;
+	background-image: url(../images/icons/icon-calendario.svg)!important;
 }
 
 .km-div-fechas .date_to{
 	width: 50%;
 	padding-left: 15px;
 	padding-right: 15px;
-	background-image: url(../images/new/icon/icon-calendario.svg);
+	background-image: url(../images/icons/icon-calendario.svg);
 }
 
 .km-submit-custom{
@@ -1331,21 +1332,21 @@ div#ubicacion_list div:hover {
 }
 
 .km-opciones-resultados .km-vista-resultados .view-list{
-	background-image: url(../images/new/icon/icon-view-list.svg);
+	background-image: url(../images/icons/icon-view-list.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-grid{
-	background-image: url(../images/new/icon/icon-view-grid.svg);
+	background-image: url(../images/icons/icon-view-grid.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-list:hover,
 .km-opciones-resultados .km-vista-resultados .view-list.active{
-	background-image: url(../images/new/icon/icon-view-list-hover.svg);
+	background-image: url(../images/icons/icon-view-list-hover.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-grid:hover,
 .km-opciones-resultados .km-vista-resultados .view-grid.active{
-	background-image: url(../images/new/icon/icon-view-grid-hover.svg);
+	background-image: url(../images/icons/icon-view-grid-hover.svg);
 }
 
 .km-item-resultado::after{
@@ -1409,20 +1410,6 @@ div#ubicacion_list div:hover {
 	background-image: url(../images/new/bg-foto-resultados.png);
 }
 
-.km-foto .km-contenedor-favorito a{
-	top: 8px;
-	right: 8px;
-	width: 16px;
-	height: 15px;
-	position: absolute;
-	background: url(../images/new/icon/icon-favorito.png) no-repeat center center;
-}
-
-.km-foto .km-contenedor-favorito a:hover,
-.km-foto .km-contenedor-favorito a.active{
-	background-image: url(../images/new/icon/icon-favorito-color.png);
-}
-
 .km-ranking::after{
 	content: "";
 	clear: both;
@@ -1433,12 +1420,12 @@ div#ubicacion_list div:hover {
 	float: left;
 	width: 20px;
 	height: 9px;
-	background: url(../images/new/icon/icon-hueso.svg) no-repeat center center;
+	background: url(../images/icons/icon-hueso.svg) no-repeat center center;
 	background-size: 20px 9px;
 }
 
 .km-ranking a.active{
-	background-image: url(../images/new/icon/icon-hueso-color.svg);
+	background-image: url(../images/icons/icon-hueso-color.svg);
 }
 
 .km-contenedor-descripcion-opciones::after{
@@ -1672,7 +1659,7 @@ div#ubicacion_list div:hover {
     margin: 0;
     display: inline-block;
     background: white;
-    background-image: url(../images/new/icon/icon-calendario.svg);
+    background-image: url(../images/icons/icon-calendario.svg);
     background-repeat: no-repeat;
     background-position: 15px center!important;
 }
@@ -2532,6 +2519,7 @@ footer input:focus{
         margin-right:3%
     }
 }
+
 @media all and (max-width:427px) {
     .km-resultados-grid .km-item-resultado {
         width:100%
@@ -2614,7 +2602,6 @@ footer input:focus{
 	.km-resultados-lista .km-item-resultado .km-contenedor-descripcion-opciones{
 		width: 100%;
 	}
-
 }
 
 @media all and (max-width: 380px) {
@@ -2626,10 +2613,7 @@ footer input:focus{
 		margin-right: 0;
 		margin-bottom: 2%;
 	}
-
-
 }
-
 
 @media all and (max-width: 767px) {
 	.km-costo{
@@ -3925,7 +3909,7 @@ section {
     border-radius:8px;
     margin:0;
     background:#fff;
-    background-image:url(../images/new/icon/icon-calendario.svg);
+    background-image:url(../images/icons/icon-calendario.svg);
     background-repeat:no-repeat;
     background-position:20px center!important
 }
@@ -3937,7 +3921,7 @@ section {
     transform:translateY(0)!important
 }
 .km-fechas select {
-    background:url(../images/new/icon/icon-gps.svg) no-repeat;
+    background:url(../images/icons/icon-gps.svg) no-repeat;
     background-position:20px;
     padding-left:45px
 }
@@ -4263,10 +4247,10 @@ button.close {
     padding:10px 0 12px 0
 }
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a {
-    background-image:url(/05bd59d0d499baa6c730096de212a32eb8786533/7e1f1/images/icon/icon-hueso-yellow.svg)
+    background-image:url(../images/icons/icon-hueso-yellow.svg)
 }
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a.active {
-    background-image:url(/6eb292a3bf5cc4a5afcaade7e73949e24510a6e6/c3d42/images/icon/icon-hueso-color-yellow.svg)
+    background-image:url(../images/icons/icon-hueso-color-yellow.svg)
 }
 .km-search-slider .item-slide .slide-content .slide-buttons a {
     float:left;
@@ -4387,7 +4371,7 @@ button.close {
     width:50%;
     padding-left:2.758621%;
     padding-right:13.533835%;
-    background-image:url(../images/new/icon/icon-calendario.svg)
+    background-image:url(../images/icons/icon-calendario.svg)
 }
 .km-submit-custom {
     margin:0;
@@ -4533,16 +4517,16 @@ button.close {
     margin-left:8px
 }
 .km-opciones-resultados .km-vista-resultados .view-list {
-    background-image:url(../images/new/icon/icon-view-list.svg)
+    background-image:url(../images/icons/icon-view-list.svg)
 }
 .km-opciones-resultados .km-vista-resultados .view-grid {
-    background-image:url(../images/new/icon/icon-view-grid.svg)
+    background-image:url(../images/icons/icon-view-grid.svg)
 }
 .km-opciones-resultados .km-vista-resultados .view-list.active, .km-opciones-resultados .km-vista-resultados .view-list:hover {
-    background-image:url(../images/new/icon/icon-view-list-hover.svg)
+    background-image:url(../images/icons/icon-view-list-hover.svg)
 }
 .km-opciones-resultados .km-vista-resultados .view-grid.active, .km-opciones-resultados .km-vista-resultados .view-grid:hover {
-    background-image:url(../images/new/icon/icon-view-grid-hover.svg)
+    background-image:url(../images/icons/icon-view-grid-hover.svg)
 }
 .km-item-resultado::after {
     content:"";
@@ -4592,17 +4576,7 @@ button.close {
     position:absolute;
     background-image:url(../images/new/bg-foto-resultados.png)
 }
-.km-foto .km-contenedor-favorito a {
-    top:8px;
-    right:8px;
-    width:16px;
-    height:15px;
-    position:absolute;
-    background:url(../images/new/icon-favorito.png) no-repeat center center
-}
-.km-foto .km-contenedor-favorito a.active, .km-foto .km-contenedor-favorito a:hover {
-    background-image:url(../images/new/icon-favorito-color.png)
-}
+
 .km-ranking::after {
     content:"";
     clear:both;
@@ -4612,11 +4586,11 @@ button.close {
     float:left;
     width:20px;
     height:9px;
-    background:url(../images/new/icon/icon-hueso.svg) no-repeat center center;
+    background:url(../images/icons/icon-hueso.svg) no-repeat center center;
     background-size:20px 9px
 }
 .km-ranking a.active {
-    #background-image:url(../images/new/icon/icon-hueso-color.svg)
+    #background-image:url(../images/icons/icon-hueso-color.svg)
 }
 .km-contenedor-descripcion-opciones::after {
     content:"";
@@ -4730,6 +4704,7 @@ button.close {
     background:#7dd1c4;
     color:#fff
 }
+
 .showMap {
     display:block!important
 }
@@ -4763,7 +4738,7 @@ button.close {
     margin-bottom:10px
 }
 .km-ficha-icon .km-ranking-cuidador p {
-    background:url(../images/new/icon/icon-hueso.svg) no-repeat center center;
+    background:url(../images/icons/icon-hueso.svg) no-repeat center center;
     float:left;
     width:40px;
     height:20px;
@@ -4771,7 +4746,7 @@ button.close {
     margin-bottom:0
 }
 .km-ficha-icon .km-ranking-cuidador p.active {
-    background-image:url(../images/new/icon/icon-hueso-color.svg)
+    background-image:url(../images/icons/icon-hueso-color.svg)
 }
 .km-ficha-info-cuidador .km-ficha-cuidador {
     text-align:center
@@ -4812,7 +4787,7 @@ button.close {
     margin:0;
     display:inline-block;
     background:#fff;
-    background-image:url(../images/new/icon/icon-calendario.svg);
+    background-image:url(../images/icons/icon-calendario.svg);
     background-repeat:no-repeat;
     background-position:20px center!important
 }
@@ -4865,14 +4840,14 @@ button.close {
     margin-top:10px
 }
 .km-review-categoria .km-ranking-usuario p {
-    background:url(../images/new/icon/icon-hueso.svg) no-repeat center center;
+    background:url(../images/icons/icon-hueso.svg) no-repeat center center;
     float:left;
     width:18px;
     height:9px;
     background-size:16px 9px
 }
 .km-ranking-usuario p.active {
-    background-image:url(../images/new/icon/icon-hueso-color.svg)
+    background-image:url(../images/icons/icon-hueso-color.svg)
 }
 .km-review-categoria p {
     font-family:Gotham-Pro-Medium;
@@ -5049,7 +5024,7 @@ a.km-btn-comentario {
     z-index:999999
 }
 .km-box-form {
-    margin-bottom:20px
+    /*margin-bottom:20px;*/
 }
 .km-box-form .label-placeholder {
     position:relative;
@@ -5109,7 +5084,7 @@ a.km-btn-comentario {
     border-bottom:1px solid #ccc;
     margin:0;
     background:#fff;
-    background-image:url(../images/new/icon/icon-calendario.svg);
+    background-image:url(../images/icons/icon-calendario.svg);
     background-repeat:no-repeat;
 }
 
@@ -5120,7 +5095,7 @@ a.km-btn-comentario {
     border-bottom:1px solid #ccc;
     margin:0;
     background:#fff;
-    background-image:url(../images/new/icon/icon-calendario.svg);
+    background-image:url(../images/icons/icon-calendario.svg);
     background-repeat:no-repeat;
     background-position:0 22px!important
 }
@@ -5132,7 +5107,7 @@ a.km-btn-comentario {
     transform:translateY(0)!important
 }
 .km-fecha-nacimiento select {
-    background:url(../images/new/icon/icon-gps.svg) no-repeat;
+    background:url(../images/icons/icon-gps.svg) no-repeat;
     background-position:20px;
     padding-left:45px
 }
@@ -5193,7 +5168,7 @@ a.km-btn-comentario {
     bottom:150px;
     right:30px;
     border-radius:45px;
-    background:url(../images/new/icon/icon-tip.svg) no-repeat center center;
+    background:url(../images/icons/icon-tip.svg) no-repeat center center;
     background-size:32px
 }
 .km-recordatorio {
@@ -5346,8 +5321,13 @@ footer .km-icon-redes {
     background:rgba(242, 242, 242, .5);
     font-family:Lato, Arial
 }
-.page-reservation .km-content-step .km-content-new-pet .km-services-content .km-services::after, .page-reservation .km-content-step .km-content-new-pet .km-services-total::after, .page-reservation .km-content-step .km-quantity-height::after, .page-reservation .km-content-step .km-quantity::after, .page-reservation .km-content::after, .page-reservation::after {
-    content:"";
+.page-reservation .km-content-step .km-content-new-pet .km-services-content .km-services::after, 
+.page-reservation .km-content-step .km-content-new-pet .km-services-total::after, 
+.page-reservation .km-content-step .km-quantity-height::after, 
+.page-reservation .km-content-step .km-quantity::after, 
+.page-reservation .km-content::after, .page-reservation::after 
+{    
+	content:"";
     clear:both;
     display:table
 }
@@ -5543,19 +5523,19 @@ footer .km-icon-redes {
     padding-left:46px
 }
 .page-reservation .km-content-step .km-content-new-pet .km-height select.small {
-    background-image:url(../images/new/icon/icon-pequenio-negro.svg);
+    background-image:url(../images/icons/icon-pequenio-negro.svg);
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-height select.medium {
-    background-image:url(../images/new/icon/icon-mediano-negro.svg);
+    background-image:url(../images/icons/icon-mediano-negro.svg);
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-height select.large {
-    background-image:url(../images/new/icon/icon-grande-negro.svg);
+    background-image:url(../images/icons/icon-grande-negro.svg);
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-height select.extra-large {
-    background-image:url(../images/new/icon/icon-gigante-negro.svg);
+    background-image:url(../images/icons/icon-gigante-negro.svg);
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-services-content {
@@ -7664,6 +7644,9 @@ button.close {
     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
 }
 
+.km-select-custom-home{
+	border: solid 1px #e5e5e5!important;
+}
 .km-select-custom{
     border: none;
     background-color: #FFF;
@@ -7750,11 +7733,11 @@ button.close {
 }
 
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a{
-    background-image: url(../images/icon/icon-hueso-yellow.svg);
+    background-image: url(../images/icons/icon-hueso-yellow.svg);
 }
 
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a.active{
-    background-image: url(../images/icon/icon-hueso-color-yellow.svg);
+    background-image: url(../images/icons/icon-hueso-color-yellow.svg);
 }
 
 .km-search-slider .item-slide .slide-content .slide-buttons a{
@@ -8069,21 +8052,21 @@ button.close {
 }
 
 .km-opciones-resultados .km-vista-resultados .view-list{
-    background-image: url(../images/icon/icon-view-list.svg);
+    background-image: url(../images/icons/icon-view-list.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-grid{
-    background-image: url(../images/icon/icon-view-grid.svg);
+    background-image: url(../images/icons/icon-view-grid.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-list:hover,
 .km-opciones-resultados .km-vista-resultados .view-list.active{
-    background-image: url(../images/icon/icon-view-list-hover.svg);
+    background-image: url(../images/icons/icon-view-list-hover.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-grid:hover,
 .km-opciones-resultados .km-vista-resultados .view-grid.active{
-    background-image: url(../images/icon/icon-view-grid-hover.svg);
+    background-image: url(../images/icons/icon-view-grid-hover.svg);
 }
 
 .km-item-resultado::after{
@@ -8144,7 +8127,8 @@ button.close {
     width: 53px;
     height: 53px;
     position: absolute;
-    background-image: url(../images/bg-foto-resultados.png);
+    /*background-image: url(../images/bg-foto-resultados.png);*/
+	background: linear-gradient(45deg, transparent 50% , #FFF 50%);
 }
 
 .km-foto .km-contenedor-favorito a{
@@ -8153,12 +8137,24 @@ button.close {
     width: 16px;
     height: 15px;
     position: absolute;
-    background: url(../images/icon/icon-favorito.png) no-repeat center center;
 }
 
-.km-foto .km-contenedor-favorito a:hover,
-.km-foto .km-contenedor-favorito a.active{
-    background-image: url(../images/icon/icon-favorito-color.png);
+.km-link-favorito{
+	color: #8f5bb3 !important;
+}
+
+.km-link-favorito:hover i.fa:before,
+.km-link-favorito[data-active="true"] i.fa:before{
+	content: "\f004" !important;
+}
+
+
+.km-foto .km-img {
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #292929;
+	height: 150px;
 }
 
 .km-ranking::after{
@@ -8171,12 +8167,12 @@ button.close {
     float: left;
     width: 20px;
     height: 9px;
-    background: url(../images/icon/icon-hueso.svg) no-repeat center center;
+    background: url(../images/icons/icon-hueso.svg) no-repeat center center;
     background-size: 20px 9px;
 }
 
 .km-ranking a.active{
-    background-image: url(../images/icon/icon-hueso-color.svg);
+    background-image: url(../images/icons/icon-hueso-color.svg);
 }
 .km-contenedor-descripcion-opciones::after{
     content: "";
@@ -8366,7 +8362,7 @@ button.close {
     margin-bottom: 10px;
 }
 .km-ficha-icon .km-ranking-cuidador p {
-    background: url(../images/icon/icon-hueso.svg) no-repeat center center;
+    background: url(../images/icons/icon-hueso.svg) no-repeat center center;
     float: left;
     width: 40px;
     height: 20px;
@@ -8374,7 +8370,7 @@ button.close {
     margin-bottom: 0;
 }
 .km-ficha-icon .km-ranking-cuidador p.active{
-    background-image: url(../images/icon/icon-hueso-color.svg);
+    background-image: url(../images/icons/icon-hueso-color.svg);
 }
 .km-ficha-info-cuidador .km-ficha-cuidador {
     text-align: center;
@@ -8542,14 +8538,14 @@ button.close {
     margin-top: 10px;
 }
 .km-review-categoria .km-ranking-usuario p {
-    background: url(../images/icon/icon-hueso.svg) no-repeat center center;
+    background: url(../images/icons/icon-hueso.svg) no-repeat center center;
     float: left;
     width: 18px;
     height: 9px;
     background-size: 16px 9px;
 }
 .km-ranking-usuario p.active{
-    background-image: url(../images/icon/icon-hueso-color.svg);
+    background-image: url(../images/icons/icon-hueso-color.svg);
 }
 .km-review-categoria p {
     font-family: 'Gotham-Pro-Medium';
@@ -8864,7 +8860,7 @@ a.km-btn-comentario {
     bottom: 150px;
     right: 30px;
     border-radius: 45px;
-    background: url(../images/icon/icon-tip.svg) no-repeat center center;
+    background: url(../images/icons/icon-tip.svg) no-repeat center center;
     background-size: 32px;
 }
 .km-recordatorio {
@@ -9019,4 +9015,31 @@ textarea.vlz_input {
 	a.km-nav-link {
 		color: #555 !important;
 	}
+}
+
+
+/* Modal Subscribe - HOME */
+#PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}
+#PageSubscribe .exit{float: right; cursor: pointer;}
+#PageSubscribe .section{ width: 50%; padding: 10px; float: left; font-size: 17px; text-align: left;}
+#PageSubscribe .section.section1{font-size: 20px;}
+#PageSubscribe .section.section1 span{font-size: 25px;}
+#PageSubscribe .section.section1 .images{padding:10px 0; text-align: center;}
+#PageSubscribe .section.section3{width: 100%; font-size: 17px; font-weight: bold; text-align: center;}
+#PageSubscribe .section.section2{}
+#PageSubscribe .section.section2 .message{font-size: 15px; border: none; background: none; opacity:0; visible: hidden; transition: all .3s;}
+#PageSubscribe .section.section2 .message.show{opacity:1; visible:visible;}
+#PageSubscribe .section.section2 .icon{width: 30px; padding: 5px 0;}
+#PageSubscribe .section.section2 .subscribe {margin: 20px 0;  }
+#PageSubscribe .section.section2 form{margin: 0; display:flex;}
+#PageSubscribe .section.section2 input,
+#PageSubscribe .section.section2 button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+#PageSubscribe .section.section2 button {padding: 10px;  width: 40px;}
+
+@media screen and (max-width:480px), screen and (max-device-width:480px) {
+    #PageSubscribe { top: 15px;}
+    #PageSubscribe .section{ width: 100%; padding: 10px 0; font-size: 12px;}
+    #PageSubscribe .section.section1 {font-size: 15px;}
+    #PageSubscribe .section.section1 span {font-size: 20px;}
+    #PageSubscribe .section.section3 {font-size: 12px;}
 }

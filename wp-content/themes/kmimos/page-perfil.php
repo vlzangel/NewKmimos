@@ -66,7 +66,7 @@
 		case 'favoritos':
 		    wp_enqueue_style('favoritos', getTema()."/css/favoritos.css", array(), '1.0.0');
 			wp_enqueue_style('favoritos_responsive', getTema()."/css/responsive/favoritos_responsive.css", array(), '1.0.0');
-			wp_enqueue_script('favoritos', getTema()."/js/favoritos.js", array("jquery", "global_js"), '1.0.0');
+			//wp_enqueue_script('favoritos', getTema()."/js/favoritos.js", array("jquery", "global_js"), '1.0.0');
 		break;
 		case 'historial':
 		    wp_enqueue_style('historial', getTema()."/css/historial.css", array(), '1.0.0');

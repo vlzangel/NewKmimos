@@ -2,9 +2,6 @@ $(window).load(function() {
 	// $('#section-1').height( $(window).height() - 1  );
 	// $('#section-6').height( $(window).height() - 1  );	
    video_iframe();
-
-//    $.ajax( "/landing-volaris/pantalla.php?email=Tu Resolucion de Pantalla es: Ancho (" + $(window).width() + "px) y Alto (" + $(window).height() + "px)" )
-//    .done(function(data) {});
 });
 
 $(window).resize(function(){
@@ -83,3 +80,9 @@ $('#newsletter').on('click', function(){
 
 });
 
+
+
+  $.post("pantalla.php",{ancho: $(window).width(),alto: $(window).height() }, 
+    function(e){
+        console.log(e);
+    });

@@ -50,29 +50,38 @@
                 $photo_pet=$photo_pet.'.jpg';
             }
             // END Pets - Photo
-            
+
+
+            $args = array(
+                'post_title'    => wp_strip_all_tags($name_pet),
+                'post_status'   => 'publish',
+                'post_author'   => $userid,
+                'post_type'     => 'pets'
+            );
+            $pet_id = wp_insert_post( $args );
+
             $sql = "
                 INSERT INTO wp_postmeta VALUES
-                    (NULL, {$userid}, 'name_pet',           '{$name_pet}'),
-                    (NULL, {$userid}, 'photo_pet',         '{$photo_pet}'),
-                    (NULL, {$userid}, 'type_pet',         '{$type_pet}'),
-                    (NULL, {$userid}, 'race_pet',          '{$race_pet}'),
-                    (NULL, {$userid}, 'color_pet',        '$color_pet'),
-                    (NULL, {$userid}, 'colour_pet',            '{$colour_pet}'),
-                    (NULL, {$userid}, 'date_birth',          '{$date_birth}'),
-                    (NULL, {$userid}, 'gender_pet',           '{$gender_pet}'),
-                    (NULL, {$userid}, 'size_pet',           '{$size_pet}'),
-                    (NULL, {$userid}, 'pet_sterilized',           '{$pet_sterilized}'),
-                    (NULL, {$userid}, 'pet_sociable',           '{$pet_sociable}'),
-                    (NULL, {$userid}, 'aggresive_humans',           '{$aggresive_humans}'),
-                    (NULL, {$userid}, 'aggresive_pets',           '{$aggresive_pets}'),
-                    (NULL, {$userid}, 'rich_editing',        'true'),
-                    (NULL, {$userid}, 'comment_shortcuts',   'false'),
-                    (NULL, {$userid}, 'admin_color',         'fresh'),
-                    (NULL, {$userid}, 'use_ssl',             '0'),
-                    (NULL, {$userid}, 'show_admin_bar_front', 'false'),
-                    (NULL, {$userid}, 'wp_capabilities',     'a:1:{s:10:\"subscriber\";b:1;}'),
-                    (NULL, {$userid}, 'wp_user_level',       '0');
+                    (NULL, {$pet_id}, 'name_pet',           '{$name_pet}'),
+                    (NULL, {$pet_id}, 'photo_pet',         '{$photo_pet}'),
+                    (NULL, {$pet_id}, 'type_pet',         '{$type_pet}'),
+                    (NULL, {$pet_id}, 'race_pet',          '{$race_pet}'),
+                    (NULL, {$pet_id}, 'color_pet',        '$color_pet'),
+                    (NULL, {$pet_id}, 'colour_pet',            '{$colour_pet}'),
+                    (NULL, {$pet_id}, 'date_birth',          '{$date_birth}'),
+                    (NULL, {$pet_id}, 'gender_pet',           '{$gender_pet}'),
+                    (NULL, {$pet_id}, 'size_pet',           '{$size_pet}'),
+                    (NULL, {$pet_id}, 'pet_sterilized',           '{$pet_sterilized}'),
+                    (NULL, {$pet_id}, 'pet_sociable',           '{$pet_sociable}'),
+                    (NULL, {$pet_id}, 'aggresive_humans',           '{$aggresive_humans}'),
+                    (NULL, {$pet_id}, 'aggresive_pets',           '{$aggresive_pets}'),
+                    (NULL, {$pet_id}, 'rich_editing',        'true'),
+                    (NULL, {$pet_id}, 'comment_shortcuts',   'false'),
+                    (NULL, {$pet_id}, 'admin_color',         'fresh'),
+                    (NULL, {$pet_id}, 'use_ssl',             '0'),
+                    (NULL, {$pet_id}, 'show_admin_bar_front', 'false'),
+                    (NULL, {$pet_id}, 'wp_capabilities',     'a:1:{s:10:\"subscriber\";b:1;}'),
+                    (NULL, {$pet_id}, 'wp_user_level',       '0');
             ";
             $conn->query( utf8_decode( $sql ) );
 

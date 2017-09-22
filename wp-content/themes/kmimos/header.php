@@ -101,7 +101,8 @@
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 							<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
 						</button>
-						
+						<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60" style="height: 60px;"></a>
+
 					</div>
 					<ul class="hidden-xs nav-login">
 						'.$menus_normal.'
@@ -137,12 +138,17 @@
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 						<img class="km-avatar" src="'.$avatar.'" width="40">
 					</button>
-					<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60" style="height: 60px;"></a>
+					<a class="navbar-brand" href="'.get_home_url().'">
+						<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60" style="height: 60px;">
+					</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown hidden-xs">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 0px;"><img src="'.$avatar.'" style="width: 45px;"></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 0px;">
+							<!-- <img src="'.$avatar.'" style="width: 45px;"> -->
+							<div style="width:40px; height:40px; border-radius: 50%; background:url('.$avatar.') center/cover no-repeat;"></div>
+							</a>
 							<ul class="dropdown-menu">
 								<li><a href="'.get_home_url().'/perfil-usuario/" style="padding: 19px 15px 15px;">MI PERFIL</a></li>
 								<li><a href="'.get_home_url().'/perfil-usuario/mascotas/" style="padding: 19px 15px 15px;">MIS MASCOTAS</a></li>
@@ -158,7 +164,7 @@
 						<li><a href="'.get_home_url().'/perfil-usuario/favoritos/" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">FAVORITOS</a></li>
 						<li><a href="'.get_home_url().'/perfil-usuario/historial/" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">HISTORIAL</a></li>
 						<li><a href="'.get_home_url().'/perfil-usuario/solicitudes/" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">MIS SOLICITUDES</a></li>
-						<li><a href="'.$salir.'" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">CERRAR SESIÓN</a></li>
+						<li><a href="'.wp_logout_url( "/" ).'" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">CERRAR SESIÓN</a></li>
 					</ul>
 				</div>
 			</div>

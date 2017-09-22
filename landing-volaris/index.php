@@ -200,23 +200,14 @@
     	   	<div class="row">       		
 				<section id="section-4" class="col-xs-12">
 				<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>
-					<div class="container">
-						<!-- <article class="col-xs-6 col-sm-6 col-md-4 text-right pull-right">
-							<img src="img/logo.png" class="img-responsive" id="section4-logo">
-						</article> -->
-						<!-- <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-							<h2>
-								Promoci&oacute;n por ser cliente<br>
-								<span class="color-volaris">VOLARIS</span>, si te suscribes HOY:
-							</h2>
-						</article> -->
-						<article id="tu-mascota" class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+					<div class="container full-width" >
+						<article id="tu-mascota" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 text-center pull-right">
 							<p>Tu mascota regresa feliz</p>
 						</article> 
 						
 						<article id="section-4-cuadro" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-							<p class="hidden-xs">Promoci&oacute;n por ser <br> cliente <span style="color: #a1126d;">VOLARIS</span>, si <br> te suscribes HOY:</p>
-							<p class="hidden-lg hidden-sm hidden-md">Promoci&oacute;n por ser cliente <span style="color: #a1126d; font-size: 12px!important;">VOLARIS</span>, si te suscribes HOY:</p>
+							<p>
+								Promoci&oacute;n por ser cliente <span style="color: #a1126d;">VOLARIS</span>, si te suscribes HOY:</p>
 							<h2 class="color-volaris">Obt&eacute;n</h2>
 							<h2 class="monto">$150</h2>
 							<!-- <h3 class="color-volaris">DE DESCUENTO</h3> -->
@@ -225,21 +216,21 @@
 					</div>
 				</section>
 				<section id="section-5" class="col-sm-12 bg-volaris" style="padding-right: 0px;">
-					<dir class="bg-transparent container">
-						<article class="title col-xs-12 col-sm-6 col-md-8 col-lg-8">
+					<dir id="content-obten-cupon" class="bg-transparent container">
+						<article class="title col-xs-7 pull-right col-sm-9 col-md-8 col-lg-8">
 							Para obtener tu cup&oacute;n de descuento, debes hacer uno de estos sencillos pasos
 						</article>
 					</dir>
-					<div class="row" style="margin:0px;">
-						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 move">
-							<label class="col-xs-offset-2 col-xs-1 col-md-1 text-right">
+					<div class="container">
+						<article class="col-xs-12 col-sm-11 col-md-5 col-md-5 col-lg-5 move">
+							<label class="col-xs-offset-2 col-xs-2 col-md-2 text-right">
 								1.</label>
 							<p class="col-xs-9 col-md-10">
 
 							¡SUSCR&Iacute;BETE
 							y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.!</p>
 
-							<div id="section-5-form" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
+							<div id="section-5-form" class="col-xs-11 col-sm-10 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
 								<input type="text" value="" name="email" id="email" placeholder="Introduce tu correo aqu&iacute;">
 								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
 								<br>
@@ -255,13 +246,12 @@
 									<span id="mensaje"></span>
 								</div>
 							</div>
-            				<span class="o xs col-xs-12 ">&oacute;</span></p>
 						</article>
-						<span class="o lg"><strong><i>&oacute;</i></strong></span>
-						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 move1">
-							<label class="col-xs-offset-2 col-xs-1 col-md-1 text-right hidden-xs">
-								2.</label>
-							<label class="col-xs-offset-2 col-xs-1 col-md-1 text-right hidden-lg hidden-md hidden-sm" style="font-size: 33px!important;">
+						<article class="col-xs-12 col-sm-offset-5 col-sm-2 col-md-offset-0 col-md-1 col-lg-2 text-center" style="font-size: 50px;">
+							 ó 
+						</article>
+						<article class="col-xs-12 col-sm-11 col-md-6 col-md-5 col-lg-5 move">
+							<label class="col-xs-offset-2 col-xs-2 col-md-2 text-right">
 								2.</label>
 							<p class="col-xs-9 col-md-10">
 								Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.
