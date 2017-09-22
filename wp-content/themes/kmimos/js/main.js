@@ -218,11 +218,6 @@ $(document).ready(function(){
 	    slideMargin: 10
 	});
 
-	
-	$('.km-servicio-opcion').on('click', function(e) {
-		//$(this).toggleClass('km-servicio-opcionactivo');
-	});
-
 	$(document).on("click", '.show-map-mobile', function ( e ) {
 		e.preventDefault();
 		$(".km-map-content").addClass("showMap");
@@ -319,7 +314,7 @@ $(document).ready(function(){
 
 
 	$('.km-servicio-opcion').on('click', function(e) {
-		$(this).toggleClass('km-servicio-opcionactivo');
+		//$(this).toggleClass('km-servicio-opcionactivo');
 	});
 
 
