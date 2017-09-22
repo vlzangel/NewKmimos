@@ -212,7 +212,7 @@
 			$CONTENIDO .= build_table($booking_coming);
 			
 		}else{
-			$CONTENIDO .= "<h2 style='line-height: normal;' class='vlz_no_aun'>Usted no tiene Reservas pendientes</h2>";
+			$CONTENIDO .= "<h1 style='line-height: normal;' class='vlz_no_aun'>Usted no tiene Reservas pendientes</h1>";
 		}
 
 	$CONTENIDO .= '</div>';

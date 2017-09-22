@@ -22,9 +22,11 @@
             
             if( strpos($tipo, "vendor") === false ){
                 $sub_path = "avatares_clientes/miniatura/{$user_id}_";
+                $sub_path = "avatares_clientes/{$user_id}/";
             }else{
                 $id = $db->get_var("SELECT id FROM cuidadores WHERE user_id = {$user_id}");
                 $sub_path = "cuidadores/avatares/miniatura/{$id}_";
+                $sub_path = "cuidadores/avatares/{$id}/";
             }
             
             $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo' ");

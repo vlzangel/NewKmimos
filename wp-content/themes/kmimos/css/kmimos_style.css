@@ -1428,6 +1428,12 @@ div#ubicacion_list div:hover {
 	background-image: url(../images/icons/icon-hueso-color.svg);
 }
 
+.km-review .km-ranking a{
+	width: 40px;
+	height: 40px;
+	background-size: contain;
+}
+
 .km-contenedor-descripcion-opciones::after{
 	content: "";
 	clear: both;
@@ -1731,20 +1737,6 @@ div#ubicacion_list div:hover {
 	width: 100%;
 	text-align: center;
 	margin-bottom: 10px;
-}
-.km-servicio-opcion:before {
-	content: "";
-	border-top: 6px solid #fafafa;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	border-radius: 8px;
-	left: 0;
-	right: 0;
-	transition: all .2s ease-in-out;
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
 }
 .km-servicio-opcion_productos {
 	border: 1px solid #e5e5e5;
@@ -4249,9 +4241,6 @@ button.close {
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a {
     background-image:url(../images/icons/icon-hueso-yellow.svg)
 }
-.km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a.active {
-    background-image:url(../images/icons/icon-hueso-color-yellow.svg)
-}
 .km-search-slider .item-slide .slide-content .slide-buttons a {
     float:left;
     display:block;
@@ -4588,9 +4577,6 @@ button.close {
     height:9px;
     background:url(../images/icons/icon-hueso.svg) no-repeat center center;
     background-size:20px 9px
-}
-.km-ranking a.active {
-    #background-image:url(../images/icons/icon-hueso-color.svg)
 }
 .km-contenedor-descripcion-opciones::after {
     content:"";
@@ -7736,10 +7722,6 @@ button.close {
     background-image: url(../images/icons/icon-hueso-yellow.svg);
 }
 
-.km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a.active{
-    background-image: url(../images/icons/icon-hueso-color-yellow.svg);
-}
-
 .km-search-slider .item-slide .slide-content .slide-buttons a{
     float: left;
     display: block;
@@ -8170,10 +8152,6 @@ button.close {
     background: url(../images/icons/icon-hueso.svg) no-repeat center center;
     background-size: 20px 9px;
 }
-
-.km-ranking a.active{
-    background-image: url(../images/icons/icon-hueso-color.svg);
-}
 .km-contenedor-descripcion-opciones::after{
     content: "";
     clear: both;
@@ -8490,7 +8468,7 @@ button.close {
 }
 .km-servicio-opcion:before {
     content: "";
-    border-top: 6px solid #fafafa;
+    border-top: 2px solid #fafafa;
     height: 100%;
     position: absolute;
     top: 0;
@@ -8576,7 +8554,8 @@ button.close {
 }
 .km-comentario .col-xs-2 .km-foto-comentario-cuidador {
     border-radius: 100%;
-    width: 100%;
+    width: 70px;
+	height: 70px;
 }
 
 a.km-btn-comentario {

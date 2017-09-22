@@ -76,8 +76,9 @@
 		}
 	}
 
-	function get_tamano($slug, $precios, $activo, $tamanos, $tipo_retorno = "HTML"){
+	function get_tamano($slug, $precios, $activo, $tamanos, $status="nopublish", $tipo_retorno = "HTML"){
 
+		$class = "";
 		$tamano = "";
 		preg_match_all("#Peque#", $slug, $matches);
 		if( count( $matches[0] ) == 1 ){
@@ -101,8 +102,12 @@
 
 		if( is_array($tamanos) ){
 			if( $activo && in_array($tamano, $tamanos) ){
-				$class = "km-servicio-opcionactivo";
+				$class .= "km-servicio-opcionactivo";
 			}
+		}
+
+		if($status=="publish"){
+			$class .= " km-servicio-opcionactivo ";
 		}
   		
   		$HTML = "";

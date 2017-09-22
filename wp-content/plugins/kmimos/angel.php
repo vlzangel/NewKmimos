@@ -315,7 +315,7 @@
                     "sub_path" => $sub_path
                 );
             }else{
-                return $img;
+                return $sub_path;
             }
         }
     }
