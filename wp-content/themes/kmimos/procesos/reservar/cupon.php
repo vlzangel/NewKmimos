@@ -7,6 +7,8 @@
 
 	$db = new db( new mysqli($host, $user, $pass, $db) );
 
+	// TODO: Ajustar para que se puedan reaplicar todos los cupones
+
 	if( isset($cupones) ){
 		if( ya_aplicado($cupon, $cupones) ){
 			echo json_encode(array(
@@ -17,6 +19,14 @@
 	}
 
 	$xcupon = $db->get_row("SELECT * FROM wp_posts WHERE post_title = '{$cupon}'");
+
+	if( $xcupon == false ){
+		echo json_encode(array(
+			"error" => "Cupón Invalido"
+		));
+		exit;
+	}
+
 	$xmetas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$xcupon->ID}'");
 
 	$metas = array();
@@ -48,6 +58,9 @@
 	switch ( $metas["discount_type"] ) {
 		case "percent":
 			$descuento = $total*($metas["coupon_amount"]/100);
+		break;
+		case "fixed_cart":
+			$descuento = $metas["coupon_amount"];
 		break;
 	}
 

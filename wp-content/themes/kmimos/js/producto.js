@@ -80,9 +80,8 @@ function calcular(){
 
 	var tranporte = jQuery('#transporte option:selected').val();
 	if( tranporte != undefined && tranporte != "" ){
-		var text_temp = String(jQuery('#transporte option:selected').text() ).split("(");
 		CARRITO[ "transportacion" ] = [
-			"Transportaci&oacute;n - "+text_temp[0],
+			jQuery('#transporte option:selected').attr("data-value"),
 			parseFloat(tranporte)
 		];
 	}
@@ -391,12 +390,15 @@ function pagarReserva(id_invalido = false){
 		},
 		function(data){
 			console.log( data );
-			location.href = RAIZ+"/finalizar/"+data.order_id;
+			//location.href = RAIZ+"/finalizar/"+data.order_id;
 		}, "json"
 	).fail(function(e) {
-    	console.log( "Error" );
     	console.log( e );
-    	pagarReserva(true);
+    	if( e.status == 500 ){
+    		//pagarReserva(true);
+    	}else{
+    		alert("Error al procesar la reserva!");
+    	}
   	});
 }
 
@@ -420,13 +422,23 @@ function eliminarCuponesHandler(){
 function mostrarCupones(){
 	var items = "";
 	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
-		items += '<div class="km-option-resume-service">'
-		items += '	<span class="label-resume-service">'+cupon[0]+'</span>'
-		items += '	<span class="value-resume-service">-$'+numberFormat(cupon[1])+' <a href="#" data-id="'+cupon[0]+'">Eliminar</a> </span>'
-		items += '</div>';
+		var nombreCupon = cupon[0];
+
+		if( nombreCupon != "" && cupon[1] > 0 ){
+			var eliminarCupo = '<a href="#" data-id="'+cupon[0]+'">Eliminar</a>';
+			if( nombreCupon.indexOf("saldo") > -1 ){
+				nombreCupon = "Saldo a favor";
+				eliminarCupo = "";
+			}
+			items += '<div class="km-option-resume-service">'
+			items += '	<span class="label-resume-service">'+nombreCupon+'</span>'
+			items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>'
+			items += '</div>';
+		}
+
 	});
 	if( items != "" ){
-		jQuery(".cupones_desglose").html(items);
+		jQuery(".cupones_desglose div").html(items);
 		jQuery(".cupones_desglose").css("display", "block");
 	}else{
 		jQuery(".cupones_desglose").css("display", "none");
@@ -464,7 +476,7 @@ function calcularDescuento(){
 		jQuery(".sub_total").parent().css("display", "none");
 		jQuery(".descuento").parent().css("display", "none");
 	}else{
-		jQuery(".descuento").html( "-$" + numberFormat(descuentos) );
+		jQuery(".descuento").html( "$" + numberFormat(descuentos) );
 
 		jQuery(".sub_total").parent().css("display", "block");
 		jQuery(".descuento").parent().css("display", "block");
@@ -529,6 +541,8 @@ jQuery(document).ready(function() {
 			jQuery(".km-col-steps").css("display", "none");
 			jQuery("#step_2").css("display", "block");
 			jQuery(document).scrollTop(0);
+		
+			aplicarCupon();
 		}
 		e.preventDefault();
 	});
@@ -537,6 +551,7 @@ jQuery(document).ready(function() {
 		jQuery(".km-col-steps").css("display", "none");
 		jQuery("#step_3").css("display", "block");
 		jQuery(document).scrollTop(0);
+
 		e.preventDefault();
 	});
 
@@ -561,7 +576,7 @@ jQuery(document).ready(function() {
 			}else{
 				pagarReserva();
 			}
-		}
+	 	}
 		e.preventDefault();
 	});
 

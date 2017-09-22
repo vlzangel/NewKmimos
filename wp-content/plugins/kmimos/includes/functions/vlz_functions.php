@@ -85,12 +85,8 @@
     }
 
     if(!function_exists('kmimos_cupon_saldo')){
-        function kmimos_cupon_saldo($param){
+        function kmimos_cupon_saldo($monto_cupon){
             global $wpdb;
-
-            $monto_cupon = $param["monto_cupon"];
-            $servicio    = $param["servicio"];
-            $manana      = $param["manana"];
             
             if( $monto_cupon > 0){
                 global $current_user;
@@ -128,14 +124,14 @@
                     $wpdb->query("
                         INSERT INTO wp_postmeta VALUES
                             (NULL, ".$id_cupon.", 'discount_type', 'fixed_cart'),
-                            (NULL, ".$id_cupon.", 'coupon_amount', '".$monto_cupon."'),
+                            (NULL, ".$id_cupon.", 'coupon_amount', '{$monto_cupon}'),
                             (NULL, ".$id_cupon.", 'individual_use', 'no'),
-                            (NULL, ".$id_cupon.", 'product_ids', '".$servicio."'),
+                            (NULL, ".$id_cupon.", 'product_ids', ''),
                             (NULL, ".$id_cupon.", 'exclude_product_ids', ''),
                             (NULL, ".$id_cupon.", 'usage_limit', '0'),
                             (NULL, ".$id_cupon.", 'usage_limit_per_user', '0'),
                             (NULL, ".$id_cupon.", 'limit_usage_to_x_items', ''),
-                            (NULL, ".$id_cupon.", 'expiry_date', '".$manana."'),
+                            (NULL, ".$id_cupon.", 'expiry_date', ''),
                             (NULL, ".$id_cupon.", 'free_shipping', 'no'),
                             (NULL, ".$id_cupon.", 'exclude_sale_items', 'no'),
                             (NULL, ".$id_cupon.", 'product_categories', 'a:0:{}'),
@@ -149,9 +145,7 @@
                         "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit'",
                         "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit_per_user'",
 
-                        "UPDATE wp_postmeta SET meta_value = '".$monto_cupon."' WHERE post_id = ".$id_cupon." AND meta_key = 'coupon_amount'",
-                        "UPDATE wp_postmeta SET meta_value = '".$servicio."'    WHERE post_id = ".$id_cupon." AND meta_key = 'product_ids'",
-                        "UPDATE wp_postmeta SET meta_value = '".$manana."'      WHERE post_id = ".$id_cupon." AND meta_key = 'expiry_date'"
+                        "UPDATE wp_postmeta SET meta_value = '{$monto_cupon}' WHERE post_id = ".$id_cupon." AND meta_key = 'coupon_amount'"
                     );
                     foreach ($sqls as $sql) {
                         $wpdb->query($sql);
@@ -624,21 +618,21 @@
             }
 
             $variaciones_array = array(
-                "pequenos"  => "Mascotas Pequeños", 
-                "medianos"  => "Mascotas Medianos", 
+                "pequen"  => 'Mascotas Pequeños', 
+                "median"  => 'Mascotas Medianos', 
                 "grandes"   => "Mascotas Grandes", 
                 "gigantes"  => "Mascotas Gigantes",
-                "pequenos2" => "Mascotas Pequeñas", 
-                "medianos2" => "Mascotas Medianas"
+                "peque" => "Mascotas Pequeñas", 
+                "media" => "Mascotas Medianas"
             );
 
             $txts = array(
-                "pequenos"  => "Mascotas Pequeñas", 
-                "medianos"  => "Mascotas Medianas", 
+                "pequen"  => 'Mascotas Pequeños', 
+                "median"  => 'Mascotas Medianos', 
                 "grandes"   => "Mascotas Grandes", 
                 "gigantes"  => "Mascotas Gigantes",
-                "pequenos2" => "Mascotas Pequeñas", 
-                "medianos2" => "Mascotas Medianas"
+                "peque" => "Mascotas Pequeñas", 
+                "media" => "Mascotas Medianas"
             );
 
             $dias = ceil(((($xfin - $xini)/60)/60)/24);
@@ -675,7 +669,7 @@
             foreach ($variaciones_array as $key => $value) {
                 if( isset( $detalles_reserva[$value] ) ){
 
-                    $variacion_ID = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_parent={$producto->ID} AND post_title='{$value}' ");
+                    $variacion_ID = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_parent={$producto->ID} AND post_name LIKE '%{$key}%' ");
                     $metas_variacion = get_post_meta($variacion_ID);
 
                     $unitario = $metas_producto['_price'][0]+$metas_variacion['block_cost'][0];
