@@ -36,7 +36,6 @@
 	if( 
 		$post->post_name == 'reservar' 			||
 		$post->post_name == 'finalizar' 		||
-		
 		$post->post_name == 'perfil-usuario' 	||
 		$post->post_name == 'mascotas' 			||
 		$post->post_name == 'ver' 				||
@@ -87,85 +86,77 @@
 			<li><a href="#" class="modal_show km-nav-link hidden-sm hidden-md hidden-lg" data-modal=#myModal">REGISTRARME</a></li>
 		';
 	}else{
-		$menus_normal = $MENU["head"].$MENU["body"].$MENU["footer"];
-		$menus_movil = $MENU["head_movil"].$MENU["body"].$MENU["footer"];
+		$menus_normal =  $MENU["body"].$MENU["footer"];
+		$menus_movil =  $MENU["body"].$MENU["footer"];
+//		$menus_normal = $MENU["head"].$MENU["body"].$MENU["footer"];
+//		$menus_movil = $MENU["head_movil"].$MENU["body"].$MENU["footer"];
 	}
 
+	// Avatar default
+	$avatar = getTema().'/images/new/km-navbar-mobile.svg';
+	$avatar_circle = '';
 	if( !is_user_logged_in() ){
-
-		$HTML .= '
-			
-			<nav class="navbar navbar-fixed-top bg-transparent">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-							<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
-						</button>
-						<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60" style="height: 60px;"></a>
-
-					</div>
-					<ul class="hidden-xs nav-login">
-						'.$menus_normal.'
-					</ul>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="'.get_home_url().'"/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-							<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
-
-							'.$menus_movil.'
-
-							<li><a href="'.get_home_url().'"/busqueda/" class="km-nav-link hidden-sm hidden-md hidden-lg">BUSCAR CUIDADOR</a></li>
-							<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg" >QUIERO SER CUIDADOR</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		';
-
 		include_once('partes/modal_login.php');
 	}else{
 		$current_user = wp_get_current_user();
 		$user_id = $current_user->ID;
-
-		$salir = wp_logout_url( home_url() );
-
 		$avatar = kmimos_get_foto($user_id);
-		$HTML .= '
-		<script> var AVATAR = "'.$avatar.'"; </script>
-		<nav class="navbar navbar-fixed-top bg-transparent nav-sesion">
+		$salir = wp_logout_url( home_url() );
+		$HTML .= '<script> var AVATAR = "'.$avatar.'"; </script>';
+		$avatar_circle = 'img-circle';
+	}
+
+	$HTML .= '	
+		<nav class="navbar navbar-fixed-top bg-transparent">
 			<div class="container">
-				<div class="navbar-header">
+				<div class="navbar-header ">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<img class="km-avatar" src="'.$avatar.'" width="40">
+						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
 					</button>
-					<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60" style="height: 60px;"></a>
-				</div>
+					<a class="navbar-brand" href="'.get_home_url().'">
+						<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
+					</a>
+				</div>';
+				if( !is_user_logged_in() ){
+					$HTML .= '	
+					<ul class="hidden-xs nav-login">
+						<li><a href="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
+						<li><a href="#popup-registrarte" style="padding-left: 15px; border-left: 1px solid white;" role="button" data-toggle="modal">REGISTRARME</a></li>
+					</ul>';
+				}
+				$HTML .= '	
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown hidden-xs">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 0px;"><img src="'.$avatar.'" style="width: 45px;"></a>
-							<ul class="dropdown-menu">
-								<li><a href="'.get_home_url().'/perfil-usuario/" style="padding: 19px 15px 15px;">MI PERFIL</a></li>
-								<li><a href="'.get_home_url().'/perfil-usuario/mascotas/" style="padding: 19px 15px 15px;">MIS MASCOTAS</a></li>
-								<li><a href="'.get_home_url().'/perfil-usuario/favoritos/" style="padding: 19px 15px 15px;">FAVORITOS</a></li>
-								<li><a href="'.get_home_url().'/perfil-usuario/historial/" style="padding: 19px 15px 15px;">HISTORIAL</a></li>
-								<li><a href="'.get_home_url().'/perfil-usuario/solicitudes/" style="padding: 19px 15px 15px;">MIS SOLICITUDES</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="'.wp_logout_url( "/" ).'" style="padding: 19px 15px 15px;">CERRAR SESIÓN</a></li>
+					<ul class="nav navbar-nav navbar-right">';
+					if( !is_user_logged_in() ){
+						$HTML .= '	
+						<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
+						<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">REGISTRARME</a></li>
+
+						<li class="hidden-sm hidden-md hidden-lg"><a href="km-resultado.html" class="km-nav-link">BUSCAR CUIDADOR</a></li>						
+						<li><a href="km-cuidador.html" class="km-btn-primary">QUIERO SER CUIDADOR</a></li>';
+					}else{
+						$HTML .= '	
+						<li class="dropdown hidden-xs hidden-sm " data-obj="avatar">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<img src="'.$avatar.'" width="60px" height="60px" class="img-circle"> 
+							</a>
+							<ul class="dropdown-menu"  style="background: #fff;">
+								'.$menus_normal.'
 							</ul>
-						</li>
-						<li><a href="'.get_home_url().'/perfil-usuario/" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">MI PERFIL</a></li>
-						<li><a href="'.get_home_url().'/perfil-usuario/mascotas/" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">MIS MASCOTAS</a></li>
-						<li><a href="'.get_home_url().'/perfil-usuario/favoritos/" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">FAVORITOS</a></li>
-						<li><a href="'.get_home_url().'/perfil-usuario/historial/" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">HISTORIAL</a></li>
-						<li><a href="'.get_home_url().'/perfil-usuario/solicitudes/" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">MIS SOLICITUDES</a></li>
-						<li><a href="'.$salir.'" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">CERRAR SESIÓN</a></li>
-					</ul>
-				</div>
+			        	</li>
+			        	<div class="hidden-md hidden-lg" style="background: #fff;">
+							'.$menus_normal.'
+						</div>
+			    		';
+			    	}
+	$HTML .= '			        	
+			    	</ul>
+			    </div>
 			</div>
 		</nav>
-		';
-	}
+	';
+
+
 	include_once('partes/modal_register.php');
 	echo comprimir_styles($HTML);
 /*

@@ -271,6 +271,12 @@ section {
 	position: relative;
 	top: 0;
 }
+.nav li ul li {
+	padding: 0px 10px 0px 10px;
+}
+.nav li {
+	padding: 10px 0px 10px 10px;
+}
 .nav>li>a {
 	line-height: 100%!important;
     text-align: left;
@@ -2205,6 +2211,9 @@ footer input:focus{
 	button.close:hover {
 		color: black;
 	}
+	.nav li ul li {
+		padding: 10px;
+	}
 }
 @media (min-width: 767px) {
 
@@ -2670,6 +2679,10 @@ footer input:focus{
 		right: 10px;
 		top: 5px;
 	}
+	.nav li ul li {
+		padding: 20px;
+	}
+
 }
 
 
@@ -3660,7 +3673,8 @@ section {
 .bg-white {
     background-color:#fff;
     box-shadow:0 4px 4px rgba(0, 0, 0, .25);
-    height:68px;
+    /*height:68px;*/
+    height: 77px;
     transition:background-color .5s ease 0s
 }
 .bg-white-secondary {
@@ -3670,7 +3684,7 @@ section {
 }
 .navbar {
     padding-top:30px;
-    min-height:60px;
+    min-height:77px;
     z-index:4
 }
 .navbar .container {

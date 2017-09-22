@@ -349,7 +349,7 @@
                         if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
                         $MENU["body"] .=
                             '<li>
-                                <a href="'.$value["url"].'" class="">
+                                <a href="'.$value["url"].'" class="pd-tb11 menu-link">
                                     '.$icono.'
                                     '.$value["name"].'
                                 </a>
