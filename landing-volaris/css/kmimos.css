@@ -600,7 +600,14 @@ footer aside{
 	padding-top: 50px;
 	padding-bottom: 30px;
 }
-
+.logo-kmimos{
+	width: 20%;
+	margin-top:10px;
+}
+.logo-volaris{
+	width: 40%;
+	margin-top:10px;
+}
 /*CG*/
 #section-4-cuadro {
 	z-index: 1;
@@ -949,7 +956,7 @@ footer aside{
 	    vertical-align: super;
 	}
 	.logo-kmimos {
-	    width: 65%;
+	    width: 60%;
 	}
 	#contactos img {
 		margin-left: 11%;
