@@ -294,7 +294,6 @@ function redimencionar(IMG_CACHE, CB){
 function validar(id){
     var e = jQuery("#"+id);
     var validaciones = String(e.attr("data-valid")).split(",");
-
     var error = false;
 
     jQuery.each(validaciones, function( index, value ) {
@@ -347,6 +346,7 @@ function pre_validar(elemento){
 function aplicar_error(id, error){
     if ( error  ) {
         if( jQuery("#error_"+id).hasClass( "no_error" ) ){
+
             jQuery("#error_"+id).removeClass("no_error");
             jQuery("#error_"+id).addClass("error");
         } 

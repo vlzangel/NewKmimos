@@ -344,7 +344,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 			$("#select_2, #select_3, #select_1").removeClass("km-opcionactivo");
 		});
 		$(this).toggleClass('km-opcionactivo');
-	    // $(this).children("input:checkbox").prop("checked", !$(this).children("input").prop("checked"));
+ $(this).children("input:checkbox").prop("checked", !$(this).children("input").prop("checked"));
 	});
 
 	$("#km-check-1").on('click', function() {

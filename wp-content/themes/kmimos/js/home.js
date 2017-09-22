@@ -4,6 +4,43 @@ var hasGPS=false;
     'use strict';
 
 
+    $(document).on('change', '[data-error="reset"]', function(e){
+        $( '#checkin' ).parent().removeClass('has-error');
+        $( '[data-error="checkin"]' ).addClass('hidden');
+
+        $( '#checkout' ).parent().removeClass('has-error');
+        $( '[data-error="checkout"]' ).addClass('hidden');
+
+console.log('datos');
+
+    });
+    $(document).on('click', '[data-action="validate"]', function(e){
+        validar_busqueda_home();
+    });
+
+    function validar_busqueda_home(){
+        var IN  = validar( 'checkin' );
+        var OUT = validar( 'checkout' );
+
+        $( '#checkin' ).parent().removeClass('has-error');
+        $( '[data-error="checkin"]' ).addClass('hidden');
+        $( '#checkout' ).parent().removeClass('has-error');
+        $( '[data-error="checkout"]' ).addClass('hidden');
+
+        if( IN ){
+            $( '#checkin' ).parent().addClass('has-error');
+            $( '[data-error="checkin"]' ).removeClass('hidden');
+        }
+        if( OUT ){
+            $( '#checkout' ).parent().addClass('has-error');
+            $( '[data-error="checkin"]' ).removeClass('hidden');
+        }
+
+        if( !IN && !OUT ){
+            $('#popup-servicios').modal('show');
+        }
+    }
+
     $('[data-target="patitas-felices"]').on('click', function(){
 
         if( $('#cp_email').val() != '' && $('#cp_nombre').val() != ''){
@@ -66,7 +103,6 @@ var hasGPS=false;
 
 
     $('.adicionales_button').on('click', function(){
-        console.log( "Hola");
         if( $('.modal_servicios').css('display') == 'none' ){
             $('.modal_servicios').css('display', 'table');
         }else{
