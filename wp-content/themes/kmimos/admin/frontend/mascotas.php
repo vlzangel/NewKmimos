@@ -18,7 +18,7 @@
                             <div class="mascotas_data">
                                 <h3 class="kmi_link">'.$pet->post_title.'</h3>
                                 <br>
-                                <img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png" width="50px">
+                                <img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg" width="50px">
                             </div>
                         </a>
                         <div class="mascotas_delete" data-img="'.$pet->ID.'">
@@ -30,10 +30,10 @@
         $CONTENIDO .= '</ul>';
     }else{
         $CONTENIDO .=  '
-            <p class="mascotas_vacio">
-                <img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png" width="50px">
+            <h1 class="mascotas_vacio">
+                <img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg" width="50px">
                 No tienes ninguna mascota cargada
-            </p>';
+            </h1>';
     }
 
 ?>

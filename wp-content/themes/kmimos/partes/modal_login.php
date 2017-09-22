@@ -77,11 +77,11 @@ $datos = kmimos_get_info_syte();
 					<div class="popuphide popup-olvidaste-contrasena">
 						<p class="popup-tit">¿OLVIDASTE TU CONTRASEÑA?</p>
 						<p>No te preocupes, a todos nos pasa. Ingresa tu correo electrónico y listo!</p>
-						<form id="form_recuperar">
+						<form id="form_recuperar" onsubmit="return false;">
 							<div class="km-box-form">
 								<div class="content-placeholder">
 									<div class="label-placeholder verify" style="margin: 20px 0;">
-										<input type="text" id="usuario" data-verify="noactive" placeholder="Ingresar dirección de email"  maxlength="30" class="verify_mail input-label-placeholder" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+										<input type="text" id="usuario" data-verify="noactive" placeholder="Ingresar dirección de email"  maxlength="30" class="verify_mail input-label-placeholder" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
 										<span class="verify_result"></span>
 									</div>
 									<div class="botones_box">

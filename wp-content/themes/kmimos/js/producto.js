@@ -40,6 +40,8 @@ function initCarrito(){
 			"deviceIdHiddenFieldName" : ""
 		};
 
+	CARRITO["cupones"] = [];
+
 	CARRITO["tarjeta"] = [];
 
 		CARRITO["tarjeta"] = {
@@ -78,9 +80,8 @@ function calcular(){
 
 	var tranporte = jQuery('#transporte option:selected').val();
 	if( tranporte != undefined && tranporte != "" ){
-		var text_temp = String(jQuery('#transporte option:selected').text() ).split("(");
 		CARRITO[ "transportacion" ] = [
-			"Transportaci&oacute;n - "+text_temp[0],
+			jQuery('#transporte option:selected').attr("data-value"),
 			parseFloat(tranporte)
 		];
 	}
@@ -201,14 +202,16 @@ function calcular(){
 	}
 	
 	if( error == "" ){
-		jQuery("#pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
-		jQuery("#pago_cuidador").html( "$" + numberFormat(cant/1.2) );
-		jQuery("#monto_total").html( "$" + numberFormat(cant) );
+		jQuery(".pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
+		jQuery(".pago_cuidador").html( "$" + numberFormat(cant/1.2) );
+		jQuery(".monto_total").html( "$" + numberFormat(cant) );
 
 		CARRITO["pagar"]["total"] = cant;
 
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").removeClass("disabled");
+
+		calcularDescuento();
 	}else{
 		jQuery("#reserva_btn_next_1").addClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").addClass("disabled");
@@ -375,7 +378,9 @@ function pagarReserva(id_invalido = false){
 		JSON.stringify( CARRITO["tarjeta"] )+"==="+
 		JSON.stringify( CARRITO["fechas"] )+"==="+
 		JSON.stringify( CARRITO["cantidades"] )+"==="+transporte+
-		JSON.stringify( CARRITO["adicionales"] );
+		JSON.stringify( CARRITO["adicionales"] )+"==="+
+		JSON.stringify( CARRITO["cupones"] )
+	;
 
 	jQuery.post(
 		HOME+"/procesos/reservar/pagar.php",
@@ -385,12 +390,136 @@ function pagarReserva(id_invalido = false){
 		},
 		function(data){
 			console.log( data );
-			location.href = RAIZ+"/finalizar/"+data.order_id;
+			//location.href = RAIZ+"/finalizar/"+data.order_id;
 		}, "json"
 	).fail(function(e) {
-    	console.log( "Error" );
     	console.log( e );
-    	pagarReserva(true);
+    	if( e.status == 500 ){
+    		//pagarReserva(true);
+    	}else{
+    		alert("Error al procesar la reserva!");
+    	}
+  	});
+}
+
+function eliminarCuponesHandler(){
+	jQuery(".cupones_desglose a").on("click", function(e){
+		e.preventDefault();
+		var tempCupones = [];
+		var id = jQuery(this).attr("data-id");
+		jQuery.each(CARRITO["cupones"], function( key, cupon ) {
+			if( cupon[0] != id ){
+				tempCupones.push(cupon);
+			}
+		});
+		CARRITO["cupones"] = tempCupones;
+		mostrarCupones();
+		eliminarCuponesHandler();
+		calcularDescuento();
+	});
+}
+
+function mostrarCupones(){
+	var items = "";
+	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
+		var nombreCupon = cupon[0];
+
+		if( nombreCupon != "" && cupon[1] > 0 ){
+			var eliminarCupo = '<a href="#" data-id="'+cupon[0]+'">Eliminar</a>';
+			if( nombreCupon.indexOf("saldo") > -1 ){
+				nombreCupon = "Saldo a favor";
+				eliminarCupo = "";
+			}
+			items += '<div class="km-option-resume-service">'
+			items += '	<span class="label-resume-service">'+nombreCupon+'</span>'
+			items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>'
+			items += '</div>';
+		}
+
+	});
+	if( items != "" ){
+		jQuery(".cupones_desglose div").html(items);
+		jQuery(".cupones_desglose").css("display", "block");
+	}else{
+		jQuery(".cupones_desglose").css("display", "none");
+	}
+	items = "";
+}
+
+function calcularDescuento(){
+	var descuentos = 0;
+	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
+		descuentos += parseFloat(cupon[1]);
+	});
+
+	jQuery(".km-price-total").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+
+	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
+	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
+	if( pre17 <= descuentos ){
+		if( pre17 < descuentos ){
+			var reciduo = pre17-descuentos;
+			pagoCuidador += reciduo;
+		}
+		pre17 = 0;
+	}else{
+		pre17 -= descuentos;
+	}
+
+	jQuery(".pago_17").html( "$" + numberFormat( pre17 ) );
+	jQuery(".pago_cuidador").html( "$" + numberFormat(pagoCuidador) );
+
+	jQuery(".sub_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]) );
+	if( descuentos == 0 ){
+		jQuery(".descuento").html( "$" + numberFormat(descuentos) );
+
+		jQuery(".sub_total").parent().css("display", "none");
+		jQuery(".descuento").parent().css("display", "none");
+	}else{
+		jQuery(".descuento").html( "$" + numberFormat(descuentos) );
+
+		jQuery(".sub_total").parent().css("display", "block");
+		jQuery(".descuento").parent().css("display", "block");
+	}
+	
+	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
+}
+
+function aplicarCupon(){
+
+	jQuery("#cupon_btn").html("Aplicando");
+	jQuery("#cupon_btn").addClass("disabled");
+
+	jQuery.post(
+		HOME+"/procesos/reservar/cupon.php",
+		{
+			cupon: jQuery("#cupon").val(),
+			cupones: CARRITO["cupones"],
+			total: CARRITO["pagar"]["total"],
+			cliente: cliente
+		},
+		function(data){
+			console.log( data );
+
+			if( data.error == undefined ){
+				CARRITO["cupones"] = data.cupones;
+
+				mostrarCupones();
+				eliminarCuponesHandler();
+				jQuery("#cupon").val("");
+
+				calcularDescuento();
+
+			}else{
+				alert(data.error);
+			}
+
+			jQuery("#cupon_btn").html("Cup&oacute;n");
+			jQuery("#cupon_btn").removeClass("disabled");
+
+		}, "json"
+	).fail(function(e) {
+    	console.log( e );
   	});
 }
 
@@ -412,6 +541,8 @@ jQuery(document).ready(function() {
 			jQuery(".km-col-steps").css("display", "none");
 			jQuery("#step_2").css("display", "block");
 			jQuery(document).scrollTop(0);
+		
+			aplicarCupon();
 		}
 		e.preventDefault();
 	});
@@ -420,14 +551,24 @@ jQuery(document).ready(function() {
 		jQuery(".km-col-steps").css("display", "none");
 		jQuery("#step_3").css("display", "block");
 		jQuery(document).scrollTop(0);
+
 		e.preventDefault();
+	});
+
+	jQuery("#cupon_btn").on("click", function(e){
+		e.preventDefault();
+		if( jQuery(this).hasClass("disabled") ){
+
+		}else{
+			aplicarCupon();
+		}
+
 	});
 
 	jQuery("#reserva_btn_next_3").on("click", function(e){
 		if( jQuery(this).hasClass("disabled") ){
-
+			alert("Debes aceptar los terminos y condiciones");
 		}else{
-			console.log("Entro");
 			CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
 			CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
 			if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
@@ -435,8 +576,18 @@ jQuery(document).ready(function() {
 			}else{
 				pagarReserva();
 			}
-		}
+	 	}
 		e.preventDefault();
+	});
+
+	jQuery("#atras_1").on("click", function(e){
+		jQuery(".km-col-steps").css("display", "none");
+		jQuery("#step_1").css("display", "block");
+	});
+
+	jQuery("#atras_2").on("click", function(e){
+		jQuery(".km-col-steps").css("display", "none");
+		jQuery("#step_2").css("display", "block");
 	});
 
 	jQuery("#step_3 input").on("keyup", function(e){
@@ -459,6 +610,19 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	$('#term-conditions').on("change", function ( e ) {
+		e.preventDefault();
+
+		if( !jQuery(this).hasClass("active") ){
+			jQuery(this).addClass("active");
+			jQuery("#reserva_btn_next_3").removeClass("disabled");
+		}else{
+			jQuery(this).removeClass("active");
+			jQuery("#reserva_btn_next_3").addClass("disabled");
+		}
+		
+	});
+
 	calcular();
 
 	/* Configuración Openpay */
@@ -479,21 +643,29 @@ jQuery(document).ready(function() {
 	    var error_callbak = function(response) {
 	        var desc = response.data.description != undefined ? response.data.description : response.message;
 	        jQuery(".errores_box").css("display", "block");
+	        error = "";
 	        switch( response.status ){
 	        	case 422:
-	        		alert("Numero invalido");
+	        		error = "Numero de tarjeta invalido";
 	        	break;
 	        	case 400:
 	        		switch( desc ){
 	        			case "cvv2 length must be 3 digits":
-	        				alert("Codigo invalido, debe ser de 3 digitos");
+	        				error = "Codigo invalido, debe ser de 3 digitos";
 	        			break;
 	        			case "The expiration date has already passed":
-	        				alert("Fecha de expirancion invalida");
+	        				error = "Fecha de expirancion invalida";
 	        			break;
 	        		}
 	        	break;
+	        	default:
+	        		error = "Error al procesar su solicitud ("+response.status+")";
+	        	break;
 	        }
+
+	        jQuery(".invalido").html(error);
+			jQuery(".valido").css("display", "none");
+			jQuery(".invalido").css("display", "block");
 	    };
 
    	/* Fin Configuración Openpay */

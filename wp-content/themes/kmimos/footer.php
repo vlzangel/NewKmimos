@@ -49,7 +49,6 @@ $HTML = '
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
     ';
 
-
     wp_enqueue_script('boostrap_js_plugins', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
 
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
@@ -57,6 +56,7 @@ $HTML = '
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
     wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
 
     if(  $_SESSION['admin_sub_login'] == 'YES' ){
         $HTML .= "

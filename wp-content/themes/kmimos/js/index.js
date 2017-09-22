@@ -82,19 +82,23 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 						verify_result.css('color','red');
 						verify_mail.parent('div').css('color','red');
 						verify_mail.css('color','red');
+						verify_mail.removeClass('correctly');
 
 						if(verify_data=='noactive'){
 							verify_result.html("E-mail correcto!");
 							verify_result.css('color','green');
+							verify_mail.addClass('correctly');
 						}
 
 	                }else if (response == 'NO'){
 						verify_result.html("E-mail disponible!");
 						verify_result.css('color','green');
+						verify_mail.addClass('correctly');
 
 						if(verify_data=='noactive'){
 							verify_result.html("Este E-mail no existe");
 							verify_result.css('color','red');
+							verify_mail.removeClass('correctly');
 						}
 
 	                }else if (response == 'NO_MAIL'){
@@ -102,6 +106,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 						verify_result.css('color','red');
 						verify_mail.parent('div').css('color','red');
 						verify_mail.css('color','red');
+						verify_mail.removeClass('correctly');
 					}
 	        }
 	    }); 
@@ -584,9 +589,9 @@ $(document).on('click','#login_submit.recover_pass',function(e){
 });
 
 $("form#form_recuperar").submit(function(){
-
-	var data_email = $(this).find("#usuario").val();
-	if (data_email != ""){
+	var mail = $(this).find("#usuario");
+	var data_email = mail.val();
+	if (data_email != "" && mail.hasClass('correctly')){
 		var datos = {
 			'email': data_email
 		};
@@ -599,4 +604,5 @@ $("form#form_recuperar").submit(function(){
 		$(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");
 		//alert("Revise sus datos por favor, debe llenar todos los campos");
 	}
+	return false;
 });

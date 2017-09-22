@@ -57,5 +57,11 @@
             '.$detalles_factura.'
         </div>
 
+    </div>
+
+    <div class="vlz_titulos_superior bottom">
+        <a href="'.get_home_url().'/perfil-usuario/reservas/" class="volver">
+            Volver
+        </a> - Detalles de la reserva - '.$orden.'
     </div>';
 ?>

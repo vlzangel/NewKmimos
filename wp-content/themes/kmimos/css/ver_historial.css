@@ -3,20 +3,29 @@
 	font-family: "Roboto Condensed",Arial, Helvetica, sans-serif;
 }
 .volver{
-    color: #59c9a8;
-    margin: 0px;
+	color: #000;
+	margin: 0px;
+	padding: 3px 10px;
+	border: solid 1px;
     display: inline-block;
 }
 .vlz_titulos_superior{
 	padding-bottom: 5px;
 	margin-bottom: 5px;
-	border-bottom: solid 2px #59c9a8;
+	border-bottom: solid 2px #CCC;
 	font-weight: 600;
 }
+
+.vlz_titulos_superior.bottom {
+	padding-top: 5px;
+	margin-top: 5px;
+	border-top: solid 2px #CCC;
+}
+
 .vlz_titulos_tablas {
-    background: #59c9a8;
+    background: #FFF;
     padding: 8px;
-    color: #FFF;
+    color: #000;
     font-weight: 600;
 }
 .vlz_contenido_tablas {

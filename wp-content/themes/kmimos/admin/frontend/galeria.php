@@ -35,8 +35,8 @@
     $CONTENIDO .= "</ul>";
     if(!$exist_file){
         $CONTENIDO .=  '
-        <p class="mascotas_vacio">
+        <h1 class="mascotas_vacio">
             No tienes ninguna foto cargada
-        </p>';
+        </h1>';
     }
 ?>
