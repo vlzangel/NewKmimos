@@ -30,10 +30,10 @@
         $CONTENIDO .= '</ul>';
     }else{
         $CONTENIDO .=  '
-            <p class="mascotas_vacio">
-                <img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png" width="50px">
+            <h1 class="mascotas_vacio">
+                <img src="'.get_home_url().'/wp-content/themes/kmimos/images/icons/icon-hueso-color.svg" width="50px">
                 No tienes ninguna mascota cargada
-            </p>';
+            </h1>';
     }
 
 ?>
