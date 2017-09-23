@@ -118,7 +118,7 @@
 
 		$saldoTXT = "";
 		if( $saldo["saldo"][0] > 0 ){
-			$saldoTXT = "var saldo = ['".$saldo["saldo"]."', '".$saldo["saldo"][0]."'];";
+			$saldoTXT = $saldo["cupon"];
 		}
 
 		echo "
@@ -130,7 +130,6 @@
 			var cliente = '".$id_user."'; 
 			var cuidador = '".$cuidador->id_post."'; 
 			var email = '".$email."'; 
-			{$saldoTXT}
 		</script>";
 
 		$HTML .= '
@@ -310,7 +309,7 @@
 
 						<div class="km-cupones">
 							<div>
-								<input type="text" id="cupon" value="'.$saldo["cupon"].'">
+								<input type="text" id="cupon" value="'.$saldoTXT.'">
 							</div>
 							<div class="">
 								<span id="cupon_btn">Cup&oacute;n</span>
@@ -372,7 +371,10 @@
 									<div class="items_reservados"></div>
 								</div>
 
-								<div class="cupones_desglose km-option-resume"></div>
+								<div class="cupones_desglose km-option-resume">
+									<span class="label-resume">Descuentos</span>
+									<div></div>
+								</div>
 
 								<div class="km-services-total">
 									<span class="km-text-total">TOTAL</span>
@@ -513,10 +515,6 @@
 	 	';
 
 		echo comprimir_styles($HTML);
-
-		echo "<pre>";
-			print_r($saldo);
-		echo "</pre>";
 
     get_footer(); 
 ?>

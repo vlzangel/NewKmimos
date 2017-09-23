@@ -368,7 +368,7 @@ function pagarReserva(id_invalido = false){
 	jQuery("#reserva_btn_next_3").html("Procesando");
 	jQuery("#reserva_btn_next_3").addClass("disabled");
 
-	var transporte = []+"===";
+	var transporte = "==="; 
 	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
 		transporte = JSON.stringify( CARRITO["transportacion"] )+"===";
 	}
@@ -390,12 +390,13 @@ function pagarReserva(id_invalido = false){
 		},
 		function(data){
 			console.log( data );
-			//location.href = RAIZ+"/finalizar/"+data.order_id;
+			location.href = RAIZ+"/finalizar/"+data.order_id;
 		}, "json"
 	).fail(function(e) {
+    	console.log( "Error" );
     	console.log( e );
     	if( e.status == 500 ){
-    		//pagarReserva(true);
+    		pagarReserva(true);
     	}else{
     		alert("Error al procesar la reserva!");
     	}

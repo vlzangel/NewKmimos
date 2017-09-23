@@ -5,7 +5,7 @@
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");
 	include_once("../funciones/config.php");
-	//include_once("../../lib/openpay/Openpay.php");
+	include_once("../../lib/openpay/Openpay.php");
 
 	include_once("reservar.php");
 
@@ -142,6 +142,11 @@
 
     $adicionales = generarAdicionales($adicionales);
 
+    $titulo_pago = "Tarjeta";
+    if( $pagar->tipo == "tienda" ){
+    	$titulo_pago = "Tienda";
+    }
+
     $data_reserva = array(
 		"servicio" 				=> $pagar->servicio,
 		"titulo_servicio" 		=> $pagar->name_servicio,
@@ -155,7 +160,7 @@
 		"monto" 				=> $pagar->total,
 		"num_mascotas" 			=> $num_mascotas,
 		"metodo_pago" 			=> $pagar->tipo,
-		"metodo_pago_titulo" 	=> $pagar->tipo,
+		"metodo_pago_titulo" 	=> $titulo_pago,
 		"moneda" 				=> "MXN",
 		"duracion_formato" 		=> $fechas->duracion,
 		"mascotas" 				=> $mascotas,
@@ -204,11 +209,6 @@
 
     $db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 
-    echo json_encode(array(
-		"pagar"  => $pagar
-	));
-    
-    /*
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
@@ -251,7 +251,7 @@
 		   	);
 		   	$customer = $openpay->customers->add($customerData);
 
-		   	update_user_meta($pagar->cliente, '_openpay_customer_id', $customer->id);
+		   	$db->query("UPDATE wp_usermeta SET meta_value = '{$customer->id}' WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id';");
 	   	}
 
 	   	switch ( $pagar->tipo ) {
@@ -376,6 +376,5 @@
 			"Data"  => $_POST
 		));
 	}
-	*/
 
 ?>
