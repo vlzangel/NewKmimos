@@ -624,6 +624,12 @@ jQuery(document).ready(function() {
 		
 	});
 
+	jQuery("#mes").on("keyup", function(e){
+		if( jQuery("#mes").val().length == 2 ){
+			jQuery("#anio").focus();
+		}
+	});
+
 	calcular();
 
 	/* Configuración Openpay */
