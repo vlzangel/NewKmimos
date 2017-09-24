@@ -35,8 +35,9 @@ function initMap() {
 	e.parentNode.insertBefore(map, e);
 })(document,"script");
 
-var comentarios_cuidador = [];
 
+
+var comentarios_cuidador = [];
 function comentarios(pagina = 0){
 	var bond_total=0;
 	var bond_porcent=0;
@@ -117,15 +118,7 @@ function get_huesitos(valor){
 }
 
 jQuery( document ).ready(function() {
-	jQuery.post(
-		HOME+"/procesos/cuidador/comentarios.php",
-		{
-			servicio: SERVICIO_ID
-		}, function(data){
-			comentarios_cuidador = data;
-			comentarios();
-		}, "json"
-	);
+	GetComments();
 
 	function perfil_login(accion){
 		//jQuery.cookie("POST_LOGIN", accion);

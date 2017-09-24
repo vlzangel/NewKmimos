@@ -44,5 +44,5 @@ $(document).on('click','.km-link-favorito',function(){
     fav.data('active',result['active']);
     fav.attr('data-active',result['active']);
     //fav.addClass(result['active']);
-    console.log(result);
+    //console.log(result);
 });

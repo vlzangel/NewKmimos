@@ -1,11 +1,16 @@
 <?php
-	include("../../../../../vlz_config.php");
-	include("../funciones/db.php");
-	include("../funciones/generales.php");
 
-	$conn = new mysqli($host, $user, $pass, $db);
-	$db = new db($conn);
+//$conn = new mysqli($host, $user, $pass, $db);
+//$db = new db($conn);
 
+	$load = dirname(__DIR__,5).'/wp-load.php';
+	if(file_exists($load)){
+		include_once($load);
+	}
+
+	include_once(dirname(__DIR__,5).'/vlz_config.php');
+	include_once(dirname(__DIR__).'/funciones/db.php');
+	include_once(dirname(__DIR__).'/funciones/generales.php');
 	extract($_POST);
 
 	$sql = "
@@ -30,13 +35,11 @@
 		ORDER BY comentario.comment_ID DESC
 	";
 
-	$comentarios = $db->get_results($sql);
-
 	$resultado = array();
-
+	$comentarios = $wpdb->get_results($sql);
 	foreach ($comentarios as $comentario) {
 
-		$user_id = $db->get_var("SELECT ID FROM wp_users WHERE user_email = '{$comentario->cliente_email}' ");
+		$user_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$comentario->cliente_email}' ");
 
 		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 	    $inicio = strtotime( $comentario->fecha );

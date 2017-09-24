@@ -30,8 +30,14 @@
             }
             
             $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo' ");
-            if( empty($name_photo)  ){ $name_photo = "0"; }
-            //if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg";  }
+            if( empty($name_photo)  ){
+                $name_photo = "0";
+            }
+            /*
+            if( count(explode(".", $name_photo)) == 1 ){
+                $name_photo .= "jpg";
+            }
+            */
             $base = path_base();
 
             //echo $base."/wp-content/uploads/{$sub_path}{$name_photo}\n";
