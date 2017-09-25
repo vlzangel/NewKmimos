@@ -35,9 +35,12 @@ function initMap() {
 	e.parentNode.insertBefore(map, e);
 })(document,"script");
 
-var comentarios_cuidador = [];
 
+
+var comentarios_cuidador = [];
 function comentarios(pagina = 0){
+	var bond_total=0;
+	var bond_porcent=0;
 	var comentario = '';
 	jQuery.each(comentarios_cuidador, function( pagina, cuidador ) {
 		comentario += '	<div class="km-comentario">';
@@ -78,11 +81,29 @@ function comentarios(pagina = 0){
 		comentario += '			</div>';
 		comentario += '		</div>';
 		comentario += '	</div>';
+
+		var bond_testimony=0;
+			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["confianza"]);
+			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["limpieza"]);
+			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["puntualidad"]);
+			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["cuidado"]);
+
+		bond_total=bond_total+bond_testimony;
+
 	});
 
-	//console.log(comentario);
+	bond_total=bond_total/(comentarios_cuidador.length*4);
+	bond_porcent=bond_total*(100/5);
 
+	var bond = '<div class="km-ranking">';
+		bond += get_huesitos(bond_total);
+		bond += '</div>';
+
+	//console.log(comentario);
 	jQuery("#comentarios_box").html( comentario );
+	jQuery(".km-review .km-calificacion").html( comentarios_cuidador.length );
+	jQuery(".km-review .km-calificacion-icono p").html(parseInt(bond_porcent)+'% Lo recomienda');
+	jQuery(".km-review .km-calificacion-bond").html(bond);
 }
 
 function get_huesitos(valor){
@@ -97,15 +118,7 @@ function get_huesitos(valor){
 }
 
 jQuery( document ).ready(function() {
-	jQuery.post(
-		HOME+"/procesos/cuidador/comentarios.php",
-		{
-			servicio: SERVICIO_ID
-		}, function(data){
-			comentarios_cuidador = data;
-			comentarios();
-		}, "json"
-	);
+	GetComments();
 
 	function perfil_login(accion){
 		//jQuery.cookie("POST_LOGIN", accion);

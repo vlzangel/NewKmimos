@@ -191,7 +191,7 @@
         	$id_hospedaje = $servicio->ID;
         }
 
-        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' AND post_status = 'publish' ");
+        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' ");// AND post_status = 'publish'
         foreach ($tamanos_servicio as $tamano ) {
         	$activo = false;
         	if( isset($busqueda["servicios"]) ){
@@ -204,15 +204,17 @@
 	        		$activo = true;
 	        	}
         	}
-        	$tamanos .= get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"]);
+
+        	$tamanos .= get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"],$tamano->post_status);
         }
 		$productos .= '
 		<div class="col-xs-12 col-md-6">
-			<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="km-ficha-servicio">
+			<div class="km-ficha-servicio">
+			<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class=""></a>
 				'.$titulo.'
-				<p>SELECCIÓN SEGÚN TAMAÑO</p>
+				<!--p>SELECCIÓN SEGÚN TAMAÑO</p-->
 				'.$tamanos.'
-			</a>
+			</div>
 		</div>';
 	}
 
@@ -417,30 +419,30 @@
 				</div>
 			</div>
 		</div>
-
-		<div id="km-comentario" class="km-ficha-info">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-sm-offset-3 col-sm-6">
-						<div class="km-review">
-							<p class="km-tit-ficha">COMENTARIOS</p>
-							<div class="km-calificacion">4</div>
-							<div class="km-calificacion-icono">
-								<div>iconos</div>
-								<p>85% Lo recomienda</p>
-							</div>
-						</div>
-
-						<a href="#" class="km-btn-comentario">ESCRIBE UN COMENTARIO</a>
-
-						<div id="comentarios_box"> </div>
-					</div>
-				</div>
-			</div>
-		</div>
  	';
 
 	echo comprimir_styles($HTML);
-
-	get_footer(); 
 ?>
+
+<div id="km-comentario" class="km-ficha-info">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-offset-3 col-sm-6">
+				<div class="km-review">
+					<p class="km-tit-ficha">COMENTARIOS</p>
+					<div class="km-calificacion">0</div>
+					<div class="km-calificacion-icono">
+						<div class="km-calificacion-bond"></div>
+						<p>0% Lo recomienda</p>
+					</div>
+				</div>
+
+				<a href="javascript:;" class="km-btn-comentario" onclick="jQuery('.BoxComment').fadeToggle();">ESCRIBE UN COMENTARIO</a>
+				<div class="BoxComment"><?php comments_template('/template/comment.php'); ?></div>
+				<div id="comentarios_box"> </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php get_footer(); ?>

@@ -6,7 +6,8 @@
     }
 
     header('Content-Type: application/json; charset=UTF-8;');
-global $_REQUEST;
+    global $_REQUEST;
+
     $fav_item = '';
     $fav_active = '';
     $results = array();

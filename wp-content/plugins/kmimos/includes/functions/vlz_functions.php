@@ -60,7 +60,7 @@
             $deposito = unserialize( $items['_wc_deposit_meta'] );
 
             $saldo = 0;
-
+            
             if( $deposito['enable'] == 'yes' ){
                 $saldo = $deposito['deposit'];
             }else{
@@ -68,11 +68,18 @@
             }
 
             $descuento = 0;
-            if( $metas_orden[ "_cart_discount" ][0] != "" ){
-                $descuento = $metas_orden[ "_cart_discount" ][0]+0;
+            $order_item_id = $wpdb->get_var("SELECT order_item_id FROM wp_woocommerce_order_items WHERE order_id = '{$id_orden}' AND order_item_type = 'coupon' AND order_item_name LIKE '%saldo-%'"); 
+            if( $order_item_id != '' ){
+                $descuento = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$order_item_id}' AND meta_key = 'discount_amount' ");
             }
 
-            if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'openpay_stores'){ 
+            $otros_cupones = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$id_orden}' AND order_item_type = 'coupon' AND order_item_name NOT LIKE '%saldo-%'");
+            foreach ($otros_cupones as $key => $value) {
+                $cupon_id = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_title = '{$value->order_item_name}'");
+                $wpdb->query("DELETE FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = '_used_by' AND meta_value = '{$id_cliente}'");
+            }
+
+            if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'tienda'){
                 $saldo = $descuento;  
             }else{
                 $saldo += $descuento;                

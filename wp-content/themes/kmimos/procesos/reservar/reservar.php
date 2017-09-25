@@ -4,6 +4,7 @@ class Reservas {
     
     private $db;
     private $data;
+    private $user_id;
 
     public $sql;
 
@@ -19,6 +20,8 @@ class Reservas {
         $this->new_item();
 
         extract($this->data);
+
+        $this->user_id = $cliente;
 
         $sql = "
             INSERT INTO
@@ -243,14 +246,22 @@ class Reservas {
             $this->db->query( utf8_decode( "INSERT INTO wp_woocommerce_order_items VALUES (NULL, '{$cupon[0]}', 'coupon', '{$order}');" ) );
             $id_item = $this->db->insert_id();
 
+            $saldo = $this->db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id='{$this->user_id}' AND meta_key='kmisaldo'");
+            if( strpos($cupon[0], "saldo") !== false  ){
+                $saldo -= $cupon[1];
+                $this->db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$this->user_id} AND meta_key = 'kmisaldo';");
+            }else{
+                $id_cupon = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title='{$cupon[0]}' AND post_type='shop_coupon'");
+                $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', '_used_by', '{$this->user_id}');" ) );
+            }
+
             $sql = "
                 INSERT INTO wp_woocommerce_order_itemmeta VALUES
                     (NULL, '{$id_item}', 'discount_amount',     '{$cupon[1]}'),
                     (NULL, '{$id_item}', 'discount_amount_tax', '0');
             ";
-            $this->db->multi_query( utf8_decode($sql) );
 
-            // TODO: Agregar meta de uso de cupon
+            $this->db->multi_query( utf8_decode($sql) );
         }
 
     }
