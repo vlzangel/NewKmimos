@@ -145,6 +145,17 @@
 			}
 		}
 
+		echo "
+		<script> 
+			var SERVICIO_ID = '".get_the_ID()."';
+			var cupos = eval('".json_encode($cupos)."'); 
+			var tipo_servicio = '".$tipo."'; 
+			var name_servicio = '".$servicio_name."'; 
+			var cliente = '".$id_user."'; 
+			var cuidador = '".$cuidador->id_post."'; 
+			var email = '".$email."'; 
+		</script>";
+
 		if( $error != "" ){
 			$actual = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 			$referencia = $_SERVER['HTTP_REFERER'];
@@ -182,17 +193,6 @@
 				</div>
 			</div>";
 		}else{
-
-			echo "
-			<script> 
-				var SERVICIO_ID = '".get_the_ID()."';
-				var cupos = eval('".json_encode($cupos)."'); 
-				var tipo_servicio = '".$tipo."'; 
-				var name_servicio = '".$servicio_name."'; 
-				var cliente = '".$id_user."'; 
-				var cuidador = '".$cuidador->id_post."'; 
-				var email = '".$email."'; 
-			</script>";
 
 			$HTML .= '
 		 		<form id="reservar" class="km-content km-content-reservation">

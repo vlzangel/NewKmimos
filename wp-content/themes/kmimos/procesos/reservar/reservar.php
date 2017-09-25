@@ -247,7 +247,7 @@ class Reservas {
             $id_item = $this->db->insert_id();
 
             $saldo = $this->db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id='{$this->user_id}' AND meta_key='kmisaldo'");
-            if( strpos($cupon[0], "saldo") ){
+            if( strpos($cupon[0], "saldo") !== false  ){
                 $saldo -= $cupon[1];
                 $this->db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$this->user_id} AND meta_key = 'kmisaldo';");
             }else{
@@ -260,7 +260,7 @@ class Reservas {
                     (NULL, '{$id_item}', 'discount_amount',     '{$cupon[1]}'),
                     (NULL, '{$id_item}', 'discount_amount_tax', '0');
             ";
-            
+
             $this->db->multi_query( utf8_decode($sql) );
         }
 
