@@ -101,22 +101,6 @@
 	    ';
     }
 
-    $option_tamanos_mascotas = '';
-    $tamanos_mascotas = kmimos_get_sizes_of_pets();
-    foreach ($tamanos_mascotas as $opt_key => $opt_value) {
-	    $option_tamanos_mascotas .= '
-		<li>
-	    	<a>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="servicios[]" value="'.$opt_value.'"> '.$opt_value['name'].'
-					</label>
-				</div>
-	    	</a>
-	    </li>
-	    ';
-    }
-
     $option_tipo_servicio = '';
     $tipo_servicio = get_tipo_servicios();
     foreach ($tipo_servicio as $opt_key => $opt_value) {
@@ -132,6 +116,23 @@
 	    </li>
 	    ';
     }	
+
+    $option_tamanos_mascotas = '';
+    $tamanos_mascotas = kmimos_get_sizes_of_pets();
+    foreach ($tamanos_mascotas as $opt_key => $opt_value) {
+	    $option_tamanos_mascotas .= '
+		<li>
+	    	<a>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="tamanos[]" value="'.$opt_value.'"> '.$opt_value['name'].'
+					</label>
+				</div>
+	    	</a>
+	    </li>
+	    ';
+    }
+
 
     $HTML = '
 		<div class="header-search" style="background-image:url('.getTema().'/images/new/km-fondo-buscador.gif);">

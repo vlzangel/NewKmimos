@@ -283,6 +283,9 @@ $(document).ready(function(){
 			if(typeof calcular === 'function') {
 				calcular();
 			}
+			if(typeof validar_busqueda_home === 'function') {
+				validar_busqueda_home();
+			}
 		},
 		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
 		firstDay: 1,
