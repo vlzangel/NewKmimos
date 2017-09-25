@@ -52,7 +52,7 @@ var map;
 function initMap() {
 	if( pines.length > 0 ){
 		map = new google.maps.Map(document.getElementById("mapa"), {
-	        zoom: 3,
+	        zoom: 5,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP,
 	        fullscreenControl: true,
 			scrollwheel: false
