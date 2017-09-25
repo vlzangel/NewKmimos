@@ -14,7 +14,8 @@ $(document).on("click", '[data-target="#popup-registro-cuidador1"]' ,function(e)
 	$(".popup-registro-exitoso-final").hide();
 
 	$(".popup-registro-cuidador").fadeIn("fast");
-	$( $(this).data('target') ).modal('show');
+
+	jQuery( $(this).data('target') ).modal('show');
 });
 
 $(document).on("click", '.popup-registro-cuidador .km-btn-popup-registro-cuidador', function ( e ) {

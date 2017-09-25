@@ -4,6 +4,10 @@ var hasGPS=false;
     'use strict';
 
     
+    $('#servicios_adicionales').on('click', function () {
+       $('#servicios_adicionales').dropdown('show');
+    });
+    
     $(document).on('click', '[data-action="validate"]', function(e){
         if( validar_busqueda_home() ){
             $('#popup-servicios').modal('show');

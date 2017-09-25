@@ -55,7 +55,7 @@
 				</div>
 			</div>
 
-			<form id="buscador" class="km-cuidador" method="POST" action="'.get_home_url().'/busqueda">
+			<form id="buscador" class="km-cuidador" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
 				<div class="container">
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">

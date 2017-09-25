@@ -1,8 +1,8 @@
 <?php
-
+	session_start();
 	include(__DIR__."/../../../../../vlz_config.php");
 	include(__DIR__."/../funciones/db.php");
-	
+
 	$conn = new mysqli($host, $user, $pass, $db);
 	$db = new db($conn); 
 
@@ -11,6 +11,16 @@
 	$ubicaciones_filtro = "";
 	$latitud = (isset($latitud))? $latitud: "";
 	$longitud = (isset($longitud))? $longitud: "";
+
+	// Ordenar busqueda 
+	if( isset($_GET['o']) ){
+		$data = [];
+		if( $_SESSION['busqueda'] != '' ){
+			$data = unserialize($_SESSION['busqueda']);
+			$data['orderby'] = $_GET['o'];
+			$_POST = $data;
+		}
+	}
 
 	extract($_POST);
 
@@ -188,7 +198,7 @@
 		}
     }
 
-	session_start();
+
 
 	$pines_json = json_encode($pines);
     $pines_json = "<script>var pines = eval('".$pines_json."');</script>";
@@ -247,5 +257,4 @@
 
     /* FIN Funciones */
 
-	//header("location: {$home}busqueda/");
-?>
+	header("location: {$home}busqueda/");
