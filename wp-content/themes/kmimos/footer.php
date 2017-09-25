@@ -52,6 +52,7 @@ $HTML = '
     ';
 
     //wp_enqueue_script('bootstrap.minjs', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", array("jquery"), '1.0.0');
+    //wp_enqueue_script('jquery.datepickx', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');

@@ -173,7 +173,7 @@ $HTML .='
 									<input type="text" name="color_mascota" id="color_mascota" class="input-label-placeholder">
 								</div>
 								<div class="km-fecha-nacimiento">
-									<input type="text" name="date_from" id="datepets" placeholder="Fecha de Nacimiento" class="date_from" readonly>
+									<input type="text" name="date_birth" id="datepets" placeholder="Fecha de Nacimiento" class="date_birth" readonly>
 								</div>
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion" name="genero_mascota" id="genero_mascota">

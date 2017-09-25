@@ -9017,6 +9017,10 @@ textarea.vlz_input {
 	border: none;
 }
 
+/*DatePicker*/
+.datepick-popup{
+	z-index: 2000 !important;
+}
 
 /* Modal Subscribe - HOME */
 #PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}
