@@ -3,43 +3,12 @@ var hasGPS=false;
 (function($) {
     'use strict';
 
-
-    $(document).on('change', '[data-error="reset"]', function(e){
-        $( '#checkin' ).parent().removeClass('has-error');
-        $( '[data-error="checkin"]' ).addClass('hidden');
-
-        $( '#checkout' ).parent().removeClass('has-error');
-        $( '[data-error="checkout"]' ).addClass('hidden');
-
-console.log('datos');
-
-    });
+    
     $(document).on('click', '[data-action="validate"]', function(e){
-        validar_busqueda_home();
-    });
-
-    function validar_busqueda_home(){
-        var IN  = validar( 'checkin' );
-        var OUT = validar( 'checkout' );
-
-        $( '#checkin' ).parent().removeClass('has-error');
-        $( '[data-error="checkin"]' ).addClass('hidden');
-        $( '#checkout' ).parent().removeClass('has-error');
-        $( '[data-error="checkout"]' ).addClass('hidden');
-
-        if( IN ){
-            $( '#checkin' ).parent().addClass('has-error');
-            $( '[data-error="checkin"]' ).removeClass('hidden');
-        }
-        if( OUT ){
-            $( '#checkout' ).parent().addClass('has-error');
-            $( '[data-error="checkin"]' ).removeClass('hidden');
-        }
-
-        if( !IN && !OUT ){
+        if( validar_busqueda_home() ){
             $('#popup-servicios').modal('show');
         }
-    }
+    });
 
     $('[data-target="patitas-felices"]').on('click', function(){
 
@@ -214,3 +183,27 @@ function close_video(){
     $(".modal_video iframe").attr("src", "");
     $(".modal_video").hide();
 }
+
+function validar_busqueda_home(){
+        var IN  = validar( 'checkin' );
+        var OUT = validar( 'checkout' );
+
+        $( '#checkin' ).parent().removeClass('has-error');
+        $( '[data-error="checkin"]' ).addClass('hidden');
+        $( '#checkout' ).parent().removeClass('has-error');
+        $( '[data-error="checkout"]' ).addClass('hidden');
+
+        if( IN ){
+            $( '#checkin' ).parent().addClass('has-error');
+            $( '[data-error="checkin"]' ).removeClass('hidden');
+        }
+        if( OUT ){
+            $( '#checkout' ).parent().addClass('has-error');
+            $( '[data-error="checkin"]' ).removeClass('hidden');
+        }
+
+        if( !IN && !OUT ){
+            return true;
+        }
+        return false;
+    }

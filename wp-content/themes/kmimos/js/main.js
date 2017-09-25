@@ -283,6 +283,9 @@ $(document).ready(function(){
 			if(typeof calcular === 'function') {
 				calcular();
 			}
+			if(typeof validar_busqueda_home === 'function') {
+				validar_busqueda_home();
+			}
 		},
 		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
 		firstDay: 1,
@@ -395,12 +398,16 @@ $(document).ready(function(){
 			$(".page-reservation .km-services-total").slideUp("fast");
 			
 			CARRITO["pagar"]["metodo"] = "deposito";
+
 		} else {
 			$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
 			$(".page-reservation .km-services-total").slideDown("fast");
 			CARRITO["pagar"]["metodo"] = "completo";
 		}
 		
+		if(typeof calcularDescuento === 'function') {
+			calcularDescuento();
+		}
 	});
 
 	$(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {

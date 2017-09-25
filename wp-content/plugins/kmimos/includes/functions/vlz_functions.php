@@ -95,72 +95,69 @@
         function kmimos_cupon_saldo($monto_cupon){
             global $wpdb;
             
-            if( $monto_cupon > 0){
-                global $current_user;
+            global $current_user;
+            $id_cupon = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_name='saldo-{$current_user->ID}'");
+            if( $id_cupon == NULL ){
+                date_default_timezone_set('America/Mexico_City');
+                $hoy = date("Y-m-d H:i:s");
+                $id_cupon = $wpdb->insert('wp_posts', array(
+                    "ID" => NULL,
+                    "post_author" => $current_user->ID,
+                    "post_date" => $hoy,
+                    "post_date_gmt" => $hoy,
+                    "post_content" => "",
+                    "post_title" => "saldo-".$current_user->ID,
+                    "post_excerpt" => "",
+                    "post_status" => "publish",
+                    "comment_status" => "closed",
+                    "ping_status" => "closed",
+                    "post_password" => "",
+                    "post_name" => "saldo-".$current_user->ID,
+                    "to_ping" => "",
+                    "pinged" => "",
+                    "post_modified" => $hoy,
+                    "post_modified_gmt" => $hoy,
+                    "post_content_filtered" => "",
+                    "post_parent" => 0,
+                    "guid" => get_home_url()."/?post_type=shop_coupon&#038;p=",
+                    "menu_order" => 0,
+                    "post_type" => "shop_coupon",
+                    "post_mime_type" => "",
+                    "comment_count" => 0
+                ));
                 $id_cupon = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_name='saldo-{$current_user->ID}'");
-                if( $id_cupon == NULL ){
-                    date_default_timezone_set('America/Mexico_City');
-                    $hoy = date("Y-m-d H:i:s");
-                    $id_cupon = $wpdb->insert('wp_posts', array(
-                        "ID" => NULL,
-                        "post_author" => $current_user->ID,
-                        "post_date" => $hoy,
-                        "post_date_gmt" => $hoy,
-                        "post_content" => "",
-                        "post_title" => "saldo-".$current_user->ID,
-                        "post_excerpt" => "",
-                        "post_status" => "publish",
-                        "comment_status" => "closed",
-                        "ping_status" => "closed",
-                        "post_password" => "",
-                        "post_name" => "saldo-".$current_user->ID,
-                        "to_ping" => "",
-                        "pinged" => "",
-                        "post_modified" => $hoy,
-                        "post_modified_gmt" => $hoy,
-                        "post_content_filtered" => "",
-                        "post_parent" => 0,
-                        "guid" => get_home_url()."/?post_type=shop_coupon&#038;p=",
-                        "menu_order" => 0,
-                        "post_type" => "shop_coupon",
-                        "post_mime_type" => "",
-                        "comment_count" => 0
-                    ));
-                    $id_cupon = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_name='saldo-{$current_user->ID}'");
-                    $wpdb->query("UPDATE wp_posts SET guid = '".get_home_url()."/?post_type=shop_coupon&#038;p=".$id_cupon."' WHERE ID = ".$id_cupon);
-                    $wpdb->query("
-                        INSERT INTO wp_postmeta VALUES
-                            (NULL, ".$id_cupon.", 'discount_type', 'fixed_cart'),
-                            (NULL, ".$id_cupon.", 'coupon_amount', '{$monto_cupon}'),
-                            (NULL, ".$id_cupon.", 'individual_use', 'no'),
-                            (NULL, ".$id_cupon.", 'product_ids', ''),
-                            (NULL, ".$id_cupon.", 'exclude_product_ids', ''),
-                            (NULL, ".$id_cupon.", 'usage_limit', '0'),
-                            (NULL, ".$id_cupon.", 'usage_limit_per_user', '0'),
-                            (NULL, ".$id_cupon.", 'limit_usage_to_x_items', ''),
-                            (NULL, ".$id_cupon.", 'expiry_date', ''),
-                            (NULL, ".$id_cupon.", 'free_shipping', 'no'),
-                            (NULL, ".$id_cupon.", 'exclude_sale_items', 'no'),
-                            (NULL, ".$id_cupon.", 'product_categories', 'a:0:{}'),
-                            (NULL, ".$id_cupon.", 'exclude_product_categories', 'a:0:{}'),
-                            (NULL, ".$id_cupon.", 'minimum_amount', ''),
-                            (NULL, ".$id_cupon.", 'maximum_amount', ''),                    
-                            (NULL, ".$id_cupon.", 'customer_email', 'a:0:{}');
-                    ");
-                }else{
-                    $sqls = array(
-                        "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit'",
-                        "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit_per_user'",
-
-                        "UPDATE wp_postmeta SET meta_value = '{$monto_cupon}' WHERE post_id = ".$id_cupon." AND meta_key = 'coupon_amount'"
-                    );
-                    foreach ($sqls as $sql) {
-                        $wpdb->query($sql);
-                    }
+                $wpdb->query("UPDATE wp_posts SET guid = '".get_home_url()."/?post_type=shop_coupon&#038;p=".$id_cupon."' WHERE ID = ".$id_cupon);
+                $wpdb->query("
+                    INSERT INTO wp_postmeta VALUES
+                        (NULL, ".$id_cupon.", 'discount_type', 'fixed_cart'),
+                        (NULL, ".$id_cupon.", 'coupon_amount', '{$monto_cupon}'),
+                        (NULL, ".$id_cupon.", 'individual_use', 'no'),
+                        (NULL, ".$id_cupon.", 'product_ids', ''),
+                        (NULL, ".$id_cupon.", 'exclude_product_ids', ''),
+                        (NULL, ".$id_cupon.", 'usage_limit', '0'),
+                        (NULL, ".$id_cupon.", 'usage_limit_per_user', '0'),
+                        (NULL, ".$id_cupon.", 'limit_usage_to_x_items', ''),
+                        (NULL, ".$id_cupon.", 'expiry_date', ''),
+                        (NULL, ".$id_cupon.", 'free_shipping', 'no'),
+                        (NULL, ".$id_cupon.", 'exclude_sale_items', 'no'),
+                        (NULL, ".$id_cupon.", 'product_categories', 'a:0:{}'),
+                        (NULL, ".$id_cupon.", 'exclude_product_categories', 'a:0:{}'),
+                        (NULL, ".$id_cupon.", 'minimum_amount', ''),
+                        (NULL, ".$id_cupon.", 'maximum_amount', ''),                    
+                        (NULL, ".$id_cupon.", 'customer_email', 'a:0:{}');
+                ");
+            }else{
+                $sqls = array(
+                    "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit'",
+                    "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit_per_user'",
+                    "UPDATE wp_postmeta SET meta_value = '{$monto_cupon}' WHERE post_id = ".$id_cupon." AND meta_key = 'coupon_amount'"
+                );
+                foreach ($sqls as $sql) {
+                    $wpdb->query($sql);
                 }
-
-                return "saldo-".$current_user->ID;
             }
+
+            return "saldo-".$current_user->ID;
         }
     }
         

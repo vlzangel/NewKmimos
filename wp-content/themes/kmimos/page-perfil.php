@@ -84,15 +84,16 @@
 			wp_enqueue_script('servicios', getTema()."/js/servicios.js", array("jquery", "global_js"), '1.0.0');
 		break;
 		case 'disponibilidad':
+			$mostrar_btn = false;
 		    wp_enqueue_style('disponibilidad', getTema()."/css/disponibilidad.css", array(), '1.0.0');
 			wp_enqueue_style('disponibilidad_responsive', getTema()."/css/responsive/disponibilidad_responsive.css", array(), '1.0.0');
 
-			wp_enqueue_style('jquery_datepick', getTema()."/css/datapicker/jquery.datepick.css", array(), '1.0.0');
+			wp_enqueue_style('jquery_datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), '1.0.0');
 			/*
 				<link href='".get_home_url()."/wp-content/themes/pointfinder/datapicker/jquery.datepick.css' rel='stylesheet'>
    			 	<script src='".get_home_url()."/wp-content/themes/pointfinder/datapicker/jquery.datepick.js'></script>
 			*/
-			wp_enqueue_script('jquery_datepick', getTema()."/js/datapicker/jquery.datepick.js", array("jquery", "global_js"), '1.0.0');
+			wp_enqueue_script('jquery_datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery", "global_js"), '1.0.0');
 
 			wp_enqueue_script('disponibilidad', getTema()."/js/disponibilidad.js", array("jquery", "global_js", "jquery_datepick"), '1.0.0');
 		break;

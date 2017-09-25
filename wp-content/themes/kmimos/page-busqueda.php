@@ -10,15 +10,21 @@
     get_header();
     if( !isset($_SESSION)){ session_start(); }
 
-
-    include_once( 'procesos/busqueda/buscar.php' );
-	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
-
-
-    $servicios_adicionales = servicios_adicionales();
-    foreach ($servicios_adicionales as $opt_key => $opt_value) {
-	    $option_servicios_adicionales .= '<option value="'.$opt_key.'">'.$opt_value['label'].'</option>';
+    // Ordenar busqueda 
+    if( isset($_GET['o']) ){
+    	$data = [];
+    	if( $_SESSION['busqueda'] != '' ){
+    		$data = unserialize($_SESSION['busqueda']);
+    		$data['orderby'] = $_GET['o'];
+    		$_POST = $data;
+    	}
     }
+
+    if( $_POST ){
+    	include_once( 'procesos/busqueda/buscar.php' );
+	}
+
+	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
 
 	$pagina = vlz_get_page();
 	$destacados = get_destacados();
@@ -78,7 +84,55 @@
 			'.$CUIDADORES.'
 		</div>';
 	}
-	
+
+    $option_servicios_adicionales = '';
+    $servicios_adicionales = servicios_adicionales();
+    foreach ($servicios_adicionales as $opt_key => $opt_value) {
+	    $option_servicios_adicionales .= '
+		<li>
+	    	<a>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="servicios[]" value="'.$opt_key.'"> '.$opt_value['label'].'
+					</label>
+				</div>
+	    	</a>
+	    </li>
+	    ';
+    }
+
+    $option_tipo_servicio = '';
+    $tipo_servicio = get_tipo_servicios();
+    foreach ($tipo_servicio as $opt_key => $opt_value) {
+	    $option_tipo_servicio .= '
+		<li>
+	    	<a>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="servicios[]" value="'.$opt_value['ID'].'"> '.$opt_value['name'].'
+					</label>
+				</div>
+	    	</a>
+	    </li>
+	    ';
+    }	
+
+    $option_tamanos_mascotas = '';
+    $tamanos_mascotas = kmimos_get_sizes_of_pets();
+    foreach ($tamanos_mascotas as $opt_key => $opt_value) {
+	    $option_tamanos_mascotas .= '
+		<li>
+	    	<a>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="tamanos[]" value="'.$opt_value.'"> '.$opt_value['name'].'
+					</label>
+				</div>
+	    	</a>
+	    </li>
+	    ';
+    }
+
 
     $HTML = '
 		<div class="header-search" style="background-image:url('.getTema().'/images/new/km-fondo-buscador.gif);">
@@ -116,41 +170,24 @@
 							
 							<div class="km-caja-filtro ">
 								<div class="btn-group">
-								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								    TIPO DE SERVICIO</span>
-								  </button>
-								  <ul class="dropdown-menu">
-								    <li><a><input type="checkbox" name="servicios[]" value="">Opcion 1</a></li>
-								  </ul>
+									<button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										TIPO DE SERVICIO</span>
+									</button>
+								  	<ul class="dropdown-menu dropdown-option">
+								    	'.$option_tipo_servicio.'
+									</ul>
 								</div>
 							</div>
-
-							<div class="km-caja-filtro hidden">
-								<select class="km-select-custom" name="">
-									<option>TIPO DE SERVICIO</option>
-									<option>TIPO A</option>
-									<option>TIPO B</option>
-								</select>
-							</div>
-
 
 							<div class="km-caja-filtro">
 								<div class="btn-group">
 								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								    TAMAÑO DE MASCOTA</span>
 								  </button>
-								  <ul class="dropdown-menu">
-								    <li> <input type="checkbox" name="servicios[]" value="">Opcion 1</li>
+								  <ul class="dropdown-menu dropdown-option">
+								    '.$option_tamanos_mascotas.'
 								  </ul>
 								</div>
-							</div>
-
-							<div class="hidden km-caja-filtro">
-								<select class="km-select-custom" name="">
-									<option>TAMAÑO DE MASCOTA</option>
-									<option>TAMAÑO A</option>
-									<option>TAMAÑO B</option>
-								</select>
 							</div>
 
 							<div class="km-caja-filtro">
@@ -158,8 +195,8 @@
 								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								    SERVICIOS ADICIONALES</span>
 								  </button>
-								  <ul class="dropdown-menu">
-								    <li> <input type="checkbox" name="servicios[]" value="">Opcion 1</li>
+								  <ul class="dropdown-menu  dropdown-option">
+								    '.$option_servicios_adicionales.'
 								  </ul>
 								</div>
 							</div>
@@ -195,11 +232,24 @@
 									</a>
 								</div> -->
 								<div class="km-orden-resultados">
-									<select class="km-select-custom" name="">
-										<option>ORDENAR POR RANKING</option>
-										<option>ORDEN A</option>
-										<option>ORDEN B</option>
-									</select>
+									
+									<div class="btn-group">
+									  <button type="button" class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    TAMAÑO DE MASCOTA</span>
+									  </button>
+									  <ul class="dropdown-menu">
+										<li><a href="javascrip:;">ORDENAR POR RANKING</a></li>
+										<li><a href="/busqueda/?o=rating_desc">Valoración de mayor a menor</a></li>
+										<li><a href="/busqueda/?o=rating_asc">Valoración de menor a mayor</a></li>
+										<li><a href="/busqueda/?o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
+										<li><a href="/busqueda/?o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
+										<li><a href="/busqueda/?o=price_asc">Precio del Servicio de menor a mayor</a></li>
+										<li><a href="/busqueda/?o=price_desc">Precio del Servicio de mayor a menor</a></li>
+										<li><a href="/busqueda/?o=experience_asc">Experiencia de menos a más años</a></li>
+										<li><a href="/busqueda/?o=experience_desc">Experiencia de más a menos años</a></li>
+									  </ul>
+									</div>
+
 								</div>
 							</div>
 						</div>

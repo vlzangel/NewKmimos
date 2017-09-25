@@ -1,17 +1,17 @@
 .fechas_box{
-	overflow: hidden;
+    overflow: hidden;
 }
 .fechas_item{
-	float: left;
-	width: 33.33333333%;
-	box-sizing: border-box;
-	padding: 5px;
-	overflow: hidden;
-	position: relative;
+    float: left;
+    width: 33.33333333%;
+    box-sizing: border-box;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
 }
 .fechas_item i{
     position: absolute;
-    top: 13px;
+    top: 11px;
     font-size: 25px;
     color: #777;
     left: 10px;
@@ -20,21 +20,118 @@
 .fechas_item input,
 .fechas_item select
 {
-	width: 100%;
+    width: 100%;
     border: solid 1px #CCC;
     font-size: 16px;
-    padding: 10px 10px 10px 35px;
+    padding: 5px 10px 5px 35px;
     cursor: pointer;
+    line-height: 1.42857143;
 }
 
 .fechas_item select{
-	width: 100%;
+    width: 100%;
     border: solid 1px #CCC;
     font-size: 16px;
-    padding: 10px;
+    padding: 7px 10px 6px;
     outline: none !important;
 }
 
 .fechas_item select:focus{
     outline: none !important;
+}
+
+.table_main {
+    margin-top: 10px;
+}
+
+.table_main table {
+    width: 100%;
+    font-family: "Open Sans",Arial, Helvetica, sans-serif;
+    font-size: 12px;  
+    text-align: left;    
+    border-collapse: collapse; 
+    border: 0px solid #ddd;
+    padding: 0px;
+    margin: 0px;
+}
+
+.table_main th {     
+    font-size: 14px;     
+    font-weight: normal;     
+    padding: 8px;     
+    background: #59c9a8;
+    border-bottom: 1px solid #fff; 
+    color: #FFF; 
+}
+
+.table_main td {    
+    padding: 10px 10px 0px;
+    background: #f1f1f1;
+    border-top: 1px solid #dadada;
+    vertical-align: top;
+    font-size: 13px;
+    color: #444;
+}
+
+.table_main th:nth-last-child(1),  
+.table_main td:nth-last-child(1) {    
+    width: 170px;
+}
+
+.table_main td a{    
+    color: #000; 
+}
+
+.table_main td a:hover{    
+    color: #2f9c7c;
+}
+
+.table_main tr:hover td { 
+    background: #e0e0e0; 
+    color: #444; 
+}
+
+.table_main td input{    
+    padding: 3px 0px;
+    width: 100%;
+    background-color: #bf2020;
+    border: 0;
+    outline: none;
+    box-shadow: 0px 0px 0px #000;
+    color: #FFF !important;
+}
+
+.table_main td input:focus{  
+    outline: none;
+    box-shadow: 0px 0px 0px #000;
+}
+
+.table_main .cancelled {
+    background-color: red;
+}
+
+.acciones{
+    padding: 5px !important;
+}
+
+.botones_container{
+    display: block;
+    overflow: hidden;
+}
+
+.botones_box{
+    display: inline-block;
+    float: right;
+    width: 25%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.botones_box input {
+    border: 0px;
+    border-bottom: 3px solid #7DD1C4;
+}
+
+.fechas{
+    display: none;
 }

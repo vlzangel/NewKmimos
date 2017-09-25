@@ -25,7 +25,7 @@ jQuery(document).ready(function(){
                         },
                         function(resp){
                             console.log(resp);
-                            //location.href = RAIZ+DATA.url;
+                            location.href = RAIZ+resp.url;
                         }, 
                         'json'
                     );

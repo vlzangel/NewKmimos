@@ -47,16 +47,13 @@ $HTML = '
             </div>
         </footer>
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
-        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>;
     ';
-
-//wp_enqueue_script('boostrap_js_plugins', getTema()."/js/bootstrap.js", array("jquery"), '1.0.0');
-
-wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
-wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
-wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
-wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
-wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
 
 wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
 wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
@@ -76,29 +73,6 @@ if(  $_SESSION['admin_sub_login'] == 'YES' ){
                 X
             </a>
         ";
-}
-
-// Modificacion Ángel Veloz
-$DS = kmimos_session();
-if( $DS ){
-    if( isset($DS['reserva']) ){
-        $HTML .= "
-                <a href='".get_home_url()."/wp-content/themes/pointfinder/procesos/perfil/update_reserva.php?b=".$user_id."' class='theme_button' style='
-                    position: fixed;
-                    display: inline-block;
-                    left: 50px;
-                    bottom: 50px;
-                    padding: 8px;
-                    font-size: 20px;
-                    font-family: Roboto;
-                    z-index: 999999999999999999;
-                    color: #FFF;
-                    border: solid 1px #7b7b7b;
-                '>
-                    Salir de modificar reserva
-                </a>
-            ";
-    }
 }
 
 echo comprimir_styles($HTML);

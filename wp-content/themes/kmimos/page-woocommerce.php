@@ -12,6 +12,8 @@
 	wp_enqueue_script('openpay-data', getTema()."/js/openpay-data.v1.min.js", array("jquery", "openpay-v1"), '1.0.0');
 
 	get_header();
+
+		if( !isset($_SESSION)){ session_start(); }
 		
 		global $wpdb;
 
@@ -21,32 +23,7 @@
 
 		$D = $wpdb;
 
-		$id_user = get_current_user_id(); // [SERVER_NAME] 
-
-		$DS = kmimos_session();
-	    if( $DS ){ ?>
-			
-				<?php if( $DS["saldo_temporal"] > 0 ){ ?>
-					<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
-						<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $DS["saldo"]; ?>
-					</div>
-				<?php }else{ 
-						$kmisaldo = kmimos_get_kmisaldo();
-						if( $kmisaldo > 0 ){ ?>
-							<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
-								<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $kmisaldo; ?>
-							</div>
-				<?php 	}
-					  } ?>
-			 <?php
-			if( isset($DS["reserva"]) ){ ?>
-				<div class="theme_button" style="padding: 10px 10px 10px 40px; margin-bottom: 20px; position: relative;">
-					<img src="<?php echo get_template_directory_uri()."/images/advertencia.png"; ?>" style="position: absolute; top: 4px; left: 6px; width: 30px;" />
-					
-					<span style="font-weight: 600;">Importante:</span> Confirme previamente con el cuidador la disponibilidad del ajuste que usted desea realizar.
-				</div> <?php 
-			}
-	    }
+		$id_user = get_current_user_id();
 
 		$busqueda = getBusqueda();
 
@@ -77,13 +54,42 @@
 	    
 		$adicionales = unserialize($cuidador->adicionales);
 
+		$precargas = array();
+        if( isset($_SESSION['MR_'.get_the_ID()] ) ){
+            $HTML .= "
+                <a href='".getTema()."/procesos/perfil/update_reserva.php?b=".get_the_ID()."' class='theme_button' style='
+                    position: fixed;
+                    display: inline-block;
+                    left: 50px;
+                    bottom: 50px;
+                    padding: 8px;
+                    font-size: 20px;
+                    font-family: Roboto;
+                    z-index: 999999999999999999;
+                    color: #FFF;
+                    border: solid 1px #7b7b7b;
+                '>
+                    Salir de modificar reserva
+                </a>
+            ";
+
+            $busqueda["checkin"] = date("d/m/Y", strtotime($_SESSION['MR_'.get_the_ID()]["fechas"]["inicio"]) );
+            $busqueda["checkout"] = date("d/m/Y", strtotime($_SESSION['MR_'.get_the_ID()]["fechas"]["fin"]) );
+
+            $precargas["tamanos"] = $_SESSION['MR_'.get_the_ID()]["variaciones"];
+            if( isset($_SESSION['MR_'.get_the_ID()]["transporte"][0])){
+            	$precargas["transp"] = $_SESSION['MR_'.get_the_ID()]["transporte"][0];
+            }
+            $precargas["adicionales"] = $_SESSION['MR_'.get_the_ID()]["adicionales"];
+        }
+
 	    if( $tipo == "hospedaje" ){
-	    	$precios = getPrecios( unserialize($cuidador->hospedaje) );
+	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"] );
 	    }else{
-	    	$precios = getPrecios( $adicionales[$tipo] );
+	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"] );
 	    } 
 
-		$transporte = getTransporte($adicionales);
+		$transporte = getTransporte($adicionales, $precargas["transp"]);
 		if( $transporte != "" ){
 			$transporte = '
 				<div class="km-service-title"> TRANSPORTACI&Oacute;N </div>
@@ -93,7 +99,7 @@
 			';
 		}
 
-		$adicionales = getAdicionales($adicionales);
+		$adicionales = getAdicionales($adicionales, $precargas["adicionales"]);
 		if( $adicionales != "" ){
 			$adicionales = '
 				<div class="km-service-title"> SERVICIOS ADICIONALES </div>
@@ -110,9 +116,7 @@
 		$saldo = getSaldo();
 
 		$saldoTXT = "";
-		if( $saldo["saldo"][0] > 0 ){
-			$saldoTXT = $saldo["cupon"];
-		}
+		$saldoTXT = $saldo["cupon"];
 
 		$error = "";
 		if( $id_user  == ""){
@@ -479,57 +483,59 @@
 								Datos de la tarjeta invalidos
 							</div>
 
-							<a href="#" class="km-tab-link">MEDIO DE PAGO</a>
-							<div class="km-tab-content" style="display: block;">
-								<div class="km-content-method-paid-inputs">
-									<select class="km-input-custom" id="tipo_pago" style="margin-bottom: 20px;">
-										<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
-										<option value="tienda">PAGO EN TIENDA DE CONVENIENCIA</option>
-									</select>
+							<div id="metodos_pagos">
+								<a href="#" class="km-tab-link">MEDIO DE PAGO</a>
+								<div class="km-tab-content" style="display: block;">
+									<div class="km-content-method-paid-inputs">
+										<select class="km-input-custom" id="tipo_pago" style="margin-bottom: 20px;">
+											<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
+											<option value="tienda">PAGO EN TIENDA DE CONVENIENCIA</option>
+										</select>
 
-									<div id="tarjeta_box" class="metodos_container">
+										<div id="tarjeta_box" class="metodos_container">
 
-										<div class="label-placeholder">
-											<label>Nombre del tarjetahabitante*</label>
-											<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder" data-openpay-card="holder_name">
-										</div>
-
-										<div class="label-placeholder">
-											<label>Número de Tarjeta*</label>
-											<input type="text" id="numero" name="numero" class="input-label-placeholder" maxlength="16" data-openpay-card="card_number">
-										</div>
-
-										<div class="content-placeholder">
 											<div class="label-placeholder">
-												<label>Expira (MM AA)</label>
-												<input type="text" id="mes" name="mes" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_month">
-												<input type="text" id="anio" name="anio" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_year">
+												<label>Nombre del tarjetahabitante*</label>
+												<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder" data-openpay-card="holder_name">
 											</div>
 
 											<div class="label-placeholder">
-												<label>Código de seguridad (XXX)</label>
-												<input type="text" id="codigo" name="codigo" class="input-label-placeholder" maxlength="3" data-openpay-card="cvv2">
+												<label>Número de Tarjeta*</label>
+												<input type="text" id="numero" name="numero" class="input-label-placeholder" maxlength="16" data-openpay-card="card_number">
 											</div>
-										</div>
-										<!--
-										<div class="km-msje-minimal">
-											*Recuerda que tus datos deben ser los mismos que el de tu tarjeta
-										</div>
-										-->
-									</div>
 
-									<div id="tienda_box" class="metodos_container">
-										<img src="'.get_template_directory_uri().'/images/tiendas.png" />
-										<img src="'.get_template_directory_uri().'/images/pasos.png" />
-									</div>
+											<div class="content-placeholder">
+												<div class="label-placeholder">
+													<label>Expira (MM AA)</label>
+													<input type="text" id="mes" name="mes" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_month">
+													<input type="text" id="anio" name="anio" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_year">
+												</div>
 
-									<div class="km-term-conditions">
-										<label>
-											<input type="checkbox" id="term-conditions" name="term-conditions" value="1">
-											Acepto los términos y condiciones
-										</label>
+												<div class="label-placeholder">
+													<label>Código de seguridad (XXX)</label>
+													<input type="text" id="codigo" name="codigo" class="input-label-placeholder" maxlength="3" data-openpay-card="cvv2">
+												</div>
+											</div>
+											<!--
+											<div class="km-msje-minimal">
+												*Recuerda que tus datos deben ser los mismos que el de tu tarjeta
+											</div>
+											-->
+										</div>
+
+										<div id="tienda_box" class="metodos_container">
+											<img src="'.get_template_directory_uri().'/images/tiendas.png" />
+											<img src="'.get_template_directory_uri().'/images/pasos.png" />
+										</div>
 									</div>
 								</div>
+							</div>
+
+							<div class="km-term-conditions">
+								<label>
+									<input type="checkbox" id="term-conditions" name="term-conditions" value="1">
+									Acepto los términos y condiciones
+								</label>
 							</div>
 
 							<a id="reserva_btn_next_3" href="#" class="km-end-btn-form vlz_btn_reservar disabled">
@@ -579,6 +585,7 @@
 		 	';
 
 			echo comprimir_styles($HTML);
+
 		}
 
     get_footer(); 
