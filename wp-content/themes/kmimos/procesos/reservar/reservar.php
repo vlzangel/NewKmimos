@@ -243,6 +243,10 @@ class Reservas {
             $this->db->query( utf8_decode( "INSERT INTO wp_woocommerce_order_items VALUES (NULL, '{$cupon[0]}', 'coupon', '{$order}');" ) );
             $id_item = $this->db->insert_id();
 
+            if(  ){
+
+            }
+
             $sql = "
                 INSERT INTO wp_woocommerce_order_itemmeta VALUES
                     (NULL, '{$id_item}', 'discount_amount',     '{$cupon[1]}'),

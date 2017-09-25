@@ -207,8 +207,6 @@
 
     $reservar->aplicarCupones($id_orden, $cupones);
 
-    $db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
-
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
@@ -242,10 +240,10 @@
 				'requires_account' 	=> false,
 				'phone_number' 		=> $telefono,
 				'address' => array(
-					'line1' 		=> $direccion,
-					'state' 		=> $estado,
-					'city' 			=> $municipio,
-					'postal_code' 	=> $postal,
+					'line1' 		=> "Mexico ",
+					'state' 		=> "DF",
+					'city' 			=> "Mexico",
+					'postal_code' 	=> "10100",
 					'country_code' 	=> 'MX'
 				)
 		   	);
