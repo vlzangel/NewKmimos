@@ -1,6 +1,8 @@
 <?php
-	$load = dirname(dirname(dirname(dirname(dirname(__DIR__))))).'/wp-load.php';
-	if(file_exists($load)){ include_once($load); }
+	$load = dirname(__DIR__,5).'/wp-load.php';
+	if(file_exists($load)){
+		include_once($load);
+	}
 
 	extract($_POST);
 

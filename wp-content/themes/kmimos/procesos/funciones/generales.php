@@ -55,4 +55,15 @@
             return $img;
         }
     }
+
+    if(!function_exists('ya_aplicado')){
+        function ya_aplicado($cupon, $cupones){
+            foreach ($cupones as $key => $valor) {
+                if( $cupon == $valor[0] ){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
 ?>

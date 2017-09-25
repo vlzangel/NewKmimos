@@ -5056,7 +5056,8 @@ a.km-btn-comentario {
 }
 .km-box-form .label-placeholder {
     position:relative;
-    padding-top:16px
+    padding-top:16px;
+	text-align: left;
 }
 .km-box-form .label-placeholder label {
     left:0;
@@ -5085,7 +5086,8 @@ a.km-btn-comentario {
     font-family:Gotham-Pro-Regular, Arial, serif;
     border-bottom:1px solid #ccc
 }
-.km-box-form .label-placeholder.focus label, .km-box-form .label-placeholder.focused label {
+.km-box-form .label-placeholder.focus label,
+.km-box-form .label-placeholder.focused label {
     top:12px;
     font-size:11px
 }
@@ -6653,19 +6655,7 @@ AGREGANDO CODIGO DAJAN
         text-align: left;
         margin: 30px 0px 20px;
     }
-    .km-box-form .label-placeholder input {
-        z-index: 1;
-        position: relative;
-        width: 100%;
-        height: 40px;
-        border: none;
-        font-size: 15px;
-        font-weight: 500;
-        letter-spacing: 0.2px;
-        background: transparent;
-        font-family: "Gotham-Pro-Regular", Arial, serif;
-        border-bottom: 1px solid #CCCCCC;
-    }
+
     .km-btn-basic {
         background-color: #33E1BE;
         border-radius: 5px;
@@ -8773,44 +8763,7 @@ a.km-btn-comentario {
 .km-box-form {
     margin-bottom: 20px;
 }
-.km-box-form .label-placeholder {
-    position: relative;
-    padding-top: 16px;
-}
 
-.km-box-form .label-placeholder label{
-    left: 0;
-    top: 30px;
-    z-index: 0;
-    font-size: 15px;
-    font-weight: 300;
-    position: absolute;
-    font-family: "Gotham-Pro-Regular", Arial, serif;
-    color: #979797;
-    transition: all 0.15s ease-in;
-    margin-bottom: 0;
-    font-weight: bold;
-}
-
-.km-box-form .label-placeholder input {
-    z-index: 1;
-    position: relative;
-    width: 100%;
-    height: 40px;
-    border: none;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.2px;
-    background: transparent;
-    font-family: "Gotham-Pro-Regular", Arial, serif;
-    border-bottom: 1px solid #CCCCCC;
-}
-
-.km-box-form .label-placeholder.focus label,
-.km-box-form .label-placeholder.focused label {
-    top: 12px;
-    font-size: 11px;
-}
 
 .km-box-form .content-placeholder::after{
     content: "";
@@ -9059,6 +9012,10 @@ textarea.vlz_input {
 	border: none;
 }
 
+/*DatePicker*/
+.datepick-popup{
+	z-index: 2000 !important;
+}
 
 /* Modal Subscribe - HOME */
 #PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}

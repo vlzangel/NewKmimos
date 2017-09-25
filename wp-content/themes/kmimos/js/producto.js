@@ -334,8 +334,6 @@ function initFactura(){
 		
 		if( CARRITO["adicionales"][key] != undefined && CARRITO["adicionales"][key] != "" && CARRITO["adicionales"][key] > 0 ){
 			
-			//console.log(CARRITO["cantidades"][key]);
-			
 			var plural = "";
 			if( CARRITO["cantidades"]["cantidad"] > 1 ){
 				plural += "s";
@@ -396,7 +394,7 @@ function pagarReserva(id_invalido = false){
     	console.log( "Error" );
     	console.log( e );
     	if( e.status == 500 ){
-    		//pagarReserva(true);
+    		/*pagarReserva(true);*/
     	}else{
     		alert("Error al procesar la reserva!");
     	}
@@ -470,6 +468,20 @@ function calcularDescuento(){
 	jQuery(".pago_17").html( "$" + numberFormat( pre17 ) );
 	jQuery(".pago_cuidador").html( "$" + numberFormat(pagoCuidador) );
 
+	if( jQuery(".km-option-deposit").hasClass("active") ){
+		if( pre17 == 0 ){
+			jQuery("#metodos_pagos").css("display", "none");
+		}else{
+			jQuery("#metodos_pagos").css("display", "block");
+		}
+	}else{
+		if( pagoCuidador == 0 ){
+			jQuery("#metodos_pagos").css("display", "none");
+		}else{
+			jQuery("#metodos_pagos").css("display", "block");
+		}
+	}
+
 	jQuery(".sub_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]) );
 	if( descuentos == 0 ){
 		jQuery(".descuento").html( "$" + numberFormat(descuentos) );
@@ -494,13 +506,14 @@ function aplicarCupon(){
 	jQuery.post(
 		HOME+"/procesos/reservar/cupon.php",
 		{
+			servicio: SERVICIO_ID,
 			cupon: jQuery("#cupon").val(),
 			cupones: CARRITO["cupones"],
 			total: CARRITO["pagar"]["total"],
 			cliente: cliente
 		},
 		function(data){
-			console.log( data );
+			/*console.log( data );*/
 
 			if( data.error == undefined ){
 				CARRITO["cupones"] = data.cupones;
@@ -525,7 +538,6 @@ function aplicarCupon(){
 }
 
 jQuery(document).ready(function() { 
-	// activar_continuar(); 
 
 	jQuery(".navbar").removeClass("bg-transparent");
 	jQuery(".navbar").addClass("bg-white-secondary");
@@ -570,11 +582,16 @@ jQuery(document).ready(function() {
 		if( jQuery(this).hasClass("disabled") ){
 			alert("Debes aceptar los terminos y condiciones");
 		}else{
-			CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
-			CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
-			if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
-				OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+			if( jQuery("#metodos_pagos").css("display") != "none" ){
+				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
+				if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
+					OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+				}else{
+					pagarReserva();
+				}
 			}else{
+				CARRITO["pagar"]["tipo"] = "Saldo y/o Descuentos";
 				pagarReserva();
 			}
 	 	}

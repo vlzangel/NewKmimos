@@ -200,17 +200,21 @@
 		);
 	}
 
-	function getPrecios($data){
+	function getPrecios($data, $precarga = array() ){
 		$resultado = "";
 		$tamanos = getTamanos();
 		foreach ($tamanos as $key => $value) {
 			if( isset($data[$key]) && $data[$key] > 0 ){
+				$catidad = 0;
+				if( isset($precarga[$key]) ){
+					$catidad = $precarga[$key];
+				}
 				$resultado .= '
 					<div class="km-quantity-height">
 						<div class="km-quantity">
 							<a href="#" class="km-minus disabled">-</a>
-								<span class="km-number">0</span>
-								<input type="hidden" value="0" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*1.2).'" />
+								<span class="km-number">'.$catidad.'</span>
+								<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*1.2).'" />
 							<a href="#" class="km-plus">+</a>
 						</div>
 						<div class="km-height">
@@ -224,7 +228,7 @@
 		return $resultado;
 	}
 
-	function getTransporte($data){
+	function getTransporte($data, $precarga){
 		$resultado = "";
 		$transportes = array(
 			"transportacion_sencilla" => "Transp. Sencillo",
@@ -240,8 +244,12 @@
 				$opciones = "";
 				foreach ($data[$key] as $ruta => $precio) {
 					if( $precio > 0 ){
+						$selected = "";
+						if( $precarga == strtoupper($value.' - '.$rutas[ $ruta ]) ){
+							$selected = "selected";
+						}
 						$opciones .= '
-							<option value="'.($precio*1.2).'" data-value="'.$value.' - '.$rutas[ $ruta ].'">
+							<option value="'.($precio*1.2).'" data-value="'.$value.' - '.$rutas[ $ruta ].'" '.$selected.'>
 								'.$rutas[ $ruta ].' ( $'.($precio*1.2).' )
 				 			</option>
 						';
@@ -255,7 +263,7 @@
 		return $resultado;
 	}
 
-	function getAdicionales($data){
+	function getAdicionales($data, $precarga = array()){
 		$resultado = "";
 		$adicionales = array(
 			"bano" => "BAÑO Y SECADO",
@@ -266,12 +274,21 @@
 		);
 		foreach ($adicionales as $key => $value) {
 			if( isset($data[$key]) && $data[$key] > 0 ){
-				$resultado .= '
-					<div class="km-service-col">
-						<label class="optionCheckout" for="'.$key.'">'.$adicionales[$key].' ( $'.($data[$key]*1.2).')</label><br>
-						<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.($data[$key]*1.2).'" style="display: none;">
-					</div>
-				';
+				if( isset($precarga[$key]) ){
+					$resultado .= '
+						<div class="km-service-col">
+							<label class="optionCheckout active" for="'.$key.'">'.$adicionales[$key].' ( $'.($data[$key]*1.2).')</label><br>
+							<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.($data[$key]*1.2).'" style="display: none;" class="active" checked>
+						</div>
+					';
+				}else{
+					$resultado .= '
+						<div class="km-service-col">
+							<label class="optionCheckout" for="'.$key.'">'.$adicionales[$key].' ( $'.($data[$key]*1.2).')</label><br>
+							<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.($data[$key]*1.2).'" style="display: none;">
+						</div>
+					';
+				}
 			}
 		}
 		return $resultado;
