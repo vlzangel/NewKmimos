@@ -14,6 +14,19 @@
 	    }
 	}
 
+	if(!function_exists('get_tipo_servicios')){
+	    function get_tipo_servicios(){
+	    	return [
+		        'hospedaje'      => ['name'=>'Hospedaje'], 
+		        'guarderia'      => ['name'=>'Guardería'], 
+		        'paseos'         => ['name'=>'Paseos'],
+		        'adiestramiento' => ['name'=>'Entrenamiento']
+	    	];
+	    }
+	}
+
+ 
+
 	if(!function_exists('italo_menus')){
 	    function italo_menus($menus){
 

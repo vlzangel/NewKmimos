@@ -52,7 +52,7 @@ var map;
 function initMap() {
 	if( pines.length > 0 ){
 		map = new google.maps.Map(document.getElementById("mapa"), {
-	        zoom: 3,
+	        zoom: 7,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP,
 	        fullscreenControl: true,
 			scrollwheel: false
@@ -122,7 +122,7 @@ function initMap() {
 	    var markerCluster = new MarkerClusterer(map, markers, {imagePath: HOME+"/js/images/n"});
 	    map.fitBounds(bounds);
 
-	    minClusterZoom = 14;
+	    minClusterZoom = 7;
 	    markerCluster.setMaxZoom(minClusterZoom);
 	    window.oms = oms;
    	}else{

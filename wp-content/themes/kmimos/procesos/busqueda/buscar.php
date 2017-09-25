@@ -153,10 +153,10 @@
 	    FROM 
 	        cuidadores 
 	    INNER JOIN wp_posts AS post_cuidador ON ( cuidadores.id_post = post_cuidador.ID )
-	    {$ubicaciones_inner}
-	    {$nombre_inner}
+	    	{$ubicaciones_inner}
+	    	{$nombre_inner}
 	    WHERE 
-	        activo = '1' {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION}
+	        activo = '1' and cuidadores.hospedaje_desde >= 1 {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION}
 	    ORDER BY {$orderby}";
 
     /* FIN SQL cuidadores */

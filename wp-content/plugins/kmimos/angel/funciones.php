@@ -482,7 +482,9 @@
                         </div>
                         <div class="km-descripcion">
                             <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
-                            <p>'.$anios_exp.' año(s) de experiencia</p>
+                            <p>'.$anios_exp.' año(s) de experiencia
+                                <br><b>Desde MXN $ '.$cuidador->precio.'</b>
+                            </p>
                             <div class="km-ranking">
                                 '.kmimos_petsitter_rating($cuidador->id_post).'
                             </div>

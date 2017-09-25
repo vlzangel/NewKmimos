@@ -855,6 +855,10 @@ button.close {
 	z-index: -1;
 }
 
+.dropdown-order{
+    padding: 10px 32px;
+}
+
 .contentenedor-buscador-todos{
 	margin-top: -138px;
 }
@@ -1202,6 +1206,22 @@ div#ubicacion_list div:hover {
 	padding-bottom: 15px;
 	letter-spacing: 1px;
 }
+
+.dropdown-option li a input{
+	vertical-align: middle;
+	width: 20px!important;
+	box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.25)!important;
+	margin-top:0px;
+}
+.dropdown-option .checkbox{
+	margin:0px 0px;
+}
+.dropdown-option li a{
+	vertical-align: middle;
+	margin-left: 0px!important;
+	padding: 10px 10px 10px 10px ;
+}
+
 
 .km-cajas-filtro::after{
 	content: "";
@@ -1554,7 +1574,7 @@ div#ubicacion_list div:hover {
     min-height:175px;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos {
-    padding-top:15px
+    padding-top:5px!important;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-buttons::after {
     content:"";
@@ -2519,7 +2539,7 @@ footer input:focus{
 
 @media all and (max-width:629px) {
     .km-resultados-grid .km-item-resultado {
-        width:48%
+        width:100%!important;
     }
     .km-resultados-grid .km-item-resultado:nth-child(2n) {
         margin-right:0
@@ -6447,7 +6467,7 @@ h1.maps {
 }
 @media all and (max-width:629px) {
     .km-resultados-grid .km-item-resultado {
-        width:48%
+        width:100%;
     }
     .km-resultados-grid .km-item-resultado:nth-child(2n) {
         margin-right:0
