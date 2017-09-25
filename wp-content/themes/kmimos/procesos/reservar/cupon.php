@@ -70,9 +70,10 @@
 			break;
 		}
 
-		if( isset($_SESSION['MR_'.$servicio] ) ){
+		$id_session = 'MR_'.$servicio."_".md5($cliente);
+		if( isset($_SESSION[$id_session] ) ){
 			if( strpos( $cupon, "saldo" ) !== false ){
-				$descuento += $_SESSION['MR_'.$servicio]['saldo_temporal'];
+				$descuento += $_SESSION[$id_session]['saldo_temporal'];
 			}
 		}
 

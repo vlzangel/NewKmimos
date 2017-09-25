@@ -110,7 +110,7 @@
 			"adicionales"     => $adicionales
 		);
 
-		$_SESSION["MR_".$data->ID] = $parametros;
+		$_SESSION["MR_".$data->ID."_".$param[1]] = $parametros;
 
 		$respuesta = array(
 			"url" => "reservar/".$data->ID."/"
@@ -124,6 +124,8 @@
 
 			$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); 
 			$home = $home->fetch_assoc();
+			
+			$_SESSION["MR_".$b] = "";
 			
 			unset($_SESSION["MR_".$b]);
 

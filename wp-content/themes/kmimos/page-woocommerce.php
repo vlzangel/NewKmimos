@@ -55,9 +55,10 @@
 		$adicionales = unserialize($cuidador->adicionales);
 
 		$precargas = array();
-        if( isset($_SESSION['MR_'.get_the_ID()] ) ){
+		$id_seccion = 'MR_'.get_the_ID()."_".md5($id_user);
+        if( isset($_SESSION[$id_seccion] ) ){
             $HTML .= "
-                <a href='".getTema()."/procesos/perfil/update_reserva.php?b=".get_the_ID()."' class='theme_button' style='
+                <a href='".getTema()."/procesos/perfil/update_reserva.php?b=".get_the_ID()."_".md5($id_user)."' class='theme_button' style='
                     position: fixed;
                     display: inline-block;
                     left: 50px;
@@ -73,14 +74,14 @@
                 </a>
             ";
 
-            $busqueda["checkin"] = date("d/m/Y", strtotime($_SESSION['MR_'.get_the_ID()]["fechas"]["inicio"]) );
-            $busqueda["checkout"] = date("d/m/Y", strtotime($_SESSION['MR_'.get_the_ID()]["fechas"]["fin"]) );
+            $busqueda["checkin"] = date("d/m/Y", strtotime($_SESSION[$id_seccion]["fechas"]["inicio"]) );
+            $busqueda["checkout"] = date("d/m/Y", strtotime($_SESSION[$id_seccion]["fechas"]["fin"]) );
 
-            $precargas["tamanos"] = $_SESSION['MR_'.get_the_ID()]["variaciones"];
-            if( isset($_SESSION['MR_'.get_the_ID()]["transporte"][0])){
-            	$precargas["transp"] = $_SESSION['MR_'.get_the_ID()]["transporte"][0];
+            $precargas["tamanos"] = $_SESSION[$id_seccion]["variaciones"];
+            if( isset($_SESSION[$id_seccion]["transporte"][0])){
+            	$precargas["transp"] = $_SESSION[$id_seccion]["transporte"][0];
             }
-            $precargas["adicionales"] = $_SESSION['MR_'.get_the_ID()]["adicionales"];
+            $precargas["adicionales"] = $_SESSION[$id_seccion]["adicionales"];
         }
 
 	    if( $tipo == "hospedaje" ){
@@ -585,6 +586,10 @@
 		 	';
 
 			echo comprimir_styles($HTML);
+
+			echo "<pre>";
+				print_r($id_seccion);
+			echo "</pre>";
 
 		}
 

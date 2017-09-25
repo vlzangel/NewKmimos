@@ -212,9 +212,10 @@
 
     $reservar->aplicarCupones($id_orden, $cupones);
 
-    if( isset($_SESSION['MR_'.$pagar->servicio] ) ){
+    $id_session = 'MR_'.$pagar->servicio."_".md5($pagar->cliente);
+    if( isset($_SESSION[$id_session] ) ){
 		$new_reserva = $reservar->data["id_reserva"];
-		$old_reserva = $_SESSION['MR_'.$pagar->servicio]["reserva"];
+		$old_reserva = $_SESSION[$id_session]["reserva"];
 
 		$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$new_reserva}, 'modificacion_de', '{$old_reserva}');");
 		$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$old_reserva}, 'reserva_modificada', '{$new_reserva}');");
@@ -222,6 +223,9 @@
 		$old_order = $db->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$old_reserva}' ");
 
 		$db->query("UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$old_reserva}', '{$old_order}' );");
+
+		$_SESSION[$id_session] = "";
+		unset($_SESSION[$id_session]);
 	}
 
     if( $pre17 == 0 ){

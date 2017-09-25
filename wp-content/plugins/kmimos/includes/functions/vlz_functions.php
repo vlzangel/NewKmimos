@@ -65,6 +65,7 @@
                 $saldo = $deposito['deposit'];
             }else{
                 $saldo = $items['_line_total'];
+                $saldo -= $metas_orden['_cart_discount'][0];
             }
 
             $descuento = 0;
