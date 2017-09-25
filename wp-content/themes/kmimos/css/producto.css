@@ -148,11 +148,10 @@ div#tienda_box img {
 }
 
 .atras{
-    position: absolute;
-    left: 45px;
     border: solid 1px #CCC;
     padding: 5px 15px;
     border-radius: 4px;
     font-size: 18px;
     cursor: pointer;
+    float: left;
 }

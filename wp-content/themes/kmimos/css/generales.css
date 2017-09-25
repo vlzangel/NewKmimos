@@ -133,6 +133,12 @@
         border-radius: 0px 0px 3px 3px;
     }
 
+    .has-error,
+    .has-error input{
+        color: #c71111;
+        border-color: #c71111!important;
+    }
+
     input[type=number]::-webkit-outer-spin-button,
 
     input[type=number]::-webkit-inner-spin-button {
@@ -148,5 +154,5 @@
     
     .nav>li>a>img {
         border-radius: 50%;
-        height: 40px;
+        height: 60px;
     }

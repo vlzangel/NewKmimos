@@ -55,7 +55,7 @@
 				</div>
 			</div>
 
-			<form id="buscador" class="km-cuidador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php">
+			<form id="buscador" class="km-cuidador" method="POST" action="'.get_home_url().'/busqueda">
 				<div class="container">
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">
@@ -67,12 +67,18 @@
 									<div id="ubicacion_list"></div>
 								</div>
 							</div>
+
+
 							<div class="col-xs-12 col-sm-3">
-								<input type="text" id="checkin" name="checkin" placeholder="DESDE CUANDO" value="" class="date_from" readonly>
+								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE CUANDO" value="" class="date_from" readonly>
+								<small class="hidden" data-error="checkin">Debe seleccionar una fecha</small>
 							</div>
 							<div class="col-xs-12 col-sm-3">
-								<input type="text" id="checkout" name="checkout" placeholder="HASTA CUANDO" value="" class="date_to" readonly>
+								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA CUANDO" value="" class="date_to" readonly>
+								<small  class="hidden" data-error="checkin">Debe seleccionar una fecha</small>
 							</div>
+
+
 						</div>
 						<div class="row km-servicios mtb-10">
 							<div class="col-xs-12 col-sm-3">
@@ -134,7 +140,11 @@
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-3 pd5">
-								<a href="#popup-servicios" class="km-btn-primary" role="button" data-toggle="modal">ENCONTRAR CUIDADOR</a>
+								
+								<a href="javascript:;" class="km-btn-primary" 
+									data-target="#popup-servicios" 
+									data-action="validate">ENCONTRAR CUIDADOR</a>
+
 								<div id="popup-servicios" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">

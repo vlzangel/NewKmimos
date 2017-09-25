@@ -318,7 +318,9 @@ strong{
 #section-3 img{
 	margin: 0px auto;
 }
-
+#proceso-reserva{
+	font-family: 'PoetsenOne', sans-serif; font-size: 2.5em; 
+}
 /***************************************/
 /*  Section-4                          */
 /***************************************/
@@ -332,7 +334,7 @@ strong{
 	/*background: #ccc!important;*/
 	/*padding: 30px 0px 30px 0px;*/
 	background-image: url('');
-    padding-top: 45%;
+    padding-top: 55%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     font-family: 'PoetsenOne', sans-serif;
@@ -344,7 +346,7 @@ strong{
     width: 77%;
     position: absolute;
     margin-top: -29%;
-    margin-left: 0px;
+    margin-left: 20%;
 }
 #section-4 h2{
 	font-weight: bold;
@@ -598,7 +600,14 @@ footer aside{
 	padding-top: 50px;
 	padding-bottom: 30px;
 }
-
+.logo-kmimos{
+	width: 20%;
+	margin-top:10px;
+}
+.logo-volaris{
+	width: 40%;
+	margin-top:10px;
+}
 /*CG*/
 #section-4-cuadro {
 	z-index: 1;
@@ -830,11 +839,7 @@ footer aside{
 		padding: 15px;
 		height: auto;
 	}
-	#contactos img{
-		margin: 10px;
-    	width: 80%;
-    	padding: 4%;
-	}
+	
 	#contactos{
 		font-size: 18px;
 	    text-align: center!important;
@@ -920,9 +925,47 @@ footer aside{
 	    width: 30%;
 	    padding: 1%;
 	    margin-left: -6%;
-	    margin-top: -36%;
+	    margin-top: -30%;
 	    border-radius: 15px;
-	}	
+	}
+	#section-4-cuadro span{
+		font-size: 13px!important;
+	}
+	#section-5 .title {
+	    font-size: 17px;
+	}
+	#section-5 p {
+    	font-size: 17px;
+	}
+	#section-5 input {
+	    height: 45px;
+	    width: calc(100% - 105px);
+	}
+	#section-5 img {
+	    width: 40px!important;
+	}
+	#section-5-link a {
+	    padding: 15px 27%;
+	    font-size: 15px;
+	}
+	#proceso-reserva {
+	    font-size: 15px;
+	}
+	.logo-volaris {
+	    width: 100%;
+	    vertical-align: super;
+	}
+	.logo-kmimos {
+	    width: 60%;
+	}
+	#contactos img {
+		margin-left: 11%;
+		margin-top: 5%;
+		margin: 0px; 
+	}
+	.logo-kmimos {
+	    float: none;
+	}
 }  
 @media (min-width: 298px) and (max-width: 359px){
 
@@ -954,7 +997,7 @@ footer aside{
 		padding: 1%;
 	    width: 30%;
 	    margin-left: -7%;
-	    margin-top: -36%;
+	    margin-top: -30%;
 	    border-radius: 10px;
 	}
 	#tu-mascota p {
@@ -1021,6 +1064,7 @@ footer aside{
 	    margin-top: 40vh;
 	}}
 @media (max-width: 297px){
+	#section-1{ height: 7vh; }
 	#section-1 h1 {
 	    margin-top: 0%;
 	    font-size: 11pt;
@@ -1028,12 +1072,19 @@ footer aside{
 	#section-1 h2 {
     	font-size: 7pt;
 	}
+	#tu-mascota p {
+	    font-size: 8px;
+    	width: 41%;
+    	margin-top: -30%;
+    	margin-left: 53px;
+	}
 	#section-3 p {
     	font-size: 10px;
 	}
 	#section-4 h2 {
     	font-size: 10px;
 	}
+	#proceso-reserva h1{font-size: 1em;}
 	#section-4-cuadro {
 		background: #fff;
 	    border-radius: 15px;
@@ -1078,6 +1129,9 @@ footer aside{
 	}
 	#section-5 h1 {
 	    font-size: 13px!important;
+	}
+	#section-5-link a {
+	    padding: 10px 30%;
 	}
 	.section-7-principal {
 	    font-size: 8px;
@@ -1153,7 +1207,8 @@ footer aside{
 	}
 	#section-4-cuadro span {
 	    font-size: 3px!important;
-	}}
+	}
+}
 
 
 /*
@@ -1161,4 +1216,4 @@ Phones (<768px)
 Small  (≥768px)	
 Medium (≥992px)	
 Large  (≥1200px)
-
+*/

@@ -5,14 +5,20 @@
 
     wp_enqueue_style('beneficios_kmimos', getTema()."/css/busqueda.css", array(), '1.0.0');
 	wp_enqueue_style('beneficios_responsive', getTema()."/css/responsive/busqueda_responsive.css", array(), '1.0.0');
-
 	wp_enqueue_script('buscar_home', getTema()."/js/busqueda.js", array(), '1.0.0');
 
     get_header();
-
     if( !isset($_SESSION)){ session_start(); }
 
+
+    include_once( 'procesos/busqueda/buscar.php' );
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
+
+
+    $servicios_adicionales = servicios_adicionales();
+    foreach ($servicios_adicionales as $opt_key => $opt_value) {
+	    $option_servicios_adicionales .= '<option value="'.$opt_key.'">'.$opt_value['label'].'</option>';
+    }
 
 	$pagina = vlz_get_page();
 	$destacados = get_destacados();
@@ -81,7 +87,7 @@
 
 		<div class="container contentenedor-buscador-todos">
 			<div class="km-contentido-formulario-buscador">
-				<form class="km-formulario-buscador" action="'.getTema().'/procesos/busqueda/buscar.php" method="post">
+				<form class="km-formulario-buscador" action="'.get_home_url().'/busqueda" method="post">
 					<div class="km-bloque-cajas">
 						<div class="km-div-ubicacion">
 							<div class="km-select-custom km-select-ubicacion" style="border-right: 0px; height: 47px;">
@@ -107,7 +113,19 @@
 							FILTRAR BÚSQUEDA
 						</div>
 						<div class="km-cajas-filtro">
-							<div class="km-caja-filtro">
+							
+							<div class="km-caja-filtro ">
+								<div class="btn-group">
+								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    TIPO DE SERVICIO</span>
+								  </button>
+								  <ul class="dropdown-menu">
+								    <li><a><input type="checkbox" name="servicios[]" value="">Opcion 1</a></li>
+								  </ul>
+								</div>
+							</div>
+
+							<div class="km-caja-filtro hidden">
 								<select class="km-select-custom" name="">
 									<option>TIPO DE SERVICIO</option>
 									<option>TIPO A</option>
@@ -115,7 +133,19 @@
 								</select>
 							</div>
 
+
 							<div class="km-caja-filtro">
+								<div class="btn-group">
+								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    TAMAÑO DE MASCOTA</span>
+								  </button>
+								  <ul class="dropdown-menu">
+								    <li> <input type="checkbox" name="servicios[]" value="">Opcion 1</li>
+								  </ul>
+								</div>
+							</div>
+
+							<div class="hidden km-caja-filtro">
 								<select class="km-select-custom" name="">
 									<option>TAMAÑO DE MASCOTA</option>
 									<option>TAMAÑO A</option>
@@ -124,11 +154,14 @@
 							</div>
 
 							<div class="km-caja-filtro">
-								<select class="km-select-custom" name="">
-									<option>SERVICIOS ADICIONALES</option>
-									<option>SERVICIO A</option>
-									<option>SERVICIO B</option>
-								</select>
+								<div class="btn-group">
+								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    SERVICIOS ADICIONALES</span>
+								  </button>
+								  <ul class="dropdown-menu">
+								    <li> <input type="checkbox" name="servicios[]" value="">Opcion 1</li>
+								  </ul>
+								</div>
 							</div>
 
 							<div class="km-caja-filtro">

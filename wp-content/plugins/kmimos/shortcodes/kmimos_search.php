@@ -42,7 +42,7 @@
     </div>
 
     <div class='buscar_box'>
-        <form id='buscador' class='container' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php'>
+        <form id='buscador' class='container' method='POST' action='".get_home_url()."/busqueda'>
             
             <div class='adicionales_container'>
                 <label class='titulo_buscar_label'>ESTOY BUSCANDO</label>

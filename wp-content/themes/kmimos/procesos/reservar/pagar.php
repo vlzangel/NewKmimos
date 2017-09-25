@@ -1,6 +1,6 @@
 <?php
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
-	include_once($raiz."/wp-load.php");
+	//include_once($raiz."/wp-load.php");
 
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");
@@ -36,8 +36,6 @@
 
 	$informacion = serialize($parametros);
 
-	$num_mascotas = $cantidades->cantidad;
-
 	$time = time();
     $hoy = date("Y-m-d H:i:s", $time);
     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -71,7 +69,7 @@
 	    	"deposit" => $pre17,
 			"enable" => "yes",
 			"ratio" => 1,
-			"remaining" => $pagoCuidador,
+			"remaining" => ($pagoCuidador+$descuentos),
 			"total" => $pagar->total
 	    );
 
@@ -84,16 +82,22 @@
     	"gigantes" => "Gigantes"
     );
 
-    $mascotas = array();
+    $mascotas = array(); $num_mascotas = array();
     foreach ($cantidades as $key => $value) {
     	if( $key != "cantidad" ){
 	    	if( is_array($value) ){
 	    		if( $value[0] > 0 ){
 	    			$mascotas[ "Mascotas ".$tamanos[ $key ] ] = $value[0];
+	    			if( $value[0]+0 > 0 ){
+		    			$mascota = $db->get_var("SELECT ID FROM wp_posts WHERE post_type = 'bookable_person' AND post_name LIKE '%{$key}%' AND post_parent = '{$pagar->servicio}' ");
+		    			$num_mascotas[$mascota] = $value[0];
+	    			}
 	    		}
 	    	}
     	}
     }
+
+    $num_mascotas = serialize($num_mascotas);
 
     $diaNoche = "d&iacute;a";
 	if( $pagar->tipo_servicio == "hospedaje" ){
@@ -104,6 +108,43 @@
     	$fechas->duracion .= " ".$diaNoche."s";
     }else{
     	$fechas->duracion .= " ".$diaNoche;
+    }
+
+    function generarAdicionales($adicionales){
+    	$resultado = array();
+    	foreach ($adicionales as $key => $value) {
+    		if( $value > 0 ){
+	    		switch ($key) {
+			        case 'bano':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Baño (precio por mascota)";
+			        break;
+			        
+			        case 'corte':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Corte de Pelo y Uñas (precio por mascota)";
+			        break;
+			        
+			        case 'visita_al_veterinario':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Visita al Veterinario (precio por mascota)";
+			        break;
+			        
+			        case 'limpieza_dental':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Limpieza Dental (precio por mascota)";
+			        break;
+			        
+			        case 'acupuntura':
+			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Acupuntura (precio por mascota)";
+			        break;
+			    }
+    		}
+	    }
+    	return $resultado;
+    }
+
+    $adicionales = generarAdicionales($adicionales);
+
+    $titulo_pago = "Tarjeta";
+    if( $pagar->tipo == "tienda" ){
+    	$titulo_pago = "Tienda";
     }
 
     $data_reserva = array(
@@ -119,10 +160,12 @@
 		"monto" 				=> $pagar->total,
 		"num_mascotas" 			=> $num_mascotas,
 		"metodo_pago" 			=> $pagar->tipo,
-		"metodo_pago_titulo" 	=> $pagar->tipo,
+		"metodo_pago_titulo" 	=> $titulo_pago,
 		"moneda" 				=> "MXN",
 		"duracion_formato" 		=> $fechas->duracion,
 		"mascotas" 				=> $mascotas,
+		"adicionales" 			=> $adicionales,
+		"transporte" 			=> $transporte,
 		"deposito" 				=> $deposito,
 		"status_reserva" 		=> "unpaid",
 		"status_orden" 			=> "wc-pending",
@@ -157,13 +200,13 @@
     foreach ($xdata_cliente as $key => $value) {
     	$data_cliente[ $value->meta_key ] = utf8_encode($value->meta_value);
     }
-
-    $reservar = new Reservas($db, $data_reserva);
+	
+	$reservar = new Reservas($db, $data_reserva);
 
     $id_orden = $reservar->new_reserva();
 
     $reservar->aplicarCupones($id_orden, $cupones);
-    
+
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
@@ -197,16 +240,22 @@
 				'requires_account' 	=> false,
 				'phone_number' 		=> $telefono,
 				'address' => array(
-					'line1' 		=> $direccion,
-					'state' 		=> $estado,
-					'city' 			=> $municipio,
-					'postal_code' 	=> $postal,
+					'line1' 		=> "Mexico ",
+					'state' 		=> "DF",
+					'city' 			=> "Mexico",
+					'postal_code' 	=> "10100",
 					'country_code' 	=> 'MX'
 				)
 		   	);
 		   	$customer = $openpay->customers->add($customerData);
 
-		   	update_user_meta($pagar->cliente, '_openpay_customer_id', $customer->id);
+		   	$openpay_customer_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id'");
+		   	if( $openpay_customer_id != false ){
+		   		$db->query("UPDATE wp_usermeta SET meta_value = '{$customer->id}' WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id';");
+		   	}else{
+		   		$db->query("INSERT INTO wp_usermeta VALUES (NULL, {$pagar->cliente}, '_openpay_customer_id', '{$customer->id}');");
+		   	}
+		   	
 	   	}
 
 	   	switch ( $pagar->tipo ) {
@@ -311,6 +360,8 @@
 				);
 
 				$charge = $customer->charges->create($chargeRequest);
+
+				$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 
    				echo json_encode(array(
    					"user_id" => $customer->id,

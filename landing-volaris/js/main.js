@@ -82,7 +82,7 @@ $('#newsletter').on('click', function(){
 
 
 
-  $.post("pantalla.php",{ancho: $(window).width(),alto: $(window).height() }, 
-    function(e){
-        console.log(e);
-    });
+  // $.post("pantalla.php",{ancho: $(window).width(),alto: $(window).height() }, 
+  //   function(e){
+  //       console.log(e);
+  //   });
