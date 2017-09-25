@@ -217,7 +217,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 					'img_profile': campos[10]};
 
 			globalData = getGlobalData('/procesos/login/registro.php','post', datos);
-			console.log(globalData);
+			//console.log(globalData);
 		}else {
          	alert("Revise sus datos por favor, debe llenar todos los campos");
         }
