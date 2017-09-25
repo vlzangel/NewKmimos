@@ -38,7 +38,8 @@
 			if( $deposito['enable'] == 'yes' ){
 				$saldo = $deposito['deposit'];
 			}else{
-				$saldo = $items['_line_total'];
+                $saldo = $items['_line_subtotal'];
+                $saldo -= $metas_orden['_cart_discount'];
 			}
 		}
 
