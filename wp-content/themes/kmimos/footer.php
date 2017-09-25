@@ -78,29 +78,6 @@ if(  $_SESSION['admin_sub_login'] == 'YES' ){
         ";
 }
 
-// Modificacion Ángel Veloz
-$DS = kmimos_session();
-if( $DS ){
-    if( isset($DS['reserva']) ){
-        $HTML .= "
-                <a href='".get_home_url()."/wp-content/themes/pointfinder/procesos/perfil/update_reserva.php?b=".$user_id."' class='theme_button' style='
-                    position: fixed;
-                    display: inline-block;
-                    left: 50px;
-                    bottom: 50px;
-                    padding: 8px;
-                    font-size: 20px;
-                    font-family: Roboto;
-                    z-index: 999999999999999999;
-                    color: #FFF;
-                    border: solid 1px #7b7b7b;
-                '>
-                    Salir de modificar reserva
-                </a>
-            ";
-    }
-}
-
 echo comprimir_styles($HTML);
 
 wp_footer();

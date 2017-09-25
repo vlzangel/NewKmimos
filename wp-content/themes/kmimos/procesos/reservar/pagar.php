@@ -2,6 +2,8 @@
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
 	//include_once($raiz."/wp-load.php");
 
+	if( !isset($_SESSION)){ session_start(); }
+
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");
 	include_once("../funciones/config.php");
@@ -146,6 +148,9 @@
     if( $pagar->tipo == "tienda" ){
     	$titulo_pago = "Tienda";
     }
+    if( $pagar->tipo == "Saldo y/o Descuentos" ){
+    	$titulo_pago = "Saldo y/o Descuentos";
+    }
 
     $data_reserva = array(
 		"servicio" 				=> $pagar->servicio,
@@ -207,178 +212,203 @@
 
     $reservar->aplicarCupones($id_orden, $cupones);
 
-	if( $pagar->deviceIdHiddenFieldName != "" ){
+    if( isset($_SESSION['MR_'.$pagar->servicio] ) ){
+		$new_reserva = $reservar->data["id_reserva"];
+		$old_reserva = $_SESSION['MR_'.$pagar->servicio]["reserva"];
 
-		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
+		$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$new_reserva}, 'modificacion_de', '{$old_reserva}');");
+		$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$old_reserva}, 'reserva_modificada', '{$new_reserva}');");
 
-		foreach ($data_cliente as $key => $value) {
-			if( $data_cliente[$key] == "" ){
-				$data_cliente[$key] = "_";
-			}
+		$old_order = $db->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$old_reserva}' ");
+
+		$db->query("UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$old_reserva}', '{$old_order}' );");
+	}
+
+    if( $pre17 == 0 ){
+    	if( $deposito["enable"] == "yes" ){
+			$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
+		}else{
+			$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+			$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
 		}
+    	echo json_encode(array(
+			"order_id" => $id_orden
+		));
+    }else{
+		if( $pagar->deviceIdHiddenFieldName != "" ){
 
-		$nombre 	= $data_cliente["first_name"];
-		$apellido 	= $data_cliente["last_name"];
-		$email 		= $pagar->email;
-		$telefono 	= $data_cliente["user_mobile"];
-		$direccion 	= $data_cliente["billing_address_1"];
-		$estado 	= $data_cliente["billing_state"];
-		$municipio 	= $data_cliente["billing_city"];
-		$postal  	= $data_cliente["billing_postcode"];
+			$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
 
-		$cliente_openpay = $data_cliente["_openpay_customer_id"];
+			foreach ($data_cliente as $key => $value) {
+				if( $data_cliente[$key] == "" ){
+					$data_cliente[$key] = "_";
+				}
+			}
 
-		if( $id_invalido ){ $cliente_openpay = ""; }
+			$nombre 	= $data_cliente["first_name"];
+			$apellido 	= $data_cliente["last_name"];
+			$email 		= $pagar->email;
+			$telefono 	= $data_cliente["user_mobile"];
+			$direccion 	= $data_cliente["billing_address_1"];
+			$estado 	= $data_cliente["billing_state"];
+			$municipio 	= $data_cliente["billing_city"];
+			$postal  	= $data_cliente["billing_postcode"];
 
-	   	if( $cliente_openpay != "" ){
-	   		$customer = $openpay->customers->get( $cliente_openpay );
-	   	}else{
-	   		$customerData = array(
-				'name' 				=> $nombre,
-				'last_name' 		=> $apellido,
-				'email' 			=> $email,
-				'requires_account' 	=> false,
-				'phone_number' 		=> $telefono,
-				'address' => array(
-					'line1' 		=> "Mexico ",
-					'state' 		=> "DF",
-					'city' 			=> "Mexico",
-					'postal_code' 	=> "10100",
-					'country_code' 	=> 'MX'
-				)
-		   	);
-		   	$customer = $openpay->customers->add($customerData);
+			$cliente_openpay = $data_cliente["_openpay_customer_id"];
 
-		   	$openpay_customer_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id'");
-		   	if( $openpay_customer_id != false ){
-		   		$db->query("UPDATE wp_usermeta SET meta_value = '{$customer->id}' WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id';");
+			if( $id_invalido ){ $cliente_openpay = ""; }
+
+		   	if( $cliente_openpay != "" ){
+		   		$customer = $openpay->customers->get( $cliente_openpay );
 		   	}else{
-		   		$db->query("INSERT INTO wp_usermeta VALUES (NULL, {$pagar->cliente}, '_openpay_customer_id', '{$customer->id}');");
+		   		$customerData = array(
+					'name' 				=> $nombre,
+					'last_name' 		=> $apellido,
+					'email' 			=> $email,
+					'requires_account' 	=> false,
+					'phone_number' 		=> $telefono,
+					'address' => array(
+						'line1' 		=> "Mexico ",
+						'state' 		=> "DF",
+						'city' 			=> "Mexico",
+						'postal_code' 	=> "10100",
+						'country_code' 	=> 'MX'
+					)
+			   	);
+			   	$customer = $openpay->customers->add($customerData);
+
+			   	$openpay_customer_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id'");
+			   	if( $openpay_customer_id != false ){
+			   		$db->query("UPDATE wp_usermeta SET meta_value = '{$customer->id}' WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id';");
+			   	}else{
+			   		$db->query("INSERT INTO wp_usermeta VALUES (NULL, {$pagar->cliente}, '_openpay_customer_id', '{$customer->id}');");
+			   	}
+			   	
 		   	}
-		   	
-	   	}
 
-	   	switch ( $pagar->tipo ) {
-	   		case 'tarjeta':
-	   			
-	   			if( $pagar->token != "" ){
-	   				$cardDataRequest = array(
-					    'holder_name' => $tarjeta->nombre,
-					    'card_number' => $tarjeta->numero,
-					    'cvv2' => $tarjeta->codigo,
-					    'expiration_month' => $tarjeta->mes,
-					    'expiration_year' => $tarjeta->anio,
-					    'device_session_id' => $pagar->deviceIdHiddenFieldName,
-					    'address' => array(
-					            'line1' => $customer->address->line1,
-					            'line2' => $customer->address->line2,
-					            'line3' => $customer->address->line3,
-					            'postal_code' => $customer->address->postal_code,
-					            'state' => $customer->address->state,
-					            'city' => $customer->address->city,
-					            'country_code' => 'MX'
-					    )
-					);
+		   	switch ( $pagar->tipo ) {
+		   		case 'tarjeta':
+		   			
+		   			if( $pagar->token != "" ){
+		   				$cardDataRequest = array(
+						    'holder_name' => $tarjeta->nombre,
+						    'card_number' => $tarjeta->numero,
+						    'cvv2' => $tarjeta->codigo,
+						    'expiration_month' => $tarjeta->mes,
+						    'expiration_year' => $tarjeta->anio,
+						    'device_session_id' => $pagar->deviceIdHiddenFieldName,
+						    'address' => array(
+						            'line1' => $customer->address->line1,
+						            'line2' => $customer->address->line2,
+						            'line3' => $customer->address->line3,
+						            'postal_code' => $customer->address->postal_code,
+						            'state' => $customer->address->state,
+						            'city' => $customer->address->city,
+						            'country_code' => 'MX'
+						    )
+						);
 
-					$cardList = $customer->cards->getList( array() );
+						$cardList = $customer->cards->getList( array() );
 
-					$card = "";
+						$card = "";
 
-					if( count($cardList) == 0 ){
-						try {
-				            $card = $customer->cards->add($cardDataRequest);
-				        } catch (Exception $e) { }
-					}else{
-						$no_existe = true;
-						$card_num = substr($card_number, 0, 6)."XXXXXX".substr($card_number, -4);
-						foreach ($cardList as $key => $card) {
-							if( $card_num == $card->card_number ){
-								$no_existe = false;
-							}
-						}
-						if( $no_existe ){
+						if( count($cardList) == 0 ){
 							try {
 					            $card = $customer->cards->add($cardDataRequest);
 					        } catch (Exception $e) { }
-						}
-					}
-
-					$chargeData = array(
-					    'method' 			=> 'card',
-					    'source_id' 		=> $card->id,
-					    'amount' 			=> (float) $pagar->total,
-					    'order_id' 			=> $id_orden,
-					    'description' 		=> "Tarjeta",
-					    'device_session_id' => $pagar->deviceIdHiddenFieldName
-				    );
-
-					$charge = "";
-
-					try {
-			            $charge = $customer->charges->create($chargeData);
-			        } catch (Exception $e) { }
-					
-					if ($charge != false) {
-
-						if( $deposito["enable"] == "yes" ){
-							$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
 						}else{
-							$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
-							$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+							$no_existe = true;
+							$card_num = substr($card_number, 0, 6)."XXXXXX".substr($card_number, -4);
+							foreach ($cardList as $key => $card) {
+								if( $card_num == $card->card_number ){
+									$no_existe = false;
+								}
+							}
+							if( $no_existe ){
+								try {
+						            $card = $customer->cards->add($cardDataRequest);
+						        } catch (Exception $e) { }
+							}
 						}
 
-			            echo json_encode(array(
-		   					"openpay_customer_id" => $customer->id,
-							"order_id" => $id_orden
-						));
-			        }else{
-			            echo json_encode(array(
-		   					"openpay_customer_id" => $customer->id,
-							"order_id" => $id_orden,
-							"status" => "Error, pago fallido"
-						));
-			        }
+						$chargeData = array(
+						    'method' 			=> 'card',
+						    'source_id' 		=> $card->id,
+						    'amount' 			=> (float) $pagar->total,
+						    'order_id' 			=> $id_orden,
+						    'description' 		=> "Tarjeta",
+						    'device_session_id' => $pagar->deviceIdHiddenFieldName
+					    );
 
-	   			}else{
+						$charge = "";
+
+						try {
+				            $charge = $customer->charges->create($chargeData);
+				        } catch (Exception $e) { }
+						
+						if ($charge != false) {
+
+							if( $deposito["enable"] == "yes" ){
+								$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
+							}else{
+								$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+								$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+							}
+
+				            echo json_encode(array(
+			   					"openpay_customer_id" => $customer->id,
+								"order_id" => $id_orden
+							));
+				        }else{
+				            echo json_encode(array(
+			   					"openpay_customer_id" => $customer->id,
+								"order_id" => $id_orden,
+								"status" => "Error, pago fallido"
+							));
+				        }
+
+		   			}else{
+		   				echo json_encode(array(
+							"Error" => "Sin tokens",
+							"Data"  => $_POST
+						));
+		   			}
+
+	   			break;
+
+		   		case 'tienda':
+		   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 24 hours'));
+
+		   			$chargeRequest = array(
+					    'method' => 'store',
+					    'amount' => (float) $pagar->total,
+					    'description' => 'Tienda',
+					    'order_id' => $id_orden,
+					    'due_date' => $due_date
+					);
+
+					$charge = $customer->charges->create($chargeRequest);
+
+					$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
+
 	   				echo json_encode(array(
-						"Error" => "Sin tokens",
-						"Data"  => $_POST
+	   					"user_id" => $customer->id,
+						"pdf" => "https://sandbox-dashboard.openpay.mx/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference,
+						"barcode_url"  => $charge->payment_method->barcode_url,
+						"order_id" => $id_orden
 					));
-	   			}
 
-   			break;
+	   			break;
 
-	   		case 'tienda':
-	   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 24 hours'));
+		   	}
 
-	   			$chargeRequest = array(
-				    'method' => 'store',
-				    'amount' => (float) $pagar->total,
-				    'description' => 'Tienda',
-				    'order_id' => $id_orden,
-				    'due_date' => $due_date
-				);
+		}else{
+			echo json_encode(array(
+				"Error" => "Sin ID de dispositivo",
+				"Data"  => $_POST
+			));
+		}
 
-				$charge = $customer->charges->create($chargeRequest);
-
-				$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
-
-   				echo json_encode(array(
-   					"user_id" => $customer->id,
-					"pdf" => "https://sandbox-dashboard.openpay.mx/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference,
-					"barcode_url"  => $charge->payment_method->barcode_url,
-					"order_id" => $id_orden
-				));
-
-   			break;
-
-	   	}
-
-	}else{
-		echo json_encode(array(
-			"Error" => "Sin ID de dispositivo",
-			"Data"  => $_POST
-		));
-	}
+    }
 
 ?>

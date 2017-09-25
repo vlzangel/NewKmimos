@@ -42,7 +42,20 @@
 			}
 		}
 
-		$variaciones = unserialize( $metas_reservas['_booking_persons'] );
+		$variaciones = array();
+
+		$tamanos = array(
+	    	"pequenos" => "Pequeñas",
+	    	"medianos" => "Medianas",
+	    	"grandes"  => "Grandes",
+	    	"gigantes" => "Gigantes"
+	    );
+	    foreach($tamanos as $key => $value){
+	    	if( isset( $items["Mascotas ".utf8_decode($value)] ) ){
+	    		$tamanos[ $key ] = $items["Mascotas ".utf8_decode($value)];
+	    		$variaciones[ $key ] = $items["Mascotas ".utf8_decode($value)];
+	    	}
+	    }
 
 		$fechas = array(
 			"inicio" => date('d-m-Y', strtotime( $metas_reservas['_booking_start'] ) ),
@@ -50,19 +63,19 @@
 		);
 
 		$trans = array(
-            "transp-sencillo-rutas-cortas" => 'Transp. Sencillo - Rutas Cortas',
-            "transp-sencillo-rutas-medias" => 'Transp. Sencillo - Rutas Medias',
-            "transp-sencillo-rutas-largas" => 'Transp. Sencillo - Rutas Largas',
-            "transp-redondo-rutas-cortas" => 'Transp. Redondo - Rutas Cortas',
-            "transp-redondo-rutas-medias" => 'Transp. Redondo - Rutas Medias',
-            "transp-redondo-rutas-largas" => 'Transp. Redondo - Rutas Largas'
+            'Transp. Sencillo - Rutas Cortas',
+            'Transp. Sencillo - Rutas Medias',
+            'Transp. Sencillo - Rutas Largas',
+            'Transp. Redondo - Rutas Cortas',
+            'Transp. Redondo - Rutas Medias',
+            'Transp. Redondo - Rutas Largas'
         );
 
 		$adic = array(
             "bano" => 'Baño (precio por mascota)',
             "corte" => 'Corte de Pelo y Uñas (precio por mascota)',
-            "visita" => 'Visita al Veterinario (precio por mascota)',
-            "limpieza" => 'Limpieza Dental (precio por mascota)',
+            "visita_al_veterinario" => 'Visita al Veterinario (precio por mascota)',
+            "limpieza_dental" => 'Limpieza Dental (precio por mascota)',
             "acupuntura" => 'Acupuntura (precio por mascota)'
         );
 
@@ -71,14 +84,14 @@
 
 		if( count($r3) > 1 ){
 			foreach ($items as $key => $value) {
-				$retorno = array_search(utf8_encode($value), $trans);
 
-				if( $retorno ){
-					$transporte[] = $retorno;
+				if ( strpos( strtoupper($value) , "TRANSP.") !== false) {
+				    $transporte[] = strtoupper($value);
 				}
+
 				$retorno = array_search(utf8_encode($value), $adic);
 				if( $retorno ){
-					$adicionales[] = $retorno;
+					$adicionales[$retorno] = $retorno;
 				}
 			}
 		}
@@ -97,11 +110,10 @@
 			"adicionales"     => $adicionales
 		);
 
-		$_SESSION["MR_".$param[1]] = $parametros;
+		$_SESSION["MR_".$data->ID] = $parametros;
 
 		$respuesta = array(
-			"url" => "producto/".$data->post_name."/",
-			"prm" => $parametros			
+			"url" => "reservar/".$data->ID."/"
 		);
 	}else{
 		extract($_GET);
@@ -112,11 +124,8 @@
 
 			$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); 
 			$home = $home->fetch_assoc();
-			foreach ($_SESSION as $key => $value) {
-				if(	substr($key, 0, 3) == "MR_" ){
-					unset($_SESSION[$key]);
-				}
-			}
+			
+			unset($_SESSION["MR_".$b]);
 
 			header("location: ".$home['server']."/perfil-usuario/historial/");
 		}
