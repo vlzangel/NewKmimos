@@ -49,19 +49,20 @@ $HTML = '
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>;
     ';
-    //wp_enqueue_script('boostrap_js_plugins', getTema()."/js/bootstrap.js", array("jquery"), '1.0.0');
 
-    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
+//wp_enqueue_script('boostrap_js_plugins', getTema()."/js/bootstrap.js", array("jquery"), '1.0.0');
 
-    wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
+wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
+wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
+wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
 
-    if(  $_SESSION['admin_sub_login'] == 'YES' ){
-        $HTML .= "
+wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
+wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
+
+if(  $_SESSION['admin_sub_login'] == 'YES' ){
+    $HTML .= "
             <a href='".get_home_url()."/?i=".md5($_SESSION['id_admin'])."&admin=YES' class='theme_button' style='
                 position: fixed;
                 display: inline-block;
@@ -75,13 +76,13 @@ $HTML = '
                 X
             </a>
         ";
-    }
+}
 
-    // Modificacion Ángel Veloz
-    $DS = kmimos_session();
-    if( $DS ){
-        if( isset($DS['reserva']) ){
-            $HTML .= "
+// Modificacion Ángel Veloz
+$DS = kmimos_session();
+if( $DS ){
+    if( isset($DS['reserva']) ){
+        $HTML .= "
                 <a href='".get_home_url()."/wp-content/themes/pointfinder/procesos/perfil/update_reserva.php?b=".$user_id."' class='theme_button' style='
                     position: fixed;
                     display: inline-block;
@@ -97,18 +98,18 @@ $HTML = '
                     Salir de modificar reserva
                 </a>
             ";
-        }
     }
+}
 
-    echo comprimir_styles($HTML);
- 
-    wp_footer();
+echo comprimir_styles($HTML);
 
-    /* BEGIN ESTADOS Y MUNICIPIOS */
-    $HTML = get_estados_municipios();
-    /* END ESTADOS Y MUNICIPIOS */
+wp_footer();
 
-    $HTML .= "
+/* BEGIN ESTADOS Y MUNICIPIOS */
+$HTML = get_estados_municipios();
+/* END ESTADOS Y MUNICIPIOS */
+
+$HTML .= "
         <script type='text/javascript'>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -128,11 +129,11 @@ $HTML = '
         </script>        
     ";
 
-    // SubscribeSite
-    include_once( 'partes/footer/SubscribeSite.php' );
+// SubscribeSite
+include_once( 'partes/footer/SubscribeSite.php' );
 
-    echo comprimir_styles($HTML);
+echo comprimir_styles($HTML);
 
-    echo "</body></html>";
+echo "</body></html>";
 ?>
         

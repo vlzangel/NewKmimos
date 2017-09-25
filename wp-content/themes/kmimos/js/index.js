@@ -5,7 +5,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 
     $("#nombre").blur(function(){
 		
-		if($("#nombre").val().length == 0){	
+		if($("#nombre").val().length < 4){
 			$("#nombre").parent('div').css('color','red');
 			$("#nombre").after('<span name="sp-name">Ingrese su Nombre</span>').css('color','red');
 			$("#nombre").focus(function() { $("[name='sp-name']").hide(); });
@@ -17,8 +17,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 	});
 
 	$("#apellido").blur(function(){
-		
-		if($("#apellido").val().length == 0){		
+		if($("#apellido").val().length < 4){
 			$("#apellido").parent('div').css('color','red');
 			$("#apellido").after('<span name="sp-lastname">Ingrese su apellido</span>').css('color','red');
 			$("#apellido").focus(function() { $("[name='sp-lastname']").hide(); });
@@ -235,11 +234,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 
 	jQuery('#datepets').datepick({
 		dateFormat: 'dd/mm/yyyy',
-		minDate: fecha,
-		onSelect: function(xdate) {		},
-		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
-		firstDay: 1,
-		onmonthsToShow: [1, 1]
+		onSelect: function(xdate) {		}
 	});
 	
 	$("#nombre_mascota").blur(function(){
@@ -591,14 +586,15 @@ $(document).on('click','#login_submit.recover_pass',function(e){
 $("form#form_recuperar").submit(function(){
 	var mail = $(this).find("#usuario");
 	var data_email = mail.val();
-	if (data_email != "" && mail.hasClass('correctly')){
+	if (data_email != "" && mail.hasClass('correctly') && data_email.length>3){
 		var datos = {
 			'email': data_email
 		};
 
 		var result = getAjaxData('/procesos/login/recuperar.php','post', datos);
 		$(this).find(".response").html(result);
-		console.log(result);
+		$('.modal').modal('hide');
+		//console.log(result);
 
 	}else {
 		$(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");
