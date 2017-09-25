@@ -1,5 +1,9 @@
 <?php  
-	include(__DIR__."../../../../../../vlz_config.php");
+	//include(__DIR__."../../../../../../vlz_config.php");
+    $config = dirname(__DIR__,5)."/wp-config.php";
+    if(file_exists($config)){
+        include_once($config);
+    }
 
     extract($_POST);
 	
