@@ -20,7 +20,7 @@
 		$m_orden = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$orden_id}'"); 
 		$metas_orden = array();
 		foreach ($m_orden as $key => $value) { $metas_orden[ $value->meta_key ] = $value->meta_value; }
-		
+
 		$descuento = 0;
 		if( isset( $metas_orden[ "_cart_discount" ] ) ){
 			$descuento = $metas_orden[ "_cart_discount" ];
