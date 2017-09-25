@@ -251,7 +251,13 @@
 		   	);
 		   	$customer = $openpay->customers->add($customerData);
 
-		   	$db->query("UPDATE wp_usermeta SET meta_value = '{$customer->id}' WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id';");
+		   	$openpay_customer_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id'");
+		   	if( $openpay_customer_id != false ){
+		   		$db->query("UPDATE wp_usermeta SET meta_value = '{$customer->id}' WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id';");
+		   	}else{
+		   		$db->query("INSERT INTO wp_usermeta VALUES (NULL, {$pagar->cliente}, '_openpay_customer_id', '{$customer->id}');");
+		   	}
+		   	
 	   	}
 
 	   	switch ( $pagar->tipo ) {

@@ -396,7 +396,7 @@ function pagarReserva(id_invalido = false){
     	console.log( "Error" );
     	console.log( e );
     	if( e.status == 500 ){
-    		pagarReserva(true);
+    		//pagarReserva(true);
     	}else{
     		alert("Error al procesar la reserva!");
     	}
