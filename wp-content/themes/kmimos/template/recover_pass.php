@@ -29,6 +29,9 @@
 	get_header();
 
 		if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} ?>
+		<div class="header-search" style="background-image:url(http://kmimos.new.mx/wp-content/themes/kmimos/images/new/km-fondo-buscador.gif);">
+			<div class="overlay"></div>
+		</div>
 
 		<div class="pf-blogpage-spacing pfb-top"></div>
 		<section role="main" class="blog-full-width" style="overflow: hidden;">
@@ -67,15 +70,15 @@
 
 											<h2 class="vlz_titulo_interno" style="font-size: 20px;">Email: <?php echo $datos[1]; ?></h2>
 
-											<div class="label-placeholder">
+											<div class="label-placeholder verify">
 												<div class="vlz_cell50">
-													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_1' name='clave_1' class='' placeholder='Ingrese su nueva contraseña' pattern=".{3,}"  maxlength="20" required>
-													<div class='no_error' id='error_clave_1'></div>
+													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_1' name='clave_1' class='' placeholder='Ingrese su nueva contraseña' pattern=".{3,}"  maxlength="20">
+													<span id="error_clave_1" class="verify_result"></span>
 												</div>
 
-												<div class="vlz_cell50" style="margin: 20px 0;">
-													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_2' name='clave_2' class='' placeholder='Reingrese su nueva contraseña' pattern=".{3,}"  maxlength="20" required>
-													<div class='no_error' id='error_clave_2'></div>
+												<div class="vlz_cell50 verify" style="margin: 20px 0;">
+													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_2' name='clave_2' class='' placeholder='Reingrese su nueva contraseña' pattern=".{3,}"  maxlength="20">
+													<span id="error_clave_2" class="verify_result"></span>
 												</div>
 											</div>
 
@@ -83,7 +86,7 @@
 
 										<div class="vlz_contenedor_botones_footer">
 											<div class="vlz_bloqueador"></div>
-											<input type='button' id="vlz_boton_recuperar" class="km-btn-basic" style=" outline: none; border: none; width: 100%;" value='Recuperar' />
+											<button type='submit' id="vlz_boton_recuperar" class="km-btn-basic" style=" outline: none; border: none; width: 100%;" >Recuperar</button>
 										</div>
 
 									</div>
@@ -93,60 +96,58 @@
 
 									var form = document.getElementById('vlz_form_recuperar');
 
-									function mostrar_error(id){
-										jQuery("#error_"+id).html( jQuery("#"+id).attr("data-title") );
-
-										jQuery("#error_"+id).removeClass("no_error");
-										jQuery("#error_"+id).addClass("error");
-										jQuery("#"+id).addClass("vlz_input_error");
+									function error_clean(){
+										jQuery(".verify_result").css({'color':'green'}).html('');
 									}
 
-									function quitar_error(id){
-										jQuery("#error_"+id).html( "" );
-
-										jQuery("#error_"+id).removeClass("error");
-										jQuery("#error_"+id).addClass("no_error");
-										jQuery("#"+id).removeClass("vlz_input_error");
+									function error_show(id){
+										jQuery("#error_"+id).css({'color':'red'}).html( jQuery("#"+id).attr("data-title") );
 									}
 
 									function vlz_validar(){
-										var error = 0;
+										error_clean();
+										var action = true;
 										var clv1 = jQuery("#clave_1").attr("value");
 										var clv2 = jQuery("#clave_2").attr("value");
 
-										if( clv1 == "" ){ mostrar_error("clave_1"); error++; }else{ quitar_error("clave_1"); }
-										if( clv2 == "" ){ mostrar_error("clave_2"); error++; }else{ quitar_error("clave_2"); }
+										if( clv1 == "" ){
+											error_show("clave_1");
+											action = false;
+										}
+
+										if( clv2 == "" ){
+											error_show("clave_2");
+											action = false;
+										}
 
 										if( clv1 != clv2 ){
-											jQuery("#error_clave_2").html( jQuery("#clave_2").attr("data-title") );
-											jQuery("#error_clave_2").removeClass("no_error");
-											jQuery("#error_clave_2").addClass("error");
-											jQuery("#clave_2").addClass("vlz_input_error");
-											error++;
-										}else{
-											if( clv1 != "" ){
-												quitar_error("clave_2");
-											}
+											var text = jQuery("#clave_2").attr("data-title");
+											jQuery("#error_clave_2").css({'color':'red'}).html(text);
+											action = false;
 										}
-										return ( error == 0);
+
+										return action;
 									}
 
-									jQuery("#vlz_boton_recuperar").on("click", function(){
-										if( vlz_validar() ){
-											jQuery("#vlz_form_recuperar").submit();
-										}else{
-
-										}
-									});
 
 									jQuery("#vlz_form_recuperar").submit(function(e){
 										e.preventDefault();
-										jQuery("#terminos_y_condiciones").css("display", "table");
-										jQuery("#boton_registrar_modal").css("display", "inline-block");
-										var a = "<?php echo get_home_url()."/wp-content/themes/kmimos"."/procesos/login/recuperar_pass.php"; ?>";
-										jQuery.post( a, jQuery("#vlz_form_recuperar").serialize(), function( data ) {
+
+										if(!vlz_validar()){
+											return false;
+										}
+
+										var result = getAjaxData('/procesos/login/recuperar_pass.php','post',  jQuery(this).serialize());
+										console.log(result);
+										result = jQuery.parseJSON(result);
+
+										if(result['result']=='success'){
 											location.href = "<?php echo get_home_url()."/perfil-usuario/?ua=profile"; ?>";
-										});
+
+										}else if(result['result']=='error'){
+											alert(result['message']);
+										}
+
 									});
 								</script>
 
@@ -159,7 +160,4 @@
 				</div>
 			</div>
 		</section>
-		<div class="pf-blogpage-spacing pfb-bottom"></div> <?php 
-
-	get_footer(); 
-?>
+<?php get_footer(); ?>

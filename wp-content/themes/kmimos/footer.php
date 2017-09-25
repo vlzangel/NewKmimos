@@ -1,9 +1,6 @@
 <?php
 $datos = kmimos_get_info_syte();
-//<script src="'.getTema().'/js/jquery.min.js"></script>
 $HTML = '
-        <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
-        <script type="text/javascript" src="'.getTema().'/js/bootstrap.min.js"></script>
         <!-- SECCIÓN FOOTER -->
         <footer>
             <div class="container">
@@ -35,7 +32,6 @@ $HTML = '
                         <p>Llamada Sin Costo: '.$datos['telefono_sincosto'].'</p>
                         <p>WhatsApp: '.$datos['whatsapp'].'</p>
                         <p>Email: '.$datos['email'].'</p>
-
                         <div class="km-icon-redes">
                             <a href="https://www.facebook.com/Kmimosmx/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path class="cls-1" d="M12.5,0A12.5,12.5,0,1,0,25,12.5,12.5,12.5,0,0,0,12.5,0Zm3.66,7.56H14.41c-.61,0-.74.25-.74.89V10h2.49l-.25,2.7H13.67v8H10.48v-8H8.82V10h1.66V7.83c0-2,1.07-3.07,3.47-3.07h2.21Z"/></svg></a>
                         </div>
@@ -49,21 +45,19 @@ $HTML = '
                 </div>
             </div>
         </footer>
+        <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>;
     ';
-
-    //wp_enqueue_script('bootstrap.minjs', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", array("jquery"), '1.0.0');
-    //wp_enqueue_script('jquery.datepickx', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', array("jquery"), '1.0.0');
-    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
-
-    wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
-
-    if(  $_SESSION['admin_sub_login'] == 'YES' ){
-        $HTML .= "
+//wp_enqueue_script('boostrap_js_plugins', getTema()."/js/bootstrap.js", array("jquery"), '1.0.0');
+wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
+wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
+wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
+wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
+wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
+if(  $_SESSION['admin_sub_login'] == 'YES' ){
+    $HTML .= "
             <a href='".get_home_url()."/?i=".md5($_SESSION['id_admin'])."&admin=YES' class='theme_button' style='
                 position: fixed;
                 display: inline-block;
@@ -77,13 +71,12 @@ $HTML = '
                 X
             </a>
         ";
-    }
-
-    // Modificacion Ángel Veloz
-    $DS = kmimos_session();
-    if( $DS ){
-        if( isset($DS['reserva']) ){
-            $HTML .= "
+}
+// Modificacion Ángel Veloz
+$DS = kmimos_session();
+if( $DS ){
+    if( isset($DS['reserva']) ){
+        $HTML .= "
                 <a href='".get_home_url()."/wp-content/themes/pointfinder/procesos/perfil/update_reserva.php?b=".$user_id."' class='theme_button' style='
                     position: fixed;
                     display: inline-block;
@@ -99,42 +92,32 @@ $HTML = '
                     Salir de modificar reserva
                 </a>
             ";
-        }
     }
+}
+echo comprimir_styles($HTML);
 
-    echo comprimir_styles($HTML);
- 
-    wp_footer();
-
-    /* BEGIN ESTADOS Y MUNICIPIOS */
-    $HTML = get_estados_municipios();
-    /* END ESTADOS Y MUNICIPIOS */
-
-    $HTML .= "
+wp_footer();
+/* BEGIN ESTADOS Y MUNICIPIOS */
+$HTML = get_estados_municipios();
+/* END ESTADOS Y MUNICIPIOS */
+$HTML .= "
         <script type='text/javascript'>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
-
             ga('create', 'UA-56422840-1', 'auto');
             ga('send', 'pageview');
         </script>
-
         <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
         <script>startApp();</script>
-
         <!-- Asignar Alt a Imagenes -->
         <script type='text/javascript'>
             jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
         </script>        
     ";
-
-    // SubscribeSite
-    include_once( 'partes/footer/SubscribeSite.php' );
-
-    echo comprimir_styles($HTML);
-
-    echo "</body></html>";
+// SubscribeSite
+include_once( 'partes/footer/SubscribeSite.php' );
+echo comprimir_styles($HTML);
+echo "</body></html>";
 ?>
-        

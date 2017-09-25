@@ -586,14 +586,15 @@ $(document).on('click','#login_submit.recover_pass',function(e){
 $("form#form_recuperar").submit(function(){
 	var mail = $(this).find("#usuario");
 	var data_email = mail.val();
-	if (data_email != "" && mail.hasClass('correctly')){
+	if (data_email != "" && mail.hasClass('correctly') && data_email.length>3){
 		var datos = {
 			'email': data_email
 		};
 
 		var result = getAjaxData('/procesos/login/recuperar.php','post', datos);
 		$(this).find(".response").html(result);
-		console.log(result);
+		$('.modal').modal('hide');
+		//console.log(result);
 
 	}else {
 		$(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");

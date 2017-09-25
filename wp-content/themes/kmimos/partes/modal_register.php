@@ -132,7 +132,7 @@ $HTML .='
 					<a href="#" id="siguiente" class="km-btn-correo km-btn-popup-registrarte-nuevo-correo">SIGUIENTE</a>
 					<div id="resp"></div>
 					<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-					<p><a href="'.site_url().'/terminos-y-condiciones/">Términos y Condiciones</a></p>
+					<p><a href="'.site_url().'/terminos-y-condiciones/">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</a></p>
 					<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;"src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (55) 6892-2182</p>
 					<hr>
 					<div class="row">
