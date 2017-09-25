@@ -29,7 +29,7 @@
 	get_header();
 
 		if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} ?>
-		<div class="header-search" style="background-image:url(http://kmimos.new.mx/wp-content/themes/kmimos/images/new/km-fondo-buscador.gif);">
+		<div class="header-search" style="background-image:url(<?php echo site_url(); ?>/wp-content/themes/kmimos/images/new/km-fondo-buscador.gif);">
 			<div class="overlay"></div>
 		</div>
 
