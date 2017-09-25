@@ -1,6 +1,6 @@
 <?php
 $datos = kmimos_get_info_syte();
-$HTML = '
+$HTML = ' 
         <!-- SECCIÓN FOOTER -->
         <footer>
             <div class="container">
