@@ -586,13 +586,6 @@
 
 			echo comprimir_styles($HTML);
 
-
-
-			echo "<pre>";
-				print_r($_SESSION["MR_".get_the_ID()]);
-				print_r($saldo);
-			echo "</pre>";
-
 		}
 
     get_footer(); 
