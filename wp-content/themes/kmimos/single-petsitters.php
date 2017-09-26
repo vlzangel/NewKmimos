@@ -183,7 +183,7 @@
 
         $titulo = get_servicio_cuidador($tipo);
 
-        $tamanos = '';
+        $tamanos_precios = array();
         $precios = $precios_hospedaje;
         if( $tipo != "hospedaje" ){
         	$precios = $precios_adicionales[$tipo];
@@ -205,15 +205,23 @@
 	        	}
         	}
 
-        	$tamanos .= get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"],$tamano->post_status);
+        	$temp_tamanos = get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"],$tamano->post_status);
+
+        	$tamanos_precios[ $temp_tamanos[0] ] = $temp_tamanos[1];
+        }
+
+        $tamanos_txt = "";
+        foreach ($tamanos as $key => $value) {
+        	$tamanos_txt .= $tamanos_precios[$key];
         }
 		$productos .= '
 		<div class="col-xs-12 col-md-6">
 			<div class="km-ficha-servicio">
-			<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class=""></a>
-				'.$titulo.'
-				<!--p>SELECCIÓN SEGÚN TAMAÑO</p-->
-				'.$tamanos.'
+				<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="">
+					'.$titulo.'
+					<!--p>SELECCIÓN SEGÚN TAMAÑO</p-->
+					'.$tamanos_txt.'
+				</a>
 			</div>
 		</div>';
 	}

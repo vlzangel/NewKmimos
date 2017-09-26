@@ -76,7 +76,7 @@
 		}
 	}
 
-	function get_tamano($slug, $precios, $activo, $tamanos, $status="nopublish", $tipo_retorno = "HTML"){
+	function get_tamano($slug, $precios, $activo, $tamanos, $status="nopublish", $tipo_retorno = "HTML" ){
 
 		$class = "";
 		$tamano = "";
@@ -125,14 +125,25 @@
 
 				}
 
-				$HTML = '
-				<div class="km-servicio-opcion '.$class.'">
-					<div class="km-servicio-desc">
-						<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
-						<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
-					</div>
-					<div class="km-servicio-costo"><b>$'.($precios["pequenos"]*1.2).'</b></div>
-				</div>';
+				if( $precios["pequenos"] > 0 ){
+					$HTML = '
+					<div class="km-servicio-opcion km-servicio-opcionactivo">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
+							<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
+						</div>
+						<div class="km-servicio-costo"><b>$'.($precios["pequenos"]*1.2).'</b></div>
+					</div>';
+				}else{
+					$HTML = '
+					<div class="km-servicio-opcion">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
+							<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
+						</div>
+						<div class="km-servicio-costo"><b></b></div>
+					</div>';
+				}
 			break;
 			case 'medianos':
 
@@ -141,14 +152,25 @@
 					"precio" => $precio
 				);
 
-				$HTML = '
-				<div class="km-servicio-opcion '.$class.'">
-					<div class="km-servicio-desc">
-						<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
-						<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
-					</div>
-					<div class="km-servicio-costo"><b>$'.($precios["medianos"]*1.2).'</b></div>
-				</div>';
+				if( $precios["medianos"] > 0 ){
+					$HTML = '
+					<div class="km-servicio-opcion km-servicio-opcionactivo">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
+							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
+						</div>
+						<div class="km-servicio-costo"><b>$'.($precios["medianos"]*1.2).'</b></div>
+					</div>';
+				}else{
+					$HTML = '
+					<div class="km-servicio-opcion">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
+							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
+						</div>
+						<div class="km-servicio-costo"><b></b></div>
+					</div>';
+				}
 			break;
 			case 'grandes':
 
@@ -157,14 +179,25 @@
 					"precio" => $precio
 				);
 
-				$HTML = '
-				<div class="km-servicio-opcion '.$class.'">
-					<div class="km-servicio-desc">
-						<img src="'.getTema().'/images/new/icon/icon-grande.svg">
-						<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
-					</div>
-					<div class="km-servicio-costo"><b>$'.($precios["grandes"]*1.2).'</b></div>
-				</div>';
+				if( $precios["grandes"] > 0 ){
+					$HTML = '
+					<div class="km-servicio-opcion km-servicio-opcionactivo">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/new/icon/icon-grande.svg">
+							<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
+						</div>
+						<div class="km-servicio-costo"><b>$'.($precios["grandes"]*1.2).'</b></div>
+					</div>';
+				}else{
+					$HTML = '
+					<div class="km-servicio-opcion">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/new/icon/icon-grande.svg">
+							<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
+						</div>
+						<div class="km-servicio-costo"><b></b></div>
+					</div>';
+				}
 			break;
 			case 'gigantes':
 
@@ -173,19 +206,33 @@
 					"precio" => $precio
 				);
 
-				$HTML = '
-				<div class="km-servicio-opcion '.$class.'">
-					<div class="km-servicio-desc">
-						<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
-						<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
-					</div>
-					<div class="km-servicio-costo"><b>$'.($precios["gigantes"]*1.2).'</b></div>
-				</div>';
+				if( $precios["gigantes"] > 0 ){
+					$HTML = '
+					<div class="km-servicio-opcion km-servicio-opcionactivo">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
+							<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
+						</div>
+						<div class="km-servicio-costo"><b>$'.($precios["gigantes"]*1.2).'</b></div>
+					</div>';
+				}else{
+					$HTML = '
+					<div class="km-servicio-opcion">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
+							<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
+						</div>
+						<div class="km-servicio-costo"><b></b></div>
+					</div>';
+				}
 			break;
 		}
 
 		if( $tipo_retorno == "HTML" ){
-			return $HTML;
+			return array(
+				$tamano,
+				$HTML
+			);
 		}else{
 			return $ARRAY;
 		}
@@ -209,7 +256,7 @@
 				if( isset($precarga[$key]) ){
 					$catidad = $precarga[$key];
 				}
-				if( $aceptados[$key] == 1 ){
+				//if( $data[$key] > 0 ){
 					$resultado .= '
 						<div class="km-quantity-height">
 							<div class="km-quantity">
@@ -224,7 +271,7 @@
 							</div>
 						</div>
 					';
-				}
+				//}
 			}
 		}
 		return $resultado;

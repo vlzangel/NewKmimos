@@ -228,6 +228,9 @@
 
 		$HTML = '
 			<script> var RUTA_IMGS = "'.get_home_url().'/imgs"; </script>
+	 		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
+				<div class="overlay"></div>
+			</div>
 			<div class="body km-content-reservation">
 				<div class="menu_perfil">
 					<div class="vlz_img_portada">

@@ -1,13 +1,14 @@
 .vlz_img_portada_perfil{ position: relative; height: 450px; overflow: hidden; border: solid 1px #ccc; background: #EEE; margin: 0px 5px 10px; }
 .body{
 	position: relative;
-	overflow: hidden;
 }
 .menu_perfil{
 	float: left;
 	width: 220px;
 	box-sizing: border-box;
 	padding: 5px;
+    position: relative;
+    top: -85px;
 }
 
 .menu_perfil ul{    
