@@ -206,9 +206,6 @@
                 $conn->query( utf8_decode( $new_user ) );
                 $user_id = $conn->insert_id;
 
-                $wp_user = new WP_User( $user_id );
-                $wp_user->set_role( 'subscriber' );
-
                 //WHITE_LABEL
                 if (!isset($_SESSION)) {
                     session_start();

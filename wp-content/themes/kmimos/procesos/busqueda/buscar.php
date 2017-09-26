@@ -262,11 +262,11 @@
 
     /* FIN Funciones */
 
-    echo "<pre>";
-	print_r( $sql );
-	print_r( $_POST );
-	print_r( $ubicacion );
-	print_r( $cuidadores );
-	echo "</pre>";
+ //    echo "<pre>";
+	// print_r( $sql );
+	// print_r( $_POST );
+	// print_r( $ubicacion );
+	// print_r( $cuidadores );
+	// echo "</pre>";
 
-//	header("location: {$home}busqueda/");
+	header("location: {$home}busqueda/");
