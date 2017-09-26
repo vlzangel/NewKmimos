@@ -499,7 +499,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
         }
     }
 
-	mensaje( $(this).attr('name'), '', true );
+	//mensaje( $(this).attr('name'), '', true );
    
 });
 

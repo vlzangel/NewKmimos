@@ -3,12 +3,12 @@
 class Reservas {
     
     private $db;
-    private $user_id;
-    private $servicio;
 
+    public $servicio;
     public $data;
     public $reserva;
     public $sql;
+    public $user_id;
 
     function Reservas($db, $data){
         $this->db = $db;
@@ -258,12 +258,15 @@ class Reservas {
 
             $this->db->multi_query( utf8_decode($sql) );
 
+            $id_seccion = 'MR_'.$this->servicio."_".md5($this->user_id);
+
             $saldo = $this->db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id='{$this->user_id}' AND meta_key='kmisaldo'");
             if( strpos($cupon[0], "saldo") !== false  ){
-                if( isset($_SESSION['MR_'.$this->servicio] ) ){
-                    $cupon[1] -= $_SESSION['MR_'.$this->servicio]['saldo_temporal'];
+                if( isset($_SESSION[$id_seccion] ) ){
+                    $cupon[1] -= $_SESSION[$id_seccion]['saldo_temporal'];
                 }
                 $saldo -= $cupon[1];
+                if( $saldo < 0){ $saldo = 0; }
                 $this->db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$this->user_id} AND meta_key = 'kmisaldo';");
             }else{
                 $id_cupon = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title='{$cupon[0]}' AND post_type='shop_coupon'");

@@ -1,5 +1,9 @@
 <?php  
-	include(__DIR__."../../../../../../vlz_config.php");
+	//include(__DIR__."../../../../../../vlz_config.php");
+    $config = dirname(__DIR__,5)."/wp-config.php";
+    if(file_exists($config)){
+        include_once($config);
+    }
     
 	date_default_timezone_set('America/Mexico_City');
     extract($_POST);
@@ -144,6 +148,10 @@
                     (NULL, {$user_id}, 'wp_user_level',       '0');
             ";
             $conn->query( utf8_decode( $sql ) );
+
+            $user = get_user_by( 'id', $user_id );
+            wp_set_current_user($user_id, $user->user_login);
+            wp_set_auth_cookie($user_id);
             echo $user_id;
 
         }

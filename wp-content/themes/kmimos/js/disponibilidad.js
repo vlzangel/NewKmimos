@@ -36,3 +36,84 @@ function seleccionar_checkin(date) {
         jQuery('#fin').attr('disabled', true);
     }
 }
+
+function volver_disponibilidad(){
+    jQuery(".fechas").css("display", "none");
+    jQuery(".tabla_disponibilidad_box").css("display", "block");
+}
+
+function editar_disponibilidad(){
+    jQuery(".fechas").css("display", "block");
+    jQuery(".tabla_disponibilidad_box").css("display", "none");
+}
+
+function guardar_disponibilidad(){
+
+    var ini = jQuery("#inicio").val();
+    var fin = jQuery("#fin").val();
+    var user_id = jQuery("#user_id").val();
+
+    if( ini == "" || fin == "" ){
+        alert("Debes seleccionar las fechas primero");
+    }else{
+        jQuery.post(
+            URL_PROCESOS_PERFIL, 
+            {
+                servicio: jQuery("#servicio").val(),
+                inicio: ini,
+                fin: fin,
+                user_id: user_id,
+                accion: "new_disponibilidad"
+            },
+            function(data){
+                console.log(data);
+                //location.reload();
+            },
+            "json"
+        );
+    }
+}
+
+jQuery("#editar_disponibilidad").on("click", function(e){
+    editar_disponibilidad();
+});
+
+jQuery("#volver_disponibilidad").on("click", function(e){
+    volver_disponibilidad();
+});
+
+jQuery("#guardar_disponibilidad").on("click", function(e){
+    guardar_disponibilidad();
+});
+
+jQuery(".delete_disponibilidad").on("click", function(e){
+    var valor = jQuery(this).val();
+
+    switch (valor) {
+        case "Eliminar":
+            var confirmed = confirm("Esta seguro de liberar estos días?");
+            if (confirmed == true) {
+                
+                var id  = jQuery(this).attr("data-id");
+                var ini = jQuery(this).attr("data-inicio");
+                var fin = jQuery(this).attr("data-fin");
+
+                jQuery.post(
+                    URL_PROCESOS_PERFIL, 
+                    {
+                        servicio: id,
+                        inicio: ini,
+                        fin: fin,
+                        accion: "delete_disponibilidad"
+                    },
+                    function(data){
+                        location.reload();
+                    }
+                );
+
+            }
+                
+        break;
+    }
+        
+});

@@ -76,7 +76,7 @@ function modal_show(element){
     //jQuery('.modal').css("display", "");
     $('.modal').modal('hide');
     $(modal).modal("show");
-console.log(modal);    
+    //console.log(modal);
 }
 
 
