@@ -5744,6 +5744,30 @@ footer .km-icon-redes {
     font-size:15px;
     font-weight:700
 }
+
+.page-reservation .km-medio-paid-options{
+    margin-bottom: 20px;
+}
+
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas {
+    height: 100px;
+}
+
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-one {
+    font-size:17px;
+    font-weight:700;
+    margin-top:30px
+}
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-two {
+    font-size:15px;
+    margin: 4px;
+    font-weight:700
+}
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-three {
+    font-size:15px;
+    font-weight:700
+}
+
 .page-reservation .km-select-method-paid .km-method-paid-options .km-option-total .km-text-one {
     font-size:17px;
     font-weight:700;

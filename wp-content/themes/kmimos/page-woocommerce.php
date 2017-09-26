@@ -480,23 +480,51 @@
 								</div>
 							</div>
 
-							<div class="errores_box">
-								Datos de la tarjeta invalidos
-							</div>
-
 							<div id="metodos_pagos">
-								<a href="#" class="km-tab-link">MEDIO DE PAGO</a>
 								<div class="km-tab-content" style="display: block;">
 									<div class="km-content-method-paid-inputs">
-										<select class="km-input-custom" id="tipo_pago" style="margin-bottom: 20px;">
+
+										<div class="km-select-method-paid">
+											<div class="km-method-paid-title">
+												MEDIO DE PAGO
+											</div>
+
+											<div class="km-method-paid-options km-medio-paid-options">
+												<div class="km-method-paid-option km-tarjeta km-option-3-lineas active">
+													<div class="km-text-one">
+														PAGO CON TARJETA
+													</div>
+													<div class="km-text-three">
+														DE CRÉDITO O DÉBITO
+													</div>
+												</div>
+
+												<div class="km-method-paid-option km-tienda km-option-3-lineas">
+													<div class="km-text-one">
+														<div class="km-text-one">
+															PAGO EN TIENDA
+														</div>
+														<div class="km-text-three">
+															DE CONVENIENCIA
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<select id="tipo_pago" style="display: none;">
 											<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
 											<option value="tienda">PAGO EN TIENDA DE CONVENIENCIA</option>
 										</select>
 
+										<div class="errores_box">
+											Datos de la tarjeta invalidos
+										</div>
+
 										<div id="tarjeta_box" class="metodos_container">
 
 											<div class="label-placeholder">
-												<label>Nombre del tarjetahabitante*</label>
+												<label>Nombre del tarjetahabiente*</label>
 												<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder" data-openpay-card="holder_name">
 											</div>
 

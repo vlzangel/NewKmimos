@@ -55,11 +55,11 @@ $HTML = '
     wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
 
-wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
-wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
 
-if(  $_SESSION['admin_sub_login'] == 'YES' ){
-    $HTML .= "
+    if(  $_SESSION['admin_sub_login'] == 'YES' ){
+        $HTML .= "
             <a href='".get_home_url()."/?i=".md5($_SESSION['id_admin'])."&admin=YES' class='theme_button' style='
                 position: fixed;
                 display: inline-block;
@@ -73,41 +73,41 @@ if(  $_SESSION['admin_sub_login'] == 'YES' ){
                 X
             </a>
         ";
-}
+    }
 
-echo comprimir_styles($HTML);
+    echo comprimir_styles($HTML);
 
-wp_footer();
+    wp_footer();
 
-/* BEGIN ESTADOS Y MUNICIPIOS */
-$HTML = get_estados_municipios();
-/* END ESTADOS Y MUNICIPIOS */
+    /* BEGIN ESTADOS Y MUNICIPIOS */
+        $HTML = get_estados_municipios();
+    /* END ESTADOS Y MUNICIPIOS */
 
-$HTML .= "
-        <script type='text/javascript'>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
+    $HTML .= "
+            <script type='text/javascript'>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
 
-            ga('create', 'UA-56422840-1', 'auto');
-            ga('send', 'pageview');
-        </script>
+                ga('create', 'UA-56422840-1', 'auto');
+                ga('send', 'pageview');
+            </script>
 
-        <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
-        <script>startApp();</script>
+            <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
+            <script>/* startApp(); */</script>
 
-        <!-- Asignar Alt a Imagenes -->
-        <script type='text/javascript'>
-            jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
-        </script>        
-    ";
+            <!-- Asignar Alt a Imagenes -->
+            <script type='text/javascript'>
+                jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
+            </script>        
+        ";
 
-// SubscribeSite
-include_once( 'partes/footer/SubscribeSite.php' );
+    // SubscribeSite
+    include_once( 'partes/footer/SubscribeSite.php' );
 
-echo comprimir_styles($HTML);
+    echo comprimir_styles($HTML);
 
-echo "</body></html>";
+    echo "</body></html>";
 ?>
         
