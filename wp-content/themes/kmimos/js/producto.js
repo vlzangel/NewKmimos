@@ -750,11 +750,17 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	jQuery(".km-info-box").on("click", function(e){
-		if( jQuery(this).hasClass("km-info-inactive") ){
-			jQuery(this).removeClass("km-info-inactive");
+	jQuery(".km-info").on("click", function(e){
+		if( jQuery(this).parent().hasClass("km-info-inactive") ){
+			jQuery(this).parent().removeClass("km-info-inactive");
 		}else{
-			jQuery(this).addClass("km-info-inactive");
+			jQuery(this).parent().addClass("km-info-inactive");
+		}
+	});
+
+	jQuery("body").on("click", function(e){
+		if( !jQuery(".km-info").parent().hasClass("km-info-inactive") ){
+			//jQuery(".km-info").parent().addClass("km-info-inactive");
 		}
 	});
 
@@ -804,14 +810,6 @@ jQuery(document).ready(function() {
 	        			if( errores_txt[item] != undefined ){
 	        				error += "<div> "+errores_txt[item]+" </div>";
 	        			}
-		        		/*switch( desc ){
-		        			case "cvv2 length must be 3 digits":
-		        				error += "<div> Codigo invalido, debe ser de 3 digitos </div>";
-		        			break;
-		        			case "The expiration date has already passed":
-		        				error += "<div> Fecha de expirancion invalida </div>";
-		        			break;
-		        		}*/
 					});
 	        	break;
 	        	default:
