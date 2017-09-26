@@ -52,8 +52,9 @@
 	){
 		$reserrvacion_page = "page-reservation";
 	}
-    include_once("partes/head/script_google_auth.php");
-    include_once("partes/head/script_facebook_auth.php");
+
+    // include_once("partes/head/script_google_auth.php");
+    // include_once("partes/head/script_facebook_auth.php");
 
     $coordenadas = get_coordenadas();
     $HTML .= "<script type='text/javascript'>

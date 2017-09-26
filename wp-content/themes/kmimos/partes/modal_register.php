@@ -35,7 +35,7 @@ $HTML .='
 							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 							REGISTRARME CON GOOGLE
 						</a>
-						<script>//startApp();</script>
+						<script>/*startApp();*/</script>
 						<div class="line-o">
 							<p class="text-line">o</p>
 							<div class="bg-line"></div>

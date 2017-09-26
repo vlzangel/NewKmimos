@@ -5744,6 +5744,30 @@ footer .km-icon-redes {
     font-size:15px;
     font-weight:700
 }
+
+.page-reservation .km-medio-paid-options{
+    margin-bottom: 20px;
+}
+
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas {
+    height: 100px;
+}
+
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-one {
+    font-size:17px;
+    font-weight:700;
+    margin-top:30px
+}
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-two {
+    font-size:15px;
+    margin: 4px;
+    font-weight:700
+}
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-three {
+    font-size:15px;
+    font-weight:700
+}
+
 .page-reservation .km-select-method-paid .km-method-paid-options .km-option-total .km-text-one {
     font-size:17px;
     font-weight:700;
@@ -6918,6 +6942,12 @@ AGREGANDO CODIGO DAJAN
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
 }
+.validacion_fechas{
+	display: none;
+	color: red;
+	padding: 5px 0px;
+	text-align: center;
+}
 .km-btn-secondary {
     background-color: #6B1C9B;
     border-bottom: 3px solid #350850;
@@ -6934,6 +6964,9 @@ AGREGANDO CODIGO DAJAN
     transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
+    border: 0;
+    width: 100%;
+    border-bottom: 3px solid #350850;
 }
 .km-btn-secondary:hover {
     background-color: #5b1586;

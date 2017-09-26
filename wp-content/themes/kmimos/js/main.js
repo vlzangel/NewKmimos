@@ -426,4 +426,24 @@ $(document).ready(function(){
 		$(this).parent().removeClass("focus");
 	});
 
+/*	$(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+
+	$(".readonly").focus(function(e){
+        jQuery(this).blur();
+    });*/
+
+	$("#form_cuidador").submit(function(e){
+		if( jQuery("#checkin").val() == "" ){
+			jQuery("#checkin").css("border", "solid 1px red");
+			jQuery("#checkout").css("border", "solid 1px red");
+			jQuery(".validacion_fechas").css("display", "block");
+
+			jQuery(".validacion_fechas").css("display", "block");
+			jQuery(".km-ficha-fechas").css("margin-bottom", "0px");
+        	e.preventDefault();
+		}
+    });
+
 });

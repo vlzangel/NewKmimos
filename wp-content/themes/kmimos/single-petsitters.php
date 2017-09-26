@@ -252,13 +252,19 @@
 						</div>
 					</div>
 					<div class="km-costo hidden-xs">
-						<p>SERVICIOS DESDE</p>
-						<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
-						<div class="km-ficha-fechas">
-							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
-							<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="km-input-custom km-input-date date_to" readonly>
-						</div>
-						'.$BOTON_RESERVAR.'
+						<form id="form_cuidador" method="POST" action="'.getTema().'/procesos/reservar/redirigir_reserva.php">
+							<p>SERVICIOS DESDE</p>
+							<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
+							<div class="km-ficha-fechas">
+
+								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" value="" class="date_from" readonly>
+								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA" value="'.$busqueda["checkout"].'" value="" class="date_to" readonly>
+								
+								<small class="validacion_fechas">Debe seleccionar las fechas</small>
+
+							</div>
+							'.$BOTON_RESERVAR.'
+						</form>
 					</div>
 				</div>
 			</div>

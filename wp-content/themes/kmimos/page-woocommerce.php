@@ -85,9 +85,9 @@
         }
 
 	    if( $tipo == "hospedaje" ){
-	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"] );
+	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    }else{
-	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"] );
+	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    } 
 
 		$transporte = getTransporte($adicionales, $precargas["transp"]);
@@ -159,6 +159,7 @@
 			var cliente = '".$id_user."'; 
 			var cuidador = '".$cuidador->id_post."'; 
 			var email = '".$email."'; 
+			var saldo = '".$saldoTXT."';
 		</script>";
 
 		if( $error != "" ){
@@ -232,7 +233,7 @@
 										'.$adicionales.'
 									</div>
 
-									<div class="km-services-total">
+									<div class="km-services-total km-total-calculo">
 										<div class="valido">
 											<span class="km-text-total">TOTAL</span>
 											<span class="km-price-total">$0.00</span>
@@ -296,9 +297,9 @@
 								<div class="km-option-resume">
 									<span class="label-resume">FECHA</span>
 									<span class="value-resume">
-										<span id="fecha_ini"></span>
+										<span class="fecha_ini"></span>
 										&nbsp; &gt; &nbsp;
-										<span id="fecha_fin"></span>
+										<span class="fecha_fin"></span>
 									</span>
 								</div>
 
@@ -378,7 +379,7 @@
 
 							<div class="km-cupones">
 								<div>
-									<input type="text" id="cupon" value="'.$saldoTXT.'">
+									<input type="text" id="cupon">
 								</div>
 								<div class="">
 									<span id="cupon_btn">Cup&oacute;n</span>
@@ -427,9 +428,9 @@
 									<div class="km-option-resume">
 										<span class="label-resume">FECHA</span>
 										<span class="value-resume">
-											24/07/2017
+											<span class="fecha_ini"></span>
 											&nbsp; &gt; &nbsp;
-											26/07/2017
+											<span class="fecha_fin"></span>
 										</span>
 									</div>
 
@@ -480,23 +481,51 @@
 								</div>
 							</div>
 
-							<div class="errores_box">
-								Datos de la tarjeta invalidos
-							</div>
-
 							<div id="metodos_pagos">
-								<a href="#" class="km-tab-link">MEDIO DE PAGO</a>
 								<div class="km-tab-content" style="display: block;">
 									<div class="km-content-method-paid-inputs">
-										<select class="km-input-custom" id="tipo_pago" style="margin-bottom: 20px;">
+
+										<div class="km-select-method-paid">
+											<div class="km-method-paid-title">
+												MEDIO DE PAGO
+											</div>
+
+											<div class="km-method-paid-options km-medio-paid-options">
+												<div class="km-method-paid-option km-tarjeta km-option-3-lineas active">
+													<div class="km-text-one">
+														PAGO CON TARJETA
+													</div>
+													<div class="km-text-three">
+														DE CRÉDITO O DÉBITO
+													</div>
+												</div>
+
+												<div class="km-method-paid-option km-tienda km-option-3-lineas">
+													<div class="km-text-one">
+														<div class="km-text-one">
+															PAGO EN TIENDA
+														</div>
+														<div class="km-text-three">
+															DE CONVENIENCIA
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<select id="tipo_pago" style="display: none;">
 											<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
 											<option value="tienda">PAGO EN TIENDA DE CONVENIENCIA</option>
 										</select>
 
+										<div class="errores_box">
+											Datos de la tarjeta invalidos
+										</div>
+
 										<div id="tarjeta_box" class="metodos_container">
 
 											<div class="label-placeholder">
-												<label>Nombre del tarjetahabitante*</label>
+												<label>Nombre del tarjetahabiente*</label>
 												<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder" data-openpay-card="holder_name">
 											</div>
 
@@ -586,10 +615,6 @@
 		 	';
 
 			echo comprimir_styles($HTML);
-
-			echo "<pre>";
-				print_r($id_seccion);
-			echo "</pre>";
 
 		}
 
