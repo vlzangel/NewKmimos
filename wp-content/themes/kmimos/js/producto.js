@@ -420,11 +420,10 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			//console.log( data );
+			/*console.log( data );*/
 			location.href = RAIZ+"/finalizar/"+data.order_id;
 		}, "json"
 	).fail(function(e) {
-    	console.log( "Error" );
     	console.log( e );
     	if( e.status == 500 ){
     		/*pagarReserva(true);*/
@@ -536,8 +535,6 @@ function aplicarCupon(cupon = ""){
 	jQuery("#cupon_btn").html("Aplicando");
 	jQuery("#cupon_btn").addClass("disabled");
 
-	console.log(cupon);
-
 	if( jQuery("#cupon").val() != "" || cupon != ""){
 		if( cupon == "" ){ cupon = jQuery("#cupon").val(); }
 		jQuery.post(
@@ -551,7 +548,7 @@ function aplicarCupon(cupon = ""){
 				reaplicar: 0
 			},
 			function(data){
-				console.log( data );
+				/*console.log( data );*/
 
 				if( data.error == undefined ){
 					CARRITO["cupones"] = data.cupones;
@@ -587,7 +584,7 @@ function reaplicarCupones(){
 			reaplicar: 1
 		},
 		function(data){
-			console.log( data );
+			/*console.log( data );*/
 
 			if( data.error == undefined ){
 				CARRITO["cupones"] = data.cupones;
@@ -627,10 +624,8 @@ jQuery(document).ready(function() {
 			jQuery(document).scrollTop(0);
 			
 			if( CARRITO["cupones"].length == 0 ){
-				console.log("aplicarCupon");
 				aplicarCupon(saldo);
 			}else{
-				console.log("reaplicarCupones");
 				reaplicarCupones();
 			}
 		}
@@ -791,8 +786,6 @@ jQuery(document).ready(function() {
 	        	case 400:
 	        		descripciones = desc.split(", ");
 	        		jQuery.each(descripciones, function( index, item ) {
-	        			console.log(item);
-	        			console.log(errores_txt[item]);
 	        			if( errores_txt[item] != undefined ){
 	        				error += "<div> "+errores_txt[item]+" </div>";
 	        			}

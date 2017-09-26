@@ -1,5 +1,5 @@
 <?php
-	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+	$raiz = dirname(__DIR__,5);
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");
 
