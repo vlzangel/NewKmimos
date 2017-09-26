@@ -117,6 +117,13 @@
 
 	get_header();
 
+
+		?>
+		<div class="km-ficha-bg" style="background-image:url(<?php echo getTema(); ?>/images/new/km-ficha/km-bg-ficha.jpg);">
+			<div class="overlay"></div>
+		</div>
+		<?php
+
 		global $post;
 		global $wpdb;
 
