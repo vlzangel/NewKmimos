@@ -2634,8 +2634,17 @@ footer input:focus{
 }
 
 @media all and (max-width: 380px) {
+	.km-cajas-filtro {
+
+	}
+	.km-cajas-filtro .km-caja-filtro .km-div-enviar,
+	.km-cajas-filtro .km-caja-filtro .km-div-fechas,
+	.km-cajas-filtro .km-caja-filtro .km-div-ubicacion{
+		width: 100%!important;
+	}
 	.km-cajas-filtro .km-caja-filtro{
-		width: 100%;
+		width: 100%!important;
+
 	}
 
 	.km-cajas-filtro .km-caja-filtro{
