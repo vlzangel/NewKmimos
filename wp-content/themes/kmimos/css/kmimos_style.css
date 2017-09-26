@@ -6942,6 +6942,12 @@ AGREGANDO CODIGO DAJAN
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
 }
+.validacion_fechas{
+	display: none;
+	color: red;
+	padding: 5px 0px;
+	text-align: center;
+}
 .km-btn-secondary {
     background-color: #6B1C9B;
     border-bottom: 3px solid #350850;
@@ -6958,6 +6964,9 @@ AGREGANDO CODIGO DAJAN
     transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
+    border: 0;
+    width: 100%;
+    border-bottom: 3px solid #350850;
 }
 .km-btn-secondary:hover {
     background-color: #5b1586;
