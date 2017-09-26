@@ -50,6 +50,9 @@
 		$cuidador_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$cuidador->id_post );
 		$servicio_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$servicio_id );
 
+		$servicio_name_corto = explode(" - ", $servicio_name);
+		$servicio_name_corto = $servicio_name_corto[0];
+
 	    $precios = "";
 	    
 		$adicionales = unserialize($cuidador->adicionales);
@@ -200,7 +203,10 @@
 			</div>";
 		}else{
 
+			$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$post_id}");
+
 			$HTML .= '
+
 		 		<form id="reservar" class="km-content km-content-reservation">
 					<div id="step_1" class="km-col-steps">
 						<div class="km-col-content">
@@ -211,7 +217,12 @@
 							</ul>
 
 							<div class="km-title-step">
-								RESERVACIÓN
+								RESERVACIÓN<br>
+								'.$servicio_name_corto.'<br>
+								<div class="km-info-box">
+									<i class="fa fa-info-circle km-info"></i>
+									<div>'.$descripcion.'</div>
+								</div>
 							</div>
 
 							<div class="km-sub-title-step">

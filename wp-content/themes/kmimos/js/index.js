@@ -199,7 +199,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 				referido = $("#referido").val(),
 				img_profile = $("#img_profile").val();
 		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
-		if (nombre != "" && apellido != "" && ife != "" && email !="" && pass != "" && movil != ""
+		if (nombre.length > 3 && apellido.length > 3 && ife.length > 3 && email.length > 3 && pass.length > 3 && movil.length > 3
 		       	&& genero != "" && edad != "" && fumador !="") {
 				$(".popup-registrarte-nuevo-correo").hide();
 				$(".popup-registrarte-datos-mascota").fadeIn("fast");

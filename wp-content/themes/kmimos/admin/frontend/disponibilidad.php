@@ -40,10 +40,6 @@
 	    );
     }
 
-/*    echo "<pre>";
-    	print_r( $rangos );
-    echo "</pre>";*/
-
     $tabla = "
     	<table class='tabla_disponibilidad'>
     		<tr>

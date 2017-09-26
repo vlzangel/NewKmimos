@@ -36,19 +36,7 @@
 	$reserrvacion_page = "";
 	if( 
 		$post->post_name == 'reservar' 			||
-		$post->post_name == 'finalizar' 		||
-		$post->post_name == 'perfil-usuario' 	||
-		$post->post_name == 'mascotas' 			||
-		$post->post_name == 'ver' 				||
-		$post->post_name == 'nueva' 			||
-		$post->post_name == 'favoritos' 		||
-		$post->post_name == 'historial' 		||
-		$post->post_name == 'descripcion' 		||
-		$post->post_name == 'servicios' 		||
-		$post->post_name == 'disponibilidad' 	||
-		$post->post_name == 'galeria' 			||
-		$post->post_name == 'reservas' 			||
-		$post->post_name == 'solicitudes'
+		$post->post_name == 'finalizar'
 	){
 		$reserrvacion_page = "page-reservation";
 	}
