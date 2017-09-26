@@ -219,7 +219,7 @@
 							<div class="km-title-step">
 								RESERVACIÓN<br>
 								'.$servicio_name_corto.'<br>
-								<div class="km-info-box km-info-inactive">
+								<div class="km-info-box">
 									<i class="fa fa-info-circle km-info"></i>
 									<div>'.$descripcion.'</div>
 								</div>

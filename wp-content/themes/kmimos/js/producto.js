@@ -750,20 +750,6 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	jQuery(".km-info").on("click", function(e){
-		if( jQuery(this).parent().hasClass("km-info-inactive") ){
-			jQuery(this).parent().removeClass("km-info-inactive");
-		}else{
-			jQuery(this).parent().addClass("km-info-inactive");
-		}
-	});
-
-	jQuery("body").on("click", function(e){
-		if( !jQuery(".km-info").parent().hasClass("km-info-inactive") ){
-			//jQuery(".km-info").parent().addClass("km-info-inactive");
-		}
-	});
-
 	/* Configuración Openpay */
 
 		OpenPay.setId('mae56tbxscnuqozgio7b');

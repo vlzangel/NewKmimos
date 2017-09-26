@@ -30,6 +30,11 @@
         width: 100% !important;
     	margin-bottom: 5px !important;
 	}
+
+	.errores_box {
+	    text-align: left;
+	    font-size: 12px;
+	}
 }
 
 @media (max-width: 400px){

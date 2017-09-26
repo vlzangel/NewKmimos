@@ -5736,7 +5736,8 @@ footer .km-icon-redes {
     color:#979797;
     position:relative;
     height:108px;
-    cursor:pointer
+    cursor:pointer;
+    margin-bottom: 20px;
 }
 .page-reservation .km-select-method-paid .km-method-paid-options .km-method-paid-option:last-child {
     float:right
@@ -5753,10 +5754,6 @@ footer .km-icon-redes {
 .page-reservation .km-select-method-paid .km-method-paid-options .km-option-deposit .km-text-three {
     font-size:15px;
     font-weight:700
-}
-
-.page-reservation .km-medio-paid-options{
-    margin-bottom: 20px;
 }
 
 .page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas {

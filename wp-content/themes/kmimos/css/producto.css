@@ -203,8 +203,3 @@ div#tienda_box img {
 .km-info-inactive{
     padding: 0px;
 }
-
-.km-info-inactive div{
-    #display: none;
-    #text-align: justify;
-}
