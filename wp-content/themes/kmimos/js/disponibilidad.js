@@ -67,7 +67,7 @@ function guardar_disponibilidad(){
             },
             function(data){
                 console.log(data);
-                //location.reload();
+                location.reload();
             },
             "json"
         );

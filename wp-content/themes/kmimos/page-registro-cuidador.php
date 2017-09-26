@@ -77,7 +77,7 @@
 		<!-- SECCIÓN CÓMO SOY CUIDADOR -->
 		
 		<?php // Modal Registro Cuidador ?>
-		<?php get_template_part( 'partes/cuidador/registro', 'page' ); ?>
+		<?php include_once( 'partes/cuidador/registro.php' ); ?>
 		
 		<!-- POPUPS TIPS  -->
 		<div id="km-registro-tip1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

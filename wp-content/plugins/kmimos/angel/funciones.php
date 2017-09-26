@@ -2,6 +2,7 @@
 
 	if(!function_exists('vlz_get_paginacion')){
         function vlz_get_paginacion($t, $pagina){
+            $home = get_home_url();
             $paginacion = ""; $h = 12; $inicio = $pagina*$h; 
             $fin = $inicio+$h; if( $fin > $t){ $fin = $t; }
             if($t > $h){

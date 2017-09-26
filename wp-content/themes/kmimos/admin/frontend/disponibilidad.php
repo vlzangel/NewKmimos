@@ -95,7 +95,7 @@
 		<h1 class="theme_tite theme_table_title">Administración de disponibilidad</h1>
 
 		<input type="hidden" name="accion" value="perfil" />
-        <input type="hidden" name="user_id" value="'.$user_id.'" />
+        <input type="hidden" name="user_id" id="user_id" value="'.$user_id.'" />
 
 		<div class="fechas_box table_main tabla_disponibilidad_box"> 
 			'.$tabla.'

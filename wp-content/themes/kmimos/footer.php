@@ -8,7 +8,7 @@ $HTML = '
                     <div class="col-xs-12 col-sm-6">
                         <h5>ENTÉRATE DE LOS ÚLTIMOS CUIDADOS PARA TU MASCOTA</h5>
                         <p>¡Inscríbete a nuestro blog y conócelas!</p>
-<form onsubmit="form_subscribe(this); return false;">
+                        <form onsubmit="form_subscribe(this); return false;">
                         <div class="km-inscripcion">
                             <div class="input-group">
                                 <input type="text" name="email" class="form-control" placeholder="Ingresa tu correo">
@@ -17,7 +17,7 @@ $HTML = '
                                 </span>
                             </div>
                         </div>
-</form>
+                        </form>
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         <h5>SERVICIOS</h5>
@@ -48,6 +48,7 @@ $HTML = '
         </footer>
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
     ';
+    wp_enqueue_script('boostrap-select.js', getTema()."/js/bootstrap-select.js", array("jquery"), '1.0.0');
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
