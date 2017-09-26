@@ -85,9 +85,9 @@
         }
 
 	    if( $tipo == "hospedaje" ){
-	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"] );
+	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    }else{
-	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"] );
+	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    } 
 
 		$transporte = getTransporte($adicionales, $precargas["transp"]);
@@ -615,9 +615,9 @@
 
 			echo comprimir_styles($HTML);
 
-			echo "<pre>";
-				print_r($id_seccion);
-			echo "</pre>";
+	        echo "<pre>";
+	        	print_r( unserialize($cuidador->tamanos_aceptados) );
+	        echo "</pre>";
 
 		}
 

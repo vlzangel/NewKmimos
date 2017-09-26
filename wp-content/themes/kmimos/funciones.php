@@ -200,7 +200,7 @@
 		);
 	}
 
-	function getPrecios($data, $precarga = array() ){
+	function getPrecios($data, $precarga = array(), $aceptados = array() ){
 		$resultado = "";
 		$tamanos = getTamanos();
 		foreach ($tamanos as $key => $value) {
@@ -209,20 +209,22 @@
 				if( isset($precarga[$key]) ){
 					$catidad = $precarga[$key];
 				}
-				$resultado .= '
-					<div class="km-quantity-height">
-						<div class="km-quantity">
-							<a href="#" class="km-minus disabled">-</a>
-								<span class="km-number">'.$catidad.'</span>
-								<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*1.2).'" />
-							<a href="#" class="km-plus">+</a>
+				if( $aceptados[$key] == 1 ){
+					$resultado .= '
+						<div class="km-quantity-height">
+							<div class="km-quantity">
+								<a href="#" class="km-minus disabled">-</a>
+									<span class="km-number">'.$catidad.'</span>
+									<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*1.2).'" />
+								<a href="#" class="km-plus">+</a>
+							</div>
+							<div class="km-height">
+								'.$tamanos[$key].'
+								<span>$'.($data[$key]*1.2).'</span>
+							</div>
 						</div>
-						<div class="km-height">
-							'.$tamanos[$key].'
-							<span>$'.($data[$key]*1.2).'</span>
-						</div>
-					</div>
-				';
+					';
+				}
 			}
 		}
 		return $resultado;
