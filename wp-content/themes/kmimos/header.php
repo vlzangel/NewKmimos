@@ -76,7 +76,7 @@
 
 	include_once("funciones.php");
 
-	$MENU = get_menu_header();
+	$MENU = get_menu_header(true);
 
 	if( !isset($MENU["head"]) ){
 		$menus_normal = '
