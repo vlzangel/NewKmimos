@@ -3,6 +3,10 @@ var hasGPS=false;
 (function($) {
     'use strict';
 
+    $(document).on('click', '[data-action="dropdown"]', function(){
+        console.log('click dropdown');
+    });
+
     
     $('#servicios_adicionales').on('click', function () {
        $('#servicios_adicionales').dropdown('show');

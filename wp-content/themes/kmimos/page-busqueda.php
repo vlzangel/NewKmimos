@@ -9,8 +9,9 @@
 
     get_header();
     if( !isset($_SESSION)){ session_start(); }
-
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
+
+	$home = get_home_url();
 
 	$pagina = vlz_get_page();
 	$destacados = get_destacados();
@@ -178,7 +179,10 @@
 
 							<div class="km-caja-filtro">
 								<div class="btn-group">
-								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  <button type="button" data-action="dropdown" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" 
+
+								  data-toggle="_dropdown" aria-haspopup="_true" aria-expanded="_false">
+
 								    SERVICIOS ADICIONALES</span>
 								  </button>
 								  <ul class="dropdown-menu  dropdown-option">
