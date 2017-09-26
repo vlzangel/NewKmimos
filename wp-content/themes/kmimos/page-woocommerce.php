@@ -200,7 +200,10 @@
 			</div>";
 		}else{
 
+			$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$post_id}");
+
 			$HTML .= '
+
 		 		<form id="reservar" class="km-content km-content-reservation">
 					<div id="step_1" class="km-col-steps">
 						<div class="km-col-content">
@@ -209,6 +212,11 @@
 								<li class="line"></li><li><span class="number">2</span></li>
 								<li class="line"></li><li><span class="number">3</span></li>
 							</ul>
+
+							<div class="km-info-box km-info-inactive">
+								<div>'.$descripcion.'</div>
+								<i class="fa fa-info-circle km-info"></i>
+							</div>
 
 							<div class="km-title-step">
 								RESERVACIÓN

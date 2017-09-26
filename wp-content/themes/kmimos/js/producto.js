@@ -114,6 +114,8 @@ function calcular(){
 			jQuery('#transporte option:selected').attr("data-value"),
 			parseFloat(tranporte)
 		];
+	}else{
+		CARRITO[ "transportacion" ] = undefined;
 	}
 
 	jQuery("#adicionales input").each(function( index ) {
@@ -745,6 +747,14 @@ jQuery(document).ready(function() {
 		
 		if(typeof calcularDescuento === 'function') {
 			calcularDescuento();
+		}
+	});
+
+	jQuery(".km-info-box").on("click", function(e){
+		if( jQuery(this).hasClass("km-info-inactive") ){
+			jQuery(this).removeClass("km-info-inactive");
+		}else{
+			jQuery(this).addClass("km-info-inactive");
 		}
 	});
 

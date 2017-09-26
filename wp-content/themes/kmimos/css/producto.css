@@ -155,3 +155,45 @@ div#tienda_box img {
     cursor: pointer;
     float: left;
 }
+
+.km-info{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 36px !important;
+    cursor: pointer;
+    color: #000 !important;
+}
+
+.km-info:hover{
+    color: #2196F3 !important;
+}
+
+.km-info-box{
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    border: solid 1px #CCC;
+    max-width: 400px;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 10px;
+    background: #FFF;
+    text-align: justify;
+    margin-left: 20px;
+}
+.km-info-box div{
+    overflow: hidden;
+}
+.km-info-box small{
+    display: block;
+    margin-top: 5px;
+}
+
+.km-info-inactive{
+    padding: 0px;
+}
+
+.km-info-inactive div{
+    display: none;
+}

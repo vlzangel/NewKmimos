@@ -5395,7 +5395,8 @@ footer .km-icon-redes {
     width:66.40625%;
     background:#fff;
     float:left;
-    padding:52px 0 32px 0
+    padding:52px 0 32px 0;
+    position: relative;;
 }
 .page-reservation .km-content .km-col-steps .km-col-content {
     width:100%;
@@ -8447,7 +8448,7 @@ button.close {
     margin-bottom: 10px;
 }
 .km-ficha-fechas input {
-    width: 48%;
+    width: calc( 50% - 2px );
     padding: 14px 0px 14px 42px;
     border: 1px solid #e5e5e5;
     border-radius: 8px;
