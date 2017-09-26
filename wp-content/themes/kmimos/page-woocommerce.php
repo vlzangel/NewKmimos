@@ -159,6 +159,7 @@
 			var cliente = '".$id_user."'; 
 			var cuidador = '".$cuidador->id_post."'; 
 			var email = '".$email."'; 
+			var saldo = '".$saldoTXT."';
 		</script>";
 
 		if( $error != "" ){
@@ -232,7 +233,7 @@
 										'.$adicionales.'
 									</div>
 
-									<div class="km-services-total">
+									<div class="km-services-total km-total-calculo">
 										<div class="valido">
 											<span class="km-text-total">TOTAL</span>
 											<span class="km-price-total">$0.00</span>
@@ -296,9 +297,9 @@
 								<div class="km-option-resume">
 									<span class="label-resume">FECHA</span>
 									<span class="value-resume">
-										<span id="fecha_ini"></span>
+										<span class="fecha_ini"></span>
 										&nbsp; &gt; &nbsp;
-										<span id="fecha_fin"></span>
+										<span class="fecha_fin"></span>
 									</span>
 								</div>
 
@@ -378,7 +379,7 @@
 
 							<div class="km-cupones">
 								<div>
-									<input type="text" id="cupon" value="'.$saldoTXT.'">
+									<input type="text" id="cupon">
 								</div>
 								<div class="">
 									<span id="cupon_btn">Cup&oacute;n</span>
@@ -427,9 +428,9 @@
 									<div class="km-option-resume">
 										<span class="label-resume">FECHA</span>
 										<span class="value-resume">
-											24/07/2017
+											<span class="fecha_ini"></span>
 											&nbsp; &gt; &nbsp;
-											26/07/2017
+											<span class="fecha_fin"></span>
 										</span>
 									</div>
 
@@ -614,10 +615,6 @@
 		 	';
 
 			echo comprimir_styles($HTML);
-
-	        echo "<pre>";
-	        	print_r( unserialize($cuidador->tamanos_aceptados) );
-	        echo "</pre>";
 
 		}
 

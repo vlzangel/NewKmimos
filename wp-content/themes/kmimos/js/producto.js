@@ -12,8 +12,10 @@
 
 		if ( el.hasClass("km-option-deposit") ) {
 			$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
-			$(".page-reservation .km-services-total").slideUp("fast");
-			
+			$(".page-reservation .km-services-total").slideUp("fast", function(){
+				$(".page-reservation .km-total-calculo").slideDown("fast");
+			});
+
 			CARRITO["pagar"]["metodo"] = "deposito";
 
 		} else {
@@ -67,8 +69,10 @@ function initCarrito(){
 			"deviceIdHiddenFieldName" : ""
 		};
 
-	CARRITO["cupones"] = [];
-
+	if( CARRITO["cupones"] == undefined ){
+		CARRITO["cupones"] = [];
+	}
+	
 	CARRITO["tarjeta"] = [];
 
 		CARRITO["tarjeta"] = {
@@ -95,7 +99,6 @@ function validar(status, txt){
 }
 
 function calcular(){
-	initCarrito();
 
 	jQuery("#reservar .tamano").each(function( index ) {
 		CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
@@ -114,9 +117,10 @@ function calcular(){
 	}
 
 	jQuery("#adicionales input").each(function( index ) {
-		var activo = jQuery( this ).attr('class');
-        if(activo == "active"){
+        if( jQuery( this ).hasClass("active") ){
         	CARRITO[ "adicionales" ][ jQuery( this ).attr("name") ] = parseFloat( jQuery( this ).val() );
+        }else{
+        	CARRITO[ "adicionales" ][ jQuery( this ).attr("name") ] = 0;
         }
 	});
 
@@ -124,14 +128,14 @@ function calcular(){
 		var ini = String( jQuery('#checkin').val() ).split("/");
 		CARRITO[ "fechas" ][ "inicio" ] = new Date( ini[2]+"-"+ini[1]+"-"+ini[0] );
 
-		jQuery("#fecha_ini").html( jQuery('#checkin').val() );
+		jQuery(".fecha_ini").html( jQuery('#checkin').val() );
 	}
 
 	if( jQuery('#checkout').val() != "" ){
 		var fin = String( jQuery('#checkout').val() ).split("/");
 		CARRITO[ "fechas" ][ "fin" ] = new Date( fin[2]+"-"+fin[1]+"-"+fin[0] );
 
-		jQuery("#fecha_fin").html( jQuery('#checkout').val() );
+		jQuery(".fecha_fin").html( jQuery('#checkout').val() );
 	}
 
 	var error = "";
@@ -525,22 +529,63 @@ function calcularDescuento(){
 	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
 }
 
-function aplicarCupon(){
+function aplicarCupon(cupon = ""){
 
 	jQuery("#cupon_btn").html("Aplicando");
 	jQuery("#cupon_btn").addClass("disabled");
 
+	console.log(cupon);
+
+	if( jQuery("#cupon").val() != "" || cupon != ""){
+		if( cupon == "" ){ cupon = jQuery("#cupon").val(); }
+		jQuery.post(
+			HOME+"/procesos/reservar/cupon.php",
+			{
+				servicio: SERVICIO_ID,
+				cupon: cupon,
+				cupones: CARRITO["cupones"],
+				total: CARRITO["pagar"]["total"],
+				cliente: cliente,
+				reaplicar: 0
+			},
+			function(data){
+				console.log( data );
+
+				if( data.error == undefined ){
+					CARRITO["cupones"] = data.cupones;
+
+					mostrarCupones();
+					eliminarCuponesHandler();
+					jQuery("#cupon").val("");
+
+					calcularDescuento();
+
+				}else{
+					alert(data.error);
+				}
+
+				jQuery("#cupon_btn").html("Cup&oacute;n");
+				jQuery("#cupon_btn").removeClass("disabled");
+
+			}, "json"
+		).fail(function(e) {
+	    	console.log( e );
+	  	});
+	}
+}
+
+function reaplicarCupones(){
 	jQuery.post(
 		HOME+"/procesos/reservar/cupon.php",
 		{
 			servicio: SERVICIO_ID,
-			cupon: jQuery("#cupon").val(),
 			cupones: CARRITO["cupones"],
 			total: CARRITO["pagar"]["total"],
-			cliente: cliente
+			cliente: cliente,
+			reaplicar: 1
 		},
 		function(data){
-			/*console.log( data );*/
+			console.log( data );
 
 			if( data.error == undefined ){
 				CARRITO["cupones"] = data.cupones;
@@ -551,12 +596,7 @@ function aplicarCupon(){
 
 				calcularDescuento();
 
-			}else{
-				alert(data.error);
 			}
-
-			jQuery("#cupon_btn").html("Cup&oacute;n");
-			jQuery("#cupon_btn").removeClass("disabled");
 
 		}, "json"
 	).fail(function(e) {
@@ -583,8 +623,14 @@ jQuery(document).ready(function() {
 			jQuery(".km-col-steps").css("display", "none");
 			jQuery("#step_2").css("display", "block");
 			jQuery(document).scrollTop(0);
-		
-			aplicarCupon();
+			
+			if( CARRITO["cupones"].length == 0 ){
+				console.log("aplicarCupon");
+				aplicarCupon(saldo);
+			}else{
+				console.log("reaplicarCupones");
+				reaplicarCupones();
+			}
 		}
 		e.preventDefault();
 	});
