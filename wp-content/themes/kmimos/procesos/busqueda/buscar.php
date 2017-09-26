@@ -27,9 +27,20 @@
 	$condiciones = "";
 
     /* Filtros por fechas */
-	    // if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
-	    // 	$condiciones .= " AND ( SELECT count(*) FROM cupos WHERE cupos.cuidador = cuidadores.user_id AND cupos.fecha >= '{$checkin}' AND cupos.fecha <= '{$checkout}' AND cupos.full = 1 ) = 0"; 
-	   	// }
+	    if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
+
+	    	$checkin = date('Y/m/d', strtotime(str_replace("/", "-", $checkin)) );
+	    	$checkout = date('Y/m/d', strtotime(str_replace("/", "-", $checkout)) );
+
+	    	$condiciones .= " AND ( 
+	    		SELECT count(*) 
+	    			FROM cupos 
+	    			WHERE cupos.cuidador = cuidadores.user_id 
+	    				AND cupos.fecha >= '{$checkin}' 
+	    				AND cupos.fecha <= '{$checkout}' 
+	    				AND ( cupos.full = 1 OR cupos.no_disponible = 1 )
+	    		) = 0"; 
+	   	}
     /* Fin Filtros por fechas */
 
     /* Filtros por servicios y tamaños */
@@ -217,12 +228,6 @@
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
-	// echo "<pre>";
-	//    print_r( $sql );
-	//    	print_r( $_POST );
-	//    	print_r( $ubicacion );
-	//    	print_r( $cuidadores );
-	// echo "</pre>";
 
     /* Funciones */
 
@@ -257,4 +262,11 @@
 
     /* FIN Funciones */
 
-	header("location: {$home}busqueda/");
+    echo "<pre>";
+	print_r( $sql );
+	print_r( $_POST );
+	print_r( $ubicacion );
+	print_r( $cuidadores );
+	echo "</pre>";
+
+//	header("location: {$home}busqueda/");

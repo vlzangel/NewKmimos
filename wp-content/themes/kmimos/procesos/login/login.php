@@ -1,9 +1,5 @@
 <?php
-	$load = dirname(__DIR__,5).'/wp-load.php';
-	if(file_exists($load)){
-		include_once($load);
-	}
-
+	include("../../../../../wp-load.php");
 	extract($_POST);
 
 	$user = get_user_by( 'email', $usu );
