@@ -219,26 +219,6 @@
                             "icono" => "460"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/mascotas",
-                            "name"  => "Mis Mascotas",
-                            "icono" => "871"
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/favoritos",
-                            "name"  => "Cuidadores Favoritos",
-                            "icono" => "375"
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/historial",
-                            "name"  => "Historial",
-                            "icono" => "33"
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/descripcion",
-                            "name"  => "Descripción",
-                            "icono" => "664"
-                        ),
-                        array(
                             "url"   => get_home_url()."/perfil-usuario/servicios",
                             "name"  => "Mis Servicios",
                             "icono" => "453"
@@ -247,11 +227,6 @@
                             "url"   => get_home_url()."/perfil-usuario/disponibilidad",
                             "name"  => "Disponibilidad",
                             "icono_2" => "fa fa-calendar"
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/galeria",
-                            "name"  => "Mis Fotos",
-                            "icono" => "82"
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/reservas",
@@ -267,7 +242,35 @@
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
                             "icono" => "476"
-                        )
+                        ),
+
+
+                        // array(
+                        //     "url"   => get_home_url()."/perfil-usuario/galeria",
+                        //     "name"  => "Mis Fotos",
+                        //     "icono" => "82"
+                        // ),
+                        // array(
+                        //     "url"   => get_home_url()."/perfil-usuario/mascotas",
+                        //     "name"  => "Mis Mascotas",
+                        //     "icono" => "871"
+                        // ),
+                        // array(
+                        //     "url"   => get_home_url()."/perfil-usuario/favoritos",
+                        //     "name"  => "Cuidadores Favoritos",
+                        //     "icono" => "375"
+                        // ),
+                        // array(
+                        //     "url"   => get_home_url()."/perfil-usuario/historial",
+                        //     "name"  => "Historial",
+                        //     "icono" => "33"
+                        // ),
+                        // array(
+                        //     "url"   => get_home_url()."/perfil-usuario/descripcion",
+                        //     "name"  => "Descripción",
+                        //     "icono" => "664"
+                        // ),
+
                     ),
                     "subscriber" => array(
                         array(
