@@ -14,7 +14,7 @@
 	if ($conn->connect_error) {
         echo 'false';
 	}else{
-
+        $userid=trim($userid);
         $existen = $conn->query( "SELECT * FROM wp_users WHERE ID = '{$userid}'" );
         if( $existen->num_rows > 0 ){
 
