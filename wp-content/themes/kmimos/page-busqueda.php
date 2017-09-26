@@ -76,15 +76,7 @@
     $servicios_adicionales = servicios_adicionales();
     foreach ($servicios_adicionales as $opt_key => $opt_value) {
 	    $option_servicios_adicionales .= '
-		<li>
-	    	<a>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" data-action="no-close" name="servicios[]" value="'.$opt_key.'"> '.$opt_value['label'].'
-					</label>
-				</div>
-	    	</a>
-	    </li>
+		<option value="'.$opt_key.'"> '.$opt_value['label'].'</option>
 	    ';
     }
 
@@ -92,15 +84,7 @@
     $tipo_servicio = get_tipo_servicios();
     foreach ($tipo_servicio as $opt_key => $opt_value) {
 	    $option_tipo_servicio .= '
-		<li>
-	    	<a>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" data-action="no-close" name="servicios[]" value="'.$opt_value['ID'].'"> '.$opt_value['name'].'
-					</label>
-				</div>
-	    	</a>
-	    </li>
+		<option value="'.$opt_value['ID'].'"> '.$opt_value['name'].'</option>
 	    ';
     }	
 
@@ -108,15 +92,7 @@
     $tamanos_mascotas = kmimos_get_sizes_of_pets();
     foreach ($tamanos_mascotas as $opt_key => $opt_value) {
 	    $option_tamanos_mascotas .= '
-		<li>
-	    	<a>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" data-action="no-close" name="tamanos[]" value="'.$opt_value.'"> '.$opt_value['name'].'
-					</label>
-				</div>
-	    	</a>
-	    </li>
+		<option value="'.$opt_value.'"> '.$opt_value['name'].'</option>
 	    ';
     }
 
@@ -156,39 +132,24 @@
 						<div class="km-cajas-filtro">
 							
 							<div class="km-caja-filtro ">
-								<div class="btn-group">
-									<button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										TIPO DE SERVICIO</span>
-									</button>
-								  	<ul class="dropdown-menu dropdown-option">
-								    	'.$option_tipo_servicio.'
-									</ul>
-								</div>
+								<option class="hidden">TIPO DE SERVICIO</option>
+								<select class="selectpicker" name="servicios[]" multiple title="TIPO DE SERVICIO">
+							    	'.$option_tipo_servicio.'
+								</select>
 							</div>
 
 							<div class="km-caja-filtro">
-								<div class="btn-group">
-								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								    TAMAÑO DE MASCOTA</span>
-								  </button>
-								  <ul class="dropdown-menu dropdown-option">
+								<option class="hidden">TAMAÑO DE MASCOTA</option>
+								<select class="selectpicker" name="tamanos" multiple title="TAMAÑOS">
 								    '.$option_tamanos_mascotas.'
-								  </ul>
-								</div>
+								</select>
 							</div>
 
 							<div class="km-caja-filtro">
-								<div class="btn-group">
-								  <button type="button" data-action="dropdown" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" 
-
-								  data-toggle="_dropdown" aria-haspopup="_true" aria-expanded="_false">
-
-								    SERVICIOS ADICIONALES</span>
-								  </button>
-								  <ul class="dropdown-menu  dropdown-option">
+								<option class="hidden">SERVICIOS ADICIONALES</option>
+								<select class="selectpicker" name="servicios[]" multiple title="SERVICIOS">
 								    '.$option_servicios_adicionales.'
-								  </ul>
-								</div>
+								</select>
 							</div>
 
 							<div class="km-caja-filtro">

@@ -4,7 +4,7 @@ var hasGPS=false;
     'use strict';
 
     $(document).on('click', '[data-action="dropdown"]', function(){
-        console.log('click dropdown');
+       alert('click dropdown');
     });
 
     

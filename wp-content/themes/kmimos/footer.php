@@ -48,7 +48,7 @@ $HTML = '
         </footer>
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
     ';
-    wp_enqueue_script('boostrap-multiselect.min.js', getTema()."/js/bootstrap-multiselect.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('boostrap-select.js', getTema()."/js/bootstrap-select.js", array("jquery"), '1.0.0');
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
