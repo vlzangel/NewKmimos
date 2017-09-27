@@ -76,7 +76,12 @@
     $servicios_adicionales = servicios_adicionales();
     foreach ($servicios_adicionales as $opt_key => $opt_value) {
 	    $option_servicios_adicionales .= '
-		<option value="'.$opt_key.'"> '.$opt_value['label'].'</option>
+		<li>
+			<label>
+				<input type="checkbox" name="servicios[]" value="'.$opt_key.'">'.
+					$opt_value['label']
+			.'</label>
+		</li>
 	    ';
     }
 
@@ -84,7 +89,12 @@
     $tipo_servicio = get_tipo_servicios();
     foreach ($tipo_servicio as $opt_key => $opt_value) {
 	    $option_tipo_servicio .= '
-		<option value="'.$opt_value['ID'].'"> '.$opt_value['name'].'</option>
+		<li> 
+			<label>
+				<input type="checkbox" name="servicios[]" value="'.$opt_key.'">'.
+				$opt_value['name'].
+			'</label>
+		</li>
 	    ';
     }	
 
@@ -92,7 +102,12 @@
     $tamanos_mascotas = kmimos_get_sizes_of_pets();
     foreach ($tamanos_mascotas as $opt_key => $opt_value) {
 	    $option_tamanos_mascotas .= '
-		<option value="'.$opt_value.'"> '.$opt_value['name'].'</option>
+		<li> 
+			<label>
+				<input type="checkbox" name="servicios[]" value="'.$opt_value['ID'].'">'.
+				$opt_value['name'].
+			'</label>
+		</li>
 	    ';
     }
 
@@ -131,25 +146,31 @@
 						</div>
 						<div class="km-cajas-filtro">
 							
-							<div class="km-caja-filtro ">
-								<option class="hidden">TIPO DE SERVICIO</option>
-								<select class="selectpicker" name="servicios[]" multiple title="TIPO DE SERVICIO">
+							<div class="form-group">
+						    	<button class="btn km-select-custom-button" type="button">
+						    		TIPO DE SERVICIO
+						    	</button>
+						    	<ul class="list-unstyled km-select-custom-list">
 							    	'.$option_tipo_servicio.'
-								</select>
+								</li>
 							</div>
 
-							<div class="km-caja-filtro">
-								<option class="hidden">TAMAÑO DE MASCOTA</option>
-								<select class="selectpicker" name="tamanos" multiple title="TAMAÑOS">
+							<div class="form-group">
+						    	<button class="btn km-select-custom-button" type="button">
+						    		TAMAÑO DE MASCOTA
+						    	</button>
+						    	<ul class="list-unstyled km-select-custom-list">
 								    '.$option_tamanos_mascotas.'
-								</select>
+								</li>
 							</div>
 
-							<div class="km-caja-filtro">
-								<option class="hidden">SERVICIOS ADICIONALES</option>
-								<select class="selectpicker" name="servicios[]" multiple title="SERVICIOS">
+							<div class="form-group">
+						    	<button class="btn km-select-custom-button" type="button">
+						    		SERVICIOS ADICIONALES
+						    	</button>
+						    	<ul class="list-unstyled km-select-custom-list">
 								    '.$option_servicios_adicionales.'
-								</select>
+								</li>
 							</div>
 
 							<div class="km-caja-filtro">
@@ -226,8 +247,9 @@
 			</div>
 			<script type="text/javascript" src="'.getTema().'/js/markerclusterer.js"></script>
 			<script type="text/javascript" src="'.getTema().'/js/oms.min.js"></script>
+
     ';
-    include ('partes/cuidador/conocelo.php');
+    //include ('partes/cuidador/conocelo.php');
 	echo comprimir_styles($HTML);
 
 
