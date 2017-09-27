@@ -105,11 +105,11 @@
     $option_tamanos_mascotas = '';
     $tamanos_mascotas = kmimos_get_sizes_of_pets();
     foreach ($tamanos_mascotas as $opt_key => $opt_value) {
-    	$check = (servicios_en_session($opt_value['ID'], $busqueda, 'tamanos'))? 'checked' : '' ;
+    	$check = (servicios_en_session($opt_value['db'], $busqueda, 'tamanos'))? 'checked' : '' ;
 	    $option_tamanos_mascotas .= '
 		<li> 
 			<label>
-				<input type="checkbox" name="tamanos[]" value="'.$opt_value['ID'].'" '.$check.' >'.
+				<input type="checkbox" name="tamanos[]" value="'.$opt_value['db'].'" '.$check.' >'.
 				$opt_value['name'].
 			'</label>
 		</li>
