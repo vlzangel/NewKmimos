@@ -31,6 +31,8 @@
 
 	wp_head();
 
+    include_once("partes/head/script_google_auth.php");
+    include_once("partes/head/script_facebook_auth.php");
 
 	global $post;
 	$reserrvacion_page = "";
@@ -40,9 +42,6 @@
 	){
 		$reserrvacion_page = "page-reservation";
 	}
-
-    include_once("partes/head/script_google_auth.php");
-    include_once("partes/head/script_facebook_auth.php");
 
     $coordenadas = get_coordenadas();
     $HTML .= "<script type='text/javascript'>
@@ -58,8 +57,6 @@
 			var pines = [];
 			var AVATAR = "";
 		</script>
-		<link rel="stylesheet" href="'.getTema().'"/css/bootstrap-multiselect.css" type="text/css">
-        <script type="text/javascript" src="'.getTema().'"/js/bootstrap-multiselect.js"></script>
 	</head>
 
 	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu()">';

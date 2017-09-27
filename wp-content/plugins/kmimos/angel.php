@@ -239,14 +239,6 @@
         function servicios_adicionales(){
 
             $extras = array(
-                'corte' => array( 
-                    'label'=>'Corte de Pelo y Uñas',
-                    'icon' => 'peluqueria'
-                ),
-                'bano' => array( 
-                    'label'=>'Baño y Secado',
-                    'icon' => 'bano'
-                ),
                 'transportacion_sencilla' => array( 
                     'label'=>'Transporte Sencillo',
                     'icon' => 'transporte'
@@ -254,6 +246,14 @@
                 'transportacion_redonda' => array( 
                     'label'=>'Transporte Redondo',
                     'icon' => 'transporte2'
+                ),
+                'corte' => array( 
+                    'label'=>'Corte de Pelo y Uñas',
+                    'icon' => 'peluqueria'
+                ),
+                'bano' => array( 
+                    'label'=>'Baño y Secado',
+                    'icon' => 'bano'
                 ),
                 'visita_al_veterinario' => array( 
                     'label'=>'Visita al Veterinario',
