@@ -14,6 +14,13 @@
 		
 		/* Get Data */
 
+			$sub_descuento = 0;
+			if( count($cupones) > 0 ){
+				foreach ($cupones as $value) {
+					$sub_descuento += $value[1];
+				}
+			}
+
 			$xcupon = $db->get_row("SELECT * FROM wp_posts WHERE post_title = '{$cupon}'");
 
 			$xmetas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$xcupon->ID}'");
@@ -78,6 +85,12 @@
 				if( strpos( $cupon, "saldo" ) !== false ){
 					$descuento += $_SESSION[$id_session]['saldo_temporal'];
 				}
+			}
+
+			$sub_descuento += $descuento;
+
+			if( ($total-$sub_descuento) < 0 ){
+				$descuento += ( $total-$sub_descuento );
 			}
 
 			return array(
