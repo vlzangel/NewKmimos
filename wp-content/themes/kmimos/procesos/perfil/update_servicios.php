@@ -127,122 +127,6 @@
 	} 
     $cuidador_post = $db->get_row("SELECT * FROM wp_posts WHERE ID = {$cuidador->id_post}");
 
-	/*$hospedaje = $db->get_var("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_name LIKE '%hospedaje%' AND post_type = 'product'");
-  	if( $hospedaje != "" ){
-  		$base_hospedaje *= 1.2;
-  		$sql = "UPDATE wp_postmeta SET meta_value = '{$base_hospedaje}' WHERE post_id = '{$hospedaje}' AND (meta_key = '_price' OR meta_key = '_wc_booking_base_cost');";
-  		$db->query($sql);
-
-        if( $base_hospedaje > 0 ){
-            $status = $status_global;
-        }else{
-            $status = "unpublish";
-        }
-
-        $sql = "UPDATE wp_posts SET post_status = '{$status}' WHERE ID = '{$hospedaje}';";
-        $db->query($sql);
-
-  		foreach ($tams as $tamano) {
-  			$valor = ($_POST['hospedaje_'.$tamano]+0);
-  			$valor *= 1.2;
-  			if( $valor > 0 ){
-  				$status = $status_global;
-  				$base_variante = $valor-$base_hospedaje;
-  			}else{
-  				$status = "unpublish";
-  				$base_variante = 0;
-  			}
-  			$sql = "UPDATE wp_posts SET post_excerpt = 'Precio: \${$valor} c/u', post_status = '{$status}' WHERE post_parent = '{$hospedaje}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';";
-  			$db->query($sql);
-  			$id_variante = $db->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$hospedaje}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';");
-  			
-  			$sql = "UPDATE wp_postmeta SET meta_value = '{$base_variante}' WHERE post_id = '{$id_variante}' AND meta_key = 'block_cost';";
-            $db->query($sql);
-  		}
-
-        $adicionales['comision'] = 1.2;
-        $addons = ( sql_addons($adicionales) );
-
-        $db->query("UPDATE wp_postmeta SET meta_value = '{$addons}' WHERE post_id = {$hospedaje} AND meta_key = '_product_addons';");
-        $db->query("UPDATE wp_postmeta SET meta_value = '{$imgs_product['hospedaje']}' WHERE post_id = {$hospedaje} AND meta_key = '_thumbnail_id';");
-        $db->query("UPDATE wp_postmeta SET meta_value = '2' WHERE post_id = {$hospedaje} AND meta_key = '_wc_booking_min_duration';");
-        $db->query("UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = {$hospedaje} AND meta_key = '_wc_booking_min_date';");
-
-  	}else{
-  		$hoy = date("Y-m-d H:i:s");
-        $nom = $cuidador_post->post_title;
-
-        $base_hospedaje *= 1.2;
-
-        if( $base_hospedaje > 0 ){
-            $status = $status_global;
-        }else{
-            $status = "unpublish";
-        }
-
-        $sql = sql_producto(array(
-            "user"          => $user_id,
-            "hoy"           => $hoy,
-            "titulo"        => "Hospedaje - ".$nom,
-            "descripcion"   => descripciones($nombre),
-            "slug"          => $nombre."-".$user_id,
-            "cuidador"      => $cuidador->id_post,
-            "status"        => $status
-        ));
-
-        $db->query( ($sql) );
-        $servicio_id = $db->insert_id(); 
-
-        $sql = sql_cats(array( 
-            "servicio"   => $servicio_id,
-            "categoria"  => $cats[$nombre]
-        ));
-        $db->query( $sql );
-
-        $sql_metas = sql_meta_producto(array(
-            "id_servicio"   => $servicio_id,
-            "precio"        => $base_hospedaje,
-            "cuidador_post" => $cuidador->id_post,
-            "cantidad"      => $cuidador->mascotas_permitidas,
-            "img"           => $imgs_product[$nombre],
-            "slug"          => $nombre
-        ));
-
-        $db->query( ($sql_metas) );
-
-        foreach ($tams as $tamano) {
-            $valor = ($_POST[$nombre.'_'.$tamano]+0);
-            $valor *= 1.2;
-            if( $valor > 0 ){
-                $status = $status_global;
-                $base_variante = $valor-$base_hospedaje;
-            }else{
-                $status = "unpublish";
-                $base_variante = 0;
-            }
-
-            $sql = sql_variante(array(
-                "user"      => $user_id,
-                "hoy"       => $hoy,
-                "titulo"    => $tamanos[$tamano],
-                "precio"    => $valor,
-                "slug"      => $user_id."-".$nombre."-".$tamano,
-                "servicio"  => $servicio_id,
-                "menu"      => $order_menu[$tamano],
-                "status"    => $status                
-            ));
-            $db->query( utf8_decode($sql) );
-
-            $sql = sql_meta_variante(array(
-                "bookable_person_id" => $db->insert_id(),
-                "bloque"             => $base_variante
-            ));
-            $db->query( ($sql) );
-        }
-
-        $db->query("UPDATE wp_postmeta SET meta_value = '{$servicio_id}' WHERE post_id = {$extra} AND meta_key = '_product_addons';");
-  	}*/
-
     $servicios_extras_titulos = array(
         "hospedaje"                     => "Hospedaje",
         "guarderia"                     => "Guardería",
@@ -273,7 +157,7 @@
     );
     
   	foreach ($servicios_extras as $nombre => $value) {
-        echo "{$nombre}\n";
+       
   		$extra = $db->get_var("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_name LIKE '%{$nombre}%' AND post_type = 'product'");
         
 	  	if( $extra != false ){

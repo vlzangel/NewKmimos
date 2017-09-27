@@ -487,7 +487,7 @@ function calcularDescuento(){
 		descuentos += parseFloat(cupon[1]);
 	});
 
-	jQuery(".km-price-total").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 
 	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
 	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;

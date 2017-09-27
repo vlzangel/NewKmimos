@@ -258,12 +258,6 @@
 								</div>
 							</div>
 
-							<!--
-							<div class="km-text-end-form">
-								* Precio final (incluye cobertura veterinaria y gastos administrativos; no incluye servicios adicionales)
-							</div>
-							-->
-
 							<a href="#" id="reserva_btn_next_1" class="km-end-btn-form km-end-btn-form-disabled disabled vlz_btn_reservar">
 								<span>SIGUIENTE</span>
 							</a>
@@ -332,7 +326,7 @@
 
 								<div class="km-services-total">
 									<span class="km-text-total">TOTAL</span>
-									<span class="km-price-total">$420.00</span>
+									<span class="km-price-total2">$420.00</span>
 								</div>
 							</div>
 
@@ -460,7 +454,7 @@
 
 									<div class="km-services-total">
 										<span class="km-text-total">TOTAL</span>
-										<span class="km-price-total"></span>
+										<span class="km-price-total2"></span>
 									</div>
 
 									<div class="km-detail-paid-deposit">
