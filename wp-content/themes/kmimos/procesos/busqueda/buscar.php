@@ -118,13 +118,24 @@
 	    	$estados != "" && 
 	    	$municipios != "" 
 	    ){
+	        // $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
+	        // $latitud  			= $coordenadas["referencia"]->lat;
+	        // $longitud 			= $coordenadas["referencia"]->lng;
+	        // $ubicacion 			= " ubi.estado LIKE '%={$estados}=%' AND ubi.municipios LIKE '%={$municipios}=%' ";
+	        // $ubicaciones_inner  = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
+	        // $ubicaciones_filtro = "AND ( $ubicacion )";
+
 	        $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
 	        $latitud  			= $coordenadas["referencia"]->lat;
 	        $longitud 			= $coordenadas["referencia"]->lng;
+	        $distancia 			= calcular_rango_de_busqueda($coordenadas["norte"], $coordenadas["sur"]);
 	        $ubicacion 			= " ubi.estado LIKE '%={$estados}=%' AND ubi.municipios LIKE '%={$municipios}=%' ";
+	        $calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
+	        $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
+	        $FILTRO_UBICACION 	= "HAVING DISTANCIA < ".($distancia+0);
 	        $ubicaciones_inner  = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-	        $ubicaciones_filtro = "AND ( $ubicacion )";
-	        //if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
+	        $ubicaciones_filtro = "AND ( ( $ubicacion ) OR ( {$calculo_distancia} <= ".($distancia+0)." ) )";       
+
 	    }else{ 
 	        if( 
 	        	// $tipo_busqueda == "otra-localidad" && 
