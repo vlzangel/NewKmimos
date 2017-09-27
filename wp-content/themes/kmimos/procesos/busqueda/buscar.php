@@ -262,7 +262,7 @@
 
     /* FIN Funciones */
 
- //    echo "<pre>";
+	// echo "<pre>";
 	// print_r( $sql );
 	// print_r( $_POST );
 	// print_r( $ubicacion );

@@ -898,7 +898,7 @@ button.close {
 	margin-top: 4px;
 	border-radius: 5px;
 	position: absolute;
-	z-index: 999;
+	z-index: 3;
     line-height: 0px;
     color: #6b6767;
 }
