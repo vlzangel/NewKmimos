@@ -75,36 +75,41 @@
     $option_servicios_adicionales = '';
     $servicios_adicionales = servicios_adicionales();
     foreach ($servicios_adicionales as $opt_key => $opt_value) {
+    	$check = (servicios_en_session($opt_key, $busqueda, 'servicios'))? 'checked' : '' ;
 	    $option_servicios_adicionales .= '
 		<li>
 			<label>
-				<input type="checkbox" name="servicios[]" value="'.$opt_key.'">'.
+				<input type="checkbox" name="servicios[]" value="'.$opt_key.'" '.$check.' >'.
 					$opt_value['label']
 			.'</label>
 		</li>
 	    ';
     }
 
+    $check = '';
     $option_tipo_servicio = '';
     $tipo_servicio = get_tipo_servicios();
     foreach ($tipo_servicio as $opt_key => $opt_value) {
+    	$check = (servicios_en_session($opt_key, $busqueda, 'servicios'))? 'checked' : '' ;
 	    $option_tipo_servicio .= '
 		<li> 
 			<label>
-				<input type="checkbox" name="servicios[]" value="'.$opt_key.'">'.
+				<input type="checkbox" name="servicios[]" value="'.$opt_key.'" '.$check.' >'.
 				$opt_value['name'].
 			'</label>
 		</li>
 	    ';
     }	
 
+    $check = '';
     $option_tamanos_mascotas = '';
     $tamanos_mascotas = kmimos_get_sizes_of_pets();
     foreach ($tamanos_mascotas as $opt_key => $opt_value) {
+    	$check = (servicios_en_session($opt_value['ID'], $busqueda, 'tamanos'))? 'checked' : '' ;
 	    $option_tamanos_mascotas .= '
 		<li> 
 			<label>
-				<input type="checkbox" name="servicios[]" value="'.$opt_value['ID'].'">'.
+				<input type="checkbox" name="tamanos[]" value="'.$opt_value['ID'].'" '.$check.' >'.
 				$opt_value['name'].
 			'</label>
 		</li>

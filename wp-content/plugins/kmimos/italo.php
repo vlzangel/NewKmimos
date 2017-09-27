@@ -14,6 +14,20 @@
 	    }
 	}
 
+	if(!function_exists('servicios_en_session')){
+	    function servicios_en_session( $opt_key = '', $arr, $sub="" ){
+	    	$result = false;
+	    	if( !empty($arr) ){
+	    		if( array_key_exists($sub, $arr) ){
+	    			if( in_array($opt_key, $arr[$sub]) ){
+	    				$check = true;
+	    			}
+	    		}
+	    	}
+	    	return $check;
+	    }	
+	}
+
 	if(!function_exists('get_tipo_servicios')){
 	    function get_tipo_servicios(){
 	    	return [
@@ -25,7 +39,7 @@
 	    }
 	}
 
- 
+ 	
 
 	if(!function_exists('italo_menus')){
 	    function italo_menus($menus){

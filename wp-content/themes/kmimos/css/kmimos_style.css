@@ -900,6 +900,7 @@ button.close {
 	position: absolute;
 	z-index: 999;
     line-height: 0px;
+    color: #6b6767;
 }
 .km-select-custom-button{
 	position: relative;
