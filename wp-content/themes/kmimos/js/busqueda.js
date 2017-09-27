@@ -1,3 +1,15 @@
+
+jQuery(document).on('click', '.km-select-custom-button', function(){
+	var obj = jQuery(this).parent().find('ul');
+	if( obj.css('display') != 'none' ){
+		obj.css('display', 'none');
+	}else{
+		jQuery('.km-select-custom-list').css('display', 'none');
+		obj.css('display', 'block');
+	}
+});
+
+
 function vlz_select(id){
 	if( jQuery("#"+id+" input").prop("checked") ){
 		jQuery("#"+id+" input").prop("checked", false);

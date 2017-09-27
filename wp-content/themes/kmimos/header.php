@@ -18,6 +18,7 @@
 	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script>';
 
 	wp_enqueue_style( 'style', getTema()."/style.css", array(), "1.0.0" );
+	
 
 	wp_enqueue_style( 'generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
 	wp_enqueue_style( 'jquery.bxslider', getTema()."/css/jquery.bxslider.css", array(), "1.0.0" );
@@ -26,7 +27,6 @@
 	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
 	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0');
-	wp_enqueue_style( 'bootstrap-select.css', getTema()."/css/bootstrap-select.css", array(), '1.0.0');
 
 
 	wp_head();
@@ -58,6 +58,8 @@
 			var pines = [];
 			var AVATAR = "";
 		</script>
+		<link rel="stylesheet" href="'.getTema().'"/css/bootstrap-multiselect.css" type="text/css">
+        <script type="text/javascript" src="'.getTema().'"/js/bootstrap-multiselect.js"></script>
 	</head>
 
 	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu()">';

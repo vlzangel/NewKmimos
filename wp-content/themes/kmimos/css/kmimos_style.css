@@ -886,6 +886,50 @@ button.close {
 }
 
 
+
+.km-select-custom-list input{
+	margin:4px!important;
+}
+.km-select-custom-list{
+	display: none;
+	background: #fff;
+	border: 1px solid #e5e5e5!important;
+	padding: 15px;	
+	margin-top: 4px;
+	border-radius: 5px;
+	position: absolute;
+	z-index: 999;
+    line-height: 0px;
+}
+.km-select-custom-button{
+	position: relative;
+	background-color: #FFF;
+	background-size: 14px 13px;
+	background-repeat: no-repeat;
+	background-position: calc(100% - 9px) 50%;
+	background-image: url(../images/new/km-arrow-form.svg);
+
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px 6px 6px 6px!important;
+	border: 1px solid #e5e5e5!important;
+
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	cursor: pointer;
+
+	line-height: inherit;
+	letter-spacing: 1px;
+    -webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+
+	font-size: 10px;	
+	width: 100%;
+	padding: 0px 30px 0px 5px;
+
+}
 .km-select-custom{
 	position: relative;
 	border: solid 1px #e5e5e5;
@@ -1229,6 +1273,7 @@ div#ubicacion_list div:hover {
 	display: table;
 }
 
+.km-cajas-filtro .form-group,
 .km-cajas-filtro .km-caja-filtro{
 	float: left;
 	height: 38px;
@@ -1269,6 +1314,7 @@ div#ubicacion_list div:hover {
 	background-position: 92% 50%;
 	background-image: url(../images/new/km-buscador.svg);
 	padding-right: 18%;
+
 }
 
 .km-cajas-filtro .km-input-custom::-webkit-input-placeholder {
@@ -8008,7 +8054,7 @@ button.close {
     background-size: 18px;
     background-repeat: no-repeat;
     background-position: 92% 50%;
-    background-image: url(../images/km-buscador.svg);
+    background-image: url(../images/new/km-buscador.svg);
     padding-right: 18%;
 }
 
@@ -8967,7 +9013,7 @@ textarea.popup-conoce-textarea {
     background-size: 18px;
     background-repeat: no-repeat;
     background-position: 92% 50%;
-    background-image: url(../images/km-buscador.svg);
+    background-image: url(../images/new/km-buscador.svg);
     padding-right: 18%;
 }
 .km-datos-mascota-opcion {
