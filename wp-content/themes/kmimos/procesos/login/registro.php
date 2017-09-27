@@ -149,6 +149,20 @@
             ";
             $conn->query( utf8_decode( $sql ) );
 
+
+
+            //MESSAGE
+            $mail_file=dirname(__DIR__,2).'/template/mail/registro.php';
+            $message_mail=file_get_contents($mail_file);
+            $message_mail=str_replace('[name]',$name.' '.$lastname,$message_mail);
+            $message_mail=str_replace('[email]',$email,$message_mail);
+            $message_mail=str_replace('[pass]',$password,$message_mail);
+            $message_mail=str_replace('[url]',site_url(),$message_mail);
+
+            $message = kmimos_get_email_html("Registro de Nuevo Usuario.", $message_mail, '', true, true);
+            wp_mail( $email, "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message);
+
+            //USER LOGIN
             $user = get_user_by( 'id', $user_id );
             wp_set_current_user($user_id, $user->user_login);
             wp_set_auth_cookie($user_id);
