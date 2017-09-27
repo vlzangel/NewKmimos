@@ -480,6 +480,9 @@ function mostrarCupones(){
 function calcularDescuento(){
 	var descuentos = 0;
 	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
+		if( cupon[1] == "" ){
+			cupon[1] = 0;
+		}
 		descuentos += parseFloat(cupon[1]);
 	});
 
