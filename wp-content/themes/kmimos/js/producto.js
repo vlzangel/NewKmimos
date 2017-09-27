@@ -100,6 +100,7 @@ function validar(status, txt){
 
 function calcular(){
 
+	CARRITO["cantidades"]["cantidad"] = 0;
 	jQuery("#reservar .tamano").each(function( index ) {
 		CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
 		CARRITO[ "cantidades" ][ jQuery( this ).attr("name") ] = [
