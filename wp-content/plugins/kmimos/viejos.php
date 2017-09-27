@@ -1622,10 +1622,10 @@ if(!function_exists('kmimos_get_sizes_of_pets')){
 
     function kmimos_get_sizes_of_pets(){
         $sizes =array(
-            0=> array('ID'=>0,'name'=>'Pequeñas','desc'=>'Menos de 25.4cm'),
-            1=> array('ID'=>1,'name'=>'Medianas','desc'=>'Más de 25.4cm y menos de 50.8cm'),
-            2=> array('ID'=>2,'name'=>'Grandes','desc'=>'Más de 50.8cm y menos de 76.2cm'),
-            3=> array('ID'=>3,'name'=>'Gigantes','desc'=>'Más de 76.2cm')
+            0=> array('ID'=>0, 'db'=>'pequeno', 'name'=>'Pequeñas','desc'=>'Menos de 25.4cm'),
+            1=> array('ID'=>1, 'db'=>'mediana', 'name'=>'Medianas','desc'=>'Más de 25.4cm y menos de 50.8cm'),
+            2=> array('ID'=>2, 'db'=>'grande', 'name'=>'Grandes','desc'=>'Más de 50.8cm y menos de 76.2cm'),
+            3=> array('ID'=>3, 'db'=>'gigante', 'name'=>'Gigantes','desc'=>'Más de 76.2cm')
         );
         return $sizes;
 
