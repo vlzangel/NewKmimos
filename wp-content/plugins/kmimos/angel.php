@@ -153,7 +153,7 @@
                                 case 'limpieza_dental':
                                     if( $value > 0){
                                         $data[] = array(
-                                            "img" => "icon-sello-4.svg",
+                                            "img" => "icon-sello-5.svg",
                                             "titulo" => "Limpieza Dental"
                                         );
                                     }
@@ -215,7 +215,7 @@
                                 break;
                                 case 'limpieza_dental':
                                     if( $value > 0){
-                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-4.svg' height='40' title='Limpieza Dental'> ";
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-5.svg' height='40' title='Limpieza Dental'> ";
                                     }
                                 break;
                                 case 'acupuntura':
