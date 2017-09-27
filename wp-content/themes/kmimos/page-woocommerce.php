@@ -152,6 +152,7 @@
 				}
 			}
 		}
+		$error = "";
 
 		echo "
 		<script> 
@@ -240,8 +241,8 @@
 								<div class="km-content-new-pet">
 									'.$precios.'
 									<div class="km-services-content">
-										'.$transporte.'
-										'.$adicionales.'
+										<div class="contenedor-adicionales">'.$transporte.'</div>
+										<div class="contenedor-adicionales">'.$adicionales.'</div>
 									</div>
 
 									<div class="km-services-total km-total-calculo">
