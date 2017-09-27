@@ -38,9 +38,6 @@
 			<div class="pf-container">
 				<div class="pf-row">
 					<div class="col-lg-12">
-
-						
-
 							<form id="vlz_form_recuperar" class="km-box-form" enctype="multipart/form-data" method="POST" onsubmit="return false;">
 
 								<?php
@@ -72,12 +69,12 @@
 
 											<div class="label-placeholder verify">
 												<div class="vlz_cell50">
-													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_1' name='clave_1' class='' placeholder='Ingrese su nueva contraseña' pattern=".{3,}"  maxlength="20">
+													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_1' name='clave_1' class='' placeholder='Ingrese su nueva contraseña'  maxlength="20">
 													<span id="error_clave_1" class="verify_result"></span>
 												</div>
 
 												<div class="vlz_cell50 verify" style="margin: 20px 0;">
-													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_2' name='clave_2' class='' placeholder='Reingrese su nueva contraseña' pattern=".{3,}"  maxlength="20">
+													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_2' name='clave_2' class='' placeholder='Reingrese su nueva contraseña'  maxlength="20">
 													<span id="error_clave_2" class="verify_result"></span>
 												</div>
 											</div>
@@ -110,17 +107,15 @@
 										var clv1 = jQuery("#clave_1").attr("value");
 										var clv2 = jQuery("#clave_2").attr("value");
 
-										if( clv1 == "" ){
+										if( clv1.length < 3 ){
 											error_show("clave_1");
 											action = false;
-										}
 
-										if( clv2 == "" ){
+										}else if( clv2.length < 3 ){
 											error_show("clave_2");
 											action = false;
-										}
-
-										if( clv1 != clv2 ){
+											
+										}else if( clv1 != clv2 ){
 											var text = jQuery("#clave_2").attr("data-title");
 											jQuery("#error_clave_2").css({'color':'red'}).html(text);
 											action = false;

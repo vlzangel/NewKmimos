@@ -74,8 +74,8 @@ jQuery(document).on('click', '.modal_show' ,function(e){
 function modal_show(element){
     var modal = $(element).data('modal');
     //jQuery('.modal').css("display", "");
-    $('.modal').modal('hide');
-    $(modal).modal("show");
+    jQuery('.modal').modal('hide');
+    jQuery(modal).modal("show");
     //console.log(modal);
 }
 

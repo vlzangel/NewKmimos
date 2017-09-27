@@ -88,7 +88,7 @@ $url_activate=site_url()."/wp-login.php?action=rp&key=$key&login=".rawurlencode(
 $url_activate=site_url()."/restablecer/?r=".$keyKmimos;
 
 //MESSAGE
-$mail_file=dirname(dirname(__DIR__)).'/template/mail/recuperar.php';
+$mail_file=dirname(__DIR__,2).'/template/mail/recuperar.php';
 $message_mail=file_get_contents($mail_file);
 $message_mail=str_replace('[name]',$user_login,$message_mail);
 $message_mail=str_replace('[url]',$url_activate,$message_mail);

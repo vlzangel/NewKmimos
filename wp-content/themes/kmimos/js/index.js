@@ -5,7 +5,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 
     $("#nombre").blur(function(){
 		
-		if($("#nombre").val().length < 4){
+		if($("#nombre").val().length < 3){
 			$("#nombre").parent('div').css('color','red');
 			$("#nombre").after('<span name="sp-name">Ingrese su Nombre</span>').css('color','red');
 			$("#nombre").focus(function() { $("[name='sp-name']").hide(); });
@@ -17,7 +17,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 	});
 
 	$("#apellido").blur(function(){
-		if($("#apellido").val().length < 4){
+		if($("#apellido").val().length < 3){
 			$("#apellido").parent('div').css('color','red');
 			$("#apellido").after('<span name="sp-lastname">Ingrese su apellido</span>').css('color','red');
 			$("#apellido").focus(function() { $("[name='sp-lastname']").hide(); });
@@ -199,7 +199,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 				referido = $("#referido").val(),
 				img_profile = $("#img_profile").val();
 		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
-		if (nombre.length > 3 && apellido.length > 3 && ife.length > 3 && email.length > 3 && pass.length > 3 && movil.length > 3
+		if (nombre.length > 2 && apellido.length > 2 && ife.length > 2 && email.length > 2 && pass.length > 2 && movil.length > 2
 		       	&& genero != "" && edad != "" && fumador !="") {
 				$(".popup-registrarte-nuevo-correo").hide();
 				$(".popup-registrarte-datos-mascota").fadeIn("fast");
@@ -232,9 +232,12 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		document.addEventListener('change',cargaImagen, false);
 	});
 
+	var maxDatePets = new Date();
 	jQuery('#datepets').datepick({
 		dateFormat: 'dd/mm/yyyy',
-		onSelect: function(xdate) {		}
+		maxDate: maxDatePets,
+		onSelect: function(xdate) {
+		}
 	});
 	
 	$("#nombre_mascota").blur(function(){
@@ -579,26 +582,29 @@ function cargaImagenProfile(evt){
 }
 
 //RECOVER PASSWORD
-$(document).on('click','#login_submit.recover_pass',function(e){
+jQuery(document).on('click','#login_submit.recover_pass',function(e){
 	//$(this).closest('form').submit();
 });
 
-$("form#form_recuperar").submit(function(){
+jQuery("form#form_recuperar").submit(function(){
+	$(this).find(".response").html('');
 	var mail = $(this).find("#usuario");
 	var data_email = mail.val();
-	if (data_email != "" && mail.hasClass('correctly') && data_email.length>3){
-		var datos = {
-			'email': data_email
-		};
 
-		var result = getAjaxData('/procesos/login/recuperar.php','post', datos);
-		$(this).find(".response").html(result);
-		$('.modal').modal('hide');
-		//console.log(result);
-
-	}else {
-		$(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");
+	if(data_email == ""){
+		//$(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");
 		//alert("Revise sus datos por favor, debe llenar todos los campos");
+
+	}else if(!mail.hasClass('correctly')){
+
+	}else if(data_email.length<3){
+
+	}else{
+		var datos = {'email': data_email};
+		var result = getAjaxData('/procesos/login/recuperar.php','post', datos);
+		jQuery(this).find(".response").html(result);
+		jQuery('.modal').modal('hide');
+		//console.log(result);
 	}
 	return false;
 });
