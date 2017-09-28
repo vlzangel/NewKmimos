@@ -10,9 +10,25 @@
 
 	$db = new db( new mysqli($host, $user, $pass, $db) );
 
-	function aplicarCupon($db, $cupon, $cupones, $total, $validar){
+	function aplicarCupon($db, $cupon, $cupones, $total, $validar, $cliente = "", $servicio = ""){
 		
 		/* Get Data */
+
+			$sub_descuento = 0; $otros_cupones = 0;
+			if( count($cupones) > 0 ){
+				foreach ($cupones as $value) {
+					$sub_descuento += $value[1];
+					if( strpos( $value[0], "saldo" ) === false ){
+						$otros_cupones++;
+					}
+					if( $value[2] == 1 ){
+						echo json_encode(array(
+							"error" => "El cupón [ {$value[0]} ] ya esta aplicado y no puede ser usado junto a otros cupones"
+						));
+						exit;
+					}
+				}
+			}
 
 			$xcupon = $db->get_row("SELECT * FROM wp_posts WHERE post_title = '{$cupon}'");
 
@@ -22,11 +38,19 @@
 				$metas[ $value->meta_key ] = $value->meta_value;
 			}
 
-			$se_uso = $db->get_var("SELECT * FROM wp_postmeta WHERE post_id = {$xcupon->ID} AND meta_key = 'user_id' AND meta_value = {$cliente}");
+			$se_uso = $db->get_var("SELECT count(*) FROM wp_postmeta WHERE post_id = {$xcupon->ID} AND meta_key = 'user_id' AND meta_value = {$cliente}");
 
 		if( $validar === true ){
 
 			/* Validaciones */
+
+			if( $otros_cupones > 0 && $metas["individual_use"] == "yes" ){
+				echo json_encode(array(
+					"error" => "El cupón [ {$cupon} ] no puede ser usado junto a otros cupones"
+				));
+				exit;
+			}
+
 			if( isset($cupones) ){
 				if( ya_aplicado($cupon, $cupones) ){
 					echo json_encode(array(
@@ -54,12 +78,15 @@
 				}
 			}
 
-			if( $se_uso ){
-				echo json_encode(array(
-					"error" => "El cupón ya fue usado"
-				));
-				exit;
+			if( $metas["usage_limit"]+0 > 0 ){
+				if( $se_uso >= $metas["usage_limit"]+0 ){
+					echo json_encode(array(
+						"error" => "El cupón ya fue usado"
+					));
+					exit;
+				}
 			}
+			
 		}
 
 		/* Calculo */
@@ -73,36 +100,55 @@
 				break;
 			}
 
-			$id_session = 'MR_'.$servicio."_".md5($cliente);
-			if( isset($_SESSION[$id_session] ) ){
-				if( strpos( $cupon, "saldo" ) !== false ){
-					$descuento += $_SESSION[$id_session]['saldo_temporal'];
+			if( $servicio != 0){
+				if( !isset($_SESSION)){ session_start(); }
+				$id_session = 'MR_'.$servicio."_".md5($cliente);
+				if( isset($_SESSION[$id_session] ) ){
+					if( strpos( $cupon, "saldo" ) !== false ){
+						$descuento += $_SESSION[$id_session]['saldo_temporal'];
+					}
 				}
 			}
 
-			return array(
-				$cupon,
-				$descuento
-			);
+			$sub_descuento += $descuento;
+
+			if( ($total-$sub_descuento) < 0 ){
+				$descuento += ( $total-$sub_descuento );
+			}
+
+			if( $metas["individual_use"] == "yes" ){
+				return array(
+					$cupon,
+					$descuento,
+					1
+				);
+			}else{
+				return array(
+					$cupon,
+					$descuento,
+					0
+				);
+			}
 	}
 
 	if( $reaplicar == "1" ){
 		$xcupones = array();
 		if( count($cupones) > 0 ){
 			foreach ($cupones as $cupon) {
-				$xcupones[] = aplicarCupon($db, $cupon[0], $xcupones, $total, false);
+				$xcupones[] = aplicarCupon($db, $cupon[0], $xcupones, $total, false, $cliente, $servicio);
 			}
 			$cupones = $xcupones;
 		}
 	}else{
-		$cupones[] = aplicarCupon($db, $cupon, $cupones, $total, true);
+		$cupones[] = aplicarCupon($db, $cupon, $cupones, $total, true, $cliente, $servicio);
 
 	}
 
 	/* Retorno */
 		echo json_encode(array(
 			"cupones" => $cupones,
-			"reaplicar"    => $reaplicar
+			"reaplicar"    => $reaplicar,
+			"post"		=> $_POST
 		));
 
 ?>

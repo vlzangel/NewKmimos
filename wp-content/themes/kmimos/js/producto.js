@@ -100,6 +100,7 @@ function validar(status, txt){
 
 function calcular(){
 
+	CARRITO["cantidades"]["cantidad"] = 0;
 	jQuery("#reservar .tamano").each(function( index ) {
 		CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
 		CARRITO[ "cantidades" ][ jQuery( this ).attr("name") ] = [
@@ -224,13 +225,11 @@ function calcular(){
 	
 	if( error != "" ){
 		jQuery(".invalido").html(error);
-
 		jQuery(".valido").css("display", "none");
 		jQuery(".invalido").css("display", "block");
 	}else{
 		jQuery(".valido").css("display", "block");
 		jQuery(".invalido").css("display", "none");
-
 		jQuery(".km-price-total").html("$"+numberFormat(cant));
 	}
 	
@@ -238,18 +237,14 @@ function calcular(){
 		jQuery(".pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
 		jQuery(".pago_cuidador").html( "$" + numberFormat(cant/1.2) );
 		jQuery(".monto_total").html( "$" + numberFormat(cant) );
-
 		CARRITO["pagar"]["total"] = cant;
-
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").removeClass("disabled");
-
 		calcularDescuento();
 	}else{
 		jQuery("#reserva_btn_next_1").addClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").addClass("disabled");
 	}
-
 	initFactura();
     
 }
@@ -480,10 +475,13 @@ function mostrarCupones(){
 function calcularDescuento(){
 	var descuentos = 0;
 	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
+		if( cupon[1] == "" ){
+			cupon[1] = 0;
+		}
 		descuentos += parseFloat(cupon[1]);
 	});
 
-	jQuery(".km-price-total").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 
 	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
 	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
