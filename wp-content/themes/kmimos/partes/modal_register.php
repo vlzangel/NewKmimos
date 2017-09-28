@@ -178,8 +178,8 @@ $HTML .='
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion" name="genero_mascota" id="genero_mascota">
 										<option value="">Género</option>
-										<option value="macho">Macho</option>
-										<option value="hembra">Hembra</option>
+										<option value="1">Macho</option>
+										<option value="2">Hembra</option>
 									</select>
 								</div>
 							</div>
