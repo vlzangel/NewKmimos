@@ -50,3 +50,11 @@ h1.maps {
     font-size: 17px;
     text-align: left;
 }
+
+@media all and (max-width:992px) {
+    .col-mapa{
+        display: inline-block!important; 
+        position: initial!important; 
+        padding: 0px!important; 
+    }
+}
