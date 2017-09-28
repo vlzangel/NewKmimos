@@ -164,6 +164,7 @@
 			var cuidador = '".$cuidador->id_post."'; 
 			var email = '".$email."'; 
 			var saldo = '".$saldoTXT."';
+			var acepta = '".$cuidador->mascotas_permitidas."';
 		</script>";
 
 		if( $error != "" ){

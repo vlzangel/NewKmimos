@@ -116,29 +116,28 @@
 				$HTML .= '	
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">';
-					if( !is_user_logged_in() ){
-						$HTML .= '	
-						<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
-						<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">REGISTRARME</a></li>
+						if( !is_user_logged_in() ){
+							$HTML .= '	
+							<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
+							<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">REGISTRARME</a></li>
 
-						<li><a href="'.get_home_url().'/busqueda" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-						<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-btn-primary">QUIERO SER CUIDADOR</a></li>';
-					}else{
-						$HTML .= '	
-						<li class="dropdown hidden-xs hidden-sm " data-obj="avatar">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<img src="'.$avatar.'" width="60px" height="60px" class="img-circle"> 
-							</a>
-							<ul class="dropdown-menu"  style="background: #fff;">
+							<li><a href="'.get_home_url().'/busqueda" class="km-nav-link">BUSCAR CUIDADOR</a></li>
+							<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-btn-primary">QUIERO SER CUIDADOR</a></li>';
+						}else{
+							$HTML .= '	
+							<li class="dropdown hidden-xs hidden-sm " data-obj="avatar">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+									<img src="'.$avatar.'" width="60px" height="60px" class="img-circle"> 
+								</a>
+								<ul class="dropdown-menu"  style="background: #fff;">
+									'.$menus_normal.'
+								</ul>
+				        	</li>
+				        	<div class="hidden-md hidden-lg" style="background: #fff;">
 								'.$menus_normal.'
-							</ul>
-			        	</li>
-			        	<div class="hidden-md hidden-lg" style="background: #fff;">
-							'.$menus_normal.'
-						</div>
-			    		';
-			    	}
-	$HTML .= '			        	
+							</div>
+				    		';
+				    	} $HTML .= '			        	
 			    	</ul>
 			    </div>
 			</div>
