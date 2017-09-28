@@ -67,7 +67,7 @@ $mascotas = kmimos_get_my_pets($user_id);
 							</div>
 							<div class="label-placeholder">
 								<label>¿Dónde deseas conocer al cuidador?</label>
-								<input type="text" id="meeting_where" name="meeting_where" data-charset="all" autocomplete="off" value="" class="input-label-placeholder date_form">
+								<input type="text" id="meeting_where" name="meeting_where" data-charset="xlfalfnum" autocomplete="off" value="" class="input-label-placeholder date_form">
 								<small data-error="lugar_conoce" style="visibility: hidden;"></small>
 							</div>
 							<div class="km-group-checkbox">
