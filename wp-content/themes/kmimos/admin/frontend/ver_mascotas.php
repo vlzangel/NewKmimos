@@ -1,7 +1,7 @@
 <?php
     $pet_id = vlz_get_page();
     $current_pet = kmimos_get_pet_info($pet_id);
-    var_dump($current_pet);
+    //var_dump($current_pet);
     $photo_pet = (!empty($current_pet['photo']))? "/".$current_pet['photo']: "/wp-content/themes/pointfinder/images/noimg.png";
 
     $tipos = kmimos_get_types_of_pets();
