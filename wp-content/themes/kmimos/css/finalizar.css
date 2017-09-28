@@ -26,3 +26,19 @@
 .bg-white-secondary a{
     color: #000 !important;
 }
+.btn_fin_reserva{
+    background: #7dd1c4;
+    color: #6b1c9b;
+    display: block;
+    font-weight: 700;
+    font-size: 17px;
+    text-align: center;
+    line-height: 55px;
+    margin-top: 30px;
+    max-width: 500px;
+    margin: 0px auto 10px;
+}
+/*.btn_fin_reserva:hover{
+    background: #26b296;
+    color: #FFF;
+}*/
