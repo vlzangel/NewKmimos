@@ -104,7 +104,8 @@
                     SET 
                         descripcion = '{$descripcion}',
                         direccion = '{$direccion}',
-                        num_mascotas = {$num_mascota},
+                        num_mascotas = 0,
+                        mascotas_permitidas = {$num_mascota},
                         latitud = '{$latitude}',
                         longitud = '{$longitude}',
                         portada = {$foto}

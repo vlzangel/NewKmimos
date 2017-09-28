@@ -1,3 +1,15 @@
+
+jQuery(document).on('click', '.km-select-custom-button', function(){
+	var obj = jQuery(this).parent().find('ul');
+	if( obj.css('display') != 'none' ){
+		obj.css('display', 'none');
+	}else{
+		jQuery('.km-select-custom-list').css('display', 'none');
+		obj.css('display', 'block');
+	}
+});
+
+
 function vlz_select(id){
 	if( jQuery("#"+id+" input").prop("checked") ){
 		jQuery("#"+id+" input").prop("checked", false);
@@ -52,7 +64,7 @@ var map;
 function initMap() {
 	if( pines.length > 0 ){
 		map = new google.maps.Map(document.getElementById("mapa"), {
-	        zoom: 7,
+	        zoom: 4,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP,
 	        fullscreenControl: true,
 			scrollwheel: false
@@ -122,7 +134,7 @@ function initMap() {
 	    var markerCluster = new MarkerClusterer(map, markers, {imagePath: HOME+"/js/images/n"});
 	    map.fitBounds(bounds);
 
-	    minClusterZoom = 7;
+	    minClusterZoom = 14;
 	    markerCluster.setMaxZoom(minClusterZoom);
 	    window.oms = oms;
    	}else{

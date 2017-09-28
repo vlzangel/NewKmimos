@@ -50,7 +50,7 @@
             $metas_orden = get_post_meta($id_orden);
             $metas_reserva  = get_post_meta( $id_reserva );
 
-            $itemmetas = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reserva['_booking_order_item_id'][0]}' AND (meta_key = '_wc_deposit_meta' OR meta_key = '_line_total' )"); 
+            $itemmetas = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reserva['_booking_order_item_id'][0]}' AND (meta_key = '_wc_deposit_meta' OR meta_key = '_line_total' OR meta_key = '_line_subtotal' )"); 
 
             $items = array();
             foreach ($itemmetas as $key => $value) {
@@ -64,9 +64,10 @@
             if( $deposito['enable'] == 'yes' ){
                 $saldo = $deposito['deposit'];
             }else{
-                $saldo = $items['_line_total'];
+                $saldo = $items['_line_subtotal'];
+                $saldo -= $metas_orden['_cart_discount'][0];
             }
-
+        
             $descuento = 0;
             $order_item_id = $wpdb->get_var("SELECT order_item_id FROM wp_woocommerce_order_items WHERE order_id = '{$id_orden}' AND order_item_type = 'coupon' AND order_item_name LIKE '%saldo-%'"); 
             if( $order_item_id != '' ){

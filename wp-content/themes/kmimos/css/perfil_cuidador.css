@@ -74,12 +74,12 @@
     border-radius: 10px;
     border: 1px solid #ccc;
     font-weight: bold;
-    max-width: 400px;
     margin: 10px 20px;
     text-align: left!important;
     padding-bottom: 10px!important;
     padding: 10px 10px 0px;
     color: #333333;
+    width: calc( 100% - 40px );
 }
 .modal-items:hover {
     text-decoration: none;

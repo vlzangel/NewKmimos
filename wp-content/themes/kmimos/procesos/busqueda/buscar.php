@@ -1,8 +1,8 @@
 <?php
+	session_start();
+	include(realpath(__DIR__."/../../../../../vlz_config.php"));
+	include(realpath(__DIR__."/../funciones/db.php"));
 
-	include(__DIR__."/../../../../../vlz_config.php");
-	include(__DIR__."/../funciones/db.php");
-	
 	$conn = new mysqli($host, $user, $pass, $db);
 	$db = new db($conn); 
 
@@ -12,14 +12,35 @@
 	$latitud = (isset($latitud))? $latitud: "";
 	$longitud = (isset($longitud))? $longitud: "";
 
+	// Ordenar busqueda 
+	if( isset($_GET['o']) ){
+		$data = [];
+		if( $_SESSION['busqueda'] != '' ){
+			$data = unserialize($_SESSION['busqueda']);
+			$data['orderby'] = $_GET['o'];
+			$_POST = $data;
+		}
+	}
+
 	extract($_POST);
 
 	$condiciones = "";
 
     /* Filtros por fechas */
-	    // if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
-	    // 	$condiciones .= " AND ( SELECT count(*) FROM cupos WHERE cupos.cuidador = cuidadores.user_id AND cupos.fecha >= '{$checkin}' AND cupos.fecha <= '{$checkout}' AND cupos.full = 1 ) = 0"; 
-	   	// }
+	    if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
+
+	    	$checkin = date('Y/m/d', strtotime(str_replace("/", "-", $checkin)) );
+	    	$checkout = date('Y/m/d', strtotime(str_replace("/", "-", $checkout)) );
+
+	    	$condiciones .= " AND ( 
+	    		SELECT count(*) 
+	    			FROM cupos 
+	    			WHERE cupos.cuidador = cuidadores.user_id 
+	    				AND cupos.fecha >= '{$checkin}' 
+	    				AND cupos.fecha <= '{$checkout}' 
+	    				AND ( cupos.full = 1 OR cupos.no_disponible = 1 )
+	    		) = 0"; 
+	   	}
     /* Fin Filtros por fechas */
 
     /* Filtros por servicios y tamaños */
@@ -97,13 +118,24 @@
 	    	$estados != "" && 
 	    	$municipios != "" 
 	    ){
+	        // $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
+	        // $latitud  			= $coordenadas["referencia"]->lat;
+	        // $longitud 			= $coordenadas["referencia"]->lng;
+	        // $ubicacion 			= " ubi.estado LIKE '%={$estados}=%' AND ubi.municipios LIKE '%={$municipios}=%' ";
+	        // $ubicaciones_inner  = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
+	        // $ubicaciones_filtro = "AND ( $ubicacion )";
+
 	        $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
 	        $latitud  			= $coordenadas["referencia"]->lat;
 	        $longitud 			= $coordenadas["referencia"]->lng;
+	        $distancia 			= calcular_rango_de_busqueda($coordenadas["norte"], $coordenadas["sur"]);
 	        $ubicacion 			= " ubi.estado LIKE '%={$estados}=%' AND ubi.municipios LIKE '%={$municipios}=%' ";
+	        $calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
+	        $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
+	        $FILTRO_UBICACION 	= "HAVING DISTANCIA < ".($distancia+0);
 	        $ubicaciones_inner  = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-	        $ubicaciones_filtro = "AND ( $ubicacion )";
-	        //if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
+	        $ubicaciones_filtro = "AND ( ( $ubicacion ) OR ( {$calculo_distancia} <= ".($distancia+0)." ) )";       
+
 	    }else{ 
 	        if( 
 	        	// $tipo_busqueda == "otra-localidad" && 
@@ -188,7 +220,7 @@
 		}
     }
 
-	session_start();
+
 
 	$pines_json = json_encode($pines);
     $pines_json = "<script>var pines = eval('".$pines_json."');</script>";
@@ -207,12 +239,6 @@
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
-	//echo "<pre>";
-	//    print_r( $sql );
-	//    	print_r( $_POST );
-	//    	print_r( $ubicacion );
-	//    	print_r( $cuidadores );
-	//echo "</pre>";
 
     /* Funciones */
 
@@ -247,5 +273,11 @@
 
     /* FIN Funciones */
 
-	//header("location: {$home}busqueda/");
-?>
+	// echo "<pre>";
+	// print_r( $sql );
+	// print_r( $_POST );
+	// print_r( $ubicacion );
+	// print_r( $cuidadores );
+	// echo "</pre>";
+
+	header("location: {$home}busqueda/");

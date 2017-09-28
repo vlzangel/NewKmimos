@@ -2,6 +2,7 @@
 
 	if(!function_exists('vlz_get_paginacion')){
         function vlz_get_paginacion($t, $pagina){
+            $home = get_home_url();
             $paginacion = ""; $h = 12; $inicio = $pagina*$h; 
             $fin = $inicio+$h; if( $fin > $t){ $fin = $t; }
             if($t > $h){
@@ -201,7 +202,7 @@
     }
     
     if(!function_exists('get_menu_header')){
-        function get_menu_header(){
+        function get_menu_header( $menu_principal = false ){
 
             if( is_user_logged_in() ){
 
@@ -220,23 +221,27 @@
                         array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
-                            "icono" => "871"
+                            "icono" => "871",
+                            "ocultar_menu_principal"  => 'true'
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
-                            "icono" => "375"
+                            "icono" => "375",
+                            "ocultar_menu_principal"  => 'true'
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/historial",
                             "name"  => "Historial",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "ocultar_menu_principal"  => 'true'
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/descripcion",
                             "name"  => "Descripción",
-                            "icono" => "664"
-                        ),
+                            "icono" => "664",
+                            "ocultar_menu_principal"  => 'true'
+                        ),                        
                         array(
                             "url"   => get_home_url()."/perfil-usuario/servicios",
                             "name"  => "Mis Servicios",
@@ -250,7 +255,8 @@
                         array(
                             "url"   => get_home_url()."/perfil-usuario/galeria",
                             "name"  => "Mis Fotos",
-                            "icono" => "82"
+                            "icono" => "82",
+                            "ocultar_menu_principal"  => 'true'
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/reservas",
@@ -266,7 +272,7 @@
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
                             "icono" => "476"
-                        )
+                        ),
                     ),
                     "subscriber" => array(
                         array(
@@ -345,15 +351,23 @@
 
                 if( $MENUS[ $user->roles[0] ] != "" ){
                     foreach ($MENUS[ $user->roles[0] ] as $key => $value) {
-                        if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
-                        if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
-                        $MENU["body"] .=
-                            '<li>
-                                <a href="'.$value["url"].'" class="pd-tb11 menu-link">
-                                    '.$icono.'
-                                    '.$value["name"].'
-                                </a>
-                            </li>';
+                        $sts = true;
+                        if( $menu_principal ){
+                            if( array_key_exists('ocultar_menu_principal', $value) ){
+                                $sts = false;
+                            }
+                        }
+                        if( $sts ){
+                            if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
+                            if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
+                            $MENU["body"] .=
+                                '<li>
+                                    <a href="'.$value["url"].'" class="pd-tb11 menu-link">
+                                        '.$icono.'
+                                        '.$value["name"].'
+                                    </a>
+                                </li>';
+                        }
                     }
                 }
 

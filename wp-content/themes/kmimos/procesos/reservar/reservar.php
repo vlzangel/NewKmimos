@@ -3,12 +3,12 @@
 class Reservas {
     
     private $db;
-    private $user_id;
-    private $servicio;
 
+    public $servicio;
     public $data;
     public $reserva;
     public $sql;
+    public $user_id;
 
     function Reservas($db, $data){
         $this->db = $db;
@@ -258,13 +258,31 @@ class Reservas {
 
             $this->db->multi_query( utf8_decode($sql) );
 
-            $saldo = $this->db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id='{$this->user_id}' AND meta_key='kmisaldo'");
+            $id_seccion = 'MR_'.$this->servicio."_".md5($this->user_id);
+
+            $xsaldo = $this->db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id='{$this->user_id}' AND meta_key='kmisaldo'");
+            $saldo = $xsaldo;
             if( strpos($cupon[0], "saldo") !== false  ){
-                if( isset($_SESSION['MR_'.$this->servicio] ) ){
-                    $cupon[1] -= $_SESSION['MR_'.$this->servicio]['saldo_temporal'];
+                if( isset($_SESSION[$id_seccion] ) ){
+
+                    $saldo_temporal = $saldo+$_SESSION[$id_seccion]['saldo_temporal'];
+                    if( $cupon[1] < $saldo_temporal ){
+                        $saldo = $saldo_temporal-$cupon[1];
+                    }else{
+                        $saldo = 0;
+                    }
+
+                }else{
+                    $saldo -= $cupon[1];
+                    if( $saldo < 0){ $saldo = 0; }
                 }
-                $saldo -= $cupon[1];
-                $this->db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$this->user_id} AND meta_key = 'kmisaldo';");
+
+                if( $xsaldo == false ){
+                    $this->db->query("INSERT INTO wp_usermeta VALUES (NULL, {$this->user_id}, 'kmisaldo', '{$saldo}');");
+                }else{
+                    $this->db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$this->user_id} AND meta_key = 'kmisaldo';");
+                }
+
             }else{
                 $id_cupon = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title='{$cupon[0]}' AND post_type='shop_coupon'");
                 $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', '_used_by', '{$this->user_id}');" ) );

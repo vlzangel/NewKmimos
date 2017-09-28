@@ -55,7 +55,7 @@
 				</div>
 			</div>
 
-			<form id="buscador" class="km-cuidador" method="POST" action="'.get_home_url().'/busqueda">
+			<form id="buscador" class="km-cuidador" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
 				<div class="container">
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">
@@ -111,7 +111,7 @@
 								<div class="row km-tamanio">
 									<div class="col-xs-6 col-sm-3">
 										<div class="km-opcion">
-											<input type="checkbox" name="tamanos[]" value="peqeunos" >
+											<input type="checkbox" name="tamanos[]" value="pequenos" >
 											<img src="'.getTema().'/images/new/icon/icon-pequenio.svg"><div class="km-opcion-text">
 											<b>PEQUEÑO</b><br>0 a 25 cm</div>
 										</div>

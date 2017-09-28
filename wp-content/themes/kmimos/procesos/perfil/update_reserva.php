@@ -20,7 +20,7 @@
 		$m_orden = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$orden_id}'"); 
 		$metas_orden = array();
 		foreach ($m_orden as $key => $value) { $metas_orden[ $value->meta_key ] = $value->meta_value; }
-		
+
 		$descuento = 0;
 		if( isset( $metas_orden[ "_cart_discount" ] ) ){
 			$descuento = $metas_orden[ "_cart_discount" ];
@@ -38,7 +38,8 @@
 			if( $deposito['enable'] == 'yes' ){
 				$saldo = $deposito['deposit'];
 			}else{
-				$saldo = $items['_line_total'];
+                $saldo = $items['_line_subtotal'];
+                $saldo -= $metas_orden['_cart_discount'];
 			}
 		}
 
@@ -110,7 +111,7 @@
 			"adicionales"     => $adicionales
 		);
 
-		$_SESSION["MR_".$data->ID] = $parametros;
+		$_SESSION["MR_".$data->ID."_".$param[1]] = $parametros;
 
 		$respuesta = array(
 			"url" => "reservar/".$data->ID."/"
@@ -124,6 +125,8 @@
 
 			$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); 
 			$home = $home->fetch_assoc();
+			
+			$_SESSION["MR_".$b] = "";
 			
 			unset($_SESSION["MR_".$b]);
 

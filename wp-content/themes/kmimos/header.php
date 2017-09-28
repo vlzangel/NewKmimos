@@ -18,6 +18,7 @@
 	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script>';
 
 	wp_enqueue_style( 'style', getTema()."/style.css", array(), "1.0.0" );
+	
 
 	wp_enqueue_style( 'generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
 	wp_enqueue_style( 'jquery.bxslider', getTema()."/css/jquery.bxslider.css", array(), "1.0.0" );
@@ -30,29 +31,17 @@
 
 	wp_head();
 
+    include_once("partes/head/script_google_auth.php");
+    include_once("partes/head/script_facebook_auth.php");
 
 	global $post;
 	$reserrvacion_page = "";
 	if( 
 		$post->post_name == 'reservar' 			||
-		$post->post_name == 'finalizar' 		||
-		$post->post_name == 'perfil-usuario' 	||
-		$post->post_name == 'mascotas' 			||
-		$post->post_name == 'ver' 				||
-		$post->post_name == 'nueva' 			||
-		$post->post_name == 'favoritos' 		||
-		$post->post_name == 'historial' 		||
-		$post->post_name == 'descripcion' 		||
-		$post->post_name == 'servicios' 		||
-		$post->post_name == 'disponibilidad' 	||
-		$post->post_name == 'galeria' 			||
-		$post->post_name == 'reservas' 			||
-		$post->post_name == 'solicitudes'
+		$post->post_name == 'finalizar' 		
 	){
 		$reserrvacion_page = "page-reservation";
 	}
-    include_once("partes/head/script_google_auth.php");
-    include_once("partes/head/script_facebook_auth.php");
 
     $coordenadas = get_coordenadas();
     $HTML .= "<script type='text/javascript'>
@@ -74,7 +63,7 @@
 
 	include_once("funciones.php");
 
-	$MENU = get_menu_header();
+	$MENU = get_menu_header(true);
 
 	if( !isset($MENU["head"]) ){
 		$menus_normal = '

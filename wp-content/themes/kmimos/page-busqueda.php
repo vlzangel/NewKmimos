@@ -9,22 +9,9 @@
 
     get_header();
     if( !isset($_SESSION)){ session_start(); }
-
-    // Ordenar busqueda 
-    if( isset($_GET['o']) ){
-    	$data = [];
-    	if( $_SESSION['busqueda'] != '' ){
-    		$data = unserialize($_SESSION['busqueda']);
-    		$data['orderby'] = $_GET['o'];
-    		$_POST = $data;
-    	}
-    }
-
-    if( $_POST ){
-    	include_once( 'procesos/busqueda/buscar.php' );
-	}
-
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
+
+	$home = get_home_url();
 
 	$pagina = vlz_get_page();
 	$destacados = get_destacados();
@@ -88,48 +75,44 @@
     $option_servicios_adicionales = '';
     $servicios_adicionales = servicios_adicionales();
     foreach ($servicios_adicionales as $opt_key => $opt_value) {
+    	$check = (servicios_en_session($opt_key, $busqueda, 'servicios'))? 'checked' : '' ;
 	    $option_servicios_adicionales .= '
 		<li>
-	    	<a>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="servicios[]" value="'.$opt_key.'"> '.$opt_value['label'].'
-					</label>
-				</div>
-	    	</a>
-	    </li>
+			<label>
+				<input type="checkbox" name="servicios[]" value="'.$opt_key.'" '.$check.' >'.
+					$opt_value['label']
+			.'</label>
+		</li>
 	    ';
     }
 
+    $check = '';
     $option_tipo_servicio = '';
     $tipo_servicio = get_tipo_servicios();
     foreach ($tipo_servicio as $opt_key => $opt_value) {
+    	$check = (servicios_en_session($opt_key, $busqueda, 'servicios'))? 'checked' : '' ;
 	    $option_tipo_servicio .= '
-		<li>
-	    	<a>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="servicios[]" value="'.$opt_value['ID'].'"> '.$opt_value['name'].'
-					</label>
-				</div>
-	    	</a>
-	    </li>
+		<li> 
+			<label>
+				<input type="checkbox" name="servicios[]" value="'.$opt_key.'" '.$check.' >'.
+				$opt_value['name'].
+			'</label>
+		</li>
 	    ';
     }	
 
+    $check = '';
     $option_tamanos_mascotas = '';
     $tamanos_mascotas = kmimos_get_sizes_of_pets();
     foreach ($tamanos_mascotas as $opt_key => $opt_value) {
+    	$check = (servicios_en_session($opt_value['db'], $busqueda, 'tamanos'))? 'checked' : '' ;
 	    $option_tamanos_mascotas .= '
-		<li>
-	    	<a>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="tamanos[]" value="'.$opt_value.'"> '.$opt_value['name'].'
-					</label>
-				</div>
-	    	</a>
-	    </li>
+		<li> 
+			<label>
+				<input type="checkbox" name="tamanos[]" value="'.$opt_value['db'].'" '.$check.' >'.
+				$opt_value['name'].
+			'</label>
+		</li>
 	    ';
     }
 
@@ -141,7 +124,7 @@
 
 		<div class="container contentenedor-buscador-todos">
 			<div class="km-contentido-formulario-buscador">
-				<form class="km-formulario-buscador" action="'.get_home_url().'/busqueda" method="post">
+				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="post">
 					<div class="km-bloque-cajas">
 						<div class="km-div-ubicacion">
 							<div class="km-select-custom km-select-ubicacion" style="border-right: 0px; height: 47px;">
@@ -168,37 +151,31 @@
 						</div>
 						<div class="km-cajas-filtro">
 							
-							<div class="km-caja-filtro ">
-								<div class="btn-group">
-									<button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										TIPO DE SERVICIO</span>
-									</button>
-								  	<ul class="dropdown-menu dropdown-option">
-								    	'.$option_tipo_servicio.'
-									</ul>
-								</div>
+							<div class="form-group">
+						    	<button class="btn km-select-custom-button" type="button">
+						    		TIPO DE SERVICIO
+						    	</button>
+						    	<ul class="list-unstyled km-select-custom-list">
+							    	'.$option_tipo_servicio.'
+								</li>
 							</div>
 
-							<div class="km-caja-filtro">
-								<div class="btn-group">
-								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								    TAMAÑO DE MASCOTA</span>
-								  </button>
-								  <ul class="dropdown-menu dropdown-option">
+							<div class="form-group">
+						    	<button class="btn km-select-custom-button" type="button">
+						    		TAMAÑO DE MASCOTA
+						    	</button>
+						    	<ul class="list-unstyled km-select-custom-list">
 								    '.$option_tamanos_mascotas.'
-								  </ul>
-								</div>
+								</li>
 							</div>
 
-							<div class="km-caja-filtro">
-								<div class="btn-group">
-								  <button type="button" class="km-select-custom km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								    SERVICIOS ADICIONALES</span>
-								  </button>
-								  <ul class="dropdown-menu  dropdown-option">
+							<div class="form-group">
+						    	<button class="btn km-select-custom-button" type="button">
+						    		SERVICIOS ADICIONALES
+						    	</button>
+						    	<ul class="list-unstyled km-select-custom-list">
 								    '.$option_servicios_adicionales.'
-								  </ul>
-								</div>
+								</li>
 							</div>
 
 							<div class="km-caja-filtro">
@@ -235,18 +212,17 @@
 									
 									<div class="btn-group">
 									  <button type="button" class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									    TAMAÑO DE MASCOTA</span>
+									    ORDENAR POR</span>
 									  </button>
 									  <ul class="dropdown-menu">
-										<li><a href="javascrip:;">ORDENAR POR RANKING</a></li>
-										<li><a href="/busqueda/?o=rating_desc">Valoración de mayor a menor</a></li>
-										<li><a href="/busqueda/?o=rating_asc">Valoración de menor a mayor</a></li>
-										<li><a href="/busqueda/?o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
-										<li><a href="/busqueda/?o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
-										<li><a href="/busqueda/?o=price_asc">Precio del Servicio de menor a mayor</a></li>
-										<li><a href="/busqueda/?o=price_desc">Precio del Servicio de mayor a menor</a></li>
-										<li><a href="/busqueda/?o=experience_asc">Experiencia de menos a más años</a></li>
-										<li><a href="/busqueda/?o=experience_desc">Experiencia de más a menos años</a></li>
+										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_desc">Valoración de mayor a menor</a></li>
+										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_asc">Valoración de menor a mayor</a></li>
+										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
+										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
+										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_asc">Precio del Servicio de menor a mayor</a></li>
+										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
+										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de menos a más años</a></li>
+										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de más a menos años</a></li>
 									  </ul>
 									</div>
 
@@ -276,8 +252,9 @@
 			</div>
 			<script type="text/javascript" src="'.getTema().'/js/markerclusterer.js"></script>
 			<script type="text/javascript" src="'.getTema().'/js/oms.min.js"></script>
+
     ';
-    include ('partes/cuidador/conocelo.php');
+    //include ('partes/cuidador/conocelo.php');
 	echo comprimir_styles($HTML);
 
 

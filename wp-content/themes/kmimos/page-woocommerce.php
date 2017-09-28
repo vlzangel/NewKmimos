@@ -50,14 +50,18 @@
 		$cuidador_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$cuidador->id_post );
 		$servicio_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$servicio_id );
 
+		$servicio_name_corto = explode(" - ", $servicio_name);
+		$servicio_name_corto = $servicio_name_corto[0];
+
 	    $precios = "";
 	    
 		$adicionales = unserialize($cuidador->adicionales);
 
 		$precargas = array();
-        if( isset($_SESSION['MR_'.get_the_ID()] ) ){
+		$id_seccion = 'MR_'.get_the_ID()."_".md5($id_user);
+        if( isset($_SESSION[$id_seccion] ) ){
             $HTML .= "
-                <a href='".getTema()."/procesos/perfil/update_reserva.php?b=".get_the_ID()."' class='theme_button' style='
+                <a href='".getTema()."/procesos/perfil/update_reserva.php?b=".get_the_ID()."_".md5($id_user)."' class='theme_button' style='
                     position: fixed;
                     display: inline-block;
                     left: 50px;
@@ -73,20 +77,20 @@
                 </a>
             ";
 
-            $busqueda["checkin"] = date("d/m/Y", strtotime($_SESSION['MR_'.get_the_ID()]["fechas"]["inicio"]) );
-            $busqueda["checkout"] = date("d/m/Y", strtotime($_SESSION['MR_'.get_the_ID()]["fechas"]["fin"]) );
+            $busqueda["checkin"] = date("d/m/Y", strtotime($_SESSION[$id_seccion]["fechas"]["inicio"]) );
+            $busqueda["checkout"] = date("d/m/Y", strtotime($_SESSION[$id_seccion]["fechas"]["fin"]) );
 
-            $precargas["tamanos"] = $_SESSION['MR_'.get_the_ID()]["variaciones"];
-            if( isset($_SESSION['MR_'.get_the_ID()]["transporte"][0])){
-            	$precargas["transp"] = $_SESSION['MR_'.get_the_ID()]["transporte"][0];
+            $precargas["tamanos"] = $_SESSION[$id_seccion]["variaciones"];
+            if( isset($_SESSION[$id_seccion]["transporte"][0])){
+            	$precargas["transp"] = $_SESSION[$id_seccion]["transporte"][0];
             }
-            $precargas["adicionales"] = $_SESSION['MR_'.get_the_ID()]["adicionales"];
+            $precargas["adicionales"] = $_SESSION[$id_seccion]["adicionales"];
         }
 
 	    if( $tipo == "hospedaje" ){
-	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"] );
+	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    }else{
-	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"] );
+	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    } 
 
 		$transporte = getTransporte($adicionales, $precargas["transp"]);
@@ -148,6 +152,7 @@
 				}
 			}
 		}
+		$error = "";
 
 		echo "
 		<script> 
@@ -158,6 +163,7 @@
 			var cliente = '".$id_user."'; 
 			var cuidador = '".$cuidador->id_post."'; 
 			var email = '".$email."'; 
+			var saldo = '".$saldoTXT."';
 		</script>";
 
 		if( $error != "" ){
@@ -198,7 +204,10 @@
 			</div>";
 		}else{
 
+			$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$post_id}");
+
 			$HTML .= '
+
 		 		<form id="reservar" class="km-content km-content-reservation">
 					<div id="step_1" class="km-col-steps">
 						<div class="km-col-content">
@@ -209,7 +218,12 @@
 							</ul>
 
 							<div class="km-title-step">
-								RESERVACIÓN
+								RESERVACIÓN<br>
+								'.$servicio_name_corto.'<br>
+								<div class="km-info-box">
+									<i class="fa fa-info-circle km-info"></i>
+									<div>'.$descripcion.'</div>
+								</div>
 							</div>
 
 							<div class="km-sub-title-step">
@@ -227,11 +241,11 @@
 								<div class="km-content-new-pet">
 									'.$precios.'
 									<div class="km-services-content">
-										'.$transporte.'
-										'.$adicionales.'
+										<div class="contenedor-adicionales">'.$transporte.'</div>
+										<div class="contenedor-adicionales">'.$adicionales.'</div>
 									</div>
 
-									<div class="km-services-total">
+									<div class="km-services-total km-total-calculo">
 										<div class="valido">
 											<span class="km-text-total">TOTAL</span>
 											<span class="km-price-total">$0.00</span>
@@ -243,12 +257,6 @@
 
 								</div>
 							</div>
-
-							<!--
-							<div class="km-text-end-form">
-								* Precio final (incluye cobertura veterinaria y gastos administrativos; no incluye servicios adicionales)
-							</div>
-							-->
 
 							<a href="#" id="reserva_btn_next_1" class="km-end-btn-form km-end-btn-form-disabled disabled vlz_btn_reservar">
 								<span>SIGUIENTE</span>
@@ -295,9 +303,9 @@
 								<div class="km-option-resume">
 									<span class="label-resume">FECHA</span>
 									<span class="value-resume">
-										<span id="fecha_ini"></span>
+										<span class="fecha_ini"></span>
 										&nbsp; &gt; &nbsp;
-										<span id="fecha_fin"></span>
+										<span class="fecha_fin"></span>
 									</span>
 								</div>
 
@@ -318,7 +326,7 @@
 
 								<div class="km-services-total">
 									<span class="km-text-total">TOTAL</span>
-									<span class="km-price-total">$420.00</span>
+									<span class="km-price-total2">$420.00</span>
 								</div>
 							</div>
 
@@ -377,7 +385,7 @@
 
 							<div class="km-cupones">
 								<div>
-									<input type="text" id="cupon" value="'.$saldoTXT.'">
+									<input type="text" id="cupon">
 								</div>
 								<div class="">
 									<span id="cupon_btn">Cup&oacute;n</span>
@@ -426,9 +434,9 @@
 									<div class="km-option-resume">
 										<span class="label-resume">FECHA</span>
 										<span class="value-resume">
-											24/07/2017
+											<span class="fecha_ini"></span>
 											&nbsp; &gt; &nbsp;
-											26/07/2017
+											<span class="fecha_fin"></span>
 										</span>
 									</div>
 
@@ -446,7 +454,7 @@
 
 									<div class="km-services-total">
 										<span class="km-text-total">TOTAL</span>
-										<span class="km-price-total"></span>
+										<span class="km-price-total2"></span>
 									</div>
 
 									<div class="km-detail-paid-deposit">
@@ -479,23 +487,51 @@
 								</div>
 							</div>
 
-							<div class="errores_box">
-								Datos de la tarjeta invalidos
-							</div>
-
 							<div id="metodos_pagos">
-								<a href="#" class="km-tab-link">MEDIO DE PAGO</a>
 								<div class="km-tab-content" style="display: block;">
 									<div class="km-content-method-paid-inputs">
-										<select class="km-input-custom" id="tipo_pago" style="margin-bottom: 20px;">
+
+										<div class="km-select-method-paid">
+											<div class="km-method-paid-title">
+												MEDIO DE PAGO
+											</div>
+
+											<div class="km-method-paid-options km-medio-paid-options">
+												<div class="km-method-paid-option km-tarjeta km-option-3-lineas active">
+													<div class="km-text-one">
+														PAGO CON TARJETA
+													</div>
+													<div class="km-text-three">
+														DE CRÉDITO O DÉBITO
+													</div>
+												</div>
+
+												<div class="km-method-paid-option km-tienda km-option-3-lineas">
+													<div class="km-text-one">
+														<div class="km-text-one">
+															PAGO EN TIENDA
+														</div>
+														<div class="km-text-three">
+															DE CONVENIENCIA
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<select id="tipo_pago" style="display: none;">
 											<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
 											<option value="tienda">PAGO EN TIENDA DE CONVENIENCIA</option>
 										</select>
 
+										<div class="errores_box">
+											Datos de la tarjeta invalidos
+										</div>
+
 										<div id="tarjeta_box" class="metodos_container">
 
 											<div class="label-placeholder">
-												<label>Nombre del tarjetahabitante*</label>
+												<label>Nombre del tarjetahabiente*</label>
 												<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder" data-openpay-card="holder_name">
 											</div>
 
@@ -546,7 +582,6 @@
 					</div>
 
 					<div class="km-col-empty">
-						<br><br><br><br><br><br><br><br>
 						<img src="'.getTema().'/images/new/bg-cachorro.png" style="max-width: 100%;">
 					</div>
 				</form>
