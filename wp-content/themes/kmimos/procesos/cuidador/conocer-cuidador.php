@@ -541,7 +541,7 @@
 
 		wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
 		wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
-		kmimos_mails_administradores_new($asunto, $mensaje_admin);
+		// kmimos_mails_administradores_new($asunto, $mensaje_admin);
 
 		$_SESSION['token_mail'] = $xmensaje_cliente;
 

@@ -6,13 +6,15 @@ $(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(e){
 });
 
 $(document).on("click", '[data-id="enviar_datos"]' ,function(e){
-    e.preventDefault();     
+    e.preventDefault();
     var a = HOME+"procesos/cuidador/conocer-cuidador.php";
+    $(this).html('<i style="font-size: initial;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> ENVIANDO DATOS...');
     jQuery.post( a, jQuery("#conoce_cuidador").serialize(), function( data ) {
         console.log(data);
         if( data > 0 ){
             $('#popup-conoce-cuidador').modal('show');
         }
+        $(this).html('ENVIAR SOLICITUD');
     });
 });
 
