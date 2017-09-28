@@ -125,7 +125,7 @@
 						<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-btn-primary">QUIERO SER CUIDADOR</a></li>';
 					}else{
 						$HTML .= '	
-						<li class="dropdown hidden-xs hidden-sm " data-obj="avatar">
+						<li class="dropdown hidden-xs " data-obj="avatar">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 								<img src="'.$avatar.'" width="60px" height="60px" class="img-circle"> 
 							</a>
@@ -133,7 +133,7 @@
 								'.$menus_normal.'
 							</ul>
 			        	</li>
-			        	<div class="hidden-md hidden-lg" style="background: #fff;">
+			        	<div class="hidden-sm  hidden-md hidden-lg" style="background: #fff;">
 							'.$menus_normal.'
 						</div>
 			    		';

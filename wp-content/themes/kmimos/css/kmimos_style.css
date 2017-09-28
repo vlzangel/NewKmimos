@@ -6505,6 +6505,54 @@ h1.maps {
         float:none;
         width:100%
     }
+
+    .km-div-enviar,
+    .km-div-fechas,
+    .km-div-ubicacion {
+    	width: 100%!important;
+    }
+    .km-div-ubicacion {
+	    border-bottom: 1px solid #CCC;
+	    border-radius: 6px 6px 0px 0px;
+    }
+    .km-select-ubicacion{
+    	border-radius: 6px 6px 0px 0px!important;
+    }
+    .km-div-enviar .km-submit-custom{
+    	border-radius: 0px 0px 6px 6px!important;
+    }
+    .km-cajas-filtro .km-caja-filtro,
+    .km-cajas-filtro .form-group{
+    	width: 49%!important;
+    	float:left;
+    }
+    .km-div-filtro .km-titulo-filtro {
+    	color: #000;
+    	margin-top: 15px;
+	}
+	.header-search {
+	    height: 215px!important;
+	}
+	.contentenedor-buscador-todos {
+    	margin-top: -95px!important;
+	}
+	.km-div-filtro .km-titulo-filtro{
+		padding-bottom:15px;
+		padding-top:55px;
+		color:#000!important;
+	}
+	.km-caja-resultados{
+		padding-top: 5px!important; 
+	}
+	.km-superior-resultados{
+		padding-top:25px;
+	}
+	.nav>li{
+		padding: 7px 0px!important;
+	}
+	.nav>li>a {
+		padding: 0px 15px!important;
+	}
 }
 @media all and (max-width:724px) {
     .header-search {
@@ -6555,6 +6603,11 @@ h1.maps {
     }
     .km-resultados-grid .km-item-resultado:nth-child(3n) {
         margin-right:3%
+    }
+	.km-cajas-filtro .km-caja-filtro,
+    .km-cajas-filtro .form-group{
+    	width: 100%!important;
+    	float:left;
     }
 }
 @media all and (max-width:427px) {

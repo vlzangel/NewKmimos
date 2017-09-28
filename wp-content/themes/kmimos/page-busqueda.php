@@ -189,7 +189,13 @@
 	    		pines = eval(\''.$xPINES.'\'); 
 	    	</script>
 	    	<div class="km-caja-resultados">
-					<div class="km-columna-izq">
+				<div class="km-columna-der pull-right col-mapa">
+					<div class="km-titulo-mapa">
+						UBICACIÓN DE RESULTADOS EN MAPA
+					</div>
+					<div id="mapa" class="km-mapa"></div>
+				</div>
+				<div class="km-columna-izq">
 						
 						'.$destacados_str.'
 
@@ -240,13 +246,6 @@
 								'.($paginacion["inicio"]+1).' - '.$paginacion["fin"].' de '.$total.' Cuidadores Certificados
 							</div>
 						</div>
-					</div>
-
-					<div class="km-columna-der">
-						<div class="km-titulo-mapa">
-							UBICACIÓN DE RESULTADOS EN MAPA
-						</div>
-						<div id="mapa" class="km-mapa"></div>
 					</div>
 				</div>
 			</div>
