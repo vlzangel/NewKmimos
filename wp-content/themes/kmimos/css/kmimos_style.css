@@ -2255,6 +2255,10 @@ footer input:focus{
 		width: 100%;
 		display: block;
 	}
+	
+	.nav>li>a>img {
+	    margin-top: -8px !important;
+	}
 }
 @media (max-width: 900px) {
 	button.close {

@@ -39,7 +39,7 @@ function menu(){
 		$('.navbar').css('padding-top', '7px');
 		$('.navbar').css('height', '77px');
 
-		$('.bg-white-secondary').css('height','40px');
+		$('.bg-white-secondary').css('height','75px');
 
 		if( w < 768 ){
 			$('.nav li').css('padding','10px 15px');
