@@ -63,7 +63,7 @@ function menu(){
 		$('.navbar-brand img').css('height','60px');
 
 		$('.nav-login').removeClass('dnone');
-		$('.navbar').css('padding-top', '15px');
+		$('.navbar').css('padding-top', '30px');
 		$('.navbar').css('height', '77px');
 
 		$('.bg-white-secondary').css('height','100px');
