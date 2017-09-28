@@ -386,9 +386,6 @@ function update_addons_service(){
 	}
 }
 
-
-
-
 //CG only unique use!!!!!!!!!
 update_additional_service();
 update_additional_service_postname();
