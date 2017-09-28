@@ -11,6 +11,12 @@
     if( !isset($_SESSION)){ session_start(); }
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
 
+	if(!$_POST){
+		$redirect = true;
+		include('procesos/busqueda/buscar.php');
+		$redirect = false;
+	}
+
 	$home = get_home_url();
 
 	$pagina = vlz_get_page();

@@ -279,5 +279,6 @@
 	// print_r( $ubicacion );
 	// print_r( $cuidadores );
 	// echo "</pre>";
-
-	header("location: {$home}busqueda/");
+    if( !isset($redirect) || !$redirect ) {
+		header("location: {$home}busqueda/");
+	}
