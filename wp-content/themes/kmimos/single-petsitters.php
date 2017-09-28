@@ -243,7 +243,6 @@
  		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 			<div class="overlay"></div>
 		</div>
-		'.$cuidador->num_mascotas.'
 		<div class="km-ficha-info-cuidador">
 			<div class="container">
 				<div class="row">
