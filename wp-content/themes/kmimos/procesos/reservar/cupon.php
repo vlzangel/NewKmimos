@@ -86,6 +86,15 @@
 						exit;
 					}
 				}
+
+				if( $metas["usage_limit"]+0 > 0 ){
+					if( $se_uso >= $metas["usage_limit"]+0 ){
+						echo json_encode(array(
+							"error" => "El cupón ya fue usado"
+						));
+						exit;
+					}
+				}
 				
 			}
 
