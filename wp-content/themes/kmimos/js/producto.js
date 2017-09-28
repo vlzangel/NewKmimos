@@ -1,33 +1,4 @@
-
-
-	$(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
-		e.preventDefault();
-		var el = $(this);
-		$(".km-method-paid-option", el.parent()).removeClass("active");
-
-		el.addClass("active");
-
-		//$(".km-end-btn-form-disabled").hide();
-		//$(".km-end-btn-form-enabled").show();
-
-		if ( el.hasClass("km-option-deposit") ) {
-			$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
-			$(".page-reservation .km-services-total").slideUp("fast", function(){
-				$(".page-reservation .km-total-calculo").slideDown("fast");
-			});
-
-			CARRITO["pagar"]["metodo"] = "deposito";
-
-		} else {
-			$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
-			$(".page-reservation .km-services-total").slideDown("fast");
-			CARRITO["pagar"]["metodo"] = "completo";
-		}
-		
-		if(typeof calcularDescuento === 'function') {
-			calcularDescuento();
-		}
-	});var CARRITO = [];
+var CARRITO = [];
 function initCarrito(){
 	CARRITO = [];
 
@@ -687,26 +658,30 @@ jQuery(document).ready(function() {
 
 	$(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
-		$(".km-method-paid-option", el.parent()).removeClass("active");
 
-		el.addClass("active");
+		if( !jQuery(this).hasClass("km-option-3-lineas") ){
+			var el = $(this);
+			$(".km-method-paid-option", el.parent()).removeClass("active");
 
-		if ( el.hasClass("km-option-deposit") ) {
-			$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
-			$(".page-reservation .km-services-total").slideUp("fast");
+			el.addClass("active");
+
+			if ( el.hasClass("km-option-deposit") ) {
+				$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
+				$(".page-reservation .km-services-total").slideUp("fast");
+				
+				CARRITO["pagar"]["metodo"] = "deposito";
+
+			} else {
+				$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
+				$(".page-reservation .km-services-total").slideDown("fast");
+				CARRITO["pagar"]["metodo"] = "completo";
+			}
 			
-			CARRITO["pagar"]["metodo"] = "deposito";
+			if(typeof calcularDescuento === 'function') {
+				calcularDescuento();
+			}
+		}
 
-		} else {
-			$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
-			$(".page-reservation .km-services-total").slideDown("fast");
-			CARRITO["pagar"]["metodo"] = "completo";
-		}
-		
-		if(typeof calcularDescuento === 'function') {
-			calcularDescuento();
-		}
 	});
 
 	$(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {

@@ -87,13 +87,13 @@
 	    }
 	}
 
-	if(!function_exists('kmimos_mails_administradores')){
-	    function kmimos_mails_administradores(){
-
-            return $headers;
-
-	    }
-	}
+	if(!function_exists('kmimos_mails_administradores_new')){       
+        function kmimos_mails_administradores_new($titulo, $mensaje){     
+      
+            wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje);        
+      
+        }     
+    }
 
     if(!function_exists('vlz_servicios')){
         function vlz_servicios($adicionales, $is_data = false){

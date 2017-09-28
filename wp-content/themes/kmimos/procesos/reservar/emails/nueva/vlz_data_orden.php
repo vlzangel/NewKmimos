@@ -1,7 +1,7 @@
 <?php
     global $wpdb;
 
-	$id = $order->id;
+	$id = $id_orden;
 
 	$datos_generales = kmimos_datos_generales_desglose($id, true, true);
 
@@ -14,9 +14,6 @@
 
     $orden_id = $datos_generales["orden"];
     $reserva_id = $datos_generales["booking"];
-
-    $order = new WC_Order($orden_id);
-	$booking = new WC_Booking($reserva_id);
 
     $nom_cliente  = $datos_generales["nombre_cliente"];
     $nom_cuidador = $datos_generales["nombre_cuidador"];
