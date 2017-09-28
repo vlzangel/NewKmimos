@@ -21,7 +21,9 @@ jQuery(document).ready(function(){
                             location.href = RAIZ+resp.url;
                         }, 
                         'json'
-                    );
+                    ).fail(function(e) {
+                        console.log( e );
+                    });
                 }else{
                     window.location.href = value;
                 }
