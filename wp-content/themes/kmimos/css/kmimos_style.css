@@ -7307,7 +7307,7 @@ section {
     -moz-transition: all 0.3s ease-in-out;
 }
 .navbar-right {
-    padding-top: 3px;
+    padding-top: 10px;
 }
 .logo-img-mobile {
     height: 30px;
