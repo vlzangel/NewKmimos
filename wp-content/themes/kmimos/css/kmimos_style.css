@@ -2247,9 +2247,9 @@ footer input:focus{
 		height: 70px;
 	}
 	/* PÁGINA FICHA CUIDADOR */
-	.km-costo {
+	/*.km-costo {
 		width: 200px;
-	}
+	}*/
 	/* FIN PÁGINA FICHA CUIDADOR */
 	.km-ficha-fechas input {
 		width: 100%;
@@ -2297,9 +2297,9 @@ footer input:focus{
 }
 @media (max-width: 767px) {
 
-	#popup-servicios .km-opcion {
+/*	#popup-servicios .km-opcion {
 		text-align: left;
-	}
+	}*/
 
 	#popup-servicios .km-opcion {
 	    padding: 10px 10px 5px;
@@ -2534,6 +2534,7 @@ footer input:focus{
 
 	.km-caja-resultados .km-columna-der{
 	}
+
 }
 
 @media all and (max-width: 724px) {
@@ -2701,13 +2702,16 @@ footer input:focus{
 }
 
 @media all and (max-width: 767px) {
+	.zopim{
+		display: none!important;
+	}
 	.km-costo{
-		position: fixed;
+		position: fixed!important;
 	    display: block!important;
-	    top: initial;
+	    top: initial!important;
 	    left: 0;
-	    width: auto;
-	    bottom: 0;
+	    width: auto!important;
+	    bottom: 0!important;
 	    z-index: 99;
 	}
 
@@ -6567,6 +6571,9 @@ h1.maps {
 	}
 	.nav>li>a {
 		padding: 0px 15px!important;
+	}
+	#popup-servicios .km-opcion{
+		text-align: center!important;
 	}
 }
 @media all and (max-width:724px) {
