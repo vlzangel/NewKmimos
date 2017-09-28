@@ -217,7 +217,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 					'img_profile': campos[10]};
 
 			globalData = getGlobalData('/procesos/login/registro.php','post', datos);
-			//console.log(globalData);
+			console.log(globalData);
 		}else {
          	alert("Revise sus datos por favor, debe llenar todos los campos");
         }
@@ -425,7 +425,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 					datepets,genero_mascota,tamano_mascota,pet_sterilized,
 					pet_sociable,aggresive_humans,aggresive_pets,img_pet];
 		if (nombre_mascota != "" && tipo_mascota != "" && raza_mascota != "" && color_mascota !="" 
-        	&& date_from != "" && genero_mascota != "" && tamano_mascota != "") {
+        	&& datepets != "" && genero_mascota != "" && tamano_mascota != "") {
         		$(".popup-registrarte-datos-mascota").hide();
 				$(".popup-registrarte-final").fadeIn("fast");
         		var datos = {
@@ -445,7 +445,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		        };
 
 			var data = getGlobalData('/procesos/login/registro_pet.php','post', datos);
-			//console.log(data);
+			console.log(data);
         }else {
         	alert("Revise sus datos por favor, debe llenar todos los campos");
         }

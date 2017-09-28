@@ -47,7 +47,20 @@
 	    if( isset($servicios) ){ 
 	    	foreach ($servicios as $key => $value) { 
 	    		if( $value != "hospedaje" ){ 
-	    			$condiciones .= " AND adicionales LIKE '%".$value."%'"; 
+	    			$condiciones .= " AND adicionales LIKE '%".$value."%'";
+
+					if(strpos($value,'adiestramiento')===false){
+						$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+
+					}else{
+
+						$condiciones .= 'AND (';
+						$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_basico";s:1:"1%\' 		OR ';
+						$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_intermedio";s:1:"1%\' 	OR ';
+						$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_avanzado";s:1:"1%\' 			';
+						$condiciones .= ')';
+
+					}
 	    		} 
 	    	} 
 	    }
