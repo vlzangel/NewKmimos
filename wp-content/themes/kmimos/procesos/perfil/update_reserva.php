@@ -32,7 +32,7 @@
 			foreach ($r3 as $key => $value) { $items[ $value->meta_key ] = $value->meta_value; }
 		}
 
-		if( $order_status == 'wc-on-hold' && $metas_orden['_payment_method'] == 'openpay_stores'){ }else{
+		if( $order_status == 'wc-on-hold' && strtolower($metas_orden['_payment_method']) == 'tienda'){ }else{
 			$deposito = unserialize( $items['_wc_deposit_meta'] );
 			$saldo = 0;
 			if( $deposito['enable'] == 'yes' ){
