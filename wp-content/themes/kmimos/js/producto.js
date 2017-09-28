@@ -1,33 +1,4 @@
-
-
-	$(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
-		e.preventDefault();
-		var el = $(this);
-		$(".km-method-paid-option", el.parent()).removeClass("active");
-
-		el.addClass("active");
-
-		//$(".km-end-btn-form-disabled").hide();
-		//$(".km-end-btn-form-enabled").show();
-
-		if ( el.hasClass("km-option-deposit") ) {
-			$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
-			$(".page-reservation .km-services-total").slideUp("fast", function(){
-				$(".page-reservation .km-total-calculo").slideDown("fast");
-			});
-
-			CARRITO["pagar"]["metodo"] = "deposito";
-
-		} else {
-			$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
-			$(".page-reservation .km-services-total").slideDown("fast");
-			CARRITO["pagar"]["metodo"] = "completo";
-		}
-		
-		if(typeof calcularDescuento === 'function') {
-			calcularDescuento();
-		}
-	});var CARRITO = [];
+var CARRITO = [];
 function initCarrito(){
 	CARRITO = [];
 
@@ -203,6 +174,15 @@ function calcular(){
 			cant += ( parseFloat( valor[0] ) * parseFloat( valor[1] ) );
 		}
 	});	
+
+	if( error == "" ){
+		var cantidad = getCantidad();
+		if( cantidad > acepta ){
+			plural = "";
+			if( acepta > 1 ){ plural = "s"; }
+			error = "El cuidador solo acepta ["+acepta+"] mascota"+plural;
+		}
+	}
 
 	if( error == "" ){
 		if( cant == 0 ){
@@ -601,9 +581,126 @@ function reaplicarCupones(){
   	});
 }
 
+function getCantidad(){
+	var resultado = 0;
+	jQuery(".km-content-new-pet .tamano").each(function( index ) {
+	  	resultado += parseInt($( this ).val());
+	});
+	return resultado;
+}
+
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+	$(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		var div = el.parent();
+		var span = $(".km-number", div);
+		var input = $("input", div);
+		if ( span.html() > 0 ) {
+			var valor = parseInt(span.html()) - 1;
+			span.html( valor );
+			input.val( valor );
+		}
+		if ( span.html() <= 0 ) {
+			el.addClass("disabled");
+		}
+		calcular();
+	});
+
+	$(document).on("click", '.page-reservation .km-quantity .km-plus', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		var div = el.parent();
+		var span = $(".km-number", div);
+		var minus = $(".km-minus", div);
+		var input = $("input", div);
+		
+		var valor = parseInt(span.html()) + 1;
+
+		var cantidad = parseInt(getCantidad())+1;
+		if(cantidad <= acepta){
+			span.html( valor );
+			input.val( valor );
+
+			if ( span.html() > 0 ) {
+				minus.removeClass("disabled");
+			}
+
+			calcular();
+		}
+	});
+
+	$(document).on("change", '.page-reservation .km-height-select', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		el.removeClass("small");
+		el.removeClass("medium");
+		el.removeClass("large");
+		el.removeClass("extra-large");
+
+		el.addClass( el.val() );
+	});
+
+	$(document).on("click", '.page-reservation .optionCheckout', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		var div = el.parent();
+		var input = $("input", div);
+		el.toggleClass("active");
+		input.toggleClass("active");
+		if(typeof calcular === 'function') {
+			calcular();
+		}
+	});
+
+	$(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
+		e.preventDefault();
+
+		if( !jQuery(this).hasClass("km-option-3-lineas") ){
+			var el = $(this);
+			$(".km-method-paid-option", el.parent()).removeClass("active");
+
+			el.addClass("active");
+
+			if ( el.hasClass("km-option-deposit") ) {
+				$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
+				$(".page-reservation .km-services-total").slideUp("fast");
+				
+				CARRITO["pagar"]["metodo"] = "deposito";
+
+			} else {
+				$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
+				$(".page-reservation .km-services-total").slideDown("fast");
+				CARRITO["pagar"]["metodo"] = "completo";
+			}
+			
+			if(typeof calcularDescuento === 'function') {
+				calcularDescuento();
+			}
+		}
+
+	});
+
+	$(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		$(".km-tab-content", el.parent()).slideToggle("fast");
+	});
+
+	$(document).on("focus", "input.input-label-placeholder", function(){
+		$(this).parent().addClass("focus");
+	}).on("blur", "input.input-label-placeholder", function(){
+		let i = $(this);
+		if ( i.val() !== "" ) $(this).parent().addClass("focused");
+		else $(this).parent().removeClass("focused");
+
+		$(this).parent().removeClass("focus");
+	});
+
+
 
 	jQuery(".navbar").removeClass("bg-transparent");
 	jQuery(".navbar").addClass("bg-white-secondary");

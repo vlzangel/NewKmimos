@@ -107,6 +107,7 @@ ul{margin: 0px; padding: 0px; list-style: none;}
 		margin: 0px auto;
 		max-width: 1140px;
 		z-index: 3;
+	    padding: 0px 20px;
     }
 
 /* Contenedor del header */

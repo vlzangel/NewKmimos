@@ -117,13 +117,6 @@
 
 	get_header();
 
-
-		?>
-		<div class="km-ficha-bg" style="background-image:url(<?php echo getTema(); ?>/images/new/km-ficha/km-bg-ficha.jpg);">
-			<div class="overlay"></div>
-		</div>
-		<?php
-
 		global $post;
 		global $wpdb;
 
@@ -240,7 +233,6 @@
 					<ul>
 						'.$MENU["body"].'
 					</ul>
-					<!-- Page: '.$post->post_name.' -->
 				</div>
 				<div class="main">
 					<form id="form_perfil" autocomplete="off">

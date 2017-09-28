@@ -98,7 +98,7 @@
 			$transporte = '
 				<div class="km-service-title"> TRANSPORTACI&Oacute;N </div>
 				<div class="km-services">
-					<select id="transporte" name="transporte" class="km-input-custom"><option value="">SELECCIONE UNA OPCI&Oacute;N</option>'.strtoupper($transporte).'</select>
+					<select id="transporte" name="transporte" class="km-input-custom"><option value="">SELECCIONE UNA OPCI&Oacute;N</option>'.$transporte.'</select>
 				</div>
 			';
 		}
@@ -164,6 +164,7 @@
 			var cuidador = '".$cuidador->id_post."'; 
 			var email = '".$email."'; 
 			var saldo = '".$saldoTXT."';
+			var acepta = '".$cuidador->mascotas_permitidas."';
 		</script>";
 
 		if( $error != "" ){
@@ -582,7 +583,6 @@
 					</div>
 
 					<div class="km-col-empty">
-						<br><br><br><br><br><br><br><br>
 						<img src="'.getTema().'/images/new/bg-cachorro.png" style="max-width: 100%;">
 					</div>
 				</form>

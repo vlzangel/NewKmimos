@@ -1,11 +1,4 @@
 <?php
-	/**
-	* Admin new order email
-	*/
-
-	if ( ! defined( 'ABSPATH' ) ) {
-		exit; // Exit if accessed directly
-	}
 
 	$info = kmimos_get_info_syte();
 
@@ -50,7 +43,7 @@
 
 	$dudas = '<p align="justify">Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos '.$info["telefono"].', o al correo '.$info["email"].'</p>';
 
-	if( $metodo_pago == "openpay_stores" ){
+	if( strtolower($metodo_pago) == "tienda" ){
 		include("tienda.php");
 	}else{
 		include("otro.php");

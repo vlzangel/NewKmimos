@@ -116,6 +116,7 @@
 				$HTML .= '	
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">';
+
 					if( !is_user_logged_in() ){
 						$HTML .= '	
 						<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
@@ -138,7 +139,7 @@
 						</div>
 			    		';
 			    	}
-	$HTML .= '			        	
+	$HTML .= '
 			    	</ul>
 			    </div>
 			</div>

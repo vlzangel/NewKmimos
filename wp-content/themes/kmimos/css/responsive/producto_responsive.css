@@ -35,6 +35,32 @@
 	    text-align: left;
 	    font-size: 12px;
 	}
+
+	.km-cupones {
+	    margin-top: 20px;
+	}
+
+	.page-reservation .label-placeholder label,
+	.page-reservation .label-placeholder input{
+		font-size: 14px !important;
+	}
+
+	.invalido {
+	    font-size: 10px;
+	}
+
+	.page-reservation .km-content-method-paid-inputs {
+	    padding: 0px 0 17px 0 !important;
+	}
+
+	.page-reservation .km-detail-paid-deposit {
+	    padding-top:0px !important;
+	}
+
+	.page-reservation .km-term-conditions {
+	    margin: 0px 10px !important;
+	}
+
 }
 
 @media (max-width: 400px){

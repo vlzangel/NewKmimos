@@ -298,8 +298,8 @@
 							$selected = "selected";
 						}
 						$opciones .= '
-							<option value="'.($precio*1.2).'" data-value="'.$value.' - '.$rutas[ $ruta ].'" '.$selected.'>
-								'.$rutas[ $ruta ].' ( $'.($precio*1.2).' )
+							<option value="'.($precio*1.2).'" data-value="'.($value.' - '.$rutas[ $ruta ]).'" '.$selected.'>
+								'.strtoupper($rutas[ $ruta ]).' ( $'.($precio*1.2).' )
 				 			</option>
 						';
 					}
