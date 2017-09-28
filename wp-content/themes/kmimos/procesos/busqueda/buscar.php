@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	include(__DIR__."/../../../../../vlz_config.php");
-	include(__DIR__."/../funciones/db.php");
+	include(realpath(__DIR__."/../../../../../vlz_config.php"));
+	include(realpath(__DIR__."/../funciones/db.php"));
 
 	$conn = new mysqli($host, $user, $pass, $db);
 	$db = new db($conn); 

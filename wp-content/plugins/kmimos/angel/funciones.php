@@ -219,17 +219,6 @@
                             "icono" => "460"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/servicios",
-                            "name"  => "Mis Servicios",
-                            "icono" => "453"
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/galeria",
-                            "name"  => "Mis Fotos",
-                            "icono" => "82",
-                            "ocultar_menu_principal"  => 'true'
-                        ),
-                        array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
                             "icono" => "871",
@@ -254,9 +243,20 @@
                             "ocultar_menu_principal"  => 'true'
                         ),                        
                         array(
+                            "url"   => get_home_url()."/perfil-usuario/servicios",
+                            "name"  => "Mis Servicios",
+                            "icono" => "453"
+                        ),
+                        array(
                             "url"   => get_home_url()."/perfil-usuario/disponibilidad",
                             "name"  => "Disponibilidad",
                             "icono_2" => "fa fa-calendar"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/galeria",
+                            "name"  => "Mis Fotos",
+                            "icono" => "82",
+                            "ocultar_menu_principal"  => 'true'
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/reservas",
