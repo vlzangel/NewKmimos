@@ -1,62 +1,53 @@
 <?php
 	$pet_id = 0;
     $current_pet = kmimos_get_pet_info($pet_id);
-
     $photo_pet = "/wp-content/themes/pointfinder/images/noimg.png";
 
     $tipos = kmimos_get_types_of_pets();
     $tipos_str = "";
     foreach ( $tipos as $tipo ) {
-        $tipos_str .= '<option value="'.$tipo->ID.'"';
-        $tipos_str .= '>'.esc_html( $tipo->name ).'</option>';
+        $tipos_str .= '<option value="'.$tipo->ID.'">'.esc_html( $tipo->name ).'</option>';
     }
 
     global $wpdb;
     $razas = $wpdb->get_results("SELECT * FROM razas ORDER BY nombre ASC");
     $razas_str = "<option value=''>Favor Seleccione</option>";
     foreach ($razas as $value) {
-        $razas_str .= '<option value="'.$value->id.'"';
-        $razas_str .= '>'.esc_html( $value->nombre ).'</option>';
+        $razas_str .= '<option value="'.$value->id.'">'.esc_html( $value->nombre ).'</option>';
     }
     $razas_str_gatos = "<option value=1>Gato</option>";
 
     $generos = kmimos_get_genders_of_pets();
     $generos_str = "";
     foreach ( $generos as $genero ) {
-        $generos_str .= '<option value="'.$genero['ID'].'"';
-        $generos_str .= '>'.esc_html( $genero['singular'] ).'</option>';
+        $generos_str .= '<option value="'.$genero['ID'].'">'.esc_html( $genero['singular'] ).'</option>';
     }
 
     $tamanos = kmimos_get_sizes_of_pets();
     $tamanos_str = "";
     foreach ( $tamanos as $tamano ) {
-        $tamanos_str .= '<option value="'.$tamano['ID'].'"';
-        $tamanos_str .= '>'.esc_html( $tamano['name'].' ('.$tamano['desc'].')' ).'</option>';
+        $tamanos_str .= '<option value="'.$tamano['ID'].'">'.esc_html( $tamano['name'].' ('.$tamano['desc'].')' ).'</option>';
     }
 
     $si_no = array('no','si');
     $esterilizado_str = "";
     for ( $i=0; $i<2; $i++ ) {
-        $esterilizado_str .= '<option value="'.$i.'"';
-        $esterilizado_str .= '>'.$si_no[$i].'</option>';
+        $esterilizado_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
     }
 
     $sociable_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $sociable_str .= '<option value="'.$i.'"';
-        $sociable_str .= '>'.$si_no[$i].'</option>';
+        $sociable_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
     }
 
     $aggresive_humans_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $aggresive_humans_str .= '<option value="'.$i.'"';
-        $aggresive_humans_str .= '>'.$si_no[$i].'</option>';
+        $aggresive_humans_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
     }
 
     $aggresive_pets_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $aggresive_pets_str .= '<option value="'.$i.'"';
-        $aggresive_pets_str .= '>'.$si_no[$i].'</option>';
+        $aggresive_pets_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
     }
 
     $razas = $razas_str;
