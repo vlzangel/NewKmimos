@@ -114,7 +114,7 @@
 										}else if( clv2.length < 3 ){
 											error_show("clave_2");
 											action = false;
-											
+
 										}else if( clv1 != clv2 ){
 											var text = jQuery("#clave_2").attr("data-title");
 											jQuery("#error_clave_2").css({'color':'red'}).html(text);

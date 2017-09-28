@@ -51,7 +51,7 @@
                 imageDestroy( $aThumb );
                 unlink($dir."temp.jpg");
 
-                $photo_pet=$photo_pet.'.jpg';
+                $photo_pet='/wp-content/uploads/mypet/'.$tmp_user_id.'/'.$photo_pet.'.jpg';
             }
             // END Pets - Photo
 
@@ -69,16 +69,15 @@
                     (NULL, {$pet_id}, 'name_pet',           '{$name_pet}'),
                     (NULL, {$pet_id}, 'photo_pet',         '{$photo_pet}'),
                     (NULL, {$pet_id}, 'type_pet',         '{$type_pet}'),
-                    (NULL, {$pet_id}, 'race_pet',          '{$race_pet}'),
-                    (NULL, {$pet_id}, 'color_pet',        '$color_pet'),
-                    (NULL, {$pet_id}, 'colour_pet',            '{$colour_pet}'),
-                    (NULL, {$pet_id}, 'date_birth',          '{$date_birth}'),
+                    (NULL, {$pet_id}, 'breed_pet',          '{$race_pet}'),
+                    (NULL, {$pet_id}, 'colors_pet',        '{$color_pet}'),
+                    (NULL, {$pet_id}, 'birthdate_pet',          '{$date_birth}'),
                     (NULL, {$pet_id}, 'gender_pet',           '{$gender_pet}'),
                     (NULL, {$pet_id}, 'size_pet',           '{$size_pet}'),
                     (NULL, {$pet_id}, 'pet_sterilized',           '{$pet_sterilized}'),
                     (NULL, {$pet_id}, 'pet_sociable',           '{$pet_sociable}'),
-                    (NULL, {$pet_id}, 'aggresive_humans',           '{$aggresive_humans}'),
-                    (NULL, {$pet_id}, 'aggresive_pets',           '{$aggresive_pets}'),
+                    (NULL, {$pet_id}, 'aggressive_with_humans',           '{$aggresive_humans}'),
+                    (NULL, {$pet_id}, 'aggressive_with_pets',           '{$aggresive_pets}'),
                     (NULL, {$pet_id}, 'rich_editing',        'true'),
                     (NULL, {$pet_id}, 'comment_shortcuts',   'false'),
                     (NULL, {$pet_id}, 'admin_color',         'fresh'),

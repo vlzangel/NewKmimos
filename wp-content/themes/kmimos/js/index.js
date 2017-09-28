@@ -388,14 +388,21 @@ $("#popup-registrarte-datos-mascota").ready(function(){
         ];
     	
 		if ($("#select_1").hasClass("km-opcionactivo")) {
-			valor = sizes[0].name+" "+sizes[0].desc;
+			//valor = sizes[0].name+" "+sizes[0].desc;
+			valor = sizes[0].ID;
 			
 		}else if($("#select_2").hasClass("km-opcionactivo")){
-			valor = sizes[1].name+" "+sizes[1].desc;
+			//valor = sizes[1].name+" "+sizes[1].desc;
+			valor = sizes[1].ID;
+
 		} else if ($("#select_3").hasClass("km-opcionactivo")){
-			valor = sizes[2].name+" "+sizes[2].desc;
+			//valor = sizes[2].name+" "+sizes[2].desc;
+			valor = sizes[2].ID;
+
 		}else if ($("#select_4").hasClass("km-opcionactivo")){
-			valor = sizes[3].name+" "+sizes[3].desc;
+			//valor = sizes[3].name+" "+sizes[3].desc;
+			valor = sizes[3].ID;
+
 		}else{
 			console.log("La variable Valor esta vacia");
 		}
@@ -404,7 +411,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 			tipo_mascota =$("#tipo_mascota").val(),
 			raza_mascota = $("#raza_mascota").val(),
 			color_mascota = $("#color_mascota").val(),
-			date_from = $("#date_from").val(),
+			datepets = $("#datepets").val(),
 			genero_mascota = $("#genero_mascota").val(),
 			tamano_mascota = valor,
 			pet_sterilized = $("#km-check-1").val(),
@@ -412,9 +419,10 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 			aggresive_humans = $("#km-check-3").val(),
 			aggresive_pets = $("#km-check-4").val(),
 			img_pet = $("#img_pet").val();
+
 	
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
-					date_from,genero_mascota,tamano_mascota,pet_sterilized,
+					datepets,genero_mascota,tamano_mascota,pet_sterilized,
 					pet_sociable,aggresive_humans,aggresive_pets,img_pet];
 		if (nombre_mascota != "" && tipo_mascota != "" && raza_mascota != "" && color_mascota !="" 
         	&& date_from != "" && genero_mascota != "" && tamano_mascota != "") {
