@@ -225,13 +225,11 @@ function calcular(){
 	
 	if( error != "" ){
 		jQuery(".invalido").html(error);
-
 		jQuery(".valido").css("display", "none");
 		jQuery(".invalido").css("display", "block");
 	}else{
 		jQuery(".valido").css("display", "block");
 		jQuery(".invalido").css("display", "none");
-
 		jQuery(".km-price-total").html("$"+numberFormat(cant));
 	}
 	
@@ -239,18 +237,14 @@ function calcular(){
 		jQuery(".pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
 		jQuery(".pago_cuidador").html( "$" + numberFormat(cant/1.2) );
 		jQuery(".monto_total").html( "$" + numberFormat(cant) );
-
 		CARRITO["pagar"]["total"] = cant;
-
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").removeClass("disabled");
-
 		calcularDescuento();
 	}else{
 		jQuery("#reserva_btn_next_1").addClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").addClass("disabled");
 	}
-
 	initFactura();
     
 }
