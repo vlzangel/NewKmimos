@@ -98,7 +98,7 @@
 			$transporte = '
 				<div class="km-service-title"> TRANSPORTACI&Oacute;N </div>
 				<div class="km-services">
-					<select id="transporte" name="transporte" class="km-input-custom"><option value="">SELECCIONE UNA OPCI&Oacute;N</option>'.strtoupper($transporte).'</select>
+					<select id="transporte" name="transporte" class="km-input-custom"><option value="">SELECCIONE UNA OPCI&Oacute;N</option>'.$transporte.'</select>
 				</div>
 			';
 		}

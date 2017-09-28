@@ -6143,6 +6143,7 @@ h1.maps {
         width:100%;
         display:block
     }
+
 }
 @media (max-width:900px) {
     button.close {
@@ -6227,7 +6228,7 @@ h1.maps {
         font-size:15px
     }
     .page-reservation .km-content-step .km-option-resume .km-option-resume-service {
-        font-size:13px
+        font-size:10px
     }
     .page-reservation .km-content-step .km-services-total .km-text-total {
         font-size:18px
@@ -6287,8 +6288,22 @@ h1.maps {
     .page-reservation .km-step-end img {
         width:157px
     }
+
+    .page-reservation .km-content-step .km-content-new-pet .km-height {
+	    width:calc(100% - 100px);
+	    font-size: 10px;
+	}
+
 }
 @media (max-width:767px) {
+
+    .navbar {
+	    height: 60px !important;
+	}
+	.page-reservation .km-content .km-col-steps {
+	    padding: 100px 0 32px 0;
+	}
+
     .page-reservation .km-col-empty {
         display:none
     }
