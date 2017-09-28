@@ -5452,7 +5452,7 @@ footer .km-icon-redes {
     width:66.40625%;
     background:#fff;
     float:left;
-    padding:140px 0 32px 0;
+    padding:140px 15px 32px 15px;
     position: relative;;
 }
 .page-reservation .km-content .km-col-steps .km-col-content {
@@ -6301,7 +6301,7 @@ h1.maps {
 	    height: 60px !important;
 	}
 	.page-reservation .km-content .km-col-steps {
-	    padding: 100px 0 32px 0;
+	    padding: 100px 15px 32px 15px;
 	}
 
     .page-reservation .km-col-empty {
