@@ -38,56 +38,56 @@
 				$metas[ $value->meta_key ] = $value->meta_value;
 			}
 
-			$se_uso = $db->get_var("SELECT count(*) FROM wp_postmeta WHERE post_id = {$xcupon->ID} AND meta_key = 'user_id' AND meta_value = {$cliente}");
+			$se_uso = $db->get_var("SELECT count(*) FROM wp_postmeta WHERE post_id = {$xcupon->ID} AND meta_key = '_used_by' AND meta_value = {$cliente}");
 
-		if( $validar === true ){
+		/* Validaciones */
 
-			/* Validaciones */
+			if( $validar === true ){
 
-			if( $otros_cupones > 0 && $metas["individual_use"] == "yes" ){
-				echo json_encode(array(
-					"error" => "El cupón [ {$cupon} ] no puede ser usado junto a otros cupones"
-				));
-				exit;
-			}
-
-			if( isset($cupones) ){
-				if( ya_aplicado($cupon, $cupones) ){
+				if( $otros_cupones > 0 && $metas["individual_use"] == "yes" ){
 					echo json_encode(array(
-						"error" => "El cupón ya fue aplicado"
+						"error" => "El cupón [ {$cupon} ] no puede ser usado junto a otros cupones"
 					));
 					exit;
 				}
-			}
 
-			if( $xcupon == false ){
-				echo json_encode(array(
-					"error" => "Cupón Invalido"
-				));
-				exit;
-			}
+				if( isset($cupones) ){
+					if( ya_aplicado($cupon, $cupones) ){
+						echo json_encode(array(
+							"error" => "El cupón ya fue aplicado"
+						));
+						exit;
+					}
+				}
 
-			if( $metas["expiry_date"] != "" ){
-			$hoy = time();
-				$expiracion = (strtotime($metas["expiry_date"]))+86399;
-				if( $hoy > $expiracion ){
+				if( $xcupon == false ){
 					echo json_encode(array(
-						"error" => "El cupón ya expiro"
+						"error" => "Cupón Invalido"
 					));
 					exit;
 				}
-			}
 
-			if( $metas["usage_limit"]+0 > 0 ){
-				if( $se_uso >= $metas["usage_limit"]+0 ){
-					echo json_encode(array(
-						"error" => "El cupón ya fue usado"
-					));
-					exit;
+				if( $metas["expiry_date"] != "" ){
+				$hoy = time();
+					$expiracion = (strtotime($metas["expiry_date"]))+86399;
+					if( $hoy > $expiracion ){
+						echo json_encode(array(
+							"error" => "El cupón ya expiro"
+						));
+						exit;
+					}
 				}
+
+				if( $metas["usage_limit_per_user"]+0 > 0 ){
+					if( $se_uso >= $metas["usage_limit_per_user"]+0 ){
+						echo json_encode(array(
+							"error" => "El cupón ya fue usado"
+						));
+						exit;
+					}
+				}
+				
 			}
-			
-		}
 
 		/* Calculo */
 			$descuento = 0;

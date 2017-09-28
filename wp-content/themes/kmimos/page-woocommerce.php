@@ -582,7 +582,6 @@
 					</div>
 
 					<div class="km-col-empty">
-						<br><br><br><br><br><br><br><br>
 						<img src="'.getTema().'/images/new/bg-cachorro.png" style="max-width: 100%;">
 					</div>
 				</form>
