@@ -36,6 +36,9 @@
 	foreach ($adicionales['transportacion_sencilla'] as $key => $value) {
 		if( $_POST["transportacion_sencilla_".$key]+0 > 0 ){
 			$transportacion_sencilla = true;
+
+            //ADDITIONAL STATUS
+            $adicionales['status_transportacion_sencilla'] = "1";
 		}
 		$adicionales['transportacion_sencilla'][$key] = $_POST["transportacion_sencilla_".$key]+0;
 	}
@@ -47,8 +50,11 @@
         "largo" => "Largas"
     );
 	foreach ($adicionales['transportacion_redonda'] as $key => $value) {
-		if( $_POST["transportacion_sencilla_".$key]+0 > 0 ){
+		if( $_POST["transportacion_redonda_".$key]+0 > 0 ){
 			$transportacion_redonda = true;
+
+            //ADDITIONAL STATUS
+            $adicionales['status_transportacion_redonda'] = "1";
 		}
 		$adicionales['transportacion_redonda'][$key] = $_POST["transportacion_redonda_".$key]+0;
 	}
@@ -65,6 +71,9 @@
     foreach ($adicionales_extra as $key => $value) {
     	if( $value+0 > 0 ){
     		$adicionales[$key] = $value+0;
+
+            //ADDITIONAL STATUS
+            $adicionales['status_'.$key] = "1";
     	}
     }
 	
@@ -102,6 +111,11 @@
 		if( max($temp) > 0 ){
     		$adicionales[$key] = $temp;
 			$bases[$key] = $base_temp;
+
+            //ADDITIONAL STATUS
+            if(isset($_POST['status_'.$key])){
+                $adicionales['status_'.$key] = $_POST['status_'.$key];
+            }
 		}
 
     }

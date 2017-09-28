@@ -129,6 +129,7 @@
                 INSERT INTO wp_usermeta VALUES
                     (NULL, {$user_id}, 'user_pass',           '{$password}'),
                     (NULL, {$user_id}, 'user_mobile',         '{$movil}'),
+                    (NULL, {$user_id}, 'user_phone',          '{$movil}'),
                     (NULL, {$user_id}, 'user_gender',          '{$gender}'),
                     (NULL, {$user_id}, 'user_country',        'México'),
                     (NULL, {$user_id}, 'user_photo',          '{$user_photo}'),
