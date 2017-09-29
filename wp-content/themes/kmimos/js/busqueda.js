@@ -7,7 +7,7 @@ jQuery(document).on('click', '.km-select-background-click',function(){
 jQuery(document).on('click', '[data-target="checkbox"]', function(){
 	var obj = $(this).parent().parent().parent().children('button');
 		obj.html( obj.attr('title') );
-	
+	  
 	var l = $(this).parent().parent().find('[type="checkbox"]:checked');
 	var contenido = '';
 	$.each(l, function(i,v){
