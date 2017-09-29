@@ -85,10 +85,20 @@
 
 	if( !is_user_logged_in() ){
 		$HTML .= '	
-		<ul class="hidden-xs nav-login">
-			<li><a id="login" href="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
-			<li><a href="#popup-registrarte" style="padding-left: 15px; border-left: 1px solid white;" role="button" data-toggle="modal">REGISTRARME</a></li>
-		</ul>';
+			<nav class="navbar navbar-fixed-top bg-transparent">
+				<div class="container">
+					<div class="navbar-header ">
+						<a class="navbar-brand" href="'.get_home_url().'">
+							<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
+						</a>
+					</div>
+					<ul class="hidden-xs nav-login">
+						<li><a id="login" href="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
+						<li><a href="#popup-registrarte" style="padding-left: 15px; border-left: 1px solid white;" role="button" data-toggle="modal">REGISTRARME</a></li>
+					</ul>
+			    </div>
+			</nav>
+		';
 	}else{
 		$HTML .= '	
 			<nav class="navbar navbar-fixed-top bg-transparent">
