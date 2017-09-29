@@ -80,6 +80,7 @@
 
     $option_servicios_adicionales = '';
     $servicios_adicionales = servicios_adicionales();
+    $servicios_adicionales_display = '';
     foreach ($servicios_adicionales as $opt_key => $opt_value) {
     	$check = (servicios_en_session($opt_key, $busqueda, 'servicios'))? 'checked' : '' ;
 	    $option_servicios_adicionales .= '
@@ -90,11 +91,19 @@
 			.'</label>
 		</li>
 	    ';
+		if( $check != ''){
+			$separador = (!empty($servicios_adicionales_display))? ', ' : '';
+		    $servicios_adicionales_display .= $separador . $opt_value['label'];
+		}
+    }
+    if( empty($servicios_adicionales_display) ){
+	    $servicios_adicionales_display = 'SERVICIOS ADICIONALES';
     }
 
     $check = '';
     $option_tipo_servicio = '';
     $tipo_servicio = get_tipo_servicios();
+    $tipo_servicio_display = '';
     foreach ($tipo_servicio as $opt_key => $opt_value) {
     	$check = (servicios_en_session($opt_key, $busqueda, 'servicios'))? 'checked' : '' ;
 	    $option_tipo_servicio .= '
@@ -105,11 +114,19 @@
 			'</label>
 		</li>
 	    ';
-    }	
+		if( $check != ''){
+			$separador = (!empty($tipo_servicio_display))? ', ' : '';
+		    $tipo_servicio_display .= $separador . $opt_value['name'];
+		}
+    }
+    if( empty($tipo_servicio_display) ){
+	    $tipo_servicio_display = 'TIPO DE SERVICIO';
+    }
 
     $check = '';
     $option_tamanos_mascotas = '';
     $tamanos_mascotas = kmimos_get_sizes_of_pets();
+    $tamanos_mascotas_display = '';
     foreach ($tamanos_mascotas as $opt_key => $opt_value) {
     	$check = (servicios_en_session($opt_value['db'], $busqueda, 'tamanos'))? 'checked' : '' ;
 	    $option_tamanos_mascotas .= '
@@ -120,6 +137,13 @@
 			'</label>
 		</li>
 	    ';
+		if( $check != ''){
+			$separador = (!empty($tamanos_mascotas_display))? ', ' : '';
+		    $tamanos_mascotas_display .= $separador . $opt_value['name'];
+		}
+    }
+    if( empty($tamanos_mascotas_display) ){
+	    $tamanos_mascotas_display = 'TAMAÑO DE MASCOTA';
     }
 
 
@@ -159,7 +183,7 @@
 							
 							<div class="form-group">
 						    	<button class="btn km-select-custom-button" type="button" title="TIPO SERVICIO">
-						    		TIPO DE SERVICIO
+						    		'.$tipo_servicio_display.'
 						    	</button>
 						    	<ul class="list-unstyled km-select-custom-list">
 							    	'.$option_tipo_servicio.'
@@ -168,7 +192,7 @@
 
 							<div class="form-group">
 						    	<button class="btn km-select-custom-button" type="button" title="TAMAÑO DE MASCOTA">
-						    		TAMAÑO DE MASCOTA
+						    		'.$tamanos_mascotas_display.'
 						    	</button>
 						    	<ul class="list-unstyled km-select-custom-list">
 								    '.$option_tamanos_mascotas.'
@@ -177,7 +201,7 @@
 
 							<div class="form-group">
 						    	<button class="btn km-select-custom-button" type="button" title="SERVICIOS ADICIONALES">
-						    		SERVICIOS ADICIONALES
+						    		'.$servicios_adicionales_display.'
 						    	</button>
 						    	<ul class="list-unstyled km-select-custom-list">
 								    '.$option_servicios_adicionales.'
