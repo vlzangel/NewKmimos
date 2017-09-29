@@ -8382,8 +8382,11 @@ button.close {
     position: absolute;
 }
 
+.km-link-favorito .active{
+	color: #8f5bb3;
+}
 .km-link-favorito{
-	color: #8f5bb3 !important;
+	color: #ccc;
 }
 
 .km-link-favorito:hover i.fa:before,

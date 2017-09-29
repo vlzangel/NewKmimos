@@ -447,7 +447,8 @@
 
         $fav_check = 'false';
         if (in_array($cuidador->id_post, $favoritos)) {
-            $fav_check = 'true'; $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+            $fav_check = 'true'; 
+            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
         }
 
         switch ($disenio) {
@@ -460,7 +461,9 @@
                                 <div class="km-subimg" style="background-image: url('.$img.');"></div>
                             </div>
                             <span class="km-contenedor-favorito">
-                                <a href="#" class="km-link-favorito active"></a>
+                                <a href="#" data-num="'.$cuidador->user_id.'" data-active="'.$fav_check.'" class="km-link-favorito">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                </a>
                             </span>
                         </div>
 
@@ -497,7 +500,9 @@
                                 <div class="km-subimg" style="background-image: url('.$img.');"></div>
                             </div>
                             <span class="km-contenedor-favorito">
-                                <a href="#" class="km-link-favorito active"></a>
+                                <a href="javascript:;"  data-num="'.$cuidador->user_id.'"  class="km-link-favorito">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                </a>
                             </span>
                         </div>
                         <div class="km-descripcion">
