@@ -26,10 +26,10 @@ jQuery( document ).ready(function() {
 });
 
 
-$(document).on('click','.km-link-favorito',function(){
-    var fav = $(this);
-    var fav_num = $(this).data('num');
-    var fav_active = $(this).data('active');
+jQuery(document).on('click','.km-link-favorito',function(){
+    var fav = jQuery(this);
+    var fav_num = jQuery(this).data('num');
+    var fav_active = jQuery(this).data('active');
 
     var data = {
         'action': 'get_favorites',
@@ -43,6 +43,6 @@ $(document).on('click','.km-link-favorito',function(){
 
     fav.data('active',result['active']);
     fav.attr('data-active',result['active']);
-    //fav.addClass(result['active']);
-    //console.log(result);
+/*    fav.addClass(result['active']);
+    console.log(result);*/
 });

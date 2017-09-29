@@ -1,81 +1,81 @@
 
 var globalData = "";
 
-$("#popup-registrarte-datos-mascota").ready(function(){
+jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
-    $("#nombre").blur(function(){
+    jQuery("#nombre").blur(function(){
 		
-		if($("#nombre").val().length < 3){
-			$("#nombre").parent('div').css('color','red');
-			$("#nombre").after('<span name="sp-name">Ingrese su Nombre</span>').css('color','red');
-			$("#nombre").focus(function() { $("[name='sp-name']").hide(); });
+		if(jQuery("#nombre").val().length < 3){
+			jQuery("#nombre").parent('div').css('color','red');
+			jQuery("#nombre").after('<span name="sp-name">Ingrese su Nombre</span>').css('color','red');
+			jQuery("#nombre").focus(function() { jQuery("[name='sp-name']").hide(); });
 		}else{
-			$("#nombre").css('color','green');
-			$("#nombre").parent('div').css('color','green');
-			$("[name='sp-name']").hide();
+			jQuery("#nombre").css('color','green');
+			jQuery("#nombre").parent('div').css('color','green');
+			jQuery("[name='sp-name']").hide();
 		}
 	});
 
-	$("#apellido").blur(function(){
-		if($("#apellido").val().length < 3){
-			$("#apellido").parent('div').css('color','red');
-			$("#apellido").after('<span name="sp-lastname">Ingrese su apellido</span>').css('color','red');
-			$("#apellido").focus(function() { $("[name='sp-lastname']").hide(); });
+	jQuery("#apellido").blur(function(){
+		if(jQuery("#apellido").val().length < 3){
+			jQuery("#apellido").parent('div').css('color','red');
+			jQuery("#apellido").after('<span name="sp-lastname">Ingrese su apellido</span>').css('color','red');
+			jQuery("#apellido").focus(function() { jQuery("[name='sp-lastname']").hide(); });
 		}else{
-			$("#apellido").css('color','green');
-			$("#apellido").parent('div').css('color','green');
-			$("[name='sp-lastname']").hide();
+			jQuery("#apellido").css('color','green');
+			jQuery("#apellido").parent('div').css('color','green');
+			jQuery("[name='sp-lastname']").hide();
 		}
 		
 	});
 
-	$("#ife").blur(function(){
-		switch($("#ife").val().length) {
+	jQuery("#ife").blur(function(){
+		switch(jQuery("#ife").val().length) {
 		case 0:
-			$("#ife").parent('div').css('color','red');
-			$("#ife").after('<span name="sp-ife">Debe ingresar su IFE</span>').css('color','red');
-			$("#ife").focus(function() { $("[name='sp-ife']").hide(); });
+			jQuery("#ife").parent('div').css('color','red');
+			jQuery("#ife").after('<span name="sp-ife">Debe ingresar su IFE</span>').css('color','red');
+			jQuery("#ife").focus(function() { jQuery("[name='sp-ife']").hide(); });
 			break;
 		case 11:
-				$("#ife").css('color','green');
-				$("#ife").parent('div').css('color','green');
-				$("[name='sp-ife']").hide();
+				jQuery("#ife").css('color','green');
+				jQuery("#ife").parent('div').css('color','green');
+				jQuery("[name='sp-ife']").hide();
 			break;
 		default:
-			$("#ife").parent('div').css('color','red');
-			$("#ife").after('<span name="sp-ife">Su IFE debe contener 11 dígitos</span>').css('color','red');
-			$("#ife").focus(function() { $("[name='sp-ife']").hide(); });
+			jQuery("#ife").parent('div').css('color','red');
+			jQuery("#ife").after('<span name="sp-ife">Su IFE debe contener 11 dígitos</span>').css('color','red');
+			jQuery("#ife").focus(function() { jQuery("[name='sp-ife']").hide(); });
 		}
 	});
 
-	$(".verify_mail").blur(function(){
-		var verify = $(this).closest('.verify');
-		var verify_mail = $(this);
-		var verify_result = $(verify).find('.verify_result');
+	jQuery(".verify_mail").blur(function(){
+		var verify = jQuery(this).closest('.verify');
+		var verify_mail = jQuery(this);
+		var verify_result = jQuery(verify).find('.verify_result');
 		var verify_data = verify_mail.data('verify');
 
 		if(verify_mail.val().length == 0){
 			verify_mail.parent('div').css('color','red');
 			verify_mail.after('<span name="sp-email">Ingrese su email</span>').css('color','red');
-			verify_mail.focus(function() { $("[name='sp-email']").hide(); });
+			verify_mail.focus(function() { jQuery("[name='sp-email']").hide(); });
 		}else{
 			verify_mail.css('color','green');
 			verify_mail.parent('div').css('color','green');
-			$("[name='sp-email']").hide();
+			jQuery("[name='sp-email']").hide();
 			var email = verify_mail.val();
 			var campo = {
 				'email': email
 			}
 
-			$.ajax({
-	        data:  campo, //datos que se envian a traves de ajax
-	        url:   HOME+'/procesos/login/main.php',//HOME+"/procesos/login/validate_email.php", //archivo que recibe la peticion
-	        type:  'post', //método de envio
-	        beforeSend: function () { // carga mientras va hacer la consulta
+			jQuery.ajax({
+	        data:  campo,
+	        url:   HOME+'/procesos/login/main.php',
+	        type:  'post',
+	        beforeSend: function () {
 				verify_result.html("Procesando, espere por favor...");
 				verify_result.css('color','green');
 	        },
-	        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+	        success:  function (response) {
 	                if (response == 'SI') {
 						verify_result.html("Este E-mail ya esta en uso");
 						verify_result.css('color','red');
@@ -112,97 +112,97 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
-	$("#pass").blur(function(){
+	jQuery("#pass").blur(function(){
 		
-		if($("#pass").val().length == 0){		
-			$("#pass").parent('div').css('color','red');
-			$("#pass").after('<span name="sp-pass">Ingrese su Contraseña</span>').css('color','red');
-			$("#pass").focus(function() { $("[name='sp-pass']").hide(); });
+		if(jQuery("#pass").val().length == 0){		
+			jQuery("#pass").parent('div').css('color','red');
+			jQuery("#pass").after('<span name="sp-pass">Ingrese su Contraseña</span>').css('color','red');
+			jQuery("#pass").focus(function() { jQuery("[name='sp-pass']").hide(); });
 		}else{
-			$("#pass").css('color','green');
-			$("#pass").parent('div').css('color','green');
-			$("[name='sp-pass']").hide();
+			jQuery("#pass").css('color','green');
+			jQuery("#pass").parent('div').css('color','green');
+			jQuery("[name='sp-pass']").hide();
 		}
 	});
 
-	$("#movil").blur(function(){
+	jQuery("#movil").blur(function(){
 		
-		switch($("#movil").val().length) {
+		switch(jQuery("#movil").val().length) {
 			case 0:
-				$("#movil").parent('div').css('color','red');
-				$("#movil").after('<span name="sp-movil">Debe ingresar su movil</span>').css('color','red');
-				$("#movil").focus(function() { $("[name='sp-movil']").hide(); });
+				jQuery("#movil").parent('div').css('color','red');
+				jQuery("#movil").after('<span name="sp-movil">Debe ingresar su movil</span>').css('color','red');
+				jQuery("#movil").focus(function() { jQuery("[name='sp-movil']").hide(); });
 				break;
 			case 11:
-					$("#movil").css('color','green');
-					$("#movil").parent('div').css('color','green');
-					$("[name='sp-movil']").hide();
+					jQuery("#movil").css('color','green');
+					jQuery("#movil").parent('div').css('color','green');
+					jQuery("[name='sp-movil']").hide();
 				break;
 			default:
-				$("#movil").parent('div').css('color','red');
-				$("#movil").after('<span name="sp-movil">Su movil debe contener 11 dígitos</span>').css('color','red');
-				$("#movil").focus(function() { $("[name='sp-movil']").hide(); });
+				jQuery("#movil").parent('div').css('color','red');
+				jQuery("#movil").after('<span name="sp-movil">Su movil debe contener 11 dígitos</span>').css('color','red');
+				jQuery("#movil").focus(function() { jQuery("[name='sp-movil']").hide(); });
 		}
 	});
 
 
-	$("#genero").blur(function(){
+	jQuery("#genero").blur(function(){
 		
-		if($("#genero").val().length == 0){		
-			$("#genero").parent('div').css('color','red');
-			$("#genero").after('<span name="sp-genero">Debe Seleccionar una opcion</span>').css('color','red');
-			$("#genero").focus(function() { $("[name='sp-genero']").hide(); });
+		if(jQuery("#genero").val().length == 0){		
+			jQuery("#genero").parent('div').css('color','red');
+			jQuery("#genero").after('<span name="sp-genero">Debe Seleccionar una opcion</span>').css('color','red');
+			jQuery("#genero").focus(function() { jQuery("[name='sp-genero']").hide(); });
 		}else{
-			$("#genero").css('color','green');
-			$("#genero").parent('div').css('color','green');
-			$("[name='sp-genero']").hide();
+			jQuery("#genero").css('color','green');
+			jQuery("#genero").parent('div').css('color','green');
+			jQuery("[name='sp-genero']").hide();
 		}
 	});
 
-	$("#edad").blur(function(){
+	jQuery("#edad").blur(function(){
 		
-		if($("#edad").val().length == 0){		
-			$("#edad").parent('div').css('color','red');
-			$("#edad").after('<span name="sp-edad">Debe Seleccionar una opcion</span>').css('color','red');
-			$("#edad").focus(function() { $("[name='sp-edad']").hide(); });
+		if(jQuery("#edad").val().length == 0){		
+			jQuery("#edad").parent('div').css('color','red');
+			jQuery("#edad").after('<span name="sp-edad">Debe Seleccionar una opcion</span>').css('color','red');
+			jQuery("#edad").focus(function() { jQuery("[name='sp-edad']").hide(); });
 		}else{
-			$("#edad").css('color','green');
-			$("#edad").parent('div').css('color','green');
-			$("[name='sp-edad']").hide();
+			jQuery("#edad").css('color','green');
+			jQuery("#edad").parent('div').css('color','green');
+			jQuery("[name='sp-edad']").hide();
 		}
 	});
 
-	$("#fumador").blur(function(){
+	jQuery("#fumador").blur(function(){
 		
-		if($("#fumador").val().length == 0){		
-			$("#fumador").parent('div').css('color','red');
-			$("#fumador").after('<span name="sp-fumador">Debe Seleccionar una opcion</span>').css('color','red');
-			$("#fumador").focus(function() { $("[name='sp-fumador']").hide(); });
+		if(jQuery("#fumador").val().length == 0){		
+			jQuery("#fumador").parent('div').css('color','red');
+			jQuery("#fumador").after('<span name="sp-fumador">Debe Seleccionar una opcion</span>').css('color','red');
+			jQuery("#fumador").focus(function() { jQuery("[name='sp-fumador']").hide(); });
 		}else{
-			$("#fumador").css('color','green');
-			$("#fumador").parent('div').css('color','green');
-			$("[name='sp-fumador']").hide();
+			jQuery("#fumador").css('color','green');
+			jQuery("#fumador").parent('div').css('color','green');
+			jQuery("[name='sp-fumador']").hide();
 		}
 	});
 
-	$(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
+	jQuery(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
 		e.preventDefault();
-		var nombre = $("#nombre").val(); 
-			apellido = $("#apellido").val(),
-			ife = $("#ife").val(),
-		 	email = $("#email_1").val(), 
-		 	pass = $("#pass").val(), 
-		 	movil = $("#movil").val(), 
-		 	genero = $("#genero").val(), 
-		 	edad = $("#edad").val(), 
-		 	fumador = $("#fumador").val(),
-				referido = $("#referido").val(),
-				img_profile = $("#img_profile").val();
+		var nombre = jQuery("#nombre").val(); 
+			apellido = jQuery("#apellido").val(),
+			ife = jQuery("#ife").val(),
+		 	email = jQuery("#email_1").val(), 
+		 	pass = jQuery("#pass").val(), 
+		 	movil = jQuery("#movil").val(), 
+		 	genero = jQuery("#genero").val(), 
+		 	edad = jQuery("#edad").val(), 
+		 	fumador = jQuery("#fumador").val(),
+				referido = jQuery("#referido").val(),
+				img_profile = jQuery("#img_profile").val();
 		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
 		if (nombre.length > 2 && apellido.length > 2 && ife.length > 2 && email.length > 2 && pass.length > 2 && movil.length > 2
 		       	&& genero != "" && edad != "" && fumador !="") {
-				$(".popup-registrarte-nuevo-correo").hide();
-				$(".popup-registrarte-datos-mascota").fadeIn("fast");
+				jQuery(".popup-registrarte-nuevo-correo").hide();
+				jQuery(".popup-registrarte-datos-mascota").fadeIn("fast");
 				var datos = {
 					'name': campos[0],
 					'lastname': campos[1],
@@ -225,10 +225,10 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 });
 
 
-$("#popup-registrarte-datos-mascota").ready(function(){
+jQuery("#popup-registrarte-datos-mascota").ready(function(){
 	
-	$("#km-datos-foto").on('click', function(){
-		$("#carga_foto").trigger("click");
+	jQuery("#km-datos-foto").on('click', function(){
+		jQuery("#carga_foto").trigger("click");
 		document.addEventListener('change',cargaImagen, false);
 	});
 
@@ -240,144 +240,144 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 	
-	$("#nombre_mascota").blur(function(){
-		if($("#nombre_mascota").val().length == 0){		
-			$("#nombre_mascota").parent('div').css('color','red');
-			$("#nombre_mascota").after('<span name="sp-name">Ingrese el nombre de su mascota</span>').css('color','red');
-			$("#nombre_mascota").focus(function() { $("[name='sp-name']").hide(); });
+	jQuery("#nombre_mascota").blur(function(){
+		if(jQuery("#nombre_mascota").val().length == 0){		
+			jQuery("#nombre_mascota").parent('div').css('color','red');
+			jQuery("#nombre_mascota").after('<span name="sp-name">Ingrese el nombre de su mascota</span>').css('color','red');
+			jQuery("#nombre_mascota").focus(function() { jQuery("[name='sp-name']").hide(); });
 		}else{
-			$("#nombre_mascota").css('color','green');
-			$("#nombre_mascota").parent('div').css('color','green');
-			$("[name='sp-name']").hide();
+			jQuery("#nombre_mascota").css('color','green');
+			jQuery("#nombre_mascota").parent('div').css('color','green');
+			jQuery("[name='sp-name']").hide();
 		}
 	});
 
-	$("#tipo_mascota").blur(function(){
+	jQuery("#tipo_mascota").blur(function(){
 		
-		switch($("#tipo_mascota").val()) {
+		switch(jQuery("#tipo_mascota").val()) {
 			case "0":
-				$("#tipo_mascota").parent('div').css('color','red');
-				$("#tipo_mascota").before('<span name="sp-tipo_mascota">Debe seleccionar un tipo</span>').css('color','red');
-				$("#tipo_mascota").focus(function() { $("[name='sp-tipo_mascota']").hide(); });
+				jQuery("#tipo_mascota").parent('div').css('color','red');
+				jQuery("#tipo_mascota").before('<span name="sp-tipo_mascota">Debe seleccionar un tipo</span>').css('color','red');
+				jQuery("#tipo_mascota").focus(function() { jQuery("[name='sp-tipo_mascota']").hide(); });
 				break;
 			case "2605":
-					$("#tipo_mascota").css('color','green');
-					$("#tipo_mascota").focus(function() { $("[name='sp-tipo_gato']").hide(); });
+					jQuery("#tipo_mascota").css('color','green');
+					jQuery("#tipo_mascota").focus(function() { jQuery("[name='sp-tipo_gato']").hide(); });
 					listarAjax();
 				break;
 			case "2608":
-					$("#tipo_mascota").css('color','green');
-					$("#tipo_mascota").focus(function() { $("[name='sp-tipo_perro']").hide(); });
-					$('#raza_mascota').html("<option id='select_mascota' value='1'>Gato</option>").fadeIn();
+					jQuery("#tipo_mascota").css('color','green');
+					jQuery("#tipo_mascota").focus(function() { jQuery("[name='sp-tipo_perro']").hide(); });
+					jQuery('#raza_mascota').html("<option id='select_mascota' value='1'>Gato</option>").fadeIn();
 				break;
 			default:
-				$("#tipo_mascota").parent('div').css('color','red');
-				$("#tipo_mascota").before('<span name="sp-tipo_mascota">Su movil debe contener 11 dígitos</span>').css('color','red');
-				$("#tipo_mascota").focus(function() { $("[name='sp-tipo_mascota']").hide(); });
+				jQuery("#tipo_mascota").parent('div').css('color','red');
+				jQuery("#tipo_mascota").before('<span name="sp-tipo_mascota">Su movil debe contener 11 dígitos</span>').css('color','red');
+				jQuery("#tipo_mascota").focus(function() { jQuery("[name='sp-tipo_mascota']").hide(); });
 		}
 	});
 
-	$("#raza_mascota").blur(function(){
-		if($("#raza_mascota").val() == 0){		
-			$("#raza_mascota").parent('div').css('color','red');
-			$("#raza_mascota").after('<span name="sp-color">Seleccione la raza de su mascota</span>').css('color','red');
-			$("#raza_mascota").focus(function() { $("[name='sp-color']").hide(); });
+	jQuery("#raza_mascota").blur(function(){
+		if(jQuery("#raza_mascota").val() == 0){		
+			jQuery("#raza_mascota").parent('div').css('color','red');
+			jQuery("#raza_mascota").after('<span name="sp-color">Seleccione la raza de su mascota</span>').css('color','red');
+			jQuery("#raza_mascota").focus(function() { jQuery("[name='sp-color']").hide(); });
 		}else{
-			$("#raza_mascota").css('color','green');
-			$("#raza_mascota").parent('div').css('color','green');
-			$("[name='sp-color']").hide();
+			jQuery("#raza_mascota").css('color','green');
+			jQuery("#raza_mascota").parent('div').css('color','green');
+			jQuery("[name='sp-color']").hide();
 		}
 	});
 
-	$("#color_mascota").blur(function(){
-		if($("#color_mascota").val().length == 0){		
-			$("#color_mascota").parent('div').css('color','red');
-			$("#color_mascota").after('<span name="sp-color">Ingrese el color de su mascota</span>').css('color','red');
-			$("#color_mascota").focus(function() { $("[name='sp-color']").hide(); });
+	jQuery("#color_mascota").blur(function(){
+		if(jQuery("#color_mascota").val().length == 0){		
+			jQuery("#color_mascota").parent('div').css('color','red');
+			jQuery("#color_mascota").after('<span name="sp-color">Ingrese el color de su mascota</span>').css('color','red');
+			jQuery("#color_mascota").focus(function() { jQuery("[name='sp-color']").hide(); });
 		}else{
-			$("#color_mascota").css('color','green');
-			$("#color_mascota").parent('div').css('color','green');
-			$("[name='sp-color']").hide();
+			jQuery("#color_mascota").css('color','green');
+			jQuery("#color_mascota").parent('div').css('color','green');
+			jQuery("[name='sp-color']").hide();
 		}
 	});
 
-	$("#date_from").blur(function(){
-		if($("#date_from").val() == 0){		
-			$("#date_from").parent('div').css('color','red');
-			$("#date_from").after('<span name="sp-date_from">Por favor ingrese una fecha</span>').css('color','red');
-			$("#date_from").focus(function() { $("[name='sp-date_from']").hide(); });
+	jQuery("#date_from").blur(function(){
+		if(jQuery("#date_from").val() == 0){		
+			jQuery("#date_from").parent('div').css('color','red');
+			jQuery("#date_from").after('<span name="sp-date_from">Por favor ingrese una fecha</span>').css('color','red');
+			jQuery("#date_from").focus(function() { jQuery("[name='sp-date_from']").hide(); });
 		}else{
-			$("#date_from").css('color','green');
-			$("#date_from").parent('div').css('color','green');
-			$("[name='sp-date_from']").hide();
+			jQuery("#date_from").css('color','green');
+			jQuery("#date_from").parent('div').css('color','green');
+			jQuery("[name='sp-date_from']").hide();
 		}
 	});
 
-	$("#genero_mascota").blur(function(){
-		console.log($("#genero_mascota").val());
-		if($("#genero_mascota").val().length == 0){		
-			$("#genero_mascota").parent('div').css('color','red');
-			$("#genero_mascota").after('<span name="sp-genero_mascota">Seleccione una opcion por favor</span>').css('color','red');
-			$("#genero_mascota").focus(function() { $("[name='sp-genero_mascota']").hide(); });
+	jQuery("#genero_mascota").blur(function(){
+		console.log(jQuery("#genero_mascota").val());
+		if(jQuery("#genero_mascota").val().length == 0){		
+			jQuery("#genero_mascota").parent('div').css('color','red');
+			jQuery("#genero_mascota").after('<span name="sp-genero_mascota">Seleccione una opcion por favor</span>').css('color','red');
+			jQuery("#genero_mascota").focus(function() { jQuery("[name='sp-genero_mascota']").hide(); });
 		}else{
-			$("#genero_mascota").css('color','green');
-			$("#genero_mascota").parent('div').css('color','green');
-			$("[name='sp-genero_mascota']").hide();
+			jQuery("#genero_mascota").css('color','green');
+			jQuery("#genero_mascota").parent('div').css('color','green');
+			jQuery("[name='sp-genero_mascota']").hide();
 		}
 	});
 
-	$('.km-opcion').on('click', function(e) {
+	jQuery('.km-opcion').on('click', function(e) {
 	
-		$('#select_1').on('click', function(){
-			$("#select_2, #select_3, #select_4").removeClass("km-opcionactivo");
+		jQuery('#select_1').on('click', function(){
+			jQuery("#select_2, #select_3, #select_4").removeClass("km-opcionactivo");
 		});
-		$('#select_2').on('click', function(){
-			$("#select_1, #select_3, #select_4").removeClass("km-opcionactivo");
+		jQuery('#select_2').on('click', function(){
+			jQuery("#select_1, #select_3, #select_4").removeClass("km-opcionactivo");
 		});
 		
-		$('#select_3').on('click', function(){
-			$("#select_2, #select_1, #select_4").removeClass("km-opcionactivo");
+		jQuery('#select_3').on('click', function(){
+			jQuery("#select_2, #select_1, #select_4").removeClass("km-opcionactivo");
 		});	
-		$('#select_4').on('click', function(){
-			$("#select_2, #select_3, #select_1").removeClass("km-opcionactivo");
+		jQuery('#select_4').on('click', function(){
+			jQuery("#select_2, #select_3, #select_1").removeClass("km-opcionactivo");
 		});
-		$(this).toggleClass('km-opcionactivo');
- $(this).children("input:checkbox").prop("checked", !$(this).children("input").prop("checked"));
+		jQuery(this).toggleClass('km-opcionactivo');
+ jQuery(this).children("input:checkbox").prop("checked", !jQuery(this).children("input").prop("checked"));
 	});
 
-	$("#km-check-1").on('click', function() {
-		if($("#km-check-1").val() == "0"){
-			$("#km-check-1").attr('value','1');
+	jQuery("#km-check-1").on('click', function() {
+		if(jQuery("#km-check-1").val() == "0"){
+			jQuery("#km-check-1").attr('value','1');
 		}else{
-			$("#km-check-1").attr('value','0');
+			jQuery("#km-check-1").attr('value','0');
 		}
 	});
 
-	$("#km-check-2").on('click', function() {
-		if($("#km-check-2").val() == "0"){
-			$("#km-check-2").attr('value','1');
+	jQuery("#km-check-2").on('click', function() {
+		if(jQuery("#km-check-2").val() == "0"){
+			jQuery("#km-check-2").attr('value','1');
 		}else{
-			$("#km-check-2").attr('value','0');
+			jQuery("#km-check-2").attr('value','0');
 		}
 	});
 
-	$("#km-check-3").on('click', function() {
-		if($("#km-check-3").val() == "0"){
-			$("#km-check-3").attr('value','1');
+	jQuery("#km-check-3").on('click', function() {
+		if(jQuery("#km-check-3").val() == "0"){
+			jQuery("#km-check-3").attr('value','1');
 		}else{
-			$("#km-check-3").attr('value','0');
+			jQuery("#km-check-3").attr('value','0');
 		}
 	});
 
-	$("#km-check-4").on('click', function() {
-		if($("#km-check-4").val() == "0"){
-			$("#km-check-4").attr('value','1');
+	jQuery("#km-check-4").on('click', function() {
+		if(jQuery("#km-check-4").val() == "0"){
+			jQuery("#km-check-4").attr('value','1');
 		}else{
-			$("#km-check-4").attr('value','0');
+			jQuery("#km-check-4").attr('value','0');
 		}
 	});
 
-	$(document).on("click", '.popup-registrarte-datos-mascota .km-btn-popup-registrarte-datos-mascota', function ( e ) {
+	jQuery(document).on("click", '.popup-registrarte-datos-mascota .km-btn-popup-registrarte-datos-mascota', function ( e ) {
 		e.preventDefault();
 		var valor;
 		var sizes =[
@@ -387,38 +387,34 @@ $("#popup-registrarte-datos-mascota").ready(function(){
             {'ID':3,'name':'Gigantes','desc':'Más de 76.2cm'}
         ];
     	
-		if ($("#select_1").hasClass("km-opcionactivo")) {
-			//valor = sizes[0].name+" "+sizes[0].desc;
+		if (jQuery("#select_1").hasClass("km-opcionactivo")) {
 			valor = sizes[0].ID;
 			
-		}else if($("#select_2").hasClass("km-opcionactivo")){
-			//valor = sizes[1].name+" "+sizes[1].desc;
+		}else if(jQuery("#select_2").hasClass("km-opcionactivo")){
 			valor = sizes[1].ID;
 
-		} else if ($("#select_3").hasClass("km-opcionactivo")){
-			//valor = sizes[2].name+" "+sizes[2].desc;
+		} else if (jQuery("#select_3").hasClass("km-opcionactivo")){
 			valor = sizes[2].ID;
 
-		}else if ($("#select_4").hasClass("km-opcionactivo")){
-			//valor = sizes[3].name+" "+sizes[3].desc;
+		}else if (jQuery("#select_4").hasClass("km-opcionactivo")){
 			valor = sizes[3].ID;
 
 		}else{
 			console.log("La variable Valor esta vacia");
 		}
 
-		var nombre_mascota = $("#nombre_mascota").val(),
-			tipo_mascota =$("#tipo_mascota").val(),
-			raza_mascota = $("#raza_mascota").val(),
-			color_mascota = $("#color_mascota").val(),
-			datepets = $("#datepets").val(),
-			genero_mascota = $("#genero_mascota").val(),
+		var nombre_mascota = jQuery("#nombre_mascota").val(),
+			tipo_mascota =jQuery("#tipo_mascota").val(),
+			raza_mascota = jQuery("#raza_mascota").val(),
+			color_mascota = jQuery("#color_mascota").val(),
+			datepets = jQuery("#datepets").val(),
+			genero_mascota = jQuery("#genero_mascota").val(),
 			tamano_mascota = valor,
-			pet_sterilized = $("#km-check-1").val(),
-			pet_sociable = $("#km-check-2").val(),
-			aggresive_humans = $("#km-check-3").val(),
-			aggresive_pets = $("#km-check-4").val(),
-			img_pet = $("#img_pet").val();
+			pet_sterilized = jQuery("#km-check-1").val(),
+			pet_sociable = jQuery("#km-check-2").val(),
+			aggresive_humans = jQuery("#km-check-3").val(),
+			aggresive_pets = jQuery("#km-check-4").val(),
+			img_pet = jQuery("#img_pet").val();
 
 	
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
@@ -426,8 +422,8 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 					pet_sociable,aggresive_humans,aggresive_pets,img_pet];
 		if (nombre_mascota != "" && tipo_mascota != "" && raza_mascota != "" && color_mascota !="" 
         	&& datepets != "" && genero_mascota != "" && tamano_mascota != "") {
-        		$(".popup-registrarte-datos-mascota").hide();
-				$(".popup-registrarte-final").fadeIn("fast");
+        		jQuery(".popup-registrarte-datos-mascota").hide();
+				jQuery(".popup-registrarte-final").fadeIn("fast");
         		var datos = {
 		      		'name_pet': campos_pet[0],
 		            'type_pet': campos_pet[1],
@@ -455,12 +451,12 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 function listarAjax() {
 	__ajax(HOME+"/procesos/login/mascota.php", "")
 	.done(function(info){
-		$('#raza_mascota').html(info).fadeIn();
+		jQuery('#raza_mascota').html(info).fadeIn();
 	});
 }
 
 function __ajax(url, data){
-	var ajax = $.ajax({
+	var ajax = jQuery.ajax({
 		"method": "POST",
 		"url": url,
 		"data": data
@@ -469,23 +465,22 @@ function __ajax(url, data){
 }
 
 function getGlobalData(url,method, datos){
-	return $.ajax({
+	return jQuery.ajax({
 		data: datos,
 		type: method,
 		url: HOME+url,
 		async:false,
 		success: function(data){
-            $("#guardando").html("Este dato se guardo "+data);
-            $("#guardando").css('color','blue');
+            jQuery("#guardando").html("Este dato se guardo "+data);
+            jQuery("#guardando").css('color','blue');
 			return data;
 		}
 	}).responseText;
 }
 
-// Validar tipos e datos en los campos
 jQuery( document ).on('keypress', '[data-charset]', function(e){
 
-    var tipo= $(this).attr('data-charset');
+    var tipo= jQuery(this).attr('data-charset');
 
     if(tipo!='undefined' || tipo!=''){
         var cadena = "";
@@ -495,7 +490,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
         if(tipo.indexOf('mlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyz"; }
         if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
         if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
-        if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
+        if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.jQuery%&@,/()"; }
         if(tipo.indexOf('cor')>-1 ){ cadena = cadena + ".-_@"; }
         if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
         if(tipo.indexOf('dir')>-1 ){ cadena = cadena + ","; }
@@ -509,34 +504,32 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
             e.preventDefault();
         }
     }
-
-	//mensaje( $(this).attr('name'), '', true );
    
 });
 
 
-// POPUP INICIAR SESIÓN
-	$(document).on("click", '.popup-iniciar-sesion-1 .km-btn-contraseña-olvidada', function ( e ) {
+/*POPUP INICIAR SESIÓN*/
+	jQuery(document).on("click", '.popup-iniciar-sesion-1 .km-btn-contraseña-olvidada', function ( e ) {
 		e.preventDefault();
 
-		$(".popup-iniciar-sesion-1").hide();
-		$(".popup-olvidaste-contrasena").fadeIn("fast");
+		jQuery(".popup-iniciar-sesion-1").hide();
+		jQuery(".popup-olvidaste-contrasena").fadeIn("fast");
 	});
 
-	$(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
+	jQuery(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
 		e.preventDefault();
 
-		$(".popup-registrarte-1").hide();
-		$(".popup-registrarte-nuevo-correo").fadeIn("fast");
+		jQuery(".popup-registrarte-1").hide();
+		jQuery(".popup-registrarte-nuevo-correo").fadeIn("fast");
 	});
-// FIN POPUP INICIAR SESIÓN
+/*FIN POPUP INICIAR SESIÓN*/
 
 function cargaImagen(evt){
 	var files = evt.target.files;
 
-	// obtenemos la imagen del campo file
+	/*obtenemos la imagen del campo file*/
 	for (var i = 0, f; f = files[i]; i++) {         
-           //Solo admitimos imágenes.
+           /*Solo admitimos imágenes.*/
            if (!f.type.match('image.*')) {
                 continue;
            }
@@ -544,11 +537,11 @@ function cargaImagen(evt){
 
 		 reader.onload = (function(theFile){
 		 	return function(e){
-		 	//Creamos la imagen.
-		 	$("#km-datos-foto").css("background-image", "url("+e.target.result+")");
-		 	$("#km-datos-foto").addClass("img-circle");
-			$("#img_pet").val(e.target.result);
-		 	//document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+		 	/*Creamos la imagen.*/
+		 	jQuery("#km-datos-foto").css("background-image", "url("+e.target.result+")");
+		 	jQuery("#km-datos-foto").addClass("img-circle");
+			jQuery("#img_pet").val(e.target.result);
+		 	/*document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');*/
 		 	};
 		 })(f);
 
@@ -556,20 +549,18 @@ function cargaImagen(evt){
 	}
 }
 
-
-
-//IMAGE PROFILE
-$("#km-datos-foto-profile").on('click', function(){
-	$("#carga_foto_profile").trigger("click");
+/*IMAGE PROFILE*/
+jQuery("#km-datos-foto-profile").on('click', function(){
+	jQuery("#carga_foto_profile").trigger("click");
 	document.addEventListener('change',cargaImagenProfile, false);
 });
 
 function cargaImagenProfile(evt){
 	var files = evt.target.files;
 
-	// obtenemos la imagen del campo file
+	/*obtenemos la imagen del campo file*/
 	for (var i = 0, f; f = files[i]; i++) {
-		//Solo admitimos imágenes.
+		/*Solo admitimos imágenes.*/
 		if (!f.type.match('image.*')) {
 			continue;
 		}
@@ -577,11 +568,11 @@ function cargaImagenProfile(evt){
 
 		reader.onload = (function(theFile){
 			return function(e){
-				//Creamos la imagen.
-				$("#km-datos-foto-profile").css("background-image", "url("+e.target.result+")");
-				$("#km-datos-foto-profile").addClass("img-circle");
-				$("#img_profile").val(e.target.result);
-				//document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+				/*Creamos la imagen.*/
+				jQuery("#km-datos-foto-profile").css("background-image", "url("+e.target.result+")");
+				jQuery("#km-datos-foto-profile").addClass("img-circle");
+				jQuery("#img_profile").val(e.target.result);
+				/*document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');*/
 			};
 		})(f);
 
@@ -589,19 +580,19 @@ function cargaImagenProfile(evt){
 	}
 }
 
-//RECOVER PASSWORD
+/*RECOVER PASSWORD*/
 jQuery(document).on('click','#login_submit.recover_pass',function(e){
-	//$(this).closest('form').submit();
+	/*jQuery(this).closest('form').submit();*/
 });
 
 jQuery("form#form_recuperar").submit(function(){
-	$(this).find(".response").html('');
-	var mail = $(this).find("#usuario");
+	jQuery(this).find(".response").html('');
+	var mail = jQuery(this).find("#usuario");
 	var data_email = mail.val();
 
 	if(data_email == ""){
-		//$(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");
-		//alert("Revise sus datos por favor, debe llenar todos los campos");
+		/*jQuery(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");
+		alert("Revise sus datos por favor, debe llenar todos los campos");*/
 
 	}else if(!mail.hasClass('correctly')){
 
@@ -612,7 +603,7 @@ jQuery("form#form_recuperar").submit(function(){
 		var result = getAjaxData('/procesos/login/recuperar.php','post', datos);
 		jQuery(this).find(".response").html(result);
 		jQuery('.modal').modal('hide');
-		//console.log(result);
+		/*console.log(result);*/
 	}
 	return false;
 });

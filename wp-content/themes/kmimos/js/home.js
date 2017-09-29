@@ -92,7 +92,7 @@ var hasGPS=false;
     });
 
     if (navigator.geolocation) {
-        // navigator.geolocation.getCurrentPosition(coordenadas);
+        /*navigator.geolocation.getCurrentPosition(coordenadas);*/
     } else {
         $('#selector_locacion').removeClass('hide');
         $('#selector_coordenadas').addClass('hide');

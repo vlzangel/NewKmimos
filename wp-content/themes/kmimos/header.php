@@ -31,8 +31,10 @@
 
 	wp_head();
 
-    include_once("partes/head/script_google_auth.php");
-    include_once("partes/head/script_facebook_auth.php");
+	if( !is_user_logged_in() ){
+	    include_once("partes/head/script_google_auth.php");
+	    include_once("partes/head/script_facebook_auth.php");
+	}
 
 	global $post;
 	$reserrvacion_page = "";
@@ -43,11 +45,11 @@
 		$reserrvacion_page = "page-reservation";
 	}
 
-    $coordenadas = get_coordenadas();
+/*    $coordenadas = get_coordenadas();
     $HTML .= "<script type='text/javascript'>
     	var Coordsearch = JSON.parse("; 
     $HTML .= "'".$coordenadas."'";
-    $HTML .= ");</script>";
+    $HTML .= ");</script>";*/
 
 
 	$HTML .= '

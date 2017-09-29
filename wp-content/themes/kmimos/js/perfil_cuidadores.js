@@ -1,12 +1,3 @@
-function vlz_galeria_ver(url){
-	// jQuery('.vlz_modal_galeria_interna').css('background-image', 'url('+url+')');
-	// jQuery('.vlz_modal_galeria').css('display', 'table');
-}
-function vlz_galeria_cerrar(){
-	// jQuery('.vlz_modal_galeria').css('display', 'none');
-	// jQuery('.vlz_modal_galeria_interna').css('background-image', '');
-}
-
 var map_cuidador;
 function initMap() {
 	var latitud = lat;
@@ -99,7 +90,6 @@ function comentarios(pagina = 0){
 		bond += get_huesitos(bond_total);
 		bond += '</div>';
 
-	//console.log(comentario);
 	jQuery("#comentarios_box").html( comentario );
 	jQuery(".km-review .km-calificacion").html( comentarios_cuidador.length );
 	jQuery(".km-review .km-calificacion-icono p").html(parseInt(bond_porcent)+'% Lo recomienda');
@@ -119,19 +109,6 @@ function get_huesitos(valor){
 
 jQuery( document ).ready(function() {
 	GetComments();
-
-	function perfil_login(accion){
-		//jQuery.cookie("POST_LOGIN", accion);
-		jQuery("#login").click();
-	}
-
-	jQuery( document ).ready(function() {
-	 //  	var POST_LOGIN = jQuery.cookie("POST_LOGIN");
-		// if( POST_LOGIN != undefined ){
-		// 	jQuery.removeCookie("POST_LOGIN");
-		// 	document.getElementById(POST_LOGIN).click();
-		// }
-	});
 
     jQuery("#btn_reservar").on("click", function(e){
         perfil_login();

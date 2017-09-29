@@ -38,6 +38,14 @@
 
                 // Ubicacion
                 // $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
+
+                $coordenadas = $db->get_var( "SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipio}' " );
+                if( $coordenadas !== false ){
+                    $coordenadas = unserialize($coordenadas);
+                    $latitud  = $coordenadas["referencia"]->lat;
+                    $longitud = $coordenadas["referencia"]->lng;
+                }
+
                 $sql = "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '={$estado}=', '={$municipio}=')";
                 $db->query( $sql );
 
@@ -48,7 +56,7 @@
                 if($vlz_img_perfil != ""){
                     $foto = 1;
                     $dir = realpath( "../../../../" )."/uploads/cuidadores/avatares/".$cuidador_id."/";
-                    @mkdir($dir, 0777, true);
+                    @mkdir($dir);
 
                     $path_origen = realpath( "../../../../../" )."/imgs/Temp/".$vlz_img_perfil;
                     $path_destino = $dir.$vlz_img_perfil;
@@ -106,8 +114,8 @@
                         direccion = '{$direccion}',
                         num_mascotas = 0,
                         mascotas_permitidas = {$num_mascota},
-                        latitud = '{$latitude}',
-                        longitud = '{$longitude}',
+                        latitud = '{$latitud}',
+                        longitud = '{$longitud}',
                         portada = {$foto}
                     WHERE email = '{$email}'
                 ";
