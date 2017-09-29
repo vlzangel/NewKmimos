@@ -1,3 +1,4 @@
+
 function playVideo(e) {
 	var el = $(e);
 	var p = el.parent().parent().parent();
@@ -114,6 +115,14 @@ $(window).scroll(function() {
 			mapStatic( this );
 		}
 	}
+});
+
+$(document).on("click", '.btnOpenPopupMap', function ( e ) {
+	e.preventDefault();
+
+	$(".km-caja-resultados .km-columna-der").fadeIn("fast");
+
+	google.maps.event.trigger(map, 'resize');
 });
 
 var fecha = new Date();

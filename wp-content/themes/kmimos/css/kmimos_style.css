@@ -846,6 +846,7 @@ button.close {
 
 
 /* SEARCH */
+
 .header-search{
 	width: 100%;
 	height: 320px;
@@ -891,6 +892,7 @@ button.close {
 	margin:4px!important;
 }
 .km-select-custom-list{
+    min-width: 18%;
 	display: none;
 	background: #fff;
 	border: 1px solid #e5e5e5!important;
@@ -898,9 +900,10 @@ button.close {
 	margin-top: 4px;
 	border-radius: 5px;
 	position: absolute;
-	z-index: 3;
+	z-index: 3!important;
     line-height: 0px;
     color: #6b6767;
+    height: auto!important;
 }
 .km-select-custom-button{
 	position: relative;
@@ -930,6 +933,11 @@ button.close {
 	width: 100%;
 	padding: 0px 30px 0px 5px;
 
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	white-space:nowrap; 
+	overflow:hidden;
+	text-align: left;
 }
 .km-select-custom{
 	position: relative;
@@ -1122,6 +1130,26 @@ div#ubicacion_list div:hover {
 	font-weight: 300;
 }
 
+.km-fondo-img{
+    background-size: center;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    filter:blur(3px);
+}
+.km-subimg{
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0px;
+}
+
+
 .km-opciones .km-btn-primary-new{
 	margin-top: 9px;
 }
@@ -1273,7 +1301,9 @@ div#ubicacion_list div:hover {
 	clear: both;
 	display: table;
 }
-
+.km-select-custom-list{
+	min-width: 17.5%;
+}
 .km-cajas-filtro .form-group,
 .km-cajas-filtro .km-caja-filtro{
 	float: left;
@@ -1293,6 +1323,9 @@ div#ubicacion_list div:hover {
 .km-cajas-filtro-dropdown{
 	padding-left: 2px!important;
 	padding-right: 28px;
+}
+.km-cajas-filtro .km-caja-filtro input{
+	padding-left: 2%!important;
 }
 .km-cajas-filtro-dropdown,
 .km-cajas-filtro .km-caja-filtro select,
@@ -1350,7 +1383,7 @@ div#ubicacion_list div:hover {
 
 .km-caja-resultados .km-columna-der{
 	float: right;
-	width: 38.879599%;
+	width: 38.879599%!important;
 }
 
 .km-superior-resultados::after,
@@ -2532,8 +2565,7 @@ footer input:focus{
 		width: 100%!important;
 	}
 
-	.km-caja-resultados .km-columna-der{
-	}
+	
 
 }
 
@@ -2595,6 +2627,13 @@ footer input:focus{
     .km-resultados-grid .km-item-resultado:nth-child(3n) {
         margin-right:3%
     }
+
+    .km-foto {
+    	width: 45%!important;
+    }
+    .km-foto .km-img{
+    	height: 239px!important;
+    }
 }
 
 @media all and (max-width:427px) {
@@ -2610,6 +2649,14 @@ footer input:focus{
     .km-resultados-grid .km-item-resultado:nth-child(3n) {
         margin-right:0
     }
+
+    .km-foto {
+    	width: 100%!important;
+    }
+    .km-foto .km-img{
+    	height: 239px!important;
+    }
+
 }
 
 @media all and (max-width: 629px) {
@@ -2623,7 +2670,7 @@ footer input:focus{
 
 	.km-resultados-lista .km-item-resultado .km-descripcion,
 	.km-resultados-lista .km-item-resultado .km-opciones{
-		width: 100%;
+		width: 100%!important;
 	}
 
 	.km-resultados-lista .km-item-resultado .km-sellos{
@@ -2673,7 +2720,8 @@ footer input:focus{
 
 @media all and (max-width: 430px) {
 	.km-resultados-lista .km-item-resultado .km-foto{
-		display: none;
+		width: 100%!important;
+		/*display: none;*/
 	}
 
 	.km-resultados-lista .km-item-resultado .km-contenedor-descripcion-opciones{
@@ -4556,9 +4604,10 @@ button.close {
     float:left;
     width:58.528428%
 }
+.km-columna-der-mapa,
 .km-caja-resultados .km-columna-der {
-    float:right;
-    width:38.879599%
+    float:right!important;
+    width:38.879599%!important;
 }
 .km-opciones-resultados::after, .km-superior-resultados::after {
     content:"";
@@ -6045,7 +6094,7 @@ h1.maps {
 .km-opciones.maps .distancia {
     margin-bottom:5px
 }
-.km-caja-resultados .km-columna-der.mapAbsolute {
+.km-caja-resultados .km-columna-der .mapAbsolute {
     position:absolute;
     margin-top:41px;
     right:0
@@ -6058,12 +6107,12 @@ h1.maps {
     font-weight:700
 }
 .btnOpenPopup {
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    z-index:998;
-    display:none
+    position:fixed!important;
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    z-index:998!important;
+    display:none;
 }
 .navigation {
     margin-top:20px
@@ -6098,12 +6147,16 @@ h1.maps {
         display:block!important
     }
 }
+
 @media (max-width:991px) {
     .btnOpenPopup {
         display:block
     }
     .km-titulo-mapa {
         font-size:10px
+    }
+    #mapa-close{
+    	display: block!important;
     }
     .km-caja-resultados .km-columna-der {
         display:none;
@@ -6122,7 +6175,7 @@ h1.maps {
     }
     .km-caja-resultados .km-columna-der .km-mapa, .km-caja-resultados .km-columna-der .km-mapa #map {
         position:relative;
-        height:100%
+        height:100%!important;
     }
 }
 @media (max-width:1200px) {
@@ -6522,7 +6575,7 @@ h1.maps {
 @media all and (max-width:991px) {
     .km-caja-resultados .km-columna-der, .km-caja-resultados .km-columna-izq {
         float:none;
-        width:100%
+        width:100%!important;
     }
 
     .km-div-enviar,
@@ -6539,6 +6592,10 @@ h1.maps {
     }
     .km-div-enviar .km-submit-custom{
     	border-radius: 0px 0px 6px 6px!important;
+    }
+
+    .km-select-custom-list{
+    	width: 49%!important;
     }
     .km-cajas-filtro .km-caja-filtro,
     .km-cajas-filtro .form-group{
@@ -6625,6 +6682,9 @@ h1.maps {
     }
     .km-resultados-grid .km-item-resultado:nth-child(3n) {
         margin-right:3%
+    }
+    .km-select-custom-list{
+    	width:91%!important
     }
 	.km-cajas-filtro .km-caja-filtro,
     .km-cajas-filtro .form-group{
@@ -8334,6 +8394,7 @@ button.close {
 	background-repeat: no-repeat;
 	background-color: #292929;
 	height: 150px;
+
 }
 
 .km-ranking::after{
