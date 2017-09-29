@@ -32,7 +32,7 @@ jQuery(document).on('click', '.km-select-custom-button', function(){
 		obj.css('display', 'none');
 	}else{
 		jQuery('.km-select-custom-list').css('display', 'none');
-		$('body').append('<div class="km-select-background-click" style="top:0px;left:0px;position:fixed;width:100%;height:100vh;background:transparent;z-index:2;"></div>')
+		jQuery('body').append('<div class="km-select-background-click" style="top:0px;left:0px;position:fixed;width:100%;height:100vh;background:transparent;z-index:2;"></div>')
 		obj.css('z-index', '2');
 		obj.css('display', 'block');
 	}
