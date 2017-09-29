@@ -1,17 +1,17 @@
 
 jQuery(document).on('click', '.km-select-background-click',function(){
 	jQuery('.km-select-custom-list').css('display', 'none');
-	$(".km-select-background-click").remove();
+	jQuery(".km-select-background-click").remove();
 });
 
 jQuery(document).on('click', '[data-target="checkbox"]', function(){
-	var obj = $(this).parent().parent().parent().children('button');
+	var obj = jQuery(this).parent().parent().parent().children('button');
 		obj.html( obj.attr('title') );
 	  
-	var l = $(this).parent().parent().find('[type="checkbox"]:checked');
+	var l = jQuery(this).parent().parent().find('[type="checkbox"]:checked');
 	var contenido = '';
-	$.each(l, function(i,v){
-		var value = $(this).attr('content');	
+	jQuery.each(l, function(i,v){
+		var value = jQuery(this).attr('content');	
 		if( l[i].checked ){
 			if(contenido.trim().indexOf( value ) == -1){
 				var separador = ( contenido != '' )? ', ':''; 
@@ -23,7 +23,7 @@ jQuery(document).on('click', '[data-target="checkbox"]', function(){
 });
 
 jQuery('#mapa-close').on('click', function(){
-	$(this).parent().css('display', 'none');
+	jQuery(this).parent().css('display', 'none');
 });
 
 jQuery(document).on('click', '.km-select-custom-button', function(){
