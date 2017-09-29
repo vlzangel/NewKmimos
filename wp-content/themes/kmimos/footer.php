@@ -94,7 +94,7 @@ $HTML = '
                 ga('send', 'pageview');
             </script>
 
-            
+            <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
             <script>/* startApp(); */</script>
 
             <script type='text/javascript'>
