@@ -46,17 +46,21 @@ $HTML = '
                 </div>
             </div>
         </footer>
-        <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
     ';
+
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
+
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
     wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
 
     wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
     wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
+
+    wp_enqueue_script('bxslider', getTema()."/js/jquery.bxslider.js", array("jquery"), '1.0.0');
 
     if(  $_SESSION['admin_sub_login'] == 'YES' ){
         $HTML .= "
@@ -90,7 +94,7 @@ $HTML = '
                 ga('send', 'pageview');
             </script>
 
-            <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
+            
             <script>/* startApp(); */</script>
 
             <script type='text/javascript'>

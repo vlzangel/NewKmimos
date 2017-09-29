@@ -118,4 +118,15 @@ jQuery( document ).ready(function() {
         show_login_modal("servicios");
     });
 
+	jQuery('.km-galeria-cuidador-slider').bxSlider({
+	    slideWidth: 200,
+	    minSlides: 1,
+	    maxSlides: 3,
+	    slideMargin: 10
+	});
+
+	jQuery(".datepick td").on("click", function(e){
+		jQuery( this ).children("a").click();
+	});
+
 });

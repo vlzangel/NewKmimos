@@ -1,4 +1,3 @@
-
 jQuery(document).on('click', '.km-select-background-click',function(){
 	jQuery('.km-select-custom-list').css('display', 'none');
 	jQuery(".km-select-background-click").remove();
@@ -22,6 +21,61 @@ jQuery(document).on('click', '[data-target="checkbox"]', function(){
 	});
 });
 
+
+jQuery(document).ready(function(){
+
+	jQuery('.km-premium-slider').bxSlider({
+	    slideWidth: 200,
+	    minSlides: 1,
+	    maxSlides: 3,
+	    slideMargin: 10
+	});
+
+	jQuery(document).on("click", '.show-map-mobile', function ( e ) {
+		e.preventDefault();
+		jQuery(".km-map-content").addClass("showMap");
+	});
+
+	jQuery(document).on("click", '.km-map-content .km-map-close', function ( e ) {
+		e.preventDefault();
+		jQuery(".km-map-content").removeClass("showMap");
+	});
+
+	jQuery(".datepick td").on("click", function(e){
+		jQuery( this ).children("a").click();
+	});
+
+});
+
+function mapStatic( e ){
+	var w = jQuery(e);
+	if ( w.width() > 991 ) {
+		var scrollTop = w.scrollTop();
+		var mapPrin = jQuery(".km-caja-resultados");
+		var mapElem = jQuery(".km-caja-resultados .km-columna-der");
+		var offset = mapPrin.offset();
+		var topPre = 41;
+
+		if ( scrollTop > 290 ) {
+			mapElem.addClass("mapAbsolute");
+			var topSumar = scrollTop - offset.top + topPre;
+			mapElem.css({
+				top: topSumar
+			});
+		} else {
+			mapElem.removeClass("mapAbsolute");
+		}
+	}
+}
+
+jQuery(window).scroll(function() {
+
+	if( pines != undefined ){
+		if( pines.length > 1 ){
+			mapStatic( this );
+		}
+	}
+});
 jQuery('#mapa-close').on('click', function(){
 	jQuery(this).parent().css('display', 'none');
 });
@@ -87,6 +141,14 @@ function vlz_tipo_ubicacion(){
 	}
 }
 
+jQuery(document).on("click", '.btnOpenPopupMap', function ( e ) {
+	e.preventDefault();
+
+	jQuery(".km-caja-resultados .km-columna-der").fadeIn("fast");
+
+	google.maps.event.trigger(map, 'resize');
+});
+
 var markers = [];
 var infos = [];
 var map;
@@ -146,7 +208,7 @@ function initMap() {
 							+'    <div class="km-sellos"> '+servicios+' </div>'
 							+'</div>'
 							+'<div class="km-opciones maps">'
-							+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
+							+'    <div class="precio">MXN jQuery '+cuidador.pre+'</div>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
 							+'</div>'
