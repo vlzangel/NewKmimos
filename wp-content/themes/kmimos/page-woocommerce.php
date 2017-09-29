@@ -152,9 +152,9 @@
 				}
 			}
 		}
-		$error = "";
+		//$error = "";
 
-		echo "
+		$HTML .= "
 		<script> 
 			var SERVICIO_ID = '".get_the_ID()."';
 			var cupos = eval('".json_encode($cupos)."'); 
@@ -174,7 +174,7 @@
 			if( $actual == $referencia ){
 				$referencia = get_home_url();
 			} 
-			echo "
+			$HTML .= "
 			<style>
 				.vlz_modal{ position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: table; z-index: 10000; background: rgba(0, 0, 0, 0.8); vertical-align: middle !important; }
 				h1{ font-size: 18px; }
@@ -571,7 +571,7 @@
 							<div class="km-term-conditions">
 								<label>
 									<input type="checkbox" id="term-conditions" name="term-conditions" value="1">
-									Acepto los términos y condiciones
+									Acepto los <a href="'.get_home_url().'/terminos-y-condiciones/" target="_blank">términos y condiciones</a>
 								</label>
 							</div>
 

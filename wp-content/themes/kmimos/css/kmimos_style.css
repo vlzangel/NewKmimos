@@ -2288,6 +2288,10 @@ footer input:focus{
 		width: 100%;
 		display: block;
 	}
+	
+	.nav>li>a>img {
+	    margin-top: -8px !important;
+	}
 }
 @media (max-width: 900px) {
 	button.close {
@@ -7367,7 +7371,7 @@ section {
     -moz-transition: all 0.3s ease-in-out;
 }
 .navbar-right {
-    padding-top: 3px;
+    padding-top: 10px;
 }
 .logo-img-mobile {
     height: 30px;

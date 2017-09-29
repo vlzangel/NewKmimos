@@ -10,7 +10,6 @@ jQuery("#commentform").submit(function(e){
     GetComments();
 
     result = jQuery.parseJSON(result);
-    //console.log(result);
 
     if(result['result']=='success'){
 
@@ -23,7 +22,6 @@ jQuery("#commentform").submit(function(e){
 
 function GetComments(){
     var data = getAjaxData('/procesos/cuidador/comentarios.php','post', {servicio: SERVICIO_ID});
-    //console.log(data);
     comentarios_cuidador = jQuery.parseJSON(data);
     comentarios();
 

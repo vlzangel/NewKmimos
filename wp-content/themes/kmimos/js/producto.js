@@ -690,18 +690,6 @@ jQuery(document).ready(function() {
 		$(".km-tab-content", el.parent()).slideToggle("fast");
 	});
 
-	$(document).on("focus", "input.input-label-placeholder", function(){
-		$(this).parent().addClass("focus");
-	}).on("blur", "input.input-label-placeholder", function(){
-		let i = $(this);
-		if ( i.val() !== "" ) $(this).parent().addClass("focused");
-		else $(this).parent().removeClass("focused");
-
-		$(this).parent().removeClass("focus");
-	});
-
-
-
 	jQuery(".navbar").removeClass("bg-transparent");
 	jQuery(".navbar").addClass("bg-white-secondary");
 	jQuery('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo-negro.png');

@@ -12,12 +12,26 @@
 		
 		$id_user = get_current_user_id();
 
+		$orden_id = vlz_get_page();
+
+
+		$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
+		if( $pdf != "" ){
+			$pdf = "
+				<a class='btn_fin_reserva' href='{$pdf}' target='_blank'>DESCARGAR COMPROBANTE DE PAGO</a>
+			";
+		}
+
 		$HTML .= '
 	 		<div class="km-content km-step-end">
 				<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
 				<br>
 				¡Genial '.get_user_meta($id_user, "first_name", true).'!<br>
 				Reservaste Exitosamente
+				<div style="padding-top: 20px;">
+					'.$pdf.'
+					<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
+				</div>
 			</div>
 
 			<!-- SECCIÓN BENEFICIOS -->

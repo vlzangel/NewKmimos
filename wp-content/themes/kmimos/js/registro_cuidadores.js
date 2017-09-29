@@ -1,6 +1,3 @@
-// $(document).on("click", '[data-target="#popup-registro-cuidador1"]' ,function(e){
-// 	e.preventDefault();
-// });
 $(document).on("click", '[data-target="#popup-registro-cuidador1"]' ,function(e){
 	e.preventDefault();
 
@@ -174,48 +171,41 @@ $(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-registro-c
 	}
 });
 
-// POPUP REGISTRO CUIDADOR
+/*POPUP REGISTRO CUIDADOR*/
 jQuery( document ).on('click', "[data-load='portada']", function(e){
 	$('#portada').click();
 });
 
 jQuery(document).on('change', 'select[name="rc_estado"]', function(e){
-	var state=jQuery(this).val();
-	var latitude=Coordsearch['state'][state]['lat'];
-	var longitude=Coordsearch['state'][state]['lng'];
-
-	if(latitude!='' && longitude!=''){
-		lat=latitude;
-		lng=longitude;
-		$('[name="latitude"]').val( lat );
-		$('[name="longitude"]').val( lng );
-	}
-
-	// Cargar Municipios
-    if( state != "" ){
-        var html = "<option value=''>Seleccione un municipio</option>";
-        jQuery.each(estados_municipios[state]['municipios'], function(i, val) {
-            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
-        });
-        jQuery('[name="rc_municipio"]').html(html);
+	var estado_id = jQuery(this).val();
+	    
+    if( estado_id != "" ){
+        jQuery.getJSON( 
+            HOME+"procesos/generales/municipios.php", 
+            {estado: estado_id} 
+        ).done(
+            function( data, textStatus, jqXHR ) {
+                var html = "<option value=''>Seleccione un municipio</option>";
+                jQuery.each(data, function(i, val) {
+                    html += "<option value="+val.id+">"+val.name+"</option>";
+                });
+                jQuery('[name="rc_municipio"]').html(html);
+            }
+        ).fail(
+            function( jqXHR, textStatus, errorThrown ) {
+                console.log( "Error: " +  errorThrown );
+            }
+        );
     }
 
 });
 
 jQuery(document).on('change', 'select[name="rc_municipio"]', function(e){
 	var locale=jQuery(this).val();
-	var latitude=Coordsearch['locale'][locale]['lat'];
-	var longitude=Coordsearch['locale'][locale]['lng'];
-
-	if(latitude!='' && longitude!=''){
-		lat=latitude;
-		lng=longitude;
-		$('[name="latitude"]').val( lat );
-		$('[name="longitude"]').val( lng );
-	}
+	
 });
 
-// km_cuidador_validar DATOS
+/*km_cuidador_validar DATOS*/
 jQuery( document ).on('keypress', '[data-clear]', function(e){
 	mensaje( $(this).attr('rc_name'), '', true );
 });
@@ -242,11 +232,11 @@ function km_cuidador_validar( fields ){
 	if( fields.length > 0 ){
 		$.each( fields, function(id, val){
 			var m = '';
-			// validar vacio
+			/*validar vacio*/
 			if( $('[name="'+val+'"]').val() == '' ){
 				m = 'Este campo no puede estar vacio';
 			}
-			// validar longitud
+			/*validar longitud*/
 			if( m == ''){
 				m = rc_validar_longitud( val );
 			}

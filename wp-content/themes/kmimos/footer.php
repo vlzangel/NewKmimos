@@ -48,7 +48,6 @@ $HTML = '
         </footer>
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
     ';
-    wp_enqueue_script('boostrap-select.js', getTema()."/js/bootstrap-select.js", array("jquery"), '1.0.0');
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
@@ -80,11 +79,7 @@ $HTML = '
 
     wp_footer();
 
-    /* BEGIN ESTADOS Y MUNICIPIOS */
-        $HTML = get_estados_municipios();
-    /* END ESTADOS Y MUNICIPIOS */
-
-    $HTML .= "
+    $HTML = "
             <script type='text/javascript'>
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -98,7 +93,6 @@ $HTML = '
             <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
             <script>/* startApp(); */</script>
 
-            <!-- Asignar Alt a Imagenes -->
             <script type='text/javascript'>
                 jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
             </script>        

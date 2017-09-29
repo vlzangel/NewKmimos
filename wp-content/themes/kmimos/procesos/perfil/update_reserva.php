@@ -8,6 +8,9 @@
 		$data = $db->get_row("SELECT * FROM wp_posts WHERE md5(ID) = '{$param[2]}'");
 
 
+		$sql = "SELECT ID FROM wp_users WHERE md5(ID) = '{$param[1]}'";
+		$user_id = $db->get_var($sql);
+
 		$metas_reserva = $db->get_results("SELECT * FROM wp_postmeta WHERE md5(post_id) = '{$param[0]}'"); 
 		$id_reserva = $metas_reserva[0]->post_id;
 		$metas_reservas = array();
@@ -22,17 +25,26 @@
 		foreach ($m_orden as $key => $value) { $metas_orden[ $value->meta_key ] = $value->meta_value; }
 
 		$descuento = 0;
-		if( isset( $metas_orden[ "_cart_discount" ] ) ){
-			$descuento = $metas_orden[ "_cart_discount" ];
-		}
+        $order_item_id = $db->get_var("SELECT order_item_id FROM wp_woocommerce_order_items WHERE order_id = '{$orden_id}' AND order_item_type = 'coupon' AND order_item_name LIKE '%saldo-%'"); 
+        if( $order_item_id !== false ){
+            $descuento = $db->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$order_item_id}' AND meta_key = 'discount_amount' ");
+        }
 
+        $sql = "SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$orden_id}' AND order_item_type = 'coupon' AND order_item_name NOT LIKE '%saldo-%'";
+        $otros_cupones = $db->get_results($sql);
+        foreach ($otros_cupones as $cupon) {
+        	$cupon_id = $db->get_var("SELECT ID FROM wp_posts WHERE post_title = '{$cupon->order_item_name}'");
+
+            $db->query("DELETE FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = '_used_by' AND meta_value = '{$user_id}'");
+        }
+    	
 		$r3 = $db->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reservas['_booking_order_item_id']}'"); 
 		if( count($r3) > 1 ){
 			$items = array();
 			foreach ($r3 as $key => $value) { $items[ $value->meta_key ] = $value->meta_value; }
 		}
 
-		if( $order_status == 'wc-on-hold' && $metas_orden['_payment_method'] == 'openpay_stores'){ }else{
+		if( $order_status == 'wc-on-hold' && strtolower($metas_orden['_payment_method']) == 'tienda'){ }else{
 			$deposito = unserialize( $items['_wc_deposit_meta'] );
 			$saldo = 0;
 			if( $deposito['enable'] == 'yes' ){

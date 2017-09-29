@@ -4,7 +4,6 @@
     */
 	wp_enqueue_script('registro_cuidadores', getTema()."/js/registro_cuidadores.js", array("jquery"), '1.0.0');
 
-//	$config_link_registro = ( is_user_logged_in() )? ' href="'.get_home_url().'/perfil"' : 'href="#" role="button" data-target="#popup-registro-cuidador1"' ;
 	$config_link_registro = 'href="#" role="button" data-target="#popup-registro-cuidador1"' ;
 
     get_header();
@@ -94,6 +93,12 @@
 
 <?php
 	
-	// echo comprimir_styles($HTML2);
+
+    /* BEGIN ESTADOS Y MUNICIPIOS */
+        $HTML2 = get_estados_municipios();
+    /* END ESTADOS Y MUNICIPIOS */
+
+	 //echo comprimir_styles($HTML2);
+
     get_footer(); 
 ?>

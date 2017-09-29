@@ -67,16 +67,14 @@ function getAjaxData(url,method, datos){
     }).responseText;
 }
 
-//MODAL SHOW
+/*MODAL SHOW*/
 jQuery(document).on('click', '.modal_show' ,function(e){
     modal_show(this)
 });
 function modal_show(element){
     var modal = $(element).data('modal');
-    //jQuery('.modal').css("display", "");
     jQuery('.modal').modal('hide');
     jQuery(modal).modal("show");
-    //console.log(modal);
 }
 
 
@@ -107,7 +105,7 @@ function postJSON(FORM, URL, ANTES, RESPUESTA){
 	  	event.preventDefault();
         if( validarAll(FORM) ){
             ANTES();
-            // jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json');
+            /*jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json');*/
             jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA);
         }
 	});
@@ -124,9 +122,7 @@ function subirImg(evt){
             reader.onload = (function(theFile) {
                 return function(e) {
                     redimencionar(e.target.result, function(img_reducida){
-                        //var img_pre = Cookies.get("img_temp");
                         jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: ""}, function( url ) {
-                            //Cookies.set("img_temp", url);
                             padre.children('.vlz_img_portada_fondo').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
                             padre.children('.vlz_img_portada_normal').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
                             padre.children('.vlz_img_portada_cargando').css("display", "none");

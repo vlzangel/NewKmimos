@@ -31,8 +31,10 @@
 
 	wp_head();
 
-    include_once("partes/head/script_google_auth.php");
-    include_once("partes/head/script_facebook_auth.php");
+	if( !is_user_logged_in() ){
+	    include_once("partes/head/script_google_auth.php");
+	    include_once("partes/head/script_facebook_auth.php");
+	}
 
 	global $post;
 	$reserrvacion_page = "";
@@ -43,11 +45,11 @@
 		$reserrvacion_page = "page-reservation";
 	}
 
-    $coordenadas = get_coordenadas();
+/*    $coordenadas = get_coordenadas();
     $HTML .= "<script type='text/javascript'>
     	var Coordsearch = JSON.parse("; 
     $HTML .= "'".$coordenadas."'";
-    $HTML .= ");</script>";
+    $HTML .= ");</script>";*/
 
 
 	$HTML .= '
@@ -115,28 +117,30 @@
 				}
 				$HTML .= '	
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">';
+					';
 
 					if( !is_user_logged_in() ){
 						$HTML .= '	
-						<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
-						<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">REGISTRARME</a></li>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
+							<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">REGISTRARME</a></li>
 
-						<li><a href="'.get_home_url().'/busqueda" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-						<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-btn-primary">QUIERO SER CUIDADOR</a></li>';
+							<li><a href="'.get_home_url().'/busqueda" class="km-nav-link">BUSCAR CUIDADOR</a></li>
+							<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-btn-primary">QUIERO SER CUIDADOR</a></li>';
 					}else{
 						$HTML .= '	
-						<li class="dropdown hidden-xs " data-obj="avatar">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<img src="'.$avatar.'" width="60px" height="60px" class="img-circle"> 
-							</a>
-							<ul class="dropdown-menu"  style="background: #fff;">
+						<ul class="nav navbar-nav navbar-right" style="padding-top: 3px !important;">
+							<li class="dropdown hidden-xs " data-obj="avatar">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+									<img src="'.$avatar.'" width="60px" height="60px" class="img-circle"> 
+								</a>
+								<ul class="dropdown-menu"  style="background: #fff;">
+									'.$menus_normal.'
+								</ul>
+				        	</li>
+				        	<div class="hidden-sm  hidden-md hidden-lg" style="background: #fff;">
 								'.$menus_normal.'
-							</ul>
-			        	</li>
-			        	<div class="hidden-sm  hidden-md hidden-lg" style="background: #fff;">
-							'.$menus_normal.'
-						</div>
+							</div>
 			    		';
 			    	}
 	$HTML .= '
