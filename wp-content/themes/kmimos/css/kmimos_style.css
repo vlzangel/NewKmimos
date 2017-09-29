@@ -2258,40 +2258,7 @@ footer input:focus{
 	.h5-sub {
 		font-size: 9px;
 	}
-	.bg-white {
-		height: 60px;
-	}
-	.navbar-brand>img {
-		height: 40px!important;
-		padding-left: 15px;
-		top: 5px;
-	}
-	.navbar {
-		padding-top: 30px!important;
-	}
-	.navbar-header {
-		margin-top: -22px;
-	}
-	.navbar-nav {
-		margin: 0px -15px;
-	}
-	.nav>li {
-		background: white;
-	}
-	ul.navbar-right li:last-child {
-		padding-left: 10px;
-		padding-right: 10px;
-		background-color: white;
-		display: flex;
-		padding-bottom: 10px;
-	}
-	.km-nav-link {
-		color: black;
-	}
-	.nav .principal {
-		float: none;
-		margin: 0 auto;
-	}
+	
 	.km-video {
 		height: 500px;
 	}
