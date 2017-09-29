@@ -45,13 +45,6 @@
 		$reserrvacion_page = "page-reservation";
 	}
 
-/*    $coordenadas = get_coordenadas();
-    $HTML .= "<script type='text/javascript'>
-    	var Coordsearch = JSON.parse("; 
-    $HTML .= "'".$coordenadas."'";
-    $HTML .= ");</script>";*/
-
-
 	$HTML .= '
 		<script type="text/javascript"> 
 			var HOME = "'.getTema().'/"; 
@@ -72,15 +65,8 @@
 			<li><a class="modal_show" style="padding-right: 15px" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
 			<li><a class="modal_show" style="padding-left: 15px; border-left: 1px solid white;" data-toggle="modal" data-modal="#myModal">REGISTRARME</a></li>
 		';
-		$menus_movil = '
-			<li><a class="modal_show km-nav-link hidden-sm hidden-md hidden-lg" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
-			<li><a href="#" class="modal_show km-nav-link hidden-sm hidden-md hidden-lg" data-modal=#myModal">REGISTRARME</a></li>
-		';
 	}else{
 		$menus_normal =  $MENU["body"].$MENU["footer"];
-		$menus_movil =  $MENU["body"].$MENU["footer"];
-//		$menus_normal = $MENU["head"].$MENU["body"].$MENU["footer"];
-//		$menus_movil = $MENU["head_movil"].$MENU["body"].$MENU["footer"];
 	}
 
 	// Avatar default
@@ -97,6 +83,37 @@
 		$avatar_circle = 'img-circle';
 	}
 
+	if( !is_user_logged_in() ){
+		$HTML .= '	
+		<ul class="hidden-xs nav-login">
+			<li><a id="login" href="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
+			<li><a href="#popup-registrarte" style="padding-left: 15px; border-left: 1px solid white;" role="button" data-toggle="modal">REGISTRARME</a></li>
+		</ul>';
+	}else{
+		$HTML .= '	
+			<nav class="navbar navbar-fixed-top bg-transparent">
+				<div class="container">
+					<div class="navbar-header ">
+						<a class="navbar-brand" href="'.get_home_url().'">
+							<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
+						</a>
+					</div>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown" data-obj="avatar">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<img src="'.$avatar.'" width="60px" height="60px" class="img-circle"> 
+							</a>
+							<ul class="dropdown-menu"  style="background: #fff;">
+								'.$menus_normal.'
+							</ul>
+			        	</li>
+			    	</ul>
+			    </div>
+			</nav>
+		';
+	}
+
+/*
 	$HTML .= '	
 		<nav class="navbar navbar-fixed-top bg-transparent">
 			<div class="container">
@@ -142,17 +159,46 @@
 								'.$menus_normal.'
 							</div>
 			    		';
-			    	}
-	$HTML .= '
+			    	} $HTML .= '
 			    	</ul>
 			    </div>
 			</div>
 		</nav>
 	';
+*/
 
-
-	include_once('partes/modal_register.php');
+	if( !is_user_logged_in() ){
+		include_once('partes/modal_register.php');
+	}
+	
 	echo comprimir_styles($HTML);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 	global $wpdb;
 	$sql = "SELECT * FROM cuidadores";

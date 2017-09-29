@@ -78,7 +78,6 @@ var hasGPS=false;
         }
     });
 
-
     $('.adicionales_button').on('click', function(){
         if( $('.modal_servicios').css('display') == 'none' ){
             $('.modal_servicios').css('display', 'table');
@@ -172,6 +171,193 @@ var hasGPS=false;
     });
 })(jQuery);
 
+
+var fecha = new Date();
+jQuery(document).ready(function(){
+
+    jQuery.post(
+        HOME+"/procesos/busqueda/ubicacion.php",
+        {},
+        function(data){
+            jQuery("#ubicacion_list").html(data);
+            jQuery("#ubicacion_list div").on("click", function(e){
+                jQuery("#ubicacion_txt").val( jQuery(this).html() );
+                jQuery("#ubicacion").val( jQuery(this).attr("value") );
+                jQuery("#ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
+            });
+            jQuery("#ubicacion_txt").attr("readonly", false);
+        }
+    );
+
+    function getCleanedString(cadena){
+        var specialChars = "!@#jQuery^&%*()+=-[]\/{}|:<>?,.";
+        for (var i = 0; i < specialChars.length; i++) {
+            cadena= cadena.replace(new RegExp("\\" + specialChars[i], 'gi'), '');
+        }   
+        cadena = cadena.toLowerCase();
+        cadena = cadena.replace(/ /g," ");
+        cadena = cadena.replace(/á/gi,"a");
+        cadena = cadena.replace(/é/gi,"e");
+        cadena = cadena.replace(/í/gi,"i");
+        cadena = cadena.replace(/ó/gi,"o");
+        cadena = cadena.replace(/ú/gi,"u");
+        cadena = cadena.replace(/ñ/gi,"n");
+        return cadena;
+    }
+
+    jQuery("#ubicacion_txt").on("keyup", function ( e ) {       
+        var buscar_1 = getCleanedString( String(jQuery("#ubicacion_txt").val()).toLowerCase() );
+
+        jQuery("#ubicacion_list div").css("display", "none");
+        jQuery("#ubicacion_list div").each(function( index ) {
+            if( String(jQuery( this ).attr("data-value")).toLowerCase().search(buscar_1) != -1 ){
+                jQuery( this ).css("display", "block");
+                if( index == 0 ){
+                    /*jQuery("#ubicacion").val( jQuery( this ).html() );
+                    jQuery("#ubicacion").attr( "data-value", jQuery( this ).attr("data-value") );*/
+                }
+            }
+        });
+    });
+
+    jQuery("#ubicacion_txt").on("focus", function ( e ) {       
+        var buscar_1 = getCleanedString( String(jQuery("#ubicacion_txt").val()).toLowerCase() );
+
+        jQuery("#ubicacion_list div").css("display", "none");
+        jQuery("#ubicacion_list div").each(function( index ) {
+            if( String(jQuery( this ).attr("data-value")).toLowerCase().search(buscar_1) != -1 ){
+                jQuery( this ).css("display", "block");
+            }
+        });
+    });
+
+    jQuery("#ubicacion_txt").on("change", function ( e ) {      
+        var txt = getCleanedString( String(jQuery("#ubicacion_txt").val()).toLowerCase() );
+        if( txt == "" ){
+            jQuery("#ubicacion").val( "" );
+            jQuery("#ubicacion").attr( "data-value", "" );
+        }
+    });
+
+
+    jQuery('.bxslider').bxSlider({
+        buildPager: function(slideIndex){
+            switch(slideIndex){
+                case 0:
+                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-1.jpg">';
+                case 1:
+                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-2.jpg">';
+                case 2:
+                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-3.jpg">';
+            }
+        }
+    });
+
+    function initCheckin(date, actual){
+        if(actual){
+            jQuery('#checkout').datepick({
+                dateFormat: 'dd/mm/yyyy',
+                defaultDate: date,
+                selectDefaultDate: true,
+                minDate: date,
+                onSelect: function(xdate) {
+                    if(typeof calcular === 'function') {
+                        calcular();
+                    }
+                },
+                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                firstDay: 1,
+                onmonthsToShow: [1, 1]
+            });
+        }else{
+            jQuery('#checkout').datepick({
+                dateFormat: 'dd/mm/yyyy',
+                minDate: date,
+                onSelect: function(xdate) {
+                    if(typeof calcular === 'function') {
+                        calcular();
+                    }
+                },
+                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                firstDay: 1,
+                onmonthsToShow: [1, 1]
+            });
+        }
+    }
+
+    jQuery('#checkin').datepick({
+        dateFormat: 'dd/mm/yyyy',
+        minDate: fecha,
+        onSelect: function(date1) {
+            var ini = jQuery('#checkin').datepick( "getDate" );
+            var fin = jQuery('#checkout').datepick( "getDate" );
+            if( fin.length > 0 ){
+                var xini = ini[0].getTime();
+                var xfin = fin[0].getTime();
+                if( xini > xfin ){
+                    jQuery('#checkout').datepick('destroy');
+                    initCheckin(date1[0], true);
+                }else{
+                    jQuery('#checkout').datepick('destroy');
+                    initCheckin(date1[0], false);
+                }
+            }else{
+                jQuery('#checkout').datepick('destroy');
+                initCheckin(date1[0], true);
+            }
+            if(typeof calcular === 'function') {
+                calcular();
+            }
+            if(typeof validar_busqueda_home === 'function') {
+                validar_busqueda_home();
+            }
+        },
+        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
+
+    jQuery('#checkout').datepick({
+        dateFormat: 'dd/mm/yyyy',
+        minDate: fecha,
+        onSelect: function(xdate) {
+            if(typeof calcular === 'function') {
+                calcular();
+            }
+        },
+        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
+
+    jQuery("#buscar").on("click", function ( e ) {
+        e.preventDefault();
+        jQuery("#buscador").submit();
+    });
+
+    jQuery("#buscar_no").on("click", function ( e ) {
+        e.preventDefault();
+        jQuery("#buscador").submit();
+    });
+
+    jQuery("#form_cuidador").submit(function(e){
+        if( jQuery("#checkin").val() == "" ){
+            jQuery("#checkin").css("border", "solid 1px red");
+            jQuery("#checkout").css("border", "solid 1px red");
+            jQuery(".validacion_fechas").css("display", "block");
+
+            jQuery(".validacion_fechas").css("display", "block");
+            jQuery(".km-ficha-fechas").css("margin-bottom", "0px");
+            e.preventDefault();
+        }
+    });
+
+    jQuery(".datepick td").on("click", function(e){
+        jQuery( this ).children("a").click();
+    });
+});
+
+
 function coordenadas(position){
     if(position.coords.latitude != '' && position.coords.longitude != '') {
         document.getElementById('latitud').value=position.coords.latitude;
@@ -193,25 +379,47 @@ function close_video(){
 }
 
 function validar_busqueda_home(){
-        var IN  = validar( 'checkin' );
-        var OUT = validar( 'checkout' );
+    var IN  = validar( 'checkin' );
+    var OUT = validar( 'checkout' );
 
-        $( '#checkin' ).parent().removeClass('has-error');
-        $( '[data-error="checkin"]' ).addClass('hidden');
-        $( '#checkout' ).parent().removeClass('has-error');
-        $( '[data-error="checkout"]' ).addClass('hidden');
+    $( '#checkin' ).parent().removeClass('has-error');
+    $( '[data-error="checkin"]' ).addClass('hidden');
+    $( '#checkout' ).parent().removeClass('has-error');
+    $( '[data-error="checkout"]' ).addClass('hidden');
 
-        if( IN ){
-            $( '#checkin' ).parent().addClass('has-error');
-            $( '[data-error="checkin"]' ).removeClass('hidden');
-        }
-        if( OUT ){
-            $( '#checkout' ).parent().addClass('has-error');
-            $( '[data-error="checkin"]' ).removeClass('hidden');
-        }
-
-        if( !IN && !OUT ){
-            return true;
-        }
-        return false;
+    if( IN ){
+        $( '#checkin' ).parent().addClass('has-error');
+        $( '[data-error="checkin"]' ).removeClass('hidden');
     }
+    if( OUT ){
+        $( '#checkout' ).parent().addClass('has-error');
+        $( '[data-error="checkin"]' ).removeClass('hidden');
+    }
+
+    if( !IN && !OUT ){
+        return true;
+    }
+    return false;
+}
+
+function playVideo(e) {
+    var el = jQuery(e);
+    var p = el.parent().parent().parent();
+    jQuery('video', p).get(0).play();
+    jQuery('.km-testimonial-text').css('display','none');
+    jQuery('.img-testimoniales').css('display','none');
+    jQuery('video').css('display','block');
+}
+function stopVideo(){
+    jQuery.each( jQuery('video'), function(i, e){
+        e.pause();
+        e.currentTime = 0;
+    });
+    jQuery('.km-testimonial-text').css('display','block');
+    jQuery('.img-testimoniales').css('display','block');
+    jQuery('video').css('display','none');  
+}
+
+jQuery(document).on('click', '.control-video', function(e){
+    stopVideo();
+});

@@ -28,6 +28,8 @@
 	remove_action('wp_head', 'rel_canonical');
 	remove_action('wp_head', 'rel_canonical', 47);
 
+	remove_action ('wp_head', 'wp_site_icon', 99);
+
 	// add_action('wp_enqueue_scripts', 'no_more_jquery');
 	// function no_more_jquery(){
 	//     wp_deregister_script('jquery');
