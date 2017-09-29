@@ -21,6 +21,7 @@ jQuery(document).on('click', '[data-target="checkbox"]', function(){
 	});
 });
 
+
 jQuery(document).ready(function(){
 
 	jQuery('.km-premium-slider').bxSlider({
@@ -75,6 +76,9 @@ jQuery(window).scroll(function() {
 		}
 	}
 });
+jQuery('#mapa-close').on('click', function(){
+	jQuery(this).parent().css('display', 'none');
+});
 
 jQuery(document).on('click', '.km-select-custom-button', function(){
 	var obj = jQuery(this).parent().find('ul');
@@ -82,6 +86,8 @@ jQuery(document).on('click', '.km-select-custom-button', function(){
 		obj.css('display', 'none');
 	}else{
 		jQuery('.km-select-custom-list').css('display', 'none');
+		jQuery('body').append('<div class="km-select-background-click" style="top:0px;left:0px;position:fixed;width:100%;height:100vh;background:transparent;z-index:2;"></div>')
+		obj.css('z-index', '2');
 		obj.css('display', 'block');
 	}
 });
