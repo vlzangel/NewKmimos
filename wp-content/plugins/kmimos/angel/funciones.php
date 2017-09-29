@@ -455,7 +455,10 @@
                 $ficha = '
                     <div class="km-item-resultado active">
                         <div class="km-foto">
-                            <div class="km-img" style="background-image: url('.$img.');"></div>
+                            <div class="km-img">
+                                <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
+                                <div class="km-subimg" style="background-image: url('.$img.');"></div>
+                            </div>
                             <span class="km-contenedor-favorito">
                                 <a href="#" class="km-link-favorito active"></a>
                             </span>
@@ -476,8 +479,8 @@
                                 </div>
                             </div>
 
-                            <div class="km-opciones row">
-                                <div class="precio">Desde MXN $ '.$cuidador->precio.'</div>
+                            <div class="km-opciones">
+                                <div class="precio">MXN $ '.$cuidador->precio.'</div>
                                 <a href="#" role="button" data-name="'.utf8_encode($cuidador->titulo).'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke">CONÓCELO +</a>
                                 <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new basic">RESERVA</a>
                             </div>
@@ -489,7 +492,10 @@
                 $ficha = '
                     <div class="km-item-resultado">
                         <div class="km-foto">
-                            <div class="km-img" style="background-image: url('.$img.');"></div>
+                            <div class="km-img">
+                                <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
+                                <div class="km-subimg" style="background-image: url('.$img.');"></div>
+                            </div>
                             <span class="km-contenedor-favorito">
                                 <a href="#" class="km-link-favorito active"></a>
                             </span>
@@ -497,7 +503,7 @@
                         <div class="km-descripcion">
                             <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
                             <p>'.$anios_exp.' año(s) de experiencia
-                                <br><b>Desde MXN $ '.$cuidador->precio.'</b>
+                                <br><b>MXN $ '.$cuidador->precio.'</b>
                             </p>
                             <div class="km-ranking">
                                 '.kmimos_petsitter_rating($cuidador->id_post).'

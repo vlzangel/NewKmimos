@@ -84,8 +84,8 @@
     	$check = (servicios_en_session($opt_key, $busqueda, 'servicios'))? 'checked' : '' ;
 	    $option_servicios_adicionales .= '
 		<li>
-			<label>
-				<input type="checkbox" name="servicios[]" value="'.$opt_key.'" '.$check.' >'.
+			<label data-target="checkbox" data-content="'.$opt_value['label'].'" >
+				<input type="checkbox" name="servicios[]" value="'.$opt_key.'" '.$check.' content="'.$opt_value['label'].'">'.
 					$opt_value['label']
 			.'</label>
 		</li>
@@ -99,8 +99,8 @@
     	$check = (servicios_en_session($opt_key, $busqueda, 'servicios'))? 'checked' : '' ;
 	    $option_tipo_servicio .= '
 		<li> 
-			<label>
-				<input type="checkbox" name="servicios[]" value="'.$opt_key.'" '.$check.' >'.
+			<label data-target="checkbox" data-content="'.$opt_value['name'].'" >
+				<input type="checkbox" name="servicios[]" value="'.$opt_key.'" '.$check.' content="'.$opt_value['name'].'">'.
 				$opt_value['name'].
 			'</label>
 		</li>
@@ -114,8 +114,8 @@
     	$check = (servicios_en_session($opt_value['db'], $busqueda, 'tamanos'))? 'checked' : '' ;
 	    $option_tamanos_mascotas .= '
 		<li> 
-			<label>
-				<input type="checkbox" name="tamanos[]" value="'.$opt_value['db'].'" '.$check.' >'.
+			<label data-target="checkbox" data-content="'.$opt_value['name'].'" >
+				<input type="checkbox" name="tamanos[]" value="'.$opt_value['db'].'" '.$check.' content="'.$opt_value['name'].'">'.
 				$opt_value['name'].
 			'</label>
 		</li>
@@ -158,7 +158,7 @@
 						<div class="km-cajas-filtro">
 							
 							<div class="form-group">
-						    	<button class="btn km-select-custom-button" type="button">
+						    	<button class="btn km-select-custom-button" type="button" title="TIPO SERVICIO">
 						    		TIPO DE SERVICIO
 						    	</button>
 						    	<ul class="list-unstyled km-select-custom-list">
@@ -167,7 +167,7 @@
 							</div>
 
 							<div class="form-group">
-						    	<button class="btn km-select-custom-button" type="button">
+						    	<button class="btn km-select-custom-button" type="button" title="TAMAÑO DE MASCOTA">
 						    		TAMAÑO DE MASCOTA
 						    	</button>
 						    	<ul class="list-unstyled km-select-custom-list">
@@ -176,7 +176,7 @@
 							</div>
 
 							<div class="form-group">
-						    	<button class="btn km-select-custom-button" type="button">
+						    	<button class="btn km-select-custom-button" type="button" title="SERVICIOS ADICIONALES">
 						    		SERVICIOS ADICIONALES
 						    	</button>
 						    	<ul class="list-unstyled km-select-custom-list">
@@ -195,16 +195,8 @@
 	    		pines = eval(\''.$xPINES.'\'); 
 	    	</script>
 	    	<div class="km-caja-resultados">
-				<div class="km-columna-der pull-right col-mapa">
-					<div class="km-titulo-mapa">
-						UBICACIÓN DE RESULTADOS EN MAPA
-					</div>
-					<div id="mapa" class="km-mapa"></div>
-				</div>
 				<div class="km-columna-izq">
-						
 						'.$destacados_str.'
-
 						<div class="km-superior-resultados">
 							<span class="km-texto-resultados">
 								<b>Resultado de búsqueda</b> '.$total.' cuidadores disponibles
@@ -252,9 +244,17 @@
 								'.($paginacion["inicio"]+1).' - '.$paginacion["fin"].' de '.$total.' Cuidadores Certificados
 							</div>
 						</div>
+					
+				</div>
+				<div class="km-columna-der">
+					<div class="km-titulo-mapa">
+						UBICACIÓN DE RESULTADOS EN MAPA
 					</div>
+					<div id="mapa" class="km-mapa"></div>
+					<div id="mapa-close" style="display:none;position:absolute; right:0px; top:0px;padding:5px;font-size:18px;"><i class="fa fa-close"></i></div>
 				</div>
 			</div>
+			<a href="#" class="km-btn-primary btnOpenPopup btnOpenPopupMap">VER UBICACIÓN EN MAPA</a>
 			<script type="text/javascript" src="'.getTema().'/js/markerclusterer.js"></script>
 			<script type="text/javascript" src="'.getTema().'/js/oms.min.js"></script>
 
