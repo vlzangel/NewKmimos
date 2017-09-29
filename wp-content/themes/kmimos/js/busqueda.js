@@ -1,17 +1,16 @@
-
 jQuery(document).on('click', '.km-select-background-click',function(){
 	jQuery('.km-select-custom-list').css('display', 'none');
-	$(".km-select-background-click").remove();
+	jQuery(".km-select-background-click").remove();
 });
 
 jQuery(document).on('click', '[data-target="checkbox"]', function(){
-	var obj = $(this).parent().parent().parent().children('button');
+	var obj = jQuery(this).parent().parent().parent().children('button');
 		obj.html( obj.attr('title') );
 	  
-	var l = $(this).parent().parent().find('[type="checkbox"]:checked');
+	var l = jQuery(this).parent().parent().find('[type="checkbox"]:checked');
 	var contenido = '';
-	$.each(l, function(i,v){
-		var value = $(this).attr('content');	
+	jQuery.each(l, function(i,v){
+		var value = jQuery(this).attr('content');	
 		if( l[i].checked ){
 			if(contenido.trim().indexOf( value ) == -1){
 				var separador = ( contenido != '' )? ', ':''; 
@@ -22,8 +21,59 @@ jQuery(document).on('click', '[data-target="checkbox"]', function(){
 	});
 });
 
-jQuery('#mapa-close').on('click', function(){
-	$(this).parent().css('display', 'none');
+jQuery(document).ready(function(){
+
+	jQuery('.km-premium-slider').bxSlider({
+	    slideWidth: 200,
+	    minSlides: 1,
+	    maxSlides: 3,
+	    slideMargin: 10
+	});
+
+	jQuery(document).on("click", '.show-map-mobile', function ( e ) {
+		e.preventDefault();
+		jQuery(".km-map-content").addClass("showMap");
+	});
+
+	jQuery(document).on("click", '.km-map-content .km-map-close', function ( e ) {
+		e.preventDefault();
+		jQuery(".km-map-content").removeClass("showMap");
+	});
+
+	jQuery(".datepick td").on("click", function(e){
+		jQuery( this ).children("a").click();
+	});
+
+});
+
+function mapStatic( e ){
+	var w = jQuery(e);
+	if ( w.width() > 991 ) {
+		var scrollTop = w.scrollTop();
+		var mapPrin = jQuery(".km-caja-resultados");
+		var mapElem = jQuery(".km-caja-resultados .km-columna-der");
+		var offset = mapPrin.offset();
+		var topPre = 41;
+
+		if ( scrollTop > 290 ) {
+			mapElem.addClass("mapAbsolute");
+			var topSumar = scrollTop - offset.top + topPre;
+			mapElem.css({
+				top: topSumar
+			});
+		} else {
+			mapElem.removeClass("mapAbsolute");
+		}
+	}
+}
+
+jQuery(window).scroll(function() {
+
+	if( pines != undefined ){
+		if( pines.length > 1 ){
+			mapStatic( this );
+		}
+	}
 });
 
 jQuery(document).on('click', '.km-select-custom-button', function(){
@@ -32,8 +82,6 @@ jQuery(document).on('click', '.km-select-custom-button', function(){
 		obj.css('display', 'none');
 	}else{
 		jQuery('.km-select-custom-list').css('display', 'none');
-		$('body').append('<div class="km-select-background-click" style="top:0px;left:0px;position:fixed;width:100%;height:100vh;background:transparent;z-index:2;"></div>')
-		obj.css('z-index', '2');
 		obj.css('display', 'block');
 	}
 });
@@ -86,6 +134,14 @@ function vlz_tipo_ubicacion(){
 		jQuery("#vlz_inputs_coordenadas").css("display", "none");
 	}
 }
+
+jQuery(document).on("click", '.btnOpenPopupMap', function ( e ) {
+	e.preventDefault();
+
+	jQuery(".km-caja-resultados .km-columna-der").fadeIn("fast");
+
+	google.maps.event.trigger(map, 'resize');
+});
 
 var markers = [];
 var infos = [];
@@ -146,7 +202,7 @@ function initMap() {
 							+'    <div class="km-sellos"> '+servicios+' </div>'
 							+'</div>'
 							+'<div class="km-opciones maps">'
-							+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
+							+'    <div class="precio">MXN jQuery '+cuidador.pre+'</div>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
 							+'</div>'
