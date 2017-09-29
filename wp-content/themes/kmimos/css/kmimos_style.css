@@ -2180,9 +2180,6 @@ footer input:focus{
 		display: block;
 	}
 	
-	.nav>li>a>img {
-	    margin-top: -8px !important;
-	}
 }
 @media (max-width: 900px) {
 	button.close {
@@ -2191,9 +2188,6 @@ footer input:focus{
 	}
 	button.close:hover {
 		color: black;
-	}
-	.nav li ul li {
-		padding: 10px;
 	}
 }
 @media (min-width: 767px) {
@@ -5675,12 +5669,6 @@ h1.maps {
 	}
 	.km-superior-resultados{
 		padding-top:25px;
-	}
-	.nav>li{
-		padding: 7px 0px!important;
-	}
-	.nav>li>a {
-		padding: 0px 15px!important;
 	}
 	#popup-servicios .km-opcion{
 		text-align: center!important;
