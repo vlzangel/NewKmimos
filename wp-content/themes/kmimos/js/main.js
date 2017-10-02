@@ -4,10 +4,14 @@ function menu(){
 	if(jQuery(this).scrollTop() > 10) {
 
 		jQuery('.bg-transparent').addClass('bg-white');
+		jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
 
 	} else {
 
-		jQuery('.bg-transparent').removeClass('bg-white');
+		if( !jQuery(".navbar").hasClass("bg-white-secondary") ){
+			jQuery('.bg-transparent').removeClass('bg-white');
+			jQuery('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo.png');
+		}
 		
 	}
 
