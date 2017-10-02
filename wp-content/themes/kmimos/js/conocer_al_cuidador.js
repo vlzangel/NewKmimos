@@ -1,8 +1,9 @@
 jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(e){
+    
     jQuery( '#modal-name-cuidador' ).html( jQuery(this).data('name') );
     jQuery( '[name="post_id"]' ).html( jQuery(this).data('id') );
-    jQuery( jQuery(this).data('target') ).modal('show');
 
+    jQuery( jQuery(this).data('target') ).modal('show');
 });
 
 jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
