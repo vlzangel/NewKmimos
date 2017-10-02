@@ -25,7 +25,8 @@
 	$paginacion = vlz_get_paginacion($total, $pagina);
 	$resultados = $_SESSION['resultado_busqueda'];
 	$favoritos = get_favoritos();
-	//var_dump($favoritos);
+
+// var_dump($favoritos);
 	
 	$pines = unserialize($_SESSION['pines_array']);
 	$pines_v = array();

@@ -47,6 +47,7 @@ $HTML = '
             </div>
         </footer>
     ';
+    echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';
 
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
 
