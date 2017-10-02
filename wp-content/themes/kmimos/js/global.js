@@ -23,6 +23,26 @@ jQuery( document ).ready(function() {
     jQuery("#form_login").submit(function(e){ 
     	logear(); 
    	});
+
+    jQuery("#ver_menu").on("click", function(e){
+        if( jQuery("#menu_movil").css("left") == "0px" ){
+            jQuery("#menu_movil").css("left", "-100%");
+        }else{
+            jQuery("#menu_movil").css("left", "0px");
+        }
+    });
+
+    jQuery(".cerrar_menu_movil").on("click", function(e){
+        jQuery("#menu_movil").css("left", "-100%");
+    });
+
+    jQuery('body').click(function(e) {
+        console.log( e.target.id );
+        if ( e.target.id !== "menu_movil" && e.target.id !== "ver_menu" && e.target.id !== "txt_buscar" ) {
+            jQuery("#menu_movil").css("left", "-100%");
+        };
+    }); 
+
 });
 
 function social_auth( f ){
