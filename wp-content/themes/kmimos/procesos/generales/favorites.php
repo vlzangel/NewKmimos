@@ -118,6 +118,8 @@
         $results['user'] = 0;
     }
 
+    $results['user'] =  $cur_user;
+
     echo json_encode($results);
     die();
 

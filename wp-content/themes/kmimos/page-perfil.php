@@ -128,8 +128,6 @@
 		$img_perfil = kmimos_get_foto($user_id, true);
 		$avatar = $img_perfil["img"];
 
-		echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';
-
 		switch ( $post->post_name ) {
 			case 'perfil-usuario':
 				include("admin/frontend/perfil.php");

@@ -1542,7 +1542,8 @@ div#ubicacion_list div:hover {
 .km-resultados-grid .km-item-resultado .km-descripcion {
 	position: relative;
     padding:10px 16px;
-    min-height:175px;
+    /*min-height:175px;*/
+    min-height:200px;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos {
     padding-top:5px!important;
@@ -7315,16 +7316,15 @@ button.close {
     position: absolute;
 }
 
-.km-link-favorito .active{
-	color: #8f5bb3;
-}
-.km-link-favorito{
-	color: #ccc;
+.km-link-favorito:hover{
+    color: #337ab7!important;
 }
 
-.km-link-favorito:hover i.fa:before,
-.km-link-favorito[data-active="true"] i.fa:before{
-	content: "\f004" !important;
+.km-link-favorito{
+    color: #ccc!important;
+}
+.km-link-favorito[data-active="true"]{
+    color: #c72929!important;
 }
 
 
@@ -7452,7 +7452,8 @@ button.close {
 
 .km-resultados-grid .km-item-resultado .km-descripcion{
     padding: 10px 16px;
-    min-height: 177px;
+    /*min-height: 177px;*/
+    min-height: 200px;
 }
 
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos{

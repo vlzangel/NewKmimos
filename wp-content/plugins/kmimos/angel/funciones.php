@@ -191,11 +191,17 @@
             global $wpdb;
             $id_user = get_current_user_id()+0;
             if( $id_user > 0 ){
-                $rf = $wpdb->get_row("SELECT * FROM wp_usermeta WHERE ( user_id = $id_user AND meta_key = 'user_favorites'");
-                preg_match_all('#"(.*?)"#i', $rf->favoritos, $favoritos);
-                if( isset($favoritos[1]) ){
-                    $favoritos = $favoritos[1];
-                }
+                $rf = $wpdb->get_row("SELECT * FROM wp_usermeta WHERE user_id = $id_user AND meta_key = 'user_favorites' ");
+                // preg_match_all('#"(.*?)"#i', $rf->favoritos, $favoritos);
+                // if( isset($favoritos[1]) ){
+                //     $favoritos = $favoritos[1];
+                // }
+
+                $rows = str_replace( '"",', '', $rf->meta_value );
+                $rows = str_replace( '"', '', $rows );
+                $rows = str_replace( '[', '', $rows );
+                $rows = str_replace( ']', '', $rows );
+                $favoritos = explode(',', $rows);
             }
             return $favoritos;
         }
@@ -433,11 +439,12 @@
         }
     }
 
-    function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio){
+    function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio, $confirm_favoritos='false'){
         $img        = kmimos_get_foto($cuidador->user_id);
         $anios_exp  = $cuidador->experiencia; if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
         $url        = get_home_url()."/petsitters/".$cuidador->slug;
 
+        $distancia = '';
         if( isset($cuidador->DISTANCIA) ){ $distancia   = 'A '.floor($cuidador->DISTANCIA).' km de tu busqueda'; }
 
         $anios_exp = $cuidador->experiencia;
@@ -446,10 +453,21 @@
         }
 
         $fav_check = 'false';
+        $fav_del = '';
         if (in_array($cuidador->id_post, $favoritos)) {
             $fav_check = 'true'; 
             $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+            $fav_del = 'favoritos_delete';
         }
+        $favoritos_link = 
+        '<a  href="#" 
+            data-confirm="'.$confirm_favoritos.'"
+            data-num="'.$cuidador->id_post.'" 
+            data-active="'.$fav_check.'"
+            data-favorito="'.$fav_check.'"
+            class=" km-link-favorito '.$fav_del.'">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+        </a>';
 
         switch ($disenio) {
             case 'list':
@@ -460,11 +478,7 @@
                                 <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
                                 <div class="km-subimg" style="background-image: url('.$img.');"></div>
                             </div>
-                            <span class="km-contenedor-favorito">
-                                <a href="#" data-num="'.$cuidador->user_id.'" data-active="'.$fav_check.'" class="km-link-favorito">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                </a>
-                            </span>
+                            <span class="km-contenedor-favorito">'.$favoritos_link.'</span>
                         </div>
 
                         <div class="km-contenedor-descripcion-opciones">
@@ -484,6 +498,7 @@
 
                             <div class="km-opciones">
                                 <div class="precio">MXN $ '.$cuidador->precio.'</div>
+                                <div class="distancia">'.$distancia.'</div>
                                 <a href="#" role="button" data-name="'.utf8_encode($cuidador->titulo).'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke">CONÓCELO +</a>
                                 <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new basic">RESERVA</a>
                             </div>
@@ -499,16 +514,13 @@
                                 <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
                                 <div class="km-subimg" style="background-image: url('.$img.');"></div>
                             </div>
-                            <span class="km-contenedor-favorito">
-                                <a href="javascript:;"  data-num="'.$cuidador->user_id.'"  class="km-link-favorito">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                </a>
-                            </span>
+                            <span class="km-contenedor-favorito">'.$favoritos_link.'</span>
                         </div>
                         <div class="km-descripcion">
                             <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
                             <p>'.$anios_exp.' año(s) de experiencia
                                 <br><b>MXN $ '.$cuidador->precio.'</b>
+                                <br><small>'.$distancia.'</small>
                             </p>
                             <div class="km-ranking">
                                 '.kmimos_petsitter_rating($cuidador->id_post).'
