@@ -468,9 +468,9 @@
             class=" km-link-favorito '.$fav_del.'">
             <i class="fa fa-heart" aria-hidden="true"></i>
         </a>';
-        
-        // validaciones para el link de conocer al cuidador
-        $attr_link_conocer_cuidador = get_attr_link_conocer_cuidador( utf8_encode($cuidador->titulo), $cuidador->id_post);
+
+        // // validaciones para el link de conocer al cuidador
+        // $attr_link_conocer_cuidador = get_attr_link_conocer_cuidador( utf8_encode($cuidador->titulo), $cuidador->id_post);
 
         switch ($disenio) {
             case 'list':
@@ -502,7 +502,11 @@
                             <div class="km-opciones">
                                 <div class="precio">MXN $ '.$cuidador->precio.'</div>
                                 <div class="distancia">'.$distancia.'</div>
-                                <a role="button" '.$attr_link_conocer_cuidador.' class="km-btn-primary-new stroke">CONÓCELO +</a>
+                                <a role="button" href="#" 
+                                    data-name="'.utf8_encode($cuidador->titulo).'" 
+                                    data-id="'.$cuidador->id_post.'" 
+                                    data-target="#popup-conoce-cuidador"
+                                    class="km-btn-primary-new stroke">CONÓCELO +</a>
                                 <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new basic">RESERVA</a>
                             </div>
                         </div>
@@ -532,7 +536,11 @@
                                 '.vlz_servicios($cuidador->adicionales).'
                             </div>
                             <div class="km-buttons">
-                                <a role="button" '.$attr_link_conocer_cuidador.' class="km-btn-primary-new stroke">CONÓCELO +</a>
+                                <a role="button" href="#" 
+                                    data-name="'.utf8_encode($cuidador->titulo).'" 
+                                    data-id="'.$cuidador->id_post.'" 
+                                    data-target="#popup-conoce-cuidador"
+                                    class="km-btn-primary-new stroke">CONÓCELO +</a>
                                 <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="active">RESERVAR</a>
                             </div>
                         </div>
