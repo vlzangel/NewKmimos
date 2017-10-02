@@ -28,6 +28,34 @@
 	    }	
 	}
 
+	if(!function_exists('get_attr_link_conocer_cuidador')){
+	    function get_attr_link_conocer_cuidador( $cuidador_name, $post_id ){
+	    	global $current_user;
+	    	$user_id = $current_user->ID;
+	    	$link = ' 
+	    		href="#" 
+	    		data-name="'.$cuidador_name.'" 
+	    		data-id="'.$post_id.'" 
+	    		data-target="#popup-conoce-cuidador"
+	    	';
+
+			if ( !is_user_logged_in() ){ 
+				$link = ' 
+					href="#popup-iniciar-sesion"
+					data-toggle="modal"
+				';
+			}else{
+				$mascotas = kmimos_get_my_pets($user_id);
+				if ( count($mascotas) < 1 ){ 
+					$link = ' href="'.get_home_url().'/perfil-usuario/mascotas"';
+				}				
+			}
+
+			return $link;
+	    }
+	}
+	
+
 	if(!function_exists('get_tipo_servicios')){
 	    function get_tipo_servicios(){
 	    	return [

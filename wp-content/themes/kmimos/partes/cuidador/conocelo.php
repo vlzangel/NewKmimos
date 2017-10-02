@@ -6,7 +6,9 @@ global $current_user;
 date_default_timezone_set('America/Mexico_City');
 $user_id = $current_user->ID;
 $mascotas = kmimos_get_my_pets($user_id);
+
 ?>
+
 <div id="popup-conoce-cuidador" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
