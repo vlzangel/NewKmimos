@@ -7,6 +7,38 @@ date_default_timezone_set('America/Mexico_City');
 $user_id = $current_user->ID;
 $mascotas = kmimos_get_my_pets($user_id);
 
+
+
+$btn_perfil['icon'] = '<i class="fa fa-check" style="color: #3c763d;"></i>';
+$btn_perfil['btn'] = 'tu perfil';
+
+$btn_login['btn'] = 'iniciado sesión';
+$btn_login['icon'] = '<i class="fa fa-check" style="color: #3c763d;"></i>';
+
+$btn_mascota['btn'] = 'lista de mascotas';
+$btn_mascota['icon'] = '<i class="fa fa-check" style="color: #3c763d;"></i>';
+
+if ( !is_user_logged_in() ){ 
+	// Login
+	$btn_login['btn'] = '<a  style="color:#337ab7;" role="button" href="#popup-iniciar-sesion" data-toggle="modal"><strong>iniciado sesión</strong></a>';
+	$btn_login['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
+
+	// Perfil
+	$btn_perfil['btn'] = '<a  style="color:#337ab7;" role="button" href="#popup-iniciar-sesion" data-toggle="modal"><strong> tu perfil</strong></a>';
+	$btn_perfil['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
+
+	$btn_mascota['btn'] = '<a  style="color:#337ab7;" role="button" href="#popup-iniciar-sesion" data-toggle="modal"><strong> lista de mascotas</strong></a>';
+	$btn_mascota['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
+
+}else{
+
+	if ( count($mascotas) < 1 ){ 
+		$btn_mascota['btn'] = '<a href="'.get_home_url().'/perfil-usuario/mascotas" style="color:#337ab7;" role="button" ><strong>lista de mascotas</strong></a>';
+		$btn_mascota['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
+	}				
+
+}
+
 ?>
 
 <div id="popup-conoce-cuidador" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -17,10 +49,10 @@ $mascotas = kmimos_get_my_pets($user_id);
 				<p class="popup-tit">Solicitud para conocer a <span id="modal-name-cuidador"></span></p>
 				<div>
 					<p>Para poder conocer al cuidador primero tienes que:</p>
-					<ol>
-						<li>Haberte registrado en nuestro portal y haber iniciado sesión.</li>
-						<li>Completar todos los datos requeridos en tu perfil</li>
-						<li>Completar tu lista de mascotas en tu perfil</li>
+					<ol class="list-unstyled">
+						<li><?php echo $btn_login['icon']; ?> Haberte registrado en nuestro portal y haber <?php echo $btn_login['btn']; ?></li>
+						<li><?php echo $btn_perfil['icon']; ?> Completar todos los datos requeridos en <?php echo $btn_perfil['btn']; ?></li>
+						<li><?php echo $btn_mascota['icon']; ?> Completar tu <?php echo $btn_mascota['btn']; ?> en tu perfil</li>
 					</ol>
 				</div>
 			<?php if( count($mascotas) > 0 ){ ?>

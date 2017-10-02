@@ -59,20 +59,19 @@ jQuery(document).on('click','[data-favorito="false"]',function(){
         'security': ''
     };
 
-    var result = getAjaxData('/procesos/generales/favorites.php','post', data);
-        result = jQuery.parseJSON(result);
-    if( result['user'] > 0 ){
-        fav.data('active',result['active']);
-        fav.attr('data-active',result['active']);
-        fav.removeClass('active');
-        fav.addClass('favoritos_delete');
-        if( result['active'] ){
-            fav.addClass('active');
+    jQuery.post( HOME + '/procesos/generales/favorites.php', data, function( data ) {
+        var result = data;
+        if( result['user'] > 0 ){
+            fav.data('active',result['active']);
+            fav.attr('data-active',result['active']);
+            fav.removeClass('active');
+            fav.addClass('favoritos_delete');
+            if( result['active'] ){
+                fav.addClass('active');
+            }
+        }else{
+            jQuery('#popup-iniciar-sesion').modal('show');
         }
-    }else{
-        jQuery('#popup-iniciar-sesion').modal('show');
-    }
+    });
 
-/*    fav.addClass(result['active']);*/
-    console.log(result);
 });
