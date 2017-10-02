@@ -36,12 +36,19 @@ jQuery( document ).ready(function() {
         jQuery("#menu_movil").css("left", "-100%");
     });
 
-    jQuery('body').click(function(e) {
-        console.log( e.target.id );
-        if ( e.target.id !== "menu_movil" && e.target.id !== "ver_menu" && e.target.id !== "txt_buscar" ) {
+    jQuery('#menu_movil').on("click", function(e) {
+        console.log( "id: "+e.target.id );
+        if ( e.target.id == "menu_movil" ) {
             jQuery("#menu_movil").css("left", "-100%");
         };
     }); 
+
+    window.addEventListener("click", function(e){
+        console.log( e );
+        /*if ( e.target.id !== "menu_movil" && e.target.id !== "ver_menu" && e.target.id !== "txt_buscar" ) {
+            //jQuery("#menu_movil").css("left", "-100%");
+        };*/
+    }, false);
 
 });
 

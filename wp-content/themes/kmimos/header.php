@@ -107,15 +107,18 @@
 					<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="hidden-xs km-btn-primary">QUIERO SER CUIDADOR</a></li>
 		    	</ul>
 				<div id="menu_movil" class="hidden-sm hidden-md hidden-lg">
-					<form class="barra_buscar_movil" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
-						<i class="fa fa-search"></i>
-						<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
-					</form>
-					<ul class="nav navbar-nav">
-						<li><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">Iniciar sesión</a></li>
-						<li><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">Registrarme</a></li>
-						<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-nav-link">Quiero ser cuidador</a></li>
-			    	</ul>
+
+					<div class="menu_movil_interno">
+						<form class="barra_buscar_movil" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
+							<i class="fa fa-search"></i>
+							<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
+						</form>
+						<ul class="nav navbar-nav">
+							<li><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">Iniciar sesión</a></li>
+							<li><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">Registrarme</a></li>
+							<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-nav-link">Quiero ser cuidador</a></li>
+				    	</ul>
+				    </div>
 			    </div>
 			</div>
 		</nav>
@@ -144,14 +147,18 @@
 			    	</ul>
 
 					<div id="menu_movil" class="hidden-sm hidden-md hidden-lg">
-						<form class="barra_buscar_movil" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
-							<i class="fa fa-search"></i>
-							<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
-						</form>
-						<ul class="nav navbar-nav">
-							'.$menus_normal.'
-				    	</ul>
-				    </div>
+
+						<div class="menu_movil_interno">
+							<form class="barra_buscar_movil" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
+								<i class="fa fa-search"></i>
+								<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
+							</form>
+							<ul class="nav navbar-nav">
+								'.$menus_normal.'
+					    	</ul>
+
+					    </div>
+	
 
 			    </div>
 			</nav>
