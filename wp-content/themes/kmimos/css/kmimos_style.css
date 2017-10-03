@@ -2511,6 +2511,9 @@ footer input:focus{
 }
 
 @media all and (max-width:427px) {
+	h2{
+		font-size: 30px!important;
+	}
     .km-resultados-grid .km-item-resultado {
         width:100%
     }
