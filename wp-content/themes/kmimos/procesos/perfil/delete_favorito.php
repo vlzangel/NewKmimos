@@ -17,7 +17,6 @@
 	foreach ($favoritos as $key => $value) {
 		if( $value == $cuidador_id ){
 			$index = $key;
-echo 'Delete: '.$key;			
 		}
 	}
 	unset($favoritos[$index]);

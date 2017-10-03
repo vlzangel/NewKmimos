@@ -201,7 +201,9 @@
                 $rows = str_replace( '"', '', $rows );
                 $rows = str_replace( '[', '', $rows );
                 $rows = str_replace( ']', '', $rows );
-                $favoritos = explode(',', $rows);
+                if( !empty($rows) ){
+                    $favoritos = explode(',', $rows);
+                }
             }
             return $favoritos;
         }
@@ -439,10 +441,12 @@
         }
     }
 
-    function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio, $confirm_favoritos='false'){
+    function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio, $reload='false'){
+        global $current_user;
         $img        = kmimos_get_foto($cuidador->user_id);
         $anios_exp  = $cuidador->experiencia; if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
         $url        = get_home_url()."/petsitters/".$cuidador->slug;
+        $user_id = $current_user->ID;
 
         $distancia = '';
         if( isset($cuidador->DISTANCIA) ){ $distancia   = 'A '.floor($cuidador->DISTANCIA).' km de tu busqueda'; }
@@ -460,8 +464,9 @@
             $fav_del = 'favoritos_delete';
         }
         $favoritos_link = 
-        '<a  href="#" 
-            data-confirm="'.$confirm_favoritos.'"
+        '<a  href="javascript:;" 
+            data-reload="'.$reload.'"
+            data-user="'.$user_id.'" 
             data-num="'.$cuidador->id_post.'" 
             data-active="'.$fav_check.'"
             data-favorito="'.$fav_check.'"
