@@ -1,5 +1,4 @@
 jQuery("#ver_menu").on("click", function(e){
-alert('mostrar mennu');        
     if( jQuery("#menu_movil").css("left") == "0px" ){
         jQuery("#menu_movil").css("left", "-100%");
     }else{
