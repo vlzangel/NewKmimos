@@ -43,12 +43,12 @@ jQuery( document ).ready(function() {
         };
     }); 
 
-    // window.addEventListener("click", function(e){
-    //     //console.log( e );
-    //     if ( e.target.id !== "menu_movil" && e.target.id !== "ver_menu" && e.target.id !== "txt_buscar" ) {
-    //         //jQuery("#menu_movil").css("left", "-100%");
-    //     };
-    // }, false);
+    window.addEventListener("click", function(e){
+        console.log( e );
+        if ( e.target.id !== "menu_movil" && e.target.id !== "ver_menu" && e.target.id !== "txt_buscar" ) {
+            //jQuery("#menu_movil").css("left", "-100%");
+        };
+    }, false);
 
 });
 
