@@ -26,8 +26,10 @@ jQuery( document ).ready(function() {
 
     jQuery("#ver_menu").on("click", function(e){
         if( jQuery("#menu_movil").css("left") == "0px" ){
+alert('-100');
             jQuery("#menu_movil").css("left", "-100%");
         }else{
+alert('0');
             jQuery("#menu_movil").css("left", "0px");
         }
     });
