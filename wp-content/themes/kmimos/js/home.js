@@ -242,8 +242,7 @@ jQuery(document).ready(function(){
 
     jQuery('.bxslider').bxSlider({
         buildPager: function(slideIndex){
-
-alert('hola bxslider');            
+            
             switch(slideIndex){
                 case 0:
                     return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-1.jpg">';
