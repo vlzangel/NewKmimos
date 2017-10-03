@@ -55,12 +55,13 @@ $HTML = '
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
     wp_enqueue_script('bxslider', getTema()."/js/jquery.bxslider.js", array("jquery"), '1.0.0');
 
-    wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
 
     wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
     wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
+
+    wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
 
 
     if(  $_SESSION['admin_sub_login'] == 'YES' ){

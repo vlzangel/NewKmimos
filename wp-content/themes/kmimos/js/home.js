@@ -239,20 +239,6 @@ jQuery(document).ready(function(){
         }
     });
 
-
-    jQuery('.bxslider').bxSlider({
-        buildPager: function(slideIndex){
-            switch(slideIndex){
-                case 0:
-                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-1.jpg">';
-                case 1:
-                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-2.jpg">';
-                case 2:
-                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-3.jpg">';
-            }
-        }
-    });
-
     function initCheckin(date, actual){
         if(actual){
             jQuery('#checkout').datepick({
@@ -423,3 +409,16 @@ function stopVideo(){
 jQuery(document).on('click', '.control-video', function(e){
     stopVideo();
 });
+
+ $('.bxslider').bxSlider({
+        buildPager: function(slideIndex){
+            switch(slideIndex){
+                case 0:
+                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-1.jpg">';
+                case 1:
+                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-2.jpg">';
+                case 2:
+                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-3.jpg">';
+            }
+        }
+    });
