@@ -72,7 +72,7 @@ jQuery(document).on('click','[data-favorito="false"]',function(){
 
     jQuery.post( HOME + '/procesos/generales/favorites.php', data, function( data ) {
         var result = data;
-console.log(result);        
+
         if( result['user'] > 0 ){
             fav.data('active',result['active']);
             fav.attr('data-active',result['active']);
