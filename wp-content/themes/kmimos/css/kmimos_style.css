@@ -2224,6 +2224,11 @@ footer input:focus{
 		text-align: left;
 	}*/
 
+	.km-select-custom{
+		background-image: none!important;
+		border-radius: 6px!important;
+	}
+
 	#popup-servicios .km-opcion {
 	    padding: 10px 10px 5px;
 	}
@@ -2261,8 +2266,16 @@ footer input:focus{
 		text-align: left;
 		padding-left: 20px;
 	}
+	.km-credibilidad-titular p{
+		font-size: 12px;
+	}
+	.km-credibilidad-titular h2{
+		font-size: 35px;
+	}
+	.km-credibilidad-titular h2,
+	.km-credibilidad-titular p,
 	.km-credibilidad-titular {
-		text-align: left;
+		text-align: left!important;
 	}
 	.km-servicios .col-sm-3, .km-tamanio .col-sm-3, .km-fechas .col-sm-3, .km-fechas .col-sm-6 {
 		margin-bottom: 10px;
@@ -2285,8 +2298,12 @@ footer input:focus{
 		margin-top: 0px;
 	}
 	/* SECCIÓN 2 - KMIMOS CLUB */
+	.km-club{
+		margin-top: 20px!important;
+	}
 	.km-club .col-sm-6:nth-child(2) {
 		margin-top: 20px;
+		text-align: left;
 	}
 	.km-club .col-sm-3 {
 		text-align: center;
@@ -2327,7 +2344,7 @@ footer input:focus{
 		width: 100%!important;
 	}
 	.km-testimoniales .bx-viewport, .km-testimoniales .bxslider li{
-		height: 400px;
+		height: 400px!important;
 	}
 
 
@@ -2977,7 +2994,7 @@ section {
 
 .km-video {
     position:relative;
-    height:550px
+    height:500px
 }
 .km-credibilidad {
     margin-top:-270px
@@ -5531,13 +5548,13 @@ h1.maps {
         padding:0
     }
     .km-testimonial-text {
-        margin-top:80px
+        margin-top:80px!important;
     }
     .km-testimonial {
         font-size:18px
     }
     .km-testimoniales {
-        height:500px
+        height:500px!important;
     }
     .km-testimoniales .bx-wrapper img {
         width:100%!important
@@ -5635,8 +5652,17 @@ h1.maps {
 	    border-bottom: 1px solid #CCC;
 	    border-radius: 6px 6px 0px 0px;
     }
+
+    .km-beneficios-text,
+    .km-beneficios{
+    	margin-top: 0px!important;
+    }
+
     .km-select-ubicacion{
     	border-radius: 6px 6px 0px 0px!important;
+    }
+	.km-select-custom-home{    	
+    	border-radius: 6px!important;
     }
     .km-div-enviar .km-submit-custom{
     	border-radius: 0px 0px 6px 6px!important;
@@ -5812,6 +5838,9 @@ h1.maps {
     }
 }
 @media all and (max-width:767px) {
+	h2 {
+	    font-size: 35px!important;
+	}
     .km-costo {
         position:fixed;
         display:block!important;
