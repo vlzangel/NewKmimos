@@ -91,11 +91,11 @@
 			<nav class="navbar navbar-fixed-top bg-transparent">
 			<div class="container">
 				<div class="navbar-header ">
-					<button type="button" class="navbar-toggle"  id="ver_menu">
+					<button type="button" class="navbar-toggle"  id="ver_menu" style="border:1px solid red;">
 						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
 					</button>
-					<a class="navbar-brand" href="'.get_home_url().'">
-						<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
+					<a class="navbar-brand" href="'.get_home_url().'" style="border:1px solid blue;">
+						<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px" style="border:1px solid yellow;">
 					</a>
 				</div>
 				<ul class="hidden-xs nav-login">
@@ -129,7 +129,6 @@
 				<div class="container">
 					<div class="navbar-header ">
 						<button type="button" class="navbar-toggle" id="ver_menu">
-							<span style="color:#fff;">123</span>
 							<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
 						</button>
 						<a class="navbar-brand" href="'.get_home_url().'">
