@@ -127,8 +127,8 @@
 		$HTML .= '	
 			<nav class="navbar navbar-fixed-top bg-transparent">
 				<div class="container">
-					<button type="button" class="navbar-toggle" id="ver_menu">
-						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
+					<button type="button" class="navbar-toggle" >
+						<img id="ver_menu"  src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
 					</button>
 					<div class="navbar-header ">
 						<a class="navbar-brand" href="'.get_home_url().'">
