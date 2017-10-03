@@ -91,10 +91,10 @@
 			<nav class="navbar navbar-fixed-top bg-transparent">
 			<div class="container">
 				<div class="navbar-header ">
-					<button type="button" class="navbar-toggle"  id="ver_menu" style="border:1px solid red;">
+					<button type="button" class="navbar-toggle"  id="ver_menu">
 						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
 					</button>
-					<a class="navbar-brand" href="'.get_home_url().'" style="border:1px solid blue;">
+					<a class="navbar-brand" href="'.get_home_url().'">
 						<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px" style="border:1px solid yellow;">
 					</a>
 				</div>
