@@ -1,6 +1,7 @@
 @media (max-width: 992px){
 	.main .vlz_tabla .vlz_tabla_cuidador div {
 	    font-size: 12px;
+	    padding-right: 20px;
 	}
 	.main .vlz_tabla .vlz_botones span {
 	    padding: 10px;
