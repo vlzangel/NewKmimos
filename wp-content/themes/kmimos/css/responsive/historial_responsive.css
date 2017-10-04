@@ -5,6 +5,12 @@
 	.main .vlz_tabla .vlz_tabla_inferior {
 	    margin-left: 60px;
 	}
+	.main .vlz_tabla .boton_interno a {
+		padding: 8px;
+	}
+	.main .vlz_tabla .vlz_botones a.cancelar {
+	    padding: 6px 8px;
+	}
 }
 @media (max-width: 650px){
 	.main .vlz_tabla .ver_reserva_botones a {
