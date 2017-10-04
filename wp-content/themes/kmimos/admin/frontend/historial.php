@@ -56,8 +56,6 @@
 			$inicio = strtotime( $_metas_reserva['_booking_start'][0] );
 			$fin    = strtotime( $_metas_reserva['_booking_end'][0] );
 
-			echo "SELECT post_author FROM wp_posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0];
-			
 			$foto = kmimos_get_foto( $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0]) ) ;
 
 			$pdf = $_metas_orden['_openpay_pdf'][0];
