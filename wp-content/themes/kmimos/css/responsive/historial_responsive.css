@@ -2,9 +2,7 @@
 	.main .vlz_tabla .ver_reserva_botones a{
 	    margin-top: 10px;
 	}
-	.main .vlz_tabla .vlz_tabla_inferior {
-	    margin-left: 60px;
-	}
+	
 	.main .vlz_tabla .boton_interno a {
 		padding: 8px;
 	}
@@ -22,14 +20,73 @@
 	    width: calc( 100% - 5px );
 	    padding: 15px;
 	}	
-	.main .vlz_tabla .vlz_tabla_inferior {
-	    margin-left: 60px;
-	}
 	.main .vlz_tabla .boton_interno {
 		display: none !important;
 	}
 	.main .vlz_tabla .boton_fuera {
 		display: block !important;
+	}
+
+	.main .vlz_tabla .vlz_tabla_superior {
+	    display: block;
+	    float: left;
+	    height: auto;
+	}
+
+	.main .vlz_tabla .vlz_tabla_cuidador span {
+	    font-size: 14px;
+	}
+
+	.main .vlz_tabla .vlz_tabla_cuidador {
+	    width: 100%;
+	}
+
+	.main .vlz_tabla .vlz_tabla_superior > div.vlz_celda {
+	    display: block;
+	}
+
+	.main .vlz_tabla .vlz_tabla_inferior {
+	    float: left;
+	    width: 100%;
+	    margin: 0px;
+	    padding: 0px 10px 10px;
+	}
+
+	.main .vlz_tabla .vlz_tabla_inferior .desglose_reserva .item_desglose {
+	    font-size: 11px;
+	}
+
+	.main .vlz_tabla.vlz_desplegado .vlz_cerrar {
+	    display: none !important;
+	}
+
+	.main .vlz_tabla .vlz_img span {
+	    width: 50px;
+	    height: 50px;
+	}
+
+	.main .vlz_tabla .vlz_img {
+	    padding: 20px 0px;
+	}
+
+	form h1 {
+	    font-size: 13px;
+	    font-weight: 600;
+	}
+
+	.main .vlz_tabla .vlz_tabla_cuidador span {
+	    font-size: 12px;
+	}
+
+	.main .vlz_tabla .vlz_tabla_cuidador div {
+	    font-size: 11px;
+	}
+
+	.main .vlz_tabla .ver_reserva_botones {
+	    padding-top: 0px;
+	}
+	.main .vlz_tabla .ver_reserva_botones a {
+	    padding: 10px;
 	}
 }
 

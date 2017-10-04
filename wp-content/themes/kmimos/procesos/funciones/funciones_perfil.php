@@ -43,7 +43,7 @@
 
 		                	$cancelar = '';
 		                	if( isset($reserva["acciones"]["cancelar"]) ){
-		                		$cancelar = '<a data-accion="'.get_home_url().'/wp-content/plugins/kmimos/'.$reserva["acciones"]["cancelar"].'" class="vlz_accion vlz_cancelar cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>';
+		                		//$cancelar = '<a data-accion="'.get_home_url().'/wp-content/plugins/kmimos/'.$reserva["acciones"]["cancelar"].'" class="vlz_accion vlz_cancelar cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>';
 		                	}
 		                	$botones = construir_botones($reserva["acciones"]);
 
@@ -117,10 +117,11 @@
 			                $table.='
 			                <div class="vlz_tabla">
 
+			                	<div class="vlz_img">
+			                		<span style="background-image: url('.$reserva["foto"].');"></span>
+			                	</div>
+
 			                	<div class="vlz_tabla_superior">
-				                	<div class="vlz_tabla_img">
-				                		<span style="background-image: url('.$reserva["foto"].');"></span>
-				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Servicio</span>
 				                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
@@ -134,7 +135,7 @@
 				                		<a class="ver_reserva_init">Ver Reserva</a>
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_cerrar">
-				                		<span>Tu número de reserva</span>
+				                		<span>Reserva</span>
 				                		<div>'.$reserva["id"].'</div>
 				                	</div>
 			                	</div>
