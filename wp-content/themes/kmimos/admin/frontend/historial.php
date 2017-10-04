@@ -11,6 +11,10 @@
 				"titulo" => 'Reservas pendientes por pagar en tienda por conveniencia',
 				"reservas" => array()
 			),
+			"pendientes_confirmar" => array(
+				"titulo" => 'Reservas Pendientes por Confirmar',
+				"reservas" => array()
+			),
 			"confirmadas" => array(
 				"titulo" => 'Reservas Confirmadas',
 				"reservas" => array()
@@ -25,10 +29,6 @@
 			),
 			"modificadas" => array(
 				"titulo" => 'Reservas Modificadas',
-				"reservas" => array()
-			),
-			"pendientes_confirmar" => array(
-				"titulo" => 'Reservas Pendientes por Confirmar',
 				"reservas" => array()
 			),
 			"error" => array(
