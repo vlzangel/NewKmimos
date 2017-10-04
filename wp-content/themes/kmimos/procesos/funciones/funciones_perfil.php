@@ -43,7 +43,7 @@
 
 		                	$cancelar = '';
 		                	if( isset($reserva["acciones"]["cancelar"]) ){
-		                		$cancelar = '<a data-accion="cancelar/'.$reserva["acciones"]["cancelar"].'" class="vlz_accion vlz_cancelar cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>';
+		                		$cancelar = '<a data-accion="'.get_home_url().'/wp-content/plugins/kmimos/'.$reserva["acciones"]["cancelar"].'" class="vlz_accion vlz_cancelar cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>';
 		                	}
 		                	$botones = construir_botones($reserva["acciones"]);
 
