@@ -359,23 +359,22 @@
 
                 if( $MENUS[ $user->roles[0] ] != "" ){
                     foreach ($MENUS[ $user->roles[0] ] as $key => $value) {
-                        $sts = true;
+                        $sts = "";
                         if( $menu_principal ){
                             if( array_key_exists('ocultar_menu_principal', $value) ){
-                                $sts = false;
+                                $sts = "vlz_ocultar";
                             }
                         }
-                        if( $sts ){
-                            if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
-                            if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
-                            $MENU["body"] .=
-                                '<li>
-                                    <a href="'.$value["url"].'" class="pd-tb11 menu-link">
-                                        '.$icono.'
-                                        '.$value["name"].'
-                                    </a>
-                                </li>';
-                        }
+                        
+                        if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
+                        if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
+                        $MENU["body"] .=
+                            '<li class="'.$sts.'">
+                                <a href="'.$value["url"].'" class="pd-tb11 menu-link">
+                                    '.$icono.'
+                                    '.$value["name"].'
+                                </a>
+                            </li>';
                     }
                 }
 

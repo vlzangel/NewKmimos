@@ -591,6 +591,10 @@ section {
         padding: 0px !important;
     }
 
+    .dropdown-menu .vlz_ocultar{
+        display: none;
+    }
+
     /* FIN MENÚ */
 
     /* MENU MOVIL */
