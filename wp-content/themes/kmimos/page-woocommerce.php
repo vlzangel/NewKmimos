@@ -157,7 +157,7 @@
 		$HTML .= "
 		<script> 
 			var SERVICIO_ID = '".get_the_ID()."';
-			var cupos = eval('".json_encode($cupos)."'); 
+			/* var cupos = eval('".json_encode($cupos)."'); */
 			var tipo_servicio = '".$tipo."'; 
 			var name_servicio = '".$servicio_name."'; 
 			var cliente = '".$id_user."'; 
