@@ -128,6 +128,8 @@
 		$img_perfil = kmimos_get_foto($user_id, true);
 		$avatar = $img_perfil["img"];
 
+		include( "procesos/funciones/funciones_perfil.php");
+
 		switch ( $post->post_name ) {
 			case 'perfil-usuario':
 				include("admin/frontend/perfil.php");

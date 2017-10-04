@@ -40,35 +40,6 @@
 	    }
 	}
 
-	if(!function_exists('build_table')){
-	    function build_table($args=array()){
-	        $table='';
-	        foreach($args as $data){
-	            if(count($data['tr'])>0){
-	                $table.='<h1 class="theme_tite theme_table_title">'.$data['title'].'</h1>';
-	                $table.='<table class="vlz_tabla jj_tabla table table-striped table-responsive">';
-	                $table.='<tr>';
-	                foreach($data['th'] as $th){
-	                    $table.='<th class="theme_table_th '.$th['class'].'">'.$th['data'].'</th>';
-	                }
-	                $table.='</tr>';
-
-
-	                foreach($data['tr'] as $tr){
-	                    $table.='<tr>';
-	                    foreach($tr as $td){
-	                        $table.='<td class="'.$td['class'].'">'.$td['data'].'</th>';
-	                    }
-	                    $table.='</tr>';
-	                }
-
-	                $table.='</table>';
-	            }
-	        }
-	        return $table;
-	    }
-	}
-
 	if(!function_exists('build_select')){
 	    function build_select($args=array()){
 	        $select='';
