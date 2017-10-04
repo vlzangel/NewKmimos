@@ -19,7 +19,7 @@
 
 		$post_id = vlz_get_page();
 
-		echo "post_id: $post_id";
+		echo "Entro 1<br>";
 
 		$post = get_post( $post_id );
 
@@ -89,6 +89,8 @@
             $precargas["adicionales"] = $_SESSION[$id_seccion]["adicionales"];
         }
 
+		echo "Entro 2<br>";
+
 	    if( $tipo == "hospedaje" ){
 	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    }else{
@@ -124,6 +126,8 @@
 		$saldoTXT = "";
 		$saldoTXT = $saldo["cupon"];
 
+		echo "Entro 3<br>";
+
 		$error = "";
 		if( $id_user  == ""){
 			$error = "
@@ -155,6 +159,8 @@
 			}
 		}
 		//$error = "";
+
+		echo "Entro 4<br>";
 
 		$HTML .= "
 		<script> 
@@ -623,6 +629,8 @@
 		 	';
 
 			echo comprimir_styles($HTML);
+
+			echo "Entro 5<br>";
 
 		}
 
