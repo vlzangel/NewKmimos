@@ -1,6 +1,20 @@
-.box_100{
-	width: 100% !important;	
+@media (max-width: 992px){
+
 }
-.box_50{
-	width: 50% !important;
+
+@media (max-width: 768px){
+
+}
+
+@media (max-width: 480px){
+    .box_100{
+		width: 100% !important;	
+	}
+	.box_50{
+		width: 50% !important;
+	}
+}
+
+@media (max-width: 350px){
+    
 }

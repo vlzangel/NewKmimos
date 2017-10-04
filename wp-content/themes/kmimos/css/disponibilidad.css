@@ -4,6 +4,9 @@
 .main {
     padding: 0px;
 }
+.km-btn-primary {
+    padding: 17px 20px !important;
+}
 .fechas_box{
     overflow: hidden;
 }
@@ -128,7 +131,7 @@
 .botones_box{
     display: inline-block;
     float: right;
-    width: 25%;
+    width: auto;
     padding: 5px;
     box-sizing: border-box;
 }
