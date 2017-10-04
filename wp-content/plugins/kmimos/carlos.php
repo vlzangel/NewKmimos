@@ -43,7 +43,7 @@
 	if(!function_exists('build_table')){
 	    function build_table($args = array()){
 	        $table='';
-	        $avatar_img = "http://new.kmimos.mx/wp-content/themes/kmimos/images/noimg.png";
+	        $avatar_img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
 	        foreach($args as $reservas){
 	        	if( count($reservas['reservas']) > 0 ){
 	                $table.='<h1 class="titulo">'.$reservas['titulo'].'</h1>';
