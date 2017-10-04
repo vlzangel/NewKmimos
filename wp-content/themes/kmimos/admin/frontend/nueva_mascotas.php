@@ -63,6 +63,8 @@
     <div id="razas_perros" style="display: none;">'.$razas_str.'</div>
     <div id="razas_gatos" style="display: none;">'.$razas_str_gatos.'</div>
 
+    <h1 style="margin: 0px; padding: 0px;">Agregar nueva mascota</h1><hr style="margin: 5px 0px 10px;">
+
     <section>
         <div class="vlz_img_portada_perfil">
             <div class="vlz_img_portada_fondo" style="background-image: url('.get_home_url().$photo_pet.');"></div>
