@@ -158,21 +158,21 @@ $HTML .='
 							<div class="content-placeholder">
 								<div class="label-placeholder">
 									<label>Nombre de tu mascota</label>
-									<input type="text" name="nombre_mascota"  id="nombre_mascota" class="input-label-placeholder">
+									<input type="text" name="nombre_mascota" data-charset="xlf" id="nombre_mascota" class="input-label-placeholder">
 								</div>
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion bg-select-custom" name="tipo_mascota" id="tipo_mascota">
-										<option value="0">Tipo de Mascota</option>
+										<option value="">Tipo de Mascota</option>
 										<option value="2605">Perros</option>
 										<option value="2608">Gatos</option>
 									</select>
 									<select class="km-datos-mascota-opcion bg-select-custom" name="raza_mascota" id="raza_mascota">
-										<option value="0">Raza de la Mascota</option>
+										<option value="">Raza de la Mascota</option>
 									</select>
 								</div>
 								<div class="label-placeholder">
 									<label>Color de tu mascota</label>
-									<input type="text" name="color_mascota" id="color_mascota" class="input-label-placeholder">
+									<input type="text" name="color_mascota" data-charset="xlf" id="color_mascota" class="input-label-placeholder">
 								</div>
 								<div class="km-fecha-nacimiento">
 									<input type="text" name="date_birth" id="datepets" placeholder="Fecha de Nacimiento" class="date_birth" readonly>
@@ -227,7 +227,7 @@ $HTML .='
 							<div class="km-registro-checkbox-opcion">
 								<p>Mascota Estilizada</p>
 								<div class="km-check-1">
-									<input type="checkbox" value="0" checked="false" id="km-check-1" name="estilizada" />
+									<input type="checkbox" value="0" id="km-check-1" name="estilizada" />
 									<label for="km-check-1"></label>
 								</div>
 							</div>
