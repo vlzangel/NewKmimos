@@ -24,7 +24,7 @@ jQuery(document).on('click', '[data-target="checkbox"]', function(){
 
 jQuery(document).ready(function(){
 
-	$('.km-premium-slider').bxSlider({
+	jQuery('.km-premium-slider').bxSlider({
 	    slideWidth: 200,
 	    minSlides: 1,
 	    maxSlides: 3,

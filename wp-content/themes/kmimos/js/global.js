@@ -37,7 +37,6 @@ jQuery( document ).ready(function() {
     });
 
     jQuery('#menu_movil').on("click", function(e) {
-        console.log( "id: "+e.target.id );
         if ( e.target.id == "menu_movil" ) {
             jQuery("#menu_movil").css("left", "-100%");
         };
