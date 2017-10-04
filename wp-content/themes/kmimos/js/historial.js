@@ -56,7 +56,11 @@ jQuery(document).ready(function(){
                         console.log( e );
                     });
                 }else{
-                    window.location.href = value;
+                    if(jQuery(this).hasClass('vlz_pdf')){
+                        window.open(value, '_blank');
+                    }else{
+                        window.location.href = value;
+                    }
                 }
             }
         }
