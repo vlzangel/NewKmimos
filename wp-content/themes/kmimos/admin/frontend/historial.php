@@ -54,13 +54,29 @@
 
 			$creada = strtotime( $reserva->post_date );
 			$inicio = strtotime( $_metas_reserva['_booking_start'][0] );
-			$fin    = strtotime( $_metas_reserva['_booking_start'][0] );
+			$fin    = strtotime( $_metas_reserva['_booking_end'][0] );
 
 			$pdf = $_metas['_openpay_pdf'][0];
 			$ver = $reserva->post_parent;
 			$cancelar = $reserva->post_parent;
 			$modificar = md5($reserva->ID)."_".md5($user_id)."_".md5($servicio->ID);
 			$valorar = $reserva->ID;
+
+			$xitems = $wpdb->get_results( "SELECT meta_key, meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = ".$_metas_reserva["_booking_order_item_id"][0] );
+			$items = array();
+			foreach ($xitems as $item) {
+				$items[ $item->meta_key ] = $item->meta_value;
+			}
+
+			$pago = unserialize($items["_wc_deposit_meta"]);
+
+			$desglose = $pago;
+			if( $pago["enable"] == "yes" ){
+				$desglose["descuento"] = $_metas_orden["_cart_discount"][0];
+			}else{
+				$desglose["total"] = $items["_line_subtotal"];
+				$desglose["descuento"] = $_metas_orden["_cart_discount"][0];
+			}
 
 			//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
 			if($reserva_status == 'pending') {
@@ -77,7 +93,8 @@
 						"modificar" => $modificar,
 						"cancelar" => $cancelar,
 						"pdf" => $pdf
-					)
+					),
+					"desglose" => $desglose
 				);
 
 				//RESERVAS CONFIRMADAS
@@ -91,7 +108,8 @@
 					'acciones' => array(
 						"ver" => $ver,
 						"modificar" => $modificar
-					)
+					),
+					"desglose" => $desglose
 				);
 
 				//RESERVAS COMPLETADAS
@@ -105,7 +123,8 @@
 					'acciones' => array(
 						"ver" => $ver,
 						"valorar" => $valorar
-					)
+					),
+					"desglose" => $desglose
 				);
 
 				//RESERVAS CANCELADAS
@@ -118,7 +137,8 @@
 					'fin' => date('d/m/Y', $fin), 
 					'acciones' => array(
 						"ver" => $ver
-					)
+					),
+					"desglose" => $desglose
 				);
 
 			//RESERVAS MODIFICADAS
@@ -131,7 +151,8 @@
 					'fin' => date('d/m/Y', $fin), 
 					'acciones' => array(
 						"ver" => $ver
-					)
+					),
+					"desglose" => $desglose
 				);
 
 			//RESERVAS PNDIENTES POR CONFIRMAR
@@ -146,7 +167,8 @@
 						"ver" => $ver,
 						"modificar" => $modificar,
 						"cancelar" => $cancelar,
-					)
+					),
+					"desglose" => $desglose
 				);
 
 			}else{
@@ -158,7 +180,8 @@
 					'fin' => date('d/m/Y', $fin), 
 					'acciones' => array(
 						"ver" => $ver
-					)
+					),
+					"desglose" => $desglose
 				);
 
 			}
@@ -170,7 +193,7 @@
 			<div class="kmisaldo">
 			<strong>'.kmimos_saldo_titulo().':</strong> MXN $'.kmimos_get_kmisaldo().'
 		</div>'.
-		build_table($reservas_array);
+		construir_listado($reservas_array);
 	}else{
 		$CONTENIDO .= "<h1 style='line-height: normal;'>Usted aún no tiene reservas.</h1><hr>";
 	}

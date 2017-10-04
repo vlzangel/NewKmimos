@@ -1,16 +1,20 @@
 @media (max-width: 992px){
-	.main .vlz_tabla .ver_reserva_botones span{
+	.main .vlz_tabla .ver_reserva_botones a{
 	    margin-top: 10px;
+	}
+	.main .vlz_tabla .vlz_tabla_inferior {
+	    margin-left: 60px;
 	}
 }
 @media (max-width: 650px){
-	.main .vlz_tabla .ver_reserva_botones span {
-	    padding: 5px;
+	.main .vlz_tabla .ver_reserva_botones a {
+	    padding: 8px 15px 8px 5px;
 	}
 }
 @media (max-width: 500px){
-	.main .vlz_tabla .ver_reserva_botones span {
+	.main .vlz_tabla .ver_reserva_botones a {
 	    width: calc( 100% - 5px );
+	    padding: 15px;
 	}	
 	.main .vlz_tabla .vlz_tabla_inferior {
 	    margin-left: 60px;

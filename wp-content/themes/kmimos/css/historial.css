@@ -23,6 +23,7 @@
 }
 
 .main .vlz_tabla {
+    position: relative;
     overflow: hidden;
     box-shadow: 0px 0px 2px #a0a0a0;
     margin: 0px 0px 10px;
@@ -33,6 +34,24 @@
     width: 100%;
     overflow: hidden;
     padding: 10px 0px;
+}
+
+.main .vlz_tabla.vlz_desplegado .vlz_tabla_superior {
+    width: calc( 100% - 50px );
+}
+
+.main .vlz_tabla.vlz_desplegado .vlz_cerrar {
+    display: table-cell;
+}
+
+.main .vlz_tabla.vlz_desplegado .vlz_tabla_inferior,
+.main .vlz_tabla.vlz_desplegado .ver_reserva_init_closet
+{
+    display: block !important;
+}
+
+.main .vlz_tabla.vlz_desplegado .vlz_botones  {
+    display: none !important;
 }
 
 .main .vlz_tabla .vlz_tabla_superior > div {
@@ -87,7 +106,7 @@
     overflow: hidden;
 }
 
-.main .vlz_tabla .vlz_botones span {     
+.main .vlz_tabla .vlz_botones a {     
     font-weight: 600;
     color: #59c9a8;
     padding: 0px;
@@ -100,13 +119,14 @@
     text-transform: uppercase;
     float: right;
     cursor: pointer;
+    text-decoration: none !important;
 }
 
-.main .vlz_tabla .vlz_botones span.cancelar {   
+.main .vlz_tabla .vlz_botones a.cancelar {   
     padding: 12px 15px;
 }
 
-.main .vlz_tabla .vlz_botones span.cancelar i {    
+.main .vlz_tabla .vlz_botones a.cancelar i {    
     font-size: 20px;
 }
 
@@ -154,27 +174,34 @@
     padding-top: 15px;
 }
 
-.main .vlz_tabla .ver_reserva_botones span{
+.main .vlz_tabla .ver_reserva_botones a{
+    display: inline-block;
+    text-decoration: none;
     font-weight: 600;
     color: #59c9a8;
     padding: 0px;
     display: inline-block;
     font-size: 11px;
-    padding: 8px 10px;
+    padding: 8px 15px 8px 10px;
     border: solid 1px #59c9a8;
     border-radius: 5px;
     margin-left: 5px;
     text-transform: uppercase;
     cursor: pointer;
+    text-decoration: none !important;
 }
 
-.main .vlz_tabla .ver_reserva_botones span i {
+.main .vlz_tabla .ver_reserva_botones a i {
     font-size: 15px;
-    padding-right: 5px;
+    width: 20px;
+    text-align: center;
 }
 
 .main .vlz_tabla .ver_reserva_botones .cancelar{
-    float: left;
+    /* float: left; */
+    color: #FFF;
+    background: #b01d1d;
+    border: solid 1px #b01d1d;
 }
 
 .main .vlz_tabla .ver_reserva_botones .pdf{
@@ -186,12 +213,17 @@
     display: none;
 }
 
-.main .vlz_tabla .vlz_cerrar i {
+.ver_reserva_init_closet {
+    display: none !important;
     position: absolute;
-    top: 5px;
+    top: 25px;
     right: 15px;
-    font-size: 25px;
+    font-size: 25px !important;
     cursor: pointer;
+}
+
+.desplegado .ver_reserva_init_closet{
+    display: block !important;
 }
 
 .main .vlz_tabla .boton_fuera {
@@ -200,9 +232,11 @@
     display: block;
 }
 
-.main .vlz_tabla .boton_fuera span {
+.main .vlz_tabla .boton_fuera a {
     padding: 10px;
     display: block;
     float: none;
     margin-bottom: 10px;
+    text-align: center;
+    text-decoration: none !important;
 }
