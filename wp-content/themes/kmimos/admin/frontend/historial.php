@@ -56,6 +56,10 @@
 			$inicio = strtotime( $_metas_reserva['_booking_start'][0] );
 			$fin    = strtotime( $_metas_reserva['_booking_end'][0] );
 
+			echo "SELECT post_author FROM wp_posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0];
+			
+			$foto = kmimos_get_foto( $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0]) ) ;
+
 			$pdf = $_metas_orden['_openpay_pdf'][0];
 			$ver = $reserva->post_parent;
 			$cancelar = "orden.php?s=0&o=".$reserva->post_parent;
@@ -89,6 +93,7 @@
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
+					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver,
 						"modificar" => $modificar,
@@ -107,6 +112,7 @@
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
+					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver,
 						"modificar" => $modificar
@@ -123,6 +129,7 @@
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
+					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver,
 						"valorar" => $valorar
@@ -139,6 +146,7 @@
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
+					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver
 					),
@@ -154,6 +162,7 @@
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
+					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver
 					),
@@ -169,6 +178,7 @@
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
+					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver,
 						"modificar" => $modificar,
@@ -185,6 +195,7 @@
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
+					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver
 					),

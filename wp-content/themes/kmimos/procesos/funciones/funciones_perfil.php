@@ -119,7 +119,7 @@
 
 			                	<div class="vlz_tabla_superior">
 				                	<div class="vlz_tabla_img">
-				                		<span style="background-image: url('.$avatar_img.');"></span>
+				                		<span style="background-image: url('.$reserva["foto"].');"></span>
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Servicio</span>
