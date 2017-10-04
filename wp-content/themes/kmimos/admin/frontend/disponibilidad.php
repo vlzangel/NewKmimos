@@ -88,7 +88,7 @@
     $tabla .= "</table>";
 
 	$CONTENIDO = '
-		<h1 class="theme_tite theme_table_title">Administración de disponibilidad</h1>
+		<h1 class="theme_tite theme_table_title">No estoy disponible en:</h1>
 
 		<input type="hidden" name="accion" value="perfil" />
         <input type="hidden" name="user_id" id="user_id" value="'.$user_id.'" />
