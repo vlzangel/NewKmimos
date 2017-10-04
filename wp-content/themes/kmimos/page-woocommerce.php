@@ -151,8 +151,6 @@
 					}
 				}
 			}
-
-			echo comprimir_styles($HTML);
 		}
 		//$error = "";
 
@@ -205,6 +203,8 @@
 					</div>
 				</div>
 			</div>";
+
+			echo comprimir_styles($HTML);
 		}else{
 
 			$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$post_id}");
