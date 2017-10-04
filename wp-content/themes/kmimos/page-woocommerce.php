@@ -19,6 +19,8 @@
 
 		$post_id = vlz_get_page();
 
+		echo "post_id: $post_id";
+
 		$post = get_post( $post_id );
 
 		$D = $wpdb;
