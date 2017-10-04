@@ -1,6 +1,6 @@
 <?php  
-	//include(__DIR__."../../../../../../vlz_config.php");
-    $config = dirname(__DIR__,5)."/wp-config.php";
+    include("../../../../../vlz_config.php");
+    include("../../../../../wp-load.php");
     if(file_exists($config)){
         include_once($config);
     }
@@ -11,9 +11,8 @@
 
 	$errores = array();
 
-	if ($conn->connect_error) {
-        echo 'false';
-	}else{
+    $result = 0;
+    if( !$conn->connect_error) {
         $userid=trim($userid);
         $existen = $conn->query( "SELECT * FROM wp_users WHERE ID = '{$userid}'" );
         if( $existen->num_rows > 0 ){
@@ -92,15 +91,10 @@
             $conn->query( utf8_decode( $sql ) );
 
 
-            echo "Registrado"; //$user_id.;
-
-        }else{
-            echo "Usuario No registrado.";
-
+            echo 1;
             exit;
-
-
+        }else{
+            echo 0.1;
         }
-        
-	}
-?>
+    }
+    echo 0;

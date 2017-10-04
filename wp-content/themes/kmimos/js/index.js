@@ -187,7 +187,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 	jQuery(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
 		e.preventDefault();
-		var nombre = jQuery("#nombre").val(); 
+
+		jQuery('#siguiente').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> GUARDANDO');
+
+		var nombre = jQuery("#nombre").val();
 			apellido = jQuery("#apellido").val(),
 			ife = jQuery("#ife").val(),
 		 	email = jQuery("#email_1").val(), 
@@ -196,13 +199,12 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		 	genero = jQuery("#genero").val(), 
 		 	edad = jQuery("#edad").val(), 
 		 	fumador = jQuery("#fumador").val(),
-				referido = jQuery("#referido").val(),
-				img_profile = jQuery("#img_profile").val();
-		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
+			referido = jQuery("#referido").val(),
+			img_profile = jQuery("#img_profile").val();
+	 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
 		if (nombre.length > 2 && apellido.length > 2 && ife.length > 2 && email.length > 2 && pass.length > 2 && movil.length > 2
 		       	&& genero != "" && edad != "" && fumador !="") {
-				jQuery(".popup-registrarte-nuevo-correo").hide();
-				jQuery(".popup-registrarte-datos-mascota").fadeIn("fast");
+
 				var datos = {
 					'name': campos[0],
 					'lastname': campos[1],
@@ -216,9 +218,17 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					'referido': campos[9],
 					'img_profile': campos[10]};
 
-			globalData = getGlobalData('/procesos/login/registro.php','post', datos);
-			console.log(globalData);
+				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
+					if( data > 0 ){
+						globalData = data;
+						jQuery(".popup-registrarte-nuevo-correo").hide();
+						jQuery(".popup-registrarte-datos-mascota").fadeIn("fast");
+					}
+					jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
+				});
+
 		}else {
+			jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
          	alert("Revise sus datos por favor, debe llenar todos los campos");
         }
 	});
@@ -379,6 +389,9 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 	jQuery(document).on("click", '.popup-registrarte-datos-mascota .km-btn-popup-registrarte-datos-mascota', function ( e ) {
 		e.preventDefault();
+
+		jQuery('.km-btn-popup-registrarte-datos-mascota').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> GUARDANDO');
+
 		var valor;
 		var sizes =[
             {'ID':0,'name':'Pequeñas','desc':'Menos de 25.4cm'},
@@ -416,14 +429,32 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			aggresive_pets = jQuery("#km-check-4").val(),
 			img_pet = jQuery("#img_pet").val();
 
-	
+		var valid = [
+		'nombre_mascota', 
+		'tipo_mascota',
+		'raza_mascota',
+		'color_mascota',
+		'datepets',
+		'genero_mascota',
+		'tamano_mascota',
+		'km-check-3', 
+		'km-check-4'
+		];
+
+		km_cliente_validar( valid );
+		
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
 					datepets,genero_mascota,tamano_mascota,pet_sterilized,
 					pet_sociable,aggresive_humans,aggresive_pets,img_pet];
-		if (nombre_mascota != "" && tipo_mascota != "" && raza_mascota != "" && color_mascota !="" 
-        	&& datepets != "" && genero_mascota != "" && tamano_mascota != "") {
-        		jQuery(".popup-registrarte-datos-mascota").hide();
-				jQuery(".popup-registrarte-final").fadeIn("fast");
+
+		if (
+			nombre_mascota != "" && 
+			tipo_mascota != "" && 
+			raza_mascota != "" && 
+			color_mascota !="" && 
+			datepets != "" && 
+			genero_mascota != "" && 
+			tamano_mascota >= 0) {
         		var datos = {
 		      		'name_pet': campos_pet[0],
 		            'type_pet': campos_pet[1],
@@ -440,14 +471,45 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		            'userid': globalData
 		        };
 
-			var data = getGlobalData('/procesos/login/registro_pet.php','post', datos);
+				jQuery.post( HOME+'/procesos/login/registro_pet.php', datos, function( data ) {
 			console.log(data);
+					if( data >= 1 ){
+		        		jQuery(".popup-registrarte-datos-mascota").hide();
+						jQuery(".popup-registrarte-final").fadeIn("fast");
+					}else{
+						jQuery('.km-btn-popup-registrarte-datos-mascota').after('<div style="margin-bottom:15px;" class="col-xs-12">No se pudo registrar la mascota, verifique los datos y vuelva a intentarlo.</div>');
+					}
+					jQuery('.km-btn-popup-registrarte-datos-mascota').html('REGISTRARME');
+				});
+
         }else {
+			jQuery('.km-btn-popup-registrarte-datos-mascota').html('REGISTRARME');
+
         	alert("Revise sus datos por favor, debe llenar todos los campos");
         }
 	});
 });
 
+function km_cliente_validar( fields ){
+
+	var status = true;
+	if( fields.length > 0 ){
+		$.each( fields, function(id, val){
+			var m = '';
+			/*validar vacio*/
+			if( $('#'+val).val() == '' ){
+				m = 'Este campo no puede estar vacio';
+			}
+			if( m == ''){
+				// mensaje(val, m, true);
+			}else{
+				// mensaje(val, m);
+				status = false;
+			}
+		});
+	}
+	return status;
+}
 function listarAjax() {
 	__ajax(HOME+"/procesos/login/mascota.php", "")
 	.done(function(info){
@@ -471,8 +533,6 @@ function getGlobalData(url,method, datos){
 		url: HOME+url,
 		async:false,
 		success: function(data){
-            jQuery("#guardando").html("Este dato se guardo "+data);
-            jQuery("#guardando").css('color','blue');
 			return data;
 		}
 	}).responseText;

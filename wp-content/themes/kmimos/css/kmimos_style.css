@@ -2138,6 +2138,14 @@ footer input:focus{
 }
 /* FIN SECCIÓN FOOTER */
 
+.row-sin-padding{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.row-sin-padding .col-xs-6
+{
+	padding: 5px;
+}
 
 
 
@@ -2225,6 +2233,9 @@ footer input:focus{
 		text-align: left;
 	}*/
 
+	.km-registro-checkbox-opcion{
+		width: 100%!important;
+	}
 	.km-select-custom{
 		background-image: none!important;
 		border-radius: 6px!important;
@@ -2245,7 +2256,7 @@ footer input:focus{
 		display: none;
 	}
 	h2 {
-		font-size: 35px;
+		font-size: 29px;
 	}
 	h4 {
 		line-height: 24px;
@@ -4291,6 +4302,9 @@ a.km-btn-comentario {
     margin-bottom:0;
     font-weight:700
 }
+.tamano-mascota-content .col-xs-6{
+	margin-bottom:5px;
+}
 .km-datos-mascota select {
     z-index:1;
     position:relative;
@@ -4301,7 +4315,7 @@ a.km-btn-comentario {
     font-size:15px;
     font-weight:500;
     letter-spacing:.2px;
-    background:0 0;
+    /*background:0 0;*/
     font-family:Gotham-Pro-Regular, Arial, serif;
     border-bottom:1px solid #ccc
 }
@@ -5852,7 +5866,7 @@ h1.maps {
 }
 @media all and (max-width:767px) {
 	h2 {
-	    font-size: 35px!important;
+	    font-size: 29px!important;
 	}
     .km-costo {
         position:fixed;
@@ -6865,7 +6879,7 @@ button.close {
     background-repeat: no-repeat;
     background-position: calc(100% - 9px) 50%;
     background-image: url(../images/new/km-arrow-form.svg);
-    border-right: 1px solid rgba(0, 0, 0, .2);
+    /*border-right: 1px solid rgba(0, 0, 0, .2);*/
 
     -webkit-border-radius: 6px 0px 0px 6px;
     -moz-border-radius: 6px 0px 0px 6px;
@@ -6874,6 +6888,15 @@ button.close {
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
+}
+
+.bg-select-custom{
+    border: none;
+    background-color: #FFF;
+    background-size: 14px 13px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 9px) 50%;
+    background-image: url(../images/new/km-arrow-form.svg);
 }
 
 .km-search-slider{

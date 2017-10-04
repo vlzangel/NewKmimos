@@ -1,15 +1,12 @@
 <?php  
-	//include(__DIR__."../../../../../../vlz_config.php");
-    $config = dirname(__DIR__,5)."/wp-config.php";
-    if(file_exists($config)){
-        include_once($config);
-    }
-    
-	date_default_timezone_set('America/Mexico_City');
-    extract($_POST);
-	
-    $conn = new mysqli($host, $user, $pass, $db);
 
+    include("../../../../../vlz_config.php");
+    include("../../../../../wp-load.php");
+    $conn = new mysqli($host, $user, $pass, $db);
+    
+    date_default_timezone_set('America/Mexico_City');
+    extract($_POST);
+    
 	$errores = array();
 
 	if ($conn->connect_error) {
@@ -99,7 +96,7 @@
                 $sImagen = base64_decode($img);
                 $dir = "../../../../uploads/avatares_clientes/{$user_id}/";
                 @mkdir($dir);
-                file_put_contents($dir.'temp.jpg', $sImagen);
+                @file_put_contents($dir.'temp.jpg', $sImagen);
                 $sExt = mime_content_type( $dir.'temp.jpg' );
                 switch( $sExt ) {
                     case 'image/jpeg': $aImage = @imageCreateFromJpeg( $dir.'temp.jpg' ); break;
@@ -115,14 +112,13 @@
                 }else{
                     $nWidth = round( ( $aSize[0] * $nHeight ) / $aSize[1] );
                 }
-                $aThumb = imageCreateTrueColor( $nWidth, $nHeight );
-                imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
-                imagejpeg( $aThumb, $dir.$name_photo.".jpg" );
-                imageDestroy( $aImage );
-                imageDestroy( $aThumb );
-                unlink($dir."temp.jpg");
-
-                $name_photo=$name_photo.'.jpg';
+                $aThumb = @imageCreateTrueColor( $nWidth, $nHeight );
+                @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
+                @imagejpeg( $aThumb, $dir.$name_photo.".jpg" );
+                @imageDestroy( $aImage );
+                @imageDestroy( $aThumb );
+                @unlink($dir."temp.jpg");
+                $name_photo=$name_photo.'.jpg';                    
             }
 
             $sql = "
@@ -153,7 +149,7 @@
 
 
             //MESSAGE
-            $mail_file=dirname(__DIR__,2).'/template/mail/registro.php';
+            $mail_file= realpath('../../template/mail/registro.php');
             $message_mail=file_get_contents($mail_file);
             $message_mail=str_replace('[name]',$name.' '.$lastname,$message_mail);
             $message_mail=str_replace('[email]',$email,$message_mail);
