@@ -240,7 +240,7 @@
 								<div class="km-orden-resultados">
 									
 									<div class="btn-group">
-									  <button type="button" class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									  <button type="button" class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 8px 30px 8px 20px !important;">
 									    ORDENAR POR</span>
 									  </button>
 									  <ul class="dropdown-menu">
