@@ -22,6 +22,10 @@
     padding-top: 10px !important;
 }
 
+.main h1.titulo_pequenio {
+    font-size: 19px;
+}
+
 .main .vlz_tabla {
     position: relative;
     overflow: hidden;
