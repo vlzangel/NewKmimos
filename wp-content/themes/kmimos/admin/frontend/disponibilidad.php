@@ -96,7 +96,7 @@
 		<div class="fechas_box table_main tabla_disponibilidad_box"> 
 			'.$tabla.'
 			<div class="botones_container">
-		        <div class="botones_box">
+		        <div class="botones_box box_100">
 		        	<input type="button" id="editar_disponibilidad" class="km-btn-primary" value="Editar Disponibilidad" />
 		        </div>
 	        </div> 
@@ -123,10 +123,10 @@
 		    </div>
 
 	        <div class="botones_container">
-		        <div class="botones_box">
+		        <div class="botones_box box_50">
 		        	<input type="button" id="guardar_disponibilidad" class="km-btn-primary" value="Guardar" />
 		        </div>
-		        <div class="botones_box">
+		        <div class="botones_box box_50">
 		        	<input type="button" id="volver_disponibilidad" class="km-btn-primary" value="Volver" />
 		        </div>
 	        </div>

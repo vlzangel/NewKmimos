@@ -1,3 +1,9 @@
+.body {
+    padding: 10px !important;
+}
+.main {
+    padding: 0px;
+}
 .fechas_box{
     overflow: hidden;
 }
