@@ -2184,7 +2184,8 @@ footer input:focus{
 }
 @media (max-width: 900px) {
 	button.close {
-		right: 10px;
+		color: black!important;
+		right: 10px!important;
 		color: black;
 	}
 	button.close:hover {
@@ -3387,6 +3388,14 @@ section {
     margin-right:6px;
     width:25px;
     top:-3px
+}
+button.back{
+    font-size: 25px;
+    position: absolute;
+    background: transparent;
+    border: 0px;
+    color: #33e1be;
+    padding:10px;
 }
 button.close {
     position:absolute;
@@ -5520,7 +5529,8 @@ h1.maps {
         margin:20px 0
     }
     .km-beneficios-text {
-        margin-top:0
+        margin-top:0;
+        text-align: left;
     }
     .km-club .col-sm-6:nth-child(2) {
         margin-top:20px
