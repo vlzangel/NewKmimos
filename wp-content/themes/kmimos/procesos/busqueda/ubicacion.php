@@ -26,7 +26,7 @@
 		if( count($municipios) > 1 ){
     		foreach ($municipios as $key => $municipio) {
     			$municipio_value = normaliza( ($municipio->name) );
-    			$estados_str .= ("<div value='".$value->id."_".$municipio->id."' data-value='".$estado_value." ".$municipio_value."' >".$value->name.", ".$municipio->name."</div>");
+    			$estados_str .= ("<div value='".$value->id."_".$municipio->id."' data-value='".$estado_value.", ".$municipio_value."' >".$value->name.", ".$municipio->name."</div>");
     		}
 		}
     }

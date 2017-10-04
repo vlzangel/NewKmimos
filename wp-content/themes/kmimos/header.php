@@ -91,7 +91,7 @@
 			<nav class="navbar navbar-fixed-top bg-transparent">
 			<div class="container">
 				<div class="navbar-header ">
-					<button type="button" class="navbar-toggle"  id="ver_menu">
+					<button type="button" class="navbar-toggle sin_logear" id="ver_menu">
 						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
 					</button>
 					<a class="navbar-brand" href="'.get_home_url().'">
@@ -127,10 +127,10 @@
 		$HTML .= '	
 			<nav class="navbar navbar-fixed-top bg-transparent">
 				<div class="container">
+					<button type="button" class="navbar-toggle" id="ver_menu">
+						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
+					</button>
 					<div class="navbar-header ">
-						<button type="button" class="navbar-toggle" id="ver_menu">
-							<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
-						</button>
 						<a class="navbar-brand" href="'.get_home_url().'">
 							<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
 						</a>

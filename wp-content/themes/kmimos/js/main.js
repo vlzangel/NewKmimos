@@ -1,22 +1,3 @@
-jQuery("#ver_menu").on("click", function(e){
-    if( jQuery("#menu_movil").css("left") == "0px" ){
-        jQuery("#menu_movil").css("left", "-100%");
-    }else{
-        jQuery("#menu_movil").css("left", "0px");
-    }
-});
-
-jQuery(".cerrar_menu_movil").on("click", function(e){
-    jQuery("#menu_movil").css("left", "-100%");
-});
-
-jQuery('#menu_movil').on("click", function(e) {
-    console.log( "id: "+e.target.id );
-    if ( e.target.id == "menu_movil" ) {
-        jQuery("#menu_movil").css("left", "-100%");
-    };
-}); 
-
 function menu(){
 	var w = jQuery(window).width();
 
@@ -24,12 +5,14 @@ function menu(){
 
 		jQuery('.bg-transparent').addClass('bg-white');
 		jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
+		jQuery('.sin_logear img').attr('src', HOME+'/images/new/km-navbar-mobile-negro.svg');
 
 	} else {
 
 		if( !jQuery(".navbar").hasClass("bg-white-secondary") ){
 			jQuery('.bg-transparent').removeClass('bg-white');
 			jQuery('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo.png');
+			jQuery('.sin_logear img').attr('src', HOME+'/images/new/km-navbar-mobile.svg');
 		}
 		
 	}

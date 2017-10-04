@@ -97,6 +97,7 @@
 	    font-weight: 400;
 	    border-radius: 5px;
 	    margin: 2px;
+	    font-size: 12px;
 	}
 
 	.lbl-ui input:focus,
