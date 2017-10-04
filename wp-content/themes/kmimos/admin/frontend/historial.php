@@ -56,9 +56,9 @@
 			$inicio = strtotime( $_metas_reserva['_booking_start'][0] );
 			$fin    = strtotime( $_metas_reserva['_booking_end'][0] );
 
-			$pdf = $_metas['_openpay_pdf'][0];
+			$pdf = $_metas_orden['_openpay_pdf'][0];
 			$ver = $reserva->post_parent;
-			$cancelar = $reserva->post_parent;
+			$cancelar = "orden.php?s=0&o=".$reserva->post_parent;
 			$modificar = md5($reserva->ID)."_".md5($user_id)."_".md5($servicio->ID);
 			$valorar = $reserva->ID;
 
@@ -81,10 +81,11 @@
 			//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
 			if($reserva_status == 'pending') {
 
-			}else if($orden_status == 'wc-on-hold' && ( $_metas['_payment_method'][0] == 'openpay_stores' || $_metas['_payment_method'][0] == 'tienda' ) ){
+			}else if($orden_status == 'wc-on-hold' && ( $_metas_orden['_payment_method'][0] == 'openpay_stores' || $_metas_orden['_payment_method'][0] == 'tienda' ) ){
 
 				$reservas_array["pendientes_tienda"]["reservas"][] = array(
 					'id' => $reserva->ID, 
+					'servicio_id' => $servicio->ID, 
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
@@ -102,6 +103,7 @@
 				
 				$reservas_array["confirmadas"]["reservas"][] = array(
 					'id' => $reserva->ID, 
+					'servicio_id' => $servicio->ID, 
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
@@ -117,6 +119,7 @@
 
 				$reservas_array["completadas"]["reservas"][] = array(
 					'id' => $reserva->ID, 
+					'servicio_id' => $servicio->ID, 
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
@@ -132,6 +135,7 @@
 
 				$reservas_array["canceladas"]["reservas"][] = array(
 					'id' => $reserva->ID, 
+					'servicio_id' => $servicio->ID, 
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
@@ -146,6 +150,7 @@
 
 				$reservas_array["modificadas"]["reservas"][] = array(
 					'id' => $reserva->ID, 
+					'servicio_id' => $servicio->ID, 
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
@@ -160,6 +165,7 @@
 
 				$reservas_array["pendientes_confirmar"]["reservas"][] = array(
 					'id' => $reserva->ID, 
+					'servicio_id' => $servicio->ID, 
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
@@ -175,6 +181,7 @@
 
 				$reservas_array["otros"]["reservas"][] = array(
 					'id' => $reserva->ID, 
+					'servicio_id' => $servicio->ID, 
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 

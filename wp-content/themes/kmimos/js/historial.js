@@ -31,6 +31,37 @@ jQuery(document).ready(function(){
         }
     });
 
+    jQuery(".vlz_accion").on("click", function(e){
+        var value = jQuery(this).attr("data-accion");
+        if(value != ''){
+            if(jQuery(this).hasClass('vlz_cancelar')){
+                var confirmed = confirm("Esta Seguro de cancelar esta reserva?");
+                if (confirmed == true) {
+                    window.location.href = value;
+                }
+            }else{
+                if(jQuery(this).hasClass('vlz_modificar')){
+                    var data = value;
+                    jQuery.post(
+                        URL_PROCESOS_PERFIL, 
+                        {
+                            accion: "update_reserva",
+                            data: data
+                        },
+                        function(resp){
+                            location.href = RAIZ+resp.url;
+                        }, 
+                        'json'
+                    ).fail(function(e) {
+                        console.log( e );
+                    });
+                }else{
+                    window.location.href = value;
+                }
+            }
+        }
+    });
+
     jQuery(".ver_reserva_init").on("click", function(e){
         jQuery(this).parent().parent().parent().addClass("vlz_desplegado");
     });

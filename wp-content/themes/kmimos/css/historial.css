@@ -126,11 +126,11 @@
     text-decoration: none !important;
 }
 
-.main .vlz_tabla .vlz_botones a.cancelar {   
+.main .vlz_tabla .vlz_botones a.vlz_cancelar {   
     padding: 13px 15px;
 }
 
-.main .vlz_tabla .vlz_botones a.cancelar i {    
+.main .vlz_tabla .vlz_botones a.vlz_cancelar i {    
     font-size: 20px;
 }
 
@@ -201,7 +201,7 @@
     text-align: center;
 }
 
-.main .vlz_tabla .ver_reserva_botones .cancelar{
+.main .vlz_tabla .ver_reserva_botones .vlz_cancelar{
     /* float: left; */
     color: #FFF;
     background: #b01d1d;
@@ -243,4 +243,8 @@
     margin-bottom: 10px;
     text-align: center;
     text-decoration: none !important;
+}
+
+a.vlz_accion.vlz_pdf {
+    float: right;
 }

@@ -5,22 +5,22 @@
 	    	foreach ($botones as $boton => $accion) {
 	    		switch ($boton) {
 	    			case 'ver':
-	    				$respuesta .= '<a href="ver/'.$accion.'" class="vlz_btn_ver"> <i class="fa fa-info" aria-hidden="true"></i> Ver</a>';
+	    				$respuesta .= '<a data-accion="ver/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-info" aria-hidden="true"></i> Ver</a>';
     				break;
 	    			case 'confirmar':
-	    				$respuesta .= '<a href="confirmar/'.$accion.'" class="vlz_btn_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
+	    				$respuesta .= '<a data-accion="'.get_home_url()."/wp-content/plugins/kmimos/order.php?s=1&o=".$accion.''.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
     				break;
 	    			case 'cancelar':
-	    				$respuesta .= '<a href="cancelar/'.$accion.'" class="cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
+	    				$respuesta .= '<a data-accion="'.get_home_url()."/wp-content/plugins/kmimos/".$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
     				break;
 	    			case 'modificar':
-	    				$respuesta .= '<a href="modificar/'.$accion.'" class="vlz_btn_modificar"> <i class="fa fa-pencil" aria-hidden="true"></i> Modificar </a>';
+	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_modificar"> <i class="fa fa-pencil" aria-hidden="true"></i> Modificar </a>';
     				break;
 	    			case 'pdf':
-	    				$respuesta .= '<a href="'.$accion.'" class="pdf"> <i class="fa fa-download" aria-hidden="true"></i> ¿Com&oacute; pagar? </a>';
+	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_pdf"> <i class="fa fa-download" aria-hidden="true"></i> ¿Com&oacute; pagar? </a>';
     				break;
 	    			case 'valorar':
-	    				$respuesta .= '<a href="valorar/'.$accion.'" class="pdf"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Valorar </a>';
+	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_valorar"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Valorar </a>';
     				break;
 	    			
 	    		}
@@ -43,7 +43,7 @@
 
 		                	$cancelar = '';
 		                	if( isset($reserva["acciones"]["cancelar"]) ){
-		                		$cancelar = '<a href="cancelar/'.$reserva["acciones"]["cancelar"].'" class="cancelar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>';
+		                		$cancelar = '<a data-accion="cancelar/'.$reserva["acciones"]["cancelar"].'" class="vlz_accion vlz_cancelar cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>';
 		                	}
 		                	$botones = construir_botones($reserva["acciones"]);
 
@@ -123,7 +123,7 @@
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Servicio</span>
-				                		<div>'.$reserva["servicio"].'</div>
+				                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Fecha</span>
