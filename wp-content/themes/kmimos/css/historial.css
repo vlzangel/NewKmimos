@@ -29,6 +29,10 @@
     margin: 0px 0px 10px;
 }
 
+.main .vlz_tabla_box {
+    margin-bottom: 30px;
+}
+
 .main .vlz_tabla .vlz_tabla_superior {
     display: table;
     width: 100%;
