@@ -1,5 +1,5 @@
 <?php
-	function get_caregiver($user_select=""){
+	/*function get_caregiver($user_select=""){
 	    global $wpdb;
 
 	    $sql = "
@@ -71,15 +71,11 @@
 	            $count++;
 
 	            $_metas=get_post_meta($caregiver->ID);
-	            //var_dump($_metas);
 	            $cuidador = get_userdata($caregiver->Cuidador_id);
 	            $cliente = get_userdata($caregiver->Cliente_id);
 	            
 	            if($caregiver->Estatus=='pending'){
-	                // $options='<a class="theme_btn" href="'.get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud.'">Ver</a>';
-	                // $options.='<a class="theme_btn" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1">Confirmar</a>';
-	                // $options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0">Cancelar</a>';
-
+	                
 	                if($caregiver->Cuidador_id==$user_id){
 	                    $options=build_select(array(
 	                        array(
@@ -133,21 +129,6 @@
                             'value'=>get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud
                         )
                     ));
-	                //$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0">Cancelar</a>';
-	                /*
-	                $options=build_select(
-	                    array(
-	                        array(
-	                            'text'=>'Ver',
-	                            'value'=>get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud
-	                        ),
-	                        /*
-	                        arrat'=>'Cancelar',
-	                            'class'=>'cancelled action_confirmed',
-	                            'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
-	                        )
-	                    ));
-	                */
 
 	                $booking_th=array();
 	                $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
@@ -243,5 +224,7 @@
 	global $count;
 	if($count==0){
 	    $CONTENIDO .= '<h1 style="line-height: normal;">No hay solicitudes</h1><hr>';
-	}
+	}*/
+
+	$CONTENIDO .= '<h1 style="line-height: normal;">En ajustes</h1><hr>';
 ?>
