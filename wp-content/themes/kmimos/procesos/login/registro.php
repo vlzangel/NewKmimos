@@ -1,15 +1,12 @@
 <?php  
-	//include(__DIR__."../../../../../../vlz_config.php");
-    $config = dirname(__DIR__,5)."/wp-config.php";
-    if(file_exists($config)){
-        include_once($config);
-    }
-    
-	date_default_timezone_set('America/Mexico_City');
-    extract($_POST);
-	
-    $conn = new mysqli($host, $user, $pass, $db);
 
+    include("../../../../../vlz_config.php");
+    include("../../../../../wp-load.php");
+    $conn = new mysqli($host, $user, $pass, $db);
+    
+    date_default_timezone_set('America/Mexico_City');
+    extract($_POST);
+    
 	$errores = array();
 
 	if ($conn->connect_error) {
@@ -92,37 +89,26 @@
             $name_photo = "";
             $user_photo = 0;
             if( $img_profile != "" ){
-                $name_photo = time();
                 $user_photo = 1;
-                $img_exlode = explode(',', $img_profile);
-                $img = end($img_exlode);
-                $sImagen = base64_decode($img);
-                $dir = "../../../../uploads/avatares_clientes/{$user_id}/";
-                @mkdir($dir);
-                file_put_contents($dir.'temp.jpg', $sImagen);
-                $sExt = mime_content_type( $dir.'temp.jpg' );
-                switch( $sExt ) {
-                    case 'image/jpeg': $aImage = @imageCreateFromJpeg( $dir.'temp.jpg' ); break;
-                    case 'image/gif':  $aImage = @imageCreateFromGif( $dir.'temp.jpg' );  break;
-                    case 'image/png':  $aImage = @imageCreateFromPng( $dir.'temp.jpg' );  break;
-                    case 'image/wbmp': $aImage = @imageCreateFromWbmp( $dir.'temp.jpg' ); break;
-                }
-                $nWidth  = 800;
-                $nHeight = 600;
-                $aSize = getImageSize( $dir.'temp.jpg' );
-                if( $aSize[0] > $aSize[1] ){
-                    $nHeight = round( ( $aSize[1] * $nWidth ) / $aSize[0] );
-                }else{
-                    $nWidth = round( ( $aSize[0] * $nHeight ) / $aSize[1] );
-                }
-                $aThumb = imageCreateTrueColor( $nWidth, $nHeight );
-                imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
-                imagejpeg( $aThumb, $dir.$name_photo.".jpg" );
-                imageDestroy( $aImage );
-                imageDestroy( $aThumb );
-                unlink($dir."temp.jpg");
+                $name_photo = $img_profile;
 
-                $name_photo=$name_photo.'.jpg';
+                if( !is_dir(realpath( "../../../../" )."/uploads/avatares_clientes/") ){
+                    @mkdir(realpath( "../../../../" )."/uploads/avatares_clientes");
+                }
+                if( !is_dir(realpath( "../../../../" )."/uploads/avatares_clientes/avatares/") ){
+                    @mkdir(realpath( "../../../../" )."/uploads/avatares_clientes/avatares/");
+                }
+
+                $dir = realpath( "../../../../" )."/uploads/avatares_clientes/avatares/".$user_id."/";
+                @mkdir($dir);
+
+                $path_origen = realpath( "../../../../../" )."/imgs/Temp/".$img_profile;
+                $path_destino = $dir.$img_profile;
+                if( file_exists($path_origen) ){
+                    if( copy($path_origen, $path_destino) ){
+                        unlink($path_origen);
+                    }
+                }                  
             }
 
             $sql = "
@@ -132,8 +118,10 @@
                     (NULL, {$user_id}, 'user_phone',          '{$movil}'),
                     (NULL, {$user_id}, 'user_gender',          '{$gender}'),
                     (NULL, {$user_id}, 'user_country',        'México'),
+
                     (NULL, {$user_id}, 'user_photo',          '{$user_photo}'),
                     (NULL, {$user_id}, 'name_photo',          '{$name_photo}'),
+
                     (NULL, {$user_id}, 'nickname',            '{$email}'),
                     (NULL, {$user_id}, 'first_name',          '{$name}'),
                     (NULL, {$user_id}, 'last_name',           '{$lastname}'),
@@ -153,7 +141,7 @@
 
 
             //MESSAGE
-            $mail_file=dirname(__DIR__,2).'/template/mail/registro.php';
+            $mail_file= realpath('../../template/mail/registro.php');
             $message_mail=file_get_contents($mail_file);
             $message_mail=str_replace('[name]',$name.' '.$lastname,$message_mail);
             $message_mail=str_replace('[email]',$email,$message_mail);

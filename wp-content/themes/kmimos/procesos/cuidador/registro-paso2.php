@@ -64,6 +64,7 @@
                         if( copy($path_origen, $path_destino) ){
                             unlink($path_origen);
                         }
+                        
                         $foto = 1;
                         $sql = ("
                             INSERT INTO wp_posts VALUES (
