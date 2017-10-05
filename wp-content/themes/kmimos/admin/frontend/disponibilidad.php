@@ -42,7 +42,7 @@
 
     $tabla = '<div>';
 
- /*   echo "<pre>";
+/*    echo "<pre>";
     	print_r($rangos);
     echo "</pre>";*/
 
@@ -56,6 +56,12 @@
     		foreach ($value['rangos'] as $rango) {
 
     			$cont++;
+
+    			$from = explode("-", $rango['from']);
+    			if( count($from) > 0 ){ $rango['from'] = $from[2]."/".$from[1]."/".$from[0]; }
+
+    			$to = explode("-", $rango['to']);
+    			if( count($to) > 0 ){ $rango['to'] = $to[2]."/".$to[1]."/".$to[0]; }
 
 		    	$tabla .= '
 		    		<div class="vlz_tabla">
