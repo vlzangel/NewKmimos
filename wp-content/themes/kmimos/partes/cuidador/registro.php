@@ -105,8 +105,8 @@
 				</div>
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-correo">SIGUIENTE</a>
 
-				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp  <?php echo $info['whatsapp']; ?></p>
+				<p style="color: #979797">Al crear una cuenta, <a href="<?php echo get_home_url(); ?>/terminos-y-condiciones/">aceptas las condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
+				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp  (55) 61780320</p>
 				<hr>
 				<div class="row">
 					<div class="col-xs-5">
