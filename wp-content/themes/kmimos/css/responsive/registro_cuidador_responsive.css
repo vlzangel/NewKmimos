@@ -55,4 +55,11 @@
 	ol, ul {
 	    font-size: 12px !important;
 	}
+	.page-reservation .steps-numbers li.line {
+	    width: 70px !important;
+	}
+
+	.h3, h3 {
+	    font-size: 22px !important;
+	}
 }
