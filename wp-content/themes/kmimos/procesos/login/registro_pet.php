@@ -20,37 +20,22 @@
             // Pets - Photo
             $photo_pet = "";
             if( $img_pet != "" ){
-                $photo_pet = time();
-                $img_exlode = explode(',', $img_pet);
-                $img = end($img_exlode);
-                $sImagen = base64_decode($img);
                 $tmp_user_id = ($userid) - 5000;
-                $dir = "../../../../uploads/mypet/{$tmp_user_id}/";
-                @mkdir($dir);
-                file_put_contents($dir.'temp.jpg', $sImagen);
-                $sExt = mime_content_type( $dir.'temp.jpg' );
-                switch( $sExt ) {
-                    case 'image/jpeg': $aImage = @imageCreateFromJpeg( $dir.'temp.jpg' ); break;
-                    case 'image/gif':  $aImage = @imageCreateFromGif( $dir.'temp.jpg' );  break;
-                    case 'image/png':  $aImage = @imageCreateFromPng( $dir.'temp.jpg' );  break;
-                    case 'image/wbmp': $aImage = @imageCreateFromWbmp( $dir.'temp.jpg' ); break;
-                }
-                $nWidth  = 800;
-                $nHeight = 600;
-                $aSize = getImageSize( $dir.'temp.jpg' );
-                if( $aSize[0] > $aSize[1] ){
-                    $nHeight = round( ( $aSize[1] * $nWidth ) / $aSize[0] );
-                }else{
-                    $nWidth = round( ( $aSize[0] * $nHeight ) / $aSize[1] );
-                }
-                $aThumb = imageCreateTrueColor( $nWidth, $nHeight );
-                imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
-                imagejpeg( $aThumb, $dir.$photo_pet.".jpg" );
-                imageDestroy( $aImage );
-                imageDestroy( $aThumb );
-                unlink($dir."temp.jpg");
 
-                $photo_pet='/wp-content/uploads/mypet/'.$tmp_user_id.'/'.$photo_pet.'.jpg';
+                if( !is_dir(realpath( "../../../../" )."/uploads/mypet/") ){
+                    mkdir(realpath( "../../../../" )."/uploads/mypet/");
+                }
+                $dir = realpath( "../../../../" )."/uploads/mypet/".$tmp_user_id."/";
+                mkdir($dir);
+
+                $path_origen = realpath( "../../../../../" )."/imgs/Temp/".$img_pet;
+                $path_destino = $dir.$img_pet;
+                if( file_exists($path_origen) ){
+                    if( copy($path_origen, $path_destino) ){
+                        unlink($path_origen);
+                        $photo_pet='/wp-content/uploads/mypet/'.$tmp_user_id.'/'.$img_pet;
+                    }
+                }                  
             }
             // END Pets - Photo
 

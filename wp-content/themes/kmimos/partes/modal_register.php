@@ -67,8 +67,12 @@ $HTML .='
 								<input type="text" id="id_login_face" name="id_login_face" class="hidden">
 								<input type="text" id="id_login_gmail" name="id_login_gmail" class="hidden">
 								<div class="km-datos-foto" id="km-datos-foto-profile" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;"></div>
+								
+
 								<input type="file" class="hidden" id="carga_foto_profile" accept="image/*">
 								<input type="hidden" id="img_profile" name="img_profile" value="">
+								
+
 								<div class="label-placeholder">
 									<label>Nombre</label>
 									<input type="text" id="nombre" name="nombre" maxlength="30" data-charset="xlf" class="input-label-placeholder" pattern=".{3,}">
@@ -151,8 +155,10 @@ $HTML .='
 						<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
 
 						<div class="km-datos-foto" id="km-datos-foto" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;"></div>
+
 						<input type="file" class="hidden" id="carga_foto" accept="image/*">
 						<input type="hidden" id="img_pet" name="img_pet" value="">
+
 <form id="nueva_mascota" enctype="multipart/form-data" method="POST">
 						<div class="km-box-form">
 							<div class="content-placeholder">

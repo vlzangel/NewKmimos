@@ -185,10 +185,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
-
-
-
-
 	jQuery(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
 		e.preventDefault();
 
@@ -206,7 +202,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			referido = jQuery("#referido").val(),
 			img_profile = jQuery("#img_profile").val();
 	 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
-		if (nombre.length > 2 && apellido.length > 2 && ife.length > 2 && email.length > 2 && pass.length > 2 && movil.length > 2
+		if (nombre.length > 2 && apellido.length > 2 && ife.length > 2 && email.length > 2 && pass.length > 0 && movil.length > 2
 		       	&& genero != "" && edad != "" && fumador !="") {
 
 				var datos = {
@@ -241,24 +237,36 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
 	
-	jQuery("#km-datos-foto").on('click', function(){
-		jQuery("#carga_foto").trigger("click");
-		document.addEventListener('change',cargaImagen, false);
-	});
+	var valid = [
+		'nombre_mascota', 
+		'tipo_mascota',
+		'raza_mascota',
+		'color_mascota',
+		'datepets',
+		'genero_mascota',
+		'tamano_mascota'
+	];
+
 
 	var maxDatePets = new Date();
 	jQuery('#datepets').datepick({
 		dateFormat: 'dd/mm/yyyy',
 		maxDate: maxDatePets,
 		onSelect: function(xdate) {
+
+			if( jQuery('#datepets').val() != '' ){
+				jQuery('[name="sp-date_birth"]').remove();
+				jQuery('#datepets').css('color', 'black');
+			}
 		}
 	});
-	
+
+
 	jQuery("#nombre_mascota").blur(function(){
 		if(jQuery("#nombre_mascota").val().length == 0){		
 			jQuery("#nombre_mascota").parent('div').css('color','red');
 			jQuery("#nombre_mascota").after('<span name="sp-nombre_mascota">Ingrese el nombre de su mascota</span>').css('color','red');
-			jQuery("#nombre_mascota").focus(function() { jQuery("[name='sp-name']").remove(); });
+			jQuery("#nombre_mascota").focus(function() { jQuery("[name='sp-nombre_mascota']").remove(); });
 		}else{
 			jQuery("#nombre_mascota").css('color','green');
 			jQuery("#nombre_mascota").parent('div').css('color','green');
@@ -271,7 +279,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		switch(jQuery("#tipo_mascota").val()) {
 			case "0":
 				jQuery("#tipo_mascota").parent('div').css('color','red');
-				jQuery("#tipo_mascota").before('<span name="sp-tipo_mascota">Debe seleccionar un tipo</span>').css('color','red');
+				jQuery("#tipo_mascota").after('<span name="sp-tipo_mascota">Debe seleccionar un tipo</span>').css('color','red');
 				jQuery("#tipo_mascota").focus(function() { jQuery("[name='sp-tipo_mascota']").remove(); });
 				break;
 			case "2605":
@@ -282,7 +290,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			case "2608":
 					jQuery("#tipo_mascota").css('color','green');
 					jQuery("#tipo_mascota").focus(function() { jQuery("[name='sp-tipo_mascota']").remove(); });
-					jQuery('#raza_mascota').html("<option id='select_mascota' value='1'>Gato</option>").fadeIn();
 				break;
 		}
 	});
@@ -419,17 +426,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			aggresive_pets = jQuery("#km-check-4").val(),
 			img_pet = jQuery("#img_pet").val();
 
-		var valid = [
-			'nombre_mascota', 
-			'tipo_mascota',
-			'raza_mascota',
-			'color_mascota',
-			'datepets',
-			'genero_mascota',
-			'tamano_mascota',
-		];
+			// Reset input:file
+			$fileupload = $('#carga_foto');
+			$fileupload.replaceWith($fileupload.clone(true));
 
-		
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
 					datepets,genero_mascota,tamano_mascota,pet_sterilized,
 					pet_sociable,aggresive_humans,aggresive_pets,img_pet];
@@ -459,7 +459,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		            'aggresive_humans': campos_pet[9],
 		            'aggresive_pets': campos_pet[10],
 					'img_pet': campos_pet[11],
-		            'userid': globalData
+		            'userid': globalData.trim()
 		        };
 
 				jQuery.post( HOME+'/procesos/login/registro_pet.php', datos, function( data ) {
@@ -490,10 +490,12 @@ function km_cliente_validar( fields ){
 			if( jQuery('#'+val).val() == '' ){
 				valor = jQuery('#'+val).val();
 				m = 'Este campo no puede estar vacio';
-			}else if( val == 'tipo_mascota' ){
+
+			}else if( val == 'tipo_mascota' && jQuery('#tipo_mascota').val() < 1){
 				m = 'Este campo no puede estar vacio';
-			}else if( val == 'raza_mascota' ){
+			}else if( val == 'raza_mascota'  && jQuery('#raza_mascota').val() < 1){
 				m = 'Este campo no puede estar vacio';
+
 			}else if( val == 'tamano_mascota' ){
 				if (jQuery("#select_1").hasClass("km-opcionactivo")) {
 					valor = jQuery("#select_1").attr('value');
@@ -511,8 +513,10 @@ function km_cliente_validar( fields ){
 
 			if( m == ''){
 				status = true;
+				jQuery('[name="sp-'+jQuery('#'+val).attr('name')+'"]').remove();
 			}else{
 				jQuery('#'+val).parent('div').css('color','red');
+				jQuery('[name="sp-'+jQuery('#'+val).attr('name')+'"]').remove();
 				jQuery('#'+val).after('<span name="sp-'+jQuery('#'+val).attr('name')+'">'+m+'</span>').css('color','red');
 				status = false;
 				console.log( val + ': ' + valor );
@@ -620,36 +624,124 @@ function cargaImagen(evt){
 	}
 }
 
-/*IMAGE PROFILE*/
+
+/* Cargar imagen de la mascota */
+function vista_previa(evt) {
+	
+	// jQuery("#perfil-img").attr("src", HOME+"images/cargando.gif" );
+ //    jQuery(".kmimos_cargando").css("visibility", "visible");
+
+  	var files = evt.target.files;
+  	for (var i = 0, f; f = files[i]; i++) {  
+       	if (!f.type.match("image.*")) {
+            continue;
+       	}
+       	var reader = new FileReader();
+       	reader.onload = (function(theFile) {
+           return function(e) {
+    			redimencionar(e.target.result, function(img_reducida){
+    				var a = RAIZ+"imgs/vlz_subir_img.php";
+    				var img_pre = jQuery("#img_pet").val();
+    				
+    				 $.ajax({
+                      async:true, 
+                      cache:false, 
+                      type: 'POST',   
+                      url: a,
+                      data: {img: img_reducida, previa: img_pre}, 
+                      success:  function(url){
+			      		jQuery("#km-datos-foto").css("background", "url("+RAIZ+"imgs/Temp/"+url+")");
+	        			jQuery("#img_pet").val( url );
+		           		jQuery(".kmimos_cargando").css("visibility", "hidden");
+                      },
+                      beforeSend:function(){},
+                      error:function(objXMLHttpRequest){}
+                    });
+    			});
+           };
+		})(f);
+		reader.readAsDataURL(f);
+   	}
+}      
+jQuery("#km-datos-foto").on('click', function(){
+	jQuery("#carga_foto").trigger("click");
+//		document.addEventListener('change',cargaImagen, false);
+});
+document.getElementById("carga_foto").addEventListener("change", vista_previa, false);
+/* Cargar imagen de la mascota */
+
+
+/* Cargar imagen de la perfil */
+function vista_previa_perfil(evt) {
+	
+	// jQuery("#km-datos-foto-profile").attr("src", HOME+"images/cargando.gif" );
+ 	// jQuery(".kmimos_cargando").css("visibility", "visible");
+
+  	var files = evt.target.files;
+  	for (var i = 0, f; f = files[i]; i++) {  
+       	if (!f.type.match("image.*")) {
+            continue;
+       	}
+       	var reader = new FileReader();
+       	reader.onload = (function(theFile) {
+           return function(e) {
+    			redimencionar(e.target.result, function(img_reducida){
+    				var a = RAIZ+"imgs/vlz_subir_img.php";
+    				var img_pre = jQuery("#img_profile").val();
+    				
+    				 $.ajax({
+                      async:true, 
+                      cache:false, 
+                      type: 'POST',   
+                      url: a,
+                      data: {img: img_reducida, previa: img_pre}, 
+                      success:  function(url){
+			      		jQuery("#km-datos-foto-profile").css("background", "url("+RAIZ+"imgs/Temp/"+url+")");
+	        			jQuery("#img_profile").val( url );
+		           		jQuery(".kmimos_cargando").css("visibility", "hidden");
+                      },
+                      beforeSend:function(){},
+                      error:function(objXMLHttpRequest){}
+                    });
+    			});
+           };
+		})(f);
+		reader.readAsDataURL(f);
+   	}
+}      
 jQuery("#km-datos-foto-profile").on('click', function(){
 	jQuery("#carga_foto_profile").trigger("click");
-	document.addEventListener('change',cargaImagenProfile, false);
 });
+document.getElementById("carga_foto_profile").addEventListener("change", vista_previa_perfil, false);
+/* Cargar imagen de la perfil */
 
-function cargaImagenProfile(evt){
-	var files = evt.target.files;
 
-	/*obtenemos la imagen del campo file*/
-	for (var i = 0, f; f = files[i]; i++) {
-		/*Solo admitimos imágenes.*/
-		if (!f.type.match('image.*')) {
-			continue;
-		}
-		var reader = new FileReader();
 
-		reader.onload = (function(theFile){
-			return function(e){
-				/*Creamos la imagen.*/
-				jQuery("#km-datos-foto-profile").css("background-image", "url("+e.target.result+")");
-				jQuery("#km-datos-foto-profile").addClass("img-circle");
-				jQuery("#img_profile").val(e.target.result);
-				/*document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');*/
-			};
-		})(f);
+/*IMAGE PROFILE*/
+// function cargaImagenProfile(evt){
+// 	var files = evt.target.files;
 
-		reader.readAsDataURL(f);
-	}
-}
+// 	/*obtenemos la imagen del campo file*/
+// 	for (var i = 0, f; f = files[i]; i++) {
+// 		/*Solo admitimos imágenes.*/
+// 		if (!f.type.match('image.*')) {
+// 			continue;
+// 		}
+// 		var reader = new FileReader();
+
+// 		reader.onload = (function(theFile){
+// 			return function(e){
+// 				/*Creamos la imagen.*/
+// 				jQuery("#km-datos-foto-profile").css("background-image", "url("+e.target.result+")");
+// 				jQuery("#km-datos-foto-profile").addClass("img-circle");
+// 				jQuery("#img_profile").val(e.target.result);
+// 				/*document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');*/
+// 			};
+// 		})(f);
+
+// 		reader.readAsDataURL(f);
+// 	}
+// }
 
 /*RECOVER PASSWORD*/
 jQuery(document).on('click','#login_submit.recover_pass',function(e){
