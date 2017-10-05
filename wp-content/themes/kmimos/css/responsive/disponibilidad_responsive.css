@@ -11,6 +11,9 @@
 	    width: 100%;
 	    margin: 5px;
 	}
+	.fechas_item {
+	    width: 100%;
+	}
 }
 
 @media (max-width: 350px){

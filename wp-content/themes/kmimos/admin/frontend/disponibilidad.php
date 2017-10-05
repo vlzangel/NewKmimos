@@ -123,12 +123,12 @@
 
 				<div class="fechas_item">
 					<i class="icon-calendario embebed"></i>
-			        <input type="text" id="inicio" name="inicio" class="fechas" placeholder="Inicio" min="'.date("Y-m-d").'">
+			        <input type="text" id="inicio" name="inicio" class="fechas" placeholder="Inicio" min="'.date("Y-m-d").'" readonly>
 		        </div>
 
 				<div class="fechas_item">
 					<div class="icono"><i class="icon-calendario embebed"></i></div>
-			        <input type="text" id="fin" name="fin" class="fechas" placeholder="Fin" disabled>
+			        <input type="text" id="fin" name="fin" class="fechas" placeholder="Fin" disabled readonly>
 		        </div>
 		    </div>
 
