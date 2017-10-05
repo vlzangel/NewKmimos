@@ -229,10 +229,10 @@ function mensaje( label, msg='', reset=false ){
 		visible = 'hidden';
 	}
 	jQuery('[data-error="'+label+'"]').css('visibility', visible);
-	jQuery('[data-error="'+label+'"]').css('color', danger_color);
+	/*jQuery('[data-error="'+label+'"]').css('color', danger_color);*/
 	jQuery('[data-error="'+label+'"]').html(msg);
 	jQuery( '[name="'+label+'"]' ).css('border-bottom', '1px solid ' + border_color);
-	jQuery( '[name="'+label+'"]' ).css('color', danger_color);
+	/*jQuery( '[name="'+label+'"]' ).css('color', danger_color);*/
 }
 
 function km_cuidador_validar( fields ){
