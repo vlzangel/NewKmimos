@@ -86,34 +86,29 @@ jQuery("#guardar_disponibilidad").on("click", function(e){
     guardar_disponibilidad();
 });
 
-jQuery(".delete_disponibilidad").on("click", function(e){
-    var valor = jQuery(this).val();
+jQuery(".vlz_cancelar").on("click", function(e){
+    var valor = jQuery(this).attr("data-value");
 
-    switch (valor) {
-        case "Eliminar":
-            var confirmed = confirm("Esta seguro de liberar estos días?");
-            if (confirmed == true) {
-                
-                var id  = jQuery(this).attr("data-id");
-                var ini = jQuery(this).attr("data-inicio");
-                var fin = jQuery(this).attr("data-fin");
+    var confirmed = confirm("Esta seguro de liberar estos días?");
+    if (confirmed == true) {
+        
+        var id  = jQuery(this).attr("data-id");
+        var ini = jQuery(this).attr("data-inicio");
+        var fin = jQuery(this).attr("data-fin");
 
-                jQuery.post(
-                    URL_PROCESOS_PERFIL, 
-                    {
-                        servicio: id,
-                        inicio: ini,
-                        fin: fin,
-                        accion: "delete_disponibilidad"
-                    },
-                    function(data){
-                        location.reload();
-                    }
-                );
-
+        jQuery.post(
+            URL_PROCESOS_PERFIL, 
+            {
+                servicio: id,
+                inicio: ini,
+                fin: fin,
+                accion: "delete_disponibilidad"
+            },
+            function(data){
+                location.reload();
             }
-                
-        break;
+        );
+
     }
         
 });

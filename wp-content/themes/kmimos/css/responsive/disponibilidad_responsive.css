@@ -7,11 +7,9 @@
 }
 
 @media (max-width: 480px){
-    .box_100{
-		width: 100% !important;	
-	}
-	.box_50{
-		width: 50% !important;
+    .main .vlz_tabla .vlz_tabla_cuidador {
+	    width: 100%;
+	    margin: 5px;
 	}
 }
 
