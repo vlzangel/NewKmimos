@@ -117,7 +117,7 @@
 			                	</div>
 			                	<div class="vlz_tabla_superior">
 				                	<div class="vlz_tabla_cuidador vlz_celda">
-				                		<span>Servicio</span>
+				                		<span>'.$reserva["cliente"].'</span>
 				                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_celda">

@@ -91,6 +91,7 @@
 
 					$reservas_array["confirmadas"]["reservas"][] = array(
 						'id' => $reserva->ID, 
+						'cliente' => $_Cliente, 
 						'servicio_id' => $servicio->ID, 
 						'servicio' => $servicio->post_title, 
 						'inicio' => date('d/m/Y', $inicio), 
@@ -107,6 +108,7 @@
 
 					$reservas_array["completadas"]["reservas"][] = array(
 						'id' => $reserva->ID, 
+						'cliente' => $_Cliente, 
 						'servicio_id' => $servicio->ID, 
 						'servicio' => $servicio->post_title, 
 						'inicio' => date('d/m/Y', $inicio), 
@@ -123,6 +125,7 @@
 
 					$reservas_array["canceladas"]["reservas"][] = array(
 						'id' => $reserva->ID, 
+						'cliente' => $_Cliente, 
 						'servicio_id' => $servicio->ID, 
 						'servicio' => $servicio->post_title, 
 						'inicio' => date('d/m/Y', $inicio), 
@@ -139,6 +142,7 @@
 
 					$reservas_array["pendientes_confirmar"]["reservas"][] = array(
 						'id' => $reserva->ID, 
+						'cliente' => $_Cliente, 
 						'servicio_id' => $servicio->ID, 
 						'servicio' => $servicio->post_title, 
 						'inicio' => date('d/m/Y', $inicio), 
