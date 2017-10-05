@@ -70,6 +70,7 @@
 
 .main .vlz_tabla .vlz_tabla_superior > div.vlz_celda {
     display: table-cell;
+    padding: 0px 10px 0px 0px;
 }
 
 .main .vlz_tabla .vlz_img {    
