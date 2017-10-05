@@ -1,3 +1,7 @@
+.km-btn-border:hover{
+	text-decoration: none;
+}
+
 @media (max-width: 992px){
 
 }
@@ -61,5 +65,13 @@
 
 	.h3, h3 {
 	    font-size: 22px !important;
+	}
+
+	.km-block-1 p{
+		font-size: 11px !important;
+	}
+
+	.popup-registro-exitoso-text h2{
+		font-size: 18px !important;
 	}
 }

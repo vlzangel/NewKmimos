@@ -45,7 +45,7 @@ jQuery("#cr_minus").on('click', function(e){
 			input.val( valor );
 		}
 
-		if ( span.html() <= 0 ) {
+		if ( span.html() <= 1 ) {
 			el.addClass("disabled");			
 		}
 	}
