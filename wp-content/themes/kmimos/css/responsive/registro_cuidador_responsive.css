@@ -51,4 +51,8 @@
 	.km-titular-cuidador {
 	    top: 80px;
 	}
+
+	ol, ul {
+	    font-size: 12px !important;
+	}
 }
