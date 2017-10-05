@@ -34,7 +34,7 @@
 
 	$status = $booking->get_status();
 
-	if(  $_SESSION['admin_sub_login'] != 'YES' && $booking->get_status() != "cancelled" ){
+/*	if(  $_SESSION['admin_sub_login'] != 'YES' && $booking->get_status() != "cancelled" ){
 
 		if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
 			$estado = array(
@@ -52,7 +52,7 @@
 	   		exit;
 		}
 
-	}
+	}*/
 
 	if($s == "0"){
 		$order->update_status('wc-cancelled');

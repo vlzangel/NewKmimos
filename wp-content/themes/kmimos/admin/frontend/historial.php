@@ -202,7 +202,7 @@
 
 			}
 		}
-
+		
 		//BUILD TABLE
 		$CONTENIDO .= '
 			<h1 style="margin: 0px; padding: 0px;">Mi Historial de Reservas</h1><hr style="margin: 5px 0px 10px;">

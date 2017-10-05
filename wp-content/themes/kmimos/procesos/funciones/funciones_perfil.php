@@ -71,27 +71,21 @@
 				                			<div>MÉTODO DE PAGO</div>
 				                			<span>DEPÓSITO DEL 17%</span>
 				                		</div>
-
 				                		<div class="item_desglose vlz_bold">
 				                			<div style="color: #6b1c9b;" >Monto Restante a Pagar en EFECTIVO al cuidador</div>
 				                			<span style="color: #6b1c9b;">$'.number_format( ($reserva["desglose"]["remaining"]-$reserva["desglose"]["descuento"]), 2, ',', '.').'</span>
 				                		</div>
-
 				                		'.$descuento.'
-
 				                		<div class="item_desglose">
 				                			<div>Pagó</div>
 				                			<span>$'.number_format( $reserva["desglose"]["deposit"], 2, ',', '.').'</span>
 				                		</div>
 			                		</div>
-
 			                		<div class="total_reserva">
-
 				                		<div class="item_desglose">
 				                			<div>TOTAL</div>
 				                			<span>$'.number_format( $reserva["desglose"]["total"], 2, ',', '.').'</span>
 				                		</div>
-
 			                		</div>
 			                	';
 		                	}else{
@@ -101,33 +95,26 @@
 				                			<div>MÉTODO DE PAGO</div>
 				                			<span>PAGO TOTAL</span>
 				                		</div>
-
 				                		'.$descuento.'
-
 				                		<div class="item_desglose">
 				                			<div>Pagó</div>
 				                			<span>$'.number_format( ($reserva["desglose"]["total"]-$reserva["desglose"]["descuento"]), 2, ',', '.') .'</span>
 				                		</div>
 			                		</div>
-
 			                		<div class="total_reserva">
-
 				                		<div class="item_desglose">
 				                			<div>TOTAL</div>
 				                			<span>$'.number_format( $reserva["desglose"]["total"], 2, ',', '.') .'</span>
 				                		</div>
-
 			                		</div>
 			                	';
 		                	}
 
 			                $table.='
 			                <div class="vlz_tabla">
-
 			                	<div class="vlz_img">
 			                		<span style="background-image: url('.$reserva["foto"].');"></span>
 			                	</div>
-
 			                	<div class="vlz_tabla_superior">
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Servicio</span>
@@ -147,24 +134,15 @@
 				                	</div>
 			                	</div>
 		                		<i class="fa fa-times ver_reserva_init_closet" aria-hidden="true"></i>
-
 			                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
 			                		<a class="ver_reserva_init_fuera">Ver Reserva</a>
 			                	</div>
-
 			                	<div class="vlz_tabla_inferior">
-
 			                		'.$vlz_tabla_inferior.'
-
 			                		<div class="ver_reserva_botones">
-
 				                		'.$botones.'
-
 			                		</div>
-
 			                	</div>
-
-
 			                </div>';
 		                }
 
