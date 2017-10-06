@@ -1,8 +1,76 @@
 jQuery( document ).ready(function() {
 	
-	jQuery("#rc_nombres").on("keyup", function(e){
-		var valor = jQuery("#rc_nombres").val();
-		
+	jQuery(".solo_letras").on("keyup", function(e){
+		var valor = jQuery( this ).val();
+		if( valor != "" ){
+			var resul = ""; var no_permitido = false;
+			jQuery.each(valor.split(""), function( index, value ) {
+			  	if( /^[a-zA-Z ]*$/g.test(value) ){
+					resul += value;
+				}else{
+					no_permitido = true;
+				}
+			});
+			if( no_permitido ){
+				jQuery( this ).val(resul);
+			}
+		}
+	});
+	
+	jQuery(".solo_numeros").on("keyup", function(e){
+		var valor = jQuery( this ).val();
+		if( valor != "" ){
+			var resul = ""; var no_permitido = false;
+			jQuery.each(valor.split(""), function( index, value ) {
+			  	if( /^[0-9]*$/g.test(value) ){
+					resul += value;
+				}else{
+					no_permitido = true;
+				}
+			});
+			if( no_permitido ){
+				jQuery( this ).val(resul);
+			}
+		}
+	});
+	
+	jQuery("input").on("keypress", function(e){
+		var valor = jQuery( this ).attr("minlength");
+		if( valor != undefined && valor+0 > 0 ){
+			if( jQuery( this ).val().split("").length > valor ){
+				var cont = 0; var result = "";
+				jQuery.each(jQuery( this ).val().split(""), function( index, value ) {
+				  	if( cont < valor ){
+				  		result += value;
+				  	}
+				});
+				jQuery( this ).val(result);
+				return false;
+			}
+		}
+	});
+
+	jQuery(".social_email").on("change", function(){
+		var email = jQuery(this);
+		if( email.val().trim() == "" ){
+			mensaje( email.attr("name"), '<span name="sp-email">Ingrese su email</span>' )
+		}else{
+			jQuery.ajax({
+		        data: {
+					'email': email.val()
+				},
+		        url:   HOME+'/procesos/login/main.php',
+		        type:  'post',
+		        success:  function (response) {
+	                if (response == 'SI') {
+						mensaje( email.attr("name"), '<span name="sp-email">Este E-mail ya esta en uso</span>' );
+	                }else if (response == 'NO'){
+						mensaje( email.attr("name"), '', true );
+	                }
+		        }
+		    }); 
+		}
+
 	});
 
 });
@@ -337,21 +405,23 @@ function vista_previa(evt) {
     				var a = RAIZ+"imgs/vlz_subir_img.php";
     				var img_pre = jQuery("#vlz_img_perfil").val();
     				
-    				 jQuery.ajax({
-                      async:true, 
-                      cache:false, 
-                      type: 'POST',   
-                      url: a,
-                      data: {img: img_reducida, previa: img_pre}, 
-                      success:  function(url){
-			      		jQuery("#perfil-img").attr("src", RAIZ+"imgs/Temp/"+url);
-	        			jQuery("#vlz_img_perfil").val( url );
-		           		jQuery(".kmimos_cargando").css("visibility", "hidden");
-                      },
-                      beforeSend:function(){},
-                      error:function(objXMLHttpRequest){}
+    				jQuery.ajax({
+                      	async:true, 
+                      	cache:false, 
+                      	type: 'POST',   
+                      	url: a,
+                      	data: {img: img_reducida, previa: img_pre}, 
+                      	success:  function(url){
+				      		jQuery("#perfil-img-a").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
+				      		jQuery("#perfil-img").css("display", "none" );
+		        			jQuery("#vlz_img_perfil").val( url );
+			           		jQuery(".kmimos_cargando").css("visibility", "hidden");
+                      	},
+                      	beforeSend:function(){},
+                      	error:function(objXMLHttpRequest){}
                     });
     			});
+
            };
 		})(f);
 		reader.readAsDataURL(f);

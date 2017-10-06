@@ -4496,6 +4496,8 @@ textarea.popup-conoce-textarea {
     background-repeat: no-repeat;
     background-position: center;
     margin: 0 auto;
+    border-radius: 50%;
+    background-size: cover;
 }
 
 .km-datos-mascota::after {

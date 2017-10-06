@@ -1,0 +1,10 @@
+#perfil-img-a{
+	display: inline-block;
+	width: 150px;
+    height: 150px;
+    margin-bottom: 0px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

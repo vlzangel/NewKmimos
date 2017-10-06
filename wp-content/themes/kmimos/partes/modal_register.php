@@ -66,7 +66,7 @@ $HTML .='
 						<div class="content-placeholder">
 							<input type="text" id="id_login_face" name="id_login_face" class="hidden">
 							<input type="text" id="id_login_gmail" name="id_login_gmail" class="hidden">
-							<div class="km-datos-foto" id="km-datos-foto-profile" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;">
+							<div class="km-datos-foto" id="km-datos-foto-profile" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.svg);">
 								<div id="loading-perfil" style="width:100%;line-height: 100%;display:none">
 									<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
 								</div>

@@ -103,6 +103,7 @@
                 $sql = "
                     INSERT INTO wp_usermeta VALUES
                         (NULL, ".$user_id.", 'user_address',        '".$direccion."'),
+                        (NULL, ".$user_id.", 'description',         '".$descripcion."'),
                         (NULL, ".$user_id.", 'user_photo',          '".$img_id."'),
                         (NULL, ".$user_id.", 'name_photo',          '".$vlz_img_perfil."');
                     ";

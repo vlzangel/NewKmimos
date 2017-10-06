@@ -41,12 +41,19 @@
     	top: 5px !important;
 	}
 
+	.bg-white .navbar-header {
+	    margin-top: 0px !important;
+	}
+
 }
 
 @media (max-width: 480px){
     .km-titular-cuidador h2,
     .km-titular-cuidador p {
 	    text-align: left;
+	}
+	h2 {
+	    font-size: 20px !important;
 	}
 }
 
