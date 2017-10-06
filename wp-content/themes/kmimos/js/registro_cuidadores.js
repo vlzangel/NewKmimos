@@ -74,10 +74,29 @@ jQuery( document ).ready(function() {
 	});
 
 	jQuery(".obtener_direccion").on("click", function(e){
+		console.log("Hola");
+		navigator.geolocation.getCurrentPosition(vlz_coordenadas);
+	});
+
+});
+
+function vlz_coordenadas(position){
+    if(position.coords.latitude != '' && position.coords.longitude != '') {
+        LAT = position.coords.latitude;
+        LNG = position.coords.longitude;        
+    } else {
+        var mensaje = 'No es posible leer su ubicación,\nverifique si su GPS está encendido\ny vuelva a recargar la página.';
+        alert(mensaje);        
+    }
+
+    if( LAT == 0 || LNG == 0 ){
+		alert("No hemos podido determinar tu ubicación\nPor favor verifica que tu navegador permita el acceso a la misma.");
+	}else{
 		jQuery.ajax({
-	        url:   'https://maps.googleapis.com/maps/api/geocode/json?latlng=19.3794059,-99.15914459999999&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8',
+	        url:   'https://maps.googleapis.com/maps/api/geocode/json?latlng='+LAT+','+LNG+'&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8',
 	        type:  'get',
 	        success:  function (response) {
+	        	console.log(response);
                 jQuery(".km-datos-estado-opcion option:contains('"+response.results[0].address_components[5].long_name+"')").prop('selected', true);
                 var estado_id = jQuery(".km-datos-estado-opcion option:contains('"+response.results[0].address_components[5].long_name+"')").val();
                 
@@ -88,9 +107,11 @@ jQuery( document ).ready(function() {
                 jQuery("#rc_direccion").val( response.results[0].formatted_address );
 	        }
 	    }, "json"); 
-	});
+	}
+}
 
-});
+var LAT = 0;
+var LNG = 0;
 
 jQuery(document).on("click", '[data-target="#popup-registro-cuidador1"]' ,function(e){
 	e.preventDefault();
