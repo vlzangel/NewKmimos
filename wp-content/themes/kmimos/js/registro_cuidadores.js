@@ -73,6 +73,23 @@ jQuery( document ).ready(function() {
 
 	});
 
+	jQuery(".obtener_direccion").on("click", function(e){
+		jQuery.ajax({
+	        url:   'https://maps.googleapis.com/maps/api/geocode/json?latlng=19.3794059,-99.15914459999999&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8',
+	        type:  'get',
+	        success:  function (response) {
+                jQuery(".km-datos-estado-opcion option:contains('"+response.results[0].address_components[5].long_name+"')").prop('selected', true);
+                var estado_id = jQuery(".km-datos-estado-opcion option:contains('"+response.results[0].address_components[5].long_name+"')").val();
+                
+                cambio_municipio(estado_id, function(){
+                	jQuery(".km-datos-municipio-opcion option:contains('"+response.results[0].address_components[4].long_name+"')").prop('selected', true);
+                });
+
+                jQuery("#rc_direccion").val( response.results[0].formatted_address );
+	        }
+	    }, "json"); 
+	});
+
 });
 
 jQuery(document).on("click", '[data-target="#popup-registro-cuidador1"]' ,function(e){
@@ -253,26 +270,34 @@ jQuery( document ).on('click', "[data-load='portada']", function(e){
 	jQuery('#portada').click();
 });
 
+function cambio_municipio(estado_id, CB = false){
+	jQuery.getJSON( 
+        HOME+"procesos/generales/municipios.php", 
+        {estado: estado_id} 
+    ).done(
+        function( data, textStatus, jqXHR ) {
+            var html = "<option value=''>Seleccione un municipio</option>";
+            jQuery.each(data, function(i, val) {
+                html += "<option value="+val.id+">"+val.name+"</option>";
+            });
+            jQuery('[name="rc_municipio"]').html(html);
+
+            if( CB != false ){
+            	CB();
+            }
+        }
+    ).fail(
+        function( jqXHR, textStatus, errorThrown ) {
+            console.log( "Error: " +  errorThrown );
+        }
+    );
+}
+
 jQuery(document).on('change', 'select[name="rc_estado"]', function(e){
 	var estado_id = jQuery(this).val();
 	    
     if( estado_id != "" ){
-        jQuery.getJSON( 
-            HOME+"procesos/generales/municipios.php", 
-            {estado: estado_id} 
-        ).done(
-            function( data, textStatus, jqXHR ) {
-                var html = "<option value=''>Seleccione un municipio</option>";
-                jQuery.each(data, function(i, val) {
-                    html += "<option value="+val.id+">"+val.name+"</option>";
-                });
-                jQuery('[name="rc_municipio"]').html(html);
-            }
-        ).fail(
-            function( jqXHR, textStatus, errorThrown ) {
-                console.log( "Error: " +  errorThrown );
-            }
-        );
+        cambio_municipio(estado_id);
     }
 
 });
@@ -415,7 +440,10 @@ function vista_previa(evt) {
 				      		jQuery("#perfil-img-a").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
 				      		jQuery("#perfil-img").css("display", "none" );
 		        			jQuery("#vlz_img_perfil").val( url );
+		        			jQuery(".vlz_rotar_valor").attr( "value", url );
 			           		jQuery(".kmimos_cargando").css("visibility", "hidden");
+
+			           		jQuery("#rotar").css("display", "block");
                       	},
                       	beforeSend:function(){},
                       	error:function(objXMLHttpRequest){}

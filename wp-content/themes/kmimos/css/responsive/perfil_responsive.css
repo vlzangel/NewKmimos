@@ -18,6 +18,14 @@
     .inputs_containers section {
 	    width: 100%;
 	}
+	.vlz_cambiar_portada {
+	    font-size: 11px !important;
+	    padding: 5px 10px !important;
+	}
+
+	#rotar{
+	    font-size: 11px;
+	}
 }
 
 @media (max-width: 350px){
