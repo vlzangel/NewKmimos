@@ -158,6 +158,8 @@ function subirImg(evt){
                             padre.children('.vlz_img_portada_cargando').css("display", "none");
                             padre.siblings('.vlz_img_portada_valor').val(url);
                             padre.children('.vlz_cambiar_portada').children('input').val("");
+
+                            jQuery("#rotar").css("display", "block");
                         });
                     });      
                 };

@@ -25,7 +25,7 @@
                     Cargar
                     <input type="file" id="portada" name="xportada" accept="image/*" />
                 </div>
-                <div id="rotar">Rotar</div>
+                <div id="rotar" style="display: none;">Rotar</div>
             </div>
             <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" id="portada" name="portada" data-valid="requerid" />
         </section>
