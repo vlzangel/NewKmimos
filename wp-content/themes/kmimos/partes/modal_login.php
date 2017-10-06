@@ -1,4 +1,6 @@
 <?php
+/*wp_enqueue_script('index.js', getTema()."/js/index.js", array("jquery"), '1.0.0');*/
+
 $datos = kmimos_get_info_syte();
 	$HTML .='
 		<!-- POPUP INICIAR SESIÓN -->
@@ -81,11 +83,16 @@ $datos = kmimos_get_info_syte();
 							<div class="km-box-form">
 								<div class="content-placeholder">
 									<div class="label-placeholder verify" style="margin: 20px 0;">
-										<input type="text" id="usuario" data-verify="noactive" placeholder="Ingresar dirección de email"  maxlength="30" class="verify_mail input-label-placeholder">
+										<input type="email" id="usuario" data-verify="noactive" placeholder="Ingresar dirección de email"  maxlength="30" class="verify_mail input-label-placeholder">
 										<span class="verify_result"></span>
 									</div>
+									
 									<div class="botones_box">
-										<button type="submit" style=" outline: none; border: none; width: 100%;" id="recuperar_submit" class="km-btn-basic recover_pass">ENVIAR CONTRASEÑA</button>
+										<button type="button" class="km-btn-basic" style=" outline: none; border: none; width: 100%;" id="recovery-clave">
+											ENVIAR CONTRASEÑA
+										</button>
+
+										<!-- button type="button" style=" outline: none; border: none; width: 100%;" id="recuperar_submit-1" class="km-btn-basic recover_pass">ENVIAR CONTRASEÑA</button -->
 									</div>
 									<div class="response"></div>
 								</div>

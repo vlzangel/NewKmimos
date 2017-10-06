@@ -1,5 +1,5 @@
 <?php
-header("Content-type:application/json");
+ 
 
 define('WP_USE_THEMES', false);
 //include_once(ABSPATH."vlz_config.php");

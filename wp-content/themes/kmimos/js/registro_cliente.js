@@ -346,7 +346,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 	});
 
 	jQuery("#genero_mascota").blur(function(){
-		console.log(jQuery("#genero_mascota").val());
+		
 		if(jQuery("#genero_mascota").val().length == 0){		
 			jQuery("#genero_mascota").parent('div').css('color','red');
 			jQuery("#genero_mascota").after('<span name="sp-genero_mascota">Seleccione una opcion por favor</span>').css('color','red');
@@ -425,7 +425,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}else if (jQuery("#select_4").hasClass("km-opcionactivo")){
 			valor = jQuery("#select_4").attr('value');
 		}else{
-			console.log("La variable Valor esta vacia");
+			
 		}
 
 		var nombre_mascota = jQuery("#nombre_mascota").val(),
@@ -533,7 +533,7 @@ function km_cliente_validar( fields ){
 				jQuery('[name="sp-'+jQuery('#'+val).attr('name')+'"]').remove();
 				jQuery('#'+val).after('<span name="sp-'+jQuery('#'+val).attr('name')+'">'+m+'</span>').css('color','red');
 				status = false;
-				console.log( val + ': ' + valor );
+				
 			}
 		});
 	}
@@ -666,7 +666,7 @@ document.getElementById("carga_foto").addEventListener("change", vista_previa, f
 function vista_previa_perfil(evt) {
 
     jQuery("#loading-perfil").css("display", "block");
-	console.log('mostrar loading ');
+	
 
   	var files = evt.target.files;
   	for (var i = 0, f; f = files[i]; i++) {  
@@ -709,31 +709,48 @@ jQuery("#km-datos-foto-profile").on('click', function(){
 document.getElementById("carga_foto_profile").addEventListener("change", vista_previa_perfil, false);
 /* Cargar imagen de la perfil */
 
+jQuery("#recovery-clave").on('click',function(){
+	
+	recuperar_clave(jQuery("#form_recuperar"));
+});
+jQuery("#form_recuperar").submit(function(){
+	recuperar_clave(jQuery(this));
+	return false;
+});
 
-jQuery("form#form_recuperar").submit(function(){
-	jQuery(this).find(".response").html('');
-	var mail = jQuery(this).find("#usuario");
+function recuperar_clave(_this){
+
+	
+	_this.find(".response").html('');
+	var mail = _this.find("#usuario");
 	var data_email = mail.val();
-	var obj = jQuery(this).find(".verify_result");
-		obj.css('color', '#c70606');
-		obj.html('');
+	var obj = _this.find(".verify_result");
+	var err = '';
 
+	jQuery('#recovery-clave').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> RESTAURANDO CLAVE');
 	if(data_email == ""){
-		obj.html('Este campo no puede estar vacio');
-	}else if(!mail.hasClass('correctly') || data_email.length<3){
-		obj.html('Formato de email invalido');
+		err = 'Este campo no puede estar vacio';
+	}else if( data_email.length<3 ){
+		err = 'Formato de email invalido';
+	}else if(!mail.hasClass('correctly')){
+		err = 'Este E-mail no existe';
 	}else{
-		jQuery('#recuperar_submit').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> RESTAURANDO CLAVE');
 		var datos = {'email': data_email};
 		jQuery.post(HOME+'/procesos/login/recuperar.php', datos, function(_result){
 			var r = jQuery.parseJSON(_result);
-			jQuery(this).find(".response").html(r.msg);
-			jQuery('#recuperar_submit').html('ENVIAR CONTRASEÑA');
+			_this.find(".response").html(r.msg);
+			jQuery('#recovery-clave').html('ENVIAR CONTRASEÑA');
 			if( r.sts == 1 ){
 				setTimeout(function(){ jQuery('.modal').modal('hide'); },3600);
 			}
 		});
 	}
-	obj.html('');
-	return false;
-});
+	if( err != '' ){
+		obj.css('color', 'red');
+		obj.html(err);
+		jQuery('#recovery-clave').html('ENVIAR CONTRASEÑA');
+	}else{
+		obj.html('');
+	}
+
+}
