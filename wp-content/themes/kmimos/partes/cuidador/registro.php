@@ -189,7 +189,7 @@
 				</div>
 				<h3 style="margin: 0;">Dirección</h5>
 				<p style="color: #979797">Queremos saber tu dirección actual</p>
-				<a href="#" class="km-btn-border">UBICACIÓN ACTUAL</a>
+				<a href="#" class="km-btn-border obtener_direccion">UBICACIÓN ACTUAL</a>
 				<div class="line-o">
 					<p class="text-line">o</p>
 					<div class="bg-line"></div>
@@ -222,7 +222,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Dirección</label>
-							<input type="text" name="rc_direccion" value="" class="input-label-placeholder">
+							<input type="text" id="rc_direccion" name="rc_direccion" value="" class="input-label-placeholder">
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
 					</div>

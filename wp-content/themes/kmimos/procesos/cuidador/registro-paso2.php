@@ -64,39 +64,6 @@
                         if( copy($path_origen, $path_destino) ){
                             unlink($path_origen);
                         }
-                        
-                        $foto = 1;
-                        $sql = ("
-                            INSERT INTO wp_posts VALUES (
-                                NULL,
-                                '".$user_id."',
-                                '".$hoy."',
-                                '".$hoy."',
-                                '',
-                                '',
-                                '',
-                                'inherit',
-                                'closed',
-                                'closed',
-                                '',
-                                '',
-                                '',
-                                '',
-                                '".$hoy."',
-                                '".$hoy."',
-                                '',
-                                '0',
-                                'http://qa.kmimos.la/kmimos/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg',
-                                '0',
-                                'attachment',
-                                'image/jpeg',
-                                '0'
-                            );
-                        ");
-                        $d = $db->query( $sql );
-                        $img_id = $conn->insert_id;
-                        $sql = "INSERT INTO wp_postmeta VALUES (NULL, ".$img_id.", '_wp_attached_file', 'cuidadores/avatares/".$cuidador_id."/0.jpg');";
-                        $db->query( utf8_decode( $sql ) );
                     }
                 }
                 // Update metas de usuario
