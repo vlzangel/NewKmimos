@@ -157,6 +157,7 @@
 	$CONTENIDO .= $stylos."
     	<input type='hidden' name='user_id' value='{$user_id}'>
     	<input type='hidden' name='accion' value='update_servicios'>
+        <h1 style='margin: 0px; padding: 0px;'>Mis servicios</h1><hr style='margin: 5px 0px 10px;'>
     	<div>
     		<div class='vlz_seccion'>
     			<div class='vlz_titulo_seccion container_btn'>Tamaños de Mascotas</div>

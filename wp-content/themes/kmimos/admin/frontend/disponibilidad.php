@@ -40,17 +40,14 @@
 	    );
     }
 
-    $tabla = "
-    	<table class='tabla_disponibilidad'>
-    		<tr>
-    			<th> Servicio </th>
-    			<th> Desde </th>
-    			<th> Hasta </th>
-    			<th> Acción </th>
-    		</tr>
-    ";
+    $tabla = '<div>';
+
+/*    echo "<pre>";
+    	print_r($rangos);
+    echo "</pre>";*/
 
 	$opciones = "<OPTION value='Todos' >Todos</OPTION>";
+	$cont = 0;
     foreach ($rangos as $value) {
     	$servicio_id = $value['servicio_id'];
     	$servicio = $value['servicio'];
@@ -58,45 +55,58 @@
     	if( $value['rangos'] != "" ){
     		foreach ($value['rangos'] as $rango) {
 
-    			$from = date("d/m/Y", strtotime($rango['from']));
-    			$to = date("d/m/Y", strtotime($rango['to']));
+    			$cont++;
 
-    			if( $servicio != '' ){
-    				$servicio_top = "border-top: 1px solid #dadada;";
-    			}else{
-    				$servicio_top = "border-top: 1px solid #f1f1f1;";
-    			}
+    			$from = explode("-", $rango['from']);
+    			if( count($from) > 1 ){ $rango['from'] = $from[2]."/".$from[1]."/".$from[0]; }
 
-		    	$tabla .= "
-		    		<tr>
-		    			<td style='{$servicio_top}'> {$servicio} </td>
-		    			<td> {$from} </td>
-		    			<td> {$to} </td>
-		    			<td class='acciones' > 
-							<input type='button' class='delete_disponibilidad' value='Eliminar' data-id='{$servicio_id}' data-inicio='{$rango['from']}' data-fin='{$rango['to']}' />
-						</td>
-		    		</tr>
-		    	";
+    			$to = explode("-", $rango['to']);
+    			if( count($to) > 1 ){ $rango['to'] = $to[2]."/".$to[1]."/".$to[0]; }
 
-    			if( $servicio != '' ){
-    				$servicio = "";
-    			}
+		    	$tabla .= '
+		    		<div class="vlz_tabla">
+	                	<div class="vlz_tabla_superior">
+	                		<div class="vlz_row">
+			                	<div class="vlz_tabla_cuidador vlz_celda">
+			                		<span>Servicio</span>
+			                		<div>'.$servicio.'</div>
+			                	</div>
+			                	<div class="vlz_tabla_cuidador vlz_celda">
+			                		<span>Fecha</span>
+			                		<div>'.$rango['from'].' <b> > </b> '.$rango['to'].'</div>
+			                	</div>
+		                	</div>
+		                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno">
+		                		<a data-id="'.$servicio_id.'" data-inicio="'.$rango['from'].'" data-fin="'.$rango['to'].'" class="vlz_accion vlz_cancelar cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+		                	</div>
+	                	</div>
+	                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
+	                		<a data-id="'.$servicio_id.'" data-inicio="'.$rango['from'].'" data-fin="'.$rango['to'].'" class="vlz_accion vlz_cancelar cancelar"> Eliminar </a>
+	                	</div>
+                	</div>
+		    	';
 	    	}
     	}
     }
 
-    $tabla .= "</table>";
+	if( $cont == 0 ){
+		$tabla = '<h2>No hay registros ingresados</h2>'.$tabla;
+	}
+
+    $tabla .= "</div>";
 
 	$CONTENIDO = '
-		<h1 class="theme_tite theme_table_title">Administración de disponibilidad</h1>
+		<h1 class="theme_tite theme_table_title">No estoy disponible en:</h1>
 
 		<input type="hidden" name="accion" value="perfil" />
         <input type="hidden" name="user_id" id="user_id" value="'.$user_id.'" />
 
-		<div class="fechas_box table_main tabla_disponibilidad_box"> 
+		<div class="tabla_disponibilidad_box"> 
+
 			'.$tabla.'
+
 			<div class="botones_container">
-		        <div class="botones_box">
+		        <div class="botones_box box_100">
 		        	<input type="button" id="editar_disponibilidad" class="km-btn-primary" value="Editar Disponibilidad" />
 		        </div>
 	        </div> 
@@ -113,20 +123,20 @@
 
 				<div class="fechas_item">
 					<i class="icon-calendario embebed"></i>
-			        <input type="text" id="inicio" name="inicio" class="fechas" placeholder="Inicio" min="'.date("Y-m-d").'">
+			        <input type="text" id="inicio" name="inicio" class="fechas" placeholder="Inicio" min="'.date("Y-m-d").'" readonly>
 		        </div>
 
 				<div class="fechas_item">
 					<div class="icono"><i class="icon-calendario embebed"></i></div>
-			        <input type="text" id="fin" name="fin" class="fechas" placeholder="Fin" disabled>
+			        <input type="text" id="fin" name="fin" class="fechas" placeholder="Fin" disabled readonly>
 		        </div>
 		    </div>
 
 	        <div class="botones_container">
-		        <div class="botones_box">
+		        <div class="botones_box box_50">
 		        	<input type="button" id="guardar_disponibilidad" class="km-btn-primary" value="Guardar" />
 		        </div>
-		        <div class="botones_box">
+		        <div class="botones_box box_50">
 		        	<input type="button" id="volver_disponibilidad" class="km-btn-primary" value="Volver" />
 		        </div>
 	        </div>

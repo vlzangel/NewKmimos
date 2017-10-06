@@ -43,191 +43,143 @@
 	    global $CONTENIDO;
 	    $user_id=get_current_user_id();
 	    $caregivers = get_caregiver($user_select);
+
 	    if(count($caregivers) > 0){
 
-	        $booking_coming=array();
-	        $booking_coming['pending']=array();
-	        $booking_coming['pending']['title']='Solicitudes Pendientes por Confirmar';
-	        $booking_coming['pending']['th']=array();
-	        $booking_coming['pending']['tr']=array();
-
-	        $booking_coming['confirmed']=array();
-	        $booking_coming['confirmed']['title']='Solicitudes Confirmadas';
-	        $booking_coming['confirmed']['th']=array();
-	        $booking_coming['confirmed']['tr']=array();
-
-	        $booking_coming['cancelled']=array();
-	        $booking_coming['cancelled']['title']='Solicitudes Canceladas';
-	        $booking_coming['cancelled']['th']=array();
-	        $booking_coming['cancelled']['tr']=array();
-
-	        $booking_coming['other']=array();
-	        $booking_coming['other']['title']='Otras Solicitudes';
-	        $booking_coming['other']['th']=array();
-	        $booking_coming['other']['tr']=array();
+	        $reservas_array = array(
+				"pendientes_confirmar" => array(
+					"titulo" => 'Solicitudes Pendientes por Confirmar',
+					"solicitudes" => array()
+				),
+				"confirmadas" => array(
+					"titulo" => 'Solicitudes Confirmadas',
+					"solicitudes" => array()
+				),
+				"canceladas" => array(
+					"titulo" => 'Solicitudes Canceladas',
+					"solicitudes" => array()
+				),
+				"otras" => array(
+					"titulo" => 'Otras Solicitudes',
+					"solicitudes" => array()
+				)
+			);
 
 	        //PENDIENTE POR PAGO EN TIENDA DE CONVENINCIA
 	        foreach($caregivers as $key => $caregiver){
 	            $count++;
 
-	            $_metas=get_post_meta($caregiver->ID);
-	            //var_dump($_metas);
+	            $_metas   = get_post_meta($caregiver->Nro_solicitud);
 	            $cuidador = get_userdata($caregiver->Cuidador_id);
-	            $cliente = get_userdata($caregiver->Cliente_id);
+	            $cliente  = get_userdata($caregiver->Cliente_id);
+
+	            $foto = kmimos_get_foto( $caregiver->Cuidador_id ) ;
+	            $usuario = get_user_meta($caregiver->Cuidador_id, "first_name", true)." ".get_user_meta($caregiver->Cuidador_id, "last_name", true);
+	            if( $user_select == "cu.post_author={$user_id}" ){
+	            	$foto = kmimos_get_foto( $caregiver->Cliente_id ) ;
+	            	$usuario = get_user_meta($caregiver->Cliente_id, "first_name", true)." ".get_user_meta($caregiver->Cliente_id, "last_name", true);
+	            }
+
+	            $Ver = 'ver/'.$caregiver->Nro_solicitud;
+	            $Confirmar = get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1';
+	            $Cancelar = get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0';
+
+	            $caregiver->Cuando = explode("-", $caregiver->Cuando);
+	            $caregiver->Cuando = $caregiver->Cuando[2]."/".$caregiver->Cuando[1]."/".$caregiver->Cuando[0];
+
+	            $caregiver->Hora = strtotime($caregiver->Hora);
+	            $caregiver->Hora = date("H:i", $caregiver->Hora);
+
+	            $detalle = array(
+	            	"desde" => date("d/m/Y", strtotime($_metas["service_start"][0])),
+	            	"hasta" => date("d/m/Y", strtotime($_metas["service_end"][0])),
+	            	"donde" => $caregiver->Donde
+	            );
 	            
 	            if($caregiver->Estatus=='pending'){
-	                // $options='<a class="theme_btn" href="'.get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud.'">Ver</a>';
-	                // $options.='<a class="theme_btn" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1">Confirmar</a>';
-	                // $options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0">Cancelar</a>';
-
+	                
+	                $acciones = array();
 	                if($caregiver->Cuidador_id==$user_id){
-	                    $options=build_select(array(
-	                        array(
-	                            'text'=>'Ver',
-	                            'value'=>get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud
-	                        ),
-	                        array(
-	                            'text'=>'Confirmar',
-	                            'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1'
-	                        ),
-	                        array(
-	                            'text'=>'Cancelar',
-	                            'class'=>'cancelled action_confirmed',
-	                            'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
-	                            )
-	                    ));
+	                    $acciones = array(
+	                    	"ver_s" => $Ver,
+	                    	"confirmar_s" => $Confirmar,
+	                    	"cancelar_s" => $Cancelar
+	                    );
 	                }else{
-	                    $options='<a class="theme_btn" href="'.get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud.'">Ver</a>';
-	                    $options=build_select(array(
-	                        array(
-	                            'text'=>'Ver',
-	                            'value'=>get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud
-	                        )
-	                    ));
+	                    $acciones = array(
+	                    	"ver_s" => $Ver
+	                    );
 	                }
 
-	                $booking_th=array();
-	                $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
-	                $booking_th[]=array('class'=>'','data'=>'CLIENTE');
-	                $booking_th[]=array('class'=>'','data'=>'CUIDADOR');
-	                $booking_th[]=array('class'=>'td_responsive','data'=>'FECHA');
-	                //$booking_th[]=array('class'=>'td_responsive','data'=>'ESTATUS');
-	                $booking_th[]=array('class'=>'','data'=>'ACCIONES');
-	                $booking_coming['pending']['th']=$booking_th;
-
-	                $booking_td=array();
-	                $booking_td[]=array('class'=>'','data'=>$caregiver->Nro_solicitud);
-	                $booking_td[]=array('class'=>'','data'=>$cliente->display_name);
-	                $booking_td[]=array('class'=>'','data'=>$cuidador->display_name);
-	                $booking_td[]=array('class'=>'td_responsive','data'=>$caregiver->Fecha_solicitud);
-	                //$booking_td[]=array('class'=>'td_responsive','data'=>$caregiver->Estatus);
-	                $booking_td[]=array('class'=>'','data'=>$options);
-	                $booking_coming['pending']['tr'][]=$booking_td;
+	                $reservas_array["pendientes_confirmar"]["solicitudes"][] = array(
+						'id' => $caregiver->Nro_solicitud, 
+						'servicio' => $usuario, 
+						'inicio' => $caregiver->Cuando, 
+						'fin' => $caregiver->Hora, 
+						'foto' => $foto,
+						'acciones' => $acciones,
+						"detalle" => $detalle
+					);
 
 
 	            }else if($caregiver->Estatus=='publish'){
-	                $options='<a class="theme_btn" href="'.get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud.'">Ver</a>';
-	                $options=build_select(array(
-                        array(
-                            'text'=>'Ver',
-                            'value'=>get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud
-                        )
-                    ));
-	                //$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0">Cancelar</a>';
-	                /*
-	                $options=build_select(
-	                    array(
-	                        array(
-	                            'text'=>'Ver',
-	                            'value'=>get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud
-	                        ),
-	                        /*
-	                        arrat'=>'Cancelar',
-	                            'class'=>'cancelled action_confirmed',
-	                            'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
-	                        )
-	                    ));
-	                */
-
-	                $booking_th=array();
-	                $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
-	                $booking_th[]=array('class'=>'','data'=>'CLIENTE');
-	                $booking_th[]=array('class'=>'','data'=>'CUIDADOR');
-	                $booking_th[]=array('class'=>'td_responsive','data'=>'FECHA');
-	                $booking_th[]=array('class'=>'','data'=>'ACCIONES');
-	                $booking_coming['confirmed']['th']=$booking_th;
-
-	                $booking_td=array();
-	                $booking_td[]=array('class'=>'','data'=>$caregiver->Nro_solicitud);
-	                $booking_td[]=array('class'=>'','data'=>$cliente->display_name);
-	                $booking_td[]=array('class'=>'','data'=>$cuidador->display_name);
-	                $booking_td[]=array('class'=>'td_responsive','data'=>$caregiver->Fecha_solicitud);
-	                $booking_td[]=array('class'=>'','data'=>$options);
-	                $booking_coming['confirmed']['tr'][]=$booking_td;
+	                
+	                $reservas_array["confirmadas"]["solicitudes"][] = array(
+						'id' => $caregiver->Nro_solicitud, 
+						'servicio' => $usuario, 
+						'inicio' => $caregiver->Cuando, 
+						'fin' => $caregiver->Hora, 
+						'foto' => $foto,
+						'acciones' => array(
+	                    	"ver_s" => $Ver
+	                    ),
+						"detalle" => $detalle
+					);
 
 
 	            }else if($caregiver->Estatus=='draft'){
-	                $options='<a class="theme_btn" href="'.get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud.'">Ver</a>';
-	                $options=build_select(array(
-                        array(
-                            'text'=>'Ver',
-                            'value'=>get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud
-                        )
-                    ));
-
-	                $booking_th=array();
-	                $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
-	                $booking_th[]=array('class'=>'','data'=>'CLIENTE');
-	                $booking_th[]=array('class'=>'','data'=>'CUIDADOR');
-	                $booking_th[]=array('class'=>'td_responsive','data'=>'FECHA');
-	                $booking_th[]=array('class'=>'','data'=>'ACCIONES');
-	                $booking_coming['cancelled']['th']=$booking_th;
-
-	                $booking_td=array();
-	                $booking_td[]=array('class'=>'','data'=>$caregiver->Nro_solicitud);
-	                $booking_td[]=array('class'=>'','data'=>$cliente->display_name);
-	                $booking_td[]=array('class'=>'','data'=>$cuidador->display_name);
-	                $booking_td[]=array('class'=>'td_responsive','data'=>$caregiver->Fecha_solicitud);
-	                $booking_td[]=array('class'=>'','data'=>$options);
-	                $booking_coming['cancelled']['tr'][]=$booking_td;
-
+	                
+	                
+	                $reservas_array["canceladas"]["solicitudes"][] = array(
+						'id' => $caregiver->Nro_solicitud, 
+						'servicio' => $usuario, 
+						'inicio' => $caregiver->Cuando, 
+						'fin' => $caregiver->Hora, 
+						'foto' => $foto,
+						'acciones' => array(
+	                    	"ver_s" => $Ver
+	                    ),
+						"detalle" => $detalle
+					);
 
 	            }else{
-	                $options='<a class="theme_btn" href="'.get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud.'">Ver</a>';
-	                $options=build_select(array(
-                        array(
-                            'text'=>'Ver',
-                            'value'=>get_home_url().'/perfil-usuario/solicitudes/ver/'.$caregiver->Nro_solicitud
-                        )
-                    ));
+	                
+	                $reservas_array["otras"]["solicitudes"][] = array(
+						'id' => $caregiver->Nro_solicitud, 
+						'servicio' => $usuario, 
+						'inicio' => $caregiver->Cuando, 
+						'fin' => $caregiver->Hora, 
+						'foto' => $foto,
+						'acciones' => array(
+	                    	"ver_s" => $Ver
+	                    ),
+						"detalle" => $detalle
+					);
 
-	                $booking_th=array();
-	                $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
-	                $booking_th[]=array('class'=>'','data'=>'CLIENTE');
-	                $booking_th[]=array('class'=>'','data'=>'CUIDADOR');
-	                $booking_th[]=array('class'=>'td_responsive','data'=>'FECHA');
-	                $booking_th[]=array('class'=>'td_responsive','data'=>'ESTATUS');
-	                $booking_th[]=array('class'=>'','data'=>'ACCIONES');
-	                $booking_coming['other']['th']=$booking_th;
-
-	                $booking_td=array();
-	                $booking_td[]=array('class'=>'','data'=>$caregiver->Nro_solicitud);
-	                $booking_td[]=array('class'=>'','data'=>$cliente->display_name);
-	                $booking_td[]=array('class'=>'','data'=>$cuidador->display_name);
-	                $booking_td[]=array('class'=>'td_responsive','data'=>$caregiver->Fecha_solicitud);
-	                $booking_td[]=array('class'=>'td_responsive','data'=>$caregiver->Estatus);
-	                $booking_td[]=array('class'=>'','data'=>$options);
-	                $booking_coming['other']['tr'][]=$booking_td;
 	            }
 
 	        }
-
 
 	        //BUILD TABLE
 	        if($strcaregiver!=''){
 	            $CONTENIDO .= '<h1 style="line-height: normal;">'.$strcaregiver.'</h1><hr>';
 	        }
-	        $CONTENIDO .= build_table($booking_coming);
+
+	        /*echo "<pre>";
+	       	 	print_r($reservas_array);
+	        echo "</pre>";*/
+
+	        $CONTENIDO .= construir_listado($reservas_array);
 	    }else{
 	        if($show && $strnocaregiver!=''){
 	            $CONTENIDO .= '<h1 style="line-height: normal;">'.$strnocaregiver.'</h1><hr>';
@@ -236,9 +188,16 @@
 
 	}
 
-	$count=0;
-	get_caregiver_tables("cu.post_author={$user_id}",'Como Cuidador.','No hay solicitudes como cuidador.');
-	get_caregiver_tables("cl.meta_value={$user_id}",'','No hay solicitudes como cliente.',true);
+	$count=0; $como_cliente = "Mis solicitudes";
+	$current_user = wp_get_current_user();
+    $user_id = $current_user->ID;
+    $user = new WP_User( $user_id );
+                
+	if( $user->roles[0] == "vendor" ){
+		$como_cliente = 'Solicitudes como cliente';
+	}
+	get_caregiver_tables("cu.post_author={$user_id}",'Solicitudes como cuidador','No hay solicitudes como cuidador.');
+	get_caregiver_tables("cl.meta_value={$user_id}", $como_cliente,'No hay solicitudes como cliente.',true);
 
 	global $count;
 	if($count==0){

@@ -13,7 +13,23 @@
 
         foreach($favoritos as $favorito){
             if( !empty($favorito) ){
-                $cuidador = $wpdb->get_row("SELECT cuidadores.*, posts.post_title as titulo, posts.post_name as slug  FROM cuidadores LEFT JOIN wp_posts as posts ON cuidadores.id_post=posts.id WHERE id_post = '{$favorito}'");
+                $cuidador = $wpdb->get_row("
+                    SELECT 
+                        cuidadores.id,
+                        cuidadores.id_post,
+                        cuidadores.user_id,
+                        cuidadores.longitud,
+                        cuidadores.latitud,
+                        cuidadores.adicionales,
+                        (cuidadores.hospedaje_desde*1.2) AS precio,
+                        cuidadores.experiencia, 
+                        posts.post_title as titulo, 
+                        posts.post_name as slug 
+                    FROM 
+                        cuidadores 
+                    LEFT JOIN wp_posts as posts ON cuidadores.id_post=posts.id 
+                    WHERE 
+                        id_post = '{$favorito}'");
                 // $cuidador_post = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$favorito}'");
                 $CONTENIDO .= get_ficha_cuidador($cuidador, 0, $favoritos, 'grid', 'true');
             }

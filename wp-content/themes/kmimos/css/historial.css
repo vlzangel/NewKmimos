@@ -22,6 +22,10 @@
     padding-top: 10px !important;
 }
 
+.main h1.titulo_pequenio {
+    font-size: 19px;
+}
+
 .main .vlz_tabla {
     position: relative;
     overflow: hidden;
@@ -35,13 +39,15 @@
 
 .main .vlz_tabla .vlz_tabla_superior {
     display: table;
-    width: 100%;
+    width: calc( 100% - 100px );
     overflow: hidden;
     padding: 10px 0px;
+    float: left;
+    height: 100px;
 }
 
 .main .vlz_tabla.vlz_desplegado .vlz_tabla_superior {
-    width: calc( 100% - 50px );
+    width: calc( 100% - 150px );
 }
 
 .main .vlz_tabla.vlz_desplegado .vlz_cerrar {
@@ -64,14 +70,17 @@
 
 .main .vlz_tabla .vlz_tabla_superior > div.vlz_celda {
     display: table-cell;
+    padding: 0px 10px 0px 0px;
 }
 
-.main .vlz_tabla .vlz_tabla_img {    
+.main .vlz_tabla .vlz_img {    
     width: 100px;
+    padding: 12px 0px;
     text-align: center;
+    float: left;
 }
 
-.main .vlz_tabla .vlz_tabla_img span {  
+.main .vlz_tabla .vlz_img span {  
     display: inline-block;   
     text-align: center;
     width: 70px;
@@ -82,7 +91,7 @@
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador {   
-    width: calc( 40% - 100px );
+    width: 33.33333333%;
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador span {     
@@ -126,11 +135,11 @@
     text-decoration: none !important;
 }
 
-.main .vlz_tabla .vlz_botones a.cancelar {   
+.main .vlz_tabla .vlz_botones a.vlz_cancelar {   
     padding: 13px 15px;
 }
 
-.main .vlz_tabla .vlz_botones a.cancelar i {    
+.main .vlz_tabla .vlz_botones a.vlz_cancelar i {    
     font-size: 20px;
 }
 
@@ -139,6 +148,8 @@
     margin-right: 50px;
     padding: 0px 0px 10px 0px;
     display: none;
+    float: left;
+    width: calc( 100% - 150px );
 }
 
 .main .vlz_tabla .vlz_tabla_inferior .desglose_reserva {
@@ -165,12 +176,14 @@
 .main .vlz_tabla .vlz_tabla_inferior .total_reserva .item_desglose div
  {
     float: left;
+    max-width: 50%;
 }
 
 .main .vlz_tabla .vlz_tabla_inferior .desglose_reserva .item_desglose span,
 .main .vlz_tabla .vlz_tabla_inferior .total_reserva .item_desglose span
  {
     float: right;
+    max-width: 50%;
 }
 
 .main .vlz_tabla .ver_reserva_botones{
@@ -201,7 +214,7 @@
     text-align: center;
 }
 
-.main .vlz_tabla .ver_reserva_botones .cancelar{
+.main .vlz_tabla .ver_reserva_botones .vlz_cancelar{
     /* float: left; */
     color: #FFF;
     background: #b01d1d;
@@ -243,4 +256,8 @@
     margin-bottom: 10px;
     text-align: center;
     text-decoration: none !important;
+}
+
+a.vlz_accion.vlz_pdf {
+    float: right;
 }

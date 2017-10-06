@@ -286,7 +286,6 @@
             $user = new WP_User( $user_id );
             if( $user->roles[0] == "vendor" ){
                 $id = $wpdb->get_var("SELECT id FROM cuidadores WHERE user_id = {$user_id}");
-                $sub_path = "cuidadores/avatares/miniatura/{$id}/";
                 $sub_path = "cuidadores/avatares/{$id}/";
             }else{
                 $sub_path = "avatares_clientes/{$user_id}/";

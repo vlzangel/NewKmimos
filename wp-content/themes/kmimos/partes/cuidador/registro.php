@@ -32,12 +32,11 @@
 				<a href="#" data-target="social-next-step" class="km-btn-correo km-btn-popup-registro-cuidador">
 					<img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail-blanco.svg">REGISTRARME POR CORREO ELECTRÓNICO
 				</a>
-				<p style="color: #979797">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
+				<p style="color: #979797">Al crear una cuenta, <a href="<?php echo get_home_url(); ?>/terminos-y-condiciones/">aceptas las condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> <?php echo $info['whatsapp']; ?></p></div>
-					<div class="col-xs-4"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
-					<div class="col-xs-4"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-cel.svg">(55) 6178 0320</p></div>
+					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> (55) 61780320</p></div>
+					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
 				</div>
 				<hr>
 				<div class="row">
@@ -63,7 +62,7 @@
 					<div class="content-placeholder">
 						<div class="label-placeholder">
 							<label>Nombre</label>
-							<input type="text" data-charset="xlf" name="rc_nombres" value="" class="input-label-placeholder social_firstname" maxlength="20">
+							<input type="text" data-charset="xlf" id="rc_nombres" name="rc_nombres" value="" class="input-label-placeholder social_firstname" maxlength="20">
 							<small data-error="rc_nombres" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -73,7 +72,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label>IFE/Documento de Identidad</label>
-							<input type="text"  maxlength="11" minlength="11" data-charset="num" name="rc_ife" value="" class="input-label-placeholder">
+							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder">
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -106,8 +105,8 @@
 				</div>
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-correo">SIGUIENTE</a>
 
-				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp  <?php echo $info['whatsapp']; ?></p>
+				<p style="color: #979797">Al crear una cuenta, <a href="<?php echo get_home_url(); ?>/terminos-y-condiciones/">aceptas las condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
+				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp  (55) 61780320</p>
 				<hr>
 				<div class="row">
 					<div class="col-xs-5">

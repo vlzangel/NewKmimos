@@ -157,7 +157,7 @@
 		$HTML .= "
 		<script> 
 			var SERVICIO_ID = '".get_the_ID()."';
-			var cupos = eval('".json_encode($cupos)."'); 
+			var cupos = eval('".json_encode($cupos)."');
 			var tipo_servicio = '".$tipo."'; 
 			var name_servicio = '".$servicio_name."'; 
 			var cliente = '".$id_user."'; 
@@ -203,6 +203,8 @@
 					</div>
 				</div>
 			</div>";
+
+			echo comprimir_styles($HTML);
 		}else{
 
 			$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$post_id}");

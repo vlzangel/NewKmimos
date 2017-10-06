@@ -2,12 +2,14 @@
     /*
         Template Name: Registro del cuidador
     */
+
 	wp_enqueue_script('registro_cuidadores', getTema()."/js/registro_cuidadores.js", array("jquery"), '1.0.0');
 
 	$config_link_registro = 'href="#" role="button" data-target="#popup-registro-cuidador1"' ;
 
-    get_header();
-?>
+	wp_enqueue_style('registro_cuidador_responsive', getTema()."/css/responsive/registro_cuidador_responsive.css", array("kmimos_style"), '1.0.0');
+
+    get_header(); ?>
 
 	<!-- SECCIÓN BG CUIDADOR-->
 		<div class="km-hero-bg" style="background-image:url(<?php echo getTema(); ?>/images/new/km-cuidador/km-hero-cuidador.jpg);">
@@ -61,14 +63,14 @@
 						<p>Una persona del equipo de Kmimos te visitará para una entrevista personal.</p>
 					</div>
 					<div class="col-xs-12 col-sm-4">
-						<p>Una persona del equipo de Kmimos te visitará para una entrevista personal.</p>
+						<p>Gana dinero con tu hobbie y en tus propios horarios.</p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- <a href="#popup-registro-cuidador1" class="km-btn-borderw" role="button" data-toggle="modal">EMPIEZA A CUIDAR</a> -->
 
-						<a class="km-btn" <?php echo $config_link_registro; ?>>EMPIEZA A CUIDAR</a>
+						<a class="km-btn-borderw" <?php echo $config_link_registro; ?>>EMPIEZA A CUIDAR</a>
 					</div>
 				</div>
 			</div>
@@ -90,15 +92,4 @@
 			</div>
 		</div>
 		
-
-<?php
-	
-
-    /* BEGIN ESTADOS Y MUNICIPIOS */
-        $HTML2 = get_estados_municipios();
-    /* END ESTADOS Y MUNICIPIOS */
-
-	 //echo comprimir_styles($HTML2);
-
-    get_footer(); 
-?>
+<?php get_footer(); ?>

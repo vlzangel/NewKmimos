@@ -2237,7 +2237,7 @@ footer input:focus{
 		width: 100%!important;
 	}
 	.km-select-custom{
-		background-image: none!important;
+		
 		border-radius: 6px!important;
 	}
 
@@ -7906,7 +7906,7 @@ a.km-btn-comentario {
 /* POPUPS REGISTRO */
 .popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3, .popup-iniciar-sesion-1, .popup-registrarte-1, .popup-registrarte-nuevo-correo, .popup-olvidaste-contrasena, .popup-registrarte-datos-mascota, .popup-registrarte-final,
 .popup-conocemas-cuidador {
-    padding: 40px;
+    padding: 40px 20px;
 }
 
 .popup-content-cuidador{
