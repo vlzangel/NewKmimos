@@ -1,10 +1,6 @@
 
 var globalData = "";
-
-
-
-
-
+ 
 $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	e.preventDefault();
 
@@ -604,44 +600,16 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
 /*POPUP INICIAR SESIÓN*/
 	jQuery(document).on("click", '.popup-iniciar-sesion-1 .km-btn-contraseña-olvidada', function ( e ) {
 		e.preventDefault();
-
 		jQuery(".popup-iniciar-sesion-1").hide();
 		jQuery(".popup-olvidaste-contrasena").fadeIn("fast");
 	});
 
 	jQuery(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
 		e.preventDefault();
-
 		jQuery(".popup-registrarte-1").hide();
 		jQuery(".popup-registrarte-nuevo-correo").fadeIn("fast");
 	});
 /*FIN POPUP INICIAR SESIÓN*/
-
-function cargaImagen(evt){
-	var files = evt.target.files;
-
-	/*obtenemos la imagen del campo file*/
-	for (var i = 0, f; f = files[i]; i++) {         
-           /*Solo admitimos imágenes.*/
-           if (!f.type.match('image.*')) {
-                continue;
-           }
-		 var reader = new FileReader();
-
-		 reader.onload = (function(theFile){
-		 	return function(e){
-		 	/*Creamos la imagen.*/
-		 	jQuery("#km-datos-foto").css("background-image", "url("+e.target.result+")");
-		 	jQuery("#km-datos-foto").addClass("img-circle");
-			jQuery("#img_pet").val(e.target.result);
-		 	/*document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');*/
-		 	};
-		 })(f);
-
-		 reader.readAsDataURL(f);
-	}
-}
-
 
 /* Cargar imagen de la mascota */
 function vista_previa(evt) {
@@ -685,8 +653,7 @@ function vista_previa(evt) {
            };
 		})(f);
 		reader.readAsDataURL(f);
-   	}
-	 
+   	} 
 }      
 jQuery("#km-datos-foto").on('click', function(){
 	jQuery("#carga_foto").trigger("click");
@@ -743,30 +710,30 @@ document.getElementById("carga_foto_profile").addEventListener("change", vista_p
 /* Cargar imagen de la perfil */
 
 
-/*RECOVER PASSWORD*/
-jQuery(document).on('click','#login_submit.recover_pass',function(e){
-	/*jQuery(this).closest('form').submit();*/
-});
-
 jQuery("form#form_recuperar").submit(function(){
 	jQuery(this).find(".response").html('');
 	var mail = jQuery(this).find("#usuario");
 	var data_email = mail.val();
+	var obj = jQuery(this).find(".verify_result");
+		obj.css('color', '#c70606');
+		obj.html('');
 
 	if(data_email == ""){
-		/*jQuery(this).find(".response").html("Revise sus datos por favor, debe llenar todos los campos");
-		alert("Revise sus datos por favor, debe llenar todos los campos");*/
-
-	}else if(!mail.hasClass('correctly')){
-
-	}else if(data_email.length<3){
-
+		obj.html('Este campo no puede estar vacio');
+	}else if(!mail.hasClass('correctly') || data_email.length<3){
+		obj.html('Formato de email invalido');
 	}else{
+		jQuery('#recuperar_submit').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> RESTAURANDO CLAVE');
 		var datos = {'email': data_email};
-		var result = getAjaxData('/procesos/login/recuperar.php','post', datos);
-		jQuery(this).find(".response").html(result);
-		jQuery('.modal').modal('hide');
-		/*console.log(result);*/
+		jQuery.post(HOME+'/procesos/login/recuperar.php', datos, function(_result){
+			var r = jQuery.parseJSON(_result);
+			jQuery(this).find(".response").html(r.msg);
+			jQuery('#recuperar_submit').html('ENVIAR CONTRASEÑA');
+			if( r.sts == 1 ){
+				setTimeout(function(){ jQuery('.modal').modal('hide'); },3600);
+			}
+		});
 	}
+	obj.html('');
 	return false;
 });

@@ -61,7 +61,7 @@ $datos = kmimos_get_info_syte();
 
 						
 						
-						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
+						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (55) 6892-2182</p>
 						<hr>
 						<div class="row">
@@ -70,7 +70,7 @@ $datos = kmimos_get_info_syte();
 								<p>REGÍSTRATE AHORA - Es Gratis</p>
 							</div>
 							<div class="col-xs-12 col-sm-7">
-								<a href="#myModal" class="modal_show km-btn-border"  data-modal="#myModal"><b>REGÍSTRATE</b></a>
+								<a data-target="#popup-registrarte" class="modal_show km-btn-border" ><b>REGÍSTRATE</b></a>
 							</div>
 						</div>
 					</div>
@@ -85,7 +85,7 @@ $datos = kmimos_get_info_syte();
 										<span class="verify_result"></span>
 									</div>
 									<div class="botones_box">
-										<button type="submit" style=" outline: none; border: none; width: 100%;" id="login_submit" class="km-btn-basic recover_pass">ENVIAR CONTRASEÑA</button>
+										<button type="submit" style=" outline: none; border: none; width: 100%;" id="recuperar_submit" class="km-btn-basic recover_pass">ENVIAR CONTRASEÑA</button>
 									</div>
 									<div class="response"></div>
 								</div>

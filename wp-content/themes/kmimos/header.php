@@ -66,7 +66,7 @@
 
 	if( !isset($MENU["head"]) ){
 		$menus_normal = '
-			<li><a class="modal_show" style="padding-right: 15px" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
+			<li><a class="modal_show" style="padding-right: 15px" href="javascript:;" data-target="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
 			<li><a class="modal_show" style="padding-left: 15px; border-left: 1px solid white;" data-target="#popup-registrarte">REGISTRARME</a></li>
 		';
 	}else{
@@ -100,7 +100,7 @@
 					</a>
 				</div>
 				<ul class="hidden-xs nav-login">
-					<li><a id="login" href="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
+					<li><a id="login" href="javascript:;" data-target="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
 					<li><a href="javascript:;" style="padding-left: 15px; border-left: 1px solid white;" role="button" data-target="#popup-registrarte">REGISTRARME</a></li>
 				</ul>	
 				<ul class="nav navbar-nav navbar-right">
@@ -115,7 +115,7 @@
 							<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
 						</form>
 						<ul class="nav navbar-nav">
-							<li><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">Iniciar sesión</a></li>
+							<li><a href="javascript:;" data-target="#popup-iniciar-sesion" class="km-nav-link" role="button">Iniciar sesión</a></li>
 							<li><a href="javascript:;" data-target="#popup-registrarte" class="km-nav-link" role="button" >Registrarme</a></li>
 							<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-nav-link">Quiero ser cuidador</a></li>
 				    	</ul>
@@ -181,7 +181,7 @@
 				if( !is_user_logged_in() ){
 					$HTML .= '	
 					<ul class="hidden-xs nav-login">
-						<li><a id="login" href="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
+						<li><a id="login" href="javascript:;" data-target="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
 						<li><a href="#popup-registrarte" style="padding-left: 15px; border-left: 1px solid white;" role="button" data-toggle="modal">REGISTRARME</a></li>
 					</ul>';
 				}
@@ -192,7 +192,7 @@
 					if( !is_user_logged_in() ){
 						$HTML .= '	
 						<ul class="nav navbar-nav navbar-right">
-							<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
+							<li class="hidden-sm hidden-md hidden-lg"><a href="javascript:;" data-target="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
 							<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">REGISTRARME</a></li>
 
 							<li><a href="'.get_home_url().'/busqueda" class="km-nav-link">BUSCAR CUIDADOR</a></li>
