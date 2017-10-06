@@ -1,5 +1,5 @@
 <?php
-wp_enqueue_script('index.js', getTema()."/js/index.js", array("jquery"), '1.0.0');
+/*wp_enqueue_script('index.js', getTema()."/js/index.js", array("jquery"), '1.0.0');*/
 
 $datos = kmimos_get_info_syte();
 	$HTML .='
