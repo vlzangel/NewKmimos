@@ -69,12 +69,12 @@
 
 											<div class="label-placeholder verify">
 												<div class="vlz_cell50">
-													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_1' name='clave_1' class='' placeholder='Ingrese su nueva contraseña'  maxlength="20">
+													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_1' name='clave_1' class='' placeholder='Ingrese su nueva contraseña'  maxlength="20" minlength="3">
 													<span id="error_clave_1" class="verify_result"></span>
 												</div>
 
 												<div class="vlz_cell50 verify" style="margin: 20px 0;">
-													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_2' name='clave_2' class='' placeholder='Reingrese su nueva contraseña'  maxlength="20">
+													<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_2' name='clave_2' class='' placeholder='Reingrese su nueva contraseña' minlength="3" maxlength="20">
 													<span id="error_clave_2" class="verify_result"></span>
 												</div>
 											</div>
@@ -132,14 +132,19 @@
 											return false;
 										}
 
+										jQuery('#vlz_boton_recuperar').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> GUARDANDO DATOS');
 										var result = getAjaxData('/procesos/login/recuperar_pass.php','post',  jQuery(this).serialize());
 										console.log(result);
 										result = jQuery.parseJSON(result);
 
 										if(result['result']=='success'){
-											location.href = "<?php echo get_home_url()."/perfil-usuario/?ua=profile"; ?>";
-
+											jQuery('#vlz_boton_recuperar').html('Restablecer');
+											jQuery('#vlz_boton_recuperar').after('<p style="font-size:16px;font-weight:bold;">Clave restaurada con exito, Redireccionando al perfil. <br> por favor espere...</p>');
+											setTimeout(function(){
+												location.href = "<?php echo get_home_url()."/perfil-usuario/?ua=profile"; ?>";
+											},6000);
 										}else if(result['result']=='error'){
+											jQuery('#vlz_boton_recuperar').html('Restablecer');
 											alert(result['message']);
 										}
 

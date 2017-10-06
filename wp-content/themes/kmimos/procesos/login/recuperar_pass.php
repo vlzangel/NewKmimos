@@ -1,6 +1,6 @@
 <?php
 	define('WP_USE_THEMES', false);
-	$load = dirname(__DIR__,5).'/wp-load.php';
+	$load = realpath('../../../../../wp-load.php');
 	if(file_exists($load)){
 		include_once($load);
 	}
