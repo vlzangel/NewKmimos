@@ -52,7 +52,6 @@ $HTML = '
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
     wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('modales', getTema()."/js/index.js", array("jquery"), '1.0.0');
     wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
     wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
 
@@ -60,6 +59,13 @@ $HTML = '
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
     wp_enqueue_script('bxslider', getTema()."/js/jquery.bxslider.js", array("jquery"), '1.0.0');
 
+
+    if( !is_user_logged_in() ){
+        include_once("partes/head/script_google_auth.php");
+        include_once("partes/head/script_facebook_auth.php");
+        wp_enqueue_script('modales', getTema()."/js/registro_cliente.js", array("jquery"), '1.0.0');
+    }
+    
     //wp_enqueue_script('console', getTema()."/js/console.js", array("jquery"), '1.0.0');
 
 

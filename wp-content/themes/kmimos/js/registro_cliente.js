@@ -13,8 +13,8 @@ $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
 	jQuery(".popup-registrarte-final").css('display', 'none');
 
-	jQuery('#km-datos-foto-profile').css('background', 'url('+HOME+'/images/popups/registro-cuidador-foto.svg) center/contain');
-	jQuery("#km-datos-foto-profile").css("background", 'url('+HOME+'/images/popups/registro-cuidador-foto.svg) center/contain');
+	jQuery('#km-datos-foto-profile').css('background-image', 'url('+HOME+'/images/popups/registro-cuidador-foto.svg)');
+	jQuery("#km-datos-foto-profile").css("background-image", 'url('+HOME+'/images/popups/registro-cuidador-foto.svg)');
 
 	jQuery('#form_nuevo_cliente')[0].reset();
 	jQuery( $(this).data('target') ).modal('show');
@@ -667,7 +667,7 @@ function vista_previa(evt) {
                       url: a,
                       data: {img: img_reducida, previa: img_pre}, 
                       success:  function(url){
-			      		jQuery("#km-datos-foto").css("background", "url("+RAIZ+"imgs/Temp/"+url+") center/contain");
+			      		jQuery("#km-datos-foto").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")");
 	        			jQuery("#img_pet").val( url );
 					    jQuery("#loading-mascota").css("display", "none");
                       },
@@ -713,22 +713,22 @@ function vista_previa_perfil(evt) {
     				var a = RAIZ+"imgs/vlz_subir_img.php";
     				var img_pre = jQuery("#img_profile").val();
     				
-    				 $.ajax({
-                      async:true, 
-                      cache:false, 
-                      type: 'POST',   
-                      url: a,
-                      data: {img: img_reducida, previa: img_pre}, 
-                      success:  function(url){
-			      		jQuery("#km-datos-foto-profile").css("background", "url("+RAIZ+"imgs/Temp/"+url+") center/contain");
-	        			jQuery("#img_profile").val( url );
-		           		jQuery(".kmimos_cargando").css("visibility", "hidden");
-					    jQuery("#loading-perfil").css("display", "none");
-                      },
-                      beforeSend:function(){
-					    jQuery("#loading-perfil").css("display", "block");                      	
-                      },
-                      error:function(objXMLHttpRequest){}
+					$.ajax({
+						async:true, 
+						cache:false, 
+						type: 'POST',   
+						url: a,
+						data: {img: img_reducida, previa: img_pre}, 
+						success:  function(url){
+							jQuery("#km-datos-foto-profile").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")");
+							jQuery("#img_profile").val( url );
+							jQuery(".kmimos_cargando").css("visibility", "hidden");
+							jQuery("#loading-perfil").css("display", "none");
+						},
+						beforeSend:function(){
+							jQuery("#loading-perfil").css("display", "block");                      	
+						},
+						error:function(objXMLHttpRequest){}
                     });
     			});
            };

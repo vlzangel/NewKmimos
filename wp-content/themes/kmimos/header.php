@@ -35,11 +35,6 @@
 
 	wp_head();
 
-	if( !is_user_logged_in() ){
-	    include_once("partes/head/script_google_auth.php");
-	    include_once("partes/head/script_facebook_auth.php");
-	}
-
 	global $post;
 	$reserrvacion_page = "";
 	if( 
