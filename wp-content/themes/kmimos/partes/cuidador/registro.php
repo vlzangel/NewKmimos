@@ -87,7 +87,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Teléfono</label>
-							<input type="text" name="rc_telefono" data-charset="num" minlength="7" maxlength="15" value="" class="input-label-placeholder solo_numeros">
+							<input type="text" name="rc_telefono" data-charset="num" minlength="10" maxlength="15" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
