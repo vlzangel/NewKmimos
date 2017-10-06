@@ -148,7 +148,7 @@
 				<h3 style="margin: 0;">Foto de perfil</h3>
 				<p style="color: #979797">Brinda a tus futuros amigos</p>
 
-				<a href="#" data-load='portada'>
+				<a href="#" data-load='portada' id="perfil-img-a">
 					<img class="img-circle" id="perfil-img" src="<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg">
 				</a>
 				<div class="kmimos_cargando" style="visibility: hidden;">

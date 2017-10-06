@@ -414,21 +414,23 @@ function vista_previa(evt) {
     				var a = RAIZ+"imgs/vlz_subir_img.php";
     				var img_pre = jQuery("#vlz_img_perfil").val();
     				
-    				 jQuery.ajax({
-                      async:true, 
-                      cache:false, 
-                      type: 'POST',   
-                      url: a,
-                      data: {img: img_reducida, previa: img_pre}, 
-                      success:  function(url){
-			      		jQuery("#perfil-img").attr("src", RAIZ+"imgs/Temp/"+url);
-	        			jQuery("#vlz_img_perfil").val( url );
-		           		jQuery(".kmimos_cargando").css("visibility", "hidden");
-                      },
-                      beforeSend:function(){},
-                      error:function(objXMLHttpRequest){}
+    				jQuery.ajax({
+                      	async:true, 
+                      	cache:false, 
+                      	type: 'POST',   
+                      	url: a,
+                      	data: {img: img_reducida, previa: img_pre}, 
+                      	success:  function(url){
+				      		jQuery("#perfil-img-a").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
+				      		jQuery("#perfil-img").css("display", "none" );
+		        			jQuery("#vlz_img_perfil").val( url );
+			           		jQuery(".kmimos_cargando").css("visibility", "hidden");
+                      	},
+                      	beforeSend:function(){},
+                      	error:function(objXMLHttpRequest){}
                     });
     			});
+
            };
 		})(f);
 		reader.readAsDataURL(f);

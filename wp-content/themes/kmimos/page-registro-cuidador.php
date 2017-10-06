@@ -7,6 +7,7 @@
 
 	$config_link_registro = 'href="#" role="button" data-target="#popup-registro-cuidador1"' ;
 
+	wp_enqueue_style('registro_cuidador', getTema()."/css/registro_cuidador.css", array("kmimos_style"), '1.0.0');
 	wp_enqueue_style('registro_cuidador_responsive', getTema()."/css/responsive/registro_cuidador_responsive.css", array("kmimos_style"), '1.0.0');
 
     get_header(); ?>
