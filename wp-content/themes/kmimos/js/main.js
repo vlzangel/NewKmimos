@@ -1,3 +1,19 @@
+$(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e){
+	e.preventDefault();
+
+console.log('reset');
+
+	jQuery(".popup-iniciar-sesion-1").fadeIn("fast");
+	jQuery(".popup-olvidaste-contrasena").fadeOut("fast");
+	jQuery('.verify_result').html('');
+	jQuery('.response').html('');
+
+	jQuery('#form_login')[0].reset();
+	jQuery('#form_recuperar')[0].reset();
+	jQuery( $(this).data('target') ).modal('show');
+});
+
+
 function menu(){
 	var w = jQuery(window).width();
 

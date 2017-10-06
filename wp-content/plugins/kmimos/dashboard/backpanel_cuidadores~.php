@@ -67,7 +67,6 @@ $users = getUsers($desde, $hasta);
 			      <th>Email</th>
 			      <th>Estado</th>
 			      <th>Municipio</th>
-			      <th>Direcci&oacute;n</th>
 			      <th>Teléfono</th>
 			      <th>Donde nos conocio?</th>
 			      <th>Estatus</th>
@@ -101,7 +100,6 @@ $users = getUsers($desde, $hasta);
 						</th>
 						<th><?php echo $ubicacion['estado']; ?></th>
 						<th><?php echo $ubicacion['municipio']; ?></th>						
-						<th><?php echo utf8_encode($row['direccion']); ?></th>						
 						<th><?php echo $usermeta['phone']; ?></th>
 						<th><?php echo (!empty($usermeta['user_referred']))? $usermeta['user_referred'] : 'Otros' ; ?></th>
 						<th><?php echo ($row['estatus']==1)? 'Activo' : 'Inactivo' ; ?></th>
