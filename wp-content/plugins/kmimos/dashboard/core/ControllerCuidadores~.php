@@ -3,7 +3,7 @@ require_once('base_db.php');
 require_once('GlobalFunction.php');
 
 function getmetaUser($user_id=0){
-	$condicion = " AND m.meta_key IN ( 'nickname', 'first_name', 'last_name', 'user_phone', 'user_mobile', 'user_referred', 'user_address')";
+	$condicion = " AND m.meta_key IN ( 'nickname', 'first_name', 'last_name', 'user_phone', 'user_mobile', 'user_referred')";
 	$result = get_metaUser($user_id, $condicion);
 	$data = [
 		'first_name' =>'', 
@@ -12,7 +12,6 @@ function getmetaUser($user_id=0){
 		'user_mobile' =>'',
 		'user_referred' =>'',
 		'nickname' =>'',
-		'user_address' =>'',
 	];
 	if( !empty($result) ){
 		foreach ( $result['rows'] as $row ) {
@@ -66,7 +65,7 @@ function getUsers($desde="", $hasta=""){
 
 	$filtro_adicional = (!empty($filtro_adicional))? ' WHERE '.$filtro_adicional : $filtro_adicional ;
 	$sql = "
-		SELECT u.*, b.*, c.activo as 'estatus', c.direccion 
+		SELECT u.*, b.*, c.activo as 'estatus'
 		FROM wp_users as u
 			INNER JOIN cuidadores as c ON c.user_id = u.ID
 			INNER JOIN ubicaciones as b ON b.cuidador = c.id
@@ -78,7 +77,3 @@ function getUsers($desde="", $hasta=""){
 	return $result;
 }
 
-function getReservasByCuidador( $cuidador_id ){
-
-
-}

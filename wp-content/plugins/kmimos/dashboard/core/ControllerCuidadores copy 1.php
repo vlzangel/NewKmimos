@@ -78,7 +78,3 @@ function getUsers($desde="", $hasta=""){
 	return $result;
 }
 
-function getReservasByCuidador( $cuidador_id ){
-
-
-}
