@@ -41,6 +41,10 @@
     	top: 5px !important;
 	}
 
+	.bg-white .navbar-header {
+	    margin-top: 0px !important;
+	}
+
 }
 
 @media (max-width: 480px){

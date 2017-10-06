@@ -60,6 +60,8 @@ $HTML = '
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
     wp_enqueue_script('bxslider', getTema()."/js/jquery.bxslider.js", array("jquery"), '1.0.0');
 
+    //wp_enqueue_script('console', getTema()."/js/console.js", array("jquery"), '1.0.0');
+
 
     if(  $_SESSION['admin_sub_login'] == 'YES' ){
         $HTML .= "

@@ -1,8 +1,53 @@
 jQuery( document ).ready(function() {
 	
-	jQuery("#rc_nombres").on("keyup", function(e){
-		var valor = jQuery("#rc_nombres").val();
-		
+	jQuery(".solo_letras").on("keyup", function(e){
+		var valor = jQuery( this ).val();
+		if( valor != "" ){
+			var resul = ""; var no_permitido = false;
+			jQuery.each(valor.split(""), function( index, value ) {
+			  	if( /^[a-zA-Z ]*$/g.test(value) ){
+					resul += value;
+				}else{
+					no_permitido = true;
+				}
+			});
+			if( no_permitido ){
+				jQuery( this ).val(resul);
+			}
+		}
+	});
+	
+	jQuery(".solo_numeros").on("keyup", function(e){
+		var valor = jQuery( this ).val();
+		if( valor != "" ){
+			var resul = ""; var no_permitido = false;
+			jQuery.each(valor.split(""), function( index, value ) {
+			  	if( /^[0-9]*$/g.test(value) ){
+					resul += value;
+				}else{
+					no_permitido = true;
+				}
+			});
+			if( no_permitido ){
+				jQuery( this ).val(resul);
+			}
+		}
+	});
+	
+	jQuery("input").on("keypress", function(e){
+		var valor = jQuery( this ).attr("minlength");
+		if( valor != undefined && valor+0 > 0 ){
+			if( jQuery( this ).val().split("").length > valor ){
+				var cont = 0; var result = "";
+				jQuery.each(jQuery( this ).val().split(""), function( index, value ) {
+				  	if( cont < valor ){
+				  		result += value;
+				  	}
+				});
+				jQuery( this ).val(resul);
+				return false;
+			}
+		}
 	});
 
 });
