@@ -96,7 +96,7 @@ $HTML = '
             </script>
 
             <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
-            <script>/* startApp(); */</script>
+            <script> startApp(); </script>
 
             <script type='text/javascript'>
                 jQuery('img').attr('alt', '".get_bloginfo('title', false)."');

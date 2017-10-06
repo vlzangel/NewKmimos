@@ -166,60 +166,6 @@
 		';
 	}
 
-/*
-	$HTML .= '	
-		<nav class="navbar navbar-fixed-top bg-transparent">
-			<div class="container">
-				<div class="navbar-header ">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
-					</button>
-					<a class="navbar-brand" href="'.get_home_url().'">
-						<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
-					</a>
-				</div>';
-				if( !is_user_logged_in() ){
-					$HTML .= '	
-					<ul class="hidden-xs nav-login">
-						<li><a id="login" href="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
-						<li><a href="#popup-registrarte" style="padding-left: 15px; border-left: 1px solid white;" role="button" data-toggle="modal">REGISTRARME</a></li>
-					</ul>';
-				}
-				$HTML .= '	
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					';
-
-					if( !is_user_logged_in() ){
-						$HTML .= '	
-						<ul class="nav navbar-nav navbar-right">
-							<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
-							<li class="hidden-sm hidden-md hidden-lg"><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">REGISTRARME</a></li>
-
-							<li><a href="'.get_home_url().'/busqueda" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-							<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-btn-primary">QUIERO SER CUIDADOR</a></li>';
-					}else{
-						$HTML .= '	
-						<ul class="nav navbar-nav navbar-right" style="padding-top: 3px !important;">
-							<li class="dropdown hidden-xs " data-obj="avatar">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-									<img src="'.$avatar.'" width="60px" height="60px" class="img-circle"> 
-								</a>
-								<ul class="dropdown-menu"  style="background: #fff;">
-									'.$menus_normal.'
-								</ul>
-				        	</li>
-				        	<div class="hidden-sm  hidden-md hidden-lg" style="background: #fff;">
-								'.$menus_normal.'
-							</div>
-			    		';
-			    	} $HTML .= '
-			    	</ul>
-			    </div>
-			</div>
-		</nav>
-	';
-*/
-
 	if( !is_user_logged_in() ){
 		include_once('partes/modal_register.php');
 	}
