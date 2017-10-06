@@ -68,7 +68,7 @@ $HTML .='
 							<input type="text" id="id_login_gmail" name="id_login_gmail" class="hidden">
 							<div class="km-datos-foto" id="km-datos-foto-profile" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;">
 								<div id="loading-perfil" style="width:100%;line-height: 100%;display:none">
-									<img src="/wp-content/themes/kmimos/images/new/bx_loader.gif" class="img-responsive">
+									<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
 								</div>
 							</div>
 							
@@ -160,7 +160,7 @@ $HTML .='
 
 				<div class="km-datos-foto" id="km-datos-foto" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;">
 					<div id="loading-mascota" style="width:100%;line-height: 100%;display:none;text-align:center;">
-						<img src="/wp-content/themes/kmimos/images/new/bx_loader.gif" class="img-responsive">
+						<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
 					</div>
 				</div>
 
