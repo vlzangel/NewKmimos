@@ -44,9 +44,7 @@ jQuery( document ).ready(function() {
 				  		result += value;
 				  	}
 				});
-				if( resul != undefined ){
-					jQuery( this ).val(resul);
-				}
+				jQuery( this ).val(result);
 				return false;
 			}
 		}
@@ -54,13 +52,9 @@ jQuery( document ).ready(function() {
 
 	jQuery(".social_email").on("change", function(){
 		var email = jQuery(this);
-
-		console.log("Hola");
-
 		if( email.val().trim() == "" ){
 			mensaje( email.attr("name"), '<span name="sp-email">Ingrese su email</span>' )
 		}else{
-			console.log( email.val() );
 			jQuery.ajax({
 		        data: {
 					'email': email.val()
@@ -68,9 +62,6 @@ jQuery( document ).ready(function() {
 		        url:   HOME+'/procesos/login/main.php',
 		        type:  'post',
 		        success:  function (response) {
-
-					console.log( response );
-
 	                if (response == 'SI') {
 						mensaje( email.attr("name"), '<span name="sp-email">Este E-mail ya esta en uso</span>' );
 	                }else if (response == 'NO'){

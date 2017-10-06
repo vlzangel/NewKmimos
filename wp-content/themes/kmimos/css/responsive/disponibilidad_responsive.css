@@ -14,6 +14,14 @@
 	.fechas_item {
 	    width: 100%;
 	}
+
+	.box_100{
+		width: 100%;
+	}
+
+	.box_50{
+		width: 50%;
+	}
 }
 
 @media (max-width: 350px){
