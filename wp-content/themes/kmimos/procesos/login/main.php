@@ -1,30 +1,18 @@
 <?php
     include(__DIR__."../../../../../../vlz_config.php");
-	
-	$conn = new mysqli($host, $user, $pass, $db);
-	
-    $errores = array();
+    include_once("../funciones/db.php");
+
+    extract($_POST);
     
-    $email = $_POST['email'];
-    if( strpos($email , '@') === false || (strpos($email , '@') !== false &&  strpos($email , '.', strpos($email , '@')) === false)) {
-        echo "NO_MAIL";
-        exit();
+    $db = new db( new mysqli($host, $user, $pass, $db) );
+	
+    $email = $db->get_var("SELECT * FROM wp_users WHERE user_email = '{$email}'");
+
+    if( $email !== false ){
+        echo "SI";
+    }else{
+        echo "NO";
     }
-	
-    if ($conn->connect_error) {
-        echo 'false';
-        echo "No se conecto";
-        exit();
-	}else{
-        $existen = $conn->query( "SELECT * FROM wp_users WHERE user_email = '{$email}'" );
-        if( $existen->num_rows > 0 ){
-            $datos = $existen->fetch_assoc();
-            echo "SI";
-            exit();
-        }else{
-            echo "NO";
-            exit();
-        }
-	}
-    
+    exit();
+        
 ?>
