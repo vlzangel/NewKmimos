@@ -148,16 +148,17 @@
 				<h3 style="margin: 0;">Foto de perfil</h3>
 				<p style="color: #979797">Brinda a tus futuros amigos</p>
 
-				<a href="#" data-load='portada' id="perfil-img-a">
+				<a href="#" data-load='portada' id="perfil-img-a" class="vlz_rotar">
 					<img class="img-circle" id="perfil-img" src="<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg">
 				</a>
 				<div class="kmimos_cargando" style="visibility: hidden;">
 					<span>Cargando...</span>
 				</div>
+				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div>
 				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
 
             	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
-	            <input class="hidden" type="text" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="">
+	            <input class="hidden vlz_rotar_valor" type="text" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" >
 
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>

@@ -415,7 +415,10 @@ function vista_previa(evt) {
 				      		jQuery("#perfil-img-a").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
 				      		jQuery("#perfil-img").css("display", "none" );
 		        			jQuery("#vlz_img_perfil").val( url );
+		        			jQuery(".vlz_rotar_valor").attr( "value", url );
 			           		jQuery(".kmimos_cargando").css("visibility", "hidden");
+
+			           		jQuery("#rotar").css("display", "block");
                       	},
                       	beforeSend:function(){},
                       	error:function(objXMLHttpRequest){}

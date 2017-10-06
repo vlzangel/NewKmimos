@@ -49,6 +49,10 @@ jQuery( document ).ready(function() {
         };
     }, false);*/
 
+    jQuery("#rotar").on("click", function(e){
+        rotar( "#"+jQuery( this ).attr("data-id") );
+    });
+
 });
 
 function social_auth( f ){
@@ -272,7 +276,107 @@ function contenedor_temp(){
     }
 }
 
+var AR = 0;
 function rotar(){
+        
+    if( typeof(CTX) != "undefined" ){
+        AR = 0.5;
+
+        if( AR == 2 ){ AR = 0; }
+
+        console.log( AR );
+        
+        var rxi = jQuery("#kmimos_redimencionar_imagenes img")[0];
+        var rw = rxi.width;
+        var rh = rxi.height;
+        
+        if( AR == 0.5 || AR == 1.5){
+            var rh = rxi.width;
+            var rw = rxi.height;
+        }
+        
+        var xw = 500;
+        var xh = 500;
+
+        if( (rw > xw) && (rh > xh) ){
+
+            if( rw <= rh ){
+                var porc = ((xw*100)/rw)/100;
+                var w = rw*porc;
+                var h = rh*porc;
+            }else{
+                var porc = ((xh*100)/rh)/100;
+                var w = rw*porc;
+                var h = rh*porc;
+            }
+
+        }else{
+            var w = rw;
+            var h = rh;
+        }
+
+        CA = d("<canvas id='kmimos_canvas' width='"+w+"' height='"+h+"'>");
+
+        
+        jQuery("#kmimos_redimencionar_imagenes #kmimos_canvas_temp").html(CA);
+
+        CA = jQuery("#kmimos_redimencionar_imagenes #kmimos_canvas_temp #kmimos_canvas");
+
+        CTX = c('kmimos_canvas');
+
+        if(CTX){
+            
+            CTX.rotate(Math.PI*AR);
+            
+            switch(AR){
+                case 0:
+                    CTX.drawImage(rxi, 0, 0, w, h);
+                break;
+                case 0.5:
+                    var y = w*-1;
+                    CTX.drawImage(rxi, 0, y, h, w);
+                break;
+                case 1:
+                    var x = w*-1;
+                    var y = h*-1;
+                    CTX.drawImage(rxi, x, y, w, h);
+                break;
+                case 1.5:
+                    var x = h*-1;
+                    CTX.drawImage(rxi, x, 0, h, w);
+                break;
+            }
+
+            var img_rotada = CA[ 0 ].toDataURL("image/jpg");
+
+            /*jQuery(".vlz_rotar").css("background-image", "url("+img_rotada+")" );
+            jQuery(".vlz_rotar_valor").attr( "value", img_rotada );*/
+
+            redimencionar(img_rotada, function(img_reducida){
+                var a = RAIZ+"imgs/vlz_subir_img.php";
+                var img_pre = jQuery(".vlz_rotar_valor").attr("value");
+                
+                console.log("img_pre: "+img_pre);
+
+                jQuery.ajax({
+                    async:true, 
+                    cache:false, 
+                    type: 'POST',   
+                    url: a,
+                    data: {img: img_reducida, previa: img_pre}, 
+                    success:  function(url){
+                        jQuery(".vlz_rotar").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
+                        jQuery(".vlz_rotar_valor").attr("value", url);
+                    },
+                    beforeSend:function(){},
+                    error:function(objXMLHttpRequest){}
+                });
+            });
+        }
+        
+    }else{
+        alert("No hay imagen seleccionada");
+    }
     
 }
 
