@@ -67,7 +67,7 @@
 	if( !isset($MENU["head"]) ){
 		$menus_normal = '
 			<li><a class="modal_show" style="padding-right: 15px" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
-			<li><a class="modal_show" style="padding-left: 15px; border-left: 1px solid white;" data-toggle="modal" data-modal="#myModal">REGISTRARME</a></li>
+			<li><a class="modal_show" style="padding-left: 15px; border-left: 1px solid white;" data-target="#popup-registrarte">REGISTRARME</a></li>
 		';
 	}else{
 		$menus_normal =  $MENU["body"].$MENU["footer"];
@@ -101,7 +101,7 @@
 				</div>
 				<ul class="hidden-xs nav-login">
 					<li><a id="login" href="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">INICIAR SESIÓN</a></li>
-					<li><a href="#popup-registrarte" style="padding-left: 15px; border-left: 1px solid white;" role="button" data-toggle="modal">REGISTRARME</a></li>
+					<li><a href="javascript:;" style="padding-left: 15px; border-left: 1px solid white;" role="button" data-target="#popup-registrarte">REGISTRARME</a></li>
 				</ul>	
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="'.get_home_url().'/busqueda" class="hidden-xs km-nav-link">BUSCAR CUIDADOR</a></li>
@@ -116,7 +116,7 @@
 						</form>
 						<ul class="nav navbar-nav">
 							<li><a href="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">Iniciar sesión</a></li>
-							<li><a href="#popup-registrarte" class="km-nav-link" role="button" data-toggle="modal">Registrarme</a></li>
+							<li><a href="javascript:;" data-target="#popup-registrarte" class="km-nav-link" role="button" >Registrarme</a></li>
 							<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-nav-link">Quiero ser cuidador</a></li>
 				    	</ul>
 				    </div>

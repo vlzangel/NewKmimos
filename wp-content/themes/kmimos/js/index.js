@@ -1,6 +1,25 @@
 
 var globalData = "";
 
+
+
+
+
+$(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
+	e.preventDefault();
+
+	jQuery(".popup-registrarte-1").fadeIn("fast");
+	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
+	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
+	jQuery(".popup-registrarte-final").css('display', 'none');
+
+	jQuery('#km-datos-foto-profile').css('background', 'url('+HOME+'/images/popups/registro-cuidador-foto.svg) center/contain');
+	jQuery("#km-datos-foto-profile").css("background", 'url('+HOME+'/images/popups/registro-cuidador-foto.svg) center/contain');
+
+	jQuery('#form_nuevo_cliente')[0].reset();
+	jQuery( $(this).data('target') ).modal('show');
+});
+
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
     jQuery("#nombre").blur(function(){
@@ -426,7 +445,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			aggresive_pets = jQuery("#km-check-4").val(),
 			img_pet = jQuery("#img_pet").val();
 
-			// Reset input:file
 			$fileupload = $('#carga_foto');
 			$fileupload.replaceWith($fileupload.clone(true));
 
@@ -627,9 +645,8 @@ function cargaImagen(evt){
 
 /* Cargar imagen de la mascota */
 function vista_previa(evt) {
-	
-	// jQuery("#perfil-img").attr("src", HOME+"images/cargando.gif" );
- //    jQuery(".kmimos_cargando").css("visibility", "visible");
+
+    jQuery("#loading-mascota").css("display", "inline-block");
 
   	var files = evt.target.files;
   	for (var i = 0, f; f = files[i]; i++) {  
@@ -650,22 +667,29 @@ function vista_previa(evt) {
                       url: a,
                       data: {img: img_reducida, previa: img_pre}, 
                       success:  function(url){
-			      		jQuery("#km-datos-foto").css("background", "url("+RAIZ+"imgs/Temp/"+url+")");
+			      		jQuery("#km-datos-foto").css("background", "url("+RAIZ+"imgs/Temp/"+url+") center/contain");
 	        			jQuery("#img_pet").val( url );
-		           		jQuery(".kmimos_cargando").css("visibility", "hidden");
+					    jQuery("#loading-mascota").css("display", "none");
                       },
-                      beforeSend:function(){},
-                      error:function(objXMLHttpRequest){}
+                      beforeSend:function(){
+                      	 jQuery("#loading-mascota").css("display", "block");
+                      },
+                      afterSend:function(){
+                      	 jQuery("#loading-mascota").css("display", "none");
+                      },
+                      error:function(objXMLHttpRequest){
+                      	 jQuery("#loading-mascota").css("display", "none");
+                      }
                     });
     			});
            };
 		})(f);
 		reader.readAsDataURL(f);
    	}
+	 
 }      
 jQuery("#km-datos-foto").on('click', function(){
 	jQuery("#carga_foto").trigger("click");
-//		document.addEventListener('change',cargaImagen, false);
 });
 document.getElementById("carga_foto").addEventListener("change", vista_previa, false);
 /* Cargar imagen de la mascota */
@@ -673,9 +697,9 @@ document.getElementById("carga_foto").addEventListener("change", vista_previa, f
 
 /* Cargar imagen de la perfil */
 function vista_previa_perfil(evt) {
-	
-	// jQuery("#km-datos-foto-profile").attr("src", HOME+"images/cargando.gif" );
- 	// jQuery(".kmimos_cargando").css("visibility", "visible");
+
+    jQuery("#loading-perfil").css("display", "block");
+	console.log('mostrar loading ');
 
   	var files = evt.target.files;
   	for (var i = 0, f; f = files[i]; i++) {  
@@ -696,11 +720,14 @@ function vista_previa_perfil(evt) {
                       url: a,
                       data: {img: img_reducida, previa: img_pre}, 
                       success:  function(url){
-			      		jQuery("#km-datos-foto-profile").css("background", "url("+RAIZ+"imgs/Temp/"+url+")");
+			      		jQuery("#km-datos-foto-profile").css("background", "url("+RAIZ+"imgs/Temp/"+url+") center/contain");
 	        			jQuery("#img_profile").val( url );
 		           		jQuery(".kmimos_cargando").css("visibility", "hidden");
+					    jQuery("#loading-perfil").css("display", "none");
                       },
-                      beforeSend:function(){},
+                      beforeSend:function(){
+					    jQuery("#loading-perfil").css("display", "block");                      	
+                      },
                       error:function(objXMLHttpRequest){}
                     });
     			});
@@ -715,33 +742,6 @@ jQuery("#km-datos-foto-profile").on('click', function(){
 document.getElementById("carga_foto_profile").addEventListener("change", vista_previa_perfil, false);
 /* Cargar imagen de la perfil */
 
-
-
-/*IMAGE PROFILE*/
-// function cargaImagenProfile(evt){
-// 	var files = evt.target.files;
-
-// 	/*obtenemos la imagen del campo file*/
-// 	for (var i = 0, f; f = files[i]; i++) {
-// 		/*Solo admitimos imágenes.*/
-// 		if (!f.type.match('image.*')) {
-// 			continue;
-// 		}
-// 		var reader = new FileReader();
-
-// 		reader.onload = (function(theFile){
-// 			return function(e){
-// 				/*Creamos la imagen.*/
-// 				jQuery("#km-datos-foto-profile").css("background-image", "url("+e.target.result+")");
-// 				jQuery("#km-datos-foto-profile").addClass("img-circle");
-// 				jQuery("#img_profile").val(e.target.result);
-// 				/*document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');*/
-// 			};
-// 		})(f);
-
-// 		reader.readAsDataURL(f);
-// 	}
-// }
 
 /*RECOVER PASSWORD*/
 jQuery(document).on('click','#login_submit.recover_pass',function(e){

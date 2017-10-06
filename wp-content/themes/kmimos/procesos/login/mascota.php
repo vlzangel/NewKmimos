@@ -12,7 +12,7 @@
         $razas = $conn->query("SELECT * FROM razas ORDER BY nombre ASC");
         	if ($razas->num_rows > 0) {
     			$datos = $razas->fetch_assoc();
-    			echo utf8_encode ("<option id='select_mascota' value='0'>Raza de la Mascota</option>");
+    			echo utf8_encode ("<option id='select_mascota' value=''>Raza de la Mascota</option>");
                 foreach ($razas as $valores) {
     			 	// $data["data"][] = $valores;
     			 	echo utf8_encode ("<option id='select_mascota' value='".$valores['id']."'>".$valores['nombre']."</option>");
