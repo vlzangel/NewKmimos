@@ -67,8 +67,249 @@
 	    }
 	}
 
- 	
+ 	if(!function_exists('italo_menus')){
+	    function italo_menus($menus){
+	      global $current_user;
+	    	$menus[] = array(
+                'title'=>'Control de Reservas',
+                'short-title'=>'Control de Reservas',
+                'parent'=>'kmimos',
+                'slug'=>'bp_reservas',
+                'access'=>'manage_options',
+                'page'=>'backpanel_reservas',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
 
+	        $menus[] = array(
+	                'title'=>'Control Conocer a Cuidador',
+	                'short-title'=>'Control Conocer a Cuidador',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_conocer_cuidador',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_conocer_cuidador',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Listado de Suscriptores',
+	                'short-title'=>'Listado de Suscriptores',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_suscriptores',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_subscribe',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Listado de Clientes',
+	                'short-title'=>'Listado de Clientes',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_clientes',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_clientes',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Listado de Cuidadores',
+	                'short-title'=>'Listado de Cuidadores',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_cuidadores',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_cuidadores',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Control WhiteLabel',
+	                'short-title'=>'Control WhiteLabel',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_wlabel',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_wlabel',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Club Patitas Felices (Participantes)',
+	                'short-title'=>'Club Patitas Felices (Participantes)',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_participantes_club_patitas_felices',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_ctr_participantes',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Control de Referidos (Club Patitas Felices)',
+	                'short-title'=>'Control de Referidos Club Patitas Felices',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_referidos_club_patitas_felices',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_ctr_referidos',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Estados por Cuidador',
+	                'short-title'=>'Estados por Cuidador',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_estados_cuidadores',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_estados_cuidadores',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Newsletter',
+	                'short-title'=>'Newsletter',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_newsletter',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_newsletter',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+                 
+         
+         /* Temporal ********************* */
+          if ( 	 $current_user->user_email == 'a.pedroza@kmimos.la' ||
+		 $current_user->user_email == 'r.cuevas@kmimos.la'  ||
+		 $current_user->user_email == 'e.celli@kmimos.la' || 
+		 $current_user->user_email == 'soporte.kmimos@gmail.com'
+		 	){
+
+		        $menus[] = array(
+		                'title'=>'Pago Cuidador',
+		                'short-title'=>'Pago Cuidador',
+		                'parent'=>'kmimos',
+		                'slug'=>'bp_saldo_cuidadores',
+		                'access'=>'manage_options',
+		                'page'=>'backpanel_saldo_cuidador',
+		                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+		        );
+		        $menus[] = array(
+		                'title'=>'Pago Cuidador Inicio Reserva',
+		                'short-title'=>'Pago Cuidador Inicio Reserva',
+		                'parent'=>'kmimos',
+		                'slug'=>'bp_saldo_cuidadores_bookinkstart',
+		                'access'=>'manage_options',
+		                'page'=>'backpanel_saldo_cuidador_BookingStart',
+		                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+		        );
+		        $menus[] = array(
+		                'title'=>'Pago Cuidador Detalle',
+		                'short-title'=>'Pago Cuidador Detalle',
+		                'parent'=>'kmimos',
+		                'slug'=>'bp_saldo_cuidadores_detalle',
+		                'access'=>'manage_options',
+		                'page'=>'backpanel_saldo_cuidador_detalle',
+		                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+		        );
+
+      			$menus[] = array(
+      				'title'=>'Saldo de Cupones',
+      				'short-title'=>'Saldo de Cupones',
+      				'parent'=>'kmimos',
+      				'slug'=>'bp_saldo_cupon',
+      				'access'=>'manage_options',
+      				'page'=>'backpanel_saldo_cupon',
+      				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+      			);
+		      }
+         /* Temporal ********************* */
+
+                 
+	        return $menus;
+	    }
+	}
+
+	if(!function_exists('backpanel_saldo_cuidador_BookingStart')){
+	        function backpanel_saldo_cuidador_BookingStart(){
+	            include_once('dashboard/backpanel_saldo_cuidador_BookingStart.php');
+	        }
+	}
+
+	if(!function_exists('backpanel_saldo_cuidador')){
+	        function backpanel_saldo_cuidador(){
+	            include_once('dashboard/backpanel_saldo_cuidador.php');
+	        }
+	}
+
+	if(!function_exists('backpanel_saldo_cuidador_detalle')){
+        function backpanel_saldo_cuidador_detalle(){
+            include_once('dashboard/backpanel_saldo_cuidador_detalle.php');
+        }
+    }
+
+
+	if(!function_exists('backpanel_newsletter')){
+        function backpanel_newsletter(){
+            include_once('dashboard/backpanel_newsletter.php');
+        }
+    }
+    
+	if(!function_exists('backpanel_ctr_participantes')){
+        function backpanel_ctr_participantes(){
+            include_once('dashboard/backpanel_ctr_participantes.php');
+        }
+    }
+
+    if(!function_exists('backpanel_ctr_referidos')){
+        function backpanel_ctr_referidos(){
+            include_once('dashboard/backpanel_ctr_referidos.php');
+        }
+    }
+
+    if(!function_exists('backpanel_conocer_cuidador')){
+        function backpanel_conocer_cuidador(){
+            include_once('dashboard/backpanel_conocer_cuidador.php');
+        }
+    }
+
+    if(!function_exists('backpanel_reservas')){
+        function backpanel_reservas(){
+            include_once('dashboard/backpanel_reservas.php');
+        }
+    }
+
+    if(!function_exists('backpanel_subscribe')){
+        function backpanel_subscribe(){
+            include_once('dashboard/backpanel_subscribe.php');
+        }
+    }
+
+    if(!function_exists('backpanel_clientes')){
+        function backpanel_clientes(){
+            include_once('dashboard/backpanel_clientes.php');
+        }
+    }
+
+    if(!function_exists('backpanel_cuidadores')){
+        function backpanel_cuidadores(){
+            include_once('dashboard/backpanel_cuidadores.php');
+        }
+    }
+
+    if(!function_exists('backpanel_estados_cuidadores')){
+        function backpanel_estados_cuidadores(){
+            include_once('dashboard/backpanel_estados_cuidadores.php');
+        }
+    }
+
+	if(!function_exists('backpanel_wlabel')){
+        function backpanel_wlabel(){
+            include_once('wlabel/admin/backpanel.php');
+        }
+    }
+
+	if(!function_exists('backpanel_saldo_cupon')){
+		function backpanel_saldo_cupon(){
+			include_once('dashboard/backpanel_saldo_cupon.php');
+		}
+	}
+
+
+/*
 	if(!function_exists('italo_menus')){
 	    function italo_menus($menus){
 
@@ -219,5 +460,4 @@
             include_once('wlabel/admin/backpanel.php');
         }
     }
-
-?>
+*/
