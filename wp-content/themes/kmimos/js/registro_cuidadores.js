@@ -1,5 +1,42 @@
 jQuery( document ).ready(function() {
 	
+	var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      var crd = pos.coords;
+
+      alert('Your current position is:');
+      alert('Latitude : ' + crd.latitude);
+      alert('Longitude: ' + crd.longitude);
+      alert('More or less ' + crd.accuracy + ' meters.');
+    };
+
+    function error(err) {
+      alert('ERROR(' + err.code + '): ' + err.message);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+	jQuery.post(
+        HOME+"/procesos/busqueda/ubicacion.php",
+        {},
+        function(data){
+            jQuery("#ubicacion_list").html(data);
+            jQuery("#ubicacion_list div").on("click", function(e){
+                jQuery("#ubicacion_txt").val( jQuery(this).html() );
+                jQuery("#ubicacion").val( jQuery(this).attr("value") );
+                jQuery("#ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
+
+                jQuery("#ubicacion_list").css("display", "none");
+            });
+            jQuery("#ubicacion_txt").attr("readonly", false);
+        }
+    );
+
 	jQuery(".solo_letras").on("keyup", function(e){
 		var valor = jQuery( this ).val();
 		if( valor != "" ){
