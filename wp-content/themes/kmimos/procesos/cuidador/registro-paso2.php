@@ -39,12 +39,15 @@
                 // Ubicacion
                 // $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
 
-                $coordenadas = $db->get_var( "SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipio}' " );
-                if( $coordenadas !== false ){
-                    $coordenadas = unserialize($coordenadas);
-                    $latitud  = $coordenadas["referencia"]->lat;
-                    $longitud = $coordenadas["referencia"]->lng;
+                if( $latitud == "" || $longitud == "" ){
+                    $coordenadas = $db->get_var( "SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipio}' " );
+                    if( $coordenadas !== false ){
+                        $coordenadas = unserialize($coordenadas);
+                        $latitud  = $coordenadas["referencia"]->lat;
+                        $longitud = $coordenadas["referencia"]->lng;
+                    }
                 }
+
 
                 $sql = "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '={$estado}=', '={$municipio}=')";
                 $db->query( $sql );

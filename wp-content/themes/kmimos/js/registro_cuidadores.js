@@ -1,26 +1,5 @@
 jQuery( document ).ready(function() {
 	
-	var options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-
-    function success(pos) {
-      var crd = pos.coords;
-
-      alert('Your current position is:');
-      alert('Latitude : ' + crd.latitude);
-      alert('Longitude: ' + crd.longitude);
-      alert('More or less ' + crd.accuracy + ' meters.');
-    };
-
-    function error(err) {
-      alert('ERROR(' + err.code + '): ' + err.message);
-    };
-
-    navigator.geolocation.getCurrentPosition(success, error, options);
-
 	jQuery.post(
         HOME+"/procesos/busqueda/ubicacion.php",
         {},
@@ -111,16 +90,50 @@ jQuery( document ).ready(function() {
 	});
 
 	jQuery(".obtener_direccion").on("click", function(e){
-		console.log("Hola");
-		navigator.geolocation.getCurrentPosition(vlz_coordenadas);
+		//console.log("Hola");
+		//navigator.geolocation.getCurrentPosition(vlz_coordenadas);
+
+	    navigator.geolocation.getCurrentPosition(
+	    	function(pos) {
+	      		var crd = pos.coords;
+
+	      		alert('Your current position is:');
+	      		alert('Latitude : ' + crd.latitude);
+	      		alert('Longitude: ' + crd.longitude);
+	      		alert('More or less ' + crd.accuracy + ' meters.');
+
+	      		var position = {
+	      			latitude:  crd.latitude,
+	      			longitude: crd.longitude
+	      		};
+
+	      		vlz_coordenadas(position);
+
+	    	}, 
+	    	function error(err) {
+	      		// alert('ERROR(' + err.code + '): ' + err.message);
+	      		var position = {
+	      			latitude:  25.733881701152562,
+	      			longitude: -100.39553960640156
+	      		};
+
+	      		vlz_coordenadas(position);
+	    	},
+	    	{
+		      	enableHighAccuracy: true,
+		      	timeout: 5000,
+		      	maximumAge: 0
+		    }
+	    );
 	});
 
 });
 
 function vlz_coordenadas(position){
-    if(position.coords.latitude != '' && position.coords.longitude != '') {
-        LAT = position.coords.latitude;
-        LNG = position.coords.longitude;        
+
+    if(position.latitude != '' && position.longitude != '') {
+        LAT = position.latitude;
+        LNG = position.longitude;        
     } else {
         var mensaje = 'No es posible leer su ubicación,\nverifique si su GPS está encendido\ny vuelva a recargar la página.';
         alert(mensaje);        
@@ -133,7 +146,7 @@ function vlz_coordenadas(position){
 	        url:   'https://maps.googleapis.com/maps/api/geocode/json?latlng='+LAT+','+LNG+'&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8',
 	        type:  'get',
 	        success:  function (response) {
-	        	console.log(response);
+
                 jQuery(".km-datos-estado-opcion option:contains('"+response.results[0].address_components[5].long_name+"')").prop('selected', true);
                 var estado_id = jQuery(".km-datos-estado-opcion option:contains('"+response.results[0].address_components[5].long_name+"')").val();
                 
@@ -142,6 +155,12 @@ function vlz_coordenadas(position){
                 });
 
                 jQuery("#rc_direccion").val( response.results[0].formatted_address );
+
+                jQuery("#rc_direccion").focus();
+
+                jQuery("#latitud").val(LAT);
+                jQuery("#longitud").val(LNG);
+                
 	        }
 	    }, "json"); 
 	}

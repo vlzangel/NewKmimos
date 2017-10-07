@@ -225,6 +225,10 @@
 							<input type="text" id="rc_direccion" name="rc_direccion" value="" class="input-label-placeholder">
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
+
+						<input type="hidden" id="latitud" name="latitud" />
+						<input type="hidden" id="longitud" name="longitud" />
+
 					</div>
 				</div>
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-paso2">SIGUIENTE</a>
