@@ -9,6 +9,8 @@ jQuery( document ).ready(function() {
 			jQuery(".perfil_cargando").css("display", "inline-block");
        	}, 
        	function( data ) {
+                
+            data = eval( "("+data+")");
 
             jQuery(".clv").val("");
 
@@ -22,6 +24,7 @@ jQuery( document ).ready(function() {
 			jQuery("#btn_actualizar").val("Actualizar");
 			jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
+
        	}
    	);
     initImg("portada");

@@ -36,6 +36,11 @@
 	$sql .= "UPDATE wp_postmeta SET meta_value = '{$aggresive_pets}' 	WHERE post_id = {$pet_id} AND meta_key = 'aggressive_with_pets';";
 	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_observations}' 	WHERE post_id = {$pet_id} AND meta_key = 'about_pet';";
 
+	$description = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE user_id = {$pet_id} AND meta_key = 'about_pet'");
+	if( $description == false ){
+		$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'about_pet', '{$pet_observations}');";
+	}
+
 	$sql .= "UPDATE wp_term_relationships SET term_taxonomy_id = '{$pet_type}' 	WHERE object_id = {$pet_id};";
 
 	$sql .= $img_portada;

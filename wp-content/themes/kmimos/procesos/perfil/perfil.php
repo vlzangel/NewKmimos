@@ -37,6 +37,7 @@
 	if( $password != '' ){
 		$password = md5($password);
 		$sql .= "UPDATE wp_users SET user_pass = '{$password}' WHERE ID = {$user_id}; ";
+		$pass_change = "SI";
 	}
 
 	$db->query_multiple( utf8_decode($sql) );
@@ -53,8 +54,8 @@
 	}
 
 	$respuesta = array(
-		"status" => "OK",
-		"username"	 => $username,
-		"password2"	 => $password2
+		"status" 	  => "OK",
+		"username"	  => $username,
+		"pass_change" => $pass_change
 	);
 ?>
