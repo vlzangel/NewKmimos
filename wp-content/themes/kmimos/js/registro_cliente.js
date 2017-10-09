@@ -380,8 +380,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		jQuery('#select_4').on('click', function(){
 			jQuery("#select_2, #select_3, #select_1").removeClass("km-opcionactivo");
 		});
-		jQuery(this).toggleClass('km-opcionactivo');
- jQuery(this).children("input:checkbox").prop("checked", !jQuery(this).children("input").prop("checked"));
 	});
 
 	jQuery("#km-check-1").on('click', function() {
