@@ -33,9 +33,9 @@ $HTML = '
                         <p><a href="'.get_home_url().'">Preguntas y Respuestas</a></p>
                         <p><a href="'.get_home_url().'">Cobertura Veterinaria</a></p>
                         <p><a href="'.get_home_url().'">Comunicados de prensa</a></p>
-                        <p><a href="'.get_home_url().'">Términos y Condiciones</a></p>
+                        <p><a href="'.get_home_url().'/terminos-y-condiciones/">Términos y Condiciones</a></p>
                         <p><a href="'.get_home_url().'">Nuestros Aliados</a></p>
-                        <p><a href="'.get_home_url().'">Contáctanos</a></p>                   
+                        <p><a href="'.get_home_url().'/contacta-con-nosotros/">Contáctanos</a></p>                   
                     </div>
 
                     <div class="col-xs-12 col-sm-3">
