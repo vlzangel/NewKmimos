@@ -243,6 +243,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 						jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
 						jQuery("#img_pet").val( "" );
 
+						jQuery("#btn_cerrar").on("click", function(e){
+							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+						});
+
 						jQuery(".modal").scrollTop(0);
 					}
 
