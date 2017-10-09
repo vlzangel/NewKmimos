@@ -20,6 +20,9 @@ $(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e){
 
 	jQuery('#form_login')[0].reset();
 	jQuery('#form_recuperar')[0].reset();
+
+
+	jQuery( '#popup-conoce-cuidador' ).modal('hide');
 	jQuery( $(this).data('target') ).modal('show');
 });
 
