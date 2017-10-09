@@ -31,7 +31,7 @@
                     WHERE 
                         id_post = '{$favorito}'");
                 // $cuidador_post = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$favorito}'");
-                $CONTENIDO .= get_ficha_cuidador($cuidador, 0, $favoritos, 'grid', 'true');
+                $CONTENIDO .= get_ficha_cuidador($cuidador, 0, $favoritos, 'grid', 'true', true);
             }
         }
         $CONTENIDO .= '</ul>';

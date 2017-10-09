@@ -440,7 +440,7 @@
         }
     }
 
-    function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio, $reload='false'){
+    function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio, $reload='false', $listado_favorito = false){
         global $current_user;
         $img        = kmimos_get_foto($cuidador->user_id);
         $anios_exp  = $cuidador->experiencia; if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
@@ -476,6 +476,11 @@
         // // validaciones para el link de conocer al cuidador
         // $attr_link_conocer_cuidador = get_attr_link_conocer_cuidador( utf8_encode($cuidador->titulo), $cuidador->id_post);
 
+        $titulo = utf8_encode($cuidador->titulo);
+        if( $listado_favorito ){
+            $titulo = ($cuidador->titulo);
+        }
+
         switch ($disenio) {
             case 'list':
                 $ficha = '
@@ -490,7 +495,7 @@
 
                         <div class="km-contenedor-descripcion-opciones">
                             <div class="km-descripcion">
-                                <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
+                                <h1><a href="'.$url.'">'.$titulo.'</a></h1>
 
                                 <p>'.$anios_exp.' año(s) años de experiencia</p>
 
@@ -507,7 +512,7 @@
                                 <div class="precio">MXN $ '.$cuidador->precio.'</div>
                                 <div class="distancia">'.$distancia.'</div>
                                 <a role="button" href="#" 
-                                    data-name="'.utf8_encode($cuidador->titulo).'" 
+                                    data-name="'.$titulo.'" 
                                     data-id="'.$cuidador->id_post.'" 
                                     data-target="#popup-conoce-cuidador"
                                     class="km-btn-primary-new stroke">CONÓCELO +</a>
@@ -528,7 +533,7 @@
                             <span class="km-contenedor-favorito">'.$favoritos_link.'</span>
                         </div>
                         <div class="km-descripcion">
-                            <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
+                            <h1><a href="'.$url.'">'.$titulo.'</a></h1>
                             <p>'.$anios_exp.' año(s) de experiencia
                                 <br><b>MXN $ '.$cuidador->precio.'</b>
                                 <br><small>'.$distancia.'</small>
@@ -541,7 +546,7 @@
                             </div>
                             <div class="km-buttons">
                                 <a role="button" href="#" 
-                                    data-name="'.utf8_encode($cuidador->titulo).'" 
+                                    data-name="'.$titulo.'" 
                                     data-id="'.$cuidador->id_post.'" 
                                     data-target="#popup-conoce-cuidador"
                                     class="km-btn-primary-new stroke">CONÓCELO +</a>
