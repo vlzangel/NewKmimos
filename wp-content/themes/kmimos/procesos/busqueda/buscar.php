@@ -45,21 +45,29 @@
 
     /* Filtros por servicios y tamaños */
 	    if( isset($servicios) ){ 
+
+	    	$servicios_extras = array(
+		        "hospedaje",
+		    	"guarderia",
+		    	"paseos",
+		    	"adiestramiento"
+		    );
+
 	    	foreach ($servicios as $key => $value) { 
 	    		if( $value != "hospedaje" ){ 
 	    			$condiciones .= " AND adicionales LIKE '%".$value."%'";
 
-					if(strpos($value,'adiestramiento')===false){
-						$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+	    			if( in_array($value, $servicios_extras) ){ 
+						if( strpos($value,'adiestramiento') === false){
+							$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+						}else{
+							$condiciones .= 'AND (';
+							$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_basico";s:1:"1%\' 		OR ';
+							$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_intermedio";s:1:"1%\' 	OR ';
+							$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_avanzado";s:1:"1%\' 			';
+							$condiciones .= ')';
 
-					}else{
-
-						$condiciones .= 'AND (';
-						$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_basico";s:1:"1%\' 		OR ';
-						$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_intermedio";s:1:"1%\' 	OR ';
-						$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_avanzado";s:1:"1%\' 			';
-						$condiciones .= ')';
-
+						}
 					}
 	    		} 
 	    	} 
@@ -286,12 +294,11 @@
 
     /* FIN Funciones */
 
-	// echo "<pre>";
-	// print_r( $sql );
-	// print_r( $_POST );
-	// print_r( $ubicacion );
-	// print_r( $cuidadores );
-	// echo "</pre>";
+/*	echo "<pre>";
+		print_r( $sql );
+		print_r( $_POST );
+	echo "</pre>";*/
+
     if( !isset($redirect) || !$redirect ) {
 		header("location: {$home}busqueda/");
 	}
