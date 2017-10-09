@@ -26,6 +26,13 @@ jQuery( document ).ready(function() {
     	logear(); 
    	});
 
+    jQuery("#ver_menu").on("click", function(e){
+        if( jQuery("#menu_movil").css("left") == "0px" ){
+            jQuery("#menu_movil").css("left", "-100%");
+        }else{
+            jQuery("#menu_movil").css("left", "0px");
+        }
+    });
 
     jQuery(".cerrar_menu_movil").on("click", function(e){
         jQuery("#menu_movil").css("left", "-100%");

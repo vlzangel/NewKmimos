@@ -8,14 +8,6 @@ function close_modal(){
     });
 }
 
-    jQuery("#ver_menu").on("click", function(e){
-        if( jQuery("#menu_movil").css("left") == "0px" ){
-            jQuery("#menu_movil").css("left", "-100%");
-        }else{
-            jQuery("#menu_movil").css("left", "0px");
-        }
-    });
-
 $(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e){
 	e.preventDefault();
 
