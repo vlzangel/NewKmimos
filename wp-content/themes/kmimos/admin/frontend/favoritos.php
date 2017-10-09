@@ -41,6 +41,6 @@
     if( empty($CONTENIDO) ){
         $CONTENIDO .=  '
             <h1 class="favoritos_vacio">
-                No tienes ningún favorito agregado
+                No tienes cuidadores agregados como favoritos
             </h1>';
     }
