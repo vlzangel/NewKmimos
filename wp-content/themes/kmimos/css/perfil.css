@@ -145,7 +145,7 @@
 		background-color: transparent;
 	}
 
-	#rotar{
+	.btn_rotar{
 		position: absolute;
 	    bottom: 10px;
 	    left: 10px;
@@ -157,6 +157,10 @@
 	    border: solid 1px #fff;
 	    z-index: 200;
 	    cursor: pointer;
+	}
+
+	#rotar_d{
+	    left: 50px;
 	}
 
 	section {
