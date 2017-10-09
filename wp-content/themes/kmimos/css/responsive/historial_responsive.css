@@ -88,6 +88,10 @@
 	.main .vlz_tabla .ver_reserva_botones a {
 	    padding: 10px;
 	}
+
+	.vlz_solo_movil {
+	    margin-bottom: 10px;
+	}
 }
 
 @media (max-width: 400px){

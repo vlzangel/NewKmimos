@@ -697,3 +697,7 @@ section {
         color: #FFF;
         cursor: pointer;
     }
+
+    .vlz_solo_movil{
+        display: none;
+    }
