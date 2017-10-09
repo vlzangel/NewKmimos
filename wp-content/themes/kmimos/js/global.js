@@ -48,6 +48,30 @@ jQuery( document ).ready(function() {
         rotar( jQuery( this ).attr("data-orientacion") );
     });
 
+    jQuery(".btn_aplicar_rotar").on("click", function(e){
+        if( !jQuery(".btn_aplicar_rotar").hasClass("btn_aplicar_rotar_inactivo") ){
+            jQuery('.btn_aplicar_rotar').addClass("btn_aplicar_rotar_inactivo");
+            var img_rotada = jQuery("#kmimos_redimencionar_imagenes img").attr("src");
+            jQuery('.vlz_cargando').css("display", "block");
+            redimencionar(img_rotada, function(img_reducida){
+                var a = RAIZ+"imgs/vlz_subir_img.php";
+                var img_pre = jQuery(".vlz_rotar_valor").attr("value");
+                jQuery.ajax({
+                    async:true, cache:false, type: 'POST', url: a,
+                    data: { img: img_reducida, previa: img_pre }, 
+                    success:  function(url){
+                        jQuery(".vlz_rotar").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
+                        jQuery(".vlz_rotar_valor").attr("value", url);
+                        jQuery('.vlz_cargando').css("display", "none");
+                        jQuery('.btn_aplicar_rotar').css("display", "none");
+                        jQuery('.btn_aplicar_rotar').removeClass("btn_aplicar_rotar_inactivo");
+                    },
+                    beforeSend:function(){},
+                    error:function(objXMLHttpRequest){}
+                });
+            });
+        }
+    });
 });
 
 function social_auth( f ){
@@ -309,23 +333,12 @@ function rotar(orientacion){
 
             CTX.drawImage(rxi, x, y, h, w);
             var img_rotada = CA[ 0 ].toDataURL("image/jpg");
-            jQuery('.vlz_cargando').css("display", "block");
 
-            redimencionar(img_rotada, function(img_reducida){
-                var a = RAIZ+"imgs/vlz_subir_img.php";
-                var img_pre = jQuery(".vlz_rotar_valor").attr("value");
-                jQuery.ajax({
-                    async:true, cache:false, type: 'POST', url: a,
-                    data: { img: img_reducida, previa: img_pre }, 
-                    success:  function(url){
-                        jQuery(".vlz_rotar").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
-                        jQuery(".vlz_rotar_valor").attr("value", url);
-                        jQuery('.vlz_cargando').css("display", "none");
-                    },
-                    beforeSend:function(){},
-                    error:function(objXMLHttpRequest){}
-                });
-            });
+            jQuery("#kmimos_redimencionar_imagenes img").attr("src", img_rotada);
+
+            jQuery(".vlz_rotar").css("background-image", "url("+img_rotada+")" );
+
+            jQuery('.btn_aplicar_rotar').css("display", "block");
         }
     }else{
         alert("No hay imagen seleccionada");

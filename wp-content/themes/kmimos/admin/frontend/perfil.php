@@ -29,6 +29,8 @@
                 <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
             </div>
             <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" id="portada" name="portada" data-valid="requerid" />
+
+            <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
         </section>
 
         <div class="inputs_containers">
