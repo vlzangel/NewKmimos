@@ -57,7 +57,7 @@
 
             if ($wlabel!=''){
                 $query_wlabel = "INSERT INTO wp_usermeta VALUES (NULL, '".$user_id."', '_wlabel', '".$wlabel."');";
-                $conn->query( utf8_decode( $query_wlabel ) );
+                $db->query( utf8_decode( $query_wlabel ) );
             }
         }
 
