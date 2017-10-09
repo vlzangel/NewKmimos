@@ -11,7 +11,7 @@ function close_modal(){
 $(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e){
 	e.preventDefault();
 
-	close_modal();
+	//close_modal();
 
 	jQuery(".popup-iniciar-sesion-1").fadeIn("fast");
 	jQuery(".popup-olvidaste-contrasena").fadeOut("fast");

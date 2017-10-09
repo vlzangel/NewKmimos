@@ -50,7 +50,7 @@
 			<div class="container">
 				<div class="km-credibilidad-titular">
 					<h1 style="font-size: 0px;">No somos pensión para perros ni hotel para perros. Somos mucho mejor porque tenemos cuidadores certificados para perros.</h1>				
-					<p>A LA FAMILIA SE LE CUIDA, POR ELLO LE DAMOS A TU MASCOTA CUIDADO Y AMOR</p>
+					<p style="text-transform: uppercase;">La red mas grande de cuidadores certificados. Cuidados en un hogar de familia.</p>
 					<h2>tu mascota regresa feliz</h2>
 				</div>
 			</div>
@@ -206,7 +206,7 @@
 							<div class="col-xs-8 col-sm-12">
 								<div class="km-beneficios-text">
 									<h5>CUIDADORES CERTIFICADOS</h5>
-									<p>Certificación bajo estándares internacionales. Respaldando su integridad y experiencia con perros. Siendo capacitados también en la Academia Kmimos.</p>
+									<p>Todos nuestros cuidadores deben aprobar pruebas psicométricas y de conocimientos veterinarios, así como inspección en su casa.</p>
 								</div>
 							</div>
 						</div>
@@ -219,7 +219,7 @@
 							<div class="col-xs-8 col-sm-12">
 								<div class="km-beneficios-text">
 									<h5>COBERTURA VETERINARIA</h5>
-									<p>Sabemos tu mascota es un integrante de tu familia. Ten la certeza recibirá el cuidado necesario, teniendo cobertura contra accidentes durante su estadía.</p>
+									<p>Sabemos que tu mascota es un integrante de tu familia. Ten la certeza de que recibirá el cuidado necesario, teniendo cobertura contra accidentes durante su estadía.</p>
 								</div>
 							</div>
 						</div>
@@ -345,17 +345,21 @@
 			</div>
 		</div>
 		<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->
+
 		<!-- SECCIÓN 5 - VACACIONES -->
 		<div class="km-vacaciones">
 			<div class="container">
 				<p>NOSOTROS NOS ENCARGAMOS DE TU MASCOTA, TÚ LIBÉRATE.</p>
 				<h2>Vacations Mode On</h2>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6">
-						<a href="http://www.fiestamericana.com/en/home" style="background-color: white;"><img src="'.getTema().'/images/new/km-logos/logo-hotel.jpg"></a>
+					<div class="items col-xs-12 col-sm-6">
+						<a href="http://www.fiestamericana.com/en/home" style="background-color: white;"><img src="'.getTema().'/images/new/km-logos/logo-hotel.jpg" height="58px"></a>
 					</div>
-					<div class="col-xs-12 col-sm-6">
-						<a href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.jpg"></a>
+					<div class="items col-xs-12 col-sm-6">
+						<a href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
+					</div>
+					<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
+						<a href="https://www.volaris.com/" style="background-color: #E2D1A0; font-size:25px;"><img src="'.getTema().'/images/new/km-logos/posadas-white-logo.svg" width="180px" height="58px"></a>
 					</div>
 				</div>
 			</div>
