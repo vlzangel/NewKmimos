@@ -109,6 +109,9 @@
 							<i class="fa fa-search"></i>
 							<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
 						</form>
+
+
+
 						<ul class="nav navbar-nav">
 							<li><a href="javascript:;" data-target="#popup-iniciar-sesion" class="km-nav-link" role="button">Iniciar sesión</a></li>
 							<li><a href="javascript:;" data-target="#popup-registrarte" class="km-nav-link" role="button" >Registrarme</a></li>
