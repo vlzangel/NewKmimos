@@ -20,14 +20,17 @@
             <div class="vlz_img_portada_perfil">
                 <div class="vlz_img_portada_fondo vlz_rotar" style="background-image: url('.$avatar.');"></div>
                 <div class="vlz_img_portada_normal vlz_rotar" style="background-image: url('.$avatar.');"></div>
-                <div class="vlz_img_portada_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
+                <div class="vlz_img_portada_cargando vlz_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
                 <div class="vlz_cambiar_portada">
                     Cargar
                     <input type="file" id="portada" name="xportada" accept="image/*" />
                 </div>
-                <div id="rotar" style="display: none;">Rotar</div>
+                <div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
             </div>
             <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" id="portada" name="portada" data-valid="requerid" />
+
+            <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
         </section>
 
         <div class="inputs_containers">

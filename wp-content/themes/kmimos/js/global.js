@@ -16,7 +16,9 @@ jQuery( document ).ready(function() {
     });
 
 	jQuery("#login_submit").on("click", function(e){
-		logear();
+        /*if( validar_login() ){*/
+            logear();
+        /*}*/
 		e.preventDefault();
     });
 
@@ -42,17 +44,34 @@ jQuery( document ).ready(function() {
         };
     }); 
 
-/*    window.addEventListener("click", function(e){
-        console.log( e );
-        if ( e.target.id !== "menu_movil" && e.target.id !== "ver_menu" && e.target.id !== "txt_buscar" ) {
-            //jQuery("#menu_movil").css("left", "-100%");
-        };
-    }, false);*/
-
-    jQuery("#rotar").on("click", function(e){
-        rotar( "#"+jQuery( this ).attr("data-id") );
+    jQuery(".btn_rotar").on("click", function(e){
+        rotar( jQuery( this ).attr("data-orientacion") );
     });
 
+    jQuery(".btn_aplicar_rotar").on("click", function(e){
+        if( !jQuery(".btn_aplicar_rotar").hasClass("btn_aplicar_rotar_inactivo") ){
+            jQuery('.btn_aplicar_rotar').addClass("btn_aplicar_rotar_inactivo");
+            var img_rotada = jQuery("#kmimos_redimencionar_imagenes img").attr("src");
+            jQuery('.vlz_cargando').css("display", "block");
+            redimencionar(img_rotada, function(img_reducida){
+                var a = RAIZ+"imgs/vlz_subir_img.php";
+                var img_pre = jQuery(".vlz_rotar_valor").attr("value");
+                jQuery.ajax({
+                    async:true, cache:false, type: 'POST', url: a,
+                    data: { img: img_reducida, previa: img_pre }, 
+                    success:  function(url){
+                        jQuery(".vlz_rotar").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
+                        jQuery(".vlz_rotar_valor").attr("value", url);
+                        jQuery('.vlz_cargando').css("display", "none");
+                        jQuery('.btn_aplicar_rotar').css("display", "none");
+                        jQuery('.btn_aplicar_rotar').removeClass("btn_aplicar_rotar_inactivo");
+                    },
+                    beforeSend:function(){},
+                    error:function(objXMLHttpRequest){}
+                });
+            });
+        }
+    });
 });
 
 function social_auth( f ){
@@ -152,14 +171,15 @@ function subirImg(evt){
             reader.onload = (function(theFile) {
                 return function(e) {
                     redimencionar(e.target.result, function(img_reducida){
-                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: ""}, function( url ) {
+                        var img_pre = jQuery(".vlz_rotar_valor").attr("value");
+                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: img_pre}, function( url ) {
                             padre.children('.vlz_img_portada_fondo').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
                             padre.children('.vlz_img_portada_normal').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
                             padre.children('.vlz_img_portada_cargando').css("display", "none");
                             padre.siblings('.vlz_img_portada_valor').val(url);
                             padre.children('.vlz_cambiar_portada').children('input').val("");
 
-                            jQuery("#rotar").css("display", "block");
+                            jQuery(".btn_rotar").css("display", "block");
                         });
                     });      
                 };
@@ -279,134 +299,71 @@ function contenedor_temp(){
 }
 
 var AR = 0;
-function rotar(){
-        
+function rotar(orientacion){
     if( typeof(CTX) != "undefined" ){
         AR = 0.5;
-
-        if( AR == 2 ){ AR = 0; }
-
-        console.log( AR );
-        
         var rxi = jQuery("#kmimos_redimencionar_imagenes img")[0];
-        var rw = rxi.width;
-        var rh = rxi.height;
-        
-        if( AR == 0.5 || AR == 1.5){
-            var rh = rxi.width;
-            var rw = rxi.height;
-        }
-        
-        var xw = 500;
-        var xh = 500;
-
+        var rh = rxi.width; var rw = rxi.height;
+        var xw = 500; var xh = 500;
         if( (rw > xw) && (rh > xh) ){
-
             if( rw <= rh ){
-                var porc = ((xw*100)/rw)/100;
-                var w = rw*porc;
-                var h = rh*porc;
+                var porc = ((xw*100)/rw)/100; var w = rw*porc; var h = rh*porc;
             }else{
-                var porc = ((xh*100)/rh)/100;
-                var w = rw*porc;
-                var h = rh*porc;
+                var porc = ((xh*100)/rh)/100; var w = rw*porc; var h = rh*porc;
             }
-
-        }else{
-            var w = rw;
-            var h = rh;
-        }
-
+        }else{ var w = rw; var h = rh; }
         CA = d("<canvas id='kmimos_canvas' width='"+w+"' height='"+h+"'>");
-
-        
         jQuery("#kmimos_redimencionar_imagenes #kmimos_canvas_temp").html(CA);
-
         CA = jQuery("#kmimos_redimencionar_imagenes #kmimos_canvas_temp #kmimos_canvas");
-
         CTX = c('kmimos_canvas');
-
         if(CTX){
-            
-            CTX.rotate(Math.PI*AR);
-            
-            switch(AR){
-                case 0:
-                    CTX.drawImage(rxi, 0, 0, w, h);
+
+            var x = 0; var y = 0; 
+
+            switch(orientacion){
+                case "left":
+                    x = h*-1;
+                    CTX.rotate(Math.PI*-0.5);
                 break;
-                case 0.5:
-                    var y = w*-1;
-                    CTX.drawImage(rxi, 0, y, h, w);
-                break;
-                case 1:
-                    var x = w*-1;
-                    var y = h*-1;
-                    CTX.drawImage(rxi, x, y, w, h);
-                break;
-                case 1.5:
-                    var x = h*-1;
-                    CTX.drawImage(rxi, x, 0, h, w);
+                case "right":
+                    y = w*-1;
+                    CTX.rotate(Math.PI*0.5);
                 break;
             }
 
+            CTX.drawImage(rxi, x, y, h, w);
             var img_rotada = CA[ 0 ].toDataURL("image/jpg");
 
-            /*jQuery(".vlz_rotar").css("background-image", "url("+img_rotada+")" );
-            jQuery(".vlz_rotar_valor").attr( "value", img_rotada );*/
+            jQuery("#kmimos_redimencionar_imagenes img").attr("src", img_rotada);
 
-            redimencionar(img_rotada, function(img_reducida){
-                var a = RAIZ+"imgs/vlz_subir_img.php";
-                var img_pre = jQuery(".vlz_rotar_valor").attr("value");
-                
-                console.log("img_pre: "+img_pre);
+            jQuery(".vlz_rotar").css("background-image", "url("+img_rotada+")" );
 
-                jQuery.ajax({
-                    async:true, 
-                    cache:false, 
-                    type: 'POST',   
-                    url: a,
-                    data: {img: img_reducida, previa: img_pre}, 
-                    success:  function(url){
-                        jQuery(".vlz_rotar").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
-                        jQuery(".vlz_rotar_valor").attr("value", url);
-                    },
-                    beforeSend:function(){},
-                    error:function(objXMLHttpRequest){}
-                });
-            });
+            jQuery('.btn_aplicar_rotar').css("display", "block");
         }
-        
     }else{
         alert("No hay imagen seleccionada");
     }
-    
 }
 
 function redimencionar(IMG_CACHE, CB){
     contenedor_temp();
     var ximg = new Image();
     ximg.src = IMG_CACHE;
-
     ximg.onload = function(){
         jQuery("#kmimos_redimencionar_imagenes #kmimos_img_temp").attr("src", ximg.src);
         var rxi = jQuery("#kmimos_redimencionar_imagenes #kmimos_img_temp")[0];
-
         var rw = rxi.width;
         var rh = rxi.height;
-
         var w = 800;
         var h = 600;
-
         if( rw > rh ){
             h = Math.round( ( rh * w ) / rw );
         }else{
             w = Math.round( ( rw * h ) / rh );
         }
-      
         CA = d("<canvas id='kmimos_canvas' width='"+w+"' height='"+h+"'>");
         jQuery("#kmimos_redimencionar_imagenes #kmimos_canvas_temp").html(CA);
         CA = jQuery("#kmimos_redimencionar_imagenes #kmimos_canvas_temp #kmimos_canvas");
-
         CTX = c("kmimos_canvas");
         if(CTX){
             CTX.drawImage(ximg, 0, 0, w, h);
@@ -460,7 +417,6 @@ function pre_validar(elemento){
         if( txt == "" || txt == undefined ){ txt = "Completa este campo."; }
         error.html( txt );
         elemento.parent().append( error );
-
         elemento.on("keyup", function(event){
             validar(event.target.id);
         }); 
@@ -474,7 +430,6 @@ function pre_validar(elemento){
 function aplicar_error(id, error){
     if ( error  ) {
         if( jQuery("#error_"+id).hasClass( "no_error" ) ){
-
             jQuery("#error_"+id).removeClass("no_error");
             jQuery("#error_"+id).addClass("error");
         } 
@@ -487,26 +442,20 @@ function aplicar_error(id, error){
 }
 
 function validarAll(Form){
-
     var submit = true;
     jQuery( "#"+Form+" [data-valid]" ).each(function( index ) {
         if( validar( jQuery( this ).attr("id") ) ){
             submit = false;
         }
     });
-
     if(!submit){
         var primer_error = ""; var z = true;
         jQuery( ".error" ).each(function() {
             if( jQuery( this ).css( "display" ) == "block" ){
-                if( z ){
-                    primer_error = "#"+jQuery( this ).attr("data-id"); z = false;
-                }
+                if( z ){ primer_error = "#"+jQuery( this ).attr("data-id"); z = false; }
             }
         });
-
         jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-130 }, 2000);
     }
-
     return submit;
 }
