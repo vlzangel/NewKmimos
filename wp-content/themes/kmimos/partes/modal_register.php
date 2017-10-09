@@ -23,7 +23,7 @@ $HTML .='
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="popup-registrarte" style="padding: 40px;">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar" >×</button>
 			<div class="popup-registrarte-1">
 				<p class="popup-tit">REGISTRARME</p>
 				<a href="#" class="km-btn-fb" onclick="login_facebook();">
@@ -64,18 +64,25 @@ $HTML .='
 				<form id="form_nuevo_cliente" name="form_nuevo_cliente" enctype="multipart/form-data" method="POST">	
 					<div class="km-box-form">
 						<div class="content-placeholder">
+
 							<input type="text" id="id_login_face" name="id_login_face" class="hidden">
 							<input type="text" id="id_login_gmail" name="id_login_gmail" class="hidden">
-							<div class="km-datos-foto" id="km-datos-foto-profile" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.svg);">
-								<div id="loading-perfil" style="width:100%;line-height: 100%;display:none">
-									<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
+
+							<div class="img_registro_cliente" style="position: relative">
+								<div class="km-datos-foto vlz_rotar" id="km-datos-foto-profile" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.svg);">
+									<div id="loading-perfil" style="width:100%;line-height: 100%;display:none" class="vlz_cargando">
+										<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
+									</div>
 								</div>
+
+								<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+				                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
+
+				                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
 							</div>
 							
-
 							<input type="file" class="hidden" id="carga_foto_profile" accept="image/*">
-							<input type="hidden" id="img_profile" name="img_profile" value="">
-							
+							<input type="hidden" id="img_profile" name="img_profile" value="" class="vlz_rotar_valor">
 
 							<div class="label-placeholder">
 								<label>Nombre</label>
@@ -88,7 +95,7 @@ $HTML .='
 
 							<div class="label-placeholder">
 								<label>IFE/Documento de Identidad</label>
-								<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="11">
+								<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="13">
 							</div>
 							<div class="label-placeholder verify">
 								<label>Correo electrónico</label>
@@ -158,14 +165,21 @@ $HTML .='
 				<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 				<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
 
-				<div class="km-datos-foto" id="km-datos-foto" style="background: url('.getTema().'/images/popups/registro-cuidador-foto.svg) center/contain;">
-					<div id="loading-mascota" style="width:100%;line-height: 100%;display:none;text-align:center;">
-						<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
+				<div class="img_registro_cliente" style="position: relative">
+					<div class="km-datos-foto vlz_rotar" id="km-datos-foto" data-init-img="'.getTema().'/images/popups/registro-cuidador-foto.svg" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.svg);">
+						<div id="loading-perfil" style="width:100%;line-height: 100%;display:none" class="vlz_cargando">
+							<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
+						</div>
 					</div>
-				</div>
 
+					<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+	                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
+
+	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
+				</div>
+				
 				<input type="file" class="hidden" id="carga_foto" accept="image/*">
-				<input type="hidden" id="img_pet" name="img_pet" value="">
+				<input type="hidden" id="img_pet" name="img_pet" value="" class="vlz_rotar_valor">
 
 				<form id="nueva_mascota" enctype="multipart/form-data" method="POST">
 				<div class="km-box-form">
@@ -280,7 +294,7 @@ $HTML .='
 				<!--
 					<a href="#" class="modal_show km-btn-correo" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a>
 				-->
-				<a href="javascript:;" onclick="location.reload();" class="km-btn-correo">INICIAR SESIÓN</a>
+				<a href="javascript:;" onclick="location.href = \''.get_home_url().'/perfil-usuario/\';" id="btn_iniciar_sesion" data-url="'.get_home_url().'/perfil-usuario/" class="km-btn-correo">INICIAR SESIÓN</a>
 			</div>
 		</div>
 	</div>

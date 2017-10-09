@@ -155,6 +155,7 @@
 					<span>Cargando...</span>
 				</div>
 				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div>
+				
 				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
 
             	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />

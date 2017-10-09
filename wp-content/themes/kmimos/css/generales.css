@@ -660,3 +660,40 @@ section {
         }
 
     /* FIN MENU MOVIL */
+
+    /* Registro Cliente */  
+
+    .img_registro_cliente {
+        position: relative;
+        display: block;
+        max-width: 200px;
+        margin: 10px auto 0px;
+    }
+
+    .img_registro_cliente .btn_rotar {
+        position: absolute;
+        top: 150px;
+        border-radius: 50%;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .img_registro_cliente #rotar_i {
+        left: -30px;
+    }
+
+    .img_registro_cliente #rotar_d {
+        right: -30px;
+    }
+
+    .img_registro_cliente .btn_aplicar_rotar {
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 5px;
+        background: #23475e;
+        margin-top: 5px;
+        color: #FFF;
+        cursor: pointer;
+    }
