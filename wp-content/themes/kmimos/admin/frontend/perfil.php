@@ -83,7 +83,7 @@
             <section class="container_full">
                 <label for="descr" class="lbl-text">'.esc_html__('Información biográfica','kmimos').':</label>
                 <label class="lbl-ui">
-                    <textarea id="descr" name="descr" data-valid="requerid" >'.$userdata['description'][0].'</textarea>
+                    <textarea id="descr" name="descr" >'.$userdata['description'][0].'</textarea>
                 </label>
             </section>
 

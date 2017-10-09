@@ -9,6 +9,7 @@ jQuery( document ).ready(function() {
 			jQuery(".perfil_cargando").css("display", "inline-block");
        	}, 
        	function( data ) {
+
             jQuery(".clv").val("");
 
             if( jQuery(".vlz_img_portada_valor").val() != "" ){

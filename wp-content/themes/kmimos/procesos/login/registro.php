@@ -90,6 +90,8 @@
                 (NULL, {$user_id}, 'user_photo',          '{$user_photo}'),
                 (NULL, {$user_id}, 'name_photo',          '{$name_photo}'),
 
+                (NULL, {$user_id}, 'description',          ''),
+
                 (NULL, {$user_id}, 'nickname',            '{$email}'),
                 (NULL, {$user_id}, 'first_name',          '{$name}'),
                 (NULL, {$user_id}, 'last_name',           '{$lastname}'),
