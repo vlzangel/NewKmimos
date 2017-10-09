@@ -687,8 +687,10 @@ input:focus{
 	display: block;
 	border-radius: 8px;
 }
-.km-vacaciones .col-sm-6 {
-	margin: 20px 0;
+
+.km-vacaciones .items {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /*POPUP SERVICIOS*/
@@ -3374,9 +3376,13 @@ section {
     display:block;
     border-radius:8px
 }
-.km-vacaciones .col-sm-6 {
+
+/*.km-vacaciones .col-sm-6 {
     margin:20px 0
-}
+}*/}
+/*.km-vacaciones .col-sm-6 {
+    margin:20px 0
+}*/
 #popup-servicios {
     text-align:center
 }
@@ -6784,9 +6790,13 @@ position: absolute;
     display: block;
     border-radius: 8px;
 }
-.km-vacaciones .col-sm-6 {
+
+/*.km-vacaciones .col-sm-6 {
     margin: 20px 0;
-}
+}*/}
+/*.km-vacaciones .col-sm-6 {
+    margin: 20px 0;
+}*/
 
 /*POPUP SERVICIOS*/
 #popup-servicios {
