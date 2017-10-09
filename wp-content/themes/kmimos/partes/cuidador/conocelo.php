@@ -20,14 +20,14 @@ $btn_mascota['icon'] = '<i class="fa fa-check" style="color: #3c763d;"></i>';
 
 if ( !is_user_logged_in() ){ 
 	// Login
-	$btn_login['btn'] = '<a  style="color:#337ab7;" role="button" href="#popup-iniciar-sesion" data-toggle="modal"><strong>iniciado sesión</strong></a>';
+	$btn_login['btn'] = '<a  style="color:#337ab7;" role="button" data-target="#popup-iniciar-sesion"><strong>iniciado sesión</strong></a>';
 	$btn_login['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
 
 	// Perfil
-	$btn_perfil['btn'] = '<a  style="color:#337ab7;" role="button" href="#popup-iniciar-sesion" data-toggle="modal"><strong> tu perfil</strong></a>';
+	$btn_perfil['btn'] = '<a  style="color:#337ab7;" role="button" data-target="#popup-iniciar-sesion"><strong> tu perfil</strong></a>';
 	$btn_perfil['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
 
-	$btn_mascota['btn'] = '<a  style="color:#337ab7;" role="button" href="#popup-iniciar-sesion" data-toggle="modal"><strong> lista de mascotas</strong></a>';
+	$btn_mascota['btn'] = '<a  style="color:#337ab7;" role="button" data-target="#popup-iniciar-sesion"><strong> lista de mascotas</strong></a>';
 	$btn_mascota['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
 
 }else{

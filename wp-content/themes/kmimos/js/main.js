@@ -1,7 +1,17 @@
+function close_modal(){
+    var c = jQuery(".modal");
+    jQuery.each(c,function(i,o){ 
+    	var id = c[i].id;
+        jQuery("#"+id).modal("hide");
+        // jQuery("#"+id).fadeOut("fast");
+        // jQuery('.modal-backdrop').fadeOut("fast");
+    });
+}
+
 $(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e){
 	e.preventDefault();
 
-console.log('reset');
+	close_modal();
 
 	jQuery(".popup-iniciar-sesion-1").fadeIn("fast");
 	jQuery(".popup-olvidaste-contrasena").fadeOut("fast");
