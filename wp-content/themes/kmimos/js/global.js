@@ -16,9 +16,9 @@ jQuery( document ).ready(function() {
     });
 
 	jQuery("#login_submit").on("click", function(e){
-        if( validar_login() ){
+        /*if( validar_login() ){*/
             logear();
-        }
+        /*}*/
 		e.preventDefault();
     });
 
