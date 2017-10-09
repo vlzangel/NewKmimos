@@ -310,7 +310,6 @@ function rotar(orientacion){
             CTX.drawImage(rxi, x, y, h, w);
             var img_rotada = CA[ 0 ].toDataURL("image/jpg");
             jQuery('.vlz_cargando').css("display", "block");
-            jQuery(".vlz_rotar").css("background-image", "url("+img_rotada+")" );
 
             redimencionar(img_rotada, function(img_reducida){
                 var a = RAIZ+"imgs/vlz_subir_img.php";
