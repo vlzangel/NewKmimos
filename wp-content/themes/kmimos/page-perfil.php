@@ -30,10 +30,12 @@
 				case 'historial':
 					$mostrar_btn = false;
 					wp_enqueue_style('ver_historial', getTema()."/css/ver_historial.css", array(), '1.0.0');
+					wp_enqueue_style('ver_historial_responsive', getTema()."/css/responsive/ver_historial_responsive.css", array(), '1.0.0');
 				break;
 				case 'reservas':
 					$mostrar_btn = false;
 					wp_enqueue_style('ver_historial', getTema()."/css/ver_historial.css", array(), '1.0.0');
+					wp_enqueue_style('ver_historial_responsive', getTema()."/css/responsive/ver_historial_responsive.css", array(), '1.0.0');
 				break;
 				case 'solicitudes':
 					$mostrar_btn = false;
@@ -216,7 +218,6 @@
 		}
 
 		$HTML = '
-			<script> var RUTA_IMGS = "'.get_home_url().'/imgs"; </script>
 	 		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 				<div class="overlay"></div>
 			</div>

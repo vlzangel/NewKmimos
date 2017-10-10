@@ -51,14 +51,14 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			jQuery("#ife").after('<span name="sp-ife">Debe ingresar su IFE</span>').css('color','red');
 			jQuery("#ife").focus(function() { jQuery('[name"sp-ife"]').remove(); });
 			break;
-		case 11:
+		case 13:
 				jQuery("#ife").css('color','green');
 				jQuery("#ife").parent('div').css('color','green');
 				jQuery('[name="sp-ife"]').remove();
 			break;
 		default:
 			jQuery("#ife").parent('div').css('color','red');
-			jQuery("#ife").after('<span name="sp-ife">Su IFE debe contener 11 dígitos</span>').css('color','red');
+			jQuery("#ife").after('<span name="sp-ife">Su IFE debe contener 13 dígitos</span>').css('color','red');
 			jQuery("#ife").focus(function() { jQuery('[name="sp-ife"]').remove(); });
 		}
 	});
@@ -234,11 +234,22 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					'img_profile': campos[10]};
 
 				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
+
 					if( data > 0 ){
 						globalData = data;
 						jQuery(".popup-registrarte-nuevo-correo").hide();
 						jQuery(".popup-registrarte-datos-mascota").fadeIn("fast");
+
+						jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
+						jQuery("#img_pet").val( "" );
+
+						jQuery("#btn_cerrar").on("click", function(e){
+							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+						});
+
+						jQuery(".modal").scrollTop(0);
 					}
+
 					jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
 				});
 
@@ -373,8 +384,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		jQuery('#select_4').on('click', function(){
 			jQuery("#select_2, #select_3, #select_1").removeClass("km-opcionactivo");
 		});
-		jQuery(this).toggleClass('km-opcionactivo');
- jQuery(this).children("input:checkbox").prop("checked", !jQuery(this).children("input").prop("checked"));
 	});
 
 	jQuery("#km-check-1").on('click', function() {
@@ -480,6 +489,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					if( data >= 1 ){
 		        		jQuery(".popup-registrarte-datos-mascota").hide();
 						jQuery(".popup-registrarte-final").fadeIn("fast");
+
+						jQuery("#btn_cerrar").on("click", function(e){
+							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+						});
 					}else{
 						jQuery('.km-btn-popup-registrarte-datos-mascota').after('<div style="margin-bottom:15px;" class="col-xs-12">No se pudo registrar la mascota, verifique los datos y vuelva a intentarlo.</div>');
 					}
@@ -625,7 +638,7 @@ function vista_previa(evt) {
        	reader.onload = (function(theFile) {
            return function(e) {
     			redimencionar(e.target.result, function(img_reducida){
-    				var a = RAIZ+"imgs/vlz_subir_img.php";
+    				var a = RAIZ+"imgs/procesar.php";
     				var img_pre = jQuery("#img_pet").val();
     				
     				 $.ajax({
@@ -665,44 +678,40 @@ document.getElementById("carga_foto").addEventListener("change", vista_previa, f
 /* Cargar imagen de la perfil */
 function vista_previa_perfil(evt) {
 
-    jQuery("#loading-perfil").css("display", "block");
-	
+	var files = evt.target.files;
+	getRealMime(this.files[0]).then(function(MIME){
+        if( MIME.match("image.*") ){
 
-  	var files = evt.target.files;
-  	for (var i = 0, f; f = files[i]; i++) {  
-       	if (!f.type.match("image.*")) {
-            continue;
-       	}
-       	var reader = new FileReader();
-       	reader.onload = (function(theFile) {
-           return function(e) {
-    			redimencionar(e.target.result, function(img_reducida){
-    				var a = RAIZ+"imgs/vlz_subir_img.php";
-    				var img_pre = jQuery("#img_profile").val();
-    				
-					$.ajax({
-						async:true, 
-						cache:false, 
-						type: 'POST',   
-						url: a,
-						data: {img: img_reducida, previa: img_pre}, 
-						success:  function(url){
-							jQuery("#km-datos-foto-profile").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")");
+        	jQuery("#loading-perfil").css("display", "block");
+
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    redimencionar(e.target.result, function(img_reducida){
+                        var img_pre = jQuery(".vlz_rotar_valor").attr("value");
+                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: img_pre}, function( url ) {
+                           
+                        	jQuery("#km-datos-foto-profile").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")");
 							jQuery("#img_profile").val( url );
 							jQuery(".kmimos_cargando").css("visibility", "hidden");
 							jQuery("#loading-perfil").css("display", "none");
-						},
-						beforeSend:function(){
-							jQuery("#loading-perfil").css("display", "block");                      	
-						},
-						error:function(objXMLHttpRequest){}
-                    });
-    			});
-           };
-		})(f);
-		reader.readAsDataURL(f);
-   	}
+
+                            jQuery(".btn_rotar").css("display", "block");
+                        });
+                    });      
+                };
+           })(files[0]);
+           reader.readAsDataURL(files[0]);
+        }else{
+        	padre.children('#carga_foto_profile').val("");
+            alert("Solo se permiten imagenes");
+        }
+    }).catch(function(error){
+        padre.children('#carga_foto_profile').val("");
+        alert("Solo se permiten imagenes");
+    }); 
 }      
+
 jQuery("#km-datos-foto-profile").on('click', function(){
 	jQuery("#carga_foto_profile").trigger("click");
 });

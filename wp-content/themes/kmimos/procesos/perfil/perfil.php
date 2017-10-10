@@ -28,15 +28,19 @@
 	$sql .= "UPDATE wp_usermeta SET meta_value = '{$nickname}' WHERE user_id = {$user_id} AND meta_key = 'nickname';";
 	$sql .= $img_portada;
 
+	$description = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'description'");
+	if( $description == false ){
+		$sql .= "INSERT INTO wp_usermeta VALUES (NULL, '{$user_id}', 'description', '{$descr}');";
+	}
+
 	$pass_change = "";
 	if( $password != '' ){
 		$password = md5($password);
 		$sql .= "UPDATE wp_users SET user_pass = '{$password}' WHERE ID = {$user_id}; ";
+		$pass_change = "SI";
 	}
 
 	$db->query_multiple( utf8_decode($sql) );
-
-    $entro = "NO";
 
 	if( $password != '' ){
 		include_once($raiz."/wp-load.php");
@@ -47,14 +51,11 @@
 
 	    $user_signon = wp_signon( $info, true );
 	    wp_set_auth_cookie($user_signon->ID);
-
-	    $entro = "SI";
 	}
 
 	$respuesta = array(
-		"status" => "OK",
-		"entro"	 => $entro,
-		"username"	 => $username,
-		"password2"	 => $password2
+		"status" 	  => "OK",
+		"username"	  => $username,
+		"pass_change" => $pass_change
 	);
 ?>

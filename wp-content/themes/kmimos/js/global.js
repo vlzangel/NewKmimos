@@ -54,7 +54,7 @@ jQuery( document ).ready(function() {
             var img_rotada = jQuery("#kmimos_redimencionar_imagenes img").attr("src");
             jQuery('.vlz_cargando').css("display", "block");
             redimencionar(img_rotada, function(img_reducida){
-                var a = RAIZ+"imgs/vlz_subir_img.php";
+                var a = RAIZ+"imgs/procesar.php";
                 var img_pre = jQuery(".vlz_rotar_valor").attr("value");
                 jQuery.ajax({
                     async:true, cache:false, type: 'POST', url: a,

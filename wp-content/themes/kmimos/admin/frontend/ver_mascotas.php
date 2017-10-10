@@ -48,28 +48,28 @@
             if($i == (int)$current_pet['sterilized']) $esterilizado_str .= ' selected';
         }
         
-        $esterilizado_str .= '>'.$si_no[$i].'</option>';
+        $esterilizado_str .= '>'.strtoupper($si_no[$i]).'</option>';
     }
 
     $sociable_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
         $sociable_str .= '<option value="'.$i.'"';
         if($i == (int)$current_pet['sociable']) $sociable_str .= ' selected';
-        $sociable_str .= '>'.$si_no[$i].'</option>';
+        $sociable_str .= '>'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_humans_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
         $aggresive_humans_str .= '<option value="'.$i.'"';
         if($i == (int)$current_pet['aggresive_humans']) $aggresive_humans_str .= ' selected';
-        $aggresive_humans_str .= '>'.$si_no[$i].'</option>';
+        $aggresive_humans_str .= '>'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_pets_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
         $aggresive_pets_str .= '<option value="'.$i.'"';
         if($i == (int)$current_pet['aggresive_pets']) $aggresive_pets_str .= ' selected';
-        $aggresive_pets_str .= '>'.$si_no[$i].'</option>';
+        $aggresive_pets_str .= '>'.strtoupper($si_no[$i]).'</option>';
     }
 
     $razas = $razas_str;
@@ -87,15 +87,20 @@
 
     <section>
         <div class="vlz_img_portada_perfil">
-            <div class="vlz_img_portada_fondo" style="background-image: url('.get_home_url().$photo_pet.');"></div>
-            <div class="vlz_img_portada_normal" style="background-image: url('.get_home_url().$photo_pet.');"></div>
-            <div class="vlz_img_portada_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
+            <div class="vlz_img_portada_fondo vlz_rotar" style="background-image: url('.get_home_url().'/'.$photo_pet.');"></div>
+            <div class="vlz_img_portada_normal vlz_rotar" style="background-image: url('.get_home_url().'/'.$photo_pet.');"></div>
+            <div class="vlz_img_portada_cargando vlz_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
             <div class="vlz_cambiar_portada">
+                <i class="fa fa-camera" aria-hidden="true"></i>
                 Cambiar Foto
                 <input type="file" id="portada" name="xportada" accept="image/*" />
             </div>
+            <div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+            <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
         </div>
-        <input type="hidden" class="vlz_img_portada_valor" id="portada" name="portada" data-valid="requerid" />
+        <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" id="portada" name="portada" data-valid="requerid" />
+
+        <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
     </section>
 
     <div class="inputs_containers" style="padding-bottom: 0px;">
@@ -110,7 +115,15 @@
         <section>
             <label for="pet_birthdate" class="lbl-text">'.esc_html__('Fecha de nacimiento','kmimos').':</label>
             <label class="lbl-ui">
-                <input type="date" name="pet_birthdate" min="'.date("Y-m-d", strtotime('Now -30 years')).'" max="'.date("Y-m-d", strtotime('Now -1 day')).'" class="input" value="'.date('Y-m-d', strtotime(str_replace('/','-',$current_pet['birthdate']))).'" />
+                <input 
+                    type="text" 
+                    id="pet_birthdate" 
+                    name="pet_birthdate" 
+                    placeholder="dd/mm/aaaa" 
+                    value="'.date('d/m/Y', strtotime( str_replace("/", "-", $current_pet['birthdate']))).'" 
+                    class="km-input-custom km-input-date date_from" 
+                    readonly
+                />
             </label>
         </section>
     </div>

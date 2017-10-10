@@ -148,17 +148,31 @@
 				<h3 style="margin: 0;">Foto de perfil</h3>
 				<p style="color: #979797">Brinda a tus futuros amigos</p>
 
-				<a href="#" data-load='portada' id="perfil-img-a" class="vlz_rotar">
+				<div class="img_registro_cliente" style="position: relative">
+					<div class="km-datos-foto vlz_rotar" id="perfil-img-a" style="background-image: url(<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg);">
+						<div id="loading-perfil" style="width:100%; height: 100%; display:none;" class="vlz_cargando">
+							<img src="<?php echo getTema(); ?>/images/new/bx_loader.gif">
+						</div>
+					</div>
+
+					<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+	                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
+
+	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
+
+	                <input type="hidden" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" class="vlz_rotar_valor">
+				</div>
+
+				<!-- <a href="#" data-load='portada' id="perfil-img-a" class="vlz_rotar">
 					<img class="img-circle" id="perfil-img" src="<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg">
 				</a>
 				<div class="kmimos_cargando" style="visibility: hidden;">
 					<span>Cargando...</span>
 				</div>
-				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div>
+				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div> -->
+				
 				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
-
             	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
-	            <input class="hidden vlz_rotar_valor" type="text" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" >
 
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
@@ -287,7 +301,7 @@
 					<h2 style="font-size: 18px; color: white;">¡LISTO <span data-target="name"></span>!</h2>
 					<h2 style="font-size: 18px; color: white;">Recibimos con éxito tu solicitud para sumarte a la familia de Cuidadores Kmimos</h2>
 					<p style="font-size: 15px;">Completaste tu perfil perfectamente</p>
-					<a href="<?php echo get_home_url(); ?>/perfil-usuario/?ua=profile"  data-modal="#popup-iniciar-sesion" class="modal_show km-btn">VER MI PERFIL</a>
+					<a href="<?php echo get_home_url(); ?>/perfil-usuario/" class="km-btn">VER MI PERFIL</a>
 				</div>
 			</div>
 		</form>

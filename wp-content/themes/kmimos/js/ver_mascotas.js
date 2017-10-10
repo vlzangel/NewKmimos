@@ -37,4 +37,22 @@ jQuery( document ).ready(function() {
         }
     });
 
+    var minFecha = new Date();
+    var min = minFecha.getFullYear();
+    minFecha.setFullYear( parseInt(min)-30 );
+
+    var maxFecha = new Date();
+    maxFecha.setDate( parseInt(maxFecha.getDate()) - 1);
+
+    jQuery("#pet_birthdate").datepick({
+        dateFormat: 'dd/mm/yyyy',
+        minDate: minFecha,
+        maxDate: maxFecha,
+        onSelect: function(date1) {
+            
+        },
+        yearRange: minFecha.getFullYear()+':'+maxFecha.getFullYear(),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
 });

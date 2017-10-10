@@ -68,6 +68,7 @@
                     (NULL, {$pet_id}, 'use_ssl',             '0'),
                     (NULL, {$pet_id}, 'show_admin_bar_front', 'false'),
                     (NULL, {$pet_id}, 'wp_capabilities',     'a:1:{s:10:\"subscriber\";b:1;}'),
+                    (NULL, {$pet_id}, 'about_pet',           ''),
                     (NULL, {$pet_id}, 'wp_user_level',       '0');
             ";
             $conn->query( utf8_decode( $sql ) );

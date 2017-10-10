@@ -70,7 +70,7 @@
 	}
 
 	form h1 {
-	    font-size: 13px;
+	    font-size: 13px !important;
 	    font-weight: 600;
 	}
 
@@ -87,6 +87,10 @@
 	}
 	.main .vlz_tabla .ver_reserva_botones a {
 	    padding: 10px;
+	}
+
+	.vlz_solo_movil {
+	    margin-bottom: 10px;
 	}
 }
 

@@ -90,17 +90,9 @@ jQuery( document ).ready(function() {
 	});
 
 	jQuery(".obtener_direccion").on("click", function(e){
-		//console.log("Hola");
-		//navigator.geolocation.getCurrentPosition(vlz_coordenadas);
-
 	    navigator.geolocation.getCurrentPosition(
 	    	function(pos) {
 	      		var crd = pos.coords;
-
-	      		alert('Your current position is:');
-	      		alert('Latitude : ' + crd.latitude);
-	      		alert('Longitude: ' + crd.longitude);
-	      		alert('More or less ' + crd.accuracy + ' meters.');
 
 	      		var position = {
 	      			latitude:  crd.latitude,
@@ -111,7 +103,6 @@ jQuery( document ).ready(function() {
 
 	    	}, 
 	    	function error(err) {
-	      		// alert('ERROR(' + err.code + '): ' + err.message);
 	      		var position = {
 	      			latitude:  25.733881701152562,
 	      			longitude: -100.39553960640156
@@ -130,18 +121,13 @@ jQuery( document ).ready(function() {
 });
 
 function vlz_coordenadas(position){
-
+	console.log("Hola 3");
     if(position.latitude != '' && position.longitude != '') {
         LAT = position.latitude;
         LNG = position.longitude;        
-    } else {
-        var mensaje = 'No es posible leer su ubicación,\nverifique si su GPS está encendido\ny vuelva a recargar la página.';
-        alert(mensaje);        
     }
 
-    if( LAT == 0 || LNG == 0 ){
-		alert("No hemos podido determinar tu ubicación\nPor favor verifica que tu navegador permita el acceso a la misma.");
-	}else{
+    if( LAT == 0 || LNG == 0 ){ }else{
 		jQuery.ajax({
 	        url:   'https://maps.googleapis.com/maps/api/geocode/json?latlng='+LAT+','+LNG+'&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8',
 	        type:  'get',
@@ -491,46 +477,42 @@ function rc_validar_longitud( field ){
 
 function vista_previa(evt) {
 	
-	jQuery("#perfil-img").attr("src", HOME+"images/cargando.gif" );
-    jQuery(".kmimos_cargando").css("visibility", "visible");
+	var files = evt.target.files;
+	getRealMime(this.files[0]).then(function(MIME){
+        if( MIME.match("image.*") ){
 
-  	var files = evt.target.files;
-  	for (var i = 0, f; f = files[i]; i++) {  
-       	if (!f.type.match("image.*")) {
-            continue;
-       	}
-       	var reader = new FileReader();
-       	reader.onload = (function(theFile) {
-           return function(e) {
+        	jQuery(".vlz_cargando").css("display", "block");
 
-    			redimencionar(e.target.result, function(img_reducida){
-    				var a = RAIZ+"imgs/vlz_subir_img.php";
-    				var img_pre = jQuery("#vlz_img_perfil").val();
-    				
-    				jQuery.ajax({
-                      	async:true, 
-                      	cache:false, 
-                      	type: 'POST',   
-                      	url: a,
-                      	data: {img: img_reducida, previa: img_pre}, 
-                      	success:  function(url){
-				      		jQuery("#perfil-img-a").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    redimencionar(e.target.result, function(img_reducida){
+                        var img_pre = jQuery(".vlz_rotar_valor").attr("value");
+                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: img_pre}, function( url ) {
+                           
+                        	jQuery("#perfil-img-a").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
 				      		jQuery("#perfil-img").css("display", "none" );
 		        			jQuery("#vlz_img_perfil").val( url );
 		        			jQuery(".vlz_rotar_valor").attr( "value", url );
 			           		jQuery(".kmimos_cargando").css("visibility", "hidden");
 
-			           		jQuery("#rotar").css("display", "block");
-                      	},
-                      	beforeSend:function(){},
-                      	error:function(objXMLHttpRequest){}
-                    });
-    			});
+                            jQuery(".btn_rotar").css("display", "block");
 
-           };
-		})(f);
-		reader.readAsDataURL(f);
-   	}
+                            jQuery(".vlz_cargando").css("display", "none");
+                        });
+                    });      
+                };
+           })(files[0]);
+           reader.readAsDataURL(files[0]);
+        }else{
+        	padre.children('#portada').val("");
+            alert("Solo se permiten imagenes");
+        }
+    }).catch(function(error){
+        padre.children('#portada').val("");
+        alert("Solo se permiten imagenes");
+    }); 
+
 }      
 document.getElementById("portada").addEventListener("change", vista_previa, false);
 

@@ -110,6 +110,10 @@
 		                	<div class="vlz_tabla_inferior">
 		                		
 		                		<div class="desglose_reserva">
+			                		<div class="item_desglose vlz_bold vlz_solo_movil">
+			                			<div>RESERVA</div>
+			                			<span>'.$reserva["id"].'</span>
+			                		</div>
 			                		<div class="item_desglose vlz_bold">
 			                			<div>MÉTODO DE PAGO</div>
 			                			<span>DEPÓSITO DEL 17%</span>
