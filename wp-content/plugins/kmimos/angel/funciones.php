@@ -481,6 +481,13 @@
             $titulo = ($cuidador->titulo);
         }
 
+        $valoraciones = "No tiene valoraciones";
+        if( $cuidador->valoraciones+0 > 0 ){
+            $plural = "&oacute;n";
+            if( $cuidador->valoraciones+0 > 1 ){ $plural = "ones"; }
+            $valoraciones = $cuidador->valoraciones." Valoraci".$plural;
+        }
+
         switch ($disenio) {
             case 'list':
                 $ficha = '
@@ -501,6 +508,10 @@
 
                                 <div class="km-ranking">
                                     '.kmimos_petsitter_rating($cuidador->id_post).'
+                                </div>
+
+                                <div class="km-valoraciones">
+                                    '.$valoraciones.'
                                 </div>
 
                                 <div class="km-sellos">
@@ -541,6 +552,11 @@
                             <div class="km-ranking">
                                 '.kmimos_petsitter_rating($cuidador->id_post).'
                             </div>
+
+                            <div class="km-valoraciones">
+                                '.$valoraciones.'
+                            </div>
+
                             <div class="km-sellos">
                                 '.vlz_servicios($cuidador->adicionales).'
                             </div>

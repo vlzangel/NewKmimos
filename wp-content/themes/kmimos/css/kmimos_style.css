@@ -1548,7 +1548,7 @@ div#ubicacion_list div:hover {
     min-height:200px;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos {
-    padding-top:5px!important;
+    padding-top:2px!important;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-buttons::after {
     content:"";
