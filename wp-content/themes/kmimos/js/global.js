@@ -29,20 +29,34 @@ jQuery( document ).ready(function() {
     jQuery("#ver_menu").on("click", function(e){
         if( jQuery("#menu_movil").css("left") == "0px" ){
             jQuery("#menu_movil").css("left", "-100%");
+            visible_boton_mapa(true);
         }else{
             jQuery("#menu_movil").css("left", "0px");
+            visible_boton_mapa(false);
         }
     });
 
     jQuery(".cerrar_menu_movil").on("click", function(e){
         jQuery("#menu_movil").css("left", "-100%");
+        visible_boton_mapa(true);
     });
 
     jQuery('#menu_movil').on("click", function(e) {
         if ( e.target.id == "menu_movil" ) {
             jQuery("#menu_movil").css("left", "-100%");
+            visible_boton_mapa(true);
         };
     }); 
+
+    function visible_boton_mapa( display=true){
+        if( !display ){
+            jQuery('.btnOpenPopupMap').css('display', 'none');
+            jQuery('.btnOpenPopupMap').css('display', 'none');            
+        }else{
+            jQuery('.btnOpenPopupMap').css('display', 'block');
+            jQuery('.btnOpenPopupMap').css('display', 'block');
+        }
+    }
 
     jQuery(".btn_rotar").on("click", function(e){
         rotar( jQuery( this ).attr("data-orientacion") );

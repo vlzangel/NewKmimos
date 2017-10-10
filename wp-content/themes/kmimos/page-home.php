@@ -232,7 +232,7 @@
 							<div class="col-xs-8 col-sm-12">
 								<div class="km-beneficios-text">
 									<h5>FOTOGRAFÍAS Y VIDEOS DIARIOS</h5>
-									<p>Acercando distancias entre tu mascota y tú. Kmimos monitorea a los cuidadores asociados asegurando la mejor experiencia para ambos.</p>
+									<p>Acortando distancias entre tu mascota y tú. Kmimos monitorea a los cuidadores asociados asegurando la mejor experiencia para ambos.</p>
 								</div>
 							</div>
 						</div>

@@ -3,6 +3,8 @@ var hasGPS=false;
 (function(jQuery) {
     'use strict';
 
+
+
     jQuery(document).on('click', '[data-action="dropdown"]', function(){
        alert('click dropdown');
     });
