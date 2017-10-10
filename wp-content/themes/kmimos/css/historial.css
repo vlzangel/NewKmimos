@@ -261,3 +261,78 @@
 a.vlz_accion.vlz_pdf {
     float: right;
 }
+
+.desglose_sin_borde{
+    border: 0px !important;
+    padding: 0px !important;
+    overflow: hidden;
+}
+
+.desglose_columna{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0px 0px 0px 10px;
+}
+
+.desglose_titulo{
+    color: #7dd1c4;
+    font-weight: 600;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.desglose_columna .item_desglose div {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.desglose_columna .item_desglose span {
+    font-weight: 400;
+    float: left !important;
+    padding-left: 5px;
+    font-size: 15px;
+}
+
+.desglose_columna .item_desglose {
+    padding: 3px;
+}
+
+.info_solicitud .info_titulo {
+    font-size: 16px;
+    font-weight: 600;
+    color: #6b1c9b;
+    padding: 0px 0px 10px 40px;
+}
+
+.info_solicitud > ul{
+    padding: 0px 40px;
+    list-style: inherit;
+    text-align: justify;
+}
+
+.info_solicitud > ul li{
+    color: #6b1c9b;
+    font-size: 24px;
+    line-height: 20px;
+}
+
+.info_solicitud > ul li span{
+    color: #000;
+    font-size: 13px;
+    line-height: 13px !important;
+}
+
+.datos_de_contacto {
+    padding: 15px 30px 10px;
+    overflow: hidden;
+}
+
+.datos_de_contacto ul li{
+    float: left;
+    width: 33.333333333%;
+}
+
+.datos_de_contacto ul li img{
+    padding-right: 5px;
+}

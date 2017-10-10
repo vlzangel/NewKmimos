@@ -158,6 +158,42 @@
 
 		                	$botones = construir_botones($reserva["acciones"]);
 
+		                	$title_registro = "Cuidador seleccionado";
+
+	                		$informacion = "
+	                			<div class='info_solicitud'>
+	                				<div class='info_titulo'>Importante</div>
+	                				<ul>
+	                					<li>
+	                						<span>Dentro de las siguientes 12 horas recibir&aacute; una llamada o correo electr&oacute;nico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso.</span>
+	                					</li>
+	                					<li>
+	                						<span>Tambi&eacute;n podr&aacute;s contactar al cuidador a partir de este momento, a los tel&eacute;fonos y/o correos mostrados arriba para acelerar el proceso si as&iacute; lo deseas.</span>
+	                					</li>
+	                					<li>
+	                						<span>Para cualquier duda y/o comentario puedes contactar al staff Kmimos:</span>
+	                					</li>
+	                				</ul>
+	                				<div class='datos_de_contacto'>
+	                					<ul>
+		                					<li>
+		                						<img src='".getTema()."/images/new/icon/km-redes/icon-wsp.svg' style='height: 25px;' /> +52 (55) 6892 2182
+		                					</li>
+		                					<li>
+		                						<img src='".getTema()."/images/new/icon/km-redes/icon-cel.svg' style='height: 22px;' /> (01) 800 056 4667
+		                					</li>
+		                					<li>
+		                						<img src='".getTema()."/images/new/icon/km-redes/icon-mail.svg' style='height: 20px;' /> contactomex@kmimos.la
+		                					</li>
+		                				</ul>
+	                				</div>
+	                			</div>
+	                		";
+		                	if( $reserva["detalle"]["quien_soy"] == "DATOS DEL CLIENTE" ){
+		                		$title_registro = "Cliente";
+		                		$informacion = "";
+		                	}
+
 			                $table.='
 			                <div class="vlz_tabla">
 			                	<div class="vlz_img">
@@ -165,12 +201,12 @@
 			                	</div>
 			                	<div class="vlz_tabla_superior">
 				                	<div class="vlz_tabla_cuidador vlz_celda">
-				                		<span>Usuario</span>
+				                		<span>'.$title_registro.'</span>
 				                		<div>'.$reserva["servicio"].'</div>
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Fecha</span>
-				                		<div style="text-transform: lowercase;" >'.$reserva["inicio"].' a las '.$reserva["fin"].'</div>
+				                		<div style="text-transform: lowercase;" >'.$reserva["detalle"]["desde"].' > '.$reserva["detalle"]["hasta"].'</div>
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno">
 				                		'.$cancelar.'
@@ -187,23 +223,40 @@
 			                	</div>
 			                	<div class="vlz_tabla_inferior">
 
-			                		<div class="desglose_reserva">
-				                		<div class="item_desglose vlz_bold">
-				                			<div>Información</div>
+			                		<div class="desglose_reserva desglose_sin_borde">
+				                		<div class="desglose_columna">
+				                			<div class="desglose_titulo">'.$reserva["detalle"]["quien_soy"].'</diV>
+					                		<div class="item_desglose">
+					                			<div>Nombre: </div>
+					                			<span>'.$reserva["servicio"].'</span>
+					                		</div>
+					                		<div class="item_desglose">
+					                			<div>Tel&eacute;fono: </div>
+					                			<span>'.$reserva["detalle"]["telefono"].'</span>
+					                		</div>
+					                		<div class="item_desglose">
+					                			<div>Correo: </div>
+					                			<span>'.$reserva["detalle"]["correo"].'</span>
+					                		</div>
 				                		</div>
-				                		<div class="item_desglose">
-				                			<div>Desde</div>
-				                			<span>'.$reserva["detalle"]["desde"].'</span>
-				                		</div>
-				                		<div class="item_desglose">
-				                			<div>Hasta</div>
-				                			<span>'.$reserva["detalle"]["hasta"].'</span>
-				                		</div>
-				                		<div class="item_desglose">
-				                			<div>Donde</div>
-				                			<span>'.$reserva["detalle"]["donde"].'</span>
+				                		<div class="desglose_columna">
+				                			<div class="desglose_titulo">DATOS DE LA REUNI&Oacute;N</diV>
+					                		<div class="item_desglose">
+					                			<div>Fecha: </div>
+					                			<span>'.$reserva["inicio"].'</span>
+					                		</div>
+					                		<div class="item_desglose">
+					                			<div>Hora: </div>
+					                			<span>'.$reserva["fin"].'</span>
+					                		</div>
+					                		<div class="item_desglose">
+					                			<div>Lugar: </div>
+					                			<span>'.$reserva["detalle"]["donde"].'</span>
+					                		</div>
 				                		</div>
 			                		</div>
+
+			                		'.$informacion.'
 
 			                		<div class="ver_reserva_botones">
 				                		'.$botones.'
