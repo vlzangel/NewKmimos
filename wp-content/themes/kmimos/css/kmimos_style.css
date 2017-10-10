@@ -3814,7 +3814,8 @@ button.close {
     box-shadow:0 4px 4px 0 rgba(0, 0, 0, .1)
 }
 .km-foto {
-    position:relative
+    position:relative;
+    display: block;
 }
 .km-item-resultado.active .km-foto::before {
     content:"";
@@ -7380,9 +7381,16 @@ button.close {
 
 .km-link-favorito{
     color: #ccc!important;
+    display: block;
+    margin: 8px 0px 0px 15px;
+    text-align: center;
 }
 .km-link-favorito[data-active="true"]{
     color: #6a2499!important;
+}
+
+.km-link-favorito a{
+	display: inline-block;
 }
 
 
