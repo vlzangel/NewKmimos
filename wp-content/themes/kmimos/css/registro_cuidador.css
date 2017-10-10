@@ -8,3 +8,19 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.img_registro_cliente #rotar_i {
+    left: -15px !important;
+}
+
+.img_registro_cliente #rotar_d {
+    right: -15px !important;
+}
+
+.img_registro_cliente .btn_rotar {
+    top: 110px !important;
+}
+
+.img_registro_cliente .btn_aplicar_rotar {
+    margin: 5px 0px 10px !important;
+}

@@ -148,18 +148,31 @@
 				<h3 style="margin: 0;">Foto de perfil</h3>
 				<p style="color: #979797">Brinda a tus futuros amigos</p>
 
-				<a href="#" data-load='portada' id="perfil-img-a" class="vlz_rotar">
+				<div class="img_registro_cliente" style="position: relative">
+					<div class="km-datos-foto vlz_rotar" id="perfil-img-a" style="background-image: url(<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg);">
+						<div id="perfil-img-loading" style="width:100%; line-height: 100%; display:none;" class="vlz_cargando">
+							<img src="<?php echo getTema(); ?>/images/new/bx_loader.gif" id="perfil-img" class="img-responsive">
+						</div>
+					</div>
+
+					<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+	                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
+
+	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
+
+	                <input type="hidden" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" class="vlz_rotar_valor">
+				</div>
+
+				<!-- <a href="#" data-load='portada' id="perfil-img-a" class="vlz_rotar">
 					<img class="img-circle" id="perfil-img" src="<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg">
 				</a>
 				<div class="kmimos_cargando" style="visibility: hidden;">
 					<span>Cargando...</span>
 				</div>
-				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div>
+				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div> -->
 				
 				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
-
             	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
-	            <input class="hidden vlz_rotar_valor" type="text" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" >
 
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>

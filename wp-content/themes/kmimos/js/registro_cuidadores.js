@@ -121,7 +121,7 @@ jQuery( document ).ready(function() {
 });
 
 function vlz_coordenadas(position){
-
+	console.log("Hola 3");
     if(position.latitude != '' && position.longitude != '') {
         LAT = position.latitude;
         LNG = position.longitude;        
@@ -480,43 +480,41 @@ function vista_previa(evt) {
 	jQuery("#perfil-img").attr("src", HOME+"images/cargando.gif" );
     jQuery(".kmimos_cargando").css("visibility", "visible");
 
-  	var files = evt.target.files;
-  	for (var i = 0, f; f = files[i]; i++) {  
-       	if (!f.type.match("image.*")) {
-            continue;
-       	}
-       	var reader = new FileReader();
-       	reader.onload = (function(theFile) {
-           return function(e) {
+	var files = evt.target.files;
+	getRealMime(this.files[0]).then(function(MIME){
+        if( MIME.match("image.*") ){
 
-    			redimencionar(e.target.result, function(img_reducida){
-    				var a = RAIZ+"imgs/vlz_subir_img.php";
-    				var img_pre = jQuery("#vlz_img_perfil").val();
-    				
-    				jQuery.ajax({
-                      	async:true, 
-                      	cache:false, 
-                      	type: 'POST',   
-                      	url: a,
-                      	data: {img: img_reducida, previa: img_pre}, 
-                      	success:  function(url){
-				      		jQuery("#perfil-img-a").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
+        	jQuery("#perfil-img").attr("src", HOME+"images/cargando.gif" );
+    		jQuery(".kmimos_cargando").css("visibility", "visible");
+
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    redimencionar(e.target.result, function(img_reducida){
+                        var img_pre = jQuery(".vlz_rotar_valor").attr("value");
+                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: img_pre}, function( url ) {
+                           
+                        	jQuery("#perfil-img-a").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")" );
 				      		jQuery("#perfil-img").css("display", "none" );
 		        			jQuery("#vlz_img_perfil").val( url );
 		        			jQuery(".vlz_rotar_valor").attr( "value", url );
 			           		jQuery(".kmimos_cargando").css("visibility", "hidden");
 
-			           		jQuery("#rotar").css("display", "block");
-                      	},
-                      	beforeSend:function(){},
-                      	error:function(objXMLHttpRequest){}
-                    });
-    			});
+                            jQuery(".btn_rotar").css("display", "block");
+                        });
+                    });      
+                };
+           })(files[0]);
+           reader.readAsDataURL(files[0]);
+        }else{
+        	padre.children('#carga_foto_profile').val("");
+            alert("Solo se permiten imagenes");
+        }
+    }).catch(function(error){
+        padre.children('#carga_foto_profile').val("");
+        alert("Solo se permiten imagenes");
+    }); 
 
-           };
-		})(f);
-		reader.readAsDataURL(f);
-   	}
 }      
 document.getElementById("portada").addEventListener("change", vista_previa, false);
 
