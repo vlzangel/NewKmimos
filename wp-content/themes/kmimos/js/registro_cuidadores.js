@@ -191,6 +191,7 @@ jQuery("#cr_minus").on('click', function(e){
 			var valor = parseInt(span.html()) - 1;
 			span.html( valor );
 			input.val( valor );
+			input.attr( "value", valor );
 		}
 
 		if ( span.html() <= 1 ) {
@@ -212,6 +213,7 @@ jQuery("#cr_plus").on('click', function(e){
 			var valor = parseInt(span.html()) + 1;
 			span.html( valor );
 			input.val( valor );
+			input.attr( "value", valor );
 		}
 
 		if ( span.html() >= 6) {
