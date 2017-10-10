@@ -120,6 +120,15 @@ jQuery( document ).ready(function() {
 
 });
 
+function redireccionar(){
+	console.log("Entro: "+jQuery("#btn_iniciar_sesion").attr("data-url"));
+	if( jQuery(".popup-registro-cuidador").css("display") == "none" ){
+		if( jQuery(".popup-registro-cuidador-correo").css("display") == "none" ){
+			location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+		}
+	}
+}
+
 function vlz_coordenadas(position){
 	console.log("Hola 3");
     if(position.latitude != '' && position.longitude != '') {
@@ -251,10 +260,6 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 				jQuery(".popup-registro-cuidador-correo").hide();
 				jQuery(".popup-registro-exitoso").fadeIn("fast");
 			}
-
-			jQuery("#btn_cerrar").on("click", function(e){
-				location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
-			});
 		});
 	}
 });
