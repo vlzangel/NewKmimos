@@ -5288,7 +5288,7 @@ h1.maps {
         position:fixed;
         z-index:999;
         top:0;
-        right: -100%;
+        right: 0;
         bottom:0;
         background:#fff;
         padding:10px;

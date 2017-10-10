@@ -280,10 +280,10 @@
 					<div id="mapa-close" style="display:none;position:absolute; right:5px; top:5px;padding:5px;font-size:18px;"><i class="fa fa-close"></i></div>
 				</div>
 			</div>
-			<a href="#" class="km-btn-primary btnOpenPopup btnOpenPopupMap">VER UBICACIÓN EN MAPA</a>
-			<script type="text/javascript" src="'.getTema().'/js/markerclusterer.js"></script>
-			<script type="text/javascript" src="'.getTema().'/js/oms.min.js"></script>
-
+		</div>
+		<a href="#" class="km-btn-primary btnOpenPopup btnOpenPopupMap">VER UBICACIÓN EN MAPA</a>
+		<script type="text/javascript" src="'.getTema().'/js/markerclusterer.js"></script>
+		<script type="text/javascript" src="'.getTema().'/js/oms.min.js"></script>
     ';
     include ('partes/cuidador/conocelo.php');
 	echo comprimir_styles($HTML);
