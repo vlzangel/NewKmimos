@@ -89,14 +89,11 @@ jQuery(window).on('resize', function(){
         var show = jQuery('#menu_movil').css('left');
         if( show == '0px' ){
             block_scroll_body(false);
-            console.log(show+': paso < 768 && ==0');
         }else{
             block_scroll_body(true);
-            console.log(show+': paso < 768 && !=0');
         }
     }else{
         block_scroll_body(true);
-        console.log(show+': paso > 768');
     }
 });
 

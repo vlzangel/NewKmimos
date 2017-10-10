@@ -636,6 +636,9 @@ section {
             padding-top: 40px;
         }
 
+        .menu_movil_interno{
+            overflow: scroll;
+        }
         .barra_buscar_movil i {
             position: absolute;
             left: 20px;
