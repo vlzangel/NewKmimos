@@ -402,7 +402,7 @@
 							<h5 class="h5-sub">PAGO EN EFECTIVO O CON TARJETA</h5>
 						</div>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-xs-4 brd-lr">
 						<div class="km-beneficios-icon">
 							<img src="'.getTema().'/images/new/km-certificado.svg">
 						</div>
@@ -410,7 +410,7 @@
 							<h5 class="h5-sub">CUIDADORES CERTIFICADOS</h5>
 						</div>
 					</div>
-					<div class="col-xs-4 brd-lr">
+					<div class="col-xs-4">
 						<div class="km-beneficios-icon">
 							<img src="'.getTema().'/images/new/km-veterinaria.svg">
 						</div>

@@ -1,36 +1,43 @@
 //FORM
 var vsetTime=0;
 
-function form_subscribe(element){
-    var base = jQuery(element).closest('.subscribe').data('subscribe');
-    jQuery.post(url, jQuery(element).serialize(),function(data){
-        //console.log(data);
-    });
-    return false;
-}
+// function form_subscribe(element){
+//     var base = jQuery(element).closest('.subscribe').data('subscribe');
+//     jQuery.post(url, jQuery(element).serialize(),function(data){
+//         //console.log(data);
+//     });
+//     return false;
+// }
 
 function form_subscribe(element){
     var subscribe = jQuery(element).closest('.subscribe');
     var message = subscribe.find('.message');
-    var base = subscribe.data('subscribe');
-    var url = base+'/subscribe/subscription.php';
-    jQuery.post(url, jQuery(element).serialize(),function(data){
-        //data = jQuery.parseJSON(data);
-        //console.log(data);
-        if(data['result']===true){
-            if(message.length>0){
-                message.addClass('show');
-                message.html('<i class="icon fa fa-envelope"></i>'+data['message']+'');
-                vsetTime = setTimeout(function(){
-                    message_subscribe(message);
-                }, 5000);
+    var base  = subscribe.data('subscribe');
+    var url = base + '/subscribe/subscription.php';
+
+    var obj_submit = subscribe.find('[type="submit"]');
+    var text_submit = obj_submit.html();
+
+    if( !obj_submit.hasClass("disabled") ){
+        obj_submit.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Guardando');
+        obj_submit.addClass('disabled');
+        jQuery.post(url, jQuery(element).serialize(),function(data){
+            if(data['result']===true){
+                if(message.length>0){
+                    message.addClass('show');
+                    message.html('<i class="icon fa fa-envelope"></i>'+data['message']+'');
+                    vsetTime = setTimeout(function(){
+                        message_subscribe(message);
+                    }, 5000);
+                }
+                obj_submit.html(text_submit);
+                obj_submit.removeClass('disabled');
+            }else{
+                obj_submit.html(text_submit);
+                obj_submit.removeClass('disabled');
             }
-
-        }else{
-
-
-        }
-    });
+        });
+    }
     return false;
 }
 
