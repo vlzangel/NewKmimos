@@ -477,8 +477,7 @@ function rc_validar_longitud( field ){
 
 function vista_previa(evt) {
 	
-	jQuery("#perfil-img").attr("src", HOME+"images/cargando.gif" );
-    jQuery(".kmimos_cargando").css("visibility", "visible");
+	jQuery("#loading-perfil").css("display", "block");
 
 	var files = evt.target.files;
 	getRealMime(this.files[0]).then(function(MIME){

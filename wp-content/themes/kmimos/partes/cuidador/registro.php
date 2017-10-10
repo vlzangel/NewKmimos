@@ -150,7 +150,7 @@
 
 				<div class="img_registro_cliente" style="position: relative">
 					<div class="km-datos-foto vlz_rotar" id="perfil-img-a" style="background-image: url(<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg);">
-						<div id="perfil-img-loading" style="width:100%; line-height: 100%; display:none;" class="vlz_cargando">
+						<div id="loading-perfil" style="width:100%; line-height: 100%; display:none;" class="vlz_cargando">
 							<img src="<?php echo getTema(); ?>/images/new/bx_loader.gif" id="perfil-img" class="img-responsive">
 						</div>
 					</div>
