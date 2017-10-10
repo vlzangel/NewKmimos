@@ -301,7 +301,7 @@
 					<h2 style="font-size: 18px; color: white;">¡LISTO <span data-target="name"></span>!</h2>
 					<h2 style="font-size: 18px; color: white;">Recibimos con éxito tu solicitud para sumarte a la familia de Cuidadores Kmimos</h2>
 					<p style="font-size: 15px;">Completaste tu perfil perfectamente</p>
-					<a href="<?php echo get_home_url(); ?>/perfil-usuario/?ua=profile"  data-modal="#popup-iniciar-sesion" class="modal_show km-btn">VER MI PERFIL</a>
+					<a href="<?php echo get_home_url(); ?>/perfil-usuario/" class="km-btn">VER MI PERFIL</a>
 				</div>
 			</div>
 		</form>
