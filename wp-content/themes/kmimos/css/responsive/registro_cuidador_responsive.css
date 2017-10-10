@@ -45,6 +45,10 @@
 	    margin-top: 0px !important;
 	}
 
+	.page-reservation .steps-numbers {
+	    width: 235px;
+	}
+
 }
 
 @media (max-width: 480px){
@@ -67,7 +71,7 @@
 	    font-size: 12px !important;
 	}
 	.page-reservation .steps-numbers li.line {
-	    width: 70px !important;
+	    width: 60px !important;
 	}
 
 	.h3, h3 {
