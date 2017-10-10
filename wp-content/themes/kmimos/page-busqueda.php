@@ -277,7 +277,7 @@
 						UBICACIÓN DE RESULTADOS EN MAPA
 					</div>
 					<div id="mapa" class="km-mapa"></div>
-					<div id="mapa-close" style="display:none;position:absolute; right:0px; top:0px;padding:5px;font-size:18px;"><i class="fa fa-close"></i></div>
+					<div id="mapa-close" style="display:none;position:absolute; right:5px; top:5px;padding:5px;font-size:18px;"><i class="fa fa-close"></i></div>
 				</div>
 			</div>
 			<a href="#" class="km-btn-primary btnOpenPopup btnOpenPopupMap">VER UBICACIÓN EN MAPA</a>
