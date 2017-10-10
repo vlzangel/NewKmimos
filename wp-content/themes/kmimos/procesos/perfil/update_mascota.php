@@ -23,6 +23,8 @@
 	    }
 	}
 
+	$pet_birthdate = date('Y-m-d', strtotime( str_replace("/", "-", $pet_birthdate)));
+
 	$sql  = "UPDATE wp_posts 	SET post_title = '{$pet_name}' 			WHERE ID 	  = {$pet_id};";
 	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_name}' 			WHERE post_id = {$pet_id} AND meta_key = 'name_pet';";
 	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_breed}' 		WHERE post_id = {$pet_id} AND meta_key = 'breed_pet';";

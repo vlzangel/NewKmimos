@@ -77,10 +77,6 @@
         $razas = $razas_str_gatos;
     }
 
-    /*echo "<pre>";
-        print_r($current_pet);
-    echo "</pre>";*/
-
     $CONTENIDO .= '
     <input type="hidden" name="accion" value="update_mascota" />
     <input type="hidden" name="pet_id" value="'.$pet_id.'" />
@@ -91,8 +87,8 @@
 
     <section>
         <div class="vlz_img_portada_perfil">
-            <div class="vlz_img_portada_fondo vlz_rotar" style="background-image: url('.getTema().'/images/noimg.png);"></div>
-            <div class="vlz_img_portada_normal vlz_rotar" style="background-image: url('.getTema().'/images/noimg.png);"></div>
+            <div class="vlz_img_portada_fondo vlz_rotar" style="background-image: url('.get_home_url().'/'.$photo_pet.');"></div>
+            <div class="vlz_img_portada_normal vlz_rotar" style="background-image: url('.get_home_url().'/'.$photo_pet.');"></div>
             <div class="vlz_img_portada_cargando vlz_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
             <div class="vlz_cambiar_portada">
                 <i class="fa fa-camera" aria-hidden="true"></i>
@@ -124,7 +120,7 @@
                     id="pet_birthdate" 
                     name="pet_birthdate" 
                     placeholder="dd/mm/aaaa" 
-                    value="'.date('d/m/Y', strtotime($current_pet['birthdate'])).'" 
+                    value="'.date('d/m/Y', strtotime( str_replace("/", "-", $current_pet['birthdate']))).'" 
                     class="km-input-custom km-input-date date_from" 
                     readonly
                 />

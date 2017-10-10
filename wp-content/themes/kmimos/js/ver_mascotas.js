@@ -42,12 +42,12 @@ jQuery( document ).ready(function() {
     minFecha.setFullYear( parseInt(min)-30 );
 
     var maxFecha = new Date();
-    maxFecha.setDate( parseInt(maxFecha.getDate()) + 1);
+    maxFecha.setDate( parseInt(maxFecha.getDate()) - 1);
 
     jQuery("#pet_birthdate").datepick({
         dateFormat: 'dd/mm/yyyy',
-        minDate: new Date().setYear(),
-        maxDate: new Date().setYear(),
+        minDate: minFecha,
+        maxDate: maxFecha,
         onSelect: function(date1) {
             
         },
