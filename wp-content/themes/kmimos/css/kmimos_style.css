@@ -8245,6 +8245,16 @@ textarea.vlz_input {
 	z-index: 2000 !important;
 }
 
+.message-especial{
+	background-color: #7dd1c4;
+	color: #6b1c9b;
+	border-radius:10px;
+	margin-top:5px;
+	font-family: Gotham-Pro-Bold;
+	padding: 10px 25px;
+	display:none;
+}
+
 /* Modal Subscribe - HOME */
 #PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}
 #PageSubscribe .exit{float: right; cursor: pointer;}

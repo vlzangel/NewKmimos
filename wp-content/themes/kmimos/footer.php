@@ -19,15 +19,7 @@ $HTML = '
                                     </span>
                                 </div>
                             </div>
-                            <div style="
-    background-color: #7dd1c4;
-    color: #6b1c9b;
-    border-radius:10px;
-    margin-top:5px;
-    font-family: Gotham-Pro-Bold;
-    padding: 10px 25px;
-    display:none;
-    " class="message "></div>
+                            <div class="message message-especial"></div>
                         </form>
                     </div>
 

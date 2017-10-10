@@ -49,9 +49,11 @@ jQuery( document ).ready(function() {
     }); 
 
     function visible_boton_mapa( display=true){
+        /*jQuery('body').css('position', 'none');*/
         if( !display ){
             jQuery('.btnOpenPopupMap').css('display', 'none');
-            jQuery('.btnOpenPopupMap').css('display', 'none');            
+            jQuery('.btnOpenPopupMap').css('display', 'none');  
+            /*jQuery('body').css('position', 'fixed');*/
         }else{
             jQuery('.btnOpenPopupMap').css('display', 'block');
             jQuery('.btnOpenPopupMap').css('display', 'block');
