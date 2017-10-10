@@ -9,15 +9,25 @@ $HTML = '
                     <div class="col-xs-12 col-sm-5">
                         <h5>ENTÉRATE DE LOS ÚLTIMOS CUIDADOS PARA TU MASCOTA</h5>
                         <p>¡Inscríbete a nuestro blog y conócelas!</p>
-                        <form onsubmit="form_subscribe(this); return false;">
-                        <div class="km-inscripcion">
-                            <div class="input-group">
-                                <input type="text" name="email" class="form-control" placeholder="Ingresa tu correo">
-                                <span class="input-group-btn">
-                                    <button class="btn" type="submit">INSCRIBIRME AL BLOG</button>
-                                </span>
+                        <form onsubmit="form_subscribe(this); return false;" class="subscribe" data-subscribe="'.get_home_url().'/wp-content/plugins/kmimos">
+                            <div class="km-inscripcion">
+                                <div class="input-group" style="width:100%!important;">
+                                    <input type="hidden" name="section" value="home" class="form-control" placeholder="Ingresa tu correo">
+                                    <input type="text" name="mail" class="form-control" placeholder="Ingresa tu correo">
+                                    <span class="input-group-btn">
+                                        <button class="btn" type="submit">INSCRIBIRME AL BLOG</button>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+                            <div style="
+    background-color: #7dd1c4;
+    color: #6b1c9b;
+    border-radius:10px;
+    margin-top:5px;
+    font-family: Gotham-Pro-Bold;
+    padding: 10px 25px;
+    display:none;
+    " class="message "></div>
                         </form>
                     </div>
 
