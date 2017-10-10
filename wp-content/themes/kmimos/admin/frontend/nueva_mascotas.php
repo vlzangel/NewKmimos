@@ -96,7 +96,15 @@
         <section>
             <label for="pet_birthdate" class="lbl-text">'.esc_html__('Fecha de nacimiento','kmimos').':</label>
             <label class="lbl-ui">
-                <input type="date" name="pet_birthdate" min="'.date("Y-m-d", strtotime('Now -30 years')).'" max="'.date("Y-m-d", strtotime('Now -1 day')).'" class="input" />
+                <input 
+                    type="text" 
+                    id="pet_birthdate" 
+                    name="pet_birthdate" 
+                    placeholder="dd/mm/aaaa" 
+                    value="" 
+                    class="km-input-custom km-input-date date_from" 
+                    readonly
+                />
             </label>
         </section>
     </div>

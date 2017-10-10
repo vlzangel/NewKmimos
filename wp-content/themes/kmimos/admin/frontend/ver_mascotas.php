@@ -77,6 +77,10 @@
         $razas = $razas_str_gatos;
     }
 
+    /*echo "<pre>";
+        print_r($current_pet);
+    echo "</pre>";*/
+
     $CONTENIDO .= '
     <input type="hidden" name="accion" value="update_mascota" />
     <input type="hidden" name="pet_id" value="'.$pet_id.'" />
@@ -115,7 +119,15 @@
         <section>
             <label for="pet_birthdate" class="lbl-text">'.esc_html__('Fecha de nacimiento','kmimos').':</label>
             <label class="lbl-ui">
-                <input type="date" name="pet_birthdate" min="'.date("Y-m-d", strtotime('Now -30 years')).'" max="'.date("Y-m-d", strtotime('Now -1 day')).'" class="input" value="'.date('Y-m-d', strtotime(str_replace('/','-',$current_pet['birthdate']))).'" />
+                <input 
+                    type="text" 
+                    id="pet_birthdate" 
+                    name="pet_birthdate" 
+                    placeholder="dd/mm/aaaa" 
+                    value="'.date('d/m/Y', strtotime($current_pet['birthdate'])).'" 
+                    class="km-input-custom km-input-date date_from" 
+                    readonly
+                />
             </label>
         </section>
     </div>
