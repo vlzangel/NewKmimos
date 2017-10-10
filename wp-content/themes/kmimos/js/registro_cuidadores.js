@@ -259,6 +259,8 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 				jQuery('[data-target="name"]').html( jQuery('[name="rc_nombres"]').val() );
 				jQuery(".popup-registro-cuidador-correo").hide();
 				jQuery(".popup-registro-exitoso").fadeIn("fast");
+
+				jQuery('[name="rc_num_mascota"]').val(1);
 			}
 		});
 	}
