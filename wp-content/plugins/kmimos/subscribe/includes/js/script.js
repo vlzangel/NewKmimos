@@ -18,21 +18,26 @@ function form_subscribe(element){
     var obj_submit = subscribe.find('[type="submit"]');
     var text_submit = obj_submit.html();
 
-    obj_submit.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Guardando');
-    jQuery.post(url, jQuery(element).serialize(),function(data){
-        if(data['result']===true){
-            if(message.length>0){
-                message.addClass('show');
-                message.html('<i class="icon fa fa-envelope"></i>'+data['message']+'');
-                vsetTime = setTimeout(function(){
-                    message_subscribe(message);
-                }, 5000);
+    if( !obj_submit.hasClass("disabled") ){
+        obj_submit.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Guardando');
+        obj_submit.addClass('disabled');
+        jQuery.post(url, jQuery(element).serialize(),function(data){
+            if(data['result']===true){
+                if(message.length>0){
+                    message.addClass('show');
+                    message.html('<i class="icon fa fa-envelope"></i>'+data['message']+'');
+                    vsetTime = setTimeout(function(){
+                        message_subscribe(message);
+                    }, 5000);
+                }
+                obj_submit.html(text_submit);
+                obj_submit.removeClass('disabled');
+            }else{
+                obj_submit.html(text_submit);
+                obj_submit.removeClass('disabled');
             }
-            obj_submit.html(text_submit);
-        }else{
-            obj_submit.html(text_submit);
-        }
-    });
+        });
+    }
     return false;
 }
 
