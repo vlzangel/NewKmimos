@@ -266,7 +266,7 @@
 					</ul>
 				</div>
 				<h3 style="margin: 0;"><span data-target="name"></span>,</h5>
-				<h3 style="margin: 0;">¡TE FALTA MUY POCO!</h5>
+				<h3 style="margin: 0 0 10px;">¡TE FALTA MUY POCO!</h5>
 				<p style="color: #979797">Llena tus datos para un mayor perfil en la Comunidad Kmimos</p>
 				<div class="km-block">
 					<div class="km-block-1">
