@@ -200,7 +200,7 @@
 			<p align="justify">Si tienes alguna duda o comentario de la cancelación con todo gusto puedes contactarnos.</p>
 			<p style="text-align: center;">
 	            <a 
-	            	href="'.get_home_url().'/"
+	            	href="'.get_home_url().'/perfil-usuario/solicitudes/"
 	            	style="
 	            		padding: 10px;
 					    background: #59c9a8;
@@ -264,7 +264,7 @@
 			<p align="justify">Siguiendo tu petición hacia el Staff Kmimos, la solicitud para conocerte del cliente <strong>'.$nom.'</strong> ha sido confirmada.</p>
 			<p style="text-align: center;">
 	            <a 
-	            	href="'.get_home_url().'/"
+	            	href="'.get_home_url().'/perfil-usuario/solicitudes/"
 	            	style="
 	            		padding: 10px;
 					    background: #59c9a8;

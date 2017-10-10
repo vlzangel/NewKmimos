@@ -25,7 +25,7 @@
 	}
 	.km-btn {
 	    width: auto !important;
-        margin: 20px 0 0 !important;
+        margin: 20px auto 0 !important;
 	}
 
 	.km-btn-borderw {
@@ -67,7 +67,11 @@
 	    font-size: 12px !important;
 	}
 	.page-reservation .steps-numbers li.line {
-	    width: 70px !important;
+	    width: 60px !important;
+	}
+
+	.page-reservation .steps-numbers {
+	    width: 235px;
 	}
 
 	.h3, h3 {

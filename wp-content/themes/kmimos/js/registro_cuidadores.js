@@ -249,6 +249,10 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 				jQuery(".popup-registro-cuidador-correo").hide();
 				jQuery(".popup-registro-exitoso").fadeIn("fast");
 			}
+
+			jQuery("#btn_cerrar").on("click", function(e){
+				location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+			});
 		});
 	}
 });

@@ -41,6 +41,7 @@
 	function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="",$show=false){
 	    global $count;
 	    global $CONTENIDO;
+	    global $wpdb;
 	    $user_id=get_current_user_id();
 	    $caregivers = get_caregiver($user_select);
 
@@ -74,10 +75,20 @@
 	            $cliente  = get_userdata($caregiver->Cliente_id);
 
 	            $foto = kmimos_get_foto( $caregiver->Cuidador_id ) ;
-	            $usuario = get_user_meta($caregiver->Cuidador_id, "first_name", true)." ".get_user_meta($caregiver->Cuidador_id, "last_name", true);
+	            $usuario = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE post_author = {$caregiver->Cuidador_id} AND post_type = 'petsitters'");
+	            $telefono = get_user_meta($caregiver->Cuidador_id, "user_phone", true);
+	            $correo = $cuidador->user_email;
+	            $quien_soy = "DATOS DEL CUIDADOR";
 	            if( $user_select == "cu.post_author={$user_id}" ){
 	            	$foto = kmimos_get_foto( $caregiver->Cliente_id ) ;
-	            	$usuario = get_user_meta($caregiver->Cliente_id, "first_name", true)." ".get_user_meta($caregiver->Cliente_id, "last_name", true);
+
+	            	$nom = explode(" ", get_user_meta($caregiver->Cliente_id, "first_name", true));
+	            	$ape = explode(" ", get_user_meta($caregiver->Cliente_id, "last_name", true));
+	            	$usuario = $nom[0]." ".$ape[0];
+
+		            $telefono = get_user_meta($caregiver->Cliente_id, "user_phone", true);
+		            $correo = $cliente->user_email;
+	            	$quien_soy = "DATOS DEL CLIENTE";
 	            }
 
 	            $Ver = 'ver/'.$caregiver->Nro_solicitud;
@@ -93,7 +104,12 @@
 	            $detalle = array(
 	            	"desde" => date("d/m/Y", strtotime($_metas["service_start"][0])),
 	            	"hasta" => date("d/m/Y", strtotime($_metas["service_end"][0])),
-	            	"donde" => $caregiver->Donde
+	            	"donde" => $caregiver->Donde,
+
+	            	"telefono" => $telefono,
+	            	"correo" => $correo,
+
+	            	"quien_soy" => $quien_soy
 	            );
 	            
 	            if($caregiver->Estatus=='pending'){
@@ -174,10 +190,6 @@
 	        if($strcaregiver!=''){
 	            $CONTENIDO .= '<h1 style="line-height: normal;">'.$strcaregiver.'</h1><hr>';
 	        }
-
-	        /*echo "<pre>";
-	       	 	print_r($reservas_array);
-	        echo "</pre>";*/
 
 	        $CONTENIDO .= construir_listado($reservas_array);
 	    }else{

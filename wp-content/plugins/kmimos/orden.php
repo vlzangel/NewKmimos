@@ -72,7 +72,7 @@
 			.$detalles_servicio.'
 			<p style="text-align: center;">
 	            <a 
-	            	href="'.get_home_url().'/"
+	            	href="'.get_home_url().'/perfil-usuario/historial/"
 	            	style="
 	            		padding: 10px;
 					    background: #59c9a8;

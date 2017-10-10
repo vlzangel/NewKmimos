@@ -34,7 +34,7 @@
 
 	$status = $booking->get_status();
 
-/*	if(  $_SESSION['admin_sub_login'] != 'YES' && $booking->get_status() != "cancelled" ){
+	if(  $_SESSION['admin_sub_login'] != 'YES' && $booking->get_status() != "cancelled" ){
 
 		if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
 			$estado = array(
@@ -52,7 +52,7 @@
 	   		exit;
 		}
 
-	}*/
+	}
 
 	if($s == "0"){
 		$order->update_status('wc-cancelled');
@@ -70,7 +70,7 @@
 			.$detalles_servicio.'
 			<p style="text-align: center;">
 	            <a 
-	            	href="'.get_home_url().'/"
+	            	href="'.get_home_url().'/perfil-usuario/reservas/"
 	            	style="
 	            		padding: 10px;
 					    background: #59c9a8;
@@ -143,7 +143,7 @@
 				.$detalles_servicio_cuidador.'
 				<p style="text-align: center;">
 		            <a 
-		            	href="'.get_home_url().'/"
+		            	href="'.get_home_url().'/perfil-usuario/reservas/"
 		            	style="
 		            		padding: 10px;
 						    background: #59c9a8;
