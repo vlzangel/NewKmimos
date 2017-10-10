@@ -48,28 +48,28 @@
             if($i == (int)$current_pet['sterilized']) $esterilizado_str .= ' selected';
         }
         
-        $esterilizado_str .= '>'.$si_no[$i].'</option>';
+        $esterilizado_str .= '>'.strtoupper($si_no[$i]).'</option>';
     }
 
     $sociable_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
         $sociable_str .= '<option value="'.$i.'"';
         if($i == (int)$current_pet['sociable']) $sociable_str .= ' selected';
-        $sociable_str .= '>'.$si_no[$i].'</option>';
+        $sociable_str .= '>'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_humans_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
         $aggresive_humans_str .= '<option value="'.$i.'"';
         if($i == (int)$current_pet['aggresive_humans']) $aggresive_humans_str .= ' selected';
-        $aggresive_humans_str .= '>'.$si_no[$i].'</option>';
+        $aggresive_humans_str .= '>'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_pets_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
         $aggresive_pets_str .= '<option value="'.$i.'"';
         if($i == (int)$current_pet['aggresive_pets']) $aggresive_pets_str .= ' selected';
-        $aggresive_pets_str .= '>'.$si_no[$i].'</option>';
+        $aggresive_pets_str .= '>'.strtoupper($si_no[$i]).'</option>';
     }
 
     $razas = $razas_str;
