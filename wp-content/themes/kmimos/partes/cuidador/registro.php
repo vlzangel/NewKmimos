@@ -3,7 +3,7 @@
 <div id="popup-registro-cuidador1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar" >×</button>
 			<div class="popup-registro-cuidador active">
 				
 				<a href="javascript:;" onClick="login_facebook();" class="km-btn-fb"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg">REGISTRARME CON FACEBOOK</a>
@@ -301,7 +301,7 @@
 					<h2 style="font-size: 18px; color: white;">¡LISTO <span data-target="name"></span>!</h2>
 					<h2 style="font-size: 18px; color: white;">Recibimos con éxito tu solicitud para sumarte a la familia de Cuidadores Kmimos</h2>
 					<p style="font-size: 15px;">Completaste tu perfil perfectamente</p>
-					<a href="<?php echo get_home_url(); ?>/perfil-usuario/" class="km-btn">VER MI PERFIL</a>
+					<a href="<?php echo get_home_url(); ?>/perfil-usuario/" class="km-btn" id="btn_iniciar_sesion">VER MI PERFIL</a>
 				</div>
 			</div>
 		</form>
