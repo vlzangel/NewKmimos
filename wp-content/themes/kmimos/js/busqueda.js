@@ -154,7 +154,7 @@ jQuery(window).scroll(function() {
 	}
 });
 jQuery('#mapa-close').on('click', function(){
-	jQuery(this).parent().css('display', 'none');
+	jQuery(this).parent().css('right', '-100%');
 });
 
 jQuery(document).on('click', '.km-select-custom-button', function(){
@@ -221,9 +221,12 @@ function vlz_tipo_ubicacion(){
 jQuery(document).on("click", '.btnOpenPopupMap', function ( e ) {
 	e.preventDefault();
 
-	jQuery(".km-caja-resultados .km-columna-der").fadeIn("fast");
+	/*jQuery(".km-caja-resultados .km-columna-der").fadeIn("fast", function() {
+		google.maps.event.trigger(map, 'resize');
+  	});*/
 
-	google.maps.event.trigger(map, 'resize');
+  	jQuery(".km-caja-resultados .km-columna-der").css("right", 0);
+	
 });
 
 var markers = [];

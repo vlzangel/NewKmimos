@@ -5285,15 +5285,14 @@ h1.maps {
     	display: block!important;
     }
     .km-caja-resultados .km-columna-der {
-        display:none;
         position:fixed;
         z-index:999;
         top:0;
-        left:0;
-        right:0;
+        right: -100%;
         bottom:0;
         background:#fff;
-        padding:10px
+        padding:10px;
+
     }
     .km-caja-resultados .km-columna-der .closeMap {
         display:block;
