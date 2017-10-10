@@ -139,13 +139,6 @@
 	    	$estados != "" && 
 	    	$municipios != "" 
 	    ){
-	        // $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
-	        // $latitud  			= $coordenadas["referencia"]->lat;
-	        // $longitud 			= $coordenadas["referencia"]->lng;
-	        // $ubicacion 			= " ubi.estado LIKE '%={$estados}=%' AND ubi.municipios LIKE '%={$municipios}=%' ";
-	        // $ubicaciones_inner  = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-	        // $ubicaciones_filtro = "AND ( $ubicacion )";
-
 	        $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
 	        $latitud  			= $coordenadas["referencia"]->lat;
 	        $longitud 			= $coordenadas["referencia"]->lng;
@@ -200,6 +193,7 @@
 	        cuidadores.adicionales,
 	        (cuidadores.hospedaje_desde*1.2) AS precio,
 	        cuidadores.experiencia,
+	        cuidadores.valoraciones,
 	        post_cuidador.post_name AS slug,
 	        post_cuidador.post_title AS titulo
 	        {$DISTANCIA}

@@ -120,6 +120,15 @@ jQuery( document ).ready(function() {
 
 });
 
+function redireccionar(){
+	console.log("Entro: "+jQuery("#btn_iniciar_sesion").attr("data-url"));
+	if( jQuery(".popup-registro-cuidador").css("display") == "none" ){
+		if( jQuery(".popup-registro-cuidador-correo").css("display") == "none" ){
+			location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+		}
+	}
+}
+
 function vlz_coordenadas(position){
 	console.log("Hola 3");
     if(position.latitude != '' && position.longitude != '') {
@@ -191,6 +200,7 @@ jQuery("#cr_minus").on('click', function(e){
 			var valor = parseInt(span.html()) - 1;
 			span.html( valor );
 			input.val( valor );
+			input.attr( "value", valor );
 		}
 
 		if ( span.html() <= 1 ) {
@@ -212,6 +222,7 @@ jQuery("#cr_plus").on('click', function(e){
 			var valor = parseInt(span.html()) + 1;
 			span.html( valor );
 			input.val( valor );
+			input.attr( "value", valor );
 		}
 
 		if ( span.html() >= 6) {
@@ -248,11 +259,9 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 				jQuery('[data-target="name"]').html( jQuery('[name="rc_nombres"]').val() );
 				jQuery(".popup-registro-cuidador-correo").hide();
 				jQuery(".popup-registro-exitoso").fadeIn("fast");
-			}
 
-			jQuery("#btn_cerrar").on("click", function(e){
-				location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
-			});
+				jQuery('[name="rc_num_mascota"]').val(1);
+			}
 		});
 	}
 });

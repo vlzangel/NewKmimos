@@ -873,7 +873,7 @@ div#ubicacion_list:hover
     top: 43px;
     left: -1px;
     width: calc( 100% + 2px );
-    max-height: 350px;
+    max-height: 200px;
     background: #FFF;
     z-index: 999999;
     border: 1px solid #e5e5e5;
@@ -1548,7 +1548,7 @@ div#ubicacion_list div:hover {
     min-height:200px;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos {
-    padding-top:5px!important;
+    padding-top:2px!important;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-buttons::after {
     content:"";
@@ -2245,13 +2245,6 @@ footer input:focus{
 
 	#popup-servicios .km-opcion {
 	    padding: 10px 10px 5px;
-	}
-
-	.km-select-custom input:focus ~ div#ubicacion_list,
-	div#ubicacion_list:hover
-	{
-	    max-height: 250px;
-	    font-size: 10px;
 	}
 
 	.bx-wrapper .bx-prev, .bx-wrapper .bx-next {

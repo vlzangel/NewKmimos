@@ -42,7 +42,7 @@ h1.maps {
 }
 .km-opciones.maps {
     width: 100%;
-    padding: 10px 0 0 0!important;
+    padding: 10px 0 0 0 !important;
     text-align: left;
 }
 #map .km-opciones .precio {
@@ -51,10 +51,11 @@ h1.maps {
     text-align: left;
 }
 
-@media all and (max-width:992px) {
-    .col-mapa{
-        display: inline-block!important; 
-        position: initial!important; 
-        padding: 0px!important; 
-    }
+.km-valoraciones {
+    font-size: 10px;
+    padding: 5px 2px;
+}
+
+.km-resultados-lista .km-sellos {
+    padding-top: 5px !important;
 }
