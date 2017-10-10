@@ -477,14 +477,11 @@ function rc_validar_longitud( field ){
 
 function vista_previa(evt) {
 	
-	jQuery("#loading-perfil").css("display", "block");
-
 	var files = evt.target.files;
 	getRealMime(this.files[0]).then(function(MIME){
         if( MIME.match("image.*") ){
 
-        	jQuery("#perfil-img").attr("src", HOME+"images/cargando.gif" );
-    		jQuery(".kmimos_cargando").css("visibility", "visible");
+        	jQuery(".vlz_cargando").css("display", "block");
 
             var reader = new FileReader();
             reader.onload = (function(theFile) {
@@ -500,17 +497,19 @@ function vista_previa(evt) {
 			           		jQuery(".kmimos_cargando").css("visibility", "hidden");
 
                             jQuery(".btn_rotar").css("display", "block");
+
+                            jQuery(".vlz_cargando").css("display", "none");
                         });
                     });      
                 };
            })(files[0]);
            reader.readAsDataURL(files[0]);
         }else{
-        	padre.children('#carga_foto_profile').val("");
+        	padre.children('#portada').val("");
             alert("Solo se permiten imagenes");
         }
     }).catch(function(error){
-        padre.children('#carga_foto_profile').val("");
+        padre.children('#portada').val("");
         alert("Solo se permiten imagenes");
     }); 
 

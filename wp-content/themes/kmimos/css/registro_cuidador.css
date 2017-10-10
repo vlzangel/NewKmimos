@@ -24,3 +24,14 @@
 .img_registro_cliente .btn_aplicar_rotar {
     margin: 5px 0px 10px !important;
 }
+
+#loading-perfil{
+	display: none;
+}
+
+#loading-perfil,
+#loading-perfil img
+{
+	width:100%; 
+	height: 100%;
+}
