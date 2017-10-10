@@ -29,36 +29,29 @@ jQuery( document ).ready(function() {
     jQuery("#ver_menu").on("click", function(e){
         if( jQuery("#menu_movil").css("left") == "0px" ){
             jQuery("#menu_movil").css("left", "-100%");
+            block_scroll_body(true);
             visible_boton_mapa(true);
         }else{
             jQuery("#menu_movil").css("left", "0px");
+            block_scroll_body(false);
             visible_boton_mapa(false);
         }
     });
 
     jQuery(".cerrar_menu_movil").on("click", function(e){
         jQuery("#menu_movil").css("left", "-100%");
+        block_scroll_body(true);
         visible_boton_mapa(true);
     });
 
     jQuery('#menu_movil').on("click", function(e) {
         if ( e.target.id == "menu_movil" ) {
             jQuery("#menu_movil").css("left", "-100%");
+            block_scroll_body(true);
             visible_boton_mapa(true);
         };
     }); 
 
-    function visible_boton_mapa( display=true){
-        /*jQuery('body').css('position', 'none');*/
-        if( !display ){
-            jQuery('.btnOpenPopupMap').css('display', 'none');
-            jQuery('.btnOpenPopupMap').css('display', 'none');  
-            /*jQuery('body').css('position', 'fixed');*/
-        }else{
-            jQuery('.btnOpenPopupMap').css('display', 'block');
-            jQuery('.btnOpenPopupMap').css('display', 'block');
-        }
-    }
 
     jQuery(".btn_rotar").on("click", function(e){
         rotar( jQuery( this ).attr("data-orientacion") );
@@ -89,6 +82,41 @@ jQuery( document ).ready(function() {
         }
     });
 });
+
+jQuery(window).on('resize', function(){
+    var w = jQuery(window).width();
+    if( w < 768 ){
+        var show = jQuery('#menu_movil').css('left');
+        if( show == '0px' ){
+            block_scroll_body(false);
+            console.log(show+': paso < 768 && ==0');
+        }else{
+            block_scroll_body(true);
+            console.log(show+': paso < 768 && !=0');
+        }
+    }else{
+        block_scroll_body(true);
+        console.log(show+': paso > 768');
+    }
+});
+
+function block_scroll_body( block=true ){
+    jQuery('body').css('overflow', 'auto');
+    if( !block ){
+        jQuery('body').css('overflow', 'hidden');
+    }
+}
+
+function visible_boton_mapa( display=true){
+    if( !display ){
+        jQuery('.btnOpenPopupMap').css('display', 'none');
+        jQuery('.btnOpenPopupMap').css('display', 'none');  
+    }else{
+        jQuery('.btnOpenPopupMap').css('display', 'block');
+        jQuery('.btnOpenPopupMap').css('display', 'block');
+    }
+}
+
 
 function social_auth( f ){
     jQuery.get(HOME+"/procesos/login/login_social_id.php?init="+f, function(e){
