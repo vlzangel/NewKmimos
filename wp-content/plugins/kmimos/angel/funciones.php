@@ -463,7 +463,7 @@
             $fav_del = 'favoritos_delete';
         }
         $favoritos_link = 
-        '<a  href="javascript:;" 
+        '<span href="javascript:;" 
             data-reload="'.$reload.'"
             data-user="'.$user_id.'" 
             data-num="'.$cuidador->id_post.'" 
@@ -471,7 +471,7 @@
             data-favorito="'.$fav_check.'"
             class=" km-link-favorito '.$fav_del.'">
             <i class="fa fa-heart" aria-hidden="true"></i>
-        </a>';
+        </span>';
 
         // // validaciones para el link de conocer al cuidador
         // $attr_link_conocer_cuidador = get_attr_link_conocer_cuidador( utf8_encode($cuidador->titulo), $cuidador->id_post);
@@ -492,13 +492,13 @@
             case 'list':
                 $ficha = '
                     <div class="km-item-resultado active">
-                        <div class="km-foto">
+                        <a href="'.$url.'" class="km-foto">
                             <div class="km-img">
                                 <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
                                 <div class="km-subimg" style="background-image: url('.$img.');"></div>
                             </div>
                             <span class="km-contenedor-favorito">'.$favoritos_link.'</span>
-                        </div>
+                        </a>
 
                         <div class="km-contenedor-descripcion-opciones">
                             <div class="km-descripcion">
@@ -536,13 +536,13 @@
             case 'grid':
                 $ficha = '
                     <div class="km-item-resultado">
-                        <div class="km-foto">
+                        <a href="'.$url.'" class="km-foto">
                             <div class="km-img">
                                 <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
                                 <div class="km-subimg" style="background-image: url('.$img.');"></div>
                             </div>
                             <span class="km-contenedor-favorito">'.$favoritos_link.'</span>
-                        </div>
+                        </a>
                         <div class="km-descripcion">
                             <h1><a href="'.$url.'">'.$titulo.'</a></h1>
                             <p>'.$anios_exp.' año(s) de experiencia
