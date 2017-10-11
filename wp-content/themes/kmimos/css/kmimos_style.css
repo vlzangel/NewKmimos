@@ -7518,8 +7518,7 @@ button.close {
 
 .km-resultados-grid .km-item-resultado .km-descripcion{
     padding: 10px 16px;
-    /*min-height: 177px;*/
-    min-height: 200px;
+    min-height: 220px;
 }
 
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos{
