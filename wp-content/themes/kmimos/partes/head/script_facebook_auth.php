@@ -33,7 +33,7 @@ $HTML .= '
 
 
     function login(){
-      FB.logout();
+      /* FB.logout(); */
       FB.login(function(response) {
         if (response.authResponse) {
           KmimosAPI();
@@ -73,7 +73,7 @@ $HTML .= '
             }
 
           });
-          FB.logout();
+          /* FB.logout(); */
         }
       });
 
