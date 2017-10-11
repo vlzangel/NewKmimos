@@ -10,19 +10,13 @@
 				
 				<a href="#"  id="registro_cuidador_google" class="google_auth km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg">REGISTRARME CON GOOGLE</a>
 
-
-				<?php /* test login con redes sociales
-				<div class="row hidden">
-					
-					<div class="line-o">
-						<p class="text-line">o</p>
-						<div class="bg-line"></div>
-					</div>
-					<a href="javascript:;" onClick="auth_facebook();" class="km-btn-fb"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg"> CONÉCTATE CON FACEBOOK</a>
-					<a href="#" class="google_login km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg"> CONÉCTATE CON GOOGLE</a>
+				<div class="alert alert-danger" style="
+			display:none;
+            -webkit-transition: All 1s; /* Safari */
+            transition: All 1s;
+			" 
+			data-error="auth"></div>
 				
-				</div>
-				*/ ?>
 
 
 				<div class="line-o">

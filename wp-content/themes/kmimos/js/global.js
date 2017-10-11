@@ -129,6 +129,37 @@ function social_auth( f ){
     });
 }
 
+function social_verificar( social_network, id ){
+    var sts = false;
+    $.ajax({
+        async:false, 
+        cache:false, 
+        type: 'POST',   
+        url: HOME+"/procesos/login/social_id_validar.php",
+        data: { 'id': id, 'social': social_network }, 
+        success:  function(e){
+            e = JSON.parse(e);
+            console.log(e);
+
+            if( e['sts'] == 1 ){
+                sts = true;
+            }else{
+                jQuery('[data-error="auth"]').html(e['msg']);
+                jQuery('[data-error="auth"]').fadeIn("fast");
+                //alert("Usted ya se encuentra registrado");
+            }
+        },
+        beforeSend:function(){
+            jQuery('[data-error="auth"]').fadeOut("fast");
+        },
+        afterSend:function(){
+        },
+        error:function(objXMLHttpRequest){
+        }
+    });
+    return sts;
+}
+
 function logear(){
     jQuery.post( 
         HOME+"/procesos/login/login.php", 
