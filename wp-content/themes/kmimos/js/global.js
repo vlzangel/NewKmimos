@@ -118,11 +118,13 @@ function visible_boton_mapa( display=true){
 function social_auth( f ){
     jQuery.get(HOME+"/procesos/login/login_social_id.php?init="+f, function(e){
         e = JSON.parse(e);
+        jQuery('[data-error="auth"]').fadeOut("fast");
         if( e['status'] == 'true' ){
             console.log("as");
             location.reload();
         }else{
-            $('[data-error="auth"]').html(e);
+            jQuery('[data-error="auth"]').html(e['msg']);
+            jQuery('[data-error="auth"]').fadeIn("fast");
         }
     });
 }
@@ -146,7 +148,7 @@ function logear(){
 }
 
 function getAjaxData(url,method, datos){
-    return $.ajax({
+    return jQuery.ajax({
         data: datos,
         type: method,
         url: HOME+url,
@@ -162,7 +164,7 @@ jQuery(document).on('click', '.modal_show' ,function(e){
     modal_show(this)
 });
 function modal_show(element){
-    var modal = $(element).data('modal');
+    var modal = jQuery(element).data('modal');
     jQuery('.modal').modal('hide');
     jQuery(modal).modal("show");
 }

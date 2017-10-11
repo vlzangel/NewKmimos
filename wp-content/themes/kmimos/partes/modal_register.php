@@ -35,12 +35,20 @@ $HTML .='
 					<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 					REGISTRARME CON GOOGLE
 				</a>
-				<script>/*startApp();*/</script>
 				<div class="line-o">
 					<p class="text-line">o</p>
 					<div class="bg-line"></div>
 				</div>
-				<a href="#" class="km-btn-correo km-btn-popup-registrarte-1"><img src="'.getTema().'/images/icons/km-redes/icon-mail-blanco.svg">REGISTRARME POR CORREO ELECTRÓNICO</a>
+
+
+				<a 	href="javascript:;" 
+					class="km-btn-correo km-btn-popup-registrarte-1" 
+					data-target="social-next-step">
+					<img src="'.getTema().'/images/icons/km-redes/icon-mail-blanco.svg">
+					REGISTRARME POR CORREO ELECTRÓNICO
+				</a>
+
+
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 
 				<!--
@@ -73,8 +81,10 @@ $HTML .='
 					<div class="km-box-form">
 						<div class="content-placeholder">
 
-							<input type="text" id="id_login_face" name="id_login_face" class="hidden">
-							<input type="text" id="id_login_gmail" name="id_login_gmail" class="hidden">
+							<input type="text" id="facebook_cliente_id" name="facebook_auth_id" 
+								class="social_facebook_id " value="">
+							<input type="text" id="google_cliente_id" name="google_auth_id" 
+								class="social_google_id " value="">
 
 							<div class="img_registro_cliente" style="position: relative">
 								<div class="km-datos-foto vlz_rotar" id="km-datos-foto-profile" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.svg);">
@@ -94,11 +104,11 @@ $HTML .='
 
 							<div class="label-placeholder">
 								<label>Nombre</label>
-								<input type="text" id="nombre" name="nombre" maxlength="30" data-charset="xlf" class="input-label-placeholder" pattern=".{3,}">
+								<input type="text" id="nombre" name="nombre" maxlength="30" data-charset="xlf" class="input-label-placeholder social_firstname" pattern=".{3,}">
 							</div>
 							<div class="label-placeholder">
 								<label>Apellido</label>
-								<input type="text" name="apellido" id="apellido" maxlength="30"  data-charset="xlf" class="input-label-placeholder" pattern=".{3,}">
+								<input type="text" name="apellido" id="apellido" maxlength="30"  data-charset="xlf" class="input-label-placeholder social_lastname" pattern=".{3,}">
 							</div>
 
 							<div class="label-placeholder">
@@ -107,7 +117,7 @@ $HTML .='
 							</div>
 							<div class="label-placeholder verify">
 								<label>Correo electrónico</label>
-								<input type="email" name="email_1" data-verify="active" id="email_1" class="verify_mail input-label-placeholder" data-charset="espalfnum" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+								<input type="email" name="email_1" data-verify="active" id="email_1" class="verify_mail input-label-placeholder social_email" data-charset="espalfnum" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
 								<span class="verify_result"></span>
 							</div>
 							<div class="label-placeholder">
