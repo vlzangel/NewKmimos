@@ -50,7 +50,7 @@
 			$CUIDADORES .= get_ficha_cuidador($cuidador, $i, $favoritos, $TIPO_DISEÑO);
 		}
 	}else{
-		$CUIDADORES .= "<h2 style='padding-right: 20px!important; font-size: 21px; text-align: justify; margin: 10px 0px;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".get_home_url()."/'>aquí,</a> o aplica otro filtro de búsqueda.</h2>";
+		//$CUIDADORES .= "<h2 style='padding-right: 20px!important; font-size: 21px; text-align: justify; margin: 10px 0px;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".get_home_url()."/'>aquí,</a> o aplica otro filtro de búsqueda.</h2>";
 	}
 
 	$xPINES = json_encode($pines);
@@ -77,6 +77,9 @@
 		$CUIDADORES_STR = '
 		<div class="km-resultados-lista">
 			'.$CUIDADORES.'
+			<div class="">
+				<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor ajusta los filtros de búsqueda.</h2>
+			</div>
 		</div>';
 	}
 
@@ -147,7 +150,6 @@
     if( empty($tamanos_mascotas_display) ){
 	    $tamanos_mascotas_display = 'TAMAÑO DE MASCOTA';
     }
-
 
     $HTML = '
 		<div class="header-search" style="background-image:url('.getTema().'/images/new/km-fondo-buscador.gif);">

@@ -122,6 +122,17 @@ jQuery(document).ready(function(){
         onmonthsToShow: [1, 1]
     });
 
+    jQuery(".km-select-custom-list").on('click', function (e) {
+	    if ( 
+	    		( e.offsetX >= ( parseFloat(jQuery(this).outerWidth()) - 30 ) ) &&
+	    		( e.offsetY <= 30 )
+	    	)
+	    {
+	        var obj = jQuery(".km-select-custom-list").css('display', 'none');
+	        var obj = jQuery(".km-select-background-click").css('display', 'none');
+	    }
+	});
+
 });
 
 function resizeMap(){

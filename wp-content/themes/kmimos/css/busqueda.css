@@ -82,3 +82,34 @@ h1.maps {
     display: block;
     padding-bottom: 5px;
 }
+
+.filtros_aplicados{
+    padding: 5px 10px;
+    background: rgba(255, 190, 95, 0.4);
+    color: #000;
+    box-shadow: 1px 1px 1px #939393;
+}
+
+.filtros_aplicados li {
+    padding: 3px 0px;
+}
+.items_filtros {
+    overflow: hidden;
+}
+.items_filtros{
+    padding-left: 10px;
+}
+.items_filtros div {
+    float: left;
+    width: 50%;
+}
+.pocos_resultados{
+    padding-right: 20px !important; 
+    font-size: 21px !important; 
+    text-align: justify; 
+    margin: 10px 0px;
+}
+
+.km-select-custom-list{
+    position: relative;
+}
