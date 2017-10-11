@@ -76,11 +76,10 @@
 	}else{
 		$CUIDADORES_STR = '
 		<div class="km-resultados-lista">
-			<div class="">
-				<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor ajusta los filtros de búsqueda, tus filtros actuales son:</h2>
-				'.get_filtros($busqueda).'
-			</div>
 			'.$CUIDADORES.'
+			<div class="">
+				<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor ajusta los filtros de búsqueda.</h2>
+			</div>
 		</div>';
 	}
 
