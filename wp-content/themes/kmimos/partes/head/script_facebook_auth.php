@@ -45,6 +45,7 @@ $HTML .= '
       FB.getLoginStatus(function(response) {
         if (response.status == "connected") {
           FB.api("/me", {fields: "first_name,last_name,email,name,id"}, function(response) {
+            
             var valid = social_verificar( "facebook", response.id );
                           console.log(valid);
 
