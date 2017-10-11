@@ -38,9 +38,8 @@ if ( !is_user_logged_in() ){
 	}				
 
 }
-
-?>
-
+/*
+$HTML = '
 <div id="popup-conoce-cuidador" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -50,9 +49,9 @@ if ( !is_user_logged_in() ){
 				<div>
 					<p>Para poder conocer al cuidador primero tienes que:</p>
 					<ol class="list-unstyled">
-						<li><?php echo $btn_login['icon']; ?> Haberte registrado en nuestro portal y haber <?php echo $btn_login['btn']; ?></li>
-						<li><?php echo $btn_perfil['icon']; ?> Completar todos los datos requeridos en <?php echo $btn_perfil['btn']; ?></li>
-						<li><?php echo $btn_mascota['icon']; ?> Completar tu <?php echo $btn_mascota['btn']; ?> en tu perfil</li>
+						<li>'.$btn_login['icon'].' Haberte registrado en nuestro portal y haber '.$btn_login['btn'].'</li>
+						<li>'.$btn_perfil['icon'].' Completar todos los datos requeridos en '.$btn_perfil['btn'].'</li>
+						<li>'.$btn_mascota['icon'].' Completar tu '.$btn_mascota['btn'].' en tu perfil</li>
 					</ol>
 				</div>
 			<?php if( count($mascotas) > 0 ){ ?>
@@ -110,9 +109,9 @@ if ( !is_user_logged_in() ){
 			                    <ul><?php
 									foreach ($mascotas as $mascota) { ?>
 			                            <li>
-		                                	<input type="checkbox" name="pet_ids[]" id="pet_<?php echo $mascota->ID; ?>" value="<?php echo $mascota->ID; ?>">
-			                                <label for="pet_<?php echo $mascota->ID; ?>">
-			                                	<?php echo $mascota->post_title; ?>
+		                                	<input type="checkbox" name="pet_ids[]" id="pet_'.$mascota->ID.'" value="'.$mascota->ID.'">
+			                                <label for="pet_'.$mascota->ID.'">
+			                                	'.$mascota->post_title.'
 			                               	</label>
 			                            </li> 
 			                        <?php } ?>
@@ -139,3 +138,5 @@ if ( !is_user_logged_in() ){
 		</div>
 	</div>
 </div>
+*/
+?>
