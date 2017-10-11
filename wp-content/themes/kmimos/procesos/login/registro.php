@@ -79,8 +79,17 @@
             }                  
         }
 
-        $sql = "
-            INSERT INTO wp_usermeta VALUES
+        $sql = " INSERT INTO wp_usermeta VALUES ";
+
+        if( $social_facebook_id != '' ){
+            $sql .= "(NULL, {$user_id}, 'facebook_auth_id', '{$social_facebook_id}'),";
+        }
+
+        if( $social_google_id != '' ){
+            $sql .= "(NULL, {$user_id}, 'google_auth_id', '{$social_google_id}'  ),";
+        }
+
+        $sql .= "
                 (NULL, {$user_id}, 'user_pass',           '{$password}'),
                 (NULL, {$user_id}, 'user_mobile',         '{$movil}'),
                 (NULL, {$user_id}, 'user_phone',          '{$movil}'),
@@ -91,6 +100,7 @@
                 (NULL, {$user_id}, 'name_photo',          '{$name_photo}'),
 
                 (NULL, {$user_id}, 'description',          ''),
+
 
                 (NULL, {$user_id}, 'nickname',            '{$email}'),
                 (NULL, {$user_id}, 'first_name',          '{$name}'),

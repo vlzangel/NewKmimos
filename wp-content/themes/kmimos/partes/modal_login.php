@@ -43,8 +43,14 @@ $datos = kmimos_get_info_syte();
 							<div class="bg-line"></div>
 						</div>
 						
+						<div class="alert alert-danger" style="
+			display:none;
+            -webkit-transition: All 1s; /* Safari */
+            transition: All 1s;
+			" 
+			data-error="auth"></div>
 
-						<a href="javascript:;" onClick="auth_facebook();" class="km-btn-fb">
+						<a href="#" onClick="auth_facebook();" class="km-btn-fb">
 							<img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">
 							 CONÉCTATE CON FACEBOOK
 						</a>
@@ -53,15 +59,6 @@ $datos = kmimos_get_info_syte();
 							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 							CONÉCTATE CON GOOGLE
 						</a>
-
-						<a href="#" class="hidden km-btn-fb" onclick="login_facebook();">
-							CONÉCTATE CON FACEBOOK
-						</a>
-						<a href="#" class="hidden km-btn-border" id="customBtn">
-							CONÉCTATE CON GOOGLE
-						</a>
-
-						
 						
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (55) 6892-2182</p>

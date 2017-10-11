@@ -231,7 +231,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					'age': campos[7],
 					'smoker': campos[8],
 					'referido': campos[9],
-					'img_profile': campos[10]};
+					'img_profile': campos[10],
+					'social_facebook_id': jQuery('#facebook_cliente_id').val(),
+					'social_google_id': jQuery('#google_cliente_id').val()
+				};
 
 				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
 

@@ -4,14 +4,15 @@
 	// Google Oauth
 	// *******************************
 	$HTML .= '
+
 		<script src="https://apis.google.com/js/api:client.js"></script>
 		<script>
 			var googleUser = {};
 			var startApp = function() {
-				gapi.load(\'auth2\', function(){
+				gapi.load("auth2", function(){
 					auth2 = gapi.auth2.init({
-						client_id: \'119129240685-fhsdkrcqqcpac4r07at7ms5k2mko3s0g.apps.googleusercontent.com\',
-						cookiepolicy: \'single_host_origin\',
+						client_id: "119129240685-fhsdkrcqqcpac4r07at7ms5k2mko3s0g.apps.googleusercontent.com",
+						cookiepolicy: "single_host_origin",
 					});
 
 				    var obj = document.getElementsByClassName("google_auth");
@@ -35,22 +36,22 @@
 				auth2.attachClickHandler(element, {},
 				    function(googleUser) {
 
-						jQuery(\'.social_google_id\').val( googleUser.getBasicProfile().getId() );
+						jQuery(".social_google_id").val( googleUser.getBasicProfile().getId() );
 
-				      	jQuery(\'.social_email\').val( googleUser.getBasicProfile().getEmail() );
-						jQuery(\'.social_email\').parent(\'div\').addClass(\'focused\');
+				      	jQuery(".social_email").val( googleUser.getBasicProfile().getEmail() );
+						jQuery(".social_email").parent("div").addClass("focused");
 						
 						var name = googleUser.getBasicProfile().getName().split(" ");
 						if( name.length > 0 ){
-					      	jQuery(\'.social_firstname\').val( name[0] );
-							jQuery(\'.social_firstname\').parent(\'div\').addClass(\'focused\');
+					      	jQuery(".social_firstname").val( name[0] );
+							jQuery(".social_firstname").parent("div").addClass("focused");
 						}
 						if( name.length > 1 ){
-					      	jQuery(\'.social_lastname\').val( name[1] );
-							jQuery(\'.social_lastname\').parent(\'div\').addClass(\'focused\');
+					      	jQuery(".social_lastname").val( name[1] );
+							jQuery(".social_lastname").parent("div").addClass("focused");
 					    }
 
-					    $(\'[data-target="social-next-step"]\').click();
+					    jQuery(\'[data-target="social-next-step"]\').click();
 
 				    }, function(error) {});
 			}
@@ -58,21 +59,23 @@
 				auth2.attachClickHandler(element, {},
 				    function(googleUser) {
 
-						jQuery(\'.social_google_id\').val( googleUser.getBasicProfile().getId() );
+						jQuery(".social_google_id").val( googleUser.getBasicProfile().getId() );
 
 				      	social_auth( googleUser.getBasicProfile().getId() );
 
 				    }, function(error) {});
 			}
 		</script>		
-	'; 
-	// ***********************************************
-	// Funciones en [ googleUser.GetBasicProfile ]
-	// ***********************************************
-	// getBasicProfile().getId()
-	// getBasicProfile().getName()
-	// getBasicProfile().getGivenName()
-	// getBasicProfile().getFamilyName()
-	// getBasicProfile().getImageUrl()
-	// getBasicProfile().getEmail()
+';
 
+	/***********************************************
+	Funciones en [ googleUser.GetBasicProfile ]
+	***********************************************/
+	/*
+	getBasicProfile().getId()
+	getBasicProfile().getName()
+	getBasicProfile().getGivenName()
+	getBasicProfile().getFamilyName()
+	getBasicProfile().getImageUrl()
+	getBasicProfile().getEmail()
+	*/
