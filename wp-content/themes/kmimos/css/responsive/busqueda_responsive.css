@@ -24,6 +24,9 @@
 	#listado li{
 	    width: 100%;
 	}
+	.items_filtros div {
+	    width: 100%;
+	}
 }
 
 @media (max-width: 350px){
