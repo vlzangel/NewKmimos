@@ -59,3 +59,21 @@ h1.maps {
 .km-resultados-lista .km-sellos {
     padding-top: 5px !important;
 }
+
+#mapa-close{
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 5px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.km-titulo-mapa{
+    display: none;
+}
+
+.btnOpenPopupMap{
+    border-radius: 0px !important;
+}

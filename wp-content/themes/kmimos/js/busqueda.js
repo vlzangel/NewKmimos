@@ -154,7 +154,8 @@ jQuery(window).scroll(function() {
 	}
 });
 jQuery('#mapa-close').on('click', function(){
-	jQuery(this).parent().css('right', '-100%');
+	jQuery("body").css("overflow", "auto");
+	jQuery(".km-caja-resultados .km-columna-der").fadeOut("fast");
 });
 
 jQuery(document).on('click', '.km-select-custom-button', function(){
@@ -220,12 +221,12 @@ function vlz_tipo_ubicacion(){
 
 jQuery(document).on("click", '.btnOpenPopupMap', function ( e ) {
 	e.preventDefault();
-
-	/*jQuery(".km-caja-resultados .km-columna-der").fadeIn("fast", function() {
+	jQuery("body").css("overflow", "hidden");
+	jQuery(".km-caja-resultados .km-columna-der").fadeIn("fast", function() {
 		google.maps.event.trigger(map, 'resize');
-  	});*/
-
-  	jQuery(".km-caja-resultados .km-columna-der").css("right", 0);
+		map.setZoom(4);
+    	map.setCenter( new google.maps.LatLng(23.634501, -102.552784) );
+  	});
 	
 });
 
@@ -237,7 +238,6 @@ function initMap() {
 		map = new google.maps.Map(document.getElementById("mapa"), {
 	        zoom: 4,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP,
-	        fullscreenControl: true,
 			scrollwheel: false
 	    });
 
