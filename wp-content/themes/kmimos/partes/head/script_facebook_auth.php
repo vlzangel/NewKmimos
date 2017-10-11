@@ -37,6 +37,8 @@ $HTML .= '
       FB.login(function(response) {
         if (response.authResponse) {
           KmimosAPI();
+        }else{
+          KmimosAPI();
         }
       }, {scope: "public_profile,email"});
     }
@@ -72,7 +74,6 @@ $HTML .= '
 
           });
           FB.logout();
-
         }
       });
 
