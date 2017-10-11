@@ -89,9 +89,9 @@ $HTML .='
 					<div class="km-box-form">
 						<div class="content-placeholder">
 
-							<input type="text" id="facebook_cliente_id" name="facebook_auth_id" 
-								class="social_facebook_id " value="">
-							<input type="text" id="google_cliente_id" name="google_auth_id" 
+							<input type="hidden" id="facebook_cliente_id" name="facebook_auth_id" 
+								class="social_facebook_id" value="">
+							<input type="hidden" id="google_cliente_id" name="google_auth_id" 
 								class="social_google_id " value="">
 
 							<div class="img_registro_cliente" style="position: relative">
