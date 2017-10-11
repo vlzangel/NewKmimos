@@ -27,24 +27,7 @@
 	$condiciones = "";
 
     /* Filtros por fechas */
-	    if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
-
-	    	$checkin = date('Y/m/d', strtotime(str_replace("/", "-", $checkin)) );
-	    	$checkout = date('Y/m/d', strtotime(str_replace("/", "-", $checkout)) );
-
-	    	$condiciones .= " AND ( 
-	    		SELECT count(*) 
-	    			FROM cupos 
-	    			WHERE cupos.cuidador = cuidadores.user_id 
-	    				AND cupos.fecha >= '{$checkin}' 
-	    				AND cupos.fecha <= '{$checkout}' 
-	    				AND ( cupos.full = 1 OR cupos.no_disponible = 1 )
-	    		) = 0"; 
-	   	}
-    /* Fin Filtros por fechas */
-
-    /* Filtros por servicios y tamaños */
-	    if( isset($servicios) ){ 
+	    if( isset($servicios) ){
 
 	    	$servicios_extras = array(
 		        "hospedaje",
@@ -53,11 +36,21 @@
 		    	"adiestramiento"
 		    );
 
-	    	foreach ($servicios as $key => $value) { 
-	    		if( $value != "hospedaje" ){ 
-	    			$condiciones .= " AND adicionales LIKE '%".$value."%'";
+	    	$servicios_buscados .= "(";
+			foreach ($servicios as $key => $value) {
 
-	    			if( in_array($value, $servicios_extras) ){ 
+				if( in_array($value, $servicios_extras) ){ 
+					if( $servicios_buscados == "(" ){
+						$servicios_buscados .= "cupos.tipo LIKE '%{$value}%' ";
+					}else{
+						$servicios_buscados .= " OR cupos.tipo LIKE '%{$value}%' ";
+					}
+				}
+				
+				if( $value != "hospedaje" ){
+					$condiciones .= " AND adicionales LIKE '%".$value."%'";
+
+					if( in_array($value, $servicios_extras) ){ 
 						if( strpos($value,'adiestramiento') === false){
 							$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
 						}else{
@@ -69,9 +62,39 @@
 
 						}
 					}
-	    		} 
-	    	} 
-	    }
+
+				}
+			}
+	    	$servicios_buscados .= " ) AND";
+		}
+
+		if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
+
+			$checkin = date("Y-m-d", strtotime( str_replace("/", "-", $checkin) ) );
+			$checkout = date("Y-m-d", strtotime( str_replace("/", "-", $checkout) ) );
+
+	    	$condiciones .= "
+	    		AND ( 
+	    			SELECT 
+	    				count(*) 
+	    			FROM 
+	    				cupos 
+	    			WHERE 
+	    				cupos.cuidador = cuidadores.user_id AND 
+	    				{$servicios_buscados} 
+	    				cupos.fecha >= '{$checkin}' AND 
+	    				cupos.fecha <= '{$checkout}' AND (
+	    					cupos.full = 1 OR 
+	    					cupos.no_disponible = 1
+	    				) 
+	    		) = 0"; 
+	   	}
+
+
+    /* Fin Filtros por fechas */
+
+    /* Filtros por servicios y tamaños */
+	  
 	    if( isset($tamanos) ){
 	    	foreach ($tamanos as $key => $value) {
 	     		$condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; 
@@ -139,7 +162,7 @@
 	    	$estados != "" && 
 	    	$municipios != "" 
 	    ){
-	        $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
+	       /* $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
 	        $latitud  			= $coordenadas["referencia"]->lat;
 	        $longitud 			= $coordenadas["referencia"]->lng;
 	        $distancia 			= calcular_rango_de_busqueda($coordenadas["norte"], $coordenadas["sur"]);
@@ -148,7 +171,11 @@
 	        $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
 	        $FILTRO_UBICACION 	= "HAVING DISTANCIA < ".($distancia+0);
 	        $ubicaciones_inner  = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-	        $ubicaciones_filtro = "AND ( ( $ubicacion ) OR ( {$calculo_distancia} <= ".($distancia+0)." ) )";       
+	        $ubicaciones_filtro = "AND ( ( $ubicacion ) OR ( {$calculo_distancia} <= ".($distancia+0)." ) )"; */  
+
+
+            $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
+            $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$estados."=%' AND ubi.municipios LIKE '%=".$municipios."=%'  )";    
 
 	    }else{ 
 	        if( 

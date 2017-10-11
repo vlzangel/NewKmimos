@@ -123,22 +123,14 @@ jQuery(document).ready(function(){
     });
 
     jQuery(".km-select-custom-list").on('click', function (e) {
-
 	    if ( 
 	    		( e.offsetX >= ( parseFloat(jQuery(this).outerWidth()) - 30 ) ) &&
 	    		( e.offsetY <= 30 )
 	    	)
 	    {
-	        console.log("En la X");
 	        var obj = jQuery(".km-select-custom-list").css('display', 'none');
 	        var obj = jQuery(".km-select-background-click").css('display', 'none');
 	    }
-
-	    /*console.log("jQuery(this).offset().left: "+jQuery(this).offset().left);
-	    console.log("jQuery(this).outerWidth: "+jQuery(this).outerWidth());
-	    console.log(jQuery(this));
-
-	    console.log(e);*/
 	});
 
 });
