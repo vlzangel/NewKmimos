@@ -5270,7 +5270,7 @@ h1.maps {
 }
 @media (min-width:992px) {
     .km-caja-resultados .km-columna-der {
-        display:block!important
+        display: block !important;
     }
 }
 
@@ -5285,15 +5285,15 @@ h1.maps {
     	display: block!important;
     }
     .km-caja-resultados .km-columna-der {
-        display:none;
         position:fixed;
-        z-index:999;
+        z-index: 99999999999999999999999;
         top:0;
-        left:0;
-        right:0;
+        right: 0;
         bottom:0;
         background:#fff;
-        padding:10px
+        padding:10px;
+        display: none;
+
     }
     .km-caja-resultados .km-columna-der .closeMap {
         display:block;
@@ -5301,7 +5301,7 @@ h1.maps {
     }
     .km-caja-resultados .km-columna-der .km-mapa, .km-caja-resultados .km-columna-der .km-mapa #map {
         position:relative;
-        height:100%!important;
+        height: calc( 100% - 45px ) !important;
     }
 }
 @media (max-width:1200px) {
@@ -7488,7 +7488,7 @@ button.close {
 
 .km-titulo-mapa{
     font-size: 12px;
-    line-height: 32px;
+    line-height: 20px;
 }
 
 

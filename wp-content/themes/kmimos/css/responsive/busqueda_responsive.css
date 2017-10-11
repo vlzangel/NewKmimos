@@ -7,6 +7,10 @@
         position: initial!important; 
         padding: 0px!important; 
     }
+
+    .km-titulo-mapa{
+    	display: block;
+    }
 }
 
 @media (max-width: 768px){
