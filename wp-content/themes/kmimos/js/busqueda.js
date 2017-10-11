@@ -124,8 +124,21 @@ jQuery(document).ready(function(){
 
 });
 
-function mapStatic( e ){
-	var w = jQuery(e);
+function resizeMap(){
+	if( jQuery( "body" ).width() > 975 && jQuery( "#mapa" ).hasClass("resize") ){
+		google.maps.event.trigger(map, 'resize');
+		map.setZoom(4);
+    	map.setCenter( new google.maps.LatLng(23.634501, -102.552784) );
+    	jQuery( "#mapa" ).removeClass("resize");
+
+    	jQuery(".km-caja-resultados .km-columna-der").fadeOut("fast");
+
+    	mapStatic();
+	}
+}
+
+function mapStatic(){
+	var w = jQuery(window);
 	if ( w.width() > 991 ) {
 		var scrollTop = w.scrollTop();
 		var mapPrin = jQuery(".km-caja-resultados");
@@ -149,13 +162,15 @@ jQuery(window).scroll(function() {
 
 	if( pines != undefined ){
 		if( pines.length > 1 ){
-			mapStatic( this );
+			mapStatic();
 		}
 	}
 });
 jQuery('#mapa-close').on('click', function(){
 	jQuery("body").css("overflow", "auto");
-	jQuery(".km-caja-resultados .km-columna-der").fadeOut("fast");
+	jQuery(".km-caja-resultados .km-columna-der").fadeOut("fast", function(){
+		
+	});
 });
 
 jQuery(document).on('click', '.km-select-custom-button', function(){
@@ -222,10 +237,13 @@ function vlz_tipo_ubicacion(){
 jQuery(document).on("click", '.btnOpenPopupMap', function ( e ) {
 	e.preventDefault();
 	jQuery("body").css("overflow", "hidden");
+	jQuery(".km-caja-resultados .km-columna-der").removeClass("mapAbsolute");
+	jQuery(".km-caja-resultados .km-columna-der").css("top", 0);
 	jQuery(".km-caja-resultados .km-columna-der").fadeIn("fast", function() {
 		google.maps.event.trigger(map, 'resize');
 		map.setZoom(4);
     	map.setCenter( new google.maps.LatLng(23.634501, -102.552784) );
+    	jQuery( "#mapa" ).addClass("resize");
   	});
 	
 });

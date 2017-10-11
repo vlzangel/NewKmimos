@@ -23,7 +23,7 @@ $(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e){
 
 
 	jQuery( '#popup-conoce-cuidador' ).modal('hide');
-	jQuery( $(this).data('target') ).modal('show');
+	jQuery( jQuery(this).data('target') ).modal('show');
 });
 
 
@@ -50,6 +50,10 @@ function menu(){
 
 jQuery(window).resize(function() {
 	menu();
+
+	if( typeof resizeMap !== 'undefined' ){
+		resizeMap();
+	}
 });
 
 jQuery(window).scroll(function() {
