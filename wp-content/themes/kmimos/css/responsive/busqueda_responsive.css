@@ -11,6 +11,9 @@
     .km-titulo-mapa{
     	display: block;
     }
+    .km-leyenda{
+    	display: none;
+    }
 }
 
 @media (max-width: 768px){

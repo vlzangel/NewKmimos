@@ -274,8 +274,9 @@
 				</div>
 				<div class="km-columna-der">
 					<div class="km-titulo-mapa">
-						UBICACIÓN DE RESULTADOS EN MAPA
+						UBICACIÓN DE RESULTADOS EN MAPA - <strong>Pica en las patitas para ver los cuidadores</strong>
 					</div>
+					<strong class="km-leyenda">Pica en las patitas para ver los cuidadores</strong>
 					<div id="mapa" class="km-mapa"></div>
 					<div id="mapa-close"><i class="fa fa-close"></i></div>
 				</div>

@@ -7,7 +7,7 @@
 }
 
 #mapa{
-    height: 400px;
+    height: 375px;
 }
 
 h1 a{
@@ -76,4 +76,9 @@ h1.maps {
 
 .btnOpenPopupMap{
     border-radius: 0px !important;
+}
+
+.km-leyenda{
+    display: block;
+    padding-bottom: 5px;
 }
