@@ -109,3 +109,7 @@ h1.maps {
     text-align: justify; 
     margin: 10px 0px;
 }
+
+.km-select-custom-list{
+    position: relative;
+}
