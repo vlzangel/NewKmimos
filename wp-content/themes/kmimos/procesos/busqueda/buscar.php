@@ -36,7 +36,7 @@
 		    	"adiestramiento"
 		    );
 
-	    	$servicios_buscados .= "(";
+	    	$servicios_buscados = "";
 			foreach ($servicios as $key => $value) {
 
 				if( in_array($value, $servicios_extras) ){ 
@@ -65,7 +65,10 @@
 
 				}
 			}
-	    	$servicios_buscados .= " ) AND";
+	    	
+	    	if( $servicios_buscados != "" ){
+	    		$servicios_buscados .= "( ".$servicios_buscados." ) AND";
+	    	}
 		}
 
 		if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
@@ -80,7 +83,7 @@
 	    			FROM 
 	    				cupos 
 	    			WHERE 
-	    				cupos.cuidador = cuidadores.user_id AND 
+	    				cupos.cuidador = cuidadores.user_id AND
 	    				{$servicios_buscados} 
 	    				cupos.fecha >= '{$checkin}' AND 
 	    				cupos.fecha <= '{$checkout}' AND (
