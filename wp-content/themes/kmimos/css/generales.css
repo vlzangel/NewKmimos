@@ -1,4 +1,4 @@
-/* COMMON STYLES */
+﻿/* COMMON STYLES */
 body {
     font-family: 'Gotham-Pro-Regular', arial, sans-serif;
     font-size: 13px;
@@ -604,24 +604,43 @@ section {
             left: -100%;
             width: 100%;
             height: 100%;
+            -webkit-transition: left 1s; /* Safari */
+            transition: left 1s;
         }
         .container_menu{
             margin-top:15px;
         }
         .menu_movil_interno {
-            position: absolute;
+            position: relative;
             left: 0;
             background: #7dd1c4;
             width: 100%;
             max-width: 300px;
             padding: 15px 15px 15px 15px;
-            height: 100%;
+            height: 110%;
             top: 0px;
             border-top: solid 1px #CCC;
             color: #FFF;
             text-transform: uppercase;
+            overflow-y:auto;
+
         }
 
+        .menu_movil_close{
+            font-size:25px!important;
+            color:#fff!important;
+            position:relative!important;
+            right:5px!important;
+            background: transparent;
+            border: 0px;
+            float: right;
+            text-align: right;
+        }
+        .initial_menu_movil{
+            position: initial!important;
+            top: initial!important;
+            left: initial!important;
+        }
         .menu_movil_interno ul > li > a {
             padding: 10px 10px 10px 40px !important;
             color: #FFF !important;
@@ -636,9 +655,6 @@ section {
             padding-top: 40px;
         }
 
-        .menu_movil_interno {
-            overflow-y: auto;
-        }
         .barra_buscar_movil i {
             position: absolute;
             left: 20px;

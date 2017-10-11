@@ -105,20 +105,8 @@
 				<div id="menu_movil" class="hidden-sm hidden-md hidden-lg">
 
 					<div class="menu_movil_interno">
-						<div class="cerrar_menu_movil clearfix" 
-						style="
-							position: initial!important;
-						    top: initial!important;
-						    left: initial!important;
-					    ">
-							<button type="button" class="close" 
-								style="
-									font-size:25px;
-									color:#fff!important;
-									position:relative!important;
-									right:5px!important;
-								" 
-								aria-hidden="true">×</button>
+						<div class="cerrar_menu_movil clearfix initial_menu_movil">
+							<button type="button" class="menu_movil_close" aria-hidden="true">×</button>
 						</div>
 						<div class="clearfix container_menu">
 							<form class="barra_buscar_movil" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
@@ -163,20 +151,8 @@
 					<div id="menu_movil" class="hidden-sm hidden-md hidden-lg">
 
 						<div class="menu_movil_interno">
-							<div class="cerrar_menu_movil clearfix" 
-							style="
-								position: initial!important;
-							    top: initial!important;
-							    left: initial!important;
-						    ">
-								<button type="button" class="close" 
-									style="
-										font-size:25px;
-										color:#fff!important;
-										position:relative!important;
-										right:5px!important;
-									" 
-									aria-hidden="true">×</button>
+							<div class="cerrar_menu_movil initial_menu_movil clearfix">
+								<button type="button" class="menu_movil_close" aria-hidden="true">×</button>
 							</div>
 
 							<div class="clearfix container_menu">

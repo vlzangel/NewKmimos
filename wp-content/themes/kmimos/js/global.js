@@ -28,7 +28,7 @@ jQuery( document ).ready(function() {
 
     jQuery("#ver_menu").on("click", function(e){
         if( jQuery("#menu_movil").css("left") == "0px" ){
-            jQuery("#menu_movil").css("left", "-100%");
+            jQuery("#menu_movil").css("left", "-110%");
             block_scroll_body(true);
             visible_boton_mapa(true);
         }else{
@@ -39,14 +39,14 @@ jQuery( document ).ready(function() {
     });
 
     jQuery(".cerrar_menu_movil").on("click", function(e){
-        jQuery("#menu_movil").css("left", "-100%");
+        jQuery("#menu_movil").css("left", "-110%");
         block_scroll_body(true);
         visible_boton_mapa(true);
     });
 
     jQuery('#menu_movil').on("click", function(e) {
         if ( e.target.id == "menu_movil" ) {
-            jQuery("#menu_movil").css("left", "-100%");
+            jQuery("#menu_movil").css("left", "-110%");
             block_scroll_body(true);
             visible_boton_mapa(true);
         };
