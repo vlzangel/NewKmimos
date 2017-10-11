@@ -5301,7 +5301,7 @@ h1.maps {
     }
     .km-caja-resultados .km-columna-der .km-mapa, .km-caja-resultados .km-columna-der .km-mapa #map {
         position:relative;
-        height: calc( 100% - 30px ) !important;
+        height: calc( 100% - 45px ) !important;
     }
 }
 @media (max-width:1200px) {
@@ -7488,7 +7488,7 @@ button.close {
 
 .km-titulo-mapa{
     font-size: 12px;
-    line-height: 32px;
+    line-height: 20px;
 }
 
 
