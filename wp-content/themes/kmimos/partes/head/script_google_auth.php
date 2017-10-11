@@ -35,24 +35,31 @@
 			function attachSignin(element) {
 				auth2.attachClickHandler(element, {},
 				    function(googleUser) {
+				    	var valid = social_verificar( "google", googleUser.getBasicProfile().getId() );
 
-						jQuery(".social_google_id").val( googleUser.getBasicProfile().getId() );
+				    	if( valid ){
+							jQuery(".social_google_id").val( googleUser.getBasicProfile().getId() );
 
-				      	jQuery(".social_email").val( googleUser.getBasicProfile().getEmail() );
-						jQuery(".social_email").parent("div").addClass("focused");
-						
-						var name = googleUser.getBasicProfile().getName().split(" ");
-						if( name.length > 0 ){
-					      	jQuery(".social_firstname").val( name[0] );
-							jQuery(".social_firstname").parent("div").addClass("focused");
+					      	jQuery(".social_email").val( googleUser.getBasicProfile().getEmail() );
+							jQuery(".social_email").parent("div").addClass("focused");
+							
+							var name = googleUser.getBasicProfile().getName().split(" ");
+							if( name.length > 0 ){
+						      	jQuery(".social_firstname").val( name[0] );
+								jQuery(".social_firstname").parent("div").addClass("focused");
+							}
+							if( name.length > 1 ){
+						      	jQuery(".social_lastname").val( name[1] );
+								jQuery(".social_lastname").parent("div").addClass("focused");
+						    }
+
+						    jQuery(\'[data-target="social-next-step"]\').click();
+						}else{
+							jQuery(".social_google_id").val( "" );
+					      	jQuery(".social_email").val( "" );
+					      	jQuery(".social_firstname").val( "" );
+					      	jQuery(".social_lastname").val( "" );
 						}
-						if( name.length > 1 ){
-					      	jQuery(".social_lastname").val( name[1] );
-							jQuery(".social_lastname").parent("div").addClass("focused");
-					    }
-
-					    jQuery(\'[data-target="social-next-step"]\').click();
-
 				    }, function(error) {});
 			}
 			function attachSignon(element) {

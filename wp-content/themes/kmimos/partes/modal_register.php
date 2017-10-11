@@ -35,6 +35,14 @@ $HTML .='
 					<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 					REGISTRARME CON GOOGLE
 				</a>
+			
+				<div class="alert alert-danger" style="
+			display:none;
+            -webkit-transition: All 1s; /* Safari */
+            transition: All 1s;
+			" 
+			data-error="auth"></div>
+
 				<div class="line-o">
 					<p class="text-line">o</p>
 					<div class="bg-line"></div>
