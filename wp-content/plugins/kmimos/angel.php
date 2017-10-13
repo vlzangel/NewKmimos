@@ -702,7 +702,10 @@
                         .updated,
                         .wc_plugin_upgrade_notice,
                         .update-message,
-                        .menu-icon-dashboard .wp-submenu{
+                        .menu-icon-dashboard .wp-submenu,
+                        .plugins .active.update td,
+                        .plugins .active.update th, 
+                        tr.active.update+tr.plugin-update-tr .plugin-update{
                             display: none !important;
                         }                  
                     ";
