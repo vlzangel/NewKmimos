@@ -86,3 +86,9 @@
     background: #0ab7a1;
     color: #fff;
 }
+
+@media all and (max-width: 768px){
+    #mapa{
+        height: 93%!important;
+    }
+}

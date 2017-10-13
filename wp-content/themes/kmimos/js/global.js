@@ -86,6 +86,11 @@ jQuery( document ).ready(function() {
 jQuery(window).on('resize', function(){
     var w = jQuery(window).width();
     if( w < 768 ){
+
+        if( jQuery(".km-map-content").hasClass('showMap') ){
+            jQuery(".km-map-content").addClass("showMap");
+        }
+
         var show = jQuery('#menu_movil').css('left');
         if( show == '0px' ){
             block_scroll_body(false);

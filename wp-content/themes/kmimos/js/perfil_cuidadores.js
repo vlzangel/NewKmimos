@@ -39,8 +39,8 @@ function comentarios(pagina = 0){
 		comentario += '				<div class="col-xs-2">';
 		comentario += '					<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
 		comentario += '				</div>';
-		comentario += '				<div class="col-xs-10">';
-		comentario += '					<p>'+comentarios_cuidador[pagina]["contenido"]+'</p>';
+		comentario += '				<div class="col-xs-9 pull-right">';
+		comentario += '					<p>'+ comentarios_cuidador[pagina]["contenido"]+'</p>';
 		comentario += '					<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
 		comentario += '					<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
 		comentario += '				</div>';

@@ -3,12 +3,12 @@
 //$conn = new mysqli($host, $user, $pass, $db);
 //$db = new db($conn);
 
-	$load = dirname(__DIR__,5).'/wp-load.php';
+	$load = realpath('../../../../../wp-load.php');
 	if(file_exists($load)){
 		include_once($load);
 	}
 
-	include_once(dirname(__DIR__,5).'/vlz_config.php');
+	include_once(realpath('../../../../../vlz_config.php'));
 	include_once(dirname(__DIR__).'/funciones/db.php');
 	include_once(dirname(__DIR__).'/funciones/generales.php');
 	extract($_POST);
