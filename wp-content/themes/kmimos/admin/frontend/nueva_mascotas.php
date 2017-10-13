@@ -32,22 +32,22 @@
     $si_no = array('no','si');
     $esterilizado_str = "";
     for ( $i=0; $i<2; $i++ ) {
-        $esterilizado_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
+        $esterilizado_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $sociable_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $sociable_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
+        $sociable_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_humans_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $aggresive_humans_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
+        $aggresive_humans_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_pets_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $aggresive_pets_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
+        $aggresive_pets_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $razas = $razas_str;

@@ -47,17 +47,10 @@
 	        foreach($args as $reservas){
 	        	if( count($reservas['reservas']) > 0 ){
 
-	        		if( $reservas['titulo'] == "Reservas pendientes por pagar en tienda por conveniencia" ){
-		                $table.='
-		                	<h1 class="titulo titulo_pequenio">'.$reservas['titulo'].'</h1>
-		                	<div class="vlz_tabla_box">
-		                ';
-	        		}else{
-		                $table.='
-		                	<h1 class="titulo">'.$reservas['titulo'].'</h1>
-		                	<div class="vlz_tabla_box">
-		                ';
-	        		}
+	        		$table.='
+	                	<h1 class="titulo">'.$reservas['titulo'].'</h1>
+	                	<div class="vlz_tabla_box">
+	                ';
 
 	                foreach ($reservas['reservas'] as $reserva) {
 
