@@ -2,7 +2,7 @@
 
     wp_enqueue_style('perfil_cuidador', getTema()."/css/perfil_cuidador.css", array(), '1.0.0');
 	wp_enqueue_style('perfil_cuidador_responsive', getTema()."/css/responsive/perfil_cuidador_responsive.css", array(), '1.0.0');
-
+	wp_enqueue_script('buscar_home', getTema()."/js/busqueda.js", array(), '1.0.0');
 	wp_enqueue_script('perfil_cuidadores', getTema()."/js/perfil_cuidadores.js", array("jquery"), '1.0.0');
 
 	get_header();
@@ -166,8 +166,14 @@
 	$precios_hospedaje = unserialize($cuidador->hospedaje);
 	$precios_adicionales = unserialize($cuidador->adicionales);
 
+ 
+
 	$id_hospedaje = 0;
-	$servicios = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' ");
+	$servicios = $wpdb->get_results("
+		SELECT * 
+			FROM wp_posts 
+			WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' 
+		");
 	$productos = '<div class="row">';
 	foreach ($servicios as $servicio) {
 		$tipo = $wpdb->get_var("
@@ -186,12 +192,13 @@
         $tamanos_precios = array();
         $precios = $precios_hospedaje;
         if( $tipo != "hospedaje" ){
-        	$precios = $precios_adicionales[$tipo];
+        	$precios = $precios_adicionales[ str_replace('-', '_',  $tipo) ];
         }else{
         	$id_hospedaje = $servicio->ID;
         }
 
         $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' ");// AND post_status = 'publish'
+
         foreach ($tamanos_servicio as $tamano ) {
         	$activo = false;
         	if( isset($busqueda["servicios"]) ){
@@ -415,7 +422,7 @@
 							</div>
 						</div>
 						<div class="km-ficha-datos hidden-sm hidden-md hidden-lg">
-							<a href="#" class="km-btn-primary show-map-mobile">VER UBICACIÓN EN MAPA</a>
+							<a href="javascript:;" class="km-btn-primary show-map-mobile">VER UBICACIÓN EN MAPA</a>
 						</div>
 						<p style="text-align: justify;">'.$descripcion.'</p>
 						'.$galeria.'

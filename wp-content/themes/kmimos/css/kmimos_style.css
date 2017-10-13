@@ -1619,7 +1619,7 @@ div#ubicacion_list div:hover {
 	position: relative;
 }
 .km-ficha-info-cuidador .col-sm-6 {
-	margin-top: 80px;
+	margin-top: 100px;
 }
 .km-ficha-info-cuidador .km-ranking {
 	display: inline-block;
@@ -1643,7 +1643,7 @@ div#ubicacion_list div:hover {
 	width: 100%;
 }
 .km-ficha-info {
-	margin-top: 20px;
+	margin-top: 0px;
 }
 .km-tit-cuidador {
 	font-family: 'Gotham-Pro-Bold';
@@ -2378,7 +2378,7 @@ footer input:focus{
 		text-align: center;
 	}
 	.km-ficha-info-cuidador .col-sm-6 {
-		margin-top: 30px;
+		margin-top: 10px!important;
 	}
 	.km-ficha-bg {
 	    height: 170px;
@@ -3989,7 +3989,7 @@ button.close {
     position:relative
 }
 .km-ficha-info-cuidador .col-sm-6 {
-    margin-top:80px
+    margin-top:100px
 }
 .km-ficha-icon .km-ranking-cuidador, .km-ficha-info-cuidador .km-ranking {
     display:inline-block
@@ -4018,7 +4018,7 @@ button.close {
     width:100%
 }
 .km-ficha-info {
-    margin-top:20px
+    margin-top:0px
 }
 .km-tit-cuidador {
     font-family:Gotham-Pro-Bold;
@@ -5612,7 +5612,7 @@ h1.maps {
         text-align:center
     }
     .km-ficha-info-cuidador .col-sm-6 {
-        margin-top:30px
+        margin-top:10px!important;
     }
     .km-ficha-bg {
         height:170px
@@ -7596,7 +7596,7 @@ button.close {
     position: relative;
 }
 .km-ficha-info-cuidador .col-sm-6 {
-    margin-top: 80px;
+    margin-top: 100px;
 }
 .km-ficha-info-cuidador .km-ranking, .km-ficha-icon .km-ranking-cuidador {
     display: inline-block;
@@ -7625,7 +7625,7 @@ button.close {
     width: 100%;
 }
 .km-ficha-info {
-    margin-top: 20px;
+    margin-top: 0px;
 }
 .km-tit-cuidador {
     font-family: 'Gotham-Pro-Bold';
@@ -7846,11 +7846,11 @@ a.km-btn-comentario {
     display: inline-block;
 }
 .km-desc-ficha p:first-child {
-    font-size: 9px;
+    font-size: 11px;
     margin: 0;
 }
 .km-desc-ficha p:last-child {
-    font-size: 15px;
+    font-size: 9px;
     margin: 0;
 }
 .km-costo {
