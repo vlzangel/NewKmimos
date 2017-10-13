@@ -40,8 +40,8 @@
 			foreach ($servicios as $key => $value) {
 
 				if( in_array($value, $servicios_extras) ){ 
-					if( $servicios_buscados == "(" ){
-						$servicios_buscados .= "cupos.tipo LIKE '%{$value}%' ";
+					if( $servicios_buscados == "" ){
+						$servicios_buscados .= " cupos.tipo LIKE '%{$value}%' ";
 					}else{
 						$servicios_buscados .= " OR cupos.tipo LIKE '%{$value}%' ";
 					}
@@ -67,7 +67,7 @@
 			}
 	    	
 	    	if( $servicios_buscados != "" ){
-	    		$servicios_buscados .= "( ".$servicios_buscados." ) AND";
+	    		$servicios_buscados = "( ".$servicios_buscados." ) AND";
 	    	}
 		}
 
