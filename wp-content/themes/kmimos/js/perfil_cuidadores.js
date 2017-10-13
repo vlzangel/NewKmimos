@@ -111,7 +111,8 @@ jQuery( document ).ready(function() {
 	GetComments();
 
     jQuery("#btn_reservar").on("click", function(e){
-        perfil_login();
+        show_login_modal("login");
+//        perfil_login();
     });
 
     jQuery("#servicios").on("click", function(e){
