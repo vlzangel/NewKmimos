@@ -15,17 +15,20 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
     e.preventDefault();
 
     if( conocer_es_valido() ){
-        var a = HOME+"procesos/cuidador/conocer-cuidador.php";
-        jQuery(this).html('<i style="font-size: initial;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> ENVIANDO DATOS...');
-        jQuery.post( a, jQuery("#conoce_cuidador").serialize(), function( data ) {
-            console.log(data);
-            if( data != "" ){
-                jQuery('#popup-conoce-cuidador').modal('show');
-                jQuery('.popup-iniciar-sesion-1').css('display', 'none');
-                jQuery('.popup-iniciar-sesion-2').css('display', 'block');
-            }
-            jQuery("#btn_enviar_conocer").html('ENVIAR SOLICITUD');
-        });
+        if( !jQuery("#btn_enviar_conocer").hasClass("disabled") ){
+            jQuery("#btn_enviar_conocer").addClass("disabled");
+            var a = HOME+"procesos/cuidador/conocer-cuidador.php";
+            jQuery(this).html('<i style="font-size: initial;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> ENVIANDO DATOS...');
+            jQuery.post( a, jQuery("#conoce_cuidador").serialize(), function( data ) {
+                if( data != "" ){
+                    jQuery('#popup-conoce-cuidador').modal('show');
+                    jQuery('.popup-iniciar-sesion-1').css('display', 'none');
+                    jQuery('.popup-iniciar-sesion-2').css('display', 'block');
+                }
+                jQuery("#btn_enviar_conocer").html('ENVIAR SOLICITUD');
+                jQuery("#btn_enviar_conocer").removeClass("disabled");
+            });
+        }
     }
 });
 

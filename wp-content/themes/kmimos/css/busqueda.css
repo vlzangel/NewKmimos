@@ -150,3 +150,11 @@ h1.maps {
     max-width: 500px;
     margin: 0px auto 10px;
 }
+
+.km-btn-basic {
+    text-decoration: none !important;
+}
+.disabled {
+    cursor: default;
+    background: rgba(0, 0, 0, .2) !important;
+}
