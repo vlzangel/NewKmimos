@@ -346,7 +346,7 @@ section {
     .vlz_img_portada{ position: relative; height: 150px; overflow: hidden; border: solid 1px #ccc; background: #EEE; }
     .vlz_img_portada_fondo{ position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 50; background-size: cover; background-position: center; background-repeat: no-repeat; background-color: transparent; filter: blur(2px); transition: all .5s ease; }
     .vlz_img_portada_normal{ position: absolute; top: 0px; left: 0px; width: 100%; height: calc( 100% - 25px ); z-index: 100; background-size: contain; background-position: center; background-repeat: no-repeat; background-color: transparent; margin: 10px 0px; transition: all .5s ease; }
-    .vlz_cambiar_portada{ position: absolute; bottom: 10px; right: 10px; width: auto; padding: 10px; font-size: 16px; color: #FFF; background: #23475e; border: solid 1px #fff; z-index: 200; }
+    .vlz_cambiar_portada{ position: absolute; bottom: 10px; right: 10px; width: auto; padding: 5px 10px; font-size: 16px; color: #FFF; background: #23475e; border: solid 1px #fff; z-index: 200; }
     .vlz_cambiar_portada input{ position: absolute; top: -24px; left: 0px; width: 100%; height: 167%; z-index: 100; opacity: 0; cursor: pointer; }
     .vlz_img_portada_cargando{
         display: none;

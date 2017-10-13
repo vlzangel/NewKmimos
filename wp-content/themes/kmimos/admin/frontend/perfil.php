@@ -22,7 +22,8 @@
                 <div class="vlz_img_portada_normal vlz_rotar" style="background-image: url('.$avatar.');"></div>
                 <div class="vlz_img_portada_cargando vlz_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
                 <div class="vlz_cambiar_portada">
-                    Cargar
+                    <i class="fa fa-camera" aria-hidden="true"></i>
+                    Cargar Foto
                     <input type="file" id="portada" name="xportada" accept="image/*" />
                 </div>
                 <div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
