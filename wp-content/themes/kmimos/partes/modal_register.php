@@ -68,8 +68,9 @@ $HTML .='
 
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> (55) 61780320</p></div>
-					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> (55) 61780320</p></div>
+					<div class="col-xs-12 col-sm-4"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> (01) 800 056 4667</p></div>
 				</div>
 
 				<hr>
@@ -134,13 +135,13 @@ $HTML .='
 							</div>
 							<div class="label-placeholder">
 								<label>Teléfono</label>
-								<input type="text" name="movil" id="movil" class="input-label-placeholder" data-charset="num" maxlength="11">
+								<input type="text" name="movil" id="movil" class="input-label-placeholder" data-charset="num" maxlength="10">
 							</div>
 							<div class="km-datos-mascota">
 								<select class="km-datos-mascota-opcion bg-select-custom" name="genero" id="genero">
 									<option value="">Género</option>
-									<option value="hombre">Hombre</option>
-									<option value="mujer">Mujer</option>
+									<option value="hombre">Masculino</option>
+									<option value="mujer">Femenino</option>
 								</select>
 							</div>
 							<div class="km-datos-mascota">
@@ -176,7 +177,15 @@ $HTML .='
 				<a href="#" id="siguiente" class="km-btn-correo km-btn-popup-registrarte-nuevo-correo">SIGUIENTE</a>
 
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
-				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> (55) 61780320</p></div>
+					<div class="col-xs-12 col-sm-4"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> (01) 800 056 4667</p></div>
+				</div>
+
+				<!-- p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p -->
+				
 				<hr>
 				<div class="row">
 					<div class="col-xs-5">
@@ -279,7 +288,7 @@ $HTML .='
 				</div>
 				<div class="km-registro-checkbox">
 					<div class="km-registro-checkbox-opcion">
-						<p>Mascota Estilizada</p>
+						<p>Mascota Esterilizada</p>
 						<div class="km-check-1">
 							<input type="checkbox" value="0" id="km-check-1" name="estilizada" />
 							<label for="km-check-1"></label>

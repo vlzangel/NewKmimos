@@ -151,14 +151,14 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery("#movil").after('<span name="sp-movil">Debe ingresar su movil</span>').css('color','red');
 				jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
 				break;
-			case 11:
+			case 10:
 					jQuery("#movil").css('color','green');
 					jQuery("#movil").parent('div').css('color','green');
 					jQuery('[name="sp-movil"]').remove();
 				break;
 			default:
 				jQuery("#movil").parent('div').css('color','red');
-				jQuery("#movil").after('<span name="sp-movil">Su movil debe contener 11 dígitos</span>').css('color','red');
+				jQuery("#movil").after('<span name="sp-movil">Su movil debe contener 10 dígitos</span>').css('color','red');
 				jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
 		}
 	});
