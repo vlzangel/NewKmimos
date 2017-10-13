@@ -395,9 +395,9 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			/*console.log( data );*/
-			location.href = RAIZ+"/finalizar/"+data.order_id;
-		}, "json"
+			console.log( data );
+			// location.href = RAIZ+"/finalizar/"+data.order_id;
+		} // , "json"
 	).fail(function(e) {
     	console.log( e );
     	if( e.status == 500 ){

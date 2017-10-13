@@ -31,7 +31,7 @@
 
 		$hoy = date("Y-m-d");
 
-		$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= NOW()");
+		$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= '".date("Y-m-d", time())."'" );
 
 		$sql = "
 	        SELECT
