@@ -126,6 +126,7 @@
 	.datos_de_contacto ul li {
 	    width: 100%;
 	    margin-bottom: 5px;
+    	font-size: 10px;
 	}
 	.main .vlz_tabla .vlz_img {
 	    width: 70px;

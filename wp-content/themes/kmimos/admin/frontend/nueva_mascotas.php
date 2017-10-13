@@ -1,7 +1,7 @@
 <?php
 	$pet_id = 0;
     $current_pet = kmimos_get_pet_info($pet_id);
-    $photo_pet = "/wp-content/themes/pointfinder/images/noimg.png";
+    $photo_pet = getTema()."/images/popups/registro-cuidador-foto.svg";
 
     $tipos = kmimos_get_types_of_pets();
     $tipos_str = "";

@@ -336,3 +336,14 @@ a.vlz_accion.vlz_pdf {
 .datos_de_contacto ul li img{
     padding-right: 5px;
 }
+
+.datos_de_contacto span {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    text-align: center;
+}
+
+.datos_de_contacto span img {
+    height: 100%;
+}
