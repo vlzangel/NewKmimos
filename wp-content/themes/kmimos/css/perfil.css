@@ -22,6 +22,7 @@
 .menu_perfil ul li a{
 	display: block;
     padding: 10px 0px;
+    text-decoration: none;
 }
 .menu_perfil ul li a i:before{
 	margin-right: 5px;

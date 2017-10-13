@@ -1,7 +1,7 @@
 <?php
 	$pet_id = 0;
     $current_pet = kmimos_get_pet_info($pet_id);
-    $photo_pet = "/wp-content/themes/pointfinder/images/noimg.png";
+    $photo_pet = getTema()."/images/popups/registro-cuidador-foto.svg";
 
     $tipos = kmimos_get_types_of_pets();
     $tipos_str = "";
@@ -32,22 +32,22 @@
     $si_no = array('no','si');
     $esterilizado_str = "";
     for ( $i=0; $i<2; $i++ ) {
-        $esterilizado_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
+        $esterilizado_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $sociable_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $sociable_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
+        $sociable_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_humans_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $aggresive_humans_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
+        $aggresive_humans_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_pets_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $aggresive_pets_str .= '<option value="'.$i.'">'.$si_no[$i].'</option>';
+        $aggresive_pets_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $razas = $razas_str;

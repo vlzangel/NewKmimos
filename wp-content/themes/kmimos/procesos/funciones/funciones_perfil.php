@@ -47,17 +47,10 @@
 	        foreach($args as $reservas){
 	        	if( count($reservas['reservas']) > 0 ){
 
-	        		if( $reservas['titulo'] == "Reservas pendientes por pagar en tienda por conveniencia" ){
-		                $table.='
-		                	<h1 class="titulo titulo_pequenio">'.$reservas['titulo'].'</h1>
-		                	<div class="vlz_tabla_box">
-		                ';
-	        		}else{
-		                $table.='
-		                	<h1 class="titulo">'.$reservas['titulo'].'</h1>
-		                	<div class="vlz_tabla_box">
-		                ';
-	        		}
+	        		$table.='
+	                	<h1 class="titulo">'.$reservas['titulo'].'</h1>
+	                	<div class="vlz_tabla_box">
+	                ';
 
 	                foreach ($reservas['reservas'] as $reserva) {
 
@@ -177,13 +170,13 @@
 	                				<div class='datos_de_contacto'>
 	                					<ul>
 		                					<li>
-		                						<img src='".getTema()."/images/new/icon/km-redes/icon-wsp.svg' style='height: 25px;' /> +52 (55) 6892 2182
+		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-wsp.svg' style='' /></span> +52 (55) 6892 2182
 		                					</li>
 		                					<li>
-		                						<img src='".getTema()."/images/new/icon/km-redes/icon-cel.svg' style='height: 22px;' /> (01) 800 056 4667
+		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-cel.svg' style='' /></span> (01) 800 056 4667
 		                					</li>
 		                					<li>
-		                						<img src='".getTema()."/images/new/icon/km-redes/icon-mail.svg' style='height: 20px;' /> contactomex@kmimos.la
+		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-mail.svg' style='height: 13px;' /></span> contactomex@kmimos.la
 		                					</li>
 		                				</ul>
 	                				</div>

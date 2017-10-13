@@ -55,6 +55,9 @@
                     ";
                 break;
 	        }
+
+            echo kmimos_style($styles = array("no_update"));
+
 	    }
 	}
 
@@ -690,6 +693,32 @@
                             font-weight: 600 !important;
                             font-size: 10px !important;
                         }                    
+                    ";
+                }
+
+                if( in_array("no_update", $styles) ){
+                    $salida .= "
+                        .update-nag,
+                        .updated,
+                        .wc_plugin_upgrade_notice,
+                        .update-message,
+                        .menu-icon-dashboard .wp-submenu,
+                        .upgrade {
+                            display: none !important;
+                        }   
+
+                        .plugins .active.update td,
+                        .plugins .active.update th, 
+                        tr.active.update+tr.plugin-update-tr .plugin-update,
+                        .plugins .active td, .plugins .active th{
+                            background: #FFF !important;
+                        }
+
+                        .plugins .active.update th.check-column, .plugins .active.update+.plugin-update-tr .plugin-update,
+                        .plugin-update-tr.active td, .plugins .active th.check-column {
+                            border-left: 4px solid #ffffff !important;
+                        }    
+
                     ";
                 }
 

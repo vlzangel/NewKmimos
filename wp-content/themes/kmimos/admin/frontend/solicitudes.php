@@ -95,15 +95,14 @@
 	            $Confirmar = get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1';
 	            $Cancelar = get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0';
 
-	            $caregiver->Cuando = explode("-", $caregiver->Cuando);
-	            $caregiver->Cuando = $caregiver->Cuando[2]."/".$caregiver->Cuando[1]."/".$caregiver->Cuando[0];
+	            $caregiver->Cuando = date("d/m/Y", strtotime( str_replace("/", "-", $caregiver->Cuando) ));
 
 	            $caregiver->Hora = strtotime($caregiver->Hora);
 	            $caregiver->Hora = date("H:i", $caregiver->Hora);
 
 	            $detalle = array(
-	            	"desde" => date("d/m/Y", strtotime($_metas["service_start"][0])),
-	            	"hasta" => date("d/m/Y", strtotime($_metas["service_end"][0])),
+	            	"desde" => date("d/m/Y", strtotime( str_replace("/", "-", $_metas["service_start"][0]) )),
+	            	"hasta" => date("d/m/Y", strtotime( str_replace("/", "-", $_metas["service_end"][0]) )),
 	            	"donde" => $caregiver->Donde,
 
 	            	"telefono" => $telefono,

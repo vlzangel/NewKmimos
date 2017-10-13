@@ -81,6 +81,10 @@ jQuery( document ).ready(function() {
             });
         }
     });
+
+    jQuery(".km-contenedor-favorito").on("click", function(e){
+        e.preventDefault();
+    });
 });
 
 jQuery(window).on('resize', function(){

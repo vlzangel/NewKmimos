@@ -92,6 +92,48 @@
 	.vlz_solo_movil {
 	    margin-bottom: 10px;
 	}
+
+
+	/* Solicitudes */
+
+	.desglose_columna .item_desglose div,
+	.desglose_columna .item_desglose span
+	{
+	    font-size: 12px;
+	}
+	.desglose_columna {
+	    width: 100%;
+	    padding: 0px 0px 10px 10px;
+	}
+	.desglose_titulo {
+	    font-size: 13px;
+	    padding-bottom: 5px;
+	}
+	.main .vlz_tabla .vlz_tabla_inferior .desglose_reserva {
+	    margin-bottom: 0px;
+	}
+	.info_solicitud .info_titulo {
+	    font-size: 13px;
+	}
+	.info_solicitud > ul li {
+	    font-size: 24px;
+	    line-height: 15px;
+	}
+	.info_solicitud > ul li span {
+	    font-size: 10px;
+	    line-height: 10px !important;
+	}
+	.datos_de_contacto ul li {
+	    width: 100%;
+	    margin-bottom: 5px;
+    	font-size: 10px;
+	}
+	.main .vlz_tabla .vlz_img {
+	    width: 70px;
+	}
+	.main .vlz_tabla.vlz_desplegado .vlz_tabla_superior {
+	    width: calc( 100% - 105px );
+	}
 }
 
 @media (max-width: 400px){
