@@ -27,6 +27,16 @@ function initMap() {
 })(document,"script");
 
 
+jQuery(document).on("click", '.show-map-mobile', function ( e ) {
+	e.preventDefault();
+	jQuery(".km-map-content").addClass("showMap");
+	initMap();
+});
+
+jQuery(document).on("click", '.km-map-content .km-map-close', function ( e ) {
+	e.preventDefault();
+	jQuery(".km-map-content").removeClass("showMap");
+});
 
 var comentarios_cuidador = [];
 function comentarios(pagina = 0){

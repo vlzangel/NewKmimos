@@ -2,7 +2,7 @@
 
     wp_enqueue_style('perfil_cuidador', getTema()."/css/perfil_cuidador.css", array(), '1.0.0');
 	wp_enqueue_style('perfil_cuidador_responsive', getTema()."/css/responsive/perfil_cuidador_responsive.css", array(), '1.0.0');
-	wp_enqueue_script('buscar_home', getTema()."/js/busqueda.js", array(), '1.0.0');
+
 	wp_enqueue_script('perfil_cuidadores', getTema()."/js/perfil_cuidadores.js", array("jquery"), '1.0.0');
 
 	get_header();
