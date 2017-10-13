@@ -306,6 +306,20 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
+	jQuery("#tipo_mascota").on('change',function(){
+		jQuery('#raza_mascota').html('<option value="">Cargando razas</option>');
+		switch(jQuery("#tipo_mascota").val()) {
+			case "0":
+				jQuery('#raza_mascota').html('<option value="">Cargando razas</option>');
+				break;
+			case "2605":
+				listarAjax();
+				break;
+			case "2608":
+				jQuery('#raza_mascota').html('<option value="1">Gatos</option>');
+				break;
+		}
+	});
 	jQuery("#tipo_mascota").blur(function(){
 		
 		switch(jQuery("#tipo_mascota").val()) {
@@ -561,7 +575,7 @@ function km_cliente_validar( fields ){
 function listarAjax() {
 	__ajax(HOME+"/procesos/login/mascota.php", "")
 	.done(function(info){
-		jQuery('#raza_mascota').html(info).fadeIn();
+		jQuery('#raza_mascota').html(info);
 	});
 }
 

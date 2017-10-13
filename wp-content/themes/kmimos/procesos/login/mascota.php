@@ -1,7 +1,11 @@
 <?php  
 	include(__DIR__."../../../../../../vlz_config.php");
-	$q = intval($_GET['q']);
-	$conn = new mysqli($host, $user, $pass, $db);
+	
+    $q = 0;
+    if(isset($_GET['q'])){
+        $q = intval($_GET['q']);
+	}
+    $conn = new mysqli($host, $user, $pass, $db);
 	
     $errores = array();
 
