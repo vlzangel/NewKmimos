@@ -4,6 +4,9 @@ var globalData = "";
 $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	e.preventDefault();
 
+	jQuery('[data-error="auth"]').fadeOut("fast");
+
+	
 	jQuery(".popup-registrarte-1").fadeIn("fast");
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');

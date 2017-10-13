@@ -48,28 +48,22 @@ $HTML .= '
         if (response.status == "connected") {
           FB.api("/me", {fields: "first_name,last_name,email,name,id"}, function(response) {
             
-            var valid = social_verificar( "facebook", response.id );
-                          console.log(valid);
+            var valid = social_verificar( "facebook", response.id, response.email );
 
             if( valid ){
-
               jQuery( ".social_facebook_id" ).val( response.id );
-
               jQuery( ".social_firstname" ).val( response.first_name );
               jQuery( ".social_firstname").parent("div").addClass("focused");
-
               jQuery( ".social_lastname" ).val( response.last_name );
               jQuery( ".social_lastname").parent("div").addClass("focused");
-
               jQuery( ".social_email" ).val( response.email );
               jQuery( ".social_email").parent("div").addClass("focused");
-                        
               jQuery( \'[data-target="social-next-step"]\' ).click();
             }else{
               jQuery(".social_google_id").val( "" );
-                  jQuery(".social_email").val( "" );
-                  jQuery(".social_firstname").val( "" );
-                  jQuery(".social_lastname").val( "" );
+              jQuery(".social_email").val( "" );
+              jQuery(".social_firstname").val( "" );
+              jQuery(".social_lastname").val( "" );
             }
 
           });
