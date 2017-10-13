@@ -79,6 +79,9 @@
                     ";
                 $db->query( utf8_decode( $sql ) );
 
+                $direccion = utf8_decode( $direccion );
+                $descripcion = utf8_decode( $descripcion );
+
                 $cuidador_update = "
                     UPDATE cuidadores 
                     SET 
@@ -91,7 +94,7 @@
                         portada = {$foto}
                     WHERE email = '{$email}'
                 ";
-                $r = $db->query($cuidador_update);
+                $r = $db->query( $cuidador_update );
                 $error = array(
                     "error" => "NO",
                     "msg" => '',
