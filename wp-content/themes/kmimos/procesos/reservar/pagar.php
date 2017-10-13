@@ -13,6 +13,8 @@
 
 	$xdb = $db;
 	$db = new db( new mysqli($host, $user, $pass, $db) );
+	
+	include_once("../funciones/generales.php");
 
 	extract($_POST);
 
