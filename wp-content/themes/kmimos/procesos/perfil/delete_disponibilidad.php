@@ -18,8 +18,6 @@
             $value["to"] = date("Y-m-d", strtotime( str_replace("/", "-", $value["to"])));
         }
 
-        echo "( ".$value["from"]." != ".$inicio." && ".$value["to"]." != ".$fin." ) \n";
-
         if( $value["from"] == $inicio && $value["to"] == $fin ){ }else{
 
             $temp = array(
@@ -40,7 +38,4 @@
     
     $rangos = serialize($rangos_2);
     $db->query(" UPDATE wp_postmeta SET meta_value = '{$rangos}' WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ");
-
-
-    print_r( $rangos_2 );
 ?>

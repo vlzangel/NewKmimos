@@ -96,15 +96,6 @@ jQuery(".vlz_cancelar").on("click", function(e){
         var ini = jQuery(this).attr("data-inicio");
         var fin = jQuery(this).attr("data-fin");
 
-        console.log(
-            {
-                servicio: id,
-                inicio: ini,
-                fin: fin,
-                accion: "delete_disponibilidad"
-            }
-        );
-
         jQuery.post(
             URL_PROCESOS_PERFIL, 
             {
@@ -114,8 +105,7 @@ jQuery(".vlz_cancelar").on("click", function(e){
                 accion: "delete_disponibilidad"
             },
             function(data){
-                 console.log( data );
-                // location.reload();
+                location.reload();
             }
         );
 
