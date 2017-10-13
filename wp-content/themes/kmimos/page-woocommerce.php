@@ -388,7 +388,7 @@
 
 							<div class="km-cupones">
 								<div>
-									<input type="text" id="cupon">
+									<input type="text" id="cupon" placeholder="Ingresa tu cupón">
 								</div>
 								<div class="">
 									<span id="cupon_btn">Cup&oacute;n</span>
