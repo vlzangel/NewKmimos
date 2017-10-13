@@ -113,3 +113,11 @@ h1.maps {
 .km-select-custom-list{
     position: relative;
 }
+
+#conoce_cuidador .km-datos-mascota {
+    line-height: 12px !important;
+}
+
+#conoce_cuidador small{
+    padding: 5px 0px 0px;
+}

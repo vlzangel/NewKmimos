@@ -1,16 +1,7 @@
 <?php
-
+	
 	    include(realpath("../../../../../vlz_config.php"));
 	    include(realpath("../../../../../wp-load.php"));
-
- 
-
-
-		$_SESSION['solicitud'] = array(
-			"meeting_when" 	=> $_POST['meeting_when'],
-			"meeting_time" 	=> $_POST['meeting_time'],
-			"id" 			=> $_POST['post_id']
-		);
 
 	    /*
 	        Data General
@@ -41,9 +32,7 @@
 	            }
 	        </style>
 	    ";
-	    //jaurgeui
-	    $post_id    = $_POST['post_id'];
-	    $pet_ids    = $_POST['pet_ids'];
+
 	    $user_id = $current_user->ID;
 
 	    $cuidador_post   = get_post($post_id);
@@ -100,6 +89,8 @@
 	        'post_modified' =>  date("Y-m-d H:i:s")
 	    );
 
+	    $_POST['service_start']
+	    $_POST['service_end']
 
 		//VALIDATE TOKEN
 		$request_id = 0;
