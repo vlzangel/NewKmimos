@@ -114,6 +114,7 @@ jQuery(".vlz_cancelar").on("click", function(e){
                 accion: "delete_disponibilidad"
             },
             function(data){
+                 console.log( data );
                 // location.reload();
             }
         );
