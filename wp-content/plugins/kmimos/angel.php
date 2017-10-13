@@ -55,6 +55,9 @@
                     ";
                 break;
 	        }
+
+            echo kmimos_style($styles = array("no_update"));
+
 	    }
 	}
 
@@ -690,6 +693,18 @@
                             font-weight: 600 !important;
                             font-size: 10px !important;
                         }                    
+                    ";
+                }
+
+                if( in_array("no_update", $styles) ){
+                    $salida .= "
+                        .update-nag,
+                        .updated,
+                        .wc_plugin_upgrade_notice,
+                        .update-message,
+                        .menu-icon-dashboard .wp-submenu{
+                            display: none !important;
+                        }                  
                     ";
                 }
 
