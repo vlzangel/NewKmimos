@@ -1,7 +1,10 @@
 <?php
 
-    $rangos = $db->get_var(" SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ", "meta_value");
+    $rangos = $db->get_var(" SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ");
     $rangos = unserialize($rangos);
+
+    $inicio = date("Y-m-d", strtotime( str_replace("/", "-", $inicio)));
+    $fin = date("Y-m-d", strtotime( str_replace("/", "-", $fin)));
 
     $db->query("UPDATE cupos SET no_disponible = 0 WHERE servicio = '{$servicio}' AND fecha >= '{$inicio}' AND fecha <= '{$fin}'");
 
@@ -21,11 +24,11 @@
 
             $rangos_2[] = $temp;
 
-            $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio}' AND fecha >= '{$value["from"]}' AND fecha <= '{$value["to"]}'");
-
         }
 
     }
+
+    $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio}' AND fecha >= '{$value["from"]}' AND fecha <= '{$value["to"]}'");
     
     $rangos = serialize($rangos_2);
     $db->query(" UPDATE wp_postmeta SET meta_value = '{$rangos}' WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ");
