@@ -20,7 +20,7 @@
 
         echo "( ".$value["from"]." != ".$inicio." && ".$value["to"]." != ".$fin." ) \n";
 
-        if( $value["from"] != $inicio && $value["to"] != $fin ){
+        if( $value["from"] == $inicio && $value["to"] == $fin ){ }else{
 
             $temp = array(
                 "type" => "custom",
