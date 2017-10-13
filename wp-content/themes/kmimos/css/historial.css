@@ -295,7 +295,7 @@ a.vlz_accion.vlz_pdf {
 }
 
 .desglose_columna .item_desglose {
-    padding: 3px;
+    padding: 0px 3px 0px;
 }
 
 .info_solicitud .info_titulo {
