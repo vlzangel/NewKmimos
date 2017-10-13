@@ -3,35 +3,11 @@
 	    include(realpath("../../../../../vlz_config.php"));
 	    include(realpath("../../../../../wp-load.php"));
 
+	    extract($_POST);
+
 	    /*
 	        Data General
 	    */
-
-	    $estilos = "
-	        <style>
-		        table {
-			        border: 0;
-			        background-color: #FFF !important;
-			    }
-			    td {
-			        border: 0 !important;
-			    }
-
-	            p{
-	                margin: 5px 0px;
-	                text-align: justify;
-	            }
-	            table {
-	                margin-left: 10px;
-	            }
-	            h2{
-	                margin: 10px 0px 0px;
-	            }
-	            td{
-	                padding: 0px !important;
-	            }
-	        </style>
-	    ";
 
 	    $user_id = $current_user->ID;
 
@@ -50,6 +26,7 @@
 
 	    $datos_cliente = get_user_meta($user_id);
 
+	    $cliente_web  = $datos_cliente['first_name'][0];
 	    $cliente  = $datos_cliente['first_name'][0].' '.$datos_cliente['last_name'][0];
 
 	    $telf_cliente = $datos_cliente["user_phone"][0];
@@ -89,8 +66,9 @@
 	        'post_modified' =>  date("Y-m-d H:i:s")
 	    );
 
-	    $_POST['service_start']
-	    $_POST['service_end']
+	    // $_POST['meeting_when'] = date("d/m/Y", strtotime( str_replace("/", "-", $_POST['meeting_when']) ) );
+	    // $_POST['service_start'] = date("d/m/Y", strtotime( str_replace("/", "-", $_POST['service_start']) ) );
+	    // $_POST['service_end'] = date("d/m/Y", strtotime( str_replace("/", "-", $_POST['service_end']) ) );
 
 		//VALIDATE TOKEN
 		$request_id = 0;
@@ -107,7 +85,7 @@
 			'meeting_when'          => $_POST['meeting_when'],
 			'meeting_time'          => $_POST['meeting_time'],
 			'meeting_where'         => $_POST['meeting_where'],
-			'pet_ids'               => $pet_ids,
+			'pet_ids'               => serialize($pet_ids),
 			'service_start'         => $_POST['service_start'],
 			'service_end'           => $_POST['service_end'],
 		);
@@ -272,7 +250,7 @@
 			<table cellspacing=0 cellpadding=0>
 				<tr>
 					<td style="width: 70px;"><strong>Fecha: </strong></td>
-					<td>'.date('d/m/Y', strtotime($_POST['meeting_when'])).'</td>
+					<td>'.$_POST['meeting_when'].'</td>
 				</tr>
 				<tr>
 					<td><strong>Hora: </strong></td>
@@ -288,11 +266,11 @@
 			<table cellspacing=0 cellpadding=0>
 				<tr>
 					<td style="width: 70px;"><strong>Inicio: </strong></td>
-					<td>'.date('d/m/Y', strtotime($_POST['service_start'])).'</td>
+					<td>'.$_POST['service_start'].'</td>
 				</tr>
 				<tr>
 					<td><strong>Fin: </strong></td>
-					<td>'.date('d/m/Y', strtotime($_POST['service_end'])).'</td>
+					<td>'.$_POST['service_end'].'</td>
 				</tr>
 			</table>
 			'.$mascotas.'
@@ -381,7 +359,7 @@
 			<table cellspacing=0 cellpadding=0>
 				<tr>
 					<td style="width: 70px;"><strong>Fecha: </strong></td>
-					<td>'.date('d/m/Y', strtotime($_POST['meeting_when'])).'</td>
+					<td>'.$_POST['meeting_when'].'</td>
 				</tr>
 				<tr>
 					<td><strong>Hora: </strong></td>
@@ -397,11 +375,11 @@
 			<table cellspacing=0 cellpadding=0>
 				<tr>
 					<td style="width: 70px;"><strong>Inicio: </strong></td>
-					<td>'.date('d/m/Y', strtotime($_POST['service_start'])).'</td>
+					<td>'.$_POST['service_start'].'</td>
 				</tr>
 				<tr>
 					<td><strong>Fin: </strong></td>
-					<td>'.date('d/m/Y', strtotime($_POST['service_end'])).'</td>
+					<td>'.$_POST['service_end'].'</td>
 				</tr>
 			</table>
 
@@ -482,7 +460,7 @@
 			<table cellspacing=0 cellpadding=0>
 				<tr>
 					<td style="width: 70px;"><strong>Fecha: </strong></td>
-					<td>'.date('d/m/Y', strtotime($_POST['meeting_when'])).'</td>
+					<td>'.$_POST['meeting_when'].'</td>
 				</tr>
 				<tr>
 					<td><strong>Hora: </strong></td>
@@ -498,11 +476,11 @@
 			<table cellspacing=0 cellpadding=0>
 				<tr>
 					<td style="width: 70px;"><strong>Inicio: </strong></td>
-					<td>'.date('d/m/Y', strtotime($_POST['service_start'])).'</td>
+					<td>'.$_POST['service_start'].'</td>
 				</tr>
 				<tr>
 					<td><strong>Fin: </strong></td>
-					<td>'.date('d/m/Y', strtotime($_POST['service_end'])).'</td>
+					<td>'.$_POST['service_end'].'</td>
 				</tr>
 			</table>
 
@@ -526,16 +504,12 @@
 			return $info["email"];
 		});
 
-		// Testing
-		// $email_cuidador = 'italococchini@gmail.com';
-		// $email_cliente = 'italococchini@gmail.com';
-
 		wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
 		wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
-		// kmimos_mails_administradores_new($asunto, $mensaje_admin);
+		kmimos_mails_administradores_new($asunto, $mensaje_admin);
 
 		$_SESSION['token_mail'] = $xmensaje_cliente;
 
-		echo $request_id;
+		echo $cliente_web;
 
 

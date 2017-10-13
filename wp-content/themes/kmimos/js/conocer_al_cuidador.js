@@ -1,7 +1,14 @@
 jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(e){
+
+    jQuery('.popup-iniciar-sesion-1 input').val("");
+    jQuery('#meeting_time option.vacio').attr("selected", "selected");
+    jQuery('.popup-iniciar-sesion-1 #pet_conoce input').prop("checked", false);
+
     jQuery( '#modal-name-cuidador' ).html( jQuery(this).data('name') );
-    jQuery( '[name="post_id"]' ).html( jQuery(this).data('id') );
+    jQuery( '[name="post_id"]' ).val( jQuery(this).data('id') );
     jQuery( jQuery(this).data('target') ).modal('show');
+    jQuery('.popup-iniciar-sesion-2').css('display', 'none');
+    jQuery('.popup-iniciar-sesion-1').css('display', 'block');
 });
 
 jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
@@ -12,8 +19,10 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
         jQuery(this).html('<i style="font-size: initial;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> ENVIANDO DATOS...');
         jQuery.post( a, jQuery("#conoce_cuidador").serialize(), function( data ) {
             console.log(data);
-            if( data > 0 ){
+            if( data != "" ){
                 jQuery('#popup-conoce-cuidador').modal('show');
+                jQuery('.popup-iniciar-sesion-1').css('display', 'none');
+                jQuery('.popup-iniciar-sesion-2').css('display', 'block');
             }
             jQuery("#btn_enviar_conocer").html('ENVIAR SOLICITUD');
         });

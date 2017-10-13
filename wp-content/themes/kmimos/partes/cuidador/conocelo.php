@@ -46,7 +46,7 @@ $HTML_CONOCER = '
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<div class="popup-iniciar-sesion-1">
 				<p class="popup-tit">Solicitud para conocer a <span id="modal-name-cuidador"></span></p>
-				<div>
+				<div class="pre_requisitos">
 					<p>Para poder conocer al cuidador primero tienes que:</p>
 					<ol class="list-unstyled">
 						<li>'.$btn_login['icon'].' Haberte registrado en nuestro portal y haber '.$btn_login['btn'].'</li>
@@ -70,7 +70,7 @@ $HTML_CONOCER = '
 								</div>
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion" data-charset="all" id="meeting_time" name="meeting_time">
-										<option value="">¿A qué hora te convendría la reunión?</option>
+										<option value="" class="vacio">¿A qué hora te convendría la reunión?</option>
 			                        	<option value="07:00:00" data-id="7">07:00  a.m.</option>
 			                        	<option value="07:30:00" data-id="7.5">07:30  a.m.</option>
 			                        	<option value="08:00:00" data-id="8">08:00  a.m.</option>
@@ -135,6 +135,18 @@ $HTML_CONOCER = '
 						</div>
 					</form>';
 				} $HTML_CONOCER .= '
+			</div>
+			<div class="popup-iniciar-sesion-2" style="display: none;">
+				<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
+				<br>
+				<h2>
+					¡Genial Ángel'.get_user_meta($id_user, "first_name", true).'!<br>
+					Solicitud Enviada Exitosamente
+				</h2>
+				<div>
+					'.$pdf.'
+					<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/solicitudes/">VER MIS SOLICITUDES</a>
+				</div>
 			</div>
 		</div>
 	</div>
