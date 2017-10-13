@@ -132,7 +132,8 @@
 
 	      	$cant_imgs = count($imagenes);
 	      	if( $cant_imgs > 0 ){
-	      		$items = array(); $home = get_home_url()."/";
+	      		$items = array(); 
+	      		$home = get_home_url()."/";
 	      		foreach ($imagenes as $value) {
 	      			$items[] = "
 	      				<div class='slide' data-scale='small' data-position='top'>
@@ -140,16 +141,16 @@
 	      					<div class='vlz_item_imagen' style='background-image: url(".$home.$value.");'></div>
 	      				</div>
 	      			";
+
 	      		}
 	      		$galeria = '
 	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
-						<div class="km-galeria-cuidador">
-							<div class="km-galeria-cuidador-slider">
-								'.implode("", $items).'
-							</div>
+					<div class="km-galeria-cuidador">
+						<div class="km-galeria-cuidador-slider">
+							'.implode("", $items).'
 						</div>
+					</div>
 	      		'.
-
 	      		"
 	      			<div class='vlz_modal_galeria' onclick='vlz_galeria_cerrar()'>
 	      				<div class='vlz_modal_galeria_interna'></div>
@@ -238,11 +239,12 @@
 	if(is_user_logged_in()){
 		include('partes/seleccion_boton_reserva.php');
 	}else{
-		$BOTON_RESERVAR .= "
-		<a href='#'
-			id='btn_reservar'
-			class='km-btn-secondary' 
-		>RESERVAR</a>";
+		$BOTON_RESERVAR .= '
+		<a href="javascript:;"
+			id="btn_reservar"
+			data-target="#popup-iniciar-sesion"
+			class="km-btn-secondary" 
+		>RESERVAR</a>';
 	}
 
  	$HTML .= '
@@ -464,5 +466,6 @@
 		</div>
 	</div>
 </div>
+
 
 <?php get_footer(); ?>
