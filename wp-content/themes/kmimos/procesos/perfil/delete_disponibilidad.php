@@ -15,10 +15,9 @@
 
     foreach ($rangos as $key => $value) {
 
-        $value["from"] = date("Y-m-d", strtotime( str_replace("/", "-", $value["from"])));
-        $value["to"] = date("Y-m-d", strtotime( str_replace("/", "-", $value["to"])));
-
-        if( $value["from"] != $inicio && $value["to"] != $fin ){
+        if( 
+            ( $value["from"] != $inicio && $value["to"] != $fin ) || 
+            ( str_replace("/", "-", $value["from"]) != $inicio && str_replace("/", "-", $value["to"]) != $fin ) ){
 
             $temp = array(
                 "type" => "custom",
