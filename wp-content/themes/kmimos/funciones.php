@@ -317,7 +317,7 @@
 		$adicionales = array(
 			"bano" => "BAÑO Y SECADO",
 			"corte" => "CORTE DE UÑAS Y PELO",
-			"limpieza_dental" => "LIMPIEA DENTAL",
+			"limpieza_dental" => "LIMPIEZA DENTAL",
 			"acupuntura" => "ACUPUNTURA",
 			"visita_al_veterinario" => "VISITA AL VETERINARIO"
 		);
