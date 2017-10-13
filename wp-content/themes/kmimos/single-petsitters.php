@@ -468,4 +468,6 @@
 </div>
 
 
+<?php global $margin_extra_footer; ?>
+<?php $margin_extra_footer = "footer-petsitter"; ?>
 <?php get_footer(); ?>

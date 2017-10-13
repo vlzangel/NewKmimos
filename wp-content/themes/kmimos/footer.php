@@ -1,8 +1,10 @@
 <?php
 $datos = kmimos_get_info_syte();
+global $margin_extra_footer;
+
 $HTML = '
         <!-- SECCIÓN FOOTER -->
-        <footer>
+        <footer class="'.$margin_extra_footer.'">
             <div class="container">
                 <div class="row">
 

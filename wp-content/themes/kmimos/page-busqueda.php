@@ -286,12 +286,12 @@
 		</div>
 		<a href="#" class="km-btn-primary btnOpenPopup btnOpenPopupMap">VER UBICACIÓN EN MAPA</a>
 		<script type="text/javascript" src="'.getTema().'/js/markerclusterer.js"></script>
-		<script type="text/javascript" src="'.getTema().'/js/oms.min.js"></script>
+		<script type="text/javascript" src="'.getTema().'/js/oms.min.js"></script>	
     ';
     include ('partes/cuidador/conocelo.php');
 	echo comprimir_styles($HTML);
 
-
-
+	global $margin_extra_footer;
+	$margin_extra_footer = "footer-busqueda";
     get_footer(); 
 ?>
