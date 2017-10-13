@@ -15,6 +15,8 @@
 
     foreach ($rangos as $key => $value) {
 
+        echo "( ".$value["from"]." != ".$inicio." && ".$value["to"]." != ".$fin." ) ||  ( ".str_replace("/", "-", $value["from"])." != ".$inicio." && ".str_replace("/", "-", $value["to"])." != ".$fin." )\n";
+
         if( 
             ( $value["from"] != $inicio && $value["to"] != $fin ) || 
             ( str_replace("/", "-", $value["from"]) != $inicio && str_replace("/", "-", $value["to"]) != $fin ) ){
