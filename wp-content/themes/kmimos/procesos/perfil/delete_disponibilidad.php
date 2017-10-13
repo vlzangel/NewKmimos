@@ -15,11 +15,15 @@
 
     foreach ($rangos as $key => $value) {
 
-        echo "( ".$value["from"]." != ".$inicio." && ".$value["to"]." != ".$fin." ) ||  ( ".str_replace("/", "-", $value["from"])." != ".$inicio." && ".str_replace("/", "-", $value["to"])." != ".$fin." )\n";
+        $formato = explode("/", $value["from"]);
+        if( count($formato) > 0 ){
+            $value["from"] = date("Y-m-d", strtotime( str_replace("/", "-", $value["from"])));
+            $value["to"] = date("Y-m-d", strtotime( str_replace("/", "-", $value["to"])));
+        }
 
-        if( 
-            ( $value["from"] != $inicio && $value["to"] != $fin ) || 
-            ( str_replace("/", "-", $value["from"]) != $inicio && str_replace("/", "-", $value["to"]) != $fin ) ){
+        echo "( ".$value["from"]." != ".$inicio." && ".$value["to"]." != ".$fin." ) \n";
+
+        if( $value["from"] != $inicio && $value["to"] != $fin ){
 
             $temp = array(
                 "type" => "custom",
