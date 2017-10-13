@@ -3,6 +3,9 @@
     $rangos = $db->get_var(" SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ");
     $rangos = unserialize($rangos);
 
+    print_r( $_POST );
+    print_r( $rangos );
+
     $inicio = date("Y-m-d", strtotime( str_replace("/", "-", $inicio)));
     $fin = date("Y-m-d", strtotime( str_replace("/", "-", $fin)));
 
