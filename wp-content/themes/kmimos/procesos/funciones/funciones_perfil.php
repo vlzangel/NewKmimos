@@ -109,7 +109,7 @@
 			                		</div>
 			                		<div class="item_desglose vlz_bold">
 			                			<div>MÉTODO DE PAGO</div>
-			                			<span>DEPÓSITO DEL 17%</span>
+			                			<span>'.$reserva["desglose"]["tipo"].'</span>
 			                		</div>
 			                		<div class="item_desglose vlz_bold">
 			                			<div style="color: #6b1c9b;" >Monto Restante a Pagar en EFECTIVO al cuidador</div>

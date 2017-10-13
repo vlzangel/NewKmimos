@@ -81,9 +81,11 @@
 				$desglose = $pago;
 				if( $pago["enable"] == "yes" ){
 					$desglose["descuento"] = $_metas_orden["_cart_discount"][0];
+					$desglose["tipo"] = "DEPÓSITO DEL 17%";
 				}else{
 					$desglose["total"] = $items["_line_subtotal"];
 					$desglose["descuento"] = $_metas_orden["_cart_discount"][0];
+					$desglose["tipo"] = "PAGO TOTAL";
 				}
 
 				//reservaS CONFIRMADAS
