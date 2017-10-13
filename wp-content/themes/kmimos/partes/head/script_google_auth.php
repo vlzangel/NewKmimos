@@ -35,7 +35,11 @@
 			function attachSignin(element) {
 				auth2.attachClickHandler(element, {},
 				    function(googleUser) {
-				    	var valid = social_verificar( "google", googleUser.getBasicProfile().getId() );
+				    	var valid = social_verificar( 
+			    			"google", 
+			    			googleUser.getBasicProfile().getId(), 
+			    			googleUser.getBasicProfile().getEmail() 
+				    	);
 
 				    	if( valid ){
 							jQuery(".social_google_id").val( googleUser.getBasicProfile().getId() );

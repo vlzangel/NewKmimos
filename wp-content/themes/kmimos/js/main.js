@@ -12,6 +12,7 @@ $(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e){
 	e.preventDefault();
 
 	//close_modal();
+	jQuery('[data-error="auth"]').fadeOut("fast");
 
 	jQuery(".popup-iniciar-sesion-1").fadeIn("fast");
 	jQuery(".popup-olvidaste-contrasena").fadeOut("fast");

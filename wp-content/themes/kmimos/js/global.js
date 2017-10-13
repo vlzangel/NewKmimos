@@ -125,11 +125,14 @@ function social_auth( f ){
         }else{
             jQuery('[data-error="auth"]').html(e['msg']);
             jQuery('[data-error="auth"]').fadeIn("fast");
+            setTimeout(function() {
+                jQuery('[data-error="auth"]').fadeOut(1500);
+            },3000);
         }
     });
 }
 
-function social_verificar( social_network, id ){
+function social_verificar( social_network, id, email ){
     var sts = false;
     $.ajax({
         async:false, 
@@ -142,10 +145,15 @@ function social_verificar( social_network, id ){
             console.log(e);
 
             if( e['sts'] == 1 ){
+                jQuery(".verify_mail").val(email);
+                jQuery(".verify_mail").blur();
                 sts = true;
             }else{
                 jQuery('[data-error="auth"]').html(e['msg']);
                 jQuery('[data-error="auth"]').fadeIn("fast");
+                setTimeout(function() {
+                    jQuery('[data-error="auth"]').fadeOut("fast");
+                },3000);
                 //alert("Usted ya se encuentra registrado");
             }
         },
