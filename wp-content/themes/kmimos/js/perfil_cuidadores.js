@@ -93,9 +93,6 @@ function comentarios(pagina = 0){
 
 	});
 
-	console.log( bond_total );
-	console.log( comentarios_cuidador );
-
 	if( bond_total > 0 ){
 		bond_total=bond_total/(comentarios_cuidador.length*4);
 		bond_porcent=bond_total*(100/5);
@@ -106,7 +103,7 @@ function comentarios(pagina = 0){
 
 		jQuery("#comentarios_box").html( comentario );
 		jQuery(".km-review .km-calificacion").html( comentarios_cuidador.length );
-		jQuery(".km-review .km-calificacion-icono p").html( bond_porcent+'% Lo recomienda');
+		jQuery(".km-review .km-calificacion-icono p").html( parseInt(bond_porcent)+'% Lo recomienda');
 		jQuery(".km-review .km-calificacion-bond").html(bond);
 	}else{
 		var bond = '<div class="km-ranking">';
