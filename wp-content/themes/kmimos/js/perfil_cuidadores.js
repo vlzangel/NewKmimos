@@ -93,17 +93,29 @@ function comentarios(pagina = 0){
 
 	});
 
-	bond_total=bond_total/(comentarios_cuidador.length*4);
-	bond_porcent=bond_total*(100/5);
+	if( bond_total > 0 ){
+		bond_total=bond_total/(comentarios_cuidador.length*4);
+		bond_porcent=bond_total*(100/5);
 
-	var bond = '<div class="km-ranking">';
-		bond += get_huesitos(bond_total);
-		bond += '</div>';
+		var bond = '<div class="km-ranking">';
+			bond += get_huesitos(bond_total);
+			bond += '</div>';
 
-	jQuery("#comentarios_box").html( comentario );
-	jQuery(".km-review .km-calificacion").html( comentarios_cuidador.length );
-	jQuery(".km-review .km-calificacion-icono p").html(parseInt(bond_porcent)+'% Lo recomienda');
-	jQuery(".km-review .km-calificacion-bond").html(bond);
+		jQuery("#comentarios_box").html( comentario );
+		jQuery(".km-review .km-calificacion").html( comentarios_cuidador.length );
+		jQuery(".km-review .km-calificacion-icono p").html( parseInt(bond_porcent)+'% Lo recomienda');
+		jQuery(".km-review .km-calificacion-bond").html(bond);
+	}else{
+		var bond = '<div class="km-ranking">';
+			bond += get_huesitos(bond_total);
+			bond += '</div>';
+
+		jQuery("#comentarios_box").html( comentario );
+		jQuery(".km-review .km-calificacion").html( comentarios_cuidador.length );
+		jQuery(".km-review .km-calificacion-icono p").html( bond_total+'% Lo recomienda');
+		jQuery(".km-review .km-calificacion-bond").html(bond);
+	}
+	
 }
 
 function get_huesitos(valor){

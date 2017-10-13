@@ -31,7 +31,7 @@
 
 		$hoy = date("Y-m-d");
 
-		$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= NOW()");
+		$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= '".date("Y-m-d", time())."'" );
 
 		$sql = "
 	        SELECT
@@ -388,7 +388,7 @@
 
 							<div class="km-cupones">
 								<div>
-									<input type="text" id="cupon">
+									<input type="text" id="cupon" placeholder="Ingresa tu cupón">
 								</div>
 								<div class="">
 									<span id="cupon_btn">Cup&oacute;n</span>

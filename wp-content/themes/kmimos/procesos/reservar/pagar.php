@@ -13,7 +13,7 @@
 
 	$xdb = $db;
 	$db = new db( new mysqli($host, $user, $pass, $db) );
-	
+
 	include_once("../funciones/generales.php");
 
 	extract($_POST);
@@ -265,6 +265,17 @@
 
 		exit;
     }
+
+    update_cupos( array(
+    	"servicio" => $parametros["pagar"]->servicio,
+    	"tipo" => $parametros["pagar"]->tipo_servicio,
+    	"autor" => $parametros["pagar"]->cuidador,
+    	"inicio" => strtotime($parametros["fechas"]->inicio),
+    	"fin" => strtotime($parametros["fechas"]->fin),
+    	"cantidad" => $parametros["cantidades"]->cantidad
+    ), "-");
+
+    $db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 

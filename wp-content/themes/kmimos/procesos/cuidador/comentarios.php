@@ -46,9 +46,9 @@
 	    $fecha = date('d', $inicio)." ".$meses[date('n', $inicio)-1]. ", ".date('Y', $inicio) ;
 
 		$resultado[] = array(
-			"cliente"	=> utf8_encode($comentario->cliente),
+			"cliente"	=> ($comentario->cliente),
 			"img"	=> kmimos_get_foto($user_id),
-			"contenido" => utf8_encode($comentario->contenido),
+			"contenido" => ($comentario->contenido),
 			"fecha" => ($fecha),
 			"puntualidad" => ($comentario->puntualidad_valor),
 			"confianza" => ($comentario->confianza_valor),
