@@ -3,9 +3,6 @@
     $rangos = $db->get_var(" SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ");
     $rangos = unserialize($rangos);
 
-    print_r( $_POST );
-    print_r( $rangos );
-
     $inicio = date("Y-m-d", strtotime( str_replace("/", "-", $inicio)));
     $fin = date("Y-m-d", strtotime( str_replace("/", "-", $fin)));
 
@@ -15,10 +12,13 @@
 
     foreach ($rangos as $key => $value) {
 
-        $value["from"] = date("Y-m-d", strtotime( str_replace("/", "-", $value["from"])));
-        $value["to"] = date("Y-m-d", strtotime( str_replace("/", "-", $value["to"])));
+        $formato = explode("/", $value["from"]);
+        if( count($formato) > 0 ){
+            $value["from"] = date("Y-m-d", strtotime( str_replace("/", "-", $value["from"])));
+            $value["to"] = date("Y-m-d", strtotime( str_replace("/", "-", $value["to"])));
+        }
 
-        if( $value["from"] != $inicio && $value["to"] != $fin ){
+        if( $value["from"] == $inicio && $value["to"] == $fin ){ }else{
 
             $temp = array(
                 "type" => "custom",
