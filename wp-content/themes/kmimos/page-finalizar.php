@@ -24,13 +24,42 @@
 
 		$HTML .= '
 	 		<div class="km-content km-step-end">
-				<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
-				<br>
-				¡Genial '.get_user_meta($id_user, "first_name", true).'!<br>
-				Reservaste Exitosamente
-				<div style="padding-top: 20px;">
-					'.$pdf.'
-					<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
+				<div style="padding: 20px;">
+					<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
+					<br>
+					¡Genial '.get_user_meta($id_user, "first_name", true).'!<br>
+					Reservaste Exitosamente
+
+					<div class="desglose_reserva" >
+						<div class="border_desglose">
+							<div>Tu numero de reserva </diV>
+							<span>202290</span>
+						</div>
+						<div class="border_desglose">
+							<div>Fecha de tu reserva </diV>
+							<span>27 Julio, 2017</span>
+						</div>
+						<div>
+							<div class="remanente">
+								Monto Restante a Pagar<br>
+								al cuidador en EFECTIVO
+							</diV>
+							<span>$809.25</span>
+						</div>
+						<div class="border_desglose">
+							<div>Pag&oacute; </diV>
+							<span>$165.75</span>
+						</div>
+						<div>
+							<div>Total </diV>
+							<span>$975.00</span>
+						</div>
+					</div>
+
+					<div style="padding-top: 20px;">
+						'.$pdf.'
+						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
+					</div>
 				</div>
 			</div>
 
