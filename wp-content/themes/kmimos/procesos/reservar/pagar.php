@@ -10,8 +10,6 @@
 	include_once("../funciones/config.php");
 	include_once("../../lib/openpay/Openpay.php");
 
-	exit();
-
 	include_once("reservar.php");
 
 	$xdb = $db;
@@ -221,10 +219,6 @@
     	"fin" => strtotime($parametros["fechas"]->fin),
     	"cantidad" => $parametros["cantidades"]->cantidad
     ), "+");
-
-	//include(__DIR__."/emails/nueva/index.php");
-
-	exit();
 	
 	$reservar = new Reservas($db, $data_reserva);
 
@@ -255,8 +249,9 @@
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
-		/*include_once($raiz."/wp-load.php");
-		include(__DIR__."/emails/nueva/index.php");*/
+
+		
+		include(__DIR__."/emails/nueva/index.php");
 
 		exit;
     }
@@ -267,8 +262,9 @@
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
-		/*include_once($raiz."/wp-load.php");
-		include(__DIR__."/emails/nueva/index.php");*/
+
+		
+		include(__DIR__."/emails/nueva/index.php");
 
 		exit;
     }
@@ -280,8 +276,9 @@
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
-		/*include_once($raiz."/wp-load.php");
-		include(__DIR__."/emails/nueva/index.php");*/
+
+		
+		include(__DIR__."/emails/nueva/index.php");
 
 		exit;
     }
@@ -410,10 +407,8 @@
 		   					"openpay_customer_id" => $customer->id,
 							"order_id" => $id_orden
 						));
-						/*
-						include_once($raiz."/wp-load.php");
+
 						include(__DIR__."/emails/nueva/index.php");
-						*/
 			        }else{
 			            echo json_encode(array(
 		   					"openpay_customer_id" => $customer->id,
@@ -444,7 +439,7 @@
 
 				$charge = $customer->charges->create($chargeRequest);
 
-				$pdf = "https://sandbox-dashboard.openpay.mx/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference;
+				$pdf = $OPENPAY_URL."/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference;
 
 				$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 				$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_pdf', '{$pdf}');");
@@ -456,8 +451,7 @@
 					"order_id" => $id_orden
 				));
 
-				/*include_once($raiz."/wp-load.php");
-				include(__DIR__."/emails/nueva/index.php");*/
+				include(__DIR__."/emails/nueva/index.php");
 
    			break;
 

@@ -23,7 +23,7 @@
  		$modificacion = "";		
  	}
 
-	include(dirname(__FILE__)."vlz_data_orden.php");
+	include(dirname(__FILE__)."/vlz_data_orden.php");
 
 	$email_admin = $info["email"];
 

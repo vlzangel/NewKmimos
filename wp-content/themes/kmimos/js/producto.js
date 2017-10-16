@@ -395,16 +395,22 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			console.log( data );
-			//location.href = RAIZ+"/finalizar/"+data.order_id;
-		}//, "json"
+			/*console.log( data );*/
+			location.href = RAIZ+"/finalizar/"+data.order_id;
+		}, "json"
 	).fail(function(e) {
     	console.log( e );
-    	if( e.status == 500 ){
-    		/*pagarReserva(true);*/
-    	}else{
-    		alert("Error al procesar la reserva!");
-    	}
+
+    	var error = "Error procesando la reserva<br>";
+    	error += "Por favor intente nuevamente.<br>";
+    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+
+    	jQuery(".errores_box").html(error);
+		jQuery(".errores_box").css("display", "block");
+
+		jQuery("#reserva_btn_next_3").html("TERMINAR RESERVA");
+		jQuery("#reserva_btn_next_3").removeClass("disabled");
+
   	});
 }
 
@@ -813,9 +819,9 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery("#reserva_btn_next_3").on("click", function(e){
-		/*if( jQuery(this).hasClass("disabled") ){
+		if( jQuery(this).hasClass("disabled") ){
 			alert("Debes aceptar los terminos y condiciones");
-		}else{*/
+		}else{
 			if( jQuery("#metodos_pagos").css("display") != "none" ){
 				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
 				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
@@ -830,7 +836,7 @@ jQuery(document).ready(function() {
 				CARRITO["pagar"]["tipo"] = "Saldo y/o Descuentos";
 				pagarReserva();
 			}
-	 	/*}*/
+	 	}
 		e.preventDefault();
 	});
 
@@ -908,9 +914,6 @@ jQuery(document).ready(function() {
 	});
 
 	/* Configuración Openpay */
-
-	    console.log("OPENPAY_TOKEN: "+OPENPAY_TOKEN);
-	    console.log("OPENPAY_PK: "+OPENPAY_PK);
 
 		OpenPay.setId( OPENPAY_TOKEN );
 	    OpenPay.setApiKey(OPENPAY_PK);
