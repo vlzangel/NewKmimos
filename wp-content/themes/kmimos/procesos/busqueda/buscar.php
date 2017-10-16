@@ -298,8 +298,8 @@
 	        $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
 	        $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = '{name_photo}'", "meta_value");
 
-	        $home = $xhome."wp-content/uploads/cuidadores/avatares/miniatura/{$id}_";
-	        $sub_path = "cuidadores/avatares/miniatura/{$id}_";
+	        $home = $xhome."wp-content/uploads/cuidadores/avatares/{$id}/";
+	        $sub_path = "cuidadores/avatares/{$id}/";
 
 	        if( empty($name_photo)  ){ $name_photo = "0"; }
 	        if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= ".jpg";  }
