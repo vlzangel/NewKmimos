@@ -1,4 +1,9 @@
 jQuery( document ).ready(function() {
+    String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
 	jQuery("#close_login").on("click", function(e){
         close_login_modal();
     });

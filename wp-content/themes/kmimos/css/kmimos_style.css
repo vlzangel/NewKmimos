@@ -5385,7 +5385,7 @@ h1.maps {
         margin-top:20px
     }
 }
-@media (max-width:430px) {
+@media (max-width:500px) {
     .page-reservation .header {
         padding-top:20px;
         padding-bottom:20px

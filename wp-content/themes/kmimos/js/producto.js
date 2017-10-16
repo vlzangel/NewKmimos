@@ -601,7 +601,33 @@ var descripciones = "";
 
 jQuery(document).ready(function() { 
 
-	
+	jQuery("#numero").on("keypress", function(e){
+		var txt = jQuery(this).val();
+		if( txt.length == 16 ){
+			e.preventDefault();
+			return false;
+		}
+	});
+
+	jQuery("#numero").on("focus", function(e){
+		var txt = jQuery(this).val();
+		txt = txt.replaceAll(" ", "");
+		jQuery(this).val(txt);
+		jQuery("#numero_oculto").val(txt);
+	});
+
+	jQuery("#numero").on("blur", function(e){
+		var txt = jQuery(this).val();
+		jQuery("#numero_oculto").val(txt);
+		var temp = "";
+		for(var i=0; i<txt.length; i++){
+			if( i > 0 && i%4 == 0){
+				temp += " ";
+			}
+			temp += txt[i];
+		}
+		jQuery(this).val(temp);
+	});
 
 	jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
 
@@ -863,7 +889,11 @@ jQuery(document).ready(function() {
 				}
 			}
 		}
-		CARRITO["tarjeta"][ jQuery(this).attr("id") ] = jQuery(this).val();
+		var txtTemp = jQuery(this).val();
+		if( jQuery(this).attr("id") == "numero" ){
+			txtTemp = txtTemp.replaceAll(" ", "");
+		}
+		CARRITO["tarjeta"][ jQuery(this).attr("id") ] = txtTemp;
 	});
 
 	jQuery("#tipo_pago").on("change", function(e){

@@ -548,7 +548,8 @@
 
 											<div class="label-placeholder">
 												<label>Número de Tarjeta*</label>
-												<input type="text" id="numero" name="numero" class="input-label-placeholder" maxlength="16" data-openpay-card="card_number">
+												<input type="text" id="numero" name="numero" class="input-label-placeholder">
+												<input type="hidden" id="numero_oculto" data-openpay-card="card_number">
 											</div>
 
 											<div class="content-placeholder">
