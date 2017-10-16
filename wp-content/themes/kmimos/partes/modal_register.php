@@ -112,11 +112,11 @@ $HTML .='
 
 							<div class="label-placeholder">
 								<label>Nombre</label>
-								<input type="text" id="nombre" name="nombre" maxlength="30" data-charset="xlf" data-change="alfxlf" class="input-label-placeholder social_firstname" pattern=".{3,}">
+								<input type="text" id="nombre" name="nombre" maxlength="30" data-charset="alfxlf" data-change="alfxlf" class="input-label-placeholder social_firstname" pattern=".{3,}">
 							</div>
 							<div class="label-placeholder">
 								<label>Apellido</label>
-								<input type="text" name="apellido" id="apellido" maxlength="30"  data-charset="alfxlf" data-change="xlf" class="input-label-placeholder social_lastname" pattern=".{3,}">
+								<input type="text" name="apellido" id="apellido" maxlength="30"  data-charset="alfxlf" data-change="alfxlf" class="input-label-placeholder social_lastname" pattern=".{3,}">
 							</div>
 
 							<div class="label-placeholder">
