@@ -25,34 +25,35 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		
 		if(jQuery("#nombre").val().length < 3){
 			jQuery("#nombre").parent('div').css('color','red');
-			jQuery("#nombre").after('<span name="sp-name">Ingrese su Nombre</span>').css('color','red');
-			jQuery("#nombre").focus(function() { jQuery("[name='sp-name']").remove(); });
+			jQuery("#nombre").after('<span name="sp-nombre">Ingrese su Nombre</span>').css('color','red');
+			jQuery("#nombre").focus(function() { jQuery("[name='sp-nombre']").remove(); });
 		}else{
 			jQuery("#nombre").css('color','green');
 			jQuery("#nombre").parent('div').css('color','green');
-			jQuery('[name="sp-name"]').remove();
+			jQuery('[name="sp-nombre"]').remove();
 		}
 	});
 
 	jQuery("#apellido").blur(function(){
 		if(jQuery("#apellido").val().length < 3){
 			jQuery("#apellido").parent('div').css('color','red');
-			jQuery("#apellido").after('<span name="sp-lastname">Ingrese su apellido</span>').css('color','red');
-			jQuery("#apellido").focus(function() { jQuery("[name='sp-lastname']").remove(); });
+			jQuery("#apellido").after('<span name="sp-apellido">Ingrese su apellido</span>').css('color','red');
+			jQuery("#apellido").focus(function() { jQuery("[name='sp-apellido']").remove(); });
 		}else{
 			jQuery("#apellido").css('color','green');
 			jQuery("#apellido").parent('div').css('color','green');
-			jQuery('[name="sp-lastname"]').remove();
+			jQuery('[name="sp-apellido"]').remove();
 		}
 		
 	});
 
 	jQuery("#ife").blur(function(){
+		jQuery('[name="sp-ife"]').remove();
 		switch(jQuery("#ife").val().length) {
 		case 0:
 			jQuery("#ife").parent('div').css('color','red');
 			jQuery("#ife").after('<span name="sp-ife">Debe ingresar su IFE</span>').css('color','red');
-			jQuery("#ife").focus(function() { jQuery('[name"sp-ife"]').remove(); });
+			jQuery("#ife").focus(function() { jQuery('[name="sp-ife"]').remove(); });
 			break;
 		case 13:
 				jQuery("#ife").css('color','green');
@@ -76,10 +77,12 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			verify_mail.parent('div').css('color','red');
 			verify_mail.after('<span name="sp-email">Ingrese su email</span>').css('color','red');
 			verify_mail.focus(function() { jQuery('[name="sp-email"]').remove(); });
+			jQuery('.verify_mail').parent().find('.verify_result').html('');
+
 		}else{
 			verify_mail.css('color','green');
 			verify_mail.parent('div').css('color','green');
-			jQuery('[name="sp-email"]').remove();
+			jQuery('[name="sp-email_1"]').remove();
 			var email = verify_mail.val();
 			var campo = {
 				'email': email
@@ -219,9 +222,37 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		 	fumador = jQuery("#fumador").val(),
 			referido = jQuery("#referido").val(),
 			img_profile = jQuery("#img_profile").val();
+
 	 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
-		if (nombre.length > 2 && apellido.length > 2 && ife.length > 2 && email.length > 2 && pass.length > 0 && movil.length > 2
-		       	&& genero != "" && edad != "" && fumador !="") {
+	 	
+	 	var fields = [
+			'nombre',
+			'apellido',
+			'ife',
+			'email_1',
+			'pass',
+			'movil',
+			'genero',
+			'edad',
+			'fumador',
+			'referido',
+			'img_profile'
+	 	];
+		km_cliente_validar(fields);
+		
+		jQuery("#km-datos-foto-profile").css('border', "0px solid transparent");
+
+		if (nombre.length > 2 && 
+			apellido.length > 2 && 
+			ife.length > 2 && 
+			email.length > 2 && 
+			pass.length > 0 && 
+			movil.length > 2 && 
+			genero != "" && 
+			edad != "" && 
+			fumador !="" &&
+			img_profile != ""
+			) {
 
 				var datos = {
 					'name': campos[0],
@@ -321,7 +352,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 	jQuery("#tipo_mascota").blur(function(){
-		
+		jQuery("[name='sp-tipo_mascota']").remove();
 		switch(jQuery("#tipo_mascota").val()) {
 			case "0":
 				jQuery("#tipo_mascota").parent('div').css('color','red');
@@ -468,16 +499,18 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			pet_sociable = jQuery("#km-check-2").val(),
 			aggresive_humans = jQuery("#km-check-3").val(),
 			aggresive_pets = jQuery("#km-check-4").val(),
-			img_pet = jQuery("#img_pet").val();
+			img_pet = jQuery("#img_pet").val()
+						;
 
 			$fileupload = $('#carga_foto');
 			$fileupload.replaceWith($fileupload.clone(true));
 
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
 					datepets,genero_mascota,tamano_mascota,pet_sterilized,
-					pet_sociable,aggresive_humans,aggresive_pets,img_pet];
+					pet_sociable,aggresive_humans,aggresive_pets,img_pet, img_profile];
 
 		km_cliente_validar( valid );
+
 
 		if (
 			nombre_mascota != "" && 
@@ -487,7 +520,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			datepets != "" && 
 			genero_mascota != "" && 
 			tamano_mascota >= 0 &&
-			valor != ""
+			valor != "" 
 		) {
         		var datos = {
 		      		'name_pet': campos_pet[0],
@@ -537,12 +570,12 @@ function km_cliente_validar( fields ){
 			if( jQuery('#'+val).val() == '' ){
 				valor = jQuery('#'+val).val();
 				m = 'Este campo no puede estar vacio';
-
 			}else if( val == 'tipo_mascota' && jQuery('#tipo_mascota').val() < 1){
 				m = 'Este campo no puede estar vacio';
 			}else if( val == 'raza_mascota'  && jQuery('#raza_mascota').val() < 1){
 				m = 'Este campo no puede estar vacio';
-
+			}else if( val == 'email' ){
+				jQuery("#km-datos-foto-profile").css('border', "1px solid red");
 			}else if( val == 'tamano_mascota' ){
 				if (jQuery("#select_1").hasClass("km-opcionactivo")) {
 					valor = jQuery("#select_1").attr('value');
@@ -599,6 +632,33 @@ function getGlobalData(url,method, datos){
 		}
 	}).responseText;
 }
+
+
+jQuery( document ).on('change', '[data-change]', function(){
+
+
+    var tipo = jQuery(this).attr('data-change');
+    var str = jQuery(this).val();
+
+    if(tipo != 'undefined' || tipo != ''){
+    	var cadena= '';
+        if(tipo.indexOf('alf')>-1 ){ cadena = cadena + 'a-zA-ZáéíóúñüÁÉÍÓÚÑÜ' }
+        if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + 'a-záéíóúñüÁÉÍÓÚÑÜ ' }
+        if(tipo.indexOf('mlf')>-1 ){ cadena = cadena + 'a-z' }
+        if(tipo.indexOf('num')>-1 ){ cadena = cadena + '0-9' } 
+        if(tipo.indexOf('cur')>-1 ){ cadena = cadena + '0-9,.' } 
+        if(tipo.indexOf('esp')>-1 ){ cadena = cadena + '-_.%&@,/()' }
+        if(tipo.indexOf('cor')>-1 ){ cadena = cadena + '.-_@0-9a-zA-Z' }
+        if(tipo.indexOf('rif')>-1 ){ cadena = cadena + 'vjegi' }
+        if(tipo.indexOf('dir')>-1 ){ cadena = cadena + ',' }
+
+        cadena = eval("/[^"+cadena+"]+/g");
+    
+	    str = str.replace( cadena ,'');
+    }
+    jQuery(this).val(str);
+
+});
 
 jQuery( document ).on('keypress', '[data-charset]', function(e){
 
@@ -697,6 +757,10 @@ document.getElementById("carga_foto").addEventListener("change", vista_previa, f
 
 /* Cargar imagen de la perfil */
 function vista_previa_perfil(evt) {
+
+	jQuery('[name="sp-img_profile"]').parent().css('color', '#000');
+	jQuery('#img_profile').parent().css('color', '#000');
+	jQuery('[name="sp-img_profile"]').remove();
 
 	var files = evt.target.files;
 	getRealMime(this.files[0]).then(function(MIME){
