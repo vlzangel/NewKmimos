@@ -643,8 +643,8 @@ jQuery( document ).on('change', '[data-change]', function(){
     if(tipo != 'undefined' || tipo != ''){
     	var cadena= '';
         if(tipo.indexOf('alf')>-1 ){ cadena = cadena + 'a-zA-ZáéíóúñüÁÉÍÓÚÑÜ' }
-        if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + 'a-záéíóúñüÁÉÍÓÚÑÜ ' }
-        if(tipo.indexOf('mlf')>-1 ){ cadena = cadena + 'a-z' }
+        if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + 'a-zA-ZáéíóúñüÁÉÍÓÚÑÜ ' }
+        if(tipo.indexOf('mlf')>-1 ){ cadena = cadena + 'a-zA-Z' }
         if(tipo.indexOf('ylf')>-1 ){ cadena = cadena + 'A-Z' }
         if(tipo.indexOf('num')>-1 ){ cadena = cadena + '0-9' } 
         if(tipo.indexOf('cur')>-1 ){ cadena = cadena + '0-9,.' } 
