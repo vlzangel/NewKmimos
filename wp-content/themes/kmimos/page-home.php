@@ -7,6 +7,8 @@
     wp_enqueue_style('home_responsive', getTema()."/css/responsive/home_responsive.css", array(), '1.0.0');
     wp_enqueue_script('buscar_home', getTema()."/js/home.js", array(), '1.0.0');
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
+    
+    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
             
     get_header();
         

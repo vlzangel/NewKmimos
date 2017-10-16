@@ -120,6 +120,8 @@ jQuery(document).ready(function(){
         }
     });
 
+
+/*
     function initCheckin(date, actual){
         if(actual){
             jQuery('#checkout').datepick({
@@ -196,6 +198,8 @@ jQuery(document).ready(function(){
         firstDay: 1,
         onmonthsToShow: [1, 1]
     });
+*/
+
 
     jQuery("#buscar").on("click", function ( e ) {
         e.preventDefault();
