@@ -68,9 +68,8 @@ $HTML .='
 
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> (55) 61780320</p></div>
-					<div class="col-xs-12 col-sm-4"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
-					<div class="col-xs-12 col-sm-4"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> (01) 800 056 4667</p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> +52 (55) 6892 2182</p></div>
+					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada Sin Costo: (01) 800 056 4667</p></div>
 				</div>
 
 				<hr>
@@ -113,20 +112,28 @@ $HTML .='
 
 							<div class="label-placeholder">
 								<label>Nombre</label>
-								<input type="text" id="nombre" name="nombre" maxlength="30" data-charset="xlf" class="input-label-placeholder social_firstname" pattern=".{3,}">
+								<input type="text" id="nombre" name="nombre" maxlength="30" data-charset="xlf" data-change="xlf" class="input-label-placeholder social_firstname" pattern=".{3,}">
 							</div>
 							<div class="label-placeholder">
 								<label>Apellido</label>
-								<input type="text" name="apellido" id="apellido" maxlength="30"  data-charset="xlf" class="input-label-placeholder social_lastname" pattern=".{3,}">
+								<input type="text" name="apellido" id="apellido" maxlength="30"  data-charset="xlf" data-change="xlf" class="input-label-placeholder social_lastname" pattern=".{3,}">
 							</div>
 
 							<div class="label-placeholder">
 								<label>IFE/Documento de Identidad</label>
-								<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="13">
+								<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="13">
 							</div>
 							<div class="label-placeholder verify">
 								<label>Correo electrónico</label>
-								<input type="email" name="email_1" data-verify="active" id="email_1" class="verify_mail input-label-placeholder social_email" data-charset="espalfnum" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+								<input
+									type="email" 
+									name="email_1" 
+									data-verify="active" 
+									id="email_1" 
+									class="verify_mail input-label-placeholder social_email" 
+									data-charset="cormlfnum" 
+									data-change="cor" 
+									pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
 								<span class="verify_result"></span>
 							</div>
 							<div class="label-placeholder">
@@ -135,7 +142,7 @@ $HTML .='
 							</div>
 							<div class="label-placeholder">
 								<label>Teléfono</label>
-								<input type="text" name="movil" id="movil" class="input-label-placeholder" data-charset="num" maxlength="10">
+								<input type="text" name="movil" id="movil" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="10">
 							</div>
 							<div class="km-datos-mascota">
 								<select class="km-datos-mascota-opcion bg-select-custom" name="genero" id="genero">
@@ -179,9 +186,8 @@ $HTML .='
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 				
 				<div class="row">
-					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> (55) 61780320</p></div>
-					<div class="col-xs-12 col-sm-4"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
-					<div class="col-xs-12 col-sm-4"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> (01) 800 056 4667</p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> +52 (55) 6892 2182</p></div>
+					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada Sin Costo: (01) 800 056 4667</p></div>
 				</div>
 
 				<!-- p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p -->
@@ -221,7 +227,7 @@ $HTML .='
 					<div class="content-placeholder">
 						<div class="label-placeholder">
 							<label>Nombre de tu mascota</label>
-							<input type="text" name="nombre_mascota" data-charset="xlf" id="nombre_mascota" class="input-label-placeholder">
+							<input type="text" name="nombre_mascota" data-charset="xlf" data-change="xlf" id="nombre_mascota" class="input-label-placeholder">
 						</div>
 						<div class="km-datos-mascota">
 							<select class="km-datos-mascota-opcion bg-select-custom" name="tipo_mascota" id="tipo_mascota">
@@ -235,7 +241,7 @@ $HTML .='
 						</div>
 						<div class="label-placeholder">
 							<label>Color de tu mascota</label>
-							<input type="text" name="color_mascota" data-charset="xlf" id="color_mascota" class="input-label-placeholder">
+							<input type="text" name="color_mascota" data-charset="xlf" data-change="xlf" id="color_mascota" class="input-label-placeholder">
 						</div>
 						<div class="km-fecha-nacimiento">
 							<input type="text" name="date_birth" id="datepets" placeholder="Fecha de Nacimiento" class="date_birth" readonly>
