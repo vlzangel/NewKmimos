@@ -30,6 +30,7 @@
 					¡Genial '.get_user_meta($id_user, "first_name", true).'!<br>
 					Reservaste Exitosamente
 
+					<!--
 					<div class="desglose_reserva" >
 						<div class="border_desglose">
 							<div>Tu numero de reserva </diV>
@@ -55,6 +56,7 @@
 							<span>$975.00</span>
 						</div>
 					</div>
+					-->
 
 					<div style="padding-top: 20px;">
 						'.$pdf.'
