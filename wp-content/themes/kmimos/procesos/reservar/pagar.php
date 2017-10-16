@@ -224,11 +224,8 @@
 		$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$old_reserva}, 'reserva_modificada', '{$new_reserva}');");
 
 		$old_order = $db->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$old_reserva}' ");
-
 		$db->query("UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$old_reserva}', '{$old_order}' );");
-
 		$cupos_menos = $_SESSION[$id_session]["variaciones"]["cupos"];
-
 		$cupos_a_decrementar -= $cupos_menos;
 
 		$_SESSION[$id_session] = "";
@@ -257,26 +254,20 @@
 
     if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
     	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
-
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
-
 		include(__DIR__."/emails/nueva/index.php");
-
 		exit;
     }
 
     if( $pagar->total <= $descuentos ){
     	$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
 		$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
-
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
-
 		include(__DIR__."/emails/nueva/index.php");
-
 		exit;
     }
 

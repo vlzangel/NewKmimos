@@ -68,7 +68,7 @@
 	                		$descuento = '
 	                			<div class="item_desglose">
 		                			<div>Descuento</div>
-		                			<span>$'.$reserva["desglose"]["descuento"].'</span>
+		                			<span>$'.number_format( $reserva["desglose"]["descuento"], 2, ',', '.' ).'</span>
 		                		</div>
 	                		';
 	                	}
@@ -91,7 +91,7 @@
 		                	$pago = '
 		                		<div class="item_desglose">
 		                			<div>Pagó</div>
-		                			<span>$'.number_format( $reserva["desglose"]["total"], 2, ',', '.').'</span>
+		                			<span>$'.number_format( $reserva["desglose"]["subtotal"], 2, ',', '.').'</span>
 		                		</div>
 		                	';
 
