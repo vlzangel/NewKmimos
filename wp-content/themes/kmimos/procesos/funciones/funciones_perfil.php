@@ -87,12 +87,14 @@
 		                		</div>
 		                	';
 	                	}else{
+	                		$remanente = '';
 		                	$pago = '
 		                		<div class="item_desglose">
 		                			<div>Pagó</div>
 		                			<span>$'.number_format( $reserva["desglose"]["total"], 2, ',', '.').'</span>
 		                		</div>
 		                	';
+
 	                	}
 
 		                $table.='
