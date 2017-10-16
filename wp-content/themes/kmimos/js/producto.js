@@ -371,8 +371,9 @@ function initFactura(){
 
 function pagarReserva(id_invalido = false){
 
-	jQuery("#reserva_btn_next_3").html("Procesando");
+	jQuery("#reserva_btn_next_3 span").html("Procesando");
 	jQuery("#reserva_btn_next_3").addClass("disabled");
+	jQuery("#reserva_btn_next_3").addClass("cargando");
 
 	var transporte = "==="; 
 	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
@@ -408,8 +409,9 @@ function pagarReserva(id_invalido = false){
     	jQuery(".errores_box").html(error);
 		jQuery(".errores_box").css("display", "block");
 
-		jQuery("#reserva_btn_next_3").html("TERMINAR RESERVA");
+		jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 		jQuery("#reserva_btn_next_3").removeClass("disabled");
+		jQuery("#reserva_btn_next_3").removeClass("cargando");
 
   	});
 }
@@ -826,7 +828,7 @@ jQuery(document).ready(function() {
 				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
 				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
 				if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
-					jQuery("#reserva_btn_next_3").html("Validando...");
+					jQuery("#reserva_btn_next_3 span").html("Validando...");
 					jQuery("#reserva_btn_next_3").addClass("disabled");
 					OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
 				}else{
@@ -933,7 +935,7 @@ jQuery(document).ready(function() {
 	        jQuery(".errores_box").css("display", "block");
 	        error = "";
 
-			jQuery("#reserva_btn_next_3").html("TERMINAR RESERVA");
+			jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 			jQuery("#reserva_btn_next_3").removeClass("disabled");
 
 			var errores_txt = {

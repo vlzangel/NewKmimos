@@ -4900,7 +4900,8 @@ footer .km-icon-redes {
     font-size:17px;
     text-align:center;
     line-height:55px;
-    margin-top:30px
+    margin-top:30px;
+    cursor: pointer;
 }
 .page-reservation .km-end-btn-form span {
     display:inline-block;

@@ -61,6 +61,23 @@
 	    margin: 0px 10px !important;
 	}
 
+	.btn_modificar{
+	    position: fixed;
+	    display: block;
+	    left: 0px;
+	    bottom: 0px;
+	    padding: 8px;
+	    font-size: 20px;
+	    font-family: Roboto;
+	    z-index: 999999999999999999;
+	    color: #FFF;
+	    border: 0;
+	    border-top: solid 1px #7b7b7b;
+	    width: 100%;
+	    box-sizing: border-box;
+	    text-align: center;
+	}
+
 }
 
 @media (max-width: 400px){

@@ -60,19 +60,23 @@
 		$precargas = array();
 		$id_seccion = 'MR_'.get_the_ID()."_".md5($id_user);
         if( isset($_SESSION[$id_seccion] ) ){
+
+        	$cupos_menos = $_SESSION[$id_seccion]["variaciones"]["cupos"];
+
+        	$ini = strtotime( $_SESSION[$id_seccion]["fechas"]["inicio"] );
+        	$fin = strtotime( $_SESSION[$id_seccion]["fechas"]["fin"] );
+
+        	foreach ($cupos as $value) {
+        		$xfecha = strtotime( $value->fecha );
+        		if( $ini >= $xfecha && $xfecha <= $fin ){
+        			$value->cupos -= $cupos_menos;
+        			$value->full = 0;
+        			$value->no_disponible = 0;
+        		}
+        	}
+
             $HTML .= "
-                <a href='".getTema()."/procesos/perfil/update_reserva.php?b=".get_the_ID()."_".md5($id_user)."' class='theme_button' style='
-                    position: fixed;
-                    display: inline-block;
-                    left: 50px;
-                    bottom: 50px;
-                    padding: 8px;
-                    font-size: 20px;
-                    font-family: Roboto;
-                    z-index: 999999999999999999;
-                    color: #FFF;
-                    border: solid 1px #7b7b7b;
-                '>
+                <a href='".getTema()."/procesos/perfil/update_reserva.php?b=".get_the_ID()."_".md5($id_user)."' class='theme_button btn_modificar'>
                     Salir de modificar reserva
                 </a>
             ";
@@ -581,9 +585,9 @@
 								</label>
 							</div>
 
-							<a id="reserva_btn_next_3" href="#" class="km-end-btn-form vlz_btn_reservar disabled">
-								TERMINAR RESERVA
-							</a>
+							<span id="reserva_btn_next_3" class="km-end-btn-form vlz_btn_reservar disabled">
+								<div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div> <span>TERMINAR RESERVA</span>
+							</span>
 
 						</div>
 					</div>
@@ -629,6 +633,10 @@
 			echo comprimir_styles($HTML);
 
 		}
+
+		echo "<pre>";
+			print_r($_SESSION);
+		echo "</pre>";
 
     get_footer(); 
 ?>

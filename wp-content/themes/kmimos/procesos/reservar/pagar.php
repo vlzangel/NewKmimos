@@ -208,25 +208,12 @@
     foreach ($xdata_cliente as $key => $value) {
     	$data_cliente[ $value->meta_key ] = utf8_encode($value->meta_value);
     }
-
-    $id_orden = 196356;
-
-    update_cupos( array(
-    	"servicio" => $parametros["pagar"]->servicio,
-    	"tipo" => $parametros["pagar"]->tipo_servicio,
-    	"autor" => $parametros["pagar"]->cuidador,
-    	"inicio" => strtotime($parametros["fechas"]->inicio),
-    	"fin" => strtotime($parametros["fechas"]->fin),
-    	"cantidad" => $parametros["cantidades"]->cantidad
-    ), "+");
 	
 	$reservar = new Reservas($db, $data_reserva);
-
     $id_orden = $reservar->new_reserva();
-
     $reservar->aplicarCupones($id_orden, $cupones);
 
-    $db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
+    $cupos_a_decrementar = $parametros["cantidades"]->cantidad;
 
     $id_session = 'MR_'.$pagar->servicio."_".md5($pagar->cliente);
     if( isset($_SESSION[$id_session] ) ){
@@ -240,9 +227,22 @@
 
 		$db->query("UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$old_reserva}', '{$old_order}' );");
 
+		$cupos_menos = $_SESSION[$id_session]["variaciones"]["cupos"];
+
+		$cupos_a_decrementar -= $cupos_menos;
+
 		$_SESSION[$id_session] = "";
 		unset($_SESSION[$id_session]);
 	}
+
+    update_cupos( array(
+    	"servicio" => $parametros["pagar"]->servicio,
+    	"tipo" => $parametros["pagar"]->tipo_servicio,
+    	"autor" => $parametros["pagar"]->cuidador,
+    	"inicio" => strtotime($parametros["fechas"]->inicio),
+    	"fin" => strtotime($parametros["fechas"]->fin),
+    	"cantidad" => $cupos_a_decrementar
+    ), "+");
 
     if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
     	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
@@ -250,7 +250,6 @@
 			"order_id" => $id_orden
 		));
 
-		
 		include(__DIR__."/emails/nueva/index.php");
 
 		exit;
@@ -263,7 +262,6 @@
 			"order_id" => $id_orden
 		));
 
-		
 		include(__DIR__."/emails/nueva/index.php");
 
 		exit;
@@ -277,7 +275,6 @@
 			"order_id" => $id_orden
 		));
 
-		
 		include(__DIR__."/emails/nueva/index.php");
 
 		exit;

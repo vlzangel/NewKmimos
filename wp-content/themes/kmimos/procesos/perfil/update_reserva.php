@@ -7,7 +7,6 @@
 
 		$data = $db->get_row("SELECT * FROM wp_posts WHERE md5(ID) = '{$param[2]}'");
 
-
 		$sql = "SELECT ID FROM wp_users WHERE md5(ID) = '{$param[1]}'";
 		$user_id = $db->get_var($sql);
 
@@ -32,14 +31,16 @@
 
         $sql = "SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$orden_id}' AND order_item_type = 'coupon' AND order_item_name NOT LIKE '%saldo-%'";
         $otros_cupones = $db->get_results($sql);
-        foreach ($otros_cupones as $cupon) {
-        	$cupon_id = $db->get_var("SELECT ID FROM wp_posts WHERE post_title = '{$cupon->order_item_name}'");
+        if( $otros_cupones !== false ){
+	        foreach ($otros_cupones as $cupon) {
+	        	$cupon_id = $db->get_var("SELECT ID FROM wp_posts WHERE post_title = '{$cupon->order_item_name}'");
 
-            $db->query("DELETE FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = '_used_by' AND meta_value = '{$user_id}'");
+	            $db->query("DELETE FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = '_used_by' AND meta_value = '{$user_id}'");
+	        }
         }
     	
 		$r3 = $db->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reservas['_booking_order_item_id']}'"); 
-		if( count($r3) > 1 ){
+		if( $r3 !== false ){
 			$items = array();
 			foreach ($r3 as $key => $value) { $items[ $value->meta_key ] = $value->meta_value; }
 		}
@@ -95,7 +96,7 @@
 		$transporte = array();
 		$adicionales = array();
 
-		if( count($r3) > 1 ){
+		if( $r3 !== false ){
 			foreach ($items as $key => $value) {
 
 				if ( strpos( strtoupper($value) , "TRANSP.") !== false) {
@@ -111,6 +112,13 @@
 
 		$sql = "SELECT meta_value FROM wp_usermeta WHERE md5(user_id) = '{$param[1]}' AND meta_key = 'kmisaldo'";
 		$kmisaldo = $db->get_var($sql, "meta_value");
+
+		$cupos_menos = 0;
+    	foreach ($variaciones as $key => $value) {
+    		$cupos_menos += $value;
+    	}
+
+    	$variaciones["cupos"] = $cupos_menos;
 
 		$parametros = array( 
 			"reserva"         => $id_reserva,
