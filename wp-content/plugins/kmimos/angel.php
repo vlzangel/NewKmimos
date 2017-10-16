@@ -307,8 +307,6 @@
                 $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
             }
 
-            $img = get_home_url()."/wp-content/uploads/{$sub_path}{$name_photo}";
-
             if($get_sub_path){
                 return array(
                     "img" => $img,
