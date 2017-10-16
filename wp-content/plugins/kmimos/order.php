@@ -34,7 +34,7 @@
 
 	$status = $booking->get_status();
 
-	if(  $_SESSION['admin_sub_login'] != 'YES' && $booking->get_status() != "cancelled" ){
+	if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
 		if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
 			$estado = array(
@@ -49,7 +49,7 @@
 			';
 	   		echo kmimos_get_email_html("La reserva ya fue ".$estado[$status]." anteriormente.", $msg, "", false, true);
 
-	   		exit;
+	   		exit();
 		}
 
 	}

@@ -601,6 +601,8 @@ var descripciones = "";
 
 jQuery(document).ready(function() { 
 
+	
+
 	jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
 
 	function initCheckin(date, actual){
