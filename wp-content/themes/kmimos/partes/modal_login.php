@@ -16,7 +16,7 @@ $datos = kmimos_get_info_syte();
 								<div class="content-placeholder">
 									<div class="label-placeholder">
 										<!-- <label>Correo electrónico</label>-->
-										<input type="text" id="usuario" placeholder="Correo El&eacute;ctronico" class="input-label-placeholder">
+										<input type="text" id="usuario" placeholder="Usuario &oacute; Correo El&eacute;ctronico" class="input-label-placeholder">
 									</div>
 									<div class="label-placeholder">
 										<!--<label>Contraseña</label>-->
@@ -24,13 +24,18 @@ $datos = kmimos_get_info_syte();
 									</div>
 								</div>
 							</div>
+							<input type="submit" name="enviar" class="hidden">
 							<a href="#" id="login_submit" class="km-btn-basic">INICIAR SESIÓN AHORA</a>
+
 							<div class="row km-recordatorio">
 								<div class="col-xs-12 col-sm-4">
+
 									<div class="km-checkbox">
-										<input type="checkbox" value="None" id="km-checkbox" name="check" checked/>
-										<label for="km-checkbox"></label>
+										<input type="checkbox" value="active" id="km-checkbox" name="check" checked/>
+										<label for="km-checkbox">
+										</label>
 									</div>
+
 								</div>
 							</form>
 

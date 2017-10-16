@@ -29,6 +29,7 @@ jQuery( document ).ready(function() {
 
     jQuery("#form_login").submit(function(e){ 
     	logear(); 
+        e.preventDefault();
    	});
 
     jQuery("#ver_menu").on("click", function(e){
@@ -41,6 +42,28 @@ jQuery( document ).ready(function() {
             block_scroll_body(false);
             visible_boton_mapa(false);
         }
+    });
+
+    jQuery('#km-checkbox').on('click', function(){
+        if( jQuery("#km-checkbox").val() == 'none' ){
+            jQuery("#km-checkbox").val('active');
+            jQuery(this).parent().css('background', '#98F0DE');
+            jQuery(this).parent().find('label').css('background', '#33E1BE');
+        }else{
+            jQuery(this).parent().css('background', '#ccc');
+            jQuery(this).parent().find('label').css('background', '#aaa');
+            jQuery("#km-checkbox").val('none');
+        }
+    });
+
+    jQuery('#usuario').on({
+        change: function(){ validar_login(['usuario']); },
+        blur: function(){ validar_login(['usuario']); },
+    });
+
+    jQuery('#clave').on({
+        change: function(){ validar_login(['clave']); },
+        blur: function(){ validar_login(['clave']); },
     });
 
     jQuery(".cerrar_menu_movil").on("click", function(e){
@@ -182,22 +205,48 @@ function social_verificar( social_network, id, email ){
     return sts;
 }
 
+
+function validar_login( fields = ['usuario', 'clave'] ){
+    jQuery('[data-id="alert_login"]').remove();
+    var sts = true;
+    jQuery.each(fields, function(i,v){    
+        jQuery('[data-id="'+v+'"]').remove();
+        if( jQuery('#'+v).val() == '' ){        
+            jQuery('#'+v).after('<div style="width: 100%;padding: 5px;" data-id="'+v+'" class="alert-danger"><strong>Este campo no puede estar vacio</strong></div>');
+            sts = false;
+        }
+    });
+    return sts;
+}
 function logear(){
-    jQuery.post( 
-        HOME+"/procesos/login/login.php", 
-        {
-            usu: jQuery("#form_login #usuario").val(),
-            clv: jQuery("#form_login #clave").val()
-        },
-        function( data ) {
-            if( data.login ){
-                location.reload();
-            }else{
-                alert( data.mes );
-            }
-        },
-        "json"
-    );
+
+    var btn = jQuery('#login_submit');
+        btn.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> INICIANDO SESI&Oacute;N');
+
+    if( validar_login() ){
+
+        jQuery.post( 
+            HOME+"/procesos/login/login.php", 
+            {
+                usu: jQuery("#form_login #usuario").val(),
+                clv: jQuery("#form_login #clave").val()
+            },
+            function( data ) {
+                if( data.login ){
+                    location.reload();
+                }else{
+                    jQuery('#login_submit').before('<div data-id="alert_login" class="alert alert-danger"><strong>'+data.mes+'</strong></div>');
+                    setTimeout(function() {
+                        jQuery('[data-id="alert_login"]').remove();
+                    },3000);
+                }
+                btn.html('INICIAR SESIÓN AHORA');
+            },
+            "json"
+        );
+    }else{
+        btn.html('INICIAR SESIÓN AHORA');
+    }
 }
 
 function getAjaxData(url,method, datos){
