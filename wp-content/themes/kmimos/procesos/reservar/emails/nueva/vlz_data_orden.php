@@ -33,5 +33,6 @@
 	$metodo_pago = $detalles["metodo_pago"];
 
 	$pdf = $detalles["pdf"];
+	$servicio = $detalles["servicio"];
 
 ?>

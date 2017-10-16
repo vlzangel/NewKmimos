@@ -11,19 +11,15 @@
         return $info["email"]; 
     });
 
-    // Modificacion Ángel Veloz
- 	if( !isset($_SESSION) ){ session_start(); }		
- 	global $current_user;		
- 	$user_id = md5($current_user->ID);		
+	include(dirname(__FILE__)."/vlz_data_orden.php");
+	
  	
- 	$DS = kmimos_session();
- 	if( isset( $DS["reserva"] ) ){			
- 		$modificacion = 'Esta es una modificación de la reserva #: '.$DS["reserva"];
+ 	$modificacion_de = get_post_meta($reserva_id, "modificacion_de", true);
+    if( $modificacion_de != "" ){		
+ 		$modificacion = 'Esta es una modificación de la reserva #: '.$modificacion_de;
  	}else{		
  		$modificacion = "";		
  	}
-
-	include("vlz_data_orden.php");
 
 	$email_admin = $info["email"];
 

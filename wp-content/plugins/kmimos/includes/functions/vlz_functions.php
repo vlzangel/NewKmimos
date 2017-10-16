@@ -1007,7 +1007,9 @@
                 "detalles_factura_cuidador" => $detalles_factura_cuidador,
 
                 "metodo_pago" => $metas_orden['_payment_method'][0],
-                "pdf" => $metas_orden['_openpay_pdf'][0]
+                "pdf" => $metas_orden['_openpay_pdf'][0],
+
+                "servicio" => $producto->ID
             );
 
         }

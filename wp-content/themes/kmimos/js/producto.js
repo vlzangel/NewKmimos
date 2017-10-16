@@ -371,8 +371,9 @@ function initFactura(){
 
 function pagarReserva(id_invalido = false){
 
-	jQuery("#reserva_btn_next_3").html("Procesando");
+	jQuery("#reserva_btn_next_3 span").html("Procesando");
 	jQuery("#reserva_btn_next_3").addClass("disabled");
+	jQuery("#reserva_btn_next_3").addClass("cargando");
 
 	var transporte = "==="; 
 	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
@@ -395,16 +396,23 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			console.log( data );
-			// location.href = RAIZ+"/finalizar/"+data.order_id;
-		} // , "json"
+			/*console.log( data );*/
+			location.href = RAIZ+"/finalizar/"+data.order_id;
+		}, "json"
 	).fail(function(e) {
     	console.log( e );
-    	if( e.status == 500 ){
-    		/*pagarReserva(true);*/
-    	}else{
-    		alert("Error al procesar la reserva!");
-    	}
+
+    	var error = "Error procesando la reserva<br>";
+    	error += "Por favor intente nuevamente.<br>";
+    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+
+    	jQuery(".errores_box").html(error);
+		jQuery(".errores_box").css("display", "block");
+
+		jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
+		jQuery("#reserva_btn_next_3").removeClass("disabled");
+		jQuery("#reserva_btn_next_3").removeClass("cargando");
+
   	});
 }
 
@@ -584,7 +592,7 @@ function reaplicarCupones(){
 function getCantidad(){
 	var resultado = 0;
 	jQuery(".km-content-new-pet .tamano").each(function( index ) {
-	  	resultado += parseInt($( this ).val());
+	  	resultado += parseInt(jQuery( this ).val());
 	});
 	return resultado;
 }
@@ -592,6 +600,34 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+	jQuery("#numero").on("keypress", function(e){
+		var txt = jQuery(this).val();
+		if( txt.length == 16 ){
+			e.preventDefault();
+			return false;
+		}
+	});
+
+	jQuery("#numero").on("focus", function(e){
+		var txt = jQuery(this).val();
+		txt = txt.replaceAll(" ", "");
+		jQuery(this).val(txt);
+		jQuery("#numero_oculto").val(txt);
+	});
+
+	jQuery("#numero").on("blur", function(e){
+		var txt = jQuery(this).val();
+		jQuery("#numero_oculto").val(txt);
+		var temp = "";
+		for(var i=0; i<txt.length; i++){
+			if( i > 0 && i%4 == 0){
+				temp += " ";
+			}
+			temp += txt[i];
+		}
+		jQuery(this).val(temp);
+	});
 
 	jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
 
@@ -672,12 +708,12 @@ jQuery(document).ready(function() {
         onmonthsToShow: [1, 1]
     });
 
-	$(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
+		var el = jQuery(this);
 		var div = el.parent();
-		var span = $(".km-number", div);
-		var input = $("input", div);
+		var span = jQuery(".km-number", div);
+		var input = jQuery("input", div);
 		if ( span.html() > 0 ) {
 			var valor = parseInt(span.html()) - 1;
 			span.html( valor );
@@ -689,13 +725,13 @@ jQuery(document).ready(function() {
 		calcular();
 	});
 
-	$(document).on("click", '.page-reservation .km-quantity .km-plus', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .km-quantity .km-plus', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
+		var el = jQuery(this);
 		var div = el.parent();
-		var span = $(".km-number", div);
-		var minus = $(".km-minus", div);
-		var input = $("input", div);
+		var span = jQuery(".km-number", div);
+		var minus = jQuery(".km-minus", div);
+		var input = jQuery("input", div);
 		
 		var valor = parseInt(span.html()) + 1;
 
@@ -712,9 +748,9 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	$(document).on("change", '.page-reservation .km-height-select', function ( e ) {
+	jQuery(document).on("change", '.page-reservation .km-height-select', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
+		var el = jQuery(this);
 		el.removeClass("small");
 		el.removeClass("medium");
 		el.removeClass("large");
@@ -723,11 +759,11 @@ jQuery(document).ready(function() {
 		el.addClass( el.val() );
 	});
 
-	$(document).on("click", '.page-reservation .optionCheckout', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .optionCheckout', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
+		var el = jQuery(this);
 		var div = el.parent();
-		var input = $("input", div);
+		var input = jQuery("input", div);
 		el.toggleClass("active");
 		input.toggleClass("active");
 		if(typeof calcular === 'function') {
@@ -735,24 +771,24 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	$(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
 		e.preventDefault();
 
 		if( !jQuery(this).hasClass("km-option-3-lineas") ){
-			var el = $(this);
-			$(".km-method-paid-option", el.parent()).removeClass("active");
+			var el = jQuery(this);
+			jQuery(".km-method-paid-option", el.parent()).removeClass("active");
 
 			el.addClass("active");
 
 			if ( el.hasClass("km-option-deposit") ) {
-				$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
-				$(".page-reservation .km-services-total").slideUp("fast");
+				jQuery(".page-reservation .km-detail-paid-deposit").slideDown("fast");
+				jQuery(".page-reservation .km-services-total").slideUp("fast");
 				
 				CARRITO["pagar"]["metodo"] = "deposito";
 
 			} else {
-				$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
-				$(".page-reservation .km-services-total").slideDown("fast");
+				jQuery(".page-reservation .km-detail-paid-deposit").slideUp("fast");
+				jQuery(".page-reservation .km-services-total").slideDown("fast");
 				CARRITO["pagar"]["metodo"] = "completo";
 			}
 			
@@ -763,10 +799,10 @@ jQuery(document).ready(function() {
 
 	});
 
-	$(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
-		$(".km-tab-content", el.parent()).slideToggle("fast");
+		var el = jQuery(this);
+		jQuery(".km-tab-content", el.parent()).slideToggle("fast");
 	});
 
 	jQuery(".navbar").removeClass("bg-transparent");
@@ -820,7 +856,7 @@ jQuery(document).ready(function() {
 				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
 				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
 				if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
-					jQuery("#reserva_btn_next_3").html("Validando...");
+					jQuery("#reserva_btn_next_3 span").html("Validando...");
 					jQuery("#reserva_btn_next_3").addClass("disabled");
 					OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
 				}else{
@@ -853,7 +889,11 @@ jQuery(document).ready(function() {
 				}
 			}
 		}
-		CARRITO["tarjeta"][ jQuery(this).attr("id") ] = jQuery(this).val();
+		var txtTemp = jQuery(this).val();
+		if( jQuery(this).attr("id") == "numero" ){
+			txtTemp = txtTemp.replaceAll(" ", "");
+		}
+		CARRITO["tarjeta"][ jQuery(this).attr("id") ] = txtTemp;
 	});
 
 	jQuery("#tipo_pago").on("change", function(e){
@@ -864,7 +904,7 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	$('#term-conditions').on("change", function ( e ) {
+	jQuery('#term-conditions').on("change", function ( e ) {
 		e.preventDefault();
 
 		if( !jQuery(this).hasClass("active") ){
@@ -887,8 +927,8 @@ jQuery(document).ready(function() {
 
 	jQuery(document).on("click", '.page-reservation .km-medio-paid-options .km-method-paid-option', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
-		$(".km-method-paid-option", el.parent()).removeClass("active");
+		var el = jQuery(this);
+		jQuery(".km-method-paid-option", el.parent()).removeClass("active");
 
 		el.addClass("active");
 
@@ -909,8 +949,8 @@ jQuery(document).ready(function() {
 
 	/* Configuración Openpay */
 
-		OpenPay.setId('mae56tbxscnuqozgio7b');
-	    OpenPay.setApiKey('pk_ade086de44594d1187aeab6e824b2ffd');
+		OpenPay.setId( OPENPAY_TOKEN );
+	    OpenPay.setApiKey(OPENPAY_PK);
 	    OpenPay.setSandboxMode(true);
 
 	    var deviceSessionId = OpenPay.deviceData.setup("reservar", "deviceIdHiddenFieldName");
@@ -927,7 +967,7 @@ jQuery(document).ready(function() {
 	        jQuery(".errores_box").css("display", "block");
 	        error = "";
 
-			jQuery("#reserva_btn_next_3").html("TERMINAR RESERVA");
+			jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 			jQuery("#reserva_btn_next_3").removeClass("disabled");
 
 			var errores_txt = {

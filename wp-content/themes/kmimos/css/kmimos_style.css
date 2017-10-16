@@ -4900,7 +4900,8 @@ footer .km-icon-redes {
     font-size:17px;
     text-align:center;
     line-height:55px;
-    margin-top:30px
+    margin-top:30px;
+    cursor: pointer;
 }
 .page-reservation .km-end-btn-form span {
     display:inline-block;
@@ -5384,7 +5385,7 @@ h1.maps {
         margin-top:20px
     }
 }
-@media (max-width:430px) {
+@media (max-width:500px) {
     .page-reservation .header {
         padding-top:20px;
         padding-bottom:20px

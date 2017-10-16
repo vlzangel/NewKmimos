@@ -1,6 +1,7 @@
 <?php
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
-	//include_once($raiz."/wp-load.php");
+
+	include_once($raiz."/wp-load.php");
 
 	if( !isset($_SESSION)){ session_start(); }
 
@@ -209,10 +210,10 @@
     }
 	
 	$reservar = new Reservas($db, $data_reserva);
-
     $id_orden = $reservar->new_reserva();
-
     $reservar->aplicarCupones($id_orden, $cupones);
+
+    $cupos_a_decrementar = $parametros["cantidades"]->cantidad;
 
     $id_session = 'MR_'.$pagar->servicio."_".md5($pagar->cliente);
     if( isset($_SESSION[$id_session] ) ){
@@ -223,48 +224,13 @@
 		$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$old_reserva}, 'reserva_modificada', '{$new_reserva}');");
 
 		$old_order = $db->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$old_reserva}' ");
-
 		$db->query("UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$old_reserva}', '{$old_order}' );");
+		$cupos_menos = $_SESSION[$id_session]["variaciones"]["cupos"];
+		$cupos_a_decrementar -= $cupos_menos;
 
 		$_SESSION[$id_session] = "";
 		unset($_SESSION[$id_session]);
 	}
-
-    if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
-    	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
-    	echo json_encode(array(
-			"order_id" => $id_orden
-		));
-		include_once($raiz."/wp-load.php");
-		include(__DIR__."/emails/nueva/index.php");
-
-		exit;
-    }
-
-    if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
-    	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
-
-    	echo json_encode(array(
-			"order_id" => $id_orden
-		));
-		include_once($raiz."/wp-load.php");
-		include(__DIR__."/emails/nueva/index.php");
-
-		exit;
-    }
-
-    if( $pagar->total <= $descuentos ){
-    	$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
-		$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
-
-    	echo json_encode(array(
-			"order_id" => $id_orden
-		));
-		include_once($raiz."/wp-load.php");
-		include(__DIR__."/emails/nueva/index.php");
-
-		exit;
-    }
 
     update_cupos( array(
     	"servicio" => $parametros["pagar"]->servicio,
@@ -272,10 +238,38 @@
     	"autor" => $parametros["pagar"]->cuidador,
     	"inicio" => strtotime($parametros["fechas"]->inicio),
     	"fin" => strtotime($parametros["fechas"]->fin),
-    	"cantidad" => $parametros["cantidades"]->cantidad
-    ), "-");
+    	"cantidad" => $cupos_a_decrementar
+    ), "+");
 
-    $db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
+    if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
+    	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
+    	echo json_encode(array(
+			"order_id" => $id_orden
+		));
+
+		include(__DIR__."/emails/nueva/index.php");
+
+		exit;
+    }
+
+    if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
+    	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
+    	echo json_encode(array(
+			"order_id" => $id_orden
+		));
+		include(__DIR__."/emails/nueva/index.php");
+		exit;
+    }
+
+    if( $pagar->total <= $descuentos ){
+    	$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+		$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+    	echo json_encode(array(
+			"order_id" => $id_orden
+		));
+		include(__DIR__."/emails/nueva/index.php");
+		exit;
+    }
 
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
@@ -401,7 +395,7 @@
 		   					"openpay_customer_id" => $customer->id,
 							"order_id" => $id_orden
 						));
-						include_once($raiz."/wp-load.php");
+
 						include(__DIR__."/emails/nueva/index.php");
 			        }else{
 			            echo json_encode(array(
@@ -433,7 +427,7 @@
 
 				$charge = $customer->charges->create($chargeRequest);
 
-				$pdf = "https://sandbox-dashboard.openpay.mx/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference;
+				$pdf = $OPENPAY_URL."/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference;
 
 				$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 				$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_pdf', '{$pdf}');");
@@ -445,7 +439,6 @@
 					"order_id" => $id_orden
 				));
 
-				include_once($raiz."/wp-load.php");
 				include(__DIR__."/emails/nueva/index.php");
 
    			break;

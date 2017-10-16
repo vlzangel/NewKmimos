@@ -196,3 +196,36 @@ div#tienda_box img {
 .km-info-inactive{
     padding: 0px;
 }
+
+.btn_modificar{
+    position: fixed;
+    display: inline-block;
+    left: 50px;
+    bottom: 50px;
+    padding: 8px 15px;
+    font-size: 20px;
+    font-family: Roboto;
+    z-index: 999999999999999999;
+    color: #FFF;
+    border: solid 1px #7b7b7b;
+    text-decoration: none !important;
+}
+
+.page-reservation .km-end-btn-form.disabled {
+    position: relative;
+}
+
+.perfil_cargando {
+    display: none;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-size: contain;
+    top: 15px;
+    right: 15px;
+}
+
+.page-reservation .km-end-btn-form.cargando .perfil_cargando {
+    display: block !important;
+}

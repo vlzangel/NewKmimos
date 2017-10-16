@@ -15,6 +15,10 @@ wp-content/ngg_styles/
 wp-content/index.php
 imgs/Temp/
 
+apk/
+app/
+movil/
+
 /.htaccess
 /license.txt
 /readme.html

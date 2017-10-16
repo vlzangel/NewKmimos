@@ -38,8 +38,6 @@
     margin-top: 30px;
     max-width: 500px;
     margin: 0px auto 10px;
+    width: calc( 100% - 20px );
+    text-decoration: none !important;
 }
-/*.btn_fin_reserva:hover{
-    background: #26b296;
-    color: #FFF;
-}*/
