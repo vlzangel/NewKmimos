@@ -396,8 +396,8 @@ function pagarReserva(id_invalido = false){
 		},
 		function(data){
 			console.log( data );
-			// location.href = RAIZ+"/finalizar/"+data.order_id;
-		} // , "json"
+			//location.href = RAIZ+"/finalizar/"+data.order_id;
+		}//, "json"
 	).fail(function(e) {
     	console.log( e );
     	if( e.status == 500 ){
@@ -584,7 +584,7 @@ function reaplicarCupones(){
 function getCantidad(){
 	var resultado = 0;
 	jQuery(".km-content-new-pet .tamano").each(function( index ) {
-	  	resultado += parseInt($( this ).val());
+	  	resultado += parseInt(jQuery( this ).val());
 	});
 	return resultado;
 }
@@ -672,12 +672,12 @@ jQuery(document).ready(function() {
         onmonthsToShow: [1, 1]
     });
 
-	$(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
+		var el = jQuery(this);
 		var div = el.parent();
-		var span = $(".km-number", div);
-		var input = $("input", div);
+		var span = jQuery(".km-number", div);
+		var input = jQuery("input", div);
 		if ( span.html() > 0 ) {
 			var valor = parseInt(span.html()) - 1;
 			span.html( valor );
@@ -689,13 +689,13 @@ jQuery(document).ready(function() {
 		calcular();
 	});
 
-	$(document).on("click", '.page-reservation .km-quantity .km-plus', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .km-quantity .km-plus', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
+		var el = jQuery(this);
 		var div = el.parent();
-		var span = $(".km-number", div);
-		var minus = $(".km-minus", div);
-		var input = $("input", div);
+		var span = jQuery(".km-number", div);
+		var minus = jQuery(".km-minus", div);
+		var input = jQuery("input", div);
 		
 		var valor = parseInt(span.html()) + 1;
 
@@ -712,9 +712,9 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	$(document).on("change", '.page-reservation .km-height-select', function ( e ) {
+	jQuery(document).on("change", '.page-reservation .km-height-select', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
+		var el = jQuery(this);
 		el.removeClass("small");
 		el.removeClass("medium");
 		el.removeClass("large");
@@ -723,11 +723,11 @@ jQuery(document).ready(function() {
 		el.addClass( el.val() );
 	});
 
-	$(document).on("click", '.page-reservation .optionCheckout', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .optionCheckout', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
+		var el = jQuery(this);
 		var div = el.parent();
-		var input = $("input", div);
+		var input = jQuery("input", div);
 		el.toggleClass("active");
 		input.toggleClass("active");
 		if(typeof calcular === 'function') {
@@ -735,24 +735,24 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	$(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
 		e.preventDefault();
 
 		if( !jQuery(this).hasClass("km-option-3-lineas") ){
-			var el = $(this);
-			$(".km-method-paid-option", el.parent()).removeClass("active");
+			var el = jQuery(this);
+			jQuery(".km-method-paid-option", el.parent()).removeClass("active");
 
 			el.addClass("active");
 
 			if ( el.hasClass("km-option-deposit") ) {
-				$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
-				$(".page-reservation .km-services-total").slideUp("fast");
+				jQuery(".page-reservation .km-detail-paid-deposit").slideDown("fast");
+				jQuery(".page-reservation .km-services-total").slideUp("fast");
 				
 				CARRITO["pagar"]["metodo"] = "deposito";
 
 			} else {
-				$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
-				$(".page-reservation .km-services-total").slideDown("fast");
+				jQuery(".page-reservation .km-detail-paid-deposit").slideUp("fast");
+				jQuery(".page-reservation .km-services-total").slideDown("fast");
 				CARRITO["pagar"]["metodo"] = "completo";
 			}
 			
@@ -763,10 +763,10 @@ jQuery(document).ready(function() {
 
 	});
 
-	$(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {
+	jQuery(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
-		$(".km-tab-content", el.parent()).slideToggle("fast");
+		var el = jQuery(this);
+		jQuery(".km-tab-content", el.parent()).slideToggle("fast");
 	});
 
 	jQuery(".navbar").removeClass("bg-transparent");
@@ -813,9 +813,9 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery("#reserva_btn_next_3").on("click", function(e){
-		if( jQuery(this).hasClass("disabled") ){
+		/*if( jQuery(this).hasClass("disabled") ){
 			alert("Debes aceptar los terminos y condiciones");
-		}else{
+		}else{*/
 			if( jQuery("#metodos_pagos").css("display") != "none" ){
 				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
 				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
@@ -830,7 +830,7 @@ jQuery(document).ready(function() {
 				CARRITO["pagar"]["tipo"] = "Saldo y/o Descuentos";
 				pagarReserva();
 			}
-	 	}
+	 	/*}*/
 		e.preventDefault();
 	});
 
@@ -864,7 +864,7 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	$('#term-conditions').on("change", function ( e ) {
+	jQuery('#term-conditions').on("change", function ( e ) {
 		e.preventDefault();
 
 		if( !jQuery(this).hasClass("active") ){
@@ -887,8 +887,8 @@ jQuery(document).ready(function() {
 
 	jQuery(document).on("click", '.page-reservation .km-medio-paid-options .km-method-paid-option', function ( e ) {
 		e.preventDefault();
-		var el = $(this);
-		$(".km-method-paid-option", el.parent()).removeClass("active");
+		var el = jQuery(this);
+		jQuery(".km-method-paid-option", el.parent()).removeClass("active");
 
 		el.addClass("active");
 
@@ -909,8 +909,11 @@ jQuery(document).ready(function() {
 
 	/* Configuración Openpay */
 
-		OpenPay.setId('mae56tbxscnuqozgio7b');
-	    OpenPay.setApiKey('pk_ade086de44594d1187aeab6e824b2ffd');
+	    console.log("OPENPAY_TOKEN: "+OPENPAY_TOKEN);
+	    console.log("OPENPAY_PK: "+OPENPAY_PK);
+
+		OpenPay.setId( OPENPAY_TOKEN );
+	    OpenPay.setApiKey(OPENPAY_PK);
 	    OpenPay.setSandboxMode(true);
 
 	    var deviceSessionId = OpenPay.deviceData.setup("reservar", "deviceIdHiddenFieldName");

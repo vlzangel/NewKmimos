@@ -154,6 +154,8 @@
 		}
 		//$error = "";
 
+		include( dirname(__FILE__)."/procesos/funciones/config.php" );
+
 		$HTML .= "
 		<script> 
 			var SERVICIO_ID = '".get_the_ID()."';
@@ -165,6 +167,8 @@
 			var email = '".$email."'; 
 			var saldo = '".$saldoTXT."';
 			var acepta = '".$cuidador->mascotas_permitidas."';
+			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
+			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
 		</script>";
 
 		if( $error != "" ){

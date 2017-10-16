@@ -1,6 +1,7 @@
 <?php
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
-	//include_once($raiz."/wp-load.php");
+
+	include_once($raiz."/wp-load.php");
 
 	if( !isset($_SESSION)){ session_start(); }
 
@@ -8,6 +9,8 @@
 	include_once("../funciones/db.php");
 	include_once("../funciones/config.php");
 	include_once("../../lib/openpay/Openpay.php");
+
+	exit();
 
 	include_once("reservar.php");
 
@@ -207,12 +210,29 @@
     foreach ($xdata_cliente as $key => $value) {
     	$data_cliente[ $value->meta_key ] = utf8_encode($value->meta_value);
     }
+
+    $id_orden = 196356;
+
+    update_cupos( array(
+    	"servicio" => $parametros["pagar"]->servicio,
+    	"tipo" => $parametros["pagar"]->tipo_servicio,
+    	"autor" => $parametros["pagar"]->cuidador,
+    	"inicio" => strtotime($parametros["fechas"]->inicio),
+    	"fin" => strtotime($parametros["fechas"]->fin),
+    	"cantidad" => $parametros["cantidades"]->cantidad
+    ), "+");
+
+	//include(__DIR__."/emails/nueva/index.php");
+
+	exit();
 	
 	$reservar = new Reservas($db, $data_reserva);
 
     $id_orden = $reservar->new_reserva();
 
     $reservar->aplicarCupones($id_orden, $cupones);
+
+    $db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 
     $id_session = 'MR_'.$pagar->servicio."_".md5($pagar->cliente);
     if( isset($_SESSION[$id_session] ) ){
@@ -235,8 +255,8 @@
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
-		include_once($raiz."/wp-load.php");
-		include(__DIR__."/emails/nueva/index.php");
+		/*include_once($raiz."/wp-load.php");
+		include(__DIR__."/emails/nueva/index.php");*/
 
 		exit;
     }
@@ -247,8 +267,8 @@
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
-		include_once($raiz."/wp-load.php");
-		include(__DIR__."/emails/nueva/index.php");
+		/*include_once($raiz."/wp-load.php");
+		include(__DIR__."/emails/nueva/index.php");*/
 
 		exit;
     }
@@ -260,22 +280,11 @@
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
-		include_once($raiz."/wp-load.php");
-		include(__DIR__."/emails/nueva/index.php");
+		/*include_once($raiz."/wp-load.php");
+		include(__DIR__."/emails/nueva/index.php");*/
 
 		exit;
     }
-
-    update_cupos( array(
-    	"servicio" => $parametros["pagar"]->servicio,
-    	"tipo" => $parametros["pagar"]->tipo_servicio,
-    	"autor" => $parametros["pagar"]->cuidador,
-    	"inicio" => strtotime($parametros["fechas"]->inicio),
-    	"fin" => strtotime($parametros["fechas"]->fin),
-    	"cantidad" => $parametros["cantidades"]->cantidad
-    ), "-");
-
-    $db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
@@ -401,8 +410,10 @@
 		   					"openpay_customer_id" => $customer->id,
 							"order_id" => $id_orden
 						));
+						/*
 						include_once($raiz."/wp-load.php");
 						include(__DIR__."/emails/nueva/index.php");
+						*/
 			        }else{
 			            echo json_encode(array(
 		   					"openpay_customer_id" => $customer->id,
@@ -445,8 +456,8 @@
 					"order_id" => $id_orden
 				));
 
-				include_once($raiz."/wp-load.php");
-				include(__DIR__."/emails/nueva/index.php");
+				/*include_once($raiz."/wp-load.php");
+				include(__DIR__."/emails/nueva/index.php");*/
 
    			break;
 

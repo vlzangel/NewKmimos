@@ -73,6 +73,28 @@
 	                		';
 	                	}
 
+	                	if( isset($reserva["desglose"]["remaining"]) ){
+		                	$remanente = '
+		                		<div class="item_desglose vlz_bold">
+		                			<div style="color: #6b1c9b;" >Monto Restante a Pagar en EFECTIVO al cuidador</div>
+		                			<span style="color: #6b1c9b;">$'.number_format( ($reserva["desglose"]["remaining"]-$reserva["desglose"]["descuento"]), 2, ',', '.').'</span>
+		                		</div>
+		                	';
+		                	$pago = '
+		                		<div class="item_desglose">
+		                			<div>Pagó</div>
+		                			<span>$'.number_format( $reserva["desglose"]["deposit"], 2, ',', '.').'</span>
+		                		</div>
+		                	';
+	                	}else{
+		                	$pago = '
+		                		<div class="item_desglose">
+		                			<div>Pagó</div>
+		                			<span>$'.number_format( $reserva["desglose"]["total"], 2, ',', '.').'</span>
+		                		</div>
+		                	';
+	                	}
+
 		                $table.='
 		                <div class="vlz_tabla">
 		                	<div class="vlz_img">
@@ -111,15 +133,9 @@
 			                			<div>MÉTODO DE PAGO</div>
 			                			<span>'.$reserva["desglose"]["tipo"].'</span>
 			                		</div>
-			                		<div class="item_desglose vlz_bold">
-			                			<div style="color: #6b1c9b;" >Monto Restante a Pagar en EFECTIVO al cuidador</div>
-			                			<span style="color: #6b1c9b;">$'.number_format( ($reserva["desglose"]["remaining"]-$reserva["desglose"]["descuento"]), 2, ',', '.').'</span>
-			                		</div>
+			                		'.$remanente.'
 			                		'.$descuento.'
-			                		<div class="item_desglose">
-			                			<div>Pagó</div>
-			                			<span>$'.number_format( $reserva["desglose"]["deposit"], 2, ',', '.').'</span>
-			                		</div>
+			                		'.$pago.'
 		                		</div>
 		                		<div class="total_reserva">
 			                		<div class="item_desglose">
