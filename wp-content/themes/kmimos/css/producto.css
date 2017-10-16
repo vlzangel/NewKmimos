@@ -223,7 +223,7 @@ div#tienda_box img {
     background-position: center;
     background-size: contain;
     top: 15px;
-    left: 15px;
+    right: 15px;
 }
 
 .page-reservation .km-end-btn-form.cargando .perfil_cargando {
