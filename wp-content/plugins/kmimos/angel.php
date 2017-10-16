@@ -297,7 +297,7 @@
             $name_photo = get_user_meta($user_id, "name_photo", true);
             if( empty($name_photo)  ){ $name_photo = "0"; }
             
-            if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg"; }
+            if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= ".jpg"; }
             
             $base = path_base();
 
