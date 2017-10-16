@@ -304,7 +304,11 @@
             if( file_exists($base."/wp-content/uploads/{$sub_path}{$name_photo}") ){
                 $img = get_home_url()."/wp-content/uploads/{$sub_path}{$name_photo}";
             }else{
-                $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
+                if( file_exists($base."/wp-content/uploads/{$sub_path}/0.jpg") ){
+                    $img = get_home_url()."/wp-content/uploads/{$sub_path}/0.jpg";
+                }else{
+                    $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
+                }
             }
 
             if($get_sub_path){
