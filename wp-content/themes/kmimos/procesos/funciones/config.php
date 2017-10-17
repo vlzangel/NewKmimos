@@ -1,7 +1,7 @@
 <?php
 	$OPENPAY_PRUEBAS = true;
 
-	$OPENPAY_URL = ( $OPENPAY_PRUEBAS ) ? "https://dashboard.openpay.mx" : "https://sandbox-dashboard.openpay.mx";
+	$OPENPAY_URL = ( $OPENPAY_PRUEBAS ) ? "https://sandbox-dashboard.openpay.mx" : "https://dashboard.openpay.mx";
 	
 	$MERCHANT_ID = "mej4n9f1fsisxcpiyfsz";
 	$OPENPAY_KEY_SECRET = "sk_684a7f8598784911a42ce52fb9df936f";

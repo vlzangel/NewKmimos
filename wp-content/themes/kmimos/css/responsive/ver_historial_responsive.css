@@ -6,6 +6,18 @@
     .row_mitad section {
 	    width: 100%;
 	}
+	.no_movil{
+		display: none !important;
+	}
+	.body {
+	    padding: 5px !important;
+	}
+	.main {
+	    padding: 0px;
+	}
+	.main * {
+	    font-size: 11px;
+	}
 }
 
 @media (max-width: 500px){
