@@ -29,6 +29,8 @@
 		$desglose = ''; 
 
 		$deposito = unserialize($items["_wc_deposit_meta"]);
+		$descuento = get_post_meta($orden_id, "_cart_discount", true);
+
 		if( $deposito["enable"] == "yes" ){
 			$desglose .= '
 				<div>
@@ -36,7 +38,7 @@
 						Monto Restante a Pagar<br>
 						al cuidador en EFECTIVO
 					</diV>
-					<span>&nbsp;<br>$'.number_format( $deposito["remaining"], 2, ',', '.').'</span>
+					<span>&nbsp;<br>$'.number_format( $deposito["remaining"]-$descuento, 2, ',', '.').'</span>
 				</div>
 				<div class="border_desglose">
 					<div>Pag&oacute; </diV>
@@ -45,7 +47,6 @@
 			';
 		}
 
-		$descuento = get_post_meta($orden_id, "_cart_discount", true);
 		if( $descuento+0 > 0){
 			$desglose .= '
 				<div>
