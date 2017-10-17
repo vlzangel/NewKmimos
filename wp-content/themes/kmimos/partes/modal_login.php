@@ -43,24 +43,23 @@ $datos = kmimos_get_info_syte();
 								<a href="#" class="km-btn-contraseña-olvidada">¿OLVIDASTE TU CONTRASEÑA?</a>
 							</div>
 						</div>
-						<div class="line-o">
+						<div class="line-o hidden">
 							<p class="text-line">o</p>
 							<div class="bg-line"></div>
 						</div>
 						
 						<div class="alert alert-danger" style="
-			display:none;
-            -webkit-transition: All 1s; /* Safari */
-            transition: All 1s;
-			" 
-			data-error="auth"></div>
+							display:none;
+				            -webkit-transition: All 1s; /* Safari */
+				            transition: All 1s;" 
+							data-error="auth"></div>
 
-						<a href="#" onClick="auth_facebook();" class="km-btn-fb">
+						<a href="#" onClick="auth_facebook();" class="km-btn-fb hidden">
 							<img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">
 							 CONÉCTATE CON FACEBOOK
 						</a>
 
-						<a href="#" class="google_login km-btn-border">
+						<a href="#" class="google_login km-btn-border hidden">
 							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 							CONÉCTATE CON GOOGLE
 						</a>
