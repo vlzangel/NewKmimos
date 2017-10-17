@@ -26,24 +26,25 @@ $HTML .='
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar" >×</button>
 			<div class="popup-registrarte-1">
 				<p class="popup-tit">REGISTRARME</p>
-				<a href="#" class="km-btn-fb" onclick="login_facebook();">
+				
+				<a href="#" class="km-btn-fb hidden" onclick="login_facebook();">
 					<img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">
 					REGISTRARME CON FACEBOOK
 				</a>
 				
-				<a href="#" class="google_auth km-btn-border" id="customBtn1">
+				<a href="#" class="google_auth hidden km-btn-border" id="customBtn1">
 					<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 					REGISTRARME CON GOOGLE
 				</a>
 			
 				<div class="alert alert-danger" style="
-			display:none;
-            -webkit-transition: All 1s; /* Safari */
-            transition: All 1s;
-			" 
-			data-error="auth"></div>
+					display:none;
+		            -webkit-transition: All 1s; /* Safari */
+		            transition: All 1s;
+					" 
+					data-error="auth"></div>
 
-				<div class="line-o">
+				<div class="line-o hidden">
 					<p class="text-line">o</p>
 					<div class="bg-line"></div>
 				</div>
@@ -83,7 +84,11 @@ $HTML .='
 				</div>
 			</div>
 			<div class="popuphide popup-registrarte-nuevo-correo">
-				<p style="color: #979797; text-align: center;">Regístrate por <a href="#" onclick="login_facebook();">Facebook</a> o <a href="#" class="google_auth" id="customBtn2">Google</a></a></p>
+				
+				<span class="hidden">
+					<p style="color: #979797; text-align: center;">Regístrate por <a href="#" onclick="login_facebook();">Facebook</a> o <a href="#" class="google_auth" id="customBtn2">Google</a></a></p>
+				</span>
+
 					<h3 style="margin: 0; text-align: center;">Completa tus datos</h3>
 				<form id="form_nuevo_cliente" name="form_nuevo_cliente" enctype="multipart/form-data" method="POST">	
 					<div class="km-box-form">

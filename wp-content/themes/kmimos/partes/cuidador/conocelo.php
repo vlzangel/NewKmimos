@@ -7,8 +7,6 @@ date_default_timezone_set('America/Mexico_City');
 $user_id = $current_user->ID;
 $mascotas = kmimos_get_my_pets($user_id);
 
-
-
 $btn_perfil['icon'] = '<i class="fa fa-check" style="color: #3c763d;"></i>';
 $btn_perfil['btn'] = 'tu perfil';
 
@@ -140,7 +138,7 @@ $HTML_CONOCER = '
 				<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
 				<br>
 				<h2>
-					¡Genial Ángel'.get_user_meta($id_user, "first_name", true).'!<br>
+					¡Genial '.get_user_meta($user_id, "first_name", true).'!<br>
 					Solicitud Enviada Exitosamente
 				</h2>
 				<div>

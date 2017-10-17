@@ -6,9 +6,9 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="redireccionar();" >×</button>
 			<div class="popup-registro-cuidador active">
 				
-				<a href="javascript:;" onClick="login_facebook();" class="km-btn-fb"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg">REGISTRARME CON FACEBOOK</a>
+				<a href="javascript:;" onClick="login_facebook();" class="km-btn-fb hidden"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg">REGISTRARME CON FACEBOOK</a>
 				
-				<a href="#"  id="registro_cuidador_google" class="google_auth km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg">REGISTRARME CON GOOGLE</a>
+				<a href="#"  id="registro_cuidador_google" class="google_auth km-btn-border hidden"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg">REGISTRARME CON GOOGLE</a>
 
 				<div class="alert alert-danger" style="
 			display:none;
@@ -19,7 +19,7 @@
 				
 
 
-				<div class="line-o">
+				<div class="line-o hidden">
 					<p class="text-line">o</p>
 					<div class="bg-line"></div>
 				</div>
@@ -48,9 +48,11 @@
 			<input type="hidden" name="facebook_auth_id" class="social_facebook_id"  value="">
 
 			<div class="popuphide popup-registro-cuidador-correo">
-				<p style="color: #979797; text-align: center;">Regístrate por 
+				
+				<p class="hidden" style="color: #979797; text-align: center;">Regístrate por 
 				<a href="javascript:;" onClick="login_facebook();">Facebook</a> o 
 				<a href="#" class="google_auth" >Google</a></a></p>
+
 				<h3 style="margin: 0; text-align: center;">Completa tus datos</h3>
 				<div class="km-box-form">
 					<div class="content-placeholder">
