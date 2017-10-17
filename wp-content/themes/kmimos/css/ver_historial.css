@@ -1,7 +1,7 @@
 .desglose_container {
     font-family: Lato, Arial;
     color: #4e4e4e;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 1.42857143;
     padding: 10px;
 }
@@ -74,4 +74,16 @@
 .desglose_box strong{
 	display: block;
     margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.volver{
+	padding: 10px;
+    border-bottom: solid 1px #777;
+}
+
+.volver a{
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none !important;
 }

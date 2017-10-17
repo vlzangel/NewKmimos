@@ -4,41 +4,36 @@
 
     $orden = vlz_get_page();
 
-    $datos_generales = kmimos_datos_generales_desglose($orden, false, false);
-
-    $detalles_cliente = $datos_generales["cliente"];
-    $detalles_cuidador = $datos_generales["cuidador"];
-    $detalles_mascotas = $datos_generales["mascotas"];
-
-    $cliente_email  = $datos_generales["cliente_email"];
-    $cuidador_email = $datos_generales["cuidador_email"];
-
-    /* Detalles del servicio */
-
-    $detalles = kmimos_desglose_reserva($orden);
-
-    $msg_id_reserva = $detalles["msg_id_reserva"];
-    $aceptar_rechazar = $detalles["aceptar_rechazar"];
-    $detalles_servicio = $detalles["detalles_servicio"];
-    $detalles_factura = $detalles["detalles_factura"];
-
     $data_reserva = kmimos_desglose_reserva_data($orden);
 
-/*    echo "<pre>";
-        print_r( $data_reserva );
-    echo "</pre>";*/
+    $email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID='{$data_reserva["cuidador"]}'");
+    $telefonos = get_user_meta($data_reserva["cuidador"], "user_phone", true)." / ".get_user_meta($data_reserva["cuidador"], "user_mobile", true);
+    $direccion = $wpdb->get_var("SELECT direccion FROM cuidadores WHERE user_id='{$data_reserva["cuidador"]}'");
 
-
-/*    $email = "<strong>Email: </strong>".$wpdb->get_var("SELECT user_email FROM wp_users WHERE ID='{$data_reserva["cuidador"]}'");
-    $telefonos = "<strong>Tel&eacute;fono: </strong>".get_user_meta($data_reserva["cuidador"], "user_phone", true)."<br>";
-    $telefonos .= "<strong>M&oacute;vil: </strong>".get_user_meta($data_reserva["cuidador"], "user_mobile", true);
-*/
     $info = '
         <div class="desglose_box">
             <div>
-                <div class="sub_titulo">CUIDADOR SELECCIONADO</div>
+                <div class="sub_titulo">CUIDADOR</div>
                 <span>
                     '.$wpdb->get_var("SELECT post_title FROM wp_posts WHERE post_author='{$data_reserva["cuidador"]}' AND post_type = 'petsitters'").'
+                </span>
+            </div>
+            <div>
+                <div class="sub_titulo">EMAIL</div>
+                <span>
+                    '.$email.'
+                </span>
+            </div>
+            <div>
+                <div class="sub_titulo">TEL&Eacute;FONOS</div>
+                <span>
+                    '.$telefonos.'
+                </span>
+            </div>
+            <div>
+                <div class="sub_titulo">DIRECCI&Oacute;N</div>
+                <span>
+                    '.$direccion.'
                 </span>
             </div>
             <div>
@@ -161,7 +156,11 @@
     }
 
     $CONTENIDO .= 
-        "<div class='desglose_container'>".
+        "
+        <div class='volver'>
+            <a href='".get_home_url()."/perfil-usuario/historial/'>Volver</a>
+        </div>
+        <div class='desglose_container'>".
             $info.
             $variaciones.
             $adicionales.
