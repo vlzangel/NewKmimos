@@ -9,11 +9,53 @@
 	wp_enqueue_script('finalizar', getTema()."/js/finalizar.js", array("jquery"), '1.0.0');
 
 	get_header();
+
+		global $wpdb;
 		
 		$id_user = get_current_user_id();
 
 		$orden_id = vlz_get_page();
 
+		$reserva_id = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = ".$orden_id);
+
+		$items_id = get_post_meta($reserva_id, "_booking_order_item_id", true);
+
+		$xitems = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = ".$items_id);
+		$items = array();
+		foreach ($xitems as $key => $value) {
+			$items[ $value->meta_key ] = $value->meta_value;
+		}
+
+		$desglose = ''; 
+
+		$deposito = unserialize($items["_wc_deposit_meta"]);
+		if( $deposito["enable"] == "yes" ){
+			$desglose .= '
+				<div>
+					<div class="remanente">
+						Monto Restante a Pagar<br>
+						al cuidador en EFECTIVO
+					</diV>
+					<span>&nbsp;<br>$'.number_format( $deposito["remaining"], 2, ',', '.').'</span>
+				</div>
+				<div class="border_desglose">
+					<div>Pag&oacute; </diV>
+					<span>$'.number_format( $deposito["deposit"], 2, ',', '.').'</span>
+				</div>
+			';
+		}
+
+		$descuento = get_post_meta($orden_id, "_cart_discount", true);
+		if( $descuento+0 > 0){
+			$desglose .= '
+				<div>
+					<div>
+						Descuento
+					</diV>
+					<span>$'.number_format( $descuento, 2, ',', '.').'</span>
+				</div>
+			';
+		}
 
 		$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
 		if( $pdf != "" ){
@@ -30,34 +72,22 @@
 					¡Genial '.get_user_meta($id_user, "first_name", true).'!<br>
 					Reservaste Exitosamente
 
-					<!--
 					<div class="desglose_reserva" >
 						<div class="border_desglose">
 							<div>Tu numero de reserva </diV>
-							<span>202290</span>
+							<span>'.$reserva_id.'</span>
 						</div>
 						<div class="border_desglose">
 							<div>Fecha de tu reserva </diV>
-							<span>27 Julio, 2017</span>
+							<span>'.$items["Fecha de Reserva"].'</span>
 						</div>
-						<div>
-							<div class="remanente">
-								Monto Restante a Pagar<br>
-								al cuidador en EFECTIVO
-							</diV>
-							<span>$809.25</span>
-						</div>
-						<div class="border_desglose">
-							<div>Pag&oacute; </diV>
-							<span>$165.75</span>
-						</div>
+						'.$desglose.'
 						<div>
 							<div>Total </diV>
-							<span>$975.00</span>
+							<span>$'.number_format( $items["_line_subtotal"], 2, ',', '.').'</span>
 						</div>
 					</div>
-					-->
-
+					
 					<div style="padding-top: 20px;">
 						'.$pdf.'
 						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
