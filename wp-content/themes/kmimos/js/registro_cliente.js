@@ -509,9 +509,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					datepets,genero_mascota,tamano_mascota,pet_sterilized,
 					pet_sociable,aggresive_humans,aggresive_pets,img_pet, img_profile];
 
-		km_cliente_validar( valid );
-
-
 		if (
 			nombre_mascota != "" && 
 			tipo_mascota != "" && 
@@ -520,7 +517,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			datepets != "" && 
 			genero_mascota != "" && 
 			tamano_mascota >= 0 &&
-			valor != "" 
+			valor != "" &&
+			img_pet != ""
 		) {
         		var datos = {
 		      		'name_pet': campos_pet[0],
