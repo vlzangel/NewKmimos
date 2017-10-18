@@ -18,16 +18,17 @@
 
 	    $home = get_home_url();
 
-	    global $wpdb;
+	    //global $wpdb;
 
-	    $estados_str = "";
-	    $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1");
-	    foreach ($estados as $key => $value) {
-    		$municipios = $wpdb->get_results("SELECT * FROM locations WHERE state_id = ".$value->id);
-    		foreach ($municipios as $key => $municipio) {
-    			$estados_str .= utf8_decode("<option value='".$value->id."=".$municipio->id."'>".$value->name.", ".$municipio->name."</option>");
-    		}
-	    }
+	    // $estados_str = "";
+	    
+	    // $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1");
+	    // foreach ($estados as $key => $value) {
+    	// 	$municipios = $wpdb->get_results("SELECT * FROM locations WHERE state_id = ".$value->id);
+    	// 	foreach ($municipios as $key => $municipio) {
+    	// 		$estados_str .= utf8_decode("<option value='".$value->id."=".$municipio->id."'>".$value->name.", ".$municipio->name."</option>");
+    	// 	}
+	    // }
 
 	    $HTML = '
 	    <script type="text/javascript"> var URL_MUNICIPIOS ="'.getTema().'/procesos/generales/municipios.php"; </script>
@@ -65,7 +66,7 @@
 							<div class="col-xs-12 col-sm-6">
 								<div class="km-select-custom km-select-custom-home km-select-ubicacion km-fechas" style="height: 48px">
 									<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
-									<input type="text" id="ubicacion_txt" class="km-fechas" style="background: transparent; border: 0px; padding: 14px 0 14px 15px;" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" data-charset="xlfdir" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
+									<input type="text" id="ubicacion_txt" class="km-fechas" style="background: transparent; border: 0px; padding: 0px 0px 0px 15px;" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" data-charset="xlfdir" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
 									<input type="hidden" id="ubicacion" name="ubicacion" data-charset="xlfdir" value="'.$busqueda["ubicacion"].'" />
 									<div id="ubicacion_list"></div>
 								</div>
@@ -258,15 +259,17 @@
 										<a href="Javascript: void(0);" onclick="playVideo(this)"><img src="'.getTema().'/images/new/icon/icon-video.svg" width="55"></a>
 									</div>
 									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">JUAN RODRÍGUEZ - México D.F</div>
+									<div class="km-autor">MARU S. - Ciudad de México</div>
 									<div class="km-autor-descripcion">Cuidador Certificado</div>
 								</div>
 								<video controls="controls">
-									<source src="'.getTema().'/images/new/videos/km-home/km-video.webm" type="video/webm">
-									<source src="'.getTema().'/images/new/videos/km-home/km-video.mp4" type="video/mp4">
-									<source src="'.getTema().'/images/new/videos/km-home/km-video.ogv" type="video/ogg">
+									<source src="'.getTema().'/images/new/videos/km-home/Kmimos_MaruS.webm" type="video/webm">
+									<source src="'.getTema().'/images/new/videos/km-home/Kmimos_MaruS.mp4" type="video/mp4">
+									<source src="'.getTema().'/images/new/videos/km-home/Kmimos_MaruS.ogv" type="video/ogg">
 								</video>
-								<img class="img-testimoniales control-video" src="'.getTema().'/images/new/km-testimoniales/testimonial-1.jpg">
+								<img class="img-testimoniales control-video" 
+									src="'.getTema().'/images/new/km-testimoniales/testimonial-1.jpg"
+									>
 							</div>
 						</li>
 						<li>
@@ -356,13 +359,13 @@
 				<h2>Vacations Mode On</h2>
 				<div class="row">
 					<div class="items col-xs-12 col-sm-6">
-						<a href="http://www.fiestamericana.com/en/home" style="background-color: white;"><img src="'.getTema().'/images/new/km-logos/logo-hotel.jpg" height="58px"></a>
+						<a  target="blank" href="http://www.fiestamericana.com/en/home" style="background-color: white;"><img src="'.getTema().'/images/new/km-logos/logo-hotel.jpg" height="58px"></a>
 					</div>
 					<div class="items col-xs-12 col-sm-6">
-						<a href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
+						<a  target="blank" href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
 					</div>
 					<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
-						<a href="https://www.volaris.com/" style="background-color: #E2D1A0; font-size:25px;"><img src="'.getTema().'/images/new/km-logos/posadas-white-logo.svg" width="180px" height="58px"></a>
+						<a target="blank" href="https://www.volaris.com/" style="background-color: #E2D1A0; font-size:25px;"><img src="'.getTema().'/images/new/km-logos/posadas-white-logo.svg" width="180px" height="58px"></a>
 					</div>
 				</div>
 			</div>

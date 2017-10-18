@@ -16,9 +16,9 @@
 	$db = new db($conn);
 
 	$estados_str = "";
-    $estados = $db->get_results("SELECT * FROM states WHERE country_id = 1");
+    $estados = $db->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY `order`, `name` ASC");
     foreach ($estados as $key => $value) {
-		$municipios = $db->get_results("SELECT * FROM locations WHERE state_id = ".$value->id);
+		$municipios = $db->get_results("SELECT * FROM locations WHERE state_id = ".$value->id." ORDER BY `order`, `name` ASC ");
 
 		$estado_value = normaliza( ($value->name) );
     	$estados_str .= ("<div value='".$value->id."' data-value='".$estado_value."' >".$value->name."</div>");
@@ -32,4 +32,3 @@
     }
 
     echo $estados_str;
-?>

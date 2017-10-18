@@ -9,6 +9,9 @@ jQuery(document).ready(function(){
                 jQuery("#ubicacion_txt").val( jQuery(this).html() );
                 jQuery("#ubicacion").val( jQuery(this).attr("value") );
                 jQuery("#ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
+
+                    jQuery("#ubicacion_list div").css("display", "none");
+               
             });
             jQuery("#ubicacion_txt").attr("readonly", false);
         }
@@ -18,9 +21,18 @@ jQuery(document).ready(function(){
         buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
     });
 
-    jQuery("#ubicacion_txt").on("focus", function ( e ) {     
+    jQuery("#ubicacion_txt").on("focus", function ( e ) {
         buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
     });
+
+    jQuery("#ubicacion_txt").on("click", function ( e ) {
+        buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
+    });
+
+    jQuery("#ubicacion_list div").on("click", function ( e ) {
+        buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
+    });
+
 
     jQuery("#ubicacion_txt").on("change", function ( e ) {      
         var txt = getCleanedString( String(jQuery("#ubicacion_txt").val()).toLowerCase() );
