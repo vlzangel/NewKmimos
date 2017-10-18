@@ -45,17 +45,24 @@
 					<span>$'.number_format( $deposito["deposit"], 2, ',', '.').'</span>
 				</div>
 			';
+		}else{
+			$desglose .= '
+				<div>
+					<div>Pag&oacute; </diV>
+					<span>$'.number_format( $items["_line_subtotal"]-$descuento, 2, ',', '.').'</span>
+				</div>
+			';
 		}
 
 		if( $descuento+0 > 0){
-			$desglose .= '
+			$desglose = '
 				<div>
 					<div>
 						Descuento
 					</diV>
 					<span>$'.number_format( $descuento, 2, ',', '.').'</span>
 				</div>
-			';
+			'.$desglose;
 		}
 
 		$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
@@ -83,7 +90,7 @@
 							<span>'.$items["Fecha de Reserva"].'</span>
 						</div>
 						'.$desglose.'
-						<div>
+						<div class="border_total">
 							<div>Total </diV>
 							<span>$'.number_format( $items["_line_subtotal"], 2, ',', '.').'</span>
 						</div>

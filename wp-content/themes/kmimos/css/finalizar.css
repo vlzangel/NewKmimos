@@ -76,3 +76,14 @@
     padding: 10px 0px;
     margin-bottom: 10px;
 }
+
+.desglose_reserva .border_total{
+    border-top: solid 1px #777;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
+
+
+.desglose_reserva .border_total *{
+    font-size: 15px !important;
+}
