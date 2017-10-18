@@ -31,7 +31,7 @@
                         <div class="wrap">
                             <div class="header">
                                 <a href="'.get_home_url().'">
-                                    <img src="'.get_home_url().'/wp-content/uploads/2016/02/logo-kmimos.png" alt="Logo Kmimos">
+                                    <img src="https://www.kmimos.com.mx/wp-content/uploads/2016/02/logo-kmimos.png" alt="Logo Kmimos">
                                 </a>
                             </div>';
             return $html;
@@ -69,7 +69,7 @@ if(!function_exists('kmimos_get_email_html')){
         $html .= '  <div class="content">'.$content.'</div>';
         $html .= '  <div class="gretting">';
         $html .= '      <span>'.$gretting.'</span><br>';
-        $html .= '      <img src="'.get_home_url().'/wp-content/uploads/2016/03/logo-kmimos_120x30.png" alt="Firma Kmimos">';
+        $html .= '      <img src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/logo-kmimos_120x30.png" alt="Firma Kmimos">';
         $html .= '  </div>';
 
         if($banners) $html .= kmimos_get_email_banners();
@@ -102,21 +102,21 @@ if(!function_exists('kmimos_get_email_banners')){
             <ul style="overflow: hidden; padding: 0px;">
                 <li style="float:left; margin: 5px; width: 48%; list-style: none;">
                     <a style="display: block;" href="http://www.booking.com/index.html?aid=1147066&lang=es">
-                        <img style="width: 100%;" src="'.get_home_url().'/wp-content/uploads/2016/03/Banner-ofertas-hoteles300x100.png" alt="Booking-Kmimos">
+                        <img style="width: 100%;" src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/Banner-ofertas-hoteles300x100.png" alt="Booking-Kmimos">
                     </a>
                 </li>
                 <li style="float:left; margin: 5px; width: 48%; list-style: none;">
-                        <img style="width: 100%;" src="'.get_home_url().'/wp-content/uploads/2016/03/Banner-accesorios300x100.png" alt="Accesorios-Mascotas">                    
+                        <img style="width: 100%;" src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/Banner-accesorios300x100.png" alt="Accesorios-Mascotas">                    
                 </li>
                 <li style="float:left; margin: 5px; width: 48%; list-style: none;">
                     <a style="display: block;" href="https://www.volaris.com/">
-                        <img style="width: 100%;" src="'.get_home_url().'/wp-content/uploads/2016/03/Banner-boletos-aereos300x100.png" alt="Boletos-aereos">
+                        <img style="width: 100%;" src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/Banner-boletos-aereos300x100.png" alt="Boletos-aereos">
                     </a>
                     
                 </li>
                 <li style="float:left; margin: 5px; width: 48%; list-style: none;">
                     <a style="display: block;" href="https://cabify.com/mexico/mexico-city">
-                        <img style="width: 100%;" src="'.get_home_url().'/wp-content/uploads/2016/03/Banner-transporte-mascotas300x100.png" alt="Transporte-Mascotas">
+                        <img style="width: 100%;" src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/Banner-transporte-mascotas300x100.png" alt="Transporte-Mascotas">
                     </a>
                     
                 </li>

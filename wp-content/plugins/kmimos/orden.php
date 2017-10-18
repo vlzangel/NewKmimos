@@ -19,12 +19,13 @@
     		body * { font-size: 12px; }
     	</style>
 	";
+
 	include("vlz_data_orden.php");
 	include("vlz_order_funciones.php");
 
 	$status = $booking->get_status();
 
-	if( $status$ == "cancelled" || $status == "confirmed" || $status == "modified" ){
+	if( $status == "cancelled" || $status == "confirmed" || $status == "modified" ){
 		$estado = array(
 			"confirmed" => "Confirmada",
 			"modified"  => "Modificada",
@@ -55,9 +56,11 @@
 	        </p>
 	    ';
    		echo $msg_cliente = kmimos_get_email_html("", $msg_a_mostrar, "", true, true);
-		exit;
+
+		exit();
 	}
 
+	exit();
 	if($s == "0"){
 		$styles = "
 			<style>
