@@ -2,6 +2,10 @@
 	.wpf-container {
 	    margin: 0px !important;
 	}
+
+	select#transporte {
+        font-size: 8px !important;
+	}
 }
 @media (max-width: 650px){
 	.vlz_destacados_contenedor {
@@ -76,10 +80,6 @@
 	    width: 100%;
 	    box-sizing: border-box;
 	    text-align: center;
-	}
-
-	select#transporte {
-        font-size: 10px !important;
 	}
 
 	.page-reservation .km-content-step .km-content-new-pet .km-services-content .km-services .km-service-col {
