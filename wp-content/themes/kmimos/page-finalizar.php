@@ -32,6 +32,14 @@
 		$descuento = get_post_meta($orden_id, "_cart_discount", true);
 
 		if( $deposito["enable"] == "yes" ){
+			$metodo = '
+				<div>
+					<div style="font-weight: 600;">
+						M&Eacute;TODO DE PAGO
+					</diV>
+					<span>DEP&Oacute;SITO DE 17%</span>
+				</div>
+			';
 			$desglose .= '
 				<div>
 					<div class="remanente">
@@ -46,6 +54,14 @@
 				</div>
 			';
 		}else{
+			$metodo = '
+				<div>
+					<div style="font-weight: 600;">
+						M&Eacute;TODO DE PAGO
+					</diV>
+					<span>PAGO TOTAL</span>
+				</div>
+			';
 			$desglose .= '
 				<div>
 					<div>Pag&oacute; </diV>
@@ -89,6 +105,7 @@
 							<div>Fecha de tu reserva </diV>
 							<span>'.$items["Fecha de Reserva"].'</span>
 						</div>
+						'.$metodo.'
 						'.$desglose.'
 						<div class="border_total">
 							<div>Total </diV>

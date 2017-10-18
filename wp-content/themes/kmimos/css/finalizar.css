@@ -56,7 +56,7 @@
 
 .desglose_reserva > div > div {
     float: left;
-    /*font-weight: 400;*/
+    font-weight: 400;
     width: 50%;
     text-align: left;
 }
