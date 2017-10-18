@@ -10,6 +10,7 @@ jQuery(document).ready(function(){
                 jQuery("#ubicacion").val( jQuery(this).attr("value") );
                 jQuery("#ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
 
+                    jQuery("#ubicacion_list").css("display", "none");
                     jQuery("#ubicacion_list div").css("display", "none");
                
             });
@@ -37,6 +38,7 @@ jQuery(document).ready(function(){
     jQuery("#ubicacion_txt").on("change", function ( e ) {      
         var txt = getCleanedString( String(jQuery("#ubicacion_txt").val()).toLowerCase() );
         if( txt == "" ){
+            jQuery("#ubicacion_list").css("display", "none");
             jQuery("#ubicacion").val( "" );
             jQuery("#ubicacion").attr( "data-value", "" );
         }
@@ -44,10 +46,18 @@ jQuery(document).ready(function(){
 
     function buscarLocacion(txt){
         var buscar_1 = getCleanedString( txt );
+        var sts = 0;
+        jQuery("#ubicacion_list").css("display", "block");
         jQuery("#ubicacion_list div").css("display", "none");
         jQuery("#ubicacion_list div").each(function( index ) {
             if( String(jQuery( this ).attr("data-value")).toLowerCase().search(buscar_1) != -1 ){
                 jQuery( this ).css("display", "block");
+                sts =1;
+            }
+            if(sts==1){
+                jQuery("#ubicacion_list").css("display", "block");
+            }else{
+                jQuery("#ubicacion_list").css("display", "none");
             }
         });
     }
