@@ -19,16 +19,24 @@
     		body * { font-size: 12px; }
     	</style>
 	";
+
 	include("vlz_data_orden.php");
 	include("vlz_order_funciones.php");
 
-	if($booking->get_status() == "cancelled" ){
+	$status = $booking->get_status();
+
+	if( $status == "cancelled" || $status == "confirmed" || $status == "modified" ){
+		$estado = array(
+			"confirmed" => "Confirmada",
+			"modified"  => "Modificada",
+			"cancelled" => "Cancelada"
+		);
 		$msg_a_mostrar = $styles.'
 			<p>Hola <strong>'.$nom_cliente.',</strong></p>
-			<p align="justify">La reserva N° <strong>'.$reserva_id.'</strong> ya ha sido cancelada previamente.</p>
+			<p align="justify">La reserva N° <strong>'.$reserva_id.'</strong> ya ha sido '.$estado[$status].' previamente.</p>
 			<p style="text-align: center;">
 	            <a 
-	            	href="'.get_home_url().'/perfil-usuario/?ua=invoices"
+	            	href="'.get_home_url().'/perfil-usuario/historial/"
 	            	style="
 	            		padding: 10px;
 					    background: #59c9a8;
@@ -48,9 +56,11 @@
 	        </p>
 	    ';
    		echo $msg_cliente = kmimos_get_email_html("", $msg_a_mostrar, "", true, true);
-		exit;
+
+		exit();
 	}
 
+	exit();
 	if($s == "0"){
 		$styles = "
 			<style>

@@ -19,6 +19,7 @@
 					posts.post_status = 'paid' OR 
 					posts.post_status = 'confirmed' OR 
 					posts.post_status = 'complete' OR 
+					posts.post_status = 'modified' OR 
 					( posts.post_status = 'unpaid' AND orden.post_status = 'wc-partially-paid' )					
 				) AND
 				producto.post_author = '{$user_id}'
@@ -44,6 +45,10 @@
 				),
 				"canceladas" => array(
 					"titulo" => 'Reservas Canceladas',
+					"reservas" => array()
+				),
+				"modificadas" => array(
+					"titulo" => 'Reservas Modificadas',
 					"reservas" => array()
 				)
 			);
@@ -123,7 +128,7 @@
 					);
 
 				//reservaS CANCELADAS
-				}else if(($reserva->status=='cancelled' || $reserva->post_status=='wc_cancelled') && $_metas['_show'][0]!='noshow'){
+				}else if( $reserva->status=='cancelled' || $reserva->post_status=='wc_cancelled' ){
 
 					$reservas_array["canceladas"]["reservas"][] = array(
 						'id' => $reserva->ID, 
@@ -138,9 +143,27 @@
 						),
 						"desglose" => $desglose
 					);
+				}else if( $reserva->status == 'modified' ){
+
+					//reservaS MODIFICADAS
+
+					$reservas_array["modificadas"]["reservas"][] = array(
+						'id' => $reserva->ID, 
+						'cliente' => $_Cliente, 
+						'servicio_id' => $servicio->ID, 
+						'servicio' => $servicio->post_title, 
+						'inicio' => date('d/m/Y', $inicio), 
+						'fin' => date('d/m/Y', $fin), 
+						'foto' => $foto,
+						'acciones' => array(
+							"ver" => $ver
+						),
+						"desglose" => $desglose
+					);
+
+				}else {
 
 					//reservaS PENDIENTES
-				}else if($_metas['_show'][0]!='noshow'){
 
 					$reservas_array["pendientes_confirmar"]["reservas"][] = array(
 						'id' => $reserva->ID, 

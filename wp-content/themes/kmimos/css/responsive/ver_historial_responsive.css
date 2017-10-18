@@ -3,27 +3,22 @@
 }
 
 @media (max-width: 768px){
-    .row_mitad section {
-	    width: 100%;
+	.main * {
+	    font-size: 13px;
 	}
-	.no_movil{
-		display: none !important;
-	}
+}
+
+@media (max-width: 500px){
 	.body {
-	    padding: 5px !important;
-	}
-	.main {
-	    padding: 0px;
+	    padding: 0px !important;
 	}
 	.main * {
 	    font-size: 11px;
 	}
 }
 
-@media (max-width: 500px){
-	
-}
-
 @media (max-width: 350px){
-    
+	.main * {
+	    font-size: 10px;
+	}
 }

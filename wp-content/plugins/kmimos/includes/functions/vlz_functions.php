@@ -1026,35 +1026,33 @@
         }
     }
 
-    if(!function_exists('kmimos_desglose_reserva')){
+    if(!function_exists('kmimos_desglose_reserva_data')){
 
-        function kmimos_desglose_reserva_web($id){
+        function kmimos_desglose_reserva_data($id){
 
             global $wpdb;
 
             /* Reserva y Orden */
-                $reserva = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_parent = '".$id."'");
 
-                $metas_orden = get_post_meta($id);
-                $metas_reserva = get_post_meta( $reserva->ID );
+            $reserva = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_parent = '".$id."'");
+
+            $metas_orden = get_post_meta($id);
+            $metas_reserva = get_post_meta( $reserva->ID );
 
             /* Producto */
-                $producto = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_reserva['_booking_product_id'][0]."'");
 
-                $tipo_servicio = explode("-", $producto->post_title);
-                $tipo_servicio = $tipo_servicio[0];
+            $producto = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_reserva['_booking_product_id'][0]."'");
 
-                $metas_producto = get_post_meta( $producto->ID );
+            $tipo_servicio = explode("-", $producto->post_title);
+            $tipo_servicio = $tipo_servicio[0];
 
+            $precio_base = get_post_meta( $producto->ID, "_price", true );
 
-            $inicio = $metas_reserva['_booking_start'][0];
-            $fin    = $metas_reserva['_booking_end'][0];
+            $inicio = date("d/m/Y", strtotime($metas_reserva['_booking_start'][0]));
+            $fin    = date("d/m/Y", strtotime($metas_reserva['_booking_end'][0]));
 
-            $xini = strtotime( substr($inicio, 0, 4)."-".substr($inicio, 4, 2)."-".substr($inicio, 6, 2) );
-            $xfin = strtotime( substr($fin, 0, 4)."-".substr($fin, 4, 2)."-".substr($fin, 6, 2) );
-
-            $inicio = substr($inicio, 6, 2) ."/".substr($inicio, 4, 2)."/".substr($inicio, 0, 4);
-            $fin    = substr($fin, 6, 2)    ."/".substr($fin, 4, 2)   ."/".substr($fin, 0, 4);
+            $xini = strtotime($metas_reserva['_booking_start'][0]);
+            $xfin = strtotime($metas_reserva['_booking_end'][0]);
 
             $id_orden_item = $metas_reserva['_booking_order_item_id'][0];
 
@@ -1065,86 +1063,72 @@
             $transporte  = $data_temp["transporte"];
 
             $detalles_reserva = array();
-            foreach ($orden_item as $key => $value) {
+            $mascotas = array();
+            foreach ( $orden_item as $key => $value ) {
                 $detalles_reserva[$value->meta_key] = $value->meta_value;
+                if( strpos($value->meta_key, "Mascotas") > -1 ){
+                    $mascota = substr(end(explode(" ", $value->meta_key)), 0, 5);
+                    $mascotas[ $mascota ] = $value->meta_value;
+                }
             }
 
             $variaciones_array = array(
-                "pequen"  => 'Mascotas Pequeños', 
-                "median"  => 'Mascotas Medianos', 
-                "grandes"   => "Mascotas Grandes", 
-                "gigantes"  => "Mascotas Gigantes",
-                "peque" => "Mascotas Pequeñas", 
-                "media" => "Mascotas Medianas"
+                "peque" => "Peque", 
+                "media" => "Media",
+                "grandes"   => "Grand", 
+                "gigantes"  => "Gigan"
             );
 
             $txts = array(
-                "pequen"  => 'Mascotas Pequeños', 
-                "median"  => 'Mascotas Medianos', 
-                "grandes"   => "Mascotas Grandes", 
-                "gigantes"  => "Mascotas Gigantes",
-                "peque" => "Mascotas Pequeñas", 
-                "media" => "Mascotas Medianas"
+                "peque"  => 'Pequeña', 
+                "media"  => 'Mediana', 
+                "grandes"   => "Grande", 
+                "gigantes"  => "Gigante"
             );
 
             $dias = ceil(((($xfin - $xini)/60)/60)/24);
 
-            $dias_noches = "Noche(s)";
-            if( trim($tipo_servicio) != "Hospedaje" ){
-                $dias_noches = "Día(s)";
-                $dias++;
-            }
+            $dias_noches = "Noche"; if( trim($tipo_servicio) != "Hospedaje" ){ $dias_noches = "Día"; }else{ $dias--; }
+            $plural_dias = ""; if( $dias > 1 ){ $plural_dias = "s"; } $dias_noches .= $plural_dias;
 
             $info = kmimos_get_info_syte();
 
-            $detalle_largo = true;
-            if( isset($metas_reserva['_booking_type']) ){
-                $detalle_largo = false;
-            }
-
             $variaciones = array(); $grupo = 0;
             foreach ($variaciones_array as $key => $value) {
-                if( isset( $detalles_reserva[$value] ) ){
-
+                if( isset( $mascotas[$value] ) ){
+                    $plural_tamanos = ""; if( $detalles_reserva[$value] > 1 ){ $plural_tamanos = "s"; }
                     $variacion_ID = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_parent={$producto->ID} AND post_name LIKE '%{$key}%' ");
-                    $metas_variacion = get_post_meta($variacion_ID);
-
-                    $unitario = $metas_producto['_price'][0]+$metas_variacion['block_cost'][0];
-
+                    $unitario = $precio_base+get_post_meta($variacion_ID, "block_cost", true);
                     $variaciones[] = array(
-                        $txts[$key],
-                        $detalles_reserva[$value],
+                        $mascotas[$value],
+                        //"Mascota".$plural_tamanos." ".
+                        $txts[$key].$plural_tamanos,
                         $dias.' '.$dias_noches,
                         number_format( $unitario, 2, ',', '.'),
-                        number_format( ($unitario*$detalles_reserva[$value]*$dias), 2, ',', '.')
+                        number_format( ($unitario*$mascotas[$value]*$dias), 2, ',', '.')
                     );
-
-                    $grupo += $detalles_reserva[$value];
+                    $grupo += $mascotas[$value];
                 }
             }
 
             $adicionales_desglose = array();
             if( count($adicionales_array) > 0 ){
-
-                $adicionales = '<tr> <td style="'.$styles_celdas_title.'" colspan=5> Servicios Adicionales </td> </tr>';
+                $plural_tamanos = ""; if( $grupo > 1 ){ $plural_tamanos = "s"; }
                 foreach ($adicionales_array as $key => $value) {
                     $servicio = $value[0];
                     $costo = ($value[1]);
 
                     $adicionales_desglose[] = array(
                         $servicio,
-                        $grupo.' Mascota(s)',
+                        $grupo.' Mascota'.$plural_tamanos,
                         number_format( $costo, 2, ',', '.'),
                         number_format( ($costo*$grupo), 2, ',', '.')
                     );
                 }
-
             }
 
             $transporte_desglose = array();
             if( count($transporte) > 0 ){
-                
-                $transporte_str = '<tr> <td style="'.$styles_celdas_title.'" colspan=5> Servicio de Transporte </td> </tr>';
                 foreach ($transporte as $key => $value) {
                     $servicio = $value[0];
                     $costo = ($value[1]);
@@ -1156,265 +1140,62 @@
                         number_format( $costo, 2, ',', '.')
                     );
                 }
-
             }
 
             $pago = ($detalles_reserva['_line_subtotal']);
-            $remanente = unserialize($detalles_reserva['_wc_deposit_meta']);
+            $desglose = unserialize($detalles_reserva['_wc_deposit_meta']);
+            $descuento = $metas_orden["_cart_discount"][0];
 
-            $reembolsar = "";
-
-            if( $remanente['enable'] == "no" ){
-                $remanente['deposit'] = $pago;
+            $diferencia = 0;
+            if( $desglose['enable'] == "no" ){
+                $desglose['deposit'] = $pago;
                 if( $metas_orden["_cart_discount"][0]+0 > 0 ){
-                    $descuento_total = '
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <th colspan=2 style="'.$styles_celdas_left.'">Descuento</th>
-                            <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $metas_orden["_cart_discount"][0], 2, ',', '.').' '.$info["mon_der"].' </td>
-                        </tr>
-                    ';
-
-                    $remanente['deposit'] = $remanente['deposit']-$metas_orden["_cart_discount"][0];
+                    $deposito = $desglose['deposit']-$metas_orden["_cart_discount"][0];
                 }
+                $diferencia = 0;
             }else{
+                $deposito = $desglose['deposit'];
                 if( $metas_orden["_cart_discount"][0]+0 > 0 ){
-                    $descuento_parcial = '
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <th colspan=2 style="'.$styles_celdas_left.'">Descuento</th>
-                            <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $metas_orden["_cart_discount"][0], 2, ',', '.').' '.$info["mon_der"].' </td>
-                        </tr>
-                    ';
-
-                    $remanente['remaining'] = $remanente['remaining']-$metas_orden["_cart_discount"][0];
-
-                    $diferencia = ( ($pago/1.2) - $remanente['remaining'] );
-
-                    if( $diferencia > 0 ){
-                        $reembolsar = '
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <th colspan=2 class="texto_kmimos" style="'.$styles_celdas_left.' '.$nota_cuidador.'">Kmimos te reembolsará</th>
-                                <td class="texto_kmimos" style="'.$styles_celdas_right.' '.$nota_cuidador.' font-weight: 600;" align="right"> '.$info["mon_izq"].' '.number_format( $diferencia, 2, ',', '.').' '.$info["mon_der"].' </td>
-                            </tr>
-                        ';
-                    }
-                        
+                    $diferencia = ( ($pago-($pago/1.2)) - $metas_orden["_cart_discount"][0] );
                 }
+
+                if( $diferencia < 0 ){ $diferencia *= -1; }else{ $diferencia = 0; }
             }
-
-            if( $metas_orden["_payment_method"][0] == "openpay_stores" ){
-                $totales = '
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <th colspan=2 style="'.$styles_celdas_left.'">Total</th>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $pago, 2, ',', '.').' '.$info["mon_der"].' </td>
-                    </tr>
-                    '.$descuento_total.'
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <th colspan=2 style="'.$styles_celdas_left.'">Pago en Tienda</th>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $remanente['deposit'], 2, ',', '.').' '.$info["mon_der"].' </td>
-                    </tr>
-                    '.$descuento_parcial.'
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <th colspan=2 style="'.$styles_celdas_left.'">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $remanente['remaining'], 2, ',', '.').' '.$info["mon_der"].' </td>
-                    </tr>
-                ';
-            }else{
-
-                if( $detalle_largo ){
-                    $precios_detalle = '
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <th colspan=2 style="'.$styles_celdas_left.'">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
-                            <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $remanente['remaining'], 2, ',', '.').' '.$info["mon_der"].' </td>
-                        </tr>';
-                }else{
-                    $precios_detalle = '';
-                }
-
-                if( $remanente['deposit']+0 > 0 ){
-                    $pagado = '
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <th colspan=2 style="'.$styles_celdas_left.'">Pagado</th>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $remanente['deposit'], 2, ',', '.').' '.$info["mon_der"].' </td>
-                    </tr>';
-                }
-
-                $totales = '
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <th colspan=2 style="'.$styles_celdas_left.'">Total</th>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $pago, 2, ',', '.').' '.$info["mon_der"].' </td>
-                    </tr>
-                    '.$descuento_total.'
-                    '.$pagado.'
-                    '.$descuento_parcial.'
-                    '.$precios_detalle.'
-                ';
-            }
-
+            
             if( $metas_orden['_payment_method_title'][0] != "" ){
-                $pagado_con = "
-                    <tr>
-                        <td> <strong>Pagado con:</strong> </td> <td> ".$metas_orden['_payment_method_title'][0]." </td>
-                    </tr>
-                ";
+                $pagado_con = $metas_orden['_payment_method_title'][0];
             }else{
                 $pagado_con = "";
             }
 
-            $detalles_servicio = '
-                <table>
-                    <tr>
-                        <td> <strong>Servicio:</strong> </td> <td> '.$tipo_servicio.' </td>
-                    </tr>
-                    <tr>
-                        <td> <strong>Desde:</strong> </td> <td> '.$inicio.' </td>
-                    </tr>
-                    <tr>
-                        <td> <strong>Hasta:</strong> </td> <td> '.$fin.' </td>
-                    </tr>
-                    <tr>
-                        <td> <strong>Duración:</strong> </td> <td> '.$dias.' '.$dias_noches.' </td>
-                    </tr>
-                    '.$pagado_con.'
-                </table>
-            ';
-
-            if( $detalle_largo ){
-                $precios_detalle = '
-                    <th style="'.$styles_celdas_center.' width: 150px;"> Precio Unitario </th>
-                    <th style="'.$styles_celdas_right.'"> Precio Total </th>';
-            }else{
-                $precios_detalle = '
-                    <th style="'.$styles_celdas_center.' width: 150px;">  </th>
-                    <th style="'.$styles_celdas_right.'">  </th>';
-            }
-
-            $detalles_factura .= '
-                <table style="width:100%" cellspacing=0 cellpadding=0>
-                    <tr>
-                        <th style="'.$styles_celdas_left.'"> Tamaño </th>
-                        <th style="'.$styles_celdas_center.'"> Num. Mascotas </th>
-                        <th style="'.$styles_celdas_center.'"> Tiempo </th>
-                        '.$precios_detalle.'
-                    </tr>
-                    '.$variaciones.'
-                    '.$transporte_str.'
-                    '.$adicionales.'
-                    '.$totales.'
-                </table>
-            ';
-
-            $detalles_factura_cuidador = '
-                <table style="width:100%" cellspacing=0 cellpadding=0>
-                    <tr>
-                        <th style="'.$styles_celdas_left.'"> Tamaño </th>
-                        <th style="'.$styles_celdas_center.'"> Num. Mascotas </th>
-                        <th style="'.$styles_celdas_center.'"> Tiempo </th>
-                        '.$precios_detalle.'
-                    </tr>
-                    '.$variaciones.'
-                    '.$transporte_str.'
-                    '.$adicionales.'
-                    '.$totales.'
-                    '.$reembolsar.'
-                </table>
-            ';
-
-            $msg_id_reserva ='<p>Reserva #: <strong>'.$reserva->ID.'</strong> </p>';
-
-            $aceptar_rechazar = '
-                <center>
-                    <p><strong>¿ACEPTAS ESTA RESERVA?</strong></p>
-                    <table>
-                        <tr>
-                            <td>
-                                <a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=1&t=1" style="text-decoration: none; padding: 7px 0px; border-bottom: solid 1px #cccccc; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
-                            </td>
-                            <td>
-                                <a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=0&t=1" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
-                            </td>
-                        </tr>
-                    </table>
-                </center>
-            ';
-
-            $titulo = '<h2>Detalles de la solicitud:</h2>';
-
-            if( $is_mail ){
-                
-                $_detalles_servicio = $detalles_servicio;
-
-                $detalles_servicio = '
-                    <p style="color:#557da1; font-size: 16px;font-weight: 600;">Detalles del Servicio Reservado</p>
-                    '.$_detalles_servicio.'
-                    <br>
-                    <table style="width:100%" cellspacing=0 cellpadding=0>
-                        <tr>
-                            <th style="padding: 3px; background: #00d2b7; border-left: solid 1px #00d2b7;"> Tamaño </th>
-                            <th style="padding: 3px; background: #00d2b7;"> Num. Mascotas </th>
-                            <th style="padding: 3px; background: #00d2b7;"> Tiempo </th>
-                            <th style="padding: 3px; background: #00d2b7; width: 150px;"> Precio Unitario </th>
-                            <th style="padding: 3px; background: #00d2b7; border-right: solid 1px #00d2b7;"> Precio Total </th>
-                        </tr>
-                        '.$variaciones.'
-                        '.$transporte_str.'
-                        '.$adicionales.'
-                        '.$totales.'
-                    </table>
-                ';
-
-                $detalles_servicio_cuidador = '
-                    <p style="color:#557da1; font-size: 16px;font-weight: 600;">Detalles del Servicio Reservado</p>
-                    '.$_detalles_servicio.'
-                    <br>
-                    <table style="width:100%" cellspacing=0 cellpadding=0>
-                        <tr>
-                            <th style="padding: 3px; background: #00d2b7; border-left: solid 1px #00d2b7;"> Tamaño </th>
-                            <th style="padding: 3px; background: #00d2b7;"> Num. Mascotas </th>
-                            <th style="padding: 3px; background: #00d2b7;"> Tiempo </th>
-                            <th style="padding: 3px; background: #00d2b7; width: 150px;"> Precio Unitario </th>
-                            <th style="padding: 3px; background: #00d2b7; border-right: solid 1px #00d2b7;"> Precio Total </th>
-                        </tr>
-                        '.$variaciones.'
-                        '.$transporte_str.'
-                        '.$adicionales.'
-                        '.$totales.'
-                        '.$reembolsar.'
-                    </table>
-                ';
-            }
+            $aceptar_rechazar = array(
+                "aceptar" => get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=1&t=1',
+                "cancelar" => get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=0&t=1'
+            );
 
             return array(
-                "titulo" => $titulo,
                 "aceptar_rechazar" => $aceptar_rechazar,
-                "msg_id_reserva" => $msg_id_reserva,
-                "detalles_servicio" => $detalles_servicio,
-                "detalles_factura" => $detalles_factura,
+                "id_reserva" => $reserva->ID,
+                "id_orden" => $id,
 
-                "detalles_servicio_cuidador" => $detalles_servicio_cuidador,
-                "detalles_factura_cuidador" => $detalles_factura_cuidador,
 
-                "metodo_pago" => $metas_orden['_payment_method'][0],
+                "variaciones" => $variaciones,
+                "transporte" => $transporte_desglose,
+                "adicionales" => $adicionales_desglose,
+
+                "desglose" => $desglose,
+                "reembolsar" => $diferencia,
+                "descuento" => $descuento,
+
+
+                "metodo_pago" => $metas_orden['_payment_method_title'][0],
                 "pdf" => $metas_orden['_openpay_pdf'][0],
 
-                "servicio" => $producto->ID
+                "servicio" => $producto->ID,
+                "servicio_titulo" => $producto->post_title,
+                "cuidador" => $producto->post_author, //$wpdb->get_var("SELECT post_title FROM wp_posts WHERE post_author='{$producto->post_author}' AND post_type = 'petsitters' "),
+                "inicio" => $inicio,
+                "fin" => $fin
             );
 
         }
