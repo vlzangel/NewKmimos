@@ -457,7 +457,7 @@ $HTML .= '
 			aria-hidden="true" id="testimonio">
 			<div class="modal-dialog">
 				<div class="modal-content" style="height:340px">
-					<button type="button" class="close"  aria-hidden="true" data-target="close-testimonio">×</button>
+					<button type="button" class="close" style="z-index:10; border:1px solid transparent;" aria-hidden="true" data-target="close-testimonio">×</button>
 					<iframe id="iframe-testimonio" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
