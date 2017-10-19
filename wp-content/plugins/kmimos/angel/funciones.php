@@ -85,6 +85,41 @@
         }
     }
 
+    if(!function_exists('update_cupos')){
+        function update_cupos($data, $accion){
+            global $wpdb;
+            $db = $wpdb;
+            extract($data);
+            for ($i=$inicio; $i < $fin; $i+=86400) { 
+                $fecha = date("Y-m-d", $i);
+                $full = 0;
+                $existe = $db->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
+                if( $existe !== false ){
+                    $db->query("UPDATE cupos SET cupos = cupos {$accion} {$cantidad} WHERE servicio = '{$servicio}' AND fecha = '{$fecha}' ");
+                    $db->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos >= acepta )");
+                    $db->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos < acepta )");
+                }else{
+                    $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_qty'");
+                    if( $cantidad >= $acepta ){ $full = 1; }
+                    $sql = "
+                        INSERT INTO cupos VALUES (
+                            NULL,
+                            '{$autor}',
+                            '{$servicio}',
+                            '{$tipo}',
+                            '{$fecha}',
+                            '{$cantidad}',
+                            '{$acepta}',
+                            '{$full}',        
+                            '0'        
+                        );
+                    ";
+                    $db->query($sql);
+                }
+            }
+        }
+    }
+
     if(!function_exists('get_destacados')){
         function get_destacados(){
             if( !isset($_SESSION) ){ session_start(); }

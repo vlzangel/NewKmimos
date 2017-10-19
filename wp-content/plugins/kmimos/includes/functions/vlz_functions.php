@@ -255,6 +255,8 @@
 
             /* Cuidador  */
 
+                $cuidador_id = $producto->post_parent;
+
                 $cuidador_post  = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$producto->post_parent."'");
                 $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = '".$producto->post_author."'");
 
@@ -484,6 +486,12 @@
                     $detalles_mascotas = '<p style="color: #557da1; font-size: 16px; font-weight: 600;">Detalles de las mascotas: </p>'.$detalles_mascotas;
                 }
 
+                $cantidad = 0; // 
+                $temp_person = unserialize($metas_reserva['_booking_persons'][0]);
+                foreach ($temp_person as $key => $value) {
+                    $cantidad += $value;
+                }
+
                 return array(
                     "cliente"        => $detalles_cliente,
                     "cuidador"       => $detalles_cuidador,
@@ -497,12 +505,17 @@
                     "orden"   => $ID_ORDEN,
 
                     "cliente_id"  => $cliente,
+                    "cuidador_id"  => $cuidador_id,
 
                     "nombre_cuidador" => $cuidador_post->post_title,
                     "nombre_cliente"  => $nom,
 
                     "tipo_servicio"   => $tipo_servicio,
-                    "producto_name"   => $producto->post_title
+                    "producto_name"   => $producto->post_title,
+                    "servicio"        => $metas_reserva['_booking_product_id'][0],
+                    "inicio"          => $metas_reserva['_booking_start'][0],
+                    "fin"             => $metas_reserva['_booking_end'][0],
+                    "cantidad"        => $cantidad
                 );
         }
 
