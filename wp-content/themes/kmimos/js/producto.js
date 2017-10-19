@@ -660,10 +660,16 @@ jQuery(document).ready(function() {
 		jQuery("#numero_oculto").val(txt);
 	});
 
+	jQuery("#numero").on("blur", function(e){
+		var txt = jQuery(this).val();
+		txt = txt.replaceAll(" ", "");
+		jQuery(this).val(txt);
+		jQuery("#numero_oculto").val(txt);
+	});
+
 	jQuery(".maxlength").on("blur", function(e){
 		var txt = jQuery(this).val();
 		txt = txt.replaceAll(" ", "");
-		jQuery("#numero_oculto").val(txt);
 		var temp = ""; var l = txt.length; var length = jQuery(this).attr("data-max");
 		if( l > length ){ l = length; }
 		for(var i=0; i<l; i++){
@@ -1037,6 +1043,8 @@ jQuery(document).ready(function() {
 				"The CVV2 security code is required": "C&oacute;digo de seguridad requerido",
 				"cvv2 length must be 3 digits": "El c&oacute;digo de seguridad debe ser de 3 digitos"
 			};
+
+			console.log( response );
 
 	        switch( response.status ){
 	        	case 422:
