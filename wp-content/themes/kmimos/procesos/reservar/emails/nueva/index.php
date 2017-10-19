@@ -1,4 +1,10 @@
 <?php
+	
+	extract($_GET);
+	if( isset($_GET["id_orden"]) ){
+		include(dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))))."/wp-load.php");
+	}
+    
 
 	$info = kmimos_get_info_syte();
 

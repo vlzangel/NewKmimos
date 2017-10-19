@@ -32,6 +32,14 @@
 		$descuento = get_post_meta($orden_id, "_cart_discount", true);
 
 		if( $deposito["enable"] == "yes" ){
+			$metodo = '
+				<div>
+					<div style="font-weight: 600;">
+						M&Eacute;TODO DE PAGO
+					</diV>
+					<span>DEP&Oacute;SITO DE 17%</span>
+				</div>
+			';
 			$desglose .= '
 				<div>
 					<div class="remanente">
@@ -40,22 +48,37 @@
 					</diV>
 					<span>&nbsp;<br>$'.number_format( $deposito["remaining"]-$descuento, 2, ',', '.').'</span>
 				</div>
-				<div class="border_desglose">
+				<div>
 					<div>Pag&oacute; </diV>
 					<span>$'.number_format( $deposito["deposit"], 2, ',', '.').'</span>
+				</div>
+			';
+		}else{
+			$metodo = '
+				<div>
+					<div style="font-weight: 600;">
+						M&Eacute;TODO DE PAGO
+					</diV>
+					<span>PAGO TOTAL</span>
+				</div>
+			';
+			$desglose .= '
+				<div>
+					<div>Pag&oacute; </diV>
+					<span>$'.number_format( $items["_line_subtotal"]-$descuento, 2, ',', '.').'</span>
 				</div>
 			';
 		}
 
 		if( $descuento+0 > 0){
-			$desglose .= '
+			$desglose = '
 				<div>
 					<div>
 						Descuento
 					</diV>
 					<span>$'.number_format( $descuento, 2, ',', '.').'</span>
 				</div>
-			';
+			'.$desglose;
 		}
 
 		$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
@@ -82,8 +105,9 @@
 							<div>Fecha de tu reserva </diV>
 							<span>'.$items["Fecha de Reserva"].'</span>
 						</div>
+						'.$metodo.'
 						'.$desglose.'
-						<div>
+						<div class="border_total">
 							<div>Total </diV>
 							<span>$'.number_format( $items["_line_subtotal"], 2, ',', '.').'</span>
 						</div>

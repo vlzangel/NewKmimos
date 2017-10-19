@@ -1,7 +1,7 @@
 .desglose_container {
     font-family: Lato, Arial;
     color: #4e4e4e;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1.42857143;
     padding: 10px;
 }
@@ -41,6 +41,18 @@
 
 .desglose_box div > div {
 	float: left;
+}
+
+.datos_cuidador div > div {
+	font-weight: 600;
+}
+
+.datos_cuidador {
+    padding-bottom: 10px;
+}
+
+.datos_cuidador .item {
+	padding: 0px;
 }
 
 .totales div > div {

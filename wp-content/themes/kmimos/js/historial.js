@@ -49,7 +49,18 @@ jQuery(document).ready(function(){
                             data: data
                         },
                         function(resp){
-                            location.href = RAIZ+resp.url;
+
+                            if( resp.error != "" ){
+                                var errores = {
+                                    "cancelled": "fue cancelada anteriormente",
+                                    /*"confirmed": "fue confirmada anteriormente",*/
+                                    "modified": "fue modificada anteriormente"
+                                };
+                                alert( "La reserva "+errores[resp.error] );
+                                location.reload();
+                            }else{
+                                location.href = RAIZ+resp.url;
+                            }
                         }, 
                         'json'
                     ).fail(function(e) {

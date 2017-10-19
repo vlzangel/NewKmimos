@@ -671,7 +671,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
         if(tipo.indexOf('mlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyz"; }
         if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
         if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
-        if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.jQuery%&@,/()"; }
+        if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
         if(tipo.indexOf('cor')>-1 ){ cadena = cadena + ".-_@"; }
         if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
         if(tipo.indexOf('dir')>-1 ){ cadena = cadena + ","; }

@@ -84,7 +84,7 @@
 			}
 
 			//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
-			if($reserva_status == 'pending') {
+			if($orden_status == 'wc-pending') {
 
 			}else if($orden_status == 'wc-on-hold' && ( $_metas_orden['_payment_method'][0] == 'openpay_stores' || $_metas_orden['_payment_method'][0] == 'tienda' ) ){
 

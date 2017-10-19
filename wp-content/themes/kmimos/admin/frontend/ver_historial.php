@@ -13,32 +13,40 @@
     $info = '
         <div class="desglose_box">
             <div>
-                <div class="sub_titulo">CUIDADOR</div>
-                <span>
-                    '.$wpdb->get_var("SELECT post_title FROM wp_posts WHERE post_author='{$data_reserva["cuidador"]}' AND post_type = 'petsitters'").'
-                </span>
-            </div>
-            <div>
-                <div class="sub_titulo">EMAIL</div>
-                <span>
-                    '.$email.'
-                </span>
-            </div>
-            <div>
-                <div class="sub_titulo">TEL&Eacute;FONOS</div>
-                <span>
-                    '.$telefonos.'
-                </span>
-            </div>
-            <div>
-                <div class="sub_titulo">DIRECCI&Oacute;N</div>
-                <span>
-                    '.$direccion.'
-                </span>
+                <div class="sub_titulo">RESERVA</div>
+                <span>'.$data_reserva["id_reserva"].'</span>
             </div>
             <div>
                 <div class="sub_titulo">MEDIO DE PAGO</div>
                 <span>Pago por '.$data_reserva["metodo_pago"].'</span>
+            </div>
+        </div>
+        <div class="desglose_box datos_cuidador">
+            
+            <strong>CUIDADOR</strong>
+            <div class="item">
+                <div>Nombre</div>
+                <span>
+                    '.$wpdb->get_var("SELECT post_title FROM wp_posts WHERE post_author='{$data_reserva["cuidador"]}' AND post_type = 'petsitters'").'
+                </span>
+            </div>
+            <div class="item">
+                <div>Email</div>
+                <span>
+                    '.$email.'
+                </span>
+            </div>
+            <div class="item">
+                <div>Tel&eacute;fono</div>
+                <span>
+                    '.$telefonos.'
+                </span>
+            </div>
+            <div class="item">
+                <div>Direcci&oacute;n</div>
+                <span>
+                    '.$direccion.'
+                </span>
             </div>
         </div>
     ';

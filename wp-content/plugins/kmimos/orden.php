@@ -60,7 +60,6 @@
 		exit();
 	}
 
-	exit();
 	if($s == "0"){
 		$styles = "
 			<style>
@@ -71,6 +70,15 @@
 		";
 
 		kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
+
+		update_cupos( array(
+	    	"servicio" => $datos_generales["servicio"],
+	    	"tipo" => $datos_generales["tipo_servicio"],
+	    	"autor" => $datos_generales["cuidador_id"],
+	    	"inicio" => strtotime($datos_generales["inicio"]),
+	    	"fin" => strtotime($datos_generales["fin"]),
+	    	"cantidad" => $datos_generales["cantidad"]
+	    ), "-");
 
 		$msg_cliente = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>

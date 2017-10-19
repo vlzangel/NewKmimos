@@ -1,4 +1,5 @@
 <?php
+
 	function getTema(){
         return get_template_directory_uri();
     }
