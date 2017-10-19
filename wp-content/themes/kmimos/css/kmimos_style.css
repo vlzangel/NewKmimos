@@ -860,9 +860,20 @@ button.close {
     height: 47px;
 }
 
-div#ubicacion_list {
-	display: none;
+
+/* INICIO Ubicacion */
+.tag-list{
+	width: 100%;
+	max-height: 500%;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
+.tag-list li{
+	padding:5px 10px 5px 10px;
+    line-height: normal!important;
+}
+/* FIN Ubicacion */
+
 
 .km-select-custom input:focus ~ div#ubicacion_list,
 div#ubicacion_list:hover
