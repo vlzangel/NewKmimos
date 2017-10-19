@@ -13,6 +13,10 @@
     $info = '
         <div class="desglose_box">
             <div>
+                <div class="sub_titulo">RESERVA</div>
+                <span>'.$data_reserva["id_reserva"].'</span>
+            </div>
+            <div>
                 <div class="sub_titulo">MEDIO DE PAGO</div>
                 <span>Pago por '.$data_reserva["metodo_pago"].'</span>
             </div>
