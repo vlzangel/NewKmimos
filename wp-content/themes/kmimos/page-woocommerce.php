@@ -545,25 +545,25 @@
 
 											<div class="label-placeholder">
 												<label>Nombre del tarjetahabiente*</label>
-												<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder" data-openpay-card="holder_name">
+												<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder solo_letras" data-openpay-card="holder_name">
 											</div>
 
 											<div class="label-placeholder">
 												<label>Número de Tarjeta*</label>
-												<input type="text" id="numero" name="numero" class="input-label-placeholder">
+												<input type="text" id="numero" name="numero" class="input-label-placeholder next solo_numeros maxlength" data-max="16" data-next="mes">
 												<input type="hidden" id="numero_oculto" data-openpay-card="card_number">
 											</div>
 
 											<div class="content-placeholder">
 												<div class="label-placeholder">
 													<label>Expira (MM AA)</label>
-													<input type="text" id="mes" name="mes" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_month">
-													<input type="text" id="anio" name="anio" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_year">
+													<input type="text" id="mes" name="mes" class="input-label-placeholder next expiration solo_numeros maxlength" data-max="2" data-next="anio" maxlength="2" data-openpay-card="expiration_month">
+													<input type="text" id="anio" name="anio" class="input-label-placeholder next expiration solo_numeros maxlength" data-max="2" data-next="codigo" maxlength="2" data-openpay-card="expiration_year">
 												</div>
 
 												<div class="label-placeholder">
 													<label>Código de seguridad (XXX)</label>
-													<input type="text" id="codigo" name="codigo" class="input-label-placeholder" maxlength="3" data-openpay-card="cvv2">
+													<input type="text" id="codigo" name="codigo" class="input-label-placeholder next solo_numeros maxlength" data-max="3" maxlength="3" data-next="null" data-openpay-card="cvv2">
 												</div>
 											</div>
 											<!--

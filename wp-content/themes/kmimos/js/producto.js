@@ -601,6 +601,50 @@ var descripciones = "";
 
 jQuery(document).ready(function() { 
 
+	jQuery(".solo_numeros").on("keyup", function(e){
+		var valor = jQuery( this ).val();
+		if( valor != "" ){
+			var resul = ""; var no_permitido = false;
+			jQuery.each(valor.split(""), function( index, value ) {
+			  	if( /^[0-9]*$/g.test(value) ){
+					resul += value;
+				}else{
+					no_permitido = true;
+				}
+			});
+			if( no_permitido ){
+				jQuery( this ).val(resul);
+			}
+		}
+	});
+
+	jQuery(".solo_letras").on("keyup", function(e){
+		var valor = jQuery( this ).val();
+		if( valor != "" ){
+			var resul = ""; var no_permitido = false;
+			jQuery.each(valor.split(""), function( index, value ) {
+			  	if( /^[a-zA-Z ]*$/g.test(value) ){
+					resul += value;
+				}else{
+					no_permitido = true;
+				}
+			});
+			if( no_permitido ){
+				jQuery( this ).val(resul);
+			}
+		}
+	});
+
+	jQuery(".next").on("keyup", function(e){
+		if( jQuery(this).val().length >= jQuery(this).attr("data-max") ){
+			if( jQuery(this).attr("data-next") != "null" ){
+				jQuery("#"+jQuery(this).attr("data-next")).focus();
+			}else{
+				jQuery(this).blur();
+			}
+		}
+	});
+
 	jQuery("#numero").on("keypress", function(e){
 		var txt = jQuery(this).val();
 		if( txt.length == 16 ){
@@ -616,11 +660,13 @@ jQuery(document).ready(function() {
 		jQuery("#numero_oculto").val(txt);
 	});
 
-	jQuery("#numero").on("blur", function(e){
+	jQuery(".maxlength").on("blur", function(e){
 		var txt = jQuery(this).val();
+		txt = txt.replaceAll(" ", "");
 		jQuery("#numero_oculto").val(txt);
-		var temp = "";
-		for(var i=0; i<txt.length; i++){
+		var temp = ""; var l = txt.length; var length = jQuery(this).attr("data-max");
+		if( l > length ){ l = length; }
+		for(var i=0; i<l; i++){
 			if( i > 0 && i%4 == 0){
 				temp += " ";
 			}
@@ -628,6 +674,23 @@ jQuery(document).ready(function() {
 		}
 		jQuery(this).val(temp);
 	});
+
+    jQuery("#numero").bind({
+        paste : function(){
+           	var txt = jQuery(this).val();
+			txt = txt.replaceAll(" ", "");
+			jQuery("#numero_oculto").val(txt);
+			var temp = ""; var l = txt.length;
+			if( l > 16 ){ l = 16; }
+			for(var i=0; i<l; i++){
+				if( i > 0 && i%4 == 0){
+					temp += " ";
+				}
+				temp += txt[i];
+			}
+			jQuery(this).val(temp);
+        }
+    });
 
 	jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
 
@@ -915,12 +978,6 @@ jQuery(document).ready(function() {
 			jQuery("#reserva_btn_next_3").addClass("disabled");
 		}
 		
-	});
-
-	jQuery("#mes").on("keyup", function(e){
-		if( jQuery("#mes").val().length == 2 ){
-			jQuery("#anio").focus();
-		}
 	});
 
 	calcular();
