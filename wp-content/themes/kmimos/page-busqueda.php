@@ -163,12 +163,28 @@
 				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="post">
 					<div class="km-bloque-cajas">
 						<div class="km-div-ubicacion">
-							<div class="km-select-custom km-select-ubicacion" style="border-right: 0px; height: 47px;">
+						
+							<div class="km-select-custom km-select-ubicacion btn-group" style="width:100%;border-right: 0px; height: 47px;">
 								<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
-								<input type="text" id="ubicacion_txt" class="km-fechas" style="width: 100%;" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
-								<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />
-								<div id="ubicacion_list"></div>
+							    <input type="text" 
+									id="ubicacion_txt" 
+									class="km-fechas" 
+									style="width: 100%;background: transparent; border: 0px; padding: 0px 0px 0px 15px;"
+									name="ubicacion_txt"
+									placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" 
+									data-charset="xlfdir" 
+									value="'.$busqueda["ubicacion_txt"].'" 
+									autocomplete="off" 
+									readonly 
+									data-toggle="dropdown">
+								<input type="hidden" 
+									id="ubicacion" 
+									name="ubicacion" 
+									data-charset="xlfdir" 
+									value="'.$busqueda["ubicacion"].'" />										
+							    <ul id="ubicacion_list" class="tag-list dropdown-menu"></ul>
 							</div>
+
 						</div>
 						<div class="km-div-fechas">
 							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>

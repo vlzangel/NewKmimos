@@ -63,13 +63,31 @@
 				<div class="container">
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">
+							
+
 							<div class="col-xs-12 col-sm-6">
-								<div class="km-select-custom km-select-custom-home km-select-ubicacion km-fechas" style="height: 48px">
+	
+								<div class="km-select-custom km-select-custom-home km-select-ubicacion btn-group" style="width:100%;">
 									<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
-									<input type="text" id="ubicacion_txt" class="km-fechas" style="background: transparent; border: 0px; padding: 0px 0px 0px 15px;" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" data-charset="xlfdir" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
-									<input type="hidden" id="ubicacion" name="ubicacion" data-charset="xlfdir" value="'.$busqueda["ubicacion"].'" />
-									<div id="ubicacion_list"></div>
+								    <input type="text" 
+										id="ubicacion_txt" 
+										class="km-fechas" 
+										style="background: transparent; border: 0px; padding: 0px 0px 0px 15px;"
+										name="ubicacion_txt"
+										placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" 
+										data-charset="xlfdir" 
+										value="'.$busqueda["ubicacion_txt"].'" 
+										autocomplete="off" 
+										readonly 
+										data-toggle="dropdown">
+									<input type="hidden" 
+										id="ubicacion" 
+										name="ubicacion" 
+										data-charset="xlfdir" 
+										value="'.$busqueda["ubicacion"].'" />										
+								    <ul id="ubicacion_list" class="tag-list dropdown-menu"></ul>
 								</div>
+								
 							</div>
 
 
