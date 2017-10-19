@@ -270,6 +270,44 @@
 				<div class="row">
 					<ul class="bxslider">
 
+						<li>
+							<div>
+								<div class="overlay control-video"></div>
+								<div class="km-testimonial-text">
+									<div class="km-video-testimonial">
+										<a href="javascript:;" 
+
+											data-video="https://www.youtube.com/embed/Kqn7lOVk6bQ"
+											data-target="iframe-testimonio">
+											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+										</a>
+									</div>
+									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
+									<div class="km-autor">CLAUDIA R. - Ciudad de México</div>
+									<div class="km-autor-descripcion ">Cuidador Certificado</div>
+								</div>
+								<img class="img-testimoniales" src="'.getTema().'/images/new/km-testimoniales/testimonial-3.jpg">
+							</div>
+						</li>
+
+						<li>
+							<div>
+								<div class="overlay control-video"></div>
+								<div class="km-testimonial-text">
+									<div class="km-video-testimonial">
+										<a href="javascript:;" 
+											data-video="https://www.youtube.com/embed/pim_QZKWRAY"
+											data-target="iframe-testimonio">
+											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+										</a>
+									</div>
+									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
+									<div class="km-autor">MARU S. - Ciudad de México</div>
+									<div class="km-autor-descripcion ">Cuidador Certificado</div>
+								</div>
+								<img class="img-testimoniales" src="'.getTema().'/images/new/km-testimoniales/testimonial-2.jpg">
+							</div>
+						</li>
 
 						<li>
 							<div>
@@ -291,43 +329,8 @@
 									>
 							</div>
 						</li>						
-						<li>
-							<div>
-								<div class="overlay control-video"></div>
-								<div class="km-testimonial-text">
-									<div class="km-video-testimonial">
-										<a href="javascript:;" 
-											data-video="https://www.youtube.com/embed/pim_QZKWRAY"
-											data-target="iframe-testimonio">
-											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
-										</a>
-									</div>
-									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">MARU S. - Ciudad de México</div>
-									<div class="km-autor-descripcion ">Cuidador Certificado</div>
-								</div>
-								<img class="img-testimoniales" src="'.getTema().'/images/new/km-testimoniales/testimonial-2.jpg">
-							</div>
-						</li>
-						<li>
-							<div>
-								<div class="overlay control-video"></div>
-								<div class="km-testimonial-text">
-									<div class="km-video-testimonial">
-										<a href="javascript:;" 
 
-											data-video="https://www.youtube.com/embed/Kqn7lOVk6bQ"
-											data-target="iframe-testimonio">
-											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
-										</a>
-									</div>
-									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">CLAUDIA R. - Ciudad de México</div>
-									<div class="km-autor-descripcion ">Cuidador Certificado</div>
-								</div>
-								<img class="img-testimoniales" src="'.getTema().'/images/new/km-testimoniales/testimonial-3.jpg">
-							</div>
-						</li>
+						
 					</ul>
 				</div>
 			</div>
