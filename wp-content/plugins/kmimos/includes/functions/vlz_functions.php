@@ -1206,7 +1206,8 @@
 
                 "servicio" => $producto->ID,
                 "servicio_titulo" => $producto->post_title,
-                "cuidador" => $producto->post_author, //$wpdb->get_var("SELECT post_title FROM wp_posts WHERE post_author='{$producto->post_author}' AND post_type = 'petsitters' "),
+                "cuidador" => $producto->post_author,
+                "cliente" => $metas_reserva["_booking_customer_id"][0],
                 "inicio" => $inicio,
                 "fin" => $fin
             );
