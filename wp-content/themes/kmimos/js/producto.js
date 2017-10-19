@@ -195,7 +195,7 @@ function calcular(){
 	
 	jQuery.each( CARRITO[ "adicionales" ], function( key, valor ) {
 		if( valor > 0 ){
-			cant += valor;
+			cant += (valor*CARRITO["cantidades"]["cantidad"]);
 		}
 	});	
 

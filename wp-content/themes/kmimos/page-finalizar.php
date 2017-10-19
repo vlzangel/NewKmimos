@@ -48,7 +48,7 @@
 					</diV>
 					<span>&nbsp;<br>$'.number_format( $deposito["remaining"]-$descuento, 2, ',', '.').'</span>
 				</div>
-				<div class="border_desglose">
+				<div>
 					<div>Pag&oacute; </diV>
 					<span>$'.number_format( $deposito["deposit"], 2, ',', '.').'</span>
 				</div>
