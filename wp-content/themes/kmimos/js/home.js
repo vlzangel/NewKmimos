@@ -200,7 +200,6 @@ jQuery(document).ready(function(){
     });
 */
 
-
     jQuery("#buscar").on("click", function ( e ) {
         e.preventDefault();
         jQuery("#buscador").submit();
@@ -262,6 +261,23 @@ function validar_busqueda_home(){
     return false;
 }
 
+
+jQuery(document).on('click', '[data-target="iframe-testimonio"]', function(){
+    if( jQuery(this).data('video') != '' ){
+        jQuery('#iframe-testimonio').attr( 'src', jQuery(this).data('video')+"?rel=0&amp;showinfo=0&amp;autoplay=1" );
+
+        jQuery('#testimonio').css('margin-top', jQuery('nav').height());
+        jQuery('#testimonio').modal('show');
+    }
+});
+
+jQuery(document).on('click', '[data-target="close-testimonio"]', function (e) {
+console.log('hidden modal');
+    jQuery('#iframe-testimonio').attr( 'src', 'http://');
+    jQuery('#testimonio').modal('hide');
+});
+
+/*
 function playVideo(e) {
     var el = jQuery(e);
     var p = el.parent().parent().parent();
@@ -279,7 +295,8 @@ function stopVideo(){
     jQuery('.img-testimoniales').css('display','block');
     jQuery('video').css('display','none');  
 }
-
 jQuery(document).on('click', '.control-video', function(e){
     stopVideo();
 });
+*/
+

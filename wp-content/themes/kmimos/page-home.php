@@ -269,43 +269,43 @@
 			<div class="container-fluid">
 				<div class="row">
 					<ul class="bxslider">
+
+
 						<li>
 							<div>
 								<div class="overlay control-video"></div>
 								<div class="km-testimonial-text">
 									<div class="km-video-testimonial">
-										<a href="Javascript: void(0);" onclick="playVideo(this)"><img src="'.getTema().'/images/new/icon/icon-video.svg" width="55"></a>
+										<a href="javascript:;" 
+											data-video="https://www.youtube.com/embed/JMcv5XO5v0M"
+											data-target="iframe-testimonio">
+											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+										</a>
 									</div>
 									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">MARU S. - Ciudad de México</div>
-									<div class="km-autor-descripcion">Cuidador Certificado</div>
+									<div class="km-autor">KARLA S. - Ciudad de México</div>
+									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
-								<video controls="controls">
-									<source src="'.getTema().'/images/new/videos/km-home/Kmimos_MaruS.webm" type="video/webm">
-									<source src="'.getTema().'/images/new/videos/km-home/Kmimos_MaruS.mp4" type="video/mp4">
-									<source src="'.getTema().'/images/new/videos/km-home/Kmimos_MaruS.ogv" type="video/ogg">
-								</video>
 								<img class="img-testimoniales control-video" 
 									src="'.getTema().'/images/new/km-testimoniales/testimonial-1.jpg"
 									>
 							</div>
-						</li>
+						</li>						
 						<li>
 							<div>
 								<div class="overlay control-video"></div>
 								<div class="km-testimonial-text">
 									<div class="km-video-testimonial">
-										<a href="Javascript: void(0);" onclick="playVideo(this)"><img src="'.getTema().'/images/new/icon/icon-video.svg" width="55"></a>
+										<a href="javascript:;" 
+											data-video="https://www.youtube.com/embed/pim_QZKWRAY"
+											data-target="iframe-testimonio">
+											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+										</a>
 									</div>
-									<div class="km-testimonial">“Testimonio II”</div>
-									<div class="km-autor">PEDRO PEREZ - México D.F</div>
-									<div class="km-autor-descripcion">Cuidador Certificado</div>
+									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
+									<div class="km-autor">MARU S. - Ciudad de México</div>
+									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
-								<video>
-									<source src="'.getTema().'/images/new/videos/km-home/km-video.webm" type="video/webm">
-									<source src="'.getTema().'/images/new/videos/km-home/km-video.mp4" type="video/mp4">
-									<source src="'.getTema().'/images/new/videos/km-home/km-video.ogv" type="video/ogg">
-								</video>
 								<img class="img-testimoniales" src="'.getTema().'/images/new/km-testimoniales/testimonial-2.jpg">
 							</div>
 						</li>
@@ -314,17 +314,17 @@
 								<div class="overlay control-video"></div>
 								<div class="km-testimonial-text">
 									<div class="km-video-testimonial">
-										<a href="Javascript: void(0);" onclick="playVideo(this)"><img src="'.getTema().'/images/new/icon/icon-video.svg" width="55"></a>
+										<a href="javascript:;" 
+
+											data-video="https://www.youtube.com/embed/Kqn7lOVk6bQ"
+											data-target="iframe-testimonio">
+											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+										</a>
 									</div>
-									<div class="km-testimonial">“Testimonio III”</div>
-									<div class="km-autor">JOSEFA LOPEZ - México D.F</div>
-									<div class="km-autor-descripcion">Cuidador Certificado</div>
+									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
+									<div class="km-autor">CLAUDIA R. - Ciudad de México</div>
+									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
-								<video>
-									<source src="'.getTema().'/images/new/videos/km-home/km-video.webm" type="video/webm">
-									<source src="'.getTema().'/images/new/videos/km-home/km-video.mp4" type="video/mp4">
-									<source src="'.getTema().'/images/new/videos/km-home/km-video.ogv" type="video/ogg">
-								</video>
 								<img class="img-testimoniales" src="'.getTema().'/images/new/km-testimoniales/testimonial-3.jpg">
 							</div>
 						</li>
@@ -446,6 +446,23 @@
 			</div>
 		</div>
 		<!-- FIN SECCIÓN 7 - BENEFICIOS -->
+'; ?>
+
+
+
+<?php		
+$HTML .= '
+		<!-- BEGIN MODAL TESTIMONIOS -->
+		<div class="modal fade" tabindex="-1" data-backdrop="false" role="dialog" aria-labelledby="myModalLabel" 
+			aria-hidden="true" id="testimonio">
+			<div class="modal-dialog">
+				<div class="modal-content" style="height:340px">
+					<button type="button" class="close"  aria-hidden="true" data-target="close-testimonio">×</button>
+					<iframe id="iframe-testimonio" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL TESTIMONIOS -->
 	    ';
 
 	    echo comprimir_styles($HTML);
