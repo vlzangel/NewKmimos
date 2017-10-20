@@ -317,30 +317,13 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		maxDate: maxDatePets,
 		onSelect: function(xdate) {
 
-		},
-        firstDay: 1,
-        onmonthsToShow: [1, 1]		
+			if( jQuery('#datepets').val() != '' ){
+				jQuery('[name="sp-date_birth"]').remove();
+				jQuery('#datepets').css('color', 'black');
+			}
+		}
 	});
 
-	var minFecha = new Date();
-    var min = minFecha.getFullYear();
-    minFecha.setFullYear( parseInt(min)-30 );
-    minFecha.setDate( parseInt(minFecha.getDate()) - 1);
-
-    var maxFecha = new Date();
-    maxFecha.setDate( parseInt(maxFecha.getDate()) - 1);
-
-    jQuery("#pet_birthdate").datepick({
-        dateFormat: 'dd/mm/yyyy',
-        minDate: minFecha,
-        maxDate: maxFecha,
-        onSelect: function(date1) {
-            
-        },
-        yearRange: minFecha.getFullYear()+':'+maxFecha.getFullYear(),
-        firstDay: 1,
-        onmonthsToShow: [1, 1]
-    });
 
 	jQuery("#nombre_mascota").blur(function(){
 		if(jQuery("#nombre_mascota").val().length == 0){		
