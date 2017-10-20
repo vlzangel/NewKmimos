@@ -12,7 +12,7 @@
 require( dirname(__FILE__) . '/wp-load.php' );
 
 // Redirect to https login if forced to use SSL
-if ( force_ssl_admin() && ! is_ssl() ) {
+if ( force_ssl_admin() && ! true ) {
 	if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
 		wp_redirect( set_url_scheme( $_SERVER['REQUEST_URI'], 'https' ) );
 		exit();
@@ -397,9 +397,9 @@ if ( defined( 'RELOCATE' ) && RELOCATE ) { // Move flag is set
 
 //Set a cookie now to see if they are supported by the browser.
 $secure = ( 'https' === parse_url( wp_login_url(), PHP_URL_SCHEME ) );
-setcookie( TEST_COOKIE, 'WP Cookie check', 0, COOKIEPATH, COOKIE_DOMAIN, $secure );
+setcookie( TEST_COOKIE, 'WP Cookie check', 0, COOKIEPATH, COOKIE_DOMAIN, true, true );
 if ( SITECOOKIEPATH != COOKIEPATH )
-	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN, $secure );
+	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN, true, true );
 
 /**
  * Fires when the login form is initialized.
@@ -449,7 +449,7 @@ case 'postpass' :
 	} else {
 		$secure = false;
 	}
-	setcookie( 'wp-postpass_' . COOKIEHASH, $hasher->HashPassword( wp_unslash( $_POST['post_password'] ) ), $expire, COOKIEPATH, COOKIE_DOMAIN, $secure );
+	setcookie( 'wp-postpass_' . COOKIEHASH, $hasher->HashPassword( wp_unslash( $_POST['post_password'] ) ), $expire, COOKIEPATH, COOKIE_DOMAIN, true, true );
 
 	wp_safe_redirect( wp_get_referer() );
 	exit();
@@ -562,7 +562,7 @@ case 'rp' :
 	$rp_cookie = 'wp-resetpass-' . COOKIEHASH;
 	if ( isset( $_GET['key'] ) ) {
 		$value = sprintf( '%s:%s', wp_unslash( $_GET['login'] ), wp_unslash( $_GET['key'] ) );
-		setcookie( $rp_cookie, $value, 0, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
+		setcookie( $rp_cookie, $value, 0, $rp_path, COOKIE_DOMAIN, true, true );
 		wp_safe_redirect( remove_query_arg( array( 'key', 'login' ) ) );
 		exit;
 	}
@@ -578,7 +578,7 @@ case 'rp' :
 	}
 
 	if ( ! $user || is_wp_error( $user ) ) {
-		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
+		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, true, true );
 		if ( $user && $user->get_error_code() === 'expired_key' )
 			wp_redirect( site_url( 'wp-login.php?action=lostpassword&error=expiredkey' ) );
 		else
@@ -603,7 +603,7 @@ case 'rp' :
 
 	if ( ( ! $errors->get_error_code() ) && isset( $_POST['pass1'] ) && !empty( $_POST['pass1'] ) ) {
 		reset_password($user, $_POST['pass1']);
-		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
+		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, true, true );
 		login_header( __( 'Password Reset' ), '<p class="message reset-pass">' . __( 'Your password has been reset.' ) . ' <a href="' . esc_url( wp_login_url() ) . '">' . __( 'Log in' ) . '</a></p>' );
 		login_footer();
 		exit;
@@ -745,7 +745,7 @@ break;
 
 case 'login' :
 default:
-	$secure_cookie = '';
+	$secure_cookie = true;
 	$customize_login = isset( $_REQUEST['customize-login'] );
 	if ( $customize_login )
 		wp_enqueue_script( 'customize-base' );
@@ -770,7 +770,7 @@ default:
 		$redirect_to = admin_url();
 	}
 
-	$reauth = empty($_REQUEST['reauth']) ? false : true;
+	$reauth = false;
 
 	$user = wp_signon( array(), $secure_cookie );
 
