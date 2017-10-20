@@ -90,7 +90,7 @@
             global $wpdb;
             $db = $wpdb;
             extract($data);
-            for ($i=$inicio; $i < $fin; $i+=86400) { 
+            for ($i=$inicio; $i < ($fin-86399); $i+=86400) { 
                 $fecha = date("Y-m-d", $i);
                 $full = 0;
                 $existe = $db->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
