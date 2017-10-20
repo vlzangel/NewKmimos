@@ -328,7 +328,7 @@
 	*/
 
 		$cliente_file = realpath('../../template/mail/conocer/cliente.php');
-        $message_mail = file_get_contents($mail_file);
+        $mensaje_cliente = file_get_contents($cliente_file);
 
         $mensaje_cliente = str_replace('[name]', $cliente_web, $mensaje_cliente);
         $mensaje_cliente = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cliente);
