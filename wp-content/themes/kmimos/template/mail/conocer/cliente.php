@@ -74,7 +74,7 @@
 
 		<img src='[URL_IMGS]/importante_conocer.png' style='display: block; margin: 0px auto 25px;' >
 
-		<div style='display: table; margin: 0px auto 14px; width: calc( 100% - 20px );'>
+		<div style='display: table; margin: 0px auto 14px; width: 100%; box-sizing: border-box; padding: 0px 10px;'>
 			<div style='display: table-cell; vertical-align: top; width: 5px;'>
 				<div style='width: 5px; height: 5px; background-color: #6b1c9b; margin: 6px; border-radius: 50%;'></div>
 			</div>
@@ -82,7 +82,7 @@
 				Dentro de las siguientes 12 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso.
 			</div>
 		</div>
-		<div style='display: table; margin: 0px auto 14px; width: calc( 100% - 20px );'>
+		<div style='display: table; margin: 0px auto 14px; width: 100%; box-sizing: border-box; padding: 0px 10px;'>
 			<div style='display: table-cell; vertical-align: top; width: 5px;'>
 				<div style='width: 5px; height: 5px; background-color: #6b1c9b; margin: 6px; border-radius: 50%;'></div>
 			</div>
@@ -90,7 +90,7 @@
 				También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados arriba para acelerar el proceso si así lo deseas.
 			</div>
 		</div>
-		<div style='display: table; margin: 0px auto 14px; width: calc( 100% - 20px );'>
+		<div style='display: table; margin: 0px auto 14px; width: 100%; box-sizing: border-box; padding: 0px 10px;'>
 			<div style='display: table-cell; vertical-align: top; width: 5px;'>
 				<div style='width: 5px; height: 5px; background-color: #6b1c9b; margin: 6px; border-radius: 50%;'></div>
 			</div>
