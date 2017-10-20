@@ -35,14 +35,7 @@
 	    <div class="km-video">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="km-video-bg">
-						<div class="overlay"></div>
-						<video loop muted autoplay poster="'.getTema().'/images/new/km-hero-desktop.jpg" class="km-video-bgscreen">
-							<source src="'.getTema().'/images/new/videos/km-home/km-video.webm" type="video/webm">
-							<source src="'.getTema().'/images/new/videos/km-home/km-video.mp4" type="video/mp4">
-							<source src="'.getTema().'/images/new/videos/km-home/km-video.ogv" type="video/ogg">
-						</video>
-					</div>
+					<div class="km-video-bg"></div>
 				</div>
 			</div>
 		</div>

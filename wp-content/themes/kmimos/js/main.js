@@ -80,5 +80,5 @@ jQuery(document).ready(function(){
 		});
 	}
 
-
 });
+

@@ -750,7 +750,14 @@ button.close {
 }
 
 .dropdown-order{
-    padding: 10px 32px;
+    /*padding: 10px 32px;*/
+    padding: 8px 30px 8px 20px !important;
+    transition: initial!important;
+    background-color: #FFF!important;
+    background-size: 14px 13px!important;
+    background-repeat: no-repeat!important;
+    background-position: calc(100% - 9px) 50%!important;
+    background-image: url(../images/new/km-arrow-form.svg)!important;
 }
 
 .contentenedor-buscador-todos{
@@ -2668,9 +2675,7 @@ footer input:focus{
 }
 
 @media all and (max-width: 767px) {
-	.zopim{
-		display: none!important;
-	}
+	 
 	.km-costo{
 		position: fixed!important;
 	    display: block!important;

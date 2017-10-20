@@ -706,7 +706,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
 /* Cargar imagen de la mascota */
 function vista_previa(evt) {
 
-    jQuery("#loading-mascota").css("display", "inline-block");
+    jQuery("#loading-mascota").css("display", "block");
 
   	var files = evt.target.files;
   	for (var i = 0, f; f = files[i]; i++) {  
