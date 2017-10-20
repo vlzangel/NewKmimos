@@ -5,7 +5,7 @@
     <p style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 15px;'>
         ¡No te preocupes, puedes cambiarla!
     </p>    
-    <p style='padding-bottom: 15px;'>¡Hola <strong>[name]!</strong></p>
+    <p style='padding-bottom: 15px;'>¡Hola <strong>[name]</strong>!</p>
     <p style='max-width: 518px; width: 100%;'>Hemos recibido tu solicitud para reestablecer tu contraseña en Kmimos. Solo necesitamos que confirmes la veracidad de esta solicitud.</p>
 </div>
 <div style='text-align:center;'>

@@ -24,7 +24,7 @@
 
             $mail_file = realpath('../../template/mail/recuperar.php');
             $message_mail = file_get_contents($mail_file);
-            $message_mail = str_replace('[name]', $USER->user_login, $message_mail);
+            $message_mail = str_replace('[name]', get_user_meta($USER->ID, "first_name", true), $message_mail);
             $message_mail = str_replace('[url]', $url_activate, $message_mail);
             $message_mail = str_replace('[URL_IMGS]', $home."/wp-content/themes/kmimos/images/emails", $message_mail);
 
