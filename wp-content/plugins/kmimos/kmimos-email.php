@@ -182,9 +182,9 @@ if(!function_exists('kmimos_get_email_footer')){
                         <img style='margin-bottom: 16px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/caracteristicas.png' >
                         <img style='margin-bottom: 30px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/dog_footer.png' >
 
-                        <div style='background-color:#000000; color: #fff; display: table; width: 100%; height: 62px; font-size: 11px; letter-spacing: 0.2px; padding: 0px 50px; box-sizing: border-box;'>
+                        <div style='background-color:#000000; color: #fff; display: table; width: 100%; height: 62px; font-size: 11px; letter-spacing: 0.2px; padding: 0px; box-sizing: border-box;'>
 
-                            <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: left;'>
+                            <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: left; padding-left: 30px;'>
                                 <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png' style='height: 21px;'> 
                             </div>
 
@@ -192,7 +192,7 @@ if(!function_exists('kmimos_get_email_footer')){
                                 ".$_SERVER['HTTP_HOST']."
                             </div>
 
-                            <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: right;'>
+                            <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: right; padding-right: 30px;'>
                                 <span style='display: inline-block; padding: 0px 5px 0px 0px;'>Síguenos en</span> <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png' style='margin-top: -2px;' align='center'>
                             </div>
 
