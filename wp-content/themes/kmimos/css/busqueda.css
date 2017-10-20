@@ -158,3 +158,22 @@ h1.maps {
     cursor: default;
     background: rgba(0, 0, 0, .2) !important;
 }
+
+@media All and (max-width: 768px){
+    .zopim{
+        top:auto!important;
+        position: fixed!important;
+        bottom: 9%!important;
+    }
+}
+@media All and (max-width: 520px){
+    .zopim{
+        bottom: 10%!important;
+    }
+}
+
+@media all and (max-width: 768px) and (orientation: landscape ){
+    .zopim{
+        bottom: 15%!important;
+    }
+}

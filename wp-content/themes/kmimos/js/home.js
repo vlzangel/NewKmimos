@@ -104,9 +104,30 @@ var hasGPS=false;
 })(jQuery);
 
 
+jQuery(window).on('resize', function(){
+    loadBGVideoHOME();
+});
+
+function loadBGVideoHOME(){
+    if( jQuery(window).width() >= 768 ){
+        jQuery('.km-video-bg').html(
+            '<div class="overlay"></div>'+
+            '<video loop muted autoplay poster="'+HOME+'/images/new/km-hero-desktop.jpg" class="km-video-bgscreen">'+
+                '<source src="'+HOME+'/images/new/videos/km-home/km-video.webm" type="video/webm">'+
+                '<source src="'+HOME+'/images/new/videos/km-home/km-video.mp4" type="video/mp4">'+
+                '<source src="'+HOME+'/images/new/videos/km-home/km-video.ogv" type="video/ogg">'+
+            '</video>'
+        );
+    }else{
+        jQuery('.km-video-bg').html('<div class="overlay"></div>');
+    }
+}
+
 var fecha = new Date();
 jQuery(document).ready(function(){
 
+    loadBGVideoHOME();
+    
     jQuery('.bxslider').bxSlider({
         buildPager: function(slideIndex){
             switch(slideIndex){
@@ -119,86 +140,6 @@ jQuery(document).ready(function(){
             }
         }
     });
-
-
-/*
-    function initCheckin(date, actual){
-        if(actual){
-            jQuery('#checkout').datepick({
-                dateFormat: 'dd/mm/yyyy',
-                defaultDate: date,
-                selectDefaultDate: true,
-                minDate: date,
-                onSelect: function(xdate) {
-                    if(typeof calcular === 'function') {
-                        calcular();
-                    }
-                },
-                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
-                firstDay: 1,
-                onmonthsToShow: [1, 1]
-            });
-        }else{
-            jQuery('#checkout').datepick({
-                dateFormat: 'dd/mm/yyyy',
-                minDate: date,
-                onSelect: function(xdate) {
-                    if(typeof calcular === 'function') {
-                        calcular();
-                    }
-                },
-                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
-                firstDay: 1,
-                onmonthsToShow: [1, 1]
-            });
-        }
-    }
-
-    jQuery('#checkin').datepick({
-        dateFormat: 'dd/mm/yyyy',
-        minDate: fecha,
-        onSelect: function(date1) {
-            var ini = jQuery('#checkin').datepick( "getDate" );
-            var fin = jQuery('#checkout').datepick( "getDate" );
-            if( fin.length > 0 ){
-                var xini = ini[0].getTime();
-                var xfin = fin[0].getTime();
-                if( xini > xfin ){
-                    jQuery('#checkout').datepick('destroy');
-                    initCheckin(date1[0], true);
-                }else{
-                    jQuery('#checkout').datepick('destroy');
-                    initCheckin(date1[0], false);
-                }
-            }else{
-                jQuery('#checkout').datepick('destroy');
-                initCheckin(date1[0], true);
-            }
-            if(typeof calcular === 'function') {
-                calcular();
-            }
-            if(typeof validar_busqueda_home === 'function') {
-                validar_busqueda_home();
-            }
-        },
-        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
-        firstDay: 1,
-        onmonthsToShow: [1, 1]
-    });
-
-    jQuery('#checkout').datepick({
-        dateFormat: 'dd/mm/yyyy',
-        minDate: fecha,
-        onSelect: function(xdate) {
-            if(typeof calcular === 'function') {
-                calcular();
-            }
-        },
-        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
-        firstDay: 1,
-        onmonthsToShow: [1, 1]
-    });
-*/
 
     jQuery("#buscar").on("click", function ( e ) {
         e.preventDefault();
@@ -277,26 +218,4 @@ console.log('hidden modal');
     jQuery('#testimonio').modal('hide');
 });
 
-/*
-function playVideo(e) {
-    var el = jQuery(e);
-    var p = el.parent().parent().parent();
-    jQuery('video', p).get(0).play();
-    jQuery('.km-testimonial-text').css('display','none');
-    jQuery('.img-testimoniales').css('display','none');
-    jQuery('video').css('display','block');
-}
-function stopVideo(){
-    jQuery.each( jQuery('video'), function(i, e){
-        e.pause();
-        e.currentTime = 0;
-    });
-    jQuery('.km-testimonial-text').css('display','block');
-    jQuery('.img-testimoniales').css('display','block');
-    jQuery('video').css('display','none');  
-}
-jQuery(document).on('click', '.control-video', function(e){
-    stopVideo();
-});
-*/
 
