@@ -1,5 +1,5 @@
 <?php 
-
+	
 	if($portada != ""){
 	    $dir = $raiz."/wp-content/uploads/{$sub_path}/";
 	    @mkdir($dir);
@@ -11,7 +11,7 @@
 	    }
 
 	    $img_anterior = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo';");
-	    if( $img_anterior !== false ){
+	    if( $img_anterior != false ){
 		    if( file_exists($dir.$img_anterior) ){
 		        unlink($dir.$img_anterior);
 		    }
@@ -30,7 +30,9 @@
 	$sql .= "UPDATE wp_usermeta SET meta_value = '{$referred}' WHERE user_id = {$user_id} AND meta_key = 'user_referred';";
 	$sql .= "UPDATE wp_usermeta SET meta_value = '{$descr}' WHERE user_id = {$user_id} AND meta_key = 'description';";
 	$sql .= "UPDATE wp_usermeta SET meta_value = '{$nickname}' WHERE user_id = {$user_id} AND meta_key = 'nickname';";
-	$sql .= $img_portada;
+	if( isset($img_portada) ){
+		$sql .= $img_portada;
+	}
 
 	$description = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'description'");
 	if( $description == false ){
