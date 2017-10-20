@@ -6762,6 +6762,10 @@ section {
     border: none;
     margin: 0;
 }
+.km-autor a{
+	color:#fff;
+	text-decoration: none; 
+}
 .km-autor {
     font-size: 13px;
     font-family: 'Gotham-Pro-Bold',arial,sans-serif;
