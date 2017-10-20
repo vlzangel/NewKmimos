@@ -188,7 +188,7 @@ if(!function_exists('kmimos_get_email_footer')){
                                 <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png' style='height: 21px;'> 
                             </div>
 
-                            <div style='display: table-cell; width: 33.333333333%; vertical-align: middle;'>
+                            <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; color: #FFF;'>
                                 ".$_SERVER['HTTP_HOST']."
                             </div>
 
