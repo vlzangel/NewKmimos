@@ -94,7 +94,8 @@
         function kmimos_mails_administradores_new($titulo, $mensaje){     
       
             wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje);        
-      
+            wp_mail( "i.cocchini@kmimos.la", $titulo, $mensaje);        
+        
         }     
     }
 
