@@ -330,6 +330,8 @@
 		$cliente_file = realpath('../../template/mail/conocer/cliente.php');
         $mensaje_cliente = file_get_contents($cliente_file);
 
+        $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
+
         $mensaje_cliente = str_replace('[name]', $cliente_web, $mensaje_cliente);
         $mensaje_cliente = str_replace('[avatar]', kmimos_get_foto($cuidador->user_id), $mensaje_cliente);
         $mensaje_cliente = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cliente);
@@ -339,9 +341,9 @@
         $mensaje_cliente = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_cliente);
         $mensaje_cliente = str_replace('[hora]', $_POST['meeting_time'], $mensaje_cliente);
         $mensaje_cliente = str_replace('[lugar]', $_POST['meeting_where'], $mensaje_cliente);
-        $mensaje_cliente = str_replace('[desde]', $_POST['service_start'], $mensaje_cliente);
-        $mensaje_cliente = str_replace('[hasta]', $_POST['service_end'], $mensaje_cliente);
-        $mensaje_cliente = str_replace('[anio]', "2017", $mensaje_cliente);
+        $mensaje_cliente = str_replace('[desde]', date("d/m", strtotime( str_replace("/", "-", $_POST['service_start']) )), $mensaje_cliente);
+        $mensaje_cliente = str_replace('[hasta]', date("d/m", $fin), $mensaje_cliente);
+        $mensaje_cliente = str_replace('[anio]', date("Y", $fin), $mensaje_cliente);
 
 		$mensaje_cliente = get_email_html($mensaje_cliente, false);
 
