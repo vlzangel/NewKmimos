@@ -90,7 +90,7 @@ $HTML .='
 				</span>
 
 					<h3 style="margin: 0; text-align: center;">Completa tus datos</h3>
-				<form id="form_nuevo_cliente" name="form_nuevo_cliente" enctype="multipart/form-data" method="POST">	
+				<form id="form_nuevo_cliente" name="form_nuevo_cliente" enctype="multipart/form-data" method="POST" autocomplete="off">	
 					<div class="km-box-form">
 						<div class="content-placeholder">
 
@@ -143,7 +143,7 @@ $HTML .='
 							</div>
 							<div class="label-placeholder">
 								<label>Crea tu contraseña</label>
-								<input type="password" name="pass" id="pass" maxlength="20"  class="input-label-placeholder">
+								<input type="password" name="pass" id="pass" maxlength="20"  class="input-label-placeholder" autocomplete="off">
 							</div>
 							<div class="label-placeholder">
 								<label>Teléfono</label>

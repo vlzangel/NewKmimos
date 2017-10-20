@@ -43,7 +43,7 @@
 				</div>
 			</div>
 
-		<form id="vlz_form_nuevo_cuidador" style="padding-bottom: 0px;">
+		<form id="vlz_form_nuevo_cuidador" style="padding-bottom: 0px;" autocomplete="off">
 			<input type="hidden" name="google_auth_id"   class="social_google_id"	 value="">
 			<input type="hidden" name="facebook_auth_id" class="social_facebook_id"  value="">
 
@@ -78,7 +78,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Crea tu contraseña</label>
-							<input type="password" data-clear name="rc_clave"  maxlength="50" value="" class="input-label-placeholder">
+							<input type="password" data-clear name="rc_clave"  maxlength="50" value="" class="input-label-placeholder" autocomplete="off">
 							<small data-error="rc_clave" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">

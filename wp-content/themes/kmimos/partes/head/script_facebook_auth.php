@@ -1,5 +1,5 @@
 <?php
-$HTML .= '
+/*$HTML .= '
 
   <script>
     function statusChangeCallback(response) {}
@@ -33,7 +33,6 @@ $HTML .= '
 
 
     function login(){
-      /* FB.logout(); */
       FB.login(function(response) {
         if (response.authResponse) {
           KmimosAPI();
@@ -67,7 +66,6 @@ $HTML .= '
             }
 
           });
-          /* FB.logout(); */
         }
       });
 
@@ -88,4 +86,4 @@ $HTML .= '
     }
 
   </script>
-';
+';*/

@@ -3,10 +3,20 @@
 	// *******************************
 	// Google Oauth
 	// *******************************
-	$HTML .= '
 
-		<script src="https://apis.google.com/js/api:client.js"></script>
+/*	$HTML .= '
+
 		<script>
+
+			(function(d, s){
+				api_google = d.createElement(s), e = d.getElementsByTagName(s)[0];
+				api_google.async=!0;
+				api_google.setAttribute("charset","utf-8");
+				api_google.src="//apis.google.com/js/api:client.js";
+				api_google.type="text/javascript";
+				e.parentNode.insertBefore(api_google, e);
+			})(document,"script");
+
 			var googleUser = {};
 			var startApp = function() {
 				gapi.load("auth2", function(){
@@ -77,7 +87,7 @@
 				    }, function(error) {});
 			}
 		</script>		
-';
+';*/
 
 	/***********************************************
 	Funciones en [ googleUser.GetBasicProfile ]
