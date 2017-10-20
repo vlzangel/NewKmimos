@@ -16,12 +16,12 @@
             <img src='[URL_IMGS]/identificacion.png' style='' >
         </div>
         <div style='display: table-cell; vertical-align: middle; padding-left: 16px;'>
-            <p style='font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>E-mail</p>                   
-            <p style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: -0.5px; color: #000000; margin-bottom: 12px;'>[email]</p>
+            <div style='font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>E-mail</div>                   
+            <div style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: -0.5px; color: #000000; margin-bottom: 12px;'><a href="mailto:[email]">[email]</a></div>
 
 
-            <p style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>Contraseña</p>
-            <p style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: -0.5px; color: #000000;'>[pass]</p>    
+            <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>Contraseña</div>
+            <div style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: -0.5px; color: #000000;'>[pass]</div>    
         </div>
     </div>
 
