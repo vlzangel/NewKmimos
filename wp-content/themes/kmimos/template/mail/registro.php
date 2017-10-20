@@ -1,28 +1,31 @@
-<h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>
-<p>Hola <strong>[name]</strong>,</p>
-<p style="text-align: justify;">
-    Abajo encontrarás tus credenciales para que tengas acceso a Kmimos.
-</p>
-<p>
-<table>
-    <tr> <td> <strong>E-mail:</strong> </td><td>[email]</td> </tr>
-    <tr> <td> <strong>Contraseña:</strong> </td><td>[pass]</td> </tr>
-</table>
-</p>
-<p style="text-align: center;">
-    <a href="[url]" style="
-                    padding: 10px;
-                    background: #59c9a8;
-                    color: #fff;
-                    font-weight: 400;
-                    font-size: 17px;
-                    font-family: Roboto;
-                    border-radius: 3px;
-                    border: solid 1px #1f906e;
-                    display: block;
-                    max-width: 300px;
-                    margin: 0px auto;
-                    text-align: center;
-                    text-decoration: none;
-                " >Iniciar Sesión</a>
-</p>
+<div style='text-align:center; margin-bottom: 34px;'>
+    <img src='[URL_IMGS]/header1.png' style='width: 100%;' >
+</div>
+
+
+<div style='margin-bottom: 30px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
+    <p style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 15px;'>
+        ¡Hola [name]!
+    </p>    
+    <p style='max-width: 518px; width: 100%;'>Te entregamos tus credenciales para que tengas acceso a Kmimos: </p>
+</div>
+
+<div style='display: block; max-width: 400px; width: 100%; margin: 0px auto; margin-bottom: 31px;'>
+    <div style='display: table; margin-bottom: 31px;'>
+        <div style='display: table-cell; '>
+            <img src='[URL_IMGS]/identificacion.png' style='' >
+        </div>
+        <div style='display: table-cell; vertical-align: middle; padding-left: 16px;'>
+            <p style='font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>E-mail</p>                   
+            <p style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: -0.5px; color: #000000; margin-bottom: 12px;'>[email]</p>
+
+
+            <p style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>Contraseña</p>
+            <p style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: -0.5px; color: #000000;'>[pass]</p>    
+        </div>
+    </div>
+
+    <div style='text-align: center;'>
+        <a href="[url]"><img src='[URL_IMGS]/btn_iniciar_session.png' ></a>
+    </div>
+</div>

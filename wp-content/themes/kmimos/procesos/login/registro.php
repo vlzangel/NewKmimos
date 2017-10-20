@@ -101,7 +101,6 @@
 
                 (NULL, {$user_id}, 'description',          ''),
 
-
                 (NULL, {$user_id}, 'nickname',            '{$email}'),
                 (NULL, {$user_id}, 'first_name',          '{$name}'),
                 (NULL, {$user_id}, 'last_name',           '{$lastname}'),
@@ -120,13 +119,16 @@
 
         //MESSAGE
         $mail_file = realpath('../../template/mail/registro.php');
-        $message_mail = file_get_contents($mail_file);
-        $message_mail = str_replace('[name]',$name.' '.$lastname,$message_mail);
-        $message_mail = str_replace('[email]',$email,$message_mail);
-        $message_mail = str_replace('[pass]',$password,$message_mail);
-        $message_mail = str_replace('[url]',site_url(),$message_mail);
 
-        $message = kmimos_get_email_html("Registro de Nuevo Usuario.", $message_mail, '', true, true);
+        $message_mail = file_get_contents($mail_file);
+
+        $message_mail = str_replace('[name]', $name.' '.$lastname, $message_mail);
+        $message_mail = str_replace('[email]', $email, $message_mail);
+        $message_mail = str_replace('[pass]', $password, $message_mail);
+        $message_mail = str_replace('[url]', site_url(), $message_mail);
+        $message_mail = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $message_mail);
+
+        $message = get_email_html($message_mail);
         wp_mail( $email, "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message);
 
         //USER LOGIN
