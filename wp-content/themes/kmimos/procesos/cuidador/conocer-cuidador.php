@@ -331,8 +331,9 @@
         $mensaje_cliente = file_get_contents($cliente_file);
 
         $mensaje_cliente = str_replace('[name]', $cliente_web, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[avatar]', kmimos_get_foto($cuidador->user_id), $mensaje_cliente);
         $mensaje_cliente = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cliente);
-        $mensaje_cliente = str_replace('[URL_IMGS]', $home."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
+        $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
         $mensaje_cliente = str_replace('[telefonos]', $telf_cuidador, $mensaje_cliente);
         $mensaje_cliente = str_replace('[id_solicitud]', $request_id, $mensaje_cliente);
         $mensaje_cliente = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_cliente);
