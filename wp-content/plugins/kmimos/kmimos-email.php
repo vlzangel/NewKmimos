@@ -189,7 +189,7 @@ if(!function_exists('kmimos_get_email_footer')){
                             </div>
 
                             <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; color: #FFF;'>
-                                ".$_SERVER['HTTP_HOST']."
+                                <a href='".get_home_url()."' style='color: #FFF; text-decoration: none;'>".$_SERVER['HTTP_HOST']."</a>
                             </div>
 
                             <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: right; padding-right: 30px;'>
