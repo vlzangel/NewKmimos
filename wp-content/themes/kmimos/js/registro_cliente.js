@@ -321,9 +321,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery('[name="sp-date_birth"]').remove();
 				jQuery('#datepets').css('color', 'black');
 			}
-		}
+		},
+        firstDay: 1,
+        onmonthsToShow: [1, 1]		
 	});
-
 
 	jQuery("#nombre_mascota").blur(function(){
 		if(jQuery("#nombre_mascota").val().length == 0){		
