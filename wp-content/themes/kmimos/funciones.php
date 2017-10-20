@@ -442,39 +442,5 @@
 			return "";
 		}
 		
-
-		/*
-		Array(
-		    [ubicacion_txt] =&gt; Estado de México, Toluca
-		    [ubicacion] =&gt; 2_20
-		    [checkin] =&gt; 11/10/2017
-		    [checkout] =&gt; 11/10/2017
-		    [servicios] =&gt; Array
-		        (
-		            [0] =&gt; hospedaje
-		            [1] =&gt; guarderia
-		            [2] =&gt; paseos
-		            [3] =&gt; adiestramiento
-		            [4] =&gt; transportacion_sencilla
-		            [5] =&gt; transportacion_redonda
-		            [6] =&gt; corte
-		            [7] =&gt; bano
-		            [8] =&gt; visita_al_veterinario
-		            [9] =&gt; limpieza_dental
-		            [10] =&gt; acupuntura
-		        )
-
-		    [tamanos] =&gt; Array
-		        (
-		            [0] =&gt; pequenos
-		            [1] =&gt; medianos
-		            [2] =&gt; grandes
-		            [3] =&gt; gigantes
-		        )
-
-		    [nombre] =&gt; pedro
-		)
-
-		*/
 	}
 ?>

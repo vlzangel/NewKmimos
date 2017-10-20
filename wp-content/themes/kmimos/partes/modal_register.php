@@ -28,12 +28,12 @@ $HTML .='
 				<p class="popup-tit">REGISTRARME</p>
 				
 				<a href="#" class="km-btn-fb hidden" onclick="login_facebook();">
-					<img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">
+					<img src="'.getTema().'/images/new/icon/km-redes/icon-fb-blanco.svg">
 					REGISTRARME CON FACEBOOK
 				</a>
 				
 				<a href="#" class="google_auth hidden km-btn-border" id="customBtn1">
-					<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
+					<img src="'.getTema().'/images/new/icon/km-redes/icon-gmail.svg">
 					REGISTRARME CON GOOGLE
 				</a>
 			
@@ -53,7 +53,7 @@ $HTML .='
 				<a 	href="javascript:;" 
 					class="km-btn-correo km-btn-popup-registrarte-1" 
 					data-target="social-next-step">
-					<img src="'.getTema().'/images/icons/km-redes/icon-mail-blanco.svg">
+					<img src="'.getTema().'/images/new/icon/km-redes/icon-mail-blanco.svg">
 					REGISTRARME POR CORREO ELECTRÓNICO
 				</a>
 
@@ -63,7 +63,7 @@ $HTML .='
 				<!--
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-12"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p></div>
+					<div class="col-xs-12"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p></div>
 				</div>
 				-->
 
@@ -195,7 +195,7 @@ $HTML .='
 					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada Sin Costo: (01) 800 056 4667</p></div>
 				</div>
 
-				<!-- p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p -->
+				<!-- p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p -->
 				
 				<hr>
 				<div class="row">
@@ -263,7 +263,7 @@ $HTML .='
 				<div class="row row-sin-padding" class="tamano-mascota-content" style="margin-bottom: 20px;">
 					<div class="col-xs-6 col-sm-3">
 						<div class="km-opcion" id="select_1" value="0">
-							<img src="'.getTema().'/images/icons/icon-pequenio.svg" width="25">
+							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg" width="25">
 							<br>
 							<div class="km-opcion-text">
 								<b>PEQUEÑO</b><br> 0 a 25 cm
@@ -272,7 +272,7 @@ $HTML .='
 					</div>
 					<div class="col-xs-6 col-sm-3">
 						<div class="km-opcion" id="select_2" value="1">
-							<img src="'.getTema().'/images/icons/icon-mediano.svg" width="25">
+							<img src="'.getTema().'/images/new/icon/icon-mediano.svg" width="25">
 						<br>
 							<div class="km-opcion-text">
 								<b>MEDIANO</b><br> 25 a 58 cm
@@ -281,7 +281,7 @@ $HTML .='
 					</div>
 					<div class="col-xs-6 col-sm-3">
 						<div class="km-opcion" id="select_3" value="2">
-							<img src="'.getTema().'/images/icons/icon-grande.svg" width="25">
+							<img src="'.getTema().'/images/new/icon/icon-grande.svg" width="25">
 						<br>
 							<div class="km-opcion-text">
 								<b>GRANDE</b><br> 58 a 73 cm</div>
@@ -289,7 +289,7 @@ $HTML .='
 					</div>
 					<div class="col-xs-6 col-sm-3">
 						<div class="km-opcion" id="select_4" value="3">
-							<img src="'.getTema().'/images/icons/icon-gigante.svg" width="25">
+							<img src="'.getTema().'/images/new/icon/icon-gigante.svg" width="25">
 						<br>
 							<div class="km-opcion-text"><b>
 								GIGANTE</b><br> 73 a 200 cm
@@ -332,7 +332,7 @@ $HTML .='
 				</form>						
 				<a href="#" class="km-btn-correo km-btn-popup-registrarte-datos-mascota">REGISTRARME</a>
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
-				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p>
+				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p>
 			</div>
 			<div class="popuphide popup-registrarte-final">
 				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
