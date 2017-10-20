@@ -270,6 +270,45 @@
 				<div class="row">
 					<ul class="bxslider">
 
+						<li>
+							<div>
+								<div class="overlay control-video"></div>
+								<div class="km-testimonial-text">
+									<div class="km-video-testimonial">
+										<a href="javascript:;" 
+											data-video="https://www.youtube.com/embed/Kqn7lOVk6bQ"
+											data-target="iframe-testimonio">
+											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+										</a>
+									</div>
+									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
+									<div class="km-autor">
+										CLAUDIA R.
+										 - Ciudad de México</div>
+									<div class="km-autor-descripcion ">Cuidador Certificado</div>
+								</div>
+								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/testimonial-3.jpg">
+							</div>
+						</li>
+
+						<li>
+							<div>
+								<div class="overlay control-video"></div>
+								<div class="km-testimonial-text">
+									<div class="km-video-testimonial">
+										<a href="javascript:;" 
+											data-video="https://www.youtube.com/embed/pim_QZKWRAY"
+											data-target="iframe-testimonio">
+											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+										</a>
+									</div>
+									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
+									<div class="km-autor">MARU S. - Ciudad de México</div>
+									<div class="km-autor-descripcion ">Cuidador Certificado</div>
+								</div>
+								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/testimonial-2.jpg">
+							</div>
+						</li>
 
 						<li>
 							<div>
@@ -286,48 +325,13 @@
 									<div class="km-autor">KARLA S. - Ciudad de México</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
-								<img class="img-testimoniales control-video" 
+								<img class="img-testimoniales filtro-oscuro" 
 									src="'.getTema().'/images/new/km-testimoniales/testimonial-1.jpg"
 									>
 							</div>
 						</li>						
-						<li>
-							<div>
-								<div class="overlay control-video"></div>
-								<div class="km-testimonial-text">
-									<div class="km-video-testimonial">
-										<a href="javascript:;" 
-											data-video="https://www.youtube.com/embed/pim_QZKWRAY"
-											data-target="iframe-testimonio">
-											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
-										</a>
-									</div>
-									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">MARU S. - Ciudad de México</div>
-									<div class="km-autor-descripcion ">Cuidador Certificado</div>
-								</div>
-								<img class="img-testimoniales" src="'.getTema().'/images/new/km-testimoniales/testimonial-2.jpg">
-							</div>
-						</li>
-						<li>
-							<div>
-								<div class="overlay control-video"></div>
-								<div class="km-testimonial-text">
-									<div class="km-video-testimonial">
-										<a href="javascript:;" 
 
-											data-video="https://www.youtube.com/embed/Kqn7lOVk6bQ"
-											data-target="iframe-testimonio">
-											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
-										</a>
-									</div>
-									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">CLAUDIA R. - Ciudad de México</div>
-									<div class="km-autor-descripcion ">Cuidador Certificado</div>
-								</div>
-								<img class="img-testimoniales" src="'.getTema().'/images/new/km-testimoniales/testimonial-3.jpg">
-							</div>
-						</li>
+
 					</ul>
 				</div>
 			</div>
@@ -457,8 +461,9 @@ $HTML .= '
 			aria-hidden="true" id="testimonio">
 			<div class="modal-dialog">
 				<div class="modal-content" style="height:340px">
-					<button type="button" class="close"  aria-hidden="true" data-target="close-testimonio">×</button>
-					<iframe id="iframe-testimonio" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+					<button type="button" class="close-white close" style="z-index:10; border:1px solid transparent;" aria-hidden="true" data-target="close-testimonio">×</button>
+					<iframe style="background:transparent;" id="iframe-testimonio" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+					<p>Cargando video</p>
 				</div>
 			</div>
 		</div>

@@ -1526,6 +1526,7 @@ div#ubicacion_list div:hover {
     position: absolute;
     margin-top: 41px;
     right: 0;
+    z-index: -1;
 }
 
 .km-titulo-mapa{
@@ -1598,7 +1599,9 @@ div#ubicacion_list div:hover {
 
 
 
-
+.filtro-oscuro{
+    filter: brightness(0.4);
+}
 
 
 
@@ -2250,6 +2253,7 @@ footer input:focus{
 }
 @media (max-width: 767px) {
 
+	
 
 	.footer-petsitter{
 		margin-bottom: 110px!important;
@@ -2462,6 +2466,9 @@ footer input:focus{
 @media (max-width: 480px) {
 	.bx-wrapper .bx-pager a {
 		margin: 0 8px;
+	}
+	.bx-wrapper .bx-pager-item{
+		width: 100px;
 	}
 }
 
@@ -5362,6 +5369,10 @@ h1.maps {
     button.close {
         right:10px;
         color:#000
+    }
+    button.close-white {
+        right:10px;
+        color:#fff!important;
     }
     button.close:hover {
         color:#000
