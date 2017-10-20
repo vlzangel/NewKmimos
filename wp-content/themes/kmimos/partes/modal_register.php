@@ -251,6 +251,21 @@ $HTML .='
 						<div class="km-fecha-nacimiento">
 							<input type="text" name="date_birth" id="datepets" placeholder="Fecha de Nacimiento" class="date_birth" readonly>
 						</div>
+
+						<div class="km-fecha-nacimiento">
+			                <input 
+			                    type="text" 
+			                    id="pet_birthdate" 
+			                    name="pet_birthdate" 
+			                    placeholder="prueba datapicker" 
+			                    value="" 
+			                    class="km-input-custom km-input-date date_from" 
+			                    readonly
+			                />
+						</div>
+
+
+
 						<div class="km-datos-mascota">
 							<select class="km-datos-mascota-opcion bg-select-custom" name="genero_mascota" id="genero_mascota">
 								<option value="">Género</option>
