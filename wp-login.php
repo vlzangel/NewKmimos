@@ -772,7 +772,7 @@ default:
 
 	$reauth = empty($_REQUEST['reauth']) ? false : true;
 
-	$user = wp_signon( '', $secure_cookie );
+	$user = wp_signon( array(), $secure_cookie );
 
 	if ( empty( $_COOKIE[ LOGGED_IN_COOKIE ] ) ) {
 		if ( headers_sent() ) {
@@ -884,7 +884,7 @@ default:
 	</p>
 	<p>
 		<label for="user_pass"><?php _e('Password') ?><br />
-		<input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input" value="" size="20" /></label>
+		<input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input" value="" size="20" autocomplete="off" /></label>
 	</p>
 	<?php
 	/**

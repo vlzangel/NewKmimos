@@ -43,7 +43,7 @@
 				</div>
 			</div>
 
-		<form id="vlz_form_nuevo_cuidador" style="padding-bottom: 0px;" autocomplete="off">
+		<form id="vlz_form_nuevo_cuidador" style="padding-bottom: 0px;" autocomplete="off" method="POST">
 			<input type="hidden" name="google_auth_id"   class="social_google_id"	 value="">
 			<input type="hidden" name="facebook_auth_id" class="social_facebook_id"  value="">
 
