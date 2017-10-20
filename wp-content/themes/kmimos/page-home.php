@@ -7,7 +7,6 @@
     wp_enqueue_style('home_responsive', getTema()."/css/responsive/home_responsive.css", array(), '1.0.0');
     wp_enqueue_script('buscar_home', getTema()."/js/home.js", array(), '1.0.0');
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
-    
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
             
     get_header();
@@ -283,7 +282,7 @@
 									</div>
 									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
 									<div class="km-autor">
-										CLAUDIA R.
+										<a href="'.get_user_slug(1404).'"> CLAUDIA R. </a>
 										 - Ciudad de México</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
@@ -303,7 +302,8 @@
 										</a>
 									</div>
 									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">MARU S. - Ciudad de México</div>
+									<div class="km-autor">
+										<a href="'.get_user_slug(5011).'">MARU S.</a> - Ciudad de México</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
 								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/testimonial-2.jpg">
@@ -322,7 +322,7 @@
 										</a>
 									</div>
 									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">KARLA S. - Ciudad de México</div>
+									<div class="km-autor"><a href="'.get_user_slug(5738).'">KARLA S.</a> - Ciudad de México</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
 								<img class="img-testimoniales filtro-oscuro" 

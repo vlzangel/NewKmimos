@@ -28,15 +28,25 @@
 	    }	
 	}
 
-	if(!function_exists('user_slug')){
-	    function user_slug( $post_id ){
-
-	    	if( $post_id > 0 ){
-	    		$user = get_post( $post_id );
-	    		if( isset($user->slug) ){
-	    			return $user->slug;
-	    		}
-	    	}
+	if(!function_exists('get_user_slug')){
+	    function get_user_slug( $cuidador_userID ){
+	    	global $wpdb;
+	    	if( $cuidador_userID > 0 ){
+				$cuidador = $wpdb->get_row("
+	                SELECT 
+	                    cuidadores.id,
+	                    cuidadores.id_post
+	                from cuidadores 
+	                where cuidadores.user_id = ".$cuidador_userID
+	            );
+	            $post_id = ( isset( $cuidador->id_post ) )? $cuidador->id_post : 0 ; 
+		    	if( $post_id > 0 ){
+		    		$user = get_post( $post_id );
+		    		if( isset($user->post_name) ){
+		    			return get_home_url()."/petsitters/".$user->post_name;
+		    		}
+		    	}
+		    }
 	    	return '';
 	    }
 	}
