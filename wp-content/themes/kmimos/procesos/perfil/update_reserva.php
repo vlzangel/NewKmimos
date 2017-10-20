@@ -51,19 +51,26 @@
 			$r3 = $db->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reservas['_booking_order_item_id']}'"); 
 			if( $r3 !== false ){
 				$items = array();
-				foreach ($r3 as $key => $value) { $items[ $key.$value->meta_key ] = $value->meta_value; }
+				$items2 = array();
+				foreach ($r3 as $key => $value) { 
+					$items[ $key.$value->meta_key ] = $value->meta_value; 
+					$items2[ $value->meta_key ] = $value->meta_value; 
+				}
 			}
 
 			if( $order_status == 'wc-on-hold' && strtolower($metas_orden['_payment_method']) == 'tienda'){ }else{
-				$deposito = unserialize( $items['_wc_deposit_meta'] );
+
+				$deposito = unserialize( $items2['_wc_deposit_meta'] );
 				$saldo = 0;
 				if( $deposito['enable'] == 'yes' ){
 					$saldo = $deposito['deposit'];
 				}else{
-	                $saldo = $items['_line_subtotal'];
+	                $saldo = $items2['_line_subtotal'];
 	                $saldo -= $metas_orden['_cart_discount'];
 				}
 			}
+
+			//echo "Saldo: ".$saldo;
 
 			$variaciones = array();
 
