@@ -25,7 +25,7 @@
 
 	$status = $booking->get_status();
 
-	if( $status == "cancelled" || $status == "confirmed" || $status == "modified" ){
+	if( $status == "cancelled" || $status == "modified" ){ //  || $status == "confirmed"
 		$estado = array(
 			"confirmed" => "Confirmada",
 			"modified"  => "Modificada",
