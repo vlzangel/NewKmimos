@@ -1,5 +1,5 @@
 <div style='text-align:center; margin-bottom: 34px;'>
-    <a  target="_blank" href="[url]"><img src='[URL_IMGS]/header_resset_password.png' style='width: 100%;' ></a>
+    <img src='[URL_IMGS]/header_resset_password.png' style='width: 100%;' >
 </div>
 <div style='margin-bottom: 30px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
     <p style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 15px;'>
@@ -12,7 +12,7 @@
 
     <p style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: 0.3px; text-align: center; margin-bottom: 16px;'>¿Deseas cambiar tu contrase&ntilde;a?</p>
 
-    <img style='margin-bottom: 11px; cursor: pointer; max-width: 252px; width: 100%;' src='[URL_IMGS]/btn_aceptar.png' > 
+    <a  target="_blank" href="[url]"><img style='margin-bottom: 11px; cursor: pointer; max-width: 252px; width: 100%;' src='[URL_IMGS]/btn_aceptar.png' > </a>
 
     <p style='font-family: Arial; font-size: 12px; line-height: 1.21; letter-spacing: 0.3px;margin-bottom: 30px;'>
         NO SOLICITÉ EL CAMBIO, IGNORAR
