@@ -7,7 +7,7 @@
  * soporte@openpay.mx
  */
 
-class OpenpayRefund extends OpenpayApiResourceBase {
+class OpenpayCapture extends OpenpayApiResourceBase {
 	protected function getResourceUrlName($p = true){
 		return parent::getResourceUrlName(false);
 	}

@@ -37,7 +37,9 @@ function initCarrito(){
 			"tipo" : "",
 			"metodo" : "completo",
 			"token" : "",
-			"deviceIdHiddenFieldName" : ""
+			"deviceIdHiddenFieldName" : "",
+			"id_fallida" : 0,
+			"reconstruir" : false
 		};
 
 	if( CARRITO["cupones"] == undefined ){
@@ -70,6 +72,12 @@ function validar(status, txt){
 }
 
 function calcular(){
+
+	console.log("Entro");
+
+	if( CARRITO["pagar"]["id_fallida"] != 0 ){
+		CARRITO["pagar"]["reconstruir"] = true;
+	}
 
 	CARRITO["cantidades"]["cantidad"] = 0;
 	jQuery("#reservar .tamano").each(function( index ) {
@@ -396,8 +404,36 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			/*console.log( data );*/
-			location.href = RAIZ+"/finalizar/"+data.order_id;
+
+			console.log( data );
+
+			if( data.error != "" && data.error != undefined ){
+
+				var error = "Error procesando la reserva<br>";
+		    	error += "Por favor intente nuevamente.<br>";
+		    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+
+		    	jQuery(".errores_box").html(error);
+				jQuery(".errores_box").css("display", "block");
+
+				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
+				jQuery("#reserva_btn_next_3").removeClass("disabled");
+				jQuery("#reserva_btn_next_3").removeClass("cargando");
+
+				CARRITO["pagar"]["id_fallida"] = data.error;
+			}else{
+
+				CARRITO["pagar"]["id_fallida"] = 0;
+
+				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
+				jQuery("#reserva_btn_next_3").removeClass("disabled");
+				jQuery("#reserva_btn_next_3").removeClass("cargando");
+
+				console.log("Reserva completada");
+				
+				location.href = RAIZ+"/finalizar/"+data.order_id;
+			}
+
 		}, "json"
 	).fail(function(e) {
     	console.log( e );
@@ -864,6 +900,8 @@ jQuery(document).ready(function() {
 			if(typeof calcularDescuento === 'function') {
 				calcularDescuento();
 			}
+
+			calcular();
 		}
 
 	});

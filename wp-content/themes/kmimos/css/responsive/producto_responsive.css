@@ -4,7 +4,7 @@
 	}
 
 	select#transporte {
-        font-size: 8px !important;
+        font-size: 12px !important;
 	}
 }
 @media (max-width: 650px){

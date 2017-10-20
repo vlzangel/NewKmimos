@@ -51,7 +51,7 @@
 			$r3 = $db->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reservas['_booking_order_item_id']}'"); 
 			if( $r3 !== false ){
 				$items = array();
-				foreach ($r3 as $key => $value) { $items[ $value->meta_key ] = $value->meta_value; }
+				foreach ($r3 as $key => $value) { $items[ $key.$value->meta_key ] = $value->meta_value; }
 			}
 
 			if( $order_status == 'wc-on-hold' && strtolower($metas_orden['_payment_method']) == 'tienda'){ }else{
@@ -68,17 +68,18 @@
 			$variaciones = array();
 
 			$tamanos = array(
-		    	"pequenos" => "Pequeñas",
-		    	"medianos" => "Medianas",
-		    	"grandes"  => "Grandes",
-		    	"gigantes" => "Gigantes"
+		    	"Peque" => "pequenos",
+		    	"Media" => "medianos",
+		    	"Grand"  => "grandes",
+		    	"Gigan" => "gigantes"
 		    );
-		    foreach($tamanos as $key => $value){
-		    	if( isset( $items["Mascotas ".utf8_decode($value)] ) ){
-		    		$tamanos[ $key ] = $items["Mascotas ".utf8_decode($value)];
-		    		$variaciones[ $key ] = $items["Mascotas ".utf8_decode($value)];
-		    	}
-		    }
+		    $mascotas = array();
+            foreach ( $items as $key => $value ) {
+                if( strpos($key, "Mascotas") > -1 ){
+                    $mascota = substr(end(explode(" ", $key)), 0, 5);
+                    $variaciones[ $tamanos[$mascota] ] = $value;
+                }
+            }
 
 			$fechas = array(
 				"inicio" => date('d-m-Y', strtotime( $metas_reservas['_booking_start'] ) ),

@@ -15,6 +15,8 @@
 
 	get_header();
 
+		date_default_timezone_set('America/Mexico_City');
+
 		if( !isset($_SESSION)){ session_start(); }
 		
 		global $wpdb;
