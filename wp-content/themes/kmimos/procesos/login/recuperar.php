@@ -16,7 +16,7 @@
     }else{
         $keyKmimos = md5($USER->ID);
 
-        $url_activate = $home."/restablecer/?r=".$keyKmimos;
+        $url_activate = $home."restablecer/?r=".$keyKmimos;
 
         //MESSAGE
 
