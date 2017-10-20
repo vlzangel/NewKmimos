@@ -66,10 +66,6 @@
 	        'post_modified' =>  date("Y-m-d H:i:s")
 	    );
 
-	    // $_POST['meeting_when'] = date("d/m/Y", strtotime( str_replace("/", "-", $_POST['meeting_when']) ) );
-	    // $_POST['service_start'] = date("d/m/Y", strtotime( str_replace("/", "-", $_POST['service_start']) ) );
-	    // $_POST['service_end'] = date("d/m/Y", strtotime( str_replace("/", "-", $_POST['service_end']) ) );
-
 		//VALIDATE TOKEN
 		$request_id = 0;
 		$request_id = wp_insert_post($new_post);
@@ -89,8 +85,6 @@
 			'service_start'         => $_POST['service_start'],
 			'service_end'           => $_POST['service_end'],
 		);
-
-
 
 		foreach($new_postmeta as $key => $value){
 			update_post_meta($request_id, $key, $value);
@@ -333,67 +327,22 @@
 		Cliente
 	*/
 
-		$mensaje_cliente = $estilos.'
-			<h2 style="color: #557da1; font-size: 16px;">Hola '.$cliente.',</h2>
-			<p>Recibimos la solicitud realizada para Conocer a un Cuidador Kmimos.</p>
+		$cliente_file = realpath('../../template/mail/conocer/cliente.php');
+        $message_mail = file_get_contents($mail_file);
 
-			<p><strong>Código de la solicitud: '.$request_id.'</strong></p>
+        $mensaje_cliente = str_replace('[name]', $cliente_web, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[URL_IMGS]', $home."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
+        $mensaje_cliente = str_replace('[telefonos]', $telf_cuidador, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[id_solicitud]', $request_id, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[hora]', $_POST['meeting_time'], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[lugar]', $_POST['meeting_where'], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[desde]', $_POST['service_start'], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[hasta]', $_POST['service_end'], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[anio]', "2017", $mensaje_cliente);
 
-			<h2 style="color: #557da1; font-size: 16px;">Datos del Cuidador</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Nombre: </strong></td>
-					<td>'.$nombre_cuidador.'</td>
-				</tr>
-				<tr>
-					<td><strong>Teléfono: </strong></td>
-					<td>'.$telf_cuidador.'</td>
-				</tr>
-				<tr>
-					<td style="width: 70px;"><strong>Correo: </strong></td>
-					<td>'.$email_cuidador.'</td>
-				</tr>
-			</table>
-
-			<h2 style="color: #557da1; font-size: 16px;">Datos de la Reunión</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Fecha: </strong></td>
-					<td>'.$_POST['meeting_when'].'</td>
-				</tr>
-				<tr>
-					<td><strong>Hora: </strong></td>
-					<td>'.$_POST['meeting_time'].'</td>
-				</tr>
-				<tr>
-					<td style="width: 70px;"><strong>Fin: </strong></td>
-					<td>'.$_POST['meeting_where'].'</td>
-				</tr>
-			</table>
-
-			<h2 style="color: #557da1; font-size: 16px;">Posible fecha de Estadía</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Inicio: </strong></td>
-					<td>'.$_POST['service_start'].'</td>
-				</tr>
-				<tr>
-					<td><strong>Fin: </strong></td>
-					<td>'.$_POST['service_end'].'</td>
-				</tr>
-			</table>
-
-			<p><strong>Importante:</strong></p>
-			<ul>
-				<li style="text-align: justify;">Dentro de las siguientes 12 horas recibirás una llamada o correo electrónico  por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso.</li>
-				<li style="text-align: justify;">También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados arriba para acelerar el proceso si así lo deseas.</li>
-				<li style="text-align: justify;">Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos '.$info["telefono"].', o al correo '.$info["email"].'</li>
-			</ul>
-		';
-
-
-		$xmensaje_cliente = $mensaje_cliente;
-		$mensaje_cliente = kmimos_get_email_html($asunto, $mensaje_cliente, 'Gracias por tu preferencia,', true, true);
+		$mensaje_cliente = get_email_html($mensaje_cliente, false);
 
 	/*
 		Administrador
@@ -495,21 +444,9 @@
 		Enviando E-mails
 	*/
 
-		add_filter( 'wp_mail_from_name', function( $name ) {
-			$info = kmimos_get_info_syte();
-			return $info["titulo"];
-		});
-		add_filter( 'wp_mail_from', function( $email ) {
-			$info = kmimos_get_info_syte();
-			return $info["email"];
-		});
-
-		wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
 		wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
-		kmimos_mails_administradores_new($asunto, $mensaje_admin);
 
-		$_SESSION['token_mail'] = $xmensaje_cliente;
-
-		echo $cliente_web;
+/*		wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
+		kmimos_mails_administradores_new($asunto, $mensaje_admin);*/
 
 

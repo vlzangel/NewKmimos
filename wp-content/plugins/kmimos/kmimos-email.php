@@ -153,7 +153,23 @@ if(!function_exists('kmimos_get_email_footer')){
 
     if(!function_exists('get_email_html')){
         
-        function get_email_html($content){
+        function get_email_html($content, $dudas = true){
+
+            $ayuda = "";
+            if( $dudas ){
+                $ayuda = "
+                    <div style='float:left;width:100%;margin-bottom: 31px;'>   
+                        <div style='text-align:center;'>
+                            <p style='font-family: Arial;font-weight: bold; font-size:12px; color:#B4B4B4; text-align: center; '>
+                                En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp +52 (55) 6892 2182, o al correo contactomex@kmimos.la
+                            </p>
+                            <div  style='clear:both;'></div>
+                        </div>
+                        <div  style='clear:both;'></div>
+                    </div>
+                ";
+            }
+
             $html = "
             <style type='text/css'> p{ margin:0px; } </style>
             <div style='font-family: Arial;'>
@@ -165,15 +181,8 @@ if(!function_exists('kmimos_get_email_footer')){
                     ".$content."
 
                     <div style='text-align:center;'>
-                        <div style='float:left;width:100%;margin-bottom: 31px;'>   
-                            <div style='text-align:center;'>
-                                <p style='font-family: Arial;font-weight: bold; font-size:12px; color:#B4B4B4; text-align: center; '>
-                                    En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp +52 (55) 6892 2182, o al correo contactomex@kmimos.la
-                                </p>
-                                <div  style='clear:both;'></div>
-                            </div>
-                            <div  style='clear:both;'></div>
-                        </div>
+                        
+                        ".$ayuda."
 
                         <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #6b1c9b; margin-bottom: 10px;'>
                             CON LA CONFIANZA Y SEGURIDAD QUE NECESITAS
