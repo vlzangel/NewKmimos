@@ -11,7 +11,7 @@ $datos = kmimos_get_info_syte();
 					<div class="popup-iniciar-sesion-1">
 						<p class="popup-tit">INICIAR SESIÓN</p>
 						
-						<form id="form_login">
+						<form id="form_login" autocomplete="off">
 							<div class="km-box-form">
 								<div class="content-placeholder">
 									<div class="label-placeholder">
@@ -20,7 +20,7 @@ $datos = kmimos_get_info_syte();
 									</div>
 									<div class="label-placeholder">
 										<!--<label>Contraseña</label>-->
-										<input type="password" id="clave" placeholder="Contraseña" class="input-label-placeholder">
+										<input type="password" id="clave" placeholder="Contraseña" class="input-label-placeholder" autocomplete="off">
 									</div>
 								</div>
 							</div>
