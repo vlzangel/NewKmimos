@@ -28,6 +28,19 @@
 	    }	
 	}
 
+	if(!function_exists('user_slug')){
+	    function user_slug( $post_id ){
+
+	    	if( $post_id > 0 ){
+	    		$user = get_post( $post_id );
+	    		if( isset($user->slug) ){
+	    			return $user->slug;
+	    		}
+	    	}
+	    	return '';
+	    }
+	}
+
 	if(!function_exists('get_attr_link_conocer_cuidador')){
 	    function get_attr_link_conocer_cuidador( $cuidador_name, $post_id ){
 	    	global $current_user;
