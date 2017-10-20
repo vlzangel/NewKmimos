@@ -7,8 +7,7 @@
  * http://www.openpay.mx/
  * soporte@openpay.mx
  */
-class OpenpayCharge extends OpenpayApiResourceBase
-{
+class OpenpayCharge extends OpenpayApiResourceBase {
 
     protected $authorization;
     protected $creation_date;
@@ -36,15 +35,10 @@ class OpenpayCharge extends OpenpayApiResourceBase
         }
     }
 
-    public function update($params) {
-        return $this->_updateCharge($params);
-    }
-
 }
 
 // ----------------------------------------------------------------------------
-class OpenpayChargeList extends OpenpayApiDerivedResource
-{
+class OpenpayChargeList extends OpenpayApiDerivedResource {
 
     public function create($params) {
         return $this->add($params);

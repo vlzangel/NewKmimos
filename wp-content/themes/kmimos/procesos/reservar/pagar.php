@@ -3,6 +3,8 @@
 
 	include_once($raiz."/wp-load.php");
 
+	date_default_timezone_set('America/Mexico_City');
+
 	if( !isset($_SESSION)){ session_start(); }
 
 	include_once($raiz."/vlz_config.php");
@@ -38,6 +40,23 @@
 	}
 
 	extract($parametros);
+
+	$id_orden = 0;
+
+	if( $pagar->id_fallida != 0 ){
+		$id_orden = $pagar->id_fallida;
+		$metodo = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_orden} AND meta_key = '_payment_method' ");
+		if( $metodo != $pagar->tipo ){
+			$db->get_var("UPDATE wp_postmeta SET meta_value = '{$pagar->tipo}' WHERE post_id = {$id_orden} AND meta_key = '_payment_method';");
+		}
+	}
+
+	if( $pagar->reconstruir && $pagar->id_fallida != 0 ){
+		$id_reserva = $db->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$id_orden}'");
+
+		$db->query("DELETE FROM wp_posts WHERE ID IN ( '{$id_orden}', '{$id_reserva}' )");
+		$db->query("DELETE FROM wp_postmeta WHERE post_id IN ( '{$id_orden}', '{$id_reserva}' )");
+	}
 
 	$informacion = serialize($parametros);
 
@@ -121,23 +140,23 @@
     		if( $value > 0 ){
 	    		switch ($key) {
 			        case 'bano':
-			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Baño (precio por mascota)";
+			            $resultado["Baño (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
 			        
 			        case 'corte':
-			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Corte de Pelo y Uñas (precio por mascota)";
+			            $resultado["Corte de Pelo y Uñas (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
 			        
 			        case 'visita_al_veterinario':
-			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Visita al Veterinario (precio por mascota)";
+			            $resultado["Visita al Veterinario (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
 			        
 			        case 'limpieza_dental':
-			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Limpieza Dental (precio por mascota)";
+			            $resultado["Limpieza Dental (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
 			        
 			        case 'acupuntura':
-			            $resultado["Servicios Adicionales (precio por mascota) (&#36;".$value.")"] = "Acupuntura (precio por mascota)";
+			            $resultado["Acupuntura (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
 			    }
     		}
@@ -208,44 +227,58 @@
     foreach ($xdata_cliente as $key => $value) {
     	$data_cliente[ $value->meta_key ] = utf8_encode($value->meta_value);
     }
-	
-	$reservar = new Reservas($db, $data_reserva);
-    $id_orden = $reservar->new_reserva();
-    $reservar->aplicarCupones($id_orden, $cupones);
 
-    $cupos_a_decrementar = $parametros["cantidades"]->cantidad;
 
-    $id_session = 'MR_'.$pagar->servicio."_".md5($pagar->cliente);
-    if( isset($_SESSION[$id_session] ) ){
-		$new_reserva = $reservar->data["id_reserva"];
-		$old_reserva = $_SESSION[$id_session]["reserva"];
 
-		$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$new_reserva}, 'modificacion_de', '{$old_reserva}');");
-		$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$old_reserva}, 'reserva_modificada', '{$new_reserva}');");
 
-		$old_order = $db->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$old_reserva}' ");
-		$db->query("UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$old_reserva}', '{$old_order}' );");
-		$cupos_menos = $_SESSION[$id_session]["variaciones"]["cupos"];
-		$cupos_a_decrementar -= $cupos_menos;
 
-		$_SESSION[$id_session] = "";
-		unset($_SESSION[$id_session]);
+
+
+
+	if( ( $pagar->reconstruir && $pagar->id_fallida != 0) || ( $pagar->id_fallida == 0 ) ){
+		
+		$reservar = new Reservas($db, $data_reserva);
+	    $id_orden = $reservar->new_reserva();
+	    $reservar->aplicarCupones($id_orden, $cupones);
+
+	    $id_session = 'MR_'.$pagar->servicio."_".md5($pagar->cliente);
+	    if( isset($_SESSION[$id_session] ) ){
+			$new_reserva = $reservar->data["id_reserva"];
+			$old_reserva = $_SESSION[$id_session]["reserva"];
+
+			$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$new_reserva}, 'modificacion_de', '{$old_reserva}');");
+			$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$old_reserva}, 'reserva_modificada', '{$new_reserva}');");
+
+			$old_order = $db->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$old_reserva}' ");
+			$db->query("UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$old_reserva}', '{$old_order}' );");
+			$cupos_menos = $_SESSION[$id_session]["variaciones"]["cupos"];
+			$cupos_a_decrementar -= $cupos_menos;
+		}
+
 	}
 
-    update_cupos( array(
-    	"servicio" => $parametros["pagar"]->servicio,
-    	"tipo" => $parametros["pagar"]->tipo_servicio,
-    	"autor" => $parametros["pagar"]->cuidador,
-    	"inicio" => strtotime($parametros["fechas"]->inicio),
-    	"fin" => strtotime($parametros["fechas"]->fin),
-    	"cantidad" => $cupos_a_decrementar
-    ), "+");
+
+    $cupos_a_decrementar = $parametros["cantidades"]->cantidad;
 
     if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
     	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
+
+		update_cupos( array(
+	    	"servicio" => $parametros["pagar"]->servicio,
+	    	"tipo" => $parametros["pagar"]->tipo_servicio,
+	    	"autor" => $parametros["pagar"]->cuidador,
+	    	"inicio" => strtotime($parametros["fechas"]->inicio),
+	    	"fin" => strtotime($parametros["fechas"]->fin),
+	    	"cantidad" => $cupos_a_decrementar
+	    ), "+");
+
+	    if( isset($_SESSION[$id_session] ) ){
+			$_SESSION[$id_session] = "";
+			unset($_SESSION[$id_session]);
+		}
 
 		include(__DIR__."/emails/nueva/index.php");
 
@@ -257,6 +290,21 @@
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
+
+		update_cupos( array(
+	    	"servicio" => $parametros["pagar"]->servicio,
+	    	"tipo" => $parametros["pagar"]->tipo_servicio,
+	    	"autor" => $parametros["pagar"]->cuidador,
+	    	"inicio" => strtotime($parametros["fechas"]->inicio),
+	    	"fin" => strtotime($parametros["fechas"]->fin),
+	    	"cantidad" => $cupos_a_decrementar
+	    ), "+");
+
+	    if( isset($_SESSION[$id_session] ) ){
+			$_SESSION[$id_session] = "";
+			unset($_SESSION[$id_session]);
+		}
+
 		include(__DIR__."/emails/nueva/index.php");
 		exit;
     }
@@ -267,9 +315,28 @@
     	echo json_encode(array(
 			"order_id" => $id_orden
 		));
+
+		update_cupos( array(
+	    	"servicio" => $parametros["pagar"]->servicio,
+	    	"tipo" => $parametros["pagar"]->tipo_servicio,
+	    	"autor" => $parametros["pagar"]->cuidador,
+	    	"inicio" => strtotime($parametros["fechas"]->inicio),
+	    	"fin" => strtotime($parametros["fechas"]->fin),
+	    	"cantidad" => $cupos_a_decrementar
+	    ), "+");
+
+	    if( isset($_SESSION[$id_session] ) ){
+			$_SESSION[$id_session] = "";
+			unset($_SESSION[$id_session]);
+		}
+	    
 		include(__DIR__."/emails/nueva/index.php");
 		exit;
     }
+
+
+
+
 
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
@@ -392,17 +459,32 @@
 						}
 
 			            echo json_encode(array(
-		   					"openpay_customer_id" => $customer->id,
 							"order_id" => $id_orden
 						));
 
+						update_cupos( array(
+					    	"servicio" => $parametros["pagar"]->servicio,
+					    	"tipo" => $parametros["pagar"]->tipo_servicio,
+					    	"autor" => $parametros["pagar"]->cuidador,
+					    	"inicio" => strtotime($parametros["fechas"]->inicio),
+					    	"fin" => strtotime($parametros["fechas"]->fin),
+					    	"cantidad" => $cupos_a_decrementar
+					    ), "+");
+
+					    if( isset($_SESSION[$id_session] ) ){
+							$_SESSION[$id_session] = "";
+							unset($_SESSION[$id_session]);
+						}
+		    
 						include(__DIR__."/emails/nueva/index.php");
+
 			        }else{
+
 			            echo json_encode(array(
-		   					"openpay_customer_id" => $customer->id,
-							"order_id" => $id_orden,
+							"error" => $id_orden,
 							"status" => "Error, pago fallido"
 						));
+
 			        }
 
 	   			}else{
@@ -439,6 +521,20 @@
 					"order_id" => $id_orden
 				));
 
+				update_cupos( array(
+			    	"servicio" => $parametros["pagar"]->servicio,
+			    	"tipo" => $parametros["pagar"]->tipo_servicio,
+			    	"autor" => $parametros["pagar"]->cuidador,
+			    	"inicio" => strtotime($parametros["fechas"]->inicio),
+			    	"fin" => strtotime($parametros["fechas"]->fin),
+			    	"cantidad" => $cupos_a_decrementar
+			    ), "+");
+		    
+			    if( isset($_SESSION[$id_session] ) ){
+					$_SESSION[$id_session] = "";
+					unset($_SESSION[$id_session]);
+				}
+
 				include(__DIR__."/emails/nueva/index.php");
 
    			break;
@@ -451,5 +547,7 @@
 			"Data"  => $_POST
 		));
 	}
+
+	exit();
 
 ?>

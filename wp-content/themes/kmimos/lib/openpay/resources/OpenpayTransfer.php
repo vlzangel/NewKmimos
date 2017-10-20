@@ -7,20 +7,20 @@
  * soporte@openpay.mx
  */
 
-class OpenpayTransfer extends OpenpayApiResourceBase {
-	protected $authorization;
-	protected $creation_date;
-	protected $currency;
-	protected $operation_type;
-	protected $status;
-	protected $transaction_type;
-	protected $error_message;
-	protected $method;
-}
-// ----------------------------------------------------------------------------
-class OpenpayTransferList extends OpenpayApiDerivedResource {
-	public function create($params) {
-		return $this->add($params);
-	}
+class OpenpayTransfer extends OpenpayApiResourceBase {
+	protected $authorization;
+	protected $creation_date;
+	protected $currency;
+	protected $operation_type;
+	protected $status;
+	protected $transaction_type;
+	protected $error_message;
+	protected $method;
+}
+// ----------------------------------------------------------------------------
+class OpenpayTransferList extends OpenpayApiDerivedResource {
+	public function create($params) {
+		return $this->add($params);
+	}
 }
 ?>

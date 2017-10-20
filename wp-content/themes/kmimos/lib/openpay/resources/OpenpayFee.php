@@ -7,24 +7,24 @@
  * soporte@openpay.mx
  */
 
-class OpenpayFee extends OpenpayApiResourceBase {
-	protected $authorization;
-	protected $creation_date;
-	protected $currency;
-	protected $operation_type;
-	protected $status;
-	protected $transaction_type;
-	protected $error_message;
-	protected $method;
+class OpenpayFee extends OpenpayApiResourceBase {
+	protected $authorization;
+	protected $creation_date;
+	protected $currency;
+	protected $operation_type;
+	protected $status;
+	protected $transaction_type;
+	protected $error_message;
+	protected $method;
 }
-// ----------------------------------------------------------------------------
-class OpenpayFeeList extends OpenpayApiDerivedResource {
-	public function create($params) {
-		return $this->add($params);
-	}
-	public function get($params) {
-		// TODO: throw exception
-		return null;
-	}
-}
+// ----------------------------------------------------------------------------
+class OpenpayFeeList extends OpenpayApiDerivedResource {
+	public function create($params) {
+		return $this->add($params);
+	}
+	public function get($params) {
+		// TODO: throw exception
+		return null;
+	}
+}
 ?>

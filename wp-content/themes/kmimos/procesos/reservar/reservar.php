@@ -201,7 +201,7 @@ class Reservas {
         }
 
         $adicionales = "";
-        foreach ($this->data["adicionales"] as $key => $value) {
+        foreach ($this->data["adicionales"] as $value => $key) {
             $adicionales .= "(NULL, '{$id_item}', '{$key}', '{$value}'),";
         }
 

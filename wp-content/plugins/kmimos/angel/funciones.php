@@ -90,11 +90,11 @@
             global $wpdb;
             $db = $wpdb;
             extract($data);
-            for ($i=$inicio; $i < $fin; $i+=86400) { 
+            for ($i=$inicio; $i < ($fin-86399); $i+=86400) { 
                 $fecha = date("Y-m-d", $i);
                 $full = 0;
                 $existe = $db->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
-                if( $existe !== false ){
+                if( $existe !== null ){
                     $db->query("UPDATE cupos SET cupos = cupos {$accion} {$cantidad} WHERE servicio = '{$servicio}' AND fecha = '{$fecha}' ");
                     $db->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos >= acepta )");
                     $db->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos < acepta )");
@@ -114,6 +114,7 @@
                             '0'        
                         );
                     ";
+
                     $db->query($sql);
                 }
             }

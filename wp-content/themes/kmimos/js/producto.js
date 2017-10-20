@@ -37,7 +37,9 @@ function initCarrito(){
 			"tipo" : "",
 			"metodo" : "completo",
 			"token" : "",
-			"deviceIdHiddenFieldName" : ""
+			"deviceIdHiddenFieldName" : "",
+			"id_fallida" : 0,
+			"reconstruir" : false
 		};
 
 	if( CARRITO["cupones"] == undefined ){
@@ -71,6 +73,10 @@ function validar(status, txt){
 
 function calcular(){
 
+	if( CARRITO["pagar"]["id_fallida"] != 0 ){
+		CARRITO["pagar"]["reconstruir"] = true;
+	}
+
 	CARRITO["cantidades"]["cantidad"] = 0;
 	jQuery("#reservar .tamano").each(function( index ) {
 		CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
@@ -100,14 +106,15 @@ function calcular(){
 
 	if( jQuery('#checkin').val() != "" ){
 		var ini = String( jQuery('#checkin').val() ).split("/");
-		CARRITO[ "fechas" ][ "inicio" ] = new Date( ini[2]+"-"+ini[1]+"-"+ini[0] );
+
+		CARRITO[ "fechas" ][ "inicio" ] = ini[2]+"-"+ini[1]+"-"+ini[0]+" 00:00:00";
 
 		jQuery(".fecha_ini").html( jQuery('#checkin').val() );
 	}
 
 	if( jQuery('#checkout').val() != "" ){
 		var fin = String( jQuery('#checkout').val() ).split("/");
-		CARRITO[ "fechas" ][ "fin" ] = new Date( fin[2]+"-"+fin[1]+"-"+fin[0] );
+		CARRITO[ "fechas" ][ "fin" ] = fin[2]+"-"+fin[1]+"-"+fin[0]+" 23:59:59";
 
 		jQuery(".fecha_fin").html( jQuery('#checkout').val() );
 	}
@@ -147,8 +154,8 @@ function calcular(){
 		if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
 			error = "Ingrese la fecha de finalizaci&oacute;n";
 		}else{
-			var fechaInicio = CARRITO[ "fechas" ][ "inicio" ].getTime();
-			var fechaFin    = CARRITO[ "fechas" ][ "fin" ].getTime();
+			var fechaInicio = new Date(CARRITO[ "fechas" ][ "inicio" ]).getTime();
+			var fechaFin    = new Date(CARRITO[ "fechas" ][ "fin" ]).getTime();
 			var diff = fechaFin - fechaInicio;
 			dias = parseInt( diff/(1000*60*60*24) );
 	    }
@@ -243,17 +250,23 @@ function verificarCupos(){
 		CARRITO[ "fechas" ][ "inicio" ] != "" &&
 		CARRITO[ "fechas" ][ "fin" ] != "" 
 	){
-		var ini = CARRITO[ "fechas" ][ "inicio" ].getTime();
-		var fin = CARRITO[ "fechas" ][ "fin" ].getTime();
+		var ini =  new Date(CARRITO[ "fechas" ][ "inicio" ]).getTime();
+		var fin =  new Date(CARRITO[ "fechas" ][ "fin" ]).getTime();
+
 		var act = new Date();
 		var tem = "";
+
+
 		if( 
 			ini != undefined && ini != "" &&
 			fin != undefined && fin != ""
 		){
 			jQuery.each(cupos, function( index, item ) {
 				tem = String( item.fecha ).split("-");
-				act = new Date( tem[0]+"-"+tem[1]+"-"+tem[2] ).getTime();
+				act = new Date( tem[0]+"-"+tem[1]+"-"+tem[2]+" 00:00:00" ).getTime();
+
+				console.log( new Date(CARRITO[ "fechas" ][ "inicio" ])+" == "+new Date(CARRITO[ "fechas" ][ "fin" ])+" == "+new Date( tem[0]+"-"+tem[1]+"-"+tem[2]+" 00:00:00" ) );
+
 				if( (ini <= act) && (act <= fin) ){
 					if( item.full == 1 || item.no_disponible == 1 ){
 						if( item.full == 1 ){
@@ -396,8 +409,36 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			/*console.log( data );*/
-			location.href = RAIZ+"/finalizar/"+data.order_id;
+
+			console.log( data );
+
+			if( data.error != "" && data.error != undefined ){
+
+				var error = "Error procesando la reserva<br>";
+		    	error += "Por favor intente nuevamente.<br>";
+		    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+
+		    	jQuery(".errores_box").html(error);
+				jQuery(".errores_box").css("display", "block");
+
+				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
+				jQuery("#reserva_btn_next_3").removeClass("disabled");
+				jQuery("#reserva_btn_next_3").removeClass("cargando");
+
+				CARRITO["pagar"]["id_fallida"] = data.error;
+			}else{
+
+				CARRITO["pagar"]["id_fallida"] = 0;
+
+				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
+				jQuery("#reserva_btn_next_3").removeClass("disabled");
+				jQuery("#reserva_btn_next_3").removeClass("cargando");
+
+				console.log("Reserva completada");
+
+				location.href = RAIZ+"/finalizar/"+data.order_id;
+			}
+
 		}, "json"
 	).fail(function(e) {
     	console.log( e );
@@ -864,6 +905,8 @@ jQuery(document).ready(function() {
 			if(typeof calcularDescuento === 'function') {
 				calcularDescuento();
 			}
+
+			calcular();
 		}
 
 	});
