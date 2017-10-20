@@ -256,16 +256,10 @@ function verificarCupos(){
 		var act = new Date();
 		var tem = "";
 
-
-		if( 
-			ini != undefined && ini != "" &&
-			fin != undefined && fin != ""
-		){
+		if( ini != undefined && ini != "" && fin != undefined && fin != "" ){
 			jQuery.each(cupos, function( index, item ) {
 				tem = String( item.fecha ).split("-");
 				act = new Date( tem[0]+"-"+tem[1]+"-"+tem[2]+" 00:00:00" ).getTime();
-
-				console.log( new Date(CARRITO[ "fechas" ][ "inicio" ])+" == "+new Date(CARRITO[ "fechas" ][ "fin" ])+" == "+new Date( tem[0]+"-"+tem[1]+"-"+tem[2]+" 00:00:00" ) );
 
 				if( (ini <= act) && (act <= fin) ){
 					if( item.full == 1 || item.no_disponible == 1 ){
@@ -410,10 +404,9 @@ function pagarReserva(id_invalido = false){
 		},
 		function(data){
 
-			console.log( data );
+			/*console.log( data );*/
 
 			if( data.error != "" && data.error != undefined ){
-
 				var error = "Error procesando la reserva<br>";
 		    	error += "Por favor intente nuevamente.<br>";
 		    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
@@ -427,14 +420,11 @@ function pagarReserva(id_invalido = false){
 
 				CARRITO["pagar"]["id_fallida"] = data.error;
 			}else{
-
 				CARRITO["pagar"]["id_fallida"] = 0;
 
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
-
-				console.log("Reserva completada");
 
 				location.href = RAIZ+"/finalizar/"+data.order_id;
 			}
