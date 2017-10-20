@@ -74,28 +74,30 @@
 
 		<img src='[URL_IMGS]/importante_conocer.png' style='display: block; margin: 0px auto 25px;' >
 
-		<div style='display: table; margin: 0px auto 14px; width: 100%; box-sizing: border-box; padding: 0px 10px;'>
-			<div style='display: table-cell; vertical-align: top; width: 5px;'>
-				<div style='width: 5px; height: 5px; background-color: #6b1c9b; margin: 6px; border-radius: 50%;'></div>
+		<div style="box-sizing: border-box; padding: 0px 10px;">
+			<div style='display: table; margin: 0px auto 14px; width: 100%;'>
+				<div style='display: table-cell; vertical-align: top; width: 5px;'>
+					<div style='width: 5px; height: 5px; background-color: #6b1c9b; margin: 6px; border-radius: 50%;'></div>
+				</div>
+				<div style='display: table-cell; vertical-align: top; font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #666666; text-align: justify;'>
+					Dentro de las siguientes 12 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso.
+				</div>
 			</div>
-			<div style='display: table-cell; vertical-align: top; font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #666666; text-align: justify;'>
-				Dentro de las siguientes 12 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso.
+			<div style='display: table; margin: 0px auto 14px; width: 100%;'>
+				<div style='display: table-cell; vertical-align: top; width: 5px;'>
+					<div style='width: 5px; height: 5px; background-color: #6b1c9b; margin: 6px; border-radius: 50%;'></div>
+				</div>
+				<div style='display: table-cell; vertical-align: top; font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #666666; text-align: justify;'>
+					También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados arriba para acelerar el proceso si así lo deseas.
+				</div>
 			</div>
-		</div>
-		<div style='display: table; margin: 0px auto 14px; width: 100%; box-sizing: border-box; padding: 0px 10px;'>
-			<div style='display: table-cell; vertical-align: top; width: 5px;'>
-				<div style='width: 5px; height: 5px; background-color: #6b1c9b; margin: 6px; border-radius: 50%;'></div>
-			</div>
-			<div style='display: table-cell; vertical-align: top; font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #666666; text-align: justify;'>
-				También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados arriba para acelerar el proceso si así lo deseas.
-			</div>
-		</div>
-		<div style='display: table; margin: 0px auto 14px; width: 100%; box-sizing: border-box; padding: 0px 10px;'>
-			<div style='display: table-cell; vertical-align: top; width: 5px;'>
-				<div style='width: 5px; height: 5px; background-color: #6b1c9b; margin: 6px; border-radius: 50%;'></div>
-			</div>
-			<div style='display: table-cell; vertical-align: top; font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #666666; text-align: justify;'>
-				Además nos puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182
+			<div style='display: table; margin: 0px auto 14px; width: 100%;'>
+				<div style='display: table-cell; vertical-align: top; width: 5px;'>
+					<div style='width: 5px; height: 5px; background-color: #6b1c9b; margin: 6px; border-radius: 50%;'></div>
+				</div>
+				<div style='display: table-cell; vertical-align: top; font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #666666; text-align: justify;'>
+					Además nos puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182
+				</div>
 			</div>
 		</div>
 
