@@ -45,7 +45,7 @@
 			<div style='display: table-cell; width: 62px; padding-right: 20px;'>
 				<img src='[URL_IMGS]/calendar.png' style='width: 77px; height: 70px;' >
 			</div>
-			<div style='display: table-cell; vertical-align: top; padding-left: 16px;'>
+			<div style='display: table-cell; vertical-align: top; padding-left: 0px;'>
 				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
 					DATOS DE LA REUNIÓN 
 				</div>				    

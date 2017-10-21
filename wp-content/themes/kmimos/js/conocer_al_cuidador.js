@@ -4,7 +4,7 @@ jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
     jQuery('.popup-iniciar-sesion-1 #service_start').val("");
     jQuery('.popup-iniciar-sesion-1 #service_end').val("");
-    
+
     jQuery('#meeting_time option.vacio').attr("selected", "selected");
     jQuery('.popup-iniciar-sesion-1 #pet_conoce input').prop("checked", false);
 
@@ -24,8 +24,6 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
             var a = HOME+"procesos/cuidador/conocer-cuidador.php";
             jQuery(this).html('<i style="font-size: initial;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> ENVIANDO DATOS...');
             jQuery.post( a, jQuery("#conoce_cuidador").serialize(), function( data ) {
-
-                console.log( data );
 
                 if( data != "" ){
                     jQuery('#popup-conoce-cuidador').modal('show');
