@@ -312,7 +312,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 	];
 
 
-	jQuery.fn.modal.Constructor.prototype.enforceFocus = function() {};
+	
 	var maxDatePets = new Date();
 	jQuery('#datepets').datepick({
 		dateFormat: 'dd/mm/yyyy',
