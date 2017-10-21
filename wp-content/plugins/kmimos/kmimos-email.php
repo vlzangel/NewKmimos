@@ -171,8 +171,8 @@ if(!function_exists('kmimos_get_email_footer')){
             }
 
             $html = "
-            <style type='text/css'> p{ margin:0px; } </style>
-            <style type='text/css'>
+            <style> p{ margin:0px; } </style>
+            <style>
                 a[id*='kmimos_container'] > div {
                     max-width: 600px !important;
                 }
