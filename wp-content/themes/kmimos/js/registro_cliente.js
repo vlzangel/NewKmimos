@@ -17,6 +17,7 @@ $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 
 	jQuery('#form_nuevo_cliente')[0].reset();
 	jQuery( $(this).data('target') ).modal('show');
+	//jQuery( $(this).data('target') ).css('display', 'block');
 });
 
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
@@ -298,9 +299,20 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 });
 
 
-
-
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
+	
+	var valid = [
+		'nombre_mascota', 
+		'tipo_mascota',
+		'raza_mascota',
+		'color_mascota',
+		'datepets',
+		'genero_mascota',
+		'tamano_mascota'
+	];
+
+
+	jQuery.fn.modal.Constructor.prototype.enforceFocus = function() {};
 	var maxDatePets = new Date();
 	jQuery('#datepets').datepick({
 		dateFormat: 'dd/mm/yyyy',
@@ -313,17 +325,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			}
 		}
 	});
-	
-	var valid = [
-		'nombre_mascota', 
-		'tipo_mascota',
-		'raza_mascota',
-		'color_mascota',
-		'datepets',
-		'genero_mascota',
-		'tamano_mascota'
-	];
-
 
 
 	jQuery("#nombre_mascota").blur(function(){
