@@ -117,16 +117,7 @@
 
 		$mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE ID IN ( '".implode("','", $pet_ids)."' )");
 		$detalles_mascotas = "";
-		$detalles_mascotas .= '
-			<table style="width:100%; margin-left: 0px; margin-top: 5px;" cellspacing=0 cellpadding=0>
-				<tr>
-					<th style="padding: 3px; background: #00d2b7;"> <strong>Nombre</strong> </th>
-					<th style="padding: 3px; background: #00d2b7;"> <strong>Raza</strong> </th>
-					<th style="padding: 3px; background: #00d2b7;"> <strong>Edad</strong> </th>
-					<th style="padding: 3px; background: #00d2b7;"> <strong>Tamaño</strong> </th>
-					<th style="padding: 3px; background: #00d2b7;"> <strong>Comportamiento</strong> </th>
-				</tr>
-		';
+		$detalles_mascotas .= "<div style='display: table-row; font-size: 12px;'>";
 
 		$comportamientos_array = array(
 			"pet_sociable"           => "Sociables ",
@@ -177,26 +168,34 @@
 
 				$raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
 
-				$detalles_mascotas .= '
-					<tr>
-						<td style="border-bottom: solid 1px #00d2b7; padding: 3px;" valign="top"> '.$data_mascota['name_pet'][0].'</td>
-						<td style="padding: 3px; border-bottom: solid 1px #00d2b7;" valign="top"> '.$raza.'</td>
-						<td style="padding: 3px; border-bottom: solid 1px #00d2b7;" valign="top"> '.$edad.'</td>
-						<td style="padding: 3px; border-bottom: solid 1px #00d2b7;" valign="top"> '.$tamanos_array[ $data_mascota['size_pet'][0] ].'</td>
-						<td style="padding: 3px; border-bottom: solid 1px #00d2b7;" valign="top"> '.implode("", $temp).'</td>
-					</tr>
-				';
+				$detalles_mascotas .= "
+					<div style='display: table-cell; width: 20%; font-weight: 600;'>
+						<img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
+					</div>
+					<div style='display: table-cell; width: 20%;  padding: 7px; 0px;'>
+						".$raza."
+					</div>
+					<div style='display: table-cell; width: 20%;  padding: 7px; 0px;'>
+						".$edad."
+					</div>
+					<div style='display: table-cell; width: 20%;  padding: 7px; 0px;'>
+						".$tamanos_array[ $data_mascota['size_pet'][0] ]."
+					</div>
+					<div style='display: table-cell; width: 20%;  padding: 7px; 0px;'>
+						".implode("", $temp)."
+					</div>
+				";
 			}
 		}else{
-			$detalles_mascotas .= '
-				<tr>
-					<td colspan="5">No tiene mascotas registradas.</td>
-				</tr>
-			';
+			$detalles_mascotas .= "
+				<div style='display: table-cell; width: 100%; font-weight: 600;'>
+					No tiene mascotas registradas.
+				</div>
+			";
 		}
-		$detalles_mascotas .= '</table>';
+		$detalles_mascotas .= '</div>';
 
-		$mascotas = (count($pet_ids) == 1) ? '<h2 style="color: #557da1; font-size: 16px;">Detalles de la mascota: </h2>'.$detalles_mascotas : '<h2 style="color: #557da1; font-size: 16px;">Detalles de las mascotas: </h2>'.$detalles_mascotas;
+		//$mascotas = (count($pet_ids) == 1) ? '<h2 style="color: #557da1; font-size: 16px;">Detalles de la mascota: </h2>'.$detalles_mascotas : '<h2 style="color: #557da1; font-size: 16px;">Detalles de las mascotas: </h2>'.$detalles_mascotas;
 
 		/*
 			Cuidador
@@ -204,124 +203,28 @@
 
 		$info = kmimos_get_info_syte();
 
-		$mensaje_cuidador = $estilos.'
-			<h2 style="color: #557da1; font-size: 16px;">Hola '.$nombre_cuidador.'</h2>
-			<p>Recibimos una solicitud del cliente <strong>'.$cliente.'</strong> para conocerte.</p>
+		$cuidador_file = realpath('../../template/mail/conocer/cuidador.php');
+        $mensaje_cuidador = file_get_contents($cuidador_file);
 
-			<p><strong>Código de la solicitud: '.$request_id.'</strong></p>
+        $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
-			<center>
-				<p><strong>¿ACEPTAS ESTA SOLICITUD?</strong></p>
-				<table>
-					<tr>
-						<td>
-							<a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
-						</td>
-						<td>
-							<a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=0" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
-						</td>
-					</tr>
-				</table>
-			</center>
+        $detalles_mascotas = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_mascotas);
 
-			<h2 style="color: #557da1; font-size: 16px;">Datos del Cliente</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Nombre: </strong></td>
-					<td>'.$cliente.'</td>
-				</tr>
-				<tr>
-					<td><strong>Teléfono: </strong></td>
-					<td>'.$telf_cliente.'</td>
-				</tr>
-				<tr>
-					<td><strong>Correo: </strong></td>
-					<td>'.$email_cliente.'</td>
-				</tr>
-			</table>
+        $mensaje_cuidador = str_replace('[name]', $cliente_web, $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[avatar]', kmimos_get_foto($user_id), $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[telefonos]', $telf_cliente, $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[id_solicitud]', $request_id, $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[hora]', $_POST['meeting_time'], $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[lugar]', $_POST['meeting_where'], $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[desde]', date("d/m", strtotime( str_replace("/", "-", $_POST['service_start']) )), $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[hasta]', date("d/m", $fin), $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[anio]', date("Y", $fin), $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[MASCOTAS]', $detalles_mascotas, $mensaje_cuidador);
 
-			<h2 style="color: #557da1; font-size: 16px;">Datos de la Reunión</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Fecha: </strong></td>
-					<td>'.$_POST['meeting_when'].'</td>
-				</tr>
-				<tr>
-					<td><strong>Hora: </strong></td>
-					<td>'.$_POST['meeting_time'].'</td>
-				</tr>
-				<tr>
-					<td><strong>Lugar: </strong></td>
-					<td>'.$_POST['meeting_where'].'</td>
-				</tr>
-			</table>
-
-			<h2 style="color: #557da1; font-size: 16px;">Posible fecha de Estadía</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Inicio: </strong></td>
-					<td>'.$_POST['service_start'].'</td>
-				</tr>
-				<tr>
-					<td><strong>Fin: </strong></td>
-					<td>'.$_POST['service_end'].'</td>
-				</tr>
-			</table>
-			'.$mascotas.'
-			<p><strong>SIGUIENTES PASOS - Importante:</strong></p>
-			<p>Puntos a considerar para tu cita:</p>
-			<ul>
-				<li style="text-align: justify;">Preséntate con el cliente de una manera cordial, formal y cuidando tu imagen. (Vestimenta casual)</li>
-				<li style="text-align: justify;">Verifica que el perro del dueño tenga sus vacunas y te compartan su cartilla de vacunación.</li>
-				<li style="text-align: justify;"><strong>IMPORTANTE:</strong> Sin cartilla de vacunación, no estarán amparados ni tú ni el perro ante los beneficios veterinarios de Kmimos</li>
-				<li style="text-align: justify;">En caso de no conocerse personalmente, asegúrate de que te envíen fotos del perro que llegará a tu casa para confirmar que se observa un tamaño acorde a lo descrito por su dueño.</li>
-				<li style="text-align: justify;">Por favor revisa físicamente al perrito antes de recibirlo.  Apapáchalo y recorre su piel de ser posible, para detectar de ser posible cualquier rasguño, golpe, etc. que pueda traer antes de tu que lo hubieres recibido (si detectas algo por favor menciónaselo de manera muy educada y cordial al cliente, y posteriormente envíanos fotos vía whatsapp o correo al equipo de atención al cliente de Kmimos)  Whatsapp: '.$info["telefono"].', o al correo '.$info["email"].'</li>
-			</ul>
-			<p style="text-align: justify;">Recuerda que cada perro tiene un comportamiento diferente, por lo que deberás tener la mayor información posible sobre sus comportamientos:</p>
-			<ul>
-				<li style="text-align: justify;">
-					¿Cómo es su rutina diaria?
-					<ul>
-						<li style="text-align: justify;">¿Sale a pasear?</li>
-						<li style="text-align: justify;">¿A qué hora come y hace del baño?</li>
-						<li style="text-align: justify;">etc</li>
-					</ul>
-				</li>
-				<li style="text-align: justify;">
-					¿Cómo se comporta con otros seres vivos?
-					<ul>
-						<li style="text-align: justify;">¿Cómo interactúa con otros perros y personas?</li>
-						<li style="text-align: justify;">¿Cómo reacciona con un extraño?</li>
-						<li style="text-align: justify;">etc</li>
-					</ul>
-				</li>
-				<li style="text-align: justify;">
-					¿Cómo identificar su animó?
-					<ul>
-						<li style="text-align: justify;">¿Cómo se comporta cuando esta triste o estresado?</li>
-						<li style="text-align: justify;">¿Qué hace su dueño cuando esta triste o estresado?</li>
-						<li style="text-align: justify;">etc</li>
-					</ul>
-				</li>
-			</ul>
-			<center>
-				<p><strong>¿ACEPTAS ESTA SOLICITUD?</strong></p>
-				<table>
-					<tr>
-						<td>
-							<a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
-						</td>
-						<td>
-							<a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=0" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
-						</td>
-					</tr>
-				</table>
-			</center>
-			<p style="text-align: justify;">Para cualquier apoyo que necesites, o si es la primera vez que atiendes a un Kmiamigo, por favor contacta a la brevedad al equipo de Kmimos vía telefónica al '.$info["telefono"].', o al correo '.$info["email"].'</p>
-		';
-
-		//$xmensaje_cuidador = $mensaje_cuidador;
-		$mensaje_cuidador  = kmimos_get_email_html($asunto, $mensaje_cuidador, '', true, true);
+		$mensaje_cuidador = get_email_html($mensaje_cuidador, false);
 
 	/*
 		Cliente
@@ -329,8 +232,6 @@
 
 		$cliente_file = realpath('../../template/mail/conocer/cliente.php');
         $mensaje_cliente = file_get_contents($cliente_file);
-
-        $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
         $mensaje_cliente = str_replace('[name]', $cliente_web, $mensaje_cliente);
         $mensaje_cliente = str_replace('[avatar]', kmimos_get_foto($cuidador->user_id), $mensaje_cliente);
@@ -448,6 +349,7 @@
 	*/
 
 		wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
+		wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
 
 /*		wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
 		kmimos_mails_administradores_new($asunto, $mensaje_admin);*/
