@@ -158,17 +158,6 @@ if(!function_exists('kmimos_get_email_footer')){
             $ayuda = "";
             if( $dudas ){
                 $ayuda = "
-                    <style type='text/css'>
-                        a[id*='kmimos_container'] > div {
-                            max-width: 600px !important;
-                        }
-                        @media max-device-width: 480px {
-                            a[id*='kmimos_container'] > div {
-                                max-width: 400px !important;
-                            }
-                        }
-                    </style>
-
                     <div style='float:left;width:100%;margin-bottom: 31px;'>   
                         <div style='text-align:center;'>
                             <p style='font-family: Arial;font-weight: bold; font-size:12px; color:#B4B4B4; text-align: center; '>
@@ -183,6 +172,16 @@ if(!function_exists('kmimos_get_email_footer')){
 
             $html = "
             <style type='text/css'> p{ margin:0px; } </style>
+            <style type='text/css'>
+                a[id*='kmimos_container'] > div {
+                    max-width: 600px !important;
+                }
+                @media max-device-width: 480px {
+                    a[id*='kmimos_container'] > div {
+                        max-width: 400px !important;
+                    }
+                }
+            </style>
             <div id='kmimos_container' style='font-family: Arial;'>
                 <div style='margin: 0px auto; max-width: 600px; width: 100%;'>
                     <div style='text-align:center;'>
