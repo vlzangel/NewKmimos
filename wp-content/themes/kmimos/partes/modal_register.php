@@ -20,7 +20,7 @@ foreach ($referidos as $key => $value) {
 
 $HTML .='
 	<!-- POPUPS REGISTRARTE -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="popup-registrarte" style="padding: 40px;">
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="popup-registrarte" style="padding: 40px;">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar" >×</button>
@@ -249,7 +249,7 @@ $HTML .='
 							<input type="text" name="color_mascota" data-charset="xlf" data-change="xlf" id="color_mascota" class="input-label-placeholder">
 						</div>
 						<div class="km-fecha-nacimiento">
-							<input type="date" name="date_birth" id="qdatepets" placeholder="Fecha de Nacimiento" class="date_birth" readonly>
+							<input type="text" name="date_birth" id="datepets" placeholder="Fecha de Nacimiento" class="date_birth" readonly>
 						</div>
 						<div class="km-datos-mascota">
 							<select class="km-datos-mascota-opcion bg-select-custom" name="genero_mascota" id="genero_mascota">
@@ -345,4 +345,5 @@ $HTML .='
 		</div>
 	</div>
 </div>	
+
 ';
