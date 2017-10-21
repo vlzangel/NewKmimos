@@ -115,7 +115,7 @@
 		$service_id     = $_POST['type_service'];
 		$service        = get_term( $service_id, 'product_cat' );
 
-		$mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE ID IN ( '".implode("','", $pet_ids)."' )");
+		$mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID IN ( '".implode("','", $pet_ids)."' )");
 		$detalles_mascotas = "";
 		$detalles_mascotas .= "<div style='display: table-row; font-size: 12px;'>";
 
@@ -172,16 +172,16 @@
 					<div style='display: table-cell; width: 20%; font-weight: 600;'>
 						<img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
 					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px; 0px;'>
+					<div style='display: table-cell; width: 20%;  padding: 7px;'>
 						".$raza."
 					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px; 0px;'>
+					<div style='display: table-cell; width: 20%;  padding: 7px;'>
 						".$edad."
 					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px; 0px;'>
+					<div style='display: table-cell; width: 20%;  padding: 7px;'>
 						".$tamanos_array[ $data_mascota['size_pet'][0] ]."
 					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px; 0px;'>
+					<div style='display: table-cell; width: 20%;  padding: 7px;'>
 						".implode("", $temp)."
 					</div>
 				";

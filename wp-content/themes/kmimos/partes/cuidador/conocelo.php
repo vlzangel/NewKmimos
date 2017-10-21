@@ -108,7 +108,7 @@ $HTML_CONOCER = '
 										foreach ($mascotas as $mascota) {
 				                            $HTML_CONOCER .= '
 				                            <li>
-			                                	<input type="checkbox" name="pet_ids[]" id="pet_'.$mascota->ID.'" value="'.$mascota->ID.'">
+			                                	<input type="checkbox" name="pet_ids[]" id="pet_'.$mascota->ID.'" value="'.$mascota->ID.'" >
 				                                <label for="pet_'.$mascota->ID.'" style="padding-top: 0px !important;">
 				                                	'.$mascota->post_title.'
 				                               	</label>
