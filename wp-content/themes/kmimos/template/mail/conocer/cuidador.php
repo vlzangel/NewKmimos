@@ -46,7 +46,7 @@
 			<div style='display: table-cell; width: 62px; padding-right: 20px;'>
 				<img src='[URL_IMGS]/calendar.png' style='width: 77px; height: 70px;' >
 			</div>
-			<div style='display: table-cell; vertical-align: top; padding-left: 16px;'>
+			<div style='display: table-cell; vertical-align: top; padding-left: 0px;'>
 				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
 					DATOS DE LA REUNIÓN 
 				</div>				    
@@ -84,7 +84,7 @@
 			</div>
 
 			<div style='font-family: Arial; font-size: 14px; line-height: 1.21; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
-				AHORA NO PUEDO, <a href='#' style='text-decoration: none; font-weight: 800; color: #000;'>RECHAZAR</a>
+				AHORA NO PUEDO, <a href='#' style='font-weight: 400; color: #000;'>RECHAZAR</a>
 			</div>
 
 		</div>
@@ -191,6 +191,16 @@
 		
 	</div>
 
+</div>
+
+<div style='float:left;width:100%;margin-bottom: 31px;'>   
+    <div style='text-align:center;'>
+        <p style='font-family: Arial;font-weight: bold; font-size:12px; color:#B4B4B4; text-align: center; '>
+            En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp +52 (55) 6892 2182, o al correo contactomex@kmimos.la
+        </p>
+        <div  style='clear:both;'></div>
+    </div>
+    <div  style='clear:both;'></div>
 </div>
 
 <div style='text-align: center; margin-bottom: 20px;'>
