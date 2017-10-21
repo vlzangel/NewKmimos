@@ -210,7 +210,7 @@
 
         $detalles_mascotas = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_mascotas);
 
-        $mensaje_cuidador = str_replace('[name]', $cliente_web, $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[name]', $cliente, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[avatar]', kmimos_get_foto($user_id), $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);

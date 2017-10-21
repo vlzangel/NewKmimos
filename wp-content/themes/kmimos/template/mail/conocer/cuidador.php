@@ -102,19 +102,19 @@
 	<div style='border-radius: 2.8px; background-color: #f4f4f4;'>
 		<div style='display: table; width: 100%;'>
 			<div style='display: table-row; border-bottom: solid 1px #000000;font-family: Arial; font-size: 10px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; font-weight: 600;'>
-				<div style='display: table-cell; width: 20%; padding: 7px; 0px; padding-left: 37px;'>
+				<div style='display: table-cell; width: 20%; padding: 7px; padding-left: 37px;'>
 					NOMBRE
 				</div>
-				<div style='display: table-cell; width: 20%; padding: 7px; 0px;'>
+				<div style='display: table-cell; width: 20%; padding: 7px;'>
 					RAZA
 				</div>
-				<div style='display: table-cell; width: 20%; padding: 7px; 0px;'>
+				<div style='display: table-cell; width: 20%; padding: 7px;'>
 					EDAD
 				</div>
-				<div style='display: table-cell; width: 20%; padding: 7px; 0px;'>
+				<div style='display: table-cell; width: 20%; padding: 7px;'>
 					TAMA&Ntilde;O
 				</div>
-				<div style='display: table-cell; width: 20%; padding: 7px; 0px;'>
+				<div style='display: table-cell; width: 20%; padding: 7px;'>
 					COMPORTAMIENTO
 				</div>
 			</div>
