@@ -11,7 +11,7 @@
 			¡Todo está listo!
 		</div>	
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: center;'>
-	    	Tu reserva ha sido confirmada por el cuidador <strong>[name_cuidador]</strong>
+	    	La reserva <strong>[id_reserva]</strong> ha sido <strong>confirmada</strong> exitosamente de acuerdo a tu petición.
 	    </div>
 	</div>
     
@@ -23,25 +23,22 @@
             </div>
             <div style='display: table-cell; vertical-align: middle; padding-left: 16px;'>
                 <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
-                    DATOS DEL CUIDADOR 
+                    DATOS DEL CLIENTE 
                 </div>                  
                 <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
-                    [name_cuidador]
+                    [name_cliente]
                 </div>              
                 <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 3px;'>
-                    [telefonos_cuidador]
+                    [telefonos_cliente]
                 </div>          
                 <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 3px;'>
-                    [correo_cuidador]
-                </div>      
-                <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 3px;'>
-                    [direccion_cuidador]
-                </div>
+                    [correo_cliente]
+                </div>   
             </div>
             <div style='display: table-cell; width: 158.8px; height: 50.3px; border-radius: 2.8px;  vertical-align: top;'>
                 <div style='background-color: #f4f4f4; height: 50.3px;'>
                     <div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px 0px 0px 10px;'>
-                        Tu código de reserva es:
+                        Código de reserva:
                     </div>
                     <div style='font-family: Arial; font-size: 14px; font-weight: bold; letter-spacing: 0px; color: #000000; padding: 3px 0px 0px 10px;'>
                         [id_reserva]
