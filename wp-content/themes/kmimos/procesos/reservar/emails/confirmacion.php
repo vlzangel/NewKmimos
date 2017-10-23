@@ -1,13 +1,9 @@
 <?php
-
-	/* Administrador */
-
-		// kmimos_mails_administradores_new("Solicitud de reserva #".$reserva_id, $mensaje_admin);
-
-	/* Correo Cliente */
+    
+    /* Correo Cliente */
 
 
-		$cuidador_file = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/reservar/cliente.php';
+        $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/confirmacion/confirmacion_cliente.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
@@ -16,7 +12,7 @@
         $mensaje_cliente = str_replace('[desglose]', $desglose, $mensaje_cliente);
         
         $mensaje_cliente = str_replace('[ADICIONALES]', $adicionales, $mensaje_cliente);
-       	$mensaje_cliente = str_replace('[TRANSPORTE]', $transporte, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[TRANSPORTE]', $transporte, $mensaje_cliente);
         
 
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
@@ -40,15 +36,14 @@
 
         $mensaje_cliente = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cliente);
 
-		$mensaje_cliente = get_email_html($mensaje_cliente);
+        $mensaje_cliente = get_email_html($mensaje_cliente);
 
-		wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
+        wp_mail( $cuidador["email"], "Confirmación de Reserva", $mensaje_cliente);
+    
+    /* Correo Cliente */
 
-	/*
-		Correo Cuidador
-	*/
 
-		$cuidador_file = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/reservar/cuidador.php';
+        $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/confirmacion/confirmacion_cuidador.php';
         $mensaje_cuidador = file_get_contents($cuidador_file);
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
@@ -57,11 +52,12 @@
         $mensaje_cuidador = str_replace('[desglose]', $desglose, $mensaje_cuidador);
         
         $mensaje_cuidador = str_replace('[ADICIONALES]', $adicionales, $mensaje_cuidador);
-       	$mensaje_cuidador = str_replace('[TRANSPORTE]', $transporte, $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[TRANSPORTE]', $transporte, $mensaje_cuidador);
+        
 
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
 
-        $mensaje_cuidador = str_replace('[tipo_servicio]', $servicio["tipo"], $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[tipo_servicio]', trim($servicio["tipo"]), $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cuidador);
 
         $mensaje_cuidador = str_replace('[inicio]', date("d/m", $servicio["inicio"]), $mensaje_cuidador);
@@ -69,9 +65,6 @@
         $mensaje_cuidador = str_replace('[anio]', date("Y", $servicio["fin"]), $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[tiempo]', $servicio["duracion"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[tipo_pago]', $servicio["metodo_pago"], $mensaje_cuidador);
-
-        $mensaje_cuidador = str_replace('[ACEPTAR]', $servicio["aceptar_rechazar"]["aceptar"], $mensaje_cuidador);
-        $mensaje_cuidador = str_replace('[RECHAZAR]', $servicio["aceptar_rechazar"]["cancelar"], $mensaje_cuidador);
 
         $mensaje_cuidador = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[avatar]', kmimos_get_foto($cliente["id"]), $mensaje_cuidador);
@@ -82,7 +75,8 @@
 
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
 
-		$mensaje_cuidador = get_email_html($mensaje_cuidador, false);
+        echo $mensaje_cuidador = get_email_html($mensaje_cuidador);
 
-		wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
+        wp_mail( $cliente["email"], "Confirmación de Reserva", $mensaje_cuidador);
+
 ?>

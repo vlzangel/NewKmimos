@@ -280,7 +280,7 @@
 			unset($_SESSION[$id_session]);
 		}
 
-		include(__DIR__."/emails/nueva/index.php");
+		include(__DIR__."/emails/index.php");
 
 		exit;
     }
@@ -313,7 +313,7 @@
 			unset($_SESSION[$id_session]);
 		}
 
-		include(__DIR__."/emails/nueva/index.php");
+		include(__DIR__."/emails/index.php");
 		exit;
     }
 
@@ -346,7 +346,7 @@
 			unset($_SESSION[$id_session]);
 		}
 	    
-		include(__DIR__."/emails/nueva/index.php");
+		include(__DIR__."/emails/index.php");
 		exit;
     }
 
@@ -502,7 +502,7 @@
 					    	"cantidad" => $cupos_a_decrementar
 					    ), "+");
 		    
-						include(__DIR__."/emails/nueva/index.php");
+						include(__DIR__."/emails/index.php");
 
 			        }else{
 
@@ -570,7 +570,7 @@
 			    	"cantidad" => $cupos_a_decrementar
 			    ), "+");
 
-				include(__DIR__."/emails/nueva/index.php");
+				include(__DIR__."/emails/index.php");
 
    			break;
 

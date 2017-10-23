@@ -6,7 +6,7 @@
 
 	/* Correo Cliente */
 
-		$cuidador_file = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/reservar/cliente_tienda.php';
+		$cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cliente_tienda.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
