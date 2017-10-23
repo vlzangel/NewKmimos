@@ -14,8 +14,8 @@
 	padding-bottom:2px;
 }
 
-.km-servicio-opcionactivo:before,
 .km-servicio-opcionactivo,
+.km-servicio-opcionactivo:before,
 .km-opcionactivo:hover,
 .km-opcionactivo:before {
     border-color: #6B1C9B;
