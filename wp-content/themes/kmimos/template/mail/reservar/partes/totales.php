@@ -5,7 +5,7 @@
                 TOTAL
             </div>
             <div style='display: table-cell; padding: 5px 20px; padding-left: 37px; border-bottom: solid 1px #CCC; text-align: right;'>
-                [TOTAL]
+                $ [TOTAL]
             </div>
         </div>
 
@@ -16,7 +16,7 @@
                 [TIPO_PAGO]
             </div>
             <div style='display: table-cell; padding: 5px 20px; padding-left: 37px; border-bottom: solid 1px #CCC; text-align: right; color: #d96363;'>
-                [PAGO]
+                $ [PAGO]
             </div>
         </div>
 
