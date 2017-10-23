@@ -407,9 +407,15 @@ function pagarReserva(id_invalido = false){
 			/*console.log( data );*/
 
 			if( data.error != "" && data.error != undefined ){
-				var error = "Error procesando la reserva<br>";
-		    	error += "Por favor intente nuevamente.<br>";
-		    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+
+				if( data.tipo_error != "3003" ){
+					var error = "Error procesando la reserva<br>";
+			    	error += "Por favor intente nuevamente.<br>";
+			    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+				}else{
+					var error = "Error procesando la reserva<br>";
+			    	error += "La tarjeta no tiene fondos suficientes.<br>";
+				}
 
 		    	jQuery(".errores_box").html(error);
 				jQuery(".errores_box").css("display", "block");
@@ -431,6 +437,7 @@ function pagarReserva(id_invalido = false){
 
 		}, "json"
 	).fail(function(e) {
+
     	console.log( e );
 
     	var error = "Error procesando la reserva<br>";
