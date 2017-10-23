@@ -78,6 +78,51 @@
 	    }
 	}
 	
+	if(!function_exists('add_class_wlabel')){
+		function add_class_wlabel(){
+            $wlabel = false;
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+			if(array_key_exists('wlabel',$_SESSION) || $referido=='Volaris' || $referido=='Vintermex'){
+
+                if(array_key_exists('wlabel',$_SESSION)){
+                    $wlabel= true;
+
+                }else if($referido=='Volaris'){
+                    $wlabel= true;
+
+                }else if($referido=='Vintermex'){
+                    $wlabel= true;
+                }
+            }
+
+            if( $wlabel ){
+				wp_enqueue_style( 'wlabel', getTema()."/css/content-wlabel.css", array(), "1.0.0" );
+            }
+
+		}
+	}
+
+	if(!function_exists('estados_municipios')){
+		function estados_municipios(){
+			global $wpdb;
+		    $estados_municipios = $wpdb->get_results("
+				select 
+				  	s.`order` as o_state, 
+					l.`order` as o_location,
+					s.id as estado_id, 
+					s.`name` as estado_name, 
+					l.id as municipio_id,
+					l.`name` as municipio_name
+				from states as s 
+					inner join locations as l on l.state_id = s.id
+				where  s.country_id = 1
+				order by o_state, o_location, estado_name, municipio_name ASC
+	    	");
+	    	return $estados_municipios;
+		}
+	}	
 
 	if(!function_exists('get_tipo_servicios')){
 	    function get_tipo_servicios(){
@@ -332,22 +377,4 @@
 	}
 
 
-	if(!function_exists('estados_municipios')){
-		function estados_municipios(){
-			global $wpdb;
-		    $estados_municipios = $wpdb->get_results("
-				select 
-				  	s.`order` as o_state, 
-					l.`order` as o_location,
-					s.id as estado_id, 
-					s.`name` as estado_name, 
-					l.id as municipio_id,
-					l.`name` as municipio_name
-				from states as s 
-					inner join locations as l on l.state_id = s.id
-				where  s.country_id = 1
-				order by o_state, o_location, estado_name, municipio_name ASC
-	    	");
-	    	return $estados_municipios;
-		}
-	}
+	
