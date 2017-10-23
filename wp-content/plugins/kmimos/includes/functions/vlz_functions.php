@@ -1299,10 +1299,6 @@
                     );
                 }
 
-
-
-
-
             $detalle = array(
                 "aceptar_rechazar" => $aceptar_rechazar,
                 "id_reserva" => $reserva->ID,
