@@ -4,6 +4,6 @@
         <div style='font-size: 7px;'>CLIENTE - CUIDADOR</div>
     </div>
     <div style='display: table-cell; padding: 5px 20px; padding-left: 37px; border-bottom: solid 1px #CCC; text-align: right; font-size: 17px; color: #0d7ad9;'>
-        [REMANENTE]
+        $ [REMANENTE]
     </div>
 </div>

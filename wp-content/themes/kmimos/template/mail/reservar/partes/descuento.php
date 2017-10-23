@@ -3,6 +3,6 @@
         DESCUENTO
     </div>
     <div style='display: table-cell; padding: 5px 20px; padding-left: 37px; border-bottom: solid 1px #CCC; text-align: right;'>
-        [DESCUENTO]
+        $ [DESCUENTO]
     </div>
 </div>
