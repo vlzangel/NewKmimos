@@ -252,97 +252,7 @@
 		Administrador
 	*/
 
-
-		$inicio = strtotime($_POST['service_start']);
-		$diff = abs(strtotime($_POST['service_end']) - $inicio);
-		$days = floor($diff / (60*60*24));
-
-		$mensaje_admin = $estilos.'
-			<h2 style="color: #557da1; font-size: 16px;">Hola Administrador,</h2>
-			<p>Se ha registrado una solicitud para Conocer a un Cuidador.</p>
-
-			<p><strong>Código de la solicitud: '.$request_id.'</strong></p>
-
-			<h2 style="color: #557da1; font-size: 16px;">Datos del Cuidador</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Nombre: </strong></td>
-					<td>'.$nombre_cuidador.'</td>
-				</tr>
-				<tr>
-					<td><strong>Teléfono: </strong></td>
-					<td>'.$telf_cuidador.'</td>
-				</tr>
-				<tr>
-					<td><strong>Correo: </strong></td>
-					<td>'.$email_cuidador.'</td>
-				</tr>
-			</table>
-
-			<h2 style="color: #557da1; font-size: 16px;">Datos del Cliente</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Nombre: </strong></td>
-					<td>'.$cliente.'</td>
-				</tr>
-				<tr>
-					<td><strong>Teléfono: </strong></td>
-					<td>'.$telf_cliente.'</td>
-				</tr>
-				<tr>
-					<td><strong>Correo: </strong></td>
-					<td>'.$email_cliente.'</td>
-				</tr>
-			</table>
-
-			<center>
-				<p><strong>¿ACEPTAS ESTA SOLICITUD?</strong></p>
-				<table>
-					<tr>
-						<td>
-							<a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
-						</td>
-						<td>
-							<a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=0" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
-						</td>
-					</tr>
-				</table>
-			</center>
-
-			<h2 style="color: #557da1; font-size: 16px;">Datos de la Reunión</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Fecha: </strong></td>
-					<td>'.$_POST['meeting_when'].'</td>
-				</tr>
-				<tr>
-					<td><strong>Hora: </strong></td>
-					<td>'.$_POST['meeting_time'].'</td>
-				</tr>
-				<tr>
-					<td><strong>Fin: </strong></td>
-					<td>'.$_POST['meeting_where'].'</td>
-				</tr>
-			</table>
-
-			<h2 style="color: #557da1; font-size: 16px;">Posible fecha de Estadía</h2>
-			<table cellspacing=0 cellpadding=0>
-				<tr>
-					<td style="width: 70px;"><strong>Inicio: </strong></td>
-					<td>'.$_POST['service_start'].'</td>
-				</tr>
-				<tr>
-					<td><strong>Fin: </strong></td>
-					<td>'.$_POST['service_end'].'</td>
-				</tr>
-			</table>
-
-			<p>Número de mascotas: '.count($pet_ids).'</p>
-			<p>Número de días: '.$days.'</p>
-			<p>Total: '.$days*count($pet_ids).' días/mascotas</p>
-		'.$mascotas;
-
-		$mensaje_admin = kmimos_get_email_html($asunto, $mensaje_admin, 'Saludos,', false, true);
+		// FALTA
 
 	/*
 		Enviando E-mails
@@ -351,7 +261,6 @@
 		wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
 		wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
 
-/*		wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
-		kmimos_mails_administradores_new($asunto, $mensaje_admin);*/
+		kmimos_mails_administradores_new($asunto, $mensaje_cuidador);
 
 
