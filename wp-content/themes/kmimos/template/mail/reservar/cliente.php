@@ -111,36 +111,36 @@
             Servicio <span style='font-weight: normal;'>[tipo_servicio]</span>
         </div>	
         
-	    <div style='display: table; padding-right: 20px; overflow: hidden; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000;'>
+	    <table cellpadding="0" cellspacing="0" style='padding-right: 20px; overflow: hidden; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000;'>
             
-            <div style='display: table-row;'>
-                <div style='display: table-cell; height: 20px; vertical-align: middle; width: 42px;'>
+            <tr style=''>
+                <td style='height: 20px; vertical-align: middle; width: 42px;'>
                   <img src='[URL_IMGS]/min_calendar.png'  > 
-                </div>
-                <div style='display: table-cell; height: 20px; vertical-align: middle; font-size: 12px;'> 
+                </td>
+                <td style='height: 20px; vertical-align: middle; font-size: 12px;'> 
                     Del [inicio] al [fin] del [anio]
-                </div>
-            </div>
+                </td>
+            </tr>
             
-            <div style='display: table-row;'>
-                <div style='display: table-cell; height: 20px; vertical-align: middle; width: 42px;'>
+            <tr style=''>
+                <td style='height: 20px; vertical-align: middle; width: 42px;'>
                   <img src='[URL_IMGS]/min_clock.png'  > 
-                </div>
-                <div style='display: table-cell; height: 20px; vertical-align: middle; font-size: 12px;'> 
+                </td>
+                <td style='height: 20px; vertical-align: middle; font-size: 12px;'> 
                     [tiempo]
-                </div>
-            </div>
+                </td>
+            </tr>
             
-            <div style='display: table-row;'>
-                <div style='display: table-cell; height: 20px; vertical-align: middle; width: 42px;'>
+            <tr style=''>
+                <td style='height: 20px; vertical-align: middle; width: 42px;'>
                   <img src='[URL_IMGS]/min_cash.png'  > 
-                </div>
-                <div style='display: table-cell; height: 20px; vertical-align: middle; font-size: 12px;'> 
+                </td>
+                <td style='height: 20px; vertical-align: middle; font-size: 12px;'> 
                     Pago por [tipo_pago]
-                </div>
-            </div>
+                </td>
+            </tr>
                                                             
-		</div>	
+		</table>	
         
 	</div>
     
