@@ -153,7 +153,7 @@ if(!function_exists('kmimos_get_email_footer')){
 
     if(!function_exists('get_email_html')){
         
-        function get_email_html($content, $dudas = true){
+        function get_email_html($content, $dudas = true, $beneficios = true){
 
             $ayuda = "";
             if( $dudas ){
@@ -167,6 +167,17 @@ if(!function_exists('kmimos_get_email_footer')){
                         </div>
                         <div  style='clear:both;'></div>
                     </div>
+                ";
+            }
+
+            $beneficios_txt = "";
+            if( $beneficios ){
+                $beneficios_txt = "
+                    <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #6b1c9b; margin-bottom: 10px;'>
+                        CON LA CONFIANZA Y SEGURIDAD QUE NECESITAS
+                    </div>
+
+                    <img style='margin-bottom: 16px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/caracteristicas.png' >
                 ";
             }
 
@@ -198,11 +209,8 @@ if(!function_exists('kmimos_get_email_footer')){
                                 
                                 ".$ayuda."
 
-                                <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #6b1c9b; margin-bottom: 10px;'>
-                                    CON LA CONFIANZA Y SEGURIDAD QUE NECESITAS
-                                </div>
+                                ".$beneficios_txt."
 
-                                <img style='margin-bottom: 16px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/caracteristicas.png' >
                                 <img style='margin-bottom: 30px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/dog_footer.png' >
 
                                 <div style='background-color:#000000; color: #fff; display: table; width: 100%; height: 62px; font-size: 11px; letter-spacing: 0.2px; padding: 0px; box-sizing: border-box;'>
