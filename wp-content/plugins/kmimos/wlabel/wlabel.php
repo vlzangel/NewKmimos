@@ -1,9 +1,8 @@
 <?php
 
-$WP_path_load =dirname(dirname(dirname(dirname(__DIR__)))).'/wp-load.php';
-if(file_exists($WP_path_load)){
-    include_once($WP_path_load);
-}
+$WP_path_load = dirname(dirname(dirname(dirname(__DIR__)))).'/wp-load.php';
+
+include_once($WP_path_load);
 
 //CLASS
 include_once(dirname(__FILE__).'/includes/class/class_whitelabel.php');
@@ -27,7 +26,7 @@ function WhiteLabel_ADDfooter(){
 }
 
 //USER REGISTER
-add_action('user_register', 'WhiteLabel_registration_save', 10, 1);
+//add_action('user_register', 'WhiteLabel_registration_save', 10, 1);
 function WhiteLabel_registration_save($user_id){
     global $_wlabel;
     if ($_wlabel->wlabel_active){
