@@ -117,10 +117,10 @@
 		$totales_plantilla = str_replace('[DESCUENTO]', "", $totales_plantilla);
 	}
 
-	if( strtolower($metodo_pago) == "tienda" ){
+	if( strtolower($servicio["metodo_pago"]) == "tienda" ){
 		include("tienda.php");
 	}else{
-		include("otro.php");
+		// include("otro.php");
 	}
 
 ?>

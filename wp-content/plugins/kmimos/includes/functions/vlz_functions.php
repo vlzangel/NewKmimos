@@ -1333,8 +1333,8 @@
             $desglose["reembolsar"] = $diferencia;
             $desglose["descuento"] = $descuento;
 
-            $tipo_pago = "PAGO EN TIENDA";
-            if( $metas_orden['_payment_method_title'][0] == "Tarjeta" ){ $tipo_pago = "PAGO"; }
+            $tipo_pago = "PAGO";
+            if( $metas_orden['_payment_method_title'][0] != "Tarjeta" ){ $tipo_pago = "PAGO EN TIENDA"; }
 
             $correos = array(
 
