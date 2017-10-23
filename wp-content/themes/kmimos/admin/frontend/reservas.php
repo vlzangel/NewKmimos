@@ -71,8 +71,8 @@
 
 				$pdf = $_metas_orden['_openpay_pdf'][0];
 				$ver = $reserva->orden;
-				$cancelar = "order.php?s=0&o=".$reserva->orden;
-				$confirmar = "order.php?s=1&o=".$reserva->orden;
+				$cancelar = $reserva->orden;
+				$confirmar = $reserva->orden;
 				$valorar = $reserva->ID;
 
 				$xitems = $wpdb->get_results( "SELECT meta_key, meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = ".$_metas_reserva["_booking_order_item_id"][0] );
