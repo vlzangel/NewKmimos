@@ -105,7 +105,7 @@
             Servicio <span style='font-weight: normal;'>[tipo_servicio]</span>
         </div>	
         
-	    <table style='padding-right: 20px; overflow: hidden; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000;'>
+	    <table cellpadding="0" cellspacing="0" style='padding-right: 20px; overflow: hidden; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000;'>
             
             <tr style=''>
                 <td style='height: 20px; vertical-align: middle; width: 42px;'>
