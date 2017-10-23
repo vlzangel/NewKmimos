@@ -167,7 +167,7 @@
 
 </div>
 
-<div style='display: table; width: 100%; padding-bottom: 45px'>
+<div style='display: table; width: 100%;'>
     <div style='display: table-row;'>
         <div style='display: table-cell; width: 52px; vertical-align: top;'>
             <img src='[URL_IMGS]/exclamacion.png' style='width: 33px;' >
@@ -185,9 +185,9 @@
             Si existe <strong>algún cambio</strong> en la reserva por favor <strong>asegúrate que el cliente esté enterado y de acuerdo con eso</strong>, posteriormente contacta al staff Kmimos a la brevedad para realizar los ajustes.
         </div>
     </div>
-</div></div>
+</div>
 
-<img src='[URL_IMGS]/siguientes_pasos.png' style='display: block; margin: 0px auto 25px;' >
+<img src='[URL_IMGS]/siguientes_pasos.png' style='display: block; margin: 0px auto 25px; padding-top: 45px;' >
 
 <div style='display: table; width: 100%; font-size: 13px; margin-bottom: 27px;'>
 
