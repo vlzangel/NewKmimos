@@ -26,7 +26,6 @@
 
 	$email_admin = $info["email"];
 
-
 	$mascotas_plantilla = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/reservar/partes/mascotas.php';
     $mascotas_plantilla = file_get_contents($mascotas_plantilla);
     $mascotas = "";
@@ -52,7 +51,45 @@
 		$temp = str_replace('[SUBTOTAL]', "$ ".$variacion[4], $temp);
 		$desglose .= $temp;
 	}
+
+
 	
+	$adicionales_desglose_plantilla = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/reservar/partes/adicionales_desglose.php';
+    $adicionales_desglose_plantilla = file_get_contents($adicionales_desglose_plantilla);
+
+    $adicionales = "";
+    foreach ($servicio["adicionales"] as $adicional) {
+		$temp = str_replace('[SERVICIO]', $adicional[0], $adicionales_desglose_plantilla);
+		$temp = str_replace('[CANTIDAD]', $adicional[1], $temp);
+		$temp = str_replace('[PRECIO_C_U]', "$ ".$adicional[2], $temp);
+		$temp = str_replace('[SUBTOTAL]', "$ ".$adicional[3], $temp);
+		$adicionales .= $temp;
+	}
+
+	if( $adicionales != "" ){
+		$adicionales_plantilla = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/reservar/partes/adicionales.php';
+    	$adicionales_plantilla = file_get_contents($adicionales_plantilla);
+
+    	$adicionales = $adicionales_plantilla.$adicionales;
+	}
+	
+	$transporte_desglose_plantilla = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/reservar/partes/transporte_desglose.php';
+    $transporte_desglose_plantilla = file_get_contents($transporte_desglose_plantilla);
+
+    $transporte = "";
+    foreach ($servicio["transporte"] as $valor) {
+		$temp = str_replace('[SERVICIO]', $valor[0], $transporte_desglose_plantilla);
+		$temp = str_replace('[SUBTOTAL]', $valor[2], $temp);
+		$transporte .= $temp;
+	}
+
+	if( $transporte != "" ){
+		$transporte_plantilla = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/reservar/partes/transporte.php';
+    	$transporte_plantilla = file_get_contents($transporte_plantilla);
+
+    	$transporte = $transporte_plantilla.$transporte;
+	}
+
 	$totales_plantilla = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/reservar/partes/totales.php';
     $totales_plantilla = file_get_contents($totales_plantilla);
     $totales_plantilla = str_replace('[TIPO_PAGO]', $servicio["tipo_pago"], $totales_plantilla);
