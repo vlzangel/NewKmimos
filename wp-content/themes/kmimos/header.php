@@ -32,6 +32,7 @@
 
 	wp_enqueue_style( 'generales_responsive_css', getTema()."/css/responsive/generales_responsive.css", array(), "1.0.0" );
 
+	add_class_wlabel();
 
 	wp_head();
 
