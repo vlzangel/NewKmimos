@@ -20,7 +20,7 @@ function getMultinivel($desde="", $hasta=""){
 	$result = [];
 	$sql = "
 		SELECT * 
-		FROM `resgistro_multinivel`		
+		FROM `wp_kmimos_subscribe` WHERE source = 'Multinivel'		
 	";
 //		{$filtro_adicional}
 

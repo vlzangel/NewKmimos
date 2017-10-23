@@ -90,8 +90,6 @@
 				'<div class="message"></div>'+
 				'</div>'+
 
-				'</div>'+
-				'<div class="section section3">*Dentro de 48 hrs. Te enviaremos v&iacute;a email tu c&uacute;pon de descuento</div>' +
 				'</div>';
 			SubscribePopUp_Create(html);
 		}
@@ -130,11 +128,11 @@
 					var textmessage="Error al guardar los datos";
 
 					if( data == 1){
-						textmessage="Datos guardados";
+						textmessage="Registro Exitoso. Por favor revisa tu correo en la Bandeja de Entrada o en No Deseados";
 					}else if( data == 2){
 						textmessage="Formato de email invalido";
 					}else if( data == 3){
-						textmessage="Ya est&aacute;s registrado en la lista, Gracias!";
+						textmessage="Este correo ya est&aacute; registrado. Por favor intenta con uno nuevo";
 					}else{
 						textmessage="Error al guardar los datos";
 					}
