@@ -7,7 +7,7 @@
 	/* Correo Cliente */
 
 
-		$cuidador_file = realpath('../../../../template/mail/reservar/cliente.php');
+		$cuidador_file = dirname(dirname(dirname(__DIR__))).'/template/mail/reservar/cliente.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
@@ -44,7 +44,7 @@
 		Correo Cuidador
 	*/
 
-		$cuidador_file = realpath('../../../../template/mail/reservar/cuidador.php');
+		$cuidador_file = dirname(dirname(dirname(__DIR__))).'/template/mail/reservar/cuidador.php';
         $mensaje_cuidador = file_get_contents($cuidador_file);
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );

@@ -27,7 +27,7 @@
 	$email_admin = $info["email"];
 
 
-	$mascotas_plantilla = realpath('../../../../template/mail/reservar/partes/mascotas.php');
+	$mascotas_plantilla = dirname(dirname(dirname(__DIR__))).'/template/mail/reservar/partes/mascotas.php';
     $mascotas_plantilla = file_get_contents($mascotas_plantilla);
     $mascotas = "";
 	foreach ($cliente["mascotas"] as $mascota) {
@@ -39,7 +39,7 @@
 		$mascotas .= $temp;
 	}
 	
-	$desglose_plantilla = realpath('../../../../template/mail/reservar/partes/desglose.php');
+	$desglose_plantilla = dirname(dirname(dirname(__DIR__))).'template/mail/reservar/partes/desglose.php';
     $desglose_plantilla = file_get_contents($desglose_plantilla);
 
     $desglose = "";
@@ -53,12 +53,12 @@
 		$desglose .= $temp;
 	}
 	
-	$totales_plantilla = realpath('../../../../template/mail/reservar/partes/totales.php');
+	$totales_plantilla = dirname(dirname(dirname(__DIR__))).'template/mail/reservar/partes/totales.php';
     $totales_plantilla = file_get_contents($totales_plantilla);
     $totales_plantilla = str_replace('[TIPO_PAGO]', $servicio["tipo_pago"], $totales_plantilla);
 
     if( $servicio["desglose"]["enable"] == "yes" ){
-    	$deposito_plantilla = realpath('../../../../template/mail/reservar/partes/deposito.php');
+    	$deposito_plantilla = dirname(dirname(dirname(__DIR__))).'template/mail/reservar/partes/deposito.php';
     	$deposito_plantilla = file_get_contents($deposito_plantilla);
     	$deposito_plantilla = str_replace('[REMANENTE]', number_format( number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), 2, ',', '.'), $deposito_plantilla);
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
@@ -72,7 +72,7 @@
     }
 	
 	if( $servicio["desglose"]["descuento"]+0 > 0 ){
-		$descuento_plantilla = realpath('../../../../template/mail/reservar/partes/descuento.php');
+		$descuento_plantilla = dirname(dirname(dirname(__DIR__))).'template/mail/reservar/partes/descuento.php';
 	    $descuento_plantilla = file_get_contents($descuento_plantilla);
 	    $descuento_plantilla = str_replace('[DESCUENTO]', number_format( $servicio["desglose"]["descuento"], 2, ',', '.'), $descuento_plantilla);
 	    $totales_plantilla = str_replace('[DESCUENTO]', $descuento_plantilla, $totales_plantilla);
