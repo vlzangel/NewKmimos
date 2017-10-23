@@ -2,6 +2,7 @@
 
 	if(!function_exists('vlz_get_paginacion')){
         function vlz_get_paginacion($t, $pagina){
+            $home = get_home_url();
             $paginacion = ""; $h = 12; $inicio = $pagina*$h; 
             $fin = $inicio+$h; if( $fin > $t){ $fin = $t; }
             if($t > $h){
@@ -81,6 +82,42 @@
                 "fin" => $fin,
                 "html" => $paginacion,
             );
+        }
+    }
+
+    if(!function_exists('update_cupos')){
+        function update_cupos($data, $accion){
+            global $wpdb;
+            $db = $wpdb;
+            extract($data);
+            for ($i=$inicio; $i < ($fin-86399); $i+=86400) { 
+                $fecha = date("Y-m-d", $i);
+                $full = 0;
+                $existe = $db->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
+                if( $existe !== null ){
+                    $db->query("UPDATE cupos SET cupos = cupos {$accion} {$cantidad} WHERE servicio = '{$servicio}' AND fecha = '{$fecha}' ");
+                    $db->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos >= acepta )");
+                    $db->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos < acepta )");
+                }else{
+                    $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_qty'");
+                    if( $cantidad >= $acepta ){ $full = 1; }
+                    $sql = "
+                        INSERT INTO cupos VALUES (
+                            NULL,
+                            '{$autor}',
+                            '{$servicio}',
+                            '{$tipo}',
+                            '{$fecha}',
+                            '{$cantidad}',
+                            '{$acepta}',
+                            '{$full}',        
+                            '0'        
+                        );
+                    ";
+
+                    $db->query($sql);
+                }
+            }
         }
     }
 
@@ -190,10 +227,18 @@
             global $wpdb;
             $id_user = get_current_user_id()+0;
             if( $id_user > 0 ){
-                $rf = $wpdb->get_row("SELECT * FROM wp_usermeta WHERE ( user_id = $id_user AND meta_key = 'user_favorites'");
-                preg_match_all('#"(.*?)"#i', $rf->favoritos, $favoritos);
-                if( isset($favoritos[1]) ){
-                    $favoritos = $favoritos[1];
+                $rf = $wpdb->get_row("SELECT * FROM wp_usermeta WHERE user_id = $id_user AND meta_key = 'user_favorites' ");
+                // preg_match_all('#"(.*?)"#i', $rf->favoritos, $favoritos);
+                // if( isset($favoritos[1]) ){
+                //     $favoritos = $favoritos[1];
+                // }
+
+                $rows = str_replace( '"",', '', $rf->meta_value );
+                $rows = str_replace( '"', '', $rows );
+                $rows = str_replace( '[', '', $rows );
+                $rows = str_replace( ']', '', $rows );
+                if( !empty($rows) ){
+                    $favoritos = explode(',', $rows);
                 }
             }
             return $favoritos;
@@ -201,7 +246,7 @@
     }
     
     if(!function_exists('get_menu_header')){
-        function get_menu_header(){
+        function get_menu_header( $menu_principal = false ){
 
             if( is_user_logged_in() ){
 
@@ -220,23 +265,27 @@
                         array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
-                            "icono" => "871"
+                            "icono" => "871",
+                            "ocultar_menu_principal"  => 'true'
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
-                            "icono" => "375"
+                            "icono" => "375",
+                            "ocultar_menu_principal"  => 'true'
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/historial",
                             "name"  => "Historial",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "ocultar_menu_principal"  => 'true'
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/descripcion",
                             "name"  => "Descripción",
-                            "icono" => "664"
-                        ),
+                            "icono" => "664",
+                            "ocultar_menu_principal"  => 'true'
+                        ),                        
                         array(
                             "url"   => get_home_url()."/perfil-usuario/servicios",
                             "name"  => "Mis Servicios",
@@ -250,7 +299,8 @@
                         array(
                             "url"   => get_home_url()."/perfil-usuario/galeria",
                             "name"  => "Mis Fotos",
-                            "icono" => "82"
+                            "icono" => "82",
+                            "ocultar_menu_principal"  => 'true'
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/reservas",
@@ -266,7 +316,7 @@
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
                             "icono" => "476"
-                        )
+                        ),
                     ),
                     "subscriber" => array(
                         array(
@@ -345,10 +395,17 @@
 
                 if( $MENUS[ $user->roles[0] ] != "" ){
                     foreach ($MENUS[ $user->roles[0] ] as $key => $value) {
+                        $sts = "";
+                        if( $menu_principal ){
+                            if( array_key_exists('ocultar_menu_principal', $value) ){
+                                $sts = "vlz_ocultar";
+                            }
+                        }
+                        
                         if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
                         if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
                         $MENU["body"] .=
-                            '<li>
+                            '<li class="'.$sts.'">
                                 <a href="'.$value["url"].'" class="pd-tb11 menu-link">
                                     '.$icono.'
                                     '.$value["name"].'
@@ -419,11 +476,14 @@
         }
     }
 
-    function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio){
+    function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio, $reload='false', $listado_favorito = false){
+        global $current_user;
         $img        = kmimos_get_foto($cuidador->user_id);
         $anios_exp  = $cuidador->experiencia; if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
         $url        = get_home_url()."/petsitters/".$cuidador->slug;
+        $user_id = $current_user->ID;
 
+        $distancia = '';
         if( isset($cuidador->DISTANCIA) ){ $distancia   = 'A '.floor($cuidador->DISTANCIA).' km de tu busqueda'; }
 
         $anios_exp = $cuidador->experiencia;
@@ -432,24 +492,53 @@
         }
 
         $fav_check = 'false';
+        $fav_del = '';
         if (in_array($cuidador->id_post, $favoritos)) {
-            $fav_check = 'true'; $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+            $fav_check = 'true'; 
+            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+            $fav_del = 'favoritos_delete';
+        }
+        $favoritos_link = 
+        '<span href="javascript:;" 
+            data-reload="'.$reload.'"
+            data-user="'.$user_id.'" 
+            data-num="'.$cuidador->id_post.'" 
+            data-active="'.$fav_check.'"
+            data-favorito="'.$fav_check.'"
+            class=" km-link-favorito '.$fav_del.'">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+        </span>';
+
+        // // validaciones para el link de conocer al cuidador
+        // $attr_link_conocer_cuidador = get_attr_link_conocer_cuidador( utf8_encode($cuidador->titulo), $cuidador->id_post);
+
+        $titulo = utf8_encode($cuidador->titulo);
+        if( $listado_favorito ){
+            $titulo = ($cuidador->titulo);
+        }
+
+        $valoraciones = "No tiene valoraciones";
+        if( $cuidador->valoraciones+0 > 0 ){
+            $plural = "&oacute;n";
+            if( $cuidador->valoraciones+0 > 1 ){ $plural = "ones"; }
+            $valoraciones = $cuidador->valoraciones." Valoraci".$plural;
         }
 
         switch ($disenio) {
             case 'list':
                 $ficha = '
                     <div class="km-item-resultado active">
-                        <div class="km-foto">
-                            <div class="km-img" style="background-image: url('.$img.');"></div>
-                            <span class="km-contenedor-favorito">
-                                <a href="#" class="km-link-favorito active"></a>
-                            </span>
-                        </div>
+                        <a href="'.$url.'" class="km-foto">
+                            <div class="km-img">
+                                <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
+                                <div class="km-subimg" style="background-image: url('.$img.');"></div>
+                            </div>
+                            <span class="km-contenedor-favorito">'.$favoritos_link.'</span>
+                        </a>
 
                         <div class="km-contenedor-descripcion-opciones">
                             <div class="km-descripcion">
-                                <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
+                                <h1><a href="'.$url.'">'.$titulo.'</a></h1>
 
                                 <p>'.$anios_exp.' año(s) años de experiencia</p>
 
@@ -457,14 +546,23 @@
                                     '.kmimos_petsitter_rating($cuidador->id_post).'
                                 </div>
 
+                                <div class="km-valoraciones">
+                                    '.$valoraciones.'
+                                </div>
+
                                 <div class="km-sellos">
                                     '.vlz_servicios($cuidador->adicionales).'
                                 </div>
                             </div>
 
-                            <div class="km-opciones row">
-                                <div class="precio">Desde MXN $ '.$cuidador->precio.'</div>
-                                <a href="#" role="button" data-name="'.utf8_encode($cuidador->titulo).'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke">CONÓCELO +</a>
+                            <div class="km-opciones">
+                                <div class="precio">MXN $ '.$cuidador->precio.'</div>
+                                <div class="distancia">'.$distancia.'</div>
+                                <a role="button" href="#" 
+                                    data-name="'.$titulo.'" 
+                                    data-id="'.$cuidador->id_post.'" 
+                                    data-target="#popup-conoce-cuidador"
+                                    class="km-btn-primary-new stroke">CONÓCELO +</a>
                                 <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new basic">RESERVA</a>
                             </div>
                         </div>
@@ -474,23 +572,36 @@
             case 'grid':
                 $ficha = '
                     <div class="km-item-resultado">
-                        <div class="km-foto">
-                            <div class="km-img" style="background-image: url('.$img.');"></div>
-                            <span class="km-contenedor-favorito">
-                                <a href="#" class="km-link-favorito active"></a>
-                            </span>
-                        </div>
+                        <a href="'.$url.'" class="km-foto">
+                            <div class="km-img">
+                                <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
+                                <div class="km-subimg" style="background-image: url('.$img.');"></div>
+                            </div>
+                            <span class="km-contenedor-favorito">'.$favoritos_link.'</span>
+                        </a>
                         <div class="km-descripcion">
-                            <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
-                            <p>'.$anios_exp.' año(s) de experiencia</p>
+                            <h1><a href="'.$url.'">'.$titulo.'</a></h1>
+                            <p>'.$anios_exp.' año(s) de experiencia
+                                <br><b>MXN $ '.$cuidador->precio.'</b>
+                                <br><small>'.$distancia.'</small>
+                            </p>
                             <div class="km-ranking">
                                 '.kmimos_petsitter_rating($cuidador->id_post).'
                             </div>
+
+                            <div class="km-valoraciones">
+                                '.$valoraciones.'
+                            </div>
+
                             <div class="km-sellos">
                                 '.vlz_servicios($cuidador->adicionales).'
                             </div>
                             <div class="km-buttons">
-                                <a href="#" role="button" data-name="'.utf8_encode($cuidador->titulo).'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador">CONÓCELO +</a>
+                                <a role="button" href="#" 
+                                    data-name="'.$titulo.'" 
+                                    data-id="'.$cuidador->id_post.'" 
+                                    data-target="#popup-conoce-cuidador"
+                                    class="km-btn-primary-new stroke">CONÓCELO +</a>
                                 <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="active">RESERVAR</a>
                             </div>
                         </div>
@@ -632,7 +743,7 @@
             $FORMULARIO = "
             <script> var orderby = '".$POST['orderby']."'; var tipo_busqueda = '".$POST['tipo_busqueda']."'; </script>
             <div id='filtros'></div>
-            <form action='".get_home_url()."/wp-content/themes/pointfinder/procesos/busqueda/buscar.php' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
+            <form action='".get_home_url()."/busqueda' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
 
                 <input type='submit' value='Aplicar Filtros' class='theme_button vlz_boton'>
 

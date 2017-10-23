@@ -14,9 +14,85 @@
 	    }
 	}
 
-	if(!function_exists('italo_menus')){
-	    function italo_menus($menus){
+	if(!function_exists('servicios_en_session')){
+	    function servicios_en_session( $opt_key = '', $arr, $sub="" ){
+	    	$result = false;
+	    	if( !empty($arr) ){
+	    		if( array_key_exists($sub, $arr) ){
+	    			if( in_array($opt_key, $arr[$sub]) ){
+	    				$check = true;
+	    			}
+	    		}
+	    	}
+	    	return $check;
+	    }	
+	}
 
+	if(!function_exists('get_user_slug')){
+	    function get_user_slug( $cuidador_userID ){
+	    	global $wpdb;
+	    	if( $cuidador_userID > 0 ){
+				$cuidador = $wpdb->get_row("
+	                SELECT 
+	                    cuidadores.id,
+	                    cuidadores.id_post
+	                from cuidadores 
+	                where cuidadores.user_id = ".$cuidador_userID
+	            );
+	            $post_id = ( isset( $cuidador->id_post ) )? $cuidador->id_post : 0 ; 
+		    	if( $post_id > 0 ){
+		    		$user = get_post( $post_id );
+		    		if( isset($user->post_name) ){
+		    			return get_home_url()."/petsitters/".$user->post_name;
+		    		}
+		    	}
+		    }
+	    	return '';
+	    }
+	}
+
+	if(!function_exists('get_attr_link_conocer_cuidador')){
+	    function get_attr_link_conocer_cuidador( $cuidador_name, $post_id ){
+	    	global $current_user;
+	    	$user_id = $current_user->ID;
+	    	$link = ' 
+	    		href="#" 
+	    		data-name="'.$cuidador_name.'" 
+	    		data-id="'.$post_id.'" 
+	    		data-target="#popup-conoce-cuidador"
+	    	';
+
+			if ( !is_user_logged_in() ){ 
+				$link = ' 
+					href="#popup-iniciar-sesion"
+					data-toggle="modal"
+				';
+			}else{
+				$mascotas = kmimos_get_my_pets($user_id);
+				if ( count($mascotas) < 1 ){ 
+					$link = ' href="'.get_home_url().'/perfil-usuario/mascotas"';
+				}				
+			}
+
+			return $link;
+	    }
+	}
+	
+
+	if(!function_exists('get_tipo_servicios')){
+	    function get_tipo_servicios(){
+	    	return [
+		        'hospedaje'      => ['name'=>'Hospedaje'], 
+		        'guarderia'      => ['name'=>'Guardería'], 
+		        'paseos'         => ['name'=>'Paseos'],
+		        'adiestramiento' => ['name'=>'Entrenamiento']
+	    	];
+	    }
+	}
+
+ 	if(!function_exists('italo_menus')){
+	    function italo_menus($menus){
+	      global $current_user;
 	    	$menus[] = array(
                 'title'=>'Control de Reservas',
                 'short-title'=>'Control de Reservas',
@@ -107,10 +183,94 @@
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
+	        $menus[] = array(
+	                'title'=>'Newsletter',
+	                'short-title'=>'Newsletter',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_newsletter',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_newsletter',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+                 
+         
+         /* Temporal ********************* */
+          if ( 	 $current_user->user_email == 'a.pedroza@kmimos.la' ||
+		 $current_user->user_email == 'r.cuevas@kmimos.la'  ||
+		 $current_user->user_email == 'e.celli@kmimos.la' || 
+		 $current_user->user_email == 'soporte.kmimos@gmail.com'
+		 	){
+
+		        $menus[] = array(
+		                'title'=>'Pago Cuidador',
+		                'short-title'=>'Pago Cuidador',
+		                'parent'=>'kmimos',
+		                'slug'=>'bp_saldo_cuidadores',
+		                'access'=>'manage_options',
+		                'page'=>'backpanel_saldo_cuidador',
+		                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+		        );
+		        $menus[] = array(
+		                'title'=>'Pago Cuidador Inicio Reserva',
+		                'short-title'=>'Pago Cuidador Inicio Reserva',
+		                'parent'=>'kmimos',
+		                'slug'=>'bp_saldo_cuidadores_bookinkstart',
+		                'access'=>'manage_options',
+		                'page'=>'backpanel_saldo_cuidador_BookingStart',
+		                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+		        );
+		        $menus[] = array(
+		                'title'=>'Pago Cuidador Detalle',
+		                'short-title'=>'Pago Cuidador Detalle',
+		                'parent'=>'kmimos',
+		                'slug'=>'bp_saldo_cuidadores_detalle',
+		                'access'=>'manage_options',
+		                'page'=>'backpanel_saldo_cuidador_detalle',
+		                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+		        );
+
+      			$menus[] = array(
+      				'title'=>'Saldo de Cupones',
+      				'short-title'=>'Saldo de Cupones',
+      				'parent'=>'kmimos',
+      				'slug'=>'bp_saldo_cupon',
+      				'access'=>'manage_options',
+      				'page'=>'backpanel_saldo_cupon',
+      				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+      			);
+		      }
+         /* Temporal ********************* */
+
+                 
 	        return $menus;
 	    }
 	}
 
+	if(!function_exists('backpanel_saldo_cuidador_BookingStart')){
+	        function backpanel_saldo_cuidador_BookingStart(){
+	            include_once('dashboard/backpanel_saldo_cuidador_BookingStart.php');
+	        }
+	}
+
+	if(!function_exists('backpanel_saldo_cuidador')){
+	        function backpanel_saldo_cuidador(){
+	            include_once('dashboard/backpanel_saldo_cuidador.php');
+	        }
+	}
+
+	if(!function_exists('backpanel_saldo_cuidador_detalle')){
+        function backpanel_saldo_cuidador_detalle(){
+            include_once('dashboard/backpanel_saldo_cuidador_detalle.php');
+        }
+    }
+
+
+	if(!function_exists('backpanel_newsletter')){
+        function backpanel_newsletter(){
+            include_once('dashboard/backpanel_newsletter.php');
+        }
+    }
+    
 	if(!function_exists('backpanel_ctr_participantes')){
         function backpanel_ctr_participantes(){
             include_once('dashboard/backpanel_ctr_participantes.php');
@@ -165,4 +325,29 @@
         }
     }
 
-?>
+	if(!function_exists('backpanel_saldo_cupon')){
+		function backpanel_saldo_cupon(){
+			include_once('dashboard/backpanel_saldo_cupon.php');
+		}
+	}
+
+
+	if(!function_exists('estados_municipios')){
+		function estados_municipios(){
+			global $wpdb;
+		    $estados_municipios = $wpdb->get_results("
+				select 
+				  	s.`order` as o_state, 
+					l.`order` as o_location,
+					s.id as estado_id, 
+					s.`name` as estado_name, 
+					l.id as municipio_id,
+					l.`name` as municipio_name
+				from states as s 
+					inner join locations as l on l.state_id = s.id
+				where  s.country_id = 1
+				order by o_state, o_location, estado_name, municipio_name ASC
+	    	");
+	    	return $estados_municipios;
+		}
+	}

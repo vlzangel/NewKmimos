@@ -70,10 +70,10 @@
 	                <img id="close_login" src="'.getTema().'/images/closebl.png" />';
 				    foreach($url_servicio as $url){
 						$content_modal .= '
-						<a href="'.$url['url'].'" class="modal-items">
+						<button name="redirigir" value="'.$url['url'].'" class="modal-items">
 							<i class="'.$url['icon'].'"></i>
 							<span style="margin-left: 5px;">'.$url['name'].'</span>
-						</a>
+						</button>
 						';
 				    } $content_modal .= '
 	            </div>
@@ -85,11 +85,11 @@
 	}else{
 		if( count($url_servicio) == 1){
 			foreach ($url_servicio as $item) {
-				$BOTON_RESERVAR .= '<a class="km-btn-secondary" href="'.$item['url'].'">RESERVAR</a>';
+				$BOTON_RESERVAR .= '<button name="redirigir" class="km-btn-secondary" value="'.$item['url'].'">RESERVAR</button>';
 				break;
 			}
 		}else{				
-			$BOTON_RESERVAR .= '<a class="km-btn-secondary" href="'.get_home_url().'/reservar/'.$id_hospedaje.'/'.'">RESERVAR</a>';
+			$BOTON_RESERVAR .= '<button name="redirigir" class="km-btn-secondary" value="'.get_home_url().'/reservar/'.$id_hospedaje.'/'.'">RESERVAR</button>';
 		}
 	}
 ?>

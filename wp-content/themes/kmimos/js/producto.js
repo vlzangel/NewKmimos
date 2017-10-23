@@ -37,11 +37,15 @@ function initCarrito(){
 			"tipo" : "",
 			"metodo" : "completo",
 			"token" : "",
-			"deviceIdHiddenFieldName" : ""
+			"deviceIdHiddenFieldName" : "",
+			"id_fallida" : 0,
+			"reconstruir" : false
 		};
 
-	CARRITO["cupones"] = [];
-
+	if( CARRITO["cupones"] == undefined ){
+		CARRITO["cupones"] = [];
+	}
+	
 	CARRITO["tarjeta"] = [];
 
 		CARRITO["tarjeta"] = {
@@ -68,8 +72,12 @@ function validar(status, txt){
 }
 
 function calcular(){
-	initCarrito();
 
+	if( CARRITO["pagar"]["id_fallida"] != 0 ){
+		CARRITO["pagar"]["reconstruir"] = true;
+	}
+
+	CARRITO["cantidades"]["cantidad"] = 0;
 	jQuery("#reservar .tamano").each(function( index ) {
 		CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
 		CARRITO[ "cantidades" ][ jQuery( this ).attr("name") ] = [
@@ -84,27 +92,31 @@ function calcular(){
 			jQuery('#transporte option:selected').attr("data-value"),
 			parseFloat(tranporte)
 		];
+	}else{
+		CARRITO[ "transportacion" ] = undefined;
 	}
 
 	jQuery("#adicionales input").each(function( index ) {
-		var activo = jQuery( this ).attr('class');
-        if(activo == "active"){
+        if( jQuery( this ).hasClass("active") ){
         	CARRITO[ "adicionales" ][ jQuery( this ).attr("name") ] = parseFloat( jQuery( this ).val() );
+        }else{
+        	CARRITO[ "adicionales" ][ jQuery( this ).attr("name") ] = 0;
         }
 	});
 
 	if( jQuery('#checkin').val() != "" ){
 		var ini = String( jQuery('#checkin').val() ).split("/");
-		CARRITO[ "fechas" ][ "inicio" ] = new Date( ini[2]+"-"+ini[1]+"-"+ini[0] );
 
-		jQuery("#fecha_ini").html( jQuery('#checkin').val() );
+		CARRITO[ "fechas" ][ "inicio" ] = ini[2]+"-"+ini[1]+"-"+ini[0]+" 00:00:00";
+
+		jQuery(".fecha_ini").html( jQuery('#checkin').val() );
 	}
 
 	if( jQuery('#checkout').val() != "" ){
 		var fin = String( jQuery('#checkout').val() ).split("/");
-		CARRITO[ "fechas" ][ "fin" ] = new Date( fin[2]+"-"+fin[1]+"-"+fin[0] );
+		CARRITO[ "fechas" ][ "fin" ] = fin[2]+"-"+fin[1]+"-"+fin[0]+" 23:59:59";
 
-		jQuery("#fecha_fin").html( jQuery('#checkout').val() );
+		jQuery(".fecha_fin").html( jQuery('#checkout').val() );
 	}
 
 	var error = "";
@@ -142,8 +154,8 @@ function calcular(){
 		if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
 			error = "Ingrese la fecha de finalizaci&oacute;n";
 		}else{
-			var fechaInicio = CARRITO[ "fechas" ][ "inicio" ].getTime();
-			var fechaFin    = CARRITO[ "fechas" ][ "fin" ].getTime();
+			var fechaInicio = new Date(CARRITO[ "fechas" ][ "inicio" ]).getTime();
+			var fechaFin    = new Date(CARRITO[ "fechas" ][ "fin" ]).getTime();
 			var diff = fechaFin - fechaInicio;
 			dias = parseInt( diff/(1000*60*60*24) );
 	    }
@@ -171,6 +183,15 @@ function calcular(){
 	});	
 
 	if( error == "" ){
+		var cantidad = getCantidad();
+		if( cantidad > acepta ){
+			plural = "";
+			if( acepta > 1 ){ plural = "s"; }
+			error = "El cuidador solo acepta ["+acepta+"] mascota"+plural;
+		}
+	}
+
+	if( error == "" ){
 		if( cant == 0 ){
 			error = "Ingrese la cantidad de mascotas";
 		}else{
@@ -181,7 +202,7 @@ function calcular(){
 	
 	jQuery.each( CARRITO[ "adicionales" ], function( key, valor ) {
 		if( valor > 0 ){
-			cant += valor;
+			cant += (valor*CARRITO["cantidades"]["cantidad"]);
 		}
 	});	
 
@@ -191,13 +212,11 @@ function calcular(){
 	
 	if( error != "" ){
 		jQuery(".invalido").html(error);
-
 		jQuery(".valido").css("display", "none");
 		jQuery(".invalido").css("display", "block");
 	}else{
 		jQuery(".valido").css("display", "block");
 		jQuery(".invalido").css("display", "none");
-
 		jQuery(".km-price-total").html("$"+numberFormat(cant));
 	}
 	
@@ -205,18 +224,14 @@ function calcular(){
 		jQuery(".pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
 		jQuery(".pago_cuidador").html( "$" + numberFormat(cant/1.2) );
 		jQuery(".monto_total").html( "$" + numberFormat(cant) );
-
 		CARRITO["pagar"]["total"] = cant;
-
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").removeClass("disabled");
-
 		calcularDescuento();
 	}else{
 		jQuery("#reserva_btn_next_1").addClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").addClass("disabled");
 	}
-
 	initFactura();
     
 }
@@ -235,17 +250,17 @@ function verificarCupos(){
 		CARRITO[ "fechas" ][ "inicio" ] != "" &&
 		CARRITO[ "fechas" ][ "fin" ] != "" 
 	){
-		var ini = CARRITO[ "fechas" ][ "inicio" ].getTime();
-		var fin = CARRITO[ "fechas" ][ "fin" ].getTime();
+		var ini =  new Date(CARRITO[ "fechas" ][ "inicio" ]).getTime();
+		var fin =  new Date(CARRITO[ "fechas" ][ "fin" ]).getTime();
+
 		var act = new Date();
 		var tem = "";
-		if( 
-			ini != undefined && ini != "" &&
-			fin != undefined && fin != ""
-		){
+
+		if( ini != undefined && ini != "" && fin != undefined && fin != "" ){
 			jQuery.each(cupos, function( index, item ) {
 				tem = String( item.fecha ).split("-");
-				act = new Date( tem[0]+"-"+tem[1]+"-"+tem[2] ).getTime();
+				act = new Date( tem[0]+"-"+tem[1]+"-"+tem[2]+" 00:00:00" ).getTime();
+
 				if( (ini <= act) && (act <= fin) ){
 					if( item.full == 1 || item.no_disponible == 1 ){
 						if( item.full == 1 ){
@@ -334,8 +349,6 @@ function initFactura(){
 		
 		if( CARRITO["adicionales"][key] != undefined && CARRITO["adicionales"][key] != "" && CARRITO["adicionales"][key] > 0 ){
 			
-			//console.log(CARRITO["cantidades"][key]);
-			
 			var plural = "";
 			if( CARRITO["cantidades"]["cantidad"] > 1 ){
 				plural += "s";
@@ -365,10 +378,11 @@ function initFactura(){
 
 function pagarReserva(id_invalido = false){
 
-	jQuery("#reserva_btn_next_3").html("Procesando");
+	jQuery("#reserva_btn_next_3 span").html("Procesando");
 	jQuery("#reserva_btn_next_3").addClass("disabled");
+	jQuery("#reserva_btn_next_3").addClass("cargando");
 
-	var transporte = []+"===";
+	var transporte = "==="; 
 	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
 		transporte = JSON.stringify( CARRITO["transportacion"] )+"===";
 	}
@@ -389,16 +403,47 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			console.log( data );
-			//location.href = RAIZ+"/finalizar/"+data.order_id;
+
+			/*console.log( data );*/
+
+			if( data.error != "" && data.error != undefined ){
+				var error = "Error procesando la reserva<br>";
+		    	error += "Por favor intente nuevamente.<br>";
+		    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+
+		    	jQuery(".errores_box").html(error);
+				jQuery(".errores_box").css("display", "block");
+
+				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
+				jQuery("#reserva_btn_next_3").removeClass("disabled");
+				jQuery("#reserva_btn_next_3").removeClass("cargando");
+
+				CARRITO["pagar"]["id_fallida"] = data.error;
+			}else{
+				CARRITO["pagar"]["id_fallida"] = 0;
+
+				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
+				jQuery("#reserva_btn_next_3").removeClass("disabled");
+				jQuery("#reserva_btn_next_3").removeClass("cargando");
+
+				location.href = RAIZ+"/finalizar/"+data.order_id;
+			}
+
 		}, "json"
 	).fail(function(e) {
     	console.log( e );
-    	if( e.status == 500 ){
-    		//pagarReserva(true);
-    	}else{
-    		alert("Error al procesar la reserva!");
-    	}
+
+    	var error = "Error procesando la reserva<br>";
+    	error += "Por favor intente nuevamente.<br>";
+    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+
+    	jQuery(".errores_box").html(error);
+		jQuery(".errores_box").css("display", "block");
+
+		jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
+		jQuery("#reserva_btn_next_3").removeClass("disabled");
+		jQuery("#reserva_btn_next_3").removeClass("cargando");
+
   	});
 }
 
@@ -449,10 +494,13 @@ function mostrarCupones(){
 function calcularDescuento(){
 	var descuentos = 0;
 	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
+		if( cupon[1] == "" ){
+			cupon[1] = 0;
+		}
 		descuentos += parseFloat(cupon[1]);
 	});
 
-	jQuery(".km-price-total").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 
 	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
 	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
@@ -468,6 +516,20 @@ function calcularDescuento(){
 
 	jQuery(".pago_17").html( "$" + numberFormat( pre17 ) );
 	jQuery(".pago_cuidador").html( "$" + numberFormat(pagoCuidador) );
+
+	if( jQuery(".km-option-deposit").hasClass("active") ){
+		if( pre17 == 0 ){
+			jQuery("#metodos_pagos").css("display", "none");
+		}else{
+			jQuery("#metodos_pagos").css("display", "block");
+		}
+	}else{
+		if( pagoCuidador == 0 ){
+			jQuery("#metodos_pagos").css("display", "none");
+		}else{
+			jQuery("#metodos_pagos").css("display", "block");
+		}
+	}
 
 	jQuery(".sub_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]) );
 	if( descuentos == 0 ){
@@ -485,21 +547,61 @@ function calcularDescuento(){
 	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
 }
 
-function aplicarCupon(){
+function aplicarCupon(cupon = ""){
 
 	jQuery("#cupon_btn").html("Aplicando");
 	jQuery("#cupon_btn").addClass("disabled");
 
+	if( jQuery("#cupon").val() != "" || cupon != ""){
+		if( cupon == "" ){ cupon = jQuery("#cupon").val(); }
+		jQuery.post(
+			HOME+"/procesos/reservar/cupon.php",
+			{
+				servicio: SERVICIO_ID,
+				cupon: cupon,
+				cupones: CARRITO["cupones"],
+				total: CARRITO["pagar"]["total"],
+				cliente: cliente,
+				reaplicar: 0
+			},
+			function(data){
+				/*console.log( data );*/
+
+				if( data.error == undefined ){
+					CARRITO["cupones"] = data.cupones;
+
+					mostrarCupones();
+					eliminarCuponesHandler();
+					jQuery("#cupon").val("");
+
+					calcularDescuento();
+
+				}else{
+					alert(data.error);
+				}
+
+				jQuery("#cupon_btn").html("Cup&oacute;n");
+				jQuery("#cupon_btn").removeClass("disabled");
+
+			}, "json"
+		).fail(function(e) {
+	    	console.log( e );
+	  	});
+	}
+}
+
+function reaplicarCupones(){
 	jQuery.post(
 		HOME+"/procesos/reservar/cupon.php",
 		{
-			cupon: jQuery("#cupon").val(),
+			servicio: SERVICIO_ID,
 			cupones: CARRITO["cupones"],
 			total: CARRITO["pagar"]["total"],
-			cliente: cliente
+			cliente: cliente,
+			reaplicar: 1
 		},
 		function(data){
-			console.log( data );
+			/*console.log( data );*/
 
 			if( data.error == undefined ){
 				CARRITO["cupones"] = data.cupones;
@@ -510,12 +612,7 @@ function aplicarCupon(){
 
 				calcularDescuento();
 
-			}else{
-				alert(data.error);
 			}
-
-			jQuery("#cupon_btn").html("Cup&oacute;n");
-			jQuery("#cupon_btn").removeClass("disabled");
 
 		}, "json"
 	).fail(function(e) {
@@ -523,8 +620,292 @@ function aplicarCupon(){
   	});
 }
 
+function getCantidad(){
+	var resultado = 0;
+	jQuery(".km-content-new-pet .tamano").each(function( index ) {
+	  	resultado += parseInt(jQuery( this ).val());
+	});
+	return resultado;
+}
+
+var descripciones = "";
+
 jQuery(document).ready(function() { 
-	// activar_continuar(); 
+
+	jQuery(".solo_numeros").on("keyup", function(e){
+		var valor = jQuery( this ).val();
+		if( valor != "" ){
+			var resul = ""; var no_permitido = false;
+			jQuery.each(valor.split(""), function( index, value ) {
+			  	if( /^[0-9]*$/g.test(value) ){
+					resul += value;
+				}else{
+					no_permitido = true;
+				}
+			});
+			if( no_permitido ){
+				jQuery( this ).val(resul);
+			}
+		}
+	});
+
+	jQuery(".solo_letras").on("keyup", function(e){
+		var valor = jQuery( this ).val();
+		if( valor != "" ){
+			var resul = ""; var no_permitido = false;
+			jQuery.each(valor.split(""), function( index, value ) {
+			  	if( /^[a-zA-Z ]*$/g.test(value) ){
+					resul += value;
+				}else{
+					no_permitido = true;
+				}
+			});
+			if( no_permitido ){
+				jQuery( this ).val(resul);
+			}
+		}
+	});
+
+	jQuery(".next").on("keyup", function(e){
+		if( jQuery(this).val().length >= jQuery(this).attr("data-max") ){
+			if( jQuery(this).attr("data-next") != "null" ){
+				jQuery("#"+jQuery(this).attr("data-next")).focus();
+			}else{
+				jQuery(this).blur();
+			}
+		}
+	});
+
+	jQuery("#numero").on("keypress", function(e){
+		var txt = jQuery(this).val();
+		if( txt.length == 16 ){
+			e.preventDefault();
+			return false;
+		}
+	});
+
+	jQuery("#numero").on("focus", function(e){
+		var txt = jQuery(this).val();
+		txt = txt.replaceAll(" ", "");
+		jQuery(this).val(txt);
+		jQuery("#numero_oculto").val(txt);
+	});
+
+	jQuery("#numero").on("blur", function(e){
+		var txt = jQuery(this).val();
+		txt = txt.replaceAll(" ", "");
+		jQuery(this).val(txt);
+		jQuery("#numero_oculto").val(txt);
+	});
+
+	jQuery(".maxlength").on("blur", function(e){
+		var txt = jQuery(this).val();
+		txt = txt.replaceAll(" ", "");
+		var temp = ""; var l = txt.length; var length = jQuery(this).attr("data-max");
+		if( l > length ){ l = length; }
+		for(var i=0; i<l; i++){
+			if( i > 0 && i%4 == 0){
+				temp += " ";
+			}
+			temp += txt[i];
+		}
+		jQuery(this).val(temp);
+	});
+
+    jQuery("#numero").bind({
+        paste : function(){
+           	var txt = jQuery(this).val();
+			txt = txt.replaceAll(" ", "");
+			jQuery("#numero_oculto").val(txt);
+			var temp = ""; var l = txt.length;
+			if( l > 16 ){ l = 16; }
+			for(var i=0; i<l; i++){
+				if( i > 0 && i%4 == 0){
+					temp += " ";
+				}
+				temp += txt[i];
+			}
+			jQuery(this).val(temp);
+        }
+    });
+
+	jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
+
+	function initCheckin(date, actual){
+        if(actual){
+            jQuery('#checkout').datepick({
+                dateFormat: 'dd/mm/yyyy',
+                defaultDate: date,
+                selectDefaultDate: true,
+                minDate: date,
+                onSelect: function(xdate) {
+                    if(typeof calcular === 'function') {
+                        calcular();
+                    }
+                },
+                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                firstDay: 1,
+                onmonthsToShow: [1, 1]
+            });
+        }else{
+            jQuery('#checkout').datepick({
+                dateFormat: 'dd/mm/yyyy',
+                minDate: date,
+                onSelect: function(xdate) {
+                    if(typeof calcular === 'function') {
+                        calcular();
+                    }
+                },
+                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                firstDay: 1,
+                onmonthsToShow: [1, 1]
+            });
+        }
+    }
+
+    jQuery('#checkin').datepick({
+        dateFormat: 'dd/mm/yyyy',
+        minDate: fecha,
+        onSelect: function(date1) {
+            var ini = jQuery('#checkin').datepick( "getDate" );
+            var fin = jQuery('#checkout').datepick( "getDate" );
+            if( fin.length > 0 ){
+                var xini = ini[0].getTime();
+                var xfin = fin[0].getTime();
+                if( xini > xfin ){
+                    jQuery('#checkout').datepick('destroy');
+                    initCheckin(date1[0], true);
+                }else{
+                    jQuery('#checkout').datepick('destroy');
+                    initCheckin(date1[0], false);
+                }
+            }else{
+                jQuery('#checkout').datepick('destroy');
+                initCheckin(date1[0], true);
+            }
+            if(typeof calcular === 'function') {
+                calcular();
+            }
+            if(typeof validar_busqueda_home === 'function') {
+                validar_busqueda_home();
+            }
+        },
+        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
+
+    jQuery('#checkout').datepick({
+        dateFormat: 'dd/mm/yyyy',
+        minDate: fecha,
+        onSelect: function(xdate) {
+            if(typeof calcular === 'function') {
+                calcular();
+            }
+        },
+        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
+
+	jQuery(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
+		e.preventDefault();
+		var el = jQuery(this);
+		var div = el.parent();
+		var span = jQuery(".km-number", div);
+		var input = jQuery("input", div);
+		if ( span.html() > 0 ) {
+			var valor = parseInt(span.html()) - 1;
+			span.html( valor );
+			input.val( valor );
+		}
+		if ( span.html() <= 0 ) {
+			el.addClass("disabled");
+		}
+		calcular();
+	});
+
+	jQuery(document).on("click", '.page-reservation .km-quantity .km-plus', function ( e ) {
+		e.preventDefault();
+		var el = jQuery(this);
+		var div = el.parent();
+		var span = jQuery(".km-number", div);
+		var minus = jQuery(".km-minus", div);
+		var input = jQuery("input", div);
+		
+		var valor = parseInt(span.html()) + 1;
+
+		var cantidad = parseInt(getCantidad())+1;
+		if(cantidad <= acepta){
+			span.html( valor );
+			input.val( valor );
+
+			if ( span.html() > 0 ) {
+				minus.removeClass("disabled");
+			}
+
+			calcular();
+		}
+	});
+
+	jQuery(document).on("change", '.page-reservation .km-height-select', function ( e ) {
+		e.preventDefault();
+		var el = jQuery(this);
+		el.removeClass("small");
+		el.removeClass("medium");
+		el.removeClass("large");
+		el.removeClass("extra-large");
+
+		el.addClass( el.val() );
+	});
+
+	jQuery(document).on("click", '.page-reservation .optionCheckout', function ( e ) {
+		e.preventDefault();
+		var el = jQuery(this);
+		var div = el.parent();
+		var input = jQuery("input", div);
+		el.toggleClass("active");
+		input.toggleClass("active");
+		if(typeof calcular === 'function') {
+			calcular();
+		}
+	});
+
+	jQuery(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
+		e.preventDefault();
+
+		if( !jQuery(this).hasClass("km-option-3-lineas") ){
+			var el = jQuery(this);
+			jQuery(".km-method-paid-option", el.parent()).removeClass("active");
+
+			el.addClass("active");
+
+			if ( el.hasClass("km-option-deposit") ) {
+				jQuery(".page-reservation .km-detail-paid-deposit").slideDown("fast");
+				jQuery(".page-reservation .km-services-total").slideUp("fast");
+				
+				CARRITO["pagar"]["metodo"] = "deposito";
+
+			} else {
+				jQuery(".page-reservation .km-detail-paid-deposit").slideUp("fast");
+				jQuery(".page-reservation .km-services-total").slideDown("fast");
+				CARRITO["pagar"]["metodo"] = "completo";
+			}
+			
+			if(typeof calcularDescuento === 'function') {
+				calcularDescuento();
+			}
+
+			calcular();
+		}
+
+	});
+
+	jQuery(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {
+		e.preventDefault();
+		var el = jQuery(this);
+		jQuery(".km-tab-content", el.parent()).slideToggle("fast");
+	});
 
 	jQuery(".navbar").removeClass("bg-transparent");
 	jQuery(".navbar").addClass("bg-white-secondary");
@@ -541,8 +922,12 @@ jQuery(document).ready(function() {
 			jQuery(".km-col-steps").css("display", "none");
 			jQuery("#step_2").css("display", "block");
 			jQuery(document).scrollTop(0);
-		
-			aplicarCupon();
+			
+			if( CARRITO["cupones"].length == 0 ){
+				aplicarCupon(saldo);
+			}else{
+				reaplicarCupones();
+			}
 		}
 		e.preventDefault();
 	});
@@ -569,11 +954,18 @@ jQuery(document).ready(function() {
 		if( jQuery(this).hasClass("disabled") ){
 			alert("Debes aceptar los terminos y condiciones");
 		}else{
-			CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
-			CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
-			if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
-				OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+			if( jQuery("#metodos_pagos").css("display") != "none" ){
+				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
+				if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
+					jQuery("#reserva_btn_next_3 span").html("Validando...");
+					jQuery("#reserva_btn_next_3").addClass("disabled");
+					OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+				}else{
+					pagarReserva();
+				}
 			}else{
+				CARRITO["pagar"]["tipo"] = "Saldo y/o Descuentos";
 				pagarReserva();
 			}
 	 	}
@@ -599,7 +991,11 @@ jQuery(document).ready(function() {
 				}
 			}
 		}
-		CARRITO["tarjeta"][ jQuery(this).attr("id") ] = jQuery(this).val();
+		var txtTemp = jQuery(this).val();
+		if( jQuery(this).attr("id") == "numero" ){
+			txtTemp = txtTemp.replaceAll(" ", "");
+		}
+		CARRITO["tarjeta"][ jQuery(this).attr("id") ] = txtTemp;
 	});
 
 	jQuery("#tipo_pago").on("change", function(e){
@@ -610,7 +1006,7 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	$('#term-conditions').on("change", function ( e ) {
+	jQuery('#term-conditions').on("change", function ( e ) {
 		e.preventDefault();
 
 		if( !jQuery(this).hasClass("active") ){
@@ -625,10 +1021,32 @@ jQuery(document).ready(function() {
 
 	calcular();
 
+	jQuery(document).on("click", '.page-reservation .km-medio-paid-options .km-method-paid-option', function ( e ) {
+		e.preventDefault();
+		var el = jQuery(this);
+		jQuery(".km-method-paid-option", el.parent()).removeClass("active");
+
+		el.addClass("active");
+
+		if ( el.hasClass("km-tarjeta") ) {
+			jQuery("#tipo_pago").val("tarjeta");
+			jQuery("#tipo_pago").change();
+		}
+
+		if ( el.hasClass("km-tienda") ) {
+			jQuery("#tipo_pago").val("tienda");
+			jQuery("#tipo_pago").change();
+		} 
+		
+		if(typeof calcularDescuento === 'function') {
+			calcularDescuento();
+		}
+	});
+
 	/* Configuración Openpay */
 
-		OpenPay.setId('mae56tbxscnuqozgio7b');
-	    OpenPay.setApiKey('pk_ade086de44594d1187aeab6e824b2ffd');
+		OpenPay.setId( OPENPAY_TOKEN );
+	    OpenPay.setApiKey(OPENPAY_PK);
 	    OpenPay.setSandboxMode(true);
 
 	    var deviceSessionId = OpenPay.deviceData.setup("reservar", "deviceIdHiddenFieldName");
@@ -641,31 +1059,45 @@ jQuery(document).ready(function() {
 	    };
 
 	    var error_callbak = function(response) {
-	        var desc = response.data.description != undefined ? response.data.description : response.message;
+	        var desc = (response.data.description != undefined) ? response.data.description : response.message;
 	        jQuery(".errores_box").css("display", "block");
 	        error = "";
+
+			jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
+			jQuery("#reserva_btn_next_3").removeClass("disabled");
+
+			var errores_txt = {
+				"card_number is required": "N&uacute;mero de tarjeta requerido",
+				"card_number length is invalid": "Longitud del N&uacute;mero de tarjeta invalido",
+				"holder_name is required": "Nombre del tarjetahabiente requerido",
+				"expiration_month 00 is invalid": "Mes de expiraci&oacute;n invalido",
+				"valid expirations months are 01 to 12": "Mes de expiraci&oacute;n debe ser entre 01 y 12",
+				"expiration_year expiration_month is required": "A&ntilde;o y Mes de expiraci&oacute;n requeridos",
+				"The CVV2 security code is required": "C&oacute;digo de seguridad requerido",
+				"cvv2 length must be 3 digits": "El c&oacute;digo de seguridad debe ser de 3 digitos"
+			};
+
+			console.log( response );
+
 	        switch( response.status ){
 	        	case 422:
-	        		error = "Numero de tarjeta invalido";
+	        		error += "<div> Numero de tarjeta invalido </div>";
 	        	break;
 	        	case 400:
-	        		switch( desc ){
-	        			case "cvv2 length must be 3 digits":
-	        				error = "Codigo invalido, debe ser de 3 digitos";
-	        			break;
-	        			case "The expiration date has already passed":
-	        				error = "Fecha de expirancion invalida";
-	        			break;
-	        		}
+	        		descripciones = desc.split(", ");
+	        		jQuery.each(descripciones, function( index, item ) {
+	        			if( errores_txt[item] != undefined ){
+	        				error += "<div> "+errores_txt[item]+" </div>";
+	        			}
+					});
 	        	break;
 	        	default:
-	        		error = "Error al procesar su solicitud ("+response.status+")";
+	        		error += "Error al procesar su solicitud ("+response.status+")";
 	        	break;
 	        }
 
-	        jQuery(".invalido").html(error);
-			jQuery(".valido").css("display", "none");
-			jQuery(".invalido").css("display", "block");
+	        jQuery(".errores_box").html(error);
+			jQuery(".errores_box").css("display", "block");
 	    };
 
    	/* Fin Configuración Openpay */

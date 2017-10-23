@@ -55,6 +55,9 @@
                     ";
                 break;
 	        }
+
+            echo kmimos_style($styles = array("no_update"));
+
 	    }
 	}
 
@@ -87,13 +90,14 @@
 	    }
 	}
 
-	if(!function_exists('kmimos_mails_administradores')){
-	    function kmimos_mails_administradores(){
-
-            return $headers;
-
-	    }
-	}
+	if(!function_exists('kmimos_mails_administradores_new')){       
+        function kmimos_mails_administradores_new($titulo, $mensaje){     
+      
+            wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje);        
+            wp_mail( "i.cocchini@kmimos.la", $titulo, $mensaje);        
+        
+        }     
+    }
 
     if(!function_exists('vlz_servicios')){
         function vlz_servicios($adicionales, $is_data = false){
@@ -153,7 +157,7 @@
                                 case 'limpieza_dental':
                                     if( $value > 0){
                                         $data[] = array(
-                                            "img" => "icon-sello-4.svg",
+                                            "img" => "icon-sello-5.svg",
                                             "titulo" => "Limpieza Dental"
                                         );
                                     }
@@ -215,7 +219,7 @@
                                 break;
                                 case 'limpieza_dental':
                                     if( $value > 0){
-                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-4.svg' height='40' title='Limpieza Dental'> ";
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-5.svg' height='40' title='Limpieza Dental'> ";
                                     }
                                 break;
                                 case 'acupuntura':
@@ -239,14 +243,6 @@
         function servicios_adicionales(){
 
             $extras = array(
-                'corte' => array( 
-                    'label'=>'Corte de Pelo y Uñas',
-                    'icon' => 'peluqueria'
-                ),
-                'bano' => array( 
-                    'label'=>'Baño y Secado',
-                    'icon' => 'bano'
-                ),
                 'transportacion_sencilla' => array( 
                     'label'=>'Transporte Sencillo',
                     'icon' => 'transporte'
@@ -254,6 +250,14 @@
                 'transportacion_redonda' => array( 
                     'label'=>'Transporte Redondo',
                     'icon' => 'transporte2'
+                ),
+                'corte' => array( 
+                    'label'=>'Corte de Pelo y Uñas',
+                    'icon' => 'peluqueria'
+                ),
+                'bano' => array( 
+                    'label'=>'Baño y Secado',
+                    'icon' => 'bano'
                 ),
                 'visita_al_veterinario' => array( 
                     'label'=>'Visita al Veterinario',
@@ -286,24 +290,23 @@
             $user = new WP_User( $user_id );
             if( $user->roles[0] == "vendor" ){
                 $id = $wpdb->get_var("SELECT id FROM cuidadores WHERE user_id = {$user_id}");
-                $sub_path = "cuidadores/avatares/miniatura/{$id}/";
                 $sub_path = "cuidadores/avatares/{$id}/";
             }else{
                 $sub_path = "avatares_clientes/{$user_id}/";
             }
 
-
             $name_photo = get_user_meta($user_id, "name_photo", true);
             if( empty($name_photo)  ){ $name_photo = "0"; }
-            if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg";  }
+            
+            if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= ".jpg"; }
+            
             $base = path_base();
-
 
             if( file_exists($base."/wp-content/uploads/{$sub_path}{$name_photo}") ){
                 $img = get_home_url()."/wp-content/uploads/{$sub_path}{$name_photo}";
             }else{
-                if( file_exists($base."/wp-content/uploads/{$sub_path}0.jpg") ){
-                    $img = get_home_url()."/wp-content/uploads/{$sub_path}0.jpg";
+                if( file_exists($base."/wp-content/uploads/{$sub_path}/0.jpg") ){
+                    $img = get_home_url()."/wp-content/uploads/{$sub_path}/0.jpg";
                 }else{
                     $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
                 }
@@ -685,6 +688,32 @@
                             font-weight: 600 !important;
                             font-size: 10px !important;
                         }                    
+                    ";
+                }
+
+                if( in_array("no_update", $styles) ){
+                    $salida .= "
+                        .update-nag,
+                        .updated,
+                        .wc_plugin_upgrade_notice,
+                        .update-message,
+                        .menu-icon-dashboard .wp-submenu,
+                        .upgrade {
+                            display: none !important;
+                        }   
+
+                        .plugins .active.update td,
+                        .plugins .active.update th, 
+                        tr.active.update+tr.plugin-update-tr .plugin-update,
+                        .plugins .active td, .plugins .active th{
+                            background: #FFF !important;
+                        }
+
+                        .plugins .active.update th.check-column, .plugins .active.update+.plugin-update-tr .plugin-update,
+                        .plugin-update-tr.active td, .plugins .active th.check-column {
+                            border-left: 4px solid #ffffff !important;
+                        }    
+
                     ";
                 }
 

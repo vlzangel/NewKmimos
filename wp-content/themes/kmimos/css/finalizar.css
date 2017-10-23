@@ -26,3 +26,64 @@
 .bg-white-secondary a{
     color: #000 !important;
 }
+
+.btn_fin_reserva{
+    background: #7dd1c4;
+    color: #6b1c9b;
+    display: block;
+    font-weight: 700;
+    font-size: 17px;
+    text-align: center;
+    line-height: 55px;
+    margin-top: 30px;
+    max-width: 500px;
+    margin: 0px auto 10px;
+    width: 100%;
+    text-decoration: none !important;
+}
+
+.desglose_reserva{
+    max-width: 500px;
+    font-size: 13px;
+    display: block;
+    margin: 20px auto 0px;
+}
+
+.desglose_reserva > div {
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
+.desglose_reserva > div > div {
+    float: left;
+    font-weight: 400;
+    width: 50%;
+    text-align: left;
+}
+
+
+.desglose_reserva > div > span {
+    float: right;
+    font-weight: 600;
+}
+
+.desglose_reserva .remanente{
+    color: #9a279a;
+}
+
+.desglose_reserva .border_desglose{
+    border-bottom: solid 1px #777;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
+
+.desglose_reserva .border_total{
+    border-top: solid 1px #777;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
+
+
+.desglose_reserva .border_total *{
+    font-size: 15px !important;
+}

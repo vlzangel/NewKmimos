@@ -1,12 +1,3 @@
-function vlz_galeria_ver(url){
-	// jQuery('.vlz_modal_galeria_interna').css('background-image', 'url('+url+')');
-	// jQuery('.vlz_modal_galeria').css('display', 'table');
-}
-function vlz_galeria_cerrar(){
-	// jQuery('.vlz_modal_galeria').css('display', 'none');
-	// jQuery('.vlz_modal_galeria_interna').css('background-image', '');
-}
-
 var map_cuidador;
 function initMap() {
 	var latitud = lat;
@@ -35,9 +26,22 @@ function initMap() {
 	e.parentNode.insertBefore(map, e);
 })(document,"script");
 
-var comentarios_cuidador = [];
 
+jQuery(document).on("click", '.show-map-mobile', function ( e ) {
+	e.preventDefault();
+	jQuery(".km-map-content").addClass("showMap");
+	initMap();
+});
+
+jQuery(document).on("click", '.km-map-content .km-map-close', function ( e ) {
+	e.preventDefault();
+	jQuery(".km-map-content").removeClass("showMap");
+});
+
+var comentarios_cuidador = [];
 function comentarios(pagina = 0){
+	var bond_total=0;
+	var bond_porcent=0;
 	var comentario = '';
 	jQuery.each(comentarios_cuidador, function( pagina, cuidador ) {
 		comentario += '	<div class="km-comentario">';
@@ -45,8 +49,8 @@ function comentarios(pagina = 0){
 		comentario += '				<div class="col-xs-2">';
 		comentario += '					<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
 		comentario += '				</div>';
-		comentario += '				<div class="col-xs-10">';
-		comentario += '					<p>'+comentarios_cuidador[pagina]["contenido"]+'</p>';
+		comentario += '				<div class="col-xs-9 pull-right">';
+		comentario += '					<p>'+ comentarios_cuidador[pagina]["contenido"]+'</p>';
 		comentario += '					<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
 		comentario += '					<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
 		comentario += '				</div>';
@@ -78,11 +82,40 @@ function comentarios(pagina = 0){
 		comentario += '			</div>';
 		comentario += '		</div>';
 		comentario += '	</div>';
+
+		var bond_testimony=0;
+			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["confianza"]);
+			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["limpieza"]);
+			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["puntualidad"]);
+			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["cuidado"]);
+
+		bond_total=bond_total+bond_testimony;
+
 	});
 
-	//console.log(comentario);
+	if( bond_total > 0 ){
+		bond_total=bond_total/(comentarios_cuidador.length*4);
+		bond_porcent=bond_total*(100/5);
 
-	jQuery("#comentarios_box").html( comentario );
+		var bond = '<div class="km-ranking">';
+			bond += get_huesitos(bond_total);
+			bond += '</div>';
+
+		jQuery("#comentarios_box").html( comentario );
+		jQuery(".km-review .km-calificacion").html( comentarios_cuidador.length );
+		jQuery(".km-review .km-calificacion-icono p").html( parseInt(bond_porcent)+'% Lo recomienda');
+		jQuery(".km-review .km-calificacion-bond").html(bond);
+	}else{
+		var bond = '<div class="km-ranking">';
+			bond += get_huesitos(bond_total);
+			bond += '</div>';
+
+		jQuery("#comentarios_box").html( comentario );
+		jQuery(".km-review .km-calificacion").html( comentarios_cuidador.length );
+		jQuery(".km-review .km-calificacion-icono p").html( bond_total+'% Lo recomienda');
+		jQuery(".km-review .km-calificacion-bond").html(bond);
+	}
+	
 }
 
 function get_huesitos(valor){
@@ -97,35 +130,26 @@ function get_huesitos(valor){
 }
 
 jQuery( document ).ready(function() {
-	jQuery.post(
-		HOME+"/procesos/cuidador/comentarios.php",
-		{
-			servicio: SERVICIO_ID
-		}, function(data){
-			comentarios_cuidador = data;
-			comentarios();
-		}, "json"
-	);
-
-	function perfil_login(accion){
-		//jQuery.cookie("POST_LOGIN", accion);
-		jQuery("#login").click();
-	}
-
-	jQuery( document ).ready(function() {
-	 //  	var POST_LOGIN = jQuery.cookie("POST_LOGIN");
-		// if( POST_LOGIN != undefined ){
-		// 	jQuery.removeCookie("POST_LOGIN");
-		// 	document.getElementById(POST_LOGIN).click();
-		// }
-	});
+	GetComments();
 
     jQuery("#btn_reservar").on("click", function(e){
-        perfil_login();
+        show_login_modal("login");
+//        perfil_login();
     });
 
     jQuery("#servicios").on("click", function(e){
         show_login_modal("servicios");
     });
+
+	jQuery('.km-galeria-cuidador-slider').bxSlider({
+	    slideWidth: 200,
+	    minSlides: 1,
+	    maxSlides: 3,
+	    slideMargin: 10
+	});
+
+	jQuery(".datepick td").on("click", function(e){
+		jQuery( this ).children("a").click();
+	});
 
 });

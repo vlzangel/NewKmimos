@@ -1,3 +1,4 @@
+
 .favoritos_container{
 	overflow: hidden;
 }
@@ -39,24 +40,7 @@
 .favoritos_item a.favoritos_content:hover h3{
 	color: #59c9a8;
 }
-.favoritos_delete{
-	position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    text-align: center;
-    padding: 5px;
-    font-size: 16px;
-    border-top: solid 1px #909090;
-    background: #909090;
-    color: #FFF;
-    border-radius: 0px 0px 3px 3px;
-    cursor: pointer;
-}
-.favoritos_delete:hover{
-    border-top: solid 1px #c72929;
-    background: #c72929;
-}
+
 .favoritos_vacio{
 	text-align: center;
 }
@@ -64,3 +48,4 @@
     display: block;
     margin: 0px auto;
 }
+

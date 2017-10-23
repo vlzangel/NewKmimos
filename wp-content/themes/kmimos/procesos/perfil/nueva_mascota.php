@@ -23,6 +23,8 @@
 	    $img_portada = "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'photo_pet', '{$sub_path}{$portada}'); ";
 	}
 
+	$pet_birthdate = date('Y-m-d', strtotime( str_replace("/", "-", $pet_birthdate)));
+
 	$sql  = "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'name_pet', '{$pet_name}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'breed_pet', '{$pet_breed}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'colors_pet', '{$pet_colors}'); ";

@@ -3,9 +3,12 @@
 class Reservas {
     
     private $db;
-    private $data;
 
+    public $servicio;
+    public $data;
+    public $reserva;
     public $sql;
+    public $user_id;
 
     function Reservas($db, $data){
         $this->db = $db;
@@ -19,6 +22,8 @@ class Reservas {
         $this->new_item();
 
         extract($this->data);
+
+        $this->user_id = $cliente;
 
         $sql = "
             INSERT INTO
@@ -53,8 +58,6 @@ class Reservas {
 
         $this->data["id_reserva"] = $this->db->insert_id();
 
-
-
         $this->create_metas_reserva();
 
         $this->update_item();
@@ -72,6 +75,8 @@ class Reservas {
 
     function create_metas_reserva(){
         extract($this->data);
+
+        $this->servicio = $servicio;
         
         $sql = "
             INSERT INTO wp_postmeta VALUES
@@ -196,7 +201,7 @@ class Reservas {
         }
 
         $adicionales = "";
-        foreach ($this->data["adicionales"] as $key => $value) {
+        foreach ($this->data["adicionales"] as $value => $key) {
             $adicionales .= "(NULL, '{$id_item}', '{$key}', '{$value}'),";
         }
 
@@ -239,6 +244,8 @@ class Reservas {
 
     function aplicarCupones($order, $cupones){
 
+        if( !isset($_SESSION)){ session_start(); }
+
         foreach ($cupones as $key => $cupon) {
             $this->db->query( utf8_decode( "INSERT INTO wp_woocommerce_order_items VALUES (NULL, '{$cupon[0]}', 'coupon', '{$order}');" ) );
             $id_item = $this->db->insert_id();
@@ -248,9 +255,38 @@ class Reservas {
                     (NULL, '{$id_item}', 'discount_amount',     '{$cupon[1]}'),
                     (NULL, '{$id_item}', 'discount_amount_tax', '0');
             ";
+
             $this->db->multi_query( utf8_decode($sql) );
 
-            // TODO: Agregar meta de uso de cupon
+            $id_seccion = 'MR_'.$this->servicio."_".md5($this->user_id);
+
+            $xsaldo = $this->db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id='{$this->user_id}' AND meta_key='kmisaldo'");
+            $saldo = $xsaldo;
+            if( strpos($cupon[0], "saldo") !== false  ){
+                if( isset($_SESSION[$id_seccion] ) ){
+
+                    $saldo_temporal = $saldo+$_SESSION[$id_seccion]['saldo_temporal'];
+                    if( $cupon[1] < $saldo_temporal ){
+                        $saldo = $saldo_temporal-$cupon[1];
+                    }else{
+                        $saldo = 0;
+                    }
+
+                }else{
+                    $saldo -= $cupon[1];
+                    if( $saldo < 0){ $saldo = 0; }
+                }
+
+                if( $xsaldo === false ){
+                    $this->db->query("INSERT INTO wp_usermeta VALUES (NULL, {$this->user_id}, 'kmisaldo', '{$saldo}');");
+                }else{
+                    $this->db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$this->user_id} AND meta_key = 'kmisaldo';");
+                }
+
+            }else{
+                $id_cupon = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title='{$cupon[0]}' AND post_type='shop_coupon'");
+                $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', '_used_by', '{$this->user_id}');" ) );
+            }
         }
 
     }

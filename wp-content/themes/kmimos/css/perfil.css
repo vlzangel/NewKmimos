@@ -1,13 +1,14 @@
 .vlz_img_portada_perfil{ position: relative; height: 450px; overflow: hidden; border: solid 1px #ccc; background: #EEE; margin: 0px 5px 10px; }
 .body{
 	position: relative;
-	overflow: hidden;
 }
 .menu_perfil{
 	float: left;
 	width: 220px;
 	box-sizing: border-box;
 	padding: 5px;
+    position: relative;
+    top: -85px;
 }
 
 .menu_perfil ul{    
@@ -21,6 +22,7 @@
 .menu_perfil ul li a{
 	display: block;
     padding: 10px 0px;
+    text-decoration: none;
 }
 .menu_perfil ul li a i:before{
 	margin-right: 5px;
@@ -96,6 +98,7 @@
 	    font-weight: 400;
 	    border-radius: 5px;
 	    margin: 2px;
+	    font-size: 12px;
 	}
 
 	.lbl-ui input:focus,
@@ -141,6 +144,39 @@
 		background-position: center; 
 		background-repeat: no-repeat; 
 		background-color: transparent;
+	}
+
+	.btn_rotar{
+		position: absolute;
+	    bottom: 10px;
+	    left: 10px;
+	    width: auto;
+	    padding: 5px 10px;
+	    font-size: 16px;
+	    color: #FFF;
+	    background: #23475e;
+	    border: solid 1px #fff;
+	    z-index: 200;
+	    cursor: pointer;
+	}
+
+	#rotar_d{
+	    left: 50px;
+	}
+
+	.btn_aplicar_rotar{
+		width: auto;
+		padding: 10px;
+		font-size: 12px;
+		color: #FFF;
+		background: #23475e;
+		border: solid 1px #fff;
+		z-index: 200;
+		cursor: pointer;
+	}
+
+	.btn_aplicar_rotar_inactivo{
+	    background: #949494 !important;
 	}
 
 	section {

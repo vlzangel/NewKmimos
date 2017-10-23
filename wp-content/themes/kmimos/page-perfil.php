@@ -30,10 +30,12 @@
 				case 'historial':
 					$mostrar_btn = false;
 					wp_enqueue_style('ver_historial', getTema()."/css/ver_historial.css", array(), '1.0.0');
+					wp_enqueue_style('ver_historial_responsive', getTema()."/css/responsive/ver_historial_responsive.css", array(), '1.0.0');
 				break;
 				case 'reservas':
 					$mostrar_btn = false;
 					wp_enqueue_style('ver_historial', getTema()."/css/ver_historial.css", array(), '1.0.0');
+					wp_enqueue_style('ver_historial_responsive', getTema()."/css/responsive/ver_historial_responsive.css", array(), '1.0.0');
 				break;
 				case 'solicitudes':
 					$mostrar_btn = false;
@@ -84,15 +86,12 @@
 			wp_enqueue_script('servicios', getTema()."/js/servicios.js", array("jquery", "global_js"), '1.0.0');
 		break;
 		case 'disponibilidad':
+			$mostrar_btn = false;
 		    wp_enqueue_style('disponibilidad', getTema()."/css/disponibilidad.css", array(), '1.0.0');
 			wp_enqueue_style('disponibilidad_responsive', getTema()."/css/responsive/disponibilidad_responsive.css", array(), '1.0.0');
 
-			wp_enqueue_style('jquery_datepick', getTema()."/css/datapicker/jquery.datepick.css", array(), '1.0.0');
-			/*
-				<link href='".get_home_url()."/wp-content/themes/pointfinder/datapicker/jquery.datepick.css' rel='stylesheet'>
-   			 	<script src='".get_home_url()."/wp-content/themes/pointfinder/datapicker/jquery.datepick.js'></script>
-			*/
-			wp_enqueue_script('jquery_datepick', getTema()."/js/datapicker/jquery.datepick.js", array("jquery", "global_js"), '1.0.0');
+			wp_enqueue_style('jquery_datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), '1.0.0');
+			wp_enqueue_script('jquery_datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery", "global_js"), '1.0.0');
 
 			wp_enqueue_script('disponibilidad', getTema()."/js/disponibilidad.js", array("jquery", "global_js", "jquery_datepick"), '1.0.0');
 		break;
@@ -127,7 +126,7 @@
 		$img_perfil = kmimos_get_foto($user_id, true);
 		$avatar = $img_perfil["img"];
 
-		echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';
+		include( "procesos/funciones/funciones_perfil.php");
 
 		switch ( $post->post_name ) {
 			case 'perfil-usuario':
@@ -219,7 +218,9 @@
 		}
 
 		$HTML = '
-			<script> var RUTA_IMGS = "'.get_home_url().'/imgs"; </script>
+	 		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
+				<div class="overlay"></div>
+			</div>
 			<div class="body km-content-reservation">
 				<div class="menu_perfil">
 					<div class="vlz_img_portada">
@@ -229,7 +230,6 @@
 					<ul>
 						'.$MENU["body"].'
 					</ul>
-					<!-- Page: '.$post->post_name.' -->
 				</div>
 				<div class="main">
 					<form id="form_perfil" autocomplete="off">

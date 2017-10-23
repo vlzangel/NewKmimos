@@ -38,6 +38,17 @@
 
                 // Ubicacion
                 // $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
+
+                if( $latitud == "" || $longitud == "" ){
+                    $coordenadas = $db->get_var( "SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipio}' " );
+                    if( $coordenadas !== false ){
+                        $coordenadas = unserialize($coordenadas);
+                        $latitud  = $coordenadas["referencia"]->lat;
+                        $longitud = $coordenadas["referencia"]->lng;
+                    }
+                }
+
+
                 $sql = "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '={$estado}=', '={$municipio}=')";
                 $db->query( $sql );
 
@@ -48,7 +59,7 @@
                 if($vlz_img_perfil != ""){
                     $foto = 1;
                     $dir = realpath( "../../../../" )."/uploads/cuidadores/avatares/".$cuidador_id."/";
-                    @mkdir($dir, 0777, true);
+                    @mkdir($dir);
 
                     $path_origen = realpath( "../../../../../" )."/imgs/Temp/".$vlz_img_perfil;
                     $path_destino = $dir.$vlz_img_perfil;
@@ -56,61 +67,34 @@
                         if( copy($path_origen, $path_destino) ){
                             unlink($path_origen);
                         }
-                        $foto = 1;
-                        $sql = ("
-                            INSERT INTO wp_posts VALUES (
-                                NULL,
-                                '".$user_id."',
-                                '".$hoy."',
-                                '".$hoy."',
-                                '',
-                                '',
-                                '',
-                                'inherit',
-                                'closed',
-                                'closed',
-                                '',
-                                '',
-                                '',
-                                '',
-                                '".$hoy."',
-                                '".$hoy."',
-                                '',
-                                '0',
-                                'http://qa.kmimos.la/kmimos/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg',
-                                '0',
-                                'attachment',
-                                'image/jpeg',
-                                '0'
-                            );
-                        ");
-                        $d = $db->query( $sql );
-                        $img_id = $conn->insert_id;
-                        $sql = "INSERT INTO wp_postmeta VALUES (NULL, ".$img_id.", '_wp_attached_file', 'cuidadores/avatares/".$cuidador_id."/0.jpg');";
-                        $db->query( utf8_decode( $sql ) );
                     }
                 }
                 // Update metas de usuario
                 $sql = "
                     INSERT INTO wp_usermeta VALUES
                         (NULL, ".$user_id.", 'user_address',        '".$direccion."'),
+                        (NULL, ".$user_id.", 'description',         '".$descripcion."'),
                         (NULL, ".$user_id.", 'user_photo',          '".$img_id."'),
                         (NULL, ".$user_id.", 'name_photo',          '".$vlz_img_perfil."');
                     ";
                 $db->query( utf8_decode( $sql ) );
+
+                $direccion = utf8_decode( $direccion );
+                $descripcion = utf8_decode( $descripcion );
 
                 $cuidador_update = "
                     UPDATE cuidadores 
                     SET 
                         descripcion = '{$descripcion}',
                         direccion = '{$direccion}',
-                        num_mascotas = {$num_mascota},
-                        latitud = '{$latitude}',
-                        longitud = '{$longitude}',
+                        num_mascotas = 0,
+                        mascotas_permitidas = {$num_mascota},
+                        latitud = '{$latitud}',
+                        longitud = '{$longitud}',
                         portada = {$foto}
                     WHERE email = '{$email}'
                 ";
-                $r = $db->query($cuidador_update);
+                $r = $db->query( $cuidador_update );
                 $error = array(
                     "error" => "NO",
                     "msg" => '',

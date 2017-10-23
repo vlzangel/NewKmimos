@@ -1,11 +1,16 @@
 <?php
-	include("../../../../../vlz_config.php");
-	include("../funciones/db.php");
-	include("../funciones/generales.php");
 
-	$conn = new mysqli($host, $user, $pass, $db);
-	$db = new db($conn);
+//$conn = new mysqli($host, $user, $pass, $db);
+//$db = new db($conn);
 
+	$load = realpath('../../../../../wp-load.php');
+	if(file_exists($load)){
+		include_once($load);
+	}
+
+	include_once(realpath('../../../../../vlz_config.php'));
+	include_once(dirname(__DIR__).'/funciones/db.php');
+	include_once(dirname(__DIR__).'/funciones/generales.php');
 	extract($_POST);
 
 	$sql = "
@@ -30,22 +35,20 @@
 		ORDER BY comentario.comment_ID DESC
 	";
 
-	$comentarios = $db->get_results($sql);
-
 	$resultado = array();
-
+	$comentarios = $wpdb->get_results($sql);
 	foreach ($comentarios as $comentario) {
 
-		$user_id = $db->get_var("SELECT ID FROM wp_users WHERE user_email = '{$comentario->cliente_email}' ");
+		$user_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$comentario->cliente_email}' ");
 
 		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 	    $inicio = strtotime( $comentario->fecha );
 	    $fecha = date('d', $inicio)." ".$meses[date('n', $inicio)-1]. ", ".date('Y', $inicio) ;
 
 		$resultado[] = array(
-			"cliente"	=> utf8_encode($comentario->cliente),
+			"cliente"	=> ($comentario->cliente),
 			"img"	=> kmimos_get_foto($user_id),
-			"contenido" => utf8_encode($comentario->contenido),
+			"contenido" => ($comentario->contenido),
 			"fecha" => ($fecha),
 			"puntualidad" => ($comentario->puntualidad_valor),
 			"confianza" => ($comentario->confianza_valor),

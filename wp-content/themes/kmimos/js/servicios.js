@@ -50,6 +50,9 @@ jQuery( document ).ready(function(){
 			jQuery(".perfil_cargando").css("display", "inline-block");
        	}, 
        	function( data ) {
+
+       		console.log( data );
+
 			jQuery("#btn_actualizar").val("Actualizar");
 			jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");

@@ -1,4 +1,6 @@
 <?php
+/*wp_enqueue_script('index.js', getTema()."/js/index.js", array("jquery"), '1.0.0');*/
+
 $datos = kmimos_get_info_syte();
 	$HTML .='
 		<!-- POPUP INICIAR SESIÓN -->
@@ -9,26 +11,31 @@ $datos = kmimos_get_info_syte();
 					<div class="popup-iniciar-sesion-1">
 						<p class="popup-tit">INICIAR SESIÓN</p>
 						
-						<form id="form_login">
+						<form id="form_login" autocomplete="off">
 							<div class="km-box-form">
 								<div class="content-placeholder">
 									<div class="label-placeholder">
 										<!-- <label>Correo electrónico</label>-->
-										<input type="text" id="usuario" placeholder="Correo El&eacute;ctronico" class="input-label-placeholder">
+										<input type="text" id="usuario" placeholder="Usuario &oacute; Correo El&eacute;ctronico" class="input-label-placeholder">
 									</div>
 									<div class="label-placeholder">
 										<!--<label>Contraseña</label>-->
-										<input type="password" id="clave" placeholder="Contraseña" class="input-label-placeholder">
+										<input type="password" id="clave" placeholder="Contraseña" class="input-label-placeholder" autocomplete="off">
 									</div>
 								</div>
 							</div>
+							<input type="submit" name="enviar" class="hidden">
 							<a href="#" id="login_submit" class="km-btn-basic">INICIAR SESIÓN AHORA</a>
+
 							<div class="row km-recordatorio">
 								<div class="col-xs-12 col-sm-4">
+
 									<div class="km-checkbox">
-										<input type="checkbox" value="None" id="km-checkbox" name="check" checked/>
-										<label for="km-checkbox"></label>
+										<input type="checkbox" value="active" id="km-checkbox" name="check" checked/>
+										<label for="km-checkbox">
+										</label>
 									</div>
+
 								</div>
 							</form>
 
@@ -36,33 +43,29 @@ $datos = kmimos_get_info_syte();
 								<a href="#" class="km-btn-contraseña-olvidada">¿OLVIDASTE TU CONTRASEÑA?</a>
 							</div>
 						</div>
-						<div class="line-o">
+						<div class="line-o hidden">
 							<p class="text-line">o</p>
 							<div class="bg-line"></div>
 						</div>
 						
+						<div class="alert alert-danger" style="
+							display:none;
+				            -webkit-transition: All 1s; /* Safari */
+				            transition: All 1s;" 
+							data-error="auth"></div>
 
-						<a href="javascript:;" onClick="auth_facebook();" class="km-btn-fb">
-							<img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">
+						<a href="#" onClick="auth_facebook();" class="km-btn-fb hidden">
+							<img src="'.getTema().'/images/new/icon/km-redes/icon-fb-blanco.svg">
 							 CONÉCTATE CON FACEBOOK
 						</a>
 
-						<a href="#" class="google_login km-btn-border">
-							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
+						<a href="#" class="google_login km-btn-border hidden">
+							<img src="'.getTema().'/images/new/icon/km-redes/icon-gmail.svg">
 							CONÉCTATE CON GOOGLE
 						</a>
-
-						<a href="#" class="hidden km-btn-fb" onclick="login_facebook();">
-							CONÉCTATE CON FACEBOOK
-						</a>
-						<a href="#" class="hidden km-btn-border" id="customBtn">
-							CONÉCTATE CON GOOGLE
-						</a>
-
 						
-						
-						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (55) 6892-2182</p>
+						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
+						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (55) 6892-2182</p>
 						<hr>
 						<div class="row">
 							<div class="col-xs-12 col-sm-5">
@@ -70,7 +73,7 @@ $datos = kmimos_get_info_syte();
 								<p>REGÍSTRATE AHORA - Es Gratis</p>
 							</div>
 							<div class="col-xs-12 col-sm-7">
-								<a href="#myModal" class="modal_show km-btn-border"  data-modal="#myModal"><b>REGÍSTRATE</b></a>
+								<a data-target="#popup-registrarte" class="modal_show km-btn-border" ><b>REGÍSTRATE</b></a>
 							</div>
 						</div>
 					</div>
@@ -81,11 +84,16 @@ $datos = kmimos_get_info_syte();
 							<div class="km-box-form">
 								<div class="content-placeholder">
 									<div class="label-placeholder verify" style="margin: 20px 0;">
-										<input type="text" id="usuario" data-verify="noactive" placeholder="Ingresar dirección de email"  maxlength="30" class="verify_mail input-label-placeholder" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+										<input type="email" id="usuario" data-verify="noactive" placeholder="Ingresar dirección de email"  maxlength="30" class="verify_mail input-label-placeholder">
 										<span class="verify_result"></span>
 									</div>
+									
 									<div class="botones_box">
-										<button type="submit" style=" outline: none; border: none; width: 100%;" id="login_submit" class="km-btn-basic recover_pass">ENVIAR CONTRASEÑA</button>
+										<button type="button" class="km-btn-basic" style=" outline: none; border: none; width: 100%;" id="recovery-clave">
+											ENVIAR CONTRASEÑA
+										</button>
+
+										<!-- button type="button" style=" outline: none; border: none; width: 100%;" id="recuperar_submit-1" class="km-btn-basic recover_pass">ENVIAR CONTRASEÑA</button -->
 									</div>
 									<div class="response"></div>
 								</div>

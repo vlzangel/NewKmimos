@@ -74,7 +74,8 @@
 	    	";
     	}
 
-    	if( $status_servicios[ $key ] == 'publish' ){
+		//if( $status_servicios[ $key ] == 'publish' ){
+		if(isset($precios_adicionales_cuidador['status_'.$key]) && $precios_adicionales_cuidador['status_'.$key]==1){
     		$boton = "<input type='button' value='Activado' class='vlz_activador km-btn-primary vlz_activado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='1' >";
     	}else{
     		$boton = "<input type='button' value='Desactivado' class='vlz_activador km-btn-primary vlz_desactivado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='0' >";
@@ -156,6 +157,7 @@
 	$CONTENIDO .= $stylos."
     	<input type='hidden' name='user_id' value='{$user_id}'>
     	<input type='hidden' name='accion' value='update_servicios'>
+        <h1 style='margin: 0px; padding: 0px;'>Mis servicios</h1><hr style='margin: 5px 0px 10px;'>
     	<div>
     		<div class='vlz_seccion'>
     			<div class='vlz_titulo_seccion container_btn'>Tamaños de Mascotas</div>

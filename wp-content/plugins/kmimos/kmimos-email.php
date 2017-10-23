@@ -31,7 +31,7 @@
                         <div class="wrap">
                             <div class="header">
                                 <a href="'.get_home_url().'">
-                                    <img src="'.get_home_url().'/wp-content/uploads/2016/02/logo-kmimos.png" alt="Logo Kmimos">
+                                    <img src="https://www.kmimos.com.mx/wp-content/uploads/2016/02/logo-kmimos.png" alt="Logo Kmimos">
                                 </a>
                             </div>';
             return $html;
@@ -69,7 +69,7 @@ if(!function_exists('kmimos_get_email_html')){
         $html .= '  <div class="content">'.$content.'</div>';
         $html .= '  <div class="gretting">';
         $html .= '      <span>'.$gretting.'</span><br>';
-        $html .= '      <img src="'.get_home_url().'/wp-content/uploads/2016/03/logo-kmimos_120x30.png" alt="Firma Kmimos">';
+        $html .= '      <img src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/logo-kmimos_120x30.png" alt="Firma Kmimos">';
         $html .= '  </div>';
 
         if($banners) $html .= kmimos_get_email_banners();
@@ -102,21 +102,21 @@ if(!function_exists('kmimos_get_email_banners')){
             <ul style="overflow: hidden; padding: 0px;">
                 <li style="float:left; margin: 5px; width: 48%; list-style: none;">
                     <a style="display: block;" href="http://www.booking.com/index.html?aid=1147066&lang=es">
-                        <img style="width: 100%;" src="'.get_home_url().'/wp-content/uploads/2016/03/Banner-ofertas-hoteles300x100.png" alt="Booking-Kmimos">
+                        <img style="width: 100%;" src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/Banner-ofertas-hoteles300x100.png" alt="Booking-Kmimos">
                     </a>
                 </li>
                 <li style="float:left; margin: 5px; width: 48%; list-style: none;">
-                        <img style="width: 100%;" src="'.get_home_url().'/wp-content/uploads/2016/03/Banner-accesorios300x100.png" alt="Accesorios-Mascotas">                    
+                        <img style="width: 100%;" src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/Banner-accesorios300x100.png" alt="Accesorios-Mascotas">                    
                 </li>
                 <li style="float:left; margin: 5px; width: 48%; list-style: none;">
                     <a style="display: block;" href="https://www.volaris.com/">
-                        <img style="width: 100%;" src="'.get_home_url().'/wp-content/uploads/2016/03/Banner-boletos-aereos300x100.png" alt="Boletos-aereos">
+                        <img style="width: 100%;" src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/Banner-boletos-aereos300x100.png" alt="Boletos-aereos">
                     </a>
                     
                 </li>
                 <li style="float:left; margin: 5px; width: 48%; list-style: none;">
                     <a style="display: block;" href="https://cabify.com/mexico/mexico-city">
-                        <img style="width: 100%;" src="'.get_home_url().'/wp-content/uploads/2016/03/Banner-transporte-mascotas300x100.png" alt="Transporte-Mascotas">
+                        <img style="width: 100%;" src="https://www.kmimos.com.mx/wp-content/uploads/2016/03/Banner-transporte-mascotas300x100.png" alt="Transporte-Mascotas">
                     </a>
                     
                 </li>
@@ -140,5 +140,98 @@ if(!function_exists('kmimos_get_email_footer')){
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+    if(!function_exists('get_email_html')){
+        
+        function get_email_html($content, $dudas = true){
+
+            $ayuda = "";
+            if( $dudas ){
+                $ayuda = "
+                    <div style='float:left;width:100%;margin-bottom: 31px;'>   
+                        <div style='text-align:center;'>
+                            <p style='font-family: Arial;font-weight: bold; font-size:12px; color:#B4B4B4; text-align: center; '>
+                                En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp +52 (55) 6892 2182, o al correo contactomex@kmimos.la
+                            </p>
+                            <div  style='clear:both;'></div>
+                        </div>
+                        <div  style='clear:both;'></div>
+                    </div>
+                ";
+            }
+
+            $html = "
+            <html>
+                <head>
+                    <style>
+                        p{ margin:0px; }
+                        a[id*='kmimos_container'] > div {
+                            max-width: 600px !important;
+                        }
+                        @media max-device-width: 480px {
+                            a[id*='kmimos_container'] > div {
+                                max-width: 400px !important;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div id='kmimos_container' style='font-family: Arial;'>
+                        <div style='margin: 0px auto; max-width: 600px; width: 100%;'>
+                            <div style='text-align:center;'>
+                                <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/bitmap.png' style='margin-bottom: 14px;' />
+                            </div>
+
+                            ".$content."
+
+                            <div style='text-align:center;'>
+                                
+                                ".$ayuda."
+
+                                <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #6b1c9b; margin-bottom: 10px;'>
+                                    CON LA CONFIANZA Y SEGURIDAD QUE NECESITAS
+                                </div>
+
+                                <img style='margin-bottom: 16px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/caracteristicas.png' >
+                                <img style='margin-bottom: 30px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/dog_footer.png' >
+
+                                <div style='background-color:#000000; color: #fff; display: table; width: 100%; height: 62px; font-size: 11px; letter-spacing: 0.2px; padding: 0px; box-sizing: border-box;'>
+
+                                    <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: left; padding-left: 30px;'>
+                                        <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png' style='height: 21px;'> 
+                                    </div>
+
+                                    <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; color: #FFF;'>
+                                        <a href='".get_home_url()."' style='color: #FFF; text-decoration: none;'>".$_SERVER['HTTP_HOST']."</a>
+                                    </div>
+
+                                    <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: right; padding-right: 30px;'>
+                                        <span style='display: inline-block; padding: 0px 5px 0px 0px;'>Síguenos en</span> <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png' style='margin-top: -2px;' align='center'>
+                                    </div>
+
+                                </div>
+
+                                <p style='text-align: center; font-family: Arial; font-size: 11px; line-height: 1.73; padding: 10px;'>
+                                    ¿Tienes dudas? | Contáctanos
+                                </p>
+                            </div>
+                        </div>      
+                    </div>
+                </body>
+            </html>";
+
+            return $html;
+        }
+    }
 
 ?>

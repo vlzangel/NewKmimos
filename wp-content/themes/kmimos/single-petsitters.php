@@ -4,6 +4,7 @@
 	wp_enqueue_style('perfil_cuidador_responsive', getTema()."/css/responsive/perfil_cuidador_responsive.css", array(), '1.0.0');
 
 	wp_enqueue_script('perfil_cuidadores', getTema()."/js/perfil_cuidadores.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 	get_header();
 
@@ -117,7 +118,7 @@
 
 	/* Galeria */
 	$id_cuidador = ($cuidador->id)-5000;
-	$path_galeria = "wp-content/uploads/cuidadores/galerias/miniatura/".$id_cuidador."/";
+	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
 	if( is_dir($path_galeria) ){
 
@@ -132,24 +133,25 @@
 
 	      	$cant_imgs = count($imagenes);
 	      	if( $cant_imgs > 0 ){
-	      		$items = array(); $home = get_home_url()."/";
+	      		$items = array(); 
+	      		$home = get_home_url()."/";
 	      		foreach ($imagenes as $value) {
 	      			$items[] = "
-	      				<div class='slide' data-scale='small' data-position='top' onclick=\"vlz_galeria_ver('".$home.$value."')\">
+	      				<div class='slide' data-scale='small' data-position='top'>
 	      					<div class='vlz_item_fondo' style='background-image: url(".$home.$value."); filter:blur(2px);'></div>
 	      					<div class='vlz_item_imagen' style='background-image: url(".$home.$value.");'></div>
 	      				</div>
 	      			";
+
 	      		}
 	      		$galeria = '
 	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
-						<div class="km-galeria-cuidador">
-							<div class="km-galeria-cuidador-slider">
-								'.implode("", $items).'
-							</div>
+					<div class="km-galeria-cuidador">
+						<div class="km-galeria-cuidador-slider">
+							'.implode("", $items).'
 						</div>
+					</div>
 	      		'.
-
 	      		"
 	      			<div class='vlz_modal_galeria' onclick='vlz_galeria_cerrar()'>
 	      				<div class='vlz_modal_galeria_interna'></div>
@@ -166,8 +168,14 @@
 	$precios_hospedaje = unserialize($cuidador->hospedaje);
 	$precios_adicionales = unserialize($cuidador->adicionales);
 
+ 
+
 	$id_hospedaje = 0;
-	$servicios = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' ");
+	$servicios = $wpdb->get_results("
+		SELECT * 
+			FROM wp_posts 
+			WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' 
+		");
 	$productos = '<div class="row">';
 	foreach ($servicios as $servicio) {
 		$tipo = $wpdb->get_var("
@@ -183,15 +191,16 @@
 
         $titulo = get_servicio_cuidador($tipo);
 
-        $tamanos = '';
+        $tamanos_precios = array();
         $precios = $precios_hospedaje;
         if( $tipo != "hospedaje" ){
-        	$precios = $precios_adicionales[$tipo];
+        	$precios = $precios_adicionales[ str_replace('-', '_',  $tipo) ];
         }else{
         	$id_hospedaje = $servicio->ID;
         }
 
-        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' AND post_status = 'publish' ");
+        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' ");// AND post_status = 'publish'
+
         foreach ($tamanos_servicio as $tamano ) {
         	$activo = false;
         	if( isset($busqueda["servicios"]) ){
@@ -204,15 +213,25 @@
 	        		$activo = true;
 	        	}
         	}
-        	$tamanos .= get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"]);
+
+        	$temp_tamanos = get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"],$tamano->post_status);
+
+        	$tamanos_precios[ $temp_tamanos[0] ] = $temp_tamanos[1];
+        }
+
+        $tamanos_txt = "";
+        foreach ($tamanos as $key => $value) {
+        	$tamanos_txt .= $tamanos_precios[$key];
         }
 		$productos .= '
 		<div class="col-xs-12 col-md-6">
-			<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="km-ficha-servicio">
-				'.$titulo.'
-				<p>SELECCIÓN SEGÚN TAMAÑO</p>
-				'.$tamanos.'
-			</a>
+			<div class="km-ficha-servicio">
+				<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="">
+					'.$titulo.'
+					<!--p>SELECCIÓN SEGÚN TAMAÑO</p-->
+					'.$tamanos_txt.'
+				</a>
+			</div>
 		</div>';
 	}
 
@@ -221,11 +240,12 @@
 	if(is_user_logged_in()){
 		include('partes/seleccion_boton_reserva.php');
 	}else{
-		$BOTON_RESERVAR .= "
-		<a href='#'
-			id='btn_reservar'
-			class='km-btn-secondary' 
-		>RESERVAR</a>";
+		$BOTON_RESERVAR .= '
+		<a href="javascript:;"
+			id="btn_reservar"
+			data-target="#popup-iniciar-sesion"
+			class="km-btn-secondary" 
+		>RESERVAR</a>';
 	}
 
  	$HTML .= '
@@ -233,7 +253,6 @@
  		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 			<div class="overlay"></div>
 		</div>
-		'.$cuidador->num_mascotas.'
 		<div class="km-ficha-info-cuidador">
 			<div class="container">
 				<div class="row">
@@ -250,13 +269,19 @@
 						</div>
 					</div>
 					<div class="km-costo hidden-xs">
-						<p>SERVICIOS DESDE</p>
-						<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
-						<div class="km-ficha-fechas">
-							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
-							<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="km-input-custom km-input-date date_to" readonly>
-						</div>
-						'.$BOTON_RESERVAR.'
+						<form id="form_cuidador" method="POST" action="'.getTema().'/procesos/reservar/redirigir_reserva.php">
+							<p>SERVICIOS DESDE</p>
+							<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
+							<div class="km-ficha-fechas">
+
+								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" value="" class="date_from" readonly>
+								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA" value="'.$busqueda["checkout"].'" value="" class="date_to" readonly>
+								
+								<small class="validacion_fechas">Debe seleccionar las fechas</small>
+
+							</div>
+							'.$BOTON_RESERVAR.'
+						</form>
 					</div>
 				</div>
 			</div>
@@ -400,7 +425,7 @@
 							</div>
 						</div>
 						<div class="km-ficha-datos hidden-sm hidden-md hidden-lg">
-							<a href="#" class="km-btn-primary show-map-mobile">VER UBICACIÓN EN MAPA</a>
+							<a href="javascript:;" class="km-btn-primary show-map-mobile">VER UBICACIÓN EN MAPA</a>
 						</div>
 						<p style="text-align: justify;">'.$descripcion.'</p>
 						'.$galeria.'
@@ -417,30 +442,33 @@
 				</div>
 			</div>
 		</div>
-
-		<div id="km-comentario" class="km-ficha-info">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-sm-offset-3 col-sm-6">
-						<div class="km-review">
-							<p class="km-tit-ficha">COMENTARIOS</p>
-							<div class="km-calificacion">4</div>
-							<div class="km-calificacion-icono">
-								<div>iconos</div>
-								<p>85% Lo recomienda</p>
-							</div>
-						</div>
-
-						<a href="#" class="km-btn-comentario">ESCRIBE UN COMENTARIO</a>
-
-						<div id="comentarios_box"> </div>
-					</div>
-				</div>
-			</div>
-		</div>
  	';
 
 	echo comprimir_styles($HTML);
-
-	get_footer(); 
 ?>
+
+<div id="km-comentario" class="km-ficha-info">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-offset-3 col-sm-6">
+				<div class="km-review">
+					<p class="km-tit-ficha">COMENTARIOS</p>
+					<div class="km-calificacion">0</div>
+					<div class="km-calificacion-icono">
+						<div class="km-calificacion-bond"></div>
+						<p>0% Lo recomienda</p>
+					</div>
+				</div>
+
+				<a href="javascript:;" class="km-btn-comentario" onclick="jQuery('.BoxComment').fadeToggle();">ESCRIBE UN COMENTARIO</a>
+				<div class="BoxComment"><?php comments_template('/template/comment.php'); ?></div>
+				<div id="comentarios_box"> </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<?php global $margin_extra_footer; ?>
+<?php $margin_extra_footer = "footer-petsitter"; ?>
+<?php get_footer(); ?>

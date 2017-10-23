@@ -1,12 +1,11 @@
 <?php
 
-    $load = dirname(__DIR__,5).'/wp-load.php';
-    if(file_exists($load)){
-        include_once($load);
-    }
+    
+    include(realpath("../../../../../wp-load.php"));
 
     header('Content-Type: application/json; charset=UTF-8;');
-global $_REQUEST;
+    global $_REQUEST;
+
     $fav_item = '';
     $fav_active = '';
     $results = array();
@@ -118,6 +117,8 @@ global $_REQUEST;
     }else{
         $results['user'] = 0;
     }
+
+    $results['user'] =  $cur_user;
 
     echo json_encode($results);
     die();

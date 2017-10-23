@@ -12,6 +12,11 @@ $array_backpanel = [
 	'bp_wlabel',
 	'bp_referidos_club_patitas_felices',
 	'bp_participantes_club_patitas_felices',
+	'bp_newsletter',
+ 	'bp_saldo_cuidadores',
+	'bp_saldo_cuidadores_detalle',
+	'bp_saldo_cuidadores_bookinkstart',
+	'bp_saldo_cupon',
 
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 
@@ -38,6 +43,8 @@ wp_enqueue_script( 'kmimos_script1', get_home_url()."/panel/assets/vendor/bootst
 wp_enqueue_script( 'kmimos_script2', get_home_url()."/panel/assets/vendor/datatables.net/js/jquery.dataTables.js",
 	array(), '1.0.0', true );
 wp_enqueue_script( 'kmimos_script3', get_home_url()."/panel/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js",
+	array(), '1.0.0', true );
+wp_enqueue_script( 'kmimos_script16', get_home_url()."/panel/assets/js/jszip.min.js",
 	array(), '1.0.0', true );
 wp_enqueue_script( 'kmimos_script4', get_home_url()."/panel/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js",
 	array(), '1.0.0', true );

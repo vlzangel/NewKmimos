@@ -28,9 +28,10 @@ function mail_validate($mail){
 
 
 $file='subscription.csv';
-$mail=$_POST['mail'];
+
 $mail=$_POST['mail'];
 $section=$_POST['section'];
+
 $mail_exist='';
 $datos=array();
 

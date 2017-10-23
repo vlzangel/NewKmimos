@@ -1,6 +1,8 @@
 <?php
-	$load = dirname(dirname(dirname(dirname(dirname(__DIR__))))).'/wp-load.php';
-	if(file_exists($load)){ include_once($load); }
+	$load = realpath('../../../../../wp-load.php');
+	if(file_exists($load)){
+		include_once($load);
+	}
 
 	extract($_POST);
 
@@ -41,7 +43,7 @@
 			echo json_encode(['status'=>'false', 'msg'=>'No se puede iniciar sesion']);
 		}
 	}else{
-		echo json_encode(['status'=>'false', 'msg'=>'Ningun usuario esta asociado a esta cuenta']);
+		echo json_encode(['status'=>'false', 'msg'=>'La cuenta no esta asociada a ningún usuario']);
 	}
 
 ?>

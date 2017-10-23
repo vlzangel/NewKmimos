@@ -3,41 +3,34 @@
 <div id="popup-registro-cuidador1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="redireccionar();" >×</button>
 			<div class="popup-registro-cuidador active">
 				
-				<a href="javascript:;" onClick="login_facebook();" class="km-btn-fb"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg">REGISTRARME CON FACEBOOK</a>
+				<a href="javascript:;" onClick="login_facebook();" class="km-btn-fb hidden"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg">REGISTRARME CON FACEBOOK</a>
 				
-				<a href="#"  id="registro_cuidador_google" class="google_auth km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg">REGISTRARME CON GOOGLE</a>
+				<a href="#"  id="registro_cuidador_google" class="google_auth km-btn-border hidden"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg">REGISTRARME CON GOOGLE</a>
 
-
-				<?php /* test login con redes sociales
-				<div class="row hidden">
-					
-					<div class="line-o">
-						<p class="text-line">o</p>
-						<div class="bg-line"></div>
-					</div>
-					<a href="javascript:;" onClick="auth_facebook();" class="km-btn-fb"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-fb-blanco.svg"> CONÉCTATE CON FACEBOOK</a>
-					<a href="#" class="google_login km-btn-border"><img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-gmail.svg"> CONÉCTATE CON GOOGLE</a>
+				<div class="alert alert-danger" style="
+			display:none;
+            -webkit-transition: All 1s; /* Safari */
+            transition: All 1s;
+			" 
+			data-error="auth"></div>
 				
-				</div>
-				*/ ?>
 
 
-				<div class="line-o">
+				<div class="line-o hidden">
 					<p class="text-line">o</p>
 					<div class="bg-line"></div>
 				</div>
 				<a href="#" data-target="social-next-step" class="km-btn-correo km-btn-popup-registro-cuidador">
 					<img src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail-blanco.svg">REGISTRARME POR CORREO ELECTRÓNICO
 				</a>
-				<p style="color: #979797">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
+				<p style="color: #979797">Al crear una cuenta, <a href="<?php echo get_home_url(); ?>/terminos-y-condiciones/">aceptas las condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> <?php echo $info['whatsapp']; ?></p></div>
-					<div class="col-xs-4"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
-					<div class="col-xs-4"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-cel.svg">(55) 6178 0320</p></div>
+					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> (55) 61780320</p></div>
+					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
 				</div>
 				<hr>
 				<div class="row">
@@ -50,32 +43,32 @@
 				</div>
 			</div>
 
-		<form id="vlz_form_nuevo_cuidador" style="padding-bottom: 0px;">
-			<input type="hidden" name="longitude" value="">
-			<input type="hidden" name="latitude"  value="">
+		<form id="vlz_form_nuevo_cuidador" style="padding-bottom: 0px;" autocomplete="off" method="POST">
 			<input type="hidden" name="google_auth_id"   class="social_google_id"	 value="">
 			<input type="hidden" name="facebook_auth_id" class="social_facebook_id"  value="">
 
 			<div class="popuphide popup-registro-cuidador-correo">
-				<p style="color: #979797; text-align: center;">Regístrate por 
+				
+				<p class="hidden" style="color: #979797; text-align: center;">Regístrate por 
 				<a href="javascript:;" onClick="login_facebook();">Facebook</a> o 
 				<a href="#" class="google_auth" >Google</a></a></p>
+
 				<h3 style="margin: 0; text-align: center;">Completa tus datos</h3>
 				<div class="km-box-form">
 					<div class="content-placeholder">
 						<div class="label-placeholder">
 							<label>Nombre</label>
-							<input type="text" data-charset="xlf" name="rc_nombres" value="" class="input-label-placeholder social_firstname" maxlength="20">
+							<input type="text" data-charset="xlf" id="rc_nombres" name="rc_nombres" value="" class="input-label-placeholder social_firstname solo_letras" maxlength="20">
 							<small data-error="rc_nombres" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Apellido</label>
-							<input type="text" data-charset="xlf" name="rc_apellidos" value="" class="input-label-placeholder social_lastname"  maxlength="20">
+							<input type="text" data-charset="xlf" name="rc_apellidos" value="" class="input-label-placeholder social_lastname solo_letras"  maxlength="20">
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>IFE/Documento de Identidad</label>
-							<input type="text"  maxlength="11" minlength="11" data-charset="num" name="rc_ife" value="" class="input-label-placeholder">
+							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -85,12 +78,12 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Crea tu contraseña</label>
-							<input type="password" data-clear name="rc_clave"  maxlength="50" value="" class="input-label-placeholder">
+							<input type="password" data-clear name="rc_clave"  maxlength="50" value="" class="input-label-placeholder" autocomplete="off">
 							<small data-error="rc_clave" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Teléfono</label>
-							<input type="text" name="rc_telefono" data-charset="num" minlength="7" maxlength="15" value="" class="input-label-placeholder">
+							<input type="text" name="rc_telefono" data-charset="num" minlength="10" maxlength="15" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -108,15 +101,21 @@
 				</div>
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-correo">SIGUIENTE</a>
 
-				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp  <?php echo $info['whatsapp']; ?></p>
+				<p style="color: #979797">Al crear una cuenta, <a href="<?php echo get_home_url(); ?>/terminos-y-condiciones/">aceptas las condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
+				
+				<p><b>Dudas escríbenos</b></p>
+				<div class="row">
+					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> (55) 61780320</p></div>
+					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
+				</div>
+
 				<hr>
 				<div class="row">
 					<div class="col-xs-5">
 						<p>¿Ya tienes una cuenta?</p>
 					</div>
 					<div class="col-xs-7">
-						<a href="#" class="km-btn-border"><b>INICIAR SESIÓN</b></a>
+						<a href="javascrip:;" data-modal="#popup-iniciar-sesion" class="modal_show km-btn-border"><b>INICIAR SESIÓN</b></a>
 					</div>
 				</div>
 			</div>
@@ -151,16 +150,31 @@
 				<h3 style="margin: 0;">Foto de perfil</h3>
 				<p style="color: #979797">Brinda a tus futuros amigos</p>
 
-				<a href="#" data-load='portada'>
+				<div class="img_registro_cliente" style="position: relative">
+					<div class="km-datos-foto vlz_rotar" id="perfil-img-a" style="background-image: url(<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg);">
+						<div id="loading-perfil" style="width:100%; height: 100%; display:none;" class="vlz_cargando">
+							<img src="<?php echo getTema(); ?>/images/new/bx_loader.gif">
+						</div>
+					</div>
+
+					<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+	                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
+
+	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
+
+	                <input type="hidden" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" class="vlz_rotar_valor">
+				</div>
+
+				<!-- <a href="#" data-load='portada' id="perfil-img-a" class="vlz_rotar">
 					<img class="img-circle" id="perfil-img" src="<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg">
 				</a>
 				<div class="kmimos_cargando" style="visibility: hidden;">
 					<span>Cargando...</span>
 				</div>
+				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div> -->
+				
 				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
-
             	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
-	            <input class="hidden" type="text" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="">
 
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
@@ -191,7 +205,7 @@
 				</div>
 				<h3 style="margin: 0;">Dirección</h5>
 				<p style="color: #979797">Queremos saber tu dirección actual</p>
-				<a href="#" class="km-btn-border">UBICACIÓN ACTUAL</a>
+				<a href="#" class="km-btn-border obtener_direccion">UBICACIÓN ACTUAL</a>
 				<div class="line-o">
 					<p class="text-line">o</p>
 					<div class="bg-line"></div>
@@ -224,9 +238,13 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Dirección</label>
-							<input type="text" name="rc_direccion" value="" class="input-label-placeholder">
+							<input type="text" id="rc_direccion" name="rc_direccion" value="" class="input-label-placeholder">
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
+
+						<input type="hidden" id="latitud" name="latitud" />
+						<input type="hidden" id="longitud" name="longitud" />
+
 					</div>
 				</div>
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-paso2">SIGUIENTE</a>
@@ -250,7 +268,7 @@
 					</ul>
 				</div>
 				<h3 style="margin: 0;"><span data-target="name"></span>,</h5>
-				<h3 style="margin: 0;">¡TE FALTA MUY POCO!</h5>
+				<h3 style="margin: 0 0 10px;">¡TE FALTA MUY POCO!</h5>
 				<p style="color: #979797">Llena tus datos para un mayor perfil en la Comunidad Kmimos</p>
 				<div class="km-block">
 					<div class="km-block-1">
@@ -285,7 +303,7 @@
 					<h2 style="font-size: 18px; color: white;">¡LISTO <span data-target="name"></span>!</h2>
 					<h2 style="font-size: 18px; color: white;">Recibimos con éxito tu solicitud para sumarte a la familia de Cuidadores Kmimos</h2>
 					<p style="font-size: 15px;">Completaste tu perfil perfectamente</p>
-					<a href="<?php echo get_home_url(); ?>/perfil-usuario/?ua=profile"  data-modal="#popup-iniciar-sesion" class="modal_show km-btn">VER MI PERFIL</a>
+					<a href="<?php echo get_home_url(); ?>/perfil-usuario/" class="km-btn" id="btn_iniciar_sesion" data-url="<?php echo get_home_url(); ?>/perfil-usuario/">VER MI PERFIL</a>
 				</div>
 			</div>
 		</form>

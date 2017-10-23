@@ -7,7 +7,7 @@
 }
 
 #mapa{
-    height: 400px;
+    height: 375px;
 }
 
 h1 a{
@@ -42,11 +42,138 @@ h1.maps {
 }
 .km-opciones.maps {
     width: 100%;
-    padding: 10px 0 0 0!important;
+    padding: 10px 0 0 0 !important;
     text-align: left;
 }
 #map .km-opciones .precio {
     color: #6a2499;
     font-size: 17px;
     text-align: left;
+}
+
+.km-valoraciones {
+    font-size: 10px;
+    padding: 5px 2px;
+}
+
+.km-resultados-lista .km-sellos {
+    padding-top: 5px !important;
+}
+
+#mapa-close{
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 5px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.km-titulo-mapa{
+    display: none;
+}
+
+.btnOpenPopupMap{
+    border-radius: 0px !important;
+}
+
+.km-leyenda{
+    display: block;
+    padding-bottom: 5px;
+}
+
+.filtros_aplicados{
+    padding: 5px 10px;
+    background: rgba(255, 190, 95, 0.4);
+    color: #000;
+    box-shadow: 1px 1px 1px #939393;
+}
+
+.filtros_aplicados li {
+    padding: 3px 0px;
+}
+.items_filtros {
+    overflow: hidden;
+}
+.items_filtros{
+    padding-left: 10px;
+}
+.items_filtros div {
+    float: left;
+    width: 50%;
+}
+.pocos_resultados{
+    padding-right: 20px !important; 
+    font-size: 21px !important; 
+    text-align: justify; 
+    margin: 10px 0px;
+}
+
+.km-select-custom-list{
+    position: relative;
+}
+
+#conoce_cuidador .km-datos-mascota {
+    line-height: 12px !important;
+}
+
+#conoce_cuidador small{
+    padding: 5px 0px 0px;
+}
+
+.popup-iniciar-sesion-2 {
+    text-align: center;
+    padding: 20px;
+}
+
+.popup-iniciar-sesion-2 img {
+    max-width: 100%;
+}
+
+.popup-iniciar-sesion-2 h2 {
+    padding: 25px 20px 20px;
+    margin: 0px;
+    color: #000;
+    font-size: 29px;
+}
+
+.btn_fin_reserva {
+    background: #7dd1c4;
+    color: #6b1c9b;
+    display: block;
+    font-weight: 700;
+    font-size: 17px;
+    text-align: center;
+    line-height: 55px;
+    margin-top: 30px;
+    max-width: 500px;
+    margin: 0px auto 10px;
+}
+
+.km-btn-basic {
+    text-decoration: none !important;
+}
+.disabled {
+    cursor: default;
+    background: rgba(0, 0, 0, .2) !important;
+}
+
+@media All and (max-width: 768px){
+    .zopim{
+        top:auto!important;
+        position: fixed!important;
+        bottom: 9%!important;
+    }
+}
+@media All and (max-width: 520px){
+    .zopim{
+        bottom: 10%!important;
+    }
+}
+
+@media all and (max-width: 768px) and (orientation: landscape ){
+    .zopim{
+        bottom: 15%!important;
+    }
 }

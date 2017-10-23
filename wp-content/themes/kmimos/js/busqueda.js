@@ -1,3 +1,202 @@
+jQuery(document).on('click', '.km-select-background-click',function(){
+	jQuery('.km-select-custom-list').css('display', 'none');
+	jQuery(".km-select-background-click").remove();
+});
+
+jQuery(document).on('click', '[data-target="checkbox"]', function(){
+	var obj = jQuery(this).parent().parent().parent().children('button');
+		obj.html( obj.attr('title') );
+	  
+	var l = jQuery(this).parent().parent().find('[type="checkbox"]:checked');
+	var contenido = '';
+	jQuery.each(l, function(i,v){
+		var value = jQuery(this).attr('content');	
+		if( l[i].checked ){
+			if(contenido.trim().indexOf( value ) == -1){
+				var separador = ( contenido != '' )? ', ':''; 
+				contenido = contenido+separador+value;
+				obj.html( contenido );
+			}
+		}
+	});
+});
+
+
+jQuery(document).ready(function(){
+
+	jQuery('.km-premium-slider').bxSlider({
+	    slideWidth: 200,
+	    minSlides: 1,
+	    maxSlides: 3,
+	    slideMargin: 10
+	});
+
+	jQuery(document).on("click", '.show-map-mobile', function ( e ) {
+		e.preventDefault();
+		jQuery(".km-map-content").addClass("showMap");
+	});
+
+	jQuery(document).on("click", '.km-map-content .km-map-close', function ( e ) {
+		e.preventDefault();
+		jQuery(".km-map-content").removeClass("showMap");
+	});
+
+	jQuery(".datepick td").on("click", function(e){
+		jQuery( this ).children("a").click();
+	});
+
+	function initCheckin(date, actual){
+        if(actual){
+            jQuery('#checkout').datepick({
+                dateFormat: 'dd/mm/yyyy',
+                defaultDate: date,
+                selectDefaultDate: true,
+                minDate: date,
+                onSelect: function(xdate) {
+                    if(typeof calcular === 'function') {
+                        calcular();
+                    }
+                },
+                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                firstDay: 1,
+                onmonthsToShow: [1, 1]
+            });
+        }else{
+            jQuery('#checkout').datepick({
+                dateFormat: 'dd/mm/yyyy',
+                minDate: date,
+                onSelect: function(xdate) {
+                    if(typeof calcular === 'function') {
+                        calcular();
+                    }
+                },
+                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                firstDay: 1,
+                onmonthsToShow: [1, 1]
+            });
+        }
+    }
+
+    jQuery('#checkin').datepick({
+        dateFormat: 'dd/mm/yyyy',
+        minDate: fecha,
+        onSelect: function(date1) {
+            var ini = jQuery('#checkin').datepick( "getDate" );
+            var fin = jQuery('#checkout').datepick( "getDate" );
+            if( fin.length > 0 ){
+                var xini = ini[0].getTime();
+                var xfin = fin[0].getTime();
+                if( xini > xfin ){
+                    jQuery('#checkout').datepick('destroy');
+                    initCheckin(date1[0], true);
+                }else{
+                    jQuery('#checkout').datepick('destroy');
+                    initCheckin(date1[0], false);
+                }
+            }else{
+                jQuery('#checkout').datepick('destroy');
+                initCheckin(date1[0], true);
+            }
+            if(typeof calcular === 'function') {
+                calcular();
+            }
+            if(typeof validar_busqueda_home === 'function') {
+                validar_busqueda_home();
+            }
+        },
+        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
+
+    jQuery('#checkout').datepick({
+        dateFormat: 'dd/mm/yyyy',
+        minDate: fecha,
+        onSelect: function(xdate) {
+            if(typeof calcular === 'function') {
+                calcular();
+            }
+        },
+        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
+
+    jQuery(".km-select-custom-list").on('click', function (e) {
+	    if ( 
+	    		( e.offsetX >= ( parseFloat(jQuery(this).outerWidth()) - 30 ) ) &&
+	    		( e.offsetY <= 30 )
+	    	)
+	    {
+	        var obj = jQuery(".km-select-custom-list").css('display', 'none');
+	        var obj = jQuery(".km-select-background-click").css('display', 'none');
+	    }
+	});
+
+});
+
+function resizeMap(){
+	if( jQuery( "body" ).width() > 975 && jQuery( "#mapa" ).hasClass("resize") ){
+		google.maps.event.trigger(map, 'resize');
+		map.setZoom(4);
+    	map.setCenter( new google.maps.LatLng(23.634501, -102.552784) );
+    	jQuery( "#mapa" ).removeClass("resize");
+
+    	jQuery(".km-caja-resultados .km-columna-der").fadeOut("fast");
+
+    	mapStatic();
+	}
+}
+
+function mapStatic(){
+	var w = jQuery(window);
+	if ( w.width() > 991 ) {
+		var scrollTop = w.scrollTop();
+		var mapPrin = jQuery(".km-caja-resultados");
+		var mapElem = jQuery(".km-caja-resultados .km-columna-der");
+		var offset = mapPrin.offset();
+		var topPre = 41;
+
+		if ( scrollTop > 290 ) {
+			mapElem.addClass("mapAbsolute");
+			var topSumar = scrollTop - offset.top + topPre;
+			mapElem.css({
+				top: topSumar
+			});
+		} else {
+			mapElem.removeClass("mapAbsolute");
+		}
+	}
+}
+
+jQuery(window).scroll(function() {
+
+	if( pines != undefined ){
+		if( pines.length > 1 ){
+			mapStatic();
+		}
+	}
+});
+jQuery('#mapa-close').on('click', function(){
+	jQuery("body").css("overflow", "auto");
+	jQuery(".km-caja-resultados .km-columna-der").fadeOut("fast", function(){
+		
+	});
+});
+
+jQuery(document).on('click', '.km-select-custom-button', function(){
+	var obj = jQuery(this).parent().find('ul');
+	if( obj.css('display') != 'none' ){
+		obj.css('display', 'none');
+	}else{
+		jQuery('.km-select-custom-list').css('display', 'none');
+		jQuery('body').append('<div class="km-select-background-click" style="top:0px;left:0px;position:fixed;width:100%;height:100vh;background:transparent;z-index:2;"></div>')
+		obj.css('z-index', '2');
+		obj.css('display', 'block');
+	}
+});
+
+
 function vlz_select(id){
 	if( jQuery("#"+id+" input").prop("checked") ){
 		jQuery("#"+id+" input").prop("checked", false);
@@ -46,15 +245,28 @@ function vlz_tipo_ubicacion(){
 	}
 }
 
+jQuery(document).on("click", '.btnOpenPopupMap', function ( e ) {
+	e.preventDefault();
+	jQuery("body").css("overflow", "hidden");
+	jQuery(".km-caja-resultados .km-columna-der").removeClass("mapAbsolute");
+	jQuery(".km-caja-resultados .km-columna-der").css("top", 0);
+	jQuery(".km-caja-resultados .km-columna-der").fadeIn("fast", function() {
+		google.maps.event.trigger(map, 'resize');
+		map.setZoom(4);
+    	map.setCenter( new google.maps.LatLng(23.634501, -102.552784) );
+    	jQuery( "#mapa" ).addClass("resize");
+  	});
+	
+});
+
 var markers = [];
 var infos = [];
 var map;
 function initMap() {
 	if( pines.length > 0 ){
 		map = new google.maps.Map(document.getElementById("mapa"), {
-	        zoom: 3,
+	        zoom: 4,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP,
-	        fullscreenControl: true,
 			scrollwheel: false
 	    });
 
@@ -105,7 +317,7 @@ function initMap() {
 							+'    <div class="km-sellos"> '+servicios+' </div>'
 							+'</div>'
 							+'<div class="km-opciones maps">'
-							+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
+							+'    <div class="precio">MXN jQuery '+cuidador.pre+'</div>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
 							+'</div>'

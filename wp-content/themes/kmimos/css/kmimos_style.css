@@ -245,115 +245,6 @@ section {
 	padding: 60px 0;
 }
 
-/* MENÚ */
-.bg-transparent {
-	background-color: transparent;
-	transition: background-color .5s ease 0s;
-}
-.bg-white {
-	background-color: white;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	height: 68px;
-	transition: background-color .5s ease 0s;
-}
-.navbar {
-	padding-top: 30px;
-	min-height: 60px;
-	z-index: 4;
-}
-.navbar .container {
-	position: relative;
-}
-.navbar-brand {
-	padding: 0;
-}
-.navbar-brand>img {
-	position: relative;
-	top: 0;
-}
-.nav li ul li {
-	padding: 0px 10px 0px 10px;
-}
-.nav li {
-	padding: 10px 0px 10px 10px;
-}
-.nav>li>a {
-	line-height: 100%!important;
-    text-align: left;
-}
-.navbar-nav>li>a {
-    line-height: 100%!important;
-}
-.nav>li>a:hover {
-	background-color: transparent;
-}
-.nav>li>a.km-btn-primary:hover {
-	background-color: #33e1be;
-}
-.navbar-toggle {
-	margin-top: 0px;
-	margin-right: 0px;
-}
-.nav-login {
-	color: white;
-	position: absolute;
-	top: -20px;
-	right: 0;
-}
-.nav-login {
-	list-style-type: none;
-}
-.nav-login li {
-	display: inline-block;
-}
-.nav-login li a {
-	color: white;
-	font-size: 10px;
-	transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	letter-spacing: 1px;
-	cursor: pointer;
-}
-.nav-login li a:hover {
-	color: #33E1BE!important;
-	text-decoration: none;
-	transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-}
-.navbar-right {
-	padding-top: 3px;
-}
-.logo-img-mobile {
-	height: 30px;
-}
-.km-nav-link {
-	font-family: 'Gotham-Pro-Medium', arial, sans-serif;
-	color: white;
-	font-size: 12px;
-	text-align: center;
-	text-decoration: none;
-	transition: all .2s ease-in-out;
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
-	letter-spacing: 1px;
-}
-.km-nav-link:hover {
-	color: #33E1BE!important;
-	transition: all .2s ease-in-out;
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
-	text-decoration: none;
-}
-.datepicker--day-name {
-	color: #6B1C9B;
-	font-weight: 700;
-}
-/* FIN MENÚ */
-
-
-
 /* SECCIÓN 1 - KMIMOS VIDEOS */
 .km-video {
 	position: relative;
@@ -517,7 +408,7 @@ section {
 	border-radius: 8px;
 	margin: 0;
 	background: white;
-	background-image: url(../images/icons/icon-calendario.svg);
+	background-image: url(../images/new/icon/icon-calendario.svg);
 	background-repeat: no-repeat;
 	background-position: 20px center!important;
 }
@@ -796,8 +687,10 @@ input:focus{
 	display: block;
 	border-radius: 8px;
 }
-.km-vacaciones .col-sm-6 {
-	margin: 20px 0;
+
+.km-vacaciones .items {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /*POPUP SERVICIOS*/
@@ -846,6 +739,7 @@ button.close {
 
 
 /* SEARCH */
+
 .header-search{
 	width: 100%;
 	height: 320px;
@@ -853,6 +747,17 @@ button.close {
 	background-position: center;
 	position: relative;
 	z-index: -1;
+}
+
+.dropdown-order{
+    /*padding: 10px 32px;*/
+    padding: 8px 30px 8px 20px !important;
+    transition: initial!important;
+    background-color: #FFF!important;
+    background-size: 14px 13px!important;
+    background-repeat: no-repeat!important;
+    background-position: calc(100% - 9px) 50%!important;
+    background-image: url(../images/new/km-arrow-form.svg)!important;
 }
 
 .contentenedor-buscador-todos{
@@ -882,6 +787,58 @@ button.close {
 }
 
 
+
+.km-select-custom-list input{
+	margin:4px!important;
+}
+.km-select-custom-list{
+    min-width: 18%;
+	display: none;
+	background: #fff;
+	border: 1px solid #e5e5e5!important;
+	padding: 15px;	
+	margin-top: 4px;
+	border-radius: 5px;
+	position: absolute;
+	z-index: 3!important;
+    line-height: 0px;
+    color: #6b6767;
+    height: auto!important;
+}
+.km-select-custom-button{
+	position: relative;
+	background-color: #FFF;
+	background-size: 14px 13px;
+	background-repeat: no-repeat;
+	background-position: calc(100% - 9px) 50%;
+	background-image: url(../images/new/km-arrow-form.svg);
+
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px 6px 6px 6px!important;
+	border: 1px solid #e5e5e5!important;
+
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	cursor: pointer;
+
+	line-height: inherit;
+	letter-spacing: 1px;
+    -webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+
+	font-size: 10px;	
+	width: 100%;
+	padding: 0px 30px 0px 5px;
+
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	white-space:nowrap; 
+	overflow:hidden;
+	text-align: left;
+}
 .km-select-custom{
 	position: relative;
 	border: solid 1px #e5e5e5;
@@ -910,9 +867,20 @@ button.close {
     height: 47px;
 }
 
-div#ubicacion_list {
-	display: none;
+
+/* INICIO Ubicacion */
+.tag-list{
+	width: 100%;
+	max-height: 500%;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
+.tag-list li{
+	padding:5px 10px 5px 10px;
+    line-height: normal!important;
+}
+/* FIN Ubicacion */
+
 
 .km-select-custom input:focus ~ div#ubicacion_list,
 div#ubicacion_list:hover
@@ -923,7 +891,7 @@ div#ubicacion_list:hover
     top: 43px;
     left: -1px;
     width: calc( 100% + 2px );
-    max-height: 350px;
+    max-height: 200px;
     background: #FFF;
     z-index: 999999;
     border: 1px solid #e5e5e5;
@@ -1011,11 +979,11 @@ div#ubicacion_list div:hover {
 }
 
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a{
-	background-image: url(../images/icons/icon-hueso-yellow.svg);
+	background-image: url(../images/new/icon/icon-hueso-yellow.svg);
 }
 
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a.active{
-	background-image: url(../images/icons/icon-hueso-color-yellow.svg);
+	background-image: url(../images/new/icon/icon-hueso-color-yellow.svg);
 }
 
 .km-search-slider .item-slide .slide-content .slide-buttons a{
@@ -1072,6 +1040,26 @@ div#ubicacion_list div:hover {
 	font-size: 10px;
 	font-weight: 300;
 }
+
+.km-fondo-img{
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    filter:blur(3px);
+}
+.km-subimg{
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0px;
+}
+
 
 .km-opciones .km-btn-primary-new{
 	margin-top: 9px;
@@ -1155,14 +1143,14 @@ div#ubicacion_list div:hover {
 	padding-left: 15px;
 	padding-right: 15px;
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
-	background-image: url(../images/icons/icon-calendario.svg)!important;
+	background-image: url(../images/new/icon/icon-calendario.svg)!important;
 }
 
 .km-div-fechas .date_to{
 	width: 50%;
 	padding-left: 15px;
 	padding-right: 15px;
-	background-image: url(../images/icons/icon-calendario.svg);
+	background-image: url(../images/new/icon/icon-calendario.svg);
 }
 
 .km-submit-custom{
@@ -1203,24 +1191,54 @@ div#ubicacion_list div:hover {
 	letter-spacing: 1px;
 }
 
+.dropdown-option li a input{
+	vertical-align: middle;
+	width: 20px!important;
+	box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.25)!important;
+	margin-top:0px;
+}
+.dropdown-option .checkbox{
+	margin:0px 0px;
+}
+.dropdown-option li a{
+	vertical-align: middle;
+	margin-left: 0px!important;
+	padding: 10px 10px 10px 10px ;
+}
+
+
 .km-cajas-filtro::after{
 	content: "";
 	clear: both;
 	display: table;
 }
-
+.km-select-custom-list{
+	min-width: 17.5%;
+}
+.km-cajas-filtro .form-group,
 .km-cajas-filtro .km-caja-filtro{
 	float: left;
 	height: 38px;
-	width: 23%;
+	width: 24.2%;
 	line-height: 38px;
-	margin-right: 2.666666%;
+	margin-right: 1%;
 }
 
 .km-cajas-filtro .km-caja-filtro:last-child{
 	margin-right: 0%;
 }
 
+.km-caja-filtro .btn-group{
+	width: 100%!important;
+}
+.km-cajas-filtro-dropdown{
+	padding-left: 2px!important;
+	padding-right: 28px;
+}
+.km-cajas-filtro .km-caja-filtro input{
+	padding-left: 2%!important;
+}
+.km-cajas-filtro-dropdown,
 .km-cajas-filtro .km-caja-filtro select,
 .km-cajas-filtro .km-caja-filtro input{
 	width: 100%;
@@ -1241,6 +1259,7 @@ div#ubicacion_list div:hover {
 	background-position: 92% 50%;
 	background-image: url(../images/new/km-buscador.svg);
 	padding-right: 18%;
+
 }
 
 .km-cajas-filtro .km-input-custom::-webkit-input-placeholder {
@@ -1275,7 +1294,7 @@ div#ubicacion_list div:hover {
 
 .km-caja-resultados .km-columna-der{
 	float: right;
-	width: 38.879599%;
+	width: 38.879599%!important;
 }
 
 .km-superior-resultados::after,
@@ -1338,21 +1357,21 @@ div#ubicacion_list div:hover {
 }
 
 .km-opciones-resultados .km-vista-resultados .view-list{
-	background-image: url(../images/icons/icon-view-list.svg);
+	background-image: url(../images/new/icon/icon-view-list.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-grid{
-	background-image: url(../images/icons/icon-view-grid.svg);
+	background-image: url(../images/new/icon/icon-view-grid.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-list:hover,
 .km-opciones-resultados .km-vista-resultados .view-list.active{
-	background-image: url(../images/icons/icon-view-list-hover.svg);
+	background-image: url(../images/new/icon/icon-view-list-hover.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-grid:hover,
 .km-opciones-resultados .km-vista-resultados .view-grid.active{
-	background-image: url(../images/icons/icon-view-grid-hover.svg);
+	background-image: url(../images/new/icon/icon-view-grid-hover.svg);
 }
 
 .km-item-resultado::after{
@@ -1426,12 +1445,18 @@ div#ubicacion_list div:hover {
 	float: left;
 	width: 20px;
 	height: 9px;
-	background: url(../images/icons/icon-hueso.svg) no-repeat center center;
+	background: url(../images/new/icon/icon-hueso.svg) no-repeat center center;
 	background-size: 20px 9px;
 }
 
 .km-ranking a.active{
-	background-image: url(../images/icons/icon-hueso-color.svg);
+	background-image: url(../images/new/icon/icon-hueso-color.svg);
+}
+
+.km-review .km-ranking a{
+	width: 40px;
+	height: 40px;
+	background-size: contain;
 }
 
 .km-contenedor-descripcion-opciones::after{
@@ -1508,6 +1533,7 @@ div#ubicacion_list div:hover {
     position: absolute;
     margin-top: 41px;
     right: 0;
+    z-index: -1;
 }
 
 .km-titulo-mapa{
@@ -1537,10 +1563,11 @@ div#ubicacion_list div:hover {
 .km-resultados-grid .km-item-resultado .km-descripcion {
 	position: relative;
     padding:10px 16px;
-    min-height:175px;
+    /*min-height:175px;*/
+    min-height:200px;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos {
-    padding-top:15px
+    padding-top:2px!important;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-buttons::after {
     content:"";
@@ -1579,7 +1606,9 @@ div#ubicacion_list div:hover {
 
 
 
-
+.filtro-oscuro{
+    filter: brightness(0.4);
+}
 
 
 
@@ -1611,7 +1640,7 @@ div#ubicacion_list div:hover {
 	position: relative;
 }
 .km-ficha-info-cuidador .col-sm-6 {
-	margin-top: 80px;
+	margin-top: 100px;
 }
 .km-ficha-info-cuidador .km-ranking {
 	display: inline-block;
@@ -1635,7 +1664,7 @@ div#ubicacion_list div:hover {
 	width: 100%;
 }
 .km-ficha-info {
-	margin-top: 20px;
+	margin-top: 0px;
 }
 .km-tit-cuidador {
 	font-family: 'Gotham-Pro-Bold';
@@ -1665,7 +1694,7 @@ div#ubicacion_list div:hover {
     margin: 0;
     display: inline-block;
     background: white;
-    background-image: url(../images/icons/icon-calendario.svg);
+    background-image: url(../images/new/icon/icon-calendario.svg);
     background-repeat: no-repeat;
     background-position: 15px center!important;
 }
@@ -1737,20 +1766,6 @@ div#ubicacion_list div:hover {
 	width: 100%;
 	text-align: center;
 	margin-bottom: 10px;
-}
-.km-servicio-opcion:before {
-	content: "";
-	border-top: 6px solid #fafafa;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	border-radius: 8px;
-	left: 0;
-	right: 0;
-	transition: all .2s ease-in-out;
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
 }
 .km-servicio-opcion_productos {
 	border: 1px solid #e5e5e5;
@@ -2101,6 +2116,14 @@ a {
 
 
 /* SECCIÓN FOOTER */
+.footer-petsitter{
+	margin-bottom: 0px!important;
+}
+.footer-busqueda{
+	margin-bottom: 0px!important;
+}
+
+
 footer {
 	background-color: #f5f5f5;
 	padding: 50px 0;
@@ -2146,6 +2169,14 @@ footer input:focus{
 }
 /* FIN SECCIÓN FOOTER */
 
+.row-sin-padding{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.row-sin-padding .col-xs-6
+{
+	padding: 5px;
+}
 
 
 
@@ -2180,25 +2211,24 @@ footer input:focus{
 		height: 70px;
 	}
 	/* PÁGINA FICHA CUIDADOR */
-	.km-costo {
+	/*.km-costo {
 		width: 200px;
-	}
+	}*/
 	/* FIN PÁGINA FICHA CUIDADOR */
 	.km-ficha-fechas input {
 		width: 100%;
 		display: block;
 	}
+	
 }
 @media (max-width: 900px) {
 	button.close {
-		right: 10px;
+		color: black!important;
+		right: 10px!important;
 		color: black;
 	}
 	button.close:hover {
 		color: black;
-	}
-	.nav li ul li {
-		padding: 10px;
 	}
 }
 @media (min-width: 767px) {
@@ -2230,26 +2260,36 @@ footer input:focus{
 }
 @media (max-width: 767px) {
 
-	#popup-servicios .km-opcion {
+	
+
+	.footer-petsitter{
+		margin-bottom: 110px!important;
+	}
+	.footer-busqueda{
+		margin-bottom: 40px!important;
+	}
+
+/*	#popup-servicios .km-opcion {
 		text-align: left;
+	}*/
+
+	.km-registro-checkbox-opcion{
+		width: 100%!important;
+	}
+	.km-select-custom{
+		
+		border-radius: 6px!important;
 	}
 
 	#popup-servicios .km-opcion {
 	    padding: 10px 10px 5px;
 	}
 
-	.km-select-custom input:focus ~ div#ubicacion_list,
-	div#ubicacion_list:hover
-	{
-	    max-height: 250px;
-	    font-size: 10px;
-	}
-
 	.bx-wrapper .bx-prev, .bx-wrapper .bx-next {
 		display: none;
 	}
 	h2 {
-		font-size: 35px;
+		font-size: 29px;
 	}
 	h4 {
 		line-height: 24px;
@@ -2263,40 +2303,7 @@ footer input:focus{
 	.h5-sub {
 		font-size: 9px;
 	}
-	.bg-white {
-		height: 60px;
-	}
-	.navbar-brand>img {
-		height: 40px!important;
-		padding-left: 15px;
-		top: 5px;
-	}
-	.navbar {
-		padding-top: 30px!important;
-	}
-	.navbar-header {
-		margin-top: -22px;
-	}
-	.navbar-nav {
-		margin: 0px -15px;
-	}
-	.nav>li {
-		background: white;
-	}
-	ul.navbar-right li:last-child {
-		padding-left: 10px;
-		padding-right: 10px;
-		background-color: white;
-		display: flex;
-		padding-bottom: 10px;
-	}
-	.km-nav-link {
-		color: black;
-	}
-	.nav .principal {
-		float: none;
-		margin: 0 auto;
-	}
+	
 	.km-video {
 		height: 500px;
 	}
@@ -2304,8 +2311,16 @@ footer input:focus{
 		text-align: left;
 		padding-left: 20px;
 	}
+	.km-credibilidad-titular p{
+		font-size: 12px;
+	}
+	.km-credibilidad-titular h2{
+		font-size: 35px;
+	}
+	.km-credibilidad-titular h2,
+	.km-credibilidad-titular p,
 	.km-credibilidad-titular {
-		text-align: left;
+		text-align: left!important;
 	}
 	.km-servicios .col-sm-3, .km-tamanio .col-sm-3, .km-fechas .col-sm-3, .km-fechas .col-sm-6 {
 		margin-bottom: 10px;
@@ -2328,8 +2343,12 @@ footer input:focus{
 		margin-top: 0px;
 	}
 	/* SECCIÓN 2 - KMIMOS CLUB */
+	.km-club{
+		margin-top: 20px!important;
+	}
 	.km-club .col-sm-6:nth-child(2) {
 		margin-top: 20px;
+		text-align: left;
 	}
 	.km-club .col-sm-3 {
 		text-align: center;
@@ -2370,7 +2389,7 @@ footer input:focus{
 		width: 100%!important;
 	}
 	.km-testimoniales .bx-viewport, .km-testimoniales .bxslider li{
-		height: 400px;
+		height: 400px!important;
 	}
 
 
@@ -2397,7 +2416,7 @@ footer input:focus{
 		text-align: center;
 	}
 	.km-ficha-info-cuidador .col-sm-6 {
-		margin-top: 30px;
+		margin-top: 10px!important;
 	}
 	.km-ficha-bg {
 	    height: 170px;
@@ -2447,13 +2466,16 @@ footer input:focus{
 		width: 100%;
 	}
 	footer .row .col-xs-12:nth-child(2) {
-		margin: 30px 0;
+        margin:15px 0px 0px 0px;
 	}
 	/* FIN SECCIÓN FOOTER */
 }
 @media (max-width: 480px) {
 	.bx-wrapper .bx-pager a {
 		margin: 0 8px;
+	}
+	.bx-wrapper .bx-pager-item{
+		width: 100px;
 	}
 }
 
@@ -2462,11 +2484,11 @@ footer input:focus{
 	.km-caja-resultados .km-columna-izq,
 	.km-caja-resultados .km-columna-der{
 		float: none;
-		width: 100%;
+		width: 100%!important;
 	}
 
-	.km-caja-resultados .km-columna-der{
-	}
+	
+
 }
 
 @media all and (max-width: 724px) {
@@ -2519,7 +2541,7 @@ footer input:focus{
 
 @media all and (max-width:629px) {
     .km-resultados-grid .km-item-resultado {
-        width:48%
+        width:100%!important;
     }
     .km-resultados-grid .km-item-resultado:nth-child(2n) {
         margin-right:0
@@ -2527,9 +2549,19 @@ footer input:focus{
     .km-resultados-grid .km-item-resultado:nth-child(3n) {
         margin-right:3%
     }
+
+    .km-foto {
+    	width: 100%!important;
+    }
+    .km-foto .km-img{
+    	height: 239px!important;
+    }
 }
 
 @media all and (max-width:427px) {
+	h2{
+		font-size: 30px!important;
+	}
     .km-resultados-grid .km-item-resultado {
         width:100%
     }
@@ -2542,6 +2574,14 @@ footer input:focus{
     .km-resultados-grid .km-item-resultado:nth-child(3n) {
         margin-right:0
     }
+
+    .km-foto {
+    	width: 100%!important;
+    }
+    .km-foto .km-img{
+    	height: 239px!important;
+    }
+
 }
 
 @media all and (max-width: 629px) {
@@ -2550,12 +2590,12 @@ footer input:focus{
 	}
 
 	.km-resultados-lista .km-item-resultado .km-contenedor-descripcion-opciones{
-		width: 55%;
+		width: 100%;
 	}
 
 	.km-resultados-lista .km-item-resultado .km-descripcion,
 	.km-resultados-lista .km-item-resultado .km-opciones{
-		width: 100%;
+		width: 100%!important;
 	}
 
 	.km-resultados-lista .km-item-resultado .km-sellos{
@@ -2605,7 +2645,8 @@ footer input:focus{
 
 @media all and (max-width: 430px) {
 	.km-resultados-lista .km-item-resultado .km-foto{
-		display: none;
+		width: 100%!important;
+		/*display: none;*/
 	}
 
 	.km-resultados-lista .km-item-resultado .km-contenedor-descripcion-opciones{
@@ -2614,8 +2655,17 @@ footer input:focus{
 }
 
 @media all and (max-width: 380px) {
+	.km-cajas-filtro {
+
+	}
+	.km-cajas-filtro .km-caja-filtro .km-div-enviar,
+	.km-cajas-filtro .km-caja-filtro .km-div-fechas,
+	.km-cajas-filtro .km-caja-filtro .km-div-ubicacion{
+		width: 100%!important;
+	}
 	.km-cajas-filtro .km-caja-filtro{
-		width: 100%;
+		width: 100%!important;
+
 	}
 
 	.km-cajas-filtro .km-caja-filtro{
@@ -2625,13 +2675,14 @@ footer input:focus{
 }
 
 @media all and (max-width: 767px) {
+	 
 	.km-costo{
-		position: fixed;
+		position: fixed!important;
 	    display: block!important;
-	    top: initial;
+	    top: initial!important;
 	    left: 0;
-	    width: auto;
-	    bottom: 0;
+	    width: auto!important;
+	    bottom: 0!important;
 	    z-index: 99;
 	}
 
@@ -2665,672 +2716,9 @@ footer input:focus{
 		right: 10px;
 		top: 5px;
 	}
-	.nav li ul li {
-		padding: 20px;
-	}
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.datepicker--cells {
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-flex-wrap:wrap;
-    -ms-flex-wrap:wrap;
-    flex-wrap:wrap
-}
-.datepicker--cell {
-    border-radius:4px;
-    box-sizing:border-box;
-    cursor:pointer;
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex;
-    position:relative;
-    -webkit-align-items:center;
-    -ms-flex-align:center;
-    align-items:center;
-    -webkit-justify-content:center;
-    -ms-flex-pack:center;
-    justify-content:center;
-    height:32px;
-    z-index:1
-}
-.datepicker--cell.-focus- {
-    background:#f0f0f0
-}
-.datepicker--cell.-current- {
-    color:#4eb5e6
-}
-.datepicker--cell.-current-.-focus- {
-    color:#4a4a4a
-}
-.datepicker--cell.-current-.-in-range- {
-    color:#4eb5e6
-}
-.datepicker--cell.-in-range- {
-    background:rgba(92, 196, 239, .1);
-    color:#4a4a4a;
-    border-radius:0
-}
-.datepicker--cell.-in-range-.-focus- {
-    background-color:rgba(92, 196, 239, .2)
-}
-.datepicker--cell.-disabled- {
-    cursor:default;
-    color:#aeaeae
-}
-.datepicker--cell.-disabled-.-focus- {
-    color:#aeaeae
-}
-.datepicker--cell.-disabled-.-in-range- {
-    color:#a1a1a1
-}
-.datepicker--cell.-disabled-.-current-.-focus- {
-    color:#aeaeae
-}
-.datepicker--cell.-range-from- {
-    border:1px solid rgba(92, 196, 239, .5);
-    background-color:rgba(92, 196, 239, .1);
-    border-radius:4px 0 0 4px
-}
-.datepicker--cell.-range-to- {
-    border:1px solid rgba(92, 196, 239, .5);
-    background-color:rgba(92, 196, 239, .1);
-    border-radius:0 4px 4px 0
-}
-.datepicker--cell.-selected-, .datepicker--cell.-selected-.-current- {
-    color:#fff;
-    background:#5cc4ef
-}
-.datepicker--cell.-range-from-.-range-to- {
-    border-radius:4px
-}
-.datepicker--cell.-selected- {
-    border:none
-}
-.datepicker--cell.-selected-.-focus- {
-    background:#45bced
-}
-.datepicker--cell:empty {
-    cursor:default
-}
-.datepicker--days-names {
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-flex-wrap:wrap;
-    -ms-flex-wrap:wrap;
-    flex-wrap:wrap;
-    margin:8px 0 3px
-}
-.datepicker--day-name {
-    color:#ff9a19;
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-align-items:center;
-    -ms-flex-align:center;
-    align-items:center;
-    -webkit-justify-content:center;
-    -ms-flex-pack:center;
-    justify-content:center;
-    -webkit-flex:1;
-    -ms-flex:1;
-    flex:1;
-    text-align:center;
-    text-transform:uppercase;
-    font-size:.8em
-}
-.-only-timepicker- .datepicker--content, .datepicker--body, .datepicker-inline .datepicker--pointer {
-    display:none
-}
-.datepicker--cell-day {
-    width:14.28571%
-}
-.datepicker--cells-months {
-    height:170px
-}
-.datepicker--cell-month {
-    width:33.33%;
-    height:25%
-}
-.datepicker--cells-years, .datepicker--years {
-    height:170px
-}
-.datepicker--cell-year {
-    width:25%;
-    height:33.33%
-}
-.datepickers-container {
-    position:absolute;
-    left:0;
-    top:0
-}
-@media print {
-    .datepickers-container {
-        display:none
-    }
-}
-.datepicker {
-    background:#fff;
-    border:1px solid #dbdbdb;
-    box-shadow:0 4px 12px rgba(0, 0, 0, .15);
-    border-radius:4px;
-    box-sizing:content-box;
-    font-family:Tahoma, sans-serif;
-    font-size:14px;
-    color:#4a4a4a;
-    width:250px;
-    position:absolute;
-    left:-100000px;
-    opacity:0;
-    transition:opacity .3s ease, left 0s .3s, -webkit-transform .3s ease;
-    transition:opacity .3s ease, transform .3s ease, left 0s .3s;
-    transition:opacity .3s ease, transform .3s ease, left 0s .3s, -webkit-transform .3s ease;
-    z-index:100
-}
-.datepicker.-from-top- {
-    -webkit-transform:translateY(-8px);
-    transform:translateY(-8px)
-}
-.datepicker.-from-right- {
-    -webkit-transform:translateX(8px);
-    transform:translateX(8px)
-}
-.datepicker.-from-bottom- {
-    -webkit-transform:translateY(8px);
-    transform:translateY(8px)
-}
-.datepicker.-from-left- {
-    -webkit-transform:translateX(-8px);
-    transform:translateX(-8px)
-}
-.datepicker.active {
-    opacity:1;
-    -webkit-transform:translate(0);
-    transform:translate(0);
-    transition:opacity .3s ease, left 0s 0s, -webkit-transform .3s ease;
-    transition:opacity .3s ease, transform .3s ease, left 0s 0s;
-    transition:opacity .3s ease, transform .3s ease, left 0s 0s, -webkit-transform .3s ease
-}
-.datepicker-inline .datepicker {
-    border-color:#d7d7d7;
-    box-shadow:none;
-    position:static;
-    left:auto;
-    right:auto;
-    opacity:1;
-    -webkit-transform:none;
-    transform:none
-}
-.datepicker--content {
-    box-sizing:content-box;
-    padding:4px
-}
-.datepicker--pointer {
-    position:absolute;
-    background:#fff;
-    border-top:1px solid #dbdbdb;
-    border-right:1px solid #dbdbdb;
-    width:10px;
-    height:10px;
-    z-index:-1
-}
-.datepicker--nav-action:hover, .datepicker--nav-title:hover {
-    background:#f0f0f0
-}
-.-top-center- .datepicker--pointer, .-top-left- .datepicker--pointer, .-top-right- .datepicker--pointer {
-    top:calc(100% - 4px);
-    -webkit-transform:rotate(135deg);
-    transform:rotate(135deg)
-}
-.-right-bottom- .datepicker--pointer, .-right-center- .datepicker--pointer, .-right-top- .datepicker--pointer {
-    right:calc(100% - 4px);
-    -webkit-transform:rotate(225deg);
-    transform:rotate(225deg)
-}
-.-bottom-center- .datepicker--pointer, .-bottom-left- .datepicker--pointer, .-bottom-right- .datepicker--pointer {
-    bottom:calc(100% - 4px);
-    -webkit-transform:rotate(315deg);
-    transform:rotate(315deg)
-}
-.-left-bottom- .datepicker--pointer, .-left-center- .datepicker--pointer, .-left-top- .datepicker--pointer {
-    left:calc(100% - 4px);
-    -webkit-transform:rotate(45deg);
-    transform:rotate(45deg)
-}
-.-bottom-left- .datepicker--pointer, .-top-left- .datepicker--pointer {
-    left:10px
-}
-.-bottom-right- .datepicker--pointer, .-top-right- .datepicker--pointer {
-    right:10px
-}
-.-bottom-center- .datepicker--pointer, .-top-center- .datepicker--pointer {
-    left:calc(50% - 10px / 2)
-}
-.-left-top- .datepicker--pointer, .-right-top- .datepicker--pointer {
-    top:10px
-}
-.-left-bottom- .datepicker--pointer, .-right-bottom- .datepicker--pointer {
-    bottom:10px
-}
-.-left-center- .datepicker--pointer, .-right-center- .datepicker--pointer {
-    top:calc(50% - 10px / 2)
-}
-.datepicker--body.active {
-    display:block
-}
-.datepicker--nav {
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-justify-content:space-between;
-    -ms-flex-pack:justify;
-    justify-content:space-between;
-    border-bottom:1px solid #efefef;
-    min-height:32px;
-    padding:4px
-}
-.-only-timepicker- .datepicker--nav {
-    display:none
-}
-.datepicker--nav-action, .datepicker--nav-title {
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex;
-    cursor:pointer;
-    -webkit-align-items:center;
-    -ms-flex-align:center;
-    align-items:center;
-    -webkit-justify-content:center;
-    -ms-flex-pack:center;
-    justify-content:center
-}
-.datepicker--nav-action {
-    width:32px;
-    border-radius:4px;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none
-}
-.datepicker--nav-action.-disabled- {
-    visibility:hidden
-}
-.datepicker--nav-action svg {
-    width:32px;
-    height:32px
-}
-.datepicker--nav-action path {
-    fill:none;
-    stroke:#9c9c9c;
-    stroke-width:2px
-}
-.datepicker--nav-title {
-    border-radius:4px;
-    padding:0 8px
-}
-.datepicker--buttons, .datepicker--time {
-    border-top:1px solid #efefef;
-    padding:4px
-}
-.datepicker--nav-title i {
-    font-style:normal;
-    color:#9c9c9c;
-    margin-left:5px
-}
-.datepicker--nav-title.-disabled- {
-    cursor:default;
-    background:0 0
-}
-.datepicker--buttons {
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex
-}
-.datepicker--button {
-    color:#4eb5e6;
-    cursor:pointer;
-    border-radius:4px;
-    -webkit-flex:1;
-    -ms-flex:1;
-    flex:1;
-    display:-webkit-inline-flex;
-    display:-ms-inline-flexbox;
-    display:inline-flex;
-    -webkit-justify-content:center;
-    -ms-flex-pack:center;
-    justify-content:center;
-    -webkit-align-items:center;
-    -ms-flex-align:center;
-    align-items:center;
-    height:32px
-}
-.datepicker--button:hover {
-    color:#4a4a4a;
-    background:#f0f0f0
-}
-.datepicker--time {
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-align-items:center;
-    -ms-flex-align:center;
-    align-items:center;
-    position:relative
-}
-.datepicker--time.-am-pm- .datepicker--time-sliders {
-    -webkit-flex:0 1 138px;
-    -ms-flex:0 1 138px;
-    flex:0 1 138px;
-    max-width:138px
-}
-.-only-timepicker- .datepicker--time {
-    border-top:none
-}
-.datepicker--time-sliders {
-    -webkit-flex:0 1 153px;
-    -ms-flex:0 1 153px;
-    flex:0 1 153px;
-    margin-right:10px;
-    max-width:153px
-}
-.datepicker--time-label {
-    display:none;
-    font-size:12px
-}
-.datepicker--time-current {
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-align-items:center;
-    -ms-flex-align:center;
-    align-items:center;
-    -webkit-flex:1;
-    -ms-flex:1;
-    flex:1;
-    font-size:14px;
-    text-align:center;
-    margin:0 0 0 10px
-}
-.datepicker--time-current-colon {
-    margin:0 2px 3px;
-    line-height:1
-}
-.datepicker--time-current-hours, .datepicker--time-current-minutes {
-    line-height:1;
-    font-size:19px;
-    font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-    position:relative;
-    z-index:1
-}
-.datepicker--time-current-hours:after, .datepicker--time-current-minutes:after {
-    content:'';
-    background:#f0f0f0;
-    border-radius:4px;
-    position:absolute;
-    left:-2px;
-    top:-3px;
-    right:-2px;
-    bottom:-2px;
-    z-index:-1;
-    opacity:0
-}
-.datepicker--time-current-hours.-focus-:after, .datepicker--time-current-minutes.-focus-:after {
-    opacity:1
-}
-.datepicker--time-current-ampm {
-    text-transform:uppercase;
-    -webkit-align-self:flex-end;
-    -ms-flex-item-align:end;
-    align-self:flex-end;
-    color:#9c9c9c;
-    margin-left:6px;
-    font-size:11px;
-    margin-bottom:1px
-}
-.datepicker--time-row {
-    display:-webkit-flex;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-align-items:center;
-    -ms-flex-align:center;
-    align-items:center;
-    font-size:11px;
-    height:17px;
-    background:linear-gradient(to right, #dedede, #dedede) left 50%/100% 1px no-repeat
-}
-.datepicker--time-row:first-child {
-    margin-bottom:4px
-}
-.datepicker--time-row input[type=range] {
-    background:0 0;
-    cursor:pointer;
-    -webkit-flex:1;
-    -ms-flex:1;
-    flex:1;
-    height:100%;
-    padding:0;
-    margin:0;
-    -webkit-appearance:none
-}
-.datepicker--time-row input[type=range]::-ms-tooltip {
-    display:none
-}
-.datepicker--time-row input[type=range]:hover::-webkit-slider-thumb {
-    border-color:#b8b8b8
-}
-.datepicker--time-row input[type=range]:hover::-moz-range-thumb {
-    border-color:#b8b8b8
-}
-.datepicker--time-row input[type=range]:hover::-ms-thumb {
-    border-color:#b8b8b8
-}
-.datepicker--time-row input[type=range]:focus {
-    outline:0
-}
-.datepicker--time-row input[type=range]:focus::-webkit-slider-thumb {
-    background:#5cc4ef;
-    border-color:#5cc4ef
-}
-.datepicker--time-row input[type=range]:focus::-moz-range-thumb {
-    background:#5cc4ef;
-    border-color:#5cc4ef
-}
-.datepicker--time-row input[type=range]:focus::-ms-thumb {
-    background:#5cc4ef;
-    border-color:#5cc4ef
-}
-.datepicker--time-row input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance:none;
-    box-sizing:border-box;
-    height:12px;
-    width:12px;
-    border-radius:3px;
-    border:1px solid #dedede;
-    background:#fff;
-    cursor:pointer;
-    transition:background .2s;
-    margin-top:-6px
-}
-.datepicker--time-row input[type=range]::-moz-range-thumb {
-    box-sizing:border-box;
-    height:12px;
-    width:12px;
-    border-radius:3px;
-    border:1px solid #dedede;
-    background:#fff;
-    cursor:pointer;
-    transition:background .2s
-}
-.datepicker--time-row input[type=range]::-ms-thumb {
-    box-sizing:border-box;
-    height:12px;
-    width:12px;
-    border-radius:3px;
-    border:1px solid #dedede;
-    background:#fff;
-    cursor:pointer;
-    transition:background .2s
-}
-.datepicker--time-row input[type=range]::-webkit-slider-runnable-track {
-    border:none;
-    height:1px;
-    cursor:pointer;
-    color:transparent;
-    background:0 0
-}
-.datepicker--time-row input[type=range]::-moz-range-track {
-    border:none;
-    height:1px;
-    cursor:pointer;
-    color:transparent;
-    background:0 0
-}
-.datepicker--time-row input[type=range]::-ms-track {
-    border:none;
-    height:1px;
-    cursor:pointer;
-    color:transparent;
-    background:0 0
-}
-.datepicker--time-row input[type=range]::-ms-fill-lower {
-    background:0 0
-}
-.datepicker--time-row input[type=range]::-ms-fill-upper {
-    background:0 0
-}
-.datepicker--time-row span {
-    padding:0 12px
-}
-.datepicker--time-icon {
-    color:#9c9c9c;
-    border:1px solid;
-    border-radius:50%;
-    font-size:16px;
-    position:relative;
-    margin:0 5px -1px 0;
-    width:1em;
-    height:1em
-}
-.datepicker--time-icon:after, .datepicker--time-icon:before {
-    content:'';
-    background:currentColor;
-    position:absolute
-}
-.datepicker--time-icon:after {
-    height:.4em;
-    width:1px;
-    left:calc(50% - 1px);
-    top:calc(50% + 1px);
-    -webkit-transform:translateY(-100%);
-    transform:translateY(-100%)
-}
-.datepicker--time-icon:before {
-    width:.4em;
-    height:1px;
-    top:calc(50% + 1px);
-    left:calc(50% - 1px)
-}
-.datepicker--cell-day.-other-month-, .datepicker--cell-year.-other-decade- {
-    color:#dedede
-}
-.datepicker--cell-day.-other-month-:hover, .datepicker--cell-year.-other-decade-:hover {
-    color:#c5c5c5
-}
-.-disabled-.-focus-.datepicker--cell-day.-other-month-, .-disabled-.-focus-.datepicker--cell-year.-other-decade- {
-    color:#dedede
-}
-.-selected-.datepicker--cell-day.-other-month-, .-selected-.datepicker--cell-year.-other-decade- {
-    color:#fff;
-    background:#a2ddf6
-}
-.-selected-.-focus-.datepicker--cell-day.-other-month-, .-selected-.-focus-.datepicker--cell-year.-other-decade- {
-    background:#8ad5f4
-}
-.-in-range-.datepicker--cell-day.-other-month-, .-in-range-.datepicker--cell-year.-other-decade- {
-    background-color:rgba(92, 196, 239, .1);
-    color:#ccc
-}
-.-in-range-.-focus-.datepicker--cell-day.-other-month-, .-in-range-.-focus-.datepicker--cell-year.-other-decade- {
-    background-color:rgba(92, 196, 239, .2)
-}
-.datepicker--cell-day.-other-month-:empty, .datepicker--cell-year.-other-decade-:empty {
-    background:0 0;
-    border:none
-}
-body {
-    font-family:Gotham-Pro-Regular, arial, sans-serif;
-    font-size:13px
-}
-:focus {
-    outline:0!important
-}
-img {
-    user-drag:none;
-    user-select:none;
-    -moz-user-select:none;
-    -webkit-user-drag:none;
-    -webkit-user-select:none;
-    -ms-user-select:none
-}
-a {
-    color:#000;
-    text-decoration:none
-}
-a:focus {
-    text-decoration:none
-}
-b {
-    font-family:Gotham-Pro-Medium, arial, sans-serif
-}
-h2 {
-    color:#7dd1c4;
-    font-family:Poetsen;
-    font-size:60px;
-    margin-top:0;
-    letter-spacing:1px
-}
-h4 {
-    color:#6b1c9b;
-    font-family:Gotham-Pro-Bold, arial, sans-serif;
-    font-size:16px;
-    line-height:26px;
-    letter-spacing:1px
-}
-h4 span {
-    color:#000;
-    font-family:Gotham-Pro-Regular, arial, sans-serif
-}
-h5 {
-    font-size:15px;
-    font-family:Gotham-Pro-Bold, arial, sans-serif;
-    letter-spacing:1px
-}
-p {
-    font-size:12px;
-    line-height:18px
-}
-a:hover {
-    text-decoration:none
-}
 .brd-lr {
     border-left:1px solid #e5e5e5;
     border-right:1px solid #e5e5e5
@@ -3652,121 +3040,10 @@ section {
     margin-bottom:20px;
     line-height:24px
 }
-.bg-transparent {
-    background-color:transparent;
-    transition:background-color .5s ease 0s
-}
-.bg-white {
-    background-color:#fff;
-    box-shadow:0 4px 4px rgba(0, 0, 0, .25);
-    /*height:68px;*/
-    height: 77px;
-    transition:background-color .5s ease 0s
-}
-.bg-white-secondary {
-    background-color:#fff;
-    box-shadow:0 4px 4px rgba(0, 0, 0, .25);
-    transition:background-color .5s ease 0s
-}
-.navbar {
-    padding-top:30px;
-    min-height:77px;
-    z-index:4
-}
-.navbar .container {
-    position:relative
-}
-.navbar-brand {
-    padding:0
-}
-.navbar-brand>img {
-    position:relative;
-    top:0
-}
-.nav>li>a {
-    line-height:100%!important
-}
-.nav>li>a:hover {
-    background-color:transparent
-}
-.nav>li>a.km-btn-primary:hover {
-    background-color:#33e1be
-}
-.navbar-toggle {
-    margin-top:0;
-    margin-right:0
-}
-.nav-login {
-    color:#fff;
-    position:absolute;
-    top:-20px;
-    right:0
-}
-.nav-login {
-    list-style-type:none
-}
-.nav-login li {
-    display:inline-block
-}
-.nav-login li a {
-    color:#fff;
-    font-size:10px;
-    transition:all .3s ease-in-out;
-    -webkit-transition:all .3s ease-in-out;
-    -moz-transition:all .3s ease-in-out;
-    letter-spacing:1px
-}
-.nav-login li a:hover {
-    color:#33e1be!important;
-    text-decoration:none;
-    transition:all .3s ease-in-out;
-    -webkit-transition:all .3s ease-in-out;
-    -moz-transition:all .3s ease-in-out
-}
-.navbar-right {
-    padding-top:3px
-}
-.logo-img-mobile {
-    height:30px
-}
-.km-nav-link {
-    font-family:Gotham-Pro-Medium, arial, sans-serif;
-    color:#fff;
-    font-size:12px;
-    text-align:center;
-    text-decoration:none;
-    transition:all .2s ease-in-out;
-    -webkit-transition:all .2s ease-in-out;
-    -moz-transition:all .2s ease-in-out;
-    letter-spacing:1px
-}
-.km-nav-link:hover {
-    color:#33e1be!important;
-    transition:all .2s ease-in-out;
-    -webkit-transition:all .2s ease-in-out;
-    -moz-transition:all .2s ease-in-out;
-    text-decoration:none
-}
-.datepicker--day-name {
-    color:#6b1c9b;
-    font-weight:700
-}
-.nav-sesion .navbar-toggle {
-    padding:3px 10px 0
-}
-.nav-sesion ul.navbar-right li:last-child {
-    display:block
-}
-.nav>li>a:focus {
-    text-decoration:none;
-    background-color:transparent
-}
-.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-    background-color:transparent
-}
+
 .km-video {
     position:relative;
-    height:550px
+    height:500px
 }
 .km-credibilidad {
     margin-top:-270px
@@ -3923,7 +3200,7 @@ section {
     border-radius:8px;
     margin:0;
     background:#fff;
-    background-image:url(../images/icons/icon-calendario.svg);
+    background-image:url(../images/new/icon/icon-calendario.svg);
     background-repeat:no-repeat;
     background-position:20px center!important
 }
@@ -3935,7 +3212,7 @@ section {
     transform:translateY(0)!important
 }
 .km-fechas select {
-    background:url(../images/icons/icon-gps.svg) no-repeat;
+    background:url(../images/new/icon/icon-gps.svg) no-repeat;
     background-position:20px;
     padding-left:45px
 }
@@ -4131,9 +3408,13 @@ section {
     display:block;
     border-radius:8px
 }
-.km-vacaciones .col-sm-6 {
+
+/*.km-vacaciones .col-sm-6 {
     margin:20px 0
-}
+}*/}
+/*.km-vacaciones .col-sm-6 {
+    margin:20px 0
+}*/
 #popup-servicios {
     text-align:center
 }
@@ -4156,6 +3437,14 @@ section {
     margin-right:6px;
     width:25px;
     top:-3px
+}
+button.back{
+    font-size: 25px;
+    position: absolute;
+    background: transparent;
+    border: 0px;
+    color: #33e1be;
+    padding:10px;
 }
 button.close {
     position:absolute;
@@ -4261,10 +3550,7 @@ button.close {
     padding:10px 0 12px 0
 }
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a {
-    background-image:url(../images/icons/icon-hueso-yellow.svg)
-}
-.km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a.active {
-    background-image:url(../images/icons/icon-hueso-color-yellow.svg)
+    background-image:url(../images/new/icon/icon-hueso-yellow.svg)
 }
 .km-search-slider .item-slide .slide-content .slide-buttons a {
     float:left;
@@ -4385,7 +3671,7 @@ button.close {
     width:50%;
     padding-left:2.758621%;
     padding-right:13.533835%;
-    background-image:url(../images/icons/icon-calendario.svg)
+    background-image:url(../images/new/icon/icon-calendario.svg)
 }
 .km-submit-custom {
     margin:0;
@@ -4479,9 +3765,10 @@ button.close {
     float:left;
     width:58.528428%
 }
+.km-columna-der-mapa,
 .km-caja-resultados .km-columna-der {
-    float:right;
-    width:38.879599%
+    float:right!important;
+    width:38.879599%!important;
 }
 .km-opciones-resultados::after, .km-superior-resultados::after {
     content:"";
@@ -4531,16 +3818,16 @@ button.close {
     margin-left:8px
 }
 .km-opciones-resultados .km-vista-resultados .view-list {
-    background-image:url(../images/icons/icon-view-list.svg)
+    background-image:url(../images/new/icon/icon-view-list.svg)
 }
 .km-opciones-resultados .km-vista-resultados .view-grid {
-    background-image:url(../images/icons/icon-view-grid.svg)
+    background-image:url(../images/new/icon/icon-view-grid.svg)
 }
 .km-opciones-resultados .km-vista-resultados .view-list.active, .km-opciones-resultados .km-vista-resultados .view-list:hover {
-    background-image:url(../images/icons/icon-view-list-hover.svg)
+    background-image:url(../images/new/icon/icon-view-list-hover.svg)
 }
 .km-opciones-resultados .km-vista-resultados .view-grid.active, .km-opciones-resultados .km-vista-resultados .view-grid:hover {
-    background-image:url(../images/icons/icon-view-grid-hover.svg)
+    background-image:url(../images/new/icon/icon-view-grid-hover.svg)
 }
 .km-item-resultado::after {
     content:"";
@@ -4566,7 +3853,8 @@ button.close {
     box-shadow:0 4px 4px 0 rgba(0, 0, 0, .1)
 }
 .km-foto {
-    position:relative
+    position:relative;
+    display: block;
 }
 .km-item-resultado.active .km-foto::before {
     content:"";
@@ -4600,11 +3888,8 @@ button.close {
     float:left;
     width:20px;
     height:9px;
-    background:url(../images/icons/icon-hueso.svg) no-repeat center center;
+    background:url(../images/new/icon/icon-hueso.svg) no-repeat center center;
     background-size:20px 9px
-}
-.km-ranking a.active {
-    #background-image:url(../images/icons/icon-hueso-color.svg)
 }
 .km-contenedor-descripcion-opciones::after {
     content:"";
@@ -4706,7 +3991,8 @@ button.close {
     border:1px solid #7dd1c4;
     line-height:31px;
     border-radius:5px;
-    color:#7dd1c4
+    color:#7dd1c4;
+    height: 34px;
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-buttons {
     padding-top:15px
@@ -4743,7 +4029,7 @@ button.close {
     position:relative
 }
 .km-ficha-info-cuidador .col-sm-6 {
-    margin-top:80px
+    margin-top:100px
 }
 .km-ficha-icon .km-ranking-cuidador, .km-ficha-info-cuidador .km-ranking {
     display:inline-block
@@ -4752,7 +4038,7 @@ button.close {
     margin-bottom:10px
 }
 .km-ficha-icon .km-ranking-cuidador p {
-    background:url(../images/icons/icon-hueso.svg) no-repeat center center;
+    background:url(../images/new/icon/icon-hueso.svg) no-repeat center center;
     float:left;
     width:40px;
     height:20px;
@@ -4760,7 +4046,7 @@ button.close {
     margin-bottom:0
 }
 .km-ficha-icon .km-ranking-cuidador p.active {
-    background-image:url(../images/icons/icon-hueso-color.svg)
+    background-image:url(../images/new/icon/icon-hueso-color.svg)
 }
 .km-ficha-info-cuidador .km-ficha-cuidador {
     text-align:center
@@ -4772,7 +4058,7 @@ button.close {
     width:100%
 }
 .km-ficha-info {
-    margin-top:20px
+    margin-top:0px
 }
 .km-tit-cuidador {
     font-family:Gotham-Pro-Bold;
@@ -4801,7 +4087,7 @@ button.close {
     margin:0;
     display:inline-block;
     background:#fff;
-    background-image:url(../images/icons/icon-calendario.svg);
+    background-image:url(../images/new/icon/icon-calendario.svg);
     background-repeat:no-repeat;
     background-position:20px center!important
 }
@@ -4854,14 +4140,14 @@ button.close {
     margin-top:10px
 }
 .km-review-categoria .km-ranking-usuario p {
-    background:url(../images/icons/icon-hueso.svg) no-repeat center center;
+    background:url(../images/new/icon/icon-hueso.svg) no-repeat center center;
     float:left;
     width:18px;
     height:9px;
     background-size:16px 9px
 }
 .km-ranking-usuario p.active {
-    background-image:url(../images/icons/icon-hueso-color.svg)
+    background-image:url(../images/new/icon/icon-hueso-color.svg)
 }
 .km-review-categoria p {
     font-family:Gotham-Pro-Medium;
@@ -5034,15 +4320,14 @@ a.km-btn-comentario {
 .form-registro input:focus~.after {
     background-position:0 0
 }
-.datepickers-container {
-    z-index:999999
-}
+
 .km-box-form {
     /*margin-bottom:20px;*/
 }
 .km-box-form .label-placeholder {
     position:relative;
-    padding-top:16px
+    padding-top:16px;
+	text-align: left;
 }
 .km-box-form .label-placeholder label {
     left:0;
@@ -5057,6 +4342,9 @@ a.km-btn-comentario {
     margin-bottom:0;
     font-weight:700
 }
+.tamano-mascota-content .col-xs-6{
+	margin-bottom:5px;
+}
 .km-datos-mascota select {
     z-index:1;
     position:relative;
@@ -5067,11 +4355,12 @@ a.km-btn-comentario {
     font-size:15px;
     font-weight:500;
     letter-spacing:.2px;
-    background:0 0;
+    /*background:0 0;*/
     font-family:Gotham-Pro-Regular, Arial, serif;
     border-bottom:1px solid #ccc
 }
-.km-box-form .label-placeholder.focus label, .km-box-form .label-placeholder.focused label {
+.km-box-form .label-placeholder.focus label,
+.km-box-form .label-placeholder.focused label {
     top:12px;
     font-size:11px
 }
@@ -5092,14 +4381,15 @@ a.km-btn-comentario {
     font-weight: 600;
 }
 .km-calendario input {
-    width:100%;
-    padding:0px 0 3px 25px;
-    border:none;
-    border-bottom:1px solid #ccc;
-    margin:0;
-    background:#fff;
-    background-image:url(../images/icons/icon-calendario.svg);
-    background-repeat:no-repeat;
+	width: 100%;
+    padding: 10px 0 3px 25px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    background: #fff;
+    background-image: url(../images/new/icon/icon-calendario.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
 }
 
 .km-fecha-nacimiento input {
@@ -5109,7 +4399,7 @@ a.km-btn-comentario {
     border-bottom:1px solid #ccc;
     margin:0;
     background:#fff;
-    background-image:url(../images/icons/icon-calendario.svg);
+    background-image:url(../images/new/icon/icon-calendario.svg);
     background-repeat:no-repeat;
     background-position:0 22px!important
 }
@@ -5121,7 +4411,7 @@ a.km-btn-comentario {
     transform:translateY(0)!important
 }
 .km-fecha-nacimiento select {
-    background:url(../images/icons/icon-gps.svg) no-repeat;
+    background:url(../images/new/icon/icon-gps.svg) no-repeat;
     background-position:20px;
     padding-left:45px
 }
@@ -5182,7 +4472,7 @@ a.km-btn-comentario {
     bottom:150px;
     right:30px;
     border-radius:45px;
-    background:url(../images/icons/icon-tip.svg) no-repeat center center;
+    background:url(../images/new/icon/icon-tip.svg) no-repeat center center;
     background-size:32px
 }
 .km-recordatorio {
@@ -5247,6 +4537,8 @@ textarea.popup-conoce-textarea {
     background-repeat: no-repeat;
     background-position: center;
     margin: 0 auto;
+    border-radius: 50%;
+    background-size: cover;
 }
 
 .km-datos-mascota::after {
@@ -5298,7 +4590,8 @@ textarea.popup-conoce-textarea {
 }
 footer {
     background-color:#f5f5f5;
-    padding:30px 0
+    padding:30px 0;
+    clear: both;
 }
 footer input.form-control {
     background-color:#f5f5f5;
@@ -5373,13 +4666,14 @@ footer .km-icon-redes {
     position:relative;
     z-index:1;
     color:#333;
-    margin-top:100px
+    /*margin-top:100px*/
 }
 .page-reservation .km-content .km-col-steps {
     width:66.40625%;
     background:#fff;
     float:left;
-    padding:52px 0 32px 0
+    padding:140px 15px 32px 15px;
+    position: relative;;
 }
 .page-reservation .km-content .km-col-steps .km-col-content {
     width:100%;
@@ -5389,7 +4683,7 @@ footer .km-icon-redes {
 .page-reservation .km-content .km-col-empty {
     width:33.59375%;
     float:left;
-    padding:52px 10px 32px 10px;
+    padding:140px 10px 32px 10px;
 }
 .page-reservation .steps-numbers {
     margin:0 auto;
@@ -5537,19 +4831,19 @@ footer .km-icon-redes {
     padding-left:46px
 }
 .page-reservation .km-content-step .km-content-new-pet .km-height select.small {
-    background-image:url(../images/icons/icon-pequenio-negro.svg);
+    background-image:url(../images/new/icon/icon-pequenio-negro.svg);
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-height select.medium {
-    background-image:url(../images/icons/icon-mediano-negro.svg);
+    background-image:url(../images/new/icon/icon-mediano-negro.svg);
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-height select.large {
-    background-image:url(../images/icons/icon-grande-negro.svg);
+    background-image:url(../images/new/icon/icon-grande-negro.svg);
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-height select.extra-large {
-    background-image:url(../images/icons/icon-gigante-negro.svg);
+    background-image:url(../images/new/icon/icon-gigante-negro.svg);
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-services-content {
@@ -5592,7 +4886,9 @@ footer .km-icon-redes {
     font-size:21px;
     font-weight:700
 }
-.page-reservation .km-content-step .km-services-total .km-price-total {
+.page-reservation .km-content-step .km-services-total .km-price-total,
+.page-reservation .km-content-step .km-services-total .km-price-total2
+ {
     float:right;
     font-size:26px;
     font-weight:700
@@ -5627,7 +4923,8 @@ footer .km-icon-redes {
     font-size:17px;
     text-align:center;
     line-height:55px;
-    margin-top:30px
+    margin-top:30px;
+    cursor: pointer;
 }
 .page-reservation .km-end-btn-form span {
     display:inline-block;
@@ -5710,7 +5007,8 @@ footer .km-icon-redes {
     color:#979797;
     position:relative;
     height:108px;
-    cursor:pointer
+    cursor:pointer;
+    margin-bottom: 20px;
 }
 .page-reservation .km-select-method-paid .km-method-paid-options .km-method-paid-option:last-child {
     float:right
@@ -5728,6 +5026,26 @@ footer .km-icon-redes {
     font-size:15px;
     font-weight:700
 }
+
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas {
+    height: 100px;
+}
+
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-one {
+    font-size:17px;
+    font-weight:700;
+    margin-top:30px
+}
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-two {
+    font-size:15px;
+    margin: 4px;
+    font-weight:700
+}
+.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-three {
+    font-size:15px;
+    font-weight:700
+}
+
 .page-reservation .km-select-method-paid .km-method-paid-options .km-option-total .km-text-one {
     font-size:17px;
     font-weight:700;
@@ -5914,8 +5232,8 @@ footer .km-icon-redes {
     margin-top:100px
 }
 .page-reservation .km-step-end img {
-    display:inline-block;
-    margin:95px 0 60px 0
+    display: inline-block;
+    margin: 15px 0 30px 0;
 }
 #map {
     height:430px;
@@ -5944,7 +5262,7 @@ h1.maps {
 .km-opciones.maps .distancia {
     margin-bottom:5px
 }
-.km-caja-resultados .km-columna-der.mapAbsolute {
+.km-caja-resultados .km-columna-der .mapAbsolute {
     position:absolute;
     margin-top:41px;
     right:0
@@ -5957,12 +5275,12 @@ h1.maps {
     font-weight:700
 }
 .btnOpenPopup {
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    z-index:998;
-    display:none
+    position:fixed!important;
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    z-index:998!important;
+    display:none;
 }
 .navigation {
     margin-top:20px
@@ -5994,9 +5312,10 @@ h1.maps {
 }
 @media (min-width:992px) {
     .km-caja-resultados .km-columna-der {
-        display:block!important
+        display: block !important;
     }
 }
+
 @media (max-width:991px) {
     .btnOpenPopup {
         display:block
@@ -6004,16 +5323,19 @@ h1.maps {
     .km-titulo-mapa {
         font-size:10px
     }
+    #mapa-close{
+    	display: block!important;
+    }
     .km-caja-resultados .km-columna-der {
-        display:none;
         position:fixed;
-        z-index:999;
+        z-index: 99999999999999999999999;
         top:0;
-        left:0;
-        right:0;
+        right: 0;
         bottom:0;
         background:#fff;
-        padding:10px
+        padding:10px;
+        display: none;
+
     }
     .km-caja-resultados .km-columna-der .closeMap {
         display:block;
@@ -6021,7 +5343,7 @@ h1.maps {
     }
     .km-caja-resultados .km-columna-der .km-mapa, .km-caja-resultados .km-columna-der .km-mapa #map {
         position:relative;
-        height:100%
+        height: calc( 100% - 45px ) !important;
     }
 }
 @media (max-width:1200px) {
@@ -6046,11 +5368,16 @@ h1.maps {
         width:100%;
         display:block
     }
+
 }
 @media (max-width:900px) {
     button.close {
         right:10px;
         color:#000
+    }
+    button.close-white {
+        right:10px;
+        color:#fff!important;
     }
     button.close:hover {
         color:#000
@@ -6085,7 +5412,7 @@ h1.maps {
         margin-top:20px
     }
 }
-@media (max-width:430px) {
+@media (max-width:500px) {
     .page-reservation .header {
         padding-top:20px;
         padding-bottom:20px
@@ -6130,7 +5457,7 @@ h1.maps {
         font-size:15px
     }
     .page-reservation .km-content-step .km-option-resume .km-option-resume-service {
-        font-size:13px
+        font-size:10px
     }
     .page-reservation .km-content-step .km-services-total .km-text-total {
         font-size:18px
@@ -6190,8 +5517,22 @@ h1.maps {
     .page-reservation .km-step-end img {
         width:157px
     }
+
+    .page-reservation .km-content-step .km-content-new-pet .km-height {
+	    width:calc(100% - 100px);
+	    font-size: 10px;
+	}
+
 }
 @media (max-width:767px) {
+
+    .navbar {
+	    height: 60px !important;
+	}
+	.page-reservation .km-content .km-col-steps {
+	    padding: 100px 15px 32px 15px;
+	}
+
     .page-reservation .km-col-empty {
         display:none
     }
@@ -6222,40 +5563,7 @@ h1.maps {
     .h5-sub {
         font-size:9px
     }
-    .bg-white {
-        height:60px
-    }
-    .navbar-brand>img {
-        height:40px!important;
-        padding-left:15px;
-        top:5px
-    }
-    .navbar {
-        padding-top:30px!important
-    }
-    .navbar-header {
-        margin-top:-22px
-    }
-    .navbar-nav {
-        margin:0 -15px
-    }
-    .nav>li {
-        background:#fff
-    }
-    ul.navbar-right li:last-child {
-        padding-left:10px;
-        padding-right:10px;
-        background-color:#fff;
-        display:flex;
-        padding-bottom:10px
-    }
-    .km-nav-link {
-        color:#000
-    }
-    .nav .principal {
-        float:none;
-        margin:0 auto
-    }
+    
     .km-video {
         height:500px
     }
@@ -6283,7 +5591,8 @@ h1.maps {
         margin:20px 0
     }
     .km-beneficios-text {
-        margin-top:0
+        margin-top:0;
+        text-align: left;
     }
     .km-club .col-sm-6:nth-child(2) {
         margin-top:20px
@@ -6314,13 +5623,13 @@ h1.maps {
         padding:0
     }
     .km-testimonial-text {
-        margin-top:80px
+        margin-top:80px!important;
     }
     .km-testimonial {
         font-size:18px
     }
     .km-testimoniales {
-        height:500px
+        height:500px!important;
     }
     .km-testimoniales .bx-wrapper img {
         width:100%!important
@@ -6348,7 +5657,7 @@ h1.maps {
         text-align:center
     }
     .km-ficha-info-cuidador .col-sm-6 {
-        margin-top:30px
+        margin-top:10px!important;
     }
     .km-ficha-bg {
         height:170px
@@ -6395,7 +5704,7 @@ h1.maps {
         width:100%
     }
     footer .row .col-xs-12:nth-child(2) {
-        margin:30px 0
+        margin:15px 0px 0px 0px;
     }
 }
 @media (max-width:480px) {
@@ -6406,8 +5715,66 @@ h1.maps {
 @media all and (max-width:991px) {
     .km-caja-resultados .km-columna-der, .km-caja-resultados .km-columna-izq {
         float:none;
-        width:100%
+        width:100%!important;
     }
+
+    .km-div-enviar,
+    .km-div-fechas,
+    .km-div-ubicacion {
+    	width: 100%!important;
+    }
+    .km-div-ubicacion {
+	    border-bottom: 1px solid #CCC;
+	    border-radius: 6px 6px 0px 0px;
+    }
+
+    .km-beneficios-text,
+    .km-beneficios{
+    	margin-top: 0px!important;
+    }
+
+    .km-select-ubicacion{
+    	border-radius: 6px 6px 0px 0px!important;
+    }
+	.km-select-custom-home{    	
+    	border-radius: 6px!important;
+    }
+    .km-div-enviar .km-submit-custom{
+    	border-radius: 0px 0px 6px 6px!important;
+    }
+
+    .km-select-custom-list{
+    	width: 49%!important;
+    }
+    .km-cajas-filtro .km-caja-filtro,
+    .km-cajas-filtro .form-group{
+    	width: 49%!important;
+    	float:left;
+    }
+    .km-div-filtro .km-titulo-filtro {
+    	color: #000;
+    	margin-top: 15px;
+	}
+	.header-search {
+	    height: 215px!important;
+	}
+	.contentenedor-buscador-todos {
+    	margin-top: -95px!important;
+	}
+	.km-div-filtro .km-titulo-filtro{
+		padding-bottom:15px;
+		padding-top:55px;
+		color:#000!important;
+	}
+	.km-caja-resultados{
+		padding-top: 5px!important; 
+	}
+	.km-superior-resultados{
+		padding-top:25px;
+	}
+	#popup-servicios .km-opcion{
+		text-align: center!important;
+	}
 }
 @media all and (max-width:724px) {
     .header-search {
@@ -6451,13 +5818,21 @@ h1.maps {
 }
 @media all and (max-width:629px) {
     .km-resultados-grid .km-item-resultado {
-        width:48%
+        width:100%;
     }
     .km-resultados-grid .km-item-resultado:nth-child(2n) {
         margin-right:0
     }
     .km-resultados-grid .km-item-resultado:nth-child(3n) {
         margin-right:3%
+    }
+    .km-select-custom-list{
+    	width:91%!important
+    }
+	.km-cajas-filtro .km-caja-filtro,
+    .km-cajas-filtro .form-group{
+    	width: 100%!important;
+    	float:left;
     }
 }
 @media all and (max-width:427px) {
@@ -6476,10 +5851,10 @@ h1.maps {
 }
 @media all and (max-width:629px) {
     .km-resultados-lista .km-item-resultado .km-foto {
-        width:45%
+        width:100%
     }
     .km-resultados-lista .km-item-resultado .km-contenedor-descripcion-opciones {
-        width:55%
+        width:100%
     }
     .km-resultados-lista .km-item-resultado .km-descripcion, .km-resultados-lista .km-item-resultado .km-opciones {
         width:100%
@@ -6538,6 +5913,9 @@ h1.maps {
     }
 }
 @media all and (max-width:767px) {
+	h2 {
+	    font-size: 29px!important;
+	}
     .km-costo {
         position:fixed;
         display:block!important;
@@ -6639,19 +6017,7 @@ AGREGANDO CODIGO DAJAN
         text-align: left;
         margin: 30px 0px 20px;
     }
-    .km-box-form .label-placeholder input {
-        z-index: 1;
-        position: relative;
-        width: 100%;
-        height: 40px;
-        border: none;
-        font-size: 15px;
-        font-weight: 500;
-        letter-spacing: 0.2px;
-        background: transparent;
-        font-family: "Gotham-Pro-Regular", Arial, serif;
-        border-bottom: 1px solid #CCCCCC;
-    }
+
     .km-btn-basic {
         background-color: #33E1BE;
         border-radius: 5px;
@@ -6914,6 +6280,12 @@ AGREGANDO CODIGO DAJAN
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
 }
+.validacion_fechas{
+	display: none;
+	color: red;
+	padding: 5px 0px;
+	text-align: center;
+}
 .km-btn-secondary {
     background-color: #6B1C9B;
     border-bottom: 3px solid #350850;
@@ -6930,6 +6302,9 @@ AGREGANDO CODIGO DAJAN
     transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
+    border: 0;
+    width: 100%;
+    border-bottom: 3px solid #350850;
 }
 .km-btn-secondary:hover {
     background-color: #5b1586;
@@ -7065,122 +6440,6 @@ section {
     margin-bottom: 20px;
     line-height: 24px;
 }
-
-/* MENÚ */
-.bg-transparent {
-    background-color: transparent;
-    transition: background-color .5s ease 0s;
-}
-.bg-white {
-    background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    height: 68px;
-    transition: background-color .5s ease 0s;
-}
-.bg-white-secondary {
-    background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    transition: background-color .5s ease 0s;
-}
-.navbar {
-    padding-top: 30px;
-    min-height: 60px;
-    z-index: 4;
-}
-.navbar .container {
-    position: relative;
-}
-.navbar-brand {
-    padding: 0;
-}
-.navbar-brand>img {
-    position: relative;
-    top: 0;
-}
-.nav>li>a {
-    line-height: 100%!important;
-}
-.nav>li>a:hover {
-    background-color: transparent;
-}
-.nav>li>a.km-btn-primary:hover {
-    background-color: #33e1be;
-}
-.navbar-toggle {
-    margin-top: 0px;
-    margin-right: 0px;
-}
-.nav-login {
-    color: white;
-    position: absolute;
-    top: -20px;
-    right: 0;
-}
-.nav-login {
-    list-style-type: none;
-}
-.nav-login li {
-    display: inline-block;
-}
-.nav-login li a {
-    color: white;
-    font-size: 10px;
-    transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    letter-spacing: 1px;
-}
-.nav-login li a:hover {
-    color: #33E1BE!important;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-}
-.navbar-right {
-    padding-top: 3px;
-}
-.logo-img-mobile {
-    height: 30px;
-}
-.km-nav-link {
-    font-family: 'Gotham-Pro-Medium', arial, sans-serif;
-    color: white;
-    font-size: 12px;
-    text-align: center;
-    text-decoration: none;
-    transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    letter-spacing: 1px;
-}
-.km-nav-link:hover {
-    color: #33E1BE!important;
-    transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    text-decoration: none;
-}
-.datepicker--day-name {
-    color: #6B1C9B;
-    font-weight: 700;
-}
-
-.nav-sesion .navbar-toggle {
-    padding: 3px 10px 0px;
-}
-.nav-sesion ul.navbar-right li:last-child {
-    display: block;
-}
-.nav>li>a:focus {
-    text-decoration: none;
-    background-color: transparent;
-}
-.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-    background-color: transparent;
-}
-/* FIN MENÚ */
-
 
 
 /* SECCIÓN 1 - KMIMOS VIDEOS */
@@ -7343,7 +6602,7 @@ section {
     border-radius: 8px;
     margin: 0;
     background: white;
-    background-image: url(../images/icons/icon-calendario.svg);
+    background-image: url(../images/new/icon/icon-calendario.svg);
     background-repeat: no-repeat;
     background-position: 20px center!important;
 }
@@ -7355,7 +6614,7 @@ section {
             transform: translateY(0px)!important;
 }
 .km-fechas select {
-    background: url(../images/icons/icon-gps.svg) no-repeat;
+    background: url(../images/new/icon/icon-gps.svg) no-repeat;
     background-position: 20px;
     padding-left: 45px;
 }
@@ -7508,6 +6767,10 @@ section {
     border: none;
     margin: 0;
 }
+.km-autor a{
+	color:#fff;
+	text-decoration: none; 
+}
 .km-autor {
     font-size: 13px;
     font-family: 'Gotham-Pro-Bold',arial,sans-serif;
@@ -7571,9 +6834,13 @@ position: absolute;
     display: block;
     border-radius: 8px;
 }
-.km-vacaciones .col-sm-6 {
+
+/*.km-vacaciones .col-sm-6 {
     margin: 20px 0;
-}
+}*/}
+/*.km-vacaciones .col-sm-6 {
+    margin: 20px 0;
+}*/
 
 /*POPUP SERVICIOS*/
 #popup-servicios {
@@ -7668,7 +6935,7 @@ button.close {
     background-repeat: no-repeat;
     background-position: calc(100% - 9px) 50%;
     background-image: url(../images/new/km-arrow-form.svg);
-    border-right: 1px solid rgba(0, 0, 0, .2);
+    /*border-right: 1px solid rgba(0, 0, 0, .2);*/
 
     -webkit-border-radius: 6px 0px 0px 6px;
     -moz-border-radius: 6px 0px 0px 6px;
@@ -7677,6 +6944,15 @@ button.close {
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
+}
+
+.bg-select-custom{
+    border: none;
+    background-color: #FFF;
+    background-size: 14px 13px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 9px) 50%;
+    background-image: url(../images/new/km-arrow-form.svg);
 }
 
 .km-search-slider{
@@ -7747,11 +7023,7 @@ button.close {
 }
 
 .km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a{
-    background-image: url(../images/icons/icon-hueso-yellow.svg);
-}
-
-.km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a.active{
-    background-image: url(../images/icons/icon-hueso-color-yellow.svg);
+    background-image: url(../images/new/icon/icon-hueso-yellow.svg);
 }
 
 .km-search-slider .item-slide .slide-content .slide-buttons a{
@@ -7890,7 +7162,7 @@ button.close {
     width: 50%;
     padding-left: 2.758621%;
     padding-right: 13.533835%;
-    background-image: url(../images/icons/icon-calendario.svg);
+    background-image: url(../images/new/icon/icon-calendario.svg);
 }
 
 .km-submit-custom{
@@ -7967,7 +7239,7 @@ button.close {
     background-size: 18px;
     background-repeat: no-repeat;
     background-position: 92% 50%;
-    background-image: url(../images/km-buscador.svg);
+    background-image: url(../images/new/km-buscador.svg);
     padding-right: 18%;
 }
 
@@ -8066,21 +7338,21 @@ button.close {
 }
 
 .km-opciones-resultados .km-vista-resultados .view-list{
-    background-image: url(../images/icons/icon-view-list.svg);
+    background-image: url(../images/new/icon/icon-view-list.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-grid{
-    background-image: url(../images/icons/icon-view-grid.svg);
+    background-image: url(../images/new/icon/icon-view-grid.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-list:hover,
 .km-opciones-resultados .km-vista-resultados .view-list.active{
-    background-image: url(../images/icons/icon-view-list-hover.svg);
+    background-image: url(../images/new/icon/icon-view-list-hover.svg);
 }
 
 .km-opciones-resultados .km-vista-resultados .view-grid:hover,
 .km-opciones-resultados .km-vista-resultados .view-grid.active{
-    background-image: url(../images/icons/icon-view-grid-hover.svg);
+    background-image: url(../images/new/icon/icon-view-grid-hover.svg);
 }
 
 .km-item-resultado::after{
@@ -8153,13 +7425,22 @@ button.close {
     position: absolute;
 }
 
-.km-link-favorito{
-	color: #8f5bb3 !important;
+.km-link-favorito:hover{
+    color: #337ab7!important;
 }
 
-.km-link-favorito:hover i.fa:before,
-.km-link-favorito[data-active="true"] i.fa:before{
-	content: "\f004" !important;
+.km-link-favorito{
+    color: #ccc!important;
+    display: block;
+    margin: 8px 0px 0px 15px;
+    text-align: center;
+}
+.km-link-favorito[data-active="true"]{
+    color: #6a2499!important;
+}
+
+.km-link-favorito a{
+	display: inline-block;
 }
 
 
@@ -8169,6 +7450,7 @@ button.close {
 	background-repeat: no-repeat;
 	background-color: #292929;
 	height: 150px;
+
 }
 
 .km-ranking::after{
@@ -8181,12 +7463,8 @@ button.close {
     float: left;
     width: 20px;
     height: 9px;
-    background: url(../images/icons/icon-hueso.svg) no-repeat center center;
+    background: url(../images/new/icon/icon-hueso.svg) no-repeat center center;
     background-size: 20px 9px;
-}
-
-.km-ranking a.active{
-    background-image: url(../images/icons/icon-hueso-color.svg);
 }
 .km-contenedor-descripcion-opciones::after{
     content: "";
@@ -8260,7 +7538,7 @@ button.close {
 
 .km-titulo-mapa{
     font-size: 12px;
-    line-height: 32px;
+    line-height: 20px;
 }
 
 
@@ -8290,7 +7568,7 @@ button.close {
 
 .km-resultados-grid .km-item-resultado .km-descripcion{
     padding: 10px 16px;
-    min-height: 177px;
+    min-height: 220px;
 }
 
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos{
@@ -8367,7 +7645,7 @@ button.close {
     position: relative;
 }
 .km-ficha-info-cuidador .col-sm-6 {
-    margin-top: 80px;
+    margin-top: 100px;
 }
 .km-ficha-info-cuidador .km-ranking, .km-ficha-icon .km-ranking-cuidador {
     display: inline-block;
@@ -8376,7 +7654,7 @@ button.close {
     margin-bottom: 10px;
 }
 .km-ficha-icon .km-ranking-cuidador p {
-    background: url(../images/icons/icon-hueso.svg) no-repeat center center;
+    background: url(../images/new/icon/icon-hueso.svg) no-repeat center center;
     float: left;
     width: 40px;
     height: 20px;
@@ -8384,7 +7662,7 @@ button.close {
     margin-bottom: 0;
 }
 .km-ficha-icon .km-ranking-cuidador p.active{
-    background-image: url(../images/icons/icon-hueso-color.svg);
+    background-image: url(../images/new/icon/icon-hueso-color.svg);
 }
 .km-ficha-info-cuidador .km-ficha-cuidador {
     text-align: center;
@@ -8396,7 +7674,7 @@ button.close {
     width: 100%;
 }
 .km-ficha-info {
-    margin-top: 20px;
+    margin-top: 0px;
 }
 .km-tit-cuidador {
     font-family: 'Gotham-Pro-Bold';
@@ -8418,14 +7696,14 @@ button.close {
     margin-bottom: 10px;
 }
 .km-ficha-fechas input {
-    width: 48%;
+    width: calc( 50% - 2px );
     padding: 14px 0px 14px 42px;
     border: 1px solid #e5e5e5;
     border-radius: 8px;
     margin: 0;
     display: inline-block;
     background: white;
-    background-image: url(../images/icons/icon-calendario.svg);
+    background-image: url(../images/new/icon/icon-calendario.svg);
     background-repeat: no-repeat;
     background-position: 20px center!important;
 }
@@ -8504,7 +7782,7 @@ button.close {
 }
 .km-servicio-opcion:before {
     content: "";
-    border-top: 6px solid #fafafa;
+    border-top: 2px solid #fafafa;
     height: 100%;
     position: absolute;
     top: 0;
@@ -8552,14 +7830,14 @@ button.close {
     margin-top: 10px;
 }
 .km-review-categoria .km-ranking-usuario p {
-    background: url(../images/icons/icon-hueso.svg) no-repeat center center;
+    background: url(../images/new/icon/icon-hueso.svg) no-repeat center center;
     float: left;
     width: 18px;
     height: 9px;
     background-size: 16px 9px;
 }
 .km-ranking-usuario p.active{
-    background-image: url(../images/icons/icon-hueso-color.svg);
+    background-image: url(../images/new/icon/icon-hueso-color.svg);
 }
 .km-review-categoria p {
     font-family: 'Gotham-Pro-Medium';
@@ -8590,7 +7868,8 @@ button.close {
 }
 .km-comentario .col-xs-2 .km-foto-comentario-cuidador {
     border-radius: 100%;
-    width: 100%;
+    width: 70px;
+	height: 70px;
 }
 
 a.km-btn-comentario {
@@ -8616,11 +7895,11 @@ a.km-btn-comentario {
     display: inline-block;
 }
 .km-desc-ficha p:first-child {
-    font-size: 9px;
+    font-size: 11px;
     margin: 0;
 }
 .km-desc-ficha p:last-child {
-    font-size: 15px;
+    font-size: 9px;
     margin: 0;
 }
 .km-costo {
@@ -8689,7 +7968,7 @@ a.km-btn-comentario {
 /* POPUPS REGISTRO */
 .popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3, .popup-iniciar-sesion-1, .popup-registrarte-1, .popup-registrarte-nuevo-correo, .popup-olvidaste-contrasena, .popup-registrarte-datos-mascota, .popup-registrarte-final,
 .popup-conocemas-cuidador {
-    padding: 40px;
+    padding: 40px 20px;
 }
 
 .popup-content-cuidador{
@@ -8759,51 +8038,10 @@ a.km-btn-comentario {
 
 
 
-
-.datepickers-container {
-    z-index: 999999;
-}
 .km-box-form {
     margin-bottom: 20px;
 }
-.km-box-form .label-placeholder {
-    position: relative;
-    padding-top: 16px;
-}
 
-.km-box-form .label-placeholder label{
-    left: 0;
-    top: 30px;
-    z-index: 0;
-    font-size: 15px;
-    font-weight: 300;
-    position: absolute;
-    font-family: "Gotham-Pro-Regular", Arial, serif;
-    color: #979797;
-    transition: all 0.15s ease-in;
-    margin-bottom: 0;
-    font-weight: bold;
-}
-
-.km-box-form .label-placeholder input {
-    z-index: 1;
-    position: relative;
-    width: 100%;
-    height: 40px;
-    border: none;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.2px;
-    background: transparent;
-    font-family: "Gotham-Pro-Regular", Arial, serif;
-    border-bottom: 1px solid #CCCCCC;
-}
-
-.km-box-form .label-placeholder.focus label,
-.km-box-form .label-placeholder.focused label {
-    top: 12px;
-    font-size: 11px;
-}
 
 .km-box-form .content-placeholder::after{
     content: "";
@@ -8874,7 +8112,7 @@ a.km-btn-comentario {
     bottom: 150px;
     right: 30px;
     border-radius: 45px;
-    background: url(../images/icons/icon-tip.svg) no-repeat center center;
+    background: url(../images/new/icon/icon-tip.svg) no-repeat center center;
     background-size: 32px;
 }
 .km-recordatorio {
@@ -8966,7 +8204,7 @@ textarea.popup-conoce-textarea {
     background-size: 18px;
     background-repeat: no-repeat;
     background-position: 92% 50%;
-    background-image: url(../images/km-buscador.svg);
+    background-image: url(../images/new/km-buscador.svg);
     padding-right: 18%;
 }
 .km-datos-mascota-opcion {
@@ -9031,6 +8269,41 @@ textarea.vlz_input {
 	}
 }
 
+
+/*BoxComment*/
+.BoxComment{
+	overflow: hidden;
+	margin: 20px 0;
+	display:none;
+}
+.BoxComment textarea,
+.BoxComment input{
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0;
+}
+.BoxComment textarea{
+	height: 100px;
+}
+.BoxComment input.button{
+	width: auto;
+	border: none;
+}
+
+/*DatePicker*/
+.datepick-popup{
+	z-index: 2000 !important;
+}
+
+.message-especial{
+	background-color: #7dd1c4;
+	color: #6b1c9b;
+	border-radius:10px;
+	margin-top:5px;
+	font-family: Gotham-Pro-Bold;
+	padding: 10px 25px;
+	display:none;
+}
 
 /* Modal Subscribe - HOME */
 #PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}

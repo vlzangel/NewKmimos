@@ -1,46 +1,55 @@
 var hasGPS=false;
 
-(function($) {
+(function(jQuery) {
     'use strict';
+    
+    jQuery('#servicios_adicionales').on('click', function () {
+       jQuery('#servicios_adicionales').dropdown('show');
+    });
+    
+    jQuery(document).on('click', '[data-action="validate"]', function(e){
+        if( validar_busqueda_home() ){
+            jQuery('#popup-servicios').modal('show');
+        }
+    });
 
+    jQuery('[data-target="patitas-felices"]').on('click', function(){
 
-    $('[data-target="patitas-felices"]').on('click', function(){
+        if( jQuery('#cp_email').val() != '' && jQuery('#cp_nombre').val() != ''){
 
-        if( $('#cp_email').val() != '' && $('#cp_nombre').val() != ''){
+            jQuery('#msg').html('Enviando solicitud.');
+            jQuery('#cp_loading').removeClass('hidden');
+            jQuery('#cp_loading').fadeIn(1500);
 
-            $('#msg').html('Enviando solicitud.');
-            $('#cp_loading').removeClass('hidden');
-            $('#cp_loading').fadeIn(1500);
-
-            $.ajax( RAIZ+"landing/registro-usuario.php?email="+$('#cp_email').val()+"&name="+$('#cp_nombre').val()+"&referencia=kmimos-home" )
+            jQuery.ajax( RAIZ+"landing/registro-usuario.php?email="+jQuery('#cp_email').val()+"&name="+jQuery('#cp_nombre').val()+"&referencia=kmimos-home" )
             .done(function(e) {
-                var redirect = RAIZ+"/referidos/compartir/?e="+$('#cp_email').val();
-                switch ($.trim(e)){
+                var redirect = RAIZ+"/referidos/compartir/?e="+jQuery('#cp_email').val();
+                switch (jQuery.trim(e)){
                     case '0':
-                        $('#msg').html('¡No pudimos completar su solicitud!');
+                        jQuery('#msg').html('¡No pudimos completar su solicitud!');
                         break;
                     case '1':
-                        $('#msg').html('¡Felicidades, ya formas parte de nuestro Club!');
-                        $('a[data-redirect="patitas-felices"]').attr('href', redirect);
-                        $('a[data-redirect="patitas-felices"]').click();
+                        jQuery('#msg').html('¡Felicidades, ya formas parte de nuestro Club!');
+                        jQuery('a[data-redirect="patitas-felices"]').attr('href', redirect);
+                        jQuery('a[data-redirect="patitas-felices"]').click();
                         window.open( redirect, '_blank' );
                         break;
                     case '2':
-                        $('#msg').html('¡Ya formas parte de nuestro Club!');
-                        $('a[data-redirect="patitas-felices"]').attr('href', redirect);
-                        $('a[data-redirect="patitas-felices"]').click();
+                        jQuery('#msg').html('¡Ya formas parte de nuestro Club!');
+                        jQuery('a[data-redirect="patitas-felices"]').attr('href', redirect);
+                        jQuery('a[data-redirect="patitas-felices"]').click();
                         window.open( redirect, '_blank' );
                         break;
                     default:
                         break;
                 }
                 setTimeout(function() {
-                    $('#cp_loading').fadeOut(1500);
+                    jQuery('#cp_loading').fadeOut(1500);
                 },3000);
             })
             .fail(function() {
-                $('#msg').html('Registro: No pudimos completar su solicitud, intente nuevamente');
-                $('#cp_loading').addClass('hidden');
+                jQuery('#msg').html('Registro: No pudimos completar su solicitud, intente nuevamente');
+                jQuery('#cp_loading').addClass('hidden');
             });  
 
         }else{
@@ -49,132 +58,164 @@ var hasGPS=false;
             var border_color =  '#c71111';
             var visible = 'visible';
  
-            $('[data-error="cp_nombre"]').css('visibility', visible);
-            $('[data-error="cp_nombre"]').css('color', danger_color);
-            $('[data-error="cp_nombre"]').html(msg);
-            $('[name="cp_nombre"]').css('border-bottom', '1px solid ' + border_color);
-            $('[name="cp_nombre"]').css('color', danger_color);
+            jQuery('[data-error="cp_nombre"]').css('visibility', visible);
+            jQuery('[data-error="cp_nombre"]').css('color', danger_color);
+            jQuery('[data-error="cp_nombre"]').html(msg);
+            jQuery('[name="cp_nombre"]').css('border-bottom', '1px solid ' + border_color);
+            jQuery('[name="cp_nombre"]').css('color', danger_color);
 
-            $('[data-error="cp_email"]').css('visibility', visible);
-            $('[data-error="cp_email"]').css('color', danger_color);
-            $('[data-error="cp_email"]').html(msg);
-            $('[name="cp_email"]').css('border-bottom', '1px solid ' + border_color);
-            $('[name="cp_email"]').css('color', danger_color);
+            jQuery('[data-error="cp_email"]').css('visibility', visible);
+            jQuery('[data-error="cp_email"]').css('color', danger_color);
+            jQuery('[data-error="cp_email"]').html(msg);
+            jQuery('[name="cp_email"]').css('border-bottom', '1px solid ' + border_color);
+            jQuery('[name="cp_email"]').css('color', danger_color);
 
         }
     });
 
-
-    $('.adicionales_button').on('click', function(){
-        console.log( "Hola");
-        if( $('.modal_servicios').css('display') == 'none' ){
-            $('.modal_servicios').css('display', 'table');
+    jQuery('.adicionales_button').on('click', function(){
+        if( jQuery('.modal_servicios').css('display') == 'none' ){
+            jQuery('.modal_servicios').css('display', 'table');
         }else{
-            $('.modal_servicios').css('display', 'none');
+            jQuery('.modal_servicios').css('display', 'none');
         }
     });
 
-    $('#close_mas_servicios').on('click', function(){
-        $('.modal_servicios').css('display', 'none');
+    jQuery('#close_mas_servicios').on('click', function(){
+        jQuery('.modal_servicios').css('display', 'none');
     });
 
-    if (navigator.geolocation) {
-        // navigator.geolocation.getCurrentPosition(coordenadas);
-    } else {
-        $('#selector_locacion').removeClass('hide');
-        $('#selector_coordenadas').addClass('hide');
-        $('#selector_tipo').addClass('hide');
-    }
-    if(navigator.platform.substr(0, 2) == 'iP') $('html').addClass('iOS');
-    $(function(){
-        var edos = $('#estado_cuidador').val();
-        
-        function cargar_municipios(CB){
-            var estado_id = jQuery('#estado_cuidador').val();       
-            if( estado_id != '' ){
-                jQuery.getJSON( 
-                    URL_MUNICIPIOS, 
-                    {estado: estado_id} 
-                ).done(
-                    function( data, textStatus, jqXHR ) {
-                        var html = "<option value=''>Seleccione un municipio</option>";
-                        if( data != undefined ){
-                            jQuery.each(data, function(i, val) {
-                                html += '<option value='+val.id+'>'+val.name+'</option>';
-                            });
-                            jQuery('#municipio_cuidador').html(html);
-                        }
+    jQuery(function(){
 
-                        if( CB != undefined) {
-                            CB();
-                        }
-                    }
-                ).fail(
-                    function( jqXHR, textStatus, errorThrown ) {
-                        console.log( 'Error: ' +  errorThrown );
-                    }
-                );
-            }
-        }
-        jQuery('#estado_cuidador').on('change', function(e){
-            cargar_municipios();
-        });
-        /*cargar_municipios(function(){
-            jQuery("#municipio_cuidador > option[value='"+jQuery('#municipio_cache').val()+"']").attr('selected', 'selected');
-        });*/
-        jQuery('#municipio_cuidador').on('change', function(e){
-            jQuery('#municipio_cache').attr('value', jQuery('#municipio_cuidador').val() );
+        jQuery("#boton_buscar").on("click", function(e){
+            jQuery("#buscador").submit();
         });
 
-        $('.boton_servicio > input').on('change',function(e){
-            var activo = $(this).prop('checked');
-            if(activo) $( this ).parent().addClass('check_select');
-            else $( this ).parent().removeClass('check_select');
-        });
-
-        $('label > input').on('change',function(e){
-            var activo = $(this).prop('checked');
-            $( ".por_ubicacion" ).removeClass('input_select');
-            if(activo) $( this ).parent().addClass('input_select');
-
-            switch( $(this).parent().attr("for") ){
-                case "mi-ubicacion":
-                    $(".selects_ubicacion_container").hide();
-                break;
-                case "otra-localidad":
-                    $(".selects_ubicacion_container").show();
-                break;
-            }
-
-        });
-
-        $("#boton_buscar").on("click", function(e){
-            $("#buscador").submit();
-        });
-
-        $("#close_video").on("click", function(e){
+        jQuery("#close_video").on("click", function(e){
             close_video();
+        });
+
+        jQuery('.km-opcion').on('click', function(e) {
+            jQuery(this).toggleClass('km-opcionactivo');
+            jQuery(this).children("input:checkbox").prop("checked", !jQuery(this).children("input").prop("checked"));
         });
 
     });
 })(jQuery);
 
-function coordenadas(position){
-    if(position.coords.latitude != '' && position.coords.longitude != '') {
-        document.getElementById('latitud').value=position.coords.latitude;
-        document.getElementById('longitud').value=position.coords.longitude;        
-    } else {
-        var mensaje = 'No es posible leer su ubicación,\nverifique si su GPS está encendido\ny vuelva a recargar la página.'+$('#latitud').val()+','+$('#longitud').val();
-        alert(mensaje);        
+
+jQuery(window).on('resize', function(){
+    loadBGVideoHOME();
+});
+
+function loadBGVideoHOME(){
+    if( jQuery(window).width() >= 768 ){
+        jQuery('.km-video-bg').html(
+            '<div class="overlay"></div>'+
+            '<video loop muted autoplay poster="'+HOME+'/images/new/km-hero-desktop.jpg" class="km-video-bgscreen">'+
+                '<source src="'+HOME+'/images/new/videos/km-home/km-video.webm" type="video/webm">'+
+                '<source src="'+HOME+'/images/new/videos/km-home/km-video.mp4" type="video/mp4">'+
+                '<source src="'+HOME+'/images/new/videos/km-home/km-video.ogv" type="video/ogg">'+
+            '</video>'
+        );
+    }else{
+        jQuery('.km-video-bg').html('<div class="overlay"></div>');
     }
 }
 
+var fecha = new Date();
+jQuery(document).ready(function(){
+
+    loadBGVideoHOME();
+    
+    jQuery('.bxslider').bxSlider({
+        buildPager: function(slideIndex){
+            switch(slideIndex){
+                case 0:
+                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-3.jpg">';
+                case 1:
+                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-2.jpg">';
+                case 2:
+                    return '<img src="'+HOME+'images/new/km-testimoniales/thumbs/testimonial-1.jpg">';
+            }
+        }
+    });
+
+    jQuery("#buscar").on("click", function ( e ) {
+        e.preventDefault();
+        jQuery("#buscador").submit();
+    });
+
+    jQuery("#buscar_no").on("click", function ( e ) {
+        e.preventDefault();
+        jQuery("#buscador").submit();
+    });
+
+    jQuery("#form_cuidador").submit(function(e){
+        if( jQuery("#checkin").val() == "" ){
+            jQuery("#checkin").css("border", "solid 1px red");
+            jQuery("#checkout").css("border", "solid 1px red");
+            jQuery(".validacion_fechas").css("display", "block");
+
+            jQuery(".validacion_fechas").css("display", "block");
+            jQuery(".km-ficha-fechas").css("margin-bottom", "0px");
+            e.preventDefault();
+        }
+    });
+
+    jQuery(".datepick td").on("click", function(e){
+        jQuery( this ).children("a").click();
+    });
+});
+
 function show_video(){
-    $(".modal_video iframe").attr("src", "https://www.youtube.com/embed/xjyAXaTzEhM?rel=0&showinfo=0&autoplay=1");
-    $(".modal_video").css("display", "table");
+    jQuery(".modal_video iframe").attr("src", "https://www.youtube.com/embed/xjyAXaTzEhM?rel=0&showinfo=0&autoplay=1");
+    jQuery(".modal_video").css("display", "table");
 }
 
 function close_video(){
-    $(".modal_video iframe").attr("src", "");
-    $(".modal_video").hide();
+    jQuery(".modal_video iframe").attr("src", "");
+    jQuery(".modal_video").hide();
 }
+
+function validar_busqueda_home(){
+    var IN  = validar( 'checkin' );
+    var OUT = validar( 'checkout' );
+
+    jQuery( '#checkin' ).parent().removeClass('has-error');
+    jQuery( '[data-error="checkin"]' ).addClass('hidden');
+    jQuery( '#checkout' ).parent().removeClass('has-error');
+    jQuery( '[data-error="checkout"]' ).addClass('hidden');
+
+    if( IN ){
+        jQuery( '#checkin' ).parent().addClass('has-error');
+        jQuery( '[data-error="checkin"]' ).removeClass('hidden');
+    }
+    if( OUT ){
+        jQuery( '#checkout' ).parent().addClass('has-error');
+        jQuery( '[data-error="checkin"]' ).removeClass('hidden');
+    }
+
+    if( !IN && !OUT ){
+        return true;
+    }
+    return false;
+}
+
+
+jQuery(document).on('click', '[data-target="iframe-testimonio"]', function(){
+    if( jQuery(this).data('video') != '' ){
+        jQuery('#iframe-testimonio').attr( 'src', jQuery(this).data('video')+"?rel=0&amp;showinfo=0&amp;autoplay=1" );
+
+        jQuery('#testimonio').css('margin-top', jQuery('nav').height());
+        jQuery('#testimonio').modal('show');
+    }
+});
+
+jQuery(document).on('click', '[data-target="close-testimonio"]', function (e) {
+console.log('hidden modal');
+    jQuery('#iframe-testimonio').attr( 'src', 'http://');
+    jQuery('#testimonio').modal('hide');
+});
+
+

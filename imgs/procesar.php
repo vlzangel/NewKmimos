@@ -1,11 +1,13 @@
 <?php
 	extract($_POST);
 
-	if( $previa != "" ){
-        if( file_exists("Temp/".$previa) ){
-            unlink("Temp/".$previa);
+    if( isset($previa)){
+        if( $previa != "" ){
+            if( file_exists("Temp/".$previa) ){
+                unlink("Temp/".$previa);
+            }
         }
-	}
+    }
 
     $imgx = explode(',', $img);
 	$img = end($imgx);

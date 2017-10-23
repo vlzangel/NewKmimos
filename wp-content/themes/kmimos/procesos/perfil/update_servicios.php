@@ -36,6 +36,9 @@
 	foreach ($adicionales['transportacion_sencilla'] as $key => $value) {
 		if( $_POST["transportacion_sencilla_".$key]+0 > 0 ){
 			$transportacion_sencilla = true;
+
+            //ADDITIONAL STATUS
+            $adicionales['status_transportacion_sencilla'] = "1";
 		}
 		$adicionales['transportacion_sencilla'][$key] = $_POST["transportacion_sencilla_".$key]+0;
 	}
@@ -47,8 +50,11 @@
         "largo" => "Largas"
     );
 	foreach ($adicionales['transportacion_redonda'] as $key => $value) {
-		if( $_POST["transportacion_sencilla_".$key]+0 > 0 ){
+		if( $_POST["transportacion_redonda_".$key]+0 > 0 ){
 			$transportacion_redonda = true;
+
+            //ADDITIONAL STATUS
+            $adicionales['status_transportacion_redonda'] = "1";
 		}
 		$adicionales['transportacion_redonda'][$key] = $_POST["transportacion_redonda_".$key]+0;
 	}
@@ -65,6 +71,9 @@
     foreach ($adicionales_extra as $key => $value) {
     	if( $value+0 > 0 ){
     		$adicionales[$key] = $value+0;
+
+            //ADDITIONAL STATUS
+            $adicionales['status_'.$key] = "1";
     	}
     }
 	
@@ -74,6 +83,7 @@
 	$adicionales['visita_al_veterinario'] 	= $_POST["adicional_visita_al_veterinario"]+0;
 
   	$servicios_extras = array(
+        "hospedaje"                     => "Precios de Hospedaje",
     	"guarderia"						=> "Precios de Guardería",
     	"paseos"						=> "Precios de Paseos",
     	"adiestramiento_basico"			=> "Precios de Entrenamiento Básico",
@@ -101,6 +111,11 @@
 		if( max($temp) > 0 ){
     		$adicionales[$key] = $temp;
 			$bases[$key] = $base_temp;
+
+            //ADDITIONAL STATUS
+            if(isset($_POST['status_'.$key])){
+                $adicionales['status_'.$key] = $_POST['status_'.$key];
+            }
 		}
 
     }
@@ -126,52 +141,8 @@
 	} 
     $cuidador_post = $db->get_row("SELECT * FROM wp_posts WHERE ID = {$cuidador->id_post}");
 
-	$hospedaje = $db->get_var("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_name LIKE '%hospedaje%' AND post_type = 'product'");
-  	if( $hospedaje != "" ){
-  		$base_hospedaje *= 1.2;
-  		$sql = "UPDATE wp_postmeta SET meta_value = '{$base_hospedaje}' WHERE post_id = '{$hospedaje}' AND (meta_key = '_price' OR meta_key = '_wc_booking_base_cost');";
-  		$db->query($sql);
-
-        if( $base_hospedaje > 0 ){
-            $status = $status_global;
-        }else{
-            $status = "unpublish";
-        }
-
-        $sql = "UPDATE wp_posts SET post_status = '{$status}' WHERE ID = '{$hospedaje}';";
-        $db->query($sql);
-
-  		foreach ($tams as $tamano) {
-  			$valor = ($_POST['hospedaje_'.$tamano]+0);
-  			$valor *= 1.2;
-  			if( $valor > 0 ){
-  				$status = $status_global;
-  				$base_variante = $valor-$base_hospedaje;
-  			}else{
-  				$status = "unpublish";
-  				$base_variante = 0;
-  			}
-  			$sql = "UPDATE wp_posts SET post_excerpt = 'Precio: \${$valor} c/u', post_status = '{$status}' WHERE post_parent = '{$hospedaje}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';";
-  			$db->query($sql);
-  			$id_variante = $db->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$hospedaje}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';");
-  			
-  			$sql = "UPDATE wp_postmeta SET meta_value = '{$base_variante}' WHERE post_id = '{$id_variante}' AND meta_key = 'block_cost';";
-            $db->query($sql);
-  		}
-
-        $adicionales['comision'] = 1.2;
-        $addons = ( sql_addons($adicionales) );
-
-        $db->query("UPDATE wp_postmeta SET meta_value = '{$addons}' WHERE post_id = {$hospedaje} AND meta_key = '_product_addons';");
-        $db->query("UPDATE wp_postmeta SET meta_value = '{$imgs_product['hospedaje']}' WHERE post_id = {$hospedaje} AND meta_key = '_thumbnail_id';");
-        $db->query("UPDATE wp_postmeta SET meta_value = '2' WHERE post_id = {$hospedaje} AND meta_key = '_wc_booking_min_duration';");
-        $db->query("UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = {$hospedaje} AND meta_key = '_wc_booking_min_date';");
-
-  	}else{
-  		echo "Crear el hospedaje";
-  	}
-
     $servicios_extras_titulos = array(
+        "hospedaje"                     => "Hospedaje",
         "guarderia"                     => "Guardería",
         "paseos"                        => "Paseos",
         "adiestramiento_basico"         => "Entrenamiento Básico",
@@ -200,12 +171,13 @@
     );
     
   	foreach ($servicios_extras as $nombre => $value) {
+       
   		$extra = $db->get_var("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_name LIKE '%{$nombre}%' AND post_type = 'product'");
         
 	  	if( $extra != false ){
 	  		$bases[$nombre] *= 1.2;
 
-            if( $bases[$nombre] > 0 && $_POST['status_'.$nombre] == 1 ){
+            if( $bases[$nombre] > 0 && ( $_POST['status_'.$nombre] == 1 || $nombre == "hospedaje" ) ){
                 $status = $status_global;
             }else{
                 $status = "unpublish";
@@ -228,7 +200,7 @@
 	  				$base_variante = 0;
 	  			}
 
-	  			$sql = "UPDATE wp_posts SET post_excerpt = 'Precio: \${$valor} c/u', post_status = '{$status}', post_title = 'Mascotas {$tamanos[$tamano]}' WHERE post_parent = '{$extra}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';";
+	  			$sql = "UPDATE wp_posts SET post_excerpt = 'Precio: \${$valor} c/u', post_status = '{$status}' WHERE post_parent = '{$extra}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';";
 	  			$db->query( utf8_decode( $sql ) );
 
                 $sql = "SELECT ID FROM wp_posts WHERE post_parent = '{$extra}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';";
@@ -240,8 +212,6 @@
 
             $db->query("UPDATE wp_postmeta SET meta_value = '{$addons}' WHERE post_id = {$extra} AND meta_key = '_product_addons';");
             $db->query("UPDATE wp_postmeta SET meta_value = '{$imgs_product[$nombre]}' WHERE post_id = {$extra} AND meta_key = '_thumbnail_id';");
-            $db->query("UPDATE wp_postmeta SET meta_value = '1' WHERE post_id = {$extra} AND meta_key = '_wc_booking_min_duration';");
-            $db->query("UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = {$extra} AND meta_key = '_wc_booking_min_date';");
 	  	}else{
 
             $hoy = date("Y-m-d H:i:s");

@@ -74,15 +74,38 @@
     border-radius: 10px;
     border: 1px solid #ccc;
     font-weight: bold;
-    max-width: 400px;
     margin: 10px 20px;
     text-align: left!important;
     padding-bottom: 10px!important;
     padding: 10px 10px 0px;
     color: #333333;
+    width: calc( 100% - 40px );
 }
 .modal-items:hover {
     text-decoration: none;
     background: #0ab7a1;
     color: #fff;
+}
+
+@media all and (max-width: 768px){
+    #mapa{
+        height: 93%!important;
+    }
+    .zopim{
+        top:auto!important;
+        position: fixed!important;
+        bottom: 22%!important;
+    }
+}
+ 
+@media All and (max-width: 520px){
+    .zopim{
+        bottom: 25%!important;
+    }
+}
+
+@media all and (max-width: 768px) and (orientation: landscape ){
+    .zopim{
+        bottom: 25%!important;
+    }
 }

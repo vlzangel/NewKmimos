@@ -1,4 +1,9 @@
 <?php
-	$MERCHANT_ID = "mae56tbxscnuqozgio7b";
-	$OPENPAY_KEY_SECRET = "sk_1322ba6cb8e24ca4b9fbd232332f6f3b";
+	$OPENPAY_PRUEBAS = true;
+
+	$OPENPAY_URL = ( $OPENPAY_PRUEBAS ) ? "https://sandbox-dashboard.openpay.mx" : "https://dashboard.openpay.mx";
+	
+	$MERCHANT_ID = "mej4n9f1fsisxcpiyfsz";
+	$OPENPAY_KEY_SECRET = "sk_684a7f8598784911a42ce52fb9df936f";
+	$OPENPAY_KEY_PUBLIC = "pk_3b4f570da912439fab89303ab9f787a1";
 ?>

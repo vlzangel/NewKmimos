@@ -1,9 +1,7 @@
 <?php
-	$load = dirname(dirname(dirname(dirname(dirname(__DIR__))))).'/wp-load.php';
-	if(file_exists($load)){ include_once($load); }
-
+	include("../../../../../wp-load.php");
 	extract($_POST);
-
+ 
 	$user = get_user_by( 'email', $usu );
     if ( isset( $user, $user->user_login, $user->user_status ) && 0 == (int) $user->user_status ){
         $usu = $user->user_login;
@@ -11,9 +9,10 @@
         $usu = sanitize_user($usu, true);
     }
     
-	$info = array();
+    $info = array();
     $info['user_login']     = sanitize_user($usu, true);
     $info['user_password']  = sanitize_text_field($clv);
+    $info['remember']  = ( $check == 'active' )? true : false ;
 
     $user_signon = wp_signon( $info, true );
 
@@ -25,7 +24,7 @@
 	  		)
 	  	);
 	} else {
-	  	wp_set_auth_cookie($user_signon->ID);
+	  	wp_set_auth_cookie($user_signon->ID, $info['remember']);
 	  	echo json_encode( 
 	  		array( 
 	  			'login' => true, 

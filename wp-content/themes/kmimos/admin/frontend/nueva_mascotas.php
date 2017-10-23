@@ -1,62 +1,53 @@
 <?php
 	$pet_id = 0;
     $current_pet = kmimos_get_pet_info($pet_id);
-
-    $photo_pet = "/wp-content/themes/pointfinder/images/noimg.png";
+    $photo_pet = getTema()."/images/popups/registro-cuidador-foto.svg";
 
     $tipos = kmimos_get_types_of_pets();
     $tipos_str = "";
     foreach ( $tipos as $tipo ) {
-        $tipos_str .= '<option value="'.$tipo->ID.'"';
-        $tipos_str .= '>'.esc_html( $tipo->name ).'</option>';
+        $tipos_str .= '<option value="'.$tipo->ID.'">'.esc_html( $tipo->name ).'</option>';
     }
 
     global $wpdb;
     $razas = $wpdb->get_results("SELECT * FROM razas ORDER BY nombre ASC");
     $razas_str = "<option value=''>Favor Seleccione</option>";
     foreach ($razas as $value) {
-        $razas_str .= '<option value="'.$value->id.'"';
-        $razas_str .= '>'.esc_html( $value->nombre ).'</option>';
+        $razas_str .= '<option value="'.$value->id.'">'.esc_html( $value->nombre ).'</option>';
     }
     $razas_str_gatos = "<option value=1>Gato</option>";
 
     $generos = kmimos_get_genders_of_pets();
     $generos_str = "";
     foreach ( $generos as $genero ) {
-        $generos_str .= '<option value="'.$genero['ID'].'"';
-        $generos_str .= '>'.esc_html( $genero['singular'] ).'</option>';
+        $generos_str .= '<option value="'.$genero['ID'].'">'.esc_html( $genero['singular'] ).'</option>';
     }
 
     $tamanos = kmimos_get_sizes_of_pets();
     $tamanos_str = "";
     foreach ( $tamanos as $tamano ) {
-        $tamanos_str .= '<option value="'.$tamano['ID'].'"';
-        $tamanos_str .= '>'.esc_html( $tamano['name'].' ('.$tamano['desc'].')' ).'</option>';
+        $tamanos_str .= '<option value="'.$tamano['ID'].'">'.esc_html( $tamano['name'].' ('.$tamano['desc'].')' ).'</option>';
     }
 
     $si_no = array('no','si');
     $esterilizado_str = "";
     for ( $i=0; $i<2; $i++ ) {
-        $esterilizado_str .= '<option value="'.$i.'"';
-        $esterilizado_str .= '>'.$si_no[$i].'</option>';
+        $esterilizado_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $sociable_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $sociable_str .= '<option value="'.$i.'"';
-        $sociable_str .= '>'.$si_no[$i].'</option>';
+        $sociable_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_humans_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $aggresive_humans_str .= '<option value="'.$i.'"';
-        $aggresive_humans_str .= '>'.$si_no[$i].'</option>';
+        $aggresive_humans_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $aggresive_pets_str = "";
     for ( $i=0; $i<count($si_no); $i++ ) {
-        $aggresive_pets_str .= '<option value="'.$i.'"';
-        $aggresive_pets_str .= '>'.$si_no[$i].'</option>';
+        $aggresive_pets_str .= '<option value="'.$i.'">'.strtoupper($si_no[$i]).'</option>';
     }
 
     $razas = $razas_str;
@@ -72,17 +63,26 @@
     <div id="razas_perros" style="display: none;">'.$razas_str.'</div>
     <div id="razas_gatos" style="display: none;">'.$razas_str_gatos.'</div>
 
+    <h1 style="margin: 0px; padding: 0px;">Agregar nueva mascota</h1><hr style="margin: 5px 0px 10px;">
+
     <section>
+
         <div class="vlz_img_portada_perfil">
-            <div class="vlz_img_portada_fondo" style="background-image: url('.get_home_url().$photo_pet.');"></div>
-            <div class="vlz_img_portada_normal" style="background-image: url('.get_home_url().$photo_pet.');"></div>
-            <div class="vlz_img_portada_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
+            <div class="vlz_img_portada_fondo vlz_rotar" style="background-image: url('.getTema().'/images/noimg.png);"></div>
+            <div class="vlz_img_portada_normal vlz_rotar" style="background-image: url('.getTema().'/images/noimg.png);"></div>
+            <div class="vlz_img_portada_cargando vlz_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
             <div class="vlz_cambiar_portada">
-                Cambiar Foto
+                <i class="fa fa-camera" aria-hidden="true"></i>
+                Cargar Foto
                 <input type="file" id="portada" name="xportada" accept="image/*" />
             </div>
+            <div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+            <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
         </div>
-        <input type="hidden" class="vlz_img_portada_valor" id="portada" name="portada" data-valid="requerid" />
+        <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" id="portada" name="portada" data-valid="requerid" />
+
+        <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
+
     </section>
 
     <div class="inputs_containers" style="padding-bottom: 0px;">
@@ -96,7 +96,15 @@
         <section>
             <label for="pet_birthdate" class="lbl-text">'.esc_html__('Fecha de nacimiento','kmimos').':</label>
             <label class="lbl-ui">
-                <input type="date" name="pet_birthdate" min="'.date("Y-m-d", strtotime('Now -30 years')).'" max="'.date("Y-m-d", strtotime('Now -1 day')).'" class="input" />
+                <input 
+                    type="text" 
+                    id="pet_birthdate" 
+                    name="pet_birthdate" 
+                    placeholder="dd/mm/aaaa" 
+                    value="" 
+                    class="km-input-custom km-input-date date_from" 
+                    readonly
+                />
             </label>
         </section>
     </div>

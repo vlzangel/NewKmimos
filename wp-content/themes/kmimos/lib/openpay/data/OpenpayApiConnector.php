@@ -112,7 +112,7 @@ class OpenpayApiConnector
         curl_setopt_array($curl, $opts);
 
         OpenpayConsole::debug('Executing cURL: '.strtoupper($method).' > '.$absUrl);
-        
+
         $rbody = curl_exec($curl);
         $errorCode = curl_errno($curl);
 
@@ -133,7 +133,7 @@ class OpenpayApiConnector
             $this->handleCurlError($errorCode, $message);
         }
         $rcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        
+
         curl_close($curl);
 
         if (mb_detect_encoding($rbody, 'UTF-8', true) != 'UTF-8') {

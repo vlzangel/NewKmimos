@@ -2,13 +2,15 @@
     /*
         Template Name: Registro del cuidador
     */
+
 	wp_enqueue_script('registro_cuidadores', getTema()."/js/registro_cuidadores.js", array("jquery"), '1.0.0');
 
-//	$config_link_registro = ( is_user_logged_in() )? ' href="'.get_home_url().'/perfil"' : 'href="#" role="button" data-target="#popup-registro-cuidador1"' ;
 	$config_link_registro = 'href="#" role="button" data-target="#popup-registro-cuidador1"' ;
 
-    get_header();
-?>
+	wp_enqueue_style('registro_cuidador', getTema()."/css/registro_cuidador.css", array("kmimos_style"), '1.0.0');
+	wp_enqueue_style('registro_cuidador_responsive', getTema()."/css/responsive/registro_cuidador_responsive.css", array("kmimos_style"), '1.0.0');
+
+    get_header(); ?>
 
 	<!-- SECCIÓN BG CUIDADOR-->
 		<div class="km-hero-bg" style="background-image:url(<?php echo getTema(); ?>/images/new/km-cuidador/km-hero-cuidador.jpg);">
@@ -62,14 +64,14 @@
 						<p>Una persona del equipo de Kmimos te visitará para una entrevista personal.</p>
 					</div>
 					<div class="col-xs-12 col-sm-4">
-						<p>Una persona del equipo de Kmimos te visitará para una entrevista personal.</p>
+						<p>Gana dinero con tu hobbie y en tus propios horarios.</p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- <a href="#popup-registro-cuidador1" class="km-btn-borderw" role="button" data-toggle="modal">EMPIEZA A CUIDAR</a> -->
 
-						<a class="km-btn" <?php echo $config_link_registro; ?>>EMPIEZA A CUIDAR</a>
+						<a class="km-btn-borderw" <?php echo $config_link_registro; ?>>EMPIEZA A CUIDAR</a>
 					</div>
 				</div>
 			</div>
@@ -77,7 +79,7 @@
 		<!-- SECCIÓN CÓMO SOY CUIDADOR -->
 		
 		<?php // Modal Registro Cuidador ?>
-		<?php get_template_part( 'partes/cuidador/registro', 'page' ); ?>
+		<?php include_once( 'partes/cuidador/registro.php' ); ?>
 		
 		<!-- POPUPS TIPS  -->
 		<div id="km-registro-tip1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -91,9 +93,4 @@
 			</div>
 		</div>
 		
-
-<?php
-	
-	// echo comprimir_styles($HTML2);
-    get_footer(); 
-?>
+<?php get_footer(); ?>
