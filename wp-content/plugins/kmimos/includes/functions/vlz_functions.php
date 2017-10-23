@@ -1225,8 +1225,8 @@
             }
 
             $aceptar_rechazar = array(
-                "aceptar" => get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=1&t=1',
-                "cancelar" => get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=0&t=1'
+                "aceptar" => get_home_url().'wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CFM',
+                "cancelar" => get_home_url().'wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CCL'
             );
 
             /* DATA CUIDADOR */
@@ -1299,10 +1299,6 @@
                     );
                 }
 
-
-
-
-
             $detalle = array(
                 "aceptar_rechazar" => $aceptar_rechazar,
                 "id_reserva" => $reserva->ID,
@@ -1333,8 +1329,8 @@
             $desglose["reembolsar"] = $diferencia;
             $desglose["descuento"] = $descuento;
 
-            $tipo_pago = "PAGO EN TIENDA";
-            if( $metas_orden['_payment_method_title'][0] == "Tarjeta" ){ $tipo_pago = "PAGO"; }
+            $tipo_pago = "PAGO";
+            if( $metas_orden['_payment_method_title'][0] != "Tarjeta" ){ $tipo_pago = "PAGO EN TIENDA"; }
 
             $correos = array(
 
@@ -1354,6 +1350,7 @@
                 ),
                 "servicio" => array(
                     "id_reserva" => $reserva->ID,
+                    "id_orden" => $id,
                     "duracion" => $dias.' '.$dias_noches,
                     "tipo" => $tipo_servicio,
                     "inicio" => strtotime( str_replace("/", "-", $inicio) ),
@@ -1365,6 +1362,10 @@
                     "variaciones" => $variaciones,
                     "transporte" => $transporte_desglose,
                     "adicionales" => $adicionales_desglose,
+
+                    "pdf" => $metas_orden['_openpay_pdf'][0],
+
+                    "aceptar_rechazar" => $aceptar_rechazar,
                 ),
             );
 

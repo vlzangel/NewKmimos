@@ -1,23 +1,19 @@
 <div style='text-align:center; margin-bottom: 34px;'>
-	<img src='[URL_IMGS]/header_nueva_reserva.png' style='width: 100%;' >
+	<img src='[URL_IMGS]/header_solicitud_reserva.png' style='width: 100%;' >
 </div>
 
 <div style='padding: 0px; margin-bottom: 34px;'>
 
-    <div style='margin-bottom: 45px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
-        <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 19px; text-align: center;'>
-            ¡Gracias [name_cliente]!
-        </div>  
-        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: center; width: 452px; margin: 0px auto;'>
-            Recibimos tu solicitud de reserva de <strong>[tipo_servicio]</strong>, para que <strong>[name_cuidador]</strong> atienda a tu(s) peludo(s).
-        </div>
-        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 15px;'>
-            Dentro de las próximas 12 horas* <strong>el cuidador confirmará</strong> su disponibilidad a través del sistema, para tu solicitud.
-        </div>
-        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
-            O puedes contactar directamente al cuidador:
-        </div>
-    </div>
+	<div style='margin-bottom: 15px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
+		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px; text-align: center;'>
+			<img style='' src='[URL_IMGS]/check.png' >
+		</div>	<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px; text-align: center;'>
+			¡Todo está listo!
+		</div>	
+	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: center;'>
+	    	Tu reserva ha sido confirmada por el cuidador <strong>[name_cuidador]</strong>
+	    </div>
+	</div>
     
     <div style='display: block; margin-bottom: 31px;'>
 
@@ -55,63 +51,50 @@
         </div>
         
     </div>
-    
-    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; margin-bottom: 13px;'>
-        <strong>En caso de que el cuidador no esté disponible</strong>, recibirás un correo de notificación con instrucciones para que puedas solicitar el cambio de cuidador.
-    </div>
-    
-    <div style='font-family: Arial; font-size: 12px; line-height: 1.25; letter-spacing: 0.2px; text-align: center; color: #CCC;'>
-        *El período de 12 horas es referencial, normalmente los cuidadores contactan al cliente con mucha anterioridad.
-    </div>
 
 </div>
 
 <div style='margin-bottom: 39px; text-align: left;'>
-
-	<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; margin-bottom: 8px;'>
-		DETALLE DE LAS MASCOTAS
-	</div>
-
-	<div style='border-radius: 2.8px; background-color: #f4f4f4;'>
-		<table cellpadding="0" cellspacing="0" style='width: 100%;'>
-			<tr style='border-bottom: solid 1px #000000;font-family: Arial; font-size: 10px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; font-weight: 600;'>
-				<td style='padding: 7px; padding-left: 37px; width: 20px;'>
-					NOMBRE
-				</td>
-				<td style='padding: 7px; width: 100px;'>
-					RAZA
-				</td>
-				<td style='padding: 7px; width: 100px;'>
-					EDAD
-				</td>
-				<td style='padding: 7px; width: 50px;'>
-					TAMA&Ntilde;O
-				</td>
-				<td style='padding: 7px;'>
-					COMPORTAMIENTO
-				</td>
-			</tr>
-
+    <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; margin-bottom: 8px;'>
+        DETALLE DE LAS MASCOTAS
+    </div>
+    <div style='border-radius: 2.8px; background-color: #f4f4f4;'>
+        <table cellpadding="0" cellspacing="0" style='width: 100%;'>
+            <tr style='border-bottom: solid 1px #000000;font-family: Arial; font-size: 10px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; font-weight: 600;'>
+                <td style='padding: 7px; padding-left: 37px; width: 20px;'>
+                    NOMBRE
+                </td>
+                <td style='padding: 7px; width: 100px;'>
+                    RAZA
+                </td>
+                <td style='padding: 7px; width: 100px;'>
+                    EDAD
+                </td>
+                <td style='padding: 7px; width: 50px;'>
+                    TAMA&Ntilde;O
+                </td>
+                <td style='padding: 7px;'>
+                    COMPORTAMIENTO
+                </td>
+            </tr>
             [mascotas]
-
-		</table>
-	</div>
-
+        </table>
+    </div>
 </div>
 
 <div style='margin-bottom: 44px; text-align: left;'>
 
-	<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; margin-bottom: 17px;'>
-		DETALLE DEL SERVICIO
-	</div>
+    <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; margin-bottom: 17px;'>
+        DETALLE DEL SERVICIO
+    </div>
 
-	<div style='margin-bottom: 26px;' >	  
+    <div style='margin-bottom: 26px;' >   
     
         <div style='font-family: Arial; font-size: 14px; font-weight: bold; line-height: 0.86; letter-spacing: 0.3px; color: #000000; margin-bottom: 9px;'> 
             Servicio <span style='font-weight: normal;'>[tipo_servicio]</span>
-        </div>	
+        </div>  
         
-	    <div style='display: table; padding-right: 20px; overflow: hidden; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000;'>
+        <div style='display: table; padding-right: 20px; overflow: hidden; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000;'>
             
             <div style='display: table-row;'>
                 <div style='display: table-cell; height: 20px; vertical-align: middle; width: 42px;'>
@@ -140,9 +123,9 @@
                 </div>
             </div>
                                                             
-		</div>	
+        </div>  
         
-	</div>
+    </div>
     
     <div style='overflow: hidden;'>
         <table cellpadding="0" cellspacing="0" style='box-sizing: border-box; width: 100%; background-color: #FFF; font-family: Arial; font-size: 10px; font-weight: bold; line-height: 1.5; letter-spacing: 0.2px; color: #000000; border: solid 1px #CCC; border-radius: 2.8px; margin-bottom: 15px;'>
@@ -175,4 +158,15 @@
     
     [TOTALES]
 
+</div>
+
+<div style='display: table; width: 100%; padding-bottom: 45px'>
+    <div style='display: table-row;'>
+        <div style='display: table-cell; width: 52px; vertical-align: top;'>
+            <img src='[URL_IMGS]/exclamacion.png' style='width: 33px;' >
+        </div>
+        <div style='display: table-cell; font-family: Arial; font-size: 14px; letter-spacing: 0.2px; color: #666666; padding-bottom: 9px; vertical-align: top;'>
+            Si necesitas cancelar el servicio te pedimos que notifiques al cuidador y al staff kmimos con al menos 48 horas de anticipación a la fecha de inicio de la reserva, de lo contrario se cobrará un monto del 20% sobre el total de la reserva por concepto de la cancelación tardía.
+        </div>
+    </div>
 </div>

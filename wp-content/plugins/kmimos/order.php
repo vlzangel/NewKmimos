@@ -12,25 +12,34 @@
         return $info["email"]; 
     });
 
-    $mostrar_direccion = true;
 
-	include("vlz_data_orden.php");
-	include("vlz_order_funciones.php");
+	if($s == "0"){
 
-	echo "
-		<style>
-    		html, body{ margin: 0px; min-height: 100%; padding: 0px; font-size: 12px; }
-    		.body{ margin: 0px; min-height: 100%; padding: 0px; }
-    		body * { font-size: 12px; }
-    	</style>
-	";
-	$styles = "
-		<style>
-			.undoreset div p {
-			    margin: 1em 0px;
-			}
-		</style>
-	"; 
+	    $mostrar_direccion = true;
+
+		include("vlz_data_orden.php");
+		include("vlz_order_funciones.php");
+
+		echo "
+			<style>
+	    		html, body{ margin: 0px; min-height: 100%; padding: 0px; font-size: 12px; }
+	    		.body{ margin: 0px; min-height: 100%; padding: 0px; }
+	    		body * { font-size: 12px; }
+	    	</style>
+		";
+		$styles = "
+			<style>
+				.undoreset div p {
+				    margin: 1em 0px;
+				}
+			</style>
+		"; 
+	}else{
+
+		include( dirname(dirname(__DIR__))."/themes/kmimos/vlz_data_orden.php");
+
+	}
+
 
 	$status = $booking->get_status();
 
@@ -54,8 +63,8 @@
 
 	}
 
-	if($s == "0"){
 
+	if($s == "0"){
 		kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
 
 		update_cupos( array(

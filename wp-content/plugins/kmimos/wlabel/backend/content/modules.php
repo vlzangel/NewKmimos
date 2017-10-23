@@ -16,7 +16,7 @@
 </div>
 
 <script type="text/javascript">
-    WhiteLabel_panel_menu('booking');
+    WhiteLabel_panel_menu(jQuery('#panel .menu .item[data-module="booking"]'));
     jQuery(document).ready(function(e){
         jQuery('body>div:not(#panel)').each(function(e){
             //console.log(this);

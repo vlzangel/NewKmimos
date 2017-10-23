@@ -6,11 +6,18 @@
 	include_once('includes/class/class_kmimos_booking.php');
 	include_once('includes/class/class_kmimos_tables.php');
 	include_once('includes/class/class_kmimos_script.php');
-	// include_once('plugins/woocommerce.php');
+	include_once('plugins/woocommerce.php');
 
 	if(!function_exists('carlos_include_script')){
 	    function carlos_include_script(){
-	        
+			wp_enqueue_style('theme_style',plugins_url('/css/style.css',__FILE__));
+			wp_enqueue_style('theme_woocmmerce',plugins_url('/css/woocommerce.css',__FILE__));
+
+			//wp_enqueue_script('theme_jquerymobile',plugins_url('includes/js/jquery/jquery.mobile-1.4.5.min.js',__FILE__));
+			// wp_enqueue_style('theme_jquerydatepick',plugins_url('includes/js/jquery/datapicker/datapicker/jquery.datepick.css',__FILE__));
+			//wp_enqueue_script('theme_jquerydatepick',plugins_url('includes/js/jquery/datapicker/jquery.js',__FILE__));
+			// wp_enqueue_script('theme_jquerydatepick',plugins_url('includes/js/jquery/datapicker/datapicker/jquery.datepick.js',__FILE__));
+			// wp_enqueue_script('theme_jqueryplugin',plugins_url('includes/js/jquery/datapicker/datapicker//jquery.plugin.js',__FILE__));
 	    }
 	}
 
@@ -29,176 +36,110 @@
 	    }
 	}
 
+	add_action( 'send_headers', 'add_header_seguridad' );
+	function add_header_seguridad() {
+	    header( 'X-Content-Type-Options: nosniff' );
+	    header( 'X-Frame-Options: SAMEORIGIN' );
+	    header( 'X-XSS-Protection: 1' );
+	    header( 'Cache-Control: no-cache, no-store, must-revalidate');
 
-
-	if(!function_exists('date_boooking')){
-	    function date_boooking($date=''){
-	        $date=strtotime($date);
-	        $date=date('d/m/Y',$date);
-	        //$date=substr($date, 6, 2)."/".substr($date, 4, 2)."/".substr($date, 0, 4);
-	        return $date;
-	    }
-	}
-
-	if(!function_exists('build_select')){
-	    function build_select($args=array()){
-	        $select='';
-	        if(count($args)>0){
-	            $select.='<select class="redirect theme_btn">';
-	            $select.='<option value="" selected="selected">Seleccionar Acción</option>';
-	            foreach($args as $option){
-	                if(array_key_exists('text',$option)){
-	                    $class='';
-	                    if(array_key_exists('class',$option)){
-	                        $class=$option['class'];
-	                    }
-	                    $select.='<option class="'.$class.'" value="'.$option['value'].'">'.$option['text'].'</option>';
-	                }
-	            }
-	            $select.='</select>';
-	        }
-	        return $select;
-	    }
+	    //Prevent Cache-control http
+	    //header('Access-Control-Allow-Origin: *', false);
 	}
 
 
 
+	////MORE VIEWED
+	remove_action('wp_head','adjacent_posts_rel_link_wp_head', 10, 0);
 
-/*	if(!function_exists('get_metaUser')){
-	    function get_metaUser($user_id=0, $condicion=''){
-	        global $wpdb;
-	        $sql = "
-	            SELECT u.user_email, m.*
-	            FROM wp_users as u
-	                INNER JOIN wp_usermeta as m ON m.user_id = u.ID
-	            WHERE
-	                m.user_id = {$user_id}
-	                {$condicion}
-	        ";
-	        $result = $wpdb->get_results($sql);
-	        //$result = execute($sql);
-	        return $result;
-	    }
-	}*/
-
-	if(!function_exists('xGETmetaUSER')){
-	    function xGETmetaUSER($user_id=0){
-	        $condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_phone', 'user_mobile')";
-	        $result = get_metaUser($user_id, $condicion);
-	        $data = [
-	            'id' =>'',
-	            'email' =>'',
-	            'first_name' =>'',
-	            'last_name' =>'',
-	            'user_phone' =>'',
-	            'user_mobile' =>'',
-	        ];
-	        if( !empty($result) ){
-	            if( $result->num_rows > 0){
-	                while ($row = $result->fetch_assoc()) {
-	                    $data['email'] = utf8_encode( $row['user_email'] );
-	                    $data['id'] = $row['user_id'];
-	                    $data[$row['meta_key']] = utf8_encode( $row['meta_value'] );
-	                }
-	            }
-	        }
-	        return $data;
-	    }
-	}
-
-
-
-////MORE VIEWED
-remove_action('wp_head','adjacent_posts_rel_link_wp_head', 10, 0);
-
-function theme_set_post_views($postid) {
-	$count_key = 'post_views_count';
-	$count = get_post_meta($postid, $count_key, true);
-	if($count==''){
-		$count = 0;
-		delete_post_meta($postid, $count_key);
-		add_post_meta($postid, $count_key, '0');
-	}else{
-		$count++;
-		update_post_meta($postid, $count_key, $count);
-	}
-}
-
-add_action('wp_head','theme_track_post_views');
-function theme_track_post_views($postid){
-	if (!is_single()){
-		return;
-	}else if(empty($postid)){
-		global $post;
-		$postid = $post->ID;
-	}
-	theme_set_post_views($postid);
-}
-
-function theme_get_post_views($postid){
-	$count_key = 'post_views_count';
-	$count = get_post_meta($postid, $count_key, true);
-	if($count==''){
-		delete_post_meta($postid, $count_key);
-		add_post_meta($postid, $count_key, '0');
-		return 0;
-	}
-	return $count;
-}
-
-
-
-//UPDATE Additional Services
-function update_additional_service(){
-	global $wpdb;
-
-	$sql = "SELECT * FROM cuidadores";
-	$cuidadores = $wpdb->get_results($sql);
-	foreach ($cuidadores as $cuidador) {
-		$ID =  $cuidador->id;
-		$ID_user =  $cuidador->user_id;
-		$adicionales = unserialize($cuidador->adicionales);
-		//var_dump($ID);
-		//var_dump($adicionales);
-
-		$status_servicios = array();
-		$sql = "SELECT * FROM wp_posts WHERE post_author = {$ID_user} AND post_type = 'product'";
-		$productos = $wpdb->get_results($sql);
-		foreach ($productos as $producto) {
-			$servicio = explode("-", $producto->post_name);
-			$status_servicios[$servicio[0]] = $producto->post_status;
-
-			if(isset($adicionales[$servicio[0]]) && $producto->post_status=='publish'){
-				//var_dump($servicio[0]);
-				if(!isset($adicionales['status_'.$servicio[0]])){
-					$adicionales['status_'.$servicio[0]]='1';
-				}
-			}
+	function theme_set_post_views($postid) {
+		$count_key = 'post_views_count';
+		$count = get_post_meta($postid, $count_key, true);
+		if($count==''){
+			$count = 0;
+			delete_post_meta($postid, $count_key);
+			add_post_meta($postid, $count_key, '0');
+		}else{
+			$count++;
+			update_post_meta($postid, $count_key, $count);
 		}
+	}
 
-		$service_extra=array('bano','corte','limpieza_dental','visita_al_veterinario','acupuntura');
-		$service_transportation=array('transportacion_sencilla','transportacion_redonda');
-		foreach($adicionales as $service => $amount){
-			if(in_array($service,$service_extra)){
-				if($amount>0){
-					$adicionales['status_'.$service]='1';
+	add_action('wp_head','theme_track_post_views');
+	function theme_track_post_views($postid){
+		if (!is_single()){
+			return;
+		}else if(empty($postid)){
+			global $post;
+			$postid = $post->ID;
+		}
+		theme_set_post_views($postid);
+	}
+
+	function theme_get_post_views($postid){
+		$count_key = 'post_views_count';
+		$count = get_post_meta($postid, $count_key, true);
+		if($count==''){
+			delete_post_meta($postid, $count_key);
+			add_post_meta($postid, $count_key, '0');
+			return 0;
+		}
+		return $count;
+	}
+
+
+
+	//UPDATE Additional Services
+	function update_additional_service(){
+		global $wpdb;
+
+		$sql = "SELECT * FROM cuidadores";
+		$cuidadores = $wpdb->get_results($sql);
+		foreach ($cuidadores as $cuidador) {
+			$ID =  $cuidador->id;
+			$ID_user =  $cuidador->user_id;
+			$adicionales = unserialize($cuidador->adicionales);
+			//var_dump($ID);
+			//var_dump($adicionales);
+
+			$status_servicios = array();
+			$sql = "SELECT * FROM wp_posts WHERE post_author = {$ID_user} AND post_type = 'product'";
+			$productos = $wpdb->get_results($sql);
+			foreach ($productos as $producto) {
+				$servicio = explode("-", $producto->post_name);
+				$status_servicios[$servicio[0]] = $producto->post_status;
+
+				if(isset($adicionales[$servicio[0]]) && $producto->post_status=='publish'){
+					//var_dump($servicio[0]);
+					if(!isset($adicionales['status_'.$servicio[0]])){
+						$adicionales['status_'.$servicio[0]]='1';
+					}
 				}
 			}
 
-			if(in_array($service,$service_transportation)){
-				foreach($service_transportation as $transportation => $amount){
+			$service_extra=array('bano','corte','limpieza_dental','visita_al_veterinario','acupuntura');
+			$service_transportation=array('transportacion_sencilla','transportacion_redonda');
+			foreach($adicionales as $service => $amount){
+				if(in_array($service,$service_extra)){
 					if($amount>0){
 						$adicionales['status_'.$service]='1';
 					}
 				}
-			}
-		}
 
-		$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."' WHERE user_id = ".$ID_user.";";
-		$wpdb->query($sql);
-		//var_dump($sql);
+				if(in_array($service,$service_transportation)){
+					foreach($service_transportation as $transportation => $amount){
+						if($amount>0){
+							$adicionales['status_'.$service]='1';
+						}
+					}
+				}
+			}
+
+			$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."' WHERE user_id = ".$ID_user.";";
+			$wpdb->query($sql);
+			//var_dump($sql);
+		}
 	}
-}
 
 
 
@@ -357,8 +298,4 @@ function update_addons_service(){
 	}
 }
 
-//CG only unique use!!!!!!!!!
-// update_additional_service();
-// update_additional_service_postname();
-//update_addons_service();
 ?>
