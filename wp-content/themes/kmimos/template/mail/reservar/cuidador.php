@@ -67,28 +67,28 @@
 	</div>
 
 	<div style='border-radius: 2.8px; background-color: #f4f4f4;'>
-		<div style='display: table; width: 100%;'>
-			<div style='display: table-row; border-bottom: solid 1px #000000;font-family: Arial; font-size: 10px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; font-weight: 600;'>
-				<div style='display: table-cell; padding: 7px; padding-left: 37px; width: 20px;'>
+		<table cellpadding="0" cellspacing="0" style='width: 100%;'>
+			<tr style='border-bottom: solid 1px #000000;font-family: Arial; font-size: 10px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; font-weight: 600;'>
+				<td style='padding: 7px; padding-left: 37px; width: 20px;'>
 					NOMBRE
-				</div>
-				<div style='display: table-cell; padding: 7px; width: 100px;'>
+				</td>
+				<td style='padding: 7px; width: 100px;'>
 					RAZA
-				</div>
-				<div style='display: table-cell; padding: 7px; width: 100px;'>
+				</td>
+				<td style='padding: 7px; width: 100px;'>
 					EDAD
-				</div>
-				<div style='display: table-cell; padding: 7px; width: 50px;'>
+				</td>
+				<td style='padding: 7px; width: 50px;'>
 					TAMA&Ntilde;O
-				</div>
-				<div style='display: table-cell; padding: 7px;'>
+				</td>
+				<td style='padding: 7px;'>
 					COMPORTAMIENTO
-				</div>
-			</div>
+				</td>
+			</tr>
 
             [mascotas]
 
-		</div>
+		</table>
 	</div>
 
 </div>
@@ -139,28 +139,31 @@
 	</div>
     
     <div style='overflow: hidden;'>
-        <div style='box-sizing: border-box; display: table; width: 100%; background-color: #FFF; font-family: Arial; font-size: 10px; font-weight: bold; line-height: 1.5; letter-spacing: 0.2px; color: #000000; border: solid 1px #CCC; border-radius: 2.8px; margin-bottom: 15px;'>
-            <div style='display: table-row;'>
-                <div style='display: table-cell; width: 80px; background-color: #f4f4f4; text-align: center; vertical-align: middle;'>
+        <table cellpadding="0" cellspacing="0" style='box-sizing: border-box; width: 100%; background-color: #FFF; font-family: Arial; font-size: 10px; font-weight: bold; line-height: 1.5; letter-spacing: 0.2px; color: #000000; border: solid 1px #CCC; border-radius: 2.8px; margin-bottom: 15px;'>
+            <tr style=''>
+                <td style='width: 80px; background-color: #f4f4f4; text-align: center; vertical-align: middle;'>
                     <img src='[URL_IMGS]/dog.png'>
-                </div>
-                <div style='display: table-cell; width: 150px; padding: 7px; padding-left: 37px; border-bottom: solid 1px #CCC;'>
+                </td>
+                <td style='width: 150px; padding: 7px; padding-left: 37px; border-bottom: solid 1px #CCC;'>
                     CANTIDAD
-                </div>
-                <div style='display: table-cell; width: 170px; padding: 7px; border-bottom: solid 1px #CCC;'>
+                </td>
+                <td style='width: 170px; padding: 7px; border-bottom: solid 1px #CCC;'>
                     TIEMPO
-                </div>
-                <div style='display: table-cell; width: 100px; padding: 7px; border-bottom: solid 1px #CCC;'>
+                </td>
+                <td style='width: 100px; padding: 7px; border-bottom: solid 1px #CCC;'>
                     PRECIO C/U
-                </div>
-                <div style='display: table-cell; width: 100px; padding: 7px; border-bottom: solid 1px #CCC;'>
+                </td>
+                <td style='width: 100px; padding: 7px; border-bottom: solid 1px #CCC;'>
                     SUBTOTAL
-                </div>
-            </div>
+                </td>
+            </tr>
 
             [desglose]
 
-        </div>
+            [ADICIONALES]
+            [TRANSPORTE]
+
+        </table>
     </div>
     
     [TOTALES]
