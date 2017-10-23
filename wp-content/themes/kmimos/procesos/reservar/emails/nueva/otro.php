@@ -40,9 +40,9 @@
 
         $mensaje_cliente = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cliente);
 
-		echo $mensaje_cliente = get_email_html($mensaje_cliente);
+		$mensaje_cliente = get_email_html($mensaje_cliente);
 
-		//wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
+		wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
 
 	/*
 		Correo Cuidador
@@ -70,6 +70,9 @@
         $mensaje_cuidador = str_replace('[tiempo]', $servicio["duracion"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[tipo_pago]', $servicio["metodo_pago"], $mensaje_cuidador);
 
+        $mensaje_cuidador = str_replace('[ACEPTAR]', $servicio["aceptar_rechazar"]["aceptar"], $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[RECHAZAR]', $servicio["aceptar_rechazar"]["cancelar"], $mensaje_cuidador);
+
         $mensaje_cuidador = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[avatar]', kmimos_get_foto($cliente["id"]), $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[telefonos_cliente]', $cliente["telefono"], $mensaje_cuidador);
@@ -79,7 +82,7 @@
 
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
 
-		echo $mensaje_cuidador = get_email_html($mensaje_cuidador, false);
+		$mensaje_cuidador = get_email_html($mensaje_cuidador, false);
 
-		//wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
+		wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
 ?>

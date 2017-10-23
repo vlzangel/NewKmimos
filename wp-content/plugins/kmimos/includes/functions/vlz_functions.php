@@ -1365,6 +1365,10 @@
                     "variaciones" => $variaciones,
                     "transporte" => $transporte_desglose,
                     "adicionales" => $adicionales_desglose,
+
+                    "pdf" => $metas_orden['_openpay_pdf'][0],
+
+                    "aceptar_rechazar" => $aceptar_rechazar,
                 ),
             );
 

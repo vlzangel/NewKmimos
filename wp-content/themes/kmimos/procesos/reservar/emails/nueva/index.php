@@ -16,9 +16,9 @@
 
 	extract($data);
 
-/*	echo "<pre>";
+	echo "<pre>";
 		print_r($data);
-	echo "</pre>";*/
+	echo "</pre>";
 	
  	$modificacion_de = get_post_meta($reserva_id, "modificacion_de", true);
     if( $modificacion_de != "" ){ $modificacion = 'Esta es una modificación de la reserva #: '.$modificacion_de;
@@ -120,7 +120,7 @@
 	if( strtolower($servicio["metodo_pago"]) == "tienda" ){
 		include("tienda.php");
 	}else{
-		// include("otro.php");
+		include("otro.php");
 	}
 
 ?>
