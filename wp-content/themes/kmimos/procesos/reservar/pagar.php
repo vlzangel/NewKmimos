@@ -459,11 +459,13 @@
 					    'device_session_id' => $pagar->deviceIdHiddenFieldName
 				    );
 
-					$charge = "";
+					$charge = ""; $error = "";
 
 					try {
 			            $charge = $customer->charges->create($chargeData);
-			        } catch (Exception $e) { }
+			        } catch (Exception $e) {
+			        	$error = $e->getErrorCode();
+			        }
 					
 					if ($charge != false) {
 
@@ -506,6 +508,7 @@
 
 			            echo json_encode(array(
 							"error" => $id_orden,
+							"tipo_error" => $error,
 							"status" => "Error, pago fallido"
 						));
 
