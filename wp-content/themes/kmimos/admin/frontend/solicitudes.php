@@ -92,8 +92,8 @@
 	            }
 
 	            $Ver = 'ver/'.$caregiver->Nro_solicitud;
-	            $Confirmar = get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1';
-	            $Cancelar = get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0';
+	            $Confirmar = get_home_url().'/wp-content/themes/kmimos/procesos/conocer/index.php?id_orden='.$caregiver->Nro_solicitud.'&acc=CFM';
+	            $Cancelar = get_home_url().'/wp-content/themes/kmimos/procesos/conocer/index.php?id_orden='.$caregiver->Nro_solicitud.'&acc=CCL';
 
 	            $caregiver->Cuando = date("d/m/Y", strtotime( str_replace("/", "-", $caregiver->Cuando) ));
 
