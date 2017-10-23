@@ -121,14 +121,14 @@ function WhiteLabel_Page(){
     $page = get_page_by_path($post_name);
     $post=array('post_author'=>$user_ID, 'post_content'=>$post_content, 'post_name'=>$post_name, 'post_status'=>'publish', 'post_title'=>$post_title, 'post_type'=>'page', 'post_parent'=>0, 'menu_order'=>0, 'to_ping'=> '', 'pinged'=>'');
 
-/*    if($page->post_name!=$post_name){
+    if($page->post_name!=$post_name){
         $insert = wp_insert_post($post);
         if(!$insert){
             wp_die('Error creando Post');
         }
     }else{
         //update_post_meta($page_id,'_wp_page_template', 'page_registro.php' );
-    }*/
+    }
     return;
 }
 
