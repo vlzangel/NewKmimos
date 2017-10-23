@@ -40,9 +40,9 @@
 
         $mensaje_cliente = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cliente);
 
-		$mensaje_cliente = get_email_html($mensaje_cliente);
+		echo $mensaje_cliente = get_email_html($mensaje_cliente);
 
-		wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
+		//wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
 
 	/*
 		Correo Cuidador
@@ -79,7 +79,7 @@
 
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
 
-		$mensaje_cuidador = get_email_html($mensaje_cuidador, false);
+		echo $mensaje_cuidador = get_email_html($mensaje_cuidador, false);
 
-		wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
+		//wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
 ?>
