@@ -21,7 +21,7 @@
     
     <div style='display: block; margin-bottom: 8px; text-align: center;'>
 
-        <a href='#'><img src='[URL_IMGS]/group-5.png' style='' ></a>
+        <a href='[PDF]' target="_blank"><img src='[URL_IMGS]/group-5.png' style='' ></a>
         
     </div>
     
@@ -142,5 +142,7 @@
 
         </table>
     </div>
+    
+    [TOTALES]
 
 </div>

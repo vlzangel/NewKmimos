@@ -27,11 +27,11 @@
 		</div>
 
 		<div style='text-align: center; margin-bottom: 12px;'>
-			<a href='#' style='text-decoration: none;'><img src='[URL_IMGS]/btn_aceptar.png' style='width: 252px;' /></a>
+			<a href='[ACEPTAR]' style='text-decoration: none;'><img src='[URL_IMGS]/btn_aceptar.png' style='width: 252px;' /></a>
 		</div>
 
 		<div style='font-family: Arial; font-size: 14px; line-height: 1.21; letter-spacing: 0.3px; color: #000000; margin-bottom: 39px;'>
-			AHORA NO PUEDO, <a href='#' style='font-weight: 400; color: #000;'>RECHAZAR</a>
+			AHORA NO PUEDO, <a href='[RECHAZAR]' style='font-weight: 400; color: #000;'>RECHAZAR</a>
 		</div>
         
         <div style='margin: 0px auto; width: 300px;'>
