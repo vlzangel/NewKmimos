@@ -465,7 +465,7 @@
                     }
                     if($n <= 4){
                         for ($i=$n; $i<5; $i++){ 
-                            $html .= "<a href='#'></a>";
+                            $html .= "<a href='#' class='no_active'></a>";
                         }
                     }
                 }

@@ -166,7 +166,7 @@
                                     //$r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
                                 break;
                                 case 'paseos':
-                                    $r .= "<img src='".getTema()."/images/new/icon/icon-sello-3.svg' height='40' title='Paseos'> ";
+                                    //$r .= "<img src='".getTema()."/images/new/icon/icon-sello-3.svg' height='40' title='Paseos'> ";
                                     $data[] = array(
                                         "img" => "icon-sello-3.svg",
                                         "titulo" => "Paseos"

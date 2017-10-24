@@ -20,6 +20,10 @@ header{
     margin-top:5px;
 }
 
+.button-shared{
+    margin-right: 20px;
+}
+
 .resaltar{
     font-size:18px;color:#9F159F;text-decoration: underline;font-weight: bold;
 }
@@ -61,10 +65,12 @@ h1{
 }
 
 .shared-link-email{
-    padding: 5px;
+    padding: 15px;
     background: #fd06a4;
     color: #fff;
     font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
     border-radius: 10px;
 }
 
@@ -111,6 +117,29 @@ footer{
 	margin-bottom:15px;
 }
 
+.footer-content{
+    margin-top:15px;
+    background:#881C9B;
+    color:#fff;
+    font-weight:bold;
+    padding:2px 10px 2px 10px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.btn-cerrar{
+    color:#fff;
+    background:#881C9B;
+    border:0px;
+    padding:5px 9px 5px 9px;
+    border-radius:15px;
+    font:40px;
+    position:absolute; 
+    right:1px;
+    top:1px;
+    margin:10px;
+}
+
 /***************************************/
 /*  Media                              */
 /***************************************/
@@ -118,6 +147,12 @@ footer{
 
 }
 @media 	(max-width: 766px){ 
+   .btn-cerrar{
+    font-size: 18px;
+   }
+    .footer-content{
+        text-align: left;
+    }
     body{
         padding-bottom:20px;
     }
@@ -144,6 +179,9 @@ footer{
     }
 }
 @media 	(min-width: 992px) { 
+    .footer-content{
+        text-align: center;
+    }
     #bloque1{
         padding-right: 12px;
         padding-left: 10px;
