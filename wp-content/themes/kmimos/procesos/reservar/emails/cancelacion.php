@@ -105,9 +105,9 @@
 
 	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
 
-	if( $_GET["user"] == "CUI" ){
-		echo $mensaje_cuidador;
-	}else{
+	if( $_GET["user"] == "CLI" ){
 		echo $mensaje_cliente;
+	}else{
+		echo $mensaje_cuidador;
 	}
 ?>
