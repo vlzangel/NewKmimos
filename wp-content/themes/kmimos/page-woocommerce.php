@@ -351,9 +351,9 @@
 								</div>
 
 								<div class="km-method-paid-options">
-									<div class="km-method-paid-option km-option-deposit">
+									<div class="km-method-paid-option km-option-total active">
 										<div class="km-text-one">
-											RESERVA CON PAGO PARCIAL.
+											RESERVA CON PAGO PARCIAL
 										</div>
 										<div class="km-text-two">
 											Pague ahora el 17% y el restante
@@ -363,7 +363,7 @@
 										</div>
 									</div>
 
-									<div class="km-method-paid-option km-option-total active">
+									<div class="km-method-paid-option km-option-deposit">
 										<div class="km-text-one">
 											PAGO TOTAL DE LA RESERVA
 										</div>
@@ -565,7 +565,10 @@
 												</div>
 
 												<div class="label-placeholder">
-													<label>Código de seguridad(CVV) <i class="fa fa-info-circle" aria-hidden="true">Número de tres dígitos en el reverso de la tarjeta</i></label>
+													<label>Código de seguridad (CVV)</label> <i class="fa fa-info-circle" aria-hidden="true"></i>
+														<div>Número de tres dígitos en el reverso de la tarjeta<br><br></div>
+
+
 													<input type="text" id="codigo" name="codigo" class="input-label-placeholder next solo_numeros maxlength" data-max="3" maxlength="3" data-next="null" data-openpay-card="cvv2">
 												</div>
 											</div>
