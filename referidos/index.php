@@ -274,7 +274,7 @@ if( isset($_GET['r']) ){
 
 					  $('#loading').removeClass('hidden');
 					  $('#msg').html('Registrando Usuario.');
-					  $.ajax( url+"landing/registro-usuario.php?email="+$('#email').val()+"&name="+$('#name').val()+"&referencia="+$('#referencia').val() )
+					  $.ajax( url+"../landing/registro-usuario.php?email="+$('#email').val()+"&name="+$('#name').val()+"&referencia="+$('#referencia').val() )
 					  .done(function() {
 					    $('#msg').html('Generando url.');
 					  })
@@ -287,7 +287,7 @@ if( isset($_GET['r']) ){
 
 					  $('#loading').removeClass('hidden');
 					  $('#msg').html('Enviando...');
-					  $.ajax( url+"landing/list-subscriber.php?source=kmimos-mx-clientes-referidos&email="+$('#email').val() )
+					  $.ajax( url+"../landing/list-subscriber.php?source=kmimos-mx-clientes-referidos&email="+$('#email').val() )
 					  .done(function() {
 					    $('#loading').addClass('hidden');
 					    $('#msg').html('Guardando referencia.');

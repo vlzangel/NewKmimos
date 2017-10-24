@@ -188,15 +188,15 @@
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
-	        $menus[] = array(
-	                'title'=>'Control WhiteLabel',
-	                'short-title'=>'Control WhiteLabel',
-	                'parent'=>'kmimos',
-	                'slug'=>'bp_wlabel',
-	                'access'=>'manage_options',
-	                'page'=>'backpanel_wlabel',
-	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
-	        );
+	        /* $menus[] = array(
+	                 'title'=>'Control WhiteLabel',
+	                 'short-title'=>'Control WhiteLabel',
+	                 'parent'=>'kmimos',
+	                 'slug'=>'bp_wlabel',
+	                 'access'=>'manage_options',
+	                 'page'=>'backpanel_wlabel',
+	                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );*/
 
 	        $menus[] = array(
 	                'title'=>'Club Patitas Felices (Participantes)',
