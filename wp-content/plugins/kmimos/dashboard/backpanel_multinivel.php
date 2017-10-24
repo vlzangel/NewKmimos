@@ -27,7 +27,7 @@ $subscribe = getMultinivel();
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_suscriptores" method="POST">
+		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_multinivel" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
