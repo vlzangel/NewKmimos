@@ -92,7 +92,7 @@
 						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
 					</button>
 					<a class="navbar-brand" href="'.get_home_url().'">
-						<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
+						<img data-wlabel="logo" src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
 					</a>
 				</div>
 				<ul class="hidden-xs nav-login">
@@ -135,7 +135,7 @@
 					</button>
 					<div class="navbar-header ">
 						<a class="navbar-brand" href="'.get_home_url().'">
-							<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
+							<img data-wlabel="logo" src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
 						</a>
 					</div>
 					<ul class="nav navbar-nav navbar-right hidden-xs">
