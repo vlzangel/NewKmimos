@@ -176,6 +176,7 @@
 			FROM wp_posts 
 			WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' 
 		");
+
 	$productos = '<div class="row">';
 	foreach ($servicios as $servicio) {
 		$tipo = $wpdb->get_var("
@@ -199,42 +200,47 @@
         	$id_hospedaje = $servicio->ID;
         }
 
-        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' ");// AND post_status = 'publish'
 
-        foreach ($tamanos_servicio as $tamano ) {
-        	$activo = false;
-        	if( isset($busqueda["servicios"]) ){
-	        	if( in_array($tipo, $busqueda["servicios"]) ){
-	        		$activo = true;
+        if( !empty($precios) ){
+
+	        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' ");// AND post_status = 'publish'
+
+	        foreach ($tamanos_servicio as $tamano ) {
+	        	$activo = false;
+	        	if( isset($busqueda["servicios"]) ){
+		        	if( in_array($tipo, $busqueda["servicios"]) ){
+		        		$activo = true;
+		        	}
+		        	preg_match_all("#adiestramiento#", $tipo, $matches);
+
+		        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){
+		        		$activo = true;
+		        	}
 	        	}
-	        	preg_match_all("#adiestramiento#", $tipo, $matches);
 
-	        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){
-	        		$activo = true;
-	        	}
-        	}
+	        	$temp_tamanos = get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"],$tamano->post_status);
 
-        	$temp_tamanos = get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"],$tamano->post_status);
+	        	$tamanos_precios[ $temp_tamanos[0] ] = $temp_tamanos[1];
+	        }
 
-        	$tamanos_precios[ $temp_tamanos[0] ] = $temp_tamanos[1];
-        }
+	        $tamanos_txt = "";
+	        foreach ($tamanos as $key => $value) {
+	        	$tamanos_txt .= $tamanos_precios[$key];
+	        }
 
-        $tamanos_txt = "";
-        foreach ($tamanos as $key => $value) {
-        	$tamanos_txt .= $tamanos_precios[$key];
-        }
-		$productos .= '
-		<div class="col-xs-12 col-md-6">
-			<div class="km-ficha-servicio">
-				<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="">
-					'.$titulo.'
-					<!--p>SELECCIÓN SEGÚN TAMAÑO</p-->
-					'.$tamanos_txt.'
-				</a>
-			</div>
-		</div>';
+
+			$productos .= '
+			<div class="col-xs-12 col-md-6">
+				<div class="km-ficha-servicio">
+					<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="">
+						'.$titulo.'
+						<!--p>SELECCIÓN SEGÚN TAMAÑO</p-->
+						'.$tamanos_txt.'
+					</a>
+				</div>
+			</div>';
+		}
 	}
-
 	$productos .= '</div>';
 
 	if(is_user_logged_in()){

@@ -181,8 +181,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
 							<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$0</b></div>
-
+						<div class="km-servicio-costo"><b></b></div>
 					</div>';
 				}
 			break;
@@ -209,8 +208,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
 							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$0</b></div>
-
+						<div class="km-servicio-costo"><b></b></div>
 					</div>';
 				}
 			break;
@@ -237,8 +235,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-grande.svg">
 							<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$0</b></div>
-
+						<div class="km-servicio-costo"><b></b></div>
 					</div>';
 				}
 			break;
@@ -265,7 +262,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
 							<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$0</b></div>
+						<div class="km-servicio-costo"><b></b></div>
 					</div>';
 				}
 			break;
