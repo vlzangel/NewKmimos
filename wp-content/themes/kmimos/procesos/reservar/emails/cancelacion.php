@@ -89,5 +89,25 @@
 
     $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
 
-	echo get_email_html($mensaje_cliente);	
+	$mensaje_cliente = get_email_html($mensaje_cliente);	
+
+	wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
+
+    $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cuidador.php';
+    $mensaje_cuidador = file_get_contents($file);
+
+    $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cuidador);
+    $mensaje_cuidador = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cuidador);
+
+    $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
+
+	$mensaje_cuidador = get_email_html($mensaje_cuidador, false);	
+
+	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
+
+	if( $_GET["user"] == "CLI" ){
+		echo $mensaje_cliente;
+	}else{
+		echo $mensaje_cuidador;
+	}
 ?>

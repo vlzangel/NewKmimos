@@ -2269,7 +2269,6 @@ footer input:focus{
 }
 @media (max-width: 767px) {
 
-	
 
 	.footer-petsitter{
 		margin-bottom: 110px!important;
@@ -2496,7 +2495,10 @@ footer input:focus{
 		width: 100%!important;
 	}
 
-	
+	.km-input-content{
+	    padding-left: 2px!important;
+	}
+
 
 }
 
