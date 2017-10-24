@@ -158,7 +158,7 @@ if(!function_exists('kmimos_get_email_footer')){
             $ayuda = "";
             if( $dudas ){
                 $ayuda = "
-                    <div style='float:left;width:100%;margin-bottom: 31px;'>   
+                    <div style='float:left; width:600px; margin-bottom: 31px;'>   
                         <div style='text-align:center;'>
                             <p style='font-family: Arial;font-weight: bold; font-size:12px; color:#B4B4B4; text-align: center; '>
                                 En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp +52 (55) 6892 2182, o al correo contactomex@kmimos.la
@@ -198,7 +198,7 @@ if(!function_exists('kmimos_get_email_footer')){
                 </head>
                 <body>
                     <div id='kmimos_container' style='font-family: Arial;'>
-                        <div style='margin: 0px auto; max-width: 600px; width: 100%;'>
+                        <div style='padding: 0px 10px; width: 600px;'>
                             <div style='text-align:center;'>
                                 <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/bitmap.png' style='margin-bottom: 14px;' />
                             </div>

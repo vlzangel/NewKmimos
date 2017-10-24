@@ -97,6 +97,8 @@
 			"total" => $pagar->total
 	    );
 
+	    $pagar->total = $pre17;
+
     }
 
     $tamanos = array(
