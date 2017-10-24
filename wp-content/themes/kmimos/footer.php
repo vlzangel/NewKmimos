@@ -129,6 +129,10 @@ $HTML = '
             </script>        
         ";
 
+        if( !empty($wlabel) ){
+            wp_enqueue_script( 'wlabel_js', getTema()."/js/wlabel-content.js",array(), '1.0.0' );
+        }
+
     if( !is_user_logged_in() ){
         /*$HTML .= "<script> startApp(); </script>";*/
     }
