@@ -351,7 +351,7 @@
 								</div>
 
 								<div class="km-method-paid-options">
-									<div class="km-method-paid-option km-option-deposit">
+									<div class="km-method-paid-option km-option-deposit active">
 										<div class="km-text-one">
 											RESERVA CON PAGO PARCIAL
 										</div>
@@ -363,7 +363,7 @@
 										</div>
 									</div>
 
-									<div class="km-method-paid-option km-option-total active">
+									<div class="km-method-paid-option km-option-total">
 										<div class="km-text-one">
 											PAGO TOTAL DE LA RESERVA
 										</div>
@@ -371,7 +371,7 @@
 								</div>
 							</div>
 
-							<div class="km-detail-paid-deposit">
+							<div class="km-detail-paid-deposit" style="display:block;">
 								<div class="km-detail-paid-line-one">
 									<span class="km-detail-label">SUBTOTAL</span>
 									<span id="" class="sub_total km-detail-value"></span>
@@ -539,8 +539,8 @@
 										</div>
 
 										<select id="tipo_pago" style="display: none;">
-											<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
 											<option value="tienda">PAGO EN TIENDA DE CONVENIENCIA</option>
+											<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
 										</select>
 
 										<div class="errores_box">
