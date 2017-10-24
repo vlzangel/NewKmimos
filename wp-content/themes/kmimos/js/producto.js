@@ -35,7 +35,7 @@ function initCarrito(){
 		CARRITO["pagar"] = {
 			"total" : "",
 			"tipo" : "",
-			"metodo" : "completo",
+			"metodo" : "deposito",
 			"token" : "",
 			"deviceIdHiddenFieldName" : "",
 			"id_fallida" : 0,
@@ -639,6 +639,8 @@ var descripciones = "";
 
 jQuery(document).ready(function() { 
 
+	jQuery(".km-option-deposit").click();
+
 	jQuery(".solo_numeros").on("keyup", function(e){
 		var valor = jQuery( this ).val();
 		if( valor != "" ){
@@ -936,6 +938,7 @@ jQuery(document).ready(function() {
 				reaplicarCupones();
 			}
 		}
+		jQuery('.km-option-deposit').click();
 		e.preventDefault();
 	});
 
@@ -954,7 +957,6 @@ jQuery(document).ready(function() {
 		}else{
 			aplicarCupon();
 		}
-
 	});
 
 	jQuery("#reserva_btn_next_3").on("click", function(e){
@@ -1023,7 +1025,6 @@ jQuery(document).ready(function() {
 			jQuery(this).removeClass("active");
 			jQuery("#reserva_btn_next_3").addClass("disabled");
 		}
-		
 	});
 
 	calcular();
