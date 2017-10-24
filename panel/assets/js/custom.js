@@ -140,13 +140,9 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 						  className: "btn-sm"
 						},
 						{
-						  extend: "excel",
+						  extend: "excelHtml5",
 						  className: "btn-sm"
 						},
-						// {
-						//   extend: "excelHtml5",
-						//   className: "btn-sm"
-						// },
 						// {
 						//   extend: "pdfHtml5",
 						//   className: "btn-sm"
