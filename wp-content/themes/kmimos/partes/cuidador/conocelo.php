@@ -149,14 +149,14 @@ $HTML_CONOCER = '
 				<p style=" font-family: Arial;  font-weight: bold; color:#6b1c9b;" >Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.</p>
 				 <br>  
 				<p>Recibimos la solicitud realizada para Conocer a un Cuidador Kmimos.</p>
-				<p >tu codigo de solicitud es: <B><span id="n_solicitud"></span></B></p>
+				<p >Tu codigo de solicitud es: <B><span id="n_solicitud"></span></B></p>
 				<div>
 				    <div> 
 				    <br>   
 				        <p>Datos del cuidador</p>					    
-						<p>Nombre: <B>'.get_user_meta($user_id, "first_name", true).'</B></p>
-						<p>Telefono: '.get_user_meta($user_id, "user_mobile", true).' / '.get_user_meta($user_id, "user_mobile", true).'</p>
-					    <p>Correo: '.$user_email.'</p>
+						<p>Nombre: <B><span id="nombre"></span></B></p>
+						<p>Telefono: <span id="telefono"></span> / '.get_user_meta($user_id, "user_mobile", true).'</p>
+					    <p>Correo: <span id="email"></span></p>
 					</div>
 				     <div> 
 				     <br>   
