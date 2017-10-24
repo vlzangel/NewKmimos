@@ -29,6 +29,46 @@
 		return $busqueda;
 	}
 
+	if(!function_exists('get_destacados')){
+        function get_destacados($estado){
+            global $wpdb;
+            $estado_des = $wpdb->get_var("SELECT name FROM states WHERE id = ".$estado);
+            $sql_top = "SELECT * FROM destacados WHERE estado = '{$estado}'";
+            $tops = $wpdb->get_results($sql_top);
+            $top_destacados = ""; $cont = 0;
+            foreach ($tops as $value) {
+                $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$value->cuidador}");
+                $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+                $nombre = $data->nom;
+                $img_url = kmimos_get_foto_cuidador($value->cuidador);
+                $url = get_home_url() . "/petsitters/" . $data->url;
+                $top_destacados .= "
+                    <a class='vlz_destacados_contenedor' href='{$url}'>
+                        <div class='vlz_destacados_contenedor_interno'>
+                            <div class='vlz_destacados_img'>
+                                <div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
+                                <div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
+                                <div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>MXN $".($cuidador->hospedaje_desde*1.2)."</div>
+                            </div>
+                            <div class='vlz_destacados_data' >
+                                <div class='vlz_destacados_nombre'>{$nombre}</div>
+                                <div class='vlz_destacados_adicionales'>".vlz_servicios($cuidador->adicionales)."</div>
+                            </div>
+                        </div>
+                    </a>
+                ";
+                $cont++;
+            }
+            if( $cont > 0 ){
+                if( $top_destacados != '' ){
+                    $top_destacados = $top_destacados."</div>"; 
+                }
+                $top_destacados = utf8_decode( '<div class="pfwidgettitle"> <div class="widgetheader">Destacados Kmimos en: '.$estado_des.' '.$municipio_des.'</div> </div> <div class="row" style="margin: 10px auto 20px;">').$top_destacados;
+            }
+            return comprimir_styles($top_destacados);
+        }
+    }
+
 	function get_servicio_cuidador($slug){
 		switch ($slug) {
 			case 'hospedaje':
