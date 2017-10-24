@@ -3,6 +3,7 @@ require_once('base_db.php');
 require_once('GlobalFunction.php');
 
 
+
 function get_metaCuidador($user_id=0){
 	$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_phone', 'user_mobile')";
 	$result = get_metaUser($user_id, $condicion);

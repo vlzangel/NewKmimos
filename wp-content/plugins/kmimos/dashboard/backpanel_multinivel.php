@@ -27,7 +27,7 @@ $subscribe = getMultinivel();
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_suscriptores" method="POST">
+		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_multinivel" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
@@ -64,6 +64,7 @@ $subscribe = getMultinivel();
 			      <th>#</th>
 			      <th>Nombre</th>
 			      <th>Email</th>
+			      <th>Fuente</th>
 			      <th>Fecha de registro</th>
 			    </tr>
 			  </thead>
@@ -72,9 +73,10 @@ $subscribe = getMultinivel();
 			  	<?php foreach ($subscribe['rows'] as $row) { ?>
 				    <tr>
 				    	<th class="text-center"><?php echo ++$count; ?></th>
-						<th><?php echo $row['nombres'];  ?></th>
+						<th><?php echo $row['name'];  ?></th>
 						<th><?php echo $row['email']; ?></th>
-						<th><?php echo date('Y-m-d g:i:s A',strtotime($row['fecha_registro'])-(60*60*5)); ?></th>
+						<th><?php echo $row['source']; ?></th>
+						<th><?php echo $row['time']; ?></th>
 				    </tr>
 			   	<?php } ?>
 			  </tbody>

@@ -90,8 +90,6 @@
 				'<div class="message"></div>'+
 				'</div>'+
 
-				'</div>'+
-				'<div class="section section3">*Dentro de 48 hrs. Te enviaremos v&iacute;a email tu c&uacute;pon de descuento</div>' +
 				'</div>';
 			SubscribePopUp_Create(html);
 		}
@@ -128,15 +126,20 @@
 				jQuery.post(url, jQuery(element).serialize(),function(data){
 					//console.log(data);
 					var textmessage="Error al guardar los datos";
+					var approved = "";
 
 					if( data == 1){
-						textmessage="Datos guardados";
+						textmessage="Registro Exitoso. Por favor revisa tu correo en la Bandeja de Entrada o en No Deseados";
+						approved = "Datos guardados";
 					}else if( data == 2){
 						textmessage="Formato de email invalido";
+						approved = "";
 					}else if( data == 3){
-						textmessage="Ya est&aacute;s registrado en la lista, Gracias!";
+						textmessage="Este correo ya est&aacute; registrado. Por favor intenta con uno nuevo";
+						approved = "";
 					}else{
 						textmessage="Error al guardar los datos";
+						approved = "";
 					}
 
 					if(message.length>0){
@@ -145,6 +148,21 @@
 						vsetTime = setTimeout(function(){
 							message_subscribe(message);
 						}, 5000);
+					}
+
+					if( approved == "Datos guardados" ){
+						jQuery.post( 
+							"suscribir.php", 
+							{
+								"email": jQuery("#mail_suscripcion").val()
+							}, 
+							function( data ) {
+							  	/*console.log("Suscripción enviadas");*/
+							}
+						);
+
+	                    fbq ('track','CompleteRegistration');
+						fbq ('track','PopUpLandingVolaris');
 					}
 				});
 			}
