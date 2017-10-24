@@ -1,6 +1,4 @@
 <?php
-// require_once('../include/base_db.php');
-// require_once('../include/GlobalFunction.php');
 
 function getListsuscribe($landing="", $desde="", $hasta=""){
 
@@ -41,44 +39,6 @@ function getListsuscribe($landing="", $desde="", $hasta=""){
 
 function getListlanding(){
 	$sql = "SELECT DISTINCT source FROM list_subscribe";
-	$result = get_fetch_assoc($sql);
-	return $result;
-}
-
-function get_total_reservas( $participante_email = 0 ){
-	$sql = "
-		SELECT count(DISTINCT p.post_author) as total_reservas
-		FROM wp_usermeta as m
-			inner join wp_posts as p ON p.post_author = m.user_id 
-				and p.post_type = 'wc_booking'
-				and p.post_status = 'confirmed'
-				and not p.post_status like '%cart%'
-				and p.post_date > '2017-05-12'
-		WHERE 
-			m.meta_value = md5('{$participante_email}')
-			 
-	";
-
-	$result = get_fetch_assoc($sql);
-	return $result;
-}
-
-
-function getTracking($email=""){
-
-	$result = [];
-	$sql = "
-		SELECT 
-			lt.`user_email`,
-			lt.`option`,
-			lt.`value`
-		FROM
-			list_subscriber_tracking as lt
-		WHERE
-			lt.`user_email` = '".$email."'
-			and lt.`option` like 'referidos_%'
-	";
-
-	$result = get_fetch_assoc($sql);
+	$result = execute($sql);
 	return $result;
 }
