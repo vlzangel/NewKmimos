@@ -80,7 +80,7 @@
 		<div class="km-resultados-lista">
 			'.$CUIDADORES.'
 			<div class="">
-				<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor ajusta los filtros de búsqueda.</h2>
+				<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor pícale <a href="'.get_home_url().'">aquí</a> para ajustar los filtros de búsqueda.</h2>
 			</div>
 		</div>';
 	}
