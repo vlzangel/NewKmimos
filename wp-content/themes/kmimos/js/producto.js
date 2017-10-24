@@ -938,6 +938,7 @@ jQuery(document).ready(function() {
 				reaplicarCupones();
 			}
 		}
+		jQuery('.km-option-deposit').click();
 		e.preventDefault();
 	});
 
