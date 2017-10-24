@@ -78,28 +78,33 @@
 	    }
 	}
 	
-	if(!function_exists('add_class_wlabel')){
-		function add_class_wlabel(){
+	if(!function_exists('add_wlabel')){ 
+		function add_wlabel(){
             $wlabel = false;
+            $title = '';
             if (!isset($_SESSION)) {
                 session_start();
             }
 			if(array_key_exists('wlabel',$_SESSION) || $referido=='Volaris' || $referido=='Vintermex'){
 
                 if(array_key_exists('wlabel',$_SESSION)){
+                	$title = $_SESSION['wlabel'];
                     $wlabel= true;
-
                 }else if($referido=='Volaris'){
+                	$title = 'volaris';
                     $wlabel= true;
 
                 }else if($referido=='Vintermex'){
+                	$title = 'vintermex';
                     $wlabel= true;
                 }
             }
 
             if( $wlabel ){
-				wp_enqueue_style( 'wlabel', getTema()."/css/content-wlabel.css", array(), "1.0.0" );
+				wp_enqueue_style( 'wlabel_css', getTema()."/css/wlabel-content.css", array(), "1.0.0" );
             }
+
+            return $title;
 
 		}
 	}
