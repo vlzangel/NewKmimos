@@ -5,6 +5,7 @@
 global $current_user;
 date_default_timezone_set('America/Mexico_City');
 $user_id = $current_user->ID;
+$user_email = $current_user->user_email;
 $mascotas = kmimos_get_my_pets($user_id);
 
 $btn_perfil['icon'] = '<i class="fa fa-check" style="color: #3c763d;"></i>';
@@ -78,7 +79,7 @@ $HTML_CONOCER = '
 			                        	<option value="10:00:00" data-id="10">10:00  a.m.</option>
 			                        	<option value="10:30:00" data-id="10.5">10:30  a.m.</option>
 			                        	<option value="11:00:00" data-id="11">11:00  a.m.</option>
-			                        	<option value="11:30:00" data-id="11.5">11:30  a.m.</option>
+			                         	<option value="11:30:00" data-id="11.5">11:30  a.m.</option>
 			                        	<option value="12:00:00" data-id="12">12:00  m</option>
 			                        	<option value="12:30:00" data-id="12.5">12:30  m</option>
 			                        	<option value="13:00:00" data-id="13">01:00  p.m.</option>
@@ -142,33 +143,41 @@ $HTML_CONOCER = '
 					Solicitud Enviada Exitosamente
 				</h2>
 				<br>
-				<p style\" color: #6b1c9b; font-family: Arial; font-size: 20px; font-weight: bold; ><B>¡Hola '.get_user_meta($user_id, "first_name", true).'!</B></p>	
+
+				<p style=" font-family: Arial; font-size: 20px; font-weight: bold;" ><B>¡Hola '.get_user_meta($user_id, "first_name", true).'!</B></p>
+				<div style="text-align:justify;">
+					
 				<p>Recibimos la solicitud realizada para Conocer a un Cuidador Kmimos.</p>
-				<p >tu codigo de solicitud es: <B>'.$code.'</B></p>
+				<p >tu codigo de solicitud es: <B><span id="n_solicitud"></span></B></p>
 				<div>
-				    <div style=\"float:left;width:50%;\">    
-				        <p class="DATOS-DEL-CUIDADOR">Datos del cuidador</p>					    
-						<p class="Hilda-M">Nombre: <B>'.get_user_meta($user_id, "first_name", true).'</B></p>
-						<p class="layer">Telefono: '.get_user_meta($user_id, "first_name", true).'/'.get_user_meta($user_id, "first_name", true).'</p>
-					    <p class="hildalilayahooocom">Correo: '.get_user_meta($user_id, "first_name", true).'</p>
+				    <div>    
+				        <p>Datos del cuidador</p>					    
+						<p>Nombre: <B>'.get_user_meta($user_id, "first_name", true).'</B></p>
+						<p>Telefono:'.get_user_meta($user_id, "user_mobile", true).'/'.get_user_meta($user_id, "user_mobile", true).'</p>
+					    <p>Correo: '.$user_email.'</p>
 					</div>
-				     <div style=\"float:left;width:40%;\">    
-						<p class="DATOS-DEL-CUIDADOR">DATOS DE LA REUNION</p>
-						<p class="layer1">Fecha: <B>'.get_user_meta($user_id, "first_name", true).'</B></p>
-						<p class="horas">Hora: '.get_user_meta($user_id, "first_name", true).' horas</p>
-						<p class="lugar">Fin: '.get_user_meta($user_id, "first_name", true).'</p>
-						<p class="DATOS-DEL-CUIDADOR">POSIBLE FECHA DE ESTADIA</p>
-						<p class="layer"> Inicio:'.get_user_meta($user_id, "first_name", true).'</p>
-						<p class="layer"> Inicio:'.get_user_meta($user_id, "first_name", true).'</p>
+				     <div>    
+						<p >DATOS DE LA REUNION</p>
+						<p >Fecha: <B><span id="fecha"></span></B></p>
+						<p >Hora: <span id="hora_reu"></span> horas</p>
+						<p >Fin: <span id="lugar_reu"></span></p>
+						<br>
+						<p >POSIBLE FECHA DE ESTADIA</p>
+						<p > Inicio: <span id="fecha_ini"></span></p>
+						<p > Fin: <span id="fecha_fin"></span></p>
 					</div>	
 					<div  style="clear:both;"></div>
 				</div>
 
 				<div>
-				<h3>Importante</h3>
+					<div style="text-align:center;">
+					<h3  style="text-align:center;">Importante</h3>
+					</div>
 				<label>Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados. Dentro de las siguientes 2-4 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso. También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados a continuación para acelerar el proceso si así lo deseas. Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182, o al correo contactomex@kmimos.la</label>
 				</div>
-
+</div>
+<br>
+<br>
 				<div>
 					'.$pdf.'
 					<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/solicitudes/">VER MIS SOLICITUDES</a>
