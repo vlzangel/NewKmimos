@@ -144,19 +144,22 @@ $HTML_CONOCER = '
 				</h2>
 				<br>
 
-				<p style=" font-family: Arial; font-size: 20px; font-weight: bold;" ><B>¡Hola '.get_user_meta($user_id, "first_name", true).'!</B></p>
+				
 				<div style="text-align:justify;">
-					
+				<p style=" font-family: Arial;  font-weight: bold; color:#6b1c9b;" >Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.</p>
+				 <br>  
 				<p>Recibimos la solicitud realizada para Conocer a un Cuidador Kmimos.</p>
 				<p >tu codigo de solicitud es: <B><span id="n_solicitud"></span></B></p>
 				<div>
-				    <div>    
+				    <div> 
+				    <br>   
 				        <p>Datos del cuidador</p>					    
 						<p>Nombre: <B>'.get_user_meta($user_id, "first_name", true).'</B></p>
-						<p>Telefono:'.get_user_meta($user_id, "user_mobile", true).'/'.get_user_meta($user_id, "user_mobile", true).'</p>
+						<p>Telefono: '.get_user_meta($user_id, "user_mobile", true).' / '.get_user_meta($user_id, "user_mobile", true).'</p>
 					    <p>Correo: '.$user_email.'</p>
 					</div>
-				     <div>    
+				     <div> 
+				     <br>   
 						<p >DATOS DE LA REUNION</p>
 						<p >Fecha: <B><span id="fecha"></span></B></p>
 						<p >Hora: <span id="hora_reu"></span> horas</p>
@@ -170,10 +173,11 @@ $HTML_CONOCER = '
 				</div>
 
 				<div>
-					<div style="text-align:center;">
+					
 					<h3  style="text-align:center;">Importante</h3>
-					</div>
-				<label>Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados. Dentro de las siguientes 2-4 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso. También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados a continuación para acelerar el proceso si así lo deseas. Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182, o al correo contactomex@kmimos.la</label>
+					
+				<label> Dentro de las siguientes 2-4 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso. También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados a continuación para acelerar el proceso si así lo deseas.</label>
+				<label> Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182, o al correo contactomex@kmimos.la</label>
 				</div>
 </div>
 <br>

@@ -303,7 +303,7 @@
 					<div class="km-titulo-mapa">
 						<B>UBICACIÓN DE RESULTADOS EN MAPA</B>
 					</div>
-					<strong class="km-leyenda" style =\"color: #6b1c9b;\">Pica en las patitas para ver los cuidadores</strong>
+					<strong class="km-leyenda" style ="color: #6b1c9b;">Pica en las patitas para ver los cuidadores</strong>
 					<div id="mapa" class="km-mapa"></div>
 					<div id="mapa-close"><i class="fa fa-close"></i></div>
 				</div>
