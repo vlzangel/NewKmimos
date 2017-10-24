@@ -347,13 +347,13 @@
 
 							<div class="km-select-method-paid">
 								<div class="km-method-paid-title">
-									SELECCIONA EL MÉTODO DE PAGO
+									SELECCIONA PAGO PARCIAL ó TOTAL
 								</div>
 
 								<div class="km-method-paid-options">
 									<div class="km-method-paid-option km-option-deposit">
 										<div class="km-text-one">
-											DEPÓSITO DEL 17 %
+											RESERVA CON PAGO PARCIAL.
 										</div>
 										<div class="km-text-two">
 											Pague ahora el 17% y el restante
@@ -365,7 +365,7 @@
 
 									<div class="km-method-paid-option km-option-total active">
 										<div class="km-text-one">
-											MONTO TOTAL
+											PAGO TOTAL DE LA RESERVA
 										</div>
 									</div>
 								</div>
@@ -514,20 +514,21 @@
 											<div class="km-method-paid-options km-medio-paid-options">
 												<div class="km-method-paid-option km-tarjeta km-option-3-lineas active">
 													<div class="km-text-one">
-														PAGO CON TARJETA
+													PAGO EN TIENDA
 													</div>
 													<div class="km-text-three">
-														DE CRÉDITO O DÉBITO
+													DE CONVENIENCIA
+														
 													</div>
 												</div>
 
 												<div class="km-method-paid-option km-tienda km-option-3-lineas">
 													<div class="km-text-one">
-														<div class="km-text-one">
-															PAGO EN TIENDA
+														<div class="km-text-one">								
+														PAGO CON TARJETA
 														</div>
 														<div class="km-text-three">
-															DE CONVENIENCIA
+															DE CRÉDITO O DÉBITO
 														</div>
 													</div>
 												</div>
@@ -564,7 +565,7 @@
 												</div>
 
 												<div class="label-placeholder">
-													<label>Código de seguridad (XXX)</label>
+													<label>Código de seguridad(CVV) <i class="fa fa-info-circle" aria-hidden="true">Número de tres dígitos en el reverso de la tarjeta</i></label>
 													<input type="text" id="codigo" name="codigo" class="input-label-placeholder next solo_numeros maxlength" data-max="3" maxlength="3" data-next="null" data-openpay-card="cvv2">
 												</div>
 											</div>
