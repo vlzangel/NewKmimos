@@ -95,7 +95,11 @@ footer h2{
 }
 
 #img-text{
-    width: 160%;
+    width: 110%;
+}
+
+img{
+    margin: auto;
 }
 
 /***************************************/
@@ -104,10 +108,14 @@ footer h2{
 @media  (orientation: landscape) {
 
 }
-@media  (max-width: 766px){ 
+@media  (max-width: 992px){ 
     #img-text{
         width: 100%;
     }    
+    .container{
+        width: 80%;
+        margin: auto;
+    }
 }
 @media 	(min-width: 767px) and 
 		(max-width: 991px){ 
