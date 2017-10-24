@@ -1136,7 +1136,7 @@
             );
 
             $txts = array(
-                "peque"  => 'PequeÑa', 
+                "peque"  => 'Pequeña', 
                 "media"  => 'Mediana', 
                 "grandes"   => "Grande", 
                 "gigantes"  => "Gigante"

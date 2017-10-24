@@ -35,9 +35,11 @@ function menu(){
 
 	if(jQuery(this).scrollTop() > 10) {
 
-		jQuery('.bg-transparent').addClass('bg-white');
-		jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
-		jQuery('.sin_logear img').attr('src', HOME+'/images/new/km-navbar-mobile-negro.svg');
+		if( !jQuery(".navbar").hasClass("bg-white-secondary") ){
+			jQuery('.bg-transparent').addClass('bg-white');
+			jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
+			jQuery('.sin_logear img').attr('src', HOME+'/images/new/km-navbar-mobile-negro.svg');
+		}
 
 	} else {
 
