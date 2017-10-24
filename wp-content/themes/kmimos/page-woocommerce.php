@@ -353,7 +353,7 @@
 								<div class="km-method-paid-options">
 									<div class="km-method-paid-option km-option-deposit">
 										<div class="km-text-one">
-											RESERVA CON PAGO PARCIAL.
+											RESERVA CON PAGO PARCIAL
 										</div>
 										<div class="km-text-two">
 											Pague ahora el 17% y el restante
@@ -512,7 +512,7 @@
 											</div>
 
 											<div class="km-method-paid-options km-medio-paid-options">
-												<div class="km-method-paid-option km-tarjeta km-option-3-lineas active">
+												<div class="km-method-paid-option km-tienda km-option-3-lineas active">
 													<div class="km-text-one">
 													PAGO EN TIENDA
 													</div>
@@ -520,9 +520,10 @@
 													DE CONVENIENCIA
 														
 													</div>
+
 												</div>
 
-												<div class="km-method-paid-option km-tienda km-option-3-lineas">
+												<div class="km-method-paid-option km-tarjeta km-option-3-lineas ">
 													<div class="km-text-one">
 														<div class="km-text-one">								
 														PAGO CON TARJETA
@@ -531,7 +532,9 @@
 															DE CRÉDITO O DÉBITO
 														</div>
 													</div>
+
 												</div>
+
 											</div>
 										</div>
 
@@ -544,7 +547,11 @@
 											Datos de la tarjeta invalidos
 										</div>
 
-										<div id="tarjeta_box" class="metodos_container">
+										<div id="tienda_box" class="metodos_container" style="display:block;">
+											<img src="'.get_template_directory_uri().'/images/tiendas.png" />
+											<img src="'.get_template_directory_uri().'/images/pasos.png" />
+										</div>
+										<div id="tarjeta_box" class="metodos_container" style="display:none;">
 
 											<div class="label-placeholder">
 												<label>Nombre del tarjetahabiente*</label>
@@ -565,8 +572,9 @@
 												</div>
 
 												<div class="label-placeholder">
-													<label>Código de seguridad(CVV) <i class="fa fa-info-circle" aria-hidden="true">Número de tres dígitos en el reverso de la tarjeta</i></label>
+													<label>Código de seguridad(CVV)</label>
 													<input type="text" id="codigo" name="codigo" class="input-label-placeholder next solo_numeros maxlength" data-max="3" maxlength="3" data-next="null" data-openpay-card="cvv2">
+													<small>Número de tres dígitos en el reverso de la tarjeta</small>
 												</div>
 											</div>
 											<!--
@@ -576,10 +584,6 @@
 											-->
 										</div>
 
-										<div id="tienda_box" class="metodos_container">
-											<img src="'.get_template_directory_uri().'/images/tiendas.png" />
-											<img src="'.get_template_directory_uri().'/images/pasos.png" />
-										</div>
 									</div>
 								</div>
 							</div>
