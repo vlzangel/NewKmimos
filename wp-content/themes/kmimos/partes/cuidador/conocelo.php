@@ -62,7 +62,7 @@ $HTML_CONOCER = '
 							<div class="content-placeholder">
 
 								<div class="km-calendario">
-									<label>¿Cuando deseas conocer al cuidador?</label>
+									<label>¿Cuándo deseas conocer al cuidador?</label>
 									<input type="text" id="meeting_when" name="meeting_when" placeholder="dd/mm/aaaa" class="km-calendario date_from" readonly>
 									<small data-error="meeting_when" style="display: none;">Debes ingresar una fecha</small>
 								</div>
@@ -118,12 +118,12 @@ $HTML_CONOCER = '
 									<small data-error="pet_conoce" style="display: none;">Debes seleccionar al menos una mascota</small>
 								</div>
 								<div class="km-calendario">
-									<label>¿Desde cuando requieres el servicio?</label>
+									<label>¿Desde cuándo requieres el servicio?</label>
 									<input type="text" id="service_start" name="service_start" placeholder="dd/mm/aaaa" class="date_from" readonly>
 									<small data-error="service_start" style="display: none;">Debes ingresar una fecha</small>
 								</div>
 								<div class="km-calendario">
-									<label>¿Hasta cuando requieres el servicio?</label>
+									<label>¿Hasta cuándo requieres el servicio?</label>
 									<input type="text" id="service_end" name="service_end" placeholder="dd/mm/aaaa" class="date_from" readonly>
 									<small data-error="service_end" style="display: none;">Debes ingresar una fecha</small>
 								</div>
@@ -141,6 +141,34 @@ $HTML_CONOCER = '
 					¡Genial '.get_user_meta($user_id, "first_name", true).'!<br>
 					Solicitud Enviada Exitosamente
 				</h2>
+				<br>
+				<p style\" color: #6b1c9b; font-family: Arial; font-size: 20px; font-weight: bold; ><B>¡Hola '.get_user_meta($user_id, "first_name", true).'!</B></p>	
+				<p>Recibimos la solicitud realizada para Conocer a un Cuidador Kmimos.</p>
+				<p >tu codigo de solicitud es: <B>'.$code.'</B></p>
+				<div>
+				    <div style=\"float:left;width:50%;\">    
+				        <p class="DATOS-DEL-CUIDADOR">Datos del cuidador</p>					    
+						<p class="Hilda-M">Nombre: <B>'.get_user_meta($user_id, "first_name", true).'</B></p>
+						<p class="layer">Telefono: '.get_user_meta($user_id, "first_name", true).'/'.get_user_meta($user_id, "first_name", true).'</p>
+					    <p class="hildalilayahooocom">Correo: '.get_user_meta($user_id, "first_name", true).'</p>
+					</div>
+				     <div style=\"float:left;width:40%;\">    
+						<p class="DATOS-DEL-CUIDADOR">DATOS DE LA REUNION</p>
+						<p class="layer1">Fecha: <B>'.get_user_meta($user_id, "first_name", true).'</B></p>
+						<p class="horas">Hora: '.get_user_meta($user_id, "first_name", true).' horas</p>
+						<p class="lugar">Fin: '.get_user_meta($user_id, "first_name", true).'</p>
+						<p class="DATOS-DEL-CUIDADOR">POSIBLE FECHA DE ESTADIA</p>
+						<p class="layer"> Inicio:'.get_user_meta($user_id, "first_name", true).'</p>
+						<p class="layer"> Inicio:'.get_user_meta($user_id, "first_name", true).'</p>
+					</div>	
+					<div  style="clear:both;"></div>
+				</div>
+
+				<div>
+				<h3>Importante</h3>
+				<label>Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados. Dentro de las siguientes 2-4 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso. También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados a continuación para acelerar el proceso si así lo deseas. Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182, o al correo contactomex@kmimos.la</label>
+				</div>
+
 				<div>
 					'.$pdf.'
 					<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/solicitudes/">VER MIS SOLICITUDES</a>
