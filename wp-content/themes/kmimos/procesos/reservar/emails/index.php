@@ -98,7 +98,7 @@
     if( $servicio["desglose"]["enable"] == "yes" ){
     	$deposito_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/deposito.php';
     	$deposito_plantilla = file_get_contents($deposito_plantilla);
-    	$deposito_plantilla = str_replace('[REMANENTE]', number_format( number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), 2, ',', '.'), $deposito_plantilla);
+    	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
