@@ -198,7 +198,7 @@ if(!function_exists('kmimos_get_email_footer')){
                 </head>
                 <body>
                     <div id='kmimos_container' style='font-family: Arial;'>
-                        <div style='padding: 0px 10px; width: 600px;'>
+                        <div style='margin: 0px auto; padding: 0px 10px; width: 600px;'>
                             <div style='text-align:center;'>
                                 <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/bitmap.png' style='margin-bottom: 14px;' />
                             </div>
