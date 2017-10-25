@@ -10,8 +10,8 @@
 
 	if(!function_exists('carlos_include_script')){
 	    function carlos_include_script(){
-			wp_enqueue_style('theme_style',plugins_url('/css/style.css',__FILE__));
-			wp_enqueue_style('theme_woocmmerce',plugins_url('/css/woocommerce.css',__FILE__));
+			//wp_enqueue_style('theme_style',plugins_url('/css/style.css',__FILE__));
+			//wp_enqueue_style('theme_woocmmerce',plugins_url('/css/woocommerce.css',__FILE__));
 
 			//wp_enqueue_script('theme_jquerymobile',plugins_url('includes/js/jquery/jquery.mobile-1.4.5.min.js',__FILE__));
 			// wp_enqueue_style('theme_jquerydatepick',plugins_url('includes/js/jquery/datapicker/datapicker/jquery.datepick.css',__FILE__));
