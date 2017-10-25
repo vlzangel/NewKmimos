@@ -117,7 +117,7 @@
 
 		$mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID IN ( '".implode("','", $pet_ids)."' )");
 		$detalles_mascotas = "";
-		$detalles_mascotas .= "<div style='display: table-row; font-size: 12px;'>";
+		$detalles_mascotas .= "";
 
 		$comportamientos_array = array(
 			"pet_sociable"           => "Sociables ",
@@ -169,33 +169,33 @@
 				$raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
 
 				$detalles_mascotas .= "
-					<div style='display: table-cell; width: 20%; font-weight: 600;'>
-						<img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
-					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px;'>
-						".$raza."
-					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px;'>
-						".$edad."
-					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px;'>
-						".$tamanos_array[ $data_mascota['size_pet'][0] ]."
-					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px;'>
-						".implode("", $temp)."
-					</div>
+					<tr style='font-weight: 600;'>
+		                <td style='padding: 7px; width: 20px;'>
+		                    <img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
+		                </td>
+		                <td style='padding: 7px; width: 100px;'>
+		                    ".$raza."
+		                </td>
+		                <td style='padding: 7px; width: 100px;'>
+		                    ".$edad."
+		                </td>
+		                <td style='padding: 7px; width: 50px;'>
+		                    ".$tamanos_array[ $data_mascota['size_pet'][0] ]."
+		                </td>
+		                <td style='padding: 7px;'>
+		                    ".implode("", $temp)."
+		                </td>
+		            </tr>
 				";
 			}
 		}else{
 			$detalles_mascotas .= "
-				<div style='display: table-cell; width: 100%; font-weight: 600;'>
-					No tiene mascotas registradas.
-				</div>
+				<tr style='font-weight: 600;'>
+					<td colspan='5'>No tiene mascotas registradas.</td>
+				</tr>
 			";
 		}
 		$detalles_mascotas .= '</div>';
-
-		//$mascotas = (count($pet_ids) == 1) ? '<h2 style="color: #557da1; font-size: 16px;">Detalles de la mascota: </h2>'.$detalles_mascotas : '<h2 style="color: #557da1; font-size: 16px;">Detalles de las mascotas: </h2>'.$detalles_mascotas;
 
 		/*
 			Cuidador
