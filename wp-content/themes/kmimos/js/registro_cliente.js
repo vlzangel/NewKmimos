@@ -425,16 +425,20 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 	jQuery('.km-opcion').on('click', function(e) {
 	
 		jQuery('#select_1').on('click', function(){
+			jQuery("#select_1").addClass("km-opcionactivo");
 			jQuery("#select_2, #select_3, #select_4").removeClass("km-opcionactivo");
 		});
 		jQuery('#select_2').on('click', function(){
+			jQuery("#select_2").addClass("km-opcionactivo");
 			jQuery("#select_1, #select_3, #select_4").removeClass("km-opcionactivo");
 		});
 		
 		jQuery('#select_3').on('click', function(){
+			jQuery("#select_3").addClass("km-opcionactivo");
 			jQuery("#select_2, #select_1, #select_4").removeClass("km-opcionactivo");
 		});	
 		jQuery('#select_4').on('click', function(){
+			jQuery("#select_4").addClass("km-opcionactivo");
 			jQuery("#select_2, #select_3, #select_1").removeClass("km-opcionactivo");
 		});
 	});
