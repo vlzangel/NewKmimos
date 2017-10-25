@@ -45,6 +45,22 @@
    		exit;
 	}
 
+	$metas_solicitud = get_post_meta($id_orden); 
+
+	/* Cuidador */
+    	$cuidador_name 	= $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = '".$metas_solicitud['requested_petsitter'][0]."'");
+		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$metas_solicitud['requested_petsitter'][0]."'");
+		$email_cuidador = $cuidador->email;
+
+    /* Cliente */
+
+	    $cliente = $metas_solicitud['requester_user'][0];
+		$metas_cliente = get_user_meta($cliente);
+		$cliente_name = $metas_cliente["first_name"][0];
+
+		$user = get_user_by( 'id', $cliente );
+		$email_cliente = $user->data->user_email;
+
     if( $_GET["acc"] == "CFM" ){
     	include("confirmar.php");
     }
