@@ -91,7 +91,7 @@
 
 	$mensaje_cliente = get_email_html($mensaje_cliente);	
 
-	//wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
+	wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
 
     $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cuidador.php';
     $mensaje_cuidador = file_get_contents($file);
@@ -103,7 +103,7 @@
 
 	$mensaje_cuidador = get_email_html($mensaje_cuidador, false);	
 
-	//wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
+	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
 
 
 
