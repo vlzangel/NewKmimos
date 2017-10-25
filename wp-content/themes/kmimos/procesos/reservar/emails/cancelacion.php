@@ -3,31 +3,15 @@
     $order->update_status('wc-cancelled');
     $booking->update_status('cancelled');
 
+    kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"]);
+    update_cupos( $id, "-");
+
 	$cuidador_info = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$cuidador["id"]);
 
 	$sql = "
         SELECT 
             DISTINCT id,
-            ROUND ( ( 6371 * 
-                acos(
-                    cos(
-                        radians({$cuidador_info->latitud})
-                    ) * 
-                    cos(
-                        radians(latitud)
-                    ) * 
-                    cos(
-                        radians(longitud) - 
-                        radians({$cuidador_info->longitud})
-                    ) + 
-                    sin(
-                        radians({$cuidador_info->latitud})
-                    ) * 
-                    sin(
-                        radians(latitud)
-                    )
-                )
-            ), 2 ) as DISTANCIA,
+            ROUND ( ( 6371 * acos( cos( radians({$cuidador_info->latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$cuidador_info->longitud}) ) + sin( radians({$cuidador_info->latitud}) ) * sin( radians(latitud) ) ) ), 2 ) as DISTANCIA,
             id_post,
             user_id,
             hospedaje_desde,
@@ -63,9 +47,11 @@
 
     	$servicios = vlz_servicios($valor->adicionales, true);
     	$servicios_txt = "";
-    	foreach ($servicios as $key => $value) {
-    		$servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".$value["img"]."' height='100%' >";
-    	}
+        if( count($servicios)+0 > 0 && $servicios != "" ){
+            foreach ($servicios as $key => $value) {
+                $servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".$value["img"]."' height='100%' >";
+            }
+        }
 
     	$temp = str_replace("[MONTO]", number_format( ($valor->hospedaje_desde*1.2), 2, ',', '.'), $plantilla_cuidador);
     	$temp = str_replace("[AVATAR]", kmimos_get_foto($valor->user_id), $temp);
@@ -107,8 +93,6 @@
 	$mensaje_cuidador = get_email_html($mensaje_cuidador, false);	
 
 	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
-
-
 
 	if( $_GET["user"] == "CLI" ){
 		$volver = get_home_url()."/perfil-usuario/historial/";
