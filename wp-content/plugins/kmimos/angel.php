@@ -301,21 +301,13 @@
             if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= ".jpg"; }
             
             $base = path_base();
-
             if( file_exists($base."/wp-content/uploads/{$sub_path}{$name_photo}") ){
-                
                 $aSize = getImageSize( $base."/wp-content/uploads/{$sub_path}/{$name_photo}" );
-
-                echo "<pre class='camilo' style='display: none'>";
-                    print_r($aSize);
-                echo "</pre>";
-
                 if( $aSize[0] > 0 ){
                     $img = get_home_url()."/wp-content/uploads/{$sub_path}{$name_photo}";
                 }else{
                     $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
                 }
-
             }else{
                 $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
             }

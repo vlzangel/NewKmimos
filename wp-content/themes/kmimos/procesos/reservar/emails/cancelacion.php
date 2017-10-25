@@ -1,7 +1,7 @@
 <?php
 
-    //kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"]);
-    //update_cupos( $id, "-");
+    kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"]);
+    update_cupos( $id, "-");
     
     $order->update_status('wc-cancelled');
     $booking->update_status('cancelled');
@@ -95,7 +95,7 @@
     $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
 	$mensaje_cliente = get_email_html($mensaje_cliente);	
 
-	//wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
+	wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
 
 
 
@@ -111,7 +111,7 @@
 
 	$mensaje_cuidador = get_email_html($mensaje_cuidador, false);	
 
-	//wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
+	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
 
 	if( $_GET["user"] == "CLI" ){
 		$volver = get_home_url()."/perfil-usuario/historial/";
