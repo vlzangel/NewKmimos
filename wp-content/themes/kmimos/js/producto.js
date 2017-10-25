@@ -106,16 +106,13 @@ function calcular(){
 
 	if( jQuery('#checkin').val() != "" ){
 		var ini = String( jQuery('#checkin').val() ).split("/");
-
 		CARRITO[ "fechas" ][ "inicio" ] = ini[2]+"-"+ini[1]+"-"+ini[0]+" 00:00:00";
-
 		jQuery(".fecha_ini").html( jQuery('#checkin').val() );
 	}
 
 	if( jQuery('#checkout').val() != "" ){
 		var fin = String( jQuery('#checkout').val() ).split("/");
 		CARRITO[ "fechas" ][ "fin" ] = fin[2]+"-"+fin[1]+"-"+fin[0]+" 23:59:59";
-
 		jQuery(".fecha_fin").html( jQuery('#checkout').val() );
 	}
 
@@ -154,8 +151,11 @@ function calcular(){
 		if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
 			error = "Ingrese la fecha de finalizaci&oacute;n";
 		}else{
-			var fechaInicio = new Date(CARRITO[ "fechas" ][ "inicio" ]).getTime();
-			var fechaFin    = new Date(CARRITO[ "fechas" ][ "fin" ]).getTime();
+			var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
+			var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
+
+			var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
+
 			var diff = fechaFin - fechaInicio;
 			dias = parseInt( diff/(1000*60*60*24) );
 	    }
@@ -174,6 +174,8 @@ function calcular(){
 
         CARRITO[ "fechas" ][ "duracion" ] = dias;
 	}
+
+	
 
 	var cant = 0, duracion = 0;
 	jQuery.each( CARRITO[ "cantidades" ], function( key, valor ) {
@@ -250,8 +252,18 @@ function verificarCupos(){
 		CARRITO[ "fechas" ][ "inicio" ] != "" &&
 		CARRITO[ "fechas" ][ "fin" ] != "" 
 	){
-		var ini =  new Date(CARRITO[ "fechas" ][ "inicio" ]).getTime();
-		var fin =  new Date(CARRITO[ "fechas" ][ "fin" ]).getTime();
+		var ini = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]);
+		var fin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]);
+
+		ini.setHours(0);
+		ini.setMinutes(0);
+		ini.setSeconds(0);
+		ini = ini.getTime();
+
+		fin.setHours(23);
+		fin.setMinutes(59);
+		fin.setSeconds(59);
+		fin = fin.getTime();
 
 		var act = new Date();
 		var tem = "";
@@ -259,7 +271,11 @@ function verificarCupos(){
 		if( ini != undefined && ini != "" && fin != undefined && fin != "" ){
 			jQuery.each(cupos, function( index, item ) {
 				tem = String( item.fecha ).split("-");
-				act = new Date( tem[0]+"-"+tem[1]+"-"+tem[2]+" 00:00:00" ).getTime();
+				act = new Date( tem[0]+"-"+tem[1]+"-"+tem[2] );
+				act.setHours(0);
+				act.setMinutes(0);
+				act.setSeconds(0);
+				act = act.getTime();
 
 				if( (ini <= act) && (act <= fin) ){
 					if( item.full == 1 || item.no_disponible == 1 ){
@@ -740,83 +756,7 @@ jQuery(document).ready(function() {
 
 	jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro.png');
 
-	function initCheckin(date, actual){
-        if(actual){
-            jQuery('#checkout').datepick({
-                dateFormat: 'dd/mm/yyyy',
-                defaultDate: date,
-                selectDefaultDate: true,
-                minDate: date,
-                onSelect: function(xdate) {
-                    if(typeof calcular === 'function') {
-                        calcular();
-                    }
-                },
-                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
-                firstDay: 1,
-                onmonthsToShow: [1, 1]
-            });
-        }else{
-            jQuery('#checkout').datepick({
-                dateFormat: 'dd/mm/yyyy',
-                minDate: date,
-                onSelect: function(xdate) {
-                    if(typeof calcular === 'function') {
-                        calcular();
-                    }
-                },
-                yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
-                firstDay: 1,
-                onmonthsToShow: [1, 1]
-            });
-        }
-    }
-
-    jQuery('#checkin').datepick({
-        dateFormat: 'dd/mm/yyyy',
-        minDate: fecha,
-        onSelect: function(date1) {
-            var ini = jQuery('#checkin').datepick( "getDate" );
-            var fin = jQuery('#checkout').datepick( "getDate" );
-            if( fin.length > 0 ){
-                var xini = ini[0].getTime();
-                var xfin = fin[0].getTime();
-                if( xini > xfin ){
-                    jQuery('#checkout').datepick('destroy');
-                    initCheckin(date1[0], true);
-                }else{
-                    jQuery('#checkout').datepick('destroy');
-                    initCheckin(date1[0], false);
-                }
-            }else{
-                jQuery('#checkout').datepick('destroy');
-                initCheckin(date1[0], true);
-            }
-            if(typeof calcular === 'function') {
-                calcular();
-            }
-            if(typeof validar_busqueda_home === 'function') {
-                validar_busqueda_home();
-            }
-        },
-        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
-        firstDay: 1,
-        onmonthsToShow: [1, 1]
-    });
-
-    jQuery('#checkout').datepick({
-        dateFormat: 'dd/mm/yyyy',
-        minDate: fecha,
-        onSelect: function(xdate) {
-            if(typeof calcular === 'function') {
-                calcular();
-            }
-        },
-        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
-        firstDay: 1,
-        onmonthsToShow: [1, 1]
-    });
-
+	
 	jQuery(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
 		e.preventDefault();
 		var el = jQuery(this);
