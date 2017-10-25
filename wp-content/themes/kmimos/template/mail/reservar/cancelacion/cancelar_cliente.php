@@ -6,10 +6,10 @@
 
 	<div style='font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px;'>
-			Lo sentimos, [name_cliente]
+			Hola [name_cliente],
 		</div>	
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 14px;'>
-	    	Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha cancelado la reserva. <img style='' src='[URL_IMGS]/emoji_triste.png' >
+	    	[mensaje] <img style='' src='[URL_IMGS]/emoji_triste.png' >
 	    </div>
 
 	    <div style='width: 269px; border-radius: 2.8px; background-color: #f4f4f4; margin: 0px auto 11px; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px; text-align: center;'>
