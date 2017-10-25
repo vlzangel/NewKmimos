@@ -80,26 +80,13 @@
                 $wpdb->query("DELETE FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = '_used_by' AND meta_value = '{$id_cliente}'");
             }
 
-            /*echo $saldo."<br>";
-            echo $descuento."<br>";
-            echo $saldo+$descuento."<br>";*/
-
             if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'tienda'){
                 $saldo = $descuento;  
             }else{
                 $saldo += $descuento;                
             }
 
-            /*echo "================================<br>";
-            echo $saldo."<br>";
-            echo $descuento."<br>";
-
-            echo $metas_orden['_payment_method'][0]." - status: ".$status."<br>";*/
-
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
-
-            /*echo "Saldo Actual: ".$saldo_persistente."<br>";
-            echo "Nuevo Saldo: ".($saldo_persistente+$saldo)."<br>";*/
 
             update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
             
