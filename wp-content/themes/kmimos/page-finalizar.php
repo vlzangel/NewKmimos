@@ -216,7 +216,7 @@
 					Reservaste Exitosamente
 
 					<div class="que_debo_hacer" style="margin-top: 5px;">
-						<div style="width: 450px; margin: 0px auto; text-align: center;">Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.</div>
+						<div style="max-width: 450px; margin: 0px auto; text-align: center;">Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.</div>
 					</div>
 
 					<div style="text-align: left; max-width: 840px;" >
