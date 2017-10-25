@@ -347,13 +347,13 @@
 
 							<div class="km-select-method-paid">
 								<div class="km-method-paid-title">
-									SELECCIONA EL MÉTODO DE PAGO
+									SELECCIONA PAGO PARCIAL ó TOTAL
 								</div>
 
 								<div class="km-method-paid-options">
-									<div class="km-method-paid-option km-option-deposit">
+									<div class="km-method-paid-option km-option-deposit active">
 										<div class="km-text-one">
-											DEPÓSITO DEL 17 %
+											RESERVA CON PAGO PARCIAL
 										</div>
 										<div class="km-text-two">
 											Pague ahora el 17% y el restante
@@ -363,15 +363,15 @@
 										</div>
 									</div>
 
-									<div class="km-method-paid-option km-option-total active">
+									<div class="km-method-paid-option km-option-total">
 										<div class="km-text-one">
-											MONTO TOTAL
+											PAGO TOTAL DE LA RESERVA
 										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="km-detail-paid-deposit">
+							<div class="km-detail-paid-deposit" style="display:block;">
 								<div class="km-detail-paid-line-one">
 									<span class="km-detail-label">SUBTOTAL</span>
 									<span id="" class="sub_total km-detail-value"></span>
@@ -512,38 +512,46 @@
 											</div>
 
 											<div class="km-method-paid-options km-medio-paid-options">
-												<div class="km-method-paid-option km-tarjeta km-option-3-lineas active">
+												<div class="km-method-paid-option km-tienda km-option-3-lineas active">
 													<div class="km-text-one">
-														PAGO CON TARJETA
+													PAGO EN TIENDA
 													</div>
 													<div class="km-text-three">
-														DE CRÉDITO O DÉBITO
+													DE CONVENIENCIA
+														
 													</div>
+
 												</div>
 
-												<div class="km-method-paid-option km-tienda km-option-3-lineas">
+												<div class="km-method-paid-option km-tarjeta km-option-3-lineas ">
 													<div class="km-text-one">
-														<div class="km-text-one">
-															PAGO EN TIENDA
+														<div class="km-text-one">								
+														PAGO CON TARJETA
 														</div>
 														<div class="km-text-three">
-															DE CONVENIENCIA
+															DE CRÉDITO O DÉBITO
 														</div>
 													</div>
+
 												</div>
+
 											</div>
 										</div>
 
 										<select id="tipo_pago" style="display: none;">
-											<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
 											<option value="tienda">PAGO EN TIENDA DE CONVENIENCIA</option>
+											<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
 										</select>
 
 										<div class="errores_box">
 											Datos de la tarjeta invalidos
 										</div>
 
-										<div id="tarjeta_box" class="metodos_container">
+										<div id="tienda_box" class="metodos_container" style="display:block;">
+											<img src="'.get_template_directory_uri().'/images/tiendas.png" />
+											<img src="'.get_template_directory_uri().'/images/pasos.png" />
+										</div>
+										<div id="tarjeta_box" class="metodos_container" style="display:none;">
 
 											<div class="label-placeholder">
 												<label>Nombre del tarjetahabiente*</label>
@@ -564,8 +572,9 @@
 												</div>
 
 												<div class="label-placeholder">
-													<label>Código de seguridad (XXX)</label>
+													<label>Código de seguridad(CVV)</label>
 													<input type="text" id="codigo" name="codigo" class="input-label-placeholder next solo_numeros maxlength" data-max="3" maxlength="3" data-next="null" data-openpay-card="cvv2">
+													<small>Número de tres dígitos en el reverso de la tarjeta</small>
 												</div>
 											</div>
 											<!--
@@ -575,10 +584,6 @@
 											-->
 										</div>
 
-										<div id="tienda_box" class="metodos_container">
-											<img src="'.get_template_directory_uri().'/images/tiendas.png" />
-											<img src="'.get_template_directory_uri().'/images/pasos.png" />
-										</div>
 									</div>
 								</div>
 							</div>

@@ -80,7 +80,7 @@
 		<div class="km-resultados-lista">
 			'.$CUIDADORES.'
 			<div class="">
-				<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor ajusta los filtros de búsqueda.</h2>
+				<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor pícale <a href="'.get_home_url().'">aquí</a> para ajustar los filtros de búsqueda.</h2>
 			</div>
 		</div>';
 	}
@@ -158,10 +158,10 @@
 			<div class="overlay"></div>
 		</div>
 
-		<div class="container contentenedor-buscador-todos">
+		<div class="container contentenedor-buscador-todos content-wlabel-search">
 			<div class="km-contentido-formulario-buscador">
 				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="post">
-					<div class="km-bloque-cajas">
+					<div class="km-bloque-cajas km-search-wlabel" style="height:49px">
 						<div class="km-div-ubicacion">
 						
 							<div class="km-select-custom km-select-ubicacion btn-group" style="width:100%;border-right: 0px; height: 47px;">
@@ -231,8 +231,15 @@
 							</div>
 
 							<div class="km-caja-filtro">
-								<input type="text" name="nombre" value="'.$busqueda["nombre"].'" placeholder="BUSCAR POR NOMBRE" class="km-input-custom">
-							</div>
+								<div class="input-group km-input-content">
+									<input type="text" name="nombre" value="'.$busqueda["nombre"].'" placeholder="BUSCAR POR NOMBRE" class=" ">
+									<span class="input-group-btn">
+										<button type="submit">
+										    <img src="'.getTema().'/images/new/km-buscador.svg" width="18px">
+										</button>
+									</span>
+								</div>
+							</div> 
 						</div>
 					</div>
 				</form>
@@ -294,9 +301,9 @@
 				</div>
 				<div class="km-columna-der">
 					<div class="km-titulo-mapa">
-						UBICACIÓN DE RESULTADOS EN MAPA
+						<B>UBICACIÓN DE RESULTADOS EN MAPA</B>
 					</div>
-					<strong class="km-leyenda">Pica en las patitas para ver los cuidadores</strong>
+					<strong class="km-leyenda" style ="color: #6b1c9b;">Pica en las patitas para ver los cuidadores</strong>
 					<div id="mapa" class="km-mapa"></div>
 					<div id="mapa-close"><i class="fa fa-close"></i></div>
 				</div>

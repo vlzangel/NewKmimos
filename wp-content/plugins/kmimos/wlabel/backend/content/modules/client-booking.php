@@ -24,6 +24,8 @@ $_wlabel_user->wlabel_Export('client-booking','RESERVAS POR CLIENTE','table');
         <thead>
         <tr>
             <th>Cliente</th>
+            <td>Fecha de registro</td>
+            <td>email</td>
             <td>Label</td>
             <?php
                 $day_init=strtotime(date('m/d/Y',$WLresult->time));
@@ -54,6 +56,7 @@ $sql = "
     SELECT
       users.ID,
       users.user_login as login,
+      users.user_email as email,
       users.user_registered as date,
       usermeta.meta_value as label
 
@@ -94,6 +97,7 @@ foreach($users as $key => $user){
     $ID=$user->ID;
     $date=$user->date;
     $login=$user->login;
+    $email=$user->email;
     $label=$user->label;
 
     $sql = "
@@ -149,6 +153,7 @@ foreach($users as $key => $user){
     $BUILDusers[$ID]['user'] = $ID;
     $BUILDusers[$ID]['name'] = $_customer_name;
     $BUILDusers[$ID]['login'] = $login;
+    $BUILDusers[$ID]['email'] = $email;
     $BUILDusers[$ID]['label'] = $label;
     $BUILDusers[$ID]['date'] = strtotime($date);
     $BUILDusers[$ID]['posts'] = array();
@@ -167,6 +172,8 @@ foreach($users as $key => $user){
 foreach($BUILDusers as $user){
     echo '<tr>';
     echo '<th class="title">'.$user['name'].'</th>';
+    echo '<td>'.date('d/m/Y',$user['date']).'</td>';
+    echo '<td>'.$user['email'].'</td>';
     echo '<td>'.$user['label'].'</td>';
         $day_init=strtotime(date('m/d/Y',$WLresult->time));
         $day_last=strtotime(date('m/d/Y',time()));

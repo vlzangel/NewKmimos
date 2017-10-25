@@ -10,14 +10,15 @@ $array_backpanel = [
 	'bp_suscriptores',
 	'bp_estados_cuidadores',
 	'bp_wlabel',
+	'bp_newsletter',
+	'bp_multinivel',
 	'bp_referidos_club_patitas_felices',
 	'bp_participantes_club_patitas_felices',
-	'bp_newsletter',
- 	'bp_saldo_cuidadores',
+	'subscribe',
+	'bp_saldo_cuidadores',
 	'bp_saldo_cuidadores_detalle',
-	'bp_saldo_cuidadores_bookinkstart',
 	'bp_saldo_cupon',
-
+	'bp_mascotas',
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 
 

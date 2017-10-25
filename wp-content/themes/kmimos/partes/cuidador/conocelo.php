@@ -5,6 +5,7 @@
 global $current_user;
 date_default_timezone_set('America/Mexico_City');
 $user_id = $current_user->ID;
+$user_email = $current_user->user_email;
 $mascotas = kmimos_get_my_pets($user_id);
 
 $btn_perfil['icon'] = '<i class="fa fa-check" style="color: #3c763d;"></i>';
@@ -62,7 +63,7 @@ $HTML_CONOCER = '
 							<div class="content-placeholder">
 
 								<div class="km-calendario">
-									<label>¿Cuando deseas conocer al cuidador?</label>
+									<label>¿Cuándo deseas conocer al cuidador?</label>
 									<input type="text" id="meeting_when" name="meeting_when" placeholder="dd/mm/aaaa" class="km-calendario date_from" readonly>
 									<small data-error="meeting_when" style="display: none;">Debes ingresar una fecha</small>
 								</div>
@@ -78,7 +79,7 @@ $HTML_CONOCER = '
 			                        	<option value="10:00:00" data-id="10">10:00  a.m.</option>
 			                        	<option value="10:30:00" data-id="10.5">10:30  a.m.</option>
 			                        	<option value="11:00:00" data-id="11">11:00  a.m.</option>
-			                        	<option value="11:30:00" data-id="11.5">11:30  a.m.</option>
+			                         	<option value="11:30:00" data-id="11.5">11:30  a.m.</option>
 			                        	<option value="12:00:00" data-id="12">12:00  m</option>
 			                        	<option value="12:30:00" data-id="12.5">12:30  m</option>
 			                        	<option value="13:00:00" data-id="13">01:00  p.m.</option>
@@ -118,12 +119,12 @@ $HTML_CONOCER = '
 									<small data-error="pet_conoce" style="display: none;">Debes seleccionar al menos una mascota</small>
 								</div>
 								<div class="km-calendario">
-									<label>¿Desde cuando requieres el servicio?</label>
+									<label>¿Desde cuándo requieres el servicio?</label>
 									<input type="text" id="service_start" name="service_start" placeholder="dd/mm/aaaa" class="date_from" readonly>
 									<small data-error="service_start" style="display: none;">Debes ingresar una fecha</small>
 								</div>
 								<div class="km-calendario">
-									<label>¿Hasta cuando requieres el servicio?</label>
+									<label>¿Hasta cuándo requieres el servicio?</label>
 									<input type="text" id="service_end" name="service_end" placeholder="dd/mm/aaaa" class="date_from" readonly>
 									<small data-error="service_end" style="display: none;">Debes ingresar una fecha</small>
 								</div>
@@ -141,6 +142,46 @@ $HTML_CONOCER = '
 					¡Genial '.get_user_meta($user_id, "first_name", true).'!<br>
 					Solicitud Enviada Exitosamente
 				</h2>
+				<br>
+
+				
+				<div style="text-align:justify;">
+				<p style=" font-family: Arial;  font-weight: bold; color:#6b1c9b;" >Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.</p>
+				 <br>  
+				<p>Recibimos la solicitud realizada para Conocer a un Cuidador Kmimos.</p>
+				<p >Tu codigo de solicitud es: <B><span id="n_solicitud"></span></B></p>
+				<div>
+				    <div> 
+				    <br>   
+				        <p>Datos del cuidador</p>					    
+						<p>Nombre: <B><span id="nombre"></span></B></p>
+						<p>Telefono: <span id="telefono"></span> / '.get_user_meta($user_id, "user_mobile", true).'</p>
+					    <p>Correo: <span id="email"></span></p>
+					</div>
+				     <div> 
+				     <br>   
+						<p >DATOS DE LA REUNION</p>
+						<p >Fecha: <B><span id="fecha"></span></B></p>
+						<p >Hora: <span id="hora_reu"></span> horas</p>
+						<p >Fin: <span id="lugar_reu"></span></p>
+						<br>
+						<p >POSIBLE FECHA DE ESTADIA</p>
+						<p > Inicio: <span id="fecha_ini"></span></p>
+						<p > Fin: <span id="fecha_fin"></span></p>
+					</div>	
+					<div  style="clear:both;"></div>
+				</div>
+
+				<div>
+					
+					<h3  style="text-align:center;">Importante</h3>
+					
+				<label> Dentro de las siguientes 2-4 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso. También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados a continuación para acelerar el proceso si así lo deseas.</label>
+				<label> Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182, o al correo contactomex@kmimos.la</label>
+				</div>
+</div>
+<br>
+<br>
 				<div>
 					'.$pdf.'
 					<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/solicitudes/">VER MIS SOLICITUDES</a>

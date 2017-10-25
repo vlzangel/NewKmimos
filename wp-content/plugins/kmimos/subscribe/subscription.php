@@ -70,7 +70,7 @@ if(mail_validate($mail)){
 	$result = $_subscribe->result("SELECT * FROM $table WHERE email = '$mail'");
 	if(count($result)==0){
 		$_subscribe->insert(array('name' => $name  ,'email' => $mail , 'source' => $section,'time' => date('Y-m-d H:i:s', time())));
-		$return['message']='Ha sido Registrado';
+		$return['message']='Registro Exitoso. Por favor revisa tu correo en la Bandeja de Entrada o en No Deseados';
 		$coupon=true;
 
 		if($coupon && !email_exists($mail)){
@@ -105,7 +105,7 @@ if(mail_validate($mail)){
 		}
 
 	}else{
-		$return['message']='Ya se encuentra registrado';
+		$return['message']='Este correo ya est&aacute; registrado. Por favor intenta con uno nuevo';
 	}
 
 }else{

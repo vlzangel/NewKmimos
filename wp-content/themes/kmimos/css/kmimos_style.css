@@ -69,6 +69,15 @@ p {
 	line-height: 18px;
 }
 
+.km-select-custom-home{ 
+	border: 1px solid #e5e5e5;
+	border-radius:6px!important;
+}
+.km-input-content
+{
+    padding-bottom: 0px;
+}
+
 .navigation {
     margin-top:20px
 }
@@ -850,7 +859,7 @@ button.close {
 	background-image: url(../images/new/km-arrow-form.svg);
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
-	border-radius: 6px 6px 6px 6px!important;
+	border-radius: 6px 6px 6px 6px;
 	appearance:none;
 	-moz-appearance:none;
 	-webkit-appearance:none;
@@ -1257,8 +1266,8 @@ div#ubicacion_list div:hover {
 	background-size: 18px;
 	background-repeat: no-repeat;
 	background-position: 92% 50%;
-	background-image: url(../images/new/km-buscador.svg);
-	padding-right: 18%;
+	/*background-image: url(../images/new/km-buscador.svg);
+	padding-right: 18%;*/
 
 }
 
@@ -2260,7 +2269,6 @@ footer input:focus{
 }
 @media (max-width: 767px) {
 
-	
 
 	.footer-petsitter{
 		margin-bottom: 110px!important;
@@ -2487,7 +2495,10 @@ footer input:focus{
 		width: 100%!important;
 	}
 
-	
+	.km-input-content{
+	    padding-left: 2px!important;
+	}
+
 
 }
 
@@ -3736,8 +3747,6 @@ button.close {
     background-size:18px;
     background-repeat:no-repeat;
     background-position:92% 50%;
-    background-image:url(../images/new/km-buscador.svg);
-    padding-right:18%
 }
 .km-cajas-filtro .km-input-custom::-webkit-input-placeholder {
     font-size:10px!important
@@ -5736,7 +5745,7 @@ h1.maps {
     .km-select-ubicacion{
     	border-radius: 6px 6px 0px 0px!important;
     }
-	.km-select-custom-home{    	
+	.km-select-custom-home{ 
     	border-radius: 6px!important;
     }
     .km-div-enviar .km-submit-custom{
@@ -6911,6 +6920,10 @@ button.close {
     padding-bottom: 0;
 }
 
+.km-select-ubicacion input{
+	width: 100%;
+}
+
 .km-bloque-cajas{
     height: 47px;
     background: #FFF;
@@ -6925,11 +6938,9 @@ button.close {
     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
 }
 
-.km-select-custom-home{
-	border: solid 1px #e5e5e5!important;
-}
+
 .km-select-custom{
-    border: none;
+    /*border: none;*/
     background-color: #FFF;
     background-size: 14px 13px;
     background-repeat: no-repeat;
@@ -7222,7 +7233,8 @@ button.close {
 }
 
 .km-cajas-filtro .km-caja-filtro select,
-.km-cajas-filtro .km-caja-filtro input{
+.km-cajas-filtro .km-caja-filtro input,
+.km-input-content{	
     width: 100%;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -7235,12 +7247,23 @@ button.close {
     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
 }
 
+.km-input-content input,
+.km-input-content button
+{	
+	border: 0px;
+	background: #fff; 
+    box-shadow: initial!important;
+}
+.km-input-content{	
+	background: #fff;
+	padding-right: 5px;
+}
 .km-cajas-filtro .km-caja-filtro input{
     background-size: 18px;
     background-repeat: no-repeat;
     background-position: 92% 50%;
-    background-image: url(../images/new/km-buscador.svg);
-    padding-right: 18%;
+/*    background-image: url(../images/new/km-buscador.svg);
+    padding-right: 18%;*/
 }
 
 .km-cajas-filtro .km-input-custom::-webkit-input-placeholder {

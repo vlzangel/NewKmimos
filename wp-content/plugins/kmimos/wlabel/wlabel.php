@@ -1,9 +1,8 @@
 <?php
 
-$WP_path_load =dirname(dirname(dirname(dirname(__DIR__)))).'/wp-load.php';
-if(file_exists($WP_path_load)){
-    include_once($WP_path_load);
-}
+$WP_path_load = dirname(dirname(dirname(dirname(__DIR__)))).'/wp-load.php';
+
+include_once($WP_path_load);
 
 //CLASS
 include_once(dirname(__FILE__).'/includes/class/class_whitelabel.php');
@@ -13,21 +12,21 @@ $_wlabel_user = new Class_WhiteLabel_User();
 
 
 //STYLE HEADER
-add_action('wp_head', 'WhiteLabel_ADDheader');
+//add_action('wp_head', 'WhiteLabel_ADDheader');
 function WhiteLabel_ADDheader(){
     global $_wlabel;
     $_wlabel->Header();
 }
 
-//STYLE FOOTER
+/*STYLE FOOTER
 add_action('wp_footer', 'WhiteLabel_ADDfooter');
-function WhiteLabel_ADDfooter(){
+*/function WhiteLabel_ADDfooter(){
     global $_wlabel;
     $_wlabel->Footer();
 }
 
 //USER REGISTER
-add_action('user_register', 'WhiteLabel_registration_save', 10, 1);
+//add_action('user_register', 'WhiteLabel_registration_save', 10, 1);
 function WhiteLabel_registration_save($user_id){
     global $_wlabel;
     if ($_wlabel->wlabel_active){
@@ -121,14 +120,14 @@ function WhiteLabel_Page(){
     $page = get_page_by_path($post_name);
     $post=array('post_author'=>$user_ID, 'post_content'=>$post_content, 'post_name'=>$post_name, 'post_status'=>'publish', 'post_title'=>$post_title, 'post_type'=>'page', 'post_parent'=>0, 'menu_order'=>0, 'to_ping'=> '', 'pinged'=>'');
 
-/*    if($page->post_name!=$post_name){
+    if($page->post_name!=$post_name){
         $insert = wp_insert_post($post);
         if(!$insert){
             wp_die('Error creando Post');
         }
     }else{
         //update_post_meta($page_id,'_wp_page_template', 'page_registro.php' );
-    }*/
+    }
     return;
 }
 

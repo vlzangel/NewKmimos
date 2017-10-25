@@ -59,11 +59,10 @@
 
 							<div class="col-xs-12 col-sm-6">
 	
-								<div class="km-select-custom km-select-custom-home km-select-ubicacion btn-group" style="width:100%;">
+								<div class="km-select-custom-home km-select-custom km-select-ubicacion btn-group" style="width:100%;">
 									<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
 								    <input type="text" 
-										id="ubicacion_txt" 
-										class="km-fechas" 
+										id="ubicacion_txt"  
 										style="background: transparent; border: 0px; padding: 0px 0px 0px 15px;"
 										name="ubicacion_txt"
 										placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" 
@@ -83,11 +82,11 @@
 							</div>
 
 
-							<div class="col-xs-12 col-sm-3">
+							<div class="col-xs-12 col-sm-3 km-fechas">
 								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE CUANDO" value="" class="date_from" readonly>
 								<small class="hidden" data-error="checkin">Debe seleccionar una fecha</small>
 							</div>
-							<div class="col-xs-12 col-sm-3">
+							<div class="col-xs-12 col-sm-3 km-fechas">
 								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA CUANDO" value="" class="date_to" readonly>
 								<small  class="hidden" data-error="checkin">Debe seleccionar una fecha</small>
 							</div>
