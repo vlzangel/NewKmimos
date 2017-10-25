@@ -17,19 +17,29 @@
 	if(!function_exists('validar_perfil_completo')){
 	    function validar_perfil_completo(){
 	    	global $current_user;
-
 	    	$user_id = $current_user->ID;
+	    	if( $user_id > 0 ){	    		
+		    	$datos_perfil=[ 
+		    		'user_referred',
+					'user_mobile',
+			    	'user_phone',
+			    	'first_name',
+			    	'last_name',
+			    	'nickname',
+			    	'user_photo',
+			    	'description',	    		
+		    	]; 
 
-	    	$user_mobile = get_user_meta( $user->ID, 'user_mobile', true );
-	    	$user_phone = get_user_meta( $user->ID, 'user_phone', true );
-
-	    	$phone = $user_phone.$user_mobile;
-
-	    	if( !empty($phone) ){
-	    		return true;
+		    	foreach( $datos_perfil as $key ){
+			    	$value = get_user_meta( $user_id, $key, true );
+			    	if( empty($value) ){
+			    		echo $key.': '.$value;
+						return false;
+			    	}
+		    	}
+				return true;
 	    	}
-
-			return true;
+			return false;
 	    }
 	}
 

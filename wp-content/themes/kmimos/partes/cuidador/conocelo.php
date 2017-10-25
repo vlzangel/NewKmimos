@@ -42,7 +42,7 @@ if ( !is_user_logged_in() ){
 	/* Validar perfil de usuario*/
 	$validar_perfil_completo = validar_perfil_completo();
 	if( !$validar_perfil_completo ){
-		$btn_perfil['btn'] = '<a  style="color:#337ab7;" role="button" data-target="#popup-iniciar-sesion"><strong> tu perfil</strong></a>';
+		$btn_perfil['btn'] = '<a  style="color:#337ab7;" role="button" href="'.get_home_url().'/perfil-usuario" style="color:#337ab7;" role="button"><strong> tu perfil</strong></a>';
 		$btn_perfil['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';		
 	}
 }
