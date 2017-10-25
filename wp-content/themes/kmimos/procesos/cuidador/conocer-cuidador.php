@@ -195,7 +195,7 @@
 				</tr>
 			";
 		}
-		$detalles_mascotas .= '</div>';
+		$detalles_mascotas .= '';
 
 		/*
 			Cuidador
@@ -252,12 +252,6 @@
 		$mensaje_cliente = get_email_html($mensaje_cliente, false);
 
 	/*
-		Administrador
-	*/
-
-		// FALTA
-
-	/*
 		Enviando E-mails
 	*/
 
@@ -265,5 +259,14 @@
 		wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
 
 		kmimos_mails_administradores_new($asunto, $mensaje_cuidador);
+
+		$data = array(
+			'n_solicitud' => $request_id,
+			'nombre' => $nombre_cuidador,
+			'telefono' => $telf_cuidador,
+			'email' => $email_cuidador
+		);
+
+		echo json_encode($data);
 
 
