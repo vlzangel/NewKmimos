@@ -212,8 +212,12 @@
 				<div style="padding: 20px 40px 20px; background: #FFF;">
 					<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
 					<br>
-					¡Genial '.get_user_meta($id_user, "first_name", true).'!<br>
+					¡Genial '.get_user_meta($data_reserva["cliente"], "first_name", true).' '.get_user_meta($data_reserva["cliente"], "last_name", true).'!<br>
 					Reservaste Exitosamente
+
+					<div class="que_debo_hacer" style="margin-top: 5px;">
+						<div style="width: 450px; margin: 0px auto; text-align: center;">Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.</div>
+					</div>
 
 					<div style="text-align: left; max-width: 840px;" >
 						'.$CONTENIDO.'

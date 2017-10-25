@@ -1,10 +1,10 @@
 <?php
 	
-    $order->update_status('wc-cancelled');
-    $booking->update_status('cancelled');
+    //$order->update_status('wc-cancelled');
+    //$booking->update_status('cancelled');
 
     kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"]);
-    update_cupos( $id, "-");
+    //update_cupos( $id, "-");
 
 	$cuidador_info = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$cuidador["id"]);
 
@@ -80,7 +80,7 @@
 
 	$mensaje_cliente = get_email_html($mensaje_cliente);	
 
-	wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
+	//wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
 
     $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cuidador.php';
     $mensaje_cuidador = file_get_contents($file);
@@ -92,7 +92,7 @@
 
 	$mensaje_cuidador = get_email_html($mensaje_cuidador, false);	
 
-	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
+	//wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
 
 	if( $_GET["user"] == "CLI" ){
 		$volver = get_home_url()."/perfil-usuario/historial/";
