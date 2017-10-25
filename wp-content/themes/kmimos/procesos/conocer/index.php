@@ -13,6 +13,26 @@
 	add_filter( 'wp_mail_from_name', function( $name ) { global $info; return $info["titulo"]; });
     add_filter( 'wp_mail_from', function( $email ) { global $info; return $info["email"]; });
 
+    echo "
+        <a href='".get_home_url()."/perfil-usuario/solicitudes/' style='
+            border-top: solid 1px #CCC;
+            border-bottom: solid 1px #CCC;
+            margin: 10px auto;
+            width: 600px;
+            padding: 10px 0px;
+            font-weight: 600;
+            font-family: Arial;
+            text-align: center;
+            cursor: pointer;
+            font-size: 13px;
+            text-decoration: none;
+            color: #000;
+            display: block;
+        '>
+            Volver
+        </a>
+    ";
+    
     $status = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = $id_orden AND meta_key = 'request_status';");
 	if( $status != 1 ){
 		$estado = array(
