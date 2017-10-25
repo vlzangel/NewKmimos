@@ -1,5 +1,8 @@
 <?php
 	
+    $order->update_status('wc-cancelled');
+    $booking->update_status('cancelled');
+
 	$cuidador_info = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$cuidador["id"]);
 
 	$sql = "
@@ -89,5 +92,53 @@
 
     $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
 
-	echo get_email_html($mensaje_cliente);	
+	$mensaje_cliente = get_email_html($mensaje_cliente);	
+
+	wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
+
+    $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cuidador.php';
+    $mensaje_cuidador = file_get_contents($file);
+
+    $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cuidador);
+    $mensaje_cuidador = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cuidador);
+
+    $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
+
+	$mensaje_cuidador = get_email_html($mensaje_cuidador, false);	
+
+	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
+
+
+
+	if( $_GET["user"] == "CLI" ){
+		$volver = get_home_url()."/perfil-usuario/historial/";
+	}else{
+		$volver = get_home_url()."/perfil-usuario/reservas/";
+	}
+
+	echo "
+		<a href='".$volver."' style='
+		    border-top: solid 1px #CCC;
+		    border-bottom: solid 1px #CCC;
+		    margin: 10px auto;
+		    width: 600px;
+		    padding: 10px 0px;
+		    font-weight: 600;
+		    font-family: Arial;
+		    text-align: center;
+		    cursor: pointer;
+		    font-size: 13px;
+	        text-decoration: none;
+    		color: #000;
+    		display: block;
+		'>
+			Volver
+		</a>
+	";
+
+	if( $_GET["user"] == "CLI" ){
+		echo $mensaje_cliente;
+	}else{
+		echo $mensaje_cuidador;
+	}
 ?>

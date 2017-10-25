@@ -1225,8 +1225,8 @@
             }
 
             $aceptar_rechazar = array(
-                "aceptar" => get_home_url().'wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CFM',
-                "cancelar" => get_home_url().'wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CCL'
+                "aceptar" => get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CFM',
+                "cancelar" => get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CCL'
             );
 
             /* DATA CUIDADOR */

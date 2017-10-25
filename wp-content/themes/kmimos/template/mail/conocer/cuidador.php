@@ -80,11 +80,11 @@
 			</div>
 
 			<div style='text-align: center; margin-bottom: 12px;'>
-				<a href='#' style='text-decoration: none;'><img src='[URL_IMGS]/btn_aceptar.png' style='width: 252px;' /></a>
+				<a href='[ACEPTAR]' style='text-decoration: none;'><img src='[URL_IMGS]/btn_aceptar.png' style='width: 252px;' /></a>
 			</div>
 
 			<div style='font-family: Arial; font-size: 14px; line-height: 1.21; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
-				AHORA NO PUEDO, <a href='#' style='font-weight: 400; color: #000;'>RECHAZAR</a>
+				AHORA NO PUEDO, <a href='[CANCELAR]' style='font-weight: 400; color: #000;'>RECHAZAR</a>
 			</div>
 
 		</div>
@@ -100,26 +100,26 @@
 	</div>
 
 	<div style='border-radius: 2.8px; background-color: #f4f4f4;'>
-		<div style='display: table; width: 100%;'>
-			<div style='display: table-row; border-bottom: solid 1px #000000;font-family: Arial; font-size: 10px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; font-weight: 600;'>
-				<div style='display: table-cell; width: 20%; padding: 7px; padding-left: 37px;'>
-					NOMBRE
-				</div>
-				<div style='display: table-cell; width: 20%; padding: 7px;'>
-					RAZA
-				</div>
-				<div style='display: table-cell; width: 20%; padding: 7px;'>
-					EDAD
-				</div>
-				<div style='display: table-cell; width: 20%; padding: 7px;'>
-					TAMA&Ntilde;O
-				</div>
-				<div style='display: table-cell; width: 20%; padding: 7px;'>
-					COMPORTAMIENTO
-				</div>
-			</div>
+		<table cellpadding="0" cellspacing="0" style='width: 100%;'>
+			<tr style='border-bottom: solid 1px #000000;font-family: Arial; font-size: 10px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; font-weight: 600;'>
+                <td style='padding: 7px; padding-left: 37px; width: 20px;'>
+                    NOMBRE
+                </td>
+                <td style='padding: 7px; width: 100px;'>
+                    RAZA
+                </td>
+                <td style='padding: 7px; width: 100px;'>
+                    EDAD
+                </td>
+                <td style='padding: 7px; width: 50px;'>
+                    TAMA&Ntilde;O
+                </td>
+                <td style='padding: 7px;'>
+                    COMPORTAMIENTO
+                </td>
+            </tr>
 			[MASCOTAS]
-		</div>
+		</table>
 	</div>
 
 </div>
