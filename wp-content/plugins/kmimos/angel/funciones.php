@@ -503,7 +503,7 @@
     }
 
     function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio, $reload='false', $listado_favorito = false){
-        global $current_user;
+        global $current_user, $wpdb;
         $img        = kmimos_get_foto($cuidador->user_id);
         $anios_exp  = $cuidador->experiencia; if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
         $url        = get_home_url()."/petsitters/".$cuidador->slug;
@@ -515,6 +515,18 @@
         $anios_exp = $cuidador->experiencia;
         if( $anios_exp > 1900 ){
             $anios_exp = date("Y")-$anios_exp;
+        }
+
+        /* Atributos */
+        $style_icono = '';
+        $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados.png)!important;"';
+        $atributos_cuidador = $wpdb->get_results( "SELECT atributos FROM cuidadores WHERE user_id=".$cuidador->user_id );
+        if( count($atributos_cuidador)>0 ){
+            $atributos = unserialize($atributos_cuidador[0]->atributos);
+            if( $atributos['destacado'] == 1 ){
+                $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados-destacado.png)!important;width: 69px!important;height: 69px!important;"';
+                $style_icono = 'style="margin: 8px 0px 0px 37px"!important';
+            }
         }
 
         $fav_check = 'false';
@@ -531,7 +543,7 @@
             data-num="'.$cuidador->id_post.'" 
             data-active="'.$fav_check.'"
             data-favorito="'.$fav_check.'"
-            class=" km-link-favorito '.$fav_del.'">
+            class="km-link-favorito '.$fav_del.'" '.$style_icono.'>
             <i class="fa fa-heart" aria-hidden="true"></i>
         </span>';
 
@@ -559,7 +571,7 @@
                                 <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
                                 <div class="km-subimg" style="background-image: url('.$img.');"></div>
                             </div>
-                            <span class="km-contenedor-favorito">'.$favoritos_link.'</span>
+                            <span class="km-contenedor-favorito" '.$marca_destacado.'>'.$favoritos_link.'</span>
                         </a>
 
                         <div class="km-contenedor-descripcion-opciones">
@@ -603,7 +615,7 @@
                                 <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
                                 <div class="km-subimg" style="background-image: url('.$img.');"></div>
                             </div>
-                            <span class="km-contenedor-favorito">'.$favoritos_link.'</span>
+                            <span class="km-contenedor-favorito" '.$marca_destacado.'>'.$favoritos_link.'</span>
                         </a>
                         <div class="km-descripcion">
                             <h1><a href="'.$url.'">'.$titulo.'</a></h1>
