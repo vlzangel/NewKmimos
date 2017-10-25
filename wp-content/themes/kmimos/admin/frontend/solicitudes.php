@@ -79,6 +79,8 @@
 	            $telefono = get_user_meta($caregiver->Cuidador_id, "user_phone", true);
 	            $correo = $cuidador->user_email;
 	            $quien_soy = "DATOS DEL CUIDADOR";
+
+	            $user = "&user=CLI";
 	            if( $user_select == "cu.post_author={$user_id}" ){
 	            	$foto = kmimos_get_foto( $caregiver->Cliente_id ) ;
 
@@ -89,11 +91,13 @@
 		            $telefono = get_user_meta($caregiver->Cliente_id, "user_phone", true);
 		            $correo = $cliente->user_email;
 	            	$quien_soy = "DATOS DEL CLIENTE";
+
+	            	$user = "";
 	            }
 
 	            $Ver = 'ver/'.$caregiver->Nro_solicitud;
 	            $Confirmar = get_home_url().'/wp-content/themes/kmimos/procesos/conocer/index.php?id_orden='.$caregiver->Nro_solicitud.'&acc=CFM';
-	            $Cancelar = get_home_url().'/wp-content/themes/kmimos/procesos/conocer/index.php?id_orden='.$caregiver->Nro_solicitud.'&acc=CCL';
+	            $Cancelar = get_home_url().'/wp-content/themes/kmimos/procesos/conocer/index.php?id_orden='.$caregiver->Nro_solicitud.'&acc=CCL'.$user;
 
 	            $caregiver->Cuando = date("d/m/Y", strtotime( str_replace("/", "-", $caregiver->Cuando) ));
 
@@ -122,7 +126,8 @@
 	                    );
 	                }else{
 	                    $acciones = array(
-	                    	"ver_s" => $Ver
+	                    	"ver_s" => $Ver,
+	                    	"cancelar_s" => $Cancelar
 	                    );
 	                }
 

@@ -13,7 +13,7 @@
 	    </div>
 
 	    <div style='width: 269px; border-radius: 2.8px; background-color: #f4f4f4; margin: 0px auto 11px; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px; text-align: center;'>
-	    	Solicitud para conocer cuidador #: <strong>[id_reserva]</strong>
+	    	Reserva #: <strong>[id_reserva]</strong>
 	    </div>
 
 

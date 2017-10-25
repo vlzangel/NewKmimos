@@ -128,44 +128,44 @@
 
 	}else{
 
-		if( $_GET["acc"] == "CFM" ){
+		$booking = new WC_Booking( $servicio["id_reserva"] );
+		$order = new WC_Order( $servicio["id_orden"] );
 
-			$booking = new WC_Booking( $servicio["id_reserva"] );
-    		$order = new WC_Order( $servicio["id_orden"] );
+		$status = $booking->get_status();
 
-			$status = $booking->get_status();
+		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
-			if(  $_SESSION['admin_sub_login'] != 'YES' ){
+			if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
+				$estado = array(
+					"confirmed" => "Confirmada",
+					"modified"  => "Modificada",
+					"cancelled" => "Cancelada"
+				);
+				$msg = "
+				<div style='text-align:center; margin-bottom: 25px;'>
+					<img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/header_solicitud_reserva.png' style='width: 100%;' >
+				</div>
 
-				if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
-					$estado = array(
-						"confirmed" => "Confirmada",
-						"modified"  => "Modificada",
-						"cancelled" => "Cancelada"
-					);
-					$msg = "
-					<div style='text-align:center; margin-bottom: 25px;'>
-						<img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/header_solicitud_reserva.png' style='width: 100%;' >
-					</div>
+				<div style='padding: 0px; margin-bottom: 25px;'>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Hola <strong>".$cuidador["nombre"]."</strong>
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido ".$estado[$status]." anteriormente.
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
+				    </div>
+				</div>";
+		   		
+		   		echo get_email_html($msg);
 
-					<div style='padding: 0px; margin-bottom: 25px;'>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Hola <strong>".$cuidador["nombre"]."</strong>
-					    </div>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido ".$estado[$status]." anteriormente.
-					    </div>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
-					    </div>
-					</div>";
-			   		
-			   		echo get_email_html($msg);
-
-			   		exit();
-				}
-
+		   		exit();
 			}
+
+		}
+
+		if( $_GET["acc"] == "CFM" ){
 
     		$order->update_status('wc-on-hold');
 			$booking->update_status('confirmed');

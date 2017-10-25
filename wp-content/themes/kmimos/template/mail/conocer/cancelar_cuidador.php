@@ -10,11 +10,11 @@
 		</div>	
 
 	    <div style='width: 269px; border-radius: 2.8px; background-color: #f4f4f4; margin: 0px auto 11px; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px; text-align: center;'>
-	    	Reserva #: <strong>[id_reserva]</strong>
+	    	Solicitud para conocer cuidador #: <strong>[id_reserva]</strong>
 	    </div>
 
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 30px;'>
-	    	Te notificamos que la reserva ha sido cancelada exitosamente.
+	    	Te notificamos que la solicitud para conocerte ha sido cancelada exitosamente.
 	    </div>
 
 

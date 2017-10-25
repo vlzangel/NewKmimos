@@ -26,18 +26,18 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
             jQuery.post( a, jQuery("#conoce_cuidador").serialize(), function( data ) {
 
                 if( data != "" ){
-                    data= jQuery.parseJSON(data);
+
                 jQuery("#fecha").html( jQuery("#meeting_when").val() );
                 jQuery("#hora_reu").html( jQuery("#meeting_time").val() );
                 jQuery("#lugar_reu").html( jQuery("#meeting_where").val() );
                 jQuery("#fecha_ini").html( jQuery("#service_start").val() );              
                 jQuery("#fecha_fin").html( jQuery("#service_end").val() );
-                jQuery("#n_solicitud").html( data['n_solicitud'] );
-                jQuery("#nombre").html( data['cuidador']['nombre']);
-                jQuery("#telefono").html( data['cuidador']['telefono']);
-                jQuery("#email").html( data['cuidador']['email'] );
 
-console.log( data );
+                jQuery("#n_solicitud").html( data['n_solicitud'] );
+                jQuery("#nombre").html( data['nombre']);
+                jQuery("#telefono").html( data['telefono']);
+                jQuery("#email").html( data['email'] );
+
                     jQuery('#popup-conoce-cuidador').modal('show');
                     jQuery('.popup-iniciar-sesion-1').css('display', 'none');
                     jQuery('.popup-iniciar-sesion-2').css('display', 'block');
@@ -48,7 +48,7 @@ console.log( data );
                 
         
                 
-            }).fail(function(e) {
+            }, 'json').fail(function(e) {
                 console.log( e );
             });
         }
