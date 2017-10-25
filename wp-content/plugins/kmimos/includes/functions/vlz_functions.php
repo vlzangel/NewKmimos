@@ -101,7 +101,7 @@
             echo "Saldo Actual: ".$saldo_persistente."<br>";
             echo "Nuevo Saldo: ".($saldo_persistente+$saldo)."<br>";
 
-            //update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
+            update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
             
         }
     }
