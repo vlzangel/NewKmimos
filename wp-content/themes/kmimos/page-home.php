@@ -11,10 +11,6 @@
             
     get_header();
         
-        $data = get_data_home();
-
-	    extract($data);
-
 	    $home = get_home_url();
 
 	    //global $wpdb;
