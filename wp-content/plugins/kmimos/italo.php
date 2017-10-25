@@ -14,6 +14,25 @@
 	    }
 	}
 
+	if(!function_exists('validar_perfil_completo')){
+	    function validar_perfil_completo(){
+	    	global $current_user;
+
+	    	$user_id = $current_user->ID;
+
+	    	$user_mobile = get_user_meta( $user->ID, 'user_mobile', true );
+	    	$user_phone = get_user_meta( $user->ID, 'user_phone', true );
+
+	    	$phone = $user_phone.$user_mobile;
+
+	    	if( !empty($phone) ){
+	    		return true;
+	    	}
+
+			return true;
+	    }
+	}
+
 	if(!function_exists('servicios_en_session')){
 	    function servicios_en_session( $opt_key = '', $arr, $sub="" ){
 	    	$result = false;
