@@ -151,7 +151,7 @@
                     TIEMPO
                 </td>
                 <td style='width: 100px; padding: 7px; border-bottom: solid 1px #CCC;'>
-                    PRECIO C/U
+                    PRECIO UNITARIO
                 </td>
                 <td style='width: 100px; padding: 7px; border-bottom: solid 1px #CCC;'>
                     SUBTOTAL

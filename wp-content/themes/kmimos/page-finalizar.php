@@ -218,13 +218,13 @@
 					<div style="text-align: left; max-width: 840px;" >
 						'.$CONTENIDO.'
 					</div>
+
+					'.$que_hacer.'
 					
 					<div style="padding-top: 20px;">
 						'.$pdf.'
 						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
 					</div>
-
-					'.$que_hacer.'
 				</div>
 			</div>
 
