@@ -307,6 +307,9 @@
             }else{
                 if( file_exists($base."/wp-content/uploads/{$sub_path}/0.jpg") ){
                     $aSize = getImageSize( $base."/wp-content/uploads/{$sub_path}/0.jpg" );
+                    echo "<pre class='camilo' style='display: none'>";
+                        print_r($aSize);
+                    echo "</pre>";
                     if( $aSize[0] > 0 ){
                         $img = get_home_url()."/wp-content/uploads/{$sub_path}/0.jpg";
                     }else{
