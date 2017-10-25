@@ -1,4 +1,11 @@
 jQuery(document).ready(function(){
+
+    jQuery(function() {
+        jQuery('input[readonly]').on('focus', function(ev) {
+            jQuery(this).trigger('blur');
+        });
+    });
+
     function initCheckin(date, actual){
         if(actual){
             jQuery('#checkout').datepick({
