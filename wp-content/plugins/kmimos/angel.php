@@ -93,7 +93,7 @@
 	if(!function_exists('kmimos_mails_administradores_new')){       
         function kmimos_mails_administradores_new($titulo, $mensaje){     
       
-            wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje);        
+            wp_mail( "vlzangel91@gmail.com", $titulo, $mensaje);        
             wp_mail( "i.cocchini@kmimos.la", $titulo, $mensaje);        
         
         }     
