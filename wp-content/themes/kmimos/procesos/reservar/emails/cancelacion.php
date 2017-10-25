@@ -1,10 +1,10 @@
 <?php
-	
-    //$order->update_status('wc-cancelled');
-    //$booking->update_status('cancelled');
 
     kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"]);
-    //update_cupos( $id, "-");
+    update_cupos( $id, "-");
+    
+    $order->update_status('wc-cancelled');
+    $booking->update_status('cancelled');
 
 	$cuidador_info = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$cuidador["id"]);
 

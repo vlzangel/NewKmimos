@@ -132,7 +132,7 @@
 		$order = new WC_Order( $servicio["id_orden"] );
 
 		$status = $booking->get_status();
-/*
+
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
 			if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
@@ -163,7 +163,7 @@
 		   		exit();
 			}
 
-		}*/
+		}
 
 		if( $_GET["acc"] == "CFM" ){
 
