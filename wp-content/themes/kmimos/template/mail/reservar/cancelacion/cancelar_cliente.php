@@ -6,7 +6,7 @@
 
 	<div style='font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px;'>
-			Hola [name_cliente],
+			[name_cliente]
 		</div>	
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 14px;'>
 	    	[mensaje] <img style='' src='[URL_IMGS]/emoji_triste.png' >
@@ -16,16 +16,12 @@
 	    	Reserva #: <strong>[id_reserva]</strong>
 	    </div>
 
-
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 11px;'>
 	    	<strong>Pero…</strong> te sugerimos estos perfiles que creemos pueden interesarte  <img style='' src='[URL_IMGS]/emoji_feliz.png' >
 	    </div>
 
-
 	    <div style='text-align: center;'>
-	    	
 	    	[CUIDADORES]
-
 	    </div>
 
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 26px 0px 30px;'>
