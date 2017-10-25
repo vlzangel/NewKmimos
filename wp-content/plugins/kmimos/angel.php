@@ -306,7 +306,7 @@
                 $img = get_home_url()."/wp-content/uploads/{$sub_path}{$name_photo}";
             }else{
                 if( file_exists($base."/wp-content/uploads/{$sub_path}/0.jpg") ){
-                    $aSize = getImageSize( $base."/wp-content/uploads/{$sub_path}/0.jpg" )
+                    $aSize = getImageSize( $base."/wp-content/uploads/{$sub_path}/0.jpg" );
                     if( $aSize[0] > 0 ){
                         $img = get_home_url()."/wp-content/uploads/{$sub_path}/0.jpg";
                     }else{
