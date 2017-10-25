@@ -82,7 +82,12 @@
 		$salir = wp_logout_url( home_url() );
 		$HTML .= '<script> var AVATAR = "'.$avatar.'"; </script>';
 		$avatar_circle = 'img-circle';
+		
 	}
+
+	if($avatar== get_home_url()."/wp-content/themes/kmimos/images/noimg.png"){
+		$avatar=get_home_url()."/wp-content/themes/kmimos/images/image.png";
+			} 	
 
 	if( !is_user_logged_in() ){
 		$HTML .= '	
