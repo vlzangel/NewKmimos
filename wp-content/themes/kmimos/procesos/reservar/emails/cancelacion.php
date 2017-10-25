@@ -1,5 +1,8 @@
 <?php
 	
+    $order->update_status('wc-cancelled');
+    $booking->update_status('cancelled');
+
 	$cuidador_info = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$cuidador["id"]);
 
 	$sql = "

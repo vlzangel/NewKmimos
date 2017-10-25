@@ -17,7 +17,6 @@
         $mensaje_cliente = str_replace('[ADICIONALES]', $adicionales, $mensaje_cliente);
        	$mensaje_cliente = str_replace('[TRANSPORTE]', $transporte, $mensaje_cliente);
         
-
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[tipo_servicio]', trim($servicio["tipo"]), $mensaje_cliente);
