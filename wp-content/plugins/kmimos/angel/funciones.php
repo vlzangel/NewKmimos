@@ -89,7 +89,33 @@
         function update_cupos($data, $accion){
             global $wpdb;
             $db = $wpdb;
-            extract($data);
+
+            if( is_array($data) ){
+                extract($data);
+            }else{
+                $id_orden = $data;
+
+                $reserva = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_parent = '".$id_orden."'");
+                $id_reserva = $reserva->ID;
+
+                $metas_orden = get_post_meta($id_orden);
+                $metas_reserva = get_post_meta( $id_reserva );
+
+                $servicio = $metas_reserva['_booking_product_id'][0];
+
+                $inicio = strtotime($metas_reserva['_booking_start'][0]);
+                $fin    = strtotime($metas_reserva['_booking_end'][0]);
+
+                $producto = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_reserva['_booking_product_id'][0]."'");
+                $tipo = explode("-", $producto->post_title);
+                $tipo = $tipo[0];
+
+                $cantidad = 0; $variaciones = unserialize( $metas_reserva["_booking_persons"][0] );
+                foreach ($variaciones as $key => $variacion) {
+                    $cantidad += $variacion;
+                }
+            }
+
             for ($i=$inicio; $i < ($fin-86399); $i+=86400) { 
                 $fecha = date("Y-m-d", $i);
                 $full = 0;
