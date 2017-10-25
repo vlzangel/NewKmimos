@@ -131,7 +131,7 @@
 		$booking = new WC_Booking( $servicio["id_reserva"] );
 		$order = new WC_Order( $servicio["id_orden"] );
 
-		$status = $booking->get_status();
+/*		$status = $booking->get_status();
 
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
@@ -163,7 +163,7 @@
 		   		exit();
 			}
 
-		}
+		}*/
 
 		if( $_GET["acc"] == "CFM" ){
 
