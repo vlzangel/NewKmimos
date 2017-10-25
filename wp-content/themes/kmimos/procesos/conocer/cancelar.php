@@ -61,20 +61,16 @@
     			$rating_txt .= "<img style='width: 15px; padding: 0px 1px;' src='[URL_IMGS]/huesito_vacio.png' >";
     		}
     	}
-
     	$servicios = vlz_servicios($valor->adicionales, true);
     	$servicios_txt = "";
     	foreach ($servicios as $key => $value) {
     		$servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".$value["img"]."' height='100%' >";
     	}
-
     	$temp = str_replace("[MONTO]", number_format( ($valor->hospedaje_desde*1.2), 2, ',', '.'), $plantilla_cuidador);
     	$temp = str_replace("[AVATAR]", kmimos_get_foto($valor->user_id), $temp);
     	$temp = str_replace("[NAME_CUIDADOR]", $nombre->post_title, $temp);
-
     	$temp = str_replace("[HUESOS]", $rating_txt, $temp);
     	$temp = str_replace("[SERVICIOS]", $servicios_txt, $temp);
-
     	$temp = str_replace('[LIKS]', get_home_url()."/petsitters/".$nombre->post_name."/", $temp);
 
     	$str_sugeridos .= $temp;
@@ -91,7 +87,7 @@
 
 	$mensaje_cliente = get_email_html( $mensaje_cliente );	
 
-    // wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
+    wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
 
 
 
@@ -104,12 +100,14 @@
 
     $mensaje_cuidador = get_email_html( $mensaje_cuidador );  
 
-    // wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+    wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
 
     if( $_GET["user"] == "CLI" ){
         echo $mensaje_cliente;
     }else{
-        echo $mensaje_cuidador;
+        if( $_GET["user"] == "STM" ){ }else{
+            echo $mensaje_cuidador;
+        }
     }
 
 ?>
