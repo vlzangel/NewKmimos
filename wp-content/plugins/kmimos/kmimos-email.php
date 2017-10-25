@@ -216,15 +216,22 @@ if(!function_exists('kmimos_get_email_footer')){
                                 <div style='background-color:#000000; color: #fff; display: table; width: 100%; height: 62px; font-size: 11px; letter-spacing: 0.2px; padding: 0px; box-sizing: border-box;'>
 
                                     <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: left; padding-left: 30px;'>
-                                        <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png' style='height: 21px;'> 
+                                        <a href='".get_home_url()."' style='color: #FFF; text-decoration: none;'>
+                                            <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png' style='height: 21px;'> 
+                                        </a>
                                     </div>
 
                                     <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; color: #FFF;'>
-                                        <a href='".get_home_url()."' style='color: #FFF; text-decoration: none;'>".$_SERVER['HTTP_HOST']."</a>
+                                        &nbsp;
                                     </div>
 
                                     <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: right; padding-right: 30px;'>
-                                        <span style='display: inline-block; padding: 0px 5px 0px 0px;'>Síguenos en</span> <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png' style='margin-top: -2px;' align='center'>
+                                        <span style='display: inline-block; padding: 0px 5px 2px 0px'>
+                                            Síguenos en
+                                        </span> 
+                                        <a href='https://www.facebook.com/Kmimosmx/'>
+                                            <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png' style='vertical-align: bottom;' align='center'>
+                                        </a>
                                     </div>
 
                                 </div>
