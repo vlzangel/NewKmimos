@@ -5533,11 +5533,12 @@ h1.maps {
 	}
 
 }
-@media (max-width:767px) {
+@media (max-width: 800px) {
 
-    .navbar {
-	    height: 60px !important;
+	.navbar-right {
+	    margin-right: 10px !important;
 	}
+
 	.page-reservation .km-content .km-col-steps {
 	    padding: 100px 15px 32px 15px;
 	}
@@ -5716,6 +5717,16 @@ h1.maps {
         margin:15px 0px 0px 0px;
     }
 }
+
+
+@media (max-width: 767px) {
+
+    .navbar {
+	    height: 60px !important;
+	}
+
+}
+
 @media (max-width:480px) {
     .bx-wrapper .bx-pager a {
         margin:0 8px
