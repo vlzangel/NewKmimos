@@ -1,10 +1,6 @@
 <?php
     
     require('../wp-load.php');
-    require('../wp-content/themes/pointfinder/vlz/vlz_funciones.php');
-
-    require('./cron_sqls.php');
-    require('./cron_funciones.php');
 
     date_default_timezone_set('America/Mexico_City');
 
@@ -33,7 +29,7 @@
     if( $xhora_actual < $fin ){
 
         $sql = "
-            SELECT * FROM wp_posts WHERE 
+            SELECT ID, post_date FROM wp_posts WHERE 
             post_type IN (
                 'request',
                 'shop_order'
@@ -47,19 +43,25 @@
         ";
         $r = $wpdb->get_results( $sql );
 
-        foreach ($r as $request) {
+        echo "<pre>";
+            print_r($r);
+        echo "</pre>";
+
+       foreach ($r as $request) {
 
             $acc = "CCL"; $user = "STM";
 
             if( $request->post_type == "request" ){
                 $id_orden = $request->ID;
 
-                include("../wp-content/themes/kmimos/procesos/conocer/index.php");
+                file_get_contents( get_home_url()."/wp-content/themes/kmimos/procesos/conocer/index.php?acc=CCL&user=SMT&id_orden=$id_orden");
             }else{
                 $id_orden = $request->ID;
 
-                include("../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+                file_get_contents( get_home_url()."/wp-content/themes/kmimos/procesos/reservar/emails/index.php?acc=CCL&user=SMT&id_orden=$id_orden");
             }
+
+            break;
 
         }
 
