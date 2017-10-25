@@ -89,8 +89,6 @@
 
     wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
 
-
-
     $file = $PATH_TEMPLATE.'/template/mail/conocer/cancelar_cuidador.php';
     $mensaje_cuidador = file_get_contents($file);
 
