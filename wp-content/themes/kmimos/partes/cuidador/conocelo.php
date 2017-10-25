@@ -17,12 +17,13 @@ $btn_login['icon'] = '<i class="fa fa-check" style="color: #3c763d;"></i>';
 $btn_mascota['btn'] = 'lista de mascotas';
 $btn_mascota['icon'] = '<i class="fa fa-check" style="color: #3c763d;"></i>';
 
+$validar_perfil_completo = false;
 if ( !is_user_logged_in() ){ 
 	// Login
 	$btn_login['btn'] = '<a  style="color:#337ab7;" role="button" data-target="#popup-iniciar-sesion"><strong>iniciado sesión</strong></a>';
 	$btn_login['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
 
-	// Perfil
+	// Perfil	
 	$btn_perfil['btn'] = '<a  style="color:#337ab7;" role="button" data-target="#popup-iniciar-sesion"><strong> tu perfil</strong></a>';
 	$btn_perfil['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
 
@@ -31,11 +32,19 @@ if ( !is_user_logged_in() ){
 
 }else{
 
+
+	/* Validar mascotas */
 	if ( count($mascotas) < 1 ){ 
 		$btn_mascota['btn'] = '<a href="'.get_home_url().'/perfil-usuario/mascotas" style="color:#337ab7;" role="button" ><strong>lista de mascotas</strong></a>';
 		$btn_mascota['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';
 	}				
 
+	/* Validar perfil de usuario*/
+	$validar_perfil_completo = validar_perfil_completo();
+	if( !$validar_perfil_completo ){
+		$btn_perfil['btn'] = '<a  style="color:#337ab7;" role="button" href="'.get_home_url().'/perfil-usuario" style="color:#337ab7;" role="button"><strong> tu perfil</strong></a>';
+		$btn_perfil['icon'] = '<i class="fa fa-close" style="color: #c72929;"></i>';		
+	}
 }
 
 $HTML_CONOCER = '
@@ -53,7 +62,7 @@ $HTML_CONOCER = '
 						<li>'.$btn_mascota['icon'].' Completar tu '.$btn_mascota['btn'].' en tu perfil</li>
 					</ol>
 				</div>';
-				if( count($mascotas) > 0 ){
+				if( count($mascotas)>0 && $validar_perfil_completo ){
 					$HTML_CONOCER .= '
 					<form id="conoce_cuidador" style="padding:0px;" method="post">
 
