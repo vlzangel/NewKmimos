@@ -58,7 +58,7 @@
 
         $mensaje_cliente = get_email_html($mensaje_cliente);
 
-        wp_mail( $cuidador["email"], "Confirmación de Reserva", $mensaje_cliente);
+        wp_mail( $cliente["email"], "Confirmación de Reserva", $mensaje_cliente);
     
     /* Correo Cliente */
 
@@ -97,6 +97,6 @@
 
         echo $mensaje_cuidador = get_email_html($mensaje_cuidador);
 
-        wp_mail( $cliente["email"], "Confirmación de Reserva", $mensaje_cuidador);
+        wp_mail( $cuidador["email"], "Confirmación de Reserva", $mensaje_cuidador);
 
 ?>
