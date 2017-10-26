@@ -36,15 +36,17 @@ jQuery( document ).ready(function() {
                  $mensaje = "Lo sentimos no se pudo actualizar los datos";
             }
 
-
             jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');  
-
+          
                   setTimeout(function() { 
+                  
+  
                  jQuery('.mensaje').remove(); 
               
 
             },3000);
 
+       
        	}
    	);
     initImg("portada");
