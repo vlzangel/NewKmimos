@@ -1,4 +1,18 @@
 /* COMMON STYLES */
+.modal-backdrop{
+	z-index:1!important;
+}
+
+.modal-open .modal,
+.modal{
+    overflow-x: initial!important;
+    overflow-y: initial!important;
+	position: absolute!important;
+}
+.modal{
+	top:2%;
+}
+
 body {
 	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
 	font-size: 13px;
@@ -4335,7 +4349,8 @@ a.km-btn-comentario {
 }
 .km-box-form .label-placeholder {
     position:relative;
-    padding-top:16px;
+    padding-top:20px;
+/*    padding-top:16px;*/
 	text-align: left;
 }
 .km-box-form .label-placeholder label {
