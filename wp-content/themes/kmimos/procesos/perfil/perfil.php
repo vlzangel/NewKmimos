@@ -5,12 +5,13 @@
 	    @mkdir($dir);
 	    $path_origen = $raiz."/imgs/Temp/".$portada;
 	    $path_destino = $dir.$portada;
+
 	    if( file_exists($path_origen) ){
 	        copy($path_origen, $path_destino);
 	        unlink($path_origen);
 	    }
 
-	    $img_anterior = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo';");
+	    $img_anterior = $db->get_var("SELECT meta_key FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo';");
 	    if( $img_anterior != false ){
 		    if( file_exists($dir.$img_anterior) ){
 		        unlink($dir.$img_anterior);
