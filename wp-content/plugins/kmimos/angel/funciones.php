@@ -517,10 +517,12 @@
             $anios_exp = date("Y")-$anios_exp;
         }
 
-        /* Atributos */
+        /* Atributos del cuidador */
+        $atributos_cuidador = $wpdb->get_results( "SELECT atributos FROM cuidadores WHERE user_id=".$cuidador->user_id );
+
+        /* BEGIN Cuidadores destacados */
         $style_icono = '';
         $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados.png)!important;"';
-        $atributos_cuidador = $wpdb->get_results( "SELECT atributos FROM cuidadores WHERE user_id=".$cuidador->user_id );
         if( count($atributos_cuidador)>0 ){
             $atributos = unserialize($atributos_cuidador[0]->atributos);
             if( $atributos['destacado'] == 1 ){
@@ -528,6 +530,7 @@
                 $style_icono = 'style="margin: 8px 0px 0px 37px"!important';
             }
         }
+        /* FIN Cuidadores destacados */
 
         $fav_check = 'false';
         $fav_del = '';
