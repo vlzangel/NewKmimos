@@ -2192,14 +2192,13 @@ footer input:focus{
     border-radius: 15px;
     color: #ffffff;
     position: relative;
-    padding: 17px 0;
+    padding: 8px 0;
     float: left;
     border-radius: 8px;
     font-family: 'Gotham-Pro-Bold',arial,sans-serif;
     font-size: 13px;
     letter-spacing: 1px;
     text-align: center;
-    line-height: 21px;
     width: 70%;
     }
 
