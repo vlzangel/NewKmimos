@@ -3,6 +3,7 @@
 	<title> <?php bloginfo('title'); ?> </title>
 	<meta charset="UTF-8"><?php 
 	$HTML = '';	
+
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
 		header('X-UA-Compatible: IE=edge,chrome=1');
 	}
@@ -32,6 +33,10 @@
 
 	wp_enqueue_style( 'generales_responsive_css', getTema()."/css/responsive/generales_responsive.css", array(), "1.0.0" );
 
+	/* Solo para iOS - [ $is_iOS en pre-header.php ] */
+	if( $is_iOS ){
+		wp_enqueue_style( 'modal_iOS', getTema()."/css/modal-iOS.css", array(), "1.0.0" );
+	}
 
 	wp_head();
 
