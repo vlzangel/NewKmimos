@@ -175,7 +175,6 @@
 									data-charset="xlfdir" 
 									value="'.$busqueda["ubicacion_txt"].'" 
 									autocomplete="off" 
-									readonly 
 									data-toggle="dropdown">
 								<input type="hidden" 
 									id="ubicacion" 
