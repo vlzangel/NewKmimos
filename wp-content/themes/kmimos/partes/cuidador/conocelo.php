@@ -172,11 +172,11 @@ $HTML_CONOCER = '
 						<p >DATOS DE LA REUNION</p>
 						<p >Fecha: <B><span id="fecha"></span></B></p>
 						<p >Hora: <span id="hora_reu"></span> horas</p>
-						<p >Fin: <span id="lugar_reu"></span></p>
+						<p >Lugar: <span id="lugar_reu"></span></p>
 						<br>
 						<p >POSIBLE FECHA DE ESTADIA</p>
-						<p > Inicio: <span id="fecha_ini"></span></p>
-						<p > Fin: <span id="fecha_fin"></span></p>
+						<p >Inicio: <span id="fecha_ini"></span></p>
+						<p >Fin: <span id="fecha_fin"></span></p>
 					</div>	
 					<div  style="clear:both;"></div>
 				</div>
