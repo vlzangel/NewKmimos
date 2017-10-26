@@ -1,4 +1,5 @@
 /* COMMON STYLES */
+/*
 .modal-backdrop{
 	z-index:1!important;
 }
@@ -12,7 +13,7 @@
 .modal{
 	top:2%;
 }
-
+*/
 body {
 	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
 	font-size: 13px;
