@@ -29,4 +29,24 @@ jQuery( document ).ready(function() {
 
     jQuery("#btn_actualizar").attr("type", "button");
 
+    if( data['status'] ) == "OK"){
+
+                $mensaje = "Los datos de tu Mascota fueron actualizados";
+
+            }else{
+                 $mensaje = "Lo sentimos no se pudo actualizar los datos de su mascota";
+            }
+
+            jQuery('.mensaje').html($mensaje):
+            setTimeout(function() {  
+
+                 jQuery('.mensaje').remove(); 
+
+                    if( data['status'] ) == "OK"){
+                        location.href ="../../";
+                    }
+            },3000);
+
+        }
+
 });

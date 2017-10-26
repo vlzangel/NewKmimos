@@ -20,9 +20,30 @@ jQuery( document ).ready(function() {
             return false;
         }  
     });
+        var $mensaje="";
 
+               if( data.status == "OK"){
+
+
+                $mensaje = "Los datos de fueron actualizados";
+
+            }else{
+                 $mensaje = "Lo sentimos no se pudo actualizar los datos";
+            }
+
+
+            jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');  
+                         if( data.status == "OK"){
+                    location.href = URL_NUEVA_IMG;
+}
+
+                  setTimeout(function() { 
+                 jQuery('.mensaje').remove(); 
+              
+
+            },3000);
     jQuery("#btn_actualizar").on("click", function(e){
-        location.href = URL_NUEVA_IMG;
+        
     });
 
     jQuery("#btn_actualizar").attr("type", "button");
