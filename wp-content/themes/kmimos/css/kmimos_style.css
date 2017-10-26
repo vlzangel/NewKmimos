@@ -2187,7 +2187,20 @@ footer input:focus{
 	padding: 5px;
 }
 
-
+.mensaje{
+	background-color: #7DD1C4;
+    border-radius: 15px;
+    color: #ffffff;
+    position: relative;
+    padding: 8px 0;
+    float: left;
+    border-radius: 8px;
+    font-family: 'Gotham-Pro-Bold',arial,sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 70%;
+    }
 
 
 

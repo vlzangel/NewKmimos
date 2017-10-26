@@ -3,10 +3,11 @@ jQuery( document ).ready(function() {
 	postJSON( 
   		"form_perfil",
        	URL_PROCESOS_PERFIL, 
+
        	function( data ) {
-			jQuery("#btn_actualizar").val("Procesando...");
-            jQuery("#btn_actualizar").attr("disabled", true);
-			jQuery(".perfil_cargando").css("display", "inline-block");
+          jQuery("#btn_actualizar").val("Procesando...");
+          jQuery("#btn_actualizar").attr("disabled", true);
+          jQuery(".perfil_cargando").css("display", "inline-block");
        	}, 
        	function( data ) {
                 
@@ -19,12 +20,33 @@ jQuery( document ).ready(function() {
                 jQuery(".menu_perfil .vlz_img_portada_normal").css("background-image", "url("+RAIZ+"/wp-content/uploads/"+jQuery("#sub_path").val()+"/"+jQuery(".main .vlz_img_portada_valor").val()+")");
             }
 
-       		jQuery(".vlz_img_portada_valor").val("");
-
-			jQuery("#btn_actualizar").val("Actualizar");
-			jQuery("#btn_actualizar").attr("disabled", false);
+         		jQuery(".vlz_img_portada_valor").val("");
+      			jQuery("#btn_actualizar").val("Actualizar");
+      			jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
 
+              var $mensaje="";
+
+               if( data.status == "OK"){
+
+
+                $mensaje = "Los datos de fueron actualizados";
+
+            }else{
+                 $mensaje = "Lo sentimos no se pudo actualizar los datos";
+            }
+
+            jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');  
+          
+                  setTimeout(function() { 
+                  
+  
+                 jQuery('.mensaje').remove(); 
+              
+
+            },3000);
+
+       
        	}
    	);
     initImg("portada");
