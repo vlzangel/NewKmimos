@@ -1,10 +1,10 @@
 <?php
-	
-    $order->update_status('wc-cancelled');
-    $booking->update_status('cancelled');
 
     kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"]);
     update_cupos( $id, "-");
+    
+    $order->update_status('wc-cancelled');
+    $booking->update_status('cancelled');
 
 	$cuidador_info = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$cuidador["id"]);
 
@@ -69,22 +69,41 @@
     $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cliente.php';
     $mensaje_cliente = file_get_contents($file);
 
+    $msg_cliente = "";
+    $msg_cuidador = "";
 
+    if( $_GET["user"] == "CLI" ){
+        $msg_cliente = "Te notificamos que la reserva ha sido cancelada exitosamente.";
+        $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la reserva.";
+
+        $cliente["nombre"] = "Hola ".$cliente["nombre"].",";
+        $cuidador["nombre"] = "Lo sentimos, ".$cuidador["nombre"];
+    }else{
+        $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha cancelado la reserva.";
+        $msg_cuidador = "Te notificamos que la reserva ha sido cancelada exitosamente.";
+
+        $cliente["nombre"] = "Lo sentimos, ".$cliente["nombre"];
+        $cuidador["nombre"] = "Hola ".$cuidador["nombre"];
+    }
+
+
+    $mensaje_cliente = str_replace('[mensaje]', $msg_cliente, $mensaje_cliente);
     $mensaje_cliente = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cliente);
     $mensaje_cliente = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cliente);
     $mensaje_cliente = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cliente);
-
     $mensaje_cliente = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_cliente);
-
     $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
-
 	$mensaje_cliente = get_email_html($mensaje_cliente);	
 
 	wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
 
+
+
+
     $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cuidador.php';
     $mensaje_cuidador = file_get_contents($file);
-
+    $mensaje_cuidador = str_replace('[mensaje]', $msg_cuidador, $mensaje_cuidador);
+    $mensaje_cuidador = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cuidador);
 
