@@ -20,14 +20,8 @@
 	    	$user_id = $current_user->ID;
 	    	if( $user_id > 0 ){	    		
 		    	$datos_perfil=[ 
-		    		'user_referred',
 					'user_mobile',
-			    	'user_phone',
-			    	'first_name',
-			    	'last_name',
-			    	'nickname',
-			    	'user_photo',
-			    	'description',	    		
+			    	'user_phone'
 		    	]; 
 
 		    	foreach( $datos_perfil as $key ){

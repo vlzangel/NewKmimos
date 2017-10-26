@@ -80,11 +80,11 @@
 		$user = get_user_by( 'id', $cliente );
 		$email_cliente = $user->data->user_email;
 
-    if( $_GET["acc"] == "CFM" ){
+    if( $acc == "CFM" ){
     	include("confirmar.php");
     }
 
-    if( $_GET["acc"] == "CCL" ){
+    if( $acc == "CCL" ){
     	include("cancelar.php");
     }
 ?>
