@@ -31,7 +31,9 @@
 	    <div class="km-video">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="km-video-bg"></div>
+					<div class="km-video-bg">
+						<video loop muted autoplay poster="'.getTema().'/images/new/km-hero-desktop.jpg" class="km-video-bgscreen"></video>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -57,21 +59,24 @@
 	
 								<div class="km-select-custom-home km-select-custom km-select-ubicacion btn-group" style="width:100%;">
 									<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
+
 								    <input type="text" 
 										id="ubicacion_txt"  
 										style="background: transparent; border: 0px; padding: 0px 0px 0px 15px;"
 										name="ubicacion_txt"
 										placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" 
-										data-charset="xlfdir" 
 										value="'.$busqueda["ubicacion_txt"].'" 
-										autocomplete="off" 
-										data-toggle="dropdown">
+										autocomplete="off" >
+
 									<input type="hidden" 
 										id="ubicacion" 
 										name="ubicacion" 
-										data-charset="xlfdir" 
-										value="'.$busqueda["ubicacion"].'" />										
-								    <ul id="ubicacion_list" class="tag-list dropdown-menu"></ul>
+										value="'.$busqueda["ubicacion"].'" />	
+
+								    <div class="cerrar_list_box">
+								    	<div class="cerrar_list">X</div>
+								    	<ul id="ubicacion_list" class=""></ul>
+								    </div>
 								</div>
 								
 							</div>
