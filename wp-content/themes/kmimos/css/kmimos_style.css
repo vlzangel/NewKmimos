@@ -1,4 +1,7 @@
 /* COMMON STYLES */
+input{
+	line-height: normal;
+}
 body {
 	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
 	font-size: 13px;
@@ -4563,7 +4566,7 @@ textarea.popup-conoce-textarea {
     text-align: center;
     /* margin: 20px 0 0; */
     width: 200px;
-    background: url(https://mx.kmimos.la/wp-content/themes/kmimos/images/popups/registro-cuidador-foto.svg) no-repeat center;
+    background: url(https://mx.kmimos.la/wp-content/themes/kmimos/images/popups/registro-cuidador-foto.png) no-repeat center;
     height: 200px;
     background-repeat: no-repeat;
     background-position: center;
