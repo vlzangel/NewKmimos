@@ -135,7 +135,7 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 function photo_exists($path=""){
 	$photo = (file_exists('../'.$path) && !empty($path))? 
 		get_option('siteurl').'/'.$path : 
-		get_option('siteurl')."/wp-content/themes/pointfinder/images/noimg.png";
+		get_option('siteurl')."/wp-content/themes/kmimos/images/noimg.png";
 	return $photo;
 }
 

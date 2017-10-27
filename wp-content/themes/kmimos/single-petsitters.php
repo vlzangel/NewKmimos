@@ -137,7 +137,8 @@
 	      		$home = get_home_url()."/";
 	      		foreach ($imagenes as $value) {
 	      			$items[] = "
-	      				<div class='slide' data-scale='small' data-position='top'>
+	      				<div class='slide' data-scale='small' data-position='top' 
+	      				onclick=\"vlz_galeria_ver('".$home.$value."')\">
 	      					<div class='vlz_item_fondo' style='background-image: url(".$home.$value."); filter:blur(2px);'></div>
 	      					<div class='vlz_item_imagen' style='background-image: url(".$home.$value.");'></div>
 	      				</div>
