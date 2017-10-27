@@ -121,21 +121,17 @@
 
 	if( $acc == ""  ){
 
-		if( strtolower($servicio["metodo_pago"]) == "tienda" ){
-			include("tienda.php");
+		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_reserva"]);
+
+		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
+			include(__DIR__."/tienda.php");
 		}else{
-			include("otro.php");
+			include(__DIR__."/otro.php");
 		}
 
 	}else{
 
-		echo "acc: ".$acc."<br>";
-		echo "id_reserva: ".$servicio["id_reserva"]."<br>";
-		echo "id_orden: ".$servicio["id_orden"]."<br>";
-
 		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_orden"]."'");
-
-		echo "acc: ".$acc;
 
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
@@ -171,8 +167,8 @@
 
 		if( $acc == "CFM" ){
 
-    		$order->update_status('wc-on-hold');
-			$booking->update_status('confirmed');
+			$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
+    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
 
 			include("confirmacion.php");
 
