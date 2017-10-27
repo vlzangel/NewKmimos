@@ -14,7 +14,6 @@
 	    </div>
 
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 30px;'>
-	    	Te notificamos que la solicitud para conocerte ha sido cancelada exitosamente.
 	    	[mensaje]
 	    </div>
 

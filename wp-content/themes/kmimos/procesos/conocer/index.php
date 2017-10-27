@@ -1,5 +1,4 @@
 <?php
-	
 	extract($_GET);
 	if( isset($_GET["id_orden"]) ){
 		include(((dirname(dirname(dirname(dirname(dirname(__DIR__)))))))."/wp-load.php");
@@ -25,7 +24,7 @@
 	}
 
 	global $wpdb;
-
+	
 	$PATH_TEMPLATE = ((dirname(dirname(__DIR__))));
 
 	$info = kmimos_get_info_syte();
@@ -75,16 +74,16 @@
 
 	    $cliente = $metas_solicitud['requester_user'][0];
 		$metas_cliente = get_user_meta($cliente);
-		$cliente_name = $metas_cliente["first_name"][0];
+		$cliente_name = $metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0];
 
-		$user = get_user_by( 'id', $cliente );
-		$email_cliente = $user->data->user_email;
+		$user_cliente = get_user_by( 'id', $cliente );
+		$email_cliente = $user_cliente->data->user_email;
 
     if( $acc == "CFM" ){
-    	include("confirmar.php");
+    	include(__DIR__."/confirmar.php");
     }
 
     if( $acc == "CCL" ){
-    	include("cancelar.php");
+    	include(__DIR__."/cancelar.php");
     }
 ?>
