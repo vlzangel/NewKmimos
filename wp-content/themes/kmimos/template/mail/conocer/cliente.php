@@ -25,11 +25,11 @@
 			    <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
 			    	[nombre_usuario]
 			    </div>			    
-			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
+			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px;'>
 			    	[telefonos]
 			    </div>   
 			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
-			    	[email]
+			    	<a href="mailto:[email]">[email]</a>
 			    </div>
 			</div>
 			<div style='display: table-cell; width: 158.8px; height: 50.3px; border-radius: 2.8px;  vertical-align: top;'>
