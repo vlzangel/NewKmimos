@@ -42,7 +42,7 @@
 			$cont = 0;
     		foreach ($municipios as $key => $municipio) {
     			$municipio_value = normaliza( ($municipio->name) );
-    			$estados_str .= ("<".$tag_start." value='".$value->id."_".$municipio->id."' data-value='".$estado_value.", ".$municipio_value."' >".$value->name.", ".$municipio->name."</".$tag_end.">");
+    			$estados_str .= ("<".$tag_start." value='".$value->id."_".$municipio->id."' data-value='".$estado_value." ".$municipio_value."' >".$value->name.", ".$municipio->name."</".$tag_end.">");
 
 
     			$ubicaciones[] = array(
