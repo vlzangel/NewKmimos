@@ -88,7 +88,7 @@
 	    ";
 
 	    $adicionales = "";
-	    if( count($data_reserva["transporte"]) > 0 ){
+	    if( count($data_reserva["adicionales"]) > 0 ){
 	        foreach ($data_reserva["adicionales"] as $value) {
 	            $adicionales .= '
 	                <div class="item">
