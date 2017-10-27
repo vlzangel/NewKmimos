@@ -24,7 +24,11 @@
 	*/
 	
  	$modificacion_de = get_post_meta($reserva_id, "modificacion_de", true);
-    if( $modificacion_de != "" ){ $modificacion = 'Esta es una modificación de la reserva #: '.$modificacion_de;
+    if( $modificacion_de != "" ){ 
+    	$modificacion = "
+    	<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #777; padding-bottom: 19px; text-align: center;'>
+            Esta es una modificación de la reserva #: ".$modificacion_de."
+        </div>";
  	}else{ $modificacion = ""; }
 
 	$email_admin = $info["email"];
@@ -117,21 +121,21 @@
 	}else{
 		$totales_plantilla = str_replace('[DESCUENTO]', "", $totales_plantilla);
 	}
+    		
 
-	if( !isset($_GET["acc"]) ){
+	if( $acc == ""  ){
 
-		if( strtolower($servicio["metodo_pago"]) == "tienda" ){
-			include("tienda.php");
+		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_reserva"]);
+
+		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
+			include(__DIR__."/tienda.php");
 		}else{
-			include("otro.php");
+			include(__DIR__."/otro.php");
 		}
 
 	}else{
 
-		$booking = new WC_Booking( $servicio["id_reserva"] );
-		$order = new WC_Order( $servicio["id_orden"] );
-
-		$status = $booking->get_status();
+		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_orden"]."'");
 
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
@@ -165,10 +169,10 @@
 
 		}
 
-		if( $_GET["acc"] == "CFM" ){
+		if( $acc == "CFM" ){
 
-    		$order->update_status('wc-on-hold');
-			$booking->update_status('confirmed');
+			$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
+    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
 
 			include("confirmacion.php");
 
@@ -201,8 +205,8 @@
 			}
 		}
 
-		if( $_GET["acc"] == "CCL" ){
-			include("cancelacion.php");
+		if( $acc == "CCL" ){
+			include(__DIR__."/cancelacion.php");
 		}
 
 

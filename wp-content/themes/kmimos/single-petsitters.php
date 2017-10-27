@@ -137,7 +137,8 @@
 	      		$home = get_home_url()."/";
 	      		foreach ($imagenes as $value) {
 	      			$items[] = "
-	      				<div class='slide' data-scale='small' data-position='top'>
+	      				<div class='slide' data-scale='small' data-position='top' 
+	      				onclick=\"vlz_galeria_ver('".$home.$value."')\">
 	      					<div class='vlz_item_fondo' style='background-image: url(".$home.$value."); filter:blur(2px);'></div>
 	      					<div class='vlz_item_imagen' style='background-image: url(".$home.$value.");'></div>
 	      				</div>
@@ -154,6 +155,7 @@
 	      		'.
 	      		"
 	      			<div class='vlz_modal_galeria' onclick='vlz_galeria_cerrar()'>
+	      				<span onclick='vlz_galeria_cerrar()' class='close' style='position:absolute;top:10px;right:10px;color:white;z-index:999;'><i class='fa fa-times' aria-hidden='true'></i></span>
 	      				<div class='vlz_modal_galeria_interna'></div>
 	      			</div>
 	      		";
@@ -199,7 +201,6 @@
         }else{
         	$id_hospedaje = $servicio->ID;
         }
-
 
         if( !empty($precios) ){
 

@@ -172,17 +172,17 @@
 									style="width: 100%;background: transparent; border: 0px; padding: 0px 0px 0px 15px;"
 									name="ubicacion_txt"
 									placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" 
-									data-charset="xlfdir" 
 									value="'.$busqueda["ubicacion_txt"].'" 
-									autocomplete="off" 
-									readonly 
-									data-toggle="dropdown">
+									autocomplete="off" >
 								<input type="hidden" 
 									id="ubicacion" 
 									name="ubicacion" 
-									data-charset="xlfdir" 
-									value="'.$busqueda["ubicacion"].'" />										
-							    <ul id="ubicacion_list" class="tag-list dropdown-menu"></ul>
+									value="'.$busqueda["ubicacion"].'" />						
+
+							    <div class="cerrar_list_box">
+							    	<div class="cerrar_list">X</div>
+							    	<ul id="ubicacion_list" class=""></ul>
+							    </div>
 							</div>
 						</div>
 						<div class="km-div-fechas">
