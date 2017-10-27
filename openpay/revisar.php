@@ -31,6 +31,10 @@
 			$ordenes[] = $f->orden;
 		}
 
+	/*	echo "<pre>";
+			print_r($ordenes);
+		echo "</pre>";*/
+
 		// Inicialización OpenPay
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
 		Openpay::setProductionMode( ($OPENPAY_PRUEBAS == false) );
@@ -49,16 +53,11 @@
 
 				$hoy = time();
 
-				echo "<pre>";
-					print_r($value->status);
-					print_r( $hoy > strtotime($value->due_date) );
-				echo "</pre>";
-
 				if( $value->status == "in_progress" && ( $hoy > strtotime($value->due_date) ) ){
 					$value->status = "cancelled";
 				}
 
-				/*switch ($value->status) {
+				switch ($value->status) {
 
 					case 'cancelled':
 						$id_orden = $value->order_id;
@@ -92,7 +91,7 @@
 
 					break;
 				
-				}*/
+				}
 				
 			}
 		}
