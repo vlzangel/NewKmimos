@@ -405,6 +405,7 @@ section {
 	text-align: left;
 	line-height: 1.3;
 	vertical-align: middle;
+    width: 70%!important;
 }
 .km-servicios .col-sm-3, .km-fechas .col-sm-6, .km-fechas .col-sm-3,.km-tamanio .col-sm-3, .km-servicios-adicionales .col-sm-3 {
 	padding-right: 5px;
@@ -2187,7 +2188,20 @@ footer input:focus{
 	padding: 5px;
 }
 
-
+.mensaje{
+	background-color: #7DD1C4;
+    border-radius: 15px;
+    color: #ffffff;
+    position: relative;
+    padding: 8px 0;
+    float: left;
+    border-radius: 8px;
+    font-family: 'Gotham-Pro-Bold',arial,sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 70%;
+    }
 
 
 
@@ -4335,7 +4349,8 @@ a.km-btn-comentario {
 }
 .km-box-form .label-placeholder {
     position:relative;
-    padding-top:16px;
+    padding-top:20px;
+/*    padding-top:16px;*/
 	text-align: left;
 }
 .km-box-form .label-placeholder label {

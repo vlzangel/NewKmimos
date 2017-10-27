@@ -14,6 +14,29 @@
 	    }
 	}
 
+	if(!function_exists('validar_perfil_completo')){
+	    function validar_perfil_completo(){
+	    	global $current_user;
+	    	$user_id = $current_user->ID;
+	    	if( $user_id > 0 ){	    		
+		    	$datos_perfil=[ 
+					'user_mobile',
+			    	'user_phone'
+		    	]; 
+
+		    	foreach( $datos_perfil as $key ){
+			    	$value = get_user_meta( $user_id, $key, true );
+			    	if( empty($value) ){
+			    		echo $key.': '.$value;
+						return false;
+			    	}
+		    	}
+				return true;
+	    	}
+			return false;
+	    }
+	}
+
 	if(!function_exists('servicios_en_session')){
 	    function servicios_en_session( $opt_key = '', $arr, $sub="" ){
 	    	$result = false;

@@ -65,7 +65,6 @@
 										data-charset="xlfdir" 
 										value="'.$busqueda["ubicacion_txt"].'" 
 										autocomplete="off" 
-										readonly 
 										data-toggle="dropdown">
 									<input type="hidden" 
 										id="ubicacion" 
@@ -154,45 +153,6 @@
 									data-target="#popup-servicios" 
 									data-action="validate">ENCONTRAR CUIDADOR</a>
 
-								<div id="popup-servicios" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-											<h4><b>RECOMPENSA A TU MASCOTA. INCLUYE UN SERVICIO ADICIONAL</b></h4>
-											<div class="km-servicios-adicionales">
-												<div class="row">
-													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="corte" ><img src="'.getTema().'/images/new/icon/icon-corteypelo.svg"><div class="km-opcion-text">CORTE DE<br> PELO Y UÑAS</div></div>
-													</div>
-													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="bano" ><img src="'.getTema().'/images/new/icon/icon-banoyseco.svg"><div class="km-opcion-text">BAÑO<br> Y SECADO</div></div>
-													</div>
-													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="limpieza_dental" ><img src="'.getTema().'/images/new/icon/icon-dental.svg"><div class="km-opcion-text">LIMPIEZA<br> DENTAL</div></div>
-													</div>
-													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="visita_al_veterinario" ><img src="'.getTema().'/images/new/icon/icon-veterinario.svg"><div class="km-opcion-text">VISITA AL<br> VETERINARIO</div></div>
-													</div>
-												</div>
-												<div class="row mtb-10">
-													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="acupuntura" ><img src="'.getTema().'/images/new/icon/icon-acupuntura.svg"><div class="km-opcion-text">ACUPUNTURA</div></div>
-													</div>
-													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="transportacion_sencilla" ><img src="'.getTema().'/images/new/icon/icon-transportesencillo.svg"><div class="km-opcion-text">TRANSPORTE<br> SENCILLO</div></div>
-													</div>
-													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="transportacion_redonda" ><img src="'.getTema().'/images/new/icon/icon-transporteredondo.svg"><div class="km-opcion-text">TRANSPORTE<br> REDONDO</div></div>
-													</div>
-													<div class="col-xs-12 col-sm-3">
-														<a id="buscar" href="#" class="km-btn-primary" style="height: 70px; line-height: 40px;">AGREGAR SERVICIO</a>
-													</div>
-												</div>
-											</div>
-											<a href="javascript:;" id="buscar_no" class="km-link" style="color: black; display:block; margin-top: 30px;">NO DESEO POR AHORA, GRACIAS</a>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -456,6 +416,50 @@ $HTML .= '
 			</div>
 		</div>
 		<!-- END MODAL TESTIMONIOS -->
+
+
+		<!-- BEGIN MODAL SERVICIOS ADICIONALES -->
+		<div id="popup-servicios" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4><b>RECOMPENSA A TU MASCOTA. INCLUYE UN SERVICIO ADICIONAL</b></h4>
+					<div class="km-servicios-adicionales">
+						<div class="row">
+							<div class="col-xs-12 col-sm-3">
+								<div class="km-opcion"><input type="checkbox" name="servicios[]" value="corte" ><img src="'.getTema().'/images/new/icon/icon-corteypelo.svg"><div class="km-opcion-text">CORTE DE<br> PELO Y UÑAS</div></div>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<div class="km-opcion"><input type="checkbox" name="servicios[]" value="bano" ><img src="'.getTema().'/images/new/icon/icon-banoyseco.svg"><div class="km-opcion-text">BAÑO<br> Y SECADO</div></div>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<div class="km-opcion"><input type="checkbox" name="servicios[]" value="limpieza_dental" ><img src="'.getTema().'/images/new/icon/icon-dental.svg"><div class="km-opcion-text">LIMPIEZA<br> DENTAL</div></div>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<div class="km-opcion"><input type="checkbox" name="servicios[]" value="visita_al_veterinario" ><img src="'.getTema().'/images/new/icon/icon-veterinario.svg"><div class="km-opcion-text">VISITA AL<br> VETERINARIO</div></div>
+							</div>
+						</div>
+						<div class="row mtb-10">
+							<div class="col-xs-12 col-sm-3">
+								<div class="km-opcion"><input type="checkbox" name="servicios[]" value="acupuntura" ><img src="'.getTema().'/images/new/icon/icon-acupuntura.svg"><div class="km-opcion-text">ACUPUNTURA</div></div>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<div class="km-opcion"><input type="checkbox" name="servicios[]" value="transportacion_sencilla" ><img src="'.getTema().'/images/new/icon/icon-transportesencillo.svg"><div class="km-opcion-text">TRANSPORTE<br> SENCILLO</div></div>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<div class="km-opcion"><input type="checkbox" name="servicios[]" value="transportacion_redonda" ><img src="'.getTema().'/images/new/icon/icon-transporteredondo.svg"><div class="km-opcion-text">TRANSPORTE<br> REDONDO</div></div>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<a id="buscar" href="#" class="km-btn-primary" style="height: 70px; line-height: 40px;">AGREGAR SERVICIO</a>
+							</div>
+						</div>
+					</div>
+					<a href="javascript:;" id="buscar_no" class="km-link" style="color: black; display:block; margin-top: 30px;">NO DESEO POR AHORA, GRACIAS</a>
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL SERVICIOS ADICIONALES -->
+
 	    ';
 
 	    echo comprimir_styles($HTML);

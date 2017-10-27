@@ -80,7 +80,7 @@
 		<div class="km-resultados-lista">
 			'.$CUIDADORES.'
 			<div class="">
-				<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor pícale <a href="'.get_home_url().'">aquí</a> para ajustar los filtros de búsqueda.</h2>
+				<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor pícale <a style="color:#6B1C9B;" href="'.get_home_url().'">aquí</a> para ajustar los filtros de búsqueda.</h2>
 			</div>
 		</div>';
 	}
@@ -161,10 +161,10 @@
 		<div class="container contentenedor-buscador-todos content-wlabel-search">
 			<div class="km-contentido-formulario-buscador">
 				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="post">
-					<div class="km-bloque-cajas km-search-wlabel" style="height:49px">
+					<div class="km-bloque-cajas km-search-wlabel" >
 						<div class="km-div-ubicacion">
 						
-							<div class="km-select-custom km-select-ubicacion btn-group" style="width:100%;border-right: 0px; height: 47px;">
+							<div class="km-select-custom km-select-ubicacion btn-group" style="width:100%;border-right: 0px; height: 45px;border-top: 0px;">
 								<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
 							    <input type="text" 
 									id="ubicacion_txt" 
@@ -175,7 +175,6 @@
 									data-charset="xlfdir" 
 									value="'.$busqueda["ubicacion_txt"].'" 
 									autocomplete="off" 
-									readonly 
 									data-toggle="dropdown">
 								<input type="hidden" 
 									id="ubicacion" 
@@ -184,7 +183,6 @@
 									value="'.$busqueda["ubicacion"].'" />										
 							    <ul id="ubicacion_list" class="tag-list dropdown-menu"></ul>
 							</div>
-
 						</div>
 						<div class="km-div-fechas">
 							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
@@ -195,6 +193,7 @@
 								BUSCAR
 							</button>
 						</div>
+						<div class="clear"></div>
 					</div>
 
 					<div class="km-div-filtro">
