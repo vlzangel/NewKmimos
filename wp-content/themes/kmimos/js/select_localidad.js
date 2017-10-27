@@ -74,7 +74,7 @@ jQuery(document).ready(function(){
                 }
             }
             clearInterval(intervalo); 
-        }, 500);
+        }, 300);
             
     }
 
