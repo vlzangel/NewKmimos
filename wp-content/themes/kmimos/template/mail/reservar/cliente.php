@@ -5,6 +5,9 @@
 <div style='padding: 0px; margin-bottom: 34px;'>
 
     <div style='margin-bottom: 45px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
+        
+        [MODIFICACION] 
+
         <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 19px; text-align: center;'>
             ¡Gracias [name_cliente]!
         </div>  

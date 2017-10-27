@@ -24,7 +24,11 @@
 	*/
 	
  	$modificacion_de = get_post_meta($reserva_id, "modificacion_de", true);
-    if( $modificacion_de != "" ){ $modificacion = 'Esta es una modificación de la reserva #: '.$modificacion_de;
+    if( $modificacion_de != "" ){ 
+    	$modificacion = "
+    	<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #777; padding-bottom: 19px; text-align: center;'>
+            Esta es una modificación de la reserva #: ".$modificacion_de."
+        </div>";
  	}else{ $modificacion = ""; }
 
 	$email_admin = $info["email"];

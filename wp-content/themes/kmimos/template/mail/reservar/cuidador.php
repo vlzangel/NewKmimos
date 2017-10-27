@@ -5,6 +5,9 @@
 <div style='padding: 0px; margin-bottom: 34px;'>
 
 	<div style='margin-bottom: 30px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; margin-bottom: 18px;'>
+		
+		[MODIFICACION]
+		
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 19px;'>
 			[tipo_servicio] por [name_cliente]
 		</div>	
