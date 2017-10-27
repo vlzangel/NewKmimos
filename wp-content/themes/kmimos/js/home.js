@@ -103,10 +103,8 @@ var hasGPS=false;
     });
 })(jQuery);
 
+window.addEventListener("load", loadBGVideoHOME);
 
-jQuery(window).on('resize', function(){
-    loadBGVideoHOME();
-});
 
 function loadBGVideoHOME(){
     if( jQuery(window).width() >= 768 ){
@@ -125,8 +123,6 @@ function loadBGVideoHOME(){
 
 var fecha = new Date();
 jQuery(document).ready(function(){
-
-    loadBGVideoHOME();
     
     jQuery('.bxslider').bxSlider({
         buildPager: function(slideIndex){
