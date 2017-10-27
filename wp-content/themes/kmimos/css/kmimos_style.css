@@ -1,7 +1,19 @@
 /* COMMON STYLES */
-.modal input{
-	line-height: normal;
+
+.slider:hover
+,.item-slide:hover{
+	cursor: "\f255"!important;
 }
+
+
+
+.modal input
+{
+	line-height: 42px!important;
+	height: 42px!important;
+	font-size: 15px!important;
+}
+
 body {
 	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
 	font-size: 13px;
