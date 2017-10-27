@@ -6,44 +6,43 @@ jQuery( document ).ready(function() {
 			jQuery("#btn_actualizar").val("Procesando...");
             jQuery("#btn_actualizar").attr("disabled", true);
 			jQuery(".perfil_cargando").css("display", "inline-block");
-       	}, 
 
+     	}, 
        	function( data ) {
 
             console.log(data);
-
-            var $mensaje="";
 
        		jQuery(".vlz_img_portada_valor").val("");
 
 			jQuery("#btn_actualizar").val("Actualizar");
 			jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
-            
 
-                 var $mensaje="";
+              var $mensaje="";
 
-               if( data.status == "OK"){
+             console.log(data);
 
+             var obj = jQuery.parseJSON( '{ "status": "OK" }' );
+             console.log(obj.status);
+
+            if( obj.status == "OK"){             
 
                 $mensaje = "Los datos de fueron actualizados";
 
             }else{
-                 $mensaje = "Lo sentimos no se pudo actualizar los datos";
+
+                 $mensaje = "Lo sentimos no se pudo actualizar los datos ";
             }
 
+            console.log($mensaje);
 
-            jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');  
+            jQuery('#btn_actualizar').before('<br><span class="mensaje">'+$mensaje+'</span><br>');  
 
                   setTimeout(function() { 
                  jQuery('.mensaje').remove(); 
-              if( data.status == "OK"){
-                    location.href ="../../";
-              }
 
-            },3000);
-
-
+            },3000);        
+            
        	}
    	);
     initImg("portada");
