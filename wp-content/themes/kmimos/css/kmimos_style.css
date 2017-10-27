@@ -2200,14 +2200,14 @@ footer input:focus{
     border-radius: 15px;
     color: #ffffff;
     position: relative;
-    padding: 8px 0;
-    float: left;
+    padding: 12px 24px;
     border-radius: 8px;
+    margin-bottom: 20px;
     font-family: 'Gotham-Pro-Bold',arial,sans-serif;
     font-size: 13px;
     letter-spacing: 1px;
-    text-align: center;
-    width: 70%;
+    width: 100%;
+    float: right;
     }
 
 

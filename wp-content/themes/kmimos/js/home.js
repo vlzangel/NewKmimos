@@ -209,8 +209,20 @@ jQuery(document).on('click', '[data-target="iframe-testimonio"]', function(){
 });
 
 jQuery(document).on('click', '[data-target="close-testimonio"]', function (e) {
-    jQuery('#iframe-testimonio').attr( 'src', 'http://');
-    jQuery('#testimonio').modal('hide');
+    stop_video();
 });
 
 
+jQuery(document).keyup(function(e) {
+    if (e.keyCode == 27){
+        stop_video();
+    }
+    console.log( e.keyCode );
+});
+
+function stop_video(){
+    jQuery('#iframe-testimonio').attr( 'src', 'http://');
+    jQuery('#testimonio').modal('hide');
+
+    console.log('stop video');
+}
