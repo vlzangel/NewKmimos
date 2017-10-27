@@ -41,8 +41,10 @@ jQuery(document).ready(function(){
             jQuery("#ubicacion").val( "" );
             jQuery("#ubicacion").attr( "data-value", "" );
         }else{
-            if( jQuery("#ubicacion_txt").val() != jQuery("#ubicacion").val() ){
-                jQuery("#ubicacion_txt").val( jQuery("#ubicacion").attr( "data-txt" ) );
+            if( jQuery("#ubicacion").val() != "" ){
+                if( jQuery("#ubicacion_txt").val() != jQuery("#ubicacion").val() ){
+                    jQuery("#ubicacion_txt").val( jQuery("#ubicacion").attr( "data-txt" ) );
+                }
             }
         }
     });
