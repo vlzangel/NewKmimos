@@ -75,6 +75,8 @@
         $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cliente.php';
         $mensaje_cliente = file_get_contents($file);
 
+        $mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
+
         $mensaje_cliente = str_replace('[mensaje]', $msg_cliente, $mensaje_cliente);
         $mensaje_cliente = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cliente);
@@ -90,6 +92,8 @@
         $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cuidador.php';
         $mensaje_cuidador = file_get_contents($file);
 
+        $mensaje_cuidador = str_replace('[MODIFICACION]', $modificacion, $mensaje_cuidador);
+        
         $mensaje_cuidador = str_replace('[mensaje]', $msg_cuidador, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cuidador);
