@@ -1,5 +1,7 @@
 /* COMMON STYLES */
-
+.modal input{
+	line-height: normal;
+}
 body {
 	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
 	font-size: 13px;
