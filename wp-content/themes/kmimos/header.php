@@ -60,7 +60,7 @@
 		</script>
 	</head>
 
-	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu()"> <script> var RUTA_IMGS = "'.get_home_url().'/imgs"; </script>';
+	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu();"> <script> var RUTA_IMGS = "'.get_home_url().'/imgs"; </script>';
 
 	include_once("funciones.php");
 
