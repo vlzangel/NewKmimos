@@ -30,7 +30,7 @@ jQuery( document ).ready(function() {
                if( data.status == "OK"){
 
 
-                $mensaje = "Los datos de fueron actualizados";
+                $mensaje = "Los datos fueron actualizados";
 
             }else{
                  $mensaje = "Lo sentimos no se pudo actualizar los datos";

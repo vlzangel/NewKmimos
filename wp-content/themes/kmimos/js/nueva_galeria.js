@@ -21,7 +21,7 @@ jQuery( document ).ready(function() {
 
             if( obj.status == "OK"){             
 
-                $mensaje = "Los datos de fueron actualizados";
+                $mensaje = "Los datos  fueron actualizados";
 
             }else{
 
