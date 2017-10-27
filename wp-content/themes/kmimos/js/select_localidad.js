@@ -74,7 +74,7 @@ jQuery(document).ready(function(){
                 }
             }
             clearInterval(intervalo); 
-        }, 500);
+        }, 300);
             
     }
 
@@ -87,6 +87,7 @@ jQuery(document).ready(function(){
         cadena = cadena.replace(/ó/gi,"o");
         cadena = cadena.replace(/ú/gi,"u");
         cadena = cadena.replace(/ñ/gi,"n");
+        cadena = cadena.replace(/,/gi,"");
         return cadena;
     }
 
