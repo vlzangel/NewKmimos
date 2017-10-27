@@ -115,9 +115,9 @@
 
             if( $cuidador->hospedaje_desde > 0  || $cuidador->activo == 1 ){
                 if( $post->post_status == 'pending' ){
-                    $link = "<a class='vlz_activar' href='".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/activar_cuidadores.php?p=".$post->ID."&a=1&u=".$post->post_author."'>Activar Cuidador</a>";
+                    $link = "<a class='vlz_activar' href='".getTema()."/procesos/cuidador/activar_cuidadores.php?p=".$post->ID."&a=1&u=".$post->post_author."'>Activar Cuidador</a>";
                 }else{
-                    $link = "<a class='vlz_desactivar' href='".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/activar_cuidadores.php?p=".$post->ID."&a=0&u=".$post->post_author."'>Desactivar Cuidador</a>";
+                    $link = "<a class='vlz_desactivar' href='".getTema()."/procesos/cuidador/activar_cuidadores.php?p=".$post->ID."&a=0&u=".$post->post_author."'>Desactivar Cuidador</a>";
                 }
             }else{
                 $link = "Este cuidador no tiene precios de hospedaje, no puede ser activado";
