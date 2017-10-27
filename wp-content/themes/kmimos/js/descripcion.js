@@ -48,26 +48,6 @@ jQuery( document ).ready(function() {
             jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
         }
-
-        var $mensaje="";
-
-               if( data.status == "OK"){
-
-
-                $mensaje = "Los datos de fueron actualizados";
-
-            }else{
-                 $mensaje = "Lo sentimos no se pudo actualizar los datos";
-            }
-
-
-            jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');  
-
-                  setTimeout(function() { 
-                 jQuery('.mensaje').remove(); 
-              
-
-            },3000);
     );
 
 });
