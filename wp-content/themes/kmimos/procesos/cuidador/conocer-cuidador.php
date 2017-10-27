@@ -218,7 +218,7 @@
         $mensaje_cuidador = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[telefonos]', $telf_cliente, $mensaje_cuidador);
-        $mensaje_cuidador = str_replace('[email]', $email_cuidador, $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[email]', $email_cliente, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[id_solicitud]', $request_id, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[hora]', $_POST['meeting_time'], $mensaje_cuidador);
@@ -244,7 +244,7 @@
         $mensaje_cliente = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cliente);
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
         $mensaje_cliente = str_replace('[telefonos]', $telf_cuidador, $mensaje_cliente);
-        $mensaje_cliente = str_replace('[email]', $email_cliente, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[email]', $email_cuidador, $mensaje_cliente);
         $mensaje_cliente = str_replace('[id_solicitud]', $request_id, $mensaje_cliente);
         $mensaje_cliente = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_cliente);
         $mensaje_cliente = str_replace('[hora]', $_POST['meeting_time'], $mensaje_cliente);
