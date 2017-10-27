@@ -117,8 +117,9 @@
 	}else{
 		$totales_plantilla = str_replace('[DESCUENTO]', "", $totales_plantilla);
 	}
+    		
 
-	if( !isset($_GET["acc"]) ){
+	if( $acc == ""  ){
 
 		if( strtolower($servicio["metodo_pago"]) == "tienda" ){
 			include("tienda.php");
@@ -128,10 +129,13 @@
 
 	}else{
 
-		$booking = new WC_Booking( $servicio["id_reserva"] );
-		$order = new WC_Order( $servicio["id_orden"] );
+		echo "acc: ".$acc."<br>";
+		echo "id_reserva: ".$servicio["id_reserva"]."<br>";
+		echo "id_orden: ".$servicio["id_orden"]."<br>";
 
-		$status = $booking->get_status();
+		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_orden"]."'");
+
+		echo "acc: ".$acc;
 
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
@@ -165,7 +169,7 @@
 
 		}
 
-		if( $_GET["acc"] == "CFM" ){
+		if( $acc == "CFM" ){
 
     		$order->update_status('wc-on-hold');
 			$booking->update_status('confirmed');
@@ -201,8 +205,8 @@
 			}
 		}
 
-		if( $_GET["acc"] == "CCL" ){
-			include("cancelacion.php");
+		if( $acc == "CCL" ){
+			include(__DIR__."/cancelacion.php");
 		}
 
 

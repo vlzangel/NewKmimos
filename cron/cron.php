@@ -1,4 +1,6 @@
 <?php
+
+    session_start();
     
     require('../wp-load.php');
 
@@ -12,6 +14,8 @@
 
     $hora_actual = strtotime("now");
     $xhora_actual = date("H", $hora_actual);
+
+    $acc = "CCL"; $user = "STM";
 
     if( ($xhora_actual-$rango) < $inicio ){
         $hoy = date("d-m-Y", $hora_actual);
@@ -27,9 +31,8 @@
     }
 
     if( $xhora_actual < $fin ){
-
         $sql = "
-            SELECT ID, post_date FROM wp_posts WHERE 
+            SELECT ID, post_type FROM wp_posts WHERE 
             post_type IN (
                 'request',
                 'shop_order'
@@ -43,25 +46,17 @@
         ";
         $r = $wpdb->get_results( $sql );
 
-        echo "<pre>";
-            print_r($r);
-        echo "</pre>";
-
-       foreach ($r as $request) {
-
-            $acc = "CCL"; $user = "STM";
+        foreach ($r as $request) {
 
             if( $request->post_type == "request" ){
                 $id_orden = $request->ID;
 
-                file_get_contents( get_home_url()."/wp-content/themes/kmimos/procesos/conocer/index.php?acc=CCL&user=SMT&id_orden=$id_orden");
+                include( "../wp-content/themes/kmimos/procesos/conocer/index.php");
             }else{
                 $id_orden = $request->ID;
 
-                file_get_contents( get_home_url()."/wp-content/themes/kmimos/procesos/reservar/emails/index.php?acc=CCL&user=SMT&id_orden=$id_orden");
+                include( "../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
             }
-
-            break;
 
         }
 
