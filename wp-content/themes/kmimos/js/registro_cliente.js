@@ -323,7 +323,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery('[name="sp-date_birth"]').remove();
 				jQuery('#datepets').css('color', 'black');
 			}
-		}
+		},
+		yearRange: (parseInt(maxDatePets.getFullYear())-30)+':'+maxDatePets.getFullYear(),
 	});
 
 
