@@ -1,11 +1,11 @@
 /* COMMON STYLES */
 
-.slider:hover
-,.item-slide:hover{
-	cursor: "\f255"!important;
+.item-slide,
+.item-slide:hover,
+.slide-content,
+.slide-content:hover{
+    cursor: pointer!important;
 }
-
-
 
 .modal input
 {
