@@ -111,27 +111,34 @@ $HTML = '
 
     wp_footer();
 
+/*    $HTML = "
+        <script type='text/javascript'>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
+
+            ga('create', 'UA-56422840-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+        <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
+
+        <script type='text/javascript'>
+            jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
+        </script>        
+    ";   */ 
+    
     $HTML = "
-            <script type='text/javascript'>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
+        <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
+        <script type='text/javascript'>
+            jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
+        </script>        
+    ";
 
-                ga('create', 'UA-56422840-1', 'auto');
-                ga('send', 'pageview');
-            </script>
-
-            <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
-
-            <script type='text/javascript'>
-                jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
-            </script>        
-        ";
-
-        if( !empty($wlabel) ){
-            wp_enqueue_script( 'wlabel_js', getTema()."/js/wlabel-content.js",array(), '1.0.0' );
-        }
+    if( !empty($wlabel) ){
+        wp_enqueue_script( 'wlabel_js', getTema()."/js/wlabel-content.js",array(), '1.0.0' );
+    }
 
     if( !is_user_logged_in() ){
         /*$HTML .= "<script> startApp(); </script>";*/
