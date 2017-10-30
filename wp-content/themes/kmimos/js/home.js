@@ -217,7 +217,6 @@ jQuery(document).keyup(function(e) {
     if (e.keyCode == 27){
         stop_video();
     }
-    console.log( e.keyCode );
 });
 
 function stop_video(){
