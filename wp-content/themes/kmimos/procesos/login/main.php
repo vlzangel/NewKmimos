@@ -8,7 +8,7 @@
 
     if( preg_match("/[\+]{1,}/", $email) || !filter_var($email, FILTER_VALIDATE_EMAIL) ){
         $fields[] = [ 'name'=>'email', 'msg'=>"Formato de E-mail invalido"];
-        echo "SI";
+        echo "NO_MAIL";
         exit();
     }
 

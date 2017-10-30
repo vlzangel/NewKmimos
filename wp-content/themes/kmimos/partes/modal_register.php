@@ -100,7 +100,7 @@ $HTML .='
 								class="social_google_id " value="">
 
 							<div class="img_registro_cliente" style="position: relative">
-								<div class="km-datos-foto vlz_rotar" id="km-datos-foto-profile" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.svg);">
+								<div class="km-datos-foto vlz_rotar" id="km-datos-foto-profile" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.png);">
 									<div id="loading-perfil" style="width:100%;line-height: 100%;display:none" class="vlz_cargando">
 										<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
 									</div>
@@ -212,7 +212,7 @@ $HTML .='
 				<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
 
 				<div class="img_registro_cliente" style="position: relative">
-					<div class="km-datos-foto vlz_rotar" id="km-datos-foto" data-init-img="'.getTema().'/images/popups/registro-cuidador-foto.svg" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.svg);">
+					<div class="km-datos-foto vlz_rotar" id="km-datos-foto" data-init-img="'.getTema().'/images/popups/registro-cuidador-foto.png" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.png);">
 						<div id="loading-mascota" style="width:100%;line-height: 100%;display:none" class="vlz_cargando">
 							<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
 						</div>
