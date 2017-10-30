@@ -3,6 +3,7 @@
 	<title> <?php bloginfo('title'); ?> </title>
 	<meta charset="UTF-8"><?php 
 	$HTML = '';	
+
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
 		header('X-UA-Compatible: IE=edge,chrome=1');
 	}
@@ -32,7 +33,10 @@
 
 	wp_enqueue_style( 'generales_responsive_css', getTema()."/css/responsive/generales_responsive.css", array(), "1.0.0" );
 
-	add_class_wlabel();
+	/* Solo para iOS - [ $is_iOS en pre-header.php ] */
+	if( $is_iOS ){
+		wp_enqueue_style( 'modal_iOS', getTema()."/css/modal-iOS.css", array(), "1.0.0" );
+	}
 
 	wp_head();
 
@@ -45,16 +49,18 @@
 		$reserrvacion_page = "page-reservation";
 	}
 
+	$wlabel = add_wlabel();
 	$HTML .= '
 		<script type="text/javascript"> 
 			var HOME = "'.getTema().'/"; 
 			var RAIZ = "'.get_home_url().'/"; 
 			var pines = [];
 			var AVATAR = "";
+            var wlabel = "'.$wlabel.'";
 		</script>
 	</head>
 
-	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu()"> <script> var RUTA_IMGS = "'.get_home_url().'/imgs"; </script>';
+	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu();"> <script> var RUTA_IMGS = "'.get_home_url().'/imgs"; </script>';
 
 	include_once("funciones.php");
 
@@ -81,7 +87,12 @@
 		$salir = wp_logout_url( home_url() );
 		$HTML .= '<script> var AVATAR = "'.$avatar.'"; </script>';
 		$avatar_circle = 'img-circle';
+		
 	}
+
+	if($avatar== get_home_url()."/wp-content/themes/kmimos/images/noimg.png"){
+		$avatar=get_home_url()."/wp-content/themes/kmimos/images/image.png";
+			} 	
 
 	if( !is_user_logged_in() ){
 		$HTML .= '	
@@ -92,7 +103,7 @@
 						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
 					</button>
 					<a class="navbar-brand" href="'.get_home_url().'">
-						<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
+						<img data-wlabel="logo" src="'.getTema().'/images/new/km-logos/km-logo'.$wlabel.'.png" height="60px">
 					</a>
 				</div>
 				<ul class="hidden-xs nav-login">
@@ -135,7 +146,7 @@
 					</button>
 					<div class="navbar-header ">
 						<a class="navbar-brand" href="'.get_home_url().'">
-							<img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60px">
+							<img data-wlabel="logo" src="'.getTema().'/images/new/km-logos/km-logo'.$wlabel.'.png" height="60px">
 						</a>
 					</div>
 					<ul class="nav navbar-nav navbar-right hidden-xs">

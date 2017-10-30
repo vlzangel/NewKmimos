@@ -1,12 +1,30 @@
 <?php
-	
 	extract($_GET);
 	if( isset($_GET["id_orden"]) ){
 		include(((dirname(dirname(dirname(dirname(dirname(__DIR__)))))))."/wp-load.php");
+	    echo "
+	        <a href='".get_home_url()."/perfil-usuario/solicitudes/' style='
+	            border-top: solid 1px #CCC;
+	            border-bottom: solid 1px #CCC;
+	            margin: 10px auto;
+	            width: 600px;
+	            padding: 10px 0px;
+	            font-weight: 600;
+	            font-family: Arial;
+	            text-align: center;
+	            cursor: pointer;
+	            font-size: 13px;
+	            text-decoration: none;
+	            color: #000;
+	            display: block;
+	        '>
+	            Volver
+	        </a>
+	    ";
 	}
 
 	global $wpdb;
-
+	
 	$PATH_TEMPLATE = ((dirname(dirname(__DIR__))));
 
 	$info = kmimos_get_info_syte();
@@ -45,11 +63,27 @@
    		exit;
 	}
 
-    if( $_GET["acc"] == "CFM" ){
-    	include("confirmar.php");
+	$metas_solicitud = get_post_meta($id_orden); 
+
+	/* Cuidador */
+    	$cuidador_name 	= $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = '".$metas_solicitud['requested_petsitter'][0]."'");
+		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$metas_solicitud['requested_petsitter'][0]."'");
+		$email_cuidador = $cuidador->email;
+
+    /* Cliente */
+
+	    $cliente = $metas_solicitud['requester_user'][0];
+		$metas_cliente = get_user_meta($cliente);
+		$cliente_name = $metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0];
+
+		$user_cliente = get_user_by( 'id', $cliente );
+		$email_cliente = $user_cliente->data->user_email;
+
+    if( $acc == "CFM" ){
+    	include(__DIR__."/confirmar.php");
     }
 
-    if( $_GET["acc"] == "CCL" ){
-    	include("cancelar.php");
+    if( $acc == "CCL" ){
+    	include(__DIR__."/cancelar.php");
     }
 ?>

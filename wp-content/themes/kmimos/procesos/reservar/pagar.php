@@ -97,6 +97,8 @@
 			"total" => $pagar->total
 	    );
 
+	    $pagar->total = $pre17;
+
     }
 
     $tamanos = array(
@@ -524,7 +526,7 @@
    			break;
 
 	   		case 'tienda':
-	   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 24 hours'));
+	   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 48 hours'));
 
 	   			$chargeRequest = array(
 				    'method' => 'store',

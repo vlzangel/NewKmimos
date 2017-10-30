@@ -5,6 +5,9 @@
 <div style='padding: 0px; margin-bottom: 34px;'>
 
 	<div style='margin-bottom: 15px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
+        
+        [MODIFICACION] 
+
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px; text-align: center;'>
 			<img style='' src='[URL_IMGS]/check.png' >
 		</div>	<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px; text-align: center;'>

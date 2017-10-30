@@ -14,6 +14,29 @@
 	    }
 	}
 
+	if(!function_exists('validar_perfil_completo')){
+	    function validar_perfil_completo(){
+	    	global $current_user;
+	    	$user_id = $current_user->ID;
+	    	if( $user_id > 0 ){	    		
+		    	$datos_perfil=[ 
+					'user_mobile',
+			    	'user_phone'
+		    	]; 
+
+		    	foreach( $datos_perfil as $key ){
+			    	$value = get_user_meta( $user_id, $key, true );
+			    	if( empty($value) ){
+			    		echo $key.': '.$value;
+						return false;
+			    	}
+		    	}
+				return true;
+	    	}
+			return false;
+	    }
+	}
+
 	if(!function_exists('servicios_en_session')){
 	    function servicios_en_session( $opt_key = '', $arr, $sub="" ){
 	    	$result = false;
@@ -78,28 +101,33 @@
 	    }
 	}
 	
-	if(!function_exists('add_class_wlabel')){
-		function add_class_wlabel(){
+	if(!function_exists('add_wlabel')){ 
+		function add_wlabel(){
             $wlabel = false;
+            $title = '';
             if (!isset($_SESSION)) {
                 session_start();
             }
 			if(array_key_exists('wlabel',$_SESSION) || $referido=='Volaris' || $referido=='Vintermex'){
 
                 if(array_key_exists('wlabel',$_SESSION)){
+                	$title = $_SESSION['wlabel'];
                     $wlabel= true;
-
                 }else if($referido=='Volaris'){
+                	$title = 'volaris';
                     $wlabel= true;
 
                 }else if($referido=='Vintermex'){
+                	$title = 'vintermex';
                     $wlabel= true;
                 }
             }
 
             if( $wlabel ){
-				wp_enqueue_style( 'wlabel', getTema()."/css/content-wlabel.css", array(), "1.0.0" );
+				wp_enqueue_style( 'wlabel_css', getTema()."/css/wlabel-content.css", array(), "1.0.0" );
             }
+
+            return $title;
 
 		}
 	}

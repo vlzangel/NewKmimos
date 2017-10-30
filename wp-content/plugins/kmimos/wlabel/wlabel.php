@@ -12,15 +12,15 @@ $_wlabel_user = new Class_WhiteLabel_User();
 
 
 //STYLE HEADER
-add_action('wp_head', 'WhiteLabel_ADDheader');
+//add_action('wp_head', 'WhiteLabel_ADDheader');
 function WhiteLabel_ADDheader(){
     global $_wlabel;
     $_wlabel->Header();
 }
 
-//STYLE FOOTER
+/*STYLE FOOTER
 add_action('wp_footer', 'WhiteLabel_ADDfooter');
-function WhiteLabel_ADDfooter(){
+*/function WhiteLabel_ADDfooter(){
     global $_wlabel;
     $_wlabel->Footer();
 }
