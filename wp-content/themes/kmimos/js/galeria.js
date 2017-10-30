@@ -6,18 +6,18 @@ jQuery( document ).ready(function() {
         if(!confirm("Esta seguro de eliminar la foto.?") ) {
             return false;
         } else {
-           	
-		   	jQuery.post(
-		   		URL_PROCESOS_PERFIL, 
-		   		{
-		   			accion: "delete_foto",
+            
+            jQuery.post(
+                URL_PROCESOS_PERFIL, 
+                {
+                    accion: "delete_foto",
                     tmp_user_id: usu,
-		   			img: img
-		   		},
-		   		function(data){
-			   		location.reload();
-			   	}
-		   	);
+                    img: img
+                },
+                function(data){
+                    location.reload();
+                }
+            );
 
             return false;
         }  

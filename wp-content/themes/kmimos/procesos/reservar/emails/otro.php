@@ -16,9 +16,10 @@
         $mensaje_cliente = str_replace('[desglose]', $desglose, $mensaje_cliente);
         
         $mensaje_cliente = str_replace('[ADICIONALES]', $adicionales, $mensaje_cliente);
-       	$mensaje_cliente = str_replace('[TRANSPORTE]', $transporte, $mensaje_cliente);
-        
+        $mensaje_cliente = str_replace('[TRANSPORTE]', $transporte, $mensaje_cliente);
 
+       	$mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
+        
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[tipo_servicio]', trim($servicio["tipo"]), $mensaje_cliente);
@@ -58,6 +59,8 @@
         
         $mensaje_cuidador = str_replace('[ADICIONALES]', $adicionales, $mensaje_cuidador);
        	$mensaje_cuidador = str_replace('[TRANSPORTE]', $transporte, $mensaje_cuidador);
+
+        $mensaje_cuidador = str_replace('[MODIFICACION]', $modificacion, $mensaje_cuidador);
 
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
 

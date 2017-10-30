@@ -87,6 +87,7 @@
             }
 
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
+
             update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
             
         }
@@ -1225,8 +1226,8 @@
             }
 
             $aceptar_rechazar = array(
-                "aceptar" => get_home_url().'wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CFM',
-                "cancelar" => get_home_url().'wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CCL'
+                "aceptar" => get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CFM',
+                "cancelar" => get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CCL'
             );
 
             /* DATA CUIDADOR */
@@ -1330,7 +1331,7 @@
             $desglose["descuento"] = $descuento;
 
             $tipo_pago = "PAGO";
-            if( $metas_orden['_payment_method_title'][0] != "Tarjeta" ){ $tipo_pago = "PAGO EN TIENDA"; }
+            if( $metas_orden['_payment_method_title'][0] == "Tienda" ){ $tipo_pago = "PAGO EN TIENDA"; }
 
             $correos = array(
 

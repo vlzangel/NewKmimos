@@ -117,7 +117,7 @@
 
 		$mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID IN ( '".implode("','", $pet_ids)."' )");
 		$detalles_mascotas = "";
-		$detalles_mascotas .= "<div style='display: table-row; font-size: 12px;'>";
+		$detalles_mascotas .= "";
 
 		$comportamientos_array = array(
 			"pet_sociable"           => "Sociables ",
@@ -169,33 +169,33 @@
 				$raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
 
 				$detalles_mascotas .= "
-					<div style='display: table-cell; width: 20%; font-weight: 600;'>
-						<img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
-					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px;'>
-						".$raza."
-					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px;'>
-						".$edad."
-					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px;'>
-						".$tamanos_array[ $data_mascota['size_pet'][0] ]."
-					</div>
-					<div style='display: table-cell; width: 20%;  padding: 7px;'>
-						".implode("", $temp)."
-					</div>
+					<tr style='font-weight: 600;'>
+		                <td style='padding: 7px; width: 20px;'>
+		                    <img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
+		                </td>
+		                <td style='padding: 7px; width: 100px;'>
+		                    ".$raza."
+		                </td>
+		                <td style='padding: 7px; width: 100px;'>
+		                    ".$edad."
+		                </td>
+		                <td style='padding: 7px; width: 50px;'>
+		                    ".$tamanos_array[ $data_mascota['size_pet'][0] ]."
+		                </td>
+		                <td style='padding: 7px;'>
+		                    ".implode("", $temp)."
+		                </td>
+		            </tr>
 				";
 			}
 		}else{
 			$detalles_mascotas .= "
-				<div style='display: table-cell; width: 100%; font-weight: 600;'>
-					No tiene mascotas registradas.
-				</div>
+				<tr style='font-weight: 600;'>
+					<td colspan='5'>No tiene mascotas registradas.</td>
+				</tr>
 			";
 		}
-		$detalles_mascotas .= '</div>';
-
-		//$mascotas = (count($pet_ids) == 1) ? '<h2 style="color: #557da1; font-size: 16px;">Detalles de la mascota: </h2>'.$detalles_mascotas : '<h2 style="color: #557da1; font-size: 16px;">Detalles de las mascotas: </h2>'.$detalles_mascotas;
+		$detalles_mascotas .= '';
 
 		/*
 			Cuidador
@@ -210,11 +210,15 @@
 
         $detalles_mascotas = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_mascotas);
 
+        $mensaje_cuidador = str_replace('[ACEPTAR]', get_home_url().'/wp-content/themes/kmimos/procesos/conocer/index.php?id_orden='.$request_id.'&acc=CFM', $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[CANCELAR]', get_home_url().'/wp-content/themes/kmimos/procesos/conocer/index.php?id_orden='.$request_id.'&acc=CCL', $mensaje_cuidador);
+
         $mensaje_cuidador = str_replace('[name]', $cliente, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[avatar]', kmimos_get_foto($user_id), $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[telefonos]', $telf_cliente, $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[email]', $email_cliente, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[id_solicitud]', $request_id, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[hora]', $_POST['meeting_time'], $mensaje_cuidador);
@@ -225,6 +229,8 @@
         $mensaje_cuidador = str_replace('[MASCOTAS]', $detalles_mascotas, $mensaje_cuidador);
 
 		$mensaje_cuidador = get_email_html($mensaje_cuidador, false);
+
+		wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
 
 	/*
 		Cliente
@@ -238,6 +244,7 @@
         $mensaje_cliente = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cliente);
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
         $mensaje_cliente = str_replace('[telefonos]', $telf_cuidador, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[email]', $email_cuidador, $mensaje_cliente);
         $mensaje_cliente = str_replace('[id_solicitud]', $request_id, $mensaje_cliente);
         $mensaje_cliente = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_cliente);
         $mensaje_cliente = str_replace('[hora]', $_POST['meeting_time'], $mensaje_cliente);
@@ -248,19 +255,21 @@
 
 		$mensaje_cliente = get_email_html($mensaje_cliente, false);
 
-	/*
-		Administrador
-	*/
-
-		// FALTA
+		wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
 
 	/*
 		Enviando E-mails
 	*/
 
-		wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
-		wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
-
 		kmimos_mails_administradores_new($asunto, $mensaje_cuidador);
+
+		$data = array(
+			'n_solicitud' => $request_id,
+			'nombre' => $nombre_cuidador,
+			'telefono' => $telf_cuidador,
+			'email' => $email_cuidador
+		);
+
+		echo json_encode($data);
 
 

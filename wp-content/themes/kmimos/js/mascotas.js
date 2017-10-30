@@ -5,17 +5,17 @@ jQuery( document ).ready(function() {
         if(!confirm("Esta seguro de eliminar la mascota.?") ) {
             return false;
         } else {
-           	
-		   	jQuery.post(
-		   		URL_PROCESOS_PERFIL, 
-		   		{
-		   			accion: "delete_mascotas",
-		   			pet_id: pet_id
-		   		},
-		   		function(data){
-			   		location.reload();
-			   	}
-		   	);
+            
+            jQuery.post(
+                URL_PROCESOS_PERFIL, 
+                {
+                    accion: "delete_mascotas",
+                    pet_id: pet_id
+                },
+                function(data){
+                    location.reload();
+                }
+            );
 
             return false;
         }  

@@ -23,8 +23,12 @@
 	echo "</pre>";
 	*/
 	
- 	$modificacion_de = get_post_meta($reserva_id, "modificacion_de", true);
-    if( $modificacion_de != "" ){ $modificacion = 'Esta es una modificación de la reserva #: '.$modificacion_de;
+ 	$modificacion_de = get_post_meta($servicio["id_reserva"], "modificacion_de", true);
+    if( $modificacion_de != "" ){ 
+    	$modificacion = "
+    	<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #777; padding-bottom: 19px; text-align: center;'>
+            Esta es una modificación de la reserva #: ".$modificacion_de."
+        </div>";
  	}else{ $modificacion = ""; }
 
 	$email_admin = $info["email"];
@@ -98,7 +102,10 @@
     if( $servicio["desglose"]["enable"] == "yes" ){
     	$deposito_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/deposito.php';
     	$deposito_plantilla = file_get_contents($deposito_plantilla);
-    	$deposito_plantilla = str_replace('[REMANENTE]', number_format( number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), 2, ',', '.'), $deposito_plantilla);
+
+    	$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
+
+    	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
@@ -117,58 +124,58 @@
 	}else{
 		$totales_plantilla = str_replace('[DESCUENTO]', "", $totales_plantilla);
 	}
+    		
 
-	if( !isset($_GET["acc"]) ){
+	if( $acc == ""  ){
 
-		if( strtolower($servicio["metodo_pago"]) == "tienda" ){
-			include("tienda.php");
+		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_reserva"]);
+
+		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
+			include(__DIR__."/tienda.php");
 		}else{
-			include("otro.php");
+			include(__DIR__."/otro.php");
 		}
 
 	}else{
 
-		if( $_GET["acc"] == "CFM" ){
+		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_orden"]."'");
 
-			$booking = new WC_Booking( $servicio["id_reserva"] );
-    		$order = new WC_Order( $servicio["id_orden"] );
+		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
-			$status = $booking->get_status();
+			if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
+				$estado = array(
+					"confirmed" => "Confirmada",
+					"modified"  => "Modificada",
+					"cancelled" => "Cancelada"
+				);
+				$msg = "
+				<div style='text-align:center; margin-bottom: 25px;'>
+					<img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/header_solicitud_reserva.png' style='width: 100%;' >
+				</div>
 
-			if(  $_SESSION['admin_sub_login'] != 'YES' ){
+				<div style='padding: 0px; margin-bottom: 25px;'>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Hola <strong>".$cuidador["nombre"]."</strong>
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido ".$estado[$status]." anteriormente.
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
+				    </div>
+				</div>";
+		   		
+		   		echo get_email_html($msg);
 
-				if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
-					$estado = array(
-						"confirmed" => "Confirmada",
-						"modified"  => "Modificada",
-						"cancelled" => "Cancelada"
-					);
-					$msg = "
-					<div style='text-align:center; margin-bottom: 25px;'>
-						<img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/header_solicitud_reserva.png' style='width: 100%;' >
-					</div>
-
-					<div style='padding: 0px; margin-bottom: 25px;'>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Hola <strong>".$cuidador["nombre"]."</strong>
-					    </div>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido ".$estado[$status]." anteriormente.
-					    </div>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
-					    </div>
-					</div>";
-			   		
-			   		echo get_email_html($msg);
-
-			   		exit();
-				}
-
+		   		exit();
 			}
 
-    		$order->update_status('wc-on-hold');
-			$booking->update_status('confirmed');
+		}
+
+		if( $acc == "CFM" ){
+
+			$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
+    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
 
 			include("confirmacion.php");
 
@@ -201,8 +208,8 @@
 			}
 		}
 
-		if( $_GET["acc"] == "CCL" ){
-			include("cancelacion.php");
+		if( $acc == "CCL" ){
+			include(__DIR__."/cancelacion.php");
 		}
 
 

@@ -129,6 +129,10 @@ $HTML = '
             </script>        
         ";
 
+        if( !empty($wlabel) ){
+            wp_enqueue_script( 'wlabel_js', getTema()."/js/wlabel-content.js",array(), '1.0.0' );
+        }
+
     if( !is_user_logged_in() ){
         /*$HTML .= "<script> startApp(); </script>";*/
     }
@@ -138,6 +142,31 @@ $HTML = '
 
     echo comprimir_styles($HTML);
 
+    echo "
+        <!-- Google Analytics -->
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-56422840-1', 'auto');
+        ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+        <!-- BEGIN Evento objetivo GA -->        
+        <script>
+        window.addEventListener(\"load\",function(){
+        var timer = setInterval(function(){
+        if(jQuery('#PageSubscribe .section3:contains(\"*Dentro de 48 hrs. Te enviaremos vía email tu cúpon de descuento\")').is(\":visible\")){
+        ga('send','event','message','submit','subscribe')
+        clearInterval(timer)
+        }
+        },2000)
+        })
+        </script>
+        <!-- END Evento objetivo GA -->        
+    ";
     echo "</body></html>";
 ?>
         
