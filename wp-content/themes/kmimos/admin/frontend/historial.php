@@ -60,7 +60,7 @@
 
 			$pdf = $_metas_orden['_openpay_pdf'][0];
 			$ver = $reserva->post_parent;
-			$cancelar = $reserva->post_parent."&user=CLI";
+			$cancelar = $reserva->post_parent."&usu=CLI";
 			$modificar = md5($reserva->ID)."_".md5($user_id)."_".md5($servicio->ID);
 			$valorar = $reserva->ID;
 
