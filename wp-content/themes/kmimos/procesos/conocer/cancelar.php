@@ -78,11 +78,11 @@
     $msg_cliente = "";
     $msg_cuidador = "";
 
-    if( $user == "STM" ){
+    if( $usu == "STM" ){
         $msg_cliente = "Te notificamos que el sistema ha cancelado la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
         $msg_cuidador = "Te notificamos que el sistema ha cancelado la solicitud para conocer cuidador realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
     }else{
-        if( $user == "CLI" ){
+        if( $usu == "CLI" ){
             $msg_cliente = "Te notificamos que la solicitud para conocer cuidador ha sido cancelada exitosamente.";
             $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la solicitud para conocerte.";
         }else{
@@ -118,8 +118,8 @@
         wp_mail( $email_cuidador, "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
 
     
-    if( $user != "STM" ){
-        if( $user == "CLI" ){
+    if( $usu != "STM" ){
+        if( $usu == "CLI" ){
             echo $mensaje_cliente;
         }else{
             echo $mensaje_cuidador;
