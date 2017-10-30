@@ -15,7 +15,7 @@
     $hora_actual = strtotime("now");
     $xhora_actual = date("H", $hora_actual);
 
-    $acc = "CCL"; $user = "STM";
+    $acc = "CCL"; $usu = "STM";
 
     if( ($xhora_actual-$rango) < $inicio ){
         $hoy = date("d-m-Y", $hora_actual);

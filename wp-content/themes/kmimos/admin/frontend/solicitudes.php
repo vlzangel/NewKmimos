@@ -80,7 +80,7 @@
 	            $correo = $cuidador->user_email;
 	            $quien_soy = "DATOS DEL CUIDADOR";
 
-	            $user = "&user=CLI";
+	            $user = "&usu=CLI";
 	            if( $user_select == "cu.post_author={$user_id}" ){
 	            	$foto = kmimos_get_foto( $caregiver->Cliente_id ) ;
 
