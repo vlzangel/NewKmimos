@@ -128,7 +128,7 @@
 
 	if( $acc == ""  ){
 
-		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_reserva"]);
+		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
 
 		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
 			include(__DIR__."/tienda.php");

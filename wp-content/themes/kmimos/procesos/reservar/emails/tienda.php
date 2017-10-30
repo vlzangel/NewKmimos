@@ -14,6 +14,8 @@
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
         $mensaje_cliente = str_replace('[desglose]', $desglose, $mensaje_cliente);
         
+        $mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
+        
         $mensaje_cliente = str_replace('[ADICIONALES]', $adicionales, $mensaje_cliente);
        	$mensaje_cliente = str_replace('[TRANSPORTE]', $transporte, $mensaje_cliente);
         
