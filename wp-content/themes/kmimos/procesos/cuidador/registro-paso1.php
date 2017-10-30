@@ -296,6 +296,9 @@
                 // Update POST_ID en cuidadores  
                 $conn->query( "UPDATE cuidadores SET id_post = '".$id_post."' WHERE id = ".$cuidador_id);
 
+                if (!isset($_SESSION)) { session_start(); }
+                $_SESSION["nuevo_registro"] = "YES";
+
                 // Auto Login
                 $info = array();
                 $info['user_login']     = sanitize_user($username, true);
