@@ -25,6 +25,7 @@
     if(!function_exists('get_referred_list_options')){
         function get_referred_list_options(){
             $opciones = array(
+                'Petco'         =>  'Petco',
                 'Volaris'       =>  'Volaris',
                 'Facebook'      =>  'Facebook',
                 'Adwords'       =>  'Buscador de Google',
