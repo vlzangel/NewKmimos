@@ -42,9 +42,9 @@
 
     $tabla = '<div>';
 
-    echo "<pre>";
+/*    echo "<pre>";
     	print_r($rangos);
-    echo "</pre>";
+    echo "</pre>";*/
 
 	$opciones = "<OPTION value='Todos' >Todos</OPTION>";
 	$cont = 0;
