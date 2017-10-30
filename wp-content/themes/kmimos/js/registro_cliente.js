@@ -533,6 +533,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		            'pet_sociable': campos_pet[8],
 		            'aggresive_humans': campos_pet[9],
 		            'aggresive_pets': campos_pet[10],
+		            'img_pet': img_pet,
 		            'userid': globalData.trim()
 		        };
 
