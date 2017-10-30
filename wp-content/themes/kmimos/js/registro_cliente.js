@@ -275,8 +275,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 					if( data > 0 ){
 						globalData = data;
-						jQuery(".popup-registrarte-nuevo-correo").hide();
-						jQuery(".popup-registrarte-datos-mascota").fadeIn("fast");
+						jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
+						jQuery(".popup-registrarte-datos-mascota").css("display", "block");
 
 						jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
 						jQuery("#img_pet").val( "" );
@@ -285,7 +285,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
 						});
 
-						jQuery(".modal").scrollTop(0);
+						jQuery("body").scrollTop(0);
 					}
 
 					jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
@@ -541,8 +541,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 				jQuery.post( HOME+'/procesos/login/registro_pet.php', datos, function( data ) {
 					if( data >= 1 ){
-		        		jQuery(".popup-registrarte-datos-mascota").hide();
-						jQuery(".popup-registrarte-final").fadeIn("fast");
+		        		jQuery(".popup-registrarte-datos-mascota").css("display", "none");
+						jQuery(".popup-registrarte-final").css("display", "block");
 
 						jQuery("#btn_cerrar").on("click", function(e){
 							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
@@ -695,14 +695,14 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
 /*POPUP INICIAR SESIÓN*/
 	jQuery(document).on("click", '.popup-iniciar-sesion-1 .km-btn-contraseña-olvidada', function ( e ) {
 		e.preventDefault();
-		jQuery(".popup-iniciar-sesion-1").hide();
-		jQuery(".popup-olvidaste-contrasena").fadeIn("fast");
+		jQuery(".popup-iniciar-sesion-1").css("display", "none");
+		jQuery(".popup-olvidaste-contrasena").css("display", "block");
 	});
 
 	jQuery(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
 		e.preventDefault();
-		jQuery(".popup-registrarte-1").hide();
-		jQuery(".popup-registrarte-nuevo-correo").fadeIn("fast");
+		jQuery(".popup-registrarte-1").css("display", "none");
+		jQuery(".popup-registrarte-nuevo-correo").css("display", "block");
 	});
 /*FIN POPUP INICIAR SESIÓN*/
 
