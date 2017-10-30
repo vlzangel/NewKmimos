@@ -10,7 +10,18 @@
         $ref_str .= '<option value="'.$key.'"'.$selected.'>'.$value.'</option>';
     }
 
-    $CONTENIDO .= '
+    if (!isset($_SESSION)) { session_start(); }
+    if( $_SESSION["nuevo_registro"] == "YES" ){
+        $pixel = "
+            <script> fbq ('track','CompleteRegistration'); </script>
+        ";
+        $_SESSION["nuevo_registro"] = "";
+        unset($_SESSION["nuevo_registro"]);
+    }else{
+        $pixel = "";
+    }
+
+    $CONTENIDO .=  $pixel.'
         <input type="hidden" name="accion" value="perfil" />
         <input type="hidden" name="user_id" value="'.$user_id.'" />
         <input type="hidden" id="sub_path" name="sub_path" value="'.$img_perfil["sub_path"].'" />
