@@ -58,11 +58,11 @@
     $msg_cliente = "";
     $msg_cuidador = "";
 
-    if( $user == "STM" ){
+    if( $usu == "STM" ){
         $msg_cliente = "Te notificamos que el sistema ha cancelado la reserva con el cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
         $msg_cuidador = "Te notificamos que el sistema ha cancelado la reserva realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
     }else{
-        if( $user == "CLI" ){
+        if( $usu == "CLI" ){
             $msg_cliente = "Te notificamos que la reserva ha sido cancelada exitosamente.";
             $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la reserva.";
         }else{
@@ -105,9 +105,9 @@
     	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
 
 
-    if( $user != "STM" ){
+    if( $usu != "STM" ){
 
-        if( $user == "CLI" ){
+        if( $usu == "CLI" ){
             $volver = get_home_url()."/perfil-usuario/historial/";
         }else{
             $volver = get_home_url()."/perfil-usuario/reservas/";
@@ -133,7 +133,7 @@
             </a>
         ";
 
-        if( $user == "CLI" ){
+        if( $usu == "CLI" ){
             echo $mensaje_cliente;
         }else{
             echo $mensaje_cuidador;
