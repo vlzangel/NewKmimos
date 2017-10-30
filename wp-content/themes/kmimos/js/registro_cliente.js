@@ -236,8 +236,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			'genero',
 			'edad',
 			'fumador',
-			'referido',
-			'img_profile'
+			'referido'
 	 	];
 		km_cliente_validar(fields);
 		
@@ -251,8 +250,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			movil.length > 2 && 
 			genero != "" && 
 			edad != "" && 
-			fumador !="" &&
-			img_profile != ""
+			fumador !=""
 			) {
 
 				var datos = {
@@ -286,6 +284,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 						});
 
 						jQuery("body").scrollTop(0);
+						jQuery(".modal").scrollTop(0);
 					}
 
 					jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
@@ -520,8 +519,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			datepets != "" && 
 			genero_mascota != "" && 
 			tamano_mascota >= 0 &&
-			valor != "" &&
-			img_pet != ""
+			valor != ""
 		) {
         		var datos = {
 		      		'name_pet': campos_pet[0],
@@ -535,14 +533,12 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		            'pet_sociable': campos_pet[8],
 		            'aggresive_humans': campos_pet[9],
 		            'aggresive_pets': campos_pet[10],
-					'img_pet': campos_pet[11],
 		            'userid': globalData.trim()
 		        };
 
 				jQuery.post( HOME+'/procesos/login/registro_pet.php', datos, function( data ) {
 					if( data >= 1 ){
-		        		jQuery(".popup-registrarte-datos-mascota").css("display", "none");
-						jQuery(".popup-registrarte-final").css("display", "block");
+		        		
 
 						jQuery("#btn_cerrar").on("click", function(e){
 							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
@@ -552,6 +548,9 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					}
 					jQuery('.km-btn-popup-registrarte-datos-mascota').html('REGISTRARME');
 				});
+
+				jQuery(".popup-registrarte-datos-mascota").css("display", "none");
+				jQuery(".popup-registrarte-final").css("display", "block");
 
         }else {
 			jQuery('.km-btn-popup-registrarte-datos-mascota').html('REGISTRARME');
