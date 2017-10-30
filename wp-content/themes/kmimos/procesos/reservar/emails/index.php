@@ -23,7 +23,7 @@
 	echo "</pre>";
 	*/
 	
- 	$modificacion_de = get_post_meta($reserva_id, "modificacion_de", true);
+ 	$modificacion_de = get_post_meta($servicio["id_reserva"], "modificacion_de", true);
     if( $modificacion_de != "" ){ 
     	$modificacion = "
     	<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #777; padding-bottom: 19px; text-align: center;'>
@@ -102,6 +102,9 @@
     if( $servicio["desglose"]["enable"] == "yes" ){
     	$deposito_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/deposito.php';
     	$deposito_plantilla = file_get_contents($deposito_plantilla);
+
+    	$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
+
     	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
