@@ -155,6 +155,7 @@
 	      		'.
 	      		"
 	      			<div class='vlz_modal_galeria' onclick='vlz_galeria_cerrar()'>
+	      				<span onclick='vlz_galeria_cerrar()' class='close' style='position:absolute;top:10px;right:10px;color:white;z-index:999;'><i class='fa fa-times' aria-hidden='true'></i></span>
 	      				<div class='vlz_modal_galeria_interna'></div>
 	      			</div>
 	      		";
@@ -200,7 +201,6 @@
         }else{
         	$id_hospedaje = $servicio->ID;
         }
-
 
         if( !empty($precios) ){
 
