@@ -96,7 +96,6 @@
 
 </div>
 
-<?php /*
 <div style='margin-bottom: 44px; text-align: left;'>
 
 	<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; margin-bottom: 8px;'>
@@ -273,5 +272,3 @@
 	</div>
 
 </div>
-
-*/ ?>
