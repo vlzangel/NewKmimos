@@ -158,15 +158,15 @@ if(!function_exists('kmimos_get_email_footer')){
             $ayuda = "";
             if( $dudas ){
                 $ayuda = "
-                    <div style='float:left; width:600px; margin-bottom: 31px;'>   
-                        <div style='text-align:center;'>
-                            <p style='font-family: Arial; font-size:12px; color:#2d2d2d; text-align: center; '>
-                                En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp <a href='telf:+525568922182' target='_blank' style='text-decoration: none; color: #b4b4b4;'>+52 (55) 6892 2182</a>, o al correo 
-                                <a href='mailto:contactomex@kmimos.la' target='_blank' style='text-decoration: none; color: #b4b4b4;'>contactomex@kmimos.la</a>
+                    <div style=\"float:left; width:600px; margin-bottom: 31px;\">   
+                        <div style=\"text-align:center;\">
+                            <p style=\"font-family: Arial; font-size:12px; color:#2d2d2d; text-align: center; \">
+                                En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp <a href=\"telf:+525568922182\" target=\"_blank\" style=\"text-decoration: none; color: #b4b4b4;\">+52 (55) 6892 2182</a>, o al correo 
+                                <a href=\"mailto:contactomex@kmimos.la\" target=\"_blank\" style=\"text-decoration: none; color: #b4b4b4;\">contactomex@kmimos.la</a>
                             </p>
-                            <div  style='clear:both;'></div>
+                            <div  style=\"clear:both;\"></div>
                         </div>
-                        <div  style='clear:both;'></div>
+                        <div  style=\"clear:both;\"></div>
                     </div>
                 ";
             }
@@ -174,11 +174,11 @@ if(!function_exists('kmimos_get_email_footer')){
             $beneficios_txt = "";
             if( $beneficios ){
                 $beneficios_txt = "
-                    <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #6b1c9b; margin-bottom: 10px;'>
+                    <div style=\"font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #6b1c9b; margin-bottom: 10px;\">
                         CON LA CONFIANZA Y SEGURIDAD QUE NECESITAS
                     </div>
 
-                    <img style='margin-bottom: 16px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/caracteristicas.png' >
+                    <img style=\"margin-bottom: 16px;\" src=\"".get_home_url()."/wp-content/themes/kmimos/images/emails/caracteristicas.png\" >
                 ";
             }
 
@@ -192,7 +192,7 @@ if(!function_exists('kmimos_get_email_footer')){
                         }
                         @media max-device-width: 480px {
                             a[id*=\"kmimos_container\"] > div {
-                                max-width: 400px !important;
+                                max-width: 600px !important;
                             }
                         }
                     </style>
