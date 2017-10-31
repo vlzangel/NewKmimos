@@ -115,15 +115,16 @@
 		$service_id     = $_POST['type_service'];
 		$service        = get_term( $service_id, 'product_cat' );
 
-		$mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID IN ( '".implode("','", $pet_ids)."' )");
+		//$mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID IN ( '".implode("','", $pet_ids)."' )");
+		$mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID IN ( 196860 )");
 		$detalles_mascotas = "";
 		$detalles_mascotas .= "";
 
 		$comportamientos_array = array(
-			"pet_sociable"           => "Sociables ",
-			"pet_sociable2"          => "No sociables ",
-			"aggressive_with_pets"   => "Agresivos con perros ",
-			"aggressive_with_humans" => "Agresivos con humanos ",
+			"pet_sociable"           => "Sociables",
+			"pet_sociable2"          => "No sociables",
+			"aggressive_with_pets"   => "Agresivos con perros",
+			"aggressive_with_humans" => "Agresivos con humanos",
 		);
 		$tamanos_array = array(
 			"Pequeño",
@@ -141,19 +142,19 @@
 					switch ($key) {
 						case 'pet_sociable':
 							if( $value[0] == 1 ){
-								$temp[] = "Sociable ";
+								$temp[] = "Sociable";
 							}else{
-								$temp[] = "No sociable ";
+								$temp[] = "No sociable";
 							}
 						break;
 						case 'aggressive_with_pets':
 							if( $value[0] == 1 ){
-								$temp[] = "Agresivo con perros ";
+								$temp[] = "Agresivo con perros";
 							}
 						break;
 						case 'aggressive_with_humans':
 							if( $value[0] == 1 ){
-								$temp[] = "Agresivo con humanos ";
+								$temp[] = "Agresivo con humanos";
 							}
 						break;
 					}
@@ -169,28 +170,28 @@
 				$raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
 
 				$detalles_mascotas .= "
-					<tr style='font-weight: 600;'>
-		                <td style='padding: 7px; width: 20px;'>
-		                    <img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
-		                </td>
-		                <td style='padding: 7px; width: 100px;'>
+		            <tr style='font-size: 12px;'>
+						<td style='font-weight: 600;'>
+							<img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
+						</td>
+						<td style='padding: 7px;'>
 		                    ".$raza."
-		                </td>
-		                <td style='padding: 7px; width: 100px;'>
+						</td>
+						<td style='padding: 7px;'>
 		                    ".$edad."
-		                </td>
-		                <td style='padding: 7px; width: 50px;'>
+						</td>
+						<td style=' padding: 7px;'>
 		                    ".$tamanos_array[ $data_mascota['size_pet'][0] ]."
-		                </td>
-		                <td style='padding: 7px;'>
-		                    ".implode(",<br>", $temp)."
-		                </td>
-		            </tr>
+						</td>
+						<td style='padding: 7px;'>
+		                    ".implode("<br>", $temp)."
+						</td>
+					</tr>
 				";
 			}
 		}else{
 			$detalles_mascotas .= "
-				<tr style='font-weight: 600;'>
+				<tr style='font-weight: 400;'>
 					<td colspan='5'>No tiene mascotas registradas.</td>
 				</tr>
 			";
@@ -261,7 +262,7 @@
 		Enviando E-mails
 	*/
 
-		kmimos_mails_administradores_new($asunto, $mensaje_cuidador);
+		//kmimos_mails_administradores_new($asunto, $mensaje_cuidador);
 
 		$data = array(
 			'n_solicitud' => $request_id,
