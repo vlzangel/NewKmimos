@@ -187,57 +187,57 @@ if(!function_exists('kmimos_get_email_footer')){
                 <head>
                     <style>
                         p{ margin:0px; }
-                        a[id*='kmimos_container'] > div {
+                        a[id*=\"kmimos_container\"] > div {
                             max-width: 600px !important;
                         }
                         @media max-device-width: 480px {
-                            a[id*='kmimos_container'] > div {
+                            a[id*=\"kmimos_container\"] > div {
                                 max-width: 400px !important;
                             }
                         }
                     </style>
                 </head>
                 <body>
-                    <div id='kmimos_container' style='font-family: Arial;  max-width: 600px;'>
-                        <div style='margin: 0px auto; padding: 0px 10px; width: 600px;'>
-                            <div style='text-align:center;'>
-                                <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/bitmap.png' style='margin-bottom: 14px;' />
+                    <div id=\"kmimos_container\" style=\"font-family: Arial;  max-width: 600px;\">
+                        <div style=\"margin: 0px auto; padding: 0px 10px; width: 600px;\">
+                            <div style=\"text-align:center;\">
+                                <img src=\"".get_home_url()."/wp-content/themes/kmimos/images/emails/bitmap.png\" style=\"margin-bottom: 14px;\" />
                             </div>
 
                             ".$content."
 
-                            <div style='text-align:center;'>
+                            <div style=\"text-align:center;\">
                                 
                                 ".$ayuda."
 
                                 ".$beneficios_txt."
 
-                                <img style='margin-bottom: 30px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/dog_footer.png' >
+                                <img style=\"margin-bottom: 30px;\" src=\"".get_home_url()."/wp-content/themes/kmimos/images/emails/dog_footer.png\" >
 
-                                <div style='background-color:#000000; color: #fff; display: table; width: 100%; height: 62px; font-size: 11px; letter-spacing: 0.2px; padding: 0px; box-sizing: border-box;'>
+                                <div style=\"background-color:#000000; color: #fff; display: table; width: 100%; height: 62px; font-size: 11px; letter-spacing: 0.2px; padding: 0px; box-sizing: border-box;\">
 
-                                    <div style='display: table-cell; width: 160px; vertical-align: middle; text-align: left; padding-left: 30px;'>
-                                        <a href='".get_home_url()."' style='color: #FFF; text-decoration: none;'>
-                                            <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png' style='height: 21px;'> 
+                                    <div style=\"display: table-cell; width: 160px; vertical-align: middle; text-align: left; padding-left: 30px;\">
+                                        <a href=\"".get_home_url()."\" style=\"color: #FFF; text-decoration: none;\">
+                                            <img src=\"".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png\" style=\"height: 21px;\"> 
                                         </a>
                                     </div>
 
-                                    <div style='display: table-cell; padding: 0px 30px; width: 160px; vertical-align: middle; color: #FFF;'>
+                                    <div style=\"display: table-cell; padding: 0px 30px; width: 160px; vertical-align: middle; color: #FFF;\">
                                         &nbsp;
                                     </div>
 
-                                    <div style='display: table-cell; width: 160px; vertical-align: middle; text-align: right; padding-right: 30px;'>
-                                        <span style='display: inline-block; padding: 0px 5px 2px 0px'>
+                                    <div style=\"display: table-cell; width: 160px; vertical-align: middle; text-align: right; padding-right: 30px;\">
+                                        <span style=\"display: inline-block; padding: 0px 5px 2px 0px\">
                                             Síguenos en 
-                                            <a href='https://www.facebook.com/Kmimosmx/'>
-                                                <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png' style='vertical-align: bottom;' align='center'>
+                                            <a href=\"https://www.facebook.com/Kmimosmx/\">
+                                                <img src=\"".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png\" style=\"vertical-align: bottom;\" align=\"center\">
                                             </a>
                                         </span> 
                                     </div>
 
                                 </div>
 
-                                <p style='text-align: center; font-family: Arial; font-size: 11px; line-height: 1.73; padding: 10px;'>
+                                <p style=\"text-align: center; font-family: Arial; font-size: 11px; line-height: 1.73; padding: 10px;\">
                                     ¿Tienes dudas? | Contáctanos
                                 </p>
                             </div>
