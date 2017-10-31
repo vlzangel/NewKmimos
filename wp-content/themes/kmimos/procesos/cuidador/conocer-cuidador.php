@@ -115,10 +115,8 @@
 		$service_id     = $_POST['type_service'];
 		$service        = get_term( $service_id, 'product_cat' );
 
-		//$mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID IN ( '".implode("','", $pet_ids)."' )");
-		$mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID IN ( 196860 )");
+		$mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID IN ( '".implode("','", $pet_ids)."' )");
 		$detalles_mascotas = "";
-		$detalles_mascotas .= "";
 
 		$comportamientos_array = array(
 			"pet_sociable"           => "Sociables",
