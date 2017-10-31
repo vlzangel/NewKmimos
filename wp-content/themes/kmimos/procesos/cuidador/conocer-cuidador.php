@@ -169,7 +169,7 @@
 
 				$detalles_mascotas .= "
 		            <tr style='font-size: 12px;'>
-						<td style='font-weight: 600; vertical-align: top;'>
+						<td style='font-weight: 600; vertical-align: top; padding: 7px 0px;'>
 							<img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
 						</td>
 						<td style='padding: 7px; vertical-align: top;'>

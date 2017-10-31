@@ -7,6 +7,7 @@ jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(
 
     jQuery('#meeting_time option.vacio').attr("selected", "selected");
     jQuery('.popup-iniciar-sesion-1 #pet_conoce input').prop("checked", false);
+    jQuery('.popup-iniciar-sesion-1 #pet_conoce input').removeClass("active");
 
     jQuery( '#modal-name-cuidador' ).html( jQuery(this).data('name') );
     jQuery( '[name="post_id"]' ).val( jQuery(this).data('id') );
