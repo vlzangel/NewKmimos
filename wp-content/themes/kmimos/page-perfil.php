@@ -171,11 +171,24 @@
 						$mostrar_btn = false;
 						include("admin/frontend/reservas/cancelar.php");
 					break;
+					case 'solicitudes':
+						$mostrar_btn = false;
+						include("admin/frontend/solicitudes/cancelar.php");
+					break;
 				}
 			break;
 			case 'confirmar':
-				$mostrar_btn = false;
-				include("admin/frontend/reservas/confirmar.php");
+				$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
+				switch ($padre) {
+					case 'reservas':
+						$mostrar_btn = false;
+						include("admin/frontend/reservas/confirmar.php");
+					break;
+					case 'solicitudes':
+						$mostrar_btn = false;
+						include("admin/frontend/solicitudes/confirmar.php");
+					break;
+				}
 			break;
 			case 'nueva':
 				$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");

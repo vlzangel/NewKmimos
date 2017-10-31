@@ -62,9 +62,11 @@
     	}
     	$servicios = vlz_servicios($valor->adicionales, true);
     	$servicios_txt = "";
-    	foreach ($servicios as $key => $value) {
-    		$servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".$value["img"]."' height='100%' >";
-    	}
+        if( $servicios != "" ){
+        	foreach ($servicios as $key => $value) {
+        		$servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".$value["img"]."' height='100%' >";
+        	}
+        }
     	$temp = str_replace("[MONTO]", number_format( ($valor->hospedaje_desde*1.2), 2, ',', '.'), $plantilla_cuidador);
     	$temp = str_replace("[AVATAR]", kmimos_get_foto($valor->user_id), $temp);
     	$temp = str_replace("[NAME_CUIDADOR]", $nombre->post_title, $temp);
@@ -119,11 +121,7 @@
 
     
     if( $usu != "STM" ){
-        if( $usu == "CLI" ){
-            echo $mensaje_cliente;
-        }else{
-            echo $mensaje_cuidador;
-        }
+        $CONTENIDO .= "<div class='msg_acciones'>Te notificamos que la solicitud para conocer cuidador <strong>#".$id_orden."</strong>, ha sido cancelada exitosamente.</div>";
     }
 
 ?>
