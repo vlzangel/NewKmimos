@@ -62,9 +62,11 @@
     	}
     	$servicios = vlz_servicios($valor->adicionales, true);
     	$servicios_txt = "";
-    	foreach ($servicios as $key => $value) {
-    		$servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".$value["img"]."' height='100%' >";
-    	}
+        if( $servicios != "" ){
+        	foreach ($servicios as $key => $value) {
+        		$servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".$value["img"]."' height='100%' >";
+        	}
+        }
     	$temp = str_replace("[MONTO]", number_format( ($valor->hospedaje_desde*1.2), 2, ',', '.'), $plantilla_cuidador);
     	$temp = str_replace("[AVATAR]", kmimos_get_foto($valor->user_id), $temp);
     	$temp = str_replace("[NAME_CUIDADOR]", $nombre->post_title, $temp);
@@ -78,11 +80,11 @@
     $msg_cliente = "";
     $msg_cuidador = "";
 
-    if( $user == "STM" ){
+    if( $usu == "STM" ){
         $msg_cliente = "Te notificamos que el sistema ha cancelado la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
         $msg_cuidador = "Te notificamos que el sistema ha cancelado la solicitud para conocer cuidador realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
     }else{
-        if( $user == "CLI" ){
+        if( $usu == "CLI" ){
             $msg_cliente = "Te notificamos que la solicitud para conocer cuidador ha sido cancelada exitosamente.";
             $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la solicitud para conocerte.";
         }else{
@@ -118,12 +120,8 @@
         wp_mail( $email_cuidador, "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
 
     
-    if( $user != "STM" ){
-        if( $user == "CLI" ){
-            echo $mensaje_cliente;
-        }else{
-            echo $mensaje_cuidador;
-        }
+    if( $usu != "STM" ){
+        $CONTENIDO .= "<div class='msg_acciones'>Te notificamos que la solicitud para conocer cuidador <strong>#".$id_orden."</strong>, ha sido cancelada exitosamente.</div>";
     }
 
 ?>
