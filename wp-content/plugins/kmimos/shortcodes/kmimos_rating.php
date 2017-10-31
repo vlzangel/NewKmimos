@@ -90,7 +90,7 @@ $user_id = $current_user->ID;
                             <h3>Sección de cuidado:</h3>
                             <p><strong>¿Cómo consideras que fue el cuidado que recibió tu peludo?</strong></p>
                             <div class="fila_rate" data-section="cuidado">
-                                <div class="reset_rate cuidado" data-section="cuidado"><label for="cuidado_0"><h5>No Aplica</h5></label><br><input type="radio" id="cuidado_0" name="cuidado" value="0" checked></div>
+                                
                                 <?php
                                     for($i=1;$i<=5;$i++){ ?>
                                     <div class="select_rate cuidado" data-rate="<?php echo $i;?>" data-section="cuidado">
@@ -106,8 +106,7 @@ $user_id = $current_user->ID;
                             <div class="fila_rate" data-section="puntualidad">
                                 <div class="reset_rate puntualidad" data-section="puntualidad">
                                     <label for="puntualidad_0">
-                                    <h5>No Aplica</h5></label><br>
-                                    <input type="radio" id="puntualidad_0" name="puntualidad" value="0" checked>
+                                    
                                 </div>
                                 <?php 
                                 for($i=1;$i<=5;$i++){ ?>
@@ -123,8 +122,7 @@ $user_id = $current_user->ID;
                             <p><strong>¿Cuál es el nivel de higiene y seguridad que consideras que tiene el hogar del cuidador?</strong></p> 
                             <div class="fila_rate" data-section="limpieza">
                                 <div class="reset_rate limpieza" data-section="limpieza">
-                                    <label for="limpieza_0"><h5>No Aplica</h5></label><br>
-                                    <input type="radio" id="limpieza_0" name="limpieza" value="0" checked>
+                                    
                                 </div>
                                 <?php 
                                 for($i=1;$i<=5;$i++){ ?>
@@ -140,8 +138,7 @@ $user_id = $current_user->ID;
                             <p><strong>¿Qué tan confiable consideras que tu cuidador es?</strong></p>
                             <div class="fila_rate" data-section="confianza">
                                 <div class="reset_rate confianza" data-section="confianza">
-                                    <label for="confianza_0"><h5>No Aplica</h5></label><br>
-                                    <input type="radio" id="confianza_0" name="confianza" value="0" checked>
+                                    
                                 </div>
                                 <?php 
                                 for($i=1;$i<=5;$i++){ ?>

@@ -1,7 +1,12 @@
+<?php
+    if( !function_exists(plugin_dir_url) ){
+        exit();
+    }
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script src="<?php echo get_home_url()."/wp-content/themes/kmimos/js/"; ?>jquery.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="<?php echo plugin_dir_url( __FILE__ ); ?>includes/js/script.js"></script>
         <link media="all" type="text/css" rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>includes/css/style.css"/>
         <title>PANEL WHITE LABEL</title>

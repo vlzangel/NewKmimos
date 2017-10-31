@@ -123,6 +123,9 @@
         ";
         $db->multi_query( utf8_decode( $sql ) );
 
+        if (!isset($_SESSION)) { session_start(); }
+        $_SESSION["nuevo_registro"] = "YES";
+
         //MESSAGE
         $mail_file = realpath('../../template/mail/registro.php');
 

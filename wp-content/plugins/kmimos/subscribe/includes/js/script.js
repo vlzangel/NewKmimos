@@ -36,6 +36,22 @@ function form_subscribe(element){
                 obj_submit.html(text_submit);
                 obj_submit.removeClass('disabled');
             }
+            
+            if( data['message'] == "Ha sido Registrado" ){
+               
+                fbq ('track','CompleteRegistration');
+                fbq ('track','PopUpHome');
+
+                jQuery.post( 
+                    "https://www.kmimos.com.mx/landing-volaris/suscribir_home.php", 
+                    {
+                        "email": jQuery("#mail_suscripcion").val()
+                    }, 
+                    function( data ) {
+                        console.log("Suscripción enviadas");
+                    }
+                );
+            }
         });
     }
     return false;
