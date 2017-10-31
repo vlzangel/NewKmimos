@@ -160,7 +160,7 @@ if(!function_exists('kmimos_get_email_footer')){
                 $ayuda = "
                     <div style='float:left; width:600px; margin-bottom: 31px;'>   
                         <div style='text-align:center;'>
-                            <p style='font-family: Arial; font-size:12px; color:#B4B4B4; text-align: center; '>
+                            <p style='font-family: Arial; font-size:12px; color:#2d2d2d; text-align: center; '>
                                 En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp <a href='telf:+525568922182' target='_blank' style='text-decoration: none; color: #b4b4b4;'>+52 (55) 6892 2182</a>, o al correo 
                                 <a href='mailto:contactomex@kmimos.la' target='_blank' style='text-decoration: none; color: #b4b4b4;'>contactomex@kmimos.la</a>
                             </p>
@@ -198,7 +198,7 @@ if(!function_exists('kmimos_get_email_footer')){
                     </style>
                 </head>
                 <body>
-                    <div id='kmimos_container' style='font-family: Arial;'>
+                    <div id='kmimos_container' style='font-family: Arial;  max-width: 600px;'>
                         <div style='margin: 0px auto; padding: 0px 10px; width: 600px;'>
                             <div style='text-align:center;'>
                                 <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/bitmap.png' style='margin-bottom: 14px;' />
@@ -216,23 +216,23 @@ if(!function_exists('kmimos_get_email_footer')){
 
                                 <div style='background-color:#000000; color: #fff; display: table; width: 100%; height: 62px; font-size: 11px; letter-spacing: 0.2px; padding: 0px; box-sizing: border-box;'>
 
-                                    <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: left; padding-left: 30px;'>
+                                    <div style='display: table-cell; width: 160px; vertical-align: middle; text-align: left; padding-left: 30px;'>
                                         <a href='".get_home_url()."' style='color: #FFF; text-decoration: none;'>
                                             <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png' style='height: 21px;'> 
                                         </a>
                                     </div>
 
-                                    <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; color: #FFF;'>
+                                    <div style='display: table-cell; padding: 0px 30px; width: 160px; vertical-align: middle; color: #FFF;'>
                                         &nbsp;
                                     </div>
 
-                                    <div style='display: table-cell; width: 33.333333333%; vertical-align: middle; text-align: right; padding-right: 30px;'>
+                                    <div style='display: table-cell; width: 160px; vertical-align: middle; text-align: right; padding-right: 30px;'>
                                         <span style='display: inline-block; padding: 0px 5px 2px 0px'>
-                                            Síguenos en
+                                            Síguenos en 
+                                            <a href='https://www.facebook.com/Kmimosmx/'>
+                                                <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png' style='vertical-align: bottom;' align='center'>
+                                            </a>
                                         </span> 
-                                        <a href='https://www.facebook.com/Kmimosmx/'>
-                                            <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png' style='vertical-align: bottom;' align='center'>
-                                        </a>
                                     </div>
 
                                 </div>
