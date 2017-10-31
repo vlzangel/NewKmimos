@@ -34,12 +34,13 @@
     font-weight: 700;
     font-size: 17px;
     text-align: center;
-    line-height: 55px;
+    line-height: 17px;
     margin-top: 30px;
     max-width: 500px;
     margin: 0px auto 10px;
     width: 100%;
     text-decoration: none !important;
+    padding: 15px;
 }
 
 .desglose_reserva{
