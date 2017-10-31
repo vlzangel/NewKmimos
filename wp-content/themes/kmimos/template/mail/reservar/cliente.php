@@ -63,7 +63,7 @@
         <strong>En caso de que el cuidador no esté disponible</strong>, recibirás un correo de notificación con instrucciones para que puedas solicitar el cambio de cuidador.
     </div>
     
-    <div style='font-family: Arial; font-size: 12px; line-height: 1.25; letter-spacing: 0.2px; text-align: center; color: #CCC;'>
+    <div style='font-family: Arial; font-size: 12px; line-height: 1.25; letter-spacing: 0.2px; text-align: center; color: #2d2d2d;'>
         *El período de 12 horas es referencial, normalmente los cuidadores contactan al cliente con mucha anterioridad.
     </div>
 
