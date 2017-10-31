@@ -16,7 +16,7 @@
 
 		$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
 		if( $pdf != "" ){
-			$pdf = "<a class='btn_fin_reserva' href='{$pdf}' target='_blank'>DESCARGAR COMPROBANTE DE PAGO</a>";
+			$pdf = "<a class='btn_fin_reserva' href='{$pdf}' target='_blank'>DESCARGAR INSTRUCCIONES PARA PAGO EN TIENDA DE CONVENIENCIA</a>";
 		}
 
 		$data_reserva = kmimos_desglose_reserva_data($orden_id);
@@ -24,7 +24,13 @@
 	    $email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID='{$data_reserva["cliente"]}'");
 	    $telefonos = get_user_meta($data_reserva["cliente"], "user_phone", true)." / ".get_user_meta($data_reserva["cliente"], "user_mobile", true);
 
-	    $info = '
+	    if( strtolower($data_reserva["metodo_pago"]) == "tarjeta" ){
+	    	$pixel = "<script> fbq ('track','Purchase'); </script>";
+	    }else{
+	    	$pixel = "";
+	    }
+
+	    $info = $pixel.'
 	        <div class="desglose_box">
 	            <div>
 	                <div class="sub_titulo">RESERVA</div>

@@ -1,25 +1,5 @@
 <?php
     
-    echo "
-        <a href='".get_home_url()."/perfil-usuario/reservas/' style='
-            border-top: solid 1px #CCC;
-            border-bottom: solid 1px #CCC;
-            margin: 10px auto;
-            width: 600px;
-            padding: 10px 0px;
-            font-weight: 600;
-            font-family: Arial;
-            text-align: center;
-            cursor: pointer;
-            font-size: 13px;
-            text-decoration: none;
-            color: #000;
-            display: block;
-        '>
-            Volver
-        </a>
-    ";
-    
     /* Correo Cliente */
 
 
@@ -33,6 +13,8 @@
         
         $mensaje_cliente = str_replace('[ADICIONALES]', $adicionales, $mensaje_cliente);
         $mensaje_cliente = str_replace('[TRANSPORTE]', $transporte, $mensaje_cliente);
+        
+        $mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
         
 
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
@@ -74,6 +56,8 @@
         $mensaje_cuidador = str_replace('[ADICIONALES]', $adicionales, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[TRANSPORTE]', $transporte, $mensaje_cuidador);
         
+        $mensaje_cuidador = str_replace('[MODIFICACION]', $modificacion, $mensaje_cuidador);
+        
 
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
 
@@ -95,8 +79,13 @@
 
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
 
-        echo $mensaje_cuidador = get_email_html($mensaje_cuidador);
+        $mensaje_cuidador = get_email_html($mensaje_cuidador);
 
         wp_mail( $cuidador["email"], "Confirmación de Reserva", $mensaje_cuidador);
 
+
+        $CONTENIDO .= "<div class='msg_acciones'>
+            <strong>¡Todo esta listo!</strong><br>
+            La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.
+        </div>";
 ?>
