@@ -85,7 +85,7 @@
 
 
         $CONTENIDO .= "<div class='msg_acciones'>
-            ¡Todo esta listo!<br>
+            <strong>¡Todo esta listo!</strong><br>
             La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.
         </div>";
 ?>
