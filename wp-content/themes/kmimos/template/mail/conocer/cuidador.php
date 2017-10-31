@@ -2,7 +2,7 @@
 	<img src='[URL_IMGS]/conocer_cuidador.png' style='width: 600px;' >
 </div>
 
-<div style='padding: 0px 33px; width: 567px;'>
+<div style='padding: 0px 0px 0px 33px; width: 567px;'>
 
 	<div style='margin-bottom: 30px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 15px;'>
@@ -15,7 +15,7 @@
 
 	<div style='display: block; margin-bottom: 31px;'>
 
-		<table cellpadding="0" cellspacing="0" style='margin-bottom: 40px; width: 600px;'>
+		<table cellpadding="0" cellspacing="0" style='margin-bottom: 40px; width: 567px;'>
 			<tr>
 				<td style='width: 62px; padding-right: 20px;'>
 					<img src='[avatar]' style='width: 62px; height: 62px; border-radius: 50%;' >
@@ -47,7 +47,7 @@
 			</tr>
 		</table>
 
-		<table cellpadding="0" cellspacing="0" style='margin-bottom: 31px; width: 600px;'>
+		<table cellpadding="0" cellspacing="0" style='margin-bottom: 31px; width: 567px;'>
 			<tr>
 				<td style='width: 62px; padding-right: 20px;'>
 					<img src='[URL_IMGS]/calendar.png' style='width: 77px; height: 70px;' >
@@ -134,97 +134,99 @@
 <img src='[URL_IMGS]/siguientes_pasos.png' style='display: block; margin: 0px auto 25px;' >
 
 
-<div style='display: table; width: 600px; font-size: 13px; margin-bottom: 27px;'>
+<table cellpadding="0" cellspacing="0" style='width: 600px; font-size: 13px; margin-bottom: 27px;'>
 
-	<div style='display: table-row;'>
+	<tr>
 
-		<div style='display: table-cell; width: 300px; vertical-align: top;'>
+		<td style='width: 300px; vertical-align: top;'>
 
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					<strong style='color: #570089;'>Preséntate</strong> con el cliente cordial y  formalmente.<br> 
-					<strong>Tip: Cuida tu imagen</strong> (Vestimenta casual)
-				</div>
-			</div>
+			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px; width: 240px;'>
+						<strong style='color: #570089;'>Preséntate</strong> con el cliente cordial y  formalmente.<br> 
+						<strong>Tip: Cuida tu imagen</strong> (Vestimenta casual)
+					</td>
+				</tr>
+			</table>
 
-		</div>
+		</td>
 
-		<div style='display: table-cell; width: 300px; vertical-align: top;'>
+		<td style='display: table-cell; width: 300px; vertical-align: top;'>
 
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					En caso de no conocerse en persona, <strong>pide que te envíen fotos del perro</strong> que llegará a tu casa para <strong style='color: #570089;'>confirmar</strong> que sea tal cual lo describió su dueño. 
-				</div>
-			</div>
+			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px; width: 240px;'>
+						En caso de no conocerse en persona, <strong>pide que te envíen fotos del perro</strong> que llegará a tu casa para <strong style='color: #570089;'>confirmar</strong> que sea tal cual lo describió su dueño. 
+					</td>
+				</tr>
+			</table>
 
-		</div>
+		</td>
 
-	</div>
+	</tr>
 
-	<div style='display: table-row;'>
+	<tr>
 
-		<div style='display: table-cell; width: 300px; vertical-align: top;'>
+		<td style='width: 300px; vertical-align: top;'>
+			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px; width: 240px;'>
+						<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y <strong style='color: #570089;'>verifica</strong> que sus <strong>vacunas</strong> estén al día.</div>
+						<div><strong>Tip: Sin cartilla no se harán efectivos</strong> los beneficios veterinarios de Kmimos.</div>
+					</td>
+				</tr>
+			</table>
+		</td>
 
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y <strong style='color: #570089;'>verifica</strong> que sus <strong>vacunas</strong> estén al día.</div>
-					<div><strong>Tip: Sin cartilla no se harán efectivos</strong> los beneficios veterinarios de Kmimos.</div>
-				</div>
-			</div>
-
-		</div>
-
-		<div style='display: table-cell; width: 300px; vertical-align: top;'>
-
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group-14.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					<strong>Revisa al perrito</strong> y <strong style='color: #570089;'>detecta</strong> si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
-				</div>
-			</div>
-
-		</div>
+		<td style='width: 300px; vertical-align: top;'>
+			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group-14.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px; width: 240px;'>
+						<strong>Revisa al perrito</strong> y <strong style='color: #570089;'>detecta</strong> si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
+					</td>
+				</tr>
+			</table>
+		</td>
 		
-	</div>
+	</tr>
 
-</div>
+</table>
 
-<div style='float:left;width:600px;margin-bottom: 31px;'>   
+<div style='width:600px; margin-bottom: 31px;'>   
     <div style='text-align:center;'>
         <p style='font-family: Arial;font-weight: bold; font-size:12px; color:#B4B4B4; text-align: center; '>
             En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp +52 (55) 6892 2182, o al correo contactomex@kmimos.la
         </p>
-        <div  style='clear:both;'></div>
     </div>
-    <div  style='clear:both;'></div>
 </div>
 
 <div style='width: 600px; text-align: center; margin-bottom: 20px;'>
 	
-	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
 
 	<div style='width: 265px; display: inline-block; font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #666666;'>PRESÉNTATE Y CONOCE A TU KMIAMIGO</div>
 
-	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
 
 </div>
 
