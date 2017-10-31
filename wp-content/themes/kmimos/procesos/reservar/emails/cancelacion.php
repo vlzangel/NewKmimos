@@ -105,6 +105,6 @@
     	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
 
 
-        $CONTENIDO .= "<h2 class='msg_acciones'>Reserva cancelada exitosamente!</h2>";
+        $CONTENIDO .= "<div class='msg_acciones'>Te notificamos que la reserva <strong>#".$servicio["id_reserva"]."</strong>, ha sido cancelada exitosamente.</div>";
 
 ?>
