@@ -1,25 +1,5 @@
 <?php
     
-    echo "
-        <a href='".get_home_url()."/perfil-usuario/reservas/' style='
-            border-top: solid 1px #CCC;
-            border-bottom: solid 1px #CCC;
-            margin: 10px auto;
-            width: 600px;
-            padding: 10px 0px;
-            font-weight: 600;
-            font-family: Arial;
-            text-align: center;
-            cursor: pointer;
-            font-size: 13px;
-            text-decoration: none;
-            color: #000;
-            display: block;
-        '>
-            Volver
-        </a>
-    ";
-    
     /* Correo Cliente */
 
 
@@ -95,8 +75,10 @@
 
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
 
-        echo $mensaje_cuidador = get_email_html($mensaje_cuidador);
+        $mensaje_cuidador = get_email_html($mensaje_cuidador);
 
         wp_mail( $cuidador["email"], "Confirmación de Reserva", $mensaje_cuidador);
 
+
+        $CONTENIDO .= "<h2 class='msg_acciones'>Reserva confirmada exitosamente!</h2>";
 ?>

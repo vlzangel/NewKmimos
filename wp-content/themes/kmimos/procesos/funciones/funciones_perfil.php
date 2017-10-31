@@ -8,10 +8,10 @@
 	    				$respuesta .= '<a data-accion="ver/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-info" aria-hidden="true"></i> Ver</a>';
     				break;
 	    			case 'confirmar':
-	    				$respuesta .= '<a data-accion="'.get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$accion.'&acc=CFM" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
+	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
     				break;
 	    			case 'cancelar':
-	    				$respuesta .= '<a data-accion="'.get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$accion.'&acc=CCL" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
+	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
     				break;
 	    			case 'modificar':
 	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_modificar"> <i class="fa fa-pencil" aria-hidden="true"></i> Modificar </a>';
