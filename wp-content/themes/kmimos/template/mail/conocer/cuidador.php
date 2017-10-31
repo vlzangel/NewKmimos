@@ -2,7 +2,7 @@
 	<img src='[URL_IMGS]/conocer_cuidador.png' style='width: 100%;' >
 </div>
 
-<div style='padding: 0px 33px; width: 600px;'>
+<div style='padding: 0px 33px; width: 567px;'>
 
 	<div style='margin-bottom: 30px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 15px;'>
