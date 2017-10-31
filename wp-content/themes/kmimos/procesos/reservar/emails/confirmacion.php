@@ -84,5 +84,8 @@
         wp_mail( $cuidador["email"], "Confirmación de Reserva", $mensaje_cuidador);
 
 
-        $CONTENIDO .= "<h2 class='msg_acciones'>Reserva confirmada exitosamente!</h2>";
+        $CONTENIDO .= "<div class='msg_acciones'>
+            ¡Todo esta listo!<br>
+            La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.
+        </div>";
 ?>
