@@ -16,7 +16,7 @@
 
 		$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
 		if( $pdf != "" ){
-			$pdf = "<a class='btn_fin_reserva' href='{$pdf}' target='_blank'>DESCARGAR COMPROBANTE DE PAGO</a>";
+			$pdf = "<a class='btn_fin_reserva' href='{$pdf}' target='_blank'>DESCARGAR INSTRUCCIONES PARA PAGO EN TIENDA DE CONVENIENCIA</a>";
 		}
 
 		$data_reserva = kmimos_desglose_reserva_data($orden_id);

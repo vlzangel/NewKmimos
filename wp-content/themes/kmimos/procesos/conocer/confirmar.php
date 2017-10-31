@@ -24,7 +24,12 @@
     $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[name_cliente]', $cliente_name, $mensaje_cuidador);
 
-    echo $mensaje_cuidador = get_email_html($mensaje_cuidador, false, false);
+    $mensaje_cuidador = get_email_html($mensaje_cuidador, false, false);
 
     wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $mensaje_cuidador);
+
+    $CONTENIDO .= "<div class='msg_acciones'>
+        <strong>¡Todo esta listo!</strong><br>
+        La solicitud para conocer cuidador <strong>#".$id_orden."</strong>, ha sido confirmada exitosamente de acuerdo a tu petición.
+    </div>";
 ?>
