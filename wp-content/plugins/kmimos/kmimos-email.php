@@ -218,12 +218,12 @@ if(!function_exists('kmimos_get_email_footer')){
 
                                     <div style=\"display: table-cell; width: 240px; vertical-align: middle; text-align: left; padding-right: 15px; padding-left: 30px;\">
                                         <a href=\"".get_home_url()."\" style=\"color: #FFF; text-decoration: none;\">
-                                            <img src=\"".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png\" style=\"height: 21px;\"> 
+                                            <img src=\"".get_home_url()."/wp-content/themes/kmimos/images/emails/kamimos_footer.png\" style=\"height: 21px;float:left;\"> 
                                         </a>
                                     </div>
 
                                     <div style=\"display: table-cell; width: 240px; vertical-align: middle; text-align: right; padding-left:15px; padding-right: 30px;\">
-                                        <span style=\"display: inline-block; padding: 0px 5px 2px 0px\">
+                                        <span style=\"display: inline-block; padding: 0px 5px 2px 0px; float:right\">
                                             Síguenos en 
                                             <a href=\"https://www.facebook.com/Kmimosmx/\">
                                                 <img src=\"".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png\" style=\"vertical-align: bottom;\" align=\"center\">
