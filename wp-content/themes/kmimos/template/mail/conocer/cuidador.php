@@ -145,7 +145,7 @@
 					<td style='vertical-align: top; padding: 5px; width: 60px;'>
 						<img src='[URL_IMGS]/group.png' style='display: block; margin: 0px auto 25px;' >
 					</td>
-					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px; width: 240px;'>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
 						<strong style='color: #570089;'>Preséntate</strong> con el cliente cordial y  formalmente.<br> 
 						<strong>Tip: Cuida tu imagen</strong> (Vestimenta casual)
 					</td>
@@ -161,7 +161,7 @@
 					<td style='vertical-align: top; padding: 5px; width: 60px;'>
 						<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
 					</td>
-					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px; width: 240px;'>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
 						En caso de no conocerse en persona, <strong>pide que te envíen fotos del perro</strong> que llegará a tu casa para <strong style='color: #570089;'>confirmar</strong> que sea tal cual lo describió su dueño. 
 					</td>
 				</tr>
@@ -179,7 +179,7 @@
 					<td style='vertical-align: top; padding: 5px; width: 60px;'>
 						<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
 					</td>
-					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px; width: 240px;'>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
 						<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y <strong style='color: #570089;'>verifica</strong> que sus <strong>vacunas</strong> estén al día.</div>
 						<div><strong>Tip: Sin cartilla no se harán efectivos</strong> los beneficios veterinarios de Kmimos.</div>
 					</td>
@@ -193,7 +193,7 @@
 					<td style='vertical-align: top; padding: 5px; width: 60px;'>
 						<img src='[URL_IMGS]/group-14.png' style='display: block; margin: 0px auto 25px;' >
 					</td>
-					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px; width: 240px;'>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
 						<strong>Revisa al perrito</strong> y <strong style='color: #570089;'>detecta</strong> si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
 					</td>
 				</tr>
@@ -220,7 +220,7 @@
 	<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
 	<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
 
-	<div style='width: 265px; display: inline-block; font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #666666;'>PRESÉNTATE Y CONOCE A TU KMIAMIGO</div>
+	<div style='width: 265px; display: inline-block; font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #2d2d2d;'>PRESÉNTATE Y CONOCE A TU KMIAMIGO</div>
 
 	<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
 	<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
@@ -230,17 +230,17 @@
 
 </div>
 
-<div style='width: 600px; font-family: Arial; font-size: 14px; letter-spacing: 0.3px; text-align: center; color: #666666; margin-bottom: 20px;'>
+<div style='width: 600px; font-family: Arial; font-size: 14px; letter-spacing: 0.3px; text-align: center; color: #2d2d2d; margin-bottom: 20px;'>
 	Recuerda que cada perro tiene un comportamiento diferente, por lo que deberás tener la mayor información posible sobre sus comportamientos.
 </div>
 
 <div style='display: table; width: 600px; font-size: 13px; margin-bottom: 27px; text-align: left;'>
 
 	<div style='display: table-cell; width: 200px; vertical-align: top;'>
-		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
+		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #2d2d2d; margin-bottom: 9px;'>
 			SOBRE SU RUTINA DIARIA
 		</div>
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
+		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #2d2d2d;'>
 			Por ejemplo:<br>
 			¿Sale a pasear?<br>
 			¿A qué hora come y hace del baño?
@@ -249,10 +249,10 @@
 
 	<div style='display: table-cell; width: 200px; vertical-align: top;'>
 
-		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
+		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #2d2d2d; margin-bottom: 9px;'>
 			SOBRE SU COMPORTAMIENTO
 		</div>
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
+		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #2d2d2d;'>
 			Por ejemplo:<br>
 			¿Cómo interactúa con otros perros y personas?<br>
 			¿Cómo reacciona con un extraño?
@@ -262,10 +262,10 @@
 
 	<div style='display: table-cell; width: 200px; vertical-align: top;'>
 
-		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
+		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #2d2d2d; margin-bottom: 9px;'>
 			SOBRE SU &Aacute;NIMO
 		</div>
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
+		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #2d2d2d;'>
 			Por ejemplo:<br>
 			¿Cómo se comporta cuando está triste o estresado?<br>
 			¿Qué hace su dueño cuando está triste o estresado?
