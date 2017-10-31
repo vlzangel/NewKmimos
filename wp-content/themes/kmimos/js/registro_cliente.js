@@ -553,6 +553,9 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery(".popup-registrarte-datos-mascota").css("display", "none");
 				jQuery(".popup-registrarte-final").css("display", "block");
 
+				jQuery("body").scrollTop(0);
+				jQuery(".modal").scrollTop(0);
+
         }else {
 			jQuery('.km-btn-popup-registrarte-datos-mascota').html('REGISTRARME');
         	alert("Revise sus datos por favor, debe llenar todos los campos");
