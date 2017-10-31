@@ -12,6 +12,7 @@
 	wp_enqueue_script('perfil_global', getTema()."/js/perfil_global.js", array("jquery", "global_js"), '1.0.0');
 
 	$btn_txt = "Actualizar";
+
 	$mostrar_btn = true;
 	switch ( $post->post_name ) {
 		case 'perfil-usuario':
@@ -23,6 +24,9 @@
 			wp_enqueue_script('mascotas', getTema()."/js/mascotas.js", array("jquery", "global_js"), '1.0.0');
 
 			$btn_txt = "Nueva Mascota";
+		break;
+		case 'valorar':
+		include("admin/frontend/valorar_cuidador.php");
 		break;
 		case 'ver':
 			$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
@@ -45,6 +49,12 @@
 					wp_enqueue_style('ver_mascotas', getTema()."/css/ver_mascotas.css", array(), '1.0.0');
 					wp_enqueue_style('ver_mascotas_responsive', getTema()."/css/responsive/ver_mascotas_responsive.css", array(), '1.0.0');
 					wp_enqueue_script('ver_mascotas', getTema()."/js/ver_mascotas.js", array("jquery", "global_js"), '1.0.0');
+				break;
+
+				case 'valorar':
+					wp_enqueue_style('ver_valorar', getTema()."/css/ver_valorar.css", array(), '1.0.0');
+					wp_enqueue_style('ver_valorar_responsive', getTema()."/css/responsive/ver_valorar_responsive.css", array(), '1.0.0');
+					wp_enqueue_script('ver_valorar', getTema()."/js/ver_valorar.js", array("jquery", "global_js"), '1.0.0');
 				break;
 			}
 		break;
@@ -218,7 +228,7 @@
 		}
 
 		$HTML = '
-	 		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
+	 		<div  style =\"height:800px\" class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 				<div class="overlay"></div>
 			</div>
 			<div class="body km-content-reservation">
@@ -231,7 +241,7 @@
 						'.$MENU["body"].'
 					</ul>
 				</div>
-				<div class="main">
+				<div class="main" >
 					<form id="form_perfil" autocomplete="off">
 						'.$CONTENIDO.'
 						'.$HTML_BTN.'
