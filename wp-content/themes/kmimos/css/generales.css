@@ -723,3 +723,26 @@ section {
     .vlz_solo_movil{
         display: none;
     }
+
+.volver_msg {
+    padding: 10px;
+    width: 200px !important;
+    margin: 0px auto !important;
+    text-align: center;
+    border-radius: 5px;
+    float: none !important;
+    text-decoration: none !important;
+    display: block;
+}
+
+h2.msg_acciones {
+    font-size: 36px !important;
+    padding: 10px;
+    text-align: center;
+}
+
+.msg_acciones {
+    padding: 50px 50px 20px;
+    max-width: 620px;
+    margin: 0px auto;
+}

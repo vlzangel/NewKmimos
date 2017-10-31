@@ -130,7 +130,7 @@
 
 		switch ( $post->post_name ) {
 			case 'perfil-usuario':
-				include("admin/frontend/perfil.php");
+				include("admin/frontend/perfil/perfil.php");
 			break;
 			case 'mascotas':
 				echo '
@@ -138,73 +138,90 @@
 						var URL_NUEVA_IMG = "'.get_home_url().'/perfil-usuario/mascotas/nueva/";
 						var IMG_DEFAULT = "'.get_home_url().'/wp-content/themes/pointfinder/images/noimg.png";
 					</script>';
-				include("admin/frontend/mascotas.php");
+				include("admin/frontend/mascotas/mascotas.php");
 			break;
 			case 'ver':
 				$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
 				switch ($padre) {
 					case 'historial':
 						$mostrar_btn = false;
-						include("admin/frontend/ver_historial.php");
+						include("admin/frontend/historial/ver.php");
 					break;
 					case 'reservas':
 						$mostrar_btn = false;
-						include("admin/frontend/ver_reservas.php");
+						include("admin/frontend/reservas/ver.php");
 					break;
 					case 'solicitudes':
 						$mostrar_btn = false;
-						include("admin/frontend/ver_solicitudes.php");
+						include("admin/frontend/solicitudes/ver.php");
 					break;
 					case 'mascotas':
-						include("admin/frontend/ver_mascotas.php");
+						include("admin/frontend/mascotas/ver.php");
 					break;
 				}
+			break;
+			case 'cancelar':
+				$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
+				switch ($padre) {
+					case 'historial':
+						$mostrar_btn = false;
+						include("admin/frontend/historial/cancelar.php");
+					break;
+					case 'reservas':
+						$mostrar_btn = false;
+						include("admin/frontend/reservas/cancelar.php");
+					break;
+				}
+			break;
+			case 'confirmar':
+				$mostrar_btn = false;
+				include("admin/frontend/reservas/confirmar.php");
 			break;
 			case 'nueva':
 				$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
 				switch ($padre) {
 					case 'mascotas':
 						echo '<script> var IMG_DEFAULT = "'.get_home_url().'/wp-content/themes/pointfinder/images/noimg.png"; </script>';
-						include("admin/frontend/nueva_mascotas.php");
+						include("admin/frontend/mascotas/nueva.php");
 					break;
 					case 'galeria':
 						echo '<script> var IMG_DEFAULT = "'.get_home_url().'/wp-content/themes/pointfinder/images/noimg.png"; </script>';
-						include("admin/frontend/nueva_galeria.php");
+						include("admin/frontend/galeria/nueva.php");
 					break;
 				}
 			break;
 			case 'favoritos':
 				$mostrar_btn = false;
-				include("admin/frontend/favoritos.php");
+				include("admin/frontend/favoritos/favoritos.php");
 			break;
 			case 'historial':
 				$mostrar_btn = false;
-				include("admin/frontend/historial.php");
+				include("admin/frontend/historial/historial.php");
 			break;
 			case 'descripcion':
-				include("admin/frontend/descripcion.php");
+				include("admin/frontend/descripcion/descripcion.php");
 			break;
 			case 'servicios':
-				include("admin/frontend/servicios.php");
+				include("admin/frontend/servicios/servicios.php");
 			break;
 			case 'disponibilidad':
 				$btn_txt = "Editar Disponibilidad";
-				include("admin/frontend/disponibilidad.php");
+				include("admin/frontend/disponibilidad/disponibilidad.php");
 			break;
 			case 'galeria':
 				echo '
 					<script> 
 						var URL_NUEVA_IMG = "'.get_home_url().'/perfil-usuario/galeria/nueva/";
 					</script>';
-				include("admin/frontend/galeria.php");
+				include("admin/frontend/galeria/galeria.php");
 			break;
 			case 'reservas':
 				$mostrar_btn = false;
-				include("admin/frontend/reservas.php");
+				include("admin/frontend/reservas/reservas.php");
 			break;
 			case 'solicitudes':
 				$mostrar_btn = false;
-				include("admin/frontend/solicitudes.php");
+				include("admin/frontend/solicitudes/solicitudes.php");
 			break;
 		}
 
