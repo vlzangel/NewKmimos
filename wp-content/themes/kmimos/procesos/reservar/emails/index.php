@@ -138,7 +138,9 @@
 
 	}else{
 
-		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_orden"]."'");
+		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_reserva"]."'");
+
+		$continuar = true;
 
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
@@ -149,67 +151,54 @@
 					"cancelled" => "Cancelada"
 				);
 				$msg = "
-				<div style='text-align:center; margin-bottom: 25px;'>
-					<img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/header_solicitud_reserva.png' style='width: 100%;' >
-				</div>
-
-				<div style='padding: 0px; margin-bottom: 25px;'>
+				<div class='msg_acciones'>
 					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
 				    	Hola <strong>".$cuidador["nombre"]."</strong>
 				    </div>
 					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-				    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido ".$estado[$status]." anteriormente.
+				    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
 				    </div>
 					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
 				    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
 				    </div>
 				</div>";
 		   		
-		   		echo get_email_html($msg);
-
-		   		exit();
+		   		$CONTENIDO .= $msg;
+		   		$continuar = false;
 			}
 
 		}
 
-		if( $acc == "CFM" ){
+		if( $continuar ){
 
-			$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
-    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
+			if( $acc == "CFM" ){
 
-			include("confirmacion.php");
+				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
+	    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
 
-			if(  $_SESSION['admin_sub_login'] != 'YES' ){
+				include("confirmacion.php");
 
-				// ********************************************************************
-		   		// BEGIN Notificacion para usuario referidos - Landing WOM /Referidos
-		   		// ********************************************************************
+				if(  $_SESSION['admin_sub_login'] != 'YES' ){
 			   		if(isset($cliente["id"])){	
 				   		$user_referido = get_user_meta($cliente["id"], 'landing-referencia', true);
 				   		if(!empty($user_referido)){
 							$username = $cliente["nombre"];
 							$http = (isset($_SERVER['HTTPS']))? 'https://' : 'http://' ;
 							require_once( $PATH_TEMPLATE.'/template/mail/reservar/club-referido-primera-reserva.php');
-							$user_participante = $wpdb->get_results( "
-								select ID, user_email 
-								from wp_users 
-								where md5(user_email) = '{$user_referido}'" 
-							);
+							$user_participante = $wpdb->get_results( "SELECT ID, user_email FROM wp_users WHERE md5(user_email) = '{$user_referido}'" );
 							$user_participante = (count($user_participante)>0)? $user_participante[0] : [];
 							if(isset($user_participante->user_email)){
 								wp_mail( $user_participante->user_email, "¡Felicidades, otro perrhijo moverá su colita de felicidad!", $html );
 							}
 						} 
 					}
-		   		// ********************************************************************
-		   		// END Notificacion para usuario referidos - Landing WOM /Referidos
-		   		// ********************************************************************
-
+				}
 			}
-		}
 
-		if( $acc == "CCL" ){
-			include(__DIR__."/cancelacion.php");
+			if( $acc == "CCL" ){
+				include(__DIR__."/cancelacion.php");
+			}
+		
 		}
 
 
