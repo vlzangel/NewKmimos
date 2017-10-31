@@ -135,9 +135,9 @@ jQuery(window).on('resize', function(){
 });
 
 function block_scroll_body( block=true ){
-    jQuery('body').css('overflow', 'auto');
+    //jQuery('body').css('overflow', 'auto');
     if( !block ){
-        jQuery('body').css('overflow', 'hidden');
+        //jQuery('body').css('overflow', 'hidden');
     }
 }
 

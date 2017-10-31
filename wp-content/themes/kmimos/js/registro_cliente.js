@@ -7,7 +7,7 @@ $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	jQuery('[data-error="auth"]').fadeOut("fast");
 
 	
-	jQuery(".popup-registrarte-1").fadeIn("fast");
+	jQuery(".popup-registrarte-1").css("display", 'block');
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
 	jQuery(".popup-registrarte-final").css('display', 'none');
@@ -18,6 +18,7 @@ $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	jQuery('#form_nuevo_cliente')[0].reset();
 	jQuery( $(this).data('target') ).modal('show');
 	//jQuery( $(this).data('target') ).css('display', 'block');
+	//jQuery( "#popup-registrarte-1" ).css('display', 'block');
 });
 
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
