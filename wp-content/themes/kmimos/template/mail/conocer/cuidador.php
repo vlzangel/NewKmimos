@@ -1,5 +1,5 @@
 <div style='text-align:center; margin-bottom: 34px; width: 600px;'>
-	<img src='[URL_IMGS]/conocer_cuidador.png' style='width: 100%;' >
+	<img src='[URL_IMGS]/conocer_cuidador.png' style='width: 600px;' >
 </div>
 
 <div style='padding: 0px 33px; width: 567px;'>
@@ -134,7 +134,7 @@
 
 	<div style='display: table-row;'>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+		<div style='display: table-cell; width: 300px; vertical-align: top;'>
 
 			<div style='display: table; width: 100%;'>
 				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
@@ -148,7 +148,7 @@
 
 		</div>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+		<div style='display: table-cell; width: 300px; vertical-align: top;'>
 
 			<div style='display: table; width: 100%;'>
 				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
@@ -165,7 +165,7 @@
 
 	<div style='display: table-row;'>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+		<div style='display: table-cell; width: 300px; vertical-align: top;'>
 
 			<div style='display: table; width: 100%;'>
 				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
@@ -179,7 +179,7 @@
 
 		</div>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+		<div style='display: table-cell; width: 300px; vertical-align: top;'>
 
 			<div style='display: table; width: 100%;'>
 				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
@@ -196,7 +196,7 @@
 
 </div>
 
-<div style='float:left;width:100%;margin-bottom: 31px;'>   
+<div style='float:left;width:600px;margin-bottom: 31px;'>   
     <div style='text-align:center;'>
         <p style='font-family: Arial;font-weight: bold; font-size:12px; color:#B4B4B4; text-align: center; '>
             En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp +52 (55) 6892 2182, o al correo contactomex@kmimos.la
@@ -208,19 +208,19 @@
 
 <div style='width: 600px; text-align: center; margin-bottom: 20px;'>
 	
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
 
-	<div style='display: inline-block; font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #666666;'>PRESÉNTATE Y CONOCE A TU KMIAMIGO</div>
+	<div style='width: 330px; display: inline-block; font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #666666;'>PRESÉNTATE Y CONOCE A TU KMIAMIGO</div>
 
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+	<img style='width: 22px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
 
 </div>
 
@@ -230,7 +230,7 @@
 
 <div style='display: table; width: 600px; font-size: 13px; margin-bottom: 27px; text-align: left;'>
 
-	<div style='display: table-cell; width: 33.3333333333%; vertical-align: top;'>
+	<div style='display: table-cell; width: 200px; vertical-align: top;'>
 		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
 			SOBRE SU RUTINA DIARIA
 		</div>
@@ -241,7 +241,7 @@
 		</div>
 	</div>
 
-	<div style='display: table-cell; width: 33.3333333333%; vertical-align: top;'>
+	<div style='display: table-cell; width: 200px; vertical-align: top;'>
 
 		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
 			SOBRE SU COMPORTAMIENTO
@@ -254,7 +254,7 @@
 
 	</div>
 
-	<div style='display: table-cell; width: 33.3333333333%; vertical-align: top;'>
+	<div style='display: table-cell; width: 200px; vertical-align: top;'>
 
 		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
 			SOBRE SU &Aacute;NIMO
