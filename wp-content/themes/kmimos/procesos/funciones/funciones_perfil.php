@@ -20,7 +20,7 @@
 	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_pdf"> <i class="fa fa-download" aria-hidden="true"></i> ¿Com&oacute; pagar? </a>';
     				break;
 	    			case 'valorar':
-	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_valorar"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Valorar </a>';
+	    			    $respuesta .= '<a href="'.get_home_url().'/valorar/'.$accion.'" class="vlz_accion vlz_valorar"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Valorar </a>';
     				break;
 
 
