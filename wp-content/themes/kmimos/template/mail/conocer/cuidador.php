@@ -15,25 +15,25 @@
 
 	<div style='display: block; margin-bottom: 31px;'>
 
-		<div style='display: table; margin-bottom: 40px; width: 100%;'>
-			<div style='display: table-cell; width: 62px; padding-right: 20px;'>
+		<div style='display: table; margin-bottom: 15px; width: 600px;'>
+			<div style='display: table-cell; width: 62px; padding-right: 10px;'>
 				<img src='[avatar]' style='width: 62px; height: 62px; border-radius: 50%;' >
 			</div>
-			<div style='display: table-cell; vertical-align: middle; padding-left: 16px;'>
-				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
+			<div style='display: table-cell; vertical-align: middle; padding-left: 16px; width: 368px;'>
+				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; width: 362px;'>
 					DATOS DEL CLIENTE 
 				</div>				    
-			    <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
+			    <div style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px; width: 362px;'>
 			    	[name]
 			    </div>			    
-			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px;'>
+			    <div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px; width: 362px;'>
 			    	[telefonos]
-			    </div>	  
-			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
+			    </div>   
+			    <div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px; width: 362px;'>
 			    	<a href="mailto:[email]">[email]</a>
 			    </div>
 			</div>
-			<div style='display: table-cell; width: 158.8px; height: 50.3px; border-radius: 2.8px;  vertical-align: top;'>
+			<div style='display: table-cell; width: 160px; height: 50.3px; border-radius: 2.8px;  vertical-align: top;'>
 				<div style='background-color: #f4f4f4; height: 50.3px;'>
 					<div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px 0px 0px 10px;'>
 						Tu código de solicitud es:
@@ -45,25 +45,25 @@
 			</div>
 		</div>
 
-		<div style='display: table; margin-bottom: 31px; width: 100%;'>
-			<div style='display: table-cell; width: 62px; padding-right: 20px;'>
-				<img src='[URL_IMGS]/calendar.png' style='width: 77px; height: 70px;' >
+		<div style='display: table; margin-bottom: 15px; width: 600px;'>
+			<div style='display: table-cell; width: 62px; padding-right: 10px;'>
+				<img src='[URL_IMGS]/calendar.png' style='width: 62px; height: 62px;' >
 			</div>
-			<div style='display: table-cell; vertical-align: top; padding-left: 0px;'>
-				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
+			<div style='display: table-cell; vertical-align: top; padding-left: 0px; width: 264px;'>
+				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; width: 260px;'>
 					DATOS DE LA REUNIÓN 
 				</div>				    
-			    <div style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
+			    <div style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px; width: 260px;'>
 			    	[fecha]
 			    </div>			    
-			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px;'>
+			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px; width: 260px;'>
 			    	[hora] horas
 			    </div>		    
-			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
+			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px; width: 260px;'>
 			    	[lugar]
 			    </div>
 			</div>
-			<div style='display: table-cell; vertical-align: top; padding-left: 16px;'>
+			<div style='display: table-cell; vertical-align: top; padding-left: 16px; width: 264px;'>
 				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
 					POSIBLE FECHA DE ESTADÍA 
 				</div>				    
