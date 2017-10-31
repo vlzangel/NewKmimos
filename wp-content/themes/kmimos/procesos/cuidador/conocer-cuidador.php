@@ -183,7 +183,7 @@
 		                    ".$tamanos_array[ $data_mascota['size_pet'][0] ]."
 		                </td>
 		                <td style='padding: 7px;'>
-		                    ".implode("", $temp)."
+		                    ".implode(",<br>", $temp)."
 		                </td>
 		            </tr>
 				";

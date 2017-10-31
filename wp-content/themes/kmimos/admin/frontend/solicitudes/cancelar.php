@@ -1,12 +1,12 @@
 <?php
 
-    $PATH_TEMPLATE = (dirname(dirname(dirname(__DIR__))));
+	$PATH_TEMPLATE = (dirname(dirname(dirname(__DIR__))));
     
     global $wpdb;
 
     $id_orden = vlz_get_page();
 
-    $acc = "CFM"; $usu = "CUI";
+    $acc = "CCL"; $usu = "CUI";
 
     $current_user = wp_get_current_user();
 	$user_id = $current_user->ID;
