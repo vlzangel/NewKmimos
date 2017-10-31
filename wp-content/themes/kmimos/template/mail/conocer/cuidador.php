@@ -20,7 +20,7 @@
 				<td style='width: 62px; padding-right: 20px;'>
 					<img src='[avatar]' style='width: 62px; height: 62px; border-radius: 50%;' >
 				</td>
-				<td style='vertical-align: middle; padding-left: 16px;'>
+				<td style='vertical-align: middle; padding-left: 16px; width: 326px;'>
 					<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
 						DATOS DEL CLIENTE 
 					</div>				    
@@ -34,7 +34,7 @@
 				    	<a href="mailto:[email]">[email]</a>
 				    </div>
 				</td>
-				<td style='width: 158.8px; height: 50.3px; border-radius: 2.8px;  vertical-align: top;'>
+				<td style='width: 159px; height: 50.3px; border-radius: 2.8px;  vertical-align: top;'>
 					<div style='background-color: #f4f4f4; height: 50.3px;'>
 						<div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px 0px 0px 10px;'>
 							Tu código de solicitud es:
@@ -52,7 +52,7 @@
 				<td style='width: 62px; padding-right: 20px;'>
 					<img src='[URL_IMGS]/calendar.png' style='width: 77px; height: 70px;' >
 				</td>
-				<td style='vertical-align: top; padding-left: 0px;'>
+				<td style='vertical-align: top; padding-left: 0px; width: 242.5px;'>
 					<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
 						DATOS DE LA REUNIÓN 
 					</div>				    
@@ -66,7 +66,7 @@
 				    	[lugar]
 				    </div>
 				</td>
-				<td style='vertical-align: top; padding-left: 16px;'>
+				<td style='vertical-align: top; padding-left: 16px; width: 226.5px;'>
 					<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
 						POSIBLE FECHA DE ESTADÍA 
 					</div>				    
