@@ -2,25 +2,6 @@
 	extract($_GET);
 	if( isset($_GET["id_orden"]) ){
 		include(((dirname(dirname(dirname(dirname(dirname(__DIR__)))))))."/wp-load.php");
-	    echo "
-	        <a href='".get_home_url()."/perfil-usuario/solicitudes/' style='
-	            border-top: solid 1px #CCC;
-	            border-bottom: solid 1px #CCC;
-	            margin: 10px auto;
-	            width: 600px;
-	            padding: 10px 0px;
-	            font-weight: 600;
-	            font-family: Arial;
-	            text-align: center;
-	            cursor: pointer;
-	            font-size: 13px;
-	            text-decoration: none;
-	            color: #000;
-	            display: block;
-	        '>
-	            Volver
-	        </a>
-	    ";
 	}
 
 	global $wpdb;
@@ -31,6 +12,7 @@
 	add_filter( 'wp_mail_from_name', function( $name ) { global $info; return $info["titulo"]; });
     add_filter( 'wp_mail_from', function( $email ) { global $info; return $info["email"]; });
 
+	$continuar = true;
     $status = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = $id_orden AND meta_key = 'request_status';");
 	if( $status != 1 ){
 		$estado = array(
@@ -39,11 +21,7 @@
 			4 => "Cancelada"
 		);
 		$msg = "
-			<div style='text-align:center; margin-bottom: 34px;'>
-				<img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/confirmacion_conocer_cuidador.png' style='width: 100%;' >
-			</div>
-
-			<div style='padding: 0px; margin-bottom: 34px;'>
+			<div class='msg_acciones'>
 
 				<div style='margin-bottom: 15px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
 					<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px; text-align: left;'>
@@ -58,32 +36,35 @@
 				</div>
 			</div>
 		";
-   		echo get_email_html($msg, false);
-
-   		exit;
+   		$CONTENIDO .= $msg;
+   		$continuar = false;
 	}
 
-	$metas_solicitud = get_post_meta($id_orden); 
+	if( $continuar ){
 
-	/* Cuidador */
-    	$cuidador_name 	= $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = '".$metas_solicitud['requested_petsitter'][0]."'");
-		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$metas_solicitud['requested_petsitter'][0]."'");
-		$email_cuidador = $cuidador->email;
+		$metas_solicitud = get_post_meta($id_orden); 
 
-    /* Cliente */
+		/* Cuidador */
+	    	$cuidador_name 	= $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = '".$metas_solicitud['requested_petsitter'][0]."'");
+			$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$metas_solicitud['requested_petsitter'][0]."'");
+			$email_cuidador = $cuidador->email;
 
-	    $cliente = $metas_solicitud['requester_user'][0];
-		$metas_cliente = get_user_meta($cliente);
-		$cliente_name = $metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0];
+	    /* Cliente */
 
-		$user_cliente = get_user_by( 'id', $cliente );
-		$email_cliente = $user_cliente->data->user_email;
+		    $cliente = $metas_solicitud['requester_user'][0];
+			$metas_cliente = get_user_meta($cliente);
+			$cliente_name = $metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0];
 
-    if( $acc == "CFM" ){
-    	include(__DIR__."/confirmar.php");
-    }
+			$user_cliente = get_user_by( 'id', $cliente );
+			$email_cliente = $user_cliente->data->user_email;
 
-    if( $acc == "CCL" ){
-    	include(__DIR__."/cancelar.php");
-    }
+	    if( $acc == "CFM" ){
+	    	include(__DIR__."/confirmar.php");
+	    }
+
+	    if( $acc == "CCL" ){
+	    	include(__DIR__."/cancelar.php");
+	    }
+	    
+	}
 ?>

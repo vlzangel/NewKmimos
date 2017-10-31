@@ -28,10 +28,10 @@
 	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-info" aria-hidden="true"></i> Ver</a>';
     				break;
 	    			case 'confirmar_s':
-	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
+	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
     				break;
 	    			case 'cancelar_s':
-	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
+	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
     				break;
 	    			
 	    		}
