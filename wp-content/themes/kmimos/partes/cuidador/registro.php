@@ -316,7 +316,7 @@
 						</p>
 					</aside>
 					<div class="col-sm-12">
-						<a  id="finalizar-registro-cuidador" 
+						<a style="cursor:pointer;"  id="finalizar-registro-cuidador" 
 							data-href="<?php echo get_home_url(); ?>/perfil-usuario/" 
 							class="km-btn">CONTINUAR</a>
 					</div>

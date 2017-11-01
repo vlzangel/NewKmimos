@@ -351,7 +351,7 @@ jQuery(document).on('click', '#finalizar-registro-cuidador', function(){
 
 	setTimeout(function() {
 		location.href = url;
-    },2000);
+    },1500);
 
 });
 
