@@ -2702,6 +2702,7 @@ footer input:focus{
 	.km-opciones-resultados .km-orden-resultados,
 	.km-opciones-resultados{
 		width: 100%!important;
+		text-align: left;
 	}
 
 }
