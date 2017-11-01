@@ -328,17 +328,31 @@ jQuery(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-regis
 				
 				if( data['fields'].length > 0 ){
 					jQuery.each(data['fields'], function(id, val){
-						
 						mensaje( val['name'],val['msg']  );
 					});
 				}
 				obj.html('SIGUIENTE');
 			}else{
+				jQuery('[data-id="ilernus-user"]').html( jQuery('[name="rc_email"]').val() );
+				jQuery('[data-id="ilernus-pass"]').html( jQuery('[name="rc_clave"]').val() );
+
 				jQuery(".popup-registro-cuidador-paso3").hide();
 				jQuery(".popup-registro-exitoso-final").fadeIn("fast");
 			}
 		});
 	}
+});
+
+jQuery(document).on('click', '#finalizar-registro-cuidador', function(){
+
+	var url = jQuery(this).attr('data-href');
+
+	$("<a>").attr("href", "https://kmimos.ilernus.com/login/index.php").attr("target", "_blank")[0].click();
+
+	setTimeout(function() {
+		location.href = url;
+    },2000);
+
 });
 
 /*POPUP REGISTRO CUIDADOR*/
