@@ -294,13 +294,16 @@ function close_login_modal(){
     jQuery(".modal_login").hide();
 }
 
-function postJSON(FORM, URL, ANTES, RESPUESTA){
+function postJSON(FORM, URL, ANTES, RESPUESTA, TIPO = ""){
 	jQuery("#"+FORM).submit(function( event ) {
 	  	event.preventDefault();
         if( validarAll(FORM) ){
             ANTES();
-            /*jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json');*/
-            jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA);
+            if( TIPO == "json" ){
+                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json');
+            }else{
+                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA);
+            }
         }
 	});
 }
