@@ -713,44 +713,37 @@ function vista_previa(evt) {
 
     jQuery("#loading-mascota").css("display", "block");
 
-  	var files = evt.target.files;
-  	for (var i = 0, f; f = files[i]; i++) {  
-       	if (!f.type.match("image.*")) {
-            continue;
-       	}
-       	var reader = new FileReader();
-       	reader.onload = (function(theFile) {
-           return function(e) {
-    			redimencionar(e.target.result, function(img_reducida){
-    				var a = RAIZ+"imgs/procesar.php";
-    				var img_pre = jQuery("#img_pet").val();
-    				
-    				 $.ajax({
-                      async:true, 
-                      cache:false, 
-                      type: 'POST',   
-                      url: a,
-                      data: {img: img_reducida, previa: img_pre}, 
-                      success:  function(url){
-			      		jQuery("#km-datos-foto").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")");
-	        			jQuery("#img_pet").val( url );
-					    jQuery("#loading-mascota").css("display", "none");
-                      },
-                      beforeSend:function(){
-                      	 jQuery("#loading-mascota").css("display", "block");
-                      },
-                      afterSend:function(){
-                      	 jQuery("#loading-mascota").css("display", "none");
-                      },
-                      error:function(objXMLHttpRequest){
-                      	 jQuery("#loading-mascota").css("display", "none");
-                      }
-                    });
-    			});
-           };
-		})(f);
-		reader.readAsDataURL(f);
-   	} 
+    var files = evt.target.files;
+	getRealMime(this.files[0]).then(function(MIME){
+        if( MIME.match("image.*") ){
+
+        	jQuery("#loading-mascota").css("display", "block");
+
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    redimencionar(e.target.result, function(img_reducida){
+                        var img_pre = jQuery(".vlz_rotar_valor").attr("value");
+                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: img_pre}, function( url ) {
+                           
+                        	jQuery("#km-datos-foto").css("background-image", "url("+RAIZ+"imgs/Temp/"+url+")");
+							jQuery("#img_pet").val( url );
+							jQuery("#loading-mascota").css("display", "none");
+
+                            jQuery("#nueva_mascota .btn_rotar").css("display", "block");
+                        });
+                    });      
+                };
+           })(files[0]);
+           reader.readAsDataURL(files[0]);
+        }else{
+        	padre.children('#carga_foto_profile').val("");
+            alert("Solo se permiten imagenes");
+        }
+    }).catch(function(error){
+        padre.children('#carga_foto_profile').val("");
+        alert("Solo se permiten imagenes");
+    }); 
 }      
 jQuery("#km-datos-foto").on('click', function(){
 	jQuery("#carga_foto").trigger("click");
@@ -784,7 +777,7 @@ function vista_previa_perfil(evt) {
 							jQuery(".kmimos_cargando").css("visibility", "hidden");
 							jQuery("#loading-perfil").css("display", "none");
 
-                            jQuery(".btn_rotar").css("display", "block");
+                            jQuery("#form_nuevo_cliente .btn_rotar").css("display", "block");
                         });
                     });      
                 };
