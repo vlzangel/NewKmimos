@@ -258,7 +258,7 @@
 		}
 
 		$HTML = '
-	 		<div  style =\"height:800px\" class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
+	 		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 				<div class="overlay"></div>
 			</div>
 			<div class="body km-content-reservation">

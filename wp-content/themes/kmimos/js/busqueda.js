@@ -317,7 +317,7 @@ function initMap() {
 							+'    <div class="km-sellos"> '+servicios+' </div>'
 							+'</div>'
 							+'<div class="km-opciones maps">'
-							+'    <div class="precio">MXN jQuery '+cuidador.pre+'</div>'
+							+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
 							+'</div>'
