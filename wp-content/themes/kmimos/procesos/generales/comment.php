@@ -68,8 +68,8 @@ if( $xip != "" ){
 					si eres una persona por favor comunicate con el Staff Kmimos a trav&eacute;s del Mail: <b>contactomex@kmimos.la</b> enviando el
 					siguiente c&oacute;digo <b>['.$ips[0]->token.']</b> y atenderemos tu solicitud a la brevedad posible.</p>';
 
-		$return['result']='error';
-		$return['message']=$error;
+		$return['result'] = 'error';
+		$return['message'] = $error;
 	}else{
 		if( $bloquear ){
 			if( $ips == false ){
@@ -89,8 +89,8 @@ if( $xip != "" ){
 
 }else{
 	$error = '<strong>AVISO</strong><p style="text-align: justify;">No hemos podido detectar tu direcci&oacute;n IP, esta representa tu identificador en internet, por seguridad no podemos permitir comentarios de fuentes an&oacute;nimas.</p>';
-	$return['result']='error';
-	$return['message']=$error;
+	$return['result'] = 'error';
+	$return['message'] = $error;
 }
 
 //echo $i++;
@@ -109,10 +109,14 @@ if($return['result']!='error'){
 
 		}
 	}
+
+	global $wpdb;
+	$wpdb->get_query("UPDATE wp_comments SET comment_approved = '0' WHERE comment_ID=".$comment->comment_ID);
 }
 
 $user = wp_get_current_user();
 do_action( 'set_comment_cookies', $comment, $user );
+
 //$location = empty( $_POST['redirect_to'] ) ? get_comment_link( $comment ) : $_POST['redirect_to'] . '#comment-' . $comment->comment_ID;
 //$location = apply_filters( 'comment_post_redirect', $location, $comment );
 //wp_safe_redirect( $location );
