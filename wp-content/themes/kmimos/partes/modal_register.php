@@ -211,124 +211,125 @@ $HTML .='
 				<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 				<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
 
-				<div class="img_registro_cliente" style="position: relative">
-					<div class="km-datos-foto vlz_rotar" id="km-datos-foto" data-init-img="'.getTema().'/images/popups/registro-cuidador-foto.png" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.png);">
-						<div id="loading-mascota" style="width:100%;line-height: 100%;display:none" class="vlz_cargando">
-							<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
-						</div>
-					</div>
-
-					<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
-	                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
-
-	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
-				</div>
-				
-				<input type="file" class="hidden" id="carga_foto" accept="image/*">
-				<input type="hidden" id="img_pet" name="img_pet" value="" class="vlz_rotar_valor">
-
 				<form id="nueva_mascota" enctype="multipart/form-data" method="POST">
-				<div class="km-box-form">
-					<div class="content-placeholder">
-						<div class="label-placeholder">
-							<label>Nombre de tu mascota</label>
-							<input type="text" name="nombre_mascota" data-charset="xlf" data-change="xlf" id="nombre_mascota" class="input-label-placeholder">
+
+					<div class="img_registro_cliente" style="position: relative">
+						<div class="km-datos-foto vlz_rotar" id="km-datos-foto" data-init-img="'.getTema().'/images/popups/registro-cuidador-foto.png" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.png);">
+							<div id="loading-mascota" style="width:100%;line-height: 100%;display:none" class="vlz_cargando">
+								<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
+							</div>
 						</div>
-						<div class="km-datos-mascota">
-							<select class="km-datos-mascota-opcion bg-select-custom" name="tipo_mascota" id="tipo_mascota">
-								<option value="">Tipo de Mascota</option>
-								<option value="2605">Perros</option>
-								<option value="2608">Gatos</option>
-							</select>
-							<select class="km-datos-mascota-opcion bg-select-custom" name="raza_mascota" id="raza_mascota">
-								<option value="">Raza de la Mascota</option>
-							</select>
-						</div>
-						<div class="label-placeholder">
-							<label>Color de tu mascota</label>
-							<input type="text" name="color_mascota" data-charset="xlf" data-change="xlf" id="color_mascota" class="input-label-placeholder">
-						</div>
-						<div class="km-fecha-nacimiento">
-							<input type="text" name="date_birth" id="datepets" placeholder="Fecha de Nacimiento" class="date_birth" readonly>
-						</div>
-						<div class="km-datos-mascota">
-							<select class="km-datos-mascota-opcion bg-select-custom" name="genero_mascota" id="genero_mascota">
-								<option value="">Género</option>
-								<option value="1">Macho</option>
-								<option value="2">Hembra</option>
-							</select>
+
+						<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+		                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
+
+		                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
+					</div>
+					
+					<input type="file" class="hidden" id="carga_foto" accept="image/*">
+					<input type="hidden" id="img_pet" name="img_pet" value="" class="vlz_rotar_valor">
+					
+					<div class="km-box-form">
+						<div class="content-placeholder">
+							<div class="label-placeholder">
+								<label>Nombre de tu mascota</label>
+								<input type="text" name="nombre_mascota" data-charset="xlf" data-change="xlf" id="nombre_mascota" class="input-label-placeholder">
+							</div>
+							<div class="km-datos-mascota">
+								<select class="km-datos-mascota-opcion bg-select-custom" name="tipo_mascota" id="tipo_mascota">
+									<option value="">Tipo de Mascota</option>
+									<option value="2605">Perros</option>
+									<option value="2608">Gatos</option>
+								</select>
+								<select class="km-datos-mascota-opcion bg-select-custom" name="raza_mascota" id="raza_mascota">
+									<option value="">Raza de la Mascota</option>
+								</select>
+							</div>
+							<div class="label-placeholder">
+								<label>Color de tu mascota</label>
+								<input type="text" name="color_mascota" data-charset="xlf" data-change="xlf" id="color_mascota" class="input-label-placeholder">
+							</div>
+							<div class="km-fecha-nacimiento">
+								<input type="text" name="date_birth" id="datepets" placeholder="Fecha de Nacimiento" class="date_birth" readonly>
+							</div>
+							<div class="km-datos-mascota">
+								<select class="km-datos-mascota-opcion bg-select-custom" name="genero_mascota" id="genero_mascota">
+									<option value="">Género</option>
+									<option value="1">Macho</option>
+									<option value="2">Hembra</option>
+								</select>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row row-sin-padding" class="tamano-mascota-content" style="margin-bottom: 20px;">
-					<div class="col-xs-6 col-sm-3">
-						<div class="km-opcion" id="select_1" value="0">
-							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg" width="25">
+					<div class="row row-sin-padding" class="tamano-mascota-content" style="margin-bottom: 20px;">
+						<div class="col-xs-6 col-sm-3">
+							<div class="km-opcion" id="select_1" value="0">
+								<img src="'.getTema().'/images/new/icon/icon-pequenio.svg" width="25">
+								<br>
+								<div class="km-opcion-text">
+									<b>PEQUEÑO</b><br> 0 a 25 cm
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<div class="km-opcion" id="select_2" value="1">
+								<img src="'.getTema().'/images/new/icon/icon-mediano.svg" width="25">
 							<br>
-							<div class="km-opcion-text">
-								<b>PEQUEÑO</b><br> 0 a 25 cm
+								<div class="km-opcion-text">
+									<b>MEDIANO</b><br> 25 a 58 cm
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<div class="km-opcion" id="select_3" value="2">
+								<img src="'.getTema().'/images/new/icon/icon-grande.svg" width="25">
+							<br>
+								<div class="km-opcion-text">
+									<b>GRANDE</b><br> 58 a 73 cm</div>
+								</div>
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<div class="km-opcion" id="select_4" value="3">
+								<img src="'.getTema().'/images/new/icon/icon-gigante.svg" width="25">
+							<br>
+								<div class="km-opcion-text"><b>
+									GIGANTE</b><br> 73 a 200 cm
+								</div
+							></div>
+						</div>
+					</div>
+					<div class="km-registro-checkbox">
+						<div class="km-registro-checkbox-opcion">
+							<p>Mascota Esterilizada</p>
+							<div class="km-check-1">
+								<input type="checkbox" value="0" id="km-check-1" name="estilizada" />
+								<label for="km-check-1"></label>
+							</div>
+						</div>
+						<div class="km-registro-checkbox-opcion">
+							<p>Mascota Sociable</p>
+							<div class="km-check-2">
+								<input type="checkbox" value="0" id="km-check-2" name="sociable" />
+								<label for="km-check-2"></label>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6 col-sm-3">
-						<div class="km-opcion" id="select_2" value="1">
-							<img src="'.getTema().'/images/new/icon/icon-mediano.svg" width="25">
-						<br>
-							<div class="km-opcion-text">
-								<b>MEDIANO</b><br> 25 a 58 cm
+					<div class="km-registro-checkbox" style="margin-top: 0px;">
+						<div class="km-registro-checkbox-opcion">
+							<p>Agresiva con Humanos</p>
+							<div class="km-check-3">
+								<input type="checkbox" value="0" id="km-check-3" name="agresiva_humano" />
+								<label for="km-check-3"></label>
+							</div>
+						</div>
+						<div class="km-registro-checkbox-opcion">
+							<p>Agresiva con Mascotas</p>
+							<div class="km-check-4">
+								<input type="checkbox" value="0" id="km-check-4" name="agresiva_mascota" />
+								<label for="km-check-4"></label>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6 col-sm-3">
-						<div class="km-opcion" id="select_3" value="2">
-							<img src="'.getTema().'/images/new/icon/icon-grande.svg" width="25">
-						<br>
-							<div class="km-opcion-text">
-								<b>GRANDE</b><br> 58 a 73 cm</div>
-							</div>
-					</div>
-					<div class="col-xs-6 col-sm-3">
-						<div class="km-opcion" id="select_4" value="3">
-							<img src="'.getTema().'/images/new/icon/icon-gigante.svg" width="25">
-						<br>
-							<div class="km-opcion-text"><b>
-								GIGANTE</b><br> 73 a 200 cm
-							</div
-						></div>
-					</div>
-				</div>
-				<div class="km-registro-checkbox">
-					<div class="km-registro-checkbox-opcion">
-						<p>Mascota Esterilizada</p>
-						<div class="km-check-1">
-							<input type="checkbox" value="0" id="km-check-1" name="estilizada" />
-							<label for="km-check-1"></label>
-						</div>
-					</div>
-					<div class="km-registro-checkbox-opcion">
-						<p>Mascota Sociable</p>
-						<div class="km-check-2">
-							<input type="checkbox" value="0" id="km-check-2" name="sociable" />
-							<label for="km-check-2"></label>
-						</div>
-					</div>
-				</div>
-				<div class="km-registro-checkbox" style="margin-top: 0px;">
-					<div class="km-registro-checkbox-opcion">
-						<p>Agresiva con Humanos</p>
-						<div class="km-check-3">
-							<input type="checkbox" value="0" id="km-check-3" name="agresiva_humano" />
-							<label for="km-check-3"></label>
-						</div>
-					</div>
-					<div class="km-registro-checkbox-opcion">
-						<p>Agresiva con Mascotas</p>
-						<div class="km-check-4">
-							<input type="checkbox" value="0" id="km-check-4" name="agresiva_mascota" />
-							<label for="km-check-4"></label>
-						</div>
-					</div>
-				</div>
 				</form>						
 				<a href="#" class="km-btn-correo km-btn-popup-registrarte-datos-mascota">REGISTRARME</a>
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
