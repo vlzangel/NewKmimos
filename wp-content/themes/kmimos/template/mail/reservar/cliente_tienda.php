@@ -28,7 +28,7 @@
         
     </div>
     
-    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #666666; text-align: center; margin-bottom: 30px;'>
+    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #2d2d2d; text-align: center; margin-bottom: 30px;'>
         (Dar click para ver instrucciones)
     </div>
     
