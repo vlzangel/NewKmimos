@@ -847,6 +847,7 @@ button.close {
     color: #6b6767;
     height: auto!important;
 }
+.km-select-button-nojs,
 .km-select-custom-button{
 	position: relative;
 	background-color: #FFF;
@@ -2698,13 +2699,13 @@ footer input:focus{
 		font-size: 11px;
 	}
 
-	.km-opciones-resultados .km-orden-resultados .btn-group,
-	.km-opciones-resultados .km-orden-resultados,
 	.km-opciones-resultados{
-		width: 100%!important;
-		text-align: left;
+		width: auto;
 	}
 
+	.km-opciones-resultados .km-orden-resultados{
+		display: none;
+	}
 }
 
 @media all and (max-width: 430px) {
@@ -5965,7 +5966,9 @@ h1.maps {
     .km-opciones-resultados {
         width:auto
     }
-
+    .km-opciones-resultados .km-orden-resultados {
+        display:none
+    }
 }
 @media all and (max-width:430px) {
     .km-resultados-lista .km-item-resultado .km-foto {
