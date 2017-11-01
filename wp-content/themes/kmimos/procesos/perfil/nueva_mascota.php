@@ -19,7 +19,6 @@
 	        copy($path_origen, $path_destino);
 	        unlink($path_origen);
 	    }
-
 	    
 	    $img_portada = "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'photo_pet', '{$sub_path}{$portada}'); ";
 	}

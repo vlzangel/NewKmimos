@@ -26,7 +26,9 @@
 			$btn_txt = "Nueva Mascota";
 		break;
 		case 'valorar':
-		include("admin/frontend/valorar_cuidador.php");
+			$btn_txt = "Enviar valoración";
+		    wp_enqueue_style('valorar_css', getTema()."/css/valorar.css", array(), '1.0.0');
+		    wp_enqueue_script('valorar_js', getTema()."/js/valorar.js", array(), '1.0.0');
 		break;
 		case 'ver':
 			$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
@@ -49,12 +51,6 @@
 					wp_enqueue_style('ver_mascotas', getTema()."/css/ver_mascotas.css", array(), '1.0.0');
 					wp_enqueue_style('ver_mascotas_responsive', getTema()."/css/responsive/ver_mascotas_responsive.css", array(), '1.0.0');
 					wp_enqueue_script('ver_mascotas', getTema()."/js/ver_mascotas.js", array("jquery", "global_js"), '1.0.0');
-				break;
-
-				case 'valorar':
-					wp_enqueue_style('ver_valorar', getTema()."/css/ver_valorar.css", array(), '1.0.0');
-					wp_enqueue_style('ver_valorar_responsive', getTema()."/css/responsive/ver_valorar_responsive.css", array(), '1.0.0');
-					wp_enqueue_script('ver_valorar', getTema()."/js/ver_valorar.js", array("jquery", "global_js"), '1.0.0');
 				break;
 			}
 		break;
@@ -169,6 +165,9 @@
 						include("admin/frontend/mascotas/ver.php");
 					break;
 				}
+			break;
+			case 'valorar':
+				include("admin/frontend/historial/valorar.php");
 			break;
 			case 'cancelar':
 				$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
