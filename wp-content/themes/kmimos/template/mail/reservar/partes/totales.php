@@ -1,5 +1,8 @@
-<div style='overflow: hidden;'>
-    <table cellpadding="0" cellspacing="0" style='float: right; width: 300px; background-color: #FFF; font-family: Arial; font-size: 10px; font-weight: bold; line-height: 1.5; letter-spacing: 0.2px; color: #000000; border: solid 1px #CCC; border-radius: 2.8px;'>
+<div style='overflow: hidden; min-width: 600px; max-width:600px;'>
+
+    <table cellpadding="0" cellspacing="0" width="600px" 
+        style='float: right; width: 600px; background-color: #FFF; font-family: Arial; font-size: 10px; font-weight: bold; line-height: 1.5; letter-spacing: 0.2px; color: #000000; border: solid 1px #CCC; border-radius: 2.8px;'>
+
         <tr style=''>
             <td style='width: 100px; background-color: #f4f4f4; text-align: left; vertical-align: middle;  padding: 5px 7px;'>
                 TOTAL

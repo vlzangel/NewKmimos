@@ -847,6 +847,7 @@ button.close {
     color: #6b6767;
     height: auto!important;
 }
+.km-select-button-nojs,
 .km-select-custom-button{
 	position: relative;
 	background-color: #FFF;
