@@ -2698,13 +2698,12 @@ footer input:focus{
 		font-size: 11px;
 	}
 
+	.km-opciones-resultados .km-orden-resultados .btn-group,
+	.km-opciones-resultados .km-orden-resultados,
 	.km-opciones-resultados{
-		width: auto;
+		width: 100%!important;
 	}
 
-	.km-opciones-resultados .km-orden-resultados{
-		display: none;
-	}
 }
 
 @media all and (max-width: 430px) {
@@ -5965,9 +5964,7 @@ h1.maps {
     .km-opciones-resultados {
         width:auto
     }
-    .km-opciones-resultados .km-orden-resultados {
-        display:none
-    }
+
 }
 @media all and (max-width:430px) {
     .km-resultados-lista .km-item-resultado .km-foto {
