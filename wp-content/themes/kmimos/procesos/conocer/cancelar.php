@@ -119,6 +119,7 @@
         $mensaje_cuidador = get_email_html( $mensaje_cuidador );  
         wp_mail( $email_cuidador, "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
 
+        kmimos_mails_administradores_new("Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
     
     if( $usu != "STM" ){
         $CONTENIDO .= "<div class='msg_acciones'>Te notificamos que la solicitud para conocer cuidador <strong>#".$id_orden."</strong>, ha sido cancelada exitosamente.</div>";
