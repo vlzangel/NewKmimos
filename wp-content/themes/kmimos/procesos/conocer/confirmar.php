@@ -28,6 +28,8 @@
 
     wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $mensaje_cuidador);
 
+    kmimos_mails_administradores_new("Confirmación de Solicitud para Conocerte", $mensaje_cliente);
+
     $CONTENIDO .= "<div class='msg_acciones'>
         <strong>¡Todo esta listo!</strong><br>
         La solicitud para conocer cuidador <strong>#".$id_orden."</strong>, ha sido confirmada exitosamente de acuerdo a tu petición.

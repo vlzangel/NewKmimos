@@ -88,4 +88,7 @@
 	    $mensaje_cuidador = get_email_html($mensaje_cuidador, false);
 
 		wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
+
+
+        kmimos_mails_administradores_new('Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
 ?>
