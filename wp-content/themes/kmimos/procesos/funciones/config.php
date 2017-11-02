@@ -1,5 +1,5 @@
 <?php
-	$OPENPAY_PRUEBAS = 0;
+	$OPENPAY_PRUEBAS = 1;
 
 	$OPENPAY_URL = ( $OPENPAY_PRUEBAS == 1 ) ? "https://sandbox-dashboard.openpay.mx" : "https://dashboard.openpay.mx";
 	
