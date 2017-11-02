@@ -101,7 +101,8 @@
                 'BCC: a.lazaro@kmimos.la',
                 'BCC: r.cuevas@kmimos.la',
                 'BCC: r.gonzalez@kmimos.la',
-                'BCC: m.castellon@kmimos.la'
+                'BCC: m.castellon@kmimos.la',
+                'BCC: y.chaudary@kmimos.la'
             );
 
             wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
