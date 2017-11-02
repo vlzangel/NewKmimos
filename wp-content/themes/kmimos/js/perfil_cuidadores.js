@@ -44,50 +44,79 @@ function comentarios(pagina = 0){
 	var bond_porcent=0;
 	var comentario = '';
 	jQuery.each(comentarios_cuidador, function( pagina, cuidador ) {
-		comentario += '	<div class="km-comentario">';
-		comentario += '			<div class="row">';
-		comentario += '				<div class="col-xs-2">';
-		comentario += '					<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
-		comentario += '				</div>';
-		comentario += '				<div class="col-xs-9 pull-right">';
-		comentario += '					<p>'+ comentarios_cuidador[pagina]["contenido"]+'</p>';
-		comentario += '					<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
-		comentario += '					<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
-		comentario += '				</div>';
-		comentario += '			</div>';
-		comentario += '			<div class="row km-review-categoria">';
-		comentario += '				<div class="col-xs-6 col-md-3">';
-		comentario += '				<p>CUIDADO</p>';
-		comentario += '				<div class="km-ranking">';
-		comentario += 					get_huesitos(comentarios_cuidador[pagina]["cuidado"]);
-		comentario += '				</div>';
-		comentario += '			</div>';
-		comentario += '			<div class="col-xs-6 col-md-3">';
-		comentario += '				<p>PUNTUALIDAD</p>';
-		comentario += '				<div class="km-ranking">';
-		comentario += 					get_huesitos(comentarios_cuidador[pagina]["puntualidad"]);
-		comentario += '				</div>';
-		comentario += '			</div>';
-		comentario += '			<div class="col-xs-6 col-md-3">';
-		comentario += '				<p>LIMPIEZA</p>';
-		comentario += '				<div class="km-ranking">';
-		comentario += 					get_huesitos(comentarios_cuidador[pagina]["limpieza"]);
-		comentario += '				</div>';
-		comentario += '			</div>';
-		comentario += '			<div class="col-xs-6 col-md-3">';
-		comentario += '				<p>CONFIANZA</p>';
-		comentario += '				<div class="km-ranking">';
-		comentario += 					get_huesitos(comentarios_cuidador[pagina]["confianza"]);
-		comentario += '				</div>';
-		comentario += '			</div>';
-		comentario += '		</div>';
-		comentario += '	</div>';
 
-		var bond_testimony=0;
-			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["confianza"]);
-			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["limpieza"]);
-			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["puntualidad"]);
-			bond_testimony=bond_testimony+parseFloat(comentarios_cuidador[pagina]["cuidado"]);
+		console.log( cuidador );
+
+		var bond_testimony = 0;
+
+		if(
+			comentarios_cuidador[pagina]["cuidado"] 		> 0 &&
+			comentarios_cuidador[pagina]["puntualidad"] 	> 0 &&
+			comentarios_cuidador[pagina]["limpieza"] 		> 0 &&
+			comentarios_cuidador[pagina]["confianza"] 		> 0
+		){
+
+			comentario += '	<div class="km-comentario">';
+			comentario += '			<div class="row">';
+			comentario += '				<div class="col-xs-2">';
+			comentario += '					<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
+			comentario += '				</div>';
+			comentario += '				<div class="col-xs-9 pull-right">';
+			comentario += '					<p>'+ comentarios_cuidador[pagina]["contenido"]+'</p>';
+			comentario += '					<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
+			comentario += '					<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
+			comentario += '				</div>';
+			comentario += '			</div>';
+			comentario += '			<div class="row km-review-categoria">';
+			comentario += '				<div class="col-xs-6 col-md-3">';
+			comentario += '				<p>CUIDADO</p>';
+			comentario += '				<div class="km-ranking">';
+			comentario += 					get_huesitos(comentarios_cuidador[pagina]["cuidado"]);
+			comentario += '				</div>';
+			comentario += '			</div>';
+			comentario += '			<div class="col-xs-6 col-md-3">';
+			comentario += '				<p>PUNTUALIDAD</p>';
+			comentario += '				<div class="km-ranking">';
+			comentario += 					get_huesitos(comentarios_cuidador[pagina]["puntualidad"]);
+			comentario += '				</div>';
+			comentario += '			</div>';
+			comentario += '			<div class="col-xs-6 col-md-3">';
+			comentario += '				<p>LIMPIEZA</p>';
+			comentario += '				<div class="km-ranking">';
+			comentario += 					get_huesitos(comentarios_cuidador[pagina]["limpieza"]);
+			comentario += '				</div>';
+			comentario += '			</div>';
+			comentario += '			<div class="col-xs-6 col-md-3">';
+			comentario += '				<p>CONFIANZA</p>';
+			comentario += '				<div class="km-ranking">';
+			comentario += 					get_huesitos(comentarios_cuidador[pagina]["confianza"]);
+			comentario += '				</div>';
+			comentario += '			</div>';
+			comentario += '		</div>';
+			comentario += '	</div>';
+
+			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["confianza"]);
+			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["limpieza"]);
+			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["puntualidad"]);
+			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["cuidado"]);
+
+		}else{
+
+			comentario += '	<div class="km-comentario">';
+			comentario += '			<div class="row">';
+			comentario += '				<div class="col-xs-2">';
+			comentario += '					<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
+			comentario += '				</div>';
+			comentario += '				<div class="col-xs-9 pull-right">';
+			comentario += '					<p>'+ comentarios_cuidador[pagina]["contenido"]+'</p>';
+			comentario += '					<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
+			comentario += '					<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
+			comentario += '				</div>';
+			comentario += '			</div>';
+			comentario += '		</div>';
+			comentario += '	</div>';
+
+		}
 
 		bond_total=bond_total+bond_testimony;
 
