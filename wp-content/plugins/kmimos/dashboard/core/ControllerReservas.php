@@ -17,16 +17,7 @@ function getRazaDescripcion($id, $razas){
 	return $nombre;
 }
 
-function get_razas(){
-	global $wpdb;
-	$sql = "SELECT * FROM razas ";
-	$result = $wpdb->get_results($sql);
-	$razas = [];
-	foreach ($result as $raza) {
-		$razas[$raza->id] = $raza->nombre;
-	}
-	return $razas;
-}
+
 
 function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
 
@@ -139,37 +130,17 @@ function photo_exists($path=""){
 	return $photo;
 }
 
-function getEdad($fecha){
-	$fecha = str_replace("/","-",$fecha);
-	$hoy = date('Y/m/d');
 
-	$diff = abs(strtotime($hoy) - strtotime($fecha) );
-	$years = floor($diff / (365*60*60*24)); 
-	$desc = " Años";
-	$edad = $years;
-	if($edad==0){
-		$months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
-		$edad = $months;
-		$desc = ($edad > 1) ? " Meses" : " Mes";
-	}
-	if($edad==0){
-		$days  = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-		$edad = $days;
-		$desc = " Días";
-	}
-
-	return $edad . $desc;
-}
 
 
 function getMascotas($user_id){
 	if(!$user_id>0){ return []; }
 	$result = [];
 	$list = kmimos_get_my_pets($user_id);
-	$pets = explode(",",$list['list']);
 
-	foreach ($pets as $row) {
-		$result[$row] = kmimos_get_pet_info($row);
+	foreach ($list as $row) {
+		$result[$row->ID] = kmimos_get_pet_info( $row->ID );
+		break;
 	}
 	return $result;
 }

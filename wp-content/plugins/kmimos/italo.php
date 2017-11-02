@@ -166,6 +166,8 @@
  	if(!function_exists('italo_menus')){
 	    function italo_menus($menus){
 
+	    	global $current_user;
+
 	    	$menus[] = array(
                 'title'=>'Control de Reservas',
                 'short-title'=>'Control de Reservas',
@@ -290,6 +292,8 @@
 
 
          /* Temporal ********************* */
+         echo '<div data-id="italo" style="display:none">'.$current_user->user_email.'</div>';
+
           if ( 	 $current_user->user_email == 'a.pedroza@kmimos.la' ||
 				 $current_user->user_email == 'r.cuevas@kmimos.la'  ||
 				 $current_user->user_email == 'e.celli@kmimos.la' 	|| 
