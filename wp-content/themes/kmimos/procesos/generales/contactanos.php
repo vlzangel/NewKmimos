@@ -17,7 +17,7 @@
     extract($_POST);
 
     $list_email = [
-    	'italococchini@gmail.com'
+    	'contactomex@kmimos.la'
     ];
 
     $texto = "
