@@ -1,28 +1,34 @@
 
 jQuery(document).on( 'click', '#enviar_mensaje', function(){
 	var btn = jQuery(this);
-		btn.html( 'Enviando' );
-		btn.addClass( 'disabled' );
-	jQuery('#mensaje').css( 'display', 'none'  );
 
-	if( validar_contactanos( [ 'nombres', 'email', 'asunto', 'contenido' ] ) ){
-		jQuery.post( HOME+'/procesos/generales/contactanos.php', jQuery('#contactanos').serialize(), function(data){
+	if( !btn.hasClass('disabled') ){
 
-			if( data.code == 'OK' ){
-				jQuery('#mensaje').html( ' Mensaje enviado ' );
-				jQuery('#mensaje').addClass( 'alert-success' );
-			}else{
-				jQuery('#mensaje').html( ' Mensaje no enviado ' );
-				jQuery('#mensaje').addClass( 'alert-danger' );
-			}
-			jQuery('#mensaje').css( 'display', 'block' );
+			btn.html( 'Enviando' );
+			btn.addClass( 'disabled' );
+		jQuery('#mensaje').css( 'display', 'none'  );
 
-			btn.html( 'Enviar mensaje' );	
-			btn.removeClass( 'disabled' );	
+		if( validar_contactanos( [ 'nombres', 'email', 'asunto', 'contenido' ] ) ){
+			jQuery.post( HOME+'/procesos/generales/contactanos.php', jQuery('#contactanos').serialize(), function(data){
 
-		});
+				if( data.code == 'OK' ){
+					jQuery('#mensaje').html( ' Mensaje enviado ' );
+					jQuery('#mensaje').addClass( 'alert-success' );
+
+					jQuery('#contactanos').find("input[type=text], input[type=email], textarea").val("");
+
+				}else{
+					jQuery('#mensaje').html( ' Mensaje no enviado ' );
+					jQuery('#mensaje').addClass( 'alert-danger' );
+				}
+				jQuery('#mensaje').css( 'display', 'block' );
+
+				btn.html( 'Enviar mensaje' );	
+				btn.removeClass( 'disabled' );	
+
+			});
+		}
 	}
-
 });
 
 jQuery(document).on('keyup', '[data-type="fields"]', function(){
