@@ -13,7 +13,7 @@ function initMap() {
 		draggable: false,
 		animation: google.maps.Animation.DROP,
 		position: new google.maps.LatLng(latitud, longitud),
-		icon: "https://www.kmimos.com.mx/wp-content/themes/pointfinder/vlz/img/pin.png"
+		icon: "https://www.kmimos.com.mx/wp-content/themes/kmimos/js/images/n1.png"
 	});
 }
 
