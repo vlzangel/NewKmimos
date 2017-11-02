@@ -43,6 +43,7 @@ function comentarios(pagina = 0){
 	var bond_total=0;
 	var bond_porcent=0;
 	var comentario = '';
+	var cantidad_valoraciones = 0;
 	jQuery.each(comentarios_cuidador, function( pagina, cuidador ) {
 
 		console.log( cuidador );
@@ -100,6 +101,9 @@ function comentarios(pagina = 0){
 			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["puntualidad"]);
 			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["cuidado"]);
 
+			cantidad_valoraciones++;
+			bond_total=bond_total+bond_testimony;
+
 		}else{
 
 			comentario += '	<div class="km-comentario">';
@@ -118,12 +122,10 @@ function comentarios(pagina = 0){
 
 		}
 
-		bond_total=bond_total+bond_testimony;
-
 	});
 
 	if( bond_total > 0 ){
-		bond_total=bond_total/(comentarios_cuidador.length*4);
+		bond_total=bond_total/(cantidad_valoraciones*4);
 		bond_porcent=bond_total*(100/5);
 
 		var bond = '<div class="km-ranking">';
