@@ -1964,6 +1964,7 @@ if(!function_exists('kmimos_get_pet_info')){
         $sql .= "LEFT JOIN $wpdb->postmeta AS ah ON (pt.ID =ah.post_id AND ah.meta_key='aggressive_with_humans') ";
         $sql .= "LEFT JOIN $wpdb->postmeta AS ap ON (pt.ID =ap.post_id AND ap.meta_key='aggressive_with_pets') ";
         $sql .= "WHERE pt.post_type='pets' AND post_status='publish' AND pt.ID = ".$pet_id;
+
         return $wpdb->get_row($sql, ARRAY_A);
     }
 }
