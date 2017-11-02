@@ -57,6 +57,14 @@
 	$atributos = str_replace('"', '\"', $atributos);
 	$comportamientos_aceptados = str_replace('"', '\"', $comportamientos_aceptados);
 
+
+
+	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
+	$db->query("UPDATE cupos SET acepta = '{$acepto_hasta}' WHERE cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ");
+    $db->query("UPDATE cupos SET full = 1 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos >= acepta ) ");
+    $db->query("UPDATE cupos SET full = 0 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos < acepta ) ");
+
+
 	$sql  = "UPDATE cuidadores SET dni = '{$dni}', experiencia = '{$cuidando_desde}', direccion = '{$direccion}', check_in = '{$entrada}', check_out = '{$salida}', num_mascotas = '{$num_mascotas_casa}', mascotas_permitidas = '{$acepto_hasta}', latitud = '{$latitud}', longitud = '{$longitud}' WHERE id = {$cuidador_id}; ";
 	$sql .= "UPDATE cuidadores SET mascotas_cuidador = '{$mascotas_cuidador}', tamanos_aceptados = '{$tamanos_aceptados}', edades_aceptadas = '{$edades_aceptadas}', atributos = '{$atributos}', comportamientos_aceptados = '{$comportamientos_aceptados}' WHERE id = {$cuidador_id}; ";
 	$sql .= "UPDATE ubicaciones SET estado = '={$estado}=', municipios = '={$delegacion}=' WHERE cuidador = {$cuidador_id}; ";
@@ -71,15 +79,7 @@
 
 	$db->query_multiple( utf8_decode($sql) );
 
-	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
-
-	$db->query("UPDATE cupos SET acepta = '{$acepto_hasta}' WHERE cuidador = {$user_id} OR cuidador = {$cuidador->id_post}; ");
-
-    $db->query("UPDATE cupos SET full = 1 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos >= acepta ) ");
-    $db->query("UPDATE cupos SET full = 0 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos < acepta ) ");
-
 	$respuesta = array(
-		"status" => "OK",
-		"sql"	 => $sql
+		"status" => "OK"
 	);
 ?>
