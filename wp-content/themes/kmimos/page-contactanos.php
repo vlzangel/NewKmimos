@@ -31,7 +31,7 @@
 
                 <div class="label-placeholder">
                     <label>Correo electrónico</label>
-                    <input type="email" data-type="fields" name="email"  maxlength="250" data-charset="cormlfnum" 
+                    <input type="email" data-type="fields" name="email" maxlength="250" data-charset="cormlfnum" 
                         autocomplete="off" type="text" value="" class="social_email input-label-placeholder">
                     <small data-error="email" style="visibility: hidden;"></small>
                 </div>
@@ -58,7 +58,9 @@
                     <button id="enviar_mensaje" type="button" class="btn km-btn-primary">Enviar mensaje</button>
                 </div>
 
-                <span id="mensaje" class="alert" style="display:none;"></span>
+                <div class="col-xs-12" style="padding:20px 0px;">
+                    <span id="mensaje" class="alert" style="display:none;"></span>
+                </div>
 
             </div>
         </form>
