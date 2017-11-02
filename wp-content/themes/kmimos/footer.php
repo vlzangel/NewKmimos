@@ -1,7 +1,9 @@
 <?php
 $datos = kmimos_get_info_syte();
 global $margin_extra_footer;
+global $no_display_footer;
 
+if( !isset($no_display_footer)  ){
 $HTML = '
         <!-- SECCIÓN FOOTER -->
         <footer class="'.$margin_extra_footer.'">
@@ -65,6 +67,7 @@ $HTML = '
             </div>
         </footer>
     ';
+}    
     echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';
 
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
