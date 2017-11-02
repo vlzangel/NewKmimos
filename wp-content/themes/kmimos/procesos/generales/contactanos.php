@@ -6,7 +6,7 @@
     global $_REQUEST;
 
 
-    $fields = ['nombres', 'email', 'asunto', 'contenido'];
+    $fields = ['nombres', 'email', 'asunto', 'contenido', ];
     foreach ($fields as $val) {
     	if( !isset( $val, $_POST ) || empty($_POST[$val]) ){
 		    echo json_encode(['code'=>'NOT_SEND']);
@@ -16,21 +16,28 @@
 
     extract($_POST);
 
-    $list_email = [
-    	'contactomex@kmimos.la'
-    ];
+    if( isset($_POST["g-recaptcha-response"] ) && !empty($_POST["g-recaptcha-response"]) ){
 
-    $texto = "
-    	Email: $email <br>
-    	Nombre: $nombres <br>
-    	Contenido:<br> $contenido
-    ";
+	    $list_email = [
+	    	'contactomex@kmimos.la'
+	    ];
 
-    $estatus = 0;
-    foreach ($list_email as $email) {
-	    if( wp_mail( $email, $asunto, $texto ) ){
-	    	$estatus = 1;
+	    $texto = "
+	    	Email: $email <br>
+	    	Nombre: $nombres <br>
+	    	Contenido:<br> $contenido
+	    ";
+
+	    $estatus = 0;
+	    foreach ($list_email as $email) {
+		    if( wp_mail( $email, $asunto, $texto ) ){
+		    	$estatus = 1;
+		    }
 	    }
-    }
 
-    echo json_encode(['code'=>'OK']);
+	    echo json_encode(['code'=>'OK']);
+
+	}else{
+	    echo json_encode(['code'=>'NOT_VALID_RECAPTCHA']);
+		exit();		
+	}
