@@ -75,6 +75,8 @@
 	    $deposito = array(
 			"enable" => "no"
 	    );
+
+	    $pagar->total -= $descuentos;
     }else{
 
 	    $pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
