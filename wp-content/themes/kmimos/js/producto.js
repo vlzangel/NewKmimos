@@ -877,8 +877,8 @@ jQuery(document).ready(function() {
 			}else{
 				reaplicarCupones();
 			}
+			Query('.km-option-deposit').click();
 		}
-		jQuery('.km-option-deposit').click();
 		e.preventDefault();
 	});
 
