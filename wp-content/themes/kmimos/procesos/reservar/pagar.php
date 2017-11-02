@@ -411,7 +411,8 @@
 	   		case 'tarjeta':
 	   			
 	   			if( $pagar->token != "" ){
-	   				$cardDataRequest = array(
+
+	   				/*$cardDataRequest = array(
 					    'holder_name' => $tarjeta->nombre,
 					    'card_number' => $tarjeta->numero,
 					    'cvv2' => $tarjeta->codigo,
@@ -450,11 +451,11 @@
 					            $card = $customer->cards->add($cardDataRequest);
 					        } catch (Exception $e) { }
 						}
-					}
+					}*/
 
 					$chargeData = array(
 					    'method' 			=> 'card',
-					    'source_id' 		=> $card->id,
+					    'source_id' 		=> $pagar->token,
 					    'amount' 			=> (float) $pagar->total,
 					    'order_id' 			=> $id_orden,
 					    'description' 		=> "Tarjeta",
