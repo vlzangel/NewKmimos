@@ -71,10 +71,12 @@
 
 	$db->query_multiple( utf8_decode($sql) );
 
-	$db->query("UPDATE cupos SET acepta = '{$acepto_hasta}' WHERE cuidador = {$user_id}; ");
+	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
 
-    $db->query("UPDATE cupos SET full = 1 WHERE cuidador = '{$user_id}' AND ( cupos >= acepta ) ");
-    $db->query("UPDATE cupos SET full = 0 WHERE cuidador = '{$user_id}' AND ( cupos < acepta ) ");
+	$db->query("UPDATE cupos SET acepta = '{$acepto_hasta}' WHERE cuidador = {$user_id} OR cuidador = {$cuidador->id_post}; ");
+
+    $db->query("UPDATE cupos SET full = 1 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos >= acepta ) ");
+    $db->query("UPDATE cupos SET full = 0 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos < acepta ) ");
 
 	$respuesta = array(
 		"status" => "OK",
