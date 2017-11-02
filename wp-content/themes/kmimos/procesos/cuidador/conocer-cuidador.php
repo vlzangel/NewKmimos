@@ -254,13 +254,13 @@
 
 		$mensaje_cliente = get_email_html($mensaje_cliente, false);
 
-		wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
+		wp_mail( $email_cliente, $asunto, $mensaje_cliente);
 
 	/*
 		Enviando E-mails
 	*/
 
-		//kmimos_mails_administradores_new($asunto, $mensaje_cuidador);
+		kmimos_mails_administradores_new($asunto, $mensaje_cuidador);
 
 		$data = array(
 			'n_solicitud' => $request_id,

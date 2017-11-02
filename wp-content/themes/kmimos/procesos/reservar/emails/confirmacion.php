@@ -84,6 +84,10 @@
         wp_mail( $cuidador["email"], "Confirmación de Reserva", $mensaje_cuidador);
 
 
+
+
+        kmimos_mails_administradores_new("Confirmación de Reserva", $mensaje_cliente);
+        
         $CONTENIDO .= "<div class='msg_acciones'>
             <strong>¡Todo esta listo!</strong><br>
             La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.

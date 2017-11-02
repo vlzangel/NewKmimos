@@ -178,6 +178,7 @@
 			var acepta = '".$cuidador->mascotas_permitidas."';
 			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
 			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
+			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
 		</script>";
 
 		if( $error != "" ){
