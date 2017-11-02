@@ -115,10 +115,22 @@
       	$muni = "<option value='' selected>Seleccione una localidad</option>";
     }
 
-    $permitidas = "";
-    for ($i=1; $i <= 6 ; $i++) {
-      	if( $cuidador->mascotas_permitidas == $i ){ $selected = "selected"; }else{ $selected = ""; }
-      	$permitidas .= "<option value={$i} ".$selected.">{$i}</option>";
+    if( !isset($_SESSION)){ session_start(); }
+    if(  $_SESSION['admin_sub_login'] == 'YES' ){
+        $permitidas = '
+            <input type="text" id="acepto_hasta" name="acepto_hasta" class="input" value="'.$cuidador->mascotas_permitidas.'" />
+        ';
+    }else{
+        $permitidas = "";
+        for ($i=1; $i <= 6 ; $i++) {
+            if( $cuidador->mascotas_permitidas == $i ){ $selected = "selected"; }else{ $selected = ""; }
+            $permitidas .= "<option value={$i} ".$selected.">{$i}</option>";
+        }
+        $permitidas = '
+            <select id="acepto_hasta" name="acepto_hasta" class="input">
+                '.$permitidas.'
+            </select>
+        ';
     }
 
     $mascotas_cuidador_str = "";
@@ -214,9 +226,7 @@
         <section> 
             <label for="acepto_hasta" class="lbl-text">'.esc_html__('Num. de perros aceptados','kmimos').':</label>
             <label class="lbl-ui">
-             	<select id="acepto_hasta" name="acepto_hasta" class="input">
-                    '.$permitidas.'
-                </select>
+                '.$permitidas.'
             </label>
         </section>
 
