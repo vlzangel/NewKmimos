@@ -71,6 +71,11 @@
 
 	$db->query_multiple( utf8_decode($sql) );
 
+	$db->query("UPDATE cupos SET acepta = '{$acepto_hasta}' WHERE cuidador = {$user_id}; ");
+
+    $db->query("UPDATE cupos SET full = 1 WHERE cuidador = '{$user_id}' AND ( cupos >= acepta ) ");
+    $db->query("UPDATE cupos SET full = 0 WHERE cuidador = '{$user_id}' AND ( cupos < acepta ) ");
+
 	$respuesta = array(
 		"status" => "OK",
 		"sql"	 => $sql
