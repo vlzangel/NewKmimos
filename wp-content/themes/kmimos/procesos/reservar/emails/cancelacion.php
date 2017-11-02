@@ -107,4 +107,6 @@
 
         $CONTENIDO .= "<div class='msg_acciones'>Te notificamos que la reserva <strong>#".$servicio["id_reserva"]."</strong>, ha sido cancelada exitosamente.</div>";
 
+
+        kmimos_mails_administradores_new("Cancelación de Reserva", $mensaje_cliente);
 ?>
