@@ -37,7 +37,7 @@
 
 		// Inicialización OpenPay
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
-		Openpay::setProductionMode( ($OPENPAY_PRUEBAS == false) );
+		Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 		
 		$findDataRequest = array(
 		    'creation[gte]' => $limite,
