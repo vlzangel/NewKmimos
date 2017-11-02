@@ -119,6 +119,8 @@
         </footer>
         <?php
         //wp_footer();
+        global $no_display_footer;
+        $no_display_footer = true;
         get_footer();
         ?>
     </body>
