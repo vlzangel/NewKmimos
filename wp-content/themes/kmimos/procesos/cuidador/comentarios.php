@@ -61,9 +61,12 @@
 			"care" => 0
 		);
 
-		$metas = $wpdb->get_results("SELECT * FROM wp_commentmeta WHERE comment_ID = ".$comentario->comment_ID);
+		$metas = $wpdb->get_results("SELECT * FROM wp_commentmeta WHERE comment_id = ".$comentario->comment_ID);
+
 		if( $metas !== false ){
-			$puntuaciones[$metas->meta_key] = $metas->meta_value;
+			foreach ($metas as  $meta) {
+				$puntuaciones[$meta->meta_key] = $meta->meta_value;
+			}
 		}
 
 		$user_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$comentario->cliente_email}' ");
