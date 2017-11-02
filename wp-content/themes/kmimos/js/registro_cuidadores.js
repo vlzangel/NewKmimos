@@ -103,12 +103,7 @@ jQuery( document ).ready(function() {
 
 	    	}, 
 	    	function error(err) {
-	      		var position = {
-	      			latitude:  25.733881701152562,
-	      			longitude: -100.39553960640156
-	      		};
-
-	      		vlz_coordenadas(position);
+	      		alert("No podemos obtener tus coordenadas, por favor ingresa tus datos");
 	    	},
 	    	{
 		      	enableHighAccuracy: true,
