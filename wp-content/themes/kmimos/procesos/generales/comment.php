@@ -113,6 +113,9 @@ if($return['result']!='error'){
 
 		}
 	}
+	
+	$return['result']='success';
+	$return['message']='Comentario enviado';
 
 	global $wpdb;
 	$wpdb->query("UPDATE wp_comments SET comment_approved = '0' WHERE comment_ID=".$comment->comment_ID);
