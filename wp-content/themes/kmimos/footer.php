@@ -149,6 +149,10 @@ $HTML = '
 
     echo comprimir_styles($HTML);
 
+    /*
+        
+    */
+
     echo "
         <!-- Google Analytics -->
         <script>
