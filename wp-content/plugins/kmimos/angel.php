@@ -93,32 +93,32 @@
 	if(!function_exists('kmimos_mails_administradores_new')){       
         function kmimos_mails_administradores_new($titulo, $mensaje){     
       
-            $info = kmimos_get_info_syte();
-            $email_admin = $info["email"];
+            // $info = kmimos_get_info_syte();
+            // $email_admin = $info["email"];
 
-            $headers_admins = array(
-                'BCC: e.celli@kmimos.la',
-                'BCC: a.lazaro@kmimos.la',
-                'BCC: r.cuevas@kmimos.la',
-                'BCC: r.gonzalez@kmimos.la',
-                'BCC: m.castellon@kmimos.la',
-                'BCC: y.chaudary@kmimos.la'
-            );
+            // $headers_admins = array(
+            //     'BCC: e.celli@kmimos.la',
+            //     'BCC: a.lazaro@kmimos.la',
+            //     'BCC: r.cuevas@kmimos.la',
+            //     'BCC: r.gonzalez@kmimos.la',
+            //     'BCC: m.castellon@kmimos.la',
+            //     'BCC: y.chaudary@kmimos.la'
+            // );
 
-            wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
+            // wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
 
-            $headers_call_center = array(
-                'BCC: operador01sincola@gmail.com',
-                'BCC: operador04sincola@gmail.com',
-                'BCC: Operador05sincola@gmail.com',
-                'BCC: Operador06sincola@gmail.com',
-                'BCC: robertomadridcisneros@gmail.com',
-                'BCC: jordiballarin@gmail.com',
-                'BCC: supervisor01sincola@gmail.com',
-                'BCC: supervisor02sincola@gmail.com' 
-            );
+            // $headers_call_center = array(
+            //     'BCC: operador01sincola@gmail.com',
+            //     'BCC: operador04sincola@gmail.com',
+            //     'BCC: Operador05sincola@gmail.com',
+            //     'BCC: Operador06sincola@gmail.com',
+            //     'BCC: robertomadridcisneros@gmail.com',
+            //     'BCC: jordiballarin@gmail.com',
+            //     'BCC: supervisor01sincola@gmail.com',
+            //     'BCC: supervisor02sincola@gmail.com' 
+            // );
 
-            wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);       
+            // wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);       
         
         }     
     }

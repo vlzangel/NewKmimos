@@ -475,6 +475,16 @@
 	</div>
 </div>
 
+<script>
+	(function(d, s){
+	    $ = d.createElement(s), e = d.getElementsByTagName(s)[0];
+	    $.async=!0;
+	    $.setAttribute('charset','utf-8');
+	    $.src='//www.google.com/recaptcha/api.js?hl=es';
+	    $.type='text/javascript';
+	    e.parentNode.insertBefore($, e)
+	})(document, 'script');
+</script>
 
 <?php global $margin_extra_footer; ?>
 <?php $margin_extra_footer = "footer-petsitter"; ?>
