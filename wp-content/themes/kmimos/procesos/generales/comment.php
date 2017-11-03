@@ -36,6 +36,9 @@ if( count($links[0]) > 0 ){
 
 
 $load = dirname(__DIR__,2).'/lib/recaptchalib.php';
+if(file_exists($load)){
+	include_once($load);
+}
 
 $response = null;
 $secret = "6LeQPysUAAAAAMop3Acdau8NZVZuWHKfs1bclgV-";
