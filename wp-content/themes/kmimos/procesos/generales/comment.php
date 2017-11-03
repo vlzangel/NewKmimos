@@ -35,9 +35,11 @@ if( count($links[0]) > 0 ){
 }
 
 
+$load = dirname(__DIR__,2).'/lib/recaptchalib.php';
+
 $response = null;
 $secret = "6LeQPysUAAAAAMop3Acdau8NZVZuWHKfs1bclgV-";
-/*$reCaptcha = new ReCaptcha($secret);
+$reCaptcha = new ReCaptcha($secret);
 
 // if submitted check response
 if ($_POST["g-recaptcha-response"]) {
@@ -52,7 +54,6 @@ if ($response != null && $response->success) {}else{
 	$return['result']='error';
 	$return['message']=$error;
 }
-*/
 
 $xip = $_SERVER['REMOTE_ADDR'];
 if( $xip != "" ){

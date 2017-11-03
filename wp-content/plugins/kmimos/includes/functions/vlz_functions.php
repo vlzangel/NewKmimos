@@ -80,7 +80,7 @@
                 $wpdb->query("DELETE FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = '_used_by' AND meta_value = '{$id_cliente}'");
             }
 
-            if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'tienda'){
+            if($status == 'wc-on-hold' && ( $metas_orden['_payment_method'][0] == 'tienda' || $metas_orden['_payment_method'][0] == 'openpay_store' ) ){
                 $saldo = $descuento;  
             }else{
                 $saldo += $descuento;                
