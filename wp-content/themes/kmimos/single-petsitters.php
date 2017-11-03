@@ -475,6 +475,10 @@
 	</div>
 </div>
 
+<?php global $margin_extra_footer; ?>
+<?php $margin_extra_footer = "footer-petsitter"; ?>
+<?php get_footer(); ?>
+
 <script>
 	(function(d, s){
 	    $ = d.createElement(s), e = d.getElementsByTagName(s)[0];
@@ -485,7 +489,3 @@
 	    e.parentNode.insertBefore($, e)
 	})(document, 'script');
 </script>
-
-<?php global $margin_extra_footer; ?>
-<?php $margin_extra_footer = "footer-petsitter"; ?>
-<?php get_footer(); ?>
