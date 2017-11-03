@@ -7,12 +7,6 @@
 	add_action('admin_enqueue_scripts','kmimos_include_admin_scripts');
 	add_action('wp_enqueue_scripts','kmimos_include_scripts');
 
-	require_once('assets/class/class.filters.php');
-	require_once('assets/class/class.featured.php');
-
-	add_action('widgets_init','kmimos_widget_filters');
-	add_action('widgets_init','kmimos_widget_featured');
-
 	include_once('dashboard/petsitters.php');
 	include_once('dashboard/pets.php');
 	include_once('dashboard/requests.php');
@@ -2515,29 +2509,11 @@ if(!function_exists('kmimos_filter_bookings_when_petsitters_login')){
 
         global $wpdb;
 
-
-
         $user = wp_get_current_user();
 
-        $is_vendor=in_array('vendor', $user->roles);
-
-        // retorna si no hay ningún filtro seleccionado o no es un cuidador
+        $is_vendor = in_array('vendor', $user->roles);
 
         if (!is_admin() || $_GET['post_type']!='wc_booking' || $is_vendor!=1) return;
-
-            
-
-//echo ">>>>>>>>>>>>>>>>>>>>>>  cuidador=".$user->ID;
-
-//print_r($user);
-
-        
-
-//        $bookings = kmimos_get_my_bookings($user->ID);
-
-//print_r($bookings);
-
-        // Busca los ID de las reservas del cuidador que inició sesión
 
         $str = "SELECT GROUP_CONCAT(bk.ID separator ',') as reservas ";
 
@@ -2552,8 +2528,6 @@ if(!function_exists('kmimos_filter_bookings_when_petsitters_login')){
         $str .= "WHERE  ps.meta_value= ".$user->ID;
 
         $reservas = $wpdb->get_var($str);
-
-//echo ">>>>>>>>>>>>>>>>>>>>>>  reservas: ".$reservas;
 
         $query->query_vars['post__in'] = explode(",",$reservas);
 
