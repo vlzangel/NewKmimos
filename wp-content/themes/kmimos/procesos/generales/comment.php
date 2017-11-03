@@ -35,7 +35,7 @@ if( count($links[0]) > 0 ){
 }
 
 
-$load = dirname(__DIR__,2).'/lib/recaptchalib.php';
+echo $load = dirname(__DIR__,2).'/lib/recaptchalib.php';
 if(file_exists($load)){
 	include_once($load);
 }
@@ -115,7 +115,7 @@ if($return['result']!='error'){
 	}
 
 	global $wpdb;
-	$wpdb->get_query("UPDATE wp_comments SET comment_approved = '0' WHERE comment_ID=".$comment->comment_ID);
+	$wpdb->query("UPDATE wp_comments SET comment_approved = '0' WHERE comment_ID=".$comment->comment_ID);
 }
 
 $user = wp_get_current_user();
