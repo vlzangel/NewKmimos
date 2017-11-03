@@ -50,7 +50,7 @@ if ($_POST["g-recaptcha-response"]) {
 }
 
 if ($response != null && $response->success) {}else{
-    $error = '<strong>AVISO</strong><p style="text-align: justify;">Debes marcar el <b>CAPTCHA</b> para poder enviar tu comentario.</p>';
+    $error = 'Debes marcar el CAPTCHA para poder enviar tu comentario.';
 	$return['result']='error';
 	$return['message']=$error;
 }
