@@ -45,11 +45,7 @@ function comentarios(pagina = 0){
 	var comentario = '';
 	var cantidad_valoraciones = 0;
 	jQuery.each(comentarios_cuidador, function( pagina, cuidador ) {
-
-		console.log( cuidador );
-
 		var bond_testimony = 0;
-
 		if(
 			comentarios_cuidador[pagina]["cuidado"] 		> 0 &&
 			comentarios_cuidador[pagina]["puntualidad"] 	> 0 &&
