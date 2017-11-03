@@ -5,19 +5,24 @@ jQuery("#commentform").submit(function(e){
         return false;
     }
 
-    var result = getAjaxData('/procesos/generales/comment.php','post', jQuery(this).serialize());
-    
-    console.log(result);
+    if( !jQuery("#submit").hasClass("disable") ){
+        jQuery("#submit").addClass("disable");
 
-    result = jQuery.parseJSON(result);
+        var result = getAjaxData('/procesos/generales/comment.php','post', jQuery(this).serialize());
+        
+        result = jQuery.parseJSON(result);
 
-    if(result['result']=='success'){
-        jQuery('.BoxComment').fadeOut();
-        GetComments();
-    }else if(result['result']=='error'){
-        alert(result['message']);
+        if(result['result']=='success'){
+            jQuery("#comment").val("");
+            jQuery("#author").val("");
+            jQuery("#email").val("");
+            jQuery('.BoxComment').fadeOut();
+            GetComments();
+            jQuery("#submit").removeClass("disable");
+        }else if(result['result']=='error'){
+            alert(result['message']);
+        }
     }
-
 
 });
 
