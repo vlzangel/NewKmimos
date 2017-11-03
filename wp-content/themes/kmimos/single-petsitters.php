@@ -2,6 +2,9 @@
 
     wp_enqueue_style('perfil_cuidador', getTema()."/css/perfil_cuidador.css", array(), '1.0.0');
 	wp_enqueue_style('perfil_cuidador_responsive', getTema()."/css/responsive/perfil_cuidador_responsive.css", array(), '1.0.0');
+	
+    wp_enqueue_style('conocer', getTema()."/css/conocer.css", array(), '1.0.0');
+    wp_enqueue_style('conocer_responsive', getTema()."/css/responsive/conocer_responsive.css", array(), '1.0.0');
 
 	wp_enqueue_script('perfil_cuidadores', getTema()."/js/perfil_cuidadores.js", array("jquery"), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
@@ -244,15 +247,41 @@
 	}
 	$productos .= '</div>';
 
+
+    include ('partes/cuidador/conocelo.php');
+
 	if(is_user_logged_in()){
 		include('partes/seleccion_boton_reserva.php');
+
+		$BOTON_RESERVAR = '
+
+			<a href="javascript:;"
+				id="btn_conocer"
+	            data-target="#popup-conoce-cuidador"
+	            data-name="'.strtoupper( get_the_title() ).'" 
+	            data-id="'.$cuidador->id_post.'"
+				class="km-btn-secondary" 
+			>CONOCER</a>
+
+		'.$BOTON_RESERVAR;
+
+
 	}else{
 		$BOTON_RESERVAR .= '
-		<a href="javascript:;"
-			id="btn_reservar"
-			data-target="#popup-iniciar-sesion"
-			class="km-btn-secondary" 
-		>RESERVAR</a>';
+
+			<a href="javascript:;"
+				id="btn_conocer"
+				data-target="#popup-iniciar-sesion"
+				class="km-btn-secondary" 
+			>CONOCER</a>
+
+			<a href="javascript:;"
+				id="btn_reservar"
+				data-target="#popup-iniciar-sesion"
+				class="km-btn-secondary" 
+			>RESERVAR</a>
+
+		';
 	}
 
  	$HTML .= '
@@ -280,12 +309,9 @@
 							<p>SERVICIOS DESDE</p>
 							<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
 							<div class="km-ficha-fechas">
-
 								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" value="" class="date_from" readonly>
 								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA" value="'.$busqueda["checkout"].'" value="" class="date_to" readonly>
-								
 								<small class="validacion_fechas">Debe seleccionar las fechas</small>
-
 							</div>
 							'.$BOTON_RESERVAR.'
 						</form>

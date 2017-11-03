@@ -87,25 +87,26 @@
     color: #fff;
 }
 
-@media all and (max-width: 768px){
-    #mapa{
-        height: 93%!important;
-    }
-    .zopim{
-        top:auto!important;
-        position: fixed!important;
-        bottom: 22%!important;
-    }
-}
- 
-@media All and (max-width: 520px){
-    .zopim{
-        bottom: 25%!important;
-    }
+.km-btn-secondary{
+    padding: 12px 0 !important;
+    margin-bottom: 5px;
 }
 
-@media all and (max-width: 768px) and (orientation: landscape ){
-    .zopim{
-        bottom: 25%!important;
-    }
+#btn_conocer {
+    background-color: transparent;
+    color: #6B1C9B;
+    border: solid 1px #7dd1c4;
+    font-weight: 400 !important;
+    font-size: 11px;
+    text-decoration: none !important;
+}
+
+#btn_conocer:hover {
+    color: #FFF;
+    background: #6B1C9B;
+    border: solid 1px #6B1C9B;
+}
+
+.km-ficha-info-cuidador .km-ficha-cuidador {
+    height: 220px !important;
 }
