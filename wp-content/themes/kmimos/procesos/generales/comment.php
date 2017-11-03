@@ -3,7 +3,7 @@
 $i=0;
 $return = array();
 $return['result']='success';
-$return['message']=$_POST;
+//$return['message']=$_POST;
 //echo json_encode($return);
 //exit();
 
@@ -114,9 +114,6 @@ if($return['result']!='error'){
 		}
 	}
 	
-	$return['result']='success';
-	$return['message']='Comentario enviado';
-
 	global $wpdb;
 	$wpdb->query("UPDATE wp_comments SET comment_approved = '0' WHERE comment_ID=".$comment->comment_ID);
 }
