@@ -123,8 +123,7 @@
 						'fin' => date('d/m/Y', $fin), 
 						'foto' => $foto,
 						'acciones' => array(
-							"ver" => $ver,
-							"valorar" => $valorar 
+							"ver" => $ver
 						),
 						"desglose" => $desglose
 					);

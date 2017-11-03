@@ -38,7 +38,7 @@
 
         $mensaje_cliente = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cliente);
 
-        $mensaje_cliente = get_email_html($mensaje_cliente, false);
+        $mensaje_cliente = get_email_html($mensaje_cliente);
 
         wp_mail( $cliente["email"], "Confirmación de Reserva", $mensaje_cliente);
     
