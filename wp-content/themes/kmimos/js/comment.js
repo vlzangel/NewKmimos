@@ -7,6 +7,8 @@ jQuery("#commentform").submit(function(e){
 
     var result = getAjaxData('/procesos/generales/comment.php','post', jQuery(this).serialize());
     
+    console.log(result);
+
     result = jQuery.parseJSON(result);
 
     if(result['result']=='success'){
