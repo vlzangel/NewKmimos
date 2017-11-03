@@ -76,8 +76,8 @@
 						$remanente = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$id_item} AND meta_key = '_wc_deposit_meta' ");
 
    						$hora_actual = date("Y-m-d H:i:s");
-   						$wpdb->query("UPDATE wp_posts SET post_date = '{$hora_actual}', post_date_gmt = '{$hora_actual}', post_modified = '{$hora_actual}', post_modified_gmt = '{$hora_actual}' WHERE ID = {$id_reserva};");
-   						$wpdb->query("UPDATE wp_posts SET post_date = '{$hora_actual}', post_date_gmt = '{$hora_actual}', post_modified = '{$hora_actual}', post_modified_gmt = '{$hora_actual}' WHERE ID = {$id_orden};");
+   						$wpdb->query("UPDATE wp_posts SET post_date = '{$hora_actual}' WHERE ID = {$id_reserva};");
+   						$wpdb->query("UPDATE wp_posts SET post_date = '{$hora_actual}' WHERE ID = {$id_orden};");
 
 					 	if( $remanente != 'a:1:{s:6:"enable";s:2:"no";}' ){
 							$wpdb->query("UPDATE wp_posts SET post_status = 'unpaid' WHERE ID = $id_orden;");
