@@ -135,3 +135,40 @@
 .km-costo .km-btn-secondary {
     float: left !important;
 }
+
+.img_cuidador{
+    display: inline-block;
+    position: relative;
+    min-height: 220px;
+}
+
+.img_cuidador img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.img_cuidador span{
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    z-index: 100;
+}
+
+.img_cuidador b{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 50;
+    width: 0;
+    height: 0;
+    border-top: 70px solid #FFF;
+    border-left: 70px solid transparent;
+}
+
+.img_cuidador i{
+    font-size: 25px;
+}
+
+.km-link-favorito {
+    color: #FFF !important;
+}
