@@ -104,7 +104,13 @@
 #btn_conocer:hover {
     color: #FFF;
     background: #6B1C9B;
-    border: solid 1px #6B1C9B;
+    border: solid 1px #6B1C9B !important;
+}
+
+#servicios:hover,
+#btn_reservar:hover
+ {
+    border: solid 0px #6B1C9B !important;
 }
 
 .km-ficha-info-cuidador .km-ficha-cuidador {
@@ -124,4 +130,8 @@
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
+}
+
+.km-costo .km-btn-secondary {
+    float: left !important;
 }
