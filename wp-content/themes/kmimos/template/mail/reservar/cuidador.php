@@ -274,23 +274,25 @@
     <div  style='clear:both;'></div>
 </div>
 
-<div style='text-align: center; margin-bottom: 20px;'>
-	
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-
-	<div style='display: inline-block; font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #666666;'>PRESÉNTATE Y CONOCE A TU KMIAMIGO</div>
-
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-
-</div>
+<table cellpadding="0" cellspacing="0" style='width: 600px; text-align: center; margin-bottom: 20px;'>
+	<tr>
+		<td style='width: 167.5px;'>
+			<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+		</td>
+		<td style='width: 265px; font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #666666;'>
+			PRESÉNTATE Y CONOCE A TU KMIAMIGO
+		</td>
+		<td style='width: 167.5px;'>
+			<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+		</td>
+	</tr>
+</table>
 
 <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; text-align: center; color: #666666; margin-bottom: 20px;'>
 	Recuerda que cada perro tiene un comportamiento diferente, por lo que deberás tener la mayor información posible sobre sus comportamientos.
