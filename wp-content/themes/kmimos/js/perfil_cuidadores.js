@@ -145,6 +145,25 @@ function comentarios(pagina = 0){
 	
 }
 
+function CargarGaleria(){
+	var galeria_txt = "";
+	jQuery.each(GALERIA, function( indice, foto ) {
+		galeria_txt += "<div class='slide' data-scale='small' data-position='top' onclick=\"vlz_galeria_ver('"+RAIZ+'/wp-content/uploads/cuidadores/galerias/'+foto+"')\">";
+		galeria_txt += "<div class='vlz_item_fondo' style='background-image: url("+RAIZ+'/wp-content/uploads/cuidadores/galerias/'+foto+"); filter:blur(2px);'></div>";
+		galeria_txt += "<div class='vlz_item_imagen' style='background-image: url("+RAIZ+'/wp-content/uploads/cuidadores/galerias/'+foto+");'></div>";
+		galeria_txt += "</div>";
+	});
+
+	jQuery(".km-galeria-cuidador-slider").html(galeria_txt);
+
+	jQuery('.km-galeria-cuidador-slider').bxSlider({
+	    slideWidth: 200,
+	    minSlides: 1,
+	    maxSlides: 3,
+	    slideMargin: 10
+	});
+}
+
 function get_huesitos(valor){
 	var huesos = "";
 	for (var i = 0; i < valor; i++) {
@@ -168,16 +187,13 @@ jQuery( document ).ready(function() {
         show_login_modal("servicios");
     });
 
-	jQuery('.km-galeria-cuidador-slider').bxSlider({
-	    slideWidth: 200,
-	    minSlides: 1,
-	    maxSlides: 3,
-	    slideMargin: 10
-	});
+	/**/
 
 	jQuery(".datepick td").on("click", function(e){
 		jQuery( this ).children("a").click();
 	});
+
+	CargarGaleria();
 
 });
 
