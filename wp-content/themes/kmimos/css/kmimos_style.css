@@ -7519,18 +7519,14 @@ input#ubicacion_txt {
     position: absolute;
 }
 
-.km-link-favorito:hover{
-    color: #337ab7!important;
-}
-
 .km-link-favorito{
-    color: #ccc!important;
+    color: #ccc;
     display: block;
     margin: 8px 0px 0px 15px;
     text-align: center;
 }
 .km-link-favorito[data-active="true"]{
-    color: #6a2499!important;
+    color: #6a2499;
 }
 
 .km-link-favorito a{
