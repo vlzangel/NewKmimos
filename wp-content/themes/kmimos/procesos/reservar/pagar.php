@@ -73,7 +73,8 @@
 
     if( $pagar->metodo != "deposito" ){
 	    $deposito = array(
-			"enable" => "no"
+			"enable" => "no",
+			"total" => $pagar->total
 	    );
 
 	    $pagar->total -= $descuentos;

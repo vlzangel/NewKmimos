@@ -78,9 +78,7 @@ class Reservas {
 
         $this->servicio = $servicio;
         
-        if( isset($descuentos) && $descuentos > 0 ){
-            $monto += $descuentos;
-        }
+        $total = $deposito['total'];
 
         $sql = "
             INSERT INTO wp_postmeta VALUES
