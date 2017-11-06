@@ -1,9 +1,9 @@
 jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(e){
 
-    jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");
+    /*jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");*/
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
-    jQuery('.popup-iniciar-sesion-1 #service_start').val("");
-    jQuery('.popup-iniciar-sesion-1 #service_end').val("");
+    /*jQuery('.popup-iniciar-sesion-1 #service_start').val("");
+    jQuery('.popup-iniciar-sesion-1 #service_end').val("");*/
 
     jQuery('#meeting_time option.vacio').attr("selected", "selected");
     jQuery('.popup-iniciar-sesion-1 #pet_conoce input').prop("checked", false);

@@ -269,9 +269,6 @@
 	}
 	$productos .= '</div>';
 
-
-    include ('partes/cuidador/conocelo.php');
-
 	if(is_user_logged_in()){
 		include('partes/seleccion_boton_reserva.php');
 
@@ -306,6 +303,8 @@
 		';
 	}
 
+    include ('partes/cuidador/conocelo.php');
+
  	$HTML .= '
  		<script> 
  			var SERVICIO_ID = "'.$cuidador->id_post.'"; 
@@ -331,11 +330,13 @@
 					</div>
 					<div class="km-costo hidden-xs">
 						<form id="form_cuidador" method="POST" action="'.getTema().'/procesos/reservar/redirigir_reserva.php">
-							<p>SERVICIOS DESDE</p>
-							<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
+							<div class="servicio_desde">
+								<p>SERVICIOS DESDE</p>
+								<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
+							</div>
 							<div class="km-ficha-fechas">
-								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" value="" class="date_from" readonly>
-								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA" value="'.$busqueda["checkout"].'" value="" class="date_to" readonly>
+								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
+								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="date_to" readonly>
 								<small class="validacion_fechas">Debe seleccionar las fechas</small>
 							</div>
 							'.$BOTON_RESERVAR.'
