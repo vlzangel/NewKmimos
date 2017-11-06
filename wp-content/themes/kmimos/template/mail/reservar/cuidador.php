@@ -36,7 +36,7 @@
 		<div style='font-family: Arial; font-size: 14px; line-height: 1.21; letter-spacing: 0.3px; color: #000000; margin-bottom: 39px;'>
 			AHORA NO PUEDO, <a href='[RECHAZAR]' style='font-weight: 400; color: #000;'>RECHAZAR</a>
 		</div>
-        
+
         <div style='margin: 0px auto; width: 300px;'>
             
             <div style='display: table-cell; width: 62px; padding-right: 20px;'>
@@ -195,75 +195,78 @@
 
 <img src='[URL_IMGS]/siguientes_pasos.png' style='display: block; margin: 0px auto 25px; padding-top: 45px;' >
 
-<div style='display: table; width: 100%; font-size: 13px; margin-bottom: 27px;'>
+<table cellpadding="0" cellspacing="0" style='width: 600px; margin-bottom: 27px;'>
+	<tr>
+		<td style='width: 300px; vertical-align: top;'>
 
-	<div style='display: table-row;'>
+			<table style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='font-size: 13px; width: 240px; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
+						<strong style='color: #570089;'>Preséntate</strong> con el cliente cordial y  formalmente.<br> 
+						<strong>Tip: Cuida tu imagen</strong> (Vestimenta casual)
+					</td>
+				</tr>
+			</table>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+		</td>
+		<td style='width: 300px; vertical-align: top;'>
 
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					<strong style='color: #570089;'>Preséntate</strong> con el cliente cordial y  formalmente.<br> 
-					<strong>Tip: Cuida tu imagen</strong> (Vestimenta casual)
-				</div>
-			</div>
+			<table style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='font-size: 13px; width: 240px; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
+						En caso de no conocerse en persona, <strong>pide que te envíen fotos del perro</strong> que llegará a tu casa para <strong style='color: #570089;'>confirmar</strong> que sea tal cual lo describió su dueño. 
+					</td>
+				</tr>
+			</table>
 
-		</div>
+		</td>
+	</tr>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+	<tr>
 
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					En caso de no conocerse en persona, <strong>pide que te envíen fotos del perro</strong> que llegará a tu casa para <strong style='color: #570089;'>confirmar</strong> que sea tal cual lo describió su dueño. 
-				</div>
-			</div>
+		<td style='width: 300px; vertical-align: top;'>
 
-		</div>
+			<table style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='font-size: 13px; width: 240px; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
+						<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y <strong style='color: #570089;'>verifica</strong> que sus <strong>vacunas</strong> estén al día.</div>
+						<div><strong>Tip: Sin cartilla no se harán efectivos</strong> los beneficios veterinarios de Kmimos.</div>
+					</td>
+				</tr>
+			</table>
 
-	</div>
+		</td>
 
-	<div style='display: table-row;'>
+		<td style='width: 300px; vertical-align: top;'>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+			<table style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group-14.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='font-size: 13px; width: 240px; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
+						<strong>Revisa al perrito</strong> y <strong style='color: #570089;'>detecta</strong> si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
+					</td>
+				</tr>
+			</table>
 
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y <strong style='color: #570089;'>verifica</strong> que sus <strong>vacunas</strong> estén al día.</div>
-					<div><strong>Tip: Sin cartilla no se harán efectivos</strong> los beneficios veterinarios de Kmimos.</div>
-				</div>
-			</div>
-
-		</div>
-
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
-
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group-14.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					<strong>Revisa al perrito</strong> y <strong style='color: #570089;'>detecta</strong> si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
-				</div>
-			</div>
-
-		</div>
+		</td>
 		
-	</div>
-
-</div>
+	</tr>
+</table>
 
 <div style='float:left;width:100%;margin-bottom: 31px;'>   
     <div style='text-align:center;'>
-        <p style='font-family: Arial;font-weight: bold; font-size:14px; color:#666; text-align: center; '>
+        <p style='font-family: Arial;font-weight: bold; font-size:13px; color:#666; text-align: center; '>
             En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp +52 (55) 6892 2182, o al correo contactomex@kmimos.la
         </p>
         <div  style='clear:both;'></div>
@@ -293,43 +296,43 @@
 	Recuerda que cada perro tiene un comportamiento diferente, por lo que deberás tener la mayor información posible sobre sus comportamientos.
 </div>
 
-<div style='display: table; width: 100%; font-size: 13px; margin-bottom: 27px; text-align: left;'>
+<table cellpadding="0" cellspacing="0" style='width: 600px; font-size: 13px; margin-bottom: 27px; text-align: left;'>
+	<tr>
+		<td style='width: 200px; vertical-align: top;'>
+			<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
+				SOBRE SU RUTINA DIARIA
+			</div>
+			<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
+				Por ejemplo:<br>
+				¿Sale a pasear?<br>
+				¿A qué hora come y hace del baño?
+			</div>
+		</td>
 
-	<div style='display: table-cell; width: 33.3333333333%; vertical-align: top;'>
-		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
-			SOBRE SU RUTINA DIARIA
-		</div>
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
-			Por ejemplo:<br>
-			¿Sale a pasear?<br>
-			¿A qué hora come y hace del baño?
-		</div>
-	</div>
+		<td style='width: 200px; vertical-align: top;'>
 
-	<div style='display: table-cell; width: 33.3333333333%; vertical-align: top;'>
+			<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
+				SOBRE SU COMPORTAMIENTO
+			</div>
+			<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
+				Por ejemplo:<br>
+				¿Cómo interactúa con otros perros y personas?<br>
+				¿Cómo reacciona con un extraño?
+			</div>
 
-		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
-			SOBRE SU COMPORTAMIENTO
-		</div>
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
-			Por ejemplo:<br>
-			¿Cómo interactúa con otros perros y personas?<br>
-			¿Cómo reacciona con un extraño?
-		</div>
+		</td>
 
-	</div>
+		<td style='width: 200px; vertical-align: top;'>
 
-	<div style='display: table-cell; width: 33.3333333333%; vertical-align: top;'>
+			<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
+				SOBRE SU &Aacute;NIMO
+			</div>
+			<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
+				Por ejemplo:<br>
+				¿Cómo se comporta cuando está triste o estresado?<br>
+				¿Qué hace su dueño cuando está triste o estresado?
+			</div>
 
-		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
-			SOBRE SU &Aacute;NIMO
-		</div>
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
-			Por ejemplo:<br>
-			¿Cómo se comporta cuando está triste o estresado?<br>
-			¿Qué hace su dueño cuando está triste o estresado?
-		</div>
-
-	</div>
-
-</div>
+		</td>
+	</tr>
+</table>
