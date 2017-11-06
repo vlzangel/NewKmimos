@@ -78,8 +78,8 @@ class Reservas {
 
         $this->servicio = $servicio;
         
-        if( isset($descuento) && $descuento > 0 ){
-            $total += $descuento;
+        if( isset($descuentos) && $descuentos > 0 ){
+            $monto += $descuentos;
         }
 
         $sql = "
@@ -88,7 +88,7 @@ class Reservas {
                 (NULL, '{$id_reserva}', '_booking_all_day',         '1'),
                 (NULL, '{$id_reserva}', '_booking_start',           '{$inicio}000000'),
                 (NULL, '{$id_reserva}', '_booking_end',             '{$fin}235959'),
-                (NULL, '{$id_reserva}', '_booking_cost',            '{$total}'),
+                (NULL, '{$id_reserva}', '_booking_cost',            '{$monto}'),
                 (NULL, '{$id_reserva}', '_booking_persons',         '{$num_mascotas}'),
                 (NULL, '{$id_reserva}', '_booking_order_item_id',   '{$id_item}'),
                 (NULL, '{$id_reserva}', '_booking_product_id',      '{$servicio}');
