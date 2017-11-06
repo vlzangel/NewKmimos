@@ -36,7 +36,9 @@
             data-num="'.$cuidador->id_post.'" 
             data-active="'.$fav_check.'"
             data-favorito="'.$fav_check.'"
-            class="km-link-favorito '.$fav_del.'" '.$style_icono.'>
+            class="km-link-favorito '.$fav_del.'" '.$style_icono.'
+            style="background-image: url('.getTema().'/images/new/bg-foto-resultados.png) !important;"
+            >
             <i class="fa fa-heart" aria-hidden="true"></i>
         </span>';
 
@@ -338,7 +340,6 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-3">
 						<div class="img_cuidador">
-							<b></b>
 							'.$favoritos_link.'
 							<img src="'.$foto.'" />
 						</div>
