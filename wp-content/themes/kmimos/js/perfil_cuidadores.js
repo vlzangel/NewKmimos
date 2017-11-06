@@ -13,7 +13,7 @@ function initMap() {
 		draggable: false,
 		animation: google.maps.Animation.DROP,
 		position: new google.maps.LatLng(latitud, longitud),
-		icon: "https://www.kmimos.com.mx/wp-content/themes/pointfinder/vlz/img/pin.png"
+		icon: "https://www.kmimos.com.mx/wp-content/themes/kmimos/js/images/n1.png"
 	});
 }
 
@@ -45,11 +45,7 @@ function comentarios(pagina = 0){
 	var comentario = '';
 	var cantidad_valoraciones = 0;
 	jQuery.each(comentarios_cuidador, function( pagina, cuidador ) {
-
-		console.log( cuidador );
-
 		var bond_testimony = 0;
-
 		if(
 			comentarios_cuidador[pagina]["cuidado"] 		> 0 &&
 			comentarios_cuidador[pagina]["puntualidad"] 	> 0 &&

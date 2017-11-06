@@ -292,7 +292,7 @@ function initMap() {
 	        var servicios = "";
 	        if( cuidador["ser"] != undefined && cuidador["ser"].length > 0 ){
 		        jQuery.each(cuidador["ser"], function( index, servicio ) {
-		        	servicios += '<img src="http://mx.kmimos.dev/wp-content/themes/kmimos/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
+		        	servicios += '<img src="'+HOME+'/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
 		        });
 	        }
 

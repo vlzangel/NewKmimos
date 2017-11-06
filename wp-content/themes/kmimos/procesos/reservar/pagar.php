@@ -361,6 +361,7 @@
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
+		Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
 		foreach ($data_cliente as $key => $value) {
 			if( $data_cliente[$key] == "" ){
