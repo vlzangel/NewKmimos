@@ -33,22 +33,10 @@
 
             $html = "
             <html>
-                <head>
-                    <style>
-                        p{ margin:0px; }
-                        a[id*='kmimos_container'] > div {
-                            max-width: 600px !important;
-                        }
-                        @media max-device-width: 480px {
-                            a[id*='kmimos_container'] > div {
-                                max-width: 600px !important;
-                            }
-                        }
-                    </style>
-                </head>
+                <head> </head>
                 <body>
-                    <div id='kmimos_container' style='font-family: Arial;'>
-                        <div style='margin: 0px auto; padding: 0px 10px; width: 600px;'>
+                    <div style='font-family: Arial;'>
+                        <div style='margin: 0px auto; padding: 0px; width: 600px;'>
                             <div style='text-align:center;'>
                                 <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/bitmap.png' style='margin-bottom: 14px;' />
                             </div>
