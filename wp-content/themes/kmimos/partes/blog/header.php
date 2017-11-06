@@ -23,9 +23,13 @@ if(array_key_exists('search',$_POST)){
         <meta charset="<?php bloginfo('charset'); ?>">
         <?php
             echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
-            wp_head();
         ?>
-        <style type="text/css">
+      
+        <?php 
+        wp_enqueue_style( 'fontawesome_4', getTema()."/css/font-awesome.css", array(), '1.0.0'); 
+        wp_head();
+        ?>
+  <style type="text/css">
             a.absolute{position: absolute; width: 100%; height: 100%;  top: 0; left: 0;}
             .contain{position: relative; width: 95%; max-width: 1000px; margin: 0 auto;}
             .logo{background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-02.png) center/contain no-repeat;}
@@ -123,10 +127,6 @@ if(array_key_exists('search',$_POST)){
 
         </style>
         
-        <?php 
-        wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0'); 
-        ?>
-
     </head>
 
     <body <?php body_class(); ?>>
