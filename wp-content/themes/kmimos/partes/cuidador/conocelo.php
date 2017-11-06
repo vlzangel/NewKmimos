@@ -32,7 +32,6 @@ if ( !is_user_logged_in() ){
 
 }else{
 
-
 	/* Validar mascotas */
 	if ( count($mascotas) < 1 ){ 
 		$btn_mascota['btn'] = '<a href="'.get_home_url().'/perfil-usuario/mascotas" style="color:#337ab7;" role="button" ><strong>lista de mascotas</strong></a>';
@@ -73,7 +72,7 @@ $HTML_CONOCER = '
 
 								<div class="km-calendario">
 									<label>¿Cuándo deseas conocer al cuidador?</label>
-									<input type="text" id="meeting_when" name="meeting_when" placeholder="dd/mm/aaaa" class="km-calendario date_from" readonly>
+									<input type="text" id="meeting_when" name="meeting_when" placeholder="dd/mm/aaaa" class="km-calendario date_from" value="'.$busqueda["checkin"].'" readonly>
 									<small data-error="meeting_when" style="display: none;">Debes ingresar una fecha</small>
 								</div>
 								<div class="km-datos-mascota">
@@ -129,12 +128,12 @@ $HTML_CONOCER = '
 								</div>
 								<div class="km-calendario">
 									<label>¿Desde cuándo requieres el servicio?</label>
-									<input type="text" id="service_start" name="service_start" placeholder="dd/mm/aaaa" class="date_from" readonly>
+									<input type="text" id="service_start" name="service_start" placeholder="dd/mm/aaaa" class="date_from" value="'.$busqueda["checkin"].'" readonly>
 									<small data-error="service_start" style="display: none;">Debes ingresar una fecha</small>
 								</div>
 								<div class="km-calendario">
 									<label>¿Hasta cuándo requieres el servicio?</label>
-									<input type="text" id="service_end" name="service_end" placeholder="dd/mm/aaaa" class="date_from" readonly>
+									<input type="text" id="service_end" name="service_end" placeholder="dd/mm/aaaa" class="date_from" value="'.$busqueda["checkout"].'" readonly>
 									<small data-error="service_end" style="display: none;">Debes ingresar una fecha</small>
 								</div>
 								</br>							
@@ -161,14 +160,14 @@ $HTML_CONOCER = '
 				<p >Tu codigo de solicitud es: <B><span id="n_solicitud"></span></B></p>
 				<div>
 				    <div> 
-				    <br>   
+				    	<br>   
 				        <p>Datos del cuidador</p>					    
 						<p>Nombre: <B><span id="nombre"></span></B></p>
 						<p>Telefono: <span id="telefono"></span> / '.get_user_meta($user_id, "user_mobile", true).'</p>
 					    <p>Correo: <span id="email"></span></p>
 					</div>
-				     <div> 
-				     <br>   
+				    <div> 
+				     	<br>   
 						<p >DATOS DE LA REUNION</p>
 						<p >Fecha: <B><span id="fecha"></span></B></p>
 						<p >Hora: <span id="hora_reu"></span> horas</p>
@@ -181,16 +180,14 @@ $HTML_CONOCER = '
 					<div  style="clear:both;"></div>
 				</div>
 
-				<div>
-					
-				<p style=" font-family: Arial; font-size:16px; font-weight: bold; color:#6b1c9b; text-align:center;">IMPORTANTE</p>
-					
-				<label> Dentro de las siguientes 2-4 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso. También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados a continuación para acelerar el proceso si así lo deseas.</label>
-				<label> Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182, o al correo contactomex@kmimos.la</label>
+					<div>
+						<p style=" font-family: Arial; font-size:16px; font-weight: bold; color:#6b1c9b; text-align:center;">IMPORTANTE</p>
+						<label> Dentro de las siguientes 2-4 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso. También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados a continuación para acelerar el proceso si así lo deseas.</label>
+						<label> Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182, o al correo contactomex@kmimos.la</label>
+					</div>
 				</div>
-</div>
-<br>
-<br>
+				<br>
+				<br>
 				<div>
 					'.$pdf.'
 					<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/solicitudes/">VER MIS SOLICITUDES</a>
