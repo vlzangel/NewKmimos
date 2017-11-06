@@ -20,6 +20,26 @@
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
 	$descripcion = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
 
+	$user_id = get_current_user_id();
+	$favoritos = get_favoritos();
+	$fav_check = 'false';
+        $fav_del = '';
+        if (in_array($cuidador->id_post, $favoritos)) {
+            $fav_check = 'true'; 
+            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+            $fav_del = 'favoritos_delete';
+        }
+        $favoritos_link = 
+        '<span href="javascript:;" 
+            data-reload="false"
+            data-user="'.$user_id.'" 
+            data-num="'.$cuidador->id_post.'" 
+            data-active="'.$fav_check.'"
+            data-favorito="'.$fav_check.'"
+            class="km-link-favorito '.$fav_del.'" '.$style_icono.'>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+        </span>';
+
 	$slug = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE post_type = 'product' AND post_author = '{$cuidador->user_id}' AND post_name LIKE '%hospedaje%' ");
 
 	$latitud 	= $cuidador->latitud;
@@ -317,7 +337,11 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-3">
-						<div class="km-ficha-cuidador" style="background-image: url('.$foto.');"></div>
+						<div class="img_cuidador">
+							<b></b>
+							'.$favoritos_link.'
+							<img src="'.$foto.'" />
+						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6">
 						<div class="km-tit-cuidador">'.strtoupper( get_the_title() ).'</div>
