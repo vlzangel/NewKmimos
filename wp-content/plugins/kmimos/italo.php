@@ -292,7 +292,6 @@
 
 
          /* Temporal ********************* */
-         echo '<div data-id="italo" style="display:none">'.$current_user->user_email.'</div>';
 
           if ( 	 $current_user->user_email == 'a.pedroza@kmimos.la' ||
 				 $current_user->user_email == 'r.cuevas@kmimos.la'  ||
