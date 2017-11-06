@@ -30,17 +30,8 @@
             }
             
             $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo' ");
-            if( empty($name_photo)  ){
-                $name_photo = "0";
-            }
-            /*
-            if( count(explode(".", $name_photo)) == 1 ){
-                $name_photo .= "jpg";
-            }
-            */
+            if( empty($name_photo)  ){ $name_photo = "0"; }
             $base = path_base();
-
-            //echo $base."/wp-content/uploads/{$sub_path}{$name_photo}\n";
 
             if( file_exists($base."/wp-content/uploads/{$sub_path}{$name_photo}") ){
                 $img = $HOME."/wp-content/uploads/{$sub_path}{$name_photo}";
@@ -64,6 +55,34 @@
                 }
             }
             return false;
+        }
+    }
+
+    function get_user_meta($user_id, $key){
+        global $db;
+        return $db->get_var("SELECT meta_key FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = '{$key}';");
+    }
+    
+    function update_user_meta($user_id, $key, $valor){
+        global $db;
+        if( get_user_meta($user_id, $key) !== false ){
+            $db->get_var("UPDATE wp_usermeta SET meta_value = '{$valor}' WHERE user_id = {$user_id} AND meta_key = '{$key}';");
+        }else{
+            $db->get_var("INSERT INTO wp_usermeta VALUES ( NULL, {$user_id}, '{$key}', '{$valor}');");
+        }
+    }
+
+    function get_post_meta($post_id, $key){
+        global $db;
+        return $db->get_var("SELECT meta_key FROM wp_postmeta WHERE post_id = {$user_id} AND meta_key = '{$key}';");
+    }
+    
+    function update_post_meta($post_id, $key, $valor){
+        global $db;
+        if( get_user_meta($user_id, $key) !== false ){
+            $db->get_var("UPDATE wp_postmeta SET meta_value = '{$valor}' WHERE post_id = {$post_id} AND meta_key = '{$key}';");
+        }else{
+            $db->get_var("INSERT INTO wp_postmeta VALUES ( NULL, {$post_id}, '{$key}', '{$valor}');");
         }
     }
     
