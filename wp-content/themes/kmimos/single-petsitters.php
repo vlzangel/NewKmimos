@@ -123,6 +123,8 @@
 	$id_cuidador = ($cuidador->id)-5000;
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
+	$galeria_array = array();
+
 	if( is_dir($path_galeria) ){
 
 		if ($dh = opendir($path_galeria)) { 
@@ -130,6 +132,8 @@
 	        while (($file = readdir($dh)) !== false) { 
 	            if (!is_dir($path_galeria.$file) && $file!="." && $file!=".."){ 
 	               $imagenes[] = $path_galeria.$file;
+	      			
+	      			$galeria_array[] = $id_cuidador."/".$file;
 	            } 
 	        } 
 	      	closedir($dh);
@@ -139,16 +143,16 @@
 	      		$items = array(); 
 	      		$home = get_home_url()."/";
 	      		foreach ($imagenes as $value) {
+
 	      			$items[] = "
-	      				<div class='slide' data-scale='small' data-position='top' 
-	      				onclick=\"vlz_galeria_ver('".$home.$value."')\">
+	      				<div class='slide' data-scale='small' data-position='top' onclick=\"vlz_galeria_ver('".$home.$value."')\">
 	      					<div class='vlz_item_fondo' style='background-image: url(".$home.$value."); filter:blur(2px);'></div>
 	      					<div class='vlz_item_imagen' style='background-image: url(".$home.$value.");'></div>
 	      				</div>
 	      			";
 
 	      		}
-	      		$galeria = '
+/*	      		$galeria = '
 	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
 					<div class="km-galeria-cuidador">
 						<div class="km-galeria-cuidador-slider">
@@ -161,7 +165,26 @@
 	      				<span onclick='vlz_galeria_cerrar()' class='close' style='position:absolute;top:10px;right:10px;color:white;z-index:999;'><i class='fa fa-times' aria-hidden='true'></i></span>
 	      				<div class='vlz_modal_galeria_interna'></div>
 	      			</div>
+	      		";*/
+
+	      		$galeria = '
+	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
+					<div class="km-galeria-cuidador">
+						<div class="km-galeria-cuidador-slider">
+							<div class="perfil_cuidador_cargando">
+								<div style="background-image: url('.getTema().'/images/cargando.gif);" ></div> Cangando Galer&iacute;a...
+							</div>
+						</div>
+					</div>
+	      		'.
+	      		"
+	      			<div class='vlz_modal_galeria' onclick='vlz_galeria_cerrar()'>
+	      				<span onclick='vlz_galeria_cerrar()' class='close' style='position:absolute;top:10px;right:10px;color:white;z-index:999;'><i class='fa fa-times' aria-hidden='true'></i></span>
+	      				<div class='vlz_modal_galeria_interna'></div>
+	      			</div>
 	      		";
+
+
 	      	}else{
 	      		$galeria = "";
 	      	}
@@ -173,7 +196,6 @@
 	$precios_hospedaje = unserialize($cuidador->hospedaje);
 	$precios_adicionales = unserialize($cuidador->adicionales);
 
- 
 
 	$id_hospedaje = 0;
 	$servicios = $wpdb->get_results("
@@ -285,7 +307,10 @@
 	}
 
  	$HTML .= '
- 		<script> var SERVICIO_ID = "'.$cuidador->id_post.'"; </script>
+ 		<script> 
+ 			var SERVICIO_ID = "'.$cuidador->id_post.'"; 
+ 			var GALERIA = jQuery.parseJSON(\''.json_encode($galeria_array).'\'); 
+ 		</script>
  		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 			<div class="overlay"></div>
 		</div>

@@ -110,3 +110,18 @@
 .km-ficha-info-cuidador .km-ficha-cuidador {
     height: 220px !important;
 }
+
+.perfil_cuidador_cargando{
+    background: #EEE;
+    padding: 20px;
+}
+
+.perfil_cuidador_cargando > div{
+    width: 30px;
+    height: 30px !important;
+    background-position: center;
+    background-size: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
