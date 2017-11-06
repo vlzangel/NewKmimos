@@ -118,6 +118,16 @@ jQuery(document).ready(function(){
         onmonthsToShow: [1, 1]
     });
 
+    var f = String( jQuery("#service_start").val() ).split("/");
+    initDate('service_start', new Date( f[2]+"-"+f[1]+"-"+f[0] ), function(date2) {
+        var preDate2 = getFecha("service_end", date2);
+        initDate('service_end', date2[0], function(date3) { }, preDate2);
+    },  new Date( jQuery("#service_start") ));
+
+    var f = String( jQuery("#service_end").val() ).split("/");
+    initDate('service_end', new Date( f[2]+"-"+f[1]+"-"+f[0] ), function(date3) { }, new Date( f[2]+"-"+f[1]+"-"+f[0] ));
+
+
     jQuery(".km-group-checkbox input").on("change", function(e){
         jQuery(this).toggleClass("active");
     });
