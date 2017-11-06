@@ -91,7 +91,8 @@ class Reservas {
                 (NULL, '{$id_reserva}', '_booking_cost',            '{$monto}'),
                 (NULL, '{$id_reserva}', '_booking_persons',         '{$num_mascotas}'),
                 (NULL, '{$id_reserva}', '_booking_order_item_id',   '{$id_item}'),
-                (NULL, '{$id_reserva}', '_booking_product_id',      '{$servicio}');
+                (NULL, '{$id_reserva}', '_booking_product_id',      '{$servicio}'),
+                (NULL, '{$id_reserva}', 'data_italo',   '".json_encode($this->data)."');
         ";
 
         $this->db->multi_query($sql);
