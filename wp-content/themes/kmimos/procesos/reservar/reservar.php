@@ -78,7 +78,7 @@ class Reservas {
 
         $this->servicio = $servicio;
         
-        $total = $deposito['total'];
+        $total_a_pagar = $deposito['total'];
 
         $sql = "
             INSERT INTO wp_postmeta VALUES
@@ -86,11 +86,10 @@ class Reservas {
                 (NULL, '{$id_reserva}', '_booking_all_day',         '1'),
                 (NULL, '{$id_reserva}', '_booking_start',           '{$inicio}000000'),
                 (NULL, '{$id_reserva}', '_booking_end',             '{$fin}235959'),
-                (NULL, '{$id_reserva}', '_booking_cost',            '{$monto}'),
+                (NULL, '{$id_reserva}', '_booking_cost',            '{$total_a_pagar}'),
                 (NULL, '{$id_reserva}', '_booking_persons',         '{$num_mascotas}'),
                 (NULL, '{$id_reserva}', '_booking_order_item_id',   '{$id_item}'),
-                (NULL, '{$id_reserva}', '_booking_product_id',      '{$servicio}'),
-                (NULL, '{$id_reserva}', 'data_italo',   '".json_encode($this->data)."');
+                (NULL, '{$id_reserva}', '_booking_product_id',      '{$servicio}');
         ";
 
         $this->db->multi_query($sql);
