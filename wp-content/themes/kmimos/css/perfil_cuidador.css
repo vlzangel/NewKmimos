@@ -149,26 +149,19 @@
 
 .img_cuidador span{
     position: absolute;
-    top: 3px;
-    right: 8px;
-    z-index: 100;
-}
-
-.img_cuidador b{
-    position: absolute;
     top: 0px;
     right: 0px;
-    z-index: 50;
-    width: 0;
-    height: 0;
-    border-top: 70px solid #FFF;
-    border-left: 70px solid transparent;
+    z-index: 100;
+    margin: 0px;
+    padding: 25px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .img_cuidador i{
-    font-size: 25px;
-}
-
-.km-link-favorito {
-    color: #FFF !important;
+    position: absolute;
+    top: 8px;
+    right: 6px;
+    font-size: 17px;
+    cursor: pointer;
 }
