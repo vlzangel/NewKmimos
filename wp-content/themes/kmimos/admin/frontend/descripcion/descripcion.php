@@ -48,10 +48,10 @@
     }
 
     $tamano = array(
-        'pequenos'=>'Pequeño (0 - 10cm)', 
-        'medianos'=>'Mediano (11 - 25cm)', 
-        'grandes'=>'Grande (26 - 45cm)', 
-        'gigantes'=>'Gigante (+46cm)'
+        'pequenos'=>'Pequeño (0 - 25cm)', 
+        'medianos'=>'Mediano (25 - 58cm)', 
+        'grandes'=>'Grande (58 - 73cm)', 
+        'gigantes'=>'Gigante (73 - 200cm)'
     );
 
     $ubicaciones = $wpdb->get_row("SELECT * FROM ubicaciones WHERE cuidador = ".$cuidador->id);
