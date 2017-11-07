@@ -351,13 +351,13 @@
 		exit;
     }
 
-
+ 
     if( $pagar->metodo != "deposito" ){
 	    $pagar->total -= $descuentos;
     }else{
 	    $pagar->total = $pre17;
     }
-
+ 
 
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
