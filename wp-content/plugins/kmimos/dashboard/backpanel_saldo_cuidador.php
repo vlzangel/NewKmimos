@@ -78,8 +78,8 @@ $PagoCuidador = getPagoCuidador( $desde, $hasta );
 			  <tbody>
 			  	<?php $count=0; ?>
 			  	<?php foreach( $PagoCuidador as $ID => $row ){ 
-            if( $row['total'] != 0){
-          ?>
+		            if( $row['total'] > 0){
+		          ?>
 				    <tr>
 
 				    	<th class="text-center"><?php echo ++$count; ?></th>
