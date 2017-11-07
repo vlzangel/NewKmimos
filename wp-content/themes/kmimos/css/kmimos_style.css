@@ -579,6 +579,10 @@ section {
 	display: none;
 }
 
+.km-testimoniales .bx-controls.bx-has-controls-direction.bx-has-pager {
+    position: relative;
+}
+
 .km-testimonial-text {
 	margin: auto;
 	position: relative;
