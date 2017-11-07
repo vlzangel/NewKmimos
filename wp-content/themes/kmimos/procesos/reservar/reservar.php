@@ -77,7 +77,7 @@ class Reservas {
         extract($this->data);
 
         $this->servicio = $servicio;
-        
+
         $sql = "
             INSERT INTO wp_postmeta VALUES
                 (NULL, '{$id_reserva}', '_booking_customer_id',     '{$cliente}'),
@@ -142,17 +142,20 @@ class Reservas {
             $remanente = "(NULL, '{$id_order}', '_wc_deposits_remaining', '{$deposito["remaining"]}'),";
         }else{
             $total = $monto;
+            $remanente = "(NULL, '{$id_order}', '_wc_deposits_remaining', '0'),";
         }
 
         $sql = "
             INSERT INTO wp_postmeta VALUES
             {$remanente}
             (NULL, '{$id_order}', '_customer_user',                         '{$cliente}'),
+            
             (NULL, '{$id_order}', '_order_total',                           '{$total}'),
+            (NULL, '{$id_order}', '_cart_discount',                         '{$descuento}'),
+
             (NULL, '{$id_order}', '_order_key',                             'wc_order_{$token}'),
             (NULL, '{$id_order}', '_order_stock_reduced',                   '1'),
             (NULL, '{$id_order}', '_cart_discount_tax',                     '0'),
-            (NULL, '{$id_order}', '_cart_discount',                         '{$descuento}'),
             (NULL, '{$id_order}', '_order_version',                         '2.5.5'),
             (NULL, '{$id_order}', '_payment_method',                        '{$metodo_pago}'),
             (NULL, '{$id_order}', '_recorded_sales',                        'yes'),
