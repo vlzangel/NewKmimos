@@ -347,7 +347,7 @@ function getReservas($desde="", $hasta=""){
 			and cl.ID > 0 
 			and p.ID > 0
 			{$filtro_adicional}
-		ORDER BY fecha_solicitud desc
+		ORDER BY r.ID desc
 		;";
 
 	$reservas = $wpdb->get_results($sql);
