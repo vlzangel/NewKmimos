@@ -17,6 +17,9 @@ function getPagoCuidador($desde, $hasta){
 	$pagos = [];
 	$detalle = [];
 	$count = 1;
+
+$dev = [];
+
 	foreach ($reservas as $row) {
 		$total = 0;
 		
@@ -27,7 +30,14 @@ function getPagoCuidador($desde, $hasta){
 		// Calculo por reserva
 		$monto = calculo_pago_cuidador( $row->total, $row->total_pago, $row->remanente );
 
-		
+		$dev[] = [
+			'row'  => $row,
+			'pago' => $row->total_pago, 
+			'monto'=> $monto,
+			'total'=> $row->total, 
+			'remanente'=> $row->remanente
+		];
+
 		if( $count == 4 ){
 			$separador = '<br><br>';
 			$count=1;
@@ -43,12 +53,13 @@ function getPagoCuidador($desde, $hasta){
 
 		//[ {$row->reserva_id}: $". number_format($monto, 2, ",", ".")." ]{$separador}
 		if( $monto > 0 ){
-		$pagos[ $row->cuidador_id ]['detalle'] .= $r.'
-			<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
-			  '.$row->reserva_id.' <span class="badge" style="background:#fff;color:#000;">$'.number_format($monto, 2, ",", ".").'</span>
-			</small>
-		'.$separador;
-    }
+			$pagos[ $row->cuidador_id ]['detalle'] .= $r.'
+				<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
+				  '.$row->reserva_id.' <span class="badge" style="background:#fff;color:#000;">$'.number_format($monto, 2, ",", ".").'</span>
+				</small>
+			'.$separador;
+	    }
+
 		if( array_key_exists('total', $pagos[ $row->cuidador_id ]) ){
 			$monto = $pagos[ $row->cuidador_id ]['total'] + $monto;
 		}
@@ -65,7 +76,11 @@ function getPagoCuidador($desde, $hasta){
 		$pagos[ $row->cuidador_id ]['total_row'] = count($t);
 
 	}
+	
 
+/*echo '<pre style="display:none; data-italo">';
+	print_r( $dev );
+echo '</pre>';*/
 	return $pagos;
 }
 
@@ -117,9 +132,10 @@ function getReservas($desde="", $hasta=""){
  			us.nombre,
 			us.apellido,
 			r.ID as reserva_id,
-			rm_cost.meta_value as total,
-			pm_remain.meta_value as remanente,
-			pm_total.meta_value as total_pago
+
+			( IFNULL(pm_remain.meta_value,0) + IFNULL(pm_total.meta_value,0) ) as total,
+			( IFNULL(pm_disco.meta_value,0)  + IFNULL(pm_total.meta_value,0) ) as total_pago,
+			( ( IFNULL(pm_remain.meta_value,0) + IFNULL(pm_total.meta_value,0) ) - ( IFNULL(pm_disco.meta_value,0) + IFNULL(pm_total.meta_value,0) ) ) as remanente
 
 		FROM wp_posts as r
 			LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
@@ -128,6 +144,7 @@ function getReservas($desde="", $hasta=""){
 			LEFT JOIN wp_posts as p ON p.ID = r.post_parent
 			LEFT JOIN wp_postmeta as pm_remain ON pm_remain.post_id = p.ID and pm_remain.meta_key = '_wc_deposits_remaining'
 			LEFT JOIN wp_postmeta as pm_total  ON pm_total.post_id = p.ID and pm_total.meta_key = '_order_total'
+			LEFT JOIN wp_postmeta as pm_disco  ON pm_disco.post_id = p.ID and pm_disco.meta_key = '_cart_discount'
 
 			LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')
 			LEFT JOIN wp_posts as pr ON pr.ID = pri.meta_value
@@ -140,7 +157,8 @@ function getReservas($desde="", $hasta=""){
 			and r.post_status = 'confirmed'
 			{$filtro_adicional}
 		;";
- 
+
+
 	$reservas = $wpdb->get_results($sql);
 	return $reservas;
 }
