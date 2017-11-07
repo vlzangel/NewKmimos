@@ -13,9 +13,6 @@
         bottom: 22%!important;
     }
 
-	.woocommerce ul.products li.product, .woocommerce-page ul.products li.product, .woocommerce-page[class*=columns-] ul.products li.product, .woocommerce[class*=columns-] ul.products li.product {
-	    width: calc( 50% - 10px ) !important;
-	}
 	.comment_valuation{
         width: 50% !important;
 	    box-sizing: border-box;
@@ -38,13 +35,22 @@
 	    clear: left;
 	    display: block;
 	}
+
+	#form_cuidador{
+		text-align: center;
+	}
+
+	.km-costo .km-btn-secondary {
+	    float: none !important;
+	    display: inline-block !important;
+    	width: calc( 50% - 2px ) !important;
+    	border-radius: 8px !important;
+    	font-size: 11px !important;
+	}
+
 }
 
 @media (max-width: 480px){
-    .woocommerce ul.products li.product, .woocommerce-page ul.products li.product, .woocommerce-page[class*=columns-] ul.products li.product, .woocommerce[class*=columns-] ul.products li.product {
-	    width: 100% !important;;
-	}
-
 	.menu_perfil {
 	    display: none;
 	}
