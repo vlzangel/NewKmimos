@@ -8,10 +8,15 @@
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px; text-align: center;'>
 			<img style='' src='[URL_IMGS]/check.png' >
 		</div>	<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px; text-align: center;'>
-			¡Todo está listo [name_cuidador]!
+			¡Hola Administrador!
 		</div>	
+
+	    <div style='width: 269px; border-radius: 2.8px; background-color: #f4f4f4; margin: 0px auto 11px; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px; text-align: center;'>
+	    	Solicitud para conocer cuidador #: <strong>[id_solicitud]</strong>
+	    </div>
+	    
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 0px; text-align: center;'>
-	    	La solicitud para conocerte de <strong>[name_cliente]</strong> ha sido confirmada. <img style='' src='[URL_IMGS]/emoji_g.png' >
+	    	La solicitud para conocer al cuidador <strong>[name_cuidador]</strong> del cliente <strong>[name_cliente]</strong> ha sido confirmada. <img style='' src='[URL_IMGS]/emoji_g.png' >
 	    </div>
 	</div>
 </div>
