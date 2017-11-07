@@ -18,8 +18,6 @@ function getPagoCuidador($desde, $hasta){
 	$detalle = [];
 	$count = 1;
 
-$dev = [];
-
 	foreach ($reservas as $row) {
 		$total = 0;
 		
@@ -29,14 +27,6 @@ $dev = [];
 
 		// Calculo por reserva
 		$monto = calculo_pago_cuidador( $row->total, $row->total_pago, $row->remanente );
-
-		$dev[] = [
-			'row'  => $row,
-			'pago' => $row->total_pago, 
-			'monto'=> $monto,
-			'total'=> $row->total, 
-			'remanente'=> $row->remanente
-		];
 
 		if( $count == 4 ){
 			$separador = '<br><br>';
@@ -77,10 +67,6 @@ $dev = [];
 
 	}
 	
-
-/*echo '<pre style="display:none; data-italo">';
-	print_r( $dev );
-echo '</pre>';*/
 	return $pagos;
 }
 
