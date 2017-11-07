@@ -12,6 +12,28 @@
 
 	function aplicarCupon($db, $cupon, $cupones, $total, $validar, $cliente = "", $servicio = ""){
 		
+		/* Cupones Especiales */
+
+			if( strtolower($cupon) == "buenfin17" ){
+
+
+				$cuidador = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio}'");
+				$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = '{$cuidador}'");
+
+
+				$atributos = unserialize($cuidador->atributos);
+				if( $atributos['destacado'] != 1 ){
+					//$cuidador_titulo = $db->get_var("SELECT post_title FROM wp_posts WHERE ID = '{$cuidador->id_post}'");
+					echo json_encode(array(
+						"error" => "El cupón [ {$cupon} ] no puede ser aplicado con este cuidador."
+					));
+					exit;
+				}
+
+			}
+
+		/* Fin Cupones Especiales */
+
 		/* Get Data */
 
 			$sub_descuento = 0; $otros_cupones = 0;
