@@ -77,8 +77,6 @@ class Reservas {
         extract($this->data);
 
         $this->servicio = $servicio;
-        
-        $total_a_pagar = $deposito['total'];
 
         $sql = "
             INSERT INTO wp_postmeta VALUES
@@ -86,7 +84,7 @@ class Reservas {
                 (NULL, '{$id_reserva}', '_booking_all_day',         '1'),
                 (NULL, '{$id_reserva}', '_booking_start',           '{$inicio}000000'),
                 (NULL, '{$id_reserva}', '_booking_end',             '{$fin}235959'),
-                (NULL, '{$id_reserva}', '_booking_cost',            '{$total_a_pagar}'),
+                (NULL, '{$id_reserva}', '_booking_cost',            '{$monto}'),
                 (NULL, '{$id_reserva}', '_booking_persons',         '{$num_mascotas}'),
                 (NULL, '{$id_reserva}', '_booking_order_item_id',   '{$id_item}'),
                 (NULL, '{$id_reserva}', '_booking_product_id',      '{$servicio}');
@@ -145,10 +143,6 @@ class Reservas {
         }else{
             $total = $monto;
             $remanente = "(NULL, '{$id_order}', '_wc_deposits_remaining', '0'),";
-        }
-
-        if( isset($descuento) && $descuento > 0 ){
-            $total += $descuento;
         }
 
         $sql = "
