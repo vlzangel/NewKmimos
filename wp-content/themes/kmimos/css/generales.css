@@ -248,6 +248,10 @@ section {
     text-align: center;
     padding: 60px 0;
 }
+section .left{
+    text-align: left;
+    padding: 60px 0;
+}
 
 /*
     Modal mas servicios
