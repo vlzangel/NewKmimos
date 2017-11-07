@@ -93,7 +93,7 @@
         }
     }
 
-        $file = $PATH_TEMPLATE.'/template/mail/conocer/cancelar_cliente.php';
+        $file = $PATH_TEMPLATE.'/template/mail/conocer/cliente/cancelar.php';
         $mensaje_cliente = file_get_contents($file);
 
         $mensaje_cliente = str_replace('[mensaje]', $msg_cliente, $mensaje_cliente);
@@ -107,7 +107,7 @@
     	$mensaje_cliente = get_email_html( $mensaje_cliente );	
         wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
 
-        $file = $PATH_TEMPLATE.'/template/mail/conocer/cancelar_cuidador.php';
+        $file = $PATH_TEMPLATE.'/template/mail/conocer/cuidador/cancelar.php';
         $mensaje_cuidador = file_get_contents($file);
 
         $mensaje_cuidador = str_replace('[mensaje]', $msg_cuidador, $mensaje_cuidador);
