@@ -19,7 +19,7 @@ function form_subscribe(element){
     var text_submit = obj_submit.html();
 
     if( !obj_submit.hasClass("disabled") ){
-        obj_submit.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Guardando');
+        //obj_submit.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Guardando');
         obj_submit.addClass('disabled');
         jQuery.post(url, jQuery(element).serialize(),function(data){
             if(data['result']===true){
