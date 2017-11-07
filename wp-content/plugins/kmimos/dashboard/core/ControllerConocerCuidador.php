@@ -63,8 +63,8 @@ function getSolicitud($desde="", $hasta=""){
 			DATE_FORMAT(p.post_date,'%d-%m-%Y') as Fecha_solicitud,
 			p.post_status as Estatus,
 
-			DATE_FORMAT(fd.meta_value,'%d-%m-%Y') as Servicio_desde,
-			DATE_FORMAT(fh.meta_value,'%d-%m-%Y') as Servicio_hasta,
+			fd.meta_value as Servicio_desde,
+			fh.meta_value as Servicio_hasta,
 			d.meta_value as Donde,
 			w.meta_value as Cuando,
 			t.meta_value as Hora,
