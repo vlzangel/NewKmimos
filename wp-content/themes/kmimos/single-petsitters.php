@@ -302,7 +302,7 @@
 	            data-name="'.strtoupper( get_the_title() ).'" 
 	            data-id="'.$cuidador->id_post.'"
 				class="km-btn-secondary" 
-			>CONOCER</a>
+			>CON&Oacute;CELO +</a>
 
 		'.$BOTON_RESERVAR;
 
@@ -314,7 +314,7 @@
 				id="btn_conocer"
 				data-target="#popup-iniciar-sesion"
 				class="km-btn-secondary" 
-			>CONOCER</a>
+			>CON&Oacute;CELO +</a>
 
 			<a href="javascript:;"
 				id="btn_reservar"
