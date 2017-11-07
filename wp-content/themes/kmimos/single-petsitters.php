@@ -20,6 +20,28 @@
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
 	$descripcion = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
 
+	$user_id = get_current_user_id();
+	$favoritos = get_favoritos();
+	$fav_check = 'false';
+        $fav_del = '';
+        if (in_array($cuidador->id_post, $favoritos)) {
+            $fav_check = 'true'; 
+            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+            $fav_del = 'favoritos_delete';
+        }
+        $favoritos_link = 
+        '<span href="javascript:;" 
+            data-reload="false"
+            data-user="'.$user_id.'" 
+            data-num="'.$cuidador->id_post.'" 
+            data-active="'.$fav_check.'"
+            data-favorito="'.$fav_check.'"
+            class="km-link-favorito '.$fav_del.'" '.$style_icono.'
+            style="background-image: url('.getTema().'/images/new/bg-foto-resultados.png) !important;"
+            >
+            <i class="fa fa-heart" aria-hidden="true"></i>
+        </span>';
+
 	$slug = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE post_type = 'product' AND post_author = '{$cuidador->user_id}' AND post_name LIKE '%hospedaje%' ");
 
 	$latitud 	= $cuidador->latitud;
@@ -123,6 +145,8 @@
 	$id_cuidador = ($cuidador->id)-5000;
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
+	$galeria_array = array();
+
 	if( is_dir($path_galeria) ){
 
 		if ($dh = opendir($path_galeria)) { 
@@ -130,6 +154,8 @@
 	        while (($file = readdir($dh)) !== false) { 
 	            if (!is_dir($path_galeria.$file) && $file!="." && $file!=".."){ 
 	               $imagenes[] = $path_galeria.$file;
+	      			
+	      			$galeria_array[] = $id_cuidador."/".$file;
 	            } 
 	        } 
 	      	closedir($dh);
@@ -139,16 +165,16 @@
 	      		$items = array(); 
 	      		$home = get_home_url()."/";
 	      		foreach ($imagenes as $value) {
+
 	      			$items[] = "
-	      				<div class='slide' data-scale='small' data-position='top' 
-	      				onclick=\"vlz_galeria_ver('".$home.$value."')\">
+	      				<div class='slide' data-scale='small' data-position='top' onclick=\"vlz_galeria_ver('".$home.$value."')\">
 	      					<div class='vlz_item_fondo' style='background-image: url(".$home.$value."); filter:blur(2px);'></div>
 	      					<div class='vlz_item_imagen' style='background-image: url(".$home.$value.");'></div>
 	      				</div>
 	      			";
 
 	      		}
-	      		$galeria = '
+/*	      		$galeria = '
 	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
 					<div class="km-galeria-cuidador">
 						<div class="km-galeria-cuidador-slider">
@@ -161,7 +187,26 @@
 	      				<span onclick='vlz_galeria_cerrar()' class='close' style='position:absolute;top:10px;right:10px;color:white;z-index:999;'><i class='fa fa-times' aria-hidden='true'></i></span>
 	      				<div class='vlz_modal_galeria_interna'></div>
 	      			</div>
+	      		";*/
+
+	      		$galeria = '
+	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
+					<div class="km-galeria-cuidador">
+						<div class="km-galeria-cuidador-slider">
+							<div class="perfil_cuidador_cargando">
+								<div style="background-image: url('.getTema().'/images/cargando.gif);" ></div> Cangando Galer&iacute;a...
+							</div>
+						</div>
+					</div>
+	      		'.
+	      		"
+	      			<div class='vlz_modal_galeria' onclick='vlz_galeria_cerrar()'>
+	      				<span onclick='vlz_galeria_cerrar()' class='close' style='position:absolute;top:10px;right:10px;color:white;z-index:999;'><i class='fa fa-times' aria-hidden='true'></i></span>
+	      				<div class='vlz_modal_galeria_interna'></div>
+	      			</div>
 	      		";
+
+
 	      	}else{
 	      		$galeria = "";
 	      	}
@@ -173,7 +218,6 @@
 	$precios_hospedaje = unserialize($cuidador->hospedaje);
 	$precios_adicionales = unserialize($cuidador->adicionales);
 
- 
 
 	$id_hospedaje = 0;
 	$servicios = $wpdb->get_results("
@@ -247,9 +291,6 @@
 	}
 	$productos .= '</div>';
 
-
-    include ('partes/cuidador/conocelo.php');
-
 	if(is_user_logged_in()){
 		include('partes/seleccion_boton_reserva.php');
 
@@ -284,8 +325,13 @@
 		';
 	}
 
+    include ('partes/cuidador/conocelo.php');
+
  	$HTML .= '
- 		<script> var SERVICIO_ID = "'.$cuidador->id_post.'"; </script>
+ 		<script> 
+ 			var SERVICIO_ID = "'.$cuidador->id_post.'"; 
+ 			var GALERIA = jQuery.parseJSON(\''.json_encode($galeria_array).'\'); 
+ 		</script>
  		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 			<div class="overlay"></div>
 		</div>
@@ -293,7 +339,10 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-3">
-						<div class="km-ficha-cuidador" style="background-image: url('.$foto.');"></div>
+						<div class="img_cuidador">
+							'.$favoritos_link.'
+							<img src="'.$foto.'" />
+						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6">
 						<div class="km-tit-cuidador">'.strtoupper( get_the_title() ).'</div>
@@ -306,11 +355,13 @@
 					</div>
 					<div class="km-costo hidden-xs">
 						<form id="form_cuidador" method="POST" action="'.getTema().'/procesos/reservar/redirigir_reserva.php">
-							<p>SERVICIOS DESDE</p>
-							<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
+							<div class="servicio_desde">
+								<p>SERVICIOS DESDE</p>
+								<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
+							</div>
 							<div class="km-ficha-fechas">
-								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" value="" class="date_from" readonly>
-								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA" value="'.$busqueda["checkout"].'" value="" class="date_to" readonly>
+								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
+								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="date_to" readonly>
 								<small class="validacion_fechas">Debe seleccionar las fechas</small>
 							</div>
 							'.$BOTON_RESERVAR.'

@@ -1,5 +1,5 @@
 <?php 
-	
+
 	if($portada != ""){
 	    $dir = $raiz."/wp-content/uploads/{$sub_path}/";
 	    @mkdir($dir);
@@ -23,14 +23,16 @@
 	    }
 	}
 
+
+	update_user_meta($user_id, "first_name", $first_name);
+	update_user_meta($user_id, "last_name", $last_name);
+	update_user_meta($user_id, "user_phone", $phone);
+	update_user_meta($user_id, "mobile", $user_mobile);
+	update_user_meta($user_id, "user_referred", $referred);
+	update_user_meta($user_id, "description", $descr);
+	update_user_meta($user_id, "nickname", $nickname);
+
 	$sql  = "UPDATE wp_users SET display_name = '{$nickname}' WHERE ID = {$user_id}; ";
-	$sql .= "UPDATE wp_usermeta SET meta_value = '{$first_name}' WHERE user_id = {$user_id} AND meta_key = 'first_name';";
-	$sql .= "UPDATE wp_usermeta SET meta_value = '{$last_name}' WHERE user_id = {$user_id} AND meta_key = 'last_name';";
-	$sql .= "UPDATE wp_usermeta SET meta_value = '{$phone}' WHERE user_id = {$user_id} AND meta_key = 'user_phone';";
-	$sql .= "UPDATE wp_usermeta SET meta_value = '{$mobile}' WHERE user_id = {$user_id} AND meta_key = 'user_mobile';";
-	$sql .= "UPDATE wp_usermeta SET meta_value = '{$referred}' WHERE user_id = {$user_id} AND meta_key = 'user_referred';";
-	$sql .= "UPDATE wp_usermeta SET meta_value = '{$descr}' WHERE user_id = {$user_id} AND meta_key = 'description';";
-	$sql .= "UPDATE wp_usermeta SET meta_value = '{$nickname}' WHERE user_id = {$user_id} AND meta_key = 'nickname';";
 	if( isset($img_portada) ){
 		$sql .= $img_portada;
 	}
