@@ -36,18 +36,18 @@
 	$result = $wpdb->get_results($sql);
 
 	$CONTENIDO .= '
-		<section role="main">
+		<section role="main" class="left">
 			<div class="pf-container clearfix">
 				<div class="pf-row clearfix">
 					<div style="padding: 20px 0px">
-						<section>
+						<section class="left">
 							<div class="vlz_titulos_superior">
 								<a href="'.get_home_url().'/perfil-usuario/solicitudes/" class="volver">
 									Volver
 								</a> - Detalles de la Solicitud - '.$orden.'
 							</div>
 						</section>
-						<section>';
+						<section class="left">';
 
 							if(count($result) > 0){
 								foreach($result as $solicitud){
@@ -136,7 +136,7 @@
 							</table>
 						</section>
 
-						<section>
+						<section class="left">
 							<div class="vlz_titulos_superior bottom">
 								<a href="'.get_home_url().'/perfil-usuario/solicitudes/" class="volver">
 									Volver
