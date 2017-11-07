@@ -26,3 +26,4 @@ movil/
 /sitemap.xml.gz
 vlz_config.php
 panel/Backup_index.php
+wp-content/plugins/kmimos/subscribe/subscription.csv
