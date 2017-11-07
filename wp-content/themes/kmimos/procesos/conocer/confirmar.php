@@ -1,6 +1,6 @@
 <?php
 	
-    $file = $PATH_TEMPLATE.'/template/mail/conocer/confirmar_cliente.php';
+    $file = $PATH_TEMPLATE.'/template/mail/conocer/cliente/confirmar.php';
     $mensaje_cliente = file_get_contents($file);
     
 	$wpdb->query("UPDATE wp_postmeta SET meta_value = '2' WHERE post_id = $id_orden AND meta_key = 'request_status';");
@@ -17,7 +17,7 @@
 
 
 
-	$file = $PATH_TEMPLATE.'/template/mail/conocer/confirmar_cuidador.php';
+	$file = $PATH_TEMPLATE.'/template/mail/conocer/cuidador/confirmar.php';
     $mensaje_cuidador = file_get_contents($file);
 
     $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
