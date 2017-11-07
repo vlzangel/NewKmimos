@@ -233,7 +233,7 @@
 											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
 										</a>
 									</div>
-									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
+									<div class="km-testimonial">“Kmimos es mi trabajo, mi pasión por los perros, mi casa, mi familia… lo representa todo.”</div>
 									<div class="km-autor">
 										<a href="'.get_user_slug(1404).'"> CLAUDIA R. </a>
 										 - Ciudad de México</div>
@@ -254,7 +254,7 @@
 											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
 										</a>
 									</div>
-									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
+									<div class="km-testimonial">“Todos los cuidadores Kmimos tienen algo en común, la pasión y el amor por los perros.”</div>
 									<div class="km-autor">
 										<a href="'.get_user_slug(5011).'">MARU S.</a> - Ciudad de México</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
@@ -274,7 +274,7 @@
 											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
 										</a>
 									</div>
-									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
+									<div class="km-testimonial">“Ahora tengo más ingresos, llegan bastantes visitas y es como tener un sueldo de ejecutivo”.</div>
 									<div class="km-autor"><a href="'.get_user_slug(5738).'">KARLA S.</a> - Ciudad de México</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
@@ -333,6 +333,7 @@
 				<p>NOSOTROS NOS ENCARGAMOS DE TU MASCOTA, TÚ LIBÉRATE.</p>
 				<h2>Vacations Mode On</h2>
 				<div class="row">
+					<!--
 					<div class="items col-xs-12 col-sm-6">
 						<a  target="blank" href="http://www.fiestamericana.com/en/home" style="background-color: white;"><img src="'.getTema().'/images/new/km-logos/logo-hotel.jpg" height="58px"></a>
 					</div>
@@ -341,6 +342,13 @@
 					</div>
 					<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
 						<a target="blank" href="https://www.volaris.com/" style="background-color: #E2D1A0; font-size:25px;"><img src="'.getTema().'/images/new/km-logos/posadas-white-logo.svg" width="180px" height="58px"></a>
+					</div>
+					-->
+
+
+
+					<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
+						<a  target="blank" href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
 					</div>
 				</div>
 			</div>

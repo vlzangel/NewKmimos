@@ -16,11 +16,11 @@
         </div>
         <div style='display: table-cell; vertical-align: middle; padding-left: 16px;'>
             <div style='font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>E-mail</div>                   
-            <div style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: -0.5px; color: #000000; margin-bottom: 12px;'><a href="mailto:[email]" style="color: #000; text-decoration: none;">[email]</a></div>
+            <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: -0.1px; color: #000000; margin-bottom: 12px;'><a href="mailto:[email]" style="color: #000; text-decoration: none;">[email]</a></div>
 
 
             <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>Contraseña</div>
-            <div style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: -0.5px; color: #000000;'>[pass]</div>    
+            <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: -0.1px; color: #000000;'>[pass]</div>    
         </div>
     </div>
 

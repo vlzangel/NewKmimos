@@ -87,25 +87,81 @@
     color: #fff;
 }
 
-@media all and (max-width: 768px){
-    #mapa{
-        height: 93%!important;
-    }
-    .zopim{
-        top:auto!important;
-        position: fixed!important;
-        bottom: 22%!important;
-    }
-}
- 
-@media All and (max-width: 520px){
-    .zopim{
-        bottom: 25%!important;
-    }
+.km-btn-secondary{
+    padding: 12px 0 !important;
+    margin-bottom: 5px;
 }
 
-@media all and (max-width: 768px) and (orientation: landscape ){
-    .zopim{
-        bottom: 25%!important;
-    }
+#btn_conocer {
+    background-color: transparent;
+    color: #6B1C9B;
+    border: solid 1px #7dd1c4;
+    font-weight: 400 !important;
+    font-size: 11px;
+    text-decoration: none !important;
+}
+
+#btn_conocer:hover {
+    color: #FFF;
+    background: #6B1C9B;
+    border: solid 1px #6B1C9B !important;
+}
+
+#servicios:hover,
+#btn_reservar:hover
+ {
+    border: solid 0px #6B1C9B !important;
+}
+
+.km-ficha-info-cuidador .km-ficha-cuidador {
+    height: 220px !important;
+}
+
+.perfil_cuidador_cargando{
+    background: #EEE;
+    padding: 20px;
+}
+
+.perfil_cuidador_cargando > div{
+    width: 30px;
+    height: 30px !important;
+    background-position: center;
+    background-size: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.km-costo .km-btn-secondary {
+    float: left !important;
+}
+
+.img_cuidador{
+    display: inline-block;
+    position: relative;
+    min-height: 220px;
+}
+
+.img_cuidador img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.img_cuidador span{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 100;
+    margin: 0px;
+    padding: 25px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img_cuidador i{
+    position: absolute;
+    top: 8px;
+    right: 6px;
+    font-size: 17px;
+    cursor: pointer;
 }

@@ -103,12 +103,7 @@ jQuery( document ).ready(function() {
 
 	    	}, 
 	    	function error(err) {
-	      		var position = {
-	      			latitude:  25.733881701152562,
-	      			longitude: -100.39553960640156
-	      		};
-
-	      		vlz_coordenadas(position);
+	      		alert("No podemos obtener tus coordenadas, por favor ingresa tus datos");
 	    	},
 	    	{
 		      	enableHighAccuracy: true,
@@ -328,17 +323,31 @@ jQuery(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-regis
 				
 				if( data['fields'].length > 0 ){
 					jQuery.each(data['fields'], function(id, val){
-						
 						mensaje( val['name'],val['msg']  );
 					});
 				}
 				obj.html('SIGUIENTE');
 			}else{
+				jQuery('[data-id="ilernus-user"]').html( jQuery('[name="rc_email"]').val() );
+				jQuery('[data-id="ilernus-pass"]').html( jQuery('[name="rc_clave"]').val() );
+
 				jQuery(".popup-registro-cuidador-paso3").hide();
 				jQuery(".popup-registro-exitoso-final").fadeIn("fast");
 			}
 		});
 	}
+});
+
+jQuery(document).on('click', '#finalizar-registro-cuidador', function(){
+
+	var url = jQuery(this).attr('data-href');
+
+	$("<a>").attr("href", "https://kmimos.ilernus.com/login/index.php").attr("target", "_blank")[0].click();
+
+	setTimeout(function() {
+		location.href = url;
+    },1500);
+
 });
 
 /*POPUP REGISTRO CUIDADOR*/

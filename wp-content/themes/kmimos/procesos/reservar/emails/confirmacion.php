@@ -6,6 +6,12 @@
         $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/confirmacion/confirmacion_cliente.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
 
+
+        $datos_cuidador = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cuidador.php';
+        $datos_cuidador = file_get_contents($datos_cuidador);
+        $mensaje_cliente = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_cliente);
+
+
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
@@ -48,6 +54,12 @@
         $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/confirmacion/confirmacion_cuidador.php';
         $mensaje_cuidador = file_get_contents($cuidador_file);
 
+
+        $datos_cliente = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cliente.php';
+        $datos_cliente = file_get_contents($datos_cliente);
+        $mensaje_cuidador = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_cuidador);
+        
+
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
@@ -83,7 +95,8 @@
 
         wp_mail( $cuidador["email"], "Confirmación de Reserva", $mensaje_cuidador);
 
-
+        kmimos_mails_administradores_new("Confirmación de Reserva", $mensaje_cliente);
+        
         $CONTENIDO .= "<div class='msg_acciones'>
             <strong>¡Todo esta listo!</strong><br>
             La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.

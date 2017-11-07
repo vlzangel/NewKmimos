@@ -25,24 +25,20 @@
 
 	$pet_birthdate = date('Y-m-d', strtotime( str_replace("/", "-", $pet_birthdate)));
 
-	$sql  = "UPDATE wp_posts 	SET post_title = '{$pet_name}' 			WHERE ID 	  = {$pet_id};";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_name}' 			WHERE post_id = {$pet_id} AND meta_key = 'name_pet';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_breed}' 		WHERE post_id = {$pet_id} AND meta_key = 'breed_pet';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_colors}' 		WHERE post_id = {$pet_id} AND meta_key = 'colors_pet';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_birthdate}' 	WHERE post_id = {$pet_id} AND meta_key = 'birthdate_pet';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_size}' 			WHERE post_id = {$pet_id} AND meta_key = 'size_pet';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_gender}'  		WHERE post_id = {$pet_id} AND meta_key = 'gender_pet';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_sterilized}' 	WHERE post_id = {$pet_id} AND meta_key = 'pet_sterilized';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_sociable}' 		WHERE post_id = {$pet_id} AND meta_key = 'pet_sociable';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$aggresive_humans}' 	WHERE post_id = {$pet_id} AND meta_key = 'aggressive_with_humans';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$aggresive_pets}' 	WHERE post_id = {$pet_id} AND meta_key = 'aggressive_with_pets';";
-	$sql .= "UPDATE wp_postmeta SET meta_value = '{$pet_observations}' 	WHERE post_id = {$pet_id} AND meta_key = 'about_pet';";
+	update_post_meta($pet_id, "pet_name", $pet_name);
+	update_post_meta($pet_id, "breed_pet", $pet_breed);
+	update_post_meta($pet_id, "colors_pet", $pet_colors);
+	update_post_meta($pet_id, "birthdate_pet", $pet_birthdate);
+	update_post_meta($pet_id, "size_pet", $pet_size);
+	update_post_meta($pet_id, "gender_pet", $pet_gender);
+	update_post_meta($pet_id, "pet_sterilized", $pet_sterilized);
+	update_post_meta($pet_id, "pet_sociable", $pet_sociable);
+	update_post_meta($pet_id, "aggressive_with_humans", $aggresive_humans);
+	update_post_meta($pet_id, "aggressive_with_pets", $aggresive_pets);
+	update_post_meta($pet_id, "about_pet", $pet_observations);
+	update_post_meta($pet_id, "pet_type", $pet_type);
 
-	$description = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE user_id = {$pet_id} AND meta_key = 'about_pet'");
-	if( $description == false ){
-		$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'about_pet', '{$pet_observations}');";
-	}
-
+	$sql  = "UPDATE wp_posts SET post_title = '{$pet_name}' WHERE ID = {$pet_id};";
 	$sql .= "UPDATE wp_term_relationships SET term_taxonomy_id = '{$pet_type}' 	WHERE object_id = {$pet_id};";
 
 	$sql .= $img_portada;

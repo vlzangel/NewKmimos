@@ -73,8 +73,11 @@
 
     if( $pagar->metodo != "deposito" ){
 	    $deposito = array(
-			"enable" => "no"
+			"enable" => "no",
+			"total" => $pagar->total
 	    );
+
+	    $pagar->total -= $descuentos;
     }else{
 
 	    $pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
@@ -359,6 +362,7 @@
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
+		Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
 		foreach ($data_cliente as $key => $value) {
 			if( $data_cliente[$key] == "" ){
@@ -411,7 +415,8 @@
 	   		case 'tarjeta':
 	   			
 	   			if( $pagar->token != "" ){
-	   				$cardDataRequest = array(
+
+	   				/*$cardDataRequest = array(
 					    'holder_name' => $tarjeta->nombre,
 					    'card_number' => $tarjeta->numero,
 					    'cvv2' => $tarjeta->codigo,
@@ -450,11 +455,11 @@
 					            $card = $customer->cards->add($cardDataRequest);
 					        } catch (Exception $e) { }
 						}
-					}
+					}*/
 
 					$chargeData = array(
 					    'method' 			=> 'card',
-					    'source_id' 		=> $card->id,
+					    'source_id' 		=> $pagar->token,
 					    'amount' 			=> (float) $pagar->total,
 					    'order_id' 			=> $id_orden,
 					    'description' 		=> "Tarjeta",

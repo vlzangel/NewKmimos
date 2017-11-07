@@ -80,7 +80,7 @@
                 $wpdb->query("DELETE FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = '_used_by' AND meta_value = '{$id_cliente}'");
             }
 
-            if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'tienda'){
+            if($status == 'wc-on-hold' && ( $metas_orden['_payment_method'][0] == 'tienda' || $metas_orden['_payment_method'][0] == 'openpay_store' ) ){
                 $saldo = $descuento;  
             }else{
                 $saldo += $descuento;                
@@ -1226,8 +1226,8 @@
             }
 
             $aceptar_rechazar = array(
-                "aceptar" => get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CFM',
-                "cancelar" => get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php?id_orden='.$id.'&acc=CCL'
+                "aceptar" => get_home_url().'/perfil-usuario/reservas/confirmar/'.$id,
+                "cancelar" => get_home_url().'/perfil-usuario/reservas/cancelar/'.$id
             );
 
             /* DATA CUIDADOR */

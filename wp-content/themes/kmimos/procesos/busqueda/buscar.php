@@ -240,14 +240,35 @@
 
     $cuidadores = $db->get_results($sql);
 
-    $pines = array();
+    $pines = array(); $pines_ubicados = array();
     if( $cuidadores != false ){
+	
+		$rad = pi() / 180;
+		$grados = 0;
+		$longitud_init = 0.005;
+
 		foreach ($cuidadores as $key => $cuidador) {
 			$anios_exp = $cuidador->experiencia;
 			if( $anios_exp > 1900 ){
 				$anios_exp = date("Y")-$anios_exp;
 			}
 			$url = $home."/petsitters/".$cuidador->slug;
+
+			$coord = $cuidador->latitud."_".$cuidador->longitud;
+	    	if( array_key_exists($coord, $pines_ubicados) !== false ){
+				$cuidador->latitud = $cuidador->latitud + $longitud_init*cos($grados*$rad);
+				$cuidador->longitud = $cuidador->longitud + $longitud_init*sin($grados*$rad);
+	    	}else{
+	    		$pines_ubicados[$coord] = 0;
+	    	}
+
+	    	$grados += 20;
+
+	    	if( $grados > 360 ){
+	    		$longitud_init +=  0.002;
+	    		$grados = 0;
+	    	}
+
 			$pines[] = array(
 				"ID"   => $cuidador->id,
 				"post_id"   => $cuidador->id_post,
@@ -261,10 +282,13 @@
 				"ser"  => "",
 				"pre"  => $cuidador->precio
 			);
+
 		}
     }
 
-
+/*    echo "<pre>";
+    	print_r($pines);
+    echo "</pre>";*/
 
 	$pines_json = json_encode($pines);
     $pines_json = "<script>var pines = eval('".$pines_json."');</script>";

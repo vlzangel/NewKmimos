@@ -117,9 +117,12 @@
                 </div>
             </div>
         </footer>
+        <script src="<?php echo get_home_url(); ?>/panel/assets/js/jquery.js"></script>
         <?php
-        //wp_footer();
-        get_footer();
+        global $no_display_footer;
+        $no_display_footer = true;
+        wp_footer();
+        //get_footer();
         ?>
     </body>
 </html>

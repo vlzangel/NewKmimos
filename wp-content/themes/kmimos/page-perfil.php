@@ -12,6 +12,7 @@
 	wp_enqueue_script('perfil_global', getTema()."/js/perfil_global.js", array("jquery", "global_js"), '1.0.0');
 
 	$btn_txt = "Actualizar";
+
 	$mostrar_btn = true;
 	switch ( $post->post_name ) {
 		case 'perfil-usuario':
@@ -23,6 +24,11 @@
 			wp_enqueue_script('mascotas', getTema()."/js/mascotas.js", array("jquery", "global_js"), '1.0.0');
 
 			$btn_txt = "Nueva Mascota";
+		break;
+		case 'valorar':
+			$btn_txt = "Enviar valoración";
+		    wp_enqueue_style('valorar_css', getTema()."/css/valorar.css", array(), '1.0.0');
+		    wp_enqueue_script('valorar_js', getTema()."/js/valorar.js", array(), '1.0.0');
 		break;
 		case 'ver':
 			$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
@@ -160,6 +166,9 @@
 					break;
 				}
 			break;
+			case 'valorar':
+				include("admin/frontend/historial/valorar.php");
+			break;
 			case 'cancelar':
 				$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
 				switch ($padre) {
@@ -261,7 +270,7 @@
 						'.$MENU["body"].'
 					</ul>
 				</div>
-				<div class="main">
+				<div class="main" >
 					<form id="form_perfil" autocomplete="off">
 						'.$CONTENIDO.'
 						'.$HTML_BTN.'

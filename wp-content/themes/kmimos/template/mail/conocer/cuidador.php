@@ -1,8 +1,8 @@
-<div style='text-align:center; margin-bottom: 34px;'>
-	<img src='[URL_IMGS]/conocer_cuidador.png' style='width: 100%;' >
+<div style='text-align:center; margin-bottom: 34px; width: 600px;'>
+	<img src='[URL_IMGS]/conocer_cuidador.png' style='width: 600px;' >
 </div>
 
-<div style='padding: 0px 33px;'>
+<div style='width: 600px;'>
 
 	<div style='margin-bottom: 30px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 15px;'>
@@ -13,27 +13,26 @@
 	    </div>
 	</div>
 
-	<div style='display: block; margin-bottom: 31px;'>
-
-		<div style='display: table; margin-bottom: 15px; width: 600px;'>
-			<div style='display: table-cell; width: 62px; padding-right: 10px;'>
+	<table cellpadding="0" cellspacing="0" style='margin-bottom: 40px; width: 600px;'>
+		<tr>
+			<td style='width: 62px; padding-right: 20px;'>
 				<img src='[avatar]' style='width: 62px; height: 62px; border-radius: 50%;' >
-			</div>
-			<div style='display: table-cell; vertical-align: middle; padding-left: 16px; width: 368px;'>
-				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; width: 362px;'>
+			</td>
+			<td style='vertical-align: middle; padding-left: 16px; width: 326px;'>
+				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
 					DATOS DEL CLIENTE 
 				</div>				    
-			    <div style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px; width: 362px;'>
+			    <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
 			    	[name]
 			    </div>			    
-			    <div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px; width: 362px;'>
+			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px;'>
 			    	[telefonos]
-			    </div>   
-			    <div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px; width: 362px;'>
+			    </div>	  
+			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
 			    	<a href="mailto:[email]">[email]</a>
 			    </div>
-			</div>
-			<div style='display: table-cell; width: 160px; height: 50.3px; border-radius: 2.8px;  vertical-align: top;'>
+			</td>
+			<td style='width: 159px; height: 50.3px; border-radius: 2.8px;  vertical-align: top;'>
 				<div style='background-color: #f4f4f4; height: 50.3px;'>
 					<div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px 0px 0px 10px;'>
 						Tu código de solicitud es:
@@ -42,28 +41,30 @@
 						[id_solicitud]
 					</div>
 				</div>
-			</div>
-		</div>
+			</td>
+		</tr>
+	</table>
 
-		<div style='display: table; margin-bottom: 15px; width: 600px;'>
-			<div style='display: table-cell; width: 62px; padding-right: 10px;'>
-				<img src='[URL_IMGS]/calendar.png' style='width: 62px; height: 62px;' >
-			</div>
-			<div style='display: table-cell; vertical-align: top; padding-left: 0px; width: 264px;'>
-				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; width: 260px;'>
+	<table cellpadding="0" cellspacing="0" style='margin-bottom: 31px; width: 600px;'>
+		<tr>
+			<td style='width: 62px; padding-right: 20px;'>
+				<img src='[URL_IMGS]/calendar.png' style='width: 77px; height: 70px;' >
+			</td>
+			<td style='vertical-align: top; padding-left: 0px; width: 242.5px;'>
+				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
 					DATOS DE LA REUNIÓN 
 				</div>				    
-			    <div style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px; width: 260px;'>
+			    <div style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
 			    	[fecha]
 			    </div>			    
-			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px; width: 260px;'>
+			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px;'>
 			    	[hora] horas
 			    </div>		    
-			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px; width: 260px;'>
+			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
 			    	[lugar]
 			    </div>
-			</div>
-			<div style='display: table-cell; vertical-align: top; padding-left: 16px; width: 264px;'>
+			</td>
+			<td style='vertical-align: top; padding-left: 16px; width: 226.5px;'>
 				<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
 					POSIBLE FECHA DE ESTADÍA 
 				</div>				    
@@ -73,23 +74,22 @@
 			    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
 			    	del [anio]
 			    </div>
-			</div>
+			</td>
+		</tr>
+	</table>
+
+	<div style='margin-bottom: 44px; text-align: center;'>
+
+		<div style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: 0.3px; text-align: center; color: #000000; margin-bottom: 12px;'>
+			¿Aceptas la solicitud?
 		</div>
 
-		<div style='margin-bottom: 44px; text-align: center;'>
+		<div style='text-align: center; margin-bottom: 12px;'>
+			<a href='[ACEPTAR]' style='text-decoration: none;'><img src='[URL_IMGS]/btn_aceptar.png' style='width: 252px;' /></a>
+		</div>
 
-			<div style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: 0.3px; text-align: center; color: #000000; margin-bottom: 12px;'>
-				¿Aceptas la solicitud?
-			</div>
-
-			<div style='text-align: center; margin-bottom: 12px;'>
-				<a href='[ACEPTAR]' style='text-decoration: none;'><img src='[URL_IMGS]/btn_aceptar.png' style='width: 252px;' /></a>
-			</div>
-
-			<div style='font-family: Arial; font-size: 14px; line-height: 1.21; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
-				AHORA NO PUEDO, <a href='[CANCELAR]' style='font-weight: 400; color: #000;'>RECHAZAR</a>
-			</div>
-
+		<div style='font-family: Arial; font-size: 14px; line-height: 1.21; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
+			AHORA NO PUEDO, <a href='[CANCELAR]' style='font-weight: 400; color: #000;'>RECHAZAR</a>
 		</div>
 
 	</div>
@@ -130,123 +130,127 @@
 <img src='[URL_IMGS]/siguientes_pasos.png' style='display: block; margin: 0px auto 25px;' >
 
 
-<div style='display: table; width: 100%; font-size: 13px; margin-bottom: 27px;'>
+<table cellpadding="0" cellspacing="0" style='width: 600px; font-size: 13px; margin-bottom: 27px;'>
 
-	<div style='display: table-row;'>
+	<tr>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+		<td style='width: 300px; vertical-align: top;'>
 
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					<strong style='color: #570089;'>Preséntate</strong> con el cliente cordial y  formalmente.<br> 
-					<strong>Tip: Cuida tu imagen</strong> (Vestimenta casual)
-				</div>
-			</div>
+			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
+						<strong style='color: #570089;'>Preséntate</strong> con el cliente cordial y  formalmente.<br> 
+						<strong>Tip: Cuida tu imagen</strong> (Vestimenta casual)
+					</td>
+				</tr>
+			</table>
 
-		</div>
+		</td>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+		<td style='display: table-cell; width: 300px; vertical-align: top;'>
 
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					En caso de no conocerse en persona, <strong>pide que te envíen fotos del perro</strong> que llegará a tu casa para <strong style='color: #570089;'>confirmar</strong> que sea tal cual lo describió su dueño. 
-				</div>
-			</div>
+			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
+						En caso de no conocerse en persona, <strong>pide que te envíen fotos del perro</strong> que llegará a tu casa para <strong style='color: #570089;'>confirmar</strong> que sea tal cual lo describió su dueño. 
+					</td>
+				</tr>
+			</table>
 
-		</div>
+		</td>
 
-	</div>
+	</tr>
 
-	<div style='display: table-row;'>
+	<tr>
 
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
+		<td style='width: 300px; vertical-align: top;'>
+			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
+						<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y <strong style='color: #570089;'>verifica</strong> que sus <strong>vacunas</strong> estén al día.</div>
+						<div><strong>Tip: Sin cartilla no se harán efectivos</strong> los beneficios veterinarios de Kmimos.</div>
+					</td>
+				</tr>
+			</table>
+		</td>
 
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y <strong style='color: #570089;'>verifica</strong> que sus <strong>vacunas</strong> estén al día.</div>
-					<div><strong>Tip: Sin cartilla no se harán efectivos</strong> los beneficios veterinarios de Kmimos.</div>
-				</div>
-			</div>
-
-		</div>
-
-		<div style='display: table-cell; width: 50%; vertical-align: top;'>
-
-			<div style='display: table; width: 100%;'>
-				<div style='display: table-cell; vertical-align: top; padding: 5px; width: 60px;'>
-					<img src='[URL_IMGS]/group-14.png' style='display: block; margin: 0px auto 25px;' >
-				</div>
-				<div style='display: table-cell; vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #666666; padding: 5px;'>
-					<strong>Revisa al perrito</strong> y <strong style='color: #570089;'>detecta</strong> si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
-				</div>
-			</div>
-
-		</div>
+		<td style='width: 300px; vertical-align: top;'>
+			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
+				<tr>
+					<td style='vertical-align: top; padding: 5px; width: 60px;'>
+						<img src='[URL_IMGS]/group-14.png' style='display: block; margin: 0px auto 25px;' >
+					</td>
+					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
+						<strong>Revisa al perrito</strong> y <strong style='color: #570089;'>detecta</strong> si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
+					</td>
+				</tr>
+			</table>
+		</td>
 		
-	</div>
+	</tr>
 
-</div>
+</table>
 
-<div style='float:left;width:100%;margin-bottom: 31px;'>   
+<div style='width:600px; margin-bottom: 31px;'>   
     <div style='text-align:center;'>
-        <p style='font-family: Arial;font-weight: bold; font-size:12px; color:#B4B4B4; text-align: center; '>
+        <p style='font-family: Arial;font-weight: bold; font-size:14px; color:#666; text-align: center; '>
             En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp +52 (55) 6892 2182, o al correo contactomex@kmimos.la
         </p>
-        <div  style='clear:both;'></div>
     </div>
-    <div  style='clear:both;'></div>
 </div>
 
-<div style='text-align: center; margin-bottom: 20px;'>
-	
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+<table cellpadding="0" cellspacing="0" style='width: 600px; text-align: center; margin-bottom: 20px;'>
+	<tr>
+		<td style='width: 167.5px;'>
+			<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-right: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+		</td>
+		<td style='width: 265px; font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #666666;'>
+			PRESÉNTATE Y CONOCE A TU KMIAMIGO
+		</td>
+		<td style='width: 167.5px;'>
+			<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+			<img style='width: 15px; margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
+		</td>
+	</tr>
+</table>
 
-	<div style='display: inline-block; font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #666666;'>PRESÉNTATE Y CONOCE A TU KMIAMIGO</div>
-
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-	<img style='margin-left: 5px;' src='[URL_IMGS]/icon-hueso-color.png' >
-
-</div>
-
-<div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; text-align: center; color: #666666; margin-bottom: 20px;'>
+<div style='width: 600px; font-family: Arial; font-size: 14px; letter-spacing: 0.3px; text-align: center; color: #2d2d2d; margin-bottom: 20px;'>
 	Recuerda que cada perro tiene un comportamiento diferente, por lo que deberás tener la mayor información posible sobre sus comportamientos.
 </div>
 
-<div style='display: table; width: 100%; font-size: 13px; margin-bottom: 27px; text-align: left;'>
+<div style='display: table; width: 600px; font-size: 13px; margin-bottom: 27px; text-align: left;'>
 
-	<div style='display: table-cell; width: 33.3333333333%; vertical-align: top;'>
-		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
+	<div style='display: table-cell; width: 200px; vertical-align: top;'>
+		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #2d2d2d; margin-bottom: 9px;'>
 			SOBRE SU RUTINA DIARIA
 		</div>
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
+		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #2d2d2d;'>
 			Por ejemplo:<br>
 			¿Sale a pasear?<br>
 			¿A qué hora come y hace del baño?
 		</div>
 	</div>
 
-	<div style='display: table-cell; width: 33.3333333333%; vertical-align: top;'>
+	<div style='display: table-cell; width: 200px; vertical-align: top;'>
 
-		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
+		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #2d2d2d; margin-bottom: 9px;'>
 			SOBRE SU COMPORTAMIENTO
 		</div>
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
+		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #2d2d2d;'>
 			Por ejemplo:<br>
 			¿Cómo interactúa con otros perros y personas?<br>
 			¿Cómo reacciona con un extraño?
@@ -254,12 +258,12 @@
 
 	</div>
 
-	<div style='display: table-cell; width: 33.3333333333%; vertical-align: top;'>
+	<div style='display: table-cell; width: 200px; vertical-align: top;'>
 
-		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #666666; margin-bottom: 9px;'>
+		<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: 0.2px; color: #2d2d2d; margin-bottom: 9px;'>
 			SOBRE SU &Aacute;NIMO
 		</div>
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #666666;'>
+		<div style='font-family: Arial; font-size: 13px; letter-spacing: 0.3px; color: #2d2d2d;'>
 			Por ejemplo:<br>
 			¿Cómo se comporta cuando está triste o estresado?<br>
 			¿Qué hace su dueño cuando está triste o estresado?

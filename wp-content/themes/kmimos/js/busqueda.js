@@ -292,7 +292,7 @@ function initMap() {
 	        var servicios = "";
 	        if( cuidador["ser"] != undefined && cuidador["ser"].length > 0 ){
 		        jQuery.each(cuidador["ser"], function( index, servicio ) {
-		        	servicios += '<img src="http://mx.kmimos.dev/wp-content/themes/kmimos/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
+		        	servicios += '<img src="'+HOME+'/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
 		        });
 	        }
 
@@ -317,7 +317,7 @@ function initMap() {
 							+'    <div class="km-sellos"> '+servicios+' </div>'
 							+'</div>'
 							+'<div class="km-opciones maps">'
-							+'    <div class="precio">MXN jQuery '+cuidador.pre+'</div>'
+							+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
 							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
 							+'</div>'
