@@ -25,18 +25,18 @@
 
 	$pet_birthdate = date('Y-m-d', strtotime( str_replace("/", "-", $pet_birthdate)));
 
-	update_post_meta($pet_id, "pet_name", $pet_name);
-	update_post_meta($pet_id, "breed_pet", $pet_breed);
-	update_post_meta($pet_id, "colors_pet", $pet_colors);
-	update_post_meta($pet_id, "birthdate_pet", $pet_birthdate);
-	update_post_meta($pet_id, "size_pet", $pet_size);
-	update_post_meta($pet_id, "gender_pet", $pet_gender);
-	update_post_meta($pet_id, "pet_sterilized", $pet_sterilized);
-	update_post_meta($pet_id, "pet_sociable", $pet_sociable);
-	update_post_meta($pet_id, "aggressive_with_humans", $aggresive_humans);
-	update_post_meta($pet_id, "aggressive_with_pets", $aggresive_pets);
-	update_post_meta($pet_id, "about_pet", $pet_observations);
-	update_post_meta($pet_id, "pet_type", $pet_type);
+	kmimos_update_post_meta($pet_id, "pet_name", $pet_name);
+	kmimos_update_post_meta($pet_id, "breed_pet", $pet_breed);
+	kmimos_update_post_meta($pet_id, "colors_pet", $pet_colors);
+	kmimos_update_post_meta($pet_id, "birthdate_pet", $pet_birthdate);
+	kmimos_update_post_meta($pet_id, "size_pet", $pet_size);
+	kmimos_update_post_meta($pet_id, "gender_pet", $pet_gender);
+	kmimos_update_post_meta($pet_id, "pet_sterilized", $pet_sterilized);
+	kmimos_update_post_meta($pet_id, "pet_sociable", $pet_sociable);
+	kmimos_update_post_meta($pet_id, "aggressive_with_humans", $aggresive_humans);
+	kmimos_update_post_meta($pet_id, "aggressive_with_pets", $aggresive_pets);
+	kmimos_update_post_meta($pet_id, "about_pet", $pet_observations);
+	kmimos_update_post_meta($pet_id, "pet_type", $pet_type);
 
 	$sql  = "UPDATE wp_posts SET post_title = '{$pet_name}' WHERE ID = {$pet_id};";
 	$sql .= "UPDATE wp_term_relationships SET term_taxonomy_id = '{$pet_type}' 	WHERE object_id = {$pet_id};";
