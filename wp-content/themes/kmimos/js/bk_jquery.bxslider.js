@@ -12,7 +12,7 @@
     // GENERAL
     mode: 'horizontal',
     slideSelector: '',
-    infiniteLoop: true,
+    infiniteLoop: false,
     hideControlOnEnd: false,
     speed: 500,
     easing: null,
@@ -89,7 +89,7 @@
     onSlideNext: function() { return true; },
     onSlidePrev: function() { return true; },
     onSliderResize: function() { return true; },
-  onAutoChange: function() { return true; } //calls when auto slides starts and stops
+	onAutoChange: function() { return true; } //calls when auto slides starts and stops
   };
 
   $.fn.bxSlider = function(options) {
@@ -477,7 +477,7 @@
             breakPoint = counter + getNumberSlidesShowing();
             counter += slider.settings.moveSlides <= getNumberSlidesShowing() ? slider.settings.moveSlides : getNumberSlidesShowing();
           }
-      return counter;
+		  return counter;
         }
       // if moveSlides is 0 (auto) divide children length by sides showing, then round up
       } else {
@@ -633,7 +633,7 @@
         }
         // var linkContent = slider.settings.buildPager && $.isFunction(slider.settings.buildPager) ? slider.settings.buildPager(i) : i + 1;
         // add the markup to the string
-        pagerHtml += '<div class="bx-pager-item"><a href="" data-slide-index="' + i + '" class="bx-pager-link">' + linkContent + '</a></div>';
+        pagerHtml += '<div class="bx-pager-item"><a href="" data-slide-index="' + i + '" class="control-video bx-pager-link">' + linkContent + '</a></div>';
       }
       // populate the pager element with pager links
       slider.pagerEl.html(pagerHtml);
@@ -897,9 +897,9 @@
         }
       }
     };
-  /* auto start and stop functions */
-  var windowFocusHandler = function() { el.startAuto(); };
-  var windowBlurHandler = function() { el.stopAuto(); };
+	/* auto start and stop functions */
+	var windowFocusHandler = function() { el.startAuto(); };
+	var windowBlurHandler = function() { el.stopAuto(); };
     /**
      * Initializes the auto process
      */
@@ -1440,7 +1440,7 @@
     el.goToNextSlide = function() {
       // if infiniteLoop is false and last page is showing, disregard call
       if (!slider.settings.infiniteLoop && slider.active.last) { return; }
-    if (slider.working == true){ return ;}
+	  if (slider.working == true){ return ;}
       var pagerIndex = parseInt(slider.active.index) + 1;
       el.goToSlide(pagerIndex, 'next');
     };
@@ -1451,7 +1451,7 @@
     el.goToPrevSlide = function() {
       // if infiniteLoop is false and last page is showing, disregard call
       if (!slider.settings.infiniteLoop && slider.active.index === 0) { return; }
-    if (slider.working == true){ return ;}
+	  if (slider.working == true){ return ;}
       var pagerIndex = parseInt(slider.active.index) - 1;
       el.goToSlide(pagerIndex, 'prev');
     };
@@ -1473,8 +1473,8 @@
           el.goToPrevSlide();
         }
       }, slider.settings.pause);
-    //allback for when the auto rotate status changes
-    slider.settings.onAutoChange.call(el, true);
+	  //allback for when the auto rotate status changes
+	  slider.settings.onAutoChange.call(el, true);
       // if auto controls are displayed and preventControlUpdate is not true
       if (slider.settings.autoControls && preventControlUpdate !== true) { updateAutoControls('stop'); }
     };
@@ -1491,8 +1491,8 @@
       // clear the interval
       clearInterval(slider.interval);
       slider.interval = null;
-    //allback for when the auto rotate status changes
-    slider.settings.onAutoChange.call(el, false);
+	  //allback for when the auto rotate status changes
+	  slider.settings.onAutoChange.call(el, false);
       // if auto controls are displayed and preventControlUpdate is not true
       if (slider.settings.autoControls && preventControlUpdate !== true) { updateAutoControls('start'); }
     };
@@ -1589,8 +1589,8 @@
       if (slider.settings.keyboardEnabled) { $(document).unbind('keydown', keyPress); }
       //remove self reference in data
       $(this).removeData('bxSlider');
-    // remove global window handlers
-    $(window).off('blur', windowBlurHandler).off('focus', windowFocusHandler);
+	  // remove global window handlers
+	  $(window).off('blur', windowBlurHandler).off('focus', windowFocusHandler);
     };
 
     /**

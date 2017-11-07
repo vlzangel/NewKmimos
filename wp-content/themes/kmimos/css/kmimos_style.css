@@ -578,12 +578,7 @@ section {
 	transform: translateX(-50%) translateY(-50%);
 	display: none;
 }
-.km-testimoniales .bx-controls-direction {
-	display: none;
-}
-.bx-controls.bx-has-controls-direction.bx-has-pager {
-    position: relative;
-}
+
 .km-testimonial-text {
 	margin: auto;
 	position: relative;
@@ -1112,10 +1107,6 @@ button.close {
 
 .km-opciones .km-btn-primary-new{
 	margin-top: 9px;
-}
-
-.km-search-slider .bx-controls{
-	display: none;
 }
 
 .km-btn-primary-new.basic,
@@ -3360,9 +3351,7 @@ section {
     -webkit-transform:translateX(-50%) translateY(-50%);
     transform:translateX(-50%) translateY(-50%)
 }
-.km-testimoniales .bx-controls-direction {
-    display:none
-}
+
 .km-testimonial-text {
     margin:auto;
     position:relative;
