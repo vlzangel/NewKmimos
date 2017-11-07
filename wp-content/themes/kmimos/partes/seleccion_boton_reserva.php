@@ -60,7 +60,7 @@
 	if( count($url_servicio) > 1 ){
 
 		$content_modal .= '
-		<a href="#" id="servicios" class="km-btn-secondary">
+		<a href="#" id="servicios" name="redirigir" class="km-btn-secondary">
 		  	RESERVAR
 		</a>
 
@@ -85,11 +85,11 @@
 	}else{
 		if( count($url_servicio) == 1){
 			foreach ($url_servicio as $item) {
-				$BOTON_RESERVAR .= '<button name="redirigir" class="km-btn-secondary" value="'.$item['url'].'">RESERVAR</button>';
+				$BOTON_RESERVAR .= '<button id="btn_reservar" name="redirigir" class="km-btn-secondary" value="'.$item['url'].'">RESERVAR</button>';
 				break;
 			}
 		}else{				
-			$BOTON_RESERVAR .= '<button name="redirigir" class="km-btn-secondary" value="'.get_home_url().'/reservar/'.$id_hospedaje.'/'.'">RESERVAR</button>';
+			$BOTON_RESERVAR .= '<button id="btn_reservar" name="redirigir" class="km-btn-secondary" value="'.get_home_url().'/reservar/'.$id_hospedaje.'/'.'">RESERVAR</button>';
 		}
 	}
 ?>

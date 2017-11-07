@@ -1,9 +1,9 @@
 jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(e){
 
-    jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");
+    /*jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");*/
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
-    jQuery('.popup-iniciar-sesion-1 #service_start').val("");
-    jQuery('.popup-iniciar-sesion-1 #service_end').val("");
+    /*jQuery('.popup-iniciar-sesion-1 #service_start').val("");
+    jQuery('.popup-iniciar-sesion-1 #service_end').val("");*/
 
     jQuery('#meeting_time option.vacio').attr("selected", "selected");
     jQuery('.popup-iniciar-sesion-1 #pet_conoce input').prop("checked", false);
@@ -117,6 +117,16 @@ jQuery(document).ready(function(){
         firstDay: 1,
         onmonthsToShow: [1, 1]
     });
+
+    var f = String( jQuery("#service_start").val() ).split("/");
+    initDate('service_start', new Date( f[2]+"-"+f[1]+"-"+f[0] ), function(date2) {
+        var preDate2 = getFecha("service_end", date2);
+        initDate('service_end', date2[0], function(date3) { }, preDate2);
+    },  new Date( jQuery("#service_start") ));
+
+    var f = String( jQuery("#service_end").val() ).split("/");
+    initDate('service_end', new Date( f[2]+"-"+f[1]+"-"+f[0] ), function(date3) { }, new Date( f[2]+"-"+f[1]+"-"+f[0] ));
+
 
     jQuery(".km-group-checkbox input").on("change", function(e){
         jQuery(this).toggleClass("active");
