@@ -1,11 +1,13 @@
 <?php
 	$PopUpSection='home';
-	$bodyClass=get_body_class();
-	if(in_array('page-template-blog',$bodyClass)){
-	    $PopUpSection='PopUpBlog';
-	}else if(in_array('single-post',$bodyClass)){
-	    $PopUpSection='PopUpBlogPost';
-	}
+    $bodyClass=get_body_class();
+    if(array_key_exists('wlabel',$_SESSION)){
+            $PopUpSection=$_SESSION['wlabel'];
+    }else if(in_array('page-template-blog',$bodyClass)){
+            $PopUpSection='PopUpBlog';
+    }else if(in_array('single-post',$bodyClass)){
+            $PopUpSection='PopUpBlogPost';
+    }
 
 	$checkparam = 'true';
 	if(isset($_GET['utm_campaign'])){
@@ -43,7 +45,6 @@
 	        var html='<div id=\"PageSubscribe\"><i class=\"exit fa fa-times\" aria-hidden=\"true\" onclick=\"SubscribePopUp_Close(\'#message.Msubscribe\')\"></i>' +
 	            '<div class=\"section section1\"><span>G&aacute;nate <strong>$50</strong> pesos en tu primera reserva</span><br>&#8216;&#8216;Aplica para clientes nuevos&#8217;&#8217;<div class=\"images\">'+dog+'</div></div>' +
 	            '<div class=\"section section2\"><span><strong>&#161;SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span>". subscribe_input($PopUpSection)." </div>' +
-	            '<div class=\"section section3\">*Dentro de 48 hrs. Te enviaremos v&iacute;a email tu c&uacute;pon de descuento</div>' +
 	            '</div>';
 
 	        SubscribePopUp_Create(html);

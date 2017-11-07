@@ -73,10 +73,11 @@
 
     if( $pagar->metodo != "deposito" ){
 	    $deposito = array(
-			"enable" => "no"
+			"enable" => "no",
+			"total" => $pagar->total
 	    );
 
-	    $pagar->total -= $descuentos;
+	   // $pagar->total -= $descuentos;
     }else{
 
 	    $pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
@@ -99,7 +100,7 @@
 			"total" => $pagar->total
 	    );
 
-	    $pagar->total = $pre17;
+	    // $pagar->total = $pre17;
 
     }
 
@@ -355,7 +356,11 @@
     }
 
 
-
+    if( $pagar->metodo != "deposito" ){
+	    $pagar->total -= $descuentos;
+    }else{
+	    $pagar->total = $pre17;
+    }
 
 
 	if( $pagar->deviceIdHiddenFieldName != "" ){

@@ -301,9 +301,28 @@
 				<div class="overlay"></div>
 				<div class="popup-registro-exitoso-text">
 					<h2 style="font-size: 18px; color: white;">¡LISTO <span data-target="name"></span>!</h2>
-					<h2 style="font-size: 18px; color: white;">Recibimos con éxito tu solicitud para sumarte a la familia de Cuidadores Kmimos</h2>
-					<p style="font-size: 15px;">Completaste tu perfil perfectamente</p>
-					<a href="<?php echo get_home_url(); ?>/perfil-usuario/" class="km-btn" id="btn_iniciar_sesion" data-url="<?php echo get_home_url(); ?>/perfil-usuario/">VER MI PERFIL</a>
+					<h2 style="font-size: 18px; color: white;">Recibimos con éxito tu solicitud para sumarte a la familia de Cuidadores Kmimos</h2>		
+
+					<aside class="text-center col-sm-10 col-sm-offset-1">
+						<p style="font-size: 15px;">Siguientes Pasos para activar tu perfil</p>
+						<p style="font-size: 12px;">Ahora serás dirigido a hacia el paso 1, PRUEBAS DE CONOCIMIENTO VETERINARIO.</p>
+						<p style="font-size: 12px;">Guarda el siguiente link, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documentos.</p>
+						<p style="font-size: 12px;">Link para continuar es: http://kmimos.ilernus.com</p>
+						<p style="font-size: 12px;">INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA:</p>
+						<p style="font-size: 12px;">
+							<strong>Usuario:</strong> <span data-id="ilernus-user"></span>
+							</br>
+							<strong>Contraseña:</strong> <span data-id="ilernus-pass"></span>
+						</p>
+					</aside>
+					<div class="col-sm-12">
+						<a style="cursor:pointer;"  id="finalizar-registro-cuidador" 
+							data-href="<?php echo get_home_url(); ?>/perfil-usuario/" 
+							class="km-btn">CONTINUAR</a>
+					</div>
+					<!--
+						<p style="font-size: 15px;">Completaste tu perfil perfectamente</p>
+					-->
 				</div>
 			</div>
 		</form>

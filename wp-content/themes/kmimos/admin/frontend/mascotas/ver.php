@@ -2,7 +2,10 @@
     $pet_id = vlz_get_page();
     $current_pet = kmimos_get_pet_info($pet_id);
     //var_dump($current_pet);
-    $photo_pet = (!empty($current_pet['photo']))? "/".$current_pet['photo']: "/wp-content/themes/pointfinder/images/noimg.png";
+    $photo_pet = (!empty($current_pet['photo']))? "/".$current_pet['photo']: "/wp-content/themes/kmimos/images/noimg.png";
+
+    $current_pet['type'] = explode(",", $current_pet['type']);
+    $current_pet['type'] = $current_pet['type'][0];
 
     $tipos = kmimos_get_types_of_pets();
     $tipos_str = "";
