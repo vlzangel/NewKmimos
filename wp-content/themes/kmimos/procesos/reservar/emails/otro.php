@@ -1,14 +1,16 @@
 <?php
 
-	/* Administrador */
-
-		// kmimos_mails_administradores_new("Solicitud de reserva #".$reserva_id, $mensaje_admin);
-
 	/* Correo Cliente */
 
 
 		$cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cliente.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
+
+
+        $datos_cuidador = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cuidador.php';
+        $datos_cuidador = file_get_contents($datos_cuidador);
+        $mensaje_cliente = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_cliente);
+
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
@@ -88,4 +90,7 @@
 	    $mensaje_cuidador = get_email_html($mensaje_cuidador, false);
 
 		wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
+
+
+        kmimos_mails_administradores_new('Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
 ?>

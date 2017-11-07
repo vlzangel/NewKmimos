@@ -97,11 +97,11 @@ if(mail_validate($mail)){
 			update_post_meta($couponID, 'apply_before_tax', 'yes');
 			update_post_meta($couponID, 'free_shipping', 'no');
 
-			//MAIL
+			/*//MAIL
 			$subjet='Gracias por tu registro';
 			$message='ten tu cupon '.$code;
 			$message=kmimos_get_email_html($asunto, $message, 'Saludos,', false, true);
-			wp_mail($mail,  $subjet, $message);
+			wp_mail($mail,  $subjet, $message);*/
 		}
 
 	}else{

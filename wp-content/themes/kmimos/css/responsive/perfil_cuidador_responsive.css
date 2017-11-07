@@ -3,6 +3,16 @@
 }
 
 @media (max-width: 768px){
+
+    #mapa{
+        height: 93%!important;
+    }
+    .zopim{
+        top:auto!important;
+        position: fixed!important;
+        bottom: 22%!important;
+    }
+
 	.woocommerce ul.products li.product, .woocommerce-page ul.products li.product, .woocommerce-page[class*=columns-] ul.products li.product, .woocommerce[class*=columns-] ul.products li.product {
 	    width: calc( 50% - 10px ) !important;
 	}
@@ -49,4 +59,16 @@
 	    box-sizing: border-box;
 	    margin: 0px !important;
 	}
+}
+
+@media All and (max-width: 520px){
+    .zopim{
+        bottom: 25%!important;
+    }
+}
+
+@media all and (max-width: 768px) and (orientation: landscape ){
+    .zopim{
+        bottom: 25%!important;
+    }
 }

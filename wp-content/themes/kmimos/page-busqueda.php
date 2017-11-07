@@ -5,6 +5,10 @@
 
     wp_enqueue_style('beneficios_kmimos', getTema()."/css/busqueda.css", array(), '1.0.0');
 	wp_enqueue_style('beneficios_responsive', getTema()."/css/responsive/busqueda_responsive.css", array(), '1.0.0');
+
+    wp_enqueue_style('conocer', getTema()."/css/conocer.css", array(), '1.0.0');
+    wp_enqueue_style('conocer_responsive', getTema()."/css/responsive/conocer_responsive.css", array(), '1.0.0');
+
 	wp_enqueue_script('buscar_home', getTema()."/js/busqueda.js", array(), '1.0.0');
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
@@ -240,7 +244,28 @@
 									</span>
 								</div>
 							</div> 
+
 						</div>
+						<div class=" hidden-sm hidden-md hidden-lg" style="margin-top:15px; border-radius: 6px;">
+							 
+							<div class="dropdown">
+							  	<button class="dropdown-order btn km-select-button-nojs btn-default dropdown-toggle" type="button" title="ORDENAR POR" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding: 10px 30px 10px 6px !important;border-radius: 6px!important;">
+							    	ORDENAR POR
+							  	</button>
+							  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							    	<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_desc">Valoración de mayor a menor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_asc">Valoración de menor a mayor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_asc">Precio del Servicio de menor a mayor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de menos a más años</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de más a menos años</a></li>
+							  	</ul>
+							</div>
+
+						</div>
+
 					</div>
 				</form>
 			</div>
@@ -265,10 +290,11 @@
 										Gris
 									</a>
 								</div> -->
+
 								<div class="km-orden-resultados">
 									
-									<div class="btn-group">
-									  <button class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 8px 30px 8px 20px !important;">
+									<div class="btn-group hidden-xs">
+									  <button class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 8px 30px 8px 20px !important;border-radius: 6px!important;">
 									    ORDENAR POR</span>
 									  </button>
 									  <ul class="dropdown-menu">

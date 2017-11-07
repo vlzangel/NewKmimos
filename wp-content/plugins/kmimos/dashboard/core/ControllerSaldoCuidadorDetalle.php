@@ -33,17 +33,17 @@ function getReservas($desde="", $hasta=""){
 
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional = " 
-			AND ( r.post_date >= '{$desde} 00:00:00' and  r.post_date <= '{$hasta} 23:59:59' )
+			AND ( r.post_date_gmt >= '{$desde} 00:00:00' and  r.post_date_gmt <= '{$hasta} 23:59:59' )
 		";
 	}else{
-		$filtro_adicional = " AND MONTH(r.post_date) = MONTH(NOW()) AND YEAR(r.post_date) = YEAR(NOW()) ";
+		$filtro_adicional = " AND MONTH(r.post_date_gmt) = MONTH(NOW()) AND YEAR(r.post_date_gmt) = YEAR(NOW()) ";
 	}
 
 	global $wpdb;
 	$sql = "
 		SELECT 
 			r.ID as 'nro_reserva',
- 			DATE_FORMAT(r.post_date,'%d-%m-%Y') as 'fecha_solicitud',
+ 			DATE_FORMAT(r.post_date_gmt,'%d-%m-%Y') as 'fecha_solicitud',
  			r.post_status as 'estatus_reserva',
  			p.ID as 'nro_pedido',
  			p.post_status as 'estatus_pago', 			
@@ -119,11 +119,11 @@ function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
 		$filtro_adicional .= " 
-			DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+			DATE_FORMAT(post_date_gmt, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
 		";
 	}else{
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
-		$filtro_adicional .= " MONTH(post_date) = MONTH(NOW()) AND YEAR(post_date) = YEAR(NOW()) ";
+		$filtro_adicional .= " MONTH(post_date_gmt) = MONTH(NOW()) AND YEAR(post_date_gmt) = YEAR(NOW()) ";
 	}
 
 
@@ -138,7 +138,7 @@ function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
 			AND not post_status like '%cart%'
 			AND post_status = 'confirmed' 
 			AND post_author = {$author_id}
-			AND post_date > DATE_SUB(CURDATE(), INTERVAL {$interval} MONTH)
+			AND post_date_gmt > DATE_SUB(CURDATE(), INTERVAL {$interval} MONTH)
 	";
 
 	$result = get_fetch_assoc($sql);

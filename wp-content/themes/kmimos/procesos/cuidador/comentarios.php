@@ -13,7 +13,7 @@
 	include_once(dirname(__DIR__).'/funciones/generales.php');
 	extract($_POST);
 
-	$sql = "
+/*	$sql = "
 		SELECT
 			comentario.user_id AS cliente_id,
 			comentario.comment_author_email AS cliente_email,
@@ -33,11 +33,41 @@
 		WHERE
 			comentario.comment_post_ID = '{$servicio}'
 		ORDER BY comentario.comment_ID DESC
+	";*/
+
+	$sql = "
+		SELECT
+			comentario.user_id AS cliente_id,
+			comentario.comment_ID AS comment_ID,
+			comentario.comment_author_email AS cliente_email,
+			comentario.comment_author AS cliente,
+			comentario.comment_content AS contenido,
+			comentario.comment_date AS fecha
+		FROM
+			wp_comments	AS comentario
+		WHERE
+			comentario.comment_post_ID = '{$servicio}'
+		ORDER BY comentario.comment_ID DESC
 	";
 
 	$resultado = array();
 	$comentarios = $wpdb->get_results($sql);
 	foreach ($comentarios as $comentario) {
+
+		$puntuaciones = array(
+			"punctuality" => 0,
+			"trust" => 0,
+			"cleanliness" => 0,
+			"care" => 0
+		);
+
+		$metas = $wpdb->get_results("SELECT * FROM wp_commentmeta WHERE comment_id = ".$comentario->comment_ID);
+
+		if( $metas !== false ){
+			foreach ($metas as  $meta) {
+				$puntuaciones[$meta->meta_key] = $meta->meta_value;
+			}
+		}
 
 		$user_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$comentario->cliente_email}' ");
 
@@ -50,12 +80,14 @@
 			"img"	=> kmimos_get_foto($user_id),
 			"contenido" => ($comentario->contenido),
 			"fecha" => ($fecha),
-			"puntualidad" => ($comentario->puntualidad_valor),
-			"confianza" => ($comentario->confianza_valor),
-			"limpieza" => ($comentario->limpieza_valor),
-			"cuidado" => ($comentario->cuidado_valor)
+			"puntualidad" => ($puntuaciones["punctuality"]),
+			"confianza" => ($puntuaciones["trust"]),
+			"limpieza" => ($puntuaciones["cleanliness"]),
+			"cuidado" => ($puntuaciones["care"])
 		);
 	}
 
 	echo json_encode($resultado);
 ?>
+
+

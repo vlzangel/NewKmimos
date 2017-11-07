@@ -78,13 +78,15 @@ class Reservas {
 
         $this->servicio = $servicio;
         
+        $total_a_pagar = $deposito['total'];
+
         $sql = "
             INSERT INTO wp_postmeta VALUES
                 (NULL, '{$id_reserva}', '_booking_customer_id',     '{$cliente}'),
                 (NULL, '{$id_reserva}', '_booking_all_day',         '1'),
                 (NULL, '{$id_reserva}', '_booking_start',           '{$inicio}000000'),
                 (NULL, '{$id_reserva}', '_booking_end',             '{$fin}235959'),
-                (NULL, '{$id_reserva}', '_booking_cost',            '{$monto}'),
+                (NULL, '{$id_reserva}', '_booking_cost',            '{$total_a_pagar}'),
                 (NULL, '{$id_reserva}', '_booking_persons',         '{$num_mascotas}'),
                 (NULL, '{$id_reserva}', '_booking_order_item_id',   '{$id_item}'),
                 (NULL, '{$id_reserva}', '_booking_product_id',      '{$servicio}');
@@ -142,17 +144,24 @@ class Reservas {
             $remanente = "(NULL, '{$id_order}', '_wc_deposits_remaining', '{$deposito["remaining"]}'),";
         }else{
             $total = $monto;
+            $remanente = "(NULL, '{$id_order}', '_wc_deposits_remaining', '0'),";
+        }
+
+        if( isset($descuento) && $descuento > 0 ){
+            $total += $descuento;
         }
 
         $sql = "
             INSERT INTO wp_postmeta VALUES
             {$remanente}
             (NULL, '{$id_order}', '_customer_user',                         '{$cliente}'),
+            
             (NULL, '{$id_order}', '_order_total',                           '{$total}'),
+            (NULL, '{$id_order}', '_cart_discount',                         '{$descuento}'),
+
             (NULL, '{$id_order}', '_order_key',                             'wc_order_{$token}'),
             (NULL, '{$id_order}', '_order_stock_reduced',                   '1'),
             (NULL, '{$id_order}', '_cart_discount_tax',                     '0'),
-            (NULL, '{$id_order}', '_cart_discount',                         '{$descuento}'),
             (NULL, '{$id_order}', '_order_version',                         '2.5.5'),
             (NULL, '{$id_order}', '_payment_method',                        '{$metodo_pago}'),
             (NULL, '{$id_order}', '_recorded_sales',                        'yes'),

@@ -17,40 +17,8 @@
 	    	La reserva <strong>[id_reserva]</strong> ha sido <strong>confirmada</strong> exitosamente de acuerdo a tu petición.
 	    </div>
 	</div>
-    
-    <div style='display: block; margin-bottom: 31px;'>
 
-        <div style='display: table; margin-bottom: 40px; width: 100%;'>
-            <div style='display: table-cell; width: 62px; padding-right: 20px;'>
-                <img src='[avatar]' style='width: 62px; height: 62px; border-radius: 50%;' >
-            </div>
-            <div style='display: table-cell; vertical-align: middle; padding-left: 16px;'>
-                <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
-                    DATOS DEL CLIENTE 
-                </div>                  
-                <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
-                    [name_cliente]
-                </div>              
-                <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 3px;'>
-                    [telefonos_cliente]
-                </div>          
-                <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 3px;'>
-                    [correo_cliente]
-                </div>   
-            </div>
-            <div style='display: table-cell; width: 158.8px; height: 50.3px; border-radius: 2.8px;  vertical-align: top;'>
-                <div style='background-color: #f4f4f4; height: 50.3px;'>
-                    <div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px 0px 0px 10px;'>
-                        Código de reserva:
-                    </div>
-                    <div style='font-family: Arial; font-size: 14px; font-weight: bold; letter-spacing: 0px; color: #000000; padding: 3px 0px 0px 10px;'>
-                        [id_reserva]
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
+    [DATOS_CLIENTE]
 
 </div>
 
@@ -165,7 +133,7 @@
         <div style='display: table-cell; width: 52px; vertical-align: top;'>
             <img src='[URL_IMGS]/exclamacion.png' style='width: 33px;' >
         </div>
-        <div style='display: table-cell; font-family: Arial; font-size: 14px; letter-spacing: 0.2px; color: #666666; padding-bottom: 9px; vertical-align: top;'>
+        <div style='display: table-cell; font-family: Arial; font-size: 14px; letter-spacing: 0.2px; color: #2d2d2d; padding-bottom: 9px; vertical-align: top;'>
             Si necesitas cancelar el servicio te pedimos que notifiques al cuidador y al staff kmimos con al menos 48 horas de anticipación a la fecha de inicio de la reserva, de lo contrario se cobrará un monto del 20% sobre el total de la reserva por concepto de la cancelación tardía.
         </div>
     </div>
