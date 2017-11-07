@@ -147,7 +147,7 @@
 	                <strong>Totales</strong>
 	                <div class='item'>
 	                    <div class='pago_en_efectivo'>Monto a pagar en EFECTIVO al cuidador</div>
-	                    <span>".number_format( ($data_reserva["desglose"]["remaining"]-$data_reserva["descuento"]), 2, ',', '.')."</span>
+	                    <span>".number_format( ($data_reserva["desglose"]["remaining"]), 2, ',', '.')."</span>
 	                </div>
 	                <div class='item'>
 	                    <div>Pagado</div>
@@ -160,6 +160,7 @@
 	                </div>
 	            </div>
 	        ";
+	        
 	    }else{
 	        
 	        $totales = "
