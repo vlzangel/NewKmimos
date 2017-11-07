@@ -77,7 +77,6 @@
 			"total" => $pagar->total
 	    );
 
-	   // $pagar->total -= $descuentos;
     }else{
 
 	    $pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
@@ -99,9 +98,6 @@
 			"remaining" => ($pagoCuidador+$descuentos),
 			"total" => $pagar->total
 	    );
-
-	    // $pagar->total = $pre17;
-
     }
 
     $tamanos = array(
