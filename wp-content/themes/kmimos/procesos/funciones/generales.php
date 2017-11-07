@@ -66,9 +66,9 @@
     function kmimos_update_user_meta($user_id, $key, $valor){
         global $db;
         if( kmimos_get_user_meta($user_id, $key) !== false ){
-            $db->get_var("UPDATE wp_usermeta SET meta_value = '{$valor}' WHERE user_id = {$user_id} AND meta_key = '{$key}';");
+            $db->query("UPDATE wp_usermeta SET meta_value = '{$valor}' WHERE user_id = {$user_id} AND meta_key = '{$key}';");
         }else{
-            $db->get_var("INSERT INTO wp_usermeta VALUES ( NULL, {$user_id}, '{$key}', '{$valor}');");
+            $db->query("INSERT INTO wp_usermeta VALUES ( NULL, {$user_id}, '{$key}', '{$valor}');");
         }
     }
 
@@ -80,9 +80,9 @@
     function kmimos_update_post_meta($post_id, $key, $valor){
         global $db;
         if( kmimos_get_post_meta($post_id, $key) !== false ){
-            $db->get_var("UPDATE wp_postmeta SET meta_value = '{$valor}' WHERE post_id = {$post_id} AND meta_key = '{$key}';");
+            $db->query("UPDATE wp_postmeta SET meta_value = '{$valor}' WHERE post_id = {$post_id} AND meta_key = '{$key}';");
         }else{
-            $db->get_var("INSERT INTO wp_postmeta VALUES ( NULL, {$post_id}, '{$key}', '{$valor}');");
+            $db->query("INSERT INTO wp_postmeta VALUES ( NULL, {$post_id}, '{$key}', '{$valor}');");
         }
     }
     
