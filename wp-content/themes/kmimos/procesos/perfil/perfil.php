@@ -24,13 +24,13 @@
 	}
 
 
-	kmimos_update_user_meta($user_id, "first_name", $first_name);
-	kmimos_update_user_meta($user_id, "last_name", $last_name);
+	kmimos_update_user_meta($user_id, "first_name", utf8_decode($first_name) );
+	kmimos_update_user_meta($user_id, "last_name", utf8_decode($last_name));
 	kmimos_update_user_meta($user_id, "user_phone", $phone);
 	kmimos_update_user_meta($user_id, "mobile", $user_mobile);
 	kmimos_update_user_meta($user_id, "user_referred", $referred);
-	kmimos_update_user_meta($user_id, "description", $descr);
-	kmimos_update_user_meta($user_id, "nickname", $nickname);
+	kmimos_update_user_meta($user_id, "description", utf8_decode($descr));
+	kmimos_update_user_meta($user_id, "nickname", utf8_decode($nickname));
 
 	$sql  = "UPDATE wp_users SET display_name = '{$nickname}' WHERE ID = {$user_id}; ";
 	if( isset($img_portada) ){
