@@ -45,7 +45,7 @@
 
     $str_sugeridos = "";
 
-    $file_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/partes/cuidadores.php';
+    $file_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/cuidadores.php';
     $plantilla_cuidador = file_get_contents($file_plantilla);
 
     foreach ($sugeridos as $valor) {
