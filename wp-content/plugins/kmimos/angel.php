@@ -119,6 +119,7 @@
             // );
 
             // wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);       
+            wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje);       
         
         }     
     }
