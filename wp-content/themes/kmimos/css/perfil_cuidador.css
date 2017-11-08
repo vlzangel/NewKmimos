@@ -165,3 +165,7 @@
     font-size: 17px;
     cursor: pointer;
 }
+
+.km-ficha-datos .nav>li>a {
+    padding: 20px 10px 15px !important;
+}
