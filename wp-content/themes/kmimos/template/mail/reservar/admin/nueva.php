@@ -37,7 +37,7 @@
 			AHORA NO PUEDO, <a href='[RECHAZAR]' style='font-weight: 400; color: #000;'>RECHAZAR</a>
 		</div>
 
-        <div style='margin: 0px auto; width: 300px;'>
+        <div>
             
             <div style='display: table-cell; width: 62px; padding-right: 20px;'>
 				<img src='[avatar_cliente]' style='width: 62px; height: 62px; border-radius: 50%;' >
@@ -59,7 +59,7 @@
             
         </div>
 
-        <div style='margin: 0px auto; width: 300px;'>
+        <div>
             
             <div style='display: table-cell; width: 62px; padding-right: 20px;'>
 				<img src='[avatar_cuidador]' style='width: 62px; height: 62px; border-radius: 50%;' >
