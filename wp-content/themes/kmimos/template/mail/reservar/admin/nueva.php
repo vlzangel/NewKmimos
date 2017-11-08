@@ -8,12 +8,12 @@
 		
 		[MODIFICACION]
 		
+	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 19px;'>
+	    	¡Hola Administrador!
+	    </div>
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 19px;'>
 			[tipo_servicio] por [name_cliente]
 		</div>	
-	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px;'>
-	    	¡Hola Administrador!
-	    </div>
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
 	    	El cliente <strong>[name_cliente]</strong> ha realizado una solicitud de reserva.
 	    </div>
