@@ -8,17 +8,14 @@
         
         [MODIFICACION] 
 
-        <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 19px; text-align: center;'>
-            ¡Gracias [name_cliente]!
+        <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 19px; text-align: left;'>
+            ¡Hola Administrador!
         </div>  
-        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: center;'>
-            Recibimos tu solicitud de reserva de <strong>[tipo_servicio]</strong>, para que <strong>[name_cuidador]</strong> atienda a tu(s) peludo(s).
+        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: left;'>
+            Recibimos una solicitud de reserva de <strong>[tipo_servicio]</strong> con <strong>[name_cuidador]</strong>.
         </div>
         <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 15px;'>
-            Has seleccionado como método de pago: <strong>Pago en efectivo en tiendas de conveniencia</strong>, a  continuación encontrarás los pasos a seguir para poder completar tu reservación.
-        </div>
-        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
-            Una vez completes el pago, recibirás un correo de notificación de recepción del mismo.
+            Han seleccionado como método de pago: <strong>Pago en efectivo en tiendas de conveniencia</strong>, a  continuación encontrarás los pasos a seguir que se le proporcionaron al cliente para completar el pago.
         </div>
     </div>
     
@@ -31,10 +28,6 @@
     <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #2d2d2d; text-align: center; margin-bottom: 30px;'>
         (Dar click para ver instrucciones)
     </div>
-    
-    <div style='width: 239px; border-radius: 2.8px; background-color: #f4f4f4; text-align: center; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px; margin: 0px auto 18px;'>
-        Tu código de reserva es: <strong>[id_reserva]</strong>
-    </div>
 
 </div>
 
@@ -46,18 +39,6 @@
 			Reserva #: <strong>[id_reserva] </strong>
 		</div>
         
-		<div style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: 0.3px; text-align: center; color: #000000; margin-bottom: 12px;'>
-			¿Aceptas la solicitud?
-		</div>
-
-		<div style='text-align: center; margin-bottom: 12px;'>
-			<a href='[ACEPTAR]' style='text-decoration: none;'><img src='[URL_IMGS]/btn_aceptar.png' style='width: 252px;' /></a>
-		</div>
-
-		<div style='font-family: Arial; font-size: 14px; line-height: 1.21; letter-spacing: 0.3px; color: #000000; margin-bottom: 39px;'>
-			AHORA NO PUEDO, <a href='[RECHAZAR]' style='font-weight: 400; color: #000;'>RECHAZAR</a>
-		</div>
-
         <div style='margin: 0px auto; width: 300px;'>
             
             <div style='display: table-cell; width: 62px; padding-right: 20px;'>
