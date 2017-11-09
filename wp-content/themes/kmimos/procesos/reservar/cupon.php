@@ -23,7 +23,6 @@
 
 				$atributos = unserialize($cuidador->atributos);
 				if( $atributos['destacado'] != 1 ){
-					//$cuidador_titulo = $db->get_var("SELECT post_title FROM wp_posts WHERE ID = '{$cuidador->id_post}'");
 					echo json_encode(array(
 						"error" => "El cupón [ {$cupon} ] no puede ser aplicado con este cuidador."
 					));
