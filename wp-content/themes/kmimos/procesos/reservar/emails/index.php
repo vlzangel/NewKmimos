@@ -176,12 +176,12 @@
 
 			if( $acc == "CFM" ){
 
-				//$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
-	    		//$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
+				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
+	    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
 
 				include("confirmacion.php");
 
-				/*if(  $_SESSION['admin_sub_login'] != 'YES' ){
+				if(  $_SESSION['admin_sub_login'] != 'YES' ){
 			   		if(isset($cliente["id"])){	
 				   		$user_referido = get_user_meta($cliente["id"], 'landing-referencia', true);
 				   		if(!empty($user_referido)){
@@ -195,7 +195,7 @@
 							}
 						} 
 					}
-				}*/
+				}
 			}
 
 			if( $acc == "CCL" ){
