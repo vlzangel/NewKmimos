@@ -501,7 +501,7 @@ header{
 	.logo-negro {left: 30%;width: 40%;}
 	#section-1 {background-image: url(../img/fondo-sc4-responsive.png);background-size: cover;padding-bottom: 100%;}
 	#section-1 p {font-size: 8pt;left: 20%;top: 65%;width: 70%;}
-	#section-1 a img {width: 50%; max-width: 340px; left: 25%;}
+	#section-1 a img {width: 80%; max-width: 340px; left: 15%;}
 	#section-2 {padding-bottom: 5%; overflow: hidden;}
 	.mapa {width: 40%;}
 	.panel {width: 100%;max-width: 100%;}
@@ -554,7 +554,7 @@ header{
 	#section-1 {background-image: url(../img/fondo-sc4-responsive.png);background-size: cover;padding-bottom: 100%;}
 	#section-1 p {font-size: 13pt;left: 13%;top: 60%;width: 85%;font-weight: 600;}
 	.span-kmimos{font-weight: 400; font-family: 'PoetsenOne', sans-serif; font-size:14pt;}
-	#section-1 a img {width: 50%; max-width: 340px; left: 25%;}
+	#section-1 a img {width: 75%; max-width: 340px; left: 15%;}
 	#section-2 {padding-bottom: 5%; overflow: hidden;}
 	.mapa {width: 40%;}
 	.panel {width: 100%;max-width: 100%;}
@@ -608,7 +608,7 @@ header{
 	#section-1 {background-image: url(../img/fondo-sc4-responsive.png);background-size: cover;padding-bottom: 100%;}
 	#section-1 p {font-size: 12pt;left: 20%;top: 65%;width: 70%;font-weight: 600;}
 	.span-kmimos{font-weight: 400; font-family: 'PoetsenOne', sans-serif; font-size:14pt;}
-	#section-1 a img {width: 60%; max-width: 340px; left: 20%;}
+	#section-1 a img {width: 80%; max-width: 340px; left: 10%;}
 	#section-2 {padding-bottom: 5%; overflow: hidden;}
 	.mapa {width: 40%;}
 	.panel {width: 100%;max-width: 100%;}
@@ -661,7 +661,7 @@ header{
 	#section-1 {background-image: url(../img/fondo-sc4-responsive.png);background-size: cover;padding-bottom: 100%;}
 	#section-1 p {font-size: 11pt;left: 10%;top: 60%;width: 100%;line-height: 120%; font-weight: 600;}
 	.span-kmimos{font-weight: 400; font-family: 'PoetsenOne', sans-serif; font-size:14pt;}
-	#section-1 a img {width: 65%; max-width: 340px; left: 25%;}
+	#section-1 a img {width: 80%; max-width: 340px; left: 10%;}
 	#section-2 {padding-bottom: 5%; overflow: hidden;}
 	.mapa {width: 40%;}
 	.panel {width: 100%;max-width: 100%;}
