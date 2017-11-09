@@ -1,8 +1,9 @@
 <?php
 /*
-	Template Name: TEMPLATE BLOG
+    Template Name: TEMPLATE BLOG
 */
-
+wp_enqueue_style( 'blog_single_post', getTema()."/css/blog.css", array(), '1.0.0'); 
+wp_enqueue_script( 'blog_single_script', getTema()."/js/blog_script.js", array("jquery"), '1.0.0'); 
 include_once('partes/blog/header.php');
 ?>
 <style>
@@ -239,88 +240,6 @@ if($page<=0){
         </div>
     </div>
 </section>
-<script type="text/javascript">
-    var news_show=-1;
-    var news_count=2;
-    var news_navigate=1;
-    var news_action = false;
-    var news_post=jQuery('#last .section.news .post');
-
-    jQuery('#last .section.news .action .icon.arrow a').click(function(event){
-        if(jQuery(this).closest('.icon.arrow').length){
-            news_nav(jQuery(this).closest('.icon.arrow'));
-        }
-
-        if(news_action == false){
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    });
-
-
-    function news_nav(element){
-        if(news_action == false){
-            news_post.removeClass('show');
-            var direction = jQuery(element).data('direction');
-            var show = news_show;
-            var action = false;
-
-            if(direction=='prev'){
-                show=show-(news_navigate*news_count);
-            }
-
-            for(var news=1; news<=news_count; news++){
-                var post=show+news+(news_navigate-news_count);//
-
-                if(post>0 && news_post.eq(post).hasClass('loadfirst')){
-                    action=false;
-                    post=-1;
-
-                }else if(post<0 && news_post.closest('.section.news').find('loadfirst').length>0){
-                    action=false;
-                    post=0;
-
-                }else if(post<0 && direction=='prev'){
-                    action=true;
-
-                }else if(post>0 && news_post.eq(post).hasClass('redirect')){
-                    action=true;
-
-                }
-
-                if(post<0){
-                    post=0;
-
-                }else if(post==(news-news_count) && news<=news_count){
-                    post++;
-                }
-
-                //console.log(post);
-                if(news_show_display(post) && !action){
-                    news_show=post;
-
-                }else{
-                    if(news_post.closest('.news').find('.post.show').length<=news_count || action){
-                        news_action = true;
-                        jQuery(element).find('a').trigger('click');
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    function news_show_display(post){
-        var news=news_post.eq(post);
-        if(news.length>0 && post>=0){
-            news.addClass('show');
-            return true;
-        }
-        return false;
-    }
-
-    news_nav('');
-</script>
 
 <section id="featured">
     <div class="info" style="display: none;">
@@ -335,7 +254,7 @@ if($page<=0){
         </div>
     </div>
         <?php
-            include_once('partes/blog/frontend/featured.php');
+            include('partes/blog/frontend/featured.php');
         ?>
 </section>
 
@@ -360,7 +279,7 @@ if($page<=0){
 </section>
 
 
-
+ 
 
 <?php
     include_once('partes/blog/footer.php');

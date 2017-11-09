@@ -57,131 +57,134 @@ wp_reset_postdata();
 ?>
 
 <script type="text/javascript">
-    jQuery(document).on('click','#blog_viewed .control .icon', function(){
-        pviewed=jQuery(this).index();
-        show_viewed();
-    });
+    jQuery(document).ready(function(){
 
-    function show_viewed(){
-        clearTimeout(tviewed);
-        var posts=jQuery('#blog_viewed .post');
-        var control=jQuery('#blog_viewed .control');
-
-        if(control.find('.icon').length==0){
-            posts.each(function(){
-                control.append('<div class="icon"></div>');
-            });
-        }
-
-        if(pviewed>=0 && posts.length>pviewed){
-            posts.removeClass('show');
-            posts.eq(pviewed).addClass('show');
-
-            control.find('.icon').removeClass('show');
-            control.find('.icon').eq(pviewed).addClass('show');
-        }else{
-            pviewed=0;
+        jQuery(document).on('click','#blog_viewed .control .icon', function(){
+            pviewed=jQuery(this).index();
             show_viewed();
+        });
+
+        function show_viewed(){
+            clearTimeout(tviewed);
+            var posts=jQuery('#blog_viewed .post');
+            var control=jQuery('#blog_viewed .control');
+
+            if(control.find('.icon').length==0){
+                posts.each(function(){
+                    control.append('<div class="icon"></div>');
+                });
+            }
+
+            if(pviewed>=0 && posts.length>pviewed){
+                posts.removeClass('show');
+                posts.eq(pviewed).addClass('show');
+
+                control.find('.icon').removeClass('show');
+                control.find('.icon').eq(pviewed).addClass('show');
+            }else{
+                pviewed=0;
+                show_viewed();
+            }
+
+            pviewed++;
+            tviewed = setTimeout('show_viewed(pviewed)', 5000);
         }
 
-        pviewed++;
-        tviewed = setTimeout('show_viewed(pviewed)', 5000);
-    }
-
-    pviewed=0;
-    var tviewed = setTimeout('show_viewed(pviewed)', 0);
+        pviewed=0;
+        var tviewed = setTimeout('show_viewed(pviewed)', 0);
 
 
 
-    /*//MOUSE
-    var view_down = 0;
-    var view_up = 0;
-    var view_factor = 30;
-    jQuery(document).on('mousedown','#blog_viewed .post',function( event ) {
-        view_down = event.offsetX;
-        console.log(view_down);
-        console.log(view_up);
-    });
+        /*//MOUSE
+        var view_down = 0;
+        var view_up = 0;
+        var view_factor = 30;
+        jQuery(document).on('mousedown','#blog_viewed .post',function( event ) {
+            view_down = event.offsetX;
+            console.log(view_down);
+            console.log(view_up);
+        });
 
-    jQuery(document).on('mouseup','#blog_viewed .post',function( event ) {
-        view_up = event.offsetX;
+        jQuery(document).on('mouseup','#blog_viewed .post',function( event ) {
+            view_up = event.offsetX;
 
-        if(view_down>view_up && (view_down-view_up)>view_factor){
+            if(view_down>view_up && (view_down-view_up)>view_factor){
+                if(jQuery('#blog_viewed .control .icon.show').next().length>0){
+                    jQuery('#blog_viewed .control .icon.show').next().click();
+                }
+
+            }else if(view_down<view_up && (view_up-view_down)>view_factor){
+                if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
+                    jQuery('#blog_viewed .control .icon.show').prev().click();
+                }
+            }
+
+        });
+        */
+
+        /**///TOUCHMOVE
+        var viewed_touchstart = 0;
+        var viewed_touchstop = 0;
+        var viewed_touchfactor = 30;
+        jQuery('#blog_viewed .post').on("touchstart",function( event ) {
+            viewed_touchstart = event.originalEvent.changedTouches[0].pageX;//
+            //console.log(viewed_touchstart);
+        });
+        jQuery('#blog_viewed .post').on("touchend",function( event ) {
+            var viewed_touchstop = event.originalEvent.changedTouches[0].pageX;//
+            //console.log(viewed_touchstop);
+
+            if(viewed_touchstart>viewed_touchstop && (viewed_touchstart-viewed_touchstop)>viewed_touchfactor){
+                if(jQuery('#blog_viewed .control .icon.show').next().length>0){
+                    jQuery('#blog_viewed .control .icon.show').next().click();
+                }
+
+            }else if(viewed_touchstart<viewed_touchstop && (viewed_touchstop-viewed_touchstart)>viewed_touchfactor){
+                if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
+                    jQuery('#blog_viewed .control .icon.show').prev().click();
+                }
+
+            }
+
+        });
+
+        /*//SWIPE
+        jQuery('#blog_viewed .post').on("swipeleft",function(event){
             if(jQuery('#blog_viewed .control .icon.show').next().length>0){
                 jQuery('#blog_viewed .control .icon.show').next().click();
             }
+        });
 
-        }else if(view_down<view_up && (view_up-view_down)>view_factor){
+        jQuery('#blog_viewed .post').on("swiperight",function(event){
             if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
                 jQuery('#blog_viewed .control .icon.show').prev().click();
             }
-        }
+        });
+        */
 
-    });
-    */
 
-    /**///TOUCHMOVE
-    var viewed_touchstart = 0;
-    var viewed_touchstop = 0;
-    var viewed_touchfactor = 30;
-    jQuery('#blog_viewed .post').on("touchstart",function( event ) {
-        viewed_touchstart = event.originalEvent.changedTouches[0].pageX;//
-        //console.log(viewed_touchstart);
-    });
-    jQuery('#blog_viewed .post').on("touchend",function( event ) {
-        var viewed_touchstop = event.originalEvent.changedTouches[0].pageX;//
-        //console.log(viewed_touchstop);
+        /*//SWIPE2
+        jQuery('#blog_viewed .post').on("swipe",function( event ) {
+            var start = event.swipestart.coords[0];
+            var stop = event.swipestop.coords[0];
+            var target = event.target.baseURI;
+            var factor = 30;
 
-        if(viewed_touchstart>viewed_touchstop && (viewed_touchstart-viewed_touchstop)>viewed_touchfactor){
-            if(jQuery('#blog_viewed .control .icon.show').next().length>0){
-                jQuery('#blog_viewed .control .icon.show').next().click();
+            if(start>stop && (start-stop)>factor){
+                if(jQuery('#blog_viewed .control .icon.show').next().length>0){
+                    jQuery('#blog_viewed .control .icon.show').next().click();
+                }
+
+            }else if(start<stop && (stop-start)>factor){
+                if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
+                    jQuery('#blog_viewed .control .icon.show').prev().click();
+                }
+
+            }else{
+                window.location.href = target;
             }
 
-        }else if(viewed_touchstart<viewed_touchstop && (viewed_touchstop-viewed_touchstart)>viewed_touchfactor){
-            if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
-                jQuery('#blog_viewed .control .icon.show').prev().click();
-            }
-
-        }
-
+        });
+        */
     });
-
-    /*//SWIPE
-    jQuery('#blog_viewed .post').on("swipeleft",function(event){
-        if(jQuery('#blog_viewed .control .icon.show').next().length>0){
-            jQuery('#blog_viewed .control .icon.show').next().click();
-        }
-    });
-
-    jQuery('#blog_viewed .post').on("swiperight",function(event){
-        if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
-            jQuery('#blog_viewed .control .icon.show').prev().click();
-        }
-    });
-    */
-
-
-    /*//SWIPE2
-    jQuery('#blog_viewed .post').on("swipe",function( event ) {
-        var start = event.swipestart.coords[0];
-        var stop = event.swipestop.coords[0];
-        var target = event.target.baseURI;
-        var factor = 30;
-
-        if(start>stop && (start-stop)>factor){
-            if(jQuery('#blog_viewed .control .icon.show').next().length>0){
-                jQuery('#blog_viewed .control .icon.show').next().click();
-            }
-
-        }else if(start<stop && (stop-start)>factor){
-            if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
-                jQuery('#blog_viewed .control .icon.show').prev().click();
-            }
-
-        }else{
-            window.location.href = target;
-        }
-
-    });
-    */
 </script>
