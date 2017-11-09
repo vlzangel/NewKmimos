@@ -1,52 +1,4 @@
-<style>
-    /*FOOTER*/
-    footer{}
-    footer.wpf-footer{display:none;}
-    footer .contact{ padding: 20px 0; background: #ededed;}
-    footer .contact .group{display: flex; flex-flow: wrap; /*align-items: center;*/}
-    footer .contact .section{width: 28%;}
-    footer .contact .section.redes{width: 16%;}
-    footer .contact .section.redes .icon{ width: 40px; margin:5px 0; padding:10px; color: #FFF; font-size: 20px; text-align: center; border-radius: 50%; cursor: pointer; background: #23d3c4; display: block;}
-    footer .contact .section .item{padding: 5px 0; font-size: 15px;}
-    footer .contact .section .item a{color: #555;}
-    footer .contact .section .item a.kmimos{color: #0992a3;}
-    footer .contact .section .item.title{ font-size: 15px; font-weight: bold;}
-
-    footer .payment{ padding: 20px 0; background: #FFF;}
-    footer .payment .group{display: flex; flex-flow: wrap; align-items: center;}
-    footer .payment .section{ }
-    footer .payment .title{ width: 30%; font-size: 20px; font-weight: bold;}
-    footer .payment .items{ width: 70%;}
-    footer .payment .items .title{width: 30%;}
-    footer .payment .items .item{width: calc(15% - 20px); margin: 10px; padding-top: 5%;  background: #FFF center/contain no-repeat; display: inline-block;}
-
-    footer .payment .items.efectivo .item{width: 10%; padding-top: 10%;}
-    footer .payment .items.efectivo.title{width: 30%;}    /* width: 30%; */
-    footer .payment .items.efectivo.title .item{width: 100%; max-width: 150px; height: 70px; padding: 0;}
-
-    footer .info{ padding: 10px;  color: #FFF; font-size: 20px; text-align: center; background: #23d3c4; }
-
-
-    @media screen and (max-width:768px), screen and (max-device-width:768px){}
-    @media screen and (max-width:480px), screen and (max-device-width:480px){
-        footer .contact .group{display: block;}
-        footer .contact .section{width: auto; margin: 10px 20px;}
-        footer .contact .section.redes{width: auto; text-align: center;}
-        footer .contact .section.redes .icon{display: inline-block;}
-
-        footer .payment .group{display: block; text-align: center;}
-        footer .payment .title{width: auto;}
-        footer .payment .items{width: auto;}
-        footer .payment .items.efectivo .item{width: 20%; padding-top: 10%;}
-        footer .payment .items.efectivo.title{width: auto;}
-
-        /* RESPONSIVE SUGERIDO
-        footer .contact .section {margin: 0px 0 0 60px;}
-        footer .contact .section.redes{position: absolute; width: 50px; left: 0; top: 0; margin: 0px;}
-        footer .payment .items .item{width: calc(25% - 20px);}
-        */
-    }
-</style>
+ 
         <footer id="footer">
             <div class="contact">
                 <div class="group contain">
@@ -117,7 +69,7 @@
                 </div>
             </div>
         </footer>
-        <script src="<?php echo get_home_url(); ?>/panel/assets/js/jquery.js"></script>
+        
         <?php
         global $no_display_footer;
         $no_display_footer = true;
