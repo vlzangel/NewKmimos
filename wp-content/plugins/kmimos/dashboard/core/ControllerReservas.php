@@ -67,9 +67,11 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 	//===============================================================
 	$payment_method_cards = [ // pagos por TDC / TDD
 		'openpay_cards'
+		'tarjeta',
 	]; 
 	$payment_method_store = [ // pagos por Tienda por conveniencia
-		'openpay_stores'
+		'openpay_stores',
+		'tienda',
 	]; 
 	//===============================================================
 	// END PaymentMethod
@@ -112,7 +114,6 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 			$sts_largo = 'Modificado por la reserva: '.$por;
 		break;
 	}
-
 	return 	$result = [ 
 		"reserva"  => $sts_reserva, 
 		"pedido"   => $sts_pedido,
@@ -120,7 +121,6 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 		"sts_largo"=> $sts_largo,
 		"addTotal" => $addTotal,
 	];
-
 }
 
 function photo_exists($path=""){
