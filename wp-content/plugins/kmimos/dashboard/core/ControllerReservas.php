@@ -94,6 +94,13 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 				$sts_largo = 'Pendiente de pago';
 			}
 		break;
+		case 'wc-partially-paid':
+			$sts_largo = "Estatus Reserva: Pago Parcial  /  Estatus Pedido: {$sts_pedido}";		
+			if( $sts_pedido == 'unpaid'){
+				$sts_corto = 'Por confirmar (cuidador)';
+				$sts_largo = 'Por confirmar (cuidador)';
+			}
+		break;
 		case 'confirmed':
 			$sts_corto = 'Confirmado';
 			$sts_largo = 'Confirmado';
