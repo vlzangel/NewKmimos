@@ -416,47 +416,6 @@
 	   			
 	   			if( $pagar->token != "" ){
 
-	   				/*$cardDataRequest = array(
-					    'holder_name' => $tarjeta->nombre,
-					    'card_number' => $tarjeta->numero,
-					    'cvv2' => $tarjeta->codigo,
-					    'expiration_month' => $tarjeta->mes,
-					    'expiration_year' => $tarjeta->anio,
-					    'device_session_id' => $pagar->deviceIdHiddenFieldName,
-					    'address' => array(
-					            'line1' => $customer->address->line1,
-					            'line2' => $customer->address->line2,
-					            'line3' => $customer->address->line3,
-					            'postal_code' => $customer->address->postal_code,
-					            'state' => $customer->address->state,
-					            'city' => $customer->address->city,
-					            'country_code' => 'MX'
-					    )
-					);
-
-					$cardList = $customer->cards->getList( array() );
-
-					$card = "";
-
-					if( count($cardList) == 0 ){
-						try {
-				            $card = $customer->cards->add($cardDataRequest);
-				        } catch (Exception $e) { }
-					}else{
-						$no_existe = true;
-						$card_num = substr($card_number, 0, 6)."XXXXXX".substr($card_number, -4);
-						foreach ($cardList as $key => $card) {
-							if( $card_num == $card->card_number ){
-								$no_existe = false;
-							}
-						}
-						if( $no_existe ){
-							try {
-					            $card = $customer->cards->add($cardDataRequest);
-					        } catch (Exception $e) { }
-						}
-					}*/
-
 					$chargeData = array(
 					    'method' 			=> 'card',
 					    'source_id' 		=> $pagar->token,

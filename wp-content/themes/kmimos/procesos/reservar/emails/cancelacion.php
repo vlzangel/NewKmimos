@@ -29,7 +29,7 @@
 
     $str_sugeridos = "";
 
-    $file_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/partes/cuidadores.php';
+    $file_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/cuidadores.php';
     $plantilla_cuidador = file_get_contents($file_plantilla);
 
     foreach ($sugeridos as $valor) {
@@ -61,18 +61,24 @@
     if( $usu == "STM" ){
         $msg_cliente = "Te notificamos que el sistema ha cancelado la reserva con el cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
         $msg_cuidador = "Te notificamos que el sistema ha cancelado la reserva realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
+        
+        $msg_administrador = "Te notificamos que el sistema ha cancelado la reserva realizada por <strong>[name_cliente]</strong> al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
     }else{
         if( $usu == "CLI" ){
             $msg_cliente = "Te notificamos que la reserva ha sido cancelada exitosamente.";
             $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la reserva.";
+
+            $msg_administrador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la reserva.";
         }else{
             $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha cancelado la reserva.";
             $msg_cuidador = "Te notificamos que la reserva ha sido cancelada exitosamente.";
+            
+            $msg_administrador = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha cancelado la reserva.";
         }
     }
 
     /* CORREO CLIENTE */
-        $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cliente.php';
+        $file = $PATH_TEMPLATE.'/template/mail/reservar/cliente/cancelar.php';
         $mensaje_cliente = file_get_contents($file);
 
         $mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
@@ -89,7 +95,7 @@
     	wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
 
     /* CORREO CUIDADOR */
-        $file = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/cancelar_cuidador.php';
+        $file = $PATH_TEMPLATE.'/template/mail/reservar/cuidador/cancelar.php';
         $mensaje_cuidador = file_get_contents($file);
 
         $mensaje_cuidador = str_replace('[MODIFICACION]', $modificacion, $mensaje_cuidador);
@@ -100,13 +106,29 @@
         $mensaje_cuidador = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
 
-    	$mensaje_cuidador = get_email_html($mensaje_cuidador);	
+        $mensaje_cuidador = get_email_html($mensaje_cuidador);  
 
     	wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
 
 
+
+
+        $file = $PATH_TEMPLATE.'/template/mail/reservar/admin/cancelar.php';
+        $mensaje_admin = file_get_contents($file);
+
+        $mensaje_admin = str_replace('[MODIFICACION]', $modificacion, $mensaje_admin);
+        
+        $mensaje_admin = str_replace('[mensaje]', $msg_administrador, $mensaje_admin);
+        $mensaje_admin = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_admin);
+        $mensaje_admin = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_admin);
+        $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
+        $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
+
+        $mensaje_admin = get_email_html($mensaje_admin);  
+
+        kmimos_mails_administradores_new("Cancelación de Reserva", $mensaje_admin);
+
+
         $CONTENIDO .= "<div class='msg_acciones'>Te notificamos que la reserva <strong>#".$servicio["id_reserva"]."</strong>, ha sido cancelada exitosamente.</div>";
 
-
-        kmimos_mails_administradores_new("Cancelación de Reserva", $mensaje_cliente);
 ?>
