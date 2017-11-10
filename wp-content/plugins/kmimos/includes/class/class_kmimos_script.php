@@ -13,7 +13,7 @@ class Class_Kmimos_Script{
         wp_enqueue_script('kmimos_scriptjs_scroll_visible_ca',$this->filejs_script.'scroll/scroll_visible/scroll-visible.js', array("jquery"), '', true);
         //wp_enqueue_script('kmimos_scriptjs_scroll_paralax',$this->filejs_script.'scroll/scroll-paralax/scroll-paralax.js', '', '', true);
         //wp_enqueue_script('kmimos_scriptjs_scroll_carousel',$this->filejs_script.'scroll/scroll-carousel/scroll-carousel.js', '', '', true);
-        wp_enqueue_script('kmimos_scriptjs_scroll_suavizar',$this->filejs_script.'scroll/scroll-suavizar/scroll-suavizar.js', '', '', true);
+        //wp_enqueue_script('kmimos_scriptjs_scroll_suavizar',$this->filejs_script.'scroll/scroll-suavizar/scroll-suavizar.js', '', '', true);
         wp_enqueue_script('kmimos_scriptjs_scroll_efecto_ca',$this->filejs_script.'scroll/scroll_efecto/scroll-efecto.js', array("jquery"), '', true);
         wp_enqueue_script('kmimos_scriptjs_image_load_ca',$this->filejs_script.'image/image-load.js', array("jquery"), '', true);
         wp_enqueue_script('kmimos_scriptjs_image_easyload_ca',$this->filejs_script.'image/image-easyload.js', array("jquery"), '', true);

@@ -35,14 +35,14 @@
 
 // var_dump($favoritos);
 	
-	$pines = unserialize($_SESSION['pines_array']);
+/*	$pines = unserialize($_SESSION['pines_array']);
 	$pines_v = array();
  	$t = count($pines);
 	for($i = 0; $i < $t; $i++){
 		$pines[$i]["ser"] = vlz_servicios($pines[$i]["adi"], true);
 		$pines[$i]["rating"] = kmimos_petsitter_rating( $pines[$i]["post_id"], true );
 		unset($pines[$i]["adi"]);
-	}
+	}*/
  	
  	$TIPO_DISEÑO = "list";
 	if( $total > 6 ){
@@ -58,8 +58,6 @@
 	}else{
 		//$CUIDADORES .= "<h2 style='padding-right: 20px!important; font-size: 21px; text-align: justify; margin: 10px 0px;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".get_home_url()."/'>aquí,</a> o aplica otro filtro de búsqueda.</h2>";
 	}
-
-	$xPINES = json_encode($pines);
 
 	$busqueda = getBusqueda();
 
@@ -269,9 +267,7 @@
 					</div>
 				</form>
 			</div>
-	    	<script>
-	    		pines = eval(\''.$xPINES.'\'); 
-	    	</script>
+	    	
 	    	<div class="km-caja-resultados">
 				<div class="km-columna-izq">
 						'.$destacados_str.'
