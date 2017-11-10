@@ -1,6 +1,8 @@
 <?php global $wpdb;
+
 // Reservas 
 require_once('core/ControllerReservas.php');
+
 // Parametros: Filtro por fecha
 $date = getdate(); 
 $desde = date("Y-m-01", $date[0] );
@@ -110,7 +112,7 @@ $reservas = getReservas($_desde, $_hasta);
 			  	 ?>
 			  	<?php $count=0; ?>
 			  	<?php foreach( $reservas as $reserva ){ ?>
- 
+ 	
 				  	<?php 
 				  		// *************************************
 				  		// Cargar Metadatos
@@ -151,11 +153,14 @@ $reservas = getReservas($_desde, $_hasta);
 
 				  		# MetaDatos del Reserva
 				  		$meta_reserva = getMetaReserva($reserva->nro_reserva);
+
 				  		# MetaDatos del Pedido
 				  		$meta_Pedido = getMetaPedido($reserva->nro_pedido);
+				  		
 				  		# Mascotas del Cliente
 				  		$mypets = getMascotas($reserva->cliente_id); 
 				  		# Estado y Municipio del cuidador
+				  					  		
 				  		$ubicacion = get_ubicacion_cuidador($reserva->cuidador_id);
 				  		# Servicios de la Reserva
 				  		$services = getServices($reserva->nro_reserva);
@@ -173,22 +178,19 @@ $reservas = getReservas($_desde, $_hasta);
 					  		$total_remanente += currency_format($meta_Pedido['_wc_deposits_remaining'], "", "", ".");
 				  		}
 
-				  		$pets_nombre = "";
-				  		$pets_razas  = "";
-				  		$pets_edad	 = "";
-						$separador   = ", " ;
-						foreach( $mypets as $pet_id => $pet)
-						{ 
-							$pets_nombre .= ($pets_nombre!="")? $separador :"";
-							$pets_nombre .= $pet['name'];
-							
-							$pets_razas .= ($pets_razas!="")? $separador :"";
-							//$pets_razas .= getRazaDescripcion( $pet['raza_nombre'] );
-							$pets_razas .= getRazaDescripcion( $pet['breed'], $razas );
-							
-							$pets_edad .= ($pets_edad!="")? $separador :"";
-							$pets_edad .= getEdad( $pet['birthdate'] );
+				  		$pets_nombre = array();
+				  		$pets_razas  = array();
+				  		$pets_edad	 = array();
+
+						foreach( $mypets as $pet_id => $pet) { 
+							$pets_nombre[] = $pet['nombre'];
+							$pets_razas[] = $razas[ $pet['raza'] ];
+							$pets_edad[] = $pet['edad'];
 						} 
+
+				  		$pets_nombre = implode("<br>", $pets_nombre);
+				  		$pets_razas  = implode("<br>", $pets_razas);
+				  		$pets_edad	 = implode("<br>", $pets_edad);
 
 						$nro_noches = dias_transcurridos(
 								date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
@@ -212,7 +214,6 @@ $reservas = getReservas($_desde, $_hasta);
 
 							}
 						}
-
 
 				  	?>
 				    <tr>

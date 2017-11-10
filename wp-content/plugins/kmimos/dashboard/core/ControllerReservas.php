@@ -66,10 +66,12 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 	// Nota: Agregar la equivalencia de estatus de las pasarelas de pago
 	//===============================================================
 	$payment_method_cards = [ // pagos por TDC / TDD
-		'openpay_cards'
+		'openpay_cards',
+		'tarjeta',
 	]; 
 	$payment_method_store = [ // pagos por Tienda por conveniencia
-		'openpay_stores'
+		'openpay_stores',
+		'tienda',
 	]; 
 	//===============================================================
 	// END PaymentMethod
@@ -92,6 +94,13 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 				$sts_largo = 'Pendiente de pago';
 			}
 		break;
+		case 'wc-partially-paid':
+			$sts_largo = "Estatus Reserva: Pago Parcial  /  Estatus Pedido: {$sts_pedido}";		
+			if( $sts_pedido == 'unpaid'){
+				$sts_corto = 'Por confirmar (cuidador)';
+				$sts_largo = 'Por confirmar (cuidador)';
+			}
+		break;
 		case 'confirmed':
 			$sts_corto = 'Confirmado';
 			$sts_largo = 'Confirmado';
@@ -112,7 +121,6 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 			$sts_largo = 'Modificado por la reserva: '.$por;
 		break;
 	}
-
 	return 	$result = [ 
 		"reserva"  => $sts_reserva, 
 		"pedido"   => $sts_pedido,
@@ -120,7 +128,6 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 		"sts_largo"=> $sts_largo,
 		"addTotal" => $addTotal,
 	];
-
 }
 
 function photo_exists($path=""){
@@ -135,14 +142,25 @@ function photo_exists($path=""){
 
 function getMascotas($user_id){
 	if(!$user_id>0){ return []; }
-	$result = [];
-	$list = kmimos_get_my_pets($user_id);
 
-	foreach ($list as $row) {
-		$result[$row->ID] = kmimos_get_pet_info( $row->ID );
-		break;
-	}
-	return $result;
+	global $wpdb;
+	$mascotas_cliente = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$user_id}' AND post_type='pets' AND post_status = 'publish'");
+    $mascotas = array();
+    foreach ($mascotas_cliente as $key => $mascota) {
+        $metas = get_post_meta($mascota->ID);
+
+        $anio = $metas["birthdate_pet"][0];
+        $anio = strtotime($anio);
+        $edad_time = time()-$anio;
+        $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
+
+        $mascotas[] = array(
+            "nombre" => $mascota->post_title,
+            "raza" => $metas["breed_pet"][0],
+            "edad" => $edad
+        );
+    }
+	return $mascotas;
 }
 
 function getProduct( $num_reserva = 0 ){

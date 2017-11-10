@@ -35,7 +35,7 @@ foreach ($featureds as $featured){
     //var_dump($featured);
     $caregiver = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$featured->cuidador}");
     $price='$0.00';
-    $img = kmimos_get_foto_cuidador($featured->cuidador);
+    $img = kmimos_get_foto($featured->cuidador);
     $url = get_home_url()."/petsitters/".$data->url;
 
 
