@@ -1365,6 +1365,7 @@
                     "adicionales" => $adicionales_desglose,
 
                     "pdf" => $metas_orden['_openpay_pdf'][0],
+                    "vence" => $metas_orden['_openpay_tienda_vence'][0],
 
                     "aceptar_rechazar" => $aceptar_rechazar,
                 ),

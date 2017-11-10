@@ -135,19 +135,21 @@ jQuery(document).ready(function(){
 
     
 function initDate(id, date, onSelect, preDate){
-    if( jQuery('#'+id).hasClass("is-datepick") ){
-        jQuery('#'+id).datepick('destroy');
+    if( date != undefined ){
+        if( jQuery('#'+id).hasClass("is-datepick") ){
+            jQuery('#'+id).datepick('destroy');
+        }
+        jQuery('#'+id).datepick({
+            dateFormat: 'dd/mm/yyyy',
+            minDate: date,
+            defaultDate: preDate,
+            selectDefaultDate: true,
+            onSelect: onSelect,
+            yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+            firstDay: 1,
+            onmonthsToShow: [1, 1]
+        });
     }
-    jQuery('#'+id).datepick({
-        dateFormat: 'dd/mm/yyyy',
-        minDate: date,
-        defaultDate: preDate,
-        selectDefaultDate: true,
-        onSelect: onSelect,
-        yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
-        firstDay: 1,
-        onmonthsToShow: [1, 1]
-    });
 }
 
 function getFecha(id, preDate){

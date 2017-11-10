@@ -1,8 +1,6 @@
 <?php
 $kmimos_load=dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/wp-load.php';
-if(file_exists($kmimos_load)){
-    include_once($kmimos_load);
-}
+include_once($kmimos_load);
 
 $page=0;
 $limit=2;
@@ -43,7 +41,7 @@ if(count($featureds)>0){
 
         $votes=kmimos_petsitter_rating_and_votes($caregiver->id_post);
         $bone=site_url().'/wp-content/uploads/iconos/bone.svg';
-        $img = kmimos_get_foto_cuidador($featured->cuidador);
+        $img = kmimos_get_foto($featured->cuidador);
         $url = get_home_url()."/petsitters/".$data->url;
 
         //EXPERIENCE
