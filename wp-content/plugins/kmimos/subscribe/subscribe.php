@@ -56,7 +56,6 @@ function subscribe_input($section='any'){
     $html.='<input type="mail" name="mail" value="" placeholder="Introduce tu correo aqu&iacute" required/>';
     $html.='<button type="submit"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>';
     $html.='</form>';
-    $html.='<br>';
     $html.='<div class="message"></div>';
     $html.='</div>';
     return $html;
