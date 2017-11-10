@@ -142,14 +142,25 @@ function photo_exists($path=""){
 
 function getMascotas($user_id){
 	if(!$user_id>0){ return []; }
-	$result = [];
-	$list = kmimos_get_my_pets($user_id);
 
-	foreach ($list as $row) {
-		$result[$row->ID] = kmimos_get_pet_info( $row->ID );
-		break;
-	}
-	return $result;
+	global $wpdb;
+	$mascotas_cliente = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$user_id}' AND post_type='pets' AND post_status = 'publish'");
+    $mascotas = array();
+    foreach ($mascotas_cliente as $key => $mascota) {
+        $metas = get_post_meta($mascota->ID);
+
+        $anio = $metas["birthdate_pet"][0];
+        $anio = strtotime($anio);
+        $edad_time = time()-$anio;
+        $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
+
+        $mascotas[] = array(
+            "nombre" => $mascota->post_title,
+            "raza" => $metas["breed_pet"][0],
+            "edad" => $edad
+        );
+    }
+	return $mascotas;
 }
 
 function getProduct( $num_reserva = 0 ){
