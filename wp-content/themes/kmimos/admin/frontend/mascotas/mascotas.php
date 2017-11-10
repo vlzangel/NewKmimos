@@ -18,7 +18,7 @@
         foreach($mascotas as $pet){
             $pet_detail = get_post_meta($pet->ID);
 
-            $photo = (!empty($pet_detail['photo_pet'][0])) ? get_home_url().'/'.$pet_detail['photo_pet'][0] : get_home_url().'/wp-content/themes/pointfinder/images/default.jpg';
+            $photo = (!empty($pet_detail['photo_pet'][0])) ? get_home_url().'/'.$pet_detail['photo_pet'][0] : get_home_url().'/wp-content/themes/kmimos/images/noimg.png';
             $CONTENIDO .= '
                 <li class="mascotas_box">
                     <div class="mascotas_item">
