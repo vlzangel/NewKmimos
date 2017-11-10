@@ -99,6 +99,7 @@
     $totales_plantilla = file_get_contents($totales_plantilla);
     $totales_plantilla = str_replace('[TIPO_PAGO]', $servicio["tipo_pago"], $totales_plantilla);
 
+    $MONTO = "";
     if( $servicio["desglose"]["enable"] == "yes" ){
     	$deposito_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/deposito.php';
     	$deposito_plantilla = file_get_contents($deposito_plantilla);
@@ -110,10 +111,14 @@
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
 
+    	$MONTO = number_format( $servicio["desglose"]["deposit"], 2, ',', '.');
+
     }else{
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', "", $totales_plantilla);
+
+    	$MONTO = number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.');
     }
 	
 	if( $servicio["desglose"]["descuento"]+0 > 0 ){
@@ -176,12 +181,12 @@
 
 			if( $acc == "CFM" ){
 
-				//$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
-	    		//$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
+				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
+	    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
 
 				include("confirmacion.php");
 
-				/*if(  $_SESSION['admin_sub_login'] != 'YES' ){
+				if(  $_SESSION['admin_sub_login'] != 'YES' ){
 			   		if(isset($cliente["id"])){	
 				   		$user_referido = get_user_meta($cliente["id"], 'landing-referencia', true);
 				   		if(!empty($user_referido)){
@@ -195,7 +200,7 @@
 							}
 						} 
 					}
-				}*/
+				}
 			}
 
 			if( $acc == "CCL" ){

@@ -22,7 +22,7 @@
                 'Petco'         =>  'Petco',
                 'Volaris'       =>  'Volaris',
                 'Facebook'      =>  'Facebook',
-                'Adwords'       =>  'Buscador de Google',
+                'Google'       =>  'Buscador de Google',
                 'Instagram'     =>  'Instagram',
                 'Twitter'       =>  'Twitter',
                 'Booking.com'   =>  'Booking.com',
