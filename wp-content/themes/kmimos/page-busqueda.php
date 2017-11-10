@@ -269,9 +269,7 @@
 					</div>
 				</form>
 			</div>
-	    	<script>
-	    		pines = eval(\''.$xPINES.'\'); 
-	    	</script>
+	    	
 	    	<div class="km-caja-resultados">
 				<div class="km-columna-izq">
 						'.$destacados_str.'

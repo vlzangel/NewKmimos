@@ -262,93 +262,102 @@ jQuery(document).on("click", '.btnOpenPopupMap', function ( e ) {
 var markers = [];
 var infos = [];
 var map;
+
+var oms = "";
+
 function initMap() {
-	if( pines.length > 0 ){
-		map = new google.maps.Map(document.getElementById("mapa"), {
-	        zoom: 4,
-	        mapTypeId: google.maps.MapTypeId.ROADMAP,
-			scrollwheel: false
-	    });
+	
+	map = new google.maps.Map(document.getElementById("mapa"), {
+        zoom: 4,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+		scrollwheel: false
+    });
 
-	    var oms = new OverlappingMarkerSpiderfier(map, { 
-	        markersWontMove: true,
-	        markersWontHide: true,
-	        basicFormatEvents: true
-	  	});
+    oms = new OverlappingMarkerSpiderfier(map, { 
+	    markersWontMove: true,
+	    markersWontHide: true,
+	    basicFormatEvents: true
+	});
 
-	    var bounds = new google.maps.LatLngBounds();
-	    jQuery.each(pines, function( index, cuidador ) {
+    var bounds = new google.maps.LatLngBounds();
+    
+    jQuery.post(HOME+"/procesos/busqueda/pines.php", {}, function(pines){
 
-	        bounds.extend( new google.maps.LatLng(cuidador.lat, cuidador.lng) );
-	        markers[index] = new google.maps.Marker({ 
-	            vlz_index: index,
-	            map: map,
-	            draggable: false,
-	            animation: google.maps.Animation.DROP,
-	            position: new google.maps.LatLng(cuidador.lat, cuidador.lng),
-	            icon: HOME+"/js/images/n2.png"
-	        });
+    	if( pines.length > 0 ){
+	    	jQuery.each(pines, function( index, cuidador ) {
 
-	        var servicios = "";
-	        if( cuidador["ser"] != undefined && cuidador["ser"].length > 0 ){
-		        jQuery.each(cuidador["ser"], function( index, servicio ) {
-		        	servicios += '<img src="'+HOME+'/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
+		        bounds.extend( new google.maps.LatLng(cuidador.lat, cuidador.lng) );
+		        markers[index] = new google.maps.Marker({ 
+		            vlz_index: index,
+		            map: map,
+		            draggable: false,
+		            animation: google.maps.Animation.DROP,
+		            position: new google.maps.LatLng(cuidador.lat, cuidador.lng),
+		            icon: HOME+"/js/images/n2.png"
 		        });
-	        }
 
-	        var rating = "";
-	        if( cuidador["rating"] != undefined && cuidador["rating"].length > 0 ){
-		        jQuery.each(cuidador["rating"], function( index, xrating ) {
-		        	if( xrating == 1 ){
-		        		rating += '<a href="#" class="active"></a>';
-		        	}else{
-		        		rating += '<a href="#"></a>';
-		        	}
+		        var servicios = "";
+		        if( cuidador["ser"] != undefined && cuidador["ser"].length > 0 ){
+			        jQuery.each(cuidador["ser"], function( index, servicio ) {
+			        	servicios += '<img src="'+HOME+'/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
+			        });
+		        }
+
+		        var rating = "";
+		        if( cuidador["rating"] != undefined && cuidador["rating"].length > 0 ){
+			        jQuery.each(cuidador["rating"], function( index, xrating ) {
+			        	if( xrating == 1 ){
+			        		rating += '<a href="#" class="active"></a>';
+			        	}else{
+			        		rating += '<a href="#"></a>';
+			        	}
+			        });
+		        }
+
+		        infos[index] = new google.maps.InfoWindow({ 
+		            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
+								+'<p>'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
+								/*
+								+'<div class="km-ranking">'
+								+	rating
+								+'</div>'
+								+'<div class="km-sellos maps">'
+								+'    <div class="km-sellos"> '+servicios+' </div>'
+								+'</div>'
+								*/
+								+'<div class="km-opciones maps">'
+								+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
+								+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
+								+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
+								+'</div>'
 		        });
-	        }
 
-	        infos[index] = new google.maps.InfoWindow({ 
-	            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
-							+'<p>'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
-							+'<div class="km-ranking">'
-							+	rating
-							+'</div>'
-							+'<div class="km-sellos maps">'
-							+'    <div class="km-sellos"> '+servicios+' </div>'
-							+'</div>'
-							+'<div class="km-opciones maps">'
-							+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
-							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
-							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
-							+'</div>'
-	        });
+		        markers[index].addListener("click", function(e) { 
+		            infos[this.vlz_index].open(map, this);
+		        });
 
-	        markers[index].addListener("click", function(e) { 
-	            infos[this.vlz_index].open(map, this);
-	        });
+				oms.addMarker(markers[index]);
+		    });
 
-			oms.addMarker(markers[index]);
-	    });
+		    var markerCluster = new MarkerClusterer(map, markers, {imagePath: HOME+"/js/images/n"});
+		    map.fitBounds(bounds);
 
-
-	    var markerCluster = new MarkerClusterer(map, markers, {imagePath: HOME+"/js/images/n"});
-	    map.fitBounds(bounds);
-
-	    minClusterZoom = 14;
-	    markerCluster.setMaxZoom(minClusterZoom);
-	    window.oms = oms;
-   	}else{
-		map = new google.maps.Map(document.getElementById("mapa"), {
-	        zoom: 4,
-	        mapTypeId: google.maps.MapTypeId.ROADMAP,
-			center: new google.maps.LatLng(23.634501, -102.552784), 
-	        fullscreenControl: true,
-			scrollwheel: false
-	    });
-   	}
-
-		    
+		    minClusterZoom = 14;
+		    markerCluster.setMaxZoom(minClusterZoom);
+		    window.oms = oms;
+		}else{
+			map = new google.maps.Map(document.getElementById("mapa"), {
+		        zoom: 4,
+		        mapTypeId: google.maps.MapTypeId.ROADMAP,
+				center: new google.maps.LatLng(23.634501, -102.552784), 
+		        fullscreenControl: true,
+				scrollwheel: false
+		    });
+	   	}
+    }, 'json');
+   	
 }
+
 (function(d, s){
 	map = d.createElement(s), e = d.getElementsByTagName(s)[0];
 	map.async=!0;
