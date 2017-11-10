@@ -2,6 +2,9 @@
 
 	/* Correo Cliente */
 
+        $instrucciones = $PATH_TEMPLATE.'/template/mail/reservar/partes/instrucciones.php';
+        $instrucciones = file_get_contents($instrucciones);
+
         $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cliente/nueva_tienda.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
 
@@ -9,7 +12,24 @@
 
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
         $mensaje_cliente = str_replace('[desglose]', $desglose, $mensaje_cliente);
+
+        /* Datos Instrucciones */
+
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            $vence = strtotime( $servicio["vence"]);
+
+            $fecha = date('d', $vence)." de ".$meses[date('n', $vence)-1]. " ".date('Y', $vence) ;
+            $hora = "(".date('H:i A', $vence).")";
         
+            $mensaje_cliente = str_replace('[INSTRUCCIONES]', $instrucciones, $mensaje_cliente);
+
+            $mensaje_cliente = str_replace('[CODIGO]', end( explode("/", $servicio["pdf"]) ), $mensaje_cliente);
+            $mensaje_cliente = str_replace('[MONTO]', $MONTO, $mensaje_cliente);
+            $mensaje_cliente = str_replace('[FECHA]', $fecha, $mensaje_cliente);
+            $mensaje_cliente = str_replace('[HORA]', $hora, $mensaje_cliente);
+
+        /* Datos Instrucciones */
+
         $mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
         
         $mensaje_cliente = str_replace('[ADICIONALES]', $adicionales, $mensaje_cliente);
