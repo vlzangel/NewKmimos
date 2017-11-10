@@ -57,9 +57,9 @@
 
         $mensaje_cliente = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cliente);
 
-        echo $mensaje_cliente = get_email_html($mensaje_cliente);
+        $mensaje_cliente = get_email_html($mensaje_cliente);
 
-        // wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
+        wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
 
 
     /* Administrador */
@@ -110,5 +110,5 @@
 
 		$mensaje_admin = get_email_html($mensaje_admin);
 
-        // kmimos_mails_administradores_new("Solicitud de reserva #".$servicio["id_reserva"], $mensaje_admin);
+        kmimos_mails_administradores_new("Solicitud de reserva #".$servicio["id_reserva"], $mensaje_admin);
 ?>
