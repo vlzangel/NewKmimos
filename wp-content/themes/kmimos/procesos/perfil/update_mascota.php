@@ -39,7 +39,8 @@
 	kmimos_update_post_meta($pet_id, "pet_type", $pet_type);
 
 	$sql  = "UPDATE wp_posts SET post_title = '{$pet_name}' WHERE ID = {$pet_id};";
-	$sql .= "UPDATE wp_term_relationships SET term_taxonomy_id = '{$pet_type}' 	WHERE object_id = {$pet_id};";
+	
+	kmimos_update_relationship($pet_id, $pet_type);
 
 	$sql .= $img_portada;
 
