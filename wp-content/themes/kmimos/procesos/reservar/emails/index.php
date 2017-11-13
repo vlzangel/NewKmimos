@@ -99,28 +99,6 @@
     $totales_plantilla = file_get_contents($totales_plantilla);
     $totales_plantilla = str_replace('[TIPO_PAGO]', $servicio["tipo_pago"], $totales_plantilla);
 
-/*    $MONTO = "";
-    if( $servicio["desglose"]["enable"] == "yes" ){
-    	$deposito_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/deposito.php';
-    	$deposito_plantilla = file_get_contents($deposito_plantilla);
-
-    	$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
-
-    	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
-        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
-
-    	$MONTO = number_format( $servicio["desglose"]["deposit"], 2, ',', '.');
-
-    }else{
-        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[DETALLES]', "", $totales_plantilla);
-
-    	$MONTO = number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.');
-    }*/
-	
 	if( $servicio["desglose"]["descuento"]+0 > 0 ){
 		$descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/descuento.php';
 	    $descuento_plantilla = file_get_contents($descuento_plantilla);
@@ -163,9 +141,6 @@
 	}else{
 		$totales_plantilla = str_replace('[DESCUENTO]', "", $totales_plantilla);
 	}
-
-
-    		
 
 	if( $acc == ""  ){
 
