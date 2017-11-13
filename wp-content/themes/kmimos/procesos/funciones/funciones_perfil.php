@@ -7,6 +7,9 @@
 	    			case 'ver':
 	    				$respuesta .= '<a data-accion="ver/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-info" aria-hidden="true"></i> Ver</a>';
     				break;
+	    			case 'subir_fotos':
+	    				$respuesta .= '<a data-accion="subir/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir Fotos</a>';
+    				break;
 	    			case 'confirmar':
 	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
     				break;
