@@ -10,7 +10,9 @@
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");
 	include_once("../funciones/config.php");
+
 //	include_once("../../lib/openpay/Openpay.php");
+	include_once("../../lib/payu/PayU.php");
 
 	include_once("reservar.php");
 
@@ -361,10 +363,16 @@
 
 	if( $pagar->deviceIdHiddenFieldName != "" ){
 
-		/*
+// BEGIN Credenciales PayU *****************************************************************************
+/*
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
 		Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
-		*/
+*/
+		$PAYU_URL = "https://api.payulatam.com/payments-api/4.0/service.cgi";
+		if( $PAYU_ENV ){
+			$url = "https://sandbox.gateway.payulatam.com/ppp-web-gateway";
+		}
+		Environment::setPaymentsCustomUrl($PAYU_URL);
 
 		foreach ($data_cliente as $key => $value) {
 			if( $data_cliente[$key] == "" ){
@@ -381,12 +389,16 @@
 		$municipio 	= $data_cliente["billing_city"];
 		$postal  	= $data_cliente["billing_postcode"];
 
-/* Datos de Cliente
-		$cliente_openpay = $data_cliente["_openpay_customer_id"];
+// BEGIN ID CLIENTE PayU *******************************************************************************
+		$cliente_openpay = $data_cliente["_payu_customer_id"];
 		if( $id_invalido ){ $cliente_openpay = ""; }
+
+	# BEGIN User PayU *******************************************************************************
 	   	if( $cliente_openpay != "" ){
+	#  OBJ USUARIO PayU *******************************************************************************
 	   		$customer = $openpay->customers->get( $cliente_openpay );
 	   	}else{
+	#  NEW USUARIO PayU *******************************************************************************
 	   		$customerData = array(
 				'name' 				=> $nombre,
 				'last_name' 		=> $apellido,
@@ -401,30 +413,42 @@
 					'country_code' 	=> 'MX'
 				)
 		   	);
+	#  OBJ USUARIO PayU *******************************************************************************
 		   	$customer = $openpay->customers->add($customerData);
 
+	#  METADATA PayU *******************************************************************************
 		   	$openpay_customer_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id'");
 		   	if( $openpay_customer_id != false ){
 		   		$db->query("UPDATE wp_usermeta SET meta_value = '{$customer->id}' WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id';");
 		   	}else{
 		   		$db->query("INSERT INTO wp_usermeta VALUES (NULL, {$pagar->cliente}, '_openpay_customer_id', '{$customer->id}');");
-		   	}  	
-	   	} 
-*/
+		   	}
+		   	
+	   	}
+// END  User PayU *******************************************************************************
 
 	   	switch ( $pagar->tipo ) {
 	   		case 'tarjeta':
 	   			
 	   			if( $pagar->token != "" ){
 
+					$chargeData = array(
+					    'method' 			=> 'card',
+					    'source_id' 		=> $pagar->token,
+					    'amount' 			=> (float) $pagar->total,
+					    'order_id' 			=> $id_orden,
+					    'description' 		=> "Tarjeta",
+					    'device_session_id' => $pagar->deviceIdHiddenFieldName
+				    );
+
+					$charge = ""; $error = "";
+
 					try {
-						// $charge = $customer->charges->create($chargeData);
-		   				include ("pagar_with_payu.php");
+			            $charge = $customer->charges->create($chargeData);
 			        } catch (Exception $e) {
 			        	$error = $e->getErrorCode();
 			        }
 					
-
 					if ($charge != false) {
 
 						if( $deposito["enable"] == "yes" ){
@@ -532,7 +556,6 @@
 				include(__DIR__."/emails/index.php");
 
    			break;
-
 	   	}
 
 	}else{
