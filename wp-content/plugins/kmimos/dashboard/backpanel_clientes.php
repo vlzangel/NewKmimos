@@ -6,6 +6,9 @@ $landing = '';
 $date = getdate();
 $desde = '';//date("Y-m-01", $date[0] );
 $hasta = '';//date("Y-m-d", $date[0]);
+
+
+$mostrar_total_reserva = (!empty($_POST['mostrar_total_reserva']))? true : false;
 if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 	$desde = (!empty($_POST['desde']))? $_POST['desde']: "";
 	$hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
@@ -23,27 +26,41 @@ $users = getUsers($desde, $hasta);
 			<div class="clearfix"></div>
 		</div>
 		<!-- Filtros -->
-		<div class="row text-right"> 
+		<div class="row text-left pull-right"> 
 			<div class="col-sm-12">
 		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_clientes" method="POST">
-					<label>Filtrar:</label>
-					<div class="form-group">
-						<div class="input-group">
-						  <div class="input-group-addon">Desde</div>
-						  <input type="date" class="form-control" name="desde" value="<?php echo $desde; ?>">
+
+					<div class="col-sm-1">
+						<label>Filtrar:</label>
+					</div>
+					<div class="col-sm-10">
+						<div class="form-group">
+							<div class="input-group">
+							  <div class="input-group-addon">Desde</div>
+							  <input type="date" class="form-control" name="desde" value="<?php echo $desde; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+							  <div class="input-group-addon">Hasta</div>
+							  <input type="date" class="form-control" name="hasta" value="<?php echo $hasta ?>">
+							</div>
+						</div>
+						<button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>
+					</div>
+					<div class="col-sm-10 col-sm-offset-1" style="padding-top:10px;">
+						<div class="checkbox">
+						    <label>
+						      <input type="checkbox" name="mostrar_total_reserva" <?php echo ($mostrar_total_reserva)? 'checked' : ''; ?>> Incluir Total de reservas generadas 
+						    </label>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="input-group">
-						  <div class="input-group-addon">Hasta</div>
-						  <input type="date" class="form-control" name="hasta" value="<?php echo $hasta ?>">
-						</div>
-					</div>
-					<button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>			  
+
 			    </form>
-				<hr>  
 			</div>
 		</div>
+		<div class="clear"></div>
+		<hr>
 	</div>
   	<div class="col-sm-12">  	
 
@@ -65,6 +82,9 @@ $users = getUsers($desde, $hasta);
 			      <th>Email</th>
 			      <th>Teléfono</th>
 			      <th>Donde nos conocio?</th>
+			      <?php if( $mostrar_total_reserva ){ ?>
+			      	<th>Cant. Reservas</th>
+			      <?php } ?>
 			      <th>Estatus</th>
 			    </tr>
 			  </thead>
@@ -80,6 +100,11 @@ $users = getUsers($desde, $hasta);
 			  			if(empty( trim($name)) ){
 			  			 	$name = $usermeta['nickname'];
 			  			}
+
+			  			$cant_reservas = 0;
+				        if( $mostrar_total_reserva ){ 
+				  			$cant_reservas = getCountReservas( $row['ID'] );
+				  		}
 			  		?>
 				    <tr>
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
@@ -92,6 +117,9 @@ $users = getUsers($desde, $hasta);
 						</th>
 						<th><?php echo $usermeta['phone']; ?></th>
 						<th><?php echo (!empty($usermeta['user_referred']))? $usermeta['user_referred'] : 'Otros' ; ?></th>
+				        <?php if( $mostrar_total_reserva ){ ?>
+						<th><?php print_r( $cant_reservas['rows'][0]['cant'] ); ?></th>
+				        <?php } ?>
 						<th><?php echo ($row['status']==0)? 'Activo' : 'Inactivo' ; ?></th>
 				    </tr>
 			   	<?php } ?>

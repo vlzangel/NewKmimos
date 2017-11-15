@@ -41,3 +41,18 @@ function getUsers($desde="", $hasta=""){
 	return $result;
 }
 
+function getCountReservas( $author_id=0 ){
+
+	$result = [];
+	$sql = "
+		SELECT 
+			count(ID) as cant
+		FROM wp_posts
+		WHERE post_type = 'wc_booking' 
+			AND not post_status like '%cart%'
+			AND post_status = 'confirmed' 
+			AND post_author = {$author_id}
+	";
+	$result = get_fetch_assoc($sql);
+	return $result;
+}
