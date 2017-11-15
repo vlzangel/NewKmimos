@@ -7,7 +7,8 @@
     cursor: pointer!important;
 }
 
-.modal input
+.modal input,
+.modal select
 {
 	line-height: 42px!important;
 	font-size: 15px!important;
@@ -5307,7 +5308,7 @@ h1.maps {
 }
 .km-opciones.maps {
     width:100%;
-    padding:10px 0 0 0!important
+    padding:0px !important
 }
 .km-opciones.maps .precio {
     text-align:left
@@ -8403,7 +8404,7 @@ textarea.vlz_input {
 #PageSubscribe .section.section2 .subscribe {margin: 20px 0;  }
 #PageSubscribe .section.section2 form{margin: 0; display:flex;}
 #PageSubscribe .section.section2 input,
-#PageSubscribe .section.section2 button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+#PageSubscribe .section.section2 button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #000; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
 #PageSubscribe .section.section2 button {padding: 10px;  width: 40px;}
 
 @media screen and (max-width:480px), screen and (max-device-width:480px) {

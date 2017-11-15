@@ -1108,7 +1108,7 @@
 
         if (slider.viewport.get(0).setPointerCapture) {
           slider.pointerId = orig.pointerId;
-          slider.viewport.get(0).setPointerCapture(slider.pointerId);
+          /*slider.viewport.get(0).setPointerCapture(slider.pointerId);*/
         }
         // bind a "touchmove" event to the viewport
         slider.viewport.bind('touchmove MSPointerMove pointermove', onTouchMove);
@@ -1233,7 +1233,7 @@
       }
       slider.viewport.unbind('touchend MSPointerUp pointerup', onTouchEnd);
       if (slider.viewport.get(0).releasePointerCapture) {
-        slider.viewport.get(0).releasePointerCapture(slider.pointerId);
+        //slider.viewport.get(0).releasePointerCapture(slider.pointerId);
       }
     };
 
