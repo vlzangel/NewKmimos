@@ -116,7 +116,8 @@
 					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver,
-						"modificar" => $modificar
+						"modificar" => $modificar,
+						"cancelar" => $cancelar
 					),
 					"desglose" => $desglose
 				);
