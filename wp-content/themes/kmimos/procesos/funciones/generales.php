@@ -85,5 +85,19 @@
             $db->query("INSERT INTO wp_postmeta VALUES ( NULL, {$post_id}, '{$key}', '{$valor}');");
         }
     }
+
+    function kmimos_get_relationship($object_id){
+        global $db;
+        return $db->get_var("SELECT term_taxonomy_id FROM wp_term_relationships WHERE object_id = {$object_id};");
+    }
+    
+    function kmimos_update_relationship($object_id, $valor){
+        global $db;
+        if( kmimos_get_relationship($object_id) !== false ){
+            $db->query("UPDATE wp_term_relationships SET term_taxonomy_id = '{$valor}' WHERE object_id = {$object_id};");
+        }else{
+            $db->query("INSERT INTO wp_term_relationships VALUES ( {$object_id}, '$valor', '0');");
+        }
+    }
     
 ?>

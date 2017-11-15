@@ -148,7 +148,7 @@ function comentarios(pagina = 0){
 function CargarGaleria(){
 	var galeria_txt = "";
 	jQuery.each(GALERIA, function( indice, foto ) {
-		galeria_txt += "<div class='slide' data-scale='small' data-position='top' onclick=\"vlz_galeria_ver('"+RAIZ+'/wp-content/uploads/cuidadores/galerias/'+foto+"')\">";
+		galeria_txt += "<div class='slide ver_img' data-scale='small' data-position='top' data-url='"+RAIZ+"/wp-content/uploads/cuidadores/galerias/"+foto+"'>";
 		galeria_txt += "<div class='vlz_item_fondo' style='background-image: url("+RAIZ+'/wp-content/uploads/cuidadores/galerias/'+foto+"); filter:blur(2px);'></div>";
 		galeria_txt += "<div class='vlz_item_imagen' style='background-image: url("+RAIZ+'/wp-content/uploads/cuidadores/galerias/'+foto+");'></div>";
 		galeria_txt += "</div>";
@@ -161,6 +161,11 @@ function CargarGaleria(){
 	    minSlides: 1,
 	    maxSlides: 3,
 	    slideMargin: 10
+	});
+
+	jQuery(".ver_img").on("dblclick", function(e){
+		console.log(e);
+		vlz_galeria_ver( jQuery(this).attr("data-url") );
 	});
 }
 
