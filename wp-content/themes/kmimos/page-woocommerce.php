@@ -58,6 +58,18 @@
 		$servicio_name_corto = explode(" - ", $servicio_name);
 		$servicio_name_corto = $servicio_name_corto[0];
 
+		$horario = "";
+
+		echo date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in."<br>";
+		echo date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out;
+
+		$inicio = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in );
+		$fin = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out );
+
+		for ($i=$inicio; $i <= $fin; $i+=1800) { 
+			$horario .= "<option value='".date("H:i", $i)."'>".date("h:i A", $i)."</option>";
+		}
+
 	    $precios = "";
 	    
 		$adicionales = unserialize($cuidador->adicionales);
@@ -247,10 +259,29 @@
 								Reserva las fechas y los servicios con tu cuidador(a) '.$cuidador_name.'
 							</div>
 
-							<div class="km-dates-step">
+							<div class="km-dates-step" style="margin-bottom: 5px;">
 								<div class="km-ficha-fechas">
 									<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
 									<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly>
+								</div>
+							</div>
+
+							<div class="km-dates-step">
+								<div class="km-ficha-fechas">
+									<div class="listas_check">	
+										<select id="hora_checkin" name="hora_checkin" class="date_from">
+											<option>Hora Entrada</option>
+											'.$horario.'
+										</select>
+									</div>
+	
+									<div class="listas_check">	
+										<select id="hora_checkout" name="hora_checkout" class="date_from">
+											<option>Hora Salida</option>
+											'.$horario.'
+										</select>
+									</div>
+
 								</div>
 							</div>
 

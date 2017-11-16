@@ -106,7 +106,8 @@
 						'fin' => date('d/m/Y', $fin), 
 						'foto' => $foto,
 						'acciones' => array(
-							"ver" => $ver
+							"ver" => $ver,
+							"subir_fotos" => $ver
 						),
 						"desglose" => $desglose
 					);
@@ -123,7 +124,8 @@
 						'fin' => date('d/m/Y', $fin), 
 						'foto' => $foto,
 						'acciones' => array(
-							"ver" => $ver
+							"ver" => $ver,
+							"subir_fotos" => $ver
 						),
 						"desglose" => $desglose
 					);
