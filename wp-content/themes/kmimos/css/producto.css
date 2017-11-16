@@ -229,3 +229,23 @@ div#tienda_box img {
 .page-reservation .km-end-btn-form.cargando .perfil_cargando {
     display: block !important;
 }
+
+.km-ficha-fechas .listas_check {
+    width: calc( 50% - 2px );
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    margin: 0;
+    display: inline-block;
+    font-size: 16px;
+    padding: 20px;
+}
+
+.km-ficha-fechas .listas_check select{
+    border: 1px solid #FFF;
+    margin: 0;
+    display: inline-block;
+    font-size: 16px;
+    padding: 0px;
+    background: white;
+    width: 100%;
+}
