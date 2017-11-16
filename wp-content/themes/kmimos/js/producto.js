@@ -420,7 +420,7 @@ function pagarReserva(id_invalido = false){
 		},
 		function(data){
 
-			/*console.log( data );*/
+			console.log( data );
 
 			if( data.error != "" && data.error != undefined ){
 
