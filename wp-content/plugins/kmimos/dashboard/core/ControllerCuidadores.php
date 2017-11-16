@@ -66,10 +66,11 @@ function getUsers($desde="", $hasta=""){
 
 	$filtro_adicional = (!empty($filtro_adicional))? ' WHERE '.$filtro_adicional : $filtro_adicional ;
 	$sql = "
-		SELECT u.*, b.*, c.activo as 'estatus', c.direccion 
+		SELECT u.*, b.*, c.activo as 'estatus', c.direccion, p.post_title as 'cuidador_title', p.ID as 'cuidador_post' 
 		FROM wp_users as u
 			INNER JOIN cuidadores as c ON c.user_id = u.ID
 			INNER JOIN ubicaciones as b ON b.cuidador = c.id
+			INNER JOIN wp_posts as p ON p.post_author = u.ID AND p.post_type = 'petsitters'
 		{$filtro_adicional}
 		ORDER BY DATE_FORMAT(u.user_registered,'%d-%m-%Y') DESC;
 	";

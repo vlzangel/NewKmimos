@@ -64,6 +64,7 @@ $users = getUsers($desde, $hasta);
 			      <th>Nombre y Apellido</th>
 			      <th>Nombre</th>
 			      <th>Apellido</th>
+			      <th>Cuidador</th>
 			      <th>Email</th>
 			      <th>Estado</th>
 			      <th>Municipio</th>
@@ -94,6 +95,11 @@ $users = getUsers($desde, $hasta);
 						<th><?php echo $name; ?></th>
 						<th><?php echo $usermeta["first_name"]; ?></th>
 						<th><?php echo $usermeta["last_name"]; ?></th>
+						<th>
+					  		<a href="<?php echo get_home_url().'/wp-admin/post.php?action=edit&post='.$row['cuidador_post']; ?>">
+								<?php echo $row["cuidador_title"]; ?>	
+							</a>
+						</th>
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>
