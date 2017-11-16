@@ -157,8 +157,7 @@
         ";
     }
 
-    $CONTENIDO .= 
-        "
+    $CONTENIDO .= "
         <div class='volver'>
             <a href='".get_home_url()."/perfil-usuario/reservas/'>Volver</a>
         </div>
