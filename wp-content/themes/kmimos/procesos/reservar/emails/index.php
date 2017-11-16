@@ -161,29 +161,56 @@
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
 			$usuario = $cuidador["nombre"];
-			if( $usu == "CLI" ){ $usuario = $cliente["nombre"]; }
+			if( $usu == "CLI" ){ 
+				$usuario = $cliente["nombre"]; 
 
-			if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
-				$estado = array(
-					"confirmed" => "Confirmada",
-					"modified"  => "Modificada",
-					"cancelled" => "Cancelada"
-				);
-				$msg = "
-				<div class='msg_acciones'>
-					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-				    	Hola <strong>".$usuario."</strong>
-				    </div>
-					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-				    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
-				    </div>
-					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-				    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
-				    </div>
-				</div>";
-		   		
-		   		$CONTENIDO .= $msg;
-		   		$continuar = false;
+				if( $status == "cancelled" || $status == "modified" ){
+					$estado = array(
+						"modified"  => "Modificada",
+						"cancelled" => "Cancelada"
+					);
+					$msg = "
+					<div class='msg_acciones'>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Hola <strong>".$usuario."</strong>
+					    </div>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
+					    </div>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
+					    </div>
+					</div>";
+			   		
+			   		$CONTENIDO .= $msg;
+			   		$continuar = false;
+				}
+
+			}else{
+
+				if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
+					$estado = array(
+						"confirmed" => "Confirmada",
+						"modified"  => "Modificada",
+						"cancelled" => "Cancelada"
+					);
+					$msg = "
+					<div class='msg_acciones'>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Hola <strong>".$usuario."</strong>
+					    </div>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
+					    </div>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
+					    </div>
+					</div>";
+			   		
+			   		$CONTENIDO .= $msg;
+			   		$continuar = false;
+				}
+
 			}
 
 		}
