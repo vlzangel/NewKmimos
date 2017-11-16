@@ -1,0 +1,353 @@
+section{clear: both;}
+strong{font-weight: 900;}
+
+/***************************************/
+/*  Global	                       */
+/***************************************/
+.container-fluid{
+	padding: 0px!important;
+	margin: 0px!important;
+	width: 100%!important;
+}
+.simple-white{
+  color: white;
+  font-size: 44px;
+}
+.simple-black{
+	font-size: 44px;
+}
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}
+
+/***************************************/
+/*  Section-1                          */
+/***************************************/
+#section-1 > article{
+	margin: 0px!important;
+}
+.header-img{
+	position: absolute;
+	left: 6%;
+	top: 3%;
+  width: 450px;
+  height: auto;
+}
+#section-1{
+    background-image: url(../img/Header-02.png);
+    background-size: cover;
+    width: 100%;
+    height: 2200px;
+    background-repeat: no-repeat;
+    font-family: 'PoetsenOne', sans-serif;
+}
+.header-text{
+  padding-top: 1200px;
+  margin-left: 8%;
+}
+.medipet{
+  display: inline-block;
+  color: #F5F5DC;
+  font-size: 215px;
+	margin-top: -80px;
+	margin-bottom: -20px;
+}
+.header-btn{
+	margin-top: 40px;
+	margin-left: 8%;
+}
+.button{
+	background: #ffca0e;
+	display: inline-block;
+	padding: 40px 30px;
+	border-radius: 70px;
+	color: white;
+	font-size: 44px;
+}
+.header-logo{
+	margin-top: 20px;
+	margin-left: 12%;
+}
+.kmimos-logo{
+	margin-top: 40px;
+	margin-left: 2%;
+}
+.header-arrow{
+	margin-top: 60px;
+}
+
+/***************************************/
+/*  Section-2                          */
+/***************************************/
+#section-2{
+    background-image: url(../img/fondos-01.png);
+    background-size: cover;
+    width: 120%;
+		margin-left: -20%;
+		margin-top: -2.5%;
+    height: 1750px;
+    background-repeat: no-repeat;
+    font-family: 'PoetsenOne', sans-serif;
+}
+.cobertura-header{
+	margin-left: 22%;
+	padding-top: 3%;
+}
+.cobertura-text-header{
+	font-size: 55px;
+	display: inline-block;
+}
+.cobertura-img-header{
+	margin-left: 3%;
+}
+.cobertura-punto-1{
+	margin-left: 20%;
+	margin-top: 10%;
+}
+.cobertura-punto-2{
+	margin-left: 20%;
+	margin-top: 12%;
+}
+.cobertura-punto-3{
+	margin-left: 20%;
+	margin-top: 10%;
+}
+.cobertura-img-body{
+	position: absolute;
+	left: 6%;
+}
+.cobertura-text-body-1{
+	display: inline-block;
+	margin-left: 35%;
+	text-align: center;
+	margin-top: -1%;
+}
+.cobertura-text-body-2{
+	display: inline-block;
+	margin-left: 38%;
+	text-align: center;
+	margin-top: -3%;
+}
+.cobertura-text-body-3{
+	display: inline-block;
+	margin-left: 37%;
+	text-align: center;
+	margin-top: 0%;
+}
+.cobertura-text-body h1 {
+	font-size: 50px;
+}
+.body-title{
+	color: #283e58;
+}
+.cobertura-arrow{
+	margin-top: 15%;
+	margin-left: 15%;
+}
+
+/***************************************/
+/*  Section-3                          */
+/***************************************/
+#section-3{
+    background-image: url(../img/fondos-02.png);
+    background-size: cover;
+    width: 100%;
+		margin-top: -5%;
+    height: 1900px;
+    background-repeat: no-repeat;
+    font-family: 'PoetsenOne', sans-serif;
+}
+.beneficios-header{
+	margin-left: 55%;
+	padding-top: 1%;
+}
+.beneficios-text-header{
+	font-size: 55px;
+	display: inline-block;
+}
+.beneficios-img-header{
+	margin-left: 5%;
+}
+.beneficios-title{
+	color: #ffca0e;
+}
+.beneficios-punto-1{
+	margin-left: 20%;
+	margin-top: 10%;
+}
+.beneficios-punto-2{
+	margin-left: 20%;
+	margin-top: 12%;
+}
+.beneficios-punto-3{
+	margin-left: 20%;
+	margin-top: 12%;
+}
+.beneficios-punto-4{
+	margin-left: 20%;
+	margin-top: 12%;
+}
+.beneficios-img-body{
+	position: absolute;
+	left: 6%;
+}
+.beneficios-text-body-1{
+	display: inline-block;
+	margin-left: 35%;
+	text-align: center;
+	margin-top: 0%;
+}
+.beneficios-text-body-2{
+	display: inline-block;
+	margin-left: 35%;
+	text-align: center;
+	margin-top: -1%;
+}
+.beneficios-text-body-3{
+	display: inline-block;
+	margin-left: 40%;
+	text-align: center;
+	margin-top: 0%;
+}
+.beneficios-text-body-4{
+	display: inline-block;
+	margin-left: 35%;
+	text-align: center;
+	margin-top: -4%;
+}
+.beneficios-text-body h1 {
+	font-size: 50px;
+}
+.beneficios-arrow{
+	margin-top: 7%;
+	margin-left: 0;
+}
+
+/***************************************/
+/*  Section-4                          */
+/***************************************/
+.contratar-title{
+	color: #ffca0e;
+}
+.contratar-punto-1{
+	margin-left: 20%;
+	margin-top: 8%;
+}
+.contratar-punto-2{
+	margin-left: 20%;
+	margin-top: 10%;
+}
+.contratar-punto-3{
+	margin-left: 20%;
+	margin-top: 12%;
+}
+.contratar-img-body{
+	position: absolute;
+	left: 6%;
+}
+.contratar-text-body-1{
+	display: inline-block;
+	margin-left: 35%;
+	text-align: center;
+	margin-top: 0%;
+}
+.contratar-text-body-2{
+	display: inline-block;
+	margin-left: 35%;
+	text-align: center;
+	margin-top: 0%;
+}
+.contratar-text-body-3{
+	display: inline-block;
+	margin-left: 37%;
+	text-align: center;
+	margin-top: 0%;
+}
+.contratar-text-body h1 {
+	font-size: 50px;
+}
+.contratar-footer{
+	margin-top: 10%;
+}
+.contratar-title-2{
+	color: #ffca0e;
+	font-size: 60px;
+}
+.contratar-footer-img{
+	margin-top: 1%;
+}
+.contratar-arrow{
+	margin-top: 4%;
+	margin-left: 0;
+}
+
+/***************************************/
+/*  Section-5                          */
+/***************************************/
+#section-5{
+    background-image: url(../img/ContrataYa.png);
+    background-size: cover;
+    width: 100%;
+		margin-top: 4%;
+		height: 900px;
+    background-repeat: no-repeat;
+    font-family: 'PoetsenOne', sans-serif;
+}
+.contrataYa{
+	padding-top: 540px;
+}
+.contrata-btn{
+	background: #ffca0e;
+	display: inline-block;
+	padding: 40px 50px;
+	border-radius: 60px;
+	color: white;
+	font-size: 44px;
+	margin-top: 2%;
+}
+
+/***************************************/
+/*  Section-6                          */
+/***************************************/
+.footer-logos{
+	margin-top: 2%;
+}
+.footer{
+	margin-top: 5%;
+	margin-bottom: 10%;
+}
+.inscribete{
+	margin-left: 10%;
+	display: inline-block;
+	float: left;
+}
+.inscribete-header{
+	font-size: 15px;
+}
+.inscribete-text{
+	font-size: 12px;
+}
+button{
+	background-color: #7ad3c4;
+	border: none;
+	color: purple;
+	padding: 10px 20px;
+	margin-left: -1%;
+}
+input{
+	padding: 8px 10px;
+}
+.left{
+	float: left;
+	margin-left: 5%;
+}
+.servicios-header{
+	font-size: 15px;
+}
+.servicios-text{
+	color: black;
+	font-size: 12px;
+}

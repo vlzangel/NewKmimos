@@ -99,28 +99,6 @@
     $totales_plantilla = file_get_contents($totales_plantilla);
     $totales_plantilla = str_replace('[TIPO_PAGO]', $servicio["tipo_pago"], $totales_plantilla);
 
-/*    $MONTO = "";
-    if( $servicio["desglose"]["enable"] == "yes" ){
-    	$deposito_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/deposito.php';
-    	$deposito_plantilla = file_get_contents($deposito_plantilla);
-
-    	$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
-
-    	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
-        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
-
-    	$MONTO = number_format( $servicio["desglose"]["deposit"], 2, ',', '.');
-
-    }else{
-        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[DETALLES]', "", $totales_plantilla);
-
-    	$MONTO = number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.');
-    }*/
-	
 	if( $servicio["desglose"]["descuento"]+0 > 0 ){
 		$descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/descuento.php';
 	    $descuento_plantilla = file_get_contents($descuento_plantilla);
@@ -164,9 +142,6 @@
 		$totales_plantilla = str_replace('[DESCUENTO]', "", $totales_plantilla);
 	}
 
-
-    		
-
 	if( $acc == ""  ){
 
 		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
@@ -186,29 +161,56 @@
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 
 			$usuario = $cuidador["nombre"];
-			if( $usu == "CLI" ){ $usuario = $cliente["nombre"]; }
+			if( $usu == "CLI" ){ 
+				$usuario = $cliente["nombre"]; 
 
-			if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
-				$estado = array(
-					"confirmed" => "Confirmada",
-					"modified"  => "Modificada",
-					"cancelled" => "Cancelada"
-				);
-				$msg = "
-				<div class='msg_acciones'>
-					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-				    	Hola <strong>".$usuario."</strong>
-				    </div>
-					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-				    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
-				    </div>
-					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-				    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
-				    </div>
-				</div>";
-		   		
-		   		$CONTENIDO .= $msg;
-		   		$continuar = false;
+				if( $status == "cancelled" || $status == "modified" ){
+					$estado = array(
+						"modified"  => "Modificada",
+						"cancelled" => "Cancelada"
+					);
+					$msg = "
+					<div class='msg_acciones'>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Hola <strong>".$usuario."</strong>
+					    </div>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
+					    </div>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
+					    </div>
+					</div>";
+			   		
+			   		$CONTENIDO .= $msg;
+			   		$continuar = false;
+				}
+
+			}else{
+
+				if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
+					$estado = array(
+						"confirmed" => "Confirmada",
+						"modified"  => "Modificada",
+						"cancelled" => "Cancelada"
+					);
+					$msg = "
+					<div class='msg_acciones'>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Hola <strong>".$usuario."</strong>
+					    </div>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
+					    </div>
+						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+					    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
+					    </div>
+					</div>";
+			   		
+			   		$CONTENIDO .= $msg;
+			   		$continuar = false;
+				}
+
 			}
 
 		}
