@@ -1,0 +1,598 @@
+@font-face { font-family: Poetsen One; src: url(../fonts/PoetsenOne-Regular.ttf);}
+@font-face {font-family: 'Calibri Light'; font-style: normal; font-weight: normal; src: local('Calibri Light'), url('../fonts/calibril.woff') format('woff');}
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif');
+@import url('https://fonts.googleapis.com/css?family=Lato:700');
+body{background: #49C9B0; 	color: #3a3a3a; font-family: Poetsen One;}
+strong{font-weight: 900;}
+
+html,body{margin:0px; 	height:100%; }
+.container-fluid{height: auto;}
+
+/***************************************/
+/*  CABECERA Y Section-1               */
+/***************************************/
+
+header{
+	background: #fff;
+	text-align: right;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-top:5px;
+	clear: both;
+}
+
+.logo{
+	width: 12%;
+	margin-right: 5%;
+}
+
+.ancho{
+	padding-bottom: 35%;
+}
+#section-1{
+	background-image: url(../img/fondo-section01.jpg);
+    background-position: top;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    color: #fff;
+    font-weight: lighter;
+    padding-bottom: 35%;
+}
+#section-1 h1{
+    font-family: Poetsen One;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    margin-left: 6%;
+    font-size: 50pt;
+    width: 90%;
+    text-align: left;
+    line-height: 100%;
+}
+#section-1 > a > img{
+    position: absolute;
+    bottom: 6%;
+    width: 90%;
+    max-width: 490px;
+    left: -50%;
+    right: 0;
+    margin: 0 auto;
+}
+
+#img-cab-1{
+	width: 25%;
+    position: absolute;
+    display: block;
+    margin-top: 6%;
+}
+#img-cab-1 img {
+	width: 120%;
+}
+#img-cab-3{
+	width: 25%;
+    position: absolute;
+    display: block;
+    margin-top: 15%;
+    margin-left: 15%;
+}
+#img-cab-3 img {
+	width: 100%;
+}
+#img-cab-4{
+	width: 25%;
+    position: absolute;
+    display: block;
+    margin: 0 auto;
+    margin-top: 15%;
+    margin-left: 35%;
+}
+#img-cab-4 img {
+	width: 100%;
+}
+#img-cab-5{
+	width: 25%;
+    position: absolute;
+    display: block;
+    margin: 0 auto;
+    right: 0%;
+    margin-top: 15%;
+}
+#img-cab-5 img {
+	width: 90%;
+}
+
+
+/***************************************/
+/*  Section-2                          */
+/***************************************/
+#section-2{
+    width: 100%;
+    overflow: hidden;
+    /*margin-top: -10%;*/
+    background: #ffffff;
+    margin-bottom: 10%;
+}
+.morado{
+	width: 100%;
+	height: 20%;
+	padding-left: 10%;
+	background:#871c9a;
+    background-position: center;
+
+}
+.blanco{
+	background: #fff;
+    width: 90%;
+    padding: 3%;
+}
+#section-2 h1 {
+    text-align: center;
+    font-size: 20pt;
+}
+.espace{
+	margin-right: -10%;
+}
+.move-low{
+	padding-top: 5%;
+}
+
+#section-2  article {
+	display: block;
+	width: 100%;
+	margin-top: 15%;
+	margin-left: 0%;	
+}
+#section-2 > article:first{
+	margin-top:10px;
+}
+
+#section-2 h2{
+	margin-top:0px!important;
+	margin-bottom:0px!important;
+	color: #fff;
+	font-size: 1em;
+}
+iframe {
+    max-width: 100%;
+    max-height: 105%;
+    height: auto;
+}
+
+.video-container {
+	position:relative;
+	padding-bottom:15%;
+	padding-top:55%;
+	overflow:hidden;
+}
+.video-container iframe, 
+.video-container object, 
+.video-container embed {position:absolute; top:0; left:0; width:100%; height:100%;}
+
+.contain_window{height: 65%; margin: 0; overflow: hidden; }
+.color-fondo{background-color: #C90235;}
+.header{padding: 20px 0; color: #FFF; font-size: 40px; text-align:center; background:#C90235; font-family: Poetsen One;}
+
+/***************************************/
+/*  Section-3                          */
+/***************************************/
+
+#section-3{
+	background-image: url(../img/fondo-s3.jpg);
+    background-position: bottom;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+	font-family: Poetsen One;
+	color: #fff;
+	padding-bottom: 5%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#section-3  h2{
+	text-align: center;
+    font-size: 3.5em!important;
+    color: #fff;
+    margin-top: 35%;
+    line-height: 50px;
+}
+
+.colores{
+	bottom: -40px;
+	left: 10%;
+}
+.color1{
+    background: #80ccbf;
+    font-family: 'Calibri Light';
+    font-size: 25pt;
+    text-align: center;
+    padding: 4%;
+    width: 25%!important;
+    height: 170px!important;
+    border-radius: 85px 0px 0px 85px;
+    line-height: 28px;
+}
+.color2{
+    background: #80bab7;
+    font-family: 'Calibri Light';
+    font-size: 23pt;
+    text-align: center;
+    padding: 3%;
+    width: 25%!important;
+    height: 170px!important;
+    line-height: 28px;
+}
+.color3{
+    background: #61a6af;
+    font-family: 'Calibri Light';
+    font-size: 24pt;
+    text-align: center;
+    padding: 4%;
+    width: 30%!important;
+    height: 170px!important;
+    line-height: 28px;
+}
+.color4{
+	background: #55759d;
+    font-family: 'Calibri Light';
+    font-size: 25pt;
+    text-align: center;
+    padding: 4%;
+    width: 25%!important;
+    height: 170px!important;
+    border-radius: 0px 85px 85px 0px;
+    line-height: 28px;
+}
+/***************************************/
+/*  Section-4                          */
+/***************************************/
+
+#section-4{
+	font-family: Poetsen One;
+	margin: 0 auto;
+    background: transparent;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 0.5%;
+}
+.conte-serv-1{
+    background: #a7d431;
+    padding: 35px;
+    margin: 0 auto;
+    margin-left: -15px;
+    margin-top: 50px;
+    margin-bottom: 65px;
+    border-radius: 0px 70px 70px 0px;
+    width: 75%;
+    color: #867d7d;
+    text-align: center;
+}
+.conte-serv-1 p{
+    color: whitesmoke;
+    font-family: 'Calibri Light';
+    font-size: 50pt;
+    margin-left: 6%;
+    line-height: 35px;
+    text-align: left;
+    font-weight: 800;
+}
+.conte-serv-2{
+    background: #edbe31;
+    padding: 25px;
+    margin: 0 auto;
+    margin-left: -15px;
+    margin-bottom: 60px;
+    border-radius: 0px 70px 70px 0px;
+    width: 50%;
+    color: #867d7d;
+    text-align: center;
+}
+.conte-serv-2 p {
+    color: whitesmoke;
+    font-family: 'Calibri Light';
+    font-size: 30pt;
+    margin-left: 12%;
+    line-height: 35px;
+    text-align: left;
+    font-weight: 600;
+}
+.conte-serv-3{
+    background: #871c9a;
+    padding: 25px;
+    margin: 0 auto;
+    margin-left: -15px;
+    margin-bottom: 60px;
+    border-radius: 0px 70px 70px 0px;
+    width: 40%;
+    color: #867d7d;
+    text-align: center;
+}
+.conte-serv-3 p{
+    color: whitesmoke;
+    font-family: 'Calibri Light';
+    font-size: 30pt;
+    margin-left: 15%;
+    line-height: 35px;
+    text-align: left;
+    font-weight: 600;
+}
+#h2{
+    font-size: 4.5em!important;
+    text-align: center;
+    color: #1D8DD3;
+    margin-bottom: -35px;
+}
+#section-4 article{
+	padding-top:1%;
+	padding-bottom:1%;
+}
+.img-servicio{
+	width: 50%;
+    margin: 0 auto;
+    margin-top: -70%;
+    margin-left: 28%;
+}
+/***************************************/
+/*  Section-5                          */
+/***************************************/
+
+#section-5{
+	font-family: Poetsen One;
+	width: 100%;
+	height: 100%;	
+	color: #fff;
+	background-color: #fff;
+	font-weight: lighter;
+	overflow: hidden;
+}
+
+.img-requisitos{
+    width: 110%;
+    /*height: 180px;*/
+    margin: 0 auto;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.letra-req{
+	color: #262424; 
+	margin-left: 30px; 
+	font-family: 'Lato', 
+	sans-serif; 
+	font-size: 20px; 
+	font-weight: bold;
+	text-align: center;
+}
+
+#h2-req{
+	font-size: 3.5em!important;
+    text-align: right;
+    color: #ffffff;
+    background: #ff960e;
+    padding: 6%;
+    border-radius: 85px 0px 0px 85px;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    margin-right: -24%;
+    line-height: 40px;
+}
+
+.group{
+	width: 100%;
+	height: 100%;
+}
+
+/***************************************/
+/*  Section-7                          */
+/***************************************/
+
+#section-7{
+	background-image: url(../img/fondo-footer.jpg);
+	background-position: left center;
+	font-family: Poetsen One;
+	background-position: bottom;
+    background-size:  100% 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    position: relative;
+	overflow: hidden;
+	color: #fff;
+	font-weight: lighter;
+	height: 110%;
+	padding-bottom: 10px;
+}
+
+#section-7  > a > img{
+	
+	position: absolute;
+	bottom: 0px;
+	width: 90%;
+	max-width: 400px;
+	left: 0;
+	right: 0;
+	margin:0 auto;
+	margin-bottom: 25px;
+}
+.img-pais{
+	position: relative;
+	width: 13%;
+	margin-bottom: 2%;
+}
+
+
+.h2-foot{
+	font-size: 3em!important;
+	text-align: right;
+	color: #fff;
+	line-height: 40px;
+}
+.h3-foot{
+	font-size: 1.5em!important;
+	text-align: right;
+	color: #fff;
+	padding: 10px;
+	margin-right: -2%;
+}
+
+
+
+/***************************************/
+/*  footer                             */
+/***************************************/
+
+
+footer{
+	overflow: hidden;
+}
+.sp{
+	margin-right: -18%;
+}
+
+.fondo-logo{background-image: url(../img/fondo-logo.jpg); padding: 1%;}
+
+
+/***************************************/
+/*  Media                              */
+/***************************************/
+
+@media (min-width: 1480px){
+	#section-1 > a > img {bottom: 0%;width: 60%; left: -55%;}
+	#h2-req {font-size: 4.5em!important;padding: 6%; margin-right: -46%;}
+	.morado {height: 175px;}
+}
+
+@media (min-width: 581px) and (max-width: 765px){
+	.container-fluid {height: auto;}
+	#section-1 {background-position: top;background-size: 100% 100%; padding-top: 30%;}
+	#section-1 h1 {font-size: 33px; width: 100%; margin-top: -20%;}
+	#section-1 > a > img {bottom: 60%;width: 60%; left: -35%;}
+	#section-2 h1 {text-align: center;font-size: 18pt;line-height: 30px;width: 100%;}
+	#h2 {font-size: 28pt!important;}
+	.conte-serv-1 {border-radius: 0px 90px 90px 0px; width: 85%;padding: 25px;}
+	.conte-serv-1 p {font-size: 34pt;margin-left: 23%; width: 100%;}
+	.conte-serv-2 {padding: 15px; margin-bottom: 85px; margin-top: 20%; border-radius: 0px 70px 70px 0px; width: 85%;}
+	.conte-serv-2 p {font-size: 19pt;margin-left: 4%;}
+	.conte-serv-3 {padding: 10px; margin-top: -10%; margin-bottom: 35px; width: 72%;}
+	.conte-serv-3 p {font-size: 18pt;}
+	.img-servicio { width: 55%; margin-top: 15%; margin-left: 40%;  position: absolute;}
+	#section-3 h2 {font-size: 30pt!important; color: #fff; margin-top: 5%;}
+	#section-3 { height: auto; padding-bottom: 15%; background-size: cover;}
+	.colores {left: -5%;}
+	.color1 {font-size: 20pt;padding: 25px; width: 40%!important; border-radius: 115px 115px 0px 0px; height: 120px!important; margin-left: 35%;}
+	.color2 {font-size: 20pt; width: 40%!important; height: 120px!important; margin-left: 35%;}
+	.color3 {font-size: 20pt; width: 40%!important; height: 110px!important; margin-left: 35%;}
+	.color4 {font-size: 20pt; width: 40%!important;border-radius: 0px 0px 115px 115px;height: 146px!important; margin-left: 35%;}
+	
+	#section-5 {height: auto;}
+	#h2-req {font-size: 20pt!important;margin-right: -20%;}
+	.img-requisitos {width: 110%;}
+	.letra-req {color: #262424;margin-left: 0px;font-size: 22px;}
+
+	.h2-foot {font-size: 30pt!important;line-height: 100%;line-height: 100%;}
+	.h3-foot {font-size: 18pt!important;text-align: right; padding: 0px; margin-top: -3%;line-height: 100%;}
+	.img-pais {width: 90%; margin-bottom: 20%; margin-top: 20%;}
+	#section-7 > a > img { width: 70%; margin-bottom: 19px;}
+	#section-7 {height: auto;}
+	.logo {width: 15%;}
+}
+@media (min-width: 421px) and (max-width: 580px){
+	.container-fluid {height: auto;}
+	#section-1 {background-position: top;background-size: 100% 100%; padding-top: 20%;}
+	#section-1 h1 {font-size: 28px; width: 100%; margin-top: -12%;}
+	#section-1 > a > img {bottom: 63%;width: 60%;left: -32%;}
+	.morado {height: 18%;}
+	#section-2 h1 {text-align: center;font-size: 12pt;line-height: 20px;width: 100%;}
+
+	#h2 {font-size: 22pt!important;}
+	.conte-serv-1 {border-radius: 0px 90px 90px 0px; width: 85%;padding: 25px;}
+	.conte-serv-1 p {font-size: 30pt;margin-left: 10%; width: 100%;}
+	.conte-serv-2 {padding: 15px; margin-bottom: 60px; margin-top: 40%; border-radius: 0px 70px 70px 0px; width: 85%;}
+	.conte-serv-2 p {font-size: 19pt;margin-left: 7%;}
+	.conte-serv-3 {padding: 10px; margin-top: -10%; margin-bottom: 35px; width: 78%;}
+	.conte-serv-3 p {font-size: 19pt;}
+	.img-servicio { width: 70%; margin-top: 35%; margin-left: 25%;  position: absolute;}
+	#section-3 h2 {font-size: 30pt!important; color: #fff; margin-top: 5%;}
+	#section-3 { height: auto; padding-bottom: 15%; background-size: cover;}
+	.colores {left: -5%;}
+	.color1 {font-size: 17pt;padding: 25px; width: 60%!important; border-radius: 130px 130px 0px 0px; height: 130px!important;margin-left: 25%;}
+	.color2 {font-size: 17pt; width: 60%!important; height: 130px!important;margin-left: 25%;}
+	.color3 {font-size: 17pt; width: 60%!important; height: 142px!important;margin-left: 25%;}
+	.color4 {font-size: 17pt; width: 60%!important;border-radius: 0px 0px 130px 130px;height: 146px!important;margin-left: 25%;}
+	
+	#section-5 {height: auto;}
+	#h2-req {font-size: 20pt!important;margin-right: -20%;}
+	.img-requisitos {width: 110%;}
+	.letra-req {color: #262424;margin-left: 0px;font-size: 22px;}
+
+	.h2-foot {font-size: 18pt!important;line-height: 100%;}
+	.h3-foot {font-size: 13pt!important;text-align: right; padding: 0px; margin-top: -3%;line-height: 100%;}
+	.img-pais {width: 100%; margin-bottom: 20%; margin-top: 20%;}
+	#section-7 > a > img { width: 70%; margin-bottom: 19px;}
+	#section-7 {height: auto;}
+}
+@media (min-width: 381px) and (max-width: 420px){
+	.container-fluid {height: auto;}
+	#section-1 {background-position: top;background-size: 100% 100%; padding-top: 12%;}
+	#section-1 h1 {font-size: 26px; width: 100%; margin-top: 0%;}
+	#section-1 > a > img {bottom: 62%;width: 60%; left: -35%;}
+	.morado {height: 18%;}
+	#section-2 h1 {text-align: center;font-size: 12pt;line-height: 20px;width: 100%;}
+	#h2 {font-size: 20pt!important;}
+	.conte-serv-1 {border-radius: 0px 90px 90px 0px; width: 85%;padding: 25px;}
+	.conte-serv-1 p {font-size: 30pt;margin-left: 10%; width: 100%;}
+	.conte-serv-2 {padding: 15px; margin-bottom: 60px; margin-top: 40%; border-radius: 0px 70px 70px 0px; width: 95%;}
+	.conte-serv-2 p {font-size: 15pt;margin-left: 7%;}
+	.conte-serv-3 {padding: 10px; margin-top: -10%; margin-bottom: 35px; width: 78%;}
+	.conte-serv-3 p {font-size: 15pt;}
+	.img-servicio { width: 70%; margin-top: 35%; margin-left: 25%;  position: absolute;}
+	#section-3 h2 {font-size: 25pt!important; color: #fff; margin-top: 5%;}
+	#section-3 { height: auto; padding-bottom: 20%; background-size: cover; background-image: url(../img/fondo-s3-responsive.png);}
+	.colores {left: 3%;}
+	.color1 {font-size: 17pt; padding: 11%; width: 70%!important; border-radius: 115px 115px 0px 0px; height: 130px!important;margin-left: 15%;}
+	.color2 {font-size: 17pt; width: 70%!important; height: 130px!important;margin-left: 15%;}
+	.color3 {font-size: 17pt; width: 70%!important; height: 142px!important;margin-left: 15%; padding: 9%;}
+	.color4 {font-size: 17pt; width: 70%!important;border-radius: 0px 0px 115px 115px;height: 146px!important;margin-left: 15%; padding: 7%;}
+	
+	#section-5 {height: auto;}
+	#h2-req {font-size: 20pt!important;margin-right: -10%;}
+	.img-requisitos {width: 110%;margin-left: 0%;}
+	.letra-req {color: #262424;margin-left: 0px;font-size: 22px;}
+
+	.h2-foot {font-size: 18pt!important;line-height: 100%;}
+	.h3-foot {font-size: 13pt!important;text-align: right; padding: 0px; margin-top: -3%;margin-right: -4%;line-height: 100%;}
+	.img-pais {width: 100%; margin-bottom: 15%; margin-top: 40%;}
+	#section-7 > a > img { width: 70%; margin-bottom: 15px;}
+	#section-7 {height: auto;}
+}
+@media (min-width: 280px) and (max-width: 380px){
+	.container-fluid {height: auto;}
+	#section-1 {background-position: top;background-size: 100% 100%;padding-top: 25%;}
+	#section-1 h1 {font-size: 20px; width: 100%; margin-top: -22%;margin-left: 0%; line-height: 20px!important;}
+	#section-1 > a > img {bottom: 65%;width: 60%; left: -30%;}
+	.morado {height: 19%;}
+	#section-2 h1 {text-align: center;font-size: 12pt;line-height: 20px;width: 100%;}
+	#h2 {font-size: 18pt!important;}
+	.conte-serv-1 {border-radius: 0px 90px 90px 0px; width: 90%; padding: 17px;}
+	.conte-serv-1 p {font-size: 22pt; margin-left: 15%; width: 100%; line-height: 100%;}
+	.conte-serv-2 {padding: 15px; margin-bottom: 60px; margin-top: 40%; border-radius: 0px 70px 70px 0px; width: 95%;}
+	.conte-serv-2 p {font-size: 16pt;margin-left: 15%;line-height: 20px;}
+	.conte-serv-3 {padding: 10px; margin-top: -10%; margin-bottom: 35px; width: 78%;}
+	.conte-serv-3 p {font-size: 14pt; line-height: 21px; margin-left: 18%;}
+	.img-servicio { width: 65%; margin-top: 34%; margin-left: 25%;  position: absolute;}
+	#section-3 h2 {font-size: 22pt!important; color: #fff; margin-top: 5%;    line-height: 100%;}
+	#section-3 { height: auto; padding-bottom: 20%; background-size: cover; background-image: url(../img/fondo-s3-responsive.png);}
+	.colores {left: 3%;}
+	.color1 {font-size: 18pt;padding: 40px; width: 80%!important; border-radius: 115px 115px 0px 0px; height: 130px!important; margin-left: 10%;}
+	.color2 {font-size: 17pt; width: 80%!important; height: 130px!important; margin-left: 10%;}
+	.color3 {font-size: 18pt; width: 80%!important; height: 142px!important; margin-left: 10%;}
+	.color4 {font-size: 18pt; width: 80%!important;border-radius: 0px 0px 115px 115px;height: 146px!important; margin-left: 10%;padding: 6%;}
+	
+	#section-5 {height: auto;}
+	#h2-req {font-size: 20pt!important;margin-right: -10%;}
+	.img-requisitos {width: 130%;margin-left: -17%;}
+	.letra-req {color: #262424;margin-left: 0px;font-size: 17px;}
+
+	.h2-foot {font-size: 18pt!important;line-height: 100%;}
+	.h3-foot {font-size: 11pt!important;text-align: right; padding: 0px; margin-top: -3%; margin-right: -4%;line-height: 100%;}
+	.img-pais {width: 100%; margin-bottom: 20%; margin-top: 40%;}
+	#section-7 > a > img { width: 70%; margin-bottom: 10px;}
+	#section-7 {height: auto;}
+}
