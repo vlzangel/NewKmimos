@@ -3,7 +3,7 @@
     $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
     $CONTENIDO .= '<h1 style="margin: 0px; padding: 0px;">Mis Fotos</h1><hr style="margin: 5px 0px 10px;"><ul class="mascotas_container">';
     $exist_file = false;
-    $tmp_user_id = ($cuidador->id) - 5000;
+    $tmp_user_id = ($cuidador->id) - get_region("km-5000");
     $path_galeria = "wp-content/uploads/cuidadores/galerias/".$tmp_user_id."/";
     $count_picture =0;
     if( is_dir($path_galeria) ){

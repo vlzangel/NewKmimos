@@ -2,7 +2,7 @@
     $photo = "/wp-content/themes/pointfinder/images/noimg.png";
 
     $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
-    $tmp_user_id = ($cuidador->id) - 5000;
+    $tmp_user_id = ($cuidador->id) - get_region("km-5000");
 	$CONTENIDO .= '
     <input type="hidden" name="accion" value="nueva_galeria" />
     <input type="hidden" name="user_id" value="'.$tmp_user_id.'" />
