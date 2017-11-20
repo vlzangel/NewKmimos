@@ -1,3 +1,6 @@
+@font-face {font-family: 'PoetsenOne';src: url('../font/PoetsenOne-Regular.ttf')  format('truetype');}
+@font-face {font-family: 'CaviarDreams';src: url('../font/CaviarDreams.ttf')  format('truetype');}
+@font-face {font-family: 'CaviarDreamsBold';src: url('../font/CaviarDreams_Bold.ttf')  format('truetype');}
 section{clear: both;}
 strong{font-weight: 900;}
 
@@ -12,15 +15,20 @@ strong{font-weight: 900;}
 .simple-white{
   color: white;
   font-size: 44px;
+	font-family: "CaviarDreamsBold", sans-serif;
 }
 .simple-black{
 	font-size: 44px;
+	font-family: "CaviarDreams", sans-serif;
 }
 a{
 	text-decoration: none;
 }
 a:hover{
 	text-decoration: none;
+}
+.arrow-img{
+	width: 5%;
 }
 
 /***************************************/
@@ -222,7 +230,7 @@ a:hover{
 	font-size: 50px;
 }
 .beneficios-arrow{
-	margin-top: 7%;
+	margin-top: 6%;
 	margin-left: 0;
 }
 
@@ -358,14 +366,17 @@ input{
 @media (min-width: 280px) and (max-width: 380px){
 	/* Global */
 	.simple-white{
-		font-size: 12.3px;
+		font-size: 14px;
 	}
 	.simple-black{
-		font-size: 12.3px;
+		font-size: 14px;
+	}
+	.arrow-img{
+		width: 7%;
 	}
 	/* Section-1 */
 	#section-1{
-		height: 616px;
+		height: 646px;
 	}
 	.header-img{
 		width: 126px;
@@ -406,44 +417,54 @@ input{
 		margin-top: 4%;
 	}
 	.cobertura-text-body-1{
-		margin-top: -3%;
+		margin-top: -5%;
+		margin-left: 28%;
 	}
 	.cobertura-text-body-2{
-		margin-top: -5%;
+		margin-top: -7%;
+		margin-left: 28%;
 	}
 	.cobertura-text-body-3{
-		margin-top: -3%;
+		margin-top: -4%;
+		margin-left: 28%;
 	}
 
 	/* Section-3 */
 	#section-3{
-		height: 582px;
+		height: 642px;
 	}
 	.beneficios-arrow{
 		margin-top: 4%;
 	}
 	.beneficios-text-body-1{
 		margin-top: -3%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-2{
 		margin-top: -5%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-3{
 		margin-top: -4%;
+		margin-left: 24%;
 	}
 	.beneficios-text-body-4{
 		margin-top: -7%;
+		margin-left: 16%;
 	}
 
 	/* Section-4 */
 	.contratar-text-body-1{
 		margin-top: -5%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-2{
 		margin-top: -5%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-3{
 		margin-top: -4%;
+		margin-left: 20%;
 	}
 
 	/* Section-5 */
@@ -459,39 +480,52 @@ input{
 	}
 
 	/* Section-6 */
+	.inscribete{
+		float: none;
+		margin-left: 2%;
+	}
 	.inscribete-header{
-		font-size: 4.2px;
+		font-size: 16px;
+		margin-top: 2%;
 	}
 	.inscribete-text{
-		font-size: 3.36px;
+		font-size: 12px;
 	}
 	.servicios-header{
-		font-size: 4.2px;
+		font-size: 16px;
 	}
 	.servicios-text{
-		font-size: 3.36px;
+		font-size: 12px;
 	}
 	button{
 		padding: 2.8px 5.6px;
-		font-size: 4.2px;
+		font-size: 12px;
 		margin-left: -3.5%;
 	}
 	input{
 		padding: 1.2px 2.8px;
-		font-size: 4.2px;
+		font-size: 12px;
+	}
+	.left{
+		float: none;
+		margin-left: 2%;
+		margin-top: 6%;
 	}
 }
 @media (min-width: 381px) and (max-width: 480px){
 	/* Global */
 	.simple-white{
-		font-size: 15.4px;
+		font-size: 17px;
 	}
 	.simple-black{
-		font-size: 15.4px;
+		font-size: 17px;
+	}
+	.arrow-img{
+		width: 7%;
 	}
 	/* Section-1 */
 	#section-1{
-		height: 770px;
+		height: 790px;
 	}
 	.header-img{
 		width: 157.5px;
@@ -533,43 +567,53 @@ input{
 	}
 	.cobertura-text-body-1{
 		margin-top: -3%;
+		margin-left: 28%;
 	}
 	.cobertura-text-body-2{
 		margin-top: -5%;
+		margin-left: 32%;
 	}
 	.cobertura-text-body-3{
 		margin-top: -3%;
+		margin-left: 32%;
 	}
 
 	/* Section-3 */
 	#section-3{
-		height: 665px;
+		height: 705px;
 	}
 	.beneficios-arrow{
 		margin-top: 4%;
 	}
 	.beneficios-text-body-1{
 		margin-top: -3%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-2{
 		margin-top: -5%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-3{
 		margin-top: -4%;
+		margin-left: 26%;
 	}
 	.beneficios-text-body-4{
 		margin-top: -7%;
+		margin-left: 20%;
 	}
 
 	/* Section-4 */
 	.contratar-text-body-1{
 		margin-top: -5%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-2{
 		margin-top: -5%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-3{
 		margin-top: -4%;
+		margin-left: 20%;
 	}
 
 	/* Section-5 */
@@ -585,39 +629,51 @@ input{
 	}
 
 	/* Section-6 */
+	.inscribete{
+		float: none;
+		margin-left: 2%;
+	}
 	.inscribete-header{
-		font-size: 5.25px;
+		font-size: 20px;
 	}
 	.inscribete-text{
-		font-size: 4.2px;
+		font-size: 16px;
 	}
 	.servicios-header{
-		font-size: 5.25px;
+		font-size: 16px;
 	}
 	.servicios-text{
-		font-size: 4.2px;
+		font-size: 12px;
 	}
 	button{
 		padding: 3.5px 7px;
-		font-size: 5.25px;
+		font-size: 14px;
 		margin-left: -2.5%;
 	}
 	input{
 		padding: 1.6px 3.5px;
-		font-size: 5.25px;
+		font-size: 14px;
+	}
+	.left{
+		float: none;
+		margin-left: 2%;
+		margin-top: 6%;
 	}
 }
 @media (min-width: 481px) and (max-width: 580px){
 	/* Global */
 	.simple-white{
-		font-size: 18.9px;
+		font-size: 20px;
 	}
 	.simple-black{
-		font-size: 18.9px;
+		font-size: 20px;
+	}
+	.arrow-img{
+		width: 8%;
 	}
 	/* Section-1 */
 	#section-1{
-		height: 946px;
+		height: 966px;
 	}
 	.header-img{
 		width: 193.5px;
@@ -659,43 +715,53 @@ input{
 	}
 	.cobertura-text-body-1{
 		margin-top: -2%;
+		margin-left: 28%;
 	}
 	.cobertura-text-body-2{
 		margin-top: -3%;
+		margin-left: 32%;
 	}
 	.cobertura-text-body-3{
 		margin-top: -2%;
+		margin-left: 32%;
 	}
 
 	/* Section-3 */
 	#section-3{
-		height: 817px;
+		height: 907px;
 	}
 	.beneficios-arrow{
 		margin-top: 4%;
 	}
 	.beneficios-text-body-1{
 		margin-top: -1%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-2{
 		margin-top: -3%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-3{
 		margin-top: -2%;
+		margin-left: 26%;
 	}
 	.beneficios-text-body-4{
 		margin-top: -5%;
+		margin-left: 20%;
 	}
 
 	/* Section-4 */
 	.contratar-text-body-1{
 		margin-top: -3%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-2{
 		margin-top: -3%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-3{
 		margin-top: -2%;
+		margin-left: 20%;
 	}
 
 	/* Section-5 */
@@ -711,39 +777,51 @@ input{
 	}
 
 	/* Section-6 */
+	.inscribete{
+		float: none;
+		margin-left: 2%;
+	}
 	.inscribete-header{
-		font-size: 6.45px;
+		font-size: 24px;
 	}
 	.inscribete-text{
-		font-size: 5.16px;
+		font-size: 20px;
 	}
 	.servicios-header{
-		font-size: 6.45px;
+		font-size: 16px;
 	}
 	.servicios-text{
-		font-size: 5.16px;
+		font-size: 12px;
 	}
 	button{
 		padding: 4.3px 8.6px;
-		font-size: 6.45px;
+		font-size: 20px;
 		margin-left: -2%;
 	}
 	input{
 		padding: 2px 4.3px;
-		font-size: 6.45px;
+		font-size: 20px;
+	}
+	.left{
+		float: none;
+		margin-left: 2%;
+		margin-top: 6%;
 	}
 }
 @media (min-width: 581px) and (max-width: 765px){
 	/* Global */
 	.simple-white{
-		font-size: 24.64px;
+		font-size: 28px;
 	}
 	.simple-black{
-		font-size: 24.64px;
+		font-size: 28px;
+	}
+	.arrow-img{
+		width: 8%;
 	}
 	/* Section-1 */
 	#section-1{
-		height: 1232px;
+		height: 1262px;
 	}
 	.header-img{
 		width: 252px;
@@ -785,43 +863,53 @@ input{
 	}
 	.cobertura-text-body-1{
 		margin-top: -2%;
+		margin-left: 28%;
 	}
 	.cobertura-text-body-2{
 		margin-top: -3%;
+		margin-left: 32%;
 	}
 	.cobertura-text-body-3{
 		margin-top: -2%;
+		margin-left: 32%;
 	}
 
 	/* Section-3 */
 	#section-3{
-		height: 1064px;
+		height: 1124px;
 	}
 	.beneficios-arrow{
 		margin-top: 4%;
 	}
 	.beneficios-text-body-1{
 		margin-top: -1%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-2{
 		margin-top: -3%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-3{
 		margin-top: -2%;
+		margin-left: 26%;
 	}
 	.beneficios-text-body-4{
 		margin-top: -5%;
+		margin-left: 20%;
 	}
 
 	/* Section-4 */
 	.contratar-text-body-1{
 		margin-top: -3%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-2{
 		margin-top: -3%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-3{
 		margin-top: -2%;
+		margin-left: 20%;
 	}
 
 	/* Section-5 */
@@ -837,39 +925,51 @@ input{
 	}
 
 	/* Section-6 */
+	.inscribete{
+		float: none;
+		margin-left: 2%;
+	}
 	.inscribete-header{
-		font-size: 8.4px;
+		font-size: 24px;
 	}
 	.inscribete-text{
-		font-size: 6.72px;
+		font-size: 20px;
 	}
 	.servicios-header{
-		font-size: 8.4px;
+		font-size: 16px;
 	}
 	.servicios-text{
-		font-size: 6.72px;
+		font-size: 12px;
 	}
 	button{
 		padding: 5.6px 11.2px;
-		font-size: 8.4px;
+		font-size: 24px;
 		margin-left: -1.8%;
 	}
 	input{
 		padding: 3.4px 5.6px;
-		font-size: 8.4px;
+		font-size: 24px;
+	}
+	.left{
+		float: none;
+		margin-left: 2%;
+		margin-top: 6%;
 	}
 }
 @media (min-width: 766px) and (max-width: 999px){
 	/* Global */
 	.simple-white{
-		font-size: 32.12px;
+		font-size: 34px;
 	}
 	.simple-black{
-		font-size: 32.12px;
+		font-size: 34px;
+	}
+	.arrow-img{
+		width: 8%;
 	}
 	/* Section-1 */
 	#section-1{
-		height: 1606px;
+		height: 1646px;
 	}
 	.header-img{
 		width: 328.5px;
@@ -921,33 +1021,40 @@ input{
 
 	/* Section-3 */
 	#section-3{
-		height: 1387px;
+		height: 1487px;
 	}
 	.beneficios-arrow{
 		margin-top: 8%;
 	}
 	.beneficios-text-body-1{
 		margin-top: 0%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-2{
 		margin-top: -1%;
+		margin-left: 20%;
 	}
 	.beneficios-text-body-3{
 		margin-top: -1%;
+		margin-left: 26%;
 	}
 	.beneficios-text-body-4{
 		margin-top: -4%;
+		margin-left: 20%;
 	}
 
 	/* Section-4 */
 	.contratar-text-body-1{
 		margin-top: -1%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-2{
 		margin-top: -1%;
+		margin-left: 20%;
 	}
 	.contratar-text-body-3{
 		margin-top: 0%;
+		margin-left: 20%;
 	}
 
 	/* Section-5 */
@@ -1047,7 +1154,7 @@ input{
 
 	/* Section-3 */
 	#section-3{
-		height: 1786px;
+		height: 1850px;
 	}
 	.beneficios-arrow{
 		margin-top: 8%;
