@@ -13,7 +13,7 @@
         echo 'false';
 	}else{
 		
-        $existen = $conn->query( "SELECT * FROM wp_kmimos_subscribe WHERE email = '{$email}'" );
+        $existen = $conn->query( "SELECT * FROM resgistro_multinivel WHERE email = '{$email}'" );
         if( $existen->num_rows > 0 ){
             $datos = $existen->fetch_assoc();
 
@@ -37,11 +37,10 @@
             $hoy = date("Y-m-d H:i:s");
 
             $new_user = "
-                INSERT INTO wp_kmimos_subscribe VALUES (
+                INSERT INTO resgistro_multinivel VALUES (
                     NULL,
                     '".$nombres."',
                     '".$email."',
-                    'Multinivel',
                     now()
                 );
             ";
