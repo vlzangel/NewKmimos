@@ -448,7 +448,7 @@ function pagarReserva(id_invalido = false){
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
 
-				location.href = RAIZ+"/finalizar/"+data.order_id;
+				// italo location.href = RAIZ+"/finalizar/"+data.order_id;
 			}
 
 		}, "json"
@@ -904,12 +904,19 @@ jQuery(document).ready(function() {
 			alert("Debes aceptar los terminos y condiciones");
 		}else{
 			if( jQuery("#metodos_pagos").css("display") != "none" ){
-				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+				CARRITO["pagar"]["deviceIdHiddenFieldName"] = '';
+				if( REGION == 'mexico' ){
+					CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+				}
 				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
 				if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
 					jQuery("#reserva_btn_next_3 span").html("Validando...");
 					jQuery("#reserva_btn_next_3").addClass("disabled");
-					OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+					if( REGION == 'mexico' ){
+						OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+					}else{
+				        pagarReserva();
+					}
 				}else{
 					pagarReserva();
 				}
@@ -992,6 +999,7 @@ jQuery(document).ready(function() {
 	});
 
 	/* Configuración Openpay */
+	if( REGION == 'mexico' ){
 
 		OpenPay.setId( OPENPAY_TOKEN );
 	    OpenPay.setApiKey(OPENPAY_PK);
@@ -1047,7 +1055,7 @@ jQuery(document).ready(function() {
 	        jQuery(".errores_box").html(error);
 			jQuery(".errores_box").css("display", "block");
 	    };
-
+	}
    	/* Fin Configuración Openpay */
 
 });
