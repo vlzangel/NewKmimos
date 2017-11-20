@@ -60,8 +60,8 @@
 
 		$horario = "";
 
-		echo date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in."<br>";
-		echo date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out;
+/*		echo date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in."<br>";
+		echo date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out;*/
 
 		$inicio = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in );
 		$fin = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out );
