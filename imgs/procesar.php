@@ -22,9 +22,9 @@
     $name = time().".jpg";
     $path = $dir.$name;
 
-    file_put_contents($path, $sImagen);
+    @file_put_contents($path, $sImagen);
 
-    $sExt = mime_content_type( $path );
+    $sExt = @mime_content_type( $path );
 
     switch( $sExt ) {
         case 'image/jpeg':
@@ -44,7 +44,7 @@
     $nWidth  = 800;
     $nHeight = 600;
 
-    $aSize = getImageSize( $path );
+    $aSize = @getImageSize( $path );
 
     if( $aSize[0] > $aSize[1] ){
         $nHeight = round( ( $aSize[1] * $nWidth ) / $aSize[0] );
@@ -52,14 +52,14 @@
         $nWidth = round( ( $aSize[0] * $nHeight ) / $aSize[1] );
     }
 
-    $aThumb = imageCreateTrueColor( $nWidth, $nHeight );
+    $aThumb = @imageCreateTrueColor( $nWidth, $nHeight );
 
-    imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
+    @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight,
+    $aSize[0], $aSize[1] );
 
-    imagejpeg( $aThumb, $path );
+    @imagejpeg( $aThumb, $path );
 
-    imageDestroy( $aImage );
-    imageDestroy( $aThumb );
+    @imageDestroy( $aImage ); @imageDestroy( $aThumb );
 
     echo $name;
 
