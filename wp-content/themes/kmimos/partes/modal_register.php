@@ -125,7 +125,7 @@ $HTML .='
 							</div>
 
 							<div class="label-placeholder">
-								<label>IFE/Documento de Identidad</label>
+								<label>'.get_region("identidad").'/Documento de Identidad</label>
 								<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="13">
 							</div>
 							<div class="label-placeholder verify">

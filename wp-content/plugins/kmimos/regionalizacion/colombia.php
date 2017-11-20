@@ -13,7 +13,19 @@ $region = array(
     "facebook"  => "Kmimosco",
     "instagram" => "kmimosco",
     "mon_izq" => "",
-    "mon_der" => "COP"
+    "mon_der" => "COP",
+    "km-vacaciones" => false,
+    "km-medios" => false,
+    "km-5000" => 0,
+    "conocio" => array(
+                'Facebook'      =>  'Facebook',
+                'Adwords'       =>  'Buscador de Google',
+                'Twitter'       =>  'Twitter',
+                'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
+                'Youtube'               =>  'Youtube',
+                'Otros'                 =>  'Otros'
+            ),
+    "identidad" => "DNI"
     );
 
 ?>

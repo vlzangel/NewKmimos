@@ -67,7 +67,7 @@
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
-							<label>IFE/Documento de Identidad</label>
+							<label><?php echo get_region("identidad"); ?>/Documento de Identidad</label>
 							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
