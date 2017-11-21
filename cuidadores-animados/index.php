@@ -9,7 +9,8 @@
 		$query .= $separador.$key.'='.$value;
 	}
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html> 
     <head>
         <meta charset="utf-8">
@@ -22,9 +23,9 @@
 		<script src="js/jquery/jquery.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Lato:700,900" rel="stylesheet">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/kmimos.css">
+        <link rel="stylesheet" href="/css/normalize.css">
+        <link rel="stylesheet" href="/css/animate.css">
+        <link rel="stylesheet" href="/css/kmimos.css">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -175,10 +176,10 @@
 
 			<section class="row" id="section-1">
 				<header class="text-center">
-		       	 	<img src="img/LogoKmimos.png" class="logo">
+		       	 	<img src="/img/LogoKmimos.png" class="logo">
 		       	</header>
 		       	<article class="col-sm-5 hidden-xs">
-		       		<img src="img/Character_section1.png" class=" img-kmimos img-responsive">
+		       		<img src="/img/Character_section1.png" class=" img-kmimos img-responsive">
 		       	</article>
 	       	 	<article class="col-sm-5">
 					<h1>¡Deja a tu mascota en casa de un cuidador certificado!</h1>
