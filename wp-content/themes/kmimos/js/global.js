@@ -370,10 +370,8 @@ function d(s){ return jQuery(s)[0].outerHTML; }
 function c(i){
    var e = document.getElementById(i);
    if(e && e.getContext){
-      var c = e.getContext('2d');
-      if(c){
-         return c;
-      }
+        var c = e.getContext('2d');
+        if(c){ return c; }
    }
    return false;
 }
