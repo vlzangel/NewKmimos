@@ -69,7 +69,7 @@ $HTML .='
 
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> '.get_region('telefono1').'</p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> '.get_region('whatsapp').'</p></div>
 					<!--<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada Sin Costo: (01) 800 056 4667</p></div>-->
 				</div>
 
