@@ -20,6 +20,9 @@
 	    	[mensaje] <img style='' src='[URL_IMGS]/emoji_triste.png' >
 	    </div>
 
+	    <div style='text-align: center;'>
+	    	[CUIDADORES]
+	    </div>
 
 	</div>
 
