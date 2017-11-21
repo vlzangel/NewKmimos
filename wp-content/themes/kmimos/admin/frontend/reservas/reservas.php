@@ -107,7 +107,7 @@
 						'foto' => $foto,
 						'acciones' => array(
 							"ver" => $ver,
-							"subir_fotos" => $ver
+							"subir_fotos" => $reserva->ID
 						),
 						"desglose" => $desglose
 					);
