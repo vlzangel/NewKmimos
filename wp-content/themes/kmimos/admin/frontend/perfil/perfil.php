@@ -1,5 +1,4 @@
 <?php
-    
     $userdata = get_user_meta($user_id);
 
     $referred = $userdata['user_referred'][0];

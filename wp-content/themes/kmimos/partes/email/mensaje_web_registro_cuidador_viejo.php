@@ -85,7 +85,7 @@ $mensaje_web = '
     <ul style="text-align: justify;">
         <li><strong>Pruebas de conocimiento veterinario.</strong></li>
         <li><strong>Pruebas Psicométricas.</strong></li>
-        <li><strong>Documentación (IFE, Comprobante de domicilio y Datos Bancarios).</strong></li>
+        <li><strong>Documentación ('.get_region('identidad').', Comprobante de domicilio y Datos Bancarios).</strong></li>
     </ul>
 </p>
 <p style="text-align: justify;">
@@ -105,7 +105,7 @@ $mensaje_web = '
 </p>
 <p>
     <table>
-        <tr> <td> <strong>Usuario:</strong> </td><td>'.$username.'</td> </tr>
+        <tr> <td> <strong>Usuario:</strong> </td><td>'.$email.'</td> </tr>
         <tr> <td> <strong>Contraseña:</strong> </td><td>'.$clave.'</td> </tr>
     </table>
 </p>
