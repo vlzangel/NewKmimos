@@ -291,6 +291,15 @@ class Reservas {
             }else{
                 $id_cupon = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title='{$cupon[0]}' AND post_type='shop_coupon'");
                 $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', '_used_by', '{$this->user_id}');" ) );
+
+                $usage_count = $this->db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key LIKE 'usage_count'");
+                if( $usage_count != false ){
+                    $usage_count++;
+                    $this->db->query("UPDATE wp_postmeta SET meta_value = '{$usage_count}' WHERE post_id = {$id_cupon} AND meta_key LIKE 'usage_count'");
+                }else{
+                    $this->db->query("INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', 'usage_count', '1');");
+                }
+
             }
         }
 
