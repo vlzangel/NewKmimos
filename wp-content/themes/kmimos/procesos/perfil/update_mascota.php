@@ -25,7 +25,9 @@
 
 	$pet_birthdate = date('Y-m-d', strtotime( str_replace("/", "-", $pet_birthdate)));
 
-	kmimos_update_post_meta($pet_id, "pet_name", $pet_name);
+	kmimos_update_post_meta($pet_id, "pet_name", utf8_decode($pet_name));
+	kmimos_update_post_meta($pet_id, "name_pet", utf8_decode($pet_name));
+	
 	kmimos_update_post_meta($pet_id, "breed_pet", $pet_breed);
 	kmimos_update_post_meta($pet_id, "colors_pet", $pet_colors);
 	kmimos_update_post_meta($pet_id, "birthdate_pet", $pet_birthdate);
@@ -35,7 +37,7 @@
 	kmimos_update_post_meta($pet_id, "pet_sociable", $pet_sociable);
 	kmimos_update_post_meta($pet_id, "aggressive_with_humans", $aggresive_humans);
 	kmimos_update_post_meta($pet_id, "aggressive_with_pets", $aggresive_pets);
-	kmimos_update_post_meta($pet_id, "about_pet", $pet_observations);
+	kmimos_update_post_meta($pet_id, "about_pet", utf8_decode($pet_observations));
 	kmimos_update_post_meta($pet_id, "pet_type", $pet_type);
 
 	$sql  = "UPDATE wp_posts SET post_title = '{$pet_name}' WHERE ID = {$pet_id};";
