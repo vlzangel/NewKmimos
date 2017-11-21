@@ -283,7 +283,7 @@
                         '".$hoy."', 
                         '', 
                         0, 
-                        'http://www.kmimos.com.mx/petsitters/".$user_id."/', 
+                        '".get_region('web')."'/petsitters/".$user_id."/', 
                         0, 
                         'petsitters', 
                         '', 
@@ -322,7 +322,7 @@
 
                 // Envio de Email
                 $mail_msg = get_email_html($message_mail, false);
-                wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
+                wp_mail( $email, "Kmimos ".get_region('pais')." – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
 
                 // Respuesta
                 $error = array(

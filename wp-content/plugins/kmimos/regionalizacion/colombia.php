@@ -5,7 +5,8 @@ $region = array(
     "email"     => "contactoco@kmimos.la",
 
     "telefono" => " Bogota:+57 (1) 593 8719",
-    "telefono_sincosto" => "(01) 800 056 4667",
+    "telefono1" => " +57 (1) 593 8719",
+    "telefono_corrido" => "+5715938719",
     "whatsapp"=> "+57 318 350 2391", 
 
     "twitter"   => "kmimosco",
@@ -24,7 +25,8 @@ $region = array(
                 'Youtube'               =>  'Youtube',
                 'Otros'                 =>  'Otros'
             ),
-    "identidad" => "DNI"
+    "identidad" => "DNI",
+    "web" => "http://kmimos.co"
     );
 
 ?>
