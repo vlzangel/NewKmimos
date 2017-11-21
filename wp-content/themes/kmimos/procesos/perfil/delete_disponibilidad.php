@@ -33,8 +33,6 @@
         }
 
     }
-
-    $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio}' AND fecha >= '{$value["from"]}' AND fecha <= '{$value["to"]}'");
     
     $rangos = serialize($rangos_2);
     $db->query(" UPDATE wp_postmeta SET meta_value = '{$rangos}' WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ");
