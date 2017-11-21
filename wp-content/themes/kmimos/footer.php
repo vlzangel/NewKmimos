@@ -66,33 +66,6 @@ $HTML = '
                 </div>
             </div>
         </footer>
-
-        <div style="position: relative;">
-
-            <div id="galeria" style="position: absolute; top: 0px; left: 0px; z-index: 100; display: block; background-color: #CCC; padding: 0px; margin: 20px auto; border: solid 1px #CCC; border-radius: 4px; width: 600px;">
-                
-                <table width="600" height="495" background="'.getTema().'/images/prueba_galeria/fondo.png">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <img class="img_collage" id="img_table_0" src="'.getTema().'/images/prueba_galeria/nombres-de-perros.jpg">
-
-                            <img class="img_collage" id="img_table_1" src="'.getTema().'/images/prueba_galeria/caracteristicas-generales-de-los-perros.jpg">
-
-                            <img class="img_collage" id="img_table_2" src="'.getTema().'/images/prueba_galeria/los-perros-pandas.jpg">
-
-                            <img class="img_collage" id="img_table_3" src="'.getTema().'/images/prueba_galeria/nombres-de-perros.jpg">
-                        </td>
-                    </tr>
-                </table>
-                 
-            </div>
-
-
-
-        <div id="mostrar" style="position: absolute; top: 0px; left: 0px; display: inline-block; background-color: #FFF; padding: 0px; margin: 20px auto; border: solid 1px #CCC; border-radius: 4px; width: 600px; height: 500px; z-index: 999999999999999999999999999999;">
-        </div>
-
-        </div>
     ';
 }    
     echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';

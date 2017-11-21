@@ -27,10 +27,12 @@ function subirImgs(evt){
 
                                 jQuery("#img_container").append( d(
                                     "<div class='img_box'>"+
-                                        "<img src='"+img_reducida+"' class='img' id='img_subir_"+IMGS_CONT_INTERNO+"' >"+
-                                        '<i class="fa fa-minus img_quitar" aria-hidden="true"></i>'+
-                                        '<i class="fa fa-undo img_rotar_izq" data-id="img_subir_'+IMGS_CONT_INTERNO+'" aria-hidden="true"></i>'+
-                                        '<i class="fa fa-repeat img_rotar_der" data-id="img_subir_'+IMGS_CONT_INTERNO+'" aria-hidden="true"></i>'+
+                                        "<div class='img_box_interno'>"+
+                                            "<img src='"+img_reducida+"' class='img' id='img_subir_"+IMGS_CONT_INTERNO+"' data-index="+IMGS_CONT_INTERNO+" >"+
+                                            '<i class="fa fa-minus img_quitar" aria-hidden="true"></i>'+
+                                            '<i class="fa fa-undo img_rotar_izq" data-id="img_subir_'+IMGS_CONT_INTERNO+'" aria-hidden="true"></i>'+
+                                            '<i class="fa fa-repeat img_rotar_der" data-id="img_subir_'+IMGS_CONT_INTERNO+'" aria-hidden="true"></i>'+
+                                        "</div>"+
                                     "</div>"
                                 ) );
 
@@ -92,28 +94,48 @@ jQuery( document ).ready(function() {
 
     jQuery("#enviar_ico").on("click", function(e){
 
+        var IMGS = ""; var CONT = 1;
         jQuery( "#img_container img" ).each(function( index ) {
-            jQuery('#img_table_'+index).attr("src", jQuery(this).attr("src"));
+            IMGS += d( "<img src='"+jQuery(this).attr("src")+"' class='img' id='base_"+jQuery(this).attr("data-index")+"' >" );
+            CONT++;
         });
 
-        Div2IMG("galeria");
+        jQuery("#base").html( IMGS );
+
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        var img = document.getElementById("fondo");
+        ctx.drawImage(img, 0, 0, 600, 430);
+
+        jQuery( "#img_container img" ).each(function( index ) {
+            var img = document.getElementById( jQuery(this).attr("id") );
+            var i = jQuery(this).attr("data-index");
+            ctx.drawImage(
+                img, 
+                jQuery( "#base_"+i )[0].offsetLeft, 
+                jQuery( "#base_"+i )[0].offsetTop, 
+                jQuery( "#base_"+i )[0].offsetWidth, 
+                jQuery( "#base_"+i )[0].offsetHeight
+            );
+        });
+
+        cargar_imagenes();
 
     });
 });
 
 function cargar_imagenes(){
-    jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida}, function( url ) {
-        
-        console.log( IMGS );
-
+    var imgs = [];
+    jQuery( "#img_container img" ).each(function( index ) {
+        imgs.push( jQuery(this).attr("src") );
     });
-}
 
-function Div2IMG(divID){
-    html2canvas([document.getElementById(divID)], {
-        onrendered: function (canvas) {
-            var img = canvas.toDataURL('image/png');
-            jQuery("#mostrar").html('<img src="'+img+'"/>');
-        }
+    jQuery.post( HOME+"procesos/reservar/subir_fotos.php", {
+        imgs: imgs,
+        collage: jQuery( "#myCanvas" )[ 0 ].toDataURL("image/jpg"),
+        id_order: ID_ORDEN,
+        periodo: PERIODO
+    }, function( data ) {
+        console.log( data );
     });
 }
