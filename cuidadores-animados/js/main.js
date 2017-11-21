@@ -8,6 +8,7 @@ $(window).resize(function(){
   video_iframe();
 });
 
+
 function video_iframe(){
 
   if($(window).width()>800){  
