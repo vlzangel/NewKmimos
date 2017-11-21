@@ -1,0 +1,198 @@
+/* DEFAULT */
+body,span,div,input,textarea,section,nav,header,select {margin:0;border:0;padding:0;-moz-box-sizing: border-box;-webkit-box-sizing:border-box;box-sizing: border-box;font-family: 'Open Sans';letter-spacing: 0.3px;text-align: left;outline: none;}
+@-ms-viewport {width: device-width;}
+html{height: 100%;width:100%}body{width: 100%;height: 100%;overflow-x: hidden;overflow-y: auto;background-color: #fff;}
+
+/*//////////////////////////////////////////////////////
+>>>> UTILIDADES GENERALES
+//////////////////////////////////////////////////////*/
+
+.av /* ALINEACION VERTICAL */
+{
+	display: block;
+	position: relative;
+	top:50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.ac /* ALINEACION HORIZONTAL CENTRAL */
+{
+	left:50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+.al /* ALINEACION HORIZONTAL DESDE LA IZQUIERDA */
+{
+	left:0%;
+}
+.ar /* ALINEACION HORIZONTAL DESDE LA DERECHA */
+{
+	right:0%;
+}
+
+body {
+	line-height: 1;
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(left, #1AC8C8 0%, #12D9C8 100%);
+
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(left, #1AC8C8 0%, #12D9C8 100%);
+
+	/* Opera */ 
+	background-image: -o-linear-gradient(left, #1AC8C8 0%, #12D9C8 100%);
+
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #1AC8C8), color-stop(1, #12D9C8));
+
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(left, #1AC8C8 0%, #12D9C8 100%);
+
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to right, #1AC8C8 0%, #12D9C8 100%);
+}
+
+/*//////////////////////////////////////////////////////
+>>>> ESTILOS GENERALES
+//////////////////////////////////////////////////////*/
+
+#header{
+	width: 100%;
+	height: 20%;
+	min-height: 200px;
+	position: relative;
+	vertical-align: top;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	background-image: url(../../img/logo.png);
+	/*background-color: yellow;*/
+}
+
+#access{
+	width: 100%;
+	/*height: 80%;*/
+	min-height: 300px;
+	position: relative;
+	vertical-align: top;
+	display: inline-block;
+	/*background-color: blue;*/
+}
+
+
+
+
+	#access .panelMain{
+		width: 350px;
+		display: inline-block;
+		margin: 20px 0 0 0;
+		text-align: left;
+	}
+
+	#access .panelMain .titulo{
+		width: 100%;
+		padding: 10px 0 10px 20px;
+		text-align: left;
+		font-size: 25px;
+		color: #000;
+		font-weight: 300;
+	}
+
+	#access .panelMain .areaCampos{
+		width: 310px;
+		margin: 20px 0 20px 20px;
+		/*background-color: rgba(0,0,0,0.2);*/
+	}
+
+	.errorLog{
+		width: 100%;
+		padding: 5px;
+		background-color: #da4a38;
+		outline: none;
+		margin: 10px 0 10px 0;
+		padding: 10px 0;
+		font-size: 13px;
+		font-weight: 400;
+		color: #FFF;
+		border: 1px solid #c13424;
+		text-align: center;
+	}
+
+	#access .panelMain .areaCampos .campo{
+		width: 100%;
+		padding: 5px;
+		background-color: rgba(0,0,0,0);
+		outline: none;
+		margin: 0 0 20px 0;
+		padding: 10px 0;
+		font-size: 17px;
+		font-weight: 300;
+		color: #000;
+		border-bottom: 1px solid #FFF;
+		text-align: center;
+	}
+
+
+		#access .panelMain .areaCampos .campo::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		  color: #000;
+		  font-weight: 400;
+		}
+		#access .panelMain .areaCampos .campo::-moz-placeholder { /* Firefox 19+ */
+		  color: #000;
+		  font-weight: 400;
+		}
+		#access .panelMain .areaCampos .campo:-ms-input-placeholder { /* IE 10+ */
+		  color: #000;
+		  font-weight: 400;
+		}
+		#access .panelMain .areaCampos .campo:-moz-placeholder { /* Firefox 18- */
+		  color: #000;
+		  font-weight: 400;
+		}
+
+
+	#access .panelMain .areaCampos .submit{
+		width: 100%;
+		padding: 5px;
+		background-color:#f7234f;
+		outline: none;
+		margin: 10px 0 20px 0;
+		padding: 10px 0;
+		font-size: 17px;
+		color: #FFF;
+		font-weight: 300;
+		text-align: center;
+		cursor: pointer;
+	}
+
+		#access .panelMain .areaCampos .submit:hover{
+			background-color: #2a2a2b;
+		}
+
+
+#copy{
+	width: 50%;
+	/*background-color: red;*/
+	font-size: 14px;
+	font-weight: 400;
+	padding: 10px 0;
+	margin: 30px 0;
+	text-align: center;
+	color: rgba(0,0,0,0.8);
+}
+
+
+/*//////////////////////////////////////////////////////
+>>>> ESTILOS RESPONSIVE
+//////////////////////////////////////////////////////*/
+
+@media (max-width: 768px){
+
+	#header{background-size: contain;}
+	#access .panelMain{width: 90%;}
+	#access .panelMain .areaCampos{width: 90%;margin-left:5%;}
+
+    
+}
