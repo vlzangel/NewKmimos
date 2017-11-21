@@ -1285,6 +1285,7 @@
                             break;
                         }
                     }
+                    $data_mascota['birthdate_pet'][0] = str_replace("/", "-", $data_mascota['birthdate_pet'][0]);
                     $anio = strtotime($data_mascota['birthdate_pet'][0]);
                     $edad_time = strtotime(date("Y-m-d"))-$anio;
 
