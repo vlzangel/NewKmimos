@@ -1209,16 +1209,18 @@
                 if( $metas_orden["_cart_discount"][0]+0 > 0 ){
                     $deposito = $desglose['deposit']-$metas_orden["_cart_discount"][0];
                 }
-                $diferencia = 0;
             }else{
                 $deposito = $desglose['deposit'];
-                if( $metas_orden["_cart_discount"][0]+0 > 0 ){
-                    $diferencia = ( ($pago-($pago/1.2)) - $metas_orden["_cart_discount"][0] );
-                }
-
-                if( $diferencia < 0 ){ $diferencia *= -1; }else{ $diferencia = 0; }
             }
-            
+
+            $diferencia = 0;
+            $pago_descuentos = $desglose['deposit']+$metas_orden["_cart_discount"][0];
+            $comision = ($pago-($pago/1.2));
+
+            if( $comision < $pago_descuentos ){
+                $diferencia = $pago_descuentos-$comision;
+            }
+
             if( $metas_orden['_payment_method_title'][0] != "" ){
                 $pagado_con = $metas_orden['_payment_method_title'][0];
             }else{
