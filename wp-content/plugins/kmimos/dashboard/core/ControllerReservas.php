@@ -150,6 +150,7 @@ function getMascotas($user_id){
         $metas = get_post_meta($mascota->ID);
 
         $anio = $metas["birthdate_pet"][0];
+        $anio = str_replace("/", "-", $anio);
         $anio = strtotime($anio);
         $edad_time = time()-$anio;
         $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";

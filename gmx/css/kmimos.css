@@ -1,3 +1,6 @@
+@font-face {font-family: 'PoetsenOne';src: url('../font/PoetsenOne-Regular.ttf')  format('truetype');}
+@font-face {font-family: 'CaviarDreams';src: url('../font/CaviarDreams.ttf')  format('truetype');}
+@font-face {font-family: 'CaviarDreamsBold';src: url('../font/CaviarDreams_Bold.ttf')  format('truetype');}
 section{clear: both;}
 strong{font-weight: 900;}
 
@@ -12,15 +15,20 @@ strong{font-weight: 900;}
 .simple-white{
   color: white;
   font-size: 44px;
+	font-family: "CaviarDreamsBold", sans-serif;
 }
 .simple-black{
 	font-size: 44px;
+	font-family: "CaviarDreams", sans-serif;
 }
 a{
 	text-decoration: none;
 }
 a:hover{
 	text-decoration: none;
+}
+.arrow-img{
+	width: 5%;
 }
 
 /***************************************/
@@ -222,7 +230,7 @@ a:hover{
 	font-size: 50px;
 }
 .beneficios-arrow{
-	margin-top: 7%;
+	margin-top: 6%;
 	margin-left: 0;
 }
 
@@ -335,7 +343,7 @@ button{
 	border: none;
 	color: purple;
 	padding: 10px 20px;
-	margin-left: -1%;
+	margin-left: -2%;
 }
 input{
 	padding: 8px 10px;
@@ -350,4 +358,863 @@ input{
 .servicios-text{
 	color: black;
 	font-size: 12px;
+}
+
+/***************************************/
+/*  Media                              */
+/***************************************/
+@media (min-width: 280px) and (max-width: 380px){
+	/* Global */
+	.simple-white{
+		font-size: 14px;
+	}
+	.simple-black{
+		font-size: 14px;
+	}
+	.arrow-img{
+		width: 7%;
+	}
+	/* Section-1 */
+	#section-1{
+		height: 646px;
+	}
+	.header-img{
+		width: 126px;
+	}
+	.medipet{
+		font-size: 60.2px;
+		margin-top: -40.4px;
+		margin-bottom: -5.6px;
+	}
+	.header-text{
+		padding-top: 336px;
+	}
+	.header-btn{
+		margin-top: 11.2px;
+	}
+	.button{
+		padding: 11.2px 8.4px;
+		font-size: 12.3px;
+	}
+	.header-logo{
+		margin-top: 5.6px;
+	}
+	.kmimos-logo{
+		margin-top: 11.2px;
+	}
+	.header-arrow{
+		margin-top: 10.8px;
+	}
+
+	/* Section-2 */
+	#section-2{
+		height: 490px;
+	}
+	.cobertura-text-header{
+		font-size: 15.4px;
+	}
+	.cobertura-arrow{
+		margin-top: 4%;
+	}
+	.cobertura-text-body-1{
+		margin-top: -5%;
+		margin-left: 28%;
+	}
+	.cobertura-text-body-2{
+		margin-top: -7%;
+		margin-left: 28%;
+	}
+	.cobertura-text-body-3{
+		margin-top: -4%;
+		margin-left: 28%;
+	}
+
+	/* Section-3 */
+	#section-3{
+		height: 642px;
+	}
+	.beneficios-arrow{
+		margin-top: 4%;
+	}
+	.beneficios-text-body-1{
+		margin-top: -3%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-2{
+		margin-top: -5%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-3{
+		margin-top: -4%;
+		margin-left: 24%;
+	}
+	.beneficios-text-body-4{
+		margin-top: -7%;
+		margin-left: 16%;
+	}
+
+	/* Section-4 */
+	.contratar-text-body-1{
+		margin-top: -5%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-2{
+		margin-top: -5%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-3{
+		margin-top: -4%;
+		margin-left: 20%;
+	}
+
+	/* Section-5 */
+	#section-5{
+		height: 252px;
+	}
+	.contrataYa{
+		padding-top: 130.2px;
+	}
+	.contrata-btn{
+		padding: 11.2px 14px;
+		font-size: 12.3px;
+	}
+
+	/* Section-6 */
+	.inscribete{
+		float: none;
+		margin-left: 2%;
+	}
+	.inscribete-header{
+		font-size: 16px;
+		margin-top: 2%;
+	}
+	.inscribete-text{
+		font-size: 12px;
+	}
+	.servicios-header{
+		font-size: 16px;
+	}
+	.servicios-text{
+		font-size: 12px;
+	}
+	button{
+		padding: 2.8px 5.6px;
+		font-size: 12px;
+		margin-left: -3.5%;
+	}
+	input{
+		padding: 1.2px 2.8px;
+		font-size: 12px;
+	}
+	.left{
+		float: none;
+		margin-left: 2%;
+		margin-top: 6%;
+	}
+}
+@media (min-width: 381px) and (max-width: 480px){
+	/* Global */
+	.simple-white{
+		font-size: 17px;
+	}
+	.simple-black{
+		font-size: 17px;
+	}
+	.arrow-img{
+		width: 7%;
+	}
+	/* Section-1 */
+	#section-1{
+		height: 790px;
+	}
+	.header-img{
+		width: 157.5px;
+	}
+	.medipet{
+		font-size: 75.25px;
+		margin-top: -40.4px;
+		margin-bottom: -7px;
+	}
+	.header-text{
+		padding-top: 420px;
+	}
+	.header-btn{
+		margin-top: 14px;
+	}
+	.button{
+		padding: 14px 10.5px;
+		font-size: 15.4px;
+	}
+	.header-logo{
+		margin-top: 7px;
+	}
+	.kmimos-logo{
+		margin-top: 14px;
+	}
+	.header-arrow{
+		margin-top: 10.8px;
+	}
+
+	/* Section-2 */
+	#section-2{
+		height: 612.5px;
+	}
+	.cobertura-text-header{
+		font-size: 19.25px;
+	}
+	.cobertura-arrow{
+		margin-top: 8%;
+	}
+	.cobertura-text-body-1{
+		margin-top: -3%;
+		margin-left: 28%;
+	}
+	.cobertura-text-body-2{
+		margin-top: -5%;
+		margin-left: 32%;
+	}
+	.cobertura-text-body-3{
+		margin-top: -3%;
+		margin-left: 32%;
+	}
+
+	/* Section-3 */
+	#section-3{
+		height: 705px;
+	}
+	.beneficios-arrow{
+		margin-top: 4%;
+	}
+	.beneficios-text-body-1{
+		margin-top: -3%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-2{
+		margin-top: -5%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-3{
+		margin-top: -4%;
+		margin-left: 26%;
+	}
+	.beneficios-text-body-4{
+		margin-top: -7%;
+		margin-left: 20%;
+	}
+
+	/* Section-4 */
+	.contratar-text-body-1{
+		margin-top: -5%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-2{
+		margin-top: -5%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-3{
+		margin-top: -4%;
+		margin-left: 20%;
+	}
+
+	/* Section-5 */
+	#section-5{
+		height: 315px;
+	}
+	.contrataYa{
+		padding-top: 169px;
+	}
+	.contrata-btn{
+		padding: 11.2px 14px;
+		font-size: 12.3px;
+	}
+
+	/* Section-6 */
+	.inscribete{
+		float: none;
+		margin-left: 2%;
+	}
+	.inscribete-header{
+		font-size: 20px;
+	}
+	.inscribete-text{
+		font-size: 16px;
+	}
+	.servicios-header{
+		font-size: 16px;
+	}
+	.servicios-text{
+		font-size: 12px;
+	}
+	button{
+		padding: 3.5px 7px;
+		font-size: 14px;
+		margin-left: -2.5%;
+	}
+	input{
+		padding: 1.6px 3.5px;
+		font-size: 14px;
+	}
+	.left{
+		float: none;
+		margin-left: 2%;
+		margin-top: 6%;
+	}
+}
+@media (min-width: 481px) and (max-width: 580px){
+	/* Global */
+	.simple-white{
+		font-size: 20px;
+	}
+	.simple-black{
+		font-size: 20px;
+	}
+	.arrow-img{
+		width: 8%;
+	}
+	/* Section-1 */
+	#section-1{
+		height: 966px;
+	}
+	.header-img{
+		width: 193.5px;
+	}
+	.medipet{
+		font-size: 92.45px;
+		margin-top: -34.4px;
+		margin-bottom: -8.6px;
+	}
+	.header-text{
+		padding-top: 516px;
+	}
+	.header-btn{
+		margin-top: 17.2px;
+	}
+	.button{
+		padding: 17.2px 12.9px;
+		font-size: 18.9px;
+	}
+	.header-logo{
+		margin-top: 8.6px;
+	}
+	.kmimos-logo{
+		margin-top: 17.2px;
+	}
+	.header-arrow{
+		margin-top: 10.8px;
+	}
+
+	/* Section-2 */
+	#section-2{
+		height: 752.5px;
+	}
+	.cobertura-text-header{
+		font-size: 23.65px;
+	}
+	.cobertura-arrow{
+		margin-top: 8%;
+	}
+	.cobertura-text-body-1{
+		margin-top: -2%;
+		margin-left: 28%;
+	}
+	.cobertura-text-body-2{
+		margin-top: -3%;
+		margin-left: 32%;
+	}
+	.cobertura-text-body-3{
+		margin-top: -2%;
+		margin-left: 32%;
+	}
+
+	/* Section-3 */
+	#section-3{
+		height: 907px;
+	}
+	.beneficios-arrow{
+		margin-top: 4%;
+	}
+	.beneficios-text-body-1{
+		margin-top: -1%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-2{
+		margin-top: -3%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-3{
+		margin-top: -2%;
+		margin-left: 26%;
+	}
+	.beneficios-text-body-4{
+		margin-top: -5%;
+		margin-left: 20%;
+	}
+
+	/* Section-4 */
+	.contratar-text-body-1{
+		margin-top: -3%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-2{
+		margin-top: -3%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-3{
+		margin-top: -2%;
+		margin-left: 20%;
+	}
+
+	/* Section-5 */
+	#section-5{
+		height: 387px;
+	}
+	.contrataYa{
+		padding-top: 212.2px;
+	}
+	.contrata-btn{
+		padding: 17.2px 21.5px;
+		font-size: 18.9px;
+	}
+
+	/* Section-6 */
+	.inscribete{
+		float: none;
+		margin-left: 2%;
+	}
+	.inscribete-header{
+		font-size: 24px;
+	}
+	.inscribete-text{
+		font-size: 20px;
+	}
+	.servicios-header{
+		font-size: 16px;
+	}
+	.servicios-text{
+		font-size: 12px;
+	}
+	button{
+		padding: 4.3px 8.6px;
+		font-size: 20px;
+		margin-left: -2%;
+	}
+	input{
+		padding: 2px 4.3px;
+		font-size: 20px;
+	}
+	.left{
+		float: none;
+		margin-left: 2%;
+		margin-top: 6%;
+	}
+}
+@media (min-width: 581px) and (max-width: 765px){
+	/* Global */
+	.simple-white{
+		font-size: 28px;
+	}
+	.simple-black{
+		font-size: 28px;
+	}
+	.arrow-img{
+		width: 8%;
+	}
+	/* Section-1 */
+	#section-1{
+		height: 1262px;
+	}
+	.header-img{
+		width: 252px;
+	}
+	.medipet{
+		font-size: 120.4px;
+		margin-top: -44.8px;
+		margin-bottom: -11.2px;
+	}
+	.header-text{
+		padding-top: 672px;
+	}
+	.header-btn{
+		margin-top: 22.4px;
+	}
+	.button{
+		padding: 22.4px 16.8px;
+		font-size: 24.64px;
+	}
+	.header-logo{
+		margin-top: 11.2px;
+	}
+	.kmimos-logo{
+		margin-top: 22.4px;
+	}
+	.header-arrow{
+		margin-top: 10.8px;
+	}
+
+	/* Section-2 */
+	#section-2{
+		height: 980px;
+	}
+	.cobertura-text-header{
+		font-size: 30.8px;
+	}
+	.cobertura-arrow{
+		margin-top: 8%;
+	}
+	.cobertura-text-body-1{
+		margin-top: -2%;
+		margin-left: 28%;
+	}
+	.cobertura-text-body-2{
+		margin-top: -3%;
+		margin-left: 32%;
+	}
+	.cobertura-text-body-3{
+		margin-top: -2%;
+		margin-left: 32%;
+	}
+
+	/* Section-3 */
+	#section-3{
+		height: 1124px;
+	}
+	.beneficios-arrow{
+		margin-top: 4%;
+	}
+	.beneficios-text-body-1{
+		margin-top: -1%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-2{
+		margin-top: -3%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-3{
+		margin-top: -2%;
+		margin-left: 26%;
+	}
+	.beneficios-text-body-4{
+		margin-top: -5%;
+		margin-left: 20%;
+	}
+
+	/* Section-4 */
+	.contratar-text-body-1{
+		margin-top: -3%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-2{
+		margin-top: -3%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-3{
+		margin-top: -2%;
+		margin-left: 20%;
+	}
+
+	/* Section-5 */
+	#section-5{
+		height: 504px;
+	}
+	.contrataYa{
+		padding-top: 302.4px;
+	}
+	.contrata-btn{
+		padding: 22.4px 28px;
+		font-size: 24.64px;
+	}
+
+	/* Section-6 */
+	.inscribete{
+		float: none;
+		margin-left: 2%;
+	}
+	.inscribete-header{
+		font-size: 24px;
+	}
+	.inscribete-text{
+		font-size: 20px;
+	}
+	.servicios-header{
+		font-size: 16px;
+	}
+	.servicios-text{
+		font-size: 12px;
+	}
+	button{
+		padding: 5.6px 11.2px;
+		font-size: 24px;
+		margin-left: -1.8%;
+	}
+	input{
+		padding: 3.4px 5.6px;
+		font-size: 24px;
+	}
+	.left{
+		float: none;
+		margin-left: 2%;
+		margin-top: 6%;
+	}
+}
+@media (min-width: 766px) and (max-width: 999px){
+	/* Global */
+	.simple-white{
+		font-size: 34px;
+	}
+	.simple-black{
+		font-size: 34px;
+	}
+	.arrow-img{
+		width: 8%;
+	}
+	/* Section-1 */
+	#section-1{
+		height: 1646px;
+	}
+	.header-img{
+		width: 328.5px;
+	}
+	.medipet{
+		font-size: 156.95px;
+		margin-top: -58.4px;
+		margin-bottom: -14.6px;
+	}
+	.header-text{
+		padding-top: 876px;
+	}
+	.header-btn{
+		margin-top: 29.2px;
+	}
+	.button{
+		padding: 29.2px 21.9px;
+		font-size: 32.12px;
+	}
+	.header-logo{
+		margin-top: 14.6px;
+	}
+	.kmimos-logo{
+		margin-top: 29.2px;
+	}
+	.header-arrow{
+		margin-top: 10.8px;
+	}
+
+	/* Section-2 */
+	#section-2{
+		height: 1277.5px;
+	}
+	.cobertura-text-header{
+		font-size: 40.15px;
+	}
+	.cobertura-arrow{
+		margin-top: 8%;
+	}
+	.cobertura-text-body-1{
+		margin-top: -1%;
+	}
+	.cobertura-text-body-2{
+		margin-top: -3%;
+	}
+	.cobertura-text-body-3{
+		margin-top: 0%;
+	}
+
+	/* Section-3 */
+	#section-3{
+		height: 1487px;
+	}
+	.beneficios-arrow{
+		margin-top: 8%;
+	}
+	.beneficios-text-body-1{
+		margin-top: 0%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-2{
+		margin-top: -1%;
+		margin-left: 20%;
+	}
+	.beneficios-text-body-3{
+		margin-top: -1%;
+		margin-left: 26%;
+	}
+	.beneficios-text-body-4{
+		margin-top: -4%;
+		margin-left: 20%;
+	}
+
+	/* Section-4 */
+	.contratar-text-body-1{
+		margin-top: -1%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-2{
+		margin-top: -1%;
+		margin-left: 20%;
+	}
+	.contratar-text-body-3{
+		margin-top: 0%;
+		margin-left: 20%;
+	}
+
+	/* Section-5 */
+	#section-5{
+		height: 657px;
+	}
+	.contrataYa{
+		padding-top: 394.2px;
+	}
+	.contrata-btn{
+		padding: 29.2px 36.5px;
+		font-size: 32.12px;
+	}
+
+	/* Section-6 */
+	.inscribete-header{
+		font-size: 10.95px;
+	}
+	.inscribete-text{
+		font-size: 8.76px;
+	}
+	.servicios-header{
+		font-size: 10.95px;
+	}
+	.servicios-text{
+		font-size: 8.76px;
+	}
+	button{
+		padding: 7.3px 14.6px;
+		font-size: 10.95px;
+		margin-left: -1.2%;
+	}
+	input{
+		padding: 4.8px 7.3px;
+		font-size: 10.95px;
+	}
+}
+@media (min-width: 1280px){
+	/* Global */
+	.simple-white{
+		font-size: 41.36px;
+	}
+	.simple-black{
+		font-size: 41.36px;
+	}
+	/* Section-1 */
+	#section-1{
+		height: 2068px;
+	}
+	.header-img{
+		width: 423px;
+	}
+	.medipet{
+		font-size: 202.1px;
+		margin-top: -75.2px;
+		margin-bottom: -18.8px;
+	}
+	.header-text{
+		padding-top: 1128px;
+	}
+	.header-btn{
+		margin-top: 37.6px;
+	}
+	.button{
+		padding: 37.6px 28.2px;
+		font-size: 41.36px;
+	}
+	.header-logo{
+		margin-top: 18.8px;
+	}
+	.kmimos-logo{
+		margin-top: 37.6px;
+	}
+	.header-arrow{
+		margin-top: 10.8px;
+	}
+
+	/* Section-2 */
+	#section-2{
+		height: 1645px;
+	}
+	.cobertura-text-header{
+		font-size: 51.7px;
+	}
+	.cobertura-arrow{
+		margin-top: 8%;
+	}
+	.cobertura-text-body-1{
+		margin-top: -1%;
+	}
+	.cobertura-text-body-2{
+		margin-top: -3%;
+	}
+	.cobertura-text-body-3{
+		margin-top: 0%;
+	}
+
+	/* Section-3 */
+	#section-3{
+		height: 1850px;
+	}
+	.beneficios-arrow{
+		margin-top: 8%;
+	}
+	.beneficios-text-body-1{
+		margin-top: 0%;
+	}
+	.beneficios-text-body-2{
+		margin-top: -1%;
+	}
+	.beneficios-text-body-3{
+		margin-top: -1%;
+	}
+	.beneficios-text-body-4{
+		margin-top: -4%;
+	}
+
+	/* Section-4 */
+	.contratar-text-body-1{
+		margin-top: -1%;
+	}
+	.contratar-text-body-2{
+		margin-top: -1%;
+	}
+	.contratar-text-body-3{
+		margin-top: 0%;
+	}
+
+	/* Section-5 */
+	#section-5{
+		height: 846px;
+	}
+	.contrataYa{
+		padding-top: 507.6px;
+	}
+	.contrata-btn{
+		padding: 37.6px 47px;
+		font-size: 41.36px;
+	}
+
+	/* Section-6 */
+	.inscribete-header{
+		font-size: 14.1px;
+	}
+	.inscribete-text{
+		font-size: 11.28px;
+	}
+	.servicios-header{
+		font-size: 14.1px;
+	}
+	.servicios-text{
+		font-size: 11.28px;
+	}
+	button{
+		padding: 9.4px 18.8px;
+		font-size: 14.1px;
+		margin-left: -0.8%;
+	}
+	input{
+		padding: 7.2px 9.4px;
+		font-size: 14.1px;
+	}
 }
