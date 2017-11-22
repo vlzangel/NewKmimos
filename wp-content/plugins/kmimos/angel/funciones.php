@@ -116,6 +116,8 @@
                 }
             }
 
+            $autor_user_id = $wpdb->get_var("SELECT post_author FROM $wpdb->posts WHERE ID = '".$servicio."'");
+
             for ($i=$inicio; $i < ($fin-86399); $i+=86400) { 
                 $fecha = date("Y-m-d", $i);
                 $full = 0;
@@ -130,7 +132,7 @@
                     $sql = "
                         INSERT INTO cupos VALUES (
                             NULL,
-                            '{$autor}',
+                            '{$autor_user_id}',
                             '{$servicio}',
                             '{$tipo}',
                             '{$fecha}',
