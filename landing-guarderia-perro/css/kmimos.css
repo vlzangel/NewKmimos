@@ -86,6 +86,9 @@ strong{font-weight: 900;}
 .top-row{
   margin-top: 50px;
 }
+.bot-row{
+  margin-top: 50px;
+}
 .info{
   display: inline-block;
   float: left;
@@ -197,4 +200,242 @@ strong{font-weight: 900;}
 }
 .promesa-bold{
   font-size: 40px;
+}
+
+/***************************************/
+/*  Media                              */
+/***************************************/
+@media (min-width: 280px) and (max-width: 380px) {
+	/*Global*/
+	.simple-black{font-size: 25px; line-height: 115%;}
+	.simple-purple{font-size: 20px;}
+	.button{margin-top: 2%; font-size: 17px; padding: 15px 30px;}
+	/*Section 1*/
+	#section-1{height: 50px;}
+	.cabecera{margin-top: 3%; margin-right: 8%;}
+	.cabecera-img{width: 25%;}
+	/*Section 2*/
+	#section-2{height: 300px;}
+	/*Section 3*/
+	.header-text{margin-top: 2%}
+	/*Section 4*/
+	.top-row{margin-top: 40px;}
+	.bot-row{margin-top: 0px;}
+	.info{float: none; width: 80%;margin-left: 10%; margin-bottom: 20px;}
+	.info-img-1{width: 50%;}
+	.info-img-2{width: 48%;}
+	.info-img-3{width: 46%;}
+	.info-img-4{width: 50%;}
+	.info-text{font-size: 20px;}
+	.separador{height: 2px; margin-bottom: 20px;}
+	/*Section 5*/
+	#section-5{height: 120px;}
+	.reserva-separador{padding-top: 22px;}
+	.separador-text{font-size: 25px;}
+	/*Section 6*/
+	.reserva{float:none; display: block; width: 100%; margin-left: 0%;}
+	.reserva-img-num-1{left: 12%; width: 13%;}
+	.reserva-img-num-2{left: 12%; width: 13%;}
+	.reserva-img-num-3{left: 12%; width: 13%;}
+	/*Section 7*/
+	.embed-responsive{width: 80%; height: 200px; left: 10%; margin-top: 10%;}
+	/*Section 8*/
+	#section-8{height: 300px; margin-top: 220px;}
+	.promesa-text{padding-top: 50px; font-size: 20px;}
+	.promesa-bold{font-size: 24px;}
+}
+@media (min-width: 381px) and (max-width: 480px) {
+	/*Global*/
+	.simple-black{font-size: 25px; line-height: 115%;}
+	.simple-purple{font-size: 20px;}
+	.button{margin-top: 2%; font-size: 17px; padding: 15px 30px;}
+	/*Section 1*/
+	#section-1{height: 60px;}
+	.cabecera{margin-top: 3%; margin-right: 8%;}
+	.cabecera-img{width: 25%;}
+	/*Section 2*/
+	#section-2{height: 300px;}
+	/*Section 3*/
+	.header-text{margin-top: 2%}
+	/*Section 4*/
+	.top-row{margin-top: 40px;}
+	.bot-row{margin-top: 0px;}
+	.info{float: none; width: 80%;margin-left: 10%; margin-bottom: 20px;}
+	.info-img-1{width: 50%;}
+	.info-img-2{width: 48%;}
+	.info-img-3{width: 46%;}
+	.info-img-4{width: 50%;}
+	.info-text{font-size: 20px;}
+	.separador{height: 2px; margin-bottom: 20px;}
+	/*Section 5*/
+	#section-5{height: 120px;}
+	.reserva-separador{padding-top: 22px;}
+	.separador-text{font-size: 25px;}
+	/*Section 6*/
+	.reserva{float:none; display: block; width: 100%; margin-left: 0%;}
+	.reserva-img-num-1{left: 12%; width: 13%;}
+	.reserva-img-num-2{left: 12%; width: 13%;}
+	.reserva-img-num-3{left: 12%; width: 13%;}
+	/*Section 7*/
+	.embed-responsive{width: 80%; height: 200px; left: 10%; margin-top: 10%;}
+	/*Section 8*/
+	#section-8{height: 300px; margin-top: 220px;}
+	.promesa-text{padding-top: 50px; font-size: 20px;}
+	.promesa-bold{font-size: 24px;}
+}
+@media (min-width: 481px) and (max-width: 580px) {
+	/*Global*/
+	.simple-black{font-size: 28px; line-height: 115%;}
+	.simple-purple{font-size: 24px;}
+	.button{margin-top: 2%; font-size: 20px; padding: 15px 30px;}
+	/*Section 1*/
+	#section-1{height: 80px;}
+	.cabecera{margin-top: 3%; margin-right: 8%;}
+	.cabecera-img{width: 25%;}
+	/*Section 2*/
+	#section-2{height: 400px;}
+	/*Section 3*/
+	.header-text{margin-top: 2%}
+	/*Section 4*/
+	.top-row{margin-top: 40px;}
+	.bot-row{margin-top: 0px;}
+	.info{float: none; width: 80%;margin-left: 10%; margin-bottom: 20px;}
+	.info-img-1{width: 50%;}
+	.info-img-2{width: 48%;}
+	.info-img-3{width: 46%;}
+	.info-img-4{width: 50%;}
+	.info-text{font-size: 25px;}
+	.separador{height: 2px; margin-bottom: 20px;}
+	/*Section 5*/
+	#section-5{height: 120px;}
+	.reserva-separador{padding-top: 18px;}
+	.separador-text{font-size: 30px;}
+	/*Section 6*/
+	.reserva{float:none; display: block; width: 100%; margin-left: 0%;}
+	.reserva-img-num-1{left: 12%; width: 13%;}
+	.reserva-img-num-2{left: 12%; width: 13%;}
+	.reserva-img-num-3{left: 12%; width: 13%;}
+	/*Section 7*/
+	.embed-responsive{width: 80%; height: 350px; left: 10%; margin-top: 10%;}
+	/*Section 8*/
+	#section-8{height: 500px; margin-top: 380px;}
+	.promesa-text{padding-top: 150px; font-size: 30px;}
+	.promesa-bold{font-size: 34px;}
+}
+@media (min-width: 581px) and (max-width: 765px) {
+	/*Global*/
+	.simple-black{font-size: 30px; line-height: 115%;}
+	.simple-purple{font-size: 35px;}
+	.button{margin-top: 2%; font-size: 30px; padding: 15px 30px;}
+	/*Section 1*/
+	#section-1{height: 100px;}
+	.cabecera{margin-top: 3%; margin-right: 8%;}
+	.cabecera-img{width: 25%;}
+	/*Section 2*/
+	#section-2{height: 500px;}
+	/*Section 3*/
+	.header-text{margin-top: 2%}
+	/*Section 4*/
+	.top-row{margin-top: 40px;}
+	.bot-row{margin-top: 0px;}
+	.info{float: none; width: 80%;margin-left: 10%; margin-bottom: 20px;}
+	.info-img-1{width: 50%;}
+	.info-img-2{width: 48%;}
+	.info-img-3{width: 46%;}
+	.info-img-4{width: 50%;}
+	.info-text{font-size: 30px;}
+	.separador{height: 2px; margin-bottom: 20px;}
+	/*Section 5*/
+	#section-5{height: 150px;}
+	.reserva-separador{padding-top: 20px;}
+	.separador-text{font-size: 35px;}
+	/*Section 6*/
+	.reserva{float:none; display: block; width: 80%; margin-left: 10%;}
+	.reserva-img-num-1{left: 12%; width: 13%;}
+	.reserva-img-num-2{left: 12%; width: 13%;}
+	.reserva-img-num-3{left: 12%; width: 13%;}
+	/*Section 7*/
+	.embed-responsive{width: 80%; height: 450px; left: 10%; margin-top: 10%;}
+	/*Section 8*/
+	#section-8{height: 500px; margin-top: 480px;}
+	.promesa-text{padding-top: 100px; font-size: 35px;}
+	.promesa-bold{font-size: 38px;}
+}
+@media (min-width: 766px) and (max-width: 999px) {
+	/*Global*/
+	.simple-black{font-size: 30px; line-height: 115%;}
+	.simple-purple{font-size: 35px;}
+	.button{margin-top: 2%; font-size: 30px; padding: 15px 30px;}
+	/*Section 1*/
+	#section-1{height: 110px;}
+	.cabecera{margin-top: 3%; margin-right: 8%;}
+	.cabecera-img{width: 25%;}
+	/*Section 2*/
+	#section-2{height: 500px;}
+	/*Section 3*/
+	.header-text{margin-top: 2%}
+	/*Section 4*/
+	.top-row{margin-top: 40px;}
+	.bot-row{margin-top: 0px;}
+	.info{float: none; width: 80%;margin-left: 10%; margin-bottom: 20px;}
+	.info-img-1{width: 50%;}
+	.info-img-2{width: 48%;}
+	.info-img-3{width: 46%;}
+	.info-img-4{width: 50%;}
+	.info-text{font-size: 30px;}
+	.separador{height: 2px; margin-bottom: 20px;}
+	/*Section 5*/
+	#section-5{height: 150px;}
+	.reserva-separador{padding-top: 50px;}
+	.separador-text{font-size: 35px;}
+	/*Section 6*/
+	.reserva{float:none; display: block; width: 80%; margin-left: 10%;}
+	.reserva-img-num-1{left: 12%; width: 13%;}
+	.reserva-img-num-2{left: 12%; width: 13%;}
+	.reserva-img-num-3{left: 12%; width: 13%;}
+	/*Section 7*/
+	.embed-responsive{width: 80%; height: 450px; left: 10%; margin-top: 10%;}
+	/*Section 8*/
+	#section-8{height: 500px; margin-top: 480px;}
+	.promesa-text{padding-top: 100px; font-size: 35px;}
+	.promesa-bold{font-size: 38px;}
+}
+@media (min-width: 1000px) and (max-width: 1280px){
+	/*Global*/
+	.simple-black{font-size: 30px; line-height: 115%;}
+	.simple-purple{font-size: 35px;}
+	.button{margin-top: 2%; font-size: 30px; padding: 15px 30px;}
+	/*Section 1*/
+	#section-1{height: 110px;}
+	.cabecera{margin-top: 3%; margin-right: 8%;}
+	.cabecera-img{width: 25%;}
+	/*Section 2*/
+	#section-2{height: 500px;}
+	/*Section 3*/
+	.header-text{margin-top: 2%}
+	/*Section 4*/
+	.top-row{margin-top: 40px;}
+	.bot-row{margin-top: 0px;}
+	.info{float: none; width: 80%;margin-left: 10%; margin-bottom: 20px;}
+	.info-img-1{width: 50%;}
+	.info-img-2{width: 48%;}
+	.info-img-3{width: 46%;}
+	.info-img-4{width: 50%;}
+	.info-text{font-size: 30px;}
+	.separador{height: 2px; margin-bottom: 20px;}
+	/*Section 5*/
+	#section-5{height: 150px;}
+	.reserva-separador{padding-top: 50px;}
+	.separador-text{font-size: 35px;}
+	/*Section 6*/
+	.reserva{float:none; display: block; width: 80%; margin-left: 10%;}
+	.reserva-img-num-1{left: 12%; width: 13%;}
+	.reserva-img-num-2{left: 12%; width: 13%;}
+	.reserva-img-num-3{left: 12%; width: 13%;}
+	/*Section 7*/
+	.embed-responsive{width: 80%; height: 450px; left: 10%; margin-top: 10%;}
+	/*Section 8*/
+	#section-8{height: 500px; margin-top: 480px;}
+	.promesa-text{padding-top: 100px; font-size: 35px;}
+	.promesa-bold{font-size: 38px;}
 }
