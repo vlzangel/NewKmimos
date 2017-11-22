@@ -57,8 +57,6 @@ function guardar_disponibilidad(){
         alert("Debes seleccionar las fechas primero");
     }else{
 
-        console.log( "Prueba" );
-
         jQuery.post(
             URL_PROCESOS_PERFIL, 
             {
@@ -69,8 +67,7 @@ function guardar_disponibilidad(){
                 accion: "new_disponibilidad"
             },
             function(data){
-                console.log(data);
-                //location.reload();
+                location.reload();
             }
         );
     }
