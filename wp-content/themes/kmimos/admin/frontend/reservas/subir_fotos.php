@@ -25,16 +25,25 @@
 
     global $wpdb;
 
-    echo "SELECT * FROM fotos WHERE reserva = {$ID_RESERVA} AND fecha = '{$hoy}' ";
+    $inicio = get_post_meta($ID_RESERVA, "_booking_start", true);
+
     $actual = $wpdb->get_row("SELECT * FROM fotos WHERE reserva = {$ID_RESERVA} AND fecha = '{$hoy}' ");
 
     if( $periodo_corto == 1 && $actual->subio_12 == 1 ){
-    	$error = "Su proximo envio de fotos es a partir de la 01:00 pm";
+    	$error = "Su próximo envío de fotos para la reserva <strong>{$ID_RESERVA}</strong> es a partir de la 01:00 pm.";
     }
 
     if( $periodo_corto == 2 && $actual->subio_06 == 1 ){
     	$error = "Usted ya ha enviado las fotos del día de hoy.";
     }
+
+    if( $xhora_actual+0 >= 18 && $error == "" ){
+    	$error = "El periodo de carga de fotos del día de hoy ha finalizado.";
+    }
+
+    if( strtotime( $inicio ) > time() ){
+		$error = "Este módulo se habilitará cuando el periodo de la reserva inicie.";
+	}
 
     if( $error != "" ){
     	$CONTENIDO = '
@@ -42,6 +51,13 @@
 
 				<div class="img_container" >
 					'.$error.'
+				</div>
+
+				<div class="botones_container"> 
+					<a href="'.get_home_url().'/perfil-usuario/reservas/" class="boton"> 
+						<i id="enviar_ico" class="fa fa-chevron-left" aria-hidden="true"></i> 
+						<span>Volver</span>
+					</a>
 				</div>
 
 			</div>
@@ -62,7 +78,7 @@
 
 				<img id="fondo" src="'.getTema().'/images/prueba_galeria/fondo.png" />
 
-				<canvas id="myCanvas" width="600" height="430" ></canvas>
+				<canvas id="myCanvas" width="600" height="495" ></canvas>
 
 				<div class="img_container" >
 					Cargar im&aacute;genes del <strong>'.date("d/m/Y").'</strong> que se enviaran a las <strong>'.$hora.'</strong>
@@ -82,7 +98,7 @@
 				</div>
 
 				<div id="base_table" style="display: inline-block; background-color: #CCC; padding: 0px; margin: 20px; border: solid 1px #CCC; border-radius: 4px;">
-					<table width="600" height="430">
+					<table width="600" height="495">
 						<tr><td align="center" valign="middle" id="base"></td></tr>
 					</table>
 				</div>

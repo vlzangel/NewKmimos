@@ -28,7 +28,7 @@ function subirImgs(evt){
                                 jQuery("#img_container").append( d(
                                     "<div class='img_box'>"+
                                         "<div class='img_box_interno'>"+
-                                            "<img src='"+img_reducida+"' class='img' id='img_subir_"+IMGS_CONT_INTERNO+"' data-index="+IMGS_CONT_INTERNO+" >"+
+                                            "<img src='"+img_reducida+"' class='img_vista' id='img_subir_"+IMGS_CONT_INTERNO+"' data-index="+IMGS_CONT_INTERNO+" >"+
                                             '<i class="fa fa-minus img_quitar" aria-hidden="true"></i>'+
                                             '<i class="fa fa-undo img_rotar_izq" data-id="img_subir_'+IMGS_CONT_INTERNO+'" aria-hidden="true"></i>'+
                                             '<i class="fa fa-repeat img_rotar_der" data-id="img_subir_'+IMGS_CONT_INTERNO+'" aria-hidden="true"></i>'+
@@ -105,7 +105,7 @@ jQuery( document ).ready(function() {
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         var img = document.getElementById("fondo");
-        ctx.drawImage(img, 0, 0, 600, 430);
+        ctx.drawImage(img, 0, 0, 600, 495);
 
         jQuery( "#img_container img" ).each(function( index ) {
             var img = document.getElementById( jQuery(this).attr("id") );
@@ -138,7 +138,6 @@ function cargar_imagenes(){
         id_reserva: ID_RESERVA,
         periodo: PERIODO
     }, function( data ) {
-        console.log( data );
-        jQuery(".cargando_container").css("display", "none");
+        location.reload();
     });
 }
