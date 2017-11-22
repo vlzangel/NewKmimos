@@ -41,7 +41,7 @@ function subirImgs(evt){
 
                                 jQuery( ".img_quitar" ).unbind("click");
                                 jQuery( ".img_quitar" ).bind( "click", function() {
-                                    jQuery(this).parent().remove();
+                                    jQuery(this).parent().parent().remove();
                                     IMGS--;
                                 });
 
@@ -130,12 +130,15 @@ function cargar_imagenes(){
         imgs.push( jQuery(this).attr("src") );
     });
 
+    jQuery(".cargando_container").css("display", "block");
+
     jQuery.post( HOME+"procesos/reservar/subir_fotos.php", {
         imgs: imgs,
         collage: jQuery( "#myCanvas" )[ 0 ].toDataURL("image/jpg"),
-        id_order: ID_ORDEN,
+        id_reserva: ID_RESERVA,
         periodo: PERIODO
     }, function( data ) {
         console.log( data );
+        jQuery(".cargando_container").css("display", "none");
     });
 }
