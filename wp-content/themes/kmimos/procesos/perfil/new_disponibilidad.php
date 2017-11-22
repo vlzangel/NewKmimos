@@ -34,6 +34,8 @@
 
         $respuesta = array();
 
+        $db->query("UPDATE cupos SET cuidador = '{$autor}' WHERE servicio = '{$servicio}'");
+
         for ($i=$inicio; $i <= $fin; $i+=86400) { 
             $fecha = date("Y-m-d", $i);
 
