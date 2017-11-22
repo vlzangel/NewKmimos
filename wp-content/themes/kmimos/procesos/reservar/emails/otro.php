@@ -102,8 +102,6 @@
 
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
 
-        $mensaje_cuidador = str_replace('[REEMBOLSAR]', $reemborsar, $mensaje_cuidador);
-
 	    $mensaje_cuidador = get_email_html($mensaje_cuidador, false);
 
 		wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
