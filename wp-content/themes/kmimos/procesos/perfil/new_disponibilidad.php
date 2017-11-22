@@ -1,7 +1,7 @@
 <?php
     
     $respuesta = $_POST;
-    
+
     if( $servicio != 'Todos' ){
 
         $rangos = $db->get_var(" SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ", "meta_value");
@@ -32,10 +32,14 @@
         $inicio = strtotime($inicio);
         $fin = strtotime($fin);
 
+        $respuesta = array();
+
         for ($i=$inicio; $i <= $fin; $i+=86400) { 
             $fecha = date("Y-m-d", $i);
 
             $existe = $db->get_var("SELECT id FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
+
+            $respuesta[] = $fecha;
 
             if( $existe != false ){
                 $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
@@ -98,13 +102,6 @@
 
             $autor = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio->ID}' ", "post_author");
             $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio->ID}' AND meta_key = '_wc_booking_qty' ", "meta_value");
-
-            // $inicio = strtotime($inicio);
-            // $fin = strtotime($fin);
-            /* COMENTE ESTAS DOS LINEAS PORQUE LE 
-            ** CAMBIA EL FORMATO A LA FECHA CUANDO SON MAS DE 1 REGISTRO
-            ** Y EL SEGUNDO REGISTRO APARECE CON FECHA ERRONEA
-            */
 
             for ($i=$inicio; $i <= $fin; $i+=86400) {
                 $fecha = date("Y-m-d", $i);

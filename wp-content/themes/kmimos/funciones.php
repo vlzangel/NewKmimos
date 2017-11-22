@@ -483,4 +483,19 @@
 		}
 		
 	}
+    
+    function kmimos_registros_fotos($id_reserva){
+        global $wpdb;
+        $metas = get_post_meta($id_reserva);
+
+        $inicio = strtotime( $metas["_booking_start"][0] );
+        $fin = strtotime( $metas["_booking_end"][0] );
+
+        $cuidador = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$metas["_booking_product_id"][0]);
+
+        for ($i=$inicio; $i < $fin; $i+=86400) { 
+            $fecha = date("Y-m-d", $i);
+            $wpdb->query("INSERT INTO fotos VALUES ( NULL, {$id_reserva}, {$cuidador}, '{$fecha}', '0', '0');");
+        }
+    }
 ?>
