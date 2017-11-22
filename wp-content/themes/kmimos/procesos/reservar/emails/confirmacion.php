@@ -1,5 +1,7 @@
 <?php
     
+    kmimos_registros_fotos( $servicio["id_reserva"] );
+    
     /* Correo Cliente */
 
 
