@@ -39,12 +39,11 @@
 
             $existe = $db->get_var("SELECT id FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
 
-            $respuesta[] = $fecha;
-
             if( $existe != false ){
+                $respuesta["actualizar"][] = $fecha;
                 $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
             }else{
-            
+                $respuesta["Crear"][] = $fecha;
                 $tipo = $db->get_var(
                     "
                         SELECT
