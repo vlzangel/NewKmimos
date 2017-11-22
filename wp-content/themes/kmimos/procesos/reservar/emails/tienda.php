@@ -30,6 +30,8 @@
 
         /* Datos Instrucciones */
 
+        $mensaje_cliente = str_replace('[TOTALES]', str_replace('[REEMBOLSAR]', "", $totales_plantilla), $mensaje_cliente);
+
         $mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
         
         $mensaje_cliente = str_replace('[ADICIONALES]', $adicionales, $mensaje_cliente);
@@ -55,7 +57,7 @@
         $mensaje_cliente = str_replace('[correo_cuidador]', $cuidador["email"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[direccion_cuidador]', $cuidador["direccion"], $mensaje_cliente);
 
-        $mensaje_cliente = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[TOTALES]', str_replace('[REEMBOLSAR]', "", $totales_plantilla), $mensaje_cliente);
 
         $mensaje_cliente = get_email_html($mensaje_cliente);
 
@@ -70,6 +72,18 @@
         /* Generales */
 
             $mensaje_admin = str_replace('[mascotas]', $mascotas, $mensaje_admin);
+
+
+            if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
+                $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
+                $descuento_plantilla = file_get_contents($descuento_plantilla);
+                $descuento_plantilla = str_replace('[DEVOLVER]', number_format( $servicio["desglose"]["reembolsar"], 2, ',', '.'), $descuento_plantilla);
+                $totales_plantilla = str_replace('[REEMBOLSAR]', $descuento_plantilla, $totales_plantilla);
+            }else{
+                $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
+            }
+
+
             $mensaje_admin = str_replace('[desglose]', $desglose, $mensaje_admin);
             
             $mensaje_admin = str_replace('[ADICIONALES]', $adicionales, $mensaje_admin);
