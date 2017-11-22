@@ -370,10 +370,8 @@ function d(s){ return jQuery(s)[0].outerHTML; }
 function c(i){
    var e = document.getElementById(i);
    if(e && e.getContext){
-      var c = e.getContext('2d');
-      if(c){
-         return c;
-      }
+        var c = e.getContext('2d');
+        if(c){ return c; }
    }
    return false;
 }
@@ -414,10 +412,39 @@ function contenedor_temp(){
     }
 }
 
-var AR = 0;
 function rotar(orientacion){
+
+    var img_rotada = _rotar(orientacion);
+    if( img_rotada != null ){
+        jQuery("#kmimos_redimencionar_imagenes img").attr("src", img_rotada);
+        jQuery(".vlz_rotar").css("background-image", "url("+img_rotada+")" );
+        jQuery('.btn_aplicar_rotar').css("display", "block");
+    }else{
+        alert("No hay imagen seleccionada");
+    }
+
+}
+
+
+
+function rotar_img(orientacion, id){
+    console.log(id+" "+orientacion);
+    var img_rotada = _rotar(orientacion, id);
+    if( img_rotada != null ){
+
+        jQuery("#"+id).attr("src", img_rotada );
+
+
+    }else{
+        alert("No hay imagen seleccionada");
+    }
+}
+
+function _rotar(orientacion, id = ""){
     if( typeof(CTX) != "undefined" ){
-        AR = 0.5;
+        if( id != "" ){
+            jQuery("#kmimos_redimencionar_imagenes img").attr("src", jQuery("#"+id).attr("src") );
+        }
         var rxi = jQuery("#kmimos_redimencionar_imagenes img")[0];
         var rh = rxi.width; var rw = rxi.height;
         var xw = 500; var xh = 500;
@@ -449,16 +476,14 @@ function rotar(orientacion){
 
             CTX.drawImage(rxi, x, y, h, w);
             var img_rotada = CA[ 0 ].toDataURL("image/jpg");
+            //jQuery("#kmimos_redimencionar_imagenes img").attr("src", img_rotada);
 
-            jQuery("#kmimos_redimencionar_imagenes img").attr("src", img_rotada);
-
-            jQuery(".vlz_rotar").css("background-image", "url("+img_rotada+")" );
-
-            jQuery('.btn_aplicar_rotar').css("display", "block");
+            return img_rotada;
         }
     }else{
-        alert("No hay imagen seleccionada");
+        return null;
     }
+    return null;
 }
 
 function redimencionar(IMG_CACHE, CB){

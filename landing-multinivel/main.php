@@ -16,7 +16,7 @@
         echo "No se conecto";
         exit();
 	}else{
-        $existen = $conn->query( "SELECT * FROM wp_kmimos_subscribe WHERE email = '{$email}'" );
+        $existen = $conn->query( "SELECT * FROM resgistro_multinivel WHERE email = '{$email}'" );
         if( $existen->num_rows > 0 ){
             $datos = $existen->fetch_assoc();
             echo "SI";
