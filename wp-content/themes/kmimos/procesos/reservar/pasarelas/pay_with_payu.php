@@ -2,7 +2,6 @@
 
 	$PayU_file = realpath( dirname(dirname(dirname(__DIR__) ) )."/lib/payu/PayU.php" ) ;
 	include( $PayU_file );
-	$payu = new PayU();
 
 	$PayuP = [];
 	$PayuP['pais'] = ucfirst(  get_region( 'pais' ) );
@@ -11,38 +10,46 @@
 	$PayuP['id_orden'] = $id_orden ;
 	$PayuP['monto'] =  $pagar->total;
 	// -- Clientes
-	$PayuP['cliente']['ID'] = get_current_user();
-	$PayuP['cliente']['dni'] = '100000000000001';
+	$PayuP['cliente']['ID'] = $pagar->cliente;
+	$PayuP['cliente']['dni'] = '';
 	$PayuP['cliente']['name'] = $nombre;
 	$PayuP['cliente']['email'] = $email;
 	$PayuP['cliente']['telef'] = $telefono;
 	$PayuP['cliente']['calle1'] = $direccion;
-	$PayuP['cliente']['calle2'] = $direccion;
-	$PayuP['cliente']['ciudad'] = $estado;
+	$PayuP['cliente']['calle2'] = '';
+	$PayuP['cliente']['ciudad'] = $ciudad;
 	$PayuP['cliente']['estado'] = $estado;
-	$PayuP['cliente']['pais'] = ucfirst(REGION);
+	$PayuP['cliente']['pais'] = get_region('pais_cod_iso');
 	$PayuP['cliente']['telef'] = $telefono;
+	$PayuP['cliente']['postal'] = '000000';
+	$PayuP["PayuDeviceSessionId"] = $PayuDeviceSessionId;
 	// -- Valores temporales
-	$PayuP['cliente']['postal'] = '110711';
 	$PayuP["creditCard"]["name"] = 'REJECETDE';
 	$PayuP["creditCard"]["number"] = '4097440000000004';
 	$PayuP["creditCard"]["securityCode"] = '123';
 	$PayuP["creditCard"]["payment_method"] = 'VISA';
 	$PayuP["creditCard"]["expirationDate"] = '2019/03';
 
+
+	$payu = new PayU();
 	switch ( $pagar->tipo ) {
 		case 'tarjeta':
 
 			$charge = ""; 
 			$error = "";
+			$state = "";
+			$code = "";
 
 			try {
-				$charge = $payu->AutorizacionCaptura( $PayuP );		
+				$charge = $payu->AutorizacionCaptura( $PayuP );	
+				if( $charge->code == 'SUCCESS' ){
+					$state = $charge->transactionResponse->responseCode;
+				}
 	        } catch (Exception $e) {
 				print_r($e);
 	        }
 
-			if ($charge != false) {
+			if ( $state == 'APPROVED' ) {
 
 				if( $deposito["enable"] == "yes" ){
 					$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
@@ -77,14 +84,15 @@
 			    	"cantidad" => $cupos_a_decrementar
 			    ), "+");
     
-				// include(__DIR__."/../emails/index.php");
+				include(__DIR__."/../emails/index.php");
 
 	        }else{
 
 	            echo json_encode(array(
 					"error" => $id_orden,
 					"tipo_error" => $error,
-					"status" => "Error, pago fallido"
+					"status" => "Error, pago fallido",
+					"code" => $state
 				));
 
 	        }
@@ -145,22 +153,3 @@
 		break;
 
 	}
-/*
-if ($payu_response) {
-
-	$payu_response->transactionResponse->orderId;
-	$payu_response->transactionResponse->transactionId;
-	$payu_response->transactionResponse->state;
-
-	if ($payu_response->transactionResponse->state=="PENDING") {
-		$payu_response->transactionResponse->pendingReason;
-	}
-
-	$payu_response->transactionResponse->paymentNetworkResponseCode;
-	$payu_response->transactionResponse->paymentNetworkResponseErrorMessage;
-	$payu_response->transactionResponse->trazabilityCode;
-	$payu_response->transactionResponse->responseCode;
-	$payu_response->transactionResponse->responseMessage;
-}
-*/
- 

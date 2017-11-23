@@ -7,10 +7,10 @@
 	wp_enqueue_style('producto_responsive', getTema()."/css/responsive/producto_responsive.css", array(), '1.0.0');
 
 	wp_enqueue_script('producto', getTema()."/js/producto.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 	wp_enqueue_script('openpay-v1', getTema()."/js/openpay.v1.min.js", array("jquery"), '1.0.0');
 	wp_enqueue_script('openpay-data', getTema()."/js/openpay-data.v1.min.js", array("jquery", "openpay-v1"), '1.0.0');
+	
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 
@@ -165,6 +165,8 @@
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
 
+		$PayuDeviceSessionId =  md5(session_id().microtime());
+
 		$HTML .= "
 		<script> 
 			var SERVICIO_ID = '".get_the_ID()."';
@@ -179,7 +181,31 @@
 			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
 			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
 			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
-		</script>";
+			var PayuDeviceSessionId = '".$PayuDeviceSessionId."';
+		</script>
+		";
+
+
+		if( strtolower( REGION ) == 'colombia' ){
+			$HTML .= '
+			<p style="background:url(https://maf.pagosonline.net/ws/fp?id=$'.$PayuDeviceSessionId.$id_user.')"></p>
+
+			<img src="https://maf.pagosonline.net/ws/fp/clear.png?id=$'.$PayuDeviceSessionId.$id_user.'">
+
+			<script src="https://maf.pagosonline.net/ws/fp/check.js?id=$'.$PayuDeviceSessionId.$id_user.'"></script>
+
+			<object type="application/x-shockwave-flash"
+
+			data="https://maf.pagosonline.net/ws/fp/fp.swf?id=$'.$PayuDeviceSessionId.$id_user.'" width="1" height="1"
+
+			id="thm_fp">
+
+			<param name="movie" value="https://maf.pagosonline.net/ws/fp/fp.swf?id=$'.$PayuDeviceSessionId.$id_user.'" />
+
+			</object>
+			';
+		}
+
 
 		if( $error != "" ){
 			$actual = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
@@ -584,6 +610,7 @@
 												*Recuerda que tus datos deben ser los mismos que el de tu tarjeta
 											</div>
 											-->
+
 										</div>
 
 									</div>

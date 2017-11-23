@@ -2,19 +2,21 @@
 
 class PayU {
 
-	// -- Habilitar Sandbox
+	// -- Habilitar Sandbox [ true: Sandbox || false: Produccion]
 	protected $isTest = true; 
 
 	// -- PayU Configuracion
-	public function getConfig( $ref='', $monto='', $moneda='COP' ){
+	public function init( $ref='', $monto='', $moneda='COP' ){
 
 		// -- Cargar Configuracion
 		$config = [
 			'sandbox' => [
 				'apiKey' => '4Vj8eK4rloUd272L48hsrarnUA',
 				'apiLogin' => 'pRRXKOl8ikMmt9u',
-				'merchantId' => '512321',
-				'isTest' => 'true',
+				'merchantId' => '508029',
+				'accountId' => '512321',
+				'isTest' => 'false',
+				'confirmation' => 'http://www.tes.com/confirmation',
 				'PaymentsCustomUrl' => 'https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi',
 				'ReportsCustomUrl' => 'https://sandbox.api.payulatam.com/reports-api/4.0/service.cgi',
 				'SubscriptionsCustomUrl' => 'https://sandbox.api.payulatam.com/payments-api/rest/v4.3/',
@@ -23,7 +25,9 @@ class PayU {
 				'apiKey' => 'xxxxxxxxxxxxxxxxxxxxx',
 				'apiLogin' => 'xxxxxxxxxxxxxx',
 				'merchantId' => '000000',
+				'accountId' => '000000',
 				'isTest' => 'false',
+				'confirmation' => 'http://www.tes.com/confirmation',
 				'PaymentsCustomUrl' => 'https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi',
 				'ReportsCustomUrl' => 'https://sandbox.api.payulatam.com/reports-api/4.0/service.cgi',
 				'SubscriptionsCustomUrl' => 'https://sandbox.api.payulatam.com/payments-api/rest/v4.3/',
@@ -35,12 +39,7 @@ class PayU {
 		// -- Create signature
 		$signature = '';
 		if( !empty($ref) && !empty($monto) && !empty($moneda) ){
-			$code = $result['ApiKey'];
-			$code .= '~'.$result['merchantId'];
-			$code .= '~'.$ref;
-			$code .= '~'.$$monto;
-			$code .= '~'.$moneda;
-
+			$code = $result['apiKey'] . '~' . $result['merchantId'] . '~' . $ref . '~' . $monto . '~' . $moneda;		
 			$signature = md5($code);
 		}
 		$result['signature'] = $signature;
@@ -50,7 +49,7 @@ class PayU {
 
 	// -- Pago con TDC
 	public function AutorizacionCaptura( $datos ){
-		$config = $this->getConfig( 
+		$config = $this->init( 
 			$datos['id_orden'],
 			$datos['monto'],
 			$datos['moneda']
@@ -64,65 +63,65 @@ class PayU {
 		$cofg["merchant"]["apiLogin"] = $config['apiLogin'];
 
 		// -- Datos de la Orden
-		$cofg["transaction"]["order"]["accountId"] = $config['merchantId'];
-		$cofg["transaction"]["order"]["referenceCode"] =  $data['id_orden'];
-		$cofg["transaction"]["order"]["description"] = 'Tarjeta Compra Numero '.$data['id_orden'];
+		$cofg["transaction"]["order"]["accountId"] = $config['accountId'];
+		$cofg["transaction"]["order"]["referenceCode"] =  $datos['id_orden'];
+		$cofg["transaction"]["order"]["description"] = 'Tarjeta Compra Numero '.$datos['id_orden'];
 		$cofg["transaction"]["order"]["language"] = "es";
 		$cofg["transaction"]["order"]["signature"] = $config['signature'];
-		$cofg["transaction"]["order"]["notifyUrl"] = "http://www.tes.com/confirmation";
+		$cofg["transaction"]["order"]["notifyUrl"] = $config['confirmation'];
+
+		// -- Datos de Direccion de la Orden
+		$cofg["transaction"]["order"]["shippingAddress"]["street1"] = $datos['cliente']['calle1'];
+		$cofg["transaction"]["order"]["shippingAddress"]["street2"] = $datos['cliente']['calle2'];
+		$cofg["transaction"]["order"]["shippingAddress"]["city"] = $datos['cliente']['ciudad'];
+		$cofg["transaction"]["order"]["shippingAddress"]["state"] = $datos['cliente']['estado'];
+		$cofg["transaction"]["order"]["shippingAddress"]["country"] = $datos['cliente']['pais'];
+		$cofg["transaction"]["order"]["shippingAddress"]["postalCode"] = $datos['cliente']['postal'];
+		$cofg["transaction"]["order"]["shippingAddress"]["phone"] = $datos['cliente']['telef'];
 
 		// -- Datos de Costo de Servicio      
-		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["value"] = $data['monto'];
-		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["currency"] = $data['moneda'];
+		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["value"] = $datos['monto'];
+		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["currency"] = $datos['moneda'];
 
 		// -- Datos de Impuesto      
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX"]["value"] = 0;
-		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX"]["currency"] = $data['moneda'];
+		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX"]["currency"] = $datos['moneda'];
 
 		// -- Datos de Impuesto Base     
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX_RETURN_BASE"]["value"] = 0;
-		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX_RETURN_BASE"]["currency"] = $data['moneda'];
+		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX_RETURN_BASE"]["currency"] = $datos['moneda'];
 
 		// -- Datos de Comprador
-		$cofg["transaction"]["order"]["buyer"]["merchantBuyerId"] = $data['cliente']['ID'];
-		$cofg["transaction"]["order"]["buyer"]["fullName"] = $data['cliente']['name'];
-		$cofg["transaction"]["order"]["buyer"]["emailAddress"] = $data['cliente']['email'];
-		$cofg["transaction"]["order"]["buyer"]["contactPhone"] = $data['cliente']['telef'];
-		$cofg["transaction"]["order"]["buyer"]["dniNumber"] = $data['cliente']['dni'];
+		$cofg["transaction"]["order"]["buyer"]["merchantBuyerId"] = $datos['cliente']['ID'];
+		$cofg["transaction"]["order"]["buyer"]["fullName"] = $datos['cliente']['name'];
+		$cofg["transaction"]["order"]["buyer"]["emailAddress"] = $datos['cliente']['email'];
+		$cofg["transaction"]["order"]["buyer"]["contactPhone"] = $datos['cliente']['telef'];
+		$cofg["transaction"]["order"]["buyer"]["dniNumber"] = $datos['cliente']['dni'];
 
 		// -- Datos de Comprador - Direccion
-		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["street1"] = $data['cliente']['calle1'];
-		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["street2"] = $data['cliente']['calle2'];
-		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["city"] = $data['cliente']['ciudad'];
-		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["state"] = $data['cliente']['estado'];
-		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["country"] = $data['cliente']['pais'];
-		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["postalCode"] = "000000";
-		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["phone"] = $data['cliente']['telef'];
-
-		// -- Datos de Direccion de la Orden
-		$cofg["transaction"]["order"]["shippingAddress"]["street1"] = $data['cliente']['calle1'];
-		$cofg["transaction"]["order"]["shippingAddress"]["street2"] = $data['cliente']['calle2'];
-		$cofg["transaction"]["order"]["shippingAddress"]["city"] = $data['cliente']['ciudad'];
-		$cofg["transaction"]["order"]["shippingAddress"]["state"] = $data['cliente']['estado'];
-		$cofg["transaction"]["order"]["shippingAddress"]["country"] = $data['cliente']['pais'];
-		$cofg["transaction"]["order"]["shippingAddress"]["postalCode"] = "0000000";
-		$cofg["transaction"]["order"]["shippingAddress"]["phone"] = $data['cliente']['telef'];
+		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["street1"] = $datos['cliente']['calle1'];
+		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["street2"] = $datos['cliente']['calle2'];
+		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["city"] = $datos['cliente']['ciudad'];
+		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["state"] = $datos['cliente']['estado'];
+		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["country"] = $datos['cliente']['pais'];
+		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["postalCode"] = $datos['cliente']['postal'];
+		$cofg["transaction"]["order"]["buyer"]["shippingAddress"]["phone"] = $datos['cliente']['telef'];
 		 
 		// -- Datos de Pagador 
-		$cofg["transaction"]["payer"]["merchantPayerId"] = $data['cliente']['ID'];
-		$cofg["transaction"]["payer"]["fullName"] = $data['cliente']['name'];
-		$cofg["transaction"]["payer"]["emailAddress"] = $data['cliente']['email'];
-		$cofg["transaction"]["payer"]["contactPhone"] = $data['cliente']['telef'];
-		$cofg["transaction"]["payer"]["dniNumber"] = $data['cliente']['dni'];
+		$cofg["transaction"]["payer"]["merchantPayerId"] = $datos['cliente']['ID'];
+		$cofg["transaction"]["payer"]["fullName"] = $datos['cliente']['name'];
+		$cofg["transaction"]["payer"]["emailAddress"] = $datos['cliente']['email'];
+		$cofg["transaction"]["payer"]["contactPhone"] = $datos['cliente']['telef'];
+		$cofg["transaction"]["payer"]["dniNumber"] = $datos['cliente']['dni'];
 
 		// -- Datos de Pagador - Direccion 
-		$cofg["transaction"]["payer"]["billingAddress"]["street1"] = $data['cliente']['calle1'];
-		$cofg["transaction"]["payer"]["billingAddress"]["street2"] = $data['cliente']['calle2'];
-		$cofg["transaction"]["payer"]["billingAddress"]["city"] = $data['cliente']['ciudad'];
-		$cofg["transaction"]["payer"]["billingAddress"]["state"] = $data['cliente']['estado'];
-		$cofg["transaction"]["payer"]["billingAddress"]["country"] = $data['cliente']['pais'];
-		$cofg["transaction"]["payer"]["billingAddress"]["postalCode"] = "000000";
-		$cofg["transaction"]["payer"]["billingAddress"]["phone"] = $data['cliente']['telef'];
+		$cofg["transaction"]["payer"]["billingAddress"]["street1"] = $datos['cliente']['calle1'];
+		$cofg["transaction"]["payer"]["billingAddress"]["street2"] = $datos['cliente']['calle2'];
+		$cofg["transaction"]["payer"]["billingAddress"]["city"] = $datos['cliente']['ciudad'];
+		$cofg["transaction"]["payer"]["billingAddress"]["state"] = $datos['cliente']['estado'];
+		$cofg["transaction"]["payer"]["billingAddress"]["country"] = $datos['cliente']['pais'];
+		$cofg["transaction"]["payer"]["billingAddress"]["postalCode"] = $datos['cliente']['postal'];
+		$cofg["transaction"]["payer"]["billingAddress"]["phone"] = $datos['cliente']['telef'];
 
 		// -- Datos de Tarjeta de Credito
 		$cofg["transaction"]["creditCard"]["number"] = "4097440000000004";
@@ -132,40 +131,85 @@ class PayU {
 		$cofg["transaction"]["paymentMethod"] = "VISA";
 
 		// -- Datos de Session y Configuracion
-		$cofg["transaction"]["extraParameters"]["INSTALLMENTS_NUMBER"] = 1;
+		$cofg["transaction"]["extraParameters"]["INSTALLMENTS_NUMBER"] = "1";
 		$cofg["transaction"]["type"] = "AUTHORIZATION_AND_CAPTURE";
-		$cofg["transaction"]["paymentCountry"] = $data['pais'];
-		$cofg["transaction"]["deviceSessionId"] = md5(session_id().microtime());
+		$cofg["transaction"]["paymentCountry"] = $datos['pais_cod_iso'];
+		$cofg["transaction"]["deviceSessionId"] = $datos['PayuDeviceSessionId'];
 		$cofg["transaction"]["ipAddress"] = $_SERVER['REMOTE_ADDR'];
-		$cofg["transaction"]["cookie"] = $_SERVER['HTTP_COOKIE'];
+		$cofg["transaction"]["cookie"] = $_COOKIE['PHPSESSID'];
 		$cofg["transaction"]["userAgent"] = $_SERVER['HTTP_USER_AGENT'];
-		$cofg["test"] = false;
-
+		$cofg["test"] = $config['isTest'];
 
 		$r = $this->request( 
 			$config['PaymentsCustomUrl'], 
 			json_encode($cofg, JSON_UNESCAPED_UNICODE)
 		);
 
-
-print_r(json_encode($cofg, JSON_UNESCAPED_UNICODE));
-print_r(json_decode($r->body) );
-exit();
-
-
-		return $r;
+		return json_decode($r);
 	}
 
 	// -- Pago en Tienda
 	public function Autorizacion( $datos ){
-		$config = $this->getConfig();
+		$config = $this->init( 
+			$datos['id_orden'],
+			$datos['monto'],
+			$datos['moneda']
+		);
+
+		$cofg = [];
+		// -- Datos del API
+		$cofg["language"] = "es";
+		$cofg["command"] = "SUBMIT_TRANSACTION";
+		$cofg["merchant"]["apiKey"] = $config['apiKey'];
+		$cofg["merchant"]["apiLogin"] = $config['apiLogin'];
+
+		// -- Datos de la Orden
+		$cofg["transaction"]["order"]["accountId"] = $config['accountId'];
+		$cofg["transaction"]["order"]["referenceCode"] =  $datos['id_orden'];
+		$cofg["transaction"]["order"]["description"] = 'Tarjeta Compra Numero '.$datos['id_orden'];
+		$cofg["transaction"]["order"]["language"] = "es";
+		$cofg["transaction"]["order"]["signature"] = $config['signature'];
+		$cofg["transaction"]["order"]["notifyUrl"] = $config['confirmation'];
+
+		// -- Datos de Costo de Servicio      
+		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["value"] = $datos['monto'];
+		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["currency"] = $datos['moneda'];
+
+		// -- Datos de Impuesto      
+		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX"]["value"] = 0;
+		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX"]["currency"] = $datos['moneda'];
+
+		// -- Datos de Impuesto Base     
+		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX_RETURN_BASE"]["value"] = 0;
+		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX_RETURN_BASE"]["currency"] = $datos['moneda'];
+
+		// -- Datos de Comprador
+		$cofg["transaction"]["order"]["buyer"]["fullName"] = $datos['cliente']['name'];
+		$cofg["transaction"]["order"]["buyer"]["emailAddress"] = $datos['cliente']['email'];
+
+		// -- Datos de Session y Configuracion
+		$cofg["transaction"]["type"] = "AUTHORIZATION_AND_CAPTURE";
+		$cofg["transaction"]["ipAddress"] = $_SERVER['REMOTE_ADDR'];
+		$cofg["test"] = $config['isTest'];
+		$cofg["transaction"]["paymentCountry"] = $datos['pais_cod_iso'];
+
+		$cofg["transaction"]["paymentMethod"] = $datos['paymentMethod'];
+		$cofg["transaction"]["expirationDate"] = $datos['expirationDate'];
+
+		$r = $this->request( 
+			$config['PaymentsCustomUrl'], 
+			json_encode($cofg, JSON_UNESCAPED_UNICODE)
+		);
+
+		return json_decode($r);
 	}
 
 	// -- Procesar Pagos
 	public function Captura( $datos ){
-		$config = $this->getConfig();
+		$config = $this->init();
 	}
 
+	// -- Enviar solicitud
 	public function request( $url, $data ){
 
 		include(realpath( dirname(__DIR__)."/Requests/Requests.php" ));
@@ -176,6 +220,6 @@ exit();
 		);
 		$request = Requests::post($url, $headers,  $data );
  	
-		return $request;
+		return (isset($request->body))? $request->body : '' ;
 	}
 }
