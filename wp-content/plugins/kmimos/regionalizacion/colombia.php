@@ -1,6 +1,8 @@
 <?php  
 $region = array(
     "pais"      => "Colombia",
+    "pais_cod_iso"   => "CO",
+    'moneda_cod' => 'COP',
     "titulo"    => "Kmimos Colombia",
     "email"     => "contactoco@kmimos.la",
 
