@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
 			"info":		   			"Del _START_ al _END_ de _TOTAL_ ",
 			"infoEmpty":			"Mostrando 0 registros de un total de 0.",
 			"infoFiltered":			"(filtrados de un total de _MAX_ registros)",
-			"infoPostFix":			"(actualizados)",
+			"infoPostFix":			" (actualizados)",
 			"lengthMenu":			"Mostrar _MENU_ registros",
 			"loadingRecords":		"Cargando...",
 			"processing":			"Procesando...",
