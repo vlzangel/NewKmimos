@@ -27,7 +27,7 @@
 					}
 				}
 			}
-			trigger_error("La clave o el archivo de regionalizacion no existe:", E_USER_ERROR);
+			trigger_error("La clave \"{$key}\" o el archivo \"/plugins/kmimos/regionalizacion/".REGION.".php\" no existe:", E_USER_ERROR);
 		}
 	}
 
