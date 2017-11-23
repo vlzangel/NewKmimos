@@ -495,7 +495,7 @@
 
         for ($i=$inicio; $i < $fin; $i+=86400) { 
             $fecha = date("Y-m-d", $i);
-            $wpdb->query("INSERT INTO fotos VALUES ( NULL, {$id_reserva}, {$cuidador}, '{$fecha}', '0', '0');");
+            $wpdb->query("INSERT INTO fotos VALUES ( NULL, {$id_reserva}, {$cuidador}, '{$fecha}', '0', '0', '1');");
         }
     }
 ?>
