@@ -27,7 +27,8 @@ $region = array(
                 'Otros'                 =>  'Otros'
             ),
     "identidad" => "DNI",
+    "identidad-length" => 7,
     "web" => "http://kmimos.co"
     );
-
+// get_region($key)
 ?>

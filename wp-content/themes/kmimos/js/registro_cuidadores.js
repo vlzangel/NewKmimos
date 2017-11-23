@@ -475,7 +475,7 @@ function rc_validar_longitud( field ){
 				break;
 
 			case 'rc_ife':
-				result = validar_longitud( val, 13, 13, 'string', 'Debe tener 13 digitos');
+				result = validar_longitud( val, 7, 7, 'string', 'Debe tener 13 digitos');
 				break;
 
 			case 'rc_clave':

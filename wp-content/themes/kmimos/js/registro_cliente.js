@@ -52,17 +52,17 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		switch(jQuery("#ife").val().length) {
 		case 0:
 			jQuery("#ife").parent('div').css('color','red');
-			jQuery("#ife").after('<span name="sp-ife">Debe ingresar su IFE</span>').css('color','red');
+			jQuery("#ife").after('<span name="sp-ife">Debe ingresar su '+DNI+'</span>').css('color','red');
 			jQuery("#ife").focus(function() { jQuery('[name="sp-ife"]').remove(); });
 			break;
-		case 13:
+		case 7:
 				jQuery("#ife").css('color','green');
 				jQuery("#ife").parent('div').css('color','green');
 				jQuery('[name="sp-ife"]').remove();
 			break;
 		default:
 			jQuery("#ife").parent('div').css('color','red');
-			jQuery("#ife").after('<span name="sp-ife">Su IFE debe contener 13 dígitos</span>').css('color','red');
+			jQuery("#ife").after('<span name="sp-ife">Su '+DNI+' debe contener '+DNILENGTH+' dígitos</span>').css('color','red');
 			jQuery("#ife").focus(function() { jQuery('[name="sp-ife"]').remove(); });
 		}
 	});

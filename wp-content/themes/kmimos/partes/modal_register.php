@@ -126,7 +126,7 @@ $HTML .='
 
 							<div class="label-placeholder">
 								<label>'.get_region("identidad").'/Documento de Identidad</label>
-								<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="13">
+								<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="'.get_region("identidad-length").'">
 							</div>
 							<div class="label-placeholder verify">
 								<label>Correo electrónico</label>
