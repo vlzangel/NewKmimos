@@ -147,7 +147,7 @@ $HTML .='
 							</div>
 							<div class="label-placeholder">
 								<label>Teléfono</label>
-								<input type="text" name="movil" id="movil" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="10">
+								<input type="text" name="movil" id="movil" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="7">
 							</div>
 							<div class="km-datos-mascota">
 								<select class="km-datos-mascota-opcion bg-select-custom" name="genero" id="genero">

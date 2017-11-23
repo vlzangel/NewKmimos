@@ -483,7 +483,7 @@ function rc_validar_longitud( field ){
 				break;
 
 			case 'rc_telefono':
-				result = validar_longitud( val, 7, 15, 'string', 'Debe estar entre 7 y 15 caracteres');
+				result = validar_longitud( val, DNILENGTH, DNILENGTH, 'string', 'Debe tener 7 caracteres');
 				break;
 
 			case 'rc_descripcion':
