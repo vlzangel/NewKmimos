@@ -17,6 +17,7 @@ $region = array(
     "mon_der" => "COP",
     "km-vacaciones" => false,
     "km-medios" => false,
+    "km-patitas" => false,
     "km-5000" => 0,
     "conocio" => array(
                 'Facebook'      =>  'Facebook',

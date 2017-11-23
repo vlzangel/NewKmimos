@@ -154,14 +154,14 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery("#movil").after('<span name="sp-movil">Debe ingresar su movil</span>').css('color','red');
 				jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
 				break;
-			case 10:
+			case 7:
 					jQuery("#movil").css('color','green');
 					jQuery("#movil").parent('div').css('color','green');
 					jQuery('[name="sp-movil"]').remove();
 				break;
 			default:
 				jQuery("#movil").parent('div').css('color','red');
-				jQuery("#movil").after('<span name="sp-movil">Su movil debe contener 10 dígitos</span>').css('color','red');
+				jQuery("#movil").after('<span name="sp-movil">Su movil debe contener '+DNILENGTH+' dígitos</span>').css('color','red');
 				jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
 		}
 	});
@@ -425,16 +425,20 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 	
 		jQuery('#select_1').on('click', function(){
 			jQuery("#select_2, #select_3, #select_4").removeClass("km-opcionactivo");
+			jQuery("#select_1").addClass("km-opcionactivo");
 		});
 		jQuery('#select_2').on('click', function(){
 			jQuery("#select_1, #select_3, #select_4").removeClass("km-opcionactivo");
+			jQuery("#select_2").addClass("km-opcionactivo");
 		});
 		
 		jQuery('#select_3').on('click', function(){
 			jQuery("#select_2, #select_1, #select_4").removeClass("km-opcionactivo");
+			jQuery("#select_3").addClass("km-opcionactivo");
 		});	
 		jQuery('#select_4').on('click', function(){
 			jQuery("#select_2, #select_3, #select_1").removeClass("km-opcionactivo");
+			jQuery("#select_4").addClass("km-opcionactivo");
 		});
 	});
 
