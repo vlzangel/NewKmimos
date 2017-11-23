@@ -81,8 +81,8 @@ $HTML = '
     
     wp_enqueue_script('bxslider', getTema()."/js/jquery.bxslider.js", array("jquery"), '1.0.0');
 
-/*  
-    // Descomentar para inicializar la tabla fotos
+  
+/*    // Descomentar para inicializar la tabla fotos
     global $wpdb;
     $reservas = $wpdb->get_results("SELECT * FROM wp_postmeta WHERE meta_key = '_booking_end'");
     foreach ($reservas as $key => $value) {

@@ -73,7 +73,33 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 	text-align: left;
 	background: #FFF;
 	padding: 20px;
-	max-width: 500px;
+	max-width: 600px;
 	border-radius: 5px;
 	box-sizing: border-box;
+	position: relative;
+}
+
+.modal > div > span {
+	border-bottom: solid 1px #CCC;
+    display: block;
+    padding: 0px 0px 5px;
+}
+
+.modal > div > div {
+    display: block;
+    padding: 5px 0px 0px;
+    font-size: 14px;
+}
+
+a:focus, a:focus .media-icon img {
+    -webkit-box-shadow: 0 0 0 0px #FFF !important;
+    box-shadow: 0 0 0 0px #FFF !important;
+}
+
+#close_modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
 }

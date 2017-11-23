@@ -145,7 +145,7 @@
 		                		<div class="total_reserva">
 			                		<div class="item_desglose">
 			                			<div>TOTAL</div>
-			                			<span>$'.number_format( $reserva["desglose"]["total"], 2, ',', '.').'</span>
+			                			<span>$'.number_format( $reserva["desglose"]["total"]+0, 2, ',', '.').'</span>
 			                		</div>
 		                		</div>
 

@@ -19,4 +19,8 @@ function init_modal(data){
         }
     });
 
+    jQuery("#close_modal").on("click", function(e){
+        jQuery(".modal").css("display", "none");
+    });
+
 }
