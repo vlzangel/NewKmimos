@@ -416,21 +416,62 @@ function pagarReserva(id_invalido = false){
 		HOME+"/procesos/reservar/pagar.php",
 		{
 			info: json,
-			id_invalido: id_invalido
+			id_invalido: id_invalido,
+			PayuDeviceSessionId: PayuDeviceSessionId
 		},
 		function(data){
 
-			/*console.log( data );*/
+			console.log( data );
 
 			if( data.error != "" && data.error != undefined ){
 
-				if( data.tipo_error != "3003" ){
-					var error = "Error procesando la reserva<br>";
-			    	error += "Por favor intente nuevamente.<br>";
-			    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
-				}else{
-					var error = "Error procesando la reserva<br>";
-			    	error += "La tarjeta no tiene fondos suficientes.<br>";
+				switch( REGION ){
+					case 'mexico':
+						if( data.tipo_error != "3003" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "Por favor intente nuevamente.<br>";
+					    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+						}else{
+							var error = "Error procesando la reserva<br>";
+					    	error += "La tarjeta no tiene fondos suficientes.<br>";
+						}
+						break;
+					case 'colombia':
+						/* Response code - PayU */
+						if( data.code == "ANTIFRAUD_REJECTED" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La transacción fue rechazada por el sistema antifraude.<br>";
+
+						}else if( data.code == "PAYMENT_NETWORK_REJECTED" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La red financiera rechazó la transacción.<br>";
+						
+						}else if( data.code == "ENTITY_DECLINED" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La transacción fue rechazada por el banco o la red financiera debido a un error.<br>";
+						
+						}else if( data.code == "INVALID_EXPIRATION_DATE_OR_SECURITY_CODE" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "El código de seguridad o la fecha de caducidad no son válidos.<br>";
+						
+						}else if( data.code == "INSUFFICIENT_FUNDS" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La cuenta no tenía fondos suficientes.<br>";
+						
+						}else if( data.code == "INVALID_CARD" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La tarjeta no es válida.<br>";
+						
+						}else if( data.code == "RESTRICTED_CARD" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La tarjeta tiene una restricción.<br>";
+					
+						}else{
+							var error = "Error procesando la reserva<br>";
+					    	error += "Por favor intente nuevamente.<br>";
+					    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+						}
+						break;
 				}
 
 		    	jQuery(".errores_box").html(error);
@@ -904,12 +945,19 @@ jQuery(document).ready(function() {
 			alert("Debes aceptar los terminos y condiciones");
 		}else{
 			if( jQuery("#metodos_pagos").css("display") != "none" ){
-				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+				CARRITO["pagar"]["deviceIdHiddenFieldName"] = '';
+				if( REGION == 'mexico' ){
+					CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+				}
 				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
 				if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
 					jQuery("#reserva_btn_next_3 span").html("Validando...");
 					jQuery("#reserva_btn_next_3").addClass("disabled");
-					OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+					if( REGION == 'mexico' ){
+						OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+					}else{
+				        pagarReserva();
+					}
 				}else{
 					pagarReserva();
 				}
@@ -992,6 +1040,7 @@ jQuery(document).ready(function() {
 	});
 
 	/* Configuración Openpay */
+	if( REGION == 'mexico' ){
 
 		OpenPay.setId( OPENPAY_TOKEN );
 	    OpenPay.setApiKey(OPENPAY_PK);
@@ -1047,7 +1096,7 @@ jQuery(document).ready(function() {
 	        jQuery(".errores_box").html(error);
 			jQuery(".errores_box").css("display", "block");
 	    };
-
+	}
    	/* Fin Configuración Openpay */
 
 });

@@ -56,6 +56,7 @@
 			var RAIZ = "'.get_home_url().'/"; 
 			var pines = [];
 			var AVATAR = "";
+			var REGION = "'.REGION.'";
             var wlabel = "'.$wlabel.'";
 		</script>';
 
