@@ -12,7 +12,7 @@
         $mensaje_cliente = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_cliente);
 
 
-        $fin = strtotime( str_replace("/CO", "-", $_POST['service_end']) );
+        $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
         $mensaje_cliente = str_replace('[desglose]', $desglose, $mensaje_cliente);
