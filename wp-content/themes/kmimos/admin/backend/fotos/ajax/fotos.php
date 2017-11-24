@@ -1,5 +1,7 @@
 <?php
 
+    date_default_timezone_set('America/Mexico_City');
+
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
     include_once($raiz."/vlz_config.php");
 
@@ -12,6 +14,9 @@
     $data = array(
         "data" => array()
     );
+
+    //$actual = time();
+    $actual = strtotime("11:48:00");
 
     $fotos = $db->get_results("SELECT * FROM fotos WHERE fecha = '".date("Y-m-d")."' ");
     if( $fotos != false ){
@@ -37,19 +42,33 @@
             $cuidador_name = utf8_encode($cuidador_name);
             $cliente_name = utf8_encode($cliente_name);
 
+            $status_val = $value->subio_12+$value->subio_06;
+
+            if( date("H", $actual) < 12 && $status_val == 1 ){
+                $status_val++;
+            }
+
+            if( date("H", $actual) > 12 && $status_val == 0 ){
+                $status_val = 3;
+            }
+
             $status = ""; $status_txt = "";
-            switch ( $value->status ) {
+            switch ( $status_val ) {
                 case '0':
-                    $status = "status-mal";
-                    $status_txt = "No ha cargado a la hora";
+                    $status = "status-inicio";
+                    $status_txt = "Por cargar fotos";
                 break;
                 case '1':
+                    $status = "status-medio";
+                    $status_txt = "Solo cargo un flujo";
+                break;
+                case '2':
                     $status = "status-ok";
                     $status_txt = "Todo Bien";
                 break;
-                case '2':
-                    $status = "status-medio";
-                    $status_txt = "Solo cargo un flujo";
+                case '3':
+                    $status = "status-mal";
+                    $status_txt = "No se cargaron fotos";
                 break;
                 
                 default:
@@ -58,8 +77,8 @@
                 break;
             }
 
-            $dia = "No"; if( $value->subio_12 == 1 ){ $dia = "Si"; }
-            $noche = "No"; if( $value->subio_06 == 1 ){ $noche = "Si"; }
+            $dia = "No"; if( $value->subio_12 == 1 ){ $dia = "Si <span class='enlaces' onclick='moderar( jQuery(this), 1 );'>Moderar</span>"; }
+            $noche = "No"; if( $value->subio_06 == 1 ){ $noche = "Si <span class='enlaces' onclick='moderar( jQuery(this), 1 );'>Moderar</span>"; }
 
             $data["data"][] = array(
                 "<span onclick='abrir_link( jQuery(this) );' class='enlaces reserva' data-id='{$value->reserva}' data-titulo='Historial de Fotos' data-modal='historial' >{$value->reserva}</span>",
