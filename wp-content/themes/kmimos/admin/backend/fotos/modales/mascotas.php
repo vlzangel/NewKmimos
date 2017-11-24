@@ -53,11 +53,11 @@
     foreach ($mascotas as $mascota) {
     	$mascotas_txt = "
     	<tr>
-			<td class=''>".$mascota['nombre']."</td>
+			<td class=''>".utf8_encode($mascota['nombre'])."</td>
 			<td class=''>
 				<table width='100%' cellspacing='0' cellpadding='0'>
 					<tr>
-						<td class='left' style='width: 75px;'>
+						<td class='left top' style='width: 75px;'>
 							<strong>Edad:</strong>
 						</td>
 						<td class='left'>
@@ -68,24 +68,24 @@
 						<td class='left' style='width: 75px;'>
 							<strong>Tama&ntilde;o:</strong>
 						</td>
-						<td class='left'>
+						<td class='left top'>
 							".$mascota['tamano']."
 						</td>
 					</tr>
 					<tr>
-						<td class='left' style='width: 75px;'>
+						<td class='left top' style='width: 75px;'>
 							<strong>Raza:</strong>
 						</td>
 						<td class='left'>
-							".$mascota['raza']."
+							".utf8_encode($mascota['raza'])."
 						</td>
 					</tr>
 					<tr>
-						<td class='left' style='width: 75px;'>
+						<td class='left top' style='width: 75px;'>
 							<strong>Conducta:</strong>
 						</td>
 						<td class='left'>
-							".$mascota['conducta']."
+							".utf8_encode($mascota['conducta'])."
 						</td>
 					</tr>
 				</table>
