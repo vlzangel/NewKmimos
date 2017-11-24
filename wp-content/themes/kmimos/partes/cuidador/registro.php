@@ -68,7 +68,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label><?php echo get_region("identidad"); ?>/Documento de Identidad</label>
-							<input type="text"  maxlength="<?php echo get_region('identidad-length'); ?>" minlength="<?php echo get_region('identidad-length'); ?>" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
+							<input type="text"  maxlength="20" minlength="20" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -83,7 +83,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Teléfono</label>
-							<input type="text" name="rc_telefono" data-charset="num" minlength="<?php echo get_region('identidad-length'); ?>" maxlength="<?php echo get_region('identidad-length'); ?>" value="" class="input-label-placeholder solo_numeros">
+							<input type="text" name="rc_telefono" data-charset="num" minlength="20" maxlength="20" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
