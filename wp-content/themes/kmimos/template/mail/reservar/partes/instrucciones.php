@@ -7,7 +7,7 @@
             </div>
             
             <div style="font-family: Arial; font-size: 22px; font-weight: bold; letter-spacing: 0.6px; color: #0d7ad9; margin-bottom: 22px;">
-                $ [MONTO] MXN
+                $ [MONTO] <?php echo get_region('mon_der'); ?>
             </div>
             
             <div style="display: inline-block; padding: 12px 20px; border-radius: 2.8px; background-color: #f4f4f4; margin-bottom: 30px;">
