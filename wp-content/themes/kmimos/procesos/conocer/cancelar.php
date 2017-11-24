@@ -36,7 +36,8 @@
             cuidadores
         WHERE
             id_post != {$cuidador_info->id_post} AND 
-            activo = 1
+            activo = 1 AND
+            user_id != 8631
         ORDER BY DISTANCIA ASC
         LIMIT 0, 4
     ";

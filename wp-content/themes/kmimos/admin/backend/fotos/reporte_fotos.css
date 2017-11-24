@@ -1,0 +1,18 @@
+.status{
+    width: 15px;
+    height: 15px;
+    margin: 0px auto;
+    border-radius: 50%;
+}
+
+.status-ok{
+	background: #1bb11b;
+}
+
+.status-mal{
+	background: red;
+}
+
+.status-medio{
+	background: yellow;
+}

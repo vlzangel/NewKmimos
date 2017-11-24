@@ -93,6 +93,13 @@
 	if(!function_exists('kmimos_mails_administradores_new')){       
         function kmimos_mails_administradores_new($titulo, $mensaje){     
       
+            
+            
+            
+            
+            
+
+
             // $info = kmimos_get_info_syte();
             // $email_admin = $info["email"];
 
@@ -115,7 +122,12 @@
             //     'BCC: robertomadridcisneros@gmail.com',
             //     'BCC: jordiballarin@gmail.com',
             //     'BCC: supervisor01sincola@gmail.com',
-            //     'BCC: supervisor02sincola@gmail.com' 
+            //     'BCC: supervisor02sincola@gmail.com',
+            //     'BCC: operador03sincola@gmail.com',
+            //     'BCC: operador08sincola@gmail.com',
+            //     'BCC: operador10sincola@gmail.com',
+            //     'BCC: operador11sincola@gmail.com',
+            //     'BCC: gabriel.marquez@sin-cola.com'
             // );
 
             // wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);       

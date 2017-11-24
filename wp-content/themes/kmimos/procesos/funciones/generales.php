@@ -58,9 +58,18 @@
         }
     }
 
-    function kmimos_get_user_meta($user_id, $key){
+    function kmimos_get_user_meta($user_id, $key = ''){
         global $db;
-        return $db->get_var("SELECT meta_key FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = '{$key}';");
+        if( $key != '' ){
+            return $db->get_var("SELECT meta_key FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = '{$key}';");
+        }else{
+            $resultado = array();
+            $metas = $db->get_results("SELECT * FROM wp_usermeta WHERE user_id = {$user_id}");
+            foreach ($metas as $key => $value) {
+                $resultado[ $value->meta_key ] = $value->meta_value;
+            }
+            return $resultado;
+        }
     }
     
     function kmimos_update_user_meta($user_id, $key, $valor){
@@ -72,9 +81,18 @@
         }
     }
 
-    function kmimos_get_post_meta($post_id, $key){
+    function kmimos_get_post_meta($post_id, $key = ''){
         global $db;
-        return $db->get_var("SELECT meta_key FROM wp_postmeta WHERE post_id = {$user_id} AND meta_key = '{$key}';");
+        if( $key != '' ){
+            return $db->get_var("SELECT meta_key FROM wp_postmeta WHERE post_id = {$post_id} AND meta_key = '{$key}';");
+        }else{
+            $resultado = array();
+            $metas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$post_id}");
+            foreach ($metas as $key => $value) {
+                $resultado[ $value->meta_key ] = $value->meta_value;
+            }
+            return $resultado;
+        }
     }
     
     function kmimos_update_post_meta($post_id, $key, $valor){
