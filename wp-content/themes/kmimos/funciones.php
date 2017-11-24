@@ -48,7 +48,7 @@
                             <div class='vlz_destacados_img'>
                                 <div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
                                 <div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
-                                <div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>MXN $".($cuidador->hospedaje_desde*1.2)."</div>
+                                <div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>".get_region('mon_der')." $".($cuidador->hospedaje_desde*1.2)."</div>
                             </div>
                             <div class='vlz_destacados_data' >
                                 <div class='vlz_destacados_nombre'>{$nombre}</div>
