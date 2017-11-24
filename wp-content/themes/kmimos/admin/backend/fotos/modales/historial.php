@@ -5,9 +5,21 @@
     	print_r($_POST);
     echo "</pre>";
 */
+    $actual = time();
+    
 	$historial = "";
 	$fehas = $db->get_results("SELECT * FROM fotos WHERE reserva = {$ID}");
 	foreach ($fehas as $key => $value) {
+
+        $status_val = $value->subio_12+$value->subio_06;
+
+        if( date("H", $actual) < 12 && $status_val == 1 ){
+            $status_val++;
+        }
+
+        if( date("H", $actual) > 12 && $status_val == 0 ){
+            $status_val = 3;
+        }
 
         $status = ""; $status_txt = "";
         switch ( $value->status ) {
