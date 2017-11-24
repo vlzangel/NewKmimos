@@ -117,5 +117,20 @@
             $db->query("INSERT INTO wp_term_relationships VALUES ( {$object_id}, '$valor', '0');");
         }
     }
+
+    function listar_archivos($carpeta){
+        $fotos = array();
+        if(is_dir($carpeta)){
+            if($dir = opendir($carpeta)){
+                while(($archivo = readdir($dir)) !== false){
+                    if($archivo != '.' && $archivo != '..' && $archivo != 'collage.png'){
+                        $fotos[] = $archivo;
+                    }
+                }
+                closedir($dir);
+            }
+        }
+        return $fotos;
+    }
     
 ?>

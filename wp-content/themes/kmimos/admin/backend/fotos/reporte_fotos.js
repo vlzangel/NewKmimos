@@ -34,9 +34,6 @@ jQuery(document).ready(function() {
 } );
 
 function abrir_link(e){
-
-	console.log(e);
-
 	init_modal({
 		"titulo": e.attr("data-titulo"),
 		"modulo": "fotos",
@@ -45,4 +42,25 @@ function abrir_link(e){
 			"ID": e.attr("data-id")
 		}
 	});
+}
+
+function moderar(){
+	var checkes = {};
+	jQuery("#form_moderar input").each(function(){
+		if( jQuery(this).prop('checked') ){
+        	checkes[ jQuery(this).attr("id") ] = jQuery(this).val();
+		}
+    });
+
+    checkes[ "ID_RESERVA" ] = ID_RESERVA;
+
+    console.log(checkes);
+
+	jQuery.post(
+		TEMA+"/admin/backend/fotos/ajax/moderar.php",
+		checkes,
+		function(HTML){
+            console.log(HTML);
+        }
+    );
 }
