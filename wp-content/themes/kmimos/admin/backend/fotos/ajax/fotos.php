@@ -88,7 +88,7 @@
                 $telf,
                 "<span onclick='abrir_link( jQuery(this) );' class='enlaces mascotas_cliente' data-id='{$cliente_id}' data-titulo='Datos de las Mascotas' data-modal='mascotas' >Mascotas del Cliente</span>",
                 $dia,
-                $noche,
+                $noche." ".date("H", $actual),
                 "<div class='status {$status}' title='{$status_txt}'>&nbsp;</div>"
             );
         }
