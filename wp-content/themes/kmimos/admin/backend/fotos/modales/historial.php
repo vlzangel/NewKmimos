@@ -22,7 +22,7 @@
         }
 
         $status = ""; $status_txt = "";
-        switch ( $value->status ) {
+        switch ( $status_val ) {
             case '0':
                 $status = "status-inicio";
                 $status_txt = "Por cargar fotos";
