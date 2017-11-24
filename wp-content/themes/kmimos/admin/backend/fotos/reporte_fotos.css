@@ -5,8 +5,20 @@
     border-radius: 50%;
 }
 
+.status-2{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
 .status-ok{
 	background: #1bb11b;
+}
+
+.status-ok-medio{
+	background: orange;
 }
 
 .status-mal{
@@ -19,6 +31,11 @@
 
 .status-inicio{
 	background: #9c9c9c;
+}
+
+.status-futuro{
+	background: #FFF;
+	border: solid 1px #9c9c9c;
 }
 
 .modal > div > div * {
@@ -76,4 +93,71 @@
 
 .top{
 	vertical-align: top !important;
+}
+
+.legenda{
+	margin: 0px 10px 10px;
+}
+
+.legenda th span {
+	margin: 5px;
+	border-bottom: solid 1px #CCC;
+	display: block;
+	padding: 5px;
+}
+
+.legenda *{
+	font-size: 13px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.modal .legenda *{
+	font-size: 11px;
+}
+
+.fotos_moderar {
+	overflow: hidden;
+}
+
+.fotos_moderar > div {
+	float: left;
+	width: calc( 50% - 20px );
+	height: 190px;
+	box-sizing: border-box;
+	margin: 10px;
+	background-color: #000;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+.fotos_moderar input {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.botones_container {
+    border-top: solid 1px #CCC;
+    margin: 5px 0px;
+    padding: 10px 0px;
+    text-align: right;
+}
+
+.botones_container input {
+	border: solid 1px #CCC;
+    background: #CCC;
+    padding: 10px 20px;
+    cursor: pointer;
+	box-shadow: 0px 0px 0px #CCC;
+}
+
+.botones_container input:hover {
+	background: #dfdfdf;
+	box-shadow: 0px 0px 0px #CCC;
+}
+
+.botones_container input:focus {
+	box-shadow: 0px 0px 0px #CCC;
 }
