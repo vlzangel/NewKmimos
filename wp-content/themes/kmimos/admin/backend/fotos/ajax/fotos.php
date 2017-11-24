@@ -15,8 +15,8 @@
         "data" => array()
     );
 
-    //$actual = time();
-    $actual = strtotime("11:48:00");
+    $actual = time();
+    //$actual = strtotime("11:48:00");
 
     $fotos = $db->get_results("SELECT * FROM fotos WHERE fecha = '".date("Y-m-d")."' ");
     if( $fotos != false ){
