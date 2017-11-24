@@ -11,6 +11,7 @@ function init_modal(data){
             jQuery(".modal > div > div").html( HTML );
 
             jQuery(".modal").css("display", "block");
+            jQuery("body").css("overflow", "hidden");
 
         },
         beforeSend:function(){},
@@ -21,6 +22,7 @@ function init_modal(data){
 
     jQuery("#close_modal").on("click", function(e){
         jQuery(".modal").css("display", "none");
+        jQuery("body").css("overflow", "auto");
     });
 
 }

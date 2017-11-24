@@ -16,3 +16,64 @@
 .status-medio{
 	background: yellow;
 }
+
+.status-inicio{
+	background: #9c9c9c;
+}
+
+.modal > div > div * {
+	font-size: 13px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.tabla_vertical > tbody > tr > th{
+	text-align: left;
+	width: 100px;
+}
+
+.tabla_vertical > tbody > tr > td{
+	text-align: left;
+}
+
+.tabla_horizontal{
+	border: solid 1px #CCC;
+	border-bottom: solid 1px #CCC;
+}
+
+.tabla_horizontal > tbody > tr > th{
+	background: #EEE;
+	border-bottom: solid 1px #CCC;
+	border-right: solid 1px #CCC;
+    padding: 5px;
+    text-align: center;
+}
+
+.tabla_horizontal > tbody > tr > td:last-child{
+	border-right: solid 1px #CCC;
+}
+
+.tabla_horizontal > tbody > tr > td{
+	border-bottom: solid 1px #CCC;
+	padding: 5px;
+    text-align: center;
+}
+
+.tabla_horizontal > tbody > tr:hover td{
+	background: #EEE;
+}
+
+.left{
+	text-align: left !important;
+}
+
+.right{
+	text-align: right !important;
+}
+
+.center{
+	text-align: center !important;
+}
+
+.top{
+	vertical-align: top !important;
+}
