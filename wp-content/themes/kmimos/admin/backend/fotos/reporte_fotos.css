@@ -161,3 +161,30 @@
 .botones_container input:focus {
 	box-shadow: 0px 0px 0px #CCC;
 }
+
+.img{
+    margin: 4px;
+	max-width: 270px;
+    max-height: 182px;
+}
+
+.img_vista{    
+	margin: 4px;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.img_collage{
+	max-width: 270px;
+    max-height: 190px;
+    margin: 4px;
+}
+
+#fondo{
+	display: none;
+}
+
+#base_table{
+	/*position: fixed;
+	top: -99999999999999999999px;*/
+}
