@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <td> <div class='status-2 status-ok-medio'>&nbsp;</div> Cargo las fotos de la ma&ntilde;ana</td>
-            <td> <div class='status-2 status-medio'>&nbsp;</div> Solo cargo un flujo</td>
+            <td> <div class='status-2 status-medio'>&nbsp;</div> Solo carg&oacute; un flujo</td>
         </tr>
         <tr>
             <td> <div class='status-2 status-mal'>&nbsp;</div> No ha cargado a la hora</td>

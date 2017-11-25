@@ -72,7 +72,7 @@
                 break;
                 case '4':
                     $status = "status-ok-medio";
-                    $status_txt = "Por cargar el flujo de la tarde";
+                    $status_txt = "Cargo las fotos de la mañana";
                 break;
                 
                 default:

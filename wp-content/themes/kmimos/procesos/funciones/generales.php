@@ -1,8 +1,14 @@
 <?php
-	if(!function_exists('get_home_url')){
+    if(!function_exists('get_home_url')){
         function get_home_url(){
-        	global $db;
-        	return $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
+            global $db;
+            return $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
+        }
+    }
+
+	if(!function_exists('getTema')){
+        function getTema(){
+        	return get_home_url()."wp-content/themes/kmimos/";
         }
     }
 
