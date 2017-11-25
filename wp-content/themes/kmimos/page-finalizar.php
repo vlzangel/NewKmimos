@@ -14,7 +14,9 @@
 		
 		$orden_id = vlz_get_page();
 
-		$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
+		$_pdf_tienda = get_region("meta_key_pdf_tienda");
+
+		$pdf = get_post_meta($orden_id, $_pdf_tienda, true);
 		if( $pdf != "" ){
 			$pdf = "<a class='btn_fin_reserva' href='{$pdf}' target='_blank'>DESCARGAR INSTRUCCIONES PARA PAGO EN TIENDA DE CONVENIENCIA</a>";
 		}

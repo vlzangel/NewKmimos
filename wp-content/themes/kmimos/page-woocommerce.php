@@ -186,7 +186,7 @@
 		";
 
 
-		if( strtolower( REGION ) == 'colombia' ){
+/*		if( strtolower( REGION ) == 'colombia' ){
 			$HTML .= '
 			<p style="background:url(https://maf.pagosonline.net/ws/fp?id=$'.$PayuDeviceSessionId.$id_user.')"></p>
 
@@ -205,7 +205,7 @@
 			</object>
 			';
 		}
-
+*/
 
 		if( $error != "" ){
 			$actual = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
