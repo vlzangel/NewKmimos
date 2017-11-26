@@ -1,6 +1,6 @@
 <?php
 
-	include("../../../lib/openpay/Openpay.php");
+	include(realpath( dirname(dirname(dirname(__DIR__) ) )."/lib/openpay/Openpay.php" ));
 	
 	$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
 	Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
