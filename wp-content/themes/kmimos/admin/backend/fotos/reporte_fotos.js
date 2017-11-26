@@ -69,7 +69,7 @@ function moderar(){
     jQuery( "#base img" ).each(function( index ) {
         var img = document.getElementById( jQuery(this).attr("id") );
         var i = jQuery(this).attr("id");
-        console.log();
+        console.log(img);
         ctx.drawImage(
             img, 
             jQuery( "#"+i )[0].offsetLeft, 

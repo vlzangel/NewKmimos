@@ -11,7 +11,7 @@
     $MODERADAS = unserialize($MODERADAS);
 
 
-    $URL = get_home_url()."/wp-content/uploads/fotos/".$ID."/".date("Y-m-d")."_".$PERIODO."/";
+    $URL = get_home_url()."wp-content/uploads/fotos/".$ID."/".date("Y-m-d")."_".$PERIODO."/";
     $PATH = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))))."/uploads/fotos/".$ID."/".date("Y-m-d")."_".$PERIODO."/";
 
     $FOTOS = listar_archivos( $PATH );
