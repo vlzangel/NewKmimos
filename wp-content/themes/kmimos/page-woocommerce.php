@@ -186,7 +186,7 @@
 		";
 
 
-		if( strtolower( REGION ) == 'colombia' ){
+/*		if( strtolower( REGION ) == 'colombia' ){
 			$HTML .= '
 			<p style="background:url(https://maf.pagosonline.net/ws/fp?id=$'.$PayuDeviceSessionId.$id_user.')"></p>
 
@@ -205,7 +205,7 @@
 			</object>
 			';
 		}
-
+*/
 
 		if( $error != "" ){
 			$actual = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
@@ -575,9 +575,47 @@
 											Datos de la tarjeta invalidos
 										</div>
 
-										<div id="tienda_box" class="metodos_container" style="display:block;">
-											<img src="'.get_template_directory_uri().'/images/tiendas.png" />
-											<img src="'.get_template_directory_uri().'/images/pasos.png" />
+										<div id="tienda_box" class="metodos_container" style="display:block;">';
+
+										switch(strtolower(REGION)){
+											case 'mexico':
+												$HTML .= '
+												<img src="'.get_template_directory_uri().'/images/tiendas.png" />
+												<img src="'.get_template_directory_uri().'/images/pasos.png" />
+												';
+												break;
+											case 'colombia':
+												$HTML .= '
+												<div style="padding:5px 0px;">
+													<div class="km-text-one">								
+														<h4>SELECCIONA TU TIENDA DE PAGO</h4>
+													</div>
+													<div class="col-xs-6 col-sm-4">
+														<div class="km-opcion" data-target="tienda">
+															<input type="checkbox" name="list_tienda" value="BALOTO" >
+															<img src="'.get_template_directory_uri().'/images/logos_tiendas/viabaloto.png" />
+														</div>
+													</div>
+													<div class="col-xs-6 col-sm-4">
+														<div class="km-opcion" data-target="tienda">
+															<input type="checkbox" name="list_tienda" value="EFECTY" >
+															<img src="'.get_template_directory_uri().'/images/logos_tiendas/efecty.png" />
+														</div>
+													</div>
+													<div class="col-xs-6 col-sm-4">
+														<div class="km-opcion" data-target="tienda">
+															<input type="checkbox" name="list_tienda" value="SURED" >
+															<img src="'.get_template_directory_uri().'/images/logos_tiendas/sured.png" />
+														</div>
+													</div>
+												</div>
+												<img src="'.get_template_directory_uri().'/images/pasos.png" />
+												';												
+												break;
+										}
+
+
+		$HTML .= '
 										</div>
 										<div id="tarjeta_box" class="metodos_container" style="display:none;">
 

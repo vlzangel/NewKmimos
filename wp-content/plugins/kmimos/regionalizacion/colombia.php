@@ -29,7 +29,9 @@ $region = array(
             ),
     "identidad" => "DNI",
     "identidad-length" => 7,
+    "meta_key_pdf_tienda" => "_payu_pdf",
+    "meta_key_tienda_vence" => "_payu_pdf",
+
     "web" => "http://kmimos.co"
-    );
-// get_region($key)
-?>
+);
+

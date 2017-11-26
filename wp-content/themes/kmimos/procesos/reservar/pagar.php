@@ -10,7 +10,6 @@
 	include($raiz."/vlz_config.php");
 	include("../funciones/db.php");
 	include("../funciones/config.php");
-
 	include("reservar.php");
 
 	$xdb = $db;
