@@ -189,7 +189,7 @@
 		"num_mascotas" 			=> $num_mascotas,
 		"metodo_pago" 			=> $pagar->tipo,
 		"metodo_pago_titulo" 	=> $titulo_pago,
-		"moneda" 				=> "MXN",
+		"moneda" 				=> get_region('mon_der'),
 		"duracion_formato" 		=> $fechas->duracion,
 		"mascotas" 				=> $mascotas,
 		"adicionales" 			=> $adicionales,

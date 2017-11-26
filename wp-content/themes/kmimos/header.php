@@ -58,6 +58,8 @@
 			var AVATAR = "";
 			var REGION = "'.REGION.'";
             var wlabel = "'.$wlabel.'";
+            var DNI = "'.get_region('identidad').'";
+            var DNILENGTH = "'.get_region('identidad-length').'";
 		</script>';
 
 

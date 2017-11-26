@@ -475,7 +475,7 @@ function rc_validar_longitud( field ){
 				break;
 
 			case 'rc_ife':
-				result = validar_longitud( val, 13, 13, 'string', 'Debe tener 13 digitos');
+				result = validar_longitud( val, DNILENGTH, 20, 'string', 'Debe tener al menos '+DNILENGTH+' digitos');
 				break;
 
 			case 'rc_clave':
@@ -483,7 +483,7 @@ function rc_validar_longitud( field ){
 				break;
 
 			case 'rc_telefono':
-				result = validar_longitud( val, 7, 15, 'string', 'Debe estar entre 7 y 15 caracteres');
+				result = validar_longitud( val, DNILENGTH, 20, 'string', 'Debe tener al menos '+DNILENGTH+' caracteres');
 				break;
 
 			case 'rc_descripcion':

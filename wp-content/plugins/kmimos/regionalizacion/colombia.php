@@ -7,7 +7,7 @@ $region = array(
     "email"     => "contactoco@kmimos.la",
 
     "telefono" => " Bogota:+57 (1) 593 8719",
-    "telefono_sincosto" => "(01) 800 056 4667",
+    "telefono_corrido" => "+5715938719",
     "whatsapp"=> "+57 318 350 2391", 
 
     "twitter"   => "kmimosco",
@@ -17,6 +17,7 @@ $region = array(
     "mon_der" => "COP",
     "km-vacaciones" => false,
     "km-medios" => false,
+    "km-patitas" => false,
     "km-5000" => 0,
     "conocio" => array(
                 'Facebook'      =>  'Facebook',
@@ -27,8 +28,10 @@ $region = array(
                 'Otros'                 =>  'Otros'
             ),
     "identidad" => "DNI",
+    "identidad-length" => 7,
     "meta_key_pdf_tienda" => "_payu_pdf",
     "meta_key_tienda_vence" => "_payu_pdf",
 
-    
-    );
+    "web" => "http://kmimos.co"
+);
+
