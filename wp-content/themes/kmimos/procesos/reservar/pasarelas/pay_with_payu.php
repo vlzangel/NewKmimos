@@ -1,8 +1,10 @@
 <?php
 
 	$PayU_file = realpath( dirname(dirname(dirname(__DIR__) ) )."/lib/payu/PayU.php" ) ;
-	if( file_exists($PayU_file) ){
+	$tdc = realpath( dirname(dirname(dirname(__DIR__) ) )."/lib/payu/validarTDC.php" ) ;
+	if( file_exists($PayU_file) && file_exists($tdc) ){
 		include( $PayU_file );
+		include( $tdc );
 	}else{
 	    echo json_encode(array(
 			"error" => $id_orden,
@@ -34,7 +36,6 @@
 	$PayuP['cliente']['postal'] = '000000';
 	$PayuP["PayuDeviceSessionId"] = $PayuDeviceSessionId;
 
-
 	$payu = new PayU();
 	switch ( $pagar->tipo ) {
 		case 'tarjeta':
@@ -45,11 +46,15 @@
 			$code = "";
 
 			// -- Agregar Parametros Adicionales
-			$PayuP["creditCard"]["name"] = 'REJECETDE';
-			$PayuP["creditCard"]["number"] = '4097440000000004';
-			$PayuP["creditCard"]["securityCode"] = '123';
-			$PayuP["creditCard"]["payment_method"] = 'VISA';
-			$PayuP["creditCard"]["expirationDate"] = '2019/03';
+			 	
+			$tdc = new fngccvalidator();
+			$tdc_name = $tdc->CreditCard($tarjeta->numero, '', true);
+
+			$PayuP["creditCard"]["name"] = $tarjeta->nombre;
+			$PayuP["creditCard"]["number"] = $tarjeta->numero;
+			$PayuP["creditCard"]["securityCode"] = $tarjeta->codigo;
+			$PayuP["creditCard"]["payment_method"] = strtoupper($tdc_name['type']);
+			$PayuP["creditCard"]["expirationDate"] = $tarjeta->anio.'/'.$tarjeta->mes;
 
 			try {
 				$charge = $payu->AutorizacionCaptura( $PayuP );	
@@ -123,7 +128,7 @@
 
 			// -- Agregar Parametros Adicionales
 			$PayuP["pais_cod_iso"] =  get_region('pais_cod_iso');
-			$PayuP["paymentMethod"] =  'BALOTO';
+			$PayuP["paymentMethod"] =  strtoupper($pagar->tienda);
 			$PayuP["expirationDate"] = $due_date;
 
 			try {
@@ -183,3 +188,9 @@
 		break;
 
 	}
+
+
+
+
+
+

@@ -166,7 +166,7 @@ class PayU {
 		// -- Datos de la Orden
 		$cofg["transaction"]["order"]["accountId"] = $config['accountId'];
 		$cofg["transaction"]["order"]["referenceCode"] =  $datos['id_orden'];
-		$cofg["transaction"]["order"]["description"] = 'Tarjeta Compra Numero '.$datos['id_orden'];
+		$cofg["transaction"]["order"]["description"] = 'Compra Numero '.$datos['id_orden'];
 		$cofg["transaction"]["order"]["language"] = "es";
 		$cofg["transaction"]["order"]["signature"] = $config['signature'];
 		$cofg["transaction"]["order"]["notifyUrl"] = $config['confirmation'];

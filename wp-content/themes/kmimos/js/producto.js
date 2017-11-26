@@ -33,6 +33,7 @@ function initCarrito(){
 	CARRITO["pagar"] = [];
 
 		CARRITO["pagar"] = {
+			"tienda" : "",
 			"total" : "",
 			"tipo" : "",
 			"metodo" : "deposito",
@@ -394,6 +395,7 @@ function initFactura(){
 
 function pagarReserva(id_invalido = false){
 
+	
 	jQuery("#reserva_btn_next_3 span").html("Procesando");
 	jQuery("#reserva_btn_next_3").addClass("disabled");
 	jQuery("#reserva_btn_next_3").addClass("cargando");
@@ -695,6 +697,18 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+    jQuery('[data-target="tienda"]').on('click', function(e) {
+        jQuery('[data-target="tienda"]').parent().find('.km-opcion')
+        	.removeClass('km-opcionactivo')
+        	.removeAttr('checked');
+        jQuery(this).toggleClass('km-opcionactivo');
+		
+		var f = jQuery(this).children("input:checkbox").prop("checked","checked");
+		
+		CARRITO['pagar']['tienda'] = f.val();
+    });
+
 
 	jQuery(".km-option-deposit").click();
 
