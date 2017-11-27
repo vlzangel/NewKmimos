@@ -283,7 +283,7 @@
                         '".$hoy."', 
                         '', 
                         0, 
-                        '".get_region('web')."'/petsitters/".$user_id."/', 
+                        '".get_region('web')."/petsitters/".$user_id."/', 
                         0, 
                         'petsitters', 
                         '', 
@@ -292,7 +292,8 @@
                 ";
                 $conn->query( utf8_decode( $sql_post_cuidador ) );
                 $id_post = $conn->insert_id;
-                
+
+
                 // Update POST_ID en cuidadores  
                 $conn->query( "UPDATE cuidadores SET id_post = '".$id_post."' WHERE id = ".$cuidador_id);
 
