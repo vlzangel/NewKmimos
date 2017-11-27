@@ -185,6 +185,27 @@
 }
 
 #base_table{
-	/*position: fixed;
-	top: -99999999999999999999px;*/
+	position: fixed;
+	top: -99999999999999999999px;
+	display: inline-block; 
+	background-color: #CCC; 
+	padding: 0px; 
+	margin: 20px; 
+	border: solid 1px #CCC; 
+	border-radius: 4px;
+}
+
+#myCanvas{
+	position: fixed;
+	top: -99999999999999999999px;
+}
+
+input[type=checkbox]:checked:before {
+	margin: 0px -2px;
+    font-size: 30px;
+}
+
+input[type=checkbox] {
+    height: 30px !important;
+    width: 30px !important;
 }

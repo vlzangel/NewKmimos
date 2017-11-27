@@ -4,9 +4,19 @@
     $MODERADAS = array();
     foreach ($_POST as $key => $value) {
     	if( strpos($key, "foto") > -1 ){
-    		$MODERADAS[] = $value;
+    		$MODERADAS[$PERIODO][] = $value;
     	}
     }
 
-    $db->get_var( "UPDATE fotos SET moderacion = '".serialize($MODERADAS)."' WHERE reserva = ".$ID_RESERVA." AND fecha = '".date("Y-m-d")."'" );
+    $db->query( "UPDATE fotos SET moderacion = '".serialize($MODERADAS)."' WHERE reserva = ".$ID_RESERVA." AND fecha = '".date("Y-m-d")."'" );
+
+    $imgx = explode(',', $COLLAGE);
+	$img = end($imgx);
+    $sImagen = base64_decode($img);
+
+    $DIR = path_base()."/wp-content/uploads/fotos/".$ID_RESERVA."/".date("Y-m-d")."_".$PERIODO."/";
+
+    procesar_img("collage", $PERIODO, $DIR, $sImagen, true);
+
+	exit;
 ?>

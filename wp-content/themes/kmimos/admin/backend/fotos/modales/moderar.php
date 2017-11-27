@@ -19,9 +19,12 @@
 	echo "<form id='form_moderar'><div class='fotos_moderar'>";
 		$i = 1;
 		foreach ($FOTOS as $foto) {
-			$check = "";
-			if( in_array($foto, $MODERADAS)){
-				$check = "checked";
+			$check = "checked";
+			if( isset($MODERADAS[$PERIODO]) ){
+				$check = "";
+				if( in_array($foto, $MODERADAS[$PERIODO])){
+					$check = "checked";
+				}
 			}
 			echo "
 				<div style='background-image: url(".$URL.$foto.");'>
@@ -34,13 +37,16 @@
 			<input type='hidden' value='{$i}' id='cantidad' name='cantidad' />
 		</div>
 		<div class='botones_container'>
-			<input type='button' value='Moderar' onClick='moderar()' />
+			<input type='button' id='Moderar' value='Moderar' onClick='moderar()' />
 		</div></form>
-		<script> var ID_RESERVA = $ID; </script>
+		<script> 
+			var ID_RESERVA = $ID; 
+			var PERIODO = '".$PERIODO."'; 
+		</script>
 
 		<img id='fondo' src='".getTema()."/images/prueba_galeria/fondo.png' />
 		<canvas id='myCanvas' width='600' height='495' ></canvas>
-		<div id='base_table' style='display: inline-block; background-color: #CCC; padding: 0px; margin: 20px; border: solid 1px #CCC; border-radius: 4px;'>
+		<div id='base_table'>
 			<table width='600' height='495'>
 				<tr><td align='center' valign='middle' id='base'></td></tr>
 			</table>
