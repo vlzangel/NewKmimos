@@ -32,6 +32,8 @@ $region = array(
     "meta_key_pdf_tienda" => "_payu_pdf",
     "meta_key_tienda_vence" => "_payu_tienda_vence",
 
-    "web" => "http://kmimos.co"
+    "web" => "http://kmimos.co",
+
+    "comision" => "",
 );
 

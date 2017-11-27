@@ -12,6 +12,8 @@
 
 		global $wpdb;
 		
+		$moneda_signo = get_region('mon_der');
+
 		$orden_id = vlz_get_page();
 
 		$_pdf_tienda = get_region("meta_key_pdf_tienda");
@@ -72,8 +74,8 @@
 	    foreach ($data_reserva["variaciones"] as $value) {
 	        $variaciones .= '
 	            <div class="item">
-	                <div>'.$value[0].' '.$value[1].' x '.$value[2].' x $'.$value[3].'</div>
-	                <span>$'.$value[4].'</span>
+	                <div>'.$value[0].' '.$value[1].' x '.$value[2].' x '.$moneda_signo.$value[3].'</div>
+	                <span>'.$moneda_signo.$value[4].'</span>
 	            </div>
 	        ';
 	    }
@@ -100,8 +102,8 @@
 	        foreach ($data_reserva["adicionales"] as $value) {
 	            $adicionales .= '
 	                <div class="item">
-	                    <div>'.$value[0].' - '.$value[1].' x $'.$value[2].'</div>
-	                    <span>$'.$value[3].'</span>
+	                    <div>'.$value[0].' - '.$value[1].' x '.$moneda_signo.$value[2].'</div>
+	                    <span>'.$moneda_signo.$value[3].'</span>
 	                </div>
 	            ';
 	        }
@@ -119,7 +121,7 @@
 	            $transporte .= '
 	                <div class="item">
 	                    <div>'.$value[0].'</div>
-	                    <span>$'.$value[2].'</span>
+	                    <span>'.$moneda_signo.$value[2].'</span>
 	                </div>
 	            ';
 	        }

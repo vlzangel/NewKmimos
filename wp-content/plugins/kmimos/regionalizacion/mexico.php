@@ -32,6 +32,8 @@ $region = array(
     "meta_key_pdf_tienda" => "_openpay_pdf",
     "meta_key_tienda_vence" => "_openpay_tienda_vence",
 
-    "web" => "http://www.kmimos.com.mx"
+    "web" => "http://www.kmimos.com.mx",
+    "comision" => "(más $8 pesos por comisión)",
+
 );
 
