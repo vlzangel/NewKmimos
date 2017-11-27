@@ -16,7 +16,7 @@
     );
 
     $actual = time();
-    //$actual = strtotime("11:48:00");
+    $actual = strtotime("14:48:00");
 
     $fotos = $db->get_results("SELECT * FROM fotos WHERE fecha = '".date("Y-m-d")."' ");
     if( $fotos != false ){
@@ -44,11 +44,11 @@
 
             $status_val = $value->subio_12+$value->subio_06;
 
-            if( date("H", $actual) < 12 && $status_val == 1 ){
-                $status_val++;
+            if( date("H", $actual) < 18 && $status_val == 1 ){
+                $status_val = 4;
             }
 
-            if( date("H", $actual) > 12 && $status_val == 0 ){
+            if( date("H", $actual) > 11 && $status_val == 0 ){
                 $status_val = 3;
             }
 
@@ -70,6 +70,10 @@
                     $status = "status-mal";
                     $status_txt = "No se cargaron fotos";
                 break;
+                case '4':
+                    $status = "status-ok-medio";
+                    $status_txt = "Cargo las fotos de la mañana";
+                break;
                 
                 default:
                     $status = "status-ok";
@@ -77,26 +81,36 @@
                 break;
             }
 
-            $dia = "No"; if( $value->subio_12 == 1 ){ $dia = "Si <span class='enlaces' onclick='moderar( jQuery(this), 1 );'>Moderar</span>"; }
-            $noche = "No"; if( $value->subio_06 == 1 ){ $noche = "Si <span class='enlaces' onclick='moderar( jQuery(this), 1 );'>Moderar</span>"; }
+            $dia = "No"; if( $value->subio_12 == 1 ){ 
+                $moderar = "";
+                if( date("H", $actual) < 12 ){
+                    $moderar = "<span class='enlaces' onclick='abrir_link( jQuery(this) );' data-id='{$value->reserva}==1' data-titulo='Moderaci&oacute;n de Fotos' data-modal='moderar'>Moderar</span>";
+                }
+                $dia = "Si ".$moderar; 
+            }
+            $noche = "No"; if( $value->subio_06 == 1 ){ 
+                $moderar = "";
+                if( date("H", $actual) < 18 ){
+                    $moderar = "<span class='enlaces' onclick='abrir_link( jQuery(this) );' data-id='{$value->reserva}==2' data-titulo='Moderaci&oacute;n de Fotos' data-modal='moderar'>Moderar</span>";
+                }
+                $noche = "Si ".$moderar;
+            }
 
             $data["data"][] = array(
                 "<span onclick='abrir_link( jQuery(this) );' class='enlaces reserva' data-id='{$value->reserva}' data-titulo='Historial de Fotos' data-modal='historial' >{$value->reserva}</span>",
                 "<span onclick='abrir_link( jQuery(this) );' class='enlaces nombre_cuidador' data-id='{$cuidador->user_id}' data-titulo='Datos del Cuidador' data-modal='cuidador' >{$cuidador_name}</span>",
                 "<span onclick='abrir_link( jQuery(this) );' class='enlaces nombre_cliente' data-id='{$cliente_id}' data-titulo='Datos del Cliente' data-modal='cliente' >{$cliente_name}</span>",
-                $cuidador->email,
-                $telf,
                 "<span onclick='abrir_link( jQuery(this) );' class='enlaces mascotas_cliente' data-id='{$cliente_id}' data-titulo='Datos de las Mascotas' data-modal='mascotas' >Mascotas del Cliente</span>",
                 $dia,
-                $noche." ".date("H", $actual),
+                $noche,
                 "<div class='status {$status}' title='{$status_txt}'>&nbsp;</div>"
             );
         }
     }
 
     /*    
-    echo "<pre>";
-        print_r($data);
+    echo "<pre style='display: none;'>";
+        print_r($_SERVER["HTTP_REFERER"]);
     echo "</pre>";
     */
 
