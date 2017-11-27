@@ -60,6 +60,7 @@
             var wlabel = "'.$wlabel.'";
             var DNI = "'.get_region('identidad').'";
             var DNILENGTH = "'.get_region('identidad-length').'";
+            var moneda_signo = "'.get_region('mon_der').'";
 		</script>';
 
 

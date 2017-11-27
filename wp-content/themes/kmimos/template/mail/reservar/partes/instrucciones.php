@@ -55,7 +55,7 @@
                         <img src='[URL_IMGS]/group-55.png' style='width: 56px; padding: 0px 10px;' />
                     </td>
                     <td style='width: 230px; vertical-align: top; font-family: Arial; font-size: 12px; letter-spacing: 0.2px; color: #666666; padding-bottom: 10px;'>
-                        Realiza el pago en <strong style='font-weight: bold; color: #570089;'>efectivo</strong> por $[MONTO] MXN (más $8 pesos por comisión) y conserva el ticket de pago.
+                        Realiza el pago en <strong style='font-weight: bold; color: #570089;'>efectivo</strong> por <?php echo get_region('mon_der'); ?>[MONTO] <?php echo get_region('comision'); ?> y conserva el ticket de pago.
                     </td>
                 </tr>
             </table>

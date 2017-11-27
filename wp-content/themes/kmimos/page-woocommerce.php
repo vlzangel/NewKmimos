@@ -590,22 +590,22 @@
 													<div class="km-text-one">								
 														<h4>SELECCIONA TU TIENDA DE PAGO</h4>
 													</div>
-													<div class="col-xs-6 col-sm-4">
-														<div class="km-opcion" data-target="tienda">
+													<div style="margin-bottom:10px;" class="col-xs-6 col-sm-4">
+														<div class="km-opcion km-opcionactivo" data-target="tienda">
 															<input type="checkbox" name="list_tienda" value="BALOTO" >
-															<img src="'.get_template_directory_uri().'/images/logos_tiendas/viabaloto.png" />
+															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/viabaloto.png" />
 														</div>
 													</div>
-													<div class="col-xs-6 col-sm-4">
+													<div style="margin-bottom:10px;" class="col-xs-6 col-sm-4">
 														<div class="km-opcion" data-target="tienda">
 															<input type="checkbox" name="list_tienda" value="EFECTY" >
-															<img src="'.get_template_directory_uri().'/images/logos_tiendas/efecty.png" />
+															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/efecty.png" />
 														</div>
 													</div>
-													<div class="col-xs-6 col-sm-4">
+													<div style="margin-bottom:10px;" class="col-xs-6 col-sm-4">
 														<div class="km-opcion" data-target="tienda">
 															<input type="checkbox" name="list_tienda" value="SURED" >
-															<img src="'.get_template_directory_uri().'/images/logos_tiendas/sured.png" />
+															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/sured.png" />
 														</div>
 													</div>
 												</div>
