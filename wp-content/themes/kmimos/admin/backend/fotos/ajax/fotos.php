@@ -96,7 +96,7 @@
             $noche = "No"; if( $value->subio_06 == 1 ){ 
                 $moderar = "";
                 if( date("H", $actual) < 18 ){
-                    $moderar = "<span class='enlaces' onclick='abrir_link( jQuery(this) );' data-id='{$value->reserva}==2' data-titulo='Moderaci&oacute;n de Fotos' data-modal='moderar'>Moderar</span>";
+                    $moderar = "<span class='enlaces' onclick='abrir_link( jQuery(this) );' data-id='{$value->reserva}==2' data-titulo='Moderaci&oacute;n de Fotos' data-modal='moderar'>Moderar {$moderado}</span>";
                 }
                 $noche = "Si ".$moderar;
             }
