@@ -497,7 +497,7 @@
             $fecha = date("Y-m-d", $i);
             $existe = $wpdb->get_var("SELECT id FROM fotos WHERE reserva = {$id_reserva} AND fecha = '{$fecha}' ");
             if( $existe == null ){
-            	$wpdb->query("INSERT INTO fotos VALUES ( NULL, {$id_reserva}, {$cuidador}, '{$fecha}', '0', '0', '0', 'a:0:{}', '0');");
+            	$wpdb->query("INSERT INTO fotos VALUES ( NULL, {$id_reserva}, {$cuidador}, '{$fecha}', '0', '0', 'a:0:{}', '0');");
             }
         }
     }
