@@ -314,7 +314,7 @@
                 $mail_file = realpath('../../template/mail/registro.php');
 
                 $message_mail = file_get_contents($mail_file);
-print_r($message_mail);
+//print_r($message_mail);
 
                 $message_mail = str_replace('[name]', $nombres.' '.$apellidos, $message_mail);
                 $message_mail = str_replace('[email]', $email, $message_mail);
