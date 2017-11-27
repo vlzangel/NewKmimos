@@ -207,6 +207,21 @@ $HTML .='
 					</div>
 				</div>
 			</div>
+
+
+			<div class="popuphide popup-registrarte-final-0">
+				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
+				<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
+				<a 
+					href="javascript:;" 
+					id="btn_registrar_mascota" 
+					class="km-btn-correo"
+				>
+					REGISTRAR UNA MASCOTA
+				</a>
+			</div>
+
+
 			<div class="popuphide popup-registrarte-datos-mascota">
 				<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 				<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
@@ -336,11 +351,8 @@ $HTML .='
 				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p>
 			</div>
 			<div class="popuphide popup-registrarte-final">
-				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
+				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU MASCOTA SE REGISTRO EXITOSAMENTE!</h3>
 				<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
-				<!--
-					<a href="#" class="modal_show km-btn-correo" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a>
-				-->
 				<a href="javascript:;" onclick="location.href = \''.get_home_url().'/perfil-usuario/\';" id="btn_iniciar_sesion" data-url="'.get_home_url().'/perfil-usuario/" class="km-btn-correo">INICIAR SESIÓN</a>
 			</div>
 		</div>
