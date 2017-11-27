@@ -17,6 +17,7 @@
                 <th>Mascotas</th>
                 <th>Fotos 12 m</th>
                 <th>Fotos 06 pm</th>
+                <th>Bloqueo</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -37,7 +38,7 @@
             <td> <div class='status-2 status-futuro'>&nbsp;</div> Cargas futuras</td>
         </tr>
         <tr>
-            <td> <div class='status-2 status-ok-medio'>&nbsp;</div> Cargo las fotos de la ma&ntilde;ana</td>
+            <td> <div class='status-2 status-ok-medio'>&nbsp;</div> Cargo al menos un flujo</td>
             <td> <div class='status-2 status-medio'>&nbsp;</div> Solo carg&oacute; un flujo</td>
         </tr>
         <tr>
