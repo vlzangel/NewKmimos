@@ -1,3 +1,10 @@
+jQuery( document ).ready( function(){
+
+	jQuery("#btn_registrar_mascota").on("click", function(){
+		jQuery(".popup-registrarte-final-0").css("display", "none");
+		jQuery(".popup-registrarte-datos-mascota").css("display", "block");
+	});
+});
 
 var globalData = "";
  
@@ -273,7 +280,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					if( data > 0 ){
 						globalData = data;
 						jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
-						jQuery(".popup-registrarte-datos-mascota").css("display", "block");
+						jQuery(".popup-registrarte-final-0").css("display", "block");
 
 						jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
 						jQuery("#img_pet").val( "" );
@@ -538,8 +545,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 				jQuery.post( HOME+'/procesos/login/registro_pet.php', datos, function( data ) {
 					if( data >= 1 ){
-		        		
-
 						jQuery("#btn_cerrar").on("click", function(e){
 							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
 						});
