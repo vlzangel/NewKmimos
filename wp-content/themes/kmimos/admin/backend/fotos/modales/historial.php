@@ -6,7 +6,6 @@
     echo "</pre>";
 */
     $actual = time();
-    $actual = strtotime("15:02:00");
 
 	$historial = "";
 	$fehas = $db->get_results("SELECT * FROM fotos WHERE reserva = {$ID}");
