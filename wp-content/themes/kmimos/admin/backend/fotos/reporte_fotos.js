@@ -99,12 +99,12 @@ function moderar(){
 				checkes,
 				function(HTML){
 
-					console.log( HTML );
-
 		            jQuery("#Moderar").removeClass("disable");
 		            jQuery("#Moderar").val("Moderar");
 
 		            table.ajax.reload();
+
+		            cerrar();
 		        }
 		    );   
 	    }, 500);
