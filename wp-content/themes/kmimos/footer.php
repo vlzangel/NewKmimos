@@ -83,13 +83,13 @@ $HTML = '
 
   
     // Descomentar para inicializar la tabla fotos
-    global $wpdb;
+/*    global $wpdb;
     $reservas = $wpdb->get_results("SELECT * FROM wp_postmeta WHERE meta_key = '_booking_end'");
     foreach ($reservas as $key => $value) {
         if( strtotime(date("Y-m-d")." 00:00:00") < strtotime($value->meta_value) ){
             kmimos_registros_fotos($value->post_id);
         }
-    }
+    }*/
 
 
     if( !is_user_logged_in() ){
