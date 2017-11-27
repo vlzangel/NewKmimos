@@ -1,8 +1,14 @@
 <?php
-	if(!function_exists('get_home_url')){
+    if(!function_exists('get_home_url')){
         function get_home_url(){
-        	global $db;
-        	return $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
+            global $db;
+            return $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
+        }
+    }
+
+	if(!function_exists('getTema')){
+        function getTema(){
+        	return get_home_url()."wp-content/themes/kmimos/";
         }
     }
 
@@ -116,6 +122,21 @@
         }else{
             $db->query("INSERT INTO wp_term_relationships VALUES ( {$object_id}, '$valor', '0');");
         }
+    }
+
+    function listar_archivos($carpeta){
+        $fotos = array();
+        if(is_dir($carpeta)){
+            if($dir = opendir($carpeta)){
+                while(($archivo = readdir($dir)) !== false){
+                    if($archivo != '.' && $archivo != '..' && $archivo != 'collage.png'){
+                        $fotos[] = $archivo;
+                    }
+                }
+                closedir($dir);
+            }
+        }
+        return $fotos;
     }
     
 ?>

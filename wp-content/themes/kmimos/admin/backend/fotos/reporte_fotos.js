@@ -34,9 +34,6 @@ jQuery(document).ready(function() {
 } );
 
 function abrir_link(e){
-
-	console.log(e);
-
 	init_modal({
 		"titulo": e.attr("data-titulo"),
 		"modulo": "fotos",
@@ -45,4 +42,48 @@ function abrir_link(e){
 			"ID": e.attr("data-id")
 		}
 	});
+}
+
+function moderar(){
+
+	var IMGS = ""; var CONT = 1;
+	var checkes = {};
+	jQuery("#form_moderar input").each(function(){
+		if( jQuery(this).prop('checked') ){
+        	checkes[ jQuery(this).attr("id") ] = jQuery(this).val();
+        	IMGS += jQuery( "<img src='"+jQuery(this).attr("data-url")+"' class='img' id='base_"+CONT+"' >" )[0].outerHTML;
+        	CONT++;
+		}
+    });
+
+    jQuery("#base").html( IMGS );
+
+    checkes[ "ID_RESERVA" ] = ID_RESERVA;
+    checkes[ "CANTIDAD" ] = jQuery("#cantidad").val();
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("fondo");
+    ctx.drawImage(img, 0, 0, 600, 495);
+
+    jQuery( "#base img" ).each(function( index ) {
+        var img = document.getElementById( jQuery(this).attr("id") );
+        var i = jQuery(this).attr("id");
+        console.log(img);
+        ctx.drawImage(
+            img, 
+            jQuery( "#"+i )[0].offsetLeft, 
+            jQuery( "#"+i )[0].offsetTop, 
+            jQuery( "#"+i )[0].offsetWidth, 
+            jQuery( "#"+i )[0].offsetHeight
+        );
+    });
+
+	jQuery.post(
+		TEMA+"/admin/backend/fotos/ajax/moderar.php",
+		checkes,
+		function(HTML){
+            console.log(HTML);
+        }
+    );
 }

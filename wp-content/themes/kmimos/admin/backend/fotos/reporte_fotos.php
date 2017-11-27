@@ -14,8 +14,6 @@
                 <th>Reserva</th>
                 <th>Cuidador</th>
                 <th>Cliente</th>
-                <th>E-mail</th>
-                <th>Tel&eacute;fono</th>
                 <th>Mascotas</th>
                 <th>Fotos 12 m</th>
                 <th>Fotos 06 pm</th>
@@ -23,6 +21,29 @@
             </tr>
         </thead>
         <tbody></tbody>
+    </table>
+</div>
+
+<div class="legenda">
+    <table width="100%" cellspacing="2" cellpadding="2" >
+        <tr>
+            <th> <span>Status previo al &uacute;ltimo env&iacute;o</span> </th>
+            <th> <span>Status despu&eacute;s del &uacute;ltimo env&iacute;o</span> </th>
+            <th> <span>Status futuros env&iacute;os</span> </th>
+        </tr>
+        <tr>
+            <td> <div class='status-2 status-inicio'>&nbsp;</div> Por cargar fotos</td>
+            <td> <div class='status-2 status-ok'>&nbsp;</div> Todo Bien</td>
+            <td> <div class='status-2 status-futuro'>&nbsp;</div> Cargas futuras</td>
+        </tr>
+        <tr>
+            <td> <div class='status-2 status-ok-medio'>&nbsp;</div> Cargo las fotos de la ma&ntilde;ana</td>
+            <td> <div class='status-2 status-medio'>&nbsp;</div> Solo carg&oacute; un flujo</td>
+        </tr>
+        <tr>
+            <td> <div class='status-2 status-mal'>&nbsp;</div> No ha cargado a la hora</td>
+            <td> <div class='status-2 status-mal'>&nbsp;</div> No ha cargado a la hora</td>
+        </tr>
     </table>
 </div>
 
