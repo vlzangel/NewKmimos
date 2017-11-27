@@ -12,9 +12,15 @@
         }
     }
 
-	if(!function_exists('path_base')){
+    if(!function_exists('path_base')){
         function path_base(){
             return dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+        }
+    }
+
+	if(!function_exists('kmimos_mkdir')){
+        function kmimos_mkdir($dir){
+            if( !file_exists($dir) ){ @mkdir($dir); }
         }
     }
 
@@ -139,4 +145,40 @@
         return $fotos;
     }
     
+    function procesar_img($id, $periodo, $dir, $sImagen, $es_collage = false){
+        $name = $id.".png";
+        $path = $dir.$name;
+        @file_put_contents($path, $sImagen);
+        $sExt = @mime_content_type( $path );
+        switch( $sExt ) {
+            case 'image/jpeg':
+                $aImage = @imageCreateFromJpeg( $path );
+            break;
+            case 'image/gif':
+                $aImage = @imageCreateFromGif( $path );
+            break;
+            case 'image/png':
+                $aImage = @imageCreateFromPng( $path );
+            break;
+            case 'image/wbmp':
+                $aImage = @imageCreateFromWbmp( $path );
+            break;
+        }
+        if( $es_collage ){
+            $nWidth  = 600; $nHeight = 495;
+        }else{
+            $nWidth  = 270; $nHeight = 190;
+        }
+        $aSize = @getImageSize( $path );
+        if( $aSize[0] > $aSize[1] ){
+            $nHeight = round( ( $aSize[1] * $nWidth ) / $aSize[0] );
+        }else{
+            $nWidth = round( ( $aSize[0] * $nHeight ) / $aSize[1] );
+        }
+        $aThumb = @imageCreateTrueColor( $nWidth, $nHeight );
+        @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
+        @imagepng( $aThumb, $path ); 
+        @imageDestroy( $aImage ); @imageDestroy( $aThumb );
+        return $name;
+    }
 ?>

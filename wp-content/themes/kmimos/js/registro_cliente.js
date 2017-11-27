@@ -1,7 +1,7 @@
 jQuery( document ).ready( function(){
 
 	jQuery("#btn_registrar_mascota").on("click", function(){
-		jQuery(".popup-registrarte-final-0").css("display", "none");
+		jQuery(".popup-registrarte-final").css("display", "none");
 		jQuery(".popup-registrarte-datos-mascota").css("display", "block");
 	});
 });
@@ -13,11 +13,11 @@ $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 
 	jQuery('[data-error="auth"]').fadeOut("fast");
 
-	
 	jQuery(".popup-registrarte-1").css("display", 'block');
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
 	jQuery(".popup-registrarte-final").css('display', 'none');
+	jQuery(".popup-registrarte-final-0").css('display', 'none');
 
 	jQuery('#km-datos-foto-profile').css('background-image', 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
 	jQuery("#km-datos-foto-profile").css("background-image", 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
@@ -280,7 +280,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					if( data > 0 ){
 						globalData = data;
 						jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
-						jQuery(".popup-registrarte-final-0").css("display", "block");
+						jQuery(".popup-registrarte-final").css("display", "block");
 
 						jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
 						jQuery("#img_pet").val( "" );
@@ -555,7 +555,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				});
 
 				jQuery(".popup-registrarte-datos-mascota").css("display", "none");
-				jQuery(".popup-registrarte-final").css("display", "block");
+				jQuery(".popup-registrarte-final-0").css("display", "block");
 
 				jQuery("body").scrollTop(0);
 				jQuery(".modal").scrollTop(0);
