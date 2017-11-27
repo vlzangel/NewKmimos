@@ -15,8 +15,12 @@ function init_modal(data){
         }
     });
     jQuery("#close_modal").on("click", function(e){
-        jQuery(".modal").css("display", "none");
-        jQuery("body").css("overflow", "auto");
+        cerrar(e);
     });
 
+}
+
+function cerrar(e){
+    jQuery(".modal").css("display", "none");
+    jQuery("body").css("overflow", "auto");
 }
