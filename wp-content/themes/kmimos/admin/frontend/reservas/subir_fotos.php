@@ -1,12 +1,12 @@
 <?php
 
-    //date_default_timezone_set('America/Mexico_City');
+    date_default_timezone_set('America/Mexico_City');
 
     $ID_RESERVA = vlz_get_page();
 
 	$hora_actual = strtotime("now");
 	$hoy = date("Y-m-d", $hora_actual);
-    $xhora_actual = date("H", $hora_actual);
+    echo $xhora_actual = date("H", $hora_actual);
 
     $periodo_corto = "";
     $periodo = "";
