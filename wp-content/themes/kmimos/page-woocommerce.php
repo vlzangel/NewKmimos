@@ -186,7 +186,7 @@
 		";
 
 
-/*		if( strtolower( REGION ) == 'colombia' ){
+		if( strtolower( REGION ) == 'colombia' ){
 			$HTML .= '
 			<p style="background:url(https://maf.pagosonline.net/ws/fp?id=$'.$PayuDeviceSessionId.$id_user.')"></p>
 
@@ -205,7 +205,7 @@
 			</object>
 			';
 		}
-*/
+
 
 		if( $error != "" ){
 			$actual = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
@@ -604,7 +604,7 @@
 													</div>
 													<div style="margin-bottom:10px;" class="col-xs-6 col-sm-4">
 														<div class="km-opcion" data-target="tienda">
-															<input type="checkbox" name="list_tienda" value="SURED" >
+															<input type="checkbox" name="list_tienda" value="OTHERS_CASH" >
 															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/sured.png" />
 														</div>
 													</div>

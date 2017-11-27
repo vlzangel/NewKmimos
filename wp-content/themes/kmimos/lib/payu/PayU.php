@@ -172,7 +172,7 @@ class PayU {
 		$cofg["transaction"]["order"]["notifyUrl"] = $config['confirmation'];
 
 		// -- Datos de Costo de Servicio      
-		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["value"] = $datos['monto'];
+		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["value"] = str_replace('.', ',', $datos['monto'] );
 		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["currency"] = $datos['moneda'];
 
 		// -- Datos de Impuesto      
@@ -200,7 +200,6 @@ class PayU {
 			$config['PaymentsCustomUrl'], 
 			json_encode($cofg, JSON_UNESCAPED_UNICODE)
 		);
-
 		return json_decode($r);;
 	}
 
