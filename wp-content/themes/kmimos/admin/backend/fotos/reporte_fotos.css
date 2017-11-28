@@ -139,10 +139,11 @@
 }
 
 .botones_container {
-    border-top: solid 1px #CCC;
-    margin: 5px 0px;
-    padding: 10px 0px;
-    text-align: right;
+    background: #f7f7f7;
+    margin: 10px 15px;
+    padding: 10px;
+    text-align: left;
+    border-radius: 3px;
 }
 
 .botones_container input {
@@ -155,11 +156,13 @@
 
 .botones_container input:hover {
 	background: #dfdfdf;
-	box-shadow: 0px 0px 0px #CCC;
+	box-shadow: 0px 0px 0px #CCC !important;
+	border: solid 1px #CCC;
 }
 
 .botones_container input:focus {
-	box-shadow: 0px 0px 0px #CCC;
+	box-shadow: 0px 0px 0px #CCC !important;
+	border: solid 1px #CCC;
 }
 
 .img{
@@ -193,19 +196,58 @@
 	margin: 20px; 
 	border: solid 1px #CCC; 
 	border-radius: 4px;
+	left: 10px;
 }
 
 #myCanvas{
 	position: fixed;
 	top: -99999999999999999999px;
+	right: 10px;
 }
 
 input[type=checkbox]:checked:before {
 	margin: 0px -2px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 input[type=checkbox] {
-    height: 30px !important;
-    width: 30px !important;
+    height: 20px !important;
+    width: 20px !important;
+}
+
+.fotos_container{
+	position: relative;
+	overflow: hidden;
+    width: 450px;
+}
+
+.fotos_container > div {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	background-color: #EEE;
+	margin: 5px;
+	width: 100px;
+    height: 60px;
+    display: inline-block;
+	position: relative;
+}
+
+.fotos_container > div input {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;	
+}
+
+.procesando_fotos {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background: #777;
+    text-align: center;
+    font-size: 16px !important;
+    color: #FFF;
+    padding: 10px;
+    border-radius: 0px 0px 5px 5px;
 }

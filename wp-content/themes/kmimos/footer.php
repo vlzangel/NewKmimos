@@ -4,7 +4,7 @@ global $margin_extra_footer;
 global $no_display_footer;
 
 if( !isset($no_display_footer)  ){
-$HTML = '
+    $HTML = '
         <!-- SECCIÓN FOOTER -->
         <footer class="'.$margin_extra_footer.'">
             <div class="container">
@@ -86,8 +86,11 @@ $HTML = '
 /*    global $wpdb;
     $reservas = $wpdb->get_results("SELECT * FROM wp_postmeta WHERE meta_key = '_booking_end'");
     foreach ($reservas as $key => $value) {
-        if( strtotime(date("Y-m-d")." 00:00:00") < strtotime($value->meta_value) ){
-            kmimos_registros_fotos($value->post_id);
+        $status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '{$value->post_id}'");
+        if( $status == "confirmed" ){
+            if( strtotime(date("Y-m-d")." 00:00:00") < strtotime($value->meta_value) ){
+                kmimos_registros_fotos($value->post_id);
+            }
         }
     }*/
 
@@ -161,10 +164,6 @@ $HTML = '
     include_once( 'partes/footer/SubscribeSite.php' );
 
     echo comprimir_styles($HTML);
-
-    /*
-        
-    */
 
     echo "
         <!-- Google Analytics -->
