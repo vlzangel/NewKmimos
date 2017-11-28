@@ -94,29 +94,43 @@
 
 						</div>
 						<div class="row km-servicios mtb-10">
-							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion">
-									<input type="checkbox" name="servicios[]" value="hospedaje" >
-									<img src="'.getTema().'/images/new/icon/icon-hospedaje.svg">HOSPEDAJE DÍA Y NOCHE
+							<div class="col-xs-12 col-sm-10" style="padding: 0px;">
+								<div class="col-xs-12 col-sm-3">
+									<div class="km-opcion">
+										<input type="checkbox" name="servicios[]" value="hospedaje" >
+										<img src="'.getTema().'/images/new/icon/icon-hospedaje.svg">
+										HOSPEDAJE
+										<span>DÍA Y NOCHE</span>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-3">
+									<div class="km-opcion">
+										<input type="checkbox" name="servicios[]" value="guarderia" >
+										<img src="'.getTema().'/images/new/icon/icon-guarderia.svg">
+										GUARDERÍA
+										<span>SOLO DÍA</span>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-3">
+									<div class="km-opcion">
+										<input type="checkbox" name="servicios[]" value="paseos" >
+										<img src="'.getTema().'/images/new/icon/icon-paseo.svg">PASEOS
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-3">
+									<div class="km-opcion">
+										<input type="checkbox" name="servicios[]" value="adiestramiento" >
+										<img src="'.getTema().'/images/new/icon/icon-entrenamiento.svg">ENTRENAMIENTO
+									</div>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion">
-									<input type="checkbox" name="servicios[]" value="guarderia" >
-									<img src="'.getTema().'/images/new/icon/icon-guarderia.svg">GUARDERÍA DÍA
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion">
-									<input type="checkbox" name="servicios[]" value="paseos" >
-									<img src="'.getTema().'/images/new/icon/icon-paseo.svg">PASEOS
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion">
-									<input type="checkbox" name="servicios[]" value="adiestramiento" >
-									<img src="'.getTema().'/images/new/icon/icon-entrenamiento.svg">ENTRENAMIENTO
-								</div>
+							<div class="col-xs-12 col-sm-2 select_normal_">
+								<i class="fa fa-bolt vlz_rayo" aria-hidden="true"></i>							
+								<select id="flash" name="flash" class="select_normal">
+									<option>Flash</option>
+									<option>SI</option>
+									<option>NO</option>
+								</select>
 							</div>
 						</div>
 						<div class="row">
