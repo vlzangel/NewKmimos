@@ -23,17 +23,11 @@
 		global $wpdb;
 
 		$post_id = vlz_get_page();
-
 		$post = get_post( $post_id );
-
 		$D = $wpdb;
-
 		$id_user = get_current_user_id();
-
 		$busqueda = getBusqueda();
-
 		$servicio_id = $post_id;
-
 		$hoy = date("Y-m-d");
 
 		$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= '".date("Y-m-d", time())."'" );
@@ -60,9 +54,6 @@
 
 		$horario = "";
 
-/*		echo date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in."<br>";
-		echo date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out;*/
-
 		$inicio = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in );
 		$fin = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out );
 
@@ -73,16 +64,12 @@
 	    $precios = "";
 	    
 		$adicionales = unserialize($cuidador->adicionales);
-
 		$precargas = array();
 		$id_seccion = 'MR_'.get_the_ID()."_".md5($id_user);
         if( isset($_SESSION[$id_seccion] ) ){
-
         	$cupos_menos = $_SESSION[$id_seccion]["variaciones"]["cupos"];
-
         	$ini = strtotime( $_SESSION[$id_seccion]["fechas"]["inicio"] );
         	$fin = strtotime( $_SESSION[$id_seccion]["fechas"]["fin"] );
-
         	foreach ($cupos as $value) {
         		$xfecha = strtotime( $value->fecha );
         		if( $ini >= $xfecha && $xfecha <= $fin ){
@@ -91,13 +78,11 @@
         			$value->no_disponible = 0;
         		}
         	}
-
             $HTML .= "
                 <a href='".getTema()."/procesos/perfil/update_reserva.php?b=".get_the_ID()."_".md5($id_user)."' class='theme_button btn_modificar'>
                     Salir de modificar reserva
                 </a>
             ";
-
             $busqueda["checkin"] = date("d/m/Y", strtotime($_SESSION[$id_seccion]["fechas"]["inicio"]) );
             $busqueda["checkout"] = date("d/m/Y", strtotime($_SESSION[$id_seccion]["fechas"]["fin"]) );
 
@@ -174,6 +159,27 @@
 			}
 		}
 		//$error = "";
+
+		$atributos = unserialize($cuidador->atributos);
+
+		$hoy = date("d/m/Y");
+		$hoy = "29/11/2017";
+		$manana = date("d/m/Y", strtotime("+1 day") );
+
+		$bloquear = "";
+		$msg_bloqueador = "";
+		if( $atributos["flash"] != 1){
+			if( $hoy == $busqueda["checkin"] ){
+				$bloquear = "vlz_bloquear";
+				$msg_bloqueador = "
+					<div class='vlz_bloquear_msg'>
+						Lo sentimos,<br>
+						Este cuidador no acepta reservas de &uacute;ltimo minuto.<br>
+						Pero no te preocupes, picale <a href='".getTema()."/procesos/busqueda/buscar.php?flash=true'>Aqu&iacute;</a> para encontrar cuidadores que si las acepten.
+					</div>
+				";
+			}
+		}
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
 
@@ -285,7 +291,9 @@
 								</div>
 							</div>
 
-							<div class="km-content-step">
+							'.$msg_bloqueador.'
+
+							<div class="km-content-step '.$bloquear.'">
 								<div class="km-content-new-pet">
 									'.$precios.'
 									<div class="km-services-content">
