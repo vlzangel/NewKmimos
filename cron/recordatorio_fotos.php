@@ -13,7 +13,7 @@
 
     $periodo_sql = "subio_12 = '0' ";
     $periodo = 1;
-    if( $xhora_actual == "18" ){
+    if( $xhora_actual == "17" ){
         $periodo_sql = "subio_06 = '0' ";
         $periodo = 2;
     }
