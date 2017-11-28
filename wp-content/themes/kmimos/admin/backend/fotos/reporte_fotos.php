@@ -34,16 +34,16 @@
         </tr>
         <tr>
             <td> <div class='status-2 status-inicio'>&nbsp;</div> Por cargar fotos</td>
-            <td> <div class='status-2 status-ok'>&nbsp;</div> Todo Bien</td>
+            <td> <div class='status-2 status-ok'>&nbsp;</div> En tiempo</td>
             <td> <div class='status-2 status-futuro'>&nbsp;</div> Cargas futuras</td>
         </tr>
         <tr>
             <td> <div class='status-2 status-ok-medio'>&nbsp;</div> Cargo al menos un flujo</td>
-            <td> <div class='status-2 status-medio'>&nbsp;</div> Solo carg&oacute; un flujo</td>
+            <td> <div class='status-2 status-medio'>&nbsp;</div> Retrasado</td>
         </tr>
         <tr>
-            <td> <div class='status-2 status-mal'>&nbsp;</div> No ha cargado a la hora</td>
-            <td> <div class='status-2 status-mal'>&nbsp;</div> No ha cargado a la hora</td>
+            <td> <div class='status-2 status-mal'>&nbsp;</div> No enviado</td>
+            <td> <div class='status-2 status-mal'>&nbsp;</div> No enviado</td>
         </tr>
     </table>
 </div>
