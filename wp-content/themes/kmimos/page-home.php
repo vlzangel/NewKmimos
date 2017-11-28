@@ -124,13 +124,21 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-2 select_normal_">
-								<i class="fa fa-bolt vlz_rayo" aria-hidden="true"></i>							
+							<div class="col-xs-12 col-sm-2">	
+
+								<div class="km-opcion">
+									<input type="checkbox" name="servicios[]" value="flash" >
+									<i class="fa fa-bolt vlz_rayo" aria-hidden="true"></i> FLASH
+								</div>
+
+								<!--
+								<i class="fa fa-bolt vlz_rayo" aria-hidden="true"></i>		
 								<select id="flash" name="flash" class="select_normal">
 									<option>Flash</option>
 									<option>SI</option>
 									<option>NO</option>
 								</select>
+								-->
 							</div>
 						</div>
 						<div class="row">

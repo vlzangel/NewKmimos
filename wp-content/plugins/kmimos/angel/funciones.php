@@ -523,13 +523,21 @@
         $atributos_cuidador = $wpdb->get_results( "SELECT atributos FROM cuidadores WHERE user_id=".$cuidador->user_id );
 
         /* BEGIN Cuidadores destacados */
-        $style_icono = '';
+        $style_icono = ''; $flash_link = "";
         $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados.png)!important;"';
         if( count($atributos_cuidador)>0 ){
             $atributos = unserialize($atributos_cuidador[0]->atributos);
             if( $atributos['destacado'] == 1 ){
                 $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados-destacado.png)!important;width: 69px!important;height: 69px!important;"';
                 $style_icono = 'style="margin: 8px 0px 0px 37px"!important';
+            }
+            if( $atributos['flash'] == 1 ){
+                $flash_link = '
+                <span class="km-contenedor-favorito_2">
+                    <span href="javascript:;" class="km-link-flash">
+                        <i class="fa fa-bolt" aria-hidden="true"></i>
+                    </span>
+                </span>';
             }
         }
         /* FIN Cuidadores destacados */
@@ -581,6 +589,9 @@
 
                         <div class="km-contenedor-descripcion-opciones">
                             <div class="km-descripcion">
+
+                                '.$flash_link.'
+
                                 <h1><a href="'.$url.'">'.$titulo.'</a></h1>
 
                                 <p>'.$anios_exp.' año(s) años de experiencia</p>
@@ -623,6 +634,9 @@
                             <span class="km-contenedor-favorito" '.$marca_destacado.'>'.$favoritos_link.'</span>
                         </a>
                         <div class="km-descripcion">
+                            
+                            '.$flash_link.'
+
                             <h1><a href="'.$url.'">'.$titulo.'</a></h1>
                             <p>'.$anios_exp.' año(s) de experiencia
                                 <br><b>MXN $ '.$cuidador->precio.'</b>
