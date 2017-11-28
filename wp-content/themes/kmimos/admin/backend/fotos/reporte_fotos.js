@@ -53,10 +53,14 @@ function abrir_link(e){
 }
 
 function moderar(){
-	jQuery(".modal").css("display", "block");
-    jQuery("body").css("overflow", "hidden");
-    INDEX = 0;
-    procesar_fotos();
+	if( jQuery(".fotos_container").length > 0 ){
+		jQuery(".modal").css("display", "block");
+	    jQuery("body").css("overflow", "hidden");
+	    INDEX = 0;
+	    procesar_fotos();
+    }else{
+    	alert("No hay fotos para moderar");
+    }
 }
 
 var INDEX = 0;

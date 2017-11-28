@@ -92,7 +92,7 @@
                 if( date("H", $actual) < 12 ){
                     $moderado = "";
                     if( isset( $moderacion[1] ) ){
-                        $moderado = "(Fue moderado)";
+                        $moderado = "<div><strong>Fue moderado</strong><br></div>";
                     }
 
                     $moderar_imgs = kmimos_fotos(
@@ -101,7 +101,7 @@
                         $URL_BASE.$value->reserva.$PATH_PERIODO
                     );
 
-                    $moderar = "<div class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='{$PERIODO}' >{$moderar_imgs}</div>";
+                    $moderar .= "<div class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='{$PERIODO}' >{$moderar_imgs}</div>";
                     $i++;
                     $dia = $moderar; 
                 }else{
@@ -115,7 +115,7 @@
                 if( date("H", $actual) < 18 ){
                     $moderado = "";
                     if( isset( $moderacion[2] ) ){
-                        $moderado = "(Fue moderado)";
+                        $moderado = "<div><strong>Fue moderado</strong><br></div>";
                     }
                     $moderar = "<span class='enlaces' onclick='abrir_link( jQuery(this) );' data-id='{$value->reserva}==2' data-titulo='Moderaci&oacute;n de Fotos' data-modal='moderar'>Moderar {$moderado}</span>";
                 }
@@ -127,7 +127,7 @@
                     $URL_BASE.$value->reserva.$PATH_PERIODO
                 );
 
-                $moderar = "<div class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='{$PERIODO}' >{$moderar_imgs}</div>";
+                $moderar .= "<div class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='{$PERIODO}' >{$moderar_imgs}</div>";
                 $i++;
                 $noche = $moderar;
             }
