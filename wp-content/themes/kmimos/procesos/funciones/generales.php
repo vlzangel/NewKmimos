@@ -187,7 +187,7 @@
             $FOTOS = listar_archivos( $PATH );
             $i = 1; $moderar_imgs = "";
             foreach ($FOTOS as $foto) {
-                $check = "checked";
+                $check = "";
                 if( $MODERADAS != false ){
                     $check = "";
                     if( in_array($foto, $MODERADAS)){
