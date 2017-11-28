@@ -101,7 +101,6 @@
                         $URL_BASE.$value->reserva.$PATH_PERIODO
                     );
 
-                    //$moderar  = "<span class='enlaces' onclick='abrir_link( jQuery(this) );' data-id='{$value->reserva}==1' data-titulo='Moderaci&oacute;n de Fotos' data-modal='moderar'>Moderar</span>";
                     $moderar = "<div class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='{$PERIODO}' >{$moderar_imgs}</div>";
                     $i++;
                     $dia = $moderar; 
@@ -124,11 +123,10 @@
 
                 $moderar_imgs = kmimos_fotos(
                     $PATH_BASE.$value->reserva.$PATH_PERIODO,
-                    $moderacion[1],
+                    $moderacion[2],
                     $URL_BASE.$value->reserva.$PATH_PERIODO
                 );
 
-                //$moderar  = "<span class='enlaces' onclick='abrir_link( jQuery(this) );' data-id='{$value->reserva}==1' data-titulo='Moderaci&oacute;n de Fotos' data-modal='moderar'>Moderar</span>";
                 $moderar = "<div class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='{$PERIODO}' >{$moderar_imgs}</div>";
                 $i++;
                 $noche = $moderar;
