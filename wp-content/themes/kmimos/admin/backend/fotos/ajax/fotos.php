@@ -124,7 +124,7 @@
 
                 $moderar_imgs = kmimos_fotos(
                     $PATH_BASE.$value->reserva.$PATH_PERIODO,
-                    $moderacion[1],
+                    $moderacion[2],
                     $URL_BASE.$value->reserva.$PATH_PERIODO
                 );
 
