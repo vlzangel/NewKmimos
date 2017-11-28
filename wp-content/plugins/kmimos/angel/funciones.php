@@ -597,7 +597,7 @@
                             </div>
 
                             <div class="km-opciones">
-                                <div class="precio">MXN $ '.$cuidador->precio.'</div>
+                                <div class="precio">'.get_region('moneda_cod').' $ '.$cuidador->precio.'</div>
                                 <div class="distancia">'.$distancia.'</div>
                                 <a role="button" href="#" 
                                     data-name="'.$titulo.'" 
