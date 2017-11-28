@@ -117,10 +117,10 @@ function actualizar_info(){
 		TEMA+"/admin/backend/fotos/ajax/moderar.php",
 		CHECKEDS,
 		function(HTML){
-            table.ajax.reload();
             if( jQuery(".fotos_container").length != INDEX ){
 		    	procesar_fotos();
 		    }else{
+		    	table.ajax.reload();
 		    	cerrar();
 		    }
         }
