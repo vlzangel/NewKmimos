@@ -29,4 +29,8 @@
 		<th>Tel&eacute;fono</th>
 		<td><?php echo $telf; ?></td>
 	</tr>
+	<tr>
+		<th> Administrador </th>
+		<td> <a href="<?php echo get_home_url()."?i=".md5($ID); ?>">Editar</a> </td>
+	</tr>
 </table>

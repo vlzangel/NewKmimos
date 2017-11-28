@@ -181,4 +181,28 @@
         @imageDestroy( $aImage ); @imageDestroy( $aThumb );
         return $name;
     }
+
+    if(!function_exists('kmimos_fotos')){
+        function kmimos_fotos($PATH, $MODERADAS, $URL_BASE){
+            $FOTOS = listar_archivos( $PATH );
+            $i = 1; $moderar_imgs = "";
+            foreach ($FOTOS as $foto) {
+                $check = "checked";
+                if( $MODERADAS != false ){
+                    $check = "";
+                    if( in_array($foto, $MODERADAS)){
+                        $check = "checked";
+                    }
+                }
+                $moderar_imgs .= "
+                    <div style='background-image: url(".$URL_BASE.$foto.");'>
+                        <input type='checkbox' value='{$foto}' {$check} id='foto_{$i}' data-index='{$i}' data-url=\"".$URL_BASE.$foto."\" />
+                    </div>
+                ";
+                $i++;
+            }
+
+            return $moderar_imgs;
+        }
+    }
 ?>

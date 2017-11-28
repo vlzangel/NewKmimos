@@ -1,6 +1,10 @@
 <link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/fotos/reporte_fotos.css'>
 <script src='<?php echo getTema(); ?>/admin/backend/fotos/reporte_fotos.js'></script>
 
+<div class="botones_container">
+    <input type='button' value='Moderar Fotos' onClick='moderar()' class="button button-primary button-large" />
+</div>
+
 <div class="container_listados">
 
     <div class='titulos'>
@@ -15,14 +19,18 @@
                 <th>Cuidador</th>
                 <th>Cliente</th>
                 <th>Mascotas</th>
-                <th>Fotos 12 m</th>
-                <th>Fotos 06 pm</th>
+                <th style="max-width: 430px;">Fotos 12 m</th>
+                <th style="max-width: 430px;">Fotos 06 pm</th>
                 <th>Bloqueo</th>
                 <th>Status</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
+</div>
+
+<div class="botones_container">
+    <input type='button' value='Moderar Fotos' onClick='moderar()' class="button button-primary button-large" />
 </div>
 
 <div class="legenda">
@@ -45,6 +53,14 @@
             <td> <div class='status-2 status-mal'>&nbsp;</div> No enviado</td>
             <td> <div class='status-2 status-mal'>&nbsp;</div> No enviado</td>
         </tr>
+    </table>
+</div>
+
+<img id='fondo' src='<?php echo getTema(); ?>/images/prueba_galeria/fondo.png' />
+<canvas id='myCanvas' width='600' height='495' ></canvas>
+<div id='base_table'>
+    <table width='600' height='495'>
+        <tr><td align='center' valign='middle' id='base'></td></tr>
     </table>
 </div>
 
