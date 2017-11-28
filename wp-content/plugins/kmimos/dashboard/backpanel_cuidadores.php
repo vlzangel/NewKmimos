@@ -79,7 +79,8 @@ $users = getUsers($desde, $hasta);
 			  		<?php
 			  			// Metadata usuarios
 			  			$usermeta = getmetaUser( $row['ID'] );
-			  			$link_login = "/CO/?i=".md5($row['ID']);
+			  			//QUITAR ESTA FUNCION PARA LA SUBIDA A PRODUCCION
+			  			$link_login = "/".get_region('pais_cod_iso')."/?i=".md5($row['ID']);
 
 			  			$name = "{$usermeta['first_name']} {$usermeta['last_name']}";
 			  			if(empty($name)){
