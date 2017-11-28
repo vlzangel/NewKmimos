@@ -166,7 +166,7 @@ class PayU {
 		// -- Datos de la Orden
 		$cofg["transaction"]["order"]["accountId"] = $config['accountId'];
 		$cofg["transaction"]["order"]["referenceCode"] =  $datos['id_orden'];
-		$cofg["transaction"]["order"]["description"] = 'Tarjeta Compra Numero '.$datos['id_orden'];
+		$cofg["transaction"]["order"]["description"] = 'Compra Numero '.$datos['id_orden'];
 		$cofg["transaction"]["order"]["language"] = "es";
 		$cofg["transaction"]["order"]["signature"] = $config['signature'];
 		$cofg["transaction"]["order"]["notifyUrl"] = $config['confirmation'];
@@ -190,18 +190,18 @@ class PayU {
 		// -- Datos de Session y Configuracion
 		$cofg["transaction"]["type"] = "AUTHORIZATION_AND_CAPTURE";
 		$cofg["transaction"]["ipAddress"] = $_SERVER['REMOTE_ADDR'];
-		$cofg["test"] = $config['isTest'];
 		$cofg["transaction"]["paymentCountry"] = $datos['pais_cod_iso'];
-
 		$cofg["transaction"]["paymentMethod"] = $datos['paymentMethod'];
 		$cofg["transaction"]["expirationDate"] = $datos['expirationDate'];
+
+		$cofg["test"] = $config['isTest'];
 
 		$r = $this->request( 
 			$config['PaymentsCustomUrl'], 
 			json_encode($cofg, JSON_UNESCAPED_UNICODE)
 		);
 
-		return json_decode($r);
+		return json_decode($r);;
 	}
 
 	// -- Procesar Pagos

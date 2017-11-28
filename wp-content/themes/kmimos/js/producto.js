@@ -33,6 +33,7 @@ function initCarrito(){
 	CARRITO["pagar"] = [];
 
 		CARRITO["pagar"] = {
+			"tienda" : "BALOTO",
 			"total" : "",
 			"tipo" : "",
 			"metodo" : "deposito",
@@ -198,7 +199,7 @@ function calcular(){
 			error = "Ingrese la cantidad de mascotas";
 		}else{
 			cant *= parseFloat( dias );
-			jQuery(".km-price-total").html("$"+numberFormat(cant));
+			jQuery(".km-price-total").html(moneda_signo+numberFormat(cant));
 		}
 	}
 	
@@ -219,13 +220,13 @@ function calcular(){
 	}else{
 		jQuery(".valido").css("display", "block");
 		jQuery(".invalido").css("display", "none");
-		jQuery(".km-price-total").html("$"+numberFormat(cant));
+		jQuery(".km-price-total").html(moneda_signo+numberFormat(cant));
 	}
 	
 	if( error == "" ){
-		jQuery(".pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
-		jQuery(".pago_cuidador").html( "$" + numberFormat(cant/1.2) );
-		jQuery(".monto_total").html( "$" + numberFormat(cant) );
+		jQuery(".pago_17").html( moneda_signo + numberFormat(cant-(cant/1.2)) );
+		jQuery(".pago_cuidador").html( moneda_signo + numberFormat(cant/1.2) );
+		jQuery(".monto_total").html( moneda_signo + numberFormat(cant) );
 		CARRITO["pagar"]["total"] = cant;
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").removeClass("disabled");
@@ -346,8 +347,8 @@ function initFactura(){
 						parseFloat( CARRITO["cantidades"][key][1] );
 
 			items += '<div class="km-option-resume-service">'
-			items += '	<span class="label-resume-service">'+CARRITO["cantidades"][key][0]+' Mascota'+plural+' '+tamano+plural+' x '+CARRITO["fechas"]["duracion"]+' '+diaNoche+' x $'+CARRITO["cantidades"][key][1]+' </span>'
-			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
+			items += '	<span class="label-resume-service">'+CARRITO["cantidades"][key][0]+' Mascota'+plural+' '+tamano+plural+' x '+CARRITO["fechas"]["duracion"]+' '+diaNoche+' x '+moneda_signo+CARRITO["cantidades"][key][1]+' </span>'
+			items += '	<span class="value-resume-service">'+moneda_signo+numberFormat(subtotal)+'</span>'
 			items += '</div>';
 		}
 
@@ -374,8 +375,8 @@ function initFactura(){
 						parseFloat( CARRITO["adicionales"][key] );
 
 			items += '<div class="km-option-resume-service">'
-			items += '	<span class="label-resume-service">'+adicional+' - '+CARRITO["cantidades"]["cantidad"]+' Mascota'+plural+' x $'+CARRITO["adicionales"][key]+'</span>'
-			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
+			items += '	<span class="label-resume-service">'+adicional+' - '+CARRITO["cantidades"]["cantidad"]+' Mascota'+plural+' x '+moneda_signo+CARRITO["adicionales"][key]+'</span>'
+			items += '	<span class="value-resume-service">'+moneda_signo+numberFormat(subtotal)+'</span>'
 			items += '</div>';
 		}
 
@@ -384,7 +385,7 @@ function initFactura(){
 	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
 		items += '<div class="km-option-resume-service">'
 		items += '	<span class="label-resume-service">'+CARRITO["transportacion"][0]+' - Precio por Grupo </span>'
-		items += '	<span class="value-resume-service">$'+numberFormat(CARRITO["transportacion"][1])+'</span>'
+		items += '	<span class="value-resume-service">'+moneda_signo+numberFormat(CARRITO["transportacion"][1])+'</span>'
 		items += '</div>';
 	}
 
@@ -394,6 +395,7 @@ function initFactura(){
 
 function pagarReserva(id_invalido = false){
 
+	
 	jQuery("#reserva_btn_next_3 span").html("Procesando");
 	jQuery("#reserva_btn_next_3").addClass("disabled");
 	jQuery("#reserva_btn_next_3").addClass("cargando");
@@ -541,7 +543,7 @@ function mostrarCupones(){
 			}
 			items += '<div class="km-option-resume-service">'
 			items += '	<span class="label-resume-service">'+nombreCupon+'</span>'
-			items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>'
+			items += '	<span class="value-resume-service">'+moneda_signo+numberFormat(cupon[1])+' '+eliminarCupo+' </span>'
 			items += '</div>';
 		}
 
@@ -564,7 +566,7 @@ function calcularDescuento(){
 		descuentos += parseFloat(cupon[1]);
 	});
 
-	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+	jQuery(".km-price-total2").html(moneda_signo+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 
 	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
 	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
@@ -578,8 +580,8 @@ function calcularDescuento(){
 		pre17 -= descuentos;
 	}
 
-	jQuery(".pago_17").html( "$" + numberFormat( pre17 ) );
-	jQuery(".pago_cuidador").html( "$" + numberFormat(pagoCuidador) );
+	jQuery(".pago_17").html( moneda_signo + numberFormat( pre17 ) );
+	jQuery(".pago_cuidador").html( moneda_signo + numberFormat(pagoCuidador) );
 
 	if( jQuery(".km-option-deposit").hasClass("active") ){
 		if( pre17 == 0 ){
@@ -595,20 +597,20 @@ function calcularDescuento(){
 		}
 	}
 
-	jQuery(".sub_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]) );
+	jQuery(".sub_total").html( moneda_signo + numberFormat(CARRITO["pagar"]["total"]) );
 	if( descuentos == 0 ){
-		jQuery(".descuento").html( "$" + numberFormat(descuentos) );
+		jQuery(".descuento").html( moneda_signo + numberFormat(descuentos) );
 
 		jQuery(".sub_total").parent().css("display", "none");
 		jQuery(".descuento").parent().css("display", "none");
 	}else{
-		jQuery(".descuento").html( "$" + numberFormat(descuentos) );
+		jQuery(".descuento").html( moneda_signo + numberFormat(descuentos) );
 
 		jQuery(".sub_total").parent().css("display", "block");
 		jQuery(".descuento").parent().css("display", "block");
 	}
 	
-	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
+	jQuery(".monto_total").html( moneda_signo + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
 }
 
 function aplicarCupon(cupon = ""){
@@ -695,6 +697,18 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+    jQuery('[data-target="tienda"]').on('click', function(e) {
+        jQuery('[data-target="tienda"]').parent().find('.km-opcion')
+        	.removeClass('km-opcionactivo')
+        	.removeAttr('checked');
+        jQuery(this).toggleClass('km-opcionactivo');
+		
+		var f = jQuery(this).children("input:checkbox").prop("checked","checked");
+		
+		CARRITO['pagar']['tienda'] = f.val();
+    });
+
 
 	jQuery(".km-option-deposit").click();
 

@@ -283,7 +283,7 @@
                         '".$hoy."', 
                         '', 
                         0, 
-                        '".get_region('web')."'/petsitters/".$user_id."/', 
+                        '".get_region('web')."/petsitters/".$user_id."/', 
                         0, 
                         'petsitters', 
                         '', 
@@ -292,7 +292,8 @@
                 ";
                 $conn->query( utf8_decode( $sql_post_cuidador ) );
                 $id_post = $conn->insert_id;
-                
+
+
                 // Update POST_ID en cuidadores  
                 $conn->query( "UPDATE cuidadores SET id_post = '".$id_post."' WHERE id = ".$cuidador_id);
 
@@ -313,6 +314,7 @@
                 $mail_file = realpath('../../template/mail/registro.php');
 
                 $message_mail = file_get_contents($mail_file);
+//print_r($message_mail);
 
                 $message_mail = str_replace('[name]', $nombres.' '.$apellidos, $message_mail);
                 $message_mail = str_replace('[email]', $email, $message_mail);

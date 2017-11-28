@@ -307,7 +307,7 @@
 							</div>
 							<div class="km-height">
 								'.$tamanos[$key].'
-								<span>$'.($data[$key]*1.2).'</span>
+								<span>'.get_region('mon_der').' '.($data[$key]*1.2).'</span>
 							</div>
 						</div>
 					';
