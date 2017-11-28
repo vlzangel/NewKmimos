@@ -20,7 +20,7 @@
 
     $hoy = date("Y-m-d");
 
-    $SQL = "SELECT * FROM fotos WHERE {$periodo_sql} AND bloqueo = 0 AND fecha = '{$hoy}'";
+    $SQL = "SELECT * FROM fotos WHERE {$periodo_sql} AND bloqueo = 0 AND fecha = '{$hoy}' AND moderacion != 'a:0:{}'";
     $fotos_a_enviar = $wpdb->get_results( $SQL );
 
     $PATH = dirname(__DIR__)."/wp-content/uploads/fotos/";
