@@ -124,11 +124,11 @@ class PayU {
 		$cofg["transaction"]["payer"]["billingAddress"]["phone"] = $datos['cliente']['telef'];
 
 		// -- Datos de Tarjeta de Credito
-		$cofg["transaction"]["creditCard"]["number"] = "4097440000000004";
-		$cofg["transaction"]["creditCard"]["securityCode"] = "321";
-		$cofg["transaction"]["creditCard"]["expirationDate"] = "2019/12";
-		$cofg["transaction"]["creditCard"]["name"] = "REJECTED";
-		$cofg["transaction"]["paymentMethod"] = "VISA";
+		$cofg["transaction"]["creditCard"]["number"] = $datos['creditCard']['number'];
+		$cofg["transaction"]["creditCard"]["securityCode"] = $datos['creditCard']['securityCode'];
+		$cofg["transaction"]["creditCard"]["expirationDate"] = $datos['creditCard']['expirationDate'];
+		$cofg["transaction"]["creditCard"]["name"] = $datos['creditCard']['name'];
+		$cofg["transaction"]["paymentMethod"] = $datos['creditCard']['payment_method'];
 
 		// -- Datos de Session y Configuracion
 		$cofg["transaction"]["extraParameters"]["INSTALLMENTS_NUMBER"] = "1";
