@@ -3,6 +3,18 @@
         Template Name: Woocommerce
     */
 
+
+	$post_id = vlz_get_page();
+
+	global $wpdb;
+
+	$author = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$post_id);
+	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$author);
+
+	if( $cuidador->activo == 0 ){
+		header("location: ".get_home_url());
+	}
+
     wp_enqueue_style('producto', getTema()."/css/producto.css", array(), '1.0.0');
 	wp_enqueue_style('producto_responsive', getTema()."/css/responsive/producto_responsive.css", array(), '1.0.0');
 
@@ -19,10 +31,6 @@
 		date_default_timezone_set('America/Mexico_City');
 
 		if( !isset($_SESSION)){ session_start(); }
-		
-		global $wpdb;
-
-		$post_id = vlz_get_page();
 		$post = get_post( $post_id );
 		$D = $wpdb;
 		$id_user = get_current_user_id();
@@ -163,22 +171,27 @@
 		$atributos = unserialize($cuidador->atributos);
 
 		$hoy = date("d/m/Y");
-		$hoy = "29/11/2017";
 		$manana = date("d/m/Y", strtotime("+1 day") );
 
 		$bloquear = "";
 		$msg_bloqueador = "";
+		$NO_FLASH = "SI";
+
+		$msg_bloqueador = "
+			Lo sentimos,<br>
+			Este cuidador no acepta reservas de &uacute;ltimo minuto.<br>
+			Pero no te preocupes, picale <a href='".getTema()."/procesos/busqueda/buscar.php?flash=true'>Aqu&iacute;</a> para encontrar cuidadores que si las acepten.
+		";
 		if( $atributos["flash"] != 1){
 			if( $hoy == $busqueda["checkin"] ){
+				$NO_FLASH = "NO";
 				$bloquear = "vlz_bloquear";
-				$msg_bloqueador = "
-					<div class='vlz_bloquear_msg'>
-						Lo sentimos,<br>
-						Este cuidador no acepta reservas de &uacute;ltimo minuto.<br>
-						Pero no te preocupes, picale <a href='".getTema()."/procesos/busqueda/buscar.php?flash=true'>Aqu&iacute;</a> para encontrar cuidadores que si las acepten.
-					</div>
-				";
+				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
+			}else{
+				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
 			}
+		}else{
+			$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
 		}
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
@@ -197,6 +210,9 @@
 			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
 			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
 			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
+			var FLASH = '".$NO_FLASH."';
+			var HOY = '".$hoy."';
+			var MANANA = '".$manana."';
 		</script>";
 
 		if( $error != "" ){
@@ -293,7 +309,7 @@
 
 							'.$msg_bloqueador.'
 
-							<div class="km-content-step '.$bloquear.'">
+							<div id="bloque_info_servicio" class="km-content-step '.$bloquear.'">
 								<div class="km-content-new-pet">
 									'.$precios.'
 									<div class="km-services-content">

@@ -75,6 +75,19 @@ function validar(status, txt){
 
 function calcular(){
 
+	if( FLASH == "NO" ){
+		console.log(jQuery("#checkin").val());
+		if( jQuery("#checkin").val() == HOY || jQuery("#checkin").val() == MANANA ){
+			jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
+			jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
+			jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
+		}else{
+			jQuery("#vlz_msg_bloqueo").addClass("vlz_NO_bloquear_msg");
+			jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
+			jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
+		}
+	}
+
 	if( CARRITO["pagar"]["id_fallida"] != 0 ){
 		CARRITO["pagar"]["reconstruir"] = true;
 	}
