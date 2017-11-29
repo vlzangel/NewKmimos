@@ -7,6 +7,8 @@ function initCarrito(){
 		CARRITO["fechas"] = {
 			"inicio" : "",
 			"fin" : "",
+			"checkin" : "",
+			"checkout" : "",
 			"duracion" : ""
 		};
 
@@ -144,38 +146,50 @@ function calcular(){
 		error += "</ul>";
 	}
 
-	var dias = 0;
-	if( CARRITO[ "fechas" ][ "inicio" ] == undefined || CARRITO[ "fechas" ][ "inicio" ] == "" ){
-		error = "Ingrese la fecha de inicio";
-	}else{
-		if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
-			error = "Ingrese la fecha de finalizaci&oacute;n";
+	if( error == "" ){
+		var dias = 0;
+		if( CARRITO[ "fechas" ][ "inicio" ] == undefined || CARRITO[ "fechas" ][ "inicio" ] == "" ){
+			error = "Ingrese la fecha de inicio";
 		}else{
-			var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
-			var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
-
-			var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
-
-			var diff = fechaFin - fechaInicio;
-			dias = parseInt( diff/(1000*60*60*24) );
-	    }
-
-		if( tipo_servicio != "hospedaje" ){
-			if( dias == 0 ){
-				dias=1;
+			if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
+				error = "Ingrese la fecha de finalizaci&oacute;n";
 			}else{
-				dias += 1;
-			}
-		}else{
-			if( dias == 0 ){
-				error = "Fecha de finalizaci&oacute;n debe ser diferente a la de inicio";
-			}
-		}
+				var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
+				var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
 
-        CARRITO[ "fechas" ][ "duracion" ] = dias;
+				var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
+
+				var diff = fechaFin - fechaInicio;
+				dias = parseInt( diff/(1000*60*60*24) );
+		    }
+
+			if( tipo_servicio != "hospedaje" ){
+				if( dias == 0 ){
+					dias=1;
+				}else{
+					dias += 1;
+				}
+			}else{
+				if( dias == 0 ){
+					error = "Fecha de finalizaci&oacute;n debe ser diferente a la de inicio";
+				}
+			}
+
+	        CARRITO[ "fechas" ][ "duracion" ] = dias;
+		}
 	}
 
-	
+	if( error == "" ){
+		if( CARRITO[ "fechas" ][ "checkin" ] == undefined || CARRITO[ "fechas" ][ "checkin" ] == "" ){
+			error = "Ingrese la hora de checkin";
+		}
+	}
+
+	if( error == "" ){
+		if( CARRITO[ "fechas" ][ "checkout" ] == undefined || CARRITO[ "fechas" ][ "checkout" ] == "" ){
+			error = "Ingrese la hora de checkout";
+		}
+	}
 
 	var cant = 0, duracion = 0;
 	jQuery.each( CARRITO[ "cantidades" ], function( key, valor ) {
@@ -654,6 +668,16 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+	jQuery("#hora_checkin").on("change", function(){
+		CARRITO["fechas"]["checkin"] = jQuery("#hora_checkin").val();
+		calcular();
+	});
+
+	jQuery("#hora_checkout").on("change", function(){
+		CARRITO["fechas"]["checkout"] = jQuery("#hora_checkout").val();
+		calcular();
+	});
 
 	jQuery(".km-option-deposit").click();
 

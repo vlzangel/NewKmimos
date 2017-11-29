@@ -183,8 +183,13 @@
 		"hoy" 					=> $hoy,
 		"fecha_formato" 		=> $fecha_formato,
 		"token" 				=> time(),
+
 		"inicio" 				=> date("Ymd", strtotime( $fechas->inicio ) ),
 		"fin" 					=> date("Ymd", strtotime( $fechas->fin ) ),
+
+		"checkin" 				=> $fechas->checkin,
+		"checkout" 				=> $fechas->checkout,
+
 		"monto" 				=> $pagar->total,
 		"num_mascotas" 			=> $num_mascotas,
 		"metodo_pago" 			=> $pagar->tipo,
