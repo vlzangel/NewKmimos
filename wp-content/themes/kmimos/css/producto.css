@@ -4,6 +4,10 @@
     display: none;
 }
 
+.vlz_NO_bloquear_msg{
+    display: none;
+}
+
 .vlz_bloquear_msg{
     background: #d06314;
     color: #FFF;
