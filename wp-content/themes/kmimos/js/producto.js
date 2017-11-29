@@ -169,9 +169,7 @@ function calcular(){
 			}else{
 				var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
 				var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
-
 				var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
-
 				var diff = fechaFin - fechaInicio;
 				dias = parseInt( diff/(1000*60*60*24) );
 		    }
@@ -187,7 +185,6 @@ function calcular(){
 					error = "Fecha de finalizaci&oacute;n debe ser diferente a la de inicio";
 				}
 			}
-
 	        CARRITO[ "fechas" ][ "duracion" ] = dias;
 		}
 	}
@@ -446,11 +443,8 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-
-			console.log( data );
-
+			/*console.log( data );*/
 			if( data.error != "" && data.error != undefined ){
-
 				if( data.tipo_error != "3003" ){
 					var error = "Error procesando la reserva<br>";
 			    	error += "Por favor intente nuevamente.<br>";
@@ -459,25 +453,19 @@ function pagarReserva(id_invalido = false){
 					var error = "Error procesando la reserva<br>";
 			    	error += "La tarjeta no tiene fondos suficientes.<br>";
 				}
-
 		    	jQuery(".errores_box").html(error);
 				jQuery(".errores_box").css("display", "block");
-
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
-
 				CARRITO["pagar"]["id_fallida"] = data.error;
 			}else{
 				CARRITO["pagar"]["id_fallida"] = 0;
-
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
-
 				location.href = RAIZ+"/finalizar/"+data.order_id;
 			}
-
 		}, "json"
 	).fail(function(e) {
 
