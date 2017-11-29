@@ -42,11 +42,8 @@
         $mensaje_cliente = str_replace('[tipo_servicio]', trim($servicio["tipo"]), $mensaje_cliente);
         $mensaje_cliente = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cliente);
 
-        $mensaje_cliente = str_replace('[inicio]', date("d/m", $servicio["inicio"]), $mensaje_cliente);
-        $mensaje_cliente = str_replace('[fin]', date("d/m", $servicio["fin"]), $mensaje_cliente);
-        $mensaje_cliente = str_replace('[anio]', date("Y", $servicio["fin"]), $mensaje_cliente);
-        $mensaje_cliente = str_replace('[tiempo]', $servicio["duracion"], $mensaje_cliente);
-        $mensaje_cliente = str_replace('[tipo_pago]', $servicio["metodo_pago"], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[DETALLES_SERVICIO]', $detalles_plantilla, $mensaje_cliente);
+
         $mensaje_cliente = str_replace('[PDF]', $servicio["pdf"], $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cliente);
@@ -73,7 +70,6 @@
 
             $mensaje_admin = str_replace('[mascotas]', $mascotas, $mensaje_admin);
 
-
             if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
                 $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
                 $descuento_plantilla = file_get_contents($descuento_plantilla);
@@ -82,7 +78,6 @@
             }else{
                 $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
             }
-
 
             $mensaje_admin = str_replace('[desglose]', $desglose, $mensaje_admin);
             
@@ -96,6 +91,8 @@
             $mensaje_admin = str_replace('[tipo_servicio]', $servicio["tipo"], $mensaje_admin);
             $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
 
+            $mensaje_admin = str_replace('[DETALLES_SERVICIO]', $detalles_plantilla, $mensaje_admin);
+            
             $mensaje_admin = str_replace('[inicio]', date("d/m", $servicio["inicio"]), $mensaje_admin);
             $mensaje_admin = str_replace('[fin]', date("d/m", $servicio["fin"]), $mensaje_admin);
             $mensaje_admin = str_replace('[anio]', date("Y", $servicio["fin"]), $mensaje_admin);

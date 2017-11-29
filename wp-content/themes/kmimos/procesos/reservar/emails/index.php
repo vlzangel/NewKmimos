@@ -141,6 +141,19 @@
 	}else{
 		$totales_plantilla = str_replace('[DESCUENTO]', "", $totales_plantilla);
 	}
+	
+	$detalles_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/detalles_servicio.php';
+    $detalles_plantilla = file_get_contents($detalles_plantilla);
+
+	$detalles_plantilla = str_replace('[inicio]', date("d/m", $servicio["inicio"]), $detalles_plantilla);
+    $detalles_plantilla = str_replace('[fin]', date("d/m", $servicio["fin"]), $detalles_plantilla);
+    $detalles_plantilla = str_replace('[anio]', date("Y", $servicio["fin"]), $detalles_plantilla);
+    $detalles_plantilla = str_replace('[tiempo]', $servicio["duracion"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[tipo_pago]', $servicio["metodo_pago"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[tipo_servicio]', $servicio["tipo"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[hora_inicio]', $servicio["checkin"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[hora_fin]', $servicio["checkout"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_plantilla);
 
 	if( $acc == ""  ){
 
