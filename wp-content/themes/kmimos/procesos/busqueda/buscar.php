@@ -9,7 +9,17 @@
 
 	if( isset($_GET["flash"]) ){
 		$_POST = unserialize($_SESSION['busqueda']);
-		$_POST["servicios"][] = "flash";
+
+		$ini = $_POST["checkin"];
+		$fin = $_POST["checkout"];
+
+		$_POST = array(
+			"checkin" => $ini,
+			"checkout" => $fin,
+			"servicios" => array(
+				"flash"
+			)
+		);
 	}
 
 	$conn = new mysqli($host, $user, $pass, $db);
@@ -193,6 +203,20 @@
 	    	break;
 	    	case 'experience_desc':
 	    		$orderby = "experiencia DESC";
+	    	break;
+	    	case 'flash':
+	    		$FLASH_ORDEN = "
+    				, ( 
+		    			SELECT 
+		    				count(*)
+		    			FROM 
+		    				cuidadores AS cuidadores_2
+		    			WHERE 
+		    				cuidadores_2.id = cuidadores.id AND
+		    				atributos LIKE '%flash\";s:1:\"1%'
+		    		) AS FLASH
+    			";
+	    		$orderby = "FLASH DESC, rating DESC, valoraciones DESC";
 	    	break;
 	    }
 
