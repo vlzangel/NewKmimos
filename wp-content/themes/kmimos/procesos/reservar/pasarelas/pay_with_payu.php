@@ -19,8 +19,8 @@
 	$PayuP['pais'] = ucfirst(  get_region( 'pais' ) );
 	$PayuP['moneda'] = get_region( 'moneda_cod' );
 	// -- Reserva
-	$PayuP['id_orden'] = $id_orden ;
-	$PayuP['monto'] =  $pagar->total;
+	$PayuP['id_orden'] = $id_orden.'_'.date('Ymd\THis');
+	$PayuP['monto'] =  ceil( $pagar->total );
 	// -- Clientes
 	$PayuP['cliente']['ID'] = $pagar->cliente;
 	$PayuP['cliente']['dni'] = '';
@@ -34,7 +34,7 @@
 	$PayuP['cliente']['pais'] = get_region('pais_cod_iso');
 	$PayuP['cliente']['telef'] = $telefono;
 	$PayuP['cliente']['postal'] = '000000';
-	$PayuP["PayuDeviceSessionId"] = $PayuDeviceSessionId;
+	$PayuP["PayuDeviceSessionId"] = md5(session_id().microtime()); //$PayuDeviceSessionId;
 
 	$payu = new PayU();
 	switch ( $pagar->tipo ) {
@@ -181,7 +181,8 @@
 					"error" => $id_orden,
 					"tipo_error" => $error,
 					"status" => "Error, pago fallido",
-					"code" => $state
+					"code" => $state,
+					"charge" =>$charge
 				));
 			}
 

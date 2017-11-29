@@ -187,23 +187,7 @@
 
 
 		if( strtolower( REGION ) == 'colombia' ){
-			$HTML .= '
-			<p style="background:url(https://maf.pagosonline.net/ws/fp?id=$'.$PayuDeviceSessionId.$id_user.')"></p>
-
-			<img src="https://maf.pagosonline.net/ws/fp/clear.png?id=$'.$PayuDeviceSessionId.$id_user.'">
-
-			<script src="https://maf.pagosonline.net/ws/fp/check.js?id=$'.$PayuDeviceSessionId.$id_user.'"></script>
-
-			<object type="application/x-shockwave-flash"
-
-			data="https://maf.pagosonline.net/ws/fp/fp.swf?id=$'.$PayuDeviceSessionId.$id_user.'" width="1" height="1"
-
-			id="thm_fp">
-
-			<param name="movie" value="https://maf.pagosonline.net/ws/fp/fp.swf?id=$'.$PayuDeviceSessionId.$id_user.'" />
-
-			</object>
-			';
+			$HTML .= '<div id="deviceID"></div>';
 		}
 
 
@@ -590,19 +574,21 @@
 													<div class="km-text-one">								
 														<h4>SELECCIONA TU TIENDA DE PAGO</h4>
 													</div>
-													<div style="margin-bottom:10px;" class="col-xs-6 col-sm-4">
+													<div id="BALOTO" style="margin-bottom:10px;" class="col-xs-4 col-sm-4 col-sm-offset-2 col-xs-offset-2">
 														<div class="km-opcion km-opcionactivo" data-target="tienda">
-															<input type="checkbox" name="list_tienda" value="BALOTO" >
+															<input type="checkbox" name="list_tienda" value="BALOTO">
 															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/viabaloto.png" />
 														</div>
 													</div>
-													<div style="margin-bottom:10px;" class="col-xs-6 col-sm-4">
+													<!-- 
+													<div id="EFECTY" style="margin-bottom:10px;" class="col-xs-4 col-sm-4 hidden">
 														<div class="km-opcion" data-target="tienda">
 															<input type="checkbox" name="list_tienda" value="EFECTY" >
 															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/efecty.png" />
 														</div>
 													</div>
-													<div style="margin-bottom:10px;" class="col-xs-6 col-sm-4">
+													-->
+													<div id="OTHERS_CASH" style="margin-bottom:10px;" class="col-xs-4 col-sm-4">
 														<div class="km-opcion" data-target="tienda">
 															<input type="checkbox" name="list_tienda" value="OTHERS_CASH" >
 															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/sured.png" />

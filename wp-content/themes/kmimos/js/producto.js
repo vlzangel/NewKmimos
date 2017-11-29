@@ -699,14 +699,16 @@ var descripciones = "";
 jQuery(document).ready(function() { 
 
     jQuery('[data-target="tienda"]').on('click', function(e) {
-        jQuery('[data-target="tienda"]').parent().find('.km-opcion')
-        	.removeClass('km-opcionactivo')
-        	.removeAttr('checked');
-        jQuery(this).toggleClass('km-opcionactivo');
-		
-		var f = jQuery(this).children("input:checkbox").prop("checked","checked");
-		
-		CARRITO['pagar']['tienda'] = f.val();
+    	if( !jQuery(this).hasClass('km-opcion-disabled') ){
+	        jQuery('[data-target="tienda"]').parent().find('.km-opcion')
+	        	.removeClass('km-opcionactivo')
+	        	.removeAttr('checked');
+	        jQuery(this).toggleClass('km-opcionactivo');
+			
+			var f = jQuery(this).children("input:checkbox").prop("checked","checked");
+			
+			CARRITO['pagar']['tienda'] = f.val();
+		}
     });
 
 
@@ -941,6 +943,20 @@ jQuery(document).ready(function() {
 		jQuery(".km-col-steps").css("display", "none");
 		jQuery("#step_3").css("display", "block");
 		jQuery(document).scrollTop(0);
+
+		// Monto Minimo para pago por Tienda
+		if( REGION == 'colombia'){
+			if( CARRITO['pagar']['total'] < 3000 ){
+				jQuery('#OTHERS_CASH').find('[data-target="tienda"]').removeClass('km-opcion').addClass('km-opcion-disabled');
+			}else{
+				jQuery('#OTHERS_CASH').find('[data-target="tienda"]').removeClass('km-opcion-disabled').addClass('km-opcion');
+			}
+			if( CARRITO['pagar']['total'] < 20000 ){
+				jQuery('#EFECTY').find('[data-target="tienda"]').removeClass('km-opcion').addClass('km-opcion-disabled');
+			}else{
+				jQuery('#EFECTY').find('[data-target="tienda"]').removeClass('km-opcion-disabled').addClass('km-opcion');
+			}
+		}
 
 		e.preventDefault();
 	});
