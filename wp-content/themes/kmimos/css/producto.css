@@ -1,5 +1,23 @@
 /* New */
 
+.vlz_bloquear{
+    display: none;
+}
+
+.vlz_bloquear_msg{
+    background: #d06314;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 20px;
+    margin: 20px 0px 0px;
+}
+
+.vlz_bloquear_msg a{
+    color: #FFF;
+    font-weight: 600;
+}
+
 .km-input-custom {
     border-bottom: solid 1px #CCC !important;
     padding: 10px 20px !important;
