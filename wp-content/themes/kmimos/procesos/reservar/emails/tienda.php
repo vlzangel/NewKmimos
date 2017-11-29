@@ -122,4 +122,6 @@
 		$mensaje_admin = get_email_html($mensaje_admin);
 
         kmimos_mails_administradores_new("Solicitud de reserva #".$servicio["id_reserva"], $mensaje_admin);
+
+        
 ?>
