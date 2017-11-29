@@ -1370,6 +1370,9 @@
                     "vence" => $metas_orden['_openpay_tienda_vence'][0],
 
                     "aceptar_rechazar" => $aceptar_rechazar,
+
+                    "checkin" => date("g:i a", strtotime( $metas_reserva['_booking_checkin'][0] ) ),
+                    "checkout" => date("g:i a", strtotime( $metas_reserva['_booking_checkout'][0] ) )
                 ),
             );
 
