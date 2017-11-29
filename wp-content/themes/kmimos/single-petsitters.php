@@ -11,13 +11,17 @@
 
 	get_header();
 
-	$post_id = get_the_id();
-	$meta = get_post_meta( $post_id );
-
 	global $wpdb;
 	global $post;
 
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
+
+	if( $cuidador->activo == 0 ){
+		header("location: ".get_home_url());
+	}
+
+	$post_id = get_the_id();
+	$meta = get_post_meta( $post_id );
 	$descripcion = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
 
 	$user_id = get_current_user_id();
