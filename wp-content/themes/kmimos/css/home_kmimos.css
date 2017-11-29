@@ -48,15 +48,11 @@
     }
 
     .vlz_rayo {
-        position: absolute;
-        top: 15px;
-        left: 18px;
-        font-size: 20px !important;
+        font-size: 22px !important;
         color: #7dd1c4;
-    }
-
-    .fa-flash:before, .fa-bolt:before {
-        content: " ";
+        vertical-align: middle;
+        margin-right: 5px;
+        padding: 0px 0px 3px;
     }
 
 /*
