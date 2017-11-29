@@ -588,7 +588,7 @@
                         </a>
 
                         <div class="km-contenedor-descripcion-opciones">
-                            <div class="km-descripcion">
+                            <div class="km-descripcion" style="position: relative;">
 
                                 '.$flash_link.'
 
