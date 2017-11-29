@@ -307,6 +307,10 @@
                 'acupuntura' => array( 
                     'label'=>'Acupuntura',
                     'icon' => 'acupuntura'
+                ),
+                'flash' => array( 
+                    'label'=>'Flash',
+                    'icon' => 'flash'
                 )
             );
 

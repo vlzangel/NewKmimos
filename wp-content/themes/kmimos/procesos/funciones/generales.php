@@ -41,7 +41,7 @@
                 $sub_path = "cuidadores/avatares/{$id}/";
             }
             
-            $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo' ");
+            $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo' ORDER BY umeta_id DESC ");
             if( empty($name_photo)  ){ $name_photo = "0"; }
             $base = path_base();
 

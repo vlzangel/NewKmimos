@@ -41,7 +41,7 @@ if(count($featureds)>0){
 
         $votes=kmimos_petsitter_rating_and_votes($caregiver->id_post);
         $bone=site_url().'/wp-content/uploads/iconos/bone.svg';
-        $img = kmimos_get_foto($featured->cuidador);
+        $img = kmimos_get_foto($caregiver->user_id);
         $url = get_home_url()."/petsitters/".$data->url;
 
         //EXPERIENCE
