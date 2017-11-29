@@ -1,5 +1,14 @@
 <?php
 
+	global $wpdb;
+	global $post;
+
+	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
+
+	if( $cuidador->activo == 0 ){
+		header("location: ".get_home_url());
+	}
+
     wp_enqueue_style('perfil_cuidador', getTema()."/css/perfil_cuidador.css", array(), '1.0.0');
 	wp_enqueue_style('perfil_cuidador_responsive', getTema()."/css/responsive/perfil_cuidador_responsive.css", array(), '1.0.0');
 	
@@ -10,15 +19,6 @@
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 	get_header();
-
-	global $wpdb;
-	global $post;
-
-	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
-
-	if( $cuidador->activo == 0 ){
-		header("location: ".get_home_url());
-	}
 
 	$post_id = get_the_id();
 	$meta = get_post_meta( $post_id );
