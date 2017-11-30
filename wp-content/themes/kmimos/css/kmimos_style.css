@@ -760,6 +760,7 @@ input:focus{
     top: -3px;
 }
 button.close {
+    text-shadow: 0px 0px 3px #000;
 	position: absolute;
 	right: -40px;
 	top: 0;

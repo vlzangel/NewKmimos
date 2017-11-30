@@ -36,10 +36,10 @@
 						<h4>GANA DINERO CON TU HOBBIE</h4>
 						<p>En Kmimos siempre podrás colocar el precio que a ti mejor se te acomode, no te obligamos a fijar un precio, sin embargo, quisiéramos este rango de precios que está creada en base a las tendencias de mercado actuales.</p>
 						<ol>
-							<li>Tamaño pequeño: 120 pesos por noche.</li>
-							<li>Tamaño mediano: 180 pesos por noche.</li>
-							<li>Tamaño grande: 220 pesos por noche.</li>
-							<li>Tamaño gigante: 250 pesos por noche.</li>
+							<li>Tamaño pequeño: <?php echo get_region('precio_sugerido_pequeno'); ?> pesos por noche.</li>
+							<li>Tamaño mediano: <?php echo get_region('precio_sugerido_mediano'); ?> pesos por noche.</li>
+							<li>Tamaño grande: <?php echo get_region('precio_sugerido_grande'); ?> pesos por noche.</li>
+							<li>Tamaño gigante: <?php echo get_region('precio_sugerido_gigante'); ?> pesos por noche.</li>
 						</ol>
 					</div>
 					<div class="col-xs-12 col-sm-4">
