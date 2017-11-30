@@ -1,8 +1,6 @@
 <?php
     
     kmimos_registros_fotos( $servicio["id_reserva"] );
-
-    $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
     
     /* Correo Cliente */
 
@@ -54,7 +52,7 @@
         $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cuidador/confirmacion.php';
         $mensaje_cuidador = file_get_contents($cuidador_file);
 
-        
+
 
         if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
             $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
