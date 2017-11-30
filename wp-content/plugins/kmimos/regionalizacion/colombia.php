@@ -7,6 +7,7 @@ $region = array(
     "email"     => "contactoco@kmimos.la",
 
     "telefono" => " Bogota:+57 (1) 593 8719",
+    "telefono_atencion" => " Bogota: (1) 593 8719",
     "telefono_corrido" => "+5715938719",
     "whatsapp"=> "+57 318 350 2391", 
 
