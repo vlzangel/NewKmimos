@@ -201,6 +201,7 @@
 	  			}
 
 	  			$sql = "UPDATE wp_posts SET post_excerpt = 'Precio: \${$valor} c/u', post_status = '{$status}' WHERE post_parent = '{$extra}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';";
+                print_r($sql);
 	  			$db->query( utf8_decode( $sql ) );
 
                 $sql = "SELECT ID FROM wp_posts WHERE post_parent = '{$extra}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';";
@@ -285,7 +286,7 @@
                 $db->query( ($sql) );
             }
 
-            $db->query("UPDATE wp_postmeta SET meta_value = '{$servicio_id}' WHERE post_id = {$extra} AND meta_key = '_product_addons';");
+            $db->query("UPDATE wp_postmeta SET meta_value = '{$servicio_id}' WHERE post_id = {$extra} AND meta_key = '_product_addons'");
 
 	  	}
 
