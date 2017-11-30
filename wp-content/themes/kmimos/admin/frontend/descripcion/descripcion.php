@@ -176,7 +176,7 @@
     <h1 style="margin: 0px; padding: 0px;">Mi informaci&oacute;n como Cuidador</h1><hr style="margin: 5px 0px 10px;">
     <div class="inputs_containers row_4" style="padding-bottom: 0px;">
         <section> 
-            <label for="pet_name" class="lbl-text">'.esc_html__('IFE','kmimos').':</label>
+            <label for="pet_name" class="lbl-text">'.get_region('identidad').':</label>
             <label class="lbl-ui">
                 <input type"text" id="dni" name="dni" class="input" value="'.$cuidador->dni.'"> 
             </label>
@@ -310,7 +310,7 @@
     <div class="inputs_containers row_3" style="padding-bottom: 0px;">            
                          
        <section> 
-            <label for="estado" class="lbl-text">'.esc_html__('Estado','kmimos').':</label>
+            <label for="estado" class="lbl-text">'.get_region('estado').':</label>
             <label class="lbl-ui">
                 <select id="estado" id="estado" name="estado" class="input">
                   '.$estados.'
@@ -328,7 +328,7 @@
         </section>  
 
         <section> 
-            <label for="ages_accepted" class="lbl-text">'.esc_html__('Dirección','kmimos').':</label>
+            <label for="ages_accepted" class="lbl-text">'.get_region('direccion').':</label>
             <label class="lbl-ui">
               <input  type="text" id="direccion" name="direccion" class="input" value="'.$cuidador->direccion.'" />
             </label> 
