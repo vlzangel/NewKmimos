@@ -113,6 +113,7 @@
 						<div>ENTRENAMIENTO<br>AVANZADO</div>
 					</div>';
 			break;
+			
 		}
 	}
 
