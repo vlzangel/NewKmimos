@@ -19,8 +19,8 @@
 	$PayuP['pais'] = ucfirst(  get_region( 'pais' ) );
 	$PayuP['moneda'] = get_region( 'moneda_cod' );
 	// -- Reserva
-	$PayuP['id_orden'] = $id_orden ;
-	$PayuP['monto'] =  $pagar->total;
+	$PayuP['id_orden'] = $id_orden.'_'.date('Ymd\THis');
+	$PayuP['monto'] =  ceil( $pagar->total );
 	// -- Clientes
 	$PayuP['cliente']['ID'] = $pagar->cliente;
 	$PayuP['cliente']['dni'] = '';
@@ -34,7 +34,7 @@
 	$PayuP['cliente']['pais'] = get_region('pais_cod_iso');
 	$PayuP['cliente']['telef'] = $telefono;
 	$PayuP['cliente']['postal'] = '000000';
-	$PayuP["PayuDeviceSessionId"] = $PayuDeviceSessionId;
+	$PayuP["PayuDeviceSessionId"] = md5(session_id().microtime()); //$PayuDeviceSessionId;
 
 	$payu = new PayU();
 	switch ( $pagar->tipo ) {
@@ -46,6 +46,10 @@
 			$code = "";
 
 			// -- Agregar Parametros Adicionales
+/*
+			$year_now = date("Y");
+			$year_now = substr( $year_now, (strlen($tarjeta->anio)-4) );
+*/			$year_now = '20'.$tarjeta->anio; // Temporal 
 			 	
 			$tdc = new fngccvalidator();
 			$tdc_name = $tdc->CreditCard($tarjeta->numero, '', true);
@@ -54,7 +58,7 @@
 			$PayuP["creditCard"]["number"] = $tarjeta->numero;
 			$PayuP["creditCard"]["securityCode"] = $tarjeta->codigo;
 			$PayuP["creditCard"]["payment_method"] = strtoupper($tdc_name['type']);
-			$PayuP["creditCard"]["expirationDate"] = $tarjeta->anio.'/'.$tarjeta->mes;
+			$PayuP["creditCard"]["expirationDate"] = $year_now.'/'.$tarjeta->mes;
 
 			try {
 				$charge = $payu->AutorizacionCaptura( $PayuP );	
@@ -181,7 +185,8 @@
 					"error" => $id_orden,
 					"tipo_error" => $error,
 					"status" => "Error, pago fallido",
-					"code" => $state
+					"code" => $state,
+					"charge" =>$charge
 				));
 			}
 
