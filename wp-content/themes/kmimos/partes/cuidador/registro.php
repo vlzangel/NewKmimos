@@ -68,11 +68,9 @@
 						</div>
 						<div class="label-placeholder">
 							<label><?php echo get_region("identidad"); ?></label>
-<<<<<<< HEAD
+
 							<input type="text"  maxlength="<?php echo get_region("identidad-length"); ?>"  data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
-=======
-							<input type="text"  maxlength="20" minlength="20" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
->>>>>>> 4fd21402f8f78b31361299c698676297e667599a
+
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -183,11 +181,8 @@
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
 				
-<<<<<<< HEAD
-				<textarea name="rc_descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz."><?php echo get_region('mensaje_cuidador'); ?>
-=======
 				<textarea name="rc_descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz."><?php echo get_region('cuidador_descripcion'); ?>
->>>>>>> 4fd21402f8f78b31361299c698676297e667599a
+
 				</textarea>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
 
