@@ -321,7 +321,7 @@
 	function getTransporte($data, $precarga){
 		$resultado = "";
 		$transportes = array(
-			"transportacion_sencilla" => "Transp. Sencillo",
+			"transportacion_sencilla" => "Transporte sencillo (recogida o entregada)",
 			"transportacion_redonda" => "Transp. Redondo"
 		);
 		$rutas = array(
