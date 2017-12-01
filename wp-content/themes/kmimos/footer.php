@@ -4,7 +4,7 @@ global $margin_extra_footer;
 global $no_display_footer;
 
 if( !isset($no_display_footer)  ){
-$HTML = '
+    $HTML = '
         <!-- SECCIÓN FOOTER -->
         <footer class="'.$margin_extra_footer.'">
             <div class="container">
@@ -81,6 +81,19 @@ $HTML = '
     
     wp_enqueue_script('bxslider', getTema()."/js/jquery.bxslider.js", array("jquery"), '1.0.0');
 
+  
+    // Descomentar para inicializar la tabla fotos
+/*    global $wpdb;
+    $reservas = $wpdb->get_results("SELECT * FROM wp_postmeta WHERE meta_key = '_booking_end'");
+    foreach ($reservas as $key => $value) {
+        $status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '{$value->post_id}'");
+        if( $status == "confirmed" ){
+            if( strtotime(date("Y-m-d")." 00:00:00") < strtotime($value->meta_value) ){
+                kmimos_registros_fotos($value->post_id);
+            }
+        }
+    }*/
+
 
     if( !is_user_logged_in() ){
         /* 
@@ -114,24 +127,6 @@ $HTML = '
 
     wp_footer();
 
-/*    $HTML = "
-        <script type='text/javascript'>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
-
-            ga('create', 'UA-56422840-1', 'auto');
-            ga('send', 'pageview');
-        </script>
-
-        <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
-
-        <script type='text/javascript'>
-            jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
-        </script>        
-    ";   */ 
-    
     $HTML = "
         <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
         <script type='text/javascript'>
@@ -151,10 +146,6 @@ $HTML = '
     include_once( 'partes/footer/SubscribeSite.php' );
 
     echo comprimir_styles($HTML);
-
-    /*
-        
-    */
 
     echo "
         <!-- Google Analytics -->
