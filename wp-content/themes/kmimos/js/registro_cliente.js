@@ -161,7 +161,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				break;
 			default:
 				jQuery("#movil").parent('div').css('color','red');
-				jQuery("#movil").after('<span name="sp-movil">Su movil debe contener '+DNILENGTH+' dígitos</span>').css('color','red');
+				jQuery("#movil").after('<span name="sp-movil">Su movil debe contener al menos'+DNILENGTH+' dígitos</span>').css('color','red');
 				jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
 		}
 	});
