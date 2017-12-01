@@ -361,7 +361,7 @@ function cambio_municipio(estado_id, CB = false){
         {estado: estado_id} 
     ).done(
         function( data, textStatus, jqXHR ) {
-            var html = "<option value=''>Seleccione un municipio</option>";
+            var html = "<option value=''>Seleccione un "+BARRIO+"</option>";
             jQuery.each(data, function(i, val) {
                 html += "<option value="+val.id+">"+val.name+"</option>";
             });

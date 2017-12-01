@@ -125,7 +125,7 @@ $HTML .='
 							</div>
 
 							<div class="label-placeholder">
-								<label>'.get_region("identidad").'/Documento de Identidad</label>
+								<label>'.get_region("identidad").'</label>
 								<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="'.get_region("identidad-length").'">
 							</div>
 							<div class="label-placeholder verify">
@@ -147,7 +147,7 @@ $HTML .='
 							</div>
 							<div class="label-placeholder">
 								<label>Teléfono</label>
-								<input type="text" name="movil" id="movil" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="7">
+								<input type="text" name="movil" id="movil" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="'.get_region("identidad-length").'7">
 							</div>
 							<div class="km-datos-mascota">
 								<select class="km-datos-mascota-opcion bg-select-custom" name="genero" id="genero">
