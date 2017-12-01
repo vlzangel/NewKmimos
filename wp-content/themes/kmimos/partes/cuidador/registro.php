@@ -217,14 +217,9 @@
 					<div class="content-placeholder">
 						<div class="label-placeholder">
 
-							<label><?php echo get_region("Ciudad"); ?></label>
-							<select class="km-datos-estado-opcion km-select-custom" name="rc_estado">
-								<option value="">Selección de <?php echo get_region("Ciudad"); ?></option>
-
 							<label><?php echo get_region('estado'); ?></label>
 							<select class="km-datos-estado-opcion km-select-custom" name="rc_estado">
 								<option value="">Selección de <?php echo get_region('estado'); ?></option>
-
 								<?php
 									global $wpdb;
 								    $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
@@ -237,6 +232,7 @@
 							</select>
 							<small data-error="rc_estado" style="visibility: hidden;"></small>
 
+							 
 						</div>
 						<div class="label-placeholder">
 							<label><?php echo get_region("Localidad")." / ".get_region("Barrio"); ?></label>
