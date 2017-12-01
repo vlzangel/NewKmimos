@@ -80,8 +80,8 @@ class Reservas {
 
         $sql = "
             INSERT INTO wp_postmeta VALUES
-                (NULL, '{$id_reserva}', '_booking_checkin',         '{$fechas->checkin}'),
-                (NULL, '{$id_reserva}', '_booking_checkout',        '{$fechas->checkout}'),
+                (NULL, '{$id_reserva}', '_booking_checkin',         '{$checkin}'),
+                (NULL, '{$id_reserva}', '_booking_checkout',        '{$checkout}'),
                 (NULL, '{$id_reserva}', '_booking_customer_id',     '{$cliente}'),
                 (NULL, '{$id_reserva}', '_booking_all_day',         '1'),
                 (NULL, '{$id_reserva}', '_booking_start',           '{$inicio}000000'),

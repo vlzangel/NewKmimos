@@ -1,8 +1,15 @@
 <?php
+	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+
+	include_once($raiz."/vlz_config.php");
+	include_once("../funciones/db.php");
+
+	$db = new db( new mysqli($host, $user, $pass, $db) );
+
 	extract($_POST);
 
-	function procesar_img($id, $id_orden, $periodo, $dir, $sImagen, $es_collage = false){
-		$name = time()."_".$id.".jpg";
+	function procesar_img($id, $periodo, $dir, $sImagen, $es_collage = false){
+		$name = $id.".png";
 	    $path = $dir.$name;
 
 	    @file_put_contents($path, $sImagen);
@@ -26,10 +33,11 @@
 
 	    if( $es_collage ){
 		    $nWidth  = 600;
-		    $nHeight = 430;
+		    $nHeight = 495;
 	    }else{
 		    $nWidth  = 270;
 		    $nHeight = 190;
+
 	    }
 
 	    $aSize = @getImageSize( $path );
@@ -45,7 +53,7 @@
 	    @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight,
 	    $aSize[0], $aSize[1] );
 
-	    @imagejpeg( $aThumb, $path );
+	    @imagepng( $aThumb, $path );
 
 	    @imageDestroy( $aImage ); @imageDestroy( $aThumb );
 
@@ -55,10 +63,10 @@
     $dir = (dirname(dirname(dirname(dirname(__DIR__)))))."/uploads/fotos/";
     if( !file_exists($dir) ){ @mkdir($dir); }
 
-    $dir = (dirname(dirname(dirname(dirname(__DIR__)))))."/uploads/fotos/".$id_orden."/";
+    $dir = (dirname(dirname(dirname(dirname(__DIR__)))))."/uploads/fotos/".$id_reserva."/";
     if( !file_exists($dir) ){ @mkdir($dir); }
 
-    $dir = (dirname(dirname(dirname(dirname(__DIR__)))))."/uploads/fotos/".$id_orden."/".$periodo."/";
+    $dir = (dirname(dirname(dirname(dirname(__DIR__)))))."/uploads/fotos/".$id_reserva."/".$periodo."/";
     if( !file_exists($dir) ){ @mkdir($dir); }
 
     $RUTAS = array();
@@ -67,15 +75,25 @@
 		$img = end($imgx);
 	    $sImagen = base64_decode($img);
     	
-    	$RUTAS[] = $id_orden."/".$periodo."/".procesar_img($id, $id_orden, $periodo, $dir, $sImagen);
+    	$RUTAS[] = $id_reserva."/".$periodo."/".procesar_img($id, $periodo, $dir, $sImagen);
     }
 
     $imgx = explode(',', $collage);
 	$img = end($imgx);
     $sImagen = base64_decode($img);
 
-    $RUTAS[] = $id_orden."/".$periodo."/".procesar_img("collage", $id_orden, $periodo, $dir, $sImagen, true);
+    $RUTAS[] = $id_reserva."/".$periodo."/".procesar_img("collage", $periodo, $dir, $sImagen, true);
 
-    echo json_encode( $RUTAS );
+    $info = $db->get_row("SELECT * FROM fotos WHERE reserva = $id_reserva");
+
+    $hoy = date("Y-m-d");
+
+    if( $periodo == $hoy."_1" ){
+    	$db->query("UPDATE fotos SET subio_12 = 1 WHERE reserva = $id_reserva AND fecha = '{$hoy}';");
+    }else{
+    	$db->query("UPDATE fotos SET subio_06 = 1 WHERE reserva = $id_reserva AND fecha = '{$hoy}';");
+    }
+    
+	exit;
 
 ?>
