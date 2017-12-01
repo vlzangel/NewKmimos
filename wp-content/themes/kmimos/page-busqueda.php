@@ -33,17 +33,6 @@
 	$resultados = $_SESSION['resultado_busqueda'];
 	$favoritos = get_favoritos();
 
-// var_dump($favoritos);
-	
-/*	$pines = unserialize($_SESSION['pines_array']);
-	$pines_v = array();
- 	$t = count($pines);
-	for($i = 0; $i < $t; $i++){
-		$pines[$i]["ser"] = vlz_servicios($pines[$i]["adi"], true);
-		$pines[$i]["rating"] = kmimos_petsitter_rating( $pines[$i]["post_id"], true );
-		unset($pines[$i]["adi"]);
-	}*/
- 	
  	$TIPO_DISEÑO = "list";
 	if( $total > 6 ){
 		$TIPO_DISEÑO = "grid";
@@ -259,6 +248,7 @@
 									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
 									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de menos a más años</a></li>
 									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de más a menos años</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=flash">Cuidadores Flash</a></li>
 							  	</ul>
 							</div>
 
@@ -302,6 +292,7 @@
 										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
 										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de menos a más años</a></li>
 										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de más a menos años</a></li>
+										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=flash">Cuidadores Flash</a></li>
 									  </ul>
 									</div>
 

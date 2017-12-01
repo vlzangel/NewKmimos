@@ -16,31 +16,21 @@ if(array_key_exists('search',$_POST)){
     unset($_SESSION['search']);
 }
 
-?>
-
-<html <?php language_attributes(); ?> class="no-js">
+?><html <?php language_attributes(); ?> class="no-js">
     <head>
-
+        <title> <?php bloginfo('title'); ?> </title>
         <meta charset="<?php bloginfo('charset'); ?>">
         <?php
-            echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+
+            echo '
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+            ';
+            wp_enqueue_style( 'fontawesome_47', getTema()."/css/font-awesome.css", array(), '1.0.0'); 
+            wp_enqueue_style( 'style_kmimos', getTema()."/style.css", array(), '1.0.0'); 
+            wp_enqueue_style('blogcacss', getTema().'/css/blog_min.css');
+            wp_enqueue_style( 'blogestilos', getTema()."/css/blog.css", array(), '1.0.0');
+            wp_head();
         ?>
-
-
-        <?php 
-        wp_enqueue_style( 'fontawesome_47', getTema()."/css/font-awesome.css", array(), '1.0.0'); 
-        wp_enqueue_style( 'style_kmimos', getTema()."/style.css", array(), '1.0.0'); 
-
-
-        wp_enqueue_style('blogcacss',
-            getTema().'/css/blog_min.css');
-
-        wp_enqueue_style( 'blogestilos', getTema()."/css/blog.css", array(), '1.0.0'); 
-               
-        wp_head();
-        ?>
-        
-
     </head>
 
     <body <?php body_class(); ?>>
