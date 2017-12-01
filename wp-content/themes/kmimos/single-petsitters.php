@@ -1,5 +1,14 @@
 <?php
 
+	global $wpdb;
+	global $post;
+
+	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
+
+	if( $cuidador->activo == 0 ){
+		header("location: ".get_home_url());
+	}
+
     wp_enqueue_style('perfil_cuidador', getTema()."/css/perfil_cuidador.css", array(), '1.0.0');
 	wp_enqueue_style('perfil_cuidador_responsive', getTema()."/css/responsive/perfil_cuidador_responsive.css", array(), '1.0.0');
 	
@@ -13,11 +22,6 @@
 
 	$post_id = get_the_id();
 	$meta = get_post_meta( $post_id );
-
-	global $wpdb;
-	global $post;
-
-	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
 	$descripcion = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
 
 	$user_id = get_current_user_id();

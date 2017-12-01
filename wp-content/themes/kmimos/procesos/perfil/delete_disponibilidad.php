@@ -8,6 +8,10 @@
 
     $db->query("UPDATE cupos SET no_disponible = 0 WHERE servicio = '{$servicio}' AND fecha >= '{$inicio}' AND fecha <= '{$fin}'");
 
+    $autor = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio}' ");
+
+    $db->query("UPDATE cupos SET cuidador = '{$autor}' WHERE servicio = '{$servicio}'");
+
     $rangos_2 = array();
 
     foreach ($rangos as $key => $value) {

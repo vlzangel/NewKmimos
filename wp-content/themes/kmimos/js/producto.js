@@ -7,6 +7,8 @@ function initCarrito(){
 		CARRITO["fechas"] = {
 			"inicio" : "",
 			"fin" : "",
+			"checkin" : "",
+			"checkout" : "",
 			"duracion" : ""
 		};
 
@@ -72,6 +74,19 @@ function validar(status, txt){
 }
 
 function calcular(){
+
+	if( FLASH == "NO" ){
+		console.log(jQuery("#checkin").val());
+		if( jQuery("#checkin").val() == HOY || jQuery("#checkin").val() == MANANA ){
+			jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
+			jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
+			jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
+		}else{
+			jQuery("#vlz_msg_bloqueo").addClass("vlz_NO_bloquear_msg");
+			jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
+			jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
+		}
+	}
 
 	if( CARRITO["pagar"]["id_fallida"] != 0 ){
 		CARRITO["pagar"]["reconstruir"] = true;
@@ -144,38 +159,47 @@ function calcular(){
 		error += "</ul>";
 	}
 
-	var dias = 0;
-	if( CARRITO[ "fechas" ][ "inicio" ] == undefined || CARRITO[ "fechas" ][ "inicio" ] == "" ){
-		error = "Ingrese la fecha de inicio";
-	}else{
-		if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
-			error = "Ingrese la fecha de finalizaci&oacute;n";
+	if( error == "" ){
+		var dias = 0;
+		if( CARRITO[ "fechas" ][ "inicio" ] == undefined || CARRITO[ "fechas" ][ "inicio" ] == "" ){
+			error = "Ingrese la fecha de inicio";
 		}else{
-			var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
-			var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
-
-			var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
-
-			var diff = fechaFin - fechaInicio;
-			dias = parseInt( diff/(1000*60*60*24) );
-	    }
-
-		if( tipo_servicio != "hospedaje" ){
-			if( dias == 0 ){
-				dias=1;
+			if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
+				error = "Ingrese la fecha de finalizaci&oacute;n";
 			}else{
-				dias += 1;
-			}
-		}else{
-			if( dias == 0 ){
-				error = "Fecha de finalizaci&oacute;n debe ser diferente a la de inicio";
-			}
-		}
+				var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
+				var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
+				var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
+				var diff = fechaFin - fechaInicio;
+				dias = parseInt( diff/(1000*60*60*24) );
+		    }
 
-        CARRITO[ "fechas" ][ "duracion" ] = dias;
+			if( tipo_servicio != "hospedaje" ){
+				if( dias == 0 ){
+					dias=1;
+				}else{
+					dias += 1;
+				}
+			}else{
+				if( dias == 0 ){
+					error = "Fecha de finalizaci&oacute;n debe ser diferente a la de inicio";
+				}
+			}
+	        CARRITO[ "fechas" ][ "duracion" ] = dias;
+		}
 	}
 
-	
+	if( error == "" ){
+		if( CARRITO[ "fechas" ][ "checkin" ] == undefined || CARRITO[ "fechas" ][ "checkin" ] == "" ){
+			error = "Ingrese la hora de checkin";
+		}
+	}
+
+	if( error == "" ){
+		if( CARRITO[ "fechas" ][ "checkout" ] == undefined || CARRITO[ "fechas" ][ "checkout" ] == "" ){
+			error = "Ingrese la hora de checkout";
+		}
+	}
 
 	var cant = 0, duracion = 0;
 	jQuery.each( CARRITO[ "cantidades" ], function( key, valor ) {
@@ -419,11 +443,8 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-
-			console.log( data );
-
+			/*console.log( data );*/
 			if( data.error != "" && data.error != undefined ){
-
 				if( data.tipo_error != "3003" ){
 					var error = "Error procesando la reserva<br>";
 			    	error += "Por favor intente nuevamente.<br>";
@@ -432,25 +453,19 @@ function pagarReserva(id_invalido = false){
 					var error = "Error procesando la reserva<br>";
 			    	error += "La tarjeta no tiene fondos suficientes.<br>";
 				}
-
 		    	jQuery(".errores_box").html(error);
 				jQuery(".errores_box").css("display", "block");
-
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
-
 				CARRITO["pagar"]["id_fallida"] = data.error;
 			}else{
 				CARRITO["pagar"]["id_fallida"] = 0;
-
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
-
 				location.href = RAIZ+"/finalizar/"+data.order_id;
 			}
-
 		}, "json"
 	).fail(function(e) {
 
@@ -654,6 +669,16 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+	jQuery("#hora_checkin").on("change", function(){
+		CARRITO["fechas"]["checkin"] = jQuery("#hora_checkin").val();
+		calcular();
+	});
+
+	jQuery("#hora_checkout").on("change", function(){
+		CARRITO["fechas"]["checkout"] = jQuery("#hora_checkout").val();
+		calcular();
+	});
 
 	jQuery(".km-option-deposit").click();
 
