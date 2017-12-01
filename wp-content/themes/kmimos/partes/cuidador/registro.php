@@ -67,8 +67,8 @@
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
-							<label><?php echo get_region("identidad"); ?>/Documento de Identidad</label>
-							<input type="text"  maxlength="20" minlength="20" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
+							<label><?php echo get_region("identidad"); ?></label>
+							<input type="text"  maxlength="<?php echo get_region("identidad-length"); ?>"  data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -83,7 +83,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Teléfono</label>
-							<input type="text" name="rc_telefono" data-charset="num" minlength="20" maxlength="20" value="" class="input-label-placeholder solo_numeros">
+							<input type="text" name="rc_telefono" data-charset="num" maxlength="<?php echo get_region("identidad-length"); ?>" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -179,7 +179,7 @@
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
 				
-				<textarea name="rc_descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
+				<textarea name="rc_descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz."><?php echo get_region('mensaje_cuidador'); ?>
 				</textarea>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
 
@@ -213,9 +213,9 @@
 				<div class="km-box-form">
 					<div class="content-placeholder">
 						<div class="label-placeholder">
-							<label>Estado</label>
+							<label><?php echo get_region("Ciudad"); ?></label>
 							<select class="km-datos-estado-opcion km-select-custom" name="rc_estado">
-								<option value="">Selección de Estado</option>
+								<option value="">Selección de <?php echo get_region("Ciudad"); ?></option>
 								<?php
 									global $wpdb;
 								    $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
@@ -230,9 +230,9 @@
 
 						</div>
 						<div class="label-placeholder">
-							<label>Municipio</label>
+							<label><?php echo get_region("Localidad")." / ".get_region("Barrio"); ?></label>
 							<select class="km-datos-municipio-opcion km-select-custom" name="rc_municipio">
-								<option value="">Selección de Municipio</option>
+								<option value="">Selección de <?php echo get_region("Barrio"); ?></option>
 							</select>
 							<small data-error="rc_municipio" style="visibility: hidden;"></small>
 						</div>

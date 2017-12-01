@@ -64,7 +64,7 @@
 										id="ubicacion_txt"  
 										style="background: transparent; border: 0px; padding: 0px 0px 0px 15px;"
 										name="ubicacion_txt"
-										placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" 
+										placeholder="'.get_region('ubicaciones').'" 
 										value="'.$busqueda["ubicacion_txt"].'" 
 										autocomplete="off" >
 
@@ -236,7 +236,7 @@
 									<div class="km-testimonial">“Kmimos es mi trabajo, mi pasión por los perros, mi casa, mi familia… lo representa todo.”</div>
 									<div class="km-autor">
 										<a href="'.get_user_slug(1404).'"> CLAUDIA R. </a>
-										 - Ciudad de México</div>
+										 '.get_region('ubicacion_cuidador').'</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
 								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/testimonial-3.jpg">
@@ -256,7 +256,7 @@
 									</div>
 									<div class="km-testimonial">“Todos los cuidadores Kmimos tienen algo en común, la pasión y el amor por los perros.”</div>
 									<div class="km-autor">
-										<a href="'.get_user_slug(5011).'">MARU S.</a> - Ciudad de México</div>
+										<a href="'.get_user_slug(5011).'">MARU S.</a> '.get_region('ubicacion_cuidador').'</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
 								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/testimonial-2.jpg">
@@ -275,7 +275,7 @@
 										</a>
 									</div>
 									<div class="km-testimonial">“Ahora tengo más ingresos, llegan bastantes visitas y es como tener un sueldo de ejecutivo”.</div>
-									<div class="km-autor"><a href="'.get_user_slug(5738).'">KARLA S.</a> - Ciudad de México</div>
+									<div class="km-autor"><a href="'.get_user_slug(5738).'">KARLA S.</a> '.get_region('ubicacion_cuidador').'</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
 								<img class="img-testimoniales filtro-oscuro" 

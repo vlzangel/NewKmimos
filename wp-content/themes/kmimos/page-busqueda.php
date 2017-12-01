@@ -173,7 +173,7 @@
 									class="km-fechas" 
 									style="width: 100%;background: transparent; border: 0px; padding: 0px 0px 0px 15px;"
 									name="ubicacion_txt"
-									placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" 
+									placeholder="'.get_region('ubicaciones').'" 
 									value="'.$busqueda["ubicacion_txt"].'" 
 									autocomplete="off" >
 								<input type="hidden" 
