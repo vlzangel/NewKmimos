@@ -61,9 +61,15 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery('[name="sp-ife"]').remove();
 			break;
 		default:
+			if (jQuery("#ife").val().length >= 8) {
+				jQuery("#ife").css('color','green');
+				jQuery("#ife").parent('div').css('color','green');
+				jQuery('[name="sp-ife"]').remove();
+			}else{
 			jQuery("#ife").parent('div').css('color','red');
 			jQuery("#ife").after('<span name="sp-ife">Su '+DNI+' debe contener '+DNILENGTH+' dígitos</span>').css('color','red');
 			jQuery("#ife").focus(function() { jQuery('[name="sp-ife"]').remove(); });
+			}
 		}
 	});
 
@@ -160,9 +166,15 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					jQuery('[name="sp-movil"]').remove();
 				break;
 			default:
-				jQuery("#movil").parent('div').css('color','red');
-				jQuery("#movil").after('<span name="sp-movil">Su movil debe contener al menos'+DNILENGTH+' dígitos</span>').css('color','red');
-				jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
+				if (jQuery("#movil").val().length >= 8) {
+					jQuery("#movil").css('color','green');
+					jQuery("#movil").parent('div').css('color','green');
+					jQuery('[name="sp-movil"]').remove();
+				}else{
+					jQuery("#movil").parent('div').css('color','red');
+					jQuery("#movil").after('<span name="sp-movil">Su movil debe contener al menos'+DNILENGTH+' dígitos</span>').css('color','red');
+					jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
+				}
 		}
 	});
 

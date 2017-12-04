@@ -82,7 +82,7 @@
 
             $precio_sugerido_tag = '';
             if( $key == 'guarderia' ){
-                $precio_sugerido_tag = "<label>Precio sugerido: ".$precio_sugerido[$key][$key2]." ".get_region('mon_der')."</label>";
+                $precio_sugerido_tag = "<label>Precio sugerido: ".$precio_sugerido[$key][$key2]." ".get_region('moneda_cod')."</label>";
             }
 
 	    	$temp .= "

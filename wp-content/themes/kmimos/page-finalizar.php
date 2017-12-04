@@ -12,7 +12,7 @@
 
 		global $wpdb;
 		
-		$moneda_signo = get_region('mon_der');
+		$moneda_signo = get_region('moneda_cod');
 
 		$orden_id = vlz_get_page();
 
