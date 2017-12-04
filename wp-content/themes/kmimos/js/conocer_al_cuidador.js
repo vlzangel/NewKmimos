@@ -28,20 +28,22 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
 
                 if( data != "" ){
 
-                jQuery("#fecha").html( jQuery("#meeting_when").val() );
-                jQuery("#hora_reu").html( jQuery("#meeting_time").val() );
-                jQuery("#lugar_reu").html( jQuery("#meeting_where").val() );
-                jQuery("#fecha_ini").html( jQuery("#service_start").val() );              
-                jQuery("#fecha_fin").html( jQuery("#service_end").val() );
-
-                jQuery("#n_solicitud").html( data['n_solicitud'] );
-                jQuery("#nombre").html( data['nombre']);
-                jQuery("#telefono").html( data['telefono']);
-                jQuery("#email").html( data['email'] );
-
-                    jQuery('#popup-conoce-cuidador').modal('show');
-                    jQuery('.popup-iniciar-sesion-1').css('display', 'none');
-                    jQuery('.popup-iniciar-sesion-2').css('display', 'block');
+                    if( data['error'] != '' ){
+                        alert(data['error']);
+                    }else{
+                        jQuery("#fecha").html( jQuery("#meeting_when").val() );
+                        jQuery("#hora_reu").html( jQuery("#meeting_time").val() );
+                        jQuery("#lugar_reu").html( jQuery("#meeting_where").val() );
+                        jQuery("#fecha_ini").html( jQuery("#service_start").val() );              
+                        jQuery("#fecha_fin").html( jQuery("#service_end").val() );
+                        jQuery("#n_solicitud").html( data['n_solicitud'] );
+                        jQuery("#nombre").html( data['nombre']);
+                        jQuery("#telefono").html( data['telefono']);
+                        jQuery("#email").html( data['email'] );
+                        jQuery('#popup-conoce-cuidador').modal('show');
+                        jQuery('.popup-iniciar-sesion-1').css('display', 'none');
+                        jQuery('.popup-iniciar-sesion-2').css('display', 'block');
+                    }
 
                 }
                 jQuery("#btn_enviar_conocer").html('ENVIAR SOLICITUD');
