@@ -177,21 +177,27 @@
 		$msg_bloqueador = "";
 		$NO_FLASH = "SI";
 
-		$msg_bloqueador = "
-			Lo sentimos,<br>
-			Este cuidador no acepta reservas de &uacute;ltimo minuto.<br>
-			Pero no te preocupes, picale <a href='".getTema()."/procesos/busqueda/buscar.php?flash=true'>Aqu&iacute;</a> para encontrar cuidadores que si las acepten.
-		";
-		if( $atributos["flash"] != 1){
-			if( $hoy == $busqueda["checkin"] ){
-				$NO_FLASH = "NO";
-				$bloquear = "vlz_bloquear";
-				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
+		if(  $_SESSION['admin_sub_login'] != 'YES' ){
+			$msg_bloqueador = "
+				<strong>IMPORTANTE</strong><br>
+				<div style='padding: 10px 0px;'>
+					Este cuidador no tiene opción de Reserva Inmediata, por lo tanto corres el riesgo que no te atienda el día de hoy. Te invitamos a seguir uno de los tres siguientes pasos:
+				</div>
+				* Cambia las fechas.
+				<br>* Busca <a href='".getTema()."/procesos/busqueda/buscar.php?flash=true'>Aqu&iacute;</a> un cuidador que permita Reserva Inmediata.
+				<br>* Llámanos al (01) 800 056 4667 y te ayudaremos.
+			";
+			if( $atributos["flash"] != 1){
+				if( $hoy == $busqueda["checkin"] ){
+					$NO_FLASH = "NO";
+					$bloquear = "vlz_bloquear";
+					$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
+				}else{
+					$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
+				}
 			}else{
 				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
 			}
-		}else{
-			$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
 		}
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
