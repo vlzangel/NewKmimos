@@ -30,6 +30,7 @@ $region = array(
     "km-medios" => false,
     "km-patitas" => false,
     "km-5000" => 0,
+    "length_movil" => 7,
     "conocio" => array(
                 'Facebook'      =>  'Facebook',
                 'Adwords'       =>  'Buscador de Google',
