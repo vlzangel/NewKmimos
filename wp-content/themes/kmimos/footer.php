@@ -90,7 +90,7 @@ $HTML = '
         wp_enqueue_script('modales', getTema()."/js/registro_cliente.js", array("jquery"), '1.0.0');
     }
     
-    //wp_enqueue_script('console', getTema()."/js/console.js", array("jquery"), '1.0.0');
+    /*wp_enqueue_script('console', getTema()."/js/console.js", array("jquery"), '1.0.0');*/
 
 
     if(  $_SESSION['admin_sub_login'] == 'YES' ){
@@ -147,7 +147,7 @@ $HTML = '
         /*$HTML .= "<script> startApp(); </script>";*/
     }
 
-    // SubscribeSite
+    /* SubscribeSite */
     include_once( 'partes/footer/SubscribeSite.php' );
 
     echo comprimir_styles($HTML);

@@ -16,7 +16,7 @@ $datos = kmimos_get_info_syte();
 								<div class="content-placeholder">
 									<div class="label-placeholder">
 										<!-- <label>Correo electrónico</label>-->
-										<input type="text" id="usuario" placeholder="Usuario &oacute; Correo El&eacute;ctronico" class="input-label-placeholder">
+										<input type="text" id="usuario" placeholder="Usuario ó Correo Electrónico" class="input-label-placeholder">
 									</div>
 									<div class="label-placeholder">
 										<!--<label>Contraseña</label>-->
