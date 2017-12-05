@@ -462,6 +462,9 @@
                     $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
 
                     $raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
+                    if( $raza == "" ){
+                        $raza = "Affenpinscher";
+                    }
                     $mascotas[] = array(
                         "nombre" => $data_mascota['name_pet'][0],
                         "raza" => $raza,

@@ -167,7 +167,8 @@
 		}
 
 		if( $es_primera_reserva == 1 ){
-            wp_mail( 'a.vera@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
+            // wp_mail( 'a.vera@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
+            wp_mail( 'y.chaudary@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
         }
 
 	}else{
