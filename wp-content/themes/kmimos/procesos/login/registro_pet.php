@@ -51,12 +51,12 @@
             $sql = "
                 INSERT INTO wp_postmeta VALUES
                     (NULL, {$pet_id}, 'name_pet',           '{$name_pet}'),
-                    (NULL, {$pet_id}, 'photo_pet',         '{$photo_pet}'),
-                    (NULL, {$pet_id}, 'type_pet',         '{$type_pet}'),
-                    (NULL, {$pet_id}, 'breed_pet',          '{$race_pet}'),
-                    (NULL, {$pet_id}, 'colors_pet',        '{$color_pet}'),
-                    (NULL, {$pet_id}, 'birthdate_pet',          '{$date_birth}'),
-                    (NULL, {$pet_id}, 'gender_pet',           '{$gender_pet}'),
+                    (NULL, {$pet_id}, 'photo_pet',          '{$photo_pet}'),
+                    (NULL, {$pet_id}, 'pet_type',           '{$tipo_mascota}'),
+                    (NULL, {$pet_id}, 'breed_pet',          '{$raza_mascota}'),
+                    (NULL, {$pet_id}, 'colors_pet',         '{$color_pet}'),
+                    (NULL, {$pet_id}, 'birthdate_pet',      '{$date_birth}'),
+                    (NULL, {$pet_id}, 'gender_pet',         '{$gender_pet}'),
                     (NULL, {$pet_id}, 'size_pet',           '{$size_pet}'),
                     (NULL, {$pet_id}, 'pet_sterilized',           '{$pet_sterilized}'),
                     (NULL, {$pet_id}, 'pet_sociable',           '{$pet_sociable}'),
@@ -74,7 +74,7 @@
             ";
             $conn->query( utf8_decode( $sql ) );
 
-            $sql = "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$type_pet},'0');";
+            $sql = "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$tipo_mascota},'0');";
             $conn->query( utf8_decode( $sql ) );
 
 
