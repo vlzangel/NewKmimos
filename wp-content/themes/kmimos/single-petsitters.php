@@ -235,33 +235,34 @@
                 wp_term_relationships AS relacion
             LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
             WHERE 
-                relacion.object_id = '{$servicio->ID}' AND
-                relacion.term_taxonomy_id != 28
+                relacion.object_id = '{$servicio->ID}' 
+                AND relacion.term_taxonomy_id != 28
         ");
 
         $titulo = get_servicio_cuidador($tipo);
 
         $tamanos_precios = array();
         $precios = $precios_hospedaje;
-        if( $tipo != "hospedaje" ){
+        if( $tipo != "hospedaje"  ){
         	$precios = $precios_adicionales[ str_replace('-', '_',  $tipo) ];
         }else{
         	$id_hospedaje = $servicio->ID;
         }
 
-        if( !empty($precios) ){
 
+        if( !empty($precios) ){
+	        
 	        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' ");// AND post_status = 'publish'
 
 	        foreach ($tamanos_servicio as $tamano ) {
 	        	$activo = false;
 	        	if( isset($busqueda["servicios"]) ){
-		        	if( in_array($tipo, $busqueda["servicios"]) ){
+		        	if( in_array($tipo, $busqueda["servicios"]) ){		        		
 		        		$activo = true;
 		        	}
 		        	preg_match_all("#adiestramiento#", $tipo, $matches);
 
-		        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){
+		        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){	   
 		        		$activo = true;
 		        	}
 	        	}
@@ -273,6 +274,7 @@
 
 	        $tamanos_txt = "";
 	        foreach ($tamanos as $key => $value) {
+
 	        	$tamanos_txt .= $tamanos_precios[$key];
 	        }
 
@@ -357,7 +359,7 @@
 						<form id="form_cuidador" method="POST" action="'.getTema().'/procesos/reservar/redirigir_reserva.php">
 							<div class="servicio_desde">
 								<p>SERVICIOS DESDE</p>
-								<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
+								<div class="km-tit-costo">'.get_region("moneda_cod").' $ '.($cuidador->hospedaje_desde*1.2).'</div>
 							</div>
 							<div class="km-ficha-fechas">
 								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>

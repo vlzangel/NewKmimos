@@ -21,13 +21,13 @@
 		
 			<?php if( $DS["saldo_temporal"] > 0 ){ ?>
 				<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
-					<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $DS["saldo"]; ?>
+					<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> <?php echo get_region('moneda_cod'); ?> $<?php echo $DS["saldo"]; ?>
 				</div>
 			<?php }else{ 
 					$kmisaldo = kmimos_get_kmisaldo();
 					if( $kmisaldo > 0 ){ ?>
 						<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
-							<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $kmisaldo; ?>
+							<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> <?php echo get_region('moneda_cod'); ?> $<?php echo $kmisaldo; ?>
 						</div>
 			<?php 	}
 				  } ?>

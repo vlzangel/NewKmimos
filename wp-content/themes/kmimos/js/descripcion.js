@@ -51,3 +51,16 @@ jQuery( document ).ready(function() {
     );
 
 });
+
+jQuery('#btn_actualizar').on('click', function(e){
+   var dni = jQuery('#dni').val();
+   console.log(jQuery('#dni').val());
+    if (dni == "") {
+        alert('Documento no puede ir vacio!');
+        e.preventDefault();
+        jQuery("#dni").css('border-color','red');
+        console.log('dni vacio');
+    }else{
+        jQuery("#dni").css('border-color','#CCC');
+    }
+});

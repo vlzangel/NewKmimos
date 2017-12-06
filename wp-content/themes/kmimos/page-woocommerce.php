@@ -7,10 +7,10 @@
 	wp_enqueue_style('producto_responsive', getTema()."/css/responsive/producto_responsive.css", array(), '1.0.0');
 
 	wp_enqueue_script('producto', getTema()."/js/producto.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 	wp_enqueue_script('openpay-v1', getTema()."/js/openpay.v1.min.js", array("jquery"), '1.0.0');
 	wp_enqueue_script('openpay-data', getTema()."/js/openpay-data.v1.min.js", array("jquery", "openpay-v1"), '1.0.0');
+	
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 
@@ -165,6 +165,8 @@
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
 
+		$PayuDeviceSessionId =  md5(session_id().microtime());
+
 		$HTML .= "
 		<script> 
 			var SERVICIO_ID = '".get_the_ID()."';
@@ -179,7 +181,15 @@
 			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
 			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
 			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
-		</script>";
+			var PayuDeviceSessionId = '".$PayuDeviceSessionId."';
+		</script>
+		";
+
+
+		if( strtolower( REGION ) == 'colombia' ){
+			$HTML .= '<div id="deviceID"></div>';
+		}
+
 
 		if( $error != "" ){
 			$actual = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
@@ -549,9 +559,49 @@
 											Datos de la tarjeta invalidos
 										</div>
 
-										<div id="tienda_box" class="metodos_container" style="display:block;">
-											<img src="'.get_template_directory_uri().'/images/tiendas.png" />
-											<img src="'.get_template_directory_uri().'/images/pasos.png" />
+										<div id="tienda_box" class="metodos_container" style="display:block;">';
+
+										switch(strtolower(REGION)){
+											case 'mexico':
+												$HTML .= '
+												<img src="'.get_template_directory_uri().'/images/tiendas.png" />
+												<img src="'.get_template_directory_uri().'/images/pasos.png" />
+												';
+												break;
+											case 'colombia':
+												$HTML .= '
+												<div style="padding:5px 0px;">
+													<div class="km-text-one">								
+														<h4>SELECCIONA TU TIENDA DE PAGO</h4>
+													</div>
+													<div id="BALOTO" style="margin-bottom:10px;" class="col-xs-4 col-sm-4 col-sm-offset-2 col-xs-offset-2">
+														<div class="km-opcion km-opcionactivo" data-target="tienda">
+															<input type="checkbox" name="list_tienda" value="BALOTO">
+															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/viabaloto.png" />
+														</div>
+													</div>
+													<!-- 
+													<div id="EFECTY" style="margin-bottom:10px;" class="col-xs-4 col-sm-4 hidden">
+														<div class="km-opcion" data-target="tienda">
+															<input type="checkbox" name="list_tienda" value="EFECTY" >
+															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/efecty.png" />
+														</div>
+													</div>
+													-->
+													<div id="OTHERS_CASH" style="margin-bottom:10px;" class="col-xs-4 col-sm-4">
+														<div class="km-opcion" data-target="tienda">
+															<input type="checkbox" name="list_tienda" value="OTHERS_CASH" >
+															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/sured.png" />
+														</div>
+													</div>
+												</div>
+												<img src="'.get_template_directory_uri().'/images/pasos.png" />
+												';												
+												break;
+										}
+
+
+		$HTML .= '
 										</div>
 										<div id="tarjeta_box" class="metodos_container" style="display:none;">
 
@@ -584,6 +634,7 @@
 												*Recuerda que tus datos deben ser los mismos que el de tu tarjeta
 											</div>
 											-->
+
 										</div>
 
 									</div>

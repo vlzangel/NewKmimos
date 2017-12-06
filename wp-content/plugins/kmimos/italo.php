@@ -14,6 +14,23 @@
 	    }
 	}
 
+	if(!function_exists('get_region')){
+		function get_region($key){
+			if (!empty($key)) {
+				if (!empty(REGION)) {
+					$ruta = realpath(realpath(__DIR__).'/regionalizacion/'.strtolower(REGION).'.php');
+					if (file_exists($ruta)) {
+						include($ruta);
+						if (array_key_exists($key, $region)) {
+							return $region[$key];
+						}
+					}
+				}
+			}
+			trigger_error("La clave \"{$key}\" o el archivo \"/plugins/kmimos/regionalizacion/".REGION.".php\" no existe:", E_USER_ERROR);
+		}
+	}
+
 	if(!function_exists('validar_perfil_completo')){
 	    function validar_perfil_completo(){
 	    	global $current_user;

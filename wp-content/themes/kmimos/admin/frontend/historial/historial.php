@@ -211,7 +211,7 @@
 		$CONTENIDO .= '
 			<h1 style="margin: 0px; padding: 0px;">Mi Historial de Reservas</h1><hr style="margin: 5px 0px 10px;">
 			<div class="kmisaldo">
-			<strong>'.kmimos_saldo_titulo().':</strong> MXN $'.kmimos_get_kmisaldo().'
+			<strong>'.kmimos_saldo_titulo().':</strong>'.get_region('moneda_cod').' $'.kmimos_get_kmisaldo().'
 		</div>'.
 		construir_listado($reservas_array);
 	}else{

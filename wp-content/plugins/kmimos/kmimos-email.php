@@ -10,8 +10,8 @@
                     <div style='float:left; width:600px; margin-bottom: 31px;'>   
                         <div style='text-align:center;'>
                             <p style='font-family: Arial; font-size:14px; color:#666; text-align: center; '>
-                                En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp <a href='telf:+525568922182' target='_blank' style='text-decoration: none;'>+52 (55) 6892 2182</a>, o al correo 
-                                <a href='mailto:contactomex@kmimos.la' target='_blank' style='text-decoration: none; '>contactomex@kmimos.la</a>
+                                En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono ".get_region('telefono').", Whatsapp <a href='telf:".get_region('telefono_corrido')."' target='_blank' style='text-decoration: none;'>".get_region('telefono')."</a>, o al correo 
+                                <a href='mailto:".get_region('email')."' target='_blank' style='text-decoration: none; '>".get_region('email')."</a>
                             </p>
                             <div  style='clear:both;'></div>
                         </div>
@@ -62,7 +62,7 @@
                                     <div style='display: table-cell; width: 240px; vertical-align: middle; text-align: right; padding-left:15px; padding-right: 30px;'>
                                         <span style='display: inline-block; padding: 0px 5px 2px 0px; float:right'>
                                             Síguenos en 
-                                            <a href='https://www.facebook.com/Kmimosmx/'>
+                                            <a href='https://www.facebook.com/".get_region('facebook')."/'>
                                                 <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook.png' style='vertical-align: bottom;' align='center'>
                                             </a>
                                         </span> 

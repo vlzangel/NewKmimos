@@ -16,7 +16,7 @@ $datos = kmimos_get_info_syte();
 								<div class="content-placeholder">
 									<div class="label-placeholder">
 										<!-- <label>Correo electrónico</label>-->
-										<input type="text" id="usuario" placeholder="Usuario &oacute; Correo El&eacute;ctronico" class="input-label-placeholder">
+										<input type="text" id="usuario" placeholder="Usuario ó Correo Electrónico" class="input-label-placeholder">
 									</div>
 									<div class="label-placeholder">
 										<!--<label>Contraseña</label>-->
@@ -65,7 +65,7 @@ $datos = kmimos_get_info_syte();
 						</a>
 						
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
-						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (55) 6892-2182</p>
+						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p>
 						<hr>
 						<div class="row">
 							<div class="col-xs-12 col-sm-5">
