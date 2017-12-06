@@ -177,26 +177,38 @@
 		$msg_bloqueador = "";
 		$NO_FLASH = "SI";
 
+		$SOLO_FLASH = true;
+
+		if( $hoy == $busqueda["checkin"] && date("H", strtotime("now") )+0 <= 9 ){
+			$SOLO_FLASH = false;
+		}
+
+		if( $manana == $busqueda["checkin"] && date("H", strtotime("now") )+0 <= 18 ){
+			$SOLO_FLASH = false;
+		}
+
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
-			$msg_bloqueador = "
-				<strong>IMPORTANTE</strong><br>
-				<div style='padding: 10px 0px;'>
-					Este cuidador no tiene opción de Reserva Inmediata, por lo tanto corres el riesgo que no te atienda el día de hoy. Te invitamos a seguir uno de los tres siguientes pasos:
-				</div>
-				* Cambia las fechas.
-				<br>* Busca <a href='".getTema()."/procesos/busqueda/buscar.php?flash=true'>Aqu&iacute;</a> un cuidador que permita Reserva Inmediata.
-				<br>* Llámanos al (01) 800 056 4667 y te ayudaremos.
-			";
-			if( $atributos["flash"] != 1){
-				if( $hoy == $busqueda["checkin"] ){
-					$NO_FLASH = "NO";
-					$bloquear = "vlz_bloquear";
-					$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
+			if(  !$SOLO_FLASH ){
+				$msg_bloqueador = "
+					<strong>IMPORTANTE</strong><br>
+					<div style='padding: 10px 0px;'>
+						Este cuidador no tiene opción de Reserva Inmediata, por lo tanto corres el riesgo que no te atienda el día de hoy. Te invitamos a seguir uno de los tres siguientes pasos:
+					</div>
+					* Cambia las fechas.
+					<br>* Busca <a href='".getTema()."/procesos/busqueda/buscar.php?flash=true'>Aqu&iacute;</a> un cuidador que permita Reserva Inmediata.
+					<br>* Llámanos al (01) 800 056 4667 y te ayudaremos.
+				";
+				if( $atributos["flash"] != 1){
+					if( $hoy == $busqueda["checkin"]){
+						$NO_FLASH = "NO";
+						$bloquear = "vlz_bloquear";
+						$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
+					}else{
+						$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
+					}
 				}else{
 					$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
 				}
-			}else{
-				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
 			}
 		}
 
