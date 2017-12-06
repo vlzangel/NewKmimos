@@ -41,7 +41,11 @@
 
 		$mensaje_cliente = get_email_html($mensaje_cliente);
 
-		wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
+        if( isset($NO_ENVIAR) ){
+            echo $mensaje_cliente;
+        }else{
+            wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
+        }
 
 	/*
 		Correo Cuidador
@@ -54,8 +58,6 @@
 
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
 
-
-
         if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
             $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
             $descuento_plantilla = file_get_contents($descuento_plantilla);
@@ -64,8 +66,6 @@
         }else{
             $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
         }
-
-
 
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[desglose]', $desglose, $mensaje_cuidador);
@@ -96,11 +96,12 @@
 
 	    $mensaje_cuidador = get_email_html($mensaje_cuidador, false);
 
-		wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
 
-
-
-
+        if( isset($NO_ENVIAR) ){
+            echo $mensaje_cuidador;
+        }else{
+            wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
+        }
 
         $admin_file = $PATH_TEMPLATE.'/template/mail/reservar/admin/nueva.php';
         $mensaje_admin = file_get_contents($admin_file);
@@ -144,5 +145,10 @@
 
         $mensaje_admin = get_email_html($mensaje_admin, false);
 
-        kmimos_mails_administradores_new('Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_admin);
+
+        if( isset($NO_ENVIAR) ){
+            echo $mensaje_admin;
+        }else{
+            kmimos_mails_administradores_new('Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_admin);
+        }
 ?>
