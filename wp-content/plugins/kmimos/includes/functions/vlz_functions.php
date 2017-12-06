@@ -390,6 +390,8 @@
                 $diferencia = $pago_descuentos-$comision;
             }
 
+            $desglose['total'] = $pago;
+
             if( $metas_orden['_payment_method_title'][0] != "" ){
                 $pagado_con = $metas_orden['_payment_method_title'][0];
             }else{
