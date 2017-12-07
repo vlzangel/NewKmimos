@@ -597,7 +597,7 @@
                             </div>
 
                             <div class="km-opciones">
-                                <div class="precio">'.get_region('mon_der').' $'.$cuidador->precio.'</div>
+                                <div class="precio">'.get_region('mon_der').' '.get_region('dolar').''.$cuidador->precio.'</div>
                                 <div class="distancia">'.$distancia.'</div>
                                 <a role="button" href="#" 
                                     data-name="'.$titulo.'" 
@@ -623,7 +623,7 @@
                         <div class="km-descripcion">
                             <h1><a href="'.$url.'">'.$titulo.'</a></h1>
                             <p>'.$anios_exp.' año(s) de experiencia
-                                <br><b>'.get_region("mon_der").' $'.$cuidador->precio.'</b>
+                                <br><b>'.get_region("mon_der").' '.get_region('dolar').''.$cuidador->precio.'</b>
                                 <br><small>'.$distancia.'</small>
                             </p>
                             <div class="km-ranking">
