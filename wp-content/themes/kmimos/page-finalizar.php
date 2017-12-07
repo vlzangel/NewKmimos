@@ -63,7 +63,7 @@
 	    ';
 
 	    $variaciones = "";
-	    foreach ($data_reserva["variaciones"] as $value) {
+	    foreach ($data_reserva["servicio"]["variaciones"] as $value) {
 	        $variaciones .= '
 	            <div class="item">
 	                <div>'.$value[0].' '.$value[1].' x '.$value[2].' x $'.$value[3].'</div>
