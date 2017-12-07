@@ -6,10 +6,6 @@
 
     $data_reserva = kmimos_desglose_reserva_data($orden, true);
 
-    $email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID='{$data_reserva["cuidador"]}'");
-    $telefonos = get_user_meta($data_reserva["cuidador"], "user_phone", true)." / ".get_user_meta($data_reserva["cuidador"], "user_mobile", true);
-    $direccion = $wpdb->get_var("SELECT direccion FROM cuidadores WHERE user_id='{$data_reserva["cuidador"]}'");
-
     $info = '
         <div class="desglose_box">
             <div>
