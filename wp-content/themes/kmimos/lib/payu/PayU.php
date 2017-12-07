@@ -208,10 +208,32 @@ class PayU {
 		$config = $this->init();
 	}
 
+	public function getByOrderID( $order_id = '' ){
+		$config = $this->init();
+
+		$cofg = [];
+		// -- Datos del API
+		$cofg["test"] = $config['isTest'];
+		$cofg["language"] = "es";
+		$cofg["command"] = "ORDER_DETAIL";
+		$cofg["merchant"]["apiKey"] = $config['apiKey'];
+		$cofg["merchant"]["apiLogin"] = $config['apiLogin'];
+
+		$cofg["details"]["orderId"] = $order_id;
+
+		$r = $this->request( 
+			$config['ReportsCustomUrl'], 
+			json_encode($cofg, JSON_UNESCAPED_UNICODE)
+		);
+
+		return json_decode($r);
+	}
+
 	// -- Enviar solicitud
 	public function request( $url, $data ){
 
 		include(realpath( dirname(__DIR__)."/Requests/Requests.php" ));
+		
 		Requests::register_autoloader();
 		$headers = Array(
 			'Content-Type'=> 'application/json; charset=UTF-8',	

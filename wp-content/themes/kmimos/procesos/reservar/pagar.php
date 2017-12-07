@@ -376,8 +376,9 @@
 	$postal  	= $data_cliente["billing_postcode"];
 
 	// -- Pasarelas de Pago
-	switch (strtolower(REGION)) {
-		case 'mexico':
+	$pasarela = get_region( 'pasarela' );
+	switch (strtolower($pasarela)) {
+		case 'openpay':
 			if( $pagar->deviceIdHiddenFieldName != "" ){
 				include( 'pasarelas/pay_with_openpay.php' );
 			}else{
@@ -387,7 +388,7 @@
 				));
 			}
 			break;
-		case 'colombia':	
+		case 'payu':	
 			include( 'pasarelas/pay_with_payu.php' );
 			break;
 		default:

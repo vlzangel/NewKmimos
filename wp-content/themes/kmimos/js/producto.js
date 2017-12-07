@@ -427,8 +427,8 @@ function pagarReserva(id_invalido = false){
 
 			if( data.error != "" && data.error != undefined ){
 
-				switch( REGION ){
-					case 'mexico':
+				switch( PASARELA ){
+					case 'openpay':
 						if( data.tipo_error != "3003" ){
 							var error = "Error procesando la reserva<br>";
 					    	error += "Por favor intente nuevamente.<br>";
@@ -438,7 +438,7 @@ function pagarReserva(id_invalido = false){
 					    	error += "La tarjeta no tiene fondos suficientes.<br>";
 						}
 						break;
-					case 'colombia':
+					case 'payu':
 						/* Response code - PayU */
 						if( data.code == "ANTIFRAUD_REJECTED" ){
 							var error = "Error procesando la reserva<br>";
@@ -945,7 +945,7 @@ jQuery(document).ready(function() {
 		jQuery(document).scrollTop(0);
 
 		// Monto Minimo para pago por Tienda
-		if( REGION == 'colombia'){
+		if( PASARELA == 'payu'){
 			if( CARRITO['pagar']['total'] < 3000 ){
 				jQuery('#OTHERS_CASH').find('[data-target="tienda"]').removeClass('km-opcion').addClass('km-opcion-disabled');
 			}else{
@@ -976,14 +976,14 @@ jQuery(document).ready(function() {
 		}else{
 			if( jQuery("#metodos_pagos").css("display") != "none" ){
 				CARRITO["pagar"]["deviceIdHiddenFieldName"] = '';
-				if( REGION == 'mexico' ){
+				if( PASARELA == 'openpay' ){
 					CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
 				}
 				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
 				if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
 					jQuery("#reserva_btn_next_3 span").html("Validando...");
 					jQuery("#reserva_btn_next_3").addClass("disabled");
-					if( REGION == 'mexico' ){
+					if( PASARELA == 'openpay' ){
 						OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
 					}else{
 				        pagarReserva();
@@ -1070,7 +1070,7 @@ jQuery(document).ready(function() {
 	});
 
 	/* Configuración Openpay */
-	if( REGION == 'mexico' ){
+	if( PASARELA == 'openpay' ){
 
 		OpenPay.setId( OPENPAY_TOKEN );
 	    OpenPay.setApiKey(OPENPAY_PK);
