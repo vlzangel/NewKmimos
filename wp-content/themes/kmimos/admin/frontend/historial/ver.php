@@ -125,7 +125,7 @@
         ";
     }
 
-    if( $data_reserva["desglose"]["enable"] == "yes" ){
+    if( $data_reserva["servicio"]["desglose"]["enable"] == "yes" ){
         
         $totales = "
             <div class='desglose_box totales'>
