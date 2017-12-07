@@ -50,13 +50,13 @@
 	            <div class="item">
 	                <div>Email</div>
 	                <span>
-	                    '.$email.'
+	                    '.$data_reserva["cliente"]["email"].'
 	                </span>
 	            </div>
 	            <div class="item">
 	                <div>Tel&eacute;fono</div>
 	                <span>
-	                    '.$telefonos.'
+	                    '.$data_reserva["cliente"]["telefono"].'
 	                </span>
 	            </div>
 	        </div>
