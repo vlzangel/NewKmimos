@@ -56,9 +56,9 @@
             <div class='item'>
                 <div>".$data_reserva["servicio"]["tipo"]."</div>
                 <span>
-                    <span>".$data_reserva["servicio"]["inicio"]."</span>
+                    <span>".date("d/m/Y", $data_reserva["servicio"]["inicio"])."</span>
                         &nbsp; &gt; &nbsp;
-                    <span>".$data_reserva["servicio"]["fin"]."</span>
+                    <span>".date("d/m/Y", $data_reserva["servicio"]["fin"])."</span>
                 </span>
             </div>
         </div>

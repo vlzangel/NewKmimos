@@ -546,15 +546,6 @@ function calcularDescuento(){
 	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
 	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
 
-/*	console.log( 
-		"\n========================================="+
-		"\nsaldo: "+saldo+
-		"\ndescuentos: "+ descuentos+
-		"\npre17: "+ pre17+
-		"\npagoCuidador: "+pagoCuidador+
-		"\n=========================================\n" 
-	);*/
-
 	var reciduo_0 = 0;
 	if( pagoCuidador >= descuentos ){
 		pagoCuidador -= descuentos;
@@ -583,15 +574,6 @@ function calcularDescuento(){
 	CARRITO["pagar"]["deposito"] = pre17;
 	CARRITO["pagar"]["pagoCuidador"] = pagoCuidador;
 	CARRITO["pagar"]["descuento_total"] = descuentos;
-
-/*	console.log( 
-		"\n========================================="+
-		"\nsaldo: "+saldo+
-		"\ndescuentos: "+ descuentos+
-		"\npre17: "+ pre17+
-		"\npagoCuidador: "+pagoCuidador+
-		"\n=========================================\n" 
-	);*/
 
 	if( jQuery(".km-option-deposit").hasClass("active") ){
 		if( pre17 == 0 ){
