@@ -23,20 +23,19 @@
             <div class="item">
                 <div>Nombre</div>
                 <span>
-                    '.get_user_meta($data_reserva["cliente"], "first_name", true).'
-                    '.get_user_meta($data_reserva["cliente"], "last_name", true).'
+                    '.$data_reserva["cliente"]["nombre"].'
                 </span>
             </div>
             <div class="item">
                 <div>Email</div>
                 <span>
-                    '.$email.'
+                    '.$data_reserva["cliente"]["email"].'
                 </span>
             </div>
             <div class="item">
                 <div>Tel&eacute;fono</div>
                 <span>
-                    '.$telefonos.'
+                    '.$data_reserva["cliente"]["telefono"].'
                 </span>
             </div>
         </div>
