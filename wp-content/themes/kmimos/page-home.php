@@ -235,11 +235,11 @@
 									</div>
 									<div class="km-testimonial">“Kmimos es mi trabajo, mi pasión por los perros, mi casa, mi familia… lo representa todo.”</div>
 									<div class="km-autor">
-										<a href="'.get_user_slug(466).'">M&Oacute;NICA P.</a>
+										<a href="'.get_user_slug(748).'">CLAUDIA FIORELLA D.</a>
 										 '.get_region('ubicacion_cuidador').'</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
-								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/colombia-1.jpg">
+								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/te-3.jpg">
 							</div>
 						</li>
 
@@ -256,10 +256,10 @@
 									</div>
 									<div class="km-testimonial">“Todos los cuidadores Kmimos tienen algo en común, la pasión y el amor por los perros.”</div>
 									<div class="km-autor">
-										<a href="'.get_user_slug(876).'">MARTHA LUCIA M.</a> '.get_region('ubicacion_cuidador').'</div>
+										<a href="'.get_user_slug(791).'">MAR&Iacute;A BEL&Eacute;N U.</a> '.get_region('ubicacion_cuidador').'</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
-								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/medellin-1.jpg">
+								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/te-2.jpg">
 							</div>
 						</li>
 
@@ -276,12 +276,12 @@
 									</div>
 									<div class="km-testimonial">“Ahora tengo más ingresos, llegan bastantes visitas y es como tener un sueldo de ejecutivo”.</div>
 									<div class="km-autor">
-									<a href="'.get_user_slug(436).'"> SOF&Iacute;A T. </a>
+									<a href="'.get_user_slug(849).'"> MIGUEL M.</a>
 									 '.get_region('ubicacion_cuidador').'</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
 								<img class="img-testimoniales filtro-oscuro" 
-									src="'.getTema().'/images/new/km-testimoniales/medellin-3.jpg"
+									src="'.getTema().'/images/new/km-testimoniales/te-1.jpg"
 									>
 							</div>
 						</li>						
