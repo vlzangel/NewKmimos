@@ -111,7 +111,7 @@
     $MONTO = "";
 
     if( $servicio["desglose"]["enable"] == "yes" ){
-    	$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
+    	//$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
     	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
