@@ -80,7 +80,7 @@
 		                	$remanente = '
 		                		<div class="item_desglose vlz_bold">
 		                			<div style="color: #6b1c9b;" >Monto Restante a Pagar en EFECTIVO al cuidador</div>
-		                			<span style="color: #6b1c9b;">$'.number_format( ($reserva["desglose"]["remaining"]-$reserva["desglose"]["descuento"]), 2, ',', '.').'</span>
+		                			<span style="color: #6b1c9b;">$'.number_format( ($reserva["desglose"]["remaining"]), 2, ',', '.').'</span>
 		                		</div>
 		                	';
 		                	$pago = '
