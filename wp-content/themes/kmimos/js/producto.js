@@ -531,29 +531,67 @@ function mostrarCupones(){
 
 function calcularDescuento(){
 	var descuentos = 0;
+	var saldo = 0;
 	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
 		if( cupon[1] == "" ){
 			cupon[1] = 0;
 		}
-		descuentos += parseFloat(cupon[1]);
+		if( String(cupon[0]).toLowerCase().search("saldo") != -1 ){
+			saldo += parseFloat(cupon[1]);
+        }else{
+			descuentos += parseFloat(cupon[1]);
+        }
 	});
-
-	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 
 	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
 	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
-	if( pre17 <= descuentos ){
-		if( pre17 < descuentos ){
-			var reciduo = pre17-descuentos;
-			pagoCuidador += reciduo;
-		}
-		pre17 = 0;
+
+/*	console.log( 
+		"\n========================================="+
+		"\nsaldo: "+saldo+
+		"\ndescuentos: "+ descuentos+
+		"\npre17: "+ pre17+
+		"\npagoCuidador: "+pagoCuidador+
+		"\n=========================================\n" 
+	);*/
+
+	var reciduo_0 = 0;
+	if( pagoCuidador >= descuentos ){
+		pagoCuidador -= descuentos;
 	}else{
-		pre17 -= descuentos;
+		reciduo_0 = descuentos-pagoCuidador; /* Reciduo de exceso de cupones normales, se pasa al saldo */
+		pagoCuidador = 0;
+	}
+
+	var reciduo = 0;
+	if( pre17 >= saldo ){
+		pre17 -= (saldo+reciduo_0);
+	}else{
+		reciduo = (saldo+reciduo_0)-pre17;
+		pre17 = 0;
+	}
+
+	if( pagoCuidador >= reciduo ){
+		pagoCuidador -= reciduo;
 	}
 
 	jQuery(".pago_17").html( "$" + numberFormat( pre17 ) );
 	jQuery(".pago_cuidador").html( "$" + numberFormat(pagoCuidador) );
+
+	descuentos = descuentos+saldo;
+
+	CARRITO["pagar"]["deposito"] = pre17;
+	CARRITO["pagar"]["pagoCuidador"] = pagoCuidador;
+	CARRITO["pagar"]["descuento_total"] = descuentos;
+
+/*	console.log( 
+		"\n========================================="+
+		"\nsaldo: "+saldo+
+		"\ndescuentos: "+ descuentos+
+		"\npre17: "+ pre17+
+		"\npagoCuidador: "+pagoCuidador+
+		"\n=========================================\n" 
+	);*/
 
 	if( jQuery(".km-option-deposit").hasClass("active") ){
 		if( pre17 == 0 ){
@@ -583,6 +621,7 @@ function calcularDescuento(){
 	}
 	
 	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
+	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 }
 
 function aplicarCupon(cupon = ""){
