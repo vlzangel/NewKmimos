@@ -110,7 +110,7 @@
         $descuento = "
             <div class='item'>
                 <div>Descuento</div>
-                <span>".number_format( $data_reserva["descuento"], 2, ',', '.')."</span>
+                <span>".number_format( $data_reserva["servicio"]["desglose"]["descuento"], 2, ',', '.')."</span>
             </div>
         ";
     }
