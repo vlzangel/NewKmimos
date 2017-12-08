@@ -19,12 +19,9 @@
 			$pdf = "<a class='btn_fin_reserva' href='{$pdf}' target='_blank'>DESCARGAR INSTRUCCIONES PARA PAGO EN TIENDA DE CONVENIENCIA</a>";
 		}
 
-		$data_reserva = kmimos_desglose_reserva_data($orden_id);
+		$data_reserva = kmimos_desglose_reserva_data($orden_id, true);
 
-	    $email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID='{$data_reserva["cliente"]}'");
-	    $telefonos = get_user_meta($data_reserva["cliente"], "user_phone", true)." / ".get_user_meta($data_reserva["cliente"], "user_mobile", true);
-
-	    if( strtolower($data_reserva["metodo_pago"]) == "tarjeta" ){
+	    if( strtolower($data_reserva["servicio"]["metodo_pago"]) == "tarjeta" ){
 	    	$pixel = "<script> fbq ('track','Purchase'); </script>";
 	    }else{
 	    	$pixel = "";
@@ -34,11 +31,11 @@
 	        <div class="desglose_box">
 	            <div>
 	                <div class="sub_titulo">RESERVA</div>
-	                <span>'.$data_reserva["id_reserva"].'</span>
+	                <span>'.$data_reserva["servicio"]["id_reserva"].'</span>
 	            </div>
 	            <div>
 	                <div class="sub_titulo">MEDIO DE PAGO</div>
-	                <span>Pago por '.$data_reserva["metodo_pago"].'</span>
+	                <span>Pago por '.$data_reserva["servicio"]["metodo_pago"].'</span>
 	            </div>
 	        </div>
 	        <div class="desglose_box datos_cuidador">
@@ -47,8 +44,7 @@
 	            <div class="item">
 	                <div>Nombre</div>
 	                <span>
-	                    '.get_user_meta($data_reserva["cliente"], "first_name", true).'
-	                    '.get_user_meta($data_reserva["cliente"], "last_name", true).'
+	                    '.$data_reserva["servicio"]["nombre"].'
 	                </span>
 	            </div>
 	            <div class="item">
@@ -79,11 +75,11 @@
 	        <div class='desglose_box'>
 	            <strong>Servicio</strong>
 	            <div class='item'>
-	                <div>".$data_reserva["servicio_titulo"]."</div>
+	                <div>".$data_reserva["servicio"]["tipo"]."</div>
 	                <span>
-	                    <span>".$data_reserva["inicio"]."</span>
+	                    <span>".$data_reserva["servicio"]["inicio"]."</span>
 	                        &nbsp; &gt; &nbsp;
-	                    <span>".$data_reserva["fin"]."</span>
+	                    <span>".$data_reserva["servicio"]["fin"]."</span>
 	                </span>
 	            </div>
 	        </div>
@@ -94,8 +90,8 @@
 	    ";
 
 	    $adicionales = "";
-	    if( count($data_reserva["adicionales"]) > 0 ){
-	        foreach ($data_reserva["adicionales"] as $value) {
+	    if( count($data_reserva["servicio"]["adicionales"]) > 0 ){
+	        foreach ($data_reserva["servicio"]["adicionales"] as $value) {
 	            $adicionales .= '
 	                <div class="item">
 	                    <div>'.$value[0].' - '.$value[1].' x $'.$value[2].'</div>
@@ -112,8 +108,8 @@
 	    }
 
 	    $transporte = "";
-	    if( count($data_reserva["transporte"]) > 0 ){
-	        foreach ($data_reserva["transporte"] as $value) {
+	    if( count($data_reserva["servicio"]["transporte"]) > 0 ){
+	        foreach ($data_reserva["servicio"]["transporte"] as $value) {
 	            $transporte .= '
 	                <div class="item">
 	                    <div>'.$value[0].'</div>
@@ -131,11 +127,11 @@
 
 	    $totales = ""; $descuento = "";
 
-	    if( $data_reserva["descuento"]+0 > 0 ){
+	    if( $data_reserva["servicio"]["servicio"]["desglose"]["descuento"]+0 > 0 ){
 	        $descuento = "
 	            <div class='item'>
 	                <div>Descuento</div>
-	                <span>".number_format( $data_reserva["descuento"], 2, ',', '.')."</span>
+	                <span>".number_format( $data_reserva["servicio"]["servicio"]["desglose"]["descuento"], 2, ',', '.')."</span>
 	            </div>
 	        ";
 	    }
@@ -147,16 +143,16 @@
 	                <strong>Totales</strong>
 	                <div class='item'>
 	                    <div class='pago_en_efectivo'>Monto a pagar en EFECTIVO al cuidador</div>
-	                    <span>".number_format( ($data_reserva["desglose"]["remaining"]), 2, ',', '.')."</span>
+	                    <span>".number_format( ($data_reserva["servicio"]["desglose"]["remaining"]), 2, ',', '.')."</span>
 	                </div>
 	                <div class='item'>
 	                    <div>Pagado</div>
-	                    <span>".number_format( $data_reserva["desglose"]["deposit"], 2, ',', '.')."</span>
+	                    <span>".number_format( $data_reserva["servicio"]["desglose"]["deposit"], 2, ',', '.')."</span>
 	                </div>
 	                ".$descuento."
 	                <div class='item total'>
 	                    <div>Total</div>
-	                    <span>".number_format( $data_reserva["desglose"]["total"], 2, ',', '.')."</span>
+	                    <span>".number_format( $data_reserva["servicio"]["desglose"]["total"], 2, ',', '.')."</span>
 	                </div>
 	            </div>
 	        ";
@@ -168,12 +164,12 @@
 	                <strong>Totales</strong>
 	                <div class='item'>
 	                    <div>Pagado</div>
-	                    <span>".number_format( $data_reserva["desglose"]["deposit"]-$data_reserva["descuento"], 2, ',', '.')."</span>
+	                    <span>".number_format( $data_reserva["servicio"]["desglose"]["deposit"]-$data_reserva["descuento"], 2, ',', '.')."</span>
 	                </div>
 	                ".$descuento."
 	                <div class='item total'>
 	                    <div>Total</div>
-	                    <span>".number_format( $data_reserva["desglose"]["deposit"], 2, ',', '.')."</span>
+	                    <span>".number_format( $data_reserva["servicio"]["desglose"]["deposit"], 2, ',', '.')."</span>
 	                </div>
 	            </div>
 	        ";
