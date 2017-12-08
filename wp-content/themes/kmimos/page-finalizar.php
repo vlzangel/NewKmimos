@@ -131,7 +131,7 @@
 	        $descuento = "
 	            <div class='item'>
 	                <div>Descuento</div>
-	                <span>".number_format( $data_reserva["servicio"]["servicio"]["desglose"]["descuento"], 2, ',', '.')."</span>
+	                <span>".number_format( $data_reserva["servicio"]["desglose"]["descuento"], 2, ',', '.')."</span>
 	            </div>
 	        ";
 	    }
@@ -164,12 +164,12 @@
 	                <strong>Totales</strong>
 	                <div class='item'>
 	                    <div>Pagado</div>
-	                    <span>".number_format( $data_reserva["servicio"]["desglose"]["deposit"]-$data_reserva["descuento"], 2, ',', '.')."</span>
+	                    <span>".number_format( $data_reserva["servicio"]["desglose"]["deposit"], 2, ',', '.')."</span>
 	                </div>
 	                ".$descuento."
 	                <div class='item total'>
 	                    <div>Total</div>
-	                    <span>".number_format( $data_reserva["servicio"]["desglose"]["deposit"], 2, ',', '.')."</span>
+	                    <span>".number_format( $data_reserva["servicio"]["desglose"]["total"], 2, ',', '.')."</span>
 	                </div>
 	            </div>
 	        ";
@@ -215,7 +215,7 @@
 				<div style="padding: 20px 40px 20px; background: #FFF;">
 					<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
 					<br>
-					¡Genial '.get_user_meta($data_reserva["cliente"], "first_name", true).' '.get_user_meta($data_reserva["cliente"], "last_name", true).'!<br>
+					¡Genial '.get_user_meta($data_reserva["cliente"]["id"], "first_name", true).' '.get_user_meta($data_reserva["cliente"]["id"], "last_name", true).'!<br>
 					Reservaste Exitosamente
 
 					<div class="que_debo_hacer" style="margin-top: 5px;">
