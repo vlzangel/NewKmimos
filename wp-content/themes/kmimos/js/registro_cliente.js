@@ -9,6 +9,7 @@ $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	
 	jQuery(".popup-registrarte-1").css("display", 'block');
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
+	jQuery("#registro-cliente-1").css('display', 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
 	jQuery(".popup-registrarte-final").css('display', 'none');
 
@@ -218,10 +219,117 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
+	/*DIRECCION DEL CUIDADOR*/
+	function cambio_munici(estado_id, CB = false){
+		jQuery.getJSON( 
+	        HOME+"procesos/generales/municipios.php", 
+	        {estado: estado_id} 
+	    ).done(
+	        function( data, textStatus, jqXHR ) {
+	            console.log(data);
+	            var html = "<option value=''>Seleccione un "+BARRIO+"</option>";
+	            jQuery.each(data, function(i, val) {
+	                html += "<option value="+val.id+">"+val.name+"</option>";
+	            });
+	            jQuery('[name="c_municipio"]').html(html);
+
+	            if( CB != false ){
+	            	CB();
+	            }
+	        }
+	    ).fail(
+	        function( jqXHR, textStatus, errorThrown ) {
+	            console.log( "Error: " +  errorThrown );
+	        }
+	    );
+	}function validar_long( val, min, max, type, err_msg){
+		result = '';
+		var value = 0;
+		switch( type ){
+			case 'int':
+				value = val;
+				break;
+			case 'string':
+				value = val.length;
+				break;
+		}
+
+		if( value < min || value > max ){
+			result = err_msg;
+		}
+		return result;
+	}
+
+	function c_validar_longitud( field ){
+		var result = '';
+		var val = jQuery('[name="'+field+'"]').val();
+		switch( field ){
+				case 'c_direccion':
+					result = validar_long( val, 1, 600, 'string', 'Debe estar entre 5 y 300 caracteres');
+					break;
+		};
+		return result;
+	}
+	function mensaje( label, msg='', reset=false ){
+		var danger_color =  '#c71111';
+		var border_color =  '#c71111';
+		var visible = 'visible';
+		if( reset ){
+			danger_color = '#000';
+			border_color = '#ccc';
+			visible = 'hidden';
+		}
+		jQuery('[data-error="'+label+'"]').css('visibility', visible);
+		/*jQuery('[data-error="'+label+'"]').css('color', danger_color);*/
+		jQuery('[data-error="'+label+'"]').html(msg);
+		jQuery( '[name="'+label+'"]' ).css('border-bottom', '1px solid ' + border_color);
+		/*jQuery( '[name="'+label+'"]' ).css('color', danger_color);*/
+	}
+	function km_direccion_validar( fields ){
+
+		var status = true;
+		if( fields.length > 0 ){
+			jQuery.each( fields, function(id, val){
+				var m = '';
+				/*validar vacio*/
+				if( jQuery('[name="'+val+'"]').val() == '' ){
+					m = 'Este campo no puede estar vacio';
+				}
+				/*validar longitud*/
+				if( m == ''){
+					m = c_validar_longitud( val );
+				}
+
+				if( m == ''){
+					mensaje(val, m, true);
+				}else{
+					mensaje(val, m);
+					status = false;
+				}
+
+			});
+		}
+		return status;
+	}
+	jQuery(document).on('change', 'select[name="c_estado"]', function(e){
+		var estado_id = jQuery(this).val();
+		    
+	    if( estado_id != "" ){
+	        cambio_munici(estado_id);
+	    }
+
+	});
+
+	jQuery(document).on('change', 'select[name="c_municipio"]', function(e){
+		var locale=jQuery(this).val();
+		
+	});
+
 	jQuery(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
 		e.preventDefault();
 
-		jQuery('#siguiente').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> GUARDANDO');
+		jQuery('#siguiente').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> VALIDANDO');
+		
 
 		var nombre = jQuery("#nombre").val();
 			apellido = jQuery("#apellido").val(),
@@ -263,44 +371,63 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			edad != "" && 
 			fumador !=""
 			) {
+				jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
+				jQuery(".popup-registrarte-datos-mascota").css("display", "none");
+				jQuery("#registro-cliente-1").css("display", "block");
 
-				var datos = {
-					'name': campos[0],
-					'lastname': campos[1],
-					'idn': campos[2],
-					'email': campos[3],
-					'password': campos[4],
-					'movil': campos[5],
-					'gender': campos[6],
-					'age': campos[7],
-					'smoker': campos[8],
-					'referido': campos[9],
-					'img_profile': campos[10],
-					'social_facebook_id': jQuery('#facebook_cliente_id').val(),
-					'social_google_id': jQuery('#google_cliente_id').val()
-				};
 
-				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
+				jQuery('#btn-siguiente').on('click',function(){
+					var list = ['c_estado', 'c_municipio','c_direccion'];
+					var valid = km_direccion_validar(list);
+					if( valid ){
+						var estado = jQuery('[name="c_estado"]').val();
+						var municipio = jQuery('[name="c_municipio"]').val();
 
-					if( data > 0 ){
-						globalData = data;
-						jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
-						jQuery(".popup-registrarte-datos-mascota").css("display", "block");
+						var datos = {
+							'name': campos[0],
+							'lastname': campos[1],
+							'idn': campos[2],
+							'email': campos[3],
+							'password': campos[4],
+							'movil': campos[5],
+							'gender': campos[6],
+							'age': campos[7],
+							'smoker': campos[8],
+							'referido': campos[9],
+							'img_profile': campos[10],
+							'social_facebook_id': jQuery('#facebook_cliente_id').val(),
+							'social_google_id': jQuery('#google_cliente_id').val(),
+							'estado': estado,
+							'municipio': municipio
+						};
+						jQuery('#btn-siguiente').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> GUARDANDO');
+						jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
+							
+							if( data > 0 ){
+								globalData = data;
+								jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
+								jQuery("#registro-cliente-1").css("display", "none");
+								jQuery(".popup-registrarte-datos-mascota").css("display", "block");
 
-						jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
-						jQuery("#img_pet").val( "" );
+								jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
+								jQuery("#img_pet").val( "" );
 
-						jQuery("#btn_cerrar").on("click", function(e){
-							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+								jQuery("#btn_cerrar").on("click", function(e){
+									location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+								});
+
+								jQuery("body").scrollTop(0);
+								/*jQuery(".modal").scrollTop(0);*/
+							}
+
+							jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
 						});
 
-						jQuery("body").scrollTop(0);
-						/*jQuery(".modal").scrollTop(0);*/
+					}else{
+						jQuery('#btn-siguiente').html('SIGUIENTE');
 					}
-
-					jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
 				});
-
+				
 		}else {
 			jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
          	alert("Revise sus datos por favor, debe llenar todos los campos");

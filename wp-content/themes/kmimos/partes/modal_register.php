@@ -18,6 +18,15 @@ foreach ($referidos as $key => $value) {
 	$referidos_options.= "<option value='{$key}' $selected>{$value}</option>";
 }
 
+global $wpdb;
+$estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
+$str_estados = "";
+foreach($estados as $estado) { 
+    $str_estados .= "<option value='".$estado->id."'>".$estado->name."</option>";
+} 
+$str_estados = utf8_decode($str_estados);
+
+
 $HTML .='
 	<!-- POPUPS REGISTRARTE -->
 <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="popup-registrarte" style="padding: 40px;">
@@ -207,6 +216,64 @@ $HTML .='
 					</div>
 				</div>
 			</div>
+			<div class="popuphide popup-registrarte-nuevo-correo-direccion" id="registro-cliente-1">
+				<div class="page-reservation" style="background-color: transparent; margin-bottom: 30px;">
+					<!--<ul class="steps-numbers">
+						<li>
+							<span data-step="1" class="number checked">1</span>
+						</li>
+						<li class="line"></li>
+						<li>
+							<span class="number active">2</span>
+						</li>
+						<li class="line"></li>
+						<li>
+							<span class="number">3</span>
+						</li>
+					</ul>-->
+				</div>
+				<h3 style="margin: 0;">'.get_region('direccion').'</h5>
+				<p style="color: #979797">Queremos saber tu '.get_region('direccion').' actual</p>
+				<a href="#" class="km-btn-border obtener_direccion">UBICACIÓN ACTUAL</a>
+				<div class="line-o">
+					<p class="text-line">o</p>
+					<div class="bg-line"></div>
+				</div>
+				<div class="km-box-form">
+					<div class="content-placeholder">
+						<div class="label-placeholder">
+
+							<label>'.get_region('estado').'</label>
+							<select class="km-datos-estado-opcion km-select-custom" name="c_estado">
+								<option value="">Selección de '.get_region('estado').'</option>'
+								.$str_estados.'
+							</select>
+							<small data-error="rc_estado" style="visibility: hidden;"></small>
+
+							 
+						</div>
+						<div class="label-placeholder">
+							<label>'.get_region("Localidad").' / '.get_region("Barrio").'</label>
+							<select class="km-datos-municipio-opcion km-select-custom" name="c_municipio">
+								<option value="">Selección de '.get_region("Barrio").'</option>
+							</select>
+							<small data-error="rc_municipio" style="visibility: hidden;"></small>
+						</div>
+						<div class="label-placeholder">
+							<label>'.get_region('direccion').'</label>
+							<input type="text" id="rc_direccion" name="c_direccion" value="" class="input-label-placeholder">
+							<small data-error="rc_direccion" style="visibility: hidden;"></small>
+						</div>
+
+						<input type="hidden" id="latitud" name="latitud" />
+						<input type="hidden" id="longitud" name="longitud" />
+
+					</div>
+				</div>
+				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-paso2" id="btn-siguiente">SIGUIENTE</a>
+				<!-- <a href="#" class="km-registro-tip" role="button" data-toggle="modal"></a> -->
+			</div>
+			<!-- AQUI -->
 			<div class="popuphide popup-registrarte-datos-mascota">
 				<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 				<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>

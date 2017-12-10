@@ -59,7 +59,7 @@
 			var REGION = "'.REGION.'";
             var wlabel = "'.$wlabel.'";
             var DNI = "'.get_region('identidad').'";
-            var BARRIO = "'.get_region("Localidad")." / ".get_region("Barrio").'";
+            var BARRIO = "Municipio";
             var DNILENGTH = 7;
             var moneda_signo = "'.get_region('mon_der').'";
 		</script>';

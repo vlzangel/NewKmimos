@@ -244,7 +244,7 @@
 						<div class="label-placeholder">
 							<label><?php echo get_region('direccion'); ?></label>
 							<input type="text" id="rc_direccion" name="rc_direccion" value="" class="input-label-placeholder">
-							<small data-error="rc_direccion" style="visibility: hidden;"></small>
+							<small data-error="c_direccion" style="visibility: hidden;"></small>
 						</div>
 
 						<input type="hidden" id="latitud" name="latitud" />
