@@ -173,6 +173,11 @@
 		$hoy = date("d/m/Y");
 		$manana = date("d/m/Y", strtotime("+1 day") );
 
+		if( $busqueda["checkin"] == "" ){
+			$busqueda["checkin"] = $hoy;
+			$busqueda["checkout"] = $manana;
+		}
+
 		//$NOW = (strtotime("now")+25200);
 		$NOW = (strtotime("now"));
 		//$NOW = (strtotime("now")+57600);
