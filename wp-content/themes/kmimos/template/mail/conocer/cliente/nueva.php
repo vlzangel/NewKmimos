@@ -78,7 +78,7 @@
 		</tr>
 	</table>
 
-	<img src='[URL_IMGS]/<?php echo get_region('importante_conocer_pe'); ?>' style='display: block; margin: 0px auto 25px;' >
+	<img src='[URL_IMGS]/<?php echo get_region('img-email'); ?>' style='display: block; margin: 0px auto 25px;' >
 
 	<div style="box-sizing: border-box; padding: 0px 10px;">
 		<div style='display: table; margin: 0px auto 14px; width: 100%;'>
