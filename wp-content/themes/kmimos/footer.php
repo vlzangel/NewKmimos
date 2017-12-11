@@ -138,6 +138,7 @@ if( !isset($no_display_footer)  ){
     if( !isset($_SESSION) ){ session_start(); }
 
     if( isset($_SESSION["recordar_subir_fotos"]) ){
+        unset($_SESSION["recordar_subir_fotos"]);
         $HTML .= "
             <div class='vlz_modal'>
                 <div>
