@@ -6,18 +6,21 @@
 				posts.post_status AS status,
 				producto.post_title AS titulo,
 				posts.post_parent AS orden,
-				fin.meta_value AS fin,
 				posts.ID AS ID
 			FROM 
 				wp_posts AS posts
 			LEFT JOIN wp_postmeta AS metas_reserva ON ( posts.ID = metas_reserva.post_id AND metas_reserva.meta_key='_booking_product_id' )
+			LEFT JOIN wp_postmeta AS inicio ON ( posts.ID = inicio.post_id AND inicio.meta_key='_booking_start' )
 			LEFT JOIN wp_postmeta AS fin ON ( posts.ID = fin.post_id AND fin.meta_key='_booking_end' )
 			LEFT JOIN wp_posts AS producto ON ( producto.ID = metas_reserva.meta_value )
 			LEFT JOIN wp_posts AS orden ON ( orden.ID = posts.post_parent )
 			WHERE 
 				posts.post_type      = 'wc_booking' AND 
 				posts.post_status    = 'confirmed'  AND
-				fin.meta_value       > NOW()  AND
+				(
+					fin.meta_value       > NOW()  AND
+					inicio.meta_value    <= NOW()
+				) AND
 				producto.post_author = '{$user_id}'
 			ORDER BY posts.ID DESC
 		";
