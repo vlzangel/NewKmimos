@@ -175,7 +175,7 @@
 
 		//$NOW = (strtotime("now")+25200);
 		$NOW = (strtotime("now"));
-		$NOW = (strtotime("now")+57600);
+		//$NOW = (strtotime("now")+57600);
 
 		$bloquear = "";
 		$msg_bloqueador = "";
