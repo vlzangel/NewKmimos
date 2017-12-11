@@ -24,7 +24,7 @@ $str_estados = "";
 foreach($estados as $estado) { 
     $str_estados .= "<option value='".$estado->id."'>".$estado->name."</option>";
 } 
-$str_estados = utf8_decode($str_estados);
+$str_estados = $str_estados;
 
 
 $HTML .='
