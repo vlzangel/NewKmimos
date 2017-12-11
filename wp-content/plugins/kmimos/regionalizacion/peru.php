@@ -17,7 +17,7 @@ $region = array(
     "titulo"    => "Kmimos Perú",
     "email"     => "contactope@kmimos.la",
 
-    "telefono" => " Tlf:(+51) 963 585 100",
+    "telefono" => "(+51) 963 585 100",
     "telefono_sin" => " +51 963 585 100",
     "telefono_atencion" => " ",
 
@@ -52,6 +52,7 @@ $region = array(
     "Localidad" => "Localidad",
     "Barrio" => "Barrio",
     "ubicacion_cuidador" => " ",
+    "alertas-info" => false,
 );
 
 
