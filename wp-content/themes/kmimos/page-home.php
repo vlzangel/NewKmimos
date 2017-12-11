@@ -2,7 +2,7 @@
     /*
         Template Name: Home
     */
-
+    $busqueda;
     wp_enqueue_style('home_kmimos', getTema()."/css/home_kmimos.css", array(), '1.0.0');
     wp_enqueue_style('home_responsive', getTema()."/css/responsive/home_responsive.css", array(), '1.0.0');
     wp_enqueue_script('buscar_home', getTema()."/js/home.js", array(), '1.0.0');
