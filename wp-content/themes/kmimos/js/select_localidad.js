@@ -1,13 +1,13 @@
 var intervalo = 0;
 var cant = 0;
-
+alert('HOla');
 jQuery(document).ready(function(){
 
     jQuery.post(
         HOME+"/procesos/busqueda/ubicacion.php",
         {},
         function(data){
-
+            alert('HOla 2');
             jQuery("#ubicacion_list").html(data);
 
             jQuery("#ubicacion_list li").on("click", function(e){
@@ -32,7 +32,8 @@ jQuery(document).ready(function(){
     });
 
     jQuery("#ubicacion_txt").on("focus", function ( e ) { 
-        jQuery("#ubicacion_list").addClass("ubicacion_list_hover");    
+        jQuery("#ubicacion_list").addClass("ubicacion_list_hover"); 
+        console.log('HOla Creo listas');
     });
 
     jQuery("#ubicacion_txt").on("change", function ( e ) {    
