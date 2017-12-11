@@ -173,43 +173,59 @@
 		$hoy = date("d/m/Y");
 		$manana = date("d/m/Y", strtotime("+1 day") );
 
+		//$NOW = (strtotime("now")+25200);
+		$NOW = (strtotime("now"));
+		$NOW = (strtotime("now")+57600);
+
 		$bloquear = "";
 		$msg_bloqueador = "";
-		$NO_FLASH = "SI";
-
-		$SOLO_FLASH = true;
-
-		if( $hoy == $busqueda["checkin"] && date("H", strtotime("now") )+0 <= 9 ){
-			$SOLO_FLASH = false;
-		}
-
-		if( $manana == $busqueda["checkin"] && date("H", strtotime("now") )+0 <= 18 ){
-			$SOLO_FLASH = false;
-		}
+		$ES_FLASH = "NO";
 
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
-			if(  !$SOLO_FLASH ){
-				$msg_bloqueador = "
-					<strong>IMPORTANTE</strong><br>
-					<div style='padding: 10px 0px;'>
-						Este cuidador no tiene opción de Reserva Inmediata, por lo tanto corres el riesgo que no te atienda el día de hoy. Te invitamos a seguir uno de los tres siguientes pasos:
-					</div>
-					* Cambia las fechas.
-					<br>* Busca <a href='".getTema()."/procesos/busqueda/buscar.php?flash=true'>Aqu&iacute;</a> un cuidador que permita Reserva Inmediata.
-					<br>* Llámanos al (01) 800 056 4667 y te ayudaremos.
-				";
-				if( $atributos["flash"] != 1){
-					if( $hoy == $busqueda["checkin"]){
-						$NO_FLASH = "NO";
-						$bloquear = "vlz_bloquear";
-						$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
-					}else{
-						$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
-					}
-				}else{
-					$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
+			if( $atributos["flash"] == 1){
+				$ES_FLASH = "SI";
+			}else{
+				if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && date("G", $NOW )+0 < 9 ){
+					$ES_FLASH = "SI";
+				}
+				if(  ( $manana == $busqueda["checkin"] ) && date("G", $NOW )+0 < 18 ){
+					$ES_FLASH = "SI";
 				}
 			}
+			if( $ES_FLASH == "NO" ){
+				$msg_bloqueador = "
+					<div class='alerta_flash'>
+						<div class='alerta_flash_importante'>IMPORTANTE</div>
+						<div class='alerta_flash_mensaje'>
+							Este cuidador, <strong>no tiene opci&oacute;n de Reserva Inmediata</strong>, por lo tanto existe la de que la reserva no sea programada el d&iacute;a de hoy.
+							Te invitamos a seguir uno de los siguientes pasos:
+						</div>
+						<div class='alerta_flash_pasos'>
+							<div class='alerta_flash_paso'>
+								<div class='alerta_flash_paso_titulo'>Opci&oacute;n 1</div>
+								<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_1.png' /> </div>
+								<div class='alerta_flash_paso_txt'>Cambia las fechas de Reserva</div>
+							</div>
+							<div class='alerta_flash_paso'>
+								<div class='alerta_flash_paso_titulo'>Opci&oacute;n 2</div>
+								<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_2.png' /> </div>
+								<div class='alerta_flash_paso_txt'>Busca un cuidador que permita <strong>reserva inmediata</strong></div>
+							</div>
+							<div class='alerta_flash_paso'>
+								<div class='alerta_flash_paso_titulo'>Opci&oacute;n 3</div>
+								<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_3.png' /> </div>
+								<div class='alerta_flash_paso_txt'>Ll&aacute;manos al<br> (01) 800 056 4667</div>
+							</div>
+						</div>
+					</div>
+				";
+				$bloquear = "vlz_bloquear";
+				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
+			}else{
+				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
+			}
+		}else{
+			$ES_FLASH = "SI";
 		}
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
@@ -228,9 +244,10 @@
 			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
 			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
 			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
-			var FLASH = '".$NO_FLASH."';
+			var FLASH = '".$ES_FLASH."';
 			var HOY = '".$hoy."';
 			var MANANA = '".$manana."';
+			var HORA = '".(date("G", $NOW )+0)."';
 		</script>";
 
 		if( $error != "" ){
@@ -306,6 +323,7 @@
 								</div>
 							</div>
 
+							<!--
 							<div class="km-dates-step">
 								<div class="km-ficha-fechas">
 									<div class="listas_check">	
@@ -324,6 +342,7 @@
 
 								</div>
 							</div>
+							-->
 
 							'.$msg_bloqueador.'
 

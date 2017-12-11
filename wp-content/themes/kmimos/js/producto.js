@@ -74,17 +74,28 @@ function validar(status, txt){
 }
 
 function calcular(){
-
+	
 	if( FLASH == "NO" ){
-		console.log(jQuery("#checkin").val());
-		if( jQuery("#checkin").val() == HOY || jQuery("#checkin").val() == MANANA ){
+		if( jQuery("#checkin").val() == "" ){
 			jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
 			jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
 			jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
 		}else{
-			jQuery("#vlz_msg_bloqueo").addClass("vlz_NO_bloquear_msg");
-			jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
-			jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
+			if( jQuery("#checkin").val() == HOY && HORA > 9 ){
+				jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
+				jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
+				jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
+			}else{
+				if( jQuery("#checkin").val() == MANANA && HORA > 18 ){
+					jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
+					jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
+					jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
+				}else{
+					jQuery("#vlz_msg_bloqueo").addClass("vlz_NO_bloquear_msg");
+					jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
+					jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
+				}
+			}
 		}
 	}
 
@@ -189,7 +200,7 @@ function calcular(){
 		}
 	}
 
-	if( error == "" ){
+/*	if( error == "" ){
 		if( CARRITO[ "fechas" ][ "checkin" ] == undefined || CARRITO[ "fechas" ][ "checkin" ] == "" ){
 			error = "Ingrese la hora de checkin";
 		}
@@ -199,7 +210,7 @@ function calcular(){
 		if( CARRITO[ "fechas" ][ "checkout" ] == undefined || CARRITO[ "fechas" ][ "checkout" ] == "" ){
 			error = "Ingrese la hora de checkout";
 		}
-	}
+	}*/
 
 	var cant = 0, duracion = 0;
 	jQuery.each( CARRITO[ "cantidades" ], function( key, valor ) {
@@ -691,7 +702,7 @@ var descripciones = "";
 
 jQuery(document).ready(function() { 
 
-	jQuery("#hora_checkin").on("change", function(){
+	/*jQuery("#hora_checkin").on("change", function(){
 		CARRITO["fechas"]["checkin"] = jQuery("#hora_checkin").val();
 		calcular();
 	});
@@ -699,7 +710,7 @@ jQuery(document).ready(function() {
 	jQuery("#hora_checkout").on("change", function(){
 		CARRITO["fechas"]["checkout"] = jQuery("#hora_checkout").val();
 		calcular();
-	});
+	});*/
 
 	jQuery(".km-option-deposit").click();
 
