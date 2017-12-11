@@ -53,7 +53,7 @@ $region = array(
     "Barrio" => "Barrio",
     "ubicacion_cuidador" => " ",
     "alertas-info" => false,
-    "img-email" => "importante_conocer_pe",
+    "img-email" => "importante_conocer_pe.png",
 );
 
 
