@@ -31,23 +31,23 @@
     $precios_hospedaje = unserialize($cuidador->hospedaje);
 
     $precio_sugerido['hospedaje'] = [
-        "pequenos" => "25.000",
-        "medianos" => "30.000",
-        "grandes"  => "35.000",
-        "gigantes" => "40.000"        
+        "pequenos" => get_region('precio_sugerido_pequeno'),
+        "medianos" => get_region('precio_sugerido_mediano'),
+        "grandes"  => get_region('precio_sugerido_grande'),
+        "gigantes" => get_region('precio_sugerido_gigante')        
     ];
     $precio_sugerido['guarderia'] = [
-        "pequenos" => "20.000",
-        "medianos" => "25.000",
-        "grandes"  => "30.000",
-        "gigantes" => "35.000"        
+        "pequenos" => get_region('precio_sugerido_pequeno'),
+        "medianos" => get_region('precio_sugerido_mediano'),
+        "grandes"  => get_region('precio_sugerido_grande'),
+        "gigantes" => get_region('precio_sugerido_gigante')       
     ];
     foreach ($precios_hospedaje as $key => $value) {
     	$hospedaje .= "
     		<div class='vlz_celda_25'>
     			<label>".$tam[$key]."</label>
     			<input type='number' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='hospedaje_".$key."' name='hospedaje_".$key."' value='".$value."' />
-                <label>Precio sugerido: ".$precio_sugerido['hospedaje'][$key]." ".get_region('mon_izq')."</label>
+                <label>Precio sugerido: ".$precio_sugerido['hospedaje'][$key]." ".get_region('moneda_cod')."</label>
 			</div>
     	";
     }
@@ -195,13 +195,17 @@
 						<strong>Gigantes</strong> (73.0 - 200.0 cm)
 	    			</div>
     			</div>
-            </div>
-            <div class='alertas alertas-info'>
-                <small> 
-                    <strong>ATENCIÓN:</strong> Recuerda completar con ceros (0) los Miles. 
-                    <strong>Ejemplo:</strong> 1 Peso no es igual a 1000 Pesos
-                </small>
-            </div>
+            </div>";
+            if (get_region('alertas-info') == true) {
+                $CONTENIDO .="
+                <div class='alertas alertas-info'>
+                    <small> 
+                        <strong>ATENCIÓN:</strong> Recuerda completar con ceros (0) los Miles. 
+                        <strong>Ejemplo:</strong> 1 Peso no es igual a 1000 Pesos
+                    </small>
+                </div>";    
+            }
+            $CONTENIDO .="
     		<div class='vlz_seccion'>
     			<div class='vlz_titulo_seccion container_btn'>Hospedaje <!-- {$boton} --> </div>
     			<div class='vlz_seccion_interna' id='precios_hospedaje'>
