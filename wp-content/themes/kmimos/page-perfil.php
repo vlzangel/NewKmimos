@@ -132,6 +132,11 @@
 			wp_enqueue_style('historial_responsive', getTema()."/css/responsive/historial_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('historial', getTema()."/js/historial.js", array("jquery", "global_js"), '1.0.0');
 		break;
+		case 'ver-fotos':
+		    wp_enqueue_style('ver_fotos', getTema()."/css/ver_fotos.css", array(), '1.0.0');
+			wp_enqueue_style('ver_fotos_responsive', getTema()."/css/responsive/ver_fotos_responsive.css", array(), '1.0.0');
+			wp_enqueue_script('ver_fotos', getTema()."/js/ver_fotos.js", array("jquery", "global_js"), '1.0.0');
+		break;
 	}
 
 	get_header();
@@ -267,6 +272,10 @@
 			case 'fotos':
 				$mostrar_btn = false;
 				include("admin/frontend/fotos/fotos.php");
+			break;
+			case 'ver-fotos':
+				$mostrar_btn = false;
+				include("admin/frontend/fotos/ver-fotos.php");
 			break;
 		}
 
