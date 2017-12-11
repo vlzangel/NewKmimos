@@ -4,8 +4,12 @@ jQuery( document ).ready(function() {
         return target.replace(new RegExp(search, 'g'), replacement);
     };
 
-	jQuery("#close_login").on("click", function(e){
+    jQuery("#close_login").on("click", function(e){
         close_login_modal();
+    });
+
+	jQuery(".vlz_cerrar_modal").on("click", function(e){
+        jQuery(".vlz_modal").css("display", "none");
     });
 
     jQuery("#login").on("click", function(e){
