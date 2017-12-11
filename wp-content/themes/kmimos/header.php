@@ -22,6 +22,7 @@
 	
 
 	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0');
+	wp_enqueue_style( 'lato', getTema()."/font/lato/lato.css", array(), '1.0.0');
 
 	wp_enqueue_style( 'jquery.bxslider', getTema()."/css/jquery.bxslider.css", array(), "1.0.0" );
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
