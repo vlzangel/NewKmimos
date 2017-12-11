@@ -24,7 +24,7 @@ $str_estados = "";
 foreach($estados as $estado) { 
     $str_estados .= "<option value='".$estado->id."'>".$estado->name."</option>";
 } 
-$str_estados = $str_estados;
+$str_estados = utf8_encode($str_estados);
 
 
 $HTML .='
@@ -261,7 +261,7 @@ $HTML .='
 						</div>
 						<div class="label-placeholder">
 							<label>'.get_region('direccion').'</label>
-							<input type="text" id="rc_direccion" name="c_direccion" value="" class="input-label-placeholder">
+							<input type="text" id="c_direccion" name="c_direccion" value="" class="input-label-placeholder">
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
 

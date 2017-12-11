@@ -219,7 +219,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
-	/*DIRECCION DEL CUIDADOR*/
+	/*DIRECCION DEL CLIENTE*/
 	function cambio_munici(estado_id, CB = false){
 		jQuery.getJSON( 
 	        HOME+"procesos/generales/municipios.php", 
@@ -242,7 +242,9 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 	            console.log( "Error: " +  errorThrown );
 	        }
 	    );
-	}function validar_long( val, min, max, type, err_msg){
+	}
+
+	function validar_long( val, min, max, type, err_msg){
 		result = '';
 		var value = 0;
 		switch( type ){
@@ -397,8 +399,9 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 							'img_profile': campos[10],
 							'social_facebook_id': jQuery('#facebook_cliente_id').val(),
 							'social_google_id': jQuery('#google_cliente_id').val(),
-							'estado': estado,
-							'municipio': municipio
+							'estado': jQuery('[name="c_estado"]').val(),
+							'municipio': jQuery('[name="c_municipio"]').val(),
+							'descripcion': jQuery('[name="c_direccion"]').val()
 						};
 						jQuery('#btn-siguiente').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> GUARDANDO');
 						jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
