@@ -1,5 +1,5 @@
 <?php
-    $img_email = get_region('img-email');
+    $img_email = echo get_region('img-email');
 	/* Correo Cliente */
 
 
@@ -111,6 +111,8 @@
             $mensaje_admin = str_replace('[MODIFICACION]', $modificacion, $mensaje_admin);
 
             $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
+
+            $mensaje_cliente = str_replace('[IMGS]', $img_email, $mensaje_cliente);
 
             $mensaje_admin = str_replace('[tipo_servicio]', $servicio["tipo"], $mensaje_admin);
             $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
