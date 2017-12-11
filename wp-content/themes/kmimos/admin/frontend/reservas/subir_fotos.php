@@ -92,7 +92,7 @@
 						<i id="cargar_ico" class="fa fa-plus" aria-hidden="true"></i>
 						<input type="file" id="cargar_imagenes" accept="image/*" multiple />
 					</div>
-					<div class="boton"> 
+					<div id="enviar_ico" class="boton"> 
 						Finalizar
 					</div>
 				</div>
