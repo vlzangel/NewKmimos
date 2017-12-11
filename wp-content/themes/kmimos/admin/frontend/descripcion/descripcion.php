@@ -110,7 +110,7 @@
         	if( $mi_delegacion == $municipio->id ){ $sel = "selected"; }else{ $sel = ""; }
           	$muni .= "<option value='".$municipio->id."' $sel>".$municipio->name."</option>";
       	}
-    	$muni = utf8_decode($muni);
+    	$muni = utf8_encode($muni);
     }else{
       	$muni = "<option value='' selected>Seleccione una localidad</option>";
     }
