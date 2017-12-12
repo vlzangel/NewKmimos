@@ -83,16 +83,20 @@
             $fotos = dirname(__DIR__).'/wp-content/themes/kmimos/template/mail/fotos/fotos.php';
             $fotos = file_get_contents($fotos);
 
+            $periodos_a_mostrar = 1;
+
             $periodo_txt = "";
             if( $flujos == 1 ){
                 $temp = "ma&ntilde;ana";
                 if( $periodo == 2 ){
                     $temp = "tarde";
+                    $periodos_a_mostrar = 2;
                 }
                 $periodo_txt = " por la ".$temp;
                 $collage = '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/collage.png" style="width: 600px;" />';
             }else{
                 if( $periodo == 2 ){
+                    $periodos_a_mostrar = 3;
                     $periodo_txt = " de la ma&ntilde;ana y la tarde";
                     $collage  = '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/collage.png" style="width: 600px;" />';
                     $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/collage.png" style="width: 600px;" />';
@@ -105,6 +109,7 @@
             $fotos = str_replace('[FECHA]', date("d/m/Y"), $fotos);
             $fotos = str_replace('[ID_RESERVA]', $value->reserva, $fotos);
             $fotos = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $fotos);
+            $fotos = str_replace('[URL_VER]', get_home_url()."/perfil-usuario/ver-fotos/{$value->reserva}?ver=".$periodos_a_mostrar, $fotos);
 
             $fotos = get_email_html($fotos);
 

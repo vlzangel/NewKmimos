@@ -6,7 +6,7 @@
 
 	$hora_actual = strtotime("now");
 	$hoy = date("Y-m-d", $hora_actual);
-    echo $xhora_actual = date("H", $hora_actual);
+    $xhora_actual = date("H", $hora_actual);
 
     $periodo_corto = "";
     $periodo = "";
@@ -54,7 +54,7 @@
 				</div>
 
 				<div class="botones_container"> 
-					<a href="'.get_home_url().'/perfil-usuario/reservas/" class="boton"> 
+					<a href="'.get_home_url().'/perfil-usuario/fotos/" class="boton"> 
 						<i id="enviar_ico" class="fa fa-chevron-left" aria-hidden="true"></i> 
 						<span>Volver</span>
 					</a>
@@ -92,8 +92,8 @@
 						<i id="cargar_ico" class="fa fa-plus" aria-hidden="true"></i>
 						<input type="file" id="cargar_imagenes" accept="image/*" multiple />
 					</div>
-					<div class="boton"> 
-						<i id="enviar_ico" class="fa fa-check" aria-hidden="true"></i>
+					<div id="enviar_ico" class="boton"> 
+						Finalizar
 					</div>
 				</div>
 

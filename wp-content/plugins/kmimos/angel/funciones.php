@@ -336,6 +336,12 @@
                             "icono" => "33"
                         ),
                         array(
+                            "url"   => get_home_url()."/perfil-usuario/fotos",
+                            "name"  => "Fotos del día",
+                            "icono" => "82",
+                            "resaltar"  => true
+                        ),
+                        array(
                             "url"   => get_home_url()."/perfil-usuario/solicitudes",
                             "name"  => "Mis Solicitudes",
                             "icono" => "33"
@@ -427,6 +433,10 @@
                         if( $menu_principal ){
                             if( array_key_exists('ocultar_menu_principal', $value) ){
                                 $sts = "vlz_ocultar";
+                            }
+                        }else{
+                            if( array_key_exists('resaltar', $value) ){
+                                $sts = "vlz_resaltar";
                             }
                         }
                         
