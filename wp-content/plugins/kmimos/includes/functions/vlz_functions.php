@@ -390,6 +390,8 @@
                 $diferencia = $pago_descuentos-$comision;
             }
 
+            $desglose['total'] = $pago;
+
             if( $metas_orden['_payment_method_title'][0] != "" ){
                 $pagado_con = $metas_orden['_payment_method_title'][0];
             }else{
@@ -462,6 +464,7 @@
                     $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
 
                     $raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
+                    if( $raza == "" ){ $raza = "Affenpinscher"; }
                     $mascotas[] = array(
                         "nombre" => $data_mascota['name_pet'][0],
                         "raza" => $raza,

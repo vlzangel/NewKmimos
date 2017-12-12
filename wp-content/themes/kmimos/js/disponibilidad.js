@@ -104,6 +104,7 @@ jQuery(".vlz_cancelar").on("click", function(e){
                 accion: "delete_disponibilidad"
             },
             function(data){
+                alert("Fecha liberada exitosamente!");
                 location.reload();
             }
         );
