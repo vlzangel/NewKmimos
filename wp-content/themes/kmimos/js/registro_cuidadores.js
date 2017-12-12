@@ -1,5 +1,16 @@
 jQuery( document ).ready(function() {
 	
+	jQuery("#rc_nacimiento").datepick({
+        dateFormat: 'dd/mm/yyyy',
+        onSelect: function(xdate) {
+            
+        },
+        yearRange: '-60:-18',
+        maxDate: '-18y',
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
+
 	jQuery.post(
         HOME+"/procesos/busqueda/ubicacion.php",
         {},
@@ -236,7 +247,7 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	jQuery('input').css('border-bottom', '#ccc');
 	jQuery('[data-error]').css('visibility', 'hidden');
 
-	var list = ['rc_email','rc_nombres','rc_apellidos','rc_ife','rc_email','rc_clave','rc_telefono', 'rc_referred'];
+	var list = ['rc_email','rc_nombres','rc_apellidos','rc_ife','rc_email','rc_clave','rc_telefono', 'rc_referred', 'rc_nacimiento'];
 	var valid = km_cuidador_validar(list);
 
 	if( valid ){

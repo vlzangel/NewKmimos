@@ -79,7 +79,7 @@
 
     }else{
 
-	    $pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
+	    /*$pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
 		$pagoCuidador = ( $pagar->total / 1.2);
 		if( $pre17 <= $descuentos ){
 			if( $pre17 < $descuentos ){
@@ -89,13 +89,16 @@
 			$pre17 = 0;
 		}else{
 			$pre17 -= $descuentos;
-		}
+		}*/
+
+		$pre17 = $pagar->deposito;
+		$pagoCuidador = $pagar->pagoCuidador;
 
 	    $deposito = array(
 	    	"deposit" => $pre17,
 			"enable" => "yes",
 			"ratio" => 1,
-			"remaining" => ($pagoCuidador+$descuentos),
+			"remaining" => $pagoCuidador,
 			"total" => $pagar->total
 	    );
     }
