@@ -16,6 +16,14 @@
 	    $cuidador_post   = get_post($post_id);
 	    $nombre_cuidador = $cuidador_post->post_title;
 
+		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$post_id."'");
+		if( $cuidador->activo == 0 ){
+			$data = array(
+				'error' => 'Error, este cuidador esta inactivo!'
+			);
+			echo json_encode($data);
+			exit;
+		}
 
 	    $datos_cuidador  = get_user_meta($cuidador_post->post_author);
 	    $telf_cuidador = $datos_cuidador["user_phone"][0];
@@ -91,8 +99,6 @@
 		foreach($new_postmeta as $key => $value){
 			update_post_meta($request_id, $key, $value);
 		}
-
-		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$post_id."'");
 
 		$email_cuidador = $cuidador->email;
 		$email_cliente  = $current_user->user_email;
@@ -298,7 +304,8 @@
 			'n_solicitud' => $request_id,
 			'nombre' => $nombre_cuidador,
 			'telefono' => $telf_cuidador,
-			'email' => $email_cuidador
+			'email' => $email_cuidador,
+			'error' => ''
 		);
 
 		echo json_encode($data);

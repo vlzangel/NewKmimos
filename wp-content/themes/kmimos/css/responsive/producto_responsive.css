@@ -99,4 +99,26 @@
 	.vlz_destacados_contenedor {
 	    width: 100%;
 	}
+
+	.alerta_flash_importante {
+	    background-size: 25px;
+	    font-size: 20px;
+	}
+
+	.alerta_flash_mensaje {
+	    font-size: 12px;
+	}
+
+	.alerta_flash_paso_titulo {
+	    font-size: 13px;
+	}
+
+	.alerta_flash_paso_img img {
+	    max-width: 60px;
+	    width: 100%;
+	}
+
+	.alerta_flash_paso_txt {
+	    font-size: 11px;
+	}
 }
