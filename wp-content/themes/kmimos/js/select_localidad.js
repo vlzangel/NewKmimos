@@ -7,7 +7,6 @@ jQuery(document).ready(function(){
         HOME+"/procesos/busqueda/ubicacion.php",
         {},
         function(data){
-
             jQuery("#ubicacion_list").html(data);
 
             jQuery("#ubicacion_list li").on("click", function(e){
@@ -32,7 +31,7 @@ jQuery(document).ready(function(){
     });
 
     jQuery("#ubicacion_txt").on("focus", function ( e ) { 
-        jQuery("#ubicacion_list").addClass("ubicacion_list_hover");    
+        jQuery("#ubicacion_list").addClass("ubicacion_list_hover"); 
     });
 
     jQuery("#ubicacion_txt").on("change", function ( e ) {    

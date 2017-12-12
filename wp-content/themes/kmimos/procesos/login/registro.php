@@ -113,6 +113,12 @@
                 (NULL, {$user_id}, 'user_age',           '{$age}'),
                 (NULL, {$user_id}, 'user_smoker',           '{$smoker}'),
                 (NULL, {$user_id}, 'user_referred',       '{$referido}'),
+                (NULL, {$user_id}, 'billing_address_1',       '{$descripcion}'),
+                (NULL, {$user_id}, 'billing_address_2',       '{$descripcion}'),
+                (NULL, {$user_id}, 'billing_city',       '{$estado}'),
+                (NULL, {$user_id}, 'billing_state',       '{$municipio}'),
+
+                
                 (NULL, {$user_id}, 'rich_editing',        'true'),
                 (NULL, {$user_id}, 'comment_shortcuts',   'false'),
                 (NULL, {$user_id}, 'admin_color',         'fresh'),

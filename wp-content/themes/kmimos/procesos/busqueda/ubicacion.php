@@ -62,4 +62,4 @@
     }
 
     // echo json_encode($ubicaciones);
-    echo $estados_str;
+    echo utf8_encode($estados_str);

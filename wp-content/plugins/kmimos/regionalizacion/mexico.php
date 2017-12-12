@@ -10,7 +10,7 @@ $region = array(
     "telefono" => " Mexico:+57 (1) 593 8719",
     "telefono_corrido" => "+5715938719",
     "whatsapp"=> "+57 318 350 2391", 
-
+    "dolar" => "$",
     "twitter"   => "kmimosmx",
     "facebook"  => "Kmimosmx",
     "instagram" => "kmimosmx",

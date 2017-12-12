@@ -11,13 +11,13 @@
 
 		$sql = "SELECT * FROM locations WHERE state_id = '{$estado}' ORDER BY name ASC";
 		$r = $db->get_results( $sql );
-
+		// print_r($r);
  
 		if( !empty($r) ){
 			foreach ($r as $key => $value) {
 				$municipios[] = array(
 					"id" 	=> $value->id,
-					"name" 	=> $value->name
+					"name" 	=> utf8_encode($value->name)
 				);
 			}
 		}
@@ -33,7 +33,7 @@
 				);
 			}
 		}
-
+		// print_r($municipios);
 		echo json_encode($municipios);
 
 	}

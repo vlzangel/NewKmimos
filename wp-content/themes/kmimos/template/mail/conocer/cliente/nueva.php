@@ -78,7 +78,7 @@
 		</tr>
 	</table>
 
-	<img src='[URL_IMGS]/importante_conocer.png' style='display: block; margin: 0px auto 25px;' >
+	<img src='[URL_IMGS]/importante_conocer_pe.png' style='display: block; margin: 0px auto 25px;' >
 
 	<div style="box-sizing: border-box; padding: 0px 10px;">
 		<div style='display: table; margin: 0px auto 14px; width: 100%;'>

@@ -2,7 +2,7 @@
     /*
         Template Name: Home
     */
-
+    $busqueda;
     wp_enqueue_style('home_kmimos', getTema()."/css/home_kmimos.css", array(), '1.0.0');
     wp_enqueue_style('home_responsive', getTema()."/css/responsive/home_responsive.css", array(), '1.0.0');
     wp_enqueue_script('buscar_home', getTema()."/js/home.js", array(), '1.0.0');
@@ -230,16 +230,16 @@
 										<a href="javascript:;" 
 											data-video="https://www.youtube.com/embed/Kqn7lOVk6bQ"
 											data-target="iframe-testimonio">
-											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+											<!--<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">-->
 										</a>
 									</div>
 									<div class="km-testimonial">“Kmimos es mi trabajo, mi pasión por los perros, mi casa, mi familia… lo representa todo.”</div>
 									<div class="km-autor">
-										<a href="'.get_user_slug(1404).'"> CLAUDIA R. </a>
+										<a href="'.get_user_slug(748).'">CLAUDIA FIORELLA D.</a>
 										 '.get_region('ubicacion_cuidador').'</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
-								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/testimonial-3.jpg">
+								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/te-3.jpg">
 							</div>
 						</li>
 
@@ -251,15 +251,15 @@
 										<a href="javascript:;" 
 											data-video="https://www.youtube.com/embed/pim_QZKWRAY"
 											data-target="iframe-testimonio">
-											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+											<!--<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">-->
 										</a>
 									</div>
 									<div class="km-testimonial">“Todos los cuidadores Kmimos tienen algo en común, la pasión y el amor por los perros.”</div>
 									<div class="km-autor">
-										<a href="'.get_user_slug(5011).'">MARU S.</a> '.get_region('ubicacion_cuidador').'</div>
+										<a href="'.get_user_slug(791).'">MAR&Iacute;A BEL&Eacute;N U.</a> '.get_region('ubicacion_cuidador').'</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
-								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/testimonial-2.jpg">
+								<img class="img-testimoniales filtro-oscuro" src="'.getTema().'/images/new/km-testimoniales/te-2.jpg">
 							</div>
 						</li>
 
@@ -271,15 +271,17 @@
 										<a href="javascript:;" 
 											data-video="https://www.youtube.com/embed/JMcv5XO5v0M"
 											data-target="iframe-testimonio">
-											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
+											<!--<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">-->
 										</a>
 									</div>
 									<div class="km-testimonial">“Ahora tengo más ingresos, llegan bastantes visitas y es como tener un sueldo de ejecutivo”.</div>
-									<div class="km-autor"><a href="'.get_user_slug(5738).'">KARLA S.</a> '.get_region('ubicacion_cuidador').'</div>
+									<div class="km-autor">
+									<a href="'.get_user_slug(849).'"> MIGUEL M.</a>
+									 '.get_region('ubicacion_cuidador').'</div>
 									<div class="km-autor-descripcion ">Cuidador Certificado</div>
 								</div>
 								<img class="img-testimoniales filtro-oscuro" 
-									src="'.getTema().'/images/new/km-testimoniales/testimonial-1.jpg"
+									src="'.getTema().'/images/new/km-testimoniales/te-1.jpg"
 									>
 							</div>
 						</li>						
