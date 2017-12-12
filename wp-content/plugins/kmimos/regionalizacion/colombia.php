@@ -1,6 +1,6 @@
 <?php  
 $region = array(
-
+    'pasarela' => 'payu',
     "estado"=> 'Ciudad',
     "municipio"=>'',
     'direccion'=> 'Localidad o barrio',
@@ -32,13 +32,13 @@ $region = array(
     "km-5000" => 0,
     "length_movil" => 7,
     "conocio" => array(
-                'Facebook'      =>  'Facebook',
-                'Adwords'       =>  'Buscador de Google',
-                'Twitter'       =>  'Twitter',
-                'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
-                'Youtube'               =>  'Youtube',
-                'Otros'                 =>  'Otros'
-            ),
+        'Facebook'      =>  'Facebook',
+        'Adwords'       =>  'Buscador de Google',
+        'Twitter'       =>  'Twitter',
+        'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
+        'Youtube'               =>  'Youtube',
+        'Otros'                 =>  'Otros'
+    ),
     "identidad_corta" => "Cédula /Documento de identidad",
     "identidad-length" => 20,
     "identidad" => "Cédula de Ciudadanía /DNI",

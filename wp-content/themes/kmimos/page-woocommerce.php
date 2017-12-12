@@ -182,6 +182,7 @@
 			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
 			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
 			var PayuDeviceSessionId = '".$PayuDeviceSessionId."';
+			var PASARELA = '".get_region('pasarela')."';
 		</script>
 		";
 
