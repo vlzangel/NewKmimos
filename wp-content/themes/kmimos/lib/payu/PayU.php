@@ -8,13 +8,14 @@ class PayU {
 	// -- PayU Configuracion
 	public function init( $ref='', $monto='', $moneda='COP' ){
 
+		// Peru: 512323 Colombia: 512321
 		// -- Cargar Configuracion
 		$config = [
 			'sandbox' => [
 				'apiKey' => '4Vj8eK4rloUd272L48hsrarnUA',
 				'apiLogin' => 'pRRXKOl8ikMmt9u',
 				'merchantId' => '508029',
-				'accountId' => '512321',
+				'accountId' => '512323', 
 				'isTest' => 'false',
 				'confirmation' => get_home_url().'/cron/payu/request.php',
 				'PaymentsCustomUrl' => 'https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi',
@@ -144,6 +145,11 @@ class PayU {
 			$config['PaymentsCustomUrl'], 
 			json_encode($cofg, JSON_UNESCAPED_UNICODE)
 		);
+
+print_r(
+			json_encode($cofg, JSON_UNESCAPED_UNICODE)
+);
+
 
 		return json_decode($r);
 	}

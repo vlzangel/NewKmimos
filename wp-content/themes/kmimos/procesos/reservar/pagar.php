@@ -79,8 +79,10 @@
 
     }else{
 
-	    $pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
-		$pagoCuidador = ( $pagar->total / 1.2);
+    	$porcentaje = get_region( 'porcentaje_pago_kmimos' );
+
+	    $pre17 = ( $pagar->total - ( $pagar->total / $porcentaje) );
+		$pagoCuidador = ( $pagar->total / $porcentaje);
 		if( $pre17 <= $descuentos ){
 			if( $pre17 < $descuentos ){
 				$reciduo = $pre17-$descuentos;
