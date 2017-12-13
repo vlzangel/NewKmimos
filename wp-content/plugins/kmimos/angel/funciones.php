@@ -172,7 +172,7 @@
                 }
                 $top_destacados .= '
                     <div class="slide">
-                        <div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
+                        <div class="item-slide" style="background-image: url('.$img_url.');">
                             <div class="slide-mask"></div>
                             <div class="slide-content">
                                 <div class="slide-price-distance">
@@ -187,7 +187,7 @@
                                 </div>
 
                                 <div class="slide-profile">
-                                    <div class="slide-profile-image" style="background-image: url('.$img_url.');"></div>
+                                    <div class="slide-profile-image" style=""></div>
                                 </div>
 
                                 <div class="slide-name">
