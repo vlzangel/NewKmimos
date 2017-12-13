@@ -1,5 +1,6 @@
  <?php  
 $region = array(
+   'pasarela' => 'openpay',
     "pais"      => "Mexico",
     "pais_cod_iso"   => "MX",
     'moneda_cod' => 'MXN',

@@ -182,11 +182,13 @@
 			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
 			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
 			var PayuDeviceSessionId = '".$PayuDeviceSessionId."';
+			var PASARELA = '".get_region('pasarela')."';
+			var porcentaje_kmimos = ".get_region('porcentaje_pago_kmimos').";
 		</script>
 		";
 
 
-		if( strtolower( REGION ) == 'colombia' ){
+		if( strtolower( REGION ) == 'colombia' || strtolower( REGION ) == 'peru' ){
 			$HTML .= '<div id="deviceID"></div>';
 		}
 
@@ -368,7 +370,7 @@
 											RESERVA CON PAGO PARCIAL
 										</div>
 										<div class="km-text-two">
-											Pague ahora el 17% y el restante
+											Pague ahora el '.get_region('label_pago_kmimos').' y el restante
 										</div>
 										<div class="km-text-three">
 											AL CUIDADOR EN EFECTIVO
@@ -592,6 +594,28 @@
 														<div class="km-opcion" data-target="tienda">
 															<input type="checkbox" name="list_tienda" value="OTHERS_CASH" >
 															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/sured.png" />
+														</div>
+													</div>
+												</div>
+												<img src="'.get_template_directory_uri().'/images/pasos.png" />
+												';												
+												break;
+											case 'peru':
+												$HTML .= '
+												<div style="padding:5px 0px;">
+													<div class="km-text-one">								
+														<h4>SELECCIONA TU TIENDA DE PAGO</h4>
+													</div>
+													<div id="BCP" style="margin-bottom:10px;" class="col-xs-4 col-sm-4 col-sm-offset-2 col-xs-offset-2">
+														<div class="km-opcion km-opcionactivo" data-target="tienda">
+															<input type="checkbox" name="list_tienda" value="BCP">
+															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/bcp.png" />
+														</div>
+													</div>
+													<div id="PagoEfectivo" style="margin-bottom:10px;" class="col-xs-4 col-sm-4">
+														<div class="km-opcion" data-target="tienda">
+															<input type="checkbox" name="list_tienda" value="PagoEfectivo" >
+															<img style="margin-bottom:0px;" src="'.get_template_directory_uri().'/images/logos_tiendas/pagoefectivo.png" />
 														</div>
 													</div>
 												</div>

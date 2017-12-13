@@ -8,13 +8,14 @@ class PayU {
 	// -- PayU Configuracion
 	public function init( $ref='', $monto='', $moneda='COP' ){
 
+		// Peru: 512323 Colombia: 512321
 		// -- Cargar Configuracion
 		$config = [
 			'sandbox' => [
 				'apiKey' => '4Vj8eK4rloUd272L48hsrarnUA',
 				'apiLogin' => 'pRRXKOl8ikMmt9u',
 				'merchantId' => '508029',
-				'accountId' => '512321',
+				'accountId' => '512323', 
 				'isTest' => 'false',
 				'confirmation' => get_home_url().'/cron/payu/request.php',
 				'PaymentsCustomUrl' => 'https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi',
@@ -145,6 +146,11 @@ class PayU {
 			json_encode($cofg, JSON_UNESCAPED_UNICODE)
 		);
 
+print_r(
+			json_encode($cofg, JSON_UNESCAPED_UNICODE)
+);
+
+
 		return json_decode($r);
 	}
 
@@ -208,10 +214,32 @@ class PayU {
 		$config = $this->init();
 	}
 
+	public function getByOrderID( $order_id = '' ){
+		$config = $this->init();
+
+		$cofg = [];
+		// -- Datos del API
+		$cofg["test"] = $config['isTest'];
+		$cofg["language"] = "es";
+		$cofg["command"] = "ORDER_DETAIL";
+		$cofg["merchant"]["apiKey"] = $config['apiKey'];
+		$cofg["merchant"]["apiLogin"] = $config['apiLogin'];
+
+		$cofg["details"]["orderId"] = $order_id;
+
+		$r = $this->request( 
+			$config['ReportsCustomUrl'], 
+			json_encode($cofg, JSON_UNESCAPED_UNICODE)
+		);
+
+		return json_decode($r);
+	}
+
 	// -- Enviar solicitud
 	public function request( $url, $data ){
 
 		include(realpath( dirname(__DIR__)."/Requests/Requests.php" ));
+		
 		Requests::register_autoloader();
 		$headers = Array(
 			'Content-Type'=> 'application/json; charset=UTF-8',	

@@ -1,6 +1,14 @@
 <?php  
 $region = array(
+    "porcentaje_pago_kmimos" => 1.2,
+    "label_pago_kmimos" => '20%',
+    "opciones_pagos_tienda" => [
+        "BCP",
+        "PagoEfectivo"
+    ],
 
+
+    "pasarela" => 'payu',
     "estado"=> 'Ciudad',
     "municipio"=>'',
     'direccion'=> 'Localidad o barrio',
@@ -11,7 +19,7 @@ $region = array(
     'cuidador_descripcion' => '¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro de mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.',
     "pais" => "Peru",
     "pais_cod_iso"   => "PE",
-    'moneda_cod' => 'S./',
+    'moneda_cod' => 'PEN',
     "mon_der" => "S./",
     "dolar" => "",
     "titulo"    => "Kmimos Perú",
