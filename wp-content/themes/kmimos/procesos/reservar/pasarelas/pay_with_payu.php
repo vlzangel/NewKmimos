@@ -28,7 +28,7 @@
 	$PayuP['cliente']['email'] = $email;
 	$PayuP['cliente']['telef'] = $telefono;
 	$PayuP['cliente']['calle1'] = $direccion;
-	$PayuP['cliente']['calle2'] = 'sin datos';
+	$PayuP['cliente']['calle2'] = ' ';
 	$PayuP['cliente']['ciudad'] = $ciudad;
 	$PayuP['cliente']['estado'] = $estado;
 	$PayuP['cliente']['pais'] = get_region('pais_cod_iso');

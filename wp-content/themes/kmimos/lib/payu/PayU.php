@@ -6,9 +6,9 @@ class PayU {
 	protected $isTest = true; 
 
 	// -- PayU Configuracion
-	public function init( $ref='', $monto='', $moneda='COP' ){
+	public function init( $ref='', $monto='', $moneda='' ){
 
-		// Peru: 512323 Colombia: 512321
+		// SandBox: accountId [ Peru: 512323 || Colombia: 512321 ]
 		// -- Cargar Configuracion
 		$config = [
 			'sandbox' => [
@@ -83,7 +83,7 @@ class PayU {
 		// -- Datos de Costo de Servicio      
 		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["value"] = $datos['monto'];
 		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["currency"] = $datos['moneda'];
-
+/*
 		// -- Datos de Impuesto      
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX"]["value"] = 0;
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX"]["currency"] = $datos['moneda'];
@@ -92,7 +92,7 @@ class PayU {
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX_RETURN_BASE"]["value"] = 0;
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX_RETURN_BASE"]["currency"] = $datos['moneda'];
 
-		// -- Datos de Comprador
+*/		// -- Datos de Comprador
 		$cofg["transaction"]["order"]["buyer"]["merchantBuyerId"] = $datos['cliente']['ID'];
 		$cofg["transaction"]["order"]["buyer"]["fullName"] = $datos['cliente']['name'];
 		$cofg["transaction"]["order"]["buyer"]["emailAddress"] = $datos['cliente']['email'];
@@ -145,12 +145,7 @@ class PayU {
 			$config['PaymentsCustomUrl'], 
 			json_encode($cofg, JSON_UNESCAPED_UNICODE)
 		);
-
-print_r(
-			json_encode($cofg, JSON_UNESCAPED_UNICODE)
-);
-
-
+ 
 		return json_decode($r);
 	}
 
