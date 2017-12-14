@@ -16,7 +16,7 @@
 	}
 
 	$PayuP = [];
-	$PayuP['pais'] = ucfirst(  get_region( 'pais' ) );
+	$PayuP['pais'] = ucfirst(  get_region( 'pais_cod_iso' ) );
 	$PayuP['moneda'] = get_region( 'moneda_cod' );
 	// -- Reserva
 	$PayuP['id_orden'] = $id_orden.'_'.date('Ymd\THis');
@@ -28,7 +28,7 @@
 	$PayuP['cliente']['email'] = $email;
 	$PayuP['cliente']['telef'] = $telefono;
 	$PayuP['cliente']['calle1'] = $direccion;
-	$PayuP['cliente']['calle2'] = ' ';
+	$PayuP['cliente']['calle2'] = 'sin datos';
 	$PayuP['cliente']['ciudad'] = $ciudad;
 	$PayuP['cliente']['estado'] = $estado;
 	$PayuP['cliente']['pais'] = get_region('pais_cod_iso');

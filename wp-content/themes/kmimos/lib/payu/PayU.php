@@ -83,7 +83,7 @@ class PayU {
 		// -- Datos de Costo de Servicio      
 		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["value"] = $datos['monto'];
 		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["currency"] = $datos['moneda'];
-/*
+
 		// -- Datos de Impuesto      
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX"]["value"] = 0;
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX"]["currency"] = $datos['moneda'];
@@ -92,7 +92,7 @@ class PayU {
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX_RETURN_BASE"]["value"] = 0;
 		$cofg["transaction"]["order"]["additionalValues"]["TX_TAX_RETURN_BASE"]["currency"] = $datos['moneda'];
 
-*/		// -- Datos de Comprador
+		// -- Datos de Comprador
 		$cofg["transaction"]["order"]["buyer"]["merchantBuyerId"] = $datos['cliente']['ID'];
 		$cofg["transaction"]["order"]["buyer"]["fullName"] = $datos['cliente']['name'];
 		$cofg["transaction"]["order"]["buyer"]["emailAddress"] = $datos['cliente']['email'];
@@ -134,7 +134,7 @@ class PayU {
 		// -- Datos de Session y Configuracion
 		$cofg["transaction"]["extraParameters"]["INSTALLMENTS_NUMBER"] = "1";
 		$cofg["transaction"]["type"] = "AUTHORIZATION_AND_CAPTURE";
-		$cofg["transaction"]["paymentCountry"] = $datos['pais_cod_iso'];
+		$cofg["transaction"]["paymentCountry"] = $datos['pais'];
 		$cofg["transaction"]["deviceSessionId"] = $datos['PayuDeviceSessionId'];
 		$cofg["transaction"]["ipAddress"] = $_SERVER['REMOTE_ADDR'];
 		$cofg["transaction"]["cookie"] = $_COOKIE['PHPSESSID'];
@@ -146,6 +146,8 @@ class PayU {
 			json_encode($cofg, JSON_UNESCAPED_UNICODE)
 		);
  
+ 	print_r($cofg);
+
 		return json_decode($r);
 	}
 
@@ -191,7 +193,7 @@ class PayU {
 		// -- Datos de Session y Configuracion
 		$cofg["transaction"]["type"] = "AUTHORIZATION_AND_CAPTURE";
 		$cofg["transaction"]["ipAddress"] = $_SERVER['REMOTE_ADDR'];
-		$cofg["transaction"]["paymentCountry"] = $datos['pais_cod_iso'];
+		$cofg["transaction"]["paymentCountry"] = $datos['pais'];
 		$cofg["transaction"]["paymentMethod"] = $datos['paymentMethod'];
 		$cofg["transaction"]["expirationDate"] = $datos['expirationDate'];
 
