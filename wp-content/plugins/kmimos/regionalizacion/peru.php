@@ -19,6 +19,7 @@ $region = array(
     "pais_cod_iso" => "PE",
     'moneda_cod' => 'PEN',
     "mon_der" => "S./",
+    "mon_text" => "soles",
     "dolar" => " ",
     "titulo" => "Kmimos Perú",
     "email" => "contactope@kmimos.la",
