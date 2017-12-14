@@ -6,6 +6,7 @@ $region = array(
         "BCP",
         "PagoEfectivo"
     ],
+    "direccion_cliente" => "Queremos saber tu direcci&oacute;n de facturaci&oacute;n",
     "pasarela" => 'payu',
     "estado" => 'Ciudad',
     "municipio" => '',
