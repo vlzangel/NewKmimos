@@ -234,7 +234,7 @@ $HTML .='
 				</div>
 				<h3 style="margin: 0;">'.get_region('direccion').'</h5>
 
-				<p style="color: #979797">Queremos saber tu direcci&oacute;n de facturaci&oacute;n</p>
+				<p style="color: #979797">'.get_region('direccion_cliente').'</p>
 
 				<a href="#" class="km-btn-border obtener_direccion">UBICACIÓN ACTUAL</a>
 				<div class="line-o">
