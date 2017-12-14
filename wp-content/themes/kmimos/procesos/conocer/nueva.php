@@ -84,8 +84,8 @@
 			'meeting_time'          => $_POST['meeting_time'],
 			'meeting_where'         => $_POST['meeting_where'],
 			'pet_ids'               => serialize($pet_ids),
-			'service_start'         => date('d-m-Y', $_POST['service_start']),
-			'service_end'           => date('d-m-Y', $_POST['service_end']),
+			'service_start'         =>  $_POST['service_start'],
+			'service_end'           =>  $_POST['service_end'],
 		);
 
 		foreach($new_postmeta as $key => $value){
