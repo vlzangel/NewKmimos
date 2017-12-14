@@ -1,5 +1,5 @@
 <?php
-    $img_email = echo get_region('img-email');
+    $img_email = get_region('img-email');
 	/* Correo Cliente */
 
 

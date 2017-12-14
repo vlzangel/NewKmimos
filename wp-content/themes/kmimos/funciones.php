@@ -173,7 +173,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
 							<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$'.($precios["pequenos"]*1.2).'</b></div>
+						<div class="km-servicio-costo"><b>'.get_region('mon_der').' '.get_region('dolar').($precios["pequenos"]*1.2).'</b></div>
 					</div>';
 				}else{
 					$HTML = '
@@ -200,7 +200,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
 							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$'.($precios["medianos"]*1.2).'</b></div>
+						<div class="km-servicio-costo"><b>'.get_region('mon_der').' '.get_region('dolar').($precios["medianos"]*1.2).'</b></div>
 					</div>';
 				}else{
 					$HTML = '
@@ -227,7 +227,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-grande.svg">
 							<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$'.($precios["grandes"]*1.2).'</b></div>
+						<div class="km-servicio-costo"><b>'.get_region('mon_der').' '.get_region('dolar').($precios["grandes"]*1.2).'</b></div>
 					</div>';
 				}else{
 					$HTML = '
@@ -254,7 +254,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
 							<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$'.($precios["gigantes"]*1.2).'</b></div>
+						<div class="km-servicio-costo"><b>'.get_region('mon_der').' '.get_region('dolar').($precios["gigantes"]*1.2).'</b></div>
 					</div>';
 				}else{
 					$HTML = '
