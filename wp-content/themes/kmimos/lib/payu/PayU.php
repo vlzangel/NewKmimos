@@ -110,7 +110,7 @@ class PayU {
 		 
 		// -- Datos de Pagador 
 		$cofg["transaction"]["payer"]["merchantPayerId"] = $datos['cliente']['ID'];
-		$cofg["transaction"]["payer"]["fullName"] = $datos['cliente']['name'];
+		
 		$cofg["transaction"]["payer"]["emailAddress"] = $datos['cliente']['email'];
 		$cofg["transaction"]["payer"]["contactPhone"] = $datos['cliente']['telef'];
 		$cofg["transaction"]["payer"]["dniNumber"] = $datos['cliente']['dni'];
@@ -189,6 +189,7 @@ class PayU {
 		// -- Datos de Comprador
 		$cofg["transaction"]["order"]["buyer"]["fullName"] = $datos['cliente']['name'];
 		$cofg["transaction"]["order"]["buyer"]["emailAddress"] = $datos['cliente']['email'];
+		$cofg["transaction"]["payer"]["fullName"] = $datos['cliente']['name'];
 
 		// -- Datos de Session y Configuracion
 		$cofg["transaction"]["type"] = "AUTHORIZATION_AND_CAPTURE";
@@ -203,6 +204,7 @@ class PayU {
 			$config['PaymentsCustomUrl'], 
 			json_encode($cofg, JSON_UNESCAPED_UNICODE)
 		);
+	
 		return json_decode($r);;
 	}
 
