@@ -84,22 +84,22 @@
             $URL_BASE = get_home_url()."wp-content/uploads/fotos/";
 
             $PATH_BASE = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))))."/uploads/fotos/";
-            $PATH_PERIODO = "/".date("Y-m-d")."_".$PERIODO."/";
+            $PATH_PERIODO = "/".date("Y-m-d");
 
             $dia = "No"; 
             if( $value->subio_12 == 1 ){ 
-                $moderar = "";
+                $moderar = "&nbsp;";
                 if( date("H", $actual) < 12 ){
                     if( isset( $moderacion[1] ) ){
                         $moderar = "<div><strong>Fue moderado</strong><br></div>";
                     }
                     $moderar_imgs = kmimos_fotos(
-                        $PATH_BASE.$value->reserva.$PATH_PERIODO,
+                        $PATH_BASE.$value->reserva.$PATH_PERIODO."_1/",
                         $moderacion[1],
-                        $URL_BASE.$value->reserva.$PATH_PERIODO
+                        $URL_BASE.$value->reserva.$PATH_PERIODO."_1/"
                     );
 
-                    $moderar .= "<div class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='{$PERIODO}' >{$moderar_imgs}</div>";
+                    $moderar .= "<div id='fotos_{$i}' class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='1' >{$moderar_imgs}</div>";
                     $i++;
                     $dia = $moderar; 
                 }else{
@@ -109,18 +109,18 @@
 
             $noche = "No"; 
             if( $value->subio_06 == 1 ){ 
-                $moderar = "";
+                $moderar = "&nbsp;";
                 if( date("H", $actual) < 18 ){
                     if( isset( $moderacion[2] ) ){
                         $moderar = "<div><strong>Fue moderado</strong><br></div>";
                     }
                     $moderar_imgs = kmimos_fotos(
-                        $PATH_BASE.$value->reserva.$PATH_PERIODO,
+                        $PATH_BASE.$value->reserva.$PATH_PERIODO."_2/",
                         $moderacion[2],
-                        $URL_BASE.$value->reserva.$PATH_PERIODO
+                        $URL_BASE.$value->reserva.$PATH_PERIODO."_2/"
                     );
 
-                    $moderar .= "<div class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='{$PERIODO}' >{$moderar_imgs}</div>";
+                    $moderar .= "<div id='fotos_{$i}' class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='2' >{$moderar_imgs}</div>";
                     $i++;
                     $noche = $moderar;
                 }else{

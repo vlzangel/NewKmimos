@@ -196,7 +196,7 @@
                 }
                 $moderar_imgs .= "
                     <div style='background-image: url(".$URL_BASE.$foto.");'>
-                        <input type='checkbox' value='{$foto}' {$check} id='foto_{$i}' data-index='{$i}' data-url=\"".$URL_BASE.$foto."\" />
+                        <input type='checkbox' class='input_check' value='{$foto}' {$check} id='foto_{$i}' data-index='{$i}' data-url=\"".$URL_BASE.$foto."\" />
                     </div>
                 ";
                 $i++;
