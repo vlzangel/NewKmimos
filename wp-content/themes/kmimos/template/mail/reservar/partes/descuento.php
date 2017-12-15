@@ -3,6 +3,6 @@
         DESCUENTO
     </td>
     <td style='padding: 5px 20px; padding-left: 37px; border-bottom: solid 1px #CCC; text-align: right;'>
-        - $ [DESCUENTO]
+        - <?php echo get_region('mon_der'); ?> [DESCUENTO]
     </td>
 </tr>
