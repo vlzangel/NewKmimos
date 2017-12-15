@@ -8,7 +8,7 @@
                 TOTAL
             </td>
             <td style='padding: 5px 20px; padding-left: 37px; border-bottom: solid 1px #CCC; text-align: right;'>
-                $ [TOTAL]
+                <?php echo get_region('mon_der'); ?>  [TOTAL]
             </td>
         </tr>
 
@@ -19,7 +19,7 @@
                 [TIPO_PAGO]
             </td>
             <td style='padding: 5px 20px; padding-left: 37px; border-bottom: solid 1px #CCC; text-align: right; color: #d96363;'>
-                - $ [PAGO]
+                - <?php echo get_region('mon_der'); ?> [PAGO]
             </td>
         </tr>
 
