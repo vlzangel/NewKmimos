@@ -334,6 +334,9 @@
                 $metas_producto = get_post_meta( $producto->ID );
 
 
+            $meta_key_pdf_tienda = get_region('meta_key_pdf_tienda');
+            $meta_key_tienda_vence = get_region('meta_key_tienda_vence');
+
             $inicio = $metas_reserva['_booking_start'][0];
             $fin    = $metas_reserva['_booking_end'][0];
 
@@ -741,7 +744,7 @@
                 "detalles_factura_cuidador" => $detalles_factura_cuidador,
 
                 "metodo_pago" => $metas_orden['_payment_method'][0],
-                "pdf" => $metas_orden['_openpay_pdf'][0],
+                "pdf" => $metas_orden[$meta_key_pdf_tienda][0],
 
                 "servicio" => $producto->ID
             );
@@ -1100,6 +1103,9 @@
 
             $producto = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_reserva['_booking_product_id'][0]."'");
 
+            $meta_key_pdf_tienda = get_region('meta_key_pdf_tienda');
+            $meta_key_tienda_vence = get_region('meta_key_tienda_vence');
+
             $tipo_servicio = explode("-", $producto->post_title);
             $tipo_servicio = $tipo_servicio[0];
 
@@ -1316,7 +1322,7 @@
 
 
                 "metodo_pago" => $metas_orden['_payment_method_title'][0],
-                "pdf" => $metas_orden['_openpay_pdf'][0],
+                "pdf" => $metas_orden[$meta_key_pdf_tienda][0],
 
                 "servicio" => $producto->ID,
                 "servicio_titulo" => $producto->post_title,
@@ -1364,8 +1370,8 @@
                     "transporte" => $transporte_desglose,
                     "adicionales" => $adicionales_desglose,
 
-                    "pdf" => $metas_orden['_openpay_pdf'][0],
-                    "vence" => $metas_orden['_openpay_tienda_vence'][0],
+                    "pdf" => $metas_orden[$meta_key_pdf_tienda][0],
+                    "vence" => $metas_orden[$meta_key_tienda_vence][0],
 
                     "aceptar_rechazar" => $aceptar_rechazar,
                 ),
