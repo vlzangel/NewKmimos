@@ -146,8 +146,6 @@ class PayU {
 			json_encode($cofg, JSON_UNESCAPED_UNICODE)
 		);
  
- 	print_r($cofg);
-
 		return json_decode($r);
 	}
 
