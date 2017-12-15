@@ -139,6 +139,7 @@
 				$charge = $payu->Autorizacion( $PayuP );
 				if( $charge->code == 'SUCCESS' ){
 					$pdf = $charge->transactionResponse->extraParameters->URL_PAYMENT_RECEIPT_PDF;
+					$pdf .= '&extra=reference/'.$charge->transactionResponse->extraParameters->REFERENCE;
 					$state = $charge->transactionResponse->responseCode;
 				}			
 	        } catch (Exception $e) {
