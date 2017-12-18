@@ -249,3 +249,85 @@ div#tienda_box img {
     background: white;
     width: 100%;
 }
+
+/* FLASH */
+
+    .vlz_bloquear{
+        display: none;
+    }
+
+    .vlz_NO_bloquear_msg{
+        display: none;
+    }
+
+    .vlz_bloquear_msg{
+        border: solid 2px #d06314;
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 20px;
+        margin: 20px 0px 0px;
+        border-radius: 35px;
+    }
+
+    .vlz_bloquear_msg a{
+        color: #FFF;
+        font-weight: 600;
+    }
+
+    .alerta_flash {
+        text-align: center;
+        color: #000;
+        font-family: 'Lato';
+    }
+
+    .alerta_flash_importante{
+        background-repeat: no-repeat;
+        background-size: 30px;
+        background-position: left 7px;
+        background-image: url(../images/alerta_flash/advertencia_flash.png);
+        padding: 3px 0px 0px 35px;
+        display: inline-block;
+        font-weight: 800;
+        font-size: 25px;
+        vertical-align: top;
+    }
+
+    .alerta_flash_mensaje {
+        font-size: 13px;
+        color: #d06314;
+        margin: 10px 0px;
+    }
+
+    .alerta_flash_pasos {
+        overflow: hidden;
+    }
+
+    .alerta_flash_paso {
+        float: left;
+        width: 33.33333333%;
+    }
+
+    .alerta_flash_paso_titulo {
+        font-size: 15px;
+        color: #d06314;
+        font-weight: 600;
+    }
+
+    .alerta_flash_paso_img {
+        box-sizing: border-box;
+        padding: 5px;
+    }
+
+    .alerta_flash_paso_img img {
+        max-width: 100px;
+        width: 100%;
+    }
+
+    .alerta_flash_paso_txt {
+        font-size: 14px;
+        color: #777;
+        font-weight: 600;
+        line-height: normal;
+        padding: 3px;
+    }

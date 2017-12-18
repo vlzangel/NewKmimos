@@ -149,8 +149,22 @@
                     <option value=1>Si</option>
                 ';
             }
-
             $destacado = "<select id='destacado' name='destacado'>{$destacado_opt}</select>";
+
+            $flash = "";
+            $atributos = unserialize($cuidador->atributos);
+            if( isset($atributos["flash"]) && $atributos["flash"] == "1" ){
+                $destacado_opt = '
+                    <option value=1>Si</option>
+                    <option value=0>No</option>
+                ';
+            }else{
+                $destacado_opt = '
+                    <option value=0>No</option>
+                    <option value=1>Si</option>
+                ';
+            }
+            $flash = "<select id='flash' name='flash'>{$destacado_opt}</select>";
 
             $HTML .= "
                 <div class='vlz_contenedor_datos_cuidador'>
@@ -177,6 +191,7 @@
                         <div class='info_box'>
                             <input type='hidden' id='cuidador' name='cuidador' value='{$cuidador->id}' />
                             <div><strong>Destacado:</strong> {$destacado}</div>
+                            <div><strong>Flash:</strong> {$flash}</div>
 
                             <div class='vlz_contenedor_botones'>
                                 <span id='actualizar_btn' class='vlz_activar'>Actualizar</span>
@@ -198,7 +213,8 @@
                                 '".get_home_url()."/wp-content/plugins/kmimos/dashboard/setup/php/update_cuidador.php', 
                                 {
                                     cuidador: jQuery('#cuidador').val(),
-                                    destacado: jQuery('#destacado').val()
+                                    destacado: jQuery('#destacado').val(),
+                                    flash: jQuery('#flash').val()
                                 },
                                 function( data ) {
                                     jQuery('#actualizar_btn').html('Actualizar');
@@ -213,82 +229,6 @@
             echo comprimir_styles($HTML);
         }
     }
-
-/*    if(!function_exists('kmimos_active_petsitter')){
-        function kmimos_active_petsitter($post, $params) {
-            $values=$params['args'];
-
-            global $wpdb;
-
-            $usuario = $wpdb->get_row("SELECT * FROM wp_users WHERE ID = ".$post->post_author);
-            $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
-
-            if( $cuidador->hospedaje_desde > 0 ){
-                if( $post->post_status == 'pending' ){
-                    $link = "<a class='vlz_activar' href='".getTema()."/procesos/cuidador/activar_cuidadores.php?p=".$post->ID."&a=1&u=".$post->post_author."'>Activar Cuidador</a>";
-                }else{
-                    $link = "<a class='vlz_desactivar' href='".getTema()."/procesos/cuidador/activar_cuidadores.php?p=".$post->ID."&a=0&u=".$post->post_author."'>Desactivar Cuidador</a>";
-                }
-            }else{
-                $link = "Este cuidador no tiene precios de hospedaje, no puede ser activado";
-            }
-               
-
-            $fecha = strtotime($usuario->user_registered);
-            $hora = date("H:i", $fecha);
-            $fecha = "El ".date("d/m/Y", $fecha)." a las ".$hora;
-
-            echo "
-                <style>
-                    .vlz_contenedor_datos_cuidador *{
-                        font-size: 14px;
-                    }
-
-                    .vlz_contenedor_datos_cuidador div{
-                        padding: 4px 0px;
-                    }
-                    .vlz_contenedor_datos_cuidador strong{
-                        width: 80px;
-                        display: inline-block;
-                    }
-                    .vlz_activar{
-                        background: #59c9a8;
-                        padding: 5px 20px;
-                        border-radius: 4px;
-                        color: #FFF;
-                        text-decoration: none;
-                    }
-                    .vlz_desactivar{
-                        background: #ca4e4e;
-                        padding: 5px 20px;
-                        border-radius: 4px;
-                        color: #FFF;
-                        text-decoration: none;
-                    }
-                    .vlz_contenedor_botones{
-                        text-align: right;
-                        padding: 13px 0px 0px !important;
-                        border-top: solid 1px #CCC;
-                        margin-top: 10px;
-                    }
-                    #edit-slug-box,
-                    #post-body-content,
-                    .page-title-action,
-                    #admin-post-nav{
-                        display: none;
-                    }
-                </style>
-                <div class='vlz_contenedor_datos_cuidador'>
-                    <div><strong>Nombre:</strong> {$cuidador->nombre} {$cuidador->apellido}</div>
-                    <div><strong>IFE:</strong> {$cuidador->dni}</div>
-                    <div><strong>E-Mail:</strong> {$cuidador->email}</div>
-                    <div><strong>Tel&eacute;fono:</strong> {$cuidador->telefono}</div>
-                    <div><strong>Registrado:</strong> {$fecha}</div>
-                    <div class='vlz_contenedor_botones'>{$link}</div>
-                </div>
-            ";
-        }
-    }*/
 
     if(!function_exists('kmimos_save_details_of_petsitter')){
         function kmimos_save_details_of_petsitter($post_id) {

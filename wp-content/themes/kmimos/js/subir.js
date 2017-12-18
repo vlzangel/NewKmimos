@@ -28,7 +28,7 @@ function subirImgs(evt){
                                 jQuery("#img_container").append( d(
                                     "<div class='img_box'>"+
                                         "<div class='img_box_interno'>"+
-                                            "<img src='"+img_reducida+"' class='img' id='img_subir_"+IMGS_CONT_INTERNO+"' data-index="+IMGS_CONT_INTERNO+" >"+
+                                            "<img src='"+img_reducida+"' class='img_vista' id='img_subir_"+IMGS_CONT_INTERNO+"' data-index="+IMGS_CONT_INTERNO+" >"+
                                             '<i class="fa fa-minus img_quitar" aria-hidden="true"></i>'+
                                             '<i class="fa fa-undo img_rotar_izq" data-id="img_subir_'+IMGS_CONT_INTERNO+'" aria-hidden="true"></i>'+
                                             '<i class="fa fa-repeat img_rotar_der" data-id="img_subir_'+IMGS_CONT_INTERNO+'" aria-hidden="true"></i>'+
@@ -94,7 +94,7 @@ jQuery( document ).ready(function() {
 
     jQuery("#enviar_ico").on("click", function(e){
 
-        var IMGS = ""; var CONT = 1;
+        /*var IMGS = ""; var CONT = 1;
         jQuery( "#img_container img" ).each(function( index ) {
             IMGS += d( "<img src='"+jQuery(this).attr("src")+"' class='img' id='base_"+jQuery(this).attr("data-index")+"' >" );
             CONT++;
@@ -105,7 +105,7 @@ jQuery( document ).ready(function() {
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         var img = document.getElementById("fondo");
-        ctx.drawImage(img, 0, 0, 600, 430);
+        ctx.drawImage(img, 0, 0, 600, 495);
 
         jQuery( "#img_container img" ).each(function( index ) {
             var img = document.getElementById( jQuery(this).attr("id") );
@@ -117,7 +117,7 @@ jQuery( document ).ready(function() {
                 jQuery( "#base_"+i )[0].offsetWidth, 
                 jQuery( "#base_"+i )[0].offsetHeight
             );
-        });
+        });*/
 
         cargar_imagenes();
 
@@ -134,11 +134,9 @@ function cargar_imagenes(){
 
     jQuery.post( HOME+"procesos/reservar/subir_fotos.php", {
         imgs: imgs,
-        collage: jQuery( "#myCanvas" )[ 0 ].toDataURL("image/jpg"),
         id_reserva: ID_RESERVA,
         periodo: PERIODO
     }, function( data ) {
-        console.log( data );
-        jQuery(".cargando_container").css("display", "none");
+        location.reload();
     });
 }
