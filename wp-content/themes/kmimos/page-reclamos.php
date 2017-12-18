@@ -230,7 +230,7 @@
 				<div class="col-sm-8">				
 					<div class="checkbox">
 					    <label>
-					      <input type="checkbox"> Declaro ser el titular del servicio y acepto el contenido del presente formulario manifestando bajo Declaración Jurada la veracidad de los hechos descritos.
+					      <input type="checkbox" name='terminos'> Declaro ser el titular del servicio y acepto el contenido del presente formulario manifestando bajo Declaración Jurada la veracidad de los hechos descritos.
 					    </label>
 					</div>
 				</div>
@@ -238,7 +238,7 @@
 					<button class="km-btn" id="reclamo_enviar">ENVIAR</button>
 				</div>
 
-				<div class="col-md-12 alert alert-warning hidden" id="noti"></div>
+				<div class="col-md-12 alert hidden" id="noti"></div>
 
 			</article>
 		</div>
