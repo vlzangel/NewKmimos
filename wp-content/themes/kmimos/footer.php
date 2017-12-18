@@ -42,6 +42,7 @@ $HTML = '
                         <p><a href="'.get_home_url().'/terminos-y-condiciones/">Términos y Condiciones</a></p>
                         <p><a href="'.get_home_url().'">Nuestros Aliados</a></p>
                         <p><a href="'.get_home_url().'/contacta-con-nosotros/">Contáctanos</a></p>                   
+                        <p><a href="'.get_home_url().'/reclamaciones/">Reclamos</a></p>                   
                     </div>
 
                     <div class="col-xs-12 col-sm-3">
