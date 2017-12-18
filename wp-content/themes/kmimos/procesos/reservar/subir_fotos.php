@@ -9,7 +9,7 @@
 	extract($_POST);
 
 	function procesar_img($id, $periodo, $dir, $sImagen, $es_collage = false){
-		$name = $id.".jpg";
+		$name = $id.".png";
 	    $path = $dir.$name;
 
 	    @file_put_contents($path, $sImagen);
@@ -31,13 +31,8 @@
 	        break;
 	    }
 
-	    if( $es_collage ){
-		    $nWidth  = 600;
-		    $nHeight = 430;
-	    }else{
-		    $nWidth  = 270;
-		    $nHeight = 190;
-	    }
+	    $nWidth  = 600;
+	    $nHeight = 495;
 
 	    $aSize = @getImageSize( $path );
 
@@ -49,10 +44,9 @@
 
 	    $aThumb = @imageCreateTrueColor( $nWidth, $nHeight );
 
-	    @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight,
-	    $aSize[0], $aSize[1] );
+	    @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
 
-	    @imagejpeg( $aThumb, $path );
+	    @imagepng( $aThumb, $path );
 
 	    @imageDestroy( $aImage ); @imageDestroy( $aThumb );
 
@@ -88,15 +82,11 @@
     $hoy = date("Y-m-d");
 
     if( $periodo == $hoy."_1" ){
-    	echo "UPDATE fotos SET subio_12 = 1 WHERE reserva = $id_reserva AND fecha = '{$hoy}';";
     	$db->query("UPDATE fotos SET subio_12 = 1 WHERE reserva = $id_reserva AND fecha = '{$hoy}';");
     }else{
-    	echo "UPDATE fotos SET subio_06 = 1 WHERE reserva = $id_reserva AND fecha = '{$hoy}';";
     	$db->query("UPDATE fotos SET subio_06 = 1 WHERE reserva = $id_reserva AND fecha = '{$hoy}';");
     }
     
-	// echo json_encode($RUTAS);
-
 	exit;
 
 ?>

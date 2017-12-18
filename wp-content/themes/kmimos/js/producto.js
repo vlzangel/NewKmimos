@@ -7,6 +7,8 @@ function initCarrito(){
 		CARRITO["fechas"] = {
 			"inicio" : "",
 			"fin" : "",
+			"checkin" : "",
+			"checkout" : "",
 			"duracion" : ""
 		};
 
@@ -72,6 +74,30 @@ function validar(status, txt){
 }
 
 function calcular(){
+	
+	if( FLASH == "NO" ){
+		if( jQuery("#checkin").val() == "" ){
+			jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
+			jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
+			jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
+		}else{
+			if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+				jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
+				jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
+				jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
+			}else{
+				if( jQuery("#checkin").val() == MANANA && HORA >= 18 ){
+					jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
+					jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
+					jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
+				}else{
+					jQuery("#vlz_msg_bloqueo").addClass("vlz_NO_bloquear_msg");
+					jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
+					jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
+				}
+			}
+		}
+	}
 
 	if( CARRITO["pagar"]["id_fallida"] != 0 ){
 		CARRITO["pagar"]["reconstruir"] = true;
@@ -144,38 +170,47 @@ function calcular(){
 		error += "</ul>";
 	}
 
-	var dias = 0;
-	if( CARRITO[ "fechas" ][ "inicio" ] == undefined || CARRITO[ "fechas" ][ "inicio" ] == "" ){
-		error = "Ingrese la fecha de inicio";
-	}else{
-		if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
-			error = "Ingrese la fecha de finalizaci&oacute;n";
+	if( error == "" ){
+		var dias = 0;
+		if( CARRITO[ "fechas" ][ "inicio" ] == undefined || CARRITO[ "fechas" ][ "inicio" ] == "" ){
+			error = "Ingrese la fecha de inicio";
 		}else{
-			var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
-			var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
-
-			var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
-
-			var diff = fechaFin - fechaInicio;
-			dias = parseInt( diff/(1000*60*60*24) );
-	    }
-
-		if( tipo_servicio != "hospedaje" ){
-			if( dias == 0 ){
-				dias=1;
+			if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
+				error = "Ingrese la fecha de finalizaci&oacute;n";
 			}else{
-				dias += 1;
-			}
-		}else{
-			if( dias == 0 ){
-				error = "Fecha de finalizaci&oacute;n debe ser diferente a la de inicio";
-			}
-		}
+				var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
+				var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
+				var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
+				var diff = fechaFin - fechaInicio;
+				dias = parseInt( diff/(1000*60*60*24) );
+		    }
 
-        CARRITO[ "fechas" ][ "duracion" ] = dias;
+			if( tipo_servicio != "hospedaje" ){
+				if( dias == 0 ){
+					dias=1;
+				}else{
+					dias += 1;
+				}
+			}else{
+				if( dias == 0 ){
+					error = "Fecha de finalizaci&oacute;n debe ser diferente a la de inicio";
+				}
+			}
+	        CARRITO[ "fechas" ][ "duracion" ] = dias;
+		}
 	}
 
-	
+/*	if( error == "" ){
+		if( CARRITO[ "fechas" ][ "checkin" ] == undefined || CARRITO[ "fechas" ][ "checkin" ] == "" ){
+			error = "Ingrese la hora de checkin";
+		}
+	}
+
+	if( error == "" ){
+		if( CARRITO[ "fechas" ][ "checkout" ] == undefined || CARRITO[ "fechas" ][ "checkout" ] == "" ){
+			error = "Ingrese la hora de checkout";
+		}
+	}*/
 
 	var cant = 0, duracion = 0;
 	jQuery.each( CARRITO[ "cantidades" ], function( key, valor ) {
@@ -419,11 +454,8 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-
-			console.log( data );
-
+			/*console.log( data );*/
 			if( data.error != "" && data.error != undefined ){
-
 				if( data.tipo_error != "3003" ){
 					var error = "Error procesando la reserva<br>";
 			    	error += "Por favor intente nuevamente.<br>";
@@ -432,25 +464,19 @@ function pagarReserva(id_invalido = false){
 					var error = "Error procesando la reserva<br>";
 			    	error += "La tarjeta no tiene fondos suficientes.<br>";
 				}
-
 		    	jQuery(".errores_box").html(error);
 				jQuery(".errores_box").css("display", "block");
-
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
-
 				CARRITO["pagar"]["id_fallida"] = data.error;
 			}else{
 				CARRITO["pagar"]["id_fallida"] = 0;
-
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
-
 				location.href = RAIZ+"/finalizar/"+data.order_id;
 			}
-
 		}, "json"
 	).fail(function(e) {
 
@@ -516,29 +542,49 @@ function mostrarCupones(){
 
 function calcularDescuento(){
 	var descuentos = 0;
+	var saldo = 0;
 	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
 		if( cupon[1] == "" ){
 			cupon[1] = 0;
 		}
-		descuentos += parseFloat(cupon[1]);
+		if( String(cupon[0]).toLowerCase().search("saldo") != -1 ){
+			saldo += parseFloat(cupon[1]);
+        }else{
+			descuentos += parseFloat(cupon[1]);
+        }
 	});
-
-	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 
 	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
 	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
-	if( pre17 <= descuentos ){
-		if( pre17 < descuentos ){
-			var reciduo = pre17-descuentos;
-			pagoCuidador += reciduo;
-		}
-		pre17 = 0;
+
+	var reciduo_0 = 0;
+	if( pagoCuidador >= descuentos ){
+		pagoCuidador -= descuentos;
 	}else{
-		pre17 -= descuentos;
+		reciduo_0 = descuentos-pagoCuidador; /* Reciduo de exceso de cupones normales, se pasa al saldo */
+		pagoCuidador = 0;
+	}
+
+	var reciduo = 0;
+	if( pre17 >= saldo ){
+		pre17 -= (saldo+reciduo_0);
+	}else{
+		reciduo = (saldo+reciduo_0)-pre17;
+		pre17 = 0;
+	}
+
+	if( pagoCuidador >= reciduo ){
+		pagoCuidador -= reciduo;
 	}
 
 	jQuery(".pago_17").html( "$" + numberFormat( pre17 ) );
 	jQuery(".pago_cuidador").html( "$" + numberFormat(pagoCuidador) );
+
+	descuentos = descuentos+saldo;
+
+	CARRITO["pagar"]["deposito"] = pre17;
+	CARRITO["pagar"]["pagoCuidador"] = pagoCuidador;
+	CARRITO["pagar"]["descuento_total"] = descuentos;
 
 	if( jQuery(".km-option-deposit").hasClass("active") ){
 		if( pre17 == 0 ){
@@ -568,6 +614,7 @@ function calcularDescuento(){
 	}
 	
 	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
+	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 }
 
 function aplicarCupon(cupon = ""){
@@ -654,6 +701,16 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+	/*jQuery("#hora_checkin").on("change", function(){
+		CARRITO["fechas"]["checkin"] = jQuery("#hora_checkin").val();
+		calcular();
+	});
+
+	jQuery("#hora_checkout").on("change", function(){
+		CARRITO["fechas"]["checkout"] = jQuery("#hora_checkout").val();
+		calcular();
+	});*/
 
 	jQuery(".km-option-deposit").click();
 

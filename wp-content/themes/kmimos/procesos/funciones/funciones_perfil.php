@@ -8,7 +8,7 @@
 	    				$respuesta .= '<a data-accion="ver/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-info" aria-hidden="true"></i> Ver</a>';
     				break;
 	    			case 'subir_fotos':
-	    				$respuesta .= '<a data-accion="subir/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir Fotos</a>';
+	    				$respuesta .= '<a data-accion="'.get_home_url().'/perfil-usuario/reservas/subir/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir Fotos</a>';
     				break;
 	    			case 'confirmar':
 	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
@@ -80,7 +80,7 @@
 		                	$remanente = '
 		                		<div class="item_desglose vlz_bold">
 		                			<div style="color: #6b1c9b;" >Monto Restante a Pagar en EFECTIVO al cuidador</div>
-		                			<span style="color: #6b1c9b;">$'.number_format( ($reserva["desglose"]["remaining"]-$reserva["desglose"]["descuento"]), 2, ',', '.').'</span>
+		                			<span style="color: #6b1c9b;">$'.number_format( ($reserva["desglose"]["remaining"]), 2, ',', '.').'</span>
 		                		</div>
 		                	';
 		                	$pago = '
@@ -100,60 +100,113 @@
 
 	                	}
 
-		                $table.='
-		                <div class="vlz_tabla">
-		                	<div class="vlz_img">
-		                		<span style="background-image: url('.$reserva["foto"].');"></span>
-		                	</div>
-		                	<div class="vlz_tabla_superior">
-			                	<div class="vlz_tabla_cuidador vlz_celda">
-			                		<span>Servicio</span>
-			                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
+	                	if( isset($reserva["desplegado"]) ){
+							$table.='
+			                <div class="vlz_tabla vlz_desplegado">
+			                	<div class="vlz_img">
+			                		<span style="background-image: url('.$reserva["foto"].');"></span>
 			                	</div>
-			                	<div class="vlz_tabla_cuidador vlz_celda">
-			                		<span>Fecha</span>
-			                		<div>'.$reserva["inicio"].' <b> > </b> '.$reserva["fin"].'</div>
+			                	<div class="vlz_tabla_superior">
+				                	<div class="vlz_tabla_cuidador vlz_celda">
+				                		<span>Servicio</span>
+				                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
+				                	</div>
+				                	<div class="vlz_tabla_cuidador vlz_celda">
+				                		<span>Fecha</span>
+				                		<div>'.$reserva["inicio"].' <b> > </b> '.$reserva["fin"].'</div>
+				                	</div>
+				                	<div class="vlz_tabla_cuidador vlz_cerrar">
+				                		<span>Reserva</span>
+				                		<div>'.$reserva["id"].'</div>
+				                	</div>
 			                	</div>
-			                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno">
-			                		'.$cancelar.'
-			                		<a class="ver_reserva_init">Ver Reserva</a>
+			                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
+			                		<a class="ver_reserva_init_fuera">Ver Reserva</a>
 			                	</div>
-			                	<div class="vlz_tabla_cuidador vlz_cerrar">
-			                		<span>Reserva</span>
-			                		<div>'.$reserva["id"].'</div>
-			                	</div>
-		                	</div>
-	                		<i class="fa fa-times ver_reserva_init_closet" aria-hidden="true"></i>
-		                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
-		                		<a class="ver_reserva_init_fuera">Ver Reserva</a>
-		                	</div>
-		                	<div class="vlz_tabla_inferior">
-		                		
-		                		<div class="desglose_reserva">
-			                		<div class="item_desglose vlz_bold vlz_solo_movil">
-			                			<div>RESERVA</div>
-			                			<span>'.$reserva["id"].'</span>
+			                	<div class="vlz_tabla_inferior">
+			                		
+			                		<div class="desglose_reserva">
+				                		<div class="item_desglose vlz_bold vlz_solo_movil">
+				                			<div>RESERVA</div>
+				                			<span>'.$reserva["id"].'</span>
+				                		</div>
+				                		<div class="item_desglose vlz_bold">
+				                			<div>MÉTODO DE PAGO</div>
+				                			<span>'.$reserva["desglose"]["tipo"].'</span>
+				                		</div>
+				                		'.$remanente.'
+				                		'.$descuento.'
+				                		'.$pago.'
 			                		</div>
-			                		<div class="item_desglose vlz_bold">
-			                			<div>MÉTODO DE PAGO</div>
-			                			<span>'.$reserva["desglose"]["tipo"].'</span>
+			                		<div class="total_reserva">
+				                		<div class="item_desglose">
+				                			<div>TOTAL</div>
+				                			<span>$'.number_format( $reserva["desglose"]["total"]+0, 2, ',', '.').'</span>
+				                		</div>
 			                		</div>
-			                		'.$remanente.'
-			                		'.$descuento.'
-			                		'.$pago.'
-		                		</div>
-		                		<div class="total_reserva">
-			                		<div class="item_desglose">
-			                			<div>TOTAL</div>
-			                			<span>$'.number_format( $reserva["desglose"]["total"], 2, ',', '.').'</span>
-			                		</div>
-		                		</div>
 
-		                		<div class="ver_reserva_botones">
-			                		'.$botones.'
-		                		</div>
-		                	</div>
-		                </div>';
+			                		<div class="ver_reserva_botones">
+				                		'.$botones.'
+			                		</div>
+			                	</div>
+			                </div>';
+	                	}else{
+	                		$table.='
+			                <div class="vlz_tabla">
+			                	<div class="vlz_img">
+			                		<span style="background-image: url('.$reserva["foto"].');"></span>
+			                	</div>
+			                	<div class="vlz_tabla_superior">
+				                	<div class="vlz_tabla_cuidador vlz_celda">
+				                		<span>Servicio</span>
+				                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
+				                	</div>
+				                	<div class="vlz_tabla_cuidador vlz_celda">
+				                		<span>Fecha</span>
+				                		<div>'.$reserva["inicio"].' <b> > </b> '.$reserva["fin"].'</div>
+				                	</div>
+				                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno">
+				                		'.$cancelar.'
+				                		<a class="ver_reserva_init">Ver Reserva</a>
+				                	</div>
+				                	<div class="vlz_tabla_cuidador vlz_cerrar">
+				                		<span>Reserva</span>
+				                		<div>'.$reserva["id"].'</div>
+				                	</div>
+			                	</div>
+		                		<i class="fa fa-times ver_reserva_init_closet" aria-hidden="true"></i>
+			                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
+			                		<a class="ver_reserva_init_fuera">Ver Reserva</a>
+			                	</div>
+			                	<div class="vlz_tabla_inferior">
+			                		
+			                		<div class="desglose_reserva">
+				                		<div class="item_desglose vlz_bold vlz_solo_movil">
+				                			<div>RESERVA</div>
+				                			<span>'.$reserva["id"].'</span>
+				                		</div>
+				                		<div class="item_desglose vlz_bold">
+				                			<div>MÉTODO DE PAGO</div>
+				                			<span>'.$reserva["desglose"]["tipo"].'</span>
+				                		</div>
+				                		'.$remanente.'
+				                		'.$descuento.'
+				                		'.$pago.'
+			                		</div>
+			                		<div class="total_reserva">
+				                		<div class="item_desglose">
+				                			<div>TOTAL</div>
+				                			<span>$'.number_format( $reserva["desglose"]["total"]+0, 2, ',', '.').'</span>
+				                		</div>
+			                		</div>
+
+			                		<div class="ver_reserva_botones">
+				                		'.$botones.'
+			                		</div>
+			                	</div>
+			                </div>';
+	                	}
+			                
 	                }
 
 	                $table.='</div>';

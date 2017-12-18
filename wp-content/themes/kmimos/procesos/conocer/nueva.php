@@ -16,6 +16,14 @@
 	    $cuidador_post   = get_post($post_id);
 	    $nombre_cuidador = $cuidador_post->post_title;
 
+		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$post_id."'");
+		if( $cuidador->activo == 0 ){
+			$data = array(
+				'error' => 'Error, este cuidador esta inactivo!'
+			);
+			echo json_encode($data);
+			exit;
+		}
 
 	    $datos_cuidador  = get_user_meta($cuidador_post->post_author);
 	    $telf_cuidador = $datos_cuidador["user_phone"][0];
@@ -84,15 +92,13 @@
 			'meeting_time'          => $_POST['meeting_time'],
 			'meeting_where'         => $_POST['meeting_where'],
 			'pet_ids'               => serialize($pet_ids),
-			'service_start'         => date('d-m-Y', $_POST['service_start']),
-			'service_end'           => date('d-m-Y', $_POST['service_end']),
+			'service_start'         => $_POST['service_start'],
+			'service_end'           => $_POST['service_end'],
 		);
 
 		foreach($new_postmeta as $key => $value){
 			update_post_meta($request_id, $key, $value);
 		}
-
-		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$post_id."'");
 
 		$email_cuidador = $cuidador->email;
 		$email_cliente  = $current_user->user_email;
@@ -161,11 +167,10 @@
 
 				}
 
-				$nacio = strtotime(date($data_mascota['birthdate_pet'][0]));
-				$diff = abs(strtotime(date('Y-m-d')) - $nacio);
-				$years = floor($diff / (365*60*60*24));
-				$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-				$edad = $years.' año(s) '.$months.' mes(es)';
+				$data_mascota['birthdate_pet'][0] = str_replace("/", "-", $data_mascota['birthdate_pet'][0]);
+                $anio = strtotime($data_mascota['birthdate_pet'][0]);
+                $edad_time = strtotime(date("Y-m-d"))-$anio;
+                $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
 
 				$raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
 
@@ -299,7 +304,8 @@
 			'n_solicitud' => $request_id,
 			'nombre' => $nombre_cuidador,
 			'telefono' => $telf_cuidador,
-			'email' => $email_cuidador
+			'email' => $email_cuidador,
+			'error' => ''
 		);
 
 		echo json_encode($data);

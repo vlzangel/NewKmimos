@@ -100,6 +100,7 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Total a pagar ($)</th>
 			      <th>Monto Pagado ($)</th>
 			      <th>Monto Remanente ($)</th>
+			      <th>Cupones</th>
 			      <th># Pedido</th>
 			      <th>Observaci&oacute;n</th>
 			    </tr>
@@ -215,6 +216,20 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						}
 
+						$cupones = array();
+
+						$_cupones = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_items WHERE order_item_type = 'coupon' AND order_id = ".$reserva->nro_pedido);
+						foreach ($_cupones as $key => $value) {
+							$valor = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE meta_key = 'discount_amount' AND order_item_id = ".$value->order_item_id);
+							if( $valor+0 > 0 ){
+								$cupones[] = $value->order_item_name." ($".currency_format($valor, "", "",".").")";
+							}
+						}
+						if( count($cupones) > 0 ){
+							$cupones = implode(", ", $cupones);
+						}else{
+							$cupones = "N/A";
+						}
 				  	?>
 				    <tr>
 			    	<th class="text-center"><?php echo ++$count; ?></th>
@@ -261,6 +276,7 @@ $reservas = getReservas($_desde, $_hasta);
 					<th><?php echo currency_format($meta_reserva['_booking_cost'], "", "","."); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_order_total'], "", "","."); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining'], "", "","."); ?></th>
+					<th> <?php echo $cupones; ?> </th>
 					<th><?php echo $reserva->nro_pedido; ?></th>
 					<th><?php echo $estatus['sts_largo']; ?></th>
 

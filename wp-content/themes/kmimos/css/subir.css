@@ -46,10 +46,15 @@
 
 .boton{
 	position: relative;
-	text-align: center;
-	display: inline-block;
-	background-color: #333;
-	cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    background-color: #333;
+    cursor: pointer;
+    color: #FFF;
+    text-decoration: none !important;
+    padding: 10px 15px;
+    height: 40px;
+    font-size: 15px;
 }
 
 .boton input{
@@ -65,13 +70,28 @@
 .boton i{
 	color: #FFF;
 	font-size: 20px;
-	padding: 10px 15px;
+	vertical-align: middle;
+}
+
+.boton span{
+	color: #FFF;
+	padding: 0px 20px 0px 0px;
+}
+
+.boton:hover *{
+	color: #59c9a8;
 }
 
 .img{
     margin: 4px;
 	max-width: 270px;
     max-height: 182px;
+}
+
+.img_vista{    
+	margin: 4px;
+    max-width: 90%;
+    max-height: 90%;
 }
 
 .img_collage{
@@ -153,4 +173,13 @@
     margin-top: 5px;
     background: #ff8989;
     color: #600808;
+}
+
+.vlz_resaltar {
+	background: #59c9a8;
+    padding: 0px 10px;
+}
+
+.vlz_resaltar a {
+    color: #FFF !important;
 }
