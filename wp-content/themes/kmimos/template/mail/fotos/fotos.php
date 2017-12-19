@@ -35,7 +35,7 @@
 		    </tr>
 		</table>
 
-		<div style="margin-bottom: 45px;">
+		<div style="max-width: 400px; margin: 0px auto 45px;">
 			[FOTOS]
 		</div>
 
