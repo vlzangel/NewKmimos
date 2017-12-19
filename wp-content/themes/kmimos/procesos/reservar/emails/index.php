@@ -54,8 +54,8 @@
 		$temp = str_replace('[TAMANO]', strtoupper($variacion[1]), $desglose_plantilla);
 		$temp = str_replace('[CANTIDAD]', $variacion[0]." mascota".$plural, $temp);
 		$temp = str_replace('[TIEMPO]', $variacion[2], $temp);
-		$temp = str_replace('[PRECIO_C_U]', "$ ".$variacion[3], $temp);
-		$temp = str_replace('[SUBTOTAL]', "$ ".$variacion[4], $temp);
+		$temp = str_replace('[PRECIO_C_U]', get_region('mon_der').' '.$variacion[3], $temp);
+		$temp = str_replace('[SUBTOTAL]', get_region('mon_der').' '.$variacion[4], $temp);
 		$desglose .= $temp;
 	}
 
@@ -66,8 +66,8 @@
     foreach ($servicio["adicionales"] as $adicional) {
 		$temp = str_replace('[SERVICIO]', $adicional[0], $adicionales_desglose_plantilla);
 		$temp = str_replace('[CANTIDAD]', $adicional[1], $temp);
-		$temp = str_replace('[PRECIO_C_U]', "$ ".$adicional[2], $temp);
-		$temp = str_replace('[SUBTOTAL]', "$ ".$adicional[3], $temp);
+		$temp = str_replace('[PRECIO_C_U]', get_region('mon_der').' '.$adicional[2], $temp);
+		$temp = str_replace('[SUBTOTAL]', get_region('mon_der').' '.$adicional[3], $temp);
 		$adicionales .= $temp;
 	}
 
@@ -84,7 +84,7 @@
     $transporte = "";
     foreach ($servicio["transporte"] as $valor) {
 		$temp = str_replace('[SERVICIO]', $valor[0], $transporte_desglose_plantilla);
-		$temp = str_replace('[SUBTOTAL]', $valor[2], $temp);
+		$temp = str_replace('[SUBTOTAL]', get_region('mon_der').' '.$valor[2], $temp);
 		$transporte .= $temp;
 	}
 
@@ -139,8 +139,8 @@
     	$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
 
     	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
-        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
+        $totales_plantilla = str_replace('[TOTAL]', get_region('mon_der').' '.number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
+    	$totales_plantilla = str_replace('[PAGO]', get_region('mon_der').' '.number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
 
     	$MONTO = number_format( $servicio["desglose"]["deposit"], 2, ',', '.');
@@ -148,8 +148,8 @@
 
     	$deposito_plantilla = str_replace('[REMANENTE]', number_format( 0, 2, ',', '.'), $deposito_plantilla);
 
-        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.'), $totales_plantilla);
+        $totales_plantilla = str_replace('[TOTAL]', get_region('mon_der').' '.number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
+    	$totales_plantilla = str_replace('[PAGO]', get_region('mon_der').' '. number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
 
     	$MONTO = number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.');

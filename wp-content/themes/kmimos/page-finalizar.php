@@ -12,7 +12,7 @@
 
 		global $wpdb;
 		
-		$moneda_signo = get_region('moneda_cod');
+		$moneda_signo = get_region('mon_der')."  ";
 
 		$orden_id = vlz_get_page();
 
@@ -151,16 +151,16 @@
 	                <strong>Totales</strong>
 	                <div class='item'>
 	                    <div class='pago_en_efectivo'>Monto a pagar en EFECTIVO al cuidador</div>
-	                    <span>".number_format( ($data_reserva["desglose"]["remaining"]), 2, ',', '.')."</span>
+	                    <span>".$moneda_signo.number_format( ($data_reserva["desglose"]["remaining"]), 2, ',', '.')."</span>
 	                </div>
 	                <div class='item'>
 	                    <div>Pagado</div>
-	                    <span>".number_format( $data_reserva["desglose"]["deposit"], 2, ',', '.')."</span>
+	                    <span>".$moneda_signo.number_format( $data_reserva["desglose"]["deposit"], 2, ',', '.')."</span>
 	                </div>
 	                ".$descuento."
 	                <div class='item total'>
 	                    <div>Total</div>
-	                    <span>".number_format( $data_reserva["desglose"]["total"], 2, ',', '.')."</span>
+	                    <span>".$moneda_signo.number_format( $data_reserva["desglose"]["total"], 2, ',', '.')."</span>
 	                </div>
 	            </div>
 	        ";
@@ -172,12 +172,12 @@
 	                <strong>Totales</strong>
 	                <div class='item'>
 	                    <div>Pagado</div>
-	                    <span>".number_format( $data_reserva["desglose"]["deposit"]-$data_reserva["descuento"], 2, ',', '.')."</span>
+	                    <span>".$moneda_signo.number_format( $data_reserva["desglose"]["deposit"]-$data_reserva["descuento"], 2, ',', '.')."</span>
 	                </div>
 	                ".$descuento."
 	                <div class='item total'>
 	                    <div>Total</div>
-	                    <span>".number_format( $data_reserva["desglose"]["deposit"], 2, ',', '.')."</span>
+	                    <span>".$moneda_signo.number_format( $data_reserva["desglose"]["deposit"], 2, ',', '.')."</span>
 	                </div>
 	            </div>
 	        ";
