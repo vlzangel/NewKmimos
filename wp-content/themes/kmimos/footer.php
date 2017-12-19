@@ -148,6 +148,11 @@ if( !isset($no_display_footer)  ){
                         <i class='fa fa-times vlz_cerrar_modal' aria-hidden='true'></i>
                         Recuerda subir las fotos diarias de tus huéspedes:<br>
                         Ingresa en tus reservas activas y da click en <strong>“Subir fotos”</strong>
+
+                        <div class='botonera_modal_subir'>
+                            <a href='#' id='btn_modal_subir_tarde'>M&aacute;s Tarde</a>
+                            <a href='".get_home_url()."/perfil-usuario/fotos/' id='btn_modal_subir'>Subir Fotos</a>
+                        </div>
                     </div>
                 </div>
             </div>

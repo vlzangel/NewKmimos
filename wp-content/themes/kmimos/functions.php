@@ -1,4 +1,41 @@
 <?php
+	
+	function tiene_fotos_por_subir($user_id, $login = false){
+		global $wpdb;
+
+  		if( !isset($_SESSION) ){ session_start(); }
+
+  		$sql = "
+			SELECT 
+				count(*)
+			FROM 
+				wp_posts AS posts
+			LEFT JOIN wp_postmeta AS metas_reserva ON ( posts.ID = metas_reserva.post_id AND metas_reserva.meta_key='_booking_product_id' )
+			LEFT JOIN wp_postmeta AS inicio ON ( posts.ID = inicio.post_id AND inicio.meta_key='_booking_start' )
+			LEFT JOIN wp_postmeta AS fin ON ( posts.ID = fin.post_id AND fin.meta_key='_booking_end' )
+			LEFT JOIN wp_posts AS producto ON ( producto.ID = metas_reserva.meta_value )
+			LEFT JOIN wp_posts AS orden ON ( orden.ID = posts.post_parent )
+			WHERE 
+				posts.post_type      = 'wc_booking' AND 
+				posts.post_status    = 'confirmed'  AND
+				(
+					fin.meta_value       > NOW()  AND
+					inicio.meta_value    <= NOW()
+				) AND
+				producto.post_author = '{$user_id}'
+			ORDER BY posts.ID DESC
+		";
+
+		$reservas_activas = $wpdb->get_var($sql);
+
+		if( $reservas_activas+0 > 0 ){
+			if($login){
+				$_SESSION["recordar_subir_fotos"] = true;
+			}
+			return true;
+		}
+		return false;
+	}
 
 	function getTema(){
         return get_template_directory_uri();
