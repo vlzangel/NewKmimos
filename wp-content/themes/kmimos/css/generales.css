@@ -109,6 +109,35 @@ p {
         cursor: pointer;
     }
 
+    /* Modal Subir Fotos */
+
+        .botonera_modal_subir{
+            padding: 10px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        #btn_modal_subir {
+            padding: 10px;
+            background: #00d349cc;
+            color: #FFF;
+            border-radius: 5px;
+            margin: 0px 10px;
+            text-decoration: none !important;
+        }
+
+        #btn_modal_subir_tarde {
+            color: #777;
+            text-decoration: none !important;
+        }
+
+        .vlz_resaltar_movil {
+            background: #0066bf;
+            border-bottom: solid 1px;
+            border-top: solid 1px;
+            margin: 3px 10px;
+        }
+
 /* Fin Modal */
 
 nav {
