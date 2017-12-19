@@ -93,7 +93,7 @@
                 $moderacion = unserialize($value->moderacion);
                 $collage = "";
                 foreach ($moderacion[ $periodos_a_mostrar ] as $key => $foto) {
-                    $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto.'" style="width: 23%; height: 120px; padding: 1%;" />';
+                    $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto.'" style="width: 48%; height: 120px; padding: 1%;" />';
                 }
             }else{
                 if( $periodo == 2 ){
@@ -102,11 +102,11 @@
                     $moderacion = unserialize($value->moderacion);
                     $collage = "";
                         foreach ($moderacion[ 1 ] as $key => $foto) {
-                            $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/'.$foto.'" style="width: 23%; height: 120px; padding: 1%;" />';
+                            $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/'.$foto.'" style="width: 48%; height: 120px; padding: 1%;" />';
                         }
                     $collage .= "";
                         foreach ($moderacion[ 2 ] as $key => $foto) {
-                            $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/'.$foto.'" style="width: 23%; height: 120px; padding: 1%;" />';
+                            $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/'.$foto.'" style="width: 48%; height: 120px; padding: 1%;" />';
                         }
                     $collage .= "";
                 }
