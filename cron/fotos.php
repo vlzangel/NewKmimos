@@ -124,10 +124,10 @@
                         if( count($moderacion[ 2 ]) > 0 ){
                             foreach ($moderacion[ 2 ] as $key => $foto) {
                                 $collage .= '
-                                <div style="display: inline-block; width: 49%; text-align: center; min-width: 239px;">
+                                <div style="display: inline-block; width: 49%; text-align: center;">
                                     <a style="display: block; margin: 3px 3px 8px; text-decoration: none;">
                                         <div style="background: #f3f3f3; border: solid 1px #CCC; padding: 10px; border-radius: 4px;">
-                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/'.$foto.'" height="130" style="max-width: 100%; max-height: 100%;" />
+                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/'.$foto.'" style="height: 130px; max-width: 100%; max-height: 100%;" />
                                         </div>
                                     </a>
                                 </div>';
