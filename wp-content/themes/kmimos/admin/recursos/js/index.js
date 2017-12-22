@@ -17,7 +17,6 @@ function init_modal(data){
     jQuery("#close_modal").on("click", function(e){
         cerrar(e);
     });
-
 }
 
 function cerrar(e){

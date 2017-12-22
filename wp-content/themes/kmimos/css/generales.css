@@ -138,6 +138,19 @@ p {
             margin: 3px 10px;
         }
 
+        .vlz_resaltar_movil a {
+            color: #FFF !important;
+        }
+
+        .vlz_resaltar_movil:hover {
+            background-color: #f5f5f5;
+        }
+
+        .vlz_resaltar_movil:hover a {
+            background-color: #f5f5f5;
+            color: #000 !important;
+        }
+
 /* Fin Modal */
 
 nav {
