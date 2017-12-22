@@ -63,7 +63,7 @@
                     $status = "status-inicio"; $status_txt = "Por cargar fotos";
                 break;
                 case '1':
-                    $status = "status-medio"; $status_txt = "Solo cargo un flujo";
+                    $status = "status-ok-medio"; $status_txt = "Cargo al menos un flujo";
                 break;
                 case '2':
                     $status = "status-ok"; $status_txt = "Todo Bien";

@@ -7,7 +7,7 @@
 
   		$sql = "
 			SELECT 
-				count(*)
+				inicio.meta_value inicio
 			FROM 
 				wp_posts AS posts
 			LEFT JOIN wp_postmeta AS metas_reserva ON ( posts.ID = metas_reserva.post_id AND metas_reserva.meta_key='_booking_product_id' )
@@ -26,9 +26,16 @@
 			ORDER BY posts.ID DESC
 		";
 
-		$reservas_activas = $wpdb->get_var($sql);
+		$reservas_activas = $wpdb->get_results($sql);
 
-		if( $reservas_activas+0 > 0 ){
+		$contador = 0;
+		foreach ($reservas_activas as $key => $value) {
+			if( strtotime( $value->inicio ) >= strtotime("2017-12-23 00:00:00") ){
+				$contador++;
+			}
+		}
+
+		if( $contado+0 > 0 ){
 			if($login){
 				$_SESSION["recordar_subir_fotos"] = true;
 			}
