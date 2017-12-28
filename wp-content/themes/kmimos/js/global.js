@@ -8,7 +8,11 @@ jQuery( document ).ready(function() {
         close_login_modal();
     });
 
-	jQuery(".vlz_cerrar_modal").on("click", function(e){
+    jQuery(".vlz_cerrar_modal").on("click", function(e){
+        jQuery(".vlz_modal").css("display", "none");
+    });
+
+	jQuery("#btn_modal_subir_tarde").on("click", function(e){
         jQuery(".vlz_modal").css("display", "none");
     });
 

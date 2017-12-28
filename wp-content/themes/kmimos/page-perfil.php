@@ -134,7 +134,6 @@
 		break;
 		case 'ver-fotos':
 		    wp_enqueue_style('ver_fotos', getTema()."/css/ver_fotos.css", array(), '1.0.0');
-			wp_enqueue_style('ver_fotos_responsive', getTema()."/css/responsive/ver_fotos_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('ver_fotos', getTema()."/js/ver_fotos.js", array("jquery", "global_js"), '1.0.0');
 		break;
 	}
@@ -275,6 +274,17 @@
 			break;
 			case 'ver-fotos':
 				$mostrar_btn = false;
+				  $CONTENIDO = "
+			        <div class='vlz_modal_container'>
+			            <div class='vlz_modal_box'>
+			                <div style='position: relative; display: inline-block;'>
+			                    <i class='fa fa-times' aria-hidden='true'></i>
+			                    <img src='' />
+			                </div>
+			            </div>
+			        </div>
+			    ";    
+			    echo comprimir_styles($CONTENIDO);
 				include("admin/frontend/fotos/ver-fotos.php");
 			break;
 		}
@@ -312,6 +322,9 @@
 		';
 
 		echo comprimir_styles($HTML);
+
+
+	  
 
 	get_footer();
 ?>

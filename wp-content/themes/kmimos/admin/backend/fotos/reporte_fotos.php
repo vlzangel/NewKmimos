@@ -36,22 +36,22 @@
 <div class="legenda">
     <table width="100%" cellspacing="2" cellpadding="2" >
         <tr>
-            <th> <span>Status previo al &uacute;ltimo env&iacute;o</span> </th>
-            <th> <span>Status despu&eacute;s del &uacute;ltimo env&iacute;o</span> </th>
-            <th> <span>Status futuros env&iacute;os</span> </th>
+            <th> <span>Status</span> </th>
         </tr>
         <tr>
             <td> <div class='status-2 status-inicio'>&nbsp;</div> Por cargar fotos</td>
-            <td> <div class='status-2 status-ok'>&nbsp;</div> En tiempo</td>
-            <td> <div class='status-2 status-futuro'>&nbsp;</div> Cargas futuras</td>
         </tr>
         <tr>
             <td> <div class='status-2 status-ok-medio'>&nbsp;</div> Cargo al menos un flujo</td>
-            <td> <div class='status-2 status-medio'>&nbsp;</div> Retrasado</td>
         </tr>
         <tr>
-            <td> <div class='status-2 status-mal'>&nbsp;</div> No enviado</td>
-            <td> <div class='status-2 status-mal'>&nbsp;</div> No enviado</td>
+            <td> <div class='status-2 status-ok'>&nbsp;</div> Cargo todas</td>
+        </tr>
+        <tr>
+            <td> <div class='status-2 status-mal'>&nbsp;</div> No cargo fotos</td>
+        </tr>
+        <tr>
+            <td> <div class='status-2 status-futuro'>&nbsp;</div> Cargas futuras</td>
         </tr>
     </table>
 </div>

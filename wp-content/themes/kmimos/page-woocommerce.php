@@ -183,8 +183,33 @@
 		//$NOW = (strtotime("now")+57600);
 
 		$bloquear = "";
-		$msg_bloqueador = "";
 		$ES_FLASH = "NO";
+		$msg_bloqueador = "
+			<div class='alerta_flash'>
+				<div class='alerta_flash_importante'>IMPORTANTE</div>
+				<div class='alerta_flash_mensaje'>
+					Este cuidador, <strong>no tiene opci&oacute;n de Reserva Inmediata</strong>, por lo tanto existe la de que la reserva no sea programada el d&iacute;a de hoy.
+					Te invitamos a seguir uno de los siguientes pasos:
+				</div>
+				<div class='alerta_flash_pasos'>
+					<div class='alerta_flash_paso'>
+						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 1</div>
+						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_1.png' /> </div>
+						<div class='alerta_flash_paso_txt'>Cambia las fechas de Reserva</div>
+					</div>
+					<div class='alerta_flash_paso'>
+						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 2</div>
+						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_2.png' /> </div>
+						<div class='alerta_flash_paso_txt'>Busca un cuidador que permita <strong>reserva inmediata</strong></div>
+					</div>
+					<div class='alerta_flash_paso'>
+						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 3</div>
+						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_3.png' /> </div>
+						<div class='alerta_flash_paso_txt'>Ll&aacute;manos al<br> (01) 800 056 4667</div>
+					</div>
+				</div>
+			</div>
+		";
 
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
 			if( $atributos["flash"] == 1){
@@ -197,34 +222,8 @@
 					$ES_FLASH = "SI";
 				}
 			}
+			
 			if( $ES_FLASH == "NO" ){
-				$msg_bloqueador = "
-					<div class='alerta_flash vlz_bloquear'>
-						<div class='alerta_flash_importante'>IMPORTANTE</div>
-						<div class='alerta_flash_mensaje'>
-							Este cuidador, <strong>no tiene opci&oacute;n de Reserva Inmediata</strong>, por lo tanto existe la de que la reserva no sea programada el d&iacute;a de hoy.
-							Te invitamos a seguir uno de los siguientes pasos:
-						</div>
-						<div class='alerta_flash_pasos'>
-							<div class='alerta_flash_paso'>
-								<div class='alerta_flash_paso_titulo'>Opci&oacute;n 1</div>
-								<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_1.png' /> </div>
-								<div class='alerta_flash_paso_txt'>Cambia las fechas de Reserva</div>
-							</div>
-							<div class='alerta_flash_paso'>
-								<div class='alerta_flash_paso_titulo'>Opci&oacute;n 2</div>
-								<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_2.png' /> </div>
-								<div class='alerta_flash_paso_txt'>Busca un cuidador que permita <strong>reserva inmediata</strong></div>
-							</div>
-							<div class='alerta_flash_paso'>
-								<div class='alerta_flash_paso_titulo'>Opci&oacute;n 3</div>
-								<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_3.png' /> </div>
-								<div class='alerta_flash_paso_txt'>Ll&aacute;manos al<br> (01) 800 056 4667</div>
-							</div>
-						</div>
-					</div>
-				";
-				$bloquear = "vlz_bloquear";
 				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
 			}else{
 				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
