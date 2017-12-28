@@ -65,6 +65,8 @@
 
 						$wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = $id_orden;");
     					$wpdb->query("UPDATE wp_posts SET post_status = 'cancelled' WHERE ID = '$id_reserva';");
+
+    					update_cupos( $id_orden, "-");
 					break;
 
 					case 'completed':

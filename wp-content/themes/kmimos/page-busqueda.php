@@ -52,6 +52,7 @@
 
 	if( $destacados != "" ){
 		$destacados_str = '
+		<strong class="km-leyenda" style ="color: #6b1c9b;">Cuidadores Destacados</strong>
 		<div class="km-premium km-search-slider">
 			<div style="height: 220px; overflow: hidden;">
 				<div class="km-premium-slider">
@@ -260,56 +261,56 @@
 	    	
 	    	<div class="km-caja-resultados">
 				<div class="km-columna-izq">
-						'.$destacados_str.'
-						<div class="km-superior-resultados">
-							<span class="km-texto-resultados">
-								<b>Resultado de búsqueda</b> '.$total.' cuidadores disponibles
-							</span>
+					'.$destacados_str.'
+					<div class="km-superior-resultados">
+						<span class="km-texto-resultados">
+							<b>Resultado de búsqueda</b> '.$total.' cuidadores disponibles
+						</span>
 
-							<div class="km-opciones-resultados">
-								<!-- 
-								<div class="km-vista-resultados">
-									<a href="./km-resultado.html" class="view-list active">
-										List
-									</a>
-									<a href="./km-resultado-grid.html" class="view-grid">
-										Gris
-									</a>
-								</div> -->
+						<div class="km-opciones-resultados">
+							<!-- 
+							<div class="km-vista-resultados">
+								<a href="./km-resultado.html" class="view-list active">
+									List
+								</a>
+								<a href="./km-resultado-grid.html" class="view-grid">
+									Gris
+								</a>
+							</div> -->
 
-								<div class="km-orden-resultados">
-									
-									<div class="btn-group hidden-xs">
-									  <button class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 8px 30px 8px 20px !important;border-radius: 6px!important;">
-									    ORDENAR POR</span>
-									  </button>
-									  <ul class="dropdown-menu">
-										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_desc">Valoración de mayor a menor</a></li>
-										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_asc">Valoración de menor a mayor</a></li>
-										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
-										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
-										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_asc">Precio del Servicio de menor a mayor</a></li>
-										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
-										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de menos a más años</a></li>
-										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de más a menos años</a></li>
-										<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=flash">Cuidadores Flash</a></li>
-									  </ul>
-									</div>
-
+							<div class="km-orden-resultados">
+								
+								<div class="btn-group hidden-xs">
+								  <button class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 8px 30px 8px 20px !important;border-radius: 6px!important;">
+								    ORDENAR POR</span>
+								  </button>
+								  <ul class="dropdown-menu">
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_desc">Valoración de mayor a menor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_asc">Valoración de menor a mayor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_asc">Precio del Servicio de menor a mayor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de menos a más años</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de más a menos años</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=flash">Cuidadores Flash</a></li>
+								  </ul>
 								</div>
+
 							</div>
 						</div>
+					</div>
 
-						'.$CUIDADORES_STR.'
+					'.$CUIDADORES_STR.'
 
-						<div class="navigation">
-							<ul>
-								'.$paginacion["html"].'
-							</ul>
-							<div class="message-nav">
-								'.($paginacion["inicio"]+1).' - '.$paginacion["fin"].' de '.$total.' Cuidadores Certificados
-							</div>
+					<div class="navigation">
+						<ul>
+							'.$paginacion["html"].'
+						</ul>
+						<div class="message-nav">
+							'.($paginacion["inicio"]+1).' - '.$paginacion["fin"].' de '.$total.' Cuidadores Certificados
 						</div>
+					</div>
 					
 				</div>
 				<div class="km-columna-der">

@@ -52,16 +52,80 @@ function abrir_link(e){
 	});
 }
 
+var moderaciones = 0;
+var contador = 0;
 function moderar(){
 	if( jQuery(".fotos_container").length > 0 ){
-		jQuery(".modal").css("display", "block");
-	    jQuery("body").css("overflow", "hidden");
-	    INDEX = 0;
-	    procesar_fotos();
+		moderaciones = jQuery(".fotos_container").length;
+		contador = 0;
+	    jQuery(".fotos_container").each(function(){
+			CHECKEDS = {};
+			CHECKEDS[ "ID_RESERVA" ] = jQuery(this).attr("data-reserva");
+    		CHECKEDS[ "PERIODO" ] = jQuery(this).attr("data-periodo");
+			var IMGS = ""; var CONT = 1;
+			jQuery( "#"+jQuery(this).attr("id")+" .input_check" ).each(function(){
+				if( jQuery(this).prop('checked') ){
+		        	CHECKEDS[ jQuery(this).attr("id") ] = jQuery(this).val();
+				}
+		    });
+			jQuery.post(
+				TEMA+"/admin/backend/fotos/ajax/moderar.php",
+				CHECKEDS,
+				function(HTML){
+		            console.log(HTML);
+		            contador++;
+		            if( contador == moderaciones ){
+			            table.ajax.reload();
+			            alert("Moderación completada exitosamente!");
+		            }
+		        }
+		    ); 
+	    });
     }else{
     	alert("No hay fotos para moderar");
     }
 }
+
+
+function ver_foto(e){
+	jQuery(".modal > div > span").html("Foto");
+	jQuery(".modal > div > div").html("<img src='"+e.attr("data-img")+"' style='width: 100%;' />");
+
+	jQuery(".modal").css("display", "block");
+    jQuery("body").css("overflow", "hidden");
+
+    jQuery("#close_modal").on("click", function(e){
+        cerrar(e);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var INDEX = 0;
 var CANTIDAD = 0;
@@ -118,7 +182,7 @@ function actualizar_info(){
 		CHECKEDS,
 		function(HTML){
             if( jQuery(".fotos_container").length != INDEX ){
-		    	procesar_fotos();
+		    	//procesar_fotos();
 		    }else{
 		    	table.ajax.reload();
 		    	cerrar();
