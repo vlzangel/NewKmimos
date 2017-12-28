@@ -36,7 +36,7 @@ function initCarrito(){
 
 		CARRITO["pagar"] = {
 			"total" : "",
-			"tipo" : "",
+			"tipo" : "tienda",
 			"metodo" : "deposito",
 			"token" : "",
 			"deviceIdHiddenFieldName" : "",
@@ -1009,6 +1009,9 @@ jQuery(document).ready(function() {
 		jQuery("#"+jQuery(this).val()+"_box").css("display", "block");
 		if( jQuery(this).val() != "tarjeta" ){
 			jQuery(".errores_box").css("display", "none");
+			CARRITO["pagar"]["tipo"] = "tienda";
+		}else{
+			CARRITO["pagar"]["tipo"] = "tarjeta";
 		}
 	});
 

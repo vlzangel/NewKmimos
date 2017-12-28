@@ -81,7 +81,7 @@
 				if($reserva->status=='confirmed' && (strtotime($_metas_reserva['_booking_end'][0])>time())){
 
 					$acciones = array();
-					if( strtotime( $_metas_reserva['_booking_start'][0] ) <= time() ){
+					if( strtotime( $_metas_reserva['_booking_start'][0] ) <= time() && strtotime( $_metas_reserva['_booking_start'][0] ) >= strtotime("2017-12-23 00:00:00") ){
 						$acciones = array(
 							"ver" => $ver,
 							"subir_fotos" => $reserva->ID

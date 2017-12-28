@@ -68,7 +68,7 @@
 			tipo.slug 		 	 	 AS servicio_tipo, 
 			servicio.post_name 		 AS servicio, 
 			DATE_FORMAT(startmeta.meta_value,'%d-%m-%Y') AS inicio, 
-			DATE_FORMAT(endmeta.meta_value,'%d-%m-%Y') AS ,
+			DATE_FORMAT(endmeta.meta_value,'%d-%m-%Y') AS fin,
 			acepta.meta_value		 AS acepta,
 			mascotas.meta_value 	 AS mascotas,
 			reserva.post_status		 AS status
