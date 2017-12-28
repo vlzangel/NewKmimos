@@ -38,8 +38,8 @@
                 $status_txt = "Por cargar fotos";
             break;
             case '1':
-                $status = "status-medio";
-                $status_txt = "Retrasado";
+                $status = "status-ok-medio";
+                $status_txt = "Cargo al menos un flujo";
             break;
             case '2':
                 $status = "status-ok";
@@ -51,7 +51,7 @@
             break;
             case '4':
                 $status = "status-ok-medio";
-                $status_txt = "Por cargar el flujo de la tarde";
+                $status_txt = "Cargo al menos un flujo";
             break;
             case '5':
                 $status = "status-futuro";
@@ -77,29 +77,23 @@
 		";
 	}
 ?>
-
 <div class="legenda">
     <table width="100%" cellspacing="2" cellpadding="2" >
         <tr>
-            <th> <span>Status previo al &uacute;ltimo env&iacute;o</span> </th>
-            <th> <span>Status despu&eacute;s del &uacute;ltimo env&iacute;o</span> </th>
-            <th> <span>Status futuros env&iacute;os</span> </th>
+            <th colspan="3"> <span>Status</span> </th>
         </tr>
         <tr>
             <td> <div class='status-2 status-inicio'>&nbsp;</div> Por cargar fotos</td>
-            <td> <div class='status-2 status-ok'>&nbsp;</div> En tiempo</td>
-            <td> <div class='status-2 status-futuro'>&nbsp;</div> Cargas futuras</td>
-        </tr>
-        <tr>
             <td> <div class='status-2 status-ok-medio'>&nbsp;</div> Cargo al menos un flujo</td>
-            <td> <div class='status-2 status-medio'>&nbsp;</div> Retrasado</td>
+            <td> <div class='status-2 status-ok'>&nbsp;</div> Cargo todas</td>
         </tr>
         <tr>
-            <td> <div class='status-2 status-mal'>&nbsp;</div> No enviado</td>
-            <td> <div class='status-2 status-mal'>&nbsp;</div> No enviado</td>
+            <td> <div class='status-2 status-mal'>&nbsp;</div> No cargo fotos</td>
+            <td colspan="2"> <div class='status-2 status-futuro'>&nbsp;</div> Cargas futuras</td>
         </tr>
     </table>
 </div>
+
 
 <table width="100%" cellspacing="0" cellpadding="0" class="tabla_horizontal">
 	<tr>
