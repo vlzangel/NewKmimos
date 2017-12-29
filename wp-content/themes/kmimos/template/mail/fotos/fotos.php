@@ -1,3 +1,11 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+	@media screen and (max-width: 450px) {
+		#fotos img {
+			height: 100px !important;
+		}
+	}
+</style>
 <div style='text-align:center; margin-bottom: 34px;'>
     <img src='[URL_IMGS]/group-18.png' style='width: 100%;' >
 </div>
@@ -35,7 +43,7 @@
 		    </tr>
 		</table>
 
-		<div style="margin-bottom: 45px;">
+		<div id="fotos" style="max-width: 600px; margin: 0px auto 45px;">
 			[FOTOS]
 		</div>
 

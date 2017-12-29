@@ -333,13 +333,15 @@
                         array(
                             "url"   => get_home_url()."/perfil-usuario/reservas",
                             "name"  => "Mis Reservas",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "resaltar_movil"  => true
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/fotos",
                             "name"  => "Fotos del día",
                             "icono" => "82",
-                            "resaltar"  => true
+                            "resaltar"  => true,
+                            "resaltar_movil"  => true
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/solicitudes",
@@ -433,6 +435,11 @@
                         if( $menu_principal ){
                             if( array_key_exists('ocultar_menu_principal', $value) ){
                                 $sts = "vlz_ocultar";
+                            }
+                            if( tiene_fotos_por_subir($user_id) ){
+                                if( array_key_exists('resaltar_movil', $value) ){
+                                    $sts = "vlz_resaltar_movil";
+                                }
                             }
                         }else{
                             if( array_key_exists('resaltar', $value) ){
