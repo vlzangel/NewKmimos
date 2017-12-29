@@ -93,7 +93,14 @@
                 $moderacion = unserialize($value->moderacion);
                 $collage = "";
                 foreach ($moderacion[ $periodos_a_mostrar ] as $key => $foto) {
-                    $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto.'" style="width: 23%; height: 120px; padding: 1%;" />';
+                    $collage .= '
+                    <div style="display: inline-block; width: 49%; text-align: center;">
+                        <a style="display: block; margin: 3px 3px 8px; text-decoration: none;">
+                            <div style="background: #f3f3f3; border: solid 1px #CCC; padding: 10px; border-radius: 4px;">
+                                <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto.'" style="height: 130px; max-width: 100%; max-height: 100%;" />
+                            </div>
+                        </a>
+                    </div>';
                 }
             }else{
                 if( $periodo == 2 ){
@@ -101,12 +108,30 @@
                     $periodo_txt = " de la ma&ntilde;ana y la tarde";
                     $moderacion = unserialize($value->moderacion);
                     $collage = "";
-                        foreach ($moderacion[ 1 ] as $key => $foto) {
-                            $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/'.$foto.'" style="width: 23%; height: 120px; padding: 1%;" />';
+                        if( count($moderacion[ 1 ]) > 0 ){
+                            foreach ($moderacion[ 1 ] as $key => $foto) {
+                                $collage .= '
+                                <div style="display: inline-block; width: 49%; text-align: center;">
+                                    <a style="display: block; margin: 3px 3px 8px; text-decoration: none;">
+                                        <div style="background: #f3f3f3; border: solid 1px #CCC; padding: 10px; border-radius: 4px;">
+                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/'.$foto.'" style="height: 130px; max-width: 100%; max-height: 100%;" />
+                                        </div>
+                                    </a>
+                                </div>';
+                            }
                         }
                     $collage .= "";
-                        foreach ($moderacion[ 2 ] as $key => $foto) {
-                            $collage .= '<img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/'.$foto.'" style="width: 23%; height: 120px; padding: 1%;" />';
+                        if( count($moderacion[ 2 ]) > 0 ){
+                            foreach ($moderacion[ 2 ] as $key => $foto) {
+                                $collage .= '
+                                <div style="display: inline-block; width: 49%; text-align: center;">
+                                    <a style="display: block; margin: 3px 3px 8px; text-decoration: none;">
+                                        <div style="background: #f3f3f3; border: solid 1px #CCC; padding: 10px; border-radius: 4px;">
+                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/'.$foto.'" style="height: 130px; max-width: 100%; max-height: 100%;" />
+                                        </div>
+                                    </a>
+                                </div>';
+                            }
                         }
                     $collage .= "";
                 }

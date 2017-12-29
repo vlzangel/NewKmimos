@@ -87,7 +87,17 @@ function moderar(){
 }
 
 
+function ver_foto(e){
+	jQuery(".modal > div > span").html("Foto");
+	jQuery(".modal > div > div").html("<img src='"+e.attr("data-img")+"' style='width: 100%;' />");
 
+	jQuery(".modal").css("display", "block");
+    jQuery("body").css("overflow", "hidden");
+
+    jQuery("#close_modal").on("click", function(e){
+        cerrar(e);
+    });
+}
 
 
 
