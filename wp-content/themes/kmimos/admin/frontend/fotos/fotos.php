@@ -83,7 +83,7 @@
 					$acciones = array();
 					if( strtotime( $_metas_reserva['_booking_start'][0] ) <= time() && strtotime( $_metas_reserva['_booking_start'][0] ) >= strtotime("2017-12-23 00:00:00") ){
 						$acciones = array(
-							"ver" => $ver,
+							"ver" => "../../reservas/ver/".$ver,
 							"subir_fotos" => $reserva->ID
 						);
 					}else{
