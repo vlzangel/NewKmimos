@@ -2,51 +2,104 @@ jQuery( document ).ready(function() {
     jQuery("input[value='Crear Mascota']").on("click", function(e){
                 
         if(jQuery("input[name='pet_name']").val()){
-            jQuery("#nombre").css('color','green');
-            jQuery("#nombre").parent('div').css('color','green');
-            jQuery('[name="err-namepet"]').remove();
+            jQuery("#spanpet_name").addClass('hidden');
         }else{
-            jQuery("input[name='pet_name']").css({'boder':'1px solid','color':'red'});
-            jQuery("input[name='pet_name']").after('<span name="err-namepet">Ingrese un nombre para su mascota</span>').css('color','red');
-            jQuery("input[name='pet_name']").focus(function() { jQuery("[name='err-namepet']").remove(); });
+            jQuery("#spanpet_name").css('color', 'red');
+            jQuery("#spanpet_name").removeClass('hidden');
+            jQuery("input[name='pet_name']").focus(function() { jQuery("#spanpet_name").addClass('hidden'); });
         }
 
         if(jQuery("input[name='pet_birthdate']").val()){
-            jQuery("input[name='pet_birthdate']").remove();
+            jQuery("#spanpet_birthdate").addClass('hidden');
         }else{
-            jQuery("input[name='pet_birthdate']").after('<span name="err-datepet">Ingrese la fecha de nacimiento de su mascota</span>').css('color','red');
-            jQuery("input[name='pet_birthdate']").focus(function() { jQuery("[name='err-datepet']").remove(); });
+            jQuery("#spanpet_birthdate").css('color', 'red');
+            jQuery("#spanpet_birthdate").removeClass('hidden');
+            jQuery("input[name='pet_birthdate']").focus(function() {jQuery("#spanpet_birthdate").addClass('hidden'); });
         }
 
-        jQuery("#pet_breed").focus(function(){
-            jQuery("#pet_breed").css('color','gray');
-        });
-            if(jQuery("#pet_breed").val()){     
-                jQuery("#pet_breed").css('color','green');
-            }else{
-                jQuery("#pet_breed").css('color','red');
-            }
+        if(jQuery("#pet_type").val()){     
+            jQuery("#spanpet_type").addClass('hidden');
+        }else{
+            jQuery("#spanpet_type").css('color', 'red');
+            jQuery("#spanpet_type").removeClass('hidden');
+            jQuery("#pet_type").focus(function() { jQuery("#spanpet_type").addClass('hidden'); });
+        }
 
-        jQuery("[name='pet_gender']").focus(function(){
-            jQuery("[name='pet_gender']").css('color','gray');
-        });
-            if(jQuery("[name='pet_gender']").val().length == 0){        
-                jQuery("[name='pet_gender']").css('color','red');
-            }else{
-                jQuery("[name='pet_gender']").css('color','green');
-            }
-        jQuery("[name='pet_size']").focus(function(){
-            jQuery("[name='pet_size']").css('color','gray');
-        });
-            if(jQuery("[name='pet_size']").val()){        
-            }else{
-                jQuery("[name='pet_size']").css('color','red');
-            }
+        if(jQuery("#pet_breed").val()){     
+            jQuery("#spanpet_breed").addClass('hidden');
+        }else{
+            jQuery("#spanpet_breed").css('color', 'red');
+            jQuery("#spanpet_breed").removeClass('hidden');
+            jQuery("#pet_breed").focus(function() { jQuery("#spanpet_breed").addClass('hidden'); });
+        }
+
+        if(jQuery("[name='pet_colors']").val()){     
+            jQuery("#spanpet_colors").addClass('hidden');
+        }else{
+            jQuery("#spanpet_colors").css('color', 'red');
+            jQuery("#spanpet_colors").removeClass('hidden');
+            jQuery("[name='pet_colors']").focus(function() { jQuery("#spanpet_colors").addClass('hidden'); });
+        }
+
+        if(jQuery("[name='pet_gender']").val().length == 0){        
+            jQuery("#spanpet_gender").css('color', 'red');
+            jQuery("#spanpet_gender").removeClass('hidden');
+            jQuery("#pet_breed").focus(function() { jQuery("#spanpet_gender").addClass('hidden'); });
+        }else{
+            jQuery("#spanpet_gender").addClass('hidden');
+        }
+
+        if(jQuery("[name='pet_size']").val()){
+            jQuery("#spanpet_size").addClass('hidden');
+        }else{
+            jQuery("#spanpet_size").css('color', 'red');
+            jQuery("#spanpet_size").removeClass('hidden');
+            jQuery("#pet_breed").focus(function() { jQuery("#spanpet_size").addClass('hidden'); });
+        }
+
+        if(jQuery("[name='pet_sterilized']").val()){
+            jQuery("#spanpet_sterilized").addClass('hidden');
+        }else{
+            jQuery("#spanpet_sterilized").css('color', 'red');
+            jQuery("#spanpet_sterilized").removeClass('hidden');
+            jQuery("#pet_breed").focus(function() { jQuery("#spanpet_sterilized").addClass('hidden'); });
+        } 
+
+        if(jQuery("[name='pet_sociable']").val()){
+            jQuery("#spanpet_sociable").addClass('hidden');
+        }else{
+            jQuery("#spanpet_sociable").css('color', 'red');
+            jQuery("#spanpet_sociable").removeClass('hidden');
+            jQuery("#pet_breed").focus(function() { jQuery("#spanpet_sociable").addClass('hidden'); });
+        }
+
+        if(jQuery("[name='aggresive_humans']").val()){
+            jQuery("#spanaggresive_humans").addClass('hidden');
+        }else{
+            jQuery("#spanaggresive_humans").css('color', 'red');
+            jQuery("#spanaggresive_humans").removeClass('hidden');
+            jQuery("#pet_breed").focus(function() { jQuery("#spanaggresive_humans").addClass('hidden'); });
+        }
+
+        if(jQuery("[name='aggresive_pets']").val()){
+            jQuery("#spanaggresive_pets").addClass('hidden');
+        }else{
+            jQuery("#spanaggresive_pets").css('color', 'red');
+            jQuery("#spanaggresive_pets").removeClass('hidden');
+            jQuery("#pet_breed").focus(function() { jQuery("#spanaggresive_pets").addClass('hidden'); });
+        }
+
         if (jQuery("input[name='pet_name']").val() != "" &&
             jQuery("input[name='pet_birthdate']").val() != "" &&
             jQuery("#pet_breed").val() != "" &&
             jQuery("[name='pet_gender']").val() != "" &&
-            jQuery("[name='pet_size']").val()) {
+            jQuery("[name='pet_size']").val() != "" &&
+            jQuery("#pet_type").val() != "" &&
+            jQuery("[name='pet_colors']").val() != "" &&
+            jQuery("[name='pet_sterilized']").val() != "" &&
+            jQuery("[name='pet_sociable']").val() != "" &&
+            jQuery("[name='aggresive_humans']").val() != "" &&
+            jQuery("[name='aggresive_pets']").val()) {
 
                 postJSON( 
                     "form_perfil",
@@ -104,7 +157,7 @@ jQuery( document ).ready(function() {
 
         }else{
             e.preventDefault();
-            alert("Por favor revise los datos que ingreso, debe faltarle uno..");
+            alert("Revise sus datos por favor, debe llenar los campos queridos!");
         }
     });
     
