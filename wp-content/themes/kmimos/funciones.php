@@ -29,8 +29,8 @@
 		return $busqueda;
 	}
 
-	if(!function_exists('get_destacados')){
-        function get_destacados($estado){
+	if(!function_exists('_get_destacados')){
+        function _get_destacados($estado){
             global $wpdb;
             $estado_des = $wpdb->get_var("SELECT name FROM states WHERE id = ".$estado);
             $sql_top = "SELECT * FROM destacados WHERE estado = '{$estado}'";
