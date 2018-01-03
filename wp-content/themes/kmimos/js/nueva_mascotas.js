@@ -157,7 +157,7 @@ jQuery( document ).ready(function() {
 
         }else{
             e.preventDefault();
-            alert("Revise sus datos por favor, debe llenar los campos queridos!");
+            alert("Revise sus datos por favor, debe llenar los campos requeridos!");
         }
     });
     
