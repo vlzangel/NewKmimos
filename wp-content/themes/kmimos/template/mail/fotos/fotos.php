@@ -27,7 +27,7 @@
 		                FOTOS CARGADAS EL:
 		            </div>                  
 		            <div style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
-		                27 de Octubre 2017 <span style='font-size: 14px; font-weight: normal;'>(21:35 PM)</span>
+		                [FECHA] <span style='font-size: 14px; font-weight: normal;'>([HORA])</span>
 		            </div> 
 		        </td>
 		        <td style='width: 158px; vertical-align: top;'>
