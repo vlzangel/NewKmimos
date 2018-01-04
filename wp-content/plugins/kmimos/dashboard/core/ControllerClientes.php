@@ -63,3 +63,15 @@ function getMascotas($user_id){
 	return $mascotas;
 }
 
+function getRazaDescripcion($id, $razas){
+	$nombre = "[{$id}]";
+	if($id > 0){
+		if( !empty($razas) ){
+			if(array_key_exists($id, $razas)){
+				$nombre = $razas[$id];
+			}
+		}
+	}
+	return $nombre;
+}
+
