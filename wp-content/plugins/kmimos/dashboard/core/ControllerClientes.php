@@ -26,7 +26,7 @@ function getUsers($desde="", $hasta=""){
 	$filtro_adicional = "";
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= " 
-			AND DATE_FORMAT(u.user_registered, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+			AND u.user_registered >= '{$desde}' and u.user_registered <= '{$hasta}'
 		";
 	}
 	$sql = "
@@ -39,5 +39,27 @@ function getUsers($desde="", $hasta=""){
 	";	
 	$result = get_fetch_assoc($sql);
 	return $result;
+}
+
+function getMascotas($user_id){
+	if(!$user_id>0){ return []; }
+
+	global $wpdb;
+	$mascotas_cliente = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$user_id}' AND post_type='pets' AND post_status = 'publish'");
+    $mascotas = array();
+    foreach ($mascotas_cliente as $key => $mascota) {
+        $_anio = get_post_meta($mascota->ID, "birthdate_pet", true);
+        $_anio = str_replace("/", "-", $_anio);
+        $anio = strtotime($_anio);
+        $anio = ceil ( time()-$anio );
+        $edad = (@date("Y", $anio)-1970);
+
+        $mascotas[] = array(
+            "nombre" => $mascota->post_title,
+            "raza" => get_post_meta($mascota->ID, "breed_pet", true),
+            "edad" => $edad
+        );
+    }
+	return $mascotas;
 }
 

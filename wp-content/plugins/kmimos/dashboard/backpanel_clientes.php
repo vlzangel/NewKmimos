@@ -4,8 +4,8 @@ require_once('core/ControllerClientes.php');
 // Parametros: Filtro por fecha
 $landing = '';
 $date = getdate();
-$desde = '';//date("Y-m-01", $date[0] );
-$hasta = '';//date("Y-m-d", $date[0]);
+$desde = "";
+$hasta = "";
 if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 	$desde = (!empty($_POST['desde']))? $_POST['desde']: "";
 	$hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
@@ -25,7 +25,7 @@ $users = getUsers($desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_clientes" method="POST">
+		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_clientes" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
@@ -65,7 +65,9 @@ $users = getUsers($desde, $hasta);
 			      <th>Email</th>
 			      <th>Teléfono</th>
 			      <th>Donde nos conocio?</th>
-			      <th>Estatus</th>
+			      <th>Mascota(s)</th>
+			      <th>Raza(s)</th>
+			      <th>Edad(es)</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -74,7 +76,7 @@ $users = getUsers($desde, $hasta);
 			  		<?php
 			  			// Metadata usuarios
 			  			$usermeta = getmetaUser( $row['ID'] );
-			  			$link_login = "/?i=".md5($row['ID']);
+			  			$link_login = get_home_url()."/?i=".md5($row['ID']);
 
 			  			$name = "{$usermeta['first_name']} {$usermeta['last_name']}";
 			  			if(empty( trim($name)) ){
@@ -92,7 +94,24 @@ $users = getUsers($desde, $hasta);
 						</th>
 						<th><?php echo $usermeta['phone']; ?></th>
 						<th><?php echo (!empty($usermeta['user_referred']))? $usermeta['user_referred'] : 'Otros' ; ?></th>
-						<th><?php echo ($row['status']==0)? 'Activo' : 'Inactivo' ; ?></th>
+						<?php 
+					  		# Mascotas del Cliente
+					  		$mypets = getMascotas($row['ID']); 
+					  		$pets_nombre = array();
+					  		$pets_razas  = array();
+					  		$pets_edad	 = array();
+							foreach( $mypets as $pet_id => $pet) { 
+								$pets_nombre[] = $pet['nombre'];
+								$pets_razas[] = $razas[ $pet['raza'] ];
+								$pets_edad[] = $pet['edad'];
+							} 
+					  		$pets_nombre = implode("<br>", $pets_nombre);
+					  		$pets_razas  = implode("<br>", $pets_razas);
+					  		$pets_edad	 = implode("<br>", $pets_edad);
+						?>
+						<th><?php echo $pets_nombre; ?></th>
+						<th><?php echo $pets_razas; ?></th>
+						<th><?php echo $pets_edad; ?></th>
 				    </tr>
 			   	<?php } ?>
 			  </tbody>
