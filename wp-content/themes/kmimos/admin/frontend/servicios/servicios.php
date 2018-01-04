@@ -163,16 +163,16 @@
     			<div class='vlz_titulo_seccion container_btn'>Tamaños de Mascotas</div>
     			<div class='vlz_seccion_interna'>
     				<div class='vlz_celda_25 vlz_celda_25_x'>
-	    				<strong>Pequeños</strong> (0.0 - 25.0 cm)
+	    				<strong>Pequeños</strong> (Hasta 25.4 cm)
 	    			</div>
     				<div class='vlz_celda_25 vlz_celda_25_x'>
-						<strong>Medianos</strong> (25.0 - 58.0 cm)
+						<strong>Medianos</strong> (27.9 a 50.8 cm)
 	    			</div>
     				<div class='vlz_celda_25 vlz_celda_25_x'>
-						<strong>Grandes</strong> (58.0 - 73.0 cm)
+						<strong>Grandes</strong> (53.3 a 73.6 cm)
 	    			</div>
     				<div class='vlz_celda_25 vlz_celda_25_x'>
-						<strong>Gigantes</strong> (73.0 - 200.0 cm)
+						<strong>Gigantes</strong> (Más 76.2 cm)
 	    			</div>
     			</div>
     		</div>
