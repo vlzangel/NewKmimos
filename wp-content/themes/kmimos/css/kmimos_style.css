@@ -437,7 +437,13 @@ section {
 	text-align: left;
 	line-height: 1.3;
 	vertical-align: middle;
+    width: 70%!important;
+}
+.size-pet {
     width: 100%!important;
+    font-size: 10px!important;
+    line-height: 1.6;
+    right: 20px!important;
 }
 .km-servicios .col-sm-3, .km-fechas .col-sm-6, .km-fechas .col-sm-3,.km-tamanio .col-sm-3, .km-servicios-adicionales .col-sm-3 {
 	padding-right: 5px;
