@@ -282,7 +282,7 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-pequenio.svg" width="25">
 								<br>
 								<div class="km-opcion-text">
-									<b>PEQUEÑO</b><br> 0 a 25 cm
+									<b>PEQUEÑO</b><br> Hasta 25.4 cm
 								</div>
 							</div>
 						</div>
@@ -291,7 +291,7 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-mediano.svg" width="25">
 							<br>
 								<div class="km-opcion-text">
-									<b>MEDIANO</b><br> 25 a 58 cm
+									<b>MEDIANO</b><br> 27.9 a 50.8 cm
 								</div>
 							</div>
 						</div>
@@ -300,7 +300,7 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-grande.svg" width="25">
 							<br>
 								<div class="km-opcion-text">
-									<b>GRANDE</b><br> 58 a 73 cm</div>
+									<b>GRANDE</b><br> 53.3 a 73.6 cm</div>
 								</div>
 						</div>
 						<div class="col-xs-6 col-sm-3">
@@ -308,7 +308,7 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-gigante.svg" width="25">
 							<br>
 								<div class="km-opcion-text"><b>
-									GIGANTE</b><br> 73 a 200 cm
+									GIGANTE</b><br> Más 76.2 cm
 								</div
 							></div>
 						</div>
