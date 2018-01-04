@@ -5,7 +5,6 @@
     $ID_RESERVA = vlz_get_page();
 
 	$hora_actual = strtotime("now");
-	$hora_actual = strtotime("14:00:00");
 	$hoy = date("Y-m-d", $hora_actual);
     $xhora_actual = date("H", $hora_actual);
 
