@@ -11,6 +11,7 @@ if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 	$hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
 }
 // Buscar Reservas
+$razas = get_razas();
 $users = getUsers($desde, $hasta);
 ?>
 
@@ -102,12 +103,36 @@ $users = getUsers($desde, $hasta);
 					  		$pets_edad	 = array();
 							foreach( $mypets as $pet_id => $pet) { 
 								$pets_nombre[] = $pet['nombre'];
-								$pets_razas[] = $razas[ $pet['raza'] ];
+								$pets_razas[] = $pet['raza'];
 								$pets_edad[] = $pet['edad'];
 							} 
-					  		$pets_nombre = implode("<br>", $pets_nombre);
-					  		$pets_razas  = implode("<br>", $pets_razas);
-					  		$pets_edad	 = implode("<br>", $pets_edad);
+
+							if( count($pets_nombre) > 0 ){
+
+						  		$raza = "Bien";
+						  		foreach ($pets_razas as $key => $value) {
+						  			if( $value == "" || $value == 0 ){
+						  				$raza = "Malos";
+						  				break;
+						  			}
+						  		}
+						  		$pets_razas = $raza;
+
+						  		$edad = $pets_edad[0];
+						  		foreach ($pets_edad as $value) {
+						  			if( $edad < $value ){
+						  				$edad = $value;
+						  			}
+						  		}
+						  		$pets_edad = $edad;
+
+
+						  		$pets_nombre = implode(", ", $pets_nombre);
+							}else{
+						  		$pets_nombre = "_";
+						  		$pets_razas  = "_";
+						  		$pets_edad	 = "_";
+							}
 						?>
 						<th><?php echo $pets_nombre; ?></th>
 						<th><?php echo $pets_razas; ?></th>
