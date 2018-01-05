@@ -5,7 +5,6 @@
     global $wpdb;
 
     $hora_actual = strtotime("now");
-    $hora_actual = strtotime("18:00:00");
     $xhora_actual = date("H", $hora_actual);
 
     $periodo_sql = "subio_12 = '1' ";
@@ -83,6 +82,8 @@
         $style_3 = "background: #f3f3f3; border: solid 1px #CCC; padding: 10px; border-radius: 4px;";
         $style_4 = "height: auto; max-width: 100%; max-height: 100%;";
 
+        $path_fondo = __DIR__."/fondo.jpg";
+
         if( $enviar ){
             $fotos = dirname(__DIR__).'/wp-content/themes/kmimos/template/mail/fotos/fotos.php';
             $fotos = file_get_contents($fotos);
@@ -97,12 +98,23 @@
                 $periodo_txt = " por la ".$temp;
                 $moderacion = unserialize($value->moderacion);
                 $collage = "";
+
                 foreach ($moderacion[ $periodos_a_mostrar ] as $key => $foto) {
+
+                    $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/mail_'.$foto;
+                    if( !file_exists($destino) ){
+                        kmimos_agregarFondo(
+                            dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
+                            $path_fondo, 
+                            $destino
+                        );
+                    }
+
                     $collage .= '
                     <div style="'.$style_1.'">
                         <a style="'.$style_2.'">
                             <div style="'.$style_3.'">
-                                <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto.'" style="'.$style_4.'" />
+                                <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/mail_'.$foto.'" style="'.$style_4.'" />
                             </div>
                         </a>
                     </div>';
@@ -114,12 +126,23 @@
                     $moderacion = unserialize($value->moderacion);
                     $collage = "";
                         if( count($moderacion[ 1 ]) > 0 ){
+
                             foreach ($moderacion[ 1 ] as $key => $foto) {
+
+                                $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/mail_'.$foto;
+                                if( !file_exists($destino) ){
+                                    kmimos_agregarFondo(
+                                        dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
+                                        $path_fondo, 
+                                        $destino
+                                    );
+                                }
+
                                 $collage .= '
                                 <div style="'.$style_1.'">
                                     <a style="'.$style_2.'">
                                         <div style="'.$style_3.'">
-                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/'.$foto.'" style="'.$style_4.'" />
+                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/mail_'.$foto.'" style="'.$style_4.'" />
                                         </div>
                                     </a>
                                 </div>';
@@ -127,12 +150,23 @@
                         }
                     $collage .= "";
                         if( count($moderacion[ 2 ]) > 0 ){
+
                             foreach ($moderacion[ 2 ] as $key => $foto) {
+
+                                $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/mail_'.$foto;
+                                if( !file_exists($destino) ){
+                                    kmimos_agregarFondo(
+                                        dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
+                                        $path_fondo, 
+                                        $destino
+                                    );
+                                }
+
                                 $collage .= '
                                 <div style="'.$style_1.'">
                                     <a style="'.$style_2.'">
                                         <div style="'.$style_3.'">
-                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/'.$foto.'" style="'.$style_4.'" />
+                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/mail_'.$foto.'" style="'.$style_4.'" />
                                         </div>
                                     </a>
                                 </div>';
@@ -146,8 +180,6 @@
             if( $total_mascotas > 1 ){
                 $msg = "tus peludos";
             }
-
-
 
             $fotos = str_replace('[FOTOS]', $collage, $fotos);
             $fotos = str_replace('[CLIENTE]', $nombre_cliente, $fotos);
