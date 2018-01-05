@@ -501,4 +501,42 @@
             }
         }
     }
+
+    function kmimos_getImgCreate($path){
+		$sExt = @mime_content_type( $path );
+	    switch( $sExt ) {
+	        case 'image/jpeg':
+	           	return @imageCreateFromJpeg( $path );
+	        break;
+	        case 'image/gif':
+	           	return @imageCreateFromGif( $path );
+	        break;
+	        case 'image/png':
+	           	return @imageCreateFromPng( $path );
+	        break;
+	        case 'image/wbmp':
+	           	return @imageCreateFromWbmp( $path );
+	        break;
+	    }
+	}
+
+	function kmimos_agregarFondo($path_perro, $path_fondo, $destino){
+		$fondo 		= kmimos_getImgCreate($path_fondo);
+		$imgPerro 	= kmimos_getImgCreate($path_perro);
+	    $OrigenSize  = @getImageSize( $path_fondo );
+	    $DestinoSize = @getImageSize( $path_perro );
+	    $x = ($OrigenSize[0]-$DestinoSize[0])/2;
+	    $y = ($OrigenSize[1]-$DestinoSize[1])/2;
+		imagecopyresampled(
+			$fondo,
+			$imgPerro,
+			$x, $y, 0, 0,
+			imagesx($imgPerro),
+			imagesy($imgPerro),
+			imagesx($imgPerro),
+			imagesy($imgPerro)
+		);
+		imagepng($fondo, $destino.".png");
+		imagedestroy($fondo);
+	}
 ?>
