@@ -13,6 +13,11 @@
 
     global $wpdb;
 	$id = $id_orden;
+
+	if( $id_orden+0 == 0 ){ exit(); }
+	$es_orden = $wpdb->get_var("SELECT post_type FROM wp_posts WHERE ID = '".$id."'");
+	if( $es_orden != "shop_order" ){ exit(); }
+
 	$data = kmimos_desglose_reserva_data($id, true);
 
 	extract($data);
