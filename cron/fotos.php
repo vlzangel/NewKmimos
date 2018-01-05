@@ -5,7 +5,6 @@
     global $wpdb;
 
     $hora_actual = strtotime("now");
-    $hora_actual = strtotime("18:00:00");
     $xhora_actual = date("H", $hora_actual);
 
     $periodo_sql = "subio_12 = '1' ";
