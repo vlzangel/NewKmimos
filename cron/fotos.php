@@ -101,11 +101,14 @@
 
                 foreach ($moderacion[ $periodos_a_mostrar ] as $key => $foto) {
 
-                    kmimos_agregarFondo(
-                        dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
-                        $path_fondo, 
-                        dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/mail_'.$foto
-                    );
+                    $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/mail_'.$foto;
+                    if( !file_exists($destino) ){
+                        kmimos_agregarFondo(
+                            dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
+                            $path_fondo, 
+                            $destino
+                        );
+                    }
 
                     $collage .= '
                     <div style="'.$style_1.'">
@@ -126,11 +129,14 @@
 
                             foreach ($moderacion[ 1 ] as $key => $foto) {
 
-                                kmimos_agregarFondo(
-                                    dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/'.$foto, 
-                                    $path_fondo, 
-                                    dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/mail_'.$foto
-                                );
+                                $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/mail_'.$foto;
+                                if( !file_exists($destino) ){
+                                    kmimos_agregarFondo(
+                                        dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
+                                        $path_fondo, 
+                                        $destino
+                                    );
+                                }
 
                                 $collage .= '
                                 <div style="'.$style_1.'">
@@ -147,11 +153,14 @@
 
                             foreach ($moderacion[ 2 ] as $key => $foto) {
 
-                                kmimos_agregarFondo(
-                                    dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/'.$foto, 
-                                    $path_fondo, 
-                                    dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/mail_'.$foto
-                                );
+                                $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/mail_'.$foto;
+                                if( !file_exists($destino) ){
+                                    kmimos_agregarFondo(
+                                        dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
+                                        $path_fondo, 
+                                        $destino
+                                    );
+                                }
 
                                 $collage .= '
                                 <div style="'.$style_1.'">
