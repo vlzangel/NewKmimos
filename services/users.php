@@ -1,5 +1,6 @@
 <?php 
 	include( dirname(__DIR__)."/vlz_config.php");
+	include( __DIR__."/db.php");
 
 	extract($_GET);
 	extract($_POST);
