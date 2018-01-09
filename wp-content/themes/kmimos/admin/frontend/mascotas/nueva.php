@@ -87,14 +87,16 @@
 
     <div class="inputs_containers" style="padding-bottom: 0px;">
         <section>
-            <label for="pet_name" class="lbl-text">'.esc_html__('Nombre de la Mascota','kmimos').':</label>
+            <label for="pet_name" class="lbl-text">'.esc_html__('Nombre de la Mascota','kmimos').':
+            <span id="spanpet_name" class="hidden">*</span></label>
             <label class="lbl-ui">
                 <input type="text" name="pet_name" class="input" />
             </label>
         </section>
 
         <section>
-            <label for="pet_birthdate" class="lbl-text">'.esc_html__('Fecha de nacimiento','kmimos').':</label>
+            <label for="pet_birthdate" class="lbl-text">'.esc_html__('Fecha de nacimiento','kmimos').':
+            <span class="hidden" id="spanpet_birthdate">*</span></label>
             <label class="lbl-ui">
                 <input 
                     type="text" 
@@ -112,7 +114,8 @@
     <div class="inputs_containers row_3" style="padding-bottom: 0px;">
    
         <section>
-            <label for="pet_type" class="lbl-text">'.esc_html__('Tipo de Mascota','kmimos').':</label>
+            <label for="pet_type" class="lbl-text">'.esc_html__('Tipo de Mascota','kmimos').':
+            <span class="hidden" id="spanpet_type">*</span></label>
             <label class="lbl-ui">
                 <select name="pet_type" class="input" id="pet_type" />
                     <option value="">Favor Seleccione</option>
@@ -122,7 +125,7 @@
         </section>
     
         <section>
-            <label for="pet_breed" class="lbl-text">'.esc_html__('Raza de la Mascota','kmimos').':</label>
+            <label for="pet_breed" class="lbl-text">'.esc_html__('Raza de la Mascota','kmimos').':<span class="hidden" id="spanpet_breed">*</span></label>
             <label class="lbl-ui">
                 <select id="pet_breed" name="pet_breed" class="input" />
                     '.$razas.'
@@ -131,14 +134,16 @@
         </section>
    
         <section>
-            <label for="pet_colors" class="lbl-text">'.esc_html__('Colores de la Mascota','kmimos').':</label>
+            <label for="pet_colors" class="lbl-text">'.esc_html__('Colores de la Mascota','kmimos').':
+            <span class="hidden" id="spanpet_colors">*</span></label>
             <label class="lbl-ui">
                 <input type="text" name="pet_colors" class="input" />
             </label>
         </section>
 
         <section>
-            <label for="pet_gender" class="lbl-text">'.esc_html__('Género de la mascota','kmimos').':</label>
+            <label for="pet_gender" class="lbl-text">'.esc_html__('Género de la mascota','kmimos').':
+            <span class="hidden" id="spanpet_gender">*</span></label>
             <label class="lbl-ui">
                 <select name="pet_gender" class="input" />
                     <option value="">Favor Seleccione</option>
@@ -148,7 +153,8 @@
         </section>
 
         <section>
-            <label for="pet_size" class="lbl-text">'.esc_html__('Tamaño de la Mascota','kmimos').':</label>
+            <label for="pet_size" class="lbl-text">'.esc_html__('Tamaño de la Mascota','kmimos').':
+            <span class="hidden" id="spanpet_size">*</span></label>
             <label class="lbl-ui">
                 <select name="pet_size" class="input" />
                     <option value="">Favor Seleccione</option>
@@ -158,7 +164,8 @@
         </section>
 
         <section>
-            <label for="pet_sterilized" class="lbl-text">'.esc_html__('Mascota Esterilizada','kmimos').':</label>
+            <label for="pet_sterilized" class="lbl-text">'.esc_html__('Mascota Esterilizada','kmimos').':
+            <span class="hidden" id="spanpet_sterilized">*</span></label>
             <label class="lbl-ui">
                 <select name="pet_sterilized" class="input" />
                     <option value="">Favor Seleccione</option>
@@ -168,7 +175,8 @@
         </section>
 
         <section>
-            <label for="pet_sociable" class="lbl-text">'.esc_html__('Mascota Sociable','kmimos').':</label>
+            <label for="pet_sociable" class="lbl-text">'.esc_html__('Mascota Sociable','kmimos').':
+            <span class="hidden" id="spanpet_sociable">*</span></label>
             <label class="lbl-ui">
                 <select name="pet_sociable" class="input" />
                     <option value="">Favor Seleccione</option>
@@ -178,7 +186,7 @@
         </section>
 
         <section>
-            <label for="aggresive_humans" class="lbl-text">'.esc_html__('Agresiva con Humanos','kmimos').':</label>
+            <label for="aggresive_humans" class="lbl-text">'.esc_html__('Agresiva con Humanos','kmimos').':<span class="hidden" id="spanaggresive_humans">*</span></label>
             <label class="lbl-ui">
                 <select name="aggresive_humans" class="input" />
                     <option value="">Favor Seleccione</option>
@@ -188,7 +196,7 @@
         </section>
 
         <section>
-            <label for="aggresive_pets" class="lbl-text">'.esc_html__('Agresiva c/otras Mascotas','kmimos').':</label>
+            <label for="aggresive_pets" class="lbl-text">'.esc_html__('Agresiva c/otras Mascotas','kmimos').':<span class="hidden" id="spanaggresive_pets">*</span></label>
             <label class="lbl-ui">
                 <select name="aggresive_pets" class="input" />
                     <option value="">Favor Seleccione</option>

@@ -23,19 +23,19 @@
 	    <table cellpadding="0" cellspacing="0" style='margin-bottom: 21px; width: 580px;' >
 		    <tr>
 		        <td style='width: 360px; vertical-align: top;'>
-		            <div style='font-family: Arial; font-size: 11px; letter-spacing: -0.1px;'>
+		            <div style='font-family: Arial; font-size: 15px; letter-spacing: -0.1px; margin-bottom: 4px;'>
 		                FOTOS CARGADAS EL:
 		            </div>                  
-		            <div style='font-family: Arial; font-size: 16px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
-		                27 de Octubre 2017 <span style='font-size: 14px; font-weight: normal;'>(21:35 PM)</span>
+		            <div style='font-family: Arial; font-size: 18px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
+		                [FECHA] <span style='font-size: 16px; font-weight: normal;'>([HORA])</span>
 		            </div> 
 		        </td>
 		        <td style='width: 158px; vertical-align: top;'>
 		            <div style='background-color: #f4f4f4; height: 50.3px; height: 50.3px; border-radius: 2.8px;'>
-		                <div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px 0px 0px 10px;'>
+		                <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; padding: 10px 0px 0px 10px;'>
 		                    Tu código de reserva es:
 		                </div>
-		                <div style='font-family: Arial; font-size: 14px; font-weight: bold; letter-spacing: 0px; color: #000000; padding: 3px 0px 0px 10px;'>
+		                <div style='font-family: Arial; font-size: 17px; font-weight: bold; letter-spacing: 0px; color: #000000; padding: 3px 0px 0px 10px;'>
 		                    [ID_RESERVA]
 		                </div>
 		            </div>
