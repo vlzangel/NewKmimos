@@ -148,28 +148,28 @@
 										<div class="km-opcion">
 											<input type="checkbox" name="tamanos[]" value="pequenos" >
 											<img src="'.getTema().'/images/new/icon/icon-pequenio.svg"><div class="km-opcion-text">
-											<b>PEQUEÑO</b><br>0 a 25 cm</div>
+											<b>PEQUEÑO</b><br>Hasta 25.4 cm</div>
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
 										<div class="km-opcion">
 											<input type="checkbox" name="tamanos[]" value="medianos" >
 											<img src="'.getTema().'/images/new/icon/icon-mediano.svg"><div class="km-opcion-text">
-											<b>MEDIANO</b><br>25 a 58cm</div>
+											<b>MEDIANO</b><br>27.9 a 50.8 cm</div>
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
 										<div class="km-opcion">
 											<input type="checkbox" name="tamanos[]" value="grandes" >
 											<img src="'.getTema().'/images/new/icon/icon-grande.svg"><div class="km-opcion-text">
-											<b>GRANDE</b><br>58 a 73 cm</div>
+											<b>GRANDE</b><br>53.3 a 73.6 cm</div>
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
 										<div class="km-opcion">
 											<input type="checkbox" name="tamanos[]" value="gigantes" >
 											<img src="'.getTema().'/images/new/icon/icon-gigante.svg"><div class="km-opcion-text">
-											<b>GIGANTE</b><br>73 a 200 cm</div>
+											<b>GIGANTE</b><br>Más 76.2 cm</div>
 										</div>
 									</div>
 								</div>
