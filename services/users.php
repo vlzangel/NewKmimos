@@ -13,6 +13,15 @@
 			$es = $db->get_var("SELECT ID FROM wp_users WHERE user_email = '{$email}' ");
 			echo $es;
 		break;
+
+		case 'is_user_array':
+			$resultado = array();
+			foreach ($emails as $key => $email) {
+				$es = $db->get_var("SELECT ID FROM wp_users WHERE user_email = '{$email}' ");
+				$resultado[ $email ] = $es+0;
+			}
+			echo json_encode($resultado);
+		break;
 		
 	}
 	
