@@ -1,15 +1,15 @@
 <?php 
-	include( dirname(__DIR__)."/wp-load.php");
+	include( dirname(__DIR__)."/vlz_config.php");
 
 	extract($_GET);
 	extract($_POST);
 
-	global $wpdb;
+	$db = new db( new mysqli($host, $user, $pass, $db) );
 
 	switch ( $funcion ) {
 
 		case 'is_user':
-			$es = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$email}' ");
+			$es = $db->get_var("SELECT ID FROM wp_users WHERE user_email = '{$email}' ");
 			echo $es;
 		break;
 		
