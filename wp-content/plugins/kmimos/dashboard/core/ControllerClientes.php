@@ -26,7 +26,7 @@ function getUsers($desde="", $hasta=""){
 	$filtro_adicional = "";
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= " 
-			AND u.user_registered >= '{$desde}' and u.user_registered <= '{$hasta}'
+			AND DATE_FORMAT(u.user_registered, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
 		";
 	}
 	$sql = "
@@ -41,36 +41,18 @@ function getUsers($desde="", $hasta=""){
 	return $result;
 }
 
-function getMascotas($user_id){
-	if(!$user_id>0){ return []; }
+function getCountReservas( $author_id=0 ){
 
-	global $wpdb;
-	$mascotas_cliente = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$user_id}' AND post_type='pets' AND post_status = 'publish'");
-    $mascotas = array();
-    foreach ($mascotas_cliente as $key => $mascota) {
-        $_anio = get_post_meta($mascota->ID, "birthdate_pet", true);
-        $_anio = str_replace("/", "-", $_anio);
-        $anio = strtotime($_anio);
-        $anio = ceil ( time()-$anio );
-        $edad = (@date("Y", $anio)-1970);
-
-        $mascotas[] = array(
-            "nombre" => $mascota->post_title,
-            "raza" => get_post_meta($mascota->ID, "breed_pet", true),
-            "edad" => $edad
-        );
-    }
-	return $mascotas;
-}
-
-function getRazaDescripcion($id, $razas){
-	$nombre = "[{$id}]";
-	if($id > 0){
-		if( !empty($razas) ){
-			if(array_key_exists($id, $razas)){
-				$nombre = $razas[$id];
-			}
-		}
-	}
-	return $nombre;
+	$result = [];
+	$sql = "
+		SELECT 
+			count(ID) as cant
+		FROM wp_posts
+		WHERE post_type = 'wc_booking' 
+			AND not post_status like '%cart%'
+			AND post_status = 'confirmed' 
+			AND post_author = {$author_id}
+	";
+	$result = get_fetch_assoc($sql);
+	return $result;
 }
