@@ -529,8 +529,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		) {
         		var datos = {
 		      		'name_pet': campos_pet[0],
-		            'type_pet': campos_pet[1],
-		            'race_pet': campos_pet[2],
+		            'tipo_mascota': campos_pet[1],
+		            'raza_mascota': campos_pet[2],
 		            'color_pet': campos_pet[3],
 		            'date_birth': campos_pet[4],
 					'gender_pet': campos_pet[5],
