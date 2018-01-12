@@ -30,6 +30,7 @@
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'colors_pet', '{$pet_colors}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'birthdate_pet', '{$pet_birthdate}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'size_pet', '{$pet_size}'); ";
+	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'pet_type', '{$pet_type}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'gender_pet', '{$pet_gender}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'pet_sterilized', '{$pet_sterilized}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'pet_sociable', '{$pet_sociable}'); ";
@@ -38,9 +39,12 @@
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'about_pet', '{$pet_observations}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'owner_pet', '{$user_id}'); ";
 
+	$sql .= "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$pet_type},'0');";
+	
 	$sql .= $img_portada;
 
 	$db->query_multiple( utf8_decode($sql) );
+	
 
 	$respuesta = array(
 		"status" => "OK",
