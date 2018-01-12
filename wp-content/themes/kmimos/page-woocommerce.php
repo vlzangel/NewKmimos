@@ -188,7 +188,7 @@
 			<div class='alerta_flash'>
 				<div class='alerta_flash_importante'>IMPORTANTE</div>
 				<div class='alerta_flash_mensaje'>
-					Este cuidador, <strong>no tiene opci&oacute;n de Reserva Inmediata</strong>, por lo tanto existe la de que la reserva no sea programada el d&iacute;a de hoy.
+					Este cuidador, <strong>no tiene opci&oacute;n de Reserva Inmediata</strong>, por lo tanto existe la posibilidad de que la reserva no sea programada el d&iacute;a de hoy.
 					Te invitamos a seguir uno de los siguientes pasos:
 				</div>
 				<div class='alerta_flash_pasos'>

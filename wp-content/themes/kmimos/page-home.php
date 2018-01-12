@@ -128,7 +128,8 @@
 
 								<div class="km-opcion">
 									<input type="checkbox" name="servicios[]" value="flash" >
-									<i class="fa fa-bolt vlz_rayo" aria-hidden="true"></i> FLASH
+									<i class="fa fa-bolt vlz_rayo" aria-hidden="true" style="vertical-align: middle;"></i>
+									<div style="display: inline-block; width: calc( 100% - 30px ); font-size: 9px; vertical-align: middle;">RESERVA INMEDIATA</div>
 								</div>
 
 								<!--
