@@ -164,11 +164,12 @@ if( !isset($no_display_footer)  ){
     }
 
     if( !is_user_logged_in() ){
+        include_once( 'partes/footer/SubscribeSite.php' );
         /*$HTML .= "<script> startApp(); </script>";*/
     }
 
     // SubscribeSite
-    include_once( 'partes/footer/SubscribeSite.php' );
+    //include_once( 'partes/footer/SubscribeSite.php' );
 
     echo comprimir_styles($HTML);
 

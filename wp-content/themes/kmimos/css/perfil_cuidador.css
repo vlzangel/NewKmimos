@@ -1,3 +1,14 @@
+.km-link-flash {
+    display: inline-block;
+    margin: 7px 6px;
+    text-align: center;
+    font-size: 15px;
+    color: #6a2499;
+    padding: 5px 12px;
+    border: solid 1px;
+    border-radius: 50%;
+}
+
 #mapa{
     height: 250px;
 }
@@ -139,7 +150,6 @@
 .img_cuidador{
     display: inline-block;
     position: relative;
-    min-height: 220px;
 }
 
 .img_cuidador img{
