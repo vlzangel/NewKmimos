@@ -309,7 +309,7 @@
                     'icon' => 'acupuntura'
                 ),
                 'flash' => array( 
-                    'label'=>'Flash',
+                    'label'=>'Reserva Inmediata',
                     'icon' => 'flash'
                 )
             );
