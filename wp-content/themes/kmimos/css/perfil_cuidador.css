@@ -150,6 +150,7 @@
 .img_cuidador{
     display: inline-block;
     position: relative;
+    min-height: 220px;
 }
 
 .img_cuidador img{
