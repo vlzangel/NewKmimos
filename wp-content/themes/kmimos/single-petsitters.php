@@ -63,7 +63,7 @@
         if( $atributos['flash'] == 1 ){
             $flash_link = '
             <div class="cuidador_flash">
-	            <span class="km-contenedor-favorito_2">
+	            <span class="km-contenedor-favorito_2" style="text-transform: uppercase; font-size: 10px;">
 	                <span href="javascript:;" class="km-link-flash">
 	                    <i class="fa fa-bolt" aria-hidden="true"></i>
 	                </span>
