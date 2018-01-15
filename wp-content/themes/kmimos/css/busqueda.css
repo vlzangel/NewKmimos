@@ -115,6 +115,13 @@ h1.maps {
 }
 
 .km-contenedor-favorito_2 {
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
+.km-resultados-lista .km-contenedor-favorito_2 {
+    top: auto;
     bottom: 0;
     right: 0;
     position: absolute;
