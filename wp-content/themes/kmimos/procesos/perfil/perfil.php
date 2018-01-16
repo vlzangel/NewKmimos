@@ -54,7 +54,6 @@
 	$db->query_multiple( utf8_decode($sql) );
 
 	if( $password != '' ){
-		include_once($raiz."/wp-load.php");
 
 		$info = array();
 	    $info['user_login']     = sanitize_user($username, true);

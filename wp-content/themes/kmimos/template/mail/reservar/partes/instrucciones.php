@@ -7,7 +7,7 @@
             </div>
             
             <div style="font-family: Arial; font-size: 22px; font-weight: bold; letter-spacing: 0.6px; color: #0d7ad9; margin-bottom: 22px;">
-                $ [MONTO] MXN
+                $ [MONTO] <?php echo get_region('moneda_cod'); ?>
             </div>
             
             <div style="display: inline-block; padding: 12px 20px; border-radius: 2.8px; background-color: #f4f4f4; margin-bottom: 30px;">
@@ -55,7 +55,7 @@
                         <img src='[URL_IMGS]/group-55.png' style='width: 56px; padding: 0px 10px;' />
                     </td>
                     <td style='width: 230px; vertical-align: top; font-family: Arial; font-size: 12px; letter-spacing: 0.2px; color: #666666; padding-bottom: 10px;'>
-                        Realiza el pago en <strong style='font-weight: bold; color: #570089;'>efectivo</strong> por $[MONTO] MXN (más $8 pesos por comisión) y conserva el ticket de pago.
+                        Realiza el pago en <strong style='font-weight: bold; color: #570089;'>efectivo</strong> por <?php echo get_region('moneda_cod'); ?>[MONTO] <?php echo get_region('comision'); ?> y conserva el ticket de pago.
                     </td>
                 </tr>
             </table>

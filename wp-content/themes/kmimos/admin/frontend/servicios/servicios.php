@@ -30,11 +30,24 @@
     $hospedaje = "";
     $precios_hospedaje = unserialize($cuidador->hospedaje);
 
+    $precio_sugerido['hospedaje'] = [
+        "pequenos" => "25.000",
+        "medianos" => "30.000",
+        "grandes"  => "35.000",
+        "gigantes" => "40.000"        
+    ];
+    $precio_sugerido['guarderia'] = [
+        "pequenos" => "20.000",
+        "medianos" => "25.000",
+        "grandes"  => "30.000",
+        "gigantes" => "35.000"        
+    ];
     foreach ($precios_hospedaje as $key => $value) {
     	$hospedaje .= "
     		<div class='vlz_celda_25'>
     			<label>".$tam[$key]."</label>
     			<input type='number' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='hospedaje_".$key."' name='hospedaje_".$key."' value='".$value."' />
+                <label>Precio sugerido: ".$precio_sugerido['hospedaje'][$key]." ".get_region('mon_izq')."</label>
 			</div>
     	";
     }
@@ -66,10 +79,17 @@
     		}else{
     			$precio = "";
     		}
+
+            $precio_sugerido_tag = '';
+            if( $key == 'guarderia' ){
+                $precio_sugerido_tag = "<label>Precio sugerido: ".$precio_sugerido[$key][$key2]." ".get_region('moneda_cod')."</label>";
+            }
+
 	    	$temp .= "
 	    		<div class='vlz_celda_25'>
 	    			<label>".$value2."</label>
 	    			<input type='number' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='".$key."_".$key2."' name='".$key."_".$key2."' value='".$precio."' />
+                    ".$precio_sugerido_tag."
 				</div>
 	    	";
     	}
@@ -175,7 +195,13 @@
 						<strong>Gigantes</strong> (Más 76.2 cm)
 	    			</div>
     			</div>
-    		</div>
+            </div>
+            <div class='alertas alertas-info'>
+                <small> 
+                    <strong>ATENCIÓN:</strong> Recuerda completar con ceros (0) los Miles. 
+                    <strong>Ejemplo:</strong> 1 Peso no es igual a 1000 Pesos
+                </small>
+            </div>
     		<div class='vlz_seccion'>
     			<div class='vlz_titulo_seccion container_btn'>Hospedaje <!-- {$boton} --> </div>
     			<div class='vlz_seccion_interna' id='precios_hospedaje'>

@@ -1,5 +1,4 @@
 <?php
-    
     $userdata = get_user_meta($user_id);
 
     $referred = $userdata['user_referred'][0];
@@ -34,7 +33,7 @@
     }else{
         $pixel = "";
     }
-
+    $length = get_region('length_movil');
     $CONTENIDO .=  $pixel.'
         <input type="hidden" name="accion" value="perfil" />
         <input type="hidden" name="user_id" value="'.$user_id.'" />
@@ -85,14 +84,14 @@
             <section>
                 <label for="phone" class="lbl-text">'.esc_html__('Teléfono','kmimos').':</label>
                 <label class="lbl-ui">
-                    <input type="number" id="phone" name="phone" data-title="El teléfono es requerido y debe tener al menos 10 digitos" value="'.$userdata['user_phone'][0].'" data-valid="requerid,min:10" autocomplete="off" />
+                    <input type="number" id="phone" name="phone" data-title="El teléfono es requerido y debe tener al menos '.$length.' digitos" value="'.$userdata['user_phone'][0].'" data-valid="requerid,min:'.$length.'" autocomplete="off" />
                 </label>
             </section>
 
             <section>
                 <label for="mobile" class="lbl-text">'.esc_html__('Móvil','kmimos').':</label>
                 <label class="lbl-ui">
-                    <input type="number" id="mobile" name="mobile" data-title="El teléfono es requerido y debe tener al menos 10 digitos" value="'.$userdata['user_mobile'][0].'" data-valid="requerid,min:10" autocomplete="off" />
+                    <input type="number" id="mobile" name="mobile" data-title="El teléfono es requerido y debe tener al menos '.$length.' digitos" value="'.$userdata['user_mobile'][0].'" data-valid="requerid,min:'.$length.'" autocomplete="off" />
                 </label>
             </section>
 

@@ -177,7 +177,7 @@
                             <div class="slide-content">
                                 <div class="slide-price-distance">
                                     <div class="slide-price">
-                                        Desde <span>MXN $'.($cuidador->hospedaje_desde*1.2).'</span>
+                                        Desde <span>'.get_region("mon_der").' $'.($cuidador->hospedaje_desde*1.2).'</span>
                                     </div>
                                     <!--
                                     <div class="slide-distance">
@@ -627,7 +627,7 @@
                             </div>
 
                             <div class="km-opciones">
-                                <div class="precio">MXN $ '.$cuidador->precio.'</div>
+                                <div class="precio">'.get_region('mon_der').' $'.$cuidador->precio.'</div>
                                 <div class="distancia">'.$distancia.'</div>
                                 <a role="button" href="#" 
                                     data-name="'.$titulo.'" 
@@ -656,7 +656,7 @@
 
                             <h1><a href="'.$url.'">'.$titulo.'</a></h1>
                             <p>'.$anios_exp.' año(s) de experiencia
-                                <br><b>MXN $ '.$cuidador->precio.'</b>
+                                <br><b>'.get_region("mon_der").' $'.$cuidador->precio.'</b>
                                 <br><small>'.$distancia.'</small>
                             </p>
                             <div class="km-ranking">

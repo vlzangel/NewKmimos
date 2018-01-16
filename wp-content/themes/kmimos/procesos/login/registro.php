@@ -138,7 +138,7 @@
         $message_mail = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $message_mail);
 
         $message = get_email_html($message_mail, false);
-        wp_mail( $email, "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message);
+        wp_mail( $email, "Kmimos ".get_region('pais')." Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message);
 
         //USER LOGIN
         $user = get_user_by( 'id', $user_id );

@@ -48,7 +48,7 @@
                             <div class='vlz_destacados_img'>
                                 <div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
                                 <div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
-                                <div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>MXN $".($cuidador->hospedaje_desde*1.2)."</div>
+                                <div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>".get_region('mon_der')." $".($cuidador->hospedaje_desde*1.2)."</div>
                             </div>
                             <div class='vlz_destacados_data' >
                                 <div class='vlz_destacados_nombre'>{$nombre}</div>
@@ -113,6 +113,7 @@
 						<div>ENTRENAMIENTO<br>AVANZADO</div>
 					</div>';
 			break;
+			
 		}
 	}
 
@@ -307,7 +308,7 @@
 							</div>
 							<div class="km-height">
 								'.$tamanos[$key].'
-								<span>$'.($data[$key]*1.2).'</span>
+								<span>'.get_region('mon_der').' '.($data[$key]*1.2).'</span>
 							</div>
 						</div>
 					';
@@ -320,7 +321,7 @@
 	function getTransporte($data, $precarga){
 		$resultado = "";
 		$transportes = array(
-			"transportacion_sencilla" => "Transp. Sencillo",
+			"transportacion_sencilla" => "Transporte sencillo (recogida o entregada)",
 			"transportacion_redonda" => "Transp. Redondo"
 		);
 		$rutas = array(

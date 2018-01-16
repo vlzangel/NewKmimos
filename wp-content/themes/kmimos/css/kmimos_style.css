@@ -400,6 +400,7 @@ section {
 	width: 100%;
 	text-align: center;
 }
+.km-opcion-disabled input,
 .km-opcion input{
 	display: none;
 }
@@ -765,6 +766,7 @@ input:focus{
     top: -3px;
 }
 button.close {
+    text-shadow: 0px 0px 3px #000;
 	position: absolute;
 	right: -40px;
 	top: 0;
@@ -6633,6 +6635,22 @@ section {
     cursor: pointer;
     width: 100%;
     text-align: left;
+}
+.km-opcion-disabled {
+	opacity: .5;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 14px 0;
+    color: black;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    position: relative;
+    cursor: not-allowed;
+    width: 100%;
+    text-align: center;
 }
 .km-opcion:before {
     content: "";

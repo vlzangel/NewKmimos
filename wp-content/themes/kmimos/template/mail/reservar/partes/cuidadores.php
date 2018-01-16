@@ -21,7 +21,7 @@
 	</div>
 
 	<div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; text-align: center; color: #0d7ad9; margin-bottom: 8px;'>
-		MXN $ [MONTO]
+		<?php echo get_region('moneda_cod'); ?> $ [MONTO]
 	</div>
 
 	<div style='margin: 5px; text-align: center; height: 30px; margin-bottom: 10px;'>

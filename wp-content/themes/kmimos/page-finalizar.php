@@ -12,9 +12,13 @@
 
 		global $wpdb;
 		
+		$moneda_signo = get_region('moneda_cod');
+
 		$orden_id = vlz_get_page();
 
-		$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
+		$_pdf_tienda = get_region("meta_key_pdf_tienda");
+
+		$pdf = get_post_meta($orden_id, $_pdf_tienda, true);
 		if( $pdf != "" ){
 			$pdf = "<a class='btn_fin_reserva' href='{$pdf}' target='_blank'>DESCARGAR INSTRUCCIONES PARA PAGO EN TIENDA DE CONVENIENCIA</a>";
 		}
@@ -66,8 +70,8 @@
 	    foreach ($data_reserva["servicio"]["variaciones"] as $value) {
 	        $variaciones .= '
 	            <div class="item">
-	                <div>'.$value[0].' '.$value[1].' x '.$value[2].' x $'.$value[3].'</div>
-	                <span>$'.$value[4].'</span>
+	                <div>'.$value[0].' '.$value[1].' x '.$value[2].' x '.$moneda_signo.$value[3].'</div>
+	                <span>'.$moneda_signo.$value[4].'</span>
 	            </div>
 	        ';
 	    }
@@ -94,8 +98,8 @@
 	        foreach ($data_reserva["servicio"]["adicionales"] as $value) {
 	            $adicionales .= '
 	                <div class="item">
-	                    <div>'.$value[0].' - '.$value[1].' x $'.$value[2].'</div>
-	                    <span>$'.$value[3].'</span>
+	                    <div>'.$value[0].' - '.$value[1].' x '.$moneda_signo.$value[2].'</div>
+	                    <span>'.$moneda_signo.$value[3].'</span>
 	                </div>
 	            ';
 	        }
@@ -113,7 +117,7 @@
 	            $transporte .= '
 	                <div class="item">
 	                    <div>'.$value[0].'</div>
-	                    <span>$'.$value[2].'</span>
+	                    <span>'.$moneda_signo.$value[2].'</span>
 	                </div>
 	            ';
 	        }
@@ -192,7 +196,7 @@
 			<ul>
 				<li>Revisa tu correo. Te enviaremos la Confirmación o Rechazo de tu Reserva en unos momentos (puede durar desde 30 min a 4 horas).</li>
 				<li>Luego de aceptada la Reserva, el cuidador seleccionado y/o Atención al Cliente de Kmimos se pondrán en contacto contigo para alinear la logística de entrega.</li>
-				<li>En caso de dudas contáctanos al (01) 800 056 4667, y te atenderemos de inmediato.</li>
+				<li>En caso de dudas contáctanos al ".get_region('telefono_atencion').", y te atenderemos de inmediato.</li>
 			</ul>
 		</div>";
 	    if( $data_reserva["metodo_pago"] == "Tienda" ){
@@ -204,7 +208,7 @@
 					<li>Recuerda que tienes 48 horas para hacer el pago.</li>
 					<li><strong>El Cuidador que seleccionaste no recibirá tu solicitud de Reserva sino hasta que hayas hecho el pago en la tienda.</strong></li>
 					<li>Una vez que pagues en la Tienda de Conveniencia, el cuidador seleccionado y/o Atención al Cliente de Kmimos se pondrán en contacto contigo dentro de las siguientes 1 a 4 horas para alinear la logística de entrega.</li>
-					<li>En caso de dudas contáctanos al (01) 800 056 4667, y te atenderemos de inmediato.</li>
+					<li>En caso de dudas contáctanos al ".get_region('telefono_atencion').", y te atenderemos de inmediato.</li>
 				</ul>
 
 			</div>";

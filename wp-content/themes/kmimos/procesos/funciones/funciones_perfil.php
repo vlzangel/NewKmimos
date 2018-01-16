@@ -249,13 +249,13 @@
 	                				<div class='datos_de_contacto'>
 	                					<ul>
 		                					<li>
-		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-wsp.svg' style='' /></span> +52 (55) 6892 2182
+		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-wsp.svg' style='' /></span> ".get_region('whatsapp')."
 		                					</li>
 		                					<li>
-		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-cel.svg' style='' /></span> (01) 800 056 4667
+		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-cel.svg' style='' /></span> ".get_region('telefono_atencion')."
 		                					</li>
 		                					<li>
-		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-mail.svg' style='height: 13px;' /></span> contactomex@kmimos.la
+		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-mail.svg' style='height: 13px;' /></span> ".get_region('email')."
 		                					</li>
 		                				</ul>
 	                				</div>

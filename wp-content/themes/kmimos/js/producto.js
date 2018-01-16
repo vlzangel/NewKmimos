@@ -35,6 +35,7 @@ function initCarrito(){
 	CARRITO["pagar"] = [];
 
 		CARRITO["pagar"] = {
+			"tienda" : "BALOTO",
 			"total" : "",
 			"tipo" : "tienda",
 			"metodo" : "deposito",
@@ -233,7 +234,7 @@ function calcular(){
 			error = "Ingrese la cantidad de mascotas";
 		}else{
 			cant *= parseFloat( dias );
-			jQuery(".km-price-total").html("$"+numberFormat(cant));
+			jQuery(".km-price-total").html(moneda_signo+numberFormat(cant));
 		}
 	}
 	
@@ -254,13 +255,13 @@ function calcular(){
 	}else{
 		jQuery(".valido").css("display", "block");
 		jQuery(".invalido").css("display", "none");
-		jQuery(".km-price-total").html("$"+numberFormat(cant));
+		jQuery(".km-price-total").html(moneda_signo+numberFormat(cant));
 	}
 	
 	if( error == "" ){
-		jQuery(".pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
-		jQuery(".pago_cuidador").html( "$" + numberFormat(cant/1.2) );
-		jQuery(".monto_total").html( "$" + numberFormat(cant) );
+		jQuery(".pago_17").html( moneda_signo + numberFormat(cant-(cant/1.2)) );
+		jQuery(".pago_cuidador").html( moneda_signo + numberFormat(cant/1.2) );
+		jQuery(".monto_total").html( moneda_signo + numberFormat(cant) );
 		CARRITO["pagar"]["total"] = cant;
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").removeClass("disabled");
@@ -381,8 +382,8 @@ function initFactura(){
 						parseFloat( CARRITO["cantidades"][key][1] );
 
 			items += '<div class="km-option-resume-service">'
-			items += '	<span class="label-resume-service">'+CARRITO["cantidades"][key][0]+' Mascota'+plural+' '+tamano+plural+' x '+CARRITO["fechas"]["duracion"]+' '+diaNoche+' x $'+CARRITO["cantidades"][key][1]+' </span>'
-			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
+			items += '	<span class="label-resume-service">'+CARRITO["cantidades"][key][0]+' Mascota'+plural+' '+tamano+plural+' x '+CARRITO["fechas"]["duracion"]+' '+diaNoche+' x '+moneda_signo+CARRITO["cantidades"][key][1]+' </span>'
+			items += '	<span class="value-resume-service">'+moneda_signo+numberFormat(subtotal)+'</span>'
 			items += '</div>';
 		}
 
@@ -409,8 +410,8 @@ function initFactura(){
 						parseFloat( CARRITO["adicionales"][key] );
 
 			items += '<div class="km-option-resume-service">'
-			items += '	<span class="label-resume-service">'+adicional+' - '+CARRITO["cantidades"]["cantidad"]+' Mascota'+plural+' x $'+CARRITO["adicionales"][key]+'</span>'
-			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
+			items += '	<span class="label-resume-service">'+adicional+' - '+CARRITO["cantidades"]["cantidad"]+' Mascota'+plural+' x '+moneda_signo+CARRITO["adicionales"][key]+'</span>'
+			items += '	<span class="value-resume-service">'+moneda_signo+numberFormat(subtotal)+'</span>'
 			items += '</div>';
 		}
 
@@ -419,7 +420,7 @@ function initFactura(){
 	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
 		items += '<div class="km-option-resume-service">'
 		items += '	<span class="label-resume-service">'+CARRITO["transportacion"][0]+' - Precio por Grupo </span>'
-		items += '	<span class="value-resume-service">$'+numberFormat(CARRITO["transportacion"][1])+'</span>'
+		items += '	<span class="value-resume-service">'+moneda_signo+numberFormat(CARRITO["transportacion"][1])+'</span>'
 		items += '</div>';
 	}
 
@@ -429,6 +430,7 @@ function initFactura(){
 
 function pagarReserva(id_invalido = false){
 
+	
 	jQuery("#reserva_btn_next_3 span").html("Procesando");
 	jQuery("#reserva_btn_next_3").addClass("disabled");
 	jQuery("#reserva_btn_next_3").addClass("cargando");
@@ -451,18 +453,61 @@ function pagarReserva(id_invalido = false){
 		HOME+"/procesos/reservar/pagar.php",
 		{
 			info: json,
-			id_invalido: id_invalido
+			id_invalido: id_invalido,
+			PayuDeviceSessionId: PayuDeviceSessionId
 		},
 		function(data){
-			/*console.log( data );*/
+			console.log( data );
+
 			if( data.error != "" && data.error != undefined ){
-				if( data.tipo_error != "3003" ){
-					var error = "Error procesando la reserva<br>";
-			    	error += "Por favor intente nuevamente.<br>";
-			    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
-				}else{
-					var error = "Error procesando la reserva<br>";
-			    	error += "La tarjeta no tiene fondos suficientes.<br>";
+
+				switch( PASARELA ){
+					case 'openpay':
+						if( data.tipo_error != "3003" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "Por favor intente nuevamente.<br>";
+					    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+						}else{
+							var error = "Error procesando la reserva<br>";
+					    	error += "La tarjeta no tiene fondos suficientes.<br>";
+						}
+						break;
+					case 'payu':
+						/* Response code - PayU */
+						if( data.code == "ANTIFRAUD_REJECTED" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La transacción fue rechazada por el sistema antifraude.<br>";
+
+						}else if( data.code == "PAYMENT_NETWORK_REJECTED" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La red financiera rechazó la transacción.<br>";
+						
+						}else if( data.code == "ENTITY_DECLINED" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La transacción fue rechazada por el banco o la red financiera debido a un error.<br>";
+						
+						}else if( data.code == "INVALID_EXPIRATION_DATE_OR_SECURITY_CODE" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "El código de seguridad o la fecha de caducidad no son válidos.<br>";
+						
+						}else if( data.code == "INSUFFICIENT_FUNDS" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La cuenta no tenía fondos suficientes.<br>";
+						
+						}else if( data.code == "INVALID_CARD" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La tarjeta no es válida.<br>";
+						
+						}else if( data.code == "RESTRICTED_CARD" ){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La tarjeta tiene una restricción.<br>";
+					
+						}else{
+							var error = "Error procesando la reserva<br>";
+					    	error += "Por favor intente nuevamente.<br>";
+					    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+						}
+						break;
 				}
 		    	jQuery(".errores_box").html(error);
 				jQuery(".errores_box").css("display", "block");
@@ -526,7 +571,7 @@ function mostrarCupones(){
 			}
 			items += '<div class="km-option-resume-service">'
 			items += '	<span class="label-resume-service">'+nombreCupon+'</span>'
-			items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>'
+			items += '	<span class="value-resume-service">'+moneda_signo+numberFormat(cupon[1])+' '+eliminarCupo+' </span>'
 			items += '</div>';
 		}
 
@@ -554,6 +599,8 @@ function calcularDescuento(){
         }
 	});
 
+	jQuery(".km-price-total2").html(moneda_signo+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+
 	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
 	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
 
@@ -577,8 +624,8 @@ function calcularDescuento(){
 		pagoCuidador -= reciduo;
 	}
 
-	jQuery(".pago_17").html( "$" + numberFormat( pre17 ) );
-	jQuery(".pago_cuidador").html( "$" + numberFormat(pagoCuidador) );
+	jQuery(".pago_17").html( moneda_signo + numberFormat( pre17 ) );
+	jQuery(".pago_cuidador").html( moneda_signo + numberFormat(pagoCuidador) );
 
 	descuentos = descuentos+saldo;
 
@@ -600,21 +647,21 @@ function calcularDescuento(){
 		}
 	}
 
-	jQuery(".sub_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]) );
+	jQuery(".sub_total").html( moneda_signo + numberFormat(CARRITO["pagar"]["total"]) );
 	if( descuentos == 0 ){
-		jQuery(".descuento").html( "$" + numberFormat(descuentos) );
+		jQuery(".descuento").html( moneda_signo + numberFormat(descuentos) );
 
 		jQuery(".sub_total").parent().css("display", "none");
 		jQuery(".descuento").parent().css("display", "none");
 	}else{
-		jQuery(".descuento").html( "$" + numberFormat(descuentos) );
+		jQuery(".descuento").html( moneda_signo + numberFormat(descuentos) );
 
 		jQuery(".sub_total").parent().css("display", "block");
 		jQuery(".descuento").parent().css("display", "block");
 	}
 	
-	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
-	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+	jQuery(".monto_total").html( moneda_signo + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
+	jQuery(".km-price-total2").html(moneda_signo + numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 }
 
 function aplicarCupon(cupon = ""){
@@ -702,15 +749,18 @@ var descripciones = "";
 
 jQuery(document).ready(function() { 
 
-	/*jQuery("#hora_checkin").on("change", function(){
-		CARRITO["fechas"]["checkin"] = jQuery("#hora_checkin").val();
-		calcular();
-	});
-
-	jQuery("#hora_checkout").on("change", function(){
-		CARRITO["fechas"]["checkout"] = jQuery("#hora_checkout").val();
-		calcular();
-	});*/
+    jQuery('[data-target="tienda"]').on('click', function(e) {
+    	if( !jQuery(this).hasClass('km-opcion-disabled') ){
+	        jQuery('[data-target="tienda"]').parent().find('.km-opcion')
+	        	.removeClass('km-opcionactivo')
+	        	.removeAttr('checked');
+	        jQuery(this).toggleClass('km-opcionactivo');
+			
+			var f = jQuery(this).children("input:checkbox").prop("checked","checked");
+			
+			CARRITO['pagar']['tienda'] = f.val();
+		}
+    });
 
 	jQuery(".km-option-deposit").click();
 
@@ -944,6 +994,20 @@ jQuery(document).ready(function() {
 		jQuery("#step_3").css("display", "block");
 		jQuery(document).scrollTop(0);
 
+		// Monto Minimo para pago por Tienda
+		if( PASARELA == 'payu'){
+			if( CARRITO['pagar']['total'] < 3000 ){
+				jQuery('#OTHERS_CASH').find('[data-target="tienda"]').removeClass('km-opcion').addClass('km-opcion-disabled');
+			}else{
+				jQuery('#OTHERS_CASH').find('[data-target="tienda"]').removeClass('km-opcion-disabled').addClass('km-opcion');
+			}
+			if( CARRITO['pagar']['total'] < 20000 ){
+				jQuery('#EFECTY').find('[data-target="tienda"]').removeClass('km-opcion').addClass('km-opcion-disabled');
+			}else{
+				jQuery('#EFECTY').find('[data-target="tienda"]').removeClass('km-opcion-disabled').addClass('km-opcion');
+			}
+		}
+
 		e.preventDefault();
 	});
 
@@ -961,12 +1025,19 @@ jQuery(document).ready(function() {
 			alert("Debes aceptar los terminos y condiciones");
 		}else{
 			if( jQuery("#metodos_pagos").css("display") != "none" ){
-				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+				CARRITO["pagar"]["deviceIdHiddenFieldName"] = '';
+				if( PASARELA == 'openpay' ){
+					CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+				}
 				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
 				if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
 					jQuery("#reserva_btn_next_3 span").html("Validando...");
 					jQuery("#reserva_btn_next_3").addClass("disabled");
-					OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+					if( PASARELA == 'openpay' ){
+						OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+					}else{
+				        pagarReserva();
+					}
 				}else{
 					pagarReserva();
 				}
@@ -1052,6 +1123,7 @@ jQuery(document).ready(function() {
 	});
 
 	/* Configuración Openpay */
+	if( PASARELA == 'openpay' ){
 
 		OpenPay.setId( OPENPAY_TOKEN );
 	    OpenPay.setApiKey(OPENPAY_PK);
@@ -1107,7 +1179,7 @@ jQuery(document).ready(function() {
 	        jQuery(".errores_box").html(error);
 			jQuery(".errores_box").css("display", "block");
 	    };
-
+	}
    	/* Fin Configuración Openpay */
 
 });

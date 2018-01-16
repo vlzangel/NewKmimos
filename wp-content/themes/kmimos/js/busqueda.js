@@ -326,7 +326,7 @@ function initMap() {
 								+'</div>'
 								*/
 								+'<div class="km-opciones maps">'
-								+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
+								+'    <div class="precio">'+moneda_signo+" $ "+cuidador.pre+'</div>'
 								+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
 								+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
 								+'</div>'
