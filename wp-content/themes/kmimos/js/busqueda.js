@@ -347,9 +347,9 @@ function initMap() {
 		    window.oms = oms;
 		}else{
 			map = new google.maps.Map(document.getElementById("mapa"), {
-		        zoom: 4,
+		        zoom: 5,
 		        mapTypeId: google.maps.MapTypeId.ROADMAP,
-				center: new google.maps.LatLng(23.634501, -102.552784), 
+				center: new google.maps.LatLng(4.718366708838099, -74.0674491609375), 
 		        fullscreenControl: true,
 				scrollwheel: false
 		    });
