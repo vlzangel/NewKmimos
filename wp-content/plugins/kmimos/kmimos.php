@@ -18,7 +18,6 @@
     include_once('angel.php');
     include_once('carlos.php');
     include_once('italo.php');
-    include_once('dajan.php');
     include_once('viejos.php');
 
     /** Incluye las funciones de javascript en la página WEB bajo Wordpress **/

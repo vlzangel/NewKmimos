@@ -59,24 +59,18 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		switch(jQuery("#ife").val().length) {
 		case 0:
 			jQuery("#ife").parent('div').css('color','red');
-			jQuery("#ife").after('<span name="sp-ife">Debe ingresar su '+DNI+'</span>').css('color','red');
+			jQuery("#ife").after('<span name="sp-ife">Debe ingresar su IFE</span>').css('color','red');
 			jQuery("#ife").focus(function() { jQuery('[name="sp-ife"]').remove(); });
 			break;
-		case 7:
+		case 13:
 				jQuery("#ife").css('color','green');
 				jQuery("#ife").parent('div').css('color','green');
 				jQuery('[name="sp-ife"]').remove();
 			break;
 		default:
-			if (jQuery("#ife").val().length >= 8) {
-				jQuery("#ife").css('color','green');
-				jQuery("#ife").parent('div').css('color','green');
-				jQuery('[name="sp-ife"]').remove();
-			}else{
 			jQuery("#ife").parent('div').css('color','red');
-			jQuery("#ife").after('<span name="sp-ife">Su '+DNI+' debe contener '+DNILENGTH+' dígitos</span>').css('color','red');
+			jQuery("#ife").after('<span name="sp-ife">Su IFE debe contener 13 dígitos</span>').css('color','red');
 			jQuery("#ife").focus(function() { jQuery('[name="sp-ife"]').remove(); });
-			}
 		}
 	});
 
@@ -167,21 +161,15 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery("#movil").after('<span name="sp-movil">Debe ingresar su movil</span>').css('color','red');
 				jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
 				break;
-			case 7:
+			case 10:
 					jQuery("#movil").css('color','green');
 					jQuery("#movil").parent('div').css('color','green');
 					jQuery('[name="sp-movil"]').remove();
 				break;
 			default:
-				if (jQuery("#movil").val().length >= 8) {
-					jQuery("#movil").css('color','green');
-					jQuery("#movil").parent('div').css('color','green');
-					jQuery('[name="sp-movil"]').remove();
-				}else{
-					jQuery("#movil").parent('div').css('color','red');
-					jQuery("#movil").after('<span name="sp-movil">Su movil debe contener al menos'+DNILENGTH+' dígitos</span>').css('color','red');
-					jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
-				}
+				jQuery("#movil").parent('div').css('color','red');
+				jQuery("#movil").after('<span name="sp-movil">Su movil debe contener 10 dígitos</span>').css('color','red');
+				jQuery("#movil").focus(function() { jQuery('[name="sp-movil"]').remove(); });
 		}
 	});
 
@@ -444,20 +432,16 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 	
 		jQuery('#select_1').on('click', function(){
 			jQuery("#select_2, #select_3, #select_4").removeClass("km-opcionactivo");
-			jQuery("#select_1").addClass("km-opcionactivo");
 		});
 		jQuery('#select_2').on('click', function(){
 			jQuery("#select_1, #select_3, #select_4").removeClass("km-opcionactivo");
-			jQuery("#select_2").addClass("km-opcionactivo");
 		});
 		
 		jQuery('#select_3').on('click', function(){
 			jQuery("#select_2, #select_1, #select_4").removeClass("km-opcionactivo");
-			jQuery("#select_3").addClass("km-opcionactivo");
 		});	
 		jQuery('#select_4').on('click', function(){
 			jQuery("#select_2, #select_3, #select_1").removeClass("km-opcionactivo");
-			jQuery("#select_4").addClass("km-opcionactivo");
 		});
 	});
 

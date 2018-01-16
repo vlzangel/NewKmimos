@@ -51,7 +51,6 @@
 	// Redireccion si faltan datos
 	if( !isset($_GET['name']) || !isset($_GET['email']) ){ 
 		//header('location:/referidos');
-		exit();
 	}
 
 	// Parametros

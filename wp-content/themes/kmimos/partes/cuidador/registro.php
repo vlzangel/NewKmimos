@@ -34,8 +34,8 @@
 				<p style="color: #979797">Al crear una cuenta, <a href="<?php echo get_home_url(); ?>/terminos-y-condiciones/">aceptas las condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> <?php echo get_region('whatsapp'); ?></p></div>
-					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg"><?php echo get_region('email'); ?></a></p></div>
+					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> (55) 3137 4829</p></div>
+					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
 				</div>
 				<hr>
 				<div class="row">
@@ -72,10 +72,8 @@
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
-							<label><?php echo get_region("identidad"); ?></label>
-
-							<input type="text"  maxlength="<?php echo get_region("identidad-length"); ?>"  data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
-
+							<label>IFE/Documento de Identidad</label>
+							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder focused">
@@ -95,7 +93,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Teléfono</label>
-							<input type="text" name="rc_telefono" data-charset="num" maxlength="<?php echo get_region("identidad-length"); ?>" value="" class="input-label-placeholder solo_numeros">
+							<input type="text" name="rc_telefono" data-charset="num" minlength="10" maxlength="15" value="" class="input-label-placeholder solo_numeros">
 							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -117,8 +115,8 @@
 				
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> <?php echo get_region('whatsapp'); ?></p></div>
-					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg"><?php echo get_region('email'); ?></a></p></div>
+					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> (55) 3137 4829</p></div>
+					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
 				</div>
 
 				<hr>
@@ -191,8 +189,7 @@
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
 				
-				<textarea name="rc_descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz."><?php echo get_region('cuidador_descripcion'); ?>
-
+				<textarea name="rc_descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con seguro de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
 				</textarea>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
 
@@ -216,8 +213,8 @@
 						</li>
 					</ul>
 				</div>
-				<h3 style="margin: 0;"><?php echo get_region('direccion'); ?></h5>
-				<p style="color: #979797">Queremos saber tu <?php echo get_region('direccion'); ?> actual</p>
+				<h3 style="margin: 0;">Dirección</h5>
+				<p style="color: #979797">Queremos saber tu dirección actual</p>
 				<a href="#" class="km-btn-border obtener_direccion">UBICACIÓN ACTUAL</a>
 				<div class="line-o">
 					<p class="text-line">o</p>
@@ -226,10 +223,9 @@
 				<div class="km-box-form">
 					<div class="content-placeholder">
 						<div class="label-placeholder">
-
-							<label><?php echo get_region('estado'); ?></label>
+							<label>Estado</label>
 							<select class="km-datos-estado-opcion km-select-custom" name="rc_estado">
-								<option value="">Selección de <?php echo get_region('estado'); ?></option>
+								<option value="">Selección de Estado</option>
 								<?php
 									global $wpdb;
 								    $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
@@ -242,17 +238,16 @@
 							</select>
 							<small data-error="rc_estado" style="visibility: hidden;"></small>
 
-							 
 						</div>
 						<div class="label-placeholder">
-							<label><?php echo get_region("Localidad")." / ".get_region("Barrio"); ?></label>
+							<label>Municipio</label>
 							<select class="km-datos-municipio-opcion km-select-custom" name="rc_municipio">
-								<option value="">Selección de <?php echo get_region("Barrio"); ?></option>
+								<option value="">Selección de Municipio</option>
 							</select>
 							<small data-error="rc_municipio" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
-							<label><?php echo get_region('direccion'); ?></label>
+							<label>Dirección</label>
 							<input type="text" id="rc_direccion" name="rc_direccion" value="" class="input-label-placeholder">
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>

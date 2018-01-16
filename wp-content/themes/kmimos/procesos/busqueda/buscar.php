@@ -355,7 +355,12 @@
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
+/*	echo "<pre>";
+		print_r( $sql );
+		print_r( $_POST );
+		print_r( $cuidadores );
+	echo "</pre>";
+*/
     if( !isset($redirect) || !$redirect ) {
 		header("location: {$home}busqueda/");
 	}
-

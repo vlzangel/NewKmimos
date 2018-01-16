@@ -18,7 +18,26 @@
      * */
     if(!function_exists('get_referred_list_options')){
         function get_referred_list_options(){
-            $opciones = get_region("conocio");
+            $opciones = array(
+                'Petco'         =>  'Petco',
+                'Volaris'       =>  'Volaris',
+                'Facebook'      =>  'Facebook',
+                'Google'       =>  'Buscador de Google',
+                'Instagram'     =>  'Instagram',
+                'Twitter'       =>  'Twitter',
+                'Booking.com'   =>  'Booking.com',
+                'Cabify'        =>  'Cabify',
+                'Bancomer'      =>  'Bancomer',
+                'Mexcovery'     =>  'Mexcovery',
+                'Totems'        =>  'Totems',
+                'Groupon'       =>  'Groupon',
+                'Agencia IQPR'  =>  'Agencia IQPR',
+                'Revistas o periodicos' =>  'Revistas o periodicos',
+                'Vintermex'             =>  'Viajes Intermex',
+                'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
+                'Youtube'               =>  'Youtube',
+                'Otros'                 =>  'Otros'
+            );
             return $opciones;
         }
     }
