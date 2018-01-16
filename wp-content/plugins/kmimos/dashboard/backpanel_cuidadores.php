@@ -64,6 +64,13 @@ $users = getUsers($desde, $hasta);
 			      <th>Nombre y Apellido</th>
 			      <th>Nombre</th>
 			      <th>Apellido</th>
+			      <th>Cuidador</th>
+
+			     <!--  <th>Recompra ( 1M )</th>
+			      <th>Recompra ( 3M )</th>
+			      <th>Recompra ( 6M )</th>
+			      <th>Recompra ( 12M )</th> -->
+
 			      <th>Email</th>
 			      <th>Estado</th>
 			      <th>Municipio</th>
@@ -87,6 +94,40 @@ $users = getUsers($desde, $hasta);
 			  			}
 
 			  			$ubicacion = getEstadoMunicipio($row['estado'], $row['municipios']);
+
+/*
+			  			# Recompra 1 Meses
+				  		$cliente_n_reserva = getCountReservas($row['ID'], "1");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$r1 = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+
+			  			# Recompra 3 Meses
+				  		$cliente_n_reserva = getCountReservas($row['ID'], "3");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$r3 = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+
+			  			# Recompra 6 Meses
+				  		$cliente_n_reserva = getCountReservas($row['ID'], "6");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$r6 = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+
+			  			# Recompra 12 Meses
+				  		$cliente_n_reserva = getCountReservas($row['ID'], "12");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$r12 = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+*/
 			  		?>
 				    <tr>
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
@@ -94,6 +135,19 @@ $users = getUsers($desde, $hasta);
 						<th><?php echo $name; ?></th>
 						<th><?php echo $usermeta["first_name"]; ?></th>
 						<th><?php echo $usermeta["last_name"]; ?></th>
+						<th>
+					  		<a href="<?php echo get_home_url().'/wp-admin/post.php?action=edit&post='.$row['cuidador_post']; ?>">
+								<?php echo $row["cuidador_title"]; ?>	
+							</a>
+						</th>
+
+
+						<!-- <th><?php echo $r1; ?></th>
+						<th><?php echo $r3; ?></th>
+						<th><?php echo $r6; ?></th>
+						<th><?php echo $r12; ?></th> -->
+
+
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>

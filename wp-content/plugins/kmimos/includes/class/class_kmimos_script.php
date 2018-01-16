@@ -9,16 +9,16 @@ class Class_Kmimos_Script{
         $this->Script();
     }
     function Script(){
-        wp_enqueue_script('kmimos_scriptjs_ca',$this->filejs_script.'script.js', array("jquery"), '', true);
-        wp_enqueue_script('kmimos_scriptjs_scroll_visible_ca',$this->filejs_script.'scroll/scroll_visible/scroll-visible.js', array("jquery"), '', true);
+        wp_enqueue_script('kmimos_scriptjs',$this->filejs_script.'script.js', array("jquery"), '', true);
+        wp_enqueue_script('kmimos_scriptjs_scroll_visible',$this->filejs_script.'scroll/scroll_visible/scroll-visible.js', array("jquery"), '', true);
         //wp_enqueue_script('kmimos_scriptjs_scroll_paralax',$this->filejs_script.'scroll/scroll-paralax/scroll-paralax.js', '', '', true);
         //wp_enqueue_script('kmimos_scriptjs_scroll_carousel',$this->filejs_script.'scroll/scroll-carousel/scroll-carousel.js', '', '', true);
         //wp_enqueue_script('kmimos_scriptjs_scroll_suavizar',$this->filejs_script.'scroll/scroll-suavizar/scroll-suavizar.js', '', '', true);
-        wp_enqueue_script('kmimos_scriptjs_scroll_efecto_ca',$this->filejs_script.'scroll/scroll_efecto/scroll-efecto.js', array("jquery"), '', true);
-        wp_enqueue_script('kmimos_scriptjs_image_load_ca',$this->filejs_script.'image/image-load.js', array("jquery"), '', true);
-        wp_enqueue_script('kmimos_scriptjs_image_easyload_ca',$this->filejs_script.'image/image-easyload.js', array("jquery"), '', true);
-        wp_enqueue_style('kmimos_scriptjs_scroll_cssefecto_ca',$this->filejs_script.'scroll/scroll_efecto/scroll-efecto.css');
-        wp_enqueue_style('kmimos_scriptjs_scroll_csseasyload_ca',$this->filejs_script.'image/image-easyload.css');
+        wp_enqueue_script('kmimos_scriptjs_scroll_efecto',$this->filejs_script.'scroll/scroll_efecto/scroll-efecto.js', array("jquery"), '', true);
+        wp_enqueue_script('kmimos_scriptjs_image_load',$this->filejs_script.'image/image-load.js', array("jquery"), '', true);
+        wp_enqueue_script('kmimos_scriptjs_image_easyload',$this->filejs_script.'image/image-easyload.js', array("jquery"), '', true);
+        wp_enqueue_style('kmimos_scriptjs_scroll_cssefecto',$this->filejs_script.'scroll/scroll_efecto/scroll-efecto.css');
+        wp_enqueue_style('kmimos_scriptjs_scroll_csseasyload',$this->filejs_script.'image/image-easyload.css');
     }
 }
 $kmimos_load=dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))).'/wp-load.php';

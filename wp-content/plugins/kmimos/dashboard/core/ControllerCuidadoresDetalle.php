@@ -55,8 +55,55 @@ function getEstadoMunicipio($estados, $municipios){
 	return $resultado;
 }
 
-function getUsers($desde="", $hasta=""){
-	$filtro_adicional = "";
+
+function getServicios( $cuidador ){
+	global $wpdb;
+    $tam = array(
+		"pequenos" => "Peque&ntilde;os",
+		"medianos" => "Medianos",
+		"grandes"  => "Grandes",
+		"gigantes" => "Gigantes",
+	);
+    $rutas = array(
+        "corto" => "Cortas",
+        "medio" => "Medias",
+        "largo" => "Largas"
+    );
+    $adicionales = array(
+    	"guarderia"						=> "Guardería",
+    	"paseos"						=> "Paseos",
+    	"adiestramiento_basico"			=> "Entrenamiento Básico",
+    	"adiestramiento_intermedio"		=> "Entrenamiento Intermedio",
+    	"adiestramiento_avanzado"		=> "Entrenamiento Avanzado"
+    );
+
+
+	$sql = "SELECT * FROM wp_posts WHERE post_author = ".$cuidador['user_id']." AND post_type = 'product'";
+    $productos = $wpdb->get_results($sql);
+    foreach ($productos as $producto) {
+    	$servicio = explode("-", $producto->post_name);
+    	$status_servicios[ $servicio[0] ] = $producto->post_status;
+    }
+
+    $precios_adicionales_cuidador = unserialize($cuidador['adicionales']);
+
+	$temp = "";
+    $precios_adicionales = "";
+    foreach ($adicionales as $key => $value) {
+    	foreach ($tam as $key2 => $value2) {
+    		if( isset($precios_adicionales_cuidador[$key] ) ){
+    			$precio = $precios_adicionales_cuidador[$key][$key2];
+	    		$temp[$key][$key2] = $precio;
+    		} 
+    	}
+	}
+
+	return $temp;
+}
+
+
+function getUsers($param = array(), $desde="", $hasta=""){
+	$filtro_adicional = " c.activo = 1 ";
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
 		$filtro_adicional .= " 
@@ -64,9 +111,14 @@ function getUsers($desde="", $hasta=""){
 		";
 	}
 
+	foreach ($param as $key => $value) {
+		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
+		$filtro_adicional .= " {$key} = {$value} " ;		
+	}
+
 	$filtro_adicional = (!empty($filtro_adicional))? ' WHERE '.$filtro_adicional : $filtro_adicional ;
 	$sql = "
-		SELECT u.*, b.*, c.activo as 'estatus', c.direccion, p.post_title as 'cuidador_title', p.ID as 'cuidador_post' 
+		SELECT u.*, b.*, c.activo as 'estatus', c.*, p.post_title as 'cuidador_title', p.ID as 'cuidador_post' 
 		FROM wp_users as u
 			INNER JOIN cuidadores as c ON c.user_id = u.ID
 			INNER JOIN ubicaciones as b ON b.cuidador = c.id
@@ -79,45 +131,7 @@ function getUsers($desde="", $hasta=""){
 	return $result;
 }
 
-function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
-
-	$filtro_adicional = "";
-	if( !empty($landing) ){
-		$filtro_adicional = " source = '{$landing}'";
-	}
-	if( !empty($desde) && !empty($hasta) ){
-		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
-		$filtro_adicional .= " 
-			DATE_FORMAT(post_date_gmt, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
-		";
-	}else{
-		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
-		$filtro_adicional .= " MONTH(post_date_gmt) = MONTH(NOW()) AND YEAR(post_date_gmt) = YEAR(NOW()) ";
-	}
-
-
-	$filtro_adicional = ( !empty($filtro_adicional) )? " WHERE {$filtro_adicional}" : $filtro_adicional ;
-
-	$result = [];
-	$sql = "
-		SELECT 
-			count(c.ID) as cant
-		FROM wp_posts as p
-				left join wp_postmeta as o ON o.post_id = p.ID and o.meta_key = '_booking_product_id'
-				left join wp_posts as c ON c.ID = o.meta_value 
-		WHERE p.post_type = 'wc_booking' 
-			AND not p.post_status like '%cart%'
-			AND p.post_status = 'confirmed' 
-			AND c.post_author = $author_id
-			AND p.post_date_gmt > DATE_SUB(CURDATE(), INTERVAL {$interval} MONTH)
-		GROUP BY c.post_author
-	";
-
-	$result = get_fetch_assoc($sql);
-	return $result;
-}
 function getReservasByCuidador( $cuidador_id ){
 
 
 }
-

@@ -121,10 +121,9 @@ function getReservas($desde="", $hasta=""){
  			us.nombre,
 			us.apellido,
 			r.ID as reserva_id,
-			
-			IFNULL(rm_cost.meta_value,0) as total,
-			IFNULL(pm_remain.meta_value,0) as remanente,
-			IFNULL(pm_total.meta_value,0) as total_pago,
+			rm_cost.meta_value as total,
+			pm_remain.meta_value as remanente,
+			pm_total.meta_value as total_pago,
 			rm_start.meta_value as booking_start
 
 		FROM wp_posts as r
