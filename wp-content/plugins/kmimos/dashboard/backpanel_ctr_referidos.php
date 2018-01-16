@@ -46,7 +46,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 				</ul>		
 		  	</div>
 			<div class="col-sm-8  text-right">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_referidos&ref=<?php echo $referido; ?>" method="POST">
+		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_referidos_club_patitas_felices&ref=<?php echo $referido; ?>" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">

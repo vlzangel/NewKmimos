@@ -22,14 +22,14 @@ $reservas = getReservas($_desde, $_hasta);
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_title">
-		<h2>Panel de Control <small>Reservas</small></h2>
+		<h2>Panel de Control <small>Cupones</small></h2>
 		<hr>
 		<div class="clearfix"></div>
 		</div>
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_reservas" method="POST">
+		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_cupones" method="POST">
 				  <label>Filtrar:</label>
 				  <div class="form-group">
 				    <div class="input-group">
@@ -81,26 +81,8 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th># Mascotas</th>
 			      <th># Noches Totales</th>
 			      <th>Cliente</th>
-			      <th>Recompra (1Mes)</th>
-			      <th>Recompra (3Meses)</th>
-			      <th>Recompra (6Meses)</th>
-			      <th>Recompra (12Meses)</th>
-			      <th>Donde nos conocio?</th>
-			      <th>Mascotas</th>
-			      <th>Razas</th>
-			      <th>Edad</th>
-			      <th>Cuidador</th>
-			      <th>Servicio Principal</th> 
-			      <th>Servicios Especiales</th> <!-- Servicios adicionales -->
-			      <th>Estado</th>
-			      <th>Municipio</th>
-			      <th>Forma de Pago</th>
-			      <th>Total a pagar ($)</th>
-			      <th>Monto Pagado ($)</th>
-			      <th>Monto Remanente ($)</th>
-			      <th># Pedido</th>
-			      <th>Observaci&oacute;n</th>
-
+ 
+			      <th>Cupon (es)</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -211,56 +193,27 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						}
 
-
+						$cupones = Get_NameCouponCode($reserva->nro_pedido,'');
 				  	?>
-				    <tr>
-			    	<th class="text-center"><?php echo ++$count; ?></th>
-					<th><?php echo $reserva->nro_reserva; ?></th>
-					<th class="text-center"><?php echo $estatus['sts_corto']; ?></th>
-					<th class="text-center"><?php echo $reserva->fecha_solicitud; ?></th>
+				  	<?php if(!empty($cupones) ){ ?>
+					    <tr>
+				    	<th class="text-center"><?php echo ++$count; ?></th>
+						<th><?php echo $reserva->nro_reserva; ?></th>
+						<th class="text-center"><?php echo $estatus['sts_corto']; ?></th>
+						<th class="text-center"><?php echo $reserva->fecha_solicitud; ?></th>
 
-					<th><?php echo date_convert($meta_reserva['_booking_start'], 'Y-m-d', true); ?></th>
-					<th><?php echo date_convert($meta_reserva['_booking_end'], 'Y-m-d', true); ?></th>
+						<th><?php echo date_convert($meta_reserva['_booking_start'], 'Y-m-d', true); ?></th>
+						<th><?php echo date_convert($meta_reserva['_booking_end'], 'Y-m-d', true); ?></th>
 
-					<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
-					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
-					<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
-					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
-					<th class="text-center"><?php echo $recompra_1M; ?></th>
-					<th class="text-center"><?php echo $recompra_3M; ?></th>
-					<th class="text-center"><?php echo $recompra_6M; ?></th>
-					<th class="text-center"><?php echo $recompra_12M; ?></th>
-					<th><?php echo (empty($cliente['user_referred']))? 'Otros' : $cliente['user_referred'] ; ?></th>
-					<th><?php echo $pets_nombre; ?></th>
-					<th><?php echo $pets_razas; ?></th>
-					<th><?php echo $pets_edad; ?></th>
-					<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
-					<th><?php echo $reserva->producto_title; ?></th>
-					<th>
-					<?php foreach( $services as $service ){ ?>
-						<?php echo str_replace("(precio por mascota)", "", $service->descripcion); ?> 
-						<?php echo str_replace("Servicios Adicionales", "", $service->servicio); ?><br>
-					<?php } ?>
-					</th>
-					<th><?php echo utf8_decode( $ubicacion['estado'] ); ?></th>
-					<th><?php echo utf8_decode( $ubicacion['municipio'] ); ?></th>
-					<th><?php
-						if( !empty($meta_Pedido['_payment_method_title']) ){
-							echo $meta_Pedido['_payment_method_title']; 
-						}else{
-							if( !empty($meta_reserva['modificacion_de']) ){
-								echo 'Saldo a favor' ; 
-							}else{
-								echo 'Saldo a favor y/o cupones'; 
-							}
-						} ?>
-					</th>
-					<th><?php echo currency_format($meta_reserva['_booking_cost'], "", "","."); ?></th>
-					<th><?php echo currency_format($meta_Pedido['_order_total'], "", "","."); ?></th>
-					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining'], "", "","."); ?></th>
-					<th><?php echo $reserva->nro_pedido; ?></th>
-					<th><?php echo $estatus['sts_largo']; ?></th>
- 
+						<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
+						<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
+						<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
+						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
+						<th> 
+							<?php echo $cupones; ?>
+						</th>
+					    </tr>			    
+				   	<?php } ?>
 			   	<?php } ?>
 			  </tbody>
 			</table>

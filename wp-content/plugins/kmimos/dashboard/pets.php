@@ -20,9 +20,9 @@ add_action('manage_pets_posts_custom_column', 'kmimos_manage_pets_columns', 10, 
 
 /**
 
-*	Registra el tipo de post en Wordpress para contener a las mascotas
+ *	Registra el tipo de post en Wordpress para contener a las mascotas
 
-* */
+ * */
 
 if(!function_exists('kmimos_register_pets')){
 
@@ -42,7 +42,7 @@ if(!function_exists('kmimos_register_pets')){
 
             'new_item' => __('Nueva mascota'),
 
-            //'all_items' => __('Todas las mascotas'),
+//				'all_items' => __('Todas las mascotas'),
 
             'view_item' => __('Ver mascota'),
 
@@ -216,9 +216,7 @@ if(!function_exists('kmimos_details_of_pet')){
 
                 <td>
 
-                    <?php //wp_dropdown_users($args); 
-                        echo "{$args['owner_pet']}";
-                    ?>
+                    <?php wp_dropdown_users($args); ?>
 
                 </td>
 
@@ -710,7 +708,7 @@ if(!function_exists('kmimos_manage_pets_columns')){
 
         case 'type':
 
-           echo get_the_term_list($id,'pets-types','',',','');
+            echo get_the_term_list($id,'pets-types','',',','');
 
             break;
 
@@ -726,16 +724,11 @@ if(!function_exists('kmimos_manage_pets_columns')){
 
         case 'breed':
 
-            $idraza = get_post_meta( $id , 'breed_pet' , true );
+            echo get_post_meta( $id , 'breed_pet' , true );
 
-            $razas = "SELECT nombre FROM razas WHERE id ={$idraza}";
-            
-            $breed = $wpdb->get_row($razas);
-
-            echo $breed->nombre;
-            
             break;
 
+     
 
         case 'age':
 
@@ -755,7 +748,7 @@ if(!function_exists('kmimos_manage_pets_columns')){
 
             $owner = get_userdata( get_post_meta( $id , 'owner_pet' , true ) );
 
-            echo $owner->first_name.' '.$owner->last_name;
+            echo $owner->user_firstname.' '.$owner->user_lastname;
 
             break;
 

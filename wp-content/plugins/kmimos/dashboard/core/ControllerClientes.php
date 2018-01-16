@@ -56,3 +56,37 @@ function getCountReservas( $author_id=0 ){
 	$result = get_fetch_assoc($sql);
 	return $result;
 }
+
+function getMascotas($user_id){
+	if(!$user_id>0){ return []; }
+
+	global $wpdb;
+	$mascotas_cliente = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$user_id}' AND post_type='pets' AND post_status = 'publish'");
+    $mascotas = array();
+    foreach ($mascotas_cliente as $key => $mascota) {
+        $_anio = get_post_meta($mascota->ID, "birthdate_pet", true);
+        $_anio = str_replace("/", "-", $_anio);
+        $anio = strtotime($_anio);
+        $anio = ceil ( time()-$anio );
+        $edad = (@date("Y", $anio)-1970);
+
+        $mascotas[] = array(
+            "nombre" => $mascota->post_title,
+            "raza" => get_post_meta($mascota->ID, "breed_pet", true),
+            "edad" => $edad
+        );
+    }
+	return $mascotas;
+}
+
+function getRazaDescripcion($id, $razas){
+	$nombre = "[{$id}]";
+	if($id > 0){
+		if( !empty($razas) ){
+			if(array_key_exists($id, $razas)){
+				$nombre = $razas[$id];
+			}
+		}
+	}
+	return $nombre;
+}
