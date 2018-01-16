@@ -16,22 +16,22 @@
 	require_once("../vlz_config.php");
 	$sts = 0;
 
-	if(!empty($_GET) ){
-		if( !isset($_GET['source'])) { return; }
-		if( empty($_GET['source'])) { return; }
+	if(!empty($_POST) ){
+		if( !isset($_POST['source'])) { return; }
+		if( empty($_POST['source'])) { return; }
 		
-		if( !isset($_GET['email'])) { return; }
-		if( empty($_GET['email'])) { return; }
+		if( !isset($_POST['email'])) { return; }
+		if( empty($_POST['email'])) { return; }
 
 		// Validar Email
-		if(preg_match("/[\+]{1,}/", $_GET['email'])){ return; }
-		$result = filter_var($_GET['email'], FILTER_VALIDATE_EMAIL);
+		if(preg_match("/[\+]{1,}/", $_POST['email'])){ return; }
+		$result = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 
 		if( $result ){
 			$cnn = new mysqli($host, $user, $pass, $db);
 			if($cnn){
 
-				$rows = "SELECT * FROM wp_kmimos_subscribe WHERE email = '".$_GET['email']."'";
+				$rows = "SELECT * FROM wp_kmimos_subscribe WHERE email = '".$_POST['email']."'";
 				$r = $cnn->query( $rows );
 				if( $r->num_rows == 0){
 					# Insertar registro
@@ -39,7 +39,7 @@
 						insert into wp_kmimos_subscribe 
 							( `name`, `source`, `email`, `time` )
 					 	value 
-							( '', '".$_GET['source']."', '".$_GET['email']."', now() )
+							( '', '".$_POST['source']."', '".$_POST['email']."', now() )
 					";
 					if( $cnn->query( $sql ) ){
 						$sts = 1;
