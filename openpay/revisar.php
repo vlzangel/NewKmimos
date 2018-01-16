@@ -6,7 +6,7 @@
 
 	global $wpdb;
 
-    date_default_timezone_set('America/Mexico_City');
+    date_default_timezone_set('America/Bogota');
 
     $limite = date("Y-m-d", strtotime("-4 day"));
 
@@ -65,6 +65,8 @@
 
 						$wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = $id_orden;");
     					$wpdb->query("UPDATE wp_posts SET post_status = 'cancelled' WHERE ID = '$id_reserva';");
+
+    					update_cupos( $id_orden, "-");
 					break;
 
 					case 'completed':

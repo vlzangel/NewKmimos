@@ -20,7 +20,8 @@
             cuidadores
         WHERE
             id_post != {$cuidador_info->id_post} AND 
-            activo = 1
+            activo = 1 AND
+            user_id != 8631
         ORDER BY DISTANCIA ASC
         LIMIT 0, 4
     ";
@@ -122,6 +123,7 @@
         $mensaje_admin = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_admin);
         $mensaje_admin = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_admin);
         $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
+        $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
         $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
 
         $mensaje_admin = get_email_html($mensaje_admin);  

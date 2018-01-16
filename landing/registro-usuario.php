@@ -2,8 +2,14 @@
 	header('Access-Control-Allow-Origin: *');
 	// Wordpress
     define('WP_USE_THEMES', false);
+<<<<<<< HEAD
     require('../wp-blog-header.php');
     //date_default_timezone_set('America/Mexico_City');
+=======
+
+    require('../wp-load.php');
+    //date_default_timezone_set('America/Bogota');
+>>>>>>> b19f4962de070ecd0d09ca3926f83c710ab25d14
     global $wpdb;
 
     $landing_url = "http://www.kmimos.co/referidos";     // URL Landing

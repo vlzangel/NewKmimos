@@ -114,6 +114,30 @@ h1.maps {
     position: relative;
 }
 
+.km-contenedor-favorito_2 {
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
+.km-resultados-lista .km-contenedor-favorito_2 {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.km-link-flash {
+    display: inline-block;
+    margin: 7px 6px;
+    text-align: center;
+    font-size: 15px;
+    color: #6a2499;
+    padding: 5px 12px;
+    border: solid 1px;
+    border-radius: 50%;
+}
+
 @media All and (max-width: 768px){
     .zopim{
         top:auto!important;

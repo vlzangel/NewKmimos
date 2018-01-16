@@ -1,6 +1,6 @@
 <?php 
 
-    date_default_timezone_set('America/Mexico_City');
+    date_default_timezone_set('America/Bogota');
     $hoy = date("Y-m-d H:i:s");
 
 	$slug = time();
@@ -9,7 +9,7 @@
 	$pet_id = $db->insert_id();
 
 	if($portada != ""){
-		$tmp_user_id = ($user_id) - 5000;
+		$tmp_user_id = ($user_id);
 	    $sub_path = "/wp-content/uploads/mypet/{$tmp_user_id}/";
 	    $dir = $raiz.$sub_path;
 	    @mkdir($dir);
@@ -30,6 +30,7 @@
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'colors_pet', '{$pet_colors}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'birthdate_pet', '{$pet_birthdate}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'size_pet', '{$pet_size}'); ";
+	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'pet_type', '{$pet_type}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'gender_pet', '{$pet_gender}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'pet_sterilized', '{$pet_sterilized}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'pet_sociable', '{$pet_sociable}'); ";
@@ -38,9 +39,12 @@
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'about_pet', '{$pet_observations}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'owner_pet', '{$user_id}'); ";
 
+	$sql .= "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$pet_type},'0');";
+	
 	$sql .= $img_portada;
 
 	$db->query_multiple( utf8_decode($sql) );
+	
 
 	$respuesta = array(
 		"status" => "OK",

@@ -440,6 +440,12 @@ section {
 	vertical-align: middle;
     width: 70%!important;
 }
+.size-pet {
+    width: 100%!important;
+    font-size: 10px!important;
+    line-height: 1.6;
+    right: 20px!important;
+}
 .km-servicios .col-sm-3, .km-fechas .col-sm-6, .km-fechas .col-sm-3,.km-tamanio .col-sm-3, .km-servicios-adicionales .col-sm-3 {
 	padding-right: 5px;
 	padding-left: 5px;
@@ -2053,6 +2059,7 @@ a.km-btn-comentario {
     .popup-olvidaste-contrasena, 
     .popup-registrarte-datos-mascota, 
     .popup-registrarte-final, 
+    .popup-registrarte-final-0, 
     .popup-conocemas-cuidador {
         padding: 40px;
 }
@@ -4320,7 +4327,7 @@ a.km-btn-comentario {
 .km-comosoycuidador h4 {
     color:#fff
 }
-.popup-conocemas-cuidador, .popup-iniciar-sesion-1, .popup-olvidaste-contrasena, .popup-registrarte-1, .popup-registrarte-datos-mascota, .popup-registrarte-final, .popup-registrarte-nuevo-correo, .popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3 {
+.popup-conocemas-cuidador, .popup-iniciar-sesion-1, .popup-olvidaste-contrasena, .popup-registrarte-1, .popup-registrarte-datos-mascota, .popup-registrarte-final, .popup-registrarte-final-0, .popup-registrarte-nuevo-correo, .popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3 {
     padding:40px
 }
 .popup-content-cuidador {
@@ -4640,10 +4647,13 @@ textarea.popup-conoce-textarea {
     -moz-appearance:none;
     -webkit-appearance:none
 }
-.popup-registrarte-final {
+.popup-registrarte-final,
+.popup-registrarte-final-0
+{
     text-align:center
 }
-.popup-registrarte-final img {
+.popup-registrarte-final img,
+.popup-registrarte-final-0 img {
     margin:20px;
     width:150px
 }
@@ -5310,7 +5320,7 @@ h1.maps {
 }
 .km-opciones.maps {
     width:100%;
-    padding:0px !important
+    padding: 0px !important
 }
 .km-opciones.maps .precio {
     text-align:left
@@ -5754,7 +5764,7 @@ h1.maps {
     .km-comosoycuidador .km-btn-borderw, .km-titular-cuidador .km-btn {
         margin:20px 0 0
     }
-    .popup-conocemas-cuidador, .popup-iniciar-sesion-1, .popup-olvidaste-contrasena, .popup-registrarte-1, .popup-registrarte-datos-mascota, .popup-registrarte-final, .popup-registrarte-nuevo-correo, .popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3 {
+    .popup-conocemas-cuidador, .popup-iniciar-sesion-1, .popup-olvidaste-contrasena, .popup-registrarte-1, .popup-registrarte-datos-mascota, .popup-registrarte-final, .popup-registrarte-final-0, .popup-registrarte-nuevo-correo, .popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3 {
         padding:40px 20px
     }
     footer .btn {
@@ -6076,7 +6086,7 @@ AGREGANDO CODIGO DAJAN
     .popup-registro-cuidador-paso3, .popup-iniciar-sesion-1, 
     .popup-registrarte-1, .popup-registrarte-nuevo-correo, 
     .popup-olvidaste-contrasena, .popup-registrarte-datos-mascota, 
-    .popup-registrarte-final, .popup-conocemas-cuidador {
+    .popup-registrarte-final, .popup-registrarte-final-0, .popup-conocemas-cuidador {
         padding: 40px;
     }
     .popuphide {
@@ -6612,9 +6622,9 @@ section {
     width: 104%;
 }
 .km-opcion {
-    border: 1px solid #e5e5e5;
+	border: 1px solid #e5e5e5;
     border-radius: 8px;
-    padding: 14px 0;
+    padding: 14px;
     color: black;
     font-size: 11px;
     letter-spacing: 1px;
@@ -6624,7 +6634,7 @@ section {
     position: relative;
     cursor: pointer;
     width: 100%;
-    text-align: center;
+    text-align: left;
 }
 .km-opcion-disabled {
 	opacity: .5;
@@ -7064,6 +7074,8 @@ input#ubicacion_txt {
     color: #FFFFFF;
     min-height: 220px;
     position: relative;
+    background-size: cover;
+    background-position: center;
 }
 
 .km-search-slider .item-slide .slide-mask{
@@ -7072,7 +7084,7 @@ input#ubicacion_txt {
     right: 0;
     bottom: 0;
     z-index: 0;
-    opacity: 0.7;
+    opacity: 0.5;
     position: absolute;
     background: #333333;
 }
@@ -8068,7 +8080,7 @@ a.km-btn-comentario {
 /* FIN SECCIÓN CÓMO SER CUIDADOR */
 
 /* POPUPS REGISTRO */
-.popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3, .popup-iniciar-sesion-1, .popup-registrarte-1, .popup-registrarte-nuevo-correo, .popup-olvidaste-contrasena, .popup-registrarte-datos-mascota, .popup-registrarte-final,
+.popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3, .popup-iniciar-sesion-1, .popup-registrarte-1, .popup-registrarte-nuevo-correo, .popup-olvidaste-contrasena, .popup-registrarte-datos-mascota, .popup-registrarte-final, .popup-registrarte-final-0,
 .popup-conocemas-cuidador {
     padding: 40px 20px;
 }
@@ -8320,10 +8332,10 @@ textarea.popup-conoce-textarea {
     -moz-appearance:none;
     -webkit-appearance:none;
 }
-.popup-registrarte-final {
+.popup-registrarte-final, .popup-registrarte-final-0 {
     text-align: center;
 } 
-.popup-registrarte-final img {
+.popup-registrarte-final img, .popup-registrarte-final-0 img {
     margin: 20px;
     width: 150px;
 }

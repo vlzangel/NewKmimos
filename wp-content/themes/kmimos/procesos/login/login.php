@@ -8,7 +8,7 @@
     }else{
         $usu = sanitize_user($usu, true);
     }
-    
+
     $info = array();
     $info['user_login']     = sanitize_user($usu, true);
     $info['user_password']  = sanitize_text_field($clv);
@@ -25,6 +25,13 @@
 	  	);
 	} else {
 	  	wp_set_auth_cookie($user_signon->ID, $info['remember']);
+
+	  	$user = new WP_User( $user_signon->ID );
+	
+	  	if( $user->roles[0] == "vendor" ){
+	  		tiene_fotos_por_subir($user_signon->ID, true);
+	  	}
+
 	  	echo json_encode( 
 	  		array( 
 	  			'login' => true, 

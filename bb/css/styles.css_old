@@ -1,0 +1,1566 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/*@import url('https://fonts.googleapis.com/css?family=Roboto:100,300');*/
+/*@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400|PT+Sans:400,700|Josefin+Sans:300,400|Signika:700');
+
+/*font-family: 'Merienda One', cursive;
+font-family: 'Hammersmith One', sans-serif;
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+	-webkit-appearance: none;
+	font-size: 100%;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(left, #1AC8C8 0%, #12D9C8 100%);
+
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(left, #1AC8C8 0%, #12D9C8 100%);
+
+	/* Opera */ 
+	background-image: -o-linear-gradient(left, #1AC8C8 0%, #12D9C8 100%);
+
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #1AC8C8), color-stop(1, #12D9C8));
+
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(left, #1AC8C8 0%, #12D9C8 100%);
+
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to right, #1AC8C8 0%, #12D9C8 100%);
+}
+
+	
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+.nopc{
+	display: none !important;
+}
+
+
+/* ESTANDARES */
+
+.master{
+	width: 100%;
+	max-width: 1000px;
+	height: 100%;
+	display: block;
+	margin: 0 auto;
+	/*background-color: orange;*/
+	position: relative;
+}
+.av
+{
+	display: block;
+	/*background-color: yellow;*/
+	position: relative;
+	top:50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.ah
+{
+	display: block;
+	/*background-color: yellow;*/
+	margin-left:50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.ac
+{
+	display: block;
+	position: relative;
+	left:50%;
+	top: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-ms-transform: translateX(-50%,-50%);
+	transform: translateX(-50%,-50%);
+}
+
+/* GENERALES */
+
+.familia{
+	width: 100%;
+	
+	display: inline-block;
+	vertical-align: top;
+	background-size: auto;
+	background-position: left top, bottom right;
+	background-repeat: no-repeat;
+	background-image: url('../img/huella1.png'), url('../img/huella2.png');
+}
+	.familia .logo{
+		width: 100%;
+		height: 280px;
+		margin-top:60px;
+		margin-bottom: 45px;
+		/*background-color: blue;*/
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-image: url('../img/logo.png');
+		position: relative;
+		z-index: 1;
+	}
+	.familia .mensaje{
+		width: 330px;
+		max-width: 96%;
+		display: block;
+		margin: 0 auto;
+		/*background-color: yellow;*/
+		margin-bottom: 20px;
+		text-align: center;
+		font-family: 'PT Sans', sans-serif;
+		font-weight: 400;
+		color: #013e40;
+		font-size: 38px;
+		letter-spacing: 3px;
+		line-height: 29px;
+		position: relative;
+		z-index: 1;
+	}
+	.familia .mensaje span{
+		font-size: 20px;
+	    color: #FFF;
+	    font-family: 'Open Sans', sans-serif;
+	    font-weight: 300;
+	    letter-spacing: 1.5px;
+	}
+	.familia .contenido{
+		width: 330px;
+	    max-width: 96%;
+	    display: block;
+	    margin: 0 auto;
+	     /*background-color: yellow; */
+	    margin-bottom: 20px;
+	    text-align: center;
+	    font-family: 'Josefin Sans', sans-serif;
+	    font-weight: 300;
+	    color: #FFF;
+	    line-height: 20px;
+	    font-size: 18px;
+	    position: relative;
+	    z-index: 1;
+	}
+		.familia .contenido span{
+			color: #013e40;
+			font-size: 25px;
+			font-family: inherit;
+	    	font-weight: 300;
+		}
+		.familia .contenido .inscribete{
+		    color: #013e40;
+		    font-size: 22px;
+		    display: block;
+		    font-family: 'Signika', sans-serif;
+		    margin-top: 28px;
+		    letter-spacing: 1px;
+		}
+	.familia .salva{
+		width: 250px;
+		padding:13px 0 12px 0;
+		text-align: center; 
+		background-color: #f7234f;
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 50px;
+		font-size: 19px;
+	    color: #FFF;
+	    font-family: 'Open Sans', sans-serif;
+	    font-weight: 300;
+	    letter-spacing: 1.5px;
+	    border-radius: 100px;
+	    border:2px solid #FFF;
+	    text-decoration: none;
+	    z-index: 1000;
+	    position: relative;
+	    z-index: 1;
+	}
+	.familia .salva:hover{
+		text-decoration: underline;
+	}
+	.back1{
+		height: calc(100% + 35px);
+		position: absolute;
+		width: calc(50% - 100px);
+		left: calc(50% + 100px);
+		bottom:35px;
+		/*background-color: red;*/
+		background-image: url('../img/back1.png');
+		background-size: contain;
+		background-position: -40px bottom;
+		background-repeat: no-repeat;
+	}
+
+	.back1-1{
+		height: calc(100% + 35px);
+	    position: absolute;
+	    width: calc(50% - 100px);
+	    left: 0;
+	    top: calc(0% - 85px);
+		/*background-color: red;*/
+		background-image: url('../img/back1-1.png');
+		background-size: contain;
+		background-position: right bottom;
+		background-repeat: no-repeat;
+	}
+
+	.back2{
+		height: 70px;
+		position: absolute;
+		width: calc(50% - 100px);
+		left: 0;
+		bottom:0;
+		/*background-color: red;*/
+		background-image: url('../img/back2.png');
+		background-size: 50%;
+		background-position: top right;
+		background-repeat: no-repeat;
+	}
+
+.somos{
+	width: 100%;
+	background-color: #f7234f;
+	display: inline-block;
+	vertical-align: top;
+}
+	.somos .texto1{
+		width: 330px;
+	    max-width: 96%;
+	    display: block;
+	    margin: 0 auto;
+	     /*background-color: yellow; */
+	    text-align: center;
+	    font-family: 'Josefin Sans', sans-serif;
+	    font-weight: 300;
+	    color: #FFF;
+	    line-height: 20px;
+	    font-size: 20px;
+	    padding:40px 0 38px 0;
+	    position: relative;
+	}
+		.somos .texto1 span{
+			font-weight: 300;
+		    font-size: 28px;
+		    line-height: 33px;
+		}
+		.somos .texto1 .dog1{
+			max-width: 175px;
+			display: inline-block;
+			position: absolute;
+			/* background-color: red; */
+			left: -135px;
+			bottom: 0;
+		}
+			.somos .texto1 .dog1 img{
+				width: 100%;
+			}
+
+.conteo{
+	width: 100%;
+	
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	background-position: left top;
+	background-repeat: no-repeat;
+	background-image: url('../img/huella3.png');
+	/*background-color: yellow;*/
+}	
+	.back3{
+		height: 100%;
+		position: absolute;
+		width: calc(50% - 150px);
+		left: calc(50% - 300px);
+		top:0;
+		background-image: url('../img/back3.png');
+		background-size: contain;
+		background-position: left bottom;
+		background-repeat: no-repeat;
+		/*background-color: green;*/
+	}
+	.back3-1{
+		height: 90%;
+		position: absolute;
+		width: calc(50% - 150px);
+		right: 0;
+		top:0;
+		background-image: url('../img/back3-3.png');
+		background-size: auto 110%;
+		background-position: left bottom;
+		background-repeat: no-repeat;
+	}
+	.conteo .contando{
+		width: 330px;
+	    max-width: 96%;
+	    display: block;
+	    margin: 0 auto;
+	    /*background-color: red;*/
+	    margin-top: 40px; 
+	    text-align: center;
+	}
+			.conteo .contando .numero{
+				padding: 10px 8px;
+				margin:0 3px;
+				background-color: #f7234f;
+				color: #FFF;
+				display: inline-block;
+				vertical-align: top;
+				font-family: 'Open Sans', sans-serif;
+	    		font-weight: 400;
+	    		font-size: 40px;
+			}
+			.conteo .contando .numero.active{
+				background-color: #FFF;
+				color: #f7234f;
+			}
+	.conteo .texto2{
+		width: 280px;
+		text-align: center;
+	    max-width: 96%;
+	    display: block;
+	    margin: 0 auto;
+	    /*background-color: blue;*/
+	    color: #013e40;
+	    font-size: 22px;
+	    display: block;
+	    font-family: 'Signika', sans-serif;
+	    margin-top: 15px;
+	    letter-spacing: 1px;
+	    padding-bottom: 40px;
+	}
+		.conteo .texto2 .p1{
+			margin-top: 18px !important;
+			margin-bottom: 15px;
+
+		}
+		.conteo .texto2 span{
+			color: #FFF;
+			font-weight: inherit;
+			font-family: inherit;
+			font-size: inherit;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+
+.ayudanos{
+	width: 100%;
+	background-color: #FFF;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	/*background-color: blue;*/
+}
+	.back4{
+		height: 100%;
+		position: absolute;
+		width: calc(50% - 150px);
+		left: calc(50% - 300px);
+		top:0;
+		background-image: url('../img/back4.png');
+		background-size: contain;
+		background-position: left bottom;
+		background-repeat: no-repeat;
+		/*background-color: green;*/
+	}
+	.ayudanos .texto3{
+		width: 360px;
+	    max-width: 96%;
+	    display: block;
+	    margin: 0 auto;
+	     /*background-color: yellow; */
+	    text-align: center;
+	    font-family: 'Josefin Sans', sans-serif;
+	    font-weight: 300;
+	    color: #FFF;
+	    line-height: 20px;
+	    font-size: 20px;
+	    padding:80px 0 90px 0;
+	    position: relative;
+	}
+
+		.ayudanos .texto3 .mensaje{
+			width: 330px;
+			max-width: 96%;
+			display: block;
+			margin: 0 auto;
+			/*background-color: yellow;*/
+			text-align: center;
+			font-family: 'PT Sans', sans-serif;
+			font-weight: 400;
+			color: #f7234f;
+			font-size: 45px;
+			letter-spacing: 3px;
+			line-height: 40px;
+			position: relative;
+			z-index: 1;
+			margin-bottom: 20px;
+		}
+		.ayudanos .texto3 .mensaje span{
+			font-size: 32px;
+		    color: #013e40;
+		    font-family: 'Open Sans', sans-serif;
+		    letter-spacing: 0px;
+		}
+		.ayudanos .texto3 .item{
+			width: calc(100% - 70px);
+		    max-width: 96%;
+		    display: block;
+		    margin: 0 auto;
+		    /*background-color: orange;*/
+		    margin-bottom: 18px;
+		    text-align: left;
+		    font-family: 'Josefin Sans', sans-serif;
+		    font-weight: 300;
+		    color: #013e40;
+		    line-height: 19px;
+		    font-size: 18px;
+		    position: relative;
+		    z-index: 1;
+		    padding: 0 40px 0 30px;
+		    background-image: url(../img/pow.png);
+		    background-repeat: no-repeat;
+		    background-size: 18px;
+		    position: relative;
+		}
+			.ayudanos .texto3 .item.pp{
+				width: calc(100% - 35px);
+				padding-right: 5px;
+			}
+
+			.ayudanos .texto3 .item .mas20{
+				width: 74px;
+				height: 56px;
+				/*background-color: red;*/
+				position: absolute;
+				right: -40px;
+				bottom: -5px;
+				background-image: url(../img/mas20.png);
+			    background-repeat: no-repeat;
+			    background-size: contain;
+
+			}
+			.ayudanos .texto3 .item .mas20anos{
+				width: 74px;
+				height: 56px;
+				/*background-color: red;*/
+				position: absolute;
+				right: -20px;
+				bottom: -10px;
+				background-image: url(../img/mas20anos.png);
+			    background-repeat: no-repeat;
+			    background-size: contain;
+
+			}
+
+		.ayudanos .texto3 .dog2{
+			height: 100%;
+			width: 190px;
+			/*background-color: rgba(0,0,0,0.2);*/
+			display: inline-block;
+			position: absolute;
+			left: 100%;
+			top: 0;
+			background-image: url(../img/dog2.png);
+		    background-repeat: no-repeat;
+		    background-size: contain;
+		    background-position: center 80px;
+		}
+
+
+.descubre{
+	width: 100%;
+	
+	display: inline-block;
+	vertical-align: top;
+	padding-bottom: 55px;
+	background-position: left bottom, right bottom;
+	background-repeat: no-repeat;
+	background-image: url('../img/huella4.png'), url('../img/huella5.png');
+}
+	.descubre .titulo{
+		width: 400px;
+		max-width: 96%;
+		display: block;
+		margin: 0 auto;
+		/*background-color: yellow;*/
+		text-align: center;
+		font-family: 'PT Sans', sans-serif;
+		font-weight: 400;
+		color: #013e40;
+		font-size: 38px;
+		letter-spacing: 1.5px;
+		line-height: 35px;
+		position: relative;
+		z-index: 1;
+		margin-bottom: 22px;
+		margin-top: 55px;
+	}
+		.descubre .titulo span{
+			font-size: 27px;
+		    color: #FFF;
+		    font-family: 'Open Sans', sans-serif;
+		    letter-spacing: 0px;
+		    font-weight: 300;
+		}
+		.descubre .titulo .p2{
+			margin-top: 25px;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+	.descubre .video{
+		width: 90%;
+		max-width: 580px;
+		border-radius: 10px;
+		display: block;
+		margin:0 auto;
+		position: relative;
+		margin-top: 10px;
+	}
+		.descubre .video img{
+			width: 100%;
+			border:4px solid #FFF;
+			border-radius: 20px;
+		}
+		.descubre .play{
+			width: 110px;
+			height: 80px;
+			background-image: url(../img/play.png);
+		    background-repeat: no-repeat;
+		    background-size: contain;
+		    background-position: center;
+		    /*background-color: yellow;*/
+		    top: calc(50% - 40px);
+		    left:calc(50% - 55px);
+		    z-index: 1;
+		    position: absolute;
+		    cursor: pointer;
+		}
+			.descubre .play:hover{
+				opacity: 0.8;
+			}
+
+	
+
+.footer{
+	width: 100%;
+	background-color: #1f2324;
+	display: inline-block;
+	vertical-align: top;
+	height: 130px;
+	position: relative;
+}
+
+	.footer .master{
+		/*background-color: blue;*/
+		max-width: 550px !important;
+		position: relative;
+	}
+
+		.footer .master .texto{
+			/*background-color: red;*/
+			font-family: 'Josefin Sans', sans-serif;
+			font-weight: 300;
+		    color: #FFF;
+		    line-height: 19px;
+		    font-size: 14px;
+		    top: 29%;
+		    position: absolute;
+		    left: 0;
+		}
+			.footer .master .texto a{
+				text-decoration: none;
+				color: #00cec8;
+				cursor: pointer;
+			}
+				.footer .master .texto a:hover{
+					text-decoration: underline;
+				}
+
+
+			.footer .master .texto .phone{
+				width: 16px;
+				display: inline-block;
+				vertical-align: top;
+				margin-top: 1px;
+				margin-right: 6px;
+			}
+
+			.footer .master .texto .logo-footer{
+				width: 65px;
+			    display: inline-block;
+			    vertical-align: top;
+			    margin-top: 2px;
+			}
+
+		.footer .master .redes{
+			/*background-color: red;*/
+			top: 40%;
+		    position: absolute;
+		    right: 0;
+		}
+			.footer .master .redes a{
+				width: 29px;
+				height: 29px;
+				position: relative;
+				vertical-align: top;
+				display: inline-block;
+				margin: 0 0 0 5px;
+				border-radius: 100px;
+				/*background-color: blue;*/
+				padding:3px; 
+				box-shadow: 0 0 0 1px rgba(255,255,255,0);
+			}
+				.footer .master .redes a:hover{
+					box-shadow: 0 0 0px 1px rgba(255,255,255,0.4);
+				}
+				.footer .master .redes a img{
+					width: 100%;
+				}
+
+
+
+
+
+
+
+
+.envio{
+	width: 100%;
+	
+	display: inline-block;
+	vertical-align: top;
+	padding-bottom: 35px;
+	background-size: auto 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('../img/huellas.png');
+}
+
+	.mainlogo{
+		width: 100%;
+		
+		display: inline-block;
+		vertical-align: top;
+	}
+		.mainlogo .log{
+			width: 100%;
+			height: 280px;
+			margin-top:60px;
+			margin-bottom: 45px;
+			/*background-color: blue;*/
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-image: url('../img/logo.png');
+			position: relative;
+			z-index: 1;
+		}
+
+
+	.envio .contenedorEnvio{
+		width: 96%;
+		height: 100%;
+		display: block;
+		margin: 0 auto;
+		max-width: 750px;
+		/*background-color: red;	*/
+	}
+
+		.envio .contenedorEnvio .contenido1{
+			width: 340px;
+		    max-width: 96%;
+		    display: block;
+		    margin: 0 auto;
+		     /*background-color: yellow; */
+		    margin-bottom: 25px;
+		    text-align: center;
+		    font-family: 'Josefin Sans', sans-serif;
+		    font-weight: 300;
+		    color: #FFF;
+		    line-height: 26px;
+		    font-size: 22px;
+		    position: relative;
+		    z-index: 1;
+		}
+			.envio .contenedorEnvio .contenido1 .p3{
+				margin-top: 20px;
+				display: inline-block;
+				position: relative;
+				vertical-align: top;
+				margin-bottom: 3px;
+			}
+
+		.envio .contenedorEnvio .titulo{
+			width: 100%;
+			text-align:center;
+			font-size: 19px;
+		    color: #000;
+		    font-family: 'Open Sans', sans-serif;
+		    font-weight: 400;
+		    letter-spacing: 0.5px;
+		    display: inline-block;
+		    margin-bottom: 23px;
+		    /*background-color: red;*/
+		}
+		.envio .contenedorEnvio .titulo.sec{
+			margin-top: 20px;
+			margin-bottom: 10px;
+		}
+
+		.envio .contenedorEnvio .bloque{
+			width: 440px;
+		    max-width: 96%;
+		    display: block;
+		    margin: 0 auto;
+		    /*background-color: yellow; */
+		    margin-bottom: 20px;
+		}
+		.envio .contenedorEnvio .bloque.pre{
+			margin-bottom: 9px !important;
+		}
+		.envio .contenedorEnvio .bloque.pre1{
+			margin-bottom: 2px !important;
+		}
+		.envio .contenedorEnvio .bloque.pre2{
+			margin-bottom: 10px !important;
+		}
+		.envio .contenedorEnvio .bloque.center{
+			text-align: center;
+		}
+
+			.envio .contenedorEnvio .bloque .input{
+				font-size: 15px;
+			    color: #444;
+			    font-family: 'Josefin Sans', sans-serif;
+    			font-weight: 400;
+			    letter-spacing: 0.3px;
+			    background-color: rgba(255,255,255,0.8);
+			    border:2px solid #FFF;
+			    border-radius: 20px;
+			    padding:6px 5px 4px 5px;
+			    width: calc(46% - 14px);
+			    text-align: center;
+			    outline: none;
+			    display: inline-block;
+			    position: relative;
+			    vertical-align: top;
+			}
+				.envio .contenedorEnvio .bloque .input.radio, .envio .contenedorEnvio .bloque .input.check{
+					cursor: pointer;
+				}
+				.envio .contenedorEnvio .bloque .input.check{
+					margin-bottom: 20px;
+				}
+				.envio .contenedorEnvio .bloque .input.r{
+					margin-left: 8%;
+				}
+				.envio .contenedorEnvio .bloque .input.full{
+					padding:6px 5px 4px 30px;
+					width: calc(98% - 30px);
+					text-align: left;
+				}
+				.envio .contenedorEnvio .bloque .input.tiny{
+					padding:6px 0px 4px 35px;
+					width: 9%;
+					text-align: left;
+				}
+				.envio .contenedorEnvio .bloque .input .mark{
+					height: 12px;
+					width: 12px;
+					border-radius: 40px;
+					background-color: #f7234f;
+					display: inline-block;
+					position: absolute;
+					left: 10px;
+					top: 6px;
+				}
+				.envio .contenedorEnvio .bloque .input .mark.active{
+					height: 6px;
+					width: 6px;
+					background-color: #FFF;
+					border:3px solid #f7234f;
+				}
+				.envio .contenedorEnvio .bloque .input.nombre{
+					width: 70%;
+			    	padding:10px 5px 8px 5px;
+					font-size: 22px;
+					border-radius: 100px;
+				}
+				.envio .contenedorEnvio .bloque .input.submit{
+					width: 70%;
+			    	padding:16px 20px 10px 20px;
+					font-size: 22px;
+					border-radius: 100px;
+					font-weight: 400;
+					letter-spacing: 2px;
+					margin-top: 25px;
+					width: auto;
+					color: #FFF;
+				    border:3px solid #FFF;
+					background-color: #f7234f;
+					cursor: pointer;
+				}
+				.envio .contenedorEnvio .bloque .input.submit:hover{
+					text-decoration: underline;
+					}
+
+				.envio .contenedorEnvio .bloque .input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+				  color: #444;
+				  font-weight: 400;
+				}
+				.envio .contenedorEnvio .bloque .input::-moz-placeholder { /* Firefox 19+ */
+				  color: #444;
+				  font-weight: 400;
+				}
+				.envio .contenedorEnvio .bloque .input:-ms-input-placeholder { /* IE 10+ */
+				  color: #444;
+				  font-weight: 400;
+				}
+				.envio .contenedorEnvio .bloque .input:-moz-placeholder { /* Firefox 18- */
+				  color: #444;
+				  font-weight: 400;
+				}
+
+				.envio .contenedorEnvio .bloque .input:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+				  color: #f7234f;
+				  font-weight: 400;
+				}
+				.envio .contenedorEnvio .bloque .input:focus::-moz-placeholder { /* Firefox 19+ */
+				  color: #f7234f;
+				  font-weight: 400;
+				}
+				.envio .contenedorEnvio .bloque .input:focus:-ms-input-placeholder { /* IE 10+ */
+				  color: #f7234f;
+				  font-weight: 400;
+				}
+				.envio .contenedorEnvio .bloque .input:focus:-moz-placeholder { /* Firefox 18- */
+				  color: #f7234f;
+				  font-weight: 400;
+				}
+
+			.envio .contenedorEnvio .bloque .cargando{
+				font-size: 15px;
+			    color: #FFF;
+			    font-family: 'Josefin Sans', sans-serif;
+    			font-weight: 400;
+			    letter-spacing: 0.3px;
+			    background-color: rgba(255,255,255,0);
+			    border:2px solid transparent;
+			    border-radius: 20px;
+			    padding:6px 5px 4px 5px;
+			    width: calc(46% - 14px);
+			    text-align: center;
+			    outline: none;
+			    display: inline-block;
+			    position: relative;
+			    margin-left: 8%;
+			}
+
+		.envio .contenedorEnvio .bloquelabel{
+			width: 440px;
+		    max-width: 96%;
+		    display: block;
+		    margin: 0 auto;
+		    /*background-color: yellow; */
+		    margin-bottom: 7px;
+		}
+			.envio .contenedorEnvio .bloquelabel .label{
+				font-size: 14px;
+			    color: #FFF;
+			    font-family: 'Josefin Sans', sans-serif;
+    			font-weight: 300;
+			    letter-spacing: 0.3px;
+			    padding:5px 0px 4px 0px;
+			    width: 46%;
+			    display: inline-block;
+			    text-align: center;
+			    outline: none;
+			    /*background-color: red;*/
+			    vertical-align: middle;
+			}
+			.envio .contenedorEnvio .bloquelabel .label.r{
+				margin-left: 8%;
+			}
+
+		.envio .contenedorEnvio .bloquesub{
+			width: 420px;
+		    max-width: 96%;
+		    display: block;
+		    margin: 0 auto;
+		    /*background-color: yellow; */
+		    font-size: 16px;
+		    color: #000;
+		    text-align: center;
+		    font-family: 'Open Sans', sans-serif;
+		    font-weight: 400;
+		    letter-spacing: 0.2px;
+		    margin-bottom: 18px;
+		}
+			.envio .contenedorEnvio .bloquesub.long{
+				line-height: 20px;
+				width: 96%;
+				max-width: 300px;
+			}
+
+		.envio .contenedorEnvio .bloque .select{
+			-webkit-appearance:none;
+			-moz-appearance:none;
+			appearance:none;
+			font-size: 15px;
+		    color: #444;
+		    font-family: 'Josefin Sans', sans-serif;
+			font-weight: 400;
+		    letter-spacing: 0.3px;
+		    background-color: rgba(255,255,255,0.8);
+		    border:2px solid #FFF;
+		    border-radius: 20px;
+		    padding:6px 0 4px 0;
+		    width:46%;
+		    text-align: center;
+		    outline: none;
+		    text-align-last:center;
+		    overflow: hidden;
+		  	overflow: -moz-hidden-unscrollable;
+		  	background-image: url(../img/triangulo.png);
+		  	background-repeat: no-repeat;
+		  	background-position: calc(100% - 6px) center;
+		  	background-size: 12px;
+		}
+			.envio .contenedorEnvio .bloque .select.r{
+				margin-left: 8%;
+			}
+
+		.envio .contenedorEnvio .bloquelabelsub{
+			width: 420px;
+		    max-width: 96%;
+		    display: block;
+		    margin: 0 auto;
+		    /*background-color: yellow; */
+		    margin-bottom: 7px;
+		}
+			.envio .contenedorEnvio .bloquelabelsub.sec{
+		    	margin-bottom: 4px;
+			}
+			.envio .contenedorEnvio .bloquelabelsub .label{
+				font-size: 14px;
+			    color: #FFF;
+			    font-family: 'Josefin Sans', sans-serif;
+    			font-weight: 300;
+			    letter-spacing: 0.3px;
+			    padding:5px 0px 4px 0px;
+			    width: 46%;
+			    display: inline-block;
+			    text-align: center;
+			    outline: none;
+			    /*background-color: red;*/
+			    vertical-align: middle;
+			}
+			.envio .contenedorEnvio .bloquelabelsub .label.r{
+				margin-left: 8%;
+			}
+
+	.envio .contenedorEnvio .bloque .input .radiobtn, .envio .contenedorEnvio .bloque .input .checkbtn{
+		display: none;
+	}
+	.menos{
+		font-family: 'Josefin Sans', sans-serif;
+    	font-weight: 300;
+    	font-size: 18px;
+    	line-height: 10px;
+	}
+
+	.envio .contenedorEnvio .bloque .sino{
+		font-size: 14px;
+	    color: #000;
+	    font-family: 'Josefin Sans', sans-serif;
+		font-weight: 300;
+	    letter-spacing: 0px;
+	    padding:5px 0px 4px 0px;
+	    width: 100%;
+	    display: inline-block;
+	    text-align: center;
+	    outline: none;
+	    /*background-color: red;*/
+	    vertical-align: middle;
+	    margin-top: -14px;
+	}
+
+	.envio .contenedorEnvio .contenido2{
+	    width: calc(96% - 60px);
+		max-width: 240px;
+	    display: block;
+	    margin: 0 auto;
+	     /*background-color: red; */
+	    margin-bottom: 25px;
+	    text-align: center;
+	    font-family: 'Josefin Sans', sans-serif;
+	    font-weight: 400;
+	    color: #FFF;
+	    line-height: 19px;
+	    font-size: 17px;
+	    position: relative;
+	    z-index: 1;
+	    padding:40px 110px 0 110px;
+	    margin-top:10px;
+	    height: 550px;
+	    background-image: url('../img/perro.png');
+	    background-position: center top;
+	    background-size: contain;
+	    background-repeat: no-repeat;
+	    /*background-color: blue;*/
+	}
+		.envio .contenedorEnvio .contenido2 .tit{
+			color: #013e40;
+		    font-size: 22px;
+		    display: block;
+		    font-family: 'Signika', sans-serif;
+		    margin-top: 19px;
+		    letter-spacing: 1px;
+		    line-height: 24px;
+		}
+
+		.envio .contenedorEnvio .contenido2 .txt{
+			text-align: justify;
+			margin-top: 10px;
+		}
+		.envio .contenedorEnvio .contenido2 .txt .no{
+			font-size: inherit;
+			font-family: inherit;
+			font-weight: 400;
+			color: #000;
+		}
+
+	.envio .contenedorEnvio .casi{
+		width: 100%;
+		color: #013e40;
+	    font-size: 36px;
+	    display: block;
+	    font-family: 'Signika', sans-serif;
+	    margin-top: 50px;
+	    letter-spacing: 1px;
+	    line-height: 28px;
+	    /*background-color: red;*/
+	    text-align: center;
+	}
+	.envio .contenedorEnvio .casi span{
+		color: #FFF;
+	    font-size: 22px;
+		font-family: inherit; 
+	}
+
+	.envio .contenedorEnvio .contenido3{
+	    width: 96%;
+		max-width: 380px;
+	    display: block;
+	    margin: 0 auto;
+	     /*background-color: red; */
+	    margin-bottom: 25px;
+	    text-align: left;
+	    font-family: 'Josefin Sans', sans-serif;
+	    font-weight: 300;
+	    color: #000;
+	    line-height: 16px;
+	    font-size: 15px;
+	    position: relative;
+	    z-index: 1;
+	    margin-top:30px;
+	    padding-left: 20px;
+	    /*background-color: blue;*/
+	    position: relative;
+	}
+		.envio .contenedorEnvio .contenido3 .tip{
+			border-radius: 40px;
+			display: inline-block;
+			position: absolute;
+			left: 0px;
+			top: -1px;
+			height: 5px;
+			width: 5px;
+			background-color:#f7234f;
+			border:4px solid  #FFF;	
+		}
+	.envio .contenedorEnvio .contenido4{
+	    width: 96%;
+		max-width: 420px;
+	    display: block;
+	    margin: 0 auto;
+	     /*background-color: red; */
+	    text-align: center;
+	    font-family: 'Josefin Sans', sans-serif;
+	    font-weight: 300;
+	    color: #000;
+	    line-height: 16px;
+	    font-size: 15px;
+	    position: relative;
+	    z-index: 1;
+	    margin-top:30px;
+	    /*background-color: blue;*/
+	    position: relative;
+	}
+
+
+
+
+
+
+
+
+
+
+.modal{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.7);
+	position: fixed;
+	left: 0;
+	top:0;
+	z-index: 10000000;
+}
+	.modal .cont{
+		width: 90%;
+		max-width: 600px;
+		height: 90%;
+		max-height: 400px; 
+		/*background-color:red;*/
+		position: absolute;
+		border-radius: 20px;
+		/*border:2px solid rgba(255,255,255,0.8);*/
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-image: url('../img/popup.png');
+		cursor: pointer;
+	}
+	.modal .cont .nombre{
+		width: 50%;
+		color: red;
+		position: absolute;
+		right: 10%;
+		top: 8%;
+		text-align: center;
+		color: #ea274c;
+		font-size: 35px;
+		font-family: 'Signika', sans-serif;
+		letter-spacing: 1px;
+	}
+
+
+.punto{
+	width: 4px;
+	height: 4px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('../img/dot.png');
+	margin: 0 7px;
+	display: inline-block;
+	position: relative;
+}
+
+@media all and (max-width: 768px){
+
+	.col-xs-12{
+	    z-index:1!important;
+	}
+	
+	.img-texto-modal{
+	    z-index:3!important;
+	    max-width: 95%!important;
+	}
+
+	.nomovil{
+		display: none !important;
+	}
+
+	.nopc{
+		display: inline-block !important;
+	}
+
+	.familia .contenido {
+	    line-height: 27px;
+	    font-size: 22px;
+	}
+	.somos .texto1 .dog1 {
+	    max-width: none;
+	    display: inline-block;
+	    position: relative;
+	    left: auto;
+	    bottom: auto;
+	    margin: 20px 0 0 25px;
+	}
+	.familia .contenido span {
+	    color: #013e40;
+	    font-size: 25px;
+	    font-family: inherit;
+	    font-weight: 400;
+	}
+	.back1, .back1-1, .back3, .back3-1, .back4 {
+		display: none;
+	}
+	.conteo .contando .numero {
+		font-size: 60px;
+	}
+	.conteo .texto2 span {
+	    font-size: 35px;
+	}
+	.ayudanos .texto3 .item {
+    width: calc(100% - 70px);
+    line-height: 24px;
+    font-size: 19px;
+	}
+	.ayudanos .texto3 .item .mas20{
+	    width: 74px;
+	    height: 56px;
+	    position: relative;
+	    right: auto;
+	    bottom:auto;
+	    display: block;
+	    margin: 0 auto;
+	    left: -5px;
+	    margin-top: 15px;
+	}
+	 .ayudanos .texto3 .item .mas20anos {
+	    width: 74px;
+	    height: 56px;
+	    position: relative;
+	    right: auto;
+	    bottom:auto;
+	    display: block;
+	    margin: 0 auto;
+	    left: -5px;
+	    margin-top: 15px;
+	}
+	.ayudanos .texto3 .dog2 {
+	    height: 400px;
+	    width: 100%;
+	    /* background-color: rgba(0,0,0,0.2); */
+	    display: inline-block;
+	    position: relative;
+	     left:auto; 
+	     top: auto; 
+	    background-image: url(../img/dog2.png);
+	    background-repeat: no-repeat;
+	    background-size: contain;
+	    background-position: center;
+	}
+	.footer{
+		height: auto;
+	}
+	.footer .master .texto {
+	    /* background-color: #f00; */
+	    font-family: 'Josefin Sans', sans-serif;
+	    font-weight: 300;
+	    color: #FFF;
+	    line-height: 20px;
+	    font-size: 15px;
+	    margin-top: 30px;
+	    position: relative;
+	    left: 0;
+	    width: calc(100% - 40px);
+	    text-align: center;
+	    padding: 0 20px;
+	}
+	.footer .master .redes {
+	    /* background-color: red; */
+	    top: 32%;
+	    position: relative;
+	    right: 0;
+	    width: 100%;
+	    text-align: center;
+	    margin-bottom: 20px;
+	    margin-top: 20px;
+	}
+	.footer .master .redes a {
+	    width: 40px;
+	    height: 40px;
+	}
+	.footer .master .texto .logo-footer {
+		width: 100px;
+	}
+	.familia .salva {
+	    width: 90%;
+	    font-size: 28px;
+	}
+	.familia .contenido .inscribete {
+	    color: #013e40;
+	    font-size: 36px;
+	    display: block;
+	    font-family: 'Signika', sans-serif;
+	    margin-top: 48px;
+	    letter-spacing: 1px;
+	}
+
+	.envio .contenedorEnvio .contenido2 {
+	    width: calc(100% - 50px);
+	    text-align: center;
+	    font-family: 'Josefin Sans', sans-serif;
+	    font-weight: 400;
+	    color: #FFF;
+	    line-height: 24px;
+	    font-size: 19px;
+	    position: relative;
+	    z-index: 1;
+	    padding: 21px 25px 0 25px;
+	    margin-top: 10px;
+	    height: auto;
+	    background-image: none;
+	    background-position: center top;
+	    background-size: contain;
+	    max-width: 100%;
+	}
+	.envio .contenedorEnvio {
+    	width: 100%;
+	}
+	.envio .contenedorEnvio .contenido2 .tit {
+	    margin-top: 23px;
+	    
+	}
+	.envio .contenedorEnvio .contenido3 {
+	    width: calc(96% - 40px);
+	    max-width: 380px;
+	    display: block;
+	    margin: 0 auto;
+	    /* background-color: red; */
+	    margin-bottom: 25px;
+	    text-align: left;
+	    font-family: 'Josefin Sans', sans-serif;
+	    font-weight: 300;
+	    color: #000;
+	    line-height: 23px;
+	    font-size: 20px;
+	}
+	.envio .contenedorEnvio .contenido4{
+		line-height: 23px;
+	    font-size: 20px;
+	    width: calc(96% - 40px);
+	}
+	.envio .contenedorEnvio .bloque .input.submit {
+	    padding: 21px 20px 15px 20px;
+	    font-size: 29px;
+	    margin-top: 25px;
+	    width: 90%;
+	    color: #FFF;
+	}
+	.envio .contenedorEnvio .casi {
+    	margin-bottom: 30px;
+	}
+	.envio .contenedorEnvio .bloque .input {
+	   font-size: 16px;
+    color: #444;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    background-color: rgba(255,255,255,0.8);
+    border: 2px solid #FFF;
+    border-radius: 20px;
+    padding: 6px 5px 4px 5px;
+    width: calc(100% - 14px);
+    text-align: center;
+    outline: none;
+    display: inline-block;
+    position: relative;
+    margin-left: 0 !important;
+    padding: 10px 0 8px 5px;
+    margin-top: 10px;
+    margin-bottom: 10px !important;
+	}
+
+	.envio .contenedorEnvio .contenido1 {
+	    line-height: 28px;
+	    font-size: 26px;
+	    position: relative;
+	    z-index: 1;
+	}
+	.envio .contenedorEnvio .titulo{
+		font-size: 23px;
+	}
+	.envio .contenedorEnvio .bloquesub{
+		font-size: 18px;
+		margin-top: 10px;
+	}
+	.envio .contenedorEnvio .bloque{
+		margin-bottom: 0 !important;
+	}
+	.envio .contenedorEnvio .bloque.pre{
+		margin-bottom: 0 !important;
+	}
+	.envio .contenedorEnvio .bloquelabel{
+		margin-bottom: 0 !important;
+		width: 100% !important;
+		max-width:100%;
+		text-align: center;
+	}
+	.envio .contenedorEnvio .bloquelabel .label {
+    	font-size: 18px;
+    	width: 100%;
+    }
+    .envio .contenedorEnvio .bloque .select {
+
+	    width: 100%;
+	    margin-left: 0 !important;
+	    margin: 10px 0 !important;
+	    margin-bottom: 10px;
+	    padding: 10px 5px 8px 5px;
+	    font-size: 16px;
+	    background-position: calc(100% - 13px) center;
+	}
+	.envio .contenedorEnvio .bloquesub.long {
+	    line-height: 27px;
+	}
+	.envio .contenedorEnvio .bloque .sino {
+	    font-size: 18px;
+	    margin-top: 0;
+	}
+	.modal .cont {
+	    width: 90%;
+	    max-width: 600px;
+	    height: 90%;
+	     max-height: 100%; 
+	    background-color: #00e5d7;
+	    position: absolute;
+	    border-radius: 20px;
+	    /* border: 2px solid rgba(255,255,255,0.8); */
+	    background-size: 80%;
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    background-image: url(../img/pop.png);
+	    cursor: pointer;
+	}
+	.modal .cont .nombre {
+	    width: 100%;
+	    color: red;
+	    position: absolute;
+	    right: 0;
+	    top: 5%;
+	    text-align: center;
+	    color: #ea274c;
+	    font-size: 35px;
+	    font-family: 'Signika', sans-serif;
+	    letter-spacing: 1px;
+	}
+	.envio .contenedorEnvio .bloquelabelsub .label{
+		width: 100%;
+		font-size: 18px;
+		margin-left: 0 !important;
+	}
+	.envio .contenedorEnvio .bloquelabelsub{
+		margin-bottom: 0 !important;
+	}
+	.envio .contenedorEnvio .bloque .input .mark {
+	    height: 20px;
+	    width: 20px;
+	    border-radius: 40px;
+	    background-color: #f7234f;
+	    display: inline-block;
+	    position: absolute;
+	    left: 10px;
+	    top: calc(50% - 10px);
+	}
+	.envio .contenedorEnvio .bloque .input .mark.active {
+	    height: 14px;
+	    width: 14px;
+	}
+	.envio .contenedorEnvio .bloque .input.tiny {
+	    padding: 11px 5px 8px 39px;
+	    width: 13%;
+	    text-align: left;
+	    margin: 0 10px;
+	}
+	.ayudanos .texto3{
+		padding: 50px 0 20px 0;
+	}
+	.familia .logo {
+	    height: 200px;
+	    margin-top: 40px;
+	}
+	.familia .mensaje{
+		font-size: 28px;
+	}
+	.mainlogo .log{
+		    background-size: contain;
+    height: 200px;
+    margin-top: 40px;
+	}
+	.envio .contenedorEnvio .bloque .input.nombre {
+	    width: 80%;
+	    padding: 10px 5px 8px 5px;
+	    font-size: 17px;
+	    border-radius: 100px;
+	}
+	.envio .contenedorEnvio .bloque .input.full {
+    padding: 10px 0 8px 5px;
+    width: calc(98% - 9px);
+    text-align: center;
+	}
+
+
+}
+
+@media all and (max-width: 530px){
+	.col-xs-12 img{
+	    position: relative!important;
+	    left: 0px!important;
+	}
+	.img-texto-modal{
+		width: 95%!important;
+		z-index:3!important;
+	}
+}
+@media (max-width: 650px) and (orientation: landscape){
+	.img-texto-modal{
+		width: 45%!important;
+		z-index:3!important;
+	}
+}
+

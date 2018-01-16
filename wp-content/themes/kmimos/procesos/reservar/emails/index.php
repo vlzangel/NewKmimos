@@ -13,6 +13,11 @@
 
     global $wpdb;
 	$id = $id_orden;
+
+	if( $id_orden+0 == 0 ){ exit(); }
+	$es_orden = $wpdb->get_var("SELECT post_type FROM wp_posts WHERE ID = '".$id."'");
+	if( $es_orden != "shop_order" ){ exit(); }
+
 	$data = kmimos_desglose_reserva_data($id, true);
 
 	extract($data);
@@ -74,7 +79,6 @@
 	if( $adicionales != "" ){
 		$adicionales_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/adicionales.php';
     	$adicionales_plantilla = file_get_contents($adicionales_plantilla);
-
     	$adicionales = $adicionales_plantilla.$adicionales;
 	}
 	
@@ -91,7 +95,6 @@
 	if( $transporte != "" ){
 		$transporte_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/transporte.php';
     	$transporte_plantilla = file_get_contents($transporte_plantilla);
-
     	$transporte = $transporte_plantilla.$transporte;
 	}
 
@@ -99,28 +102,6 @@
     $totales_plantilla = file_get_contents($totales_plantilla);
     $totales_plantilla = str_replace('[TIPO_PAGO]', $servicio["tipo_pago"], $totales_plantilla);
 
-/*    $MONTO = "";
-    if( $servicio["desglose"]["enable"] == "yes" ){
-    	$deposito_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/deposito.php';
-    	$deposito_plantilla = file_get_contents($deposito_plantilla);
-
-    	$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
-
-    	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
-        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
-
-    	$MONTO = number_format( $servicio["desglose"]["deposit"], 2, ',', '.');
-
-    }else{
-        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[DETALLES]', "", $totales_plantilla);
-
-    	$MONTO = number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.');
-    }*/
-	
 	if( $servicio["desglose"]["descuento"]+0 > 0 ){
 		$descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/descuento.php';
 	    $descuento_plantilla = file_get_contents($descuento_plantilla);
@@ -135,23 +116,17 @@
     $MONTO = "";
 
     if( $servicio["desglose"]["enable"] == "yes" ){
-
-    	$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
-
+    	//$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
     	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
-
     	$MONTO = number_format( $servicio["desglose"]["deposit"], 2, ',', '.');
     }else{
-
     	$deposito_plantilla = str_replace('[REMANENTE]', number_format( 0, 2, ',', '.'), $deposito_plantilla);
-
-        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
-    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.'), $totales_plantilla);
+        $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
+    	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
-
     	$MONTO = number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.');
     }
 	
@@ -163,19 +138,43 @@
 	}else{
 		$totales_plantilla = str_replace('[DESCUENTO]', "", $totales_plantilla);
 	}
-
-
-    		
+	
+	$detalles_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/detalles_servicio.php';
+    $detalles_plantilla = file_get_contents($detalles_plantilla);
+	$detalles_plantilla = str_replace('[inicio]', date("d/m", $servicio["inicio"]), $detalles_plantilla);
+    $detalles_plantilla = str_replace('[fin]', date("d/m", $servicio["fin"]), $detalles_plantilla);
+    $detalles_plantilla = str_replace('[anio]', date("Y", $servicio["fin"]), $detalles_plantilla);
+    $detalles_plantilla = str_replace('[tiempo]', $servicio["duracion"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[tipo_pago]', $servicio["metodo_pago"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[tipo_servicio]', $servicio["tipo"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[hora_inicio]', $servicio["checkin"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[hora_fin]', $servicio["checkout"], $detalles_plantilla);
+    $detalles_plantilla = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_plantilla);
 
 	if( $acc == ""  ){
 
-		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
+		$servicios_cuidador = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$cuidador->id}' AND post_type = 'product' ");
 
+		$array_servicios = array();
+		foreach ($servicios_cuidador as $value) {
+			$array_servicios[] = $value->ID;
+		}
+
+		$ids = implode(",", $array_servicios);
+
+		$es_primera_reserva = $wpdb->get_var("SELECT count(*) FROM wp_postmeta WHERE meta_key = '_booking_product_id' AND meta_value IN '{$ids}'");
+
+		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
 		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
 			include(__DIR__."/tienda.php");
 		}else{
 			include(__DIR__."/otro.php");
 		}
+
+		if( $es_primera_reserva == 1 ){
+            // wp_mail( 'a.vera@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
+            wp_mail( 'y.chaudary@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
+        }
 
 	}else{
 
@@ -183,12 +182,47 @@
 
 		$continuar = true;
 
-		if(  $_SESSION['admin_sub_login'] != 'YES' ){
+		
 
-			$usuario = $cuidador["nombre"];
-			if( $usu == "CLI" ){ $usuario = $cliente["nombre"]; }
+		$usuario = $cuidador["nombre"];
+		if( $usu == "CLI" ){ 
+			$usuario = $cliente["nombre"]; 
 
-			if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
+			if( $status == "cancelled" || $status == "modified" ){
+				$estado = array(
+					"modified"  => "Modificada",
+					"cancelled" => "Cancelada"
+				);
+				$msg = "
+				<div class='msg_acciones'>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Hola <strong>".$usuario."</strong>
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
+				    </div>
+				</div>";
+		   		
+		   		$CONTENIDO .= $msg;
+		   		$continuar = false;
+			}
+
+		}else{
+
+			$mostrar_msgs = false;
+
+			if(  $_SESSION['admin_sub_login'] != 'YES' && $status == "confirmed" ){
+				$mostrar_msgs = true;
+			}
+
+			if(  $status == "cancelled" || $status == "modified" ){
+				$mostrar_msgs = true;
+			}
+
+			if( $mostrar_msgs ){
 				$estado = array(
 					"confirmed" => "Confirmada",
 					"modified"  => "Modificada",

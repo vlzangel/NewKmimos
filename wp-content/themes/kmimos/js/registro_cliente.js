@@ -1,3 +1,10 @@
+jQuery( document ).ready( function(){
+
+	jQuery("#btn_registrar_mascota").on("click", function(){
+		jQuery(".popup-registrarte-final").css("display", "none");
+		jQuery(".popup-registrarte-datos-mascota").css("display", "block");
+	});
+});
 
 var globalData = "";
  
@@ -6,11 +13,11 @@ $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 
 	jQuery('[data-error="auth"]').fadeOut("fast");
 
-	
 	jQuery(".popup-registrarte-1").css("display", 'block');
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
 	jQuery(".popup-registrarte-final").css('display', 'none');
+	jQuery(".popup-registrarte-final-0").css('display', 'none');
 
 	jQuery('#km-datos-foto-profile').css('background-image', 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
 	jQuery("#km-datos-foto-profile").css("background-image", 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
@@ -285,7 +292,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					if( data > 0 ){
 						globalData = data;
 						jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
-						jQuery(".popup-registrarte-datos-mascota").css("display", "block");
+						jQuery(".popup-registrarte-final").css("display", "block");
 
 						jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
 						jQuery("#img_pet").val( "" );
@@ -538,8 +545,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		) {
         		var datos = {
 		      		'name_pet': campos_pet[0],
-		            'type_pet': campos_pet[1],
-		            'race_pet': campos_pet[2],
+		            'tipo_mascota': campos_pet[1],
+		            'raza_mascota': campos_pet[2],
 		            'color_pet': campos_pet[3],
 		            'date_birth': campos_pet[4],
 					'gender_pet': campos_pet[5],
@@ -554,8 +561,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 				jQuery.post( HOME+'/procesos/login/registro_pet.php', datos, function( data ) {
 					if( data >= 1 ){
-		        		
-
 						jQuery("#btn_cerrar").on("click", function(e){
 							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
 						});
@@ -566,7 +571,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				});
 
 				jQuery(".popup-registrarte-datos-mascota").css("display", "none");
-				jQuery(".popup-registrarte-final").css("display", "block");
+				jQuery(".popup-registrarte-final-0").css("display", "block");
 
 				jQuery("body").scrollTop(0);
 				jQuery(".modal").scrollTop(0);

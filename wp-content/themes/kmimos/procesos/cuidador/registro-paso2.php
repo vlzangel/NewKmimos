@@ -5,7 +5,7 @@
     include("../funciones/db.php");
     include("../funciones/generales.php");
 
-    date_default_timezone_set('America/Mexico_City');
+    date_default_timezone_set('America/Bogota');
     $conn = new mysqli($host, $user, $pass, $db);
     $db = new db($conn);
     $errores = array();
@@ -13,6 +13,9 @@
         if($value == ''){ $_POST[$key] = 0; }
     }
     extract($_POST);
+
+    $msg = '';
+    $fields = [];
 
     $email = $rc_email;
     $estado = $rc_estado;
@@ -25,14 +28,18 @@
     $hoy = date("Y-m-d H:i:s");
 
     if ($conn->connect_error) {
-        echo json_encode(['error'=>'false','msg'=>'Error de conexion']);
+        echo json_encode(['error'=>'false','group'=>1,'msg'=>'Error de conexion']);
     }else{
         // Validar si existe el usuario
         $user = $db->get_row( "SELECT * FROM wp_users WHERE user_email = '{$email}'" );
 
+
         if( isset($user->ID) && $user->ID > 0 ){
+
             $user_id = $user->ID;
+
             $cuidador = $db->get_row( "SELECT * FROM cuidadores WHERE email = '".$email."'" );
+
             if( isset($cuidador->id) && $cuidador->id > 0 ){
                 $cuidador_id = $cuidador->id;
 
@@ -99,9 +106,11 @@
                     "error" => "NO",
                     "msg" => '',
                     "fields" => [],
+                    'group'=>2,
                 );
             }else{
                 $error = array(
+                    'group'=>3,
                     "error" => "SI",
                     "msg" => $msg,
                     "fields" => $fields,
@@ -127,6 +136,7 @@
                 "error" => "SI",
                 "msg" => $msg,
                 "fields" => $fields,
+                'group'=>4,
             );
 
             echo "(".json_encode( $error ).")";

@@ -1,14 +1,26 @@
 <?php
-	if(!function_exists('get_home_url')){
+    if(!function_exists('get_home_url')){
         function get_home_url(){
-        	global $db;
-        	return $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
+            global $db;
+            return $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
         }
     }
 
-	if(!function_exists('path_base')){
+	if(!function_exists('getTema')){
+        function getTema(){
+        	return get_home_url()."wp-content/themes/kmimos/";
+        }
+    }
+
+    if(!function_exists('path_base')){
         function path_base(){
             return dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+        }
+    }
+
+	if(!function_exists('kmimos_mkdir')){
+        function kmimos_mkdir($dir){
+            if( !file_exists($dir) ){ @mkdir($dir); }
         }
     }
 
@@ -29,7 +41,7 @@
                 $sub_path = "cuidadores/avatares/{$id}/";
             }
             
-            $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo' ");
+            $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo' ORDER BY umeta_id DESC ");
             if( empty($name_photo)  ){ $name_photo = "0"; }
             $base = path_base();
 
@@ -58,9 +70,18 @@
         }
     }
 
-    function kmimos_get_user_meta($user_id, $key){
+    function kmimos_get_user_meta($user_id, $key = ''){
         global $db;
-        return $db->get_var("SELECT meta_key FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = '{$key}';");
+        if( $key != '' ){
+            return $db->get_var("SELECT meta_key FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = '{$key}';");
+        }else{
+            $resultado = array();
+            $metas = $db->get_results("SELECT * FROM wp_usermeta WHERE user_id = {$user_id}");
+            foreach ($metas as $key => $value) {
+                $resultado[ $value->meta_key ] = $value->meta_value;
+            }
+            return $resultado;
+        }
     }
     
     function kmimos_update_user_meta($user_id, $key, $valor){
@@ -72,9 +93,18 @@
         }
     }
 
-    function kmimos_get_post_meta($post_id, $key){
+    function kmimos_get_post_meta($post_id, $key = ''){
         global $db;
-        return $db->get_var("SELECT meta_key FROM wp_postmeta WHERE post_id = {$user_id} AND meta_key = '{$key}';");
+        if( $key != '' ){
+            return $db->get_var("SELECT meta_key FROM wp_postmeta WHERE post_id = {$post_id} AND meta_key = '{$key}';");
+        }else{
+            $resultado = array();
+            $metas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$post_id}");
+            foreach ($metas as $key => $value) {
+                $resultado[ $value->meta_key ] = $value->meta_value;
+            }
+            return $resultado;
+        }
     }
     
     function kmimos_update_post_meta($post_id, $key, $valor){
@@ -99,5 +129,81 @@
             $db->query("INSERT INTO wp_term_relationships VALUES ( {$object_id}, '$valor', '0');");
         }
     }
+
+    function listar_archivos($carpeta){
+        $fotos = array();
+        if(is_dir($carpeta)){
+            if($dir = opendir($carpeta)){
+                while(($archivo = readdir($dir)) !== false){
+                    if($archivo != '.' && $archivo != '..' && $archivo != 'collage.png'){
+                        $fotos[] = $archivo;
+                    }
+                }
+                closedir($dir);
+            }
+        }
+        return $fotos;
+    }
     
+    function procesar_img($id, $periodo, $dir, $sImagen, $es_collage = false){
+        $name = $id.".png";
+        $path = $dir.$name;
+        @file_put_contents($path, $sImagen);
+        $sExt = @mime_content_type( $path );
+        switch( $sExt ) {
+            case 'image/jpeg':
+                $aImage = @imageCreateFromJpeg( $path );
+            break;
+            case 'image/gif':
+                $aImage = @imageCreateFromGif( $path );
+            break;
+            case 'image/png':
+                $aImage = @imageCreateFromPng( $path );
+            break;
+            case 'image/wbmp':
+                $aImage = @imageCreateFromWbmp( $path );
+            break;
+        }
+        if( $es_collage ){
+            $nWidth  = 600; $nHeight = 495;
+        }else{
+            $nWidth  = 270; $nHeight = 190;
+        }
+        $aSize = @getImageSize( $path );
+        if( $aSize[0] > $aSize[1] ){
+            $nHeight = round( ( $aSize[1] * $nWidth ) / $aSize[0] );
+        }else{
+            $nWidth = round( ( $aSize[0] * $nHeight ) / $aSize[1] );
+        }
+        $aThumb = @imageCreateTrueColor( $nWidth, $nHeight );
+        @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
+        @imagepng( $aThumb, $path ); 
+        @imageDestroy( $aImage ); @imageDestroy( $aThumb );
+        return $name;
+    }
+
+    if(!function_exists('kmimos_fotos')){
+        function kmimos_fotos($PATH, $MODERADAS, $URL_BASE){
+            $FOTOS = listar_archivos( $PATH );
+            $i = 1; $moderar_imgs = "";
+            foreach ($FOTOS as $foto) {
+                $check = "";
+                if( $MODERADAS != false ){
+                    $check = "";
+                    if( in_array($foto, $MODERADAS)){
+                        $check = "checked";
+                    }
+                }
+                $moderar_imgs .= "
+                    <div style='background-image: url(".$URL_BASE.$foto.");'>
+                        <span onclick='ver_foto( jQuery(this) )' data-img='".$URL_BASE.$foto."'>Ver</span>
+                        <input type='checkbox' class='input_check' value='{$foto}' {$check} id='foto_{$i}' data-index='{$i}' data-url=\"".$URL_BASE.$foto."\"  />
+                    </div>
+                ";
+                $i++;
+            }
+
+            return $moderar_imgs;
+        }
+    }
 ?>

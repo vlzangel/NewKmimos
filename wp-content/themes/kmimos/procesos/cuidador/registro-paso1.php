@@ -8,7 +8,7 @@
     include("../funciones/generales.php");
     include('../../lib/Requests/Requests.php');
 
-    date_default_timezone_set('America/Mexico_City');
+    date_default_timezone_set('America/Bogota');
 	$conn = new mysqli($host, $user, $pass, $db);
 	$errores = array();
     
@@ -149,7 +149,37 @@
             $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
             $sql = "
-                INSERT INTO cuidadores VALUES (
+                INSERT INTO `cuidadores` (
+                    `id`,
+                    `user_id`,
+                    `id_post`,
+                    `nombre`,
+                    `apellido`,
+                    `dni`,
+                    `email`,
+                    `telefono`,
+                    `portada`,
+                    `experiencia`,
+                    `activo`,
+                    `descripcion`,
+                    `latitud`,
+                    `longitud`,
+                    `direccion`,
+                    `num_mascotas`,
+                    `mascotas_permitidas`,
+                    `check_in`,
+                    `check_out`,
+                    `mascotas_cuidador`,
+                    `tamanos_aceptados`,
+                    `edades_aceptadas`,
+                    `comportamientos_aceptados`,
+                    `hospedaje`,
+                    `hospedaje_desde`,
+                    `adicionales`,
+                    `atributos`,
+                    `rating`,
+                    `valoraciones`
+                ) VALUES (
                     NULL,
                     '0',
                     '0',
@@ -183,6 +213,7 @@
             ";
 
             if( $conn->query( utf8_decode( $sql ) ) ){
+
                 $cuidador_id = $conn->insert_id;
                 $hoy = date("Y-m-d H:i:s");     
 
@@ -230,16 +261,13 @@
                 // Update Cuidadores Usuario                
                 $conn->query( "UPDATE cuidadores SET user_id = '".$user_id."' WHERE id = ".$cuidador_id);
 
-                // Crear Metas     
-//                        (NULL, ".$user_id.", 'user_photo',          '1'),
-//                        (NULL, ".$user_id.", 'user_address',        '".$direccion."'),
                 $sql = "
                     INSERT INTO wp_usermeta VALUES
                          (NULL, ".$user_id.", 'user_favorites',      '')
-                        ,(NULL, ".$user_id.", 'user_pass',          '".$clave."')
+                        ,(NULL, ".$user_id.", 'user_pass',           '".$clave."')
                         ,(NULL, ".$user_id.", 'user_phone',          '".$telefono."')
                         ,(NULL, ".$user_id.", 'user_mobile',         '".$telefono."')
-                        ,(NULL, ".$user_id.", 'user_country', 'México')
+                        ,(NULL, ".$user_id.", 'user_country',        'México')
                         ,(NULL, ".$user_id.", 'nickname',            '".$username."')
                         ,(NULL, ".$user_id.", 'first_name',          '".$nombres."')
                         ,(NULL, ".$user_id.", 'last_name',           '".$apellidos."')
@@ -248,11 +276,12 @@
                         ,(NULL, ".$user_id.", 'comment_shortcuts',   'false')
                         ,(NULL, ".$user_id.", 'admin_color',         'fresh')
                         ,(NULL, ".$user_id.", 'use_ssl',             '0')
-                        ,(NULL, ".$user_id.", 'show_admin_bar_front', 'false')
+                        ,(NULL, ".$user_id.", 'show_admin_bar_front','false')
                         ,(NULL, ".$user_id.", 'wp_capabilities',     'a:1:{s:6:\"vendor\";b:1;}')
                         ,(NULL, ".$user_id.", 'wp_user_level',       '0')                        
-                        ,(NULL, ".$user_id.", 'google_auth_id' , '".$google_auth_id."'  )
-                        ,(NULL, ".$user_id.", 'facebook_auth_id' , '".$facebook_auth_id."')
+                        ,(NULL, ".$user_id.", 'google_auth_id' ,     '".$google_auth_id."'  )
+                        ,(NULL, ".$user_id.", 'facebook_auth_id' ,   '".$facebook_auth_id."')
+                        ,(NULL, ".$user_id.", 'nacimiento' ,         '".$rc_nacimiento."')
                         ;
                 ";
                 $conn->query( $sql );

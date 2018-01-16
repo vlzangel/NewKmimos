@@ -15,12 +15,8 @@
 		/* Cupones Especiales */
 
 			if( strtolower($cupon) == "buenfin17" ){
-
-
 				$cuidador = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio}'");
 				$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = '{$cuidador}'");
-
-
 				$atributos = unserialize($cuidador->atributos);
 				if( $atributos['destacado'] != 1 ){
 					echo json_encode(array(
@@ -28,7 +24,6 @@
 					));
 					exit;
 				}
-
 			}
 
 		/* Fin Cupones Especiales */

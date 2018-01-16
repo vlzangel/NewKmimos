@@ -1,10 +1,32 @@
 <?php
+
+    date_default_timezone_set('America/Bogota');
+
 	session_start();
+
 	include(realpath(__DIR__."/../../../../../vlz_config.php"));
 	include(realpath(__DIR__."/../funciones/db.php"));
 
+	if( isset($_GET["flash"]) ){
+		$_POST = unserialize($_SESSION['busqueda']);
+
+		$ini = $_POST["checkin"];
+		$fin = $_POST["checkout"];
+
+		$_POST = array(
+			"checkin" => $ini,
+			"checkout" => $fin,
+			"servicios" => array(
+				"flash"
+			)
+		);
+	}
+
 	$conn = new mysqli($host, $user, $pass, $db);
 	$db = new db($conn); 
+
+	$hoy = date("d/m/Y");
+	$manana = date("d/m/Y", strtotime("+1 day") );
 
 	$ubicaciones_inner = '';
 	$nombre_inner = '';
@@ -27,6 +49,9 @@
 	$condiciones = "";
 
     /* Filtros por fechas */
+
+    	$FLASH = false;
+
 	    if( isset($servicios) ){
 
 	    	$servicios_extras = array(
@@ -39,31 +64,34 @@
 	    	$servicios_buscados = "";
 			foreach ($servicios as $key => $value) {
 
-				if( in_array($value, $servicios_extras) ){ 
-					if( $servicios_buscados == "" ){
-						$servicios_buscados .= " cupos.tipo LIKE '%{$value}%' ";
-					}else{
-						$servicios_buscados .= " OR cupos.tipo LIKE '%{$value}%' ";
-					}
-				}
+				if( $value != "flash" ){ 
 				
-				if( $value != "hospedaje" ){
-					$condiciones .= " AND adicionales LIKE '%".$value."%'";
-
 					if( in_array($value, $servicios_extras) ){ 
-						if( strpos($value,'adiestramiento') === false){
-							$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+						if( $servicios_buscados == "" ){
+							$servicios_buscados .= " cupos.tipo LIKE '%{$value}%' ";
 						}else{
-							$condiciones .= 'AND (';
-							$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_basico";s:1:"1%\' 		OR ';
-							$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_intermedio";s:1:"1%\' 	OR ';
-							$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_avanzado";s:1:"1%\' 			';
-							$condiciones .= ')';
-
+							$servicios_buscados .= " OR cupos.tipo LIKE '%{$value}%' ";
+						}
+					}
+					if( $value != "hospedaje" ){
+						$condiciones .= " AND adicionales LIKE '%".$value."%'";
+						if( in_array($value, $servicios_extras) ){ 
+							if( strpos($value,'adiestramiento') === false){
+								$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+							}else{
+								$condiciones .= 'AND (';
+								$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_basico";s:1:"1%\' 		OR ';
+								$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_intermedio";s:1:"1%\' 	OR ';
+								$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_avanzado";s:1:"1%\' 			';
+								$condiciones .= ')';
+							}
 						}
 					}
 
+				}else{
+					$FLASH = true;
 				}
+
 			}
 	    	
 	    	if( $servicios_buscados != "" ){
@@ -95,6 +123,30 @@
 
 
     /* Fin Filtros por fechas */
+
+
+    /* Filtros por Flash */
+
+    	$FLASH_ORDEN = "";
+    	if( $FLASH ){
+    		$condiciones .= " AND atributos LIKE '%flash\";s:1:\"1%' "; 
+    	}else{
+    		if( $hoy == $_POST["checkin"] ||  $manana == $_POST["checkin"] ){
+    			$FLASH_ORDEN = "
+    				, ( 
+		    			SELECT 
+		    				count(*)
+		    			FROM 
+		    				cuidadores AS cuidadores_2
+		    			WHERE 
+		    				cuidadores_2.id = cuidadores.id AND
+		    				atributos LIKE '%flash\";s:1:\"1%'
+		    		) AS FLASH
+    			";
+    		}
+    	}
+
+    /* Fin Filtros por Flash */
 
     /* Filtros por servicios y tamaños */
 	  
@@ -152,7 +204,26 @@
 	    	case 'experience_desc':
 	    		$orderby = "experiencia DESC";
 	    	break;
+	    	case 'flash':
+	    		$FLASH_ORDEN = "
+    				, ( 
+		    			SELECT 
+		    				count(*)
+		    			FROM 
+		    				cuidadores AS cuidadores_2
+		    			WHERE 
+		    				cuidadores_2.id = cuidadores.id AND
+		    				atributos LIKE '%flash\";s:1:\"1%'
+		    		) AS FLASH
+    			";
+	    		$orderby = "FLASH DESC, rating DESC, valoraciones DESC";
+	    	break;
 	    }
+
+	    if( $FLASH_ORDEN != "" ){
+	    	$orderby = "FLASH DESC, ".$orderby;
+	    }
+
     /* Fin Ordenamientos */
 
     /* Filtro de busqueda */
@@ -160,39 +231,15 @@
     	$estados = (count($ubicacion)>0)? $ubicacion[0] : '';
     	$municipios = (count($ubicacion)>1)? $ubicacion[1]: '';
 	    
-	    if( 
-	    	// $tipo_busqueda == "otra-localidad" && 
-	    	$estados != "" && 
-	    	$municipios != "" 
-	    ){
-	       /* $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
-	        $latitud  			= $coordenadas["referencia"]->lat;
-	        $longitud 			= $coordenadas["referencia"]->lng;
-	        $distancia 			= calcular_rango_de_busqueda($coordenadas["norte"], $coordenadas["sur"]);
-	        $ubicacion 			= " ubi.estado LIKE '%={$estados}=%' AND ubi.municipios LIKE '%={$municipios}=%' ";
-	        $calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
-	        $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
-	        $FILTRO_UBICACION 	= "HAVING DISTANCIA < ".($distancia+0);
-	        $ubicaciones_inner  = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-	        $ubicaciones_filtro = "AND ( ( $ubicacion ) OR ( {$calculo_distancia} <= ".($distancia+0)." ) )"; */  
-
-
+	    if( $estados != "" && $municipios != "" ){
             $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
             $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$estados."=%' AND ubi.municipios LIKE '%=".$municipios."=%'  )";    
-
 	    }else{ 
-	        if( 
-	        	// $tipo_busqueda == "otra-localidad" && 
-	        	$estados != "" 
-	        ){
+	        if( $estados != "" ){
 	            $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
 	            $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$estados."=%' )";
 	        }else{
-	            if( 
-	            	// $tipo_busqueda == "mi-ubicacion" && 
-	            	$latitud != "" && 
-	            	$longitud != "" 
-	            ){
+	            if( $latitud != "" && $longitud != "" ){
 	       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
 	                $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
 	                $FILTRO_UBICACION = "HAVING DISTANCIA < 500";
@@ -227,6 +274,7 @@
 	        post_cuidador.post_name AS slug,
 	        post_cuidador.post_title AS titulo
 	        {$DISTANCIA}
+	        {$FLASH_ORDEN}
 	    FROM 
 	        cuidadores 
 	    INNER JOIN wp_posts AS post_cuidador ON ( cuidadores.id_post = post_cuidador.ID )
@@ -306,13 +354,6 @@
 	
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
-
-/*	echo "<pre>";
-		print_r( $sql );
-	echo "<pre>";
-	echo "</pre>";
-		echo $orderby;
-	echo "</pre>";*/
 
     if( !isset($redirect) || !$redirect ) {
 		header("location: {$home}busqueda/");

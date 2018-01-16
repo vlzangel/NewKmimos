@@ -1,5 +1,6 @@
 <?php
-	date_default_timezone_set('America/Mexico_City');
+
+	date_default_timezone_set('America/Bogota');
 
     global $wpdb;
     global $current_user;
@@ -18,21 +19,13 @@
     $productos 	= $wpdb->get_results("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product'");
     $rangos = array();
     foreach ($productos as $key => $value) {
-    	$temporal = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key = '_wc_booking_availability' ");
     	$servicio = $wpdb->get_results("SELECT term_taxonomy_id FROM wp_term_relationships WHERE object_id = '{$value->ID}' ");
-    	$temp = unserialize( $temporal );
-    	$xrangos = "";
-	    if( $temp != '' ){
-	    	$xrangos = array();
-		    foreach ($temp as $key2 => $value2) {
-		    	if( $value2['from'] != '' && $value2['to'] != '' ){
-			    	$xrangos[] = array(
-			    		"from" => $value2['from'],
-			    		"to" => $value2['to']
-			    	);
-		    	}
-		    }
+	    $xrangos = array();
+	    $fechas = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$value->ID}' AND fecha >= NOW() AND no_disponible = 1");
+	    foreach ($fechas as $fecha) {
+	    	$xrangos[] = $fecha->fecha;
 	    }
+
 	    $rangos[] = array(
 	    	"servicio_id" => $value->ID,
 	    	"servicio" => $servicios[ $servicio[1]->term_taxonomy_id ],
@@ -42,50 +35,34 @@
 
     $tabla = '<div>';
 
-/*    echo "<pre>";
-    	print_r($rangos);
-    echo "</pre>";*/
-
 	$opciones = "<OPTION value='Todos' >Todos</OPTION>";
 	$cont = 0;
     foreach ($rangos as $value) {
     	$servicio_id = $value['servicio_id'];
     	$servicio = $value['servicio'];
     	$opciones .= "<OPTION value='{$servicio_id}' >{$servicio}</OPTION>";
-    	if( $value['rangos'] != "" ){
+    	if( count( $value['rangos'] ) > 0 ){
+    		$rangos_str = "";
     		foreach ($value['rangos'] as $rango) {
-
     			$cont++;
-
-    			$from = explode("-", $rango['from']);
-    			if( count($from) > 1 ){ $rango['from'] = $from[2]."/".$from[1]."/".$from[0]; }
-
-    			$to = explode("-", $rango['to']);
-    			if( count($to) > 1 ){ $rango['to'] = $to[2]."/".$to[1]."/".$to[0]; }
-
-		    	$tabla .= '
-		    		<div class="vlz_tabla">
-	                	<div class="vlz_tabla_superior">
-	                		<div class="vlz_row">
-			                	<div class="vlz_tabla_cuidador vlz_celda">
-			                		<span>Servicio</span>
-			                		<div>'.$servicio.'</div>
-			                	</div>
-			                	<div class="vlz_tabla_cuidador vlz_celda">
-			                		<span>Fecha</span>
-			                		<div>'.$rango['from'].' <b> > </b> '.$rango['to'].'</div>
-			                	</div>
+		    	$rangos_str .= '<div>'.date("d/m/Y", strtotime($rango) ).' <a data-id="'.$servicio_id.'" data-inicio="'.$rango.'" data-fin="'.$rango.'" class="vlz_accion vlz_cancelar cancelar"> Eliminar </a></div>';
+	    	}
+    		$tabla .= '
+	    		<div class="vlz_tabla">
+                	<div class="vlz_tabla_superior">
+                		<div class="vlz_row">
+		                	<div class="vlz_tabla_cuidador vlz_celda" style="width: 30%;">
+		                		<span>Servicio</span>
+		                		<div>'.$servicio.'</div>
 		                	</div>
-		                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno">
-		                		<a data-id="'.$servicio_id.'" data-inicio="'.$rango['from'].'" data-fin="'.$rango['to'].'" class="vlz_accion vlz_cancelar cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+		                	<div class="vlz_tabla_cuidador vlz_celda">
+		                		<span>Fechas</span>
+		                		<div class="fechas_bloqueadas">'.$rangos_str.'</div>
 		                	</div>
-	                	</div>
-	                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
-	                		<a data-id="'.$servicio_id.'" data-inicio="'.$rango['from'].'" data-fin="'.$rango['to'].'" class="vlz_accion vlz_cancelar cancelar"> Eliminar </a>
 	                	</div>
                 	</div>
-		    	';
-	    	}
+            	</div>
+	    	';
     	}
     }
 
