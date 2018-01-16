@@ -126,9 +126,10 @@
 							</div>
 							<div class="col-xs-12 col-sm-2">	
 
-								<div class="km-opcion">
+								<div class="km-opcion" style=" padding: 11px 11px 12px;">
 									<input type="checkbox" name="servicios[]" value="flash" >
-									<i class="fa fa-bolt vlz_rayo" aria-hidden="true"></i> FLASH
+									<i class="fa fa-bolt vlz_rayo" aria-hidden="true" style="vertical-align: middle;"></i>
+									<div style="display: inline-block; width: calc( 100% - 30px ); vertical-align: middle;">RESERVA INMEDIATA</div>
 								</div>
 
 								<!--

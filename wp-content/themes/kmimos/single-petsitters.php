@@ -54,6 +54,25 @@
 	$latitud 	= $cuidador->latitud;
 	$longitud 	= $cuidador->longitud;
 
+	$atributos_cuidador = $wpdb->get_results( "SELECT atributos FROM cuidadores WHERE user_id=".$cuidador->user_id );
+
+    $flash_link = "";
+    if( count($atributos_cuidador) > 0 ){
+        $atributos = unserialize($atributos_cuidador[0]->atributos);
+
+        if( $atributos['flash'] == 1 ){
+            $flash_link = '
+            <div class="cuidador_flash">
+	            <span class="km-contenedor-favorito_2" style="text-transform: uppercase; font-size: 10px;">
+	                <span href="javascript:;" class="km-link-flash">
+	                    <i class="fa fa-bolt" aria-hidden="true"></i>
+	                </span>
+	                Acepta Reserva Inmediata
+	            </span>
+            </div>';
+        }
+    }
+
 	$HTML = '
 		<script>
 			var lat = '.$latitud.';
@@ -350,6 +369,7 @@
 							'.$favoritos_link.'
 							<img src="'.$foto.'" />
 						</div>
+						'.$flash_link.'
 					</div>
 					<div class="col-xs-12 col-sm-6">
 						<div class="km-tit-cuidador">'.strtoupper( get_the_title() ).'</div>
