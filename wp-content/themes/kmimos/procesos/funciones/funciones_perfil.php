@@ -160,7 +160,7 @@
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Servicio</span>
 				                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
-				                		<br>
+								<br>
 				                		<span>Por</span>
 				                		<div class="cliente_reserva">
 				                			<p>'.$reserva["cliente"].'</p>

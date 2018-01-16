@@ -10,20 +10,6 @@
         $ref_str .= '<option value="'.$key.'"'.$selected.'>'.$value.'</option>';
     }
 
-    $user_recibir_fotos = $userdata['user_recibir_fotos'][0];
-
-    $opciones = array(
-        "1" => "Si, 2 veces al d&iacute;a",
-        "2" => "Si, 1 veces al d&iacute;a",
-        "3" => "Si, 1 veces cada 2 d&iacute;as",
-        "4" => "No, no deseo recibir fotos"
-    );
-    $recibir_fotos = "";
-    foreach($opciones as $key => $value){
-        $selected = ($user_recibir_fotos == $key) ? ' selected':'';
-        $recibir_fotos .= '<option value="'.$key.'"'.$selected.'>'.$value.'</option>';
-    }
-
     if (!isset($_SESSION)) { session_start(); }
     if( $_SESSION["nuevo_registro"] == "YES" ){
         $pixel = "
@@ -75,7 +61,7 @@
                 </label>
             </section>
 
-            <section style="display: none;">
+            <section>
                 <label for="nickname" class="lbl-text">'.esc_html__('Apodo (Nombre a mostrar)','kmimos').':</label>
                 <label class="lbl-ui">
                     <input  type="text" id="nickname" name="nickname" value="'.$userdata['nickname'][0].'" data-valid="requerid" autocomplete="off" />
@@ -102,16 +88,6 @@
                     <select id="referred" name="referred" data-valid="requerid" >
                         <option value="">Por favor seleccione</option>
                         '.$ref_str.'
-                    </select>
-                </label>
-            </section>
-
-            <section>
-                <label for="user_recibir_fotos" class="lbl-text">'.esc_html__('¿Deseas recibir fotos durante tus reservas?','kmimos').':</label>
-                <label class="lbl-ui">
-                    <select id="user_recibir_fotos" name="user_recibir_fotos" data-valid="requerid" >
-                        <option value="">Por favor seleccione</option>
-                        '.$recibir_fotos.'
                     </select>
                 </label>
             </section>

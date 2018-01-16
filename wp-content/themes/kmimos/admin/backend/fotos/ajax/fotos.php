@@ -21,12 +21,12 @@
     if( date("H", $actual) > 12 ){
         $PERIODO = 2;
     }
-
     $fotos = $db->get_results("SELECT * FROM fotos WHERE fecha = '".date("Y-m-d")."' ");
+
     if( $fotos != false ){
         $i = 0;
         foreach ($fotos as $key => $value) {
-
+		
             $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$value->cuidador}");
             $cuidador_id = $cuidador->id_post;
             $cuidador_name = $db->get_var("SELECT post_title FROM wp_posts WHERE ID = {$cuidador_id}");
@@ -145,12 +145,6 @@
             );
         }
     }
-
-    /*    
-    echo "<pre style='display: none;'>";
-        print_r($_SERVER["HTTP_REFERER"]);
-    echo "</pre>";
-    */
 
     echo json_encode($data);
 

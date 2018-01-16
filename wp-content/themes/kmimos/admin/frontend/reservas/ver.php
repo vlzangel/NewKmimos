@@ -5,9 +5,7 @@
     $orden = vlz_get_page();
 
     $data_reserva = kmimos_desglose_reserva_data($orden, true);
-    // echo "<pre>";
-    // print_r($data_reserva);
-    // echo "</pre>";
+
     $info = '
         <div class="desglose_box">
             <div>
@@ -19,7 +17,7 @@
                 <span>Pago por '.$data_reserva["servicio"]["metodo_pago"].'</span>
             </div>
         </div>
-        <div class="desglose_box ">
+        <div class="desglose_box">
             
             <strong>CLIENTE</strong>
             <div class="item">

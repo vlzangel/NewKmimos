@@ -214,9 +214,9 @@
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador {   
-    width: 69%;
+    width: 49%;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 
@@ -232,35 +232,6 @@
     font-size: 15px;
     text-transform: uppercase;
     font-weight: 600;
-    padding: 2px 5px;
-}
-
-.main .vlz_tabla .vlz_tabla_cuidador div a {
-    text-transform: none;
-    cursor: pointer;
-    color: #980a0a;
-    text-decoration: none !important;
-}
-
-.main .vlz_tabla .vlz_tabla_cuidador div a:hover {
-    color: #000;
-}
-
-.fechas_bloqueadas{
-    position: relative;
-    overflow: hidden;
-}
-
-.fechas_bloqueadas div{
-    text-align: left;
-}
-
-.fechas_bloqueadas div:hover{
-    background-color: #EEE;
-}
-
-.fechas_bloqueadas a{
-    float: right;
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador b {     

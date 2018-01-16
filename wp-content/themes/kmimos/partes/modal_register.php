@@ -282,9 +282,8 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-pequenio.svg" width="25">
 								<br>
 								<div class="km-opcion-text">
-									<b>PEQUEÑO</b> 
+									<b>PEQUEÑO</b><br> 0 a 25 cm
 								</div>
-								<div class="size-pet">Hasta 25.4 cm</div>
 							</div>
 						</div>
 						<div class="col-xs-6 col-sm-3">
@@ -292,9 +291,8 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-mediano.svg" width="25">
 							<br>
 								<div class="km-opcion-text">
-									<b>MEDIANO</b>
+									<b>MEDIANO</b><br> 25 a 58 cm
 								</div>
-								<div class="size-pet">27.9 a 50.8 cm</div>
 							</div>
 						</div>
 						<div class="col-xs-6 col-sm-3">
@@ -302,20 +300,17 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-grande.svg" width="25">
 							<br>
 								<div class="km-opcion-text">
-									<b>GRANDE</b>
+									<b>GRANDE</b><br> 58 a 73 cm</div>
 								</div>
-								<div class="size-pet">53.3 a 73.6 cm</div>
-							</div>
 						</div>
 						<div class="col-xs-6 col-sm-3">
 							<div class="km-opcion" id="select_4" value="3">
 								<img src="'.getTema().'/images/new/icon/icon-gigante.svg" width="25">
 							<br>
-								<div class="km-opcion-text">
-									<b>GIGANTE</b>
-								</div>
-								<div class="size-pet"> Más 76.2 cm</div>
-							</div>
+								<div class="km-opcion-text"><b>
+									GIGANTE</b><br> 73 a 200 cm
+								</div
+							></div>
 						</div>
 					</div>
 					<div class="km-registro-checkbox">
