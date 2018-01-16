@@ -33,17 +33,6 @@
 	$resultados = $_SESSION['resultado_busqueda'];
 	$favoritos = get_favoritos();
 
-// var_dump($favoritos);
-	
-/*	$pines = unserialize($_SESSION['pines_array']);
-	$pines_v = array();
- 	$t = count($pines);
-	for($i = 0; $i < $t; $i++){
-		$pines[$i]["ser"] = vlz_servicios($pines[$i]["adi"], true);
-		$pines[$i]["rating"] = kmimos_petsitter_rating( $pines[$i]["post_id"], true );
-		unset($pines[$i]["adi"]);
-	}*/
- 	
  	$TIPO_DISEÑO = "list";
 	if( $total > 6 ){
 		$TIPO_DISEÑO = "grid";
@@ -71,11 +60,13 @@
 		<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
 		<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de menos a más años</a></li>
 		<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de más a menos años</a></li>
+    <li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=flash">Cuidadores con Reserva Inmediata</a></li>
 	';
 
 
 	if( $destacados != "" ){
 		$destacados_str = '
+		<strong class="km-leyenda" style ="color: #000000;font-size: 20px;border-radius: 5px;border: solid 2px #6b1c9b;display: inline-block;padding: 5px 20px;margin-bottom: 10px;">Cuidadores Destacados</strong>
 		<div class="km-premium km-search-slider">
 			<div style="height: 220px; overflow: hidden;">
 				<div class="km-premium-slider">
@@ -264,7 +255,7 @@
 							    	ORDENAR POR
 							  	</button>
 							  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    	'.$order_by_list.'
+							    	  '.$order_by_list.'
 							  	</ul>
 							</div>
 
@@ -294,7 +285,6 @@
 								</div> -->
 
 								<div class="km-orden-resultados">
-									
 									<div class="btn-group hidden-xs">
 									  <button class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 8px 30px 8px 20px !important;border-radius: 6px!important;">
 									    ORDENAR POR</span>
@@ -303,21 +293,21 @@
 										'.$order_by_list.'
 									  </ul>
 									</div>
-
 								</div>
 							</div>
 						</div>
+					</div>
 
-						'.$CUIDADORES_STR.'
+					'.$CUIDADORES_STR.'
 
-						<div class="navigation">
-							<ul>
-								'.$paginacion["html"].'
-							</ul>
-							<div class="message-nav">
-								'.($paginacion["inicio"]+1).' - '.$paginacion["fin"].' de '.$total.' Cuidadores Certificados
-							</div>
+					<div class="navigation">
+						<ul>
+							'.$paginacion["html"].'
+						</ul>
+						<div class="message-nav">
+							'.($paginacion["inicio"]+1).' - '.$paginacion["fin"].' de '.$total.' Cuidadores Certificados
 						</div>
+					</div>
 					
 				</div>
 				<div class="km-columna-der">

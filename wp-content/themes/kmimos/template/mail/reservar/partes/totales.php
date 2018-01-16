@@ -25,5 +25,7 @@
 
         [DETALLES]
 
+        [REEMBOLSAR]
+
     </table>
 </div>

@@ -117,6 +117,25 @@
 			wp_enqueue_style('historial_responsive', getTema()."/css/responsive/historial_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('historial', getTema()."/js/historial.js", array("jquery", "global_js"), '1.0.0');
 		break;
+		case 'subir':
+		    wp_enqueue_style('subir', getTema()."/css/subir.css", array(), '1.0.0');
+			wp_enqueue_style('subir_responsive', getTema()."/css/responsive/subir_responsive.css", array(), '1.0.0');
+			wp_enqueue_script('subir', getTema()."/js/subir.js", array("jquery", "global_js"), '1.0.0');
+
+
+			wp_enqueue_script('base64', getTema()."/lib/collage/base64.js", array("jquery", "global_js"), '1.0.0');
+			wp_enqueue_script('canvas2image', getTema()."/lib/collage/canvas2image.js", array("jquery", "global_js"), '1.0.0');
+			wp_enqueue_script('html2canvas', getTema()."/lib/collage/html2canvas.js", array("jquery", "global_js"), '1.0.0');
+		break;
+		case 'fotos':
+		    wp_enqueue_style('historial', getTema()."/css/historial.css", array(), '1.0.0');
+			wp_enqueue_style('historial_responsive', getTema()."/css/responsive/historial_responsive.css", array(), '1.0.0');
+			wp_enqueue_script('historial', getTema()."/js/historial.js", array("jquery", "global_js"), '1.0.0');
+		break;
+		case 'ver-fotos':
+		    wp_enqueue_style('ver_fotos', getTema()."/css/ver_fotos.css", array(), '1.0.0');
+			wp_enqueue_script('ver_fotos', getTema()."/js/ver_fotos.js", array("jquery", "global_js"), '1.0.0');
+		break;
 	}
 
 	get_header();
@@ -245,6 +264,29 @@
 				$mostrar_btn = false;
 				include("admin/frontend/solicitudes/solicitudes.php");
 			break;
+			case 'subir':
+				$mostrar_btn = false;
+				include("admin/frontend/reservas/subir_fotos.php");
+			break;
+			case 'fotos':
+				$mostrar_btn = false;
+				include("admin/frontend/fotos/fotos.php");
+			break;
+			case 'ver-fotos':
+				$mostrar_btn = false;
+				  $CONTENIDO = "
+			        <div class='vlz_modal_container'>
+			            <div class='vlz_modal_box'>
+			                <div style='position: relative; display: inline-block;'>
+			                    <i class='fa fa-times' aria-hidden='true'></i>
+			                    <img src='' />
+			                </div>
+			            </div>
+			        </div>
+			    ";    
+			    echo comprimir_styles($CONTENIDO);
+				include("admin/frontend/fotos/ver-fotos.php");
+			break;
 		}
 
 		$HTML_BTN = '';
@@ -280,6 +322,9 @@
 		';
 
 		echo comprimir_styles($HTML);
+
+
+	  
 
 	get_footer();
 ?>

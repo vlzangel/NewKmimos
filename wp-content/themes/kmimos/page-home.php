@@ -94,29 +94,52 @@
 
 						</div>
 						<div class="row km-servicios mtb-10">
-							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion">
-									<input type="checkbox" name="servicios[]" value="hospedaje" >
-									<img src="'.getTema().'/images/new/icon/icon-hospedaje.svg">HOSPEDAJE DÍA Y NOCHE
+							<div class="col-xs-12 col-sm-10" style="padding: 0px;">
+								<div class="col-xs-12 col-sm-3">
+									<div class="km-opcion">
+										<input type="checkbox" name="servicios[]" value="hospedaje" >
+										<img src="'.getTema().'/images/new/icon/icon-hospedaje.svg">
+										HOSPEDAJE
+										<span>DÍA Y NOCHE</span>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-3">
+									<div class="km-opcion">
+										<input type="checkbox" name="servicios[]" value="guarderia" >
+										<img src="'.getTema().'/images/new/icon/icon-guarderia.svg">
+										GUARDERÍA
+										<span>SOLO DÍA</span>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-3">
+									<div class="km-opcion">
+										<input type="checkbox" name="servicios[]" value="paseos" >
+										<img src="'.getTema().'/images/new/icon/icon-paseo.svg">PASEOS
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-3">
+									<div class="km-opcion">
+										<input type="checkbox" name="servicios[]" value="adiestramiento" >
+										<img src="'.getTema().'/images/new/icon/icon-entrenamiento.svg">ENTRENAMIENTO
+									</div>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion">
-									<input type="checkbox" name="servicios[]" value="guarderia" >
-									<img src="'.getTema().'/images/new/icon/icon-guarderia.svg">GUARDERÍA DÍA
+							<div class="col-xs-12 col-sm-2">	
+
+								<div class="km-opcion" style=" padding: 11px 11px 12px;">
+									<input type="checkbox" name="servicios[]" value="flash" >
+									<i class="fa fa-bolt vlz_rayo" aria-hidden="true" style="vertical-align: middle;"></i>
+									<div style="display: inline-block; width: calc( 100% - 30px ); vertical-align: middle;">RESERVA INMEDIATA</div>
 								</div>
-							</div>
-							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion">
-									<input type="checkbox" name="servicios[]" value="paseos" >
-									<img src="'.getTema().'/images/new/icon/icon-paseo.svg">PASEOS
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion">
-									<input type="checkbox" name="servicios[]" value="adiestramiento" >
-									<img src="'.getTema().'/images/new/icon/icon-entrenamiento.svg">ENTRENAMIENTO
-								</div>
+
+								<!--
+								<i class="fa fa-bolt vlz_rayo" aria-hidden="true"></i>		
+								<select id="flash" name="flash" class="select_normal">
+									<option>Flash</option>
+									<option>SI</option>
+									<option>NO</option>
+								</select>
+								-->
 							</div>
 						</div>
 						<div class="row">
@@ -126,28 +149,28 @@
 										<div class="km-opcion">
 											<input type="checkbox" name="tamanos[]" value="pequenos" >
 											<img src="'.getTema().'/images/new/icon/icon-pequenio.svg"><div class="km-opcion-text">
-											<b>PEQUEÑO</b><br>0 a 25 cm</div>
+											<b>PEQUEÑO</b><br>Hasta 25.4 cm</div>
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
 										<div class="km-opcion">
 											<input type="checkbox" name="tamanos[]" value="medianos" >
 											<img src="'.getTema().'/images/new/icon/icon-mediano.svg"><div class="km-opcion-text">
-											<b>MEDIANO</b><br>25 a 58cm</div>
+											<b>MEDIANO</b><br>27.9 a 50.8 cm</div>
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
 										<div class="km-opcion">
 											<input type="checkbox" name="tamanos[]" value="grandes" >
 											<img src="'.getTema().'/images/new/icon/icon-grande.svg"><div class="km-opcion-text">
-											<b>GRANDE</b><br>58 a 73 cm</div>
+											<b>GRANDE</b><br>53.3 a 73.6 cm</div>
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
 										<div class="km-opcion">
 											<input type="checkbox" name="tamanos[]" value="gigantes" >
 											<img src="'.getTema().'/images/new/icon/icon-gigante.svg"><div class="km-opcion-text">
-											<b>GIGANTE</b><br>73 a 200 cm</div>
+											<b>GIGANTE</b><br>Más 76.2 cm</div>
 										</div>
 									</div>
 								</div>

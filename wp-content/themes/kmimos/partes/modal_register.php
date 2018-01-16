@@ -19,7 +19,7 @@ foreach ($referidos as $key => $value) {
 }
 
 $HTML .='
-	<!-- POPUPS REGISTRARTE -->
+<!-- POPUPS REGISTRARTE -->
 <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="popup-registrarte" style="padding: 40px;">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -207,6 +207,21 @@ $HTML .='
 					</div>
 				</div>
 			</div>
+
+
+			<div class="popuphide popup-registrarte-final">
+				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
+				<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
+				<a 
+					href="javascript:;" 
+					id="btn_registrar_mascota" 
+					class="km-btn-correo"
+				>
+					REGISTRAR UNA MASCOTA
+				</a>
+			</div>
+
+
 			<div class="popuphide popup-registrarte-datos-mascota">
 				<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 				<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
@@ -267,8 +282,9 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-pequenio.svg" width="25">
 								<br>
 								<div class="km-opcion-text">
-									<b>PEQUEÑO</b><br> 0 a 25 cm
+									<b>PEQUEÑO</b> 
 								</div>
+								<div class="size-pet">Hasta 25.4 cm</div>
 							</div>
 						</div>
 						<div class="col-xs-6 col-sm-3">
@@ -276,8 +292,9 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-mediano.svg" width="25">
 							<br>
 								<div class="km-opcion-text">
-									<b>MEDIANO</b><br> 25 a 58 cm
+									<b>MEDIANO</b>
 								</div>
+								<div class="size-pet">27.9 a 50.8 cm</div>
 							</div>
 						</div>
 						<div class="col-xs-6 col-sm-3">
@@ -285,17 +302,20 @@ $HTML .='
 								<img src="'.getTema().'/images/new/icon/icon-grande.svg" width="25">
 							<br>
 								<div class="km-opcion-text">
-									<b>GRANDE</b><br> 58 a 73 cm</div>
+									<b>GRANDE</b>
 								</div>
+								<div class="size-pet">53.3 a 73.6 cm</div>
+							</div>
 						</div>
 						<div class="col-xs-6 col-sm-3">
 							<div class="km-opcion" id="select_4" value="3">
 								<img src="'.getTema().'/images/new/icon/icon-gigante.svg" width="25">
 							<br>
-								<div class="km-opcion-text"><b>
-									GIGANTE</b><br> 73 a 200 cm
-								</div
-							></div>
+								<div class="km-opcion-text">
+									<b>GIGANTE</b>
+								</div>
+								<div class="size-pet"> Más 76.2 cm</div>
+							</div>
 						</div>
 					</div>
 					<div class="km-registro-checkbox">
@@ -335,12 +355,9 @@ $HTML .='
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p>
 			</div>
-			<div class="popuphide popup-registrarte-final">
-				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
+			<div class="popuphide popup-registrarte-final-0">
+				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU MASCOTA SE REGISTRO EXITOSAMENTE!</h3>
 				<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
-				<!--
-					<a href="#" class="modal_show km-btn-correo" data-modal="#popup-iniciar-sesion">INICIAR SESIÓN</a>
-				-->
 				<a href="javascript:;" onclick="location.href = \''.get_home_url().'/perfil-usuario/\';" id="btn_iniciar_sesion" data-url="'.get_home_url().'/perfil-usuario/" class="km-btn-correo">INICIAR SESIÓN</a>
 			</div>
 		</div>

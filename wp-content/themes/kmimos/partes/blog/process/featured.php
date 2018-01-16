@@ -25,7 +25,7 @@ if($direction=='next'){
 
 //var_dump($qpage);
 $row=$qpage*1;//$limit;
-$query = "SELECT * FROM destacados ORDER BY id LIMIT $row, $limit";//rand()
+$query = "SELECT * FROM destacados WHERE (SELECT count(*) FROM cuidadores WHERE destacados.cuidador = cuidadores.id AND cuidadores.activo = 1) > 0 ORDER BY id LIMIT $row, $limit";//rand()
 $featureds = $wpdb->get_results($query);
 $result=false;
 $html='';
@@ -41,7 +41,7 @@ if(count($featureds)>0){
 
         $votes=kmimos_petsitter_rating_and_votes($caregiver->id_post);
         $bone=site_url().'/wp-content/uploads/iconos/bone.svg';
-        $img = kmimos_get_foto($featured->cuidador);
+        $img = kmimos_get_foto($caregiver->user_id);
         $url = get_home_url()."/petsitters/".$data->url;
 
         //EXPERIENCE

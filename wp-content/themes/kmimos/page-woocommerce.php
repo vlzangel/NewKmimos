@@ -3,6 +3,18 @@
         Template Name: Woocommerce
     */
 
+
+	$post_id = vlz_get_page();
+
+	global $wpdb;
+
+	$author = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$post_id);
+	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$author);
+
+	if( $cuidador->activo == 0 ){
+		header("location: ".get_home_url());
+	}
+
     wp_enqueue_style('producto', getTema()."/css/producto.css", array(), '1.0.0');
 	wp_enqueue_style('producto_responsive', getTema()."/css/responsive/producto_responsive.css", array(), '1.0.0');
 
@@ -19,21 +31,11 @@
 		date_default_timezone_set('America/Mexico_City');
 
 		if( !isset($_SESSION)){ session_start(); }
-		
-		global $wpdb;
-
-		$post_id = vlz_get_page();
-
 		$post = get_post( $post_id );
-
 		$D = $wpdb;
-
 		$id_user = get_current_user_id();
-
 		$busqueda = getBusqueda();
-
 		$servicio_id = $post_id;
-
 		$hoy = date("Y-m-d");
 
 		$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= '".date("Y-m-d", time())."'" );
@@ -58,19 +60,24 @@
 		$servicio_name_corto = explode(" - ", $servicio_name);
 		$servicio_name_corto = $servicio_name_corto[0];
 
+		$horario = "";
+
+		$inicio = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in );
+		$fin = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out );
+
+		for ($i=$inicio; $i <= $fin; $i+=1800) { 
+			$horario .= "<option value='".date("H:i", $i)."'>".date("h:i A", $i)."</option>";
+		}
+
 	    $precios = "";
 	    
 		$adicionales = unserialize($cuidador->adicionales);
-
 		$precargas = array();
 		$id_seccion = 'MR_'.get_the_ID()."_".md5($id_user);
         if( isset($_SESSION[$id_seccion] ) ){
-
         	$cupos_menos = $_SESSION[$id_seccion]["variaciones"]["cupos"];
-
         	$ini = strtotime( $_SESSION[$id_seccion]["fechas"]["inicio"] );
         	$fin = strtotime( $_SESSION[$id_seccion]["fechas"]["fin"] );
-
         	foreach ($cupos as $value) {
         		$xfecha = strtotime( $value->fecha );
         		if( $ini >= $xfecha && $xfecha <= $fin ){
@@ -79,13 +86,11 @@
         			$value->no_disponible = 0;
         		}
         	}
-
             $HTML .= "
                 <a href='".getTema()."/procesos/perfil/update_reserva.php?b=".get_the_ID()."_".md5($id_user)."' class='theme_button btn_modificar'>
                     Salir de modificar reserva
                 </a>
             ";
-
             $busqueda["checkin"] = date("d/m/Y", strtotime($_SESSION[$id_seccion]["fechas"]["inicio"]) );
             $busqueda["checkout"] = date("d/m/Y", strtotime($_SESSION[$id_seccion]["fechas"]["fin"]) );
 
@@ -163,6 +168,70 @@
 		}
 		//$error = "";
 
+		$atributos = unserialize($cuidador->atributos);
+
+		$hoy = date("d/m/Y");
+		$manana = date("d/m/Y", strtotime("+1 day") );
+
+		if( $busqueda["checkin"] == "" ){
+			$busqueda["checkin"] = $hoy;
+			$busqueda["checkout"] = $manana;
+		}
+
+		//$NOW = (strtotime("now")+25200);
+		$NOW = (strtotime("now"));
+		//$NOW = (strtotime("now")+57600);
+
+		$bloquear = "";
+		$ES_FLASH = "NO";
+		$msg_bloqueador = "
+			<div class='alerta_flash'>
+				<div class='alerta_flash_importante'>IMPORTANTE</div>
+				<div class='alerta_flash_mensaje'>
+					Este cuidador, <strong>no tiene opci&oacute;n de Reserva Inmediata</strong>, por lo tanto existe la posibilidad de que la reserva no sea confirmada el d&iacute;a de hoy.
+					Te invitamos a seguir uno de los siguientes pasos:
+				</div>
+				<div class='alerta_flash_pasos'>
+					<div class='alerta_flash_paso'>
+						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 1</div>
+						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_1.png' /> </div>
+						<div class='alerta_flash_paso_txt'>Cambia las fechas de Reserva</div>
+					</div>
+					<div class='alerta_flash_paso'>
+						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 2</div>
+						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_2.png' /> </div>
+						<div class='alerta_flash_paso_txt'>Busca un cuidador que permita <strong>reserva inmediata</strong></div>
+					</div>
+					<div class='alerta_flash_paso'>
+						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 3</div>
+						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_3.png' /> </div>
+						<div class='alerta_flash_paso_txt'>Ll&aacute;manos al<br> (01) 800 056 4667</div>
+					</div>
+				</div>
+			</div>
+		";
+
+		if(  $_SESSION['admin_sub_login'] != 'YES' ){
+			if( $atributos["flash"] == 1){
+				$ES_FLASH = "SI";
+			}else{
+				if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && date("G", $NOW )+0 < 9 ){
+					$ES_FLASH = "SI";
+				}
+				if(  ( $manana == $busqueda["checkin"] ) && date("G", $NOW )+0 < 18 ){
+					$ES_FLASH = "SI";
+				}
+			}
+			
+			if( $ES_FLASH == "NO" ){
+				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
+			}else{
+				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
+			}
+		}else{
+			$ES_FLASH = "SI";
+		}
+
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
 
 		$PayuDeviceSessionId =  md5(session_id().microtime());
@@ -181,16 +250,18 @@
 			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
 			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
 			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
+			var FLASH = '".$ES_FLASH."';
+			var HOY = '".$hoy."';
+			var MANANA = '".$manana."';
+			var HORA = '".(date("G", $NOW )+0)."';
 			var PayuDeviceSessionId = '".$PayuDeviceSessionId."';
 			var PASARELA = '".get_region('pasarela')."';
 		</script>
 		";
 
-
 		if( strtolower( REGION ) == 'colombia' ){
 			$HTML .= '<div id="deviceID"></div>';
 		}
-
 
 		if( $error != "" ){
 			$actual = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
@@ -258,14 +329,37 @@
 								Reserva las fechas y los servicios con tu cuidador(a) '.$cuidador_name.'
 							</div>
 
-							<div class="km-dates-step">
+							<div class="km-dates-step" style="margin-bottom: 5px;">
 								<div class="km-ficha-fechas">
 									<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
 									<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly>
 								</div>
 							</div>
 
-							<div class="km-content-step">
+							<!--
+							<div class="km-dates-step">
+								<div class="km-ficha-fechas">
+									<div class="listas_check">	
+										<select id="hora_checkin" name="hora_checkin" class="date_from">
+											<option>Hora Entrada</option>
+											'.$horario.'
+										</select>
+									</div>
+	
+									<div class="listas_check">	
+										<select id="hora_checkout" name="hora_checkout" class="date_from">
+											<option>Hora Salida</option>
+											'.$horario.'
+										</select>
+									</div>
+
+								</div>
+							</div>
+							-->
+
+							'.$msg_bloqueador.'
+
+							<div id="bloque_info_servicio" class="km-content-step '.$bloquear.'">
 								<div class="km-content-new-pet">
 									'.$precios.'
 									<div class="km-services-content">

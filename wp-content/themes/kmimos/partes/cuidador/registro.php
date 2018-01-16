@@ -1,5 +1,11 @@
 <!-- POPUPS REGISTRO -->
-<?php $info = kmimos_get_info_syte(); ?>
+<?php 
+	$info = kmimos_get_info_syte(); 
+
+	$fecha = date('Y-m-j');
+	$nuevafecha = strtotime ( '+1 year' , strtotime ( $fecha ) ) ;
+	$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+?>
 <div id="popup-registro-cuidador1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -17,7 +23,6 @@
 			" 
 			data-error="auth"></div>
 				
-
 
 				<div class="line-o hidden">
 					<p class="text-line">o</p>
@@ -72,6 +77,11 @@
 							<input type="text"  maxlength="<?php echo get_region("identidad-length"); ?>"  data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
 
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
+						</div>
+						<div class="label-placeholder focused">
+							<label>Fecha de Nacimiento</label>
+							<input type="text" id="rc_nacimiento" name="rc_nacimiento" class="input-label-placeholder" readonly>
+							<small data-error="rc_nacimiento" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Correo electrónico</label>

@@ -47,7 +47,12 @@
 		$id_orden = $pagar->id_fallida;
 		$metodo = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_orden} AND meta_key = '_payment_method' ");
 		if( $metodo != $pagar->tipo ){
+			$tipos = array(
+				"tienda" => "Tienda",
+				"tarjeta" => "Tarjeta"
+			);
 			$db->get_var("UPDATE wp_postmeta SET meta_value = '{$pagar->tipo}' WHERE post_id = {$id_orden} AND meta_key = '_payment_method';");
+			$db->get_var("UPDATE wp_postmeta SET meta_value = '{$tipos[$pagar->tipo]}' WHERE post_id = {$id_orden} AND meta_key = '_payment_method_title';");
 		}
 	}
 
@@ -79,7 +84,7 @@
 
     }else{
 
-	    $pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
+	    /*$pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
 		$pagoCuidador = ( $pagar->total / 1.2);
 		if( $pre17 <= $descuentos ){
 			if( $pre17 < $descuentos ){
@@ -89,13 +94,16 @@
 			$pre17 = 0;
 		}else{
 			$pre17 -= $descuentos;
-		}
+		}*/
+
+		$pre17 = $pagar->deposito;
+		$pagoCuidador = $pagar->pagoCuidador;
 
 	    $deposito = array(
 	    	"deposit" => $pre17,
 			"enable" => "yes",
 			"ratio" => 1,
-			"remaining" => ($pagoCuidador+$descuentos),
+			"remaining" => $pagoCuidador,
 			"total" => $pagar->total
 	    );
     }
@@ -183,8 +191,13 @@
 		"hoy" 					=> $hoy,
 		"fecha_formato" 		=> $fecha_formato,
 		"token" 				=> time(),
+
 		"inicio" 				=> date("Ymd", strtotime( $fechas->inicio ) ),
 		"fin" 					=> date("Ymd", strtotime( $fechas->fin ) ),
+
+		"checkin" 				=> $fechas->checkin,
+		"checkout" 				=> $fechas->checkout,
+
 		"monto" 				=> $pagar->total,
 		"num_mascotas" 			=> $num_mascotas,
 		"metodo_pago" 			=> $pagar->tipo,

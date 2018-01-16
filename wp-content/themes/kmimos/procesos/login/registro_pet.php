@@ -50,31 +50,31 @@
 
             $sql = "
                 INSERT INTO wp_postmeta VALUES
-                    (NULL, {$pet_id}, 'name_pet',           '{$name_pet}'),
-                    (NULL, {$pet_id}, 'photo_pet',         '{$photo_pet}'),
-                    (NULL, {$pet_id}, 'type_pet',         '{$type_pet}'),
-                    (NULL, {$pet_id}, 'breed_pet',          '{$race_pet}'),
-                    (NULL, {$pet_id}, 'colors_pet',        '{$color_pet}'),
+                    (NULL, {$pet_id}, 'name_pet',               '{$name_pet}'),
+                    (NULL, {$pet_id}, 'photo_pet',              '{$photo_pet}'),
+                    (NULL, {$pet_id}, 'pet_type',               '{$tipo_mascota}'),
+                    (NULL, {$pet_id}, 'breed_pet',              '{$raza_mascota}'),
+                    (NULL, {$pet_id}, 'colors_pet',             '{$color_pet}'),
                     (NULL, {$pet_id}, 'birthdate_pet',          '{$date_birth}'),
-                    (NULL, {$pet_id}, 'gender_pet',           '{$gender_pet}'),
-                    (NULL, {$pet_id}, 'size_pet',           '{$size_pet}'),
-                    (NULL, {$pet_id}, 'pet_sterilized',           '{$pet_sterilized}'),
+                    (NULL, {$pet_id}, 'gender_pet',             '{$gender_pet}'),
+                    (NULL, {$pet_id}, 'size_pet',               '{$size_pet}'),
+                    (NULL, {$pet_id}, 'pet_sterilized',         '{$pet_sterilized}'),
                     (NULL, {$pet_id}, 'pet_sociable',           '{$pet_sociable}'),
-                    (NULL, {$pet_id}, 'aggressive_with_humans',           '{$aggresive_humans}'),
-                    (NULL, {$pet_id}, 'aggressive_with_pets',           '{$aggresive_pets}'),
-                    (NULL, {$pet_id}, 'rich_editing',        'true'),
-                    (NULL, {$pet_id}, 'comment_shortcuts',   'false'),
-                    (NULL, {$pet_id}, 'admin_color',         'fresh'),
-                    (NULL, {$pet_id}, 'use_ssl',             '0'),
-                    (NULL, {$pet_id}, 'show_admin_bar_front', 'false'),
-                    (NULL, {$pet_id}, 'wp_capabilities',     'a:1:{s:10:\"subscriber\";b:1;}'),
-                    (NULL, {$pet_id}, 'about_pet',           ''),
-                    (NULL, {$pet_id}, 'owner_pet',           '{$user_id}'),
-                    (NULL, {$pet_id}, 'wp_user_level',       '0');
+                    (NULL, {$pet_id}, 'aggressive_with_humans', '{$aggresive_humans}'),
+                    (NULL, {$pet_id}, 'aggressive_with_pets',   '{$aggresive_pets}'),
+                    (NULL, {$pet_id}, 'rich_editing',           'true'),
+                    (NULL, {$pet_id}, 'comment_shortcuts',      'false'),
+                    (NULL, {$pet_id}, 'admin_color',            'fresh'),
+                    (NULL, {$pet_id}, 'use_ssl',                '0'),
+                    (NULL, {$pet_id}, 'show_admin_bar_front',   'false'),
+                    (NULL, {$pet_id}, 'wp_capabilities',        'a:1:{s:10:\"subscriber\";b:1;}'),
+                    (NULL, {$pet_id}, 'about_pet',              ''),
+                    (NULL, {$pet_id}, 'owner_pet',              '{$user_id}'),
+                    (NULL, {$pet_id}, 'wp_user_level',          '0');
             ";
             $conn->query( utf8_decode( $sql ) );
 
-            $sql = "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$type_pet},'0');";
+            $sql = "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$tipo_mascota},'0');";
             $conn->query( utf8_decode( $sql ) );
 
 
