@@ -93,7 +93,7 @@
     if(!function_exists('kmimos_mails_administradores_new')){       
         function kmimos_mails_administradores_new($titulo, $mensaje){     
       
-            $info = kmimos_get_info_syte();
+/*            $info = kmimos_get_info_syte();
             $email_admin = $info["email"];
 
             $headers_admins = array(
@@ -123,7 +123,7 @@
                 'BCC: gabriel.marquez@sin-cola.com'
             );
 
-            wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);       
+            wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);    */   
         
         }     
     }
