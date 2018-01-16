@@ -1,7 +1,7 @@
 <?php
     session_start();
     require('../wp-load.php');
-    date_default_timezone_set('America/Mexico_City');
+    date_default_timezone_set('America/Bogota');
     global $wpdb;
 
     $hora_actual = strtotime("now");

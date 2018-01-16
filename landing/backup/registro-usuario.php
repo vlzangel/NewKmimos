@@ -3,7 +3,7 @@
 	// Wordpress
     define('WP_USE_THEMES', false);
     require('../wp-blog-header.php');
-    //date_default_timezone_set('America/Mexico_City');
+    //date_default_timezone_set('America/Bogota');
     global $wpdb;
 
     $landing_url = "https://www.kmimos.com.mx/referidos";     // URL Landing

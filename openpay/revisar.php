@@ -6,7 +6,7 @@
 
 	global $wpdb;
 
-    date_default_timezone_set('America/Mexico_City');
+    date_default_timezone_set('America/Bogota');
 
     $limite = date("Y-m-d", strtotime("-4 day"));
 

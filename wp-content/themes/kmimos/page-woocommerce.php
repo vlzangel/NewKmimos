@@ -28,7 +28,7 @@
 
 	get_header();
 
-		date_default_timezone_set('America/Mexico_City');
+		date_default_timezone_set('America/Bogota');
 
 		if( !isset($_SESSION)){ session_start(); }
 		$post = get_post( $post_id );
@@ -181,6 +181,8 @@
 		//$NOW = (strtotime("now")+25200);
 		$NOW = (strtotime("now"));
 		//$NOW = (strtotime("now")+57600);
+
+		$NOW = (strtotime( date("Y-m-d")." 10:00:00"));
 
 		$bloquear = "";
 		$ES_FLASH = "NO";

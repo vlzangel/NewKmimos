@@ -60,7 +60,7 @@
 		<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
 		<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de menos a más años</a></li>
 		<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de más a menos años</a></li>
-    <li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=flash">Cuidadores con Reserva Inmediata</a></li>
+    	<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=flash">Cuidadores con Reserva Inmediata</a></li>
 	';
 
 
@@ -177,7 +177,7 @@
 									class="km-fechas" 
 									style="width: 100%;background: transparent; border: 0px; padding: 0px 0px 0px 15px;"
 									name="ubicacion_txt"
-									placeholder="'.get_region('ubicaciones').'" 
+									placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" 
 									value="'.$busqueda["ubicacion_txt"].'" 
 									autocomplete="off" >
 								<input type="hidden" 
@@ -255,8 +255,8 @@
 							    	ORDENAR POR
 							  	</button>
 							  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    	  '.$order_by_list.'
-							  	</ul>
+							    	'.$order_by_list.'
+							    </ul>
 							</div>
 
 						</div>
@@ -267,33 +267,34 @@
 	    	
 	    	<div class="km-caja-resultados">
 				<div class="km-columna-izq">
-						'.$destacados_str.'
-						<div class="km-superior-resultados">
-							<span class="km-texto-resultados">
-								<b>Resultado de búsqueda</b> '.$total.' cuidadores disponibles
-							</span>
+					'.$destacados_str.'
+					<div class="km-superior-resultados">
+						<span class="km-texto-resultados">
+							<b>Resultado de búsqueda</b> '.$total.' cuidadores disponibles
+						</span>
 
-							<div class="km-opciones-resultados">
-								<!-- 
-								<div class="km-vista-resultados">
-									<a href="./km-resultado.html" class="view-list active">
-										List
-									</a>
-									<a href="./km-resultado-grid.html" class="view-grid">
-										Gris
-									</a>
-								</div> -->
+						<div class="km-opciones-resultados">
+							<!-- 
+							<div class="km-vista-resultados">
+								<a href="./km-resultado.html" class="view-list active">
+									List
+								</a>
+								<a href="./km-resultado-grid.html" class="view-grid">
+									Gris
+								</a>
+							</div> -->
 
-								<div class="km-orden-resultados">
-									<div class="btn-group hidden-xs">
-									  <button class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 8px 30px 8px 20px !important;border-radius: 6px!important;">
-									    ORDENAR POR</span>
-									  </button>
-									  <ul class="dropdown-menu">
-										'.$order_by_list.'
-									  </ul>
-									</div>
+							<div class="km-orden-resultados">
+								
+								<div class="btn-group hidden-xs">
+								  	<button class="km-select-custom dropdown-order km-cajas-filtro-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 8px 30px 8px 20px !important;border-radius: 6px!important;">
+								    	ORDENAR POR</span>
+								  	</button>
+								  	<ul class="dropdown-menu">
+								  		'.$order_by_list.'
+									</ul>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -310,6 +311,7 @@
 					</div>
 					
 				</div>
+
 				<div class="km-columna-der">
 					<div class="km-titulo-mapa">
 						<B>UBICACIÓN DE RESULTADOS EN MAPA</B>
