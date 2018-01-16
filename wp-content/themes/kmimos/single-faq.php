@@ -1,29 +1,10 @@
 <?php 
-    /*
-        Template Name: FAQ
-    */
-    
+  
     wp_enqueue_style('faq_style', getTema()."/css/faq.css", array(), '1.0.0');
 
 	wp_enqueue_script('faq_script', getTema()."/js/faq.js", array(), '1.0.0');
 
     get_header();
-
-    /* Temas de ayuda Destacados */
-	$destacados = get_posts(
-	    array(
-			'post_status' => 'publish', 
-			'posts_per_page' => -1, 
-	        'post_type' => 'faq',
-	        'tax_query' => array(
-		        array(
-		            'taxonomy' => 'seccion',
-		            'field'    => 'slug',
-		            'terms'    => 'destacado'
-		        )
-		    )
-	    )
-	);
 
 ?>
 
@@ -49,26 +30,38 @@
 				</div>
 			</section>
 
-			<!-- Presentacion -->
-			<section class="row text-center presentacion" data-group="presentacion">
-				
-				<?php
-					foreach ($destacados as $post) { get_posts( $posts->ID ); ?>
- 						<article>
-							<a href="<?php echo get_permalink(); ?>">
-								<img class="img-responsive" width="50%" src="<?php echo get_the_post_thumbnail_url(); ?>">
-								<h2><?php the_title(); ?></h2>
-							</a>
-						</article>
-				<?php } ?>
-
+			<!-- SubTitulos -->
+			<section class="row text-center titulo-servicios">
+				<span>SERVICIOS KMIMOS</span>
 			</section>
- 
+  
+			<!-- Temas -->
+			<section class="row text-left" aria-multiselectable="true">
+				<?php if ( have_posts() ){ the_post(); ?>
+					<article class="tema-container">
+						<h3>
+							<?php the_title(); ?>
+						</h3>
+						<div class="col-md-12">
+							<div class="tema-content">
+								<?php the_content(); ?>
+							</div>
+						</div>					
+					</article>
+				<?php } ?>				
+			</section>
+
 		</div>
 	</div>
 
+<?php 
 
-<?php get_ayuda_sugeridos('sugeridos'); ?>
+	$parents = get_ayuda_categoria( get_the_ID() );
+echo $parents;	
+	if( !empty($parents) ){
+		get_ayuda_sugeridos( $parents,  get_the_ID() ); 
+	}
 
-<?php get_footer(); ?>
+	get_footer(); 
+?>
 

@@ -8,6 +8,12 @@
 	padding: 5px 0px;
 }
 
+ul {
+	margin: 0px;
+    padding: 20px 40px!important; 
+    list-style: unset!important; 
+}
+
 /* ******************** */
 /* Titulo principal
 /* ******************** */
@@ -15,13 +21,13 @@
 	margin: 30px 0px;
 }
 .titulo-servicios span{
-	background-color: #7ad2c4;
-	color: #fff;
-	padding: 20px 6%;
-	border-radius: 50px;
-	font-family: 'Poetsen';
-	font-weight: bold;
-	font-size: 30px;
+    background-color: #7ad2c4;
+    color: #fff;
+    padding: 7px 6%;
+    border-radius: 50px;
+    font-family: 'Poetsen';
+    font-weight: normal;
+    font-size: 20px;
 }
 
 /* ******************** */
@@ -74,13 +80,18 @@
     margin: 5px 0px;
     padding: 10px 20px;
     text-align: left;
-    border-bottom: 1px solid #efebeb;
+   /* border-bottom: 1px solid #efebeb;*/
+}
+.tema-container a.title:hover,
+.tema-container a.title{
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: normal;
 }
 .tema-container a:hover,
 .tema-container a{
 	text-decoration: none;
-	font-size: 18px;
-	font-weight: normal;
+	font-weight: bold;
 }
 .tema-content{
 	padding: 10px;
@@ -100,7 +111,10 @@
 .presentacion{
 	margin: 80px 0px;
 }
-.presentacion article:hover h2{
+.presentacion article:hover h2,
+.presentacion article a:hover
+{
+	text-decoration: none!important;
 	color:#7ad2c4;	
 }
 .presentacion article{
@@ -112,7 +126,7 @@
 	margin-left:10%;
 }
 .presentacion h2{
-	font-size: 35px; 
+	font-size: 20px; 
 	color: #000;
 	font-weight: normal!important;
 	margin-top: 10px;
@@ -125,6 +139,9 @@
 /* ******************** */
 /* Temas sugeridos
 /* ******************** */
+.temas-sugeridos{
+	padding: 0px!important;
+}
 .temas-sugeridos .title{
     background-color: #7ad2c4;
     border-radius: 50px 50px 0px 0px;
@@ -135,8 +152,7 @@
     font-size: 30px;
     font-weight: bold;
 }
-.temas-sugeridos .content{
+.temas-sugeridos .sugeridos-content{
     background-color: #7ad2c4;
-    border-radius: 6px;	
     padding: 10px 0px;
 }
