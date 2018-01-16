@@ -74,7 +74,7 @@
             ";
             $conn->query( utf8_decode( $sql ) );
 
-            $sql = "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$tipo_mascota},'0');";
+            $sql = "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$type_pet},'0');";
             $conn->query( utf8_decode( $sql ) );
 
 

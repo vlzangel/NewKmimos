@@ -1,9 +1,9 @@
 jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(e){
 
-    /*jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");*/
+    jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
-    /*jQuery('.popup-iniciar-sesion-1 #service_start').val("");
-    jQuery('.popup-iniciar-sesion-1 #service_end').val("");*/
+    jQuery('.popup-iniciar-sesion-1 #service_start').val("");
+    jQuery('.popup-iniciar-sesion-1 #service_end').val("");
 
     jQuery('#meeting_time option.vacio').attr("selected", "selected");
     jQuery('.popup-iniciar-sesion-1 #pet_conoce input').prop("checked", false);
@@ -28,7 +28,7 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
 
                 if( data != "" ){
 
-                    if( data['error'] != '' ){
+               	    if( data['error'] != '' ){
                         alert(data['error']);
                     }else{
                         jQuery("#fecha").html( jQuery("#meeting_when").val() );
@@ -44,7 +44,6 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
                         jQuery('.popup-iniciar-sesion-1').css('display', 'none');
                         jQuery('.popup-iniciar-sesion-2').css('display', 'block');
                     }
-
                 }
                 jQuery("#btn_enviar_conocer").html('ENVIAR SOLICITUD');
                 jQuery("#btn_enviar_conocer").removeClass("disabled");
@@ -120,16 +119,6 @@ jQuery(document).ready(function(){
         onmonthsToShow: [1, 1]
     });
 
-    var f = String( jQuery("#service_start").val() ).split("/");
-    initDate('service_start', new Date( f[2]+"-"+f[1]+"-"+f[0] ), function(date2) {
-        var preDate2 = getFecha("service_end", date2);
-        initDate('service_end', date2[0], function(date3) { }, preDate2);
-    },  new Date( jQuery("#service_start") ));
-
-    var f = String( jQuery("#service_end").val() ).split("/");
-    initDate('service_end', new Date( f[2]+"-"+f[1]+"-"+f[0] ), function(date3) { }, new Date( f[2]+"-"+f[1]+"-"+f[0] ));
-
-
     jQuery(".km-group-checkbox input").on("change", function(e){
         jQuery(this).toggleClass("active");
     });
@@ -137,21 +126,19 @@ jQuery(document).ready(function(){
 
     
 function initDate(id, date, onSelect, preDate){
-    if( date != undefined ){
-        if( jQuery('#'+id).hasClass("is-datepick") ){
-            jQuery('#'+id).datepick('destroy');
-        }
-        jQuery('#'+id).datepick({
-            dateFormat: 'dd/mm/yyyy',
-            minDate: date,
-            defaultDate: preDate,
-            selectDefaultDate: true,
-            onSelect: onSelect,
-            yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
-            firstDay: 1,
-            onmonthsToShow: [1, 1]
-        });
+    if( jQuery('#'+id).hasClass("is-datepick") ){
+        jQuery('#'+id).datepick('destroy');
     }
+    jQuery('#'+id).datepick({
+        dateFormat: 'dd/mm/yyyy',
+        minDate: date,
+        defaultDate: preDate,
+        selectDefaultDate: true,
+        onSelect: onSelect,
+        yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
 }
 
 function getFecha(id, preDate){

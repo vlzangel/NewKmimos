@@ -21,15 +21,12 @@ if(array_key_exists('search',$_POST)){
         <title> <?php bloginfo('title'); ?> </title>
         <meta charset="<?php bloginfo('charset'); ?>">
         <?php
-
-            echo '
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-            ';
-            wp_enqueue_style( 'fontawesome_47', getTema()."/css/font-awesome.css", array(), '1.0.0'); 
-            wp_enqueue_style( 'style_kmimos', getTema()."/style.css", array(), '1.0.0'); 
-            wp_enqueue_style('blogcacss', getTema().'/css/blog_min.css');
-            wp_enqueue_style( 'blogestilos', getTema()."/css/blog.css", array(), '1.0.0');
-            wp_head();
+            	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+       	 	wp_enqueue_style( 'fontawesome_47', getTema()."/css/font-awesome.css", array(), '1.0.0'); 
+        	wp_enqueue_style( 'style_kmimos', getTema()."/style.css", array(), '1.0.0'); 
+        	wp_enqueue_style('blogcacss', getTema().'/css/blog_min.css');
+        	wp_enqueue_style( 'blogestilos', getTema()."/css/blog.css", array(), '1.0.0'); 
+        	wp_head();
         ?>
     </head>
 
@@ -63,7 +60,7 @@ if(array_key_exists('search',$_POST)){
                 <div class="menu">
                     <div class="items">
                         <div class="item"><a href="<?php echo site_url(); ?>">KMIMOS</a></div>
-                        <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICIOS</a></div>
                         <div class="item"><a href="">FAQ</a></div>
                         <div class="item"><a href="https://www.booking.com/index.html?aid=1147066&lang=es">SERVICIOS</a></div>
                         <div class="item caregiver"><a href="<?php echo site_url(); ?>/quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
@@ -102,7 +99,7 @@ if(array_key_exists('search',$_POST)){
                 <div class="menu">
                     <div class="items">
                         <div class="item"><a href="<?php echo site_url(); ?>">KMIMOS</a></div>
-                        <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICIOS</a></div>
                         <div class="item"><a href="">FAQ</a></div>
                         <div class="item"><a href="https://www.booking.com/index.html?aid=1147066&lang=es">SERVICIOS</a></div>
                         <div class="item caregiver"><a href="<?php echo site_url(); ?>/quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
