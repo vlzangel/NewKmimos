@@ -501,4 +501,8 @@
             }
         }
     }
+
+    function dateFormat($fecha, $format = "d/m/Y"){
+		return date( $format, strtotime( str_replace("/", "-", $fecha) ) );
+	}
 ?>
