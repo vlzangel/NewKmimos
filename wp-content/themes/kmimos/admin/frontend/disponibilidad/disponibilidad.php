@@ -7,12 +7,210 @@
     $user_id = $current_user->ID;
 
     $servicios = array(
+		"hospedaje" => "Hospedaje",
+		"guarderia" => "Guardería",
+		"adiestramiento-basico" => "Adiestramiento Básico",
+		"adiestramiento-intermedio" => "Adiestramiento Intermedio",
+		"adiestramiento-avanzado" => "Adiestramiento Avanzado",
+		"paseos" => "Paseos"
+	);
+
+	$opciones = "";
+	$opciones .= "<option value='todos'>Todos</option>";
+	$mis_servicios = $wpdb->get_results("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product' ");
+	foreach ($mis_servicios as $servicio) {
+		$tipo = $wpdb->get_var("
+            SELECT
+                tipo_servicio.slug AS tipo
+            FROM 
+                wp_term_relationships AS relacion
+            LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
+            WHERE 
+                relacion.object_id = '{$servicio->ID}' AND
+                relacion.term_taxonomy_id != 28
+        ");
+		$opciones .= "<option value='{$servicio->ID}' data-type='{$tipo}' >".$servicios[ $tipo ]."</option>";
+	}
+
+    $no_disponibilidades = $wpdb->get_results("SELECT * FROM disponibilidad WHERE user_id = {$user_id}");
+
+    $_rangos = array();
+
+    foreach ($no_disponibilidades as $data) {
+    	$_rangos[ $data->servicio_str ][] = array(
+    		"servicio_id" => $data->servicio_id,
+    		"servicio_str" => $data->servicio_str,
+    		"desde" 	  => dateFormat($data->desde),
+    		"hasta" 	  => dateFormat($data->hasta)
+    	);
+    }
+
+    $tabla = '<div>';
+	    if( count($_rangos) > 0 ){
+		    foreach ($_rangos as $servicio => $rangos) {
+
+		    	$rangos_html = '';
+		    	$rangos_del = '';
+
+		    	foreach ($rangos as $key => $rango) {
+			    	$rangos_html .= '
+			    		<div>
+			    			'.$rango['desde'].' <b> > </b> '.$rango['hasta'].'
+			    			<a 
+		                		data-id="'.$rango['servicio_id'].'" 
+		                		data-inicio="'.$rango['desde'].'" 
+		                		data-fin="'.$rango['hasta'].'" 
+		                		class="vlz_accion vlz_cancelar cancelar"
+		                	>
+		                		<i class="fa fa-trash-o" aria-hidden="true"></i>
+		                	</a>
+			    		</div>
+			    	';
+
+			    	$rangos_del .= '
+	                	<a 
+	                		data-id="'.$rango['servicio_id'].'" 
+	                		data-inicio="'.$rango['desde'].'" 
+	                		data-fin="'.$rango['hasta'].'" 
+	                		class="vlz_accion vlz_cancelar cancelar"
+	                	>
+	                		<!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
+	                		Eliminar
+	                	</a>
+	                ';
+		    	}
+
+		    	$tabla .= '
+		    		<div class="vlz_tabla">
+		            	<div class="vlz_tabla_superior">
+		            		<div class="vlz_row">
+			                	<div class="vlz_tabla_cuidador vlz_celda">
+			                		<span>Servicio</span>
+			                		<div>'.$servicios[ $servicio ].'</div>
+			                	</div>
+			                	<div class="vlz_tabla_cuidador vlz_celda">
+			                		<span>Fecha</span>
+			                		<div>'.$rangos_html.'</div>
+			                	</div>
+		                	</div>
+		            	</div>
+		        	</div>
+		    	';
+		    }
+		}else{
+			$tabla = '<h2>No hay registros ingresados</h2>'.$tabla;
+		}
+    $tabla .= "</div>";
+
+	$CONTENIDO = '
+		<h1 class="theme_tite theme_table_title">No estoy disponible en:</h1>
+
+		<input type="hidden" name="accion" value="perfil" />
+        <input type="hidden" name="user_id" id="user_id" value="'.$user_id.'" />
+        <input type="hidden" name="tipo" id="tipo" />
+
+		<div class="tabla_disponibilidad_box"> 
+
+			'.$tabla.'
+
+			<div class="botones_container">
+		        <div class="botones_box box_100">
+		        	<input type="button" id="editar_disponibilidad" class="km-btn-primary" value="Editar Disponibilidad" />
+		        </div>
+	        </div> 
+		</div>
+
+		<div class="fechas" >
+			<div class="fechas_box " >
+
+				<div class="fechas_item">
+					<select id="servicio" name="servicio">
+						'.$opciones.'					
+					</select>
+		        </div>
+
+				<div class="fechas_item">
+					<i class="icon-calendario embebed"></i>
+			        <input type="text" id="inicio" name="inicio" class="fechas" placeholder="Inicio" min="'.date("Y-m-d").'" readonly>
+		        </div>
+
+				<div class="fechas_item">
+					<div class="icono"><i class="icon-calendario embebed"></i></div>
+			        <input type="text" id="fin" name="fin" class="fechas" placeholder="Fin" disabled readonly>
+		        </div>
+		    </div>
+
+	        <div class="botones_container">
+		        <div class="botones_box box_50">
+		        	<input type="button" id="guardar_disponibilidad" class="km-btn-primary" value="Guardar" />
+		        </div>
+		        <div class="botones_box box_50">
+		        	<input type="button" id="volver_disponibilidad" class="km-btn-primary" value="Volver" />
+		        </div>
+	        </div>
+	    </div>
+	';
+
+
+
+/*    echo "<pre>";
+    	print_r($_rangos);
+    echo "</pre>";*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+    $servicios = array(
 		2598 => "Hospedaje",
 		2599 => "Guardería",
 		2602 => "Adiestramiento Básico",
 		2606 => "Adiestramiento Intermedio",
 		2607 => "Adiestramiento Avanzado",
 		2601 => "Paseos"
+	);
+
+    $servicios = array(
+		"hospedaje" => "Hospedaje",
+		"guarderia" => "Guardería",
+		"adiestramiento-basico" => "Adiestramiento Básico",
+		"adiestramiento-intermedio" => "Adiestramiento Intermedio",
+		"adiestramiento-avanzado" => "Adiestramiento Avanzado",
+		"paseos" => "Paseos"
 	);
 
     $productos 	= $wpdb->get_results("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product'");
@@ -41,10 +239,6 @@
     }
 
     $tabla = '<div>';
-
-/*    echo "<pre>";
-    	print_r($rangos);
-    echo "</pre>";*/
 
 	$opciones = "<OPTION value='Todos' >Todos</OPTION>";
 	$cont = 0;
@@ -143,4 +337,6 @@
 	    </div>
 
 	';
+
+	*/
 ?>

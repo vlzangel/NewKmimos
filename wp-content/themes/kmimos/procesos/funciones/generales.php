@@ -203,5 +203,9 @@
             return $moderar_imgs;
         }
     }
+
+    function kmimos_dateFormat($fecha, $format = "d/m/Y"){
+        return date( $format, strtotime( str_replace("/", "-", $fecha) ) );
+    }
     
 ?>
