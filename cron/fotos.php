@@ -13,7 +13,7 @@
         $periodo_sql = "subio_06 = '1' ";
         $periodo = 2;
     }
-    
+
     $hoy = date("Y-m-d");
     $SQL = "SELECT * FROM fotos WHERE {$periodo_sql} AND bloqueo = 0 AND fecha = '{$hoy}' AND moderacion != 'a:0:{}'";
     $fotos_a_enviar = $wpdb->get_results( $SQL );
@@ -114,7 +114,7 @@
                     <div style="'.$style_1.'">
                         <a style="'.$style_2.'">
                             <div style="'.$style_3.'">
-                                <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/mail_'.$foto.'" style="'.$style_4.'" />
+                                <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto.'" style="'.$style_4.'" />
                             </div>
                         </a>
                     </div>';
@@ -142,7 +142,7 @@
                                 <div style="'.$style_1.'">
                                     <a style="'.$style_2.'">
                                         <div style="'.$style_3.'">
-                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/mail_'.$foto.'" style="'.$style_4.'" />
+                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/'.$foto.'" style="'.$style_4.'" />
                                         </div>
                                     </a>
                                 </div>';
@@ -166,7 +166,7 @@
                                 <div style="'.$style_1.'">
                                     <a style="'.$style_2.'">
                                         <div style="'.$style_3.'">
-                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/mail_'.$foto.'" style="'.$style_4.'" />
+                                            <img src="'.get_home_url().'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/'.$foto.'" style="'.$style_4.'" />
                                         </div>
                                     </a>
                                 </div>';
