@@ -55,7 +55,9 @@
 		    	foreach ($rangos as $key => $rango) {
 			    	$rangos_html .= '
 			    		<div>
-			    			'.$rango['desde'].' <b> > </b> '.$rango['hasta'].'
+			    			<span>
+			    				'.$rango['desde'].' <b> > </b> '.$rango['hasta'].'
+			    			</span>
 			    			<a 
 		                		data-id="'.$rango['servicio_id'].'" 
 		                		data-inicio="'.$rango['desde'].'" 
@@ -66,31 +68,19 @@
 		                	</a>
 			    		</div>
 			    	';
-
-			    	$rangos_del .= '
-	                	<a 
-	                		data-id="'.$rango['servicio_id'].'" 
-	                		data-inicio="'.$rango['desde'].'" 
-	                		data-fin="'.$rango['hasta'].'" 
-	                		class="vlz_accion vlz_cancelar cancelar"
-	                	>
-	                		<!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
-	                		Eliminar
-	                	</a>
-	                ';
 		    	}
 
 		    	$tabla .= '
 		    		<div class="vlz_tabla">
 		            	<div class="vlz_tabla_superior">
 		            		<div class="vlz_row">
-			                	<div class="vlz_tabla_cuidador vlz_celda">
+			                	<div class="vlz_tabla_cuidador vlz_celda vlz_servicio">
 			                		<span>Servicio</span>
 			                		<div>'.$servicios[ $servicio ].'</div>
 			                	</div>
 			                	<div class="vlz_tabla_cuidador vlz_celda">
 			                		<span>Fecha</span>
-			                		<div>'.$rangos_html.'</div>
+			                		<div class="vlz_rangos">'.$rangos_html.'</div>
 			                	</div>
 		                	</div>
 		            	</div>
