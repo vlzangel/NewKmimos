@@ -219,8 +219,11 @@
     vertical-align: middle;
 }
 
+.main .vlz_tabla .vlz_servicio {  
+    vertical-align: top;
+}
 
-.main .vlz_tabla .vlz_tabla_cuidador span {     
+.main .vlz_tabla .vlz_tabla_cuidador > span {     
     font-weight: 600;
     color: #969696;
     padding: 0px;
@@ -228,17 +231,35 @@
     font-size: 16px;
 }
 
+.main .vlz_tabla .vlz_rangos > div {  
+    padding: 4px;
+    border-radius: 3px;
+    cursor: pointer;    
+    border-bottom: solid 1px #FFF;
+}
+
+.main .vlz_tabla .vlz_tabla_cuidador .vlz_rangos div:hover {     
+    border-bottom: solid 1px #CCC;
+}
+
+.main .vlz_tabla .vlz_tabla_cuidador .vlz_rangos > div > a:hover {     
+    color: red;
+    border: solid 1px red;
+}
+
+.main .vlz_tabla .vlz_rangos span {  
+    padding: 3px 5px;
+    display: inline-block;
+}
+
 .main .vlz_tabla .vlz_tabla_cuidador div {     
     font-size: 15px;
     text-transform: uppercase;
     font-weight: 600;
-    margin: 0px 0px 5px;
+    margin: 0px;
     overflow: hidden;
 }
 
-.main .vlz_tabla .vlz_tabla_cuidador div:hover {     
-    background: #CCC;
-}
 
 .main .vlz_tabla .vlz_tabla_cuidador b {     
     color: #59c9a8;
