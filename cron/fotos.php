@@ -79,7 +79,7 @@
 
         $style_1 = "display: inline-block; width: 100%; text-align: center;";
         $style_2 = "display: block; margin: 3px 3px 8px; text-decoration: none;";
-        $style_3 = "background: #f3f3f3; border: solid 1px #CCC; padding: 10px; border-radius: 4px;";
+        $style_3 = "background: #ffffff; border: solid 1px #CCC; padding: 10px; border-radius: 4px;";
         $style_4 = "height: auto; max-width: 100%; max-height: 100%;";
 
         $path_fondo = __DIR__."/fondo.jpg";
