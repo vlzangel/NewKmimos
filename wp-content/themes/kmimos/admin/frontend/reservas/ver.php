@@ -64,7 +64,7 @@
                 </span>
             </div>
             <div class="item">
-                <div>Sociable</div>
+                <div>Comportamiento</div>
                 <span>
                     '.$mascota["conducta"].'
                 </span>
