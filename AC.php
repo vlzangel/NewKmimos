@@ -61,6 +61,7 @@
 	include("vlz_config.php"); $db = new db( new mysqli($host, $user, $pass, $db) );
 
 	$db->query("DELETE FROM cupos WHERE id > 1;");
+	$db->query("DELETE FROM disponibilidad WHERE id > 1;");
 
 	$rangos = array();
 	$cupos = $db->get_results("SELECT * FROM wp_postmeta WHERE meta_key = '_wc_booking_availability' AND meta_value != 'a:0:{}' AND meta_value != 's:6:\"a:0:{}\";' AND post_id != 0 ");
