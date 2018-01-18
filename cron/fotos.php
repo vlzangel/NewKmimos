@@ -13,7 +13,7 @@
         $periodo_sql = "subio_06 = '1' ";
         $periodo = 2;
     }
-
+    
     $hoy = date("Y-m-d");
     $SQL = "SELECT * FROM fotos WHERE {$periodo_sql} AND bloqueo = 0 AND fecha = '{$hoy}' AND moderacion != 'a:0:{}'";
     $fotos_a_enviar = $wpdb->get_results( $SQL );
@@ -101,14 +101,14 @@
 
                 foreach ($moderacion[ $periodos_a_mostrar ] as $key => $foto) {
 
-                    $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/mail_'.$foto;
+ /*                   $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/mail_'.$foto;
                     if( !file_exists($destino) ){
                         kmimos_agregarFondo(
                             dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
                             $path_fondo, 
                             $destino
                         );
-                    }
+                    }*/
 
                     $collage .= '
                     <div style="'.$style_1.'">
@@ -129,14 +129,14 @@
 
                             foreach ($moderacion[ 1 ] as $key => $foto) {
 
-                                $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/mail_'.$foto;
+                             /*   $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_1/mail_'.$foto;
                                 if( !file_exists($destino) ){
                                     kmimos_agregarFondo(
                                         dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
                                         $path_fondo, 
                                         $destino
                                     );
-                                }
+                                }*/
 
                                 $collage .= '
                                 <div style="'.$style_1.'">
@@ -153,14 +153,14 @@
 
                             foreach ($moderacion[ 2 ] as $key => $foto) {
 
-                                $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/mail_'.$foto;
+                             /*   $destino = dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_2/mail_'.$foto;
                                 if( !file_exists($destino) ){
                                     kmimos_agregarFondo(
                                         dirname(__DIR__).'/wp-content/uploads/fotos/'.$value->reserva.'/'.date("Y-m-d").'_'.$periodo.'/'.$foto, 
                                         $path_fondo, 
                                         $destino
                                     );
-                                }
+                                }*/
 
                                 $collage .= '
                                 <div style="'.$style_1.'">
