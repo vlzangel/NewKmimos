@@ -45,8 +45,8 @@
 	}
 
 	function getTema(){
-        	return get_template_directory_uri();
-    	}
+    	return get_template_directory_uri();
+	}
     
 	add_filter( 'show_admin_bar', '__return_false' );
 
