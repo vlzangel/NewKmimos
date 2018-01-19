@@ -258,8 +258,9 @@ $reservas = getReservas($_desde, $_hasta);
 					</th>
 
 					<th> <?php 
-						$deposito = $wpdb->get_var("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$meta_reserva['_booking_order_item_id']} AND meta_key = '_wc_deposit_meta' ");
-						if( $deposito->enable == "yes" ){
+						$deposito = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$meta_reserva['_booking_order_item_id']} AND meta_key = '_wc_deposit_meta' ");
+						$deposito = unserialize($deposito);
+						if( $deposito["enable"] == "yes" ){
 							echo "Pago 17%";
 						}else{
 							echo "Pago Total - ".$deposito->enable;
