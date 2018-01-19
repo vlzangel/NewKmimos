@@ -6633,6 +6633,7 @@ section {
 
 #nueva_mascota .km-opcion {
     padding: 10px 0 14px;
+    text-align: center !important;
 }
 
 .km-opcion:before {
