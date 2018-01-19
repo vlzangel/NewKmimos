@@ -95,6 +95,7 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Estado</th>
 			      <th>Municipio</th>
 			      <th>Forma de Pago</th>
+			      <th>Tipo de Pago</th>
 			      <th>Total a pagar ($)</th>
 			      <th>Monto Pagado ($)</th>
 			      <th>Monto Remanente ($)</th>
@@ -255,6 +256,16 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						} ?>
 					</th>
+
+					<th> <?php 
+						$deposito = $wpdb->get_var("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$meta_reserva['_booking_order_item_id']} AND meta_key = '_wc_deposit_meta' ");
+						if( $deposito->enable == "yes" ){
+							echo "Pago 17%";
+						}else{
+							echo "Pago Total";
+						}
+					?> </th>
+
 					<th><?php echo currency_format($meta_reserva['_booking_cost'], "", "","."); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_order_total'], "", "","."); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining'], "", "","."); ?></th>

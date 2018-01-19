@@ -246,13 +246,15 @@ function getMetaCuidador( $user_id ){
 }
 
 function getMetaReserva( $post_id ){
-	$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost', 'modificacion_de' )";
+	$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost', 'modificacion_de', '_booking_order_item_id' )";
 	$result = get_metaPost($post_id, $condicion);
 
 	$data = [
 		'_booking_start' =>'', 
 		'_booking_end' =>'', 
 		'_booking_cost' =>'', 
+		'modificacion_de' =>'', 
+		'_booking_order_item_id' =>'', 
 	];
 	if( !empty($result) ){
 		foreach ($result['rows'] as $row) {
