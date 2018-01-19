@@ -65,8 +65,8 @@ function guardar_disponibilidad(){
                 accion: "new_disponibilidad"
             },
             function(data){
-                console.log(data);
-                // location.reload();
+                // console.log(data);
+                location.reload();
             }// , "json"
         );
     }
@@ -109,8 +109,8 @@ jQuery(".vlz_cancelar").on("click", function(e){
                 accion: "delete_disponibilidad"
             },
             function(data){
-                console.log(data);
-                // location.reload();
+                // console.log(data);
+                location.reload();
             }
         );
     }
