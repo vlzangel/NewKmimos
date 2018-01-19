@@ -263,7 +263,7 @@ $reservas = getReservas($_desde, $_hasta);
 						if( $deposito["enable"] == "yes" ){
 							echo "Pago 17%";
 						}else{
-							echo "Pago Total - ".$deposito->enable;
+							echo "Pago Total";
 						}
 					?> </th>
 
