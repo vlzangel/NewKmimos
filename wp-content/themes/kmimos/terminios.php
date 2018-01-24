@@ -88,7 +88,9 @@ $HTML = '<div style="text-align: justify">
 <p>La Póliza ampara el pago hasta por un monto de $5,000.00 M.N. (CINCO MIL PESOS 00/100 MONEDA NACIONAL) sobre aquellos eventos incluidos en el LISTADO DE EVENTOS, vía reembolso al cliente por parte de <strong>Kmimos</strong>. Para ello, <strong>Kmimos</strong> deberá recibir por parte del cliente una comprobación del pago realizado al veterinario, clínica u hospital veterinario en el que se detalle las causas que generaron dicho pago. Esta comprobación de pago será válida únicamente mediante Factura Fiscal emitida a nombre de:</p>
 <p>RAZON SOCIAL: <strong>KMIMOS</strong> SAPI DE CV</p>
 <p>RFC: KMI160615640</p>
-<p>DIRECCIÓN FISCAL: Lago Alberto 300, int 806, Col. Anahuac Secc 1, Miguel Hidalgo, CDMX. CP:11320</p>
+<p>DIRECCIÓN FISCAL: Independencia 1018. Col. Parques del Bosque, C.P 45609. Tlaquepaque, Jal.
+	<!-- Lago Alberto 300, int 806, Col. Anahuac Secc 1, Miguel Hidalgo, CDMX. CP:11320 -->
+</p>
 <p>En caso de fallecimiento de la mascota mientras esté bajo el cuidado de un cuidador <strong>Kmimos</strong>, se brinda una compensación económica para gastos funerarios hasta por un monto de $10,000.00 M.N. (DIEZ MIL PESOS 00/100 MONEDA NACIONAL), vía reembolso al cliente por parte de <strong>Kmimos</strong>. Para ello, <strong>Kmimos</strong> deberá recibir por parte del cliente una comprobación del pago realizado al veterinario, clínica u hospital veterinario. Esta comprobación de pago será válida únicamente mediante Factura Fiscal (datos fiscales compartidos en los párrafos anteriores)</p>
 <p>Cualquier reembolso se realiza dentro de los 30 días hábiles continuos posteriores a: 1) fecha del pago hecho por parte del cliente al veterinario, clínica u hospital veterinario y entregado, y b) Fecha de entrega del documento físico de la Factura Fiscal por parte del cliente a <strong>Kmimos</strong>.</p>
 <strong>12. En caso de Abandono</strong>
