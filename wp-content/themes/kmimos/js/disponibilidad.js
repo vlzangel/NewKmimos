@@ -54,21 +54,35 @@ function guardar_disponibilidad(){
     if( ini == "" || fin == "" ){
         alert("Debes seleccionar las fechas primero");
     }else{
-        jQuery.post(
-            URL_PROCESOS_PERFIL, 
-            {
-                servicio: jQuery("#servicio").val(),
-                tipo: jQuery("#tipo").val(),
-                inicio: ini,
-                fin: fin,
-                user_id: user_id,
-                accion: "new_disponibilidad"
-            },
-            function(data){
-                // console.log(data);
-                location.reload();
-            }// , "json"
-        );
+
+        var _ini = String( jQuery('#inicio').val() ).split('/');
+        var _fin = String( jQuery('#fin').val() ).split('/');
+        var _inicio = new Date( parseInt(ini[2]), parseInt(ini[1])-1, parseInt(ini[0]) );
+        var _fin = new Date( parseInt(fin[2]), parseInt(fin[1])-1, parseInt(fin[0]) );
+
+        var diferencia = Math.abs(_fin.getTime()) - Math.abs(_inicio.getTime());
+
+        var servicio_str = jQuery("#servicio option:selected").attr("data-type");
+
+        if( diferencia < 7776000 || servicio_str == "hospedaje" ){
+            jQuery.post(
+                URL_PROCESOS_PERFIL, 
+                {
+                    servicio: jQuery("#servicio").val(),
+                    tipo: jQuery("#tipo").val(),
+                    inicio: ini,
+                    fin: fin,
+                    user_id: user_id,
+                    accion: "new_disponibilidad"
+                },
+                function(data){
+                    // console.log(data);
+                    location.reload();
+                }// , "json"
+            );
+        }else{
+            alert("Los rangos de no disponibilidad deben ser menores a 90 días\nPara bloqueos mayores a este limite te recomendamos desactivar el servicio en la sección \"Mis Servicios\".");
+        }
     }
 }
 
@@ -85,9 +99,6 @@ jQuery("#guardar_disponibilidad").on("click", function(e){
 });
 
 jQuery("#servicio").on("change", function(e){
-
-    console.log( jQuery("#servicio option:selected").attr("data-type") );
-
     jQuery("#tipo").val( jQuery("#servicio option:selected").attr("data-type") );
 });
 

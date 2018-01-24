@@ -35,7 +35,7 @@
 
     }else{
     
-        $mis_servicios = $db->get_results("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product' ");
+        $mis_servicios = $db->get_results("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product' AND post_status = 'publish' ");
         foreach ($mis_servicios as $servicio) {
             $tipo = $db->get_var("
                 SELECT
