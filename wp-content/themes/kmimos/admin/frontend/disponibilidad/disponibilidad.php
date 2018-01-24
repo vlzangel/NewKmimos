@@ -17,7 +17,7 @@
 
 	$opciones = "";
 	$opciones .= "<option value='todos'>Todos</option>";
-	$mis_servicios = $wpdb->get_results("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product' ");
+	$mis_servicios = $wpdb->get_results("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product' AND post_status = 'publish' ");
 	foreach ($mis_servicios as $servicio) {
 		$tipo = $wpdb->get_var("
             SELECT
