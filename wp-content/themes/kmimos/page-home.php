@@ -11,6 +11,10 @@
             
     get_header();
         
+        echo '<pre class="hidden" data-dev="italo" style="display:none;">';
+        print_r( kmimos_desglose_reserva_data(21592, true) );
+        echo '</pre>';
+
 	    $home = get_home_url();
 
 	    //global $wpdb;

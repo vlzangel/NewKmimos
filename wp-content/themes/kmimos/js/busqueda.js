@@ -139,7 +139,7 @@ function resizeMap(){
 	if( jQuery( "body" ).width() > 975 && jQuery( "#mapa" ).hasClass("resize") ){
 		google.maps.event.trigger(map, 'resize');
 		map.setZoom(4);
-    	map.setCenter( new google.maps.LatLng(23.634501, -102.552784) );
+    	map.setCenter( new google.maps.LatLng(4.570868, -74.29733299999998) );
     	jQuery( "#mapa" ).removeClass("resize");
 
     	jQuery(".km-caja-resultados .km-columna-der").fadeOut("fast");
@@ -253,7 +253,7 @@ jQuery(document).on("click", '.btnOpenPopupMap', function ( e ) {
 	jQuery(".km-caja-resultados .km-columna-der").fadeIn("fast", function() {
 		google.maps.event.trigger(map, 'resize');
 		map.setZoom(4);
-    	map.setCenter( new google.maps.LatLng(23.634501, -102.552784) );
+    	map.setCenter( new google.maps.LatLng(4.570868, -74.29733299999998) );
     	jQuery( "#mapa" ).addClass("resize");
   	});
 	

@@ -167,6 +167,10 @@
 		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
 		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
 			include(__DIR__."/tienda.php");
+
+		}else if( strtolower($servicio["metodo_pago"]) == "tarjeta" && $status_reserva == "wc-pending"  ){
+			include(__DIR__."/pending_transaccion.php");
+
 		}else{
 			include(__DIR__."/otro.php");
 		}
@@ -181,8 +185,6 @@
 		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_reserva"]."'");
 
 		$continuar = true;
-
-		
 
 		$usuario = $cuidador["nombre"];
 		if( $usu == "CLI" ){ 

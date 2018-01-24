@@ -478,6 +478,10 @@ function pagarReserva(id_invalido = false){
 							var error = "Error procesando la reserva<br>";
 					    	error += "La transacción fue rechazada por el sistema antifraude.<br>";
 
+					    }else if( data.code == "PENDING_TRANSACTION_REVIEW"){
+							var error = "Error procesando la reserva<br>";
+					    	error += "La transacción fue detenida y debe ser revisada para su aprobación.<br>";
+
 						}else if( data.code == "PAYMENT_NETWORK_REJECTED" ){
 							var error = "Error procesando la reserva<br>";
 					    	error += "La red financiera rechazó la transacción.<br>";

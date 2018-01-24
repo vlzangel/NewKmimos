@@ -214,16 +214,39 @@
 			</div>";
 	    }
 
+
+	    $title = 'Reservaste Exitosamente';
+		$subtitle = 'Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.';
+
+	    /* *************************************************************** *
+	     * Camibo de texto cuando el pago esta pendiente por confirmar
+	     * *************************************************************** */
+		if( isset($_SESSION['reserva_status']) && $_SESSION['reserva_status'] == 'PENDING_TRANSACTION' ){
+		    $title = 'Tu Reserva esta Pendiente por Confirmar';
+			$subtitle = 'Te enviaremos un correo a tu dirección registrada cuando tu reserva sea Confirmada. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.';
+			$que_hacer = "
+			    <div class='que_debo_hacer'>
+					<div>¿QUÉ DEBO HACER AHORA?</div>
+					<ul>
+						<li>Revisa tu correo. Te enviaremos la Confirmación o Rechazo del pago de tu Reserva en unos momentos (puede durar desde 30 min a 4 horas).</li>
+						<li>En caso de dudas contáctanos al ".get_region('telefono_atencion').", y te atenderemos de inmediato.</li>
+					</ul>
+				</div>";
+			$_SESSION['reserva_status'] = '';
+			unset($_SESSION['reserva_status']);				
+		}
+
 		$HTML .= '
 	 		<div class="km-content km-step-end" style="max-width: 840px;">
 				<div style="padding: 20px 40px 20px; background: #FFF;">
 					<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
 					<br>
-					¡Genial '.get_user_meta($data_reserva["cliente"]["id"], "first_name", true).' '.get_user_meta($data_reserva["cliente"]["id"], "last_name", true).'!<br>
-					Reservaste Exitosamente
-
-					<div class="que_debo_hacer" style="margin-top: 5px;">
-						<div style="max-width: 450px; margin: 0px auto; text-align: center;">Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.</div>
+			    	¡Genial '.get_user_meta($data_reserva["cliente"]["id"], "first_name", true).' '.get_user_meta($data_reserva["cliente"]["id"], "last_name", true).'!<br>
+			    	'.$title.'
+    				<div class="que_debo_hacer" style="margin-top: 5px;">
+						<div style="max-width: 450px; margin: 0px auto; text-align: center;">
+						'.$subtitle.'
+						</div>
 					</div>
 
 					<div style="text-align: left; max-width: 840px;" >

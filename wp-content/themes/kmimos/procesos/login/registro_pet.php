@@ -6,7 +6,7 @@
     }
 
     extract($_POST);
-	
+
     $conn = new mysqli($host, $user, $pass, $db);
 
 	$errores = array();
@@ -47,7 +47,9 @@
                 'post_type'     => 'pets'
             );
             $pet_id = wp_insert_post( $args );
-
+            
+            $date_birth = date('Y-m-d',strtotime(str_replace('/','-',$date_birth)));
+            
             $sql = "
                 INSERT INTO wp_postmeta VALUES
                     (NULL, {$pet_id}, 'name_pet',               '{$name_pet}'),
@@ -55,7 +57,7 @@
                     (NULL, {$pet_id}, 'pet_type',               '{$tipo_mascota}'),
                     (NULL, {$pet_id}, 'breed_pet',              '{$raza_mascota}'),
                     (NULL, {$pet_id}, 'colors_pet',             '{$color_pet}'),
-                    (NULL, {$pet_id}, 'birthdate_pet',          '{$date_birth}'),
+                    (NULL, {$pet_id}, 'birthdate_pet',          '{$date_birth}',
                     (NULL, {$pet_id}, 'gender_pet',             '{$gender_pet}'),
                     (NULL, {$pet_id}, 'size_pet',               '{$size_pet}'),
                     (NULL, {$pet_id}, 'pet_sterilized',         '{$pet_sterilized}'),

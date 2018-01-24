@@ -1,5 +1,26 @@
 <?php
 	
+	function calcular_edad($fecha){
+		$fecha = str_replace("/","-",$fecha);
+		$hoy = date('Y/m/d');
+
+		$diff = abs(strtotime($hoy) - strtotime($fecha) );
+		$years = floor($diff / (365*60*60*24)); 
+		$desc = " Años";
+		$edad = $years;
+		if($edad==0){
+			$months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
+			$edad = $months;
+			$desc = ($edad > 1) ? " Meses" : " Mes";
+		}
+		if($edad==0){
+			$days  = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+			$edad = $days;
+			$desc = " Días";
+		}
+
+		return $edad . $desc;
+	} 
 	function tiene_fotos_por_subir($user_id, $login = false){
 		global $wpdb;
 

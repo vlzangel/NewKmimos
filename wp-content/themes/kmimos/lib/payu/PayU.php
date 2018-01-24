@@ -29,7 +29,7 @@ class PayU {
 				'isTest' => 'false',
 				'confirmation' => get_home_url().'/cron/payu/request.php',
 				'PaymentsCustomUrl' => 'https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi',
-				'ReportsCustomUrl' => 'https://sandbox.api.payulatam.com/reports-api/4.0/service.cgi',
+				'ReportsCustomUrl' => 'https://api.payulatam.com/reports-api/4.0/service.cgi',
 				'SubscriptionsCustomUrl' => 'https://sandbox.api.payulatam.com/payments-api/rest/v4.3/',
 			],
 		];
@@ -65,10 +65,10 @@ class PayU {
 		// -- Datos de la Orden
 		$cofg["transaction"]["order"]["accountId"] = $config['accountId'];
 		$cofg["transaction"]["order"]["referenceCode"] =  $datos['id_orden'];
-		$cofg["transaction"]["order"]["description"] = 'Tarjeta Compra Numero '.$datos['id_orden'];
+		$cofg["transaction"]["order"]["description"] = $datos['id_orden'];
 		$cofg["transaction"]["order"]["language"] = "es";
 		$cofg["transaction"]["order"]["signature"] = $config['signature'];
-		$cofg["transaction"]["order"]["notifyUrl"] = $config['confirmation'];
+		$cofg["transaction"]["order"]["notifyUrl"] = $config['confirmation'].'?order_id='.$datos['code_orden'];
 
 		// -- Datos de Direccion de la Orden
 		$cofg["transaction"]["order"]["shippingAddress"]["street1"] = $datos['cliente']['calle1'];
@@ -169,7 +169,7 @@ class PayU {
 		$cofg["transaction"]["order"]["description"] = 'Compra Numero '.$datos['id_orden'];
 		$cofg["transaction"]["order"]["language"] = "es";
 		$cofg["transaction"]["order"]["signature"] = $config['signature'];
-		$cofg["transaction"]["order"]["notifyUrl"] = $config['confirmation'];
+		$cofg["transaction"]["order"]["notifyUrl"] = $config['confirmation'].'?order_id='.$datos['code_orden'];
 
 		// -- Datos de Costo de Servicio      
 		$cofg["transaction"]["order"]["additionalValues"]["TX_VALUE"]["value"] = str_replace('.', ',', $datos['monto'] );
