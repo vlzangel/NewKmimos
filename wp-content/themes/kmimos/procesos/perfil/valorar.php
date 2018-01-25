@@ -113,6 +113,6 @@
 	$respuesta = array(
 		"status" => "OK",
 		"cuidador_id" => $petsitter_id,
-		"cuidador" => $cuidador->post_title,
+		"cuidador" => $cuidador,
 	);
 ?>
