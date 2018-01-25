@@ -61,13 +61,7 @@ function guardar_disponibilidad(){
         var _inicio = new Date( parseInt(_ini[2]), parseInt(_ini[1])-1, parseInt(_ini[0]) );
         var _fin = new Date( parseInt(_fin[2]), parseInt(_fin[1])-1, parseInt(_fin[0]) );
 
-
-        console.log( _inicio.getTime() );
-        console.log( _inicio );
-
         var diferencia = parseInt(_fin.getTime()) - parseInt(_inicio.getTime());
-
-        console.log( diferencia );
 
         var servicio_str = jQuery("#servicio option:selected").attr("data-type");
 
