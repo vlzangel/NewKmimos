@@ -83,7 +83,8 @@
 
 	include( dirname(__DIR__, 5)."/wp-load.php" );
 
-	wp_mail("contactomex@kmimos.la", "Nueva Valoraci&oacute;n para: ".$cuidador->post_title, $HTML);
+	// wp_mail("contactomex@kmimos.la", "Nueva Valoraci&oacute;n para: ".$cuidador->post_title, $HTML);
+	wp_mail("soporte.kmimos@gmail.com", "Nueva Valoraci&oacute;n para: ".$cuidador->post_title, $HTML);
 
 	$respuesta = array(
 		"status" => "OK"
