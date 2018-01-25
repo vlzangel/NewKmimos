@@ -57,14 +57,21 @@ function guardar_disponibilidad(){
 
         var _ini = String( jQuery('#inicio').val() ).split('/');
         var _fin = String( jQuery('#fin').val() ).split('/');
-        var _inicio = new Date( parseInt(ini[2]), parseInt(ini[1])-1, parseInt(ini[0]) );
-        var _fin = new Date( parseInt(fin[2]), parseInt(fin[1])-1, parseInt(fin[0]) );
 
-        var diferencia = Math.abs(_fin.getTime()) - Math.abs(_inicio.getTime());
+        var _inicio = new Date( parseInt(_ini[2]), parseInt(_ini[1])-1, parseInt(_ini[0]) );
+        var _fin = new Date( parseInt(_fin[2]), parseInt(_fin[1])-1, parseInt(_fin[0]) );
+
+
+        console.log( _inicio.getTime() );
+        console.log( _inicio );
+
+        var diferencia = parseInt(_fin.getTime()) - parseInt(_inicio.getTime());
+
+        console.log( diferencia );
 
         var servicio_str = jQuery("#servicio option:selected").attr("data-type");
 
-        if( diferencia < 7776000 || servicio_str == "hospedaje" ){
+        if( diferencia < 7776000000 || servicio_str == "hospedaje" ){
             jQuery.post(
                 URL_PROCESOS_PERFIL, 
                 {
