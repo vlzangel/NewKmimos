@@ -37,14 +37,16 @@
 	$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'cleanliness', '{$limpieza}'); ";
 	$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'trust', '{$confianza}'); ";
 
-	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$post_id}', 'customer_comment', '{$coment_id}'); ";
+	// $sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$post_id}', 'customer_comment', '{$coment_id}'); ";
 
 	$db->query_multiple( utf8_decode($sql) );
+
+	$cuidador = $db->get_row("SELECT * FROM wp_posts WHERE ID = ".$petsitter_id);
 
 	$HTML = '
 		<div style="margin: 0px auto; width: 600px;font-size: 13px; font-family: Arial;">
 			<div style="margin-bottom: 10px;">
-				Una nueva valoraci&oacute;n para el cuidador <a style="text-decoration: none;" href="[LINK_CUIDADOR]">"[CUIDADOR]"</a> está esperando tu aprobación.
+				Una nueva valoraci&oacute;n para el cuidador <a style="text-decoration: none;" href="'.get_home_url()."/petsitters/".$cuidador->post_name.'">"'.$cuidador->post_title.'"</a> está esperando tu aprobación.
 			</div> 
 
 			<div style="font-weight: 600;">
@@ -58,14 +60,14 @@
 				Cliente: 
 			</div>
 			<div style="margin: 0px 10px 10px;">
-				Angel Veloz
+				'.$nombre.' '.$apellido.'
 			</div> 
 
 			<div style="font-weight: 600;">
 				Email cliente: 
 			</div>
 			<div style="margin: 0px 10px 10px;">
-				a.veloz@kmimos.la
+				'.$email.'
 			</div> 
 
 			<div style="font-weight: 600; margin-bottom: 10px;">
@@ -83,7 +85,7 @@
 			</div> 
 
 			<div style="margin-bottom: 25px;">
-				[COMENTARIO]
+				'.$comentarios.'
 			</div> 
 
 			<div style="text-align: center;">
@@ -103,14 +105,6 @@
 
 		</div> 
 	';
-
-	$comentario = $comentarios;
-
-	$cuidador = $db->get_row("SELECT * FROM wp_posts WHERE ID = {$petsitter_id}");
-
-	$HTML = str_replace("[CUIDADOR]", $cuidador->post_title, $HTML);
-	$HTML = str_replace("[COMENTARIO]", $comentario, $HTML);
-	$HTML = str_replace("[LINK_CUIDADOR]", get_home_url()."/petsitters/".$cuidador->post_name, $HTML);
 
 	// wp_mail("contactomex@kmimos.la", "Nueva Valoraci&oacute;n para: ".$cuidador->post_title, $HTML);
 	wp_mail("soporte.kmimos@gmail.com", "Nueva Valoración para: ".$cuidador->post_title, $HTML);
