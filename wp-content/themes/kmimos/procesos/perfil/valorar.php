@@ -7,6 +7,10 @@
     $nombre = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'first_name'");
     $apellido = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'last_name'");
 
+    $sql = "SELECT * FROM wp_posts WHERE ID = ".$petsitter_id;
+    
+	$cuidador = $db->get_row($sql);
+
     $sql = "
     	INSERT INTO 
     		wp_comments 
@@ -40,8 +44,6 @@
 	// $sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$post_id}', 'customer_comment', '{$coment_id}'); ";
 
 	$db->query_multiple( utf8_decode($sql) );
-
-	$cuidador = $db->get_row("SELECT * FROM wp_posts WHERE ID = ".$petsitter_id);
 
 	$HTML = '
 		<div style="margin: 0px auto; width: 600px;font-size: 13px; font-family: Arial;">
@@ -114,5 +116,6 @@
 		"status" => "OK",
 		"cuidador_id" => $petsitter_id,
 		"cuidador" => $cuidador,
+		"sql" => $sql,
 	);
 ?>
