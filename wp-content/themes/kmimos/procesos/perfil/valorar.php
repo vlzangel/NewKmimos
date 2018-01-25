@@ -75,16 +75,14 @@
 
 	$comentario = $comentarios;
 
-	$cuidador = $db->get_row("SELECT * FROM wp_posts WHERE ID = {$post_id}");
+	$cuidador = $db->get_row("SELECT * FROM wp_posts WHERE ID = {$petsitter_id}");
 
 	$HTML = str_replace("[CUIDADOR]", $cuidador->post_title, $HTML);
 	$HTML = str_replace("[COMENTARIO]", $comentario, $HTML);
 	$HTML = str_replace("[LINK_CUIDADOR]", get_home_url()."/petsitters/".$cuidador->post_name, $HTML);
 
-	include( dirname(__DIR__, 5)."/wp-load.php" );
-
 	// wp_mail("contactomex@kmimos.la", "Nueva Valoraci&oacute;n para: ".$cuidador->post_title, $HTML);
-	wp_mail("soporte.kmimos@gmail.com", "Nueva Valoraci&oacute;n para: ".$cuidador->post_title, $HTML);
+	wp_mail("soporte.kmimos@gmail.com", "Nueva Valoración para: ".$cuidador->post_title, $HTML);
 
 	$respuesta = array(
 		"status" => "OK"
