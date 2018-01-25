@@ -42,13 +42,44 @@
 	$db->query_multiple( utf8_decode($sql) );
 
 	$HTML = '
-		<div style="margin: 0px auto; width: 600px;font-size: 17px;">
+		<div style="margin: 0px auto; width: 600px;font-size: 13px; font-family: Arial;">
 			<div style="margin-bottom: 10px;">
 				Una nueva valoraci&oacute;n para el cuidador <a style="text-decoration: none;" href="[LINK_CUIDADOR]">"[CUIDADOR]"</a> está esperando tu aprobación.
 			</div> 
 
+			<div style="font-weight: 600;">
+				Reserva: 
+			</div>
+			<div style="margin: 0px 10px 10px;">
+				'.$post_id.'
+			</div> 
+
+			<div style="font-weight: 600;">
+				Cliente: 
+			</div>
+			<div style="margin: 0px 10px 10px;">
+				Angel Veloz
+			</div> 
+
+			<div style="font-weight: 600;">
+				Email cliente: 
+			</div>
+			<div style="margin: 0px 10px 10px;">
+				a.veloz@kmimos.la
+			</div> 
+
 			<div style="font-weight: 600; margin-bottom: 10px;">
 				Valoraci&oacute;n: 
+			</div>
+			<div style="margin: 0px 10px 10px;">
+				<span style="font-weight: 600;">Cuidado</span>: '.$cuidado.'<br>
+				<span style="font-weight: 600;">Puntualidad</span>: '.$puntualidad.'<br>
+				<span style="font-weight: 600;">Limpieza</span>: '.$limpieza.'<br>
+				<span style="font-weight: 600;">Confianza</span>: '.$confianza.'
+			</div> 
+
+			<div style="font-weight: 600; margin-bottom: 10px;">
+				Comentarios: 
 			</div> 
 
 			<div style="margin-bottom: 25px;">
@@ -69,7 +100,7 @@
 					M&aacute;s Moderaciones
 				</a>
 			</div> 
-			
+
 		</div> 
 	';
 
@@ -83,8 +114,11 @@
 
 	// wp_mail("contactomex@kmimos.la", "Nueva Valoraci&oacute;n para: ".$cuidador->post_title, $HTML);
 	wp_mail("soporte.kmimos@gmail.com", "Nueva Valoración para: ".$cuidador->post_title, $HTML);
+	// wp_mail("a.veloz@kmimos.la", "Nueva Valoración para: ".$cuidador->post_title, $HTML);
 
 	$respuesta = array(
-		"status" => "OK"
+		"status" => "OK",
+		"cuidador_id" => $petsitter_id,
+		"cuidador" => $cuidador->post_title,
 	);
 ?>
