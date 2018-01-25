@@ -28,12 +28,12 @@ jQuery(document).ready(document).ready(function() {
             }
 
             jQuery('#btn_actualizar').before('<br><span class="mensaje">'+$mensaje+'</span><br>');  
-            setTimeout(function() { 
+            /*setTimeout(function() { 
                 jQuery('.mensaje').remove(); 
                 if( data.status == "OK"){
                     location.href = RAIZ+"/perfil-usuario/historial/";
                 }
-            }, 5000); 
+            }, 5000); */
             
         },
         "json"
