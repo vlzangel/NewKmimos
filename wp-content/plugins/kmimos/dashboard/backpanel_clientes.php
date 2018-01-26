@@ -97,7 +97,7 @@ $users = getUsers($desde, $hasta);
 			  		<?php
 			  			// Metadata usuarios
 			  			$usermeta = getmetaUser( $row['ID'] );
-			  			$link_login = "/?i=".md5($row['ID']);
+			  			$link_login = get_home_url()."/?i=".md5($row['ID']);
 
 			  			$name = "{$usermeta['first_name']} {$usermeta['last_name']}";
 			  			if(empty( trim($name)) ){
