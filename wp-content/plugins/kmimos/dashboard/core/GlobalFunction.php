@@ -10,17 +10,6 @@ function getUserByEmail($user_email=""){
 	$result = get_fetch_assoc($sql);
 	return $result;	
 }
-
-function get_razas(){
-	global $wpdb;
-	$sql = "SELECT * FROM razas ";
-	$result = $wpdb->get_results($sql);
-	$razas = [];
-	foreach ($result as $raza) {
-		$razas[$raza->id] = $raza->nombre;
-	}
-	return $razas;
-} 
 function getEdad($fecha){
 	$fecha = str_replace("/","-",$fecha);
 	$hoy = date('Y/m/d');
@@ -41,7 +30,17 @@ function getEdad($fecha){
 	}
 
 	return $edad . $desc;
-} 
+}
+function get_razas(){
+	global $wpdb;
+	$sql = "SELECT * FROM razas ";
+	$result = $wpdb->get_results($sql);
+	$razas = [];
+	foreach ($result as $raza) {
+		$razas[$raza->id] = $raza->nombre;
+	}
+	return $razas;
+}
 function dias_transcurridos($fecha_i,$fecha_f)
 {
 	$dias	= (strtotime($fecha_i)-strtotime($fecha_f))/86400;

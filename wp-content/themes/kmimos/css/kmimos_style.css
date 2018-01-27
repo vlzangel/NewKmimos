@@ -439,12 +439,6 @@ section {
 	vertical-align: middle;
     width: 70%!important;
 }
-.size-pet {
-    width: 100%!important;
-    font-size: 10px!important;
-    line-height: 1.6;
-    right: 20px!important;
-}
 .km-servicios .col-sm-3, .km-fechas .col-sm-6, .km-fechas .col-sm-3,.km-tamanio .col-sm-3, .km-servicios-adicionales .col-sm-3 {
 	padding-right: 5px;
 	padding-left: 5px;
@@ -976,10 +970,12 @@ button.close {
 }
 
 .km-search-slider .item-slide{
-	width: 100%;
-	color: #FFFFFF;
-	min-height: 220px;
-	position: relative;
+    width: 100%;
+    color: #FFFFFF;
+    min-height: 220px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
 }
 
 .km-search-slider .item-slide .slide-mask{
@@ -988,7 +984,7 @@ button.close {
 	right: 0;
 	bottom: 0;
 	z-index: 0;
-	opacity: 0.7;
+	opacity: 0.5;
 	position: absolute;
 	background: #333333;
 }
@@ -5420,7 +5416,7 @@ h1.maps {
 }
 @media (max-width:991px) and (min-width:768px) {
     .km-opcion {
-        height:70px
+        height:75px
     }
     .km-costo {
         width:200px
@@ -6620,9 +6616,9 @@ section {
     width: 104%;
 }
 .km-opcion {
-	border: 1px solid #e5e5e5;
+    border: 1px solid #e5e5e5;
     border-radius: 8px;
-    padding: 14px;
+    padding: 14px 10px;
     color: black;
     font-size: 11px;
     letter-spacing: 1px;
@@ -6632,8 +6628,14 @@ section {
     position: relative;
     cursor: pointer;
     width: 100%;
-    text-align: left;
+    text-align: left !important;
 }
+
+#nueva_mascota .km-opcion {
+    padding: 10px 0 14px;
+    text-align: center !important;
+}
+
 .km-opcion:before {
     content: "";
     border-top: 6px solid #fff;
@@ -6668,7 +6670,15 @@ section {
     text-align: left;
     line-height: 1.3;
     vertical-align: middle;
+    width: calc( 100% - 60px );
+    padding: 4px 0px;
 }
+
+#nueva_mascota .km-opcion-text {
+    width: 100% !important;
+    text-align: center;
+}
+
 .km-servicios .col-sm-3, .km-fechas .col-sm-6, .km-fechas .col-sm-3,.km-tamanio .col-sm-3, .km-servicios-adicionales .col-sm-3 {
     padding-right: 5px;
     padding-left: 5px;
@@ -7056,8 +7066,6 @@ input#ubicacion_txt {
     color: #FFFFFF;
     min-height: 220px;
     position: relative;
-    background-size: cover;
-    background-position: center;
 }
 
 .km-search-slider .item-slide .slide-mask{
@@ -7066,7 +7074,7 @@ input#ubicacion_txt {
     right: 0;
     bottom: 0;
     z-index: 0;
-    opacity: 0.5;
+    opacity: 0.7;
     position: absolute;
     background: #333333;
 }

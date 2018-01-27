@@ -289,8 +289,7 @@
 
  	if(!function_exists('italo_menus')){
 	    function italo_menus($menus){
-
-	    	global $current_user;
+		 global $current_user;
 
 	    	$menus[] = array(
                 'title'=>'Control de Reservas',
@@ -331,6 +330,17 @@
 	                'page'=>'backpanel_clientes',
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
+
+	        $menus[] = array(
+	                'title'=>'Cuidadores Detalles',
+	                'short-title'=>'Cuidadores Detalles',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_cuidadores_detalle',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_cuidadores_detalle',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
 
 	        $menus[] = array(
 	                'title'=>'Listado de Cuidadores',
@@ -414,6 +424,16 @@
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
+	        $menus[] = array(
+	                'title'=>'Reservas y Cupones',
+	                'short-title'=>'Reservas y Cupones',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_cupones',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_cupones',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
 
          /* Temporal ********************* */
 
@@ -460,12 +480,30 @@
       				'page'=>'backpanel_saldo_cupon',
       				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
       			);
+
+
 		      }
          /* Temporal ********************* */
+
 
 	        return $menus;
 
 	    }
+	}
+
+
+    if(!function_exists('backpanel_saldo_cuidador_BookingStart')){
+            function backpanel_saldo_cuidador_BookingStart(){
+                include_once('dashboard/backpanel_saldo_cuidador_BookingStart.php');
+            }
+    }
+
+
+
+	if(!function_exists('backpanel_cupones')){
+	        function backpanel_cupones(){
+	            include_once('dashboard/backpanel_cupones.php');
+	        }
 	}
 
 	if(!function_exists('backpanel_saldo_cuidador')){
@@ -556,6 +594,12 @@
 		function backpanel_multinivel(){
 			include_once('dashboard/backpanel_multinivel.php');
 		}
+	}
+
+	if(!function_exists('backpanel_cuidadores_detalle')){
+	        function backpanel_cuidadores_detalle(){
+	            include_once('dashboard/backpanel_cuidadores_detalle.php');
+	        }
 	}
 
 	

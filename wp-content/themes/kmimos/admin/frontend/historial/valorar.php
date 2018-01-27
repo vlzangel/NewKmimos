@@ -125,6 +125,7 @@
                         <textarea id='comentarios' name='comentarios' style='width: 100%; max-width: 600px; height: 120px;'></textarea>
                         <br>
                         <input type='hidden' name='accion' value='valorar'>
+                        <input type='hidden' name='core' value='SI'>
                         <input type='hidden' name='user_id' value='{$user_id}'>
                         <input type='hidden' name='post_id' value='{$post_id}'>
                         <input type='hidden' name='petsitter_id' value='{$petsitter_id}'>

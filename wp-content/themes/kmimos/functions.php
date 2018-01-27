@@ -45,8 +45,8 @@
 	}
 
 	function getTema(){
-        return get_template_directory_uri();
-    }
+    	return get_template_directory_uri();
+	}
     
 	add_filter( 'show_admin_bar', '__return_false' );
 
@@ -176,49 +176,52 @@
 
 	add_filter( 'wc_add_to_cart_message', '__return_null()' );
 
-	
-	include(__DIR__."/admin/generales/funciones.php");
+	function modify_jquery() {
+//		wp_deregister_script('jquery');
+//		wp_register_script('jquery', get_template_directory_uri().'/js/jquery.js', false, '1.0.0');
+//		wp_enqueue_script('jquery');
+	}
+	add_action('wp_enqueue_scripts', 'modify_jquery');
 
 
+	// /**
+	// * Optimiza los scripts de WooCommerce
+	// * Quita la tag Generator de WooCommerce, estilos y scripts de páginas no WooCommerce.
+	// */
+	// add_action( 'wp_enqueue_scripts', 'child_manage_woocommerce_styles', 99 );
 
+	// function child_manage_woocommerce_styles() {
+	// //quitamos la tag generator meta
+	// remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
 
+	// //Primero comprobamos si está instalado WooCommerce para evitar errores fatales
+	// if ( function_exists( 'is_woocommerce' ) ) {
+	// //y aplicamos el dequeue a scripts y estilos
+	// if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+	// wp_dequeue_style( 'woocommerce_frontend_styles' );
+	// wp_dequeue_style( 'woocommerce_fancybox_styles' );
+	// wp_dequeue_style( 'woocommerce_chosen_styles' );
+	// wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
+	// wp_dequeue_script( 'wc_price_slider' );
+	// wp_dequeue_script( 'wc-single-product' );
+	// wp_dequeue_script( 'wc-add-to-cart' );
+	// wp_dequeue_script( 'wc-cart-fragments' );
+	// wp_dequeue_script( 'wc-checkout' );
+	// wp_dequeue_script( 'wc-add-to-cart-variation' );
+	// wp_dequeue_script( 'wc-single-product' );
+	// wp_dequeue_script( 'wc-cart' );
+	// wp_dequeue_script( 'wc-chosen' );
+	// wp_dequeue_script( 'woocommerce' );
+	// wp_dequeue_script( 'prettyPhoto' );
+	// wp_dequeue_script( 'prettyPhoto-init' );
+	// wp_dequeue_script( 'jquery-blockui' );
+	// wp_dequeue_script( 'jquery-placeholder' );
+	// wp_dequeue_script( 'fancybox' );
+	// wp_dequeue_script( 'jqueryui' );
+	// }
+	// }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	// }
 
 
 	// function wpdm_filter_siteurl($content) {
@@ -269,6 +272,9 @@
 
 	// add_filter('the_content', 'wpdm_conv_tag'); 
 	// add_filter('the_excerpt', 'wpdm_conv_tag'); 
+
+	
+	include(__DIR__."/admin/generales/funciones.php");
 
 
 ?>

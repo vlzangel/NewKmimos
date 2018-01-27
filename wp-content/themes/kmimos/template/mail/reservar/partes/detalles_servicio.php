@@ -11,7 +11,7 @@
               <img src='[URL_IMGS]/min_calendar.png'  > 
             </td>
             <td style='height: 20px; vertical-align: middle; font-size: 12px;'> 
-                Del [inicio] ([hora_inicio]) al [fin] ([hora_fin]) del [anio]
+                Del [inicio] al [fin] del [anio]
             </td>
         </tr>
         

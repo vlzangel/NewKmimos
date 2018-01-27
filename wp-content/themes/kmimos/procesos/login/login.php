@@ -8,7 +8,7 @@
     }else{
         $usu = sanitize_user($usu, true);
     }
-
+    
     $info = array();
     $info['user_login']     = sanitize_user($usu, true);
     $info['user_password']  = sanitize_text_field($clv);
@@ -31,7 +31,6 @@
 	  	if( $user->roles[0] == "vendor" ){
 	  		tiene_fotos_por_subir($user_signon->ID, true);
 	  	}
-
 	  	echo json_encode( 
 	  		array( 
 	  			'login' => true, 

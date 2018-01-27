@@ -1,4 +1,3 @@
-
 <?php
 require_once('base_db.php');
 require_once('GlobalFunction.php');
@@ -6,94 +5,6 @@ require_once('GlobalFunction.php');
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
-
-function calculo_pago_cuidador( $id_reserva, $total, $pago, $remanente, $deposits=0, $discount=0, $method='' ){
-
-	$saldo_cuidador = 0;
-
-	//	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
-	//	$pago_kmimos = $total - ($total / 1.2);
-	//	$pago_cuidador_real = $total - $pago_kmimos;
-	//	$saldo_cuidador = $pago_cuidador_real - $remanente;
-
-	$pago_cuidador_real = 0;
-	$saldo_cuidador = 0;
-	$pago_kmimos = 0;
-	$dif = $remanente + $pago;
-    $pago_cuidador_real = ($total / 1.2);
-
-	if( $deposits > 0 ){
-		if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
-	        $saldo_cuidador = $pago_cuidador_real - $remanente;
-		}else{
-			$saldo_cuidador = $deposits;
-		}
-	}else{
-		if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
-	        $pago_kmimos = $total - $pago_cuidador_real;
-	        $saldo_cuidador = $pago_cuidador_real;  
-	    }
-	} 
-	return $saldo_cuidador;  
-}
-
-function getReservas($desde="", $hasta=""){
-
-	$filtro_adicional = "";
-
-	if( !empty($desde) && !empty($hasta) ){
-		$filtro_adicional = " 
-			AND ( r.post_date_gmt >= '{$desde} 00:00:00' and  r.post_date_gmt <= '{$hasta} 23:59:59' )
-		";
-	}else{
-		$filtro_adicional = " AND MONTH(r.post_date_gmt) = MONTH(NOW()) AND YEAR(r.post_date_gmt) = YEAR(NOW()) ";
-	}
-
-	global $wpdb;
-	$sql = "
-		SELECT 
-			r.ID as 'nro_reserva',
- 			DATE_FORMAT(r.post_date_gmt,'%d-%m-%Y') as 'fecha_solicitud',
- 			r.post_status as 'estatus_reserva',
- 			p.ID as 'nro_pedido',
- 			p.post_status as 'estatus_pago', 			
-			pr.post_title as 'producto_title',
-			pr.post_name as 'producto_name',			
- 			(du.meta_value -1) as  'nro_noches',
- 			(IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0)) as nro_mascotas,
- 			((du.meta_value -1) * ( IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0) )) as 'total_noches',
-
-			pr.ID as producto_id,
-			pr.post_name as post_name,
- 			us.user_id as cuidador_id,
- 			cl.ID as cliente_id
-
-		from wp_posts as r
-			LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
-			LEFT JOIN wp_posts as p ON p.ID = r.post_parent
-
-			LEFT JOIN wp_woocommerce_order_itemmeta as fe  ON (fe.order_item_id  = rm.meta_value and fe.meta_key  = 'Fecha de Reserva')
-			LEFT JOIN wp_woocommerce_order_itemmeta as du  ON (du.order_item_id  = rm.meta_value and du.meta_key  = 'Duración')
-			LEFT JOIN wp_woocommerce_order_itemmeta as mpe ON mpe.order_item_id = rm.meta_value and (mpe.meta_key = 'Mascotas Pequeños' or mpe.meta_key = 'Mascotas Pequeñas')
-			LEFT JOIN wp_woocommerce_order_itemmeta as mme ON mme.order_item_id = rm.meta_value and (mme.meta_key = 'Mascotas Medianos' or mme.meta_key = 'Mascotas Medianas')
-			LEFT JOIN wp_woocommerce_order_itemmeta as mgr ON (mgr.order_item_id = rm.meta_value and mgr.meta_key = 'Mascotas Grandes')
-			LEFT JOIN wp_woocommerce_order_itemmeta as mgi ON (mgi.order_item_id = rm.meta_value and mgi.meta_key = 'Mascotas Gigantes')
-			LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')
-			LEFT JOIN wp_posts as pr ON pr.ID = pri.meta_value
-			LEFT JOIN cuidadores as us ON us.user_id = pr.post_author
-			LEFT JOIN wp_users as cl ON cl.ID = r.post_author
-		WHERE r.post_type = 'wc_booking' 
-			and not r.post_status like '%cart%' 
-			and cl.ID > 0 
-			and p.ID > 0
-			and r.post_status = 'confirmed'
-			{$filtro_adicional}
-		;";
-
-	$reservas = $wpdb->get_results($sql);
-	return $reservas;
-}
- 
 function getRazaDescripcion($id, $razas){
 	$nombre = "[{$id}]";
 	if($id > 0){
@@ -106,16 +17,7 @@ function getRazaDescripcion($id, $razas){
 	return $nombre;
 }
 
-/*function get_razas(){
-	global $wpdb;
-	$sql = "SELECT * FROM razas ";
-	$result = $wpdb->get_results($sql);
-	$razas = [];
-	foreach ($result as $raza) {
-		$razas[$raza->id] = $raza->nombre;
-	}
-	return $razas;
-}*/
+
 
 function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
 
@@ -164,10 +66,12 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 	// Nota: Agregar la equivalencia de estatus de las pasarelas de pago
 	//===============================================================
 	$payment_method_cards = [ // pagos por TDC / TDD
-		'openpay_cards'
+		'openpay_cards',
+		'tarjeta',
 	]; 
 	$payment_method_store = [ // pagos por Tienda por conveniencia
-		'openpay_stores'
+		'openpay_stores',
+		'tienda',
 	]; 
 	//===============================================================
 	// END PaymentMethod
@@ -190,6 +94,13 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 				$sts_largo = 'Pendiente de pago';
 			}
 		break;
+		case 'wc-partially-paid':
+			$sts_largo = "Estatus Reserva: Pago Parcial  /  Estatus Pedido: {$sts_pedido}";
+			if( $sts_pedido == 'unpaid'){
+				$sts_corto = 'Por confirmar (cuidador)';
+				$sts_largo = 'Por confirmar (cuidador)';
+			}
+		break;		
 		case 'confirmed':
 			$sts_corto = 'Confirmado';
 			$sts_largo = 'Confirmado';
@@ -218,6 +129,7 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 		"sts_largo"=> $sts_largo,
 		"addTotal" => $addTotal,
 	];
+
 }
 
 function photo_exists($path=""){
@@ -227,38 +139,31 @@ function photo_exists($path=""){
 	return $photo;
 }
 
-/*function getEdad($fecha){
-	$fecha = str_replace("/","-",$fecha);
-	$hoy = date('Y/m/d');
 
-	$diff = abs(strtotime($hoy) - strtotime($fecha) );
-	$years = floor($diff / (365*60*60*24)); 
-	$desc = " Años";
-	$edad = $years;
-	if($edad==0){
-		$months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
-		$edad = $months;
-		$desc = ($edad > 1) ? " Meses" : " Mes";
-	}
-	if($edad==0){
-		$days  = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-		$edad = $days;
-		$desc = " Días";
-	}
 
-	return $edad . $desc;
-}*/
 
 function getMascotas($user_id){
 	if(!$user_id>0){ return []; }
-	$result = [];
-	$list = kmimos_get_my_pets($user_id);
-	$pets = explode(",",$list['list']);
 
-	foreach ($pets as $row) {
-		$result[$row] = kmimos_get_pet_info($row);
-	}
-	return $result;
+	global $wpdb;
+	$mascotas_cliente = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$user_id}' AND post_type='pets' AND post_status = 'publish'");
+    $mascotas = array();
+    foreach ($mascotas_cliente as $key => $mascota) {
+        $metas = get_post_meta($mascota->ID);
+
+        $anio = $metas["birthdate_pet"][0];
+        $anio = str_replace("/", "-", $anio);
+        $anio = strtotime($anio);
+        $edad_time = time()-$anio;
+        $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
+
+        $mascotas[] = array(
+            "nombre" => $mascota->post_title,
+            "raza" => $metas["breed_pet"][0],
+            "edad" => $edad
+        );
+    }
+	return $mascotas;
 }
 
 function getProduct( $num_reserva = 0 ){
@@ -358,14 +263,12 @@ function getMetaReserva( $post_id ){
 }
 
 function getMetaPedido( $post_id ){
-	$condicion = " AND meta_key IN ( '_payment_method','_payment_method_title','_order_total','_cart_discount', '_wc_deposits_remaining'  )";
+	$condicion = " AND meta_key IN ( '_payment_method','_payment_method_title','_order_total','_wc_deposits_remaining' )";
 	$result = get_metaPost($post_id, $condicion);
 	$data = [
 		'_payment_method' => '',
 		'_payment_method_title' => '',
-		
 		'_order_total' => '',
-		'_cart_discount' => '',
 		'_wc_deposits_remaining' => '',
 	];
 	if( !empty($result) ){
@@ -373,13 +276,6 @@ function getMetaPedido( $post_id ){
 			$data[$row['meta_key']] = utf8_encode( $row['meta_value'] );
 		}
 	}
-
-	/* BEGIN Calcular totales de la reserva */
-	// $data['total'] = $data['_order_total'] + $data['_wc_deposits_remaining'] ;
-	$data['pagado']  = $data['_order_total'];
-	$data['remanente'] = $data['_wc_deposits_remaining'] ;
-	/* END Calcular totales de la reserva */
-
 	return $data;	
 }
 
@@ -421,3 +317,157 @@ function get_ubicacion_cuidador( $user_id ){
 
 	return $data;
 }
+
+function getReservas($desde="", $hasta=""){
+
+	$filtro_adicional = "";
+
+	if( !empty($desde) && !empty($hasta) ){
+		$filtro_adicional = " 
+			AND ( r.post_date_gmt >= '{$desde} 00:00:00' and  r.post_date_gmt <= '{$hasta} 23:59:59' )
+		";
+	}else{
+		$filtro_adicional = " AND MONTH(r.post_date_gmt) = MONTH(NOW()) AND YEAR(r.post_date_gmt) = YEAR(NOW()) ";
+	}
+
+	global $wpdb;
+	$sql = "
+		SELECT 
+			r.ID as 'nro_reserva',
+ 			DATE_FORMAT(r.post_date_gmt,'%Y-%m-%d') as 'fecha_solicitud',
+ 			r.post_status as 'estatus_reserva',
+ 			p.ID as 'nro_pedido',
+ 			p.post_status as 'estatus_pago', 			
+			pr.post_title as 'producto_title',
+			pr.post_name as 'producto_name',			
+ 			(du.meta_value -1) as  'nro_noches',
+ 			(IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0)) as nro_mascotas,
+ 			((du.meta_value -1) * ( IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0) )) as 'total_noches',
+
+			pr.ID as producto_id,
+			pr.post_name as post_name,
+ 			us.user_id as cuidador_id,
+ 			cl.ID as cliente_id
+
+		from wp_posts as r
+			LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
+			LEFT JOIN wp_posts as p ON p.ID = r.post_parent
+
+			LEFT JOIN wp_woocommerce_order_itemmeta as fe  ON (fe.order_item_id  = rm.meta_value and fe.meta_key  = 'Fecha de Reserva')
+			LEFT JOIN wp_woocommerce_order_itemmeta as du  ON (du.order_item_id  = rm.meta_value and du.meta_key  = 'Duración')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mpe ON mpe.order_item_id = rm.meta_value and (mpe.meta_key = 'Mascotas Pequeños' or mpe.meta_key = 'Mascotas Pequeñas')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mme ON mme.order_item_id = rm.meta_value and (mme.meta_key = 'Mascotas Medianos' or mme.meta_key = 'Mascotas Medianas')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mgr ON (mgr.order_item_id = rm.meta_value and mgr.meta_key = 'Mascotas Grandes')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mgi ON (mgi.order_item_id = rm.meta_value and mgi.meta_key = 'Mascotas Gigantes')
+			LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')
+			LEFT JOIN wp_posts as pr ON pr.ID = pri.meta_value
+			LEFT JOIN cuidadores as us ON us.user_id = pr.post_author
+			LEFT JOIN wp_users as cl ON cl.ID = r.post_author
+		WHERE r.post_type = 'wc_booking' 
+			and not r.post_status like '%cart%' 
+			and cl.ID > 0 
+			and p.ID > 0
+			{$filtro_adicional}
+		ORDER BY r.ID desc
+		;";
+
+	$reservas = $wpdb->get_results($sql);
+	return $reservas;
+}
+
+
+function Get_CouponCode($order_id,$coupon_code) {
+	global $wpdb;
+	$return = array();
+
+	$query = "SELECT DISTINCT
+        wc_items.order_item_name AS coupon_name,
+        wc_itemmeta.meta_value AS coupon_discount_amount,
+        postmeta.*
+
+        FROM
+        {$wpdb->prefix}woocommerce_order_items AS wc_items
+		LEFT JOIN
+        {$wpdb->prefix}woocommerce_order_itemmeta AS wc_itemmeta ON wc_items.order_item_id = wc_itemmeta.order_item_id
+        LEFT JOIN
+        {$wpdb->prefix}posts AS post ON post.post_title = wc_items.order_item_name
+        LEFT JOIN
+        {$wpdb->prefix}postmeta AS postmeta ON post.ID = postmeta.post_id
+
+        WHERE
+        wc_items.order_id = '{$order_id}' AND
+        wc_items.order_item_type = 'coupon' AND
+        wc_items.order_item_name LIKE '%{$coupon_code}%' AND
+		wc_itemmeta.meta_key = 'discount_amount' ";
+/*
+
+	*/
+	$coupons = $wpdb->get_results($query);
+
+	if (!empty($coupons)) {
+		foreach ($coupons as $key => $coupon) {
+			//var_dump($coupon);
+			$coupon_name = $coupon->coupon_name;
+
+			if($coupon->meta_key=='coupon_amount'){
+				if(!array_key_exists($coupon_name,$return)){
+					$return[$coupon_name]=array();
+				}
+				$return[$coupon_name]['coupon_name'] = $coupon_name;
+				$return[$coupon_name]['coupon_amount'] = $coupon->meta_value;
+				//$return[$coupon_name]['coupon_amount'] = $coupon->meta_value;
+
+			}else if($coupon->meta_key=='discount_type'){
+				if(!array_key_exists($coupon_name,$return)){
+					$return[$coupon_name]=array();
+				}
+
+				$return[$coupon_name]['discount_type'] = $coupon->meta_value;
+			}
+
+			//AMOUNT DISCOUNT
+			$return[$coupon_name]['coupon_amount'] = $coupon->coupon_discount_amount;
+		}
+	}
+
+	//var_dump($return);
+	return $return;
+}
+
+
+function Get_SumCouponCode($order_id,$coupon_code,$total=0) {
+	$coupons = Get_CouponCode($order_id,$coupon_code);
+	$amount = 0;
+
+	if(count($coupons)){
+		foreach($coupons as $coupon){
+			if($coupon['discount_type'] != 'percent'){
+				$coupon_amount = $coupon['coupon_amount'];
+
+			}else{
+				$coupon_amount = $total*($coupon['coupon_amount']/100);
+			}
+
+			$coupon_amount = $coupon['coupon_amount'];
+			$amount = $amount+$coupon_amount;
+		}
+	}
+	return $amount;
+}
+
+
+function Get_NameCouponCode($order_id,$coupon_code) {
+	$coupons = Get_CouponCode($order_id,$coupon_code);
+	$name = array();
+
+	if(count($coupons)){
+		foreach($coupons as $coupon){
+			if( $coupon['coupon_amount'] > 0 ){
+				$name[] = $coupon['coupon_name'];
+			}
+		}
+	}
+
+	return implode(',',$name);
+}
+

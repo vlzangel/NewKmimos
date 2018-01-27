@@ -7,6 +7,7 @@ $array_backpanel = [
 	'bp_conocer_cuidador', 
 	'bp_clientes', 
 	'bp_cuidadores', 
+	'bp_cuidadores_detalle', 
 	'bp_suscriptores',
 	'bp_estados_cuidadores',
 	'bp_wlabel',
@@ -18,7 +19,9 @@ $array_backpanel = [
 	'bp_saldo_cuidadores',
 	'bp_saldo_cuidadores_detalle',
 	'bp_saldo_cupon',
+	'bp_cupones',
 	'bp_mascotas',
+	'bp_saldo_cuidadores_bookinkstart'
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 
 

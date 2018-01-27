@@ -1,133 +1,110 @@
 <?php
-    
+
     $respuesta = $_POST;
 
-    if( $servicio != 'Todos' ){
+    $ini = kmimos_dateFormat($inicio, "Y-m-d");
+    $fin = kmimos_dateFormat($fin, "Y-m-d");
+    
+    if( $servicio != 'todos' ){
 
-        $rangos = $db->get_var(" SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ", "meta_value");
-        $rangos = unserialize($rangos);
+        $existe = $db->get_row("
+            SELECT 
+                id
+            FROM 
+                disponibilidad 
+            WHERE 
+                user_id = {$user_id} AND 
+                servicio_id = '{$servicio}' AND 
+                servicio_str = '{$tipo}' AND 
+                desde = '{$ini}' AND 
+                hasta = '{$fin}'
+        ");
 
-        $inicio = explode("/", $inicio);
-        $fin = explode("/", $fin);
-
-        $inicio = $inicio[2]."-".$inicio[1]."-".$inicio[0];
-        $fin = $fin[2]."-".$fin[1]."-".$fin[0];
-
-        $temp = array(
-        	"type" => "custom",
-            "bookable" => "no",
-            "priority" => "10",
-            "from" => $inicio,
-            "to" => $fin
-        );
-
-        $rangos[] = $temp;
-        
-        $rangos = serialize($rangos);
-        $db->query(" UPDATE wp_postmeta SET meta_value = '{$rangos}' WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ");
-
-        $autor = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio}' ", "post_author");
-        $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_qty' ", "meta_value");
-
-        $inicio = strtotime($inicio);
-        $fin = strtotime($fin);
-
-        $respuesta = array();
-
-        $db->query("UPDATE cupos SET cuidador = '{$autor}' WHERE servicio = '{$servicio}'");
-
-        for ($i=$inicio; $i <= $fin; $i+=86400) { 
-            $fecha = date("Y-m-d", $i);
-
-            $existe = $db->get_var("SELECT id FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
-
-            if( $existe != false ){
-                $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
-            }else{
-                $tipo = $db->get_var(
-                    "
-                        SELECT
-                            tipo_servicio.slug AS tipo
-                        FROM 
-                            wp_term_relationships AS relacion
-                        LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
-                        WHERE 
-                            relacion.object_id = '{$servicio}' AND
-                            relacion.term_taxonomy_id != 28
-                    "
-                );
-
-                $sql = "
-                    INSERT INTO cupos VALUES (
-                        NULL,
-                        '{$autor}',
-                        '{$servicio}',
-                        '{$tipo}',
-                        '{$fecha}',
-                        '0',
-                        '{$acepta}',
-                        '0',
-                        '1'
-                    );
-                ";
-                $db->query($sql);
-            }
-  
+        if( $existe === false ){
+            $db->query("
+                INSERT INTO disponibilidad VALUES (
+                    NULL,
+                    '{$user_id}',
+                    '{$servicio}',
+                    '{$tipo}',
+                    '{$ini}',
+                    '{$fin}'
+                )
+            ");
         }
 
     }else{
+    
+        $mis_servicios = $db->get_results("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product' AND post_status = 'publish' ");
+        foreach ($mis_servicios as $servicio) {
+            $tipo = $db->get_var("
+                SELECT
+                    tipo_servicio.slug AS tipo
+                FROM 
+                    wp_term_relationships AS relacion
+                LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
+                WHERE 
+                    relacion.object_id = '{$servicio->ID}' AND
+                    relacion.term_taxonomy_id != 28
+            ");
 
-        $sql = "SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type='product'";
+            $existe = $db->get_row("
+                SELECT 
+                    id
+                FROM 
+                    disponibilidad 
+                WHERE 
+                    user_id = {$user_id} AND 
+                    servicio_id = '{$servicio->ID}' AND 
+                    servicio_str = '{$tipo}' AND 
+                    desde = '{$ini}' AND 
+                    hasta = '{$fin}'
+            ");
 
-        $servicios = $db->get_results($sql);
-
-        foreach ($servicios as $servicio) {
-
-            $rangos = $db->get_var(" SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio->ID}' AND meta_key = '_wc_booking_availability' ", "meta_value");
-            $rangos = unserialize($rangos);
-
-            $temp = array(
-                "type" => "custom",
-                "bookable" => "no",
-                "priority" => "10",
-                "from" => $inicio,
-                "to" => $fin
-            );
-
-            $rangos[] = $temp;
-            
-            $rangos = serialize($rangos);
-            $db->query(" UPDATE wp_postmeta SET meta_value = '{$rangos}' WHERE post_id = '{$servicio->ID}' AND meta_key = '_wc_booking_availability' ");
-
-            $autor = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio->ID}' ", "post_author");
-            $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio->ID}' AND meta_key = '_wc_booking_qty' ", "meta_value");
-
-            for ($i=$inicio; $i <= $fin; $i+=86400) {
-                $fecha = date("Y-m-d", $i);
-
-                $existe = $db->get_var("SELECT id FROM cupos WHERE servicio = '{$servicio->ID}' AND fecha = '{$fecha}'");
-
-                if( $existe != false ){
-                    $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio->ID}' AND fecha = '{$fecha}'");
-                }else{
-                    $sql = "
-                        INSERT INTO cupos VALUES (
-                            NULL,
-                            '{$autor}',
-                            '{$servicio->ID}',
-                            '{$fecha}',
-                            '0',
-                            '{$acepta}',
-                            '0',
-                            '1'
-                        );
-                    ";
-                    $db->query($sql);
-                }
-      
+            if( $existe === false ){
+                $db->query("
+                    INSERT INTO disponibilidad VALUES (
+                        NULL,
+                        '{$user_id}',
+                        '{$servicio->ID}',
+                        '{$tipo}',
+                        '{$ini}',
+                        '{$fin}'
+                    )
+                ");
             }
-
         }
 
+    }
+
+    $db->query("UPDATE cupos SET no_disponible = '0' WHERE cuidador = '{$user_id}';");
+    $no_disponibilidades = $db->get_results("SELECT * FROM disponibilidad WHERE user_id = '{$user_id}' ");
+
+    foreach ($no_disponibilidades as $data) {
+        $desde = strtotime( $data->desde );
+        $hasta = strtotime( $data->hasta );
+        for ($i=$desde; $i <= $hasta; $i+=86400) { 
+            $fecha = date("Y-m-d", $i);
+            $existe = $db->get_row("SELECT * FROM cupos WHERE cuidador = {$data->user_id} AND servicio = '{$data->servicio_id}' AND fecha = '{$fecha}'");
+            if( $existe !== false ){
+                $db->query("UPDATE cupos SET no_disponible = 1 WHERE id = {$existe->id};");
+            }else{
+                $db->query("
+                    INSERT INTO cupos VALUES (
+                        NULL,
+                        '{$data->user_id}',
+                        '{$data->servicio_id}',
+                        '{$data->servicio_str}',
+                        '{$fecha}',
+                        '0',
+                        '0',
+                        '0',
+                        '1'
+                    )
+                ");
+            }
+        }
+        $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$data->servicio_id}' AND meta_key = '_wc_booking_qty' ");
+        $db->query("UPDATE cupos SET acepta = '{$acepta}' WHERE servicio = '{$data->servicio_id}';");
     }
 ?>
