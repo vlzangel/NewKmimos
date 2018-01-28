@@ -65,10 +65,12 @@ $users = getUsers($desde, $hasta);
 			      <th>Nombre</th>
 			      <th>Apellido</th>
 			      <th>Cuidador</th>
+
 			     <!--  <th>Recompra ( 1M )</th>
 			      <th>Recompra ( 3M )</th>
 			      <th>Recompra ( 6M )</th>
 			      <th>Recompra ( 12M )</th> -->
+
 			      <th>Email</th>
 			      <th>Estado</th>
 			      <th>Municipio</th>
@@ -138,10 +140,12 @@ $users = getUsers($desde, $hasta);
 								<?php echo $row["cuidador_title"]; ?>	
 							</a>
 						</th>
+
 						<!-- <th><?php echo $r1; ?></th>
 						<th><?php echo $r3; ?></th>
 						<th><?php echo $r6; ?></th>
 						<th><?php echo $r12; ?></th> -->
+
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>

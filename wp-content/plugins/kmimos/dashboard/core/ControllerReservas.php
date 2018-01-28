@@ -161,7 +161,7 @@ function getMascotas($user_id){
 	        $edad = (date("Y", $edad_time)-1970)." año(s) ";
         }
         $edad .= date("m", $edad_time)." mes(es)";
-
+ 
         $mascotas[] = array(
             "nombre" => $mascota->post_title,
             "raza" => $metas["breed_pet"][0],
