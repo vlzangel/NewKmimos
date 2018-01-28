@@ -172,11 +172,12 @@
                 }
                 $top_destacados .= '
                     <div class="slide">
-                        <div class="item-slide" style="background-image: url('.$img_url.');">
-                            <div class="slide-mask"></div>
+                        <div class="item-slide">
+                            <div style="background-image: url('.$img_url.');" class="slider-image"></div>
+                            <div class="hidden slide-mask"></div>
                             <div class="slide-content">
                                 <div class="slide-price-distance">
-                                    <div class="slide-price">
+                                    <div class="slide-price text-left">
                                         Desde <span>MXN $'.($cuidador->hospedaje_desde*1.2).'</span>
                                     </div>
                                     <!--
@@ -190,15 +191,15 @@
                                     <div class="slide-profile-image" style=""></div>
                                 </div>
 
-                                <div class="slide-name">
-                                    '.$nombre.'
+                                <div class="slide-name text-center">
+                                    <b>'.$nombre.'</b>
                                 </div>
 
-                                <div class="slide-expertice">
+                                <div class="slide-expertice  text-center">
                                     '.$anios_exp.' año(s) de experiencia
                                 </div>
 
-                                <div class="slide-ranking">
+                                <div class="slide-ranking  text-center">
                                     <div class="km-ranking">
                                         '.kmimos_petsitter_rating($cuidador->id_post).'
                                     </div>
@@ -498,7 +499,7 @@
                 }
                 return $data;
             }else{
-                $html = '<div class="rating">';
+                $html = '<div class="rating" style="display:inline-block">';
                 if($votes =='' || $votes == 0 || $rating ==''){ 
                     for ($i=0; $i<5; $i++){ 
                         $html .= "<a href='#'></a>";
