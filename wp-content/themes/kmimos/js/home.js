@@ -26,7 +26,7 @@ var hasGPS=false;
 
             var urluser = RAIZ+"landing/registro-usuario.php?email="+jQuery('#cp_email').val()+"&name="+jQuery('#cp_nombre').val()+"&referencia=kmimos-home";
             jQuery.get( urluser, function(e){
-<<<<<<< HEAD
+
                 var redirect = RAIZ+"/referidos/compartir/?e="+jQuery('#cp_email').val();
                 switch (jQuery.trim(e)){
                     case '0':
@@ -60,8 +60,7 @@ var hasGPS=false;
             /*
             jQuery.ajax( RAIZ+"landing/registro-usuario.php?email="+jQuery('#cp_email').val()+"&name="+jQuery('#cp_nombre').val()+"&referencia=kmimos-home" )
             .done(function(e) {
-=======
->>>>>>> 4056a33178623807cebcc992024274c1668739cd
+
                 var redirect = RAIZ+"/referidos/compartir/?e="+jQuery('#cp_email').val();
 
 
