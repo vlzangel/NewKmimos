@@ -8,12 +8,15 @@
 	padding: 5px 0px;
 }
 
+<<<<<<< HEAD
 ul {
 	margin: 0px;
     padding: 20px 40px!important; 
     list-style: unset!important; 
 }
 
+=======
+>>>>>>> 4056a33178623807cebcc992024274c1668739cd
 /* ******************** */
 /* Titulo principal
 /* ******************** */
@@ -21,6 +24,7 @@ ul {
 	margin: 30px 0px;
 }
 .titulo-servicios span{
+<<<<<<< HEAD
     background-color: #7ad2c4;
     color: #fff;
     padding: 7px 6%;
@@ -28,6 +32,15 @@ ul {
     font-family: 'Poetsen';
     font-weight: normal;
     font-size: 20px;
+=======
+	background-color: #7ad2c4;
+	color: #fff;
+	padding: 20px 6%;
+	border-radius: 50px;
+	font-family: 'Poetsen';
+	font-weight: bold;
+	font-size: 30px;
+>>>>>>> 4056a33178623807cebcc992024274c1668739cd
 }
 
 /* ******************** */
@@ -80,6 +93,7 @@ ul {
     margin: 5px 0px;
     padding: 10px 20px;
     text-align: left;
+<<<<<<< HEAD
    /* border-bottom: 1px solid #efebeb;*/
 }
 .tema-container a.title:hover,
@@ -87,11 +101,19 @@ ul {
 	text-decoration: none;
 	font-size: 18px;
 	font-weight: normal;
+=======
+    border-bottom: 1px solid #efebeb;
+>>>>>>> 4056a33178623807cebcc992024274c1668739cd
 }
 .tema-container a:hover,
 .tema-container a{
 	text-decoration: none;
+<<<<<<< HEAD
 	font-weight: bold;
+=======
+	font-size: 18px;
+	font-weight: normal;
+>>>>>>> 4056a33178623807cebcc992024274c1668739cd
 }
 .tema-content{
 	padding: 10px;
@@ -111,10 +133,14 @@ ul {
 .presentacion{
 	margin: 80px 0px;
 }
+<<<<<<< HEAD
 .presentacion article:hover h2,
 .presentacion article a:hover
 {
 	text-decoration: none!important;
+=======
+.presentacion article:hover h2{
+>>>>>>> 4056a33178623807cebcc992024274c1668739cd
 	color:#7ad2c4;	
 }
 .presentacion article{
@@ -126,7 +152,11 @@ ul {
 	margin-left:10%;
 }
 .presentacion h2{
+<<<<<<< HEAD
 	font-size: 20px; 
+=======
+	font-size: 35px; 
+>>>>>>> 4056a33178623807cebcc992024274c1668739cd
 	color: #000;
 	font-weight: normal!important;
 	margin-top: 10px;
@@ -139,9 +169,12 @@ ul {
 /* ******************** */
 /* Temas sugeridos
 /* ******************** */
+<<<<<<< HEAD
 .temas-sugeridos{
 	padding: 0px!important;
 }
+=======
+>>>>>>> 4056a33178623807cebcc992024274c1668739cd
 .temas-sugeridos .title{
     background-color: #7ad2c4;
     border-radius: 50px 50px 0px 0px;
@@ -152,7 +185,13 @@ ul {
     font-size: 30px;
     font-weight: bold;
 }
+<<<<<<< HEAD
 .temas-sugeridos .sugeridos-content{
     background-color: #7ad2c4;
+=======
+.temas-sugeridos .content{
+    background-color: #7ad2c4;
+    border-radius: 6px;	
+>>>>>>> 4056a33178623807cebcc992024274c1668739cd
     padding: 10px 0px;
 }
