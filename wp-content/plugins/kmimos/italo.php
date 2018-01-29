@@ -40,7 +40,7 @@
 				'menu_position' => 3,
 				'public' => true,
 				'has_archive' => false,
-				'rewrite' => array('slug' => 'faq'),
+				'rewrite' => array('slug' => 'ayuda'),
 				'supports' => array( 'title', 'editor', 'thumbnail', 'seccion' ),
 	            'taxonomies' => array( 'seccion' ),
 	            'menu_icon' => '',
@@ -65,6 +65,67 @@
 	}
 
 
+	if(!function_exists('get_form_filtrar_ayuda')){
+		function get_form_filtrar_ayuda(){
+			echo '
+			<section class="row km-caja-filtro ayuda-busqueda">
+				<form method="post" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/ayuda/filtrar.php">
+					<div class="input-group km-input-content col-sm-12 col-sm-offset-0 col-md-offset-3">
+							<input type="text" name="nombre" value="" placeholder="BUSCAR TEMAS DE AYUDA" class=" ">
+							<span class="input-group-btn">
+								<button type="submit">
+									<img src="https://mx.kmimos.la/wp-content/themes/kmimos/images/new/km-buscador.svg" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
+								</button>
+							</span>
+					</div>
+				</form>
+			</section>';
+		}
+	}
+
+	if(!function_exists('get_ayuda_secciones')){
+		function get_ayuda_secciones( $args = '' ) {
+		    $defaults = array( 'taxonomy' => 'seccion' );
+		    $args = wp_parse_args( $args, $defaults );
+		 
+		    $taxonomy = $args['taxonomy'];
+		 
+		    /**
+		     * Filters the taxonomy used to retrieve terms when calling get_categories().
+		     *
+		     * @since 2.7.0
+		     *
+		     * @param string $taxonomy Taxonomy to retrieve terms from.
+		     * @param array  $args     An array of arguments. See get_terms().
+		     */
+		    $taxonomy = apply_filters( 'get_categories_taxonomy', $taxonomy, $args );
+		 
+		    // Back compat
+		    if ( isset($args['type']) && 'link' == $args['type'] ) {
+		        _deprecated_argument( __FUNCTION__, '3.0.0',
+		            /* translators: 1: "type => link", 2: "taxonomy => link_category" */
+		            sprintf( __( '%1$s is deprecated. Use %2$s instead.' ),
+		                '<code>type => link</code>',
+		                '<code>taxonomy => link_category</code>'
+		            )
+		        );
+		        $taxonomy = $args['taxonomy'] = 'link_category';
+		    }
+		 
+		    $categories = get_terms( $taxonomy, $args );
+		 
+		    if ( is_wp_error( $categories ) ) {
+		        $categories = array();
+		    } else {
+		        $categories = (array) $categories;
+		        foreach ( array_keys( $categories ) as $k ) {
+		            _make_cat_compat( $categories[ $k ] );
+		        }
+		    }
+		 
+		    return $categories;
+		}
+	}
 
 	if(!function_exists('get_ayuda_categoria')){
 		function get_ayuda_categoria( $post_id ){
@@ -73,7 +134,10 @@
 			foreach ($parents as $tax) {
 				$ignore = [ 'destacados', 'sugeridos' ];
 				if( !in_array( $tax->slug, $ignore ) ){
-					$result = $tax->slug;
+					$result = [
+						'name'=>$tax->name, 
+						'slug'=>$tax->slug,
+					];
 				}
 			}
 			return $result;
@@ -82,13 +146,11 @@
 
 	/* Temas Sugeridos */
 	if(!function_exists('get_ayuda_sugeridos')){
-		function get_ayuda_sugeridos( $parent='sugeridos', $ID = 0, $echo = true ){
+		function get_ayuda_postBySeccion( $parent='' ){
 
-			$HTML= '';
-			$sugeridos = get_posts(
+			$posts = get_posts(
 			    array(
 					'post_status' => 'publish', 
-					'posts_per_page' => -1, 
 			        'post_type' => 'faq',
 			        'tax_query' => array(
 				        array(
@@ -100,16 +162,41 @@
 			    )
 			);
 
+			return $posts;
 
+		}
+	}
+
+	/* Temas Sugeridos */
+	if(!function_exists('get_ayuda_sugeridos')){
+		function get_ayuda_sugeridos( $parent='sugeridos', $ID = 0, $echo = true ){
+
+			$HTML= '';
+			$sugeridos = get_posts(
+			    array(
+					'post_status' => 'publish', 
+			        'post_type' => 'faq',
+			        'tax_query' => array(
+				        array(
+				            'taxonomy' => 'seccion',
+				            'field'    => 'slug',
+				            'terms'    => $parent
+				        )
+				    )
+			    )
+			);
+
+ 
 			if( !empty($sugeridos) ) { 	
+ 
 				$article = '';
 				foreach ($sugeridos as $post) { 
-					get_posts( $post->ID );
-					if( get_the_ID() != $ID ){
+
+					if( $post->ID != $ID ){
 						$article .= '
 							<article>
-								<a href="'.get_permalink().'">
-									<h3>'.get_the_title().'</h3>
+								<a href="'.get_the_permalink($post->ID).'">
+									<h3>'.$post->post_title.'</h3>
 								</a>
 							</article>
 						';
@@ -134,7 +221,6 @@
 			}else{
 				return $HTML;
 			}
-
 		}
 	}
 

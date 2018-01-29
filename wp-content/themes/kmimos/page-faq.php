@@ -25,7 +25,7 @@
 	    )
 	);
 
-?>
+?> 
 
 	<div class="km-ficha-bg" style="background-image: url(<?php echo getTema().'/images/new/ayuda/kmimos_ayuda.jpg'; ?>)">
 		<div class="overlay"></div>
@@ -38,16 +38,7 @@
 			</section>
 			
 			<!-- Busqueda -->
-			<section class="row km-caja-filtro ayuda-busqueda">
-				<div class="input-group km-input-content col-md-offset-3">
-					<input type="text" name="nombre" value="" placeholder="BUSCAR TEMAS DE AYUDA" class=" ">
-					<span class="input-group-btn">
-						<button type="submit">
-							<img src="https://mx.kmimos.la/wp-content/themes/kmimos/images/new/km-buscador.svg" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
-						</button>
-					</span>
-				</div>
-			</section>
+			<?php get_form_filtrar_ayuda(); ?>
 
 			<!-- Presentacion -->
 			<section class="row text-center presentacion" data-group="presentacion">

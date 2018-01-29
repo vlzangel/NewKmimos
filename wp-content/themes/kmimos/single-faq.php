@@ -6,6 +6,7 @@
 
     get_header();
 
+	$parents = get_ayuda_categoria( get_the_ID() );
 ?>
 
 	<div class="km-ficha-bg" style="background-image: url(<?php echo getTema().'/images/new/ayuda/kmimos_ayuda.jpg'; ?>)">
@@ -18,17 +19,9 @@
 				<h1 class="titulo-principal">¿C&oacute;mo podemos ayudarte?</h1>
 			</section>
 			
+			
 			<!-- Busqueda -->
-			<section class="row km-caja-filtro ayuda-busqueda">
-				<div class="input-group km-input-content col-md-offset-3">
-					<input type="text" name="nombre" value="" placeholder="BUSCAR TEMAS DE AYUDA" class=" ">
-					<span class="input-group-btn">
-						<button type="submit">
-							<img src="https://mx.kmimos.la/wp-content/themes/kmimos/images/new/km-buscador.svg" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
-						</button>
-					</span>
-				</div>
-			</section>
+			<?php get_form_filtrar_ayuda(); ?>
 
 			<!-- SubTitulos -->
 			<section class="row text-center titulo-servicios">
@@ -55,11 +48,8 @@
 	</div>
 
 <?php 
-
-	$parents = get_ayuda_categoria( get_the_ID() );
-echo $parents;	
 	if( !empty($parents) ){
-		get_ayuda_sugeridos( $parents,  get_the_ID() ); 
+		get_ayuda_sugeridos( $parents['slug'],  get_the_ID() ); 
 	}
 
 	get_footer(); 

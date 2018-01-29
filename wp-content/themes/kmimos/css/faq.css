@@ -9,7 +9,7 @@
 }
 
  
-ul {
+.body-ayuda ul {
 	margin: 0px;
     padding: 20px 40px!important; 
     list-style: unset!important; 
@@ -167,6 +167,46 @@ ul {
  
 .temas-sugeridos .sugeridos-content{ 
     background-color: #7ad2c4;
-    border-radius: 6px; 
     padding: 10px 0px;
+}
+
+
+.ayuda-group h3{
+	font-size: 20px;
+}
+.ayuda-items h3{
+	font-size: 16px;
+    font-weight: normal;
+}
+
+@media All and ( max-width: 768px ){
+	h1{
+		font-size: 17px!important;
+	}
+	.ayuda-busqueda .km-input-content{
+	    padding: 4px;
+	    width: 100%;
+	    margin-left: 0;
+	}
+	.presentacion{
+	    margin: 25px 0px;
+	}
+	.presentacion article a h2{
+		font-size: 19px!important;
+	}
+	.presentacion > article:nth-child(1),
+	.presentacion article {
+	    width: 100%;
+	    float: left;
+	    cursor: pointer;
+        margin-left: 0;
+        margin: 10px 0px;
+	}
+	.ayuda-group {
+		padding-right: 0px!important;
+		padding-left: 0px!important; 
+	}
+	.ayuda-group h3 {
+    	font-size: 16px;
+	}
 }
