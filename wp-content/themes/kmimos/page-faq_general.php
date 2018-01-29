@@ -77,7 +77,7 @@
 						if(!empty($post->post_title) && !empty($post->post_content) ){?>
 							<article class="col-xs-12 col-md-12 ayuda-items">
 								<h3 role="button" data-toggle="collapse" href="#item<?php echo $post->ID; ?>">
-									<?php echo ucfirst( $post->post_title ); ?>
+									<?php echo ucfirst( strtolower($post->post_title) ); ?>
 								</h3>
 								<div class="collapse" id="item<?php echo $post->ID; ?>">
 									<div class="well">
@@ -101,7 +101,7 @@
 							<article class="col-xs-12 col-md-12 ayuda-group">
 
 								<h3 role="button" data-toggle="collapse" href="#seccion<?php echo $seccion->term_id; ?>">
-									<strong><?php echo ucfirst( $seccion->name ); ?></strong>
+									<strong><?php echo ucfirst( strtolower($seccion->name) ); ?></strong>
 								</h3>
 								<div class="collapse" id="seccion<?php echo $seccion->term_id; ?>">
 									
@@ -111,7 +111,7 @@
 									?>
 										<article class="col-xs-12 col-md-12 ayuda-items">
 											<h3 role="button" data-toggle="collapse" href="#item<?php echo $post->ID; ?>">
-												<?php echo ucfirst( $post->post_title ); ?>
+												<?php echo ucfirst( strtolower($post->post_title) ); ?>
 											</h3>
 											<div class="collapse" id="item<?php echo $post->ID; ?>">
 												<div class="well">
