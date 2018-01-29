@@ -38,5 +38,5 @@
 		}
 	}
 	if( !isset($redirect) || !$redirect ) {
-		header("location: {$home}/ayuda-general/");
+		header("location: ".get_home_url()."/ayuda-general/");
 	}
