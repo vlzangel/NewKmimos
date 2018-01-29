@@ -27,7 +27,6 @@
 		$_SESSION['ayuda']['resultado'] = $result;
 		$_SESSION['ayuda']['terminos'] = $_POST['nombre'];
 		unset($_SESSION['ayuda']['filtro'] );
-
 	}else{
 		if( isset($_SESSION['ayuda']['filtro']) && !empty($_SESSION['ayuda']['filtro']) ){
 
@@ -37,5 +36,6 @@
 		}
 	}
 	if( !isset($redirect) || !$redirect ) {
+		$_SESSION['ayuda']['default'] = true;
 		header("location: ".get_home_url()."/ayuda-general/");
 	}
