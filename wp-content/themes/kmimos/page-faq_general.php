@@ -82,7 +82,11 @@
 							</article>
 						<?php }?>
 					<?php }?>
+				
+
 				<?php }else{ 
+
+
 					/* *************************************** *
 					 * Resultado para las busquedas
 					 * *************************************** */
@@ -122,28 +126,16 @@
 			</section>
 
 
-
-			<!-- Temas Sugeridos -->
-			<section class="row temas-sugeridos hidden ">
-				<span class="title">Temas sugeridos</span>
-				<div class="content">
-					<?php for ($i=0; $i < 4; $i++) { ?>
-						<article class="col-xs-12 col-md-12">
-							<h3 role="button" data-toggle="collapse" href="#item<?php echo $i; ?>">
-								Item #<?php echo $i; ?>
-							</h3>
-							<div class="collapse" id="item<?php echo $i; ?>">
-								<p class="well">
-									Link with hrefvLink with hrefLink with hrefLink with hrefLink with hrefLink with href
-								</p>
-							</div>
-						</article>
-					<?php }?>
-				</div>
-			</section>
-
 		</div>
 	</div>
+
+	<section class="temas-sugeridos">
+		<div class="sugeridos-content text-center">
+			<div class="container">
+			¿No encontraste lo que buscabas? <a href="<?php echo get_home_url(); ?>/contacta-con-nosotros/"><b> Cont&aacute;ctanos</b></a>
+			</div>
+		</div>
+	</section>
 
 <?php
 	get_footer(); 
