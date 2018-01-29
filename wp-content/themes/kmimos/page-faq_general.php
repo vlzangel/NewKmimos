@@ -45,8 +45,53 @@
 				 * Mostrar todos los temas de la ayuda
 				 * *************************************** */?>
 				<?php 
+				if( !isset($_SESSION['ayuda']['filtro']) ){
+				/* *************************************** *
+				 * Resultado para las busquedas
+				 * *************************************** */
+					 $resultado = ( isset($_SESSION['ayuda']['resultado']) )? $_SESSION['ayuda']['resultado'] : [] ;
+					 if(empty($resultado)){ ?>
 
-				if( isset($_SESSION['ayuda']['filtro']) ){
+						<div class="alert alert-info">
+							<div>No se encontraron articulos relacionados con la busqueda <span style="font-style: italic;">"<?php echo $_SESSION['ayuda']['terminos']; ?>"</span></div>
+						</div>
+						<?php $_SESSION['ayuda']['filtro'] = get_ayuda_secciones(); ?>
+						<article class="col-xs-12 col-md-12 ayuda-group">
+							<h3>
+								<strong>Temas sugeridos</strong>
+							</h3>
+						</article>
+
+					<?php }else{ ?>
+						<article class="col-xs-12 col-md-12 ayuda-group">
+							<h3>
+								<strong>Resultados de busqueda para <span style="font-style: italic;">"<?php echo $_SESSION['ayuda']['terminos']; ?>"</span></strong>
+							</h3>
+						</article>
+
+						<?php unset($_SESSION['ayuda']['filtro']); ?>
+					<?php } ?>
+
+
+					<?php foreach ($resultado as $post) { 
+						if(!empty($post->post_title) && !empty($post->post_content) ){?>
+							<article class="col-xs-12 col-md-12 ayuda-items">
+								<h3 role="button" data-toggle="collapse" href="#item<?php echo $post->ID; ?>">
+									<?php echo ucfirst( $post->post_title ); ?>
+								</h3>
+								<div class="collapse" id="item<?php echo $post->ID; ?>">
+									<div class="well">
+										<?php echo $post->post_content; ?>
+									</div>
+								</div>
+								<div><hr></div>
+							</article>
+						<?php }?>
+					<?php }?>
+
+				<?php }?>
+
+				<?php if( isset($_SESSION['ayuda']['filtro']) ){
 
 					$secciones = $_SESSION['ayuda']['filtro'];
 					foreach ($secciones as $seccion) {
@@ -84,44 +129,7 @@
 					<?php }?>
 				
 
-				<?php }else{ 
-
-
-					/* *************************************** *
-					 * Resultado para las busquedas
-					 * *************************************** */
-					 $resultado = ( isset($_SESSION['ayuda']['resultado']) )? $_SESSION['ayuda']['resultado'] : [] ;
-					 if(empty($resultado)){ ?>
-
-						<div class="alert alert-info">
-							<div>No se encontraron articulos relacionados con la busqueda <span style="font-style: italic;">"<?php echo $_SESSION['ayuda']['terminos']; ?>"</span></div>
-						</div>
-
-					<?php }else{ ?>
-						<article class="col-xs-12 col-md-12 ayuda-group">
-							<h3>
-								<strong>Resultados de busqueda para <span style="font-style: italic;">"<?php echo $_SESSION['ayuda']['terminos']; ?>"</span></strong>
-							</h3>
-						</article>
-					<?php } ?>
-
-
-					<?php foreach ($resultado as $post) { 
-						if(!empty($post->post_title) && !empty($post->post_content) ){?>
-							<article class="col-xs-12 col-md-12 ayuda-items">
-								<h3 role="button" data-toggle="collapse" href="#item<?php echo $post->ID; ?>">
-									<?php echo ucfirst( $post->post_title ); ?>
-								</h3>
-								<div class="collapse" id="item<?php echo $post->ID; ?>">
-									<div class="well">
-										<?php echo $post->post_content; ?>
-									</div>
-								</div>
-								<div><hr></div>
-							</article>
-						<?php }?>
-					<?php }?>
-				<?php }?>
+				<?php } ?>
 
 			</section>
 
