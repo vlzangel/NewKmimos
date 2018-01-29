@@ -1,0 +1,212 @@
+.body-ayuda{
+    padding: 20px 40px!important;
+    border-radius: 50px;
+    top: -50px;
+    background: #fff;
+}
+#ayuda-content section{
+	padding: 5px 0px;
+}
+
+ 
+.body-ayuda ul {
+	margin: 0px;
+    padding: 20px 40px!important; 
+    list-style: unset!important; 
+}
+
+ 
+/* ******************** */
+/* Titulo principal
+/* ******************** */
+.titulo-servicios{
+	margin: 30px 0px;
+}
+.titulo-servicios span{
+    background-color: #7ad2c4;
+    color: #fff;
+    padding: 7px 6%;
+    border-radius: 50px;
+    font-family: 'Poetsen';
+    font-weight: normal;
+    font-size: 20px;
+ 
+}
+
+/* ******************** */
+/* Titulo principal
+/* ******************** */
+.titulo-principal{
+	text-align: center; 
+    font-family: 'Poetsen';
+    margin-top: 10px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+/* ******************** */
+/* Temas Destacados
+/* ******************** */
+.destacar a{
+	font-weight: bold;
+	text-decoration: none;
+}
+.destacar-info{
+	background-color: #7ad2c4; 
+}
+.destacar-success{
+	background-color: #c2d59b; 
+}
+
+
+/* ******************** */
+/* Temas 
+/* ******************** */
+#temas h3{
+    font-size: 24px;
+    font-weight: bold;
+}
+.ayuda-busqueda{
+	padding-left: 0px; 
+}
+.ayuda-busqueda .km-input-content{
+	padding: 4px; 
+	width: 50%;
+	margin-left: 25%;
+}
+.ayuda-busqueda input{
+    font-size: 14px;
+    padding: 9px;
+    width:100%;
+}
+.tema-container{
+    margin: 5px 0px;
+    padding: 10px 20px;
+    text-align: left;
+ 
+}
+.tema-container a.title:hover,
+.tema-container a.title{
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: normal;
+ border-bottom: 1px solid #efebeb;
+ 
+}
+.tema-container a:hover,
+.tema-container a{
+	text-decoration: none;
+ 
+	font-weight: bold;
+ 
+	font-size: 18px;
+	 
+}
+.tema-content{
+	padding: 10px;
+	margin-top:5px;
+}
+.transparent{
+	background-color: transparent;
+}
+.fondo{
+	background-color: #f3f3f3;
+}
+
+
+/* ******************** */
+/* Presentacion
+/* ******************** */
+.presentacion{
+	margin: 80px 0px;
+}
+ 
+.presentacion article:hover h2,
+.presentacion article a:hover
+{
+	text-decoration: none!important;
+    color:#7ad2c4;	
+}
+.presentacion article{
+	width: 40%;
+	float: left;
+	cursor: pointer;
+}
+.presentacion > article:nth-child(1){
+	margin-left:10%;
+}
+.presentacion h2{ 
+	font-size: 35px; 
+    color: #000;
+	font-weight: normal!important;
+	margin-top: 10px;
+}
+.presentacion img{
+	margin: 0 auto;
+	width: 40%; 
+}
+
+/* ******************** */
+/* Temas sugeridos
+/* ******************** */
+ 
+.temas-sugeridos{
+	padding: 0px!important;
+}
+ 
+.temas-sugeridos .title{
+    background-color: #7ad2c4;
+    border-radius: 50px 50px 0px 0px;
+    color: #fff;
+    margin: 0 auto;
+	padding: 10px 7%;
+	font-family: 'Poetsen';
+    font-size: 30px;
+    font-weight: bold;
+}
+ 
+.temas-sugeridos .sugeridos-content{ 
+    background-color: #7ad2c4;
+    padding: 10px 0px;
+}
+
+
+.ayuda-group h3{
+	font-size: 20px;
+}
+.ayuda-items h3{
+	font-size: 16px;
+    font-weight: normal;
+}
+
+@media All and ( max-width: 768px ){
+	h1{
+		font-size: 17px!important;
+	}
+	.ayuda-busqueda .km-input-content{
+	    padding: 4px;
+	    width: 100%;
+	    margin-left: 0;
+	}
+	.presentacion{
+	    margin: 25px 0px;
+	}
+	.presentacion article a h2{
+		font-size: 19px!important;
+	}
+	.presentacion > article:nth-child(1),
+	.presentacion article {
+	    width: 100%;
+	    float: left;
+	    cursor: pointer;
+        margin-left: 0;
+        margin: 10px 0px;
+	}
+	.ayuda-group {
+		padding-right: 0px!important;
+		padding-left: 0px!important; 
+	}
+	.ayuda-group h3 {
+    	font-size: 16px;
+	}
+}

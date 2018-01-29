@@ -83,7 +83,7 @@
 				'<div class="subscribe">'+
 				'<form onsubmit="form_subscribe(this); return false;">'+
 				'<input type="hidden" name="section" value="landing-volaris"/>'+
-				'<input type="mail" name="mail" value="" placeholder="Introduce tu correo aqu&iacute" required/>'+
+				'<input type="mail" name="mail" id="mail_suscripcion" value="" placeholder="Introduce tu correo aqu&iacute" required/>'+
 				'<button type="submit"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>'+
 				'</form>'+
 				'<div class="message"></div>'+
@@ -157,6 +157,7 @@
 							}, 
 							function( data ) {
 							  	/*console.log("Suscripción enviadas");*/
+							  	console.log(data);
 							}
 						);
 

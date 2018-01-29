@@ -2,6 +2,56 @@
 	
 	include_once('includes/functions/kmimos_functions.php');
 
+	/**
+	 * BEGIN Seccion de ayuda Kmimos
+ 	 */
+	function add_secciones_ayuda() {
+		register_taxonomy('seccion','faq', array(
+				'hierarchical' => true,
+				'labels' => array(
+				'name' => _x( 'Secciones de Ayuda', 'Secciones de Ayuda' ),
+				'singular_name' => _x( 'Seccion de Ayuda', 'Secciones de Ayuda' ),
+				'search_items' =>  __( 'Search Secciones' ),
+				'all_items' => __( 'All Secciones' ),
+				'parent_item' => __( 'Parent seccion' ),
+				'parent_item_colon' => __( 'Parent seccion:' ),
+				'edit_item' => __( 'Edit seccion' ),
+				'update_item' => __( 'Update seccion' ),
+				'add_new_item' => __( 'Add New seccion' ),
+				'new_item_name' => __( 'New seccion Name' ),
+				'menu_name' => __( 'Secciones' ),
+			),
+			'rewrite' => array(
+				'slug' => 'secciones', 
+				'with_front' => true, 
+				'hierarchical' => true 
+			),
+		));
+	}
+	add_action( 'init', 'add_secciones_ayuda', 0 );
+	function create_posts_type() {
+
+		register_post_type( 'faq',
+			array(
+					'labels' => array(
+					'name' => __( 'Ayuda Kmimos' ),
+					'singular_name' => __( 'Ayuda Kmimos' )
+				),
+				'menu_position' => 3,
+				'public' => true,
+				'has_archive' => false,
+				'rewrite' => array('slug' => 'ayuda'),
+				'supports' => array( 'title', 'editor', 'thumbnail', 'seccion' ),
+	            'taxonomies' => array( 'seccion' ),
+	            'menu_icon' => '',
+			)
+		);		
+	}
+	add_action( 'init', 'create_posts_type' );
+	/**
+	 * END Seccion de ayuda Kmimos
+ 	 */
+
 	if(!function_exists('italo_include_script')){
 	    function italo_include_script(){
 	        
@@ -12,6 +62,166 @@
 	    function italo_include_admin_script(){
 	        include_once('dashboard/assets/config_backpanel.php');
 	    }
+	}
+
+
+	if(!function_exists('get_form_filtrar_ayuda')){
+		function get_form_filtrar_ayuda(){
+			echo '
+			<section class="row km-caja-filtro ayuda-busqueda">
+				<form method="post" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/ayuda/filtrar.php">
+					<div class="input-group km-input-content col-sm-12 col-sm-offset-0 col-md-offset-3">
+							<input type="text" name="nombre" value="" placeholder="BUSCAR TEMAS DE AYUDA" class=" ">
+							<span class="input-group-btn">
+								<button type="submit">
+									<img src="https://mx.kmimos.la/wp-content/themes/kmimos/images/new/km-buscador.svg" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
+								</button>
+							</span>
+					</div>
+				</form>
+			</section>';
+		}
+	}
+
+	if(!function_exists('get_ayuda_secciones')){
+		function get_ayuda_secciones( $args = '' ) {
+		    $defaults = array( 'taxonomy' => 'seccion' );
+		    $args = wp_parse_args( $args, $defaults );
+		 
+		    $taxonomy = $args['taxonomy'];
+		 
+		    /**
+		     * Filters the taxonomy used to retrieve terms when calling get_categories().
+		     *
+		     * @since 2.7.0
+		     *
+		     * @param string $taxonomy Taxonomy to retrieve terms from.
+		     * @param array  $args     An array of arguments. See get_terms().
+		     */
+		    $taxonomy = apply_filters( 'get_categories_taxonomy', $taxonomy, $args );
+		 
+		    // Back compat
+		    if ( isset($args['type']) && 'link' == $args['type'] ) {
+		        _deprecated_argument( __FUNCTION__, '3.0.0',
+		            /* translators: 1: "type => link", 2: "taxonomy => link_category" */
+		            sprintf( __( '%1$s is deprecated. Use %2$s instead.' ),
+		                '<code>type => link</code>',
+		                '<code>taxonomy => link_category</code>'
+		            )
+		        );
+		        $taxonomy = $args['taxonomy'] = 'link_category';
+		    }
+		 
+		    $categories = get_terms( $taxonomy, $args );
+		 
+		    if ( is_wp_error( $categories ) ) {
+		        $categories = array();
+		    } else {
+		        $categories = (array) $categories;
+		        foreach ( array_keys( $categories ) as $k ) {
+		            _make_cat_compat( $categories[ $k ] );
+		        }
+		    }
+		 
+		    return $categories;
+		}
+	}
+
+	if(!function_exists('get_ayuda_categoria')){
+		function get_ayuda_categoria( $post_id ){
+			$result = '';
+			$parents = wp_get_post_terms( $post_id, 'seccion' ); 
+			foreach ($parents as $tax) {
+				$ignore = [ 'destacados', 'sugeridos' ];
+				if( !in_array( $tax->slug, $ignore ) ){
+					$result = [
+						'name'=>$tax->name, 
+						'slug'=>$tax->slug,
+					];
+				}
+			}
+			return $result;
+		}
+	}
+
+	/* Temas Sugeridos */
+	if(!function_exists('get_ayuda_sugeridos')){
+		function get_ayuda_postBySeccion( $parent='' ){
+
+			$posts = get_posts(
+			    array(
+					'post_status' => 'publish', 
+			        'post_type' => 'faq',
+			        'tax_query' => array(
+				        array(
+				            'taxonomy' => 'seccion',
+				            'field'    => 'slug',
+				            'terms'    => $parent
+				        )
+				    )
+			    )
+			);
+
+			return $posts;
+
+		}
+	}
+
+	/* Temas Sugeridos */
+	if(!function_exists('get_ayuda_sugeridos')){
+		function get_ayuda_sugeridos( $parent='sugeridos', $ID = 0, $echo = true ){
+
+			$HTML= '';
+			$sugeridos = get_posts(
+			    array(
+					'post_status' => 'publish', 
+			        'post_type' => 'faq',
+			        'tax_query' => array(
+				        array(
+				            'taxonomy' => 'seccion',
+				            'field'    => 'slug',
+				            'terms'    => $parent
+				        )
+				    )
+			    )
+			);
+
+ 
+			if( !empty($sugeridos) ) { 	
+ 
+				$article = '';
+				foreach ($sugeridos as $post) { 
+
+					if( $post->ID != $ID ){
+						$article .= '
+							<article>
+								<a href="'.get_the_permalink($post->ID).'">
+									<h3>'.$post->post_title.'</h3>
+								</a>
+							</article>
+						';
+					}
+				}
+				if( $article != '' ){
+					$HTML = '
+					<section class="temas-sugeridos">
+						<span class="title">Temas sugeridos</span>
+						<div class="sugeridos-content text-left">
+							<div class="container">
+							'.$article.'
+							</div>
+						</div>
+					</section>
+					';
+				}
+			}
+
+			if($echo){
+				print_r($HTML);
+			}else{
+				return $HTML;
+			}
+		}
 	}
 
 	if(!function_exists('validar_perfil_completo')){

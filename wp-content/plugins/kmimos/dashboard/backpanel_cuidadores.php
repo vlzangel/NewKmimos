@@ -140,14 +140,13 @@ $users = getUsers($desde, $hasta);
 								<?php echo $row["cuidador_title"]; ?>	
 							</a>
 						</th>
-
+ 
 
 						<!-- <th><?php echo $r1; ?></th>
 						<th><?php echo $r3; ?></th>
 						<th><?php echo $r6; ?></th>
 						<th><?php echo $r12; ?></th> -->
-
-
+ 
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>

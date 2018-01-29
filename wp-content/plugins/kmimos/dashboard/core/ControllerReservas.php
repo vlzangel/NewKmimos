@@ -155,8 +155,13 @@ function getMascotas($user_id){
         $anio = str_replace("/", "-", $anio);
         $anio = strtotime($anio);
         $edad_time = time()-$anio;
-        $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
 
+        $edad = '';
+        if( (date("Y", $edad_time)-1970) > 0 ){
+	        $edad = (date("Y", $edad_time)-1970)." año(s) ";
+        }
+        $edad .= date("m", $edad_time)." mes(es)";
+ 
         $mascotas[] = array(
             "nombre" => $mascota->post_title,
             "raza" => $metas["breed_pet"][0],

@@ -26,6 +26,7 @@ var hasGPS=false;
 
             var urluser = RAIZ+"landing/registro-usuario.php?email="+jQuery('#cp_email').val()+"&name="+jQuery('#cp_nombre').val()+"&referencia=kmimos-home";
             jQuery.get( urluser, function(e){
+
                 var redirect = RAIZ+"/referidos/compartir/?e="+jQuery('#cp_email').val();
                 switch (jQuery.trim(e)){
                     case '0':
@@ -59,7 +60,10 @@ var hasGPS=false;
             /*
             jQuery.ajax( RAIZ+"landing/registro-usuario.php?email="+jQuery('#cp_email').val()+"&name="+jQuery('#cp_nombre').val()+"&referencia=kmimos-home" )
             .done(function(e) {
+
                 var redirect = RAIZ+"/referidos/compartir/?e="+jQuery('#cp_email').val();
+
+
                 switch (jQuery.trim(e)){
                     case '0':
                         jQuery('#msg').html('¡No pudimos completar su solicitud!');
@@ -68,15 +72,17 @@ var hasGPS=false;
                         jQuery('#msg').html('¡Felicidades, ya formas parte de nuestro Club!');
                         jQuery('a[data-redirect="patitas-felices"]').attr('href', redirect);
                         jQuery('a[data-redirect="patitas-felices"]').click();
-                        window.open( redirect, '_blank' );
+                        //window.open( redirect, '_blank' );
                         break;
                     case '2':
                         jQuery('#msg').html('¡Ya formas parte de nuestro Club!');
                         jQuery('a[data-redirect="patitas-felices"]').attr('href', redirect);
                         jQuery('a[data-redirect="patitas-felices"]').click();
-                        window.open( redirect, '_blank' );
+                        //window.open( redirect, '_blank' );
                         break;
                     default:
+                        jQuery('#msg').html('Registro: No pudimos completar su solicitud, intente nuevamente');
+                        jQuery('#cp_loading').addClass('hidden');
                         break;
                 }
                 setTimeout(function() {
@@ -87,7 +93,7 @@ var hasGPS=false;
                 jQuery('#msg').html('Registro: No pudimos completar su solicitud, intente nuevamente');
                 jQuery('#cp_loading').addClass('hidden');
             });  
-            */
+             */
 
         }else{
            
