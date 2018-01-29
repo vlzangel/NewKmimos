@@ -25,7 +25,6 @@
  		$result = $wpdb->get_results($sql);
 
 		$_SESSION['ayuda']['resultado'] = $result;
-		$_SESSION['ayuda']['default'] = false;
 		$_SESSION['ayuda']['terminos'] = $_POST['nombre'];
 		unset($_SESSION['ayuda']['filtro'] );
 
