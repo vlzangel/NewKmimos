@@ -5,6 +5,7 @@ function initCarrito(){
 	CARRITO["fechas"] = [];
 
 		CARRITO["fechas"] = {
+			"flash" : "",
 			"inicio" : "",
 			"fin" : "",
 			"checkin" : "",
@@ -95,6 +96,16 @@ function calcular(){
 					jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
 					jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
 				}
+			}
+		}
+	}else{
+		if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+			CARRITO["fechas"]["flash"] = "SI";
+		}else{
+			if( jQuery("#checkin").val() == MANANA && HORA >= 18 ){
+				CARRITO["fechas"]["flash"] = "SI";
+			}else{
+				CARRITO["fechas"]["flash"] = "NO";
 			}
 		}
 	}
@@ -454,8 +465,8 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			/*console.log( data );*/
-			if( data.error != "" && data.error != undefined ){
+			console.log( data );
+			/*if( data.error != "" && data.error != undefined ){
 				if( data.tipo_error != "3003" ){
 					var error = "Error procesando la reserva<br>";
 			    	error += "Por favor intente nuevamente.<br>";
@@ -476,7 +487,7 @@ function pagarReserva(id_invalido = false){
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
 				location.href = RAIZ+"/finalizar/"+data.order_id;
-			}
+			}*/
 		}, "json"
 	).fail(function(e) {
 

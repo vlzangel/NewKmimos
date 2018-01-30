@@ -1372,6 +1372,11 @@
                     "pdf" => $metas_orden['_openpay_pdf'][0],
 
                     "aceptar_rechazar" => $aceptar_rechazar,
+
+                    "flash" => $metas_reserva['_booking_flash'][0],
+
+                    "checkin" => date("g:i a", strtotime( $metas_reserva['_booking_checkin'][0] ) ),
+                    "checkout" => date("g:i a", strtotime( $metas_reserva['_booking_checkout'][0] ) )
                 ),
             );
 
