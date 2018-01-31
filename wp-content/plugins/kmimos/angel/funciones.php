@@ -174,7 +174,7 @@
                     <div class="slide">
                         <div class="item-slide">
                             <div style="background-image: url('.$img_url.');" class="slider-image">
-                                <div style="filter: blur(1px);width:100%;height:27%;background: #0000002b;position:absolute;border-radius:10px 10px 0px 0px;"></div>
+                                <div style="filter: blur(1px);width:100%;height:27%;background: #00000094;position:absolute;border-radius:10px 10px 0px 0px;"></div>
                             </div>
                             <div class="hidden slide-mask"></div>
                             <div class="slide-content">
