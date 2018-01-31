@@ -179,8 +179,8 @@
                             <div class="hidden slide-mask"></div>
                             <div class="slide-content">
                                 <div class="slide-price-distance">
-                                    <div class="slide-price text-left" style="color:#fff;">
-                                        Desde <span>MXN $'.($cuidador->hospedaje_desde*1.2).'</span>
+                                    <div class="slide-price text-left" style="color:#fff;font-size:12px;">
+                                        Desde <span style="font-size:12px;">MXN $'.($cuidador->hospedaje_desde*1.2).'</span>
                                     </div>
                                     <!--
                                     <div class="slide-distance">
@@ -194,7 +194,7 @@
                                 </div>
 
                                 <div class="slide-name text-center">
-                                    <b>'.$nombre.'</b>
+                                    <b>'.strtoupper($nombre).'</b>
                                 </div>
 
                                 <div class="slide-expertice  text-center">
