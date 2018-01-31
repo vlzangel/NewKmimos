@@ -5,6 +5,7 @@ function initCarrito(){
 	CARRITO["fechas"] = [];
 
 		CARRITO["fechas"] = {
+			"flash" : "",
 			"inicio" : "",
 			"fin" : "",
 			"checkin" : "",
@@ -95,6 +96,16 @@ function calcular(){
 					jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
 					jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
 				}
+			}
+		}
+	}else{
+		if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+			CARRITO["fechas"]["flash"] = "SI";
+		}else{
+			if( jQuery("#checkin").val() == MANANA && HORA >= 18 ){
+				CARRITO["fechas"]["flash"] = "SI";
+			}else{
+				CARRITO["fechas"]["flash"] = "NO";
 			}
 		}
 	}

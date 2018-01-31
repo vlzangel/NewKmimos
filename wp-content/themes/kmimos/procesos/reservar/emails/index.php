@@ -151,6 +151,16 @@
     $detalles_plantilla = str_replace('[hora_fin]', $servicio["checkout"], $detalles_plantilla);
     $detalles_plantilla = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_plantilla);
 
+    if( $servicio["flash"] == "SI" ){
+    	if ( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva != "wc-on-hold" ){
+	    	$acc = "CFM";
+    	}
+    	if ( strtolower($servicio["metodo_pago"]) == "tarjeta" && $status_reserva != "pending" ){
+	    	$acc = "CFM";
+    	}
+    }
+
+
 	if( $acc == ""  ){
 
 		$servicios_cuidador = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$cuidador->id}' AND post_type = 'product' ");
