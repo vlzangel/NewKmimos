@@ -173,7 +173,9 @@
                 $top_destacados .= '
                     <div class="slide">
                         <div class="item-slide">
-                            <div style="background-image: url('.$img_url.');" class="slider-image"></div>
+                            <div style="background-image: url('.$img_url.');" class="slider-image">
+                            <div style="width:100%;height:100%;background: #ffffff5e;position:absolute;"></div>
+                            </div>
                             <div class="hidden slide-mask"></div>
                             <div class="slide-content">
                                 <div class="slide-price-distance">
