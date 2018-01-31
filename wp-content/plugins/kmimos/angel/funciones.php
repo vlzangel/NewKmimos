@@ -174,12 +174,12 @@
                     <div class="slide">
                         <div class="item-slide">
                             <div style="background-image: url('.$img_url.');" class="slider-image">
-                            <div style="width:100%;height:100%;background: #ffffff5e;position:absolute;"></div>
+                                <div style="filter: blur(1px);width:100%;height:27%;background: #0000002b;position:absolute;border-radius:10px 10px 0px 0px;"></div>
                             </div>
                             <div class="hidden slide-mask"></div>
                             <div class="slide-content">
                                 <div class="slide-price-distance">
-                                    <div class="slide-price text-left">
+                                    <div class="slide-price text-left" style="color:#fff;">
                                         Desde <span>MXN $'.($cuidador->hospedaje_desde*1.2).'</span>
                                     </div>
                                     <!--
