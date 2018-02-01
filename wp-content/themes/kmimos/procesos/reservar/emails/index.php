@@ -152,6 +152,7 @@
     $detalles_plantilla = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_plantilla);
 
     if( $servicio["flash"] == "SI" ){
+    	$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
     	if ( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva != "wc-on-hold" ){
 	    	$acc = "CFM";
     	}
