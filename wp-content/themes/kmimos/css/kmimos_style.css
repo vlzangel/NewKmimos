@@ -635,7 +635,7 @@ section {
 	box-shadow: none;
 	border: none;
 	margin: 0;
-	height: 200px !important;
+	height: 280px !important;
 }
 .km-autor {
 	font-size: 13px;
@@ -976,6 +976,7 @@ button.close {
     position: relative;
     background-size: cover;
     background-position: center;
+    height:280px;
 }
 
 .km-search-slider .item-slide .slide-mask{
@@ -1018,7 +1019,7 @@ button.close {
 }
 
 .km-search-slider .item-slide .slide-content .slide-name{
-	padding: 10px 0 3px 0;
+	padding: 20px 0 8px 0;
 }
 
 .km-search-slider .item-slide .slide-content .slide-expertice{
@@ -3602,7 +3603,7 @@ button.close {
     border-radius:50%
 }
 .km-search-slider .item-slide .slide-content .slide-name {
-    padding:10px 0 3px 0
+    padding: 20px 0 8px 0
 }
 .km-search-slider .item-slide .slide-content .slide-expertice {
     font-size:9px
