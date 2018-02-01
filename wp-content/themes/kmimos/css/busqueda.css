@@ -226,23 +226,46 @@ h1.maps {
     padding: 5px 12px;
     border: solid 1px;
     border-radius: 50%;
-}
+} 
 
-@media All and (max-width: 768px){
+@media All and (max-width: 992px){
+    .slide-profile {
+        margin-top: 40%!important;
+    }    
+}
+@media All and (max-width: 772px){
     .zopim{
         top:auto!important;
         position: fixed!important;
         bottom: 9%!important;
+    }
+    .slide-name {
+        padding: 5px 0px!important;
+    }
+    .slide-profile {
+        margin-top: 36.5%!important;
     }
 }
 @media All and (max-width: 520px){
     .zopim{
         bottom: 10%!important;
     }
+    .slide-name {
+        padding: 5px 0px!important;
+    }
+    .slide-profile {
+        margin-top: 36.5%!important;
+    }    
 }
 
 @media all and (max-width: 768px) and (orientation: landscape ){
     .zopim{
         bottom: 15%!important;
     }
+    .slide-name {
+        padding: 5px 0px!important;
+    }
+    .slide-profile {
+        margin-top: 36.5%!important;
+    }    
 }
