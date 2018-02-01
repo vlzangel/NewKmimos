@@ -45,7 +45,7 @@ h1 a:hover{
     background: white;
 }
 .slide-ranking{
-    padding: 3px 0px 3px 0px!important;
+    padding: 8px 0px!important;
 }
 .slider-image{
     border-radius: 10px 10px 0px 0px;
@@ -66,7 +66,10 @@ h1 a:hover{
     border: 1px solid #000!important;
 }
 .slide-profile{
-    margin-top: 21.5%!important;
+    margin-top: 40.5%!important;
+}
+.slide-name{
+    padding: 20px 0px 8px 0px!important;
 }
 .km-premium-slider .slider{
     -webkit-box-shadow: 1px 0px 20px 0px rgba(0,0,0,0.25);
@@ -223,23 +226,46 @@ h1.maps {
     padding: 5px 12px;
     border: solid 1px;
     border-radius: 50%;
-}
+} 
 
-@media All and (max-width: 768px){
+@media All and (max-width: 992px){
+    .slide-profile {
+        margin-top: 40%!important;
+    }    
+}
+@media All and (max-width: 772px){
     .zopim{
         top:auto!important;
         position: fixed!important;
         bottom: 9%!important;
+    }
+    .slide-name {
+        padding: 5px 0px!important;
+    }
+    .slide-profile {
+        margin-top: 36.5%!important;
     }
 }
 @media All and (max-width: 520px){
     .zopim{
         bottom: 10%!important;
     }
+    .slide-name {
+        padding: 5px 0px!important;
+    }
+    .slide-profile {
+        margin-top: 36.5%!important;
+    }    
 }
 
 @media all and (max-width: 768px) and (orientation: landscape ){
     .zopim{
         bottom: 15%!important;
     }
+    .slide-name {
+        padding: 5px 0px!important;
+    }
+    .slide-profile {
+        margin-top: 36.5%!important;
+    }    
 }
