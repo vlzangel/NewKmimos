@@ -159,6 +159,9 @@
     	if ( strtolower($servicio["metodo_pago"]) == "tarjeta" && $status_reserva != "pending" ){
 	    	$acc = "CFM";
     	}
+    	if ( strtolower($servicio["metodo_pago"]) == "Saldo y/o Descuentos" && $status_reserva != "pending" ){
+	    	$acc = "CFM";
+    	}
     }
 
 
