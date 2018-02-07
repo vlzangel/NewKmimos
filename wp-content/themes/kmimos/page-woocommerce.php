@@ -334,14 +334,14 @@
 								Reserva las fechas y los servicios con tu cuidador(a) '.$cuidador_name.'
 							</div>
 
-							'.$msg_mismo_dia.'
-
 							<div class="km-dates-step" style="margin-bottom: 5px;">
 								<div class="km-ficha-fechas">
 									<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
 									<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly>
 								</div>
 							</div>
+
+							'.$msg_mismo_dia.'
 
 							<!--
 							<div class="km-dates-step">
