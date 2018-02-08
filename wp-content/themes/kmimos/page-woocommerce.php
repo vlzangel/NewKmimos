@@ -38,11 +38,20 @@
 		$servicio_id = $post_id;
 		$hoy = date("Y-m-d");
 
+		$cats = array(
+            2601 => "paseos"                    ,
+            2602 => "adiestramiento_basico"     ,
+            2606 => "adiestramiento_intermedio" ,
+            2607 => "adiestramiento_avanzado"   ,
+            2599 => "guarderia"                 ,
+            2598 => "hospedaje"                 
+        );
+
 		$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= '".date("Y-m-d", time())."'" );
 
 		$sql = "
 	        SELECT
-	            tipo_servicio.slug AS slug
+	            tipo_servicio.term_id AS slug
 	        FROM 
 	            wp_term_relationships AS relacion
 	        LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
@@ -51,6 +60,8 @@
 	            relacion.term_taxonomy_id != 28
 	    ";
 		$tipo = $wpdb->get_var($sql);
+
+		echo "VLZ: ".$tipo;
 
 		$cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE user_id = ".$post->post_author );
 
@@ -104,7 +115,7 @@
 	    if( $tipo == "hospedaje" ){
 	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    }else{
-	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
+	    	$precios = getPrecios( $adicionales[ $cats[$tipo] ], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    } 
 
 		$transporte = getTransporte($adicionales, $precargas["transp"]);
