@@ -270,8 +270,8 @@ function calcular(){
 	
 	if( error == "" ){
 
-		jQuery(".pago_17").html( "$" + numberFormat(cant-(cant*0.2)) );
-		jQuery(".pago_cuidador").html( "$" + numberFormat(cant*0.2) );
+		jQuery(".pago_17").html( "$" + numberFormat(cant-(cant*0.25)) );
+		jQuery(".pago_cuidador").html( "$" + numberFormat(cant*0.25) );
 
 		jQuery(".monto_total").html( "$" + numberFormat(cant) );
 		CARRITO["pagar"]["total"] = cant;
@@ -567,7 +567,7 @@ function calcularDescuento(){
         }
 	});
 
-	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]*0.2);
+	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]*0.25);
 	var pagoCuidador = CARRITO["pagar"]["total"]*0.2;
 
 	var reciduo_0 = 0;
