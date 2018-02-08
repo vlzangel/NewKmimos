@@ -236,7 +236,6 @@
 			$ES_FLASH = "SI";
 		}
 
-		echo "FECHA_VLZ: ".date("G", $NOW );
 		$msg_mismo_dia = "";
 		if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && date("G", $NOW )+0 < 9 ){
 			$msg_mismo_dia = "
