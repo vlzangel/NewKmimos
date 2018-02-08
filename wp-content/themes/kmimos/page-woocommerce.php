@@ -470,7 +470,7 @@
 											RESERVA CON PAGO PARCIAL
 										</div>
 										<div class="km-text-two">
-											Pague ahora el 17% y el restante
+											Pague ahora el 20% y el restante
 										</div>
 										<div class="km-text-three">
 											AL CUIDADOR EN EFECTIVO
