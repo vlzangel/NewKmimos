@@ -302,12 +302,12 @@
 							<div class="km-quantity">
 								<a href="#" class="km-minus disabled">-</a>
 									<span class="km-number">'.$catidad.'</span>
-									<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*1.2).'" />
+									<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*1.25).'" />
 								<a href="#" class="km-plus">+</a>
 							</div>
 							<div class="km-height">
 								'.$tamanos[$key].'
-								<span>$'.($data[$key]*1.2).'</span>
+								<span>$'.($data[$key]*1.25).'</span>
 							</div>
 						</div>
 					';
