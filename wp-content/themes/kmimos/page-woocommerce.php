@@ -61,8 +61,6 @@
 	    ";
 		$tipo = $wpdb->get_var($sql);
 
-		echo "VLZ: ".$tipo;
-
 		$cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE user_id = ".$post->post_author );
 
 		$cuidador_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$cuidador->id_post );
@@ -117,6 +115,8 @@
 	    }else{
 	    	$precios = getPrecios( $adicionales[ $cats[$tipo] ], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    } 
+
+	    $tipo = $cats[$tipo];
 
 		$transporte = getTransporte($adicionales, $precargas["transp"]);
 		if( $transporte != "" ){
