@@ -1,11 +1,4 @@
-
-[data-target="#nutriheroes"]{
-	position:absolute; 
-	bottom: 20px; 
-	left:20px;
-	z-index:9999;
-}
-
+ 
 .nutri-close {
 
 	-webkit-appearance: none;
@@ -23,11 +16,14 @@
 }
 
 #nutriheroes{
+	background: rgba(0,0,0,0.9); 
 	margin: 0 auto;
-	position: absolute;
+	position: fixed;
 	width: 100%;
+	height: 100%;
 	left: 0px;
-	top: 5%;
+	top: 0;
+	padding-top: 8%;
 	z-index: 999;
 	opacity: 0;
 
@@ -40,6 +36,7 @@
 	width: 100%;
 	max-width: 940px;
 	margin: 0 auto;
+	position: relative;
 }
 
 #nutriheroes .nutri-dialog{
