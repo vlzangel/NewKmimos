@@ -1,0 +1,158 @@
+
+[data-target="#nutriheroes"]{
+	position:absolute; 
+	bottom: 20px; 
+	left:20px;
+	z-index:9999;
+}
+
+.nutri-close {
+
+	-webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+
+    float: right;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+}
+
+#nutriheroes{
+	margin: 0 auto;
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	top: 5%;
+	z-index: 999;
+	opacity: 0;
+
+	-moz-transition: visibility 0s, opacity 1s linear;
+    -webkit-transition: visibility 0s, opacity 1s linear;
+    transition: visibility 0s, opacity 1s linear;
+}
+
+#nutriheroes .nutri-container{
+	width: 100%;
+	max-width: 940px;
+	margin: 0 auto;
+}
+
+#nutriheroes .nutri-dialog{
+	width: 1012px;
+	max-width: 1012px;
+}
+#nutriheroes .nutri-content{
+	padding-left: 0px;
+	border-radius: 0px;
+	background-size: contain;
+}
+#nutriheroes .nutri-header{
+	border-bottom: 0px;
+	border-color: transparent!important;
+	padding: 5px 5px 5px 10px;
+
+}
+#nutriheroes .nutri-title{
+	color: black;
+	font-size: 37px;
+	font-weight: bold;
+    margin-bottom: 0px;
+}
+#nutriheroes .nutri-subtitle{
+	margin-top: 15px;
+	font-size: 33px;
+	font-weight: bold;
+	color: #76e21d;
+}
+#nutriheroes .nutri-body{
+	padding: 0px 10px;
+}
+
+.nutri-sin-costo-text{
+	display: none;
+}
+
+
+
+/* ***************************** */
+/* Columnas                      */
+/* ***************************** */
+.nutri-column-right,
+.nutri-column-left{
+	width: 45%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* ***************************** */
+/* LOGOS                         */
+/* ***************************** */
+.nutri-sin-costo{
+    position: absolute;
+    top: 50px;
+    left: 50%;
+}
+.nutri-image {
+	text-align: center; 
+}
+.nutri-image .logo{
+    width: 290px;
+    position: absolute;
+    bottom: 55px;
+    left: 40%;
+}
+.nutri-image .dog-guy{
+    position: absolute;
+    bottom: -30px;
+    left: 60%;
+}
+
+/* ***************************** */
+/* PASOS                         */
+/* ***************************** */
+.nutri-pasos {
+	display: inline-block;
+	width: 100%;
+	margin: 0px; 
+}
+
+.nutri-pasos li{
+	width: 100%;
+	padding: 5px 0px;
+    clear: both;
+    display: table;
+    content: " ";
+}
+
+.nutri-pasos span{
+	float: left;
+}
+.nutri-pasos .nutri-text{
+	color: black;
+	background-color: transparent; 
+	font-weight: bold;
+	font-size: 12px;
+	padding: 7px 15px;
+}
+
+.nutri-pasos .nutri-paso{
+	background: black;
+	padding: 5px 15px;
+	margin-right: 20px;
+	text-align: center;
+	color: #fff;
+	width: 100px;
+	font-size: 14px;
+}
+ .nutri-green{
+	color: #76e21d!important;
+}
+
+.nutri-parrafo{
+	font-weight: bold;
+}

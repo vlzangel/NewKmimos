@@ -1,5 +1,7 @@
 jQuery.fn.modal.Constructor.prototype.enforceFocus = function() {};
 
+
+
 function close_modal(){
     var c = jQuery(".modal");
     jQuery.each(c,function(i,o){ 

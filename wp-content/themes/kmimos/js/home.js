@@ -144,6 +144,8 @@ var hasGPS=false;
         });
 
     });
+
+
 })(jQuery);
 
 window.addEventListener("load", loadBGVideoHOME);
