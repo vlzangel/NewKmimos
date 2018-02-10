@@ -38,11 +38,20 @@
 		$servicio_id = $post_id;
 		$hoy = date("Y-m-d");
 
+		$cats = array(
+            2601 => "paseos"                    ,
+            2602 => "adiestramiento_basico"     ,
+            2606 => "adiestramiento_intermedio" ,
+            2607 => "adiestramiento_avanzado"   ,
+            2599 => "guarderia"                 ,
+            2598 => "hospedaje"                 
+        );
+
 		$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= '".date("Y-m-d", time())."'" );
 
 		$sql = "
 	        SELECT
-	            tipo_servicio.slug AS slug
+	            tipo_servicio.term_id AS slug
 	        FROM 
 	            wp_term_relationships AS relacion
 	        LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
@@ -104,8 +113,10 @@
 	    if( $tipo == "hospedaje" ){
 	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    }else{
-	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
+	    	$precios = getPrecios( $adicionales[ $cats[$tipo] ], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    } 
+
+	    $tipo = $cats[$tipo];
 
 		$transporte = getTransporte($adicionales, $precargas["transp"]);
 		if( $transporte != "" ){
@@ -180,6 +191,10 @@
 
 		//$NOW = (strtotime("now")+25200);
 		$NOW = (strtotime("now"));
+
+		if( isset($_GET["prueba"]) ){
+			$NOW = ( strtotime( date("Y-m-d")." 08:00:00") );
+		}
 		//$NOW = (strtotime("now")+57600);
 
 		$bloquear = "";
@@ -230,6 +245,15 @@
 			}
 		}else{
 			$ES_FLASH = "SI";
+		}
+
+		$msg_mismo_dia = "";
+		if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && date("G", $NOW )+0 < 9 ){
+			$msg_mismo_dia = "
+				<div class='msg_mismo_dia'>
+					En caso de que necesites atención dentro de las siguientes 4 a 6 horas, por favor llámanos sin costo al: (01) 800 056 4667.
+				</div>
+			";
 		}
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
@@ -326,6 +350,8 @@
 									<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly>
 								</div>
 							</div>
+
+							'.$msg_mismo_dia.'
 
 							<!--
 							<div class="km-dates-step">
@@ -454,7 +480,7 @@
 											RESERVA CON PAGO PARCIAL
 										</div>
 										<div class="km-text-two">
-											Pague ahora el 17% y el restante
+											Pague ahora el 20% y el restante
 										</div>
 										<div class="km-text-three">
 											AL CUIDADOR EN EFECTIVO

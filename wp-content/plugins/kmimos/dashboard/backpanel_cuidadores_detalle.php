@@ -63,6 +63,7 @@ $users = getUsers($param, $desde, $hasta);
 			  <thead>
 			    <tr>
 			      <th>ID</th>
+			      <th>Flash</th>
 			      <th>Nombre y Apellido</th>
 			      <th>Cuidador</th>
 			      <th>Email</th>
@@ -145,9 +146,30 @@ $users = getUsers($param, $desde, $hasta);
   					    $adicionales_t = unserialize( $row['adicionales']);
   					    $Hospedaje_t =  unserialize( $row['hospedaje']);
   					    $servicios = getServicios( $row );
+
+					  	$atributos = $wpdb->get_var("SELECT atributos FROM cuidadores WHERE user_id = ".$row['ID']);
+					  	$atributos = unserialize($atributos);
+
+					  	$flash = "";
+						if( $atributos['flash'] == 1 ){
+							$flash = '
+								<i 
+									class="fa fa-bolt" 
+									aria-hidden="true"
+									style="
+										padding: 2px 4px;
+									    border-radius: 50%;
+									    background: #00c500;
+									    color: #FFF;
+									    margin-right: 2px;
+									"
+								></i> Flash
+							';
+						}
 			  		?>
 				    <tr>
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
+						<th><?php echo $flash; ?></th>
 						<th><?php echo $name; ?></th>
 						<th>
 					  		<a href="<?php echo get_home_url().'/wp-admin/post.php?action=edit&post='.$row['cuidador_post']; ?>">
