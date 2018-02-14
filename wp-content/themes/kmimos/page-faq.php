@@ -38,7 +38,7 @@
 			</section>
 			
 			<!-- Busqueda -->
-			<?php get_form_filtrar_ayuda("../"); ?>
+			<?php get_form_filtrar_ayuda(); ?>
 			<section class="row">
 			<!-- Ayuda Cliente-Cuidadores -->
 			<?php get_form_ayuda_cliente_cuidador(); ?>

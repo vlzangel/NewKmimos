@@ -81,7 +81,7 @@
 
 
 	if(!function_exists('get_form_filtrar_ayuda')){
-		function get_form_filtrar_ayuda($directorios){
+		function get_form_filtrar_ayuda(){
 			echo '
 			<section class="row km-caja-filtro ayuda-busqueda">
 				<form method="post" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/ayuda/filtrar.php">
@@ -89,7 +89,7 @@
 							<input type="text" name="nombre" value="" placeholder="BUSCAR TEMAS DE AYUDA" class=" ">
 							<span class="input-group-btn">
 								<button type="submit">
-									<img src="'.$directorios.'/wp-content/themes/kmimos/images/new/km-buscador.png" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
+									<img src="'.getTema().'/images/new/km-buscador.svg" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
 								</button>
 							</span>
 					</div>
