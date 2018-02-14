@@ -182,14 +182,7 @@ $HTML = '
 
     // SubscribeSite
     if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
-        //include_once( 'partes/footer/SubscribeSite.php' );
-        include( 'partes/footer/Nutriheroes.php' );
-        echo '<script>
-        setTimeout(function() {
-            jQuery("#nutriheroes").css("visibility", "visible");
-            jQuery("#nutriheroes").css("opacity", "1");
-        },1500);
-        </script>';
+        include_once( 'partes/footer/SubscribeSite.php' );       
     }
 
     echo comprimir_styles($HTML);
