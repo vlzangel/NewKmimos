@@ -182,7 +182,14 @@ $HTML = '
 
     // SubscribeSite
     if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
-        include_once( 'partes/footer/SubscribeSite.php' );
+        //include_once( 'partes/footer/SubscribeSite.php' );
+        include( 'partes/footer/Nutriheroes.php' );
+        echo '<script>
+        setTimeout(function() {
+            jQuery("#nutriheroes").css("visibility", "visible");
+            jQuery("#nutriheroes").css("opacity", "1");
+        },1500);
+        </script>';
     }
 
     echo comprimir_styles($HTML);
@@ -202,12 +209,14 @@ $HTML = '
         <!-- BEGIN Evento objetivo GA -->        
         <script>
         window.addEventListener(\"load\",function(){
-        var timer = setInterval(function(){
-        if(jQuery('#PageSubscribe .section3:contains(\"*Dentro de 48 hrs. Te enviaremos vía email tu cúpon de descuento\")').is(\":visible\")){
-        ga('send','event','message','submit','subscribe')
-        clearInterval(timer)
-        }
-        },2000)
+            var timer = setInterval(function(){
+            
+                if(jQuery('#PageSubscribe .section3:contains(\"*Dentro de 48 hrs. Te enviaremos vía email tu cúpon de descuento\")').is(\":visible\")){
+                    ga('send','event','message','submit','subscribe')
+                    clearInterval(timer)
+                }
+
+            },2000)
         })
         </script>
         <!-- END Evento objetivo GA -->        

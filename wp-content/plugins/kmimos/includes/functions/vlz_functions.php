@@ -1087,6 +1087,15 @@
 
         function kmimos_desglose_reserva_data($id, $email = false){
 
+            $cats = array(
+                "paseos"                    => 2601,
+                "adiestramiento_basico"     => 2602,
+                "adiestramiento_intermedio" => 2606,
+                "adiestramiento_avanzado"   => 2607,
+                "guarderia"                 => 2599,
+                "hospedaje"                 => 2598
+            );
+
             global $wpdb;
 
             /* Reserva y Orden */
@@ -1102,6 +1111,17 @@
 
             $tipo_servicio = explode("-", $producto->post_title);
             $tipo_servicio = $tipo_servicio[0];
+
+            $tipo = $wpdb->get_var("
+                SELECT
+                    tipo_servicio.slug AS tipo
+                FROM 
+                    wp_term_relationships AS relacion
+                LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
+                WHERE 
+                    relacion.object_id = '{$producto->ID}' AND
+                    relacion.term_taxonomy_id != 28
+            ");
 
             $precio_base = get_post_meta( $producto->ID, "_price", true );
 
@@ -1130,15 +1150,15 @@
             }
 
             $variaciones_array = array(
-                "peque" => "Peque", 
-                "media" => "Media",
+                "pequenos" => "Peque", 
+                "medianos" => "Media",
                 "grandes"   => "Grand", 
                 "gigantes"  => "Gigan"
             );
 
             $txts = array(
-                "peque"  => 'Pequeña', 
-                "media"  => 'Mediana', 
+                "pequenos"  => 'Pequeña', 
+                "medianos"  => 'Mediana', 
                 "grandes"   => "Grande", 
                 "gigantes"  => "Gigante"
             );
@@ -1150,15 +1170,23 @@
 
             $info = kmimos_get_info_syte();
 
+            $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$producto->post_author);
+
+            $precios = unserialize($cuidador->hospedaje);
+            if( trim($tipo_servicio) != "Hospedaje" ){
+                $data = unserialize($cuidador->adicionales);
+                $precios = $data[ $tipo ];
+            }
+
             $variaciones = array(); $grupo = 0;
             foreach ($variaciones_array as $key => $value) {
                 if( isset( $mascotas[$value] ) ){
                     $plural_tamanos = ""; if( $detalles_reserva[$value] > 1 ){ $plural_tamanos = "s"; }
-                    $variacion_ID = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_parent={$producto->ID} AND post_name LIKE '%{$key}%' ");
-                    $unitario = $precio_base+get_post_meta($variacion_ID, "block_cost", true);
+                    
+                    $unitario = $precios[$key]*getComision();
+                    
                     $variaciones[] = array(
                         $mascotas[$value],
-                        //"Mascota".$plural_tamanos." ".
                         $txts[$key].$plural_tamanos,
                         $dias.' '.$dias_noches,
                         number_format( $unitario, 2, ',', '.'),
@@ -1214,7 +1242,7 @@
 
             $diferencia = 0;
             $pago_descuentos = $desglose['deposit']+$metas_orden["_cart_discount"][0];
-            $comision = ($pago-($pago/1.2));
+            $comision = ($pago-($pago/getComision()));
 
             if( $comision < $pago_descuentos ){
                 $diferencia = $pago_descuentos-$comision;

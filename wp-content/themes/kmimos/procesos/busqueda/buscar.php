@@ -168,8 +168,8 @@
 
     /* Filtros por rangos */
     if( isset($rangos) ){
-	    if( $rangos[0] != "" ){ $condiciones .= " AND (hospedaje_desde*1.2) >= '".$rangos[0]."' "; }
-	    if( $rangos[1] != "" ){ $condiciones .= " AND (hospedaje_desde*1.2) <= '".$rangos[1]."' "; }
+	    if( $rangos[0] != "" ){ $condiciones .= " AND (hospedaje_desde*1.25) >= '".$rangos[0]."' "; }
+	    if( $rangos[1] != "" ){ $condiciones .= " AND (hospedaje_desde*1.25) <= '".$rangos[1]."' "; }
 	    if( $rangos[2] != "" ){ $anio_1 = date("Y")-$rangos[2]; $condiciones .= " AND experiencia <= '".$anio_1."' "; }
 	    if( $rangos[3] != "" ){ $anio_2 = date("Y")-$rangos[3]; $condiciones .= " AND experiencia >= '".$anio_2."' "; }
 	    if( $rangos[4] != "" ){ $condiciones .= " AND rating >= '".$rangos[4]."' "; }
@@ -268,7 +268,7 @@
 	        cuidadores.longitud,
 	        cuidadores.latitud,
 	        cuidadores.adicionales,
-	        (cuidadores.hospedaje_desde*1.2) AS precio,
+	        (cuidadores.hospedaje_desde*1.25) AS precio,
 	        cuidadores.experiencia,
 	        cuidadores.valoraciones,
 	        post_cuidador.post_name AS slug,

@@ -73,6 +73,7 @@ $reservas = getReservas($_desde, $_hasta);
 			    <tr>
 			      <th>#</th>
 			      <th># Reserva</th>
+			      <th>Flash</th>
 			      <th>Estatus</th>
 			      <th>Fecha Reservacion</th>
 			      <th>Check-In</th>
@@ -212,11 +213,28 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						}
 
+						$flash = "";
+						if( $meta_reserva['_booking_flash'] == "SI" ){
+							$flash = '
+								<i 
+									class="fa fa-bolt" 
+									aria-hidden="true"
+									style="
+										padding: 2px 4px;
+									    border-radius: 50%;
+									    background: #00c500;
+									    color: #FFF;
+									    margin-right: 2px;
+									"
+								></i> Flash
+							';
+						}
 
 				  	?>
 				    <tr>
 			    	<th class="text-center"><?php echo ++$count; ?></th>
 					<th><?php echo $reserva->nro_reserva; ?></th>
+					<th><?php echo $flash; ?></th>
 					<th class="text-center"><?php echo $estatus['sts_corto']; ?></th>
 					<th class="text-center"><?php echo $reserva->fecha_solicitud; ?></th>
 
@@ -261,7 +279,7 @@ $reservas = getReservas($_desde, $_hasta);
 						$deposito = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$meta_reserva['_booking_order_item_id']} AND meta_key = '_wc_deposit_meta' ");
 						$deposito = unserialize($deposito);
 						if( $deposito["enable"] == "yes" ){
-							echo "Pago 17%";
+							echo "Pago 20%";
 						}else{
 							echo "Pago Total";
 						}

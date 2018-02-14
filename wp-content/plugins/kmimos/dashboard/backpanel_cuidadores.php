@@ -60,6 +60,7 @@ $users = getUsers($desde, $hasta);
 			  <thead>
 			    <tr>
 			      <th>ID</th>
+			      <th>Flash</th>
 			      <th>Fecha Registro</th>
 			      <th>Nombre y Apellido</th>
 			      <th>Nombre</th>
@@ -127,10 +128,30 @@ $users = getUsers($desde, $hasta);
 				  				$r12 = ($value['cant']>1)? "SI" : "NO" ;
 					  		}
 					  	}
-*/
+*/	
+					  	$atributos = $wpdb->get_var("SELECT atributos FROM cuidadores WHERE user_id = ".$row['ID']);
+					  	$atributos = unserialize($atributos);
+
+					  	$flash = "";
+						if( $atributos['flash'] == 1 ){
+							$flash = '
+								<i 
+									class="fa fa-bolt" 
+									aria-hidden="true"
+									style="
+										padding: 2px 4px;
+									    border-radius: 50%;
+									    background: #00c500;
+									    color: #FFF;
+									    margin-right: 2px;
+									"
+								></i> Flash
+							';
+						}
 			  		?>
 				    <tr>
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
+						<th><?php echo $flash; ?></th>
 						<th><?php echo date_convert($row['user_registered'], 'd-m-Y') ; ?></th>
 						<th><?php echo $name; ?></th>
 						<th><?php echo $usermeta["first_name"]; ?></th>
