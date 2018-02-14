@@ -1096,6 +1096,15 @@
                 "hospedaje"                 => 2598
             );
 
+            $cats_2 = array(
+                "paseos"                    => "paseos",
+                "adiestramiento-basico"     => "adiestramiento_basico",
+                "adiestramiento-intermedio" => "adiestramiento_intermedio",
+                "adiestramiento-avanzado"   => "adiestramiento_avanzado",
+                "guarderia"                 => "guarderia",
+                "hospedaje"                 => "hospedaje"
+            );
+
             global $wpdb;
 
             /* Reserva y Orden */
@@ -1172,10 +1181,14 @@
 
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$producto->post_author);
 
+            echo "<pre>";
+                print_r($data[ $cats_2[ $tipo ] ] ) ;
+            echo "</pre>";
+
             $precios = unserialize($cuidador->hospedaje);
             if( trim($tipo_servicio) != "Hospedaje" ){
                 $data = unserialize($cuidador->adicionales);
-                $precios = $data[ $tipo ];
+                $precios = $data[ $cats_2[ $tipo ] ];
             }
 
             $variaciones = array(); $grupo = 0;
