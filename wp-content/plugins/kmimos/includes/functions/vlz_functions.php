@@ -1175,7 +1175,7 @@
             $precios = unserialize($cuidador->hospedaje);
             if( trim($tipo_servicio) != "Hospedaje" ){
                 $data = unserialize($cuidador->adicionales);
-                $precios = $data[ $cats[$tipo] ];
+                $precios = $data[ $tipo ];
             }
 
             $variaciones = array(); $grupo = 0;
