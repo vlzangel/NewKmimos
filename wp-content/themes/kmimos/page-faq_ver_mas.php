@@ -1,21 +1,17 @@
 <?php 
-  
+     /*
+        Template Name: FAQ Ver Mas
+    */
     wp_enqueue_style('faq_style', getTema()."/css/faq.css", array(), '1.0.0');
 
 	wp_enqueue_script('faq_script', getTema()."/js/faq.js", array(), '1.0.0');
 
     get_header();
-
-
-
-	//$parents = get_ayuda_categoria( get_the_ID() );
-
 	
+	$categoria= $_GET['categoria'];
 
-	
 ?>
 
-	
 
 	<div class="km-ficha-bg" style="background-image: url(<?php echo getTema().'/images/new/ayuda/kmimos_ayuda.jpg'; ?>)">
 		<div class="overlay"></div>
@@ -35,29 +31,26 @@
 			<section class="row text-center titulo-servicios">
 				<span>SERVICIOS KMIMOS</span>
 			</section>
-  
- 			 <?php get_categoria_pregunta(get_the_ID()); ?>
-			<!-- Temas -->
-			<section class="row text-left" aria-multiselectable="true">
-				<?php if ( have_posts() ){ the_post(); ?>
-					<article class="tema-container">
-						<h3>
-							<?php the_title(); ?>
-						</h3>
-						<div class="col-md-12">
-							<div class="tema-content">
-								<?php the_content(); ?>
-							</div>
-						</div>					
-					</article>
-				<?php } ?>				
+
+
+			<section class="row text-left">
+			<?php get_preguntas_categoria($categoria); ?>	
+			
 			</section>
-				<a style="text-decoration:none" href="../"><h3 style="color: #2196F3;"><b>Volver</b></h3></a>
+
+			<a style="text-decoration:none" href="../ayuda"><h3 style="color: #2196F3;"><b>Volver</b></h3></a>
 		</div>
 	</div>
 
-<?php 
-	get_ayuda_relacionados(get_the_ID()); 
+	<section class="temas-sugeridos">
+		<div class="sugeridos-content text-center">
+			<div class="container">
+			¿No encontraste lo que buscabas? <a href="<?php echo get_home_url(); ?>/contacta-con-nosotros/"><b> Cont&aacute;ctanos</b></a>
+			</div>
+		</div>
+	</section>
+
+<?php
 	get_footer(); 
 ?>
 

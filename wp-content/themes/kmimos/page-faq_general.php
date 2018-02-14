@@ -30,7 +30,7 @@
 			
 			
 			<!-- Busqueda -->
-			<?php get_form_filtrar_ayuda(); ?>
+			<?php get_form_filtrar_ayuda("../../"); ?>
 
 			<!-- SubTitulos -->
 			<section class="row text-center titulo-servicios">
