@@ -39,6 +39,10 @@
 			
 			<!-- Busqueda -->
 			<?php get_form_filtrar_ayuda(); ?>
+			<section class="row">
+			<!-- Ayuda Cliente-Cuidadores -->
+			<?php get_form_ayuda_cliente_cuidador(); ?>
+			</section>
 
 			<!-- Presentacion -->
 			<section class="row text-center presentacion" data-group="presentacion">
@@ -48,18 +52,14 @@
  						<article>
 							<a href="<?php echo get_permalink(); ?>">
 								<img class="img-responsive" width="50%" src="<?php echo get_the_post_thumbnail_url(); ?>">
-								<h2><?php the_title(); ?></h2>
+								<h2 style="font-size:25px"><?php the_title(); ?></h2>
 							</a>
 						</article>
 				<?php } ?>
 
 			</section>
- 
 		</div>
 	</div>
-
-
-<?php get_ayuda_sugeridos('sugeridos'); ?>
-
+<?php get_ayuda_sugeridos(); ?>
 <?php get_footer(); ?>
 

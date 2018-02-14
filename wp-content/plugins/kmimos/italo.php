@@ -64,6 +64,21 @@
 	    }
 	}
 
+	if(!function_exists('get_form_ayuda_cliente_cuidador')){
+		function get_form_ayuda_cliente_cuidador(){
+			echo '<section class="row km-caja-filtro ayuda-busqueda">
+				<div class="col-sm-6">
+					<input type="button" id="ayudaclientes" style="font-size:20px;" class="km-btn-primary" value="Ayuda para Clientes">
+					</div>
+				<div class="col-sm-6">
+					<input type="button" id="ayudacuidador" style="font-size:20px;" class="km-btn-primary" value="Ayuda para Cuidadores">
+					</div>
+					</section>';
+		}
+	}
+
+
+
 
 	if(!function_exists('get_form_filtrar_ayuda')){
 		function get_form_filtrar_ayuda(){
@@ -74,7 +89,7 @@
 							<input type="text" name="nombre" value="" placeholder="BUSCAR TEMAS DE AYUDA" class=" ">
 							<span class="input-group-btn">
 								<button type="submit">
-									<img src="https://mx.kmimos.la/wp-content/themes/kmimos/images/new/km-buscador.svg" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
+									<img src="'.getTema().'/images/new/km-buscador.svg" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
 								</button>
 							</span>
 					</div>
@@ -170,37 +185,39 @@
 	/* Temas Sugeridos */
 	if(!function_exists('get_ayuda_sugeridos')){
 		function get_ayuda_sugeridos( $parent='sugeridos', $ID = 0, $echo = true ){
-
+		global $wpdb;
 			$HTML= '';
-			$sugeridos = get_posts(
-			    array(
-					'post_status' => 'publish', 
-			        'post_type' => 'faq',
-			        'tax_query' => array(
-				        array(
-				            'taxonomy' => 'seccion',
-				            'field'    => 'slug',
-				            'terms'    => $parent
-				        )
-				    )
-			    )
-			);
+		    $seccionessugeridos = $wpdb->get_results("select t.term_id,name,slug from wp_terms t inner join wp_term_taxonomy  tx where t.term_id=tx.term_id  
+				and (select slug from wp_terms tt where tt.term_id = tx.parent) = 'sugeridos' limit 3 ");
 
- 
-			if( !empty($sugeridos) ) { 	
+ 			
+			if( !empty($seccionessugeridos) ) { 	
  
 				$article = '';
-				foreach ($sugeridos as $post) { 
+				
+				foreach ($seccionessugeridos as $categoria) { 
 
-					if( $post->ID != $ID ){
+					 $postsugeridos = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
+						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id." limit 2");
+
+					 $article .= '<h3><b>'.$categoria->name.'</b></h3>';
+
+					foreach ($postsugeridos as $post) { 
+
+					if($post->ID != $ID ){
 						$article .= '
 							<article>
-								<a href="'.get_the_permalink($post->ID).'">
-									<h3>'.$post->post_title.'</h3>
+								<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
+									<h3>&nbsp;&nbsp;&nbsp;&nbsp;'.$post->post_title.'</h3>
 								</a>
 							</article>
 						';
 					}
+
+				}
+
+				$article .= '<a style="text-decoration:none" href="'.get_home_url().'/ayuda-ver-mas?categoria='.$categoria->term_id.'"><h3 style="color: #2196F3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Ver mas</b></h3></a>';
+					
 				}
 				if( $article != '' ){
 					$HTML = '
@@ -223,6 +240,135 @@
 			}
 		}
 	}
+
+if(!function_exists('get_categoria_pregunta')){
+ 		function get_categoria_pregunta($id_post){
+ 				global $wpdb;
+				$HTML= '';
+				 $categoriapadre = $wpdb->get_results("select t.name,t.slug,t.term_id from wp_term_relationships tr 
+					inner join wp_term_taxonomy tx on tr.term_taxonomy_id=tx.term_taxonomy_id
+					inner join wp_terms t on tx.term_id=t.term_id
+					 where object_id=".$id_post);
+				$article = '';
+				foreach ($categoriapadre as $post) { 
+						$article .= '
+							<article>
+									<h3><b>'.$post->name.'</b></h3>
+								
+							</article>
+						';
+					}
+
+				$HTML = $article;
+				print_r($HTML);
+				
+			}
+		}
+
+if(!function_exists('get_ayuda_relacionados')){
+		function get_ayuda_relacionados($id_post){
+				global $wpdb;
+				$HTML= '';
+
+				 $categoriapadre = $wpdb->get_results("select t.name,t.slug,t.term_id from wp_term_relationships tr 
+					inner join wp_term_taxonomy tx on tr.term_taxonomy_id=tx.term_taxonomy_id
+					inner join wp_terms t on tx.term_id=t.term_id
+					 where object_id=".$id_post." limit 1");
+				foreach ($categoriapadre as $post) { 
+					$id_padre=$post->term_id;
+				}
+
+				$postsrelacionados = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
+						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$id_padre." and p.ID!= ".$id_post." limit 2");
+
+				if( !empty($postsrelacionados) ) { 	
+ 
+				$article = '';
+					foreach ($postsrelacionados as $post) { 
+
+						
+							$article .= '
+								<article>
+									<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
+										<h3>'.$post->post_title.'</h3>
+									</a>
+								</article>
+							';
+						
+
+					}
+					if( $article != '' ){
+					$HTML = '
+					<section class="temas-sugeridos">
+						<span class="title">Temas Relacionados</span>
+						<div class="sugeridos-content text-left">
+							<div class="container">
+							'.$article.'
+							</div>
+						</div>
+					</section>
+					';
+				}
+
+
+				}
+				print_r($HTML);
+			}
+		}
+
+if(!function_exists('get_preguntas_categoria')){
+	    function get_preguntas_categoria($id_categoria){
+	    		global $wpdb;
+				$HTML= '';
+
+
+
+
+				$preguntas = $wpdb->get_results("select p.ID,p.post_title,t.name as namecategoria from wp_term_relationships tr 
+						inner join wp_posts p on tr.object_id=p.ID 
+						inner join wp_term_taxonomy tx on tr.term_taxonomy_id = tx.term_taxonomy_id
+						inner join wp_terms t on tx.term_id=t.term_id
+						 where tr.term_taxonomy_id=".$id_categoria);
+
+
+
+			if( !empty($preguntas) ) { 	
+ 
+					$article= '';
+					foreach ($preguntas as $post) { 
+					$nombreCategoria=$post->namecategoria;
+							$article .= ' <a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
+										<h3><li>'.$post->post_title.'</li></h3>
+									</a>
+								
+							';
+
+
+					}
+
+					
+
+
+					if( $article != '' ){
+					$HTML = '
+					<section class="row text-left">
+						<h3><b>'.$nombreCategoria.'</b></h3>
+						<div class="sugeridos-content text-left">
+							<div class="container">
+							'.$article.'
+							</div>
+						</div>
+					</section>
+					';
+				}
+
+
+				}
+				print_r($HTML);
+
+	}
+}
+
 
 	if(!function_exists('validar_perfil_completo')){
 	    function validar_perfil_completo(){
