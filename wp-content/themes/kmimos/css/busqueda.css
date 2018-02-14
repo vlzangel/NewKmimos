@@ -21,6 +21,16 @@ h1 a:hover{
     text-decoration: none;
 }
 
+.bx-wrapper .bx-prev{
+    background: #fff url(images/controls_3.png) no-repeat 0 -32px!important; 
+    display: block!important;
+}
+
+.bx-wrapper .bx-next{
+    background: #fff url(images/controls_3.png) no-repeat -43px -32px!important; 
+    display: block!important;
+}
+
 .rating img {
     width: 20px;
 }

@@ -21,7 +21,7 @@
 							<span class="nutri-paso"><span class="nutri-paso-text">PASO</span> 2</span><span class="nutri-text">Elige la marca de tu preferencia</span>
 						</li>
 						<li>
-							<span class="nutri-paso"><span class="nutri-paso-text">PASO</span> 3</span><span class="nutri-text">Escoge la presentacion que deseas</span>
+							<span class="nutri-paso"><span class="nutri-paso-text">PASO</span> 3</span><span class="nutri-text">Escoge la presentaci&oacute;n que deseas</span>
 						</li>
 						<li> 
 							<span class="nutri-paso"><span class="nutri-paso-text">PASO</span> 4</span><span class="nutri-text">Verifica y realiza tu pago</span>

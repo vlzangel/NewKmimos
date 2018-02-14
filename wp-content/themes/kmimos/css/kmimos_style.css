@@ -5467,6 +5467,9 @@ h1.maps {
     }
 }
 @media (max-width:575px) {
+	.km-search-slider .item-slide{
+	    width: 90%!important;
+	}
     .km-registro-checkbox-opcion {
         width:100%;
         display:block
