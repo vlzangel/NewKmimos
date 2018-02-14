@@ -8,9 +8,6 @@
     wp_enqueue_script('buscar_home', getTema()."/js/home.js", array(), '1.0.0');
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
-
-	wp_enqueue_style( 'nutriheroes_modal', getTema()."/css/nutriheroes.css" );
-	wp_enqueue_style( 'nutriheroes_responsive', getTema()."/css/responsive/nutriheroes_responsive.css" );
             
 
     get_header();
