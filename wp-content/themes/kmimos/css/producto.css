@@ -1,5 +1,13 @@
 /* New */
 
+.msg_mismo_dia{
+    margin: 15px 0px 0px;
+    padding: 10px;
+    background: #ff8300;
+    color: #FFF;
+    border-radius: 5px;
+}
+
 .km-input-custom {
     border-bottom: solid 1px #CCC !important;
     padding: 10px 20px !important;

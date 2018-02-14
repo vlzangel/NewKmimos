@@ -36,6 +36,8 @@
 	$db->query( utf8_decode($sql) );
 	$coment_id = $db->insert_id();
 
+	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$post_id}', 'customer_comment', '{$coment_id}'); ";
+
 	$sql  = "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'care', '{$cuidado}'); ";
 	$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'punctuality', '{$puntualidad}'); ";
 	$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'cleanliness', '{$limpieza}'); ";

@@ -1,4 +1,8 @@
 <?php
+
+	function getComision(){
+    	return 1.25;
+	}
 	
 	function tiene_fotos_por_subir($user_id, $login = false){
 		global $wpdb;

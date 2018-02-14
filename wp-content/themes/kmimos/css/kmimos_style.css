@@ -6902,13 +6902,15 @@ position: absolute;
 }
 /* SECCIÓN  - KMIMOS VACACIONES */
 .km-vacaciones {
-    background: url(../images/km-vacaciones.gif) no-repeat;
+	background: #000;
     background-size: cover;
     background-position: center center;
     color: white;
     text-align: center;
     padding: 150px 0;
     height: 600px;
+    position: relative;
+    overflow: hidden;
 }
 .km-vacaciones p, .km-vacaciones h2 {
     letter-spacing: 1px;

@@ -99,6 +99,7 @@
             $headers_admins = array(
                 'BCC: e.celli@kmimos.la',
                 'BCC: a.lazaro@kmimos.la',
+                'BCC: a.vera@kmimos.la',
                 'BCC: r.cuevas@kmimos.la',
                 'BCC: r.gonzalez@kmimos.la',
                 'BCC: m.castellon@kmimos.la',
