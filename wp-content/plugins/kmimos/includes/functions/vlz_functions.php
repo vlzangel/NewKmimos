@@ -1181,10 +1181,6 @@
 
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$producto->post_author);
 
-            echo "<pre>";
-                print_r($data[ $cats_2[ $tipo ] ] ) ;
-            echo "</pre>";
-
             $precios = unserialize($cuidador->hospedaje);
             if( trim($tipo_servicio) != "Hospedaje" ){
                 $data = unserialize($cuidador->adicionales);
@@ -1411,6 +1407,7 @@
                     "adicionales" => $adicionales_desglose,
 
                     "pdf" => $metas_orden['_openpay_pdf'][0],
+                    "vence" => $metas_orden['_openpay_tienda_vence'][0],
 
                     "aceptar_rechazar" => $aceptar_rechazar,
 

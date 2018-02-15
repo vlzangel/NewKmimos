@@ -86,7 +86,7 @@
 				$desglose = $pago;
 				if( $pago["enable"] == "yes" ){
 					$desglose["descuento"] = $_metas_orden["_cart_discount"][0];
-					$desglose["tipo"] = "DEPÓSITO DEL 17%";
+					$desglose["tipo"] = "DEPÓSITO DEL 20%";
 				}else{
 					$desglose["subtotal"] = $items["_line_subtotal"]-$_metas_orden["_cart_discount"][0];
 					$desglose["total"] = $items["_line_subtotal"];

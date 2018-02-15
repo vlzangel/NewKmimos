@@ -47,7 +47,7 @@
                 $servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".$value["img"]."' height='100%' >";
             }
         }
-    	$temp = str_replace("[MONTO]", number_format( ($valor->hospedaje_desde*1.2), 2, ',', '.'), $plantilla_cuidador);
+    	$temp = str_replace("[MONTO]", number_format( ($valor->hospedaje_desde*getComision()), 2, ',', '.'), $plantilla_cuidador);
     	$temp = str_replace("[AVATAR]", kmimos_get_foto($valor->user_id), $temp);
     	$temp = str_replace("[NAME_CUIDADOR]", $nombre->post_title, $temp);
     	$temp = str_replace("[HUESOS]", $rating_txt, $temp);
