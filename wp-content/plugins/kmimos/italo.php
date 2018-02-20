@@ -61,6 +61,13 @@
 	if(!function_exists('italo_include_admin_script')){
 	    function italo_include_admin_script(){
 	        include_once('dashboard/assets/config_backpanel.php');
+	        wp_enqueue_script('faq_script', getTema()."/js/faq.js", array(), '1.0.0');
+	        $HTML = '
+					<script type="text/javascript"> 
+						var HOME = "'.getTema().'/"; 
+						var RAIZ = "'.get_home_url().'/"; 
+					</script>';
+			echo comprimir_styles($HTML);
 	    }
 	}
 
