@@ -7,6 +7,8 @@
 	wp_enqueue_script('faq_script', getTema()."/js/faq.js", array(), '1.0.0');
 
     get_header();
+
+
 	
 	if(!isset($_SESSION['ayuda']['default'])){
 		$redirect = true;
@@ -76,14 +78,16 @@
 					<?php foreach ($resultado as $post) { 
 						if(!empty($post->post_title) && !empty($post->post_content) ){?>
 							<article class="col-xs-12 col-md-12 ayuda-items">
-								<h3 role="button" data-toggle="collapse" href="#item<?php echo $post->ID; ?>">
-									<?php echo ucfirst( strtolower($post->post_title) ); ?>
-								</h3>
-								<div class="collapse" id="item<?php echo $post->ID; ?>">
+								<a style="text-decoration:none" href="<?php echo get_the_permalink($post->ID); ?>">
+												 <h3>
+													<?php echo ucfirst( strtolower($post->post_title) ); ?>
+												</h3>
+											</a>
+								<!--<div class="collapse" id="item<?php echo $post->ID; ?>">
 									<div class="well">
 										<?php echo $post->post_content; ?>
 									</div>
-								</div>
+								</div>-->
 								<div><hr></div>
 							</article>
 						<?php }?>
@@ -95,29 +99,32 @@
 
 					$secciones = $_SESSION['ayuda']['filtro'];
 					foreach ($secciones as $seccion) {
-						$seccion_ignore = ['destacado', 'sugeridos'];
+						$seccion_ignore = ['ayuda-para-clientes','ayuda-para-cuidadores','destacado','destacado', 'destacados_cuidadores','sugeridos', 'sugeridos-cuidadores'];
 						if( !in_array( $seccion->slug, $seccion_ignore ) ){
 						?>
 							<article class="col-xs-12 col-md-12 ayuda-group">
 
 								<h3 role="button" data-toggle="collapse" href="#seccion<?php echo $seccion->term_id; ?>">
-									<strong><?php echo ucfirst( strtolower($seccion->name) ); ?></strong>
+									<strong><?php echo $seccion->name; ?></strong>
 								</h3>
 								<div class="collapse" id="seccion<?php echo $seccion->term_id; ?>">
 									
 									<?php
 										$posts = get_ayuda_postBySeccion( $seccion->slug ); 
+									
 										foreach ($posts as $post) {
 									?>
 										<article class="col-xs-12 col-md-12 ayuda-items">
-											<h3 role="button" data-toggle="collapse" href="#item<?php echo $post->ID; ?>">
-												<?php echo ucfirst( strtolower($post->post_title) ); ?>
-											</h3>
-											<div class="collapse" id="item<?php echo $post->ID; ?>">
+											<a style="text-decoration:none" href="<?php echo get_the_permalink($post->ID); ?>">
+												 <h3>
+													<?php echo $post->post_title; ?>
+												</h3>
+											</a>
+											<!--<div class="collapse" id="item<?php echo $post->ID; ?>">
 												<div class="well">
 													<?php echo $post->post_content; ?>
 												</div>
-											</div>
+											</div>-->
 											<div><hr></div>
 										</article>
 									<?php }?>
@@ -132,7 +139,7 @@
 				<?php } ?>
 
 			</section>
-
+				<a style="text-decoration:none" href="<?php echo get_home_url(); ?>/ayuda/"><h3 style="color: #2196F3;"><b>Volver</b></h3></a>
 
 		</div>
 	</div>
