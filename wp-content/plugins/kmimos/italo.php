@@ -75,10 +75,10 @@
 		function get_form_ayuda_cliente_cuidador(){
 			echo '<section class="row km-caja-filtro ayuda-busqueda">
 				<div class="col-sm-6">
-					<input type="button" id="ayudaclientes" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Clientes">
+					<input type="button" id="ayudaclientes" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Clientes">
 					</div>
 				<div class="col-sm-6">
-					<input type="button" id="ayudacuidador" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Cuidadores">
+					<input type="button" id="ayudacuidador" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Cuidadores">
 					</div>
 					</section>';
 		}
@@ -170,10 +170,12 @@
 	if(!function_exists('get_ayuda_sugeridos')){
 		function get_ayuda_postBySeccion( $parent='' ){
 
+			
 			$posts = get_posts(
 			    array(
 					'post_status' => 'publish', 
 			        'post_type' => 'faq',
+			        'numberposts' => '',
 			        'tax_query' => array(
 				        array(
 				            'taxonomy' => 'seccion',
@@ -191,11 +193,12 @@
 
 	/* Temas Sugeridos */
 	if(!function_exists('get_ayuda_sugeridos')){
-		function get_ayuda_sugeridos( $parent='sugeridos', $ID = 0, $echo = true ){
+		function get_ayuda_sugeridos( $sugerido , $ID = 0, $echo = true ){
+
 		global $wpdb;
 			$HTML= '';
 		    $seccionessugeridos = $wpdb->get_results("select t.term_id,name,slug from wp_terms t inner join wp_term_taxonomy  tx where t.term_id=tx.term_id  
-				and (select slug from wp_terms tt where tt.term_id = tx.parent) = 'sugeridos'  ");
+				and (select slug from wp_terms tt where tt.term_id = tx.parent) = '".$sugerido."'  ");
 
  			
 			if( !empty($seccionessugeridos) ) { 	
@@ -203,11 +206,6 @@
 				$article = '';
 				
 				foreach ($seccionessugeridos as $categoria) { 
-
-
-
-
-
 
 					 $postsugeridos = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
 						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id." limit 2");
@@ -297,7 +295,7 @@ if(!function_exists('get_ayuda_relacionados')){
 				 $categoriapadre = $wpdb->get_results("select t.name,t.slug,t.term_id from wp_term_relationships tr 
 					inner join wp_term_taxonomy tx on tr.term_taxonomy_id=tx.term_taxonomy_id
 					inner join wp_terms t on tx.term_id=t.term_id
-					 where object_id=".$id_post." limit 1");
+					 where object_id=".$id_post." and t.slug not in ('destacado','destacados_cuidadores') limit 1");
 				foreach ($categoriapadre as $post) { 
 					$id_padre=$post->term_id;
 				}

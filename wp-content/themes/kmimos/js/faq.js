@@ -7,8 +7,6 @@ jQuery(document).ready(function(){
 	});*/
  
 
-		
-
     jQuery.post(
         HOME+"/procesos/faq/categorias.php",
         {},
@@ -16,9 +14,7 @@ jQuery(document).ready(function(){
         	var destacados= data.cantidad;
         	var iddestacados= data.id;
         	var destacados2= data.cantidad2;
-        	var iddestacados2= data.id2;
-
-        	
+        	var iddestacados2= data.id2;        	
 	        	if(destacados>=2){
 					jQuery("#taxonomy-seccion").on("click", function(e){
 					    	var id = e.target.id;	
@@ -31,10 +27,7 @@ jQuery(document).ready(function(){
 							    }
 						}
 					    	
-
-
 					});
-
 
 			}
 
@@ -50,11 +43,7 @@ jQuery(document).ready(function(){
 							    }
 						}
 					    	
-
-
 					});
-
-
 
 			}
          
@@ -63,15 +52,19 @@ jQuery(document).ready(function(){
 
     );
 
-
-
-
-
-    
-
-
 		
- 			
 	
 });
 
+
+function cambiarAyuda(valor){
+
+		if(valor=='ayudaclientes'){
+				  location.href = RAIZ+"ayuda?ayuda=clientes";
+
+		}else if (valor=='ayudacuidador'){
+				   location.href = RAIZ+"ayuda?ayuda=cuidadores";
+
+		}
+	
+}

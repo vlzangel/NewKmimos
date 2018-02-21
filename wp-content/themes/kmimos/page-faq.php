@@ -9,6 +9,30 @@
 
     get_header();
 
+    
+
+    if($_GET['ayuda']){
+
+    	if($_GET['ayuda']=="clientes"){
+			$ayuda="destacado";
+			$sugerido="sugeridos";
+
+    	}else if ($_GET['ayuda']=="cuidadores"){
+			$ayuda="destacados_cuidadores";
+			$sugerido="sugeridos-cuidadores";
+
+    	}
+
+		
+
+    }else{
+
+    	$ayuda="destacado";
+    	$sugerido="sugeridos";
+    }
+
+
+
     /* Temas de ayuda Destacados */
 	$destacados = get_posts(
 	    array(
@@ -19,7 +43,7 @@
 		        array(
 		            'taxonomy' => 'seccion',
 		            'field'    => 'slug',
-		            'terms'    => 'destacado'
+		            'terms'    => $ayuda
 		        )
 		    )
 	    )
@@ -60,6 +84,6 @@
 			</section>
 		</div>
 	</div>
-<?php get_ayuda_sugeridos(); ?>
+<?php get_ayuda_sugeridos($sugerido); ?>
 <?php get_footer(); ?>
 
