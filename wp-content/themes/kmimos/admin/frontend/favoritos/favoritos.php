@@ -21,7 +21,7 @@
                         cuidadores.longitud,
                         cuidadores.latitud,
                         cuidadores.adicionales,
-                        (cuidadores.hospedaje_desde*1.2) AS precio,
+                        (cuidadores.hospedaje_desde*1.25) AS precio,
                         cuidadores.experiencia, 
                         posts.post_title as titulo, 
                         posts.post_name as slug 

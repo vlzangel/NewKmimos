@@ -359,7 +359,7 @@
 						<form id="form_cuidador" method="POST" action="'.getTema().'/procesos/reservar/redirigir_reserva.php">
 							<div class="servicio_desde">
 								<p>SERVICIOS DESDE</p>
-								<div class="km-tit-costo">'.get_region("moneda_cod").' $ '.($cuidador->hospedaje_desde*1.2).'</div>
+								<div class="km-tit-costo">'.get_region("moneda_cod").' $ '.($cuidador->hospedaje_desde*1.25).'</div>
 							</div>
 							<div class="km-ficha-fechas">
 								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
