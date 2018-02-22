@@ -19,6 +19,7 @@
 	$PayuP['pais'] = ucfirst(  get_region( 'pais' ) );
 	$PayuP['moneda'] = get_region( 'moneda_cod' );
 	// -- Reserva
+	$PayuP['code_orden'] = $id_orden;
 	$PayuP['id_orden'] = $id_orden.'_'.date('Ymd\THis');
 	$PayuP['monto'] =  ceil( $pagar->total );
 	// -- Clientes
@@ -35,6 +36,7 @@
 	$PayuP['cliente']['telef'] = $telefono;
 	$PayuP['cliente']['postal'] = '000000';
 	$PayuP["PayuDeviceSessionId"] = md5(session_id().microtime()); //$PayuDeviceSessionId;
+
 
 	$payu = new PayU();
 	switch ( $pagar->tipo ) {
@@ -66,18 +68,29 @@
 					$state = $charge->transactionResponse->responseCode;
 				}
 	        } catch (Exception $e) {
-				print_r($e);
+				$state = '';
 	        }
 
-			if ( $state == 'APPROVED' ) {
+			if( $state == 'PENDING_TRANSACTION_REVIEW' || 
+	        	$state == 'PENDING_TRANSACTION_CONFIRMATION' ||
+	        	$state == 'PENDING_TRANSACTION_TRANSMISSION' ||
+	        	$state == 'APPROVED' 
+	        ){
 
-				if( $deposito["enable"] == "yes" ){
-					$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
+				if ( $state == 'APPROVED' ) {
+					if( $deposito["enable"] == "yes" ){
+						$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
+					}else{
+						$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+						$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+					}
 				}else{
-					$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
-					$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
-				}
-
+					/*  Reserva_status : PENDING TRANSACTION 
+						Variable para cambiar el texto en la vista Finalizar
+					*/
+		        	$_SESSION['reserva_status'] = 'PENDING_TRANSACTION';
+	        	}
+				
 	            echo json_encode(array(
 					"order_id" => $id_orden
 				));
@@ -106,6 +119,9 @@
     
 				include(__DIR__."/../emails/index.php");
 
+	        /* ****************************************** *
+	         * Procesar Transacciones: Respuesta de error
+	         * ****************************************** */
 	        }else{
 
 	            echo json_encode(array(
@@ -199,3 +215,43 @@
 
 
 
+/* ******************************** *
+ * Guardar metadatos de cupos
+ * ******************************** */
+
+/*
+				$update_cupos = [ 
+					'session' => [], 
+					'no_session' => [],
+					'deposito_enable' => $deposito["enable"],
+				];
+
+			    if( isset($_SESSION[$id_session] ) ){
+			    	$update_cupos['session']['datos'] = [
+					    	"servicio" => $_SESSION[$id_session]["servicio"],
+					    	"tipo" => $parametros["pagar"]->tipo_servicio,
+				    		"autor" => $parametros["pagar"]->cuidador,
+					    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
+					    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
+					    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
+					    ];
+			    	$update_cupos['session']['accion'] = '-';
+					$_SESSION[$id_session] = "";
+					unset($_SESSION[$id_session]);
+				}
+
+		    	$update_cupos['no_session']['datos'] = [
+			    	"servicio" => $parametros["pagar"]->servicio,
+			    	"tipo" => $parametros["pagar"]->tipo_servicio,
+			    	"autor" => $parametros["pagar"]->cuidador,
+			    	"inicio" => strtotime($parametros["fechas"]->inicio),
+			    	"fin" => strtotime($parametros["fechas"]->fin),
+			    	"cantidad" => $cupos_a_decrementar
+			    ];
+		    	$update_cupos['no_session']['accion'] = "+";
+
+		    	$db->query("
+		    		INSERT INTO wp_postmeta ( post_id, meta_key, meta_value ) 
+		    		VALUES (".$id_orden.",'_session_transaccion','".serialize($update_cupos)."')"
+		    	);
+*/

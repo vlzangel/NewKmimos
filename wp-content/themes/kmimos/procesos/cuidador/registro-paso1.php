@@ -149,7 +149,37 @@
             $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
             $sql = "
-                INSERT INTO cuidadores VALUES (
+                INSERT INTO `cuidadores` (
+                    `id`,
+                    `user_id`,
+                    `id_post`,
+                    `nombre`,
+                    `apellido`,
+                    `dni`,
+                    `email`,
+                    `telefono`,
+                    `portada`,
+                    `experiencia`,
+                    `activo`,
+                    `descripcion`,
+                    `latitud`,
+                    `longitud`,
+                    `direccion`,
+                    `num_mascotas`,
+                    `mascotas_permitidas`,
+                    `check_in`,
+                    `check_out`,
+                    `mascotas_cuidador`,
+                    `tamanos_aceptados`,
+                    `edades_aceptadas`,
+                    `comportamientos_aceptados`,
+                    `hospedaje`,
+                    `hospedaje_desde`,
+                    `adicionales`,
+                    `atributos`,
+                    `rating`,
+                    `valoraciones`
+                ) VALUES (
                     NULL,
                     '0',
                     '0',
@@ -183,6 +213,7 @@
             ";
 
             if( $conn->query( utf8_decode( $sql ) ) ){
+
                 $cuidador_id = $conn->insert_id;
                 $hoy = date("Y-m-d H:i:s");     
 

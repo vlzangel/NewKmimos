@@ -95,9 +95,11 @@
 
     $estados_array = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
     $estados = "<option value=''>Seleccione un municipio</option>";
+    $municipio_default = "";
     foreach($estados_array as $estado) { 
-      	if( $mi_estado == $estado->id ){ 
-      		$sel = "selected"; 
+        if( $mi_estado == $estado->id ){ 
+            $sel = "selected"; 
+            $municipio_default = "<option value='".$estado->id."' $sel>".$estado->name."</option>";
     	}else{ $sel = ""; }
         $estados .= "<option value='".$estado->id."' $sel>".$estado->name."</option>";
     } 
@@ -105,11 +107,17 @@
   	$estados = utf8_decode($estados);
   	if($mi_delegacion != ""){
     	$municipios_array = $wpdb->get_results("SELECT * FROM locations WHERE state_id = {$mi_estado} ORDER BY name ASC");
-      	$muni = "<option value=''>Seleccione una localidad</option>";
-      	foreach($municipios_array as $municipio) { 
-        	if( $mi_delegacion == $municipio->id ){ $sel = "selected"; }else{ $sel = ""; }
-          	$muni .= "<option value='".$municipio->id."' $sel>".$municipio->name."</option>";
-      	}
+        $muni = '';
+        foreach($municipios_array as $municipio) { 
+            if( $mi_delegacion == $municipio->id ){ $sel = "selected"; }else{ $sel = ""; }
+            $muni .= "<option value='".$municipio->id."' $sel>".$municipio->name."</option>";
+        }
+      	if( !empty($muni) ){
+            $muni = "<option value=''>Seleccione una localidad</option>".$muni;
+        }else{
+            $muni = $municipio_default;
+        }
+
     	$muni = utf8_decode($muni);
     }else{
       	$muni = "<option value='' selected>Seleccione una localidad</option>";
