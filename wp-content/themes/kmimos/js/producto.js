@@ -224,8 +224,8 @@ function calcular(){
 	}
 	
 	if( error == "" ){
-		jQuery(".pago_17").html( moneda_signo + numberFormat(cant-(cant/1.2)) );
-		jQuery(".pago_cuidador").html( moneda_signo + numberFormat(cant/1.2) );
+		jQuery(".pago_17").html( moneda_signo + numberFormat(cant-(cant/1.25)) );
+		jQuery(".pago_cuidador").html( moneda_signo + numberFormat(cant/1.25) );
 		jQuery(".monto_total").html( moneda_signo + numberFormat(cant) );
 		CARRITO["pagar"]["total"] = cant;
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
@@ -568,8 +568,8 @@ function calcularDescuento(){
 
 	jQuery(".km-price-total2").html(moneda_signo+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 
-	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
-	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
+	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.25);
+	var pagoCuidador = CARRITO["pagar"]["total"]/1.25;
 	if( pre17 <= descuentos ){
 		if( pre17 < descuentos ){
 			var reciduo = pre17-descuentos;
