@@ -175,7 +175,7 @@
   		$extra = $db->get_var("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_name LIKE '%{$nombre}%' AND post_type = 'product'");
         
 	  	if( $extra != false ){
-	  		$bases[$nombre] *= 1.25;
+	  		$bases[$nombre] *= 1.2;
 
             if( $bases[$nombre] > 0 && ( $_POST['status_'.$nombre] == 1 || $nombre == "hospedaje" ) ){
                 $status = $status_global;
@@ -191,7 +191,7 @@
 
 	  		foreach ($tams as $tamano) {
 	  			$valor = ($_POST[$nombre.'_'.$tamano]+0);
-  				$valor *= 1.25;
+  				$valor *= 1.2;
 	  			if( $valor > 0 ){
 	  				$status = $status_global;
 	  				$base_variante = $valor-$bases[$nombre];
@@ -218,7 +218,7 @@
             $hoy = date("Y-m-d H:i:s");
             $nom = $cuidador_post->post_title;
 
-            $bases[$nombre] *= 1.25;
+            $bases[$nombre] *= 1.2;
 
             if( $bases[$nombre] > 0 ){
                 $status = $status_global;
@@ -258,7 +258,7 @@
 
             foreach ($tams as $tamano) {
                 $valor = ($_POST[$nombre.'_'.$tamano]+0);
-                $valor *= 1.25;
+                $valor *= 1.2;
                 if( $valor > 0 ){
                     $status = $status_global;
                     $base_variante = $valor-$bases[$nombre];
