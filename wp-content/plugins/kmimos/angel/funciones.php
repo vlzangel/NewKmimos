@@ -175,7 +175,7 @@
                             <div class="slide-content">
                                 <div class="slide-price-distance">
                                     <div class="slide-price">
-                                        Desde <span>'.get_region("mon_der").' $'.($cuidador->hospedaje_desde*1.2).'</span>
+                                        Desde <span>'.get_region("mon_der").' $'.($cuidador->hospedaje_desde*1.25).'</span>
                                     </div>
                                     <!--
                                     <div class="slide-distance">
