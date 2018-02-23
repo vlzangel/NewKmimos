@@ -110,13 +110,15 @@
             $precargas["adicionales"] = $_SESSION[$id_seccion]["adicionales"];
         }
 
+        if( isset($cats[$tipo]) ){
+	   		$tipo = $cats[$tipo];
+        }
+
 	    if( $tipo == "hospedaje" ){
 	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    }else{
-	    	$precios = getPrecios( $adicionales[ $cats[$tipo] ], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
+	    	$precios = getPrecios( $adicionales[ $tipo ], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    } 
-
-	    $tipo = $cats[$tipo];
 
 		$transporte = getTransporte($adicionales, $precargas["transp"]);
 		if( $transporte != "" ){

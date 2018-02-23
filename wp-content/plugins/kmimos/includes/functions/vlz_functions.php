@@ -1096,6 +1096,15 @@
                 "hospedaje"                 => 2598
             );
 
+            $cats_2 = array(
+                "paseos"                    => "paseos",
+                "adiestramiento-basico"     => "adiestramiento_basico",
+                "adiestramiento-intermedio" => "adiestramiento_intermedio",
+                "adiestramiento-avanzado"   => "adiestramiento_avanzado",
+                "guarderia"                 => "guarderia",
+                "hospedaje"                 => "hospedaje"
+            );
+
             global $wpdb;
 
             /* Reserva y Orden */
@@ -1175,7 +1184,7 @@
             $precios = unserialize($cuidador->hospedaje);
             if( trim($tipo_servicio) != "Hospedaje" ){
                 $data = unserialize($cuidador->adicionales);
-                $precios = $data[ $tipo ];
+                $precios = $data[ $cats_2[ $tipo ] ];
             }
 
             $variaciones = array(); $grupo = 0;
@@ -1398,6 +1407,7 @@
                     "adicionales" => $adicionales_desglose,
 
                     "pdf" => $metas_orden['_openpay_pdf'][0],
+                    "vence" => $metas_orden['_openpay_tienda_vence'][0],
 
                     "aceptar_rechazar" => $aceptar_rechazar,
 

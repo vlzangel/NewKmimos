@@ -52,7 +52,7 @@
 					</article>
 				<?php } ?>				
 			</section>
-				<a style="text-decoration:none" href="../"><h3 style="color: #2196F3;"><b>Volver</b></h3></a>
+				<a style="text-decoration:none" href="<?php echo get_home_url(); ?>/ayuda/"><h3 style="color: #2196F3;"><b>Volver</b></h3></a>
 		</div>
 	</div>
 

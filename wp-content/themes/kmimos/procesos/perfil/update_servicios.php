@@ -134,7 +134,7 @@
 	$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."', hospedaje = '".serialize($hospedaje)."', hospedaje_desde = '".$base_hospedaje."' WHERE user_id = ".$user_id.";";
 	$db->query($sql);
 
-/*	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
+	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
 	$status_global = "pending";
 	if( $cuidador->activo == 1 ){
 		$status_global = "publish";
@@ -289,7 +289,7 @@
 
 	  	}
 
-  	}*/
+  	}
 
     $respuesta = array(
         "status" => "OK"

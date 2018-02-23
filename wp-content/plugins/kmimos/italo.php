@@ -61,6 +61,13 @@
 	if(!function_exists('italo_include_admin_script')){
 	    function italo_include_admin_script(){
 	        include_once('dashboard/assets/config_backpanel.php');
+	        wp_enqueue_script('faq_script', getTema()."/js/faq.js", array(), '1.0.0');
+	        $HTML = '
+					<script type="text/javascript"> 
+						var HOME = "'.getTema().'/"; 
+						var RAIZ = "'.get_home_url().'/"; 
+					</script>';
+			echo comprimir_styles($HTML);
 	    }
 	}
 
@@ -68,10 +75,10 @@
 		function get_form_ayuda_cliente_cuidador(){
 			echo '<section class="row km-caja-filtro ayuda-busqueda">
 				<div class="col-sm-6">
-					<input type="button" id="ayudaclientes" style="font-size:20px;" class="km-btn-primary" value="Ayuda para Clientes">
+					<input type="button" id="ayudaclientes" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Clientes">
 					</div>
 				<div class="col-sm-6">
-					<input type="button" id="ayudacuidador" style="font-size:20px;" class="km-btn-primary" value="Ayuda para Cuidadores">
+					<input type="button" id="ayudacuidador" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Cuidadores">
 					</div>
 					</section>';
 		}
@@ -163,10 +170,12 @@
 	if(!function_exists('get_ayuda_sugeridos')){
 		function get_ayuda_postBySeccion( $parent='' ){
 
+			
 			$posts = get_posts(
 			    array(
 					'post_status' => 'publish', 
 			        'post_type' => 'faq',
+			        'numberposts' => '',
 			        'tax_query' => array(
 				        array(
 				            'taxonomy' => 'seccion',
@@ -184,11 +193,12 @@
 
 	/* Temas Sugeridos */
 	if(!function_exists('get_ayuda_sugeridos')){
-		function get_ayuda_sugeridos( $parent='sugeridos', $ID = 0, $echo = true ){
+		function get_ayuda_sugeridos( $sugerido , $ID = 0, $echo = true ){
+
 		global $wpdb;
 			$HTML= '';
 		    $seccionessugeridos = $wpdb->get_results("select t.term_id,name,slug from wp_terms t inner join wp_term_taxonomy  tx where t.term_id=tx.term_id  
-				and (select slug from wp_terms tt where tt.term_id = tx.parent) = 'sugeridos' limit 3 ");
+				and (select slug from wp_terms tt where tt.term_id = tx.parent) = '".$sugerido."'  ");
 
  			
 			if( !empty($seccionessugeridos) ) { 	
@@ -202,23 +212,35 @@
 
 					 $article .= '<h3><b>'.$categoria->name.'</b></h3>';
 
+					
 					foreach ($postsugeridos as $post) { 
 
+					
 					if($post->ID != $ID ){
 						$article .= '
 							<article>
 								<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
-									<h3>&nbsp;&nbsp;&nbsp;&nbsp;'.$post->post_title.'</h3>
+									<h3>'.$post->post_title.'</h3>
 								</a>
 							</article>
 						';
 					}
+				
 
 				}
 
-				$article .= '<a style="text-decoration:none" href="'.get_home_url().'/ayuda-ver-mas?categoria='.$categoria->term_id.'"><h3 style="color: #2196F3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Ver mas</b></h3></a>';
+						$cantpost = $wpdb->get_results("select count(*) cantidadpost from wp_term_relationships tr 
+							inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id);
+						foreach ($cantpost as $cant) { 
+						$numeropost=$cant->cantidadpost;
+						}
+
+						if($numeropost>2){
+						$article .= '<a style="text-decoration:none" href="'.get_home_url().'/ayuda-ver-mas?categoria='.$categoria->term_id.'"><h3 style="color: #FCFAFA;"><b>Ver mas</b></h3></a>';
+						}
 					
 				}
+				
 				if( $article != '' ){
 					$HTML = '
 					<section class="temas-sugeridos">
@@ -273,13 +295,13 @@ if(!function_exists('get_ayuda_relacionados')){
 				 $categoriapadre = $wpdb->get_results("select t.name,t.slug,t.term_id from wp_term_relationships tr 
 					inner join wp_term_taxonomy tx on tr.term_taxonomy_id=tx.term_taxonomy_id
 					inner join wp_terms t on tx.term_id=t.term_id
-					 where object_id=".$id_post." limit 1");
+					 where object_id=".$id_post." and t.slug not in ('destacado','destacados_cuidadores') limit 1");
 				foreach ($categoriapadre as $post) { 
 					$id_padre=$post->term_id;
 				}
 
 				$postsrelacionados = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
-						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$id_padre." and p.ID!= ".$id_post." limit 2");
+						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$id_padre." and p.ID!= ".$id_post." ");
 
 				if( !empty($postsrelacionados) ) { 	
  
