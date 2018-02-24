@@ -139,7 +139,7 @@ function calculo_pago_cuidador( $total, $pago, $remanente, $deposits=0, $discoun
 	$saldo_cuidador = 0;
 
 	//	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
-	//	$pago_kmimos = $total - ($total / 1.2);
+	//	$pago_kmimos = $total - ($total / 1.25);
 	//	$pago_cuidador_real = $total - $pago_kmimos;
 	//	$saldo_cuidador = $pago_cuidador_real - $remanente;
 
@@ -147,7 +147,7 @@ function calculo_pago_cuidador( $total, $pago, $remanente, $deposits=0, $discoun
 	$saldo_cuidador = 0;
 	$pago_kmimos = 0;
 	$dif = $remanente + $pago;
-	$pago_cuidador_real = ($total / 1.2);
+	$pago_cuidador_real = ($total / 1.25);
 
 	if( $deposits > 0 ){
 		if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
