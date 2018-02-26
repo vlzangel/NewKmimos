@@ -81,7 +81,7 @@
 }
 .tema-container{
     margin: 5px 0px;
-    padding: 10px 20px;
+    padding: 10px 0px;
     text-align: left;
  
 }
@@ -127,6 +127,16 @@
 	text-decoration: none!important;
     color:#7ad2c4;	
 }
+
+
+#destacados:hover h2,
+#destacados a:hover
+{
+	text-decoration: none!important;
+    color:#7ad2c4;	
+}
+
+
 .presentacion article{
 	width: 40%;
 	float: left;

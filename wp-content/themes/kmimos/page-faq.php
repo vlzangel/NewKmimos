@@ -65,22 +65,30 @@
 			<?php get_form_filtrar_ayuda(); ?>
 			<section class="row">
 			<!-- Ayuda Cliente-Cuidadores -->
-			<?php get_form_ayuda_cliente_cuidador(); ?>
+			'<section class="row km-caja-filtro ayuda-busqueda">
+				<div class="col-sm-6">
+					<input type="button" id="ayudaclientes" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Clientes">
+					</div>
+				<div class="col-sm-6">
+					<input type="button" id="ayudacuidador" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Cuidadores">
+					</div>
+					</section>
 			</section>
 
 			<!-- Presentacion -->
 			<section class="row text-center presentacion" data-group="presentacion">
-				
+					
 				<?php
 					foreach ($destacados as $post) { get_posts( $posts->ID ); ?>
- 						<article>
-							<a href="<?php echo get_permalink(); ?>">
-								<img class="img-responsive" width="50%" src="<?php echo get_the_post_thumbnail_url(); ?>">
-								<h2 style="font-size:25px"><?php the_title(); ?></h2>
-							</a>
-						</article>
+					<div class="col-sm-6" id="destacados">				
+									<a href="<?php echo get_permalink(); ?>">
+										<img class="img-responsive" width="50%" src="<?php echo get_the_post_thumbnail_url(); ?>">
+										<h2 style="font-size:25px"><?php the_title(); ?></h2>
+									</a>
+	
+						</div>
 				<?php } ?>
-
+					
 			</section>
 		</div>
 	</div>
