@@ -3,8 +3,9 @@ require_once('base_db.php');
 require_once('GlobalFunction.php');
 
 function getmetaUser($user_id=0){
-	$condicion = " AND m.meta_key IN ( 'nickname', 'first_name', 'last_name', 'user_phone', 'user_mobile', 'user_referred')";
-	$result = get_metaUser($user_id, $condicion);
+	// $condicion = " AND m.meta_key IN ( 'nickname', 'first_name', 'last_name', 'user_phone', 'user_mobile', 'user_referred')";
+	// $result = get_metaUser($user_id, $condicion);
+	$result = get_metaUser($user_id);
 	$data = [
 		'first_name' =>'', 
 		'last_name' =>'', 

@@ -77,18 +77,21 @@ $users = getUsers($desde, $hasta);
 					cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-			      <th>#</th>
-			      <th>Fecha Registro</th>
-			      <th>Nombre y Apellido</th>
-			      <th>Email</th>
-			      <th>Teléfono</th>
-			      <th>Donde nos conocio?</th>
-			      <?php if( $mostrar_total_reserva ){ ?>
-			      	<th>Cant. Reservas</th>
-			      <?php } ?>
-			      <th>Mascota(s)</th>
-			      <th>Raza(s)</th>
-			      <th>Edad(es)</th>
+			      	<th>#</th>
+			      	<th>Fecha Registro</th>
+			      	<th>Nombre y Apellido</th>
+			      	<th>Email</th>
+			      	<th>Teléfono</th>
+			      	<th>Donde nos conocio?</th>
+			      	<th>Sexo</th>
+			      	<th>Edad</th>
+			      	<?php if( $mostrar_total_reserva ){ ?>
+			      		<th>Cant. Reservas</th>
+			      	<?php } ?>
+			      	<!--
+			      		<th>Mascota(s)</th>
+			      		<th>Raza(s)</th>
+			  		-->
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -97,6 +100,13 @@ $users = getUsers($desde, $hasta);
 			  		<?php
 			  			// Metadata usuarios
 			  			$usermeta = getmetaUser( $row['ID'] );
+
+			  			if( $usermeta['user_age'] == "" ){
+			  				$usermeta['user_age'] = "25-35 A&ntilde;os";
+			  			}else{
+			  				$usermeta['user_age'] .= " A&ntilde;os";
+			  			}
+
 			  			$link_login = get_home_url()."/?i=".md5($row['ID']);
 
 			  			$name = "{$usermeta['first_name']} {$usermeta['last_name']}";
@@ -120,10 +130,16 @@ $users = getUsers($desde, $hasta);
 						</th>
 						<th><?php echo $usermeta['phone']; ?></th>
 						<th><?php echo (!empty($usermeta['user_referred']))? $usermeta['user_referred'] : 'Otros' ; ?></th>
+				        
 				        <?php if( $mostrar_total_reserva ){ ?>
-						<th><?php print_r( $cant_reservas['rows'][0]['cant'] ); ?></th>
+							<th><?php print_r( $cant_reservas['rows'][0]['cant'] ); ?></th>
 				        <?php } ?>
+
+						<th style="text-transform: capitalize;"><?php echo $usermeta['user_gender']; ?></th>
+						<th><?php echo $usermeta['user_age']; ?></th>
+
 						<?php 
+							/*
 					  		# Mascotas del Cliente
 					  		$mypets = getMascotas($row['ID']); 
 					  		$pets_nombre = array();
@@ -165,6 +181,8 @@ $users = getUsers($desde, $hasta);
 						<th><?php echo $pets_nombre; ?></th>
 						<th><?php echo $pets_razas; ?></th>
 						<th><?php echo $pets_edad; ?></th>
+						*/ ?>
+
 				    </tr>
 			   	<?php } ?>
 			  </tbody>
