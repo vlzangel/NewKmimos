@@ -71,18 +71,7 @@
 	    }
 	}
 
-	if(!function_exists('get_form_ayuda_cliente_cuidador')){
-		function get_form_ayuda_cliente_cuidador(){
-			echo '<section class="row km-caja-filtro ayuda-busqueda">
-				<div class="col-sm-6">
-					<input type="button" id="ayudaclientes" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Clientes">
-					</div>
-				<div class="col-sm-6">
-					<input type="button" id="ayudacuidador" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Cuidadores">
-					</div>
-					</section>';
-		}
-	}
+
 
 
 
@@ -220,7 +209,7 @@
 						$article .= '
 							<article>
 								<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
-									<h3>'.$post->post_title.'</h3>
+									<h3 style="font-size:14px;">'.$post->post_title.'</h3>
 								</a>
 							</article>
 						';
@@ -236,7 +225,7 @@
 						}
 
 						if($numeropost>2){
-						$article .= '<a style="text-decoration:none" href="'.get_home_url().'/ayuda-ver-mas?categoria='.$categoria->term_id.'"><h3 style="color: #FCFAFA;"><b>Ver mas</b></h3></a>';
+						$article .= '<a style="text-decoration:none" href="'.get_home_url().'/ayuda-ver-mas?categoria='.$categoria->term_id.'"><h3 style="color: #FCFAFA;"><b>Ver más</b></h3></a>';
 						}
 					
 				}
@@ -360,7 +349,7 @@ if(!function_exists('get_preguntas_categoria')){
 					foreach ($preguntas as $post) { 
 					$nombreCategoria=$post->namecategoria;
 							$article .= ' <a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
-										<h3><li>'.$post->post_title.'</li></h3>
+										<h3>'.$post->post_title.'</h3>
 									</a>
 								
 							';
