@@ -41,18 +41,18 @@
 			<section class="row text-left" aria-multiselectable="true">
 				<?php if ( have_posts() ){ the_post(); ?>
 					<article class="tema-container">
-						<h3>
+						<h3 style="font-size:20px;padding: 10px;" >
 							<?php the_title(); ?>
 						</h3>
 						<div class="col-md-12">
-							<div class="tema-content">
+							<div style="text-align:justify;" id="contenido" class="tema-content">
 								<?php the_content(); ?>
 							</div>
 						</div>					
 					</article>
 				<?php } ?>				
 			</section>
-				<a style="text-decoration:none" href="<?php echo get_home_url(); ?>/ayuda/"><h3 style="color: #2196F3;"><b>Volver</b></h3></a>
+				<a style="text-decoration:none" href="javascript:history.back();"><h3 style="color: #2196F3;"><b>Volver</b></h3></a>
 		</div>
 	</div>
 
