@@ -91,7 +91,7 @@ function calculo_pago_cuidador( $total, $pago, $remanente ){
 	
 	$dif = $remanente + $pago;
 	if( $dif != $total || ($remanente == 0 && $dif == $total) ){
-	        $pago_cuidador_real = ($total / 1.2);
+	        $pago_cuidador_real = ($total / 1.25);
 	        $pago_kmimos = $total - $pago_cuidador_real;
 	        $saldo_cuidador = $pago_cuidador_real - $remanente;
 	}

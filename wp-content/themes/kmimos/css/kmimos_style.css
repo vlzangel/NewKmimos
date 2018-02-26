@@ -2466,7 +2466,8 @@ footer input:focus{
 		padding-bottom: 0;
 	}
 	.km-premium-slider .slide {
-		width: 277px!important;
+		width: 260px!important;
+		margin-right: 2px!important;
 	}
 
 	/* PÁGINA FICHA CUIDADOR */
@@ -5719,7 +5720,8 @@ h1.maps {
         margin-bottom:20px
     }
     .km-premium-slider .slide {
-        width:277px!important
+        width:220px!important;
+        margin-right: 5px!important;
     }
     .km-ficha-info-cuidador {
         text-align:center
