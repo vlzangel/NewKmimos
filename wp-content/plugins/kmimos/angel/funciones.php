@@ -588,11 +588,17 @@
             $titulo = ($cuidador->titulo);
         }
 
+        $sql_valoraciones = "SELECT count(comentario.user_id) as cant FROM wp_comments AS comentario WHERE comentario.comment_post_ID = '".$cuidador->id_post."' AND comentario.comment_approved = '1'";
+
+        $cuidador_valoracion = $wpdb->get_results( $sql_valoraciones );
+        if( isset($cuidador_valoracion[0]->cant) ){
+            $cant_valoraciones = $cuidador_valoracion[0]->cant;
+        }
         $valoraciones = "No tiene valoraciones";
-        if( $cuidador->valoraciones+0 > 0 ){
+        if( $cant_valoraciones+0 > 0 ){
             $plural = "&oacute;n";
-            if( $cuidador->valoraciones+0 > 1 ){ $plural = "ones"; }
-            $valoraciones = $cuidador->valoraciones." Valoraci".$plural;
+            if( $cant_valoraciones+0 > 1 ){ $plural = "ones"; }
+            $valoraciones = $cant_valoraciones." Valoraci".$plural;
         }
 
         switch ($disenio) {

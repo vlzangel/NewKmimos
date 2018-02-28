@@ -163,6 +163,8 @@
 	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
 
 	                <input type="hidden" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" class="vlz_rotar_valor">
+					<br><small data-error="rc_vlz_img_perfil" style="visibility: hidden;"></small>
+	                
 				</div>
 
 				<!-- <a href="#" data-load='portada' id="perfil-img-a" class="vlz_rotar">

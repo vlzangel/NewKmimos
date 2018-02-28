@@ -60,7 +60,7 @@ function getSolicitud($desde="", $hasta=""){
 	$sql = "
 		SELECT 
 			p.ID as Nro_solicitud,
-			DATE_FORMAT(p.post_date,'%d-%m-%Y') as Fecha_solicitud,
+			DATE_FORMAT(p.post_date,'%Y-%m-%d') as Fecha_solicitud,
 			p.post_status as Estatus,
 
 			fd.meta_value as Servicio_desde,
@@ -85,7 +85,7 @@ function getSolicitud($desde="", $hasta=""){
 		WHERE 
 			m.meta_key = 'request_status'
 			{$filtro_adicional}
-		ORDER BY DATE_FORMAT(p.post_date,'%d-%m-%Y') DESC
+		ORDER BY p.ID DESC
 		;
 	";
 
