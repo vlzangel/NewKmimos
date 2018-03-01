@@ -81,7 +81,7 @@
 							<article class="col-xs-12 col-md-12 ayuda-items">
 								<a style="text-decoration:none" href="<?php echo get_the_permalink($post->ID); ?>">
 									 <h3>
-										<?php echo ucfirst( strtolower($post->post_title) ); ?>
+										<?php echo kmimos_ucfirst($post->post_title); ?>
 									</h3>
 								</a> 
 								<div><hr></div>
