@@ -29,7 +29,7 @@ $reservas = getReservas($_desde, $_hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_reservas" method="POST">
+		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_reservas" method="POST">
 				  <label>Filtrar:</label>
 				  <div class="form-group">
 				    <div class="input-group">
