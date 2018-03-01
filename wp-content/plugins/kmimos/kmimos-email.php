@@ -212,7 +212,7 @@ if(!function_exists('kmimos_get_email_footer')){
 
                                 <div style='margin: 25px 0px;'>
                                     <a href='https://nutriheroes.com.mx/' trget='_blank'>
-                                        <img style='width: 100%;' src='".getTema()."/images/banners_nutriheroes/1.jpg' />
+                                        <img style='width: 100%;' src='".getTema()."/images/banners_nutriheroes/01.jpg' />
                                     </a>
                                 </div>
 

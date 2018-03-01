@@ -235,7 +235,7 @@
 
 					<div style="margin-top: 25px;">
 						<a href="https://nutriheroes.com.mx/" trget="_blank">
-							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/1.jpg" />
+							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/1.jpg" />
 						</a>
 					</div>
 
