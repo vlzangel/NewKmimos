@@ -188,13 +188,20 @@ $HTML_CONOCER = '
 				<label> Dentro de las siguientes 2-4 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso. También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados a continuación para acelerar el proceso si así lo deseas.</label>
 				<label> Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos (01) 55 4742 3162 y WhatsApp +52 (55) 6892 2182, o al correo contactomex@kmimos.la</label>
 				</div>
-</div>
-<br>
-<br>
+			</div>
+			<br>
+			<br>
 				<div>
 					'.$pdf.'
 					<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/solicitudes/">VER MIS SOLICITUDES</a>
 				</div>
+
+				<div style="margin-top: 25px;">
+					<a href="https://nutriheroes.com.mx/" trget="_blank">
+						<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/1.jpg" />
+					</a>
+				</div>
+
 			</div>
 		</div>
 	</div>

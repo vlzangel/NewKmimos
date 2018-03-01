@@ -210,6 +210,12 @@ if(!function_exists('kmimos_get_email_footer')){
                                 
                                 ".$ayuda."
 
+                                <div style='margin: 25px 0px;'>
+                                    <a href='https://nutriheroes.com.mx/' trget='_blank'>
+                                        <img style='width: 100%;' src='".getTema()."/images/banners_nutriheroes/1.jpg' />
+                                    </a>
+                                </div>
+
                                 ".$beneficios_txt."
 
                                 <img style='margin-bottom: 30px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/dog_footer.png' >
