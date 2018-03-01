@@ -2,6 +2,27 @@
 	
 	include_once('includes/functions/kmimos_functions.php');
 
+
+	function kmimos_ucfirst( $str = ''){
+		if( !empty($str) ){		
+			$result = '';
+ 			for ($key = 0; $key <= strlen($str); $key++) {
+				$val = $str[$key];
+				$ascii = ord( $val );
+				if(
+					( $ascii >= 65  and $ascii <= 90  ) || 
+					( $ascii >= 97  and $ascii <= 122 ) || 
+					( $ascii >= 128 and $ascii <= 165 ) || 
+					( $ascii >= 224 and $ascii <= 237 ) 
+				){ 
+					$str[ $key ] = strtoupper( $val );
+					break;
+				}
+			}
+		}
+		return $str;
+	}
+
 	/**
 	 * BEGIN Seccion de ayuda Kmimos
  	 */
@@ -70,10 +91,6 @@
 			echo comprimir_styles($HTML);
 	    }
 	}
-
-
-
-
 
 
 	if(!function_exists('get_form_filtrar_ayuda')){
