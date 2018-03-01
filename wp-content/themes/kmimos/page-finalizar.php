@@ -232,6 +232,13 @@
 						'.$pdf.'
 						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
 					</div>
+
+					<div style="margin-top: 25px;">
+						<a href="https://nutriheroes.com.mx/" trget="_blank">
+							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/1.jpg" />
+						</a>
+					</div>
+
 				</div>
 			</div>
 
