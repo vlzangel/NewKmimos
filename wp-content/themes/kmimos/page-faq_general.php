@@ -51,8 +51,9 @@
 				/* *************************************** *
 				 * Resultado para las busquedas
 				 * *************************************** */
-					 $resultado = ( isset($_SESSION['ayuda']['resultado']) )? $_SESSION['ayuda']['resultado'] : [] ;
-					 if(empty($resultado)){ ?>
+					$resultado = ( isset($_SESSION['ayuda']['resultado']) )? $_SESSION['ayuda']['resultado'] : [] ;
+					if(empty($resultado)){ 
+				?>
 
 						<div class="alert alert-info">
 							<div>No se encontraron articulos relacionados con la busqueda <span style="font-style: italic;">"<?php echo $_SESSION['ayuda']['terminos']; ?>"</span></div>
@@ -79,21 +80,16 @@
 						if(!empty($post->post_title) && !empty($post->post_content) ){?>
 							<article class="col-xs-12 col-md-12 ayuda-items">
 								<a style="text-decoration:none" href="<?php echo get_the_permalink($post->ID); ?>">
-												 <h3>
-													<?php echo ucfirst( strtolower($post->post_title) ); ?>
-												</h3>
-											</a>
-								<!--<div class="collapse" id="item<?php echo $post->ID; ?>">
-									<div class="well">
-										<?php echo $post->post_content; ?>
-									</div>
-								</div>-->
+									 <h3>
+										<?php echo ucfirst( strtolower($post->post_title) ); ?>
+									</h3>
+								</a> 
 								<div><hr></div>
 							</article>
 						<?php }?>
 					<?php }?>
 
-				<?php }?>
+				<?php } ?>
 
 				<?php if( isset($_SESSION['ayuda']['filtro']) ){
 

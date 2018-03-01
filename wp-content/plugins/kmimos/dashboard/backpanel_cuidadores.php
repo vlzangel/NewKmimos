@@ -94,7 +94,9 @@ $users = getUsers($desde, $hasta);
 			  				$name = $usermeta['nickname'];
 			  			}
 
-			  			$ubicacion = getEstadoMunicipio($row['estado'], $row['municipios']);
+			  			$direccion = getDireccion( $row['ID'] );
+
+			  			$ubicacion = getEstadoMunicipio($direccion['estado'], $direccion['municipios']);
 
 /*
 			  			# Recompra 1 Meses
