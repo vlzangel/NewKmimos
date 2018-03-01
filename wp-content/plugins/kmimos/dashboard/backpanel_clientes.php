@@ -29,7 +29,7 @@ $users = getUsers($desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-left pull-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_clientes" method="POST">
+		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_clientes" method="POST">
 
 					<div class="col-sm-1">
 						<label>Filtrar:</label>
