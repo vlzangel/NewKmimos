@@ -50,9 +50,7 @@ function getSolicitud($desde="", $hasta=""){
 	$filtro_adicional = "";
 
 	if( !empty($desde) && !empty($hasta) ){
-		$filtro_adicional = " 
-			AND DATE_FORMAT(p.post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
-		";
+		$filtro_adicional = " AND ( p.post_date >= '{$desde} 00:00:00' and  p.post_date <= '{$hasta} 23:59:59' )";
 	}else{
 		$filtro_adicional = " AND MONTH(p.post_date) = MONTH(NOW()) AND YEAR(p.post_date) = YEAR(NOW()) ";
 	}
@@ -88,6 +86,7 @@ function getSolicitud($desde="", $hasta=""){
 		ORDER BY p.ID DESC
 		;
 	";
+ 
 
 	$result = get_fetch_assoc($sql);
 	return $result;
