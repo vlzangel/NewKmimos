@@ -50,6 +50,15 @@
             $metas_orden = get_post_meta($id_orden);
             $metas_reserva  = get_post_meta( $id_reserva );
 
+            $hoy = time();
+            $inicia = strtotime( $metas_reserva["_booking_start"][0] );
+            $total_reserva = strtotime( $metas_reserva["_booking_cost"][0] );
+
+            $penalizar = false;
+            if( $inicia-$hoy <= 86400 ){
+                $penalizar = true;
+            }
+
             $itemmetas = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reserva['_booking_order_item_id'][0]}' AND (meta_key = '_wc_deposit_meta' OR meta_key = '_line_total' OR meta_key = '_line_subtotal' )"); 
 
             $items = array();
@@ -87,6 +96,11 @@
             }
 
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
+
+            if($penalizar){
+                $comision = $total_reserva-($total_reserva/getComision());
+                $saldo -= $comision;
+            }
 
             update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
             
