@@ -42,7 +42,7 @@
 				<?php if ( have_posts() ){ the_post(); ?>
 					<article class="tema-container">
 						<h3 style="font-size:20px;padding: 10px;" >
-							<?php the_title(); ?>
+							<?php kmimos_ucfirst(the_title()); ?>
 						</h3>
 						<div class="col-md-12">
 							<div style="text-align:justify;" id="contenido" class="tema-content">
