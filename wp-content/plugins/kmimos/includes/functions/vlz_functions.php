@@ -42,7 +42,7 @@
     }
 
     if(!function_exists('kmimos_set_kmisaldo')){
-        function kmimos_set_kmisaldo($id_cliente, $id_orden, $id_reserva){
+        function kmimos_set_kmisaldo($id_cliente, $id_orden, $id_reserva, $usuario = ""){
             global $wpdb;
 
             $status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = {$id_orden}");
@@ -56,7 +56,7 @@
 
             $penalizar = false;
 
-            if( $inicia-$hoy <= 86400 ){
+            if( $inicia-$hoy <= 86400 && $usuario == "CLI" ){
                 $penalizar = true;
             }
 
