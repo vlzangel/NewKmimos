@@ -101,6 +101,7 @@
             if($penalizar){
                 $comision = $total_reserva-($total_reserva/getComision());
                 $saldo -= $comision;
+                update_post_meta($id_reserva, "penalizado", "YES");
             }
 
             update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
