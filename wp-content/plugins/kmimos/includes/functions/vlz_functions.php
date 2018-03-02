@@ -52,9 +52,10 @@
 
             $hoy = time();
             $inicia = strtotime( $metas_reserva["_booking_start"][0] );
-            $total_reserva = strtotime( $metas_reserva["_booking_cost"][0] );
+            $total_reserva = $metas_reserva["_booking_cost"][0];
 
             $penalizar = false;
+
             if( $inicia-$hoy <= 86400 ){
                 $penalizar = true;
             }
