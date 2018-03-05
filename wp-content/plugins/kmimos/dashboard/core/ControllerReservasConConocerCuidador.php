@@ -17,8 +17,6 @@ function getRazaDescripcion($id, $razas){
 	return $nombre;
 }
 
-
-
 function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
 
 	$filtro_adicional = "";
@@ -117,12 +115,6 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 		case 'cancelled':
 			$sts_corto = 'Cancelado';
 			$sts_largo = 'Cancelado';
-
-			$penalizado = get_post_meta( $id_reserva, 'penalizado', true );
-			if( $penalizado == "YES" ){
-				$sts_corto = 'Penalizado';
-				$sts_largo = 'Cancelado con penalización';
-			}
 		break;
 		// Modificacion Ángel Veloz
 		case 'modified':
@@ -488,3 +480,30 @@ function Get_NameCouponCode($order_id,$coupon_code) {
 	return implode(',',$name);
 }
 
+function getConocer( $fecha_ini, $fecha_fin, $cliente_id, $cuidador_id ){
+
+	$sql = "
+		SELECT 
+			p.ID as Nro_solicitud,
+			cl.meta_value as Cliente_id,
+			cu.post_author as Cuidador_id,
+			p.post_status as Estatus
+		FROM wp_postmeta as m
+			LEFT JOIN wp_posts as p  ON p.ID = m.post_id 
+ 
+			LEFT JOIN wp_postmeta as cl ON p.ID = cl.post_id and cl.meta_key = 'requester_user' 
+			LEFT JOIN wp_postmeta as pc ON p.ID = pc.post_id and pc.meta_key = 'requested_petsitter' 
+			LEFT JOIN wp_posts as cu ON cu.ID = pc.meta_value 
+		WHERE
+			m.meta_key = 'request_status' 
+			AND cl.meta_value = $cliente_id 
+			AND cu.post_author = $cuidador_id 
+			AND ( p.post_date_gmt >= '$fecha_reserva' and  p.post_date_gmt <= '$fecha_fin' )
+			AND p.post_status <>'draft'
+		ORDER BY p.ID DESC
+		;
+	";
+ 
+	$result = get_fetch_assoc($sql);
+	return $result;
+}

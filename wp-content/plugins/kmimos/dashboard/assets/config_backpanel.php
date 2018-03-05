@@ -21,7 +21,8 @@ $array_backpanel = [
 	'bp_saldo_cupon',
 	'bp_cupones',
 	'bp_mascotas',
-	'bp_saldo_cuidadores_bookinkstart'
+	'bp_saldo_cuidadores_bookinkstart',
+	'bp_reservas_conocer',
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 
 
