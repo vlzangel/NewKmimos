@@ -117,6 +117,12 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 		case 'cancelled':
 			$sts_corto = 'Cancelado';
 			$sts_largo = 'Cancelado';
+
+			$penalizado = get_post_meta( $id_reserva, 'penalizado', true );
+			if( $penalizado == "YES" ){
+				$sts_corto = 'Penalizado';
+				$sts_largo = 'Cancelado con penalización';
+			}
 		break;
 		// Modificacion Ángel Veloz
 		case 'modified':

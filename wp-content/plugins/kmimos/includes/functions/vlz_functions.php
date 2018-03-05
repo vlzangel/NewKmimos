@@ -42,13 +42,23 @@
     }
 
     if(!function_exists('kmimos_set_kmisaldo')){
-        function kmimos_set_kmisaldo($id_cliente, $id_orden, $id_reserva){
+        function kmimos_set_kmisaldo($id_cliente, $id_orden, $id_reserva, $usuario = ""){
             global $wpdb;
 
             $status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = {$id_orden}");
 
             $metas_orden = get_post_meta($id_orden);
             $metas_reserva  = get_post_meta( $id_reserva );
+
+            $hoy = time();
+            $inicia = strtotime( $metas_reserva["_booking_start"][0] );
+            $total_reserva = $metas_reserva["_booking_cost"][0];
+
+            $penalizar = false;
+
+            if( $inicia-$hoy <= 86400 && $usuario == "CLI" ){
+                $penalizar = true;
+            }
 
             $itemmetas = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reserva['_booking_order_item_id'][0]}' AND (meta_key = '_wc_deposit_meta' OR meta_key = '_line_total' OR meta_key = '_line_subtotal' )"); 
 
@@ -87,6 +97,12 @@
             }
 
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
+
+            if($penalizar){
+                $comision = $total_reserva-($total_reserva/getComision());
+                $saldo -= $comision;
+                update_post_meta($id_reserva, "penalizado", "YES");
+            }
 
             update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
             

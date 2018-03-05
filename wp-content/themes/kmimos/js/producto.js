@@ -467,7 +467,7 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			/*console.log( data );*/
+			console.log( data );
 			if( data.error != "" && data.error != undefined ){
 				if( data.tipo_error != "3003" ){
 					var error = "Error procesando la reserva<br>";

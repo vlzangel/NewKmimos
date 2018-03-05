@@ -196,11 +196,7 @@ $HTML_CONOCER = '
 					<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/solicitudes/">VER MIS SOLICITUDES</a>
 				</div>
 
-				<div style="margin-top: 25px;">
-					<a href="https://nutriheroes.com.mx/" trget="_blank">
-						<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/1.jpg" />
-					</a>
-				</div>
+				'.get_publicidad("solicitud").'
 
 			</div>
 		</div>
