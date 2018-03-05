@@ -23,6 +23,7 @@ $array_backpanel = [
 	'bp_mascotas',
 	'bp_saldo_cuidadores_bookinkstart',
 	'bp_reservas_conocer',
+	'bp_reservas_by_ubicacion',
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 
 

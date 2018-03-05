@@ -612,6 +612,16 @@ if(!function_exists('get_preguntas_categoria')){
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
+	        $menus[] = array(
+	                'title'=>'Reservas por estados',
+	                'short-title'=>'Reservas por Estados',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_reservas_by_ubicacion',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_reservas_resumen_mensual',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
 	        /* $menus[] = array(
 	                 'title'=>'Control WhiteLabel',
 	                 'short-title'=>'Control WhiteLabel',
@@ -761,6 +771,12 @@ if(!function_exists('get_preguntas_categoria')){
 	    }
 	}
 
+
+    if(!function_exists('backpanel_reservas_resumen_mensual')){
+            function backpanel_reservas_resumen_mensual(){
+                include_once('dashboard/backpanel_reservas_resumen_mensual.php');
+            }
+    }
 
     if(!function_exists('backpanel_reservas_con_conocer_cuidador')){
             function backpanel_reservas_con_conocer_cuidador(){
