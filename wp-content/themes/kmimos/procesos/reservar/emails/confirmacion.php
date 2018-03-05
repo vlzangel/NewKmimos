@@ -44,7 +44,7 @@
 
         $mensaje_cliente = get_email_html($mensaje_cliente);
 
-        wp_mail( $cliente["email"], "Confirmación de Reserva", $mensaje_cliente);
+        wp_mail( $cliente["email"], $confirmacion_titulo, $mensaje_cliente);
     
     /* Correo Cliente */
 
@@ -98,7 +98,7 @@
 
         $mensaje_cuidador = get_email_html($mensaje_cuidador);
 
-        wp_mail( $cuidador["email"], "Confirmación de Reserva", $mensaje_cuidador);
+        wp_mail( $cuidador["email"], $confirmacion_titulo, $mensaje_cuidador);
 
 
 
@@ -138,7 +138,7 @@
 
         $mensaje_admin = get_email_html($mensaje_admin);
 
-        kmimos_mails_administradores_new("Confirmación de Reserva", $mensaje_admin);
+        kmimos_mails_administradores_new($confirmacion_titulo, $mensaje_admin);
         
         $CONTENIDO .= "<div class='msg_acciones'>
             <strong>¡Todo esta listo!</strong><br>
