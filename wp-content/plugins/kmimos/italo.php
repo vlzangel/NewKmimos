@@ -694,6 +694,16 @@ if(!function_exists('get_preguntas_categoria')){
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
+	        $menus[] = array(
+	                'title'=>'Reservas y Conocer cuidador',
+	                'short-title'=>'Reservas y Conocer cuidador',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_reservas_conocer',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_reservas_con_conocer_cuidador',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
 
          /* Temporal ********************* */
 
@@ -751,6 +761,12 @@ if(!function_exists('get_preguntas_categoria')){
 	    }
 	}
 
+
+    if(!function_exists('backpanel_reservas_con_conocer_cuidador')){
+            function backpanel_reservas_con_conocer_cuidador(){
+                include_once('dashboard/backpanel_reservas_con_conocer_cuidador.php');
+            }
+    }
 
     if(!function_exists('backpanel_saldo_cuidador_BookingStart')){
             function backpanel_saldo_cuidador_BookingStart(){
