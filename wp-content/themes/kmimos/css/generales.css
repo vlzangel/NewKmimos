@@ -69,6 +69,16 @@ p {
     line-height: 18px;
 }
 
+/*  Publicidades    */
+
+    .publicidad_solo_pc{
+        display: block;
+    }
+
+    .publicidad_solo_movil{
+        display: none;
+    }
+
 /* Modal */
 
     .vlz_modal{
