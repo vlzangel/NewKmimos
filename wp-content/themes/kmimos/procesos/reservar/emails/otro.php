@@ -1,7 +1,11 @@
 <?php
 
-	/* Correo Cliente */
+    
+    $inmediata = "";
 
+    if( $confirmacion_titulo == "Confirmación de Reserva" ){
+
+	   /* Correo Cliente */
 
 		$cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cliente/nueva.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
@@ -47,9 +51,9 @@
             wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
         }
 
-	/*
-		Correo Cuidador
-	*/
+    	/*
+    		Correo Cuidador
+    	*/
 
 		$cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cuidador/nueva.php';
         $mensaje_cuidador = file_get_contents($cuidador_file);
@@ -103,6 +107,10 @@
             wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
         }
 
+    }else{
+        $inmediata = "Inmediata";
+    }
+
         $admin_file = $PATH_TEMPLATE.'/template/mail/reservar/admin/nueva.php';
         $mensaje_admin = file_get_contents($admin_file);
 
@@ -149,6 +157,6 @@
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;
         }else{
-            kmimos_mails_administradores_new('Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_admin);
+            kmimos_mails_administradores_new('Nueva Reserva '.$inmediata.' - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_admin);
         }
 ?>

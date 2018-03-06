@@ -1,6 +1,10 @@
 <?php
+    
+    $inmediata = "";
 
-	/* Correo Cliente */
+    if( $confirmacion_titulo == "Confirmación de Reserva" ){
+
+	   /* Correo Cliente */
 
         $instrucciones = $PATH_TEMPLATE.'/template/mail/reservar/partes/instrucciones.php';
         $instrucciones = file_get_contents($instrucciones);
@@ -64,8 +68,12 @@
             wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
         }
 
+    }else{
+        $inmediata = "Inmediata";
+    }
 
-    /* Administrador */
+
+        /* Administrador */
 
 		$admin_file = $PATH_TEMPLATE.'/template/mail/reservar/admin/nueva_tienda.php';
         $mensaje_admin = file_get_contents($admin_file);
@@ -128,7 +136,7 @@
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;
         }else{
-            kmimos_mails_administradores_new("Solicitud de reserva #".$servicio["id_reserva"], $mensaje_admin);
+            kmimos_mails_administradores_new("Solicitud de reserva ".$inmediata." #".$servicio["id_reserva"], $mensaje_admin);
         }
         
 ?>
