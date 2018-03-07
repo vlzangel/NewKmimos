@@ -100,6 +100,15 @@
 
 	                	}
 
+	                	if( $reserva["cliente"] != "" ){
+		                	$reserva["cliente"] = '
+		                		<br> <span>Por</span>
+		                		<div class="cliente_reserva">
+		                			<p>'.$reserva["cliente"].'</p>
+		                		</div>
+		                	';
+	                	}
+
 	                	if( isset($reserva["desplegado"]) ){
 							$table.='
 			                <div class="vlz_tabla vlz_desplegado">
@@ -110,6 +119,7 @@
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Servicio</span>
 				                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
+				                		'.$reserva["cliente"].'
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Fecha</span>
@@ -159,12 +169,8 @@
 			                	<div class="vlz_tabla_superior">
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Servicio</span>
-				                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
-				                		<br>
-				                		<span>Por</span>
-				                		<div class="cliente_reserva">
-				                			<p>'.$reserva["cliente"].'</p>
-				                		</div>
+				                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div> 
+				                		'.$reserva["cliente"].'
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_celda">
 				                		<span>Fecha</span>

@@ -276,9 +276,13 @@ function postJSON(FORM, URL, ANTES, RESPUESTA, TIPO = ""){
         if( validarAll(FORM) ){
             ANTES();
             if( TIPO == "json" ){
-                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json');
+                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json').fail(function(e) {
+                    console.log( e );
+                });
             }else{
-                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA);
+                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA).fail(function(e) {
+                    console.log( e );
+                });
             }
         }
 	});

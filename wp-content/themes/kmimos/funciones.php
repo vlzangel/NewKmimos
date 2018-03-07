@@ -48,7 +48,9 @@
                             <div class='vlz_destacados_img'>
                                 <div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
                                 <div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
-                                <div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>".get_region('mon_der')." $".($cuidador->hospedaje_desde*1.25)."</div>
+
+                                <div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>".get_region('mon_der')." ".get_region('moneda_signo').($cuidador->hospedaje_desde*getComision() )."</div>
+
                             </div>
                             <div class='vlz_destacados_data' >
                                 <div class='vlz_destacados_nombre'>{$nombre}</div>
@@ -173,7 +175,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
 							<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$'.($precios["pequenos"]*1.25).'</b></div>
+						<div class="km-servicio-costo"><b>$'.($precios["pequenos"]*getComision() ).'</b></div>
 					</div>';
 				}else{
 					$HTML = '
@@ -200,7 +202,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
 							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$'.($precios["medianos"]*1.25).'</b></div>
+						<div class="km-servicio-costo"><b>$'.($precios["medianos"]*getComision() ).'</b></div>
 					</div>';
 				}else{
 					$HTML = '
@@ -227,7 +229,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-grande.svg">
 							<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$'.($precios["grandes"]*1.25).'</b></div>
+						<div class="km-servicio-costo"><b>$'.($precios["grandes"]*getComision() ).'</b></div>
 					</div>';
 				}else{
 					$HTML = '
@@ -254,7 +256,7 @@
 							<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
 							<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
 						</div>
-						<div class="km-servicio-costo"><b>$'.($precios["gigantes"]*1.25).'</b></div>
+						<div class="km-servicio-costo"><b>$'.($precios["gigantes"]*getComision() ).'</b></div>
 					</div>';
 				}else{
 					$HTML = '
@@ -303,12 +305,12 @@
 							<div class="km-quantity">
 								<a href="#" class="km-minus disabled">-</a>
 									<span class="km-number">'.$catidad.'</span>
-									<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*1.25).'" />
+									<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*getComision() ).'" />
 								<a href="#" class="km-plus">+</a>
 							</div>
 							<div class="km-height">
 								'.$tamanos[$key].'
-								<span>'.get_region('mon_der').' '.($data[$key]*1.25).'</span>
+								<span>'.get_region('mon_der').' '.($data[$key]*getComision()).'</span>
 							</div>
 						</div>
 					';
@@ -339,8 +341,8 @@
 							$selected = "selected";
 						}
 						$opciones .= '
-							<option value="'.($precio*1.25).'" data-value="'.($value.' - '.$rutas[ $ruta ]).'" '.$selected.'>
-								'.strtoupper($rutas[ $ruta ]).' ( $'.($precio*1.25).' )
+							<option value="'.($precio*getComision() ).'" data-value="'.($value.' - '.$rutas[ $ruta ]).'" '.$selected.'>
+								'.strtoupper($rutas[ $ruta ]).' ( $'.($precio*getComision() ).' )
 				 			</option>
 						';
 					}
@@ -367,15 +369,15 @@
 				if( isset($precarga[$key]) ){
 					$resultado .= '
 						<div class="km-service-col">
-							<label class="optionCheckout active" for="'.$key.'">'.$adicionales[$key].' ( $'.($data[$key]*1.25).')</label><br>
-							<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.($data[$key]*1.25).'" style="display: none;" class="active" checked>
+							<label class="optionCheckout active" for="'.$key.'">'.$adicionales[$key].' ( $'.($data[$key]*getComision() ).')</label><br>
+							<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.($data[$key]*getComision() ).'" style="display: none;" class="active" checked>
 						</div>
 					';
 				}else{
 					$resultado .= '
 						<div class="km-service-col">
-							<label class="optionCheckout" for="'.$key.'">'.$adicionales[$key].' ( $'.($data[$key]*1.25).')</label><br>
-							<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.($data[$key]*1.25).'" style="display: none;">
+							<label class="optionCheckout" for="'.$key.'">'.$adicionales[$key].' ( $'.($data[$key]*getComision() ).')</label><br>
+							<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.($data[$key]*getComision() ).'" style="display: none;">
 						</div>
 					';
 				}
@@ -484,22 +486,8 @@
 		}
 		
 	}
-    
-    function kmimos_registros_fotos($id_reserva){
-        global $wpdb;
-        $metas = get_post_meta($id_reserva);
 
-        $inicio = strtotime( $metas["_booking_start"][0] );
-        $fin = strtotime( $metas["_booking_end"][0] );
-
-        $cuidador = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$metas["_booking_product_id"][0]);
-
-        for ($i=$inicio; $i < $fin; $i+=86400) { 
-            $fecha = date("Y-m-d", $i);
-            $existe = $wpdb->get_var("SELECT id FROM fotos WHERE reserva = {$id_reserva} AND fecha = '{$fecha}' ");
-            if( $existe == null ){
-            	$wpdb->query("INSERT INTO fotos VALUES ( NULL, {$id_reserva}, {$cuidador}, '{$fecha}', '0', '0', 'a:0:{}', '0');");
-            }
-        }
-    }
+    function dateFormat($fecha, $format = "d/m/Y"){
+		return date( $format, strtotime( str_replace("/", "-", $fecha) ) );
+	}
 ?>

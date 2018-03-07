@@ -6,7 +6,10 @@ $hasta = date("Y-m-d", $date[0]);
 if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 	$desde = (!empty($_POST['desde']))? $_POST['desde']: "";
 	$hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
+
+print_r($desde .'__'. $hasta);
 }
+
 
 $solicitudes = getSolicitud($desde, $hasta);
 ?>
@@ -22,7 +25,7 @@ $solicitudes = getSolicitud($desde, $hasta);
 	<!-- Filtros -->
     <div class="row text-right"> 
     	<div class="col-sm-12">
-	    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_conocer_cuidador" method="POST">
+	    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_conocer_cuidador" method="POST">
 			  <label>Filtrar:</label>
 			  <div class="form-group">
 			    <div class="input-group">

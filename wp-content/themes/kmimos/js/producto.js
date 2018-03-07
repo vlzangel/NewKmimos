@@ -5,6 +5,7 @@ function initCarrito(){
 	CARRITO["fechas"] = [];
 
 		CARRITO["fechas"] = {
+			"flash" : "",
 			"inicio" : "",
 			"fin" : "",
 			"checkin" : "",
@@ -96,6 +97,16 @@ function calcular(){
 					jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
 					jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
 				}
+			}
+		}
+	}else{
+		if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+			CARRITO["fechas"]["flash"] = "SI";
+		}else{
+			if( jQuery("#checkin").val() == MANANA && HORA >= 18 ){
+				CARRITO["fechas"]["flash"] = "SI";
+			}else{
+				CARRITO["fechas"]["flash"] = "NO";
 			}
 		}
 	}
@@ -259,9 +270,11 @@ function calcular(){
 	}
 	
 	if( error == "" ){
-		jQuery(".pago_17").html( moneda_signo + numberFormat(cant-(cant/1.2)) );
-		jQuery(".pago_cuidador").html( moneda_signo + numberFormat(cant/1.2) );
+
+		jQuery(".pago_17").html( moneda_signo + numberFormat(cant*0.2) );
+		jQuery(".pago_cuidador").html( moneda_signo +  numberFormat(cant-(cant*0.2)) );
 		jQuery(".monto_total").html( moneda_signo + numberFormat(cant) );
+
 		CARRITO["pagar"]["total"] = cant;
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").removeClass("disabled");
@@ -605,8 +618,8 @@ function calcularDescuento(){
 
 	jQuery(".km-price-total2").html(moneda_signo+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 
-	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
-	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
+	var pre17 = CARRITO["pagar"]["total"]*0.2;
+	var pagoCuidador = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]*0.20);
 
 	var reciduo_0 = 0;
 	if( pagoCuidador >= descuentos ){
@@ -627,9 +640,6 @@ function calcularDescuento(){
 	if( pagoCuidador >= reciduo ){
 		pagoCuidador -= reciduo;
 	}
-
-	jQuery(".pago_17").html( moneda_signo + numberFormat( pre17 ) );
-	jQuery(".pago_cuidador").html( moneda_signo + numberFormat(pagoCuidador) );
 
 	descuentos = descuentos+saldo;
 
@@ -663,6 +673,9 @@ function calcularDescuento(){
 		jQuery(".sub_total").parent().css("display", "block");
 		jQuery(".descuento").parent().css("display", "block");
 	}
+
+	jQuery(".pago_17").html( moneda_signo + numberFormat(pre17) );
+	jQuery(".pago_cuidador").html( moneda_signo +  numberFormat(pagoCuidador) );
 	
 	jQuery(".monto_total").html( moneda_signo + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
 	jQuery(".km-price-total2").html(moneda_signo + numberFormat( CARRITO["pagar"]["total"]-descuentos ));

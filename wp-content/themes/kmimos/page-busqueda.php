@@ -66,10 +66,11 @@
 
 	if( $destacados != "" ){
 		$destacados_str = '
-		<strong class="km-leyenda" style ="color: #000000;font-size: 20px;border-radius: 5px;border: solid 2px #6b1c9b;display: inline-block;padding: 5px 20px;margin-bottom: 10px;">Cuidadores Destacados</strong>
-		<div class="km-premium km-search-slider">
-			<div style="height: 220px; overflow: hidden;">
-				<div class="km-premium-slider">
+		<strong class="km-leyenda" style ="color: #000000;font-size: 20px;border-radius: 5px; display: inline-block;padding: 5px 20px 5px 0px;margin-bottom: 10px;">Cuidadores Destacados</strong>
+		<div class="km-premium km-search-slider" style="min-height:300px; padding: 20px 20px 2px 20px;background: #33e1be;">
+			<div style="height: 300px; overflow: hidden; background: transparent;">
+ 
+				<div class="km-premium-slider" style="min-height:300px;">
 					'.$destacados.'
 				</div>
 			</div>

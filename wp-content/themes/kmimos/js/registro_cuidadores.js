@@ -1,16 +1,5 @@
 jQuery( document ).ready(function() {
 	
-	jQuery("#rc_nacimiento").datepick({
-        dateFormat: 'dd/mm/yyyy',
-        onSelect: function(xdate) {
-            
-        },
-        yearRange: '-60:-18',
-        maxDate: '-18y',
-        firstDay: 1,
-        onmonthsToShow: [1, 1]
-    });
-
 	jQuery.post(
         HOME+"/procesos/busqueda/ubicacion.php",
         {},
@@ -104,14 +93,11 @@ jQuery( document ).ready(function() {
 	    navigator.geolocation.getCurrentPosition(
 	    	function(pos) {
 	      		var crd = pos.coords;
-
 	      		var position = {
 	      			latitude:  crd.latitude,
 	      			longitude: crd.longitude
 	      		};
-
 	      		vlz_coordenadas(position);
-
 	    	}, 
 	    	function error(err) {
 	      		alert("No podemos obtener tus coordenadas, por favor ingresa tus datos");
@@ -247,7 +233,7 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	jQuery('input').css('border-bottom', '#ccc');
 	jQuery('[data-error]').css('visibility', 'hidden');
 
-	var list = ['rc_email','rc_nombres','rc_apellidos','rc_ife','rc_email','rc_clave','rc_telefono', 'rc_referred', 'rc_nacimiento'];
+	var list = [  'rc_email','rc_nombres','rc_apellidos','rc_ife','rc_email','rc_clave','rc_telefono', 'rc_referred'];
 	var valid = km_cuidador_validar(list);
 
 	if( valid ){
@@ -296,8 +282,11 @@ jQuery(document).on("click", '[data-step="2"]', function ( e ) {
 jQuery(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-registro-cuidador-paso1', function ( e ) {
 	e.preventDefault();
 
-	var list = ['rc_descripcion'];
-	var valid = km_cuidador_validar(list);
+	var list = ['rc_descripcion', 'rc_vlz_img_perfil'];
+	var err = {  
+		'rc_vlz_img_perfil': 'perfil-img-a'
+	};
+	var valid = km_cuidador_validar(list, err);
 	if( valid ){
 		jQuery(".popup-registro-cuidador-paso1").hide();
 		jQuery(".popup-registro-cuidador-paso2").fadeIn("fast");		
@@ -418,17 +407,16 @@ function mensaje( label, msg='', reset=false ){
 		visible = 'hidden';
 	}
 	jQuery('[data-error="'+label+'"]').css('visibility', visible);
-	/*jQuery('[data-error="'+label+'"]').css('color', danger_color);*/
-	jQuery('[data-error="'+label+'"]').html(msg);
-	jQuery( '[name="'+label+'"]' ).css('border-bottom', '1px solid ' + border_color);
-	/*jQuery( '[name="'+label+'"]' ).css('color', danger_color);*/
+ 	jQuery('[data-error="'+label+'"]').html(msg);
+	jQuery('[name="'+label+'"]').css('border-bottom', '1px solid ' + border_color);
 }
+  
+function km_cuidador_validar( fields, error_field={} ){
 
-function km_cuidador_validar( fields ){
-
-	var status = true;
+ 	var status = true;
 	if( fields.length > 0 ){
 		jQuery.each( fields, function(id, val){
+console.log("1jQuery('#'+error_field[val]).css('border', '1px solid red')");
 			var m = '';
 			/*validar vacio*/
 			if( jQuery('[name="'+val+'"]').val() == '' ){
@@ -442,8 +430,10 @@ function km_cuidador_validar( fields ){
 			if( m == ''){
 				mensaje(val, m, true);
 			}else{
+console.log("jQuery('#'+error_field[val]).css('border', '1px solid red')");
 				mensaje(val, m);
 				status = false;
+  				jQuery('#'+error_field[val]).css('border', '1px solid red');
 			}
 
 		});
@@ -510,6 +500,8 @@ function rc_validar_longitud( field ){
 
 function vista_previa(evt) {
 	
+	jQuery('#perfil-img-a').css('border', '0px');	
+	jQuery('[data-error="rc_vlz_img_perfil"]').css('visibility', 'hidden');
 	var files = evt.target.files;
 	getRealMime(this.files[0]).then(function(MIME){
         if( MIME.match("image.*") ){

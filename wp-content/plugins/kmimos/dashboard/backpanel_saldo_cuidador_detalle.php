@@ -30,7 +30,7 @@ $reservas = getReservas($desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=<?php echo $_GET['page']; ?>" method="POST">
+		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=<?php echo $_GET['page']; ?>" method="POST">
 				  <label>Filtrar:</label>
 				  <div class="form-group">
 				    <div class="input-group">
@@ -86,6 +86,7 @@ $reservas = getReservas($desde, $hasta);
 			      <th>Cuidador</th>
 			      <th>Servicio Principal</th> 
 			      <th>Forma de Pago</th>
+
 			      <th>Total a pagar</th>
 			      <th>Monto Pagado</th>
 			      <th>Monto Remanente</th>
@@ -124,8 +125,8 @@ $reservas = getReservas($desde, $hasta);
 
 				  		if($estatus['addTotal'] == 1){
 							$total_a_pagar += currency_format($meta_reserva['_booking_cost'], "");
-					  		$total_pagado += currency_format($meta_Pedido['_order_total'], "");
-					  		$total_remanente += currency_format($meta_Pedido['_wc_deposits_remaining'], "");
+					  		$total_pagado += currency_format($meta_Pedido['pagado'], "");
+					  		$total_remanente += currency_format($meta_Pedido['remanente'], "");
 				  		}
 
 						// if(!in_array('hospedaje', explode("-", $reserva->post_name))){
@@ -142,12 +143,37 @@ $reservas = getReservas($desde, $hasta);
 							}
 						}
 
+						$method_payment = '';
+						if( !empty($meta_Pedido['_payment_method_title']) ){
+							$method_payment = $meta_Pedido['_payment_method_title']; 
+						}else{
+							if( !empty($meta_reserva['modificacion_de']) ){
+								$method_payment = 'Saldo a favor' ; 
+							}else{
+								$method_payment = 'Manual'; 
+							}
+						}
+
 						$pago_cuidador = calculo_pago_cuidador( 
 							$reserva->nro_reserva,
 							$meta_reserva['_booking_cost'],
-							$meta_Pedido['_order_total'],
-							$meta_Pedido['_wc_deposits_remaining']
-							);
+							$meta_Pedido['pagado'],
+							$meta_Pedido['remanente'],
+							$meta_Pedido['_cart_discount'],
+							$meta_Pedido['_wc_deposits_remaining'],
+							$method_payment
+						);
+echo '<pre style="display:none; data-italo">';
+	print_r( [
+			$reserva->nro_reserva,
+			$meta_reserva['_booking_cost'],
+							$meta_Pedido['pagado'],
+							$meta_Pedido['remanente'],
+							$meta_Pedido['_cart_discount'],
+							$meta_Pedido['_wc_deposits_remaining'],
+							$method_payment
+		] );
+	echo '</pre>';
 				  	?>
 				    <tr>
 				    	<th class="text-center"><?php echo ++$count; ?></th>
@@ -163,21 +189,12 @@ $reservas = getReservas($desde, $hasta);
 					<th><?php echo 'UC'.$reserva->cuidador_id; ?></th>
 					<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
 					<th><?php echo $reserva->producto_title; ?></th>
-					<th><?php
-						if( !empty($meta_Pedido['_payment_method_title']) ){
-							echo $meta_Pedido['_payment_method_title']; 
-						}else{
-							if( !empty($meta_reserva['modificacion_de']) ){
-								echo 'Saldo a favor' ; 
-							}else{
-								echo 'Manual'; 
-							}
-						} ?>
-					</th>
+					<th><?php echo $method_payment; ?>
+					</th> 
 					<th><?php echo currency_format($meta_reserva['_booking_cost']); ?></th>
-					<th><?php echo currency_format($meta_Pedido['_order_total']); ?></th>
-					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining']); ?></th>
-				    	<th class="text-center"><?php echo $pago_cuidador; ?></th>
+					<th><?php echo currency_format($meta_Pedido['pagado']); ?></th>
+					<th><?php echo currency_format($meta_Pedido['remanente']); ?></th>
+				    <th class="text-center"><?php echo $pago_cuidador; ?></th>
 					<th><?php echo $reserva->nro_pedido; ?></th>
 
 				    </tr>

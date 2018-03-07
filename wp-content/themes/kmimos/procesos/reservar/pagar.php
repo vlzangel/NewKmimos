@@ -214,6 +214,8 @@
 		"descuento"				=> $descuentos,
 		"pre17"					=> $pre17,
 		"pagoCuidador"			=> $pagoCuidador,
+
+		"reservaFlash"			=> $fechas->flash,
 	);
 
     $data_cliente = array();

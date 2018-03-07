@@ -18,15 +18,60 @@ function getPagoCuidador($desde, $hasta){
 	$detalle = [];
 	$count = 1;
 
+$dev = [];
+
 	foreach ($reservas as $row) {
 		$total = 0;
+		
 		
 		// Datos del cuidador
 		$pagos[ $row->cuidador_id ]['nombre'] = $row->nombre;
 		$pagos[ $row->cuidador_id ]['apellido'] = $row->apellido;
 
+		$meta_pedido = getMetaPedido( $row->pedido_id );
+
+
+		$method_payment = '';
+		if( !empty($meta_pedido['_payment_method_title']) ){
+			$method_payment = $meta_pedido['_payment_method_title']; 
+		}else{
+			if( !empty($meta_reserva['modificacion_de']) ){
+				$method_payment = 'Saldo a favor' ; 
+			}else{
+				$method_payment = 'Manual'; 
+			}
+		}
+
 		// Calculo por reserva
-		$monto = calculo_pago_cuidador( $row->total, $row->total_pago, $row->remanente );
+		$monto = calculo_pago_cuidador( 
+			$row->total, 
+			$row->total_pago, 
+			$row->remanente,
+
+			$meta_pedido['_cart_discount'],
+			$meta_pedido['_wc_deposits_remaining'],
+			$method_payment
+
+		);
+
+		$dev2[] = [
+			$row->reserva_id,
+			$row->total, 
+			$row->total_pago, 
+			$row->remanente,
+
+			$meta_pedido['_cart_discount'],
+			$meta_pedido['_wc_deposits_remaining'],
+			$method_payment
+		];
+
+		$dev[] = [
+			'row'  => $row,
+			'pago' => $row->total_pago, 
+			'monto'=> $monto,
+			'total'=> $row->total, 
+			'remanente'=> $row->remanente
+		];
 
 		if( $count == 4 ){
 			$separador = '<br><br>';
@@ -67,6 +112,10 @@ function getPagoCuidador($desde, $hasta){
 
 	}
 	
+
+	echo '<pre style="display:none; data-italo">';
+	print_r( $dev2 );
+	echo '</pre>';
 	return $pagos;
 }
 
@@ -84,18 +133,36 @@ function inicio_fin_semana( $date, $str_to_date  ){
     return $fecha;
 }
 
-function calculo_pago_cuidador( $total, $pago, $remanente ){
+
+function calculo_pago_cuidador( $total, $pago, $remanente, $deposits=0, $discount=0, $method='' ){
 
 	$saldo_cuidador = 0;
-	
+
+	//	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
+	//	$pago_kmimos = $total - ($total / 1.25);
+	//	$pago_cuidador_real = $total - $pago_kmimos;
+	//	$saldo_cuidador = $pago_cuidador_real - $remanente;
+
+	$pago_cuidador_real = 0;
+	$saldo_cuidador = 0;
+	$pago_kmimos = 0;
 	$dif = $remanente + $pago;
-	if( $dif != $total || ($remanente == 0 && $dif == $total) ){
-	        $pago_cuidador_real = ($total / 1.2);
-	        $pago_kmimos = $total - $pago_cuidador_real;
+	$pago_cuidador_real = ($total / 1.25);
+
+	if( $deposits > 0 ){
+		if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
 	        $saldo_cuidador = $pago_cuidador_real - $remanente;
+		}else{
+			$saldo_cuidador = $deposits;
+		}
+	}else{
+		if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
+	        $pago_kmimos = $total - $pago_cuidador_real;
+	        $saldo_cuidador = $pago_cuidador_real;  
+	    }
 	}
 
-	return $saldo_cuidador;
+	return $saldo_cuidador; // . " <span style='display:none;' data-italo> ( $dif != $total || ($remanente == 0 && $dif == $total) || $method == Saldo y/o Descuentos </span>";
 }
 
 function getReservas($desde="", $hasta=""){
@@ -118,10 +185,11 @@ function getReservas($desde="", $hasta=""){
  			us.nombre,
 			us.apellido,
 			r.ID as reserva_id,
+			r.post_parent as pedido_id,
 
-			( IFNULL(pm_remain.meta_value,0) + IFNULL(pm_total.meta_value,0) ) as total,
-			( IFNULL(pm_disco.meta_value,0)  + IFNULL(pm_total.meta_value,0) ) as total_pago,
-			( ( IFNULL(pm_remain.meta_value,0) + IFNULL(pm_total.meta_value,0) ) - ( IFNULL(pm_disco.meta_value,0) + IFNULL(pm_total.meta_value,0) ) ) as remanente
+			( IFNULL(rm_cost.meta_value,0) ) as total,
+			( IFNULL(pm_total.meta_value,0) ) as total_pago,
+			( IFNULL(pm_remain.meta_value,0) ) as remanente
 
 		FROM wp_posts as r
 			LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
@@ -394,7 +462,7 @@ function getMetaReserva( $post_id ){
 }
 
 function getMetaPedido( $post_id ){
-	$condicion = " AND meta_key IN ( '_payment_method','_payment_method_title','_order_total','_wc_deposits_remaining' )";
+	$condicion = " AND meta_key IN ( '_payment_method','_payment_method_title','_order_total','_wc_deposits_remaining','_cart_discount' )";
 	$result = get_metaPost($post_id, $condicion);
 	$data = [
 		'_payment_method' => '',

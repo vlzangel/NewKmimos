@@ -259,6 +259,9 @@
 						'.$pdf.'
 						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
 					</div>
+
+					'.get_publicidad("reserva").'
+
 				</div>
 			</div>
 

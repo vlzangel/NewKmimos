@@ -25,7 +25,7 @@ $users = getUsers($desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_cuidadores" method="POST">
+		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_cuidadores" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
@@ -60,10 +60,18 @@ $users = getUsers($desde, $hasta);
 			  <thead>
 			    <tr>
 			      <th>ID</th>
+			      <th>Flash</th>
 			      <th>Fecha Registro</th>
 			      <th>Nombre y Apellido</th>
 			      <th>Nombre</th>
 			      <th>Apellido</th>
+			      <th>Cuidador</th>
+
+			     <!--  <th>Recompra ( 1M )</th>
+			      <th>Recompra ( 3M )</th>
+			      <th>Recompra ( 6M )</th>
+			      <th>Recompra ( 12M )</th> -->
+
 			      <th>Email</th>
 			      <th>Estado</th>
 			      <th>Municipio</th>
@@ -87,14 +95,82 @@ $users = getUsers($desde, $hasta);
 			  				$name = $usermeta['nickname'];
 			  			}
 
-			  			$ubicacion = getEstadoMunicipio($row['estado'], $row['municipios']);
+			  			$direccion = getDireccion( $row['ID'] );
+
+			  			$ubicacion = getEstadoMunicipio($direccion['estado'], $direccion['municipios']);
+
+/*
+			  			# Recompra 1 Meses
+				  		$cliente_n_reserva = getCountReservas($row['ID'], "1");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$r1 = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+
+			  			# Recompra 3 Meses
+				  		$cliente_n_reserva = getCountReservas($row['ID'], "3");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$r3 = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+
+			  			# Recompra 6 Meses
+				  		$cliente_n_reserva = getCountReservas($row['ID'], "6");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$r6 = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+
+			  			# Recompra 12 Meses
+				  		$cliente_n_reserva = getCountReservas($row['ID'], "12");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$r12 = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+*/	
+					  	$atributos = $wpdb->get_var("SELECT atributos FROM cuidadores WHERE user_id = ".$row['ID']);
+					  	$atributos = unserialize($atributos);
+
+					  	$flash = "";
+						if( $atributos['flash'] == 1 ){
+							$flash = '
+								<i 
+									class="fa fa-bolt" 
+									aria-hidden="true"
+									style="
+										padding: 2px 4px;
+									    border-radius: 50%;
+									    background: #00c500;
+									    color: #FFF;
+									    margin-right: 2px;
+									"
+								></i> Flash
+							';
+						}
 			  		?>
 				    <tr>
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
+						<th><?php echo $flash; ?></th>
 						<th><?php echo date_convert($row['user_registered'], 'd-m-Y') ; ?></th>
 						<th><?php echo $name; ?></th>
 						<th><?php echo $usermeta["first_name"]; ?></th>
 						<th><?php echo $usermeta["last_name"]; ?></th>
+						<th>
+					  		<a href="<?php echo get_home_url().'/wp-admin/post.php?action=edit&post='.$row['cuidador_post']; ?>">
+								<?php echo $row["cuidador_title"]; ?>	
+							</a>
+						</th>
+ 
+
+						<!-- <th><?php echo $r1; ?></th>
+						<th><?php echo $r3; ?></th>
+						<th><?php echo $r6; ?></th>
+						<th><?php echo $r12; ?></th> -->
+ 
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>

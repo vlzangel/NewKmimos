@@ -91,7 +91,7 @@ function calculo_pago_cuidador( $total, $pago, $remanente ){
 	
 	$dif = $remanente + $pago;
 	if( $dif != $total || ($remanente == 0 && $dif == $total) ){
-	        $pago_cuidador_real = ($total / 1.2);
+	        $pago_cuidador_real = ($total / 1.25);
 	        $pago_kmimos = $total - $pago_cuidador_real;
 	        $saldo_cuidador = $pago_cuidador_real - $remanente;
 	}
@@ -121,10 +121,9 @@ function getReservas($desde="", $hasta=""){
  			us.nombre,
 			us.apellido,
 			r.ID as reserva_id,
-			
-			IFNULL(rm_cost.meta_value,0) as total,
-			IFNULL(pm_remain.meta_value,0) as remanente,
-			IFNULL(pm_total.meta_value,0) as total_pago,
+			rm_cost.meta_value as total,
+			pm_remain.meta_value as remanente,
+			pm_total.meta_value as total_pago,
 			rm_start.meta_value as booking_start
 
 		FROM wp_posts as r
