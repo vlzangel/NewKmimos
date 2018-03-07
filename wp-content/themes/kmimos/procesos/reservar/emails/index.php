@@ -162,7 +162,6 @@
     	}
     }
 
-
 	if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
 		/*		
 			$servicios_cuidador = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$cuidador->id}' AND post_type = 'product' ");

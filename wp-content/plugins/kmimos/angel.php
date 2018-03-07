@@ -92,6 +92,15 @@
 
     if(!function_exists('kmimos_mails_administradores_new')){       
         function kmimos_mails_administradores_new($titulo, $mensaje){     
+            $info = kmimos_get_info_syte();
+            $email_admin = $info["email"];
+
+            $headers_admins = array(
+                'BCC: a.veloz@kmimos.la',
+                'BCC: y.chaudary@kmimos.la',
+            );
+
+            wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
       
 /*            $info = kmimos_get_info_syte();
             $email_admin = $info["email"];

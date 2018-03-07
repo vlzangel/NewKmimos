@@ -46,16 +46,13 @@
             global $wpdb;
 
             $status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = {$id_orden}");
-
             $metas_orden = get_post_meta($id_orden);
             $metas_reserva  = get_post_meta( $id_reserva );
 
             $hoy = time();
             $inicia = strtotime( $metas_reserva["_booking_start"][0] );
             $total_reserva = $metas_reserva["_booking_cost"][0];
-
             $penalizar = false;
-
             if( $inicia-$hoy <= 86400 && $usuario == "CLI" ){
                 $penalizar = true;
             }
@@ -68,7 +65,6 @@
             }
 
             $deposito = unserialize( $items['_wc_deposit_meta'] );
-
             $saldo = 0;
             
             if( $deposito['enable'] == 'yes' ){

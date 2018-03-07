@@ -1,18 +1,19 @@
 <?php
-    
-    kmimos_registros_fotos( $servicio["id_reserva"] );
+
+    echo 'Nueva Reserva '.$inmediata.' - '.$servicio["tipo"].' por: '.$cliente["nombre"]."<br>";
+
+    if( !isset($NO_ENVIAR) ){
+        kmimos_registros_fotos( $servicio["id_reserva"] );
+    }
     
     /* Correo Cliente */
-
 
         $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cliente/confirmacion.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
 
-
         $datos_cuidador = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cuidador.php';
         $datos_cuidador = file_get_contents($datos_cuidador);
         $mensaje_cliente = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_cliente);
-
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
@@ -24,7 +25,6 @@
         
         $mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
         
-
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[tipo_servicio]', trim($servicio["tipo"]), $mensaje_cliente);
@@ -44,15 +44,16 @@
 
         $mensaje_cliente = get_email_html($mensaje_cliente);
 
-        wp_mail( $cliente["email"], $confirmacion_titulo, $mensaje_cliente);
+        if( isset($NO_ENVIAR) ){
+            echo $mensaje_cliente;
+        }else{
+            wp_mail( $cliente["email"], $confirmacion_titulo, $mensaje_cliente);
+        }
     
     /* Correo Cliente */
 
-
         $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cuidador/confirmacion.php';
         $mensaje_cuidador = file_get_contents($cuidador_file);
-
-
 
         if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
             $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
@@ -63,12 +64,10 @@
             $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
         }
 
-
         $datos_cliente = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cliente.php';
         $datos_cliente = file_get_contents($datos_cliente);
         $mensaje_cuidador = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_cuidador);
         
-
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
@@ -79,7 +78,6 @@
         
         $mensaje_cuidador = str_replace('[MODIFICACION]', $modificacion, $mensaje_cuidador);
         
-
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
 
         $mensaje_cuidador = str_replace('[tipo_servicio]', trim($servicio["tipo"]), $mensaje_cuidador);
@@ -98,9 +96,11 @@
 
         $mensaje_cuidador = get_email_html($mensaje_cuidador);
 
-        wp_mail( $cuidador["email"], $confirmacion_titulo, $mensaje_cuidador);
-
-
+        if( isset($NO_ENVIAR) ){
+            echo $mensaje_cuidador;
+        }else{
+            wp_mail( $cuidador["email"], $confirmacion_titulo, $mensaje_cuidador);
+        }
 
         $admin_file = $PATH_TEMPLATE.'/template/mail/reservar/admin/confirmacion.php';
         $mensaje_admin = file_get_contents($admin_file);
@@ -124,7 +124,6 @@
         
         $mensaje_admin = str_replace('[MODIFICACION]', $modificacion, $mensaje_admin);
         
-
         $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
 
         $mensaje_admin = str_replace('[tipo_servicio]', trim($servicio["tipo"]), $mensaje_admin);
@@ -138,7 +137,11 @@
 
         $mensaje_admin = get_email_html($mensaje_admin);
 
-        kmimos_mails_administradores_new($confirmacion_titulo, $mensaje_admin);
+        if( isset($NO_ENVIAR) ){
+            echo $mensaje_admin;
+        }else{
+            kmimos_mails_administradores_new($confirmacion_titulo, $mensaje_admin);
+        }
         
         $CONTENIDO .= "<div class='msg_acciones'>
             <strong>¡Todo esta listo!</strong><br>
