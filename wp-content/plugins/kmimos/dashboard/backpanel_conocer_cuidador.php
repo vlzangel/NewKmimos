@@ -6,8 +6,6 @@ $hasta = date("Y-m-d", $date[0]);
 if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 	$desde = (!empty($_POST['desde']))? $_POST['desde']: "";
 	$hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
-
-print_r($desde .'__'. $hasta);
 }
 
 

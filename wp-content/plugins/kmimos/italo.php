@@ -765,11 +765,28 @@ if(!function_exists('get_preguntas_categoria')){
 		      }
          /* Temporal ********************* */
 
+			$menus[] = array(
+				'title'=>'bp_reservas_by_cuidador',
+				'short-title'=>'bp_reservas_by_cuidador',
+				'parent'=>'kmimos',
+				'slug'=>'bp_reservas_by_cuidador',
+				'access'=>'manage_options',
+				'page'=>'backpanel_reservas_limiteDate',
+				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+			);
+
 
 	        return $menus;
 
 	    }
 	}
+
+
+    if(!function_exists('backpanel_reservas_limiteDate')){
+            function backpanel_reservas_limiteDate(){
+                include_once('dashboard/backpanel_reservas_limiteDate.php');
+            }
+    }
 
 
     if(!function_exists('backpanel_reservas_resumen_mensual')){
