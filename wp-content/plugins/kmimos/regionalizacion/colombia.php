@@ -11,6 +11,7 @@ $region = array(
     'cuidador_descripcion' => '¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estadía tu mascota contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra dentro de mi barrio, de confianza y muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.',
     "pais" => "Colombia",
     "pais_cod_iso"   => "CO",
+    'moneda_signo' => '$',
     'moneda_cod' => 'COP',
     "mon_der" => "COP",
     "titulo"    => "Kmimos Colombia",

@@ -18,9 +18,6 @@ function form_subscribe(element){
     var obj_submit = subscribe.find('[type="submit"]');
     var text_submit = obj_submit.html();
 
-    message.addClass('show');
-    message.html('Procesando...');
-
     if( !obj_submit.hasClass("disabled") ){
         //obj_submit.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Guardando');
         obj_submit.addClass('disabled');
@@ -40,7 +37,7 @@ function form_subscribe(element){
                 obj_submit.removeClass('disabled');
             }
             
-            if( data['message'] == "Ha sido Registrado" ){
+            if( data['result']===true ){
                
                 fbq ('track','CompleteRegistration');
                 fbq ('track','PopUpHome');

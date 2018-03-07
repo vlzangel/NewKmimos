@@ -1,8 +1,6 @@
 <?php global $wpdb;
-
 // Reservas 
 require_once('core/ControllerReservas.php');
-
 // Parametros: Filtro por fecha
 $date = getdate(); 
 $desde = date("Y-m-01", $date[0] );
@@ -75,6 +73,7 @@ $reservas = getReservas($_desde, $_hasta);
 			    <tr>
 			      <th>#</th>
 			      <th># Reserva</th>
+			      <th>Flash</th>
 			      <th>Estatus</th>
 			      <th>Fecha Reservacion</th>
 			      <th>Check-In</th>
@@ -97,12 +96,13 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Estado</th>
 			      <th>Municipio</th>
 			      <th>Forma de Pago</th>
+			      <th>Tipo de Pago</th>
 			      <th>Total a pagar ($)</th>
 			      <th>Monto Pagado ($)</th>
 			      <th>Monto Remanente ($)</th>
-			      <th>Cupones</th>
 			      <th># Pedido</th>
 			      <th>Observaci&oacute;n</th>
+
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -113,7 +113,7 @@ $reservas = getReservas($_desde, $_hasta);
 			  	 ?>
 			  	<?php $count=0; ?>
 			  	<?php foreach( $reservas as $reserva ){ ?>
- 	
+ 
 				  	<?php 
 				  		// *************************************
 				  		// Cargar Metadatos
@@ -154,14 +154,11 @@ $reservas = getReservas($_desde, $_hasta);
 
 				  		# MetaDatos del Reserva
 				  		$meta_reserva = getMetaReserva($reserva->nro_reserva);
-
 				  		# MetaDatos del Pedido
 				  		$meta_Pedido = getMetaPedido($reserva->nro_pedido);
-				  		
 				  		# Mascotas del Cliente
 				  		$mypets = getMascotas($reserva->cliente_id); 
 				  		# Estado y Municipio del cuidador
-				  					  		
 				  		$ubicacion = get_ubicacion_cuidador($reserva->cuidador_id);
 				  		# Servicios de la Reserva
 				  		$services = getServices($reserva->nro_reserva);
@@ -216,29 +213,33 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						}
 
-						$cupones = array();
+						$flash = "";
+						if( $meta_reserva['_booking_flash'] == "SI" ){
+							$flash = '
+								<i 
+									class="fa fa-bolt" 
+									aria-hidden="true"
+									style="
+										padding: 2px 4px;
+									    border-radius: 50%;
+									    background: #00c500;
+									    color: #FFF;
+									    margin-right: 2px;
+									"
+								></i> Flash
+							';
+						}
 
-						$_cupones = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_items WHERE order_item_type = 'coupon' AND order_id = ".$reserva->nro_pedido);
-						foreach ($_cupones as $key => $value) {
-							$valor = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE meta_key = 'discount_amount' AND order_item_id = ".$value->order_item_id);
-							if( $valor+0 > 0 ){
-								$cupones[] = $value->order_item_name." ($".currency_format($valor, "", "",".").")";
-							}
-						}
-						if( count($cupones) > 0 ){
-							$cupones = implode(", ", $cupones);
-						}else{
-							$cupones = "N/A";
-						}
 				  	?>
 				    <tr>
 			    	<th class="text-center"><?php echo ++$count; ?></th>
 					<th><?php echo $reserva->nro_reserva; ?></th>
+					<th><?php echo $flash; ?></th>
 					<th class="text-center"><?php echo $estatus['sts_corto']; ?></th>
 					<th class="text-center"><?php echo $reserva->fecha_solicitud; ?></th>
 
-					<th><?php echo date_convert($meta_reserva['_booking_start'], 'd-m-Y', true); ?></th>
-					<th><?php echo date_convert($meta_reserva['_booking_end'], 'd-m-Y', true); ?></th>
+					<th><?php echo date_convert($meta_reserva['_booking_start'], 'Y-m-d', true); ?></th>
+					<th><?php echo date_convert($meta_reserva['_booking_end'], 'Y-m-d', true); ?></th>
 
 					<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
 					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
@@ -273,14 +274,23 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						} ?>
 					</th>
+
+					<th> <?php 
+						$deposito = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$meta_reserva['_booking_order_item_id']} AND meta_key = '_wc_deposit_meta' ");
+						$deposito = unserialize($deposito);
+						if( $deposito["enable"] == "yes" ){
+							echo "Pago 20%";
+						}else{
+							echo "Pago Total";
+						}
+					?> </th>
+
 					<th><?php echo currency_format($meta_reserva['_booking_cost'], "", "","."); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_order_total'], "", "","."); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining'], "", "","."); ?></th>
-					<th> <?php echo $cupones; ?> </th>
 					<th><?php echo $reserva->nro_pedido; ?></th>
 					<th><?php echo $estatus['sts_largo']; ?></th>
-
-				    </tr>
+ 
 			   	<?php } ?>
 			  </tbody>
 			</table>

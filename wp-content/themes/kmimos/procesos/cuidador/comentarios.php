@@ -46,7 +46,8 @@
 		FROM
 			wp_comments	AS comentario
 		WHERE
-			comentario.comment_post_ID = '{$servicio}'
+			comentario.comment_post_ID = '{$servicio}' AND
+			comentario.comment_approved = '1'
 		ORDER BY comentario.comment_ID DESC
 	";
 

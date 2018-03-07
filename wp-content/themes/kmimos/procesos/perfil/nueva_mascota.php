@@ -37,14 +37,12 @@
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'aggressive_with_humans', '{$aggresive_humans}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'aggressive_with_pets', '{$aggresive_pets}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'about_pet', '{$pet_observations}'); ";
-	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'owner_pet', '{$user_id}'); ";
 
 	$sql .= "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$pet_type},'0');";
-	
+
 	$sql .= $img_portada;
 
 	$db->query_multiple( utf8_decode($sql) );
-	
 
 	$respuesta = array(
 		"status" => "OK",

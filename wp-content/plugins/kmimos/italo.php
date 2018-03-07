@@ -2,6 +2,77 @@
 	
 	include_once('includes/functions/kmimos_functions.php');
 
+
+	function kmimos_ucfirst( $str = ''){
+		if( !empty($str) ){		
+			$result = '';
+ 			for ($key = 0; $key <= strlen($str); $key++) {
+				$val = $str[$key];
+				$ascii = ord( $val );
+				if(
+					( $ascii >= 65  and $ascii <= 90  ) || 
+					( $ascii >= 97  and $ascii <= 122 ) || 
+					( $ascii >= 128 and $ascii <= 165 ) || 
+					( $ascii >= 224 and $ascii <= 237 ) 
+				){ 
+					$str[ $key ] = strtoupper( $val );
+					break;
+				}
+			}
+		}
+		return $str;
+	}
+
+	/**
+	 * BEGIN Seccion de ayuda Kmimos
+ 	 */
+	function add_secciones_ayuda() {
+		register_taxonomy('seccion','faq', array(
+				'hierarchical' => true,
+				'labels' => array(
+				'name' => _x( 'Secciones de Ayuda', 'Secciones de Ayuda' ),
+				'singular_name' => _x( 'Seccion de Ayuda', 'Secciones de Ayuda' ),
+				'search_items' =>  __( 'Search Secciones' ),
+				'all_items' => __( 'All Secciones' ),
+				'parent_item' => __( 'Parent seccion' ),
+				'parent_item_colon' => __( 'Parent seccion:' ),
+				'edit_item' => __( 'Edit seccion' ),
+				'update_item' => __( 'Update seccion' ),
+				'add_new_item' => __( 'Add New seccion' ),
+				'new_item_name' => __( 'New seccion Name' ),
+				'menu_name' => __( 'Secciones' ),
+			),
+			'rewrite' => array(
+				'slug' => 'secciones', 
+				'with_front' => true, 
+				'hierarchical' => true 
+			),
+		));
+	}
+	add_action( 'init', 'add_secciones_ayuda', 0 );
+	function create_posts_type() {
+
+		register_post_type( 'faq',
+			array(
+					'labels' => array(
+					'name' => __( 'Ayuda Kmimos' ),
+					'singular_name' => __( 'Ayuda Kmimos' )
+				),
+				'menu_position' => 3,
+				'public' => true,
+				'has_archive' => false,
+				'rewrite' => array('slug' => 'ayuda'),
+				'supports' => array( 'title', 'editor', 'thumbnail', 'seccion' ),
+	            'taxonomies' => array( 'seccion' ),
+	            'menu_icon' => '',
+			)
+		);		
+	}
+	add_action( 'init', 'create_posts_type' );
+	/**
+	 * END Seccion de ayuda Kmimos
+ 	 */
+
 	if(!function_exists('italo_include_script')){
 	    function italo_include_script(){
 	        
@@ -11,9 +82,17 @@
 	if(!function_exists('italo_include_admin_script')){
 	    function italo_include_admin_script(){
 	        include_once('dashboard/assets/config_backpanel.php');
+	        wp_enqueue_script('faq_script', getTema()."/js/faq.js", array(), '1.0.0');
+	        $HTML = '
+					<script type="text/javascript"> 
+						var HOME = "'.getTema().'/"; 
+						var RAIZ = "'.get_home_url().'/"; 
+					</script>';
+			echo comprimir_styles($HTML);
 	    }
 	}
 
+ 
 	if(!function_exists('get_region')){
 		function get_region($key){
 			if (!empty($key)) {
@@ -30,6 +109,313 @@
 			trigger_error("La clave \"{$key}\" o el archivo \"/plugins/kmimos/regionalizacion/".REGION.".php\" no existe:", E_USER_ERROR);
 		}
 	}
+ 
+
+	if(!function_exists('get_form_filtrar_ayuda')){
+		function get_form_filtrar_ayuda(){
+			echo '
+			<section class="row km-caja-filtro ayuda-busqueda">
+				<form method="post" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/ayuda/filtrar.php">
+					<div class="input-group km-input-content col-sm-12 col-sm-offset-0 col-md-offset-3">
+							<input type="text" name="nombre" value="" placeholder="BUSCAR TEMAS DE AYUDA" class=" ">
+							<span class="input-group-btn">
+								<button type="submit">
+									<img src="'.getTema().'/images/new/km-buscador.svg" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
+								</button>
+							</span>
+					</div>
+				</form>
+			</section>';
+		}
+	}
+
+	if(!function_exists('get_ayuda_secciones')){
+		function get_ayuda_secciones( $args = '' ) {
+		    $defaults = array( 'taxonomy' => 'seccion' );
+		    $args = wp_parse_args( $args, $defaults );
+		 
+		    $taxonomy = $args['taxonomy'];
+		 
+		    /**
+		     * Filters the taxonomy used to retrieve terms when calling get_categories().
+		     *
+		     * @since 2.7.0
+		     *
+		     * @param string $taxonomy Taxonomy to retrieve terms from.
+		     * @param array  $args     An array of arguments. See get_terms().
+		     */
+		    $taxonomy = apply_filters( 'get_categories_taxonomy', $taxonomy, $args );
+		 
+		    // Back compat
+		    if ( isset($args['type']) && 'link' == $args['type'] ) {
+		        _deprecated_argument( __FUNCTION__, '3.0.0',
+		            /* translators: 1: "type => link", 2: "taxonomy => link_category" */
+		            sprintf( __( '%1$s is deprecated. Use %2$s instead.' ),
+		                '<code>type => link</code>',
+		                '<code>taxonomy => link_category</code>'
+		            )
+		        );
+		        $taxonomy = $args['taxonomy'] = 'link_category';
+		    }
+		 
+		    $categories = get_terms( $taxonomy, $args );
+		 
+		    if ( is_wp_error( $categories ) ) {
+		        $categories = array();
+		    } else {
+		        $categories = (array) $categories;
+		        foreach ( array_keys( $categories ) as $k ) {
+		            _make_cat_compat( $categories[ $k ] );
+		        }
+		    }
+		 
+		    return $categories;
+		}
+	}
+
+	if(!function_exists('get_ayuda_categoria')){
+		function get_ayuda_categoria( $post_id ){
+			$result = '';
+			$parents = wp_get_post_terms( $post_id, 'seccion' ); 
+			foreach ($parents as $tax) {
+				$ignore = [ 'destacados', 'sugeridos' ];
+				if( !in_array( $tax->slug, $ignore ) ){
+					$result = [
+						'name'=>$tax->name, 
+						'slug'=>$tax->slug,
+					];
+				}
+			}
+			return $result;
+		}
+	}
+
+	/* Temas Sugeridos */
+	if(!function_exists('get_ayuda_sugeridos')){
+		function get_ayuda_postBySeccion( $parent='' ){
+
+			
+			$posts = get_posts(
+			    array(
+					'post_status' => 'publish', 
+			        'post_type' => 'faq',
+			        'numberposts' => '',
+			        'tax_query' => array(
+				        array(
+				            'taxonomy' => 'seccion',
+				            'field'    => 'slug',
+				            'terms'    => $parent
+				        )
+				    )
+			    )
+			);
+
+			return $posts;
+
+		}
+	}
+
+	/* Temas Sugeridos */
+	if(!function_exists('get_ayuda_sugeridos')){
+		function get_ayuda_sugeridos( $sugerido , $ID = 0, $echo = true ){
+
+		global $wpdb;
+			$HTML= '';
+		    $seccionessugeridos = $wpdb->get_results("select t.term_id,name,slug from wp_terms t inner join wp_term_taxonomy  tx where t.term_id=tx.term_id  
+				and (select slug from wp_terms tt where tt.term_id = tx.parent) = '".$sugerido."'  ");
+
+ 			
+			if( !empty($seccionessugeridos) ) { 	
+ 
+				$article = '';
+				
+				foreach ($seccionessugeridos as $categoria) { 
+
+					 $postsugeridos = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
+						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id." limit 2");
+
+					 $article .= '<h3><b>'.$categoria->name.'</b></h3>';
+
+					
+					foreach ($postsugeridos as $post) { 
+
+					
+					if($post->ID != $ID ){
+						$article .= '
+							<article>
+								<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
+									<h3 style="font-size:14px;">'.$post->post_title.'</h3>
+								</a>
+							</article>
+						';
+					}
+				
+
+				}
+
+						$cantpost = $wpdb->get_results("select count(*) cantidadpost from wp_term_relationships tr 
+							inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id);
+						foreach ($cantpost as $cant) { 
+						$numeropost=$cant->cantidadpost;
+						}
+
+						if($numeropost>2){
+						$article .= '<a style="text-decoration:none" href="'.get_home_url().'/ayuda-ver-mas?categoria='.$categoria->term_id.'"><h3 style="color: #FCFAFA;"><b>Ver más</b></h3></a>';
+						}
+					
+				}
+				
+				if( $article != '' ){
+					$HTML = '
+					<section class="temas-sugeridos">
+						<span class="title">Temas sugeridos</span>
+						<div class="sugeridos-content text-left">
+							<div class="container">
+							'.$article.'
+							</div>
+						</div>
+					</section>
+					';
+				}
+			}
+
+			if($echo){
+				print_r($HTML);
+			}else{
+				return $HTML;
+			}
+		}
+	}
+
+if(!function_exists('get_categoria_pregunta')){
+ 		function get_categoria_pregunta($id_post){
+ 				global $wpdb;
+				$HTML= '';
+				 $categoriapadre = $wpdb->get_results("select t.name,t.slug,t.term_id from wp_term_relationships tr 
+					inner join wp_term_taxonomy tx on tr.term_taxonomy_id=tx.term_taxonomy_id
+					inner join wp_terms t on tx.term_id=t.term_id
+					 where object_id=".$id_post);
+				$article = '';
+				foreach ($categoriapadre as $post) { 
+						$article .= '
+							<article>
+									<h3><b>'.$post->name.'</b></h3>
+								
+							</article>
+						';
+					}
+
+				$HTML = $article;
+				print_r($HTML);
+				
+			}
+		}
+
+if(!function_exists('get_ayuda_relacionados')){
+		function get_ayuda_relacionados($id_post){
+				global $wpdb;
+				$HTML= '';
+
+				 $categoriapadre = $wpdb->get_results("select t.name,t.slug,t.term_id from wp_term_relationships tr 
+					inner join wp_term_taxonomy tx on tr.term_taxonomy_id=tx.term_taxonomy_id
+					inner join wp_terms t on tx.term_id=t.term_id
+					 where object_id=".$id_post." and t.slug not in ('destacado','destacados_cuidadores') limit 1");
+				foreach ($categoriapadre as $post) { 
+					$id_padre=$post->term_id;
+				}
+
+				$postsrelacionados = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
+						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$id_padre." and p.ID!= ".$id_post." ");
+
+				if( !empty($postsrelacionados) ) { 	
+ 
+				$article = '';
+					foreach ($postsrelacionados as $post) { 
+
+						
+							$article .= '
+								<article>
+									<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
+										<h3>'.$post->post_title.'</h3>
+									</a>
+								</article>
+							';
+						
+
+					}
+					if( $article != '' ){
+					$HTML = '
+					<section class="temas-sugeridos">
+						<span class="title">Temas Relacionados</span>
+						<div class="sugeridos-content text-left">
+							<div class="container">
+							'.$article.'
+							</div>
+						</div>
+					</section>
+					';
+				}
+
+
+				}
+				print_r($HTML);
+			}
+		}
+
+if(!function_exists('get_preguntas_categoria')){
+	    function get_preguntas_categoria($id_categoria){
+	    		global $wpdb;
+				$HTML= '';
+
+
+
+
+				$preguntas = $wpdb->get_results("select p.ID,p.post_title,t.name as namecategoria from wp_term_relationships tr 
+						inner join wp_posts p on tr.object_id=p.ID 
+						inner join wp_term_taxonomy tx on tr.term_taxonomy_id = tx.term_taxonomy_id
+						inner join wp_terms t on tx.term_id=t.term_id
+						 where tr.term_taxonomy_id=".$id_categoria);
+
+
+
+			if( !empty($preguntas) ) { 	
+ 
+					$article= '';
+					foreach ($preguntas as $post) { 
+					$nombreCategoria=$post->namecategoria;
+							$article .= ' <a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
+										<h3>'.$post->post_title.'</h3>
+									</a>
+								
+							';
+
+
+					}
+
+					
+
+
+					if( $article != '' ){
+					$HTML = '
+					<section class="row text-left">
+						<h3><b>'.$nombreCategoria.'</b></h3>
+						<div class="sugeridos-content text-left">
+							<div class="container">
+							'.$article.'
+							</div>
+						</div>
+					</section>
+					';
+				}
+
+
+				}
+				print_r($HTML);
+
+	}
+}
+
+ 
 
 	if(!function_exists('validar_perfil_completo')){
 	    function validar_perfil_completo(){
@@ -182,8 +568,7 @@
 
  	if(!function_exists('italo_menus')){
 	    function italo_menus($menus){
-
-	    	global $current_user;
+		 global $current_user;
 
 	    	$menus[] = array(
                 'title'=>'Control de Reservas',
@@ -226,12 +611,33 @@
 	        );
 
 	        $menus[] = array(
+	                'title'=>'Cuidadores Detalles',
+	                'short-title'=>'Cuidadores Detalles',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_cuidadores_detalle',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_cuidadores_detalle',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+
+	        $menus[] = array(
 	                'title'=>'Listado de Cuidadores',
 	                'short-title'=>'Listado de Cuidadores',
 	                'parent'=>'kmimos',
 	                'slug'=>'bp_cuidadores',
 	                'access'=>'manage_options',
 	                'page'=>'backpanel_cuidadores',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Reservas por estados',
+	                'short-title'=>'Reservas por Estados',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_reservas_by_ubicacion',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_reservas_resumen_mensual',
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
@@ -307,6 +713,26 @@
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
+	        $menus[] = array(
+	                'title'=>'Reservas y Cupones',
+	                'short-title'=>'Reservas y Cupones',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_cupones',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_cupones',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
+	        $menus[] = array(
+	                'title'=>'Reservas y Conocer cuidador',
+	                'short-title'=>'Reservas y Conocer cuidador',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_reservas_conocer',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_reservas_con_conocer_cuidador',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
 
          /* Temporal ********************* */
 
@@ -353,12 +779,42 @@
       				'page'=>'backpanel_saldo_cupon',
       				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
       			);
+
+
 		      }
          /* Temporal ********************* */
+
 
 	        return $menus;
 
 	    }
+	}
+
+
+    if(!function_exists('backpanel_reservas_resumen_mensual')){
+            function backpanel_reservas_resumen_mensual(){
+                include_once('dashboard/backpanel_reservas_resumen_mensual.php');
+            }
+    }
+
+    if(!function_exists('backpanel_reservas_con_conocer_cuidador')){
+            function backpanel_reservas_con_conocer_cuidador(){
+                include_once('dashboard/backpanel_reservas_con_conocer_cuidador.php');
+            }
+    }
+
+    if(!function_exists('backpanel_saldo_cuidador_BookingStart')){
+            function backpanel_saldo_cuidador_BookingStart(){
+                include_once('dashboard/backpanel_saldo_cuidador_BookingStart.php');
+            }
+    }
+
+
+
+	if(!function_exists('backpanel_cupones')){
+	        function backpanel_cupones(){
+	            include_once('dashboard/backpanel_cupones.php');
+	        }
 	}
 
 	if(!function_exists('backpanel_saldo_cuidador')){
@@ -449,6 +905,12 @@
 		function backpanel_multinivel(){
 			include_once('dashboard/backpanel_multinivel.php');
 		}
+	}
+
+	if(!function_exists('backpanel_cuidadores_detalle')){
+	        function backpanel_cuidadores_detalle(){
+	            include_once('dashboard/backpanel_cuidadores_detalle.php');
+	        }
 	}
 
 	

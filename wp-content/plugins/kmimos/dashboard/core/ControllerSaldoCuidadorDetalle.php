@@ -7,24 +7,34 @@ require_once('GlobalFunction.php');
 // Cargar listados de Reservas
 // ***************************************
 
-function calculo_pago_cuidador( $id_reserva, $total, $pago, $remanente ){
+function calculo_pago_cuidador( $id_reserva, $total, $pago, $remanente, $deposits=0, $discount=0, $method='' ){
 
 	$saldo_cuidador = 0;
 
-//	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
-//$pago_kmimos = $total - ($total / 1.2);
-//	$pago_cuidador_real = $total - $pago_kmimos;
-//	$saldo_cuidador = $pago_cuidador_real - $remanente;
+	//	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
+	//	$pago_kmimos = $total - ($total / 1.25);
+	//	$pago_cuidador_real = $total - $pago_kmimos;
+	//	$saldo_cuidador = $pago_cuidador_real - $remanente;
 
+	$pago_cuidador_real = 0;
+	$saldo_cuidador = 0;
+	$pago_kmimos = 0;
+	$dif = $remanente + $pago;
+    $pago_cuidador_real = ($total / 1.25);
 
-$dif = $remanente + $pago;
-if( $dif != $total || ($remanente == 0 && $dif == $total) ){
-        $pago_cuidador_real = ($total / 1.2);
-        $pago_kmimos = $total - $pago_cuidador_real;
-        $saldo_cuidador = $pago_cuidador_real - $remanente;
-}
-
-	return $saldo_cuidador;
+	if( $deposits > 0 ){
+		if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
+	        $saldo_cuidador = $pago_cuidador_real - $remanente;
+		}else{
+			$saldo_cuidador = $deposits;
+		}
+	}else{
+		if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
+	        $pago_kmimos = $total - $pago_cuidador_real;
+	        $saldo_cuidador = $pago_cuidador_real;  
+	    }
+	} 
+	return $saldo_cuidador;  
 }
 
 function getReservas($desde="", $hasta=""){
@@ -51,7 +61,6 @@ function getReservas($desde="", $hasta=""){
 			pr.post_name as 'producto_name',			
  			(du.meta_value -1) as  'nro_noches',
  			(IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0)) as nro_mascotas,
- 			
  			((du.meta_value -1) * ( IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0) )) as 'total_noches',
 
 			pr.ID as producto_id,
@@ -84,10 +93,7 @@ function getReservas($desde="", $hasta=""){
 	$reservas = $wpdb->get_results($sql);
 	return $reservas;
 }
-
-
-
-
+ 
 function getRazaDescripcion($id, $razas){
 	$nombre = "[{$id}]";
 	if($id > 0){
@@ -352,12 +358,14 @@ function getMetaReserva( $post_id ){
 }
 
 function getMetaPedido( $post_id ){
-	$condicion = " AND meta_key IN ( '_payment_method','_payment_method_title','_order_total','_wc_deposits_remaining' )";
+	$condicion = " AND meta_key IN ( '_payment_method','_payment_method_title','_order_total','_cart_discount', '_wc_deposits_remaining'  )";
 	$result = get_metaPost($post_id, $condicion);
 	$data = [
 		'_payment_method' => '',
 		'_payment_method_title' => '',
+		
 		'_order_total' => '',
+		'_cart_discount' => '',
 		'_wc_deposits_remaining' => '',
 	];
 	if( !empty($result) ){
@@ -365,6 +373,13 @@ function getMetaPedido( $post_id ){
 			$data[$row['meta_key']] = utf8_encode( $row['meta_value'] );
 		}
 	}
+
+	/* BEGIN Calcular totales de la reserva */
+	// $data['total'] = $data['_order_total'] + $data['_wc_deposits_remaining'] ;
+	$data['pagado']  = $data['_order_total'];
+	$data['remanente'] = $data['_wc_deposits_remaining'] ;
+	/* END Calcular totales de la reserva */
+
 	return $data;	
 }
 

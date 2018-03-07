@@ -14,7 +14,6 @@ jQuery(document).ready(document).ready(function() {
         }, 
         function( data ) {
 
-
             jQuery("#btn_actualizar").val("Enviar valoración");
             jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");

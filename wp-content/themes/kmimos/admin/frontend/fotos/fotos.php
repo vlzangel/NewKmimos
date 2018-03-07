@@ -22,6 +22,7 @@
 					inicio.meta_value    <= NOW()
 				) AND
 				producto.post_author = '{$user_id}'
+				AND inicio.meta_value > '20171222000000'
 			ORDER BY posts.ID DESC
 		";
 

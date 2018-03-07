@@ -25,7 +25,8 @@ if($direction=='next'){
 
 //var_dump($qpage);
 $row=$qpage*1;//$limit;
-$query = "SELECT * FROM destacados WHERE (SELECT count(*) FROM cuidadores WHERE destacados.cuidador = cuidadores.id AND cuidadores.activo = 1) > 0 ORDER BY id LIMIT $row, $limit";//rand()
+//$query = "SELECT * FROM destacados ORDER BY id LIMIT $row, $limit";
+$query = "SELECT * FROM destacados WHERE (SELECT count(*) FROM cuidadores WHERE destacados.cuidador = cuidadores.id AND cuidadores.activo = 1) > 0 ORDER BY id LIMIT $row, $limit";
 $featureds = $wpdb->get_results($query);
 $result=false;
 $html='';

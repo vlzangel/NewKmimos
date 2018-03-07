@@ -22,12 +22,6 @@
 
 	extract($data);
 
-	/*	
-	echo "<pre>";
-		print_r($data);
-	echo "</pre>";
-	*/
-	
  	$modificacion_de = get_post_meta($servicio["id_reserva"], "modificacion_de", true);
     if( $modificacion_de != "" ){ 
     	$modificacion = "
@@ -151,18 +145,36 @@
     $detalles_plantilla = str_replace('[hora_fin]', $servicio["checkout"], $detalles_plantilla);
     $detalles_plantilla = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_plantilla);
 
-	if( $acc == ""  ){
+    $confirmacion_titulo = "Confirmación de Reserva";
+    if( $servicio["flash"] == "SI" && $acc == "" ){
+    	$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
+    	if ( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva != "wc-on-hold" ){
+	    	$acc = "CFM";
+	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
+    	}
+    	if ( strtolower($servicio["metodo_pago"]) == "tarjeta" && $status_reserva != "pending" ){
+	    	$acc = "CFM";
+	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
+    	}
+    	if ( strtolower($servicio["metodo_pago"]) == "saldo y/o descuentos" && $status_reserva != "pending" ){
+	    	$acc = "CFM";
+	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
+    	}
+    }
 
-		$servicios_cuidador = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$cuidador->id}' AND post_type = 'product' ");
-
-		$array_servicios = array();
-		foreach ($servicios_cuidador as $value) {
-			$array_servicios[] = $value->ID;
-		}
-
-		$ids = implode(",", $array_servicios);
-
-		$es_primera_reserva = $wpdb->get_var("SELECT count(*) FROM wp_postmeta WHERE meta_key = '_booking_product_id' AND meta_value IN '{$ids}'");
+	if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
+		/*		
+			$servicios_cuidador = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$cuidador->id}' AND post_type = 'product' ");
+			$array_servicios = array();
+			foreach ($servicios_cuidador as $value) {
+				$array_servicios[] = $value->ID;
+			}
+			$ids = implode(",", $array_servicios);
+			$es_primera_reserva = $wpdb->get_var("SELECT count(*) FROM wp_postmeta WHERE meta_key = '_booking_product_id' AND meta_value IN '{$ids}'");
+			if( $es_primera_reserva == 1 ){
+	            wp_mail( 'y.chaudary@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
+	        }
+        */
 
 		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
 		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
@@ -175,12 +187,9 @@
 			include(__DIR__."/otro.php");
 		}
 
-		if( $es_primera_reserva == 1 ){
-            // wp_mail( 'a.vera@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
-            wp_mail( 'y.chaudary@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
-        }
+	}
 
-	}else{
+	if( $acc != ""  ){
 
 		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_reserva"]."'");
 
