@@ -32,7 +32,7 @@
 							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/'.$publicidad.'.jpg" />
 						</a>
 						<a class="publicidad_solo_movil" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil.jpg" />
+							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil.jpg" />
 						</a>
 					</div>
 				';

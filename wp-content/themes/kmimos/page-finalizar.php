@@ -212,7 +212,7 @@
 
 		$HTML .= '
 	 		<div class="km-content km-step-end" style="max-width: 840px;">
-				<div style="padding: 20px 40px 20px; background: #FFF;">
+				<div style="padding: 0px 10px 20px; background: #FFF;">
 					<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
 					<br>
 					¡Genial '.get_user_meta($data_reserva["cliente"]["id"], "first_name", true).' '.get_user_meta($data_reserva["cliente"]["id"], "last_name", true).'!<br>
