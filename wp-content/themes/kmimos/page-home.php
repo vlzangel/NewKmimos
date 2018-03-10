@@ -351,21 +351,24 @@
 		</div>
 		<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->
 
+
+
+
+
 		<!-- SECCIÓN 5 - VACACIONES -->
-		<div class="km-vacaciones">
-			<video loop muted autoplay poster="'.getTema().'/images/new/km-hero-desktop.jpg"class="km-video-bgscreen" src="'.getTema().'/images/video.mp4" width="100%" height="100%"></video>
-			<div class="km-fondo"></div>
-			<div class="container">
-				<p>NOSOTROS NOS ENCARGAMOS DE TU MASCOTA, TÚ LIBÉRATE.</p>
-				<h2>Vacations Mode On</h2>
-				<div class="row">
-					<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
-						<a  target="blank" href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
-					</div>
-				</div>
-			</div>
-		</div>
+		<a href="https://nutriheroes.com.mx/" target="_blank" class="km-vacaciones fondo_banner_nutriheroes">
+			<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/images/video.mp4" width="100%" height="100%"></video>
+			<div class="container banner_nutriheroes"></div>
+		</a>
 		<!-- FIN SECCIÓN 5 - VACACIONES -->
+
+
+
+
+
+
+
+
 		<!-- SECCIÓN 6 - BENEFICIOS -->
 		<div class="km-medios">
 			<div class="container">
