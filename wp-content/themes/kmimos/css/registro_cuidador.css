@@ -39,3 +39,8 @@
 button.close {
     z-index: 9999999;
 }
+
+.fecha_placeholder label {
+    top: 12px !important;
+    font-size: 11px !important;
+}
