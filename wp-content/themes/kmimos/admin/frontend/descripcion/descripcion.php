@@ -9,6 +9,10 @@
     $comportamientos_aceptados = unserialize($cuidador->comportamientos_aceptados);
     $atributos = unserialize($cuidador->atributos);
 
+    if( !isset($atributos["nacimiento"]) ){
+        $atributos["nacimiento"] = "";
+    }
+
     $petsitter_id = $cuidador->id;
     $lat = $cuidador->latitud;
     $lng = $cuidador->longitud;
@@ -185,6 +189,13 @@
         <section> 
             <label class="lbl-text">'.esc_html__('Cuidando Desde', 'kmimos').':</label>
             <label class="lbl-ui">
+                <input type="text" name="fecha" id="fecha" class="input" placeholder="dd/mm/yyyy" value="'.$atributos["nacimiento"].'" readonly />
+            </label>
+        </section>
+
+        <section> 
+            <label class="lbl-text">'.esc_html__('Cuidando Desde', 'kmimos').':</label>
+            <label class="lbl-ui">
                 '.$cuidando_desde.'
             </label>
         </section>
@@ -227,13 +238,6 @@
             <label for="acepto_hasta" class="lbl-text">'.esc_html__('Num. de perros aceptados','kmimos').':</label>
             <label class="lbl-ui">
                 '.$permitidas.'
-            </label>
-        </section>
-
-        <section> 
-            <label for="video_youtube" class="lbl-text">'.esc_html__('Video de Youtube (URL)','kmimos').':</label>
-            <label class="lbl-ui">
-             	<input  type="text" id="video_youtube" name="video_youtube" class="input" value="'.$atributos['video_youtube'].'" />
             </label>
         </section>
 
@@ -332,6 +336,17 @@
             <label class="lbl-ui">
               <input  type="text" id="direccion" name="direccion" class="input" value="'.$cuidador->direccion.'" />
             </label> 
+        </section>
+
+    </div>
+
+    <div class="inputs_containers" style="padding-bottom: 0px;">
+
+        <section style="width: 100%;"> 
+            <label for="video_youtube" class="lbl-text">'.esc_html__('Video de Youtube (URL)','kmimos').':</label>
+            <label class="lbl-ui">
+                <input  type="text" id="video_youtube" name="video_youtube" class="input" value="'.$atributos['video_youtube'].'" />
+            </label>
         </section>
 
     </div>';
