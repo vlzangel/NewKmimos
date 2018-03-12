@@ -8,7 +8,7 @@ jQuery( document ).ready(function() {
 			if( jQuery('#datepets').val() != '' ){
 			}
 		},
-		yearRange: (parseInt(maxDatePets.getFullYear())-30)+':'+maxDatePets.getFullYear(),
+		yearRange: '1940:'+maxDatePets.getFullYear(),
 	});
 
 	jQuery.post(
