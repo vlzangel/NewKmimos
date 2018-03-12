@@ -394,16 +394,40 @@ function getReservas($desde="", $hasta=""){
 		'year'=> [],
 		'registros' => [],
 	];
+
 	foreach( $reservas as $reserva ){
 		$ubicacion = get_ubicacion_cuidador($reserva->cuidador_id);
 
 		if( !empty($ubicacion['estado']) && !empty($ubicacion['municipio']) ){
+
+			$meses = [
+				'01'=>'Ene.',
+				'02'=>'Feb.',
+				'03'=>'Mar.',
+				'04'=>'Abr.',
+				'05'=>'May.',
+				'06'=>'Jun.',
+				'07'=>'Jul.',
+				'08'=>'Ago.',
+				'09'=>'Sep.',
+				'10'=>'Oct.',
+				'11'=>'Nov.',
+				'12'=>'Dic.',
+			];
+
+			$hoy = date('Y');
 			$fecha = date('Y', strtotime( $reserva->fecha_solicitud ));
-			$result['year'][$fecha] = $fecha;
-			$result['registros'][ $ubicacion['estado'] ][ $ubicacion['municipio'] ][ $fecha ] += 1;
+			if( $fecha < $hoy ){
+				$result['year'][$fecha] = $fecha;
+				$result['registros'][ $ubicacion['estado'] ][ $ubicacion['municipio'] ][ $fecha ] += 1;
+			}else{
+				$mes = date('m', strtotime( $reserva->fecha_solicitud ));
+				$fecha = $meses[$mes].' '.$fecha;
+				$result['year'][$fecha] = $fecha;
+				$result['registros'][ $ubicacion['estado'] ][ $ubicacion['municipio'] ][ $fecha ] += 1;
+			}
 		}
 	}
-
 	return $result;
 }
 

@@ -218,12 +218,14 @@ function getServices( $num_reserva = 0 ){
 }
 
 function getMetaCliente( $user_id ){
-	$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_referred')";
+	$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_referred', 'user_phone', 'user_mobile')";
 	$result = get_metaUser($user_id, $condicion);
 	$data = [
 		'first_name' =>'', 
 		'last_name' =>'', 
 		'user_referred' =>'', 
+		'user_phone' =>'', 
+		'user_mobile' =>'', 
 	];
 	if( !empty($result) ){
 		foreach ($result['rows'] as $row) {
@@ -387,27 +389,30 @@ function getReservas($desde="", $hasta=""){
 			pr.ID as producto_id,
 			pr.post_name as post_name,
  			us.user_id as cuidador_id,
- 			cl.ID as cliente_id
+ 			cl.ID as cliente_id,
+ 			cl.user_email as cliente_email
 
-		from wp_posts as r
+		FROM wp_posts as r
 			LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
 			LEFT JOIN wp_posts as p ON p.ID = r.post_parent
 
 			LEFT JOIN wp_woocommerce_order_itemmeta as fe  ON (fe.order_item_id  = rm.meta_value and fe.meta_key  = 'Fecha de Reserva')
 			LEFT JOIN wp_woocommerce_order_itemmeta as du  ON (du.order_item_id  = rm.meta_value and du.meta_key  = 'Duración')
-			LEFT JOIN wp_woocommerce_order_itemmeta as mpe ON mpe.order_item_id = rm.meta_value and (mpe.meta_key = 'Mascotas Pequeños' or mpe.meta_key = 'Mascotas Pequeñas')
-			LEFT JOIN wp_woocommerce_order_itemmeta as mme ON mme.order_item_id = rm.meta_value and (mme.meta_key = 'Mascotas Medianos' or mme.meta_key = 'Mascotas Medianas')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mpe ON  mpe.order_item_id = rm.meta_value and (mpe.meta_key = 'Mascotas Pequeños' or mpe.meta_key = 'Mascotas Pequeñas')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mme ON  mme.order_item_id = rm.meta_value and (mme.meta_key = 'Mascotas Medianos' or mme.meta_key = 'Mascotas Medianas')
 			LEFT JOIN wp_woocommerce_order_itemmeta as mgr ON (mgr.order_item_id = rm.meta_value and mgr.meta_key = 'Mascotas Grandes')
 			LEFT JOIN wp_woocommerce_order_itemmeta as mgi ON (mgi.order_item_id = rm.meta_value and mgi.meta_key = 'Mascotas Gigantes')
 			LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')
 			LEFT JOIN wp_posts as pr ON pr.ID = pri.meta_value
 			LEFT JOIN cuidadores as us ON us.user_id = pr.post_author
 			LEFT JOIN wp_users as cl ON cl.ID = r.post_author
+
 		WHERE r.post_type = 'wc_booking' 
 			and not r.post_status like '%cart%' 
 			and cl.ID > 0 
 			and p.ID > 0
 			AND ( r.post_date_gmt >= '2017-12-01 00:00:00' and  r.post_date_gmt <= '2018-12-31 23:59:59' )
+
 		ORDER BY r.ID desc
 
 		;";

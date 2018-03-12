@@ -84,7 +84,11 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Noches</th>
 			      <th># Mascotas</th>
 			      <th># Noches Totales</th>
+			      
 			      <th>Cliente</th>
+			      <th>Email Cliente</th>
+			      <th>Telefono Cliente</th>
+			      
 			      <th>Recompra (1Mes)</th>
 			      <th>Recompra (3Meses)</th>
 			      <th>Recompra (6Meses)</th>
@@ -130,6 +134,7 @@ $reservas = getReservas($_desde, $_hasta);
 				  		// *************************************
 				  		# MetaDatos del Cuidador
 				  		$meta_cuidador = getMetaCuidador($reserva->cuidador_id);
+				  		
 				  		# MetaDatos del Cliente
 				  		$cliente = getMetaCliente($reserva->cliente_id);
 
@@ -258,6 +263,11 @@ $reservas = getReservas($_desde, $_hasta);
 						<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 						<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
 						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
+
+
+						<th class="text-center"><?php echo $reserva->cliente_email; ?></th>
+						<th class="text-center"><?php echo $cliente['phone']; ?></th>
+						
 						<th class="text-center"><?php echo $recompra_1M; ?></th>
 						<th class="text-center"><?php echo $recompra_3M; ?></th>
 						<th class="text-center"><?php echo $recompra_6M; ?></th>
