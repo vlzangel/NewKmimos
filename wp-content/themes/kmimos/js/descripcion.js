@@ -11,6 +11,17 @@ jQuery(".vlz_pin_check").on("click", function(){
 });
 
 jQuery( document ).ready(function() {
+    
+    var maxDatePets = new Date();
+    jQuery('#fecha').datepick({
+        dateFormat: 'dd/mm/yyyy',
+        maxDate: maxDatePets,
+        onSelect: function(xdate) {
+            if( jQuery('#datepets').val() != '' ){
+            }
+        },
+        yearRange: '1940:'+maxDatePets.getFullYear(),
+    });
 
     jQuery("#estado").on("change", function(e){
         var estado_id = jQuery("#estado").val();       

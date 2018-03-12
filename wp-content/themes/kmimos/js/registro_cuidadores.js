@@ -1,5 +1,16 @@
 jQuery( document ).ready(function() {
 	
+	var maxDatePets = new Date();
+	jQuery('#fecha').datepick({
+		dateFormat: 'dd/mm/yyyy',
+		maxDate: maxDatePets,
+		onSelect: function(xdate) {
+			if( jQuery('#datepets').val() != '' ){
+			}
+		},
+		yearRange: '1940:'+maxDatePets.getFullYear(),
+	});
+
 	jQuery.post(
         HOME+"/procesos/busqueda/ubicacion.php",
         {},
@@ -233,7 +244,7 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	jQuery('input').css('border-bottom', '#ccc');
 	jQuery('[data-error]').css('visibility', 'hidden');
 
-	var list = [  'rc_email','rc_nombres','rc_apellidos','rc_ife','rc_email','rc_clave','rc_telefono', 'rc_referred'];
+	var list = [  'rc_email','rc_nombres','rc_apellidos','rc_ife','fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
 	var valid = km_cuidador_validar(list);
 
 	if( valid ){
@@ -416,7 +427,6 @@ function km_cuidador_validar( fields, error_field={} ){
  	var status = true;
 	if( fields.length > 0 ){
 		jQuery.each( fields, function(id, val){
-console.log("1jQuery('#'+error_field[val]).css('border', '1px solid red')");
 			var m = '';
 			/*validar vacio*/
 			if( jQuery('[name="'+val+'"]').val() == '' ){
@@ -477,7 +487,11 @@ function rc_validar_longitud( field ){
 
 			case 'rc_ife':
 				result = validar_longitud( val, 13, 13, 'string', 'Debe tener 13 digitos');
-				break;
+			break;
+
+			case 'fecha':
+				result = validar_longitud( val, 10, 10, 'string', 'Debe tener 10 digitos');
+			break;
 
 			case 'rc_clave':
 				result = validar_longitud( val, 1, 200, 'string', 'Debe estar entre 1 y 200 caracteres');

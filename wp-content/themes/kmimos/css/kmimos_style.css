@@ -706,33 +706,6 @@ input:focus{
 
 
 /* SECCIÓN  - KMIMOS VACACIONES */
-.km-vacaciones {
-	background: url(../images/new/km-vacaciones.gif) no-repeat;
-	background-size: cover;
-	background-position: center center;
-	color: white;
-	text-align: center;
-	padding: 150px 0;
-	height: 600px;
-}
-.km-vacaciones p, .km-vacaciones h2 {
-	letter-spacing: 1px;
-}
-.km-vacaciones h2 {
-	color: white;
-}
-.km-vacaciones a {
-	width: 100%;
-	background-color: white;
-	padding: 10px 0;
-	display: block;
-	border-radius: 8px;
-}
-
-.km-vacaciones .items {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
 
 /*POPUP SERVICIOS*/
 #popup-servicios {
@@ -2455,10 +2428,7 @@ footer input:focus{
 
 
 
-	.km-vacaciones {
-		padding: 100px 0;
-		height: 500px;
-	}
+
 	.km-club {
 		margin-top: 0;
 	}
@@ -3449,35 +3419,7 @@ section {
 .km-club .form-registro fieldset:last-child {
     margin-bottom:60px
 }
-.km-vacaciones {
-    background:url(../images/new/km-vacaciones.gif) no-repeat;
-    background-size:cover;
-    background-position:center center;
-    color:#fff;
-    text-align:center;
-    padding:150px 0;
-    height:600px
-}
-.km-vacaciones h2, .km-vacaciones p {
-    letter-spacing:1px
-}
-.km-vacaciones h2 {
-    color:#fff
-}
-.km-vacaciones a {
-    width:100%;
-    background-color:#fff;
-    padding:10px 0;
-    display:block;
-    border-radius:8px
-}
 
-/*.km-vacaciones .col-sm-6 {
-    margin:20px 0
-}*/}
-/*.km-vacaciones .col-sm-6 {
-    margin:20px 0
-}*/
 #popup-servicios {
     text-align:center
 }
@@ -5706,10 +5648,6 @@ h1.maps {
     .km-testimoniales .bx-viewport, .km-testimoniales .bxslider li {
         height:400px
     }
-    .km-vacaciones {
-        padding:100px 0;
-        height:500px
-    }
     .km-club {
         margin-top:0
     }
@@ -6907,36 +6845,15 @@ position: absolute;
 }
 /* SECCIÓN  - KMIMOS VACACIONES */
 .km-vacaciones {
-	background: #000;
     background-size: cover;
     background-position: center center;
     color: white;
     text-align: center;
-    padding: 150px 0;
+    padding: 50px 0px;
     height: 600px;
     position: relative;
     overflow: hidden;
 }
-.km-vacaciones p, .km-vacaciones h2 {
-    letter-spacing: 1px;
-}
-.km-vacaciones h2 {
-    color: white;
-}
-.km-vacaciones a {
-    width: 100%;
-    background-color: white;
-    padding: 10px 0;
-    display: block;
-    border-radius: 8px;
-}
-
-/*.km-vacaciones .col-sm-6 {
-    margin: 20px 0;
-}*/}
-/*.km-vacaciones .col-sm-6 {
-    margin: 20px 0;
-}*/
 
 /*POPUP SERVICIOS*/
 #popup-servicios {
