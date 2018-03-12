@@ -755,7 +755,11 @@ ul.slider_logos_box li{
     @media (max-width: 800px){
 
         .fondo_banner_nutriheroes{
-            background-image: url(../images/home/movil_fondo_banner_nutriheroes.png) !important;
+            background-image: url(../images/home/ezgif.com-crop.gif) !important;
+        }
+
+        .fondo_banner_nutriheroes > video{
+            display: none !important;
         }
 
         .banner_nutriheroes{
