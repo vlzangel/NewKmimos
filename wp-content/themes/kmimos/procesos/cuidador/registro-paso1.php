@@ -148,6 +148,10 @@
             // Registro en iLernus
             $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
+            $atributos = array(
+                "nacimiento" => $fecha
+            );
+
             $sql = "
                 INSERT INTO cuidadores VALUES (
                     NULL,
@@ -176,7 +180,7 @@
                     '{$hospedaje}',
                     0,
                     'a:0:{}',
-                    'a:0:{}',
+                    '".serialize($atributos)."',
                     '0',
                     '0'
                 );
