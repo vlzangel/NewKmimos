@@ -65,7 +65,7 @@
     	$servicios_txt = "";
         if( $servicios != "" ){
         	foreach ($servicios as $key => $value) {
-        		$servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".$value["img"]."' height='100%' >";
+        		$servicios_txt .= "<img style='' src='[URL_IMGS]/servicios/".str_replace('.svg', '.png', $value["img"])."' height='100%' >";
         	}
         }
     	$temp = str_replace("[MONTO]", number_format( ($valor->hospedaje_desde*1.2), 2, ',', '.'), $plantilla_cuidador);

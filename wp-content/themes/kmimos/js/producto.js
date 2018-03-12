@@ -5,6 +5,7 @@ function initCarrito(){
 	CARRITO["fechas"] = [];
 
 		CARRITO["fechas"] = {
+			"flash" : "",
 			"inicio" : "",
 			"fin" : "",
 			"checkin" : "",
@@ -36,7 +37,7 @@ function initCarrito(){
 
 		CARRITO["pagar"] = {
 			"total" : "",
-			"tipo" : "",
+			"tipo" : "tienda",
 			"metodo" : "deposito",
 			"token" : "",
 			"deviceIdHiddenFieldName" : "",
@@ -74,17 +75,38 @@ function validar(status, txt){
 }
 
 function calcular(){
-
+	
 	if( FLASH == "NO" ){
-		console.log(jQuery("#checkin").val());
-		if( jQuery("#checkin").val() == HOY || jQuery("#checkin").val() == MANANA ){
+		if( jQuery("#checkin").val() == "" ){
 			jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
 			jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
 			jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
 		}else{
-			jQuery("#vlz_msg_bloqueo").addClass("vlz_NO_bloquear_msg");
-			jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
-			jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
+			if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+				jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
+				jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
+				jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
+			}else{
+				if( jQuery("#checkin").val() == MANANA && HORA >= 18 ){
+					jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
+					jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
+					jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
+				}else{
+					jQuery("#vlz_msg_bloqueo").addClass("vlz_NO_bloquear_msg");
+					jQuery("#vlz_msg_bloqueo").removeClass("vlz_bloquear_msg");
+					jQuery("#bloque_info_servicio").removeClass("vlz_bloquear");
+				}
+			}
+		}
+	}else{
+		if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+			CARRITO["fechas"]["flash"] = "SI";
+		}else{
+			if( jQuery("#checkin").val() == MANANA && HORA >= 18 ){
+				CARRITO["fechas"]["flash"] = "SI";
+			}else{
+				CARRITO["fechas"]["flash"] = "NO";
+			}
 		}
 	}
 
@@ -189,7 +211,7 @@ function calcular(){
 		}
 	}
 
-	if( error == "" ){
+/*	if( error == "" ){
 		if( CARRITO[ "fechas" ][ "checkin" ] == undefined || CARRITO[ "fechas" ][ "checkin" ] == "" ){
 			error = "Ingrese la hora de checkin";
 		}
@@ -199,7 +221,7 @@ function calcular(){
 		if( CARRITO[ "fechas" ][ "checkout" ] == undefined || CARRITO[ "fechas" ][ "checkout" ] == "" ){
 			error = "Ingrese la hora de checkout";
 		}
-	}
+	}*/
 
 	var cant = 0, duracion = 0;
 	jQuery.each( CARRITO[ "cantidades" ], function( key, valor ) {
@@ -247,8 +269,10 @@ function calcular(){
 	}
 	
 	if( error == "" ){
-		jQuery(".pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
-		jQuery(".pago_cuidador").html( "$" + numberFormat(cant/1.2) );
+
+		jQuery(".pago_17").html( "$" + numberFormat(cant*0.2) );
+		jQuery(".pago_cuidador").html( "$" +  numberFormat(cant-(cant*0.2)) );
+
 		jQuery(".monto_total").html( "$" + numberFormat(cant) );
 		CARRITO["pagar"]["total"] = cant;
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
@@ -443,7 +467,7 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			/*console.log( data );*/
+			console.log( data );
 			if( data.error != "" && data.error != undefined ){
 				if( data.tipo_error != "3003" ){
 					var error = "Error procesando la reserva<br>";
@@ -543,8 +567,8 @@ function calcularDescuento(){
         }
 	});
 
-	var pre17 = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]/1.2);
-	var pagoCuidador = CARRITO["pagar"]["total"]/1.2;
+	var pre17 = CARRITO["pagar"]["total"]*0.2;
+	var pagoCuidador = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]*0.20);
 
 	var reciduo_0 = 0;
 	if( pagoCuidador >= descuentos ){
@@ -565,9 +589,6 @@ function calcularDescuento(){
 	if( pagoCuidador >= reciduo ){
 		pagoCuidador -= reciduo;
 	}
-
-	jQuery(".pago_17").html( "$" + numberFormat( pre17 ) );
-	jQuery(".pago_cuidador").html( "$" + numberFormat(pagoCuidador) );
 
 	descuentos = descuentos+saldo;
 
@@ -601,6 +622,9 @@ function calcularDescuento(){
 		jQuery(".sub_total").parent().css("display", "block");
 		jQuery(".descuento").parent().css("display", "block");
 	}
+
+	jQuery(".pago_17").html( "$" + numberFormat(pre17) );
+	jQuery(".pago_cuidador").html( "$" +  numberFormat(pagoCuidador) );
 	
 	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
 	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
@@ -691,7 +715,7 @@ var descripciones = "";
 
 jQuery(document).ready(function() { 
 
-	jQuery("#hora_checkin").on("change", function(){
+	/*jQuery("#hora_checkin").on("change", function(){
 		CARRITO["fechas"]["checkin"] = jQuery("#hora_checkin").val();
 		calcular();
 	});
@@ -699,7 +723,7 @@ jQuery(document).ready(function() {
 	jQuery("#hora_checkout").on("change", function(){
 		CARRITO["fechas"]["checkout"] = jQuery("#hora_checkout").val();
 		calcular();
-	});
+	});*/
 
 	jQuery(".km-option-deposit").click();
 
@@ -998,6 +1022,9 @@ jQuery(document).ready(function() {
 		jQuery("#"+jQuery(this).val()+"_box").css("display", "block");
 		if( jQuery(this).val() != "tarjeta" ){
 			jQuery(".errores_box").css("display", "none");
+			CARRITO["pagar"]["tipo"] = "tienda";
+		}else{
+			CARRITO["pagar"]["tipo"] = "tarjeta";
 		}
 	});
 

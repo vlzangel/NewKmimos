@@ -172,12 +172,15 @@
                 }
                 $top_destacados .= '
                     <div class="slide">
-                        <div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
-                            <div class="slide-mask"></div>
+                        <div class="item-slide">
+                            <div style="background-image: url('.$img_url.');" class="slider-image">
+                                <div style="filter: blur(1px);width:100%;height:27%;background: #00000094;position:absolute;border-radius:10px 10px 0px 0px;"></div>
+                            </div>
+                            <div class="hidden slide-mask"></div>
                             <div class="slide-content">
                                 <div class="slide-price-distance">
-                                    <div class="slide-price">
-                                        Desde <span>MXN $'.($cuidador->hospedaje_desde*1.2).'</span>
+                                    <div class="slide-price text-left" style="color:#fff;font-size:12px;">
+                                        Desde <span style="font-size:12px;">MXN $'.($cuidador->hospedaje_desde*getComision()).'</span>
                                     </div>
                                     <!--
                                     <div class="slide-distance">
@@ -187,18 +190,18 @@
                                 </div>
 
                                 <div class="slide-profile">
-                                    <div class="slide-profile-image" style="background-image: url('.$img_url.');"></div>
+                                    <div class="slide-profile-image" style=""></div>
                                 </div>
 
-                                <div class="slide-name">
-                                    '.$nombre.'
+                                <div class="slide-name text-center">
+                                    <b>'.strtoupper($nombre).'</b>
                                 </div>
 
-                                <div class="slide-expertice">
+                                <div class="slide-expertice  text-center">
                                     '.$anios_exp.' año(s) de experiencia
                                 </div>
 
-                                <div class="slide-ranking">
+                                <div class="slide-ranking  text-center">
                                     <div class="km-ranking">
                                         '.kmimos_petsitter_rating($cuidador->id_post).'
                                     </div>
@@ -333,7 +336,15 @@
                         array(
                             "url"   => get_home_url()."/perfil-usuario/reservas",
                             "name"  => "Mis Reservas",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "resaltar_movil"  => true
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/fotos",
+                            "name"  => "Fotos del día",
+                            "icono" => "82",
+                            "resaltar"  => true,
+                            "resaltar_movil"  => true
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/solicitudes",
@@ -428,6 +439,15 @@
                             if( array_key_exists('ocultar_menu_principal', $value) ){
                                 $sts = "vlz_ocultar";
                             }
+                            if( tiene_fotos_por_subir($user_id) ){
+                                if( array_key_exists('resaltar_movil', $value) ){
+                                    $sts = "vlz_resaltar_movil";
+                                }
+                            }
+                        }else{
+                            if( array_key_exists('resaltar', $value) ){
+                                $sts = "vlz_resaltar";
+                            }
                         }
                         
                         if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
@@ -481,7 +501,7 @@
                 }
                 return $data;
             }else{
-                $html = '<div class="rating">';
+                $html = '<div class="rating" style="display:inline-block">';
                 if($votes =='' || $votes == 0 || $rating ==''){ 
                     for ($i=0; $i<5; $i++){ 
                         $html .= "<a href='#'></a>";
@@ -568,11 +588,17 @@
             $titulo = ($cuidador->titulo);
         }
 
+        $sql_valoraciones = "SELECT count(comentario.user_id) as cant FROM wp_comments AS comentario WHERE comentario.comment_post_ID = '".$cuidador->id_post."' AND comentario.comment_approved = '1'";
+
+        $cuidador_valoracion = $wpdb->get_results( $sql_valoraciones );
+        if( isset($cuidador_valoracion[0]->cant) ){
+            $cant_valoraciones = $cuidador_valoracion[0]->cant;
+        }
         $valoraciones = "No tiene valoraciones";
-        if( $cuidador->valoraciones+0 > 0 ){
+        if( $cant_valoraciones+0 > 0 ){
             $plural = "&oacute;n";
-            if( $cuidador->valoraciones+0 > 1 ){ $plural = "ones"; }
-            $valoraciones = $cuidador->valoraciones." Valoraci".$plural;
+            if( $cant_valoraciones+0 > 1 ){ $plural = "ones"; }
+            $valoraciones = $cant_valoraciones." Valoraci".$plural;
         }
 
         switch ($disenio) {

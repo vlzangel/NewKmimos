@@ -1,5 +1,7 @@
 jQuery.fn.modal.Constructor.prototype.enforceFocus = function() {};
 
+
+
 function close_modal(){
     var c = jQuery(".modal");
     jQuery.each(c,function(i,o){ 
@@ -76,13 +78,11 @@ jQuery(document).ready(function(){
 		jQuery(document).on("focus", "input.input-label-placeholder", function(){
 			jQuery(this).parent().addClass("focus");
 		}).on("blur", "input.input-label-placeholder", function(){
-			if( jQuery(this).attr("id") != "rc_nacimiento" ){
-				let i = jQuery(this);
-				if ( i.val() !== "" ) jQuery(this).parent().addClass("focused");
-				else jQuery(this).parent().removeClass("focused");
+			let i = jQuery(this);
+			if ( i.val() !== "" ) jQuery(this).parent().addClass("focused");
+			else jQuery(this).parent().removeClass("focused");
 
-				jQuery(this).parent().removeClass("focus");
-			}
+			jQuery(this).parent().removeClass("focus");
 		});
 	}
 

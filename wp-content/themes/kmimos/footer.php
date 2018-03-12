@@ -4,7 +4,7 @@ global $margin_extra_footer;
 global $no_display_footer;
 
 if( !isset($no_display_footer)  ){
-    $HTML = '
+$HTML = '
         <!-- SECCIÓN FOOTER -->
         <footer class="'.$margin_extra_footer.'">
             <div class="container">
@@ -36,12 +36,12 @@ if( !isset($no_display_footer)  ){
                     <div class="col-xs-12 col-sm-2">
                         <h5>NAVEGA</h5>
                         <p><a href="'.get_home_url().'">Nosotros</a></p>
-                        <p><a href="'.get_home_url().'">Preguntas y Respuestas</a></p>
-                        <p><a href="'.get_home_url().'">Cobertura Veterinaria</a></p>
+                        <p><a href="'.get_home_url().'/faq">Preguntas y Respuestas</a></p>
+                        <p><a href="'.get_home_url().'/coberturas-de-servicios-veterinarios/">Cobertura Veterinaria</a></p>
                         <p><a href="'.get_home_url().'">Comunicados de prensa</a></p>
                         <p><a href="'.get_home_url().'/terminos-y-condiciones/">Términos y Condiciones</a></p>
                         <p><a href="'.get_home_url().'">Nuestros Aliados</a></p>
-                        <p><a href="'.get_home_url().'/contacta-con-nosotros/">Contáctanos</a></p>                   
+                        <p><a href="'.get_home_url().'/contacta-con-nosotros/">Contáctanos</a></p>                
                     </div>
 
                     <div class="col-xs-12 col-sm-3">
@@ -81,9 +81,8 @@ if( !isset($no_display_footer)  ){
     
     wp_enqueue_script('bxslider', getTema()."/js/jquery.bxslider.js", array("jquery"), '1.0.0');
 
-  
     // Descomentar para inicializar la tabla fotos
-/*    global $wpdb;
+    /*    global $wpdb;
     $reservas = $wpdb->get_results("SELECT * FROM wp_postmeta WHERE meta_key = '_booking_end'");
     foreach ($reservas as $key => $value) {
         $status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '{$value->post_id}'");
@@ -93,7 +92,6 @@ if( !isset($no_display_footer)  ){
             }
         }
     }*/
-
 
     if( !is_user_logged_in() ){
         /* 
@@ -127,12 +125,52 @@ if( !isset($no_display_footer)  ){
 
     wp_footer();
 
+/*    $HTML = "
+        <script type='text/javascript'>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
+
+            ga('create', 'UA-56422840-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+        <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
+
+        <script type='text/javascript'>
+            jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
+        </script>        
+    ";   */ 
+    
     $HTML = "
         <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
         <script type='text/javascript'>
             jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
         </script>        
     ";
+
+    if( !isset($_SESSION) ){ session_start(); }
+
+    if( isset($_SESSION["recordar_subir_fotos"]) ){
+        unset($_SESSION["recordar_subir_fotos"]);
+        $HTML .= "
+            <div class='vlz_modal'>
+                <div>
+                    <div>
+                        <i class='fa fa-times vlz_cerrar_modal' aria-hidden='true'></i>
+                        Recuerda subir las fotos diarias de tus huéspedes:<br>
+                        Ingresa en tus reservas activas y da click en <strong>“Subir fotos”</strong>
+
+                        <div class='botonera_modal_subir'>
+                            <a href='#' id='btn_modal_subir_tarde'>M&aacute;s Tarde</a>
+                            <a href='".get_home_url()."/perfil-usuario/fotos/' id='btn_modal_subir'>Subir Fotos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ";
+    }
 
     if( !empty($wlabel) ){
         wp_enqueue_script( 'wlabel_js', getTema()."/js/wlabel-content.js",array(), '1.0.0' );
@@ -143,7 +181,9 @@ if( !isset($no_display_footer)  ){
     }
 
     // SubscribeSite
-    include_once( 'partes/footer/SubscribeSite.php' );
+    if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
+        include_once( 'partes/footer/SubscribeSite.php' );       
+    }
 
     echo comprimir_styles($HTML);
 
@@ -162,16 +202,24 @@ if( !isset($no_display_footer)  ){
         <!-- BEGIN Evento objetivo GA -->        
         <script>
         window.addEventListener(\"load\",function(){
-        var timer = setInterval(function(){
-        if(jQuery('#PageSubscribe .section3:contains(\"*Dentro de 48 hrs. Te enviaremos vía email tu cúpon de descuento\")').is(\":visible\")){
-        ga('send','event','message','submit','subscribe')
-        clearInterval(timer)
-        }
-        },2000)
+            var timer = setInterval(function(){
+            
+                if(jQuery('#PageSubscribe .section3:contains(\"*Dentro de 48 hrs. Te enviaremos vía email tu cúpon de descuento\")').is(\":visible\")){
+                    ga('send','event','message','submit','subscribe')
+                    clearInterval(timer)
+                }
+
+            },2000)
         })
         </script>
         <!-- END Evento objetivo GA -->        
     ";
+
+/*	echo "<pre style='display: none;'>";
+        	print_r($_SERVER);
+    	echo "</pre>";*/
+
     echo "</body></html>";
+
 ?>
         

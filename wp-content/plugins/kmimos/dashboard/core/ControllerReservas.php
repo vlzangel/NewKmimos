@@ -84,6 +84,7 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 			if( $sts_pedido == 'wc-on-hold'){
 				if( in_array($forma_pago, $payment_method_cards) ){
 					$sts_largo = "Pendiente por confirmar el cuidador"; // metodo de pago es por TDC / TDD ( parcial )
+					$sts_corto = "Pago fallido";
 				}elseif( in_array($forma_pago, $payment_method_store) ){
 					$sts_largo = "Pendiente de pago en tienda"; // Tienda por conv
 				}else{
@@ -92,15 +93,18 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 			}
 			if( $sts_pedido == 'wc-pending'){
 				$sts_largo = 'Pendiente de pago';
+				if( in_array($forma_pago, $payment_method_cards) ){
+					$sts_corto = "Pago fallido";
+				}
 			}
 		break;
 		case 'wc-partially-paid':
-			$sts_largo = "Estatus Reserva: Pago Parcial  /  Estatus Pedido: {$sts_pedido}";		
+			$sts_largo = "Estatus Reserva: Pago Parcial  /  Estatus Pedido: {$sts_pedido}";
 			if( $sts_pedido == 'unpaid'){
 				$sts_corto = 'Por confirmar (cuidador)';
 				$sts_largo = 'Por confirmar (cuidador)';
 			}
-		break;
+		break;		
 		case 'confirmed':
 			$sts_corto = 'Confirmado';
 			$sts_largo = 'Confirmado';
@@ -113,6 +117,12 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 		case 'cancelled':
 			$sts_corto = 'Cancelado';
 			$sts_largo = 'Cancelado';
+
+			$penalizado = get_post_meta( $id_reserva, 'penalizado', true );
+			if( $penalizado == "YES" ){
+				$sts_corto = 'Penalizado';
+				$sts_largo = 'Cancelado con penalización';
+			}
 		break;
 		// Modificacion Ángel Veloz
 		case 'modified':
@@ -121,6 +131,7 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 			$sts_largo = 'Modificado por la reserva: '.$por;
 		break;
 	}
+
 	return 	$result = [ 
 		"reserva"  => $sts_reserva, 
 		"pedido"   => $sts_pedido,
@@ -128,6 +139,7 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 		"sts_largo"=> $sts_largo,
 		"addTotal" => $addTotal,
 	];
+
 }
 
 function photo_exists($path=""){
@@ -153,8 +165,13 @@ function getMascotas($user_id){
         $anio = str_replace("/", "-", $anio);
         $anio = strtotime($anio);
         $edad_time = time()-$anio;
-        $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
 
+        $edad = '';
+        if( (date("Y", $edad_time)-1970) > 0 ){
+	        $edad = (date("Y", $edad_time)-1970)." año(s) ";
+        }
+        $edad .= date("m", $edad_time)." mes(es)";
+ 
         $mascotas[] = array(
             "nombre" => $mascota->post_title,
             "raza" => $metas["breed_pet"][0],
@@ -244,13 +261,15 @@ function getMetaCuidador( $user_id ){
 }
 
 function getMetaReserva( $post_id ){
-	$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost', 'modificacion_de' )";
+	//$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost', 'modificacion_de', '_booking_order_item_id' )";
 	$result = get_metaPost($post_id, $condicion);
 
 	$data = [
 		'_booking_start' =>'', 
 		'_booking_end' =>'', 
 		'_booking_cost' =>'', 
+		'modificacion_de' =>'', 
+		'_booking_order_item_id' =>'', 
 	];
 	if( !empty($result) ){
 		foreach ($result['rows'] as $row) {
@@ -332,7 +351,7 @@ function getReservas($desde="", $hasta=""){
 	$sql = "
 		SELECT 
 			r.ID as 'nro_reserva',
- 			DATE_FORMAT(r.post_date_gmt,'%d-%m-%Y') as 'fecha_solicitud',
+ 			DATE_FORMAT(r.post_date_gmt,'%Y-%m-%d') as 'fecha_solicitud',
  			r.post_status as 'estatus_reserva',
  			p.ID as 'nro_pedido',
  			p.post_status as 'estatus_pago', 			
@@ -371,5 +390,101 @@ function getReservas($desde="", $hasta=""){
 
 	$reservas = $wpdb->get_results($sql);
 	return $reservas;
+}
+
+
+function Get_CouponCode($order_id,$coupon_code) {
+	global $wpdb;
+	$return = array();
+
+	$query = "SELECT DISTINCT
+        wc_items.order_item_name AS coupon_name,
+        wc_itemmeta.meta_value AS coupon_discount_amount,
+        postmeta.*
+
+        FROM
+        {$wpdb->prefix}woocommerce_order_items AS wc_items
+		LEFT JOIN
+        {$wpdb->prefix}woocommerce_order_itemmeta AS wc_itemmeta ON wc_items.order_item_id = wc_itemmeta.order_item_id
+        LEFT JOIN
+        {$wpdb->prefix}posts AS post ON post.post_title = wc_items.order_item_name
+        LEFT JOIN
+        {$wpdb->prefix}postmeta AS postmeta ON post.ID = postmeta.post_id
+
+        WHERE
+        wc_items.order_id = '{$order_id}' AND
+        wc_items.order_item_type = 'coupon' AND
+        wc_items.order_item_name LIKE '%{$coupon_code}%' AND
+		wc_itemmeta.meta_key = 'discount_amount' ";
+/*
+
+	*/
+	$coupons = $wpdb->get_results($query);
+
+	if (!empty($coupons)) {
+		foreach ($coupons as $key => $coupon) {
+			//var_dump($coupon);
+			$coupon_name = $coupon->coupon_name;
+
+			if($coupon->meta_key=='coupon_amount'){
+				if(!array_key_exists($coupon_name,$return)){
+					$return[$coupon_name]=array();
+				}
+				$return[$coupon_name]['coupon_name'] = $coupon_name;
+				$return[$coupon_name]['coupon_amount'] = $coupon->meta_value;
+				//$return[$coupon_name]['coupon_amount'] = $coupon->meta_value;
+
+			}else if($coupon->meta_key=='discount_type'){
+				if(!array_key_exists($coupon_name,$return)){
+					$return[$coupon_name]=array();
+				}
+
+				$return[$coupon_name]['discount_type'] = $coupon->meta_value;
+			}
+
+			//AMOUNT DISCOUNT
+			$return[$coupon_name]['coupon_amount'] = $coupon->coupon_discount_amount;
+		}
+	}
+
+	//var_dump($return);
+	return $return;
+}
+
+
+function Get_SumCouponCode($order_id,$coupon_code,$total=0) {
+	$coupons = Get_CouponCode($order_id,$coupon_code);
+	$amount = 0;
+
+	if(count($coupons)){
+		foreach($coupons as $coupon){
+			if($coupon['discount_type'] != 'percent'){
+				$coupon_amount = $coupon['coupon_amount'];
+
+			}else{
+				$coupon_amount = $total*($coupon['coupon_amount']/100);
+			}
+
+			$coupon_amount = $coupon['coupon_amount'];
+			$amount = $amount+$coupon_amount;
+		}
+	}
+	return $amount;
+}
+
+
+function Get_NameCouponCode($order_id,$coupon_code) {
+	$coupons = Get_CouponCode($order_id,$coupon_code);
+	$name = array();
+
+	if(count($coupons)){
+		foreach($coupons as $coupon){
+			if( $coupon['coupon_amount'] > 0 ){
+				$name[] = $coupon['coupon_name'];
+			}
+		}
+	}
+
+	return implode(',',$name);
 }
 

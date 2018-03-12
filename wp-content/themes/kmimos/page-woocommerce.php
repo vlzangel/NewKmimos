@@ -38,11 +38,20 @@
 		$servicio_id = $post_id;
 		$hoy = date("Y-m-d");
 
+		$cats = array(
+            2601 => "paseos"                    ,
+            2602 => "adiestramiento_basico"     ,
+            2606 => "adiestramiento_intermedio" ,
+            2607 => "adiestramiento_avanzado"   ,
+            2599 => "guarderia"                 ,
+            2598 => "hospedaje"                 
+        );
+
 		$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= '".date("Y-m-d", time())."'" );
 
 		$sql = "
 	        SELECT
-	            tipo_servicio.slug AS slug
+	            tipo_servicio.term_id AS slug
 	        FROM 
 	            wp_term_relationships AS relacion
 	        LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
@@ -101,10 +110,14 @@
             $precargas["adicionales"] = $_SESSION[$id_seccion]["adicionales"];
         }
 
+        if( isset($cats[$tipo]) ){
+	   		$tipo = $cats[$tipo];
+        }
+
 	    if( $tipo == "hospedaje" ){
 	    	$precios = getPrecios( unserialize($cuidador->hospedaje), $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    }else{
-	    	$precios = getPrecios( $adicionales[$tipo], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
+	    	$precios = getPrecios( $adicionales[ $tipo ], $precargas["tamanos"], unserialize($cuidador->tamanos_aceptados) );
 	    } 
 
 		$transporte = getTransporte($adicionales, $precargas["transp"]);
@@ -173,43 +186,76 @@
 		$hoy = date("d/m/Y");
 		$manana = date("d/m/Y", strtotime("+1 day") );
 
+		if( $busqueda["checkin"] == "" ){
+			$busqueda["checkin"] = $hoy;
+			$busqueda["checkout"] = $manana;
+		}
+
+		//$NOW = (strtotime("now")+25200);
+		$NOW = (strtotime("now"));
+
+		if( isset($_GET["prueba"]) ){
+			$NOW = ( strtotime( date("Y-m-d")." 08:00:00") );
+		}
+		//$NOW = (strtotime("now")+57600);
+
 		$bloquear = "";
-		$msg_bloqueador = "";
-		$NO_FLASH = "SI";
-
-		$SOLO_FLASH = true;
-
-		if( $hoy == $busqueda["checkin"] && date("H", strtotime("now") )+0 <= 9 ){
-			$SOLO_FLASH = false;
-		}
-
-		if( $manana == $busqueda["checkin"] && date("H", strtotime("now") )+0 <= 18 ){
-			$SOLO_FLASH = false;
-		}
+		$ES_FLASH = "NO";
+		$msg_bloqueador = "
+			<div class='alerta_flash'>
+				<div class='alerta_flash_importante'>IMPORTANTE</div>
+				<div class='alerta_flash_mensaje'>
+					Este cuidador, <strong>no tiene opci&oacute;n de Reserva Inmediata</strong>, por lo tanto existe la posibilidad de que la reserva no sea confirmada el d&iacute;a de hoy.
+					Te invitamos a seguir uno de los siguientes pasos:
+				</div>
+				<div class='alerta_flash_pasos'>
+					<div class='alerta_flash_paso'>
+						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 1</div>
+						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_1.png' /> </div>
+						<div class='alerta_flash_paso_txt'>Cambia las fechas de Reserva</div>
+					</div>
+					<div class='alerta_flash_paso'>
+						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 2</div>
+						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_2.png' /> </div>
+						<div class='alerta_flash_paso_txt'>Busca un cuidador que permita <strong>reserva inmediata</strong></div>
+					</div>
+					<div class='alerta_flash_paso'>
+						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 3</div>
+						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_3.png' /> </div>
+						<div class='alerta_flash_paso_txt'>Ll&aacute;manos al<br> (01) 800 056 4667</div>
+					</div>
+				</div>
+			</div>
+		";
 
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
-			if(  !$SOLO_FLASH ){
-				$msg_bloqueador = "
-					<strong>IMPORTANTE</strong><br>
-					<div style='padding: 10px 0px;'>
-						Este cuidador no tiene opción de Reserva Inmediata, por lo tanto corres el riesgo que no te atienda el día de hoy. Te invitamos a seguir uno de los tres siguientes pasos:
-					</div>
-					* Cambia las fechas.
-					<br>* Busca <a href='".getTema()."/procesos/busqueda/buscar.php?flash=true'>Aqu&iacute;</a> un cuidador que permita Reserva Inmediata.
-					<br>* Llámanos al (01) 800 056 4667 y te ayudaremos.
-				";
-				if( $atributos["flash"] != 1){
-					if( $hoy == $busqueda["checkin"]){
-						$NO_FLASH = "NO";
-						$bloquear = "vlz_bloquear";
-						$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
-					}else{
-						$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
-					}
-				}else{
-					$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
+			if( $atributos["flash"] == 1){
+				$ES_FLASH = "SI";
+			}else{
+				if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && date("G", $NOW )+0 < 9 ){
+					$ES_FLASH = "SI";
+				}
+				if(  ( $manana == $busqueda["checkin"] ) && date("G", $NOW )+0 < 18 ){
+					$ES_FLASH = "SI";
 				}
 			}
+			
+			if( $ES_FLASH == "NO" ){
+				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_bloquear_msg'>".$msg_bloqueador."</div>";
+			}else{
+				$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
+			}
+		}else{
+			$ES_FLASH = "SI";
+		}
+
+		$msg_mismo_dia = "";
+		if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && date("G", $NOW )+0 < 9 ){
+			$msg_mismo_dia = "
+				<div class='msg_mismo_dia'>
+					En caso de que necesites atención dentro de las siguientes 4 a 6 horas, por favor llámanos sin costo al: (01) 800 056 4667.
+				</div>
+			";
 		}
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
@@ -228,9 +274,10 @@
 			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
 			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
 			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
-			var FLASH = '".$NO_FLASH."';
+			var FLASH = '".$ES_FLASH."';
 			var HOY = '".$hoy."';
 			var MANANA = '".$manana."';
+			var HORA = '".(date("G", $NOW )+0)."';
 		</script>";
 
 		if( $error != "" ){
@@ -306,6 +353,9 @@
 								</div>
 							</div>
 
+							'.$msg_mismo_dia.'
+
+							<!--
 							<div class="km-dates-step">
 								<div class="km-ficha-fechas">
 									<div class="listas_check">	
@@ -324,6 +374,7 @@
 
 								</div>
 							</div>
+							-->
 
 							'.$msg_bloqueador.'
 
@@ -431,7 +482,7 @@
 											RESERVA CON PAGO PARCIAL
 										</div>
 										<div class="km-text-two">
-											Pague ahora el 17% y el restante
+											Pague ahora el 20% y el restante
 										</div>
 										<div class="km-text-three">
 											AL CUIDADOR EN EFECTIVO

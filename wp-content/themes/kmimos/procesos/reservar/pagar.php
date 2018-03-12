@@ -47,7 +47,12 @@
 		$id_orden = $pagar->id_fallida;
 		$metodo = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_orden} AND meta_key = '_payment_method' ");
 		if( $metodo != $pagar->tipo ){
+			$tipos = array(
+				"tienda" => "Tienda",
+				"tarjeta" => "Tarjeta"
+			);
 			$db->get_var("UPDATE wp_postmeta SET meta_value = '{$pagar->tipo}' WHERE post_id = {$id_orden} AND meta_key = '_payment_method';");
+			$db->get_var("UPDATE wp_postmeta SET meta_value = '{$tipos[$pagar->tipo]}' WHERE post_id = {$id_orden} AND meta_key = '_payment_method_title';");
 		}
 	}
 
@@ -209,6 +214,8 @@
 		"descuento"				=> $descuentos,
 		"pre17"					=> $pre17,
 		"pagoCuidador"			=> $pagoCuidador,
+
+		"reservaFlash"			=> $fechas->flash,
 	);
 
     $data_cliente = array();

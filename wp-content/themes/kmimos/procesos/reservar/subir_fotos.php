@@ -31,14 +31,8 @@
 	        break;
 	    }
 
-	    if( $es_collage ){
-		    $nWidth  = 600;
-		    $nHeight = 495;
-	    }else{
-		    $nWidth  = 270;
-		    $nHeight = 190;
-
-	    }
+	    $nWidth  = 600;
+	    $nHeight = 495;
 
 	    $aSize = @getImageSize( $path );
 
@@ -50,8 +44,7 @@
 
 	    $aThumb = @imageCreateTrueColor( $nWidth, $nHeight );
 
-	    @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight,
-	    $aSize[0], $aSize[1] );
+	    @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
 
 	    @imagepng( $aThumb, $path );
 

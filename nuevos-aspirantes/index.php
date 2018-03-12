@@ -178,7 +178,7 @@
 					<br>en casa. 
 				</p>
 
-				<a href="https://www.kmimos.com.mx/?">
+				<a href="https://www.kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/">
 		    		<img src="img/quiero-ser-cuidador-certificado.png" alt="quiero-ser-cuidador-certificado" class="img-responsive">
 		    	</a> 
 			</div>
@@ -448,7 +448,7 @@
 <!-- QUIERS CONOCER KMIMOS -->
 	<section id="section-7" class="col-sm-12 bg-color-morado">
 		<div class="col-md-12 col-sm-12">
-			<h3><a href="https://www.kmimos.com.mx/">¿Quieres conocer Kmimos?</a></h3>
+			<h3><a href="https://www.kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/">¿Quieres conocer Kmimos?</a></h3>
 		</div>
 	</section>
 <!-- FOOTER LOGO KMIMOS -->

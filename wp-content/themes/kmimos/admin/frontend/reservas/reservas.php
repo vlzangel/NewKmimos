@@ -86,7 +86,7 @@
 				$desglose = $pago;
 				if( $pago["enable"] == "yes" ){
 					$desglose["descuento"] = $_metas_orden["_cart_discount"][0];
-					$desglose["tipo"] = "DEPÓSITO DEL 17%";
+					$desglose["tipo"] = "DEPÓSITO DEL 20%";
 				}else{
 					$desglose["subtotal"] = $items["_line_subtotal"]-$_metas_orden["_cart_discount"][0];
 					$desglose["total"] = $items["_line_subtotal"];
@@ -98,7 +98,7 @@
 				if($reserva->status=='confirmed' && (strtotime($_metas_reserva['_booking_end'][0])>time())){
 
 					$acciones = array();
-					if( strtotime( $_metas_reserva['_booking_start'][0] ) <= time() ){
+					if( strtotime( $_metas_reserva['_booking_start'][0] ) <= time() && strtotime( $_metas_reserva['_booking_start'][0] ) >= strtotime("2017-12-23 00:00:00") ){
 						$acciones = array(
 							"ver" => $ver,
 							"subir_fotos" => $reserva->ID

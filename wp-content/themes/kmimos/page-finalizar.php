@@ -44,7 +44,7 @@
 	            <div class="item">
 	                <div>Nombre</div>
 	                <span>
-	                    '.$data_reserva["servicio"]["nombre"].'
+	                    '.$data_reserva["cliente"]["nombre"].'
 	                </span>
 	            </div>
 	            <div class="item">
@@ -63,7 +63,7 @@
 	    ';
 
 	    $variaciones = "";
-	    foreach ($data_reserva["variaciones"] as $value) {
+	    foreach ($data_reserva["servicio"]["variaciones"] as $value) {
 	        $variaciones .= '
 	            <div class="item">
 	                <div>'.$value[0].' '.$value[1].' x '.$value[2].' x $'.$value[3].'</div>
@@ -77,9 +77,9 @@
 	            <div class='item'>
 	                <div>".$data_reserva["servicio"]["tipo"]."</div>
 	                <span>
-	                    <span>".$data_reserva["servicio"]["inicio"]."</span>
+	                    <span>".date("d/m/Y", $data_reserva["servicio"]["inicio"])."</span>
 	                        &nbsp; &gt; &nbsp;
-	                    <span>".$data_reserva["servicio"]["fin"]."</span>
+	                    <span>".date("d/m/Y", $data_reserva["servicio"]["fin"])."</span>
 	                </span>
 	            </div>
 	        </div>
@@ -127,7 +127,7 @@
 
 	    $totales = ""; $descuento = "";
 
-	    if( $data_reserva["servicio"]["servicio"]["desglose"]["descuento"]+0 > 0 ){
+	    if( $data_reserva["servicio"]["desglose"]["descuento"]+0 > 0 ){
 	        $descuento = "
 	            <div class='item'>
 	                <div>Descuento</div>
@@ -136,7 +136,7 @@
 	        ";
 	    }
 
-	    if( $data_reserva["desglose"]["enable"] == "yes" ){
+	    if( $data_reserva["servicio"]["desglose"]["enable"] == "yes" ){
 	        
 	        $totales = "
 	            <div class='desglose_box totales'>
@@ -212,7 +212,7 @@
 
 		$HTML .= '
 	 		<div class="km-content km-step-end" style="max-width: 840px;">
-				<div style="padding: 20px 40px 20px; background: #FFF;">
+				<div style="padding: 0px 10px 20px; background: #FFF;">
 					<img src="'.getTema().'/images/new/km-reserva/img-end-step.png" width="197">
 					<br>
 					¡Genial '.get_user_meta($data_reserva["cliente"]["id"], "first_name", true).' '.get_user_meta($data_reserva["cliente"]["id"], "last_name", true).'!<br>
@@ -232,6 +232,9 @@
 						'.$pdf.'
 						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
 					</div>
+
+					'.get_publicidad("reserva").'
+
 				</div>
 			</div>
 

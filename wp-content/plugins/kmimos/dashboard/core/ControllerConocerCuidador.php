@@ -50,9 +50,7 @@ function getSolicitud($desde="", $hasta=""){
 	$filtro_adicional = "";
 
 	if( !empty($desde) && !empty($hasta) ){
-		$filtro_adicional = " 
-			AND DATE_FORMAT(p.post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
-		";
+		$filtro_adicional = " AND ( p.post_date >= '{$desde} 00:00:00' and  p.post_date <= '{$hasta} 23:59:59' )";
 	}else{
 		$filtro_adicional = " AND MONTH(p.post_date) = MONTH(NOW()) AND YEAR(p.post_date) = YEAR(NOW()) ";
 	}
@@ -60,7 +58,7 @@ function getSolicitud($desde="", $hasta=""){
 	$sql = "
 		SELECT 
 			p.ID as Nro_solicitud,
-			DATE_FORMAT(p.post_date,'%d-%m-%Y') as Fecha_solicitud,
+			DATE_FORMAT(p.post_date,'%Y-%m-%d') as Fecha_solicitud,
 			p.post_status as Estatus,
 
 			fd.meta_value as Servicio_desde,
@@ -85,9 +83,10 @@ function getSolicitud($desde="", $hasta=""){
 		WHERE 
 			m.meta_key = 'request_status'
 			{$filtro_adicional}
-		ORDER BY DATE_FORMAT(p.post_date,'%d-%m-%Y') DESC
+		ORDER BY p.ID DESC
 		;
 	";
+ 
 
 	$result = get_fetch_assoc($sql);
 	return $result;

@@ -1,8 +1,157 @@
 <?php
 
-	function getTema(){
-        return get_template_directory_uri();
+	function get_publicidad($seccion){
+				
+		$publicidad = rand(1, 2);
+
+		$campaing = "intriga";
+		if( $publicidad == "2" ){
+			$campaing = "informacion";
+		}
+
+		switch ($seccion) {
+			case 'solicitud':
+				return '
+					<div style="margin-top: 20px;">
+
+						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil.jpg" />
+						</a>
+
+					</div>
+				';
+			break;
+			case 'reserva':
+				return '
+					<div style="margin-top: 5px;">
+						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil.jpg" />
+						</a>
+					</div>
+				';
+			break;
+			case 'correo':
+				return '
+					<div style="margin: 25px 0px;">
+                        <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=intriga&utm_term=alimento_mascotas_nutricion" target="_blank">
+                            <img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil.jpg" />
+                        </a>
+                    </div>
+				';
+			break;
+		}
+
+/*		
+		switch ($seccion) {
+			case 'solicitud':
+				return '
+					<div style="margin-top: 20px;">
+
+						<a class="publicidad_solo_pc" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/'.$publicidad.'.jpg" />
+						</a>
+
+						<a class="publicidad_solo_movil" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil.jpg" />
+						</a>
+
+					</div>
+				';
+			break;
+			case 'reserva':
+				return '
+					<div style="margin-top: 5px;">
+						<a class="publicidad_solo_pc" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/'.$publicidad.'.jpg" />
+						</a>
+						<a class="publicidad_solo_movil" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil.jpg" />
+						</a>
+					</div>
+				';
+			break;
+			case 'correo':
+				return '
+					<div style="margin: 25px 0px;">
+                        <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=intriga&utm_term=alimento_mascotas_nutricion" target="_blank">
+                            <img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil.jpg" />
+                        </a>
+                    </div>
+				';
+			break;
+		}*/
+
+	}
+
+	function getComision(){
+    	return 1.25;
+	}
+	
+	function tiene_fotos_por_subir($user_id, $login = false){
+		global $wpdb;
+
+  		if( !isset($_SESSION) ){ session_start(); }
+
+  		$sql = "
+			SELECT 
+				inicio.meta_value inicio
+			FROM 
+				wp_posts AS posts
+			LEFT JOIN wp_postmeta AS metas_reserva ON ( posts.ID = metas_reserva.post_id AND metas_reserva.meta_key='_booking_product_id' )
+			LEFT JOIN wp_postmeta AS inicio ON ( posts.ID = inicio.post_id AND inicio.meta_key='_booking_start' )
+			LEFT JOIN wp_postmeta AS fin ON ( posts.ID = fin.post_id AND fin.meta_key='_booking_end' )
+			LEFT JOIN wp_posts AS producto ON ( producto.ID = metas_reserva.meta_value )
+			LEFT JOIN wp_posts AS orden ON ( orden.ID = posts.post_parent )
+			WHERE 
+				posts.post_type      = 'wc_booking' AND 
+				posts.post_status    = 'confirmed'  AND
+				(
+					fin.meta_value       > NOW()  AND
+					inicio.meta_value    <= NOW()
+				) AND
+				producto.post_author = '{$user_id}'
+			ORDER BY posts.ID DESC
+		";
+
+		$reservas_activas = $wpdb->get_results($sql);
+
+		$contador = 0;
+		foreach ($reservas_activas as $key => $value) {
+			if( strtotime( $value->inicio ) >= strtotime("2017-12-23 00:00:00") ){
+				$contador++;
+			}
+		}
+
+		if( $contado+0 > 0 ){
+			if($login){
+				$_SESSION["recordar_subir_fotos"] = true;
+			}
+			return true;
+		}
+		return false;
+	}
+    
+    function kmimos_registros_fotos($id_reserva){
+        global $wpdb;
+        $metas = get_post_meta($id_reserva);
+
+        $inicio = strtotime( $metas["_booking_start"][0] );
+        $fin = strtotime( $metas["_booking_end"][0] );
+
+        $cuidador = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$metas["_booking_product_id"][0]);
+
+        for ($i=$inicio; $i < $fin; $i+=86400) { 
+            $fecha = date("Y-m-d", $i);
+            $existe = $wpdb->get_var("SELECT id FROM fotos WHERE reserva = {$id_reserva} AND fecha = '{$fecha}' ");
+            if( $existe == null ){
+            	$wpdb->query("INSERT INTO fotos VALUES ( NULL, {$id_reserva}, {$cuidador}, '{$fecha}', '0', '0', 'a:0:{}', '0');");
+            }
+        }
     }
+
+	function getTema(){
+    	return get_template_directory_uri();
+	}
     
 	add_filter( 'show_admin_bar', '__return_false' );
 
@@ -132,49 +281,52 @@
 
 	add_filter( 'wc_add_to_cart_message', '__return_null()' );
 
-	
-	include(__DIR__."/admin/generales/funciones.php");
+	function modify_jquery() {
+//		wp_deregister_script('jquery');
+//		wp_register_script('jquery', get_template_directory_uri().'/js/jquery.js', false, '1.0.0');
+//		wp_enqueue_script('jquery');
+	}
+	add_action('wp_enqueue_scripts', 'modify_jquery');
 
 
+	// /**
+	// * Optimiza los scripts de WooCommerce
+	// * Quita la tag Generator de WooCommerce, estilos y scripts de páginas no WooCommerce.
+	// */
+	// add_action( 'wp_enqueue_scripts', 'child_manage_woocommerce_styles', 99 );
 
+	// function child_manage_woocommerce_styles() {
+	// //quitamos la tag generator meta
+	// remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
 
+	// //Primero comprobamos si está instalado WooCommerce para evitar errores fatales
+	// if ( function_exists( 'is_woocommerce' ) ) {
+	// //y aplicamos el dequeue a scripts y estilos
+	// if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+	// wp_dequeue_style( 'woocommerce_frontend_styles' );
+	// wp_dequeue_style( 'woocommerce_fancybox_styles' );
+	// wp_dequeue_style( 'woocommerce_chosen_styles' );
+	// wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
+	// wp_dequeue_script( 'wc_price_slider' );
+	// wp_dequeue_script( 'wc-single-product' );
+	// wp_dequeue_script( 'wc-add-to-cart' );
+	// wp_dequeue_script( 'wc-cart-fragments' );
+	// wp_dequeue_script( 'wc-checkout' );
+	// wp_dequeue_script( 'wc-add-to-cart-variation' );
+	// wp_dequeue_script( 'wc-single-product' );
+	// wp_dequeue_script( 'wc-cart' );
+	// wp_dequeue_script( 'wc-chosen' );
+	// wp_dequeue_script( 'woocommerce' );
+	// wp_dequeue_script( 'prettyPhoto' );
+	// wp_dequeue_script( 'prettyPhoto-init' );
+	// wp_dequeue_script( 'jquery-blockui' );
+	// wp_dequeue_script( 'jquery-placeholder' );
+	// wp_dequeue_script( 'fancybox' );
+	// wp_dequeue_script( 'jqueryui' );
+	// }
+	// }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	// }
 
 
 	// function wpdm_filter_siteurl($content) {
@@ -225,6 +377,9 @@
 
 	// add_filter('the_content', 'wpdm_conv_tag'); 
 	// add_filter('the_excerpt', 'wpdm_conv_tag'); 
+
+	
+	include(__DIR__."/admin/generales/funciones.php");
 
 
 ?>

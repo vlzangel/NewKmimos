@@ -4,8 +4,16 @@ jQuery( document ).ready(function() {
         return target.replace(new RegExp(search, 'g'), replacement);
     };
 
-	jQuery("#close_login").on("click", function(e){
+    jQuery("#close_login").on("click", function(e){
         close_login_modal();
+    });
+
+    jQuery(".vlz_cerrar_modal").on("click", function(e){
+        jQuery(".vlz_modal").css("display", "none");
+    });
+
+	jQuery("#btn_modal_subir_tarde").on("click", function(e){
+        jQuery(".vlz_modal").css("display", "none");
     });
 
     jQuery("#login").on("click", function(e){
@@ -268,9 +276,13 @@ function postJSON(FORM, URL, ANTES, RESPUESTA, TIPO = ""){
         if( validarAll(FORM) ){
             ANTES();
             if( TIPO == "json" ){
-                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json');
+                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json').fail(function(e) {
+                    console.log( e );
+                });
             }else{
-                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA);
+                jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA).fail(function(e) {
+                    console.log( e );
+                });
             }
         }
 	});

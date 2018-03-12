@@ -9,6 +9,7 @@
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
             
+
     get_header();
         
 	    $home = get_home_url();
@@ -126,9 +127,10 @@
 							</div>
 							<div class="col-xs-12 col-sm-2">	
 
-								<div class="km-opcion">
+								<div class="km-opcion" style=" padding: 11px 11px 12px;">
 									<input type="checkbox" name="servicios[]" value="flash" >
-									<i class="fa fa-bolt vlz_rayo" aria-hidden="true"></i> FLASH
+									<i class="fa fa-bolt vlz_rayo" aria-hidden="true" style="vertical-align: middle;"></i>
+									<div style="display: inline-block; width: calc( 100% - 30px ); vertical-align: middle;">RESERVA INMEDIATA</div>
 								</div>
 
 								<!--
@@ -155,7 +157,7 @@
 										<div class="km-opcion">
 											<input type="checkbox" name="tamanos[]" value="medianos" >
 											<img src="'.getTema().'/images/new/icon/icon-mediano.svg"><div class="km-opcion-text">
-											<b>MEDIANO</b><br>25 a 58cm</div>
+											<b>MEDIANO</b><br>25 a 58 cm</div>
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
@@ -349,33 +351,24 @@
 		</div>
 		<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->
 
+
+
+
+
 		<!-- SECCIÓN 5 - VACACIONES -->
-		<div class="km-vacaciones">
-			<div class="container">
-				<p>NOSOTROS NOS ENCARGAMOS DE TU MASCOTA, TÚ LIBÉRATE.</p>
-				<h2>Vacations Mode On</h2>
-				<div class="row">
-					<!--
-					<div class="items col-xs-12 col-sm-6">
-						<a  target="blank" href="http://www.fiestamericana.com/en/home" style="background-color: white;"><img src="'.getTema().'/images/new/km-logos/logo-hotel.jpg" height="58px"></a>
-					</div>
-					<div class="items col-xs-12 col-sm-6">
-						<a  target="blank" href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
-					</div>
-					<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
-						<a target="blank" href="https://www.volaris.com/" style="background-color: #E2D1A0; font-size:25px;"><img src="'.getTema().'/images/new/km-logos/posadas-white-logo.svg" width="180px" height="58px"></a>
-					</div>
-					-->
-
-
-
-					<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
-						<a  target="blank" href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
-					</div>
-				</div>
-			</div>
-		</div>
+		<a href="https://nutriheroes.com.mx/" target="_blank" class="km-vacaciones fondo_banner_nutriheroes">
+			<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/images/video.mp4" width="100%" height="100%"></video>
+			<div class="container banner_nutriheroes"></div>
+		</a>
 		<!-- FIN SECCIÓN 5 - VACACIONES -->
+
+
+
+
+
+
+
+
 		<!-- SECCIÓN 6 - BENEFICIOS -->
 		<div class="km-medios">
 			<div class="container">

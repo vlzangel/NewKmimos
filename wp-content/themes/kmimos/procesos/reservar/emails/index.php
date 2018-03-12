@@ -13,16 +13,15 @@
 
     global $wpdb;
 	$id = $id_orden;
+
+	if( $id_orden+0 == 0 ){ exit(); }
+	$es_orden = $wpdb->get_var("SELECT post_type FROM wp_posts WHERE ID = '".$id."'");
+	if( $es_orden != "shop_order" ){ exit(); }
+
 	$data = kmimos_desglose_reserva_data($id, true);
 
 	extract($data);
 
-	/*	
-	echo "<pre>";
-		print_r($data);
-	echo "</pre>";
-	*/
-	
  	$modificacion_de = get_post_meta($servicio["id_reserva"], "modificacion_de", true);
     if( $modificacion_de != "" ){ 
     	$modificacion = "
@@ -146,18 +145,36 @@
     $detalles_plantilla = str_replace('[hora_fin]', $servicio["checkout"], $detalles_plantilla);
     $detalles_plantilla = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_plantilla);
 
-	if( $acc == ""  ){
+    $confirmacion_titulo = "Confirmación de Reserva";
+    if( $servicio["flash"] == "SI" && $acc == "" ){
+    	$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
+    	if ( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva != "wc-on-hold" ){
+	    	$acc = "CFM";
+	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
+    	}
+    	if ( strtolower($servicio["metodo_pago"]) == "tarjeta" && $status_reserva != "pending" ){
+	    	$acc = "CFM";
+	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
+    	}
+    	if ( strtolower($servicio["metodo_pago"]) == "saldo y/o descuentos" && $status_reserva != "pending" ){
+	    	$acc = "CFM";
+	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
+    	}
+    }
 
-		$servicios_cuidador = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$cuidador->id}' AND post_type = 'product' ");
-
-		$array_servicios = array();
-		foreach ($servicios_cuidador as $value) {
-			$array_servicios[] = $value->ID;
-		}
-
-		$ids = implode(",", $array_servicios);
-
-		$es_primera_reserva = $wpdb->get_var("SELECT count(*) FROM wp_postmeta WHERE meta_key = '_booking_product_id' AND meta_value IN '{$ids}'");
+	if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
+		/*		
+			$servicios_cuidador = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$cuidador->id}' AND post_type = 'product' ");
+			$array_servicios = array();
+			foreach ($servicios_cuidador as $value) {
+				$array_servicios[] = $value->ID;
+			}
+			$ids = implode(",", $array_servicios);
+			$es_primera_reserva = $wpdb->get_var("SELECT count(*) FROM wp_postmeta WHERE meta_key = '_booking_product_id' AND meta_value IN '{$ids}'");
+			if( $es_primera_reserva == 1 ){
+	            wp_mail( 'y.chaudary@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
+	        }
+        */
 
 		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
 		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
@@ -166,70 +183,73 @@
 			include(__DIR__."/otro.php");
 		}
 
-		if( $es_primera_reserva == 1 ){
-            // wp_mail( 'a.vera@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
-            wp_mail( 'y.chaudary@kmimos.la', 'Primera Reserva del cuidador: '.$cuidador["nombre"], $mensaje_admin);
-        }
+	}
 
-	}else{
+	if( $acc != ""  ){
 
 		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_reserva"]."'");
 
 		$continuar = true;
 
-		if(  $_SESSION['admin_sub_login'] != 'YES' ){
+		$usuario = $cuidador["nombre"];
+		if( $usu == "CLI" ){ 
+			$usuario = $cliente["nombre"]; 
 
-			$usuario = $cuidador["nombre"];
-			if( $usu == "CLI" ){ 
-				$usuario = $cliente["nombre"]; 
+			if( $status == "cancelled" || $status == "modified" ){
+				$estado = array(
+					"modified"  => "Modificada",
+					"cancelled" => "Cancelada"
+				);
+				$msg = "
+				<div class='msg_acciones'>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Hola <strong>".$usuario."</strong>
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
+				    </div>
+				</div>";
+		   		
+		   		$CONTENIDO .= $msg;
+		   		$continuar = false;
+			}
 
-				if( $status == "cancelled" || $status == "modified" ){
-					$estado = array(
-						"modified"  => "Modificada",
-						"cancelled" => "Cancelada"
-					);
-					$msg = "
-					<div class='msg_acciones'>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Hola <strong>".$usuario."</strong>
-					    </div>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
-					    </div>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
-					    </div>
-					</div>";
-			   		
-			   		$CONTENIDO .= $msg;
-			   		$continuar = false;
-				}
+		}else{
 
-			}else{
+			$mostrar_msgs = false;
 
-				if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
-					$estado = array(
-						"confirmed" => "Confirmada",
-						"modified"  => "Modificada",
-						"cancelled" => "Cancelada"
-					);
-					$msg = "
-					<div class='msg_acciones'>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Hola <strong>".$usuario."</strong>
-					    </div>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
-					    </div>
-						<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
-					    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
-					    </div>
-					</div>";
-			   		
-			   		$CONTENIDO .= $msg;
-			   		$continuar = false;
-				}
+			if(  $_SESSION['admin_sub_login'] != 'YES' && $status == "confirmed" ){
+				$mostrar_msgs = true;
+			}
 
+			if(  $status == "cancelled" || $status == "modified" ){
+				$mostrar_msgs = true;
+			}
+
+			if( $mostrar_msgs ){
+				$estado = array(
+					"confirmed" => "Confirmada",
+					"modified"  => "Modificada",
+					"cancelled" => "Cancelada"
+				);
+				$msg = "
+				<div class='msg_acciones'>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Hola <strong>".$usuario."</strong>
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Te notificamos que la reserva N° <strong>".$servicio["id_reserva"]."</strong> ya ha sido <strong>".$estado[$status]."</strong> anteriormente.
+				    </div>
+					<div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 10px; text-align: left;'>
+				    	Por tal motivo ya no es posible realizar cambios en el estatus de la misma.
+				    </div>
+				</div>";
+		   		
+		   		$CONTENIDO .= $msg;
+		   		$continuar = false;
 			}
 
 		}

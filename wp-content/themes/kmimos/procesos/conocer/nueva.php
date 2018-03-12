@@ -16,6 +16,7 @@
 	    $cuidador_post   = get_post($post_id);
 	    $nombre_cuidador = $cuidador_post->post_title;
 
+
 		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$post_id."'");
 		if( $cuidador->activo == 0 ){
 			$data = array(
@@ -93,7 +94,7 @@
 			'meeting_where'         => $_POST['meeting_where'],
 			'pet_ids'               => serialize($pet_ids),
 			'service_start'         => $_POST['service_start'],
-			'service_end'           => $_POST['service_end'],
+			'service_end'           => $_POST['service_end']
 		);
 
 		foreach($new_postmeta as $key => $value){
@@ -168,9 +169,9 @@
 				}
 
 				$data_mascota['birthdate_pet'][0] = str_replace("/", "-", $data_mascota['birthdate_pet'][0]);
-                $anio = strtotime($data_mascota['birthdate_pet'][0]);
-                $edad_time = strtotime(date("Y-m-d"))-$anio;
-                $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
+                		$anio = strtotime($data_mascota['birthdate_pet'][0]);
+                		$edad_time = strtotime(date("Y-m-d"))-$anio;
+                		$edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
 
 				$raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
 

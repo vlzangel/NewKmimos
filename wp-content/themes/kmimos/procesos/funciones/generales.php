@@ -1,26 +1,14 @@
 <?php
-    if(!function_exists('get_home_url')){
+	if(!function_exists('get_home_url')){
         function get_home_url(){
-            global $db;
-            return $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
+        	global $db;
+        	return $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
         }
     }
 
-	if(!function_exists('getTema')){
-        function getTema(){
-        	return get_home_url()."wp-content/themes/kmimos/";
-        }
-    }
-
-    if(!function_exists('path_base')){
+	if(!function_exists('path_base')){
         function path_base(){
             return dirname(dirname(dirname(dirname(dirname(__DIR__)))));
-        }
-    }
-
-	if(!function_exists('kmimos_mkdir')){
-        function kmimos_mkdir($dir){
-            if( !file_exists($dir) ){ @mkdir($dir); }
         }
     }
 
@@ -41,9 +29,18 @@
                 $sub_path = "cuidadores/avatares/{$id}/";
             }
             
-            $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo' ORDER BY umeta_id DESC ");
-            if( empty($name_photo)  ){ $name_photo = "0"; }
+            $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'name_photo' ");
+            if( empty($name_photo)  ){
+                $name_photo = "0";
+            }
+            /*
+            if( count(explode(".", $name_photo)) == 1 ){
+                $name_photo .= "jpg";
+            }
+            */
             $base = path_base();
+
+            //echo $base."/wp-content/uploads/{$sub_path}{$name_photo}\n";
 
             if( file_exists($base."/wp-content/uploads/{$sub_path}{$name_photo}") ){
                 $img = $HOME."/wp-content/uploads/{$sub_path}{$name_photo}";
@@ -196,7 +193,8 @@
                 }
                 $moderar_imgs .= "
                     <div style='background-image: url(".$URL_BASE.$foto.");'>
-                        <input type='checkbox' value='{$foto}' {$check} id='foto_{$i}' data-index='{$i}' data-url=\"".$URL_BASE.$foto."\" />
+                        <span onclick='ver_foto( jQuery(this) )' data-img='".$URL_BASE.$foto."'>Ver</span>
+                        <input type='checkbox' class='input_check' value='{$foto}' {$check} id='foto_{$i}' data-index='{$i}' data-url=\"".$URL_BASE.$foto."\"  />
                     </div>
                 ";
                 $i++;
@@ -205,4 +203,9 @@
             return $moderar_imgs;
         }
     }
+
+    function kmimos_dateFormat($fecha, $format = "d/m/Y"){
+        return date( $format, strtotime( str_replace("/", "-", $fecha) ) );
+    }
+    
 ?>

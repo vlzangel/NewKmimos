@@ -17,7 +17,7 @@
                 <span>Pago por '.$data_reserva["servicio"]["metodo_pago"].'</span>
             </div>
         </div>
-        <div class="desglose_box datos_cuidador">
+        <div class="desglose_box">
             
             <strong>CLIENTE</strong>
             <div class="item">
@@ -39,6 +39,39 @@
                 </span>
             </div>
         </div>
+        <div class="desglose_box">
+            
+            <strong>DATOS DE MASCOTAS</strong>
+            ';
+        foreach ($data_reserva["cliente"]["mascotas"] as $mascota){
+            $info .='
+            <div class="item">
+                <div>Nombre</div>
+                <span>
+                    '.$mascota["nombre"].'
+                </span>
+            </div>
+            <div class="item">
+                <div>Raza</div>
+                <span>
+                    '.$mascota["raza"].'
+                </span>
+            </div>
+            <div class="item">
+                <div>Edad</div>
+                <span>
+                    '.$mascota["edad"].'
+                </span>
+            </div>
+            <div class="item">
+                <div>Comportamiento</div>
+                <span>
+                    '.$mascota["conducta"].'
+                </span>
+            </div>
+            <hr>
+            ';}
+        $info .='</div>
     ';
 
     $variaciones = "";

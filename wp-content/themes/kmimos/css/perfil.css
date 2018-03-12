@@ -40,7 +40,6 @@
     margin-left: 0px;
     font-size: 20px;
 }
-}
 .menu_perfil ul li a:hover{
 	background: #59c9a8;
     color: #FFF;
@@ -50,6 +49,17 @@
 	width: calc( 100% - 220px );
 	box-sizing: border-box;
 	padding: 5px 0px 5px 15px;
+}
+
+li.vlz_resaltar a {
+    color: #FFF;
+}
+
+li.vlz_resaltar {
+    background: #7dd1c4;
+    padding: 0px 10px;
+    color: #FFF;
+    border: 0 !important;
 }
 
 /* Contenedores */

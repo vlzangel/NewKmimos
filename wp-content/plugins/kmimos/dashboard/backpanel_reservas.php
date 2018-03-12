@@ -1,8 +1,6 @@
 <?php global $wpdb;
-
 // Reservas 
 require_once('core/ControllerReservas.php');
-
 // Parametros: Filtro por fecha
 $date = getdate(); 
 $desde = date("Y-m-01", $date[0] );
@@ -31,7 +29,7 @@ $reservas = getReservas($_desde, $_hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_reservas" method="POST">
+		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_reservas" method="POST">
 				  <label>Filtrar:</label>
 				  <div class="form-group">
 				    <div class="input-group">
@@ -75,6 +73,7 @@ $reservas = getReservas($_desde, $_hasta);
 			    <tr>
 			      <th>#</th>
 			      <th># Reserva</th>
+			      <th>Flash</th>
 			      <th>Estatus</th>
 			      <th>Fecha Reservacion</th>
 			      <th>Check-In</th>
@@ -97,11 +96,13 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Estado</th>
 			      <th>Municipio</th>
 			      <th>Forma de Pago</th>
+			      <th>Tipo de Pago</th>
 			      <th>Total a pagar ($)</th>
 			      <th>Monto Pagado ($)</th>
 			      <th>Monto Remanente ($)</th>
 			      <th># Pedido</th>
 			      <th>Observaci&oacute;n</th>
+
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -112,7 +113,7 @@ $reservas = getReservas($_desde, $_hasta);
 			  	 ?>
 			  	<?php $count=0; ?>
 			  	<?php foreach( $reservas as $reserva ){ ?>
- 	
+ 
 				  	<?php 
 				  		// *************************************
 				  		// Cargar Metadatos
@@ -153,14 +154,11 @@ $reservas = getReservas($_desde, $_hasta);
 
 				  		# MetaDatos del Reserva
 				  		$meta_reserva = getMetaReserva($reserva->nro_reserva);
-
 				  		# MetaDatos del Pedido
 				  		$meta_Pedido = getMetaPedido($reserva->nro_pedido);
-				  		
 				  		# Mascotas del Cliente
 				  		$mypets = getMascotas($reserva->cliente_id); 
 				  		# Estado y Municipio del cuidador
-				  					  		
 				  		$ubicacion = get_ubicacion_cuidador($reserva->cuidador_id);
 				  		# Servicios de la Reserva
 				  		$services = getServices($reserva->nro_reserva);
@@ -215,15 +213,33 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						}
 
+						$flash = "";
+						if( $meta_reserva['_booking_flash'] == "SI" ){
+							$flash = '
+								<i 
+									class="fa fa-bolt" 
+									aria-hidden="true"
+									style="
+										padding: 2px 4px;
+									    border-radius: 50%;
+									    background: #00c500;
+									    color: #FFF;
+									    margin-right: 2px;
+									"
+								></i> Flash
+							';
+						}
+
 				  	?>
 				    <tr>
 			    	<th class="text-center"><?php echo ++$count; ?></th>
 					<th><?php echo $reserva->nro_reserva; ?></th>
+					<th><?php echo $flash; ?></th>
 					<th class="text-center"><?php echo $estatus['sts_corto']; ?></th>
 					<th class="text-center"><?php echo $reserva->fecha_solicitud; ?></th>
 
-					<th><?php echo date_convert($meta_reserva['_booking_start'], 'd-m-Y', true); ?></th>
-					<th><?php echo date_convert($meta_reserva['_booking_end'], 'd-m-Y', true); ?></th>
+					<th><?php echo date_convert($meta_reserva['_booking_start'], 'Y-m-d', true); ?></th>
+					<th><?php echo date_convert($meta_reserva['_booking_end'], 'Y-m-d', true); ?></th>
 
 					<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
 					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
@@ -258,13 +274,23 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						} ?>
 					</th>
+
+					<th> <?php 
+						$deposito = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$meta_reserva['_booking_order_item_id']} AND meta_key = '_wc_deposit_meta' ");
+						$deposito = unserialize($deposito);
+						if( $deposito["enable"] == "yes" ){
+							echo "Pago 20%";
+						}else{
+							echo "Pago Total";
+						}
+					?> </th>
+
 					<th><?php echo currency_format($meta_reserva['_booking_cost'], "", "","."); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_order_total'], "", "","."); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining'], "", "","."); ?></th>
 					<th><?php echo $reserva->nro_pedido; ?></th>
 					<th><?php echo $estatus['sts_largo']; ?></th>
-
-				    </tr>
+ 
 			   	<?php } ?>
 			  </tbody>
 			</table>
