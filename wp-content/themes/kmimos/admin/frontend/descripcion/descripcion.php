@@ -187,7 +187,7 @@
         </section>
 
         <section> 
-            <label class="lbl-text">'.esc_html__('Cuidando Desde', 'kmimos').':</label>
+            <label class="lbl-text">'.esc_html__('Fecha de Nacimiento', 'kmimos').':</label>
             <label class="lbl-ui">
                 <input type="text" name="fecha" id="fecha" class="input" placeholder="dd/mm/yyyy" value="'.$atributos["nacimiento"].'" readonly />
             </label>
