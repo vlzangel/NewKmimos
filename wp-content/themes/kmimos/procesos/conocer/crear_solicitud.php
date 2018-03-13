@@ -21,8 +21,7 @@
 		$info = kmimos_get_info_syte();
 
 		$data = array(
-			'error' => 'Ah ocurrido un error, por favor vuelva a inicar sesión e intente nuevamenten, Si el error persiste favor de comunicarse al número: '.$info["telefono_sincosto"].'
-			'
+			'error' => 'Ha ocurrido un error, debe iniciar sesión para intentarlo nuevamente. Si el error persiste favor comunicarse al número: '.$info["telefono_sincosto"]
 		);
 		echo json_encode($data);
 		exit;
