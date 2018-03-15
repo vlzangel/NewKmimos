@@ -741,7 +741,7 @@ ul.slider_logos_box li{
     .fondo_banner_nutriheroes{
         display: block;
         background-repeat: no-repeat;
-        background-image: url(../images/home/fondo_banner_nutriheroes.png) !important;
+        #background-image: url(../images/home/fondo_banner_nutriheroes.png) !important;
     }
 
     .banner_nutriheroes{
@@ -755,7 +755,8 @@ ul.slider_logos_box li{
     @media (max-width: 800px){
 
         .fondo_banner_nutriheroes{
-            background-image: url(../images/home/152087169247231522.gif) !important;
+            # background-image: url(../images/home/152087169247231522.gif) !important;
+            background: url('../videos/km-home/km-video-mobile.gif') center -40px / cover no-repeat;
         }
 
         .fondo_banner_nutriheroes > video{
