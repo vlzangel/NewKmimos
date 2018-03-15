@@ -200,7 +200,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
-	jQuery("#fumador").blur(function(){
+/*	jQuery("#fumador").blur(function(){
 		
 		if(jQuery("#fumador").val().length == 0){		
 			jQuery("#fumador").parent('div').css('color','red');
@@ -211,7 +211,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			jQuery("#fumador").parent('div').css('color','green');
 			jQuery('[name="sp-fumador"]').remove();
 		}
-	});
+	});*/
 
 	jQuery(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
 		e.preventDefault();
@@ -255,8 +255,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			pass.length > 0 && 
 			movil.length > 2 && 
 			genero != "" && 
-			edad != "" && 
-			fumador !=""
+			edad != "" /* && 
+			fumador !="" */
 			) {
 
 				var datos = {
