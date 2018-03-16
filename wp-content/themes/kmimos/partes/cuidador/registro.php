@@ -73,6 +73,11 @@
 
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
+						<div class="label-placeholder fecha_placeholder">
+							<label>Fecha de Nacimiento</label>
+							<input type="text" name="fecha" id="fecha" class="input-label-placeholder" placeholder="dd/mm/yyyy" readonly />
+							<small data-error="fecha" style="visibility: hidden;"></small>
+						</div>
 						<div class="label-placeholder">
 							<label>Correo electrónico</label>
 							<input type="email" name="rc_email"  maxlength="250" data-charset="cormlfnum" autocomplete="off" type='text' id='email_1' value="" class="social_email input-label-placeholder">

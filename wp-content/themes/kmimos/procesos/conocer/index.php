@@ -58,6 +58,10 @@
 			$user_cliente = get_user_by( 'id', $cliente );
 			$email_cliente = $user_cliente->data->user_email;
 
+	    if( $acc == "" ){
+	    	include(__DIR__."/nueva.php");
+	    }
+
 	    if( $acc == "CFM" ){
 	    	include(__DIR__."/confirmar.php");
 	    }

@@ -380,8 +380,6 @@
 							</div>
 							-->
 
-
-
 							<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
 								<a  target="blank" href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
 							</div>
@@ -415,6 +413,7 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
 				<!-- FIN SECCIÓN 6 - BENEFICIOS -->
 			';}
