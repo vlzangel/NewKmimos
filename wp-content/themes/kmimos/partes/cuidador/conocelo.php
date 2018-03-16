@@ -67,6 +67,7 @@ $HTML_CONOCER = '
 					<form id="conoce_cuidador" style="padding:0px;" method="post">
 
 						<input name="post_id" type="hidden" value="">
+						<input name="user_id" type="hidden" value="'.$user_id.'">
 
 						<div class="km-box-form">
 							<div class="content-placeholder">

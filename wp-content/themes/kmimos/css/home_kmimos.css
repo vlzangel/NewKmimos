@@ -735,3 +735,36 @@ ul.slider_logos_box li{
         margin-left: -10px;
         margin-top: 5px;
     }
+
+/* NutriHeroes */
+
+    .fondo_banner_nutriheroes{
+        display: block;
+        background-repeat: no-repeat;
+        #background-image: url(../images/home/fondo_banner_nutriheroes.png) !important;
+    }
+
+    .banner_nutriheroes{
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(../images/home/banner_nutriheroes.png);
+    }
+
+    @media (max-width: 800px){
+
+        .fondo_banner_nutriheroes{
+            # background-image: url(../images/home/banner_2.gif) !important;
+            background: url('../images/home/banner_2.gif') center -40px / cover no-repeat !important;
+        }
+
+        .fondo_banner_nutriheroes > video{
+            display: none !important;
+        }
+
+        .banner_nutriheroes{
+            background-image: url(../images/home/movil_banner_nutriheroes.png);
+        }
+
+    }

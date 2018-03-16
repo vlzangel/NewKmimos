@@ -42,7 +42,8 @@
 		'propiedad' 	=> $propiedad,
 		'esterilizado'  => $solo_esterilizadas,
 		'emergencia' 	=> $emergencia,
-		'video_youtube' => $video_youtube
+		'video_youtube' => $video_youtube,
+		'nacimiento'	=> $fecha
 	);
 	$atributos = serialize($atributos);
 

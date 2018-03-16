@@ -62,6 +62,7 @@ $users = getUsers($desde, $hasta);
 			      <th>ID</th>
 			      <th>Flash</th>
 			      <th>Fecha Registro</th>
+			      <th>Fecha de Nacimiento</th>
 			      <th>Nombre y Apellido</th>
 			      <th>Nombre</th>
 			      <th>Apellido</th>
@@ -135,6 +136,10 @@ $users = getUsers($desde, $hasta);
 					  	$atributos = $wpdb->get_var("SELECT atributos FROM cuidadores WHERE user_id = ".$row['ID']);
 					  	$atributos = unserialize($atributos);
 
+				  	    if( !isset($atributos["nacimiento"]) ){
+					        $atributos["nacimiento"] = "No disponible";
+					    }
+
 					  	$flash = "";
 						if( $atributos['flash'] == 1 ){
 							$flash = '
@@ -156,6 +161,7 @@ $users = getUsers($desde, $hasta);
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
 						<th><?php echo $flash; ?></th>
 						<th><?php echo date_convert($row['user_registered'], 'd-m-Y') ; ?></th>
+						<th><?php echo $atributos["nacimiento"] ; ?></th>
 						<th><?php echo $name; ?></th>
 						<th><?php echo $usermeta["first_name"]; ?></th>
 						<th><?php echo $usermeta["last_name"]; ?></th>

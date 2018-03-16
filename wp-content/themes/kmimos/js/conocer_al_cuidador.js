@@ -26,6 +26,8 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
             jQuery(this).html('<i style="font-size: initial;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> ENVIANDO DATOS...');
             jQuery.post( a, jQuery("#conoce_cuidador").serialize(), function( data ) {
 
+                console.log(data);
+                
                 if( data != "" ){
 
                	    if( data['error'] != '' ){
