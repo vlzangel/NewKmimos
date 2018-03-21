@@ -87,9 +87,13 @@
             }
 
             if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'tienda'){
-                $saldo = $descuento;  
+                $saldo = $descuento; 
             }else{
                 $saldo += $descuento;                
+            }
+
+            if( $status != "wc-confirmed" ){
+                $penalizar = false;
             }
 
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
