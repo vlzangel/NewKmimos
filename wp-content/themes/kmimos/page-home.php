@@ -356,7 +356,7 @@
 
 
 		<!-- SECCIÓN 5 - VACACIONES -->
-		<a href="https://nutriheroes.com.mx/" target="_blank" class="km-vacaciones fondo_banner_nutriheroes">
+		<a href="https://nutriheroes.com.mx/" target="_blank" class=" fondo_banner_nutriheroes">
 			<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/images/video.mp4" width="100%" height="100%"></video>
 			<div class="container banner_nutriheroes"></div>
 		</a>
