@@ -13,10 +13,12 @@
 
     $mensaje_cliente = get_email_html($mensaje_cliente, true, false);
 
-    wp_mail( $email_cliente, "Confirmación de Solicitud para Conocer Cuidador", $mensaje_cliente);
-
-
-
+    if( isset($NO_ENVIAR) ){
+        echo $email_cliente;
+    }else{
+        wp_mail( $email_cliente, "Confirmación de Solicitud para Conocer Cuidador", $mensaje_cliente);
+    } 
+    
     $file = $PATH_TEMPLATE.'/template/mail/conocer/cuidador/confirmar.php';
     $mensaje_cuidador = file_get_contents($file);
 
@@ -26,9 +28,11 @@
 
     $mensaje_cuidador = get_email_html($mensaje_cuidador, true, false);
 
-    wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $mensaje_cuidador);
-
-
+    if( isset($NO_ENVIAR) ){
+        echo $mensaje_cuidador;
+    }else{
+        wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $mensaje_cuidador);
+    } 
 
 	$file = $PATH_TEMPLATE.'/template/mail/conocer/admin/confirmar.php';
     $mensaje_admin = file_get_contents($file);
@@ -40,8 +44,12 @@
 
     $mensaje_admin = get_email_html($mensaje_admin, true, false);
 
-    kmimos_mails_administradores_new("Confirmación de Solicitud para Conocer a ".$cuidador_name, $mensaje_admin);
-
+    if( isset($NO_ENVIAR) ){
+        echo $mensaje_admin;
+    }else{
+        kmimos_mails_administradores_new("Confirmación de Solicitud para Conocer a ".$cuidador_name, $mensaje_admin);
+    } 
+    
     $CONTENIDO .= "<div class='msg_acciones'>
         <strong>¡Todo esta listo!</strong><br>
         La solicitud para conocer cuidador <strong>#".$id_orden."</strong>, ha sido confirmada exitosamente de acuerdo a tu petición.

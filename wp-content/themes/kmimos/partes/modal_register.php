@@ -164,7 +164,7 @@ $HTML .='
 									<option value="Mayor-46">Mayor 36 años</option>
 								</select>
 							</div>
-							<div class="km-datos-mascota">
+							<div class="km-datos-mascota hidden">
 								<select class="km-datos-mascota-opcion bg-select-custom" name="fumador" id="fumador">
 									<option value="">Es Fumador</option>
 									<option value="SI">Si</option>

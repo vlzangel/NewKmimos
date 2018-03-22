@@ -75,7 +75,7 @@
 	        return array(
 	            "pais"      => "México",
 	            "titulo"    => "Kmimos México",
-	            "email"     => "contactomex@kmimos.la",
+	            "email"     => "vlzangel91@kmimos.la",
 
                 "telefono" => "(01) 55 4742 3162",
                 "telefono_sincosto" => "(01) 800 056 4667",

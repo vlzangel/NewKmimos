@@ -15,7 +15,7 @@
 					<div style="margin-top: 20px;">
 
 						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil.jpg" />
+							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil_2.png" />
 						</a>
 
 					</div>
@@ -25,7 +25,7 @@
 				return '
 					<div style="margin-top: 5px;">
 						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil.jpg" />
+							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil_2.png" />
 						</a>
 					</div>
 				';
@@ -34,53 +34,12 @@
 				return '
 					<div style="margin: 25px 0px;">
                         <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=intriga&utm_term=alimento_mascotas_nutricion" target="_blank">
-                            <img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil.jpg" />
+                            <img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil_2.png" />
                         </a>
                     </div>
 				';
 			break;
 		}
-
-/*		
-		switch ($seccion) {
-			case 'solicitud':
-				return '
-					<div style="margin-top: 20px;">
-
-						<a class="publicidad_solo_pc" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/'.$publicidad.'.jpg" />
-						</a>
-
-						<a class="publicidad_solo_movil" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil.jpg" />
-						</a>
-
-					</div>
-				';
-			break;
-			case 'reserva':
-				return '
-					<div style="margin-top: 5px;">
-						<a class="publicidad_solo_pc" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/'.$publicidad.'.jpg" />
-						</a>
-						<a class="publicidad_solo_movil" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil.jpg" />
-						</a>
-					</div>
-				';
-			break;
-			case 'correo':
-				return '
-					<div style="margin: 25px 0px;">
-                        <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=intriga&utm_term=alimento_mascotas_nutricion" target="_blank">
-                            <img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil.jpg" />
-                        </a>
-                    </div>
-				';
-			break;
-		}*/
-
 	}
 
 	function getComision(){

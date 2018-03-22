@@ -8,7 +8,7 @@ jQuery( document ).ready( function(){
 
 var globalData = "";
  
-$(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
+jQuery(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	e.preventDefault();
 
 	jQuery('[data-error="auth"]').fadeOut("fast");
@@ -23,7 +23,7 @@ $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	jQuery("#km-datos-foto-profile").css("background-image", 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
 
 	jQuery('#form_nuevo_cliente')[0].reset();
-	jQuery( $(this).data('target') ).modal('show');
+	jQuery( jQuery(this).data('target') ).modal('show');
 });
 
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
@@ -200,7 +200,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
-	jQuery("#fumador").blur(function(){
+/*	jQuery("#fumador").blur(function(){
 		
 		if(jQuery("#fumador").val().length == 0){		
 			jQuery("#fumador").parent('div').css('color','red');
@@ -211,7 +211,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			jQuery("#fumador").parent('div').css('color','green');
 			jQuery('[name="sp-fumador"]').remove();
 		}
-	});
+	});*/
 
 	jQuery(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
 		e.preventDefault();
@@ -255,8 +255,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			pass.length > 0 && 
 			movil.length > 2 && 
 			genero != "" && 
-			edad != "" && 
-			fumador !=""
+			edad != "" /* && 
+			fumador !="" */
 			) {
 
 				var datos = {
@@ -510,7 +510,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			img_pet = jQuery("#img_pet").val()
 						;
 
-			$fileupload = $('#carga_foto');
+			$fileupload = jQuery('#carga_foto');
 			$fileupload.replaceWith($fileupload.clone(true));
 
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,

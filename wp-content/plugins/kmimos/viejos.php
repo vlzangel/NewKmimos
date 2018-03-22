@@ -27,6 +27,10 @@
             $opciones = array(
                 'Petco'         =>  'Petco',
                 'Volaris'       =>  'Volaris',
+
+                'Venta de alimento' =>  'Venta de alimento',
+                'Nutriheroes'       =>  'Nutriheroes',
+
                 'Facebook'      =>  'Facebook',
                 'Google'       =>  'Buscador de Google',
                 'Instagram'     =>  'Instagram',
