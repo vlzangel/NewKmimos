@@ -485,9 +485,6 @@ function pagarReserva(id_invalido = false){
 				CARRITO["pagar"]["id_fallida"] = data.error;
 			}else{
 				CARRITO["pagar"]["id_fallida"] = 0;
-				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
-				jQuery("#reserva_btn_next_3").removeClass("disabled");
-				jQuery("#reserva_btn_next_3").removeClass("cargando");
 				location.href = RAIZ+"/finalizar/"+data.order_id;
 			}
 		}, "json"
@@ -970,24 +967,28 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery("#reserva_btn_next_3").on("click", function(e){
-		if( jQuery(this).hasClass("disabled") ){
+		if( jQuery(this).hasClass("disabled") && !jQuery(this).hasClass("cargando") ){
 			alert("Debes aceptar los terminos y condiciones");
 		}else{
-			if( jQuery("#metodos_pagos").css("display") != "none" ){
-				CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
-				CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
-				if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
-					jQuery("#reserva_btn_next_3 span").html("Validando...");
-					jQuery("#reserva_btn_next_3").addClass("disabled");
-					OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+			if( jQuery(this).hasClass("cargando") ){
+				alert("Proceso de pago en curso, por favor espere...");
+			}else{
+				if( jQuery("#metodos_pagos").css("display") != "none" ){
+					CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+					CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
+					if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
+						jQuery("#reserva_btn_next_3 span").html("Validando...");
+						jQuery("#reserva_btn_next_3").addClass("disabled");
+						OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+					}else{
+						pagarReserva();
+					}
 				}else{
+					CARRITO["pagar"]["tipo"] = "Saldo y/o Descuentos";
 					pagarReserva();
 				}
-			}else{
-				CARRITO["pagar"]["tipo"] = "Saldo y/o Descuentos";
-				pagarReserva();
-			}
-	 	}
+		 	}
+		}
 		e.preventDefault();
 	});
 
@@ -1034,6 +1035,7 @@ jQuery(document).ready(function() {
 		if( !jQuery(this).hasClass("active") ){
 			jQuery(this).addClass("active");
 			jQuery("#reserva_btn_next_3").removeClass("disabled");
+			jQuery(this).attr("disabled", true);
 		}else{
 			jQuery(this).removeClass("active");
 			jQuery("#reserva_btn_next_3").addClass("disabled");
@@ -1086,6 +1088,7 @@ jQuery(document).ready(function() {
 
 			jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 			jQuery("#reserva_btn_next_3").removeClass("disabled");
+			jQuery("#reserva_btn_next_3").removeClass("cargando");
 
 			var errores_txt = {
 				"card_number is required": "N&uacute;mero de tarjeta requerido",

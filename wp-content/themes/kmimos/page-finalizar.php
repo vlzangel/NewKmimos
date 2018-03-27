@@ -3,6 +3,9 @@
         Template Name: Finalizar
     */
 
+	if( !isset($_SESSION)){ session_start(); }
+	unset($_SESSION["pagando"]);
+
     wp_enqueue_style('finalizar', getTema()."/css/finalizar.css", array(), '1.0.0');
 	wp_enqueue_style('finalizar_responsive', getTema()."/css/responsive/finalizar_responsive.css", array(), '1.0.0');
 

@@ -223,6 +223,11 @@ div#tienda_box img {
     position: relative;
 }
 
+.page-reservation .km-end-btn-form.cargando {
+    background: rgba(151, 151, 151, .3);
+    color: #000;
+}
+
 .perfil_cargando {
     display: none;
     position: absolute;
