@@ -52,8 +52,8 @@ function initialize() {
 }
  
 function codeAddress() {
-    var estado = jQuery("#estado option[selected]").text();
-    var delegacion = jQuery("#delegacion option[selected]").text();
+    var estado = jQuery("#estado option:selected").text();
+    var delegacion = jQuery("#delegacion option:selected").text();
     var address = document.getElementById("direccion").value;
     
     address = estado+"+"+delegacion+"+"+address;
