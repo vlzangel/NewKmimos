@@ -23,6 +23,15 @@
                     'icon'          =>  '',
                 ),
                 array(
+                    'title'         =>  __('Saldos'),
+                    'short-title'   =>  __('Saldos'),
+                    'parent'        =>  'reporte_fotos',
+                    'slug'          =>  'reporte_saldos',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_saldos',
+                    'icon'          =>  '',
+                ),
+                array(
                     'title'         =>  __('Reporte Otro'),
                     'short-title'   =>  __('Reporte Otro'),
                     'parent'        =>  'reporte_fotos',
@@ -63,11 +72,16 @@
     /* Inclucion de paginas */
 
     if(!function_exists('reporte_fotos')){
-
         function reporte_fotos(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/fotos/reporte_fotos.php');
         }
+    }
 
+    if(!function_exists('reporte_saldos')){
+        function reporte_saldos(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/backend/saldos/reporte_saldos.php');
+        }
     }
 ?> 

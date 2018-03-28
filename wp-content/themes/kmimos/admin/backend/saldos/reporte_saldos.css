@@ -1,0 +1,16 @@
+
+.modal > div > div {
+	padding: 10px 0px 0px;
+}
+
+.modal > div > div * {
+	font-size: 13px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.botones_container {
+    margin: 10px 0px;
+    padding: 10px 0px;
+    text-align: right;
+    border-top: solid 1px #CCC;
+}
