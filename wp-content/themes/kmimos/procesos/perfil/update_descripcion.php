@@ -47,10 +47,8 @@
 	);
 	$atributos = serialize($atributos);
 
-	$coordenadas = unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$delegacion}'", "valor") );
-
-	$latitud  = $coordenadas["referencia"]->lat;
-	$longitud = $coordenadas["referencia"]->lng;
+	$latitud  = $lat;
+	$longitud = $lng;
 
 	$mascotas_cuidador = str_replace('"', '\"', $mascotas_cuidador);
 	$tamanos_aceptados = str_replace('"', '\"', $tamanos_aceptados);
