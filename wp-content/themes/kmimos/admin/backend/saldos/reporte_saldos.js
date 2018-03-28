@@ -95,6 +95,8 @@ function updateSaldo(){
 }
 
 function cerrarInfo(){
+	jQuery("#saldo").val("");
+	jQuery("#email").val("");
 	jQuery("#info_user").css("display", "none");
 	jQuery(".confirmaciones").css("display", "none");
 }	

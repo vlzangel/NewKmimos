@@ -16,7 +16,7 @@
     if( $_saldo === false ){
     	$db->query("INSERT INTO wp_usermeta VALUES (NULL, '{$_user_ID}', 'kmisaldo', '{$saldo}') ");
     }else{
-    	$db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$_user_ID} ");
+    	$db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$_user_ID} AND meta_key = 'kmisaldo' ");
     }
 
 	exit;
