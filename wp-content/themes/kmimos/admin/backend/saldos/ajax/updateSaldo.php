@@ -10,12 +10,13 @@
 
     $db = new db( new mysqli($host, $user, $pass, $db) );
 
-    $_saldo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$ID} AND meta_key = 'kmisaldo' ");
+    $_user_ID = $db->get_var("SELECT ID FROM wp_users WHERE user_email = '{$email}' ");
+
+    $_saldo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$_user_ID} AND meta_key = 'kmisaldo' ");
     if( $_saldo === false ){
-        echo "INSERT INTO wp_usermeta VALUES (NULL, '{$ID}', 'kmisaldo', {$saldo}') ";
-    	$db->query("INSERT INTO wp_usermeta VALUES (NULL, '{$ID}', 'kmisaldo', '{$saldo}') ");
+    	$db->query("INSERT INTO wp_usermeta VALUES (NULL, '{$_user_ID}', 'kmisaldo', '{$saldo}') ");
     }else{
-    	$db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$ID} ");
+    	$db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$_user_ID} ");
     }
 
 	exit;

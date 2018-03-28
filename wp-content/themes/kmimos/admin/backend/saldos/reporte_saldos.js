@@ -48,23 +48,53 @@ function abrir_link(e){
 	});
 }
 
-function updateSaldo(){
-	if( !jQuery("#Bloquear").hasClass("disable") ){
-		jQuery("#Bloquear").addClass("disable");
-		jQuery("#Bloquear").val("Procesando...");
+function getSaldo(){
+	if( !jQuery("#consultar").hasClass("disable") ){
+		jQuery("#consultar").addClass("disable");
+		jQuery("#consultar").val("Procesando...");
 		jQuery.post(
-			TEMA+"/admin/backend/saldos/ajax/updateSaldo.php",
+			TEMA+"/admin/backend/saldos/ajax/getSaldo.php",
 			{
 				saldo: jQuery("#saldo").val(),
-				ID: jQuery("#ID").val()
+				email: jQuery("#email").val()
 			},
 			function(HTML){
-				console.log(HTML);
-	            jQuery("#Bloquear").removeClass("disable");
-	            jQuery("#Bloquear").val("Actualizar");
-	            table.ajax.reload();
-	            cerrar();
+				jQuery("#info_user").html(HTML);
+
+				jQuery("#info_user").css("display", "block");
+				jQuery(".confirmaciones").css("display", "block");
+
+	            jQuery("#consultar").removeClass("disable");
+	            jQuery("#consultar").val("Consultar");
 	        }
 	    ); 
 	}
 }
+
+function updateSaldo(){
+	if( !jQuery("#confirmar").hasClass("disable") ){
+		jQuery("#confirmar").addClass("disable");
+		jQuery("#confirmar").val("Procesando...");
+		jQuery.post(
+			TEMA+"/admin/backend/saldos/ajax/updateSaldo.php",
+			{
+				saldo: jQuery("#saldo").val(),
+				email: jQuery("#email").val()
+			},
+			function(HTML){
+	            jQuery("#confirmar").removeClass("disable");
+	            jQuery("#confirmar").val("Confirmar");
+
+				// jQuery("#info_user").css("display", "none");
+				// jQuery(".confirmaciones").css("display", "none");
+
+				getSaldo();
+	        }
+	    ); 
+	}
+}
+
+function cerrarInfo(){
+	jQuery("#info_user").css("display", "none");
+	jQuery(".confirmaciones").css("display", "none");
+}	
