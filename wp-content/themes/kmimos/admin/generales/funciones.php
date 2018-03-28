@@ -21,25 +21,34 @@
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_fotos',
                     'icon'          =>  '',
-                ),
-                array(
+                )
+            );
+
+            $user_especiales = get_option( "especiales" );
+            $user_especiales = explode(",", $user_especiales);
+
+            $current_user = wp_get_current_user();
+            $user_id = $current_user->ID;
+
+            if( in_array($user_id, $user_especiales)  ){
+                $opciones_menu_reporte[] = array(
                     'title'         =>  __('Saldos'),
                     'short-title'   =>  __('Saldos'),
                     'parent'        =>  'reporte_fotos',
                     'slug'          =>  'reporte_saldos',
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_saldos',
-                    'icon'          =>  '',
-                ),
-                array(
-                    'title'         =>  __('Reporte Otro'),
-                    'short-title'   =>  __('Reporte Otro'),
-                    'parent'        =>  'reporte_fotos',
-                    'slug'          =>  'reporte_otro',
-                    'access'        =>  'manage_options',
-                    'page'          =>  'reporte_otro',
-                    'icon'          =>  '',
-                )
+                );
+            }
+
+           $opciones_menu_reporte[] = array(
+                'title'         =>  __('Reporte Otro'),
+                'short-title'   =>  __('Reporte Otro'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'reporte_otro',
+                'access'        =>  'manage_options',
+                'page'          =>  'reporte_otro',
+                'icon'          =>  '',
             );
 
             foreach($opciones_menu_reporte as $opcion){
