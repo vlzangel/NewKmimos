@@ -84,18 +84,6 @@
 
     }else{
 
-	    /*$pre17 = ( $pagar->total - ( $pagar->total / 1.2) );
-		$pagoCuidador = ( $pagar->total / 1.2);
-		if( $pre17 <= $descuentos ){
-			if( $pre17 < $descuentos ){
-				$reciduo = $pre17-$descuentos;
-				$pagoCuidador += $reciduo;
-			}
-			$pre17 = 0;
-		}else{
-			$pre17 -= $descuentos;
-		}*/
-
 		$pre17 = $pagar->deposito;
 		$pagoCuidador = $pagar->pagoCuidador;
 
@@ -266,152 +254,155 @@
 
 	}
 
-    $cupos_a_decrementar = $parametros["cantidades"]->cantidad;
+	if( $_SESSION["pagando"] == ""){
+		$_SESSION["pagando"] = "YES";
 
-    if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
-    	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
-    	echo json_encode(array(
-			"order_id" => $id_orden
-		));
+	    $cupos_a_decrementar = $parametros["cantidades"]->cantidad;
 
-		update_cupos( array(
-	    	"servicio" => $parametros["pagar"]->servicio,
-	    	"tipo" => $parametros["pagar"]->tipo_servicio,
-	    	"autor" => $parametros["pagar"]->cuidador,
-	    	"inicio" => strtotime($parametros["fechas"]->inicio),
-	    	"fin" => strtotime($parametros["fechas"]->fin),
-	    	"cantidad" => $cupos_a_decrementar
-	    ), "+");
-	    
-		if( isset($_SESSION[$id_session] ) ){
-	    	update_cupos( array(
-		    	"servicio" => $_SESSION[$id_session]["servicio"],
+	    if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
+	    	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
+	    	echo json_encode(array(
+				"order_id" => $id_orden
+			));
+
+			update_cupos( array(
+		    	"servicio" => $parametros["pagar"]->servicio,
 		    	"tipo" => $parametros["pagar"]->tipo_servicio,
-	    		"autor" => $parametros["pagar"]->cuidador,
-		    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-		    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-		    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-		    ), "-");
-			$_SESSION[$id_session] = "";
-			unset($_SESSION[$id_session]);
-		}
+		    	"autor" => $parametros["pagar"]->cuidador,
+		    	"inicio" => strtotime($parametros["fechas"]->inicio),
+		    	"fin" => strtotime($parametros["fechas"]->fin),
+		    	"cantidad" => $cupos_a_decrementar
+		    ), "+");
+		    
+			if( isset($_SESSION[$id_session] ) ){
+		    	update_cupos( array(
+			    	"servicio" => $_SESSION[$id_session]["servicio"],
+			    	"tipo" => $parametros["pagar"]->tipo_servicio,
+		    		"autor" => $parametros["pagar"]->cuidador,
+			    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
+			    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
+			    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
+			    ), "-");
+				$_SESSION[$id_session] = "";
+				unset($_SESSION[$id_session]);
+			}
 
-		include(__DIR__."/emails/index.php");
+			include(__DIR__."/emails/index.php");
 
-		exit;
-    }
+			exit;
+	    }
 
-    if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
-    	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
-    	echo json_encode(array(
-			"order_id" => $id_orden
-		));
+	    if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
+	    	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
+	    	echo json_encode(array(
+				"order_id" => $id_orden
+			));
 
-		update_cupos( array(
-	    	"servicio" => $parametros["pagar"]->servicio,
-	    	"tipo" => $parametros["pagar"]->tipo_servicio,
-	    	"autor" => $parametros["pagar"]->cuidador,
-	    	"inicio" => strtotime($parametros["fechas"]->inicio),
-	    	"fin" => strtotime($parametros["fechas"]->fin),
-	    	"cantidad" => $cupos_a_decrementar
-	    ), "+");
-	    
-		if( isset($_SESSION[$id_session] ) ){
-	    	update_cupos( array(
-		    	"servicio" => $_SESSION[$id_session]["servicio"],
+			update_cupos( array(
+		    	"servicio" => $parametros["pagar"]->servicio,
 		    	"tipo" => $parametros["pagar"]->tipo_servicio,
-	    		"autor" => $parametros["pagar"]->cuidador,
-		    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-		    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-		    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-		    ), "-");
-			$_SESSION[$id_session] = "";
-			unset($_SESSION[$id_session]);
-		}
+		    	"autor" => $parametros["pagar"]->cuidador,
+		    	"inicio" => strtotime($parametros["fechas"]->inicio),
+		    	"fin" => strtotime($parametros["fechas"]->fin),
+		    	"cantidad" => $cupos_a_decrementar
+		    ), "+");
+		    
+			if( isset($_SESSION[$id_session] ) ){
+		    	update_cupos( array(
+			    	"servicio" => $_SESSION[$id_session]["servicio"],
+			    	"tipo" => $parametros["pagar"]->tipo_servicio,
+		    		"autor" => $parametros["pagar"]->cuidador,
+			    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
+			    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
+			    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
+			    ), "-");
+				$_SESSION[$id_session] = "";
+				unset($_SESSION[$id_session]);
+			}
 
-		include(__DIR__."/emails/index.php");
-		exit;
-    }
+			include(__DIR__."/emails/index.php");
+			exit;
+	    }
 
-    if( $pagar->total <= $descuentos ){
-    	$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
-		$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
-    	echo json_encode(array(
-			"order_id" => $id_orden
-		));
+	    if( $pagar->total <= $descuentos ){
+	    	$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+			$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+	    	echo json_encode(array(
+				"order_id" => $id_orden
+			));
 
-		update_cupos( array(
-	    	"servicio" => $parametros["pagar"]->servicio,
-	    	"tipo" => $parametros["pagar"]->tipo_servicio,
-	    	"autor" => $parametros["pagar"]->cuidador,
-	    	"inicio" => strtotime($parametros["fechas"]->inicio),
-	    	"fin" => strtotime($parametros["fechas"]->fin),
-	    	"cantidad" => $cupos_a_decrementar
-	    ), "+");
-
-		if( isset($_SESSION[$id_session] ) ){
-	    	update_cupos( array(
-		    	"servicio" => $_SESSION[$id_session]["servicio"],
+			update_cupos( array(
+		    	"servicio" => $parametros["pagar"]->servicio,
 		    	"tipo" => $parametros["pagar"]->tipo_servicio,
-	    		"autor" => $parametros["pagar"]->cuidador,
-		    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-		    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-		    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-		    ), "-");
-			$_SESSION[$id_session] = "";
-			unset($_SESSION[$id_session]);
+		    	"autor" => $parametros["pagar"]->cuidador,
+		    	"inicio" => strtotime($parametros["fechas"]->inicio),
+		    	"fin" => strtotime($parametros["fechas"]->fin),
+		    	"cantidad" => $cupos_a_decrementar
+		    ), "+");
+
+			if( isset($_SESSION[$id_session] ) ){
+		    	update_cupos( array(
+			    	"servicio" => $_SESSION[$id_session]["servicio"],
+			    	"tipo" => $parametros["pagar"]->tipo_servicio,
+		    		"autor" => $parametros["pagar"]->cuidador,
+			    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
+			    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
+			    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
+			    ), "-");
+				$_SESSION[$id_session] = "";
+				unset($_SESSION[$id_session]);
+			}
+		    
+			include(__DIR__."/emails/index.php");
+			exit;
+	    }
+
+	 
+	    if( $pagar->metodo != "deposito" ){
+		    $pagar->total -= $descuentos;
+	    }else{
+		    $pagar->total = $pre17;
+	    }
+	 
+		foreach ($data_cliente as $key => $value) {
+			if( $data_cliente[$key] == "" ){
+				$data_cliente[$key] = "_";
+			}
 		}
-	    
-		include(__DIR__."/emails/index.php");
-		exit;
-    }
 
- 
-    if( $pagar->metodo != "deposito" ){
-	    $pagar->total -= $descuentos;
-    }else{
-	    $pagar->total = $pre17;
-    }
- 
+		$nombre 	= $data_cliente["first_name"];
+		$apellido 	= $data_cliente["last_name"];
+		$email 		= $pagar->email;
+		$telefono 	= $data_cliente["user_mobile"];
+		$direccion 	= $data_cliente["billing_address_1"];
+		$estado 	= $data_cliente["billing_state"];
+		$municipio 	= $data_cliente["billing_city"];
+		$postal  	= $data_cliente["billing_postcode"];
 
-
-	foreach ($data_cliente as $key => $value) {
-		if( $data_cliente[$key] == "" ){
-			$data_cliente[$key] = "_";
-		}
-	}
-
-	$nombre 	= $data_cliente["first_name"];
-	$apellido 	= $data_cliente["last_name"];
-	$email 		= $pagar->email;
-	$telefono 	= $data_cliente["user_mobile"];
-	$direccion 	= $data_cliente["billing_address_1"];
-	$estado 	= $data_cliente["billing_state"];
-	$municipio 	= $data_cliente["billing_city"];
-	$postal  	= $data_cliente["billing_postcode"];
-
-	// -- Pasarelas de Pago
-	$pasarela = get_region( 'pasarela' );
-	switch (strtolower($pasarela)) {
-		case 'openpay':
-			if( $pagar->deviceIdHiddenFieldName != "" ){
-				include( 'pasarelas/pay_with_openpay.php' );
-			}else{
+		// -- Pasarelas de Pago
+		$pasarela = get_region( 'pasarela' );
+		switch (strtolower($pasarela)) {
+			case 'openpay':
+				if( $pagar->deviceIdHiddenFieldName != "" ){
+					include( 'pasarelas/pay_with_openpay.php' );
+				}else{
+					echo json_encode(array(
+						"Error" => "Sin ID de dispositivo",
+						"Data"  => $_POST
+					));
+				}
+				break;
+			case 'payu':	
+				include( 'pasarelas/pay_with_payu.php' );
+				break;
+			default:
 				echo json_encode(array(
-					"Error" => "Sin ID de dispositivo",
+					"Error" => "No existe pasarela de pago para ".strtolower(REGION),
 					"Data"  => $_POST
 				));
-			}
-			break;
-		case 'payu':	
-			include( 'pasarelas/pay_with_payu.php' );
-			break;
-		default:
-			echo json_encode(array(
-				"Error" => "No existe pasarela de pago para ".strtolower(REGION),
-				"Data"  => $_POST
-			));
-			break;
+				break;
+		}
+
 	}
 
 

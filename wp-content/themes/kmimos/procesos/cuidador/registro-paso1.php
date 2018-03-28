@@ -52,6 +52,23 @@
     $hospedaje = serialize($hospedaje);
     // END DATA DEFAULT
 
+    extract($_POST);
+
+    if( $rc_ife+0 == 0 ){ 
+        $error = array(
+            "error" => "SI",
+            'fields' => array(
+                array(
+                    "name" => "ife",
+                    "msg" => "Error, el IFE no es valido."
+                )
+            )
+        );
+        echo "(".json_encode( $error ).")";
+
+        exit();
+    }
+
     if ($conn->connect_error) {
         echo json_encode(['error'=>'NO','msg'=>'Error de conexion', 'fields'=>[]]);
     }else{
@@ -59,8 +76,6 @@
         foreach ($_POST as $key => $value) {
             if($value == ''){ $_POST[$key] = 0; }
         }
-
-        extract($_POST);
 
         $email = $rc_email;
         $nombres = $rc_nombres;
@@ -151,6 +166,8 @@
             $atributos = array(
                 "nacimiento" => $fecha
             );
+
+            if( $ife+0 == 0 ){ $ife = "0000000000000"; }
 
             $sql = "
                 INSERT INTO `cuidadores` (

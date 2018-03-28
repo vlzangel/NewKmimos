@@ -739,9 +739,17 @@ ul.slider_logos_box li{
 /* NutriHeroes */
 
     .fondo_banner_nutriheroes{
+        background-size: cover;
+        background-position: center center;
+        color: white;
+        text-align: center;
+        padding: 50px 0px;
+        height: 600px;
+        position: relative;
+        overflow: hidden;
         display: block;
         background-repeat: no-repeat;
-        #background-image: url(../images/home/fondo_banner_nutriheroes.png) !important;
+        background-image: url(../images/home/fondo_banner_nutriheroes.png) !important;
     }
 
     .banner_nutriheroes{

@@ -14,11 +14,8 @@
     }
 
     $petsitter_id = $cuidador->id;
-    $lat = $cuidador->latitud;
-    $lng = $cuidador->longitud;
-
-    $lat_def = ($lat != '') ?  $lat: 4.708541513768121;
-    $lng_def = ($lng != '') ?  $lng: -74.0709801277344;
+    $lat_def = $cuidador->latitud;
+    $lng_def = $cuidador->longitud;
 
   	$anio = date("Y");
     if( $cuidador->experiencia < 1900 ){
@@ -179,9 +176,14 @@
         if($value == 1){ $check = "vlz_check"; }else{ $check = ""; }
       	$edades_aceptadas_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="acepta_'.$key.'" name="acepta_'.$key.'" value="'.$edades_aceptadas[$key].'">'.$edades[$key].'</div>';
     }
+
     $identidad = get_region('identidad_corta');
     $localidad = get_region('Localidad')." / ".get_region('Barrio');
     $ciudad = get_region('Ciudad');
+
+    // wp_enqueue_script( 'google-api','http://maps.googleapis.com/maps/api/js?key=AIzaSyBdswYmnItV9LKa2P4wXfQQ7t8x_iWDVME&sensor=true', array( 'jquery' ) );
+    wp_enqueue_script( 'google-maps', getTema().'/js/google-map-cuidador.js', array(  ) ); // 'google-api'
+  
   	$CONTENIDO .= '
     <input type="hidden" name="accion" value="update_descripcion" />
     <input type="hidden" name="cuidador_id" value="'.$cuidador->id.'" />
@@ -345,9 +347,18 @@
             <label for="ages_accepted" class="lbl-text">'.get_region('direccion').':</label>
             <label class="lbl-ui">
               <input  type="text" id="direccion" name="direccion" class="input" value="'.$cuidador->direccion.'" />
+              <i id="pasar" class="fa fa-search"></i>
             </label> 
         </section>
 
+    </div>
+           
+    <div class="inputs_containers row_3" style="padding-bottom: 0px;"> 
+        <div class="info_map">Puedes establecer con m&aacute;s precisi&oacute;n tu ubicaci&oacute;n desplazando el PIN en el mapa directamente.</div>            
+        <div id="map_canvas" style="width:100%; height:300px;"></div>
+        <input type="hidden" name="lat" id="lat" value="'.$lat_def.'" />
+        <input type="hidden" name="lng" id="long" value="'.$lng_def.'" />
+        
     </div>
 
     <div class="inputs_containers" style="padding-bottom: 0px;">

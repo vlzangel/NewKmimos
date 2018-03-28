@@ -58,6 +58,7 @@ jQuery( document ).ready(function() {
             jQuery("#btn_actualizar").val("Actualizar");
             jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
+            location.reload();
         }
     );
 
