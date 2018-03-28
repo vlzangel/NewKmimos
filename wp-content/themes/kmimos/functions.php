@@ -1,15 +1,10 @@
 <?php
 
 	function get_publicidad($seccion){
-				
-		/*$publicidad = rand(1, 2);
 
-		if( $publicidad == "2" ){
-			$campaing = "informacion";
-		}*/
+		return '';
 
 		$campaing = "Kmimos-nutriheroes";
-
 		switch ($seccion) {
 			case 'solicitud':
 				return '

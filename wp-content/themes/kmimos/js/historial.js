@@ -33,6 +33,7 @@ jQuery(document).ready(function(){
 
     jQuery(".vlz_accion").on("click", function(e){
         var value = jQuery(this).attr("data-accion");
+
         if(value != ''){
             if(jQuery(this).hasClass('vlz_cancelar')){
                 var confirmed = confirm("Esta Seguro de cancelar esta reserva?");
@@ -41,6 +42,7 @@ jQuery(document).ready(function(){
                 }
             }else{
                 if(jQuery(this).hasClass('vlz_modificar')){
+ 
                     var data = value;
                     jQuery.post(
                         URL_PROCESOS_PERFIL, 
@@ -49,7 +51,6 @@ jQuery(document).ready(function(){
                             data: data
                         },
                         function(resp){
-
                             if( resp.error != "" ){
                                 var errores = {
                                     "cancelled": "fue cancelada anteriormente",

@@ -166,47 +166,6 @@
 		</tr>
 
 		<tr>
-
-<<<<<<< HEAD
-		<td style='width: 300px; vertical-align: top;'>
-			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
-				<tr>
-					<td style='vertical-align: top; padding: 5px; width: 60px;'>
-						<img src='[URL_IMGS]/group-9.png' style='display: block; margin: 0px auto 25px;' >
-					</td>
-					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
-						<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y <strong style='color: #570089;'>verifica</strong> que sus <strong>vacunas</strong> estén al día.</div>
-						<div><strong>Tip: Sin cartilla no se harán efectivos</strong> los beneficios veterinarios de Kmimos.</div>
-					</td>
-				</tr>
-			</table>
-		</td>
-
-		<td style='width: 300px; vertical-align: top;'>
-			<table cellpadding="0" cellspacing="0" style='width: 300px;'>
-				<tr>
-					<td style='vertical-align: top; padding: 5px; width: 60px;'>
-						<img src='[URL_IMGS]/group-14.png' style='display: block; margin: 0px auto 25px;' >
-					</td>
-					<td style='vertical-align: top; font-family: Arial; letter-spacing: 0.3px; color: #2d2d2d; padding: 5px; width: 240px;'>
-						<strong>Revisa al perrito</strong> y <strong style='color: #570089;'>detecta</strong> si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
-					</td>
-				</tr>
-			</table>
-		</td>
-		
-	</tr>
-
-</table>
-
-<div style='width:600px; margin-bottom: 31px;'>   
-    <div style='text-align:center;'>
-        <p style='font-family: Arial;font-weight: bold; font-size:14px; color:#666; text-align: center; '>
-            En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono <?php echo get_region('telefono'); ?>, Whatsapp <?php echo get_region('whatsapp'); ?>, o al correo <?php echo get_region('email'); ?>
-        </p>
-    </div>
-</div>
-=======
 			<td style='width: 300px; vertical-align: top;'>
 				<table cellpadding="0" cellspacing="0" style='width: 300px;'>
 					<tr>
@@ -220,7 +179,6 @@
 					</tr>
 				</table>
 			</td>
->>>>>>> 250d22b05fe1ba750884adac56c2201f4a0c2ab6
 
 			<td style='width: 300px; vertical-align: top;'>
 				<table cellpadding="0" cellspacing="0" style='width: 300px;'>
