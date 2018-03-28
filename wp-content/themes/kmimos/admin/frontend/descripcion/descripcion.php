@@ -14,11 +14,8 @@
     }
 
     $petsitter_id = $cuidador->id;
-    $lat = $cuidador->latitud;
-    $lng = $cuidador->longitud;
-
-    $lat_def = ($lat != '') ?  $lat: 4.708541513768121;
-    $lng_def = ($lng != '') ?  $lng: -74.0709801277344;
+    $lat_def = $cuidador->latitud;
+    $lng_def = $cuidador->longitud;
 
   	$anio = date("Y");
     if( $cuidador->experiencia < 1900 ){
