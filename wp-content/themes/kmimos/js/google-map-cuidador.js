@@ -27,11 +27,11 @@ jQuery(document).ready(function(){
 });
      
 function initialize() {
+    lat = jQuery('#lat').val();
+    lng = jQuery('#long').val();
     geocoder = new google.maps.Geocoder();
     if(lat !='' && lng != ''){
         var latLng = new google.maps.LatLng(lat,lng);
-    } else {
-        var latLng = new google.maps.LatLng( 0, 0);
     }
     var myOptions = {
         center: latLng,
@@ -44,7 +44,7 @@ function initialize() {
         position: latLng,
         draggable: true
     });
-    updatePosition(latLng);
+
     google.maps.event.addListener(marker, 'dragend', function(){
         updatePosition(marker.getPosition());
     });
