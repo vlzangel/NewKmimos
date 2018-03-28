@@ -58,6 +58,8 @@ function codeAddress() {
     
     address = estado+"+"+delegacion+"+"+address;
 
+    console.log( address );
+
     geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
