@@ -16,7 +16,7 @@
             <input type="number" id="saldo" name="saldo" class="input" />
 
         <div class='botones_container'>
-            <input type='button' id='consultar' value='Consultar' onClick='getSaldo()' class="button button-primary button-large" />
+            <input type='button' id='consultar' value='Actualizar' onClick='getSaldo()' class="button button-primary button-large" />
         </div>
 
         <div id="info_user">

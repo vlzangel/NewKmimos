@@ -65,7 +65,7 @@ function getSaldo(){
 				jQuery(".confirmaciones").css("display", "block");
 
 	            jQuery("#consultar").removeClass("disable");
-	            jQuery("#consultar").val("Consultar");
+	            jQuery("#consultar").val("Actualizar");
 	        }
 	    ); 
 	}
