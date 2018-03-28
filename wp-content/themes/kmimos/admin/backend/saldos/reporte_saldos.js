@@ -59,6 +59,7 @@ function updateSaldo(){
 				ID: jQuery("#ID").val()
 			},
 			function(HTML){
+				console.log(HTML);
 	            jQuery("#Bloquear").removeClass("disable");
 	            jQuery("#Bloquear").val("Actualizar");
 	            table.ajax.reload();
