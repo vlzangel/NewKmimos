@@ -552,7 +552,7 @@
                 }
             }
 
-            if( $metas_orden["_payment_method"][0] == "openpay_stores" ){
+            if( $metas_orden["_payment_method"][0] == "payu_stores" ){
                 $totales = '
                     <tr>
                         <td></td>
@@ -757,7 +757,7 @@
                 "detalles_factura_cuidador" => $detalles_factura_cuidador,
 
                 "metodo_pago" => $metas_orden['_payment_method'][0],
-                "pdf" => $metas_orden['_openpay_pdf'][0],
+                "pdf" => $metas_orden['_payu_pdf'][0],
 
                 "servicio" => $producto->ID
             );
@@ -1374,7 +1374,7 @@
 
 
                 "metodo_pago" => $metas_orden['_payment_method_title'][0],
-                "pdf" => $metas_orden['_openpay_pdf'][0],
+                "pdf" => $metas_orden['_payu_pdf'][0],
 
                 "servicio" => $producto->ID,
                 "servicio_titulo" => $producto->post_title,
@@ -1422,8 +1422,8 @@
                     "transporte" => $transporte_desglose,
                     "adicionales" => $adicionales_desglose,
 
-                    "pdf" => $metas_orden['_openpay_pdf'][0],
-                    "vence" => $metas_orden['_openpay_tienda_vence'][0],
+                    "pdf" => $metas_orden['_payu_pdf'][0],
+                    "vence" => $metas_orden['_payu_tienda_vence'][0],
 
                     "aceptar_rechazar" => $aceptar_rechazar,
 

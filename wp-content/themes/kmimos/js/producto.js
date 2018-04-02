@@ -1047,7 +1047,14 @@ jQuery(document).ready(function() {
 					if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
 						jQuery("#reserva_btn_next_3 span").html("Validando...");
 						jQuery("#reserva_btn_next_3").addClass("disabled");
-						OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+						switch( PASARELA ){
+							case 'openpay':
+								OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+								break;
+							case 'payu':
+								pagarReserva();
+								break;
+						}
 					}else{
 						pagarReserva();
 					}

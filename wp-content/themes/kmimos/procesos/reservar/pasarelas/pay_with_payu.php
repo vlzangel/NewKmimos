@@ -37,7 +37,6 @@
 	$PayuP['cliente']['postal'] = '000000';
 	$PayuP["PayuDeviceSessionId"] = md5(session_id().microtime()); //$PayuDeviceSessionId;
 
-
 	$payu = new PayU();
 	switch ( $pagar->tipo ) {
 		case 'tarjeta':
