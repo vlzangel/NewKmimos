@@ -56,7 +56,7 @@
     	$str_sugeridos .= $temp;
     }
 
-    $file_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/cancelacion/partes/sugeridos.php';
+    $file_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/sugeridos.php';
     $plantilla_sugeridos = file_get_contents($file_plantilla);
     $plantilla_sugeridos = str_replace("[CUIDADORES]", $plantilla_sugeridos, $str_sugeridos);
 
