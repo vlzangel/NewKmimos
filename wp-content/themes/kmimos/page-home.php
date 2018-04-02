@@ -321,102 +321,35 @@
 		</div>
 		<!-- FIN SECCIÓN 3 - TESTIMONIALES -->
 		';
-		if (get_region('km-patitas') == true) {
-			$HTML .= '<!-- SECCIÓN 4 - CLUB PATITAS FELICES -->
-			<div class="km-club">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12 col-sm-3">
-							<img src="'.getTema().'/images/new/club-patita.svg" width="100%" style="max-width: 200px;">
-							<h4 style="margin-top: 35px;"><span>Cada amigo que complete 1 reservación</span> GANA $150 Y TÚ GANAS OTROS $150</h4>
-						</div>
-						<div class="col-xs-12 col-sm-6">
-							<h4>CLUB DE LAS</h4>
-							<h2>Patitas Felices</h2>
-							<div class="km-box-form">
-								<div class="content-placeholder">
-									<div class="label-placeholder">
-										<label>Nombres y apellidos</label>
-										<input type="text" id="cp_nombre" value="" class="input-label-placeholder">
-									</div>
-									<div class="label-placeholder">
-										<label>E-mail</label>
-										<input type="email" id="cp_email" value="" class="input-label-placeholder">
-									</div>
-								</div>
-							</div>
-							<a href="javascript:;" data-target="patitas-felices" class="km-btn-primary">INSCRÍBETE Y GANA</a>
-							<div class="col-xs-12 loading hidden" id="cp_loading">
-								<div class="" id="msg">Enviando solicitud...</div>
-							</div>
-						</div>
-						<div class="hidden-xs col-sm-3">
-							<img src="'.getTema().'/images/new/km-club-perro.jpg" width="100%">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->
-			';
-		}
-		if (get_region('km-vacaciones') == true) {
 
-				$HTML .= '
-				<!-- SECCIÓN 5 - VACACIONES -->
-				<div class="km-vacaciones">
+		if (get_region('km-medios') == true) {
+			$HTML .= 
+			'<!-- SECCIÓN 6 - BENEFICIOS -->
+				<div class="km-medios">
 					<div class="container">
-						<p>NOSOTROS NOS ENCARGAMOS DE TU MASCOTA, TÚ LIBÉRATE.</p>
-						<h2>Vacations Mode On</h2>
+						<h4>NUESTRO RESPALDO</h4>
 						<div class="row">
-							<!--
-							<div class="items col-xs-12 col-sm-6">
-								<a  target="blank" href="http://www.fiestamericana.com/en/home" style="background-color: white;"><img src="'.getTema().'/images/new/km-logos/logo-hotel.jpg" height="58px"></a>
+							<div class="col-xs-6 col-md-offset-1 col-md-2">
+								<img src="'.getTema().'/images/new/km-medios/reforma.jpg">
 							</div>
-							<div class="items col-xs-12 col-sm-6">
-								<a  target="blank" href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
+							<div class="col-xs-6 col-md-2">
+								<img src="'.getTema().'/images/new/km-medios/mural.jpg">
 							</div>
-							<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
-								<a target="blank" href="https://www.volaris.com/" style="background-color: #E2D1A0; font-size:25px;"><img src="'.getTema().'/images/new/km-logos/posadas-white-logo.svg" width="180px" height="58px"></a>
+							<div class="col-xs-6 col-md-2">
+								<img src="'.getTema().'/images/new/km-medios/norte.jpg">
 							</div>
-							-->
-
-							<div class="items col-xs-12 col-sm-6 col-sm-offset-3">
-								<a  target="blank" href="https://www.volaris.com/" style="background-color: black;"><img src="'.getTema().'/images/new/km-logos/logo-volaris.png" height="58px"></a>
+							<div class="col-xs-6 col-md-2">
+								<img src="'.getTema().'/images/new/km-medios/financiero.jpg">
+							</div>
+							<div class="col-xs-12 col-md-2">
+								<img src="'.getTema().'/images/new/km-medios/universal.jpg">
 							</div>
 						</div>
 					</div>
+
 				</div>
-				<!-- FIN SECCIÓN 5 - VACACIONES -->
-				';
-			}
-			if (get_region('km-medios') == true) {
-				$HTML .= 
-				'<!-- SECCIÓN 6 - BENEFICIOS -->
-					<div class="km-medios">
-						<div class="container">
-							<h4>NUESTRO RESPALDO</h4>
-							<div class="row">
-								<div class="col-xs-6 col-md-offset-1 col-md-2">
-									<img src="'.getTema().'/images/new/km-medios/reforma.jpg">
-								</div>
-								<div class="col-xs-6 col-md-2">
-									<img src="'.getTema().'/images/new/km-medios/mural.jpg">
-								</div>
-								<div class="col-xs-6 col-md-2">
-									<img src="'.getTema().'/images/new/km-medios/norte.jpg">
-								</div>
-								<div class="col-xs-6 col-md-2">
-									<img src="'.getTema().'/images/new/km-medios/financiero.jpg">
-								</div>
-								<div class="col-xs-12 col-md-2">
-									<img src="'.getTema().'/images/new/km-medios/universal.jpg">
-								</div>
-							</div>
-						</div>
-
-					</div>
-				<!-- FIN SECCIÓN 6 - BENEFICIOS -->
-			';}
+			<!-- FIN SECCIÓN 6 - BENEFICIOS -->
+		';}
 
 	$HTML .='	
 	<!-- SECCIÓN 7 - BENEFICIOS -->

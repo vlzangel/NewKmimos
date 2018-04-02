@@ -53,7 +53,7 @@
 				$inicio = strtotime( $_metas_reserva['_booking_start'][0] );
 				$fin    = strtotime( $_metas_reserva['_booking_end'][0] );
 
-				$pdf = $_metas_orden['_openpay_pdf'][0];
+				$pdf = $_metas_orden['_payu_pdf'][0];
 				$ver = $reserva->orden;
 				$cancelar = $reserva->orden;
 				$confirmar = $reserva->orden;

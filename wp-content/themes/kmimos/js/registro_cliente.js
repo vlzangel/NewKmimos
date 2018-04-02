@@ -8,7 +8,7 @@ jQuery( document ).ready( function(){
 
 var globalData = "";
  
-$(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
+jQuery(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	e.preventDefault();
 
 	jQuery('[data-error="auth"]').fadeOut("fast");
@@ -23,7 +23,7 @@ $(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	jQuery("#km-datos-foto-profile").css("background-image", 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
 
 	jQuery('#form_nuevo_cliente')[0].reset();
-	jQuery( $(this).data('target') ).modal('show');
+	jQuery( jQuery(this).data('target') ).modal('show');
 });
 
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
@@ -526,7 +526,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			img_pet = jQuery("#img_pet").val()
 						;
 
-			$fileupload = $('#carga_foto');
+			$fileupload = jQuery('#carga_foto');
 			$fileupload.replaceWith($fileupload.clone(true));
 
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
