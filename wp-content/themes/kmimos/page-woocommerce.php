@@ -770,5 +770,11 @@
 
 		}
 
+		echo "<pre>";
+			print_r($_SESSION);
+		echo "</pre>";
+
+		unset($_SESSION["pagando"]);
+
     get_footer(); 
 ?>

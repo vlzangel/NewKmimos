@@ -387,34 +387,58 @@
 
 			$cliente_openpay = $data_cliente["_openpay_customer_id"];
 
-			if( $id_invalido ){ $cliente_openpay = ""; }
+			$id_invalido = true;
 
-		   	if( $cliente_openpay != "" ){
-		   		$customer = $openpay->customers->get( $cliente_openpay );
-		   	}else{
-		   		$customerData = array(
-					'name' 				=> $nombre,
-					'last_name' 		=> $apellido,
-					'email' 			=> $email,
-					'requires_account' 	=> false,
-					'phone_number' 		=> $telefono,
-					'address' => array(
-						'line1' 		=> "Mexico ",
-						'state' 		=> "DF",
-						'city' 			=> "Mexico",
-						'postal_code' 	=> "10100",
-						'country_code' 	=> 'MX'
-					)
-			   	);
-			   	$customer = $openpay->customers->add($customerData);
+			if( $cliente_openpay == "" ){
+				try {
+					$customerData = array(
+				     	'name' => $nombre,
+				     	'email' => $email
+				  	);
+					$customer = $openpay->customers->add($customerData);
+					$cliente_openpay = $customer->id;
+					update_user_meta($user_id, "openpay_id", $cliente_openpay);
+					$id_invalido = false;
+				} catch (Exception $e) {
+					$error = $e->getErrorCode();
+					unset($_SESSION["pagando"]);
 
-			   	$openpay_customer_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id'");
-			   	if( $openpay_customer_id != false ){
-			   		$db->query("UPDATE wp_usermeta SET meta_value = '{$customer->id}' WHERE user_id = {$pagar->cliente} AND meta_key = '_openpay_customer_id';");
-			   	}else{
-			   		$db->query("INSERT INTO wp_usermeta VALUES (NULL, {$pagar->cliente}, '_openpay_customer_id', '{$customer->id}');");
-			   	}
-			   	
+		            echo json_encode(array(
+						"error" => $id_orden,
+						"tipo_error" => $error,
+						"status" => "Error, pago fallido"
+					));
+
+					exit();
+				}
+		    }
+
+		    if( $id_invalido ){
+			    try {
+					$customer = $openpay->customers->get($cliente_openpay);
+				} catch (Exception $e) {
+
+					try {
+				    	$customerData = array(
+					     	'name' => $nombre,
+					     	'email' => $email
+					  	);
+						$customer = $openpay->customers->add($customerData);
+						$cliente_openpay = $customer->id;
+						update_user_meta($user_id, "openpay_id", $cliente_openpay);
+					} catch (Exception $e) {
+						$error = $e->getErrorCode();
+						unset($_SESSION["pagando"]);
+
+			            echo json_encode(array(
+							"error" => $id_orden,
+							"tipo_error" => $error,
+							"status" => "Error, pago fallido"
+						));
+
+						exit();
+					}
+			    }
 		   	}
 
 		   	switch ( $pagar->tipo ) {
@@ -577,6 +601,12 @@
 			));
 		}
 
+	}else{
+		echo json_encode(array(
+			"error" => $id_orden,
+			"tipo_error" => "Pagando...",
+			"status" => "Error, pago fallido"
+		));
 	}
 
 	exit();
