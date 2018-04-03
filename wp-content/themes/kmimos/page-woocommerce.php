@@ -770,9 +770,9 @@
 
 		}
 
-		echo "<pre>";
+/*		echo "<pre>";
 			print_r($_SESSION);
-		echo "</pre>";
+		echo "</pre>";*/
 
 		unset($_SESSION["pagando"]);
 
