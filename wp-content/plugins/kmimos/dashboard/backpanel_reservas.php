@@ -244,6 +244,11 @@ $reservas = getReservas($_desde, $_hasta);
 										}
 									}
 								break;
+								case 'Confirmado':
+									if( $meta_reserva["modificacion_de"] != "" ){
+										$estatus['sts_corto'] = 'Modificada-F';
+									}
+								break;
 							}
 						}
 						
