@@ -511,42 +511,59 @@
 
 					$charge = $customer->charges->create($chargeRequest);
 
-					$pdf = $OPENPAY_URL."/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference;
+					try {
+			            $charge = $customer->charges->create($chargeRequest);
+			        } catch (Exception $e) {
+			        	$error = $e->getErrorCode();
+			        }
 
-					$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
-					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_pdf', '{$pdf}');");
-					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_tienda_vence', '{$due_date}');");
+					if ($charge != false) {
 
-	   				echo json_encode(array(
-	   					"user_id" => $customer->id,
-						"pdf" => $pdf,
-						"barcode_url"  => $charge->payment_method->barcode_url,
-						"order_id" => $id_orden
-					));
-			    
-				    if( isset($_SESSION[$id_session] ) ){
-				    	update_cupos( array(
-					    	"servicio" => $_SESSION[$id_session]["servicio"],
+						$pdf = $OPENPAY_URL."/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference;
+
+						$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
+						$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_pdf', '{$pdf}');");
+						$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_tienda_vence', '{$due_date}');");
+
+		   				echo json_encode(array(
+		   					"user_id" => $customer->id,
+							"pdf" => $pdf,
+							"barcode_url"  => $charge->payment_method->barcode_url,
+							"order_id" => $id_orden
+						));
+				    
+					    if( isset($_SESSION[$id_session] ) ){
+					    	update_cupos( array(
+						    	"servicio" => $_SESSION[$id_session]["servicio"],
+						    	"tipo" => $parametros["pagar"]->tipo_servicio,
+					    		"autor" => $parametros["pagar"]->cuidador,
+						    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
+						    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
+						    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
+						    ), "-");
+							$_SESSION[$id_session] = "";
+							unset($_SESSION[$id_session]);
+						}
+
+						update_cupos( array(
+					    	"servicio" => $parametros["pagar"]->servicio,
 					    	"tipo" => $parametros["pagar"]->tipo_servicio,
-				    		"autor" => $parametros["pagar"]->cuidador,
-					    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-					    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-					    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-					    ), "-");
-						$_SESSION[$id_session] = "";
-						unset($_SESSION[$id_session]);
-					}
+					    	"autor" => $parametros["pagar"]->cuidador,
+					    	"inicio" => strtotime($parametros["fechas"]->inicio),
+					    	"fin" => strtotime($parametros["fechas"]->fin),
+					    	"cantidad" => $cupos_a_decrementar
+					    ), "+");
 
-					update_cupos( array(
-				    	"servicio" => $parametros["pagar"]->servicio,
-				    	"tipo" => $parametros["pagar"]->tipo_servicio,
-				    	"autor" => $parametros["pagar"]->cuidador,
-				    	"inicio" => strtotime($parametros["fechas"]->inicio),
-				    	"fin" => strtotime($parametros["fechas"]->fin),
-				    	"cantidad" => $cupos_a_decrementar
-				    ), "+");
+						include(__DIR__."/emails/index.php");
 
-					include(__DIR__."/emails/index.php");
+					}else{
+						unset($_SESSION["pagando"]);
+			            echo json_encode(array(
+							"error" => $id_orden,
+							"tipo_error" => $error,
+							"status" => "Error, pago fallido"
+						));
+			        }
 
 	   			break;
 
