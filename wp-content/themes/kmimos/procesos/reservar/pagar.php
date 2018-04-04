@@ -533,6 +533,8 @@
 					    'due_date' => $due_date
 					);
 
+					$charge = $customer->charges->create($chargeRequest);
+
 					try {
 			            $charge = $customer->charges->create($chargeRequest);
 			        } catch (Exception $e) {
