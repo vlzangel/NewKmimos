@@ -1837,94 +1837,53 @@ if(!function_exists('kmimos_petsitter_rating_and_votes')){
 }
 
 if(!function_exists('vlz_actualizar_ratings')){
-
     function vlz_actualizar_ratings($post_id){
-
         $valoracion=array();
-
         $comments = get_comments(array( 'post_id' => $post_id ) );
-
         $rating=0;
-
         $votes=0;
-
         if(count($comments)>0){
-
             $list = array();
-
             foreach($comments as $comment){
-
-                $care = get_comment_meta( $comment->comment_ID, 'care', true );
-
-                $punctuality = get_comment_meta( $comment->comment_ID, 'punctuality', true );
-
-                $cleanliness = get_comment_meta( $comment->comment_ID, 'cleanliness', true );
-
-                $trust = get_comment_meta( $comment->comment_ID, 'trust', true );
-
+                $care = get_comment_meta( $comment->comment_ID, 'care', true )+0;
+                $punctuality = get_comment_meta( $comment->comment_ID, 'punctuality', true )+0;
+                $cleanliness = get_comment_meta( $comment->comment_ID, 'cleanliness', true )+0;
+                $trust = get_comment_meta( $comment->comment_ID, 'trust', true )+0;
                 if($care != 0 || $punctuality != 0 || $cleanliness != 0 || $trust != 0) {
-
                     $votes++;
-
                     $items = 0;
-
                     $mean = 0;
-
                     if($care != 0){
-
                         $items++;
-
                         $mean += $care;
-
                     }
-
                     if($punctuality != 0){
-
                         $items++;
-
                         $mean += $punctuality;
-
                     }
-
                     if($cleanliness != 0){
-
                         $items++;
-
                         $mean += $cleanliness;
-
                     }
-
                     if($trust != 0){
-
                         $items++;
-
                         $mean += $trust;
-
                     }
-
                     $rating += $mean/$items;
-
                 }
-
             }
-
             if( $votes > 0){
                 $rating = $rating/$votes;
             }else{
                 $rating = 0;
             }
-
         } else {
             $rating = 0;
             $votes = 0;
         }
-
         global $wpdb;
-
         $wpdb->query("UPDATE cuidadores SET rating = '".$rating."', valoraciones = '".$votes."' WHERE id_post = ".$post_id);
-
     }
-
 }
 
 /**
