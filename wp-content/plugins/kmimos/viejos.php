@@ -1838,8 +1838,11 @@ if(!function_exists('kmimos_petsitter_rating_and_votes')){
 
 if(!function_exists('vlz_actualizar_ratings')){
     function vlz_actualizar_ratings($post_id){
+
+        global $wpdb;
+
         $valoracion=array();
-        $comments = get_comments(array( 'post_id' => $post_id ) );
+        $comments = $wpdb->get_results("SELECT * FROM wp_comments WHERE comment_approved = 1 AND comment_post_ID = ".$post_id );
         $rating=0;
         $votes=0;
         if(count($comments)>0){

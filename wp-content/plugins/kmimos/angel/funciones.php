@@ -176,36 +176,40 @@
                             <div style="background-image: url('.$img_url.');" class="slider-image">
                                 <div style="filter: blur(1px);width:100%;height:27%;background: #00000094;position:absolute;border-radius:10px 10px 0px 0px;"></div>
                             </div>
+                            </a>
                             <div class="hidden slide-mask"></div>
                             <div class="slide-content">
-                                <div class="slide-price-distance">
-                                    <div class="slide-price text-left" style="color:#fff;font-size:12px;">
-                                        Desde <span style="font-size:12px;">MXN $'.($cuidador->hospedaje_desde*getComision()).'</span>
+                                <a href="'.$url.'" style="display: block; text-decoration: none;">
+
+                                    <div class="slide-price-distance">
+                                        <div class="slide-price text-left" style="color:#fff;font-size:12px;">
+                                            Desde <span style="font-size:12px;">MXN $'.($cuidador->hospedaje_desde*getComision()).'</span>
+                                        </div>
+                                        <!--
+                                        <div class="slide-distance">
+                                            A 96 km de tu búsqueda
+                                        </div>
+                                        -->
                                     </div>
-                                    <!--
-                                    <div class="slide-distance">
-                                        A 96 km de tu búsqueda
+
+                                    <div class="slide-profile">
+                                        <div class="slide-profile-image" style=""></div>
                                     </div>
-                                    -->
-                                </div>
 
-                                <div class="slide-profile">
-                                    <div class="slide-profile-image" style=""></div>
-                                </div>
-
-                                <div class="slide-name text-center">
-                                    <b>'.strtoupper($nombre).'</b>
-                                </div>
-
-                                <div class="slide-expertice  text-center">
-                                    '.$anios_exp.' año(s) de experiencia
-                                </div>
-
-                                <div class="slide-ranking  text-center">
-                                    <div class="km-ranking">
-                                        '.kmimos_petsitter_rating($cuidador->id_post).'
+                                    <div class="slide-name text-center">
+                                        <b>'.strtoupper($nombre).'</b>
                                     </div>
-                                </div>
+                                </a>
+
+                                    <div class="slide-expertice  text-center">
+                                        '.$anios_exp.' año(s) de experiencia
+                                    </div>
+
+                                    <div class="slide-ranking  text-center">
+                                        <div class="km-ranking">
+                                            '.kmimos_petsitter_rating($cuidador->id_post).'
+                                        </div>
+                                    </div>
 
                                 <div class="slide-buttons">
                                     <a href="#" role="button" data-name="'.$nombre.'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke" style="height:auto;">CONÓCELO +</a>
