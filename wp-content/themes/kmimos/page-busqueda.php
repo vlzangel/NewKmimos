@@ -153,7 +153,7 @@
 
 		<div class="container contentenedor-buscador-todos content-wlabel-search">
 			<div class="km-contentido-formulario-buscador">
-				<form onSubmit="jQuery(\'#buscando\').css(\'display\', \'block\');" class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="post">
+				<form onSubmit="jQuery(\'#buscando_container\').css(\'display\', \'block\');" class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="post">
 					<div class="km-bloque-cajas km-search-wlabel" >
 						<div class="km-div-ubicacion">
 						
@@ -186,7 +186,9 @@
 							<button type="submit" class="km-submit-custom" name="button">
 								BUSCAR
 							</button>
-							<i id="buscando" class="fa fa-spinner fa-spin" style="position: absolute; top: 10px; right: 10px; font-size: 24px; color: #FFF; display: none;"></i>
+							<div id="buscando_container">
+								<i id="buscando" class="fa fa-spinner fa-spin" style=""></i>
+							</div>
 						</div>
 						<div class="clear"></div>
 					</div>
