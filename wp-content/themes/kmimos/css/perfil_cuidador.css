@@ -180,3 +180,23 @@
 .km-ficha-datos .nav>li>a {
     padding: 20px 10px 15px !important;
 }
+
+.modal_info_comentar{
+    
+}
+
+.modal_info_comentar > div {
+    padding: 5px 0px;
+}  
+
+.botones_container{
+    text-align: center;
+}
+
+.botones_container span {
+    padding: 10px 20px;
+    border: solid 1px #7dd1c4;
+    border-radius: 4px;
+    display: inline-block;
+    width: 150px;
+}

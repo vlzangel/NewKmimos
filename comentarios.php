@@ -1,7 +1,9 @@
 <?php
 	include "wp-load.php";
 
-	global $wpdb;
+	vlz_actualizar_ratings(156113);
+	
+	/*global $wpdb;
 
 	$comentarios = $wpdb->get_results("SELECT * FROM wp_comments WHERE comment_author LIKE '%@%' ");
 	foreach ($comentarios as $key => $comentario) {
@@ -16,5 +18,5 @@
 			echo $sql."<br>";
 			$wpdb->query( $sql );
 		}
-	}
+	}*/
 ?>

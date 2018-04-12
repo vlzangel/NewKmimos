@@ -1,4 +1,30 @@
-<div class="comments">
+
+
+<div class="modal_info_comentar">
+	<div>
+		Quieres hacer una valoración de éste cuidador y completar los huesitos para Cuidado, Puntualidad, Limpieza y Confianza?
+	</div>
+
+	<div>
+		Debes hacer lo siguiente:
+	</div>
+
+	<div>
+		<ol>
+			<li>En el menú, haz click en el Historial de tus reservas.</li>
+			<li>Haz click sobre el botón Valorar y completa el formulario.</li>
+		</ol>
+	</div>
+
+	<div class="botones_container">
+		<span>Valorar</span> <span>Comentar</span>
+	</div>
+
+</div>
+
+
+
+<div class="comments" style="display: none;">
 	<h3 id="reply-title" class="comment-reply-title">
 		Deja un comentario
 	</h3>
