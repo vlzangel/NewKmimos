@@ -18,6 +18,7 @@ jQuery("#commentform").submit(function(e){
             jQuery("#email").val("");
             jQuery("#submit").removeClass("disable");
 
+            jQuery('.comments').css("display", "none");
             jQuery('.modal_comentario_enviado').slideDown();
 
             setTimeout(function() {
