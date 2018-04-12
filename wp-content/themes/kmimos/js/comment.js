@@ -24,7 +24,7 @@ jQuery("#commentform").submit(function(e){
             setTimeout(function() {
                 jQuery('.BoxComment').fadeOut();
                 GetComments();
-            } ,3000 ); 
+            } , 4000 ); 
 
         }else if(result['result']=='error'){
             alert(result['message']);
