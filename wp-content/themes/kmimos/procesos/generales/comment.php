@@ -93,6 +93,8 @@ if( $xip != "" ){
 }
 
 if($return['result']!='error'){
+	$temp = explode("@", $_POST["author"]);
+	if( count($temp) > 1 ){ $_POST["author"] = $temp[0]; }
 	$comment = wp_handle_comment_submission(wp_unslash($_POST));
 	if ( is_wp_error( $comment ) ) {
 		if ( ! empty( $data ) ) {
