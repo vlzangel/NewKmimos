@@ -505,7 +505,7 @@
                 }
                 return $data;
             }else{
-                $html = '<div class="rating" style="display:inline-block">';
+                $html = '<div class="km-ranking rating" style="display:inline-block">';
                 if($votes =='' || $votes == 0 || $rating ==''){ 
                     for ($i=0; $i<5; $i++){ 
                         $html .= "<a href='#'></a>";

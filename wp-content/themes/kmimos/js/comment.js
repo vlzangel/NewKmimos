@@ -16,9 +16,15 @@ jQuery("#commentform").submit(function(e){
             jQuery("#comment").val("");
             jQuery("#author").val("");
             jQuery("#email").val("");
-            jQuery('.BoxComment').fadeOut();
-            GetComments();
             jQuery("#submit").removeClass("disable");
+
+            jQuery('.modal_comentario_enviado').slideDown();
+
+            setTimeout(function() {
+                jQuery('.BoxComment').fadeOut();
+                GetComments();
+            } ,3000 ); 
+
         }else if(result['result']=='error'){
             alert(result['message']);
         }

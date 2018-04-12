@@ -204,3 +204,10 @@
     text-decoration: none !important;
     color: #000;
 }
+
+.modal_comentario_enviado {
+    text-align: center;
+    font-weight: 600;
+    border-bottom: solid 2px #7dd1c4;
+    padding-bottom: 10px;
+}

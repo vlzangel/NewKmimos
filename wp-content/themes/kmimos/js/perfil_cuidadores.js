@@ -140,7 +140,7 @@ function comentarios(pagina = 0){
 		jQuery("#comentarios_box").html( comentario );
 		jQuery(".km-review .km-calificacion").html( comentarios_cuidador.length );
 		jQuery(".km-review .km-calificacion-icono p").html( bond_total+'% Lo recomienda');
-		jQuery(".km-review .km-calificacion-bond").html(bond);
+		// jQuery(".km-review .km-calificacion-bond").html(bond);
 	}
 	
 }
@@ -170,6 +170,7 @@ function CargarGaleria(){
 }
 
 function get_huesitos(valor){
+	console.log( valor );
 	var huesos = "";
 	for (var i = 0; i < valor; i++) {
 		huesos += '<a href="#" class="active"></a>';
@@ -202,6 +203,7 @@ jQuery( document ).ready(function() {
 
 	jQuery(".km-btn-comentario").on("click", function(e){
 		jQuery('.modal_info_comentar').css("display", "block");
+		jQuery('.modal_comentario_enviado').css("display", "none");
 		jQuery('.comments').css("display", "none");
 		jQuery('.BoxComment').slideDown();
 	});

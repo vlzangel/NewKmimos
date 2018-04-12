@@ -7,25 +7,27 @@
 
 <div class="modal_info_comentar">
 	<div>
-		Quieres hacer una valoración de éste cuidador y completar los huesitos para Cuidado, Puntualidad, Limpieza y Confianza?
+		¿Quieres hacer una valoración de éste cuidador y completar los huesitos para Cuidado, Puntualidad, Limpieza y Confianza?
 	</div>
-
 	<div>
 		Debes hacer lo siguiente:
 	</div>
-
 	<div>
 		<ol>
 			<li>En el menú, haz click en el <strong>Historial</strong> de tus reservas.</li>
 			<li>Haz click sobre el botón <strong>Valorar</strong> y completa el formulario.</li>
 		</ol>
 	</div>
-
 	<div class="botones_container">
 		<?php echo $no_login; ?>
 		<a id="comentar">Comentar</a>
 	</div>
+</div>
 
+<div class="modal_comentario_enviado" style="display: none">
+	<div>
+		Su comentario ha sido enviado, ser&aacute; publicado una vez sea aprobado por kmimos.
+	</div>
 </div>
 
 

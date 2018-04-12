@@ -541,7 +541,9 @@
 					<p class="km-tit-ficha">COMENTARIOS</p>
 					<div class="km-calificacion">0</div>
 					<div class="km-calificacion-icono">
-						<div class="km-calificacion-bond"></div>
+						<div class="km-calificacion-bond">
+							<?php echo kmimos_petsitter_rating($cuidador->id_post); ?>
+						</div>
 						<p>0% Lo recomienda</p>
 					</div>
 				</div>

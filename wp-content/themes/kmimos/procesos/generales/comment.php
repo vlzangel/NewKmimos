@@ -64,7 +64,7 @@ if( $xip != "" ){
 	$ips = $wpdb->get_results("SELECT * FROM ips WHERE ip LIKE '%$ip%'");
 	if( $ips !== false && $ips[0]->intentos >= 3 ){
 		$error = 'Has sido marcado como SPAM,\n
-					si eres una persona por favor comunicate con el Staff Kmimos a trav&eacute;s del Mail: contactomex@kmimos.la enviando el
+					si eres una persona por favor comunicate con el Staff Kmimos a través del Mail: contactomex@kmimos.la enviando el
 					siguiente código ['.$ips[0]->token.'] y atenderemos tu solicitud a la brevedad posible.';
 
 		$return['result'] = 'error';
