@@ -170,7 +170,6 @@ function CargarGaleria(){
 }
 
 function get_huesitos(valor){
-	console.log( valor );
 	var huesos = "";
 	for (var i = 0; i < valor; i++) {
 		huesos += '<a href="#" class="active"></a>';
