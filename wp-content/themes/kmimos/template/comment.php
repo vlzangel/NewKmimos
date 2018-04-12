@@ -1,4 +1,9 @@
-
+<?php
+	$no_login = '<a href="#" data-target="#popup-iniciar-sesion" >Valorar</a>';
+	if( is_user_logged_in() ){
+		$no_login = '<a href="'.get_home_url().'/perfil-usuario/historial/" >Valorar</a>';
+	}
+?>
 
 <div class="modal_info_comentar">
 	<div>
@@ -11,13 +16,14 @@
 
 	<div>
 		<ol>
-			<li>En el menú, haz click en el Historial de tus reservas.</li>
-			<li>Haz click sobre el botón Valorar y completa el formulario.</li>
+			<li>En el menú, haz click en el <strong>Historial</strong> de tus reservas.</li>
+			<li>Haz click sobre el botón <strong>Valorar</strong> y completa el formulario.</li>
 		</ol>
 	</div>
 
 	<div class="botones_container">
-		<span>Valorar</span> <span>Comentar</span>
+		<?php echo $no_login; ?>
+		<a id="comentar">Comentar</a>
 	</div>
 
 </div>

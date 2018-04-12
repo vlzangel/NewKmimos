@@ -200,6 +200,16 @@ jQuery( document ).ready(function() {
 
 	CargarGaleria();
 
+	jQuery(".km-btn-comentario").on("click", function(e){
+		jQuery('.modal_info_comentar').css("display", "block");
+		jQuery('.comments').css("display", "none");
+		jQuery('.BoxComment').slideDown();
+	});
+	jQuery("#comentar").on("click", function(e){
+		jQuery('.modal_info_comentar').css("display", "none");
+		jQuery('.comments').slideDown();
+	});
+
 });
 
 function vlz_galeria_ver(url){
