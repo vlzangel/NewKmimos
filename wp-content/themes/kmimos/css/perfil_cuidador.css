@@ -195,7 +195,7 @@
 
 .botones_container a {
     padding: 10px 20px;
-    border: solid 1px #7dd1c4;
+    border: solid 1px #6b1c9b;
     border-radius: 4px;
     display: inline-block;
     width: 125px;
@@ -205,10 +205,27 @@
     color: #000;
 }
 
+.botones_container a:hover {
+    color: #6b1c9b;
+}
+
 .modal_comentario_enviado {
     text-align: center;
     font-weight: 600;
     border-bottom: solid 2px #7dd1c4;
     padding-bottom: 10px;
     font-size: 18px;
+}
+
+.modal_info_comentar {
+    color: #6b1c9b;
+    font-weight: 600;
+}
+
+.modal_info_comentar > div {
+    margin: 0px 20px;
+}
+
+.modal_info_comentar .botones_container  {
+    margin: 0px;
 }

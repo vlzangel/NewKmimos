@@ -14,8 +14,11 @@
 	</div>
 	<div>
 		<ol>
-			<li>En el menú, haz click en el <strong>Historial</strong> de tus reservas.</li>
-			<li>Haz click sobre el botón <strong>Valorar</strong> y completa el formulario.</li>
+			<li>P&iacute;cale al bot&oacute;n valorar aqu&iacute; abajo.</li>
+			<?php if( !is_user_logged_in() ){ ?>
+				<li>Inicia sesi&oacute;n en Kmimos y dir&iacute;gete a tu perfil.</li>
+			<?php } ?>
+			<li>Ub&iacute;cate en el historial de reservas y haz click en los huesitos para valorar al cuidador.</li>
 		</ol>
 	</div>
 	<div class="botones_container">
