@@ -8,6 +8,25 @@
     border-radius: 5px;
 }
 
+.vlz_bloquear_msg_madrugada{
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 20px 0px 0px;
+}
+
+.vlz_bloquear_msg_madrugada img {
+    width: 100%;
+}
+
+.bloquear_madrugada{
+    display: none;
+}
+
+.vlz_NO_bloquear_msg_madrugada{
+    display: none;
+}
+
 .km-input-custom {
     border-bottom: solid 1px #CCC !important;
     padding: 10px 20px !important;

@@ -69,14 +69,14 @@
 		$servicio_name_corto = explode(" - ", $servicio_name);
 		$servicio_name_corto = $servicio_name_corto[0];
 
-		$horario = "";
+/*		$horario = "";
 
 		$inicio = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in );
 		$fin = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out );
 
 		for ($i=$inicio; $i <= $fin; $i+=1800) { 
 			$horario .= "<option value='".date("H:i", $i)."'>".date("h:i A", $i)."</option>";
-		}
+		}*/
 
 	    $precios = "";
 	    
@@ -194,10 +194,11 @@
 		//$NOW = (strtotime("now")+25200);
 		$NOW = (strtotime("now"));
 
-		if( isset($_GET["prueba"]) ){
-			$NOW = ( strtotime( date("Y-m-d")." 08:00:00") );
+		if( isset($_GET["hora"]) ){
+			$NOW = ( strtotime( date("Y-m-d")." ".$_GET["hora"].":00:00") );
 		}
-		//$NOW = (strtotime("now")+57600);
+
+		$hora = date("G", $NOW);
 
 		$bloquear = "";
 		$ES_FLASH = "NO";
@@ -257,6 +258,20 @@
 				</div>
 			";
 		}
+
+		if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( $hora >= 0 && $hora <= 6 ) ){
+			// 570 x 320
+			$msg_bloqueador_madrugada = "
+				<div id='vlz_msg_bloqueo_madrugada' class='vlz_bloquear_msg_madrugada'>
+					<img src='".getTema()."/images/alerta_flash/Contenido.png' />
+				</div>
+			";
+			$bloquear_madrugada = "bloquear_madrugada";
+
+			$msg_mismo_dia = "";
+			$msg_bloqueador = "";
+		}
+
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
 
@@ -353,8 +368,6 @@
 								</div>
 							</div>
 
-							'.$msg_mismo_dia.'
-
 							<!--
 							<div class="km-dates-step">
 								<div class="km-ficha-fechas">
@@ -376,9 +389,11 @@
 							</div>
 							-->
 
+							'.$msg_mismo_dia.'
 							'.$msg_bloqueador.'
+							'.$msg_bloqueador_madrugada.'
 
-							<div id="bloque_info_servicio" class="km-content-step '.$bloquear.'">
+							<div id="bloque_info_servicio" class="km-content-step '.$bloquear.' '.$bloquear_madrugada.'">
 								<div class="km-content-new-pet">
 									'.$precios.'
 									<div class="km-services-content">

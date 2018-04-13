@@ -110,6 +110,18 @@ function calcular(){
 		}
 	}
 
+	if( jQuery("#checkin").val() == HOY && ( HORA >= 0 && HORA <= 6 ) ){
+		jQuery("#vlz_msg_bloqueo_madrugada").addClass("vlz_bloquear_msg_madrugada");
+		jQuery("#vlz_msg_bloqueo_madrugada").removeClass("vlz_NO_bloquear_msg_madrugada");
+
+		jQuery("#bloque_info_servicio").addClass("bloquear_madrugada");
+	}else{
+		jQuery("#vlz_msg_bloqueo_madrugada").removeClass("vlz_bloquear_msg_madrugada");
+		jQuery("#vlz_msg_bloqueo_madrugada").addClass("vlz_NO_bloquear_msg_madrugada");
+
+		jQuery("#bloque_info_servicio").removeClass("bloquear_madrugada");
+	}
+
 	if( CARRITO["pagar"]["id_fallida"] != 0 ){
 		CARRITO["pagar"]["reconstruir"] = true;
 	}
