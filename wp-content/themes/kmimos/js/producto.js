@@ -111,7 +111,7 @@ function calcular(){
 	}
 
 	if( 
-		( jQuery("#checkin").val() == HOY && ( (HORA >= 0 && HORA <= 7) || ( HORA == 23 ) ) ) ||
+		( jQuery("#checkin").val() == HOY && ( (HORA >= 0 && HORA <= 6) || ( HORA == 23 ) ) ) ||
 		( jQuery("#checkin").val() == MANANA && ( HORA == 23 ) )
 	){
 		jQuery("#vlz_msg_bloqueo_madrugada").addClass("vlz_bloquear_msg_madrugada");

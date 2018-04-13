@@ -260,7 +260,7 @@
 		}
 
 		if( 
-			( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 7) || ( $hora == 23 ) )  ||
+			( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 6) || ( $hora == 23 ) )  ||
 			( $manana == $busqueda["checkin"] && ( $hora == 23 ) )
 		){
 			// 570 x 320
