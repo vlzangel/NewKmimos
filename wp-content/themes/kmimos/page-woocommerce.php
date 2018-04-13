@@ -273,6 +273,12 @@
 
 			$msg_mismo_dia = "";
 			$msg_bloqueador = "";
+		}else{
+			$msg_bloqueador_madrugada = "
+				<div id='vlz_msg_bloqueo_madrugada' class='vlz_NO_bloquear_msg_madrugada'>
+					<img src='".getTema()."/images/alerta_flash/Contenido.png' />
+				</div>
+			";
 		}
 
 
