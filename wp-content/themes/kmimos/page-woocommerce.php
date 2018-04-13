@@ -266,7 +266,7 @@
 			// 570 x 320
 			$msg_bloqueador_madrugada = "
 				<div id='vlz_msg_bloqueo_madrugada' class='vlz_bloquear_msg_madrugada'>
-					<img src='".getTema()."/images/alerta_flash/Contenido.png' />
+					<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
 				</div>
 			";
 			$bloquear_madrugada = "bloquear_madrugada";
@@ -276,7 +276,7 @@
 		}else{
 			$msg_bloqueador_madrugada = "
 				<div id='vlz_msg_bloqueo_madrugada' class='vlz_NO_bloquear_msg_madrugada'>
-					<img src='".getTema()."/images/alerta_flash/Contenido.png' />
+					<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
 				</div>
 			";
 		}
