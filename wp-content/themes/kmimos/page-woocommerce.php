@@ -259,7 +259,7 @@
 			";
 		}
 
-		if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( $hora >= 0 && $hora <= 6 ) ){
+		if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 7) || ( $hora == 23 ) ) ){
 			// 570 x 320
 			$msg_bloqueador_madrugada = "
 				<div id='vlz_msg_bloqueo_madrugada' class='vlz_bloquear_msg_madrugada'>
