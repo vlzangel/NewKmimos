@@ -24,6 +24,10 @@ jQuery(document).on('click', '[data-target="checkbox"]', function(){
 
 jQuery(document).ready(function(){
 
+	jQuery(".km-formulario-buscador").on("submit", function(e){
+		jQuery('#buscando_container').css('display', 'block');
+	});
+
 	jQuery('.km-premium-slider').bxSlider({
 	    slideWidth: 200,
 	    minSlides: 1,

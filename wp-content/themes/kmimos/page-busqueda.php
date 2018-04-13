@@ -153,7 +153,7 @@
 
 		<div class="container contentenedor-buscador-todos content-wlabel-search">
 			<div class="km-contentido-formulario-buscador">
-				<form onSubmit="jQuery(\'#buscando_container\').css(\'display\', \'block\');" class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="post">
+				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="post">
 					<div class="km-bloque-cajas km-search-wlabel" >
 						<div class="km-div-ubicacion">
 						
