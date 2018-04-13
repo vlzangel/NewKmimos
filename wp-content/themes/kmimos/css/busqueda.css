@@ -290,7 +290,7 @@ h1.maps {
         background: rgba(0,0,0,0.7);
         z-index: 9999999999999999;
         text-align: center;
-        padding-top: 60%;
+        padding-top: 30px;
     }  
 
     #buscando {
