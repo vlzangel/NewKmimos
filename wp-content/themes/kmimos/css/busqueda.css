@@ -281,7 +281,7 @@ h1.maps {
     } 
 
     #buscando_container {
-        position: fixed;
+        position: absolute;
         top: 0px;
         right: 0px;
         padding: 5px 10px;
@@ -297,7 +297,7 @@ h1.maps {
         font-size: 50px;
         color: #FFF;
     }
-       
+
 }
 @media All and (max-width: 772px){
     .zopim{
