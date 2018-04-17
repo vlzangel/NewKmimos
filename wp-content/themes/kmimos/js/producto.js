@@ -609,11 +609,11 @@ function calcularDescuento(){
 	CARRITO["pagar"]["descuento_total"] = descuentos;
 
 	if( jQuery(".km-option-deposit").hasClass("active") ){
-		if( pre17 == 0 ){
+		/*if( pre17 == 0 ){
 			jQuery("#metodos_pagos").css("display", "none");
 		}else{
 			jQuery("#metodos_pagos").css("display", "block");
-		}
+		}*/
 	}else{
 		if( pagoCuidador == 0 ){
 			jQuery("#metodos_pagos").css("display", "none");
@@ -737,7 +737,7 @@ jQuery(document).ready(function() {
 		calcular();
 	});*/
 
-	jQuery(".km-option-deposit").click();
+	jQuery(".km-option-total").click();
 
 	jQuery(".solo_numeros").on("keyup", function(e){
 		var valor = jQuery( this ).val();
@@ -902,22 +902,29 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	jQuery("#click_pago_total").on("click", function(e){
+		jQuery("#reserva_btn_next_2").click();
+	});
+
 	jQuery(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
 		e.preventDefault();
 
 		if( !jQuery(this).hasClass("km-option-3-lineas") ){
-			var el = jQuery(this);
-			jQuery(".km-method-paid-option", el.parent()).removeClass("active");
-
-			el.addClass("active");
+				var el = jQuery(this);
 
 			if ( el.hasClass("km-option-deposit") ) {
-				jQuery(".page-reservation .km-detail-paid-deposit").slideDown("fast");
+
+			/*	jQuery(".page-reservation .km-detail-paid-deposit").slideDown("fast");
 				jQuery(".page-reservation .km-services-total").slideUp("fast");
 				
-				CARRITO["pagar"]["metodo"] = "deposito";
+				CARRITO["pagar"]["metodo"] = "deposito";*/
+
+				jQuery(".modal_20_porciento").css("display", "inline-block");
 
 			} else {
+				jQuery(".km-method-paid-option", el.parent()).removeClass("active");
+				el.addClass("active");
+
 				jQuery(".page-reservation .km-detail-paid-deposit").slideUp("fast");
 				jQuery(".page-reservation .km-services-total").slideDown("fast");
 				CARRITO["pagar"]["metodo"] = "completo";
@@ -959,7 +966,7 @@ jQuery(document).ready(function() {
 			}else{
 				reaplicarCupones();
 			}
-			jQuery('.km-option-deposit').click();
+			jQuery('.km-option-total').click();
 		}
 		e.preventDefault();
 	});

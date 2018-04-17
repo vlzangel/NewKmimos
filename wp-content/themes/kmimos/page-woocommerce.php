@@ -495,13 +495,21 @@
 								</div>
 							</div>
 
+							<div class="modal_20_porciento">
+								<!-- <i class="fa fa-times"></i> -->
+								Esta función está en mantenimiento, por lo que te invitamos ha hacer el <strong>Pago Total</strong> de tu reserva.
+								<div id="click_pago_total" class="km-end-btn-form">
+									Pago Total
+								</div>
+							</div>
+
 							<div class="km-select-method-paid">
 								<div class="km-method-paid-title">
 									SELECCIONA PAGO PARCIAL ó TOTAL
 								</div>
 
 								<div class="km-method-paid-options">
-									<div class="km-method-paid-option km-option-deposit active">
+									<div class="km-method-paid-option km-option-deposit">
 										<div class="km-text-one">
 											RESERVA CON PAGO PARCIAL
 										</div>
@@ -513,7 +521,7 @@
 										</div>
 									</div>
 
-									<div class="km-method-paid-option km-option-total">
+									<div class="km-method-paid-option km-option-total active">
 										<div class="km-text-one">
 											PAGO TOTAL DE LA RESERVA
 										</div>
@@ -539,12 +547,12 @@
 
 								<div class="km-detail-paid-line-two">
 									<span class="km-detail-label">MONTO A PAGAR <b>EN EFECTIVO AL CUIDADOR</b></span>
-									<span id="" class="pago_cuidador km-detail-value">$809.25</span>
+									<span id="" class="pago_cuidador km-detail-value"></span>
 								</div>
 
 								<div class="km-detail-paid-line-three">
 									<span class="km-detail-label">PAGUE AHORA</span>
-									<span id="" class="pago_17 km-detail-value">$165.75</span>
+									<span id="" class="pago_17 km-detail-value"></span>
 								</div>
 							</div>
 

@@ -1,5 +1,28 @@
 /* New */
 
+.modal_20_porciento{
+    position: absolute;
+    z-index: 9999999;
+    background: #FFF;
+    width: calc( 100% - 140px );
+    left: 70px;
+    box-sizing: border-box;
+    padding: 50px;
+    font-size: 20px;
+    border: solid 2px #ff9b42;
+    border-radius: 20px;
+
+    display: none;
+}
+
+.modal_20_porciento i {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
 .msg_mismo_dia{
     margin: 15px 0px 0px;
     padding: 10px;
