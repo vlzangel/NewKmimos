@@ -263,7 +263,10 @@
 
 				include("confirmacion.php");
 
-				if(  $_SESSION['admin_sub_login'] != 'YES' ){
+
+				$count_reservas = $wpdb->get_var( "SELECT count(ID)  FROM wp_posts WHERE post_author = " . $cliente["id"] );
+
+				if(  $_SESSION['admin_sub_login'] != 'YES' && $count_reservas == 1){
 			   		if(isset($cliente["id"])){	
 				   		$user_referido = get_user_meta($cliente["id"], 'landing-referencia', true);
 				   		if(!empty($user_referido)){
@@ -278,6 +281,8 @@
 						} 
 					}
 				}
+
+
 			}
 
 			if( $acc == "CCL" ){
