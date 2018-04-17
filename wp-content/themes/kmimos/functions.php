@@ -2,12 +2,13 @@
 
 	function get_publicidad($seccion){
 				
-		$publicidad = rand(1, 2);
+		/*$publicidad = rand(1, 2);
 
-		$campaing = "intriga";
 		if( $publicidad == "2" ){
 			$campaing = "informacion";
-		}
+		}*/
+
+		$campaing = "Kmimos-nutriheroes";
 
 		switch ($seccion) {
 			case 'solicitud':
@@ -15,7 +16,7 @@
 					<div style="margin-top: 20px;">
 
 						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil_2.png" />
+							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil_3.png" />
 						</a>
 
 					</div>
@@ -25,7 +26,7 @@
 				return '
 					<div style="margin-top: 5px;">
 						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil_2.png" />
+							<img style="width: 100%; max-width: 500px;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil_3.png" />
 						</a>
 					</div>
 				';
@@ -33,8 +34,8 @@
 			case 'correo':
 				return '
 					<div style="margin: 25px 0px;">
-                        <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=intriga&utm_term=alimento_mascotas_nutricion" target="_blank">
-                            <img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil_2.png" />
+                        <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=Kmimos-nutriheroes&utm_term=alimento_mascotas_nutricion" target="_blank">
+                            <img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil_3.png" />
                         </a>
                     </div>
 				';

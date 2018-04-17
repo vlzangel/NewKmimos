@@ -45,6 +45,8 @@
 
 	$db->query_multiple( utf8_decode($sql) );
 
+	vlz_actualizar_ratings($petsitter_id);
+
 	$HTML = '
 		<div style="margin: 0px auto; width: 600px;font-size: 13px; font-family: Arial;">
 			<div style="margin-bottom: 10px;">

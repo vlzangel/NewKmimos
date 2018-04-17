@@ -200,20 +200,6 @@
 	      			";
 
 	      		}
-/*	      		$galeria = '
-	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
-					<div class="km-galeria-cuidador">
-						<div class="km-galeria-cuidador-slider">
-							'.implode("", $items).'
-						</div>
-					</div>
-	      		'.
-	      		"
-	      			<div class='vlz_modal_galeria' onclick='vlz_galeria_cerrar()'>
-	      				<span onclick='vlz_galeria_cerrar()' class='close' style='position:absolute;top:10px;right:10px;color:white;z-index:999;'><i class='fa fa-times' aria-hidden='true'></i></span>
-	      				<div class='vlz_modal_galeria_interna'></div>
-	      			</div>
-	      		";*/
 
 	      		$galeria = '
 	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
@@ -253,68 +239,57 @@
 		");
 
 	$productos = '<div class="row">';
-	foreach ($servicios as $servicio) {
-		$tipo = $wpdb->get_var("
-            SELECT
-                tipo_servicio.slug AS slug
-            FROM 
-                wp_term_relationships AS relacion
-            LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
-            WHERE 
-                relacion.object_id = '{$servicio->ID}' AND
-                relacion.term_taxonomy_id != 28
-        ");
-
-        $titulo = get_servicio_cuidador($tipo);
-
-        $tamanos_precios = array();
-        $precios = $precios_hospedaje;
-        if( $tipo != "hospedaje" ){
-        	$precios = $precios_adicionales[ str_replace('-', '_',  $tipo) ];
-        }else{
-        	$id_hospedaje = $servicio->ID;
-        }
-
-        if( !empty($precios) ){
-
-	        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' ");// AND post_status = 'publish'
-
-	        foreach ($tamanos_servicio as $tamano ) {
-	        	$activo = false;
-	        	if( isset($busqueda["servicios"]) ){
-		        	if( in_array($tipo, $busqueda["servicios"]) ){
-		        		$activo = true;
+		foreach ($servicios as $servicio) {
+			$tipo = $wpdb->get_var("
+		        SELECT
+		            tipo_servicio.slug AS slug
+		        FROM 
+		            wp_term_relationships AS relacion
+		        LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
+		        WHERE 
+		            relacion.object_id = '{$servicio->ID}' AND
+		            relacion.term_taxonomy_id != 28
+		    ");
+		    $titulo = get_servicio_cuidador($tipo);
+		    $tamanos_precios = array();
+		    $precios = $precios_hospedaje;
+		    if( $tipo != "hospedaje" ){
+		    	$precios = $precios_adicionales[ str_replace('-', '_',  $tipo) ];
+		    }else{
+		    	$id_hospedaje = $servicio->ID;
+		    }
+		    if( !empty($precios) ){
+		        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' ");// AND post_status = 'publish'
+		        foreach ($tamanos_servicio as $tamano ) {
+		        	$activo = false;
+		        	if( isset($busqueda["servicios"]) ){
+			        	if( in_array($tipo, $busqueda["servicios"]) ){
+			        		$activo = true;
+			        	}
+			        	preg_match_all("#adiestramiento#", $tipo, $matches);
+			        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){
+			        		$activo = true;
+			        	}
 		        	}
-		        	preg_match_all("#adiestramiento#", $tipo, $matches);
-
-		        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){
-		        		$activo = true;
-		        	}
-	        	}
-
-	        	$temp_tamanos = get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"],$tamano->post_status);
-
-	        	$tamanos_precios[ $temp_tamanos[0] ] = $temp_tamanos[1];
-	        }
-
-	        $tamanos_txt = "";
-	        foreach ($tamanos as $key => $value) {
-	        	$tamanos_txt .= $tamanos_precios[$key];
-	        }
-
-
-			$productos .= '
-			<div class="col-xs-12 col-md-6">
-				<div class="km-ficha-servicio">
-					<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="">
-						'.$titulo.'
-						<!--p>SELECCIÓN SEGÚN TAMAÑO</p-->
-						'.$tamanos_txt.'
-					</a>
-				</div>
-			</div>';
+		        	$temp_tamanos = get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"],$tamano->post_status);
+		        	$tamanos_precios[ $temp_tamanos[0] ] = $temp_tamanos[1];
+		        }
+		        $tamanos_txt = "";
+		        foreach ($tamanos as $key => $value) {
+		        	$tamanos_txt .= $tamanos_precios[$key];
+		        }
+				$productos .= '
+				<div class="col-xs-12 col-md-6">
+					<div class="km-ficha-servicio">
+						<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="">
+							'.$titulo.'
+							<!--p>SELECCIÓN SEGÚN TAMAÑO</p-->
+							'.$tamanos_txt.'
+						</a>
+					</div>
+				</div>';
+			}
 		}
-	}
 	$productos .= '</div>';
 
 	if(is_user_logged_in()){
@@ -566,12 +541,14 @@
 					<p class="km-tit-ficha">COMENTARIOS</p>
 					<div class="km-calificacion">0</div>
 					<div class="km-calificacion-icono">
-						<div class="km-calificacion-bond"></div>
+						<div class="km-calificacion-bondx">
+							<?php echo kmimos_petsitter_rating($cuidador->id_post); ?>
+						</div>
 						<p>0% Lo recomienda</p>
 					</div>
 				</div>
 
-				<a href="javascript:;" class="km-btn-comentario" onclick="jQuery('.BoxComment').fadeToggle();">ESCRIBE UN COMENTARIO</a>
+				<a href="javascript:;" class="km-btn-comentario" >ESCRIBE UN COMENTARIO</a>
 				<div class="BoxComment"><?php comments_template('/template/comment.php'); ?></div>
 				<div id="comentarios_box"> </div>
 			</div>

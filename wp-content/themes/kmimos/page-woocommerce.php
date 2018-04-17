@@ -69,14 +69,14 @@
 		$servicio_name_corto = explode(" - ", $servicio_name);
 		$servicio_name_corto = $servicio_name_corto[0];
 
-		$horario = "";
+/*		$horario = "";
 
 		$inicio = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in );
 		$fin = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out );
 
 		for ($i=$inicio; $i <= $fin; $i+=1800) { 
 			$horario .= "<option value='".date("H:i", $i)."'>".date("h:i A", $i)."</option>";
-		}
+		}*/
 
 	    $precios = "";
 	    
@@ -194,10 +194,11 @@
 		//$NOW = (strtotime("now")+25200);
 		$NOW = (strtotime("now"));
 
-		if( isset($_GET["prueba"]) ){
-			$NOW = ( strtotime( date("Y-m-d")." 08:00:00") );
+		if( isset($_GET["hora"]) ){
+			$NOW = ( strtotime( date("Y-m-d")." ".$_GET["hora"].":00:00") );
 		}
-		//$NOW = (strtotime("now")+57600);
+
+		$hora = date("G", $NOW);
 
 		$bloquear = "";
 		$ES_FLASH = "NO";
@@ -257,6 +258,29 @@
 				</div>
 			";
 		}
+
+		if( 
+			( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 6) || ( $hora == 23 ) )  ||
+			( $manana == $busqueda["checkin"] && ( $hora == 23 ) )
+		){
+			// 570 x 320
+			$msg_bloqueador_madrugada = "
+				<div id='vlz_msg_bloqueo_madrugada' class='vlz_bloquear_msg_madrugada'>
+					<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
+				</div>
+			";
+			$bloquear_madrugada = "bloquear_madrugada";
+
+			$msg_mismo_dia = "";
+			$msg_bloqueador = "";
+		}else{
+			$msg_bloqueador_madrugada = "
+				<div id='vlz_msg_bloqueo_madrugada' class='vlz_NO_bloquear_msg_madrugada'>
+					<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
+				</div>
+			";
+		}
+
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
 
@@ -353,8 +377,6 @@
 								</div>
 							</div>
 
-							'.$msg_mismo_dia.'
-
 							<!--
 							<div class="km-dates-step">
 								<div class="km-ficha-fechas">
@@ -376,9 +398,11 @@
 							</div>
 							-->
 
+							'.$msg_mismo_dia.'
 							'.$msg_bloqueador.'
+							'.$msg_bloqueador_madrugada.'
 
-							<div id="bloque_info_servicio" class="km-content-step '.$bloquear.'">
+							<div id="bloque_info_servicio" class="km-content-step '.$bloquear.' '.$bloquear_madrugada.'">
 								<div class="km-content-new-pet">
 									'.$precios.'
 									<div class="km-services-content">
@@ -471,13 +495,21 @@
 								</div>
 							</div>
 
+							<div class="modal_20_porciento">
+								<!-- <i class="fa fa-times"></i> -->
+								Esta función está en mantenimiento, por lo que te invitamos ha hacer el <strong>Pago Total</strong> de tu reserva.
+								<div id="click_pago_total" class="km-end-btn-form">
+									Pago Total
+								</div>
+							</div>
+
 							<div class="km-select-method-paid">
 								<div class="km-method-paid-title">
 									SELECCIONA PAGO PARCIAL ó TOTAL
 								</div>
 
 								<div class="km-method-paid-options">
-									<div class="km-method-paid-option km-option-deposit active">
+									<div class="km-method-paid-option km-option-deposit">
 										<div class="km-text-one">
 											RESERVA CON PAGO PARCIAL
 										</div>
@@ -489,7 +521,7 @@
 										</div>
 									</div>
 
-									<div class="km-method-paid-option km-option-total">
+									<div class="km-method-paid-option km-option-total active">
 										<div class="km-text-one">
 											PAGO TOTAL DE LA RESERVA
 										</div>
@@ -515,12 +547,12 @@
 
 								<div class="km-detail-paid-line-two">
 									<span class="km-detail-label">MONTO A PAGAR <b>EN EFECTIVO AL CUIDADOR</b></span>
-									<span id="" class="pago_cuidador km-detail-value">$809.25</span>
+									<span id="" class="pago_cuidador km-detail-value"></span>
 								</div>
 
 								<div class="km-detail-paid-line-three">
 									<span class="km-detail-label">PAGUE AHORA</span>
-									<span id="" class="pago_17 km-detail-value">$165.75</span>
+									<span id="" class="pago_17 km-detail-value"></span>
 								</div>
 							</div>
 
@@ -769,6 +801,12 @@
 			echo comprimir_styles($HTML);
 
 		}
+
+/*		echo "<pre>";
+			print_r($_SESSION);
+		echo "</pre>";*/
+
+		unset($_SESSION["pagando"]);
 
     get_footer(); 
 ?>

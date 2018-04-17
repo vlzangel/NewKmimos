@@ -1,7 +1,5 @@
 <?php
 
-    echo 'Nueva Reserva '.$inmediata.' - '.$servicio["tipo"].' por: '.$cliente["nombre"]."<br>";
-
     if( !isset($NO_ENVIAR) ){
         kmimos_registros_fotos( $servicio["id_reserva"] );
     }

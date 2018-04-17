@@ -56,26 +56,32 @@
     	$str_sugeridos .= $temp;
     }
 
+    $file_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/sugeridos.php';
+    $plantilla_sugeridos = file_get_contents($file_plantilla);
+    $plantilla_sugeridos = str_replace("[CUIDADORES]", $plantilla_sugeridos, $str_sugeridos);
+
     $msg_cliente = "";
     $msg_cuidador = "";
 
     if( $usu == "STM" ){
         $msg_cliente = "Te notificamos que el sistema ha cancelado la reserva con el cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
         $msg_cuidador = "Te notificamos que el sistema ha cancelado la reserva realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
-        
         $msg_administrador = "Te notificamos que el sistema ha cancelado la reserva realizada por <strong>[name_cliente]</strong> al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
     }else{
         if( $usu == "CLI" ){
             $msg_cliente = "Te notificamos que la reserva ha sido cancelada exitosamente.";
             $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la reserva.";
-
             $msg_administrador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la reserva.";
         }else{
             $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha cancelado la reserva.";
             $msg_cuidador = "Te notificamos que la reserva ha sido cancelada exitosamente.";
-            
             $msg_administrador = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha cancelado la reserva.";
         }
+    }
+
+    if( $usu == "CLI" ){
+        $str_sugeridos = "";
+        $plantilla_sugeridos = "";
     }
 
     /* CORREO CLIENTE */
@@ -83,12 +89,11 @@
         $mensaje_cliente = file_get_contents($file);
 
         $mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
-
         $mensaje_cliente = str_replace('[mensaje]', $msg_cliente, $mensaje_cliente);
         $mensaje_cliente = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cliente);
-        $mensaje_cliente = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[SUGERIDOS]', $plantilla_sugeridos, $mensaje_cliente);
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
     	
         $mensaje_cliente = get_email_html($mensaje_cliente);	
@@ -100,7 +105,6 @@
         $mensaje_cuidador = file_get_contents($file);
 
         $mensaje_cuidador = str_replace('[MODIFICACION]', $modificacion, $mensaje_cuidador);
-        
         $mensaje_cuidador = str_replace('[mensaje]', $msg_cuidador, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cuidador);
@@ -118,7 +122,6 @@
         $mensaje_admin = file_get_contents($file);
 
         $mensaje_admin = str_replace('[MODIFICACION]', $modificacion, $mensaje_admin);
-        
         $mensaje_admin = str_replace('[mensaje]', $msg_administrador, $mensaje_admin);
         $mensaje_admin = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_admin);
         $mensaje_admin = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_admin);

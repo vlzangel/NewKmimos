@@ -182,10 +182,13 @@
 							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
 							<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="km-input-custom km-input-date date_to" readonly>
 						</div>
-						<div class="km-div-enviar">
+						<div class="km-div-enviar" style="position: relative;">
 							<button type="submit" class="km-submit-custom" name="button">
 								BUSCAR
 							</button>
+							<div id="buscando_container">
+								<i id="buscando" class="fa fa-spinner fa-spin" style=""></i>
+							</div>
 						</div>
 						<div class="clear"></div>
 					</div>

@@ -230,6 +230,28 @@ $reservas = getReservas($_desde, $_hasta);
 							';
 						}
 
+						if( isset($meta_reserva["modificacion_de"]) || isset($meta_reserva["reserva_modificada"]) ){
+							switch ( $estatus['sts_corto'] ) {
+								case 'Modificado':
+									if( $meta_reserva["modificacion_de"] != "" && $meta_reserva["reserva_modificada"] != "" ){
+										$estatus['sts_corto'] = 'Modificada-I';
+									}else{
+										if( $meta_reserva["reserva_modificada"] != "" ){
+											$estatus['sts_corto'] = 'Modificada-O';
+										}
+										if( $meta_reserva["modificacion_de"] != "" ){
+											$estatus['sts_corto'] = 'Modificada-F';
+										}
+									}
+								break;
+								case 'Confirmado':
+									if( $meta_reserva["modificacion_de"] != "" ){
+										$estatus['sts_corto'] = 'Modificada-F';
+									}
+								break;
+							}
+						}
+						
 				  	?>
 				    <tr>
 			    	<th class="text-center"><?php echo ++$count; ?></th>

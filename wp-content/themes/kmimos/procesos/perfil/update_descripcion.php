@@ -47,10 +47,8 @@
 	);
 	$atributos = serialize($atributos);
 
-	$coordenadas = unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$delegacion}'", "valor") );
-
-	$latitud  = $coordenadas["referencia"]->lat;
-	$longitud = $coordenadas["referencia"]->lng;
+	$latitud  = $lat;
+	$longitud = $lng;
 
 	$mascotas_cuidador = str_replace('"', '\"', $mascotas_cuidador);
 	$tamanos_aceptados = str_replace('"', '\"', $tamanos_aceptados);
@@ -58,7 +56,12 @@
 	$atributos = str_replace('"', '\"', $atributos);
 	$comportamientos_aceptados = str_replace('"', '\"', $comportamientos_aceptados);
 
-
+	if( $dni+0 == 0 ){ $dni = "0000000000000"; }
+	if( strlen($dni) > 13 ){
+		$dni = substr($dni, 0, 13);
+	}else{
+		$dni = str_pad($dni, 13, "0", STR_PAD_LEFT);
+	}
 
 	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
 	$db->query("UPDATE cupos SET acepta = '{$acepto_hasta}' WHERE cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ");

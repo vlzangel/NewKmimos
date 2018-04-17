@@ -1,4 +1,14 @@
 <?php
+
+global $wpdb;
+
+if( isset($_GET["update_rating"])){
+    $cuidadores = $wpdb->get_results("SELECT * FROM cuidadores");
+    foreach ($cuidadores as $key => $cuidador) {
+        vlz_actualizar_ratings($cuidador->id_post);
+    }    
+}
+
 $datos = kmimos_get_info_syte();
 global $margin_extra_footer;
 global $no_display_footer;

@@ -1,11 +1,53 @@
 /* New */
 
+.modal_20_porciento{
+    position: absolute;
+    z-index: 9999999;
+    background: #FFF;
+    width: calc( 100% - 140px );
+    left: 70px;
+    box-sizing: border-box;
+    padding: 50px;
+    font-size: 20px;
+    border: solid 2px #ff9b42;
+    border-radius: 20px;
+
+    display: none;
+}
+
+.modal_20_porciento i {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
 .msg_mismo_dia{
     margin: 15px 0px 0px;
     padding: 10px;
     background: #ff8300;
     color: #FFF;
     border-radius: 5px;
+}
+
+.vlz_bloquear_msg_madrugada{
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 20px 0px 0px;
+}
+
+.vlz_bloquear_msg_madrugada img {
+    width: 100%;
+}
+
+.bloquear_madrugada{
+    display: none;
+}
+
+.vlz_NO_bloquear_msg_madrugada{
+    display: none;
 }
 
 .km-input-custom {
@@ -221,6 +263,11 @@ div#tienda_box img {
 
 .page-reservation .km-end-btn-form.disabled {
     position: relative;
+}
+
+.page-reservation .km-end-btn-form.cargando {
+    background: rgba(151, 151, 151, .3);
+    color: #000;
 }
 
 .perfil_cargando {
