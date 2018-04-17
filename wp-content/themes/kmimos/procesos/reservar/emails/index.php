@@ -264,7 +264,13 @@
 				include("confirmacion.php");
 
 
-				$count_reservas = $wpdb->get_var( "SELECT count(ID)  FROM wp_posts WHERE post_author = " . $cliente["id"] );
+				$count_reservas = $wpdb->get_var( "SELECT  
+							count(ID) as cant
+						FROM wp_posts
+						WHERE post_type = 'wc_booking' 
+							AND not post_status like '%cart%' AND post_status = 'confirmed' 
+							AND post_author = ".$cliente["id"]."
+							AND DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('2017-05-12','%m-%d-%Y') and DATE_FORMAT(now(),'%m-%d-%Y')" );
 
 				if(  $_SESSION['admin_sub_login'] != 'YES' && $count_reservas == 1){
 			   		if(isset($cliente["id"])){	
