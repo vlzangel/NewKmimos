@@ -497,8 +497,8 @@
 
 							<div class="modal_20_porciento">
 								<!-- <i class="fa fa-times"></i> -->
-								Esta función está en mantenimiento, por lo que te invitamos ha hacer el <strong>Pago Total</strong> de tu reserva.
-								<div id="click_pago_total" class="km-end-btn-form" style="max-width: 300px; margin: 30px auto 0px;">
+								Por los momentos no disponemos del pago del 20%, por lo que te invitamos hacer el pago total de tu reserva.
+								<div id="click_pago_total" class="km-end-btn-form" style="max-width: 300px; margin: 15px auto 0px;">
 									Pago Total
 								</div>
 							</div>
