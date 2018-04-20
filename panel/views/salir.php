@@ -1,2 +1,2 @@
 <?php $_SESSION = [] ?>
-<?php header('location:/panel/?p=login'); ?>
+<?php header('location:?p=login'); ?>

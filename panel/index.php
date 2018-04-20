@@ -16,7 +16,7 @@ if(array_key_exists('auth', $_SESSION)){
 		$p = ( isset($_GET['p']) )? strtolower($_GET['p']) : '' ; 
 		$auth = 1;
 		if($p=='login' || empty($p) ){
-			header('location:/panel/?p='.$_SESSION['url']);
+			header('location: ?p='.$_SESSION['url']);
 		}
 	}
 	if($_SESSION['auth'] == 0){
@@ -25,7 +25,7 @@ if(array_key_exists('auth', $_SESSION)){
 			if(auth() == 1){
 				$p = $_SESSION['url'];
 				$auth = 1;
-				header('location:/panel/?p='.$_SESSION['url']);
+				header('location: ?p='.$_SESSION['url']);
 			}
 		}
 	}

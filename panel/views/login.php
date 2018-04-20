@@ -5,7 +5,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action="/panel/?p=login" method="post" name="auth">
+            <form action="?p=login" method="post" name="auth">
               <h1>Iniciar Sesion</h1>
               <div>
                 <input type="text" name="usuario" class="form-control" placeholder="Username" required="" />

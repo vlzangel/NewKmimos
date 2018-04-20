@@ -10,19 +10,19 @@
     <title>Kmimos | External Panel </title>
 
     <!-- Bootstrap -->
-    <link href="/panel/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="/panel/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="/panel/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
     <!-- Datatables -->
-    <link href="/panel/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="/panel/assets/vendor/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="/panel/assets/vendor/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="/panel/assets/vendor/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="/panel/assets/vendor/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">    
+    <link href="assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">    
     <!-- Custom Theme Style -->
-    <link href="/panel/assets/css/custom.min.css" rel="stylesheet">
+    <link href="assets/css/custom.min.css" rel="stylesheet">
 
   </head>
 
@@ -43,9 +43,9 @@
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="/panel/?p=suscriptores">Suscriptores</a></li>
-                            <li><a href="/panel/?p=referidos">Usuarios Referidos</a></li>
-                            <li><a href="/panel/?p=logout">Cerrar Sesion</a></li>
+                            <li><a href="?p=suscriptores">Suscriptores</a></li>
+                            <li><a href="?p=referidos">Usuarios Referidos</a></li>
+                            <li><a href="?p=logout">Cerrar Sesion</a></li>
                           </ul>
                         </li>
                       </ul>
