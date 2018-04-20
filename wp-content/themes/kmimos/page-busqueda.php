@@ -29,8 +29,8 @@
 	$pagina = vlz_get_page();
 	$destacados = get_destacados();
 	$total  = vlz_num_resultados();
-	$paginacion = vlz_get_paginacion($total, $pagina);
 	$resultados = $_SESSION['resultado_busqueda'];
+	$paginacion = vlz_get_paginacion($total, $pagina, count($resultados) );
 	$favoritos = get_favoritos();
 
  	$TIPO_DISEÑO = "list";
