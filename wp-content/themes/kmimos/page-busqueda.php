@@ -18,6 +18,15 @@
     if( !isset($_SESSION)){ session_start(); }
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
 
+	// ini - condicion para retornar a la pagina #1 en nuevas busquedas
+	if( $_SESSION['nueva_busqueda'] == 1 ){
+		$pagina = 1;
+	}else{
+		$pagina = vlz_get_page();
+	}
+	$_SESSION['nueva_busqueda'] = 2;
+	// fin - condicion para retornar a la pagina #1 en nuevas busquedas
+
 	if(!$_POST){
 		$redirect = true;
 		include('procesos/busqueda/buscar.php');
@@ -25,8 +34,6 @@
 	}
 
 	$home = get_home_url();
-
-	$pagina = vlz_get_page();
 	$destacados = get_destacados();
 	$total  = vlz_num_resultados();
 	$resultados = $_SESSION['resultado_busqueda'];

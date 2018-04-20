@@ -34,6 +34,9 @@
 	$latitud = (isset($latitud))? $latitud: "";
 	$longitud = (isset($longitud))? $longitud: "";
 
+	// Marca para retornar a la pagina #1 con nuevas busquedas
+	$_SESSION['nueva_busqueda'] = 1;
+
 	// Ordenar busqueda 
 	if( isset($_GET['o']) ){
 		$data = [];
@@ -362,5 +365,5 @@
 	echo "</pre>";
 */
     if( !isset($redirect) || !$redirect ) {
-		header("location: {$home}busqueda/");
+		//header("location: {$home}busqueda/");
 	}
