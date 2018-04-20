@@ -192,7 +192,7 @@ $HTML = '
 
     // SubscribeSite
     if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
-        // include_once( 'partes/footer/SubscribeSite.php' );       
+        include_once( 'partes/footer/SubscribeSite.php' );       
     }
 
     echo comprimir_styles($HTML);
