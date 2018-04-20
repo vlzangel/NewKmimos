@@ -78,6 +78,15 @@ function getServicios( $cuidador ){
     );
 
 
+
+    $__adicionales = array(
+		"bano" => "BAÑO Y SECADO",
+		"corte" => "CORTE DE UÑAS Y PELO",
+		"limpieza_dental" => "LIMPIEZA DENTAL",
+		"acupuntura" => "ACUPUNTURA",
+		"visita_al_veterinario" => "VISITA AL VETERINARIO"
+	);
+	  
 	$sql = "SELECT * FROM wp_posts WHERE post_author = ".$cuidador['user_id']." AND post_type = 'product'";
     $productos = $wpdb->get_results($sql);
     foreach ($productos as $producto) {
@@ -86,6 +95,8 @@ function getServicios( $cuidador ){
     }
 
     $precios_adicionales_cuidador = unserialize($cuidador['adicionales']);
+
+
 
 	$temp = "";
     $precios_adicionales = "";
@@ -96,6 +107,14 @@ function getServicios( $cuidador ){
 	    		$temp[$key][$key2] = $precio;
     		} 
     	}
+	}
+
+	// Añadir servicios adicionales
+	foreach ($__adicionales as $key => $servicio) {
+		$temp[ 'adicionales' ][ $key ] = [
+			'costo' => $precios_adicionales_cuidador[$key],
+			'descripcion' => $servicio,
+		];
 	}
 
 	return $temp;

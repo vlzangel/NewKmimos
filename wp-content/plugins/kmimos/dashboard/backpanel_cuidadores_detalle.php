@@ -82,12 +82,13 @@ $users = getUsers($param, $desde, $hasta);
 			      <th>Edades Aceptadas</th>
 			      <th>Comportamientos Aceptados</th>
 
-				<th>Hospedaje</th>
-				<th>Guarderia</th>
-				<th>Paseos</th>
-				<th>Entrenamiento Básico</th>
-				<th>Entrenamiento Intermedio</th>
-				<th>Entrenamiento Avanzado</th>
+				  <th>Hospedaje</th>
+				  <th>Guarderia</th>
+				  <th>Paseos</th>
+				  <th>Entrenamiento Básico</th>
+				  <th>Entrenamiento Intermedio</th>
+				  <th>Entrenamiento Avanzado</th>
+				  <th>Servicios Adicionales</th>
 
 			      <th>Estatus</th>
 			    </tr>
@@ -230,6 +231,19 @@ $users = getUsers($param, $desde, $hasta);
 							<?php echo ( isset($servicios['adiestramiento_avanzado']['grandes']) )? 'Grande: <span style="font-size:14px!important">$ '.$servicios['adiestramiento_avanzado']['grandes'].'</span>,' : ''; ?>
 							<?php echo ( isset($servicios['adiestramiento_avanzado']['gigantes']) )? 'Gigante: <span style="font-size:14px!important">$ '.$servicios['adiestramiento_avanzado']['gigantes'].'</span>' : ''; ?>
 						</th>
+
+						<th>
+							<?php
+							$separador = '';
+							foreach( $servicios['adicionales'] as $key => $val ){
+								if( $val['costo'] > 0 ){
+									echo $separador.$val['descripcion'].': <span style="font-size:14px!important">$ '.$val['costo'].'</span>';	
+									$separador = ", ";
+								}
+							}
+							?>
+						</th>
+
 						<th><?php echo ($row['estatus']==1)? 'Activo' : 'Inactivo' ; ?></th>
 				    </tr>
 			   	<?php } ?>

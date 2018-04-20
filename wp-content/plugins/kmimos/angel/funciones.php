@@ -1,18 +1,26 @@
 <?php
 
 	if(!function_exists('vlz_get_paginacion')){
-        function vlz_get_paginacion($t, $pagina){
+        function vlz_get_paginacion($t, $pagina, $count_resultados=0){
+            $pagina--;
+            if($pagina < 0){
+                $pagina = 0;
+            }
             $home = get_home_url();
             $paginacion = ""; $h = 12; $inicio = $pagina*$h; 
+            if( $inicio > $count_resultados && $inicio >= 0 ){
+                $pagina = 0;
+                $inicio = 0;
+            }
             $fin = $inicio+$h; if( $fin > $t){ $fin = $t; }
             if($t > $h){
 
                 $ps = ceil($t/$h);
 
                 if( $ps < 5 ){
-                    for( $i=0; $i<=2; $i++){
+                    for( $i=0; $i<=1; $i++){
                         $active = ( $pagina == $i ) ? " class='active'" : "";
-                        $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/".($i)."'> ".($i+1)." </a> </li>";
+                        $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/".($i+1)."'> ".($i+1)." </a> </li>";
                     }
                 }else{
                     if( $pagina < ($ps-3)){
@@ -30,7 +38,7 @@
 
                         for( $i=$in; $i<=$fi; $i++){
                             $active = ( $pagina == $i ) ? " class='active'" : "";
-                            $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/".($i)."'> ".($i+1)." </a> </li>";
+                            $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/".($i+1)."'> ".($i+1)." </a> </li>";
                         }
                         $paginacion .= "<li> <a href='#'> ... </a> </li>";
                         $active = ( $pagina == ($ps-1) ) ? " class='active'" : "";
