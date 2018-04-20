@@ -30,6 +30,8 @@
 	if(!$_POST){
 		$redirect = true;
 		include('procesos/busqueda/buscar.php');
+		// Marca para retornar a la pagina #1 con nuevas busquedas
+		$_SESSION['nueva_busqueda'] = 2;
 		$redirect = false;
 	}
 
@@ -39,6 +41,8 @@
 	$resultados = $_SESSION['resultado_busqueda'];
 	$paginacion = vlz_get_paginacion($total, $pagina, count($resultados) );
 	$favoritos = get_favoritos();
+
+	$total--;
 
  	$TIPO_DISEÑO = "list";
 	if( $total > 6 ){
