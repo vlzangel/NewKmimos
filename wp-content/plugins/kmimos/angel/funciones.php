@@ -600,7 +600,8 @@
             $titulo = ($cuidador->titulo);
         }
 
-        $cant_valoraciones = $cuidador->valoraciones;
+        $cant_valoraciones = $wpdb->get_var("SELECT count(*) FROM wp_comments WHERE comment_approved = 1 AND comment_post_ID = '{$cuidador->id_post}' ");
+        // $cant_valoraciones = $cuidador->valoraciones;
         $valoraciones = "No tiene valoraciones";
         if( $cant_valoraciones+0 > 0 ){
             $plural = "&oacute;n";
