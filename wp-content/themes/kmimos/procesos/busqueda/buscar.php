@@ -364,6 +364,7 @@
 		print_r( $cuidadores );
 	echo "</pre>";
 */
-    if( !isset($redirect) || !$redirect ) {
-		//header("location: {$home}busqueda/");
+
+    if( $redireccionar == 1 ) {
+		header("location: {$home}busqueda/");
 	}
