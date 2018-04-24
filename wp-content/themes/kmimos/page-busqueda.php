@@ -25,6 +25,8 @@
 		$pagina = vlz_get_page();
 	}
 	$_SESSION['nueva_busqueda'] = 2;
+
+	//$pagina = vlz_get_page();
 	// fin - condicion para retornar a la pagina #1 en nuevas busquedas
 
 	if(!$_POST){

@@ -47,6 +47,15 @@
 		}
 	}
 
+	if( isset($_GET['o']) ){
+		$data = [];
+		if( $_SESSION['busqueda'] != '' ){
+			$data = unserialize($_SESSION['busqueda']);
+			$data['orderby'] = $_GET['o'];
+			$_POST = $data;
+		}
+	}
+
 	extract($_POST);
 
 	$condiciones = "";
@@ -184,10 +193,10 @@
     	$orderby = ( isset($orderby) )? $orderby : 'rating_desc' ;
 	    switch ($orderby) {
 	    	case 'rating_desc':
-	    		$orderby = "rating DESC, valoraciones DESC";
+	    		$orderby = "valoraciones DESC, rating DESC";
 	    	break;
 	    	case 'rating_asc':
-	    		$orderby = "rating ASC, valoraciones ASC";
+	    		$orderby = "valoraciones ASC, rating ASC";
 	    	break;
 	    	case 'distance_asc':
 	    		$orderby = "DISTANCIA ASC";
@@ -256,7 +265,7 @@
     /* Fin Filtro de busqueda */
 
     /* Filtro predeterminado */
-    	if( $orderby == "" ){ $orderby = "rating DESC, valoraciones DESC"; }
+    	if( $orderby == "" ){ $orderby = "valoraciones DESC, rating DESC"; }
     /* Fin Filtro predeterminado */
 
     $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
