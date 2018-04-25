@@ -737,6 +737,26 @@ jQuery(document).ready(function() {
 		calcular();
 	});*/
 
+	jQuery("#prueba").on("click", function(e){
+		/*ga('send', 'event', 'reservar', 'tipo_pago', 'parcial', {
+			hitCallback: function() {
+				console.log("Evento Enviado!");
+			}
+		});*/
+
+		gtag('event', 'Prueba', { 
+			'event_category': 'Prueba', 
+			'event_action': 'Click'
+		});
+
+		/*
+		, 
+			'event_label': 'etiqueta', 
+			'value': 'valor'
+		*/
+
+	});
+
 	jQuery(".km-option-total").click();
 
 	jQuery(".solo_numeros").on("keyup", function(e){

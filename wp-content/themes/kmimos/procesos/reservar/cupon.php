@@ -125,6 +125,9 @@
 				break;
 			}
 
+
+
+
 			if( $servicio != 0){
 				if( !isset($_SESSION)){ session_start(); }
 				$id_session = 'MR_'.$servicio."_".md5($cliente);
@@ -136,9 +139,15 @@
 			}
 
 			$sub_descuento += $descuento;
-
 			if( ($total-$sub_descuento) < 0 ){
 				$descuento += ( $total-$sub_descuento );
+			}
+
+			if( $descuento == 0 ){
+				echo json_encode(array(
+					"error" => "El monto restante por pagar es cero (0), por tal motivo el cunón no será aplicado."
+				));
+				exit;
 			}
 
 			if( $metas["individual_use"] == "yes" ){

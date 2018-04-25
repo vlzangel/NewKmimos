@@ -18,7 +18,7 @@
                 $ps = ceil($t/$h);
 
                 if( $ps < 5 ){
-                    for( $i=0; $i<=1; $i++){
+                    for( $i=0; $i<$ps; $i++){
                         $active = ( $pagina == $i ) ? " class='active'" : "";
                         $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/".($i+1)."'> ".($i+1)." </a> </li>";
                     }
@@ -242,6 +242,7 @@
     if(!function_exists('vlz_num_resultados')){
         function vlz_num_resultados(){
             if( !isset($_SESSION)){ session_start(); }
+            $clave = md5( $_SESSION['busqueda'] );
             if( $_SESSION['resultado_busqueda'] ){
                 return count($_SESSION['resultado_busqueda'])+0;
             }else{

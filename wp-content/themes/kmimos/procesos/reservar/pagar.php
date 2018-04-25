@@ -549,6 +549,13 @@
 						$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_pdf', '{$pdf}');");
 						$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_tienda_vence', '{$due_date}');");
 
+						$para_buscar = array(
+							"cliente" => $customer->id,
+							"transaccion_id" => $charge->id
+						);
+						$para_buscar = serialize($para_buscar);
+						$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_busqueda', '{$para_buscar}');");
+
 		   				echo json_encode(array(
 		   					"user_id" => $customer->id,
 							"pdf" => $pdf,

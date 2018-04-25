@@ -357,6 +357,8 @@
 								<li class="line"></li><li><span class="number">3</span></li>
 							</ul>
 
+							<div onclick="gtag(\'event\', \'porciento\'); console.log(\'Evento Enviado!\');">Prueba</div>
+
 							<div class="km-title-step">
 								RESERVACIÓN<br>
 								'.$servicio_name_corto.'<br>

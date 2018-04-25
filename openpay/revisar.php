@@ -28,7 +28,7 @@
 
 		$ordenes = array();
 		foreach ($ordenes_pendientes as $f) {
-			$ordenes[] = $f->orden;
+			$ordenes[$f->orden] = $f->orden;
 		}
 
 	/*	echo "<pre>";
@@ -50,6 +50,8 @@
 		foreach ($chargeList as $key => $value) {
 
 			if( in_array($value->order_id, $ordenes) ){
+
+				unset( $ordenes[$value->order_id] );
 
 				$hoy = time();
 
@@ -97,6 +99,14 @@
 				
 			}
 		}
+
+		if( count($ordenes) ){
+			foreach ( $ordenes as $orden ) {
+				
+			}
+		}
+
+	
 
 	}
 

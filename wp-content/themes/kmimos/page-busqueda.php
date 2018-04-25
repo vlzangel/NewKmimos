@@ -16,7 +16,10 @@
 
     get_header();
     if( !isset($_SESSION)){ session_start(); }
-	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
+	
+	if( isset($_SESSION['busqueda'])){ 
+		$_POST = unserialize($_SESSION['busqueda']); 
+	}
 
 	// ini - condicion para retornar a la pagina #1 en nuevas busquedas
 	if( $_SESSION['nueva_busqueda'] == 1 ){
@@ -25,16 +28,12 @@
 		$pagina = vlz_get_page();
 	}
 	$_SESSION['nueva_busqueda'] = 2;
-
-	//$pagina = vlz_get_page();
 	// fin - condicion para retornar a la pagina #1 en nuevas busquedas
 
+    $pagina = vlz_get_page();
+
 	if(!$_POST){
-		$redirect = true;
 		include('procesos/busqueda/buscar.php');
-		// Marca para retornar a la pagina #1 con nuevas busquedas
-		$_SESSION['nueva_busqueda'] = 2;
-		$redirect = false;
 	}
 
 	$home = get_home_url();
@@ -43,8 +42,7 @@
 	$resultados = $_SESSION['resultado_busqueda'];
 	$paginacion = vlz_get_paginacion($total, $pagina, count($resultados) );
 	$favoritos = get_favoritos();
-
-	$total--;
+	//$total--;
 
  	$TIPO_DISEÑO = "list";
 	if( $total > 6 ){
@@ -166,7 +164,7 @@
 
 		<div class="container contentenedor-buscador-todos content-wlabel-search">
 			<div class="km-contentido-formulario-buscador">
-				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="post">
+				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="POST">
 					<div class="km-bloque-cajas km-search-wlabel" >
 						<div class="km-div-ubicacion">
 						
@@ -258,15 +256,15 @@
 							    	ORDENAR POR
 							  	</button>
 							  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    	<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_desc">Valoración de mayor a menor</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_asc">Valoración de menor a mayor</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_asc">Precio del Servicio de menor a mayor</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de menos a más años</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de más a menos años</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=flash">Cuidadores con Reserva Inmediata</a></li>
+							    	<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=rating_desc">Valoración de mayor a menor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=rating_asc">Valoración de menor a mayor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=price_asc">Precio del Servicio de menor a mayor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=price_desc">Precio del Servicio de mayor a menor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=experience_asc">Experiencia de menos a más años</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=experience_desc">Experiencia de más a menos años</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=flash">Cuidadores con Reserva Inmediata</a></li>
 							  	</ul>
 							</div>
 
@@ -302,15 +300,15 @@
 								    ORDENAR POR</span>
 								  </button>
 								  <ul class="dropdown-menu">
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_desc">Valoración de mayor a menor</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=rating_asc">Valoración de menor a mayor</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_asc">Precio del Servicio de menor a mayor</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=price_desc">Precio del Servicio de mayor a menor</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_asc">Experiencia de menos a más años</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=experience_desc">Experiencia de más a menos años</a></li>
-									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?o=flash">Cuidadores con Reserva Inmediata</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=rating_desc">Valoración de mayor a menor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=rating_asc">Valoración de menor a mayor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=distance_asc">Distancia al cuidador de cerca a lejos</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=distance_desc">Distancia al cuidador de lejos a cerca</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=price_asc">Precio del Servicio de menor a mayor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=price_desc">Precio del Servicio de mayor a menor</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=experience_asc">Experiencia de menos a más años</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=experience_desc">Experiencia de más a menos años</a></li>
+									<li><a href="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php?redireccionar=1&o=flash">Cuidadores con Reserva Inmediata</a></li>
 								  </ul>
 								</div>
 
@@ -352,4 +350,12 @@
 	global $margin_extra_footer;
 	$margin_extra_footer = "footer-busqueda";
     get_footer(); 
+
+	echo "<pre style=''>";
+		print_r($_SESSION);
+	echo "</pre>";
+/*
+	foreach ($_SESSION as $key => $value) {
+		unset($_SESSION[ $key ]);
+	}*/
 ?>

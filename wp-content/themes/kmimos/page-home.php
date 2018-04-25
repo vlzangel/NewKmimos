@@ -9,7 +9,6 @@
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
             
-
     get_header();
         
 	    $home = get_home_url();
@@ -352,24 +351,12 @@
 		</div>
 		<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->
 
-
-
-
-
 		<!-- SECCIÓN 5 - VACACIONES -->
 		<a href="https://nutriheroes.com.mx/" target="_blank" class=" fondo_banner_nutriheroes">
 			<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/images/video.mp4" width="100%" height="100%"></video>
 			<div class="container banner_nutriheroes"></div>
 		</a>
 		<!-- FIN SECCIÓN 5 - VACACIONES -->
-
-
-
-
-
-
-
-
 		<!-- SECCIÓN 6 - BENEFICIOS -->
 		<div class="km-medios">
 			<div class="container">
