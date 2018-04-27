@@ -144,10 +144,12 @@
 			}
 
 			if( $descuento == 0 ){
-				echo json_encode(array(
-					"error" => "El monto restante por pagar es cero (0), por tal motivo el cunón no será aplicado."
-				));
-				exit;
+				if( strpos( $cupon, "saldo" ) === false ){
+					echo json_encode(array(
+						"error" => "El cupón no será aplicado. El total a pagar por su reserva es 0."
+					));
+					exit;
+				}
 			}
 
 			if( $metas["individual_use"] == "yes" ){

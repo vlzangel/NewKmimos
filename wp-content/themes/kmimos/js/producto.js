@@ -82,7 +82,7 @@ function calcular(){
 			jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
 			jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
 		}else{
-			if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+			if( jQuery("#checkin").val() == HOY && HORA >= 7 ){
 				jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
 				jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
 				jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
@@ -99,7 +99,7 @@ function calcular(){
 			}
 		}
 	}else{
-		if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+		if( jQuery("#checkin").val() == HOY && HORA >= 7 ){
 			CARRITO["fechas"]["flash"] = "SI";
 		}else{
 			if( jQuery("#checkin").val() == MANANA && HORA >= 18 ){
