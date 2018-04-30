@@ -2,7 +2,7 @@
 	<div class="master">
 		<div class="texto">
 			Descarga nuestros términos y condiciones <a href="#">aquí</a>.<br>
-			<img src="img/phone.png" class="phone">01 800 056 4667<br>
+			<img src="img/phone.png" class="phone">(01) 55 3137 4829<br>
 			<img src="img/logo-footer.png" class="logo-footer">
 		</div>
 		<div class="redes">

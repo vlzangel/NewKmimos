@@ -395,7 +395,7 @@
 							<article class="col-xs-12 col-sm-6" style="margin-top:10px;margin-bottom:10px;">
 								<span>Cont&aacute;ctanos a:</span> 
 								<!-- <span>(01)55 4742 3162</span> -->
-								<span> 01 8000 564667 (KMIMOS)</span>
+								<span> (01) 55 3137 4829 (KMIMOS)</span>
 								<!-- <span>Whatsapp: (55) 6892 2182 </span>-->
 								<br>
 								<span>contactomex@kmimos.la</span>
