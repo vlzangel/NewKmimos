@@ -77,9 +77,9 @@
 	            "titulo"    => "Kmimos México",
 	            "email"     => "vlzangel91@kmimos.la",
 
-                "telefono" => "(01) 55 4742 3162",
-                "telefono_sincosto" => "(01) 800 056 4667",
-                "whatsapp"=> "+52 (55) 6892 2182", 
+                "telefono" => "(01) 55 3137 4829",
+                "telefono_sincosto" => "(01) 55 3137 4829",
+                "whatsapp"=> "+52 (33) 1261 4186", 
 
 	            "twitter"   => "kmimosmx",
 	            "facebook"  => "Kmimosmx",

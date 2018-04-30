@@ -161,7 +161,7 @@ if(!function_exists('kmimos_get_email_footer')){
                     <div style='float:left; width:600px; margin-bottom: 31px;'>   
                         <div style='text-align:center;'>
                             <p style='font-family: Arial; font-size:14px; color:#666; text-align: center; '>
-                                En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 4742 3162, Whatsapp <a href='telf:+525568922182' target='_blank' style='text-decoration: none;'>+52 (55) 6892 2182</a>, o al correo 
+                                En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 3137 4829, Whatsapp +52 (33) 1261 4186, o al correo 
                                 <a href='mailto:contactomex@kmimos.la' target='_blank' style='text-decoration: none; '>contactomex@kmimos.la</a>
                             </p>
                             <div  style='clear:both;'></div>
