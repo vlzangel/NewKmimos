@@ -69,8 +69,8 @@ $HTML .='
 
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> +52 (55) 6892 2182</p></div>
-					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada Sin Costo: (01) 800 056 4667</p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> +52 (33) 1261 4186</p></div>
+					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada : (01) 55 3137 4829</p></div>
 				</div>
 
 				<hr>
@@ -191,8 +191,8 @@ $HTML .='
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 				
 				<div class="row">
-					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> +52 (55) 6892 2182</p></div>
-					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada Sin Costo: (01) 800 056 4667</p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">  +52 (33) 1261 4186</p></div>
+					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada: (01) 55 3137 4829</p></div>
 				</div>
 
 				<!-- p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p -->

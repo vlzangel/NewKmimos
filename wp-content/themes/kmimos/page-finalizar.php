@@ -195,7 +195,7 @@
 			<ul>
 				<li>Revisa tu correo. Te enviaremos la Confirmación o Rechazo de tu Reserva en unos momentos (puede durar desde 30 min a 4 horas).</li>
 				<li>Luego de aceptada la Reserva, el cuidador seleccionado y/o Atención al Cliente de Kmimos se pondrán en contacto contigo para alinear la logística de entrega.</li>
-				<li>En caso de dudas contáctanos al (01) 800 056 4667, y te atenderemos de inmediato.</li>
+				<li>En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 3137 4829, Whatsapp +52 (33) 1261 4186, o al correo contactomex@kmimos.la</li>
 			</ul>
 		</div>";
 	    if( $data_reserva["metodo_pago"] == "Tienda" ){
@@ -207,7 +207,7 @@
 					<li>Recuerda que tienes 48 horas para hacer el pago.</li>
 					<li><strong>El Cuidador que seleccionaste no recibirá tu solicitud de Reserva sino hasta que hayas hecho el pago en la tienda.</strong></li>
 					<li>Una vez que pagues en la Tienda de Conveniencia, el cuidador seleccionado y/o Atención al Cliente de Kmimos se pondrán en contacto contigo dentro de las siguientes 1 a 4 horas para alinear la logística de entrega.</li>
-					<li>En caso de dudas contáctanos al (01) 800 056 4667, y te atenderemos de inmediato.</li>
+					<li>En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 3137 4829, Whatsapp +52 (33) 1261 4186, o al correo contactomex@kmimos.la</li>
 				</ul>
 
 			</div>";
