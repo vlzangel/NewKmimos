@@ -351,9 +351,6 @@
 	$margin_extra_footer = "footer-busqueda";
     get_footer(); 
 
-	echo "<pre style=''>";
-		print_r($_SESSION);
-	echo "</pre>";
 /*
 	foreach ($_SESSION as $key => $value) {
 		unset($_SESSION[ $key ]);

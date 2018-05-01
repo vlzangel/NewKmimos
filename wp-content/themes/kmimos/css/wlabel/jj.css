@@ -1,0 +1,204 @@
+.km-btn-primary {
+    background-color: #f30617 !important;
+    border-bottom: 3px solid #f30617 !important;
+    color: #ffffff !important;
+}
+
+.nav>li>a.km-btn-primary:hover {
+    background-color: #f30617 !important;
+    color: #ffffff !important;
+    border-bottom: 3px solid #f30617 !important;
+}
+
+.km-opcion, .km-search-wlabel, .km-select-custom-home, .km-fechas .km-fechas input {
+    border: solid 1px #f30617 !important;
+}
+
+.km-opcion:hover:before {
+    border-top: 6px solid #f30617 !important;
+}
+
+.km-btn-primary:hover {
+    background-color: #f30617 !important;
+    color: #ffffff !important;
+    border-bottom: 3px solid #f30617 !important;
+}
+
+.datepick-month th, .datepick-month th a {
+    color: #f30617 !important;
+}
+
+h4 {
+    color: #f30617;
+}
+
+footer .btn {
+    background-color: #f30617 !important;
+    color: #FFF !important;
+}
+
+.km-submit-custom {
+    color: #ffffff !important;
+    background: #f30617 !important;
+}
+
+.km-leyenda {
+    color: #f30617 !important;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a.active, .km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a:hover {
+    background: #f30617 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #f30617 !important;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a {
+    border: 1px solid #f30617 !important;
+    color: #f30617 !important;
+}
+
+.km-btn-basic {
+    background-color: #f30617 !important;
+}
+
+.km-checkbox {
+    background: #f3f30617 !important;
+}
+
+.km-checkbox label {
+    background: #f30617 !important;
+}
+
+.km-btn-correo {
+    background-color: #f30617 !important;
+}
+
+.km-btn-secondary {
+    background-color: #f30617 !important;
+    border-bottom: 3px solid #f30617 !important;
+}
+
+#btn_conocer {
+    background-color: transparent !important;
+}
+
+#btn_conocer:hover {
+    color: #FFF;
+    background: #f30617 !important;
+    border: solid 1px #f30617 !important;
+}
+
+.km-ficha-servicio .servicio-tit {
+    color: #f30617 !important;
+}
+
+.km-servicio-opcionactivo:before {
+    border-color: #f30617 !important;
+}
+
+.page-reservation .steps-numbers li .number.active {
+    border-color: #f30617 !important;
+    color: #f30617 !important;
+}
+
+.cr_minus, .cr_plus, .page-reservation .km-content-step .km-content-new-pet .km-minus, .page-reservation .km-content-step .km-content-new-pet .km-plus {
+    color: #f30617 !important;
+    border: 1px solid #f30617 !important;
+}
+
+.page-reservation .km-end-btn-form {
+    background: #f30617;
+    color: #ffffff;
+}
+
+.page-reservation .km-end-btn-form span {
+    background: transparent !important;
+}
+
+.page-reservation .steps-numbers li .number.checked {
+    border-color: #f30617 !important;
+    background-color: #f30617 !important;
+}
+
+.page-reservation .steps-numbers li .number.active {
+    border-color: #f30617 !important;
+    color: #f30617 !important;
+}
+
+.page-reservation .km-select-method-paid .km-method-paid-options .km-method-paid-option.active::before {
+    background: #f30617 !important;
+}
+
+.km-cupones span {
+    background: #f30617 !important;
+    border: solid 1px #f30617 !important;
+}
+
+.km-cupones input {
+    border: solid 1px #f30617 !important;
+}
+
+.page-reservation .km-end-btn-form.disabled span {
+    background: transparent !important;
+}
+
+.menu_perfil ul li a {
+    padding: 10px !important;
+}
+
+.menu_perfil ul li a:hover {
+    background: #f30617 !important;
+    color: #FFF !important;
+    padding: 10px !important;
+}
+
+.mascotas_item a.mascotas_content:hover h3 {
+    color: #f30617;
+}
+
+.main h1.titulo {
+    color: #f30617 !important;
+    border-top: solid 2px #f30617 !important;
+}
+
+.main .vlz_tabla .vlz_botones a {
+    color: #f30617 !important;
+    border: solid 1px #f30617 !important;
+}
+
+.main .vlz_tabla .ver_reserva_botones a {
+    color: #f30617 !important;
+    border: solid 1px #f30617 !important;
+}
+
+.pago_en_efectivo {
+    color: #f30617 !important;
+}
+
+.main .vlz_tabla .ver_reserva_botones .vlz_cancelar {
+    color: #FFF !important;
+    border: solid 1px #b01d1d;
+    border: solid 1px #b01d1d !important;
+}
+
+.vlz_check:after {
+    border: 1px solid #f30617 !important;
+}
+
+.btn_fin_reserva {
+    background: #f30617 !important;
+    color: #ffffff !important;
+}
+
+.que_debo_hacer div {
+    color: #f30617 !important;
+}
+
+#PageSubscribe {
+    background: #f30617 !important;
+}
+
+#btn_conocer {
+    color: #f30617;
+    border: solid 1px #f30617;
+}
