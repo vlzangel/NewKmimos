@@ -9,6 +9,18 @@ if( isset($_GET["update_rating"])){
     }    
 }
 
+if( isset($_GET["update_experiencia"])){
+    $cuidadores = $wpdb->get_results("SELECT * FROM cuidadores");
+    foreach ($cuidadores as $key => $cuidador) {
+        if( $cuidador->experiencia+0 < 1900){
+            $anio = 2018-$cuidador->experiencia;
+        }else{
+            $anio = 2018-(2018-$cuidador->experiencia);
+        }
+        $wpdb->query("UPDATE cuidadores SET experiencia = '{$anio}' WHERE id = ".$cuidador->id);
+    }    
+}
+
 $datos = kmimos_get_info_syte();
 global $margin_extra_footer;
 global $no_display_footer;
