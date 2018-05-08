@@ -93,8 +93,8 @@
     if(!function_exists('kmimos_mails_administradores_new')){       
         function kmimos_mails_administradores_new($titulo, $mensaje){   
             $id_user = get_current_user_id();
-            $wlabel = get_user_meta($id_user, "_wlabel");
-            $referido = get_user_meta($id_user, "user_referred");
+            $wlabel = get_user_meta($id_user, "_wlabel", true);
+            $referido = get_user_meta($id_user, "user_referred", true);
 
             $info = kmimos_get_info_syte();
             $email_admin = $info["email"];
