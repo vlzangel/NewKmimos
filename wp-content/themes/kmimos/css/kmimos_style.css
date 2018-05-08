@@ -392,9 +392,6 @@ section {
 	color: black;
 	font-size: 11px;
 	letter-spacing: 1px;
-	transition: all .2s ease-in-out;
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
 	position: relative;
 	cursor: pointer;
 	width: 100%;
@@ -413,14 +410,9 @@ section {
 	border-radius: 8px;
 	left: 0;
 	right: 0;
-	transition: all .2s ease-in-out;
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
 }
 .km-opcionactivo {
-	transition: all .2s ease-in-out;
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
+
 }
 .km-opcionactivo:before {
 	border-color: #33e1be;
@@ -2268,11 +2260,6 @@ footer input:focus{
 }
 @media (min-width: 767px) {
 
-
-	.km-opcion:hover:before {
-		border-top: 6px solid #33e1be;
-		top: -1px;
-	}
 	/* HOME */
 
 	/* FIN HOME */
@@ -3181,9 +3168,6 @@ section {
     color:#000;
     font-size:11px;
     letter-spacing:1px;
-    transition:all .2s ease-in-out;
-    -webkit-transition:all .2s ease-in-out;
-    -moz-transition:all .2s ease-in-out;
     position:relative;
     cursor:pointer;
     width:100%;
@@ -5391,10 +5375,7 @@ h1.maps {
     }
 }
 @media (min-width:767px) {
-    .km-opcion:hover:before {
-        border-top:6px solid #33e1be;
-        top:-1px
-    }
+
     footer .km-icon-redes svg {
         transition:all .2s ease-in-out;
         -webkit-transition:all .2s ease-in-out;
@@ -6566,9 +6547,6 @@ section {
     color: black;
     font-size: 11px;
     letter-spacing: 1px;
-    transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
     position: relative;
     cursor: pointer;
     width: 100%;

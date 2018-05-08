@@ -66,12 +66,14 @@ $HTML = '
                         <p><a href="'.get_home_url().'/contacta-con-nosotros/">Contáctanos</a></p>                
                     </div>
 
-                    <div class="col-xs-12 col-sm-3">
+                    <div class="col-xs-12 col-sm-3" style="padding: 5px;">
                         <h5>CONTÁCTANOS</h5>
                         
-                        <p>Telef. Local: '.$datos['telefono'].'</p>
+                        <p>Telef. Local: 55 3137 4829</p>
                         <p>Llamada Sin Costo: '.$datos['telefono_sincosto'].'</p>
-                        <p>WhatsApp: '.$datos['whatsapp'].'</p>
+                        <p>WhatsApp 1: +52 1 (33) 1261 41 86</p>
+                        <p>WhatsApp 2: +52 1 55 6892 2182</p>
+                        <p>WhatsApp 3: +52 1 55 6560 2472</p>
                         <p>Email: '.$datos['email'].'</p>
 
                         <div class="km-icon-redes">
