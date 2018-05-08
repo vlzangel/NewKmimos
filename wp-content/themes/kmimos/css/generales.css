@@ -847,14 +847,13 @@ h2.msg_acciones {
     margin-bottom: 20px;
 }
 
-
 .bx-wrapper .bx-controls-direction a {
-    width: 0;
-    height: 0;
+    width: 0 !important;
+    height: 0 !important;
     display: inline-block;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
-    background: transparent;
+    background: transparent !important;
 }
 
 .bx-wrapper .bx-controls-direction a.bx-prev {

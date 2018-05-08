@@ -91,9 +91,26 @@
 	}
 
     if(!function_exists('kmimos_mails_administradores_new')){       
-        function kmimos_mails_administradores_new($titulo, $mensaje){     
+        function kmimos_mails_administradores_new($titulo, $mensaje){   
+            $id_user = get_current_user_id();
+            $wlabel = get_user_meta($id_user, "_wlabel");
+
             $info = kmimos_get_info_syte();
             $email_admin = $info["email"];
+
+            if (!isset($_SESSION)) { session_start(); }
+
+            $PREFIJO = "";
+            if( $wlabel != "" ){
+                $PREFIJO = strtoupper($wlabel).' - ';
+            }else{
+                if(array_key_exists('wlabel', $_SESSION)){
+                    $PREFIJO = strtoupper($_SESSION['wlabel']).' - ';
+                }
+            }
+
+            $titulo = $PREFIJO.$titulo;
+
 
             $headers_admins = array(
                 'BCC: a.veloz@kmimos.la',
