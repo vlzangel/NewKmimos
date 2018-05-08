@@ -100,24 +100,19 @@
             $email_admin = $info["email"];
 
             if (!isset($_SESSION)) { session_start(); }
-
             $PREFIJO = "";
-
             if($referido == 'Volaris'){
                 $PREFIJO = 'volaris - ';
 
             }else if($referido == 'Vintermex'){
                 $PREFIJO = 'viajesintermex - ';
             }
-
             if( $PREFIJO == "" ){
                 if( $wlabel != "" ){
                     $PREFIJO = $wlabel.' - ';
                 }
             }
-
             $PREFIJO = strtoupper($PREFIJO);
-
             $titulo = $PREFIJO.$titulo;
 
 
@@ -133,12 +128,17 @@
 
             $headers_admins = array(
                 'BCC: e.celli@kmimos.la',
-                'BCC: a.lazaro@kmimos.la',
                 'BCC: a.vera@kmimos.la',
                 'BCC: r.cuevas@kmimos.la',
                 'BCC: r.gonzalez@kmimos.la',
                 'BCC: m.castellon@kmimos.la',
-                'BCC: y.chaudary@kmimos.la'
+                'BCC: e.viera@kmimos.la',
+                'BCC: g.leon@kmimos.la',
+                'BCC: j.chumpitaz@kmimos.la',
+                'BCC: reservacionesmx@kmimos.la',
+                'BCC: conocercuidadormx@kmimos.la ',
+
+                'BCC: y.chaudary@kmimos.la',
             );
 
             wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
