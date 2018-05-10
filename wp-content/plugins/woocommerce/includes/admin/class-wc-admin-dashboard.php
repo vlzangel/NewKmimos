@@ -25,7 +25,7 @@ class WC_Admin_Dashboard {
 	public function __construct() {
 		// Only hook in admin parts if the user has admin access
 		if ( current_user_can( 'view_woocommerce_reports' ) || current_user_can( 'manage_woocommerce' ) || current_user_can( 'publish_shop_orders' ) ) {
-			add_action( 'wp_dashboard_setup', array( $this, 'init' ) );
+			// add_action( 'wp_dashboard_setup', array( $this, 'init' ) );
 		}
 	}
 

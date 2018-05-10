@@ -1,4 +1,99 @@
 <?php
+	
+	function resumen_add_dashboard_widgets() {
+		wp_add_dashboard_widget(
+	                 'resumen_dashboard_widget',         // Widget slug.
+	                 'Resumen de Reservas',         // Title.
+	                 'resumen_dashboard_widget_function' // Display function.
+	        );	
+	}
+	add_action( 'wp_dashboard_setup', 'resumen_add_dashboard_widgets' );
+
+	function resumen_dashboard_widget_function() {
+		global $wpdb;
+
+		$inicio = date("Y-m")."-01 00:00:00";
+		$fin = date("Y-m", strtotime ( '+1 month' , time() ) )."-01 23:59:59";
+
+		$sql = "
+			SELECT 
+				orden.ID AS ordenID,
+				reserva.ID AS reservaID,
+				orden.post_status AS ordenStatus,
+				reserva.post_status AS reservaStatus
+			FROM 
+				wp_posts AS orden
+			INNER JOIN wp_posts AS reserva ON ( orden.ID = reserva.post_parent )
+			WHERE 
+				orden.post_date >= '{$inicio}' AND 
+				orden.post_date <= '{$fin}' AND 
+				orden.post_type = 'shop_order' ";
+
+		$pedidos = $wpdb->get_results( $sql );
+		
+		$pendientes = 0;
+		$confirmadas = 0;
+		$completadas = 0;
+		$modificadas = 0;
+		$canceladas = 0;
+
+		foreach ($pedidos as $pedido) {
+
+			switch ( $pedido->ordenStatus ) {
+				case 'wc-confirmed':
+					$fin = strtotime( get_post_meta($pedido->reservaID, "_booking_end", true) );
+					if( time() <= $fin){
+						$completadas++;
+					}
+					$confirmadas++;
+				break;
+				case 'wc-completed':
+					$pendientes++;
+				break;
+				case 'wc-partially-paid':
+					$pendientes++;
+				break;
+				case 'wc-cancelled':
+					$canceladas++;
+				break;
+				case 'modified':
+					$modificadas++;
+				break;
+			}
+
+		}
+
+		echo "
+			<table>
+				<tr>
+					<td colspan=2>
+						<span>{$confirmadas}</span>
+						<div>Reservas Confirmadas</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>{$pendientes}</span>
+						<div>Reservas Pendientes</div>
+					</td>
+					<td>
+						<span>{$completadas}</span>
+						<div>Reservas Completadas</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>{$canceladas}</span>
+						<div>Reservas Canceladas</div>
+					</td>
+					<td>
+						<span>{$modificadas}</span>
+						<div>Reservas Modificadas</div>
+					</td>
+				</tr>
+			</table>
+		";
+	}
 
 	function get_publicidad($seccion){
 				
