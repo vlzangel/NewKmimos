@@ -100,38 +100,6 @@
 				</ul>
 			</div>
 		';
-/*
-		echo "
-			<table width='100%'>
-				<tr>
-					<td colspan=2>
-						<h2>{$confirmadas}</h2>
-						<div>Reservas Confirmadas</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h2>{$pendientes}</h2>
-						<div>Reservas Pendientes</div>
-					</td>
-					<td>
-						<h2>{$completadas}</h2>
-						<div>Reservas Completadas</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h2>{$canceladas}</h2>
-						<div>Reservas Canceladas</div>
-					</td>
-					<td>
-						<h2>{$modificadas}</h2>
-						<div>Reservas Modificadas</div>
-					</td>
-				</tr>
-			</table>
-		";
-*/
 	}
 
 	function get_publicidad($seccion){
