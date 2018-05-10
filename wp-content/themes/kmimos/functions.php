@@ -3,7 +3,7 @@
 	function resumen_add_dashboard_widgets() {
 		wp_add_dashboard_widget(
 	                 'resumen_dashboard_widget',         // Widget slug.
-	                 'Reservas en el Mes',         // Title.
+	                 'Resumen del Mes',         // Title.
 	                 'resumen_dashboard_widget_function' // Display function.
 	        );	
 	}
@@ -63,36 +63,75 @@
 
 		}
 
+		echo '
+			<style>
+				#woocommerce_dashboard_status .wc_status_list li.processing-orders a:before {
+					color: #828282;
+				}
+				#woocommerce_dashboard_status .wc_status_list li.completed a:before {
+					content: "\e015";
+					color: #7ad03a;
+				}
+				#woocommerce_dashboard_status .wc_status_list li.on-hold-orders a:before {
+					color: #a00;
+				}
+
+				#woocommerce_dashboard_status .wc_status_list li.modified a:before {
+					color: #ffba00;
+				}
+			</style>
+			<div id="woocommerce_dashboard_status">
+				<ul class="wc_status_list">
+					<li class="sales-this-month">
+						<a><strong><span class="amount">'.$confirmadas.'</span> Reservas</strong> Confirmadas</a>
+					</li>
+					<li class="processing-orders">
+						<a><strong>'.$pendientes.' Reservas</strong> Pendientes</a>
+					</li>
+					<li class="completed">
+						<a><strong>'.$completadas.' Reservas</strong> Completadas</a>
+					</li>
+					<li class="on-hold-orders">
+						<a><strong>'.$canceladas.' Reservas</strong> Canceladas</a>
+					</li>
+					<li class="on-hold-orders modified">
+						<a><strong>'.$modificadas.' Reservas</strong> Modificadas</a>
+					</li>
+				</ul>
+			</div>
+		';
+/*
 		echo "
-			<table>
+			<table width='100%'>
 				<tr>
 					<td colspan=2>
-						<span>{$confirmadas}</span>
+						<h2>{$confirmadas}</h2>
 						<div>Reservas Confirmadas</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<span>{$pendientes}</span>
+						<h2>{$pendientes}</h2>
 						<div>Reservas Pendientes</div>
 					</td>
 					<td>
-						<span>{$completadas}</span>
+						<h2>{$completadas}</h2>
 						<div>Reservas Completadas</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<span>{$canceladas}</span>
+						<h2>{$canceladas}</h2>
 						<div>Reservas Canceladas</div>
 					</td>
 					<td>
-						<span>{$modificadas}</span>
+						<h2>{$modificadas}</h2>
 						<div>Reservas Modificadas</div>
 					</td>
 				</tr>
 			</table>
 		";
+*/
 	}
 
 	function get_publicidad($seccion){
