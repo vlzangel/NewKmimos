@@ -83,7 +83,7 @@
 			<div id="woocommerce_dashboard_status">
 				<ul class="wc_status_list">
 					<li class="sales-this-month">
-						<a><strong><span class="amount">'.$confirmadas.'</span> Reservas</strong> Confirmadas</a>
+						<a><strong><span class="amount">'.$confirmadas.'</span> Reservas</strong> Confirmadas + Pendientes</a>
 					</li>
 					<li class="processing-orders">
 						<a><strong>'.$pendientes.' Reservas</strong> Pendientes</a>
