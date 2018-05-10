@@ -58,6 +58,24 @@
 
             echo kmimos_style($styles = array("no_update"));
 
+            $permitidos = array(
+                367, // Kmimos
+                8604, // Rob
+                12795, // Rodriguez
+                14720, // Alfredo
+                8966, // Mariana
+                9726, // Roberto
+                10780,
+                8613,
+                14720,
+                12389,
+                12393
+            );
+
+            if( !in_array($current_user->ID, $permitidos)){
+                echo kmimos_style($styles = array("no_descargar"));
+            }
+
 	    }
 	}
 

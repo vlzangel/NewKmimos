@@ -3,7 +3,7 @@
 	function resumen_add_dashboard_widgets() {
 		wp_add_dashboard_widget(
 	                 'resumen_dashboard_widget',         // Widget slug.
-	                 'Resumen de Reservas',         // Title.
+	                 'Reservas en el Mes',         // Title.
 	                 'resumen_dashboard_widget_function' // Display function.
 	        );	
 	}
