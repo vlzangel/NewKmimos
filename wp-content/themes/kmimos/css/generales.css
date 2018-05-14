@@ -846,3 +846,20 @@ h2.msg_acciones {
     border-bottom: solid 1px #CCC;
     margin-bottom: 20px;
 }
+
+.bx-wrapper .bx-controls-direction a {
+    width: 0 !important;
+    height: 0 !important;
+    display: inline-block;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    background: transparent !important;
+}
+
+.bx-wrapper .bx-controls-direction a.bx-prev {
+    border-right: 25px solid #59c9a8;
+}
+
+.bx-wrapper .bx-controls-direction a.bx-next {
+    border-left: 25px solid #59c9a8;
+}

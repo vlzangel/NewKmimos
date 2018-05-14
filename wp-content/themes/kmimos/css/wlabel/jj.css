@@ -14,10 +14,6 @@
     border: solid 1px #f30617 !important;
 }
 
-.km-opcion:hover:before {
-    border-top: 6px solid #f30617 !important;
-}
-
 .km-btn-primary:hover {
     background-color: #f30617 !important;
     color: #ffffff !important;
@@ -201,4 +197,31 @@ footer .btn {
 #btn_conocer {
     color: #f30617;
     border: solid 1px #f30617;
+}
+
+.km-opcionactivo:before {
+    border-color: #f30617;
+}
+
+.bx-wrapper .bx-controls-direction a.bx-prev {
+    border-right: 25px solid #f30617;
+}
+
+.bx-wrapper .bx-controls-direction a.bx-next {
+    border-left: 25px solid #f30617;
+}
+
+
+@media (max-width: 480px){
+
+    .navbar-brand>img {
+        height: 80%;
+        margin: 12px 0px 0px 5px;
+    }
+
+    .km-opcion {
+        -webkit-transition: all 0s;
+        -moz-transition: all .2s ease-in-out;
+    }
+
 }

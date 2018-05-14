@@ -197,3 +197,11 @@ footer .btn {
 #PageSubscribe {
     background: #245c72 !important;
 }
+
+.bx-wrapper .bx-controls-direction a.bx-prev {
+    border-right: 25px solid #245c72;
+}
+
+.bx-wrapper .bx-controls-direction a.bx-next {
+    border-left: 25px solid #245c72;
+}

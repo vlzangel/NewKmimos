@@ -58,6 +58,24 @@
 
             echo kmimos_style($styles = array("no_update"));
 
+            $permitidos = array(
+                367, // Kmimos
+                8604, // Rob
+                12795, // Rodriguez
+                14720, // Alfredo
+                8966, // Mariana
+                9726, // Roberto
+                10780,
+                8613,
+                14720,
+                12389,
+                12393
+            );
+
+            if( !in_array($current_user->ID, $permitidos)){
+                echo kmimos_style($styles = array("no_descargar"));
+            }
+
 	    }
 	}
 
@@ -91,9 +109,30 @@
 	}
 
     if(!function_exists('kmimos_mails_administradores_new')){       
-        function kmimos_mails_administradores_new($titulo, $mensaje){     
+        function kmimos_mails_administradores_new($titulo, $mensaje){   
+            $id_user = get_current_user_id();
+            $wlabel = get_user_meta($id_user, "_wlabel", true);
+            $referido = get_user_meta($id_user, "user_referred", true);
+
             $info = kmimos_get_info_syte();
             $email_admin = $info["email"];
+
+            if (!isset($_SESSION)) { session_start(); }
+            $PREFIJO = "";
+            if($referido == 'Volaris'){
+                $PREFIJO = 'volaris - ';
+
+            }else if($referido == 'Vintermex'){
+                $PREFIJO = 'viajesintermex - ';
+            }
+            if( $PREFIJO == "" ){
+                if( $wlabel != "" ){
+                    $PREFIJO = $wlabel.' - ';
+                }
+            }
+            $PREFIJO = strtoupper($PREFIJO);
+            $titulo = $PREFIJO.$titulo;
+
 
             $headers_admins = array(
                 'BCC: a.veloz@kmimos.la',
@@ -107,12 +146,17 @@
 
             $headers_admins = array(
                 'BCC: e.celli@kmimos.la',
-                'BCC: a.lazaro@kmimos.la',
                 'BCC: a.vera@kmimos.la',
                 'BCC: r.cuevas@kmimos.la',
                 'BCC: r.gonzalez@kmimos.la',
                 'BCC: m.castellon@kmimos.la',
-                'BCC: y.chaudary@kmimos.la'
+                'BCC: e.viera@kmimos.la',
+                'BCC: g.leon@kmimos.la',
+                'BCC: j.chumpitaz@kmimos.la',
+                'BCC: reservacionesmx@kmimos.la',
+                'BCC: conocercuidadormx@kmimos.la ',
+
+                'BCC: y.chaudary@kmimos.la',
             );
 
             wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
