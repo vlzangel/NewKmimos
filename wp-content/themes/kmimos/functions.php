@@ -342,6 +342,8 @@
 
 	
 	include(__DIR__."/admin/generales/funciones.php");
+	include(dirname(dirname(dirname(__DIR__)))."/monitor/conf/menu.php");
+
 
 
 ?>
