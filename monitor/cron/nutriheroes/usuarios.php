@@ -29,40 +29,29 @@
 				$meta_usuario = getMetaUsuario( $usuario['ID'] );
 
 			# sexo
-				$meta_usuario['user_gender'] = ( isset($meta_usuario['user_gender']) ) ? $meta_usuario['user_gender'] : '' ;
-				switch (strtolower($meta_usuario['user_gender'])) {
-					case 'mujer':
-						$meta_usuario['user_gender'] = "F";
-						break;
-					case 'hombre':
-						$meta_usuario['user_gender'] = "M";
-						break;
-					default:
-						$meta_usuario['user_gender'] = "O";
-						break;
-				}
+				$meta_usuario['sexo'] = ( isset($meta_usuario['sexo']) ) ? strtoupper($meta_usuario['sexo']) : 'O' ;
 
 			# referencia: "Donde nos conocio?"
-				$meta_usuario['user_referred'] = ( !empty($meta_usuario['user_referred']) )? $meta_usuario['user_referred'] : 'Otros' ;
+				$meta_usuario['dondo_conociste'] = ( !empty($meta_usuario['dondo_conociste']) )? $meta_usuario['dondo_conociste'] : 'Otros' ;
   			
-  			# tipo de usuario
-				$tipo = ($usuario['cuidador_id']>0)?'CU':'CL';
-
 			# edad
-				if( !isset($meta_usuario['user_age']) || $meta_usuario['user_age'] == "" ){
-	  				$meta_usuario['user_age'] = "25-35 A&ntilde;os";
+				if( !isset($meta_usuario['edad']) || $meta_usuario['edad'] == "" ){
+	  				$meta_usuario['edad'] = "25-35 A&ntilde;os";
 	  			}else{
-	  				$meta_usuario['user_age'] .= " A&ntilde;os";
+	  				$meta_usuario['edad'] .= " A&ntilde;os";
 	  			}
+
+	  		# Tipo de usuario
+	  			$tipo = 'CL';
 
 		/* ******************************************* */
   		// Agregar datos 
   		/* ******************************************* */
 	  		
-	  		$data[$tipo][$email]["referred"] = $meta_usuario['user_referred'];  // Donde nos conocio?
-  			$data[$tipo][$email]["sexo"] = $meta_usuario['user_gender'];		// M: Masculino, F: Femenino, O: Otros
+	  		$data[$tipo][$email]["referred"] = $meta_usuario['dondo_conociste'];  // Donde nos conocio?
+  			$data[$tipo][$email]["sexo"] = $meta_usuario['sexo'];		// M: Masculino, F: Femenino, O: Otros
   			$data[$tipo][$email]['tipo'] = $tipo;  // CU: Cuidador, CL: Cliente
-  			$data[$tipo][$email]['edad'] = $meta_usuario['user_age'];
+  			$data[$tipo][$email]['edad'] = $meta_usuario['edad'];
 
 	}
 

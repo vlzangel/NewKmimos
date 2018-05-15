@@ -1,22 +1,17 @@
 <?php
+require_once( dirname(dirname(__DIR__)).'/vlz_config.php' );
 
 class db {
 
 	protected $cnn;
 
-	protected $host = 'localhost';
-	protected $username = 'root';
-	protected $password = '';
-	protected $dbname = 'kmimos_monitor';
-	protected $port = '3306';
-
 	public function __construct(){
+		global $host, $pass, $user, $db;
 		$mysqli = new \mysqli(
-			$this->host,
-			$this->username,
-			$this->password,
-			$this->dbname,
-			$this->port
+			$host,
+			$user,
+			$pass,
+			$db
 		);
 		mysqli_query($mysqli, "SET NAMES 'utf8'");
 		if(mysqli_connect_errno()){
@@ -29,7 +24,7 @@ class db {
 	// --------------------------------------
 	// Execute Query
 	// --------------------------------------
-	private function query($query=""){
+	public function query($query=""){
 
 		$result = null;
 		if(!empty($query)){
@@ -66,12 +61,10 @@ class db {
 	}
 
 	public function delete($query=""){
-
 		return self::query( $query );
 	}
 
 	public function update($query=""){
-
 		return self::query( $query );
 	}
 

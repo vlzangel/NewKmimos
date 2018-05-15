@@ -1,6 +1,6 @@
 <?php
 
-require_once (dirname(__DIR__)."../conf/database.php");
+require_once (dirname(dirname(dirname(__DIR__)))."/conf/database.php");
 
 class clientes extends db{
 

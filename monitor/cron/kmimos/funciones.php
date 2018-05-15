@@ -1,19 +1,16 @@
 <?php
 
-require_once ( dirname(dirname(dirname(__DIR__))).'/vlz_config.php' );
+require_once ( dirname(dirname(__DIR__)).'/conf/database.php' );
 
 function get_fetch_assoc($sql){
-	global $host, $user, $pass, $db;
- 
-	$cnn = new mysqli($host, $user, $pass, $db);
+	$db = new db();
+	$rows = $db->query($sql);
+	
 	$data = ['info'=>[], 'rows'=>[]];
-	if($cnn){
-		$rows = $cnn->query( $sql );
-		if(isset($rows->num_rows)){
-			if( $rows->num_rows > 0){
-				$data['info'] = $rows;
-				$data['rows'] = mysqli_fetch_all( $rows,MYSQLI_ASSOC);
-			}
+	if(isset($rows->num_rows)){
+		if( $rows->num_rows > 0){
+			$data['info'] = $rows;
+			$data['rows'] = mysqli_fetch_all( $rows,MYSQLI_ASSOC);
 		}
 	}
 	return $data;
@@ -31,7 +28,7 @@ function save( $tipo, $fecha, $param ){
 		$id = $data['rows'][0]['id'];
 	}
 	switch ($tipo) {
-		case 'reserva':
+		case 'ventas':
 			if( $id > 0 ){
 				$sql = "update monitor_diario set reserva = '{$param}' where id = {$id}";	
 			}else{

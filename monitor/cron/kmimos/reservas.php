@@ -18,7 +18,7 @@
 			"total" => 0,	// multiplicar por numero de mascotas
 			"numero" => 0,  // sin incluir numero de mascotas
 		],
-		"reservas" => [
+		"ventas" => [
 			"cant" => 0,
 			"tipo" => [
 				"flash" => 0,
@@ -93,17 +93,17 @@
 	  			$data['noches']['total'] += ( $nro_noches * $reserva['nro_mascotas'] ); // incluir numero de mascotas
 
 	  		// agregar contador de reservas
-	  			$data['reservas']['cant'] += 1;
+	  			$data['ventas']['cant'] += 1;
 
 			// agregar tipo de reserva
-				$data["reservas"]['tipo']['flash'] += ( $meta_reserva['_booking_flash'] == "SI" )? 1 : 0 ;
-				$data["reservas"]['tipo']['normal'] += ( $meta_reserva['_booking_flash'] != "SI" )? 1 : 0 ;
+				$data["ventas"]['tipo']['flash'] += ( $meta_reserva['_booking_flash'] == "SI" )? 1 : 0 ;
+				$data["ventas"]['tipo']['normal'] += ( $meta_reserva['_booking_flash'] != "SI" )? 1 : 0 ;
 
 			// agregar estatus de la reserva
-				if( isset($data["reservas"]['estatus'][$estatus]) ){
-					$data["reservas"]['estatus'][$estatus] += 1;
+				if( isset($data["ventas"]['estatus'][$estatus]) ){
+					$data["ventas"]['estatus'][$estatus] += 1;
 				}else{
-					$data["reservas"]['estatus'][$estatus] = 1;
+					$data["ventas"]['estatus'][$estatus] = 1;
 				}
 
 			// agregar forma de pago
@@ -113,26 +113,26 @@
 				$f_pago = str_replace('__', '_', $f_pago);
 
 
-				if( isset($data["reservas"]['forma_pago'][$f_pago]) ){
-					$data["reservas"]['forma_pago'][$f_pago] += 1;
+				if( isset($data["ventas"]['forma_pago'][$f_pago]) ){
+					$data["ventas"]['forma_pago'][$f_pago] += 1;
 				}else{
-					$data["reservas"]['forma_pago'][$f_pago] = 1;
+					$data["ventas"]['forma_pago'][$f_pago] = 1;
 				}
 
 			// agregar forma de pago
 				$t_pago = str_replace(' ', '_', $t_pago);
 
-				if( isset($data["reservas"]['tipo_pago'][$t_pago]) ){
-					$data["reservas"]['tipo_pago'][$t_pago] += 1;
+				if( isset($data["ventas"]['tipo_pago'][$t_pago]) ){
+					$data["ventas"]['tipo_pago'][$t_pago] += 1;
 				}else{
-					$data["reservas"]['tipo_pago'][$t_pago] = 1;
+					$data["ventas"]['tipo_pago'][$t_pago] = 1;
 				}
 
 			// agregar costos de reserva por estatus
-				if( isset($data["reservas"]['costo'][$estatus]) ){
-					$data["reservas"]['costo'][$estatus] += $meta_reserva['_booking_cost'];
+				if( isset($data["ventas"]['costo'][$estatus]) ){
+					$data["ventas"]['costo'][$estatus] += $meta_reserva['_booking_cost'];
 				}else{
-					$data["reservas"]['costo'][$estatus] = $meta_reserva['_booking_cost'];
+					$data["ventas"]['costo'][$estatus] = $meta_reserva['_booking_cost'];
 				}
 
 	}
@@ -140,12 +140,11 @@
 	/* ******************************************* */
 	// Guardar Datos 
 	/* ******************************************* */
-echo '<pre>';
+	echo '<pre>';
 		//print_r(['reserva', $hoy, $data]);
-		if( $data['reservas']['cant'] > 0 ){
-			$d = save( 'reserva', $hoy, $data );
+		if( $data['ventas']['cant'] > 0 ){
+			$d = save( 'ventas', $hoy, $data );
 			print_r($data);
 		}
-echo '</pre>';
-
-// Recompra es un servicio por separado
+	echo '</pre>';
+ 
