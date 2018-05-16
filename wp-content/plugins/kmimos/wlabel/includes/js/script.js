@@ -88,6 +88,21 @@ function WhiteLabel_panel_menu(element){
     });
 }
 
+// AJAX
+
+function getPaginacion(PAGE){
+    var path=jQuery('.section .menu').data('url');
+    jQuery.get(
+        path+'content/modules/clientes.php',
+        {
+            page: PAGE
+        }, 
+        function(data){
+            jQuery('.section .modules').html(data);
+        }
+    );
+}
+
 
 //MODULES
 jQuery(document).on('change click','.filter select, .filter input',function(e){
