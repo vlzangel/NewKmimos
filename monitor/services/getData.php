@@ -1,17 +1,16 @@
-
 <?php
 
 	require_once('../conf/database.php');
 	$db = new db();
 
 	$desde = date('Y-m-d');
-	if( isset($_GET['d']) && !empty($_GET['d']) ){
-		$desde = $_GET['d'];
+	if( isset($_POST['d']) && !empty($_POST['d']) ){
+		$desde = $_POST['d'];
 	}
 
 	$hasta = $desde;
-	if( isset($_GET['h']) && !empty($_GET['h']) ){
-		$hasta = $_GET['h'];
+	if( isset($_POST['h']) && !empty($_POST['h']) ){
+		$hasta = $_POST['h'];
 	}
 
 	// Buscar datos del Registro Diario

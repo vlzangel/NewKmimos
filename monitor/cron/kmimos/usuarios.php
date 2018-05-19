@@ -7,6 +7,10 @@
 		$hoy = $_GET['d'];
 	}
 
+
+	$total_clientes = getTotalClientes( '2000-01-01', $hoy );
+echo $total_clientes;
+
 	$usuarios = getUsuarios( $hoy, $hoy );
 
 	/* ************************************* */

@@ -50,7 +50,24 @@ function save( $tipo, $fecha, $param ){
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
+function getTotalClientes($desde="", $hasta=""){
+	$sql = "
+		SELECT 
+			count(u.ID) as cant
+		FROM wp_users as u
+			LEFT JOIN cuidadores as c ON c.user_id = u.ID
+		WHERE c.id is null 
+			AND ( u.user_registered >= '{$desde} 00:00:00' 
+				and  u.user_registered  <= '{$hasta} 23:59:59' )
+	";
 
+	$result = get_fetch_assoc($sql);
+	if( isset($result['rows'][0]['cant']) ){
+		return $result['rows'][0]['cant'];
+	}else{
+		return 0;
+	}
+}
 function getUsuarios($desde="", $hasta=""){
 	$sql = "
 		SELECT 

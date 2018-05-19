@@ -1,17 +1,27 @@
 <?php
-	echo "
-		<script type'text/javascript'> var TEMA = '".getTema()."'; </script>
+$ruta = get_home_url()."/panel/assets/";
+echo "
+	<script type'text/javascript'> var TEMA = '".getTema()."'; </script>
+	<script type'text/javascript'> var HOME = '".get_home_url()."'; </script>
 
-		<script src='".getTema()."/admin/recursos/js/jquery-1.12.4.min.js'></script>
-		<script src='".getTema()."/admin/recursos/js/jquery.dataTables.min.js'></script>
-		<script src='".getTema()."/admin/recursos/js/dataTables.bootstrap4.min.js'></script>
-		<script src='".getTema()."/admin/recursos/js/dataTables.buttons.min.js'></script>
-		<script src='".getTema()."/admin/recursos/js/dataTables.fixedColumns.min.js'></script>
-		<script src='".getTema()."/admin/recursos/js/buttons.flash.min.js'></script>
-		<script src='".getTema()."/admin/recursos/js/jszip.min.js'></script>
+	<link rel='stylesheet' type='text/css' href='{$ruta}vendor/bootstrap/dist/css/bootstrap.css' >
+	<link rel='stylesheet' type='text/css' href='{$ruta}vendor/font-awesome/css/font-awesome.min.css' >
+	<link rel='stylesheet' type='text/css' href='{$ruta}vendor/datatables.net-bs/css/dataTables.bootstrap.min.css' >
+	<link rel='stylesheet' type='text/css' href='{$ruta}vendor/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' >
+	<link rel='stylesheet' type='text/css' href='{$ruta}vendor/datatables.net-responsive-bs/css/responsive.bootstrap.min.css' >
+	<link rel='stylesheet' type='text/css' href='{$ruta}vendor/datatables.net-scroller-bs/css/scroller.bootstrap.min.css' >
 
-		<link rel='stylesheet' type='text/css' href='".getTema()."/admin/recursos/css/bootstrap.css'>
-		<link rel='stylesheet' type='text/css' href='".getTema()."/admin/recursos/css/dataTables.bootstrap4.min.css'>
-		<link rel='stylesheet' type='text/css' href='".getTema()."/admin/recursos/css/buttons.dataTables.min.css'>
-		<link rel='stylesheet' type='text/css' href='".getTema()."/admin/recursos/css/index.css'>
+	<script type='text/javascript' charset='utf8' src='{$ruta}vendor/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type='text/javascript' charset='utf8' src='{$ruta}js/jszip.min.js'></script>
+	<script type='text/javascript' charset='utf8' src='{$ruta}vendor/datatables.net/js/jquery.dataTables.js'></script>
+	<script type='text/javascript' charset='utf8' src='{$ruta}vendor/datatables.net-bs/js/dataTables.bootstrap.min.js'></script>
+	<script type='text/javascript' charset='utf8' src='{$ruta}vendor/datatables.net-buttons/js/dataTables.buttons.min.js'></script>
+	<script type='text/javascript' charset='utf8' src='{$ruta}vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js'></script>
+	<script type='text/javascript' charset='utf8' src='{$ruta}vendor/datatables.net-buttons/js/buttons.flash.min.js'></script>
+	<script type='text/javascript' charset='utf8' src='{$ruta}vendor/datatables.net-buttons/js/buttons.html5.min.js'></script>
+	<script type='text/javascript' charset='utf8' src='{$ruta}vendor/datatables.net-buttons/js/buttons.print.min.js'></script>
+	<script type='text/javascript' charset='utf8' src='{$ruta}vendor/datatables.net-scroller/js/dataTables.scroller.min.js'></script>
+
+	 
+	<script type='text/javascript' charset='utf8' src='".get_home_url()."/monitor/recursos/js/global.js'></script>
 	";

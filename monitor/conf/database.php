@@ -24,13 +24,15 @@ class db {
 	// --------------------------------------
 	// Execute Query
 	// --------------------------------------
-	public function query($query=""){
+	public function query($query="", $insert_id=false){
 
 		$result = null;
 		if(!empty($query)){
 			$result = $this->cnn->query( $query );
 		}
-		return $result;
+		$id = ($insert_id)? $this->cnn->insert_id : 0 ;
+		mysqli_close($this->cnn);
+		return ($insert_id)? $id : $result ;
 	}
 
 	public function escape( $str ){

@@ -1,11 +1,14 @@
 <?php
-
+ 
 	require_once('funciones.php');
 
 	$hoy = date('Y-m-d');
 	if( isset($_GET['d']) && !empty($_GET['d']) ){
 		$hoy = $_GET['d'];
 	}
+
+	// total de clientes
+	$total_clientes = getTotalClientes( '2000-01-01', $hoy );
 
 	$reservas = getReservas( $hoy, $hoy );
 
@@ -14,6 +17,9 @@
 	/* ************************************* */
 	$data =[
 		"mascotas_total" => 0,
+		"clientes" => [
+			'total' => $total_clientes,
+		],
 		"noches" => [
 			"total" => 0,	// multiplicar por numero de mascotas
 			"numero" => 0,  // sin incluir numero de mascotas
@@ -135,7 +141,13 @@
 					$data["ventas"]['costo'][$estatus] = $meta_reserva['_booking_cost'];
 				}
 
+				// sumar total de ingresos
+				if( $estatus == 'confirmada' ){
+					$data["ventas"]['costo']['total'] += $meta_reserva['_booking_cost'];
+				}
+
 	}
+
 
 	/* ******************************************* */
 	// Guardar Datos 
