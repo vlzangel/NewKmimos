@@ -54,12 +54,14 @@ require_once( dirname(dirname(__DIR__)).'/class/procesar.php' );
 		if( $sts == 1 ){
 
 			// Datos
-			// $datos = $c->getData( $desde, $hasta);
 			try{
+/*
 				$datos = $c->request( 
 					$plataforma['dominio']."/monitor/services/getData.php", 
 					['desde'=>$desde, 'hasta'=>$hasta] 
 				);
+*/
+				$datos = $c->getData( $desde, $hasta);
 				// Analizar datos
 				if( !empty($datos) ){
 					$data_sucursal = $c->porSucursal( $datos, $desde, $hasta );
@@ -81,6 +83,19 @@ require_once( dirname(dirname(__DIR__)).'/class/procesar.php' );
 		}
 	}
 
+	if( isset($datos_by_sucursal['activo']) ){
+		foreach ($datos_by_sucursal['activo'] as $_plataforma => $_datos_procesados) {
+			if( isset($datos_by_sucursal['procesados']) ){
+				$datos_by_sucursal['procesados'] = $c->merge_data_sucursales( 
+					$datos_by_sucursal['procesados'], 
+					$_datos_procesados['data'] 
+				);
+			}else{
+				$datos_by_sucursal['procesados'] = $_datos_procesados['data'];
+			}
+		}
+	}
+
 	// Meses en letras
 	$meses = $c->getMeses();
 
@@ -89,9 +104,10 @@ require_once( dirname(dirname(__DIR__)).'/class/procesar.php' );
 // Construir datos para la table y graficos
 // ******************************************
 
-if( !empty($data) ){
+if( !empty($datos_by_sucursal['procesados']) ){
 
 	$error = 0;
+	$data = $datos_by_sucursal['procesados'];
 
 	// Rows: orden y descripcion de la tabla
 	$tbl_body['noches_reservadas'] = "1, '<strong># Noches reservadas</strong>'";

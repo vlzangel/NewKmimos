@@ -60,6 +60,10 @@ class procesar extends db{
 		return (isset($request->body))? $request->body : '' ;
 	}
 
+	public function merge_data_sucursales( $result, $data ){
+		return $result;
+	}
+
 	public function merge_datos( $items ){
 		$ventas = [];
 		$usuarios = [];
