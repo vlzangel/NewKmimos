@@ -4,6 +4,22 @@
 
 <?php include_once('ajax/ventas.php'); ?>
 
+<?php
+    $grupo = [];
+    $por_sucursal = '';
+    $por_grupo = '';
+    foreach ($plataformas as $plataforma) {
+                        
+        $por_sucursal .= '<li><a href="javascript:;" data-label="'.$plataforma['descripcion'].'" data-action="byname.'.$plataforma['name'].'">'.$plataforma['descripcion'].'</a></li>';
+
+        if( !in_array($plataforma['grupo'] , $grupo) ) {
+            $por_grupo .= '<li><a href="javascript:;" data-label="'.$plataforma['grupo'].'" data-action="bygroup.'.$plataforma['grupo'].'">'.ucfirst($plataforma['grupo']).'</a></li>';
+            $grupo[] = $plataforma['grupo'];
+        }
+
+    }
+?>
+
 <div class="col-sm-12">
     
     <div class="row" style="padding:15px 0px 0px 0px;">
@@ -19,7 +35,9 @@
             </button>
             <div class="btn-group pull-right">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-database" aria-hidden="true"></i> Mostrar Datos: <strong id="tipo_datos" >Global</strong>  <span class="caret"></span>
+                <i class="fa fa-database" aria-hidden="true"></i> 
+                Mostrar Datos: <strong id="tipo_datos" ><?php echo ucfirst( $sucursal ); ?></strong>  
+                <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
 
@@ -27,25 +45,21 @@
                     <small>
                         <strong>Datos Globales</strong>
                     </small></li>
-                <li><a href="javascript:;" data-action="Global">Global</a></li>
+                <li><a href="javascript:;" data-action="global" data-label="Global" >Global</a></li>
 
                 <li role="separator" class="divider"></li>
                 <li role="separator" class="disabled dropdown-title">
                     <small>
                         <strong>Por producto</strong>
                     </small></li>
-                <li><a href="javascript:;" data-action="Kmimos">Kmimos</a></li>
-                <li><a href="javascript:;" data-action="Nutriheroes">Nutriheroes</a></li>
+                    <?php echo $por_grupo; ?>
 
                 <li role="separator" class="divider"></li>
                 <li role="separator" class="disabled dropdown-title">
                     <small>
                         <strong>Por Sucursal</strong>
                     </small></li>
-                <li><a href="javascript:;" data-action="Kmimos_mx">Kmimos MX</a></li>
-                <li><a href="javascript:;" data-action="Kmimos_co">Kmimos CO</a></li>
-                <li><a href="javascript:;" data-action="Kmimos_pe">Kmimos PE</a></li>
-                <li><a href="javascript:;" data-action="Nutriheroes_mx">Nutriheroes MX</a></li>
+                    <?php echo $por_sucursal; ?>
               </ul>
             </div>
         </div>
@@ -66,18 +80,26 @@
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
             </form>
         </div>
-        <div id="grafico-container" class="col-md-12">
-            <div id="chartdiv"></div>
-        </div>
-        <div id="tabla-container" class="col-md-12">
-            <table id="example" class="table table-striped table-bordered dt-responsive table-hover table-responsive nowrap datatable-buttons" cellspacing="0" width="100%">
-                <thead>
-                    <tr data-header="in">
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+
+        <?php if( $error == 0 ) { ?>
+            <div id="grafico-container" class="col-md-12">
+                <div id="chartdiv"></div>
+            </div>
+            <div id="tabla-container" class="col-md-12">
+                <table id="example" class="table table-striped table-bordered dt-responsive table-hover table-responsive nowrap datatable-buttons" cellspacing="0" width="100%">
+                    <thead>
+                        <tr data-header="in">
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        <?php }else{ ?>
+            <div class="col-sm-12">
+                <div class="alert alert-info text-center">No existen datos para mostrar</div>
+            </div>
+        <?php } ?>
+
     </div>
 
     <div class="clear"></div>    

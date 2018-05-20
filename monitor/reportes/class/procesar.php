@@ -5,8 +5,9 @@ require_once (dirname(dirname(__DIR__))."/conf/database.php");
 
 class procesar extends db{
 
-	public function get_config( $id ){
-		return $this->select("select * from configuracion where id = {$id}");
+	public function get_plataforma( $where='' ){
+		$where = ( !empty($where) )? ' AND '.$where : '' ;
+		return $this->select("select * from monitor_plataforma where estatus = 1 {$where}");
 	}
 
 	public function getMeses(){
@@ -16,7 +17,7 @@ class procesar extends db{
 
 	//getData Old 
 	public function getData( $desde, $hasta ){
-				// Buscar datos del Registro Diario
+
 		$sql = "
 			SELECT fecha, cliente, reserva 
 			FROM monitor_diario
@@ -24,21 +25,24 @@ class procesar extends db{
 		";
 
 		$resultado = $this->select( $sql );
- 
+
 		$data = [];
 		if( !empty($resultado)){	
 			foreach ($resultado as $registro) {
-				$fecha = str_replace('-', '', $registro['fecha']);
-				$data[ $fecha ] = $registro;		
+				if( isset($registro['fecha']) ){	
+					$fecha = str_replace('-', '', $registro['fecha']);
+					$data[ $fecha ] = $registro;
+				}
 			}
 		}
 
 		return $data;
 	} 	
 
-	/*public function getData( $plataformas = [], $desde, $hasta ){
-
-	}*/
+	/*
+	public function getData( $plataformas = [], $desde, $hasta ){
+	}
+	*/
 
 	// -- Enviar solicitud
 	public function request( $url, $data ){
@@ -54,7 +58,6 @@ class procesar extends db{
 		$request = Requests::post($url, $headers,  $data );
 
 		return (isset($request->body))? $request->body : '' ;
-
 	}
 
 	public function merge_datos( $items ){
@@ -141,12 +144,13 @@ class procesar extends db{
 		return ['ventas'=>$ventas, 'usuarios'=>$usuarios];
 	}
 
-	public function ventasDatos( $datos, $desde, $hasta ){
+	public function porSucursal( $datos, $desde, $hasta ){
 
-		$datos_por_mes = $this->merge_datos( $datos ); 
+		$fecha_hoy = $desde;
+
+		$datos_por_mes = $this->merge_datos( $datos );
 
 		// crear body nivel 3
-			$fecha_hoy = $desde;
 			$data = [];
 			for ($i=0; $fecha_hoy <= $hasta; $i++) { 
 			

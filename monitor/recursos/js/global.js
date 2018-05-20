@@ -24,8 +24,9 @@ jQuery(document).ready(function() {
 
 	jQuery('[data-action]').on('click', function(){
 		console.log( jQuery(this).data('action') );
-		jQuery('#tipo_datos').html( jQuery(this).data('action') );
+		jQuery('#tipo_datos').html( jQuery(this).data('label') );
 		jQuery('[name="sucursal"]').val( jQuery(this).data('action') );
+		jQuery('#frm_buscar').submit();
 	});
 
 });

@@ -20,12 +20,66 @@ require_once( dirname(dirname(__DIR__)).'/class/procesar.php' );
 
 	$c = new procesar();
 
-	// Datos
-	$datos = $c->getData( $desde, $hasta);
-	//$recompra = $c->getRecompras( $desde, $hasta );
+	// Datos para mostrar
+	$data = [];
 
-	// Analizar datos
-	$data = $c->ventasDatos( $datos, $desde, $hasta );
+	// Plataformas
+	$plataformas = $c->get_plataforma();
+
+	// Cargar datos de la plataforma seleccionada
+	$sucursal = 'global';
+	$datos_by_sucursal = [];
+	$_action = explode('.', $_POST['sucursal']);
+
+
+	foreach ($plataformas as $plataforma) {
+		$sts = 0;
+		switch( $_action[0] ){
+			case 'bygroup':
+				if( $_action[1] == $plataforma['grupo'] ){
+					$sts = 1;
+					$sucursal = $plataforma['grupo'];
+				}
+				break;
+			case 'byname':
+				if( $_action[1] == $plataforma['name'] ){
+					$sts = 1;
+					$sucursal = $plataforma['descripcion'];
+				}
+				break;
+			default: // global
+				$sts = 1;
+				break;
+		}
+		if( $sts == 1 ){
+
+			// Datos
+			// $datos = $c->getData( $desde, $hasta);
+			try{
+				$datos = $c->request( 
+					$plataforma['dominio']."/monitor/services/getData.php", 
+					['desde'=>$desde, 'hasta'=>$hasta] 
+				);
+				// Analizar datos
+				if( !empty($datos) ){
+					$data_sucursal = $c->porSucursal( $datos, $desde, $hasta );
+				}
+			}catch(Exception $e){
+				$datos = [];
+				$data_sucursal = [];
+			}
+
+			if( !empty( $data_sucursal ) ){
+				$data = $data_sucursal;
+				$datos_by_sucursal['activo'][ $plataforma['name'] ] = [ 
+					'descripcion' => $plataforma['descripcion'],
+					'data' => $data_sucursal,
+				];
+			}else{
+				$datos_by_sucursal[ 'error' ][] = $plataforma['descripcion'];
+			}
+		}
+	}
 
 	// Meses en letras
 	$meses = $c->getMeses();
@@ -34,6 +88,10 @@ require_once( dirname(dirname(__DIR__)).'/class/procesar.php' );
 // ******************************************
 // Construir datos para la table y graficos
 // ******************************************
+
+if( !empty($data) ){
+
+	$error = 0;
 
 	// Rows: orden y descripcion de la tabla
 	$tbl_body['noches_reservadas'] = "1, '<strong># Noches reservadas</strong>'";
@@ -82,3 +140,7 @@ require_once( dirname(dirname(__DIR__)).'/class/procesar.php' );
 		$tbl_body['clientes_nuevos_vs_mes_anterior'] .= ",'".$data[$value]['clientes_nuevos_vs_mes_anterior']."'";
 
 	}
+
+}else{
+	$error = 1;
+}

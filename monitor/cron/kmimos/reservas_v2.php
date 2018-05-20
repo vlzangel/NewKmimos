@@ -159,3 +159,41 @@
 		$d = save( 'ventas', $hoy, $data );
 	}
 	 
+
+// ******************************************
+// Procesar datos 
+// ******************************************
+	require_once( dirname(dirname(__DIR__)).'/reportes/class/procesar.php' );
+
+	// $hoy = date('Y-m-d');
+
+	$desde = date('Y-m-01', strtotime($hoy));
+	if( isset($_POST['desde']) && !empty($_POST['desde']) ){
+		$desde = $_POST['desde'];
+	}
+
+	$hasta = $hoy;
+	if( isset($_POST['hasta']) && !empty($_POST['hasta']) ){
+		$hasta = $_POST['hasta'];
+	}
+
+	$c = new procesar();
+
+	// Datos
+	//$datos = json_encode($datos);
+	$datos = $c->getData( $desde, $hasta);
+	//$recompra = $c->getRecompras( $desde, $hasta );
+	echo '<pre>';
+
+
+	// Analizar datos
+	$data = $c->ventasDatos( $datos, $desde, $hasta );
+
+	// Meses en letras
+	$meses = $c->getMeses();
+
+
+/* ********************************* */
+// Print data de testing (save)
+/* ********************************* */
+	print_r($data);

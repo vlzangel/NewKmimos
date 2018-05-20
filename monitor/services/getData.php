@@ -1,7 +1,6 @@
 <?php
 
-	require_once('../conf/database.php');
-	$db = new db();
+	require_once('../reportes/class/procesar.php');
 
 	$desde = date('Y-m-d');
 	if( isset($_POST['d']) && !empty($_POST['d']) ){
@@ -13,19 +12,7 @@
 		$hasta = $_POST['h'];
 	}
 
-	// Buscar datos del Registro Diario
-	$sql = "
-		SELECT fecha, cliente, reserva 
-		FROM monitor_diario
-		WHERE fecha >= '{$desde}' AND fecha <= '{$hasta}'
-	";
+	$c = new procesar();
+	$data = $c->getData($desde, $hasta);
 	
-	$resultado = $db->select( $sql );
-
-	$data = [];
-	foreach ($resultado as $registro) {
-		$fecha = str_replace('-', '', $registro['fecha']);
-		$data[ $fecha ] = $registro;		
-	}
-
 	print_r( json_encode($data, JSON_UNESCAPED_UNICODE) );

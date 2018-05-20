@@ -31,7 +31,7 @@ class db {
 			$result = $this->cnn->query( $query );
 		}
 		$id = ($insert_id)? $this->cnn->insert_id : 0 ;
-		mysqli_close($this->cnn);
+		// mysqli_close($this->cnn);
 		return ($insert_id)? $id : $result ;
 	}
 
@@ -50,7 +50,7 @@ class db {
 			/* while ( $temp = $datos->fetch_assoc() ) { $result[] = (object) $temp; } */
 			$result = mysqli_fetch_all($datos, MYSQLI_ASSOC);
 			if( count($result) == 1 ){
-				$result = $result[0];
+				// $result = $result[0];
 			}
 		}
 
