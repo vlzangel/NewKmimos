@@ -17,4 +17,8 @@
 	if( !isset($recompras['info']->num_rows) ){
 		$recompras = [];
 	}
-	print_r(json_encode($recompras['rows']));	
+	
+	// print_r(json_encode($recompras['rows']));	
+
+echo '<pre>';
+print_r($recompras['rows']);	

@@ -221,7 +221,7 @@ function getRecompras( $desde="", $hasta="" ){
 	$sql = "
 		SELECT 
 			count(cant) as cant, 
-			CONCAT( MONTH(post_date_gmt),'/',YEAR(post_date_gmt)) as mes
+			DATE_FORMAT( post_date_gmt, '%Y-%m-01' ) as mes
 		FROM (SELECT 
 				count(ID) as cant,
 				post_author,
@@ -234,7 +234,7 @@ function getRecompras( $desde="", $hasta="" ){
 				AND post_date_gmt <= '{$hasta}'  
 			GROUP BY post_author ) as temp
 		WHERE temp.cant > 1
-		GROUP BY CONCAT( MONTH(post_date_gmt),'/',YEAR(post_date_gmt))
+		GROUP BY DATE_FORMAT( post_date_gmt, '%Y-%m-01' )
 	";
 
 	$result = get_fetch_assoc($sql);

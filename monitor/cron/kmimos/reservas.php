@@ -34,7 +34,9 @@
 			"estatus" => [],
 			"tipo_pago" => [],
 			"forma_pago" => [],
-			"costo" => [],
+			"costo" => [
+				'total' => 0
+			],
 		]
 	];
 
@@ -143,7 +145,7 @@
 				}
 
 				// sumar total de ingresos
-				if( $estatus == 'confirmada' ){
+				if( $estatus == 'confirmado' ){
 					$data["ventas"]['costo']['total'] += $meta_reserva['_booking_cost'];
 				}
 

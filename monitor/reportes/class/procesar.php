@@ -36,7 +36,13 @@ class procesar extends db{
 			}
 		}
 
-		return $data;
+
+		// solo dev
+		require_once(dirname(dirname(__DIR__)).'/cron/kmimos/funciones.php');
+		$recompras = getRecompras( $desde, $hasta );
+
+
+		return ['diario'=>$data, 'recompras'=>$recompras['rows']];
 	} 	
 
 	/*
@@ -61,6 +67,45 @@ class procesar extends db{
 	}
 
 	public function merge_data_sucursales( $result, $data ){
+
+		$item_result = array_keys($result);
+		$item_data = array_keys($data);
+		$temp = array_merge( $item_result, $item_data );
+
+		$items = array_unique( $temp );
+		foreach( $items as $fecha ){
+			if( !isset($result[ $fecha ]) && isset( $data[$fecha] )){
+				$result[ $fecha ] = $data[$fecha];
+			}else{
+				$result[$fecha]['noches_reservadas'] += $data[$fecha]['noches_reservadas'];
+				$result[$fecha]['eventos_de_compra'] += $data[$fecha]['eventos_de_compra'];
+				$result[$fecha]['total_ventas'] += $data[$fecha]['total_ventas'];
+
+				$result[$fecha]['noches_recompradas'] = ($result[$fecha]['noches_recompradas'] + $data[$fecha]['noches_recompradas'])/2; 
+				$result[$fecha]['total_perros_hospedados'] += $data[$fecha]['total_perros_hospedados'];
+				$result[$fecha]['clientes_nuevos'] += $data[$fecha]['clientes_nuevos'];
+				$result[$fecha]['clientes_wom'] = ( $result[$fecha]['clientes_wom'] + $data[$fecha]['clientes_wom'] ) / 2;
+				$result[$fecha]['numero_clientes_que_recompraron'] += $data[$fecha]['numero_clientes_que_recompraron']; 
+				$result[$fecha]['porcentaje_clientes_que_recompraron'] = ( $result[$fecha]['porcentaje_clientes_que_recompraron'] + $data[$fecha]['porcentaje_clientes_que_recompraron'] ) / 2; 
+				$result[$fecha]['clientes'] += $data[$fecha]['clientes']; 
+				$result[$fecha]['numero_clientes_vs_mes_anterior'] = ($result[$fecha]['numero_clientes_vs_mes_anterior'] + $data[$fecha]['numero_clientes_vs_mes_anterior'])/2; 
+				$result[$fecha]['clientes_nuevos_vs_mes_anterior'] = ($result[$fecha]['clientes_nuevos_vs_mes_anterior'] + $data[$fecha]['clientes_nuevos_vs_mes_anterior']) / 2; 
+
+			}
+
+			$result[$fecha]['precio_por_noche_pagada_promedio'] = 0;
+			if($result[$fecha]['noches_reservadas']>0){
+				$result[$fecha]['precio_por_noche_pagada_promedio'] = $result[$fecha]['total_ventas']/$result[$fecha]['noches_reservadas']; 
+			}
+
+			$result[$fecha]['noches_promedio'] = 0;
+			if( $result[$fecha]['eventos_de_compra'] > 0 ){
+				$result[$fecha]['noches_promedio'] = $result[$fecha]['noches_reservadas']/$result[$fecha]['eventos_de_compra'];
+			}
+			
+
+		}
+
 		return $result;
 	}
 
@@ -133,6 +178,9 @@ class procesar extends db{
 					}
 				}
 
+				// ['ventas']['costo']['total'] # Solo reservas confirmadas
+				$ventas[ $mes.$anio ]['ventas']['costo']['total'] += $item['ventas']['costo']['total'];
+
 			// Usuarios
 				$item2 = json_decode($row['cliente'], true);
 				foreach($item2 as $key => $val){
@@ -148,9 +196,22 @@ class procesar extends db{
 		return ['ventas'=>$ventas, 'usuarios'=>$usuarios];
 	}
 
-	public function porSucursal( $datos, $desde, $hasta ){
+	public function procesarRecompras( $data ){
+		$recompra = (isset($data['recompras']))? $data['recompras'] : [];
+		$result = [];
+		foreach ($recompra as $item ){
+			$fecha  = date('mY', strtotime($item['mes']));
+			$result[ $fecha ] = $item['cant'];
+		}
+		return $result;
+	}
+
+	public function porSucursal( $all_data, $desde, $hasta ){
 
 		$fecha_hoy = $desde;
+
+		$datos = (isset($all_data['diario']))? $all_data['diario'] : [];
+		$recompras = $this->procesarRecompras( $all_data );
 
 		$datos_por_mes = $this->merge_datos( $datos );
 
@@ -193,21 +254,27 @@ class procesar extends db{
 					}
 				}
 
+				$num_clientes_recompras = 0;
+				if( isset($recompras[ $mes.$anio ]) ){
+					$num_clientes_recompras = $recompras[ $mes.$anio ];
+				}
+
 				// Data por defecto
 				$data[ $mes.$anio ] = [
 					'noches_reservadas' => 0,
 					'noches_promedio' => 0,
-					'noches_recompradas' => "0%",
+					'noches_recompradas' => "0",
 					'total_perros_hospedados' => 0,
 					'eventos_de_compra' => 0,
 					'clientes_nuevos' => 0,
-					'clientes_wom' => "0%",
-					'numero_clientes_que_recompraron' => 0,
-					'porcentaje_clientes_que_recompraron' => "0%",
+					'clientes_wom' => "0",
+					'numero_clientes_que_recompraron' => $num_clientes_recompras,
+					'porcentaje_clientes_que_recompraron' => "0",
 					'precio_por_noche_pagada_promedio' => 0,
 					'clientes' => 0,
-					'numero_clientes_vs_mes_anterior' => $numero_clientes_vs_mes_anterior . '%',
-					'clientes_nuevos_vs_mes_anterior' => $clientes_nuevos_vs_mes_anterior . '%',
+					'numero_clientes_vs_mes_anterior' => $numero_clientes_vs_mes_anterior ,
+					'clientes_nuevos_vs_mes_anterior' => $clientes_nuevos_vs_mes_anterior ,
+					'total_ventas' => 0,
 				];
 
 				// Cargar datos de registros
@@ -215,19 +282,22 @@ class procesar extends db{
 					$data[ $mes.$anio ] = [
 						'date' => $mes.substr($anio, 1, 2),
 						'noches_reservadas' => $_ventas['noches']['total'],
-						'noches_promedio' => number_format(($_ventas['noches']['total'] / $_ventas['clientes']['total']), 3, ',', '.'),
-						'noches_recompradas' => "0%",
+						'noches_promedio' => number_format(($_ventas['noches']['total'] / $_ventas['ventas']['cant']), 3, '.', ''),
+						'noches_recompradas' => "0",
 						'total_perros_hospedados' => $_ventas['mascotas_total'],
 						'eventos_de_compra' => $_ventas['ventas']['cant'],
 						'clientes_nuevos' => count($_usuarios['CL']),
-						'clientes_wom' => $clientes_wom."%",
-						'numero_clientes_que_recompraron' => 0,
-						'porcentaje_clientes_que_recompraron' => "0%",
+						'clientes_wom' => $clientes_wom,
+						'numero_clientes_que_recompraron' => $num_clientes_recompras,
+						'porcentaje_clientes_que_recompraron' => $num_clientes_recompras/$_ventas['ventas']['cant'],
 						'precio_por_noche_pagada_promedio' =>  ($_ventas['ventas']['costo']['total']/$_ventas['noches']['total']),
 						'clientes' => $_ventas['clientes']['total'],
-						'numero_clientes_vs_mes_anterior' => $numero_clientes_vs_mes_anterior . '%',
-						'clientes_nuevos_vs_mes_anterior' => $clientes_nuevos_vs_mes_anterior . '%',
+						'numero_clientes_vs_mes_anterior' => $numero_clientes_vs_mes_anterior ,
+						'clientes_nuevos_vs_mes_anterior' => $clientes_nuevos_vs_mes_anterior ,
+						'total_ventas' => $_ventas['ventas']['costo']['total'],
 					];			
+//echo $_ventas['ventas']['costo']['total'].'<br>';
+
 				}
 
 				// Calcular dia siguiente

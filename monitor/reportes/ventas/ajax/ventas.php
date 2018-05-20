@@ -63,9 +63,12 @@ require_once( dirname(dirname(__DIR__)).'/class/procesar.php' );
 */
 				$datos = $c->getData( $desde, $hasta);
 				// Analizar datos
+
 				if( !empty($datos) ){
 					$data_sucursal = $c->porSucursal( $datos, $desde, $hasta );
 				}
+
+
 			}catch(Exception $e){
 				$datos = [];
 				$data_sucursal = [];
@@ -141,19 +144,19 @@ if( !empty($datos_by_sucursal['procesados']) ){
 	 	// tabla
 		$tbl_header .= "<th>".$mes."</th>";
 
-		$tbl_body['noches_reservadas'] .= ",'".$data[$value]['noches_reservadas']."'";
-		$tbl_body['noches_promedio'] .= ",'".$data[$value]['noches_promedio']."'";
-		$tbl_body['noches_recompradas'] .= ",'".$data[$value]['noches_recompradas']."'";
+		$tbl_body['noches_reservadas'] .= ",'".number_format($data[$value]['noches_reservadas'],0,',','.')."'";
+		$tbl_body['noches_promedio'] .= ",'".number_format($data[$value]['noches_promedio'],2,',','.')."'";
+		$tbl_body['noches_recompradas'] .= ",'".number_format($data[$value]['noches_recompradas'],2,',','.')."%'";
 		$tbl_body['total_perros_hospedados'] .= ",'".$data[$value]['total_perros_hospedados']."'";
 		$tbl_body['eventos_de_compra'] .= ",'".$data[$value]['eventos_de_compra']."'";
 		$tbl_body['clientes_nuevos'] .= ",'".$data[$value]['clientes_nuevos']."'";
-		$tbl_body['clientes_wom'] .= ",'".$data[$value]['clientes_wom']."'";
-		$tbl_body['numero_clientes_que_recompraron'] .= ",'".$data[$value]['numero_clientes_que_recompraron']."'";
-		$tbl_body['porcentaje_clientes_que_recompraron'] .= ",'".$data[$value]['porcentaje_clientes_que_recompraron']."'";
-		$tbl_body['precio_por_noche_pagada_promedio'] .= ",'".$data[$value]['precio_por_noche_pagada_promedio']."'";
-		$tbl_body['clientes'] .= ",'".$data[$value]['clientes']."'";
-		$tbl_body['numero_clientes_vs_mes_anterior'] .= ",'".$data[$value]['numero_clientes_vs_mes_anterior']."'";
-		$tbl_body['clientes_nuevos_vs_mes_anterior'] .= ",'".$data[$value]['clientes_nuevos_vs_mes_anterior']."'";
+		$tbl_body['clientes_wom'] .= ",'".number_format($data[$value]['clientes_wom'],2,',','.')."%'";
+		$tbl_body['numero_clientes_que_recompraron'] .= ",'".number_format($data[$value]['numero_clientes_que_recompraron'],0,',','.')."'";
+		$tbl_body['porcentaje_clientes_que_recompraron'] .= ",'".number_format($data[$value]['porcentaje_clientes_que_recompraron'],2,',','.')."%'";
+		$tbl_body['precio_por_noche_pagada_promedio'] .= ",'$".number_format($data[$value]['precio_por_noche_pagada_promedio'],2)."'";
+		$tbl_body['clientes'] .= ",'".number_format($data[$value]['clientes'],0,',','.')."'";
+		$tbl_body['numero_clientes_vs_mes_anterior'] .= ",'".number_format($data[$value]['numero_clientes_vs_mes_anterior'],2,',','.')."%'";
+		$tbl_body['clientes_nuevos_vs_mes_anterior'] .= ",'".number_format($data[$value]['clientes_nuevos_vs_mes_anterior'],2,',','.')."%'";
 
 	}
 
