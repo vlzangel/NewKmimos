@@ -12,9 +12,7 @@
 
 	$SQL = "
 		SELECT 
-			usuarios.ID,
-			usuarios.display_name,
-			usuarios.user_email
+			SQL_CALC_FOUND_ROWS *
 		FROM 
 			{$wpdb->prefix}users AS usuarios
 		INNER JOIN {$wpdb->prefix}usermeta AS m ON ( m.user_id = usuarios.ID )
