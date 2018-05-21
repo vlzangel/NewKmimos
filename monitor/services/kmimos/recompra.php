@@ -13,14 +13,19 @@
 	}
 
 	$recompras = getRecompras( $desde, $hasta );
-
-	$num_noches_recompra = getNochesRecomprasClientesNuevos( $desde, $hasta );
+	$num_noches_recompra = getReservasRecompra( $desde, $hasta );
 
 	if( !isset($recompras['info']->num_rows) ){
 		$recompras = [];
 	}
 	
-	// print_r(json_encode($recompras['rows']));	
+	$resultado = [
+		'recompra' => $recompras['rows'],
+		'noches_total_new_cliente' => $num_noches_recompra,
+	];
 
+	/*
+	print_r(json_encode($resultado));
+	*/
 echo '<pre>';
-print_r($num_noches_recompra);
+print_r($resultado);

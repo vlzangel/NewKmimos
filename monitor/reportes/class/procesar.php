@@ -36,13 +36,15 @@ class procesar extends db{
 			}
 		}
 
-
-		// solo dev
 		require_once(dirname(dirname(__DIR__)).'/cron/kmimos/funciones.php');
 		$recompras = getRecompras( $desde, $hasta );
+		$num_noches_recompra = getReservasRecompra( $desde, $hasta );
 
-
-		return ['diario'=>$data, 'recompras'=>$recompras['rows']];
+		return [
+			'diario'=>$data, 
+			'recompras'=>$recompras['rows'], 
+			'noches_nuevos_clientes' => $num_noches_recompra 
+		];
 	} 	
 
 	/*
@@ -212,6 +214,7 @@ class procesar extends db{
 
 		$datos = (isset($all_data['diario']))? $all_data['diario'] : [];
 		$recompras = $this->procesarRecompras( $all_data );
+		$num_noches_total = (isset($all_data['noches_nuevos_clientes']))? $all_data['noches_nuevos_clientes']:[];
 
 		$datos_por_mes = $this->merge_datos( $datos );
 
@@ -259,6 +262,12 @@ class procesar extends db{
 					$num_clientes_recompras = $recompras[ $mes.$anio ];
 				}
 
+				// total noches clientes nuevos
+				$noches_total_nuevos_clientes = 0;
+				if( isset( $num_noches_total[$mes.$anio] ) ){
+					$noches_total_nuevos_clientes = $num_noches_total[ $mes.$anio ];
+				}
+
 				// Data por defecto
 				$data[ $mes.$anio ] = [
 					'noches_reservadas' => 0,
@@ -268,7 +277,7 @@ class procesar extends db{
 					'eventos_de_compra' => 0,
 					'clientes_nuevos' => 0,
 					'clientes_wom' => "0",
-					'numero_clientes_que_recompraron' => $num_clientes_recompras,
+					'numero_clientes_que_recompraron' => 0,
 					'porcentaje_clientes_que_recompraron' => "0",
 					'precio_por_noche_pagada_promedio' => 0,
 					'clientes' => 0,
@@ -279,13 +288,18 @@ class procesar extends db{
 
 				// Cargar datos de registros
 				if( !empty($_ventas) || !empty($_usuarios) ){
+
+					$num_noches_recompradas = $_ventas['noches']['total'] - $noches_total_nuevos_clientes;
+					$porcentaje_noches_recompradas = 0;
+					if( $_ventas['noches']['total'] > 0 ){
+						$porcentaje_noches_recompradas = $num_noches_recompradas / $_ventas['noches']['total'];
+					}
+
 					$data[ $mes.$anio ] = [
 						'date' => $mes.substr($anio, 1, 2),
 						'noches_reservadas' => $_ventas['noches']['total'],
 						'noches_promedio' => ($_ventas['noches']['total'] / $_ventas['ventas']['cant']),
-
-						'noches_recompradas' => "0",
-
+						'noches_recompradas' => $porcentaje_noches_recompradas,
 						'total_perros_hospedados' => $_ventas['mascotas_total'],
 						'eventos_de_compra' => $_ventas['ventas']['cant'],
 						'clientes_nuevos' => count($_usuarios['CL']),
