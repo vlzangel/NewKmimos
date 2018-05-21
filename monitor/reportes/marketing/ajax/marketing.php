@@ -63,6 +63,7 @@ require_once( dirname(dirname(__DIR__)).'/class/procesar.php' );
 */
 				$datos = $c->getData( $desde, $hasta);
 				// Analizar datos
+
 				if( !empty($datos) ){
 					$data_sucursal = $c->porSucursal( $datos, $desde, $hasta );
 				}

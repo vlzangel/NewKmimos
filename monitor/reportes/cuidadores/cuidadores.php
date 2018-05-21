@@ -1,8 +1,8 @@
 
-<link rel="stylesheet" type="text/css" href="<?php echo get_home_url()?>/monitor/reportes/ventas/css/ventas.css">
-<script type="text/javascript" src="<?php echo get_home_url()?>/monitor/reportes/ventas/js/ventas.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo get_home_url()?>/monitor/reportes/cuidadores/css/cuidadores.css">
+<script type="text/javascript" src="<?php echo get_home_url()?>/monitor/reportes/cuidadores/js/cuidadores.js"></script>
 
-<?php include_once('ajax/ventas.php'); ?>
+<?php include_once('ajax/cuidadores.php'); ?>
 
 <?php
     $grupo = [];
@@ -24,7 +24,7 @@
     
     <div class="row" style="padding:15px 0px 0px 0px;">
         <div class="col-md-6">
-            <h2 style="margin-top:0px;margin-bottom:10px;">Resumen de Clientes</h2>
+            <h2 style="margin-top:0px;margin-bottom:10px;">Resumen Clientes</h2>
         </div>
         <div class="col-md-6">
             <button id="btn-grafico" style="margin-left:2px;" class="btn btn-default pull-right" role="button">
@@ -74,7 +74,7 @@
                         <input type="date" class="form-control" name="desde" value="<?php echo $desde; ?>">
                         <div class="input-group-addon"><small>Hasta</small></div>
                         <input type="date" class="form-control" name="hasta" value="<?php echo $hasta ?>">
-                        <input type="hidden" name="sucursal" value="<?php echo $_POST['sucursal']; ?>">
+                        <input type="hidden" name="sucursal" value="<?php echo $sucursal; ?>">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
@@ -110,19 +110,10 @@
     var header = '<?php echo $tbl_header; ?>';
     var data = [
         <?php
-        echo '['.$tbl_body['noches_reservadas'].'],';
-        echo '['.$tbl_body['noches_promedio'].'],';
-        echo '['.$tbl_body['noches_recompradas'].'],';
-        echo '['.$tbl_body['total_perros_hospedados'].'],';
-        echo '['.$tbl_body['eventos_de_compra'].'],';
-        echo '['.$tbl_body['clientes_nuevos'].'],';
-        echo '['.$tbl_body['clientes_wom'].'],';
-        echo '['.$tbl_body['numero_clientes_que_recompraron'].'],';
-        echo '['.$tbl_body['porcentaje_clientes_que_recompraron'].'],';
-        echo '['.$tbl_body['precio_por_noche_pagada_promedio'].'],';
-        echo '['.$tbl_body['clientes'].'],';
-        echo '['.$tbl_body['numero_clientes_vs_mes_anterior'].'],';
-        echo '['.$tbl_body['clientes_nuevos_vs_mes_anterior'].']';
+        echo '['.$tbl_body['total'].'],';
+        echo '['.$tbl_body['nuevos'].'],';
+        echo '['.$tbl_body['costos_por_campana'].'],';
+        echo '['.$tbl_body['costo'].'],';
         ?>
     ];
  

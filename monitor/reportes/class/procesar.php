@@ -38,7 +38,8 @@ class procesar extends db{
 
 		require_once(dirname(dirname(__DIR__)).'/cron/kmimos/funciones.php');
 		$recompras = getRecompras( $desde, $hasta );
-		$num_noches_recompra = getReservasRecompra( $desde, $hasta );
+		//$num_noches_recompra = getReservasRecompra( $desde, $hasta );
+		$num_noches_recompra = [];
 
 		return [
 			'diario'=>$data, 
@@ -234,12 +235,17 @@ class procesar extends db{
 				$_ventas = (isset($datos_por_mes['ventas'][ $mes.$anio ]))? $datos_por_mes['ventas'][ $mes.$anio ] : [] ;
 				$_usuarios = (isset($datos_por_mes['usuarios'][ $mes.$anio ]))? $datos_por_mes['usuarios'][ $mes.$anio ] : [] ;
 
+				// calcular total de clientes
+				if( isset($data[$fecha_anterior]['clientes']) ){
+					$clientes_total = $data[$fecha_anterior]['clientes'] + count($_usuarios['CL']);
+				}
+
 				#calculo con el mes anterior
 				$numero_clientes_vs_mes_anterior = 0;
 				$clientes_nuevos_vs_mes_anterior = 0;
 				if( !empty($data[$fecha_anterior]) ){
 					if( $_ventas['clientes']['total'] > 0 && $data[$fecha_anterior]['clientes'] > 0 ){
-						$numero_clientes_vs_mes_anterior = ($_ventas['clientes']['total'] * 100 / $data[$fecha_anterior]['clientes'] );
+						$numero_clientes_vs_mes_anterior = ($clientes_total / $data[$fecha_anterior]['clientes']);
 					}
 					if( $data[$fecha_anterior]['clientes_nuevos'] > 0 ){
 						$clientes_nuevos_vs_mes_anterior = (count($_usuarios['CL']) * 100 / $data[$fecha_anterior]['clientes_nuevos']);
@@ -281,8 +287,8 @@ class procesar extends db{
 					'porcentaje_clientes_que_recompraron' => "0",
 					'precio_por_noche_pagada_promedio' => 0,
 					'clientes' => 0,
-					'numero_clientes_vs_mes_anterior' => $numero_clientes_vs_mes_anterior ,
-					'clientes_nuevos_vs_mes_anterior' => $clientes_nuevos_vs_mes_anterior ,
+					'numero_clientes_vs_mes_anterior' => 0 ,
+					'clientes_nuevos_vs_mes_anterior' => 0 ,
 					'total_ventas' => 0,
 				];
 
@@ -307,7 +313,7 @@ class procesar extends db{
 						'numero_clientes_que_recompraron' => $num_clientes_recompras,
 						'porcentaje_clientes_que_recompraron' => $num_clientes_recompras/$_ventas['ventas']['cant'],
 						'precio_por_noche_pagada_promedio' =>  ($_ventas['ventas']['costo']['total']/$_ventas['noches']['total']),
-						'clientes' => $_ventas['clientes']['total'],
+						'clientes' => $clientes_total, //$clientes_total,
 						'numero_clientes_vs_mes_anterior' => $numero_clientes_vs_mes_anterior ,
 						'clientes_nuevos_vs_mes_anterior' => $clientes_nuevos_vs_mes_anterior ,
 						'total_ventas' => $_ventas['ventas']['costo']['total'],
@@ -315,8 +321,8 @@ class procesar extends db{
 
 				}
 
-				// Calcular dia siguiente
-				$fecha_hoy = date("Y-m-d", strtotime("+1 day", strtotime($fecha_hoy)));
+				// Calcular mes siguiente
+				$fecha_hoy = date("Y-m", strtotime("+1 month", strtotime($fecha_hoy)));
 			}
 
 			return $data;

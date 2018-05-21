@@ -24,7 +24,7 @@
     
     <div class="row" style="padding:15px 0px 0px 0px;">
         <div class="col-md-6">
-            <h2 style="margin-top:0px;margin-bottom:10px;">Resumen de Clientes</h2>
+            <h2 style="margin-top:0px;margin-bottom:10px;">Resumen Clientes</h2>
         </div>
         <div class="col-md-6">
             <button id="btn-grafico" style="margin-left:2px;" class="btn btn-default pull-right" role="button">
@@ -74,7 +74,7 @@
                         <input type="date" class="form-control" name="desde" value="<?php echo $desde; ?>">
                         <div class="input-group-addon"><small>Hasta</small></div>
                         <input type="date" class="form-control" name="hasta" value="<?php echo $hasta ?>">
-                        <input type="hidden" name="sucursal" value="<?php echo $_POST['sucursal']; ?>">
+                        <input type="hidden" name="sucursal" value="<?php echo $sucursal; ?>">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>

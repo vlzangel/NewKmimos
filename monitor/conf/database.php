@@ -7,17 +7,20 @@ class db {
 
 	public function __construct(){
 		global $host, $pass, $user, $db;
-		$mysqli = new \mysqli(
-			$host,
-			$user,
-			$pass,
-			$db
-		);
-		mysqli_query($mysqli, "SET NAMES 'utf8'");
-		if(mysqli_connect_errno()){
-			echo 'Conexion Fallida : ', mysqli_connect_error();
-			exit();
-		}
+				
+			$mysqli = new \mysqli(
+				$host,
+				$user,
+				$pass,
+				$db,
+				3306
+			);
+			mysqli_query($mysqli, "SET NAMES 'utf8'");
+			if(mysqli_connect_errno()){
+				echo 'Conexion Fallida : ', mysqli_connect_error();
+				exit();
+			}
+		
 		$this->cnn = $mysqli;
 	}
 
@@ -31,12 +34,15 @@ class db {
 			$result = $this->cnn->query( $query );
 		}
 		$id = ($insert_id)? $this->cnn->insert_id : 0 ;
-		// mysqli_close($this->cnn);
 		return ($insert_id)? $id : $result ;
 	}
 
 	public function escape( $str ){
 		return mysqli_real_escape_string( $this->cnn, htmlentities($str) );
+	}
+
+	public function close(){
+		//Mysqli_close($this->cnn);
 	}
 
 	// --------------------------------------
@@ -53,13 +59,14 @@ class db {
 				// $result = $result[0];
 			}
 		}
-
+		$this->close();
 		return $result;
 	}
 
 	public function insert($query=""){
-		self::query( $query );
-		return $this->cnn->insert_id;
+		$id = self::query( $query );
+		$this->close();
+		return $id;
 	}
 
 	public function delete($query=""){

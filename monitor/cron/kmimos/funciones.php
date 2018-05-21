@@ -4,15 +4,15 @@ require_once ( dirname(dirname(__DIR__)).'/conf/database.php' );
 
 function get_fetch_assoc($sql){
 	$db = new db();
-	$rows = $db->query($sql);
+	$data['rows'] = $db->select($sql);
 	
-	$data = ['info'=>[], 'rows'=>[]];
+	/*$data = ['info'=>[], 'rows'=>[]];
 	if(isset($rows->num_rows)){
 		if( $rows->num_rows > 0){
 			$data['info'] = $rows;
 			$data['rows'] = mysqli_fetch_all( $rows,MYSQLI_ASSOC);
 		}
-	}
+	}*/
 	return $data;
 }
 
@@ -24,7 +24,7 @@ function save( $tipo, $fecha, $param ){
 	$param = json_encode($param);
 
 	// Actualizar registros
-	if( isset($data['info']->num_rows) && $data['info']->num_rows > 0 ){	
+	if( isset($data['rows'][0]['id']) && $data['rows'][0]['id'] > 0 ){	
 		$id = $data['rows'][0]['id'];
 	}
 	switch ($tipo) {
@@ -77,8 +77,8 @@ function getUsuarios($desde="", $hasta=""){
 			c.id as cuidador_id
 		FROM wp_users as u
 			LEFT JOIN cuidadores as c ON c.user_id = u.ID
-		WHERE DATE_FORMAT(u.user_registered, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
-		ORDER BY DATE_FORMAT(u.user_registered,'%d-%m-%Y') DESC;
+		WHERE c.id is null and (u.user_registered >= '{$desde} 00:00:00' 
+				and  u.user_registered  <= '{$hasta} 23:59:59')
 	";
 
 	$result = get_fetch_assoc($sql);

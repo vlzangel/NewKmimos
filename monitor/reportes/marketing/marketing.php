@@ -1,8 +1,6 @@
 
-<link rel="stylesheet" type="text/css" href="<?php echo get_home_url()?>/monitor/reportes/ventas/css/ventas.css">
-<script type="text/javascript" src="<?php echo get_home_url()?>/monitor/reportes/ventas/js/ventas.js"></script>
-
-<?php include_once('ajax/ventas.php'); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo get_home_url()?>/monitor/reportes/marketing/css/marketing.css">
+<script type="text/javascript" src="<?php echo get_home_url()?>/monitor/reportes/marketing/js/marketing.js"></script>
 
 <?php
     $grupo = [];
@@ -24,7 +22,7 @@
     
     <div class="row" style="padding:15px 0px 0px 0px;">
         <div class="col-md-6">
-            <h2 style="margin-top:0px;margin-bottom:10px;">Resumen de Clientes</h2>
+            <h2 style="margin-top:0px;margin-bottom:10px;">Control de Campañas</h2>
         </div>
         <div class="col-md-6">
             <button id="btn-grafico" style="margin-left:2px;" class="btn btn-default pull-right" role="button">
@@ -33,39 +31,43 @@
             <button id="btn-tabla" style="margin-left:2px;" class="btn btn-default pull-right" role="button">
                 <small><i class="fa fa-eye-slash tabla-icon"></i> Tabla</small>
             </button>
+
             <div class="btn-group pull-right">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-database" aria-hidden="true"></i> 
-                Mostrar Datos: <strong id="tipo_datos" ><?php echo ucfirst( $sucursal ); ?></strong>  
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-database" aria-hidden="true"></i> 
+                    Mostrar Datos: <strong id="tipo_datos" ><?php echo ucfirst( $sucursal ); ?></strong>  
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
 
-                <li role="separator" class="disabled dropdown-title">
-                    <small>
-                        <strong>Datos Globales</strong>
-                    </small></li>
-                <li><a href="javascript:;" data-action="global" data-label="Global" >Global</a></li>
+                    <li role="separator" class="disabled dropdown-title">
+                        <small>
+                            <strong>Datos Globales</strong>
+                        </small></li>
+                    <li><a href="javascript:;" data-action="global" data-label="Global" >Global</a></li>
 
-                <li role="separator" class="divider"></li>
-                <li role="separator" class="disabled dropdown-title">
-                    <small>
-                        <strong>Por producto</strong>
-                    </small></li>
-                    <?php echo $por_grupo; ?>
+                    <li role="separator" class="divider"></li>
+                    <li role="separator" class="disabled dropdown-title">
+                        <small>
+                            <strong>Por producto</strong>
+                        </small></li>
+                        <?php echo $por_grupo; ?>
 
-                <li role="separator" class="divider"></li>
-                <li role="separator" class="disabled dropdown-title">
-                    <small>
-                        <strong>Por Sucursal</strong>
-                    </small></li>
-                    <?php echo $por_sucursal; ?>
-              </ul>
+                    <li role="separator" class="divider"></li>
+                    <li role="separator" class="disabled dropdown-title">
+                        <small>
+                            <strong>Por Sucursal</strong>
+                        </small></li>
+                        <?php echo $por_sucursal; ?>
+                </ul>
             </div>
         </div>
     </div>
     <hr>
     <div class ="row">
+        <div class="col-sm-12 col-md-6">
+            <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</button>
+        </div>
         <div class="col-sm-12 col-md-6 pull-right">
             <form class="inline-form" action="#" id="frm_buscar" method="post">
                 <div class="form-group col-md-11 ">
@@ -74,10 +76,10 @@
                         <input type="date" class="form-control" name="desde" value="<?php echo $desde; ?>">
                         <div class="input-group-addon"><small>Hasta</small></div>
                         <input type="date" class="form-control" name="hasta" value="<?php echo $hasta ?>">
-                        <input type="hidden" name="sucursal" value="<?php echo $_POST['sucursal']; ?>">
+                        <input type="hidden" name="sucursal" value="<?php echo $sucursal; ?>">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
             </form>
         </div>
 

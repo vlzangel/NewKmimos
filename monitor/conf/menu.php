@@ -24,12 +24,35 @@
                     'icon'          =>  '',
                 ),
                 array(
-                    'title'         =>  __('Reporte Ventas'),
-                    'short-title'   =>  __('Reporte Ventas'),
+                    'title'         =>  __('Clientes'),
+                    'short-title'   =>  __('Clientes'),
                     'parent'        =>  'resumen',
                     'slug'          =>  'reporte_ventas',
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_ventas',
+                    'icon'          =>  '',
+                ),
+                array(
+                    'title'         =>  __('Cuidadores'),
+                    'short-title'   =>  __('Cuidadores'),
+                    'parent'        =>  'resumen',
+                    'slug'          =>  'reporte_cuidadores',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_cuidadores',
+                    'icon'          =>  '',
+                ),
+
+
+
+
+
+                array(
+                    'title'         =>  __('Marketing'),
+                    'short-title'   =>  __('Marketing'),
+                    'parent'        =>  'resumen',
+                    'slug'          =>  'reporte_marketing',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_marketing',
                     'icon'          =>  '',
                 )
             );
@@ -75,6 +98,20 @@
 
     /* Inclucion de paginas */
 
+    if(!function_exists('reporte_cuidadores')){
+        function reporte_cuidadores(){
+            include_once('importador.php');
+            include_once('graficos.php');
+            include_once(dirname(__DIR__).'/reportes/cuidadores/cuidadores.php');
+        }
+    }
+    if(!function_exists('reporte_marketing')){
+        function reporte_marketing(){
+            include_once('importador.php');
+            include_once('graficos.php');
+            include_once(dirname(__DIR__).'/reportes/marketing/marketing.php');
+        }
+    }
     if(!function_exists('reporte_ventas')){
         function reporte_ventas(){
             include_once('importador.php');

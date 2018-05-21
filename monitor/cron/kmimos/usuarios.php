@@ -79,6 +79,6 @@ echo $total_clientes;
 		//print_r(['reserva', $hoy, $data]);
 		if( !empty($data) ){
 			$d = save( 'usuario', $hoy, $data );
-			print_r($data);
 		}
+			print_r($data);
 		echo '</pre>';
