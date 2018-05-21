@@ -8,11 +8,13 @@
 
 	$PAGE = $_GET["page"]+0;
 
-	$PAGE *= 10;
+	$PAGE *= 50;
 
 	$SQL = "
 		SELECT 
-			SQL_CALC_FOUND_ROWS * 
+			usuarios.ID,
+			usuarios.display_name,
+			usuarios.user_email
 		FROM 
 			{$wpdb->prefix}users AS usuarios
 		INNER JOIN {$wpdb->prefix}usermeta AS m ON ( m.user_id = usuarios.ID )
@@ -22,16 +24,12 @@
 				m.meta_key = '_wlabel' 
 			) AND
 			m.meta_value = '{$_SESSION["label"]->wlabel}'
-		LIMIT {$PAGE}, 10";
+		GROUP BY usuarios.ID DESC
+		LIMIT {$PAGE}, 50";
 
 	$usuarios = $wpdb->get_results($SQL);
 
 	$foundRows = $wpdb->get_var("SELECT FOUND_ROWS() as foundRows");
-
-/*	echo "<pre>";
-		print_r($_GET);
-		print_r($foundRows);
-	echo "</pre>";*/
 
 	$registros = "";
 	foreach ($usuarios as $usuario) {
@@ -45,13 +43,13 @@
 	}
 
 	$paginas = ""; if( $_GET["page"] == 0){ $_GET["page"] = 1;}
-	for ($i=1; $i < ( $foundRows/10 ); $i++) { 
+	for ($i=1; $i < ( $foundRows/50 ); $i++) { 
 		$activo = ($_GET["page"] == $i) ? "activo" : "";
 		$paginas .= "<span onClick='getPaginacion({$i})' class='{$activo}'>{$i}</span>";
 	}
 ?>
 
-<div class="module_title" onclick="getPaginacion(1)">
+<div class="module_title">
     Clientes
 </div>
 

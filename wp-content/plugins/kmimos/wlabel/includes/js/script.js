@@ -88,10 +88,11 @@ function WhiteLabel_panel_menu(element){
     });
 }
 
-// AJAX
+// AJAX jQuery("html, body").animate({ scrollTop: 0 }, 10);
 
 function getPaginacion(PAGE){
-    var path=jQuery('.section .menu').data('url');
+    var path = jQuery('.section .menu').data('url');
+    
     jQuery.get(
         path+'content/modules/clientes.php',
         {
@@ -99,8 +100,10 @@ function getPaginacion(PAGE){
         }, 
         function(data){
             jQuery('.section .modules').html(data);
+            jQuery(".modules").animate({ scrollTop: 0 }, 500);
         }
     );
+    
 }
 
 
