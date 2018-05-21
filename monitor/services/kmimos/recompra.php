@@ -14,6 +14,8 @@
 
 	$recompras = getRecompras( $desde, $hasta );
 
+	$num_noches_recompra = getNochesRecomprasClientesNuevos( $desde, $hasta );
+
 	if( !isset($recompras['info']->num_rows) ){
 		$recompras = [];
 	}
@@ -21,4 +23,4 @@
 	// print_r(json_encode($recompras['rows']));	
 
 echo '<pre>';
-print_r($recompras['rows']);	
+print_r($num_noches_recompra);

@@ -282,8 +282,10 @@ class procesar extends db{
 					$data[ $mes.$anio ] = [
 						'date' => $mes.substr($anio, 1, 2),
 						'noches_reservadas' => $_ventas['noches']['total'],
-						'noches_promedio' => number_format(($_ventas['noches']['total'] / $_ventas['ventas']['cant']), 3, '.', ''),
+						'noches_promedio' => ($_ventas['noches']['total'] / $_ventas['ventas']['cant']),
+
 						'noches_recompradas' => "0",
+
 						'total_perros_hospedados' => $_ventas['mascotas_total'],
 						'eventos_de_compra' => $_ventas['ventas']['cant'],
 						'clientes_nuevos' => count($_usuarios['CL']),
@@ -295,8 +297,7 @@ class procesar extends db{
 						'numero_clientes_vs_mes_anterior' => $numero_clientes_vs_mes_anterior ,
 						'clientes_nuevos_vs_mes_anterior' => $clientes_nuevos_vs_mes_anterior ,
 						'total_ventas' => $_ventas['ventas']['costo']['total'],
-					];			
-//echo $_ventas['ventas']['costo']['total'].'<br>';
+					];
 
 				}
 
