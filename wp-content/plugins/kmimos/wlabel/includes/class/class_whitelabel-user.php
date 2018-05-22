@@ -127,7 +127,7 @@ class Class_WhiteLabel_User{
     function wlabel_Commission(){
         $data = $this->wlabel_data;
         $commission = 0;
-        if(array_key_exists('commission',$data)){
+        if(@array_key_exists('commission', $data)){
             $commission = $data->commission;
         }
         $this->wlabel_commission = $commission;
