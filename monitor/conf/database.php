@@ -33,7 +33,7 @@ class db {
 		if(!empty($query)){
 			$result = $this->cnn->query( $query );
 		}
-		$id = ($insert_id)? $this->cnn->insert_id : 0 ;
+		$id = mysqli_insert_id($this->cnn);
 		return ($insert_id)? $id : $result ;
 	}
 
@@ -53,18 +53,14 @@ class db {
 		$result = null;
 		$datos = self::query( $query );
 		if( isset($datos->num_rows) && $datos->num_rows > 0 ){
-			/* while ( $temp = $datos->fetch_assoc() ) { $result[] = (object) $temp; } */
 			$result = mysqli_fetch_all($datos, MYSQLI_ASSOC);
-			if( count($result) == 1 ){
-				// $result = $result[0];
-			}
 		}
 		$this->close();
 		return $result;
 	}
 
 	public function insert($query=""){
-		$id = self::query( $query );
+		$id = self::query( $query, true );
 		$this->close();
 		return $id;
 	}

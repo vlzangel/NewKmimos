@@ -5,14 +5,18 @@ require_once ("general.php");
 
 class cuidador extends general{
 
-	public function get_datos( $desde, $hasta ){
+	public function get_datos( $desde, $hasta, $plataforma ){
 		$sql = "
 			SELECT fecha, cliente as usuarios 
 			FROM monitor_diario
 			WHERE fecha >= '{$desde}' AND fecha <= '{$hasta}'
 		";
 
-		return $this->select( $sql );
+		$datos = $this->select( $sql );
+
+		$suma_campanas = $this->sumar_campanas( $desde, $hasta, $plataforma );
+
+		return ['datos'=>$datos, 'total_campanas'=>$suma_campanas];
 	}
 
 	public function by_day( $resultado ){
@@ -120,7 +124,7 @@ class cuidador extends general{
 		return $data;
 	}
 
-	public function merge_branch( $origen, $destino ){
+	public function merge_branch( $origen, $destino, $sum_campanas ){
 		if( !empty($origen)){	
 			foreach ($origen as $fecha => $registro) {
 				
@@ -128,6 +132,7 @@ class cuidador extends general{
 
 					if( !isset($destino[$fecha]) ){
 						$destino[$fecha] = $registro;
+						$destino[$fecha]['total_campana'] = $sum_campanas[$fecha]; 
 					}else{
 						if( is_array($destino[ $fecha ]['list']) && is_array($registro['list']) ){
 							foreach ($registro['list'] as $email => $val) {
@@ -136,11 +141,14 @@ class cuidador extends general{
 								}
 							}
 							$count = $destino[ $fecha ]['list'];
+							$campana = $origen['total_campana'] + $sum_campanas[$fecha]; 
 						}else{
 							$count = $registro['list'];
+							$campana = $sum_campanas[$fecha]; 
 						}
 						$data[ $fecha ] = [
 							'total' => count($count),
+							'total_campana' => $campana,
 							'list' => $count,
 						];
 					}
@@ -171,8 +179,8 @@ class cuidador extends general{
 			$costo = 0;
 			$costo_campana = 0;
 
-			$sum_campanas = 0; // cargar valores de DB - monitor_marketing
-			$valor = 0; // cargar valores de DB - parametros
+			$sum_campana = $datos[ $mes ]['total_campana'];
+			$valor = 19; // cargar valores de DB - parametros
 
 			if( isset($datos[$mes]) ){
 
@@ -185,10 +193,10 @@ class cuidador extends general{
 				}
 
 				$costo_campana = 0;
-				if( $nuevos > 0 ){
-					$costo_campana = ($sum_campana / $nuevos) + 0;
+				if( $nuevo > 0 ){
+					$costo_campana = ($sum_campana / $nuevo) + 0;
 				}
-
+ 
 				$costo = 0;
 				if( $valor > 0 ){
 					$costo = ($costo_campana / $valor)+0;
@@ -206,5 +214,28 @@ class cuidador extends general{
 		}
 
 		return $resultado;
+	}
+
+	public function sumar_campanas( $desde, $hasta, $plataforma, $tipo='cuidador' ){
+		$sql = "SELECT 
+				sum(costo) as costo,
+				CONCAT(LPAD(MONTH(fecha), 2, '0'), YEAR(fecha)) as fecha
+			FROM monitor_marketing 
+			WHERE tipo like '%{$tipo}%' 
+				AND plataforma = '{$plataforma}' 
+				AND fecha >= '{$desde}'
+				AND fecha <= '{$hasta}'
+			group by CONCAT(LPAD(MONTH(fecha), 2, '0'), YEAR(fecha))
+		";
+		$datos = $this->select($sql);
+
+		$costos = [];
+		if( !empty($datos) ){		
+			foreach ($datos as $row) {
+				$costos[ $row['fecha'] ] = $row['costo'];
+			}
+		}
+
+		return $costos;
 	}
 }

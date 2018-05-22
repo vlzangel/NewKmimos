@@ -24,6 +24,7 @@ require_once( dirname(dirname(__DIR__)).'/class/cuidador.php' );
 
 	// Datos para mostrar
 	$data = [];
+	$suma_campana = 0;
 
 	// Plataformas
 	$plataformas = $g->get_plataforma();
@@ -61,11 +62,12 @@ require_once( dirname(dirname(__DIR__)).'/class/cuidador.php' );
 				);
 				*/
 
-				$datos = $c->get_datos( $desde, $hasta );
+				$temp = $c->get_datos( $desde, $hasta, $plataforma['name'] );
+				
+				$month = $c->by_month( $temp['datos'], $plataforma['name'] );
 
-				$month = $c->by_month( $datos );
-
-				$data = $c->merge_branch( $month, $data );
+				$suma_campana = $temp['total_campanas'];
+				$data = $c->merge_branch( $month, $data, $suma_campana );
 
 			}catch(Exception $e){
 				$error[] = $plataforma['descripcion'];
@@ -73,7 +75,7 @@ require_once( dirname(dirname(__DIR__)).'/class/cuidador.php' );
 		}
 	}
 
-	$data = $c->procesar( $data, $desde, $hasta  );
+	$data = $c->procesar( $data, $desde, $hasta );
  
 	// Meses en letras
 	$meses = $c->getMeses();
@@ -110,10 +112,10 @@ if( !empty($data) ){
 	 	// tabla
 		$tbl_header .= "<th>".$mes."</th>";
 
-		$tbl_body['total']  .= ", '".$data[$value]['total']."'";
-		$tbl_body['nuevos'] .= ", '".$data[$value]['nuevos']."'";
-		$tbl_body['costos_por_campana'] .= ", '".$data[$value]['costos_por_campana']."'";
-		$tbl_body['costo']  .= ", '".$data[$value]['costo']."'";
+		$tbl_body['total']  .= ", '".number_format($data[$value]['total'],0,',','.')."'";
+		$tbl_body['nuevos'] .= ", '".number_format($data[$value]['nuevos'],0,',','.')."'";
+		$tbl_body['costos_por_campana'] .= ", '".number_format($data[$value]['costos_por_campana'],2,',','.')."'";
+		$tbl_body['costo']  .= ", '$ ".number_format($data[$value]['costo'],2,',','.')."'";
 
 	}
 
