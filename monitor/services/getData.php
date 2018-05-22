@@ -1,15 +1,15 @@
 <?php
-
+	error_reporting(0);
 	require_once('../reportes/class/procesar.php');
 
 	$desde = date('Y-m-d');
-	if( isset($_POST['d']) && !empty($_POST['d']) ){
-		$desde = $_POST['d'];
+	if( isset($_GET['desde']) && !empty($_GET['desde']) ){
+		$desde = $_GET['desde'];
 	}
 
 	$hasta = $desde;
-	if( isset($_POST['h']) && !empty($_POST['h']) ){
-		$hasta = $_POST['h'];
+	if( isset($_GET['hasta']) && !empty($_GET['hasta']) ){
+		$hasta = $_GET['hasta'];
 	}
 
 	$c = new procesar();

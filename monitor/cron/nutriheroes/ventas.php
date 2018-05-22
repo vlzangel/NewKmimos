@@ -93,10 +93,9 @@
 	/* ******************************************* */
 	// Guardar Datos 
 	/* ******************************************* */
+			save( 'ventas', $hoy, $data );
 	echo '<pre>'; 
 		if( $data['ventas']['cant'] > 0 ){
-			$d = save( 'ventas', $hoy, $data );
-			print_r($data);
 		}
 	echo '</pre>';
 

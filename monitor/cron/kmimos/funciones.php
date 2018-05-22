@@ -109,93 +109,95 @@ function getReservasRecompra( $desde, $hasta ){
 	$reservas = get_fetch_assoc($sql);
 
 	$_resultado = [];
-	foreach ($reservas['rows'] as $reserva) {
+	if( !empty($reservas['rows']) ){
+		foreach ($reservas['rows'] as $reserva) {
 
-		// buscar metadatos reservas
-			$meta_reserva = get_fetch_assoc("SELECT * FROM wp_postmeta WHERE 
-				post_id = {$reserva['reserva']} 
-				AND meta_key in ( '_booking_order_item_id', '_booking_start', '_booking_end' )
-			");
-			foreach( $meta_reserva['rows'] as $meta ){
-				$meta_reserva[$meta['meta_key']] = $meta['meta_value'];
-			}
-			unset($meta_reserva['info']);
-			unset($meta_reserva['rows']);
-
-		// buscar metadatos No. Mascotas
-			$order_item_id = 0;
-			if( isset($meta_reserva['_booking_order_item_id']) && $meta_reserva['_booking_order_item_id']>0 ){
-				$meta_order_item = get_fetch_assoc("SELECT * FROM wp_woocommerce_order_itemmeta WHERE 
-					order_item_id = {$meta_reserva['_booking_order_item_id']} 
-					AND meta_key in ( 
-						'Mascotas Pequeños', 
-						'Mascotas Pequeñas',
-						'Mascotas Medianos',
-						'Mascotas Medianas',
-						'Mascotas Grandes',
-						'Mascotas Gigantes',
-						'_product_id'
-					)
+			// buscar metadatos reservas
+				$meta_reserva = get_fetch_assoc("SELECT * FROM wp_postmeta WHERE 
+					post_id = {$reserva['reserva']} 
+					AND meta_key in ( '_booking_order_item_id', '_booking_start', '_booking_end' )
 				");
-				$meta_order_item['total_mascotas'] = 0;
-				foreach( $meta_order_item['rows'] as $meta ){
-					switch ($meta['meta_key']) {
-						case 'Mascotas Pequeños':
-						case 'Mascotas Pequeñas':
-							$meta_order_item['Mascotas_Pequenos'] = $meta['meta_value'];
-							$meta_order_item['total_mascotas'] += $meta['meta_value'];
-							break;
-						case 'Mascotas Medianos':
-						case 'Mascotas Medianas':
-							$meta_order_item['Mascotas_Medianos'] = $meta['meta_value'];
-							$meta_order_item['total_mascotas'] += $meta['meta_value'];
-							break;
-						case 'Mascotas Grandes':
-							$meta_order_item['Mascotas_Grandes'] = $meta['meta_value'];
-							$meta_order_item['total_mascotas'] += $meta['meta_value'];
-							break;
-						case 'Mascotas Gigantes':
-							$meta_order_item['Mascotas_Gigantes'] = $meta['meta_value'];
-							$meta_order_item['total_mascotas'] += $meta['meta_value'];
-							break;
-						default:
-							$meta_order_item[$meta['meta_key']] = $meta['meta_value'];
-							break;
+				foreach( $meta_reserva['rows'] as $meta ){
+					$meta_reserva[$meta['meta_key']] = $meta['meta_value'];
+				}
+				unset($meta_reserva['info']);
+				unset($meta_reserva['rows']);
+
+			// buscar metadatos No. Mascotas
+				$order_item_id = 0;
+				if( isset($meta_reserva['_booking_order_item_id']) && $meta_reserva['_booking_order_item_id']>0 ){
+					$meta_order_item = get_fetch_assoc("SELECT * FROM wp_woocommerce_order_itemmeta WHERE 
+						order_item_id = {$meta_reserva['_booking_order_item_id']} 
+						AND meta_key in ( 
+							'Mascotas Pequeños', 
+							'Mascotas Pequeñas',
+							'Mascotas Medianos',
+							'Mascotas Medianas',
+							'Mascotas Grandes',
+							'Mascotas Gigantes',
+							'_product_id'
+						)
+					");
+					$meta_order_item['total_mascotas'] = 0;
+					foreach( $meta_order_item['rows'] as $meta ){
+						switch ($meta['meta_key']) {
+							case 'Mascotas Pequeños':
+							case 'Mascotas Pequeñas':
+								$meta_order_item['Mascotas_Pequenos'] = $meta['meta_value'];
+								$meta_order_item['total_mascotas'] += $meta['meta_value'];
+								break;
+							case 'Mascotas Medianos':
+							case 'Mascotas Medianas':
+								$meta_order_item['Mascotas_Medianos'] = $meta['meta_value'];
+								$meta_order_item['total_mascotas'] += $meta['meta_value'];
+								break;
+							case 'Mascotas Grandes':
+								$meta_order_item['Mascotas_Grandes'] = $meta['meta_value'];
+								$meta_order_item['total_mascotas'] += $meta['meta_value'];
+								break;
+							case 'Mascotas Gigantes':
+								$meta_order_item['Mascotas_Gigantes'] = $meta['meta_value'];
+								$meta_order_item['total_mascotas'] += $meta['meta_value'];
+								break;
+							default:
+								$meta_order_item[$meta['meta_key']] = $meta['meta_value'];
+								break;
+						}
 					}
 				}
-			}
-			unset($meta_order_item['info']);
-			unset($meta_order_item['rows']);
+				unset($meta_order_item['info']);
+				unset($meta_order_item['rows']);
 
-		// buscar producto
-			$producto = [];
-			if( isset($meta_order_item['_product_id']) && $meta_order_item['_product_id']>0 ){
-				$producto = get_fetch_assoc("SELECT post_name FROM wp_posts WHERE 
-					ID = {$meta_order_item['_product_id']}
-				");
-				$producto = (isset($producto['rows'][0]))? $producto['rows'][0]: [];
-			}		
+			// buscar producto
+				$producto = [];
+				if( isset($meta_order_item['_product_id']) && $meta_order_item['_product_id']>0 ){
+					$producto = get_fetch_assoc("SELECT post_name FROM wp_posts WHERE 
+						ID = {$meta_order_item['_product_id']}
+					");
+					$producto = (isset($producto['rows'][0]))? $producto['rows'][0]: [];
+				}		
 
-		# ** *************************** **
-		# Calcular
-		# ** *************************** **
-			$num_noches = dias_transcurridos(
-					date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
-					date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
-				);					
+			# ** *************************** **
+			# Calcular
+			# ** *************************** **
+				$num_noches = dias_transcurridos(
+						date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
+						date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
+					);					
 
-			if( isset($producto['post_name']) && !in_array('hospedaje', explode("-", $producto['post_name']))){
-				$num_noches += 1;
-			}
+				if( isset($producto['post_name']) && !in_array('hospedaje', explode("-", $producto['post_name']))){
+					$num_noches += 1;
+				}
 
-			$num_total_noches = $num_noches * $meta_order_item['total_mascotas'];
+				$num_total_noches = $num_noches * $meta_order_item['total_mascotas'];
 
-			$_fecha = date('mY', strtotime($reserva['fecha_solicitud']));
-			if( isset($_resultado[ $_fecha ]) ){
-				$_resultado[ $_fecha ] += $num_total_noches;
-			}else{
-				$_resultado[ $_fecha ] = $num_total_noches;
-			}
+				$_fecha = date('mY', strtotime($reserva['fecha_solicitud']));
+				if( isset($_resultado[ $_fecha ]) ){
+					$_resultado[ $_fecha ] += $num_total_noches;
+				}else{
+					$_resultado[ $_fecha ] = $num_total_noches;
+				}
+		}
 	}
 	//echo date('Y-m-d H:i:s');	
 

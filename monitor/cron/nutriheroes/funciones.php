@@ -4,18 +4,17 @@ require_once ( dirname(dirname(__DIR__)).'/conf/database.php' );
 
 function get_fetch_assoc($sql){
 	$db = new db();
-	$rows = $db->query($sql);
+	$data['rows'] = $db->select($sql);
 	
-	$data = ['info'=>[], 'rows'=>[]];
+	/*$data = ['info'=>[], 'rows'=>[]];
 	if(isset($rows->num_rows)){
 		if( $rows->num_rows > 0){
 			$data['info'] = $rows;
 			$data['rows'] = mysqli_fetch_all( $rows,MYSQLI_ASSOC);
 		}
-	}
+	}*/
 	return $data;
 }
-
 function save( $tipo, $fecha, $param ){
 
 	$id = 0;
@@ -32,7 +31,7 @@ function save( $tipo, $fecha, $param ){
 			if( $id > 0 ){
 				$sql = "update monitor_diario set reserva = '{$param}' where id = {$id}";	
 			}else{
-				$sql = "insert into monitor_diario (reserva, fecha) VALUES ('{$param}','{$fecha}')";	
+				$sql = "insert into monitor_diario (reserva, fecha) VALUES ('{$param}','{$fecha}')";
 			}
 			break;
 		case 'usuario':
