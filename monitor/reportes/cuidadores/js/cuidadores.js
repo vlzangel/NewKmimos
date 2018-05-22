@@ -58,24 +58,11 @@ function cargar_grafico(){
         "dataProvider": graficoData,
         "valueAxes": [
             {
-                "id": "ventasAxis",
+                "id": "cuidadoresAxis",
                 "axisAlpha": 0,
                 "gridAlpha": 0,
                 "position": "left",
-                "title": "Ventas"
-            }, 
-            {
-                "id": "clientesAxis",
-                "clientes": "",
-                "clientesUnits": {
-                  "hh": "",
-                  "mm": ""
-                },
-                "axisAlpha": 0,
-                "gridAlpha": 0,
-                "inside": true,
-                "position": "right",
-                "title": "Clientes Nuevos"
+                "title": "Nuevos Cuidadores"
             }
         ],
         "graphs": [
@@ -86,28 +73,10 @@ function cargar_grafico(){
                 "fillAlphas": 0.7,
                 "legendPeriodValueText": "total: [[value.sum]]",
                 "legendValueText": "[[value]]",
-                "title": "Ventas",
+                "title": "Nuevos Cuidadores",
                 "type": "column",
-                "valueField": "eventos_de_compra",
-                "valueAxis": "ventasAxis"
-            }, 
-            {
-                "balloonText": "[[value]]",
-                "bullet": "round",
-                "bulletBorderAlpha": 1,
-                "useLineColorForBulletBorder": true,
-                "bulletColor": "#FFFFFF",
-                "bulletSizeField": "townSize",
-                "dashLengthField": "dashLength",
-                "descriptionField": "townName",
-                "labelPosition": "right",
-                "labelText": "[[townName2]]",
-                "legendPeriodValueText": "total: [[value.sum]]",
-                "legendValueText": "[[value]]",
-                "title": "Clientes Nuevos",
-                "fillAlphas": 0,
-                "valueField": "clientes_nuevos",
-                "valueAxis": "clientesAxis"
+                "valueField": "total",
+                "valueAxis": "cuidadoresAxis"
             }
         ],
 

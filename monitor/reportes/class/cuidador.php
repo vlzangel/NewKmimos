@@ -155,61 +155,55 @@ class cuidador extends general{
 	public function procesar( $datos, $desde, $hasta ){
 
 		$resultado = [];
-		$hoy = date( 'Y-m-d', strtotime($desde) );
-echo count($datos);
-exit();
-		/*
-		for ($i=1; $i < 5; $i++) { 
+		$hoy = $desde ;
+
+		for ($i=0; $hoy <= $hasta ; $i++) { 
 
 			$anio = date('Y', strtotime($hoy));
 			$mes = date('m', strtotime($hoy)).$anio;
 			
-			$fecha_pasado = date( 'Y-m-d', strtotime( "-1 month", $hoy) );
+			$fecha_pasado = date( 'Y-m-d', strtotime( "$hoy -1 month") );
 			$anio_pasado = date('Y', strtotime($fecha_pasado));
 			$mes_pasado = date('m', strtotime($fecha_pasado)).$anio_pasado;
 
 			$total = 0;
 			$nuevo = 0;
-			$costo_campana = 0;
 			$costo = 0;
+			$costo_campana = 0;
 
 			$sum_campanas = 0; // cargar valores de DB - monitor_marketing
 			$valor = 0; // cargar valores de DB - parametros
 
-			if( !isset($datos[$mes]) ){
-				if( isset( $resultado[ $mes_pasado ] ) ){
-					$nuevo = $datos[$mes]['total'];
-					$total = $resultado[ $mes_pasado ]['total'] + $nuevo;
+			if( isset($datos[$mes]) ){
+
+				if( isset( $resultado[ $mes_pasado ]['total'] ) ){
+					$nuevo = $datos[ $mes ]['total']+0;
+					$total = $resultado[ $mes_pasado ]['total'] + $nuevo +0;
 				}else{
-					$nuevo = $datos[$mes]['total'];
-					$total = $datos[$mes]['total'];
+					$nuevo = $datos[ $mes ]['total']+0;
+					$total = $datos[ $mes ]['total']+0;
 				}
 
 				$costo_campana = 0;
 				if( $nuevos > 0 ){
-					$costo_campana = $sum_campana / $nuevos;
+					$costo_campana = ($sum_campana / $nuevos) + 0;
 				}
 
 				$costo = 0;
 				if( $valor > 0 ){
-					$costo = $costo_campana / $valor;
+					$costo = ($costo_campana / $valor)+0;
 				}
 			}
 
-			$resultado[ $mes.$anio ] = [
+			$resultado[ $mes ] = [
 				'total' => $total,
 				'nuevos' => $nuevo,
 				'costos_por_campana' => $costo_campana,
 				'costo' => $costo,
 			];
 
-			if( $hoy == $hasta ){
-				break;
-			}
-
-			$hoy = date( 'Y-m-d', strtotime('+1 month', $hoy) );
+			$hoy = date( "Y-m-d", strtotime( "$hoy +1 month" ) );
 		}
-		*/
 
 		return $resultado;
 	}

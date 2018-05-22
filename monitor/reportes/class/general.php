@@ -37,5 +37,4 @@ class general extends db{
 		return $count;
 	}
 
-
 }

@@ -28,9 +28,6 @@ require_once( dirname(dirname(__DIR__)).'/class/cuidador.php' );
 	// Plataformas
 	$plataformas = $g->get_plataforma();
 
-print_r($plataformas);
-exit();
-
 	// Cargar datos de la plataforma seleccionada
 	$sucursal = 'global';
 	$_action = explode('.', $_POST['sucursal']);
@@ -65,6 +62,7 @@ exit();
 				*/
 
 				$datos = $c->get_datos( $desde, $hasta );
+
 				$month = $c->by_month( $datos );
 
 				$data = $c->merge_branch( $month, $data );
@@ -72,13 +70,11 @@ exit();
 			}catch(Exception $e){
 				$error[] = $plataforma['descripcion'];
 			}
-
 		}
 	}
 
-	//$s = $c->procesar( $data, $desde, $hasta  );
+	$data = $c->procesar( $data, $desde, $hasta  );
  
-
 	// Meses en letras
 	$meses = $c->getMeses();
 
@@ -95,7 +91,7 @@ if( !empty($data) ){
 	$tbl_body['total']  = "1, '<strong>Total Cuidadores certificados</strong>'";
 	$tbl_body['nuevos'] = "2, 'Nuevos Cuidadores certificados'";
 	$tbl_body['costos_por_campana'] = "3, '<strong>Costo por cuidador (CAC)</strong>'";
-	$tbl_body['costo']  = "4, 'Costo por cuidador (CAC)USD'";
+	$tbl_body['costo']  = "4, 'Costo por cuidador (CAC) - USD'";
 
 	$_meses = array_keys($data);
 	$graficos_data = [];
@@ -114,10 +110,10 @@ if( !empty($data) ){
 	 	// tabla
 		$tbl_header .= "<th>".$mes."</th>";
 
-		$tbl_body['total']  .= ", '0'";
-		$tbl_body['nuevos'] .= ", '0'";
-		$tbl_body['costos_por_campana'] .= ", '0'";
-		$tbl_body['costo']  .= ", '0'";
+		$tbl_body['total']  .= ", '".$data[$value]['total']."'";
+		$tbl_body['nuevos'] .= ", '".$data[$value]['nuevos']."'";
+		$tbl_body['costos_por_campana'] .= ", '".$data[$value]['costos_por_campana']."'";
+		$tbl_body['costo']  .= ", '".$data[$value]['costo']."'";
 
 	}
 

@@ -24,7 +24,7 @@
     
     <div class="row" style="padding:15px 0px 0px 0px;">
         <div class="col-md-6">
-            <h2 style="margin-top:0px;margin-bottom:10px;">Resumen Clientes</h2>
+            <h2 style="margin-top:0px;margin-bottom:10px;">Resumen Cuidadores</h2>
         </div>
         <div class="col-md-6">
             <button id="btn-grafico" style="margin-left:2px;" class="btn btn-default pull-right" role="button">
