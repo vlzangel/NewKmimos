@@ -84,7 +84,7 @@ $datos = kmimos_get_info_syte();
 							<div class="km-box-form">
 								<div class="content-placeholder">
 									<div class="label-placeholder verify" style="margin: 20px 0;">
-										<input type="email" id="usuario" data-verify="noactive" placeholder="Ingresar dirección de email"  maxlength="30" class="verify_mail input-label-placeholder">
+										<input type="email" id="usuario" data-verify="noactive" placeholder="Ingresar dirección de email"  maxlength="250" class="verify_mail input-label-placeholder">
 										<span class="verify_result"></span>
 									</div>
 									
