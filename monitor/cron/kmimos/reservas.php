@@ -14,6 +14,7 @@
 	$total_clientes = getTotalClientes( '2000-01-01', $hoy );
 
 	$reservas = getReservas( $hoy, $hoy );
+ 
 
 	// Resultado final
 	$data =[
@@ -40,117 +41,119 @@
 		]
 	];
 
-	foreach ($reservas['rows'] as $key => $reserva) {
+	if( !empty($reservas['rows']) ){
 
-  		/* ******************************************* */
-  		// Buscar datos 
-  		/* ******************************************* */
+		foreach ($reservas['rows'] as $key => $reserva) {
 
-			# Metadatos de la Reservas
-				$meta_reserva = getMetaReserva($reserva['nro_reserva']);
+	  		/* ******************************************* */
+	  		// Buscar datos 
+	  		/* ******************************************* */
 
-			# Metadatos del Pedido
-				$meta_pedido = getMetaPedido($reserva['nro_pedido']);
+				# Metadatos de la Reservas
+					$meta_reserva = getMetaReserva($reserva['nro_reserva']);
 
-			# Numero de Noches
-				$nro_noches = dias_transcurridos(
-						date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
-						date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
-					);					
-				if(!in_array('hospedaje', explode("-", $reserva['post_name']))){
-					$nro_noches += 1;
-				}
+				# Metadatos del Pedido
+					$meta_pedido = getMetaPedido($reserva['nro_pedido']);
 
-			# Estatus de la reserva
-				$estatus = get_status(
-		  			$reserva['estatus_reserva'], 
-		  			$reserva['estatus_pago'], 
-		  			$meta_pedido['_payment_method'],
-		  			$meta_reserva
-		  		);
-		  		$estatus = strtolower( str_replace('', "_", $estatus['sts_corto']) );
-
-		  	# forma de pago
-		  		$f_pago = '';
-		  		if( !empty($meta_pedido['_payment_method_title']) ){
-					$f_pago = $meta_pedido['_payment_method_title'];
-				}else{
-					if( !empty($meta_reserva['modificacion_de']) ){
-						$f_pago = 'Saldo a favor' ; 
-					}else{
-						$f_pago = 'Saldo a favor y/o cupones'; 
+				# Numero de Noches
+					$nro_noches = dias_transcurridos(
+							date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
+							date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
+						);					
+					if(!in_array('hospedaje', explode("-", $reserva['post_name']))){
+						$nro_noches += 1;
 					}
-				}
 
-			# tipo de pago
-		  		$t_pago = getTipoPagoReserva( $meta_reserva );
-				if( $t_pago["enable"] == "yes" ){
-					$t_pago = "Pago 20%";
-				}else{
-					$t_pago = "Pago Total";
-				}
-					
-  		/* ******************************************* */
-  		// Agregar datos 
-  		/* ******************************************* */
+				# Estatus de la reserva
+					$estatus = get_status(
+			  			$reserva['estatus_reserva'], 
+			  			$reserva['estatus_pago'], 
+			  			$meta_pedido['_payment_method'],
+			  			$meta_reserva
+			  		);
+			  		$estatus = strtolower( str_replace('', "_", $estatus['sts_corto']) );
 
-	  		// agregar total mascotas
-	  			$data['mascotas_total'] += $reserva['nro_mascotas'];
+			  	# forma de pago
+			  		$f_pago = '';
+			  		if( !empty($meta_pedido['_payment_method_title']) ){
+						$f_pago = $meta_pedido['_payment_method_title'];
+					}else{
+						if( !empty($meta_reserva['modificacion_de']) ){
+							$f_pago = 'Saldo a favor' ; 
+						}else{
+							$f_pago = 'Saldo a favor y/o cupones'; 
+						}
+					}
 
-	  		// agregar noches de la reservas
-	  			$data['noches']['numero'] += $nro_noches; // sin incluir numero de mascotas
-	  			$data['noches']['total'] += ( $nro_noches * $reserva['nro_mascotas'] ); // incluir numero de mascotas
+				# tipo de pago
+			  		$t_pago = getTipoPagoReserva( $meta_reserva );
+					if( $t_pago["enable"] == "yes" ){
+						$t_pago = "Pago 20%";
+					}else{
+						$t_pago = "Pago Total";
+					}
+						
+	  		/* ******************************************* */
+	  		// Agregar datos 
+	  		/* ******************************************* */
 
-	  		// agregar contador de reservas
-	  			$data['ventas']['cant'] += 1;
+		  		// agregar total mascotas
+		  			$data['mascotas_total'] += $reserva['nro_mascotas'];
 
-			// agregar tipo de reserva
-				$data["ventas"]['tipo']['flash'] += ( $meta_reserva['_booking_flash'] == "SI" )? 1 : 0 ;
-				$data["ventas"]['tipo']['normal'] += ( $meta_reserva['_booking_flash'] != "SI" )? 1 : 0 ;
+		  		// agregar noches de la reservas
+		  			$data['noches']['numero'] += $nro_noches; // sin incluir numero de mascotas
+		  			$data['noches']['total'] += ( $nro_noches * $reserva['nro_mascotas'] ); // incluir numero de mascotas
 
-			// agregar estatus de la reserva
-				if( isset($data["ventas"]['estatus'][$estatus]) ){
-					$data["ventas"]['estatus'][$estatus] += 1;
-				}else{
-					$data["ventas"]['estatus'][$estatus] = 1;
-				}
+		  		// agregar contador de reservas
+		  			$data['ventas']['cant'] += 1;
 
-			// agregar forma de pago
-				$f_pago = str_replace('y/o', '', $f_pago);
-				$f_pago = str_replace('/', '_', $f_pago);
-				$f_pago = str_replace(' ', '_', $f_pago);
-				$f_pago = str_replace('__', '_', $f_pago);
+				// agregar tipo de reserva
+					$data["ventas"]['tipo']['flash'] += ( $meta_reserva['_booking_flash'] == "SI" )? 1 : 0 ;
+					$data["ventas"]['tipo']['normal'] += ( $meta_reserva['_booking_flash'] != "SI" )? 1 : 0 ;
+
+				// agregar estatus de la reserva
+					if( isset($data["ventas"]['estatus'][$estatus]) ){
+						$data["ventas"]['estatus'][$estatus] += 1;
+					}else{
+						$data["ventas"]['estatus'][$estatus] = 1;
+					}
+
+				// agregar forma de pago
+					$f_pago = str_replace('y/o', '', $f_pago);
+					$f_pago = str_replace('/', '_', $f_pago);
+					$f_pago = str_replace(' ', '_', $f_pago);
+					$f_pago = str_replace('__', '_', $f_pago);
 
 
-				if( isset($data["ventas"]['forma_pago'][$f_pago]) ){
-					$data["ventas"]['forma_pago'][$f_pago] += 1;
-				}else{
-					$data["ventas"]['forma_pago'][$f_pago] = 1;
-				}
+					if( isset($data["ventas"]['forma_pago'][$f_pago]) ){
+						$data["ventas"]['forma_pago'][$f_pago] += 1;
+					}else{
+						$data["ventas"]['forma_pago'][$f_pago] = 1;
+					}
 
-			// agregar forma de pago
-				$t_pago = str_replace(' ', '_', $t_pago);
+				// agregar forma de pago
+					$t_pago = str_replace(' ', '_', $t_pago);
 
-				if( isset($data["ventas"]['tipo_pago'][$t_pago]) ){
-					$data["ventas"]['tipo_pago'][$t_pago] += 1;
-				}else{
-					$data["ventas"]['tipo_pago'][$t_pago] = 1;
-				}
+					if( isset($data["ventas"]['tipo_pago'][$t_pago]) ){
+						$data["ventas"]['tipo_pago'][$t_pago] += 1;
+					}else{
+						$data["ventas"]['tipo_pago'][$t_pago] = 1;
+					}
 
-			// agregar costos de reserva por estatus
-				if( isset($data["ventas"]['costo'][$estatus]) ){
-					$data["ventas"]['costo'][$estatus] += $meta_reserva['_booking_cost'];
-				}else{
-					$data["ventas"]['costo'][$estatus] = $meta_reserva['_booking_cost'];
-				}
+				// agregar costos de reserva por estatus
+					if( isset($data["ventas"]['costo'][$estatus]) ){
+						$data["ventas"]['costo'][$estatus] += $meta_reserva['_booking_cost'];
+					}else{
+						$data["ventas"]['costo'][$estatus] = $meta_reserva['_booking_cost'];
+					}
 
-				// sumar total de ingresos
-				if( $estatus == 'confirmado' ){
-					$data["ventas"]['costo']['total'] += $meta_reserva['_booking_cost'];
-				}
+					// sumar total de ingresos
+					if( $estatus == 'confirmado' ){
+						$data["ventas"]['costo']['total'] += $meta_reserva['_booking_cost'];
+					}
 
+		}
 	}
-
 
 /* ******************************************* */
 // Guardar Datos Base

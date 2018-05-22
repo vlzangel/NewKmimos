@@ -9,6 +9,12 @@ class marketing extends general{
 	}
 
 	public function get_total_gastos( $desde, $hasta, $plataforma, $tipo='cliente' ){
+
+		$where = '';
+		if( !empty($plataforma) ){
+			$where = " AND plataforma = '{$plataforma}' ";
+		}
+
 		return $this->select( "
 			SELECT 
 				sum(costo) as costo,
@@ -16,7 +22,7 @@ class marketing extends general{
 				CONCAT(LPAD(MONTH(fecha), 2, '0'), YEAR(fecha)) as fecha
 			FROM monitor_marketing 
 			WHERE tipo like '%{$tipo}%'
-				AND plataforma = '{$plataforma}'
+				$where
 			GROUP BY canal, CONCAT(LPAD(MONTH(fecha), 2, '0'), YEAR(fecha)) 
 		" );
 	}

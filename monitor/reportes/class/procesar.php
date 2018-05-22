@@ -113,6 +113,8 @@ class procesar extends general{
 
 			// Ventas
 				$item = json_decode($row['reserva'], true);
+ 
+			if( !empty($item) ){
 				$ventas[ $mes.$anio ]['mascotas_total'] += $item['mascotas_total'];
 				$ventas[ $mes.$anio ]['ventas']['cant'] += $item['ventas']['cant'];
 				$ventas[ $mes.$anio ]['clientes']['total'] = $item['clientes']['total'];
@@ -175,15 +177,17 @@ class procesar extends general{
 				$ventas[ $mes.$anio ]['ventas']['costo']['total'] += $item['ventas']['costo']['total'];
 
 			// Usuarios
-				$item2 = json_decode($row['cliente'], true);
-				foreach($item2 as $key => $val){
-					if( isset( $usuarios[ $mes.$anio ][$key] ) ){
-						$usuarios[ $mes.$anio ][$key] = array_merge($usuarios[ $mes.$anio ][$key], $val); 
-					}else{
-						$usuarios[ $mes.$anio ][$key] = $val; 	
-					}
-				}		
-				
+				$item2 = json_decode($row['cliente'], true);				
+				if( !empty($item2) ){				
+					foreach($item2 as $key => $val){
+						if( isset( $usuarios[ $mes.$anio ][$key] ) ){
+							$usuarios[ $mes.$anio ][$key] = array_merge($usuarios[ $mes.$anio ][$key], $val); 
+						}else{
+							$usuarios[ $mes.$anio ][$key] = $val; 	
+						}
+					}		
+				}
+			}	
 		}
 
 		return ['ventas'=>$ventas, 'usuarios'=>$usuarios];

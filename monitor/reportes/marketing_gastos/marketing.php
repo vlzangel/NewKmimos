@@ -28,11 +28,11 @@
         <div class="col-md-6">
             <h2 style="margin-top:0px;margin-bottom:10px;">Marketing Clientes</h2>
         </div>
-        <div class="col-md-6">
-            <button id="btn-grafico" style="margin-left:2px;" class="hidden btn btn-default pull-right" role="button">
+        <div class="col-md-6 hidden">
+            <button id="btn-grafico" style="margin-left:2px;" class=" btn btn-default pull-right" role="button">
                 <small><i class="fa fa-eye-slash grafico-icon" ></i> Grafico</small>
             </button>
-            <button id="btn-tabla" style="margin-left:2px;" class="hidden btn btn-default pull-right" role="button">
+            <button id="btn-tabla" style="margin-left:2px;" class=" btn btn-default pull-right" role="button">
                 <small><i class="fa fa-eye-slash tabla-icon"></i> Tabla</small>
             </button>
 
