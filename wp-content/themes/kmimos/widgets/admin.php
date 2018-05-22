@@ -2,7 +2,18 @@
 
 	function resumen_add_dashboard_widgets() {
 		wp_add_dashboard_widget( 'resumen_dashboard_widget', 'Resumen del Mes', 'resumen_dashboard_widget_function' );	
-		wp_add_dashboard_widget( 'ventas_dashboard_widget', 'Resumen de Ventas', 'ventas_dashboard_widget_function' );	
+
+        $permitidos = array(
+            367, // Kmimos
+            8604, // Rob
+            12795, // Rodriguez
+            8574, // Elvira
+        );
+
+        if( !in_array($current_user->ID, $permitidos)){
+            wp_add_dashboard_widget( 'ventas_dashboard_widget', 'Resumen de Ventas', 'ventas_dashboard_widget_function' );	
+        }
+
 	}
 	add_action( 'wp_dashboard_setup', 'resumen_add_dashboard_widgets' );
 

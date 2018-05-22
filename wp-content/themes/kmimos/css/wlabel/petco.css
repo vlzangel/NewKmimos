@@ -1,0 +1,231 @@
+.km-btn-primary {
+    background-color: #00aae7 !important;
+    border-bottom: 3px solid #00aae7 !important;
+    color: #ffffff !important;
+}
+
+.nav>li>a.km-btn-primary:hover {
+    background-color: #00aae7 !important;
+    color: #ffffff !important;
+    border-bottom: 3px solid #00aae7 !important;
+}
+
+.km-opcion, .km-search-wlabel, .km-select-custom-home, .km-fechas .km-fechas input {
+    border: solid 1px #00aae7 !important;
+}
+
+.km-btn-primary:hover {
+    background-color: #00aae7 !important;
+    color: #ffffff !important;
+    border-bottom: 3px solid #00aae7 !important;
+}
+
+.datepick-month th, .datepick-month th a {
+    color: #00aae7 !important;
+}
+
+h4 {
+    color: #00aae7;
+}
+
+footer .btn {
+    background-color: #00aae7 !important;
+    color: #FFF !important;
+}
+
+.km-submit-custom {
+    color: #ffffff !important;
+    background: #00aae7 !important;
+}
+
+.km-leyenda {
+    color: #00aae7 !important;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a.active, .km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a:hover {
+    background: #00aae7 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #00aae7 !important;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a {
+    border: 1px solid #00aae7 !important;
+    color: #00aae7 !important;
+}
+
+.km-btn-basic {
+    background-color: #00aae7 !important;
+}
+
+.km-checkbox {
+    background: #f3f30617 !important;
+}
+
+.km-checkbox label {
+    background: #00aae7 !important;
+}
+
+.km-btn-correo {
+    background-color: #00aae7 !important;
+}
+
+.km-btn-secondary {
+    background-color: #00aae7 !important;
+    border-bottom: 3px solid #00aae7 !important;
+}
+
+#btn_conocer {
+    background-color: transparent !important;
+}
+
+#btn_conocer:hover {
+    color: #FFF;
+    background: #00aae7 !important;
+    border: solid 1px #00aae7 !important;
+}
+
+.km-ficha-servicio .servicio-tit {
+    color: #00aae7 !important;
+}
+
+.km-servicio-opcionactivo:before {
+    border-color: #00aae7 !important;
+}
+
+.page-reservation .steps-numbers li .number.active {
+    border-color: #00aae7 !important;
+    color: #00aae7 !important;
+}
+
+.cr_minus, .cr_plus, .page-reservation .km-content-step .km-content-new-pet .km-minus, .page-reservation .km-content-step .km-content-new-pet .km-plus {
+    color: #00aae7 !important;
+    border: 1px solid #00aae7 !important;
+}
+
+.page-reservation .km-end-btn-form {
+    background: #00aae7;
+    color: #ffffff;
+}
+
+.page-reservation .km-end-btn-form span {
+    background: transparent !important;
+}
+
+.page-reservation .steps-numbers li .number.checked {
+    border-color: #00aae7 !important;
+    background-color: #00aae7 !important;
+}
+
+.page-reservation .steps-numbers li .number.active {
+    border-color: #00aae7 !important;
+    color: #00aae7 !important;
+}
+
+.page-reservation .km-select-method-paid .km-method-paid-options .km-method-paid-option.active::before {
+    background: #00aae7 !important;
+}
+
+.km-cupones span {
+    background: #00aae7 !important;
+    border: solid 1px #00aae7 !important;
+}
+
+.km-cupones input {
+    border: solid 1px #00aae7 !important;
+}
+
+.page-reservation .km-end-btn-form.disabled span {
+    background: transparent !important;
+}
+
+.menu_perfil ul li a {
+    padding: 10px !important;
+}
+
+.menu_perfil ul li a:hover {
+    background: #00aae7 !important;
+    color: #FFF !important;
+    padding: 10px !important;
+}
+
+.mascotas_item a.mascotas_content:hover h3 {
+    color: #00aae7;
+}
+
+.main h1.titulo {
+    color: #00aae7 !important;
+    border-top: solid 2px #00aae7 !important;
+}
+
+.main .vlz_tabla .vlz_botones a {
+    color: #00aae7 !important;
+    border: solid 1px #00aae7 !important;
+}
+
+.main .vlz_tabla .ver_reserva_botones a {
+    color: #00aae7 !important;
+    border: solid 1px #00aae7 !important;
+}
+
+.pago_en_efectivo {
+    color: #00aae7 !important;
+}
+
+.main .vlz_tabla .ver_reserva_botones .vlz_cancelar {
+    color: #FFF !important;
+    border: solid 1px #b01d1d;
+    border: solid 1px #b01d1d !important;
+}
+
+.vlz_check:after {
+    border: 1px solid #00aae7 !important;
+}
+
+.btn_fin_reserva {
+    background: #00aae7 !important;
+    color: #ffffff !important;
+}
+
+.que_debo_hacer div {
+    color: #00aae7 !important;
+}
+
+#PageSubscribe {
+    background: #00aae7 !important;
+}
+
+#btn_conocer {
+    color: #00aae7;
+    border: solid 1px #00aae7;
+}
+
+.km-opcionactivo:before {
+    border-color: #00aae7;
+}
+
+.bx-wrapper .bx-controls-direction a.bx-prev {
+    border-right: 25px solid #00aae7;
+}
+
+.bx-wrapper .bx-controls-direction a.bx-next {
+    border-left: 25px solid #00aae7;
+}
+
+.km-nav-link:hover {
+    color: #00aae7 !important;
+}
+
+
+@media (max-width: 480px){
+
+    .navbar-brand>img {
+        height: 80%;
+        margin: 12px 0px 0px 5px;
+    }
+
+    .km-opcion {
+        -webkit-transition: all 0s;
+        -moz-transition: all .2s ease-in-out;
+    }
+
+}
