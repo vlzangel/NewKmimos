@@ -1,10 +1,10 @@
 <?php
 
-add_action('init', 'kmimos_register_request');
+/*add_action('init', 'kmimos_register_request');
 
 add_action('add_meta_boxes', 'kmimos_box_details_of_request');
 
-add_action('save_post', 'kmimos_save_details_of_request');
+add_action('save_post', 'kmimos_save_details_of_request');*/
 
 /*add_filter('manage_request_posts_columns', 'kmimos_add_new_request_columns');
 

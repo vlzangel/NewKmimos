@@ -51,19 +51,10 @@
                     'parent'=>'',
                     'slug'=>'kmimos',
                     'access'=>'manage_options',
-                    'page'=>'kmimos_panel',
+                    'page'=>'petsitters',
                     'icon'=>get_home_url()."/wp-content/plugins/kmimos/".'/assets/images/icon.png',
                     'position'=>4,
                 ),
-                array(
-                    'title'=> __('Dashboard'),
-                    'short-title'=> __('Dashboard'),
-                    'parent'=>'kmimos',
-                    'slug'=>'kmimos',
-                    'access'=>'manage_options',
-                    'page'=>'kmimos_panel',
-                    'icon'=>'',
-                )
             );
             $opciones_menu_admin = angel_menus ( $opciones_menu_admin );
             $opciones_menu_admin = carlos_menus( $opciones_menu_admin );

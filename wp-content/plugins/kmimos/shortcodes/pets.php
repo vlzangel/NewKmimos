@@ -1,6 +1,6 @@
 <?php
 
-add_action('init', 'kmimos_register_pets');
+/*add_action('init', 'kmimos_register_pets');
 
 add_action('init', 'kmimos_pets_taxonomies', 0 );
 
@@ -14,7 +14,7 @@ add_action('save_post', 'kmimos_save_details_of_pet');
 
 add_filter('manage_pets_posts_columns', 'kmimos_add_new_pets_columns');
 
-add_action('manage_pets_posts_custom_column', 'kmimos_manage_pets_columns', 10, 2);
+add_action('manage_pets_posts_custom_column', 'kmimos_manage_pets_columns', 10, 2);*/
 
 
 
