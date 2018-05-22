@@ -215,6 +215,28 @@ footer .btn {
     color: #00aae7 !important;
 }
 
+.km-btn-primary-new {
+    border: 1px solid #00aae7;
+    color: #00aae7;
+}
+
+.km-btn-primary-new.basic, .km-btn-primary-new:hover {
+    color: #FFFFFF;
+    border-color: #00aae7;
+    background-color: #00aae7;
+}
+
+.km-link-flash {
+    color: #00aae7;
+}
+
+.km-opciones .precio {
+    color: #00aae7;
+}
+
+.pocos_resultados a {
+    color: #00aae7 !important;
+}
 
 @media (max-width: 480px){
 
