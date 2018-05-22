@@ -28,8 +28,8 @@ class procesar extends general{
 
 		require_once(dirname(dirname(__DIR__)).'/cron/kmimos/funciones.php');
 		$recompras = getRecompras( $desde, $hasta );
-		//$num_noches_recompra = getReservasRecompra( $desde, $hasta );
-		$num_noches_recompra = [];
+		$num_noches_recompra = getReservasRecompra( $desde, $hasta );
+		//$num_noches_recompra = [];
 
 		return [
 			'diario'=>$data, 
@@ -54,7 +54,7 @@ class procesar extends general{
 			'Content-Type'=> 'application/json; charset=UTF-8',	
 			'Accept'=>'application/json'
 		);
-		$request = Requests::post($url, $headers,  $data );
+		$request = Requests::get($url, $headers,  $data );
 
 		return (isset($request->body))? $request->body : '' ;
 	}

@@ -57,12 +57,13 @@ require_once( dirname(dirname(__DIR__)).'/class/procesar.php' );
 			try{
 
 				$datos = $c->request( 
-					$plataforma['dominio']."/monitor/services/getData.php", 
-					['desde'=>$desde, 'hasta'=>$hasta] 
+					$plataforma['dominio']."/monitor/services/getData.php?desde={$desde}&hasta={$hasta}", []
 				);
 
 				//$datos = $c->getData( $desde, $hasta);
 				
+				$datos = json_decode($datos, true);
+
 				// Analizar datos
 				if( !empty($datos) ){
 					$data_sucursal = $c->porSucursal( $datos, $desde, $hasta );
