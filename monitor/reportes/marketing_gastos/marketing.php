@@ -1,10 +1,12 @@
 
-<link rel="stylesheet" type="text/css" href="<?php echo get_home_url()?>/monitor/reportes/marketing/css/marketing.css">
-<script type="text/javascript" src="<?php echo get_home_url()?>/monitor/reportes/marketing/js/marketing.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo get_home_url()?>/monitor/reportes/marketing_gastos/css/marketing.css">
+<script type="text/javascript" src="<?php echo get_home_url()?>/monitor/reportes/marketing_gastos/js/marketing.js"></script>
+ 
+<?php require_once(dirname(__DIR__).'/class/general.php'); 
+    
+    $g = new general();
+    $plataformas = $g->get_plataforma();
 
-<?php include_once( 'ajax/general.php' ); ?>
-
-<?php
     $grupo = [];
     $por_sucursal = '';
     $por_grupo = '';
@@ -24,13 +26,13 @@
     
     <div class="row" style="padding:15px 0px 0px 0px;">
         <div class="col-md-6">
-            <h2 style="margin-top:0px;margin-bottom:10px;">Control de Campañas</h2>
+            <h2 style="margin-top:0px;margin-bottom:10px;">Marketing Clientes</h2>
         </div>
-        <div class="col-md-6 hidden">
-            <button id="btn-grafico" style="margin-left:2px;" class="btn btn-default pull-right" role="button">
+        <div class="col-md-6">
+            <button id="btn-grafico" style="margin-left:2px;" class="hidden btn btn-default pull-right" role="button">
                 <small><i class="fa fa-eye-slash grafico-icon" ></i> Grafico</small>
             </button>
-            <button id="btn-tabla" style="margin-left:2px;" class="btn btn-default pull-right" role="button">
+            <button id="btn-tabla" style="margin-left:2px;" class="hidden btn btn-default pull-right" role="button">
                 <small><i class="fa fa-eye-slash tabla-icon"></i> Tabla</small>
             </button>
 
@@ -67,9 +69,7 @@
     </div>
     <hr>
     <div class ="row">
-        <div class="col-sm-12 col-md-12">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevo"><i class="fa fa-plus"></i> Nuevo</button>
-        </div>
+         
     </div>
     <div class ="row">
         <?php if( $error == 0 ) { ?>
@@ -78,13 +78,9 @@
                 <table id="example" class="table table-striped table-bordered dt-responsive table-hover table-responsive nowrap datatable-buttons" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <td width="10%">Fecha</td>
-                            <td>Nombre</td>
-                            <td>Costo</td>
-                            <td>Plataforma</td>
-                            <td>Tipo</td>
                             <td>Canal</td>
-                            <td width="5%">Opciones</td>
+                            <td>Fecha</td>
+                            <td>Costo</td>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -100,5 +96,4 @@
 
     <div class="clear"></div>    
 </div>
-
-<?php include_once( 'modal/nuevo.php' ); ?>
+ 

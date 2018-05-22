@@ -41,6 +41,15 @@
                     'page'          =>  'reporte_cuidadores',
                     'icon'          =>  '',
                 ),
+                array(
+                    'title'         =>  __('Marketing Clientes'),
+                    'short-title'   =>  __('Marketing Clientes'),
+                    'parent'        =>  'resumen',
+                    'slug'          =>  'reporte_marketing_clientes',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_marketing_clientes',
+                    'icon'          =>  '',
+                ),
 
 
 
@@ -97,6 +106,14 @@
     }
 
     /* Inclucion de paginas */
+
+    if(!function_exists('reporte_marketing_clientes')){
+        function reporte_marketing_clientes(){
+            include_once('importador.php');
+            include_once('graficos.php');
+            include_once(dirname(__DIR__).'/reportes/marketing_gastos/marketing.php');
+        }
+    }
 
     if(!function_exists('reporte_cuidadores')){
         function reporte_cuidadores(){

@@ -1,65 +1,10 @@
 var table;
 jQuery(document).ready(function(){
-
-    jQuery('#guardar').on('click', function(){
-        jQuery.post( 
-            HOME+"/monitor/reportes/marketing/ajax/nuevo.php", 
-            jQuery('#frm_nuevo').serialize(), 
-            function( data ) {
-                data = jQuery.parseJSON(data);
-                if(data['sts']==1){
-                    jQuery('#nuevo').modal('hide');
-                    table.ajax.reload();
-                }
-        });
-    });
-
-
-    jQuery(document).on('click', '[data-target="delete"]' , function(){
-        
-        if( confirm("¿Desea eliminar el registro?") ){
-            jQuery.post( 
-                HOME+"/monitor/reportes/marketing/ajax/eliminar.php", 
-                {id: jQuery(this).attr('data-id') }, 
-                function( data ) {
-                    data = jQuery.parseJSON(data);
-                    if(data['sts']==1){
-                        table.ajax.reload();
-                    }
-            });
-        }
-
-    });
-
-    jQuery(document).on('click', '[data-target="update"]' , function(){
-        
-        jQuery.post( 
-            HOME+"/monitor/reportes/marketing/ajax/select.php", 
-            {id: jQuery(this).attr('data-id')}, 
-            function( data ) {
-                data = jQuery.parseJSON(data);
-                var valores = data['data']; 
-                jQuery('#nuevo').modal('hide');
-                if(data['sts']==1){
-                    jQuery('[name="id"]').val( valores['id'] ); 
-                    jQuery('[name="nombre"]').val( valores['nombre'] ); 
-                    jQuery('[name="costo"]').val( valores['costo'] ); 
-                    jQuery('[name="fecha"]').val( valores['fecha'] );
-                    jQuery('[name="tipo"]').val( valores['tipo'] );
-                    jQuery('[name="canal"]').val( valores['canal'] );
-                    jQuery('[name="plataforma"]').val( valores['plataforma'] );
-                    jQuery('#nuevo').modal('show');
-                }
-        });
-
-    });
-
     cargar_tabla();
 });
 
 function cargar_tabla(){
-	
-console.log(HOME+'/monitor/reportes/marketing/ajax/marketing.php');
+	 
 
     table = jQuery('#example').DataTable({
 	    "language": {
@@ -86,7 +31,7 @@ console.log(HOME+'/monitor/reportes/marketing/ajax/marketing.php');
 	        }
 	    },
         "ajax": {
-            "url": HOME+'/monitor/reportes/marketing/ajax/marketing.php',
+            "url": HOME+'/monitor/reportes/marketing_gastos/ajax/marketing.php',
             "type": "POST"
         },
 	    "scrollX": true,
