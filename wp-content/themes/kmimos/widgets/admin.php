@@ -3,15 +3,22 @@
 	function resumen_add_dashboard_widgets() {
 		wp_add_dashboard_widget( 'resumen_dashboard_widget', 'Resumen del Mes', 'resumen_dashboard_widget_function' );	
 
-        $permitidos = array(
+        if( !in_array($current_user->ID, array(
             367, // Kmimos
             8604, // Rob
             12795, // Rodriguez
             8574, // Elvira
-        );
-
-        if( !in_array($current_user->ID, $permitidos)){
+        ))){
             wp_add_dashboard_widget( 'ventas_dashboard_widget', 'Resumen de Ventas', 'ventas_dashboard_widget_function' );	
+        }
+
+        if( !in_array($current_user->ID, array(
+            367, // Kmimos
+            8604, // Rob
+            12795, // Rodriguez
+            8574, // Elvira
+        ))){
+            wp_add_dashboard_widget( 'noches_dashboard_widget', 'Resumen de Noches Reservadas', 'noches_dashboard_widget_function' );	
         }
 
 	}
@@ -222,6 +229,128 @@
 					</li>
 					<li class="on-hold-orders">
 						<a><strong>$ '.number_format( $ventas_anio_curso, 2, ',', '.').' MXN</strong> A&ntilde;o en curso</a>
+					</li>
+					<li class="on-hold-orders">
+						
+					</li>
+				</ul>
+			</div>
+		';
+	}
+
+	function noches_dashboard_widget_function(){
+		global $wpdb;
+
+		$fin = date("Y-m", strtotime ( '-12 month' , time() ) )."-01 00:00:00";
+
+		$sql = "
+			SELECT 
+				orden.ID AS ordenID,
+				reserva.ID AS reservaID,
+				metas.meta_value AS monto,
+				orden.post_status AS ordenStatus,
+				reserva.post_status AS reservaStatus,
+				orden.post_date AS fecha,
+				item.meta_value AS item_id,
+				duracion.meta_value AS duracion
+			FROM 
+				wp_posts AS orden
+			INNER JOIN wp_posts AS reserva ON ( orden.ID = reserva.post_parent )
+			INNER JOIN wp_postmeta AS metas ON ( reserva.ID = metas.post_id )
+			INNER JOIN wp_postmeta AS item ON ( reserva.ID = item.post_id AND item.meta_key = '_booking_order_item_id' )
+			INNER JOIN wp_woocommerce_order_itemmeta AS duracion ON ( duracion.order_item_id = item.meta_value )
+
+			WHERE 
+				orden.post_status = 'wc-confirmed' AND 
+				orden.post_type = 'shop_order' AND 
+				metas.meta_key = '_booking_cost' AND
+				duracion.meta_key = 'Duración'
+		";
+
+		$pedidos = $wpdb->get_results( $sql );
+		
+		$ventas_mes = 0;
+		$ventas_90 = 0;
+		$ventas_12 = 0;
+		$ventas_anio_curso = 0;
+
+		$mes_en_curso = strtotime ( date("Y-m").'-1' );
+		$anio_en_curso = strtotime ( date("Y").'-01-01' );
+		$hace_90_dias = strtotime ( '-90 day' , time() );
+		$hace_12_meses = strtotime ( '-12 month' , time() );
+
+		foreach ($pedidos as $pedido) {
+			// $fin_reserva = strtotime( get_post_meta($pedido->reservaID, "_booking_end", true) );
+
+			$fecha = strtotime( $pedido->fecha );
+
+			$inicio = strtotime( $pedido->inicio );
+			$fin = strtotime( $pedido->fin );
+
+			$diferencia = $fin-$inicio;
+			$dias = $diferencia/(60*60*24);
+
+			$duracion = explode(" ", $pedido->duracion);
+
+			if( $mes_en_curso <= $fecha ){
+				$ventas_mes += $duracion[0]+0;
+			}
+
+			if( $anio_en_curso <= $fecha ){
+				$ventas_anio_curso += $duracion[0]+0;
+			}
+
+			if( $hace_90_dias <= $fecha ){
+				$ventas_90 += $duracion[0]+0;
+			}
+
+			if( $hace_12_meses <= $fecha ){
+				$ventas_12 += $duracion[0]+0;
+			}
+
+		}
+
+		echo '
+			<style>
+				.resumen_ventas .wc_status_list li.processing-orders a:before {
+					content: "" !important;
+				    margin: 0px !important;
+				    padding: 0px !important;
+				    width: 0px !important;
+				}
+				.resumen_ventas .wc_status_list li.completed a:before {
+					content: "" !important;
+				    margin: 0px !important;
+				    padding: 0px !important;
+				    width: 0px !important;
+				}
+				.resumen_ventas .wc_status_list li.on-hold-orders a:before {
+					content: "" !important;
+				    margin: 0px !important;
+				    padding: 0px !important;
+				    width: 0px !important;
+				}
+
+				.resumen_ventas .wc_status_list li.modified a:before {
+					content: "" !important;
+				    margin: 0px !important;
+				    padding: 0px !important;
+				    width: 0px !important;
+				}
+			</style>
+			<div id="woocommerce_dashboard_status" class="resumen_ventas">
+				<ul class="wc_status_list">
+					<li class="sales-this-month">
+						<a><strong><span class="amount">'.$ventas_mes.' Noches</strong> Mes en curso</a>
+					</li>
+					<li class="processing-orders">
+						<a><strong>'.$ventas_90.' Noches</strong> &Uacute;ltimos 90 d&iacute;as</a>
+					</li>
+					<li class="completed">
+						<a><strong>'.$ventas_12.' Noches</strong> &Uacute;ltimos 12 meses </a>
+					</li>
+					<li class="on-hold-orders">
+						<a><strong>'.$ventas_anio_curso.' Noches</strong> A&ntilde;o en curso</a>
 					</li>
 					<li class="on-hold-orders">
 						
