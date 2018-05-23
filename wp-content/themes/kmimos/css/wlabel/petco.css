@@ -282,6 +282,14 @@ footer .btn {
         height: 60px;
     }
 
+    .bg-white .navbar-toggle {
+        padding: 8px 10px 0px;
+    }
+
+    .bg-white.navbar {
+        padding-top: 2px !important;
+    }
+
     .km-opcion {
         -webkit-transition: all 0s;
         -moz-transition: all .2s ease-in-out;
