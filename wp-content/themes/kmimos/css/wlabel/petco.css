@@ -243,7 +243,7 @@ footer .btn {
 }
 
 .navbar-toggle {
-    padding: 0px 10px;
+    padding: 4px 10px 0px;
 }
 
 .navbar-brand {
@@ -259,6 +259,10 @@ footer .btn {
 }
 
 @media (max-width: 480px){
+
+    .navbar {
+        padding-top: 20px;
+    }
 
     .navbar-brand {
         height: 55px;
