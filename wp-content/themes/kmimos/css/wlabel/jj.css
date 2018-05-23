@@ -211,6 +211,10 @@ footer .btn {
     border-left: 25px solid #f30617;
 }
 
+.km-premium.km-search-slider {
+    background: #f30617 !important;
+}
+
 .km-nav-link:hover {
     color: #f30617 !important;
 }

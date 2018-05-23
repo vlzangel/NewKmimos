@@ -211,6 +211,10 @@ footer .btn {
     border-left: 25px solid #00aae7;
 }
 
+.km-premium.km-search-slider {
+    background: #00aae7 !important;
+}
+
 .km-nav-link:hover {
     color: #00aae7 !important;
 }
@@ -238,11 +242,15 @@ footer .btn {
     color: #00aae7 !important;
 }
 
+.navbar-toggle {
+    padding: 6px 10px;
+}
+
 @media (max-width: 480px){
 
     .navbar-brand>img {
         height: 80%;
-        margin: 12px 0px 0px 5px;
+        margin: 5px 0px 0px 5px;
     }
 
     .km-opcion {

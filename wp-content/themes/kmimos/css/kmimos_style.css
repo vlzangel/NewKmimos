@@ -6838,8 +6838,8 @@ position: absolute;
     text-align: center;
 }
 #popup-servicios .modal-dialog {
-    width: 100%;
-    padding: 10px;
+    width: 94%;
+    padding: 0px;
     max-width: 850px;
 }
 #popup-servicios .modal-content {
