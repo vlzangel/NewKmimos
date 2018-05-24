@@ -428,22 +428,13 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
-	jQuery('.km-opcion').on('click', function(e) {
-	
-		jQuery('#select_1').on('click', function(){
-			jQuery("#select_2, #select_3, #select_4").removeClass("km-opcionactivo");
-		});
-		jQuery('#select_2').on('click', function(){
-			jQuery("#select_1, #select_3, #select_4").removeClass("km-opcionactivo");
-		});
-		
-		jQuery('#select_3').on('click', function(){
-			jQuery("#select_2, #select_1, #select_4").removeClass("km-opcionactivo");
-		});	
-		jQuery('#select_4').on('click', function(){
-			jQuery("#select_2, #select_3, #select_1").removeClass("km-opcionactivo");
-		});
-	});
+
+    jQuery('.km-opcion').on('click', function(e) {
+    	jQuery('.km-opcion').removeClass("km-opcionactivo");
+        jQuery(this).addClass('km-opcionactivo');
+        jQuery(this).children("input:checkbox").prop("checked", !jQuery(this).children("input").prop("checked"));
+    });
+
 
 	jQuery("#km-check-1").on('click', function() {
 		if(jQuery("#km-check-1").val() == "0"){

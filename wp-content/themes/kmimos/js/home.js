@@ -101,11 +101,6 @@ var hasGPS=false;
             close_video();
         });
 
-        jQuery('.km-opcion').on('click', function(e) {
-            jQuery(this).toggleClass('km-opcionactivo');
-            jQuery(this).children("input:checkbox").prop("checked", !jQuery(this).children("input").prop("checked"));
-        });
-
     });
 
 
