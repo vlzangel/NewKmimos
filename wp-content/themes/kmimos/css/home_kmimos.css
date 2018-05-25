@@ -852,6 +852,10 @@ ul.slider_logos_box li{
             width: 88%;
         }
 
+        #message.Msubscribe .contain {
+            padding: 15px;
+        }
+
     }
 
     @media (max-width: 800px){
