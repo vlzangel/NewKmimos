@@ -45,7 +45,8 @@ function form_subscribe(element){
                 jQuery.post( 
                     "https://www.kmimos.com.mx/landing-volaris/suscribir_home.php", 
                     {
-                        "email": jQuery("#mail_suscripcion").val()
+                        "email": jQuery("#mail_suscripcion").val(),
+                        "wlabel": jQuery("#wlabelSubscribe").val()
                     }, 
                     function( data ) {
                         console.log("Suscripción enviadas");

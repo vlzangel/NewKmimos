@@ -791,6 +791,11 @@ ul.slider_logos_box li{
         height: 100%;
     }
 
+    .banner_home_petco_components input::placeholder { 
+        color: #444;
+        opacity: 1; 
+    }
+
 /* NutriHeroes */
 
     .fondo_banner_nutriheroes{
@@ -834,15 +839,16 @@ ul.slider_logos_box li{
 
         .banner_home_petco_components #mail_suscripcion {
             position: absolute;
-            bottom: 18%;
-            right: 18%;
-            width: 60% !important;
+            bottom: 19%;
+            right: 14%;
+            width: 68% !important;
             border: solid 2px #CCC !important;
             border-radius: 0px !important;
+            font-size: 10px !important;
         }
 
         .banner_home_petco_components button {
-            bottom: 9.5%;
+            bottom: 7.5%;
             right: 17%;
         }
 

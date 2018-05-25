@@ -49,12 +49,13 @@
 
 			        var html = 
 			        '<div id=\"PageSubscribe\" style=\"padding: 0px;\">'+
-			        '	<img src=\"".getTema()."/images/new/banner_petco_2.png\" class=\"banner_home_petco\" >'+
-			        '	<img src=\"".getTema()."/images/new/banner_petco_movil_2.png\" class=\"banner_home_petco_movil\" >'+
+			        '	<img src=\"".getTema()."/images/new/banner_petco_3.png\" class=\"banner_home_petco\" >'+
+			        '	<img src=\"".getTema()."/images/new/banner_petco_movil_4.png\" class=\"banner_home_petco_movil\" >'+
 			        '	<div class=\"banner_home_petco_components\"> '+
 			        ' 		<i class=\"exit fa fa-times\" aria-hidden=\"true\" onclick=\"SubscribePopUp_Close(\'#message.Msubscribe\')\"></i>' +
 			        '		<div class=\"section section1\">'+
 			        '			<div class=\"section section2\">". subscribe_input($PopUpSection)."</div>'+
+			        '			<input type=\"hidden\" id=\"wlabelSubscribe\" value=\"".$PopUpSection."\" >'+
 			        '		</div>' +
 			        '	</div>' +
 			        '</div>';
@@ -73,6 +74,7 @@
 			        var html='<div id=\"PageSubscribe\"><i class=\"exit fa fa-times\" aria-hidden=\"true\" onclick=\"SubscribePopUp_Close(\'#message.Msubscribe\')\"></i>' +
 			            '<div class=\"section section1\"><span>G&aacute;nate <strong>$50</strong> pesos en tu primera reserva</span><br>&#8216;&#8216;Aplica para clientes nuevos&#8217;&#8217;<div class=\"images\">'+dog+'</div></div>' +
 			            '<div class=\"section section2\"><span><strong>&#161;SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span>". subscribe_input($PopUpSection)." </div>' +
+			        '	<input type=\"hidden\" id=\"wlabelSubscribe\" value=\"".$PopUpSection."\" >'+
 			            '</div>';
 
 			        SubscribePopUp_Create(html);
