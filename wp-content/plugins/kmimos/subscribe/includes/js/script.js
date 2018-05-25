@@ -38,9 +38,6 @@ function form_subscribe(element){
             }
             
             if( data['result']===true ){
-               
-                fbq ('track','CompleteRegistration');
-                fbq ('track','PopUpHome');
 
                 jQuery.post( 
                     "https://www.kmimos.com.mx/landing-volaris/suscribir_home.php", 
@@ -49,9 +46,13 @@ function form_subscribe(element){
                         "wlabel": jQuery("#wlabelSubscribe").val()
                     }, 
                     function( data ) {
+                        console.log( data );
                         console.log("Suscripción enviadas");
                     }
                 );
+               
+                fbq ('track','CompleteRegistration');
+                fbq ('track','PopUpHome');
             }
         });
     }
