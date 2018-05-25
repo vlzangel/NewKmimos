@@ -784,6 +784,13 @@ ul.slider_logos_box li{
         display: none;
     }
 
+    .banner_home_petco_movil{
+        display: none;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
 /* NutriHeroes */
 
     .fondo_banner_nutriheroes{
@@ -806,6 +813,45 @@ ul.slider_logos_box li{
         background-repeat: no-repeat;
         background-position: center;
         background-image: url(../images/home/banner_nutriheroes.png);
+    }
+
+    @media (max-width: 600px){
+
+        .banner_home_petco{
+            display: none;
+        }
+
+        .banner_home_petco_movil{
+            display: block;
+        }
+
+        #PageSubscribe .exit {
+            margin-top: -15px;
+            margin-right: -12px;
+            font-size: 20px;
+            color: #ee3524;
+        }
+
+        .banner_home_petco_components #mail_suscripcion {
+            position: absolute;
+            bottom: 18%;
+            right: 18%;
+            width: 60% !important;
+            border: solid 2px #CCC !important;
+            border-radius: 0px !important;
+        }
+
+        .banner_home_petco_components button {
+            bottom: 9.5%;
+            right: 17%;
+        }
+
+        .banner_home_petco_components .section.section2 .message {
+            bottom: 13%;
+            right: 6%;
+            width: 88%;
+        }
+
     }
 
     @media (max-width: 800px){

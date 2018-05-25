@@ -50,6 +50,7 @@
 			        var html = 
 			        '<div id=\"PageSubscribe\" style=\"padding: 0px;\">'+
 			        '	<img src=\"".getTema()."/images/new/banner_petco_2.png\" class=\"banner_home_petco\" >'+
+			        '	<img src=\"".getTema()."/images/new/banner_petco_movil_2.png\" class=\"banner_home_petco_movil\" >'+
 			        '	<div class=\"banner_home_petco_components\"> '+
 			        ' 		<i class=\"exit fa fa-times\" aria-hidden=\"true\" onclick=\"SubscribePopUp_Close(\'#message.Msubscribe\')\"></i>' +
 			        '		<div class=\"section section1\">'+
