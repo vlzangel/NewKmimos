@@ -1,6 +1,5 @@
 <?php
-
-require_once( dirname(dirname(__DIR__)).'/class/general.php' );
+	header('Access-Control-Allow-Origin: *');
 require_once( dirname(dirname(__DIR__)).'/class/cuidador.php' );
 
 // ******************************************
@@ -19,72 +18,29 @@ require_once( dirname(dirname(__DIR__)).'/class/cuidador.php' );
 		$hasta = $_POST['hasta'];
 	}
 
-	$g = new general();
 	$c = new cuidador();
 
-	// Datos para mostrar
-	$data = [];
-	$suma_campana = 0;
+	$cuidadores = $c->get_cuidadores( $desde, $hasta );
 
-	// Plataformas
-	$plataformas = $g->get_plataforma();
+	$marketing = $c->sumar_campanas( $desde, $hasta );
 
-	// Cargar datos de la plataforma seleccionada
-	$sucursal = 'global';
-	$_action = explode('.', $_POST['sucursal']);
-
-	foreach ($plataformas as $plataforma) {
-		$sts = 0;
-		switch( $_action[0] ){
-			case 'bygroup':
-				if( $_action[1] == $plataforma['grupo'] ){
-					$sts = 1;
-					$sucursal = $plataforma['grupo'];
-				}
-				break;
-			case 'byname':
-				if( $_action[1] == $plataforma['name'] ){
-					$sts = 1;
-					$sucursal = $plataforma['descripcion'];
-				}
-				break;
-			default: // global
-				$sts = 1;
-				break;
-		}
-		if( $sts == 1 ){
-
-			try{
-				/*
-				$datos = $c->request( 
-					$plataforma['dominio']."/monitor/services/getData.php", 
-					['desde'=>$desde, 'hasta'=>$hasta] 
-				);
-				*/
-
-				$temp = $c->get_datos( $desde, $hasta, $plataforma['name'] );
-				
-				$month = $c->by_month( $temp['datos'], $plataforma['name'] );
-
-				$suma_campana = $temp['total_campanas'];
-				$data = $c->merge_branch( $month, $data, $suma_campana );
-
-			}catch(Exception $e){
-				$error[] = $plataforma['descripcion'];
-			}
-		}
+	$estatus = 0;
+	if( count($cuidadores) > 0 ){
+		$estatus = 1;
 	}
 
-	$data = $c->procesar( $data, $desde, $hasta );
- 
-	// Meses en letras
-	$meses = $c->getMeses();
+	print_r(json_encode([
+		'estatus' => $estatus,
+		'cuidadores' => $cuidadores,
+		'marketing' => $marketing
+	]));
+
 
 
 // ******************************************
 // Construir datos para la table y graficos
 // ******************************************
-
+/*
 if( !empty($data) ){
 
 	$error = 0;
@@ -122,3 +78,4 @@ if( !empty($data) ){
 }else{
 	$error = 1;
 }
+*/

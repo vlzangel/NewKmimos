@@ -8,7 +8,7 @@ $c = new marketing();
 
 // Datos para mostrar
 $data = [];
-
+$where = ( isset($where) )? $where : '';
 $datos = $c->get_datos($where);
 
 foreach ($datos as $val) {
