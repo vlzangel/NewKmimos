@@ -82,7 +82,7 @@ function calcular(){
 			jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
 			jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
 		}else{
-			if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+			if( jQuery("#checkin").val() == HOY && HORA >= 7 ){
 				jQuery("#vlz_msg_bloqueo").addClass("vlz_bloquear_msg");
 				jQuery("#bloque_info_servicio").addClass("vlz_bloquear");
 				jQuery("#vlz_msg_bloqueo").removeClass("vlz_NO_bloquear_msg");
@@ -99,7 +99,7 @@ function calcular(){
 			}
 		}
 	}else{
-		if( jQuery("#checkin").val() == HOY && HORA >= 9 ){
+		if( jQuery("#checkin").val() == HOY && HORA >= 7 ){
 			CARRITO["fechas"]["flash"] = "SI";
 		}else{
 			if( jQuery("#checkin").val() == MANANA && HORA >= 18 ){
@@ -736,6 +736,26 @@ jQuery(document).ready(function() {
 		CARRITO["fechas"]["checkout"] = jQuery("#hora_checkout").val();
 		calcular();
 	});*/
+
+	jQuery("#prueba").on("click", function(e){
+		/*ga('send', 'event', 'reservar', 'tipo_pago', 'parcial', {
+			hitCallback: function() {
+				console.log("Evento Enviado!");
+			}
+		});*/
+
+		gtag('event', 'Prueba', { 
+			'event_category': 'Prueba', 
+			'event_action': 'Click'
+		});
+
+		/*
+		, 
+			'event_label': 'etiqueta', 
+			'value': 'valor'
+		*/
+
+	});
 
 	jQuery(".km-option-total").click();
 

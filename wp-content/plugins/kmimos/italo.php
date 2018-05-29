@@ -489,6 +489,7 @@ if(!function_exists('get_preguntas_categoria')){
 		function add_wlabel(){
             $wlabel = false;
             $title = '';
+            $slug = '';
             if (!isset($_SESSION)) {
                 session_start();
             }
@@ -496,19 +497,22 @@ if(!function_exists('get_preguntas_categoria')){
 
                 if(array_key_exists('wlabel',$_SESSION)){
                 	$title = $_SESSION['wlabel'];
+                	$slug = $_SESSION['wlabel'];
                     $wlabel= true;
                 }else if($referido=='Volaris'){
                 	$title = 'volaris';
+                	$slug = 'volaris';
                     $wlabel= true;
 
                 }else if($referido=='Vintermex'){
                 	$title = 'vintermex';
+                	$slug = 'vintermex';
                     $wlabel= true;
                 }
             }
 
             if( $wlabel ){
-				wp_enqueue_style( 'wlabel_css', getTema()."/css/wlabel-content.css", array(), "1.0.0" );
+				wp_enqueue_style( 'wlabel_css', getTema()."/css/wlabel/".$slug.".css", array(), "1.0.0" );
             }
 
             return $title;

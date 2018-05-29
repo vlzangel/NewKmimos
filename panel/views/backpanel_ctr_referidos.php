@@ -35,7 +35,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 		  	<div class="col-sm-4">
 			  	<ul class="list-inline">
 					<li>
-						<a class="btn btn-default pull-rigth" href="/panel/?p=suscriptores"><< </a>
+						<a class="btn btn-default pull-rigth" href="?p=suscriptores"><< </a>
 					</li>
 					<?php if(!empty($referido)) { ?>
 					<li>
@@ -47,7 +47,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 				</ul>		
 		  	</div>
 			<div class="col-sm-8  text-right">
-		    	<form class="form-inline" action="/panel/?p=suscriptores&ref=<?php echo $referido; ?>" method="POST">
+		    	<form class="form-inline" action="?p=suscriptores&ref=<?php echo $referido; ?>" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">

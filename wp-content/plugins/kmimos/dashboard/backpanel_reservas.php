@@ -82,6 +82,8 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th># Mascotas</th>
 			      <th># Noches Totales</th>
 			      <th>Cliente</th>
+			      <th>Correo Cliente</th>
+			      <th>Tel&eacute;fono Cliente</th>
 			      <th>Recompra (1Mes)</th>
 			      <th>Recompra (3Meses)</th>
 			      <th>Recompra (6Meses)</th>
@@ -91,6 +93,8 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Razas</th>
 			      <th>Edad</th>
 			      <th>Cuidador</th>
+			      <th>Correo Cuidador</th>
+			      <th>Tel&eacute;fono Cuidador</th>
 			      <th>Servicio Principal</th> 
 			      <th>Servicios Especiales</th> <!-- Servicios adicionales -->
 			      <th>Estado</th>
@@ -251,6 +255,15 @@ $reservas = getReservas($_desde, $_hasta);
 								break;
 							}
 						}
+
+						$telf_cliente = array();
+						if( $cliente["user_mobile"] != "" ){ $telf_cliente[] = $cliente["user_mobile"]; }
+						if( $cliente["user_phone"] != "" ){ $telf_cliente[] = $cliente["user_phone"]; }
+
+						$telf_cuidador = array();
+						if( $meta_cuidador["user_mobile"] != "" ){ $telf_cuidador[] = $meta_cuidador["user_mobile"]; }
+						if( $meta_cuidador["user_phone"] != "" ){ $telf_cuidador[] = $meta_cuidador["user_phone"]; }
+
 						
 				  	?>
 				    <tr>
@@ -267,6 +280,8 @@ $reservas = getReservas($_desde, $_hasta);
 					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 					<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
 					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
+					<th><?php echo $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cliente_id); ?></th>
+					<th><?php echo implode(", ", $telf_cliente); ?></a></th>
 					<th class="text-center"><?php echo $recompra_1M; ?></th>
 					<th class="text-center"><?php echo $recompra_3M; ?></th>
 					<th class="text-center"><?php echo $recompra_6M; ?></th>
@@ -276,6 +291,8 @@ $reservas = getReservas($_desde, $_hasta);
 					<th><?php echo $pets_razas; ?></th>
 					<th><?php echo $pets_edad; ?></th>
 					<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
+					<th><?php echo $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cuidador_id); ?></th>
+					<th><?php echo implode(", ", $telf_cuidador); ?></a></th>
 					<th><?php echo $reserva->producto_title; ?></th>
 					<th>
 					<?php foreach( $services as $service ){ ?>

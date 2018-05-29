@@ -8,7 +8,7 @@
 	include(realpath(__DIR__."/../funciones/db.php"));
 
 	if( isset($_GET["flash"]) ){
-		$_POST = unserialize($_SESSION['busqueda']);
+		//$_POST = unserialize($_SESSION['busqueda']);
 
 		$ini = $_POST["checkin"];
 		$fin = $_POST["checkout"];
@@ -45,6 +45,10 @@
 			$data['orderby'] = $_GET['o'];
 			$_POST = $data;
 		}
+	}
+
+	if( isset($_GET['redireccionar']) ){
+		$_POST['redireccionar'] = $_GET['redireccionar'];
 	}
 
 	extract($_POST);
@@ -107,21 +111,28 @@
 			$checkin = date("Y-m-d", strtotime( str_replace("/", "-", $checkin) ) );
 			$checkout = date("Y-m-d", strtotime( str_replace("/", "-", $checkout) ) );
 
-	    	$condiciones .= "
-	    		AND ( 
-	    			SELECT 
-	    				count(*) 
-	    			FROM 
-	    				cupos 
-	    			WHERE 
-	    				cupos.cuidador = cuidadores.user_id AND
-	    				{$servicios_buscados} 
-	    				cupos.fecha >= '{$checkin}' AND 
-	    				cupos.fecha <= '{$checkout}' AND (
-	    					cupos.full = 1 OR 
-	    					cupos.no_disponible = 1
-	    				) 
-	    		) = 0"; 
+	    	$_no_disponibles = $db->get_results("
+			SELECT 
+    				cuidador
+    			FROM 
+    				cupos 
+    			WHERE 
+    				{$servicios_buscados} 
+    				cupos.fecha >= '{$checkin}' AND 
+    				cupos.fecha <= '{$checkout}' AND (
+    					cupos.full = 1 OR 
+    					cupos.no_disponible = 1
+    				)
+			");
+			$no_disponibles = array();
+			if( $_no_disponibles !== false ){
+				foreach ($_no_disponibles as $cuidador) {
+					$no_disponibles[] = $cuidador->cuidador;
+				}
+			}
+			if( count($no_disponibles) > 0 ){
+				$condiciones .= " AND user_id NOT IN (".implode(",", $no_disponibles).") ";
+			}
 	   	}
 
 
@@ -163,8 +174,7 @@
     /* Filtro nombre  */
 	    if( isset($nombre) ){ 
 	    	if( $nombre != "" ){ 
-	    		$nombre_inner = "INNER JOIN wp_posts AS nom ON ( nom.ID = cuidadores.id_post)";
-	    		$condiciones .= " AND nom.post_title LIKE '%".$nombre."%' "; 
+	    		$condiciones .= " AND post_cuidador.post_title LIKE '%".$nombre."%' "; 
 	    	} 
 	   	}
     /* Fin Filtro nombre */
@@ -184,10 +194,10 @@
     	$orderby = ( isset($orderby) )? $orderby : 'rating_desc' ;
 	    switch ($orderby) {
 	    	case 'rating_desc':
-	    		$orderby = "rating DESC, valoraciones DESC";
+	    		$orderby = "valoraciones DESC, rating DESC";
 	    	break;
 	    	case 'rating_asc':
-	    		$orderby = "rating ASC, valoraciones ASC";
+	    		$orderby = "valoraciones ASC, rating ASC";
 	    	break;
 	    	case 'distance_asc':
 	    		$orderby = "DISTANCIA ASC";
@@ -280,7 +290,7 @@
 	        {$FLASH_ORDEN}
 	    FROM 
 	        cuidadores 
-	    INNER JOIN wp_posts AS post_cuidador ON ( cuidadores.id_post = post_cuidador.ID )
+	    	INNER JOIN wp_posts AS post_cuidador ON ( cuidadores.id_post = post_cuidador.ID )
 	    	{$ubicaciones_inner}
 	    	{$nombre_inner}
 	    WHERE 
@@ -337,10 +347,6 @@
 		}
     }
 
-/*    echo "<pre>";
-    	print_r($pines);
-    echo "</pre>";*/
-
 	$pines_json = json_encode($pines);
     $pines_json = "<script>var pines = eval('".$pines_json."');</script>";
 	$_SESSION['pines'] = $pines_json;
@@ -354,16 +360,21 @@
 	}
 
 	$_POST = @array_filter($_POST);
-	
+	unset($_POST['redireccionar']);
 	$_SESSION['busqueda'] = serialize($_POST);
+	$_SESSION['sql'] = $sql;
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
-/*	echo "<pre>";
-		print_r( $sql );
-		print_r( $_POST );
-		print_r( $cuidadores );
-	echo "</pre>";
-*/
-    if( !isset($redirect) || !$redirect ) {
-		//header("location: {$home}busqueda/");
+	if( isset($_GET["log"]) ){
+		echo "<pre>";
+			print_r( $sql );
+			print_r( $_POST );
+			print_r( $cuidadores );
+		echo "</pre>";
+	}else{
+	        if( $redireccionar == 1 ) {
+		 	header("location: {$home}busqueda/");
+		}
 	}
+
+?>

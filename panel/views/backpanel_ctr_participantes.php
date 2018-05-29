@@ -24,7 +24,7 @@ $subscribe = getListsuscribe($landing, $desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/panel/?p=suscriptores" method="POST">
+		    	<form class="form-inline" action="?p=suscriptores" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
@@ -91,7 +91,7 @@ $subscribe = getListsuscribe($landing, $desde, $hasta);
 				    	<th class="text-center"><?php echo ++$count; ?></th>
 						<th><?php echo $row['source']; ?></th>
 						<th>
-							<a href="/panel/?p=referidos&ref=<?php echo $row['email']; ?>">
+							<a href="?p=referidos&ref=<?php echo $row['email']; ?>">
 								<?php echo $row['email']; ?>	
 							</a>
 						</th>

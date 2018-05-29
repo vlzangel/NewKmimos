@@ -8,7 +8,7 @@
         //wp_head();
         //<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>  ?>
         <script type="text/javascript" src="<?php echo site_url('/wp-includes/js/jquery/jquery.js'); ?>" type="text/javascript"></script>
-        <script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__); ?>includes/js/script.js"></script>
+        <script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__); ?>includes/js/script.js?v=<?php echo time(); ?>"></script>
         <link media="all" type="text/css" rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>includes/css/style.css"/>
         <title>PANEL WHITE LABEL</title>
     </head>

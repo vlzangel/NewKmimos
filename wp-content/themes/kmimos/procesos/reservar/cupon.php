@@ -125,6 +125,9 @@
 				break;
 			}
 
+
+
+
 			if( $servicio != 0){
 				if( !isset($_SESSION)){ session_start(); }
 				$id_session = 'MR_'.$servicio."_".md5($cliente);
@@ -136,9 +139,17 @@
 			}
 
 			$sub_descuento += $descuento;
-
 			if( ($total-$sub_descuento) < 0 ){
 				$descuento += ( $total-$sub_descuento );
+			}
+
+			if( $descuento == 0 ){
+				if( strpos( $cupon, "saldo" ) === false ){
+					echo json_encode(array(
+						"error" => "El cupón no será aplicado. El total a pagar por su reserva es 0."
+					));
+					exit;
+				}
 			}
 
 			if( $metas["individual_use"] == "yes" ){

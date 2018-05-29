@@ -223,7 +223,7 @@
 					<div class='alerta_flash_paso'>
 						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 3</div>
 						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_3.png' /> </div>
-						<div class='alerta_flash_paso_txt'>Ll&aacute;manos al<br> (01) 800 056 4667</div>
+						<div class='alerta_flash_paso_txt'>Ll&aacute;manos al<br> (01) 55 3137 4829</div>
 					</div>
 				</div>
 			</div>
@@ -254,7 +254,7 @@
 		if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && date("G", $NOW )+0 < 9 ){
 			$msg_mismo_dia = "
 				<div class='msg_mismo_dia'>
-					En caso de que necesites atención dentro de las siguientes 4 a 6 horas, por favor llámanos sin costo al: (01) 800 056 4667.
+					En caso de que necesites atención dentro de las siguientes 4 a 6 horas, por favor llámanos al: (01) 55 3137 4829.
 				</div>
 			";
 		}

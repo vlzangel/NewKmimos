@@ -31,7 +31,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/panel/?p=referidos&ref=<?php echo $referido; ?>" method="POST">
+		    	<form class="form-inline" action="?p=referidos&ref=<?php echo $referido; ?>" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
@@ -55,7 +55,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
   		<h3><?php echo (!empty($referido))? "Referidos por: $referido" : ""; ?></h3>
   	</div>
   	<div class="col-sm-2 text-right">
-		<a class="btn btn-default pull-rigth" href="/panel/?p=suscriptores"><< Volver al listado</a>
+		<a class="btn btn-default pull-rigth" href="?p=suscriptores"><< Volver al listado</a>
   	</div>
   	<div class="col-sm-12">
   	<hr>

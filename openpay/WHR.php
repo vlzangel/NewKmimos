@@ -67,9 +67,7 @@
     $obj = file_get_contents('php://input');
     $json = json_decode($obj);
 
-    //$db->query("INSERT INTO log VALUES (NULL, '".$json->verification_code."')");
-    $db->query("INSERT INTO log VALUES (NULL, 'Llego')");
-    $db->query("INSERT INTO log VALUES (NULL, '".$json->transaction->status." - ".$json->transaction->order_id."')");
+    $db->query("INSERT INTO log VALUES (NULL, '".$json->verification_code."')");
 
 
 ?>

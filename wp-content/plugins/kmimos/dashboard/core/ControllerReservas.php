@@ -226,8 +226,9 @@ function getServices( $num_reserva = 0 ){
 }
 
 function getMetaCliente( $user_id ){
-	$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_referred')";
-	$result = get_metaUser($user_id, $condicion);
+	//$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_referred')";
+	//$result = get_metaUser($user_id, $condicion);
+	$result = get_metaUser($user_id);
 	$data = [
 		'first_name' =>'', 
 		'last_name' =>'', 
@@ -244,8 +245,9 @@ function getMetaCliente( $user_id ){
 }
 
 function getMetaCuidador( $user_id ){
-	$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_referred')";
-	$result = get_metaUser($user_id, $condicion);
+	// $condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_referred')";
+	// $result = get_metaUser($user_id, $condicion);
+	$result = get_metaUser($user_id);
 	$data = [
 		'first_name' =>'', 
 		'last_name' =>'', 

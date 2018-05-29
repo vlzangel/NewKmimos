@@ -24,8 +24,8 @@
                     'icon'          =>  '',
                 ),
                 array(
-                    'title'         =>  __('Clientes'),
-                    'short-title'   =>  __('Clientes'),
+                    'title'         =>  __('Ventas'),
+                    'short-title'   =>  __('Ventas'),
                     'parent'        =>  'resumen',
                     'slug'          =>  'reporte_ventas',
                     'access'        =>  'manage_options',
@@ -42,12 +42,21 @@
                     'icon'          =>  '',
                 ),
                 array(
-                    'title'         =>  __('Marketing Clientes'),
-                    'short-title'   =>  __('Marketing Clientes'),
+                    'title'         =>  __('Clientes Costos'),
+                    'short-title'   =>  __('Clientes Costos'),
                     'parent'        =>  'resumen',
                     'slug'          =>  'reporte_marketing_clientes',
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_marketing_clientes',
+                    'icon'          =>  '',
+                ),
+                array(
+                    'title'         =>  __('Ingresos'),
+                    'short-title'   =>  __('Ingresos'),
+                    'parent'        =>  'resumen',
+                    'slug'          =>  'reporte_ingresos',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_ingresos',
                     'icon'          =>  '',
                 ),
 
@@ -109,37 +118,32 @@
 
     if(!function_exists('reporte_marketing_clientes')){
         function reporte_marketing_clientes(){
-            include_once('importador.php');
-            include_once('graficos.php');
-            include_once(dirname(__DIR__).'/reportes/marketing_gastos/marketing.php');
+            include_once(dirname(__DIR__).'/reportes/cliente_costo/index.php');
         }
     }
 
     if(!function_exists('reporte_cuidadores')){
         function reporte_cuidadores(){
-            include_once('importador.php');
-            include_once('graficos.php');
-            include_once(dirname(__DIR__).'/reportes/cuidadores/cuidadores.php');
+            include_once(dirname(__DIR__).'/reportes/cuidadores/index.php');
+        }
+    }
+    if(!function_exists('reporte_ingresos')){
+        function reporte_ingresos(){
+            include_once(dirname(__DIR__).'/reportes/ingresos/index.php');
         }
     }
     if(!function_exists('reporte_marketing')){
         function reporte_marketing(){
-            include_once('importador.php');
-            include_once('graficos.php');
-            include_once(dirname(__DIR__).'/reportes/marketing/marketing.php');
+            include_once(dirname(__DIR__).'/reportes/marketing/index.php');
         }
     }
     if(!function_exists('reporte_ventas')){
         function reporte_ventas(){
-            include_once('importador.php');
-            include_once('graficos.php');
-            include_once(dirname(__DIR__).'/reportes/ventas/ventas.php');
+            include_once(dirname(__DIR__).'/reportes/ventas/index.php');
         }
     }
     if(!function_exists('resumen')){
         function resumen(){
-            include_once('importador.php');
-            include_once('graficos.php');
             include_once(dirname(__DIR__).'/reportes/resumen/resumen.php');
         }
     }

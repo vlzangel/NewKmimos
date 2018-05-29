@@ -1,5 +1,7 @@
 <?php
-
+	
+	include dirname(__FILE__).'/widgets/admin.php';
+	
 	function get_publicidad($seccion){
 				
 		/*$publicidad = rand(1, 2);
@@ -340,6 +342,8 @@
 
 	
 	include(__DIR__."/admin/generales/funciones.php");
+	include(dirname(dirname(dirname(__DIR__)))."/monitor/conf/menu.php");
+
 
 
 ?>

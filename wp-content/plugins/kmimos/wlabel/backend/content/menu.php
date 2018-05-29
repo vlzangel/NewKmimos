@@ -16,7 +16,8 @@
 
     ?>
     <div class="item" data-module="detail" onclick="WhiteLabel_panel_menu(this);">Montos</div>
-    <div class="item" data-module="client" onclick="WhiteLabel_panel_menu(this);">Clientes</div>
+    <div class="item" data-module="clientes" onclick="WhiteLabel_panel_menu(this);">Clientes</div>
+    <div class="item" data-module="client" onclick="WhiteLabel_panel_menu(this);">Estad&iacute;sticas</div>
     <div class="item" data-module="client-booking" onclick="WhiteLabel_panel_menu(this);">Reservas por Clientes</div>
     <div class="item" data-module="booking" onclick="WhiteLabel_panel_menu(this);">Reservas</div>
 </div>

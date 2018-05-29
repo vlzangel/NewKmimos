@@ -1845,6 +1845,7 @@ if(!function_exists('vlz_actualizar_ratings')){
         $comments = $wpdb->get_results("SELECT * FROM wp_comments WHERE comment_approved = 1 AND comment_post_ID = ".$post_id );
         $rating=0;
         $votes=0;
+        $_votes=0;
         if(count($comments)>0){
             $list = array();
             foreach($comments as $comment){
@@ -1852,6 +1853,7 @@ if(!function_exists('vlz_actualizar_ratings')){
                 $punctuality = get_comment_meta( $comment->comment_ID, 'punctuality', true )+0;
                 $cleanliness = get_comment_meta( $comment->comment_ID, 'cleanliness', true )+0;
                 $trust = get_comment_meta( $comment->comment_ID, 'trust', true )+0;
+                $_votes++;
                 if($care != 0 || $punctuality != 0 || $cleanliness != 0 || $trust != 0) {
                     $votes++;
                     $items = 0;
@@ -1885,7 +1887,7 @@ if(!function_exists('vlz_actualizar_ratings')){
             $votes = 0;
         }
         global $wpdb;
-        $wpdb->query("UPDATE cuidadores SET rating = '".$rating."', valoraciones = '".$votes."' WHERE id_post = ".$post_id);
+        $wpdb->query("UPDATE cuidadores SET rating = '".$rating."', valoraciones = '".$_votes."' WHERE id_post = ".$post_id);
     }
 }
 

@@ -29,3 +29,5 @@ panel/Backup_index.php
 wp-content/plugins/kmimos/subscribe/subscription.csv
 
 Respaldo*
+monitor/DB/
+monitor/servicios_old/
