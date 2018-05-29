@@ -1,6 +1,6 @@
 <?php
 
-    if( !isset($NO_ENVIAR) ){
+    if( !isset($NO_ENVIAR) || $superAdmin == "YES" ){
         kmimos_registros_fotos( $servicio["id_reserva"] );
     }
     
@@ -43,7 +43,7 @@
         $mensaje_cliente = get_email_html($mensaje_cliente);
 
         if( isset($NO_ENVIAR) ){
-            echo $mensaje_cliente;
+            if( $superAdmin == "" ){ echo $mensaje_cliente; }
         }else{
             wp_mail( $cliente["email"], $confirmacion_titulo, $mensaje_cliente);
         }
@@ -95,7 +95,7 @@
         $mensaje_cuidador = get_email_html($mensaje_cuidador);
 
         if( isset($NO_ENVIAR) ){
-            echo $mensaje_cuidador;
+            if( $superAdmin == "" ){ echo $mensaje_cuidador; }
         }else{
             wp_mail( $cuidador["email"], $confirmacion_titulo, $mensaje_cuidador);
         }
@@ -136,13 +136,15 @@
         $mensaje_admin = get_email_html($mensaje_admin);
 
         if( isset($NO_ENVIAR) ){
-            echo $mensaje_admin;
+            if( $superAdmin == "" ){ echo $mensaje_admin; }
         }else{
             kmimos_mails_administradores_new($confirmacion_titulo, $mensaje_admin);
         }
         
-        $CONTENIDO .= "<div class='msg_acciones'>
-            <strong>¡Todo esta listo!</strong><br>
-            La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.
-        </div>";
+        if( $superAdmin == "" ){
+            $CONTENIDO .= "<div class='msg_acciones'>
+                <strong>¡Todo esta listo!</strong><br>
+                La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.
+            </div>";
+        }
 ?>
