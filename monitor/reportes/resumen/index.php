@@ -87,7 +87,28 @@
     <!-- Contenido -->
     <section class ="row">
         <?php include_once(dirname(dirname(dirname(__DIR__)))."/monitor/conf/loading_data.php"); ?>
+    </section>
 
+    <section class="container-item" >
+        <article class="col-sm-3 alert-info">
+            <h2>Ventas Total</h2>
+            <p>Ventas Total</p>
+        </article>
+        <article class="col-sm-3 alert-info">
+            <h2>Ventas Total</h2>
+            <p>Ventas Total</p>
+        </article>
+        <article class="col-sm-3 alert-info">
+            <h2>Ventas Total</h2>
+            <p>Ventas Total</p>
+        </article>
+        <article class="col-sm-3 alert-info">
+            <h2>Ventas Total</h2>
+            <p>Ventas Total</p>
+        </article>
+    </section>
+
+    <section>
         <div id="grafico-container" class="col-md-6" style="height: 400px">
             <div id="ventas"></div>
         </div>

@@ -89,7 +89,7 @@ function mostratMensaje( mensaje ){
     }
 }
 
-function number_format(amount, decimals) {
+function number_format(amount, decimals, separador_decimal=",", separador_miles="." ) {
 
     amount += ''; // por si pasan un numero en vez de un string
     amount = parseFloat(amount.replace(/[^0-9\-\.]/g, '')); // elimino cualquier cosa que no sea numero o punto
@@ -107,9 +107,9 @@ function number_format(amount, decimals) {
         regexp = /(\d+)(\d{3})/;
 
     while (regexp.test(amount_parts[0]))
-        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
+        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + separador_miles + '$2');
 
-    return amount_parts.join('.');
+    return amount_parts.join(separador_decimal);
 }
 
 function meses( mes ){

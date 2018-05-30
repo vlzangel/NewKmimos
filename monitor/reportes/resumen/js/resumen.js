@@ -299,7 +299,7 @@ function analizar_datos( datos, recompras ){
     grafico_ventas( datos );
     grafico_ventas_dollar( datos );
 
-console.log(datos);
+ 
 
     mostratMensaje( '' );
     jQuery('#btn-cargar-datos').removeClass('disabled');

@@ -34,3 +34,13 @@ hr {
 	width:100%; 
 	height:250px; 
 }
+
+.container-item article{
+    border: 2px solid #2c78ad;
+    background-color:#5ca6cc; 
+    color: #fff;
+    margin: 15px 5px;
+    padding: 15px;
+    border-radius: 9px;
+    width: 24%!important;
+}
