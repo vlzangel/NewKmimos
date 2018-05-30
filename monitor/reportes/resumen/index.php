@@ -89,7 +89,7 @@
         <?php include_once(dirname(dirname(dirname(__DIR__)))."/monitor/conf/loading_data.php"); ?>
     </section>
 
-    <section class="container-item" >
+    <section class="container-item hidden" >
         <article class="col-sm-3 alert-info">
             <h2>Ventas Total</h2>
             <p>Ventas Total</p>
