@@ -3,15 +3,25 @@ jQuery(document).ready(function(){
 
     jQuery('#guardar').on('click', function(){
         jQuery.post( 
-            HOME+"/monitor/reportes/marketing/ajax/nuevo.php", 
+            HOME+"monitor/reportes/marketing/ajax/nuevo.php", 
             jQuery('#frm_nuevo').serialize(), 
             function( data ) {
                 data = jQuery.parseJSON(data);
                 if(data['sts']==1){
                     jQuery('#nuevo').modal('hide');
+                    
+                    jQuery('[name="id"]').val( '' ); 
+                    jQuery('[name="nombre"]').val( '' ); 
+                    jQuery('[name="costo"]').val( '' ); 
+                    jQuery('[name="fecha"]').val( '' );
+                    jQuery('[name="tipo"]').val( '' );
+                    jQuery('[name="canal"]').val( '' );
+                    jQuery('[name="plataforma"]').val( '' );
+
                     table.ajax.reload();
                 }
         });
+
     });
 
 
@@ -19,7 +29,7 @@ jQuery(document).ready(function(){
         
         if( confirm("¿Desea eliminar el registro?") ){
             jQuery.post( 
-                HOME+"/monitor/reportes/marketing/ajax/eliminar.php", 
+                HOME+"monitor/reportes/marketing/ajax/eliminar.php", 
                 {id: jQuery(this).attr('data-id') }, 
                 function( data ) {
                     data = jQuery.parseJSON(data);
@@ -34,7 +44,7 @@ jQuery(document).ready(function(){
     jQuery(document).on('click', '[data-target="update"]' , function(){
         
         jQuery.post( 
-            HOME+"/monitor/reportes/marketing/ajax/select.php", 
+            HOME+"monitor/reportes/marketing/ajax/select.php", 
             {id: jQuery(this).attr('data-id')}, 
             function( data ) {
                 data = jQuery.parseJSON(data);
@@ -59,8 +69,6 @@ jQuery(document).ready(function(){
 
 function cargar_tabla(){
 	
-console.log(HOME+'/monitor/reportes/marketing/ajax/marketing.php');
-
     table = jQuery('#example').DataTable({
 	    "language": {
 	        "emptyTable":           "No hay datos disponibles en la tabla.",
@@ -86,7 +94,7 @@ console.log(HOME+'/monitor/reportes/marketing/ajax/marketing.php');
 	        }
 	    },
         "ajax": {
-            "url": HOME+'/monitor/reportes/marketing/ajax/marketing.php',
+            "url": HOME+'monitor/reportes/marketing/ajax/marketing.php',
             "type": "POST"
         },
 	    "scrollX": true,

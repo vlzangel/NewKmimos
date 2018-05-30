@@ -1,0 +1,29 @@
+
+#load-notification {
+margin-top:10px;
+}
+
+#load-notification h4{
+	font-weight: bold;
+}
+#load-notification span{
+	border-left: 1px solid; 
+	font-size: 15px;
+	margin: 0px 2.5px;
+	padding: 2px 4px;
+}
+
+#load-notification span:last-child{
+	border-right: 1px solid!important; 
+}
+
+.activo{
+	background: #337ab7;
+	color: #fff;
+}
+.activo:hover,
+.activo:focus
+{
+	background: #337ab7;
+	color: #fff;
+}

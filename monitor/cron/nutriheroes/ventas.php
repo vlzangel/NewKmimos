@@ -12,21 +12,33 @@
 	/* ************************************* */
 	// Estructura de los datos
 	/* ************************************* */
+
 	$data =[
 		"mascotas_total" => 0,
+		"clientes" => [
+			'total' => 0,
+			'nuevos'=> 0,
+		],
 		"noches" => [
 			"total" => 0,	// multiplicar por numero de mascotas
 			"numero" => 0,  // sin incluir numero de mascotas
 		],
 		"ventas" => [
-				"cant" => 0,
-			"tipo" => [],
-				"estatus" => [],
-				"tipo_pago" => ['Pago_Total'=>0],
-				"forma_pago" => [],
-				"costo" => [],
+			"cant" => 0,
+			"descuento" => 0,
+			"tipo" => [
+				"flash" => 0,
+				"normal" => 0,
+			],
+			"estatus" => [],
+			"tipo_pago" => ['Pago_Total'=>0],
+			"forma_pago" => [],
+			"costo_total" => 0,
+			"costo" => [
+			],
 		]
 	];
+
 
 	foreach ($ordenes['rows'] as $key => $orden) {
 
@@ -95,8 +107,7 @@
 	/* ******************************************* */
 	echo '<pre>'; 
 		if( $data['ventas']['cant'] > 0 ){
-			$d = save( 'ventas', $hoy, $data );
-			print_r($data);
+			save( $hoy, $data );
 		}
 	echo '</pre>';
 

@@ -12,9 +12,12 @@
 			echo '<pre>';
 			echo $hoy.":<br>";
 			try{
-				echo '<br>http://localhost/mx.kmimos.new/monitor/cron/kmimos/reservas.php?d='.$hoy;
-				request('http://localhost/mx.kmimos.new/monitor/cron/kmimos/reservas.php?d='.$hoy);
-				request('http://localhost/mx.kmimos.new/monitor/cron/kmimos/usuarios.php?d='.$hoy);
+				echo '<br>'.$hoy;
+
+				request('http://mx.kmimos.la/monitor/cron/kmimos/reservas.php?d='.$hoy);
+				// request('http://mx.kmimos.la/monitor/cron/kmimos/historico_reservas.php?d='.$hoy);
+				// request('http://localhost/mx.kmimos.new/monitor/cron/kmimos/usuarios.php?d='.$hoy);
+
 			}catch(Exception $e){}
 			echo '</pre>';
 		 

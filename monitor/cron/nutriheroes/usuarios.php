@@ -63,7 +63,6 @@
 		echo '<pre>';
 		//print_r(['reserva', $hoy, $data]);
 		if( !empty($data) ){
-			$d = save( 'usuario', $hoy, $data );
-			print_r($data);
+			save( 'usuario', $hoy, $data );
 		}
 		echo '</pre>';

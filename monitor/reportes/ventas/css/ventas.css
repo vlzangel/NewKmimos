@@ -2,6 +2,13 @@ hr {
     margin-top: 5px;
     margin-bottom: 15px;
 }
+.form-inline{
+	margin-top:10px;
+}
+.form-group{
+	text-align: left!important;
+}
+
 .amcharts-export-menu-top-right {
     top: -20px!important;
     right: 0;
