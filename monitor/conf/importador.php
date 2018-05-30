@@ -7,8 +7,7 @@ $plataforma_list = [];
 
 $plataformas = $g->get_plataforma();
 
-$ruta = "http://mx.kmimos.la/";
-//$ruta = get_home_url().'/'; //"http://mx.kmimos.la/";
+$ruta = get_home_url().'/'; //"http://mx.kmimos.la/";
 
 echo "
 	<script type'text/javascript'> 

@@ -144,6 +144,6 @@
     }
     if(!function_exists('resumen')){
         function resumen(){
-            include_once(dirname(__DIR__).'/reportes/resumen/resumen.php');
+            include_once(dirname(__DIR__).'/reportes/resumen/index.php');
         }
     }

@@ -15,19 +15,11 @@
 <div class="col-sm-12">
     
     <!-- Header -->
-    <header class="row hidden" style="padding:15px 0px 0px 0px;">
+    <header class="row" style="padding:15px 0px 0px 0px;">
         <div class="col-md-6">
             <h2 style="margin-top:0px;margin-bottom:10px;">Resumen de Ventas</h2>
         </div>
         <div class="col-md-6">
-
-            <button type="submit" class="btn btn-default pull-right" id="btn-grafico" style="margin-left:2px; padding:7.8px">
-                <small><i class="fa fa-eye-slash grafico-icon" ></i> Grafico</small>
-            </button>
-            <button type="submit" class="btn btn-default pull-right" id="btn-tabla" style="margin-left:2px;padding:7.8px">
-                <small><i class="fa fa-eye-slash tabla-icon"></i> Tabla</small>
-            </button>
-
             <div class="btn-group pull-right">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-database" aria-hidden="true"></i> 
@@ -89,32 +81,31 @@
         <?php include_once(dirname(dirname(dirname(__DIR__)))."/monitor/conf/loading_data.php"); ?>
     </section>
 
-    <section class="container-item hidden" >
-        <article class="col-sm-3 alert-info">
-            <h2>Ventas Total</h2>
-            <p>Ventas Total</p>
+    <section class="container-item" >
+        <article class="col-sm-4 alert-info">
+            <h2>$ 0.00</h2>
+            <hr>
+            <p>Total de Ventas</p>
         </article>
-        <article class="col-sm-3 alert-info">
-            <h2>Ventas Total</h2>
-            <p>Ventas Total</p>
+        <article class="col-sm-4 alert-info">
+            <h2>0</h2>
+            <hr>
+            <p>Ventas confirmadas</p>
         </article>
-        <article class="col-sm-3 alert-info">
-            <h2>Ventas Total</h2>
-            <p>Ventas Total</p>
-        </article>
-        <article class="col-sm-3 alert-info">
-            <h2>Ventas Total</h2>
-            <p>Ventas Total</p>
+        <article class="col-sm-4 alert-info">
+            <h2>0</h2>
+            <hr>
+            <p>Noches Reservadas</p>
         </article>
     </section>
 
     <section>
         <div id="grafico-container" class="col-md-6" style="height: 400px">
-            <div id="ventas"></div>
+            <div id="ventas" style="height: 100%"></div>
         </div>
      
         <div id="grafico-container" class="col-md-6" style="height: 400px">
-            <div id="ventas_dollar"></div>
+            <div id="ventas_dollar" style="height: 100%"></div>
         </div>
      
     </section>

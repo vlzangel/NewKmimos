@@ -1,6 +1,7 @@
 hr {
     margin-top: 5px;
     margin-bottom: 15px;
+    background: #ccc;
 }
 .form-inline{
 	margin-top:10px;
@@ -36,11 +37,12 @@ hr {
 }
 
 .container-item article{
-    border: 2px solid #2c78ad;
-    background-color:#5ca6cc; 
-    color: #fff;
+    border: 1px solid #ddd;
+    background-color:#f4f4f4; 
+    color: #989696;
     margin: 15px 5px;
     padding: 15px;
     border-radius: 9px;
-    width: 24%!important;
-}
+    width: 32.5%;
+    text-align: right;
+} 
