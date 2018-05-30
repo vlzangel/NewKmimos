@@ -2,50 +2,115 @@
 
 require_once ( dirname(dirname(__DIR__)).'/conf/database.php' );
 
-function get_fetch_assoc($sql){
-	$db = new db();
-	$rows = $db->query($sql);
-	
-	$data = ['info'=>[], 'rows'=>[]];
-	if(isset($rows->num_rows)){
-		if( $rows->num_rows > 0){
-			$data['info'] = $rows;
-			$data['rows'] = mysqli_fetch_all( $rows,MYSQLI_ASSOC);
+	function get_fetch_assoc($sql){
+		$db = new db();
+		$data['rows'] = $db->select($sql);
+		
+		/*$data = ['info'=>[], 'rows'=>[]];
+		if(isset($rows->num_rows)){
+			if( $rows->num_rows > 0){
+				$data['info'] = $rows;
+				$data['rows'] = mysqli_fetch_all( $rows,MYSQLI_ASSOC);
+			}
+		}*/
+		return $data;
+	}
+	function save( $tipo, $fecha, $param ){
+
+		$id = 0;
+		$sql = "select * from monitor_diario where fecha = '{$fecha}'";
+		$data = get_fetch_assoc($sql);	
+		$param = json_encode($param);
+
+		// Actualizar registros
+		if( isset($data['info']->num_rows) && $data['info']->num_rows > 0 ){	
+			$id = $data['rows'][0]['id'];
 		}
+		switch ($tipo) {
+			case 'ventas':
+				if( $id > 0 ){
+					$sql = "update monitor_diario set reserva = '{$param}' where id = {$id}";	
+				}else{
+					$sql = "insert into monitor_diario (reserva, fecha) VALUES ('{$param}','{$fecha}')";
+				}
+				break;
+			case 'usuario':
+				if( $id > 0 ){
+					$sql = "update monitor_diario set cliente = '{$param}' where id = {$id}";	
+				}else{
+					$sql = "insert into monitor_diario (cliente, fecha) VALUES ('{$param}','{$fecha}')";	
+				}
+				break;
+		}
+		get_fetch_assoc( $sql );
+		return $data;
 	}
-	return $data;
-}
+	function save_ventas( $fecha, $data ){
 
-function save( $tipo, $fecha, $param ){
+		$id = 0;
+		$sql = "select * from monitor_diario_ventas where fecha = '{$fecha}'";
+		$_data = $this->select($sql);
 
-	$id = 0;
-	$sql = "select * from monitor_diario where fecha = '{$fecha}'";
-	$data = get_fetch_assoc($sql);	
-	$param = json_encode($param);
-
-	// Actualizar registros
-	if( isset($data['info']->num_rows) && $data['info']->num_rows > 0 ){	
-		$id = $data['rows'][0]['id'];
+		// Actualizar registros
+		if( isset($_data[0]['id']) && $_data[0]['id'] > 0 ){	
+			$id = $_data[0]['id'];
+		}
+		if( $id > 0 ){
+			$sql = "UPDATE monitor_diario_ventas SET
+		 			clientes_total = {$data['clientes']['total']},
+		 			clientes_nuevos = {$data['clientes']['nuevos']},
+		 			mascotas_total = {$data['mascotas_total']},
+		 			noches_numero = {$data['noches']['numero']},
+		 			noches_total = {$data['noches']['total']},
+		 			ventas_cantidad = {$data['ventas']['cant']},
+		 			ventas_estatus = '".json_encode($data['ventas']['estatus'],JSON_UNESCAPED_UNICODE)."',
+		 			ventas_tipo = '".json_encode($data['ventas']['tipo'],JSON_UNESCAPED_UNICODE)."',
+		 			ventas_tipopago = '".json_encode($data['ventas']['tipo_pago'],JSON_UNESCAPED_UNICODE)."',
+		 			ventas_formapago = '".json_encode($data['ventas']['forma_pago'],JSON_UNESCAPED_UNICODE)."',
+		 			ventas_costo = '".json_encode($data['ventas']['costo'],JSON_UNESCAPED_UNICODE)."',
+		 			ventas_costo_total = {$data['ventas']['costo_total']},
+		 			ventas_descuento = {$data['ventas']['descuento']}
+				WHERE id = {$id}
+			";
+		}else{
+			$sql = "INSERT INTO monitor_diario_ventas (
+	 			fecha,
+	 			clientes_total,
+	 			clientes_nuevos,
+	 			mascotas_total,
+	 			noches_numero,
+	 			noches_total,
+	 			ventas_cantidad,
+	 			ventas_estatus,
+	 			ventas_tipo,
+	 			ventas_tipopago,
+	 			ventas_formapago,
+	 			ventas_costo,
+	 			ventas_costo_total,
+	 			ventas_descuento
+	 		) VALUES (
+	 			'{$fecha}',
+	 			{$data['clientes']['total']},
+	 			{$data['clientes']['nuevos']},
+	 			{$data['mascotas_total']},
+	 			{$data['noches']['numero']},
+	 			{$data['noches']['total']},
+	 			{$data['ventas']['cant']},
+	 			'".json_encode($data['ventas']['estatus'],JSON_UNESCAPED_UNICODE)."',
+	 			'".json_encode($data['ventas']['tipo'],JSON_UNESCAPED_UNICODE)."',
+	 			'".json_encode($data['ventas']['tipo_pago'],JSON_UNESCAPED_UNICODE)."',
+	 			'".json_encode($data['ventas']['forma_pago'],JSON_UNESCAPED_UNICODE)."',
+	 			'".json_encode($data['ventas']['costo'],JSON_UNESCAPED_UNICODE)."',
+	 			{$data['ventas']['costo_total']},
+	 			{$data['ventas']['descuento']}
+	 		)";
+		}
+		
+		echo $sql;
+		
+		$this->query( $sql );
+		return $data;
 	}
-	switch ($tipo) {
-		case 'ventas':
-			if( $id > 0 ){
-				$sql = "update monitor_diario set reserva = '{$param}' where id = {$id}";	
-			}else{
-				$sql = "insert into monitor_diario (reserva, fecha) VALUES ('{$param}','{$fecha}')";	
-			}
-			break;
-		case 'usuario':
-			if( $id > 0 ){
-				$sql = "update monitor_diario set cliente = '{$param}' where id = {$id}";	
-			}else{
-				$sql = "insert into monitor_diario (cliente, fecha) VALUES ('{$param}','{$fecha}')";	
-			}
-			break;
-	}
-	get_fetch_assoc( $sql );
-	return $data;
-}
 
 // ***************************************
 // Cargar listados de Reservas
