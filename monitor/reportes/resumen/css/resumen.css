@@ -26,8 +26,11 @@ hr {
 #wpcontent{
 	background: #fff;
 }
-#grafico-container{
-	margin-top: 15px;
+#grafico-container article{
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
 }
 #chartdiv{
 	overflow-x:auto;
