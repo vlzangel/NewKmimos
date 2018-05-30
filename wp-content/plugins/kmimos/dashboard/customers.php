@@ -1,6 +1,6 @@
 <?php
 
-add_action('init', 'kmimos_register_customers');
+/*add_action('init', 'kmimos_register_customers');
 
 add_action('add_meta_boxes', 'kmimos_box_details_of_customer');
 
@@ -8,7 +8,7 @@ add_action('save_post', 'kmimos_save_details_of_customers');
 
 add_filter('manage_customers_posts_columns', 'kmimos_add_new_customers_columns');
 
-add_action('manage_customers_posts_custom_column', 'kmimos_manage_customers_columns', 10, 2);
+add_action('manage_customers_posts_custom_column', 'kmimos_manage_customers_columns', 10, 2);*/
 
 
 

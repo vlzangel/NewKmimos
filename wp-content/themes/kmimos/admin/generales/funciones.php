@@ -30,7 +30,7 @@
             $current_user = wp_get_current_user();
             $user_id = $current_user->ID;
 
-            if( in_array($user_id, $user_especiales)  ){
+            // if( in_array($user_id, $user_especiales)  ){
                 $opciones_menu_reporte[] = array(
                     'title'         =>  __('Saldos'),
                     'short-title'   =>  __('Saldos'),
@@ -39,7 +39,16 @@
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_saldos',
                 );
-            }
+
+                $opciones_menu_reporte[] = array(
+                    'title'         =>  __('Otros'),
+                    'short-title'   =>  __('Otros'),
+                    'parent'        =>  'reporte_fotos',
+                    'slug'          =>  'reporte_otros',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_otros',
+                );
+            // }
 
            $opciones_menu_reporte[] = array(
                 'title'         =>  __('Reporte Otro'),
@@ -91,6 +100,13 @@
         function reporte_saldos(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/saldos/reporte_saldos.php');
+        }
+    }
+
+    if(!function_exists('reporte_otros')){
+        function reporte_otros(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/backend/otros/reporte_otros.php');
         }
     }
 ?> 

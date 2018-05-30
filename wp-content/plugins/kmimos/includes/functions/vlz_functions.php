@@ -96,6 +96,11 @@
                 $penalizar = false;
             }
 
+            if( !isset($_SESSION) ){ session_start(); }
+            if(  $_SESSION['admin_sub_login'] == 'YES' ){
+                $penalizar = false;
+            }
+
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
 
             if($penalizar){

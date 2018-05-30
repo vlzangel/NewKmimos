@@ -17,7 +17,8 @@ $WLcommission=$_wlabel_user->wlabel_Commission();
 $_wlabel_user->wlabel_Options('booking');
 $_wlabel_user->wLabel_Filter(array('trdate'));
 $_wlabel_user->wlabel_Export('booking','RESERVAS','table');
-?>
+
+$wlabel = $_SESSION["label"]->wlabel; ?>
 
 <div class="module_title">
     RESERVAS
@@ -42,9 +43,11 @@ $_wlabel_user->wlabel_Export('booking','RESERVAS','table');
             <th>Duración por usuario</th>
             <th>Servicios Adicionales</th>
             <th>Monto de reserva</th>
-            <th>Monto Kmimos</th>
-            <th>Monto Partición Kmimos</th>
-            <th>Monto Partición <?php echo $wlabel;?></th>
+            <?php if( $wlabel == "volaris"){ ?>
+                <th>Monto Kmimos</th>
+                <th>Monto Partición Kmimos</th>
+                <th>Monto Partición <?php echo $wlabel;?></th>
+            <?php } ?>
         </tr>
         </thead>
 
@@ -60,9 +63,11 @@ $_wlabel_user->wlabel_Export('booking','RESERVAS','table');
             <td></td>
             <td></td>
             <td class="count"></td>
-            <td class="count"></td>
-            <td class="count"></td>
-            <td class="count"></td>
+            <?php if( $wlabel == "volaris"){ ?>
+                <td class="count"></td>
+                <td class="count"></td>
+                <td class="count"></td>
+            <?php } ?>
         </tr>
         </tfoot>
         <tbody>
@@ -196,12 +201,19 @@ $_wlabel_user->wlabel_Export('booking','RESERVAS','table');
             <td class="duration" data-user="'.$customer.'" data-count="'.$duration.'">'.$duration_text.'</td>
             <td class="duration_total" data-user="'.$customer.'"></td>
             <td>'.$_meta_WCorder_services_additional.'</td>
-            <td>'.number_round($_meta_WCorder_line_total).'</td>
-            <td>'.number_round($_meta_WCorder_line_total*0.17).'</td>
-            <td>'.number_round($_meta_WCorder_line_total*0.17*($WLcommission/100)).'</td>
-            <td>'.number_round($_meta_WCorder_line_total*0.17*(1-($WLcommission/100))).'</td>
-        </tr>
-        ';//
+            <td>'.number_round($_meta_WCorder_line_total).'</td>';
+
+        if( $wlabel == "volaris"){
+            $html .= '
+                <td>'.number_round($_meta_WCorder_line_total*0.17).'</td>
+                <td>'.number_round($_meta_WCorder_line_total*0.17*($WLcommission/100)).'</td>
+                <td>'.number_round($_meta_WCorder_line_total*0.17*(1-($WLcommission/100))).'</td>
+            ';
+        }
+
+        $html .= '</tr>';
+
+
         echo $html;
     }
 

@@ -616,16 +616,6 @@ if(!function_exists('get_preguntas_categoria')){
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
-	        $menus[] = array(
-	                'title'=>'Reservas por estados',
-	                'short-title'=>'Reservas por Estados',
-	                'parent'=>'kmimos',
-	                'slug'=>'bp_reservas_by_ubicacion',
-	                'access'=>'manage_options',
-	                'page'=>'backpanel_reservas_resumen_mensual',
-	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
-	        );
-
 	        /* $menus[] = array(
 	                 'title'=>'Control WhiteLabel',
 	                 'short-title'=>'Control WhiteLabel',
@@ -655,17 +645,6 @@ if(!function_exists('get_preguntas_categoria')){
 	                'page'=>'backpanel_ctr_referidos',
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
-
-	        $menus[] = array(
-	                'title'=>'Estados por Cuidador',
-	                'short-title'=>'Estados por Cuidador',
-	                'parent'=>'kmimos',
-	                'slug'=>'bp_estados_cuidadores',
-	                'access'=>'manage_options',
-	                'page'=>'backpanel_estados_cuidadores',
-	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
-	        );
-
 
 	        $menus[] = array(
 	                'title'=>'Listado Mascotas',
@@ -708,20 +687,44 @@ if(!function_exists('get_preguntas_categoria')){
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
-	        $menus[] = array(
-	                'title'=>'Reservas y Conocer cuidador',
-	                'short-title'=>'Reservas y Conocer cuidador',
-	                'parent'=>'kmimos',
-	                'slug'=>'bp_reservas_conocer',
-	                'access'=>'manage_options',
-	                'page'=>'backpanel_reservas_con_conocer_cuidador',
-	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
-	        );
+
+
+			if ( $current_user->user_email == 'soporte.kmimos@gmail.com' ){
+		        $menus[] = array(
+		                'title'=>'Reservas por estados',
+		                'short-title'=>'Reservas por Estados',
+		                'parent'=>'kmimos',
+		                'slug'=>'bp_reservas_by_ubicacion',
+		                'access'=>'manage_options',
+		                'page'=>'backpanel_reservas_resumen_mensual',
+		                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+		        );
+
+		        $menus[] = array(
+		                'title'=>'Reservas y Conocer cuidador',
+		                'short-title'=>'Reservas y Conocer cuidador',
+		                'parent'=>'kmimos',
+		                'slug'=>'bp_reservas_conocer',
+		                'access'=>'manage_options',
+		                'page'=>'backpanel_reservas_con_conocer_cuidador',
+		                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+		        );
+
+		        $menus[] = array(
+		                'title'=>'Estados por Cuidador',
+		                'short-title'=>'Estados por Cuidador',
+		                'parent'=>'kmimos',
+		                'slug'=>'bp_estados_cuidadores',
+		                'access'=>'manage_options',
+		                'page'=>'backpanel_estados_cuidadores',
+		                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+		        );
+		    }
 
 
          /* Temporal ********************* */
 
-          if ( 	 $current_user->user_email == 'a.pedroza@kmimos.la' ||
+          	if ( 	 $current_user->user_email == 'a.pedroza@kmimos.la' ||
 				 $current_user->user_email == 'r.cuevas@kmimos.la'  ||
 				 $current_user->user_email == 'e.celli@kmimos.la' 	|| 
 				 $current_user->user_email == 'soporte.kmimos@gmail.com'

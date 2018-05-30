@@ -211,6 +211,37 @@ footer .btn {
     border-left: 25px solid #f30617;
 }
 
+.km-premium.km-search-slider {
+    background: #f30617 !important;
+}
+
+.km-nav-link:hover {
+    color: #f30617 !important;
+}
+
+.km-btn-primary-new {
+    border: 1px solid #f30617;
+    color: #f30617;
+}
+
+.km-btn-primary-new.basic, .km-btn-primary-new:hover {
+    color: #FFFFFF;
+    border-color: #f30617;
+    background-color: #f30617;
+}
+
+.km-link-flash {
+    color: #f30617;
+}
+
+.km-opciones .precio {
+    color: #f30617;
+}
+
+.pocos_resultados a {
+    color: #f30617 !important;
+}
+
 
 @media (max-width: 480px){
 

@@ -109,6 +109,11 @@
 						);
 					}
 
+					if( !isset($_SESSION) ){ session_start(); }
+		            if(  $_SESSION['admin_sub_login'] == 'YES' ){
+		                $acciones["cancelar"] = $cancelar;
+		            }
+
 					$reservas_array["confirmadas"]["reservas"][] = array(
 						'id' => $reserva->ID, 
 						'cliente' => $_Cliente, 

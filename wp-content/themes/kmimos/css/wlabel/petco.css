@@ -211,16 +211,83 @@ footer .btn {
     border-left: 25px solid #00aae7;
 }
 
+.km-premium.km-search-slider {
+    background: #00aae7 !important;
+}
+
 .km-nav-link:hover {
     color: #00aae7 !important;
 }
 
+.km-btn-primary-new {
+    border: 1px solid #00aae7;
+    color: #00aae7;
+}
+
+.km-btn-primary-new.basic, .km-btn-primary-new:hover {
+    color: #FFFFFF;
+    border-color: #00aae7;
+    background-color: #00aae7;
+}
+
+.km-link-flash {
+    color: #00aae7;
+}
+
+.km-opciones .precio {
+    color: #00aae7;
+}
+
+.pocos_resultados a {
+    color: #00aae7 !important;
+}
+
+.navbar-toggle {
+    padding: 4px 10px 0px;
+}
+
+.navbar-brand {
+    height: 90px;
+}
+
+.navbar-brand > img {
+    height: 100%;
+}
+
+.bg-white .navbar-brand {
+    height: 80px;
+}
 
 @media (max-width: 480px){
 
-    .navbar-brand>img {
-        height: 80%;
-        margin: 12px 0px 0px 5px;
+    .navbar {
+        padding-top: 20px;
+    }
+
+    .navbar-brand {
+        height: 55px;
+    }
+
+    .navbar-brand > img {
+        height: 100%;
+        margin: 0px 0px 0px 5px;
+        /*height: 80%;
+        margin: 0px 0px 0px 5px;
+        background: #FFF;
+        border-radius: 6px;
+        padding: 5px;*/
+    }
+
+    .bg-white .navbar-brand {
+        height: 60px;
+    }
+
+    .bg-white .navbar-toggle {
+        padding: 8px 10px 0px;
+    }
+
+    .bg-white.navbar {
+        padding-top: 2px !important;
     }
 
     .km-opcion {
@@ -228,4 +295,8 @@ footer .btn {
         -moz-transition: all .2s ease-in-out;
     }
 
+}
+
+a.fondo_banner_nutriheroes {
+    display: none;
 }
