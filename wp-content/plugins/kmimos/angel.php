@@ -94,7 +94,7 @@
 	        return array(
 	            "pais"      => "México",
 	            "titulo"    => "Kmimos México",
-	            "email"     => "vlzangel91@kmimos.la",
+	            "email"     => "contactomex@kmimos.la",
 
                 "telefono" => "(01) 55 3137 4829",
                 "telefono_sincosto" => "(01) 55 3137 4829",
