@@ -84,28 +84,28 @@
     <section class="container-item" >
         <article class="col-sm-4 alert-info">
             <h2>$ 0.00</h2>
-            <hr>
             <p>Total de Ventas</p>
         </article>
         <article class="col-sm-4 alert-info">
             <h2>0</h2>
-            <hr>
             <p>Ventas confirmadas</p>
         </article>
         <article class="col-sm-4 alert-info">
             <h2>0</h2>
-            <hr>
             <p>Noches Reservadas</p>
         </article>
     </section>
 
     <section>
-        <div id="grafico-container" class="col-md-6" style="height: 400px">
-            <div id="ventas" style="height: 100%"></div>
+        <div id="grafico-container" class="col-md-6">
+            <article style="height: 400px">
+                <div id="ventas" style="height: 100%"></div>
+            </article>
         </div>
-     
-        <div id="grafico-container" class="col-md-6" style="height: 400px">
-            <div id="ventas_dollar" style="height: 100%"></div>
+        <div id="grafico-container" class="col-md-6">
+            <article style="height: 400px">
+                <div id="ventas_dollar" style="height: 100%"></div>
+            </article>
         </div>
      
     </section>

@@ -297,9 +297,8 @@ function analizar_datos( datos, recompras ){
     datos.reverse();
 
     grafico_ventas( datos );
-    grafico_ventas_dollar( datos );
+    grafico_usuarios( datos );
 
- 
 
     mostratMensaje( '' );
     jQuery('#btn-cargar-datos').removeClass('disabled');
@@ -406,6 +405,9 @@ function grafico_ventas(data){
             }, 
             {
                 "balloonText": "[[value]]",
+                "labelText": "[[townName2]]",
+                "legendPeriodValueText": "total: [[value.sum]]",
+                "legendValueText": "[[value]]",
                 "bullet": "round",
                 "bulletBorderAlpha": 1,
                 "useLineColorForBulletBorder": true,
@@ -414,9 +416,6 @@ function grafico_ventas(data){
                 "dashLengthField": "dashLength",
                 "descriptionField": "townName",
                 "labelPosition": "right",
-                "labelText": "[[townName2]]",
-                "legendPeriodValueText": "total: [[value.sum]]",
-                "legendValueText": "[[value]]",
                 "title": "Comisiones",
                 "fillAlphas": 0,
                 "valueField": "ventas_comisiones_total",
@@ -475,7 +474,7 @@ function grafico_ventas(data){
     });
 }
 
-function grafico_ventas_dollar(data){
+function grafico_usuarios(data){
     
 
 	chart = AmCharts.makeChart('ventas_dollar', {
@@ -500,18 +499,22 @@ function grafico_ventas_dollar(data){
          ],
         "graphs": [
             {
-                "alphaField": "alpha",
+            "bullet": "round",
+            "bulletBorderAlpha": 1,
+            "bulletBorderThickness": 1,
+            "fillAlphas": 0.3,
+            "fillColorsField": "lineColor",
+            "legendValueText": "[[value]]",
+            "lineColorField": "lineColor",
+            "title": "Clientes Nuevos",
+            "valueField": "clientes_nuevos",
+            "valueAxis": "clientesAxis",
                 "balloonText": "[[value]]",
-                "dashLengthField": "dashLength",
-                "fillAlphas": 0.7,
+                "labelText": "[[townName2]]",
                 "legendPeriodValueText": "total: [[value.sum]]",
-                "legendValueText": "[[value]]",
-                "title": "Ventas",
-                "type": "column",
-                "title": "Clientes Nuevos",
-                "valueField": "clientes_nuevos",
-                "valueAxis": "clientesAxis"
-            } 
+                "legendValueText": "[[value]]"
+        }
+                      
         ],
 
         "chartScrollbar": {
