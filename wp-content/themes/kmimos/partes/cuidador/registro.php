@@ -128,11 +128,13 @@
 			<div class="popuphide popup-registro-exitoso">
 				<div class="overlay"></div>
 				<div class="popup-registro-exitoso-text">
-					<h3>¡Genial! <span data-target="name"></span>,<br>ya creaste tu perfil como Cuidador Kmimos con éxito</h3>
-					<p style="font-size: 15px;">A mayores datos, mayor ganancia.</p>
-					<p style="font-size: 15px;">Te invitamos a seguir enriqueciendo tu perfil en</p>
-					<h5 style="font-size: 20px">¡3 simples pasos!</h5>
+
+					<h3>¡Genial! <span data-target="name"></span></h3>
+					<p style="font-size: 20px;">Ya creaste tu perfil como Cuidador Kmimos con éxito.</p>
+					<p style="font-size: 20px;">Te invitamos a seguir enriqueciendo tu perfil en</p>
+					<p style="font-size: 25px;">¡Tres simples pasos!  Mientras más completo esté tu perfil, mayor será tu ganancia.</p>
 					<a href="#" class="km-btn km-btn-popup-registro-exitoso">COMENZAR</a>
+
 				</div>
 			</div>
 
@@ -307,16 +309,16 @@
 			<div class="popuphide popup-registro-exitoso-final">
 				<div class="overlay"></div>
 				<div class="popup-registro-exitoso-text">
-					<h2 style="font-size: 18px; color: white;">¡LISTO <span data-target="name"></span>!</h2>
-					<h2 style="font-size: 18px; color: white;">Recibimos con éxito tu solicitud para sumarte a la familia de Cuidadores Kmimos</h2>		
+					<h2 style="font-size: 18px; color: white;">Listo <span data-target="name"></span>!</h2>
+					<h2 style="font-size: 18px; color: white;">Recibimos tu solicitud para sumarte a la familia de cuidadores Kmimos.</h2>		
+					<h2 style="font-size: 25px; color: white; text-align: center;">SIGUIENTES PASOS PARA ACTIVAR TU PERFIL:</h2>		
 
 					<aside class="text-center col-sm-10 col-sm-offset-1">
-						<p style="font-size: 15px;">Siguientes Pasos para activar tu perfil</p>
-						<p style="font-size: 12px;">Ahora serás dirigido a hacia el paso 1, PRUEBAS DE CONOCIMIENTO VETERINARIO.</p>
-						<p style="font-size: 12px;">Guarda el siguiente link, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documentos.</p>
-						<p style="font-size: 12px;">Link para continuar es: http://kmimos.ilernus.com</p>
-						<p style="font-size: 12px;">INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA:</p>
-						<p style="font-size: 12px;">
+						<p style="font-size: 18px;">Serás redirigido a las pruebas de conocimientos veterinarios al dar click en el botón CONTINUAR.</p>
+						<p style="font-size: 18px;">Guarda el siguiente link: http://kmimos.ilernus.com, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o cargar documentos.</p>
+						<p style="font-size: 18px;">Link para continuar es: http://kmimos.ilernus.com</p>
+						<p style="font-size: 18px;">Ingresa en la liga anterior con el nombre de usuario y contraseña que te proporcionamos a continuación:</p>
+						<p style="font-size: 18px;">
 							<strong>Usuario:</strong> <span data-id="ilernus-user"></span>
 							</br>
 							<strong>Contraseña:</strong> <span data-id="ilernus-pass"></span>
