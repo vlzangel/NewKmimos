@@ -68,7 +68,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label>IFE/Documento de Identidad</label>
-							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
+							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros" data-toggle="tooltip" title="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" >
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder fecha_placeholder">
