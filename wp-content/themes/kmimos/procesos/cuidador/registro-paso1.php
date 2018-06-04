@@ -360,7 +360,7 @@
                 $message_mail = str_replace('[name]', $nombres.' '.$apellidos, $message_mail);
                 $message_mail = str_replace('[email]', $email, $message_mail);
                 $message_mail = str_replace('[pass]', $clave, $message_mail);
-                $message_mail = str_replace('[url]', site_url(), $message_mail);
+                $message_mail = str_replace('[url]', get_home_url()."/perfil-usuario/", $message_mail);
                 $message_mail = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $message_mail);
 
                 // Envio de Email
