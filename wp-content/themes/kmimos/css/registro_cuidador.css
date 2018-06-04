@@ -44,3 +44,12 @@ button.close {
     top: 12px !important;
     font-size: 11px !important;
 }
+
+.select_tipo_doc {
+    width: 100%;
+    margin-top: 10px;
+    border: 0px;
+    border-bottom: solid 1px #e5e5e5;
+    padding: 0px 5px;
+    border-radius: 0px;
+}

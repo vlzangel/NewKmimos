@@ -121,6 +121,23 @@ jQuery( document ).ready(function() {
 	    );
 	});
 
+	jQuery('[name="rc_tipo_documento"]').on("change", function(e){
+		switch( jQuery(this).val() ){
+			case "":
+				jQuery('#rc_ife').css("display", "none");
+				jQuery('#rc_pasaporte').css("display", "none");
+			break;
+			case "IFE / INE":
+				jQuery('#rc_ife').css("display", "block");
+				jQuery('#rc_pasaporte').css("display", "none");
+			break;
+			case "Pasaporte":
+				jQuery('#rc_ife').css("display", "none");
+				jQuery('#rc_pasaporte').css("display", "block");
+			break;
+		}
+	});
+
 	jQuery('[data-toggle="tooltip"]').tooltip(); 
 
 });
@@ -243,10 +260,20 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	var a = HOME+"/procesos/cuidador/registro-paso1.php";
 	var obj = jQuery(this);
 
-	jQuery('input').css('border-bottom', '#ccc');
+	jQuery('input').css('border-bottom', '1px solid #CCCCCC');
 	jQuery('[data-error]').css('visibility', 'hidden');
 
-	var list = [  'rc_email','rc_nombres','rc_apellidos','rc_ife','fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
+	var list = [  'rc_email','rc_nombres','rc_apellidos','fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
+
+	switch( jQuery('[name="rc_tipo_documento"]').val() ){
+		case "IFE / INE":
+			list.push("rc_ife");
+		break;
+		case "Pasaporte":
+			list.push("rc_pasaporte");
+		break;
+	}
+
 	var valid = km_cuidador_validar(list);
 
 	if( valid ){
@@ -442,7 +469,6 @@ function km_cuidador_validar( fields, error_field={} ){
 			if( m == ''){
 				mensaje(val, m, true);
 			}else{
-console.log("jQuery('#'+error_field[val]).css('border', '1px solid red')");
 				mensaje(val, m);
 				status = false;
   				jQuery('#'+error_field[val]).css('border', '1px solid red');
@@ -485,10 +511,14 @@ function rc_validar_longitud( field ){
 
 			case 'rc_apellidos':
 				result = validar_longitud( val, 2, 100, 'string', 'Debe estar entre 2 y 100 caracteres');
-				break;
+			break;
 
 			case 'rc_ife':
 				result = validar_longitud( val, 13, 13, 'string', 'Debe tener 13 digitos');
+			break;
+
+			case 'rc_pasaporte':
+				result = validar_longitud( val, 10, 28, 'string', 'Debe tener entre 10 y 28 digitos');
 			break;
 
 			case 'fecha':

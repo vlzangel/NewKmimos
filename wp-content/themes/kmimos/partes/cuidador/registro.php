@@ -66,10 +66,23 @@
 							<input type="text" data-charset="xlf" name="rc_apellidos" value="" class="input-label-placeholder social_lastname solo_letras"  maxlength="20">
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
-						<div class="label-placeholder">
+						<div>
+							<select name="rc_tipo_documento" class="select_tipo_doc km-select-custom">
+								<option value="">Selección de Documento de identidad</option>
+								<option>IFE / INE</option>
+								<option>Pasaporte</option>
+							</select>
+							<small data-error="rc_tipo_documento" style="visibility: hidden;"></small>
+						</div>
+						<div id="rc_ife" class="label-placeholder" style="display: none;">
 							<label>IFE/Documento de Identidad</label>
 							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros" data-toggle="tooltip" title="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" >
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
+						</div>
+						<div id="rc_pasaporte" class="label-placeholder" style="display: none;">
+							<label>Pasaporte</label>
+							<input type="text" name="rc_pasaporte" value="" class="input-label-placeholder" data-toggle="tooltip" title="Coloca tu identificador de pasaporte" >
+							<small data-error="rc_pasaporte" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder fecha_placeholder">
 							<label>Fecha de Nacimiento</label>

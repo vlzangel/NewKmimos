@@ -54,19 +54,43 @@
 
     extract($_POST);
 
-    if( $rc_ife+0 == 0 ){ 
-        $error = array(
-            "error" => "SI",
-            'fields' => array(
-                array(
-                    "name" => "ife",
-                    "msg" => "Error, el IFE no es valido."
-                )
-            )
-        );
-        echo "(".json_encode( $error ).")";
+    switch ( $rc_tipo_documento ) {
+        case 'IFE / INE':
 
-        exit();
+            if( $rc_ife+0 == 0 ){ 
+                $error = array(
+                    "error" => "SI",
+                    'fields' => array(
+                        array(
+                            "name" => "ife",
+                            "msg" => "Error, el IFE no es valido."
+                        )
+                    )
+                );
+                echo "(".json_encode( $error ).")";
+
+                exit();
+            }
+            
+        break;
+        case 'Pasaporte':
+
+            if( strlen($rc_pasaporte) < 10 || strlen($rc_pasaporte) > 28 ){ 
+                $error = array(
+                    "error" => "SI",
+                    'fields' => array(
+                        array(
+                            "name" => "pasaporte",
+                            "msg" => "Error, el Pasaporte tiene una longitud valida."
+                        )
+                    )
+                );
+                echo "(".json_encode( $error ).")";
+
+                exit();
+            }
+
+        break;
     }
 
     if ($conn->connect_error) {
