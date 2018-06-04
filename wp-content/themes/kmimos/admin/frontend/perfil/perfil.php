@@ -35,6 +35,22 @@
         $pixel = "";
     }
 
+    $tipoUsuario = unserialize($userdata['wp_capabilities'][0]);
+
+/*    echo "<pre>";
+        print_r($tipoUsuario);
+    echo "</pre>";*/
+
+    $validacionesDescripcion = '';
+    if( isset($tipoUsuario['vendor']) ){
+        $validacionesDescripcion = '
+            data-valid="min:200"
+            data-title="La descripci&oacute;n debe tener al menos 200 caracteres" 
+            data-toggle="tooltip"
+            title="Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos"
+        ';
+    }
+
     $CONTENIDO .=  $pixel.'
         <input type="hidden" name="accion" value="perfil" />
         <input type="hidden" name="user_id" value="'.$user_id.'" />
@@ -54,7 +70,7 @@
                 <div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
                 <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
             </div>
-            <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" id="portada" name="portada" data-valid="requerid" />
+            <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" name="portada" data-valid="requerid" />
 
             <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
         </section>
@@ -119,7 +135,11 @@
             <section class="container_full">
                 <label for="descr" class="lbl-text">'.esc_html__('Información biográfica','kmimos').':</label>
                 <label class="lbl-ui">
-                    <textarea id="descr" name="descr" >'.$userdata['description'][0].'</textarea>
+                    <textarea 
+                        id="descr" 
+                        name="descr"
+                        '.$validacionesDescripcion.'
+                    >'.$userdata['description'][0].'</textarea>
                 </label>
             </section>
 
@@ -172,6 +192,4 @@
 
         </div>
     ';
-?>
-
-
+?> 

@@ -58,4 +58,6 @@ jQuery( document ).ready(function(){
             jQuery(".perfil_cargando").css("display", "none");
        	}
    	);
+
+   	jQuery('[data-toggle="tooltip"]').tooltip();
 });

@@ -21,6 +21,13 @@
 		"gigantes" => "Gigantes",
 	);
 
+    $preciosSugeridos = array(
+        "pequenos" => "Te sugerimos un precio entre $100 a $200 pesos.",
+        "medianos" => "Te sugerimos un precio entre $180 a $250 Pesos.",
+        "grandes"  => "Te sugerimos un precio entre $220 a $300 pesos.",
+        "gigantes" => "Te sugerimos un precio entre $250 a $350 pesos"
+    );
+
     global $wpdb;
 
     $sql = "SELECT * FROM cuidadores WHERE user_id = ".$user_id;
@@ -34,7 +41,7 @@
     	$hospedaje .= "
     		<div class='vlz_celda_25'>
     			<label>".$tam[$key]."</label>
-    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='hospedaje_".$key."' name='hospedaje_".$key."' value='".$value."' />
+    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='hospedaje_".$key."' name='hospedaje_".$key."' value='".$value."' data-toggle='tooltip' data-title='".$preciosSugeridos[ $key ]."' />
 			</div>
     	";
     }
