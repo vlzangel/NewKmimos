@@ -160,7 +160,9 @@
 				<div class="img_registro_cliente" style="position: relative">
 					<div class="km-datos-foto vlz_rotar" id="perfil-img-a" style="background-image: url(<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg);">
 						<div id="loading-perfil" style="width:100%; height: 100%; display:none;" class="vlz_cargando">
-							<img src="<?php echo getTema(); ?>/images/new/bx_loader.gif">
+							<img 
+								src="<?php echo getTema(); ?>/images/new/bx_loader.gif" 
+							/>
 						</div>
 					</div>
 
@@ -182,13 +184,24 @@
 				</div>
 				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div> -->
 				
-				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
+				<a 
+					href="#" 
+					data-load='portada' 
+					class="km-btn-border"
+					data-toggle="tooltip"
+					title='Te recomendamos que en la foto de perfil, aparezcas tú sonriente con perritos.'
+				>ACCEDER A TU GALERÍA</a>
             	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
 
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
 				
-				<textarea name="rc_descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
+				<textarea 
+					name="rc_descripcion" 
+					class="km-descripcion-peril-cuidador" 
+					data-toggle="tooltip"
+					title='"Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos"'
+					placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
 				</textarea>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
 
@@ -247,7 +260,15 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Dirección</label>
-							<input type="text" id="rc_direccion" name="rc_direccion" value="" class="input-label-placeholder">
+							<input 
+								type="text" 
+								id="rc_direccion" 
+								name="rc_direccion" 
+								value="" 
+								class="input-label-placeholder"
+								data-toggle="tooltip"
+								title="Escribe la dirección que aparece en tu comprobante de domicilio."
+							>
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
 
