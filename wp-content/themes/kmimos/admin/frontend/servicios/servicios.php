@@ -15,8 +15,15 @@
     );
 
     $tam = array(
-		"pequenos" => "Peque&ntilde;os",
-		"medianos" => "Medianos",
+        "pequenos" => "Peque&ntilde;os",
+        "medianos" => "Medianos",
+        "grandes"  => "Grandes",
+        "gigantes" => "Gigantes",
+    );
+
+    $mascotas = array(
+		"pequenos" => "Peque&ntilde;as",
+		"medianos" => "Medianas",
 		"grandes"  => "Grandes",
 		"gigantes" => "Gigantes",
 	);
@@ -76,7 +83,7 @@
 	    	$temp .= "
 	    		<div class='vlz_celda_25'>
 	    			<label>".$value2."</label>
-	    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='".$key."_".$key2."' name='".$key."_".$key2."' value='".$precio."' />
+	    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='".$key."_".$key2."' name='".$key."_".$key2."' value='".$precio."' data-toggle='tooltip' data-title='Ingresa el precio de {$value} para mascotas ".($mascotas[ $key2 ])."' />
 				</div>
 	    	";
     	}
@@ -106,7 +113,7 @@
     	$adicionales_extra_str .= "
     		<div class='vlz_celda_20'>
     			<label>".$value."</label>
-    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num'  class='vlz_input' id='adicional_".$key."' name='adicional_".$key."' value='".$adicionales[$key]."' />
+    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num'  class='vlz_input' id='adicional_".$key."' name='adicional_".$key."' value='".$adicionales[$key]."' data-toggle='tooltip' data-title='Ingresa el precio para el servicio de {$value}' />
 			</div>
     	";
     }
@@ -123,7 +130,7 @@
 		$temp .= "
     		<div class='vlz_celda_33'>
     			<label>".$valor."</label>
-    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num'  class='vlz_input' id='transportacion_sencilla_".$slug."' name='transportacion_sencilla_".$slug."' value='".$adicionales['transportacion_sencilla'][$slug]."' />
+    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num'  class='vlz_input' id='transportacion_sencilla_".$slug."' name='transportacion_sencilla_".$slug."' value='".$adicionales['transportacion_sencilla'][$slug]."' data-toggle='tooltip' data-title='Ingresa el precio para transporte sencillo en rutas {$valor}' />
 			</div>
 		";
 	}
@@ -142,7 +149,7 @@
 		$temp .= "
     		<div class='vlz_celda_33'>
     			<label>".$valor."</label>
-    			<input type='number' step='0.01' class='vlz_input' min=0 data-minvalue=0 data-charset='num'  id='transportacion_redonda_".$slug."' name='transportacion_redonda_".$slug."' value='".$adicionales['transportacion_redonda'][$slug]."' />
+    			<input type='number' step='0.01' class='vlz_input' min=0 data-minvalue=0 data-charset='num'  id='transportacion_redonda_".$slug."' name='transportacion_redonda_".$slug."' value='".$adicionales['transportacion_redonda'][$slug]."' data-toggle='tooltip' data-title='Ingresa el precio para transporte redondo en rutas {$valor}' />
 			</div>
 		";
 	}
