@@ -347,12 +347,11 @@
 					<h2 style="font-size: 18px; color: white;">Recibimos tu solicitud para sumarte a la familia de cuidadores Kmimos.</h2>		
 					<h2 style="font-size: 25px; color: white; text-align: center;">SIGUIENTES PASOS PARA ACTIVAR TU PERFIL:</h2>		
 
-					<aside class="text-center col-sm-10 col-sm-offset-1">
-						<p style="font-size: 18px;">Serás redirigido a las pruebas de conocimientos veterinarios al dar click en el botón CONTINUAR.</p>
-						<p style="font-size: 18px;">Guarda el siguiente link: http://kmimos.ilernus.com, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o cargar documentos.</p>
-						<p style="font-size: 18px;">Link para continuar es: http://kmimos.ilernus.com</p>
-						<p style="font-size: 18px;">Ingresa en la liga anterior con el nombre de usuario y contraseña que te proporcionamos a continuación:</p>
-						<p style="font-size: 18px;">
+					<aside class="text-left col-sm-10 col-sm-offset-1">
+						<p style="font-size: 18px;">1. Serás redirigido a las pruebas de conocimientos veterinarios al dar click en el botón CONTINUAR.</p>
+						<p style="font-size: 18px;">2. Guarda el siguiente link: http://kmimos.ilernus.com, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o cargar documentos.</p>
+						<p style="font-size: 18px;">3. Ingresa en la liga anterior con el nombre de usuario y contraseña que te proporcionamos a continuación:</p>
+						<p style="text-align: center; font-size: 18px;">
 							<strong>Usuario:</strong> <span data-id="ilernus-user"></span>
 							</br>
 							<strong>Contraseña:</strong> <span data-id="ilernus-pass"></span>
