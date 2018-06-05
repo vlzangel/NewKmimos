@@ -66,15 +66,17 @@ li.vlz_resaltar {
 
 	.inputs_containers{
 		display: block;
-		overflow: hidden;
+		#overflow: hidden;
 		padding-bottom: 15px;
 	}
 
 	.inputs_containers section{
-		float: left;
-		width: 50%;
+	    float: none;
+	    width: 50%;
 	    box-sizing: border-box;
 	    padding: 0px 5px;
+	    display: inline-block;
+	    margin: 0px -2px;
 	}
 
 	.lbl-text{

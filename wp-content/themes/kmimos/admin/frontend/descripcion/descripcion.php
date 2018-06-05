@@ -13,6 +13,10 @@
         $atributos["nacimiento"] = "";
     }
 
+    if( !isset($atributos["tipo_doc"]) ){
+        $atributos["tipo_doc"] = "IFE / INE";
+    }
+
     $petsitter_id = $cuidador->id;
     $lat_def = $cuidador->latitud;
     $lng_def = $cuidador->longitud;
@@ -166,7 +170,17 @@
     $edades_aceptadas_str = "";
     foreach ($edades_aceptadas as $key => $value) {
         if($value == 1){ $check = "vlz_check"; }else{ $check = ""; }
-      	$edades_aceptadas_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="acepta_'.$key.'" name="acepta_'.$key.'" value="'.$edades_aceptadas[$key].'">'.$edades[$key].'</div>';
+        $edades_aceptadas_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="acepta_'.$key.'" name="acepta_'.$key.'" value="'.$edades_aceptadas[$key].'">'.$edades[$key].'</div>';
+    }
+
+    $tipos = array(
+      "IFE / INE",
+      "Pasaporte"
+    );
+    $tipos_str = "";
+    foreach ($tipos as $value) {
+        if($value == $atributos["tipo_doc"]){ $check = "selected"; }else{ $check = ""; }
+      	$tipos_str .= '<option '.$check.'>'.$value.'</option>';
     }
 
     // wp_enqueue_script( 'google-api','http://maps.googleapis.com/maps/api/js?key=AIzaSyBdswYmnItV9LKa2P4wXfQQ7t8x_iWDVME&sensor=true', array( 'jquery' ) );
@@ -180,9 +194,18 @@
     <h1 style="margin: 0px; padding: 0px;">Mi informaci&oacute;n como Cuidador</h1><hr style="margin: 5px 0px 10px;">
     <div class="inputs_containers row_4" style="padding-bottom: 0px;">
         <section> 
-            <label for="pet_name" class="lbl-text">'.esc_html__('IFE','kmimos').':</label>
+            <label for="tipo_doc" class="lbl-text">'.esc_html__('Tipo de Documento','kmimos').':</label>
             <label class="lbl-ui">
-                <input type"text" id="dni" name="dni" class="input" value="'.$cuidador->dni.'"> 
+                <select id="tipo_doc" name="tipo_doc" class="input">
+                    '.$tipos_str.'
+                </select>
+            </label> 
+        </section>
+
+        <section> 
+            <label id="ife_label" for="ife" class="lbl-text">'.esc_html__('IFE','kmimos').':</label>
+            <label class="lbl-ui">
+                <input type"text" id="dni" name="dni" class="input" value="'.$cuidador->dni.'" data-toggle="tooltip" title="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE"> 
             </label>
         </section>
 
@@ -277,6 +300,13 @@
                 <input type"text" id="num_mascotas_casa" name="num_mascotas_casa" class="input" value="'.$cuidador->num_mascotas.'"> 
             </label> 
         </section> 
+
+        <section style="width: 75%;"> 
+            <label for="video_youtube" class="lbl-text">'.esc_html__('Video de Youtube (URL)','kmimos').':</label>
+            <label class="lbl-ui">
+                <input  type="text" id="video_youtube" name="video_youtube" class="input" value="'.$atributos['video_youtube'].'" />
+            </label>
+        </section>
     </div>
            
     <div class="inputs_containers row_4" style="padding-bottom: 0px;"> 
@@ -323,11 +353,11 @@
        </section>  
 
         <section>
-        <label for="delegacion" class="lbl-text">'.esc_html__('Delegación','kmimos').':</label>
+            <label for="delegacion" class="lbl-text">'.esc_html__('Delegación','kmimos').':</label>
             <label class="lbl-ui">
-            <select id="delegacion" name="delegacion" class="input">
-                '.$muni.'
-            </select>
+                <select id="delegacion" name="delegacion" class="input">
+                    '.$muni.'
+                </select>
             </label> 
         </section>  
 
@@ -341,22 +371,11 @@
 
     </div>
            
-    <div class="inputs_containers row_3" style="padding-bottom: 0px;"> 
+    <div class="inputs_containers row_3" style="padding-bottom: 10px;"> 
         <div class="info_map">Puedes establecer con m&aacute;s precisi&oacute;n tu ubicaci&oacute;n desplazando el PIN en el mapa directamente.</div>            
         <div id="map_canvas" style="width:100%; height:300px;"></div>
         <input type="hidden" name="lat" id="lat" value="'.$lat_def.'" />
         <input type="hidden" name="lng" id="long" value="'.$lng_def.'" />
         
-    </div>
-
-    <div class="inputs_containers" style="padding-bottom: 0px;">
-
-        <section style="width: 100%;"> 
-            <label for="video_youtube" class="lbl-text">'.esc_html__('Video de Youtube (URL)','kmimos').':</label>
-            <label class="lbl-ui">
-                <input  type="text" id="video_youtube" name="video_youtube" class="input" value="'.$atributos['video_youtube'].'" />
-            </label>
-        </section>
-
     </div>';
 ?>

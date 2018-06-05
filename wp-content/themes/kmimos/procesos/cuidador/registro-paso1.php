@@ -71,6 +71,8 @@
 
                 exit();
             }
+
+            $ife = $rc_ife;
             
         break;
         case 'Pasaporte':
@@ -90,6 +92,8 @@
                 exit();
             }
 
+            $ife = $rc_pasaporte;
+
         break;
     }
 
@@ -104,7 +108,6 @@
         $email = $rc_email;
         $nombres = $rc_nombres;
         $apellidos = $rc_apellidos;
-        $ife = $rc_ife;
         $clave = $rc_clave;
         $telefono = $rc_telefono;
         $referido = $rc_referred;
@@ -190,8 +193,6 @@
             $atributos = array(
                 "nacimiento" => $fecha
             );
-
-            if( $ife+0 == 0 ){ $ife = "0000000000000"; }
 
             $sql = "
                 INSERT INTO cuidadores VALUES (
