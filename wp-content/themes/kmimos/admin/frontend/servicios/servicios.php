@@ -29,9 +29,9 @@
 	);
 
     $preciosSugeridos = array(
-        "pequenos" => "Te sugerimos un precio entre $100 a $200 pesos.",
-        "medianos" => "Te sugerimos un precio entre $180 a $250 Pesos.",
-        "grandes"  => "Te sugerimos un precio entre $220 a $300 pesos.",
+        "pequenos" => "Te sugerimos un precio entre $120 a $180 pesos.",
+        "medianos" => "Te sugerimos un precio entre $180 a $220 Pesos.",
+        "grandes"  => "Te sugerimos un precio entre $220 a $250 pesos.",
         "gigantes" => "Te sugerimos un precio entre $250 a $350 pesos"
     );
 
