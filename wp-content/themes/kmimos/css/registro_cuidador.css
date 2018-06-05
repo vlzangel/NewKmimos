@@ -53,3 +53,27 @@ button.close {
     padding: 0px 5px;
     border-radius: 0px;
 }
+
+.popup-registro-exitoso, .popup-registro-exitoso-final {
+    background: url(../images/new/km-registro/registro-exitoso.jpg) no-repeat;
+    height: auto;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    padding: 10px;
+}
+
+.popup-registro-exitoso-text {
+    padding: 0px 10px 0px;
+}
+
+.popup-registro-exitoso-text p {
+    line-height: 100% !important;
+
+}
+
+@media ( max-width: 600px ){
+    .popup-registro-exitoso-text aside p {
+        font-size: 15px !important;
+    }
+}
