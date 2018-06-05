@@ -2,7 +2,7 @@
 <?php $info = kmimos_get_info_syte(); ?>
 <div id="popup-registro-cuidador1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" style="">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="redireccionar();" >×</button>
 			<div class="popup-registro-cuidador active">
 				
@@ -68,7 +68,7 @@
 						</div>
 						<div>
 							<select name="rc_tipo_documento" class="select_tipo_doc km-select-custom" style="font-size: 13px !important;">
-								<option value="">Selección de Documento de identidad</option>
+								<option value="">Seleccione Documento de Identidad</option>
 								<option>IFE / INE</option>
 								<option>Pasaporte</option>
 							</select>
@@ -213,7 +213,7 @@
 					name="rc_descripcion" 
 					class="km-descripcion-peril-cuidador" 
 					data-toggle="tooltip"
-					title='Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos'
+					title='Cu&eacute;ntanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos'
 					placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
 				</textarea>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>

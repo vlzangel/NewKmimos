@@ -61,6 +61,7 @@ button.close {
     background-position: center center;
     position: relative;
     padding: 10px;
+    border-radius: 5px;
 }
 
 .popup-registro-exitoso-text {
