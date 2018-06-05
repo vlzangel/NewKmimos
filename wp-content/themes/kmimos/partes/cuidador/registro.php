@@ -145,7 +145,7 @@
 					<h3>¡Genial! <span data-target="name"></span></h3>
 					<p style="font-size: 20px;">Ya creaste tu perfil como Cuidador Kmimos con éxito.</p>
 					<p style="font-size: 20px;">Te invitamos a seguir enriqueciendo tu perfil en</p>
-					<p style="font-size: 25px;">¡Tres simples pasos!  Mientras más completo esté tu perfil, mayor será tu ganancia.</p>
+					<p style="font-size: 25px; line-height: 25px;">¡Tres simples pasos!  Mientras más completo esté tu perfil, mayor será tu ganancia.</p>
 					<a href="#" class="km-btn km-btn-popup-registro-exitoso">COMENZAR</a>
 
 				</div>
