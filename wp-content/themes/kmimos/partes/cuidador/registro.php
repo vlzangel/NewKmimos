@@ -213,7 +213,7 @@
 					name="rc_descripcion" 
 					class="km-descripcion-peril-cuidador" 
 					data-toggle="tooltip"
-					title='"Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos"'
+					title='Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos'
 					placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
 				</textarea>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
