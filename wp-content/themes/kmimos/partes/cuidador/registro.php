@@ -67,7 +67,7 @@
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
 						<div>
-							<select name="rc_tipo_documento" class="select_tipo_doc km-select-custom">
+							<select name="rc_tipo_documento" class="select_tipo_doc km-select-custom" style="font-size: 13px !important;">
 								<option value="">Selección de Documento de identidad</option>
 								<option>IFE / INE</option>
 								<option>Pasaporte</option>
@@ -81,7 +81,7 @@
 						</div>
 						<div id="rc_pasaporte" class="label-placeholder" style="display: none;">
 							<label>Pasaporte</label>
-							<input type="text" name="rc_pasaporte" value="" class="input-label-placeholder" data-toggle="tooltip" title="Coloca tu identificador de pasaporte" >
+							<input type="text" maxlength="28" name="rc_pasaporte" value="" class="input-label-placeholder" data-toggle="tooltip" title="Coloca tu identificador de pasaporte" >
 							<small data-error="rc_pasaporte" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder fecha_placeholder">

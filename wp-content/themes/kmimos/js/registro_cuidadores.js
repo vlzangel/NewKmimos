@@ -263,7 +263,7 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	jQuery('input').css('border-bottom', '1px solid #CCCCCC');
 	jQuery('[data-error]').css('visibility', 'hidden');
 
-	var list = [  'rc_email','rc_nombres','rc_apellidos','fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
+	var list = [  'rc_email','rc_nombres','rc_apellidos', 'rc_tipo_documento', 'fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
 
 	switch( jQuery('[name="rc_tipo_documento"]').val() ){
 		case "IFE / INE":
