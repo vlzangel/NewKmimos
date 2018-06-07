@@ -8,12 +8,24 @@ var datos_usuarios = [];
 var datos_usuarios_by_fecha = [];
 var usuarios_wom = 0;
 
+var totales = {
+    "ventas": 0,
+    "noches": 0,
+    "confirmadas": 0
+};
+
 var usuarios_unicos = 1; // Filtrar los usuarios como unicos en todas las plataformas
 
 var date_month = {init:5, fin:2}; // Month
 
 
 jQuery(document).ready(function(){
+    jQuery('[data-action]').on('click', function(){
+        console.log( jQuery(this).data('action') );
+        jQuery('#tipo_datos').html( jQuery(this).data('label') );
+        sucursal = jQuery(this).data('action') ;
+        cargarDatos();
+    });
     cargarDatos();
 });
 
@@ -31,6 +43,12 @@ function cargarDatos(){
     datos_usuarios = [];
     datos_usuarios_by_fecha = [];
     usuarios_wom = 0;
+    totales = {
+        ventas: 0,
+        noches: 0,
+        confirmadas: 0
+    };
+
 
     // Mensaje
     mostratMensaje( 'Cargando datos de servidores' );
@@ -254,6 +272,11 @@ function merge_sucursal( origen, destino ){
                 "ventas_costo_total": eval(row['ventas_costo_total']) + eval(origen['ventas_costo_total']),
                 "ventas_comisiones_total": ( eval(row['ventas_costo_total']) + eval(origen['ventas_costo_total']) ) * 0.25
             };
+            
+            totales['ventas'] = eval(totales['ventas']) + eval(origen['ventas_costo_total']); 
+            totales['noches'] = eval(totales['noches']) + eval(origen['noches_total']); 
+            totales['confirmadas'] = eval(totales['confirmadas']) + eval(origen['ventas_cantidad']); 
+
             index = 0;
             return false;
         }
@@ -271,6 +294,11 @@ function merge_sucursal( origen, destino ){
             "ventas_costo_total": origen['ventas_costo_total'],
             "ventas_comisiones_total": eval(origen['ventas_costo_total']) * 0.25
         });
+
+        totales['ventas'] = eval(totales['ventas']) + eval(origen['ventas_costo_total']); 
+        totales['noches'] = eval(totales['noches']) + eval(origen['noches_total']); 
+        totales['confirmadas'] = eval(totales['confirmadas']) + eval(origen['ventas_cantidad']); 
+
     }
 
     return destino;
@@ -283,22 +311,28 @@ function analizar_datos( datos, recompras ){
 
     mostratMensaje( 'Estructurando datos' );
 
-    var row_anterior = {
-        "date": '0000-00-00',
-        "clientes_nuevos": 0,
-        "mascotas_total": 0,
-        "noches_total": 0,
-        "noches_numero": 0,
-        "ventas_cantidad": 0,
-        "ventas_costo_total": 0
+    /*jQuery.each(datos, function(i, row){
+        datos[ i ] = {
+            "date": row['date'],
+            "clientes_nuevos": number_format(row['clientes_nuevos'],2, ',',''),
+            "mascotas_total": number_format(row['mascotas_total'],2, ',',''),
+            "noches_total": number_format(row['noches_total'],2, ',',''),
+            "noches_numero": number_format(row['noches_numero'],2, ',',''),
+            "ventas_cantidad": number_format(row['ventas_cantidad'],2, ',',''),
+            "ventas_costo_total": number_format(row['ventas_costo_total'],2, ',',''),
+            "ventas_comisiones_total": number_format(row['ventas_costo_total'],2, ',','')
         };
-    var total_cliente=0;
-
+    });*/
     datos.reverse();
+
+
+
+    jQuery('#ventas_total').html( number_format(totales['ventas'], 2, ',', '.')  );
+    jQuery('#ventas_confirmadas').html( number_format(totales['confirmadas'], 2, ',', '.')  );
+    jQuery('#total_noches').html( number_format(totales['noches'], 2, ',', '.')  );
 
     grafico_ventas( datos );
     grafico_usuarios( datos );
-
 
     mostratMensaje( '' );
     jQuery('#btn-cargar-datos').removeClass('disabled');
