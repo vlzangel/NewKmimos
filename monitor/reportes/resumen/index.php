@@ -81,22 +81,33 @@
         <?php include_once(dirname(dirname(dirname(__DIR__)))."/monitor/conf/loading_data.php"); ?>
     </section>
 
-    <section class="container-item" >
-        <article class="col-sm-4 alert-info">
-            <h2>$ 0.00</h2>
-            <p>Total de Ventas</p>
-        </article>
-        <article class="col-sm-4 alert-info">
-            <h2>0</h2>
-            <p>Ventas confirmadas</p>
-        </article>
-        <article class="col-sm-4 alert-info">
-            <h2>0</h2>
-            <p>Noches Reservadas</p>
-        </article>
+    <section class="row" id="contenedor-items">
+        <div class="col-sm-12">        
+            <article class="col-sm-4">
+                <div>
+                    <h4>Total de Ventas</h4>                    
+                    <h2 id="ventas_total">$ 0.00</h2>
+                    <p>Ultimos 12 meses</p>                    
+                </div>
+            </article>
+            <article class="col-sm-4">
+                <div>
+                    <h4>Ventas confirmadas</h4>
+                    <h2 id="ventas_confirmadas">0</h2>
+                    <p>Ultimos 12 meses</p>
+                </div>                    
+            </article>
+            <article class="col-sm-4">
+                <div>
+                    <h4>Noches Reservadas</h4>
+                    <h2 id="total_noches">0</h2>
+                    <p>Ultimos 12 meses</p>
+                </div>
+            </article>
+        </div>
     </section>
 
-    <section>
+    <section class="row">
         <div id="grafico-container" class="col-md-6">
             <article style="height: 400px">
                 <div id="ventas" style="height: 100%"></div>

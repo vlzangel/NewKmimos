@@ -519,7 +519,7 @@ function cargar_grafico(data){
                 "axisAlpha": 0,
                 "gridAlpha": 0,
                 "position": "left",
-                "title": "Ventas"
+                "title": "Eventos de Compra"
             }, 
             {
                 "id": "clientesAxis",
@@ -543,7 +543,7 @@ function cargar_grafico(data){
                 "fillAlphas": 0.7,
                 "legendPeriodValueText": "total: [[value.sum]]",
                 "legendValueText": "[[value]]",
-                "title": "Ventas",
+                "title": "Eventos de Compra",
                 "type": "column",
                 "valueField": "ventas_cantidad",
                 "valueAxis": "ventasAxis"
