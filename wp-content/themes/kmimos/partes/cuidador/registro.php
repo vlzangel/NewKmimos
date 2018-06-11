@@ -81,7 +81,7 @@
 						</div>
 						<div id="rc_pasaporte" class="label-placeholder" style="display: none;">
 							<label>Pasaporte</label>
-							<input type="text" maxlength="28" name="rc_pasaporte" value="" class="input-label-placeholder" data-toggle="tooltip" title="Coloca tu identificador de pasaporte" >
+							<input type="text" maxlength="28" name="rc_pasaporte" value="" class="input-label-placeholder" data-toggle="tooltip" title="Coloca tu n&uacute;mero de pasaporte" >
 							<small data-error="rc_pasaporte" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder fecha_placeholder">
@@ -138,14 +138,15 @@
 				</div>
 			</div>
 			
-			<div class="popuphide popup-registro-exitoso">
-				<div class="overlay"></div>
+			<div class="popuphide popup-registro-exitoso" style="padding: 20px 20px 40px;">
+				<div class="overlay" style="background: rgba(0, 0, 0, 0.75);"></div>
 				<div class="popup-registro-exitoso-text">
 
 					<h3>¡Genial! <span data-target="name"></span></h3>
 					<p style="font-size: 20px;">Ya creaste tu perfil como Cuidador Kmimos con éxito.</p>
 					<p style="font-size: 20px;">Te invitamos a seguir enriqueciendo tu perfil en</p>
-					<p style="font-size: 25px; line-height: 25px;">¡Tres simples pasos!  Mientras más completo esté tu perfil, mayor será tu ganancia.</p>
+					<p style="font-size: 25px; line-height: 25px;">¡Tres simples pasos!</p>
+					<p style="font-size: 20px; line-height: 20px; font-weight: 800;">Mientras más completo esté tu perfil, mayor será tu ganancia.</p>
 					<a href="#" class="km-btn km-btn-popup-registro-exitoso">COMENZAR</a>
 
 				</div>
@@ -168,7 +169,7 @@
 					</ul>
 				</div>
 				<h3 style="margin: 0;">Foto de perfil</h3>
-				<p style="color: #979797">Brinda a tus futuros amigos</p>
+				<p style="color: #979797">Mu&eacute;stranos tu mejor sonrisa</p>
 
 				<div class="img_registro_cliente" style="position: relative">
 					<div class="km-datos-foto vlz_rotar" id="perfil-img-a" style="background-image: url(<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg);">
@@ -185,7 +186,7 @@
 	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
 
 	                <input type="hidden" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" class="vlz_rotar_valor">
-					<br><small data-error="rc_vlz_img_perfil" style="visibility: hidden;"></small>
+					<br><small data-error="rc_vlz_img_perfil" style="visibility: hidden; color: red; padding: 5px 0px; border: solid 1px; display: block margin-bottom: 5px;"></small>
 	                
 				</div>
 
@@ -341,15 +342,15 @@
 			</div>
 			
 			<div class="popuphide popup-registro-exitoso-final">
-				<div class="overlay"></div>
-				<div class="popup-registro-exitoso-text">
+				<div class="overlay" style="background: rgba(0, 0, 0, 0.75);"></div>
+				<div class="popup-registro-exitoso-text" style="overflow: hidden;">
 					<h2 style="font-size: 18px; color: white;">Listo <span data-target="name"></span>!</h2>
 					<h2 style="font-size: 18px; color: white;">Recibimos tu solicitud para sumarte a la familia de cuidadores Kmimos.</h2>		
 					<h2 style="font-size: 25px; color: white; text-align: center;">SIGUIENTES PASOS PARA ACTIVAR TU PERFIL:</h2>		
 
 					<aside class="text-left col-sm-10 col-sm-offset-1">
 						<p style="font-size: 18px;">1. Serás redirigido a las pruebas de conocimientos veterinarios al dar click en el botón CONTINUAR.</p>
-						<p style="font-size: 18px;">2. Guarda el siguiente link: http://kmimos.ilernus.com, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o cargar documentos.</p>
+						<p style="font-size: 18px;">2. Guarda el siguiente link: <a href="http://kmimos.ilernus.com" target="_blank">http://kmimos.ilernus.com</a>, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o cargar documentos.</p>
 						<p style="font-size: 18px;">3. Ingresa en la liga anterior con el nombre de usuario y contraseña que te proporcionamos a continuación:</p>
 						<p style="text-align: center; font-size: 18px;">
 							<strong>Usuario:</strong> <span data-id="ilernus-user"></span>
