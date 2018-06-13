@@ -81,6 +81,10 @@ button.close {
     font-weight: 600;
 }
 
+.modal-content {
+    width: 100% !important;
+}
+
 @media ( max-width: 600px ){
     .popup-registro-exitoso-text aside p {
         font-size: 15px !important;
