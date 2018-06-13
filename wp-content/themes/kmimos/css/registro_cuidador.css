@@ -73,6 +73,14 @@ button.close {
 
 }
 
+.info_map{
+    text-align: left;
+    padding: 5px 0px;
+    line-height: 15px;
+    color: purple;
+    font-weight: 600;
+}
+
 @media ( max-width: 600px ){
     .popup-registro-exitoso-text aside p {
         font-size: 15px !important;

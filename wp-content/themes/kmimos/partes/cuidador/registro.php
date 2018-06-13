@@ -286,10 +286,17 @@
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
 
-						<input type="hidden" id="latitud" name="latitud" />
-						<input type="hidden" id="longitud" name="longitud" />
+						<!-- <input type="hidden" id="latitud" name="latitud" />
+						<input type="hidden" id="longitud" name="longitud" /> -->
 
 					</div>
+
+					<div class="inputs_containers row_3" style="padding-bottom: 10px;"> 
+				        <div class="info_map">Puedes establecer con m&aacute;s precisi&oacute;n tu ubicaci&oacute;n desplazando el PIN en el mapa.</div>            
+				        <div id="map_canvas" style="width:100%; height:300px;"></div>
+				        <input type="hidden" name="latitud" id="lat" />
+				        <input type="hidden" name="longitud" id="long" />
+				    </div>
 				</div>
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-paso2">SIGUIENTE</a>
 				<!-- <a href="#" class="km-registro-tip" role="button" data-toggle="modal"></a> -->
