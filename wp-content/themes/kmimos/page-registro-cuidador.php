@@ -34,7 +34,7 @@
 					<div class="col-xs-12 col-sm-8">
 						<div><img src="<?php echo getTema(); ?>/images/new/km-certificado.svg"></div>
 						<h4>GANA DINERO CON TU HOBBIE</h4>
-						<p>En Kmimos tú tienes la libertad de colocar el precio por tus servicios, considerando tus habilidades y experiencia, sin embargo, te compartimos este rango de precios basado en las tendencias actuales del mercado:</p>
+						<p>En Kmimos tú tienes la libertad de colocar el precio por tus servicios, considerando tus habilidades y experiencia, sin embargo, te sugerimos este rango de precios basado en las tendencias actuales del mercado.</p>
 						<ul>
 							<li>Tamaño pequeño: 120 pesos por noche.</li>
 							<li>Tamaño mediano: 180 pesos por noche.</li>

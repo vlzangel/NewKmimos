@@ -25,6 +25,15 @@
     margin: 5px 0px 10px !important;
 }
 
+div#quitar_foto {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+
 #loading-perfil{
 	display: none;
 }
@@ -83,6 +92,22 @@ button.close {
 
 .modal-content {
     width: 100% !important;
+}
+
+small[data-error="rc_vlz_img_perfil"]{
+    visibility: visible;
+    color: red;
+    padding: 5px 20px;
+    border: 1px solid;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.small, small {
+    font-size: 100% !important;
+    padding: 5px 0px 0px;
+    display: block;
 }
 
 @media ( max-width: 600px ){

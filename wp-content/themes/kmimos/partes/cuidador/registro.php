@@ -101,7 +101,17 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Teléfono</label>
-							<input type="text" name="rc_telefono" data-charset="num" minlength="10" maxlength="15" value="" class="input-label-placeholder solo_numeros">
+							<input 
+							type="text" 
+							name="rc_telefono" 
+							data-charset="num" 
+							minlength="10" 
+							maxlength="15" 
+							value="" 
+							class="input-label-placeholder solo_numeros"
+							data-toggle="tooltip"
+							title='El tel&eacte;fono debe tener entre 10 y 15 d&iacte;gitos'
+						>
 							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -182,6 +192,7 @@
 
 					<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
 	                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
+	                <div id="quitar_foto" class="btn_quitar_foto"> <i class="fa fa-times" aria-hidden="true"></i> </div>
 
 	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
 
@@ -203,7 +214,7 @@
 					data-load='portada' 
 					class="km-btn-border"
 					data-toggle="tooltip"
-					title='Te recomendamos que en la foto de perfil, aparezcas tú sonriente con perritos.'
+					title='Te recomendamos que en la foto de perfil, aparezcas tú, sonriente, con perritos'
 				>ACCEDER A TU GALERÍA</a>
             	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
 
@@ -215,7 +226,7 @@
 					class="km-descripcion-peril-cuidador" 
 					data-toggle="tooltip"
 					title='Cu&eacute;ntanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos'
-					placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
+					placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro de mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
 				</textarea>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
 
@@ -320,7 +331,7 @@
 				</div>
 				<h3 style="margin: 0;"><span data-target="name"></span>,</h5>
 				<h3 style="margin: 0 0 10px;">¡TE FALTA MUY POCO!</h5>
-				<p style="color: #979797">Llena tus datos para un mayor perfil en la Comunidad Kmimos</p>
+				<p style="color: #979797">Proporciona la información requerida a continuación.</p>
 				<div class="km-block">
 					<div class="km-block-1">
 						<p>Número de mascotas que aceptas</p>
@@ -356,9 +367,9 @@
 					<h2 style="font-size: 25px; color: white; text-align: center;">SIGUIENTES PASOS PARA ACTIVAR TU PERFIL:</h2>		
 
 					<aside class="text-left col-sm-10 col-sm-offset-1">
-						<p style="font-size: 18px;">1. Serás redirigido a las pruebas de conocimientos veterinarios al dar click en el botón CONTINUAR.</p>
-						<p style="font-size: 18px;">2. Guarda el siguiente link: <a href="http://kmimos.ilernus.com" target="_blank">http://kmimos.ilernus.com</a>, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o cargar documentos.</p>
-						<p style="font-size: 18px;">3. Ingresa en la liga anterior con el nombre de usuario y contraseña que te proporcionamos a continuación:</p>
+						<p style="font-size: 18px;">1. Da click en el botón CONTINUAR (mostrado abajo), serás redirigido de inmediato a las pruebas de Conocimientos Veterinarios.</p>
+						<p style="font-size: 18px;">2. Al final del día te enviaremos un correo con la liga de las pruebas de conocimientos veterinarios (guarda este correo en caso que necesites retomar la prueba más adelante y/o cargar tus documentos).</p>
+						<p style="font-size: 18px;">3. Al dar click en el botón CONTINUAR, deberás iniciar sesión con las siguientes credenciales:</p>
 						<p style="text-align: center; font-size: 18px;">
 							<strong>Usuario:</strong> <span data-id="ilernus-user"></span>
 							</br>

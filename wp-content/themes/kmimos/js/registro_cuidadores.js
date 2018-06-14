@@ -109,9 +109,10 @@ jQuery( document ).ready(function() {
 	      			longitude: crd.longitude
 	      		};
 	      		vlz_coordenadas(position);
+	      		alert("Por favor valida tu ubicación en el mapa y de ser necesario, ajusta el pin a la posición adecuada");
 	    	}, 
 	    	function error(err) {
-	      		alert("No podemos obtener tus coordenadas, por favor ingresa tus datos");
+	      		alert("Por favor, selecciona en las siguientes opciones, estado, municipio y posteriormente, ajusta el pin hasta tu ubicación adecuada");
 	    	},
 	    	{
 		      	enableHighAccuracy: true,
@@ -136,6 +137,13 @@ jQuery( document ).ready(function() {
 				jQuery('#rc_pasaporte').css("display", "block");
 			break;
 		}
+	});
+
+	jQuery("").on("click", function(e){
+		jQuery(".btn_rotar").css("display", "none");
+		jQuery(".btn_aplicar_rotar").css("display", "none");
+		jQuery(".vlz_rotar").css("background-image", "url(https://kmimos.com.mx/wp-content/themes/kmimos/images/popups/registro-cuidador-foto.png)");
+		jQuery("#vlz_img_perfil").val("");
 	});
 
 	jQuery('[data-toggle="tooltip"]').tooltip(); 
@@ -174,10 +182,13 @@ function vlz_coordenadas(position){
                 jQuery("#rc_direccion").val( response.results[0].formatted_address );
 
                 jQuery("#rc_direccion").focus();
-
-                jQuery("#latitud").val(LAT);
-                jQuery("#longitud").val(LNG);
                 
+				var myLatLng = {lat: LAT, lng: LNG};
+                map.setCenter(myLatLng);
+	            marker.setPosition(myLatLng);
+	            map.setZoom(12);
+	            jQuery('#lat').val(LAT);
+   				jQuery('#long').val(LNG);
 	        }
 	    }, "json"); 
 	}
@@ -262,6 +273,7 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 
 	jQuery('input').css('border-bottom', '1px solid #CCCCCC');
 	jQuery('[data-error]').css('visibility', 'hidden');
+	jQuery('[data-error]').removeClass('tiene_error');
 
 	var list = [  'rc_email','rc_nombres','rc_apellidos', 'rc_tipo_documento', 'fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
 
@@ -295,6 +307,17 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 				jQuery('[name="rc_num_mascota"]').val(1);
 			}
 		});
+	}else{
+		var primer_error = ""; var z = true;
+		jQuery( ".tiene_error" ).each(function() {
+		  	if( jQuery( this ).css( "display" ) == "block" ){
+		  		if( z ){
+		  			primer_error = jQuery( this ); 
+		  			z = false;
+		  		}
+		  	}
+		});
+		jQuery('html, body').animate({ scrollTop: primer_error.offset().top-75 }, 2000);
 	}
 });
 
@@ -447,6 +470,7 @@ function mensaje( label, msg='', reset=false ){
 		visible = 'hidden';
 	}
 	jQuery('[data-error="'+label+'"]').css('visibility', visible);
+	jQuery('[data-error="'+label+'"]').addClass('tiene_error');
  	jQuery('[data-error="'+label+'"]').html(msg);
 	jQuery('[name="'+label+'"]').css('border-bottom', '1px solid ' + border_color);
 }
@@ -568,6 +592,7 @@ function vista_previa(evt) {
 			           		jQuery(".kmimos_cargando").css("visibility", "hidden");
 
                             jQuery(".btn_rotar").css("display", "block");
+                            jQuery(".btn_quitar_foto").css("display", "block");
 
                             jQuery(".vlz_cargando").css("display", "none");
                         });
