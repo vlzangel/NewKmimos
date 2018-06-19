@@ -20,8 +20,8 @@
         $_saldo += 0;
         echo "
             <div><label class='info_label'>Email: </label> <span>{$email}</span></div>
-            <div><label class='info_label'>Saldo Actual: </label> <span>$".number_format($_saldo, 2, ',', '.')." MXN</span></div>
-            <div><label class='info_label'>Modificar saldo por: </label> <span>$".number_format($saldo, 2, ',', '.')." MXN</span></div>
+            <div><label class='info_label'>Saldo Actual: </label> <span class='montoActual'>$".number_format($_saldo, 2, ',', '.')." MXN</span></div>
+            <div><label class='info_label'>Modificar saldo por: </label> <span class='montoModificado'>$".number_format($saldo, 2, ',', '.')." MXN</span></div>
         ";
     }
     

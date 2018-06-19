@@ -804,7 +804,8 @@
                         .wc_plugin_upgrade_notice,
                         .update-message,
                         .menu-icon-dashboard .wp-submenu,
-                        .upgrade {
+                        .upgrade,
+                        #wpfooter {
                             display: none !important;
                         }   
 

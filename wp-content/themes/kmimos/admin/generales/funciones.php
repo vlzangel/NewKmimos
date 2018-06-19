@@ -30,7 +30,6 @@
             $current_user = wp_get_current_user();
             $user_id = $current_user->ID;
 
-            // if( in_array($user_id, $user_especiales)  ){
                 $opciones_menu_reporte[] = array(
                     'title'         =>  __('Saldos'),
                     'short-title'   =>  __('Saldos'),
@@ -40,6 +39,7 @@
                     'page'          =>  'reporte_saldos',
                 );
 
+            // if( in_array($user_id, $user_especiales)  ){
                 $opciones_menu_reporte[] = array(
                     'title'         =>  __('Otros'),
                     'short-title'   =>  __('Otros'),
