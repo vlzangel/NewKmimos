@@ -71,14 +71,15 @@ function guardar_disponibilidad(){
                 {
                     servicio: jQuery("#servicio").val(),
                     tipo: jQuery("#tipo").val(),
+                    status: jQuery("#status").val(),
                     inicio: ini,
                     fin: fin,
                     user_id: user_id,
                     accion: "new_disponibilidad"
                 },
                 function(data){
-                    // console.log(data);
-                    location.reload();
+                     console.log(data);
+                    //location.reload();
                 }// , "json"
             );
         }else{

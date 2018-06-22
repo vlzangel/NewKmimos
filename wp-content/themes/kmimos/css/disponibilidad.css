@@ -9,7 +9,7 @@
 }
 .fechas_item{
     float: left;
-    width: 33.33333333%;
+    width: 25%;
     box-sizing: border-box;
     padding: 5px;
     overflow: hidden;
@@ -232,14 +232,14 @@
 }
 
 .main .vlz_tabla .vlz_rangos > div {  
-    padding: 4px;
+    padding: 0px;
     border-radius: 3px;
-    cursor: pointer;    
+    /*cursor: pointer;    */
     border-bottom: solid 1px #FFF;
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador .vlz_rangos div:hover {     
-    border-bottom: solid 1px #CCC;
+    /*border-bottom: solid 1px #CCC;*/
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador .vlz_rangos > div > a:hover {     
@@ -248,7 +248,7 @@
 }
 
 .main .vlz_tabla .vlz_rangos span {  
-    padding: 3px 5px;
+    padding: 0px;
     display: inline-block;
 }
 
@@ -283,7 +283,7 @@
     border-radius: 5px;
     margin-left: 5px;
     text-transform: uppercase;
-    cursor: pointer;
+    /*cursor: pointer;*/
     text-decoration: none !important;
     border: solid 1px #59c9a8;
     float: right;

@@ -20,7 +20,9 @@
             $wpdb->query("UPDATE wp_posts SET post_date = '{$hora_actual}' WHERE ID = {$id_reserva};");
             $wpdb->query("UPDATE wp_posts SET post_date = '{$hora_actual}' WHERE ID = {$id_orden};");
 
-            if( $remanente != 'a:1:{s:6:"enable";s:2:"no";}' ){
+            $remanente = unserialize($remanente);
+
+            if( $remanente["enable"] != 'no' ){
                 $wpdb->query("UPDATE wp_posts SET post_status = 'unpaid' WHERE ID = $id_orden;");
                 $wpdb->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = '$id_reserva';");
             }else{
@@ -41,7 +43,9 @@
             $wpdb->query("UPDATE wp_posts SET post_date = '{$hora_actual}' WHERE ID = {$id_reserva};");
             $wpdb->query("UPDATE wp_posts SET post_date = '{$hora_actual}' WHERE ID = {$id_orden};");
 
-            if( $remanente != 'a:1:{s:6:"enable";s:2:"no";}' ){
+            $remanente = unserialize($remanente);
+
+            if( $remanente["enable"] != 'no' ){
                 $wpdb->query("UPDATE wp_posts SET post_status = 'unpaid' WHERE ID = $id_orden;");
                 $wpdb->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = '$id_reserva';");
             }else{

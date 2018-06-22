@@ -7,6 +7,7 @@
     $user_id = $current_user->ID;
 
     $servicios = array(
+		"todos" => "Todos",
 		"hospedaje" => "Hospedaje",
 		"guarderia" => "Guardería",
 		"adiestramiento-basico" => "Adiestramiento Básico",
@@ -32,16 +33,15 @@
 		$opciones .= "<option value='{$servicio->ID}' data-type='{$tipo}' >".$servicios[ $tipo ]."</option>";
 	}
 
-    $no_disponibilidades = $wpdb->get_results("SELECT * FROM disponibilidad WHERE user_id = {$user_id}");
+    $no_disponibilidades = $wpdb->get_results("SELECT * FROM cupos WHERE cuidador = '{$user_id}' AND no_disponible = 1");
 
     $_rangos = array();
 
     foreach ($no_disponibilidades as $data) {
-    	$_rangos[ $data->servicio_str ][] = array(
+    	$_rangos[ $data->tipo ][] = array(
     		"servicio_id" => $data->servicio_id,
-    		"servicio_str" => $data->servicio_str,
-    		"desde" 	  => dateFormat($data->desde),
-    		"hasta" 	  => dateFormat($data->hasta)
+    		"servicio_str" => $data->tipo,
+    		"fecha" 	  => dateFormat($data->fecha)
     	);
     }
 
@@ -56,16 +56,8 @@
 			    	$rangos_html .= '
 			    		<div>
 			    			<span>
-			    				'.$rango['desde'].' <b> > </b> '.$rango['hasta'].'
+			    				'.$rango['fecha'].'
 			    			</span>
-			    			<a 
-		                		data-id="'.$rango['servicio_id'].'" 
-		                		data-inicio="'.$rango['desde'].'" 
-		                		data-fin="'.$rango['hasta'].'" 
-		                		class="vlz_accion vlz_cancelar cancelar"
-		                	>
-		                		<i class="fa fa-trash-o" aria-hidden="true"></i>
-		                	</a>
 			    		</div>
 			    	';
 		    	}
@@ -128,6 +120,14 @@
 					<div class="icono"><i class="icon-calendario embebed"></i></div>
 			        <input type="text" id="fin" name="fin" class="fechas" placeholder="Fin" disabled readonly>
 		        </div>
+
+				<div class="fechas_item">
+					<select id="status" name="status">
+						<option>Seleccione estatus</option>				
+						<option value="NO">No voy a estar disponible</option>				
+						<option value="SI">Si voy a estar disponible</option>				
+					</select>
+		        </div>
 		    </div>
 
 	        <div class="botones_container">
@@ -140,12 +140,6 @@
 	        </div>
 	    </div>
 	';
-
-
-
-/*    echo "<pre>";
-    	print_r($_rangos);
-    echo "</pre>";*/
 
 
 

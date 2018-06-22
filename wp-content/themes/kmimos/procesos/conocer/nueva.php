@@ -77,7 +77,7 @@
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cliente;
         }else{
-            wp_mail( $email_cuidador,  $asunto, $mensaje_cliente);
+            wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
         }
 
 	/*
