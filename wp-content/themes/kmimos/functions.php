@@ -4,40 +4,44 @@
 	
 	function get_publicidad($seccion){
 				
-		/*$publicidad = rand(1, 2);
+		$id_user = get_current_user_id();
+       	$wlabel = get_user_meta($id_user, "_wlabel", true);
+       	$referido = get_user_meta($id_user, "user_referred", true);
 
-		if( $publicidad == "2" ){
-			$campaing = "informacion";
-		}*/
+       	$banner = '';
+       	if( $wlabel == "petco" || $referido == "petco" ){
+       		$banner = '<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners/banner-conviertete-en-cuidador-petco.png" />';
+       	}
 
 		$campaing = "Kmimos-nutriheroes";
 
 		switch ($seccion) {
 			case 'solicitud':
+				if( $banner == "" ){ $banner = '<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil_3.png" />'; }
 				return '
 					<div style="margin-top: 20px;">
-
 						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil_3.png" />
+							'.$banner.'
 						</a>
-
 					</div>
 				';
 			break;
 			case 'reserva':
+				if( $banner == "" ){ $banner = '<img style="width: 100%; max-width: 500px;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil_3.png" />'; }
 				return '
 					<div style="margin-top: 5px;">
 						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							<img style="width: 100%; max-width: 500px;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil_3.png" />
+							'.$banner.'
 						</a>
 					</div>
 				';
 			break;
 			case 'correo':
+				if( $banner == "" ){ $banner = '<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil_3.png" />'; }
 				return '
 					<div style="margin: 25px 0px;">
                         <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=Kmimos-nutriheroes&utm_term=alimento_mascotas_nutricion" target="_blank">
-                            <img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil_3.png" />
+                            '.$banner.'
                         </a>
                     </div>
 				';
