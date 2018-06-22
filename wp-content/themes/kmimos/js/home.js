@@ -103,7 +103,7 @@ var hasGPS=false;
 
     });
 
-    jQuery('#buscador .km-opcion').on('click', function(e) {
+    jQuery('#buscador .km-opcion, #popup-servicios .km-opcion').on('click', function(e) {
         if( jQuery(this).hasClass("km-opcionactivo") ){
             jQuery(this).removeClass("km-opcionactivo");
             jQuery(this).children("input").prop("checked", false);
