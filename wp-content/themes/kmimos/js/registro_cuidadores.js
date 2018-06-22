@@ -109,9 +109,10 @@ jQuery( document ).ready(function() {
 	      			longitude: crd.longitude
 	      		};
 	      		vlz_coordenadas(position);
+	      		alert("Por favor valida tu ubicación en el mapa y de ser necesario, ajusta el pin a la posición adecuada");
 	    	}, 
 	    	function error(err) {
-	      		alert("No podemos obtener tus coordenadas, por favor ingresa tus datos");
+	      		alert("Por favor, selecciona en las siguientes opciones, estado, municipio y posteriormente, ajusta el pin hasta tu ubicación adecuada");
 	    	},
 	    	{
 		      	enableHighAccuracy: true,
@@ -120,6 +121,32 @@ jQuery( document ).ready(function() {
 		    }
 	    );
 	});
+
+	jQuery('[name="rc_tipo_documento"]').on("change", function(e){
+		switch( jQuery(this).val() ){
+			case "":
+				jQuery('#rc_ife').css("display", "none");
+				jQuery('#rc_pasaporte').css("display", "none");
+			break;
+			case "IFE / INE":
+				jQuery('#rc_ife').css("display", "block");
+				jQuery('#rc_pasaporte').css("display", "none");
+			break;
+			case "Pasaporte":
+				jQuery('#rc_ife').css("display", "none");
+				jQuery('#rc_pasaporte').css("display", "block");
+			break;
+		}
+	});
+
+	jQuery("").on("click", function(e){
+		jQuery(".btn_rotar").css("display", "none");
+		jQuery(".btn_aplicar_rotar").css("display", "none");
+		jQuery(".vlz_rotar").css("background-image", "url(https://kmimos.com.mx/wp-content/themes/kmimos/images/popups/registro-cuidador-foto.png)");
+		jQuery("#vlz_img_perfil").val("");
+	});
+
+	jQuery('[data-toggle="tooltip"]').tooltip(); 
 
 });
 
@@ -155,10 +182,13 @@ function vlz_coordenadas(position){
                 jQuery("#rc_direccion").val( response.results[0].formatted_address );
 
                 jQuery("#rc_direccion").focus();
-
-                jQuery("#latitud").val(LAT);
-                jQuery("#longitud").val(LNG);
                 
+				var myLatLng = {lat: LAT, lng: LNG};
+                map.setCenter(myLatLng);
+	            marker.setPosition(myLatLng);
+	            map.setZoom(12);
+	            jQuery('#lat').val(LAT);
+   				jQuery('#long').val(LNG);
 	        }
 	    }, "json"); 
 	}
@@ -241,10 +271,21 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	var a = HOME+"/procesos/cuidador/registro-paso1.php";
 	var obj = jQuery(this);
 
-	jQuery('input').css('border-bottom', '#ccc');
+	jQuery('input').css('border-bottom', '1px solid #CCCCCC');
 	jQuery('[data-error]').css('visibility', 'hidden');
+	jQuery('[data-error]').removeClass('tiene_error');
 
-	var list = [  'rc_email','rc_nombres','rc_apellidos','rc_ife','fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
+	var list = [  'rc_email','rc_nombres','rc_apellidos', 'rc_tipo_documento', 'fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
+
+	switch( jQuery('[name="rc_tipo_documento"]').val() ){
+		case "IFE / INE":
+			list.push("rc_ife");
+		break;
+		case "Pasaporte":
+			list.push("rc_pasaporte");
+		break;
+	}
+
 	var valid = km_cuidador_validar(list);
 
 	if( valid ){
@@ -266,6 +307,17 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 				jQuery('[name="rc_num_mascota"]').val(1);
 			}
 		});
+	}else{
+		var primer_error = ""; var z = true;
+		jQuery( ".tiene_error" ).each(function() {
+		  	if( jQuery( this ).css( "display" ) == "block" ){
+		  		if( z ){
+		  			primer_error = jQuery( this ); 
+		  			z = false;
+		  		}
+		  	}
+		});
+		jQuery('html, body').animate({ scrollTop: primer_error.offset().top-75 }, 2000);
 	}
 });
 
@@ -418,6 +470,7 @@ function mensaje( label, msg='', reset=false ){
 		visible = 'hidden';
 	}
 	jQuery('[data-error="'+label+'"]').css('visibility', visible);
+	jQuery('[data-error="'+label+'"]').addClass('tiene_error');
  	jQuery('[data-error="'+label+'"]').html(msg);
 	jQuery('[name="'+label+'"]').css('border-bottom', '1px solid ' + border_color);
 }
@@ -440,7 +493,6 @@ function km_cuidador_validar( fields, error_field={} ){
 			if( m == ''){
 				mensaje(val, m, true);
 			}else{
-console.log("jQuery('#'+error_field[val]).css('border', '1px solid red')");
 				mensaje(val, m);
 				status = false;
   				jQuery('#'+error_field[val]).css('border', '1px solid red');
@@ -483,10 +535,14 @@ function rc_validar_longitud( field ){
 
 			case 'rc_apellidos':
 				result = validar_longitud( val, 2, 100, 'string', 'Debe estar entre 2 y 100 caracteres');
-				break;
+			break;
 
 			case 'rc_ife':
 				result = validar_longitud( val, 13, 13, 'string', 'Debe tener 13 digitos');
+			break;
+
+			case 'rc_pasaporte':
+				result = validar_longitud( val, 10, 28, 'string', 'Debe tener entre 10 y 28 digitos');
 			break;
 
 			case 'fecha':
@@ -536,6 +592,7 @@ function vista_previa(evt) {
 			           		jQuery(".kmimos_cargando").css("visibility", "hidden");
 
                             jQuery(".btn_rotar").css("display", "block");
+                            jQuery(".btn_quitar_foto").css("display", "block");
 
                             jQuery(".vlz_cargando").css("display", "none");
                         });
@@ -556,3 +613,104 @@ function vista_previa(evt) {
 document.getElementById("portada").addEventListener("change", vista_previa, false);
 
 
+
+
+
+
+
+
+
+
+var lat = null;
+var lng = null;
+var map = null;
+var geocoder = null;
+var marker = null;
+         
+jQuery(document).ready(function(){
+    jQuery('[name="rc_estado"]').on("change", function(){
+    	codeAddress(8);
+    });
+	jQuery('[name="rc_municipio"]').on("change", function(){
+		codeAddress(12);
+	});
+
+    jQuery('#rc_direccion').on("keypress", function(e){
+        /*console.log( e );*/
+        /*if( e.charCode == "13" ){
+            codeAddress();
+            e.preventDefault();
+        }else{
+            if( e.key == "Enter" ){
+                codeAddress();
+                e.preventDefault();
+            }
+        }*/
+     });
+});
+     
+function initialize() {
+    lat = "23.634501";
+    lng = "-102.552784";
+    geocoder = new google.maps.Geocoder();
+    if(lat !='' && lng != ''){
+        var latLng = new google.maps.LatLng(lat,lng);
+    }
+    var myOptions = {
+        center: latLng,
+        zoom: 5,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    marker = new google.maps.Marker({
+        map: map,
+        position: latLng,
+        draggable: true
+    });
+
+    google.maps.event.addListener(marker, 'dragend', function(){
+        updatePosition(marker.getPosition());
+    });
+     
+}
+ 
+function codeAddress(zoom) {
+	if( zoom == undefined ){
+		zoom = 5;
+	}
+    var estado = jQuery('[name="rc_estado"] option:selected').text();
+    var delegacion = jQuery('[name="rc_municipio"] option:selected').text();
+    var address = document.getElementById("rc_direccion").value;
+    
+    address = estado+"+"+delegacion+"+"+address;
+
+    console.log( address );
+
+    geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            marker.setPosition(results[0].geometry.location);
+            map.setZoom(zoom);
+            updatePosition(results[0].geometry.location);
+            google.maps.event.addListener(marker, 'dragend', function(){
+                updatePosition(marker.getPosition());
+            });
+        } else {
+            alert("No podemos encontrar la dirección\nPero no te preocupes, puedes ubicarla directamente en el mapa moviendo el pin.");
+        }
+    });
+  }
+   
+function updatePosition(latLng) {
+   jQuery('#lat').val(latLng.lat());
+   jQuery('#long').val(latLng.lng());
+}
+
+(function(d, s){
+    map = d.createElement(s), e = d.getElementsByTagName(s)[0];
+    map.async=!0;
+    map.setAttribute("charset","utf-8");
+    map.src="//maps.googleapis.com/maps/api/js?key=AIzaSyBdswYmnItV9LKa2P4wXfQQ7t8x_iWDVME&sensor=true&callback=initialize";
+    map.type="text/javascript";
+    e.parentNode.insertBefore(map, e);
+})(document,"script");

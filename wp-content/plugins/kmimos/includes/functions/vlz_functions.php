@@ -1205,10 +1205,14 @@
 
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$producto->post_author);
 
-            $precios = unserialize($cuidador->hospedaje);
-            if( trim($tipo_servicio) != "Hospedaje" ){
-                $data = unserialize($cuidador->adicionales);
-                $precios = $data[ $cats_2[ $tipo ] ];
+            if( isset($metas_reserva['_booking_precios'][0]) ){
+                $precios = unserialize($metas_reserva['_booking_precios'][0]);
+            }else{
+                $precios = unserialize($cuidador->hospedaje);
+                if( trim($tipo_servicio) != "Hospedaje" ){
+                    $data = unserialize($cuidador->adicionales);
+                    $precios = $data[ $cats_2[ $tipo ] ];
+                }
             }
 
             $variaciones = array(); $grupo = 0;

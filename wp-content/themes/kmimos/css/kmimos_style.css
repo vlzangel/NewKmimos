@@ -4693,7 +4693,7 @@ footer .km-icon-redes {
     display:block
 }
 .page-reservation .steps-numbers li.line {
-    width:80px;
+    width:70px;
     height:38px;
     position:relative
 }
@@ -8337,3 +8337,8 @@ textarea.vlz_input {
     #PageSubscribe .section.section1 span {font-size: 20px;}
     #PageSubscribe .section.section3 {font-size: 12px;}
 }
+
+
+/*.popuphide {
+    display: block !important;
+}*/

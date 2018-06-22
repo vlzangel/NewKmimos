@@ -62,4 +62,18 @@ jQuery( document ).ready(function() {
         }
     );
 
+    jQuery("#tipo_doc").on("change", function(e){
+        if( jQuery(this).val() == "IFE / INE" ){
+            jQuery("#ife_label").html("IFE:");
+            jQuery("#dni").attr("title", "Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE");
+            jQuery("#dni").attr("data-original-title", "Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE");
+        }else{
+            jQuery("#ife_label").html("Pasaporte:");
+            jQuery("#dni").attr("title", "Coloca tu identificador de pasaporte");
+            jQuery("#dni").attr("data-original-title", "Coloca tu identificador de pasaporte");
+        }
+    });
+
+    jQuery('[data-toggle="tooltip"]').tooltip();
+
 });

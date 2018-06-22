@@ -20,8 +20,8 @@
 				<div class="container">
 					<h2>Kmimos necesita doglovers como tú</h2>
 					<p>Cada mascota llega como un huésped y consigue a un nuevo amigo. Convierte tu hobbie en dinero extra, con kmimos te ayudamos a alcanzarlo.</p>
-					<!-- <a href="#popup-registro-cuidador1" class="km-btn" role="button" data-toggle="modal">EMPIEZA A CUIDAR</a> -->
-					<a class="km-btn" <?php echo $config_link_registro; ?> >EMPIEZA A CUIDAR</a>
+					<!-- <a href="#popup-registro-cuidador1" class="km-btn" role="button" data-toggle="modal">¡Crea tu perfil de cuidador AQUÍ!</a> -->
+					<a class="km-btn" <?php echo $config_link_registro; ?> >¡Crea tu perfil de cuidador AQUÍ!</a>
 				</div>
 			</div>
 			<!-- FIN SECCIÓN TEXTO CUIDADOR -->
@@ -34,13 +34,13 @@
 					<div class="col-xs-12 col-sm-8">
 						<div><img src="<?php echo getTema(); ?>/images/new/km-certificado.svg"></div>
 						<h4>GANA DINERO CON TU HOBBIE</h4>
-						<p>En Kmimos siempre podrás colocar el precio que a ti mejor se te acomode, no te obligamos a fijar un precio, sin embargo, quisiéramos este rango de precios que está creada en base a las tendencias de mercado actuales.</p>
-						<ol>
+						<p>En Kmimos tú tienes la libertad de colocar el precio por tus servicios, considerando tus habilidades y experiencia, sin embargo, te sugerimos este rango de precios basado en las tendencias actuales del mercado.</p>
+						<ul>
 							<li>Tamaño pequeño: 120 pesos por noche.</li>
 							<li>Tamaño mediano: 180 pesos por noche.</li>
 							<li>Tamaño grande: 220 pesos por noche.</li>
 							<li>Tamaño gigante: 250 pesos por noche.</li>
-						</ol>
+						</ul>
 					</div>
 					<div class="col-xs-12 col-sm-4">
 						<div><img src="<?php echo getTema(); ?>/images/new/km-certificado.svg"></div>
@@ -69,9 +69,9 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<!-- <a href="#popup-registro-cuidador1" class="km-btn-borderw" role="button" data-toggle="modal">EMPIEZA A CUIDAR</a> -->
+						<!-- <a href="#popup-registro-cuidador1" class="km-btn-borderw" role="button" data-toggle="modal">¡Crea tu perfil de cuidador AQUÍ!</a> -->
 
-						<a class="km-btn-borderw" <?php echo $config_link_registro; ?>>EMPIEZA A CUIDAR</a>
+						<a class="km-btn-borderw" <?php echo $config_link_registro; ?>>¡Crea tu perfil de cuidador AQUÍ!</a>
 					</div>
 				</div>
 			</div>

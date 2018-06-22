@@ -2,7 +2,7 @@
 <?php $info = kmimos_get_info_syte(); ?>
 <div id="popup-registro-cuidador1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" style="">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="redireccionar();" >×</button>
 			<div class="popup-registro-cuidador active">
 				
@@ -66,10 +66,23 @@
 							<input type="text" data-charset="xlf" name="rc_apellidos" value="" class="input-label-placeholder social_lastname solo_letras"  maxlength="20">
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
-						<div class="label-placeholder">
+						<div>
+							<select name="rc_tipo_documento" class="select_tipo_doc km-select-custom" style="font-size: 13px !important;">
+								<option value="">Seleccione Documento de Identidad</option>
+								<option>IFE / INE</option>
+								<option>Pasaporte</option>
+							</select>
+							<small data-error="rc_tipo_documento" style="visibility: hidden;"></small>
+						</div>
+						<div id="rc_ife" class="label-placeholder" style="display: none;">
 							<label>IFE/Documento de Identidad</label>
-							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros">
+							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros" data-toggle="tooltip" title="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" >
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
+						</div>
+						<div id="rc_pasaporte" class="label-placeholder" style="display: none;">
+							<label>Pasaporte</label>
+							<input type="text" maxlength="28" name="rc_pasaporte" value="" class="input-label-placeholder" data-toggle="tooltip" title="Coloca tu n&uacute;mero de pasaporte" >
+							<small data-error="rc_pasaporte" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder fecha_placeholder">
 							<label>Fecha de Nacimiento</label>
@@ -88,7 +101,17 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Teléfono</label>
-							<input type="text" name="rc_telefono" data-charset="num" minlength="10" maxlength="15" value="" class="input-label-placeholder solo_numeros">
+							<input 
+							type="text" 
+							name="rc_telefono" 
+							data-charset="num" 
+							minlength="10" 
+							maxlength="15" 
+							value="" 
+							class="input-label-placeholder solo_numeros"
+							data-toggle="tooltip"
+							title='El tel&eacte;fono debe tener entre 10 y 15 d&iacte;gitos'
+						>
 							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
@@ -125,14 +148,17 @@
 				</div>
 			</div>
 			
-			<div class="popuphide popup-registro-exitoso">
-				<div class="overlay"></div>
+			<div class="popuphide popup-registro-exitoso" style="padding: 20px 20px 40px;">
+				<div class="overlay" style="background: rgba(0, 0, 0, 0.75);"></div>
 				<div class="popup-registro-exitoso-text">
-					<h3>¡Genial! <span data-target="name"></span>,<br>ya creaste tu perfil como Cuidador Kmimos con éxito</h3>
-					<p style="font-size: 15px;">A mayores datos, mayor ganancia.</p>
-					<p style="font-size: 15px;">Te invitamos a seguir enriqueciendo tu perfil en</p>
-					<h5 style="font-size: 20px">¡3 simples pasos!</h5>
+
+					<h3>¡Genial! <span data-target="name"></span></h3>
+					<p style="font-size: 20px;">Ya creaste tu perfil como Cuidador Kmimos con éxito.</p>
+					<p style="font-size: 20px;">Te invitamos a seguir enriqueciendo tu perfil en</p>
+					<p style="font-size: 25px; line-height: 25px;">¡Tres simples pasos!</p>
+					<p style="font-size: 20px; line-height: 20px; font-weight: 800;">Mientras más completo esté tu perfil, mayor será tu ganancia.</p>
 					<a href="#" class="km-btn km-btn-popup-registro-exitoso">COMENZAR</a>
+
 				</div>
 			</div>
 
@@ -153,22 +179,25 @@
 					</ul>
 				</div>
 				<h3 style="margin: 0;">Foto de perfil</h3>
-				<p style="color: #979797">Brinda a tus futuros amigos</p>
+				<p style="color: #979797">Mu&eacute;stranos tu mejor sonrisa</p>
 
 				<div class="img_registro_cliente" style="position: relative">
 					<div class="km-datos-foto vlz_rotar" id="perfil-img-a" style="background-image: url(<?php echo getTema(); ?>/images/new/icon/icon-fotoperfil.svg);">
 						<div id="loading-perfil" style="width:100%; height: 100%; display:none;" class="vlz_cargando">
-							<img src="<?php echo getTema(); ?>/images/new/bx_loader.gif">
+							<img 
+								src="<?php echo getTema(); ?>/images/new/bx_loader.gif" 
+							/>
 						</div>
 					</div>
 
 					<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
 	                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
+	                <div id="quitar_foto" class="btn_quitar_foto"> <i class="fa fa-times" aria-hidden="true"></i> </div>
 
 	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
 
 	                <input type="hidden" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" class="vlz_rotar_valor">
-					<br><small data-error="rc_vlz_img_perfil" style="visibility: hidden;"></small>
+					<br><small data-error="rc_vlz_img_perfil" style="visibility: hidden; color: red; padding: 5px 0px; border: solid 1px; display: block margin-bottom: 5px;"></small>
 	                
 				</div>
 
@@ -180,13 +209,24 @@
 				</div>
 				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div> -->
 				
-				<a href="#" data-load='portada' class="km-btn-border">ACCEDER A TU GALERÍA</a>
+				<a 
+					href="#" 
+					data-load='portada' 
+					class="km-btn-border"
+					data-toggle="tooltip"
+					title='Te recomendamos que en la foto de perfil, aparezcas tú, sonriente, con perritos'
+				>ACCEDER A TU GALERÍA</a>
             	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
 
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
 				
-				<textarea name="rc_descripcion" class="km-descripcion-peril-cuidador" placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
+				<textarea 
+					name="rc_descripcion" 
+					class="km-descripcion-peril-cuidador" 
+					data-toggle="tooltip"
+					title='Cu&eacute;ntanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos'
+					placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro de mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
 				</textarea>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
 
@@ -245,14 +285,29 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Dirección</label>
-							<input type="text" id="rc_direccion" name="rc_direccion" value="" class="input-label-placeholder">
+							<input 
+								type="text" 
+								id="rc_direccion" 
+								name="rc_direccion" 
+								value="" 
+								class="input-label-placeholder"
+								data-toggle="tooltip"
+								title="Escribe la dirección que aparece en tu comprobante de domicilio."
+							>
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
 
-						<input type="hidden" id="latitud" name="latitud" />
-						<input type="hidden" id="longitud" name="longitud" />
+						<!-- <input type="hidden" id="latitud" name="latitud" />
+						<input type="hidden" id="longitud" name="longitud" /> -->
 
 					</div>
+
+					<div class="inputs_containers row_3" style="padding-bottom: 10px;"> 
+				        <div class="info_map">Puedes establecer con m&aacute;s precisi&oacute;n tu ubicaci&oacute;n desplazando el PIN en el mapa.</div>            
+				        <div id="map_canvas" style="width:100%; height:300px;"></div>
+				        <input type="hidden" name="latitud" id="lat" />
+				        <input type="hidden" name="longitud" id="long" />
+				    </div>
 				</div>
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-paso2">SIGUIENTE</a>
 				<!-- <a href="#" class="km-registro-tip" role="button" data-toggle="modal"></a> -->
@@ -276,7 +331,7 @@
 				</div>
 				<h3 style="margin: 0;"><span data-target="name"></span>,</h5>
 				<h3 style="margin: 0 0 10px;">¡TE FALTA MUY POCO!</h5>
-				<p style="color: #979797">Llena tus datos para un mayor perfil en la Comunidad Kmimos</p>
+				<p style="color: #979797">Proporciona la información requerida a continuación.</p>
 				<div class="km-block">
 					<div class="km-block-1">
 						<p>Número de mascotas que aceptas</p>
@@ -305,18 +360,17 @@
 			</div>
 			
 			<div class="popuphide popup-registro-exitoso-final">
-				<div class="overlay"></div>
-				<div class="popup-registro-exitoso-text">
-					<h2 style="font-size: 18px; color: white;">¡LISTO <span data-target="name"></span>!</h2>
-					<h2 style="font-size: 18px; color: white;">Recibimos con éxito tu solicitud para sumarte a la familia de Cuidadores Kmimos</h2>		
+				<div class="overlay" style="background: rgba(0, 0, 0, 0.75);"></div>
+				<div class="popup-registro-exitoso-text" style="overflow: hidden;">
+					<h2 style="font-size: 18px; color: white;">Listo <span data-target="name"></span>!</h2>
+					<h2 style="font-size: 18px; color: white;">Recibimos tu solicitud para sumarte a la familia de cuidadores Kmimos.</h2>		
+					<h2 style="font-size: 25px; color: white; text-align: center;">SIGUIENTES PASOS PARA ACTIVAR TU PERFIL:</h2>		
 
-					<aside class="text-center col-sm-10 col-sm-offset-1">
-						<p style="font-size: 15px;">Siguientes Pasos para activar tu perfil</p>
-						<p style="font-size: 12px;">Ahora serás dirigido a hacia el paso 1, PRUEBAS DE CONOCIMIENTO VETERINARIO.</p>
-						<p style="font-size: 12px;">Guarda el siguiente link, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documentos.</p>
-						<p style="font-size: 12px;">Link para continuar es: http://kmimos.ilernus.com</p>
-						<p style="font-size: 12px;">INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA:</p>
-						<p style="font-size: 12px;">
+					<aside class="text-left col-sm-10 col-sm-offset-1">
+						<p style="font-size: 18px;">1. Da click en el botón CONTINUAR (mostrado abajo), serás redirigido de inmediato a las pruebas de Conocimientos Veterinarios.</p>
+						<p style="font-size: 18px;">2. Al final del día te enviaremos un correo con la liga de las pruebas de conocimientos veterinarios (guarda este correo en caso que necesites retomar la prueba más adelante y/o cargar tus documentos).</p>
+						<p style="font-size: 18px;">3. Al dar click en el botón CONTINUAR, deberás iniciar sesión con las siguientes credenciales:</p>
+						<p style="text-align: center; font-size: 18px;">
 							<strong>Usuario:</strong> <span data-id="ilernus-user"></span>
 							</br>
 							<strong>Contraseña:</strong> <span data-id="ilernus-pass"></span>

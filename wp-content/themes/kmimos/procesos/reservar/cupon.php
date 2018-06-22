@@ -26,6 +26,30 @@
 				}
 			}
 
+			if( strtolower($cupon) == "vol150" ){
+				// echo "SELECT * FROM wp_usermeta WHERE user_id = {$cliente} AND ( meta_key = 'user_referred' OR meta_key = '_wlabel' ) ";
+				$_metas_cliente = $db->get_results("SELECT * FROM wp_usermeta WHERE user_id = {$cliente} AND ( meta_key = 'user_referred' OR meta_key = '_wlabel' ) ");
+				foreach ($_metas_cliente as $key => $value) {
+					$metas_cliente[ $value->meta_key ] = $value->meta_value;
+				}
+
+				$aplicar = false;
+				if( $metas_cliente["user_referred"] == "Volaris" ){
+					$aplicar = true;
+				}
+
+				if( $metas_cliente["_wlabel"] == "volaris" ){
+					$aplicar = true;
+				}
+
+				if( $aplicar === false ){
+					echo json_encode(array(
+						"error" => "Este cupón no esta disponible para tu usuario"
+					));
+					exit;
+				}
+			}
+
 		/* Fin Cupones Especiales */
 
 		/* Get Data */

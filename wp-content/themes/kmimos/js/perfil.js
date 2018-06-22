@@ -54,4 +54,6 @@ jQuery( document ).ready(function() {
     jQuery("#form_perfil [data-valid]").each(function( index ) {
         pre_validar( jQuery( this ) );
     });
+
+    jQuery('[data-toggle="tooltip"]').tooltip();
 });

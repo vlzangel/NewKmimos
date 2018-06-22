@@ -120,9 +120,24 @@
 
     $num_mascotas = serialize($num_mascotas);
 
+    $dataCuidador = $db->get_row("SELECT * FROM cuidadores WHERE id_post = ".$parametros["pagar"]->cuidador);
+
     $diaNoche = "d&iacute;a";
 	if( $pagar->tipo_servicio == "hospedaje" ){
 		$diaNoche = "Noche";
+		$precios = $dataCuidador->hospedaje;
+	}else{
+		$cats_2 = array(
+            "paseos"                    => "paseos",
+            "adiestramiento-basico"     => "adiestramiento_basico",
+            "adiestramiento-intermedio" => "adiestramiento_intermedio",
+            "adiestramiento-avanzado"   => "adiestramiento_avanzado",
+            "guarderia"                 => "guarderia",
+            "hospedaje"                 => "hospedaje"
+        );
+		$precios = unserialize( $dataCuidador->adicionales );
+		$precios = $precios[ $cats_2[ $pagar->tipo_servicio ] ];
+		$precios = serialize( $precios );
 	}
 
     if( $fechas->duracion > 1 ){
@@ -172,6 +187,8 @@
     }
 
     $data_reserva = array(
+		"precios" 				=> $precios,
+
 		"servicio" 				=> $pagar->servicio,
 		"titulo_servicio" 		=> $pagar->name_servicio,
 		"cliente" 				=> $pagar->cliente,

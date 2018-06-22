@@ -54,19 +54,47 @@
 
     extract($_POST);
 
-    if( $rc_ife+0 == 0 ){ 
-        $error = array(
-            "error" => "SI",
-            'fields' => array(
-                array(
-                    "name" => "ife",
-                    "msg" => "Error, el IFE no es valido."
-                )
-            )
-        );
-        echo "(".json_encode( $error ).")";
+    switch ( $rc_tipo_documento ) {
+        case 'IFE / INE':
 
-        exit();
+            if( $rc_ife+0 == 0 ){ 
+                $error = array(
+                    "error" => "SI",
+                    'fields' => array(
+                        array(
+                            "name" => "ife",
+                            "msg" => "Error, el IFE no es valido."
+                        )
+                    )
+                );
+                echo "(".json_encode( $error ).")";
+
+                exit();
+            }
+
+            $ife = $rc_ife;
+            
+        break;
+        case 'Pasaporte':
+
+            if( strlen($rc_pasaporte) < 10 || strlen($rc_pasaporte) > 28 ){ 
+                $error = array(
+                    "error" => "SI",
+                    'fields' => array(
+                        array(
+                            "name" => "pasaporte",
+                            "msg" => "Error, el Pasaporte tiene una longitud valida."
+                        )
+                    )
+                );
+                echo "(".json_encode( $error ).")";
+
+                exit();
+            }
+
+            $ife = $rc_pasaporte;
+
+        break;
     }
 
     if ($conn->connect_error) {
@@ -80,7 +108,6 @@
         $email = $rc_email;
         $nombres = $rc_nombres;
         $apellidos = $rc_apellidos;
-        $ife = $rc_ife;
         $clave = $rc_clave;
         $telefono = $rc_telefono;
         $referido = $rc_referred;
@@ -166,8 +193,6 @@
             $atributos = array(
                 "nacimiento" => $fecha
             );
-
-            if( $ife+0 == 0 ){ $ife = "0000000000000"; }
 
             $sql = "
                 INSERT INTO cuidadores VALUES (
@@ -336,7 +361,7 @@
                 $message_mail = str_replace('[name]', $nombres.' '.$apellidos, $message_mail);
                 $message_mail = str_replace('[email]', $email, $message_mail);
                 $message_mail = str_replace('[pass]', $clave, $message_mail);
-                $message_mail = str_replace('[url]', site_url(), $message_mail);
+                $message_mail = str_replace('[url]', get_home_url()."/perfil-usuario/", $message_mail);
                 $message_mail = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $message_mail);
 
                 // Envio de Email

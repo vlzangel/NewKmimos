@@ -48,7 +48,7 @@ function abrir_link(e){
 	});
 }
 
-function getSaldo(){
+function getSaldo(CB){
 	if( !jQuery("#consultar").hasClass("disable") ){
 		jQuery("#consultar").addClass("disable");
 		jQuery("#consultar").val("Procesando...");
@@ -66,6 +66,38 @@ function getSaldo(){
 
 	            jQuery("#consultar").removeClass("disable");
 	            jQuery("#consultar").val("Actualizar");
+
+	            jQuery(".confirmaciones").css("display", "block");
+
+	            if( CB != undefined ){
+	            	CB();
+	            }
+	        }
+	    ); 
+	}
+}
+
+function quitarSaldo(){
+	if( !jQuery("#quitar").hasClass("disable") ){
+		jQuery("#quitar").addClass("disable");
+		jQuery("#quitar").val("Procesando...");
+		jQuery("#saldo").val("0");
+		jQuery.post(
+			TEMA+"/admin/backend/saldos/ajax/getSaldo.php",
+			{
+				saldo: 0,
+				email: jQuery("#email").val()
+			},
+			function(HTML){
+				jQuery("#info_user").html(HTML);
+
+				jQuery("#info_user").css("display", "block");
+				jQuery(".confirmaciones").css("display", "block");
+
+	            jQuery("#quitar").removeClass("disable");
+	            jQuery("#quitar").val("Quitar Saldo");
+
+	            jQuery(".confirmaciones").css("display", "block");
 	        }
 	    ); 
 	}
@@ -73,24 +105,28 @@ function getSaldo(){
 
 function updateSaldo(){
 	if( !jQuery("#confirmar").hasClass("disable") ){
-		jQuery("#confirmar").addClass("disable");
-		jQuery("#confirmar").val("Procesando...");
-		jQuery.post(
-			TEMA+"/admin/backend/saldos/ajax/updateSaldo.php",
-			{
-				saldo: jQuery("#saldo").val(),
-				email: jQuery("#email").val()
-			},
-			function(HTML){
-	            jQuery("#confirmar").removeClass("disable");
-	            jQuery("#confirmar").val("Confirmar");
+		var confirmed = confirm("Esta seguro de cambiar el saldo de "+jQuery(".montoActual").html()+" a "+jQuery(".montoModificado").html()+".?");
+    	if (confirmed == true) {
+			jQuery("#confirmar").addClass("disable");
+			jQuery("#confirmar").val("Procesando...");
+			jQuery.post(
+				TEMA+"/admin/backend/saldos/ajax/updateSaldo.php",
+				{
+					saldo: jQuery("#saldo").val(),
+					email: jQuery("#email").val()
+				},
+				function(HTML){
+		            jQuery("#confirmar").removeClass("disable");
+		            jQuery("#confirmar").val("Confirmar");
 
-				// jQuery("#info_user").css("display", "none");
-				// jQuery(".confirmaciones").css("display", "none");
+					// jQuery("#info_user").css("display", "none");
+					getSaldo(function(){
+						jQuery(".confirmaciones").css("display", "none");
+					});					
 
-				getSaldo();
-	        }
-	    ); 
+		        }
+		    ); 
+		}
 	}
 }
 
