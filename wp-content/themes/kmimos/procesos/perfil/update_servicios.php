@@ -131,8 +131,15 @@
 
     $addons = "";
 
-	$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."', hospedaje = '".serialize($hospedaje)."', hospedaje_desde = '".$base_hospedaje."' WHERE user_id = ".$user_id.";";
-	$db->query($sql);
+    // Historico para cambio de Precios
+    try{
+        $sql = "INSERT INTO cuidadores_historico (user_id, adicionales, hospedaje, hospedaje_desde)
+            SELECT user_id, adicionales, hospedaje, hospedaje_desde FROM cuidadores WHERE user_id = ".$user_id.";";
+        $db->query($sql);
+    }catch(Exception $e){}
+
+	$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."', hospedaje = '".serialize($hospedaje)."', hospedaje_desde = '".$base_hospedaje."' WHERE user_id = ".$user_id.";";    
+    $db->query($sql);
 
 	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
 	$status_global = "pending";

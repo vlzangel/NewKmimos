@@ -413,7 +413,10 @@
 
     if(!function_exists('kmimos_style')){
         function kmimos_style($styles = array()){
-            
+
+            global $current_user;
+            $permitidos = [8966]; 
+
             $salida = "<style type='text/css'>";
 
                 if( in_array("limpiar_tablas", $styles)){
@@ -749,6 +752,14 @@
                 }
 
                 if( in_array("customer_services", $styles) ){
+
+                    $permisos_especiales = '';
+                    if( in_array($current_user->ID, $permitidos)){
+                        $permisos_especiales = "#toplevel_page_kmimos ul.wp-submenu li:nth-child(2),";
+                        $salida .= " .vlz_contenedor_botones{display:block!important;} ";
+                    }
+
+
                     $salida .= "
                         .menu-top,
                         #toplevel_page_kmimos li{
@@ -762,7 +773,8 @@
                         #adminmenu li.wp-menu-separator {
                             display: none;
                         }
-
+                        
+                        {$permisos_especiales}
                         #toplevel_page_kmimos ul.wp-submenu li:nth-child(3),
                         #toplevel_page_kmimos ul.wp-submenu li:nth-child(4),
                         #toplevel_page_kmimos ul.wp-submenu li:nth-child(6),
@@ -781,6 +793,8 @@
                             font-size: 10px !important;
                         }                    
                     ";
+
+                  
                 }
 
                 if( in_array("no_update", $styles) ){
