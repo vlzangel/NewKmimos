@@ -13,6 +13,9 @@
     $_user_ID = $db->get_var("SELECT ID FROM wp_users WHERE user_email = '{$email}' ");
 
     $_saldo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$_user_ID} AND meta_key = 'kmisaldo' ");
+
+    $saldo = ( $saldo < 0 )? 0 : $saldo ;
+
     if( $_saldo === false ){
     	$db->query("INSERT INTO wp_usermeta VALUES (NULL, '{$_user_ID}', 'kmisaldo', '{$saldo}') ");
     }else{
