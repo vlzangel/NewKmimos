@@ -5,8 +5,8 @@
 	function get_publicidad($seccion){
 				
 		$id_user = get_current_user_id();
-       	$wlabel = get_user_meta($id_user, "_wlabel", true);
-       	$referido = get_user_meta($id_user, "user_referred", true);
+       	$wlabel = strtolower( get_user_meta($id_user, "_wlabel", true) );
+       	$referido = strtolower( get_user_meta($id_user, "user_referred", true) );
 
        	$banner = '';
        	if( $wlabel == "petco" || $referido == "petco" ){
