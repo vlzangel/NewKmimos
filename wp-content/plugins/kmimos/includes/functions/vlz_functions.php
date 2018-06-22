@@ -109,7 +109,10 @@
                 update_post_meta($id_reserva, "penalizado", "YES");
             }
 
-            update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
+            $__saldo = $saldo_persistente+$saldo;
+            $__saldo = ( $__saldo < 0 )? 0 : $__saldo ;
+
+            update_user_meta($id_cliente, "kmisaldo", $__saldo);
             
         }
     }

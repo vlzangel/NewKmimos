@@ -285,6 +285,8 @@ class Reservas {
                     if( $saldo < 0){ $saldo = 0; }
                 }
 
+                $saldo = ( $saldo < 0 )? 0 : $saldo ;
+
                 if( $xsaldo === false ){
                     $this->db->query("INSERT INTO wp_usermeta VALUES (NULL, {$this->user_id}, 'kmisaldo', '{$saldo}');");
                 }else{
