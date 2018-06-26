@@ -40,7 +40,7 @@
 
         $mensaje_cliente = str_replace('[TOTALES]', str_replace('[REEMBOLSAR]', "", $totales_plantilla), $mensaje_cliente);
 
-        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente->id);
+        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"]);
 
         if( isset($NO_ENVIAR) ){
             if( $superAdmin == "" ){ echo $mensaje_cliente; }
@@ -92,7 +92,7 @@
 
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
 
-        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente->id);
+        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente["id"]);
 
         if( isset($NO_ENVIAR) ){
             if( $superAdmin == "" ){ echo $mensaje_cuidador; }
@@ -133,7 +133,7 @@
 
         $mensaje_admin = str_replace('[TOTALES]', $totales_plantilla, $mensaje_admin);
 
-        $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente->id);
+        $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"]);
 
         if( isset($NO_ENVIAR) ){
             if( $superAdmin == "" ){ echo $mensaje_admin; }

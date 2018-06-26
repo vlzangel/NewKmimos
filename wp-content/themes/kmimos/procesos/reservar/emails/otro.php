@@ -31,7 +31,7 @@
         $mensaje_cliente = str_replace('[correo_cuidador]', $cuidador["email"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[direccion_cuidador]', $cuidador["direccion"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[TOTALES]', str_replace('[REEMBOLSAR]', "", $totales_plantilla), $mensaje_cliente);
-		$mensaje_cliente = get_email_html($mensaje_cliente);
+		$mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"]);
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cliente;
@@ -74,7 +74,7 @@
         $mensaje_cuidador = str_replace('[correo_cliente]', $cliente["email"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
-	    $mensaje_cuidador = get_email_html($mensaje_cuidador, false);
+	    $mensaje_cuidador = get_email_html($mensaje_cuidador, false, true, $cliente["id"]);
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cuidador;
@@ -119,7 +119,7 @@
             $mensaje_admin = str_replace('[correo_cuidador]', $cuidador["email"], $mensaje_admin);
             $mensaje_admin = str_replace('[direccion_cuidador]', $cuidador["direccion"], $mensaje_admin);
 
-        $mensaje_admin = get_email_html($mensaje_admin, false);
+        $mensaje_admin = get_email_html($mensaje_admin, false, true, $cliente["id"]);
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;
