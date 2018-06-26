@@ -95,7 +95,7 @@
                         ");
                     }else{
                         $respuesta["NO_entro"] = $servicio->ID." ".$fecha;
-                        $db->query("UPDATE cupos SET no_disponible = '1' WHERE cuidador = {$user_id} AND servicio = '{$servicio->ID}' AND fecha = '{$fecha}' );");
+                        $db->query("UPDATE cupos SET no_disponible = '1' WHERE cuidador = {$user_id} AND servicio = '{$servicio->ID}' AND fecha = '{$fecha}';");
                     }
 
                 }
