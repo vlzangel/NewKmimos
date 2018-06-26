@@ -33,7 +33,7 @@
 		$opciones .= "<option value='{$servicio->ID}' data-type='{$tipo}' >".$servicios[ $tipo ]."</option>";
 	}
 
-    $no_disponibilidades = $wpdb->get_results("SELECT * FROM cupos WHERE cuidador = '{$user_id}' AND no_disponible = 1");
+    $no_disponibilidades = $wpdb->get_results("SELECT * FROM cupos WHERE cuidador = '{$user_id}' AND no_disponible = 1 AND fecha >= NOW()");
 
     $_rangos = array();
 
@@ -45,7 +45,7 @@
     	);
     }
 
-    $tabla = '<div>';
+    $tabla = '<div id="lista_fechas">';
 	    if( count($_rangos) > 0 ){
 		    foreach ($_rangos as $servicio => $rangos) {
 
@@ -136,6 +136,16 @@
 		        </div>
 		        <div class="botones_box box_50">
 		        	<input type="button" id="volver_disponibilidad" class="km-btn-primary" value="Volver" />
+		        </div>
+	        </div>
+	    </div>
+
+		<div class="completado" >
+			<h1>Disponibilidad actualizada correctamente</h1>
+
+	        <div class="botones_container">
+		        <div class="botones_box box_50">
+		        	<input type="button" id="volver_disponibilidad_2" class="km-btn-primary" value="Aceptar" />
 		        </div>
 	        </div>
 	    </div>

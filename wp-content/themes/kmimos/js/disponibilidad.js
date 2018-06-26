@@ -80,7 +80,14 @@ function guardar_disponibilidad(){
                 function(data){
                      console.log(data);
                     //location.reload();
-                }// , "json"
+
+
+                    jQuery(".theme_tite").css("display", "none");
+                    jQuery("#lista_fechas").css("display", "none");
+                    jQuery(".fechas").css("display", "none");
+                    jQuery(".completado").css("display", "block");
+
+                }, "json"
             );
         }else{
             alert("Los rangos de no disponibilidad deben ser menores a 90 días\nPara bloqueos mayores a este limite te recomendamos desactivar el servicio en la sección \"Mis Servicios\".");
@@ -94,6 +101,10 @@ jQuery("#editar_disponibilidad").on("click", function(e){
 
 jQuery("#volver_disponibilidad").on("click", function(e){
     volver_disponibilidad();
+});
+
+jQuery("#volver_disponibilidad_2").on("click", function(e){
+    location.reload();
 });
 
 jQuery("#guardar_disponibilidad").on("click", function(e){
