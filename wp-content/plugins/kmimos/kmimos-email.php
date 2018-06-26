@@ -153,7 +153,7 @@ if(!function_exists('kmimos_get_email_footer')){
 
     if(!function_exists('get_email_html')){
         
-        function get_email_html($content, $dudas = true, $beneficios = true){
+        function get_email_html($content, $dudas = true, $beneficios = true, $user_id = null){
 
             $ayuda = "";
             if( $dudas ){
@@ -210,7 +210,7 @@ if(!function_exists('kmimos_get_email_footer')){
                                 
                                 ".$ayuda."
 
-                                ".get_publicidad("correo")."
+                                ".get_publicidad("correo", $user_id)."
 
                                 ".$beneficios_txt."
 

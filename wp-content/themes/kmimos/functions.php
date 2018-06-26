@@ -2,9 +2,14 @@
 	
 	include dirname(__FILE__).'/widgets/admin.php';
 	
-	function get_publicidad($seccion){
-				
-		$id_user = get_current_user_id();
+	function get_publicidad($seccion, $user_id = null){
+		
+		if( $user_id == null ){
+			$id_user = get_current_user_id();
+		}else{
+			$id_user = $user_id;
+		}
+		
        	$wlabel = strtolower( get_user_meta($id_user, "_wlabel", true) );
        	$referido = strtolower( get_user_meta($id_user, "user_referred", true) );
 
@@ -17,34 +22,64 @@
 
 		switch ($seccion) {
 			case 'solicitud':
-				if( $banner == "" ){ $banner = '<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil_3.png" />'; }
-				return '
-					<div style="margin-top: 20px;">
-						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							'.$banner.'
-						</a>
-					</div>
-				';
+				if( $banner == "" ){ 
+					$banner = '<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil_3.png" />';
+					return '
+						<div style="margin-top: 20px;">
+							<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+								'.$banner.'
+							</a>
+						</div>
+					';
+				}else{
+					return '
+						<div style="margin-top: 20px;">
+							<a class="" href="https://kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/" target="_blank">
+								'.$banner.'
+							</a>
+						</div>
+					';
+				}
 			break;
 			case 'reserva':
-				if( $banner == "" ){ $banner = '<img style="width: 100%; max-width: 500px;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil_3.png" />'; }
-				return '
-					<div style="margin-top: 5px;">
-						<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
-							'.$banner.'
-						</a>
-					</div>
-				';
+				if( $banner == "" ){
+					$banner = '<img style="width: 100%; max-width: 500px;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil_3.png" />';
+					return '
+						<div style="margin-top: 5px;">
+							<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+								'.$banner.'
+							</a>
+						</div>
+					';
+				}else{
+					return '
+						<div style="margin-top: 5px;">
+							<a class="" href="https://kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/" target="_blank">
+								'.$banner.'
+							</a>
+						</div>
+					';
+				}
 			break;
 			case 'correo':
-				if( $banner == "" ){ $banner = '<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil_3.png" />'; }
-				return '
-					<div style="margin: 25px 0px;">
-                        <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=Kmimos-nutriheroes&utm_term=alimento_mascotas_nutricion" target="_blank">
-                            '.$banner.'
-                        </a>
-                    </div>
-				';
+				if( $banner == "" ){
+					$banner = '<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil_3.png" />';
+					return '
+						<div style="margin: 25px 0px;">
+	                        <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=Kmimos-nutriheroes&utm_term=alimento_mascotas_nutricion" target="_blank">
+	                            '.$banner.'
+	                        </a>
+	                    </div>
+					';
+				}else{
+					return '
+						<div style="margin: 25px 0px;">
+	                        <a href="https://kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/" target="_blank">
+	                            '.$banner.'
+	                        </a>
+	                    </div>
+					';
+				}
 			break;
 		}
 	}

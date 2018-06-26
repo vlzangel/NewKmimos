@@ -365,7 +365,7 @@
                 $message_mail = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $message_mail);
 
                 // Envio de Email
-                $mail_msg = get_email_html($message_mail, false);
+                $mail_msg = get_email_html($message_mail, false, true, $user_id);
                 wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
 
                 // Respuesta
