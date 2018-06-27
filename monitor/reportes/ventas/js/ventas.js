@@ -44,7 +44,8 @@ function cargarDatos(){
             jQuery.post( row.dominio+'/monitor/reportes/ventas/ajax/ventas.php', 
                 {
                     'desde': jQuery('[name="desde"]').val(),
-                    'hasta': jQuery('[name="hasta"]').val()
+                    'hasta': jQuery('[name="hasta"]').val(),
+                    'periodo': periodo
                 },
                 function(data){
 
@@ -81,6 +82,7 @@ function cargarDatos(){
 // Procesar los datos por ( Dia, Mes, Año )
 // ** *************************************** **
 function procesar_datos(){
+
     if(datos_servidores.length == lista_sucursales.length){
         mostratMensaje( 'Procesando datos' );
         switch( periodo ){
@@ -283,7 +285,8 @@ function merge_recompra( origen, destino ){
                 "recompra_cant": eval(row['recompra_cant']) + eval(origen['recompra_cant']),
                 "recompra_noches": eval(row['recompra_noches']) + eval(origen['recompra_noches']),
                 "recompra_mascotas_cantidad": eval(row['recompra_mascotas_cantidad']) + eval(origen['recompra_mascotas_cantidad']),
-                "recompra_noches_total": eval(row['recompra_noches_total']) + eval(origen['recompra_noches_total'])
+                "recompra_noches_total": eval(row['recompra_noches_total']) + eval(origen['recompra_noches_total']),
+                "num_clientes_recompra": eval(row['num_clientes_recompra']) + eval(origen['num_clientes_recompra'])
             };
             index = 0;
             return false;
@@ -298,7 +301,8 @@ function merge_recompra( origen, destino ){
             "recompra_cant": eval(origen['recompra_cant']),
             "recompra_noches": eval(origen['recompra_noches']),
             "recompra_mascotas_cantidad": eval(origen['recompra_mascotas_cantidad']),
-            "recompra_noches_total": eval(origen['recompra_noches_total'])
+            "recompra_noches_total": eval(origen['recompra_noches_total']),
+            "num_clientes_recompra": eval(origen['num_clientes_recompra'])
         });
     }
 
@@ -373,12 +377,14 @@ function analizar_datos( datos, recompras ){
 
     // Primeras columnas
         var data = [
-            ['2','<small>Noches Promedio</small>'],
             ['1','<small><strong>Noches Reservadas</strong></small>'],
+            ['2','<small>Noches Promedio</small>'],
             ['3','<small>% Noches Recompras</small>'],
             ['4','<small>Total Mascotas Hospedados</small>'],
+
             ['5','<small><strong>Eventos Compra</strong></small>'],
             ['6','<small><strong>Clientes Nuevos</strong></small>'],
+            
             ['7','<small>% Clientes WOM</small>'],
             ['8','<small># Clientes Recompra</small>'],
             ['9','<small>% Clientes Recompra</small>'],
@@ -387,6 +393,8 @@ function analizar_datos( datos, recompras ){
             ['12','<small>% Crecimiento clientes vs Mes Anterior</small>'],
             ['13','<small>% Crecimiento clientes nuevos vs Mes Anterior</small>']
         ];
+
+console.log(datos);
 
     jQuery.each(datos, function(index, row){
         
@@ -416,9 +424,12 @@ function analizar_datos( datos, recompras ){
         }
         
         var porcentaje_noches_recompra = 0;
+        var num_clientes_recompra = 0;
         jQuery.each(recompras, function(i,r){
             if( r['fecha'] == row['date'] ){
-                return porcentaje_noches_recompra = r['recompra_noches_total'] / row['noches_total'];
+                porcentaje_noches_recompra = r['recompra_noches_total'] / row['noches_total'];
+                num_clientes_recompra = r['num_clientes_recompra'];
+                return false; 
             }
         });
 
@@ -431,8 +442,8 @@ function analizar_datos( datos, recompras ){
         data[4].push( row['ventas_cantidad'] );
         data[5].push( row['clientes_nuevos'] );
         data[6].push( number_format(porcentaje_usuario_wom,2)  + ' %');
-        data[7].push( 0 ); // # Clientes recompra
-        data[8].push( 0 ); //  % Clientes recompra
+        data[7].push( number_format(num_clientes_recompra,0) ); // # Clientes recompra
+        data[8].push( number_format( num_clientes_recompra / row['ventas_cantidad'], 2 ) + '%'); //  % Clientes recompra
         data[9].push( number_format( row['ventas_costo_total'] / row['noches_total'], 2 ) );
         data[10].push( number_format(total_cliente)  );
         data[11].push( number_format(porcentaje_crecimiento_clientes, 2) + ' %' ); //  % Crecimiento clientes vs mes anterior

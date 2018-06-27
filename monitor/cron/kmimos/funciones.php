@@ -1,8 +1,8 @@
 <?php
 
-require_once ( dirname(dirname(__DIR__)).'/conf/database.php' );
+require_once ( dirname(dirname(__DIR__)).'/reportes/class/general.php' );
 
-class funciones extends db{
+class funciones extends general{
 
 	public function save_reservas( $data ){
 
@@ -486,6 +486,10 @@ class funciones extends db{
 	        }
 	        $edad .= date("m", $edad_time)." mes(es)";
 	 
+	 		if( !isset($metas["breed_pet"][0]) ){
+	 			$metas["breed_pet"][0] = '';
+	 		}
+
 	        $mascotas[] = array(
 	            "nombre" => $mascota['post_title'],
 	            "raza" => $metas["breed_pet"][0],

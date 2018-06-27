@@ -23,19 +23,21 @@ jQuery(document).ready(function() {
 		}
 	});
 
+
+    // Selector de Sucursales
 	jQuery('[data-action]').on('click', function(){
 		console.log( jQuery(this).data('action') );
 		jQuery('#tipo_datos').html( jQuery(this).data('label') );
 		sucursal = jQuery(this).data('action') ;
-		//cargarDatos();
-	});
-
+        cargarDatos();
+    });
 
     // Selector de Periodo ( Dia, Mes, Año )
     jQuery(document).on('click','.option-select', function(){
         jQuery('.option-select').removeClass('activo');
         jQuery(this).addClass('activo');
         periodo = jQuery(this).attr('data-value');
+		cargarDatos();
     });
 
     // Enviar datos
