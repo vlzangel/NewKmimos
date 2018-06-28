@@ -205,6 +205,8 @@
     	$ordenamiento .= $valor[1];
     }
 
+    $user_id = get_current_user_id();
+
     $HTML = '
 		<div class="header-search" style="background-image:url('.getTema().'/images/new/km-fondo-buscador.gif);">
 			<div class="overlay"></div>
@@ -213,6 +215,7 @@
 		<div class="container contentenedor-buscador-todos content-wlabel-search">
 			<div class="km-contentido-formulario-buscador">
 				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="POST">
+					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 					<div class="km-bloque-cajas km-search-wlabel" >
 						<div class="km-div-ubicacion">
 						
