@@ -15,6 +15,9 @@
 
 
     get_header();
+
+    $user_id = get_current_user_id();
+
     if( !isset($_SESSION)){ session_start(); }
 	
 	if( isset($_SESSION['busqueda'])){ 
@@ -33,6 +36,7 @@
     $pagina = vlz_get_page();
 
 	if(!$_POST){
+		$_POST["USER_ID"] = $user_id;
 		include('procesos/busqueda/buscar.php');
 	}
 
@@ -204,8 +208,6 @@
     foreach ( $ordenamientos as $clave => $valor ) {
     	$ordenamiento .= $valor[1];
     }
-
-    $user_id = get_current_user_id();
 
     $HTML = '
 		<div class="header-search" style="background-image:url('.getTema().'/images/new/km-fondo-buscador.gif);">

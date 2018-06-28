@@ -83,7 +83,7 @@
 						}
 					break;
 					case 'size_pet':
-						switch (variable) {
+						switch ($value2->meta_value) {
 							case 0:
 								$filtros["pequenos"] = 1;
 							break;
@@ -106,27 +106,27 @@
 		$FILTRO_ESPECIA = array();
 
 		if( $filtros["agresivo_mascotas"] == 1 ){
-			$FILTRO_ESPECIA[] = " cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";i:1%' ";
+			$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";s:1:\"1%' ) ";
 		}
 
 		if( $filtros["agresivo_personas"] == 1 ){
-			$FILTRO_ESPECIA[] = " cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";i:1%' ";
+			$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";s:1:\"1%' ) ";
 		}
 
 		if( $filtros["pequenos"] == 1 ){
-			$FILTRO_ESPECIA[] = " cuidadores.tamanos_aceptados LIKE '%pequenos\";i:1%' ";
+			$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%pequenos\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%pequenos\";s:1:\"1%' ) ";
 		}
 
 		if( $filtros["medianos"] == 1 ){
-			$FILTRO_ESPECIA[] = " cuidadores.tamanos_aceptados LIKE '%medianos\";i:1%' ";
+			$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%medianos\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%medianos\";s:1:\"1%' ) ";
 		}
 
 		if( $filtros["grandes"] == 1 ){
-			$FILTRO_ESPECIA[] = " cuidadores.tamanos_aceptados LIKE '%grandes\";i:1%' ";
+			$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%grandes\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%grandes\";s:1:\"1%' ) ";
 		}
 
 		if( $filtros["gigantes"] == 1 ){
-			$FILTRO_ESPECIA[] = " cuidadores.tamanos_aceptados LIKE '%gigantes\";i:1%' ";
+			$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%gigantes\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%gigantes\";s:1:\"1%' ) ";
 		}
 
 		if( count($FILTRO_ESPECIA) > 0 ){
