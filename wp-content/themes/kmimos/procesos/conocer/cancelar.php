@@ -112,7 +112,7 @@
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
 
 
-    	$mensaje_cliente = get_email_html( $mensaje_cliente );	
+    	$mensaje_cliente = get_email_html( $mensaje_cliente, true, true, $cliente );	
 
         if( isset($NO_ENVIAR) ){
             echo $email_cliente;
@@ -129,7 +129,7 @@
         $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
 
-        $mensaje_cuidador = get_email_html( $mensaje_cuidador );    
+        $mensaje_cuidador = get_email_html( $mensaje_cuidador, true, true, $cliente );   
 
         if( isset($NO_ENVIAR) ){
             echo $email_cuidador;
@@ -147,7 +147,7 @@
         $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
         $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
 
-        $mensaje_admin = get_email_html( $mensaje_admin );  
+        $mensaje_admin = get_email_html( $mensaje_admin, true, true, $cliente );    
  
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;

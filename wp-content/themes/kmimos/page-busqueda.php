@@ -15,6 +15,9 @@
 
 
     get_header();
+
+    $user_id = get_current_user_id();
+
     if( !isset($_SESSION)){ session_start(); }
 	
 	if( isset($_SESSION['busqueda'])){ 
@@ -33,6 +36,7 @@
     $pagina = vlz_get_page();
 
 	if(!$_POST){
+		$_POST["USER_ID"] = $user_id;
 		include('procesos/busqueda/buscar.php');
 	}
 
@@ -213,6 +217,7 @@
 		<div class="container contentenedor-buscador-todos content-wlabel-search">
 			<div class="km-contentido-formulario-buscador">
 				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="POST">
+					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 					<div class="km-bloque-cajas km-search-wlabel" >
 						<div class="km-div-ubicacion">
 						

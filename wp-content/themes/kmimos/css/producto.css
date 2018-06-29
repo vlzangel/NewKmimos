@@ -23,6 +23,15 @@
     cursor: pointer;
 }
 
+.msg_bloqueador_no_valido{
+    margin: 15px 0px 0px;
+    padding: 10px;
+    background: #ff8300;
+    color: #FFF;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
 .msg_mismo_dia{
     margin: 15px 0px 0px;
     padding: 10px;

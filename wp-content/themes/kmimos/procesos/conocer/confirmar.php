@@ -11,7 +11,7 @@
     $mensaje_cliente = str_replace('[name_cliente]', $cliente_name, $mensaje_cliente);
 
 
-    $mensaje_cliente = get_email_html($mensaje_cliente, true, false);
+    $mensaje_cliente = get_email_html($mensaje_cliente, true, false, $cliente );    
 
     if( isset($NO_ENVIAR) ){
         echo $email_cliente;
@@ -26,7 +26,7 @@
     $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[name_cliente]', $cliente_name, $mensaje_cuidador);
 
-    $mensaje_cuidador = get_email_html($mensaje_cuidador, true, false);
+    $mensaje_cuidador = get_email_html($mensaje_cuidador, true, false, $cliente );   
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_cuidador;
@@ -42,7 +42,7 @@
     $mensaje_admin = str_replace('[name_cuidador]', $cuidador_name, $mensaje_admin);
     $mensaje_admin = str_replace('[name_cliente]', $cliente_name, $mensaje_admin);
 
-    $mensaje_admin = get_email_html($mensaje_admin, true, false);
+    $mensaje_admin = get_email_html($mensaje_admin, true, false, $cliente );   
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_admin;

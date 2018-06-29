@@ -53,6 +53,89 @@
 
 	extract($_POST);
 
+	if( $USER_ID != "" ){
+
+		$filtros = array(
+			"agresivo_mascotas" => 0,
+			"agresivo_personas" => 0,
+			"pequenos" => 0,
+			"medianos" => 0,
+			"grandes" => 0,
+			"gigantes" => 0
+		);
+
+		$_mascotas = $db->get_results("SELECT * FROM wp_posts WHERE post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' ");
+		$mascotas = array();
+		foreach ($_mascotas as $key => $value) {
+			$_metas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key IN ('aggressive_with_humans', 'aggressive_with_pets', 'size_pet')");
+			$metas = array();
+			foreach ($_metas as $key2 => $value2) {
+				$metas[ $value2->meta_key ] = $value2->meta_value;
+				switch ( $value2->meta_key ) {
+					case 'aggressive_with_humans':
+						if( $value2->meta_value == 1 ){
+							$filtros["agresivo_personas"] = 1;
+						}
+					break;
+					case 'aggressive_with_pets':
+						if( $value2->meta_value == 1 ){
+							$filtros["agresivo_mascotas"] = 1;
+						}
+					break;
+					case 'size_pet':
+						switch ($value2->meta_value) {
+							case 0:
+								$filtros["pequenos"] = 1;
+							break;
+							case 1:
+								$filtros["medianos"] = 1;
+							break;
+							case 2:
+								$filtros["grandes"] = 1;
+							break;
+							case 3:
+								$filtros["gigantes"] = 1;
+							break;
+						}
+					break;
+				}
+			}
+			$mascotas[] = $metas;
+		}
+
+		$FILTRO_ESPECIA = array();
+
+		if( $filtros["agresivo_mascotas"] == 1 ){
+			$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";s:1:\"1%' ) ";
+		}
+
+		if( $filtros["agresivo_personas"] == 1 ){
+			$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";s:1:\"1%' ) ";
+		}
+
+		if( $filtros["pequenos"] == 1 ){
+			$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%pequenos\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%pequenos\";s:1:\"1%' ) ";
+		}
+
+		if( $filtros["medianos"] == 1 ){
+			$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%medianos\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%medianos\";s:1:\"1%' ) ";
+		}
+
+		if( $filtros["grandes"] == 1 ){
+			$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%grandes\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%grandes\";s:1:\"1%' ) ";
+		}
+
+		if( $filtros["gigantes"] == 1 ){
+			$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%gigantes\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%gigantes\";s:1:\"1%' ) ";
+		}
+
+		if( count($FILTRO_ESPECIA) > 0 ){
+			$FILTRO_ESPECIA = " AND ( ".implode(" AND ", $FILTRO_ESPECIA)." )";
+		}else{
+			$FILTRO_ESPECIA = "";
+		}
+	}
+
 	$condiciones = "";
 
     /* Filtros por fechas */
@@ -294,8 +377,13 @@
 	    	{$ubicaciones_inner}
 	    	{$nombre_inner}
 	    WHERE 
-	        activo = '1' and cuidadores.hospedaje_desde >= 1 {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION}
+	        activo = '1' and cuidadores.hospedaje_desde >= 1 {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION} {$FILTRO_ESPECIA}
 	    ORDER BY {$orderby}";
+
+		/*echo "<pre>";
+			print_r( $sql );
+		echo "</pre>";*/
+		// print_r( $FILTRO_ESPECIA );
 
     /* FIN SQL cuidadores */
 
@@ -372,7 +460,7 @@
 			print_r( $cuidadores );
 		echo "</pre>";
 	}else{
-	        if( $redireccionar == 1 ) {
+       	if( $redireccionar == 1 ) {
 		 	header("location: {$home}busqueda/");
 		}
 	}

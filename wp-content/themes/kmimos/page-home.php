@@ -12,6 +12,7 @@
     get_header();
         
 	    $home = get_home_url();
+	    $user_id = get_current_user_id();
 
 	    //global $wpdb;
 
@@ -51,6 +52,7 @@
 
 			<form id="buscador" class="km-cuidador" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
 				<input type="hidden" name="redireccionar" value="1" />
+				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 				<div class="container">
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">

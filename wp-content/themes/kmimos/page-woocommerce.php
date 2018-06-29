@@ -78,6 +78,97 @@
 			$horario .= "<option value='".date("H:i", $i)."'>".date("h:i A", $i)."</option>";
 		}*/
 
+		$USER_ID = $id_user;
+
+		if( $USER_ID != "" ){
+
+			$filtros = array(
+				"agresivo_mascotas" => 0,
+				"agresivo_personas" => 0,
+				"pequenos" => 0,
+				"medianos" => 0,
+				"grandes" => 0,
+				"gigantes" => 0
+			);
+
+			$_mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' ");
+			$mascotas = array();
+			foreach ($_mascotas as $key => $value) {
+				$_metas = $wpdb->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key IN ('aggressive_with_humans', 'aggressive_with_pets', 'size_pet')");
+				$metas = array();
+				foreach ($_metas as $key2 => $value2) {
+					$metas[ $value2->meta_key ] = $value2->meta_value;
+					switch ( $value2->meta_key ) {
+						case 'aggressive_with_humans':
+							if( $value2->meta_value == 1 ){
+								$filtros["agresivo_personas"] = 1;
+							}
+						break;
+						case 'aggressive_with_pets':
+							if( $value2->meta_value == 1 ){
+								$filtros["agresivo_mascotas"] = 1;
+							}
+						break;
+						case 'size_pet':
+							switch ($value2->meta_value) {
+								case 0:
+									$filtros["pequenos"] = 1;
+								break;
+								case 1:
+									$filtros["medianos"] = 1;
+								break;
+								case 2:
+									$filtros["grandes"] = 1;
+								break;
+								case 3:
+									$filtros["gigantes"] = 1;
+								break;
+							}
+						break;
+					}
+				}
+				$mascotas[] = $metas;
+			}
+
+			$FILTRO_ESPECIA = array();
+
+			if( $filtros["agresivo_mascotas"] == 1 ){
+				$FILTRO_ESPECIA[] = " ( comportamientos_aceptados LIKE '%agresivos_perros\";i:1%' OR comportamientos_aceptados LIKE '%agresivos_perros\";s:1:\"1%' ) ";
+			}
+
+			if( $filtros["agresivo_personas"] == 1 ){
+				$FILTRO_ESPECIA[] = " ( comportamientos_aceptados LIKE '%agresivos_personas\";i:1%' OR comportamientos_aceptados LIKE '%agresivos_personas\";s:1:\"1%' ) ";
+			}
+
+			if( $filtros["pequenos"] == 1 ){
+				$FILTRO_ESPECIA[] = " ( tamanos_aceptados LIKE '%pequenos\";i:1%' OR tamanos_aceptados LIKE '%pequenos\";s:1:\"1%' ) ";
+			}
+
+			if( $filtros["medianos"] == 1 ){
+				$FILTRO_ESPECIA[] = " ( tamanos_aceptados LIKE '%medianos\";i:1%' OR tamanos_aceptados LIKE '%medianos\";s:1:\"1%' ) ";
+			}
+
+			if( $filtros["grandes"] == 1 ){
+				$FILTRO_ESPECIA[] = " ( tamanos_aceptados LIKE '%grandes\";i:1%' OR tamanos_aceptados LIKE '%grandes\";s:1:\"1%' ) ";
+			}
+
+			if( $filtros["gigantes"] == 1 ){
+				$FILTRO_ESPECIA[] = " ( tamanos_aceptados LIKE '%gigantes\";i:1%' OR tamanos_aceptados LIKE '%gigantes\";s:1:\"1%' ) ";
+			}
+
+			if( count($FILTRO_ESPECIA) > 0 ){
+				$FILTRO_ESPECIA = " AND ( ".implode(" AND ", $FILTRO_ESPECIA)." )";
+			}else{
+				$FILTRO_ESPECIA = "";
+			}
+
+			$cuidador_valido = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = '{$cuidador->id}' {$FILTRO_ESPECIA} ");
+			/*echo "<pre>";
+				print_r($mascotas);
+			echo "</pre>";
+			print_r("SELECT * FROM cuidadores WHERE id = '{$cuidador->id}' {$FILTRO_ESPECIA} ");*/
+		}
+
 	    $precios = "";
 	    
 		$adicionales = unserialize($cuidador->adicionales);
@@ -259,6 +350,15 @@
 			";
 		}
 
+		$msg_bloqueador_no_valido = "";
+		if( $cuidador_valido == null ){
+			$msg_bloqueador_no_valido = "
+				<div class='msg_bloqueador_no_valido'>
+					Este cuidador no admite alguna de las caracteristicas de tus mascotas, para encontrar un cuidador que permita estas caracteristicas picale <a href='".get_home_url()."/busqueda/'>aquí</a>
+				</div>
+			";
+		}
+
 		if( 
 			( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 6) || ( $hora == 23 ) )  ||
 			( $manana == $busqueda["checkin"] && ( $hora == 23 ) )
@@ -346,6 +446,64 @@
 
 			$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$post_id}");
 
+			$precios = '
+				<div class="km-dates-step" style="margin-bottom: 5px;">
+					<div class="km-ficha-fechas">
+						<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
+						<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly>
+					</div>
+				</div>
+
+				<!--
+				<div class="km-dates-step">
+					<div class="km-ficha-fechas">
+						<div class="listas_check">	
+							<select id="hora_checkin" name="hora_checkin" class="date_from">
+								<option>Hora Entrada</option>
+								'.$horario.'
+							</select>
+						</div>
+
+						<div class="listas_check">	
+							<select id="hora_checkout" name="hora_checkout" class="date_from">
+								<option>Hora Salida</option>
+								'.$horario.'
+							</select>
+						</div>
+
+					</div>
+				</div>
+				-->
+
+				'.$msg_mismo_dia.'
+				'.$msg_bloqueador.'
+				'.$msg_bloqueador_madrugada.'
+
+				<div id="bloque_info_servicio" class="km-content-step '.$bloquear.' '.$bloquear_madrugada.'">
+					<div class="km-content-new-pet">
+						'.$precios.'
+						<div class="km-services-content">
+							<div class="contenedor-adicionales">'.$transporte.'</div>
+							<div class="contenedor-adicionales">'.$adicionales.'</div>
+						</div>
+
+						<div class="km-services-total km-total-calculo">
+							<div class="valido">
+								<span class="km-text-total">TOTAL</span>
+								<span class="km-price-total">$0.00</span>
+							</div>
+							<div class="invalido">
+								
+							</div>
+						</div>
+
+					</div>
+				</div>
+			';
+			if( $msg_bloqueador_no_valido != "" ){
+				$precios = $msg_bloqueador_no_valido;
+			}
+
 			$HTML .= '
 
 		 		<form id="reservar" class="km-content km-content-reservation">
@@ -370,58 +528,7 @@
 								Reserva las fechas y los servicios con tu cuidador(a) '.$cuidador_name.'
 							</div>
 
-							<div class="km-dates-step" style="margin-bottom: 5px;">
-								<div class="km-ficha-fechas">
-									<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
-									<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly>
-								</div>
-							</div>
-
-							<!--
-							<div class="km-dates-step">
-								<div class="km-ficha-fechas">
-									<div class="listas_check">	
-										<select id="hora_checkin" name="hora_checkin" class="date_from">
-											<option>Hora Entrada</option>
-											'.$horario.'
-										</select>
-									</div>
-	
-									<div class="listas_check">	
-										<select id="hora_checkout" name="hora_checkout" class="date_from">
-											<option>Hora Salida</option>
-											'.$horario.'
-										</select>
-									</div>
-
-								</div>
-							</div>
-							-->
-
-							'.$msg_mismo_dia.'
-							'.$msg_bloqueador.'
-							'.$msg_bloqueador_madrugada.'
-
-							<div id="bloque_info_servicio" class="km-content-step '.$bloquear.' '.$bloquear_madrugada.'">
-								<div class="km-content-new-pet">
-									'.$precios.'
-									<div class="km-services-content">
-										<div class="contenedor-adicionales">'.$transporte.'</div>
-										<div class="contenedor-adicionales">'.$adicionales.'</div>
-									</div>
-
-									<div class="km-services-total km-total-calculo">
-										<div class="valido">
-											<span class="km-text-total">TOTAL</span>
-											<span class="km-price-total">$0.00</span>
-										</div>
-										<div class="invalido">
-											
-										</div>
-									</div>
-
-								</div>
-							</div>
+							'.$precios.'
 
 							<a href="#" id="reserva_btn_next_1" class="km-end-btn-form km-end-btn-form-disabled disabled vlz_btn_reservar">
 								<span>SIGUIENTE</span>
