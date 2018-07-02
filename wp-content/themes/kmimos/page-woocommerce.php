@@ -397,13 +397,13 @@
 		}
 
 		$msg_bloqueador_no_valido = "";
-		if( $cuidador_valido == null ){
-			$caracteristicas = "";
-			foreach ($filtros as $key => $value) {
-				if( $value == 2 ){
-					$caracteristicas .= "<li>".$filtros_txt[ $key ]."</li>";
-				}
+		$caracteristicas = "";
+		foreach ($filtros as $key => $value) {
+			if( $value == 2 ){
+				$caracteristicas .= "<li>".$filtros_txt[ $key ]."</li>";
 			}
+		}
+		if( $caracteristicas != "" ){
 			$msg_bloqueador_no_valido = "
 				<div class='msg_bloqueador_no_valido'>
 					Lo sentimos, pero este cuidador no admite mascotas con las siguientes caracter&iacute;sticas:
