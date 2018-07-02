@@ -385,6 +385,7 @@
 			}
 		}else{
 			$ES_FLASH = "SI";
+			$msg_bloqueador = "<div id='vlz_msg_bloqueo' class='vlz_NO_bloquear_msg'>".$msg_bloqueador."</div>";
 		}
 
 		$msg_mismo_dia = "";
