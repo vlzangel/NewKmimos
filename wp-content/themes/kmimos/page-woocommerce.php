@@ -404,7 +404,7 @@
 			}
 			$msg_bloqueador_no_valido = "
 				<div class='msg_bloqueador_no_valido'>
-					Lo sentimos, pero este cuidado no admite caracter&iacute;sticas que poseen algunas de tus mascotas, especificamente el cuidador no acepta:<br>
+					Lo sentimos, pero este cuidador no admite mascotas con las siguientes caracter&iacute;sticas:
 					<ul style='padding: 10px 20px;' >
 						$caracteristicas
 					</ul>
