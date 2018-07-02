@@ -400,29 +400,44 @@
 		$msg_bloqueador_no_valido = "";
 		$caracteristicas = "";
 		if(  $_SESSION['admin_sub_login'] != 'YES' ){
-
-			if( 
-				( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 6) || ( $hora == 23 ) )  ||
-				( $manana == $busqueda["checkin"] && ( $hora == 23 ) )
-			){
-				// 570 x 320
-				$msg_bloqueador_madrugada = "
-					<div id='vlz_msg_bloqueo_madrugada' class='vlz_bloquear_msg_madrugada'>
-						<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
-					</div>
-				";
-				$bloquear_madrugada = "bloquear_madrugada";
-
-				$msg_mismo_dia = "";
-				$msg_bloqueador = "";
-			}else{
-				$msg_bloqueador_madrugada = "
-					<div id='vlz_msg_bloqueo_madrugada' class='vlz_NO_bloquear_msg_madrugada'>
-						<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
+			foreach ($filtros as $key => $value) {
+				if( $value == 2 ){
+					$caracteristicas .= "<li>".$filtros_txt[ $key ]."</li>";
+				}
+			}
+			if( $caracteristicas != "" ){
+				$msg_bloqueador_no_valido = "
+					<div class='msg_bloqueador_no_valido'>
+						Lo sentimos, pero este cuidador no admite mascotas con las siguientes caracter&iacute;sticas:
+						<ul style='padding: 10px 20px;' >
+							$caracteristicas
+						</ul>
+						Para encontrar un cuidador que se acomode a tus necesidades, te invitamos a picarle a la siguiente <a href='".get_home_url()."/busqueda/?new=true'>liga</a>.
 					</div>
 				";
 			}
-			
+		}
+
+		if( 
+			( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 6) || ( $hora == 23 ) )  ||
+			( $manana == $busqueda["checkin"] && ( $hora == 23 ) )
+		){
+			// 570 x 320
+			$msg_bloqueador_madrugada = "
+				<div id='vlz_msg_bloqueo_madrugada' class='vlz_bloquear_msg_madrugada'>
+					<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
+				</div>
+			";
+			$bloquear_madrugada = "bloquear_madrugada";
+
+			$msg_mismo_dia = "";
+			$msg_bloqueador = "";
+		}else{
+			$msg_bloqueador_madrugada = "
+				<div id='vlz_msg_bloqueo_madrugada' class='vlz_NO_bloquear_msg_madrugada'>
+					<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
+				</div>
+			";
 		}
 
 
