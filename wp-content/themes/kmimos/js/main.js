@@ -12,7 +12,7 @@ function close_modal(){
     });
 }
 
-$(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e){
+jQuery(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e){
 	e.preventDefault();
 
 	//close_modal();
