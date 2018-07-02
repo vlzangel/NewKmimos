@@ -83,12 +83,12 @@
 		if( $USER_ID != "" ){
 
 			$filtros_txt = array(
-				"agresivo_mascotas" => "Mascota agresivas con otras mascotas",
-				"agresivo_personas" => "Mascota agresivas con humanos",
-				"pequenos" => "Mascotas Peque&ntilde;as",
-				"medianos" => "Mascotas Medianas",
-				"grandes" => "Mascotas Grandes",
-				"gigantes" => "Mascotas Gigantes"
+				"agresivo_mascotas" => "Agresivas con otras mascotas",
+				"agresivo_personas" => "Agresivas con humanos",
+				"pequenos" => "Peque&ntilde;as",
+				"medianos" => "Medianas",
+				"grandes" => "Grandes",
+				"gigantes" => "Gigantes"
 			);
 
 			$filtros = array(
@@ -399,22 +399,8 @@
 
 		$msg_bloqueador_no_valido = "";
 		$caracteristicas = "";
-		foreach ($filtros as $key => $value) {
-			if( $value == 2 ){
-				$caracteristicas .= "<li>".$filtros_txt[ $key ]."</li>";
-			}
-		}
-		if( $caracteristicas != "" ){
-			$msg_bloqueador_no_valido = "
-				<div class='msg_bloqueador_no_valido'>
-					Lo sentimos, pero este cuidador no admite mascotas con las siguientes caracter&iacute;sticas:
-					<ul style='padding: 10px 20px;' >
-						$caracteristicas
-					</ul>
-					Para encontrar un cuidador que se acomode a tus necesidades, te invitamos a picarle a la siguiente <a href='".get_home_url()."/busqueda/?new=true'>liga</a>.
-				</div>
-			";
-		}
+		if(  $_SESSION['admin_sub_login'] != 'YES' ){
+		A	}
 
 		if( 
 			( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 6) || ( $hora == 23 ) )  ||
