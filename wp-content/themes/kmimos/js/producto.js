@@ -805,7 +805,7 @@ jQuery(document).ready(function() {
 
 	jQuery("#numero").on("keypress", function(e){
 		var txt = jQuery(this).val();
-		if( txt.length == 16 ){
+		if( txt.length == 19 ){
 			e.preventDefault();
 			return false;
 		}
@@ -845,7 +845,7 @@ jQuery(document).ready(function() {
 			txt = txt.replaceAll(" ", "");
 			jQuery("#numero_oculto").val(txt);
 			var temp = ""; var l = txt.length;
-			if( l > 16 ){ l = 16; }
+			if( l > 19 ){ l = 19; }
 			for(var i=0; i<l; i++){
 				if( i > 0 && i%4 == 0){
 					temp += " ";
@@ -1140,7 +1140,8 @@ jQuery(document).ready(function() {
 				"valid expirations months are 01 to 12": "Mes de expiraci&oacute;n debe ser entre 01 y 12",
 				"expiration_year expiration_month is required": "A&ntilde;o y Mes de expiraci&oacute;n requeridos",
 				"The CVV2 security code is required": "C&oacute;digo de seguridad requerido",
-				"cvv2 length must be 3 digits": "El c&oacute;digo de seguridad debe ser de 3 digitos"
+				"cvv2 length must be 3 digits": "El c&oacute;digo de seguridad debe ser de 3 digitos",
+				"cvv2 length must be 4 digits": "El c&oacute;digo de seguridad debe ser de 4 digitos",
 			};
 
 			console.log( response );

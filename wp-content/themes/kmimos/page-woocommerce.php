@@ -882,7 +882,7 @@
 
 											<div class="label-placeholder">
 												<label>Número de Tarjeta*</label>
-												<input type="text" id="numero" name="numero" class="input-label-placeholder next solo_numeros maxlength" data-max="16" data-next="mes">
+												<input type="text" id="numero" name="numero" class="input-label-placeholder next solo_numeros maxlength" data-max="19" data-next="mes">
 												<input type="hidden" id="numero_oculto" data-openpay-card="card_number">
 											</div>
 
@@ -895,7 +895,7 @@
 
 												<div class="label-placeholder">
 													<label>Código de seguridad(CVV)</label>
-													<input type="text" id="codigo" name="codigo" class="input-label-placeholder next solo_numeros maxlength" data-max="3" maxlength="3" data-next="null" data-openpay-card="cvv2">
+													<input type="text" id="codigo" name="codigo" class="input-label-placeholder next solo_numeros maxlength" data-max="4" maxlength="4" data-next="null" data-openpay-card="cvv2">
 													<small>Número de tres dígitos en el reverso de la tarjeta</small>
 												</div>
 											</div>
