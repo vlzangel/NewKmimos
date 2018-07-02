@@ -82,6 +82,15 @@
 
 		if( $USER_ID != "" ){
 
+			$filtros_txt = array(
+				"agresivo_mascotas" => "Agresivos con otras mascotas",
+				"agresivo_personas" => "Agresivos con humanos",
+				"pequenos" => "Mascotas Peque&ntilde;as",
+				"medianos" => "Mascotas Medianas",
+				"grandes" => "Mascotas Grandes",
+				"gigantes" => "Mascotas Gigantes"
+			);
+
 			$filtros = array(
 				"agresivo_mascotas" => 0,
 				"agresivo_personas" => 0,
@@ -129,7 +138,52 @@
 				}
 				$mascotas[] = $metas;
 			}
+			
+			echo "<pre style='padding-top: 100px;'>";
+				print_r($filtros);
+			echo "</pre>";
 
+			foreach ($filtros as $key => $value) {
+				if( $value == 0 ){
+					unset($filtros[$key]);
+				}
+			}
+
+			echo "<pre style='padding-top: 100px;'>";
+				print_r($filtros);
+			echo "</pre>";
+
+			$FILTRO_ESPECIA = array();
+
+			$tamanos_aceptados = unserialize( $cuidador->tamanos_aceptados );
+			$conductas = unserialize( $cuidador->comportamientos_aceptados );
+
+			if( $filtros["agresivo_mascotas"] == 1 ){
+				if( $conductas["agresivos_perros"]+0 == 0 ){
+					$filtros["agresivo_mascotas"]++;
+				}
+			}
+
+			if( $filtros["agresivo_personas"] == 1 ){
+				if( $conductas["agresivos_personas"]+0 == 0 ){
+					$filtros["agresivo_personas"]++;
+				}
+			}
+
+			foreach ($filtros as $key => $value) {
+				if( $key != "agresivo_mascotas" && $key != "agresivo_personas" ){
+					if( $tamanos_aceptados[ $key ]+0 == 0 ){
+						$filtros[ $key ]++;
+					}
+				}
+			}
+
+			echo "<pre style='padding-top: 100px;'>";
+				print_r($filtros);
+			echo "</pre>";
+
+
+			/*
 			$FILTRO_ESPECIA = array();
 
 			if( $filtros["agresivo_mascotas"] == 1 ){
@@ -163,10 +217,14 @@
 			}
 
 			$cuidador_valido = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = '{$cuidador->id}' {$FILTRO_ESPECIA} ");
-			/*echo "<pre>";
+			echo "<pre>";
 				print_r($mascotas);
 			echo "</pre>";
-			print_r("SELECT * FROM cuidadores WHERE id = '{$cuidador->id}' {$FILTRO_ESPECIA} ");*/
+			print_r("SELECT * FROM cuidadores WHERE id = '{$cuidador->id}' {$FILTRO_ESPECIA} ");
+
+			if( $cuidador_valido ){
+
+			}*/
 		}
 
 	    $precios = "";
@@ -352,9 +410,17 @@
 
 		$msg_bloqueador_no_valido = "";
 		if( $cuidador_valido == null ){
+			$caracteristicas = "";
+			foreach ($filtros as $key => $value) {
+				$caracteristicas .= "<li>".$filtros_txt[ $key ]."</li>";
+			}
 			$msg_bloqueador_no_valido = "
 				<div class='msg_bloqueador_no_valido'>
-					Este cuidador no admite alguna de las caracteristicas de tus mascotas, para encontrar un cuidador que permita estas caracteristicas picale <a href='".get_home_url()."/busqueda/'>aquí</a>
+					Lo sentimos, pero este cuidado no admite las siguientes caracter&iacute;sticas que poseen algunas de tus mascotas:<br>
+					<ul style='padding: 10px 20px;' >
+						$caracteristicas
+					</ul>
+					Para encontrar un cuidador que se acomode a tus necesidades, te invitamos a picarle a la siguiente <a href='".get_home_url()."/busqueda/'>liga</a>.
 				</div>
 			";
 		}
