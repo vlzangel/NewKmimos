@@ -400,7 +400,9 @@
 		if( $cuidador_valido == null ){
 			$caracteristicas = "";
 			foreach ($filtros as $key => $value) {
-				$caracteristicas .= "<li>".$filtros_txt[ $key ]."</li>";
+				if( $value == 2 ){
+					$caracteristicas .= "<li>".$filtros_txt[ $key ]."</li>";
+				}
 			}
 			$msg_bloqueador_no_valido = "
 				<div class='msg_bloqueador_no_valido'>
