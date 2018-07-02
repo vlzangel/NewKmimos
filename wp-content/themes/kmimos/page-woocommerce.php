@@ -151,13 +151,13 @@
 			$conductas = unserialize( $cuidador->comportamientos_aceptados );
 
 			if( $filtros["agresivo_mascotas"] == 1 ){
-				if( $conductas["agresivos_perros"]+0 == 0 ){
+				if( $conductas["agresivos_perros"]+0 == 0 || $conductas["agresivos_mascotas"]+0 == 0 ){
 					$filtros["agresivo_mascotas"]++;
 				}
 			}
 
 			if( $filtros["agresivo_personas"] == 1 ){
-				if( $conductas["agresivos_personas"]+0 == 0 ){
+				if( $conductas["agresivos_personas"]+0 == 0 || $conductas["agresivos_humanos"]+0 == 0 ){
 					$filtros["agresivo_personas"]++;
 				}
 			}
