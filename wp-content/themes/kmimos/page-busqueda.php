@@ -24,6 +24,18 @@
 		$_POST = unserialize($_SESSION['busqueda']); 
 	}
 
+	if( $_GET["new"] == true ){
+		$POST_TEMP = array();
+		if( $_POST["checkin"] != "" ){
+			$POST_TEMP["checkin"] = $_POST["checkin"];
+		}
+		if( $_POST["checkout"] != "" ){
+			$POST_TEMP["checkout"] = $_POST["checkout"];
+		}
+		$_SESSION['busqueda'] = serialize( $POST_TEMP );
+		$_POST = $POST_TEMP;
+	}
+
 	// ini - condicion para retornar a la pagina #1 en nuevas busquedas
 	if( $_SESSION['nueva_busqueda'] == 1 ){
 		$pagina = 1;
@@ -35,7 +47,7 @@
 
     $pagina = vlz_get_page();
 
-	if(!$_POST){
+	if(!$_POST || $_GET["new"] == true ){
 		$_POST["USER_ID"] = $user_id;
 		include('procesos/busqueda/buscar.php');
 	}

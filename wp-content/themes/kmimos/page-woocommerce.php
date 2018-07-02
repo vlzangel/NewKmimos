@@ -83,8 +83,8 @@
 		if( $USER_ID != "" ){
 
 			$filtros_txt = array(
-				"agresivo_mascotas" => "Agresivos con otras mascotas",
-				"agresivo_personas" => "Agresivos con humanos",
+				"agresivo_mascotas" => "Mascota agresivas con otras mascotas",
+				"agresivo_personas" => "Mascota agresivas con humanos",
 				"pequenos" => "Mascotas Peque&ntilde;as",
 				"medianos" => "Mascotas Medianas",
 				"grandes" => "Mascotas Grandes",
@@ -139,19 +139,11 @@
 				$mascotas[] = $metas;
 			}
 			
-			echo "<pre style='padding-top: 100px;'>";
-				print_r($filtros);
-			echo "</pre>";
-
 			foreach ($filtros as $key => $value) {
 				if( $value == 0 ){
 					unset($filtros[$key]);
 				}
 			}
-
-			echo "<pre style='padding-top: 100px;'>";
-				print_r($filtros);
-			echo "</pre>";
 
 			$FILTRO_ESPECIA = array();
 
@@ -177,10 +169,6 @@
 					}
 				}
 			}
-
-			echo "<pre style='padding-top: 100px;'>";
-				print_r($filtros);
-			echo "</pre>";
 
 
 			/*
@@ -416,11 +404,11 @@
 			}
 			$msg_bloqueador_no_valido = "
 				<div class='msg_bloqueador_no_valido'>
-					Lo sentimos, pero este cuidado no admite las siguientes caracter&iacute;sticas que poseen algunas de tus mascotas:<br>
+					Lo sentimos, pero este cuidado no admite caracter&iacute;sticas que poseen algunas de tus mascotas, especificamente el cuidador no acepta:<br>
 					<ul style='padding: 10px 20px;' >
 						$caracteristicas
 					</ul>
-					Para encontrar un cuidador que se acomode a tus necesidades, te invitamos a picarle a la siguiente <a href='".get_home_url()."/busqueda/'>liga</a>.
+					Para encontrar un cuidador que se acomode a tus necesidades, te invitamos a picarle a la siguiente <a href='".get_home_url()."/busqueda/?new=true'>liga</a>.
 				</div>
 			";
 		}

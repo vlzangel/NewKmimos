@@ -32,6 +32,11 @@
     font-size: 17px;
 }
 
+.msg_bloqueador_no_valido ul li{
+    list-style: initial;
+    margin-left: 30px;
+}
+
 .msg_mismo_dia{
     margin: 15px 0px 0px;
     padding: 10px;
