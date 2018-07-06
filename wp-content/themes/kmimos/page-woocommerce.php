@@ -420,7 +420,6 @@
 						<div>
 							Por favor cont&aacute;ctanos al tel&eacute;fono (55) 8526 1162 o al Whatsapp (55) 6892 2182 para ayudarte a encontrar el cuidador adecuado.
 						</div>
-						Para encontrar un cuidador que se acomode a tus necesidades, te invitamos a picarle a la siguiente <a href='".get_home_url()."/busqueda/?new=true'>liga</a>.
 					</div>
 				";
 			}
