@@ -197,7 +197,7 @@
 					<div class="km-servicio-opcion km-servicio-opcionactivo">
 						<div class="km-servicio-desc">
 							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
-							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
+							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 58 cm</div>
 						</div>
 						<div class="km-servicio-costo"><b>$'.($precios["medianos"]*getComision() ).'</b></div>
 					</div>';
@@ -206,7 +206,7 @@
 					<div class="km-servicio-opcion">
 						<div class="km-servicio-desc">
 							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
-							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
+							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 58 cm</div>
 						</div>
 						<div class="km-servicio-costo"><b></b></div>
 					</div>';

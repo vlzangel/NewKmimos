@@ -360,7 +360,7 @@
 					<div class='alerta_flash_paso'>
 						<div class='alerta_flash_paso_titulo'>Opci&oacute;n 3</div>
 						<div class='alerta_flash_paso_img'> <img src='".getTema()."/images/alerta_flash/opcion_3.png' /> </div>
-						<div class='alerta_flash_paso_txt'>Ll&aacute;manos al<br> (01) 55 3137 4829</div>
+						<div class='alerta_flash_paso_txt'>Ll&aacute;manos al<br> (55) 8526 1162</div>
 					</div>
 				</div>
 			</div>
@@ -390,9 +390,14 @@
 
 		$msg_mismo_dia = "";
 		if( ( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && date("G", $NOW )+0 < 9 ){
-			$msg_mismo_dia = "
+			/*$msg_mismo_dia = "
 				<div class='msg_mismo_dia'>
 					En caso de que necesites atención dentro de las siguientes 4 a 6 horas, por favor llámanos al: (01) 55 3137 4829.
+				</div>
+			";*/
+			$msg_mismo_dia = "
+				<div class='msg_mismo_dia'>
+					En caso de que necesites atención dentro de las siguientes 4 a 6 horas, por favor llámanos al: (55) 8526 1162.
 				</div>
 			";
 		}
@@ -408,10 +413,13 @@
 			if( $caracteristicas != "" ){
 				$msg_bloqueador_no_valido = "
 					<div class='msg_bloqueador_no_valido'>
-						Lo sentimos, pero este cuidador no admite mascotas con las siguientes caracter&iacute;sticas:
+						Lo sentimos, este cuidador no es compatible con las siguientes caracter&iacute;sticas de tu(s) mascota(s):
 						<ul style='padding: 10px 20px;' >
 							$caracteristicas
 						</ul>
+						<div>
+							Por favor cont&aacute;ctanos al tel&eacute;fono (55) 8526 1162 o al Whatsapp (55) 6892 2182 para ayudarte a encontrar el cuidador adecuado.
+						</div>
 						Para encontrar un cuidador que se acomode a tus necesidades, te invitamos a picarle a la siguiente <a href='".get_home_url()."/busqueda/?new=true'>liga</a>.
 					</div>
 				";

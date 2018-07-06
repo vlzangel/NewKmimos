@@ -142,12 +142,18 @@
 
 		$pedidos = $wpdb->get_results( $sql );
 		
+		$ventas_hoy = 0;
 		$ventas_mes = 0;
+		$ventas_mes_anterior = 0;
 		$ventas_90 = 0;
 		$ventas_12 = 0;
 		$ventas_anio_curso = 0;
 
+		$dia_en_curso = strtotime ( date("Y-m-d") );
 		$mes_en_curso = strtotime ( date("Y-m").'-1' );
+
+		$mes_anterior = strtotime ( date("Y-m", strtotime ( '-1 month' , time() ) ).'-1' );
+
 		$anio_en_curso = strtotime ( date("Y").'-01-01' );
 		$hace_90_dias = strtotime ( '-90 day' , time() );
 		$hace_12_meses = strtotime ( '-12 month' , time() );
@@ -170,8 +176,16 @@
 				break;
 			}
 
+			if( $dia_en_curso <= $fecha ){
+				$ventas_hoy += $monto;
+			}
+
 			if( $mes_en_curso <= $fecha ){
 				$ventas_mes += $monto;
+			}
+
+			if( $mes_anterior <= $fecha && $fecha < $mes_en_curso ){
+				$ventas_mes_anterior += $monto;
 			}
 
 			if( $anio_en_curso <= $fecha ){
@@ -190,6 +204,41 @@
 
 		echo '
 			<style>
+
+				.resumen_ventas .wc_status_list {
+				    overflow: hidden;
+				}
+
+				.resumen_ventas .wc_status_list li {
+				    width: 50%;
+				    float: left;
+				    padding: 0;
+				    box-sizing: border-box;
+				    margin: 0;
+				    color: #aaa;
+				}
+
+				.resumen_ventas .wc_status_list li a {
+				    display: block;
+				    color: #aaa;
+				    padding: 9px 12px;
+				    -webkit-transition: all ease .5s;
+				    position: relative;
+				    font-size: 12px;
+				}
+
+				.resumen_ventas .wc_status_list li a strong {
+				    font-size: 18px;
+				    line-height: 1.2em;
+				    font-weight: 400;
+				    display: block;
+				    color: #21759b;
+				}
+
+				.resumen_ventas .wc_status_list li.borderTop {
+				    border-top: 1px solid #ececec;
+				}
+
 				.resumen_ventas .wc_status_list li.processing-orders a:before {
 					content: "" !important;
 				    margin: 0px !important;
@@ -216,22 +265,38 @@
 				    width: 0px !important;
 				}
 			</style>
-			<div id="woocommerce_dashboard_status" class="resumen_ventas">
+			<div id="xwoocommerce_dashboard_status" class="resumen_ventas">
 				<ul class="wc_status_list">
+
+					<!--
+					<li class="sales-this-month">
+						<a><strong><span class="amount">$ '.number_format( $ventas_hoy, 2, ',', '.').' MXN</strong> D&iacute;a en curso</a>
+					</li>
 					<li class="sales-this-month">
 						<a><strong><span class="amount">$ '.number_format( $ventas_mes, 2, ',', '.').' MXN</strong> Mes en curso</a>
 					</li>
-					<li class="processing-orders">
+					-->
+
+					<li class="on-hold-orders">
+						<a><strong>$ '.number_format( $ventas_hoy, 2, ',', '.').' MXN</strong> D&iacute;a en curso </a>
+					</li>
+					<li class="on-hold-orders">
+						<a><strong>$ '.number_format( $ventas_mes, 2, ',', '.').' MXN</strong> Mes en curso </a>
+					</li>
+
+
+					<li class="on-hold-orders borderTop">
+						<a><strong>$ '.number_format( $ventas_mes_anterior, 2, ',', '.').' MXN</strong> Mes Anterior</a>
+					</li>
+					<li class="on-hold-orders borderTop">
 						<a><strong>$ '.number_format( $ventas_90, 2, ',', '.').' MXN</strong> &Uacute;ltimos 90 d&iacute;as</a>
 					</li>
-					<li class="completed">
+
+					<li class="on-hold-orders borderTop">
 						<a><strong>$ '.number_format( $ventas_12, 2, ',', '.').' MXN</strong> &Uacute;ltimos 12 meses </a>
 					</li>
-					<li class="on-hold-orders">
+					<li class="on-hold-orders borderTop">
 						<a><strong>$ '.number_format( $ventas_anio_curso, 2, ',', '.').' MXN</strong> A&ntilde;o en curso</a>
-					</li>
-					<li class="on-hold-orders">
-						
 					</li>
 				</ul>
 			</div>
@@ -268,13 +333,23 @@
 		";
 
 		$pedidos = $wpdb->get_results( $sql );
-		
+
+/*		echo "<pre>";
+			print_r($pedidos);
+		echo "</pre>";
+		*/
+		$ventas_hoy = 0;
 		$ventas_mes = 0;
+		$ventas_mes_anterior = 0;
 		$ventas_90 = 0;
 		$ventas_12 = 0;
 		$ventas_anio_curso = 0;
 
+		$dia_en_curso = strtotime ( date("Y-m-d") );
 		$mes_en_curso = strtotime ( date("Y-m").'-1' );
+
+		$mes_anterior = strtotime ( date("Y-m", strtotime ( '-1 month' , time() ) ).'-1' );
+
 		$anio_en_curso = strtotime ( date("Y").'-01-01' );
 		$hace_90_dias = strtotime ( '-90 day' , time() );
 		$hace_12_meses = strtotime ( '-12 month' , time() );
@@ -292,8 +367,18 @@
 
 			$duracion = explode(" ", $pedido->duracion);
 
+
+
+			if( $dia_en_curso <= $fecha ){
+				$ventas_hoy += $duracion[0]+0;
+			}
+
 			if( $mes_en_curso <= $fecha ){
 				$ventas_mes += $duracion[0]+0;
+			}
+
+			if( $mes_anterior <= $fecha && $fecha < $mes_en_curso ){
+				$ventas_mes_anterior += $duracion[0]+0;
 			}
 
 			if( $anio_en_curso <= $fecha ){
@@ -312,6 +397,41 @@
 
 		echo '
 			<style>
+
+				.resumen_ventas .wc_status_list {
+				    overflow: hidden;
+				}
+
+				.resumen_ventas .wc_status_list li {
+				    width: 50%;
+				    float: left;
+				    padding: 0;
+				    box-sizing: border-box;
+				    margin: 0;
+				    color: #aaa;
+				}
+
+				.resumen_ventas .wc_status_list li a {
+				    display: block;
+				    color: #aaa;
+				    padding: 9px 12px;
+				    -webkit-transition: all ease .5s;
+				    position: relative;
+				    font-size: 12px;
+				}
+
+				.resumen_ventas .wc_status_list li a strong {
+				    font-size: 18px;
+				    line-height: 1.2em;
+				    font-weight: 400;
+				    display: block;
+				    color: #21759b;
+				}
+
+				.resumen_ventas .wc_status_list li.borderTop {
+				    border-top: 1px solid #ececec;
+				}
+
 				.resumen_ventas .wc_status_list li.processing-orders a:before {
 					content: "" !important;
 				    margin: 0px !important;
@@ -338,8 +458,9 @@
 				    width: 0px !important;
 				}
 			</style>
-			<div id="woocommerce_dashboard_status" class="resumen_ventas">
+			<div id="xwoocommerce_dashboard_status" class="resumen_ventas">
 				<ul class="wc_status_list">
+					<!--
 					<li class="sales-this-month">
 						<a><strong><span class="amount">'.$ventas_mes.' Noches</strong> Mes en curso</a>
 					</li>
@@ -354,6 +475,31 @@
 					</li>
 					<li class="on-hold-orders">
 						
+					</li>
+					-->
+
+
+
+					<li class="on-hold-orders">
+						<a><strong>'.( $ventas_hoy).' Noches</strong> D&iacute;a en curso</a>
+					</li>
+					<li class="on-hold-orders">
+						<a><strong>'.( $ventas_mes).' Noches</strong> Mes en curso </a>
+					</li>
+
+
+					<li class="on-hold-orders borderTop">
+						<a><strong>'.( $ventas_mes_anterior).' Noches</strong> Mes Anterior</a>
+					</li>
+					<li class="on-hold-orders borderTop">
+						<a><strong>'.( $ventas_90).' Noches</strong> &Uacute;ltimos 90 d&iacute;as</a>
+					</li>
+
+					<li class="on-hold-orders borderTop">
+						<a><strong>'.( $ventas_12).' Noches</strong> &Uacute;ltimos 12 meses </a>
+					</li>
+					<li class="on-hold-orders borderTop">
+						<a><strong>'.( $ventas_anio_curso).' Noches</strong> A&ntilde;o en curso</a>
 					</li>
 				</ul>
 			</div>
