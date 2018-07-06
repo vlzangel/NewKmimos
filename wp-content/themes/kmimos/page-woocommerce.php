@@ -694,8 +694,8 @@
 										</div>
 									</div>
 
-									<div class="km-method-paid-option km-option-total active" style="width: 100% !important;">
-										<div class="km-text-one">
+									<div class="km-method-paid-option km-option-total active" style="width: 100% !important; height: 60px;">
+										<div class="km-text-one" style="margin-top: 20px !important;">
 											PAGO TOTAL DE LA RESERVA
 										</div>
 									</div>
