@@ -677,12 +677,12 @@
 							</div>
 
 							<div class="km-select-method-paid">
-								<div class="km-method-paid-title">
+								<div class="km-method-paid-title" style="display: none !important;">
 									SELECCIONA PAGO PARCIAL ó TOTAL
 								</div>
 
 								<div class="km-method-paid-options">
-									<div class="km-method-paid-option km-option-deposit">
+									<div class="km-method-paid-option km-option-deposit" style="display: none !important;">
 										<div class="km-text-one">
 											RESERVA CON PAGO PARCIAL
 										</div>
@@ -694,7 +694,7 @@
 										</div>
 									</div>
 
-									<div class="km-method-paid-option km-option-total active">
+									<div class="km-method-paid-option km-option-total active" style="width: 100% !important;">
 										<div class="km-text-one">
 											PAGO TOTAL DE LA RESERVA
 										</div>
