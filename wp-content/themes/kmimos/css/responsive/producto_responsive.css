@@ -101,6 +101,12 @@
 	    height: 95px !important;
 	}
 
+	.km-cupones > div:nth-child(1){
+		width: 70%;
+	}
+	.km-cupones > div:nth-child(2){
+		width: 30%;
+	}
 }
 
 @media (max-width: 400px){
