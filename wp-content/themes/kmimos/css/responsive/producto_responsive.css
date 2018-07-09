@@ -102,10 +102,10 @@
 	}
 
 	.km-cupones > div:nth-child(1){
-		width: 70%;
+		width: 60%;
 	}
 	.km-cupones > div:nth-child(2){
-		width: 30%;
+		width: 40%;
 	}
 }
 
@@ -137,9 +137,9 @@
 	}
 
 	.km-cupones > div:nth-child(1){
-		width: 70%!important;
+		width: 60%!important;
 	}
 	.km-cupones > div:nth-child(2){
-		width: 30%!important;
+		width: 40%!important;
 	}
 }
