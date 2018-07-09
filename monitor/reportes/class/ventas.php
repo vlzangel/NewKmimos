@@ -134,7 +134,8 @@ class ventas extends general{
 				sum(recompra_cant) as recompra_cant, 
 				sum(recompra_noches) as recompra_noches, 
 				sum(recompra_mascotas_cantidad) as recompra_mascotas_cantidad, 
-				sum(recompra_noches_total) as recompra_noches_total, 
+				sum(recompra_noches_total) as recompra_noches_total,
+				count(cliente_email) as num_clientes_recompra, 
 				fecha 
 			FROM
 				(SELECT 
@@ -149,10 +150,12 @@ class ventas extends general{
 					estatus = 'Confirmado' 
 					AND fecha >= '{$desde}' 
 					AND fecha <= '{$hasta}' 
-					GROUP BY cliente_email) as temp 
+				GROUP BY cliente_email) as temp 
 			WHERE recompra_cant > 1
 			GROUP BY fecha
 			order by fecha desc";
+
+//echo $sql;
 
 		$result = $this->select($sql);
 		return $result;

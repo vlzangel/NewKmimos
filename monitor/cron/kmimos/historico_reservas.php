@@ -7,8 +7,9 @@ ini_set('display_errors', '1');
 // ************************************* **
 	require_once('funciones.php');
 
-
 	$hoy = date('Y-m-d');
+	$hoy = '2018-06-15';
+	
 	if( isset($_GET['d']) && !empty($_GET['d']) ){
 		$hoy = $_GET['d'];
 	}
@@ -99,9 +100,14 @@ echo '<pre>';
 			  		$pets_razas  = array();
 			  		$pets_edad	 = array();
 
+			  		$__mascota = '';
+			  		if( isset($razas[ $pet['raza'] ]) ){
+				  		$__mascota = $razas[ $pet['raza'] ];
+			  		}
+
 					foreach( $mypets as $pet_id => $pet) { 
 						$pets_nombre[] = $pet['nombre'];
-						$pets_razas[] = $razas[ $pet['raza'] ];
+						$pets_razas[] = $__mascota;
 						$pets_edad[] = $pet['edad'];
 					} 
 
