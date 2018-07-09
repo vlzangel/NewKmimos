@@ -134,4 +134,11 @@
 	.alerta_flash_paso_txt {
 	    font-size: 11px;
 	}
+
+	.km-cupones > div:nth-child(1){
+		width: 70%!important;
+	}
+	.km-cupones > div:nth-child(2){
+		width: 30%!important;
+	}
 }
