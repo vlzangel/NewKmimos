@@ -25,6 +25,9 @@
 	add_action( 'wp_dashboard_setup', 'resumen_add_dashboard_widgets' );
 
 	function resumen_dashboard_widget_function() {
+
+		date_default_timezone_set('America/Mexico_City');
+		
 		global $wpdb;
 
 		$inicio = date("Y-m")."-01 00:00:00";
@@ -118,6 +121,9 @@
 	}
 
 	function ventas_dashboard_widget_function() {
+
+		date_default_timezone_set('America/Mexico_City');
+		
 		global $wpdb;
 
 		$fin = date("Y-m", strtotime ( '-12 month' , time() ) )."-01 00:00:00";
@@ -304,6 +310,9 @@
 	}
 
 	function noches_dashboard_widget_function(){
+
+		date_default_timezone_set('America/Mexico_City');
+		
 		global $wpdb;
 
 		$fin = date("Y-m", strtotime ( '-12 month' , time() ) )."-01 00:00:00";

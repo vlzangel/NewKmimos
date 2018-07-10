@@ -1,6 +1,15 @@
 <?php
 	
 	include dirname(__FILE__).'/widgets/admin.php';
+
+	add_action('transition_comment_status', 'my_approve_comment_callback', 10, 3);
+	function my_approve_comment_callback($new_status, $old_status, $comment) {
+	    if($old_status != $new_status) {
+	        if($new_status == 'approved') {
+	            vlz_actualizar_ratings($comment->comment_post_ID);
+	        }
+	    }
+	}
 	
 	function get_publicidad($seccion, $user_id = null){
 		
