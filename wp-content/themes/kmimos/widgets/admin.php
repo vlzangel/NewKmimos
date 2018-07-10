@@ -38,7 +38,8 @@
 				orden.ID AS ordenID,
 				reserva.ID AS reservaID,
 				orden.post_status AS ordenStatus,
-				reserva.post_status AS reservaStatus
+				reserva.post_status AS reservaStatus,
+				orden.post_date AS fecha
 			FROM 
 				wp_posts AS orden
 			INNER JOIN wp_posts AS reserva ON ( orden.ID = reserva.post_parent )
@@ -49,13 +50,23 @@
 
 		$pedidos = $wpdb->get_results( $sql );
 		
+		$_hoy = 0;
+		$_mes = 0;
+
 		$pendientes = 0;
 		$confirmadas = 0;
 		$completadas = 0;
 		$modificadas = 0;
 		$canceladas = 0;
 
+		$dia_en_curso = strtotime ( date("Y-m-d") );
+		$mes_en_curso = strtotime ( date("Y-m").'-1' );
+		$mes_anterior = strtotime ( date("Y-m", strtotime ( '-1 month' , time() ) ).'-1' );
+
 		foreach ($pedidos as $pedido) {
+
+			$monitorear = false;
+			$fecha = strtotime( $pedido->fecha );
 
 			switch ( $pedido->ordenStatus ) {
 				case 'wc-confirmed':
@@ -64,12 +75,17 @@
 						$completadas++;
 					}
 					$confirmadas++;
+					$monitorear = true;
 				break;
 				case 'wc-completed':
 					$pendientes++;
+					$confirmadas++;
+					$monitorear = true;
 				break;
 				case 'wc-partially-paid':
 					$pendientes++;
+					$confirmadas++;
+					$monitorear = true;
 				break;
 				case 'wc-cancelled':
 					$canceladas++;
@@ -77,6 +93,63 @@
 				case 'modified':
 					$modificadas++;
 				break;
+			}
+
+			if( $monitorear ){
+
+				if( $dia_en_curso <= $fecha ){
+					$_hoy++;
+				}
+			}
+
+		}
+
+
+		$inicio = date("Y-m", strtotime ( '-2 month' , time() ) );
+		$fin = date("Y-m")."-01 00:00:00";
+
+		$sql = "
+			SELECT 
+				orden.ID AS ordenID,
+				reserva.ID AS reservaID,
+				orden.post_status AS ordenStatus,
+				reserva.post_status AS reservaStatus,
+				orden.post_date AS fecha
+			FROM 
+				wp_posts AS orden
+			INNER JOIN wp_posts AS reserva ON ( orden.ID = reserva.post_parent )
+			WHERE 
+				orden.post_date >= '{$inicio}' AND 
+				orden.post_date <= '{$fin}' AND 
+				orden.post_type = 'shop_order' ";
+
+		$pedidos = $wpdb->get_results( $sql );
+		
+		$_mes = 0;
+
+		foreach ($pedidos as $pedido) {
+
+			$monitorear = false;
+			$fecha = strtotime( $pedido->fecha );
+
+			switch ( $pedido->ordenStatus ) {
+				case 'wc-confirmed':
+					$monitorear = true;
+				break;
+				case 'wc-completed':
+					$monitorear = true;
+				break;
+				case 'wc-partially-paid':
+					$monitorear = true;
+				break;
+			}
+
+			if( $monitorear ){
+
+				if( $mes_anterior <= $fecha && $fecha < $mes_en_curso ){
+					$_mes++;
+				}
+
 			}
 
 		}
@@ -103,6 +176,14 @@
 					<li class="sales-this-month">
 						<a><strong><span class="amount">'.$confirmadas.'</span> Reservas</strong> Confirmadas + Pendientes</a>
 					</li>
+
+					<li class="completed">
+						<a><strong>'.$_hoy.' Reservas</strong> Confirmadas Hoy</a>
+					</li>
+					<li class="completed">
+						<a><strong>'.$_mes.' Reservas</strong> Confirmadas el Mes pasado</a>
+					</li>
+
 					<li class="processing-orders">
 						<a><strong>'.$pendientes.' Reservas</strong> Pendientes</a>
 					</li>
