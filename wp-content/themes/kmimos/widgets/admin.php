@@ -1,7 +1,7 @@
 <?php
 
 	function resumen_add_dashboard_widgets() {
-		wp_add_dashboard_widget( 'resumen_dashboard_widget', 'Resumen del Mes', 'resumen_dashboard_widget_function' );	
+		wp_add_dashboard_widget( 'resumen_dashboard_widget', 'Resumen de Reservas', 'resumen_dashboard_widget_function' );	
 
         if( !in_array($current_user->ID, array(
             367, // Kmimos
