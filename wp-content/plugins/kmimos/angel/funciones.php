@@ -360,6 +360,11 @@
                             "resaltar_movil"  => true
                         ),
                         array(
+                            "url"   => get_home_url()."/perfil-usuario/mis-facturas",
+                            "name"  => "Mis Facturas",
+                            "icono" => "33",
+                        ),
+                        array(
                             "url"   => get_home_url()."/perfil-usuario/solicitudes",
                             "name"  => "Mis Solicitudes",
                             "icono" => "33"

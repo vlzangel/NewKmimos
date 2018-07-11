@@ -36,6 +36,17 @@
 	    			case 'cancelar_s':
 	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
     				break;
+	    			case 'facturar':
+	    				$respuesta .= '<a data-accion="factura/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-file-o" aria-hidden="true"></i> Factura</a>';
+    				break;
+
+
+	    			case 'factura_pdf':
+	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i>  PDF</a>';
+    				break;
+	    			case 'factura_xml':
+	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i> XML</a>';
+    				break;
 	    			
 	    		}
 	    	}
@@ -346,6 +357,87 @@
 	                $table.='</div>';
 	        	}
 	        }
+
+	        foreach($args as $reservas){
+	        	if( count($reservas['facturas']) > 0 ){
+
+	        		$table.='<h1 class="titulo titulo_pequenio">'.$reservas['titulo'].'</h1><div class="vlz_tabla_box">';
+		                foreach ($reservas['facturas'] as $reserva) {
+
+		                	$botones = construir_botones($reserva["acciones"]);		                	 
+
+		                	$table .= '<div class="vlz_tabla">
+			                	<div class="vlz_img">
+			                		<span style="background-image: url('.$reserva["foto"].');"></span>
+			                	</div>
+			                	<div class="vlz_tabla_superior">
+				                	<div class="vlz_tabla_cuidador vlz_celda">
+				                		<span>Cliente</span>
+				                		<div>'.$reserva["cliente"].'</div>
+				                	</div>
+				                	<div class="vlz_tabla_cuidador vlz_celda">
+				                		<span>Serie y Folio</span>
+				                		<div style="text-transform: uppercase;" >'.$reserva["serie"].'-'.$reserva["reserva_id"].'</div>
+				                	</div>
+				                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno">
+				                		<a class="ver_reserva_init"><i class="fa fa-eye"></i> Ver</a>
+				                		'.$botones.'
+				                	</div>
+				                	<div class="vlz_tabla_cuidador vlz_cerrar">
+				                		<span>Nro. de Referencia</span>
+				                		<div>'.$reserva["numeroReferencia"].'</div>
+				                	</div>
+			                	</div>
+		                		<i class="fa fa-times ver_reserva_init_closet" aria-hidden="true"></i>
+			                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
+			                		<a class="ver_reserva_init_fuera"><i class="fa fa-eye"></i> Ver</a>
+			                	</div>
+			                	<div class="vlz_tabla_inferior">
+			                		
+			                		<div class="desglose_reserva">
+				                		<div class="item_desglose vlz_bold vlz_solo_movil">
+				                			<div>Estado</div>
+				                			<span>'.$reserva["estado"].'</span>
+				                		</div>
+				                		<div class="item_desglose vlz_bold_title">
+				                			<div>Estado</div>
+				                			<span>'.$reserva["estado"].'</span>
+				                		</div>
+				                		<div class="item_desglose vlz_bold">
+				                			<div>Fecha de Creaci&oacute;n</div>
+				                			<span>'.$reserva["fecha_creacion"].'</span>
+				                		</div>
+				                		<div class="item_desglose vlz_bold">
+				                			<div>No. Certificado</div>
+				                			<span>'.$reserva["certificado"].'</span>
+				                		</div>
+				                		<div class="item_desglose vlz_bold">
+				                			<div>No. Certificado SAT</div>
+				                			<span>'.$reserva["certificadoSAT"].'</span>
+				                		</div>
+				                		<div class="item_desglose vlz_bold">
+				                			<div>Folio Fiscal</div>
+				                			<span>'.$reserva["folioFiscalUUID"].'</span>
+				                		</div>
+			                		</div>
+			                		<div class="total_reserva">
+				                		<div class="item_desglose">
+				                			<div>TOTAL</div>
+				                			<span>$'.number_format( $reserva["total"]+0, 2, ',', '.').'</span>
+				                		</div>
+			                		</div>
+			                		<div class="ver_reserva_botones">
+				                		'.$botones.'
+			                		</div>
+			                	</div>
+			                </div>';
+	                		 
+		                }
+
+	                $table.='</div>';
+	        	}
+	        }
+
 
 	        return $table;
 	    }
