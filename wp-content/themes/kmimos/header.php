@@ -168,6 +168,7 @@
 						<div class="clearfix container_menu">
 							<form class="barra_buscar_movil" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
 								<i class="fa fa-search"></i>
+								<input type="hidden" name="redireccionar" value="1" />
 								<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
 							</form>
 
@@ -216,6 +217,8 @@
 							<div class="clearfix container_menu">
 								<form class="barra_buscar_movil" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
 									<i class="fa fa-search"></i>
+									<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+									<input type="hidden" name="redireccionar" value="1" />
 									<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
 								</form>
 								<ul class="nav navbar-nav">
