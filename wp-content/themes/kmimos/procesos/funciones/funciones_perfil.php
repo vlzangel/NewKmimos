@@ -358,8 +358,13 @@
 	        	}
 	        }
 
-	        foreach($args as $reservas){
+	        foreach($args as $tipo_item => $reservas){
 	        	if( count($reservas['facturas']) > 0 ){
+
+    				$cliente_title = 'Cliente';
+	        		if ($tipo_item == 'cuidador') {
+        				$cliente_title = 'Emisor';
+	        		}
 
 	        		$table.='<h1 class="titulo titulo_pequenio">'.$reservas['titulo'].'</h1><div class="vlz_tabla_box">';
 		                foreach ($reservas['facturas'] as $reserva) {
@@ -372,7 +377,7 @@
 			                	</div>
 			                	<div class="vlz_tabla_superior">
 				                	<div class="vlz_tabla_cuidador vlz_celda">
-				                		<span>Cliente</span>
+				                		<span>'.$cliente_title.'</span>
 				                		<div>'.$reserva["cliente"].'</div>
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_celda">
