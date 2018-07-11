@@ -174,27 +174,28 @@
 			<div id="woocommerce_dashboard_status" class="resumen_mes" >
 				<ul class="wc_status_list">
 					<li class="sales-this-month">
-						<a><strong><span class="amount">'.$confirmadas.'</span> Reservas</strong> Confirmadas + Pendientes</a>
+						<a><strong><span class="amount">'.$confirmadas.'</span> Reservas</strong> Confirmadas + Pendientes <span style="font-weight: bold;">( del Mes )</span> </a>
 					</li>
 
 					<li class="completed">
-						<a><strong>'.$_hoy.' Reservas</strong> Confirmadas Hoy</a>
-					</li>
-					<li class="completed">
-						<a><strong>'.$_mes.' Reservas</strong> Confirmadas el Mes pasado</a>
+						<a><strong>'.$_hoy.' Reservas</strong> Confirmadas <span style="font-weight: bold;">( Hoy )</span></a>
 					</li>
 
 					<li class="processing-orders">
-						<a><strong>'.$pendientes.' Reservas</strong> Pendientes</a>
+						<a><strong>'.$pendientes.' Reservas</strong> Pendientes <span style="font-weight: bold;">( del Mes )</span> </a>
 					</li>
 					<li class="completed">
-						<a><strong>'.$completadas.' Reservas</strong> Completadas</a>
+						<a><strong>'.$completadas.' Reservas</strong> Completadas <span style="font-weight: bold;">( del Mes )</span> </a>
 					</li>
 					<li class="on-hold-orders">
-						<a><strong>'.$canceladas.' Reservas</strong> Canceladas</a>
+						<a><strong>'.$canceladas.' Reservas</strong> Canceladas <span style="font-weight: bold;">( del Mes )</span> </a>
 					</li>
 					<li class="on-hold-orders modified">
-						<a><strong>'.$modificadas.' Reservas</strong> Modificadas</a>
+						<a><strong>'.$modificadas.' Reservas</strong> Modificadas <span style="font-weight: bold;">( del Mes )</span> </a>
+					</li>
+
+					<li class="completed">
+						<a><strong>'.$_mes.' Reservas</strong> Confirmadas <span style="font-weight: bold;">( Mes pasado )</span> </a>
 					</li>
 				</ul>
 			</div>
