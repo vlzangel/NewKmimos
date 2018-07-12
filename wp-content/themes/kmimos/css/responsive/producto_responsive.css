@@ -143,4 +143,9 @@
 		width: 45%!important;
 		font-size: 11px!important;
 	}
+
+	.km-cupones input {
+    	padding: 10px;
+    	font-size: 16px;
+	}
 }
