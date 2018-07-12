@@ -63,6 +63,7 @@
 			$cancelar = $reserva->post_parent;
 			$modificar = md5($reserva->ID)."_".md5($user_id)."_".md5($servicio->ID);
 			$valorar = $reserva->ID;
+			$facturar = $reserva->post_parent;
 
 			$xitems = $wpdb->get_results( "SELECT meta_key, meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = ".$_metas_reserva["_booking_order_item_id"][0] );
 			$items = array();
@@ -134,7 +135,8 @@
 					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver,
-						"valorar" => $valorar
+						"valorar" => $valorar,
+						"facturar" => $facturar
 					),
 					"desglose" => $desglose
 				);

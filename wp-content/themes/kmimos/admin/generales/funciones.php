@@ -60,6 +60,16 @@
                 'icon'          =>  '',
             );
 
+           $opciones_menu_reporte[] = array(
+                'title'         =>  __('Facturas'),
+                'short-title'   =>  __('Facturas'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'reporte_facturas',
+                'access'        =>  'manage_options',
+                'page'          =>  'reporte_facturas',
+                'icon'          =>  '',
+            );
+
             foreach($opciones_menu_reporte as $opcion){
                 if( $opcion['parent'] == '' ){
                     add_menu_page(
@@ -107,6 +117,13 @@
         function reporte_otros(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/otros/reporte_otros.php');
+        }
+    }
+
+    if(!function_exists('reporte_facturas')){
+        function reporte_facturas(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/backend/facturas/reporte_facturas.php');
         }
     }
 ?> 
