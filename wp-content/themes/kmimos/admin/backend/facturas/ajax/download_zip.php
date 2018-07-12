@@ -22,18 +22,18 @@
 	}
 
 	$sts = create_zip( $f, $filename );
-	if( $sts ){
+	if( $sts == 1 ){
 		$r = json_encode(['estatus'=>'listo', 'url'=> get_home_url()."/wp-content/uploads/temp/".time().".zip" ]);
 		print_r($r);
  	}
  	else {
-		$r = json_encode(['estatus'=>'error', 'url'=>'']);
+		$r = json_encode(['estatus'=>'error', 'url'=>'', 'test'=>$sts]);
 		print_r($r);
  	}
 
 	function create_zip($files = array(),$destination = '',$overwrite = false) {
 		//if the zip file already exists and overwrite is false, return false
-		if(file_exists($destination) && !$overwrite) { return false; }
+		if(file_exists($destination) && !$overwrite) { return 2; }
 		//vars
 		$valid_files = array();
 		//if files were passed in...
@@ -52,7 +52,7 @@
 			//create the archive
 			$zip = new ZipArchive();
 			if($zip->open($destination,$overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
-				return false;
+				return 3;
 			}
 			//add the files
 			foreach($valid_files as $key => $file) {
@@ -65,10 +65,10 @@
 			$zip->close();
 			
 			//check to make sure the file exists
-			return file_exists($destination);
+			return (file_exists($destination))?1:0;
 		}
 		else
 		{
-			return false;
+			return 4;
 		}
 	}
