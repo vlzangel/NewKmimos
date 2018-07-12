@@ -2,7 +2,9 @@
 	
 	$fact_selected = $_POST['fact_selected'];
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
-	
+
+    include($raiz."/wp-load.php");
+
 	$name = time().".zip";
 
 	$filename = "{$raiz}/wp-content/uploads/temp/".$name;
@@ -21,7 +23,7 @@
 
 	$sts = create_zip( $f, $filename );
 	if( $sts ){
-		$r = json_encode(['estatus'=>'listo', 'url'=> "/wp-content/uploads/temp/".time().".zip" ]);
+		$r = json_encode(['estatus'=>'listo', 'url'=> get_home_url()."/wp-content/uploads/temp/".time().".zip" ]);
 		print_r($r);
  	}
  	else {
