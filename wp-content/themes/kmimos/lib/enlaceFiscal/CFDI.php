@@ -385,14 +385,20 @@ class CFDI {
 
 				// descargar archivo PDF
 				$path = $raiz.'/wp-content/uploads/facturas/';
-				$filename = $path . $ef->folioInterno.'-'.$ef->numeroReferencia . '.pdf'; // [ folioInterno = Reserva_id ]
-				$file_sts = file_put_contents( 
-					$filename, 
+				$filename = $path . $ef->folioInterno.'-'.$ef->numeroReferencia; // [ folioInterno = Reserva_id ]
+
+				$file_pdf_sts = file_put_contents( 
+					$filename. '.pdf', 
 					$this->descargar_cfdi($ef->descargaArchivoPDF) 
 				);
+				
+				$file_xml_sts = file_put_contents( 
+					$filename. '.xml', 
+					$this->descargar_cfdi($ef->descargaXmlCFDi) 
+				);
 
-				if( $file_sts ){
-					$respuesta = $filename;
+				if( $file_pdf_sts ){
+					$respuesta = $filename. '.pdf';
 				}
 			}
 		}

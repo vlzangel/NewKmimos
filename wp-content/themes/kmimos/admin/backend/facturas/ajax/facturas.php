@@ -17,21 +17,36 @@
 
     $actual = time();
 
-    $facturas = $db->get_results("SELECT * FROM facturas ORDER BY fechaGeneracion ASC");
+    extract($_POST);
+
+    $where = '';
+    if( isset($ini) && !empty($ini) ){ 
+        $where = " where  fechaGeneracion >= '{$ini} 00:00:00' "; 
+        if( isset($fin) && !empty($fin) ){ 
+            $where .= " and fechaGeneracion <= '{$fin} 23:59:59' "; 
+        }
+    }
+
+    $facturas = $db->get_results("SELECT * FROM facturas {$where} ORDER BY fechaGeneracion ASC");
 
     if( $facturas != false ){
         $i = 0;
         foreach ($facturas as $key => $value) {
 
-            $data["data"][] = array(                
+            $cuidador_name = $db->get_var( "SELECT display_name FROM wp_users WHERE ID = ".$value->cuidador_id );
+            $cliente_name = $db->get_var( "SELECT display_name FROM wp_users WHERE ID = ".$value->cliente_id );
+
+            $data["data"][] = array(
+                "<input type='checkbox' data-type='fact_selected' name='fact_selected[]' value='".$value->reserva_id.'_'.$value->numeroReferencia."'>",
                 $value->fechaGeneracion,
                 $value->serie . "-" . $value->reserva_id,
-                $value->cuidador_id,
-                $value->cliente_id,
+                $cuidador_name,
+                $cliente_name,
                 $value->numeroReferencia,
                 $value->serieCertificado,
                 $value->serieCertificadoSAT,
                 $value->folioFiscalUUID,
+                $value->receptor,
                 $value->estado,
                 "<a style='padding:5px;' href='".$value->urlXml."'><i class='fa fa-cloud-download'></i> XML </a>".
                 "<a style='padding:5px;' href='".$value->urlPdf."'><i class='fa fa-cloud-download'></i> PDF </a>"

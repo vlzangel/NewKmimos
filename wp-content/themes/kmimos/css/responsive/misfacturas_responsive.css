@@ -16,7 +16,7 @@
 	}
 }
 @media (max-width: 500px){
-	.main .vlz_tabla .ver_reserva_botones a {
+ 	.main .vlz_tabla .ver_reserva_botones a {
 	    width: calc( 100% - 5px );
 	    padding: 15px;
 	}	
