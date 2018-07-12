@@ -136,6 +136,16 @@
 		    wp_enqueue_style('ver_fotos', getTema()."/css/ver_fotos.css", array(), '1.0.0');
 			wp_enqueue_script('ver_fotos', getTema()."/js/ver_fotos.js", array("jquery", "global_js"), '1.0.0');
 		break;
+		// para el cliente
+		case 'factura':
+			wp_enqueue_script('factura', getTema()."/js/factura.js", array("jquery", "global_js"), '1.0.0');
+		break;
+		// para el cuidador
+		case 'mis-facturas':
+		    wp_enqueue_style('misfacturas', getTema()."/css/misfacturas.css", array(), '1.0.0');
+			wp_enqueue_style('misfacturas_responsive', getTema()."/css/responsive/misfacturas_responsive.css", array(), '1.0.0');
+			wp_enqueue_script('misfacturas_js', getTema()."/js/misfacturas.js", array("jquery", "global_js"), '1.0.0');
+		break;
 	}
 
 	get_header();
@@ -286,6 +296,14 @@
 			    ";    
 			    echo comprimir_styles($CONTENIDO);
 				include("admin/frontend/fotos/ver-fotos.php");
+			break;
+			case 'factura':
+				$mostrar_btn = false;
+				include("admin/frontend/historial/factura.php");
+			break;
+			case 'mis-facturas':
+				$mostrar_btn = false;
+				include("admin/frontend/misfacturas/misfacturas.php");
 			break;
 		}
 

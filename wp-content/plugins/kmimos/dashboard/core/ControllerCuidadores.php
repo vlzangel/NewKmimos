@@ -74,7 +74,7 @@ function getUsers($desde="", $hasta=""){
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
 		$filtro_adicional .= " 
-			DATE_FORMAT(u.user_registered, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+			u.user_registered >= '{$desde} 00:00:00' and u.user_registered <='{$hasta} 23:59:59'
 		";
 	}
 
@@ -85,7 +85,7 @@ function getUsers($desde="", $hasta=""){
 			INNER JOIN cuidadores as c ON c.user_id = u.ID
 			INNER JOIN wp_posts as p ON p.post_author = u.ID AND p.post_type = 'petsitters'
 		{$filtro_adicional}
-		ORDER BY DATE_FORMAT(u.user_registered,'%d-%m-%Y') DESC;
+		ORDER BY u.user_registered  DESC;
 	";
 	
 	$result = get_fetch_assoc($sql);

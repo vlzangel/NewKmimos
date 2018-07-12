@@ -537,6 +537,9 @@ function validar(id){
     jQuery.each(validaciones, function( index, value ) {
         var validacion = value.split(":");
         switch(validacion[0]){
+            case "isChecked":
+                if( !e.is(':checked')) {  error = true; break; }
+            break;            
             case "requerid":
                 if( e.val() == "" ){ error = true; break; }
             break;
@@ -600,6 +603,7 @@ function validarAll(Form){
         if( validar( jQuery( this ).attr("id") ) ){
             submit = false;
         }
+console.log( jQuery( this ).attr("id") +": "+submit );
     });
     if(!submit){
         var primer_error = ""; var z = true;
