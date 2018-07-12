@@ -170,11 +170,18 @@
 				.resumen_mes .wc_status_list li.modified a:before {
 					color: #ffba00 !important;
 				}
+
+				#woocommerce_dashboard_status .wc_status_list li a:before {
+				    margin: 0 8px 12px 0 !important;
+				}
+				#woocommerce_dashboard_status .wc_status_list li.low-in-stock, #woocommerce_dashboard_status .wc_status_list li.processing-orders {
+				    border-right: 0px;
+				}
 			</style>
 			<div id="woocommerce_dashboard_status" class="resumen_mes" >
 				<ul class="wc_status_list">
 					<li class="sales-this-month">
-						<a><strong><span class="amount">'.$confirmadas.'</span> Reservas</strong> Confirmadas + Pendientes <span style="font-weight: bold;">( del Mes )</span> </a>
+						<a><strong><span class="amount">'.$confirmadas.'</span> Reservas</strong> Confirmadas + Pendientes <span style="font-weight: bold;">( Este Mes )</span> </a>
 					</li>
 
 					<li class="completed">
@@ -182,20 +189,28 @@
 					</li>
 
 					<li class="processing-orders">
-						<a><strong>'.$pendientes.' Reservas</strong> Pendientes <span style="font-weight: bold;">( del Mes )</span> </a>
+						<a><strong>'.$pendientes.' Reservas</strong> Pendientes <span style="font-weight: bold;">( Este Mes )</span> </a>
 					</li>
 					<li class="completed">
-						<a><strong>'.$completadas.' Reservas</strong> Completadas <span style="font-weight: bold;">( del Mes )</span> </a>
+						<a><strong>'.$completadas.' Reservas</strong> Completadas <span style="font-weight: bold;">( Este Mes )</span> </a>
 					</li>
 					<li class="on-hold-orders">
-						<a><strong>'.$canceladas.' Reservas</strong> Canceladas <span style="font-weight: bold;">( del Mes )</span> </a>
+						<a><strong>'.$canceladas.' Reservas</strong> Canceladas <span style="font-weight: bold;">( Este Mes )</span> </a>
 					</li>
 					<li class="on-hold-orders modified">
-						<a><strong>'.$modificadas.' Reservas</strong> Modificadas <span style="font-weight: bold;">( del Mes )</span> </a>
+						<a><strong>'.$modificadas.' Reservas</strong> Modificadas <span style="font-weight: bold;">( Este Mes )</span> </a>
+					</li>
+
+					<li class="completed">
+						<a style="visibility: hidden;"><strong>'.$_mes.' Reservas</strong> Confirmadas <span style="font-weight: bold;">( Mes pasado )</span> </a>
 					</li>
 
 					<li class="completed">
 						<a><strong>'.$_mes.' Reservas</strong> Confirmadas <span style="font-weight: bold;">( Mes pasado )</span> </a>
+					</li>
+
+					<li class="completed">
+						
 					</li>
 				</ul>
 			</div>
