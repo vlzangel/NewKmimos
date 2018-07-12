@@ -27,5 +27,5 @@
 
 		$respuesta['estatus'] = $ack->AckEnlaceFiscal->estatusDocumento;
 		$respuesta['pdf'] = $ack->AckEnlaceFiscal->descargaArchivoPDF;
-		
 	}
+	$respuesta['ack'] = $AckEnlaceFiscal;
