@@ -385,7 +385,7 @@ class CFDI {
 
 				// descargar archivo PDF
 				$path = $raiz.'/wp-content/uploads/facturas/';
-				$filename = $path . $ef->folioInterno.'-'.$ef->numeroReferencia; // [ folioInterno = Reserva_id ]
+				$filename = $path . $ef->folioInterno.'_'.$ef->numeroReferencia; // [ folioInterno = Reserva_id ]
 
 				$file_pdf_sts = file_put_contents( 
 					$filename. '.pdf', 
