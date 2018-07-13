@@ -60,6 +60,10 @@
 
 	    if( $acc == "" ){
 	    	include(__DIR__."/nueva.php");
+	    }else{
+
+	    	include(__DIR__."/obtener_solicitud.php");
+
 	    }
 
 	    if( $acc == "CFM" ){

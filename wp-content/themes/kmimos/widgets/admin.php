@@ -177,6 +177,10 @@
 				#woocommerce_dashboard_status .wc_status_list li.low-in-stock, #woocommerce_dashboard_status .wc_status_list li.processing-orders {
 				    border-right: 0px;
 				}
+
+				.resumen_mes .wc_status_list li a {
+				    padding: 9px 0px !important;
+				}
 			</style>
 			<div id="woocommerce_dashboard_status" class="resumen_mes" >
 				<ul class="wc_status_list">

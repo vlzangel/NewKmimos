@@ -10,13 +10,29 @@
     $mensaje_cliente = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cliente);
     $mensaje_cliente = str_replace('[name_cliente]', $cliente_name, $mensaje_cliente);
 
+    $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
+    
+        $mensaje_cliente = str_replace('[name]', $cliente_web, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[avatar]', kmimos_get_foto($cuidador->user_id), $mensaje_cliente);
+        $mensaje_cliente = str_replace('[nombre_usuario]', $nombre_cuidador, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
+        $mensaje_cliente = str_replace('[telefonos]', $telf_cuidador, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[email]', $email_cuidador, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[id_solicitud]', $request_id, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[hora]', $_POST['meeting_time'], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[lugar]', $_POST['meeting_where'], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[desde]', date("d/m", strtotime( str_replace("/", "-", $metas_solicitud["service_start"][0]) )), $mensaje_cliente);
+        $mensaje_cliente = str_replace('[hasta]', date("d/m", $fin), $mensaje_cliente);
+        $mensaje_cliente = str_replace('[anio]', date("Y", $fin), $mensaje_cliente);
+
 
     $mensaje_cliente = get_email_html($mensaje_cliente, true, false, $cliente );    
 
     if( isset($NO_ENVIAR) ){
-        echo $email_cliente;
+        echo $mensaje_cliente;
     }else{
-        wp_mail( $email_cliente, "Confirmación de Solicitud para Conocer Cuidador", $mensaje_cliente);
+        // wp_mail( $email_cliente, "Confirmación de Solicitud para Conocer Cuidador", $mensaje_cliente);
     } 
     
     $file = $PATH_TEMPLATE.'/template/mail/conocer/cuidador/confirmar.php';
@@ -31,7 +47,7 @@
     if( isset($NO_ENVIAR) ){
         echo $mensaje_cuidador;
     }else{
-        wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $mensaje_cuidador);
+        // wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $mensaje_cuidador);
     } 
 
 	$file = $PATH_TEMPLATE.'/template/mail/conocer/admin/confirmar.php';
@@ -47,7 +63,7 @@
     if( isset($NO_ENVIAR) ){
         echo $mensaje_admin;
     }else{
-        kmimos_mails_administradores_new("Confirmación de Solicitud para Conocer a ".$cuidador_name, $mensaje_admin);
+        // kmimos_mails_administradores_new("Confirmación de Solicitud para Conocer a ".$cuidador_name, $mensaje_admin);
     } 
     
     $CONTENIDO .= "<div class='msg_acciones'>

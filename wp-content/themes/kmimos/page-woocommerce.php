@@ -421,6 +421,10 @@
 							Por favor cont&aacute;ctanos al tel&eacute;fono (55) 8526 1162 o al Whatsapp (55) 6892 2182 para ayudarte a encontrar el cuidador adecuado.
 						</div>
 					</div>
+
+					<a href='".get_home_url()."' class='km-end-btn-form vlz_btn_new_search'>
+						<span>Nueva Busqueda</span>
+					</a>
 				";
 			}
 		}
@@ -565,6 +569,10 @@
 
 					</div>
 				</div>
+
+				<a href="#" id="reserva_btn_next_1" class="km-end-btn-form km-end-btn-form-disabled disabled vlz_btn_reservar">
+					<span>SIGUIENTE</span>
+				</a>
 			';
 			if( $msg_bloqueador_no_valido != "" ){
 				$precios = $msg_bloqueador_no_valido;
@@ -595,10 +603,6 @@
 							</div>
 
 							'.$precios.'
-
-							<a href="#" id="reserva_btn_next_1" class="km-end-btn-form km-end-btn-form-disabled disabled vlz_btn_reservar">
-								<span>SIGUIENTE</span>
-							</a>
 
 						</div>
 					</div>

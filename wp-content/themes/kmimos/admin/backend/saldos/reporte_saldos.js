@@ -116,13 +116,16 @@ function updateSaldo(){
 					email: jQuery("#email").val()
 				},
 				function(HTML){
+
+					// console.log( HTML );
+
 		            jQuery("#confirmar").removeClass("disable");
 		            jQuery("#confirmar").val("Confirmar");
 
 					// jQuery("#info_user").css("display", "none");
 					getSaldo(function(){
 						jQuery(".confirmaciones").css("display", "none");
-					});					
+					});				
 
 		        }
 		    ); 

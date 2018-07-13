@@ -1,6 +1,10 @@
 <?php
 
-    kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"], $usu);
+    if( $superAdmin == "" && $status == "modified" ){
+        
+    }else{
+        kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"], $usu);
+    }
     update_cupos( $id, "-");
     
     $wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = $id;");
