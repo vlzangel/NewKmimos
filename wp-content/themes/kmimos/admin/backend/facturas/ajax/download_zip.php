@@ -10,6 +10,7 @@
 	$filename = "{$raiz}/wp-content/uploads/temp/".$name;
 
 	$f = [];
+	$debug = [];
 	foreach ($fact_selected as $val) {			
  		$r =  "{$raiz}/wp-content/uploads/facturas/{$val}.pdf";
  		if( file_exists($r) ){
@@ -19,15 +20,19 @@
  		if( file_exists($xml) ){
 			$f["{$val}.xml"] = $xml;
 		}
+
+		$debug[] = $r;
+		$debug[] = $xml;
 	}
 
 	$sts = create_zip( $f, $filename );
+	$debug['sts'] = $sts; 
 	if( $sts == 1 ){
 		$r = json_encode(['estatus'=>'listo', 'url'=> get_home_url()."/wp-content/uploads/temp/".time().".zip" ]);
 		print_r($r);
  	}
  	else {
-		$r = json_encode(['estatus'=>'error', 'url'=>'', 'test'=>$sts]);
+		$r = json_encode(['estatus'=>'error', 'url'=>'', 'test'=> $debug]);
 		print_r($r);
  	}
 

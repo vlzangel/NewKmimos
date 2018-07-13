@@ -20,8 +20,8 @@
 	$AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
 
 	$respuesta = [];
-	if( !empty($AckEnlaceFiscal) ){
-		$ack = json_decode($AckEnlaceFiscal);
+	if( !empty($AckEnlaceFiscal['ack']) ){
+		$ack = json_decode($AckEnlaceFiscal['ack']);
 
 		$CFDI->guardarCfdi( 'cliente', $data_reserva, $ack, $db );
 
