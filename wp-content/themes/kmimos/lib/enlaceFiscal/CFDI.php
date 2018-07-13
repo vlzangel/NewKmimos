@@ -76,7 +76,6 @@ class CFDI {
 	// Generar CFDI para el Cliente ( Monto: 100% )
 	public function generar_Cfdi_Cliente( $data=[] ){
 
-
 		$data['rfc'] = $this->RFC; // Dato de prueba hasta que se registre los datos del cuidador
 		$data['serie'] = 'CC';
 
@@ -293,10 +292,6 @@ class CFDI {
         // Calcular precio base de la factura
 			// $subtotal = $data['servicio']['desglose']['total'] * 100 / $base_iva;
 
-	       	if ( $sinDescuento ){
-	       		$data['servicio']['desglose']['descuento'] = 0;
-	       		$descuento = 0;
-	       	}
 
 		// Estructura de datos CFDI
 			$CFDi = [
@@ -313,11 +308,11 @@ class CFDI {
 					"descuentos" => (float) number_format( $data['servicio']['desglose']['descuento'], 2, '.', ''),
 					"DatosDePago" => [
 						"metodoDePago" => "PUE",
-						"formaDePago" => $formaDePago, //"03"
+						"formaDePago" => $formaDePago, 
 					],
 					"Receptor" => [
-						"rfc" => $data['receptor']['rfc'], //"BBB010101BB1",
-						"nombre" => $data['receptor']['nombre'], //"Empresa Demo's",
+						"rfc" => $data['receptor']['rfc'],
+						"nombre" => $data['receptor']['nombre'],
 						"usoCfdi" => "gastos"
 					],
 					"Partidas" => $partidas,
@@ -449,6 +444,7 @@ class CFDI {
 	            $bufer .= fread ($da, 4096);
 
 	        fclose ($da);
+
 	    } else {
 
 	        preg_match ('/^\\s*(?:\\w+:\\/{2})?(.*?)(:\\d+)?(\\/.*)$/',
