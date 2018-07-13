@@ -30,6 +30,15 @@
             $current_user = wp_get_current_user();
             $user_id = $current_user->ID;
 
+            $permitidos = array(
+                367, // Kmimos
+                8604, // Rob
+                14720, // Alfredo
+                9726, // Roberto
+            );
+
+            if( in_array($user_id, $permitidos ) ){
+                
                 $opciones_menu_reporte[] = array(
                     'title'         =>  __('Saldos'),
                     'short-title'   =>  __('Saldos'),
@@ -38,8 +47,11 @@
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_saldos',
                 );
+            
+            }
 
-            // if( in_array($user_id, $user_especiales)  ){
+            if( in_array($user_id, $user_especiales)  ){
+
                 $opciones_menu_reporte[] = array(
                     'title'         =>  __('Otros'),
                     'short-title'   =>  __('Otros'),
@@ -48,25 +60,15 @@
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_otros',
                 );
-            // }
+            }
 
-           $opciones_menu_reporte[] = array(
+            $opciones_menu_reporte[] = array(
                 'title'         =>  __('Reporte Otro'),
                 'short-title'   =>  __('Reporte Otro'),
                 'parent'        =>  'reporte_fotos',
                 'slug'          =>  'reporte_otro',
                 'access'        =>  'manage_options',
                 'page'          =>  'reporte_otro',
-                'icon'          =>  '',
-            );
-
-           $opciones_menu_reporte[] = array(
-                'title'         =>  __('Facturas'),
-                'short-title'   =>  __('Facturas'),
-                'parent'        =>  'reporte_fotos',
-                'slug'          =>  'reporte_facturas',
-                'access'        =>  'manage_options',
-                'page'          =>  'reporte_facturas',
                 'icon'          =>  '',
             );
 
@@ -117,13 +119,6 @@
         function reporte_otros(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/otros/reporte_otros.php');
-        }
-    }
-
-    if(!function_exists('reporte_facturas')){
-        function reporte_facturas(){
-            include_once(dirname(__DIR__).'/recursos/importador.php');
-            include_once(dirname(__DIR__).'/backend/facturas/reporte_facturas.php');
         }
     }
 ?> 
