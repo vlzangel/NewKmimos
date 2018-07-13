@@ -89,6 +89,8 @@ class CFDI {
 			$tasaCuota = $iva / 100; // IVA
 			$totalImporte = 0; // Total de Impuesto
 			$formaDePago = "";
+			$_subtotal = 0;
+			$_total = 0;
 
 		// Forma de Pago - Catalago del SAT
 			switch( $data['servicio']['tipo_pago'] ){
@@ -143,12 +145,15 @@ class CFDI {
 					// Desglose Impuesto: Calcular impuestos
 					$impuesto = $subtotal * $tasaCuota;
 
-					$totalImporte += $impuesto;
+					$totalImporte += number_format( $impuesto, 2 );
+
+					$_subtotal += number_format($subtotal, 2);
+					$_total += $subtotal + $impuesto; 
 
 					$partidas[] = [
 					    "cantidad" => $cantidad,
 					    "claveUnidad" => "DAY",
-					    "claveProdServ" => "42171606", // Pendiente por verificar en el SAT *******************************
+					    "claveProdServ" => "90111500", // Pendiente por verificar en el SAT *******************************
 					    "descripcion" => $item[0]." ". $item[1] ." x ".$item[2] ." x $".$item[3],
 					    "valorUnitario" =>(float) number_format($base, 2, '.', ''),
 					    "importe" => (float) number_format( $subtotal, 2, '.', ''),
@@ -195,12 +200,15 @@ class CFDI {
 					// Calcular impuestos
 					$impuesto = $subtotal * $tasaCuota;
 
-					$totalImporte += $impuesto;
+					$totalImporte += number_format( $impuesto, 2 );
+
+					$_subtotal += number_format($subtotal, 2);
+					$_total += $subtotal + $impuesto; 
 
 					$partidas[] = [
 					    "cantidad" => $cantidad,
 					    "claveUnidad" => "DAY",
-					    "claveProdServ" => "42171606", // Pendiente por verificar en el SAT *******************************
+					    "claveProdServ" => "90111500", // Pendiente por verificar en el SAT *******************************
 					    "descripcion" =>  $item[0] ." x ".$item[1] ." x $".$item[2],
 					    "valorUnitario" =>(float)  number_format($base, 2, '.', ''),
 					    "importe" => (float) number_format( $subtotal, 2, '.', ''),
@@ -246,12 +254,15 @@ class CFDI {
 					// Calcular impuestos
 					$impuesto = $subtotal * $tasaCuota;
 
-					$totalImporte += $impuesto;
+					$totalImporte += number_format( $impuesto, 2 );
+
+					$_subtotal += number_format($subtotal, 2);
+					$_total += $subtotal + $impuesto; 
 
 					$partidas[] = [
 					    "cantidad" => $cantidad,
 					    "claveUnidad" => "DAY",
-					    "claveProdServ" => "42171606", // Pendiente por verificar en el SAT *******************************
+					    "claveProdServ" => "90111500", // Pendiente por verificar en el SAT *******************************
 					    "descripcion" => $item[0] ." x ".$item[1] ." x $".$item[2],
 					    "valorUnitario" =>(float)  number_format($base, 2, '.', ''),
 					    "importe" => (float) number_format($subtotal, 2, '.', ''),
@@ -276,7 +287,7 @@ class CFDI {
 	        ];
 
         // Calcular precio base de la factura
-			$subtotal = $data['servicio']['desglose']['total'] * 100 / $base_iva;
+			// $subtotal = $data['servicio']['desglose']['total'] * 100 / $base_iva;
 
 		// Estructura de datos CFDI
 			$CFDi = [
@@ -287,8 +298,8 @@ class CFDI {
 					"folioInterno" => $data['servicio']['id_reserva'],
 					"tipoMoneda" => "MXN",
 					"fechaEmision" => $data['fechaEmision'], //"2017-02-22 11:03:43",
-					"subTotal" => (float) number_format( $subtotal, 2, '.', ''), //"20.00", ( Sin IVA )
-					"total" => (float) number_format( $data['servicio']['desglose']['total'], 2, '.', ''), // "23.20" ( Con IVA )
+					"subTotal" => (float) number_format( $_subtotal, 2, '.', ''), //"20.00", ( Sin IVA )
+					"total" => (float) number_format( $_total, 2, '.', ''), // "23.20" ( Con IVA )
 					"rfc" => $data['rfc'],
 					"descuentos" => (float) number_format( $data['servicio']['desglose']['descuento'], 2, '.', ''),
 					"DatosDePago" => [
@@ -327,7 +338,11 @@ class CFDI {
 			];
 
 	 	// return $CFDi;
-		return $this->request( $CFDi, 'generarCfdi' );
+		$cfdi_respuesta = $this->request( $CFDi, 'generarCfdi' );
+		return [ 
+			'ack' => $cfdi_respuesta, 
+			'param' => $CFDi,  
+		];
 	}
 
 	// Registra el CFDI en la data de Kmimos

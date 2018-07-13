@@ -53,6 +53,9 @@ jQuery( document ).ready(function() {
 
                             jQuery('#solicitar-factura').css('display', 'none');
                             jQuery('#descargar-factura').css('display', 'block');
+                        }else{
+                            alert("Ocurrio un problema al tratar de procesar la solitiud");
+                            console.log(data['ack']);
                         }
                         
                         jQuery('.perfil_cargando').css('display', 'none');
