@@ -91,6 +91,7 @@ class CFDI {
 			$formaDePago = "";
 			$_subtotal = 0;
 			$_total = 0;
+			$sinDescuento = false;
 
 		// Forma de Pago - Catalago del SAT
 			switch( $data['servicio']['tipo_pago'] ){
@@ -111,6 +112,9 @@ class CFDI {
 
 				//99;Por definir;otro
 				case "Pago por Saldo y/o Descuentos":
+					$sinDescuento = false;
+					$formaDePago = "99";
+					break;			
 				default:
 					$formaDePago = "99";
 					break;			
@@ -288,6 +292,11 @@ class CFDI {
 
         // Calcular precio base de la factura
 			// $subtotal = $data['servicio']['desglose']['total'] * 100 / $base_iva;
+
+	       	if ( $sinDescuento ){
+	       		$data['servicio']['desglose']['descuento'] = 0;
+	       		$descuento = 0;
+	       	}
 
 		// Estructura de datos CFDI
 			$CFDi = [
