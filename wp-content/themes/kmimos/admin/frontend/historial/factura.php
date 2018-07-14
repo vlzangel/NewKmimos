@@ -1,6 +1,5 @@
 <?php
 
-include( dirname(dirname(dirname(__DIR__)))."/lib/enlaceFiscal/CFDI.php" );
 
 
 include_once( dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))) ."/vlz_config.php");
@@ -9,6 +8,7 @@ include_once( dirname(dirname(dirname(__DIR__))) . "/procesos/funciones/db.php")
 global $wpdb;
 
 $db = new db( new mysqli($host, $user, $pass, $db) );
+include_once( dirname(dirname(dirname(__DIR__)))."/lib/enlaceFiscal/CFDI.php" );
 
 
 $orden = vlz_get_page();

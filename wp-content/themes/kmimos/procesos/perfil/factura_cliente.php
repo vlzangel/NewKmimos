@@ -7,8 +7,7 @@
 	extract($_POST);
 
 	$data_reserva = kmimos_desglose_reserva_data($id_orden, true);
-
-	$user_id = $data_reserva['cliente']['id'];
+	$user_id = $data_reserva['cliente']['id'];	
 
 	// Guardar datos de facturacion del usuario
 	update_user_meta( $user_id, 'billing_rfc', $rfc );
@@ -29,3 +28,4 @@
 		$respuesta['pdf'] = $ack->AckEnlaceFiscal->descargaArchivoPDF;
 	}
 	$respuesta['ack'] = $AckEnlaceFiscal;
+
