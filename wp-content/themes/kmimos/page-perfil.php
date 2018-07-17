@@ -138,6 +138,7 @@
 		break;
 		// para el cliente
 		case 'factura':
+			wp_enqueue_style('datos-de-facturacion-css', getTema()."/css/datos-de-facturacion.css", array(), '1.0.0');
 			wp_enqueue_script('factura', getTema()."/js/factura.js", array("jquery", "global_js"), '1.0.0');
 		break;
 		// para el cuidador
@@ -146,6 +147,10 @@
 			wp_enqueue_style('misfacturas_responsive', getTema()."/css/responsive/misfacturas_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('misfacturas_js', getTema()."/js/misfacturas.js", array("jquery", "global_js"), '1.0.0');
 		break;
+		case 'datos-de-facturacion':
+			wp_enqueue_style('datos-de-facturacion-css', getTema()."/css/datos-de-facturacion.css", array(), '1.0.0');
+			wp_enqueue_script('datos-de-facturacion-js', getTema()."/js/datos-de-facturacion.js", array("jquery", "global_js"), '1.0.0');
+		break;		
 	}
 
 	get_header();
@@ -304,6 +309,10 @@
 			case 'mis-facturas':
 				$mostrar_btn = false;
 				include("admin/frontend/misfacturas/misfacturas.php");
+			break;
+			case 'datos-de-facturacion':
+				$mostrar_btn = true;
+				include("admin/frontend/datos-de-facturacion/datos-de-facturacion.php");
 			break;
 		}
 

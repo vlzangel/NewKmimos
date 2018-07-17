@@ -71,6 +71,32 @@ jQuery( document ).ready(function() {
         }
     });
 
-
+    jQuery(document).on('change', 'select[name="rc_estado"]', function(e){
+        var estado_id = jQuery(this).val();
+            
+        if( estado_id != "" ){
+            cambio_municipio(estado_id);
+        }
+    });
 
 });
+
+
+function cambio_municipio(estado_id, CB = false){
+    jQuery.getJSON( 
+        HOME+"procesos/generales/municipios.php", 
+        {estado: estado_id} 
+    ).done(
+        function( data, textStatus, jqXHR ) {
+            var html = "<option value=''>Seleccione un municipio</option>";
+            jQuery.each(data, function(i, val) {
+                html += "<option value="+val.name+">"+val.name+"</option>";
+            });
+            jQuery('[name="rc_municipio"]').html(html);
+        }
+    ).fail(
+        function( jqXHR, textStatus, errorThrown ) {
+            console.log( "Error: " +  errorThrown );
+        }
+    );
+}
