@@ -140,6 +140,10 @@
             case "paid-wc-completed":
                 return "Pendiente por Confirmar";
             break;
+
+            case "wc-on-hold-unpaid":
+                return "Pendiente por pago en tienda";
+            break;
             
             default:
                 return "Otro Status: ( ".$reserva."-".$orden." )";
