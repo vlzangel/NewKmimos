@@ -234,7 +234,7 @@
 					<div style="padding-top: 20px;">
 						'.$pdf.'
 						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/datos-de-facturacion/">
-						    VER MIS DATOS DE FACTURACI&Oacute;N
+						    ¿DESEAS EMITIR TU COMPROBANTE FISCAL DIGITAL?
 						</a>
 						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
 					</div>
