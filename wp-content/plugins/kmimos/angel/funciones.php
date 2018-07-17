@@ -380,6 +380,11 @@
                             "url"   => get_home_url()."/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460"
+                        ),                        
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
+                            "name"  => "Datos de Facturaci&oacute;n",
+                            "icono" => "33"
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
@@ -413,6 +418,11 @@
                             "name"  => "Mi Perfil",
                             "icono" => "460"
                         ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
+                            "name"  => "Datos de Facturaci&oacute;n",
+                            "icono" => "33"
+                        ),                        
                         array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
