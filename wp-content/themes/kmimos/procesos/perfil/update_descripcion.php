@@ -82,7 +82,7 @@
 
 	$ubicacion = $db->get_row("SELECT * FROM ubicaciones WHERE cuidador = {$cuidador_id}; ");
 	if( $ubicacion === false ){
-		$db->query( "INSERT INTO ubicaciones VALUES (NULL, '={$estado}=', '={$delegacion}=');" );
+		$db->query( "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '={$estado}=', '={$delegacion}=');" );
 	}
 
 	$db->query("UPDATE cupos SET acepta = '{$acepto_hasta}' WHERE cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ");
