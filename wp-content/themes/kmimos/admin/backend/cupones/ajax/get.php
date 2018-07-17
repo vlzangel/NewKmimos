@@ -32,7 +32,7 @@
                         <div>
                             <label>{$cupon->post_title}</label>
                             <span data-id='{$value->post_id}' data-txt='{$cupon->post_title}' data-user='{$cliente->ID}' >
-                                Borrar
+                                Limpiar
                             </span>
                         </div>
                     ";

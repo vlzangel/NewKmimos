@@ -150,7 +150,6 @@
 
     $status_actual = getStatusTxt( $orden_status, $reserva_status );
 
-
     if( $new_status != "" ){
 
         $current_user = wp_get_current_user();
@@ -177,10 +176,10 @@
         $mensaje = str_replace('[FINAL]', $new_status, $mensaje);
         $mensaje = str_replace('[FECHA]', date("d/m/Y H:i a") , $mensaje);
         
-        $mensaje = get_email_html($mensaje);    
+        $mensaje = get_email_html($mensaje);
 
         wp_mail( "a.veloz@kmimos.la", "Actualización de Status", $mensaje);
-        wp_mail( "chaudaryy@gmail.com", "Actualización de Saldo", $mensaje);
+        wp_mail( "chaudaryy@gmail.com", "Actualización de Status", $mensaje);
     }
 
 	exit;
