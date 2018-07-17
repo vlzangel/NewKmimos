@@ -38,22 +38,25 @@ function getStatus(){
 
 function updateStatus(){
 	if( !jQuery("#confirmar").hasClass("disable") ){
-		jQuery("#confirmar").addClass("disable");
-		jQuery("#confirmar").val("Procesando...");
-		jQuery.post(
-			TEMA+"/admin/backend/otros/ajax/updateStatus.php",
-			{
-				ORDEN_ID: jQuery("#orden").val(),
-				status: jQuery("#status").val()
-			},
-			function(HTML){
+		var confirmed = confirm("Esta seguro de cambiar el status de la reserva a [ "+String(jQuery("#status").val()).toUpperCase()+" ].?");
+    	if (confirmed == true) {
+			jQuery("#confirmar").addClass("disable");
+			jQuery("#confirmar").val("Procesando...");
+			jQuery.post(
+				TEMA+"/admin/backend/otros/ajax/updateStatus.php",
+				{
+					ORDEN_ID: jQuery("#orden").val(),
+					status: jQuery("#status").val()
+				},
+				function(HTML){
 
-	            jQuery("#confirmar").removeClass("disable");
-	            jQuery("#confirmar").val("Confirmar");
+		            jQuery("#confirmar").removeClass("disable");
+		            jQuery("#confirmar").val("Confirmar");
 
-				getStatus();
-	        }
-	    ); 
+					getStatus();
+		        }
+		    ); 
+		}
 	}
 }
 
