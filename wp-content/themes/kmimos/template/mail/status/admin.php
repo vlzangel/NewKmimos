@@ -16,6 +16,7 @@
         	<div style="padding: 5px 0px;"><strong>Cuidador:</strong> [CUIDADOR] ([CUIDADOR_EMAIL]) </div>
         	<div style="padding: 5px 0px;"><strong>Status Original:</strong> [ORIGINAL] </div>
         	<div style="padding: 5px 0px;"><strong>Status Final:</strong> [FINAL] </div>
+        	<div style="padding: 5px 0px;"><strong>Cambio realizado por:</strong> [ADMIN] ([ADMIN_EMAIL]) </div>
         	<div style="padding: 5px 0px;"><strong>Hora y Fecha</strong> [FECHA]</div>
 	    </div>
 
