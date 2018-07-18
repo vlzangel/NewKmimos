@@ -217,7 +217,7 @@ function getServices( $num_reserva = 0 ){
 			-- Reserva
 			LEFT JOIN wp_posts as re ON re.ID = i.meta_value -- No. Reserva
 		WHERE	
-			i.meta_key like 'Servicios Adicionales%'
+			( i.meta_key like 'Servicios Adicionales%' or i.meta_key like 'Servicios de %' )
 			and i.order_item_id = o.order_item_id
 	";
 	$services = $wpdb->get_results($sql);

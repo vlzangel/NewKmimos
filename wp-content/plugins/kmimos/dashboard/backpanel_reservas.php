@@ -295,9 +295,15 @@ $reservas = getReservas($_desde, $_hasta);
 					<th><?php echo implode(", ", $telf_cuidador); ?></a></th>
 					<th><?php echo $reserva->producto_title; ?></th>
 					<th>
-					<?php foreach( $services as $service ){ ?>
-						<?php echo str_replace("(precio por mascota)", "", $service->descripcion); ?> 
-						<?php echo str_replace("Servicios Adicionales", "", $service->servicio); ?><br>
+					<?php foreach( $services as $service ){ 
+						$servicio = $service->descripcion . $service->servicio;
+						$servicio = str_replace("(precio por mascota)", "", $servicio); 
+						$servicio = str_replace("(precio por grupo)", "", $servicio); 
+						$servicio = str_replace("Servicios Adicionales", "", $servicio); 
+						$servicio = str_replace("Servicios de Transportación", "", $servicio); 
+						echo $servicio;
+					?>
+						<br>
 					<?php } ?>
 					</th>
 					<th><?php echo utf8_decode( $ubicacion['estado'] ); ?></th>
