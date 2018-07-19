@@ -45,7 +45,7 @@
 	    }
 
 		$email_cuidador = $cuidador->email;
-		$email_cliente  = $current_user->user_email;
+		$email_cliente = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = '".$user_id."'");
 
 		$email_admin    = get_option( 'admin_email' );
 
