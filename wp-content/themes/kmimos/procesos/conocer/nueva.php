@@ -89,6 +89,9 @@
 
         /* Generales */
 
+            $mensaje_admin = str_replace('[ACEPTAR]', get_home_url().'/perfil-usuario/solicitudes/confirmar/'.$request_id, $mensaje_admin);
+            $mensaje_admin = str_replace('[CANCELAR]', get_home_url().'/perfil-usuario/solicitudes/cancelar/'.$request_id, $mensaje_admin);
+
 	        $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
 	        $mensaje_admin = str_replace('[id_solicitud]', $request_id, $mensaje_admin);
 	        $mensaje_admin = str_replace('[fecha]', $_POST['meeting_when'], $mensaje_admin);
