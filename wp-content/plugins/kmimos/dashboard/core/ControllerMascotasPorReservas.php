@@ -217,7 +217,7 @@ function getServices( $num_reserva = 0 ){
 			-- Reserva
 			LEFT JOIN wp_posts as re ON re.ID = i.meta_value -- No. Reserva
 		WHERE	
-			( i.meta_key like 'Servicios Adicionales%' or i.meta_key like 'Servicios de %' ) 
+			( i.meta_key like 'Servicios Adicionales%' or i.meta_key like 'Servicios de %' )
 			and i.order_item_id = o.order_item_id
 	";
 	$services = $wpdb->get_results($sql);
@@ -263,7 +263,7 @@ function getMetaCuidador( $user_id ){
 }
 
 function getMetaReserva( $post_id ){
-	//$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost', 'modificacion_de', '_booking_order_item_id' )";
+	$condicion = "";
 	$result = get_metaPost($post_id, $condicion);
 
 	$data = [
@@ -346,12 +346,15 @@ function getReservas($desde="", $hasta=""){
 			AND ( r.post_date_gmt >= '{$desde} 00:00:00' and  r.post_date_gmt <= '{$hasta} 23:59:59' )
 		";
 	}else{
-		$filtro_adicional = " AND MONTH(r.post_date_gmt) = MONTH(NOW()) AND YEAR(r.post_date_gmt) = YEAR(NOW()) ";
+		$filtro_adicional = " AND r.post_date_gmt) = MONTH(NOW()) AND YEAR(r.post_date_gmt) = YEAR(NOW()) ";
 	}
 
 	global $wpdb;
 	$sql = "
-		SELECT 
+		 SELECT 
+			DATE_FORMAT(fin.meta_value,'%Y-%m-%d 00:00:00') as fin, 
+			DATE_FORMAT(ini.meta_value,'%Y-%m-%d 23:59:59') as ini,
+			NOW() as hoy,
 			r.ID as 'nro_reserva',
  			DATE_FORMAT(r.post_date_gmt,'%Y-%m-%d') as 'fecha_solicitud',
  			r.post_status as 'estatus_reserva',
@@ -370,6 +373,9 @@ function getReservas($desde="", $hasta=""){
 
 		from wp_posts as r
 			LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
+			LEFT JOIN wp_postmeta as ini  ON (ini.post_id  = r.ID and ini.meta_key  = '_booking_start')
+			LEFT JOIN wp_postmeta as fin  ON (fin.post_id  = r.ID and fin.meta_key  = '_booking_end')
+
 			LEFT JOIN wp_posts as p ON p.ID = r.post_parent
 
 			LEFT JOIN wp_woocommerce_order_itemmeta as fe  ON (fe.order_item_id  = rm.meta_value and fe.meta_key  = 'Fecha de Reserva')
@@ -386,7 +392,8 @@ function getReservas($desde="", $hasta=""){
 			and not r.post_status like '%cart%' 
 			and cl.ID > 0 
 			and p.ID > 0
-			{$filtro_adicional}
+			and DATE_FORMAT(fin.meta_value,'%Y-%m-%d 00:00:00') >= NOW() 
+			and DATE_FORMAT(ini.meta_value,'%Y-%m-%d 23:59:59') <= NOW()
 		ORDER BY r.ID desc
 		;";
 

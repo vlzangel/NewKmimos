@@ -25,6 +25,7 @@ $array_backpanel = [
 	'bp_reservas_conocer',
 	'bp_reservas_by_ubicacion',
 	'bp_reservas_by_cuidador',
+	'bp_mascotas_reservas',
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 
 
