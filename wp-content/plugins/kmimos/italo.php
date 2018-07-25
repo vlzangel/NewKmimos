@@ -565,6 +565,16 @@ if(!function_exists('get_preguntas_categoria')){
                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
+			$menus[] = array(
+  				'title'         =>  'Mascotas por Reserva',
+                'short-title'   =>  'Mascotas por Reserva',
+                'parent'        =>  'kmimos',
+                'slug'          =>  'bp_mascotas_reservas',
+                'access'        =>  'manage_options',
+                'page'          =>  'bp_mascotas_reservas',
+                'icon'          =>  '',
+  			);
+
 	        $menus[] = array(
 	                'title'=>'Control Conocer a Cuidador',
 	                'short-title'=>'Control Conocer a Cuidador',
@@ -784,25 +794,8 @@ if(!function_exists('get_preguntas_categoria')){
 			);
 
 			// Menu Mascotas
-      			$menus[] = array(
-      				'title'         =>  'Mascotas',
-                    'short-title'   =>  'Mascotas',
-                    'parent'        =>  '',
-                    'slug'          =>  'bp_mascotas_reservas',
-                    'access'        =>  'manage_options',
-                    'page'          =>  'bp_mascotas_reservas',
-                    'icon'          =>  '',
-                    'position'      =>  4,
-      			);
-      			$menus[] = array(
-      				'title'         =>  'Mascotas por Reserva',
-                    'short-title'   =>  'Mascotas por Reserva',
-                    'parent'        =>  'bp_mascotas_reservas',
-                    'slug'          =>  'bp_mascotas_reservas',
-                    'access'        =>  'manage_options',
-                    'page'          =>  'bp_mascotas_reservas',
-                    'icon'          =>  '',
-      			);
+      			
+      			
       			
 	        return $menus;
 
