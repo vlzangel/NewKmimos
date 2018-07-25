@@ -1,6 +1,10 @@
-<?php global $wpdb;
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+ global $wpdb;
 // Reservas 
-require_once('core/ControllerReservas.php');
+require_once('core/ControllerMascotasPorReservas.php');
 // Parametros: Filtro por fecha
 $date = getdate(); 
 $desde = date("Y-m-01", $date[0] );
@@ -22,14 +26,14 @@ $reservas = getReservas($_desde, $_hasta);
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_title">
-		<h2>Panel de Control <small>Reservas</small></h2>
+		<h2>Panel de Control <small>Mascotas por Reservas</small></h2>
 		<hr>
 		<div class="clearfix"></div>
 		</div>
 		<!-- Filtros -->
-		<div class="row text-right"> 
+		<div class="row text-right hidden"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_reservas" method="POST">
+		    	<form class="form-inline" action="<?php echo get_home_url() . '/wp-admin/admin.php?page='.$_GET['page'] ?>" method="POST">
 				  <label>Filtrar:</label>
 				  <div class="form-group">
 				    <div class="input-group">
@@ -79,17 +83,10 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Check-In</th>
 			      <th>Check-Out</th>
 			      <th>Noches</th>
-			      <th># Mascotas</th>
-			      <th># Noches Totales</th>
 			      <th>Cliente</th>
 			      <th>Correo Cliente</th>
 			      <th>Tel&eacute;fono Cliente</th>
-			      <th>Recompra (1Mes)</th>
-			      <th>Recompra (3Meses)</th>
-			      <th>Recompra (6Meses)</th>
-			      <th>Recompra (12Meses)</th>
-			      <th>Donde nos conocio?</th>
-			      <th>Mascotas</th>
+ 			      <th>Mascotas</th>
 			      <th>Razas</th>
 			      <th>Edad</th>
 			      <th>Cuidador</th>
@@ -99,14 +96,7 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Servicios Especiales</th> <!-- Servicios adicionales -->
 			      <th>Estado</th>
 			      <th>Municipio</th>
-			      <th>Forma de Pago</th>
-			      <th>Tipo de Pago</th>
-			      <th>Total a pagar ($)</th>
-			      <th>Monto Pagado ($)</th>
-			      <th>Monto Remanente ($)</th>
-			      <th># Pedido</th>
-			      <th>Observaci&oacute;n</th>
-
+ 			      <th># Pedido</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -126,35 +116,6 @@ $reservas = getReservas($_desde, $_hasta);
 				  		$meta_cuidador = getMetaCuidador($reserva->cuidador_id);
 				  		# MetaDatos del Cliente
 				  		$cliente = getMetaCliente($reserva->cliente_id);
-
-				  		# Recompra 12 Meses
-				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "12");
-				  		if(array_key_exists('rows', $cliente_n_reserva)){
-					  		foreach ($cliente_n_reserva["rows"] as $value) {
-				  				$recompra_12M = ($value['cant']>1)? "SI" : "NO" ;
-					  		}
-					  	}
-				  		# Recompra 1 Meses
-				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "1");
-				  		if(array_key_exists('rows', $cliente_n_reserva)){
-					  		foreach ($cliente_n_reserva["rows"] as $value) {
-				  				$recompra_1M = ($value['cant']>1)? "SI" : "NO" ;
-					  		}
-					  	}
-				  		# Recompra 3 Meses
-				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "3");
-				  		if(array_key_exists('rows', $cliente_n_reserva)){
-					  		foreach ($cliente_n_reserva["rows"] as $value) {
-				  				$recompra_3M = ($value['cant']>1)? "SI" : "NO" ;
-					  		}
-					  	}
-				  		# Recompra 6 Meses
-				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "6");
-				  		if(array_key_exists('rows', $cliente_n_reserva)){
-					  		foreach ($cliente_n_reserva["rows"] as $value) {
-				  				$recompra_6M = ($value['cant']>1)? "SI" : "NO" ;
-					  		}
-					  	}
 
 				  		# MetaDatos del Reserva
 				  		$meta_reserva = getMetaReserva($reserva->nro_reserva);
@@ -179,21 +140,6 @@ $reservas = getReservas($_desde, $_hasta);
 					  		$total_pagado += currency_format($meta_Pedido['_order_total'], "", "", ".");
 					  		$total_remanente += currency_format($meta_Pedido['_wc_deposits_remaining'], "", "", ".");
 				  		}
-
-				  		$pets_nombre = array();
-				  		$pets_razas  = array();
-				  		$pets_edad	 = array();
-
-						foreach( $mypets as $pet_id => $pet) { 
-							$pets_nombre[] = $pet['nombre'];
-							$pets_razas[] = $razas[ $pet['raza'] ];
-							$pets_edad[] = $pet['edad'];
-						} 
-
-				  		$pets_nombre = implode("<br>", $pets_nombre);
-				  		$pets_razas  = implode("<br>", $pets_razas);
-				  		$pets_edad	 = implode("<br>", $pets_edad);
-
 						$nro_noches = dias_transcurridos(
 								date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
 								date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
@@ -202,7 +148,6 @@ $reservas = getReservas($_desde, $_hasta);
 							$nro_noches += 1;
 							
 						}
-
 
 						$Day = "";
 						$list_service = [ 'hospedaje' ]; // Excluir los servicios del Signo "D"
@@ -264,79 +209,63 @@ $reservas = getReservas($_desde, $_hasta);
 						if( $meta_cuidador["user_mobile"] != "" ){ $telf_cuidador[] = $meta_cuidador["user_mobile"]; }
 						if( $meta_cuidador["user_phone"] != "" ){ $telf_cuidador[] = $meta_cuidador["user_phone"]; }
 
-						
-				  	?>
-				    <tr>
-			    	<th class="text-center"><?php echo ++$count; ?></th>
-					<th><?php echo $reserva->nro_reserva; ?></th>
-					<th><?php echo $flash; ?></th>
-					<th class="text-center"><?php echo $estatus['sts_corto']; ?></th>
-					<th class="text-center"><?php echo $reserva->fecha_solicitud; ?></th>
 
-					<th><?php echo date_convert($meta_reserva['_booking_start'], 'Y-m-d', true); ?></th>
-					<th><?php echo date_convert($meta_reserva['_booking_end'], 'Y-m-d', true); ?></th>
+						$pets_nombre = array();
+						$pets_razas  = array();
+						$pets_edad	 = array();
+						foreach( $mypets as $pet_id => $pet) { 
+							$pets_nombre[] = $pet['nombre'];
+							$pets_razas[] = $razas[ $pet['raza'] ];
+							$pets_edad[] = $pet['edad'];
+						} 
 
-					<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
-					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
-					<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
-					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
-					<th><?php echo $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cliente_id); ?></th>
-					<th><?php echo implode(", ", $telf_cliente); ?></a></th>
-					<th class="text-center"><?php echo $recompra_1M; ?></th>
-					<th class="text-center"><?php echo $recompra_3M; ?></th>
-					<th class="text-center"><?php echo $recompra_6M; ?></th>
-					<th class="text-center"><?php echo $recompra_12M; ?></th>
-					<th><?php echo (empty($cliente['user_referred']))? 'Otros' : $cliente['user_referred'] ; ?></th>
-					<th><?php echo $pets_nombre; ?></th>
-					<th><?php echo $pets_razas; ?></th>
-					<th><?php echo $pets_edad; ?></th>
-					<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
-					<th><?php echo $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cuidador_id); ?></th>
-					<th><?php echo implode(", ", $telf_cuidador); ?></a></th>
-					<th><?php echo $reserva->producto_title; ?></th>
-					<th>
-					<?php foreach( $services as $service ){ 
-						$__servicio = $service->descripcion . $service->servicio;
-						$__servicio = str_replace("(precio por mascota)", "", $__servicio); 
-						$__servicio = str_replace("(precio por grupo)", "", $__servicio); 
-						$__servicio = str_replace("Servicios Adicionales", "", $__servicio); 
-						$__servicio = str_replace("Servicios de Transportación", "", $__servicio); 
-						echo $__servicio;
-					?>
-						<br>
-					<?php } ?>
-					</th>
-					<th><?php echo utf8_decode( $ubicacion['estado'] ); ?></th>
-					<th><?php echo utf8_decode( $ubicacion['municipio'] ); ?></th>
-					<th><?php
-						if( !empty($meta_Pedido['_payment_method_title']) ){
-							echo $meta_Pedido['_payment_method_title']; 
-						}else{
-							if( !empty($meta_reserva['modificacion_de']) ){
-								echo 'Saldo a favor' ; 
-							}else{
-								echo 'Saldo a favor y/o cupones'; 
-							}
-						} ?>
-					</th>
+				  		$pets_nombre = implode("<br>", $pets_nombre);
+				  		$pets_razas  = implode("<br>", $pets_razas);
+				  		$pets_edad	 = implode("<br>", $pets_edad);
 
-					<th> <?php 
-						$deposito = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$meta_reserva['_booking_order_item_id']} AND meta_key = '_wc_deposit_meta' ");
-						$deposito = unserialize($deposito);
-						if( $deposito["enable"] == "yes" ){
-							echo "Pago 20%";
-						}else{
-							echo "Pago Total";
-						}
-					?> </th>
+						?>
+						    <tr>
+						    	<th class="text-center"><?php echo ++$count; ?></th>
+								<th><?php echo $reserva->nro_reserva; ?></th>
+								<th><?php echo $flash; ?></th>
+								<th class="text-center"><?php echo $estatus['sts_corto']; ?></th>
+								<th class="text-center"><?php echo $reserva->fecha_solicitud; ?></th>
 
-					<th><?php echo currency_format($meta_reserva['_booking_cost'], "", "","."); ?></th>
-					<th><?php echo currency_format($meta_Pedido['_order_total'], "", "","."); ?></th>
-					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining'], "", "","."); ?></th>
-					<th><?php echo $reserva->nro_pedido; ?></th>
-					<th><?php echo $estatus['sts_largo']; ?></th>
- 
-			   	<?php } ?>
+								<th><?php echo date_convert($meta_reserva['_booking_start'], 'Y-m-d', true); ?></th>
+								<th><?php echo date_convert($meta_reserva['_booking_end'], 'Y-m-d', true); ?></th>
+
+								<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
+		 						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
+								<th><?php echo $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cliente_id); ?></th>
+								<th><?php echo implode(", ", $telf_cliente); ?></a></th>
+
+
+								<th><?php echo $pets_nombre; ?></th>
+								<th><?php echo $pets_razas; ?></th>
+								<th><?php echo $pets_edad; ?></th>
+
+
+								<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
+								<th><?php echo $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cuidador_id); ?></th>
+								<th><?php echo implode(", ", $telf_cuidador); ?></a></th>
+								<th><?php echo $reserva->producto_title; ?></th>
+								<th>
+								<?php foreach( $services as $service ){ 
+									$__servicio = $service->descripcion . $service->servicio;
+									$__servicio = str_replace("(precio por mascota)", "", $__servicio); 
+									$__servicio = str_replace("(precio por grupo)", "", $__servicio); 
+									$__servicio = str_replace("Servicios Adicionales", "", $__servicio); 
+									$__servicio = str_replace("Servicios de Transportación", "", $__servicio); 
+									echo $__servicio;
+								?>
+									<br>
+								<?php } ?>
+								</th>
+								<th><?php echo utf8_decode( $ubicacion['estado'] ); ?></th>
+								<th><?php echo utf8_decode( $ubicacion['municipio'] ); ?></th>
+								<th><?php echo $reserva->nro_pedido; ?></th>
+			 				
+				   	<?php } ?>
 			  </tbody>
 			</table>
 			</div>

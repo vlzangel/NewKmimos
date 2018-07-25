@@ -768,6 +768,7 @@ if(!function_exists('get_preguntas_categoria')){
       				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
       			);
 
+      			
 
 		      }
          /* Temporal ********************* */
@@ -782,11 +783,38 @@ if(!function_exists('get_preguntas_categoria')){
 				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 			);
 
-
+			// Menu Mascotas
+      			$menus[] = array(
+      				'title'         =>  'Mascotas',
+                    'short-title'   =>  'Mascotas',
+                    'parent'        =>  '',
+                    'slug'          =>  'bp_mascotas_reservas',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'bp_mascotas_reservas',
+                    'icon'          =>  '',
+                    'position'      =>  4,
+      			);
+      			$menus[] = array(
+      				'title'         =>  'Mascotas por Reserva',
+                    'short-title'   =>  'Mascotas por Reserva',
+                    'parent'        =>  'bp_mascotas_reservas',
+                    'slug'          =>  'bp_mascotas_reservas',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'bp_mascotas_reservas',
+                    'icon'          =>  '',
+      			);
+      			
 	        return $menus;
 
 	    }
 	}
+
+
+    if(!function_exists('bp_mascotas_reservas')){
+            function bp_mascotas_reservas(){
+                include_once('dashboard/backpanel_mascotas_reservas.php');
+            }
+    }
 
 
     if(!function_exists('backpanel_reservas_limiteDate')){
