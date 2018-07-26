@@ -47,7 +47,8 @@
             id_post,
             user_id,
             hospedaje_desde,
-            adicionales
+            adicionales,
+            experiencia
         FROM 
             cuidadores
         WHERE
@@ -85,9 +86,13 @@
         	}
         }
 
+        if( $valor->experiencia > 1900 ){
+            $valor->experiencia = date("Y")-$valor->experiencia;
+        }
+
         $monto = explode(",", number_format( ($valor->hospedaje_desde*1.2), 2, ',', '.') );
-        $temp = str_replace("[TITULO_CANCELACION]", $titulo_cancelacion, $plantilla_cuidador);
-        $temp = str_replace("[MONTO]", $monto[0], $plantilla_cuidador);
+        $temp = str_replace("[EXPERIENCIA]", $valor->experiencia, $plantilla_cuidador);
+        $temp = str_replace("[MONTO]", $monto[0], $temp);
     	$temp = str_replace("[MONTO_DECIMALES]", ",".$monto[1], $temp);
     	$temp = str_replace("[AVATAR]", kmimos_get_foto($valor->user_id), $temp);
     	$temp = str_replace("[NAME_CUIDADOR]", $nombre->post_title, $temp);
@@ -137,7 +142,7 @@
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cliente;
-            wp_mail( "a.veloz@kmimos.la", "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
+            // wp_mail( "a.veloz@kmimos.la", "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
         }else{
             wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
         }
@@ -156,7 +161,7 @@
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cuidador;
-            wp_mail( "a.veloz@kmimos.la", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+            // wp_mail( "a.veloz@kmimos.la", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         }else{
             wp_mail( $email_cuidador, "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         } 
@@ -176,7 +181,7 @@
  
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;
-            wp_mail( "a.veloz@kmimos.la", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+            // wp_mail( "a.veloz@kmimos.la", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         }else{
             kmimos_mails_administradores_new("Cancelación de Solicitud para conocer cuidador", $mensaje_admin);
         } 

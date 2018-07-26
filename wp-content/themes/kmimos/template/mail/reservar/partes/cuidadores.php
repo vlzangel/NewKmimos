@@ -29,7 +29,7 @@
 		</div>
 
 		<div style='font-family: Arial; font-size: 11px; letter-spacing: -0.1px; color: #000000; text-align: left;'>
-			15 años de experiencia
+			[EXPERIENCIA] años de experiencia
 		</div>
 
 		<div style='margin: 5px; text-align: left;'>
