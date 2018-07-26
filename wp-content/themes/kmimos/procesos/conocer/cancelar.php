@@ -90,7 +90,7 @@
             $valor->experiencia = date("Y")-$valor->experiencia;
         }
 
-        $monto = explode(",", number_format( ($valor->hospedaje_desde*1.2), 2, ',', '.') );
+        $monto = explode(",", number_format( ($valor->hospedaje_desde*getComision()), 2, ',', '.') );
         $temp = str_replace("[EXPERIENCIA]", $valor->experiencia, $plantilla_cuidador);
         $temp = str_replace("[MONTO]", $monto[0], $temp);
     	$temp = str_replace("[MONTO_DECIMALES]", ",".$monto[1], $temp);

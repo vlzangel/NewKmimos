@@ -25,7 +25,15 @@
  	$modificacion_de = get_post_meta($servicio["id_reserva"], "modificacion_de", true);
     if( $modificacion_de != "" ){ 
     	$modificacion = "
-    	<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #777; padding-bottom: 19px; text-align: center;'>
+    	<div style='width: 100%;
+		    background-color: #e4e4e4;
+		    margin: 0px auto;
+		    font-family: Arial;
+		    font-size: 15px;
+		    letter-spacing: 0.3px;
+		    color: #000000;
+		    padding: 14px 0px;
+		    text-align: center;'>
             Esta es una modificación de la reserva #: ".$modificacion_de."
         </div>";
  	}else{ $modificacion = ""; }
