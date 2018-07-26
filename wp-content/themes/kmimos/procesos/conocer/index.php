@@ -40,6 +40,8 @@
    		$continuar = false;
 	}
 
+	$continuar = true;
+
 	if( $continuar ){
 
 		$metas_solicitud = get_post_meta($id_orden); 
