@@ -389,7 +389,7 @@ function getReservas($desde="", $hasta=""){
 			LEFT JOIN cuidadores as us ON us.user_id = pr.post_author
 			LEFT JOIN wp_users as cl ON cl.ID = r.post_author
 		WHERE r.post_type = 'wc_booking' 
-			and not r.post_status like '%cart%' 
+			and r.post_status like 'confirme%'
 			and cl.ID > 0 
 			and p.ID > 0
 			and DATE_FORMAT(fin.meta_value,'%Y-%m-%d 00:00:00') >= NOW() 
