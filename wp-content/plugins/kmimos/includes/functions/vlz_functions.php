@@ -1107,6 +1107,22 @@
 
 
 
+    if(!function_exists('kmimos_guardar_desglose_reserva_data')){
+        function kmimos_guardar_desglose_reserva_data( $reserva_id, $data_reserva ){
+            $desglose = get_post_meta( $reserva_id, "_booking_desglose", true );
+            if( empty($desglose) ){
+                $data = [
+                    "variaciones" => $data_reserva['servicio']['variaciones'],
+                    "transporte" => $data_reserva['servicio']['transporte'],
+                    "adicionales" => $data_reserva['servicio']['adicionales'],
+                ];
+                update_post_meta( $reserva_id, '_booking_desglose', $data );
+                return true;
+            }
+            return false;
+        }
+    }
+
     if(!function_exists('kmimos_desglose_reserva_data')){
 
         function kmimos_desglose_reserva_data($id, $email = false){

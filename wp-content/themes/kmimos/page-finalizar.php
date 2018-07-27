@@ -24,6 +24,9 @@
 
 		$data_reserva = kmimos_desglose_reserva_data($orden_id, true);
 
+		kmimos_guardar_desglose_reserva_data( $data_reserva["servicio"]["id_reserva"], $data_reserva );
+		
+
 	    if( strtolower($data_reserva["servicio"]["metodo_pago"]) == "tarjeta" ){
 	    	$pixel = "<script> fbq ('track','Purchase'); </script>";
 	    }else{

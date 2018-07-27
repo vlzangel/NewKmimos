@@ -307,6 +307,11 @@
                             "icono" => "460"
                         ),
                         array(
+                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
+                            "name"  => "Datos de Facturaci&oacute;n",
+                            "icono" => "33"
+                        ),
+                        array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
                             "icono" => "871",
