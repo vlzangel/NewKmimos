@@ -10,26 +10,81 @@
 echo '<pre>';
 
     // buscar total de reservas del mes anterior
-    $mes_anterior = strtotime("now -1 month");
+    $mes_anterior = strtotime("now +1 month");
     $fecha_ini = date("Y-m-01 00:00:00", $mes_anterior);
     $fecha_fin = date("Y-m-31 23:59:59", $mes_anterior);
 
-//    $reservas = $CFDI->db->get_results("SELECT * FROM wp_posts WHERE post_date_gmt >= '{$fecha_ini}'  and post_date_gmt <= '{$fecha_fin}' and post_status like 'wc_complete%' and post_type = 'shop_order' ");
+    $ordenes = $CFDI->db->get_results( "
+            SELECT DATE_FORMAT( m.meta_value,'%Y-%m-%d 23:59:59' ) as fecha, p.ID, p.post_parent 
+            FROM wp_postmeta as m
+                INNER JOIN wp_posts as p ON p.ID = m.post_id
+            WHERE 
+                DATE_FORMAT( m.meta_value,'%Y-%m-%d 00:00:00' ) >= '{$fecha_ini}' AND 
+                DATE_FORMAT( m.meta_value,'%Y-%m-%d 23:59:59' ) <= '{$fecha_fin}' AND 
+                m.meta_key = '_booking_end' AND
+                p.post_status IN ('complete', 'confirmed') " 
+        );
 
-//    foreach ($reservas as $key => $value) {
-        
-        // cargar desglose de facturas
-        $data_reserva = kmimos_desglose_reserva_data(199366, true);
+    $cuidador_desglose = [];
+    foreach ($ordenes as $key => $orden) {
 
-	    // facturar a cuidador
-        $data_reserva['receptor']['rfc'] = 'XAXX010101000';
-        $r = $CFDI->generar_Cfdi_Cuidador( $data_reserva ) ;
-        $d = json_decode($r['ack']);
-        print_r($d->descargaArchivoPDF);
-        print_r($d);
+        // Desglose de reserva
+            $data_reserva = kmimos_desglose_reserva_data( $orden->post_parent, true);
 
-	    // validar si la factura del cliente esta generada
-            // Generar factura de cliente ( publico en general )
-            $rfc = 'XAXX010101000';
-            $nombre = "Publico en General";
-//    }
+        // Desglose Cuidador CFDI
+            $cuidador_id= $data_reserva['cuidador']['id'];
+            $orden_id = $data_reserva['servicio']['id_reserva'];
+
+            // Cliente
+            $cuidador_desglose[ $cuidador_id ]['cliente']['id'] = 0;
+            $cuidador_desglose[ $cuidador_id ]['servicio']['id_orden'] = 0;
+
+            // Cuidador
+            $cuidador_desglose[ $cuidador_id ]['cuidador'] = $data_reserva['cuidador']; 
+            $cuidador_desglose[ $cuidador_id ]['cuidador']['rfc'] = 'XAXX010101000';
+
+            // Servicios
+            $cuidador_desglose[ $cuidador_id ]['servicio']['tipo_pago'] = 'TRANSFERENCIA';
+            $cuidador_desglose[ $cuidador_id ]['servicio']['desglose'][ $orden_id ] = $data_reserva['servicio']['desglose'];
+            
+            // Periodo            
+            $cuidador_desglose[ $cuidador_id ]['periodo']['mes'] = date("m", $mes_anterior);    // 01 - 12
+            $cuidador_desglose[ $cuidador_id ]['periodo']['anio'] = date("Y", $mes_anterior);   // 2018
+            $cuidador_desglose[ $cuidador_id ]['periodo']['fecha'] = date("ym", $mes_anterior); // 1801
+
+
+        // Validar si la factura del cliente esta generada
+            $facturas = $CFDI->db->get_row( "SELECT * FROM facturas WHERE pedido_id = ".$orden->post_parent );
+      
+            if( empty($facturas) ){
+                $data_reserva['receptor']['rfc'] = 'XAXX010101000';
+                $data_reserva['receptor']['nombre'] = 'Publico en General';
+
+                $AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
+                if( !empty($AckEnlaceFiscal['ack']) ){
+                    $ack = json_decode($AckEnlaceFiscal['ack']);
+                    $CFDI->guardarCfdi( 'cliente', $data_reserva, $ack );
+                }
+            }
+    }
+
+        // facturar a cuidador
+    foreach ($cuidador_desglose as $cuidador_id => $datos) {
+        $ef = $CFDI->generar_Cfdi_Cuidador( $datos );
+
+        if( !empty($ef['ack']) ){
+            $ask = json_decode($ef['ack']);
+
+            // Listado de reservas
+                $all_reservas = array_keys( $datos['servicio']['desglose'] );
+                $str_reservas = implode(',', $all_reservas);
+
+            // Datos complementarios
+                $datos['comentario'] = $str_reservas;
+                $datos['subtotal'] = $ef['data']['CFDi']['subTotal'];
+                $datos['impuesto'] = $ef['data']['CFDi']['Impuestos']['Totales']['traslados'];
+                $datos['total'] = $ef['data']['CFDi']['total'];
+
+            $CFDI->guardarCfdi( 'cuidador', $datos, $ask );
+        }
+    }

@@ -26,7 +26,7 @@
 			$html = get_email_html($template, true);
 
 			$sts_mail = wp_mail( 
-				'italococchini@gmail.com', 
+				$email, 
 				'Comprobante Fiscal Digital - Reserva #'.$factura->reserva_id, 
 				$html,
 				'',

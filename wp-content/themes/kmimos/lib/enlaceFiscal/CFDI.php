@@ -12,11 +12,11 @@ class CFDI {
 	// EndPoint Enlace Fiscal
 	protected $url = 'https://api.enlacefiscal.com/v6/';
 
-	// Modo:  [ produccion , debug ]
-	protected $modo = 'debug'; 
-
 	// RFC Cuenta principal
 	protected $RFC = 'KMI160615640';
+
+	// Modo:  [ produccion , debug ]
+	protected $modo = 'debug'; 
 
 	// Credenciales de acceso 
 	protected $auth = [
@@ -32,7 +32,6 @@ class CFDI {
 
 	// Saldo en enlaceFiscal
 	protected $saldo = 0;
-
 
 	// Init
 	public function CFDI(){
@@ -89,7 +88,7 @@ class CFDI {
 	}
 
 	// Configuracion general CFDI
-	protected function get_configuracion($param=[]){
+	protected function get_configuracion( $param=[] ){
 		$data = [];
 
 		// Configuracion general
@@ -128,7 +127,8 @@ class CFDI {
 	// Generar CFDI para el Cliente ( Monto: 100% )
 	public function generar_Cfdi_Cliente( $data=[] ){
 
-		$data['rfc'] = $this->RFC; // Dato de prueba hasta que se registre los datos del cuidador
+		// Dato de prueba hasta que se registre los datos del cuidador
+			$data['rfc'] = 'AAA010101AAA'; //$this->RFC; 
 		
 		// Variables de Estructura
 			$conf = $this->get_configuracion( [ 
@@ -154,6 +154,17 @@ class CFDI {
 			$saldo_favor = $this->db->get_var( $sql, 'meta_value' );
 			if( $saldo_favor > 0 ){
 				$data['servicio']['desglose']['descuento'] -= $saldo_favor;
+			}
+
+		// Cargar desglose de Partidas
+			$desglose_partidas = $this->db->get_var( "SELECT * FROM wp_postmeta WHERE meta_key = '_booking_desglose' and post_id = ".$data['servicio']['id_reserva'], 'meta_value' );
+
+			if( !empty($desglose_partidas) ){
+				$_desglose_partidas = unserialize($desglose_partidas);
+		
+				$data['servicio']['variaciones'] = $_desglose_partidas['variaciones'];
+				$data['servicio']['transporte'] = $_desglose_partidas['transporte'];
+				$data['servicio']['adicionales'] = $_desglose_partidas['adicionales'];
 			}
 
 		// Agregar Partida: Variaciones
@@ -378,7 +389,7 @@ class CFDI {
 		$cfdi_respuesta = $this->request( $CFDi, 'generarCfdi' );
 		return [ 
 			'ack' => $cfdi_respuesta, 
-			'param' => $CFDi,  
+			'data' => $CFDi,  
 		];
 	}
 
@@ -393,19 +404,61 @@ class CFDI {
 
 			$data['rfc'] = $this->RFC; // RFC Kmimos
 			$data['fechaEmision'] = date('Y-m-d H:i:s');
+			$data['recibo'] = $data['periodo']['fecha'] . $data['cuidador']['id'];
 
 		// Desglose de la factura
-			$servicio_total = $data['servicio']['desglose']['total']; // 100% reserva ( 261.25 )
-			$servicio_total = $servicio_total - ( $servicio_total / 1.25 ); // 20% de kmimos (52.25)
+			$partidas = [];
+			$montos_generales = [
+				'total' => 0,
+				'subtotal' => 0,
+				'impuesto' => 0,
+			];
+			foreach ($data['servicio']['desglose'] as $reserva => $desglose) {
 
-			$_subtotal = $servicio_total / $base_iva;// Costo base 	( 45.05 ) 
-			$_impuesto = $_subtotal * $tasaCuota ;   // IVA 16%		(  7.20 )
-			$_total = $_subtotal + $_impuesto;		 // Total 		( 52.25 )
+				// Calculo comision ( 20% )
+					$servicio_total = $desglose['total']; // 100% reserva ( 261.25 )
+					$servicio_total = $servicio_total - ( $servicio_total / 1.25 ); // 20% de kmimos (52.25)
+
+				// Calculo de desglose
+					$_subtotal = $servicio_total / $base_iva;// Costo base 	( 45.05 ) 
+					$_impuesto = $_subtotal * $tasaCuota ;   // IVA 16%		(  7.20 )
+					$_total = $_subtotal + $_impuesto;		 // Total 		( 52.25 )
+
+				// Montos Totales
+					$montos_generales['subtotal'] += (float) number_format( $_subtotal, 2, '.', '');
+					$montos_generales['impuesto'] += (float) number_format( $_impuesto, 2, '.', '');
+					$montos_generales['total'] += (float) number_format( $_total, 2, '.', '');
+
+				// Partida de Factura
+					$partidas[] = [
+					    "cantidad" => 1,
+					    "claveUnidad" => "A9", // A9 - Tarífa  
+					    "claveProdServ" => "90111500", 
+					    "descripcion" => "Cargo por concepto de gastos administrativos - Reserva No. {$reserva}",
+					    "valorUnitario" =>(float) number_format($_subtotal, 2, '.', ''),
+					    "importe" => (float) number_format( $_subtotal, 2, '.', ''),
+					    "Impuestos" => [
+					    	0 => [
+								"tipo" => "traslado",
+								"claveImpuesto" => "IVA",
+								"tipoFactor" => "tasa",
+								"tasaOCuota" => (float) $tasaCuota,
+								"baseImpuesto" => (float) number_format( $_subtotal, 2, '.', ''),
+								"importe" => (float) number_format( $_impuesto, 2, '.', '')
+						    ]
+					    ]				
+					];
+			}
+
 
 		// Agregar Campos Personalizados
 			$personalizados[] = [
-                "nombreCampo" => "Número de Reserva",
-                "valor" => $data['servicio']['id_reserva']
+                "nombreCampo" => "Codigo de Cuidador",
+                "valor" => $data['cuidador']['id']
+	        ];		
+			$personalizados[] = [
+                "nombreCampo" => "Periodo",
+                "valor" => $this->mes( (int)$data['periodo']['mes'] ) . " " . $data['periodo']['anio']
 	        ];		
 
 		// Estructura de datos CFDI
@@ -414,44 +467,25 @@ class CFDI {
 					"modo" => $this->modo,
 					"versionEF" => "6.0",
 					"serie" => $serie,
-					"folioInterno" => $data['servicio']['id_reserva']."021",
+					"folioInterno" => $data['recibo'],
 					"tipoMoneda" => "MXN",
 					"fechaEmision" => $data['fechaEmision'],
-					"subTotal" => (float) number_format( $_subtotal, 2, '.', ''), 
-					"total" => (float) number_format( $_total, 2, '.', ''),
+					"subTotal" => (float) number_format( $montos_generales['subtotal'], 2, '.', ''), 
+					"total" => (float) number_format( $montos_generales['total'], 2, '.', ''),
 					"rfc" => $data['rfc'],
 					"DatosDePago" => [
 						"metodoDePago" => "PUE",
 						"formaDePago" => $formaDePago, 
 					],
 					"Receptor" => [
-						"rfc" => $data['receptor']['rfc'],
+						"rfc" => $data['cuidador']['rfc'],
 						"nombre" => $data['cuidador']['nombre'],
 						"usoCfdi" => "gastos"
 					],
-					"Partidas" => [
-						0 => [
-							    "cantidad" => 1,
-							    "claveUnidad" => "A9", // A9 - Tarífa  
-							    "claveProdServ" => "90111500", 
-							    "descripcion" => "Cargo por concepto de gastos administrativos",
-							    "valorUnitario" =>(float) number_format($_subtotal, 2, '.', ''),
-							    "importe" => (float) number_format( $_subtotal, 2, '.', ''),
-							    "Impuestos" => [
-							    	0 => [
-										"tipo" => "traslado",
-										"claveImpuesto" => "IVA",
-										"tipoFactor" => "tasa",
-										"tasaOCuota" => (float) $tasaCuota,
-										"baseImpuesto" => (float) number_format( $_subtotal, 2, '.', ''),
-										"importe" => (float) number_format( $_impuesto, 2, '.', '')
-								    ]
-							    ]				
-							]
-					],
+					"Partidas" => $partidas,
 					"Impuestos" => [
 						"Totales" => [
-							"traslados" =>  (float) number_format( $_impuesto, 2, '.', '')
+							"traslados" =>  (float) number_format( $montos_generales['impuesto'], 2, '.', '')
 						],
 						"Impuestos" => [
 							0 => [
@@ -459,7 +493,7 @@ class CFDI {
 								"claveImpuesto" => "IVA",
 								"tipoFactor" => "tasa",
 								"tasaOCuota" => (float)$tasaCuota,
-								"importe" =>(float) number_format( $_impuesto, 2, '.', '')
+								"importe" =>(float) number_format( $montos_generales['impuesto'], 2, '.', '')
 							]
 						]
 					],
@@ -469,9 +503,9 @@ class CFDI {
 
 	 	// return $CFDi;
 		$cfdi_respuesta = $this->request( $CFDi, 'generarCfdi' );
-		return [ 
-			'ack' => $cfdi_respuesta, 
-			'param' => $CFDi,  
+		return [
+			'ack' => $cfdi_respuesta,
+			'data' => $CFDi
 		];
 	}
 
@@ -484,7 +518,12 @@ class CFDI {
 			
 			$reserva_id = $this->db->get_var("select reserva_id from facturas where numeroReferencia = '".$ef->numeroReferencia."'", "reserva_id");
 			if( $reserva_id <= 0 ){
-	
+
+				$data['comentario'] = ( isset($data['comentario']) )? $data['comentario'] : '';
+				$data['total'] = ( isset($data['total']) )? $data['total'] : 0;
+				$data['impuesto'] = ( isset($data['impuesto']) )? $data['impuesto'] : 0;
+				$data['subtotal'] = ( isset($data['subtotal']) )? $data['subtotal'] : 0;
+
 				// guardar datos en DB
 				$sql = "INSERT INTO facturas ( 
 					receptor,
@@ -503,13 +542,17 @@ class CFDI {
 					xml,
 					urlXml,
 					urlPdf,
-					urlQR
+					urlQR,
+					comentario,
+					total,
+					impuesto,
+					subtotal
 				 )values(
 				 	'".$CFDi_receptor."',
-					".$data['cuidador']['id'].",
-					".$data['cliente']['id'].",
-					".$data['servicio']['id_orden'].",
-					".$ef->folioInterno.",
+					'".$data['cuidador']['id']."',
+					'".$data['cliente']['id']."',
+					'".$data['servicio']['id_orden']."',
+					'".$ef->folioInterno."',
 					'".strtoupper($ef->serie)."',
 					'".$ef->numeroReferencia."',
 					'".$ef->noSerieCertificadoSAT."',
@@ -521,7 +564,11 @@ class CFDI {
 					'".$ef->xmlCFDi."',
 					'".$ef->descargaXmlCFDi."',
 					'".$ef->descargaArchivoPDF."',
-					'".$ef->descargaArchivoQR."'
+					'".$ef->descargaArchivoQR."',
+					'".$data['comentario']."',
+					'".$data['total']."',
+					'".$data['impuesto']."',
+					'".$data['subtotal']."'
 				 );
 				";
 				$this->db->query( $sql );
@@ -602,6 +649,12 @@ class CFDI {
 	    }
 
 	    return $bufer;
+	}
+
+	// Meses en letras
+	protected function mes( $id ){
+		$mes = [ '', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ];
+		return $mes[ $id ];
 	}
 
 	// Enviar solicitud a enlaceFiscal

@@ -2,6 +2,20 @@
 	
 	include_once('includes/functions/kmimos_functions.php');
 
+	if(!function_exists('is_petsitters')){
+		function is_petsitters( ){
+			global $wpdb;
+			$current_user = wp_get_current_user();
+		    $user_id = $current_user->ID;
+			$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
+			 
+			if( isset($cuidador->id) && $cuidador->id > 0 ){
+				return $cuidador;
+			}
+			return false;
+		}
+	}
+
 
 	function kmimos_ucfirst( $str = ''){
 		if( !empty($str) ){		

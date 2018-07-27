@@ -15,6 +15,9 @@ jQuery( document ).ready(function() {
                 $mensaje = "Los datos fueron actualizados";
             }else{
 				$mensaje = "Lo sentimos no se pudo actualizar los datos";
+            	if( typeof data.mensaje != 'undefined'  ){
+            		$mensaje = data.mensaje;
+            	}
             }
 
             jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');            

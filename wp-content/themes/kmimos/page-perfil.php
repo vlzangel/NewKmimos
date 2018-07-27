@@ -311,8 +311,13 @@
 				include("admin/frontend/misfacturas/misfacturas.php");
 			break;
 			case 'datos-de-facturacion':
-				$mostrar_btn = true;
-				include("admin/frontend/datos-de-facturacion/datos-de-facturacion.php");
+				if( is_petsitters() ){
+					$mostrar_btn = true;
+					include("admin/frontend/datos-de-facturacion/cuidador.php");					
+				}else{
+					$mostrar_btn = true;
+					include("admin/frontend/datos-de-facturacion/clientes.php");
+				}
 			break;
 		}
 
