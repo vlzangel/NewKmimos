@@ -134,6 +134,7 @@
             $PREFIJO = strtoupper($PREFIJO);
             $titulo = $PREFIJO.$titulo;
 
+            $email_admin = "soporte.kmimos@gmail.com";
 
             $headers_admins = array(
                 'BCC: a.veloz@kmimos.la',

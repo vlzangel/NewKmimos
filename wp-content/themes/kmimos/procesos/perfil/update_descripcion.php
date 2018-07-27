@@ -79,6 +79,12 @@
     }
 
 	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
+
+	$ubicacion = $db->get_row("SELECT * FROM ubicaciones WHERE cuidador = {$cuidador_id}; ");
+	if( $ubicacion === false ){
+		$db->query( "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '={$estado}=', '={$delegacion}=');" );
+	}
+
 	$db->query("UPDATE cupos SET acepta = '{$acepto_hasta}' WHERE cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ");
     $db->query("UPDATE cupos SET full = 1 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos >= acepta ) ");
     $db->query("UPDATE cupos SET full = 0 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos < acepta ) ");

@@ -32,7 +32,7 @@
     if( isset($NO_ENVIAR) ){
         echo $mensaje_cliente;
     }else{
-        // wp_mail( $email_cliente, "Confirmación de Solicitud para Conocer Cuidador", $mensaje_cliente);
+        wp_mail( $email_cliente, "Confirmación de Solicitud para Conocer Cuidador", $mensaje_cliente);
     } 
     
     $file = $PATH_TEMPLATE.'/template/mail/conocer/cuidador/confirmar.php';
@@ -47,7 +47,7 @@
     if( isset($NO_ENVIAR) ){
         echo $mensaje_cuidador;
     }else{
-        // wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $mensaje_cuidador);
+        wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $mensaje_cuidador);
     } 
 
 	$file = $PATH_TEMPLATE.'/template/mail/conocer/admin/confirmar.php';
@@ -63,7 +63,7 @@
     if( isset($NO_ENVIAR) ){
         echo $mensaje_admin;
     }else{
-        // kmimos_mails_administradores_new("Confirmación de Solicitud para Conocer a ".$cuidador_name, $mensaje_admin);
+        kmimos_mails_administradores_new("Confirmación de Solicitud para Conocer a ".$cuidador_name, $mensaje_admin);
     } 
     
     $CONTENIDO .= "<div class='msg_acciones'>

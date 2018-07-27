@@ -19,9 +19,9 @@ function getStatus(){
 		jQuery("#consultar").addClass("disable");
 		jQuery("#consultar").val("Procesando...");
 		jQuery.post(
-			TEMA+"/admin/backend/otros/ajax/getStatus.php",
+			TEMA+"/admin/backend/cupones/ajax/get.php",
 			{
-				reserva: jQuery("#reserva").val()
+				email: jQuery("#email").val()
 			},
 			function(HTML){
 				jQuery("#info_user").html(HTML);
@@ -31,22 +31,26 @@ function getStatus(){
 
 	            jQuery("#consultar").removeClass("disable");
 	            jQuery("#consultar").val("Actualizar");
+
+	            jQuery("#info_user > div span").unbind("click").bind("click", function(e){
+	            	updateStatus( jQuery(this) );
+	            });
 	        }
 	    ); 
 	}
 }
 
-function updateStatus(){
+function updateStatus(_this){
 	if( !jQuery("#confirmar").hasClass("disable") ){
-		var confirmed = confirm("Esta seguro de cambiar el status de la reserva a [ "+String(jQuery("#status").val()).toUpperCase()+" ].?");
+		var confirmed = confirm("Esta seguro de eliminar el uso del cupon [ "+String( _this.attr("data-txt") ).toUpperCase()+" ].?");
     	if (confirmed == true) {
 			jQuery("#confirmar").addClass("disable");
 			jQuery("#confirmar").val("Procesando...");
 			jQuery.post(
-				TEMA+"/admin/backend/otros/ajax/updateStatus.php",
+				TEMA+"/admin/backend/cupones/ajax/update.php",
 				{
-					ORDEN_ID: jQuery("#orden").val(),
-					status: jQuery("#status").val()
+					cupon_id:  _this.attr("data-id"),
+					user_id:  _this.attr("data-user")
 				},
 				function(HTML){
 

@@ -55,8 +55,7 @@
 			$metas_cliente = get_user_meta($cliente);
 			$cliente_name = $metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0];
 
-			$user_cliente = get_user_by( 'id', $cliente );
-			$email_cliente = $user_cliente->data->user_email;
+			$email_cliente = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = '".$cliente."'");
 
 	    if( $acc == "" ){
 	    	include(__DIR__."/nueva.php");

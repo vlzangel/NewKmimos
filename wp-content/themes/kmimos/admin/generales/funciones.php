@@ -54,6 +54,15 @@
             if( in_array($user_id, $user_especiales)  ){
 
                 $opciones_menu_reporte[] = array(
+                    'title'         =>  __('Cupones'),
+                    'short-title'   =>  __('Cupones'),
+                    'parent'        =>  'reporte_fotos',
+                    'slug'          =>  'reporte_cupones',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_cupones',
+                );
+
+                $opciones_menu_reporte[] = array(
                     'title'         =>  __('Otros'),
                     'short-title'   =>  __('Otros'),
                     'parent'        =>  'reporte_fotos',
@@ -124,12 +133,20 @@
         }
     }
 
+    if(!function_exists('reporte_cupones')){
+        function reporte_cupones(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/backend/cupones/reporte.php');
+        }
+    }
+
     if(!function_exists('reporte_otros')){
         function reporte_otros(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/otros/reporte_otros.php');
         }
     }
+
     if(!function_exists('reporte_facturas')){
         function reporte_facturas(){
             include_once(dirname(__DIR__).'/recursos/importador.php');

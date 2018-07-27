@@ -1,19 +1,48 @@
-<div style='text-align:center; margin-bottom: 34px;'>
-	<img src='[URL_IMGS]/solicitud_cancelada.png' style='width: 100%;' >
+<div style='text-align:center;'>
+	<img src='[URL_IMGS]/new/cancelar_solicitud.png' style='width: 100%;' >
+</div>
+
+<div style="
+    background-color: #8cce08;
+    color: #FFF;
+    height: 60px;
+    margin-bottom: 34px;
+    padding: 25px 30px 15px;
+    font-size: 24px;
+    font-weight: 600;
+">
+	<img src='[URL_IMGS]/new/cancelar_solicitud_icono.png' style='height: 100%;' align='middle' > [TITULO_CANCELACION]
 </div>
 
 <div style='padding: 0px;'>
 
 	<div style='font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
-		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding-bottom: 10px;'>
+		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding: 0px 30px 30px;'>
 			Hola [name_cuidador]
 		</div>	
 
-	    <div style='width: 269px; border-radius: 2.8px; background-color: #f4f4f4; margin: 0px auto 11px; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px; text-align: center;'>
-	    	Solicitud para conocer cuidador #: <strong>[id_solicitud]</strong>
+	    <div style='
+    	    width: 100%;
+		    background-color: #e4e4e4;
+		    margin: 0px auto;
+		    font-family: Arial;
+		    font-size: 15px;
+		    letter-spacing: 0.3px;
+		    color: #000000;
+		    padding: 14px 0px;
+		    text-align: center;
+    	'>
+	    	<strong>Solicitud para conocer cuidador #: [id_solicitud]</strong>
 	    </div>
 
-	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 30px;'>
+	    <div style='
+    	    font-family: Arial;
+		    font-size: 16px;
+		    line-height: 1.07;
+		    letter-spacing: 0.3px;
+		    color: #000;
+		    padding: 30px;
+	    '>
 	    	[mensaje]
 	    </div>
 
