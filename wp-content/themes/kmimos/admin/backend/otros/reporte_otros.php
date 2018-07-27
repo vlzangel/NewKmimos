@@ -4,7 +4,7 @@
 <div class="container_listados">
 
     <div class='titulos' style="padding: 20px 0px 0px;">
-        <h2>Ajuste de Varios</h2>
+        <h2>Ajuste  de Estatus de Reservas</h2>
         <hr>
     </div>
 
