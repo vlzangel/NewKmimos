@@ -3,7 +3,7 @@
 <div style='padding: 0px;'>
 
 	<div style='font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
-		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #7d1696; padding: 0px 30px 30px;'>
+		<div style='font-family: Arial; font-size: 140%; font-weight: bold; letter-spacing: 0.4px; color: #7d1696; padding: 30px;'>
 			Hola [name_cliente],
 		</div>	
 

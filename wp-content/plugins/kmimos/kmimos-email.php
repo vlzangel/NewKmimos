@@ -153,7 +153,7 @@ if(!function_exists('kmimos_get_email_footer')){
 
     if(!function_exists('get_email_html')){
         
-        function get_email_html($content, $dudas = true, $beneficios = true, $user_id = null){
+        function get_email_html($content, $dudas = true, $beneficios = true, $user_id = null, $_header = true){
 
             $ayuda = "";
             if( $dudas ){
@@ -182,6 +182,14 @@ if(!function_exists('kmimos_get_email_footer')){
                 ";
             }
 
+            $header = "";
+            if( $_header ){
+                $header = "
+                <div style='text-align:center; background-color: #000;'>
+                    <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/new/km-logo.png' style='margin: 10px; height: 40px;' />
+                </div>";
+            }
+
             $html = "
             <html>
                 <head>
@@ -200,9 +208,7 @@ if(!function_exists('kmimos_get_email_footer')){
                 <body>
                     <div id='kmimos_container' style='font-family: Arial;'>
                         <div style='margin: 0px auto; padding: 0px 10px; width: 600px;'>
-                            <div style='text-align:center; background-color: #000;'>
-                                <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/new/km-logo.png' style='margin: 10px; height: 40px;' />
-                            </div>
+                            ".$header."
 
                             ".$content."
 

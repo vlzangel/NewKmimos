@@ -1,17 +1,17 @@
 <div style='
 	display: inline-block; 
 	width: 260px; 
-	height: 310px; 
 	background-color: #ffffff; 
 	margin: 0px 10px 20px;
     box-sizing: border-box;
+    padding-bottom: 10px;
 '>
 	
 	<table width="260" style='
 	    padding: 10px;
 	'>
 		<tr>
-			<td align="center" height="130" style="
+			<td align="center" height="130" width="260" style="
 				background-image: url('[AVATAR]'); 
 				background-repeat: no-repeat; 
 				background-position: center; 
@@ -23,11 +23,11 @@
 
 	<div style="padding: 10px;">
 		
-		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; text-align: left; color: #000000; margin: 5px 0px 3px;'>
+		<div style='font-family: Arial; font-size: 24px; font-weight: bold; letter-spacing: 0.4px; text-align: left; color: #000000; margin: 5px 0px 3px;'>
 			[NAME_CUIDADOR]
 		</div>
 
-		<div style='font-family: Arial; font-size: 11px; letter-spacing: -0.1px; color: #000000; text-align: left;'>
+		<div style='font-family: Arial; font-size: 13px; letter-spacing: -0.1px; color: #000000; text-align: left;'>
 			[EXPERIENCIA] años de experiencia
 		</div>
 
@@ -35,7 +35,7 @@
 			[HUESOS]
 		</div>
 
-		<div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #0d7ad9; height: 30px; margin-bottom: 10px;'>
+		<div style='font-family: Arial; font-size: 14px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #0d7ad9; height: 30px;'>
 			[SERVICIOS] <span style="color: #000000;">DESDE MXN$ <span style='font-family: Arial; font-size: 18px;'>[MONTO]</span>[MONTO_DECIMALES]</span>
 		</div>
 
@@ -53,7 +53,7 @@
 		    text-align: center;
 		    margin: 0px 3px 0px 0px;
 		    color: #000;
-		    font-size: 11px;
+		    font-size: 12px;
 		    font-weight: 600;
 		'>
 			CONOCELO M&Aacute;S
@@ -69,7 +69,7 @@
 		    text-align: center;
 		    margin: 0px 3px 0px 0px;
 		    color: #FFF;
-		    font-size: 11px;
+		    font-size: 12px;
 		    font-weight: 600;
 		    background-color: #920e9d;'>
 			RESERVA AQU&Iacute;
