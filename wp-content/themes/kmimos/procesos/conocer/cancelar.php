@@ -1,7 +1,7 @@
 <?php
-    
+    $enviar_code = true;
     if( $CODE == $_SESSION["CODE"] ){
-        exit();
+        $enviar_code = false;
     }else{
         $_SESSION["CODE"] = $CODE;
     }
@@ -145,10 +145,13 @@
 
 
     	$mensaje_cliente = get_email_html( $mensaje_cliente, true, true, $cliente );	
+        $mensaje_cliente = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cliente);
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cliente;
-            wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
+            if( $enviar_code ){
+                wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
+            }
         }else{
             wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
         }
@@ -163,11 +166,14 @@
         $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
 
-        $mensaje_cuidador = get_email_html( $mensaje_cuidador, true, true, $cliente );   
+        $mensaje_cuidador = get_email_html( $mensaje_cuidador, true, true, $cliente ); 
+        $mensaje_cuidador = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cuidador);  
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cuidador;
-            wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+            if( $enviar_code ){
+                wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+            }
         }else{
             wp_mail( $email_cuidador, "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         } 
@@ -183,11 +189,14 @@
         $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
         $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
 
-        $mensaje_admin = get_email_html( $mensaje_admin, true, true, $cliente );    
+        $mensaje_admin = get_email_html( $mensaje_admin, true, true, $cliente );  
+        $mensaje_admin = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_admin);    
  
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;
-            wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+            if( $enviar_code ){
+                wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_admin);
+            }
         }else{
             kmimos_mails_administradores_new("Cancelación de Solicitud para conocer cuidador", $mensaje_admin);
         } 

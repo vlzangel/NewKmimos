@@ -7,7 +7,7 @@
     box-sizing: border-box;
 '>
 	
-	<table width="100%" style='
+	<table width="260" style='
 	    padding: 10px;
 	'>
 		<tr>
@@ -21,7 +21,6 @@
 		</tr>
 	</table>
 
-	<!-- <img style='width: 62px; height: 62px; display: block; margin: 12px auto 6px; border-radius: 50%;' src='[AVATAR]' > -->
 	<div style="padding: 10px;">
 		
 		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; text-align: left; color: #000000; margin: 5px 0px 3px;'>
