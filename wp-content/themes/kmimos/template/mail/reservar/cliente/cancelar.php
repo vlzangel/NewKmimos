@@ -32,10 +32,7 @@
 		    color: #000;
 		    padding: 30px;
 	    '>
-	    	[mensaje] <img style='
-	    		height: 22px;
-		    	vertical-align: middle;
-		    ' src='[URL_IMGS]/emoji_triste_2.png' >
+	    	[mensaje]
 	    </div>
 
 	    [SUGERIDOS]

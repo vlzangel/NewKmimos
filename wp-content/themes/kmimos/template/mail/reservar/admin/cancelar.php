@@ -45,10 +45,7 @@
 		    color: #000;
 		    padding: 30px;
 	    '>
-	    	[mensaje] <img style='
-	    		height: 22px;
-		    	vertical-align: middle;
-		    ' src='[URL_IMGS]/emoji_triste_2.png' >
+	    	[mensaje]
 	    </div>
 
 	    <div style='background-color: #efefef; font-family: Arial; font-size: 16px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 30px 30px 20px;'>
