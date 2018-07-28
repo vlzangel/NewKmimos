@@ -132,15 +132,23 @@
         }
     }
 
+    $file_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/sugeridos.php';
+    $plantilla_sugeridos = file_get_contents($file_plantilla);
+    $plantilla_sugeridos = str_replace("[CUIDADORES]", $str_sugeridos, $plantilla_sugeridos);
+
         $file = $PATH_TEMPLATE.'/template/mail/conocer/cliente/cancelar.php';
         $mensaje_cliente = file_get_contents($file);
 
         $mensaje_cliente = str_replace('[mensaje]', $msg_cliente, $mensaje_cliente);
         $mensaje_cliente = str_replace("[TITULO_CANCELACION]", $titulo_cancelacion, $mensaje_cliente);
         $mensaje_cliente = str_replace('[id_solicitud]', $id_orden, $mensaje_cliente);
-        $mensaje_cliente = str_replace('[name_cliente]', $cliente_name, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[name_cliente]', "<strong>".strtoupper($cliente_name)."</strong>", $mensaje_cliente);
         $mensaje_cliente = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cliente);
-        $mensaje_cliente = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_cliente);
+        if( $usu == "CLI" ){
+            $mensaje_cliente = str_replace('[SUGERIDOS]', "", $mensaje_cliente);
+        }else{
+            $mensaje_cliente = str_replace('[SUGERIDOS]', $plantilla_sugeridos, $mensaje_cliente);
+        }
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
 
 
@@ -186,7 +194,11 @@
         $mensaje_admin = str_replace('[id_solicitud]', $id_orden, $mensaje_admin);
         $mensaje_admin = str_replace('[name_cliente]', $cliente_name, $mensaje_admin);
         $mensaje_admin = str_replace('[name_cuidador]', $cuidador_name, $mensaje_admin);
-        $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
+        if( $usu == "CLI" ){
+            $mensaje_admin = str_replace('[CUIDADORES]', "<div style='padding: 0px 45px 10px; text-align: left;'>Ninguna sugerencia, porque cancelo el cliente.</div>", $mensaje_admin);
+        }else{
+            $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
+        }
         $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
 
         $mensaje_admin = get_email_html( $mensaje_admin, true, true, $cliente, false );  

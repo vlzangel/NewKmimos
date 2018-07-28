@@ -55,7 +55,7 @@
 		    text-decoration: none;
 		    display: inline-block;
 		    width: 115px;
-		    border-radius: 0px;
+		    border-radius: 3px;
 		    border: solid 1px #000;
 		    padding: 8px 0px 6px;
 		    text-align: center;
@@ -71,7 +71,7 @@
 		    text-decoration: none;
 		    display: inline-block;
 		    width: 115px;
-		    border-radius: 0px;
+		    border-radius: 3px;
 		    border: solid 1px #920e9d;
 		    padding: 8px 0px 6px;
 		    text-align: center;
