@@ -233,7 +233,7 @@ if(!function_exists('kmimos_get_email_footer')){
                                     <div style='display: table-cell; width: 240px; vertical-align: middle; text-align: right; padding-left:15px; padding-right: 30px;'>
                                         <span style='display: inline-block; padding: 0px 5px 2px 0px; float:right'>
                                             <a href='https://www.facebook.com/Kmimosmx/'>
-                                                <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook_2.png' style='vertical-align: bottom;' align='center'>
+                                                <img src='".get_home_url()."/wp-content/themes/kmimos/images/emails/icono_facebook_2.png' style='vertical-align: bottom; height: 30px;' align='center'>
                                             </a>
                                         </span> 
                                     </div>
