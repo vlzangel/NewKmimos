@@ -142,7 +142,7 @@
         $mensaje_cliente = str_replace('[mensaje]', $msg_cliente, $mensaje_cliente);
         $mensaje_cliente = str_replace("[TITULO_CANCELACION]", $titulo_cancelacion, $mensaje_cliente);
         $mensaje_cliente = str_replace('[id_solicitud]', $id_orden, $mensaje_cliente);
-        $mensaje_cliente = str_replace('[name_cliente]', "<strong>".strtoupper($cliente_name)."</strong>", $mensaje_cliente);
+        $mensaje_cliente = str_replace('[name_cliente]', "<strong style='text-transform: uppercase;'>".strtoupper($cliente_name)."</strong>", $mensaje_cliente);
         $mensaje_cliente = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cliente);
         if( $usu == "CLI" ){
             $mensaje_cliente = str_replace('[SUGERIDOS]', "", $mensaje_cliente);

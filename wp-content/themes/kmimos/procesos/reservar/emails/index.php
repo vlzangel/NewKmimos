@@ -256,6 +256,8 @@
 
 		}
 
+		$continuar = true;
+		
 		if( $continuar ){
 
 			if( $acc == "CFM" ){

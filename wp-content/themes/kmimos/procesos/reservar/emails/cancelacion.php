@@ -121,13 +121,13 @@
         $mensaje_cliente = str_replace('[MODIFICACION]', $modificacion, $mensaje_cliente);
         $mensaje_cliente = str_replace("[TITULO_CANCELACION]", $titulo_cancelacion, $mensaje_cliente);
         $mensaje_cliente = str_replace('[mensaje]', $msg_cliente, $mensaje_cliente);
-        $mensaje_cliente = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cliente);
+        $mensaje_cliente = str_replace('[name_cliente]', "<strong style='text-transform: uppercase;'>".$cliente["nombre"]."</strong>", $mensaje_cliente);
         $mensaje_cliente = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[SUGERIDOS]', $plantilla_sugeridos, $mensaje_cliente);
         $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
     	
-        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"]);	
+        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false);	
 
         if( $NO_ENVIAR != "" ){
             echo $mensaje_cliente;
