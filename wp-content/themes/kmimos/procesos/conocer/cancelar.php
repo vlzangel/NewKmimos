@@ -107,22 +107,22 @@
     $msg_cuidador = "";
 
     if( $usu == "STM" ){
-        $msg_cliente = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #6b1c9b;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
-        $msg_cuidador = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #6b1c9b;'>cancelado</span> la solicitud para conocer cuidador realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cliente = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cuidador = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocer cuidador realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
 
-        $msg_admin = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #6b1c9b;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> realizada por el cliente <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_admin = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> realizada por el cliente <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
 
     }else{
         if( $usu == "CLI" ){
             $msg_cliente = "Te notificamos que la solicitud para conocer cuidador ha sido cancelada exitosamente.";
-            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #6b1c9b;'>cancelado</span> la solicitud para conocerte.";
+            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocerte.";
 
-            $msg_admin = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #6b1c9b;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong>.";
+            $msg_admin = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong>.";
         }else{
-            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #6b1c9b;'>cancelado</span> la solicitud para conocerle.";
+            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocerle.";
             $msg_cuidador = "Te notificamos que la solicitud para conocerte ha sido cancelada exitosamente.";
 
-            $msg_admin = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #6b1c9b;'>cancelado</span> la solicitud para conocerle, realizado por el cliente <strong>[name_cliente]</strong>.";
+            $msg_admin = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocerle, realizado por el cliente <strong>[name_cliente]</strong>.";
         }
     }
 
@@ -142,7 +142,7 @@
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cliente;
-            // wp_mail( "a.veloz@kmimos.la", "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
+            // wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
         }else{
             wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
         }
@@ -161,7 +161,7 @@
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cuidador;
-            // wp_mail( "a.veloz@kmimos.la", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+            // wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         }else{
             wp_mail( $email_cuidador, "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         } 
@@ -181,7 +181,7 @@
  
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;
-            // wp_mail( "a.veloz@kmimos.la", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+            // wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         }else{
             kmimos_mails_administradores_new("Cancelación de Solicitud para conocer cuidador", $mensaje_admin);
         } 

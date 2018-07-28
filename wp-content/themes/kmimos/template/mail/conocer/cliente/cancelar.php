@@ -1,5 +1,5 @@
-<div style='text-align:center;'>
-	<img src='[URL_IMGS]/new/cancelar_solicitud.png' style='width: 100%;' >
+<div style='text-align:center; margin-bottom: 0px;'>
+	<img src='[URL_IMGS]/new/Image-3.jpg' style='width: 100%;' >
 </div>
 
 <div style="
@@ -11,13 +11,13 @@
     font-size: 24px;
     font-weight: 600;
 ">
-	<img src='[URL_IMGS]/new/cancelar_solicitud_icono.png' style='height: 100%;' align='middle' > [TITULO_CANCELACION]
+	<img src='[URL_IMGS]/new/Icon-Calendar-Verde.png' style='height: 100%;' align='middle' > [TITULO_CANCELACION]
 </div>
 
 <div style='padding: 0px;'>
 
 	<div style='font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
-		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding: 0px 30px 30px;'>
+		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #7d1696; padding: 0px 30px 30px;'>
 			Hola [name_cliente],
 		</div>	
 
@@ -43,17 +43,14 @@
 		    color: #000;
 		    padding: 30px;
 	    '>
-	    	[mensaje] <img style='
-	    		height: 22px;
-		    	vertical-align: middle;
-		    ' src='[URL_IMGS]/emoji_triste_2.png' >
+	    	[mensaje]
 	    </div>
 
 
 	    <div style='background-color: #efefef; font-family: Arial; font-size: 16px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 30px 30px 20px;'>
 
-	    	<span style='font-family: Arial; font-size: 17px; color: #6b1c9b; font-weight: 600;'>Pero…</span> te sugerimos estos perfiles con <strong>caracteristicas similares</strong> a lo que buscas que creemos pueden interesarte.
-	    	<span style='font-family: Arial; color: #6b1c9b;'>solo da click en ellos y te llevaran directamente a su perfil</span>
+	    	<span style='font-family: Arial; font-size: 17px; color: #7d1696; font-weight: 600;'>Pero…</span> te sugerimos estos perfiles con <strong>caracteristicas similares</strong> a lo que buscas que creemos pueden interesarte.
+	    	<span style='font-family: Arial; color: #7d1696;'>solo da click en ellos y te llevaran directamente a su perfil</span>
 	    	<div style="padding: 15px 0px 0px; text-align: center;">
 		    	<img style='' src='[URL_IMGS]/emoji_feliz_2.png' >
 		    </div>
