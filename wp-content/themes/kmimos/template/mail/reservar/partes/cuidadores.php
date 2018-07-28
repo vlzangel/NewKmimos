@@ -1,3 +1,11 @@
+<style type="text/css">
+    @media max-width: 600px {
+        a[id*='precio'] {
+            font-size: 16px;
+        }
+    }
+</style>
+
 <div style='
 	display: inline-block; 
 	width: 260px; 
@@ -35,8 +43,8 @@
 			[HUESOS]
 		</div>
 
-		<div style='font-family: Arial; font-size: 14px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #0d7ad9; height: 30px;'>
-			[SERVICIOS] <span style="color: #000000;">DESDE MXN$ <span style='font-family: Arial; font-size: 18px;'>[MONTO]</span>[MONTO_DECIMALES]</span>
+		<div style='font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #0d7ad9; height: 30px;'>
+			[SERVICIOS] <span id="precio" style="color: #000000; display: inline-block; vertical-align: middle; padding-top: 7px;">DESDE MXN$ <span style='font-family: Arial; font-size: 18px;'>[MONTO]</span>[MONTO_DECIMALES]</span>
 		</div>
 
 	</div>
@@ -53,7 +61,7 @@
 		    text-align: center;
 		    margin: 0px 3px 0px 0px;
 		    color: #000;
-		    font-size: 12px;
+		    font-size: 0.7rem;
 		    font-weight: 600;
 		'>
 			CONOCELO M&Aacute;S
@@ -69,7 +77,7 @@
 		    text-align: center;
 		    margin: 0px 3px 0px 0px;
 		    color: #FFF;
-		    font-size: 12px;
+		    font-size: 0.7rem;
 		    font-weight: 600;
 		    background-color: #920e9d;'>
 			RESERVA AQU&Iacute;
