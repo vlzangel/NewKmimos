@@ -1,5 +1,11 @@
 <?php
     
+    if( $CODE == $_SESSION["CODE"] ){
+        exit();
+    }else{
+        $_SESSION["CODE"] = $CODE;
+    }
+
     switch ( $usu ) {
         case 'STM':
             $titulo_cancelacion = "Solicitud Cancelada por el Sistema";
@@ -142,7 +148,7 @@
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cliente;
-            // wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
+            wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
         }else{
             wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
         }
@@ -161,7 +167,7 @@
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cuidador;
-            // wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+            wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         }else{
             wp_mail( $email_cuidador, "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         } 
@@ -181,7 +187,7 @@
  
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;
-            // wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
+            wp_mail( "vlzangel91@gmail.com", "Cancelación de Solicitud para conocer cuidador", $mensaje_cuidador);
         }else{
             kmimos_mails_administradores_new("Cancelación de Solicitud para conocer cuidador", $mensaje_admin);
         } 
@@ -189,6 +195,8 @@
     if( $usu != "STM" ){
         $CONTENIDO .= "<div class='msg_acciones'>Te notificamos que la solicitud para conocer cuidador <strong>#".$id_orden."</strong>, ha sido cancelada exitosamente.</div>";
     }
+
+
 
 ?>
 
