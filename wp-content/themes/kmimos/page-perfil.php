@@ -352,7 +352,22 @@
 				</div>
 	    	</div>
 		';
-
+		$HTML .= '
+			<!-- Modal -->
+			<div class="modal fade" id="info_facturacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h5 class="modal-title" id="myModalLabel">Informaci&oacute;n de facturaci&oacute;n</h5>
+			      </div>
+			      <div class="modal-body">
+			        <p>Su factura será emitida una vez la reserva se haya completado</p>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		';
 		echo comprimir_styles($HTML);
 
 

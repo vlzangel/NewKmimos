@@ -511,6 +511,7 @@ class CFDI {
 
 	// Registra el CFDI en la data de Kmimos
 	public function guardarCfdi( $CFDi_receptor, $data, $ack ){
+		
 		if( empty($data) || empty($ack) ){ return false; }		
 
 		$ef = $ack->AckEnlaceFiscal;

@@ -4,195 +4,125 @@
 
 include_once( dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))) ."/vlz_config.php");
 include_once( dirname(dirname(dirname(__DIR__))) . "/procesos/funciones/db.php");
+include_once( dirname(dirname(dirname(__DIR__))) . "/lib/enlaceFiscal/CFDI.php" );
 
 global $wpdb;
-
-$db = new db( new mysqli($host, $user, $pass, $db) );
-//include_once( dirname(dirname(dirname(__DIR__)))."/lib/enlaceFiscal/CFDI.php" );
-
-$orden = vlz_get_page();
 
 $factura_generada = 'none';
 $factura_datos = 'block';
 $pdf = 'javascript:;';
 
+$informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
+
+// Orden
+	$orden = vlz_get_page();
+
 // Reserva
-	$reserva_id = $db->get_var( "select ID from wp_posts where post_parent = {$orden} and post_type = 'wc_booking'");
+	$reserva_id = $CFDI->db->get_var( "select ID from wp_posts where post_parent = {$orden} and post_type = 'wc_booking'");
 	if( $reserva_id > 0 ){
-		$factura = $db->get_row( "select * from facturas where reserva_id = {$reserva_id}");
-		if( isset($factura->id) && $factura->id > 0 ){
+		$factura = $CFDI->db->get_row( "select * from facturas where reserva_id = {$reserva_id}");
+		if( !isset($factura->id) && $factura->id > 0 ){
 			$factura_generada = 'block';
 			$factura_datos = 'none';
 			$pdf = $factura->urlPdf;
-		}
-	}
-// Estados
-	$estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
-	$str_estados = "";
-	$cod_estado = get_user_meta($user_id, 'billing_state', true);
-	$estado_selected = '<option value="">Selección de Estado</option>';
-	foreach($estados as $estado) { 
-		if( $cod_estado == $estado->id ){
-		    $estado_selected = "<option value='".$estado->id."'>".$estado->name."</option>";
 		}else{
-		    $str_estados .= "<option value='".$estado->id."'>".$estado->name."</option>";
+
+			// Desglose de reserva
+			$data_reserva = kmimos_desglose_reserva_data($orden, true);
+
+			if( validar_datos_facturacion( $data_reserva['cliente']['id'] ) ){
+	
+				if( validar_datos_facturacion( $data_reserva['cuidador']['id'] ) ){
+
+					// Datos complementarios CFDI
+					$data_reserva['receptor']['rfc'] = get_user_meta( $user_id, 'billing_rfc', true );
+					$data_reserva['receptor']['nombre'] = get_user_meta( $user_id, 'billing_first_name', true );
+
+
+					// Usuario ID
+					$user_id = $data_reserva['cliente']['id'];	
+
+					// Generar CFDI
+					$AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
+
+					$respuesta = [];
+					if( !empty($AckEnlaceFiscal['ack']) ){
+						$ack = json_decode($AckEnlaceFiscal['ack']);
+
+					    // Datos complementarios
+					    $datos['comentario'] = '';
+					    $datos['subtotal'] = $AckEnlaceFiscal['data']['CFDi']['subTotal'];
+					    $datos['impuesto'] = $AckEnlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
+					    $datos['total'] = $AckEnlaceFiscal['data']['CFDi']['total'];
+
+						$CFDI->guardarCfdi( 'cliente', $data_reserva, $ack );
+
+						if( $ack->AckEnlaceFiscal->estatusDocumento == 'aceptado' ){
+							$factura_generada = 'block';
+							$factura_datos = 'none';
+							$pdf = $ack->AckEnlaceFiscal->descargaArchivoPDF;
+						}
+					}
+				}else{
+					$informacion = '
+						En estos momentos <strong>'. $data_reserva['cuidador']['nombre'] .'</strong>, no tiene sus datos de facturación cargados, nos encargaremos de contactar al cuidador y te avisaremos cuando esté lista. En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono <strong>(01) 55 3137 4829</strong>, Whatsapp <strong>+52 (33) 1261 4186</strong>, o al correo <a href="mailto:contactomex@kmimos.la" target="_blank" style="text-decoration: none; ">contactomex@kmimos.la</a>
+					';
+
+
+					$__email = file_get_contents( dirname(dirname(dirname(__DIR__))) . "/template/mail/factura/cuidador_sin_datos.php"  );
+					$__email = str_replace('[id_reserva]', $data_reserva['servicio']['id_reserva'], $__email);
+					$__email = str_replace('[avatar_cuidador]', kmimos_get_foto($data_reserva['cuidador']['id']), $__email);
+					$__email = str_replace('[cuidador_nombre]', $data_reserva['cuidador']['nombre'], $__email);
+					$__email = str_replace('[telefonos_cuidador]', $data_reserva['cuidador']['telefono'], $__email);
+					$__email = str_replace('[correo_cuidador]', $data_reserva['cuidador']['email'], $__email);
+
+					$__email = str_replace('[cliente_nombre]', $data_reserva['cliente']['nombre'], $__email);
+					$__email = str_replace('[avatar_cliente]', kmimos_get_foto($data_reserva['cliente']['id']), $__email);
+					$__email = str_replace('[telefonos_cliente]', $data_reserva['cliente']['telefono'], $__email);
+					$__email = str_replace('[correo_cliente]', $data_reserva['cliente']['email'], $__email);
+
+					$html_email = get_email_html($__email, false, false);
+					wp_mail( 'italococchini@gmail.com', $data_reserva['cuidador']['nombre']." No posee datos de facturacion!", $html_email ); 
+
+				}
+
+			}else{
+				$informacion = 'Debe completar los <a href="'.get_home_url().'/perfil-usuario/datos-de-facturacion/">Datos de facturaci&oacute;n</a>';
+			}
+
 		}
-	} 
-	$str_estados = $estado_selected. utf8_decode($str_estados);
-// Municipios
-	$municipio = get_user_meta($user_id, 'billing_city', true);
-	if( !empty($municipio) ){
-		$str_municipio = '<option value="'.$municipio.'">'.$municipio.'</option>';
-	}else{
-		$str_municipio = '<option value="">Selección de Municipio</option>';
 	}
 
+// Vista
+	$CONTENIDO .= '	
+	<div class="text-left">
+	    <h1 style="margin: 10px 0px 5px 0px; padding: 0px;">Comprobante Fiscal Digital - Reserva #'.$reserva_id.' </h1>
 
-$CONTENIDO = '	
-<div class="text-left">
-    <h1 style="margin: 10px 0px 5px 0px; padding: 0px;">Comprobante Fiscal Digital - Reserva #'.$reserva_id.' </h1>
-	
-	<section id="solicitar-factura" style="display: '.$factura_datos.';">
-		<label class="lbl-text" style="font-style:italic;">Complete los siguientes datos para emitir su CFDI</label>
-        <hr style="margin: 5px 0px 15px;">
+		<section id="descargar-factura" style="display: '.$factura_datos.';">
+			<label class="lbl-text" style="font-style:italic;">El Comprobante Fiscal Digital no fue emitido</label>
+	        <hr style="margin: 5px 0px 15px;">
+			<aside class="alert alert-info">'.$informacion.'</aside>
+		</section>
 
-        <input type="hidden" id="id_orden" name="id_orden" value="'.$orden.'" />
-        <input type="hidden" name="user_id" value="'.$user_id.'" />
-        <input type="hidden" name="accion" value="factura_cliente" />
-        <input type="hidden" name="core" value="SI" />
-
-		<div class="inputs_containers">
-			<section>
-				<label for="rfc" class="lbl-text">* RFC:</label>
-				<label class="lbl-ui">
-					<input type="text" id="rfc" name="rfc" value="'.get_user_meta($user_id, 'billing_rfc', true).'" placeholder="AAA010101AAA" data-valid="requerid" autocomplete="off" min-lenght="12" max-lenght="13">
-					<div class="no_error" id="error_rfc" data-id="rfc">Completa este campo.</div>
-				</label>
-	 		</section>
-			<section>
-				<label for="nombre" class="lbl-text">* Nombre:</label>
-				<label class="lbl-ui">
-					<input type="text" id="nombre" name="nombre" value="'.get_user_meta($user_id, 'billing_fullname', true).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-					<div class="no_error" id="error_nombre" data-id="nombre">Completa este campo.</div>
-				</label>
-	 		</section>
-
-			<section>
-				<label for="calle" class="lbl-text">Calle:</label>
-				<label class="lbl-ui">
-					<input type="text" id="calle" name="calle" value="'.get_user_meta($user_id, 'billing_calle', true).'" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-					<div class="no_error" id="error_calle" data-id="calle">Completa este campo.</div>
-				</label>
-	 		</section>
-			<section>
-				<label for="cp" class="lbl-text">Código Postal:</label>
-				<label class="lbl-ui">
-					<input type="text" id="cp" name="cp" value="'.get_user_meta($user_id, 'billing_postcode', true).'" autocomplete="off" placeholder="Ejemplo: 44580">
-					<div class="no_error" id="error_cp" data-id="cp">Completa este campo.</div>
-				</label>
-	 		</section> 		
-			<section>
-				<label for="noExterior" class="lbl-text"># Exterior:</label>
-				<label class="lbl-ui">
-					<input type="text" id="noExterior" name="noExterior" value="'.get_user_meta($user_id, 'billing_noExterior', true).'" autocomplete="off" placeholder="Ejemplo: 2858">
-					<div class="no_error" id="error_noExterior" data-id="noExterior">Completa este campo.</div>
-				</label>
-	 		</section>
-			<section>
-				<label for="noInterior" class="lbl-text"># Interior:</label>
-				<label class="lbl-ui">
-					<input type="text" id="noInterior" name="noInterior" value="'.get_user_meta($user_id, 'billing_noInterior', true).'" autocomplete="off" placeholder="Ejemplo: A-1">
-					<div class="no_error" id="error_noInterior" data-id="noInterior">Completa este campo.</div>
-				</label>
-	 		</section>
-	 		<section class="lbl-ui">
-				<label for="estado" class="lbl-text">Estado:</label>
-				<select class="" name="rc_estado">
-					'.$str_estados.'
-				</select>
-	 		</section>
-			<section class="lbl-ui">
-				<label for="municipio" class="lbl-text">Municipio:</label>
-				<select class="" name="rc_municipio">
-					'.$str_municipio.'
-				</select>
-	 		</section>
-			<section>
-				<label for="colonia" class="lbl-text">Colonia:</label>
-				<label class="lbl-ui">
-					<input type="text" id="colonia" name="colonia" value="'.get_user_meta($user_id, 'billing_colonia', true).'" autocomplete="off" placeholder="Ejemplo: Jardines del norte">
-					<div class="no_error" id="error_colonia" data-id="colonia">Completa este campo.</div>
-				</label>
-	 		</section>
-			<section>
-				<label for="localidad" class="lbl-text">Localidad:</label>
-				<label class="lbl-ui">
-					<input type="text" id="localidad" name="localidad" value="'.get_user_meta($user_id, 'billing_localidad', true).'" autocomplete="off" placeholder="Ejemplo: Guadalajara">
-					<div class="no_error" id="error_localidad" data-id="localidad">Completa este campo.</div>
-				</label>
-	 		</section>
-			<div>
-				<div class="checkbox">
-				    <label>
-						<input type="checkbox" id="check" data-valid="isChecked">
-						<small>Doy fe que los datos suministrados en el presente formulario son correctos y serán utilizados para la facturación del servicio.</small>
-						<div class="no_error" id="error_check" data-id="check">Completa este campo.</div>
-					</label>
-				</div>
+		<section id="descargar-factura" style="display: '.$factura_generada.';">
+			<label class="lbl-text" style="font-style:italic;">El Comprobante Fiscal Digital fue emitido satisfactoriamente</label>
+	        <hr style="margin: 5px 0px 15px;">
+			<div class="col-sm-6 col-md-3 col-md-offset-3">
+				<a href="'.$pdf.'" id="btn_factura_pdf" class="km-btn-primary" style="margin-top: 5px;margin-bottom: 5px; border: 0px solid transparent;">Descargar PDF</a>
 			</div>
-		</div>
+			<div class="col-sm-6 col-md-3">
+				<a href="javascript:;" id="btn_facturar_sendmail" class="km-btn-primary" style="margin-top: 5px;margin-bottom: 5px;border: 0px solid transparent;">Enviar por Email</a>
+			</div>
+		</section>
 
-		<!-- div class="col-sm-12 col-md-6 col-md-offset-3 text-left" style="margin: 0 auto; float: none;">
-	 		
-	 		<div>
-				<label for="rfc" class="lbl-text">* RFC:</label>
-				<label class="lbl-ui">
-					<input type="text" id="rfc" name="rfc" value="AAA010101AAA" data-valid="requerid" autocomplete="off" min-lenght="12" max-lenght="13">
-					<div class="no_error" id="error_rfc" data-id="rfc">Completa este campo.</div>
-				</label>
-	 		</div>
+		<div class="clear"></div>
+		<section class="col-sm-12 col-md-12" style="margin-top: 20px;">
+			<div class="perfil_cargando" style="width: 100%; background-image: url('.getTema().'/images/cargando.gif);" ></div>
+			<br>
+			<!-- a href="/perfil-usuario/historial"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Volver </a -->
+		</section>
 
-	 		<div>
-				<label for="nombre" class="lbl-text">* Nombre:</label>
-				<label class="lbl-ui">
-					<input type="text" id="nombre" name="nombre" value="Pedro Jose" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-					<div class="no_error" id="error_nombre" data-id="nombre">Completa este campo.</div>
-				</label>
-	 		</div>
+	</div>
+	';
 
-	 		<div>
-				<div class="checkbox">
-				    <label>
-						<input type="checkbox" id="check" data-valid="isChecked">
-						<small>Doy fe que los datos suministrados en el presente formulario son correctos y serán utilizados para la facturación del servicio.</small>
-						<div class="no_error" id="error_check" data-id="check">Completa este campo.</div>
-					</label>
-				</div>
-	 		</div></div -->
-
-		<div class="col-sm-12 col-md-6 col-md-offset-3 text-left" style="margin: 0 auto; float: none;">
-			<input type="button" id="btn_facturar" class="col-md-3 pull-right km-btn-primary" value="Generar Factura" style="border: 0px solid transparent;"/>
- 		</div>
-	</section>
-
-	<section id="descargar-factura" style="display: '.$factura_generada.';">
-		<label class="lbl-text" style="font-style:italic;">El Comprobante Fiscal Digital fue emitido satisfactoriamente</label>
-        <hr style="margin: 5px 0px 15px;">
-		<div class="col-sm-6 col-md-3 col-md-offset-3">
-			<a href="'.$pdf.'" id="btn_factura_pdf" class="km-btn-primary" style="margin-top: 5px;margin-bottom: 5px; border: 0px solid transparent;">Descargar PDF</a>
-		</div>
-		<div class="col-sm-6 col-md-3">
-			<a href="javascript:;" id="btn_facturar_sendmail" class="km-btn-primary" style="margin-top: 5px;margin-bottom: 5px;border: 0px solid transparent;">Enviar por Email</a>
-		</div>
-	</section>
-
-	<div class="clear"></div>
-	<section class="col-sm-12 col-md-12" style="margin-top: 20px;">
-		<div class="perfil_cargando" style="width: 100%; background-image: url('.getTema().'/images/cargando.gif);" ></div>
-		<br>
-		<!-- a href="/perfil-usuario/historial"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Volver </a -->
-	</section>
-
-</div>
-';
 

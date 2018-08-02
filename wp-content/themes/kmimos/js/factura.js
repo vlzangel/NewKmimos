@@ -31,44 +31,34 @@ jQuery( document ).ready(function() {
     // Generar Factura    
     jQuery("#btn_facturar").on("click", function(e){
         var _this = jQuery(this);
-        if( validarAll( 'form_perfil' ) && !_this.hasClass("disabled") ){
 
-            _this.addClass("disabled");
+        var orden = jQuery('#id_orden').val();
+        
+        jQuery('.perfil_cargando').css('display', 'block');
 
-            var orden = jQuery('#id_orden').val();
-            if(!confirm("Esta seguro que desea emitir la factura de la orden #"+orden+"?") ) {
-                return false;
-            } else {
+        jQuery.post(
+            URL_PROCESOS_PERFIL, 
+            jQuery('#form_perfil').serialize(),
+            function(data){
+                data = JSON.parse(data);
                 
-                jQuery('.perfil_cargando').css('display', 'block');
+                if( data['estatus'] == 'aceptado' ){
+                    jQuery('#btn_factura_pdf').attr('href', data['pdf']);
 
-                jQuery.post(
-                    URL_PROCESOS_PERFIL, 
-                    jQuery('#form_perfil').serialize(),
-                    function(data){
-                        data = JSON.parse(data);
-                        
-                        if( data['estatus'] == 'aceptado' ){
-                            jQuery('#btn_factura_pdf').attr('href', data['pdf']);
+                    jQuery('#solicitar-factura').css('display', 'none');
+                    jQuery('#descargar-factura').css('display', 'block');
+                }else{
+                    alert("Ocurrio un problema al tratar de procesar la solitiud");
+                    console.log(data['ack']);
+                }
+                
+                jQuery('.perfil_cargando').css('display', 'none');
 
-                            jQuery('#solicitar-factura').css('display', 'none');
-                            jQuery('#descargar-factura').css('display', 'block');
-                        }else{
-                            alert("Ocurrio un problema al tratar de procesar la solitiud");
-                            console.log(data['ack']);
-                        }
-                        
-                        jQuery('.perfil_cargando').css('display', 'none');
-                        _this.removeClass("disabled");
+            }
+        );
 
-                    }
-                );
-
-                return false;
-            }  
-        }else{
-            alert( "Datos incompletos" );
-        }
+        return false;
+            
     });
 
     jQuery(document).on('change', 'select[name="rc_estado"]', function(e){

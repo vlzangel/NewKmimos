@@ -34,6 +34,18 @@ $user = wp_get_current_user();
 		$str_municipio = '<option value="">Selección de Municipio</option>';
 	}
 
+// Regimen fiscal
+	$regimen_fiscal = get_user_meta($user->ID, 'billing_regimen_fiscal', true);
+	$listado_regimen_fiscal = [
+		'persona_fisica' => 'Persona física / con actividad empresarial',
+		'rif' => 'Régimen de Incorporación Fiscal (RIF)',
+		'persona_moral' => 'Persona Moral',
+	];
+	$select_regimen_fiscal = '';
+	foreach( $listado_regimen_fiscal as $key => $item ){
+		$selected  = ($regimen_fiscal == $key)? 'selected' : '';
+		$select_regimen_fiscal .= '<option value="'.$key.'" '.$selected.'>'.$item.'</option>';
+	}
 
 $CONTENIDO = '	
 <div class="text-left">
@@ -53,63 +65,42 @@ $CONTENIDO = '
 			<h4>Datos generales:</h4>
 		</div>
 
+		<input type="hidden" value="RGLPM" name="regimen_fiscal"/>
+ 		<section class="lbl-ui hidden">
+			<label for="regimen_fiscal_temp" class="lbl-text">Régimen Fiscal:</label>
+			<select name="regimen_fiscal_temp">
+				'.$select_regimen_fiscal.'
+			</select>
+ 		</section>
+		<section>
+			<label for="nombre" class="lbl-text">* Nombre:</label>
+			<label class="lbl-ui">
+				<input type="text" id="nombre" name="nombre" value="'.get_user_meta($user->ID, 'billing_first_name', true).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<div class="no_error" id="error_nombre" data-id="nombre">Completa este campo.</div>
+			</label>
+ 		</section>
+		<section>
+			<label for="apellido_paterno" class="lbl-text">* Apellido Paterno:</label>
+			<label class="lbl-ui">
+				<input type="text" id="apellido_paterno" name="apellido_paterno" value="'.get_user_meta($user->ID, 'billing_last_name', true).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<div class="no_error" id="error_apellido_paterno" data-id="apellido_paterno">Completa este campo.</div>
+			</label>
+ 		</section>
+		<section>
+			<label for="apellido_materno" class="lbl-text">* Apellido Materno:</label>
+			<label class="lbl-ui">
+				<input type="text" id="apellido_materno" name="apellido_materno" value="'.get_user_meta($user->ID, 'billing_second_last_name', true).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<div class="no_error" id="error_apellido_materno" data-id="apellido_materno">Completa este campo.</div>
+			</label>
+ 		</section> 	
+
 		<section>
 			<label for="rfc" class="lbl-text">* RFC:</label>
 			<label class="lbl-ui">
 				<input type="text" id="rfc" name="rfc" value="'.get_user_meta($user->ID, 'billing_rfc', true).'" placeholder="AAA010101AAA" data-valid="requerid" autocomplete="off" min-lenght="12" max-lenght="13">
 				<div class="no_error" id="error_rfc" data-id="rfc">Completa este campo.</div>
 			</label>
- 		</section>
-		<section>
-			<label for="nombre" class="lbl-text">* Nombre:</label>
-			<label class="lbl-ui">
-				<input type="text" id="nombre" name="nombre" value="'.get_user_meta($user->ID, 'billing_fullname', true).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-				<div class="no_error" id="error_nombre" data-id="nombre">Completa este campo.</div>
-			</label>
- 		</section>
-		<section>
-			<label for="regimenFiscal" class="lbl-text">* Regimen Fiscal:</label>
-			<label class="lbl-ui">
-				<input type="text" id="regimenFiscal" name="regimenFiscal" value="'.extract_prospecto( 'regimenFiscal', $prospecto).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-				<div class="no_error" id="error_regimenFiscal" data-id="regimenFiscal">Completa este campo.</div>
-			</label>
- 		</section>
-		<section>
-			<label for="folioSat" class="lbl-text">* Folio SAT:</label>
-			<label class="lbl-ui">
-				<input type="text" id="folioSat" name="folioSat" value="'.extract_prospecto( 'folioSAT', $prospecto).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-				<div class="no_error" id="error_folioSat" data-id="folioSat">Completa este campo.</div>
-			</label>
- 		</section>
-		<section>
-			<label for="numeroFolioFiscal" class="lbl-text">* Numero Folio Fiscal:</label>
-			<label class="lbl-ui">
-				<input type="text" id="numeroFolioFiscal" name="numeroFolioFiscal" value="'.extract_prospecto( 'numFolioFiscal', $prospecto).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-				<div class="no_error" id="error_numeroFolioFiscal" data-id="numeroFolioFiscal">Completa este campo.</div>
-			</label>
- 		</section> 		
-		<section>
-			<label for="serieSat" class="lbl-text">* Serie SAT:</label>
-			<label class="lbl-ui">
-				<input type="text" id="serieSat" name="serieSat" value="'.extract_prospecto( 'serie', $prospecto).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-				<div class="no_error" id="error_serieSat" data-id="serieSat">Completa este campo.</div>
-			</label>
- 		</section>
-		<section>
-			<label for="tipoComprobante" class="lbl-text">* Tipo comprobante:</label>
-			<label class="lbl-ui">
-				<input type="text" id="tipoComprobante" name="tipoComprobante" value="'.extract_prospecto( 'tipoComprobante', $prospecto).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-				<div class="no_error" id="error_tipoComprobante" data-id="tipoComprobante">Completa este campo.</div>
-			</label>
- 		</section>
-
-		<section>
-			<label for="tipoComprobante" class="lbl-text">Estatus:</label>
-			<label class="lbl-ui">
-				<input type="text" value="'.extract_prospecto( 'estatus', $prospecto).'" data-valid="requerid" autocomplete="off" readonly />
-				<div class="no_error" id="error_tipoComprobante" data-id="tipoComprobante">Completa este campo.</div>
-			</label>
- 		</section>
+ 		</section>		
 
 		<div>
 			<h4>Firma electrónica SAT:</h4>
@@ -130,9 +121,10 @@ $CONTENIDO = '
 			</label>
  		</section>
 		<section>
-			<label for="fielPass" class="lbl-text">* Contraseña de clave privada:</label>
+			<label for="fielPass" class="lbl-text">* Contraseña de clave privada (.key):</label>
 			<label class="lbl-ui">
 				<input type="password" id="fielPass" name="fielPass" value="'.extract_prospecto( 'fielPass', $prospecto).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<small class="text-left">* La contraseña es confidencial y solo se usará para emitir facturas y de ninguna manera ingresaremos a su perfil del SAT.</small>
 				<div class="no_error" id="error_fielPass" data-id="fielPass">Completa este campo.</div>
 			</label>
  		</section>

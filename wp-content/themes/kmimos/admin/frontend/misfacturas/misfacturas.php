@@ -73,11 +73,36 @@
 
 		}
 		
+
+		$Comisiones = construir_listado(['cuidador'=>$factura_array['cuidador']]);
+		$Liquidaciones = construir_listado(['cliente'=>$factura_array['cliente']]);
+
+		$Comisiones = ( !empty($Comisiones) )? $Comisiones : '<h1 class="titulo titulo_pequenio">Sin datos para mostrar</h1>';
+		$Liquidaciones = ( !empty($Liquidaciones) )? $Liquidaciones : '<h1 class="titulo titulo_pequenio">Sin datos para mostrar</h1>';
+
 		//BUILD TABLE
 		$CONTENIDO .= '
 			<h1 style="margin: 0px; padding: 0px;">Mis Facturas</h1><hr style="margin: 5px 0px 10px;">
-		'.
-		construir_listado($factura_array);
+
+			<div>
+
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active">
+			    	<a href="#Liquidaciones" aria-controls="Liquidaciones" role="tab" data-toggle="tab">Liquidaciones</a>
+			    </li>
+			    <li role="presentation"><a href="#Comisiones" aria-controls="Comisiones" role="tab" data-toggle="tab">Comisiones</a></li>
+			  </ul>
+
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="Liquidaciones">'.$Liquidaciones.'</div>
+			    <div role="tabpanel" class="tab-pane" id="Comisiones">'.$Comisiones.'</div>
+			  </div>
+
+			</div>
+
+		';
 	}else{
 		$CONTENIDO .= "<h1 style='line-height: normal;'>Usted aún no tiene facturas.</h1><hr>";
 	}
