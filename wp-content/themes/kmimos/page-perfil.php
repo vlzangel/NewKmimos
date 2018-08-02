@@ -359,10 +359,10 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h5 class="modal-title" id="myModalLabel">Informaci&oacute;n de facturaci&oacute;n</h5>
+			        <h5 class="modal-title" id="myModalLabel">INFORMACI&Oacute;N DE FACTURACI&Oacute;N</h5>
 			      </div>
 			      <div class="modal-body">
-			        <p>Su factura será emitida una vez la reserva se haya completado</p>
+			        <p style="font-size:14px;">Su factura será emitida una vez la reserva se haya completado</p>
 			      </div>
 			    </div>
 			  </div>

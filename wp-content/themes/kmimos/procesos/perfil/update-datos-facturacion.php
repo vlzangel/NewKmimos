@@ -15,8 +15,13 @@
 		update_user_meta( $user_id, "billing_first_name", $nombre); 
 		update_user_meta( $user_id, "billing_last_name", $apellido_paterno); 
 		update_user_meta( $user_id, "billing_second_last_name", $apellido_materno); 
+		update_user_meta( $user_id, "billing_uso_cfdi", $uso_cfdi); 
 
+		if( $regimen_fiscal!='persona_moral' ){
+			$razon_social = "{$nombre} {$apellido_paterno} {$apellido_materno}";
+		}
 		update_user_meta( $user_id, "billing_razon_social", $razon_social); 
+
 		update_user_meta( $user_id, "billing_regimen_fiscal", $regimen_fiscal); 
 
 		update_user_meta( $user_id, "billing_calle", $calle); 

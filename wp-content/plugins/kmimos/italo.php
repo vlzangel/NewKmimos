@@ -18,13 +18,13 @@
 
 	function validar_datos_facturacion( $user_id ){
 		global $wpdb;
-
+		$data['id'] = $user_id;
 		$data['receptor_rfc'] = get_user_meta( $user_id, 'billing_rfc', true );
-		$data['receptor_nombre'] = get_user_meta( $user_id, 'billing_first_name', true );
-		
+		$data['receptor_nombre'] = get_user_meta( $user_id, 'billing_razon_social', true );
+
 		foreach ($data as $key => $value) {
 			if( empty($value) ){
-				return false;
+				return $value;
 			}
 		}
 		return true;
