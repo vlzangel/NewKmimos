@@ -19,15 +19,24 @@
 
     extract($_POST);
 
-    $where = '';
+    $where = " where receptor='".$tipo."' ";
+    if( $tipo == 'cliente' ){    
+        if( isset($rfc) && $rfc == 'XAXX010101000' ){
+            $where .= " and rfc = 'XAXX010101000' "; 
+        }else{
+            $where .= " and rfc <> 'XAXX010101000' "; 
+        }
+    }
     if( isset($ini) && !empty($ini) ){ 
-        $where = " where  fechaGeneracion >= '{$ini} 00:00:00' "; 
+        $where .= " and fechaGeneracion >= '{$ini} 00:00:00' "; 
         if( isset($fin) && !empty($fin) ){ 
             $where .= " and fechaGeneracion <= '{$fin} 23:59:59' "; 
         }
     }
 
-    $facturas = $db->get_results("SELECT * FROM facturas {$where} ORDER BY fechaGeneracion ASC");
+    $facturas = $db->get_results( "SELECT * FROM facturas {$where} ORDER BY fechaGeneracion ASC" );
+ 
+//echo "SELECT * FROM facturas {$where} ORDER BY fechaGeneracion ASC" ; 
 
     if( $facturas != false ){
         $i = 0;
@@ -40,7 +49,7 @@
                 "<input type='checkbox' data-type='fact_selected' name='fact_selected[]' value='".$value->reserva_id.'_'.$value->numeroReferencia."'>",
                 $value->fechaGeneracion,
                 $value->reserva_id,
-                '',
+                '---',
                 $value->total,
                 $value->serie . "-" . $value->reserva_id,
                 $cuidador_name,

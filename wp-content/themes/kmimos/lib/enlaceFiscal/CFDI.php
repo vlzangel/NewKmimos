@@ -524,9 +524,11 @@ class CFDI {
 				$data['total'] = ( isset($data['total']) )? $data['total'] : 0;
 				$data['impuesto'] = ( isset($data['impuesto']) )? $data['impuesto'] : 0;
 				$data['subtotal'] = ( isset($data['subtotal']) )? $data['subtotal'] : 0;
+				$rfc = ( isset($data['receptor']['rfc']) )? $data['receptor']['rfc'] : 0;
 
 				// guardar datos en DB
 				$sql = "INSERT INTO facturas ( 
+					rfc,
 					receptor,
 					cuidador_id,
 					cliente_id,
@@ -549,6 +551,7 @@ class CFDI {
 					impuesto,
 					subtotal
 				 )values(
+				 	'".$rfc."',
 				 	'".$CFDi_receptor."',
 					'".$data['cuidador']['id']."',
 					'".$data['cliente']['id']."',

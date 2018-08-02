@@ -27,28 +27,51 @@
         <hr>
     </div>
     <div class="clear"></div>
-    <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;" >
-        <thead>
-            <tr>
-                <th></th>
-                <th>Fecha Creaci&oacute;n</th>
-                <th>Reserva</th>
-                <th>Servicio</th>
-                <th>Total</th>
-                <th>Serie y Folio</th>
-                <th>Cuidador</th>
-                <th>Cliente</th>
-                <th>No. Referencia</th>
-                <th>Serie Certificado</th>
-                <th>Serie Certificado SAT</th>
-                <th>Folio Fiscal</th>
-                <th>Receptor</th>
-                <th>Estado</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+
+    <div class='col-md-12'>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="FacturasCuidadores-tab" data-toggle="tab" href="cliente" role="tab" aria-controls="FacturasCuidadores" aria-selected="true">Facturas Cuidadores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="FacturasKmimos-tab" data-toggle="tab" href="cuidador" role="tab" aria-controls="FacturasKmimos" aria-selected="false">Facturas Kmimos</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div id="container_tipo_receptor" style="padding: 20px 10px 0px 20px">
+                <label>Tipo de Receptor: </label>
+                <select id="tipo_receptor" style="border-radius:10px;">
+                    <option value="0">Clientes</option>
+                    <option value="XAXX010101000">Publico en General</option>
+                </select>
+            </div>
+            <br />
+            <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;" >
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Fecha Creaci&oacute;n</th>
+                        <th>Reserva</th>
+                        <th>Servicio</th>
+                        <th>Total</th>
+                        <th>Serie y Folio</th>
+                        <th>Cuidador</th>
+                        <th>Cliente</th>
+                        <th>No. Referencia</th>
+                        <th>Serie Certificado</th>
+                        <th>Serie Certificado SAT</th>
+                        <th>Folio Fiscal</th>
+                        <th>Receptor</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div> 
+    </div>
+
+
 </div>
 
  

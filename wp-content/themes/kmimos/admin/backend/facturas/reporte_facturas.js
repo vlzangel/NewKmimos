@@ -2,7 +2,7 @@ var table = ""; var CTX = "";
 var fechas = '';
 jQuery(document).ready(function() {
 
-	loadTabla();
+	loadTabla( 'cliente', '0' );
 
     jQuery("#close_modal").on("click", function(e){
         cerrar(e);
@@ -53,9 +53,32 @@ jQuery(document).ready(function() {
     	}
     });
 
+	jQuery('.nav-link').on('click', function (e) {
+		e.preventDefault();
+		jQuery('.nav-link').removeClass('active');
+
+		var id = jQuery(this).attr('id');
+		jQuery('#'+id).addClass('active');
+		jQuery('#'+id+'-tab').addClass('active');
+
+  		jQuery('#container_tipo_receptor').addClass('hidden');
+	  	if( jQuery(this).attr('href') == 'cliente' ){
+	  		jQuery('#container_tipo_receptor').removeClass('hidden');
+	  	}
+
+	  	loadTabla( jQuery(this).attr('href'), jQuery('#tipo_receptor').val() );
+	});
+
+	jQuery('#tipo_receptor').on('change', function(){		
+	  	loadTabla( 'cliente', jQuery(this).val() );
+	})
+
+
 } );
 
-function loadTabla(){
+function loadTabla( _tipo, _rfc ){
+	table = jQuery('#example').DataTable();
+	table.destroy();
     table = jQuery('#example').DataTable({
     	"language": {
 			"emptyTable":			"No hay datos disponibles en la tabla.",
@@ -83,7 +106,7 @@ function loadTabla(){
         "scrollX": true,
         "ajax": {
             "url": TEMA+'/admin/backend/facturas/ajax/facturas.php',
-            "data": { ini: jQuery('[name="ini"]').val(), fin:jQuery('[name="fin"]').val() },
+            "data": { rfc: _rfc, tipo: _tipo, ini: jQuery('[name="ini"]').val(), fin:jQuery('[name="fin"]').val() },
             "type": "POST"
         }
 	});
