@@ -38,6 +38,26 @@ jQuery( document ).ready(function() {
 	        cambio_municipio(estado_id);
 	    }
 	});
+	jQuery(document).on('change', 'select[name="regimen_fiscal"]', function(e){
+		var value = jQuery(this).val();
+		jQuery('[data-regimen-fiscal]').addClass("hidden");
+		jQuery('[name="razon_social"]').removeAttr('data-valid');
+		jQuery('[name="nombre"]').removeAttr('data-valid');
+		jQuery('[name="apellido_paterno"]').removeAttr('data-valid');
+		jQuery('[name="apellido_materno"]').removeAttr('data-valid');
+
+console.log(value);
+
+	    if( value == 'persona_moral' ){
+			jQuery('[data-regimen-fiscal="razon_social"]').removeClass("hidden");
+			jQuery('[name="razon_social"]').attr('data-valid','requerid');
+	    }else{
+			jQuery('[data-regimen-fiscal="persona_fisica"]').removeClass("hidden");
+			jQuery('[name="nombre"]').attr('data-valid','requerid');
+			jQuery('[name="apellido_paterno"]').attr('data-valid','requerid');
+			jQuery('[name="apellido_materno"]').attr('data-valid','requerid');
+	    }
+	});
 });
 
 function cambio_municipio(estado_id, CB = false){

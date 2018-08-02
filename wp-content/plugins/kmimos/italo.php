@@ -16,6 +16,19 @@
 		}
 	}
 
+	function validar_datos_facturacion( $user_id ){
+		global $wpdb;
+
+		$data['receptor_rfc'] = get_user_meta( $user_id, 'billing_rfc', true );
+		$data['receptor_nombre'] = get_user_meta( $user_id, 'billing_first_name', true );
+		
+		foreach ($data as $key => $value) {
+			if( empty($value) ){
+				return false;
+			}
+		}
+		return true;
+	}
 
 	function kmimos_ucfirst( $str = ''){
 		if( !empty($str) ){		

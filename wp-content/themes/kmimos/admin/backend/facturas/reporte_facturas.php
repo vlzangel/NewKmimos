@@ -32,6 +32,9 @@
             <tr>
                 <th></th>
                 <th>Fecha Creaci&oacute;n</th>
+                <th>Reserva</th>
+                <th>Servicio</th>
+                <th>Total</th>
                 <th>Serie y Folio</th>
                 <th>Cuidador</th>
                 <th>Cliente</th>

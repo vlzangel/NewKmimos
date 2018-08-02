@@ -37,7 +37,11 @@
 	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
     				break;
 	    			case 'facturar':
-	    				$respuesta .= '<a data-accion="factura/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-file-o" aria-hidden="true"></i> Factura</a>';
+	    				$respuesta .= '<a data-accion="factura/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-file-o" aria-hidden="true"></i> Generar factura</a>';
+    				break;
+	    			case 'noFacturar':
+	    				$disabled = ( $accion == 'disabled' )? 'disabled' : '' ;
+	    				$respuesta .= '<a data-accion="" data-toggle="modal" data-target="#'.$accion.'" class="vlz_accion '.$disabled.'"> <i class="fa fa-file-o" aria-hidden="true"></i> Generar factura</a>';
     				break;
 
 

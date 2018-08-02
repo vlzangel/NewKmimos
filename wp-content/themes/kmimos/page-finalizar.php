@@ -27,6 +27,16 @@
 		kmimos_guardar_desglose_reserva_data( $data_reserva["servicio"]["id_reserva"], $data_reserva );
 		
 
+		if( !validar_datos_facturacion( $data_reserva['cliente']['id'] ) ){
+			$mensaje_facturacion = "Tu comprobante será emitido al finalizar la reserva. Déjanos tu información para emitir la Factura y te avisaremos cuando esté lista. <br />
+				<div class='text-center'>
+					<a class='btn_fin_reserva' href='".get_home_url()."/perfil-usuario/datos-de-facturacion/'>Cargar datos de facturacion</a>
+				</div>";
+		}else{
+			$mensaje_facturacion = "Tu comprobante será emitido al finalizar la reserva. Te avisaremos cuando esté lista.";
+		}
+
+
 	    if( strtolower($data_reserva["servicio"]["metodo_pago"]) == "tarjeta" ){
 	    	$pixel = "<script> fbq ('track','Purchase'); </script>";
 	    }else{
@@ -236,9 +246,9 @@
 
 					<div style="padding-top: 20px;">
 						'.$pdf.'
-						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/datos-de-facturacion/">
+						<button class="btn_fin_reserva" data-toggle="modal" data-target="#emitir_factura">
 						    ¿DESEAS EMITIR TU COMPROBANTE FISCAL DIGITAL?
-						</a>
+						</button>
 						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
 					</div>
 
@@ -278,6 +288,22 @@
 					</div>
 				</div>
 			</div>
+
+
+			<!-- Modal datos de facturacion -->
+			<div class="modal fade" tabindex="-1" role="dialog" id="emitir_factura">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h5 class="modal-title">¿DESEAS EMITIR TU COMPROBANTE FISCAL DIGITAL?</h5>
+			      </div>
+			      <div class="modal-body"><p style="font-size:14px;">'.$mensaje_facturacion.'</p></div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+
 	 	';
 
 		echo comprimir_styles($HTML);

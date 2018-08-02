@@ -12,7 +12,13 @@
 
 	// Datos para Cuidadores y Clientes	
 		update_user_meta( $user_id, "billing_rfc", $rfc);
-		update_user_meta( $user_id, "billing_fullname", $nombre); 
+		update_user_meta( $user_id, "billing_first_name", $nombre); 
+		update_user_meta( $user_id, "billing_last_name", $apellido_paterno); 
+		update_user_meta( $user_id, "billing_second_last_name", $apellido_materno); 
+
+		update_user_meta( $user_id, "billing_razon_social", $razon_social); 
+		update_user_meta( $user_id, "billing_regimen_fiscal", $regimen_fiscal); 
+
 		update_user_meta( $user_id, "billing_calle", $calle); 
 		update_user_meta( $user_id, "billing_postcode", $cp); 
 		update_user_meta( $user_id, "billing_noExterior", $noExterior); 
@@ -21,6 +27,7 @@
 		update_user_meta( $user_id, "billing_city", $rc_municipio);
 		update_user_meta( $user_id, "billing_colonia", $colonia);
 		update_user_meta( $user_id, "billing_localidad", $localidad); 
+		update_user_meta( $user_id, "auto_facturar", $auto_facturar); 
 
 	// Datos para Cuidadores
 		if( is_petsitters() ){
@@ -32,9 +39,8 @@
 					$sql = "UPDATE facturas_aliados SET 
 						rfc = '".$rfc."',
 						nombreFiscal = '".$nombre."',
-						regimenFiscal = '".$regimenFiscal."',
-						folioSAT = '".$folioSat."',
-						fielCer = '".$fielCer."',
+						regimenFiscal = '".$regimen_fiscal."',
+ 						fielCer = '".$fielCer."',
 						fielKey = '".$fielKey."',
 						fielPass = '".$fielPass."',
 						plan = 'Personal',
@@ -62,16 +68,16 @@
 						'".$rfc."',
 						'".$user_id."',
 						'".$nombre."',
-						'".$regimenFiscal."',
-						'".$folioSat."',
+						'".$regimen_fiscal."',
+						'1',
 						'".$fielCer."',
 						'".$fielKey."',
 						'".$fielPass."',
 						'0',
 						'Personal',
-						'".$serieSat."',
-						'".$tipoComprobante."',
-						'".$numeroFolioFiscal."',
+						'CC',
+						'FA',
+						'A1',
 						'pendiente'				
 					) ";
 				}

@@ -100,7 +100,8 @@
 						"ver" => $ver,
 						"modificar" => $modificar,
 						"cancelar" => $cancelar,
-						"pdf" => $pdf
+						"pdf" => $pdf,
+						"noFacturar" => 'info_facturacion',
 					),
 					"desglose" => $desglose
 				);
@@ -118,7 +119,8 @@
 					'acciones' => array(
 						"ver" => $ver,
 						"modificar" => $modificar,
-						"cancelar" => $cancelar
+						"cancelar" => $cancelar,
+						"noFacturar" => 'info_facturacion',
 					),
 					"desglose" => $desglose
 				);
@@ -152,7 +154,8 @@
 					'fin' => date('d/m/Y', $fin), 
 					'foto' => $foto,
 					'acciones' => array(
-						"ver" => $ver
+						"ver" => $ver,
+						"noFacturar" => 'disabled',
 					),
 					"desglose" => $desglose
 				);
@@ -168,7 +171,8 @@
 					'fin' => date('d/m/Y', $fin), 
 					'foto' => $foto,
 					'acciones' => array(
-						"ver" => $ver
+						"ver" => $ver,
+						"noFacturar" => 'disabled',
 					),
 					"desglose" => $desglose
 				);
@@ -187,6 +191,7 @@
 						"ver" => $ver,
 						"modificar" => $modificar,
 						"cancelar" => $cancelar,
+						"noFacturar" => 'info_facturacion',						
 					),
 					"desglose" => $desglose
 				);
@@ -201,7 +206,8 @@
 					'fin' => date('d/m/Y', $fin), 
 					'foto' => $foto,
 					'acciones' => array(
-						"ver" => $ver
+						"ver" => $ver,
+						"noFacturar" => 'disabled',						
 					),
 					"desglose" => $desglose
 				);
@@ -214,8 +220,8 @@
 			<h1 style="margin: 0px; padding: 0px;">Mi Historial de Reservas</h1><hr style="margin: 5px 0px 10px;">
 			<div class="kmisaldo">
 			<strong>'.kmimos_saldo_titulo().':</strong> MXN $'.kmimos_get_kmisaldo().'
-		</div>'.
-		construir_listado($reservas_array);
+		</div>'.construir_listado($reservas_array);
+
 	}else{
 		$CONTENIDO .= "<h1 style='line-height: normal;'>Usted aún no tiene reservas.</h1><hr>";
 	}

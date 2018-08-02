@@ -4,6 +4,20 @@ global $wpdb;
 
 $user = wp_get_current_user();
 
+// Uso CFDI
+	$uso_cfdi = $wpdb->get_results("SELECT * FROM facturas_uso_cfdi ORDER BY codigo ASC");
+	$str_uso_cfdi = "";
+	$cod_uso_cfdi = get_user_meta($user->ID, 'billing_uso_cfdi', true);
+	$estado_selected = '<option value="">Selección de Uso CFDI</option>';
+	foreach($uso_cfdi as $row) { 
+		if( $cod_uso_cfdi == utf8_decode($row->codigo) ){
+		    $uso_selected = "<option value='".$row->codigo."'>".$row->descripcion."</option>";
+		}else{
+		    $str_uso_cfdi .= "<option value='".$row->codigo."'>".$row->descripcion."</option>";
+		}
+	} 
+	$str_uso_cfdi = $uso_selected. $str_uso_cfdi;
+
 // Estados
 	$estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
 	$str_estados = "";
@@ -26,6 +40,18 @@ $user = wp_get_current_user();
 		$str_municipio = '<option value="">Selección de Municipio</option>';
 	}
 
+// Regimen fiscal
+	$regimen_fiscal = get_user_meta($user->ID, 'billing_regimen_fiscal', true);
+	$listado_regimen_fiscal = [
+		'persona_fisica' => 'Persona física / con actividad empresarial',
+		'rif' => 'Régimen de Incorporación Fiscal (RIF)',
+		'persona_moral' => 'Persona Moral',
+	];
+	$select_regimen_fiscal = '';
+	foreach( $listado_regimen_fiscal as $key => $item ){
+		$selected  = ($regimen_fiscal == $key)? 'selected' : '';
+		$select_regimen_fiscal .= '<option value="'.$key.'" '.$selected.'>'.$item.'</option>';
+	}
 
 $CONTENIDO = '	
 <div class="text-left">
@@ -41,6 +67,41 @@ $CONTENIDO = '
     <input type="hidden" name="core" value="SI" />
 		
 	<div class="inputs_containers">
+		
+		<section class="lbl-ui">
+			<label for="regimen_fiscal" class="lbl-text">Régimen Fiscal:</label>
+			<select name="regimen_fiscal">
+				'.$select_regimen_fiscal.'
+			</select>
+ 		</section>
+		<section data-regimen-fiscal="razon_social" class="hidden">
+			<label for="razon_social" class="lbl-text">* Razon Social:</label>
+			<label class="lbl-ui">
+				<input type="text" id="razon_social" name="razon_social" value="'.get_user_meta($user->ID, 'billing_razon_social', true).'" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<div class="no_error" id="error_razon_social" data-id="razon_social">Completa este campo.</div>
+			</label>
+ 		</section>
+		<section data-regimen-fiscal="persona_fisica">
+			<label for="nombre" class="lbl-text">* Nombre:</label>
+			<label class="lbl-ui">
+				<input type="text" id="nombre" name="nombre" value="'.get_user_meta($user->ID, 'billing_first_name', true).'" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<div class="no_error" id="error_nombre" data-id="nombre">Completa este campo.</div>
+			</label>
+ 		</section>
+		<section data-regimen-fiscal="persona_fisica">
+			<label for="apellido_paterno" class="lbl-text">* Apellido Paterno:</label>
+			<label class="lbl-ui">
+				<input type="text" id="apellido_paterno" name="apellido_paterno" value="'.get_user_meta($user->ID, 'billing_last_name', true).'" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<div class="no_error" id="error_apellido_paterno" data-id="apellido_paterno">Completa este campo.</div>
+			</label>
+ 		</section>
+		<section data-regimen-fiscal="persona_fisica">
+			<label for="apellido_materno" class="lbl-text">* Apellido Materno:</label>
+			<label class="lbl-ui">
+				<input type="text" id="apellido_materno" name="apellido_materno" value="'.get_user_meta($user->ID, 'billing_second_last_name', true).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<div class="no_error" id="error_apellido_materno" data-id="apellido_materno">Completa este campo.</div>
+			</label>
+ 		</section>
 		<section>
 			<label for="rfc" class="lbl-text">* RFC:</label>
 			<label class="lbl-ui">
@@ -48,13 +109,16 @@ $CONTENIDO = '
 				<div class="no_error" id="error_rfc" data-id="rfc">Completa este campo.</div>
 			</label>
  		</section>
-		<section>
-			<label for="nombre" class="lbl-text">* Nombre:</label>
-			<label class="lbl-ui">
-				<input type="text" id="nombre" name="nombre" value="'.get_user_meta($user->ID, 'billing_fullname', true).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-				<div class="no_error" id="error_nombre" data-id="nombre">Completa este campo.</div>
-			</label>
+
+		<section class="lbl-ui">
+			<label for="uso_cfdi" class="lbl-text">Uso CFDI:</label>
+			<select class="" name="uso_cfdi">
+				'.$str_uso_cfdi.'
+			</select>
  		</section>
+
+
+
 
 		<section>
 			<label for="calle" class="lbl-text">Calle:</label>
@@ -110,6 +174,14 @@ $CONTENIDO = '
 				<div class="no_error" id="error_localidad" data-id="localidad">Completa este campo.</div>
 			</label>
  		</section>
+		<div>
+			<div class="checkbox">
+			    <label>
+					<input type="checkbox" id="auto_factura">
+					<small>Emitir la facturas de manera automática al final de cada reserva y enviar por correo a la direcci&oacute;n <strong>'.$user->user_email.'</strong>.</small>
+				</label>
+			</div>
+		</div>
 		<div>
 			<div class="checkbox">
 			    <label>
