@@ -30,10 +30,13 @@
 		if( !validar_datos_facturacion( $data_reserva['cliente']['id'] ) ){
 			$mensaje_facturacion = "Tu comprobante será emitido al finalizar la reserva. Déjanos tu información para emitir la Factura y te avisaremos cuando esté lista. <br />
 				<div class='text-center'>
-					<a class='btn_fin_reserva' href='".get_home_url()."/perfil-usuario/datos-de-facturacion/'>Cargar datos de facturacion</a>
+					<a class='btn_fin_reserva' href='".get_home_url()."/perfil-usuario/datos-de-facturacion/'>CARGAR DATOS DE FACTURACI&OACUTE;N</a>
 				</div>";
 		}else{
-			$mensaje_facturacion = "Tu comprobante será emitido al finalizar la reserva. Te avisaremos cuando esté lista.";
+			$mensaje_facturacion = "Tu comprobante será emitido al finalizar la reserva. Te avisaremos cuando esté lista.
+				<div class='text-center'>
+					<a class='btn_fin_reserva' href='".get_home_url()."/perfil-usuario/historial/'>VER MIS RESERVAS</a>
+				</div>";
 		}
 
 

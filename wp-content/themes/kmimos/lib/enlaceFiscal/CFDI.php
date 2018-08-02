@@ -363,8 +363,19 @@ class CFDI {
 					],
 					"Receptor" => [
 						"rfc" => $data['receptor']['rfc'],
-						"nombre" => $data['receptor']['nombre'],
-						"usoCfdi" => "gastos"
+						"nombre" => $data['receptor']['razon_social'],
+						"usoCfdi" => $data['receptor']['uso_cfdi'], //"gastos"
+						"DomicilioFiscal" => [
+			                "calle" => $data['receptor']['calle'],
+			                "noExterior" => $data['receptor']['noExterior'],
+			                "noInterior" => $data['receptor']['noInterior'],
+			                "colonia" => $data['receptor']['colonia'],
+			                "localidad" => $data['receptor']['localidad'],
+			                "municipio" => $data['receptor']['municipio'],
+			                "estado" => $data['receptor']['estado'],
+			                "pais" => "Mexico",
+			                "cp" => $data['receptor']['postcode']
+			            ]
 					],
 					"Partidas" => $partidas,
 					"Impuestos" => [

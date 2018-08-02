@@ -36,8 +36,19 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 
 					// Datos complementarios CFDI
 					$data_reserva['receptor']['rfc'] = get_user_meta( $user_id, 'billing_rfc', true );
-					$data_reserva['receptor']['nombre'] = get_user_meta( $user_id, 'billing_first_name', true );
+					$data_reserva['receptor']['razon_social'] = get_user_meta( $user_id, 'billing_razon_social', true );
+					$data_reserva['receptor']['uso_cfdi'] = get_user_meta( $user_id, "billing_uso_cfdi", true); 
+					$data_reserva['receptor']['regimen_fiscal'] = get_user_meta( $user_id, "billing_regimen_fiscal", true); 
+					$data_reserva['receptor']['calle'] = get_user_meta( $user_id, "billing_calle", true); 
+					$data_reserva['receptor']['postcode'] = get_user_meta( $user_id, "billing_postcode", true); 
+					$data_reserva['receptor']['noExterior'] = get_user_meta( $user_id, "billing_noExterior", true); 
+					$data_reserva['receptor']['noInterior'] = get_user_meta( $user_id, "billing_noInterior", true); 
+					$data_reserva['receptor']['estado'] = get_user_meta( $user_id, "billing_state", true);
+					$data_reserva['receptor']['city'] = get_user_meta( $user_id, "billing_city", true);
+					$data_reserva['receptor']['colonia'] = get_user_meta( $user_id, "billing_colonia", true);
+					$data_reserva['receptor']['localidad'] = get_user_meta( $user_id, "billing_localidad", true); 
 
+					$data_reserva['receptor']['estado'] = $CFDI->db->get_var('select name from states where country_id=1 and id = '.$data_reserva['receptor']['estado'], 'name' );
 
 					// Usuario ID
 					$user_id = $data_reserva['cliente']['id'];	
@@ -48,7 +59,6 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 					$respuesta = [];
 					if( !empty($AckEnlaceFiscal['ack']) ){
 						$ack = json_decode($AckEnlaceFiscal['ack']);
-
 					    // Datos complementarios
 					    $datos['comentario'] = '';
 					    $datos['subtotal'] = $AckEnlaceFiscal['data']['CFDi']['subTotal'];
@@ -98,6 +108,11 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 	<div class="text-left">
 	    <h1 style="margin: 10px 0px 5px 0px; padding: 0px;">Comprobante Fiscal Digital - Reserva #'.$reserva_id.' </h1>
 
+        <input type="hidden" id="id_orden" name="id_orden" value="'.$orden.'" />
+        <input type="hidden" name="user_id" value="'.$user_id.'" />
+        <input type="hidden" name="core" value="SI" />
+
+
 		<section id="descargar-factura" style="display: '.$factura_datos.';">
 			<label class="lbl-text" style="font-style:italic;">El Comprobante Fiscal Digital no fue emitido</label>
 	        <hr style="margin: 5px 0px 15px;">
@@ -119,7 +134,7 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 		<section class="col-sm-12 col-md-12" style="margin-top: 20px;">
 			<div class="perfil_cargando" style="width: 100%; background-image: url('.getTema().'/images/cargando.gif);" ></div>
 			<br>
-			<!-- a href="/perfil-usuario/historial"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Volver </a -->
+			<a href="/perfil-usuario/historial"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Volver </a>
 		</section>
 
 	</div>
