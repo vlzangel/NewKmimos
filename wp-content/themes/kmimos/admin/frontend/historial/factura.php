@@ -60,10 +60,10 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 					if( !empty($AckEnlaceFiscal['ack']) ){
 						$ack = json_decode($AckEnlaceFiscal['ack']);
 					    // Datos complementarios
-					    $datos['comentario'] = '';
-					    $datos['subtotal'] = $AckEnlaceFiscal['data']['CFDi']['subTotal'];
-					    $datos['impuesto'] = $AckEnlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
-					    $datos['total'] = $AckEnlaceFiscal['data']['CFDi']['total'];
+					    $data_reserva['comentario'] = '';
+					    $data_reserva['subtotal'] = $AckEnlaceFiscal['data']['CFDi']['subTotal'];
+					    $data_reserva['impuesto'] = $AckEnlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
+					    $data_reserva['total'] = $AckEnlaceFiscal['data']['CFDi']['total'];
 
 						$CFDI->guardarCfdi( 'cliente', $data_reserva, $ack );
 
