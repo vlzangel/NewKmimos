@@ -160,7 +160,7 @@ class CFDI {
 			$desglose_partidas = $this->db->get_var( "SELECT * FROM wp_postmeta WHERE meta_key = '_booking_desglose' and post_id = ".$data['servicio']['id_reserva'], 'meta_value' );
 
 			if( !empty($desglose_partidas) ){
-				$_desglose_partidas = unserialize($desglose_partidas);
+				$_desglose_partidas = unserialize( utf8_encode($desglose_partidas) );
 		
 				$data['servicio']['variaciones'] = $_desglose_partidas['variaciones'];
 				$data['servicio']['transporte'] = $_desglose_partidas['transporte'];
