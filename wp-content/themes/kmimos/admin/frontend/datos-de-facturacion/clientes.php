@@ -12,10 +12,10 @@ $auto_facturar = ( $check )? 'checked' : '' ;
 	$uso_cfdi = $wpdb->get_results("SELECT * FROM facturas_uso_cfdi ORDER BY codigo ASC");
 	$str_uso_cfdi = "";
 	$cod_uso_cfdi = get_user_meta($user->ID, 'billing_uso_cfdi', true);
-	$uso_selected = '<option value="">Selección de Uso CFDI</option>';
+	$uso_selected = '<option value="">Seleccione el uso del CFDI</option>';
 	foreach($uso_cfdi as $row) { 
 		if( $cod_uso_cfdi == $row->codigo ){
-		    $uso_selected = "<option value='".$row->codigo."'>".$row->descripcion."</option>";
+		    $uso_selected .= "<option value='".$row->codigo."' selected>".$row->descripcion."</option>";
 		}else{
 		    $str_uso_cfdi .= "<option value='".$row->codigo."'>".$row->descripcion."</option>";
 		}

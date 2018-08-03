@@ -15,7 +15,7 @@
         </div>
 
 	     <div style='display: block; margin-bottom: 8px; text-align: center;'>
-	        <a href='[PDF]' target="_blank"><img src='[URL_IMGS]/group-5.png' style='' ></a>
+	        <a href='[PDF]' target="_blank"><img src='[URL_IMGS]/cfdi.png' style='' ></a>
 	    </div>
 	    
 	    <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #2d2d2d; text-align: center; margin-bottom: 30px;'>
