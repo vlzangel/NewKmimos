@@ -522,7 +522,9 @@ class CFDI {
 
 	// Registra el CFDI en la data de Kmimos
 	public function guardarCfdi( $CFDi_receptor, $data, $ack ){
+
 		
+
 		if( empty($data) || empty($ack) ){ return false; }		
 
 		$ef = $ack->AckEnlaceFiscal;
@@ -560,7 +562,8 @@ class CFDI {
 					comentario,
 					total,
 					impuesto,
-					subtotal
+					subtotal,
+					servicio
 				 )values(
 				 	'".$rfc."',
 				 	'".$CFDi_receptor."',
@@ -583,7 +586,8 @@ class CFDI {
 					'".$data['comentario']."',
 					'".$data['total']."',
 					'".$data['impuesto']."',
-					'".$data['subtotal']."'
+					'".$data['subtotal']."',
+					'".$data['servicio']['tipo']."'
 				 );
 				";
 				$this->db->query( $sql );

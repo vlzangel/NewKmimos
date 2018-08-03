@@ -49,7 +49,7 @@
                 "<input type='checkbox' data-type='fact_selected' name='fact_selected[]' value='".$value->reserva_id.'_'.$value->numeroReferencia."'>",
                 $value->fechaGeneracion,
                 $value->reserva_id,
-                '---',
+                $value->servicio,
                 $value->total,
                 $value->serie . "-" . $value->reserva_id,
                 $cuidador_name,
