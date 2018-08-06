@@ -1161,24 +1161,24 @@
 
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$producto->post_author);
 
-            if( !isset($metas_reserva["_booking_precios"]) ){
+            if( !isset($metas_reserva["_booking_precios_bk"]) ){
                 $_precios = array(
                     "precio_base" => $precio_base,
                     "hospedaje" => unserialize($cuidador->hospedaje),
                     "adicionales" => unserialize($cuidador->adicionales)
                 );
 
-                update_post_meta($reserva->ID, "_booking_precios", serialize($_precios));
+                update_post_meta($reserva->ID, "_booking_precios_bk", serialize($_precios));
 
-                $metas_reserva['_booking_precios'][0] = serialize($precios);
+                $metas_reserva['_booking_precios_bk'][0] = serialize($precios);
             }
 
             $tipo_servicio = explode("-", $producto->post_title);
             $tipo_servicio = $tipo_servicio[0];
 
-            if( isset($metas_reserva['_booking_precios'][0]) ){
+            if( isset($metas_reserva['_booking_precios_bk'][0]) ){
 
-                $preciosCuidador = unserialize( unserialize($metas_reserva['_booking_precios'][0]));
+                $preciosCuidador = unserialize( unserialize($metas_reserva['_booking_precios_bk'][0]));
 
                 $precios = $preciosCuidador["hospedaje"];
                 if( trim($tipo_servicio) != "Hospedaje" ){
