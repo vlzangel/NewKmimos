@@ -1157,9 +1157,43 @@
             /* Producto */
 
             $producto = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_reserva['_booking_product_id'][0]."'");
+            $precio_base = get_post_meta( $producto->ID, "_price", true );
+
+            $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$producto->post_author);
+
+            if( !isset($metas_reserva["_booking_precios"]) ){
+                $_precios = array(
+                    "precio_base" => $precio_base,
+                    "hospedaje" => unserialize($cuidador->hospedaje),
+                    "adicionales" => unserialize($cuidador->adicionales)
+                );
+
+                update_post_meta($reserva->ID, "_booking_precios", serialize($_precios));
+
+                $metas_reserva['_booking_precios'][0] = serialize($precios);
+            }
 
             $tipo_servicio = explode("-", $producto->post_title);
             $tipo_servicio = $tipo_servicio[0];
+
+            if( isset($metas_reserva['_booking_precios'][0]) ){
+
+                $preciosCuidador = unserialize( unserialize($metas_reserva['_booking_precios'][0]));
+
+                $precios = $preciosCuidador["hospedaje"];
+                if( trim($tipo_servicio) != "Hospedaje" ){
+                    $data = $preciosCuidador["adicionales"];
+                    $precios = $data[ $cats_2[ $tipo ] ];
+                }
+
+                $precio_base = $preciosCuidador["precio_base"];
+            }else{
+                $precios = unserialize($cuidador->hospedaje);
+                if( trim($tipo_servicio) != "Hospedaje" ){
+                    $data = unserialize($cuidador->adicionales);
+                    $precios = $data[ $cats_2[ $tipo ] ];
+                }
+            }
 
             $tipo = $wpdb->get_var("
                 SELECT
@@ -1171,8 +1205,6 @@
                     relacion.object_id = '{$producto->ID}' AND
                     relacion.term_taxonomy_id != 28
             ");
-
-            $precio_base = get_post_meta( $producto->ID, "_price", true );
 
             $inicio = date("d/m/Y", strtotime($metas_reserva['_booking_start'][0]));
             $fin    = date("d/m/Y", strtotime($metas_reserva['_booking_end'][0]));
@@ -1218,18 +1250,6 @@
             $plural_dias = ""; if( $dias > 1 ){ $plural_dias = "s"; } $dias_noches .= $plural_dias;
 
             $info = kmimos_get_info_syte();
-
-            $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$producto->post_author);
-
-            if( isset($metas_reserva['_booking_precios'][0]) ){
-                $precios = unserialize($metas_reserva['_booking_precios'][0]);
-            }else{
-                $precios = unserialize($cuidador->hospedaje);
-                if( trim($tipo_servicio) != "Hospedaje" ){
-                    $data = unserialize($cuidador->adicionales);
-                    $precios = $data[ $cats_2[ $tipo ] ];
-                }
-            }
 
             $variaciones = array(); $grupo = 0;
             foreach ($variaciones_array as $key => $value) {
