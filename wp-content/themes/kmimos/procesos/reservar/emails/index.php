@@ -129,7 +129,8 @@
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
-    	$MONTO = number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.');
+    	// $MONTO = number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.');
+    	$MONTO = number_format( $servicio["desglose"]["deposit"], 2, ',', '.');
     }
 	
 	if( $servicio["desglose"]["descuento"]+0 > 0 ){
