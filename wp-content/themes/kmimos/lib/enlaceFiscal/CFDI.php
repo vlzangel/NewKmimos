@@ -374,7 +374,7 @@ class CFDI {
 					"modo" => $this->modo,
 					"versionEF" => "6.0",
 					"serie" => $serie, //"FAA",
-					"folioInterno" => $data['servicio']['id_reserva'] .'0225' ,
+					"folioInterno" => $data['servicio']['id_reserva'],
 					"tipoMoneda" => "MXN",
 					"fechaEmision" => $data['fechaEmision'], //"2017-02-22 11:03:43",
 					"subTotal" => (float) number_format( $_subtotal, 2, '.', ''), //"20.00", ( Sin IVA )
