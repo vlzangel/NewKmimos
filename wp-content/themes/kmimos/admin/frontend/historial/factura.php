@@ -46,24 +46,23 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 					$data_reserva['receptor']['estado'] = get_user_meta( $user_id, "billing_state", true);
 					$data_reserva['receptor']['city'] = get_user_meta( $user_id, "billing_city", true);
 					$data_reserva['receptor']['colonia'] = get_user_meta( $user_id, "billing_colonia", true);
-					$data_reserva['receptor']['localidad'] = get_user_meta( $user_id, "billing_localidad", true); 
-
+					$data_reserva['receptor']['localidad'] = get_user_meta( $user_id, "billing_localidad", true);
 					$data_reserva['receptor']['estado'] = $CFDI->db->get_var('select name from states where country_id=1 and id = '.$data_reserva['receptor']['estado'], 'name' );
 
 					// Usuario ID
 					$user_id = $data_reserva['cliente']['id'];	
 
 					// Generar CFDI
-					$AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
-					$respuesta = [];
+					$enlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
 
-					if( !empty($AckEnlaceFiscal['ack']) ){
-						$ack = json_decode($AckEnlaceFiscal['ack']);
+					$respuesta = [];
+					if( !empty($enlaceFiscal['ack']) ){
+						$ack = json_decode($enlaceFiscal['ack']);
 					    // Datos complementarios
 					    $data_reserva['comentario'] = '';
-					    $data_reserva['subtotal'] = $AckEnlaceFiscal['data']['CFDi']['subTotal'];
-					    $data_reserva['impuesto'] = $AckEnlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
-					    $data_reserva['total'] = $AckEnlaceFiscal['data']['CFDi']['total'];
+					    $data_reserva['subtotal'] = $enlaceFiscal['data']['CFDi']['subTotal'];
+					    $data_reserva['impuesto'] = $enlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
+					    $data_reserva['total'] = $enlaceFiscal['data']['CFDi']['total'];
 
 						$CFDI->guardarCfdi( 'cliente', $data_reserva, $ack );
 
