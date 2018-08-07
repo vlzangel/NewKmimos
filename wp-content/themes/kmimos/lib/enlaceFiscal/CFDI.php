@@ -60,20 +60,20 @@ class CFDI {
 
 		$this->db = $db;
 
-		/*
-		$_saldos = $this->obtenerSaldo();
-		if( !empty($_saldos) ){
-			$r = json_decode($_saldos);
-			$this->saldo = $r['AckEnlaceFiscal']['saldo'];
-			if( $this->saldo < 0.89 ){
-				wp_mail( 
-					'italococchini@gmail.com', 
-					'Notificacion enlaceFiscal', 
-					'ERROR AL EMITIR LOS CFDI. <BR> DESCRIPCION: SALDO INSUFICIENTE <br> Monto: '.$this->saldo 
-				);
+		if( $this->modo == 'produccion' ){		
+			$_saldos = $this->obtenerSaldo();
+			if( !empty($_saldos) ){
+				$r = json_decode($_saldos);
+				$this->saldo = $r['AckEnlaceFiscal']['saldo'];
+				if( $this->saldo < 0.89 ){
+					wp_mail( 
+						'italococchini@gmail.com', 
+						'Notificacion enlaceFiscal', 
+						'ERROR AL EMITIR LOS CFDI. <BR> DESCRIPCION: SALDO INSUFICIENTE <br> Monto: '.$this->saldo 
+					);
+				}
 			}
 		}
-		*/
 	}
 
 	public function load_config_kmimos(){
@@ -145,18 +145,19 @@ class CFDI {
 	// Generar CFDI para el Cliente ( Monto: 100% )
 	public function generar_Cfdi_Cliente( $data=[] ){
 		
-		// Configuracion
+		// Configuracion general
 			$conf = $this->get_configuracion( [ 
 				'servicio_tipo_pago' => $data['servicio']['tipo_pago'] 
 			] );
 			extract($conf);
 
-		// Datos de facturacion del cuidador
+		// Datos de configuracion del cuidador
 			$info_cfdi = $this->db->get_row( "SELECT * FROM FACTURAS_ALIADOS WHERE estatus='Activo' AND user_id =".$data['cuidador']['id'] );
-			// $this->RFC = $info_cfdi->rfc;
-			$this->auth[ $this->modo ]['x-api-key'] = $info_cfdi->xApiKey;
-			// $this->auth[ $this->modo ]['token'] = $info_cfdi->tokenAPI;
 			$serie = $info_cfdi->serie;
+			// Credenciales 
+			$this->RFC = $info_cfdi->rfc; // Usuario
+			$this->auth[ $this->modo ]['token'] = $info_cfdi->tokenAPI; // Clave
+			$this->auth[ $this->modo ]['x-api-key'] = $info_cfdi->xApiKey; // llave de acceso
 
 		// Variables de Estructura
 			$data['fechaEmision'] = date('Y-m-d H:i:s');
@@ -373,7 +374,7 @@ class CFDI {
 					"modo" => $this->modo,
 					"versionEF" => "6.0",
 					"serie" => $serie, //"FAA",
-					"folioInterno" => $data['servicio']['id_reserva']."2",
+					"folioInterno" => $data['servicio']['id_reserva'] .'0225' ,
 					"tipoMoneda" => "MXN",
 					"fechaEmision" => $data['fechaEmision'], //"2017-02-22 11:03:43",
 					"subTotal" => (float) number_format( $_subtotal, 2, '.', ''), //"20.00", ( Sin IVA )

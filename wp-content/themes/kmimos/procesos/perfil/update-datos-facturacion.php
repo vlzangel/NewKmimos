@@ -47,10 +47,7 @@
 						regimenFiscal = '".$regimen_fiscal."',
  						fielCer = '".$fielCer."',
 						fielKey = '".$fielKey."',
-						fielPass = '".$fielPass."',
-						serie = '".$serieSat."',
-						tipoComprobante = '".$tipoComprobante."',
-						numFolioFiscal = '".$numeroFolioFiscal."'
+						fielPass = '".$fielPass."'
 					WHERE id = ".$datos->id;
 				}else{
 					$sql = "INSERT INTO facturas_aliados (
