@@ -1158,8 +1158,18 @@
 
             $producto = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_reserva['_booking_product_id'][0]."'");
             $precio_base = get_post_meta( $producto->ID, "_price", true );
-
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$producto->post_author);
+
+            $tipo = $wpdb->get_var("
+                SELECT
+                    tipo_servicio.slug AS tipo
+                FROM 
+                    wp_term_relationships AS relacion
+                LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
+                WHERE 
+                    relacion.object_id = '{$producto->ID}' AND
+                    relacion.term_taxonomy_id != 28
+            ");
 
             if( !isset($metas_reserva["_booking_precios_bk"]) ){
                 $_precios = array(
@@ -1195,16 +1205,6 @@
                 }
             }
 
-            $tipo = $wpdb->get_var("
-                SELECT
-                    tipo_servicio.slug AS tipo
-                FROM 
-                    wp_term_relationships AS relacion
-                LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
-                WHERE 
-                    relacion.object_id = '{$producto->ID}' AND
-                    relacion.term_taxonomy_id != 28
-            ");
 
             $inicio = date("d/m/Y", strtotime($metas_reserva['_booking_start'][0]));
             $fin    = date("d/m/Y", strtotime($metas_reserva['_booking_end'][0]));
