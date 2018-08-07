@@ -345,7 +345,7 @@
 					</ul>
 				</div>
 				<div class="main" >
-					<form id="form_perfil" autocomplete="off">
+					<form id="form_perfil" autocomplete="off" enctype="multipart/form-data">
 						'.$CONTENIDO.'
 						'.$HTML_BTN.'
 					</form>

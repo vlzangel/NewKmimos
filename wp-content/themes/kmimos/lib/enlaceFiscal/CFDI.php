@@ -18,7 +18,20 @@ class CFDI {
 	// Modo:  [ produccion , debug ]
 	protected $modo = 'debug'; 
 
-	// Credenciales de acceso 
+	// Credenciales de acceso kmimos
+	protected $kmimos = [
+		'RFC' => 'KMI160615640',
+		'produccion' => [
+			'token' => '',
+			'x-api-key' => ''
+		],
+		'debug' => [
+			'token' => 'c83e1f14de69b963add399109a97a392',
+			'x-api-key' => 'e9aT1ajrRh1NyRkzOtDoN1ZEGmIsEKuJ6f3FYyLh'
+		]
+	];
+
+	// Credenciales de acceso al API
 	protected $auth = [
 		'produccion' => [
 			'token' => '',
@@ -61,6 +74,11 @@ class CFDI {
 			}
 		}
 		*/
+	}
+
+	public function load_config_kmimos(){
+		$this->RFC = $this->kmimos['RFC'];
+		$this->auth = $this->kmimos;
 	}
 
 	// Probar conexion con enlaceFiscal
@@ -126,16 +144,21 @@ class CFDI {
 
 	// Generar CFDI para el Cliente ( Monto: 100% )
 	public function generar_Cfdi_Cliente( $data=[] ){
-
-		// Dato de prueba hasta que se registre los datos del cuidador
-			$data['rfc'] = 'AAA010101AAA'; //$this->RFC; 
 		
-		// Variables de Estructura
+		// Configuracion
 			$conf = $this->get_configuracion( [ 
 				'servicio_tipo_pago' => $data['servicio']['tipo_pago'] 
 			] );
 			extract($conf);
 
+		// Datos de facturacion del cuidador
+			$info_cfdi = $this->db->get_row( "SELECT * FROM FACTURAS_ALIADOS WHERE estatus='Activo' AND user_id =".$data['cuidador']['id'] );
+			// $this->RFC = $info_cfdi->rfc;
+			$this->auth[ $this->modo ]['x-api-key'] = $info_cfdi->xApiKey;
+			// $this->auth[ $this->modo ]['token'] = $info_cfdi->tokenAPI;
+			$serie = $info_cfdi->serie;
+
+		// Variables de Estructura
 			$data['fechaEmision'] = date('Y-m-d H:i:s');
 			$personalizados = [];
  			$partidas = [];
@@ -350,12 +373,12 @@ class CFDI {
 					"modo" => $this->modo,
 					"versionEF" => "6.0",
 					"serie" => $serie, //"FAA",
-					"folioInterno" => $data['servicio']['id_reserva'],
+					"folioInterno" => $data['servicio']['id_reserva']."2",
 					"tipoMoneda" => "MXN",
 					"fechaEmision" => $data['fechaEmision'], //"2017-02-22 11:03:43",
 					"subTotal" => (float) number_format( $_subtotal, 2, '.', ''), //"20.00", ( Sin IVA )
 					"total" => (float) number_format( $_total, 2, '.', ''), // "23.20" ( Con IVA )
-					"rfc" => $data['rfc'],
+					"rfc" => $info_cfdi->rfc,
 					"descuentos" => (float) number_format( $data['servicio']['desglose']['descuento'], 2, '.', ''),
 					"DatosDePago" => [
 						"metodoDePago" => "PUE",
@@ -406,7 +429,10 @@ class CFDI {
 
 	// Generar CFDI para los cuidadores ( Monto: 20% )
 	public function generar_Cfdi_Cuidador( $data=[] ){
-
+		
+		// Cargar configuracion de kmimos
+			$this->load_config_kmimos();
+		
 		// Variables de Estructura
 			$conf = $this->get_configuracion( [ 
 				'servicio_tipo_pago' => $data['servicio']['tipo_pago'] 
@@ -444,7 +470,7 @@ class CFDI {
 					$partidas[] = [
 					    "cantidad" => 1,
 					    "claveUnidad" => "A9", // A9 - Tarífa  
-					    "claveProdServ" => "90111500", 
+					    "claveProdServ" => "90111500", /// Agregar datos a una tabla
 					    "descripcion" => "Cargo por concepto de gastos administrativos - Reserva No. {$reserva}",
 					    "valorUnitario" =>(float) number_format($_subtotal, 2, '.', ''),
 					    "importe" => (float) number_format( $_subtotal, 2, '.', ''),

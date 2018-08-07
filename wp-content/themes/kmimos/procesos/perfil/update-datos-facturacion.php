@@ -10,6 +10,7 @@
 
 	if( isset($user_id) && $user_id > 0 ){
 
+
 	// Datos para Cuidadores y Clientes	
 		update_user_meta( $user_id, "billing_rfc", $rfc);
 		update_user_meta( $user_id, "billing_first_name", $nombre); 
@@ -17,13 +18,12 @@
 		update_user_meta( $user_id, "billing_second_last_name", $apellido_materno); 
 		update_user_meta( $user_id, "billing_uso_cfdi", $uso_cfdi); 
 
-		if( $regimen_fiscal!='persona_moral' ){
+		if( $regimen_fiscal != 'RGLPM' ){
 			$razon_social = "{$nombre} {$apellido_paterno} {$apellido_materno}";
+			$_POST['razon_social'] = $razon_social;
 		}
 		update_user_meta( $user_id, "billing_razon_social", $razon_social); 
-
 		update_user_meta( $user_id, "billing_regimen_fiscal", $regimen_fiscal); 
-
 		update_user_meta( $user_id, "billing_calle", $calle); 
 		update_user_meta( $user_id, "billing_postcode", $cp); 
 		update_user_meta( $user_id, "billing_noExterior", $noExterior); 
@@ -48,7 +48,6 @@
  						fielCer = '".$fielCer."',
 						fielKey = '".$fielKey."',
 						fielPass = '".$fielPass."',
-						plan = 'Personal',
 						serie = '".$serieSat."',
 						tipoComprobante = '".$tipoComprobante."',
 						numFolioFiscal = '".$numeroFolioFiscal."'
@@ -80,10 +79,10 @@
 						'".$fielPass."',
 						'0',
 						'Personal',
-						'CC',
+						'PC',
 						'FA',
-						'A1',
-						'pendiente'				
+						'1',
+						'Pendiente'				
 					) ";
 				}
 				$wpdb->query($sql);
@@ -99,8 +98,9 @@
 					$valid->AckEnlaceFiscal->estatusDocumento == 'aceptado' ){
 
 					// Registrar cuidador en enlaceFiscal
-					$registro = $aliados->prospectosDesglose( $user_id );
+					$registro = $aliados->prospectosDesglose( $user_id, $_POST );
 					$prospecto_result = $aliados->prospectosAlta( $registro );
+
 					$prospecto = json_decode($prospecto_result);
 					if( isset($prospecto->AckEnlaceFiscal->estatusDocumento) && 
 						$prospecto->AckEnlaceFiscal->estatusDocumento == 'aceptado' ){

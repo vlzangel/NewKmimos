@@ -1,3 +1,28 @@
 select{
     width: calc(100% - 8px)!important;
 }
+.disabled{
+	background-color: #e4e3e3!important;
+}
+.group-input input{
+	background-color: #e4e3e3;
+    border-radius: 5px 0px 0px 5px;	
+    display: inline-block;
+    float: left;
+    margin-right: 0px!important;
+    width: 69%;
+}
+.group-input button{
+    border-radius: 0px 5px 5px 0px;
+    border-left: 0px;
+    display: inline;
+    float: left;
+    margin: 2px 0px;
+    margin-right: 0px!important;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 30%;
+}
+.group-input button i{
+	font-size: 12px;
+}

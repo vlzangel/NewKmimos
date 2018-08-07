@@ -46,10 +46,7 @@ class Aliados {
 		$this->db = $db;
 	}
 
-
-	// Fase 1
-
-	// Verificar las firmas digitales
+	// Paso #1 - Verificar las firmas digitales
 	public function fielValidar  ( $cer, $key, $rfc, $pass ){
 		$datos = [
 			"cer" => $cer,
@@ -60,33 +57,40 @@ class Aliados {
 		return $this->request( $datos, 'fiel/validar ');
 	}
 
-	// Subir las firmas digitales sin datos generales
-	public function fielSubir ( $data ){
-		return $this->request( $data, 'fiel/subir');
-	}
-
-	// Registrar cuidador con firmas
+	// Paso #2 - Registrar cuidador con firmas
 	public function prospectosAlta ( $data ){
 		return $this->request( $data, 'prospectos/alta');
 	}
 
-	// Fase 2
+	// Paso #3 - Registrar Sucursal del Prospecto  
 	public function clienteSucursales ( $rfc ){
 		$data = [ 'rfc' => $rfc ];
 		return $this->request( $data, 'clientes/sucursales/obtener');
 	}
 
-	public function clienteSeries ( $serie, $tipoComp, $regimenFiscal, $numeroFolioFiscal, $api, $idSucursal, $rfc ){
+	// Paso #4 - Configurar Serie del Prospecto
+	public function clienteSeries ( $serie, $tipoComp, $regimenFiscal, $numeroFolioFiscal, $rfc, $idSucursal ){
 		$data = [
 			"serie" => $serie,
 			"tipoComp" => $tipoComp, 					// "FA",
 			"regimenFiscal" => $regimenFiscal, 			// "RGLPM",
 			"numeroFolioFiscal" => $numeroFolioFiscal,	//  1,
-			"api" => $api,								//  true,
+			"api" => true,								//  true,
 			"idSucursal" => $idSucursal, 				// "07b046c1-788e-11e8-9bd1-0800274ce66f",
 			"rfc" => $rfc, 								// "AAA010101AAA"
 		];
 		return $this->request( $data, 'clientes/series/alta');
+	}
+
+	// Paso #5 - Obtener Informacion del Prospecto
+	public function clientesInfo ( $rfc ){
+		$data = [ 'rfc' => $rfc ];
+		return $this->request( $data, 'clientes/obtenerInfoCliente');
+	}
+
+	// Subir las firmas digitales sin datos generales
+	public function fielSubir ( $data ){
+		return $this->request( $data, 'fiel/subir');
 	}
 
 	public function clientesCertificados ( $cer, $key, $rfc, $pass, $sucursal_id  ){
@@ -100,62 +104,56 @@ class Aliados {
 		return $this->request( $datos, 'clientes/certificados/subir');
 	}
 
-	public function clientesInfo ( $rfc ){
-		$data = [ 'rfc' => $rfc ];
-		return $this->request( $data, 'clientes/obtenerInfoCliente');
-	}
-
-	public function prospectosDesglose( $user_id ){
+	public function prospectosDesglose( $user_id, $param ){
+		extract($param);
 
 		$prospecto = $this->db->get_row( "SELECT * FROM facturas_aliados WHERE user_id = {$user_id}" );
 		$cuidador = $this->db->get_row( "SELECT * FROM cuidadores WHERE user_id = {$user_id}" );
+		$estado = $this->db->get_row( "SELECT * FROM states WHERE id = {$rc_estado}" );
 
-		$datos = [];
-		if( isset($prospecto->id) && $prospecto->id > 0 ){
-			$datos = [
-				"plan" => [
-			    	"tipo" => "Personal"
-				],
-				"datosFiscales" => [
-					"rfc" => $prospecto->rfc,
-					"nombreFiscal" => $prospecto->nombreFiscal,
-					"regimenFiscal" => $prospecto->regimenFiscal
-				],
-				"datosAdministrador" => [
-					"nombre" => $cuidador->nombre,
-					"apellidos" => $cuidador->apellido,
-					"correo" => $cuidador->email,
-					"telefono" => $cuidador->telefono,
-					"representanteLegal" => 1
-				],
-				"direccionEmisor" => [
-					"calle" => "Luciernaga",
-					"numeroExterior" => "123",
-					"numeroInterior" => "A-23",
-					"colonia" => "Esperanza",
-					"localidad" => "Zapopan",
-					"referencia" => "Antes de llegar a periferico",
-					"municipio" => "Zapopan",
-					"estado" => "JAL",
-					"codigoPostal" => "12332",
-					"folioSAT" => $prospecto->folioSAT
-				],
-				"fiel" => [
-					"cer" => $prospecto->fielCer,
-					"key" => $prospecto->fielKey,
-					"password" => $prospecto->fielPass
-				],
-				"consentimiento" => [
-					"terminosYCondiciones" => 1,
-					"politicasDePrivacidad" => 1,
-					"tramiteCSD" => 1
-				],
-				"configuraciones" => [
-					"enviarCorreoActivacion" => 0
-				]			
-			];
-		}
-
+		$datos = [
+			"plan" => [
+		    	"tipo" => "Personal"
+			],
+			"datosFiscales" => [
+				"rfc" => $rfc,
+				"nombreFiscal" => $razon_social,
+				"regimenFiscal" => $regimen_fiscal
+			],
+			"datosAdministrador" => [
+				"nombre" => $nombre,
+				"apellidos" => $apellido_paterno,
+				"correo" => $cuidador->email,
+				"telefono" => $cuidador->telefono,
+				"representanteLegal" => 1
+			],
+			"direccionEmisor" => [
+				"calle" =>  $calle,
+				"numeroExterior" => $noExterior,
+				"numeroInterior" => $noInterior,
+				"colonia" =>  $colonia,
+				"localidad" =>  $localidad,
+				"referencia" =>  'no asignada',
+				"municipio" =>  $rc_municipio,
+				"estado" =>  $estado->iso,
+				"codigoPostal" => $cp,
+				"folioSAT" => $prospecto->folioSAT
+			],
+			"fiel" => [
+				"cer" => $fielCer,
+				"key" => $fielKey,
+				"password" => $fielPass
+			],
+			"consentimiento" => [
+				"terminosYCondiciones" => 1,
+				"politicasDePrivacidad" => 1,
+				"tramiteCSD" => 1
+			],
+			"configuraciones" => [
+				"enviarCorreoActivacion" => 0
+			]			
+		];
+		
 		return $datos;
 	}
 
