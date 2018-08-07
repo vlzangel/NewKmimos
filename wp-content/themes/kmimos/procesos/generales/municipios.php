@@ -15,7 +15,7 @@
 		foreach ($r as $key => $value) {
 			$municipios[] = array(
 				"id" 	=> $value->id,
-				"name" 	=> $value->name
+				"name" 	=> $value->name,
 			);
 		}
 

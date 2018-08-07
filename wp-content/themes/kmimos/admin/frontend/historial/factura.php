@@ -55,8 +55,8 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 
 					// Generar CFDI
 					$AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
-
 					$respuesta = [];
+
 					if( !empty($AckEnlaceFiscal['ack']) ){
 						$ack = json_decode($AckEnlaceFiscal['ack']);
 					    // Datos complementarios

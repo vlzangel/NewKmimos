@@ -54,16 +54,16 @@ echo '<pre>';
 
 
         // Validar si la factura del cliente esta generada
-            $facturas = $CFDI->db->get_row( "SELECT * FROM facturas WHERE pedido_id = ".$orden->post_parent );
+            $facturas = $CFDI->db->get_row( "SELECT * FROM facturas WHERE receptor='cliente' and pedido_id = ".$orden->post_parent );
       
             if( empty($facturas) ){
                 $data_reserva['receptor']['rfc'] = 'XAXX010101000';
-                $data_reserva['receptor']['nombre'] = 'Publico en General';
+                $data_reserva['receptor']['razon_social'] = 'Publico en General';
 
                 $AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
                 if( !empty($AckEnlaceFiscal['ack']) ){
                     $ack = json_decode($AckEnlaceFiscal['ack']);
-                    $CFDI->guardarCfdi( 'cliente', $data_reserva, $ack );
+                    print_r( $CFDI->guardarCfdi( 'cliente', $data_reserva, $ack ) );
                 }
             }
     }

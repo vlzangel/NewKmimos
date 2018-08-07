@@ -8,20 +8,6 @@ $user = wp_get_current_user();
 $check = get_user_meta($user->ID, 'auto_facturar', true);
 $auto_facturar = ( $check )? 'checked' : '' ;
 
-// Uso CFDI
-	$uso_cfdi = $wpdb->get_results("SELECT * FROM facturas_uso_cfdi ORDER BY codigo ASC");
-	$str_uso_cfdi = "";
-	$cod_uso_cfdi = get_user_meta($user->ID, 'billing_uso_cfdi', true);
-	$uso_selected = '<option value="">Seleccione el uso del CFDI</option>';
-	foreach($uso_cfdi as $row) { 
-		if( $cod_uso_cfdi == $row->codigo ){
-		    $uso_selected .= "<option value='".$row->codigo."' selected>".$row->descripcion."</option>";
-		}else{
-		    $str_uso_cfdi .= "<option value='".$row->codigo."'>".$row->descripcion."</option>";
-		}
-	} 
-	$str_uso_cfdi = $uso_selected. $str_uso_cfdi;
-
 // Estados
 	$estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
 	$str_estados = "";
@@ -44,24 +30,40 @@ $auto_facturar = ( $check )? 'checked' : '' ;
 		$str_municipio = '<option value="">Selección de Municipio</option>';
 	}
 
-// Regimen fiscal
+// Regimen fiscal	
 	$regimen_fiscal = get_user_meta($user->ID, 'billing_regimen_fiscal', true);
 	$listado_regimen_fiscal = [
-		'persona_fisica' => 'Persona física / con actividad empresarial',
-		'rif' => 'Régimen de Incorporación Fiscal (RIF)',
-		'persona_moral' => 'Persona Moral',
+		'PFCAE' => 'Persona física / con actividad empresarial',
+		'IFIC' => 'Régimen de Incorporación Fiscal (RIF)',
+		'RGLPM' => 'Persona Moral',
 	];
-	$select_regimen_fiscal = '';
+	$select_regimen_fiscal = '<option value="">Seleccione su Régimen Fiscal</option>';
 	foreach( $listado_regimen_fiscal as $key => $item ){
 		$selected  = ($regimen_fiscal == $key)? 'selected' : '';
 		$select_regimen_fiscal .= '<option value="'.$key.'" '.$selected.'>'.$item.'</option>';
 	}
 	$state_Moral = 'hidden';
 	$state_noMoral = '';
-	if( $regimen_fiscal == 'persona_moral' ){
+	if( $regimen_fiscal == 'RGLPM' ){
 		$state_Moral = '';
 		$state_noMoral = 'hidden';
 	}
+
+// Uso CFDI
+	$is_moral = ($state_Moral == '')? ' WHERE moral = 1 ' : '' ;
+	$uso_cfdi = $wpdb->get_results("SELECT * FROM facturas_uso_cfdi {$is_moral} ORDER BY codigo ASC");
+	$str_uso_cfdi = "";
+	$cod_uso_cfdi = get_user_meta($user->ID, 'billing_uso_cfdi', true);
+	$uso_selected = '<option value="">Seleccione el uso del CFDI</option>';
+	foreach($uso_cfdi as $row) { 
+		if( $cod_uso_cfdi == $row->codigo ){
+		    $uso_selected .= "<option value='".$row->codigo."' selected>".$row->descripcion."</option>";
+		}else{
+		    $str_uso_cfdi .= "<option value='".$row->codigo."'>".$row->descripcion."</option>";
+		}
+	} 
+	$str_uso_cfdi = $uso_selected. $str_uso_cfdi;
+
 
 $CONTENIDO = '	
 <div class="text-left">
@@ -78,6 +80,10 @@ $CONTENIDO = '
 		
 	<div class="inputs_containers">
 		
+		<div>
+			<h4>Datos generales:</h4>
+		</div>
+
 		<section class="lbl-ui">
 			<label for="regimen_fiscal" class="lbl-text">Régimen Fiscal:</label>
 			<select name="regimen_fiscal">
@@ -128,7 +134,9 @@ $CONTENIDO = '
  		</section>
 
 
-
+		<div>
+			<h4>Direcci&oacute;n:</h4>
+		</div>
 
 		<section>
 			<label for="calle" class="lbl-text">Calle:</label>
