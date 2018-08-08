@@ -363,6 +363,7 @@
 	        cuidadores.user_id,
 	        cuidadores.longitud,
 	        cuidadores.latitud,
+	        cuidadores.rating,
 	        cuidadores.adicionales,
 	        (cuidadores.hospedaje_desde*1.25) AS precio,
 	        cuidadores.experiencia,
@@ -429,6 +430,7 @@
 				"exp"  => $anios_exp,
 				"adi"  => $cuidador->adicionales,
 				"ser"  => "",
+				"rating" => ceil($cuidador->rating),
 				"pre"  => $cuidador->precio
 			);
 
