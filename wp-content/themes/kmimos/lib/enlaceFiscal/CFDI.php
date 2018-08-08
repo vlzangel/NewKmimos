@@ -156,6 +156,7 @@ class CFDI {
 			$serie = $info_cfdi->serie;
 			// Credenciales 
 			$this->RFC = $info_cfdi->rfc; // Usuario
+			$this->auth[ $this->modo ]['RFC'] = $info_cfdi->rfc; // usuario
 			$this->auth[ $this->modo ]['token'] = $info_cfdi->tokenAPI; // Clave
 			$this->auth[ $this->modo ]['x-api-key'] = $info_cfdi->xApiKey; // llave de acceso
 
@@ -395,7 +396,7 @@ class CFDI {
 			                "noInterior" => $data['receptor']['noInterior'],
 			                "colonia" => $data['receptor']['colonia'],
 			                "localidad" => $data['receptor']['localidad'],
-			                "municipio" => $data['receptor']['municipio'],
+			                "municipio" => $data['receptor']['city'],
 			                "estado" => $data['receptor']['estado'],
 			                "pais" => "Mexico",
 			                "cp" => $data['receptor']['postcode']
@@ -425,6 +426,7 @@ class CFDI {
 		return [ 
 			'ack' => $cfdi_respuesta, 
 			'data' => $CFDi,  
+			'auth' => $this->auth,
 		];
 	}
 
