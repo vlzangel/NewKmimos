@@ -468,7 +468,7 @@ $HTML .= '
 								<div class="km-opcion"><input type="checkbox" name="servicios[]" value="transportacion_redonda" ><img src="'.getTema().'/images/new/icon/icon-transporteredondo.svg"><div class="km-opcion-text">TRANSPORTE<br> REDONDO</div></div>
 							</div>
 							<div class="col-xs-12 col-sm-3">
-								<a id="buscar" href="#" class="km-btn-primary" style="height: 70px; line-height: 40px;">AGREGAR SERVICIO</a>
+								<a id="buscar" href="#" class="km-btn-primary" style="min-height: 79px; line-height: 40px;">AGREGAR SERVICIO</a>
 							</div>
 						</div>
 					</div>

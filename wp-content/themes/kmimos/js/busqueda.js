@@ -332,7 +332,7 @@ function initMap() {
 
 		        infos[index] = new google.maps.InfoWindow({ 
 		            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
-								+'<p>'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
+								+'<p style="margin-bottom:0px;">'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
 								+'<div class="km-ranking">'
 								+	'<div class="km-ranking rating" style="display:inline-block">'
 								+		rating
