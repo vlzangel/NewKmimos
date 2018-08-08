@@ -319,23 +319,24 @@ function initMap() {
 
 		        var rating = "";
 		        if( cuidador["rating"] != undefined && cuidador["rating"].length > 0 ){
-			        jQuery.each(cuidador["rating"], function( index, xrating ) {
-			        	if( xrating == 1 ){
+			        for( var start = 1; start <= 5; start++){
+			        	if( start <= cuidador["rating"] ){
 			        		rating += '<a href="#" class="active"></a>';
 			        	}else{
-			        		rating += '<a href="#"></a>';
+			        		rating += '<a href="#" class="no_active"></a>';
 			        	}
-			        });
+			        };
 		        }
 
 		        infos[index] = new google.maps.InfoWindow({ 
-		            content: 	'<div style="z-index:999px!important;">'
-		            			+ '<h1 class="maps">'+cuidador.nom+'</h1>'
+		            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
 								+'<p>'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
-								/*
 								+'<div class="km-ranking">'
+								+'<div class="km-ranking rating" style="display:inline-block">'
 								+	rating
 								+'</div>'
+								+'</div>'
+								/*
 								+'<div class="km-sellos maps">'
 								+'    <div class="km-sellos"> '+servicios+' </div>'
 								+'</div>'
@@ -344,7 +345,6 @@ function initMap() {
 								+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
 								+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
 								+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
-								+'</div>'
 								+'</div>'
 		        });
 
