@@ -318,23 +318,25 @@ function initMap() {
 		        }
 
 		        var rating = "";
-		        if( cuidador["rating"] != undefined && cuidador["rating"].length > 0 ){
-			        for( var start = 1; start <= 5; start++){
-			        	if( start <= cuidador["rating"] ){
-			        		rating += '<a href="#" class="active"></a>';
-			        	}else{
-			        		rating += '<a href="#" class="no_active"></a>';
-			        	}
-			        };
+		        var rating_value = 0;
+		        if( cuidador["rating"] != undefined && cuidador["rating"] > 0 ){
+		        	rating_value = cuidador["rating"];
+		        }
+		        for( var start = 1; start <= 5; start++){
+		        	if( start <= rating_value ){
+		        		rating += '<a href="#" class="active"></a>';
+		        	}else{
+		        		rating += '<a href="#" class="no_active"></a>';
+		        	}
 		        }
 
 		        infos[index] = new google.maps.InfoWindow({ 
 		            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
 								+'<p>'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
 								+'<div class="km-ranking">'
-								+'<div class="km-ranking rating" style="display:inline-block">'
-								+	rating
-								+'</div>'
+								+	'<div class="km-ranking rating" style="display:inline-block">'
+								+		rating
+								+	'</div>'
 								+'</div>'
 								/*
 								+'<div class="km-sellos maps">'
