@@ -148,8 +148,8 @@
 						<img src="'.$avatar.'" width="40px" height="40px" class="'.$avatar_circle.'">
 					</button>
 					<a class="navbar-brand" href="'.get_home_url().'">
-						<img data-wlabel="logo" src="'.getTema().'/images/new/km-logos/km-logo'.$wlabel.'.png" height="60px">
-						<img src="'.getTema().'/images/new/km-logos/km-logo-negro'.$wlabel.'.png" style="display:none;">
+						<img data-wlabel="logo" id="logo-white" src="'.getTema().'/images/new/km-logos/km-logo'.$wlabel.'.png" height="60px">
+						<img data-wlabel="logo" id="logo-black" src="'.getTema().'/images/new/km-logos/km-logo-negro'.$wlabel.'.png" style="display:none;">
 					</a>
 				</div>
 				<ul class="hidden-xs nav-login">
@@ -194,7 +194,8 @@
 					</button>
 					<div class="navbar-header ">
 						<a class="navbar-brand" href="'.get_home_url().'">
-							<img data-wlabel="logo" src="'.getTema().'/images/new/km-logos/km-logo'.$wlabel.'.png" height="60px">
+							<img data-wlabel="logo" id="logo-white" src="'.getTema().'/images/new/km-logos/km-logo'.$wlabel.'.png" height="60px">
+							<img data-wlabel="logo" id="logo-black" src="'.getTema().'/images/new/km-logos/km-logo-negro'.$wlabel.'.png" style="display:none;">
 						</a>
 					</div>
 					<ul class="nav navbar-nav navbar-right hidden-xs">

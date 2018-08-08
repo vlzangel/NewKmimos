@@ -35,19 +35,30 @@ jQuery(document).on("click", '[data-target="#popup-iniciar-sesion"]' ,function(e
 function menu(){
 	var w = jQuery(window).width();
 
-	if(jQuery(this).scrollTop() > 10) {
+	var logo = jQuery('.navbar-brand img').attr('src');
+	var logoBlack = jQuery('#logo-black').attr('src');
 
+	if(jQuery(this).scrollTop() > 10) {
 		if( !jQuery(".navbar").hasClass("bg-white-secondary") ){
 			jQuery('.bg-transparent').addClass('bg-white');
-			jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro'+wlabel+'.png');
+			//jQuery('.navbar-brand img').attr('src', HOME+'images/new/km-logos/km-logo-negro'+wlabel+'.png');
+			
+			jQuery('#logo-white').css('display', 'none');
+			jQuery('#logo-black').css('display', 'block');
+
 			jQuery('.sin_logear img').attr('src', HOME+'/images/new/km-navbar-mobile-negro.svg');
+
 		}
 
 	} else {
 
 		if( !jQuery(".navbar").hasClass("bg-white-secondary") ){
 			jQuery('.bg-transparent').removeClass('bg-white');
-			jQuery('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo'+wlabel+'.png');
+			// jQuery('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo'+wlabel+'.png');
+			jQuery('#logo-white').css('display', 'block');
+			jQuery('#logo-black').css('display', 'none');
+
+
 			jQuery('.sin_logear img').attr('src', HOME+'/images/new/km-navbar-mobile.svg');
 		}
 		
