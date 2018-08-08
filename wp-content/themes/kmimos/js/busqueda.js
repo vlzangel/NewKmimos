@@ -284,7 +284,12 @@ function initMap() {
 	map = new google.maps.Map(document.getElementById("mapa"), {
         zoom: 4,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-		scrollwheel: false
+		scrollwheel: false,
+		mapTypeControl: true,
+		mapTypeControlOptions: {
+			position: google.maps.ControlPosition.LEFT_BOTTOM,
+			mapTypeIds: ['roadmap', 'satellite', 'terrain']
+		}
     });
 
     oms = new OverlappingMarkerSpiderfier(map, { 
@@ -370,7 +375,11 @@ function initMap() {
 		        mapTypeId: google.maps.MapTypeId.ROADMAP,
 				center: new google.maps.LatLng(23.634501, -102.552784), 
 		        fullscreenControl: true,
-				scrollwheel: false
+				scrollwheel: false,
+				streetViewControl: true,
+				streetViewControlOptions: {
+					position: google.maps.ControlPosition.LEFT_BOTTOM
+				}
 		    });
 	   	}
     }, 'json');
