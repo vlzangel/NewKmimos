@@ -329,7 +329,8 @@ function initMap() {
 		        }
 
 		        infos[index] = new google.maps.InfoWindow({ 
-		            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
+		            content: 	'<div style="z-index:999px!important;">'
+		            			+ '<h1 class="maps">'+cuidador.nom+'</h1>'
 								+'<p>'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
 								/*
 								+'<div class="km-ranking">'
@@ -344,9 +345,11 @@ function initMap() {
 								+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
 								+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
 								+'</div>'
+								+'</div>'
 		        });
 
 		        markers[index].addListener("click", function(e) { 
+	                map.panTo(markers[index].getPosition());
 		            infos[this.vlz_index].open(map, this);
 		        });
 

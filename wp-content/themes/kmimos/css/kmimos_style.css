@@ -711,17 +711,27 @@ input:focus{
 #popup-servicios .modal-content {
 	padding: 30px 50px;
 }
-#popup-servicios .km-opcion {
-	padding: 20px 0;
-}
 #popup-servicios .km-btn-primary {
 	line-height: 18px;
 }
+#popup-servicios .km-opcion {
+	padding: 20px 0;
+	min-height: 79px;
+    align-items: center;
+    display: table;
+}
+#popup-servicios .km-opcion .km-opcion-text {
+	vertical-align: middle;
+	display: table-cell;
+}
 #popup-servicios .km-opcion img {
-	    position: relative;
+	position: relative;
     margin-right: 6px;
+    margin-left: 15px;
     width: 25px;
-    top: -3px;
+    top: 5px!important;
+    vertical-align: middle;
+    display: table-cell;
 }
 button.close {
 	position: absolute;
