@@ -36,6 +36,9 @@
           <li class="nav-item">
             <a class="nav-link" id="FacturasKmimos-tab" data-toggle="tab" href="cuidador" role="tab" aria-controls="FacturasKmimos" aria-selected="false">Facturas Kmimos</a>
           </li>
+          <li class="nav-item hidden">
+            <a class="nav-link pull-right" id="FacturasError-tab" data-toggle="tab" href="error" role="tab" aria-controls="FacturasError" aria-selected="false">Facturas con Problemas</a>
+          </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div id="container_tipo_receptor" style="padding: 20px 10px 0px 20px">
