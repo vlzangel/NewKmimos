@@ -1,4 +1,4 @@
-<img src='[URL_IMGS]/new/cancelar_solicitud_2.png' style='width: 600px;' >
+<img src='[URL_IMGS]/new/cancelaciones/[CANCELADO_POR].png' style='width: 600px;' >
 
 <div style='padding: 0px;'>
 

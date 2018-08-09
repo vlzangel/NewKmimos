@@ -1,5 +1,12 @@
 <?php
 
+    $enviar_code = true;
+    if( $CODE == $_SESSION["CODE"] ){
+        $enviar_code = false;
+    }else{
+        $_SESSION["CODE"] = $CODE;
+    }
+
     if( $superAdmin == "" && $status == "modified" ){
         
     }else{
@@ -132,6 +139,9 @@
 
         if( $NO_ENVIAR != "" ){
             echo $mensaje_cliente;
+            if( $enviar_code ){
+                wp_mail( "vlzangel91@gmail.com", "Cancelación de Reserva", $mensaje_cliente);
+            }
         }else{
            wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
         }
