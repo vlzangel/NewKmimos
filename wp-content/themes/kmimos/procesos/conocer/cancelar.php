@@ -83,7 +83,7 @@
     		if( $value == 1 ){
     			$rating_txt .= "<img style='width: 25px; padding-right: 10px;' src='[URL_IMGS]/new/huesito.png' >";
     		}else{
-    			$rating_txt .= "<img style='width: 25px; padding-right: 10px;' src='[URL_IMGS]/huesito_vacio.png' >";
+    			$rating_txt .= "<img style='width: 25px; padding-right: 10px;' src='[URL_IMGS]/new/huesito_vacio.png' >";
     		}
     	}
     	$servicios = vlz_servicios($valor->adicionales, true);

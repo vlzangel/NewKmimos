@@ -49,7 +49,7 @@
     	$rating = kmimos_petsitter_rating($valor->id_post, true); $rating_txt = "";
     	foreach ($rating as $key => $value) {
     		if( $value == 1 ){ $rating_txt .= "<img style='width: 15px; padding: 0px 1px;' src='[URL_IMGS]/new/huesito.png' >";
-    		}else{ $rating_txt .= "<img style='width: 15px; padding: 0px 1px;' src='[URL_IMGS]/huesito_vacio.png' >"; }
+    		}else{ $rating_txt .= "<img style='width: 15px; padding: 0px 1px;' src='[URL_IMGS]/new/huesito_vacio.png' >"; }
     	}
     	$servicios = vlz_servicios($valor->adicionales, true);
     	$servicios_txt = "";
