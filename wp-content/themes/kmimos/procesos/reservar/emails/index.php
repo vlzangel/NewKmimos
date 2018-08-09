@@ -257,7 +257,7 @@
 
 		}
 
-		$continuar = true;
+		if( $NO_ENVIAR != "" ){ $continuar = true; }
 		
 		if( $continuar ){
 
