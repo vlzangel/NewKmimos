@@ -115,18 +115,18 @@
     $msg_cuidador = "";
 
     if( $usu == "STM" ){
-        $msg_cliente = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
-        $msg_cuidador = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocer cuidador realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cliente = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cuidador = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600;'>cancelado</span> la solicitud para conocer cuidador realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
 
-        $msg_admin = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> realizada por el cliente <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_admin = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> realizada por el cliente <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
 
         $CANCELADO_POR = "sistema";
     }else{
         if( $usu == "CLI" ){
-            $msg_cliente = "Te notificamos que la solicitud para conocer cuidador ha sido cancelada exitosamente.";
-            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocerte.";
+            $msg_cliente = "Te notificamos que la solicitud para conocer cuidador ha sido <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600;'>cancelada</span> exitosamente.";
+            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600;'>cancelado</span> la solicitud para conocerte.";
 
-            $msg_admin = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong>.";
+            $msg_admin = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong>.";
             
             $CANCELADO_POR = "cliente";
         }else{
@@ -161,7 +161,7 @@
 
 
 	$mensaje_cliente = get_email_html( $mensaje_cliente, true, true, $cliente, false );	
-    // $mensaje_cliente = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cliente);
+    $mensaje_cliente = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cliente);
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_cliente;
@@ -184,7 +184,7 @@
     $mensaje_cuidador = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_cuidador);
 
     $mensaje_cuidador = get_email_html( $mensaje_cuidador, true, true, $cliente, false ); 
-    // $mensaje_cuidador = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cuidador);  
+    $mensaje_cuidador = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cuidador);  
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_cuidador;
@@ -212,7 +212,7 @@
     $mensaje_admin = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_admin);
 
     $mensaje_admin = get_email_html( $mensaje_admin, true, true, $cliente, false );  
-    // $mensaje_admin = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_admin);    
+    $mensaje_admin = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_admin);    
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_admin;

@@ -2,16 +2,17 @@
     display: block;
     background-color: #ffffff;
     margin: 0px auto 20px;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 15px;
 '>
 	
-	<table width="360" style='
+	<table width="100%" style='
 	    padding: 0px;
 	'>
 		<tr>
-			<td align="center" height="160" width="360" style="
+			<td align="center" height="160" width="100%" style="
 				background-image: url('[AVATAR]'); 
 				background-repeat: no-repeat; 
 				background-position: center; 
@@ -50,11 +51,11 @@
 			[HUESOS]
 		</div>
 
-		<div style='font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #000; height: 40px; vertical-align: middle;'>
+		<div style='font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #000; height: 30px; vertical-align: middle;'>
 			[SERVICIOS]
-			<span id="precio" style="font-family: Arial; font-size: 17px; font-weight: 600; letter-spacing: -0.1px; text-align: left; vertical-align: middle;">
+			<span id="precio" style="font-family: Arial; font-size: 15px; font-weight: 600; letter-spacing: -0.1px; text-align: left; vertical-align: middle;">
 				DESDE MXN$ 
-				<span style='font-family: Arial; font-size: 32px;'>[MONTO]</span>
+				<span style='font-family: Arial; font-size: 25px;'>[MONTO]</span>
 				[MONTO_DECIMALES]
 			</span>
 		</div>
@@ -66,14 +67,14 @@
 		<a href='[LIKS]' target='_blank' style='
 		    text-decoration: none;
 		    display: inline-block;
-		    width: 160px;
+		    width: 120px;
 		    border-radius: 3px;
 		    border: solid 1px #000;
 		    padding: 12px 0px;
 		    text-align: center;
-		    margin: 0px 3px 0px 0px;
+		    margin: 0px 3px 0px 5px;
 		    color: #000;
-		    font-size: 14px;
+		    font-size: 12px;
 		    font-weight: 600;
 		'>
 			CONOCE M&Aacute;S
@@ -82,14 +83,14 @@
 		<a href='[LIKS]' target='_blank' style='
 		    text-decoration: none;
 		    display: inline-block;
-		    width: 160px;
+		    width: 120px;
 		    border-radius: 3px;
 		    border: solid 1px #920e9d;
 		    padding: 12px 0px;
 		    text-align: center;
-		    margin: 0px 3px 0px 0px;
+		    margin: 0px 3px 0px 5px;
 		    color: #FFF;
-		    font-size: 14px;
+		    font-size: 12px;
 		    font-weight: 600;
 		    background-color: #920e9d;'>
 			RESERVA AQU&Iacute;

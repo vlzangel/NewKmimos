@@ -158,7 +158,7 @@ if(!function_exists('kmimos_get_email_footer')){
             $ayuda = "";
             if( $dudas ){
                 $ayuda = "
-                    <div style='float:left; width:600px; margin-bottom: 31px;'>   
+                    <div style='float:left; width:100%; margin-bottom: 31px;'>   
                         <div style='text-align:center;'>
                             <p style='font-family: Arial; font-size:14px; color:#666; text-align: center; '>
                                 En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 3137 4829, Whatsapp +52 (33) 1261 4186, o al correo 
@@ -178,7 +178,7 @@ if(!function_exists('kmimos_get_email_footer')){
                         CON LA CONFIANZA Y SEGURIDAD QUE NECESITAS
                     </div>
 
-                    <img style='margin-bottom: 16px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/caracteristicas.png' >
+                    <img style='margin-bottom: 16px; max-width: 100%;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/caracteristicas.png' >
                 ";
             }
 
@@ -193,6 +193,7 @@ if(!function_exists('kmimos_get_email_footer')){
             $html = "
             <html>
                 <head>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
                     <style>
                         p{ margin:0px; }
                         a[id*='kmimos_container'] > div {
@@ -207,7 +208,7 @@ if(!function_exists('kmimos_get_email_footer')){
                 </head>
                 <body>
                     <div id='kmimos_container' style='font-family: Arial;'>
-                        <div style='margin: 0px auto; padding: 0px 10px; width: 600px;'>
+                        <div style='margin: 0px auto; padding: 0px; max-width: 600px;'>
                             ".$header."
 
                             ".$content."

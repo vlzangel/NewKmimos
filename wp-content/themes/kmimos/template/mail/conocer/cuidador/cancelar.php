@@ -1,7 +1,7 @@
-<img src='[URL_IMGS]/new/cancelaciones/[CANCELADO_POR].png' style='width: 600px;' >
-
 <div style='padding: 0px;'>
 
+	<img src='[URL_IMGS]/new/cancelaciones/[CANCELADO_POR].png' style='width: 100%;' >
+	
 	<div style='font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
 		<div style='font-family: Arial; font-size: 24px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding: 30px;'>
 			Hola [name_cuidador]
