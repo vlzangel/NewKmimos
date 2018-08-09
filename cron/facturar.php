@@ -12,7 +12,7 @@ echo '<pre>';
     // buscar total de reservas del mes anterior
     $mes_anterior = strtotime("now +1 month");
     $fecha_ini = date("Y-m-01 00:00:00", $mes_anterior);
-    $fecha_fin = date("Y-m-31 23:59:59", $mes_anterior);
+    $fecha_fin = date("2030-m-31 23:59:59", $mes_anterior);
 
     $ordenes = $CFDI->db->get_results( "
             SELECT DATE_FORMAT( m.meta_value,'%Y-%m-%d 23:59:59' ) as fecha, p.ID, p.post_parent 
@@ -44,6 +44,7 @@ echo '<pre>';
             $cuidador_desglose[ $cuidador_id ]['cuidador']['rfc'] = 'XAXX010101000';
 
             // Servicios
+            $data_reserva['servicio']['desglose']['tipo'] = $data_reserva['servicio']['tipo'];
             $cuidador_desglose[ $cuidador_id ]['servicio']['tipo_pago'] = 'TRANSFERENCIA';
             $cuidador_desglose[ $cuidador_id ]['servicio']['desglose'][ $orden_id ] = $data_reserva['servicio']['desglose'];
             
@@ -70,9 +71,11 @@ echo '<pre>';
 
         // facturar a cuidador
     foreach ($cuidador_desglose as $cuidador_id => $datos) {
-        $ef = $CFDI->generar_Cfdi_Cuidador( $datos );
 
+        $ef = $CFDI->generar_Cfdi_Cuidador( $datos );
+        
         if( !empty($ef['ack']) ){
+            print_r($ef['ack']);
             $ask = json_decode($ef['ack']);
 
             // Listado de reservas
@@ -86,5 +89,7 @@ echo '<pre>';
                 $datos['total'] = $ef['data']['CFDi']['total'];
 
             $CFDI->guardarCfdi( 'cuidador', $datos, $ask );
+        }else{
         }
+        echo '<br/>';
     }
