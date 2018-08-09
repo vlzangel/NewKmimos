@@ -58,8 +58,8 @@
                 $value->servicio,
                 $value->total,
                 $value->serie . "-" . $value->reserva_id,
-                $cuidador_name,
-                $cliente_name,
+                utf8_encode($cuidador_name),
+                utf8_encode($cliente_name),
                 $value->numeroReferencia,
                 $value->serieCertificado,
                 $value->serieCertificadoSAT,
@@ -72,6 +72,6 @@
         }
     }
 
-    echo json_encode($data);
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
 
 ?>
