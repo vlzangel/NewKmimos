@@ -81,16 +81,16 @@
     	$rating_txt = "";
     	foreach ($rating as $key => $value) {
     		if( $value == 1 ){
-    			$rating_txt .= "<img style='width: 15px; padding: 0px 1px;' src='[URL_IMGS]/new/huesito.png' >";
+    			$rating_txt .= "<img style='width: 25px; padding-right: 10px;' src='[URL_IMGS]/new/huesito.png' >";
     		}else{
-    			$rating_txt .= "<img style='width: 15px; padding: 0px 1px;' src='[URL_IMGS]/huesito_vacio.png' >";
+    			$rating_txt .= "<img style='width: 25px; padding-right: 10px;' src='[URL_IMGS]/huesito_vacio.png' >";
     		}
     	}
     	$servicios = vlz_servicios($valor->adicionales, true);
     	$servicios_txt = "";
         if( $servicios != "" ){
         	foreach ($servicios as $key => $value) {
-        		$servicios_txt .= "<img style='margin: 0px 3px 0px 0px;' src='[URL_IMGS]/servicios/".str_replace('.svg', '_.png', $value["img"])."' height='100%' align='middle' >";
+        		$servicios_txt .= "<img style='margin: 0px 3px 0px 0px; vertical-align: middle;' src='[URL_IMGS]/servicios/".str_replace('.svg', '_.png', $value["img"])."' height='100%' align='middle' >";
         	}
         }
 
@@ -130,10 +130,10 @@
             
             $CANCELADO_POR = "cliente";
         }else{
-            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocerle.";
-            $msg_cuidador = "Te notificamos que la solicitud para conocerte ha sido cancelada exitosamente.";
+            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> no est&aacute; disponible por los momentos, por lo que la solicitud de conocer cuidador fue <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600;'>RECHAZADA</span>";
+            $msg_cuidador = "Te notificamos que la solicitud para conocerte ha sido <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelada</span> exitosamente.";
 
-            $msg_admin = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696;'>cancelado</span> la solicitud para conocerle, realizado por el cliente <strong>[name_cliente]</strong>.";
+            $msg_admin = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelado</span> la solicitud para conocerle, realizado por el cliente <strong>[name_cliente]</strong>.";
             
             $CANCELADO_POR = "cuidador";
         }
@@ -149,7 +149,7 @@
     $mensaje_cliente = str_replace('[mensaje]', $msg_cliente, $mensaje_cliente);
     $mensaje_cliente = str_replace("[TITULO_CANCELACION]", $titulo_cancelacion, $mensaje_cliente);
     $mensaje_cliente = str_replace('[id_solicitud]', $id_orden, $mensaje_cliente);
-    $mensaje_cliente = str_replace('[name_cliente]', "<strong style='text-transform: uppercase;'>".strtoupper($cliente_name)."</strong>", $mensaje_cliente);
+    $mensaje_cliente = str_replace('[name_cliente]', "<strong style=''>".($cliente_name)."</strong>", $mensaje_cliente);
     $mensaje_cliente = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cliente);
     if( $usu == "CLI" ){
         $mensaje_cliente = str_replace('[SUGERIDOS]', "", $mensaje_cliente);
@@ -161,7 +161,7 @@
 
 
 	$mensaje_cliente = get_email_html( $mensaje_cliente, true, true, $cliente, false );	
-    $mensaje_cliente = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cliente);
+    // $mensaje_cliente = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cliente);
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_cliente;
@@ -172,9 +172,6 @@
         wp_mail( $email_cliente, "Cancelación de Solicitud para conocer cuidador", $mensaje_cliente);
     }
 
-
-    exit();
-
     $file = $PATH_TEMPLATE.'/template/mail/conocer/cuidador/cancelar.php';
     $mensaje_cuidador = file_get_contents($file);
 
@@ -184,9 +181,10 @@
     $mensaje_cuidador = str_replace('[name_cliente]', $cliente_name, $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
+    $mensaje_cuidador = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_cuidador);
 
     $mensaje_cuidador = get_email_html( $mensaje_cuidador, true, true, $cliente, false ); 
-    $mensaje_cuidador = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cuidador);  
+    // $mensaje_cuidador = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_cuidador);  
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_cuidador;
@@ -211,9 +209,10 @@
         $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
     }
     $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
+    $mensaje_admin = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_admin);
 
     $mensaje_admin = get_email_html( $mensaje_admin, true, true, $cliente, false );  
-    $mensaje_admin = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_admin);    
+    // $mensaje_admin = str_replace("http://localhost/NewKmimos/", "http://kmimosmx.sytes.net/QA2/", $mensaje_admin);    
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_admin;

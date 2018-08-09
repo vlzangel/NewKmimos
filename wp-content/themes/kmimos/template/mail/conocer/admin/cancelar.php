@@ -1,4 +1,4 @@
-<img src='[URL_IMGS]/new/cancelar_solicitud_2.png' style='width: 600px;' >
+<img src='[URL_IMGS]/new/cancelaciones/[CANCELADO_POR].png' style='width: 600px;' >
 
 <div style='padding: 0px;'>
 
@@ -12,7 +12,7 @@
 		    background-color: #e4e4e4;
 		    margin: 0px auto;
 		    font-family: Arial;
-		    font-size: 15px;
+		    font-size: 18px;
 		    letter-spacing: 0.3px;
 		    color: #000000;
 		    padding: 14px 0px;
@@ -22,21 +22,22 @@
 	    </div>
 
 	    <div style='
-    	    font-family: Arial;
-		    font-size: 16px;
+	        font-family: Verdana;
+    		font-size: 17px;
 		    line-height: 1.07;
 		    letter-spacing: 0.3px;
 		    color: #000;
-		    padding: 30px;
+		    padding: 30px 10px;
+    		text-align: justify;
 	    '>
 	    	[mensaje]
 	    </div>
 
-	    <div style='background-color: #efefef; font-family: Arial; font-size: 16px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 30px 30px 20px;'>
+	    <div style='background-color: #efefef; font-family: Verdana; font-size: 16px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 30px 30px 20px;'>
 	    	<strong>Sugerencias enviadas al cliente:</strong>
 	    </div>
 
-	    <div style='background-color: #efefef; text-align: center;'>
+	    <div style='background-color: #efefef; text-align: center; padding-bottom: 30px;'>
 	    	[CUIDADORES]
 	    </div>
 

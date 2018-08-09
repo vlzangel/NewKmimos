@@ -1,25 +1,17 @@
-<style type="text/css">
-    @media max-width: 600px {
-        a[id*='precio'] {
-            font-size: 16px;
-        }
-    }
-</style>
-
 <div style='
-	display: inline-block; 
-	width: 260px; 
-	background-color: #ffffff; 
-	margin: 0px 10px 20px;
+    display: block;
+    background-color: #ffffff;
+    margin: 0px auto 20px;
+    width: 400px;
     box-sizing: border-box;
-    padding-bottom: 10px;
+    padding: 20px;
 '>
 	
-	<table width="260" style='
-	    padding: 10px;
+	<table width="360" style='
+	    padding: 0px;
 	'>
 		<tr>
-			<td align="center" height="130" width="260" style="
+			<td align="center" height="160" width="360" style="
 				background-image: url('[AVATAR]'); 
 				background-repeat: no-repeat; 
 				background-position: center; 
@@ -31,53 +23,73 @@
 
 	<div style="padding: 10px;">
 		
-		<div style='font-family: Arial; font-size: 24px; font-weight: bold; letter-spacing: 0.4px; text-align: left; color: #000000; margin: 5px 0px 3px;'>
+		<div style='    
+			font-family: Arial;
+		    font-size: 30px;
+		    font-weight: bold;
+		    letter-spacing: 0.4px;
+		    text-align: left;
+		    color: #000000;
+		    margin: 5px 0px 3px;
+		    text-transform: uppercase;
+	    '>
 			[NAME_CUIDADOR]
 		</div>
 
-		<div style='font-family: Arial; font-size: 13px; letter-spacing: -0.1px; color: #000000; text-align: left;'>
+		<div style='
+		    font-family: Verdana;
+		    font-size: 16px;
+		    letter-spacing: -0.3px;
+		    color: #000000;
+		    text-align: left;
+		'>
 			[EXPERIENCIA] años de experiencia
 		</div>
 
-		<div style='margin: 5px; text-align: left;'>
+		<div style='margin: 10px 0px; text-align: left;'>
 			[HUESOS]
 		</div>
 
-		<div style='font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #0d7ad9; height: 30px;'>
-			[SERVICIOS] <span id="precio" style="color: #000000; display: inline-block; vertical-align: middle; padding-top: 7px;">DESDE MXN$ <span style='font-family: Arial; font-size: 18px;'>[MONTO]</span>[MONTO_DECIMALES]</span>
+		<div style='font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #000; height: 40px; vertical-align: middle;'>
+			[SERVICIOS]
+			<span id="precio" style="font-family: Arial; font-size: 17px; font-weight: 600; letter-spacing: -0.1px; text-align: left; vertical-align: middle;">
+				DESDE MXN$ 
+				<span style='font-family: Arial; font-size: 32px;'>[MONTO]</span>
+				[MONTO_DECIMALES]
+			</span>
 		</div>
 
 	</div>
 
-	<div style='text-align: center;'>
+	<div style='text-align: center; margin-top: 10px;'>
 
 		<a href='[LIKS]' target='_blank' style='
 		    text-decoration: none;
 		    display: inline-block;
-		    width: 115px;
+		    width: 160px;
 		    border-radius: 3px;
 		    border: solid 1px #000;
-		    padding: 8px 0px 6px;
+		    padding: 12px 0px;
 		    text-align: center;
 		    margin: 0px 3px 0px 0px;
 		    color: #000;
-		    font-size: 0.7rem;
+		    font-size: 14px;
 		    font-weight: 600;
 		'>
-			CONOCELO M&Aacute;S
+			CONOCE M&Aacute;S
 		</a>
 
 		<a href='[LIKS]' target='_blank' style='
 		    text-decoration: none;
 		    display: inline-block;
-		    width: 115px;
+		    width: 160px;
 		    border-radius: 3px;
 		    border: solid 1px #920e9d;
-		    padding: 8px 0px 6px;
+		    padding: 12px 0px;
 		    text-align: center;
 		    margin: 0px 3px 0px 0px;
 		    color: #FFF;
-		    font-size: 0.7rem;
+		    font-size: 14px;
 		    font-weight: 600;
 		    background-color: #920e9d;'>
 			RESERVA AQU&Iacute;
