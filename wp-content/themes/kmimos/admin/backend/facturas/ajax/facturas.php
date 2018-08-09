@@ -42,8 +42,14 @@
         $i = 0;
         foreach ($facturas as $key => $value) {
 
-            $cuidador_name = $db->get_var( "SELECT display_name FROM wp_users WHERE ID = ".$value->cuidador_id );
-            $cliente_name = $db->get_var( "SELECT display_name FROM wp_users WHERE ID = ".$value->cliente_id );
+            $cuidador_name = $db->get_var( "SELECT CONCAT( nombre,' ', apellido ) as nombre FROM cuidadores WHERE user_id = ".$value->cuidador_id );
+
+            if( $value->receptor == 'cuidador' ){
+                $cliente_name = 'Kmimos';
+            }else{
+                $cliente_name = $db->get_var( "SELECT meta_value as name FROM wp_usermeta WHERE meta_key = 'billing_razon_social' AND user_id = ".$value->cliente_id );
+            }
+
 
             $data["data"][] = array(
                 "<input type='checkbox' data-type='fact_selected' name='fact_selected[]' value='".$value->reserva_id.'_'.$value->numeroReferencia."'>",

@@ -21,7 +21,30 @@
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_fotos',
                     'icon'          =>  '',
+                ),
+
+                array(
+                    'title'         =>  'Facturas',
+                    'short-title'   =>  'Facturas',
+                    'parent'        =>  '',
+                    'slug'          =>  'reporte_facturas',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_facturas',
+                    'icon'          =>  '',
+                    'position'      =>  4,
+                ),
+                array(
+                    'title'         =>  __('Facturas'),
+                    'short-title'   =>  __('Facturas'),
+                    'parent'        =>  'reporte_facturas',
+                    'slug'          =>  'reporte_facturas',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_facturas',
+                    'icon'          =>  '',
                 )
+
+
+
             );
 
             $user_especiales = get_option( "especiales" );
@@ -83,13 +106,14 @@
             );
 
             $opciones_menu_reporte[] = array(
-                'title'         =>  __('Facturas'),
-                'short-title'   =>  __('Facturas'),
-                'parent'        =>  'reporte_fotos',
-                'slug'          =>  'reporte_facturas',
+                'title'         =>  __('Configuracion'),
+                'short-title'   =>  __('Configuracion'),
+                'parent'        =>  'reporte_facturas',
+                'slug'          =>  'reporte_configuracion',
                 'access'        =>  'manage_options',
-                'page'          =>  'reporte_facturas',
+                'page'          =>  'reporte_configuracion',
             );
+
             foreach($opciones_menu_reporte as $opcion){
                 if( $opcion['parent'] == '' ){
                     add_menu_page(
@@ -151,6 +175,12 @@
         function reporte_facturas(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/facturas/reporte_facturas.php');
+        }
+    }
+    if(!function_exists('reporte_configuracion')){
+        function reporte_configuracion(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/backend/facturas_configuracion/reporte_configuracion.php');
         }
     }
 ?> 

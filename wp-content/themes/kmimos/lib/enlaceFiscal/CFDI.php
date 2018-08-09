@@ -12,9 +12,6 @@ class CFDI {
 	// EndPoint Enlace Fiscal
 	protected $url = 'https://api.enlacefiscal.com/v6/';
 
-	// RFC Cuenta principal
-	protected $RFC = 'KMI160615640';
-
 	// Modo:  [ produccion , debug ]
 	protected $modo = 'debug'; 
 
@@ -32,16 +29,9 @@ class CFDI {
 	];
 
 	// Credenciales de acceso al API
-	protected $auth = [
-		'produccion' => [
-			'token' => '',
-			'x-api-key' => ''
-		],
-		'debug' => [
-			'token' => 'c83e1f14de69b963add399109a97a392',
-			'x-api-key' => 'e9aT1ajrRh1NyRkzOtDoN1ZEGmIsEKuJ6f3FYyLh'
-		]
-	];
+	protected $RFC = ''; // Usuario
+	protected $token = ''; // Clave
+	protected $xapikey = ''; // Llave de acceso
 
 	// Saldo en enlaceFiscal
 	protected $saldo = 0;
@@ -59,6 +49,8 @@ class CFDI {
 		}
 
 		$this->db = $db;
+
+		$this->load_config_kmimos();
 
 		if( $this->modo == 'produccion' ){		
 			$_saldos = $this->obtenerSaldo();
@@ -78,7 +70,8 @@ class CFDI {
 
 	public function load_config_kmimos(){
 		$this->RFC = $this->kmimos['RFC'];
-		$this->auth = $this->kmimos;
+		$this->token = $this->kmimos[ $this->modo ]['token']; 
+		$this->xapikey = $this->kmimos[ $this->modo ]['x-api-key']; 
 	}
 
 	// Probar conexion con enlaceFiscal
@@ -111,10 +104,13 @@ class CFDI {
 
 		// Configuracion general
 			$_options = $this->db->get_var(
-				"SELECT valor FROM kmimos_opciones WHERE clave = 'cfdi_parametros' ",
-				'valor' 
+				"SELECT value FROM facturas_configuracion WHERE codigo = 'cfdi_parametros' ",
+				'value' 
 			);
 			$conf = unserialize($_options);
+
+		// comision cuidadores
+		$data['comision'] = (isset($conf['comision']))? $conf['comision'] : '' ;
 
 		// Serie
 		$data['serie'] = (isset($conf['serie']))? $conf['serie'] : '' ;
@@ -152,13 +148,14 @@ class CFDI {
 			extract($conf);
 
 		// Datos de configuracion del cuidador
-			$info_cfdi = $this->db->get_row( "SELECT * FROM FACTURAS_ALIADOS WHERE estatus='Activo' AND user_id =".$data['cuidador']['id'] );
-			$serie = $info_cfdi->serie;
-			// Credenciales 
-			$this->RFC = $info_cfdi->rfc; // Usuario
-			$this->auth[ $this->modo ]['RFC'] = $info_cfdi->rfc; // usuario
-			$this->auth[ $this->modo ]['token'] = $info_cfdi->tokenAPI; // Clave
-			$this->auth[ $this->modo ]['x-api-key'] = $info_cfdi->xApiKey; // llave de acceso
+			if( $this->modo != 'debug' ){
+				$info_cfdi = $this->db->get_row( "SELECT * FROM FACTURAS_ALIADOS WHERE estatus='Activo' AND user_id =".$data['cuidador']['id'] );
+				$serie = $info_cfdi->serie;
+				// Credenciales 
+				$this->RFC = $info_cfdi->rfc; // Usuario
+				$this->token = $info_cfdi->tokenAPI; // Clave
+				$this->xapikey = $info_cfdi->xApiKey; // llave de acceso
+			}
 
 		// Variables de Estructura
 			$data['fechaEmision'] = date('Y-m-d H:i:s');
@@ -196,6 +193,7 @@ class CFDI {
 			if( isset($data['servicio']['variaciones']) && !empty($data['servicio']['variaciones']) ){			
 				foreach ($data['servicio']['variaciones'] as $item) {
 
+					$codigo_sat = $this->db->get_var("SELECT value FROM facturas_configuracion WHERE clave ='".$data['servicio']['tipo']."'" );
 
 					// Desglose del detalle de la factura 
 					// *************************************
@@ -231,7 +229,7 @@ class CFDI {
 						$partidas[] = [
 						    "cantidad" => $cantidad,
 						    "claveUnidad" => "DAY",
-						    "claveProdServ" => "90111500", //  9011150.0 por definir
+						    "claveProdServ" => $codigo_sat, //  9011150.0 por definir
 						    "descripcion" => $item[0]." ". $item[1] ." x ".$item[2] ." x $".$item[3],
 						    "valorUnitario" =>(float) number_format($base, 2, '.', ''),
 						    "importe" => (float) number_format( $subtotal, 2, '.', ''),
@@ -254,6 +252,8 @@ class CFDI {
 			if( isset($data['servicio']['transporte']) && !empty($data['servicio']['transporte']) ){			
 				foreach ($data['servicio']['transporte'] as $item) {
 
+					$codigo_sat = $this->db->get_var("SELECT value FROM facturas_configuracion WHERE clave ='".$item[0]."'" );
+
 					// Desglose del detalle de la factura 
 					// *************************************
 						$item[2] = str_replace(".", "", $item[2]);
@@ -288,7 +288,7 @@ class CFDI {
 						$partidas[] = [
 						    "cantidad" => $cantidad,
 						    "claveUnidad" => "DAY",
-						    "claveProdServ" => "90111500", // por definir
+						    "claveProdServ" => $codigo_sat, // por definir
 						    "descripcion" =>  $item[0] ." x ".$item[1] ." x $".$item[2],
 						    "valorUnitario" =>(float)  number_format($base, 2, '.', ''),
 						    "importe" => (float) number_format($subtotal, 2, '.', ''),
@@ -310,6 +310,8 @@ class CFDI {
 			if( isset($data['servicio']['adicionales']) && !empty($data['servicio']['adicionales']) ){	
 				foreach ($data['servicio']['adicionales'] as $item) {
 
+					$codigo_sat = $this->db->get_var("SELECT value FROM facturas_configuracion WHERE clave ='".utf8_decode($item[0])."'" );
+
 					// Desglose del detalle de la factura 
 					// *************************************
 						$item[2] = str_replace(".", "", $item[2]);
@@ -344,7 +346,7 @@ class CFDI {
 						$partidas[] = [
 						    "cantidad" => $cantidad,
 						    "claveUnidad" => "DAY",
-						    "claveProdServ" => "90111500", // por definir
+						    "claveProdServ" => $codigo_sat, // por definir
 						    "descripcion" =>  $item[0] ." x ".$item[1] ." x $".$item[2],
 						    "valorUnitario" =>(float)  number_format($base, 2, '.', ''),
 						    "importe" => (float) number_format($subtotal, 2, '.', ''),
@@ -380,7 +382,7 @@ class CFDI {
 					"fechaEmision" => $data['fechaEmision'], //"2017-02-22 11:03:43",
 					"subTotal" => (float) number_format( $_subtotal, 2, '.', ''), //"20.00", ( Sin IVA )
 					"total" => (float) number_format( $_total, 2, '.', ''), // "23.20" ( Con IVA )
-					"rfc" => $info_cfdi->rfc,
+					"rfc" => $this->RFC,
 					"descuentos" => (float) number_format( $data['servicio']['desglose']['descuento'], 2, '.', ''),
 					"DatosDePago" => [
 						"metodoDePago" => "PUE",
@@ -425,8 +427,8 @@ class CFDI {
 		$cfdi_respuesta = $this->request( $CFDi, 'generarCfdi' );
 		return [ 
 			'ack' => $cfdi_respuesta, 
-			'data' => $CFDi,  
-			'auth' => $this->auth,
+			'data' => $CFDi,
+			'datos' => $data,
 		];
 	}
 
@@ -442,6 +444,7 @@ class CFDI {
 			] );
 			extract($conf);
 
+
 			$data['rfc'] = $this->RFC; // RFC Kmimos
 			$data['fechaEmision'] = date('Y-m-d H:i:s');
 			$data['recibo'] = $data['periodo']['fecha'] . $data['cuidador']['id'];
@@ -455,9 +458,11 @@ class CFDI {
 			];
 			foreach ($data['servicio']['desglose'] as $reserva => $desglose) {
 
+				$codigo_sat = $this->db->get_var("SELECT value FROM facturas_configuracion WHERE clave ='".$desglose['tipo']."'" );
+
 				// Calculo comision ( 20% )
 					$servicio_total = $desglose['total']; // 100% reserva ( 261.25 )
-					$servicio_total = $servicio_total - ( $servicio_total / 1.25 ); // 20% de kmimos (52.25)
+					$servicio_total = $servicio_total - ( $servicio_total / $comision ); // 20% de kmimos (52.25)
 
 				// Calculo de desglose
 					$_subtotal = $servicio_total / $base_iva;// Costo base 	( 45.05 ) 
@@ -473,7 +478,7 @@ class CFDI {
 					$partidas[] = [
 					    "cantidad" => 1,
 					    "claveUnidad" => "A9", // A9 - Tarífa  
-					    "claveProdServ" => "90111500", /// Agregar datos a una tabla
+					    "claveProdServ" => $codigo_sat, /// Agregar datos a una tabla
 					    "descripcion" => "Cargo por concepto de gastos administrativos - Reserva No. {$reserva}",
 					    "valorUnitario" =>(float) number_format($_subtotal, 2, '.', ''),
 					    "importe" => (float) number_format( $_subtotal, 2, '.', ''),
@@ -710,10 +715,9 @@ class CFDI {
 		if( empty($aData) || empty($accion) ){ return false; }
 
 		// Autenticacion
-		$param = $this->auth[ $this->modo ];
 		$aAuth = [
 			'User' => $this->RFC,
-			'Pass' => $param['token']
+			'Pass' => $this->token
 		];
 
 		// Endpoint
@@ -733,7 +737,7 @@ class CFDI {
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 		    'Content-Type: application/json',
-		    'x-api-key: ' . $param['x-api-key'],
+		    'x-api-key: ' . $this->xapikey,
 		    'Content-Length: ' . $nContentLenght
 		));
 		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
