@@ -1,7 +1,19 @@
+
+.nav-tabs>li>a, 
+.nav-tabs>li>a:focus, 
+.nav-tabs>li>a:hover{
+    background-color: #e8e8e8;
+}
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover{
+    background-color: #59c9a8!important;
+    color: #fff!important;
+}
+
 .main *{
     font-family: "Roboto Condensed",Arial, Helvetica, sans-serif;
 }
-
 .main p,
 .main dl{
     margin: 0px;

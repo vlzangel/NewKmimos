@@ -58,6 +58,10 @@ $user = wp_get_current_user();
 	$uso_cfdi = $wpdb->get_results("SELECT * FROM facturas_uso_cfdi {$is_moral} ORDER BY codigo ASC");
 	$str_uso_cfdi = "";
 	$cod_uso_cfdi = get_user_meta($user->ID, 'billing_uso_cfdi', true);
+	# ********************************
+	# Forzar Uso a: Gastos en General 
+	$cod_uso_cfdi = 'G03';
+	# ********************************
 	$uso_selected = '<option value="">Seleccione el uso del CFDI</option>';
 	foreach($uso_cfdi as $row) { 
 		if( $cod_uso_cfdi == $row->codigo ){
@@ -133,7 +137,7 @@ $CONTENIDO = '
 			</label>
  		</section>	
 
-		<section class="lbl-ui">
+		<section class="lbl-ui" style="display:none;">
 			<label for="uso_cfdi" class="lbl-text">* Uso CFDI:</label>
 			<select class="" name="uso_cfdi">
 				'.$str_uso_cfdi.'

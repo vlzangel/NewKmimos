@@ -33,7 +33,7 @@
 					<a class='btn_fin_reserva' href='".get_home_url()."/perfil-usuario/datos-de-facturacion/'>CARGAR DATOS DE FACTURACI&OACUTE;N</a>
 				</div>";
 		}else{
-			$mensaje_facturacion = "Tu comprobante será emitido al finalizar la reserva. Te avisaremos cuando esté lista.
+			$mensaje_facturacion = "Te enviaremos tu comprobante fiscal en cuanto este listo por correo.
 				<div class='text-center'>
 					<a class='btn_fin_reserva' href='".get_home_url()."/perfil-usuario/historial/'>VER MIS RESERVAS</a>
 				</div>";
