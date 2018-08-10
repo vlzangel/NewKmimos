@@ -249,7 +249,7 @@
 
 					<div style="padding-top: 20px;">
 						'.$pdf.'
-						<button class="btn_fin_reserva" data-toggle="modal" data-target="#emitir_factura">
+						<button class="btn_fin_reserva" data-id="'.$data_reserva['cliente']['id'].'" data-target="emitir_factura">
 						    ¿DESEAS EMITIR TU COMPROBANTE FISCAL DIGITAL?
 						</button>
 						<a class="btn_fin_reserva" href="'.get_home_url().'/perfil-usuario/historial/">VER MIS RESERVAS</a>
@@ -301,7 +301,7 @@
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			        <h5 class="modal-title">¿DESEAS EMITIR TU COMPROBANTE FISCAL DIGITAL?</h5>
 			      </div>
-			      <div class="modal-body"><p style="font-size:14px;">'.$mensaje_facturacion.'</p></div>
+			      <div class="modal-body"><p style="font-size:14px; text-align: center;">'.$mensaje_facturacion.'</p></div>
 			    </div><!-- /.modal-content -->
 			  </div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
