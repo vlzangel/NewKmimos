@@ -87,22 +87,22 @@
     $URL_IMGS = get_home_url()."/wp-content/themes/kmimos/images/emails";
 
     if( $usu == "STM" ){
-        $msg_cliente = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelado</span> la reserva con el cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
-        $msg_cuidador = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelado</span> la reserva realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
-        $msg_administrador = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelado</span> la reserva realizada por <strong>[name_cliente]</strong> al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cliente = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva con el cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cuidador = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_administrador = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva realizada por <strong>[name_cliente]</strong> al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
         
         $CANCELADO_POR = "reservas/sistema";
     }else{
         if( $usu == "CLI" ){
-            $msg_cliente = "Te notificamos que la reserva ha sido <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelada</span> exitosamente.";
-            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelado</span> la reserva.";
-            $msg_administrador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelado</span> la reserva.";
+            $msg_cliente = "Te notificamos que la reserva ha sido <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelada</span> exitosamente.";
+            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
+            $msg_administrador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
 
             $CANCELADO_POR = "reservas/cliente";
         }else{
-            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelado</span> la reserva.";
-            $msg_cuidador = "Te notificamos que la reserva ha sido <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelada</span> exitosamente.";
-            $msg_administrador = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600;'>cancelado</span> la reserva.";
+            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
+            $msg_cuidador = "Te notificamos que la reserva ha sido <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelada</span> exitosamente.";
+            $msg_administrador = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 25px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
 
             $CANCELADO_POR = "reservas/cuidador";
         }
@@ -144,7 +144,11 @@
         $mensaje_cliente = str_replace('[URL_IMGS]', $URL_IMGS, $mensaje_cliente);
         $mensaje_cliente = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_cliente);
     	
-        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false);	
+        if( $usu == "CLI" ){
+            $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false, true);	
+        }else{
+            $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false); 
+        }
 
         if( $NO_ENVIAR != "" ){
             echo $mensaje_cliente;
@@ -169,7 +173,7 @@
         $mensaje_cuidador = str_replace('[URL_IMGS]', $URL_IMGS, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_cuidador);
 
-        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente["id"], false);
+        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente["id"], false, true);
 
         if( $NO_ENVIAR != "" ){
             echo $mensaje_cuidador;
@@ -190,12 +194,30 @@
         $mensaje_admin = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_admin);
         $mensaje_admin = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_admin);
         $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
+
+        if( $usu == "CLI" ){
+            $mensaje_admin = str_replace('[SUGERENCIAS]', "", $mensaje_admin);
+        }else{
+            $mensaje_admin = str_replace('[SUGERENCIAS]', "<div style='background-color: #efefef; font-family: Verdana; font-size: 16px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 30px 30px 20px;'>
+                <strong>Sugerencias enviadas al cliente:</strong>
+            </div>
+
+            <div style='background-color: #efefef; text-align: center; padding: 0px 3px 30px;'>
+                [CUIDADORES]
+            </div>", $mensaje_admin);
+            $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
+        }
+
         $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
 
         $mensaje_admin = str_replace('[URL_IMGS]', $URL_IMGS, $mensaje_admin);
         $mensaje_admin = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_admin);
 
-        $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"], false);
+        if( $usu == "CLI" ){
+            $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"], false, true); 
+        }else{
+            $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"], false);
+        }
 
         if( $NO_ENVIAR != "" ){
             echo $mensaje_admin;

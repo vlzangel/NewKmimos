@@ -53,7 +53,7 @@
 
 		<div style='font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #000; height: 30px; vertical-align: middle;'>
 			[SERVICIOS]
-			<span id="precio" style="font-family: Arial; font-size: 15px; font-weight: 600; letter-spacing: -0.1px; text-align: left; vertical-align: middle;">
+			<span id="precio" style="font-family: Arial; font-size: 15px; font-weight: 600; letter-spacing: -0.1px; text-align: left; vertical-align: middle; display: inline-block;">
 				DESDE MXN$ 
 				<span style='font-family: Arial; font-size: 25px;'>[MONTO]</span>
 				[MONTO_DECIMALES]

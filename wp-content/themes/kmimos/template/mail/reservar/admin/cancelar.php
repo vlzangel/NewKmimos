@@ -6,7 +6,7 @@
         
         [MODIFICACION] 
 
-		<div style='font-family: Arial; font-size: 24px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding: 30px;'>
+		<div style='font-family: Arial; font-size: 24px; font-weight: bold; letter-spacing: 0.4px; color: #7d1696; padding: 30px;'>
 			Hola Administrador
 		</div>	
 
@@ -22,7 +22,7 @@
 		    text-align: center;
     	'>
 	    	<strong>Reserva #: [id_reserva]</strong>
-	    </div>
+	    </div>	    
 
 	    <div style='
     	    font-family: Verdana;
@@ -35,13 +35,7 @@
 	    	[mensaje]
 	    </div>
 
-	    <div style='background-color: #efefef; font-family: Arial; font-size: 16px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 30px 30px 20px;'>
-	    	<strong>Sugerencias enviadas al cliente:</strong>
-	    </div>
-
-	    <div style='background-color: #efefef; text-align: center; padding: 0px 3px 30px;'>
-	    	[CUIDADORES]
-	    </div>
+	    [SUGERENCIAS]
 
 	</div>
 

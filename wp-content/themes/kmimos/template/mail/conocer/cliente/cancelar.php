@@ -28,13 +28,10 @@
 		    letter-spacing: 0.3px;
 		    color: #000;
 		    padding: 30px;
+	        padding-bottom: 10px;
 	        text-align: justify;
 	    '>
-	    	[mensaje] <img style='
-	    		height: 25px;
-			    vertical-align: bottom;
-			    margin-left: 5px;
-	    	' src='[URL_IMGS]/new/perrito_triste.png' >
+	    	[mensaje]
 	    </div>
 
 	    [SUGERIDOS]

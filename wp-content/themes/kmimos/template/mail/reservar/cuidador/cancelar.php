@@ -6,7 +6,7 @@
         
         [MODIFICACION] 
 
-		<div style='font-family: Arial; font-size: 24px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding: 30px;'>
+		<div style='font-family: Arial; font-size: 24px; font-weight: bold; letter-spacing: 0.4px; color: #7d1696; padding: 30px;'>
 			Hola [name_cuidador]
 		</div>	
 

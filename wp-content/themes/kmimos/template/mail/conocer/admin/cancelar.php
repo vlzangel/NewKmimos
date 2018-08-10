@@ -3,7 +3,7 @@
 	<img src='[URL_IMGS]/new/cancelaciones/[CANCELADO_POR].png' style='width: 100%;' >
 	
 	<div style='font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
-		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #6b1c9b; padding: 30px;'>
+		<div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #7d1696; padding: 30px;'>
 			Hola Administrador
 		</div>	
 
@@ -27,19 +27,13 @@
 		    line-height: 1.07;
 		    letter-spacing: 0.3px;
 		    color: #000;
-		    padding: 30px 10px;
+		    padding: 30px;
     		text-align: justify;
 	    '>
 	    	[mensaje]
 	    </div>
 
-	    <div style='background-color: #efefef; font-family: Verdana; font-size: 16px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 30px 30px 20px;'>
-	    	<strong>Sugerencias enviadas al cliente:</strong>
-	    </div>
-
-	    <div style='background-color: #efefef; text-align: center; padding: 0px 3px 30px;'>
-	    	[CUIDADORES]
-	    </div>
+	    [SUGERENCIAS]
 
 	</div>
 

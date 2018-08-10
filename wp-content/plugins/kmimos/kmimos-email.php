@@ -153,22 +153,55 @@ if(!function_exists('kmimos_get_email_footer')){
 
     if(!function_exists('get_email_html')){
         
-        function get_email_html($content, $dudas = true, $beneficios = true, $user_id = null, $_header = true){
+        function get_email_html($content, $dudas = true, $beneficios = true, $user_id = null, $_header = true, $_barras_ayuda = false){
 
             $ayuda = "";
             if( $dudas ){
-                $ayuda = "
-                    <div style='float:left; width:100%; margin-bottom: 31px;'>   
-                        <div style='text-align:center;'>
-                            <p style='font-family: Arial; font-size:14px; color:#666; text-align: center; '>
-                                En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 3137 4829, Whatsapp +52 (33) 1261 4186, o al correo 
-                                <a href='mailto:contactomex@kmimos.la' target='_blank' style='text-decoration: none; '>contactomex@kmimos.la</a>
-                            </p>
+                if( !$_barras_ayuda ){
+                    $ayuda = "
+                        <div style='float:left; width:100%; margin-bottom: 31px;'>   
+                            <div style='text-align:center;'>
+                                <p style='    
+                                    font-family: Verdana;
+                                    font-size: 16px;
+                                    color: #666;
+                                    text-align: center;
+                                    font-weight: 400;
+                                    padding: 30px 0px;
+                                    margin: 0px 30px;
+                                '>
+                                    En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 3137 4829, Whatsapp +52 (33) 1261 4186, o al correo 
+                                    <a href='mailto:contactomex@kmimos.la' target='_blank' style='text-decoration: none; '>contactomex@kmimos.la</a>
+                                </p>
+                                <div  style='clear:both;'></div>
+                            </div>
                             <div  style='clear:both;'></div>
                         </div>
-                        <div  style='clear:both;'></div>
-                    </div>
-                ";
+                    ";
+                }else{
+                    $ayuda = "
+                        <div style='float:left; width:100%; margin-bottom: 31px;'>   
+                            <div style='text-align:center;'>
+                                <p style='    font-family: Verdana;
+                                    font-size: 16px;
+                                    color: #666;
+                                    text-align: center;
+                                    font-weight: 400;
+                                    border: solid 1px #CCC;
+                                    padding: 30px 0px;
+                                    margin: 0px 30px;
+                                    border-left: 0px;
+                                    border-right: 0px;
+                                '>
+                                    En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 3137 4829, Whatsapp +52 (33) 1261 4186, o al correo 
+                                    <a href='mailto:contactomex@kmimos.la' target='_blank' style='text-decoration: none; '>contactomex@kmimos.la</a>
+                                </p>
+                                <div  style='clear:both;'></div>
+                            </div>
+                            <div  style='clear:both;'></div>
+                        </div>
+                    ";
+                }
             }
 
             $beneficios_txt = "";
