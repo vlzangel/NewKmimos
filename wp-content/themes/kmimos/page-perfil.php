@@ -148,8 +148,8 @@
 			wp_enqueue_script('misfacturas_js', getTema()."/js/misfacturas.js", array("jquery", "global_js"), '1.0.0');
 		break;
 		case 'datos-de-facturacion':
-			wp_enqueue_style('datos-de-facturacion-css', getTema()."/css/datos-de-facturacion.css", array(), '1.0.0');
-			wp_enqueue_script('datos-de-facturacion-js', getTema()."/js/datos-de-facturacion.js", array("jquery", "global_js"), '1.0.0');
+			wp_enqueue_style('datos-de-facturacion-panel-css', getTema()."/css/datos-de-facturacion.css", array(), '2.0.0');
+			wp_enqueue_script('datos-de-facturacion-panel-js', getTema()."/js/datos-de-facturacion.js", array("jquery", "global_js"), '2.0.0');
 		break;		
 	}
 
