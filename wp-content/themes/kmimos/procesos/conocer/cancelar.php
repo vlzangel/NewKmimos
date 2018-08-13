@@ -115,25 +115,25 @@
     $msg_cuidador = "";
 
     if( $usu == "STM" ){
-        $msg_cliente = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
-        $msg_cuidador = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocer cuidador realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cliente = "Te notificamos que el sistema ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cuidador = "Te notificamos que el sistema ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocer cuidador realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
 
-        $msg_admin = "Te notificamos que el sistema ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> realizada por el cliente <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_admin = "Te notificamos que el sistema ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong> realizada por el cliente <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
 
         $CANCELADO_POR = "conocer/sistema";
     }else{
         if( $usu == "CLI" ){
-            $msg_cliente = "Te notificamos que la solicitud para conocer cuidador ha sido <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelada</span> exitosamente.";
-            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocerte.";
+            $msg_cliente = "Te notificamos que la solicitud para conocer cuidador ha sido <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelada</span> exitosamente.";
+            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocerte.";
 
-            $msg_admin = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong>.";
+            $msg_admin = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocer al cuidador <strong>[name_cuidador]</strong>.";
             
             $CANCELADO_POR = "conocer/cliente";
         }else{
-            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> no est&aacute; disponible por los momentos, por lo que la solicitud de conocer cuidador fue <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>RECHAZADA</span>";
-            $msg_cuidador = "Te notificamos que la solicitud para conocerte ha sido <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelada</span> exitosamente.";
+            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> no est&aacute; disponible por los momentos, por lo que la solicitud de conocer cuidador fue <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>RECHAZADA</span>";
+            $msg_cuidador = "Te notificamos que la solicitud para conocerte ha sido <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelada</span> exitosamente.";
 
-            $msg_admin = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-family: Arial; font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocerle, realizado por el cliente <strong>[name_cliente]</strong>.";
+            $msg_admin = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase; vertical-align: middle;'>cancelado</span> la solicitud para conocerle, realizado por el cliente <strong>[name_cliente]</strong>.";
             
             $CANCELADO_POR = "conocer/cuidador";
         }

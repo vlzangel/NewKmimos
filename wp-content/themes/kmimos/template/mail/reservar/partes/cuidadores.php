@@ -1,11 +1,11 @@
 <div style='
-    display: block;
+    display: inline-block;
     background-color: #ffffff;
-    margin: 0px auto 20px;
+    margin: 0px 5px 20px;
     width: 100%;
-    max-width: 400px;
+    max-width: 280px;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 10px;
 '>
 	
 	<table width="100%" style='
@@ -26,7 +26,7 @@
 		
 		<div style='    
 			font-family: Arial;
-		    font-size: 30px;
+		    font-size: 25px;
 		    font-weight: bold;
 		    letter-spacing: 0.4px;
 		    text-align: left;
@@ -51,11 +51,11 @@
 			[HUESOS]
 		</div>
 
-		<div style='font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #000; height: 30px; vertical-align: middle;'>
+		<div style='font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.1px; text-align: left; color: #000; height: 28px; vertical-align: middle;'>
 			[SERVICIOS]
-			<span id="precio" style="font-family: Arial; font-size: 15px; font-weight: 600; letter-spacing: -0.1px; text-align: left; vertical-align: middle; display: inline-block;">
+			<span id="precio" style="font-family: Arial; font-size: 13px; font-weight: 600; letter-spacing: -0.1px; text-align: left; vertical-align: middle; display: inline-block;">
 				DESDE MXN$ 
-				<span style='font-family: Arial; font-size: 25px;'>[MONTO]</span>
+				<span style='font-family: Arial; font-size: 18px;'>[MONTO]</span>
 				[MONTO_DECIMALES]
 			</span>
 		</div>
@@ -67,7 +67,7 @@
 		<a href='[LIKS]' target='_blank' style='
 		    text-decoration: none;
 		    display: inline-block;
-		    width: 120px;
+		    width: 115px;
 		    border-radius: 3px;
 		    border: solid 1px #000;
 		    padding: 12px 0px;
@@ -83,7 +83,7 @@
 		<a href='[LIKS]' target='_blank' style='
 		    text-decoration: none;
 		    display: inline-block;
-		    width: 120px;
+		    width: 115px;
 		    border-radius: 3px;
 		    border: solid 1px #920e9d;
 		    padding: 12px 0px;
