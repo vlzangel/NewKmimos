@@ -23,10 +23,10 @@
 
 	    <div style='
 	        font-family: Verdana;
-    		font-size: 17px;
-		    line-height: 1.07;
+    		font-size: 16px;
+		    line-height: 1.2;
 		    letter-spacing: 0.3px;
-		    color: #000;
+		    color: #666;
 		    padding: 30px;
     		text-align: justify;
 	    '>
