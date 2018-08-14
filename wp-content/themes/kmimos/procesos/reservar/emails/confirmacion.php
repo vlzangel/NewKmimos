@@ -33,14 +33,14 @@
         $mensaje_cliente = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cliente);
-        $mensaje_cliente = str_replace('[avatar]', kmimos_get_foto($cuidador["id"]), $mensaje_cliente);
+        $mensaje_cliente = str_replace('[avatar_cuidador]', kmimos_get_foto($cuidador["id"]), $mensaje_cliente);
         $mensaje_cliente = str_replace('[telefonos_cuidador]', $cuidador["telefono"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[correo_cuidador]', $cuidador["email"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[direccion_cuidador]', $cuidador["direccion"], $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[TOTALES]', str_replace('[REEMBOLSAR]', "", $totales_plantilla), $mensaje_cliente);
 
-        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"]);
+        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false);
 
         if( isset($NO_ENVIAR) ){
             if( $superAdmin == "" ){ echo $mensaje_cliente; }
