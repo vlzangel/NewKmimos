@@ -54,18 +54,10 @@ if($blogs->have_posts()){
         $blogs->the_post();
 
         if( !empty(get_the_content())){
-            $blogs_imagen=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'single-post-thumbnail');
-            $blogs_thumbnail=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'single-post-thumbnail');
+            $blogs_imagen=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'large');
+            $blogs_thumbnail=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'thumbnail');
             $blogs_custom = get_post_custom($post->ID);
-            //$SQLpost_viewed='visto '.wpb_get_post_views($post->ID).' veces';//get_the_ID()
             $iblogs++;
-
-
-            $blogs_imagen=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$blogs_imagen);
-            $blogs_thumbnail=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$blogs_thumbnail);
-
-            $blogs_imagen=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$blogs_imagen);
-            $blogs_thumbnail=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$blogs_thumbnail);
 
 
             $blogs_category=wp_get_post_terms($post->ID,'category',array('orderby' => 'name', 'order' => 'ASC'));
