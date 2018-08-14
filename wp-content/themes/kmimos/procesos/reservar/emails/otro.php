@@ -40,7 +40,7 @@
 		$mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false, true);
 
         if( isset($NO_ENVIAR) ){
-            // echo $mensaje_cliente;
+            echo $mensaje_cliente;
         }else{
             wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
         }
@@ -89,7 +89,7 @@
 	    $mensaje_cuidador = get_email_html($mensaje_cuidador, false, true, $cliente["id"], false);
 
         if( isset($NO_ENVIAR) ){
-            // echo $mensaje_cuidador;
+            echo $mensaje_cuidador;
         }else{
             wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
         }
@@ -102,8 +102,6 @@
         $mensaje_admin = file_get_contents($admin_file);
 
         /* Generales */
-
-
 
             $mensaje_admin = str_replace('[HEADER]', "reserva", $mensaje_admin);
 

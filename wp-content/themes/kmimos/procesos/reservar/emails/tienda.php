@@ -14,6 +14,9 @@
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
+
+        $mensaje_cliente = str_replace('[HEADER]', "reservaTienda", $mensaje_cliente);
+
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
         $mensaje_cliente = str_replace('[desglose]', $desglose, $mensaje_cliente);
 
@@ -60,7 +63,7 @@
 
         $mensaje_cliente = str_replace('[TOTALES]', str_replace('[REEMBOLSAR]', "", $totales_plantilla), $mensaje_cliente);
 
-        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"]);
+        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false, true);
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cliente;
