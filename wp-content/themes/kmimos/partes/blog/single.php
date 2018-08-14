@@ -136,21 +136,24 @@ $POSTarray=array();
 while(have_posts()){
     the_post();
 
-    $img=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'single-post-thumbnail');
+    /*$img=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'single-post-thumbnail');
     $thumbnail=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'single-post-thumbnail');
 
-    $img=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$img);
-    $thumbnail=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$thumbnail);
+    $img=str_replace('http://localhost/NewKmimos/','https://kmimos.com.mx/',$img);
+    $thumbnail=str_replace('http://localhost/NewKmimos/','https://kmimos.com.mx/',$thumbnail);
 
     $img=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$img);
-    $thumbnail=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$thumbnail);
+    $thumbnail=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$thumbnail);*/
+
+    $img="";
+    $thumbnail="";
 
 
     $POSTarray['title']=the_title('','',false);
     $POSTarray['image']=$img;
     $POSTarray['thumbnail']=$thumbnail;
     $POSTarray['content']=get_the_content();//wp_trim_words(strip_tags(), 20, $more = ' ...');
-    $POSTarray['custom']=get_post_custom($post->ID);
+    $POSTarray['custom']=get_post_custom($post->ID); 
     //echo $post->ID.'<br/>';
 }
 ?>

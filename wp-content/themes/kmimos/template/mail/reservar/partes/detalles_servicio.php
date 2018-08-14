@@ -1,38 +1,34 @@
-<div style='margin-bottom: 26px;' >	  
-    
-    <div style='font-family: Arial; font-size: 14px; font-weight: bold; line-height: 0.86; letter-spacing: 0.3px; color: #000000; margin-bottom: 9px;'> 
-        Servicio <span style='font-weight: normal;'>[tipo_servicio]</span>
-    </div>	
-    
-    <table cellpadding="0" cellspacing="0" style='padding-right: 20px; overflow: hidden; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000;'>
-        
-        <tr style=''>
-            <td style='height: 20px; vertical-align: middle; width: 42px;'>
-              <img src='[URL_IMGS]/min_calendar.png'  > 
-            </td>
-            <td style='height: 20px; vertical-align: middle; font-size: 12px;'> 
-                Del [inicio] al [fin] del [anio]
-            </td>
-        </tr>
-        
-        <tr style=''>
-            <td style='height: 20px; vertical-align: middle; width: 42px;'>
-              <img src='[URL_IMGS]/min_clock.png'  > 
-            </td>
-            <td style='height: 20px; vertical-align: middle; font-size: 12px;'> 
-                [tiempo]
-            </td>
-        </tr>
-        
-        <tr style=''>
-            <td style='height: 20px; vertical-align: middle; width: 42px;'>
-              <img src='[URL_IMGS]/min_cash.png'  > 
-            </td>
-            <td style='height: 20px; vertical-align: middle; font-size: 12px;'> 
-                Pago por [tipo_pago]
-            </td>
-        </tr>
-                                                        
-	</table>
-    
+<div>
+    <span style="color: #940d99; font-weight: 600;">SERVICIO:</span> <strong style="text-transform: uppercase;">[tipo_servicio]</strong>
 </div>
+    
+<table cellpadding="0" cellspacing="0" style='padding-top: 15px; overflow: hidden; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000;'>
+    
+    <tr style=''>
+        <td style='height: 20px; text-align: center; vertical-align: middle; width: 50px;'>
+          <img style="padding: 3px 0px;" src='[URL_IMGS]/icosNews/min_calendar.png'  > 
+        </td>
+        <td style='height: 20px; vertical-align: middle; font-size: 17px;'> 
+            Del [inicio] al [fin] del [anio]
+        </td>
+    </tr>
+    
+    <tr style=''>
+        <td style='height: 20px; text-align: center; vertical-align: middle; width: 50px;'>
+          <img style="padding: 3px 0px;" src='[URL_IMGS]/icosNews/min_clock.png'  > 
+        </td>
+        <td style='height: 20px; vertical-align: middle; font-size: 17px;'> 
+            [tiempo]
+        </td>
+    </tr>
+    
+    <tr style=''>
+        <td style='height: 20px; text-align: center; vertical-align: middle; width: 50px;'>
+          <img style="padding: 3px 0px;" src='[URL_IMGS]/icosNews/min_cash.png'  > 
+        </td>
+        <td style='height: 20px; vertical-align: middle; font-size: 17px;'> 
+            Pago por [tipo_pago]
+        </td>
+    </tr>
+                                                    
+</table>

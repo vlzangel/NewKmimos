@@ -9,11 +9,16 @@
 
 		$cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cliente/nueva.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
+
         $datos_cuidador = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cuidador.php';
         $datos_cuidador = file_get_contents($datos_cuidador);
         $mensaje_cliente = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_cliente);
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
+
+
+        $mensaje_cliente = str_replace('[HEADER]', "reserva", $mensaje_cliente);
+
 
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
         $mensaje_cliente = str_replace('[desglose]', $desglose, $mensaje_cliente);
@@ -31,13 +36,15 @@
         $mensaje_cliente = str_replace('[correo_cuidador]', $cuidador["email"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[direccion_cuidador]', $cuidador["direccion"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[TOTALES]', str_replace('[REEMBOLSAR]', "", $totales_plantilla), $mensaje_cliente);
-		$mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"]);
+
+		$mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false, true);
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cliente;
         }else{
             wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
         }
+
 
     	/*
     		Correo Cuidador
@@ -48,6 +55,10 @@
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
 
+        $datos_cliente = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cliente.php';
+        $datos_cliente = file_get_contents($datos_cliente);
+        $mensaje_cuidador = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_cuidador);
+
         if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
             $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
             $descuento_plantilla = file_get_contents($descuento_plantilla);
@@ -57,6 +68,7 @@
             $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
         }
 
+        $mensaje_cuidador = str_replace('[HEADER]', "reserva", $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[desglose]', $desglose, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[ADICIONALES]', $adicionales, $mensaje_cuidador);
@@ -74,13 +86,16 @@
         $mensaje_cuidador = str_replace('[correo_cliente]', $cliente["email"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
-	    $mensaje_cuidador = get_email_html($mensaje_cuidador, false, true, $cliente["id"]);
+	    $mensaje_cuidador = get_email_html($mensaje_cuidador, false, true, $cliente["id"], false);
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_cuidador;
         }else{
             wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje_cuidador);
         }
+
+
+        exit();
 
     }else{
         $inmediata = "Inmediata";

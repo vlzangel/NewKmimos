@@ -1292,7 +1292,7 @@
                     $costo = ($value[1]);
 
                     $transporte_desglose[] = array(
-                        $servicio,
+                        str_replace(" - ", "<br>", $servicio),
                         'Precio por Grupo',
                         number_format( $costo, 2, ',', '.'),
                         number_format( $costo, 2, ',', '.')
