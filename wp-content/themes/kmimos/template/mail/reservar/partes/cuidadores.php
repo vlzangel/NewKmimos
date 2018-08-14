@@ -26,7 +26,7 @@
 		
 		<div style='    
 			font-family: Arial;
-		    font-size: 25px;
+		    font-size: 20px;
 		    font-weight: bold;
 		    letter-spacing: 0.4px;
 		    text-align: left;
