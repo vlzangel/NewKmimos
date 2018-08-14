@@ -14,7 +14,7 @@
         '>
             <tr>
                 <td align="center" height="160" width="100%" style="
-                    background-image: url('[avatar]'); 
+                    background-image: url('[avatar_cliente]'); 
                     background-repeat: no-repeat; 
                     background-position: center; 
                     background-size: cover; 
