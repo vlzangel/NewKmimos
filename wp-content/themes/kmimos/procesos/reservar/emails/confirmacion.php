@@ -43,7 +43,7 @@
         $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false);
 
         if( isset($NO_ENVIAR) ){
-            if( $superAdmin == "" ){ echo $mensaje_cliente; }
+            // if( $superAdmin == "" ){ echo $mensaje_cliente; }
         }else{
             wp_mail( $cliente["email"], $confirmacion_titulo, $mensaje_cliente);
         }
@@ -84,7 +84,7 @@
         $mensaje_cuidador = str_replace('[DETALLES_SERVICIO]', $detalles_plantilla, $mensaje_cuidador);
 
         $mensaje_cuidador = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cuidador);
-        $mensaje_cuidador = str_replace('[avatar]', kmimos_get_foto($cliente["id"]), $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[avatar_cliente]', kmimos_get_foto($cliente["id"]), $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[telefonos_cliente]', $cliente["telefono"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[correo_cliente]', $cliente["email"], $mensaje_cuidador);
 
@@ -92,7 +92,7 @@
 
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
 
-        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente["id"]);
+        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente["id"], false, true);
 
         if( isset($NO_ENVIAR) ){
             if( $superAdmin == "" ){ echo $mensaje_cuidador; }
@@ -136,7 +136,7 @@
         $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"]);
 
         if( isset($NO_ENVIAR) ){
-            if( $superAdmin == "" ){ echo $mensaje_admin; }
+            // if( $superAdmin == "" ){ echo $mensaje_admin; }
         }else{
             kmimos_mails_administradores_new($confirmacion_titulo, $mensaje_admin);
         }

@@ -35,6 +35,7 @@
         '>
 	    	Tu solicitud de reserva ha sido <span style="color: #940d99; font-size: 20px; vertical-align: middle; font-weight: 600;">CONFIRMADA</span> por el cuidador <strong>[name_cuidador]</strong>
 	    </div>
+        
 	</div>
 
     <div style='
