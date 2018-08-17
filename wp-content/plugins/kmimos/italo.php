@@ -16,6 +16,12 @@
 		}
 	}
 
+	function get_mes_en_letra( $id ){
+		$mes = [ '', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ];
+		return $mes[ $id ];
+	}
+
+
 	function validar_datos_facturacion( $user_id ){
 		global $wpdb;
 		$data['id'] = $user_id;

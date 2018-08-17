@@ -101,10 +101,11 @@ $CONTENIDO = '
 			</select>
  		</section>
 		<section data-regimen-fiscal="razon_social" class="'.$state_Moral.'">
-			<label for="razon_social" class="lbl-text">* Razon Social: <small class="text-right pull-right"><i class="fa fa-info-circle" aria-hidden="true"></i> Debe colocar el nombre de la empresa</small></label>
+			<label for="razon_social" class="lbl-text">* Razon Social: </label>
 			<label class="lbl-ui">
-				<input type="text" id="razon_social" name="razon_social" value="'.get_user_meta($user->ID, 'billing_razon_social', true).'" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<input data-moreinfo="razon_social" type="text" id="razon_social" name="razon_social" value="'.get_user_meta($user->ID, 'billing_razon_social', true).'" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
 				<div class="no_error" id="error_razon_social" data-id="razon_social">Completa este campo.</div>
+				<div data-target="more_info" data-info="razon_social"><small class="text-right pull-right"><i class="fa fa-info-circle" aria-hidden="true"></i> Debe colocar el nombre de la empresa</small></div>
 			</label>
  		</section>
 		<section data-regimen-fiscal="persona_fisica" class="'.$state_noMoral.'">
@@ -132,8 +133,9 @@ $CONTENIDO = '
 		<section>
 			<label for="rfc" class="lbl-text">* RFC: </label>
 			<label class="lbl-ui">
-				<input type="text" id="rfc" name="rfc" value="'.extract_prospecto( 'rfc', $prospecto ).'" placeholder="AAA010101AAA" data-valid="requerid" autocomplete="off" minlength="12" maxlength="13">
+				<input data-moreinfo="rfc" type="text" id="rfc" name="rfc" value="'.extract_prospecto( 'rfc', $prospecto ).'" placeholder="AAA010101AAA" data-valid="requerid" autocomplete="off" minlength="12" maxlength="13">
 				<div class="no_error" id="error_rfc" data-id="rfc">Completa este campo.</div>
+				<div data-target="more_info" data-info="rfc"><small class="text-right pull-right"><i class="fa fa-info-circle" aria-hidden="true"></i> Cuatro letras + seis dígitos + homoclave (tres caracteres)</small></div>
 			</label>
  		</section>	
 
@@ -143,15 +145,6 @@ $CONTENIDO = '
 				'.$str_uso_cfdi.'
 			</select>
  		</section>
-
-
-		<section>
-			<label for="estatus" class="lbl-text">Estatus:</label>
-			<label class="lbl-ui">
-				<input class="disabled" type="text" id="estatus" name="estatus" value="'.extract_prospecto( 'estatus', $prospecto ).'" autocomplete="off" readonly>
-				<div class="no_error" id="error_estatus" data-id="estatus">Completa este campo.</div>
-			</label>
-		</section>		
 
 		<div>
 			<h4>Firma electrónica SAT:</h4>
@@ -186,7 +179,7 @@ $CONTENIDO = '
 			<label for="fielPass" class="lbl-text">* Contraseña de clave privada (.key):</label>
 			<label class="lbl-ui">
 				<input type="password" id="fielPass" name="fielPass" value="'.extract_prospecto( 'fielPass', $prospecto).'" data-valid="requerid" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
-				<small class="text-left">* La contraseña es confidencial y solo se usará para emitir facturas y de ninguna manera ingresaremos a su perfil del SAT.</small>
+				<small class="text-left">* Esta contraseña es la de la firma electrónica, solo la usaremos para facturar tus servicios y no entraremos a tu SAT.</small>
 				<div class="no_error" id="error_fielPass" data-id="fielPass">Completa este campo.</div>
 			</label>
  		</section>

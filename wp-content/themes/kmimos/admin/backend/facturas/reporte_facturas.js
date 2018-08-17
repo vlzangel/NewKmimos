@@ -57,6 +57,7 @@ jQuery(document).ready(function() {
 		e.preventDefault();
 		jQuery('.nav-link').removeClass('active');
 
+		var hiddenColumns;
 		var id = jQuery(this).attr('id');
 		jQuery('#'+id).addClass('active');
 		jQuery('#'+id+'-tab').addClass('active');
@@ -64,19 +65,39 @@ jQuery(document).ready(function() {
   		jQuery('#container_tipo_receptor').addClass('hidden');
 	  	if( jQuery(this).attr('href') == 'cliente' ){
 	  		jQuery('#container_tipo_receptor').removeClass('hidden');
+	  	}else{
+	  		hiddenColumns = 5;
 	  	}
 
-	  	loadTabla( jQuery(this).attr('href'), jQuery('#tipo_receptor').val() );
+	  	loadTabla( jQuery(this).attr('href'), jQuery('#tipo_receptor').val(), hiddenColumns );
 	});
 
 	jQuery('#tipo_receptor').on('change', function(){		
 	  	loadTabla( 'cliente', jQuery(this).val() );
 	})
 
+    jQuery(document).on('click','[data-pdfxml]', function(e){
+
+        e.preventDefault();
+console.log("file");
+        var file = [];
+            file.push( jQuery(this).attr('data-PdfXml') );
+        download( file );
+    });
+
 
 } );
 
-function loadTabla( _tipo, _rfc ){
+function download( archivos ){
+    jQuery.post(HOME+"procesos/generales/download_zip.php", {'fact_selected': archivos}, function(e){
+        e = JSON.parse(e);
+        if( e['estatus'] == "listo" ){
+            location.href = e['url'];
+        }
+    });
+}
+
+function loadTabla( _tipo, _rfc, hiddenColumns ){
 	table = jQuery('#example').DataTable();
 	table.destroy();
     table = jQuery('#example').DataTable({
@@ -103,6 +124,15 @@ function loadTabla( _tipo, _rfc ){
 				"sortDescending":	"Ordenación descendente"
 			}
 		},
+		"buttons": [
+            'excel'
+        ],
+		"columnDefs": [
+            {
+                "targets": [ hiddenColumns ],
+                "visible": false
+            }
+        ],
         "scrollX": true,
         "ajax": {
             "url": TEMA+'/admin/backend/facturas/ajax/facturas.php',

@@ -91,10 +91,11 @@ $CONTENIDO = '
 			</select>
  		</section>
 		<section data-regimen-fiscal="razon_social" class="'.$state_Moral.'">
-			<label for="razon_social" class="lbl-text">* Razon Social: <small class="text-right pull-right"><i class="fa fa-info-circle" aria-hidden="true"></i> Debe colocar el nombre de la empresa</small></label>
+			<label for="razon_social" class="lbl-text">* Razon Social: </label>
 			<label class="lbl-ui">
-				<input type="text" id="razon_social" name="razon_social" value="'.get_user_meta($user->ID, 'billing_razon_social', true).'" autocomplete="off" placeholder="Ejemplo: Pedro Jose">
+				<input data-moreinfo="razon_social" type="text" id="razon_social" name="razon_social" value="'.get_user_meta($user->ID, 'billing_razon_social', true).'" autocomplete="off" placeholder="Ejemplo: Pedro Jose">				
 				<div class="no_error" id="error_razon_social" data-id="razon_social">Completa este campo.</div>
+				<div data-target="more_info" data-info="razon_social"><small class="text-right pull-right"><i class="fa fa-info-circle" aria-hidden="true"></i> Debe colocar el nombre de la empresa</small></div>
 			</label>
  		</section>
 		<section data-regimen-fiscal="persona_fisica" class="'.$state_noMoral.'">
@@ -119,18 +120,20 @@ $CONTENIDO = '
 			</label>
  		</section>
 		<section>
-			<label for="rfc" class="lbl-text">* RFC:</label>
+			<label for="rfc" class="lbl-text">* RFC: </label>
 			<label class="lbl-ui">
-				<input type="text" id="rfc" name="rfc" value="'.get_user_meta($user->ID, 'billing_rfc', true).'" placeholder="AAA010101AAA" data-valid="requerid" autocomplete="off" min-lenght="12" max-lenght="13">
+				<input data-moreinfo="rfc" type="text" id="rfc" name="rfc" value="'.get_user_meta($user->ID, 'billing_rfc', true).'" placeholder="AAA010101AAA" data-valid="requerid" autocomplete="off" min-lenght="12" max-lenght="13">
 				<div class="no_error" id="error_rfc" data-id="rfc">Completa este campo.</div>
+				<div data-target="more_info" data-info="rfc"><small class="text-right pull-right"><i class="fa fa-info-circle" aria-hidden="true"></i> Cuatro letras + seis dígitos + homoclave (tres caracteres)</small></div>
 			</label>
  		</section>
 
 		<section class="lbl-ui">
 			<label for="uso_cfdi" class="lbl-text">Uso CFDI:</label>
-			<select class="" name="uso_cfdi">
+			<select class="" name="uso_cfdi" data-valid="requerid">
 				'.$str_uso_cfdi.'
 			</select>
+			<div class="no_error" id="error_rfc" data-id="rfc">Completa este campo.</div>
  		</section>
 
 

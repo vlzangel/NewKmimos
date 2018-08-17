@@ -26,3 +26,38 @@ select{
 .group-input button i{
 	font-size: 12px;
 }
+
+
+.btn-factura{
+    margin: 0 auto; 
+    float: none!important; 
+    display: inline-block;
+}
+.btn-factura button:hover,
+.btn-factura button,
+.btn-factura a:hover,
+.btn-factura a{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px solid transparent!important;
+}
+
+iframe{
+    border: 0px solid #ccc;
+    width: 100%;
+    min-height: 100%;
+    margin: 0px!important;
+}
+
+[data-target="more_info"]{   
+    font-size: 11px;
+    text-align: right;
+    position: absolute;
+    color: #4e4e4e;
+    font-weight: normal;
+    width: 100%;
+    padding-right: 10px;
+/*
+    display: none;
+*/
+}
