@@ -158,7 +158,7 @@ class CFDI {
 			}
 
 		// Variables de Estructura
-			$data['fechaEmision'] = date('Y-m-d H:i:s');
+			$data['fechaEmision'] = date('Y-m-d H:i:s', strtotime("now -1 minute"));
 			$personalizados = [];
  			$partidas = [];
 			$_subtotal = 0;
@@ -177,6 +177,7 @@ class CFDI {
 			if( $saldo_favor > 0 ){
 				$data['servicio']['desglose']['descuento'] -= $saldo_favor;
 			}
+			$descuento = $data['servicio']['desglose']['descuento'];		
 
 		// Cargar desglose de Partidas
 			$desglose_partidas = $this->db->get_var( "SELECT * FROM wp_postmeta WHERE meta_key = '_booking_desglose' and post_id = ".$data['servicio']['id_reserva'], 'meta_value' );
@@ -190,7 +191,9 @@ class CFDI {
 			}
 
 		// Agregar Partida: Variaciones
-			if( isset($data['servicio']['variaciones']) && !empty($data['servicio']['variaciones']) ){			
+			if( isset($data['servicio']['variaciones']) && !empty($data['servicio']['variaciones']) ){	
+
+
 				foreach ($data['servicio']['variaciones'] as $item) {
 
 					$codigo_sat = $this->db->get_var("SELECT value FROM facturas_configuracion WHERE clave ='".$data['servicio']['tipo']."'" );
@@ -223,6 +226,7 @@ class CFDI {
 						$_impuesto += number_format( $impuesto, 2 );
 						$_subtotal += number_format($subtotal, 2);
 						$_total += $subtotal + $impuesto; 
+						$_total -= $descuento; 
 
 					// Agregar la partida a la factura
 					// *************************************
@@ -233,7 +237,7 @@ class CFDI {
 						    "descripcion" => $item[0]." ". $item[1] ." x ".$item[2] ." x $".$item[3],
 						    "valorUnitario" =>(float) number_format($base, 2, '.', ''),
 						    "importe" => (float) number_format( $subtotal, 2, '.', ''),
-							"descuento" => (float) number_format( $data['servicio']['desglose']['descuento'], 2, '.', ''),
+							"descuento" => (float) number_format( $descuento, 2, '.', ''),
 						    "Impuestos" => [
 						    	0 => [
 									"tipo" => "traslado",
@@ -245,6 +249,9 @@ class CFDI {
 							    ]
 						    ]
 						];
+
+					// Reset descuento
+					$descuento = 0;
 				}
 			}
 		
@@ -628,7 +635,8 @@ class CFDI {
 
 				// descargar archivo PDF
 				$path = $this->raiz.'/wp-content/uploads/facturas/';
-				$filename = $path . $ef->folioInterno.'_'.$ef->numeroReferencia; // [ folioInterno = Reserva_id ]
+				$name_archivo = $ef->folioInterno.'_'.$ef->numeroReferencia;
+				$filename = $path . $name_archivo; // [ folioInterno = Reserva_id ]
 
 				$file_pdf_sts = file_put_contents( 
 					$filename. '.pdf', 
@@ -641,7 +649,7 @@ class CFDI {
 				);
 
 				if( $file_pdf_sts ){
-					$respuesta = $filename. '.pdf';
+					$respuesta = $name_archivo;
 				}
 			}
 		}

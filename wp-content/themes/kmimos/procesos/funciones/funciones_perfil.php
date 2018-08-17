@@ -51,6 +51,9 @@
 	    			case 'factura_xml':
 	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i> XML</a>';
     				break;
+	    			case 'factura_PdfXml':
+	    				$respuesta .= '<a data-pdfxml="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i> PDF y XML</a>';
+    				break;
 	    			
 	    		}
 	    	}
@@ -124,6 +127,11 @@
 		                	';
 	                	}
 
+	                	$ayuda = '';
+	                	if( $reserva['ayuda'] == 'factura' ){
+	                		$ayuda = "<small>Tienes problemas con tu facturación? Escríbenos a este número <i class='fa fa-whatsapp'></i> +52 (33) 1261 4186, o al correo contactomex@kmimos.la</small>";
+	                	}
+
 	                	if( isset($reserva["desplegado"]) ){
 							$table.='
 			                <div class="vlz_tabla vlz_desplegado">
@@ -169,7 +177,6 @@
 				                			<span>$'.number_format( $reserva["desglose"]["total"]+0, 2, ',', '.').'</span>
 				                		</div>
 			                		</div>
-
 			                		<div class="ver_reserva_botones">
 				                		'.$botones.'
 			                		</div>
@@ -225,8 +232,8 @@
 				                			<span>$'.number_format( $reserva["desglose"]["total"]+0, 2, ',', '.').'</span>
 				                		</div>
 			                		</div>
-
 			                		<div class="ver_reserva_botones">
+										<div style="padding-bottom:10px">'.$ayuda.'</div>
 				                		'.$botones.'
 			                		</div>
 			                	</div>
@@ -365,6 +372,7 @@
 	        foreach($args as $tipo_item => $reservas){
 	        	if( count($reservas['facturas']) > 0 ){
 
+
     				$cliente_title = 'Cliente';
 	        		if ($tipo_item == 'cuidador') {
         				$cliente_title = 'Emisor';
@@ -372,10 +380,21 @@
 
 	        		$table.='<h1 class="titulo titulo_pequenio">'.$reservas['titulo'].'</h1><div class="vlz_tabla_box">';
 		                foreach ($reservas['facturas'] as $reserva) {
+			        		
+			        		$infoExtra = '';
+							if ($tipo_item != 'cuidador') {
+				        		$infoExtra = '
+					        		<div class="item_desglose vlz_bold">
+			                			<div>Servicio</div>
+			                			<span>'.$reserva["servicio"].'</span>
+			                		</div>
+			                	';
+			                }
 
 		                	$botones = construir_botones($reserva["acciones"]);		                	 
 
-		                	$table .= '<div class="vlz_tabla">
+		                	$table .= '
+		                	<div class="vlz_tabla" data-list="'.$tipo_item.'" data-reserva="'.$reserva['archivo_name'].'" data-mes="'.$reserva['fecha_mes'].'" data-anio="'.$reserva['fecha_anio'].'">
 			                	<div class="vlz_img">
 			                		<span style="background-image: url('.$reserva["foto"].');"></span>
 			                	</div>
@@ -416,18 +435,7 @@
 				                			<div>Fecha de Creaci&oacute;n</div>
 				                			<span>'.$reserva["fecha_creacion"].'</span>
 				                		</div>
-				                		<div class="item_desglose vlz_bold">
-				                			<div>No. Certificado</div>
-				                			<span>'.$reserva["certificado"].'</span>
-				                		</div>
-				                		<div class="item_desglose vlz_bold">
-				                			<div>No. Certificado SAT</div>
-				                			<span>'.$reserva["certificadoSAT"].'</span>
-				                		</div>
-				                		<div class="item_desglose vlz_bold">
-				                			<div>Folio Fiscal</div>
-				                			<span>'.$reserva["folioFiscalUUID"].'</span>
-				                		</div>
+				                		'.$infoExtra.'
 			                		</div>
 			                		<div class="total_reserva">
 				                		<div class="item_desglose">

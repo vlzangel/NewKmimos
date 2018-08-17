@@ -11,7 +11,6 @@ global $wpdb;
 $factura_generada = 'none';
 $factura_datos = 'block';
 $pdf = 'javascript:;';
-
 $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 
 // Orden
@@ -21,10 +20,10 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 	$reserva_id = $CFDI->db->get_var( "select ID from wp_posts where post_parent = {$orden} and post_type = 'wc_booking'");
 	if( $reserva_id > 0 ){
 		$factura = $CFDI->db->get_row( "select * from facturas where reserva_id = {$reserva_id}");
-		if( !isset($factura->id) && $factura->id > 0 ){
+		if( isset($factura->id) && $factura->id > 0 ){
 			$factura_generada = 'block';
 			$factura_datos = 'none';
-			$pdf = $factura->urlPdf;
+			$pdf = $factura->urlPdf;		
 		}else{
 
 			// Desglose de reserva
@@ -54,10 +53,11 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 
 					// Generar CFDI
 					$enlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
-
+ 
 					$respuesta = [];
 					if( !empty($enlaceFiscal['ack']) ){
 						$ack = json_decode($enlaceFiscal['ack']);
+ 
 					    // Datos complementarios
 					    $data_reserva['comentario'] = '';
 					    $data_reserva['subtotal'] = $enlaceFiscal['data']['CFDi']['subTotal'];
@@ -116,16 +116,20 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 			<label class="lbl-text" style="font-style:italic;">El Comprobante Fiscal Digital no fue emitido</label>
 	        <hr style="margin: 5px 0px 15px;">
 			<aside class="alert alert-info">'.$informacion.'</aside>
+			<div class="col-sm-8 col-sm-offset-2"><strong>Tienes problemas con tu facturación?</strong> Escríbenos a este número  +52 (33) 1261 4186, o al correo contactomex@kmimos.la </div>
 		</section>
 
 		<section id="descargar-factura" style="display: '.$factura_generada.';">
 			<label class="lbl-text" style="font-style:italic;">El Comprobante Fiscal Digital fue emitido satisfactoriamente</label>
 	        <hr style="margin: 5px 0px 15px;">
-			<div class="col-sm-6 col-md-3 col-md-offset-3">
-				<a href="'.$pdf.'" id="btn_factura_pdf" class="km-btn-primary" style="margin-top: 5px;margin-bottom: 5px; border: 0px solid transparent;">Descargar PDF</a>
+			<div class="col-sm-6 col-md-3 btn-factura" >
+				<a href="'.get_home_url()."/consultar-factura/".$reserva_id.'" target="_blank" class="km-btn-primary">Consultar</a>
 			</div>
-			<div class="col-sm-6 col-md-3">
-				<a href="javascript:;" id="btn_facturar_sendmail" class="km-btn-primary" style="margin-top: 5px;margin-bottom: 5px;border: 0px solid transparent;">Enviar por Email</a>
+			<div class="col-sm-6 col-md-3 btn-factura">
+				<a href="'.$pdf.'" id="btn_factura_pdf" class="km-btn-primary">Descargar PDF</a>
+			</div>
+			<div class="col-sm-6 col-md-3 btn-factura">
+				<a href="javascript:;" id="btn_facturar_sendmail" class="km-btn-primary">Enviar por Email</a>
 			</div>
 		</section>
 
@@ -133,7 +137,7 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 		<section class="col-sm-12 col-md-12" style="margin-top: 20px;">
 			<div class="perfil_cargando" style="width: 100%; background-image: url('.getTema().'/images/cargando.gif);" ></div>
 			<br>
-			<a href="/perfil-usuario/historial"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Volver </a>
+			<a href="'.get_home_url().'/perfil-usuario/historial"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Volver </a>
 		</section>
 
 	</div>

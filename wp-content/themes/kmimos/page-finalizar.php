@@ -299,7 +299,7 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h5 class="modal-title">¿DESEAS EMITIR TU COMPROBANTE FISCAL DIGITAL?</h5>
+			        <h5 class="modal-title text-center">¿DESEAS EMITIR TU COMPROBANTE FISCAL DIGITAL?</h5>
 			      </div>
 			      <div class="modal-body"><p style="font-size:14px; text-align: center;">'.$mensaje_facturacion.'</p></div>
 			    </div><!-- /.modal-content -->

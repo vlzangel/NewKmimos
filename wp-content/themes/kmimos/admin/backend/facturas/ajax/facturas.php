@@ -53,7 +53,9 @@
 
             $data["data"][] = array(
                 "<input type='checkbox' data-type='fact_selected' name='fact_selected[]' value='".$value->reserva_id.'_'.$value->numeroReferencia."'>",
-                $value->fechaGeneracion,
+                date('d', strtotime($value->fechaGeneracion)),
+                date('m', strtotime($value->fechaGeneracion)),
+                date('Y', strtotime($value->fechaGeneracion)),
                 $value->reserva_id,
                 $value->servicio,
                 $value->total,
@@ -61,13 +63,9 @@
                 utf8_encode($cuidador_name),
                 utf8_encode($cliente_name),
                 $value->numeroReferencia,
-                $value->serieCertificado,
-                $value->serieCertificadoSAT,
-                $value->folioFiscalUUID,
                 $value->receptor,
                 $value->estado,
-                "<a style='padding:5px;' href='".$value->urlXml."'><i class='fa fa-cloud-download'></i> XML </a>".
-                "<a style='padding:5px;' href='".$value->urlPdf."'><i class='fa fa-cloud-download'></i> PDF </a>"
+                "<button style='padding:5px;' data-pdfxml='".$value->reserva_id.'_'.$value->numeroReferencia."'><i class='fa fa-cloud-download'></i> PDF y XML </button>"
             );
         }
     }

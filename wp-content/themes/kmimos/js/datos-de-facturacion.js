@@ -69,7 +69,17 @@ jQuery( document ).ready(function() {
 		}
 	});
 
-
+	jQuery('[data-moreinfo!=""]').on('blur', function(e){
+		if( typeof jQuery(this).attr('data-moreinfo') != 'undefined' && jQuery(this).attr('data-moreinfo') != '' ){		
+			jQuery('[data-info="'+jQuery(this).attr('data-moreinfo')+'"]').css('display', 'none');
+		}
+	});
+	jQuery('[data-moreinfo!=""]').on('focus', function(e){
+		if( typeof jQuery(this).attr('data-moreinfo') != 'undefined' && jQuery(this).attr('data-moreinfo') != '' ){		
+			jQuery('[data-info]').css('display', 'none');
+			jQuery('[data-info="'+jQuery(this).attr('data-moreinfo')+'"]').css('display', 'block');
+		}
+	});
 
 	jQuery('input[type="file"]').on('change', function(e){
 
@@ -114,7 +124,6 @@ jQuery( document ).ready(function() {
 			})
 
 		}
-
 	});
 
 	jQuery('#rfc').on('change', function(e){

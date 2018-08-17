@@ -140,7 +140,8 @@
 						"valorar" => $valorar,
 						"facturar" => $facturar
 					),
-					"desglose" => $desglose
+					"desglose" => $desglose,
+					"ayuda" => "factura"
 				);
 
 				//RESERVAS CANCELADAS

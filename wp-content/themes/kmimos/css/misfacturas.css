@@ -1,3 +1,18 @@
+.contenedor-botones{
+    padding: 10px 0px;
+    text-align: right;
+}
+
+button{
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
 .nav-tabs>li>a, 
 .nav-tabs>li>a:focus, 

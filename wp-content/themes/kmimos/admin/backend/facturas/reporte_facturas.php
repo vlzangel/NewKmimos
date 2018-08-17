@@ -53,7 +53,9 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Fecha Creaci&oacute;n</th>
+                        <th>Dia</th>
+                        <th>Mes</th>
+                        <th>Año</th>
                         <th>Reserva</th>
                         <th>Servicio</th>
                         <th>Total</th>
@@ -61,9 +63,6 @@
                         <th>Cuidador</th>
                         <th>Cliente</th>
                         <th>No. Referencia</th>
-                        <th>Serie Certificado</th>
-                        <th>Serie Certificado SAT</th>
-                        <th>Folio Fiscal</th>
                         <th>Receptor</th>
                         <th>Estado</th>
                         <th>Opciones</th>
