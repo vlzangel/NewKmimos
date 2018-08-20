@@ -13,6 +13,7 @@ jQuery(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 
 	jQuery('[data-error="auth"]').fadeOut("fast");
 
+	jQuery("#popup-registrarte .modal-content > div").css("display", "none");
 	jQuery(".popup-registrarte-1").css("display", 'block');
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
@@ -255,8 +256,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
 				if( data > 0 ){
 					globalData = data;
-					jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
-					jQuery(".popup-condiciones").css("display", "block");
 					jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
 					jQuery("#img_pet").val( "" );
 					jQuery("body").scrollTop(0);
@@ -325,7 +324,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			fumador !="" */
 			) {
 
-			jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
+			jQuery("#popup-registrarte .modal-content > div").css("display", "none");
 			jQuery(".popup-condiciones").css("display", "block");
 
 		}else {

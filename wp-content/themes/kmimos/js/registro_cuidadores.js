@@ -201,7 +201,7 @@ jQuery(document).on("click", '[data-target="#popup-registro-cuidador1"]' ,functi
 
 	jQuery("#vlz_form_nuevo_cuidador input").val('');
 
-	jQuery(".popup-registro-exitoso").hide();
+	jQuery("#popup-registro-cuidador1 .modal-content > div").hide();
 	jQuery(".popup-registro-cuidador-paso1").hide();
 	jQuery(".popup-registro-cuidador-paso2").hide();
 	jQuery(".popup-registro-cuidador-paso3").hide();
@@ -272,7 +272,7 @@ jQuery("#cr_plus").on('click', function(e){
 
 jQuery("#btn_si_acepto_cuidador").on("click", function(e){
 	if( !jQuery( "#btn_si_acepto_cuidador" ).hasClass("btn_disable") ){
-		jQuery(".popup-condiciones").css("display", "none");
+		jQuery("#popup-registro-cuidador1 .modal-content > div").hide();
 		jQuery(".popup-registro-exitoso").css("display", "block");
 
 		jQuery("#popup-registro-cuidador1").on('hidden.bs.modal', function () {
@@ -341,7 +341,7 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 
 	if( valid ){
 
-		jQuery(".popup-registro-cuidador-correo").css("display", "none");
+		jQuery("#popup-registro-cuidador1 .modal-content > div").hide();
 		jQuery(".popup-condiciones").css("display", "block");
 
 	}else{
