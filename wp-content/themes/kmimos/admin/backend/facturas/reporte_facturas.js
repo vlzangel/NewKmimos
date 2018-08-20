@@ -124,8 +124,14 @@ function loadTabla( _tipo, _rfc, hiddenColumns ){
 				"sortDescending":	"Ordenación descendente"
 			}
 		},
+		"dom": '<B><f><t>ip',
 		"buttons": [
-            'excel'
+			{
+			  extend: "csv",
+			},
+			{
+			  extend: "excelHtml5",
+			},
         ],
 		"columnDefs": [
             {

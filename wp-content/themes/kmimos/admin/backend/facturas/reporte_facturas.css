@@ -4,6 +4,11 @@
     margin: 0px auto;
     border-radius: 50%;
 }
+.buttons-html5{
+	border-radius: 5px;
+	margin: 0px!important;
+	padding: 5px 10px!important;
+}
 
 .status-2{
     width: 15px;
