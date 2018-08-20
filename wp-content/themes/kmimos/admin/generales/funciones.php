@@ -174,6 +174,7 @@
     if(!function_exists('reporte_facturas')){
         function reporte_facturas(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
             include_once(dirname(__DIR__).'/backend/facturas/reporte_facturas.php');
         }
     }
