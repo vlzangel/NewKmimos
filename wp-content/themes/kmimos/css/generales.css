@@ -863,3 +863,23 @@ h2.msg_acciones {
 .bx-wrapper .bx-controls-direction a.bx-next {
     border-left: 25px solid #59c9a8;
 }
+
+
+/* Aceptar terminos y condiciones */
+
+.popup-condiciones{
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.terminos_container{
+    overflow: auto;
+    height: 500px;
+    margin: 20px 0px;
+    text-align: justify;
+    padding-right: 15px;
+}
+
+.btn_disable{
+    background-color: #b3b3b3 !important;
+}

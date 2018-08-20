@@ -151,7 +151,6 @@ jQuery( document ).ready(function() {
 });
 
 function redireccionar(){
-	console.log("Entro: "+jQuery("#btn_iniciar_sesion").attr("data-url"));
 	if( jQuery(".popup-registro-cuidador").css("display") == "none" ){
 		if( jQuery(".popup-registro-cuidador-correo").css("display") == "none" ){
 			location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
@@ -266,10 +265,62 @@ jQuery("#cr_plus").on('click', function(e){
 	}
 });
 
+
+
+
+
+
+jQuery("#btn_si_acepto_cuidador").on("click", function(e){
+	if( !jQuery( "#btn_si_acepto_cuidador" ).hasClass("btn_disable") ){
+		jQuery(".popup-condiciones").css("display", "none");
+		jQuery(".popup-registro-exitoso").css("display", "block");
+
+		jQuery("#popup-registro-cuidador1").on('hidden.bs.modal', function () {
+            location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+	    });
+
+		var a = HOME+"/procesos/cuidador/registro-paso1.php";
+		var obj = jQuery(this);
+		obj.html('Enviando datos');
+		jQuery.post( 
+			a, 
+			jQuery('#vlz_form_nuevo_cuidador').serialize(), 
+			function( data ) {
+				data = eval(data);
+				if( data['error'] == "SI" ){				 
+					if( data['fields'] != 'null' ){
+						jQuery.each(data['fields'], function(id, val){
+							mensaje( "rc_"+val['name'],val['msg']  );
+						});
+					}
+					obj.html('SIGUIENTE');
+				}else{
+					jQuery('[data-target="name"]').html( jQuery('[name="rc_nombres"]').val() );
+					jQuery('[name="rc_num_mascota"]').val(1);
+				}
+			}	
+		);
+
+	}else{
+		alert("Debe leer los terminos y condiciones primero.");
+	}
+});
+
+jQuery("#btn_no_acepto_cuidador").on("click", function(e){
+	location.reload();
+});
+
+jQuery( "#popup-registro-cuidador1 .popup-condiciones .terminos_container" ).scroll(function() {
+	if( jQuery( "#popup-registro-cuidador1 .popup-condiciones .terminos_container" )[0].scrollHeight <= ( parseInt( jQuery( "#popup-registro-cuidador1 .popup-condiciones .terminos_container" ).scrollTop() ) + 700  ) ){
+		jQuery( "#btn_si_acepto_cuidador" ).removeClass("btn_disable");
+	}
+});
+
+
+
+
 jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-cuidador-correo', function ( e ) {
-	e.preventDefault();		
-	var a = HOME+"/procesos/cuidador/registro-paso1.php";
-	var obj = jQuery(this);
+	e.preventDefault();	
 
 	jQuery('input').css('border-bottom', '1px solid #CCCCCC');
 	jQuery('[data-error]').css('visibility', 'hidden');
@@ -289,24 +340,10 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	var valid = km_cuidador_validar(list);
 
 	if( valid ){
-		obj.html('Enviando datos');
-		jQuery.post( a, jQuery('#vlz_form_nuevo_cuidador').serialize(), function( data ) {
-			data = eval(data);
-			if( data['error'] == "SI" ){				 
-				if( data['fields'] != 'null' ){
-					jQuery.each(data['fields'], function(id, val){
-						mensaje( "rc_"+val['name'],val['msg']  );
-					});
-				}
-				obj.html('SIGUIENTE');
-			}else{
-				jQuery('[data-target="name"]').html( jQuery('[name="rc_nombres"]').val() );
-				jQuery(".popup-registro-cuidador-correo").hide();
-				jQuery(".popup-registro-exitoso").fadeIn("fast");
 
-				jQuery('[name="rc_num_mascota"]').val(1);
-			}
-		});
+		jQuery(".popup-registro-cuidador-correo").css("display", "none");
+		jQuery(".popup-condiciones").css("display", "block");
+
 	}else{
 		var primer_error = ""; var z = true;
 		jQuery( ".tiene_error" ).each(function() {
