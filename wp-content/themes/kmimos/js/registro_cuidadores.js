@@ -268,6 +268,9 @@ jQuery("#cr_plus").on('click', function(e){
 
 jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-cuidador-correo', function ( e ) {
 	e.preventDefault();		
+
+console.log('paso 1');
+
 	var a = HOME+"/procesos/cuidador/registro-paso1.php";
 	var obj = jQuery(this);
 
@@ -275,7 +278,17 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	jQuery('[data-error]').css('visibility', 'hidden');
 	jQuery('[data-error]').removeClass('tiene_error');
 
-	var list = [  'rc_email','rc_nombres','rc_apellidos', 'rc_tipo_documento', 'fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
+	var list = [  
+		'rc_email',
+		'rc_nombres',
+		'rc_apellidos',
+		'rc_tipo_documento',
+		'fecha',
+		'rc_email',
+		'rc_clave',
+		'rc_telefono',
+		'rc_referred'
+	];
 
 	switch( jQuery('[name="rc_tipo_documento"]').val() ){
 		case "IFE / INE":
@@ -287,6 +300,8 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	}
 
 	var valid = km_cuidador_validar(list);
+console.log(list);
+console.log(valid);
 
 	if( valid ){
 		obj.html('Enviando datos');
