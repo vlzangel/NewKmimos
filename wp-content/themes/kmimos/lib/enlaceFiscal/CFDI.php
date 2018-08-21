@@ -175,7 +175,7 @@ class CFDI {
 			";
 			$saldo_favor = $this->db->get_var( $sql, 'meta_value' );
 			if( $saldo_favor > 0 ){
-				$data['servicio']['desglose']['descuento'] -= $saldo_favor;
+				//$data['servicio']['desglose']['descuento'] -= $saldo_favor;
 			}
 			$descuento = $data['servicio']['desglose']['descuento'];		
 
@@ -192,8 +192,6 @@ class CFDI {
 
 		// Agregar Partida: Variaciones
 			if( isset($data['servicio']['variaciones']) && !empty($data['servicio']['variaciones']) ){	
-
-
 				foreach ($data['servicio']['variaciones'] as $item) {
 
 					$codigo_sat = $this->db->get_var("SELECT value FROM facturas_configuracion WHERE clave ='".$data['servicio']['tipo']."'" );
@@ -220,11 +218,12 @@ class CFDI {
 
 						// Calcular impuestos
 						$impuesto = $subtotal * $tasaCuota;
+						$impuesto = number_format($impuesto, 2, ".", "" );
 
 					// Desglose general de la factura
 					// *************************************
-						$_impuesto += number_format( $impuesto, 2 );
-						$_subtotal += number_format($subtotal, 2);
+						$_impuesto += number_format($impuesto, 2, ".", "" );
+						$_subtotal += number_format($subtotal, 2, ".", "" );
 						$_total += $subtotal + $impuesto; 
 						$_total -= $descuento; 
 
@@ -254,7 +253,7 @@ class CFDI {
 					$descuento = 0;
 				}
 			}
-		
+
 		// Agregar Partida: Transporte
 			if( isset($data['servicio']['transporte']) && !empty($data['servicio']['transporte']) ){			
 				foreach ($data['servicio']['transporte'] as $item) {
@@ -387,7 +386,7 @@ class CFDI {
 					"folioInterno" => $data['servicio']['id_reserva'],
 					"tipoMoneda" => "MXN",
 					"fechaEmision" => $data['fechaEmision'], //"2017-02-22 11:03:43",
-					"subTotal" => (float) number_format( $_subtotal, 2, '.', ''), //"20.00", ( Sin IVA )
+					"subTotal" => (float) number_format($_subtotal,2, ".", "" ), //"20.00", ( Sin IVA )
 					"total" => (float) number_format( $_total, 2, '.', ''), // "23.20" ( Con IVA )
 					"rfc" => $this->RFC,
 					"descuentos" => (float) number_format( $data['servicio']['desglose']['descuento'], 2, '.', ''),
@@ -434,7 +433,7 @@ class CFDI {
 		$cfdi_respuesta = $this->request( $CFDi, 'generarCfdi' );
 		return [ 
 			'ack' => $cfdi_respuesta, 
-			'data' => $CFDi,
+			'cfdi' => $CFDi,
 			'datos' => $data,
 		];
 	}

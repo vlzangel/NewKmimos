@@ -297,6 +297,9 @@ jQuery("#btn_si_acepto_cuidador").on("click", function(e){
 				}else{
 					jQuery('[data-target="name"]').html( jQuery('[name="rc_nombres"]').val() );
 					jQuery('[name="rc_num_mascota"]').val(1);
+					jQuery('.popuphide').css('display', 'none');
+					jQuery('.popup-registro-exitoso').css('display', 'block');
+
 				}
 			}	
 		);
@@ -326,7 +329,17 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	jQuery('[data-error]').css('visibility', 'hidden');
 	jQuery('[data-error]').removeClass('tiene_error');
 
-	var list = [  'rc_email','rc_nombres','rc_apellidos', 'rc_tipo_documento', 'fecha','rc_email','rc_clave','rc_telefono', 'rc_referred'];
+	var list = [  
+		'rc_email',
+		'rc_nombres',
+		'rc_apellidos',
+		'rc_tipo_documento',
+		'fecha',
+		'rc_email',
+		'rc_clave',
+		'rc_telefono',
+		'rc_referred'
+	];
 
 	switch( jQuery('[name="rc_tipo_documento"]').val() ){
 		case "IFE / INE":
@@ -342,6 +355,8 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 	if( valid ){
 
 		jQuery("#popup-registro-cuidador1 .modal-content > div").hide();
+
+		jQuery(".popuphide").css("display", "none");
 		jQuery(".popup-condiciones").css("display", "block");
 
 	}else{

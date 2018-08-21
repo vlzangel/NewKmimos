@@ -128,9 +128,11 @@ function loadTabla( _tipo, _rfc, hiddenColumns ){
 		"buttons": [
 			{
 			  extend: "csv",
+			  className: "btn-sm"
 			},
 			{
 			  extend: "excelHtml5",
+			  className: "btn-sm"
 			},
         ],
 		"columnDefs": [
