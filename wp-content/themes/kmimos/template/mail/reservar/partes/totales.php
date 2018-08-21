@@ -1,31 +1,84 @@
-<div style='overflow: hidden; width: 600px; min-width: 600px; max-width: 600px;'>
+<div style='overflow: hidden; width: 100%;'>
 
-    <table cellpadding="0" cellspacing="0" width="600" 
-        style='float: right; width: 600px; background-color: #FFF; font-family: Arial; font-size: 10px; font-weight: bold; line-height: 1.5; letter-spacing: 0.2px; color: #000000; border: solid 1px #CCC; border-radius: 2.8px;'>
-
+    <table cellpadding="0" cellspacing="0" style='
+        font-size: 15px; 
+        font-weight: bold; 
+        line-height: 1.5; 
+        letter-spacing: 0.2px; 
+        color: #000000; 
+        width: 100%;
+        margin: 0px 0px 15px;
+        background-color: #efefee;
+    '>
         <tr style=''>
-            <td style='width: 100px; background-color: #f4f4f4; text-align: left; vertical-align: middle;  padding: 5px 7px;'>
+            <td style='width: 200px;  text-align: left; vertical-align: middle;  padding: 5px 20px;'>
                 TOTAL
             </td>
-            <td style='padding: 5px 20px; padding-left: 37px; border-bottom: solid 1px #CCC; text-align: right;'>
+            <td style='padding: 5px 20px; text-align: right;'>
                 $ [TOTAL]
             </td>
         </tr>
+    </table>
 
+    <table cellpadding="0" cellspacing="0" style='
+        font-size: 15px; 
+        font-weight: bold; 
+        line-height: 1.5; 
+        letter-spacing: 0.2px; 
+        color: #000000; 
+        width: 100%;
+        margin: 0px 0px 15px;
+        background-color: #efefee;
+    '>
         [DESCUENTO]
-        
+    </table>
+
+    <table cellpadding="0" cellspacing="0" style='
+        font-size: 15px; 
+        font-weight: bold; 
+        line-height: 1.5; 
+        letter-spacing: 0.2px; 
+        color: #000000; 
+        width: 100%;
+        margin: 0px 0px 15px;
+        background-color: #efefee;
+    '>
         <tr style=''>
-            <td style='width: 120px; background-color: #f4f4f4; text-align: left; vertical-align: middle;  padding: 5px 7px;'>
+            <td style='width: 200px; text-align: left; vertical-align: middle;  padding: 5px 20px;'>
                 [TIPO_PAGO]
             </td>
-            <td style='padding: 5px 20px; padding-left: 37px; border-bottom: solid 1px #CCC; text-align: right; color: #d96363;'>
+            <td style='padding: 5px 20px; text-align: right; color: #35ccbd;'>
                 $ [PAGO]
             </td>
         </tr>
 
+    </table>
+
+    <table cellpadding="0" cellspacing="0" style='
+
+        display: none;
+
+        font-size: 15px; 
+        font-weight: bold; 
+        line-height: 1.5; 
+        letter-spacing: 0.2px; 
+        color: #000000; 
+        width: 100%;
+        margin: 0px 0px 15px;
+        background-color: #efefee;
+    '>
         [DETALLES]
+    </table>
 
+    <table cellpadding="0" cellspacing="0" style='
+        font-size: 15px; 
+        font-weight: bold; 
+        line-height: 1.5; 
+        letter-spacing: 0.2px; 
+        color: #000000; 
+        width: 100%;
+        margin: 0px;
+    '>
         [REEMBOLSAR]
-
     </table>
 </div>

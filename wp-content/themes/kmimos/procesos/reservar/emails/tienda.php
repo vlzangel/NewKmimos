@@ -14,6 +14,9 @@
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
+
+        $mensaje_cliente = str_replace('[HEADER]', "reservaTienda", $mensaje_cliente);
+
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
         $mensaje_cliente = str_replace('[desglose]', $desglose, $mensaje_cliente);
 
@@ -60,10 +63,10 @@
 
         $mensaje_cliente = str_replace('[TOTALES]', str_replace('[REEMBOLSAR]', "", $totales_plantilla), $mensaje_cliente);
 
-        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"]);
+        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false, true);
 
         if( isset($NO_ENVIAR) ){
-            echo $mensaje_cliente;
+            // echo $mensaje_cliente;
         }else{
             wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje_cliente);
         }
@@ -80,7 +83,16 @@
 
         /* Generales */
 
-            $mensaje_admin = str_replace('[mascotas]', $mascotas, $mensaje_admin);
+            $datos_cuidador = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cuidador.php';
+            $datos_cuidador = file_get_contents($datos_cuidador);
+
+            $datos_cliente = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cliente.php';
+            $datos_cliente = file_get_contents($datos_cliente);
+    
+            $mensaje_admin = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_admin);
+            $mensaje_admin = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_admin);
+
+            $mensaje_admin = str_replace('[MASCOTAS]', $mascotas, $mensaje_admin);
 
             if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
                 $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
@@ -91,7 +103,9 @@
                 $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
             }
 
-            $mensaje_admin = str_replace('[desglose]', $desglose, $mensaje_admin);
+            $mensaje_admin = str_replace('[HEADER]', "reservaTienda", $mensaje_admin);
+
+            $mensaje_admin = str_replace('[DESGLOSE]', $desglose, $mensaje_admin);
             
             $mensaje_admin = str_replace('[ADICIONALES]', $adicionales, $mensaje_admin);
             $mensaje_admin = str_replace('[TRANSPORTE]', $transporte, $mensaje_admin);
@@ -131,7 +145,7 @@
             $mensaje_admin = str_replace('[correo_cuidador]', $cuidador["email"], $mensaje_admin);
             $mensaje_admin = str_replace('[direccion_cuidador]', $cuidador["direccion"], $mensaje_admin);
 
-		$mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"]);
+		$mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"], false, true);
 
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;

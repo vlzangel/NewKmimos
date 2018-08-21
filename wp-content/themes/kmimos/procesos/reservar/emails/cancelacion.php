@@ -1,12 +1,18 @@
 <?php
 
+    $enviar_code = true;
+    if( $CODE == $_SESSION["CODE"] ){
+        $enviar_code = false;
+    }else{
+        $_SESSION["CODE"] = $CODE;
+    }
+
     if( $superAdmin == "" && $status == "modified" ){
         
     }else{
         kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"], $usu);
     }
     update_cupos( $id, "-");
-    
     $wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = $id;");
     $wpdb->query("UPDATE wp_posts SET post_status = 'cancelled' WHERE ID = '{$servicio["id_reserva"]}';");
 
@@ -43,7 +49,7 @@
     	$rating = kmimos_petsitter_rating($valor->id_post, true); $rating_txt = "";
     	foreach ($rating as $key => $value) {
     		if( $value == 1 ){ $rating_txt .= "<img style='width: 15px; padding: 0px 1px;' src='[URL_IMGS]/new/huesito.png' >";
-    		}else{ $rating_txt .= "<img style='width: 15px; padding: 0px 1px;' src='[URL_IMGS]/huesito_vacio.png' >"; }
+    		}else{ $rating_txt .= "<img style='width: 15px; padding: 0px 1px;' src='[URL_IMGS]/new/huesito_vacio.png' >"; }
     	}
     	$servicios = vlz_servicios($valor->adicionales, true);
     	$servicios_txt = "";
@@ -78,19 +84,27 @@
     $msg_cliente = "";
     $msg_cuidador = "";
 
+    $URL_IMGS = get_home_url()."/wp-content/themes/kmimos/images/emails";
+
     if( $usu == "STM" ){
-        $msg_cliente = "Te notificamos que el sistema ha cancelado la reserva con el cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
-        $msg_cuidador = "Te notificamos que el sistema ha cancelado la reserva realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
-        $msg_administrador = "Te notificamos que el sistema ha cancelado la reserva realizada por <strong>[name_cliente]</strong> al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cliente = "Te notificamos que el sistema ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva con el cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_cuidador = "Te notificamos que el sistema ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva realizada por <strong>[name_cliente]</strong> debido a que se venció el plazo de confirmación.";
+        $msg_administrador = "Te notificamos que el sistema ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva realizada por <strong>[name_cliente]</strong> al cuidador <strong>[name_cuidador]</strong> debido a que se venció el plazo de confirmación.";
+        
+        $CANCELADO_POR = "reservas/sistema";
     }else{
         if( $usu == "CLI" ){
-            $msg_cliente = "Te notificamos que la reserva ha sido cancelada exitosamente.";
-            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la reserva.";
-            $msg_administrador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha cancelado la reserva.";
+            $msg_cliente = "Te notificamos que la reserva ha sido <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelada</span> exitosamente.";
+            $msg_cuidador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
+            $msg_administrador = "Te notificamos que el cliente <strong>[name_cliente]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
+
+            $CANCELADO_POR = "reservas/cliente";
         }else{
-            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha cancelado la reserva.";
-            $msg_cuidador = "Te notificamos que la reserva ha sido cancelada exitosamente.";
-            $msg_administrador = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha cancelado la reserva.";
+            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
+            $msg_cuidador = "Te notificamos que la reserva ha sido <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelada</span> exitosamente.";
+            $msg_administrador = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
+
+            $CANCELADO_POR = "reservas/cuidador";
         }
     }
 
@@ -126,12 +140,21 @@
         $mensaje_cliente = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[SUGERIDOS]', $plantilla_sugeridos, $mensaje_cliente);
-        $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
+
+        $mensaje_cliente = str_replace('[URL_IMGS]', $URL_IMGS, $mensaje_cliente);
+        $mensaje_cliente = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_cliente);
     	
-        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false);	
+        if( $usu == "CLI" ){
+            $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false, true);	
+        }else{
+            $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false); 
+        }
 
         if( $NO_ENVIAR != "" ){
             echo $mensaje_cliente;
+            if( $enviar_code ){
+                wp_mail( "vlzangel91@gmail.com", "Cancelación de Reserva", $mensaje_cliente);
+            }
         }else{
            wp_mail( $cliente["email"], "Cancelación de Reserva", $mensaje_cliente);
         }
@@ -146,9 +169,11 @@
         $mensaje_cuidador = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_cuidador);
-        $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
 
-        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente["id"]);
+        $mensaje_cuidador = str_replace('[URL_IMGS]', $URL_IMGS, $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_cuidador);
+
+        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente["id"], false, true);
 
         if( $NO_ENVIAR != "" ){
             echo $mensaje_cuidador;
@@ -159,16 +184,40 @@
         $file = $PATH_TEMPLATE.'/template/mail/reservar/admin/cancelar.php';
         $mensaje_admin = file_get_contents($file);
 
+        if( $str_sugeridos == "" ){
+            $str_sugeridos = "No se enviaron sugerencias";
+        }
+
         $mensaje_admin = str_replace('[MODIFICACION]', $modificacion, $mensaje_admin);
         $mensaje_admin = str_replace("[TITULO_CANCELACION]", $titulo_cancelacion, $mensaje_admin);
         $mensaje_admin = str_replace('[mensaje]', $msg_administrador, $mensaje_admin);
         $mensaje_admin = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_admin);
         $mensaje_admin = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_admin);
         $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
-        $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
-        $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
 
-        $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"]);
+        if( $usu == "CLI" ){
+            $mensaje_admin = str_replace('[SUGERENCIAS]', "", $mensaje_admin);
+        }else{
+            $mensaje_admin = str_replace('[SUGERENCIAS]', "<div style='background-color: #efefef; font-family: Verdana; font-size: 16px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 30px 30px 20px;'>
+                <strong>Sugerencias enviadas al cliente:</strong>
+            </div>
+
+            <div style='background-color: #efefef; text-align: center; padding: 0px 3px 30px;'>
+                [CUIDADORES]
+            </div>", $mensaje_admin);
+            $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
+        }
+
+        $mensaje_admin = str_replace('[CUIDADORES]', $str_sugeridos, $mensaje_admin);
+
+        $mensaje_admin = str_replace('[URL_IMGS]', $URL_IMGS, $mensaje_admin);
+        $mensaje_admin = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_admin);
+
+        if( $usu == "CLI" ){
+            $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"], false, true); 
+        }else{
+            $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"], false);
+        }
 
         if( $NO_ENVIAR != "" ){
             echo $mensaje_admin;

@@ -33,17 +33,17 @@
         $mensaje_cliente = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_cliente);
-        $mensaje_cliente = str_replace('[avatar]', kmimos_get_foto($cuidador["id"]), $mensaje_cliente);
+        $mensaje_cliente = str_replace('[avatar_cuidador]', kmimos_get_foto($cuidador["id"]), $mensaje_cliente);
         $mensaje_cliente = str_replace('[telefonos_cuidador]', $cuidador["telefono"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[correo_cuidador]', $cuidador["email"], $mensaje_cliente);
         $mensaje_cliente = str_replace('[direccion_cuidador]', $cuidador["direccion"], $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[TOTALES]', str_replace('[REEMBOLSAR]', "", $totales_plantilla), $mensaje_cliente);
 
-        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"]);
+        $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false);
 
         if( isset($NO_ENVIAR) ){
-            if( $superAdmin == "" ){ echo $mensaje_cliente; }
+            // if( $superAdmin == "" ){ echo $mensaje_cliente; }
         }else{
             wp_mail( $cliente["email"], $confirmacion_titulo, $mensaje_cliente);
         }
@@ -84,7 +84,7 @@
         $mensaje_cuidador = str_replace('[DETALLES_SERVICIO]', $detalles_plantilla, $mensaje_cuidador);
 
         $mensaje_cuidador = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_cuidador);
-        $mensaje_cuidador = str_replace('[avatar]', kmimos_get_foto($cliente["id"]), $mensaje_cuidador);
+        $mensaje_cuidador = str_replace('[avatar_cliente]', kmimos_get_foto($cliente["id"]), $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[telefonos_cliente]', $cliente["telefono"], $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[correo_cliente]', $cliente["email"], $mensaje_cuidador);
 
@@ -92,16 +92,19 @@
 
         $mensaje_cuidador = str_replace('[TOTALES]', $totales_plantilla, $mensaje_cuidador);
 
-        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente["id"]);
+        $mensaje_cuidador = get_email_html($mensaje_cuidador, true, true, $cliente["id"], false, true);
 
         if( isset($NO_ENVIAR) ){
-            if( $superAdmin == "" ){ echo $mensaje_cuidador; }
+            //if( $superAdmin == "" ){ echo $mensaje_cuidador; }
         }else{
             wp_mail( $cuidador["email"], $confirmacion_titulo, $mensaje_cuidador);
         }
 
         $admin_file = $PATH_TEMPLATE.'/template/mail/reservar/admin/confirmacion.php';
         $mensaje_admin = file_get_contents($admin_file);
+
+        $mensaje_admin = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_admin);
+        $mensaje_admin = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_admin);
 
         $mensaje_admin = str_replace('[name_cliente]', $cliente["nombre"], $mensaje_admin);
         $mensaje_admin = str_replace('[avatar_cliente]', kmimos_get_foto($cliente["id"]), $mensaje_admin);
@@ -133,7 +136,7 @@
 
         $mensaje_admin = str_replace('[TOTALES]', $totales_plantilla, $mensaje_admin);
 
-        $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"]);
+        $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"], false);
 
         if( isset($NO_ENVIAR) ){
             if( $superAdmin == "" ){ echo $mensaje_admin; }

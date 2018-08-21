@@ -83,28 +83,33 @@
 			"Gigante"
 		);
 		if( count($mascotas) > 0 ){
+
+			$mascotas_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/mascotas.php';
+		    $mascotas_plantilla = file_get_contents($mascotas_plantilla);
+		    $detalles_mascotas = "";
+
 			foreach ($mascotas as $key => $mascota) {
 				$data_mascota = get_post_meta($mascota->ID);
 
-				$temp = array();
+				$_temp = array();
 				foreach ($data_mascota as $key => $value) {
 
 					switch ($key) {
 						case 'pet_sociable':
 							if( $value[0] == 1 ){
-								$temp[] = "Sociable";
+								$_temp[] = "Sociable";
 							}else{
-								$temp[] = "No sociable";
+								$_temp[] = "No sociable";
 							}
 						break;
 						case 'aggressive_with_pets':
 							if( $value[0] == 1 ){
-								$temp[] = "Agresivo con perros";
+								$_temp[] = "Agresivo con perros";
 							}
 						break;
 						case 'aggressive_with_humans':
 							if( $value[0] == 1 ){
-								$temp[] = "Agresivo con humanos";
+								$_temp[] = "Agresivo con humanos";
 							}
 						break;
 					}
@@ -112,31 +117,19 @@
 				}
 
 				$data_mascota['birthdate_pet'][0] = str_replace("/", "-", $data_mascota['birthdate_pet'][0]);
-	            		$anio = strtotime($data_mascota['birthdate_pet'][0]);
-	            		$edad_time = strtotime(date("Y-m-d"))-$anio;
-	            		$edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
-
+        		$anio = strtotime($data_mascota['birthdate_pet'][0]);
+        		$edad_time = strtotime(date("Y-m-d"))-$anio;
+        		$edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
 				$raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
 
-				$detalles_mascotas .= "
-		            <tr style='font-size: 12px;'>
-						<td style='font-weight: 600; vertical-align: top; padding: 7px 0px;'>
-							<img src='[URL_IMGS]/dog.png' style='width: 17px; padding: 0px 10px;' /> ".$data_mascota['name_pet'][0]."
-						</td>
-						<td style='padding: 7px; vertical-align: top;'>
-		                    ".$raza."
-						</td>
-						<td style='padding: 7px; vertical-align: top;'>
-		                    ".$edad."
-						</td>
-						<td style=' padding: 7px; vertical-align: top;'>
-		                    ".$tamanos_array[ $data_mascota['size_pet'][0] ]."
-						</td>
-						<td style='padding: 7px; vertical-align: top;'>
-		                    ".implode("<br>", $temp)."
-						</td>
-					</tr>
-				";
+				$tempEdad = explode(" ", $edad);
+				$edad = ( count($tempEdad) == 4 ) ? $tempEdad[0]."<span style='color: #FFF;'>_</span>".$tempEdad[1]."<br>".$tempEdad[2]."<span style='color: #FFF;'>_</span>".$tempEdad[3] : $edad;
+				$temp = str_replace('[NOMBRE]', $data_mascota['name_pet'][0], $mascotas_plantilla);
+				$temp = str_replace('[RAZA]', $raza, $temp);
+				$temp = str_replace('[EDAD]', $edad, $temp);
+				$temp = str_replace('[TAMANO]', $tamanos_array[ $data_mascota['size_pet'][0] ], $temp);
+				$temp = str_replace('[CONDUCTA]', implode("<br>", $_temp), $temp);
+				$detalles_mascotas .= $temp;
 			}
 		}else{
 			$detalles_mascotas .= "

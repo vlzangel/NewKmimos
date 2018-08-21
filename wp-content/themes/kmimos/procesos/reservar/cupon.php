@@ -1,4 +1,7 @@
 <?php
+error_reporting(0);
+ini_set('display_errors', '0');
+
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");

@@ -44,6 +44,8 @@
     $mascotas_plantilla = file_get_contents($mascotas_plantilla);
     $mascotas = "";
 	foreach ($cliente["mascotas"] as $mascota) {
+		$tempEdad = explode(" ", $mascota["edad"]);
+		$mascota["edad"] = ( count($tempEdad) == 4 ) ? $tempEdad[0]."<span style='color: #FFF;'>_</span>".$tempEdad[1]."<br>".$tempEdad[2]."<span style='color: #FFF;'>_</span>".$tempEdad[3] : $mascota["edad"];
 		$temp = str_replace('[NOMBRE]', $mascota["nombre"], $mascotas_plantilla);
 		$temp = str_replace('[RAZA]', $mascota["raza"], $temp);
 		$temp = str_replace('[EDAD]', $mascota["edad"], $temp);
@@ -257,7 +259,7 @@
 
 		}
 
-		$continuar = true;
+		if( $NO_ENVIAR != "" ){ $continuar = true; }
 		
 		if( $continuar ){
 

@@ -1,31 +1,63 @@
-<table cellpadding="0" cellspacing="0" style='margin-bottom: 71px; width: 580px;' >
-    <tr>
-        <td style='width: 62px; padding-right: 10px; vertical-align: top;'>
-            <img src='[avatar]' style='width: 62px; height: 62px; border-radius: 50%;' >
-        </td>
-        <td style='width: 360px; vertical-align: top;'>
-            <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
-                DATOS DEL CLIENTE 
-            </div>                  
-            <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
-                [name_cliente]
-            </div>              
-            <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 3px;'>
-                [telefonos_cliente]
-            </div>          
-            <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 3px;'>
-                [correo_cliente]
-            </div>   
-        </td>
-        <td style='width: 158px; vertical-align: top;'>
-            <div style='background-color: #f4f4f4; height: 50.3px; height: 50.3px; border-radius: 2.8px;'>
-                <div style='font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 10px 0px 0px 10px;'>
-                    Código de reserva:
-                </div>
-                <div style='font-family: Arial; font-size: 14px; font-weight: bold; letter-spacing: 0px; color: #000000; padding: 3px 0px 0px 10px;'>
-                    [id_reserva]
-                </div>
-            </div>
-        </td>
-    </tr>
-</table>
+<div style="
+    width: 100%;
+    background-color: #efefee;
+    padding: 20px 30px;
+    box-sizing: border-box;
+">
+    <div style="
+        background-color: #FFF;
+        padding: 20px 30px;
+    ">
+
+        <table width="100%" style='
+            padding: 0px;
+        '>
+            <tr>
+                <td align="center" height="160" width="100%" style="
+                    background-image: url('[avatar_cliente]'); 
+                    background-repeat: no-repeat; 
+                    background-position: center; 
+                    background-size: cover; 
+                    background-color: #e8e8e8;"
+                ></td>
+            </tr>
+        </table>
+
+        <div style="
+            font-size: 30px;
+            font-weight: 600;
+            padding: 20px 0px 0px;
+        ">
+            [name_cliente]
+        </div>
+
+        <div style="
+            font-weight: 400;
+            padding: 20px;
+        ">
+            <table width="100%" style='
+                padding: 0px;
+                font-size: 17px;
+            '>
+                <tr>
+                    <td style="width: 40px; text-align: center;">
+                        <img style="width: 20px; padding: 5px 0px;" src="[URL_IMGS]/icosNews/Icon-Phone.png" />
+                    </td>
+                    <td>
+                        [telefonos_cliente]
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 40px; text-align: center;">
+                        <img style="width: 20px; padding: 5px 0px;" src="[URL_IMGS]/icosNews/Icon-Mail.png" />
+                    </td>
+                    <td>
+                        [correo_cliente]
+                    </td>
+                </tr>
+            </table>
+            
+        </div>
+
+    </div>
+</div>

@@ -13,6 +13,7 @@ jQuery(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 
 	jQuery('[data-error="auth"]').fadeOut("fast");
 
+	jQuery("#popup-registrarte .modal-content > div").css("display", "none");
 	jQuery(".popup-registrarte-1").css("display", 'block');
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
@@ -213,6 +214,70 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});*/
 
+	jQuery("#btn_si_acepto").on("click", function(e){
+		if( !jQuery( "#btn_si_acepto" ).hasClass("btn_disable") ){
+			jQuery(".popup-condiciones").css("display", "none");
+			jQuery(".popup-registrarte-final").css("display", "block");
+
+			var nombre = jQuery("#nombre").val();
+				apellido = jQuery("#apellido").val(),
+				ife = jQuery("#ife").val(),
+			 	email = jQuery("#email_1").val(), 
+			 	pass = jQuery("#pass").val(), 
+			 	movil = jQuery("#movil").val(), 
+			 	genero = jQuery("#genero").val(), 
+			 	edad = jQuery("#edad").val(), 
+			 	fumador = jQuery("#fumador").val(),
+				referido = jQuery("#referido").val(),
+				img_profile = jQuery("#img_profile").val();
+
+		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
+
+			var datos = {
+				'name': campos[0],
+				'lastname': campos[1],
+				'idn': campos[2],
+				'email': campos[3],
+				'password': campos[4],
+				'movil': campos[5],
+				'gender': campos[6],
+				'age': campos[7],
+				'smoker': campos[8],
+				'referido': campos[9],
+				'img_profile': campos[10],
+				'social_facebook_id': jQuery('#facebook_cliente_id').val(),
+				'social_google_id': jQuery('#google_cliente_id').val()
+			};
+
+			jQuery("#popup-registrarte").on('hidden.bs.modal', function () {
+	            location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+		    });
+
+			jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
+				if( data > 0 ){
+					globalData = data;
+					jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
+					jQuery("#img_pet").val( "" );
+					jQuery("body").scrollTop(0);
+				}
+				jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
+			});
+
+		}else{
+			alert("Debe leer los terminos y condiciones primero.");
+		}
+	});
+
+	jQuery("#btn_no_acepto").on("click", function(e){
+		location.reload();
+	});
+
+	jQuery( "#popup-registrarte .popup-condiciones .terminos_container" ).scroll(function() {
+		if( jQuery( ".popup-condiciones .terminos_container" )[0].scrollHeight <= ( parseInt( jQuery( ".popup-condiciones .terminos_container" ).scrollTop() ) + 700  ) ){
+			jQuery( "#btn_si_acepto" ).removeClass("btn_disable");
+		}
+	});
+
 	jQuery(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
 		e.preventDefault();
 
@@ -259,42 +324,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			fumador !="" */
 			) {
 
-				var datos = {
-					'name': campos[0],
-					'lastname': campos[1],
-					'idn': campos[2],
-					'email': campos[3],
-					'password': campos[4],
-					'movil': campos[5],
-					'gender': campos[6],
-					'age': campos[7],
-					'smoker': campos[8],
-					'referido': campos[9],
-					'img_profile': campos[10],
-					'social_facebook_id': jQuery('#facebook_cliente_id').val(),
-					'social_google_id': jQuery('#google_cliente_id').val()
-				};
-
-				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
-
-					if( data > 0 ){
-						globalData = data;
-						jQuery(".popup-registrarte-nuevo-correo").css("display", "none");
-						jQuery(".popup-registrarte-final").css("display", "block");
-
-						jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
-						jQuery("#img_pet").val( "" );
-
-						jQuery("#btn_cerrar").on("click", function(e){
-							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
-						});
-
-						jQuery("body").scrollTop(0);
-						/*jQuery(".modal").scrollTop(0);*/
-					}
-
-					jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
-				});
+			jQuery("#popup-registrarte .modal-content > div").css("display", "none");
+			jQuery(".popup-condiciones").css("display", "block");
 
 		}else {
 			jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
