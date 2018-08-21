@@ -88,7 +88,7 @@
 		$mensaje_cliente = get_email_html($mensaje_cliente, false, true, null, false);
 
         if( isset($NO_ENVIAR) ){
-            echo $mensaje_cliente;
+            // echo $mensaje_cliente;
         }else{
             wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
         }
@@ -103,6 +103,9 @@
         /* Generales */
 
             $mensaje_admin = str_replace('[HEADER]', "conocer", $mensaje_admin);
+            
+            $mensaje_admin = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_admin);
+            $mensaje_admin = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_admin);
 
             $mensaje_admin = str_replace('[ACEPTAR]', get_home_url().'/perfil-usuario/solicitudes/confirmar/'.$request_id, $mensaje_admin);
             $mensaje_admin = str_replace('[CANCELAR]', get_home_url().'/perfil-usuario/solicitudes/cancelar/'.$request_id, $mensaje_admin);
@@ -119,22 +122,22 @@
 
         /* Cliente */
 
-	        $mensaje_admin = str_replace('[nombre_cliente]', $cliente_web, $mensaje_admin);
+	        $mensaje_admin = str_replace('[name_cliente]', $cliente_web, $mensaje_admin);
 	        $mensaje_admin = str_replace('[avatar_cliente]', kmimos_get_foto($user_id), $mensaje_admin);
 	        $mensaje_admin = str_replace('[telefonos_cliente]', $telf_cliente, $mensaje_admin);
-	        $mensaje_admin = str_replace('[email_cliente]', $email_cliente, $mensaje_admin);
+	        $mensaje_admin = str_replace('[correo_cliente]', $email_cliente, $mensaje_admin);
 
         /* Cuidador */
         
 	        $mensaje_admin = str_replace('[avatar_cuidador]', kmimos_get_foto($cuidador->user_id), $mensaje_admin);
-	        $mensaje_admin = str_replace('[nombre_cuidador]', $nombre_cuidador, $mensaje_admin);
+	        $mensaje_admin = str_replace('[name_cuidador]', $nombre_cuidador, $mensaje_admin);
 	        $mensaje_admin = str_replace('[telefonos_cuidador]', $telf_cuidador, $mensaje_admin);
-	        $mensaje_admin = str_replace('[email_cuidador]', $email_cuidador, $mensaje_admin);
+	        $mensaje_admin = str_replace('[correo_cuidador]', $email_cuidador, $mensaje_admin);
 
 		$mensaje_admin = get_email_html($mensaje_admin, false, true, null, false);
 
         if( isset($NO_ENVIAR) ){
-            // echo $mensaje_admin;
+            echo $mensaje_admin;
         }else{
             kmimos_mails_administradores_new($asunto, $mensaje_admin);
         }
