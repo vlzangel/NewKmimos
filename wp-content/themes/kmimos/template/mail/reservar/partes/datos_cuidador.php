@@ -55,7 +55,7 @@
                         [correo_cuidador]
                     </td>
                 </tr>
-                <tr>
+                <tr class='dir'>
                     <td style="width: 40px; text-align: center;">
                         <img style="width: 20px; padding: 5px 0px;" src="[URL_IMGS]/icosNews/Icon-Address.png" />
                     </td>
