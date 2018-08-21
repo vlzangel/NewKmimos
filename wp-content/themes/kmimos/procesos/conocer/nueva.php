@@ -64,9 +64,7 @@
 
         $datos_cuidador = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cuidador.php';
         $datos_cuidador = file_get_contents($datos_cuidador);
-
         $datos_cuidador = preg_replace("#<tr class='dir'(.*?)tr>#s", "", $datos_cuidador);
-
         $mensaje_cliente = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[HEADER]', "conocer", $mensaje_cliente);
