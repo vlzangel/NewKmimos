@@ -44,7 +44,7 @@ jQuery(document).ready(document).ready(function() {
                     setTimeout(function() { 
                         jQuery('.mensaje').remove(); 
                         if( data.status == "OK"){
-                            //location.href = RAIZ+"/perfil-usuario/historial/";
+                            location.href = RAIZ+"/perfil-usuario/historial/";
                         }
                     }, 5000); 
                 },
