@@ -42,7 +42,7 @@
                 $CUIDADO .= "
                     <div class='select_rate cuidado' data-rate='$i' data-section='cuidado'>
                         <label for='cuidado_$i'><h5> $i</h5></label><br>
-                        <input type='radio' id='cuidado_$i' name='cuidado' value='$i' class='huesito'><br>
+                        <input type='radio' id='cuidado_$i' name='cuidado' value='$i' class='huesito' data-valid='requerid'><br>
                         $vacio
                     </div>
                 ";
@@ -53,7 +53,7 @@
                 $PUNTUALIDAD .= "
                     <div class='select_rate puntualidad' data-rate='$i' data-section='puntualidad'>
                         <label for='puntualidad_$i'><h5> $i</h5></label><br>
-                        <input type='radio' id='puntualidad_$i' name='puntualidad' value='$i' class='huesito'><br>
+                        <input type='radio' id='puntualidad_$i' name='puntualidad' value='$i' class='huesito' data-valid='requerid'><br>
                         $vacio
                     </div>
                 ";
@@ -64,7 +64,7 @@
                 $LIMPIEZA .= "
                     <div class='select_rate limpieza' data-rate='$i' data-section='limpieza'>
                         <label for='limpieza_$i'><h5> $i</h5></label><br>
-                        <input type='radio' id='limpieza_$i' name='limpieza' value='$i' class='huesito'><br>
+                        <input type='radio' id='limpieza_$i' name='limpieza' value='$i' class='huesito' data-valid='requerid'><br>
                         $vacio
                     </div>
                 ";
@@ -75,7 +75,7 @@
                 $CONFIANZA .= "
                     <div class='select_rate confianza' data-rate='$i' data-section='confianza'>
                         <label for='confianza_$i'><h5> $i</h5></label><br>
-                        <input type='radio' id='confianza_$i' name='confianza' value='$i' class='huesito'><br>
+                        <input type='radio' id='confianza_$i' name='confianza' value='$i' class='huesito' data-valid='requerid'><br>
                         $vacio
                     </div>
                 ";
@@ -124,6 +124,7 @@
                         <p><strong>Comentarios:</strong></p>
                         <textarea id='comentarios' name='comentarios' style='width: 100%; max-width: 600px; height: 120px;'></textarea>
                         <br>
+
                         <input type='hidden' name='accion' value='valorar'>
                         <input type='hidden' name='core' value='SI'>
                         <input type='hidden' name='user_id' value='{$user_id}'>
