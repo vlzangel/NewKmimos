@@ -1,4 +1,6 @@
 <?php 
+	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+	include_once("../funciones/generales.php");
 
 	if($portada != ""){
 	    $dir = $raiz."/wp-content/uploads/{$sub_path}/";
