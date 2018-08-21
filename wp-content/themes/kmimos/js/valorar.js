@@ -54,7 +54,7 @@ jQuery(document).ready(document).ready(function() {
             jQuery("#btn_actualizar").val("Enviar valoración");
             jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
-            alert( "todos los campos deben ser obligatorios");
+            alert( "Debe llenar todos los campos del formulario");
             jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-180 }, 2000);
         }
 
