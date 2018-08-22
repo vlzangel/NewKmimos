@@ -33,7 +33,6 @@
     </div>
 
 	<div style='
-	    width: 100%
 	    font-size: 17px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
