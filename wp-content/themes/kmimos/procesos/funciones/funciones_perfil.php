@@ -46,10 +46,10 @@
 
 
 	    			case 'factura_pdf':
-	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i>  PDF</a>';
+	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i>Descargar PDF</a>';
     				break;
 	    			case 'factura_xml':
-	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i> XML</a>';
+	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i>Descargar XML</a>';
     				break;
 	    			case 'factura_PdfXml':
 	    				$respuesta .= '<a data-pdfxml="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i> PDF y XML</a>';

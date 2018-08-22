@@ -1,8 +1,14 @@
 var table = ""; var CTX = "";
 var fechas = '';
+
+// Variables por defecto de busqueda
+var _tipo = 'cliente';
+var _rfc = '0';
+var _hiddenColumns = [];
+
 jQuery(document).ready(function() {
 
-	loadTabla( 'cliente', '0' );
+	loadTabla(_tipo, _rfc);
 
     jQuery("#close_modal").on("click", function(e){
         cerrar(e);
@@ -42,7 +48,7 @@ jQuery(document).ready(function() {
 
     jQuery("#btn-search").on("click", function(e){
     	table.destroy();
-    	loadTabla();
+		loadTabla(_tipo, _rfc, _hiddenColumns);
 	});
 
     jQuery("#select-all").on("click", function(e){
@@ -57,7 +63,10 @@ jQuery(document).ready(function() {
 		e.preventDefault();
 		jQuery('.nav-link').removeClass('active');
 
-		var hiddenColumns;
+		_hiddenColumns=[];
+	  	_tipo = jQuery(this).attr('href');
+	  	_rfc = jQuery('#tipo_receptor').val();
+
 		var id = jQuery(this).attr('id');
 		jQuery('#'+id).addClass('active');
 		jQuery('#'+id+'-tab').addClass('active');
@@ -66,20 +75,28 @@ jQuery(document).ready(function() {
 	  	if( jQuery(this).attr('href') == 'cliente' ){
 	  		jQuery('#container_tipo_receptor').removeClass('hidden');
 	  	}else{
-	  		hiddenColumns = 5;
+	  		_hiddenColumns = [5];
 	  	}
-
-	  	loadTabla( jQuery(this).attr('href'), jQuery('#tipo_receptor').val(), hiddenColumns );
+	  	loadTabla(_tipo, _rfc, _hiddenColumns);
 	});
 
-	jQuery('#tipo_receptor').on('change', function(){		
-	  	loadTabla( 'cliente', jQuery(this).val() );
+	jQuery('#quitar-filtro').on('click', function(){
+		jQuery('[name="ini"]').val("YYYY-MM-DD");
+		jQuery('[name="fin"]').val("YYYY-MM-DD");
+		loadTabla( _tipo, _rfc, _hiddenColumns );
+	});
+
+	jQuery('#tipo_receptor').on('change', function(){	
+		_tipo = 'cliente';
+		_rfc = jQuery(this).val();	
+		_hiddenColumns = [];
+	  	loadTabla(_tipo, _rfc, _hiddenColumns );
 	})
 
     jQuery(document).on('click','[data-pdfxml]', function(e){
 
         e.preventDefault();
-console.log("file");
+		console.log("file");
         var file = [];
             file.push( jQuery(this).attr('data-PdfXml') );
         download( file );
@@ -97,9 +114,12 @@ function download( archivos ){
     });
 }
 
-function loadTabla( _tipo, _rfc, hiddenColumns ){
+function loadTabla( tipo, rfc , hiddenColumns){
+console.log(_tipo+"--"+_rfc+"--"+_hiddenColumns);
+
 	table = jQuery('#example').DataTable();
 	table.destroy();
+
     table = jQuery('#example').DataTable({
     	"language": {
 			"emptyTable":			"No hay datos disponibles en la tabla.",
@@ -137,14 +157,14 @@ function loadTabla( _tipo, _rfc, hiddenColumns ){
         ],
 		"columnDefs": [
             {
-                "targets": [ hiddenColumns ],
+                "targets": hiddenColumns,
                 "visible": false
             }
         ],
         "scrollX": true,
         "ajax": {
             "url": TEMA+'/admin/backend/facturas/ajax/facturas.php',
-            "data": { rfc: _rfc, tipo: _tipo, ini: jQuery('[name="ini"]').val(), fin:jQuery('[name="fin"]').val() },
+            "data": { "rfc": rfc, "tipo": tipo, 'ini': jQuery('[name="ini"]').val(), "fin":jQuery('[name="fin"]').val() },
             "type": "POST"
         }
 	});

@@ -60,7 +60,7 @@
 						'QR' => $factura->urlQR, 
 						'total' => $factura->total,
 						'acciones' => array(
-							"factura_pdf" => $factura->urlPdf,
+							"factura_PdfXml" => $factura->reserva_id.'_'.$factura->numeroReferencia,
 						),
 					);
 					break;

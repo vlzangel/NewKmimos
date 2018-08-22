@@ -362,7 +362,7 @@
 			        <h5 class="modal-title" id="myModalLabel">INFORMACI&Oacute;N DE FACTURACI&Oacute;N</h5>
 			      </div>
 			      <div class="modal-body">
-			        <p style="font-size:14px;">Tu comprobante fiscal será emitida una vez la reserva se haya completado</p>
+			        <p style="font-size:14px;">Tu comprobante fiscal será emitido una vez la reserva se haya completado</p>
 			      </div>
 			    </div>
 			  </div>
