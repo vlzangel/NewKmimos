@@ -142,6 +142,22 @@ jQuery(window).on('resize', function(){
     }
 });
 
+jQuery(document).on('click', '[data-PdfXml]', function(e){
+    e.preventDefault();
+    var file = [];
+        file.push( jQuery(this).attr('data-PdfXml') );
+    download( file );
+});
+
+function download( archivos ){
+    jQuery.post(HOME+"procesos/generales/download_zip.php", {'fact_selected': archivos}, function(e){
+        e = JSON.parse(e);
+        if( e['estatus'] == "listo" ){
+            location.href = e['url'];
+        }
+    });
+}
+
 function block_scroll_body( block=true ){
     jQuery('body').css('overflow', 'auto');
     if( !block ){

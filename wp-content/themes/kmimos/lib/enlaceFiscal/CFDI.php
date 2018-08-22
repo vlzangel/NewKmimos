@@ -637,6 +637,8 @@ class CFDI {
 				$name_archivo = $ef->folioInterno.'_'.$ef->numeroReferencia;
 				$filename = $path . $name_archivo; // [ folioInterno = Reserva_id ]
 
+				sleep(20); // Tiempo para esperar que genere el archivo
+				
 				$file_pdf_sts = file_put_contents( 
 					$filename. '.pdf', 
 					$this->descargar_cfdi($ef->descargaArchivoPDF) 
@@ -675,7 +677,6 @@ class CFDI {
 	            $bufer .= fread ($da, 4096);
 
 	        fclose ($da);
-
 	    } else {
 
 	        preg_match ('/^\\s*(?:\\w+:\\/{2})?(.*?)(:\\d+)?(\\/.*)$/',

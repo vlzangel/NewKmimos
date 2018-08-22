@@ -34,6 +34,8 @@
         }
     }
 
+//echo "SELECT * FROM facturas {$where} ORDER BY fechaGeneracion ASC";
+
     $facturas = $db->get_results( "SELECT * FROM facturas {$where} ORDER BY fechaGeneracion ASC" );
  
 //echo "SELECT * FROM facturas {$where} ORDER BY fechaGeneracion ASC" ; 
@@ -65,7 +67,7 @@
                 $value->numeroReferencia,
                 $value->receptor,
                 $value->estado,
-                "<button style='padding:5px;' data-pdfxml='".$value->reserva_id.'_'.$value->numeroReferencia."'><i class='fa fa-cloud-download'></i> PDF y XML </button>"
+                "<button style='padding:5px;' data-pdfxml='".$value->reserva_id.'_'.$value->numeroReferencia."'><i class='fa fa-cloud-download'></i> Descargar PDF y XML </button>"
             );
         }
     }

@@ -47,22 +47,7 @@ jQuery(document).ready(function(){
         download( listado_liquidacion );
     });
 
-    jQuery('[data-PdfXml]').on('click', function(e){
-        e.preventDefault();
-        var file = [];
-            file.push( jQuery(this).attr('data-PdfXml') );
-        download( file );
-    });
 });
-
-function download( archivos ){
-    jQuery.post(HOME+"procesos/generales/download_zip.php", {'fact_selected': archivos}, function(e){
-        e = JSON.parse(e);
-        if( e['estatus'] == "listo" ){
-            location.href = e['url'];
-        }
-    });
-}
 
 function filtrar(){
     var mes = jQuery('[name="filtro_mes"]').val();

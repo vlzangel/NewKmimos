@@ -10,7 +10,7 @@ global $wpdb;
 
 $factura_generada = 'none';
 $factura_datos = 'block';
-$pdf = 'javascript:;';
+$referencia = '';
 $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 
 // Orden
@@ -23,7 +23,7 @@ $informacion = 'Ocurrio un problema al tratar de procesar la solitiud';
 		if( isset($factura->id) && $factura->id > 0 ){
 			$factura_generada = 'block';
 			$factura_datos = 'none';
-			$pdf = $factura->urlPdf;		
+			$referencia = $factura->numeroReferencia;		
 		}else{
 
 			// Desglose de reserva
@@ -77,7 +77,7 @@ echo '</pre></div>';
 						if( $ack->AckEnlaceFiscal->estatusDocumento == 'aceptado' ){
 							$factura_generada = 'block';
 							$factura_datos = 'none';
-							$pdf = $ack->AckEnlaceFiscal->descargaArchivoPDF;
+							$referencia = $ack->AckEnlaceFiscal->numeroReferencia;
 						}
 					}
 				}else{
@@ -134,7 +134,7 @@ echo '</pre></div>';
 				<a href="'.get_home_url()."/consultar-factura/".$reserva_id.'" target="_blank" class="km-btn-primary">Consultar</a>
 			</div>
 			<div class="col-sm-6 col-md-3 btn-factura">
-				<a href="'.$pdf.'" id="btn_factura_pdf" class="km-btn-primary">Descargar PDF</a>
+				<a href="javascript:;" data-pdfxml="'."{$reserva_id}_{$referencia}".'" class="km-btn-primary">Descargar PDF y XML</a>
 			</div>
 			<div class="col-sm-6 col-md-3 btn-factura">
 				<a href="javascript:;" id="btn_facturar_sendmail" class="km-btn-primary">Enviar por Email</a>
