@@ -427,27 +427,25 @@
 				reserva.post_status AS reservaStatus,
 				orden.post_date AS fecha,
 				item.meta_value AS item_id,
-				duracion.meta_value AS duracion
+				duracion.meta_value AS duracion,
+				mascotas.meta_value AS mascotas
 			FROM 
 				wp_posts AS orden
 			INNER JOIN wp_posts AS reserva ON ( orden.ID = reserva.post_parent )
 			INNER JOIN wp_postmeta AS metas ON ( reserva.ID = metas.post_id )
+			INNER JOIN wp_postmeta AS mascotas ON ( reserva.ID = mascotas.post_id )
 			INNER JOIN wp_postmeta AS item ON ( reserva.ID = item.post_id AND item.meta_key = '_booking_order_item_id' )
 			INNER JOIN wp_woocommerce_order_itemmeta AS duracion ON ( duracion.order_item_id = item.meta_value )
 
 			WHERE 
-				orden.post_status = 'wc-confirmed' AND 
 				orden.post_type = 'shop_order' AND 
 				metas.meta_key = '_booking_cost' AND
+				mascotas.meta_key = '_booking_persons' AND
 				duracion.meta_key = 'Duración'
 		";
 
 		$pedidos = $wpdb->get_results( $sql );
 
-/*		echo "<pre>";
-			print_r($pedidos);
-		echo "</pre>";
-		*/
 		$ventas_hoy = 0;
 		$ventas_mes = 0;
 		$ventas_mes_anterior = 0;
@@ -465,7 +463,11 @@
 		$hace_12_meses = strtotime ( '-12 month' , time() );
 
 		foreach ($pedidos as $pedido) {
-			// $fin_reserva = strtotime( get_post_meta($pedido->reservaID, "_booking_end", true) );
+
+			$_mascotas = unserialize( $pedido->mascotas ); $mascotas = 0;
+			foreach ($_mascotas as $key => $value) {
+				$mascotas += $value;
+			}
 
 			$fecha = strtotime( $pedido->fecha );
 
@@ -477,7 +479,24 @@
 
 			$duracion = explode(" ", $pedido->duracion);
 
+			$yes = false;
+			switch ( $pedido->ordenStatus ) {
+				case 'wc-confirmed':
+					$yes = true;
+				break;
+				case 'wc-completed':
+					$yes = true;
+				break;
+				case 'wc-partially-paid':
+					$yes = true;
+				break;
+			}
 
+			if( $yes ){
+				$duracion[0] *= $mascotas;
+			}else{
+				$duracion[0] *= 0;
+			}
 
 			if( $dia_en_curso <= $fecha ){
 				$ventas_hoy += $duracion[0]+0;
