@@ -354,11 +354,12 @@
 		<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->
 
 		<!-- SECCIÓN 5 - VACACIONES -->
-		<a href="https://nutriheroes.com.mx/" target="_blank" class=" fondo_banner_nutriheroes">
-			<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/images/video.mp4" width="100%" height="100%"></video>
-			<div class="container banner_nutriheroes"></div>
+		<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros/" target="_blank" class=" fondo_banner_nutriheroes">
+			<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/videos/km-home/banner_cuidadores.mp4" width="100%" height="100%"></video>
+			<div class="container banner_nutriheroes" style="background-image: url();"></div>
 		</a>
 		<!-- FIN SECCIÓN 5 - VACACIONES -->
+
 		<!-- SECCIÓN 6 - BENEFICIOS -->
 		<div class="km-medios">
 			<div class="container">
