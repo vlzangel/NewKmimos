@@ -39,6 +39,7 @@ $HTML = '
                             <div class="km-inscripcion">
                                 <div class="input-group" style="width:100%!important;">
                                     <input type="hidden" name="section" value="home" class="form-control" placeholder="Ingresa tu correo">
+                                    <input type="hidden" id="wlabelSubscribeFooter" name="wlabelSubscribeFooter" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">
                                     <input type="text" name="mail" class="form-control" placeholder="Ingresa tu correo">
                                     <span class="input-group-btn">
                                         <button class="btn" type="submit">INSCRIBIRME AL BLOG</button>
@@ -206,7 +207,7 @@ $HTML = '
 
     // SubscribeSite
     if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
-        //include_once( 'partes/footer/SubscribeSite.php' );       
+        include_once( 'partes/footer/SubscribeSite.php' );       
     }
 
     echo comprimir_styles($HTML);

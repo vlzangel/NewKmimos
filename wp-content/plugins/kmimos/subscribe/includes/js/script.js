@@ -21,6 +21,7 @@ function form_subscribe(element){
     if( !obj_submit.hasClass("disabled") ){
         //obj_submit.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Guardando');
         obj_submit.addClass('disabled');
+
         jQuery.post(url, jQuery(element).serialize(),function(data){
             if(data['result']===true){
                 if(message.length>0){
@@ -38,12 +39,16 @@ function form_subscribe(element){
             }
             
             if( data['result']===true ){
+                var wlabel = jQuery("#wlabelSubscribe").val();
+                if( wlabel == "" ){
+                    wlabel = jQuery("#wlabelSubscribeFooter").val();
+                }
 
                 jQuery.post( 
                     "https://www.kmimos.com.mx/landing-volaris/suscribir_home.php", 
                     {
                         "email": jQuery("#mail_suscripcion").val(),
-                        "wlabel": jQuery("#wlabelSubscribe").val()
+                        "wlabel": wlabel
                     }, 
                     function( data ) {
                         console.log( data );
