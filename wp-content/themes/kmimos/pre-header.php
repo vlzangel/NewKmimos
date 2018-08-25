@@ -73,3 +73,7 @@
 			$is_iOS = true;
 		}
 	}
+
+	if( $_SESSION['wlabel'] == "quitar" ){
+		unset($_SESSION['wlabel']);
+	}

@@ -17,6 +17,9 @@ function form_subscribe(element){
 
     var obj_submit = subscribe.find('[type="submit"]');
     var text_submit = obj_submit.html();
+    var email = jQuery(element).find('[name="mail"]').val();
+
+    var section = jQuery(element).find('[name="section"]').val();
 
     if( !obj_submit.hasClass("disabled") ){
         //obj_submit.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Guardando');
@@ -44,20 +47,31 @@ function form_subscribe(element){
                     wlabel = jQuery("#wlabelSubscribeFooter").val();
                 }
 
+                var list = "newsletter_home";
+                if (wlabel == "petco") { list = "petco_popup"; }
+
+                switch( section ){
+                    case "landing-volaris":
+                        list = 'newsletter_volaris';
+                    break;
+                }
+
                 jQuery.post( 
-                    "https://www.kmimos.com.mx/landing-volaris/suscribir_home.php", 
+                    "https://www.kmimos.com.mx/campaing/suscribir.php", 
                     {
-                        "email": jQuery("#mail_suscripcion").val(),
-                        "wlabel": wlabel
+                        "email": email,
+                        "list": list
                     }, 
                     function( data ) {
                         console.log( data );
                         console.log("Suscripción enviadas");
                     }
                 );
-               
-                fbq ('track','CompleteRegistration');
-                fbq ('track','PopUpHome');
+                
+                if( fbq != undefined ){
+                    fbq ('track','CompleteRegistration');
+                    fbq ('track','PopUpHome');
+                }
             }
         });
     }
