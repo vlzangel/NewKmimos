@@ -804,7 +804,7 @@ ul.slider_logos_box li{
         color: white;
         text-align: center;
         padding: 50px 0px;
-        height: 600px;
+        height: 500px;
         position: relative;
         overflow: hidden;
         display: block;
@@ -867,8 +867,8 @@ ul.slider_logos_box li{
     @media (max-width: 800px){
 
         .fondo_banner_nutriheroes{
-            # background-image: url(../images/home/banner_2.gif) !important;
-            background: url('../images/home/banner_2.gif') center -40px / cover no-repeat !important;
+            #background: url('../images/home/banner_2.gif') center -40px / cover no-repeat !important;
+            background: url('../videos/km-home/km-video-mobile-cuidadores.gif') center -40px / cover no-repeat !important;
         }
 
         .fondo_banner_nutriheroes > video{
