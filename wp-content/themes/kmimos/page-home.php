@@ -46,7 +46,7 @@
 		    	</style>
 		    	<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros/" target="_blank" class=" fondo_banner_nutriheroes">
 					<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/videos/km-home/banner_cuidadores_2.mp4" width="100%" height="100%"></video>
-					<div class="container banner_nutriheroes" style="background-image: url();"></div>
+					<div class="container banner_nutriheroes" style="background-image: url(http://localhost/NewKmimos/wp-content/themes/kmimos/videos/km-home/boton.png);"></div>
 				</a>
 		    ';
 		}
