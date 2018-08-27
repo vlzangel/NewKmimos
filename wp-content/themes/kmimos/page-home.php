@@ -22,13 +22,29 @@
 			</a>
 	    ';
 
-	    if( $_SESSION["wlabel"] == "petco" || $_SESSION["wlabel"] == "volaris" ){
+	    // if( $_SESSION["wlabel"] == "petco" || $_SESSION["wlabel"] == "volaris" ){
 		    $BANNER_PUBLICIDAD = '
 		    	<style>
 			        .fondo_banner_nutriheroes{
 			            background-image: url('.getTema().'/videos/km-home/previo-video.png) !important;
 			            max-height: 800px;
 			        }
+
+					a.fondo_banner_nutriheroes {
+					    padding: 0px;
+					    height: auto;
+					}
+
+					.km-video-bgscreen {
+					    position: relative;
+					    top: 0px;
+					    left: 0px;
+					    width: 100%;
+					    height: auto;
+					    min-width: 100%;
+					    min-height: 100%;
+					    transform: none;
+					}
 				    @media (max-width: 800px){
 				        .fondo_banner_nutriheroes{
 				            background: url('.getTema().'/videos/km-home/km-video-mobile-cuidadores_3.gif) center -40px / cover no-repeat !important;
@@ -49,7 +65,7 @@
 					<div class="container banner_nutriheroes" style="background-image: url(http://localhost/NewKmimos/wp-content/themes/kmimos/videos/km-home/Boton.png);"></div>
 				</a>
 		    ';
-		}
+		// }
 
 	    $HTML = '
 	    <script type="text/javascript"> var URL_MUNICIPIOS ="'.getTema().'/procesos/generales/municipios.php"; </script>
