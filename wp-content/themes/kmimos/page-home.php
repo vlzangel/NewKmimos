@@ -26,40 +26,26 @@
 		    $BANNER_PUBLICIDAD = '
 		    	<style>
 			        .fondo_banner_nutriheroes{
-			            background: transparent !important;
-			            #max-height: 800px;
+			            background-image: url('.getTema().'/videos/km-home/previo-video.png) !important;
+			            max-height: 800px;
 			        }
 				    @media (max-width: 800px){
 				        .fondo_banner_nutriheroes{
-				            #background: url('.getTema().'/videos/km-home/km-video-mobile-cuidadores.gif) center -40px / cover no-repeat !important;
-				            #height: 600px !important;
+				            background: url('.getTema().'/videos/km-home/km-video-mobile-cuidadores_3.gif) center -40px / cover no-repeat !important;
+				            height: 600px !important;
 				        }
 
 				        .fondo_banner_nutriheroes > video{
-				            display: block !important;
-				            height: auto !important;
+				            display: none !important;
 				        }
 
 				        .banner_nutriheroes{
-				            #background-image: url('.getTema().'/videos/km-home/previo-video.png);
+				            background-image: url('.getTema().'/videos/km-home/previo-video.png);
 				        }
-
-				        .km-club {
-						    margin: 150px 0 50px;
-						}
 				    }
 		    	</style>
 		    	<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros/" target="_blank" class=" fondo_banner_nutriheroes">
-					<video 
-						loop 
-						muted 
-						autoplay 
-						class="km-video-bgscreen" 
-						src="'.getTema().'/videos/km-home/banner_cuidadores_2.mp4" 
-						width="100%" 
-						height="100%"
-						poster="'.getTema().'/videos/km-home/previo-video.png"
-					></video>
+					<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/videos/km-home/banner_cuidadores_2.mp4" width="100%" height="100%"></video>
 					<div class="container banner_nutriheroes" style="background-image: url();"></div>
 				</a>
 		    ';
