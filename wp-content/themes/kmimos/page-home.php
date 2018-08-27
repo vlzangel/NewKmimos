@@ -40,7 +40,7 @@
 				        }
 
 				        .banner_nutriheroes{
-				            background-image: url('.getTema().'/videos/km-home/Boton.png);
+				            background-image: url('.getTema().'/videos/km-home/Boton.png) !important;
 				        }
 				    }
 		    	</style>
