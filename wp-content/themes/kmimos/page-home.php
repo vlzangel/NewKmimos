@@ -41,10 +41,12 @@
 	    			background-size: contain;
 	    			background-position: center;
     			    background-repeat: no-repeat;
+
+    			    display: none;
 	    		}
 			    @media (max-width: 700px){
 		    		.banner_publicidad_container video { display: none; }
-		    		.banner_publicidad_container img { display: block; }
+		    		.banner_publicidad_container img, .banner_publicidad_container .boton_click { display: block; }
 		    		.km-club { margin: 150px 0 30px !important; }
 			    }
 	    	</style>
