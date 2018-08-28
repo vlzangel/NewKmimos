@@ -36,6 +36,19 @@
 	kmimos_update_user_meta($user_id, "nickname", utf8_decode($nickname));
 	kmimos_update_user_meta($user_id, "user_recibir_fotos", utf8_decode($user_recibir_fotos));
 
+	if( is_petsitters() ){
+		if(isset($banco) && isset($banco_cuenta) && isset($titular)){
+			if(!empty($banco) && !empty($banco_cuenta) && !empty($titular)){
+				$datos_banco = serialize([ 
+					'banco'=> utf8_decode($banco),
+					'cuenta'=> $banco_cuenta,
+					'titular'=> utf8_decode($titular)
+				]);
+				$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
+			}
+		}
+	}
+
 	$sql  = "UPDATE wp_users SET display_name = '{$nickname}' WHERE ID = {$user_id}; ";
 	if( isset($img_portada) ){
 		$sql .= $img_portada;

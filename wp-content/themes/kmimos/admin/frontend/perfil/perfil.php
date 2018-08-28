@@ -132,7 +132,30 @@
                     </select>
                 </label>
             </section>
-
+';
+if( is_petsitters() ){
+    $CONTENIDO .='
+                <div>
+                    <label for="banco" class="lbl-text">'.esc_html__('Banco','kmimos').':</label>
+                    <label class="lbl-ui">
+                        <input type="text" id="banco" name="banco" value="'.$userdata['banco'][0].'" data-valid="requerid" autocomplete="off" />
+                    </label>
+                </div>
+                <section>
+                    <label for="titular" class="lbl-text">'.esc_html__('Nombre del titular','kmimos').':</label>
+                    <label class="lbl-ui">
+                        <input type="text" id="titular" name="titular" value="'.$userdata['titular'][0].'" data-valid="requerid" autocomplete="off" />
+                    </label>
+                </section>
+                <section>
+                    <label for="banco_cuenta" class="lbl-text">'.esc_html__('No. de Cuenta bancaria','kmimos').':</label>
+                    <label class="lbl-ui">
+                        <input type="text" id="banco_cuenta" name="banco_cuenta" value="'.$userdata['banco_cuenta'][0].'" data-valid="requerid" autocomplete="off" />
+                    </label>
+                </section>
+    ';
+}
+$CONTENIDO .='
             <section class="container_full">
                 <label for="descr" class="lbl-text">'.esc_html__('Información biográfica','kmimos').':</label>
                 <label class="lbl-ui">
@@ -190,6 +213,8 @@
                     />
                 </label>
             </section>
+
+            
 
         </div>
     ';
