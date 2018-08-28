@@ -14,6 +14,8 @@
 	    $home = get_home_url();
 	    $user_id = get_current_user_id();
 
+	    $link = get_home_url()."/quiero-ser-cuidador-certificado-de-perros/";
+
 	    $BANNER_PUBLICIDAD = '
 	    	<style>
 	    		.banner_publicidad_container{
@@ -34,7 +36,7 @@
 	    			left: 0px;
 	    			width: 100%;
 	    			height: 100%;
-	    			z-index: 999999;
+	    			z-index: 1;
 
 	    			background-size: contain;
 	    			background-position: center;
