@@ -22,20 +22,19 @@
        	$wlabel = strtolower( get_user_meta($id_user, "_wlabel", true) );
        	$referido = strtolower( get_user_meta($id_user, "user_referred", true) );
 
-       	$banner = '';
-       	if( $wlabel == "petco" || $referido == "petco" ){
-       		$banner = '<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners/banner-conviertete-en-cuidador-petco.png" />';
-       	}
+       	$campaing = "https://www.kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/?utm_source=page&utm_medium=email&utm_campaign=quiero_ser_cuidador&utm_term=mascotas_cuidador";
+       	$banner = '<img style="width: 100%;  max-width: 500px; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners/banner-conviertete-en-cuidador-petco.png" />';
 
-		$campaing = "Kmimos-nutriheroes";
+       	if( $wlabel == "petco" || $referido == "petco" ){
+       		$campaing = "https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign=petco_quiero_ser_cuidador&utm_term=alimento_mascotas_nutricion";
+       	}
 
 		switch ($seccion) {
 			case 'solicitud':
 				if( $banner == "" ){ 
-					$banner = '<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners_nutriheroes/solicitudes/movil_3.png" />';
 					return '
 						<div style="margin-top: 20px;">
-							<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+							<a class="" href="'.$campaing.'" target="_blank">
 								'.$banner.'
 							</a>
 						</div>
@@ -52,10 +51,9 @@
 			break;
 			case 'reserva':
 				if( $banner == "" ){
-					$banner = '<img style="width: 100%; max-width: 500px;" src="'.getTema().'/images/banners_nutriheroes/reservas/movil_3.png" />';
 					return '
-						<div style="margin-top: 5px;">
-							<a class="" href="https://nutriheroes.com.mx/?utm_source=kmimos_reserva&utm_medium=email&utm_campaign='.$campaing.'&utm_term=alimento_mascotas_nutricion" target="_blank">
+						<div style="margin-top: 20px;">
+							<a class="" href="'.$campaing.'" target="_blank">
 								'.$banner.'
 							</a>
 						</div>
@@ -72,13 +70,12 @@
 			break;
 			case 'correo':
 				if( $banner == "" ){
-					$banner = '<img style="width: 100%;" src="'.getTema().'/images/banners_nutriheroes/correos/movil_3.png" />';
 					return '
-						<div style="margin: 25px 0px;">
-	                        <a href="https://nutriheroes.com.mx/?utm_source=page&utm_medium=email&utm_campaign=Kmimos-nutriheroes&utm_term=alimento_mascotas_nutricion" target="_blank">
-	                            '.$banner.'
-	                        </a>
-	                    </div>
+						<div style="margin-top: 20px;">
+							<a class="" href="'.$campaing.'" target="_blank">
+								'.$banner.'
+							</a>
+						</div>
 					';
 				}else{
 					return '

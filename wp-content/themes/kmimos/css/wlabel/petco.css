@@ -298,5 +298,17 @@ footer .btn {
 }
 
 a.fondo_banner_nutriheroes {
-    display: none;
+    padding: 0px;
+    height: auto;
+}
+
+.km-video-bgscreen {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    transform: none;
 }
