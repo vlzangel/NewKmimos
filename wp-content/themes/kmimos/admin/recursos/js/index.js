@@ -7,7 +7,6 @@ function init_modal(data){
             jQuery(".modal > div > div").html( HTML );
             jQuery(".modal").css("display", "block");
             jQuery("body").css("overflow", "hidden");
-
         },
         beforeSend:function(){},
         error:function(e){

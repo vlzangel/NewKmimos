@@ -10,7 +10,6 @@
 		<script src='".getTema()."/admin/recursos/js/jszip.min.js'></script>
 		<script src='".getTema()."/admin/recursos/js/index.js'></script>
 
-
 		<link rel='stylesheet' type='text/css' href='".getTema()."/admin/recursos/css/bootstrap.css'>
 		<link rel='stylesheet' type='text/css' href='".getTema()."/admin/recursos/css/dataTables.bootstrap4.min.css'>
 		<link rel='stylesheet' type='text/css' href='".getTema()."/admin/recursos/css/buttons.dataTables.min.css'>

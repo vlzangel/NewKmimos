@@ -23,6 +23,7 @@
                     'icon'          =>  '',
                 ),
 
+                // Menu Facturas
                 array(
                     'title'         =>  'Facturas',
                     'short-title'   =>  'Facturas',
@@ -41,10 +42,30 @@
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_facturas',
                     'icon'          =>  '',
-                )
+                ),
 
+                // Menu Pagos a Cuidador
+                array(
+                    'title'         =>  'Pagos a Cuidador',
+                    'short-title'   =>  'Pagos a Cuidador',
+                    'parent'        =>  '',
+                    'slug'          =>  'reporte_autorizacion_pagos',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_autorizacion_pagos',
+                    'icon'          =>  '',
+                    'position'      =>  4,
+                ),
 
-
+                array(
+                    'title'         =>  __('Autorizaciones'),
+                    'short-title'   =>  __('Autorizaciones'),
+                    'parent'        =>  'reporte_autorizacion_pagos',
+                    'slug'          =>  'reporte_autorizacion_pagos',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_autorizacion_pagos',
+                    'icon'          =>  '',
+                ),
+ 
             );
 
             $user_especiales = get_option( "especiales" );
@@ -102,6 +123,16 @@
                 'slug'          =>  'reporte_otro',
                 'access'        =>  'manage_options',
                 'page'          =>  'reporte_otro',
+                'icon'          =>  '',
+            );
+
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Nuevos'),
+                'short-title'   =>  __('Nuevos'),
+                'parent'        =>  'reporte_autorizacion_pagos',
+                'slug'          =>  'reporte_pagos_cuidador',
+                'access'        =>  'manage_options',
+                'page'          =>  'reporte_pagos_cuidador',
                 'icon'          =>  '',
             );
 
@@ -184,4 +215,18 @@
             include_once(dirname(__DIR__).'/backend/facturas_configuracion/reporte_configuracion.php');
         }
     }
-?> 
+
+    if(!function_exists('reporte_pagos_cuidador')){
+        function reporte_pagos_cuidador(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/pagos/reporte_pagos.php');
+        }
+    }
+    if(!function_exists('reporte_autorizacion_pagos')){
+        function reporte_autorizacion_pagos(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/pagos_autorizacion/reporte_pagos_autorizacion.php');
+        }
+    }
