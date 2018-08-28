@@ -61,12 +61,12 @@
                     $estatus = 'Negado';
 
             // Procesar pago            
-                }else if( isset($counter['autorizado']) && $counter['autorizado'] >= 1 ){
+                }else if( isset($counter['autorizado']) && $counter['autorizado'] >= 2 ){
                  
                 // Parametros solicitud
                     $payoutData = array(
                         'method' => 'bank_account',
-                        'amount' => 99999999.99, //number_format($solicitud->total, 2, '.', ''),
+                        'amount' => number_format($solicitud->total, 2, '.', ''),
                         'name' => $solicitud->titular,
                         'bank_account' => array(
                             'clabe' => $solicitud->cuenta,
