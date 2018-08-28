@@ -14,58 +14,51 @@
 	    $home = get_home_url();
 	    $user_id = get_current_user_id();
 
-	    
 	    $BANNER_PUBLICIDAD = '
-	    	<a href="https://nutriheroes.com.mx/" target="_blank" class=" fondo_banner_nutriheroes">
-				<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/images/video.mp4" width="100%" height="100%"></video>
-				<div class="container banner_nutriheroes"></div>
+	    	<style>
+	    		.banner_publicidad_container{
+	    			position: relative;
+	    			display: block;
+	    		}
+	    		.banner_publicidad_container video,
+	    		.banner_publicidad_container img {
+	    			width: 100%;
+	    			height: auto;
+	    		}
+	    		.banner_publicidad_container img {
+	    			display: none;
+	    		}
+	    		.banner_publicidad_container .boton_click {
+	    			position: absolute;
+	    			top: 0px;
+	    			left: 0px;
+	    			width: 100%;
+	    			height: 100%;
+	    			z-index: 999999;
+
+	    			background-size: contain;
+	    			background-position: center;
+    			    background-repeat: no-repeat;
+	    		}
+			    @media (max-width: 700px){
+		    		.banner_publicidad_container video { display: none; }
+		    		.banner_publicidad_container img { display: block; }
+		    		.km-club { margin: 150px 0 30px !important; }
+			    }
+	    	</style>
+	    	<a href="'.$link.'" target="_blank" class=" banner_publicidad_container">
+				<video 
+					loop 
+					muted 
+					autoplay 
+					width="100%"
+					src="'.getTema().'/videos/home/publicidad_ser_cuidador/pc.mp4" 
+					poster="'.getTema().'/videos/home/publicidad_ser_cuidador/preview.png"
+				></video>
+				<img src="'.getTema().'/videos/home/publicidad_ser_cuidador/movil.gif" />
+				<div class="boton_click" style="background-image: url('.getTema().'/videos/home/publicidad_ser_cuidador/boton.png);"></div>
 			</a>
 	    ';
-
-	    // if( $_SESSION["wlabel"] == "petco" || $_SESSION["wlabel"] == "volaris" ){
-		    $BANNER_PUBLICIDAD = '
-		    	<style>
-			        .fondo_banner_nutriheroes{
-			            background-image: url('.getTema().'/videos/km-home/previo-video.png) !important;
-			            max-height: 800px;
-			        }
-
-					a.fondo_banner_nutriheroes {
-					    padding: 0px;
-					    height: auto;
-					}
-
-					.km-video-bgscreen {
-					    position: relative;
-					    top: 0px;
-					    left: 0px;
-					    width: 100%;
-					    height: auto;
-					    min-width: 100%;
-					    min-height: 100%;
-					    transform: none;
-					}
-				    @media (max-width: 800px){
-				        .fondo_banner_nutriheroes{
-				            background: url('.getTema().'/videos/km-home/km-video-mobile-cuidadores_3.gif) center -40px / cover no-repeat !important;
-				            height: 600px !important;
-				        }
-
-				        .fondo_banner_nutriheroes > video{
-				            display: none !important;
-				        }
-
-				        .banner_nutriheroes{
-				            background-image: url('.getTema().'/videos/km-home/Boton.png) !important;
-				        }
-				    }
-		    	</style>
-		    	<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros/" target="_blank" class=" fondo_banner_nutriheroes">
-					<video loop muted autoplay class="km-video-bgscreen" src="'.getTema().'/videos/km-home/banner_cuidadores_2.mp4" width="100%" height="100%"></video>
-					<div class="container banner_nutriheroes" style="background-image: url(http://localhost/NewKmimos/wp-content/themes/kmimos/videos/km-home/Boton.png);"></div>
-				</a>
-		    ';
-		// }
 
 	    $HTML = '
 	    <script type="text/javascript"> var URL_MUNICIPIOS ="'.getTema().'/procesos/generales/municipios.php"; </script>
