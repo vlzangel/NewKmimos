@@ -134,8 +134,6 @@
 
 		$mensaje_admin = get_email_html($mensaje_admin, false, true, null, false);
 
-        $mensaje_admin = str_replace(get_home_url(), "http://kmimosmx.sytes.net/QA2/", $mensaje_admin);
-
         if( isset($NO_ENVIAR) ){
             echo $mensaje_admin;
         }else{
