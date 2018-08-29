@@ -23,7 +23,12 @@
        	$referido = strtolower( get_user_meta($id_user, "user_referred", true) );
 
        	$campaing = "https://www.kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/?utm_source=page&utm_medium=email&utm_campaign=quiero_ser_cuidador&utm_term=mascotas_cuidador";
-       	$banner = '<img style="width: 100%;  max-width: 500px; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.getTema().'/images/banners/banner-conviertete-en-cuidador-petco.png" />';
+
+       	$url_banner = getTema().'/images/banners/banner-conviertete-en-cuidador-petco.png';
+
+       	$banner = '<img style="width: 100%;  max-width: 500px; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.$url_banner.'" />';
+
+       	$banner_mail = '<img style="width: 100%; border-radius: 0px 0px 8px 8px; padding: 0px;" src="'.$url_banner.'" />';
 
        	if( $wlabel == "petco" || $referido == "petco" ){
        		$campaing = "https://nutriheroes.com.mx/?utm_source=kmimos_conocer&utm_medium=email&utm_campaign=petco_quiero_ser_cuidador&utm_term=alimento_mascotas_nutricion";
@@ -73,7 +78,7 @@
 					return '
 						<div style="margin-top: 20px;">
 							<a class="" href="'.$campaing.'" target="_blank">
-								'.$banner.'
+								'.$banner_mail.'
 							</a>
 						</div>
 					';
@@ -81,7 +86,7 @@
 					return '
 						<div style="margin: 25px 0px;">
 	                        <a href="https://kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/" target="_blank">
-	                            '.$banner.'
+	                            '.$banner_mail.'
 	                        </a>
 	                    </div>
 					';

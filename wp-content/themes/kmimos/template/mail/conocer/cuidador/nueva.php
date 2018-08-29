@@ -1,5 +1,5 @@
 <div style='width: 100%;'>
-	<img src='[URL_IMGS]/new/nueva/[HEADER]/header.png' style='width: 100%;' >
+	<img src='[URL_IMGS]/new/nueva/[HEADER]/header.png' style='width: 100%;' />
 </div>
 
 <div style='font-family: Verdana; width: 100%'>
@@ -66,46 +66,45 @@
 		<table width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="80" style="vertical-align: top; text-align: left;">
-					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;' >
+					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;'>
 				</td>
 				<td style="vertical-align: top;">
-					<strong style="display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
+					<strong  style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
 					<table>
-						<tr>
-							<td style="padding: 5px 10px 5px 0px;">
-								<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;' >
-							</td>
-							<td>
-								[fecha]
-							</td>
-						</tr>
-						<tr>
-							<td style="padding: 5px 10px 5px 0px;">
-								<img src='[URL_IMGS]/icosNews/min_clock.png' style='text-align: left; width: 80%;' >
-							</td>
-							<td>
-								[hora] horas
-							</td>
-						</tr>
-						<tr>
-							<td style="padding: 5px 10px 5px 0px;">
-								<img src='[URL_IMGS]/icosNews/Icon-phonebook.png' style='text-align: left; width: 80%;' >
-							</td>
-							<td>
-								[lugar]
-							</td>
-						</tr>
+						<tbody style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left;">
+							<tr>
+								<td style="padding: 5px 10px 5px 0px;">
+									<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;'>
+								</td>
+								<td>
+									[fecha]
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 5px 10px 5px 0px;">
+									<img src='[URL_IMGS]/icosNews/min_clock.png' style='text-align: left; width: 80%;'>
+								</td>
+								<td>
+									[hora] horas
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 5px 10px 5px 0px;">
+									<img src='[URL_IMGS]/icosNews/Icon-phonebook.png' style='text-align: left; width: 80%;'>
+								</td>
+								<td>
+									[lugar]
+								</td>
+							</tr>
+						</tbody>
 					</table>
 
 				</td>
 			</tr>
 		</table>
 
-		<div style="padding-top: 50px; text-align: left;">
-			<span style="
-				font-weight: 600;
-				color: #940d99;
-			">POSIBLE FECHA DE ESTADÍA:</span> Del [desde] al [hasta] del [anio]
+		<div style="padding-top: 35px; text-align: left; font-size: 15px;">
+			<strong style="color: #940d99; font-family: Verdana;">POSIBLE FECHA DE ESTADÍA:</strong> Del <strong>[desde]</strong> al <strong>[hasta]</strong> del [anio]
 		</div>
 
 	</div>
@@ -123,6 +122,7 @@
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
+			border-radius: 2px;
 		'>
 			¡ACEPTAR!
 		</a>
@@ -139,6 +139,7 @@
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
+			border-radius: 2px;
 		'>
 			AHORA NO PUEDO, RECHAZAR
 		</a>
@@ -163,7 +164,7 @@
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
-	    <table cellpadding="0" cellspacing="0" style='width: 100%;'>
+	    <table cellpadding="0" cellspacing="0" style='width: 100%; font-family: Verdana; font-size: 15px;'>
 	        <tr style='
 	            color: #940d99; 
 	            line-height: 1.07; 
@@ -195,22 +196,22 @@
 
 	</div>
 
-	<div style='
-	    width: 100%
-	    font-size: 17px; 
+	<div style="
+	    font-size: 17px;
 	    font-weight: 600;
-	    line-height: 1.07; 
-	    letter-spacing: 0.3px; 
-	    color: #FFF; 
+	    line-height: 1.07;
+	    letter-spacing: 0.3px;
+	    color: #FFF;
 	    padding: 15px 30px;
 	    text-align: center;
 	    background-color: #940d99;
-	    margin-bottom: 30px;
-	'>
+	    margin: 0px 30px 30px;
+	    border-radius: 2px;
+	">
 	    IMPORTANTE - SIGUIENTES PASOS
 	</div>
 
-	<table width="100%" cellpadding="0" cellspacing="0">
+	<table width="100%" cellpadding="0" cellspacing="0" style="font-family: Verdana; font-size: 17px;">
 		<tr>
 			<td width="100" style="padding: 15px 0px; vertical-align: middle; text-align: center;">
 				<img src='[URL_IMGS]/icosNews/Icon-Calling-out_2.png' style='height: 50px; width: 50px;' >
@@ -224,7 +225,7 @@
 				<img src='[URL_IMGS]/icosNews/Icon-Hands_2.png' style='height: 50px; width: 50px;' >
 			</td>
 			<td style="padding: 10px 0px; vertical-align: middle; text-align: justify;">
-				<strong style='color: #570089;'>Preséntate</strong> con el cliente cordial y  formalmente.<br> 
+				Preséntate con el cliente cordial y  formalmente.<br> 
 				<strong>Tip: Cuida tu imagen</strong> (Vestimenta casual)
 			</td>
 		</tr>
@@ -233,7 +234,7 @@
 				<img src='[URL_IMGS]/icosNews/Icon-Photo_2.png' style='height: 50px; width: 50px;' >
 			</td>
 			<td style="padding: 10px 0px; vertical-align: middle; text-align: justify;">
-				En caso de no conocerse en persona, <strong>pide que te envíen fotos del perro</strong> que llegará a tu casa para <strong style='color: #570089;'>confirmar</strong> que sea tal cual lo describió su dueño. 
+				En caso de no conocerse en persona, <strong>pide que te envíen fotos del perro</strong> que llegará a tu casa para confirmar que sea tal cual lo describió su dueño. 
 			</td>
 		</tr>
 		<tr>
@@ -241,7 +242,7 @@
 				<img src='[URL_IMGS]/icosNews/Icon-Vaccination-card_2.png' style='height: 50px; width: 50px;' >
 			</td>
 			<td style="padding: 10px 0px; vertical-align: middle; text-align: justify;">
-				<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y <strong style='color: #570089;'>verifica</strong> que sus <strong>vacunas</strong> estén al día.</div>
+				<div style='margin-bottom: 9px;'><strong>Solicita</strong> que te compartan la cartilla de vacunación del perrito y verifica que sus <strong>vacunas</strong> estén al día.</div>
 				<div><strong>Tip: Sin cartilla no se harán efectivos</strong> los beneficios veterinarios de Kmimos.</div>
 			</td>
 		</tr>
@@ -250,7 +251,7 @@
 				<img src='[URL_IMGS]/icosNews/Icon-feel-the-puppy.png' style='height: 50px; width: 50px;' >
 			</td>
 			<td style="padding: 10px 0px; vertical-align: middle; text-align: justify;">
-				<strong>Revisa al perrito</strong> y <strong style='color: #570089;'>detecta</strong> si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
+				<strong>Revisa al perrito</strong> y detecta si hubiese algún rasguño o golpe que pueda traer antes recibirlo, si detectas algo coméntale cordialmente al cliente y envíanos fotos vía whatsapp o correo.
 			</td>
 		</tr>
 	</table>
@@ -268,18 +269,18 @@
 	En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 3137 4829, Whatsapp +52 (33) 1261 4186, o al correo contactomex@kmimos.la
 </div>
 
-<div style='
-    width: 100%
-    font-size: 17px; 
+<div style="
+    font-size: 17px;
     font-weight: 600;
-    line-height: 1.07; 
-    letter-spacing: 0.3px; 
-    color: #FFF; 
+    line-height: 1.07;
+    letter-spacing: 0.3px;
+    color: #FFF;
     padding: 15px 30px;
     text-align: center;
-    background-color: #007bd3;
-    margin-bottom: 30px;
-'>
+	background-color: #007bd3;
+    margin: 0px 0px 30px;
+    border-radius: 2px;
+">
     PRESÉNTATE Y CONOCE A TU KMIAMIGO
 </div>
 

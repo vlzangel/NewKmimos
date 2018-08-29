@@ -30,7 +30,7 @@
             color: #000000; 
             text-align: left; 
         '>
-           	Recibimos una solicitud de <strong>[name_cliente]</strong> para conocer a <strong>[name_cuidador]</strong>
+           	Recibimos una solicitud de <strong style="color: #940d99;">[name_cliente]</strong> para conocer a <strong>[name_cuidador]</strong>
         </div>
 
     </div>
@@ -82,46 +82,45 @@
 		<table width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="80" style="vertical-align: top; text-align: left;">
-					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;' >
+					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;'>
 				</td>
 				<td style="vertical-align: top;">
-					<strong style="display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
+					<strong  style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
 					<table>
-						<tr>
-							<td style="padding: 5px 10px 5px 0px;">
-								<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;' >
-							</td>
-							<td>
-								[fecha]
-							</td>
-						</tr>
-						<tr>
-							<td style="padding: 5px 10px 5px 0px;">
-								<img src='[URL_IMGS]/icosNews/min_clock.png' style='text-align: left; width: 80%;' >
-							</td>
-							<td>
-								[hora] horas
-							</td>
-						</tr>
-						<tr>
-							<td style="padding: 5px 10px 5px 0px;">
-								<img src='[URL_IMGS]/icosNews/Icon-phonebook.png' style='text-align: left; width: 80%;' >
-							</td>
-							<td>
-								[lugar]
-							</td>
-						</tr>
+						<tbody style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left;">
+							<tr>
+								<td style="padding: 5px 10px 5px 0px;">
+									<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;'>
+								</td>
+								<td>
+									[fecha]
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 5px 10px 5px 0px;">
+									<img src='[URL_IMGS]/icosNews/min_clock.png' style='text-align: left; width: 80%;'>
+								</td>
+								<td>
+									[hora] horas
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 5px 10px 5px 0px;">
+									<img src='[URL_IMGS]/icosNews/Icon-phonebook.png' style='text-align: left; width: 80%;'>
+								</td>
+								<td>
+									[lugar]
+								</td>
+							</tr>
+						</tbody>
 					</table>
 
 				</td>
 			</tr>
 		</table>
 
-		<div style="padding-top: 50px; text-align: left;">
-			<span style="
-				font-weight: 600;
-				color: #940d99;
-			">POSIBLE FECHA DE ESTADÍA:</span> Del [desde] al [hasta] del [anio]
+		<div style="padding-top: 35px; text-align: left; font-size: 15px;">
+			<strong style="color: #940d99; font-family: Verdana;">POSIBLE FECHA DE ESTADÍA:</strong> Del <strong>[desde]</strong> al <strong>[hasta]</strong> del [anio]
 		</div>
 
 	</div>
@@ -180,32 +179,41 @@
 	    </div>
 
 	    <table cellpadding="0" cellspacing="0" style='width: 100%;'>
-	        <tr style='
-	            color: #940d99; 
-	            line-height: 1.07; 
-	            letter-spacing: 0.3px; 
-	            font-weight: 600;
-	            font-size: 14px;
-	            text-align: center;
-	        '>
-	            <td style='padding: 7px; width: 20px; border-bottom: solid 1px #940d99;'>
-	                Nombre
-	            </td>
-	            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-	                Raza
-	            </td>
-	            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-	                Edad
-	            </td>
-	            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-	                Tamaño
-	            </td>
-	            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-	                Comportamiento
-	            </td>
-	        </tr>
+	    	<tbody style="
+	    		font-family: Verdana;
+			    font-size: 17px;
+			    line-height: 1.2;
+			    letter-spacing: 0.3px;
+			    color: #000000;
+	    	">
+		        <tr style='
+		            color: #940d99; 
+		            line-height: 1.07; 
+		            letter-spacing: 0.3px; 
+		            font-weight: 600;
+		            font-size: 14px;
+		            text-align: center;
+		        '>
+		            <td style='padding: 7px; width: 20px; border-bottom: solid 1px #940d99;'>
+		                Nombre
+		            </td>
+		            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
+		                Raza
+		            </td>
+		            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
+		                Edad
+		            </td>
+		            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
+		                Tamaño
+		            </td>
+		            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
+		                Comportamiento
+		            </td>
+		        </tr>
 
-	        [MASCOTAS]
+		        [MASCOTAS]
+
+		    </tbody>
 
 	    </table>
 

@@ -65,64 +65,63 @@
 		<table width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="80" style="vertical-align: top; text-align: left;">
-					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;' >
+					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;'>
 				</td>
 				<td style="vertical-align: top;">
-					<strong style="display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
+					<strong  style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
 					<table>
-						<tr>
-							<td style="padding: 5px 10px 5px 0px;">
-								<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;' >
-							</td>
-							<td>
-								[fecha]
-							</td>
-						</tr>
-						<tr>
-							<td style="padding: 5px 10px 5px 0px;">
-								<img src='[URL_IMGS]/icosNews/min_clock.png' style='text-align: left; width: 80%;' >
-							</td>
-							<td>
-								[hora] horas
-							</td>
-						</tr>
-						<tr>
-							<td style="padding: 5px 10px 5px 0px;">
-								<img src='[URL_IMGS]/icosNews/Icon-phonebook.png' style='text-align: left; width: 80%;' >
-							</td>
-							<td>
-								[lugar]
-							</td>
-						</tr>
+						<tbody style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left;">
+							<tr>
+								<td style="padding: 5px 10px 5px 0px;">
+									<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;'>
+								</td>
+								<td>
+									[fecha]
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 5px 10px 5px 0px;">
+									<img src='[URL_IMGS]/icosNews/min_clock.png' style='text-align: left; width: 80%;'>
+								</td>
+								<td>
+									[hora] horas
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 5px 10px 5px 0px;">
+									<img src='[URL_IMGS]/icosNews/Icon-phonebook.png' style='text-align: left; width: 80%;'>
+								</td>
+								<td>
+									[lugar]
+								</td>
+							</tr>
+						</tbody>
 					</table>
 
 				</td>
 			</tr>
 		</table>
 
-		<div style="padding-top: 50px; text-align: left;">
-			<span style="
-				font-weight: 600;
-				color: #940d99;
-			">POSIBLE FECHA DE ESTADÍA:</span> Del [desde] al [hasta] del [anio]
+		<div style="padding: 35px 0px 50px; text-align: left; font-size: 15px;">
+			<strong style="color: #940d99; font-family: Verdana;">POSIBLE FECHA DE ESTADÍA:</strong> Del <strong>[desde]</strong> al <strong>[hasta]</strong> del [anio]
 		</div>
 
 		<div style='
-		    width: 100%
-		    font-size: 17px; 
+		    font-size: 17px;
 		    font-weight: 600;
-		    line-height: 1.07; 
-		    letter-spacing: 0.3px; 
-		    color: #FFF; 
+		    line-height: 1.07;
+		    letter-spacing: 0.3px;
+		    color: #FFF;
 		    padding: 15px 30px;
 		    text-align: center;
 		    background-color: #940d99;
-		    margin: 30px 0px;
+		    margin: 0px 30px 30px;
+	    	border-radius: 2px;
 		'>
 		    IMPORTANTE - SIGUIENTES PASOS
 		</div>
 
-		<table width="100%" cellpadding="0" cellspacing="0">
+		<table width="100%" cellpadding="0" cellspacing="0" style="font-family: Verdana; font-size: 17px;">
 			<tr>
 				<td width="100" style="padding: 15px 0px; vertical-align: middle; text-align: center;">
 					<img src='[URL_IMGS]/icosNews/Icon-Incoming_call_2.png' style='height: 50px; width: 50px;' >

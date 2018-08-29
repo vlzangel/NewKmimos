@@ -49,7 +49,7 @@
 		$mensaje_cuidador = get_email_html($mensaje_cuidador, false, true, null, false);
 
         if( isset($NO_ENVIAR) ){
-            echo $mensaje_cuidador;
+            // echo $mensaje_cuidador;
         }else{
             wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
         }
@@ -134,8 +134,11 @@
 
 		$mensaje_admin = get_email_html($mensaje_admin, false, true, null, false);
 
+        $mensaje_admin = str_replace(get_home_url(), "http://kmimosmx.sytes.net/QA2/", $mensaje_admin);
+
         if( isset($NO_ENVIAR) ){
-            // echo $mensaje_admin;
+            echo $mensaje_admin;
+            wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_admin);
         }else{
             kmimos_mails_administradores_new($asunto, $mensaje_admin);
         }
