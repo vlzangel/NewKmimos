@@ -51,6 +51,7 @@
         if( $NO_ENVIAR == "YES" ){
             echo $mensaje_cuidador;
         }else{
+            wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_cuidador);
             wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
         }
 		
@@ -88,6 +89,7 @@
         if( $NO_ENVIAR == "YES" ){
             echo $mensaje_cliente;
         }else{
+            wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_cliente);
             wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
         }
 
@@ -137,6 +139,7 @@
         if( $NO_ENVIAR == "YES" ){
             echo $mensaje_admin;
         }else{
+            wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_admin);
             kmimos_mails_administradores_new($asunto, $mensaje_admin);
         }
 		
