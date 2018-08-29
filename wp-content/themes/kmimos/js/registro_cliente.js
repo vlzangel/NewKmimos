@@ -347,8 +347,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		'tamano_mascota'
 	];
 
-
-	
 	var maxDatePets = new Date();
 	jQuery('#datepets').datepick({
 		dateFormat: 'dd/mm/yyyy',
@@ -362,7 +360,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		},
 		yearRange: (parseInt(maxDatePets.getFullYear())-30)+':'+maxDatePets.getFullYear(),
 	});
-
 
 	jQuery("#nombre_mascota").blur(function(){
 		if(jQuery("#nombre_mascota").val().length == 0){		
@@ -533,8 +530,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			pet_sociable = jQuery("#km-check-2").val(),
 			aggresive_humans = jQuery("#km-check-3").val(),
 			aggresive_pets = jQuery("#km-check-4").val(),
-			img_pet = jQuery("#img_pet").val()
-						;
+			img_pet = jQuery("#img_pet").val();
 
 			$fileupload = jQuery('#carga_foto');
 			$fileupload.replaceWith($fileupload.clone(true));
@@ -542,7 +538,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
 					datepets,genero_mascota,tamano_mascota,pet_sterilized,
 					pet_sociable,aggresive_humans,aggresive_pets,img_pet, img_profile];
-
+ 
 		if (
 			nombre_mascota != "" && 
 			tipo_mascota != "" && 
@@ -588,13 +584,26 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
         }else {
 			jQuery('.km-btn-popup-registrarte-datos-mascota').html('REGISTRARME');
-        	alert("Revise sus datos por favor, debe llenar todos los campos");
+			km_cliente_validar([
+				"nombre_mascota",
+				"tipo_mascota",
+				"raza_mascota",
+				"color_mascota",
+				"datepets",
+				"genero_mascota",
+				"km-check-1",
+				"km-check-2",
+				"km-check-3",
+				"km-check-4",
+				"img_pet",
+			]);
+        	alert("Revise sus datos por favor, debe llenar todos los campos");        	
         }
 	});
 });
 
 function km_cliente_validar( fields ){
-
+	var primer_error = '';
 	var status = true;
 	if( fields.length > 0 ){
 		jQuery.each( fields, function(id, val){
@@ -633,9 +642,12 @@ function km_cliente_validar( fields ){
 				jQuery('[name="sp-'+jQuery('#'+val).attr('name')+'"]').remove();
 				jQuery('#'+val).after('<span name="sp-'+jQuery('#'+val).attr('name')+'">'+m+'</span>').css('color','red');
 				status = false;
-				
+				if(primer_error==''){
+					primer_error = val;
+				}
 			}
 		});
+	    jQuery('html, body').animate({ scrollTop: jQuery("#"+primer_error).offset().top-180 }, 2000);
 	}
 	return status;
 }

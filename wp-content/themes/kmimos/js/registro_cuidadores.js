@@ -530,16 +530,19 @@ function mensaje( label, msg='', reset=false ){
 function km_cuidador_validar( fields, error_field={} ){
 
  	var status = true;
+ 	var primerError = '';
 	if( fields.length > 0 ){
 		jQuery.each( fields, function(id, val){
 			var m = '';
 			/*validar vacio*/
 			if( jQuery('[name="'+val+'"]').val() == '' ){
 				m = 'Este campo no puede estar vacio';
+				primerError = (!empty(primerError))? primerError : '[name="'+val+'"]' ;
 			}
 			/*validar longitud*/
 			if( m == ''){
 				m = rc_validar_longitud( val );
+				primerError = (!empty(primerError))? primerError : '[name="'+val+'"]' ;
 			}
 
 			if( m == ''){
@@ -548,10 +551,12 @@ function km_cuidador_validar( fields, error_field={} ){
 				mensaje(val, m);
 				status = false;
   				jQuery('#'+error_field[val]).css('border', '1px solid red');
+			    jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-180 }, 2000); 
 			}
 
 		});
 	}
+	
 	return status;
 }
 

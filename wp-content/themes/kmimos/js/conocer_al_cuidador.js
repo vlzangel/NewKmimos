@@ -75,6 +75,7 @@ function error(id, error, transparente = false){
 
 function conocer_es_valido(){
     var hay_error = true;
+    var primer_error='';
 
     var campos = [
         "meeting_when",
@@ -88,6 +89,7 @@ function conocer_es_valido(){
         if( jQuery("#"+item).val() == "" ){
             error(item, true);
             hay_error = false;
+            primer_error = (primer_error=='')? item : primer_error ;
         }else{
             error(item, false);
         }
@@ -100,6 +102,9 @@ function conocer_es_valido(){
         error("pet_conoce", false, true);
     }
 
+    if( !hay_error ){
+        jQuery('html, body').animate({ scrollTop: jQuery("#"+primer_error).offset().top-180 }, 2000);
+    }
     return hay_error;
 }
 
