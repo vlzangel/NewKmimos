@@ -35,7 +35,7 @@
     $mensaje_cliente = get_email_html($mensaje_cliente, false, false, $cliente, false );
 
     if( isset($NO_ENVIAR) ){
-        // echo $mensaje_cliente;
+        echo $mensaje_cliente;
         /*try{   
             email_log( json_encode(['result'=>'NO_ENVIAR']) );        
         }catch(Exception $e){}*/
@@ -63,7 +63,7 @@
     $mensaje_cuidador = get_email_html($mensaje_cuidador, false, false, $cliente, false );  
 
     if( isset($NO_ENVIAR) ){
-        // echo $mensaje_cuidador;
+        echo $mensaje_cuidador;
         /*try{   
             email_log( json_encode(['result'=>'NO_ENVIAR']) );        
         }catch(Exception $e){}*/
@@ -94,8 +94,6 @@
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_admin;
-
-        wp_mail( "a.veloz@kmimos.la", "Confirmación de Solicitud para Conocer a ".$cuidador_name, $mensaje_admin);
     }else{
         kmimos_mails_administradores_new("Confirmación de Solicitud para Conocer a ".$cuidador_name, $mensaje_admin);
     } 
