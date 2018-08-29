@@ -6,6 +6,7 @@
 
 	include(realpath(__DIR__."/../../../../../vlz_config.php"));
 	include(realpath(__DIR__."/../funciones/db.php"));
+	include(realpath(__DIR__."/../funciones/cambiar_char_especiales.php"));
 
 	if( isset($_GET["flash"]) ){
 		//$_POST = unserialize($_SESSION['busqueda']);
@@ -257,7 +258,16 @@
     /* Filtro nombre  */
 	    if( isset($nombre) ){ 
 	    	if( $nombre != "" ){ 
-	    		$condiciones .= " AND post_cuidador.post_title LIKE '%".$nombre."%' "; 
+	    		$query_by_nombre = " post_cuidador.post_title LIKE '%".$nombre."%' "; 
+
+	    		// Eliminar caracteres especiales
+	    		$nombre_espacial = scanear_string( $nombre );
+		    	if( $nombre_espacial != "" ){ 
+		    		$query_by_nombre .= " OR post_cuidador.post_title LIKE '%".$nombre_espacial."%' "; 
+	    		} 
+
+	    		// Agregar a condicion
+	    		$condiciones .= " AND ".$query_by_nombre;
 	    	} 
 	   	}
     /* Fin Filtro nombre */
@@ -381,9 +391,11 @@
 	        activo = '1' and cuidadores.hospedaje_desde >= 1 {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION} {$FILTRO_ESPECIA}
 	    ORDER BY {$orderby}";
 
-		/*echo "<pre>";
+/*
+		echo "<pre>";
 			print_r( $sql );
-		echo "</pre>";*/
+		echo "</pre>";
+*/
 		// print_r( $FILTRO_ESPECIA );
 
     /* FIN SQL cuidadores */
