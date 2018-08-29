@@ -27,12 +27,21 @@ jQuery(document).ready(function(){
         }
     );
 
+    jQuery(".icon_left").click(function(e){
+        jQuery("#ubicacion_txt").focus();
+    });
+
     jQuery("#ubicacion_txt").on("keyup", function ( e ) {
         buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
     });
 
     jQuery("#ubicacion_txt").on("focus", function ( e ) { 
+        jQuery(this).attr("placeholder", "Escribe aquí el municipio");
         jQuery("#ubicacion_list").addClass("ubicacion_list_hover");    
+    });
+
+    jQuery("#ubicacion_txt").on("blur", function ( e ) { 
+        jQuery(this).attr("placeholder", "UBICACIÓN, ESTADO, MUNICIPIO");
     });
 
     jQuery("#ubicacion_txt").on("change", function ( e ) {    
