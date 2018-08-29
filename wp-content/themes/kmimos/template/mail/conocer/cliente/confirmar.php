@@ -58,22 +58,22 @@
 
 	<div style="padding: 30px; text-align: center;">
 
-		<div style='
-		    width: 100%
-		    font-size: 17px; 
+		<div style="
+		    font-size: 17px;
 		    font-weight: 600;
-		    line-height: 1.07; 
-		    letter-spacing: 0.3px; 
-		    color: #FFF; 
+		    line-height: 1.07;
+		    letter-spacing: 0.3px;
+		    color: #FFF;
 		    padding: 15px 30px;
 		    text-align: center;
 		    background-color: #940d99;
-		    margin: 30px 0px;
-		'>
+		    margin: 0px 30px 30px;
+	    	border-radius: 2px;
+		">
 		    IMPORTANTE - SIGUIENTES PASOS
 		</div>
 
-		<table width="100%" cellpadding="0" cellspacing="0">
+		<table width="100%" cellpadding="0" cellspacing="0" style="font-family: Verdana; font-size: 17px;">
 			<tr>
 				<td width="100" style="padding: 15px 0px; vertical-align: middle; text-align: center;">
 					<img src='[URL_IMGS]/icosNews/Icon-Calling-out_2.png' style='height: 50px; width: 50px;' >
