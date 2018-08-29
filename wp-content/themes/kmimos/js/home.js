@@ -194,24 +194,29 @@ function close_video(){
 function validar_busqueda_home(){
     var IN  = validar( 'checkin' );
     var OUT = validar( 'checkout' );
-
+    var primer_error = '';
+    
     jQuery( '#checkin' ).parent().removeClass('has-error');
     jQuery( '[data-error="checkin"]' ).addClass('hidden');
     jQuery( '#checkout' ).parent().removeClass('has-error');
     jQuery( '[data-error="checkout"]' ).addClass('hidden');
 
-    if( IN ){
-        jQuery( '#checkin' ).parent().addClass('has-error');
-        jQuery( '[data-error="checkin"]' ).removeClass('hidden');
-    }
     if( OUT ){
         jQuery( '#checkout' ).parent().addClass('has-error');
         jQuery( '[data-error="checkin"]' ).removeClass('hidden');
+        primer_error = "#checkout";
+    }
+    if( IN ){
+        jQuery( '#checkin' ).parent().addClass('has-error');
+        jQuery( '[data-error="checkin"]' ).removeClass('hidden');
+        primer_error = "#checkin";
     }
 
     if( !IN && !OUT ){
         return true;
     }
+
+    jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-180 }, 2000);    
     return false;
 }
 
