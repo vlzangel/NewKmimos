@@ -498,7 +498,6 @@
 
 			<div id='jj_modal_ir_al_inicio' class='vlz_modal'>
 				<div class='vlz_modal_interno'>
-					<div class='vlz_modal_fondo' onclick='jQuery('#jj_modal_ir_al_inicio').css('display', 'none');'></div>
 					<div class='vlz_modal_ventana jj_modal_ventana'S>
 						<div class='vlz_modal_titulo'>¡Oops!</div>
 						<div class='vlz_modal_contenido' style='height: auto;'>
