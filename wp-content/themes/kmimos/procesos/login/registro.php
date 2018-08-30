@@ -4,6 +4,7 @@
     include("../../../../../wp-load.php");
 
     include("../funciones/db.php");
+    include("../generales/save_terms.php");
 
     $db = new db( new mysqli($host, $user, $pass, $db) );
     
@@ -41,6 +42,8 @@
 
         $db->query( utf8_decode( $new_user ) );
         $user_id = $db->insert_id();
+
+        save_user_accept_terms ($user_id, $db);
 
         print_r($user_id);
 

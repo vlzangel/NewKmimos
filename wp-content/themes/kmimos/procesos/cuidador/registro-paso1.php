@@ -8,6 +8,8 @@
     include("../funciones/generales.php");
     include('../../lib/Requests/Requests.php');
 
+    include("../generales/save_terms.php");
+
     date_default_timezone_set('America/Mexico_City');
 	$conn = new mysqli($host, $user, $pass, $db);
 	$errores = array();
@@ -251,6 +253,8 @@
 
                 $conn->query( utf8_decode( $new_user ) );
                 $user_id = $conn->insert_id;
+
+                save_user_accept_terms ($user_id, new db( $conn ) );
 
                 //WHITE_LABEL
                 if (!isset($_SESSION)) {
