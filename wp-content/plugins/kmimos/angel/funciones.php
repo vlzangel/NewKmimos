@@ -301,79 +301,71 @@
 
                 $MENUS = array(
                     "vendor" => array(
-                        array(
+                        array("name"  => "Mi Perfil",
                             "url"   => get_home_url()."/perfil-usuario/",
-                            "name"  => "Mi Perfil",
                             "icono" => "460"
                         ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
-                            "name"  => "Datos de Facturaci&oacute;n",
-                            "icono" => "33"
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/mascotas",
-                            "name"  => "Mis Mascotas",
-                            "icono" => "871",
-                            "ocultar_menu_principal"  => 'true'
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/favoritos",
-                            "name"  => "Cuidadores Favoritos",
-                            "icono" => "375",
-                            "ocultar_menu_principal"  => 'true'
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/historial",
-                            "name"  => "Historial",
-                            "icono" => "33",
-                            "ocultar_menu_principal"  => 'true'
-                        ),
-                        array(
+                        array("name"  => "Informaci&oacute;n de Perfil",
                             "url"   => get_home_url()."/perfil-usuario/descripcion",
-                            "name"  => "Descripción",
                             "icono" => "664",
                             "ocultar_menu_principal"  => 'true'
-                        ),                        
-                        array(
+                        ),
+                        array("name"  => "Mis Servicios",
                             "url"   => get_home_url()."/perfil-usuario/servicios",
-                            "name"  => "Mis Servicios",
                             "icono" => "453"
                         ),
-                        array(
+                        array("name"  => "Disponibilidad",
                             "url"   => get_home_url()."/perfil-usuario/disponibilidad",
-                            "name"  => "Disponibilidad",
                             "icono_2" => "fa fa-calendar"
                         ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/galeria",
-                            "name"  => "Mis Fotos",
-                            "icono" => "82",
-                            "ocultar_menu_principal"  => 'true'
-                        ),
-                        array(
+
+
+                        array("name"  => "Reservas",
                             "url"   => get_home_url()."/perfil-usuario/reservas",
-                            "name"  => "Mis Reservas",
                             "icono" => "33",
                             "resaltar_movil"  => true
                         ),
-                        array(
+                        array("name"  => "Historial",
+                            "url"   => get_home_url()."/perfil-usuario/historial",
+                            "icono" => "33",
+                            "ocultar_menu_principal"  => 'true'
+                        ),                        
+                        array("name"  => "Citas para Conocerme",
+                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
+                            "icono" => "33"
+                        ),
+
+                        array("name"  => "Mis Mascotas",
+                            "url"   => get_home_url()."/perfil-usuario/mascotas",
+                            "icono" => "871",
+                            "ocultar_menu_principal"  => 'true'
+                        ),
+                        array("name"  => "Cuidadores Favoritos",
+                            "url"   => get_home_url()."/perfil-usuario/favoritos",
+                            "icono" => "375",
+                            "ocultar_menu_principal"  => 'true'
+                        ),
+
+                        array("name"  => "Mis Fotos",
+                            "url"   => get_home_url()."/perfil-usuario/galeria",
+                            "icono" => "82",
+                            "ocultar_menu_principal"  => 'true'
+                        ),
+                        array("name"  => "Fotos del día",
                             "url"   => get_home_url()."/perfil-usuario/fotos",
-                            "name"  => "Fotos del día",
                             "icono" => "82",
                             "resaltar"  => true,
                             "resaltar_movil"  => true
                         ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/mis-facturas",
-                            "name"  => "Mis Facturas",
-                            "icono" => "33",
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
-                            "name"  => "Mis Solicitudes",
+
+                        array("name"  => "Datos de Facturaci&oacute;n",
+                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
                             "icono" => "33"
                         ),
+                        array("name"  => "Mis Facturas",
+                            "url"   => get_home_url()."/perfil-usuario/mis-facturas",
+                            "icono" => "33",),
+
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
@@ -387,28 +379,32 @@
                             "icono" => "460"
                         ),                        
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
-                            "name"  => "Datos de Facturaci&oacute;n",
-                            "icono" => "33"
-                        ),
-                        array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
                             "icono" => "871"
                         ),
+
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/historial",
+                            "name"  => "Reservas",
+                            "icono" => "33"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
+                            "name"  => "Citas para conocer",
+                            "icono" => "33"
+                        ),
+
                         array(
                             "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
                             "icono" => "375"
                         ),
+
+
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/historial",
-                            "name"  => "Historial",
-                            "icono" => "33"
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
-                            "name"  => "Mis Solicitudes",
+                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
+                            "name"  => "Datos de Facturaci&oacute;n",
                             "icono" => "33"
                         ),
                         array(
@@ -424,30 +420,33 @@
                             "icono" => "460"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
-                            "name"  => "Datos de Facturaci&oacute;n",
-                            "icono" => "33"
-                        ),                        
-                        array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
                             "icono" => "871"
+                        ),
+
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/historial",
+                            "name"  => "Reservas",
+                            "icono" => "33"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
+                            "name"  => "Citas para Conocer",
+                            "icono" => "33"
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
                             "icono" => "375"
                         ),
+
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/historial",
-                            "name"  => "Historial",
+                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
+                            "name"  => "Datos de Facturaci&oacute;n",
                             "icono" => "33"
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
-                            "name"  => "Mis Solicitudes",
-                            "icono" => "33"
-                        ),
+                        ),                        
+
                         array(
                             "url"   => get_home_url()."/wp-admin/",
                             "name"  => "Panel de Control",

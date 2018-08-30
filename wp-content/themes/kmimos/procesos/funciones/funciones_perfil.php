@@ -66,12 +66,12 @@
 	        $table='';
 	        $avatar_img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
 	        foreach($args as $reservas){
+        		$table.='
+                	<h1 class="titulo">'.$reservas['titulo'].'</h1>
+                	<div class="vlz_tabla_box">
+                ';
 	        	if( count($reservas['reservas']) > 0 ){
 
-	        		$table.='
-	                	<h1 class="titulo">'.$reservas['titulo'].'</h1>
-	                	<div class="vlz_tabla_box">
-	                ';
 
 	                foreach ($reservas['reservas'] as $reserva) {
 
@@ -242,8 +242,10 @@
 			                
 	                }
 
-	                $table.='</div>';
+	        	}else{
+	        		$table.='<div class="info-detalle">Sin datos para mostrar</div>';
 	        	}
+                $table.='</div>';
 	        }
 
 	        foreach($args as $reservas){
