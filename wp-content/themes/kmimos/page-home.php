@@ -59,7 +59,7 @@
 					src="'.getTema().'/videos/home/publicidad_ser_cuidador/pc.mp4" 
 					poster="'.getTema().'/videos/home/publicidad_ser_cuidador/preview.png"
 				></video>
-				<img src="'.getTema().'/videos/home/publicidad_ser_cuidador/movil.gif" />
+				<img src="'.getTema().'/videos/home/publicidad_ser_cuidador/movil_final.gif" />
 				<div class="boton_click" style="background-image: url('.getTema().'/videos/home/publicidad_ser_cuidador/boton.png);"></div>
 			</a>
 	    ';
