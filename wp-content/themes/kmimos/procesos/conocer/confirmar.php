@@ -3,8 +3,8 @@
     $file = $PATH_TEMPLATE.'/template/mail/conocer/cliente/confirmar.php';
     $mensaje_cliente = file_get_contents($file);
     
-	// $wpdb->query("UPDATE wp_postmeta SET meta_value = '2' WHERE post_id = $id_orden AND meta_key = 'request_status';");
-	// $wpdb->query("UPDATE wp_posts SET post_status = 'publish' WHERE ID = '{$id_orden}';");
+	$wpdb->query("UPDATE wp_postmeta SET meta_value = '2' WHERE post_id = $id_orden AND meta_key = 'request_status';");
+	$wpdb->query("UPDATE wp_posts SET post_status = 'publish' WHERE ID = '{$id_orden}';");
 
     $mensaje_cliente = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cliente);
     $mensaje_cliente = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cliente);
