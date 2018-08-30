@@ -1,21 +1,8 @@
 <?php
 
-	if( $id_orden+0 > 0 ){
-	    include(__DIR__."/obtener_solicitud.php");
-	}else{
-	    include( dirname(dirname(dirname(dirname(dirname(__DIR__)))))."/vlz_config.php" );
-	    include( dirname(dirname(dirname(dirname(dirname(__DIR__)))))."/wp-load.php" );
-
-		global $wpdb;
-
-	    include(__DIR__."/crear_solicitud.php");
-	}
-
 	/*
 		Cuidador
 	*/
-
-		$info = kmimos_get_info_syte();
 
 		$cuidador_file = realpath('../../template/mail/conocer/cuidador/nueva.php');
         $mensaje_cuidador = file_get_contents($cuidador_file);
@@ -139,20 +126,17 @@
         if( $NO_ENVIAR == "YES" ){
             echo $mensaje_admin;
         }else{
-            wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_admin);
             kmimos_mails_administradores_new($asunto, $mensaje_admin);
         }
 		
-        if( !isset($NO_ENVIAR) ){
-			$data = array(
-				'n_solicitud' => $request_id,
-				'nombre' => $nombre_cuidador,
-				'telefono' => $telf_cuidador,
-				'email' => $email_cuidador,
-				'error' => ''
-			);
+        $data = array(
+            'n_solicitud' => $request_id,
+            'nombre' => $nombre_cuidador,
+            'telefono' => $telf_cuidador,
+            'email' => $email_cuidador,
+            'error' => ''
+        );
 
-			echo json_encode($data);
-		}
+        echo json_encode($data);
 
 

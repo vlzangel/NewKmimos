@@ -1,7 +1,6 @@
 <?php
 
 	date_default_timezone_set('America/Mexico_City');
-    extract($_POST);
 
     /*
         Data General
@@ -17,7 +16,7 @@
 		$_POST['service_end'] = $metas_solicitud["service_end"][0];
 
 		$pet_ids = unserialize( unserialize( $metas_solicitud["pet_ids"][0] ) );
-
+		
     	$cuidador_post   = get_post($post_id);
     	$nombre_cuidador = $cuidador_post->post_title;
 

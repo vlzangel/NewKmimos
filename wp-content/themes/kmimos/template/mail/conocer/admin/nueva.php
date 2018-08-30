@@ -46,7 +46,7 @@
 	    background-color: #e3e3e3;
 	    margin-bottom: 30px;
 	'>
-	    Solicitud para conocer cuidador #: <strong>[id_solicitud]</strong>
+	    Tu código de solicitud es #<strong>[id_solicitud]</strong>
 	</div>
 
     <div style='

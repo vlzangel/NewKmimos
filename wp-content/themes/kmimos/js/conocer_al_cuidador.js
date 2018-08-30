@@ -22,7 +22,7 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
     if( conocer_es_valido() ){
         if( !jQuery("#btn_enviar_conocer").hasClass("disabled") ){
             jQuery("#btn_enviar_conocer").addClass("disabled");
-            var a = HOME+"procesos/conocer/nueva.php";
+            var a = HOME+"procesos/conocer/index.php";
             jQuery(this).html('<i style="font-size: initial;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> ENVIANDO DATOS...');
             jQuery.post( a, jQuery("#conoce_cuidador").serialize(), function( data ) {
 
