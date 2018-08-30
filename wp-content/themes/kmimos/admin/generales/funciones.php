@@ -117,6 +117,16 @@
             }
 
             $opciones_menu_reporte[] = array(
+                'title'         =>  __('T&eacute;rminos Aceptados'),
+                'short-title'   =>  __('T&eacute;rminos Aceptados'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'terminos',
+                'access'        =>  'manage_options',
+                'page'          =>  'terminos',
+                'icon'          =>  '',
+            );
+
+            $opciones_menu_reporte[] = array(
                 'title'         =>  __('Reporte Otro'),
                 'short-title'   =>  __('Reporte Otro'),
                 'parent'        =>  'reporte_fotos',
@@ -228,5 +238,12 @@
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/recursos/importador-botones.php');
             include_once(dirname(__DIR__).'/backend/pagos_autorizacion/reporte_pagos_autorizacion.php');
+        }
+    }
+
+    if(!function_exists('terminos')){
+        function terminos(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/backend/terminos/index.php');
         }
     }
