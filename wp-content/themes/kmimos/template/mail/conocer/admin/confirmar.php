@@ -36,7 +36,7 @@
             text-align: left; 
             padding-bottom: 30px;
         '>
-           	La solicitud para conocer al cuidador <strong>[name_cuidador]</strong> del cliente <strong>[name_cliente]</strong> ha sido confirmada. 
+           	La solicitud para conocer al cuidador <strong>[name_cuidador]</strong> del cliente <strong style="color: #940d99;">[name_cliente]</strong> ha sido confirmada. 
         </div>
 
         <div style="text-align: center; padding: 30px; border-bottom: solid 1px #AAA;">
