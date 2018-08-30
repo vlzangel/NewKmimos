@@ -287,22 +287,14 @@ jQuery("#btn_si_acepto_cuidador").on("click", function(e){
 			jQuery('#vlz_form_nuevo_cuidador').serialize(), 
 			function( data ) {
 				data = eval(data);
-				if( data['error'] == "SI" ){				 
-					if( data['fields'] != 'null' ){
-						jQuery.each(data['fields'], function(id, val){
-							mensaje( "rc_"+val['name'],val['msg']  );
-						});
-					}
-					obj.html('SIGUIENTE');
-				}else{
-					jQuery('[data-target="name"]').html( jQuery('[name="rc_nombres"]').val() );
-					jQuery('[name="rc_num_mascota"]').val(1);
-					jQuery('.popuphide').css('display', 'none');
-					jQuery('.popup-registro-exitoso').css('display', 'block');
-
-				}
+				console.log( data );
 			}	
 		);
+
+		jQuery('[data-target="name"]').html( jQuery('[name="rc_nombres"]').val() );
+		jQuery('[name="rc_num_mascota"]').val(1);
+		jQuery('.popuphide').css('display', 'none');
+		jQuery('.popup-registro-exitoso').css('display', 'block');
 
 	}else{
 		alert("Debe leer los terminos y condiciones primero.");
@@ -318,8 +310,6 @@ jQuery( "#popup-registro-cuidador1 .popup-condiciones .terminos_container" ).scr
 		jQuery( "#btn_si_acepto_cuidador" ).removeClass("btn_disable");
 	}
 });
-
-
 
 
 jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-cuidador-correo', function ( e ) {
@@ -349,16 +339,11 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 			list.push("rc_pasaporte");
 		break;
 	}
-
 	var valid = km_cuidador_validar(list);
-
 	if( valid ){
-
 		jQuery("#popup-registro-cuidador1 .modal-content > div").hide();
-
 		jQuery(".popuphide").css("display", "none");
 		jQuery(".popup-condiciones").css("display", "block");
-
 	}else{
 		var primer_error = ""; var z = true;
 		jQuery( ".tiene_error" ).each(function() {
@@ -375,7 +360,6 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 
 jQuery(document).on("click", '.popup-registro-exitoso .km-btn-popup-registro-exitoso', function ( e ) {
 	e.preventDefault();
-
 	jQuery(".popup-registro-exitoso").hide();
 	jQuery(".popup-registro-cuidador-paso1").fadeIn("fast");
 });
@@ -396,7 +380,6 @@ jQuery(document).on("click", '[data-step="2"]', function ( e ) {
 
 jQuery(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-registro-cuidador-paso1', function ( e ) {
 	e.preventDefault();
-
 	var list = ['rc_descripcion', 'rc_vlz_img_perfil'];
 	var err = {  
 		'rc_vlz_img_perfil': 'perfil-img-a'
@@ -551,7 +534,7 @@ function km_cuidador_validar( fields, error_field={} ){
 				mensaje(val, m);
 				status = false;
   				jQuery('#'+error_field[val]).css('border', '1px solid red');
-			    jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-180 }, 2000); 
+			    jQuery('#popup-registro-cuidador1').animate({ scrollTop: jQuery(primerError).offset().top-180 }, 500); 
 			}
 
 		});
@@ -615,7 +598,7 @@ function rc_validar_longitud( field ){
 				break;
 
 			case 'rc_descripcion':
-				result = validar_longitud( val, 1, 600, 'string', 'Debe estar entre 1 y 100 caracteres');
+				result = validar_longitud( val, 1, 1000, 'string', 'Debe estar entre 1 y 1000 caracteres');
 				break;
 
 			case 'rc_direccion':
@@ -668,6 +651,11 @@ function vista_previa(evt) {
 
 }      
 document.getElementById("portada").addEventListener("change", vista_previa, false);
+
+
+function empty(valor){
+	return ( String( valor ).length <= 0 );
+}
 
 
 
