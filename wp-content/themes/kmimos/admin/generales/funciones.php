@@ -244,6 +244,6 @@
     if(!function_exists('terminos')){
         function terminos(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
-            include_once(dirname(__DIR__).'/backend/terminos/index.php');
+            include_once(dirname(__DIR__).'/backend/terminos/page.php');
         }
     }
