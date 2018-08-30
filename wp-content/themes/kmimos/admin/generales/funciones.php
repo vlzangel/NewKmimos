@@ -117,8 +117,8 @@
             }
 
             $opciones_menu_reporte[] = array(
-                'title'         =>  __('T&eacute;rminos Aceptados'),
-                'short-title'   =>  __('T&eacute;rminos Aceptados'),
+                'title'         =>  __('Términos Aceptados'),
+                'short-title'   =>  __('Términos Aceptados'),
                 'parent'        =>  'reporte_fotos',
                 'slug'          =>  'terminos',
                 'access'        =>  'manage_options',
