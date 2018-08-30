@@ -48,9 +48,10 @@
 
 		$mensaje_cuidador = get_email_html($mensaje_cuidador, false, true, null, false);
 
-        if( isset($NO_ENVIAR) ){
+        if( $NO_ENVIAR == "YES" ){
             echo $mensaje_cuidador;
         }else{
+            wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_cuidador);
             wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
         }
 		
@@ -85,9 +86,10 @@
 
 		$mensaje_cliente = get_email_html($mensaje_cliente, false, true, null, false);
 
-        if( isset($NO_ENVIAR) ){
+        if( $NO_ENVIAR == "YES" ){
             echo $mensaje_cliente;
         }else{
+            wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_cliente);
             wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
         }
 
@@ -134,9 +136,10 @@
 
 		$mensaje_admin = get_email_html($mensaje_admin, false, true, null, false);
 
-        if( isset($NO_ENVIAR) ){
+        if( $NO_ENVIAR == "YES" ){
             echo $mensaje_admin;
         }else{
+            wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_admin);
             kmimos_mails_administradores_new($asunto, $mensaje_admin);
         }
 		
