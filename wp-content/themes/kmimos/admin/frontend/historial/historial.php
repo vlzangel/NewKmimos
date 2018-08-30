@@ -32,7 +32,7 @@
 				"reservas" => array()
 			),
 			"error" => array(
-				"titulo" => 'Reservas en error en tarjetas de credito',
+				"titulo" => 'Reservas con error en tarjetas de credito',
 				"reservas" => array()
 			),
 			"otros" => array(
@@ -215,13 +215,91 @@
 
 			}
 		}
+
+
+		$pendientes = construir_listado(['pendientes_tienda'=>$reservas_array['pendientes_tienda']]);
+		$por_confirmar = construir_listado(['pendientes_confirmar'=>$reservas_array['pendientes_confirmar']]);
+		$confirmadas = construir_listado(['confirmadas'=>$reservas_array['confirmadas']]);
+		$completadas = construir_listado(['completadas'=>$reservas_array['completadas']]);
+		$canceladas = construir_listado(['canceladas'=>$reservas_array['canceladas']]);
+		$modificadas = construir_listado(['modificadas'=>$reservas_array['modificadas']]);
+		$error = construir_listado(['error'=>$reservas_array['error']]);
+		$otros = construir_listado(['otros'=>$reservas_array['otros']]);
+
+
+
+
 		
 		//BUILD TABLE
 		$CONTENIDO .= '
-			<h1 style="margin: 0px; padding: 0px;">Mi Historial de Reservas</h1><hr style="margin: 5px 0px 10px;">
-			<div class="kmisaldo">
-			<strong>'.kmimos_saldo_titulo().':</strong> MXN $'.kmimos_get_kmisaldo().'
-		</div>'.construir_listado($reservas_array);
+			<h1 style="margin: 0px; padding: 0px;">Mi Historial de Reservas</h1>
+			<hr style="margin: 5px 0px 10px;">
+			
+			<div class="kmisaldo alert alert-info" role="alert">
+				<strong>'.kmimos_saldo_titulo().':</strong> MXN $'.kmimos_get_kmisaldo().'
+			</div>
+			
+			<div>
+
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    
+			    <li role="presentation" class="active">
+			    	<a href="#pendiente" aria-controls="pendiente" role="tab" data-toggle="tab">
+			    		Pendiente de Pago
+			    	</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#por_confirmar" aria-controls="por_confirmar" role="tab" data-toggle="tab">
+			    		Por Confirmar 
+			    	</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#confirmadas" aria-controls="confirmadas" role="tab" data-toggle="tab">
+			    		Confirmadas 
+			    	</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#completadas" aria-controls="completadas" role="tab" data-toggle="tab">
+			    		Completadas 
+			    	</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#canceladas" aria-controls="canceladas" role="tab" data-toggle="tab">
+			    		Canceladas 
+			    	</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#modificadas" aria-controls="modificadas" role="tab" data-toggle="tab">
+			    		Modificadas 
+			    	</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#error" aria-controls="error" role="tab" data-toggle="tab">
+			    		Error
+			    	</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#otros" aria-controls="otros" role="tab" data-toggle="tab">
+			    		Otros
+			    	</a>
+			    </li>
+
+			  </ul>
+
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="pendiente">'.$pendientes.'</div>
+			    <div role="tabpanel" class="tab-pane " id="por_confirmar">'.$por_confirmar.'</div>
+			    <div role="tabpanel" class="tab-pane " id="confirmadas">'.$confirmadas.'</div>
+			    <div role="tabpanel" class="tab-pane " id="completadas">'.$completadas.'</div>
+			    <div role="tabpanel" class="tab-pane " id="canceladas">'.$canceladas.'</div>
+			    <div role="tabpanel" class="tab-pane " id="modificadas">'.$modificadas.'</div>
+			    <div role="tabpanel" class="tab-pane " id="error">'.$error.'</div>
+			    <div role="tabpanel" class="tab-pane " id="otros">'.$otros.'</div>
+			  </div>
+
+			</div>';
 
 	}else{
 		$CONTENIDO .= "<h1 style='line-height: normal;'>Usted aún no tiene reservas.</h1><hr>";

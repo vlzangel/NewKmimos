@@ -1,3 +1,26 @@
+.info-detalle{
+    padding: 11px 0px!important;
+    border-top: 1px solid #ccc;
+    font-size: 16px;
+}
+.kmisaldo{
+    padding-left: 10px!important;
+}
+.nav>li>a {
+    padding: 20px 18px 15px!important;
+}
+.nav-tabs>li>a, 
+.nav-tabs>li>a:focus, 
+.nav-tabs>li>a:hover{
+    background-color: #e8e8e8;
+}
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover{
+    background-color: #59c9a8!important;
+    color: #fff!important;
+}
+
 .main *{
     font-family: "Roboto Condensed",Arial, Helvetica, sans-serif;
 }
