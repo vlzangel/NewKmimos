@@ -70,9 +70,9 @@ echo '<pre>';
                     $ack = json_decode($AckEnlaceFiscal['ack']);
     
                     $data_reserva['comentario'] = '';
-                    $data_reserva['subtotal'] = $AckEnlaceFiscal['data']['CFDi']['subTotal'];
-                    $data_reserva['impuesto'] = $AckEnlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
-                    $data_reserva['total'] = $AckEnlaceFiscal['data']['CFDi']['total'];                
+                    $data_reserva['subtotal'] = $AckEnlaceFiscal['cfdi']['CFDi']['subTotal'];
+                    $data_reserva['impuesto'] = $AckEnlaceFiscal['cfdi']['CFDi']['Impuestos']['Totales']['traslados'];
+                    $data_reserva['total'] = $AckEnlaceFiscal['cfdi']['CFDi']['total'];                
                     print_r( $CFDI->guardarCfdi( 'cliente', $data_reserva, $ack ) );
                 }
             }else{
@@ -94,9 +94,9 @@ echo '<pre>';
 
             // Datos complementarios
                 $datos['comentario'] = $str_reservas;
-                $datos['subtotal'] = $ef['data']['CFDi']['subTotal'];
-                $datos['impuesto'] = $ef['data']['CFDi']['Impuestos']['Totales']['traslados'];
-                $datos['total'] = $ef['data']['CFDi']['total'];
+                $datos['subtotal'] = $ef['cfdi']['CFDi']['subTotal'];
+                $datos['impuesto'] = $ef['cfdi']['CFDi']['Impuestos']['Totales']['traslados'];
+                $datos['total'] = $ef['cfdi']['CFDi']['total'];
 
             $CFDI->guardarCfdi( 'cuidador', $datos, $ask );
 
