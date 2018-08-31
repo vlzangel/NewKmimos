@@ -68,9 +68,9 @@ echo '</pre></div>';
 */ 
 					    // Datos complementarios
 					    $data_reserva['comentario'] = '';
-					    $data_reserva['subtotal'] = $enlaceFiscal['data']['CFDi']['subTotal'];
-					    $data_reserva['impuesto'] = $enlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
-					    $data_reserva['total'] = $enlaceFiscal['data']['CFDi']['total'];
+					    $data_reserva['subtotal'] = $enlaceFiscal['cfdi']['CFDi']['subTotal'];
+					    $data_reserva['impuesto'] = $enlaceFiscal['cfdi']['CFDi']['Impuestos']['Totales']['traslados'];
+					    $data_reserva['total'] = $enlaceFiscal['cfdi']['CFDi']['total'];
 
 						$CFDI->guardarCfdi( 'cliente', $data_reserva, $ack );
 
