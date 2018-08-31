@@ -11,8 +11,8 @@ echo '<pre>';
 
     // buscar total de reservas del mes anterior
     $mes_anterior = strtotime("now +1 month");
-    $fecha_ini = date("Y-m-01 00:00:00", $mes_anterior);
-    $fecha_fin = date("Y-m-31 23:59:59", $mes_anterior);
+    $fecha_ini = date("2018-08-01 00:00:00", $mes_anterior);
+    $fecha_fin = date("2018-09-31 23:59:59", $mes_anterior);
 
     $ordenes = $CFDI->db->get_results( "
             SELECT DATE_FORMAT( m.meta_value,'%Y-%m-%d 23:59:59' ) as fecha, p.ID, p.post_parent 
@@ -62,11 +62,17 @@ echo '<pre>';
                 $data_reserva['receptor']['rfc'] = 'XAXX010101000';
                 $data_reserva['receptor']['razon_social'] = 'Publico en General';
 
+
                 $AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
                 if( !empty($AckEnlaceFiscal['ack']) ){
                     echo 'cliente: ';
                     print_r($AckEnlaceFiscal['ack']);
                     $ack = json_decode($AckEnlaceFiscal['ack']);
+    
+                    $data_reserva['comentario'] = '';
+                    $data_reserva['subtotal'] = $AckEnlaceFiscal['data']['CFDi']['subTotal'];
+                    $data_reserva['impuesto'] = $AckEnlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
+                    $data_reserva['total'] = $AckEnlaceFiscal['data']['CFDi']['total'];                
                     print_r( $CFDI->guardarCfdi( 'cliente', $data_reserva, $ack ) );
                 }
             }else{
