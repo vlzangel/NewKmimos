@@ -55,7 +55,8 @@ echo '<pre>';
 
 
         // Validar si la factura del cliente esta generada
-            $facturas = $CFDI->db->get_row( "SELECT * FROM facturas WHERE receptor='cliente' and pedido_id = ".$orden->post_parent );
+            $sql_cliente = "SELECT * FROM facturas WHERE receptor='cliente' and pedido_id = ".$orden->post_parent;
+            $facturas = $CFDI->db->get_row( $sql_cliente );
       
             if( empty($facturas) ){
                 $data_reserva['receptor']['rfc'] = 'XAXX010101000';
@@ -63,9 +64,13 @@ echo '<pre>';
 
                 $AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
                 if( !empty($AckEnlaceFiscal['ack']) ){
+                    echo 'cliente: ';
+                    print_r($AckEnlaceFiscal['ack']);
                     $ack = json_decode($AckEnlaceFiscal['ack']);
                     print_r( $CFDI->guardarCfdi( 'cliente', $data_reserva, $ack ) );
                 }
+            }else{
+                echo 'factura no encontrada '.$sql_cliente;
             }
     }
 
@@ -75,7 +80,6 @@ echo '<pre>';
         $ef = $CFDI->generar_Cfdi_Cuidador( $datos );
         
         if( !empty($ef['ack']) ){
-            print_r($ef['ack']);
             $ask = json_decode($ef['ack']);
 
             // Listado de reservas
@@ -89,6 +93,9 @@ echo '<pre>';
                 $datos['total'] = $ef['data']['CFDi']['total'];
 
             $CFDI->guardarCfdi( 'cuidador', $datos, $ask );
+
+            echo 'Cuidador: ';
+            print_r($ef['ack']);
         }else{
         }
         echo '<br/>';
