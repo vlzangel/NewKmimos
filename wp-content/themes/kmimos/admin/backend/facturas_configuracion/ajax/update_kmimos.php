@@ -17,6 +17,9 @@
     $data['iva'] = ( !empty($iva) )? $iva : 0 ;
     $data['comision'] = ( !empty($comision) )? $comision : 0 ;
 
+    $data['rfc_general'] = ( !empty($rfc_general) )? $rfc_general : 'XAXX010101000' ;
+    $data['serie_cuidador'] = ( !empty($serie_cuidador) )? $serie_cuidador : 'PC' ;
+
     $update = serialize($data);
 
     if( $db->query( "UPDATE facturas_configuracion SET value = '{$update}' WHERE codigo = 'cfdi_parametros' " ) ){

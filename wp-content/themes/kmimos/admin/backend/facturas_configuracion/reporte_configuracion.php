@@ -18,9 +18,18 @@
                 <small>El c&oacute;digo debe estar registrado en Enlace Fiscal</small>
             </div>
             <div class="input-container">
+                <div>Serie de Cuidadores:</div>
+                <input type="text" name="serie_cuidador" value="<?php echo $data['cfdi_parametros']['serie_cuidador']; ?>" >
+                <small>El c&oacute;digo debe estar registrado en Enlace Fiscal</small>
+            </div>
+            <div class="input-container">
                 <div>% IVA:</div>
                 <input type="text" name="iva" value="<?php echo $data['cfdi_parametros']['iva']; ?>" >
                 <small>Ejemplo: 0.16</small>
+            </div>
+            <div class="input-container">
+                <div>RFC P&uacute;blico en General:</div>
+                <input type="text" name="rfc_general" value="<?php echo $data['cfdi_parametros']['rfc_general']; ?>" >
             </div>
             <div class="input-container">
                 <div>% Comision Cuidadores:</div>
