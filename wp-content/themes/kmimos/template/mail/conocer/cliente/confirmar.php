@@ -42,6 +42,20 @@
 
     </div>
 
+	<div style='
+	    font-size: 17px; 
+	    font-weight: 600;
+	    line-height: 1.07; 
+	    letter-spacing: 0.3px; 
+	    color: #000000; 
+	    padding: 15px 30px;
+	    text-align: center;
+	    background-color: #e3e3e3;
+	    margin-bottom: 30px;
+	'>
+	    Tu código de solicitud es: <strong>#[id_solicitud] </strong>
+	</div>
+
     <div style='
         padding: 20px 30px; 
         font-size: 17px; 

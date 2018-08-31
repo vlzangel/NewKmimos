@@ -41,14 +41,30 @@
         wp_mail( $email_cliente, "Confirmación de Solicitud para Conocer Cuidador", $mensaje_cliente);     
     } 
     
+
+
+
+
+
+
     $file = $PATH_TEMPLATE.'/template/mail/conocer/cuidador/confirmar.php';
     $mensaje_cuidador = file_get_contents($file);
 
 
+    $datos_cliente = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cliente.php';
+    $datos_cliente = file_get_contents($datos_cliente);
+    $mensaje_cuidador = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_cuidador);
+
+
+    $mensaje_cuidador = str_replace('[id_solicitud]', $request_id, $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[HEADER]', "conocer", $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[name_cuidador]', $cuidador_name, $mensaje_cuidador);
     $mensaje_cuidador = str_replace('[name_cliente]', $cliente_name, $mensaje_cuidador);
+    $mensaje_cuidador = str_replace('[avatar_cliente]', kmimos_get_foto($user_id), $mensaje_cuidador);
+
+    $mensaje_cuidador = str_replace('[telefonos_cliente]', $telf_cliente, $mensaje_cuidador);
+    $mensaje_cuidador = str_replace('[correo_cliente]', $email_cliente, $mensaje_cuidador);
 
     $mensaje_cuidador = get_email_html($mensaje_cuidador, false, false, $cliente, false );  
 
@@ -59,8 +75,34 @@
         wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $mensaje_cuidador);       
     } 
 
+
+
+
+
+
+
+    
+
 	$file = $PATH_TEMPLATE.'/template/mail/conocer/admin/confirmar.php';
     $mensaje_admin = file_get_contents($file);
+
+            
+    $mensaje_admin = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_admin);
+    $mensaje_admin = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_admin);
+
+    /* Cliente */
+
+        $mensaje_admin = str_replace('[name_cliente]', $cliente_web, $mensaje_admin);
+        $mensaje_admin = str_replace('[avatar_cliente]', kmimos_get_foto($user_id), $mensaje_admin);
+        $mensaje_admin = str_replace('[telefonos_cliente]', $telf_cliente, $mensaje_admin);
+        $mensaje_admin = str_replace('[correo_cliente]', $email_cliente, $mensaje_admin);
+
+    /* Cuidador */
+    
+        $mensaje_admin = str_replace('[avatar_cuidador]', kmimos_get_foto($cuidador->user_id), $mensaje_admin);
+        $mensaje_admin = str_replace('[name_cuidador]', $nombre_cuidador, $mensaje_admin);
+        $mensaje_admin = str_replace('[telefonos_cuidador]', $telf_cuidador, $mensaje_admin);
+        $mensaje_admin = str_replace('[correo_cuidador]', $email_cuidador, $mensaje_admin);
 
     $mensaje_admin = str_replace('[HEADER]', "conocer", $mensaje_admin);
     $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
@@ -70,7 +112,6 @@
 
     $mensaje_admin = get_email_html($mensaje_admin, false, false, $cliente, false );   
 
-    $mensaje_admin = str_replace(get_home_url(), "http://kmimosmx.sytes.net/QA2/", $mensaje_admin); 
 
     if( isset($NO_ENVIAR) ){
         echo $mensaje_admin;
