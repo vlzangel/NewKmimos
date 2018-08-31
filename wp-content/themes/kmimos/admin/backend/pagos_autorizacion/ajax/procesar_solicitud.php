@@ -27,7 +27,8 @@
     foreach ($list as $item) {
 
         $solicitud = $db->get_row('SELECT * FROM cuidadores_pagos WHERE id = '.$item['ID'] );
-        if( $solicitud->admin_id != $user_id ){
+        $cuidador = $db->get_row('SELECT * FROM cuidadores WHERE user_id = '.$solicitud->user_id );
+        //if( $solicitud->admin_id != $user_id ){
 
             // Autorizar registro
                 $autorizaciones = [];
@@ -53,15 +54,15 @@
                     }
                 }
             
-            $observaciones = '';
-            $openpay_id = '';
+                $observaciones = '';
+                $openpay_id = '';
 
             // Pagos Negados
                 if( isset($counter['negado']) && $counter['negado'] > 0){
                     $estatus = 'Negado';
 
             // Procesar pago            
-                }else if( isset($counter['autorizado']) && $counter['autorizado'] >= 2 ){
+                }else if( isset($counter['autorizado']) && $counter['autorizado'] >= 1 ){
                  
                 // Parametros solicitud
                     $payoutData = array(
@@ -72,7 +73,8 @@
                             'clabe' => $solicitud->cuenta,
                             'holder_name' => $solicitud->titular,
                         ),
-                        'description' => 'Pago a tercero');
+                        'description' => '#'.$solicitud->id . " ".$cuidador->nombre." ".$cuidador->apellido
+                    );
 
                 // Enviar solicitud a OpenPay            
                     try{
@@ -85,20 +87,17 @@
                         }else{
                             $observaciones = $payout->status;
                         }
-                    }catch(Exception $e){
-
-                        switch ($e->error_code) {
+                    }catch(OpenpayApiTransactionError $e){
+                        $estatus = 'error';
+                        switch ($e->getCode()) {
                             case 1001:
-                                $payout->error_code = 1003;
                                 $observaciones = 'El n&utilde;mero de cuenta es invalido';
                                 break;
                             case 4001:
-                                $payout->error_code = 4001;
                                 $observaciones = 'No hay fondos suficientes en la cuenta de pago';
                                 break;
                             default:
-                                $payout->error_code = $e->error_code;
-                                $observaciones = 'Error ';
+                                $observaciones = 'Error: ' . $e->getMessage() ;
                                 break;
                         }
                     }
@@ -108,9 +107,9 @@
                 }
 
             $result['mensaje'] = 'Solicitudes procesadas';
-        }else{
-            $result['error'] = 'No puedes autorizar las solicitudes de pagos registradas con tu usuario';
-        }
+        //}else{
+        //    $result['error'] = 'No puedes autorizar las solicitudes de pagos registradas con tu usuario';
+        //}
 
         if( !empty($result['mensaje']) && !empty($result['error']) ){
             $result['mensaje'] = 'Se procesaron las solicitudes que no fueron registradas por ti';
