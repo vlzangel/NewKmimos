@@ -517,7 +517,7 @@ class CFDI {
 				"CFDi" => [
 					"modo" => $this->modo,
 					"versionEF" => "6.0",
-					"serie" => $serie,
+					"serie" => 'PC', //$serie,
 					"folioInterno" => $data['recibo'],
 					"tipoMoneda" => "MXN",
 					"fechaEmision" => $data['fechaEmision'],
