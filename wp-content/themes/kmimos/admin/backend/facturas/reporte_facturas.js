@@ -14,6 +14,52 @@ jQuery(document).ready(function() {
         cerrar(e);
     });
     
+    jQuery("#download-all").on("click", function(e){
+
+		var _this = jQuery(this);
+    	if( !jQuery(this).hasClass('disabled') ){
+	    	_this.attr('disabled', 'disabled');
+	    	_this.addClass('disabled');
+	    	jQuery.post(
+	            TEMA+'/admin/backend/facturas/ajax/download_zip.php', 
+	            {
+	                'fact_selected': 'all'
+	            },
+	            function(data){
+			    	_this.removeAttr('disabled');
+			    	_this.removeClass('disabled');
+	                data = JSON.parse(data);
+	                if( data['estatus'] == "listo" ){
+		                location.href = data['url'];
+	                }
+	            }
+	        );
+    	}
+    	
+    });
+	jQuery("#download-pdf").on("click", function(e){
+		var _this = jQuery(this);
+    	if( !jQuery(this).hasClass('disabled') ){
+	    	_this.attr('disabled', 'disabled');
+	    	_this.addClass('disabled');
+	    	jQuery.post(
+	            TEMA+'/admin/backend/facturas/ajax/download_zip.php', 
+	            {
+	                'fact_selected': 'pdf'
+	            },
+	            function(data){
+			    	_this.removeAttr('disabled');
+			    	_this.removeClass('disabled');
+	                data = JSON.parse(data);
+	                if( data['estatus'] == "listo" ){
+		                location.href = data['url'];
+	                }
+	            }
+	        );
+    	}
+
+    });
+
     jQuery("#download-zip").on("click", function(e){
     	var list = [];
     	if( jQuery("input[data-type='fact_selected']:checked").size() == 0 ){		

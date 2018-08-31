@@ -42,6 +42,19 @@
 
     <div class='col-md-12'>
 
+        <dir class="leyenda text-right">
+            <ul class="list-inline">
+                <li><strong>LEYENDA DE ESTATUS: </strong></li>
+                <li><div></div> Por autorizar</li>
+                <li><div></div> Autorizado</li>
+                <li><div></div> Negado</li>
+                <li><div></div> En progreso</li>
+                <li><div></div> Cancelado</li>
+                <li><div></div> Completado</li>
+                <li><div></div> Error</li>
+            </ul>
+        </dir>
+
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item hidden">
             <a class="nav-link " id="pagosNuevos-tab" data-toggle="tab" href="nuevo" role="tab" aria-controls="pagosNuevos" aria-selected="true">Nuevos Pagos</a>
@@ -56,7 +69,7 @@
               Procesar
             </button>
         </div>
-        
+
         <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
             <thead>
                 <tr>

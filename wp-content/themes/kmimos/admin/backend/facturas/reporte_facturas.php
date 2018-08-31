@@ -12,16 +12,18 @@
 
     <div class='col-md-12'>
         <div class='row'>
-            <div class="col-sm-12 col-md-5">
+            <div class="col-sm-12 col-md-12">
                 <button class="btn btn-defaut" id="select-all"><i class="fa fa-list"></i> Marcar/Desmarcar Todos</button>
                 <button class="btn btn-defaut" id="download-zip"><i class="fa fa-cloud-download"></i> Zip</button>
-                <button class="btn btn-defaut" id="quitar-filtro"><i class="fa fa-filter"></i> Mostrar todos</button>
+                <button class="btn btn-defaut" id="download-all"><i class="fa fa-cloud-download"></i> Todos PDF y XML</button>
+                <button class="btn btn-defaut" id="download-pdf"><i class="fa fa-cloud-download"></i> Todos PDF</button>
             </div>
-            <div class="col-sm-12 col-md-7 container-search text-right">
+            <div class="col-sm-12 col-md-12 container-search  text-right">
                 <form id="form-search" name="search">
                     <span><label class="fecha">Desde: </label><input type="date" name="ini" value=""></span>
                     <span><label class="fecha">Hasta: <input type="date" name="fin" value=""></label></span> 
                     <button class="btn btn-defaut" id="btn-search"><i class="fa fa-search"></i> Buscar</button>
+                    <button class="btn btn-defaut" id="quitar-filtro"><i class="fa fa-filter"></i> Mostrar todos</button>
                 </form>
             </div>
         </div>
