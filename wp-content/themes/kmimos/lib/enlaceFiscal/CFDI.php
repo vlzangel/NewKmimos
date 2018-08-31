@@ -429,6 +429,14 @@ class CFDI {
 				]
 			];
 
+			// configuracion para publico en general
+			if( $data['receptor']['razon_social'] == 'Publico en General' ){
+				$CFDi['CFDi']["Receptor"]["usoCfdi"] = ( empty($data['receptor']['uso_cfdi']) )? 'gastos' : $data['receptor']['uso_cfdi'];
+				unset($CFDi['CFDi']["Receptor"]['DomicilioFiscal']);
+			}
+
+						 
+
 	 	// return $CFDi;
 		$cfdi_respuesta = $this->request( $CFDi, 'generarCfdi' );
 		return [ 
@@ -517,7 +525,7 @@ class CFDI {
 				"CFDi" => [
 					"modo" => $this->modo,
 					"versionEF" => "6.0",
-					"serie" => $serie,
+					"serie" => 'PC', //$serie,
 					"folioInterno" => $data['recibo'],
 					"tipoMoneda" => "MXN",
 					"fechaEmision" => $data['fechaEmision'],

@@ -1,9 +1,18 @@
 <?php
-	
-	$fact_selected = $_POST['fact_selected'];
-    $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
 
+    $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
+    include_once($raiz."/vlz_config.php");
     include($raiz."/wp-load.php");
+
+    $tema = (dirname(dirname(dirname(dirname(__DIR__)))));
+    include_once($tema."/procesos/funciones/db.php");
+    include_once($tema."/procesos/funciones/generales.php");
+
+    $db = new db( new mysqli($host, $user, $pass, $db) );
+
+
+
+	$fact_selected = $_POST['fact_selected'];
 
 	$name = time().".zip";
 
@@ -11,18 +20,43 @@
 
 	$f = [];
 	$debug = [];
-	foreach ($fact_selected as $val) {			
- 		$r =  "{$raiz}/wp-content/uploads/facturas/{$val}.pdf";
- 		if( file_exists($r) ){
-			$f["{$val}.pdf"] = $r;
-		}
- 		$xml =  "{$raiz}/wp-content/uploads/facturas/{$val}.xml";
- 		if( file_exists($xml) ){
-			$f["{$val}.xml"] = $xml;
+
+	if( $fact_selected == 'all' || $fact_selected == 'pdf' ){
+
+		$datos = $db->get_results('SELECT * FROM facturas');
+		foreach ($datos as $key => $value) {
+			$val = $value->reserva_id."_".$value->numeroReferencia;
+
+	 		$r =  "{$raiz}/wp-content/uploads/facturas/{$val}.pdf";
+	 		if( file_exists($r) ){
+				$f["{$val}.pdf"] = $r;
+			}
+			if( $fact_selected != 'pdf' ){			
+		 		$xml =  "{$raiz}/wp-content/uploads/facturas/{$val}.xml";
+		 		if( file_exists($xml) ){
+					$f["{$val}.xml"] = $xml;
+				}
+				$debug[] = $xml;
+			}
+
+			$debug[] = $r;
+
 		}
 
-		$debug[] = $r;
-		$debug[] = $xml;
+	}else{	
+		foreach ($fact_selected as $val) {			
+	 		$r =  "{$raiz}/wp-content/uploads/facturas/{$val}.pdf";
+	 		if( file_exists($r) ){
+				$f["{$val}.pdf"] = $r;
+			}
+	 		$xml =  "{$raiz}/wp-content/uploads/facturas/{$val}.xml";
+	 		if( file_exists($xml) ){
+				$f["{$val}.xml"] = $xml;
+			}
+
+			$debug[] = $r;
+			$debug[] = $xml;
+		}
 	}
 
 	$sts = create_zip( $f, $filename );
@@ -35,6 +69,9 @@
 		$r = json_encode(['estatus'=>'error', 'url'=>'', 'test'=> $debug]);
 		print_r($r);
  	}
+
+
+
 
 	function create_zip($files = array(),$destination = '',$overwrite = false) {
 		//if the zip file already exists and overwrite is false, return false

@@ -75,8 +75,8 @@
             // inhabilitar checkbox
                 if( !empty($pago->openpay_id) ){
                     $checkbox = "<input type='checkbox' class='disabled' data-action='error' title='Este registro ya esta en proceso de pago'>";
-                }else if( $pago->admin_id == $user_id ){
-                    $checkbox = "<input type='checkbox' class='disabled' data-action='error' title='No puede autorizar las solicitudes generadas con su cuenta'>";
+                //}else if( $pago->admin_id == $user_id ){
+                //    $checkbox = "<input type='checkbox' class='disabled' data-action='error' title='No puede autorizar las solicitudes generadas con su cuenta'>";
                 }else{
                     $checkbox = "<input type='checkbox' data-type='item_selected' name='item_selected[]' value='".$pago->id."'>";
                 }
@@ -93,7 +93,7 @@
                 $detalle,
                 $autorizado_por,
                 $botones,
-                '',
+                $pago->observaciones,
             );
 
         }
