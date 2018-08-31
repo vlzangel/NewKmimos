@@ -12,7 +12,7 @@ echo '<pre>';
     // buscar total de reservas del mes anterior
     $mes_anterior = strtotime("now +1 month");
     $fecha_ini = date("Y-m-01 00:00:00", $mes_anterior);
-    $fecha_fin = date("2030-m-31 23:59:59", $mes_anterior);
+    $fecha_fin = date("Y-m-31 23:59:59", $mes_anterior);
 
     $ordenes = $CFDI->db->get_results( "
             SELECT DATE_FORMAT( m.meta_value,'%Y-%m-%d 23:59:59' ) as fecha, p.ID, p.post_parent 
