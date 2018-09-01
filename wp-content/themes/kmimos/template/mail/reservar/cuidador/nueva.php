@@ -58,7 +58,7 @@
 	    text-align: center;
 	    background-color: #e3e3e3;
 	'>
-	    Reserva #: <strong>[id_reserva] </strong>
+	    Reserva #: <strong>[id_reserva]</strong>
 	</div>
 	       
 	<div style="padding: 30px; text-align: center;">
@@ -354,6 +354,6 @@
 		<strong>SOBRE SU COMPORTAMIENTO</strong>
 		<br><br>
 
-		Por ejemplo: ¿Cómo se comporta cuando está triste o estresado? ¿ Qué hace su dueño cuando está triste o estresado?
+		Por ejemplo: ¿Cómo se comporta cuando está triste o estresado? ¿Qué hace su dueño cuando está triste o estresado?
 	</div>
 </div>
