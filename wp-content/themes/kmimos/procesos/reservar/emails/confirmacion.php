@@ -3,9 +3,12 @@
     if( !isset($NO_ENVIAR) || $superAdmin == "YES" ){
         kmimos_registros_fotos( $servicio["id_reserva"] );
     }
-    
-    echo "<br><br><br>HOLA<br><br><br>";
 
+    $imgHeader = "reservas";
+    if( $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
+        $imgHeader = "reservaInmediata";
+    }
+    
     /* Correo Cliente */
 
         $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cliente/confirmacion.php';
@@ -17,7 +20,7 @@
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
 
-        $mensaje_cliente = str_replace('[HEADER]', "reservaInmediata", $mensaje_cliente);
+        $mensaje_cliente = str_replace('[HEADER]', $imgHeader, $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_cliente);
         
@@ -63,6 +66,8 @@
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
 
+        $mensaje_cuidador = str_replace('[HEADER]', $imgHeader, $mensaje_cuidador);
+
         $mensaje_cuidador = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_cuidador);
         
         $mensaje_cuidador = str_replace('[MODIFICACION]', $modificacion, $mensaje_cuidador);
@@ -90,6 +95,8 @@
 
         $admin_file = $PATH_TEMPLATE.'/template/mail/reservar/admin/confirmacion.php';
         $mensaje_admin = file_get_contents($admin_file);
+        
+        $mensaje_admin = str_replace('[HEADER]', $imgHeader, $mensaje_admin);
 
         $mensaje_admin = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_admin);
         $mensaje_admin = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_admin);
