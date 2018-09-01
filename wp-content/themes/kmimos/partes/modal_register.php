@@ -2,6 +2,9 @@
 $datos = kmimos_get_info_syte();
 $referidos = get_referred_list_options();
 $referidos_options = "";
+if( $_SESSION["wlabel"] != "petco" ){
+	$referidos_options = '<option value="">Dónde nos conoció?</option>';
+}
 foreach ($referidos as $key => $value) {
 	$selected="";
 	if(array_key_exists("wlabel",$_SESSION)){
@@ -181,7 +184,6 @@ $HTML .='
 							</div>
 							<div class="km-datos-mascota">
 								<select id="referido" name="referido bg-select-custom" class="km-datos-mascota-opcion" data-title="Debes seleccionar una opción" required>
-									<option value="">Dónde nos conoció?</option>
 									'.$referidos_options.'
 								</select>
 							</div>
