@@ -60,14 +60,7 @@
 
         $mensaje_cuidador = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_cuidador);
 
-        if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
-            $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
-            $descuento_plantilla = file_get_contents($descuento_plantilla);
-            $descuento_plantilla = str_replace('[DEVOLVER]', number_format( $servicio["desglose"]["reembolsar"], 2, ',', '.'), $descuento_plantilla);
-            $totales_plantilla = str_replace('[REEMBOLSAR]', $descuento_plantilla, $totales_plantilla);
-        }else{
-            $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
-        }
+        $totales_plantilla = str_replace('[REEMBOLSAR]', $reembolsar_plantilla, $totales_plantilla);
 
         $mensaje_cuidador = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[HEADER]', "reserva", $mensaje_cuidador);
@@ -97,6 +90,7 @@
         }
 
     }else{
+        $totales_plantilla = str_replace('[REEMBOLSAR]', $reembolsar_plantilla, $totales_plantilla);
         $inmediata = "Inmediata";
     }
 

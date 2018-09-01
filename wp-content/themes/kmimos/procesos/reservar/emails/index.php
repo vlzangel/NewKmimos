@@ -157,6 +157,15 @@
     $detalles_plantilla = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_plantilla);
 
 
+    if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
+        $reembolsar_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
+        $reembolsar_plantilla = file_get_contents($reembolsar_plantilla);
+        $reembolsar_plantilla = str_replace('[DEVOLVER]', number_format( $servicio["desglose"]["reembolsar"], 2, ',', '.'), $reembolsar_plantilla);
+    }else{
+        $reembolsar_plantilla = "";
+    }
+
+
 	$servicios_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/servicios.php';
     $servicios_plantilla = file_get_contents($servicios_plantilla);
 
