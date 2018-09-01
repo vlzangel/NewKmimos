@@ -165,7 +165,7 @@
 '>
 
     <div style='padding-bottom: 30px; text-align: center;'>
-        <img style='' src='[URL_IMGS]/icosNews/info.png' >
+        <img style='' src='[URL_IMGS]/icosNews/info_2.png' >
     </div> 
 
     <div style="text-align: justify;">
