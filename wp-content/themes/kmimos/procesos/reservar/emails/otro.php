@@ -17,6 +17,8 @@
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
 
+        $mensaje_cliente = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_cliente);
+
         $mensaje_cliente = str_replace('[HEADER]', "reserva", $mensaje_cliente);
 
 
@@ -68,6 +70,7 @@
             $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
         }
 
+        $mensaje_cuidador = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[HEADER]', "reserva", $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[desglose]', $desglose, $mensaje_cuidador);
@@ -103,6 +106,7 @@
 
         /* Generales */
 
+            $mensaje_admin = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_admin);
             $mensaje_admin = str_replace('[HEADER]', "reserva", $mensaje_admin);
 
             $mensaje_admin = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_admin);

@@ -40,7 +40,7 @@
         letter-spacing: 0.2px; 
         color: #000000; 
         width: 100%;
-        margin: 0px 0px 5px;
+        margin: 0px 0px 10px;
         background-color: #efefee;
     '>
         <tr style=''>
@@ -61,7 +61,7 @@
         letter-spacing: 0.2px; 
         color: #000000; 
         width: 100%;
-        margin: 0px 0px 5px;
+        margin: 0px 0px 10px;
         background-color: #efefee;
     '>
         [DETALLES]
@@ -74,7 +74,7 @@
         letter-spacing: 0.2px; 
         color: #000000; 
         width: 100%;
-        margin: 0px 0px 5px;
+        margin: 0px;
         background-color: #efefee;
     '>
         [REEMBOLSAR]

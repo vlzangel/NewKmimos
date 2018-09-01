@@ -1,5 +1,5 @@
 <tr style='font-size: 15px; font-weight: 400;'>
-    <td style='background-color: #f4f4f4; padding: 7px; text-align: center; font-size: 13px; font-weight: 600; vertical-align: middle; text-align: center;'>
+    <td style='background-color: #f4f4f4; padding: 7px; text-align: center; font-size: 13px; font-weight: 600; vertical-align: middle; text-align: center; text-transform: uppercase;'>
         MASCOTA [TAMANO]
     </td>
     <td style='padding: 7px; vertical-align: middle; text-align: center;'>

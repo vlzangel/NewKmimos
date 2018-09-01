@@ -130,7 +130,7 @@
         color: #000;
         margin-bottom: 30px;
     '>
-        Tu código de reserva es: #[id_reserva]
+        Código de reserva #[id_reserva]
     </div>
 
 </div>
