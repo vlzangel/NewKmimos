@@ -54,11 +54,10 @@ if($blogs->have_posts()){
         $blogs->the_post();
 
         if( !empty(get_the_content())){
-            $blogs_imagen=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'large');
+            $blogs_imagen=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'medium');
             $blogs_thumbnail=wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'thumbnail');
             $blogs_custom = get_post_custom($post->ID);
             $iblogs++;
-
 
             $blogs_category=wp_get_post_terms($post->ID,'category',array('orderby' => 'name', 'order' => 'ASC'));
             $blogs_category_name=array();
@@ -67,6 +66,8 @@ if($blogs->have_posts()){
                 $blogs_category_name[]=$category->name;
             }
 
+            $blogs_imagen[0] = str_replace(get_home_url(), "https://www.kmimos.com.mx/", $blogs_imagen[0]);
+            $blogs_thumbnail[0] = str_replace(get_home_url(), "https://www.kmimos.com.mx/", $blogs_thumbnail[0]);
 
             $html.= '<div class="post scroll_animate" data-position="self">';
             $html.= '<div class="image easyload" data-original="'.$blogs_imagen[0].'" style="background-image:url('.$blogs_thumbnail[0].');"></div>';

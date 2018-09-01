@@ -258,7 +258,60 @@ if($page<=0){
         ?>
 </section>
 
-<section id="kmibox">
+
+<?php
+    $link = get_home_url()."/quiero-ser-cuidador-certificado-de-perros/";
+
+    echo $BANNER_PUBLICIDAD = '
+        <style>
+            .banner_publicidad_container{
+                position: relative;
+                display: block;
+            }
+            .banner_publicidad_container video,
+            .banner_publicidad_container img {
+                width: 100%;
+                height: auto;
+            }
+            .banner_publicidad_container img {
+                display: none;
+            }
+            .banner_publicidad_container .boton_click {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+
+                display: none;
+            }
+            @media (max-width: 700px){
+                .banner_publicidad_container video { display: none; }
+                .banner_publicidad_container img, .banner_publicidad_container .boton_click { display: block; }
+                .km-club { margin: 150px 0 30px !important; }
+            }
+        </style>
+        <a href="'.$link.'" target="_blank" class=" banner_publicidad_container">
+            <video 
+                loop 
+                muted 
+                autoplay 
+                width="100%"
+                src="'.getTema().'/videos/home/publicidad_ser_cuidador/pc.mp4" 
+                poster="'.getTema().'/videos/home/publicidad_ser_cuidador/preview.png"
+            ></video>
+            <img src="'.getTema().'/videos/home/publicidad_ser_cuidador/movil_final.gif" />
+            <div class="boton_click" style="background-image: url('.getTema().'/videos/home/publicidad_ser_cuidador/boton.png);"></div>
+        </a>
+    ';
+
+?>
+<!-- <section id="kmibox">
     <div class="group contain">
         <div class="section image responsive"></div>
         <div class="section image"></div>
@@ -269,7 +322,9 @@ if($page<=0){
             <a href="<?php echo site_url(); ?>/kmibox"><div class="button">Quiero mi KmiBOX</div></a>
         </div>
     </div>
-</section>
+</section> -->
+
+
 
 
 <section id="products">
