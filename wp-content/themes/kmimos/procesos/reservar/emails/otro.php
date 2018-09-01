@@ -103,8 +103,10 @@
 
             if( $inmediata == "Inmediata" ){
                 $mensaje_admin = str_replace('[HEADER]', "reservaInmediata", $mensaje_admin);
+                $mensaje_admin = str_replace('[id_reserva]', "Código de reserva #".$servicio["id_reserva"], $mensaje_admin);
             }else{
                 $mensaje_admin = str_replace('[HEADER]', "reserva", $mensaje_admin);
+                $mensaje_admin = str_replace('[id_reserva]', "Reserva #: ".$servicio["id_reserva"], $mensaje_admin);
             }
 
             $mensaje_admin = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_admin);
@@ -117,7 +119,6 @@
             $mensaje_admin = str_replace('[MODIFICACION]', $modificacion, $mensaje_admin);
             $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
             $mensaje_admin = str_replace('[TIPO_SERVICIO]', $servicio["tipo"], $mensaje_admin);
-            $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
             $mensaje_admin = str_replace('[DETALLES_SERVICIO]', $detalles_plantilla, $mensaje_admin);
             $mensaje_admin = str_replace('[ACEPTAR]', $servicio["aceptar_rechazar"]["aceptar"], $mensaje_admin);
             $mensaje_admin = str_replace('[RECHAZAR]', $servicio["aceptar_rechazar"]["cancelar"], $mensaje_admin);

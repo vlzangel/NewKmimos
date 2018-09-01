@@ -58,7 +58,7 @@
 	    text-align: center;
 	    background-color: #e3e3e3;
 	'>
-	    Reserva #: <strong>[id_reserva] </strong>
+	    <strong>[id_reserva] </strong>
 	</div>
 	       
 	<div style="padding: 30px; text-align: center;">

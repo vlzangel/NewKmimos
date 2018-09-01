@@ -4,6 +4,8 @@
         kmimos_registros_fotos( $servicio["id_reserva"] );
     }
     
+    echo "<br><br><br>HOLA<br><br><br>";
+
     /* Correo Cliente */
 
         $cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cliente/confirmacion.php';
@@ -14,6 +16,8 @@
         $mensaje_cliente = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_cliente);
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
+
+        $mensaje_cliente = str_replace('[HEADER]', "reservaInmediata", $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_cliente);
         

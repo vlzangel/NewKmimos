@@ -1,5 +1,5 @@
 <div style='width: 100%;'>
-    <img src='[URL_IMGS]/new/confirmaciones/reservas/header.png' style='width: 100%;' >
+    <img src='[URL_IMGS]/new/confirmaciones/[HEADER]/header.png' style='width: 100%;' >
 </div>
 
 <div style='font-family: Verdana; width: 100%; padding: 30px 0px 0px;'>
