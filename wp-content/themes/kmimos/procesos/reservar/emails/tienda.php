@@ -114,7 +114,7 @@
 
             $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
 
-            $mensaje_admin = str_replace('[tipo_servicio]', $servicio["tipo"], $mensaje_admin);
+            $mensaje_admin = str_replace('[tipo_servicio]', trim($servicio["tipo"]), $mensaje_admin);
             $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
 
             $mensaje_admin = str_replace('[DETALLES_SERVICIO]', $detalles_plantilla, $mensaje_admin);
