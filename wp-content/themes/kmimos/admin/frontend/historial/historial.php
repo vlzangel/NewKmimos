@@ -1,5 +1,5 @@
 <?php
-
+ 
 	global $wpdb;
 	$sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%' ORDER BY id DESC";
 	$reservas = $wpdb->get_results($sql);
