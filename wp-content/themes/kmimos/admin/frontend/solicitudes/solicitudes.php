@@ -252,21 +252,25 @@
     $user_id = $current_user->ID;
     $user = new WP_User( $user_id );
                 
+	$mostrar_cuidador = 'block';
+	$mostrar_cliente = 'none';
 	if( $user->roles[0] == "vendor" ){
 		$como_cliente = 'Solicitudes como cliente';
+		$mostrar_cuidador = 'none';
+		$mostrar_cliente = 'block';
 	}
 
 	$CONTENIDO .= '
-		<div class="text-right col-md-12">
+		<div class="text-right col-md-12" style="display:'.$mostrar_cuidador.'">
 			<div class="btn-group" role="group">
 			  <button type="button" class="btn btn-default" data-action="switch-solicitud" style="background-color:#59c9a8; color:#fff;" data-target="#list-cuidador">Mostrar como cuidador</button>
 			  <button type="button" class="btn btn-default" data-action="switch-solicitud" data-target="#list-cliente">Mostrar como cliente</button>
 			</div>
 		</div>
-		<div id="list-cuidador" data-action="switch-content" style="display:block;">'.
+		<div id="list-cuidador" data-action="switch-content" style="display:'.$mostrar_cuidador.'">'.
 			get_caregiver_tables("cu.post_author={$user_id}",'Solicitudes como cuidador','No hay solicitudes como cuidador.').'
 		</div>
-		<div id="list-cliente" data-action="switch-content"  style="display:none;">'.
+		<div id="list-cliente" data-action="switch-content" style="display:'.$mostrar_cliente.'">'.
 			get_caregiver_tables("cl.meta_value={$user_id}", $como_cliente,'No hay solicitudes como cliente.',true).
 		'</div>';
 
