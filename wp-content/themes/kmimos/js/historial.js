@@ -90,4 +90,15 @@ jQuery(document).ready(function(){
         jQuery(this).parent().removeClass("vlz_desplegado");
     });
 
+
+    jQuery('[data-action="switch-solicitud"]').on('click', function(e){
+        jQuery('[data-action="switch-solicitud"]').css('background-color', 'transparent');
+        jQuery('[data-action="switch-solicitud"]').css('color', '#000');
+        jQuery( '[data-action="switch-content"]' ).css('display', 'none');
+
+        jQuery( this ).css('background-color', '#59c9a8');
+        jQuery( this ).css('color', '#fff');
+        jQuery( jQuery(this).attr('data-target') ).css('display', 'block');
+    })
+
 });
