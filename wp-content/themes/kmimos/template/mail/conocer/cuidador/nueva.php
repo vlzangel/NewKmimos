@@ -164,7 +164,7 @@
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
-	    <table cellpadding="0" cellspacing="0" style='width: 100%; font-family: Verdana; font-size: 15px;'>
+	   	<table cellpadding="0" cellspacing="0" style='width: 100%;'>
 	        <tr style='
 	            color: #940d99; 
 	            line-height: 1.07; 
@@ -173,19 +173,19 @@
 	            font-size: 14px;
 	            text-align: center;
 	        '>
-	            <td style='padding: 7px; width: 18%; border-bottom: solid 1px #940d99;'>
+	            <td style='padding: 7px; width: 20px; border-bottom: solid 1px #940d99;'>
 	                Nombre
 	            </td>
-	            <td style='padding: 7px; width: 18%; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
+	            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
 	                Raza
 	            </td>
-	            <td style='padding: 7px; width: 18%; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
+	            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
 	                Edad
 	            </td>
-	            <td style='padding: 7px; width: 18%; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
+	            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
 	                Tamaño
 	            </td>
-	            <td style='padding: 7px; width: 18%; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
+	            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
 	                Comportamiento
 	            </td>
 	        </tr>
