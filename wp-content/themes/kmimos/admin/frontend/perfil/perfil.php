@@ -138,7 +138,66 @@ if( is_petsitters() ){
                 <div>
                     <label for="banco" class="lbl-text">'.esc_html__('Banco','kmimos').':</label>
                     <label class="lbl-ui">
-                        <input type="text" id="banco" name="banco" value="'.$userdata['banco'][0].'" data-valid="requerid" autocomplete="off" />
+                        <!-- input type="text" id="banco" name="banco" value="'.$userdata['banco'][0].'" data-valid="requerid" autocomplete="off" / -->
+                        <select id="banco" name="banco" data-valid="requerid" >
+                            <option value="">SLECCIONE UN BANCO</option>
+                            <option values="BBVA BANCOMER">BBVA BANCOMER </option> 
+                            <option values="BANAMEX">BANAMEX </option> 
+                            <option values="SANTANDER">SANTANDER </option> 
+                            <option values="SCOTIABANK">SCOTIABANK </option> 
+                            <option values="BANCO DEL BAJIO">BANCO DEL BAJIO </option> 
+                            <option values="BANORTE">BANORTE </option> 
+                            <option values="BANCO HSBC">BANCO HSBC </option> 
+                            <option values="BANCO INBURSA">BANCO INBURSA </option> 
+                            <option values="BANCO AZTECA">BANCO AZTECA </option> 
+                            <option values="BANCA MIFEL">BANCA MIFEL </option> 
+                            <option values="BANCA AFIRME">BANCA AFIRME </option> 
+                            <option values="BANSI">BANSI </option> 
+                            <option values="BANK OF AMERICA">BANK OF AMERICA </option> 
+                            <option values="BANREGIO">BANREGIO </option> 
+                            <option values="BANJERCITO">BANJERCITO </option> 
+                            <option values="BANCO INTERACCIONES">BANCO INTERACCIONES </option> 
+                            <option values="AMERICAN EXPRESS">AMERICAN EXPRESS </option> 
+                            <option values="BANCO INVEX">BANCO INVEX </option> 
+                            <option values="BANCO VE POR MAS">BANCO VE POR MAS </option> 
+                            <option values="ING BANCO">ING BANCO </option> 
+                            <option values="COMPARTAMOS">COMPARTAMOS </option> 
+                            <option values="BANCO MULTIVA">BANCO MULTIVA </option> 
+                            <option values="BANCOPPEL">BANCOPPEL </option> 
+                            <option values="AHORRO FAMSA">AHORRO FAMSA </option> 
+                            <option values="AUTOFIN">AUTOFIN </option> 
+                            <option values="MONEX">MONEX </option> 
+                            <option values="JP MORGAN">JP MORGAN </option> 
+                            <option values="PRUDENTIAL BANK">PRUDENTIAL BANK </option> 
+                            <option values="BANCO VOLKSWAGEN">BANCO VOLKSWAGEN </option> 
+                            <option values="BANCO DE MEXICO">BANCO DE MEXICO </option> 
+                            <option values="ABC CAPITAL">ABC CAPITAL </option> 
+                            <option values="ACTINVER">ACTINVER </option> 
+                            <option values="BANCO BASE">BANCO BASE </option> 
+                            <option values="BANCO CREDIT SUISSE">BANCO CREDIT SUISSE </option> 
+                            <option values="BANCO FINTERRA">BANCO FINTERRA </option> 
+                            <option values="BANCO FORJADORES">BANCO FORJADORES </option> 
+                            <option values="BANCO INMOBILIARIO MEXICANO">BANCO INMOBILIARIO MEXICANO </option> 
+                            <option values="BANCO PAGATODO">BANCO PAGATODO </option> 
+                            <option values="UNIÓN PROGRESO">UNIÓN PROGRESO </option> 
+                            <option values="BANCO SABADELL">BANCO SABADELL </option> 
+                            <option values="BANCREA">BANCREA </option> 
+                            <option values="BANK OF CHINA MEXICO">BANK OF CHINA MEXICO </option> 
+                            <option values="BANK OF TOKYO MITSUBISHI">BANK OF TOKYO MITSUBISHI </option> 
+                            <option values="BANKAOOL">BANKAOOL </option> 
+                            <option values="BARCLAYS BANK MEXICO">BARCLAYS BANK MEXICO </option> 
+                            <option values="CIBANCO">CIBANCO </option> 
+                            <option values="CONSUBANCO">CONSUBANCO </option> 
+                            <option values="DEUTSCHE BANK MEXICO">DEUTSCHE BANK MEXICO </option> 
+                            <option values="FUNDACION DONDE BANCO">FUNDACION DONDE BANCO </option> 
+                            <option values="ICBC MEXICO">ICBC MEXICO </option> 
+                            <option values="INTERCAM BANCO">INTERCAM BANCO </option> 
+                            <option values="INVESTA BANCO">INVESTA BANCO </option> 
+                            <option values="MIZUHO BANCO">MIZUHO BANCO </option> 
+                            <option values="SHINHAN BANCO">SHINHAN BANCO </option> 
+                            <option values="UBS BANCO MEXICO">UBS BANCO MEXICO </option> 
+                            <option values="IXE BANCO">IXE BANCO </option>
+                        </select>
                     </label>
                 </div>
                 <section>
