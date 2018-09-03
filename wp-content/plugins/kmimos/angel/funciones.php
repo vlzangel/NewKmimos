@@ -321,7 +321,7 @@
                         ),
                         array("name"  => "Disponibilidad",
                             "url"   => get_home_url()."/perfil-usuario/disponibilidad",
-                            "icono_2" => "fa fa-calendar"
+                            "icono" => "29"
                         ),
                         array("name"  => "Cuidadores Favoritos",
                             "url"   => get_home_url()."/perfil-usuario/favoritos",
