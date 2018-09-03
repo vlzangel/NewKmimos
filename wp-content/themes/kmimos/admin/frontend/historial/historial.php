@@ -225,11 +225,7 @@
 		$modificadas = construir_listado(['modificadas'=>$reservas_array['modificadas']]);
 		$error = construir_listado(['error'=>$reservas_array['error']]);
 		$otros = construir_listado(['otros'=>$reservas_array['otros']]);
-
-
-
-
-		
+ 
 		//BUILD TABLE
 		$CONTENIDO .= '
 			<h1 style="margin: 0px; padding: 0px;">Mi Historial de Reservas</h1>

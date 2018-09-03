@@ -40,11 +40,12 @@
 
 	function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="",$show=false){
 	    global $count;
-	    global $CONTENIDO;
+	    // global $CONTENIDO;
 	    global $wpdb;
 	    $user_id=get_current_user_id();
 	    $caregivers = get_caregiver($user_select);
 
+	    $_CONTENIDO = '';
 	    if(count($caregivers) > 0){
 
 	        $reservas_array = array(
@@ -188,17 +189,62 @@
 	        }
 
 	        //BUILD TABLE
+			$por_confirmar = construir_listado(['pendientes_confirmar'=>$reservas_array['pendientes_confirmar']]);
+			$confirmadas = construir_listado(['confirmadas'=>$reservas_array['confirmadas']]);
+			$canceladas = construir_listado(['canceladas'=>$reservas_array['canceladas']]);
+			$otros = construir_listado(['otras'=>$reservas_array['otras']]);
+
 	        if($strcaregiver!=''){
-	            $CONTENIDO .= '<h1 style="line-height: normal;">'.$strcaregiver.'</h1><hr>';
+	            $_CONTENIDO .= '<h1 style="line-height: normal;">'.$strcaregiver.'</h1><hr>';
 	        }
 
-	        $CONTENIDO .= construir_listado($reservas_array);
+	        // $_CONTENIDO .= construir_listado($reservas_array);
+	        $_CONTENIDO .= ' 
+	        <div>
+
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			     
+			    <li role="presentation" class="active">
+			    	<a href="#por_confirmar" aria-controls="por_confirmar" role="tab" data-toggle="tab">
+			    		Por Confirmar 
+			    	</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#confirmadas" aria-controls="confirmadas" role="tab" data-toggle="tab">
+			    		Confirmadas 
+			    	</a>
+			    </li> 
+			    <li role="presentation">
+			    	<a href="#canceladas" aria-controls="canceladas" role="tab" data-toggle="tab">
+			    		Canceladas 
+			    	</a>
+			    </li> 
+			    <li role="presentation">
+			    	<a href="#otros" aria-controls="otros" role="tab" data-toggle="tab">
+			    		Otros
+			    	</a>
+			    </li>
+
+			  </ul>
+
+			  <!-- Tab panes -->
+			  <div class="tab-content"> 
+			    <div role="tabpanel" class="tab-pane active" id="por_confirmar">'.$por_confirmar.'</div>
+			    <div role="tabpanel" class="tab-pane " id="confirmadas">'.$confirmadas.'</div> 
+			    <div role="tabpanel" class="tab-pane " id="canceladas">'.$canceladas.'</div> 
+			    <div role="tabpanel" class="tab-pane " id="otros">'.$otros.'</div>
+			  </div>
+
+			</div>
+	        ';
 	    }else{
 	        if($show && $strnocaregiver!=''){
-	            $CONTENIDO .= '<h1 style="line-height: normal;">'.$strnocaregiver.'</h1><hr>';
+	            $_CONTENIDO .= '<h1 style="line-height: normal;">'.$strnocaregiver.'</h1><hr>';
 	        }
 	    }
 
+	    return $_CONTENIDO;
 	}
 
 	$count=0; $como_cliente = "Mis solicitudes";
@@ -209,8 +255,21 @@
 	if( $user->roles[0] == "vendor" ){
 		$como_cliente = 'Solicitudes como cliente';
 	}
-	get_caregiver_tables("cu.post_author={$user_id}",'Solicitudes como cuidador','No hay solicitudes como cuidador.');
-	get_caregiver_tables("cl.meta_value={$user_id}", $como_cliente,'No hay solicitudes como cliente.',true);
+
+	$CONTENIDO .= '
+		<div class="text-right col-md-12">
+			<div class="btn-group" role="group">
+			  <button type="button" class="btn btn-default" data-action="switch-solicitud" style="background-color:#59c9a8; color:#fff;" data-target="#list-cuidador">Mostrar como cuidador</button>
+			  <button type="button" class="btn btn-default" data-action="switch-solicitud" data-target="#list-cliente">Mostrar como cliente</button>
+			</div>
+		</div>
+		<div id="list-cuidador" data-action="switch-content" style="display:block;">'.
+			get_caregiver_tables("cu.post_author={$user_id}",'Solicitudes como cuidador','No hay solicitudes como cuidador.').'
+		</div>
+		<div id="list-cliente" data-action="switch-content"  style="display:none;">'.
+			get_caregiver_tables("cl.meta_value={$user_id}", $como_cliente,'No hay solicitudes como cliente.',true).
+		'</div>';
+
 
 	global $count;
 	if($count==0){
