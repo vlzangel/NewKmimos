@@ -156,6 +156,24 @@
     $detalles_plantilla = str_replace('[hora_fin]', $servicio["checkout"], $detalles_plantilla);
     $detalles_plantilla = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $detalles_plantilla);
 
+
+    if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
+        $reembolsar_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
+        $reembolsar_plantilla = file_get_contents($reembolsar_plantilla);
+        $reembolsar_plantilla = str_replace('[DEVOLVER]', number_format( $servicio["desglose"]["reembolsar"], 2, ',', '.'), $reembolsar_plantilla);
+    }else{
+        $reembolsar_plantilla = "";
+    }
+
+
+	$servicios_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/servicios.php';
+    $servicios_plantilla = file_get_contents($servicios_plantilla);
+
+	$servicios_plantilla = str_replace('[inicio]', date("d/m", $servicio["inicio"]), $servicios_plantilla);
+	$servicios_plantilla = str_replace('[desglose]', $desglose, $servicios_plantilla);
+    $servicios_plantilla = str_replace('[ADICIONALES]', $adicionales, $servicios_plantilla);
+    $servicios_plantilla = str_replace('[TRANSPORTE]', $transporte, $servicios_plantilla);
+
     $confirmacion_titulo = "Confirmación de Reserva";
     if( $servicio["flash"] == "SI" && $acc == "" ){
     	$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);

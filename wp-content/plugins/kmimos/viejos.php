@@ -28,8 +28,8 @@
                 'Petco'         =>  'Petco',
                 'Volaris'       =>  'Volaris',
 
-                'Venta de alimento' =>  'Venta de alimento',
-                'Nutriheroes'       =>  'Nutriheroes',
+                /*'Venta de alimento' =>  'Venta de alimento',
+                'Nutriheroes'       =>  'Nutriheroes',*/
 
                 'Facebook'      =>  'Facebook',
                 'Google'       =>  'Buscador de Google',
@@ -46,7 +46,8 @@
                 'Vintermex'             =>  'Viajes Intermex',
                 'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
                 'Youtube'               =>  'Youtube',
-                'Otros'                 =>  'Otros'
+                'Otros'                 =>  'Otros',
+                'CC-Petco'              =>  'CC-Petco'
             );
             return $opciones;
         }

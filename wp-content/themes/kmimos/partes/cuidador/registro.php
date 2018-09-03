@@ -124,12 +124,14 @@
 						</div>
 						<div class="label-placeholder">
 							<label>¿Cómo nos conoció?</label>
-							<select class="km-datos-estado-opcion km-select-custom" name="rc_referred">
-								<option value="">¿Cómo nos conoció?</option>
-								<?php $list = get_referred_list_options();
-									foreach( $list as $key => $item ){ ?>
-									<option value="<?php echo $key; ?>"><?php echo $item; ?></option>
-								<?php } ?>
+							<select class="km-datos-estado-opcion km-select-custom" name="rc_referred"><?php
+								if( $_SESSION["wlabel"] != "petco" ){
+									echo '<option value="">Dónde nos conoció?</option>';
+								}
+								$list = get_referred_list_options();
+								foreach( $list as $key => $item ){ ?>
+									<option value="<?php echo $key; ?>"><?php echo $item; ?></option> <?php
+								} ?>
 							</select>
 							<small data-error="rc_referred" style="visibility: hidden;"></small>
 						</div>

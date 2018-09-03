@@ -100,11 +100,11 @@ include_once(__DIR__.'/header.php');
     #kmibox .detail .button{padding:10px 20px;  color: #FFF; font-size: 20px; border-radius:50px; cursor: pointer; background: #23d3c4 !important; display: inline-block;}
 
     #kmibox .section.register{margin: 0 40px 0 0; padding: 40px; color: #FFF; font-size: 17px; border-radius: 20px; background: #900fa2;}
-    #kmibox .section.register span{padding: 10px;  display: block;}
+    #kmibox .section.register span{padding: 10px;  display: block; font-size: 17px;}
     #kmibox .section.register .message{padding: 0; text-align: center; opacity:0; visible:hidden; transition: all .3s;}
     #kmibox .section.register .message.show{opacity:1; visible:visible;}
     #kmibox .section.register .message .icon{padding: 10px;}
-    #kmibox .section.register form{margin: 0; display:flex;}
+    #kmibox .section.register form{margin: 0px auto; display: flex; width: 500px;}
     #kmibox .section.register input,
     #kmibox .section.register button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
     #kmibox .section.register button {padding: 10px;  width: 40px;}
@@ -184,22 +184,25 @@ while(have_posts()){
     ?>
 </section>
 
-
 <section id="kmibox">
     <div class="group contain">
-        <div class="section register">
-            <span>Te interesaron nuestros artículos?</span>
-            <span><strong>SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span>
+        <div class="section register" style="width: 60%; margin: 0px auto;">
+            <span style="font-size: 24px; font-weight: 600;">Te interesaron nuestros artículos?</span>
+            <span>
+                <strong>SUSCR&Iacute;BETE!</strong> y<br>
+                recibe el Newsletter con nuestras<br>
+                <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!
+            </span>
             <?php echo subscribe_input('blog'); ?>
         </div>
-        <div class="section image responsive"></div>
+        <!-- <div class="section image responsive"></div>
         <div class="section image"></div>
         <div class="section detail">
             <div class="logo"></div>
             <div class="title">Conoce  y elige el plan que <br>mejor te convenga</div>
             <div class="content">Regalale un detalle al consentido de tu hogar!</div>
             <a href="<?php echo site_url(); ?>/kmibox"><div class="button">Quiero mi KmiBOX</div></a>
-        </div>
+        </div> -->
     </div>
 </section>
 

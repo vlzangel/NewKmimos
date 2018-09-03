@@ -1,5 +1,10 @@
 <?php
 
+    $datos_cliente = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cliente.php';
+    $datos_cliente = file_get_contents($datos_cliente);
+    
+    $datos_cuidador = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cuidador.php';
+    $datos_cuidador = file_get_contents($datos_cuidador);
     
     $inmediata = "";
 
@@ -10,15 +15,13 @@
 		$cuidador_file = $PATH_TEMPLATE.'/template/mail/reservar/cliente/nueva.php';
         $mensaje_cliente = file_get_contents($cuidador_file);
 
-        $datos_cuidador = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cuidador.php';
-        $datos_cuidador = file_get_contents($datos_cuidador);
         $mensaje_cliente = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_cliente);
 
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
 
+        $mensaje_cliente = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_cliente);
 
         $mensaje_cliente = str_replace('[HEADER]', "reserva", $mensaje_cliente);
-
 
         $mensaje_cliente = str_replace('[mascotas]', $mascotas, $mensaje_cliente);
         $mensaje_cliente = str_replace('[desglose]', $desglose, $mensaje_cliente);
@@ -55,19 +58,11 @@
         $fin = strtotime( str_replace("/", "-", $_POST['service_end']) );
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
 
-        $datos_cliente = $PATH_TEMPLATE.'/template/mail/reservar/partes/datos_cliente.php';
-        $datos_cliente = file_get_contents($datos_cliente);
         $mensaje_cuidador = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_cuidador);
 
-        if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
-            $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
-            $descuento_plantilla = file_get_contents($descuento_plantilla);
-            $descuento_plantilla = str_replace('[DEVOLVER]', number_format( $servicio["desglose"]["reembolsar"], 2, ',', '.'), $descuento_plantilla);
-            $totales_plantilla = str_replace('[REEMBOLSAR]', $descuento_plantilla, $totales_plantilla);
-        }else{
-            $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
-        }
+        $totales_plantilla = str_replace('[REEMBOLSAR]', $reembolsar_plantilla, $totales_plantilla);
 
+        $mensaje_cuidador = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[HEADER]', "reserva", $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[mascotas]', $mascotas, $mensaje_cuidador);
         $mensaje_cuidador = str_replace('[desglose]', $desglose, $mensaje_cuidador);
@@ -95,6 +90,7 @@
         }
 
     }else{
+        $totales_plantilla = str_replace('[REEMBOLSAR]', $reembolsar_plantilla, $totales_plantilla);
         $inmediata = "Inmediata";
     }
 
@@ -103,7 +99,15 @@
 
         /* Generales */
 
-            $mensaje_admin = str_replace('[HEADER]', "reserva", $mensaje_admin);
+            $mensaje_admin = str_replace('[SERVICIOS]', $servicios_plantilla, $mensaje_admin);
+
+            if( $inmediata == "Inmediata" ){
+                $mensaje_admin = str_replace('[HEADER]', "reservaInmediata", $mensaje_admin);
+                $mensaje_admin = str_replace('[id_reserva]', "Código de reserva #".$servicio["id_reserva"], $mensaje_admin);
+            }else{
+                $mensaje_admin = str_replace('[HEADER]', "reserva", $mensaje_admin);
+                $mensaje_admin = str_replace('[id_reserva]', "Reserva #: ".$servicio["id_reserva"], $mensaje_admin);
+            }
 
             $mensaje_admin = str_replace('[DATOS_CLIENTE]', $datos_cliente, $mensaje_admin);
             $mensaje_admin = str_replace('[DATOS_CUIDADOR]', $datos_cuidador, $mensaje_admin);
@@ -115,7 +119,6 @@
             $mensaje_admin = str_replace('[MODIFICACION]', $modificacion, $mensaje_admin);
             $mensaje_admin = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje_admin);
             $mensaje_admin = str_replace('[TIPO_SERVICIO]', $servicio["tipo"], $mensaje_admin);
-            $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
             $mensaje_admin = str_replace('[DETALLES_SERVICIO]', $detalles_plantilla, $mensaje_admin);
             $mensaje_admin = str_replace('[ACEPTAR]', $servicio["aceptar_rechazar"]["aceptar"], $mensaje_admin);
             $mensaje_admin = str_replace('[RECHAZAR]', $servicio["aceptar_rechazar"]["cancelar"], $mensaje_admin);

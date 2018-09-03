@@ -7,15 +7,13 @@ wp_enqueue_script( 'blog_single_script', getTema()."/js/blog_script.js", array("
 include_once('partes/blog/header.php');
 ?>
 <style>
-    /*WIEWED*/
+    /*VIEWED*/
     #blog_viewed{position:relative; width:100%; margin:50px 0; overflow:hidden;}
     #blog_viewed .viewed{position:relative; overflow:hidden;}
     #blog_viewed .post{position:relative; width:calc(35% - 20px); padding-top:calc(35% - 20px); margin:20px 0 0 20px; float:left; color:#FFF; box-shadow:0 0 5px #555; background:#ff7e00; overflow:hidden; transition:all .5s;}
     #blog_viewed .control{display:none;}
-
     #blog_viewed .post .content{position:absolute; width:90%; height:60%; top:0; left:0; padding:20% 5%; opacity:0; background:#ff7e00; transition:all .3s;}
     #blog_viewed .post:hover .detail{opacity:1; /*background:#737373;*/}
-
     #blog_viewed .post .image{position:absolute; width:100%; height:100%; top:0; left:0; background:center/cover no-repeat;}
     #blog_viewed .post .title{position:absolute;  width: 100%;  height: auto;  padding:20px 30px; bottom: 20px; color: #000;  font-size:20px; text-align:center; line-height: 1; background: rgba(255,255,255,0.6);}
     #blog_viewed .post .title:before {content: "+";  position: absolute;  width: 50px;  height: 50px;      padding: 5px 8px;  right: 0;  bottom: 0; color: #FFF;  font-size: 25px; font-weight: bold; text-align: right;  align-items: flex-end;  justify-content: flex-end; background: linear-gradient(135deg, transparent 50%, #900fa2 50%);  display: flex;  }
@@ -23,7 +21,6 @@ include_once('partes/blog/header.php');
     #blog_viewed .post .content{position:relative; font-size:20px; text-align:justify; display:none;}
     #blog_viewed .post .category{position:relative; margin:10px 0; font-size:15px; font-weight:bold; display:none;}
     #blog_viewed .post .button.more{position:absolute; padding:5px 30px; color:#FFF; bottom:20px; right:20px; border:2px solid #FFF; background:transparent; display:none;}
-
     #blog_viewed .post:first-child{width:30%; padding-top:calc(70% - 20px); margin:20px 0 0 0;}
     #blog_viewed .post:first-child .image{}
     #blog_viewed .post:first-child .detail{opacity:1;}
@@ -39,7 +36,6 @@ include_once('partes/blog/header.php');
         #blog_viewed .post{width:calc(50% - 10px); padding-top:calc(50% - 10px);}
         #blog_viewed .post:nth-child(2){ margin-left: 0; }
         #blog_viewed .post:first-child{width:100%; padding-top:70%; margin: 0;}
-
         /* RESPONSIVE SUGERIDO */
         #blog_viewed{margin:10px 0;}
         #blog_viewed .post{width:100%; padding-top:70%; margin: 0; display: none;}
@@ -48,8 +44,6 @@ include_once('partes/blog/header.php');
         #blog_viewed .control .icon{width: 15px; height: 15px; margin:10px; border-radius: 50%; box-shadow: 0 0 5px #555; background: #FFF; cursor: pointer; display: inline-block;}
         #blog_viewed .control .icon.show{background: #23d3c4; display: inline-block !important;}
     }
-
-
 
     /*LAST*/
     #last{padding: 20px 0;}
@@ -70,7 +64,6 @@ include_once('partes/blog/header.php');
     #last .section.news .post .content{padding: 0 0 50px 0; text-align: justify;}
     #last .section.news .post .content:before {content: "+";  position: absolute;  width: 50px;  height: 50px;      padding: 5px 8px;  right: 0;  bottom: 0; color: #FFF;  font-size: 25px; font-weight: bold; text-align: right;  align-items: flex-end;  justify-content: flex-end; background: linear-gradient(135deg, transparent 50%, #900fa2 50%);  display: flex;  }
     #last .section.news .post .button.more{display:none;}
-
     #last .section.aside{}
     #last .section.aside .register{margin: 0 40px 0 0; padding: 40px; color: #FFF; font-size: 17px; border-radius: 20px; background: #900fa2;}
     #last .section.aside .register span{padding: 10px;  display: block;}
@@ -90,7 +83,6 @@ include_once('partes/blog/header.php');
     @media screen and (max-width:480px), screen and (max-device-width:480px){
         #last .section.new .post .image { width: 100%;  height: 200px;  margin: 10px 0;}
         #last .section.new .post .detail { width: 100%; }
-
         /* RESPONSIVE SUGERIDO */
         #last{padding: 0;}
         #last .section.aside .register{margin: 10px 0; padding: 10px;}
@@ -100,7 +92,6 @@ include_once('partes/blog/header.php');
         #last .section.news .post .image{width:auto; height:150px; margin:0; float:none;}
         #last .section.news .post .detail{width: auto;}
     }
-
 
     /*KMIBOX*/
     #kmibox{padding: 10px 0;  color: #FFF; font-size: 30px; text-align: center; background: #dadada;}
@@ -117,7 +108,6 @@ include_once('partes/blog/header.php');
     @media screen and (max-width:480px), screen and (max-device-width:480px){
         #kmibox .section.detail{width: 100%;}
         #kmibox .section.image{position: absolute; width: 100%; height: 100%; opacity: 0.2;  }
-
         /* RESPONSIVE SUGERIDO */
         #kmibox .group {padding-bottom: 150px;}
         #kmibox .section.image {display: none;}
@@ -162,7 +152,6 @@ include_once('partes/blog/header.php');
         #featured .post:nth-child(2){display: none;}
     }
 
-
     /*PRODUCTS*/
     #products{padding: 25px 0; display: none;}
     #products .kmibox{position:relative;}
@@ -178,15 +167,12 @@ include_once('partes/blog/header.php');
     #products .product .detail .content.price{color: #23d3c4; font-size: 25px; }
     #products .product .detail .button{padding:10px; color:#999; border:1px solid #999; border-radius:5px; }
 
-
-
     @media screen and (max-width:768px), screen and (max-device-width:768px){
         #products .product {width: calc(50% - 80px);}
         #products .product .detail .title{margin-bottom: 0px;}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
         #products .product { width: calc(50% - 20px);  margin: 10px;}
-
         /* RESPONSIVE SUGERIDO */
         #products .product{width: calc(100% - 20px); display: none;}
         #products .product:first-child{display: block;}
@@ -209,14 +195,13 @@ include_once('partes/blog/header.php');
 </section>
 
 <?php
-$page=get_query_var('paged');
-$pageNEXT=site_url().'/'.$slug.'/page/'.($page+1).'#last';
-$pagePREV=site_url().'/'.$slug.'/page/'.($page-1).'#last';
-if($page<=0){
-    $pageNEXT=site_url().'/'.$slug.'/page/'.($page+2).'#last';
-    $pagePREV=site_url().'/'.$slug.'#last';
-}
-
+    $page=get_query_var('paged');
+    $pageNEXT = site_url().'/'.$slug.'/page/'.($page+1).'#last';
+    $pagePREV = site_url().'/'.$slug.'/page/'.($page-1).'#last';
+    if( $page <= 0 ){
+        $pageNEXT=site_url().'/'.$slug.'/page/'.($page+2).'#last';
+        $pagePREV=site_url().'/'.$slug.'#last';
+    }
 ?>
 
 <section id="last">
@@ -258,7 +243,30 @@ if($page<=0){
         ?>
 </section>
 
-<section id="kmibox">
+<?php
+    $link = get_home_url()."/quiero-ser-cuidador-certificado-de-perros/";
+    echo $BANNER_PUBLICIDAD = '
+        <style>
+            .banner_publicidad_container{ position: relative; display: block; }
+            .banner_publicidad_container video,
+            .banner_publicidad_container img { width: 100%; height: auto; }
+            .banner_publicidad_container img { display: none; }
+            .banner_publicidad_container .boton_click { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 1; background-size: contain; background-position: center; background-repeat: no-repeat; display: none; }
+            @media (max-width: 700px){
+                .banner_publicidad_container video { display: none; }
+                .banner_publicidad_container img, .banner_publicidad_container .boton_click { display: block; }
+                .km-club { margin: 150px 0 30px !important; }
+            }
+        </style>
+        <a href="'.$link.'" target="_blank" class=" banner_publicidad_container">
+            <video loop muted autoplay width="100%" src="'.getTema().'/videos/home/publicidad_ser_cuidador/pc.mp4" poster="'.getTema().'/videos/home/publicidad_ser_cuidador/preview.png" ></video>
+            <img src="'.getTema().'/videos/home/publicidad_ser_cuidador/movil_final.gif" />
+            <div class="boton_click" style="background-image: url('.getTema().'/videos/home/publicidad_ser_cuidador/boton.png);"></div>
+        </a>
+    ';
+?>
+
+<!-- <section id="kmibox">
     <div class="group contain">
         <div class="section image responsive"></div>
         <div class="section image"></div>
@@ -269,18 +277,10 @@ if($page<=0){
             <a href="<?php echo site_url(); ?>/kmibox"><div class="button">Quiero mi KmiBOX</div></a>
         </div>
     </div>
-</section>
-
+</section> -->
 
 <section id="products">
-    <?php
-    include_once('partes/blog/frontend/products.php');
-    ?>
+    <?php include_once('partes/blog/frontend/products.php'); ?>
 </section>
 
-
- 
-
-<?php
-    include_once('partes/blog/footer.php');
-?>
+<?php include_once('partes/blog/footer.php'); ?>
