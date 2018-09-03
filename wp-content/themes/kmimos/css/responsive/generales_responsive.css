@@ -28,6 +28,15 @@
 }
 
 @media (max-width: 768px){
+	.nav-tabs li{
+	    width: 49%;
+	}
+	.nav-tabs li a{
+	    font-size: 12px;
+	    padding-left: 5px!important;
+	    padding-right: 5px!important;
+	    text-align: center;
+	}
 	.bg-white-secondary{
 	    padding-top: 0px;
 	}

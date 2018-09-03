@@ -262,10 +262,10 @@
 	}
 
 	$CONTENIDO .= '
-		<div class="text-right col-md-12" style="display:'.$mostrar_cuidador.'">
+		<div class="text-right" style="display:'.$mostrar_cuidador.'; margin: 20px 0px!important; ">
 			<div class="btn-group" role="group">
-			  <button type="button" class="btn btn-default" data-action="switch-solicitud" style="background-color:#59c9a8; color:#fff;" data-target="#list-cuidador">Mostrar como cuidador</button>
-			  <button type="button" class="btn btn-default" data-action="switch-solicitud" data-target="#list-cliente">Mostrar como cliente</button>
+			  <button type="button" class="btn btn-default" data-action="switch-solicitud" style="font-size: 11px!important;background-color:#59c9a8; color:#fff;" data-target="#list-cuidador">Mostrar como cuidador</button>
+			  <button type="button" class="btn btn-default" data-action="switch-solicitud" data-target="#list-cliente" style="font-size: 11px!important;">Mostrar como cliente</button>
 			</div>
 		</div>
 		<div id="list-cuidador" data-action="switch-content" style="display:'.$mostrar_cuidador.'">'.
