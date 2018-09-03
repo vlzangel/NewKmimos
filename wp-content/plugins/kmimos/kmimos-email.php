@@ -57,7 +57,7 @@
             $beneficios_txt = "";
             if( $beneficios ){
                 $beneficios_txt = "
-                    <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #6b1c9b; margin-bottom: 10px;'>
+                    <div style='font-family: Arial;width:100%; font-size: 12px; font-weight: bold; letter-spacing: 0.2px; color: #6b1c9b; margin-bottom: 10px;'>
                         CON LA CONFIANZA Y SEGURIDAD QUE NECESITAS
                     </div>
 
@@ -96,7 +96,7 @@
 
                             ".$content."
 
-                            <div style='text-align:center;'>
+                            <div style='text-align:center;width:100%;'>
                                 
                                 ".$ayuda."
 
@@ -104,7 +104,7 @@
 
                                 ".$beneficios_txt."
 
-                                <img style='margin-bottom: 30px;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/dog_footer.png' >
+                                <img style='margin-bottom: 30px;width:100%;' src='".get_home_url()."/wp-content/themes/kmimos/images/emails/dog_footer.png' >
 
                                 <div style='background-color:#000000; color: #fff; display: table; width: 100%; height: 62px; font-size: 11px; letter-spacing: 0.2px; padding: 0px; box-sizing: border-box;'>
 
