@@ -255,7 +255,7 @@
 	$mostrar_cuidador = 'block';
 	$mostrar_cliente = 'none';
 
-	if( $user->roles[0] == "vendor" || $user->roles[0] == "administrator"){
+	if( !is_petsitters() ){
 		$como_cliente = 'Solicitudes como cliente';
 		$mostrar_cuidador = 'none';
 		$mostrar_cliente = 'block';
