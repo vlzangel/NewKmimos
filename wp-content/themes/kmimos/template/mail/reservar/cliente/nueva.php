@@ -100,8 +100,6 @@
 </div>
 
 <div style='
-    font-family: Verdana;
-    width: 100%
     font-size: 17px; 
     font-weight: 600;
     line-height: 1.07; 

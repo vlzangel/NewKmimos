@@ -47,16 +47,14 @@
     </div>
 
 	<div style='
-	    font-family: Verdana;
-	    width: 100%
-	    font-size: 17px; 
-	    font-weight: 600;
-	    line-height: 1.07; 
-	    letter-spacing: 0.3px; 
-	    color: #000000; 
-	    padding: 15px 30px;
-	    text-align: center;
-	    background-color: #e3e3e3;
+        font-size: 17px; 
+        font-weight: 600;
+        line-height: 1.07; 
+        letter-spacing: 0.3px; 
+        color: #000000; 
+        padding: 15px 30px;
+        text-align: center;
+        background-color: #e3e3e3;
 	'>
 	    Reserva #: <strong>[id_reserva]</strong>
 	</div>
