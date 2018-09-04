@@ -1,17 +1,23 @@
 <?php
+include_once('../wp-content/themes/kmimos/lib/openpay/Openpay.php');
 
-$nombre_archivo = "logs.txt"; 
- $mensaje = json_encode( $_REQUEST );
-    if($archivo = fopen($nombre_archivo, "a"))
-    {
-        if(fwrite($archivo, date("d m Y H:m:s"). " ". $mensaje. "\n"))
-        {
-            echo "Se ha ejecutado correctamente";
-        }
-        else
-        {
-            echo "Ha habido un problema al crear el archivo";
-        }
- 
-        fclose($archivo);
-    }
+// Cambiar credenciales -----------------------------------------
+$openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f264016e6fcb7');
+// --------------------------------------------------------------
+
+$findDataRequest = array(
+    'creation[gte]' => '2013-01-01',
+    'creation[lte]' => '2019-12-31',
+    'offset' => 0,
+    'limit' => 1000
+);
+
+$payoutList = $openpay->payouts->getList($findDataRequest);
+
+$query = '';
+foreach ($payoutList as $pay) {
+	$query .= "UPDATE cuidadores_pagos SET estatus = '{$pay->status}' WHERE openpay_id = '{$pay->id}'; <br>";
+}
+
+echo "<pre>{$query}</pre>";
+

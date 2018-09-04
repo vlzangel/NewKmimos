@@ -18,6 +18,17 @@
         $pagos_lists = $pagos->getPagoGenerados( $desde, $hasta );
     }
  
+    $estatus=[
+        "" => "",
+        "por_autorizar" => "Por autorizar",   
+        "autorizado" => "Autorizado",   
+        "negado" => "Negado",  
+        "in_progress" => "En progreso",  
+        "cancelled" => "Cancelado",  
+        "completed" => "Completado",  
+        "failed" => "Error",
+    ];
+
 //print_r($pagos_lists);
 
     $_SESSION['pago_cuidador'] = [];
@@ -84,12 +95,12 @@
             // Agregar boton de comentarios    
                 if( !empty($comentarios) ){
                     $botones .= "<button class='btn btn-default' style='padding:5px;margin:5px;' data-titulo='Comentarios' data-modal='comentarios' data-id='".$pago->id."'><i class='fa fa-comments-o' aria-hidden='true'></i></button>";
-                }
+                } 
 
             $data["data"][] = array(
                 $checkbox,
                 date('Y-m-d',strtotime($pago->fecha_creacion)),
-                strtoupper("<strong>{$pago->estatus}</strong>"),
+                strtoupper("<strong>".$estatus[$pago->estatus]."</strong>"),
                 $pago->user_id,
                 utf8_encode($cuidador->nombre),
                 utf8_encode($cuidador->apellido),

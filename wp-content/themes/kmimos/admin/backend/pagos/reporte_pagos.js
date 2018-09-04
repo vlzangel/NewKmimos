@@ -26,6 +26,19 @@ jQuery(document).ready(function() {
 		abrir_link( jQuery(this) );
     });
 
+    jQuery('[data-action="popover"] li').on('click', function(e){
+    	var content_old = jQuery( '#popover-content > span' ).html();
+    	var content = jQuery(this).attr('data-content');
+    	jQuery('[data-action="popover"] li a div').css('background-color', '#ccc'); 	    	
+    	if( content != content_old ){		
+	    	jQuery( '#popover-content' ).css( 'visibility', 'visible' );
+	    	jQuery( '#popover-content > span' ).html( content );
+	    	jQuery(this).children('a').children('div').css('background-color', '#22712c'); 	    	
+    	}else{
+	    	jQuery( '#popover-content' ).css( 'visibility', 'hidden' );
+	    	jQuery( '#popover-content > span' ).html( '' );
+    	}
+    });
 
     jQuery(document).on('click', "[data-action='error']", function(e){
     	e.preventDefault();
@@ -74,24 +87,46 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery('#generar-solicitud').on('click', function(){
-		var users = [];
-		jQuery.each(jQuery("input:checked"), function(){
-			var user = jQuery(this).val();
-			var token = jQuery(this).attr('data-token');	
-			users.push({'token':token, 'user_id':user});
-		});
-		generar_solicitud( users  );
+		
 	});
-  
-});
+ 
+    jQuery(document).on('click', '[data-action="procesar"]', function(e){
+    	e.preventDefault();
+    	if( jQuery(this).attr('data-target') == 'autorizado' ){		
+	    	var users = [];
+			jQuery.each(jQuery("input:checked"), function(){
+				var user = jQuery(this).val();
+				var token = jQuery(this).attr('data-token');	
+				users.push({'token':token, 'user_id':user});
+			});
+			generar_solicitud( users, jQuery(this).attr('data-target') );
+    	}else{
+    		cerrar();
+    	}
+	});
+	  
+    jQuery("[data-modal='autorizar']").on('click', function(){
+    	if( jQuery("input:checked").size() > 0 ){
+    		abrir_link( jQuery(this) );
+    	}else{
+    		alert('Debe seleccionar los registros a procesar');
+    	}
+    });  
 
-function generar_solicitud( users ){
+});
+ 
+function generar_solicitud( users, accion ){
 	jQuery.post(
 		TEMA+'/admin/backend/pagos/ajax/generar_solicitud.php',
-		{'ID':ID, 'users':users},
+		{
+			'ID':ID, 
+			'users':users,
+			'accion':accion, 
+			'comentario': jQuery('[name="observaciones"]').val()
+		},
 		function(data){
-			console.log(data);
 			loadTabla( _tipo, _hiddenColumns );	
+			cerrar();
 		}
 	);
 }

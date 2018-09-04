@@ -1,3 +1,21 @@
+#popover-content{
+	padding-bottom: 5px;
+	padding-top: 5px;
+	visibility: hidden;
+}
+
+#popover-content,
+.leyenda,
+.leyenda ul{
+	margin-bottom: 0px;
+}
+
+.list-inline li div:hover{
+	background-color: #22712c;
+}
+.list-inline li div a:hover{
+	text-decoration: none;
+}
 .list-inline li div{
 	padding:10px;
 	border-radius: 10px 0px 10px 0px;
