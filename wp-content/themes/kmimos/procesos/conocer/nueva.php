@@ -42,7 +42,8 @@
                 wp_mail( "a.veloz@kmimos.la",  $asunto." [CLIENTE]", $mensaje_cuidador);
             }
             
-            // wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
+            wp_mail( "a.veloz@kmimos.la",  $asunto." [CLIENTE]", $mensaje_cuidador);
+            wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
         }
         
 
@@ -83,7 +84,8 @@
                 wp_mail( "a.veloz@kmimos.la",  $asunto." [CUIDADOR]", $mensaje_cliente);
             }
             
-            // wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
+            wp_mail( "a.veloz@kmimos.la",  $asunto." [CUIDADOR]", $mensaje_cliente);
+            wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
         }
 
     /*
@@ -136,7 +138,7 @@
                 wp_mail( "a.veloz@kmimos.la",  $asunto." [ADMIN]", $mensaje_admin);
             }
             
-            // kmimos_mails_administradores_new($asunto, $mensaje_admin);
+            kmimos_mails_administradores_new($asunto, $mensaje_admin);
         }
 
         $_SESSION["code"] = $_GET["code"];
