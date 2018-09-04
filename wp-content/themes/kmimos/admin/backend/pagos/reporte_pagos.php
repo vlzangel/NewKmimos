@@ -43,50 +43,69 @@
     <div class='col-md-12'>
 
         <dir class="leyenda text-right">
-            <ul class="list-inline">
+            <ul data-action="popover" class="list-inline">
                 <li><strong>LEYENDA DE ESTATUS: </strong></li>
-                <li><div></div> Por autorizar</li>
-                <li><div></div> Autorizado</li>
-                <li><div></div> Negado</li>
-                <li><div></div> En progreso</li>
-                <li><div></div> Cancelado</li>
-                <li><div></div> Completado</li>
-                <li><div></div> Error</li>
+                <li data-content="<strong>Por autorizar: </strong> El supervisor debe autorizar la solicitud">
+                    <a href="javascript:;">
+                        <div></div> Por autorizar
+                    </a>
+                </li>
+                <li data-content="<strong>Autorizado: </strong> La solicitud esta autorizada y el pago no fue procesado">
+                    <a href="javascript:;">
+                        <div></div> Autorizado
+                    </a>
+                </li>
+                <li data-content="<strong>Negado: </strong> La solicitud fue negada por los supervisores"><a href="javascript:;"><div></div> Negado</a></li>
+                <li data-content="<strong>En progreso: </strong> La solicitud esta en proceso de pago por la entidad bancaria"><a href="javascript:;"><div></div> En progreso</a></li>
+                <li data-content="<strong>Cancelado: </strong> La solicitud de pago fue cancelada"><a href="javascript:;"><div></div> Cancelado</a></li>
+                <li data-content="<strong>Completado: </strong> La solicitud de pago fue procesada"><a href="javascript:;"><div></div> Completado</a></li>
+                <li data-content="<strong>Error: </strong> Error al procesar la solicitud de pago"><a href="javascript:;"><div></div> Error</a></li>
             </ul>
+            <div>
+                <div id="popover-content" class="pull-right text-left alert alert-info">
+                    <i style="margin-right:5px;padding:5px 15px 5px 0px;border-right: 1px solid #ccc;" class="fa fa-info-circle" aria-hidden="true"></i> 
+                    <span></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 20px;">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="clear"></div>
+            </div>  
         </dir>
+        <div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="pagosNuevos-tab" data-toggle="tab" href="nuevo" role="tab" aria-controls="pagosNuevos" aria-selected="true">Nuevos Pagos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pagosGenerados-tab" data-toggle="tab" href="generados" role="tab" aria-controls="pagosGenerados" aria-selected="false">Solicitudes Generadas</a>
+              </li>
+            </ul>
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="pagosNuevos-tab" data-toggle="tab" href="nuevo" role="tab" aria-controls="pagosNuevos" aria-selected="true">Nuevos Pagos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="pagosGenerados-tab" data-toggle="tab" href="generados" role="tab" aria-controls="pagosGenerados" aria-selected="false">Solicitudes Generadas</a>
-          </li>
-        </ul>
-
-        <div class="botones_container" id="opciones-nuevo">
-            <button class="btn btn-success" id="generar-solicitud"><i class="fa fa-money"></i> Generar Solicitud de pago</button>
+            <div class="botones_container" id="opciones-nuevo">
+                <button class="btn btn-success" data-titulo='Procesar solicitudes de pago' data-modal='autorizar' data-id="0" ><i class="fa fa-money"></i> Generar Solicitud de pago</button>
+            </div>
+            
+            <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Fecha</th>
+                        <th>Estatus</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Total a pagar</th>
+                        <th>Cant. Reservas</th>
+                        <th>Det. Reservas</th>
+                        <th>Autorizado por.</th>
+                        <th>Opciones</th>
+                        <th>Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
-        
-        <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Fecha</th>
-                    <th>Estatus</th>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Total a pagar</th>
-                    <th>Cant. Reservas</th>
-                    <th>Det. Reservas</th>
-                    <th>Autorizado por.</th>
-                    <th>Opciones</th>
-                    <th>Observaciones</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
     </div>
 
 
