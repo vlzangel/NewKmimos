@@ -49,22 +49,13 @@
                     'title'         =>  'Pagos a Cuidador',
                     'short-title'   =>  'Pagos a Cuidador',
                     'parent'        =>  '',
-                    'slug'          =>  'reporte_autorizacion_pagos',
+                    'slug'          =>  'reporte_pagos_cuidador',
                     'access'        =>  'manage_options',
-                    'page'          =>  'reporte_autorizacion_pagos',
+                    'page'          =>  'reporte_pagos_cuidador',
                     'icon'          =>  '',
                     'position'      =>  4,
                 ),
-
-                array(
-                    'title'         =>  __('Autorizaciones'),
-                    'short-title'   =>  __('Autorizaciones'),
-                    'parent'        =>  'reporte_autorizacion_pagos',
-                    'slug'          =>  'reporte_autorizacion_pagos',
-                    'access'        =>  'manage_options',
-                    'page'          =>  'reporte_autorizacion_pagos',
-                    'icon'          =>  '',
-                ),
+ 
  
             );
 
@@ -135,17 +126,7 @@
                 'page'          =>  'reporte_otro',
                 'icon'          =>  '',
             );
-
-            $opciones_menu_reporte[] = array(
-                'title'         =>  __('Nuevos'),
-                'short-title'   =>  __('Nuevos'),
-                'parent'        =>  'reporte_autorizacion_pagos',
-                'slug'          =>  'reporte_pagos_cuidador',
-                'access'        =>  'manage_options',
-                'page'          =>  'reporte_pagos_cuidador',
-                'icon'          =>  '',
-            );
-
+ 
             $opciones_menu_reporte[] = array(
                 'title'         =>  __('Configuracion'),
                 'short-title'   =>  __('Configuracion'),

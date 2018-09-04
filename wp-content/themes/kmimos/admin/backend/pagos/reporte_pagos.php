@@ -55,11 +55,11 @@
                         <div></div> Autorizado
                     </a>
                 </li>
-                <li data-content="<strong>Negado: </strong> La solicitud fue negada por los supervisores"><a href="javascript:;"><div></div> Negado</a></li>
+                <!-- li data-content="<strong>Negado: </strong> La solicitud fue negada por los supervisores"><a href="javascript:;"><div></div> Negado</a></li -->
                 <li data-content="<strong>En progreso: </strong> La solicitud esta en proceso de pago por la entidad bancaria"><a href="javascript:;"><div></div> En progreso</a></li>
                 <li data-content="<strong>Cancelado: </strong> La solicitud de pago fue cancelada"><a href="javascript:;"><div></div> Cancelado</a></li>
                 <li data-content="<strong>Completado: </strong> La solicitud de pago fue procesada"><a href="javascript:;"><div></div> Completado</a></li>
-                <li data-content="<strong>Error: </strong> Error al procesar la solicitud de pago"><a href="javascript:;"><div></div> Error</a></li>
+                <li data-content="<strong>Error: </strong> Ocurrio un error al procesar la solicitud de pago"><a href="javascript:;"><div></div> Error</a></li>
             </ul>
             <div>
                 <div id="popover-content" class="pull-right text-left alert alert-info">
