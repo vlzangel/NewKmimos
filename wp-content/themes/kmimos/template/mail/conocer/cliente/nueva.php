@@ -115,7 +115,7 @@
 		    padding: 15px 30px;
 		    text-align: center;
 		    background-color: #940d99;
-		    margin: 0px 30px 30px;
+		    margin: 0px 0px 30px;
 	    	border-radius: 2px;
 		'>
 		    IMPORTANTE - SIGUIENTES PASOS

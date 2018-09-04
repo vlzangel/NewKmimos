@@ -202,7 +202,7 @@
 	    line-height: 1.07;
 	    letter-spacing: 0.3px;
 	    color: #FFF;
-	    padding: 15px 30px;
+	    padding: 15px 15px;
 	    text-align: center;
 	    background-color: #940d99;
 	    margin: 0px 0px 30px;
