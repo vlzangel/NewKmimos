@@ -15,6 +15,8 @@ foreach ($referidos as $key => $value) {
 
 		}else if($key=='Vintermex' && $wlabel=='viajesintermex'){
 			$selected='selected';
+		}else if($key=='Petco' && $wlabel=='petco'){
+			$selected='selected';
 		}
 	}
 

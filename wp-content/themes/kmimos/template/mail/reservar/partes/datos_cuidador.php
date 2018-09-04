@@ -1,7 +1,7 @@
 <div style="
     width: 100%;
     background-color: #efefee;
-    padding: 20px 30px;
+    padding: 20px 20px;
     box-sizing: border-box;
 ">
     <div style="
@@ -33,7 +33,7 @@
 
         <div style="
             font-weight: 400;
-            padding: 20px;
+            padding: 20px 10px;
         ">
             <table width="100%" style='
                 padding: 0px;
