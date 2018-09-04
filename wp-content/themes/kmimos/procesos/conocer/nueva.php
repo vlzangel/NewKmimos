@@ -39,10 +39,10 @@
             echo $mensaje_cuidador;
         }else{
             if( $_GET["code"] != "" && $_GET["code"] != $_SESSION["code"] ){
-                // wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_cuidador);
+                wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_cuidador);
             }
             
-            wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
+            // wp_mail( $email_cuidador,  $asunto, $mensaje_cuidador);
         }
         
 
@@ -80,10 +80,10 @@
             echo $mensaje_cliente;
         }else{
             if( $_GET["code"] != "" && $_GET["code"] != $_SESSION["code"] ){
-                // wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_cliente);
+                wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_cliente);
             }
             
-            wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
+            // wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
         }
 
     /*
@@ -133,10 +133,10 @@
             echo $mensaje_admin;
         }else{
             if( $_GET["code"] != "" && $_GET["code"] != $_SESSION["code"] ){
-                // wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_admin);
+                wp_mail( "a.veloz@kmimos.la",  $asunto, $mensaje_admin);
             }
             
-            kmimos_mails_administradores_new($asunto, $mensaje_admin);
+            // kmimos_mails_administradores_new($asunto, $mensaje_admin);
         }
 
         $_SESSION["code"] = $_GET["code"];
