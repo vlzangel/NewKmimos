@@ -1,7 +1,6 @@
 <?php
 
     $INFORMACION["HEADER"] = "conocer";
-    $INFORMACION["DATOS_CUIDADOR"] = preg_replace("#<tr class='dir'(.*?)tr>#s", "", $INFORMACION["DATOS_CUIDADOR"]);
 
     /* Correo CUIDADOR */
 

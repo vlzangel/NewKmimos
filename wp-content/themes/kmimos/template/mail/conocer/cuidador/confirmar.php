@@ -4,14 +4,14 @@
 
 <div style='font-family: Verdana; width: 100%'>
 	<div style='
-        padding: 30px; 
+        padding: 30px 0px; 
         font-size: 14px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #000000;
     '>
 		<div style=' 
-            padding: 0px 30px 30px;
+            padding: 0px 0px 30px;
             text-align: center; 
         '>
             <img style='width: 50px;' src='[URL_IMGS]/check.png' >
@@ -48,7 +48,7 @@
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #000000; 
-        padding: 15px 30px;
+        padding: 15px 0px;
         text-align: center;
         background-color: #e3e3e3;
         margin-bottom: 30px;
@@ -76,7 +76,7 @@
 	background-color: #efefee; 
 	font-family: Verdana; 
 	font-size: 17px; 
-	padding: 40px;
+	padding: 40px 10px;
 	text-align: center;
     float: left;
 ">

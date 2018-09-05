@@ -91,7 +91,7 @@
                 'CORREO_CLIENTE'        => $email_cliente,
                 
             // CUIDADOR
-                'DATOS_CUIDADOR'        => $_datos_cuidador,
+                'DATOS_CUIDADOR'        => preg_replace("#<tr class='dir'(.*?)tr>#s", "", $_datos_cuidador),
                 'NAME_CUIDADOR'         => $nombre_cuidador,
                 'AVATAR_CUIDADOR'       => kmimos_get_foto($cuidador->user_id),
                 'TELEFONOS_CUIDADOR'    => $telf_cuidador,
