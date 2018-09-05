@@ -376,7 +376,9 @@
 
 	 
 	    if( $pagar->metodo != "deposito" ){
-		    $pagar->total -= $descuentos;
+	    	if( $descuentos > 0 ){
+			    $pagar->total -= $descuentos;
+	    	}
 	    }else{
 		    $pagar->total = $pre17;
 	    }
