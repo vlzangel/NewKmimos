@@ -259,6 +259,9 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
 					jQuery("#img_pet").val( "" );
 					jQuery("body").scrollTop(0);
+
+					evento_google("nuevo_registro_cliente");
+					
 				}
 				jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
 			});

@@ -318,3 +318,7 @@ a.fondo_banner_nutriheroes {
     border-bottom: 3px solid #00aae7;
     color: #FFF;
 }
+
+.km-content.km-step-end{
+    margin-top: 120px !important;
+}

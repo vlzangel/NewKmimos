@@ -45,6 +45,8 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
                         jQuery('#popup-conoce-cuidador').modal('show');
                         jQuery('.popup-iniciar-sesion-1').css('display', 'none');
                         jQuery('.popup-iniciar-sesion-2').css('display', 'block');
+
+                        evento_google("conocer_cuidador");
                     }
                 }
                 jQuery("#btn_enviar_conocer").html('ENVIAR SOLICITUD');
