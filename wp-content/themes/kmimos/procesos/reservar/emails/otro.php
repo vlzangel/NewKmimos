@@ -1,6 +1,6 @@
 <?php
 
-    $INFORMACION["header"] = "reserva";
+    $INFORMACION["HEADER"] = "reserva";
 
     $inmediata = "";
 

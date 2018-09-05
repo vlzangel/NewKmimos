@@ -195,11 +195,15 @@
 
 
 
+	$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    $vence = strtotime( $servicio["vence"]);
 
-
+    $fecha = date('d', $vence)." de ".$meses[date('n', $vence)-1]. " ".date('Y', $vence) ;
+    $hora = "(".date('H:i A', $vence).")";
 
     $_datos_cliente = getTemplate("reservar/partes/datos_cliente");
     $_datos_cuidador = getTemplate("reservar/partes/datos_cuidador");
+    $instrucciones = getTemplate("reservar/partes/instrucciones");
 
     $INFORMACION = [
         // GENERALES
@@ -218,6 +222,13 @@
 
             'ACEPTAR'               => $servicio["aceptar_rechazar"]["aceptar"],
             'RECHAZAR'              => $servicio["aceptar_rechazar"]["cancelar"],
+
+            'INSTRUCCIONES'			=> $instrucciones,
+            'CODIGO'				=> end( explode("/", $servicio["pdf"]) ),
+            'MONTO'					=> $MONTO,
+            'FECHA'					=> $fecha,
+            'HORA'					=> $hora,
+            'PDF'					=> $servicio["pdf"],
 
         // CLIENTE
             'DATOS_CLIENTE'         => $_datos_cliente,
