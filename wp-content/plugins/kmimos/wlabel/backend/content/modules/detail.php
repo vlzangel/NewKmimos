@@ -317,7 +317,7 @@ echo '</tr>';
 
 //TOTAL DE MONTO DE COMISION
 echo '<tr>';
-echo '<th class="title">Comision (17%)</th>';
+echo '<th class="title">Comision (20%)</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -333,7 +333,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
             if($booking['status']!='cancelled' && $booking['status']!='modified'){
-                $amount_booking=$booking['WCorder_line_total']*0.17;
+                $amount_booking=$booking['WCorder_line_total']*0.20;
             }
             $amount_booking=(round($amount_booking*100)/100);
             $amount_day=$amount_day+$amount_booking;
@@ -363,7 +363,7 @@ echo '</tr>';
 
 //TOTAL DE MONTO DE COMISION DE KMIMOS
 echo '<tr>';
-echo '<th class="title">Comision de  kmimos (17%/'.(100-$WLcommission).'%)</th>';
+echo '<th class="title">Comision de  kmimos (20%/'.(100-$WLcommission).'%)</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -379,7 +379,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
             if($booking['status']!='cancelled' && $booking['status']!='modified'){
-                $amount_booking=$booking['WCorder_line_total']*0.17*(1-($WLcommission/100));
+                $amount_booking=$booking['WCorder_line_total']*0.20*(1-($WLcommission/100));
             }
             $amount_booking=(round($amount_booking*100)/100);
             $amount_day=$amount_day+$amount_booking;
@@ -409,7 +409,7 @@ echo '</tr>';
 
 //TOTAL DE MONTO DE COMISION wlabel
 echo '<tr>';
-echo '<th class="title">Comision de '.$wlabel.' (17%/'.$WLcommission.'%)</th>';
+echo '<th class="title">Comision de '.$wlabel.' (20%/'.$WLcommission.'%)</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -425,7 +425,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
             if($booking['status']!='cancelled' && $booking['status']!='modified'){
-                $amount_booking=$booking['WCorder_line_total']*0.17*($WLcommission/100);
+                $amount_booking=$booking['WCorder_line_total']*0.20*($WLcommission/100);
             }
             $amount_booking=(round($amount_booking*100)/100);
             $amount_day=$amount_day+$amount_booking;

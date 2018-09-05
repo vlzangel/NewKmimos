@@ -205,10 +205,10 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
 
         if( $wlabel == "volaris"){
             $html .= '
-                <td>'.number_round($_meta_WCorder_line_total*0.17).'</td>
-                <td>'.number_round($_meta_WCorder_line_total*0.17*($WLcommission/100)).'</td>
+                <td>'.number_round($_meta_WCorder_line_total*0.20).'</td>
+                <td>'.number_round($_meta_WCorder_line_total*0.20*($WLcommission/100)).'</td>
             ';
-/*                <td>'.number_round($_meta_WCorder_line_total*0.17*(1-($WLcommission/100))).'</td>*/
+/*                <td>'.number_round($_meta_WCorder_line_total*0.20*(1-($WLcommission/100))).'</td>*/
         }
 
         $html .= '</tr>';
