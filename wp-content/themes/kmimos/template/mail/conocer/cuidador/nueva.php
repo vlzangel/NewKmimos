@@ -18,7 +18,7 @@
             padding-bottom: 30px; 
             text-align: left;
         '>
-            ¡Hola <strong>[nombre_usuario]</strong>!
+            ¡Hola <strong>[NAME_CUIDADOR]</strong>!
         </div>  
 
         <div style='
@@ -28,7 +28,7 @@
             color: #000000; 
             text-align: left; 
         '>
-           	Recibimos una solicitud de <strong style="color: #940d99;">[name_cliente]</strong> para conocerte
+           	Recibimos una solicitud de <strong style="color: #940d99;">[NAME_CLIENTE]</strong> para conocerte
         </div>
 
     </div>

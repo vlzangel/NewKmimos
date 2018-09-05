@@ -62,8 +62,41 @@
 			$cliente_name = $metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0];
 			$email_cliente = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = '".$cliente."'");
 
-
 	    include(__DIR__."/obtener_solicitud.php");
+
+        $_datos_cliente = getTemplate("reservar/partes/datos_cliente");
+        $_datos_cuidador = getTemplate("reservar/partes/datos_cuidador");
+
+		$INFORMACION = [
+            // GENERALES
+
+                'HEADER'                => "",
+                'id_solicitud'          => $request_id,
+                'fecha'                 => $_POST['meeting_when'],
+                'hora'                  => $_POST['meeting_time'],
+                'lugar'                 => $_POST['meeting_where'],
+                'desde'                 => date("d/m", strtotime( str_replace("/", "-", $_POST['service_start']) )),
+                'hasta'                 => date("d/m", $fin),
+                'anio'                  => date("Y", $fin),
+                'MASCOTAS'              => $detalles_mascotas,
+
+                'ACEPTAR'               => get_home_url().'/perfil-usuario/solicitudes/confirmar/'.$request_id,
+                'RECHAZAR'              => get_home_url().'/perfil-usuario/solicitudes/cancelar/'.$request_id,
+
+            // CLIENTE
+                'DATOS_CLIENTE'         => $_datos_cliente,
+                'NAME_CLIENTE'          => $cliente,
+                'AVATAR_CLIENTE'        => kmimos_get_foto($user_id),
+                'TELEFONOS_CLIENTE'     => $telf_cliente,
+                'CORREO_CLIENTE'        => $email_cliente,
+                
+            // CUIDADOR
+                'DATOS_CUIDADOR'        => $_datos_cuidador,
+                'NAME_CUIDADOR'         => $nombre_cuidador,
+                'AVATAR_CUIDADOR'       => kmimos_get_foto($cuidador->user_id),
+                'TELEFONOS_CUIDADOR'    => $telf_cuidador,
+                'CORREO_CUIDADOR'       => $email_cuidador,
+        ];
 
 	    if( $acc == "" ){
 	    	include(__DIR__."/nueva.php");

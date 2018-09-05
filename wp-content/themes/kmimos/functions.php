@@ -28,8 +28,9 @@
 			}
 		}
 
-		function setSessionCode(){
+		function setSessionCode($exit = false){
 			$_SESSION["code"] = $_GET["code"];
+			if( $exit ){ exit(); }
 		}
 
 		function showEmail($html){
