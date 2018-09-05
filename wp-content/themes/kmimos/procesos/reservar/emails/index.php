@@ -167,7 +167,6 @@
         $reembolsar_plantilla = "";
     }
 
-
 	$servicios_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/servicios.php';
     $servicios_plantilla = file_get_contents($servicios_plantilla);
 
@@ -193,6 +192,55 @@
     	}
     }
 
+
+
+
+
+
+
+    $_datos_cliente = getTemplate("reservar/partes/datos_cliente");
+    $_datos_cuidador = getTemplate("reservar/partes/datos_cuidador");
+
+    $INFORMACION = [
+        // GENERALES
+
+            'HEADER'                => "",
+            'ID_RESERVA'            => $servicio["id_reserva"],
+            'SERVICIOS'             => $servicios_plantilla,
+            'MASCOTAS'              => $mascotas,
+            'DESGLOSE'              => $desglose,
+            'ADICIONALES'           => $adicionales,
+            'TRANSPORTE'            => $transporte,
+            'MODIFICACION'          => $modificacion,
+            'TIPO_SERVICIO'         => trim($servicio["tipo"]),
+            'DETALLES_SERVICIO'     => $detalles_plantilla,
+            'TOTALES'               => str_replace('[REEMBOLSAR]', "", $totales_plantilla),
+
+            'ACEPTAR'               => $servicio["aceptar_rechazar"]["aceptar"],
+            'RECHAZAR'              => $servicio["aceptar_rechazar"]["cancelar"],
+
+        // CLIENTE
+            'DATOS_CLIENTE'         => $_datos_cliente,
+            'NAME_CLIENTE'          => $cliente["nombre"],
+            'AVATAR_CLIENTE'        => kmimos_get_foto($cliente["id"]),
+            'TELEFONOS_CLIENTE'     => $cliente["telefono"],
+            'CORREO_CLIENTE'        => $cliente["email"],
+            
+        // CUIDADOR
+            'DATOS_CUIDADOR'        => $_datos_cuidador,
+            'NAME_CUIDADOR'         => $cuidador["nombre"],
+            'AVATAR_CUIDADOR'       => kmimos_get_foto($cuidador["id"]),
+            'TELEFONOS_CUIDADOR'    => $cuidador["telefono"],
+            'CORREO_CUIDADOR'       => $cuidador["email"],
+            'DIRECCION_CUIDADOR'    => $cuidador["direccion"],
+    ];
+
+
+
+
+
+
+
 	if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
 		
 		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
@@ -203,7 +251,6 @@
 		}
 
 	}
-
 
 	if( $acc != ""  ){
 

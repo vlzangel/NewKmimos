@@ -39,7 +39,7 @@
 	</div>
 
     <div style='
-        padding: 20px 30px; 
+        padding: 20px 0px; 
         font-size: 17px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -87,7 +87,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 30px; 
+    padding: 30px 0px; 
     box-sizing: border-box;
 '>
 
@@ -137,7 +137,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 0px 30px; 
+    padding: 0px; 
     box-sizing: border-box;
 '>
 

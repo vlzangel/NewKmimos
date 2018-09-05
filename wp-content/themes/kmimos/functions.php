@@ -15,7 +15,8 @@
 		function buildEmailTemplate($plantilla, $params){
 			$HTML = getTemplate($plantilla);
 			foreach ($params as $key => $value) {
-	            $HTML = str_replace('['.$key.']', $value, $HTML);
+	            $HTML = str_replace('['.strtolower($key).']', $value, $HTML);
+	            $HTML = str_replace('['.strtoupper($key).']', $value, $HTML);
 	        }
 	        $HTML = str_replace('[URL_IMGS]', getUrlImgs($test), $HTML);
 	        return $HTML;
