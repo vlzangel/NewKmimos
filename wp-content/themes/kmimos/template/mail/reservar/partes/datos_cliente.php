@@ -1,12 +1,12 @@
 <div style="
     width: 100%;
     background-color: #efefee;
-    padding: 20px 20px;
+    padding: 20px;
     box-sizing: border-box;
 ">
     <div style="
         background-color: #FFF;
-        padding: 20px 30px;
+        padding: 20px;
     ">
 
         <table width="100%" style='
@@ -14,7 +14,7 @@
         '>
             <tr>
                 <td align="center" height="160" width="100%" style="
-                    background-image: url('[avatar_cliente]'); 
+                    background-image: url('[AVATAR_CLIENTE]'); 
                     background-repeat: no-repeat; 
                     background-position: center; 
                     background-size: cover; 
@@ -28,31 +28,31 @@
             font-weight: 600;
             padding: 20px 0px 0px;
         ">
-            [name_cliente]
+            [NAME_CLIENTE]
         </div>
 
         <div style="
             font-weight: 400;
-            padding: 20px 10px;
+            padding: 5px;
         ">
             <table width="100%" style='
                 padding: 0px;
                 font-size: 17px;
             '>
                 <tr>
-                    <td style="width: 40px; text-align: center;">
-                        <img style="width: 20px; padding: 5px 0px;" src="[URL_IMGS]/icosNews/Icon-Phone.png" />
+                    <td style="width: 30px; text-align: left;">
+                        <img style="width: 20px; padding: 7px 0px;" src="[URL_IMGS]/icosNews/Icon-Phone.png" />
                     </td>
                     <td>
-                        [telefonos_cliente]
+                        [TELEFONOS_CLIENTE]
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 40px; text-align: center;">
-                        <img style="width: 20px; padding: 5px 0px;" src="[URL_IMGS]/icosNews/Icon-Mail.png" />
+                    <td style="width: 30px; text-align: left;">
+                        <img style="width: 20px; padding: 7px 0px;" src="[URL_IMGS]/icosNews/Icon-Mail.png" />
                     </td>
                     <td>
-                        [correo_cliente]
+                        [CORREO_CLIENTE]
                     </td>
                 </tr>
             </table>

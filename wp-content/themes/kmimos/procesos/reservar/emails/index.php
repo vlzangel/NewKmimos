@@ -5,6 +5,8 @@
 		include((dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))))."/wp-load.php");
 	}
 
+	global $URL_LOCAL;
+
 	$PATH_TEMPLATE = (dirname(dirname(dirname(__DIR__))));
 
 	$info = kmimos_get_info_syte();
@@ -92,7 +94,7 @@
     $transporte = "";
     foreach ($servicio["transporte"] as $valor) {
 		$temp = str_replace('[SERVICIO]', $valor[0], $transporte_desglose_plantilla);
-		$temp = str_replace('[SUBTOTAL]', $valor[2], $temp);
+		$temp = str_replace('[SUBTOTAL]', "$ ".$valor[2], $temp);
 		$transporte .= $temp;
 	}
 

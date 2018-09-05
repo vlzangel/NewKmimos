@@ -5,7 +5,7 @@
 <div style='font-family: Verdana; width: 100%'>
 
     <div style='
-        padding: 30px; 
+        padding: 20px; 
         font-size: 14px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -31,7 +31,7 @@
             padding-bottom: 30px; 
             text-align: left;
         '>
-            [TIPO_SERVICIO] por [name_cliente]
+            [TIPO_SERVICIO] por [NAME_CLIENTE]
         </div>  
 
         <div style='
@@ -41,7 +41,7 @@
             color: #000000; 
             text-align: left; 
         '>
-           	El cliente <strong style="color: #940d99;">[name_cliente]</strong> ha realizado una solicitud de reserva.
+           	El cliente <strong style="color: #940d99;">[NAME_CLIENTE]</strong> ha realizado una solicitud de reserva.
         </div>
 
     </div>
@@ -52,14 +52,14 @@
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #000000; 
-        padding: 15px 30px;
+        padding: 15px 0px;
         text-align: center;
         background-color: #e3e3e3;
 	'>
-	    <strong>[id_reserva] </strong>
+	    <strong>[ID_RESERVA] </strong>
 	</div>
 	       
-	<div style="padding: 30px; text-align: center;">
+	<div style="padding: 30px 0px; text-align: center;">
 
 		<div style='
 			font-size: 17px; 
@@ -69,36 +69,42 @@
 			¿Aceptas la solicitud?
 		</div>
 
-		<a href='[ACEPTAR]' style='
-			max-width: 300px;
-			width: 100%;
-			padding: 10px;
-			background-color: #940d99;
-			color: #FFF;
-			font-weight: 600;
-			margin-bottom: 20px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-		'>
-			¡ACEPTAR!
-		</a>
+        <div style="text-align: center;">
+            <a href='[ACEPTAR]' style='
+                max-width: 250px;
+                width: 100%;
+                padding: 10px;
+                background-color: #940d99;
+                color: #FFF;
+                font-weight: 600;
+                margin: 0px 0px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 13px;
+            '>
+                ¡ACEPTAR!
+            </a>
+        </div>
 
-		<a href='[RECHAZAR]' style='
-			max-width: 300px;
-			width: 100%;
-			padding: 10px;
-			background-color: #FFF;
-			color: #000;
-			border: solid 2px #000;
-			font-weight: 600;
-			margin-bottom: 12px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-		'>
-			AHORA NO PUEDO, RECHAZAR
-		</a>
+        <div style="text-align: center;">
+            <a href='[RECHAZAR]' style='
+                max-width: 250px;
+                width: 100%;
+                padding: 10px;
+                background-color: #FFF;
+                color: #000;
+                border: solid 2px #000;
+                font-weight: 600;
+                margin: 0px 0px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 13px;
+            '>
+                AHORA NO PUEDO, RECHAZAR
+            </a>
+        </div>
 
 	</div>
 
@@ -137,7 +143,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 30px; 
+    padding: 30px 0px; 
     box-sizing: border-box;
 '>
 
@@ -187,7 +193,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 0px 30px 0px; 
+    padding: 0px; 
     box-sizing: border-box;
 '>
 

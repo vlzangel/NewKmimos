@@ -1,5 +1,5 @@
 <tr style='font-size: 15px; font-weight: 400;'>
-    <td colspan="2" style='padding: 7px; vertical-align: middle;'>
+    <td colspan="2" style='padding: 7px; vertical-align: middle; text-align: left;'>
         [SERVICIO]
     </td>
     <td colspan="2" style='padding: 7px; vertical-align: middle; text-align: center;'>

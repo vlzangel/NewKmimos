@@ -1,4 +1,5 @@
 <?php
+
 	function get_menu(){
 		$defaults = array(
 		    'theme_location'  => 'pointfinder-main-menu',

@@ -11,7 +11,7 @@
     <td style='padding: 7px; border-left: solid 1px #940d99; vertical-align: middle; text-align: center;'>
         [PRECIO_C_U]
     </td>
-    <td style='padding: 7px; border-left: solid 1px #940d99; vertical-align: middle; text-align: center;'>
+    <td style='padding: 7px; border-left: solid 1px #940d99; vertical-align: middle; text-align: right;'>
         [SUBTOTAL]
     </td>
 </tr>

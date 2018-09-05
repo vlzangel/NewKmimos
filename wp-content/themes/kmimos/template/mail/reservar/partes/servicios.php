@@ -12,7 +12,7 @@
         <td style=' width: 100px; padding: 7px; text-align: center; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99; color: #940d99;'>
             Precio c/u
         </td>
-        <td style=' width: 100px; padding: 7px; text-align: center; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99; color: #940d99;'>
+        <td style=' width: 100px; padding: 7px; text-align: right; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99; color: #940d99;'>
             Subtotal
         </td>
     </tr>

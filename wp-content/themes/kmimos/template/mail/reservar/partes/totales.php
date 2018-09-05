@@ -11,10 +11,10 @@
         background-color: #efefee;
     '>
         <tr style=''>
-            <td style='width: 200px;  text-align: left; vertical-align: middle;  padding: 5px 20px; font-weight: 400;'>
+            <td style='text-align: left; vertical-align: middle;  padding: 5px 7px; font-weight: 400;'>
                 TOTAL
             </td>
-            <td style='padding: 5px 20px; text-align: right;'>
+            <td style='padding: 5px 7px 5px 0px; text-align: right;'>
                 $ [TOTAL]
             </td>
         </tr>
@@ -43,10 +43,10 @@
         background-color: #efefee;
     '>
         <tr style=''>
-            <td style='width: 200px; text-align: left; vertical-align: middle;  padding: 5px 20px; font-weight: 400;'>
+            <td style='text-align: left; vertical-align: middle;  padding: 5px 7px; font-weight: 400;'>
                 [TIPO_PAGO]
             </td>
-            <td style='padding: 5px 20px; text-align: right; color: #35ccbd;'>
+            <td style='padding: 5px 7px 5px 0px; text-align: right; color: #35ccbd;'>
                 $ [PAGO]
             </td>
         </tr>
