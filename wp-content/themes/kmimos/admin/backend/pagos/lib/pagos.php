@@ -200,7 +200,7 @@ class Pagos {
 
 		if( !empty($desde) && !empty($hasta) ){
 			$filtro_adicional = " 
-				AND ( r.post_date_gmt >= '{$desde} 00:00:00' and  r.post_date_gmt <= '{$hasta} 23:59:59' )
+				AND ( rm_start.meta_value >= '{$desde}000000' and  rm_start.meta_value <= '{$hasta}235959' )
 			";
 		}
 
@@ -214,11 +214,13 @@ class Pagos {
 
 				( IFNULL(rm_cost.meta_value,0) ) as total,
 				( IFNULL(pm_total.meta_value,0) ) as total_pago,
-				( IFNULL(pm_remain.meta_value,0) ) as remanente
+				( IFNULL(pm_remain.meta_value,0) ) as remanente,
+				rm_start.meta_value as booking_start
 
 			FROM wp_posts as r
 				LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
 				LEFT JOIN wp_postmeta as rm_cost ON rm_cost.post_id = r.ID and rm_cost.meta_key = '_booking_cost'
+				LEFT JOIN wp_postmeta as rm_start ON rm_start.post_id = r.ID and rm_start.meta_key = '_booking_start'
 
 				LEFT JOIN wp_posts as p ON p.ID = r.post_parent
 				LEFT JOIN wp_postmeta as pm_remain ON pm_remain.post_id = p.ID and pm_remain.meta_key = '_wc_deposits_remaining'
