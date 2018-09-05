@@ -16,6 +16,11 @@
 
 	    $link = get_home_url()."/quiero-ser-cuidador-certificado-de-perros/";
 
+	    $boton = "boton";
+	    if( $_SESSION["wlabel"] != "" ){
+	    	$boton = "boton_wlabel";
+	    }
+
 	    $BANNER_PUBLICIDAD = '
 	    	<style>
 	    		.banner_publicidad_container{
@@ -60,7 +65,7 @@
 					poster="'.getTema().'/videos/home/publicidad_ser_cuidador/preview.png"
 				></video>
 				<img src="'.getTema().'/videos/home/publicidad_ser_cuidador/movil_final.gif" />
-				<div class="boton_click" style="background-image: url('.getTema().'/videos/home/publicidad_ser_cuidador/boton.png);"></div>
+				<div class="boton_click" style="background-image: url('.getTema().'/videos/home/publicidad_ser_cuidador/'.$boton.'.png);"></div>
 			</a>
 	    ';
 
