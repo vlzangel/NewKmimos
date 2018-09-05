@@ -288,6 +288,8 @@ jQuery("#btn_si_acepto_cuidador").on("click", function(e){
 			function( data ) {
 				data = eval(data);
 				console.log( data );
+
+				evento_google("nuevo_registro_cuidador");
 			}	
 		);
 

@@ -77,7 +77,7 @@
     
     [DATOS_CUIDADOR]
 	       
-	<div style="padding: 30px; text-align: center;">
+	<div style="padding: 30px 30px 10px; text-align: center;">
 
 		<table width="100%" cellpadding="0" cellspacing="0">
 			<tr>
@@ -119,8 +119,8 @@
 			</tr>
 		</table>
 
-		<div style="padding-top: 35px; text-align: left; font-size: 15px;">
-			<strong style="color: #940d99; font-family: Verdana;">POSIBLE FECHA DE ESTADÍA:</strong> Del <strong>[desde]</strong> al <strong>[hasta]</strong> del [anio]
+		<div style="padding-top: 20px; text-align: left; font-size: 15px;">
+			<strong style="color: #940d99; font-family: Verdana;">POSIBLE FECHA DE ESTADÍA:</strong> <span style="color: #000;">Del <strong>[desde]</strong> al <strong>[hasta]</strong> del [anio]</span>
 		</div>
 
 	</div>
@@ -128,9 +128,9 @@
 	<div style="padding: 20px 30px 30px; text-align: center;">
 
 		<a href='[ACEPTAR]' style='
-			max-width: 300px;
-			width: 100%;
-			padding: 10px;
+			width: auto;
+			min-width: 280px;
+			padding: 10px 30px;
 			background-color: #940d99;
 			color: #FFF;
 			font-weight: 600;
@@ -143,9 +143,9 @@
 		</a>
 
 		<a href='[RECHAZAR]' style='
-			max-width: 300px;
-			width: 100%;
-			padding: 10px;
+			width: auto;
+			min-width: 280px;
+			padding: 10px 30px;
 			background-color: #FFF;
 			color: #000;
 			border: solid 2px #000;

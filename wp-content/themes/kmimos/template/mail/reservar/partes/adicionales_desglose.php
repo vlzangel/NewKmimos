@@ -2,13 +2,13 @@
     <td colspan="2" style='padding: 7px; vertical-align: middle;'>
         [SERVICIO]
     </td>
-    <td style='padding: 7px; border-left: vertical-align: middle;'>
+    <td style='padding: 7px; vertical-align: middle;'>
         [CANTIDAD]
     </td>
-    <td style='padding: 7px; border-left: vertical-align: middle; text-align: left;'>
+    <td style='padding: 7px; vertical-align: middle; text-align: left;'>
         [PRECIO_C_U]
     </td>
-    <td style='padding: 7px; border-left: vertical-align: middle; text-align: right;'>
+    <td style='padding: 7px; vertical-align: middle; text-align: right;'>
         [SUBTOTAL]
     </td>
 </tr>

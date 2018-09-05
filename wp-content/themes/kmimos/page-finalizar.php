@@ -293,7 +293,6 @@
 			</div>
 
 
-			<!-- Modal datos de facturacion -->
 			<div class="modal fade" tabindex="-1" role="dialog" id="emitir_factura">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -302,12 +301,32 @@
 			        <h5 class="modal-title text-center">¿DESEAS EMITIR TU COMPROBANTE FISCAL DIGITAL?</h5>
 			      </div>
 			      <div class="modal-body"><p style="font-size:14px; text-align: center;">'.$mensaje_facturacion.'</p></div>
-			    </div><!-- /.modal-content -->
-			  </div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
-
+			    </div>
+			  </div>
+			</div>
 
 	 	';
+
+	 	if( strrpos($_SERVER["HTTP_REFERER"], "reservar") > 0 && !isset($_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ]) ){
+	 		
+	 		$HTML .= '
+				<script>
+					if( "'.strtolower($data_reserva["servicio"]["metodo_pago"]).'" == "tienda" ){
+						evento_google("nueva_reserva_tienda");
+					}else{
+						if( "'.strtolower($data_reserva["servicio"]["metodo_pago"]).'" == "tarjeta" ){
+							evento_google("nueva_reserva_tarjeta");
+						}else{
+							evento_google("nueva_reserva_descuento_saldo");
+						}	
+					}		
+				</script>
+		 	';
+
+		 	$_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ] = "YA_CONTADO";
+	 	}	
+			
+
 
 		echo comprimir_styles($HTML);
 

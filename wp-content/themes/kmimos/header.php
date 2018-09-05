@@ -53,9 +53,8 @@
 	$wlabel = add_wlabel();
 	$HTML .= '
 		<script type="text/javascript"> 
-			var HOME = "'.getTema().'/"; 
+			var pines = [], HOME = "'.getTema().'/"; 
 			var RAIZ = "'.get_home_url().'/"; 
-			var pines = [];
 			var AVATAR = "";
             var wlabel = "'.$wlabel.'";
 		</script>';
@@ -81,7 +80,7 @@
 		<!-- End Facebook Pixel Code -->
 	";*/
 
-	$HTML .= '
+/*	$HTML .= '
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-69626366-1"></script>
 		<script>
@@ -90,12 +89,92 @@
 		  gtag("js", new Date());
 
 		  gtag("config", "UA-69626366-1");
-		</script>
-	';
+		</script>';*/
+
+	$HTML .= "
+		<script>
+
+	        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	        ga('create', 'UA-56422840-1', 'auto');
+	        ga('send', 'pageview');
+        </script>
+	";
 
 	$HTML .= '
 	</head>
-	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu();"> <script> var RUTA_IMGS = "'.get_home_url().'/imgs"; </script>';
+	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu();">
+		<script> 
+			var RUTA_IMGS = "'.get_home_url().'/imgs"; 
+
+	        var hizo_click = [];
+
+	        hizo_click["paseos"] = false;
+	        hizo_click["guarderia"] = false;
+	        hizo_click["entrenamiento"] = false;
+
+	        function evento_google(evento){
+	        	if( wlabel == "petco" ){
+		        	switch ( evento ) {
+
+						case "paseos":
+							if( !hizo_click["paseos"] ){
+								ga("send", "event", "wlabel", "click", "traking_code_boton_paseos", "1");
+								hizo_click["paseos"] = true;
+							}
+						break;
+
+						case "guarderia":
+							if( !hizo_click["guarderia"] ){
+								ga("send", "event", "wlabel", "click", "traking_code_boton_guarderia", "1");
+								hizo_click["guarderia"] = true;
+							}
+						break;
+						
+						case "entrenamiento":
+							if( !hizo_click["entrenamiento"] ){
+								ga("send", "event", "wlabel", "click", "traking_code_boton_entrenamiento", "1");
+								hizo_click["entrenamiento"] = true;
+							}
+						break;
+
+						case "conocer_cuidador":
+							ga("send", "event", "wlabel", "click", "traking_code_conocer_cuidador", "1");
+						break;
+
+						case "nuevo_registro_cliente":
+							ga("send", "event", "wlabel", "click", "traking_code_nuevo_registro_cliente", "1");
+						break;
+
+						case "nuevo_registro_cuidador":
+							ga("send", "event", "wlabel", "click", "traking_code_nuevo_registro_cuidador", "1");
+						break;
+
+						case "nueva_reserva_tienda":
+							ga("send", "event", "wlabel", "click", "traking_code_nueva_reserva_tienda", "1");
+						break;
+
+						case "nueva_reserva_tarjeta":
+							ga("send", "event", "wlabel", "click", "traking_code_nueva_reserva_tarjeta", "1");
+						break;
+
+						case "nueva_reserva_descuento_saldo":
+							ga("send", "event", "wlabel", "click", "traking_code_nueva_reserva_descuento_saldo", "1");
+						break;
+
+						case "llego_al_home":
+							ga("send", "event", "wlabel", "click", "traking_code_llego_al_home", "1");
+						break;
+
+						case "dejo_el_correo":
+							ga("send", "event", "wlabel", "click", "traking_code_dejo_el_correo", "1");
+						break;
+					}
+				}
+	        }
+		</script>';
 
 
 	$HTML .= '
@@ -119,6 +198,8 @@
 		// $MENU["body"] .= '<li style="border-top:1px solid #e8e8e8;"><a href="'.get_home_url().'/ayuda" class="pd-tb11 menu-link"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Ayuda</a></li>';
 		$menus_normal =  $MENU["body"].$MENU["footer"];
 	}
+
+
 
 	// Avatar default
 	$avatar = getTema().'/images/new/km-navbar-mobile.svg';

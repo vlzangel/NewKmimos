@@ -5,7 +5,7 @@
 <div style='font-family: Verdana; width: 100%'>
 
     <div style='
-        padding: 30px; 
+        padding: 30px 10px; 
         font-size: 14px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -79,7 +79,7 @@
         letter-spacing: 0.3px; 
         color: #000000; 
         text-align: left; 
-        padding: 20px 30px 20px;
+        padding: 20px 10px 20px;
         background-color: #efefee;
         margin-bottom: 10px;
     '>
@@ -99,7 +99,7 @@
     </div>
 
     <div style='
-        padding: 30px 30px 0px; 
+        padding: 30px 10px 0px; 
         font-size: 14px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -165,24 +165,24 @@
             
             <table style="font-size: 17px; text-align: justify; color: #333;">
                 <tr>
-                    <td style="width: 100px; text-align: center; padding-bottom: 35px;">
-                        <img src='[URL_IMGS]/icosNews/descargar.png'>
+                    <td style="width: 70px; text-align: center; padding-bottom: 35px;">
+                        <img src='[URL_IMGS]/icosNews/descargar.png' style="width: 70%;">
                     </td>
                     <td style="padding-bottom: 35px;">
                         Presiona el botón de <strong>'Intrucciones de Pago'</strong>, descarga el documento, imprimelo o tómale una foto y acude a cualquier tienda afiliada.
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 100px; text-align: center; padding-bottom: 35px;">
-                        <img src='[URL_IMGS]/icosNews/recibo.png'>
+                    <td style="width: 70px; text-align: center; padding-bottom: 35px;">
+                        <img src='[URL_IMGS]/icosNews/recibo.png' style="width: 70%;">
                     </td>
                     <td style="padding-bottom: 35px;">
                         Entrega al cajero el <strong>código de pago</strong> y menciona que realizarás un pago de servicio <span style="color: #940d99;">Paynet</span>.
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 100px; text-align: center; padding-bottom: 35px;">
-                        <img src='[URL_IMGS]/icosNews/efectivo.png'>
+                    <td style="width: 70px; text-align: center; padding-bottom: 35px;">
+                        <img src='[URL_IMGS]/icosNews/efectivo.png' style="width: 70%;">
                     </td>
                     <td style="padding-bottom: 35px;">
                         Realiza el pago en <span style="color: #940d99;">efectivo</span> por $ [MONTO] MXN (más $8 pesos por comisión) y conserva el ticket de pago.
@@ -192,7 +192,7 @@
 
             <div style="text-align: center; padding: 20px 0px 30px;">
                 <a href='[PDF]' target="_blank" style='
-                    max-width: 350px;
+                    max-width: 250px;
                     width: 100%;
                     padding: 15px;
                     background-color: #940d99;
@@ -203,6 +203,7 @@
                     text-decoration: none;
                     display: inline-block;
                     border-radius: 3px;
+                    font-size: 13px;
                 '>
                     VER INSTRUCCIONES DE PAGO
                 </a>
@@ -226,7 +227,7 @@
     </div>
 
     <div style='
-        padding: 20px 30px; 
+        padding: 20px 0px; 
         font-size: 17px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -244,7 +245,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 30px; 
+    padding: 30px 0px; 
     box-sizing: border-box;
 '>
 
@@ -294,7 +295,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 0px 30px; 
+    padding: 0px; 
     box-sizing: border-box;
 '>
 

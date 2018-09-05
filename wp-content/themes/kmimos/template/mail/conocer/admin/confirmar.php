@@ -51,7 +51,7 @@
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #000000; 
-        padding: 15px 30px;
+        padding: 15px 0px;
         text-align: center;
         background-color: #e3e3e3;
         margin: 30px 0px;

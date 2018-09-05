@@ -22,7 +22,7 @@
             padding-bottom: 30px; 
             text-align: left;
         '>
-            [tipo_servicio] por [name_cliente]
+            [TIPO_SERVICIO] por [NAME_CLIENTE]
         </div>  
 
         <div style='
@@ -31,7 +31,7 @@
             padding-bottom: 30px; 
             text-align: left;
         '>
-            ¡Hola <strong>[name_cuidador]</strong>!
+            ¡Hola <strong>[NAME_CUIDADOR]</strong>!
         </div>  
 
         <div style='
@@ -41,27 +41,25 @@
             color: #000000; 
             text-align: left; 
         '>
-           	El cliente <strong style="color: #940d99;">[name_cliente]</strong> te ha enviado una solicitud de reserva.
+           	El cliente <strong style="color: #940d99;">[NAME_CLIENTE]</strong> te ha enviado una solicitud de reserva.
         </div>
 
     </div>
 
 	<div style='
-	    font-family: Verdana;
-	    width: 100%
-	    font-size: 17px; 
-	    font-weight: 600;
-	    line-height: 1.07; 
-	    letter-spacing: 0.3px; 
-	    color: #000000; 
-	    padding: 15px 30px;
-	    text-align: center;
-	    background-color: #e3e3e3;
+        font-size: 17px; 
+        font-weight: 600;
+        line-height: 1.07; 
+        letter-spacing: 0.3px; 
+        color: #000000; 
+        padding: 15px 0px;
+        text-align: center;
+        background-color: #e3e3e3;
 	'>
-	    Reserva #: <strong>[id_reserva]</strong>
+	    Reserva #: <strong>[ID_RESERVA]</strong>
 	</div>
 	       
-	<div style="padding: 30px; text-align: center;">
+	<div style="padding: 30px 0px; text-align: center;">
 
 		<div style='
 			font-size: 17px; 
@@ -70,37 +68,43 @@
 		'>
 			¿Aceptas la solicitud?
 		</div>
+		
+		<div style="text-align: center;">
+			<a href='[ACEPTAR]' style='
+				max-width: 250px;
+				width: 100%;
+				padding: 10px;
+				background-color: #940d99;
+				color: #FFF;
+				font-weight: 600;
+				margin: 0px 0px 20px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 13px;
+			'>
+				¡ACEPTAR!
+			</a>
+		</div>
 
-		<a href='[ACEPTAR]' style='
-			max-width: 300px;
-			width: 100%;
-			padding: 10px;
-			background-color: #940d99;
-			color: #FFF;
-			font-weight: 600;
-			margin-bottom: 20px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-		'>
-			¡ACEPTAR!
-		</a>
-
-		<a href='[RECHAZAR]' style='
-			max-width: 300px;
-			width: 100%;
-			padding: 10px;
-			background-color: #FFF;
-			color: #000;
-			border: solid 2px #000;
-			font-weight: 600;
-			margin-bottom: 12px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-		'>
-			AHORA NO PUEDO, RECHAZAR
-		</a>
+		<div style="text-align: center;">
+			<a href='[RECHAZAR]' style='
+				max-width: 250px;
+				width: 100%;
+				padding: 10px;
+				background-color: #FFF;
+				color: #000;
+				border: solid 2px #000;
+				font-weight: 600;
+				margin: 0px 0px 20px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 13px;
+			'>
+				AHORA NO PUEDO, RECHAZAR
+			</a>
+		</div>
 
 	</div>
 
@@ -125,7 +129,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 30px; 
+    padding: 30px 10px; 
     box-sizing: border-box;
 '>
 
@@ -166,7 +170,7 @@
             </td>
         </tr>
 
-        [mascotas]
+        [MASCOTAS]
 
     </table>
 
@@ -175,7 +179,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 0px 30px 30px; 
+    padding: 0px 0px 30px; 
     box-sizing: border-box;
 '>
 
@@ -242,7 +246,7 @@
 	'>
 
 	    <div style='
-	        padding: 20px 30px; 
+	        padding: 20px 0px; 
 	        font-size: 17px; 
 	        line-height: 1.07; 
 	        letter-spacing: 0.3px; 
@@ -308,7 +312,7 @@
 
 <div style='
 	width: 100%; 
-	padding: 30px 50px; 
+	padding: 30px 20px; 
 	font-size: 17px; 
 	font-family: Verdana; 
 	background-color: #efefee;
@@ -320,7 +324,7 @@
 
 <div style='
 	width: 100%;
-    padding: 20px 30px; 
+    padding: 20px 0px; 
     font-size: 17px; 
     line-height: 1.07; 
     letter-spacing: 0.3px; 
@@ -337,7 +341,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 0px 30px 0px; 
+    padding: 0px 10px 0px; 
     box-sizing: border-box;
 	font-size: 17px; 
 '>

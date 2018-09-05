@@ -33,13 +33,13 @@
             max-width: 500px;
             margin: 30px auto;
         '>
-	    	Tu solicitud de reserva ha sido <span style="color: #940d99; font-size: 20px; vertical-align: middle; font-weight: 600;">CONFIRMADA</span> por el cuidador <strong>[name_cuidador]</strong>
+	    	Tu solicitud de reserva ha sido <span style="color: #940d99; font-size: 20px; vertical-align: middle; font-weight: 600;">CONFIRMADA</span> por el cuidador <strong>[NAME_CUIDADOR]</strong>
 	    </div>
         
 	</div>
 
     <div style='
-        padding: 20px 30px; 
+        padding: 20px 0px; 
         font-size: 17px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -50,7 +50,7 @@
         color: #000;
         margin-bottom: 30px;
     '>
-        Tu código de reserva es: #[id_reserva]
+        Tu código de reserva es: #[ID_RESERVA]
     </div>
 
     <div style='
@@ -72,7 +72,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 30px; 
+    padding: 30px 10px; 
     box-sizing: border-box;
 '>
 
@@ -122,7 +122,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 0px 30px; 
+    padding: 0px; 
     box-sizing: border-box;
 '>
 

@@ -16,6 +16,11 @@
 
 	    $link = get_home_url()."/quiero-ser-cuidador-certificado-de-perros/";
 
+	    $boton = "boton";
+	    if( $_SESSION["wlabel"] != "" ){
+	    	$boton = "boton_wlabel";
+	    }
+
 	    $BANNER_PUBLICIDAD = '
 	    	<style>
 	    		.banner_publicidad_container{
@@ -60,7 +65,7 @@
 					poster="'.getTema().'/videos/home/publicidad_ser_cuidador/preview.png"
 				></video>
 				<img src="'.getTema().'/videos/home/publicidad_ser_cuidador/movil_final.gif" />
-				<div class="boton_click" style="background-image: url('.getTema().'/videos/home/publicidad_ser_cuidador/boton.png);"></div>
+				<div class="boton_click" style="background-image: url('.getTema().'/videos/home/publicidad_ser_cuidador/'.$boton.'.png);"></div>
 			</a>
 	    ';
 
@@ -144,7 +149,7 @@
 										<span>DÍA Y NOCHE</span>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-3">
+								<div class="col-xs-12 col-sm-3" onclick="evento_google(\'guarderia\')">
 									<div class="km-opcion">
 										<input type="checkbox" name="servicios[]" value="guarderia" >
 										<img src="'.getTema().'/images/new/icon/icon-guarderia.svg">
@@ -152,13 +157,13 @@
 										<span>SOLO DÍA</span>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-3">
+								<div class="col-xs-12 col-sm-3" onclick="evento_google(\'paseos\')">
 									<div class="km-opcion">
 										<input type="checkbox" name="servicios[]" value="paseos" >
 										<img src="'.getTema().'/images/new/icon/icon-paseo.svg">PASEOS
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-3">
+								<div class="col-xs-12 col-sm-3" onclick="evento_google(\'entrenamiento\')">
 									<div class="km-opcion">
 										<input type="checkbox" name="servicios[]" value="adiestramiento" >
 										<img src="'.getTema().'/images/new/icon/icon-entrenamiento.svg">ENTRENAMIENTO

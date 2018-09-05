@@ -5,6 +5,8 @@
 		include((dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))))."/wp-load.php");
 	}
 
+	global $URL_LOCAL;
+
 	$PATH_TEMPLATE = (dirname(dirname(dirname(__DIR__))));
 
 	$info = kmimos_get_info_syte();
@@ -92,7 +94,7 @@
     $transporte = "";
     foreach ($servicio["transporte"] as $valor) {
 		$temp = str_replace('[SERVICIO]', $valor[0], $transporte_desglose_plantilla);
-		$temp = str_replace('[SUBTOTAL]', $valor[2], $temp);
+		$temp = str_replace('[SUBTOTAL]', "$ ".$valor[2], $temp);
 		$transporte .= $temp;
 	}
 
@@ -165,7 +167,6 @@
         $reembolsar_plantilla = "";
     }
 
-
 	$servicios_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/servicios.php';
     $servicios_plantilla = file_get_contents($servicios_plantilla);
 
@@ -191,6 +192,66 @@
     	}
     }
 
+
+
+
+	$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    $vence = strtotime( $servicio["vence"]);
+
+    $fecha = date('d', $vence)." de ".$meses[date('n', $vence)-1]. " ".date('Y', $vence) ;
+    $hora = "(".date('H:i A', $vence).")";
+
+    $_datos_cliente = getTemplate("reservar/partes/datos_cliente");
+    $_datos_cuidador = getTemplate("reservar/partes/datos_cuidador");
+    $instrucciones = getTemplate("reservar/partes/instrucciones");
+
+    $INFORMACION = [
+        // GENERALES
+
+            'HEADER'                => "",
+            'ID_RESERVA'            => $servicio["id_reserva"],
+            'SERVICIOS'             => $servicios_plantilla,
+            'MASCOTAS'              => $mascotas,
+            'DESGLOSE'              => $desglose,
+            'ADICIONALES'           => $adicionales,
+            'TRANSPORTE'            => $transporte,
+            'MODIFICACION'          => $modificacion,
+            'TIPO_SERVICIO'         => trim($servicio["tipo"]),
+            'DETALLES_SERVICIO'     => $detalles_plantilla,
+            'TOTALES'               => str_replace('[REEMBOLSAR]', "", $totales_plantilla),
+
+            'ACEPTAR'               => $servicio["aceptar_rechazar"]["aceptar"],
+            'RECHAZAR'              => $servicio["aceptar_rechazar"]["cancelar"],
+
+            'INSTRUCCIONES'			=> $instrucciones,
+            'CODIGO'				=> end( explode("/", $servicio["pdf"]) ),
+            'MONTO'					=> $MONTO,
+            'FECHA'					=> $fecha,
+            'HORA'					=> $hora,
+            'PDF'					=> $servicio["pdf"],
+
+        // CLIENTE
+            'DATOS_CLIENTE'         => $_datos_cliente,
+            'NAME_CLIENTE'          => $cliente["nombre"],
+            'AVATAR_CLIENTE'        => kmimos_get_foto($cliente["id"]),
+            'TELEFONOS_CLIENTE'     => $cliente["telefono"],
+            'CORREO_CLIENTE'        => $cliente["email"],
+            
+        // CUIDADOR
+            'DATOS_CUIDADOR'        => $_datos_cuidador,
+            'NAME_CUIDADOR'         => $cuidador["nombre"],
+            'AVATAR_CUIDADOR'       => kmimos_get_foto($cuidador["id"]),
+            'TELEFONOS_CUIDADOR'    => $cuidador["telefono"],
+            'CORREO_CUIDADOR'       => $cuidador["email"],
+            'DIRECCION_CUIDADOR'    => $cuidador["direccion"],
+    ];
+
+
+
+
+
+
+
 	if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
 		
 		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
@@ -201,7 +262,6 @@
 		}
 
 	}
-
 
 	if( $acc != ""  ){
 

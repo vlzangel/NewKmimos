@@ -74,7 +74,7 @@
     </div>
 
     <div style='
-        padding: 0px 30px; 
+        padding: 0px; 
         font-size: 14px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -85,7 +85,7 @@
 
             <div style="text-align: center; padding: 20px 0px 30px;">
                 <a href='[PDF]' target="_blank" style='
-                    max-width: 350px;
+                    max-width: 250px;
                     width: 100%;
                     padding: 15px;
                     background-color: #940d99;
@@ -96,6 +96,7 @@
                     text-decoration: none;
                     display: inline-block;
                     border-radius: 3px;
+                    font-size: 13px;
                 '>
                     VER INSTRUCCIONES DE PAGO
                 </a>
@@ -119,7 +120,7 @@
     </div>
 
     <div style='
-        padding: 20px 30px; 
+        padding: 20px 0px; 
         font-size: 17px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -170,7 +171,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 30px; 
+    padding: 30px 0px; 
     box-sizing: border-box;
 '>
 
@@ -220,7 +221,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 0px 30px 0px; 
+    padding: 0px; 
     box-sizing: border-box;
 '>
 

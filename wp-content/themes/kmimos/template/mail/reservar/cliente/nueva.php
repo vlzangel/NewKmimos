@@ -22,7 +22,7 @@
             padding-bottom: 30px; 
             text-align: left;
         '>
-            ¡Gracias [name_cliente]!
+            ¡Gracias [NAME_CLIENTE]!
         </div>  
 
         <div style='
@@ -32,7 +32,7 @@
             color: #000000; 
             text-align: left; 
         '>
-            Recibimos tu solicitud de reserva de <strong style="text-transform: capitalize;">[tipo_servicio]</strong>, para que <strong style="color: #940d99;">[name_cuidador]</strong> atienda a tu(s) peludo(s).
+            Recibimos tu solicitud de reserva de <strong style="text-transform: capitalize;">[TIPO_SERVICIO]</strong>, para que <strong style="color: #940d99;">[NAME_CUIDADOR]</strong> atienda a tu(s) peludo(s).
         </div>
 
     </div>
@@ -100,24 +100,22 @@
 </div>
 
 <div style='
-    font-family: Verdana;
-    width: 100%
     font-size: 17px; 
     font-weight: 600;
     line-height: 1.07; 
     letter-spacing: 0.3px; 
     color: #000000; 
-    padding: 15px 30px;
+    padding: 15px 0px;
     text-align: center;
     background-color: #e3e3e3;
 '>
-    Tu código de reserva es #[id_reserva]
+    Tu código de reserva es #[ID_RESERVA]
 </div>
 
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 30px; 
+    padding: 30px 10px; 
     box-sizing: border-box;
 '>
 
@@ -158,7 +156,7 @@
             </td>
         </tr>
 
-        [mascotas]
+        [MASCOTAS]
 
     </table>
 
@@ -167,7 +165,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 30px 30px 0px; 
+    padding: 0px 10px 0px; 
     box-sizing: border-box;
 '>
 

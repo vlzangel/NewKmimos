@@ -1,8 +1,36 @@
 <?php
 
+    if(!function_exists('buildEmailHtml')){
+        
+        function buildEmailHtml($content, $params = []){
+            $_params = [
+                'dudas' => true, 
+                'beneficios' => true, 
+                'user_id' => null, 
+                'header' => false, 
+                'barras_ayuda' => false,
+                'test' => false,
+            ];
+            if( !empty($params) ){
+                foreach ($params as $key => $value) {
+                    $_params[ $key ] = $value;
+                }
+            }
+            return get_email_html(
+                $content, 
+                $_params["dudas"],
+                $_params["beneficios"],
+                $_params["user_id"],
+                $_params["header"],
+                $_params["barras_ayuda"],
+                $_params["test"]
+            );
+        }
+    }
+
     if(!function_exists('get_email_html')){
         
-        function get_email_html($content, $dudas = true, $beneficios = true, $user_id = null, $_header = true, $_barras_ayuda = false){
+        function get_email_html($content, $dudas = true, $beneficios = true, $user_id = null, $_header = true, $_barras_ayuda = false, $test = false){
 
             $ayuda = "";
             if( $dudas ){
@@ -132,6 +160,10 @@
                     </div>
                 </body>
             </html>";
+
+            if( $test ){
+                $html = str_replace(get_home_url(), "http://kmimosmx.sytes.net/QA2", $html);
+            }
 
             return $html;
         }

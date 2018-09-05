@@ -1,4 +1,43 @@
 <?php
+
+	/* Email */
+
+		function getUrlImgs(){
+			$url = get_home_url()."/wp-content/themes/kmimos/images/emails";
+			return $url;
+		}
+
+		function getTemplate($plantilla){
+			$template = __DIR__.'/template/mail/'.$plantilla.'.php';
+			return file_get_contents($template);
+		}
+
+		function buildEmailTemplate($plantilla, $params){
+			$HTML = getTemplate($plantilla);
+			foreach ($params as $key => $value) {
+	            $HTML = str_replace('['.strtolower($key).']', $value, $HTML);
+	            $HTML = str_replace('['.strtoupper($key).']', $value, $HTML);
+	        }
+	        $HTML = str_replace('[URL_IMGS]', getUrlImgs($test), $HTML);
+	        return $HTML;
+		}
+
+		function sendEmailTest($asunto, $mensaje){
+			if( $_GET["code"] != "" && $_GET["code"] != $_SESSION["code"] ){
+				wp_mail( "a.veloz@kmimos.la", $asunto." - [ TEST ]", $mensaje);
+			}
+		}
+
+		function setSessionCode($exit = false){
+			$_SESSION["code"] = $_GET["code"];
+			if( $exit ){ exit(); }
+		}
+
+		function showEmail($html){
+			echo $html;
+		}
+
+	/* End Email */
 	
 	include dirname(__FILE__).'/widgets/admin.php';
 

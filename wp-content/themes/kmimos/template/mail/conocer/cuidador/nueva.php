@@ -18,7 +18,7 @@
             padding-bottom: 30px; 
             text-align: left;
         '>
-            ¡Hola <strong>[nombre_usuario]</strong>!
+            ¡Hola <strong>[NAME_CUIDADOR]</strong>!
         </div>  
 
         <div style='
@@ -28,7 +28,7 @@
             color: #000000; 
             text-align: left; 
         '>
-           	Recibimos una solicitud de <strong style="color: #940d99;">[name_cliente]</strong> para conocerte
+           	Recibimos una solicitud de <strong style="color: #940d99;">[NAME_CLIENTE]</strong> para conocerte
         </div>
 
     </div>
@@ -61,7 +61,7 @@
     
     [DATOS_CLIENTE]
 	       
-	<div style="padding: 30px; text-align: center;">
+	<div style="padding: 30px 30px 10px; text-align: center;">
 
 		<table width="100%" cellpadding="0" cellspacing="0">
 			<tr>
@@ -103,8 +103,8 @@
 			</tr>
 		</table>
 
-		<div style="padding-top: 35px; text-align: left; font-size: 15px;">
-			<strong style="color: #940d99; font-family: Verdana;">POSIBLE FECHA DE ESTADÍA:</strong> Del <strong>[desde]</strong> al <strong>[hasta]</strong> del [anio]
+		<div style="padding-top: 20px; text-align: left; font-size: 15px;">
+			<strong style="color: #940d99; font-family: Verdana;">POSIBLE FECHA DE ESTADÍA:</strong> <span style="color: #000;">Del <strong>[desde]</strong> al <strong>[hasta]</strong> del [anio]</span>
 		</div>
 
 	</div>
@@ -112,9 +112,9 @@
 	<div style="padding: 20px 30px 30px; text-align: center;">
 
 		<a href='[ACEPTAR]' style='
-			max-width: 300px;
-			width: 100%;
-			padding: 10px;
+			width: auto;
+			min-width: 280px;
+			padding: 10px 30px;
 			background-color: #940d99;
 			color: #FFF;
 			font-weight: 600;
@@ -128,9 +128,9 @@
 		</a>
 
 		<a href='[RECHAZAR]' style='
-			max-width: 300px;
-			width: 100%;
-			padding: 10px;
+			width: auto;
+			min-width: 280px;
+			padding: 10px 30px;
 			background-color: #FFF;
 			color: #000;
 			border: solid 2px #000;
@@ -164,7 +164,7 @@
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
-	   	<table cellpadding="0" cellspacing="0" style='width: 100%;'>
+	    <table cellpadding="0" cellspacing="0" style='width: 100%; font-family: Verdana; font-size: 15px;'>
 	        <tr style='
 	            color: #940d99; 
 	            line-height: 1.07; 
@@ -202,10 +202,10 @@
 	    line-height: 1.07;
 	    letter-spacing: 0.3px;
 	    color: #FFF;
-	    padding: 15px 30px;
+	    padding: 15px 15px;
 	    text-align: center;
 	    background-color: #940d99;
-	    margin: 0px 30px 30px;
+	    margin: 0px 0px 30px;
 	    border-radius: 2px;
 	">
 	    IMPORTANTE - SIGUIENTES PASOS

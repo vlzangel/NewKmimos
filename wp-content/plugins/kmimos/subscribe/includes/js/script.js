@@ -50,6 +50,8 @@ function form_subscribe(element){
                 var list = "newsletter_home";
                 if (wlabel == "petco") { list = "petco_popup"; }
 
+                evento_google('dejo_el_correo');
+
                 switch( section ){
                     case "landing-volaris":
                         list = 'newsletter_volaris';
