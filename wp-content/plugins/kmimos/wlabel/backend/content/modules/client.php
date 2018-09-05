@@ -325,6 +325,7 @@ echo '</tr>';
 
 
 //CANTIDAD DE USUARIOS REGISTRADOS
+/*
 echo '<tr>';
 echo '<th class="title">Usuarios registrados con el wlabel '.$wlabel.' Reservando</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
@@ -368,7 +369,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 }
 echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
 echo '</tr>';
-
+*/
 
 
  ?>

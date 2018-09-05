@@ -46,7 +46,7 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             <?php if( $wlabel == "volaris"){ ?>
                 <th>Monto Kmimos</th>
                 <th>Monto Partición Kmimos</th>
-                <th>Monto Partición <?php echo $wlabel;?></th>
+<!--                 <th>Monto Partición <?php echo $wlabel;?></th> -->
             <?php } ?>
         </tr>
         </thead>
@@ -66,7 +66,7 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             <?php if( $wlabel == "volaris"){ ?>
                 <td class="count"></td>
                 <td class="count"></td>
-                <td class="count"></td>
+               <!--  <td class="count"></td> -->
             <?php } ?>
         </tr>
         </tfoot>
@@ -207,8 +207,8 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             $html .= '
                 <td>'.number_round($_meta_WCorder_line_total*0.17).'</td>
                 <td>'.number_round($_meta_WCorder_line_total*0.17*($WLcommission/100)).'</td>
-                <td>'.number_round($_meta_WCorder_line_total*0.17*(1-($WLcommission/100))).'</td>
             ';
+/*                <td>'.number_round($_meta_WCorder_line_total*0.17*(1-($WLcommission/100))).'</td>*/
         }
 
         $html .= '</tr>';
