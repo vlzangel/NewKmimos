@@ -16,8 +16,9 @@ ini_set('display_errors', '0');
 	function aplicarCupon($db, $cupon, $cupones, $total, $validar, $cliente = "", $servicio = ""){
 		
 		/* Cupones Especiales */
-
-			if( strtolower($cupon) == "buenfin17" ){
+ 
+			
+			if( strtolower($cupon) == "buenfin17" || strtolower($cupon) == "grito2018" ){
 				$cuidador = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio}'");
 				$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = '{$cuidador}'");
 				$atributos = unserialize($cuidador->atributos);
