@@ -129,7 +129,7 @@
 
 		<a href='[ACEPTAR]' style='
 			width: auto;
-			min-width: 280px;
+			min-width: 200px;
 			padding: 10px 30px;
 			background-color: #940d99;
 			color: #FFF;
@@ -144,7 +144,7 @@
 
 		<a href='[RECHAZAR]' style='
 			width: auto;
-			min-width: 280px;
+			min-width: 200px;
 			padding: 10px 30px;
 			background-color: #FFF;
 			color: #000;
