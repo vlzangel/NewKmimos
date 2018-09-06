@@ -15,7 +15,7 @@
         [MODIFICACION] 
 
         <div style='
-            font-size: 26px; 
+            font-size: 19px; 
             font-weight: bold; 
             letter-spacing: 0.4px; 
             color: #940d99; 
@@ -26,7 +26,7 @@
         </div>  
 
         <div style='
-            font-size: 19px; 
+            font-size: 16px; 
             letter-spacing: 0.4px; 
             padding-bottom: 30px; 
             text-align: left;
@@ -35,7 +35,7 @@
         </div>  
 
         <div style='
-            font-size: 17px; 
+            font-size: 14px; 
             line-height: 1.07; 
             letter-spacing: 0.3px; 
             color: #000000; 
@@ -47,7 +47,7 @@
     </div>
 
 	<div style='
-        font-size: 17px; 
+        font-size: 14px; 
         font-weight: 600;
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -62,7 +62,7 @@
 	<div style="padding: 30px 0px; text-align: center;">
 
 		<div style='
-			font-size: 17px; 
+			font-size: 14px; 
 			color: #000; 
 			margin-bottom: 20px;
 		'>
@@ -71,7 +71,7 @@
 
         <div style="text-align: center;">
             <a href='[ACEPTAR]' style='
-                max-width: 250px;
+                max-width: 200px;
                 width: 100%;
                 padding: 10px;
                 background-color: #940d99;
@@ -81,7 +81,7 @@
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-                font-size: 13px;
+                font-size: 11px;
             '>
                 ¡ACEPTAR!
             </a>
@@ -89,7 +89,7 @@
 
         <div style="text-align: center;">
             <a href='[RECHAZAR]' style='
-                max-width: 250px;
+                max-width: 200px;
                 width: 100%;
                 padding: 10px;
                 background-color: #FFF;
@@ -100,7 +100,7 @@
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-                font-size: 13px;
+                font-size: 11px;
             '>
                 AHORA NO PUEDO, RECHAZAR
             </a>
@@ -111,7 +111,7 @@
 
     <div style='
         padding: 20px 30px; 
-        font-size: 17px; 
+        font-size: 14px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #FFF; 
@@ -125,7 +125,7 @@
 
     <div style='
         padding: 20px 30px; 
-        font-size: 17px; 
+        font-size: 14px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #FFF; 
@@ -148,7 +148,7 @@
 '>
 
     <div style='
-        font-size: 17px; 
+        font-size: 14px; 
         font-weight: 600; 
         letter-spacing: -0.1px; 
         margin-bottom: 15px;
@@ -198,7 +198,7 @@
 '>
 
     <div style='
-        font-size: 17px; 
+        font-size: 14px; 
         font-weight: 600; 
         letter-spacing: -0.1px; 
         margin-bottom: 15px;
@@ -212,7 +212,7 @@
 
     <div style='
     	overflow: hidden; 
-    	padding-top: 15px;
+    	padding-top: 14px;
 	    margin-bottom: 30px;
     '>
         [SERVICIOS]
