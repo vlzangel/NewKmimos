@@ -172,6 +172,7 @@ class Pagos {
 		//	$pago_cuidador_real = $total - $pago_kmimos;
 		//	$saldo_cuidador = $pago_cuidador_real - $remanente;
 
+		$total -= $discount;
 		$pago_cuidador_real = 0;
 		$saldo_cuidador = 0;
 		$pago_kmimos = 0;
