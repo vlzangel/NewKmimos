@@ -199,6 +199,8 @@ class Pagos {
 		$filtro_adicional = "";
 
 		if( !empty($desde) && !empty($hasta) ){
+			$desde = str_replace('-', '', $desde);
+			$hasta = str_replace('-', '', $hasta);
 			$filtro_adicional = " 
 				AND ( rm_start.meta_value >= '{$desde}000000' and  rm_start.meta_value <= '{$hasta}235959' )
 			";
