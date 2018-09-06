@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR | E_WARNING | E_PARSE );
 date_default_timezone_set('America/Mexico_City');
 
 $pagos = new Pagos();
@@ -42,6 +43,7 @@ class Pagos {
 		$dev = [];
 		if( !empty($reservas) ){
 			foreach ($reservas as $row) {
+
 				$total = 0;
 				$condicion = 's:7:"reserva";s:'.strlen($row->reserva_id).':"'.$row->reserva_id.'";';
 				$reserva_procesada = $this->db->get_row("SELECT * FROM cuidadores_pagos WHERE detalle like '%{$condicion}%' limit 1" );
@@ -50,9 +52,9 @@ class Pagos {
 
 					// Datos del cuidador
 						$pagos[ $row->cuidador_id ]['fecha_creacion'] = date('Y-m-d', strtotime("now"));
-						$pagos[ $row->cuidador_id ]['user_id'] = $row->cuidador_id;
-						$pagos[ $row->cuidador_id ]['nombre'] = $row->nombre;
-						$pagos[ $row->cuidador_id ]['apellido'] = $row->apellido;
+						$pagos[ $row->cuidador_id ]['user_id'] = $row->cuidador_id ; 
+						$pagos[ $row->cuidador_id ]['nombre'] = $row->nombre ; 
+						$pagos[ $row->cuidador_id ]['apellido'] = $row->apellido ; 
 						$pagos[ $row->cuidador_id ]['estatus'] = '';
 
 					// Meta de padido
@@ -75,22 +77,21 @@ class Pagos {
 							$row->total, 
 							$row->total_pago, 
 							$row->remanente,
-
 							$meta_pedido['_cart_discount'],
 							$meta_pedido['_wc_deposits_remaining'],
 							$method_payment
 
 						);
 
+						$d = (float)$row->total_pago - (float)$meta_pedido['_cart_discount'];
 						$dev2[] = [
-							$row->reserva_id,
 							$row->total, 
-							$row->total_pago, 
+							$d, 
 							$row->remanente,
-
 							$meta_pedido['_cart_discount'],
 							$meta_pedido['_wc_deposits_remaining'],
-							$method_payment
+							$method_payment,
+							$monto
 						];
 
 						$dev[] = [
@@ -100,7 +101,7 @@ class Pagos {
 							'total'=> $row->total, 
 							'remanente'=> $row->remanente
 						];
-
+ 
 						if( $count == 4 ){
 							$separador = '<br><br>';
 							$count=1;
@@ -164,22 +165,24 @@ class Pagos {
 	    return $fecha;
 	}
 
-	protected function calculo_pago_cuidador( $total, $pago, $remanente, $deposits=0, $discount=0, $method='' ){
+	public function calculo_pago_cuidador( $total, $pago, $remanente, $discount=0, $deposits=0, $method='' ){
 		$saldo_cuidador = 0;
+
 
 		//	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
 		//	$pago_kmimos = $total - ($total / 1.25);
 		//	$pago_cuidador_real = $total - $pago_kmimos;
 		//	$saldo_cuidador = $pago_cuidador_real - $remanente;
+ 
 
-		$total -= $discount;
 		$pago_cuidador_real = 0;
 		$saldo_cuidador = 0;
 		$pago_kmimos = 0;
 		$dif = $remanente + $pago;
-		$pago_cuidador_real = ($total / 1.25);
+		$pago_cuidador_real = ($total / 1.25) - ( $discount );
 
 		if( $deposits > 0 ){
+
 			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
 		        $saldo_cuidador = $pago_cuidador_real - $remanente;
 			}else{
@@ -187,12 +190,13 @@ class Pagos {
 			}
 		}else{
 			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
-		        $pago_kmimos = $total - $pago_cuidador_real;
 		        $saldo_cuidador = $pago_cuidador_real;  
 		    }
 		}
-
-		return $saldo_cuidador; 
+$dev[] = $saldo_cuidador;
+$dev[] = $remanente;
+//print_r($dev);
+		return $saldo_cuidador ; 
 	}
 
 	protected function getReservas($desde="", $hasta=""){
@@ -216,10 +220,9 @@ class Pagos {
 				r.post_parent as pedido_id,
 
 				( IFNULL(rm_cost.meta_value,0) ) as total,
-				( IFNULL(pm_total.meta_value,0) ) as total_pago,
+				( IFNULL(pm_total.meta_value,0) - IFNULL(pm_disco.meta_value,0) ) as total_pago,
 				( IFNULL(pm_remain.meta_value,0) ) as remanente,
 				rm_start.meta_value as booking_start
-
 			FROM wp_posts as r
 				LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
 				LEFT JOIN wp_postmeta as rm_cost ON rm_cost.post_id = r.ID and rm_cost.meta_key = '_booking_cost'
