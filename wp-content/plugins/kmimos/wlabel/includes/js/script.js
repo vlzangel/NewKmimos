@@ -172,10 +172,36 @@ function modules_filter_tddate(element, type, table){
 function modules_filter_tdcheck(element, type, table){
     jQuery(element).closest('.type').find('input[type="checkbox"]').each(function(index){
         var name = jQuery(this).attr('name');
+        var count = jQuery(element).closest('.type').find('input[type="checkbox"]:checked').length;
+        var mes = jQuery('[name="month"]').val();
+
+
         if(jQuery(this).is(':checked')) {// .val()=='yes'
-            table.find('td[data-check="'+name+'"], th[data-check="'+name+'"]').removeClass('noshow_check');
+            table.find('td[data-check="'+name+'"]').removeClass('noshow_check');
+            table.find('th[data-check="'+name+'"]').removeClass('noshow_check');
+            if( name == 'total' ){
+                if( mes > 0 && count == 1 ){
+                    table.find('td[data-check="year"]').removeClass('noshow_select');
+                    table.find('td[data-check="year"]').removeClass('noshow_check');
+                    table.find('th[data-check="year"]').removeClass('noshow_check');
+console.log('Paso: '+ mes + ' + ' + count);
+                }else{
+                    table.find('th[data-check="'+name+'"]').removeClass('noshow_select');
+                }
+            }
         }else{
-            table.find('td[data-check="'+name+'"], th[data-check="'+name+'"]').addClass('noshow_check');
+            table.find('td[data-check="'+name+'"]').addClass('noshow_check');
+            table.find('th[data-check="'+name+'"]').addClass('noshow_check');
+            if( name == 'total' ){
+                if( mes > 0 && count == 1 ){
+                    table.find('td[data-check="year"]').addClass('noshow_select');
+                    table.find('td[data-check="year"]').addClass('noshow_check');
+                    table.find('th[data-check="year"]').addClass('noshow_check');
+console.log('NO Paso: '+ mes + ' + ' + count);
+                }else{
+                    table.find('th[data-check="'+name+'"]').addClass('noshow_select');
+                }
+            }
         }
     });
     return;

@@ -19,7 +19,7 @@ $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
 $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
 ?>
 <div class="module_title">
-    RESERVAS POR DIA
+    RESUMEN DE VENTAS
 </div>
 
 <div class="section">
@@ -27,7 +27,7 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
     <table cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th class="title">Titulo</th>
+            <th class="title">Monto total de reservas Confirmadas, canceladas y completadas</th>
             <?php
                 $day_init=strtotime(date('m/d/Y',$WLresult->time));
                 $day_last=strtotime(date('m/d/Y',time()));
@@ -38,7 +38,7 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                     if(date('t',$day)==date('d',$day) || $day_last==$day){
                         echo '<th class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('F/Y',$day).'</th>';
                         if(date('m',$day)=='12' || $day_last==$day){
-                            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('Y',$day).'</th>';
+                            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">Acumulado '.date('Y',$day).'</th>';
                         }
                     }
                 }
@@ -62,16 +62,15 @@ $sql = "
       LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=posts.post_author AND usermeta.meta_key='_wlabel')
     WHERE
       (
-      (posts.post_type = 'wc_booking' AND usermeta.meta_value = '{$wlabel}')
-      OR
-      (posts.post_type = 'wc_booking' AND postmeta.meta_value = '{$wlabel}')
+          (posts.post_type = 'wc_booking' AND usermeta.meta_value = '{$wlabel}')
+          OR
+          (posts.post_type = 'wc_booking' AND postmeta.meta_value = '{$wlabel}')
       )
-      AND NOT
-      posts.post_status LIKE '%cart%'
+      AND posts.post_status in ( 'confirmed', 'completed', 'cancelled'  )
     ORDER BY
       posts.ID DESC
 ";
-
+ 
 
 $bookings = $wpdb->get_results($sql);
 
@@ -154,15 +153,15 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     }
 
 
-    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_day).'</td>';
+    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_day).'</td>';
     $amount_day=0;
 
     if(date('t',$day)==date('d',$day) || $day_last==$day){
-        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_month).'</td>';
+        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_month).'</td>';
         $amount_month=0;
 
         if(date('m',$day)=='12' || $day_last==$day){
-            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_year).'</th>';
+            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_year).'</th>';
             $amount_year=0;
         }
     }
@@ -174,7 +173,7 @@ echo '</tr>';
 
 //TOTAL DE MONTO DE RESERVAS
 echo '<tr>';
-echo '<th class="title">Monto de Reservas</th>';
+echo '<th class="title">Monto total de reservas confirmadas</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -201,15 +200,15 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     }
 
 
-    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_day).'</td>';
+    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_day).'</td>';
     $amount_day=0;
 
     if(date('t',$day)==date('d',$day) || $day_last==$day){
-        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_month).'</td>';
+        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_month).'</td>';
         $amount_month=0;
 
         if(date('m',$day)=='12' || $day_last==$day){
-            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_year).'</th>';
+            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_year).'</th>';
             $amount_year=0;
         }
     }
@@ -249,15 +248,15 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     }
 
 
-    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_day).'</td>';
+    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_day).'</td>';
     $amount_day=0;
 
     if(date('t',$day)==date('d',$day) || $day_last==$day){
-        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_month).'</td>';
+        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_month).'</td>';
         $amount_month=0;
 
         if(date('m',$day)=='12' || $day_last==$day){
-            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_year).'</th>';
+            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_year).'</th>';
             $amount_year=0;
         }
     }
@@ -271,7 +270,7 @@ echo '</tr>';
 
 //TOTAL DE MONTO POR PAGAR
 echo '<tr>';
-echo '<th class="title">Monto de reservas por pagar en tienda por conveniencia</th>';
+echo '<th class="title">Monto de reservas pendientes por pagar en tienda por conveniencia</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -298,15 +297,15 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     }
 
 
-    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_day).'</td>';
+    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_day).'</td>';
     $amount_day=0;
 
     if(date('t',$day)==date('d',$day) || $day_last==$day){
-        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_month).'</td>';
+        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_month).'</td>';
         $amount_month=0;
 
         if(date('m',$day)=='12' || $day_last==$day){
-            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_year).'</th>';
+            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_year).'</th>';
             $amount_year=0;
         }
     }
@@ -344,15 +343,15 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     }
 
 
-    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_day).'</td>';
+    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_day).'</td>';
     $amount_day=0;
 
     if(date('t',$day)==date('d',$day) || $day_last==$day){
-        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_month).'</td>';
+        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_month).'</td>';
         $amount_month=0;
 
         if(date('m',$day)=='12' || $day_last==$day){
-            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_year).'</th>';
+            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_year).'</th>';
             $amount_year=0;
         }
     }
@@ -360,7 +359,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
 echo '</tr>';
 
-
+/*
 //TOTAL DE MONTO DE COMISION DE KMIMOS
 echo '<tr>';
 echo '<th class="title">Comision de  kmimos (20%/'.(100-$WLcommission).'%)</th>';
@@ -390,15 +389,15 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     }
 
 
-    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_day).'</td>';
+    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_day).'</td>';
     $amount_day=0;
 
     if(date('t',$day)==date('d',$day) || $day_last==$day){
-        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_month).'</td>';
+        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_month).'</td>';
         $amount_month=0;
 
         if(date('m',$day)=='12' || $day_last==$day){
-            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_year).'</th>';
+            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_year).'</th>';
             $amount_year=0;
         }
     }
@@ -436,22 +435,22 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     }
 
 
-    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_day).'</td>';
+    echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_day).'</td>';
     $amount_day=0;
 
     if(date('t',$day)==date('d',$day) || $day_last==$day){
-        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_month).'</td>';
+        echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_month).'</td>';
         $amount_month=0;
 
         if(date('m',$day)=='12' || $day_last==$day){
-            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.number_round($amount_year).'</th>';
+            echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">MXN '.number_round($amount_year).'</th>';
             $amount_year=0;
         }
     }
 }
 echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
 echo '</tr>';
-
+*/
 
 
  ?>

@@ -201,7 +201,7 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             <td class="duration" data-user="'.$customer.'" data-count="'.$duration.'">'.$duration_text.'</td>
             <td class="duration_total" data-user="'.$customer.'"></td>
             <td>'.$_meta_WCorder_services_additional.'</td>
-            <td>'.number_round($_meta_WCorder_line_total).'</td>';
+            <td>MXN '.number_round($_meta_WCorder_line_total).'</td>';
 
         if( $wlabel == "volaris"){
             $html .= '
