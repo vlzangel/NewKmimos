@@ -29,6 +29,7 @@ $dev = [];
 		$pagos[ $row->cuidador_id ]['nombre'] = $row->nombre;
 		$pagos[ $row->cuidador_id ]['apellido'] = $row->apellido;
 
+		$meta_reserva = getMetaReserva( $row->reserva_id );
 		$meta_pedido = getMetaPedido( $row->pedido_id );
 
 
@@ -134,10 +135,7 @@ $dev = [];
 
 	}
 	
-
-	echo '<pre style="display:none; data-italo">';
-	print_r( $dev2 );
-	echo '</pre>';
+ 
 	return $pagos;
 }
 
