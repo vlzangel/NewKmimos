@@ -1,6 +1,6 @@
 <?php
-require_once('base_db.php');
-require_once('GlobalFunction.php');
+require_once(__DIR__.'/base_db.php');
+require_once(__DIR__.'/GlobalFunction.php');
 
 // ***************************************
 // Cargar listados de Reservas
