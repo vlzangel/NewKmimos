@@ -81,7 +81,9 @@
                     $info = '';
                     if( !empty($cupones) ){                    
                         foreach ($cupones as $cupon) {
-                            $info .= " [ ".$cupon->name .": " .$cupon->monto . " ] ";
+                            if( $cupon->monto > 0 ){
+                                $info .= " [ ".$cupon->name .": " .$cupon->monto . " ] ";
+                            }
                         }
                     }
 
