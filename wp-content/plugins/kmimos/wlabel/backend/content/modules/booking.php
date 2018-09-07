@@ -46,7 +46,6 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             <?php if( $wlabel == "volaris"){ ?>
                 <th>Monto Kmimos</th>
                 <th>Monto Partición Kmimos</th>
-<!--                 <th>Monto Partición <?php echo $wlabel;?></th> -->
             <?php } ?>
         </tr>
         </thead>

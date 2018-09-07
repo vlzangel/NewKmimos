@@ -68,7 +68,6 @@ function WhiteLabel_panel_update(){
 function WhiteLabel_panel_menu(element){
     var module=jQuery(element).data('module');
     var color_alt=jQuery(element).closest('.menu').data('coloralt');
-
     modules=module;
     var path=jQuery('.section .menu').data('url');
     var url=path+'content/modules/'+module+'.php';
