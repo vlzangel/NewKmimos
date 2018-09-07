@@ -40,8 +40,14 @@
 		$metas = get_user_meta($usuario->ID);
 
 		$conocio = "WL Petco";
-		if( strtolower($metas["user_referred"][0]) == "cc-petco" || strtolower($metas["user_referred"][0]) == "petco" ){
-			$conocio = $metas["user_referred"][0];
+		$color = "#6194e6";
+		if( strtolower($metas["user_referred"][0]) == "cc-petco" ){
+			$conocio =  "CC Petco";
+			$color = "#67e661";
+		}
+		if( strtolower($metas["user_referred"][0]) == "petco" ){
+			$conocio = 'Kmimos Petco';
+			$color = "#e455a8";
 		}
 		$registros .= "
 			<tr>
