@@ -77,3 +77,36 @@
 	if( $_SESSION['wlabel'] == "quitar" ){
 		unset($_SESSION['wlabel']);
 	}
+
+	$_SESSION['INFO_USER_AGENT'] = $info;
+	function INFO_USER_AGENT()
+	{
+		$browser=array("IE","OPERA","MOZILLA","NETSCAPE","FIREFOX","SAFARI","CHROME");
+		$os=array("WIN","MAC","LINUX");
+	  
+		$info['browser'] = "OTHER";
+		$info['os'] = "OTHER";
+
+		$info['ip'] = $_SERVER['REMOTE_ADDR'];
+
+		foreach($browser as $parent)
+		{
+			$s = strpos(strtoupper($_SERVER['HTTP_USER_AGENT']), $parent);
+			$f = $s + strlen($parent);
+			$version = substr($_SERVER['HTTP_USER_AGENT'], $f, 15);
+			$version = preg_replace('/[^0-9,.]/','',$version);
+			if ($s)
+			{
+				$info['browser'] = $parent;
+				$info['version'] = $version;
+			}
+		}
+	  
+		foreach($os as $val)
+		{
+			if (strpos(strtoupper($_SERVER['HTTP_USER_AGENT']),$val)!==false)
+				$info['os'] = $val;
+		}
+	  
+		return $info;
+	}

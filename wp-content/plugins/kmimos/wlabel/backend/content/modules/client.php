@@ -133,6 +133,7 @@
                     $day_more=(24*60*60);
 
                     //CANTIDAD DE USUARIOS REGISTRADOS
+                    /*
                     echo '<tr>';
                         echo '<th class="title">Usuarios registrados con el Wlabel</th>';
 
@@ -171,6 +172,7 @@
                         }
                         echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
                     echo '</tr>';
+                    */
 
                     //CANTIDAD DE USUARIOS REGISTRADOS WL + KMIMOS
                     echo '<tr>';
@@ -249,6 +251,7 @@
                     echo '</tr>';
 
                     //CANTIDAD DE USUARIOS REGISTRADOS REFERIDOS WLABEL
+                    /*
                     echo '<tr>';
                         echo '<th class="title">Usuarios registrados referidos por '.strtoupper($wlabel).'</th>';
 
@@ -298,10 +301,11 @@
                         }
                         echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
                     echo '</tr>';
+                    */
 
                     //CANTIDAD DE USUARIOS REGISTRADOS REFERIDOS WLABEL
                     echo '<tr>';
-                        echo '<th class="title">Total de Noches reservadas y confirmadas</th>';
+                        echo '<th class="title">Usuarios totales registrados (White Label + Página Kmimos)</th>';
 
                         $amount_day=0;
                         $amount_month=0;
@@ -339,7 +343,12 @@
                     echo '</tr>';
 
 
-
+                    //TOTAL DE LEADS
+                    echo '<tr>';
+                    echo '<th class="title">Leads</th>';
+                    $amount_leads = 0;
+                    echo '<th class="total">'.$amount_leads.'</th>';
+                    echo '</tr>';
 
 
 /*                    echo $sql = "
