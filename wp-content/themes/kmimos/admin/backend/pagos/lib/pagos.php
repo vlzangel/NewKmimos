@@ -232,6 +232,7 @@ class Pagos {
 				and not r.post_status like '%cart%' 
 				and cl.ID > 0 
 				and p.ID > 0
+				and us.user_id > 0
 				and r.post_status = 'confirmed'
 				{$filtro_adicional}
 			;";

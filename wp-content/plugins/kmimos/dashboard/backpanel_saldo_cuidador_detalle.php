@@ -92,6 +92,7 @@ $reservas = getReservas($desde, $hasta);
 			      <th>Monto Remanente</th>
 			      <th>Pago Cuidador</th>
 			      <th># Pedido</th>
+			      <th>Cupones</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -163,17 +164,27 @@ $reservas = getReservas($desde, $hasta);
 							$meta_Pedido['_wc_deposits_remaining'],
 							$method_payment
 						);
-echo '<pre style="display:none; data-italo">';
-	print_r( [
-			$reserva->nro_reserva,
-			$meta_reserva['_booking_cost'],
-							$meta_Pedido['pagado'],
-							$meta_Pedido['remanente'],
-							$meta_Pedido['_cart_discount'],
-							$meta_Pedido['_wc_deposits_remaining'],
-							$method_payment
-		] );
-	echo '</pre>';
+
+						// Cargar cupones 
+						$cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  FROM `wp_woocommerce_order_items` as items 
+						INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
+						INNER JOIN wp_posts as p ON p.ID = ".$reserva->nro_reserva." and p.post_type = 'wc_booking' 
+						WHERE 
+						meta.meta_key = 'discount_amount'
+						and items.`order_id` = p.post_parent";
+						$cupones = $wpdb->get_results($cupon_sql);
+
+						$info = '';
+						if( !empty($cupones) ){                    
+						    foreach ($cupones as $cupon) {
+						        if( $cupon->monto > 0 ){
+						            $info .=  '<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">'.$cupon->name . ' <span class="badge" style="background:#fff;color:#000;">' .$cupon->monto . " </span></small> ";
+						        }
+						    }
+						}
+						
+
+
 				  	?>
 				    <tr>
 				    	<th class="text-center"><?php echo ++$count; ?></th>
@@ -196,6 +207,7 @@ echo '<pre style="display:none; data-italo">';
 					<th><?php echo currency_format($meta_Pedido['remanente']); ?></th>
 				    <th class="text-center"><?php echo $pago_cuidador; ?></th>
 					<th><?php echo $reserva->nro_pedido; ?></th>
+					<th><?php echo $info; ?></th>
 
 				    </tr>
 			   	<?php } ?>

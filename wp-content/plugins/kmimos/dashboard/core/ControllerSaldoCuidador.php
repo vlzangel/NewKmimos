@@ -13,6 +13,7 @@ function getRangoFechas(){
 }
 
 function getPagoCuidador($desde, $hasta){
+	global $wpdb;
 	$reservas = getReservas($desde, $hasta);
 	$pagos = [];
 	$detalle = [];
@@ -87,9 +88,30 @@ $dev = [];
 		}
 
 		//[ {$row->reserva_id}: $". number_format($monto, 2, ",", ".")." ]{$separador}
+
+		// Cargar cupones 
+		$cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  FROM `wp_woocommerce_order_items` as items 
+		INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
+		INNER JOIN wp_posts as p ON p.ID = ".$row->reserva_id." and p.post_type = 'wc_booking' 
+		WHERE 
+		meta.meta_key = 'discount_amount'
+		and items.`order_id` = p.post_parent";
+		$cupones = $wpdb->get_results($cupon_sql);
+
+		$info = '';
+		if( !empty($cupones) ){                    
+		    foreach ($cupones as $cupon) {
+		        if( $cupon->monto > 0 ){
+		            $info .= " [ ".$cupon->name .": " .$cupon->monto . " ] ";
+		        }
+		    }
+		}
+		$info = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
+
+
 		if( $monto > 0 ){
 			$pagos[ $row->cuidador_id ]['detalle'] .= $r.'
-				<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
+				<small '.$info.' class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
 				  '.$row->reserva_id.' <span class="badge" style="background:#fff;color:#000;">$'.number_format($monto, 2, ",", ".").'</span>
 				</small>
 			'.$separador;
