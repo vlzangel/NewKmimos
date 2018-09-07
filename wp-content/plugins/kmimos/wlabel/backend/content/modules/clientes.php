@@ -34,8 +34,14 @@
 		$metas = get_user_meta($usuario->ID);
 
 		$conocio = "WL Petco";
-		if( strtolower($metas["user_referred"][0]) == "cc-petco" || strtolower($metas["user_referred"][0]) == "petco" ){
-			$conocio = $metas["user_referred"][0];
+		$color = "#6194e6";
+		if( strtolower($metas["user_referred"][0]) == "cc-petco" ){
+			$conocio =  "CC Petco";
+			$color = "#67e661";
+		}
+		if( strtolower($metas["user_referred"][0]) == "petco" ){
+			$conocio = 'Kmimos Petco';
+			$color = "#e455a8";
 		}
 		$registros .= "
 			<tr>
@@ -44,7 +50,7 @@
 				<td>".$metas["first_name"][0]." ".$metas["last_name"][0]."</td>
 				<td>{$usuario->user_email}</td>
 				<td>".$metas["user_mobile"][0]."</td>
-				<td>".$conocio."</td>
+				<td style='background:".$color."'>".$conocio."</td>
 				<td>".ucfirst($metas["user_gender"][0])."</td>
 				<td>".$metas["user_age"][0]."</td>
 			</tr>

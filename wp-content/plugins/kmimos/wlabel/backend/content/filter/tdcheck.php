@@ -15,9 +15,9 @@
             <input type="checkbox" name="year" value="yes" checked/>
         </div>
 
-        <div class="total line">
+        <!-- div class="total line">
             <label>Total</label>
             <input type="checkbox" name="total" value="yes" checked/>
-        </div>
+        </div -->
     </div>
 </div>
