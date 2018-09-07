@@ -305,7 +305,7 @@
 
                     //CANTIDAD DE USUARIOS REGISTRADOS REFERIDOS WLABEL
                     echo '<tr>';
-                        echo '<th class="title">Usuarios totales registrados (White Label + Página Kmimos)</th>';
+                        echo '<th class="title">Total de Noches reservadas y confirmadas</th>';
 
                         $amount_day=0;
                         $amount_month=0;
