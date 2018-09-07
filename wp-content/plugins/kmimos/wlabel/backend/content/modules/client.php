@@ -46,6 +46,22 @@
                     }
 
                     $sql = "
+                        SELECT 
+                            SQL_CALC_FOUND_ROWS *
+                        FROM 
+                            wp_users AS usuarios
+                        INNER JOIN wp_usermeta AS m ON ( m.user_id = usuarios.ID )
+                        WHERE
+                            (
+                                m.meta_key = 'user_referred' OR
+                                m.meta_key = '_wlabel' 
+                            ) AND
+                            m.meta_value = '{$_SESSION["label"]->wlabel}'
+                        GROUP BY usuarios.ID DESC
+                    ";
+                    $leads = $wpdb->get_results($sql);
+
+                    $sql = "
                         SELECT DISTINCT
                             users.ID,
                             users.user_login as login,
@@ -355,16 +371,16 @@
                         for($day = $day_init; $day <= $day_last; $day+=$day_more){
 
                             
-                            foreach($reservas as $reserva){
-                                $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                            foreach($leads as $reserva){
+                                $fecha = strtotime( date('m/d/Y', strtotime($reserva->user_registered) ) );
                                 $hoy = strtotime(date('m/d/Y', $day));
 
                                 if( $fecha == $hoy ){
 
-                                    $amount_day += 0;
-                                    $amount_month += 0;
-                                    $amount_year += 0;
-                                    $amount_total += 0;
+                                    $amount_day += 1;
+                                    $amount_month += 1;
+                                    $amount_year += 1;
+                                    $amount_total += 1;
                                 }
                             }
 
