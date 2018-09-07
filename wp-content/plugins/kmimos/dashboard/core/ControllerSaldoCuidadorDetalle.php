@@ -6,7 +6,7 @@ require_once('GlobalFunction.php');
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
-public function calculo_pago_cuidador( $total, $pago, $remanente, $discount=0, $deposits=0, $method='' ){
+ function calculo_pago_cuidador( $id_reserva, $total, $pago, $remanente, $discount=0, $deposits=0, $method='' ){
 		$saldo_cuidador = 0;
 
 		$pago_cuidador_real = 0;

@@ -68,7 +68,28 @@
                 $count= 0;
                 foreach ($pago->detalle as $item) {
                     $count++;
-                    $detalle .= '<small class="items-span">'.$item['reserva'].' <span class="badge">$'.number_format($item['monto'], 2, ",", ".").'</span></small>';
+
+                    // Cargar cupones 
+                    $cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  FROM `wp_woocommerce_order_items` as items 
+                    INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
+                    INNER JOIN wp_posts as p ON p.ID = ".$item['reserva']." and p.post_type = 'wc_booking' 
+                    WHERE 
+                    meta.meta_key = 'discount_amount'
+                    and items.`order_id` = p.post_parent";
+                    $cupones = $pagos->db->get_results($cupon_sql);
+
+                    $info = '';
+                    if( !empty($cupones) ){                    
+                        foreach ($cupones as $cupon) {
+                            if( $cupon->monto > 0 ){
+                                $info .= " [ ".$cupon->name .": " .$cupon->monto . " ] ";
+                            }
+                        }
+                    }
+
+                    $info = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
+
+                    $detalle .= '<small class="items-span" '.$info.' >'.$item['reserva'].' <span class="badge">$'.number_format($item['monto'], 2, ",", ".").'</span></small>';
 
                     if( $count == 7 ){ 
                         $detalle .= "<br>"; 
