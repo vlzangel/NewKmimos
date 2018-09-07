@@ -346,8 +346,39 @@
                     //TOTAL DE LEADS
                     echo '<tr>';
                     echo '<th class="title">Leads</th>';
-                    $amount_leads = 0;
-                    echo '<th class="total">'.$amount_leads.'</th>';
+                    
+                        $amount_day=0;
+                        $amount_month=0;
+                        $amount_year=0;
+                        $amount_total=0;
+
+                        for($day = $day_init; $day <= $day_last; $day+=$day_more){
+
+                            
+                            foreach($reservas as $reserva){
+                                $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                                $hoy = strtotime(date('m/d/Y', $day));
+
+                                if( $fecha == $hoy ){
+
+                                    $amount_day += 0;
+                                    $amount_month += 0;
+                                    $amount_year += 0;
+                                    $amount_total += 0;
+                                }
+                            }
+
+                            echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                            $amount_day=0;
+                            if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                                $amount_month=0;
+                                if(date('m',$day)=='12' || $day_last==$day){
+                                    echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                                    $amount_year=0;
+                                }
+                            }
+                        }
                     echo '</tr>';
 
 
