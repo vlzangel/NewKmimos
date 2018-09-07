@@ -133,7 +133,31 @@ function inicio_fin_semana( $date, $str_to_date  ){
     return $fecha;
 }
 
+	public function calculo_pago_cuidador( $total, $pago, $remanente, $discount=0, $deposits=0, $method='' ){
+		$saldo_cuidador = 0;
 
+		$pago_cuidador_real = 0;
+		$saldo_cuidador = 0;
+		$pago_kmimos = 0;
+		$dif = $remanente + $pago;
+		$pago_cuidador_real = ($total / 1.25) - ( $discount );
+
+		if( $deposits > 0 ){
+
+			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
+		        $saldo_cuidador = $pago_cuidador_real - $remanente;
+			}else{
+				$saldo_cuidador = $deposits;
+			}
+		}else{
+			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
+		        $saldo_cuidador = $pago_cuidador_real;  
+		    }
+		}
+
+		return $saldo_cuidador ; 
+	}
+/*
 function calculo_pago_cuidador( $total, $pago, $remanente, $deposits=0, $discount=0, $method='' ){
 
 	$saldo_cuidador = 0;
@@ -164,6 +188,7 @@ function calculo_pago_cuidador( $total, $pago, $remanente, $deposits=0, $discoun
 
 	return $saldo_cuidador; // . " <span style='display:none;' data-italo> ( $dif != $total || ($remanente == 0 && $dif == $total) || $method == Saldo y/o Descuentos </span>";
 }
+*/
 
 function getReservas($desde="", $hasta=""){
 

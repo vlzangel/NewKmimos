@@ -168,13 +168,6 @@ class Pagos {
 	public function calculo_pago_cuidador( $total, $pago, $remanente, $discount=0, $deposits=0, $method='' ){
 		$saldo_cuidador = 0;
 
-
-		//	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
-		//	$pago_kmimos = $total - ($total / 1.25);
-		//	$pago_cuidador_real = $total - $pago_kmimos;
-		//	$saldo_cuidador = $pago_cuidador_real - $remanente;
- 
-
 		$pago_cuidador_real = 0;
 		$saldo_cuidador = 0;
 		$pago_kmimos = 0;
@@ -193,9 +186,7 @@ class Pagos {
 		        $saldo_cuidador = $pago_cuidador_real;  
 		    }
 		}
-$dev[] = $saldo_cuidador;
-$dev[] = $remanente;
-//print_r($dev);
+
 		return $saldo_cuidador ; 
 	}
 
