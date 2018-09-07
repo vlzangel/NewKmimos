@@ -31,12 +31,6 @@
 
 	$registros = "";
 	foreach ($usuarios as $usuario) {
-		/*
-			mobile.met_key = 'user_mobile' AND
-			edad.met_key = 'user_age' AND
-			sexo.met_key = 'user_gender' AND
-			conocio.met_key = 'user_referred'
-		*/
 		$metas = get_user_meta($usuario->ID);
 
 		$conocio = "WL Petco";

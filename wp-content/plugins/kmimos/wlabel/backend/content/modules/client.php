@@ -65,51 +65,68 @@
                     ";
                     $users = $wpdb->get_results($sql);
 
-                    $IDs = [];
-                    foreach($users as $user){
-                        $IDs[] = $user->ID;
-                    }
-
-                    $IDs_str = implode(",", $IDs);
-
                     $sql = "
                         SELECT DISTINCT
+                            reservas.ID AS ID_reserva,
                             reservas.post_author AS ID,
                             reservas.post_date AS date,
                             reservas.post_status AS reserva_status,
-                            postmeta.meta_value AS es_wlabel_reservando,
 
                             inicio.meta_value AS inicio,
                             fin.meta_value AS fin
 
                         FROM
                             wp_posts AS reservas
-                            LEFT JOIN wp_postmeta AS postmeta ON (postmeta.post_id = reservas.post_parent AND postmeta.meta_key = '_wlabel' AND postmeta.meta_value = '{$wlabel}')
-                            LEFT JOIN wp_postmeta AS inicio ON (inicio.post_id = reservas.ID AND inicio.meta_key = '_booking_start')
-                            LEFT JOIN wp_postmeta AS fin ON (fin.post_id = reservas.ID AND fin.meta_key = '_booking_end')
+
+                        LEFT JOIN wp_usermeta as wlabel_cliente ON 
+                            ( 
+                                wlabel_cliente.user_id = reservas.post_author AND 
+                                (
+                                    wlabel_cliente.meta_key = 'user_referred' OR
+                                    wlabel_cliente.meta_key = '_wlabel' 
+                                ) AND
+                                wlabel_cliente.meta_value = '{$wlabel}'
+                            )
+
+                        LEFT JOIN wp_postmeta as wlabel_reserva ON 
+                            ( 
+                                wlabel_reserva.post_id = reservas.ID AND 
+                                wlabel_reserva.meta_key = '_wlabel' AND
+                                wlabel_reserva.meta_value = '{$wlabel}'
+                            )
+
+                        LEFT JOIN wp_postmeta AS inicio ON (inicio.post_id = reservas.ID AND inicio.meta_key = '_booking_start')
+                        LEFT JOIN wp_postmeta AS fin ON (fin.post_id = reservas.ID AND fin.meta_key = '_booking_end')
+
+                        LEFT JOIN wp_users as cl ON cl.ID = reservas.post_author
+
                         WHERE
-                            reservas.post_author IN ({$IDs_str}) AND
                             reservas.post_status = 'confirmed' AND
-                            reservas.post_type = 'wc_booking'
+                            reservas.post_type = 'wc_booking' and (
+                                wlabel_cliente.meta_value = '{$wlabel}' OR
+                                wlabel_reserva.meta_value = '{$wlabel}'
+                            )
+                            and cl.ID > 0 
                         ORDER BY
                             reservas.ID DESC
                     ";
                     $reservas = $wpdb->get_results($sql);
 
                     $total_noches = 0;
-
+                    $_reservas = [];
                     foreach ($reservas as $key => $reserva) {
-                        $inicio = strtotime( $reserva->inicio );
-                        $fin = strtotime( $reserva->fin );
-                        $noches = ( ceil(( $fin - $inicio )/60/60/24)-1 );
-                        $total_noches += $noches;
 
-                        $reservas[ $key ]->noches = $noches;
+                        if( !isset($_reservas[ $reserva->ID_reserva ]) ){
+                            $inicio = strtotime( $reserva->inicio );
+                            $fin = strtotime( $reserva->fin );
+                            $noches = ( ceil(( $fin - $inicio )/60/60/24)-1 );
+                            $total_noches += $noches;
+                            $reservas[ $key ]->noches = $noches;
+
+                            $_reservas[ $reserva->ID_reserva ] = $reservas[ $key ];
+                        }
+
                     }
-
-                    /*echo "<pre>";
-                        print_r( $reservas );
-                    echo "</pre>";*/
 
                     $day_init=strtotime(date('m/d/Y',$WLresult->time));
                     $day_last=strtotime(date('m/d/Y',time()));
@@ -166,7 +183,7 @@
 
                         for($day = $day_init; $day <= $day_last; $day+=$day_more){
 
-                            foreach($reservas as $reserva){
+                            foreach($_reservas as $reserva){
                                 $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
                                 $hoy = strtotime(date('m/d/Y', $day));
 
