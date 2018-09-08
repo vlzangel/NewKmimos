@@ -51,7 +51,6 @@
 		$registros .= "
 			<tr>
 				<td>".( date("d/m/Y", strtotime( $usuario->time ) ) )."</td>
-				<td>".$usuario->name."</td>
 				<td>".$usuario->email."</td>
 				<td>".$conocio."</td>
 			</tr>
@@ -73,7 +72,6 @@
     <thead>
         <tr>
             <th>Fecha Registro</th>
-            <th>Nombre</th>
             <th>Email</th>
             <th>Donde nos conocio?</th>
         </tr>
