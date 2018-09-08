@@ -103,103 +103,90 @@ if( isset($_GET['r']) ){
 			}
 		</style>
 
-	<script type='text/javascript'>
-		//Subscribe
-		function SubscribeSite(){
-			clearTimeout(SubscribeTime);
-
-			var dog = '<img height="70" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-09.png">' +
-				'<img height="20" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-10.png">';
-
-			var html='<div id="PageSubscribe"><i class="exit fa fa-times" aria-hidden="true" onclick="SubscribePopUp_Close(\'#message.Msubscribe\')"></i>' +
-				'<div class="section section1"><span>G&aacute;nate <strong>$50 pesos</strong> en tu primera reserva</span><br>&#8216;&#8216;Aplica para clientes nuevos&#8217;&#8217;<div class="images">'+dog+'</div></div>' +
-				'<div class="section section2"><span><strong>&#161;SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span>'+
-
-				'<div class="subscribe">'+
-				'<form onsubmit="form_subscribe(this); return false;">'+
-				'<input type="hidden" name="section" value="landing-volaris"/>'+
-				'<input type="mail" name="mail" value="" placeholder="Introduce tu correo aqu&iacute" required/>'+
-				'<button type="submit"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>'+
-				'</form>'+
-				'<div class="message"></div>'+
-				'</div>'+
-
-				'</div>';
-			SubscribePopUp_Create(html);
-		}
-
-		function SubscribePopUp_Create(html){
-			var element = '#message.Msubscribe';
-			if(jQuery(element).length==0){
-				jQuery('body').append('<div id="message" class="Msubscribe"></div>');
-				jQuery(element).append('<div class="contain"></div>');
+		<script type='text/javascript'>
+			function SubscribeSite(){
+				clearTimeout(SubscribeTime);
+				var dog = '<img height="70" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-09.png">' +
+					'<img height="20" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-10.png">';
+				var html='<div id="PageSubscribe"><i class="exit fa fa-times" aria-hidden="true" onclick="SubscribePopUp_Close(\'#message.Msubscribe\')"></i>' +
+					'<div class="section section1"><span>G&aacute;nate <strong>$50 pesos</strong> en tu primera reserva</span><br>&#8216;&#8216;Aplica para clientes nuevos&#8217;&#8217;<div class="images">'+dog+'</div></div>' +
+					'<div class="section section2"><span><strong>&#161;SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span>'+
+					'<div class="subscribe">'+
+					'<form onsubmit="form_subscribe(this); return false;">'+
+					'<input type="hidden" name="section" value="landing-volaris"/>'+
+					'<input type="mail" name="mail" value="" placeholder="Introduce tu correo aqu&iacute" required/>'+
+					'<button type="submit"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>'+
+					'</form>'+
+					'<div class="message"></div>'+
+					'</div>'+
+					'</div>';
+				SubscribePopUp_Create(html);
 			}
 
-			jQuery(element).find('.contain').html(html);
-			jQuery(element).fadeIn(500,function(){
-				/*
-				 vsetTime = setTimeout(function(){
-				 SubscribePopUp_Close(element);
-				 }, 6000);
-				 */
+			function SubscribePopUp_Create(html){
+				var element = '#message.Msubscribe';
+				if(jQuery(element).length==0){
+					jQuery('body').append('<div id="message" class="Msubscribe"></div>');
+					jQuery(element).append('<div class="contain"></div>');
+				}
+				jQuery(element).find('.contain').html(html);
+				jQuery(element).fadeIn(500,function(){});
+			}
+
+			jQuery(document).ready(function(e){
+				SubscribeTime = setTimeout(function(){
+					SubscribeSite();
+				}, 7400);
 			});
-		}
 
-		jQuery(document).ready(function(e){
-			SubscribeTime = setTimeout(function(){
-				SubscribeSite();
-			}, 7400);
-		});
-
-		function form_subscribe(element){
-			var subscribe = jQuery(element).closest('.subscribe');
-			var message = subscribe.find('.message');
-			var email = subscribe.find('input[name="mail"]').val();
-			var url = '../landing/newsletter.php?source=referidos&email='+email;
-			if(email!=''){
-				jQuery.post(url, jQuery(element).serialize(),function(data){
-					//console.log(data);
-					var textmessage="Error al guardar los datos";
-
-					if( data == 1){
-						textmessage="Registro Exitoso. Por favor revisa tu correo en la Bandeja de Entrada o en No Deseados";
-					}else if( data == 2){
-						textmessage="Formato de email invalido";
-					}else if( data == 3){
-						textmessage="Este correo ya est&aacute; registrado. Por favor intenta con uno nuevo";
-					}else{
-						textmessage="Error al guardar los datos";
-					}
-
-					if(message.length>0){
-						message.addClass('show');
-						message.html('<i class="icon fa fa-envelope"></i>'+textmessage+'');
-						vsetTime = setTimeout(function(){
-							message_subscribe(message);
-						}, 5000);
-					}
-				});
+			function form_subscribe(element){
+				var subscribe = jQuery(element).closest('.subscribe');
+				var message = subscribe.find('.message');
+				var email = subscribe.find('input[name="mail"]').val();
+				var url = '../landing/newsletter.php?source=referidos&email='+email;
+				if(email!=''){
+					jQuery.post(url, jQuery(element).serialize(),function(data){
+						var textmessage="Error al guardar los datos";
+						if( data == 1){
+							textmessage="Registro Exitoso. Por favor revisa tu correo en la Bandeja de Entrada o en No Deseados";
+						}else if( data == 2){
+							textmessage="Formato de email invalido";
+						}else if( data == 3){
+							textmessage="Este correo ya est&aacute; registrado. Por favor intenta con uno nuevo";
+						}else{
+							textmessage="Error al guardar los datos";
+						}
+						if(message.length>0){
+							message.addClass('show');
+							message.html('<i class="icon fa fa-envelope"></i>'+textmessage+'');
+							vsetTime = setTimeout(function(){
+								message_subscribe(message);
+							}, 5000);
+						}
+					});
+				}
+				return false;
 			}
-			return false;
-		}
 
-		function message_subscribe(element){
-			clearTimeout(vsetTime);
-			element.removeClass('show');
-			element.html('');
-			return true;
-		}
-
-		function SubscribePopUp_Close(element){
-			if(jQuery(element).length>0){
-				jQuery(element).fadeOut(500,function(){
-					jQuery(element).remove();
-				});
+			function message_subscribe(element){
+				clearTimeout(vsetTime);
+				element.removeClass('show');
+				element.html('');
+				return true;
 			}
-		}
-	</script>
 
+			function SubscribePopUp_Close(element){
+				if(jQuery(element).length>0){
+					jQuery(element).fadeOut(500,function(){
+						jQuery(element).remove();
+					});
+				}
+			}
+		</script>
+
+		<script type="text/javascript" src="https://a2.adform.net/serving/scripts/trackpoint/"></script>
 	</head>
+
 	<body  class="container">
 
 		<div  class="col-md-offset-1">
@@ -221,7 +208,7 @@ if( isset($_GET['r']) ){
 								<input type="text"   id="name"  name="name" class="form-control " value="<?php echo $name; ?>" placeholder="Nombre y Apellido">
 								<input type="email"  id="email" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Correo electr&oacute;nico" required>
 							</div>
-							<button type="button" id="send" class="btn-kmimos btn">¡Quiero participar!</button>
+							<button type="button" id="send" class="btn-kmimos btn" onclick="">¡Quiero participar!</button>
 							<span id="msg" style="padding-top:3px;color:#fff;"></span>
 						</form>
 						<form action="compartir/?e=" method="post" id="temp"></form>
@@ -265,6 +252,9 @@ if( isset($_GET['r']) ){
 				});
 
 				function _registerLanding(){
+
+			  		window.adf&&adf.ClickTrack(this, 1453019, 'MX_Kmimos_InscribeteyGana_180907',{});
+
 
 					  if( $('#email').val() == "" || $('#name').val() == "" ){
 					    $('#msg').html('Debe completar los datos');
