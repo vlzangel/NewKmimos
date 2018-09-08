@@ -45,7 +45,7 @@
 			$color = "#67e661";
 		}
 		if( strtolower($usuario->source) == "petco" ){
-			$conocio = 'Kmimos Petco';
+			$conocio = 'WL Petco';
 			$color = "#e455a8";
 		}
 		$registros .= "
