@@ -69,7 +69,29 @@
 			</a>
 	    ';
 
-	    $HTML = '
+
+	    $HTML = '';
+		if( $_SESSION["wlabel"] == "petco" ){
+			$HTML .= '
+				<!-- Adform Tracking Code BEGIN -->
+				<script type="text/javascript">
+				    window._adftrack.push({
+				        pm: 1453019,
+				        divider: encodeURIComponent("|"),
+				        pagename: encodeURIComponent("MX_Kmimos_Home_180907")
+				    });
+				</script>
+				<noscript>
+				    <p style="margin:0;padding:0;border:0;">
+				        <img src="https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_Home_180907&ADFdivider=|" width="1" height="1" alt="" />
+				    </p>
+				</noscript>
+				<!-- Adform Tracking Code END -->
+			';
+		}
+
+
+	    $HTML .= '
 	    <script type="text/javascript"> var URL_MUNICIPIOS ="'.getTema().'/procesos/generales/municipios.php"; </script>
 
 	    <div class="km-video">

@@ -481,6 +481,28 @@
 			if( $actual == $referencia ){
 				$referencia = get_home_url();
 			} 
+
+
+			if( $_SESSION["wlabel"] == "petco" ){
+				$HTML .= "
+					<!-- Adform Tracking Code BEGIN -->
+					<script type='text/javascript'>
+					    window._adftrack.push({
+					        pm: 1453019,
+					        divider: encodeURIComponent('|'),
+					        pagename: encodeURIComponent('MX_Kmimos_Reservar_180907')
+					    });
+					</script>
+					<noscript>
+					    <p style='margin:0;padding:0;border:0;'>
+					        <img src='https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_Reservar_180907&ADFdivider=|' width='1' height='1' alt='' />
+					    </p>
+					</noscript>
+					<!-- Adform Tracking Code END -->
+				";
+			}
+
+
 			$HTML .= "
 			<style>
 				.vlz_modal{ position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: table; z-index: 10000; background: rgba(0, 0, 0, 0.8); vertical-align: middle !important; }

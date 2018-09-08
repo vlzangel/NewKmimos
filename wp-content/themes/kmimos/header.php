@@ -103,6 +103,12 @@
         </script>
 	";
 
+	if( $_SESSION["wlabel"] == "petco" ){
+		$HTML .= "
+			<script type='text/javascript' src='https://a2.adform.net/serving/scripts/trackpoint/'></script>
+		";
+	}
+
 	$HTML .= '
 	</head>
 	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu();">
@@ -174,7 +180,32 @@
 					}
 				}
 	        }
-		</script>';
+		</script>
+	';
+
+
+
+	if( $_SESSION["wlabel"] == "petco" ){
+		$HTML .= '
+			<!-- Adform Tracking Code BEGIN -->
+			<script type="text/javascript">
+			    window._adftrack = Array.isArray(window._adftrack) ? window._adftrack : (window._adftrack ? [window._adftrack] : []);
+			    window._adftrack.push({
+			        pm: 1453019,
+			        divider: encodeURIComponent("|"),
+			        pagename: encodeURIComponent("MX_Kmimos_AllPages_180907")
+			    });
+			    (function () { var s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = "https://a2.adform.net/serving/scripts/trackpoint/async/"; var x = document.getElementsByTagName("script")[0]; x.parentNode.insertBefore(s, x); })();
+
+			</script>
+			<noscript>
+			    <p style="margin:0;padding:0;border:0;">
+			        <img src="https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_AllPages_180907&ADFdivider=|" width="1" height="1" alt="" />
+			    </p>
+			</noscript>
+			<!-- Adform Tracking Code END -->
+		';
+	}
 
 
 	$HTML .= '
