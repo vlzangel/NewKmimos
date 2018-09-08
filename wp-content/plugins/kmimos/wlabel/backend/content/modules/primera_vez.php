@@ -67,19 +67,23 @@
 	if( count($usuarios) > 0 ){
 		foreach ($usuarios as $usuario) {
 			$metas = get_user_meta($usuario->ID);
-			$info = getDataReserva($usuario->primera_reserva);
 
-			$_info = "
-				<strong>ID</strong>: {$info['id']}<br>
-				<strong>Creada</strong>: {$info['fecha']}<br>
-				<strong>Inicio</strong>: {$info['checkin']}<br>
-				<strong>Fin</strong>: {$info['checkout']}<br>
-				<strong># mascotas</strong>: {$info['mascotas']}<br>
-				<strong>Total</strong>: {$info['monto']}<br>
-				<strong>Cuidador</strong>: {$info['cuidador']}<br>
-				<strong>Servicio</strong>: {$info['servicio']}<br>
-				<strong>Status</strong>: {$info['status']}<br>
-			";
+			if( $usuario->primera_reserva != null ){
+				$info = getDataReserva($usuario->primera_reserva);
+				$_info = "
+					<strong>ID</strong>: {$info['id']}<br>
+					<strong>Creada</strong>: {$info['fecha']}<br>
+					<strong>Inicio</strong>: {$info['checkin']}<br>
+					<strong>Fin</strong>: {$info['checkout']}<br>
+					<strong># mascotas</strong>: {$info['mascotas']}<br>
+					<strong>Total</strong>: {$info['monto']}<br>
+					<strong>Cuidador</strong>: {$info['cuidador']}<br>
+					<strong>Servicio</strong>: {$info['servicio']}<br>
+					<strong>Status</strong>: {$info['status']}<br>
+				";
+			}else{
+				$_info = "No tiene reservas confirmadas o canceladas";
+			}
 
 			$cancelo = ( $info['status'] == "Cancelado" ) ? "Si" : "No";
 
