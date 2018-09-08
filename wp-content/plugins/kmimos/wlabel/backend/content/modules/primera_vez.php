@@ -67,6 +67,8 @@
 	if( count($usuarios) > 0 ){
 		foreach ($usuarios as $usuario) {
 			$metas = get_user_meta($usuario->ID);
+			$otra = "N/A";
+			$cancelo = "N/A";
 
 			if( $usuario->primera_reserva != null ){
 				$info = getDataReserva($usuario->primera_reserva);
@@ -81,32 +83,31 @@
 					<strong>Servicio</strong>: {$info['servicio']}<br>
 					<strong>Status</strong>: {$info['status']}<br>
 				";
+
+				$cancelo = ( $info['status'] == "Cancelado" ) ? "Si" : "No";
+
+				if( $cancelo == "Si" ){
+					$SQL = "SELECT ID FROM wp_posts WHERE post_author = {$usuario->ID} AND post_type = 'wc_booking' AND post_status = 'confirmed' ORDER BY ID ASC";
+					$_nueva_reserva = $wpdb->get_var($SQL);
+					if( $_nueva_reserva != null){
+						$info = getDataReserva($_nueva_reserva);
+						$otra = "
+							<strong>ID</strong>: {$info['id']}<br>
+							<strong>Creada</strong>: {$info['fecha']}<br>
+							<strong>Inicio</strong>: {$info['checkin']}<br>
+							<strong>Fin</strong>: {$info['checkout']}<br>
+							<strong># mascotas</strong>: {$info['mascotas']}<br>
+							<strong>Total</strong>: {$info['monto']}<br>
+							<strong>Cuidador</strong>: {$info['cuidador']}<br>
+							<strong>Servicio</strong>: {$info['servicio']}<br>
+							<strong>Status</strong>: {$info['status']}<br>
+						";
+					}else{
+						$otra = "No realiz&oacute; otra reserva";
+					}
+				}
 			}else{
 				$_info = "No tiene reservas confirmadas o canceladas";
-			}
-
-			$cancelo = ( $info['status'] == "Cancelado" ) ? "Si" : "No";
-
-			$otra = "N/A";
-			if( $cancelo == "Si" ){
-				$SQL = "SELECT ID FROM wp_posts WHERE post_author = {$usuario->ID} AND post_type = 'wc_booking' AND post_status = 'confirmed' ORDER BY ID ASC";
-				$_nueva_reserva = $wpdb->get_var($SQL);
-				if( $_nueva_reserva != null){
-					$info = getDataReserva($_nueva_reserva);
-					$otra = "
-						<strong>ID</strong>: {$info['id']}<br>
-						<strong>Creada</strong>: {$info['fecha']}<br>
-						<strong>Inicio</strong>: {$info['checkin']}<br>
-						<strong>Fin</strong>: {$info['checkout']}<br>
-						<strong># mascotas</strong>: {$info['mascotas']}<br>
-						<strong>Total</strong>: {$info['monto']}<br>
-						<strong>Cuidador</strong>: {$info['cuidador']}<br>
-						<strong>Servicio</strong>: {$info['servicio']}<br>
-						<strong>Status</strong>: {$info['status']}<br>
-					";
-				}else{
-					$otra = "No realiz&oacute; otra reserva";
-				}
 			}
 
 			$registros .= "
