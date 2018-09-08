@@ -10,7 +10,7 @@
 
 	$PAGE *= 50;
 
-	$SQL = "
+/*	$SQL = "
 		SELECT 
 			SQL_CALC_FOUND_ROWS *
 		FROM 
@@ -24,7 +24,8 @@
 			m.meta_value = '{$_SESSION["label"]->wlabel}'
 		GROUP BY usuarios.ID DESC
 		LIMIT {$PAGE}, 50";
-
+*/
+	$SQL = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$_SESSION["label"]->wlabel}'";
 	$usuarios = $wpdb->get_results($SQL);
 
 	$foundRows = $wpdb->get_var("SELECT FOUND_ROWS() as foundRows");
@@ -36,29 +37,23 @@
 			edad.met_key = 'user_age' AND
 			sexo.met_key = 'user_gender' AND
 			conocio.met_key = 'user_referred'
-		*/
-		$metas = get_user_meta($usuario->ID);
-
-		$conocio = "WL Petco";
+		*/ 
+		$conocio = "WL";
 		$color = "#6194e6";
-		if( strtolower($metas["user_referred"][0]) == "cc-petco" ){
+		if( strtolower($usuario->source) == "cc-petco" ){
 			$conocio =  "CC Petco";
 			$color = "#67e661";
 		}
-		if( strtolower($metas["user_referred"][0]) == "petco" ){
+		if( strtolower($usuario->source) == "petco" ){
 			$conocio = 'Kmimos Petco';
 			$color = "#e455a8";
 		}
 		$registros .= "
 			<tr>
-				<td>{$usuario->ID}</td>
-				<td>".( date("d/m/Y", strtotime( $usuario->user_registered ) ) )."</td>
-				<td>".$metas["first_name"][0]." ".$metas["last_name"][0]."</td>
-				<td>{$usuario->user_email}</td>
-				<td>".$metas["user_mobile"][0]."</td>
+				<td>".( date("d/m/Y", strtotime( $usuario->time ) ) )."</td>
+				<td>".$usuario->name."</td>
+				<td>".$usuario->email."</td>
 				<td>".$conocio."</td>
-				<td>".ucfirst($metas["user_gender"][0])."</td>
-				<td>".$metas["user_age"][0]."</td>
 			</tr>
 		";
 	}
@@ -77,14 +72,10 @@
 <table cellspacing="0" cellpadding="0" width="100%">
     <thead>
         <tr>
-            <th width="40">ID</th>
             <th>Fecha Registro</th>
-            <th>Nombre y Apellido</th>
+            <th>Nombre</th>
             <th>Email</th>
-            <th>Teléfono</th>
             <th>Donde nos conocio?</th>
-            <th>Sexo</th>
-            <th>Edad</th>
         </tr>
     </thead>
     <tbody>
