@@ -34,7 +34,7 @@
                                 }
                             }
                         }
-                        echo '<th class="total tdshow" data-check="total">TOTAL</th>'; ?>
+                        echo '<th class="total" >TOTAL DESDE '.strtoupper(date('F/Y',$day)).'</th>'; ?>
                     </tr>
                 </thead>
                 <tbody> <?php
@@ -173,7 +173,7 @@
                                 }
                             }
                         }
-                        echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
+                        echo '<th class="total" >'.$amount_total.'</th>';
                     echo '</tr>';
                     */
 
@@ -212,7 +212,7 @@
                                 }
                             }
                         }
-                        echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
+                        echo '<th class="total" >'.$amount_total.'</th>';
                     echo '</tr>';
 
                     //CANTIDAD DE USUARIOS REGISTRADOS WL + KMIMOS
@@ -250,7 +250,7 @@
                                 }
                             }
                         }
-                        echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
+                        echo '<th class="total" >'.$amount_total.'</th>';
                     echo '</tr>';
 
                     //CANTIDAD DE USUARIOS REGISTRADOS REFERIDOS WLABEL
@@ -302,7 +302,7 @@
                                 }
                             }
                         }
-                        echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
+                        echo '<th class="total" >'.$amount_total.'</th>';
                     echo '</tr>';
                     */
 
@@ -342,7 +342,7 @@
                                 }
                             }
                         }
-                        echo '<th class="total tdshow" data-check="total">'.$total_noches.'</th>';
+                        echo '<th class="total" >'.$total_noches.'</th>';
                     echo '</tr>';
 
 
@@ -382,6 +382,7 @@
                                 }
                             }
                         }
+                        echo '<th class="total" >'.$amount_total.'</th>';
                     echo '</tr>';
 
 
@@ -554,7 +555,7 @@
                                 }
                             }
                         }
-                        echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
+                        echo '<th class="total" >'.$amount_total.'</th>';
                     echo '</tr>';
 
                     //CANTIDAD DE USUARIOS RESERVANDO
@@ -595,7 +596,7 @@
                                 }
                             }
                         }
-                        echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
+                        echo '<th class="total" >'.$amount_total.'</th>';
                     echo '</tr>';
 
                     //CANTIDAD DE USUARIOS REGISTROS EN KMIMOS Y REFERIDOS POR PETCO
@@ -635,7 +636,7 @@
                                 }
                             }
                         }
-                        echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
+                        echo '<th class="total" >'.$amount_total.'</th>';
                     echo '</tr>';*/
 
 
@@ -691,7 +692,7 @@
                             }
                         }
                     }
-                    echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
+                    echo '<th class="total" >'.$amount_total.'</th>';
                     echo '</tr>';
                     */ ?>
                 </tbody>

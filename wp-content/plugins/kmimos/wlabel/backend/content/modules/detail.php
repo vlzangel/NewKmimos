@@ -42,7 +42,7 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                         }
                     }
                 }
-            echo '<th class="total">TOTAL DESDE '.strtoupper(date('F/Y',$day)).' (MXN)</th>';
+            echo '<th class="total tdshow">TOTAL DESDE '.strtoupper(date('F/Y',$day)).' (MXN)</th>';
             ?>
 
         </tr>
@@ -166,7 +166,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         }
     }
 }
-echo '<th class="total">'.$amount_total.'</th>';
+echo '<th class="total tdshow">'.$amount_total.'</th>';
 echo '</tr>';
 
 
@@ -213,7 +213,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         }
     }
 }
-echo '<th class="total">'.$amount_total.'</th>';
+echo '<th class="total tdshow">'.$amount_total.'</th>';
 echo '</tr>';
 
 
@@ -261,7 +261,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         }
     }
 }
-echo '<th class="total">'.$amount_total.'</th>';
+echo '<th class="total tdshow">'.$amount_total.'</th>';
 echo '</tr>';
 
 
@@ -310,7 +310,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         }
     }
 }
-echo '<th class="total">'.$amount_total.'</th>';
+echo '<th class="total tdshow">'.$amount_total.'</th>';
 echo '</tr>';
 
 
@@ -356,7 +356,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         }
     }
 }
-echo '<th class="total">'.$amount_total.'</th>';
+echo '<th class="total tdshow">'.$amount_total.'</th>';
 echo '</tr>';
 
 
@@ -404,7 +404,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         }
     }
 }
-echo '<th class="total">'.$amount_total.'</th>';
+echo '<th class="total tdshow">'.$amount_total.'</th>';
 echo '</tr>';
 
 
@@ -450,7 +450,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
         }
     }
 }
-echo '<th class="total">'.$amount_total.'</th>';
+echo '<th class="total tdshow">'.$amount_total.'</th>';
 echo '</tr>';
 */
 
