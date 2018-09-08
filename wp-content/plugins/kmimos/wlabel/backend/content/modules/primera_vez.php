@@ -6,9 +6,52 @@
 
 	global $wpdb;
 
+
+	function getDataReserva($id){
+		global $wpdb;
+
+		if( $id != "" && $id != NULL ){
+			$reserva = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = {$id}");
+
+			$metas = get_post_meta($id);
+
+			$_mascotas = unserialize($metas["_booking_persons"][0]);
+			$mascotas = 0;
+			foreach ($_mascotas as $mascota_id => $mascota_cantidad) {
+				$mascotas+=$mascota_cantidad;
+			}
+
+			$servicio = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = {$metas['_booking_product_id'][0]}");
+
+			$info = explode(" - ", $servicio->post_title);
+
+			$status = [
+				"confirmed" => "Confirmado",
+				"cancelled" => "Cancelado",
+			];
+
+			$r = [
+				"id" => $reserva->ID,
+				"fecha" => date("d/m/Y", strtotime($reserva->post_date) ),
+				"checkin" => date("d/m/Y", strtotime($metas["_booking_start"][0]) ),
+				"checkout" => date("d/m/Y", strtotime($metas["_booking_end"][0]) ),
+				"mascotas" => $mascotas." mascota(s)",
+				"monto" => "MXN $".number_format( $metas["_booking_cost"][0], 2, ",", "." ),
+				"cuidador" => $info[1],
+				"servicio" => $info[0],
+				"status" => $status[ $reserva->post_status ]
+			];
+
+			return $r;
+		}
+	}
+
 	$SQL = "
 		SELECT 
-			* 
+			wp_users.ID AS ID,
+			wp_users.user_email AS user_email,
+			wp_users.user_registered AS user_registered,
+			( SELECT ID FROM wp_posts WHERE wp_users.ID = wp_posts.post_author AND wp_posts.post_type = 'wc_booking' AND wp_posts.post_status IN ('confirmed', 'cancelled') ORDER BY ID ASC LIMIT 0, 1 ) AS primera_reserva
 		FROM 
 			wp_users
 		LEFT JOIN wp_usermeta AS wlabel ON ( wp_users.ID = wlabel.user_id )
@@ -16,13 +59,52 @@
 			( wlabel.meta_key = 'user_referred' OR wlabel.meta_key = '_wlabel' ) AND
 			( wlabel.meta_value = 'cc-petco' OR wlabel.meta_value = 'petco' ) AND
 			wp_users.user_registered >= '2018-09-01 00:00:00'
-			";
+		GROUP BY wp_users.ID
+	";
 
 	$usuarios = $wpdb->get_results($SQL);
 	$registros = "";
 	if( count($usuarios) > 0 ){
 		foreach ($usuarios as $usuario) {
 			$metas = get_user_meta($usuario->ID);
+			$info = getDataReserva($usuario->primera_reserva);
+
+			$_info = "
+				<strong>ID</strong>: {$info['id']}<br>
+				<strong>Creada</strong>: {$info['fecha']}<br>
+				<strong>Inicio</strong>: {$info['checkin']}<br>
+				<strong>Fin</strong>: {$info['checkout']}<br>
+				<strong># mascotas</strong>: {$info['mascotas']}<br>
+				<strong>Total</strong>: {$info['monto']}<br>
+				<strong>Cuidador</strong>: {$info['cuidador']}<br>
+				<strong>Servicio</strong>: {$info['servicio']}<br>
+				<strong>Status</strong>: {$info['status']}<br>
+			";
+
+			$cancelo = ( $info['status'] == "Cancelado" ) ? "Si" : "No";
+
+			$otra = "N/A";
+			if( $cancelo == "Si" ){
+				$SQL = "SELECT ID FROM wp_posts WHERE post_author = {$usuario->ID} AND post_type = 'wc_booking' AND post_status = 'confirmed' ORDER BY ID ASC";
+				$_nueva_reserva = $wpdb->get_var($SQL);
+				if( $_nueva_reserva != null){
+					$info = getDataReserva($_nueva_reserva);
+					$otra = "
+						<strong>ID</strong>: {$info['id']}<br>
+						<strong>Creada</strong>: {$info['fecha']}<br>
+						<strong>Inicio</strong>: {$info['checkin']}<br>
+						<strong>Fin</strong>: {$info['checkout']}<br>
+						<strong># mascotas</strong>: {$info['mascotas']}<br>
+						<strong>Total</strong>: {$info['monto']}<br>
+						<strong>Cuidador</strong>: {$info['cuidador']}<br>
+						<strong>Servicio</strong>: {$info['servicio']}<br>
+						<strong>Status</strong>: {$info['status']}<br>
+					";
+				}else{
+					$otra = "No realiz&oacute; otra reserva";
+				}
+			}
+
 			$registros .= "
 				<tr>
 					<td>".$metas["first_name"][0]." ".$metas["last_name"][0]."</td>
@@ -30,6 +112,9 @@
 					<td>".( date("d/m/Y", strtotime( $usuario->user_registered ) ) )."</td>
 					<td>".$metas["user_mobile"][0]."</td>
 					<td>".$metas["user_referred"][0]."</td>
+					<td>".$_info."</td>
+					<td>".$cancelo."</td>
+					<td>".$otra."</td>
 				</tr>
 			";
 		}
@@ -48,6 +133,9 @@
             <th>Fecha Registro</th>
             <th>Teléfono</th>
             <th>Donde nos conocio?</th>
+            <th>Primera Reserva</th>
+            <th>¿Cancel&oacute;?</th>
+            <th>Siguiente Reserva</th>
         </tr>
     </thead>
     <tbody>
