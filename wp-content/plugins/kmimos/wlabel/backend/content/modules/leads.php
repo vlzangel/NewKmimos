@@ -5,39 +5,12 @@
 	}
 
 	global $wpdb;
-
 	$PAGE = $_GET["page"]+0;
-
 	$PAGE *= 50;
-
-/*	$SQL = "
-		SELECT 
-			SQL_CALC_FOUND_ROWS *
-		FROM 
-			{$wpdb->prefix}users AS usuarios
-		INNER JOIN {$wpdb->prefix}usermeta AS m ON ( m.user_id = usuarios.ID )
-		WHERE
-			(
-				m.meta_key = 'user_referred' OR
-				m.meta_key = '_wlabel' 
-			) AND
-			m.meta_value = '{$_SESSION["label"]->wlabel}'
-		GROUP BY usuarios.ID DESC
-		LIMIT {$PAGE}, 50";
-*/
-	$SQL = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$_SESSION["label"]->wlabel}'";
+	$SQL = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$_SESSION["label"]->wlabel}' AND time >= '2018-09-01 00:00:00' ";
 	$usuarios = $wpdb->get_results($SQL);
-
-	$foundRows = $wpdb->get_var("SELECT FOUND_ROWS() as foundRows");
-
 	$registros = "";
 	foreach ($usuarios as $usuario) {
-		/*
-			mobile.met_key = 'user_mobile' AND
-			edad.met_key = 'user_age' AND
-			sexo.met_key = 'user_gender' AND
-			conocio.met_key = 'user_referred'
-		*/ 
 		$conocio = "WL";
 		$color = "#6194e6";
 		if( strtolower($usuario->source) == "cc-petco" ){
@@ -56,19 +29,13 @@
 			</tr>
 		";
 	}
-
-	$paginas = ""; if( $_GET["page"] == 0){ $_GET["page"] = 1;}
-	for ($i=1; $i < ( $foundRows/50 ); $i++) { 
-		$activo = ($_GET["page"] == $i) ? "activo" : "";
-		$paginas .= "<span onClick='getPaginacion({$i})' class='{$activo}'>{$i}</span>";
-	}
 ?>
 
 <div class="module_title">
     Clientes
 </div>
 
-<table cellspacing="0" cellpadding="0" width="100%">
+<table id="_example_" class="table table-striped table-bordered nowrap" style="width:100%" cellspacing="0" cellpadding="0">
     <thead>
         <tr>
             <th>Fecha Registro</th>
@@ -80,6 +47,39 @@
         <?php echo $registros; ?>
     </tbody>
 </table>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('#_example_').DataTable({
+            "language": {
+                "emptyTable":           "No hay datos disponibles en la tabla.",
+                "info":                 "Del _START_ al _END_ de _TOTAL_ ",
+                "infoEmpty":            "Mostrando 0 registros de un total de 0.",
+                "infoFiltered":         "(filtrados de un total de _MAX_ registros)",
+                "infoPostFix":          " (actualizados)",
+                "lengthMenu":           "Mostrar _MENU_ registros",
+                "loadingRecords":       "Cargando...",
+                "processing":           "Procesando...",
+                "search":               "Buscar:",
+                "searchPlaceholder":    "Dato para buscar",
+                "zeroRecords":          "No se han encontrado coincidencias.",
+                "paginate": {
+                    "first":            "Primera",
+                    "last":             "Última",
+                    "next":             "Siguiente",
+                    "previous":         "Anterior"
+                },
+                "aria": {
+                    "sortAscending":    "Ordenación ascendente",
+                    "sortDescending":   "Ordenación descendente"
+                }
+            },
+            "scrollX": true
+        });
+    } );
+</script>
+
 <style type="text/css">
 	.paginacion{
 		overflow: hidden;
@@ -95,6 +95,3 @@
 		color: #FFF;
 	}
 </style>
-<div class="paginacion">
-	<?php echo $paginas; ?>
-</div>

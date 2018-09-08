@@ -71,7 +71,8 @@ $sql = "
         usermeta.meta_value = '{$wlabel}'
         OR
         (postmeta.meta_value = '{$wlabel}' AND posts.post_type = 'wc_booking' AND NOT posts.post_status LIKE '%cart%')
-      )
+      ) AND
+      users.user_registered >= '2018-09-01 00:00:00' 
 
     GROUP BY
       users.ID
