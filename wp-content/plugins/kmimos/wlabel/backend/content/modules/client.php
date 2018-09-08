@@ -45,20 +45,7 @@
                         $condicion_referido = "( usermeta_2.meta_value = '{$wlabel}' OR usermeta_2.meta_value = 'CC-Petco' )";
                     }
 
-                    $sql = "
-                        SELECT 
-                            SQL_CALC_FOUND_ROWS *
-                        FROM 
-                            wp_users AS usuarios
-                        INNER JOIN wp_usermeta AS m ON ( m.user_id = usuarios.ID )
-                        WHERE
-                            (
-                                m.meta_key = 'user_referred' OR
-                                m.meta_key = '_wlabel' 
-                            ) AND
-                            m.meta_value = '{$_SESSION["label"]->wlabel}'
-                        GROUP BY usuarios.ID DESC
-                    ";
+                    $sql = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$wlabel}'";
                     $leads = $wpdb->get_results($sql);
 
                     $sql = "
@@ -372,7 +359,7 @@
 
                             
                             foreach($leads as $reserva){
-                                $fecha = strtotime( date('m/d/Y', strtotime($reserva->user_registered) ) );
+                                $fecha = strtotime( date('m/d/Y', strtotime($reserva->time) ) );
                                 $hoy = strtotime(date('m/d/Y', $day));
 
                                 if( $fecha == $hoy ){

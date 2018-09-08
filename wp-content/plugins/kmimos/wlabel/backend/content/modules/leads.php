@@ -25,7 +25,7 @@
 		GROUP BY usuarios.ID DESC
 		LIMIT {$PAGE}, 50";
 */
-	$SQL = 'SELECT * FROM `wp_kmimos_subscribe`';
+	$SQL = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$_SESSION["label"]->wlabel}'";
 	$usuarios = $wpdb->get_results($SQL);
 
 	$foundRows = $wpdb->get_var("SELECT FOUND_ROWS() as foundRows");
