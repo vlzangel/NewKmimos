@@ -8,7 +8,7 @@ img{max-width:100%;}
 #panel .logout{position:relative; padding:20px; color:#fff; font-size:15px; text-align:right; cursor:pointer; background:#555;}
 
 #panel .section{position:relative; height:calc(100% - 60px);}
-#panel .modules{position:relative; width:calc(100% - 204px); height:calc(100% - 5px); padding:20px; overflow:hidden; overflow-y:auto; vertical-align:top; display:inline-block;}
+#panel .modules{position:relative; width:calc(100% - 210px); height:calc(100% - 5px); padding:20px; overflow:hidden; overflow-y:auto; vertical-align:top; display:inline-block;}
 #panel .modules .module_title{margin:20px 0;  font-size:30px;  text-align:center;}
 #panel .module_data{}
 #panel .module_data .item{position: relative; padding: 10px 0;}
