@@ -177,7 +177,7 @@
 
                     //CANTIDAD DE USUARIOS REGISTRADOS WL + KMIMOS
                     echo '<tr>';
-                        echo '<th class="title">Usuarios totales registrados (White Label + Página Kmimos)</th>';
+                        echo '<th class="title">Usuarios totales registrados (White Label + Kmimos)</th>';
 
                         $amount_day=0;
                         $amount_month=0;
