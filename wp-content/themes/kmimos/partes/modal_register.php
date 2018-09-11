@@ -3,10 +3,9 @@ $datos = kmimos_get_info_syte();
 $referidos = get_referred_list_options();
 $referidos_options = ""; $pixel_petco = "";
 if( $_SESSION["wlabel"] != "petco" ){
-
-	$pixel_petco = "window.adf&&adf.ClickTrack(this,1453019,\'MX_Kmimos_Registo_180907\',{})";
-
 	$referidos_options = '<option value="">Dónde nos conoció?</option>';
+}else{
+	$pixel_petco = "window.adf&&adf.ClickTrack(this,1453019,\'MX_Kmimos_Registo_180907\',{})";
 }
 foreach ($referidos as $key => $value) {
 	$selected="";

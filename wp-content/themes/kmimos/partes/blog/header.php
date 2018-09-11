@@ -38,7 +38,7 @@ if(array_key_exists('search',$_POST)){
                     <span>
                     <i class="icon phone fa fa-phone"></i>
                     <!-- 01 800 056 4667 <strong>WhatsApp:</strong>  +52 (33) 1261 4186-->
-                     (01) 55 3137 4829 <strong>WhatsApp:</strong> +52 (33) 1261 4186
+                    01 (800) 9 564667 <strong>WhatsApp:</strong> +52 (33) 1261 4186
                     </span>
                     <div id="pf-login-trigger-button" class="session">Inicia Sesión</div>
                     <i class="icon help fa fa-question"></i>

@@ -3,95 +3,111 @@
 	if(file_exists($kmimos_load)){
 	    include_once($kmimos_load);
 	}
-
-	global $wpdb;
-	$PAGE = $_GET["page"]+0;
-	$PAGE *= 50;
-	$SQL = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$_SESSION["label"]->wlabel}' AND time >= '2018-09-01 00:00:00' ";
-	$usuarios = $wpdb->get_results($SQL);
-	$registros = "";
-	foreach ($usuarios as $usuario) {
-		$conocio = "WL";
-		$color = "#6194e6";
-		if( strtolower($usuario->source) == "cc-petco" ){
-			$conocio =  "CC Petco";
-			$color = "#67e661";
-		}
-		if( strtolower($usuario->source) == "petco" ){
-			$conocio = 'WL Petco';
-			$color = "#e455a8";
-		}
-		$registros .= "
-			<tr>
-				<td>".( date("d/m/Y", strtotime( $usuario->time ) ) )."</td>
-				<td>".$usuario->email."</td>
-				<td>".$conocio."</td>
-			</tr>
-		";
-	}
 ?>
 
 <div class="module_title">
     Clientes
 </div>
 
+<div class="module_botones">
+    <table>
+        <tr>
+            <td><strong>Desde:</strong></td>
+            <td><strong>Hasta:</strong></td>
+        </tr>
+        <tr>
+            <td><input type="date" id="desde" name="desde" class="form-control form-control-sm" value="2018-09-01" /></td>
+            <td><input type="date" id="hasta" name="hasta" class="form-control form-control-sm" value="<?= date("Y-m-d"); ?>" /></td>
+        </tr>
+    </table>
+</div>
+
 <table id="_example_" class="table table-striped table-bordered nowrap" style="width:100%" cellspacing="0" cellpadding="0">
     <thead>
         <tr>
+            <th>#</th>
             <th>Fecha Registro</th>
             <th>Email</th>
             <th>Donde nos conocio?</th>
         </tr>
     </thead>
-    <tbody>
-        <?php echo $registros; ?>
-    </tbody>
+    <tbody></tbody>
 </table>
 
 
 <script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery('#_example_').DataTable({
-            "language": {
-                "emptyTable":           "No hay datos disponibles en la tabla.",
-                "info":                 "Del _START_ al _END_ de _TOTAL_ ",
-                "infoEmpty":            "Mostrando 0 registros de un total de 0.",
-                "infoFiltered":         "(filtrados de un total de _MAX_ registros)",
-                "infoPostFix":          " (actualizados)",
-                "lengthMenu":           "Mostrar _MENU_ registros",
-                "loadingRecords":       "Cargando...",
-                "processing":           "Procesando...",
-                "search":               "Buscar:",
-                "searchPlaceholder":    "Dato para buscar",
-                "zeroRecords":          "No se han encontrado coincidencias.",
-                "paginate": {
-                    "first":            "Primera",
-                    "last":             "Última",
-                    "next":             "Siguiente",
-                    "previous":         "Anterior"
+
+    /* Tabla y Filtros de Fechas */
+
+        var table = "";
+        jQuery(document).ready(function() {
+            table = jQuery('#_example_').DataTable({
+                "language": {
+                    "emptyTable":           "No hay datos disponibles en la tabla.",
+                    "info":                 "Del _START_ al _END_ de _TOTAL_ ",
+                    "infoEmpty":            "Mostrando 0 registros de un total de 0.",
+                    "infoFiltered":         "(filtrados de un total de _MAX_ registros)",
+                    "infoPostFix":          " (actualizados)",
+                    "lengthMenu":           "Mostrar _MENU_ registros",
+                    "loadingRecords":       "Cargando...",
+                    "processing":           "Procesando...",
+                    "search":               "Buscar:",
+                    "searchPlaceholder":    "Dato para buscar",
+                    "zeroRecords":          "No se han encontrado coincidencias.",
+                    "paginate": {
+                        "first":            "Primera",
+                        "last":             "Última",
+                        "next":             "Siguiente",
+                        "previous":         "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending":    "Ordenación ascendente",
+                        "sortDescending":   "Ordenación descendente"
+                    }
                 },
-                "aria": {
-                    "sortAscending":    "Ordenación ascendente",
-                    "sortDescending":   "Ordenación descendente"
+                "scrollX": true,
+                "ajax": {
+                    "url": "<?= get_home_url(); ?>/wp-content/plugins/kmimos/wlabel/backend/content/ajax/leads_data.php",
+                    "type": "POST",
+                    "dataSrc":  function ( json ) {
+                        if(typeof postCargaTable === 'function') {
+                            json = postCargaTable(json);
+                        }
+                        return json.data;
+                    } 
                 }
-            },
-            "scrollX": true
-        });
-    } );
+            });
+        } );
+
+        var DESDE = new Date( "2018-09-01 00:00:00" ).getTime();
+        var HASTA = new Date( "<?= date("Y-m-d"); ?> 00:00:00" ).getTime();
+        var eliminar = [];
+        var data = [];
+        function postCargaTable(json){
+            eliminar = [];
+            data = [];
+            DESDE = new Date( jQuery("#desde").val()+" 00:00:00" ).getTime();
+            HASTA = new Date( jQuery("#hasta").val()+" 00:00:00" ).getTime();
+            jQuery.each(json.data, function( index, value ) {
+                var FECHA = new Date( value[1]+" 00:00:00" ).getTime();
+                if( DESDE <= FECHA && FECHA <= HASTA ){
+                    data.push( value );
+                }else{
+                    eliminar.push(index);
+                }
+            });
+            json.data = data;
+            return json;
+        }
+        jQuery("#desde").on("change", function(e){ table.ajax.reload(); });
+        jQuery("#hasta").on("change", function(e){ table.ajax.reload(); });
+
+    /* Fin Tabla y Filtros de Fechas */
+
 </script>
 
 <style type="text/css">
-	.paginacion{
-		overflow: hidden;
-	    padding: 10px 0px;
-	}
-	.paginacion span {
-		display: inline-block;
-		padding: 10px;
-		cursor: pointer;
-	}
-	.paginacion span.activo {
-		background: #000;
-		color: #FFF;
-	}
+    .module_botones { overflow: hidden; padding-bottom: 20px; }
+    .module_botones input, .module_botones td { font-size: 12px; }
+    .module_botones table { float: right; }
 </style>

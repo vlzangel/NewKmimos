@@ -75,11 +75,14 @@
 			$HTML .= '
 				<!-- Adform Tracking Code BEGIN -->
 				<script type="text/javascript">
+				    window._adftrack = Array.isArray(window._adftrack) ? window._adftrack : (window._adftrack ? [window._adftrack] : []);
 				    window._adftrack.push({
 				        pm: 1453019,
 				        divider: encodeURIComponent("|"),
 				        pagename: encodeURIComponent("MX_Kmimos_Home_180907")
 				    });
+				    (function () { var s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = "https://a2.adform.net/serving/scripts/trackpoint/async/"; var x = document.getElementsByTagName("script")[0]; x.parentNode.insertBefore(s, x); })();
+
 				</script>
 				<noscript>
 				    <p style="margin:0;padding:0;border:0;">

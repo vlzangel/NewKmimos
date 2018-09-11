@@ -253,9 +253,6 @@ if( isset($_GET['r']) ){
 
 				function _registerLanding(){
 
-			  		window.adf&&adf.ClickTrack(this, 1453019, 'MX_Kmimos_InscribeteyGana_180907',{});
-
-
 					  if( $('#email').val() == "" || $('#name').val() == "" ){
 					    $('#msg').html('Debe completar los datos');
 					    return;
