@@ -172,16 +172,14 @@ $HTML = '
         <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
         <script type='text/javascript'>
             jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
-
-            evento_google('llego_al_home');
-
         </script>        
     ";
 
     if( !isset($_SESSION[ "llego_al_home" ]) ){
         $HTML .= '
             <script>
-                evento_google("llego_al_home");     
+                evento_google("llego_al_home");  
+                fbq("track", "traking_code_llego_al_home");   
             </script>
         ';
         $_SESSION[ "llego_al_home" ] = "YA_ENTRO";

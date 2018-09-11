@@ -51,6 +51,7 @@ function form_subscribe(element){
                 if (wlabel == "petco") { list = "petco_popup"; }
 
                 evento_google('dejo_el_correo');
+                fbq("track", "traking_code_dejo_el_correo");
 
                 switch( section ){
                     case "landing-volaris":

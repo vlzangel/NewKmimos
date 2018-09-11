@@ -332,11 +332,14 @@
 				<script>
 					if( "'.strtolower($data_reserva["servicio"]["metodo_pago"]).'" == "tienda" ){
 						evento_google("nueva_reserva_tienda");
+						fbq("track", "traking_code_nueva_reserva_tienda");
 					}else{
 						if( "'.strtolower($data_reserva["servicio"]["metodo_pago"]).'" == "tarjeta" ){
 							evento_google("nueva_reserva_tarjeta");
+							fbq("track", "traking_code_nueva_reserva_tarjeta");
 						}else{
 							evento_google("nueva_reserva_descuento_saldo");
+							fbq("track", "traking_code_nueva_reserva_descuento_saldo");
 						}	
 					}		
 				</script>

@@ -290,6 +290,7 @@ jQuery("#btn_si_acepto_cuidador").on("click", function(e){
 				console.log( data );
 
 				evento_google("nuevo_registro_cuidador");
+				fbq("track", "traking_code_nuevo_registro_cuidador");
 			}	
 		);
 

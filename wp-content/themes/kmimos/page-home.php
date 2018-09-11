@@ -171,7 +171,7 @@
 										<span>DÍA Y NOCHE</span>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-3" onclick="evento_google(\'guarderia\')">
+								<div class="col-xs-12 col-sm-3" onclick="evento_google(\'guarderia\'); fbq("track", "traking_code_boton_guarderia"); ">
 									<div class="km-opcion">
 										<input type="checkbox" name="servicios[]" value="guarderia" >
 										<img src="'.getTema().'/images/new/icon/icon-guarderia.svg">
@@ -179,13 +179,13 @@
 										<span>SOLO DÍA</span>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-3" onclick="evento_google(\'paseos\')">
+								<div class="col-xs-12 col-sm-3" onclick="evento_google(\'paseos\'); fbq("track", "traking_code_boton_paseos"); ">
 									<div class="km-opcion">
 										<input type="checkbox" name="servicios[]" value="paseos" >
 										<img src="'.getTema().'/images/new/icon/icon-paseo.svg">PASEOS
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-3" onclick="evento_google(\'entrenamiento\')">
+								<div class="col-xs-12 col-sm-3" onclick="evento_google(\'entrenamiento\'); fbq("track", "traking_code_boton_entrenamiento"); ">
 									<div class="km-opcion">
 										<input type="checkbox" name="servicios[]" value="adiestramiento" >
 										<img src="'.getTema().'/images/new/icon/icon-entrenamiento.svg">ENTRENAMIENTO
