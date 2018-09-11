@@ -70,7 +70,8 @@
                     $count++;
 
                     // Cargar cupones 
-                    $cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  FROM `wp_woocommerce_order_items` as items 
+                    $cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  
+                    FROM `wp_woocommerce_order_items` as items 
                     INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
                     INNER JOIN wp_posts as p ON p.ID = ".$item['reserva']." and p.post_type = 'wc_booking' 
                     WHERE 
@@ -82,7 +83,11 @@
                     if( !empty($cupones) ){                    
                         foreach ($cupones as $cupon) {
                             if( $cupon->monto > 0 ){
-                                $info .= " [ ".$cupon->name .": " .$cupon->monto . " ] ";
+                                $cupon_tipo = $pagos->db->get_var("SELECT m.meta_vaue 
+                                    FROM wp_posts as p 
+                                    INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = 'descuento_tipo' 
+                                    WHERE post_name = '".$cupon->name."' AND post_type = 'shop_coupon'");
+                                $info .= " [ ".$cupon->name .": " .$cupon->monto . " Tipo: ".$cupon_tipo." ] ";
                             }
                         }
                     }

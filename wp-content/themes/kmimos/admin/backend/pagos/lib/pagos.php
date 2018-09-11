@@ -80,7 +80,6 @@ class Pagos {
 							$meta_pedido['_cart_discount'],
 							$meta_pedido['_wc_deposits_remaining'],
 							$method_payment
-
 						);
 
 						$d = (float)$row->total_pago - (float)$meta_pedido['_cart_discount'];
@@ -175,7 +174,6 @@ class Pagos {
 		$pago_cuidador_real = ($total / 1.25) - ( $discount );
 
 		if( $deposits > 0 ){
-
 			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
 		        $saldo_cuidador = $pago_cuidador_real - $remanente;
 			}else{

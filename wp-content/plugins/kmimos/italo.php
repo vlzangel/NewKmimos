@@ -2,6 +2,56 @@
 	
 	include_once('includes/functions/kmimos_functions.php');
 
+	//
+	function add_coupon_type_discount() { 
+
+	    woocommerce_wp_select(
+	    	array( 
+	    		'id' => 'descuento_tipo', 
+	    		'label' => __( 'Descuento aplicado a', 'woocommerce' ), 
+	    		'options' => [
+	    			'total a kmimos' => "Descuento total a Kmimos",
+	    			'total a cuidador' => "Descuento total a cuidador",
+	    			'compartido' => "Descuento compartido",
+	    		]
+	    	)
+	    ); 
+	    woocommerce_wp_text_input( 
+	    	array( 
+	    		'id' => 'descuento_kmimos', 
+	    		'label' => __( 'Descuento a Kmimos', 'woocommerce' ), 
+	    		'description' => sprintf( __( 'Valores comprendidos entre 0 a 100', 'woocommerce' ) ), 
+	    		'wrapper_class' => "hidden",
+	    		'data_type' => 'decimal',
+	    	) 
+	    );
+	    woocommerce_wp_text_input( 
+	    	array( 
+	    		'id' => 'descuento_cuidador', 
+	    		'label' => __( 'Descuento a Cuidador', 'woocommerce' ), 
+	    		'description' => sprintf( __( 'Valores comprendidos entre 0 a 100', 'woocommerce' ) ), 
+	    		'wrapper_class' => "hidden",
+	    		'data_type' => 'decimal',
+	    	) 
+	    );
+	}
+	add_action( 'woocommerce_coupon_options', 'add_coupon_type_discount', 10, 0 );
+
+	function save_coupon_type_discount( $post_id ) {
+	    if( isset( $_POST['descuento_tipo'] ) && $post_id > 0 ){
+		    update_post_meta( $post_id, 'descuento_tipo', strtolower($_POST['descuento_tipo']) );
+		    if( strtolower($_POST['descuento_tipo']) == 'compartido' ){
+			    update_post_meta( $post_id, 'descuento_kmimos', $_POST['descuento_kmimos'] );
+			    update_post_meta( $post_id, 'descuento_cuidador', $_POST['descuento_cuidador'] );
+		    }else{
+			    update_post_meta( $post_id, 'descuento_kmimos', 0 );
+			    update_post_meta( $post_id, 'descuento_cuidador', 0 );		    	
+		    }
+		}
+	}
+	add_action( 'woocommerce_coupon_options_save', 'save_coupon_type_discount');
+
+
 	if(!function_exists('is_petsitters')){
 		function is_petsitters( ){
 			global $wpdb;
@@ -116,6 +166,7 @@
 	    function italo_include_admin_script(){
 	        include_once('dashboard/assets/config_backpanel.php');
 	        wp_enqueue_script('faq_script', getTema()."/js/faq.js", array(), '1.0.0');
+	        wp_enqueue_script('cupon_script', getTema()."/js/admin_cupon.js", array(), '1.0.0');
 	        $HTML = '
 					<script type="text/javascript"> 
 						var HOME = "'.getTema().'/"; 
