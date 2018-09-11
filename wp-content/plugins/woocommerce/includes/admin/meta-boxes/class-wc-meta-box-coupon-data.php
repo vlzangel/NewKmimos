@@ -74,7 +74,8 @@ class WC_Meta_Box_Coupon_Data {
 					woocommerce_wp_checkbox( array( 'id' => 'free_shipping', 'label' => __( 'Allow free shipping', 'woocommerce' ), 'description' => sprintf( __( 'Check this box if the coupon grants free shipping. The <a href="%s">free shipping method</a> must be enabled and be set to require "a valid free shipping coupon" (see the "Free Shipping Requires" setting).', 'woocommerce' ), admin_url('admin.php?page=wc-settings&tab=shipping&section=WC_Shipping_Free_Shipping')) ) );
 				echo "</div>";
 				// Expiry date
-				woocommerce_wp_text_input( array( 'id' => 'expiry_date', 'label' => __( 'Coupon expiry date', 'woocommerce' ), 'placeholder' => _x( 'YYYY-MM-DD', 'placeholder', 'woocommerce' ), 'description' => '', 'class' => 'date-picker', 'custom_attributes' => array( 'pattern' => "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" ) ) ); ?>
+				woocommerce_wp_text_input( array( 'id' => 'expiry_date', 'label' => __( 'Coupon expiry date', 'woocommerce' ), 'placeholder' => _x( 'YYYY-MM-DD', 'placeholder', 'woocommerce' ), 'description' => '', 'class' => 'date-picker', 'custom_attributes' => array( 'pattern' => "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" ) ) ); 
+				/*
 				<p class="form-field">
 					<label for="descuento_por">
 						Descuento por
@@ -92,8 +93,8 @@ class WC_Meta_Box_Coupon_Data {
 							}
 						?>
 					</select>
-				</p> <?php
-
+				</p>
+				*/ 
 				do_action( 'woocommerce_coupon_options' );
 
 			?></div>
