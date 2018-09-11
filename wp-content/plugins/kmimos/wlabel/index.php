@@ -10,6 +10,10 @@
         <title>PANEL WHITE LABEL</title>
 
         <script src='<?php echo getTema(); ?>/admin/recursos/js/jquery-1.12.4.min.js'></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
         <script src='<?php echo getTema(); ?>/admin/recursos/js/jquery.dataTables.min.js'></script>
         <script src='<?php echo getTema(); ?>/admin/recursos/js/dataTables.bootstrap4.min.js'></script>
         <script src='<?php echo getTema(); ?>/admin/recursos/js/dataTables.buttons.min.js'></script>

@@ -36,6 +36,8 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
                 <tr>
                     <th>#</th>
                     <th># Reserva</th>
+                    <th>Eventos de Reservas</th>
+                    <th>T&eacute;rminos y Condiciones</th>
                     <th>Flash</th>
                     <th>Estatus</th>
                     <th>Fecha Reservacion</th>
@@ -314,8 +316,12 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
                         $forma_pago = "Pago Total";
                     }
 
+                    $eventos = $wpdb->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$reserva->cliente_id} AND post_type = 'wc_booking' AND post_date >= '2018-09-01 00:00:00' ");
+
                     $_reservas[ $reserva->nro_reserva ] = [
                         $reserva->nro_reserva,
+                        $eventos,
+                        '<div id="'.$reserva->cliente_id.'" class="mostrarInfo" onclick="mostrarEvento('.$reserva->cliente_id.')">Mostrar</div>',
                         $flash,
                         $estatus['sts_corto'],
                         $reserva->fecha_solicitud,
@@ -368,7 +374,69 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
     </div>
 </div>
 
+<style type="text/css">
+    .modal-header {
+        display: block;
+    }
+    .modal-title {
+        font-size: 17px;
+    }
+
+    .modal-body td{
+        font-size: 13px;
+    }
+
+    .modal-body table td {
+        vertical-align: top;
+    }
+
+    .mostrarInfo{
+        cursor: pointer;
+        text-align: center;
+        font-weight: 600;
+        color: #0f80ca;
+    }
+
+    .mostrarInfo:hover{
+        color: #52bbff;
+    }
+</style>
+<div class="modal fade" id="respModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar Ventana">×</button>
+                <h4 class="modal-title">Informaci&oacute;n sobre los t&eacute;rminos y condiciones</h4>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>  
+</div>
+
 <script type="text/javascript">
+
+    function mostrarEvento(user_id){
+        params = {'id_affiliate' : user_id};
+        jQuery.post(
+            "<?= get_home_url(); ?>/wp-content/plugins/kmimos/wlabel/backend/content/ajax/terminos_info.php",
+            { user_id: user_id },
+            function(data){
+                if( data.error == "no" ){
+                    var HTML = "<table>";
+                    HTML += "   <tr><td><strong>IP: &nbsp;&nbsp;</strong></td><td><span>"+data.info.ip+"</span></td>";
+                    HTML += "   <tr><td><strong>Fecha: &nbsp;&nbsp;</strong></td><td><span>"+data.info.fecha+"</span></td>";
+                    HTML += "   <tr><td><strong>Dispositivo: &nbsp;&nbsp;</strong></td><td><span>"+data.info.dispositivo+"</span></td>";
+                    HTML += "</table>";
+                    jQuery("#respModal .modal-body").html( HTML );
+                    jQuery('#respModal').modal('show');
+                }else{
+                    jQuery("#respModal .modal-body").html( "<div>No hay informaci&oacute;n disponible</div>" );
+                    jQuery('#respModal').modal('show');
+                }
+            }, "json"
+        );
+    }
+
     jQuery(document).ready(function() {
         jQuery('#_example_').DataTable({
             "language": {
@@ -403,7 +471,6 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             user_filter();
             duration_filter();
         }, 1000);
-
     });
 
     function user_filter(){

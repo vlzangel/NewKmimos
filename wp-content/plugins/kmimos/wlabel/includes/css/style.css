@@ -55,8 +55,8 @@ table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td
 .container_listados { padding: 0px; }
 .table th, .table td { padding: 8px; }
 div.dataTables_wrapper div.dataTables_paginate ul.pagination { margin: 10px 0 0 !important; }
-table th { white-space: nowrap; }
-table td { text-align: left; white-space: nowrap; }
+.table th { white-space: nowrap; }
+.table td { text-align: left; white-space: nowrap; }
 
 .table-bordered td {
     
