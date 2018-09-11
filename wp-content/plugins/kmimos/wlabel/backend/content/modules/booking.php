@@ -36,8 +36,6 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
                 <tr>
                     <th>#</th>
                     <th># Reserva</th>
-                    <th>Eventos de Reservas</th>
-                    <th>T&eacute;rminos y Condiciones</th>
                     <th>Flash</th>
                     <th>Estatus</th>
                     <th>Fecha Reservacion</th>
@@ -49,6 +47,8 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
                     <th>Cliente</th>
                     <th>Correo Cliente</th>
                     <th>Tel&eacute;fono Cliente</th>
+                    <th>Eventos de Reservas</th>
+                    <th>T&eacute;rminos y Condiciones</th>
                     <th>Recompra (1Mes)</th>
                     <th>Recompra (3Meses)</th>
                     <th>Recompra (6Meses)</th>
@@ -320,8 +320,6 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
 
                     $_reservas[ $reserva->nro_reserva ] = [
                         $reserva->nro_reserva,
-                        $eventos,
-                        '<div id="'.$reserva->cliente_id.'" class="mostrarInfo" onclick="mostrarEvento('.$reserva->cliente_id.')">Mostrar</div>',
                         $flash,
                         $estatus['sts_corto'],
                         $reserva->fecha_solicitud,
@@ -333,6 +331,8 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
                         "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name'],
                         $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cliente_id),
                         implode(", ", $telf_cliente),
+                        $eventos,
+                        '<div id="'.$reserva->cliente_id.'" class="mostrarInfo" onclick="mostrarEvento('.$reserva->cliente_id.')">Mostrar</div>',
                         $recompra_1M,
                         $recompra_3M,
                         $recompra_6M,
