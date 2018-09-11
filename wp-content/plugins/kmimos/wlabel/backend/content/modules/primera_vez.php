@@ -157,22 +157,26 @@
 				$_info_3_meses = "No tiene reservas confirmadas o canceladas";
 			}
 
-			$registros .= "
-				<tr>
-					<td>".$metas["first_name"][0]." ".$metas["last_name"][0]."</td>
-					<td>".$usuario->user_email."</td>
-					<td>".( date("d/m/Y", strtotime( $usuario->user_registered ) ) )."</td>
-					<td>".$metas["user_mobile"][0]."</td>
-					<td>".$metas["user_referred"][0]."</td>
-					<td>".$_info."</td>
-					<td>".$cancelo."</td>
-					<td>".$otra."</td>
+			if( $_info != "No tiene reservas confirmadas o canceladas" ){
 
-					<td>".$_info_3_meses."</td>
-					<td>".$cancelo_3_meses."</td>
-					<td>".$otra_3_meses."</td>
-				</tr>
-			";
+				$registros .= "
+					<tr>
+						<td>".$metas["first_name"][0]." ".$metas["last_name"][0]."</td>
+						<td>".$usuario->user_email."</td>
+						<td>".( date("d/m/Y", strtotime( $usuario->user_registered ) ) )."</td>
+						<td>".$metas["user_mobile"][0]."</td>
+						<td>".$metas["user_referred"][0]."</td>
+						<td>".$_info."</td>
+						<td>".$cancelo."</td>
+						<td>".$otra."</td>
+
+						<td>".$_info_3_meses."</td>
+						<td>".$cancelo_3_meses."</td>
+						<td>".$otra_3_meses."</td>
+					</tr>
+				";
+				
+			}
 		}
 	}
 ?>
