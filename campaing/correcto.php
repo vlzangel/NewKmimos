@@ -1,6 +1,6 @@
 <?php
-	require_once __DIR__.'/campaingcsrest_campaigns.php';
-	require_once __DIR__.'/campaingcsrest_general.php';
+	require_once __DIR__.'/campaing/csrest_campaigns.php';
+	require_once __DIR__.'/campaing/csrest_general.php';
 
 	extract($_GET);
 	if( !isset($code)){

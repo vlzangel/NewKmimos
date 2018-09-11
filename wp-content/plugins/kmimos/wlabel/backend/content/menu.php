@@ -21,4 +21,5 @@
     <div class="item" data-module="client" onclick="WhiteLabel_panel_menu(this);">Monitor</div>
     <!-- <div class="item" data-module="client-booking" onclick="WhiteLabel_panel_menu(this);">Reservas por Clientes</div> -->
     <div class="item" data-module="booking" onclick="WhiteLabel_panel_menu(this);">Reservas</div>
+    <div class="item" data-module="primera_vez" onclick="WhiteLabel_panel_menu(this);">Primera Vez</div>
 </div>

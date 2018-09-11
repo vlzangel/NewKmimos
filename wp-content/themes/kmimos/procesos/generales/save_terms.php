@@ -5,8 +5,10 @@
 
         $IP = get_client_ip();
         $HF = date("Y-m-d H:i:s");
+        $UA = $_SERVER["HTTP_USER_AGENT"];
 
-        $db->query("INSERT INTO terminos_aceptados VALUES ( NULL, '{$user_id}', '{$IP}', '{$HF}' );");
+        $db->query("INSERT INTO terminos_aceptados VALUES ( NULL, '{$user_id}', '{$IP}', '{$HF}', '{$UA}' );");
+        
     }
 
     function get_client_ip() {

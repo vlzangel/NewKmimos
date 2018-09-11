@@ -1,8 +1,11 @@
 <?php
 $datos = kmimos_get_info_syte();
 $referidos = get_referred_list_options();
-$referidos_options = "";
+$referidos_options = ""; $pixel_petco = "";
 if( $_SESSION["wlabel"] != "petco" ){
+
+	$pixel_petco = "window.adf&&adf.ClickTrack(this,1453019,\'MX_Kmimos_Registo_180907\',{})";
+
 	$referidos_options = '<option value="">Dónde nos conoció?</option>';
 }
 foreach ($referidos as $key => $value) {
@@ -63,7 +66,7 @@ $HTML .='
 				</div>
 
 
-				<a 	href="javascript:;" 
+				<a 	href="javascript: '.$pixel_petco.';" 
 					class="km-btn-correo km-btn-popup-registrarte-1" 
 					data-target="social-next-step">
 					<img src="'.getTema().'/images/new/icon/km-redes/icon-mail-blanco.svg">

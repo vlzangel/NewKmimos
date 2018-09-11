@@ -1,4 +1,5 @@
 <?php
+
 global $wpdb;
 $kmimos_load=dirname(dirname(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))))).'/wp-load.php';
 if(file_exists($kmimos_load)){
@@ -15,10 +16,12 @@ function number_round($number){
 
 $wlabel=$_wlabel_user->wlabel;
 $WLcommission=$_wlabel_user->wlabel_Commission();
+
 /*
-$_wlabel_user->wlabel_Options('booking');
-$_wlabel_user->wLabel_Filter(array('trdate'));
-$_wlabel_user->wlabel_Export('booking','RESERVAS','table');*/
+    $_wlabel_user->wlabel_Options('booking');
+    $_wlabel_user->wLabel_Filter(array('trdate'));
+    $_wlabel_user->wlabel_Export('booking','RESERVAS','table');
+*/
 
 $wlabel = $_SESSION["label"]->wlabel; ?>
 
@@ -26,55 +29,53 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
     RESERVAS
 </div>
 
-<!-- <div class="module_data">
-    <div class="item" id="user_filter">Personas reservando en el periodo seleccionado: <span></span></div>
-</div> -->
-
 <div class="section">
-    <div class="tables">
-    <table cellspacing="0" cellpadding="0">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th># Reserva</th>
-                <th>Flash</th>
-                <th>Estatus</th>
-                <th>Fecha Reservacion</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>Noches</th>
-                <th># Mascotas</th>
-                <th># Noches Totales</th>
-                <th>Cliente</th>
-                <th>Correo Cliente</th>
-                <th>Tel&eacute;fono Cliente</th>
-                <th>Recompra (1Mes)</th>
-                <th>Recompra (3Meses)</th>
-                <th>Recompra (6Meses)</th>
-                <th>Recompra (12Meses)</th>
-                <th>Donde nos conocio?</th>
-                <th>Mascotas</th>
-                <th>Razas</th>
-                <th>Edad</th>
-                <th>Cuidador</th>
-                <th>Correo Cuidador</th>
-                <th>Tel&eacute;fono Cuidador</th>
-                <th>Servicio Principal</th> 
-                <th>Servicios Especiales</th> <!-- Servicios adicionales -->
-                <th>Estado</th>
-                <th>Municipio</th>
-                <th>Forma de Pago</th>
-                <th>Tipo de Pago</th>
-                <th>Total a pagar ($)</th>
-                <th>Monto Pagado ($)</th>
-                <th>Monto Remanente ($)</th>
-                <th># Pedido</th>
-                <th>Observaci&oacute;n</th>
-            </tr>
-        </thead>
+    <div class="">
+        <table id="_example_" class="table table-striped table-bordered nowrap" style="width:100%" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th># Reserva</th>
+                    <th>Eventos de Reservas</th>
+                    <th>T&eacute;rminos y Condiciones</th>
+                    <th>Flash</th>
+                    <th>Estatus</th>
+                    <th>Fecha Reservacion</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Noches</th>
+                    <th># Mascotas</th>
+                    <th># Noches Totales</th>
+                    <th>Cliente</th>
+                    <th>Correo Cliente</th>
+                    <th>Tel&eacute;fono Cliente</th>
+                    <th>Recompra (1Mes)</th>
+                    <th>Recompra (3Meses)</th>
+                    <th>Recompra (6Meses)</th>
+                    <th>Recompra (12Meses)</th>
+                    <th>Donde nos conocio?</th>
+                    <th>Mascotas</th>
+                    <th>Razas</th>
+                    <th>Edad</th>
+                    <th>Cuidador</th>
+                    <th>Correo Cuidador</th>
+                    <th>Tel&eacute;fono Cuidador</th>
+                    <th>Servicio Principal</th> 
+                    <th>Servicios Especiales</th> <!-- Servicios adicionales -->
+                    <th>Estado</th>
+                    <th>Municipio</th>
+                    <th>Forma de Pago</th>
+                    <th>Tipo de Pago</th>
+                    <th>Total a pagar ($)</th>
+                    <th>Monto Pagado ($)</th>
+                    <th>Monto Remanente ($)</th>
+                    <th># Pedido</th>
+                    <th>Observaci&oacute;n</th>
+                </tr>
+            </thead>
 
-        <tbody> <?php
-            $sql = "
+            <tbody> <?php
+                $sql = "
                 SELECT 
                     r.ID as 'nro_reserva',
                     DATE_FORMAT(r.post_date_gmt,'%Y-%m-%d') as 'fecha_solicitud',
@@ -124,276 +125,390 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
                             wlabel_reserva.meta_value = '{$wlabel}'
                         )
 
-                WHERE r.post_type = 'wc_booking' 
+                WHERE 
 
-                    and not r.post_status like '%cart%' 
-                    and cl.ID > 0 
-                    and p.ID > 0
-                    and (
-                        wlabel_cliente.meta_value = '{$wlabel}' OR
-                        wlabel_reserva.meta_value = '{$wlabel}'
-                    )
+                    (
+                        r.post_type = 'wc_booking' AND 
+                        not r.post_status like '%cart%' AND 
+                        cl.ID > 0 AND 
+                        p.ID > 0 AND (
+                            wlabel_cliente.meta_value = '{$wlabel}' OR
+                            wlabel_reserva.meta_value = '{$wlabel}'
+                        )
+                    ) AND
+                    r.post_date >= '2018-09-01 00:00:00' 
 
-                ORDER BY r.ID desc
-                ;";
+                ORDER BY r.ID desc;";
 
-            $reservas = $wpdb->get_results($sql);
+                $reservas = $wpdb->get_results($sql);
 
 
-            /*echo "<pre>";
-                print_r( $reservas );
-            echo "</pre>";
+                /*
+                echo "<pre>";
+                    print_r( $reservas );
+                echo "</pre>";
+                */
 
-            (
-                [nro_reserva] => 201835
-                [fecha_solicitud] => 2018-09-04
-                [estatus_reserva] => paid
-                [nro_pedido] => 201834
-                [estatus_pago] => wc-completed
-                [producto_title] => Hospedaje - Pedro P.
-                [producto_name] => hospedaje-8631-pedro-p
-                [nro_noches] => 0
-                [nro_mascotas] => 1
-                [total_noches] => 0
-                [producto_id] => 150448
-                [post_name] => hospedaje-8631-pedro-p
-                [cuidador_id] => 8631
-                [cliente_id] => 367
-            )
-            */
+                $_reservas = [];
+                foreach ($reservas as $key => $reserva) {
+                    // *************************************
+                    // Cargar Metadatos
+                    // *************************************
+                    # MetaDatos del Cuidador
+                    $meta_cuidador = getMetaCuidador($reserva->cuidador_id);
+                    # MetaDatos del Cliente
+                    $cliente = getMetaCliente($reserva->cliente_id);
 
-            $_reservas = [];
-            foreach ($reservas as $key => $reserva) {
-                // *************************************
-                // Cargar Metadatos
-                // *************************************
-                # MetaDatos del Cuidador
-                $meta_cuidador = getMetaCuidador($reserva->cuidador_id);
-                # MetaDatos del Cliente
-                $cliente = getMetaCliente($reserva->cliente_id);
-
-                # Recompra 12 Meses
-                $cliente_n_reserva = getCountReservas($reserva->cliente_id, "12");
-                if(array_key_exists('rows', $cliente_n_reserva)){
-                    foreach ($cliente_n_reserva["rows"] as $value) {
-                        $recompra_12M = ($value['cant']>1)? "SI" : "NO" ;
+                    # Recompra 12 Meses
+                    $cliente_n_reserva = getCountReservas($reserva->cliente_id, "12");
+                    if(array_key_exists('rows', $cliente_n_reserva)){
+                        foreach ($cliente_n_reserva["rows"] as $value) {
+                            $recompra_12M = ($value['cant']>1)? "SI" : "NO" ;
+                        }
                     }
-                }
-                # Recompra 1 Meses
-                $cliente_n_reserva = getCountReservas($reserva->cliente_id, "1");
-                if(array_key_exists('rows', $cliente_n_reserva)){
-                    foreach ($cliente_n_reserva["rows"] as $value) {
-                        $recompra_1M = ($value['cant']>1)? "SI" : "NO" ;
+                    # Recompra 1 Meses
+                    $cliente_n_reserva = getCountReservas($reserva->cliente_id, "1");
+                    if(array_key_exists('rows', $cliente_n_reserva)){
+                        foreach ($cliente_n_reserva["rows"] as $value) {
+                            $recompra_1M = ($value['cant']>1)? "SI" : "NO" ;
+                        }
                     }
-                }
-                # Recompra 3 Meses
-                $cliente_n_reserva = getCountReservas($reserva->cliente_id, "3");
-                if(array_key_exists('rows', $cliente_n_reserva)){
-                    foreach ($cliente_n_reserva["rows"] as $value) {
-                        $recompra_3M = ($value['cant']>1)? "SI" : "NO" ;
+                    # Recompra 3 Meses
+                    $cliente_n_reserva = getCountReservas($reserva->cliente_id, "3");
+                    if(array_key_exists('rows', $cliente_n_reserva)){
+                        foreach ($cliente_n_reserva["rows"] as $value) {
+                            $recompra_3M = ($value['cant']>1)? "SI" : "NO" ;
+                        }
                     }
-                }
-                # Recompra 6 Meses
-                $cliente_n_reserva = getCountReservas($reserva->cliente_id, "6");
-                if(array_key_exists('rows', $cliente_n_reserva)){
-                    foreach ($cliente_n_reserva["rows"] as $value) {
-                        $recompra_6M = ($value['cant']>1)? "SI" : "NO" ;
+                    # Recompra 6 Meses
+                    $cliente_n_reserva = getCountReservas($reserva->cliente_id, "6");
+                    if(array_key_exists('rows', $cliente_n_reserva)){
+                        foreach ($cliente_n_reserva["rows"] as $value) {
+                            $recompra_6M = ($value['cant']>1)? "SI" : "NO" ;
+                        }
                     }
-                }
 
-                # MetaDatos del Reserva
-                $meta_reserva = getMetaReserva($reserva->nro_reserva);
-                # MetaDatos del Pedido
-                $meta_Pedido = getMetaPedido($reserva->nro_pedido);
-                # Mascotas del Cliente
-                $mypets = getMascotas($reserva->cliente_id); 
-                # Estado y Municipio del cuidador
-                $ubicacion = get_ubicacion_cuidador($reserva->cuidador_id);
-                # Servicios de la Reserva
-                $services = getServices($reserva->nro_reserva);
-                # Status
-                $estatus = get_status(
-                    $reserva->estatus_reserva, 
-                    $reserva->estatus_pago, 
-                    $meta_Pedido['_payment_method'],
-                    $reserva->nro_reserva // Modificacion Ángel Veloz
-                );
+                    # MetaDatos del Reserva
+                    $meta_reserva = getMetaReserva($reserva->nro_reserva);
+                    # MetaDatos del Pedido
+                    $meta_Pedido = getMetaPedido($reserva->nro_pedido);
+                    # Mascotas del Cliente
+                    $mypets = getMascotas($reserva->cliente_id); 
+                    # Estado y Municipio del cuidador
+                    $ubicacion = get_ubicacion_cuidador($reserva->cuidador_id);
+                    # Servicios de la Reserva
+                    $services = getServices($reserva->nro_reserva);
+                    # Status
+                    $estatus = get_status(
+                        $reserva->estatus_reserva, 
+                        $reserva->estatus_pago, 
+                        $meta_Pedido['_payment_method'],
+                        $reserva->nro_reserva // Modificacion Ángel Veloz
+                    );
 
-                if($estatus['addTotal'] == 1){
-                    $total_a_pagar += currency_format($meta_reserva['_booking_cost'], "");
-                    $total_pagado += currency_format($meta_Pedido['_order_total'], "", "", ".");
-                    $total_remanente += currency_format($meta_Pedido['_wc_deposits_remaining'], "", "", ".");
-                }
-
-                $pets_nombre = array();
-                $pets_razas  = array();
-                $pets_edad   = array();
-
-                foreach( $mypets as $pet_id => $pet) { 
-                    $pets_nombre[] = $pet['nombre'];
-                    $pets_razas[] = $razas[ $pet['raza'] ];
-                    $pets_edad[] = $pet['edad'];
-                } 
-
-                $pets_nombre = implode("<br>", $pets_nombre);
-                $pets_razas  = implode("<br>", $pets_razas);
-                $pets_edad   = implode("<br>", $pets_edad);
-
-                $nro_noches = dias_transcurridos(
-                        date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
-                        date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
-                    );                  
-                if(!in_array('hospedaje', explode("-", $reserva->post_name))){
-                    $nro_noches += 1;
-                    
-                }
-
-
-                $Day = "";
-                $list_service = [ 'hospedaje' ]; // Excluir los servicios del Signo "D"
-                $temp_option = explode("-", $reserva->producto_name);
-                if( count($temp_option) > 0 ){
-                    $key = strtolower($temp_option[0]);
-                    if( !in_array($key, $list_service) ){
-                        $Day = "-D";
-
-
-
+                    if($estatus['addTotal'] == 1){
+                        $total_a_pagar += currency_format($meta_reserva['_booking_cost'], "");
+                        $total_pagado += currency_format($meta_Pedido['_order_total'], "", "", ".");
+                        $total_remanente += currency_format($meta_Pedido['_wc_deposits_remaining'], "", "", ".");
                     }
-                }
 
-                $flash = "";
-                if( $meta_reserva['_booking_flash'] == "SI" ){
-                    $flash = '
-                        Flash
-                    ';
-                }
+                    $pets_nombre = array();
+                    $pets_razas  = array();
+                    $pets_edad   = array();
 
-                if( isset($meta_reserva["modificacion_de"]) || isset($meta_reserva["reserva_modificada"]) ){
-                    switch ( $estatus['sts_corto'] ) {
-                        case 'Modificado':
-                            if( $meta_reserva["modificacion_de"] != "" && $meta_reserva["reserva_modificada"] != "" ){
-                                $estatus['sts_corto'] = 'Modificada-I';
-                            }else{
-                                if( $meta_reserva["reserva_modificada"] != "" ){
-                                    $estatus['sts_corto'] = 'Modificada-O';
+                    foreach( $mypets as $pet_id => $pet) { 
+                        $pets_nombre[] = $pet['nombre'];
+                        $pets_razas[] = $razas[ $pet['raza'] ];
+                        $pets_edad[] = $pet['edad'];
+                    } 
+
+                    $pets_nombre = implode("<br>", $pets_nombre);
+                    $pets_razas  = implode("<br>", $pets_razas);
+                    $pets_edad   = implode("<br>", $pets_edad);
+
+                    $nro_noches = dias_transcurridos(
+                            date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
+                            date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
+                        );                  
+                    if(!in_array('hospedaje', explode("-", $reserva->post_name))){
+                        $nro_noches += 1;
+                        
+                    }
+
+
+                    $Day = "";
+                    $list_service = [ 'hospedaje' ]; // Excluir los servicios del Signo "D"
+                    $temp_option = explode("-", $reserva->producto_name);
+                    if( count($temp_option) > 0 ){
+                        $key = strtolower($temp_option[0]);
+                        if( !in_array($key, $list_service) ){
+                            $Day = "-D";
+
+
+
+                        }
+                    }
+
+                    $flash = "";
+                    if( $meta_reserva['_booking_flash'] == "SI" ){
+                        $flash = '
+                            Flash
+                        ';
+                    }
+
+                    if( isset($meta_reserva["modificacion_de"]) || isset($meta_reserva["reserva_modificada"]) ){
+                        switch ( $estatus['sts_corto'] ) {
+                            case 'Modificado':
+                                if( $meta_reserva["modificacion_de"] != "" && $meta_reserva["reserva_modificada"] != "" ){
+                                    $estatus['sts_corto'] = 'Modificada-I';
+                                }else{
+                                    if( $meta_reserva["reserva_modificada"] != "" ){
+                                        $estatus['sts_corto'] = 'Modificada-O';
+                                    }
+                                    if( $meta_reserva["modificacion_de"] != "" ){
+                                        $estatus['sts_corto'] = 'Modificada-F';
+                                    }
                                 }
+                            break;
+                            case 'Confirmado':
                                 if( $meta_reserva["modificacion_de"] != "" ){
-                                    $estatus['sts_corto'] = 'Modificada-F';
+                                    // $estatus['sts_corto'] = 'Modificada-F';
                                 }
-                            }
-                        break;
-                        case 'Confirmado':
-                            if( $meta_reserva["modificacion_de"] != "" ){
-                                // $estatus['sts_corto'] = 'Modificada-F';
-                            }
-                        break;
+                            break;
+                        }
                     }
-                }
 
-                $telf_cliente = array();
-                if( $cliente["user_mobile"] != "" ){ $telf_cliente[] = $cliente["user_mobile"]; }
-                if( $cliente["user_phone"] != "" ){ $telf_cliente[] = $cliente["user_phone"]; }
+                    $telf_cliente = array();
+                    if( $cliente["user_mobile"] != "" ){ $telf_cliente[] = $cliente["user_mobile"]; }
+                    if( $cliente["user_phone"] != "" ){ $telf_cliente[] = $cliente["user_phone"]; }
 
-                $telf_cuidador = array();
-                if( $meta_cuidador["user_mobile"] != "" ){ $telf_cuidador[] = $meta_cuidador["user_mobile"]; }
-                if( $meta_cuidador["user_phone"] != "" ){ $telf_cuidador[] = $meta_cuidador["user_phone"]; }
+                    $telf_cuidador = array();
+                    if( $meta_cuidador["user_mobile"] != "" ){ $telf_cuidador[] = $meta_cuidador["user_mobile"]; }
+                    if( $meta_cuidador["user_phone"] != "" ){ $telf_cuidador[] = $meta_cuidador["user_phone"]; }
 
-                $adicionales = "";
-                foreach( $services as $service ){ 
-                    $__servicio = $service->descripcion . $service->servicio;
-                    $__servicio = str_replace("(precio por mascota)", "", $__servicio); 
-                    $__servicio = str_replace("(precio por grupo)", "", $__servicio); 
-                    $__servicio = str_replace("Servicios Adicionales", "", $__servicio); 
-                    $__servicio = str_replace("Servicios de Transportación", "", $__servicio); 
-                    $adicionales .= $__servicio."<br>";
-                }
+                    $adicionales = "";
+                    foreach( $services as $service ){ 
+                        $__servicio = $service->descripcion . $service->servicio;
+                        $__servicio = str_replace("(precio por mascota)", "", $__servicio); 
+                        $__servicio = str_replace("(precio por grupo)", "", $__servicio); 
+                        $__servicio = str_replace("Servicios Adicionales", "", $__servicio); 
+                        $__servicio = str_replace("Servicios de Transportación", "", $__servicio); 
+                        $adicionales .= $__servicio."<br>";
+                    }
 
-                $tipo_pago = "";
-                if( !empty($meta_Pedido['_payment_method_title']) ){
-                    $tipo_pago = $meta_Pedido['_payment_method_title']; 
-                }else{
-                    if( !empty($meta_reserva['modificacion_de']) ){
-                        $tipo_pago = 'Saldo a favor' ; 
+                    $tipo_pago = "";
+                    if( !empty($meta_Pedido['_payment_method_title']) ){
+                        $tipo_pago = $meta_Pedido['_payment_method_title']; 
                     }else{
-                        $tipo_pago = 'Saldo a favor y/o cupones'; 
+                        if( !empty($meta_reserva['modificacion_de']) ){
+                            $tipo_pago = 'Saldo a favor' ; 
+                        }else{
+                            $tipo_pago = 'Saldo a favor y/o cupones'; 
+                        }
                     }
+
+                    $forma_pago = "";
+                    $deposito = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$meta_reserva['_booking_order_item_id']} AND meta_key = '_wc_deposit_meta' ");
+                    $deposito = unserialize($deposito);
+                    if( $deposito["enable"] == "yes" ){
+                        $forma_pago = "Pago 20%";
+                    }else{
+                        $forma_pago = "Pago Total";
+                    }
+
+                    $eventos = $wpdb->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$reserva->cliente_id} AND post_type = 'wc_booking' AND post_date >= '2018-09-01 00:00:00' ");
+
+                    $_reservas[ $reserva->nro_reserva ] = [
+                        $reserva->nro_reserva,
+                        $eventos,
+                        '<div id="'.$reserva->cliente_id.'" class="mostrarInfo" onclick="mostrarEvento('.$reserva->cliente_id.')">Mostrar</div>',
+                        $flash,
+                        $estatus['sts_corto'],
+                        $reserva->fecha_solicitud,
+                        date_convert($meta_reserva['_booking_start'], 'Y-m-d', true),
+                        date_convert($meta_reserva['_booking_end'], 'Y-m-d', true),
+                        $nro_noches . $Day,
+                        $reserva->nro_mascotas,
+                        $nro_noches * $reserva->nro_mascotas,
+                        "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name'],
+                        $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cliente_id),
+                        implode(", ", $telf_cliente),
+                        $recompra_1M,
+                        $recompra_3M,
+                        $recompra_6M,
+                        $recompra_12M,
+                        (empty($cliente['user_referred']))? 'Otros' : $cliente['user_referred'],
+                        $pets_nombre,
+                        $pets_razas,
+                        $pets_edad,
+                        $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name'],
+                        $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cuidador_id),
+                        implode(", ", $telf_cuidador),
+                        $reserva->producto_title,
+                        $adicionales,
+                        utf8_decode( $ubicacion['estado'] ),
+                        utf8_decode( $ubicacion['municipio'] ),
+                        $tipo_pago,
+                        $forma_pago,
+                        currency_format($meta_reserva['_booking_cost'], "", "","."),
+                        currency_format($meta_Pedido['_order_total'], "", "","."),
+                        currency_format($meta_Pedido['_wc_deposits_remaining'], "", "","."),
+                        $reserva->nro_pedido,
+                        $estatus['sts_largo']                  
+                    ];
                 }
 
-                $forma_pago = "";
-                $deposito = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = {$meta_reserva['_booking_order_item_id']} AND meta_key = '_wc_deposit_meta' ");
-                $deposito = unserialize($deposito);
-                if( $deposito["enable"] == "yes" ){
-                    $forma_pago = "Pago 20%";
-                }else{
-                    $forma_pago = "Pago Total";
-                }
+                $cont = 1;
+                foreach ($_reservas as $key => $valor) { ?>
+                    <tr> <?php
+                        echo "<td>{$cont}</td>";
+                        foreach ($valor as $key => $value) {
+                            echo "<td>{$value}</td>";
+                        }
+                        $cont++; ?>
+                    </tr> <?php
+                } ?>
 
-                $_reservas[ $reserva->nro_reserva ] = [
-                    $reserva->nro_reserva,
-                    $flash,
-                    $estatus['sts_corto'],
-                    $reserva->fecha_solicitud,
-                    date_convert($meta_reserva['_booking_start'], 'Y-m-d', true),
-                    date_convert($meta_reserva['_booking_end'], 'Y-m-d', true),
-                    $nro_noches . $Day,
-                    $reserva->nro_mascotas,
-                    $nro_noches * $reserva->nro_mascotas,
-                    "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name'],
-                    $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cliente_id),
-                    implode(", ", $telf_cliente),
-                    $recompra_1M,
-                    $recompra_3M,
-                    $recompra_6M,
-                    $recompra_12M,
-                    (empty($cliente['user_referred']))? 'Otros' : $cliente['user_referred'],
-                    $pets_nombre,
-                    $pets_razas,
-                    $pets_edad,
-                    $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name'],
-                    $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cuidador_id),
-                    implode(", ", $telf_cuidador),
-                    $reserva->producto_title,
-                    $adicionales,
-                    utf8_decode( $ubicacion['estado'] ),
-                    utf8_decode( $ubicacion['municipio'] ),
-                    $tipo_pago,
-                    $forma_pago,
-                    currency_format($meta_reserva['_booking_cost'], "", "","."),
-                    currency_format($meta_Pedido['_order_total'], "", "","."),
-                    currency_format($meta_Pedido['_wc_deposits_remaining'], "", "","."),
-                    $reserva->nro_pedido,
-                    $estatus['sts_largo']                  
-                ];
-            }
-
-            $cont = 1;
-            foreach ($_reservas as $key => $valor) { ?>
-                <tr> <?php
-                    echo "<td>{$cont}</td>";
-                    foreach ($valor as $key => $value) {
-                        echo "<td>{$value}</td>";
-                    }
-                    $cont++; ?>
-                </tr> <?php
-            } ?>
-
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <style type="text/css">
-    table th {
-        white-space: nowrap;
+    .modal-header {
+        display: block;
     }
-    table td {
+    .modal-title {
+        font-size: 17px;
+    }
+
+    .modal-body td{
+        font-size: 13px;
+    }
+
+    .modal-body table td {
+        vertical-align: top;
+    }
+
+    .mostrarInfo{
+        cursor: pointer;
         text-align: center;
-        white-space: nowrap;
-        padding: 10px;
+        font-weight: 600;
+        color: #0f80ca;
+    }
+
+    .mostrarInfo:hover{
+        color: #52bbff;
     }
 </style>
+<div class="modal fade" id="respModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar Ventana">×</button>
+                <h4 class="modal-title">Informaci&oacute;n sobre los t&eacute;rminos y condiciones</h4>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>  
+</div>
+
+<script type="text/javascript">
+
+    function mostrarEvento(user_id){
+        params = {'id_affiliate' : user_id};
+        jQuery.post(
+            "<?= get_home_url(); ?>/wp-content/plugins/kmimos/wlabel/backend/content/ajax/terminos_info.php",
+            { user_id: user_id },
+            function(data){
+                if( data.error == "no" ){
+                    var HTML = "<table>";
+                    HTML += "   <tr><td><strong>IP: &nbsp;&nbsp;</strong></td><td><span>"+data.info.ip+"</span></td>";
+                    HTML += "   <tr><td><strong>Fecha: &nbsp;&nbsp;</strong></td><td><span>"+data.info.fecha+"</span></td>";
+                    HTML += "   <tr><td><strong>Dispositivo: &nbsp;&nbsp;</strong></td><td><span>"+data.info.dispositivo+"</span></td>";
+                    HTML += "</table>";
+                    jQuery("#respModal .modal-body").html( HTML );
+                    jQuery('#respModal').modal('show');
+                }else{
+                    jQuery("#respModal .modal-body").html( "<div>No hay informaci&oacute;n disponible</div>" );
+                    jQuery('#respModal').modal('show');
+                }
+            }, "json"
+        );
+    }
+
+    jQuery(document).ready(function() {
+        jQuery('#_example_').DataTable({
+            "language": {
+                "emptyTable":           "No hay datos disponibles en la tabla.",
+                "info":                 "Del _START_ al _END_ de _TOTAL_ ",
+                "infoEmpty":            "Mostrando 0 registros de un total de 0.",
+                "infoFiltered":         "(filtrados de un total de _MAX_ registros)",
+                "infoPostFix":          " (actualizados)",
+                "lengthMenu":           "Mostrar _MENU_ registros",
+                "loadingRecords":       "Cargando...",
+                "processing":           "Procesando...",
+                "search":               "Buscar:",
+                "searchPlaceholder":    "Dato para buscar",
+                "zeroRecords":          "No se han encontrado coincidencias.",
+                "paginate": {
+                    "first":            "Primera",
+                    "last":             "Última",
+                    "next":             "Siguiente",
+                    "previous":         "Anterior"
+                },
+                "aria": {
+                    "sortAscending":    "Ordenación ascendente",
+                    "sortDescending":   "Ordenación descendente"
+                }
+            },
+            "scrollX": true
+        });
+    } );
+
+    jQuery('.filters select, .filters input').change(function(e){
+        setTimeout(function(){
+            user_filter();
+            duration_filter();
+        }, 1000);
+    });
+
+    function user_filter(){
+        var users = [];
+        jQuery('table tbody tr:not(.noshow)').each(function(e){
+            var user=jQuery(this).find('.user').data('user');
+            if(jQuery.inArray(user,users)<0){
+                users.push(user);
+            }
+        });
+        jQuery('#user_filter').find('span').html(users.length);
+    }
+
+    function duration_filter(){
+        var times=[];
+        jQuery('table tbody tr:not(.noshow)').each(function(e){
+            var user=jQuery(this).find('.duration').data('user');
+            var duration=jQuery(this).find('.duration').data('count');
+            var status=jQuery(this).data('status');
+            if(status!='cancelled' && status!='modified' && status!='unpaid'){
+                if(times[user] == undefined){
+                    times[user]=duration;
+                }else{
+                    times[user]=times[user]-(-duration);
+                }
+            }
+        });
+        for(duser in times){
+            jQuery('table tbody tr td.duration_total[data-user="'+duser+'"]').html(times[duser]);
+        }
+    }
+
+    user_filter();
+    duration_filter();
+</script>
 
 <?php
+
 /*
    $sql = "
             SELECT
@@ -533,57 +648,5 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
 </div>
 */ ?>
 
-<script type="text/javascript">
-
-    jQuery('.filters select, .filters input').change(function(e){
-        setTimeout(function(){
-            user_filter();
-            duration_filter();
-        }, 1000);
-
-    });
-
-    function user_filter(){
-        var users=[];
-        jQuery('table tbody tr:not(.noshow)').each(function(e){
-            var user=jQuery(this).find('.user').data('user');
-            if(jQuery.inArray(user,users)<0){
-                users.push(user);
-            }
-        });
-        //console.log(users);
-        jQuery('#user_filter').find('span').html(users.length);
-    }
-
-    function duration_filter(){
-        var times=[];
-        jQuery('table tbody tr:not(.noshow)').each(function(e){
-            var user=jQuery(this).find('.duration').data('user');
-            var duration=jQuery(this).find('.duration').data('count');
-            var status=jQuery(this).data('status');
-
-            //times.push({'user':user,'duration':duration});
-            //if(jQuery.inArray(user,times)<0){
-            if(status!='cancelled' && status!='modified' && status!='unpaid'){
-                if(times[user] == undefined){
-                    times[user]=duration;
-                }else{
-                    times[user]=times[user]-(-duration);
-                }
-            }
-
-        });
-
-        //console.log(times);
-        for(duser in times){
-            jQuery('table tbody tr td.duration_total[data-user="'+duser+'"]').html(times[duser]);
-        }
-
-        /**/
-    }
-
-    user_filter();
-    duration_filter();
-</script>
 
 

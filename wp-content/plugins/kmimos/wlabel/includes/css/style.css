@@ -1,4 +1,4 @@
-html, body{position:relative; width:100%; height:100%; margin:0; padding:0; font-family: arial, sans-serif;  background:#DDD;}
+html, body{position:relative; width:100%; height:100%; margin:0; padding:0; font-family: arial, sans-serif; }
 img{max-width:100%;}
 
 #panel{position:relative; width:100%; height:100%; overflow: hidden;}
@@ -8,7 +8,7 @@ img{max-width:100%;}
 #panel .logout{position:relative; padding:20px; color:#fff; font-size:15px; text-align:right; cursor:pointer; background:#555;}
 
 #panel .section{position:relative; height:calc(100% - 60px);}
-#panel .modules{position:relative; width:calc(100% - 245px); height:calc(100% - 40px); padding:20px; overflow:hidden; overflow-y:auto; vertical-align:top; display:inline-block;}
+#panel .modules{position:relative; width:calc(100% - 210px); height:calc(100% - 5px); padding:20px; overflow:hidden; overflow-y:auto; vertical-align:top; display:inline-block;}
 #panel .modules .module_title{margin:20px 0;  font-size:30px;  text-align:center;}
 #panel .module_data{}
 #panel .module_data .item{position: relative; padding: 10px 0;}
@@ -36,15 +36,28 @@ form input[type="submit"]{width:100%; color:#FFF; background:#59c9a8;}
 .options{position:relative; margin:5px; padding:10px;  font-size:12px;  border:1px solid #eee;}
 .options .button{padding:5px 10px;  border-radius:5px; cursor:pointer;  box-shadow:0 0 5px #CCC;  background:#EEE;  display:inline-block;}
 
-table{position:relative; border-radius:5px; background:#FFF;}
-table thead{color:#FFF; background:#555;}
-table thead th{padding:15px !important;}
-table .title{text-align:left; min-width: 250px;}
-table .number{text-align:right;}
-table th,
-table td{font-size:12px; padding:5px; border:1px solid #555;}
-table .noshow,
-table .noshow_select,
-table .noshow_check{ display: none;}
-table tfoot{ font-weight: bold;}
+.tables table{position:relative; border-radius:5px; background:#FFF;}
+.tables table thead{color:#FFF; background:#555;}
+.tables table thead th{padding:15px !important;}
+.tables table .title{text-align:left; min-width: 250px;}
+.tables table .number{text-align:right;}
+.tables table th,
+.tables table td{font-size:12px; padding:5px; border:1px solid #555;}
+.tables table .noshow,
+.tables table .noshow_select,
+.tables table .noshow_check{ display: none;}
+.tables table tfoot{ font-weight: bold;}
 
+table.dataTable th, .dataTables_length *, .dataTables_filter * { font-size: 12px !important; }
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td { font-size: 12px !important; }
+
+.dataTables_info, .pagination * { font-size: 12px !important; }
+.container_listados { padding: 0px; }
+.table th, .table td { padding: 8px; }
+div.dataTables_wrapper div.dataTables_paginate ul.pagination { margin: 10px 0 0 !important; }
+.table th { white-space: nowrap; }
+.table td { text-align: left; white-space: nowrap; }
+
+.table-bordered td {
+    
+}

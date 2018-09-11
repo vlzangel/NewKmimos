@@ -229,6 +229,25 @@
 			</div>";
 	    }
 
+
+		if( $_SESSION["wlabel"] == "petco" ){
+			$HTML .= '
+				<script type="text/javascript">
+				    window._adftrack.push({
+				        pm: 1453019,
+				        divider: encodeURIComponent("|"),
+				        pagename: encodeURIComponent("MX_Kmimos_TYP_180907")
+				    });
+				</script>
+				<noscript>
+				    <p style="margin:0;padding:0;border:0;">
+				        <img src="https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_TYP_180907&ADFdivider=|" width="1" height="1" alt="" />
+				    </p>
+				</noscript>
+			';
+		}
+
+
 		$HTML .= '
 	 		<div class="km-content km-step-end" style="max-width: 840px;">
 				<div style="padding: 0px 10px 20px; background: #FFF;">
