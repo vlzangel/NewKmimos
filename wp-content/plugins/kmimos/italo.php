@@ -10,8 +10,8 @@
 	    		'id' => 'descuento_tipo', 
 	    		'label' => __( 'Descuento aplicado a', 'woocommerce' ), 
 	    		'options' => [
-	    			'total a kmimos' => "Descuento total a Kmimos",
-	    			'total a cuidador' => "Descuento total a cuidador",
+	    			'kmimos' => "Descuento total a Kmimos",
+	    			'cuidador' => "Descuento total a cuidador",
 	    			'compartido' => "Descuento compartido",
 	    		]
 	    	)
@@ -22,7 +22,13 @@
 	    		'label' => __( 'Descuento a Kmimos', 'woocommerce' ), 
 	    		'description' => sprintf( __( 'Valores comprendidos entre 0 a 100', 'woocommerce' ) ), 
 	    		'wrapper_class' => "hidden",
+	    		'class' => 'limite',
 	    		'data_type' => 'decimal',
+	    		'type' => 'number',
+	    		'custom_attributes' => [
+	    			'min' => 0,
+	    			'max' => 100
+	    		]
 	    	) 
 	    );
 	    woocommerce_wp_text_input( 
@@ -31,7 +37,13 @@
 	    		'label' => __( 'Descuento a Cuidador', 'woocommerce' ), 
 	    		'description' => sprintf( __( 'Valores comprendidos entre 0 a 100', 'woocommerce' ) ), 
 	    		'wrapper_class' => "hidden",
+	    		'class' => 'limite',
 	    		'data_type' => 'decimal',
+	    		'type' => 'number',
+	    		'custom_attributes' => [
+	    			'min' => 0,
+	    			'max' => 100
+	    		]
 	    	) 
 	    );
 	}
