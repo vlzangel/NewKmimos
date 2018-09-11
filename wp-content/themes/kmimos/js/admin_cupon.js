@@ -25,7 +25,7 @@ jQuery(document).ready(function(){
 	 		if( e.key >= 0 && e.key <= 9 ){
 	 			var val = parseFloat(jQuery(this).val()+e.key);
 				console.log(val);
-				if( val < 0 && val > 100 ){
+				if( val < 0 || val > 100 ){
 					console.log('poas3');
 					return false;
 				}
