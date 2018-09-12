@@ -106,6 +106,10 @@
                         "sortDescending":   "Ordenación descendente"
                     }
                 },
+                dom: '<"top"l>Bfrtip',
+                buttons: [
+                    'csv', 'excel'
+                ],
                 "scrollX": true,
                 "ajax": {
                     "url": "<?= get_home_url(); ?>/wp-content/plugins/kmimos/wlabel/backend/content/ajax/primera_vez_data.php",
