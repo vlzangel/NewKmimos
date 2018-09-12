@@ -27,6 +27,6 @@ fwrite($handle,$text);
 fclose($handle);
 
 $return['message']='Exportado';//.$text
-$return['file']='<a class="file" href="'.$file_url.'">Ver CSV</a>';
+$return['file']='<a class="file" href="'.$file_url.'">Ver Excel</a>';
 echo json_encode($return);
 ?>
