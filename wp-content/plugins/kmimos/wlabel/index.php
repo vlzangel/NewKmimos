@@ -16,7 +16,19 @@
 
         <script src='<?php echo getTema(); ?>/admin/recursos/js/jquery.dataTables.min.js'></script>
         <script src='<?php echo getTema(); ?>/admin/recursos/js/dataTables.bootstrap4.min.js'></script>
+<!--
         <script src='<?php echo getTema(); ?>/admin/recursos/js/dataTables.buttons.min.js'></script>
+ --> 
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
+
+
 
         <link rel='stylesheet' type='text/css' href='<?php echo getTema(); ?>/admin/recursos/css/bootstrap.css'>
         <link rel='stylesheet' type='text/css' href='<?php echo getTema(); ?>/admin/recursos/css/dataTables.bootstrap4.min.css'>
@@ -24,6 +36,17 @@
 
         <script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__); ?>includes/js/script.js?v=<?php echo time(); ?>"></script>
         <link media="all" type="text/css" rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>includes/css/style.css"/>
+
+
+
+
+
+<!-- 
+
+wp_enqueue_script( 'kmimos_script14', get_home_url()."/panel/assets/js/custom.js",
+wp_enqueue_script( 'kmimos_script15', get_home_url()."/panel/assets/js/script.js",
+
+ -->
     </head>
     <body>
 

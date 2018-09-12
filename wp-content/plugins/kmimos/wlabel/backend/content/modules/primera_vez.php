@@ -228,6 +228,10 @@
                     "next":             "Siguiente",
                     "previous":         "Anterior"
                 },
+                dom: '<"top"l>Bfrtip',
+                buttons: [
+                    'csv', 'excel'
+                ],
                 "aria": {
                     "sortAscending":    "Ordenación ascendente",
                     "sortDescending":   "Ordenación descendente"
