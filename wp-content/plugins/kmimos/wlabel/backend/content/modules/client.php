@@ -137,120 +137,6 @@
                     $day_last=strtotime(date('m/d/Y',time()));
                     $day_more=(24*60*60);
 
-                    //CANTIDAD DE USUARIOS REGISTRADOS WL + KMIMOS
-                    echo '<tr>';
-                        echo '<th class="title">Usuarios totales reservando (White Label + Kmimos)</th>';
-
-                        $amount_day=0;
-                        $amount_month=0;
-                        $amount_year=0;
-                        $amount_total=0;
-
-                        for($day = $day_init; $day <= $day_last; $day+=$day_more){
-
-                            foreach($_reservas as $reserva){
-                                $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
-                                $hoy = strtotime(date('m/d/Y', $day));
-
-                                if( $fecha == $hoy ){
-                                    $amount_user = 1;
-                                    $amount_day += $amount_user;
-                                    $amount_month += $amount_user;
-                                    $amount_year += $amount_user;
-                                    $amount_total += $amount_user;
-                                }
-                            }
-
-                            echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                            $amount_day=0;
-                            if(date('t',$day)==date('d',$day) || $day_last==$day){
-                                echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                                $amount_month=0;
-                                if(date('m',$day)=='12' || $day_last==$day){
-                                    echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                    $amount_year=0;
-                                }
-                            }
-                        }
-                        echo '<th class="total" >'.$amount_total.'</th>';
-                    echo '</tr>';
-
-                    //CANTIDAD DE USUARIOS REGISTRADOS WL + KMIMOS
-                    echo '<tr>';
-                        echo '<th class="title">Usuarios totales registrados (White Label + Kmimos)</th>';
-
-                        $amount_day=0;
-                        $amount_month=0;
-                        $amount_year=0;
-                        $amount_total=0;
-
-                        for($day = $day_init; $day <= $day_last; $day+=$day_more){
-
-                            foreach($users as $user){
-                                $fecha = strtotime( date('m/d/Y', strtotime($user->date) ) );
-                                $hoy = strtotime(date('m/d/Y', $day));
-
-                                if( $fecha == $hoy ){
-                                    $amount_user = 1;
-                                    $amount_day += $amount_user;
-                                    $amount_month += $amount_user;
-                                    $amount_year += $amount_user;
-                                    $amount_total += $amount_user;
-                                }
-                            }
-
-                            echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                            $amount_day=0;
-                            if(date('t',$day)==date('d',$day) || $day_last==$day){
-                                echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                                $amount_month=0;
-                                if(date('m',$day)=='12' || $day_last==$day){
-                                    echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                    $amount_year=0;
-                                }
-                            }
-                        }
-                        echo '<th class="total" >'.$amount_total.'</th>';
-                    echo '</tr>';
-
-                    //CANTIDAD DE USUARIOS REGISTRADOS REFERIDOS WLABEL
-                    echo '<tr>';
-                        echo '<th class="title">Total de Noches reservadas y confirmadas</th>';
-
-                        $amount_day=0;
-                        $amount_month=0;
-                        $amount_year=0;
-                        $amount_total=0;
-
-                        for($day = $day_init; $day <= $day_last; $day+=$day_more){
-
-                            
-                            foreach($reservas as $reserva){
-                                $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
-                                $hoy = strtotime(date('m/d/Y', $day));
-
-                                if( $fecha == $hoy ){
-
-                                    $amount_day += $reserva->noches;
-                                    $amount_month += $reserva->noches;
-                                    $amount_year += $reserva->noches;
-                                    $amount_total += $reserva->noches;
-                                }
-                            }
-
-                            echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                            $amount_day=0;
-                            if(date('t',$day)==date('d',$day) || $day_last==$day){
-                                echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                                $amount_month=0;
-                                if(date('m',$day)=='12' || $day_last==$day){
-                                    echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                    $amount_year=0;
-                                }
-                            }
-                        }
-                        echo '<th class="total" >'.$total_noches.'</th>';
-                    echo '</tr>';
 
 
                     //TOTAL DE LEADS
@@ -289,6 +175,124 @@
                             }
                         }
                         echo '<th class="total" >'.$amount_total.'</th>';
+                    echo '</tr>';
+
+
+                    //CANTIDAD DE USUARIOS REGISTRADOS WL + KMIMOS
+                    echo '<tr>';
+                        echo '<th class="title">Usuarios Totales Registrados (White Label + Kmimos)</th>';
+
+                        $amount_day=0;
+                        $amount_month=0;
+                        $amount_year=0;
+                        $amount_total=0;
+
+                        for($day = $day_init; $day <= $day_last; $day+=$day_more){
+
+                            foreach($users as $user){
+                                $fecha = strtotime( date('m/d/Y', strtotime($user->date) ) );
+                                $hoy = strtotime(date('m/d/Y', $day));
+
+                                if( $fecha == $hoy ){
+                                    $amount_user = 1;
+                                    $amount_day += $amount_user;
+                                    $amount_month += $amount_user;
+                                    $amount_year += $amount_user;
+                                    $amount_total += $amount_user;
+                                }
+                            }
+
+                            echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                            $amount_day=0;
+                            if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                                $amount_month=0;
+                                if(date('m',$day)=='12' || $day_last==$day){
+                                    echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                                    $amount_year=0;
+                                }
+                            }
+                        }
+                        echo '<th class="total" >'.$amount_total.'</th>';
+                    echo '</tr>';
+
+
+                    //CANTIDAD DE USUARIOS REGISTRADOS WL + KMIMOS
+                    echo '<tr>';
+                        echo '<th class="title">Usuarios Totales Reservando (White Label + Kmimos)</th>';
+
+                        $amount_day=0;
+                        $amount_month=0;
+                        $amount_year=0;
+                        $amount_total=0;
+
+                        for($day = $day_init; $day <= $day_last; $day+=$day_more){
+
+                            foreach($_reservas as $reserva){
+                                $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                                $hoy = strtotime(date('m/d/Y', $day));
+
+                                if( $fecha == $hoy ){
+                                    $amount_user = 1;
+                                    $amount_day += $amount_user;
+                                    $amount_month += $amount_user;
+                                    $amount_year += $amount_user;
+                                    $amount_total += $amount_user;
+                                }
+                            }
+
+                            echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                            $amount_day=0;
+                            if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                                $amount_month=0;
+                                if(date('m',$day)=='12' || $day_last==$day){
+                                    echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                                    $amount_year=0;
+                                }
+                            }
+                        }
+                        echo '<th class="total" >'.$amount_total.'</th>';
+                    echo '</tr>';
+
+
+                    //CANTIDAD DE USUARIOS REGISTRADOS REFERIDOS WLABEL
+                    echo '<tr>';
+                        echo '<th class="title">Total de Noches Reservadas y Confirmadas</th>';
+
+                        $amount_day=0;
+                        $amount_month=0;
+                        $amount_year=0;
+                        $amount_total=0;
+
+                        for($day = $day_init; $day <= $day_last; $day+=$day_more){
+
+                            
+                            foreach($reservas as $reserva){
+                                $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                                $hoy = strtotime(date('m/d/Y', $day));
+
+                                if( $fecha == $hoy ){
+
+                                    $amount_day += $reserva->noches;
+                                    $amount_month += $reserva->noches;
+                                    $amount_year += $reserva->noches;
+                                    $amount_total += $reserva->noches;
+                                }
+                            }
+
+                            echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                            $amount_day=0;
+                            if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                                $amount_month=0;
+                                if(date('m',$day)=='12' || $day_last==$day){
+                                    echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                                    $amount_year=0;
+                                }
+                            }
+                        }
+                        echo '<th class="total" >'.$total_noches.'</th>';
                     echo '</tr>'; ?>
                 </tbody>
             </table>
