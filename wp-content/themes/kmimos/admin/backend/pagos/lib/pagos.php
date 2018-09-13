@@ -169,7 +169,7 @@ class Pagos {
 				foreach ($cupones as $cupon) {
 
 
-					$cupon_id = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_name = '".$cupon->name."' ");
+					$cupon_id = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title = '".$cupon->name."' ");
 					$metas =  $this->db->get_results("SELECT meta_key, meta_value FROM wp_postmeta WHERE meta_key like 'descuento%' and post_id = ".$cupon_id );
 
 					$meta_cupon[ $cupon->name ][ 'total' ] = $cupon->monto; 
