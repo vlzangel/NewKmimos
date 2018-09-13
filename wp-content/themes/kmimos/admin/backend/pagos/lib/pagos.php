@@ -74,32 +74,16 @@ class Pagos {
 
 					// Calculo por reserva
 						$monto = $this->calculo_pago_cuidador( 
-							$row->total, 
-							$row->total_pago, 
-							$row->remanente,
-							$meta_pedido['_cart_discount'],
-							$meta_pedido['_wc_deposits_remaining'],
-							$method_payment
+							$row->reserva_id,
+							$row->total
 						);
 
-						$d = (float)$row->total_pago - (float)$meta_pedido['_cart_discount'];
 						$dev2[] = [
-							$row->total, 
-							$d, 
-							$row->remanente,
-							$meta_pedido['_cart_discount'],
-							$meta_pedido['_wc_deposits_remaining'],
-							$method_payment,
+							$row->reserva_id,
+							$row->total,
 							$monto
 						];
-
-						$dev[] = [
-							'row'  => $row,
-							'pago' => $row->total_pago, 
-							'monto'=> $monto,
-							'total'=> $row->total, 
-							'remanente'=> $row->remanente
-						];
+  
  
 						if( $count == 4 ){
 							$separador = '<br><br>';
@@ -164,28 +148,86 @@ class Pagos {
 	    return $fecha;
 	}
 
-	public function calculo_pago_cuidador( $total, $pago, $remanente, $discount=0, $deposits=0, $method='' ){
-		$saldo_cuidador = 0;
+	public function calculo_pago_cuidador( $reserva_id, $total ){
+ 
+		$pago_cuidador = $total / 1.25;
+		$pago_kmimos = $total - $pago_cuidador;
 
-		$pago_cuidador_real = 0;
-		$saldo_cuidador = 0;
-		$pago_kmimos = 0;
-		$dif = $remanente + $pago;
-		$pago_cuidador_real = ($total / 1.25) - ( $discount );
+		// Cupones de la reserva
+			$cupones = $this->db->get_results("SELECT items.order_item_name as name, meta.meta_value as monto  
+            FROM `wp_woocommerce_order_items` as items 
+                INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
+                INNER JOIN wp_posts as p ON p.ID = ".$reserva_id." and p.post_type = 'wc_booking' 
+                WHERE meta.meta_key = 'discount_amount'
+                    and items.`order_id` = p.post_parent
+                    and not items.order_item_name like ('saldo-%')
+            ;");
 
-		if( $deposits > 0 ){
-			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
-		        $saldo_cuidador = $pago_cuidador_real - $remanente;
-			}else{
-				$saldo_cuidador = $deposits;
+		// Datos de los cupones
+			$meta_cupon = [];
+			if( !empty($cupones) ){
+				foreach ($cupones as $cupon) {
+
+
+					$cupon_id = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_name = '".$cupon->name."' ");
+					$metas =  $this->db->get_results("SELECT meta_key, meta_value FROM wp_postmeta WHERE meta_key like 'descuento%' and post_id = ".$cupon_id );
+
+					$meta_cupon[ $cupon->name ][ 'total' ] = $cupon->monto; 
+					if( $cupon->monto > 0 ){
+						if( !empty($metas) ){
+							foreach ($metas as $meta) {
+								$meta_cupon[ $cupon->name ][ $meta->meta_key ] = $meta->meta_value;
+							}
+						}
+ 
+						// tipo de descuento
+						$_cupon = $meta_cupon[ $cupon->name ];
+ 
+						switch ( strtolower($_cupon['descuento_tipo']) ) {
+							case 'kmimos':
+								if( $pago_kmimos < $_cupon['total'] ){
+									$diferencia = $_cupon['total'] - $pago_kmimos;
+									$pago_cuidador -= $diferencia;
+								}else{
+									$pago_kmimos -= $_cupon['total'];
+								}
+								break;
+							case 'cuidador':
+								if( $pago_cuidador < $_cupon['total'] ){
+									$pago_cuidador = 0;
+								}else{
+									$pago_cuidador -= $_cupon['total'];
+								}
+								break;
+							
+							case 'compartido':
+								// Calculo de descuentos
+								$descuento_kmimos = ( $_cupon['descuento_kmimos'] * $_cupon['total'] ) / 100;
+								$descuento_cuidador = ( $_cupon['descuento_cuidador'] * $_cupon['total'] ) / 100;
+								if( $pago_cuidador <= $descuento_cuidador ){
+									$pago_cuidador = 0;
+								}else{
+									// validar si el monto de kmimos es superior a la comision
+									$diferencia = 0;
+									if( $pago_kmimos < $descuento_kmimos ){
+										$diferencia = $descuento_kmimos - $pago_kmimos;
+										$descuento_cuidador += $diferencia;
+										$pago_kmimos = 0;
+									}
+
+									if( $descuento_cuidador >= $pago_cuidador ){
+										$pago_cuidador = 0;
+									}else{
+										$pago_cuidador -= $descuento_cuidador;
+									}
+								}
+								break;
+						}
+					}
+				}
 			}
-		}else{
-			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
-		        $saldo_cuidador = $pago_cuidador_real;  
-		    }
-		}
 
-		return $saldo_cuidador ; 
+		return $pago_cuidador ; 
 	}
 
 	protected function getReservas($desde="", $hasta=""){
@@ -235,7 +277,7 @@ class Pagos {
 				{$filtro_adicional}
 			;";
 
-
+//echo $sql;
 		$reservas = $this->db->get_results($sql);
 		return $reservas;
 	}
