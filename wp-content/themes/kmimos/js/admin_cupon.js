@@ -1,7 +1,7 @@
 jQuery(document).ready(function(){
 
 	jQuery('.limite').on('change', function(e){
-		/*var kmi = parseFloat(jQuery('#descuento_kmimos').val());
+		var kmi = parseFloat(jQuery('#descuento_kmimos').val());
 		var cui = parseFloat(jQuery('#descuento_cuidador').val());
 		var total = 0;
 		if( kmi > 0 ){
@@ -14,7 +14,7 @@ jQuery(document).ready(function(){
 			jQuery('#descuento_kmimos').val( 0 );
 			jQuery('#descuento_cuidador').val( 0 );
 			alert( "El descuento compartido entre Kmimos y el Cuidador no puede ser mayor al 100%" );
-		}*/
+		}
 	});
 	jQuery('.limite').on('keydown', function(e){
 		cancelKeypress = [',','-'];
