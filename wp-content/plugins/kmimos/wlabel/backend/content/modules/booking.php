@@ -171,7 +171,13 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
                 "scrollX": true,
                 "ajax": {
                     "url": "<?= get_home_url(); ?>/wp-content/plugins/kmimos/wlabel/backend/content/ajax/booking_data.php",
-                    "type": "POST"
+                    "type": "POST",
+                    "dataSrc":  function ( json ) {
+                        if(typeof postCargaTable === 'function') {
+                            json = postCargaTable(json);
+                        }
+                        return json.data;
+                    } 
                 }
             });
         } );
@@ -187,11 +193,16 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             HASTA = new Date( jQuery("#hasta").val()+" 00:00:00" ).getTime();
             jQuery.each(json.data, function( index, value ) {
                 var FECHA = new Date( value[4]+" 00:00:00" ).getTime();
-                if( DESDE <= FECHA && FECHA <= HASTA ){
+
+                console.log(FECHA);
+                
+                data.push( value );
+
+                /*if( DESDE <= FECHA && FECHA <= HASTA ){
                     data.push( value );
                 }else{
                     eliminar.push(index);
-                }
+                }*/
             });
             json.data = data;
             return json;
