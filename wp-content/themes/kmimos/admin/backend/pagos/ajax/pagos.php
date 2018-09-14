@@ -97,8 +97,9 @@
                                     FROM wp_posts as p 
                                     INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = 'descuento_tipo' 
                                     WHERE post_title = '".$cupon->name."' AND post_type = 'shop_coupon'");
+                                $cupon_tipo = ( $cupon_tipo != '' ) ? " Tipo: ".$cupon_tipo : '' ;
                                 // Informacion extra
-                                    $info .= " [ ".$cupon->name .": " .$cupon->monto . " Tipo: ".$cupon_tipo." ] ";
+                                    $info .= " [ ".$cupon->name .": " .$cupon->monto . $cupon_tipo . " ] ";
                                 
                                 // determinar tipo de cupones
                                     if( strpos($cupon->name, 'saldo-') !== false ){

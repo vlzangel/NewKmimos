@@ -42,8 +42,8 @@
 
     <div class='col-md-12'>
 
-        <dir class="leyenda text-left">
-            <div class="col-md-7">
+        <dir class="leyenda text-right">
+            <div class="col-md-12">
                 
                 <ul data-action="popover" class="list-inline">
                     <li><strong>LEYENDA DET. RESERVAS: </strong></li>
@@ -62,7 +62,7 @@
                             <aside style="background:#88e093;"></aside> Saldo a favor
                         </a>
                     </li>
-                    <li data-content="<strong>Ambos: </strong> Se aplico a la reserva Saldo a favor y un Cupon de Descuento">
+                    <li data-content="<strong>Ambos: </strong> Se aplico el Saldo a favor y un Cupon de Descuento">
                         <a href="javascript:;">
                             <aside style="background:#e0888c;"></aside> Ambos  
                         </a>
