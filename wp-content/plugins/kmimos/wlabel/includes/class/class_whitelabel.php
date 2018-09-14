@@ -118,8 +118,13 @@ class Class_WhiteLabel{
     }
 
     function Css(){
+
+        $color = "#1dd3c6";
+
         $color=$this->wlabel_data->color;
         $css=$this->wlabel_data->css;
+
+        if( $color == "" ){ $color = "#1dd3c6"; }
 
         $html='<style type="text/css"> /* Angel Veloz*/';
         if($color!='') {

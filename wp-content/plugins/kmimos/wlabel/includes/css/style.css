@@ -1,11 +1,45 @@
 html, body{position:relative; width:100%; height:100%; margin:0; padding:0; font-family: Tahoma, sans-serif; }
 img{max-width:100%;}
 
+/* Login */
+
+	form{position:relative;}
+	form.login{position:relative; max-width:300px; margin:200px auto;}
+	form input{
+		position:relative; width: 100%; margin: 5px 0; padding: 10px; font-size: 15px; border: 0; border-radius: 0px; background: #FFF;
+		outline: none;
+		box-shadow: 0px 0px 0px #CCC;
+		border-bottom: solid 3px #1dd3c6;
+	}
+	form > div {
+		border: solid 1px #DDD;
+		padding: 50px;
+	}
+	form .logo_conteiner {
+		text-align: center;
+	}
+	form .logo_conteiner img {
+		display: inline-block;
+    	margin-bottom: 20px;
+    	height: 60px;
+	}
+
+	form input[type="submit"]{
+	    width: 100%;
+	    color: #FFF;
+	    background: #1dd3c6;
+	    border-bottom: 0px;
+	    margin-top: 30px;
+	    border-radius: 4px;
+	}
+
+/* Fin Login */
+
 #panel{position:relative; width:100%; height:100%; overflow: hidden;}
 #panel .contain{position:relative; width:100%; max-width:900px; height:100%; margin:0 auto;}
-#panel .message{position:relative; padding:10px; color:#fff; font-size:15px; border:1px solid #FFF; border-radius:5px; box-shadow:0 0 5px #CCC; background:#59c9a8; opacity:0; visibility:hidden; display:none; transition:all .5s;}
+#panel .message{position: relative;padding: 5px;color: #5a5a5a;text-align: center;font-size: 15px;border: 1px solid #FFF;border-radius: 5px;box-shadow: 0px 0px 0px #CCC;transition: all .5s;}
 #panel .message.show{opacity:1; visibility:visible;}
-#panel .logout{position:relative; padding:20px; color:#000; font-size:15px; text-align:right; cursor:pointer; background:#555; font-size: 14px;}
+#panel .logout{position:relative; padding:20px; color:#000; font-size:15px; text-align:right; cursor:pointer; font-size: 14px;}
 .logout img { height: 18px; vertical-align: middle; margin-right: 5px; margin-bottom: 3px; }
 
 
@@ -17,12 +51,6 @@ img{max-width:100%;}
 #panel .menu{position:relative; width:200px; height:100%; background:#555; overflow:hidden; overflow-y:auto; vertical-align:top; display:inline-block;}
 #panel .menu .item{position:relative; padding:20px; color:#FFF; cursor:pointer; font-size: 15px;}
 #panel .menu .item.select{background:rgba(255,255,255,0.3);  }
-
-form{position:relative;}
-form.login{position:relative; max-width:300px; margin:200px auto;}
-form input{position:relative; width:calc(100% - 20px); margin:5px 0; padding:10px; font-size:15px; border:0; border-radius:5px; background:#FFF;}
-form input[type="submit"]{width:100%; color:#FFF; background:#59c9a8;}
-
 
 .tables{ position: relative; overflow: auto;}
 .filter{ position: relative; padding: 5px;margin: 5px 0px;}
