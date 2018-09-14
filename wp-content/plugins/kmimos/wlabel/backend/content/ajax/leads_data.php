@@ -3,6 +3,7 @@
 	if(file_exists($kmimos_load)){
 	    include_once($kmimos_load);
 	}
+    date_default_timezone_set('America/Mexico_City');
 
 	global $wpdb;
 	$PAGE = $_GET["page"]+0;
