@@ -192,17 +192,18 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             DESDE = new Date( jQuery("#desde").val()+" 00:00:00" ).getTime();
             HASTA = new Date( jQuery("#hasta").val()+" 00:00:00" ).getTime();
             jQuery.each(json.data, function( index, value ) {
-                var FECHA = new Date( value[4]+" 00:00:00" ).getTime();
+
+                var temp = value[4].split("-");
+
+                var FECHA = new Date( temp[1]+"-"+temp[2]+"-"+temp[0]+" 00:00:00" ).getTime();
 
                 console.log(FECHA);
-                
-                data.push( value );
 
-                /*if( DESDE <= FECHA && FECHA <= HASTA ){
+                if( DESDE <= FECHA && FECHA <= HASTA ){
                     data.push( value );
                 }else{
                     eliminar.push(index);
-                }*/
+                }
             });
             json.data = data;
             return json;
