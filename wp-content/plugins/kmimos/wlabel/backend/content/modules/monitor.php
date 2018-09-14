@@ -53,9 +53,14 @@
                     <tbody> <?php
 
                         //USER
-                        $condicion_referido = "usermeta_2.meta_value = '{$wlabel}'";
+                        $condicion_referido = "( usermeta.meta_value = '{$wlabel}' OR usermeta_2.meta_value = '{$wlabel}' )";
                         if( $wlabel == "petco" ){
-                            $condicion_referido = "( usermeta_2.meta_value = '{$wlabel}' OR usermeta_2.meta_value = 'CC-Petco' )";
+                            $condicion_referido = "
+                            ( 
+                                usermeta.meta_value = '{$wlabel}' OR 
+                                usermeta_2.meta_value = '{$wlabel}' OR 
+                                usermeta_2.meta_value = 'CC-Petco' 
+                            )";
                         }
 
                         $sql = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$wlabel}' AND time >= '2018-09-01 00:00:00' ";
@@ -75,7 +80,7 @@
                                 LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=users.ID AND usermeta.meta_key='_wlabel')
                                 LEFT JOIN wp_usermeta AS usermeta_2 ON (usermeta_2.user_id=users.ID AND usermeta_2.meta_key='user_referred')
                             WHERE
-                                ( usermeta.meta_value = '{$wlabel}' OR {$condicion_referido} ) AND
+                                {$condicion_referido} AND
                                 users.user_registered >= '2018-09-01 00:00:00'
                             ORDER BY
                                 users.ID DESC
@@ -203,15 +208,21 @@
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
 
                                 foreach($users as $user){
-                                    $fecha = strtotime( date('m/d/Y', strtotime($user->date) ) );
-                                    $hoy = strtotime(date('m/d/Y', $day));
+                                    $metas = get_user_meta($user->ID);
+                                    $rol = strrpos($metas["wp_capabilities"][0], "subscriber");
+                                    if( $rol !== false ){
 
-                                    if( $fecha == $hoy ){
-                                        $amount_user = 1;
-                                        $amount_day += $amount_user;
-                                        $amount_month += $amount_user;
-                                        $amount_year += $amount_user;
-                                        $amount_total += $amount_user;
+                                        $fecha = strtotime( date('m/d/Y', strtotime($user->date) ) );
+                                        $hoy = strtotime(date('m/d/Y', $day));
+
+                                        if( $fecha == $hoy ){
+                                            $amount_user = 1;
+                                            $amount_day += $amount_user;
+                                            $amount_month += $amount_user;
+                                            $amount_year += $amount_user;
+                                            $amount_total += $amount_user;
+                                        }
+
                                     }
                                 }
 
