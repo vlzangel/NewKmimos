@@ -94,6 +94,7 @@ class Class_WhiteLabel_User{
     function LogOut_Html(){
         $html='
             <div class="logout" data-logout="'.plugin_dir_url(dirname(dirname(__FILE__))).'backend/user/logout.php" onclick="WhiteLabel_panel_logout(this)">
+                <div class="base_logout"></div>
                 <img src="'.plugin_dir_url(dirname(__FILE__)).'img/salir.svg" /> Salir
             </div>';
         echo $html;
