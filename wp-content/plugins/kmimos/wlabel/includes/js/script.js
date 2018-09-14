@@ -129,8 +129,6 @@ function modules_filter(element){
 
 }
 
-
-
 function modules_filter_trdate(element, type, table){
     table.find('tbody tr.trshow').addClass('noshow');
     var month = jQuery(element).closest('.type').find('select[name="month"]').val();
@@ -143,6 +141,7 @@ function modules_filter_trdate(element, type, table){
     }else if(month !=''){
         table.find('tbody tr.trshow[data-month="'+month+'"]').removeClass('noshow');
     }else{
+
         table.find('tbody tr.trshow').removeClass('noshow');
     }
     modules_table_count(element);

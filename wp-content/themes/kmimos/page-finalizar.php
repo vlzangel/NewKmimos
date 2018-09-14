@@ -108,6 +108,9 @@
 	        </div>
 	    ";
 
+	    $numero_servicios = 1;
+	    $nombre_servicios = $data_reserva["servicio"]["tipo"];
+
 	    $adicionales = "";
 	    if( count($data_reserva["servicio"]["adicionales"]) > 0 ){
 	        foreach ($data_reserva["servicio"]["adicionales"] as $value) {
@@ -117,6 +120,8 @@
 	                    <span>$'.$value[3].'</span>
 	                </div>
 	            ';
+	            $numero_servicios++;
+	            $nombre_servicios .= " - ".$value[0];
 	        }
 	        $adicionales = "
 	            <div class='desglose_box'>
@@ -135,6 +140,8 @@
 	                    <span>$'.$value[2].'</span>
 	                </div>
 	            ';
+	            $numero_servicios++;
+	            $nombre_servicios .= " - ".$value[0];
 	        }
 	        $transporte = "
 	            <div class='desglose_box'>
@@ -236,7 +243,17 @@
 				    window._adftrack.push({
 				        pm: 1453019,
 				        divider: encodeURIComponent("|"),
-				        pagename: encodeURIComponent("MX_Kmimos_TYP_180907")
+				        pagename: encodeURIComponent("MX_Kmimos_TYP_180907"),
+				        order : { 
+				            sales: "'.$data_reserva["servicio"]["desglose"]["total"].'",
+				            orderid: "'.$data_reserva["servicio"]["id_reserva"].'",
+				            sv1: "'.$data_reserva["servicio"]["metodo_pago"].'",
+				            itms: [{ 
+				                productcount: "'.$numero_servicios.'",
+				                productname: "'.$nombre_servicios.'",
+				                step: ""
+				            }]
+				        }
 				    });
 				</script>
 				<noscript>
