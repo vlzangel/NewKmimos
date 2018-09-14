@@ -79,22 +79,50 @@
                     and items.`order_id` = p.post_parent";
                     $cupones = $pagos->db->get_results($cupon_sql);
 
+                    $colores = [
+                        'normal' => '#a6a5a5',
+                        'cupon' => '#8d88e0',
+                        'saldo' => '#88e093',
+                        'ambos' => '#e0888c',
+                    ];
+
+
                     $info = '';
+                    $color = $colores['normal'];
+                    $tipo_cupon='';
                     if( !empty($cupones) ){                    
                         foreach ($cupones as $cupon) {
                             if( $cupon->monto > 0 ){
-                                $cupon_tipo = $pagos->db->get_var("SELECT m.meta_vaue 
+                                $cupon_tipo = $pagos->db->get_var("SELECT m.meta_value 
                                     FROM wp_posts as p 
                                     INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = 'descuento_tipo' 
-                                    WHERE post_name = '".$cupon->name."' AND post_type = 'shop_coupon'");
-                                $info .= " [ ".$cupon->name .": " .$cupon->monto . " Tipo: ".$cupon_tipo." ] ";
+                                    WHERE post_title = '".$cupon->name."' AND post_type = 'shop_coupon'");
+                                // Informacion extra
+                                    $info .= " [ ".$cupon->name .": " .$cupon->monto . " Tipo: ".$cupon_tipo." ] ";
+                                
+                                // determinar tipo de cupones
+                                    if( strpos($cupon->name, 'saldo-') !== false ){
+                                        $tipo_cupon = 'saldo';
+                                    }else if( $tipo_cupon == 'saldo' || $tipo_cupon == 'cupon' || $tipo_cupon == 'ambos' ){
+                                        $tipo_cupon = 'ambos';
+                                    }else{
+                                        $tipo_cupon = 'cupon';
+                                    }
+                                    $color = $colores[ $tipo_cupon ];
                             }
                         }
                     }
 
                     $info = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
 
-                    $detalle .= '<small class="items-span" '.$info.' >'.$item['reserva'].' <span class="badge">$'.number_format($item['monto'], 2, ",", ".").'</span></small>';
+                    $detalle .= '
+                        <small class="items-span" '.$info.' style="color:#fff; background:'.$color.'!important; ">
+                            <strong>'.$item['reserva'].'</strong> 
+                            <span class="badge" style="margin-left: 10px;">
+                                $'.number_format($item['monto'], 2, ",", ".").'
+                            </span>
+                        </small>
+                    ';
 
                     if( $count == 7 ){ 
                         $detalle .= "<br>"; 

@@ -16,6 +16,10 @@
 .list-inline li div a:hover{
 	text-decoration: none;
 }
+.list-inline li aside{
+	color: #fff;
+}
+.list-inline li aside,
 .list-inline li div{
 	padding:10px;
 	border-radius: 10px 0px 10px 0px;
