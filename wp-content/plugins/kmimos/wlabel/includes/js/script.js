@@ -71,6 +71,9 @@ function WhiteLabel_panel_menu(element){
     modules=module;
     var path=jQuery('.section .menu').data('url');
     var url=path+'content/modules/'+module+'.php';
+
+    jQuery("#loading").css("display", "block");
+
     jQuery.get(url, function(data){
         jQuery('.section .modules').html(data);
         jQuery('#panel .menu .item').removeClass('select').css({'background':''});
@@ -84,6 +87,8 @@ function WhiteLabel_panel_menu(element){
 
         modules_filter(jQuery('.filter select'));
         modules_filter(jQuery('.filter input'));
+
+        jQuery("#loading").css("display", "none");
     });
 }
 

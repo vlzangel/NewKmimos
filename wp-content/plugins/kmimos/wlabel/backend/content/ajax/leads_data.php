@@ -27,7 +27,7 @@
             $i,  
             date("Y-m-d", strtotime( $usuario->time ) ),
             $usuario->email,
-            "<div style='background: {$color}; padding: 5px;'>".$conocio."</div>"     
+            "<div style='background: {$color};padding: 5px;color: #FFF;font-weight: 600;'>".$conocio."</div>"     
         ];
         $i++;
 	}
