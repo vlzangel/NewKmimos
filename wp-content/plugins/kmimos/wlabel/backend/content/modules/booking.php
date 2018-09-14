@@ -195,9 +195,9 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
 
                 var temp = value[4].split("-");
 
-                console.log( temp[1]+"-"+temp[2]+"-"+temp[0] );
+                console.log( value[4].replace(/-/g, "/") );
 
-                var FECHA = new Date( temp[1]+"-"+temp[2]+"-"+temp[0] ).getTime();
+                var FECHA = new Date( value[4].replace(/-/g, "/") ).getTime();
 
                 console.log(FECHA);
 
