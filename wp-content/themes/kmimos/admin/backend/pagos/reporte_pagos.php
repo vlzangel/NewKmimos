@@ -43,24 +43,53 @@
     <div class='col-md-12'>
 
         <dir class="leyenda text-right">
-            <ul data-action="popover" class="list-inline">
-                <li><strong>LEYENDA DE ESTATUS: </strong></li>
-                <li data-content="<strong>Por autorizar: </strong> El supervisor debe autorizar la solicitud">
-                    <a href="javascript:;">
-                        <div></div> Por autorizar
-                    </a>
-                </li>
-                <li data-content="<strong>Autorizado: </strong> La solicitud esta autorizada y el pago no fue procesado">
-                    <a href="javascript:;">
-                        <div></div> Autorizado
-                    </a>
-                </li>
-                <!-- li data-content="<strong>Negado: </strong> La solicitud fue negada por los supervisores"><a href="javascript:;"><div></div> Negado</a></li -->
-                <li data-content="<strong>En progreso: </strong> La solicitud esta en proceso de pago por la entidad bancaria"><a href="javascript:;"><div></div> En progreso</a></li>
-                <li data-content="<strong>Cancelado: </strong> La solicitud de pago fue cancelada"><a href="javascript:;"><div></div> Cancelado</a></li>
-                <li data-content="<strong>Completado: </strong> La solicitud de pago fue procesada"><a href="javascript:;"><div></div> Completado</a></li>
-                <li data-content="<strong>Error: </strong> Ocurrio un error al procesar la solicitud de pago"><a href="javascript:;"><div></div> Error</a></li>
-            </ul>
+            <div class="col-md-12">
+                
+                <ul data-action="popover" class="list-inline">
+                    <li><strong>LEYENDA DET. RESERVAS: </strong></li>
+                    <li data-content="<strong>Normal: </strong> No posee descuento">
+                        <a href="javascript:;">
+                            <aside style="background:#a6a5a5;"></aside> Normal
+                        </a>
+                    </li>
+                    <li data-content="<strong>Cupon: </strong> Un cupon fue aplicado">
+                        <a href="javascript:;">
+                            <aside style="background:#8d88e0;"></aside> Cupon 
+                        </a>
+                    </li>
+                    <li data-content="<strong>Saldo a favor: </strong> El Saldo a favor fue aplicado.">
+                        <a href="javascript:;">
+                            <aside style="background:#88e093;"></aside> Saldo a favor
+                        </a>
+                    </li>
+                    <li data-content="<strong>Ambos: </strong> Se aplico el Saldo a favor y un Cupon de Descuento">
+                        <a href="javascript:;">
+                            <aside style="background:#e0888c;"></aside> Ambos  
+                        </a>
+                    </li>
+                </ul>
+                
+                <ul data-action="popover" class="list-inline">
+                    <li><strong>LEYENDA DE ESTATUS: </strong></li>
+                    <li data-content="<strong>Por autorizar: </strong> El supervisor debe autorizar la solicitud">
+                        <a href="javascript:;">
+                            <div></div> Por autorizar
+                        </a>
+                    </li>
+                    <li data-content="<strong>Autorizado: </strong> La solicitud esta autorizada y el pago no fue procesado">
+                        <a href="javascript:;">
+                            <div></div> Autorizado
+                        </a>
+                    </li>
+                    <!-- li data-content="<strong>Negado: </strong> La solicitud fue negada por los supervisores"><a href="javascript:;"><div></div> Negado</a></li -->
+                    <li data-content="<strong>En progreso: </strong> La solicitud esta en proceso de pago por la entidad bancaria"><a href="javascript:;"><div></div> En progreso</a></li>
+                    <li data-content="<strong>Cancelado: </strong> La solicitud de pago fue cancelada"><a href="javascript:;"><div></div> Cancelado</a></li>
+                    <li data-content="<strong>Completado: </strong> La solicitud de pago fue procesada"><a href="javascript:;"><div></div> Completado</a></li>
+                    <li data-content="<strong>Error: </strong> Ocurrio un error al procesar la solicitud de pago"><a href="javascript:;"><div></div> Error</a></li>
+                </ul>
+
+            </div>
+
             <div>
                 <div id="popover-content" class="pull-right text-left alert alert-info">
                     <i style="margin-right:5px;padding:5px 15px 5px 0px;border-right: 1px solid #ccc;" class="fa fa-info-circle" aria-hidden="true"></i> 
