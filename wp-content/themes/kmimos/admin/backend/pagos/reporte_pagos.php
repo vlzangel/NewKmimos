@@ -52,9 +52,9 @@
                             <aside style="background:#a6a5a5;"></aside> Normal
                         </a>
                     </li>
-                    <li data-content="<strong>Cupon: </strong> Un cupon fue aplicado">
+                    <li data-content="<strong>Cupón: </strong> Un Cupón fue aplicado">
                         <a href="javascript:;">
-                            <aside style="background:#8d88e0;"></aside> Cupon 
+                            <aside style="background:#8d88e0;"></aside> Cupón 
                         </a>
                     </li>
                     <li data-content="<strong>Saldo a favor: </strong> El Saldo a favor fue aplicado.">
@@ -62,7 +62,7 @@
                             <aside style="background:#88e093;"></aside> Saldo a favor
                         </a>
                     </li>
-                    <li data-content="<strong>Ambos: </strong> Se aplico el Saldo a favor y un Cupon de Descuento">
+                    <li data-content="<strong>Ambos: </strong> Se aplico el Saldo a favor y un Cupón de Descuento">
                         <a href="javascript:;">
                             <aside style="background:#e0888c;"></aside> Ambos  
                         </a>
