@@ -182,15 +182,15 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             });
         } );
 
-        var DESDE = new Date( "2018-09-01 00:00:00" ).getTime();
-        var HASTA = new Date( "<?= date("Y-m-d"); ?> 00:00:00" ).getTime();
+        var DESDE = new Date( "2018/09/01" ).getTime();
+        var HASTA = new Date( "<?= date("Y/m/d"); ?>" ).getTime();
         var eliminar = [];
         var data = [];
         function postCargaTable(json){
             eliminar = [];
             data = [];
-            DESDE = new Date( jQuery("#desde").val()+" 00:00:00" ).getTime();
-            HASTA = new Date( jQuery("#hasta").val()+" 00:00:00" ).getTime();
+            DESDE = new Date( String(jQuery("#desde").val()).replace(/-/g, "/") ).getTime();
+            HASTA = new Date( String(jQuery("#hasta").val()).replace(/-/g, "/") ).getTime();
             jQuery.each(json.data, function( index, value ) {
 
                 var temp = value[4].split("-");
