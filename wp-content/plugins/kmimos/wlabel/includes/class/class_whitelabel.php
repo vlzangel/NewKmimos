@@ -129,7 +129,6 @@ class Class_WhiteLabel{
         $html='<style type="text/css"> /* Angel Veloz*/';
         if($color!='') {
             $html .= '.wpf-header{background-color:' . $color . ' !important;}';
-            $html .= '#panel .logout{background-color:' . $color . ' !important;}';
             $html .= '.wpf-header .pftopline{background-color:' . $color . ' !important; border-bottom:1px solid #333;}';
             $html .= '.wpf-header #pf-primary-nav .pfnavmenu .pfnavsub-menu li:hover { background-color: ' . $color . ' !important;}';
             $html .= '.wpf-header #pf-topprimary-navmobi ul { background:  ' . $color . ' !important;}';
