@@ -118,12 +118,18 @@ class Class_WhiteLabel{
     }
 
     function Css(){
+
+        $color = "#1dd3c6";
+
         $color=$this->wlabel_data->color;
         $css=$this->wlabel_data->css;
 
-        $html='<style type="text/css">';
+        if( $color == "" ){ $color = "#1dd3c6"; }
+
+        $html='<style type="text/css"> /* Angel Veloz*/';
         if($color!='') {
             $html .= '.wpf-header{background-color:' . $color . ' !important;}';
+            $html .= '#panel .logout{background-color:' . $color . ' !important;}';
             $html .= '.wpf-header .pftopline{background-color:' . $color . ' !important; border-bottom:1px solid #333;}';
             $html .= '.wpf-header #pf-primary-nav .pfnavmenu .pfnavsub-menu li:hover { background-color: ' . $color . ' !important;}';
             $html .= '.wpf-header #pf-topprimary-navmobi ul { background:  ' . $color . ' !important;}';

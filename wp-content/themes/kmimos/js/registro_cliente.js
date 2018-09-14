@@ -754,6 +754,10 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
 		e.preventDefault();
 		jQuery(".popup-registrarte-1").css("display", "none");
 		jQuery(".popup-registrarte-nuevo-correo").css("display", "block");
+
+		if( wlabel == "petco" ){
+			adf.ClickTrack(this,1453019,'MX_Kmimos_Registo_180907',{});
+		}
 	});
 /*FIN POPUP INICIAR SESIÓN*/
 

@@ -112,9 +112,3 @@
     /* Fin Tabla y Filtros de Fechas */
 
 </script>
-
-<style type="text/css">
-    .module_botones { overflow: hidden; padding-bottom: 20px; }
-    .module_botones input, .module_botones td { font-size: 12px; }
-    .module_botones table { float: right; }
-</style>

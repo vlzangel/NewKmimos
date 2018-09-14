@@ -2,7 +2,7 @@
     <div class="type date" data-type="tddate">
         <div class="month line">
             <label>Mes</label>
-            <select name="month">
+            <select name="month" class="form-control">
                 <option value="">Seleccionar ...</option>
                 <?php
                 $month_current=date('m',time());
@@ -24,7 +24,7 @@
 
         <div class="year line">
             <label>Año</label>
-            <select name="year">
+            <select name="year" class="form-control">
                 <option value="">Seleccionar ...</option>
                 <?php
                 $year_date=date('Y',time());

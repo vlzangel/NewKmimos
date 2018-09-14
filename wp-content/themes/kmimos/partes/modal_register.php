@@ -5,7 +5,7 @@ $referidos_options = ""; $pixel_petco = "";
 if( $_SESSION["wlabel"] != "petco" ){
 	$referidos_options = '<option value="">Dónde nos conoció?</option>';
 }else{
-	$pixel_petco = "window.adf&&adf.ClickTrack(this,1453019,\'MX_Kmimos_Registo_180907\',{})";
+	$pixel_petco = "";
 }
 foreach ($referidos as $key => $value) {
 	$selected="";

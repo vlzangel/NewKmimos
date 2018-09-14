@@ -26,7 +26,7 @@ $WLcommission=$_wlabel_user->wlabel_Commission();
 $wlabel = $_SESSION["label"]->wlabel; ?>
 
 <div class="module_title">
-    RESERVAS
+    Reservas
 </div>
 
 <div class="module_botones">
@@ -98,10 +98,6 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
     .modal-body table td { vertical-align: top; }
     .mostrarInfo{ cursor: pointer; text-align: center; font-weight: 600; color: #0f80ca; }
     .mostrarInfo:hover{ color: #52bbff; }
-
-    .module_botones { overflow: hidden; padding-bottom: 20px; }
-    .module_botones input, .module_botones td { font-size: 12px; }
-    .module_botones table { float: right; }
 </style>
 
 <div class="modal fade" id="respModal" tabindex="-1" role="dialog">

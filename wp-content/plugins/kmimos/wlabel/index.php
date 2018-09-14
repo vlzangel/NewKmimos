@@ -3,10 +3,6 @@
 ?><!DOCTYPE html>
 <html>
     <head>
-        <?php
-        //wp_head();
-        //<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>  ?>
-        <!-- <script type="text/javascript" src="<?php echo site_url('/wp-includes/js/jquery/jquery.js'); ?>" type="text/javascript"></script> -->
         <title>PANEL WHITE LABEL</title>
 
         <script src='<?php echo getTema(); ?>/admin/recursos/js/jquery-1.12.4.min.js'></script>
@@ -32,26 +28,16 @@
         <script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__); ?>includes/js/script.js?v=<?php echo time(); ?>"></script>
         <link media="all" type="text/css" rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>includes/css/style.css"/>
 
-
-
-
-
-<!-- 
-
-wp_enqueue_script( 'kmimos_script14', get_home_url()."/panel/assets/js/custom.js",
-wp_enqueue_script( 'kmimos_script15', get_home_url()."/panel/assets/js/script.js",
-
- -->
     </head>
     <body>
 
     <div id="panel">
         <?php
-        if($_wlabel_user->login){
-            include_once('backend/panel.php');
-        }else{
-            include_once('backend/login.php');
-        }
+            if( $_wlabel_user->login ){
+                include_once('backend/panel.php');
+            }else{
+                include_once('backend/login.php');
+            }
         ?>
     </div>
 

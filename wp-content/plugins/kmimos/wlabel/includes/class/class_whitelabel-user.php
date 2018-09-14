@@ -92,9 +92,10 @@ class Class_WhiteLabel_User{
     }
 
     function LogOut_Html(){
-        $html='<div class="logout" data-logout="'.plugin_dir_url(dirname(dirname(__FILE__))).'backend/user/logout.php" onclick="WhiteLabel_panel_logout(this)">';
-        $html.='Salir';
-        $html.='</div>';
+        $html='
+            <div class="logout" data-logout="'.plugin_dir_url(dirname(dirname(__FILE__))).'backend/user/logout.php" onclick="WhiteLabel_panel_logout(this)">
+                <img src="'.plugin_dir_url(dirname(__FILE__)).'img/salir.svg" /> Salir
+            </div>';
         echo $html;
     }
 
@@ -146,7 +147,7 @@ class Class_WhiteLabel_User{
     function wlabel_Export($module='',$title='',$type=''){
         $html='<div class="export" data-module="'.$module.'" data-title="'.$title.'" data-type="'.$type.'" data-urlbase="'.plugin_dir_url(dirname(dirname(__FILE__))).'backend/content/export/" data-file="export.php">';
         $html.='<div class="action" onclick="WhiteLabel_panel_export(this)">EXCEL</div>';
-        $html.='<div class="file"></div>';
+        // $html.='<div class="file"></div>';
         $html.='</div>';
         echo $html;
     }
