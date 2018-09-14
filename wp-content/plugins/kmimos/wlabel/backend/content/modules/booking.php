@@ -171,13 +171,7 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
                 "scrollX": true,
                 "ajax": {
                     "url": "<?= get_home_url(); ?>/wp-content/plugins/kmimos/wlabel/backend/content/ajax/booking_data.php",
-                    "type": "POST",
-                    "dataSrc":  function ( json ) {
-                        if(typeof postCargaTable === 'function') {
-                            json = postCargaTable(json);
-                        }
-                        return json.data;
-                    } 
+                    "type": "POST"
                 }
             });
         } );
