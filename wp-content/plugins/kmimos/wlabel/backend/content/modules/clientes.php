@@ -78,34 +78,14 @@
                     "type": "POST",
                     "dataSrc":  function ( json ) {
                         if(typeof postCargaTable === 'function') {
-                            json = postCargaTable(json);
+                            json = postCargaTable(json, 1);
                         }
                         return json.data;
                     } 
                 }
             });
         } );
-
-        var DESDE = new Date( "2018-09-01 00:00:00" ).getTime();
-        var HASTA = new Date( "<?= date("Y-m-d"); ?> 00:00:00" ).getTime();
-        var eliminar = [];
-        var data = [];
-        function postCargaTable(json){
-            eliminar = [];
-            data = [];
-            DESDE = new Date( jQuery("#desde").val()+" 00:00:00" ).getTime();
-            HASTA = new Date( jQuery("#hasta").val()+" 00:00:00" ).getTime();
-            jQuery.each(json.data, function( index, value ) {
-                var FECHA = new Date( value[1]+" 00:00:00" ).getTime();
-                if( DESDE <= FECHA && FECHA <= HASTA ){
-                    data.push( value );
-                }else{
-                    eliminar.push(index);
-                }
-            });
-            json.data = data;
-            return json;
-        }
+        
         jQuery("#desde").on("change", function(e){ table.ajax.reload(); });
         jQuery("#hasta").on("change", function(e){ table.ajax.reload(); });
 

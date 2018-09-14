@@ -187,7 +187,6 @@ function modules_filter_tdcheck(element, type, table){
                     table.find('td[data-check="year"]').removeClass('noshow_select');
                     table.find('td[data-check="year"]').removeClass('noshow_check');
                     table.find('th[data-check="year"]').removeClass('noshow_check');
-console.log('Paso: '+ mes + ' + ' + count);
                 }else{
                     table.find('th[data-check="'+name+'"]').removeClass('noshow_select');
                 }
@@ -200,7 +199,6 @@ console.log('Paso: '+ mes + ' + ' + count);
                     table.find('td[data-check="year"]').addClass('noshow_select');
                     table.find('td[data-check="year"]').addClass('noshow_check');
                     table.find('th[data-check="year"]').addClass('noshow_check');
-console.log('NO Paso: '+ mes + ' + ' + count);
                 }else{
                     table.find('th[data-check="'+name+'"]').addClass('noshow_select');
                 }
