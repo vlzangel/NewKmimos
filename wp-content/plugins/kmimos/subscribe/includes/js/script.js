@@ -51,7 +51,7 @@ function form_subscribe(element){
                 if (wlabel == "petco") { list = "petco_popup"; }
 
                 evento_google('dejo_el_correo');
-                fbq("track", "traking_code_dejo_el_correo");
+                evento_fbq("track", "traking_code_dejo_el_correo");
 
                 switch( section ){
                     case "landing-volaris":
@@ -72,8 +72,8 @@ function form_subscribe(element){
                 );
                 
                 if( fbq != undefined ){
-                    fbq ('track','CompleteRegistration');
-                    fbq ('track','PopUpHome');
+                    evento_fbq ('track','CompleteRegistration');
+                    evento_fbq ('track','PopUpHome');
                 }
             }
         });

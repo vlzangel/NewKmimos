@@ -865,13 +865,13 @@
 											</div>
 
 											<div class="km-method-paid-options km-medio-paid-options">
+
 												<div class="km-method-paid-option km-tienda km-option-3-lineas active">
 													<div class="km-text-one">
 													PAGO EN TIENDA
 													</div>
 													<div class="km-text-three">
 													DE CONVENIENCIA
-														
 													</div>
 
 												</div>
