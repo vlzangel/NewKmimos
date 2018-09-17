@@ -171,6 +171,7 @@
 	'>
 
 	    <div style='
+	    	width: 550px;
 	        font-size: 17px; 
 	        font-weight: 600; 
 	        letter-spacing: -0.1px; 
@@ -181,7 +182,7 @@
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
-	    <table cellpadding="0" cellspacing="0" style='width: 600px;'>
+	    <table cellpadding="0" cellspacing="0" style='width: 550px;'>
 	    	<tbody style="
 	    		font-family: Verdana;
 			    font-size: 17px;
