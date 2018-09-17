@@ -265,6 +265,19 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 					if( wlabel == "petco" ){
 						window.adf&&adf.ClickTrack(this,1453019,'MX_Kmimos_RegistoTYP_180907',{});
+
+						//registro campaing monitor
+						jQuery.post( 
+		                    "https://www.kmimos.com.mx/campaing/suscribir.php", 
+		                    {
+		                        "email": datos['email'],
+		                        "list": 'petco_registro'
+		                    }, 
+		                    function( data ) {
+		                        console.log( data );
+		                        console.log("Suscripción enviadas");
+		                    }
+		                );
 					}
 					
 				}
