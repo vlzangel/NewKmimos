@@ -9,11 +9,12 @@
         padding: 20px;
     ">
 
-        <table width="100%" style='
+        <table style='
+            width: 520px;
             padding: 0px;
         '>
             <tr>
-                <td align="center" height="160" width="100%" style="
+                <td align="center" height="160" style="
                     background-image: url('[AVATAR_CUIDADOR]'); 
                     background-repeat: no-repeat; 
                     background-position: center; 
