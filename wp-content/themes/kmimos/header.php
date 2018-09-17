@@ -140,6 +140,14 @@
 	        	if( wlabel == "petco" ){
 		        	switch ( evento ) {
 
+						case "boton_nueva_reserva_tarjeta":
+							ga("send", "event", "wlabel", "click", "traking_code_boton_nueva_reserva_tarjeta", "1");
+						break;
+						
+						case "boton_nueva_reserva_tienda":
+							ga("send", "event", "wlabel", "click", "traking_code_boton_nueva_reserva_tienda", "1");
+						break;
+
 						case "paseos":
 							if( !hizo_click["paseos"] ){
 								ga("send", "event", "wlabel", "click", "traking_code_boton_paseos", "1");
@@ -194,6 +202,12 @@
 						break;
 					}
 				}
+	        }
+
+	        function evento_fbq(tipo, evento){
+	        	if( wlabel == "petco" ){ 
+	        		fbq(tipo, evento); 
+	        	}
 	        }
 		</script>
 	';

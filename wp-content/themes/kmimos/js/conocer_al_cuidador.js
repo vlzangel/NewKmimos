@@ -47,7 +47,7 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
                         jQuery('.popup-iniciar-sesion-2').css('display', 'block');
 
                         evento_google("conocer_cuidador");
-                        fbq("track", "traking_code_conocer_cuidador"); 
+                        evento_fbq("track", "traking_code_conocer_cuidador"); 
                     }
                 }
                 jQuery("#btn_enviar_conocer").html('ENVIAR SOLICITUD');

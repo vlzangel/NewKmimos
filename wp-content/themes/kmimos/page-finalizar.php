@@ -41,7 +41,7 @@
 
 
 	    if( strtolower($data_reserva["servicio"]["metodo_pago"]) == "tarjeta" ){
-	    	$pixel = "<script> fbq ('track','Purchase'); </script>";
+	    	$pixel = "<script> evento_fbq ('track','Purchase'); </script>";
 	    }else{
 	    	$pixel = "";
 	    }
@@ -343,20 +343,23 @@
 
 	 	';
 
-	 	if( strrpos($_SERVER["HTTP_REFERER"], "reservar") > 0 && !isset($_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ]) ){
+	 	if( strrpos($_SERVER["HTTP_REFERER"], "reservar") > 0 && 
+	 		!isset($_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ]) &&
+	 		$_SESSION["wlabel"] == "petco"
+	 	){
 	 		
 	 		$HTML .= '
 				<script>
 					if( "'.strtolower($data_reserva["servicio"]["metodo_pago"]).'" == "tienda" ){
 						evento_google("nueva_reserva_tienda");
-						fbq("track", "traking_code_nueva_reserva_tienda");
+						evento_fbq("track", "traking_code_nueva_reserva_tienda_completado");
 					}else{
 						if( "'.strtolower($data_reserva["servicio"]["metodo_pago"]).'" == "tarjeta" ){
 							evento_google("nueva_reserva_tarjeta");
-							fbq("track", "traking_code_nueva_reserva_tarjeta");
+							evento_fbq("track", "traking_code_nueva_reserva_tarjeta_completado");
 						}else{
 							evento_google("nueva_reserva_descuento_saldo");
-							fbq("track", "traking_code_nueva_reserva_descuento_saldo");
+							evento_fbq("track", "traking_code_nueva_reserva_descuento_saldo");
 						}	
 					}		
 				</script>

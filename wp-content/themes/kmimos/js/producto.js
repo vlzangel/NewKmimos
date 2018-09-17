@@ -1096,11 +1096,21 @@ jQuery(document).ready(function() {
 		if ( el.hasClass("km-tarjeta") ) {
 			jQuery("#tipo_pago").val("tarjeta");
 			jQuery("#tipo_pago").change();
+			if( wlabel == 'petco' ){
+				evento_google("boton_nueva_reserva_tarjeta");
+				evento_fbq("track", "traking_code_boton_nueva_reserva_tarjeta");
+				console.log('traking_code_boton_nueva_reserva_tarjeta');
+			}
 		}
 
 		if ( el.hasClass("km-tienda") ) {
 			jQuery("#tipo_pago").val("tienda");
 			jQuery("#tipo_pago").change();
+			if( wlabel == 'petco' ){
+				evento_google("boton_nueva_reserva_tienda");
+				evento_fbq("track", "traking_code_boton_nueva_reserva_tienda");
+				console.log('traking_code_boton_nueva_reserva_tienda');
+			}
 		} 
 		
 		if(typeof calcularDescuento === 'function') {
