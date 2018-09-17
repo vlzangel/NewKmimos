@@ -1,8 +1,8 @@
-<div style='width: 100%;'>
+<div style='width: 600px;'>
 	<img src='[URL_IMGS]/new/nueva/[HEADER]/header.png' style='width: 100%;' >
 </div>
 
-<div style='font-family: Verdana; width: 100%'>
+<div style='font-family: Verdana; width: 600px'>
 	<div style='
         padding: 30px; 
         font-size: 14px; 
@@ -33,6 +33,7 @@
     </div>
 
 	<div style='
+		width: 269px;
 	    font-size: 17px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
@@ -41,7 +42,7 @@
 	    padding: 15px 30px;
 	    text-align: center;
 	    background-color: #e3e3e3;
-	    margin-bottom: 30px;
+	    margin: 0 auto 30px;
 	'>
 	    Tu código de solicitud es: <strong>#[id_solicitud] </strong>
 	</div>
@@ -62,7 +63,7 @@
 	       
 	<div style="padding: 30px; text-align: center;">
 
-		<table width="100%" cellpadding="0" cellspacing="0">
+		<table width="600px" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="80" style="vertical-align: top; text-align: left;">
 					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;'>
@@ -121,7 +122,7 @@
 		    IMPORTANTE - SIGUIENTES PASOS
 		</div>
 
-		<table width="100%" cellpadding="0" cellspacing="0" style="font-family: Verdana; font-size: 17px;">
+		<table width="600px" cellpadding="0" cellspacing="0" style="font-family: Verdana; font-size: 17px;">
 			<tr>
 				<td width="100" style="padding: 15px 0px; vertical-align: middle; text-align: center;">
 					<img src='[URL_IMGS]/icosNews/Icon-Incoming_call_2.png' style='height: 50px; width: 50px;' >
