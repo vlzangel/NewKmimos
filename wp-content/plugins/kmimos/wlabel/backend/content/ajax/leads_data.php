@@ -3,6 +3,7 @@
 	if(file_exists($kmimos_load)){
 	    include_once($kmimos_load);
 	}
+    date_default_timezone_set('America/Mexico_City');
 
 	global $wpdb;
 	$PAGE = $_GET["page"]+0;
@@ -27,7 +28,7 @@
             $i,  
             date("Y-m-d", strtotime( $usuario->time ) ),
             $usuario->email,
-            "<div style='background: {$color}; padding: 5px;'>".$conocio."</div>"     
+            "<div style='background: {$color};padding: 5px;color: #FFF;font-weight: 600;'>".$conocio."</div>"     
         ];
         $i++;
 	}

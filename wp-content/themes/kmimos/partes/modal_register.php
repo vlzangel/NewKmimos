@@ -176,7 +176,7 @@ $HTML .='
 									<option value="">Edad</option>
 									<option value="18-25">18-25 años</option>
 									<option value="25-35">26-35 años</option>
-									<option value="Mayor-46">Mayor 36 años</option>
+									<option value="Mayor a 36">Mayor 36 años</option>
 								</select>
 							</div>
 							<div class="km-datos-mascota hidden">

@@ -71,6 +71,9 @@ function WhiteLabel_panel_menu(element){
     modules=module;
     var path=jQuery('.section .menu').data('url');
     var url=path+'content/modules/'+module+'.php';
+
+    jQuery("#loading").css("display", "block");
+
     jQuery.get(url, function(data){
         jQuery('.section .modules').html(data);
         jQuery('#panel .menu .item').removeClass('select').css({'background':''});
@@ -84,6 +87,8 @@ function WhiteLabel_panel_menu(element){
 
         modules_filter(jQuery('.filter select'));
         modules_filter(jQuery('.filter input'));
+
+        jQuery("#loading").css("display", "none");
     });
 }
 
@@ -182,7 +187,6 @@ function modules_filter_tdcheck(element, type, table){
                     table.find('td[data-check="year"]').removeClass('noshow_select');
                     table.find('td[data-check="year"]').removeClass('noshow_check');
                     table.find('th[data-check="year"]').removeClass('noshow_check');
-console.log('Paso: '+ mes + ' + ' + count);
                 }else{
                     table.find('th[data-check="'+name+'"]').removeClass('noshow_select');
                 }
@@ -195,7 +199,6 @@ console.log('Paso: '+ mes + ' + ' + count);
                     table.find('td[data-check="year"]').addClass('noshow_select');
                     table.find('td[data-check="year"]').addClass('noshow_check');
                     table.find('th[data-check="year"]').addClass('noshow_check');
-console.log('NO Paso: '+ mes + ' + ' + count);
                 }else{
                     table.find('th[data-check="'+name+'"]').addClass('noshow_select');
                 }

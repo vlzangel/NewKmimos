@@ -107,6 +107,12 @@ $users = getUsers($desde, $hasta);
 			  				$usermeta['user_age'] .= " A&ntilde;os";
 			  			}
 
+			  			if( $usermeta['phone'] == "" ){
+			  				if( $usermeta['user_referred'] != "Petco-CPF" ){
+			  					$usermeta['user_referred'] = "CPF";
+			  				}
+			  			}
+
 			  			$link_login = get_home_url()."/?i=".md5($row['ID']);
 
 			  			$name = "{$usermeta['first_name']} {$usermeta['last_name']}";

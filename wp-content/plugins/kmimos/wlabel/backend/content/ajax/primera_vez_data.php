@@ -3,6 +3,7 @@
 	if(file_exists($kmimos_load)){
 	    include_once($kmimos_load);
 	}
+    date_default_timezone_set('America/Mexico_City');
 
 	global $wpdb;
 
@@ -191,6 +192,26 @@
 						$_info[] = "-";
 						$_info[] = "-";
 					}
+				}else{
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
+					$_info[] = "-";
 				}
 
 				$reservas++;

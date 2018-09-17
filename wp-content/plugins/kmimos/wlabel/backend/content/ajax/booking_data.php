@@ -5,6 +5,7 @@ $kmimos_load=dirname(dirname(dirname(dirname(dirname(dirname(dirname(dirname(__F
 if(file_exists($kmimos_load)){
     include_once($kmimos_load);
 }
+    date_default_timezone_set('America/Mexico_City');
 
 include dirname(dirname(dirname(dirname(__DIR__)))).'/dashboard/core/ControllerReservas.php';
 
