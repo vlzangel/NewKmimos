@@ -276,18 +276,15 @@
 	if(!function_exists('get_form_filtrar_ayuda')){
 		function get_form_filtrar_ayuda(){
 			echo '
-			<section class="row km-caja-filtro ayuda-busqueda">
 				<form method="post" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/ayuda/filtrar.php">
-					<div class="input-group km-input-content col-sm-12 col-sm-offset-0 col-md-offset-3">
-							<input type="text" name="nombre" value="" placeholder="BUSCAR TEMAS DE AYUDA" class=" ">
-							<span class="input-group-btn">
-								<button type="submit">
-									<img src="'.getTema().'/images/new/km-buscador.svg" width="18px" alt="Mucho mejor que una pensión para perros &amp;#8211; Cuidadores Certificados &amp;#8211; kmimos.com.mx">
-								</button>
-							</span>
+					<div class="input-group">
+						<span class="input-group-addon ayuda-text-icon "><i class="fa fa-search"></i></span>
+						<input type="text" name="nombre" value="" placeholder="Buscar temas de ayuda" class="form-control ayuda-input">
+						<span class="input-group-btn">
+					    	<button type="submit" class="btn btn-default" type="button">Buscar</button>
+					    </span>
 					</div>
-				</form>
-			</section>';
+				</form>';
 		}
 	}
 
@@ -393,50 +390,42 @@
 				
 				foreach ($seccionessugeridos as $categoria) { 
 
-					 $postsugeridos = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
+					$postsugeridos = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
 						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id." limit 2");
 
-					 $article .= '<h3><b>'.$categoria->name.'</b></h3>';
+					$article .= '<h3 class="title-category">'.$categoria->name.'</h3>';
 
-					
 					foreach ($postsugeridos as $post) { 
 
-					
-					if($post->ID != $ID ){
-						$article .= '
-							<article>
-								<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
-									<h3 style="font-size:14px;">'.$post->post_title.'</h3>
-								</a>
-							</article>
-						';
+						if($post->ID != $ID ){
+							$article .= '
+								<article>
+									<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
+										<h3 class="title-post">'.$post->post_title.'</h3>
+									</a>
+								</article>
+							';
+						}
+
 					}
-				
 
-				}
-
-						$cantpost = $wpdb->get_results("select count(*) cantidadpost from wp_term_relationships tr 
-							inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id);
-						foreach ($cantpost as $cant) { 
+					$cantpost = $wpdb->get_results("select count(*) cantidadpost from wp_term_relationships tr 
+						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id);
+					foreach ($cantpost as $cant) { 
 						$numeropost=$cant->cantidadpost;
-						}
+					}
 
-						if($numeropost>2){
-						$article .= '<a style="text-decoration:none" href="'.get_home_url().'/ayuda-ver-mas?categoria='.$categoria->term_id.'"><h3 style="color: #FCFAFA;"><b>Ver más</b></h3></a>';
-						}
+/*					if($numeropost>2){
+						$article .= '<a style="text-decoration:none" href="'.get_home_url().'/ayuda-ver-mas?categoria='.$categoria->term_id.'"><p">Ver más</p></a>';
+					}*/
 					
 				}
 				
 				if( $article != '' ){
 					$HTML = '
-					<section class="temas-sugeridos">
-						<span class="title">Temas sugeridos</span>
-						<div class="sugeridos-content text-left">
-							<div class="container">
-							'.$article.'
-							</div>
-						</div>
-					</section>
+					<div class="sugeridos-content text-left">
+						'.$article.'
+					</div>
 					';
 				}
 			}
@@ -459,12 +448,14 @@ if(!function_exists('get_categoria_pregunta')){
 					 where object_id=".$id_post);
 				$article = '';
 				foreach ($categoriapadre as $post) { 
+/*
 						$article .= '
 							<article>
 									<h3><b>'.$post->name.'</b></h3>
-								
 							</article>
 						';
+*/
+						$article = $post->name;
 					}
 
 				$HTML = $article;
@@ -491,30 +482,21 @@ if(!function_exists('get_ayuda_relacionados')){
 
 				if( !empty($postsrelacionados) ) { 	
  
-				$article = '';
+					$article = '';
 					foreach ($postsrelacionados as $post) { 
-
-						
-							$article .= '
-								<article>
-									<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
-										<h3>'.$post->post_title.'</h3>
-									</a>
-								</article>
-							';
-						
-
+						$article .= '
+							<article>
+								<a style="text-decoration:none" href="'.get_the_permalink($post->ID).'">
+									<h3 class="title-post">'.$post->post_title.'</h3>
+								</a>
+							</article>
+						';
 					}
 					if( $article != '' ){
 					$HTML = '
-					<section class="temas-sugeridos">
-						<span class="title">Temas Relacionados</span>
-						<div class="sugeridos-content text-left">
-							<div class="container">
+						<aside>
 							'.$article.'
-							</div>
-						</div>
-					</section>
+						</aside>
 					';
 				}
 

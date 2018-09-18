@@ -54,44 +54,45 @@
 	<div class="km-ficha-bg" style="background-image: url(<?php echo getTema().'/images/new/ayuda/kmimos_ayuda.jpg'; ?>)">
 		<div class="overlay"></div>
 	</div>
-	<div class="body body-ayuda container">
-		<div id="ayuda-content" class="main">
-			
-			<section class="row">
-				<h1 class="titulo-principal">¿C&oacute;mo podemos ayudarte?</h1>
+	<div class="body-ayuda">
+
+		<section id="ayuda-content" class="col-xs-12 col-sm-12 col-md-5 col-md-offset-1">
+			<section class="text-left titulo-principal">
+				<h3>¿C&Oacute;MO PODEMOS AYUDARTE?</h3>
 			</section>
 			
 			<!-- Busqueda -->
-			<?php get_form_filtrar_ayuda(); ?>
-			<section class="row">
-			<!-- Ayuda Cliente-Cuidadores -->
-			'<section class="row km-caja-filtro ayuda-busqueda">
-				<div class="col-sm-6">
-					<input type="button" id="ayudaclientes" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Clientes">
-					</div>
-				<div class="col-sm-6">
-					<input type="button" id="ayudacuidador" onClick="cambiarAyuda(this.id);" style="font-size:20px;margin:6px;" class="km-btn-primary" value="Ayuda para Cuidadores">
-					</div>
-					</section>
-			</section>
+			<article id="form-ayuda" class="col-md-12">
+				<?php get_form_filtrar_ayuda(); ?>
+			</article>
 
-			<!-- Presentacion -->
-			<section class="row text-center presentacion" data-group="presentacion">
-					
-				<?php
-					foreach ($destacados as $post) { get_posts( $posts->ID ); ?>
-					<div class="col-sm-6" id="destacados">				
-									<a href="<?php echo get_permalink(); ?>">
-										<img class="img-responsive" width="50%" src="<?php echo get_the_post_thumbnail_url(); ?>">
-										<h2 style="font-size:25px"><?php the_title(); ?></h2>
-									</a>
-	
-						</div>
-				<?php } ?>
-					
-			</section>
-		</div>
+			<!-- Ayuda Cliente-Cuidadores -->
+			<article class="col-md-12">
+				<div class="media" id="ayudaclientes" onClick="cambiarAyuda(this.id);">
+					<div class="media-left" >
+						<img src="<?php echo getTema(); ?>/images/new/ayuda/cliente.png" class="img-responsive">
+					</div>
+					<div class="item-container">
+						<p>¿Necesitas que alguien cuide a tu peludo?</p>
+					</div>
+				</div>
+				<div class="media" id="ayudacuidador" onClick="cambiarAyuda(this.id);">
+					<div class="media-left">
+						<img src="<?php echo getTema(); ?>/images/new/ayuda/cuidador.png" class="img-responsive">
+					</div>
+					<div class="item-container">
+						<p>¿Quieres ser cuidador certificado kmimos?</p>
+					</div>
+				</div>
+			</article>
+			
+		</section>
+		<aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4 col-sm-offset-0 col-md-offset-2">
+			<div class="sidebar-content">			
+				<h3 class=" text-left">Temas sugeridos</h3>
+				<?php get_ayuda_sugeridos($sugerido); ?>
+			</div>
+		</aside>
 	</div>
-<?php get_ayuda_sugeridos($sugerido); ?>
 <?php get_footer(); ?>
 

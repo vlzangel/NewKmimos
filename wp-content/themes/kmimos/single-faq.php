@@ -15,49 +15,48 @@
 	
 ?>
 
-	
-
 	<div class="km-ficha-bg" style="background-image: url(<?php echo getTema().'/images/new/ayuda/kmimos_ayuda.jpg'; ?>)">
 		<div class="overlay"></div>
 	</div>
-	<div class="body body-ayuda container">
-		<div id="ayuda-content" class="main">
-			
-			<section class="row">
-				<h1 class="titulo-principal">¿C&oacute;mo podemos ayudarte?</h1>
-			</section>
-			
+	<div class="body-ayuda">
+
+		<setion id="ayuda-content" class="col-sm-6 col-sm-offset-1">
 			
 			<!-- Busqueda -->
-			<?php get_form_filtrar_ayuda(); ?>
+			<article id="form-ayuda-detalle" class="col-sm-8">
+				<?php get_form_filtrar_ayuda(); ?>
+			</article>
+ 
+ 			<article class="col-sm-12 text-left titulo-secundario">
+				<h3>SERVICIOS KMIMOS</h3>
+			</article>
 
-			<!-- SubTitulos -->
-			<section class="row text-center titulo-servicios">
-				<span>SERVICIOS KMIMOS</span>
-			</section>
-  
- 			 <?php get_categoria_pregunta(get_the_ID()); ?>
-			<!-- Temas -->
-			<section class="row text-left" aria-multiselectable="true">
+			<!-- Ayuda Cliente-Cuidadores -->
+			<article class="col-sm-12">
+				<h3 class="title-category"><?php get_categoria_pregunta(get_the_ID()); ?></h3>
 				<?php if ( have_posts() ){ the_post(); ?>
-					<article class="tema-container">
-						<h3 style="font-size:20px;padding: 10px;" >
-							<?php kmimos_ucfirst(the_title()); ?>
-						</h3>
-						<div class="col-md-12">
-							<div style="text-align:justify;" id="contenido" class="tema-content">
-								<?php the_content(); ?>
-							</div>
-						</div>					
-					</article>
-				<?php } ?>				
-			</section>
-				<a style="text-decoration:none" href="javascript:history.back();"><h3 style="color: #2196F3;"><b>Volver</b></h3></a>
-		</div>
+					<h3 class="title-post">
+						<?php kmimos_ucfirst(the_title()); ?>
+					</h3>
+					<div class="col-md-12 text-justify text-content">	
+						<?php the_content(); ?>
+					</div>					
+				<?php } ?>
+			</article>
+			
+		</setion>
+		<aside id="sidebar" class="col-sm-4 col-sm-offset-1">
+			<div class="sidebar-content">			
+				<h3 class=" text-left">Temas sugeridos</h3>
+				<?php get_ayuda_relacionados(get_the_ID()); ?>
+				<article>
+					<h3 class="title-category">¿No encontraste lo que buscas?</h3>
+					<a href="<?php echo get_home_url() ?>'/contacta-con-nosotros/">
+						<h3 class="title-post contacta-con-nosotros">Contáctanos</h3>
+					</a>
+				</article>
+			</div>
+		</aside>
 	</div>
 
-<?php 
-	get_ayuda_relacionados(get_the_ID()); 
-	get_footer(); 
-?>
-
+<?php get_footer(); ?>

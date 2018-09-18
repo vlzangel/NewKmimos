@@ -18,35 +18,28 @@
 	unset($_SESSION['ayuda']['default']);
 
 ?>
-
-
 	<div class="km-ficha-bg" style="background-image: url(<?php echo getTema().'/images/new/ayuda/kmimos_ayuda.jpg'; ?>)">
 		<div class="overlay"></div>
 	</div>
-	<div class="body body-ayuda container">
-		<div id="ayuda-content" class="main">
-			
-			<section class="row">
-				<h1 class="titulo-principal">¿C&oacute;mo podemos ayudarte?</h1>
-			</section>
-			
+	<div class="body-ayuda">
+
+		<setion id="ayuda-content" class="col-sm-6 col-sm-offset-1">
 			
 			<!-- Busqueda -->
-			<?php get_form_filtrar_ayuda(); ?>
+			<article id="form-ayuda-detalle" class="col-sm-8">
+				<?php get_form_filtrar_ayuda(); ?>
+			</article>
+ 
+ 			<article class="hidden col-sm-12 text-left titulo-secundario">
+				<h3 class="titulo-secundario">SERVICIOS KMIMOS</h3>
+			</article>
 
-			<!-- SubTitulos -->
-			<section class="row text-center titulo-servicios">
-				<span>SERVICIOS KMIMOS</span>
-			</section>
-
-
-			<section class="row text-left">
-
+			<!-- Ayuda Cliente-Cuidadores -->
+			<article class="col-sm-12">
 				<?php
 				/* *************************************** *
 				 * Mostrar todos los temas de la ayuda
-				 * *************************************** */?>
-				<?php 
+				 * *************************************** */
 				if( !isset($_SESSION['ayuda']['filtro']) ){
 				/* *************************************** *
 				 * Resultado para las busquedas
@@ -59,12 +52,7 @@
 							<div>No se encontraron articulos relacionados con la busqueda <span style="font-style: italic;">"<?php echo $_SESSION['ayuda']['terminos']; ?>"</span></div>
 						</div>
 						<?php $_SESSION['ayuda']['filtro'] = get_ayuda_secciones(); ?>
-						<article class="col-xs-12 col-md-12 ayuda-group">
-							<h3>
-								<strong>Temas sugeridos</strong>
-							</h3>
-						</article>
-
+						  
 					<?php }else{ ?>
 						<article class="col-xs-12 col-md-12 ayuda-group">
 							<h3>
@@ -80,7 +68,7 @@
 						if(!empty($post->post_title) && !empty($post->post_content) ){?>
 							<article class="col-xs-12 col-md-12 ayuda-items">
 								<a style="text-decoration:none" href="<?php echo get_the_permalink($post->ID); ?>">
-									 <h3>
+									 <h3 class="title-post">
 										<?php echo kmimos_ucfirst($post->post_title); ?>
 									</h3>
 								</a> 
@@ -100,8 +88,8 @@
 						?>
 							<article class="col-xs-12 col-md-12 ayuda-group">
 
-								<h3 role="button" data-toggle="collapse" href="#seccion<?php echo $seccion->term_id; ?>">
-									<strong><?php echo $seccion->name; ?></strong>
+								<h3 class="title-category" role="button" data-toggle="collapse" href="#seccion<?php echo $seccion->term_id; ?>">
+									<?php echo $seccion->name; ?>
 								</h3>
 								<div class="collapse" id="seccion<?php echo $seccion->term_id; ?>">
 									
@@ -110,9 +98,9 @@
 									
 										foreach ($posts as $post) {
 									?>
-										<article class="col-xs-12 col-md-12 ayuda-items">
+										<article class="ayuda-items">
 											<a style="text-decoration:none" href="<?php echo get_the_permalink($post->ID); ?>">
-												 <h3>
+												 <h3 class="title-post">
 													<?php echo $post->post_title; ?>
 												</h3>
 											</a>
@@ -133,22 +121,26 @@
 				
 
 				<?php } ?>
-
-			</section>
-				<a style="text-decoration:none" href="javascript:history.back();"><h3 style="color: #2196F3;"><b>Volver</b></h3></a>
-
-		</div>
-	</div>
-
-	<section class="temas-sugeridos">
-		<div class="sugeridos-content text-center">
-			<div class="container">
-			¿No encontraste lo que buscabas? <a href="<?php echo get_home_url(); ?>/contacta-con-nosotros/"><b> Cont&aacute;ctanos</b></a>
+			</article>
+			
+			<div class="text-center col-md-12">
+				<a style="text-decoration:none" href="javascript:history.back();">
+					<h3 class="title-post">Volver</h3>
+				</a>
 			</div>
-		</div>
-	</section>
-
-<?php
-	get_footer(); 
-?>
+		</setion>
+		<aside id="sidebar" class="col-sm-4 col-sm-offset-1">
+			<div class="sidebar-content">					
+				<h3 class=" text-left">Temas sugeridos</h3>
+				<?php get_ayuda_sugeridos($sugerido); ?>
+				<article>
+					<h3 class="title-category">¿No encontraste lo que buscas?</h3>
+					<a href="<?php echo get_home_url() ?>'/contacta-con-nosotros/">
+						<h3 class="title-post contacta-con-nosotros">Contáctanos</h3>
+					</a>
+				</article>
+			</div>
+		</aside>
+	</div>
+<?php get_footer(); ?>
 

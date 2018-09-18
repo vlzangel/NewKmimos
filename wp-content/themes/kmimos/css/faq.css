@@ -1,224 +1,127 @@
 .body-ayuda{
-    padding: 20px 40px!important;
-    border-radius: 50px;
-    top: -50px;
     background: #fff;
-}
-#ayuda-content section{
-	padding: 5px 0px;
+    display: flex;
 }
 
- 
-.body-ayuda ul {
-	margin: 0px;
-    padding: 20px 40px!important; 
-    list-style: unset!important; 
+.body-ayuda section{
+	padding: 15px 0px!important;
 }
 
- 
-/* ******************** */
-/* Titulo principal
-/* ******************** */
-.titulo-servicios{
-	margin: 30px 0px;
-}
-.titulo-servicios span{
-    background-color: #7ad2c4;
-    color: #fff;
-    padding: 7px 6%;
-    border-radius: 50px;
-    font-family: 'Poetsen';
-    font-weight: normal;
-    font-size: 20px;
- 
+#ayuda-content{	
+    padding-bottom: 50px;
 }
 
-/* ******************** */
-/* Titulo principal
-/* ******************** */
-.titulo-principal{
-	text-align: center; 
-    font-family: 'Poetsen';
-    margin-top: 10px;
-    margin-bottom: 5px;
-    letter-spacing: 1px;
+.item-container{
+	display: table-cell;
+	vertical-align: middle;
 }
 
-/* ******************** */
-/* Temas Destacados
-/* ******************** */
-.destacar a{
-	font-weight: bold;
-	text-decoration: none;
+#form-ayuda-detalle{
+	margin: 40px 0px 20px;
 }
-.destacar-info{
-	background-color: #7ad2c4; 
-}
-.destacar-success{
-	background-color: #c2d59b; 
+
+.titulo-principal h3{
+	padding-left: 15px;
 }
 
 
-/* ******************** */
-/* Temas 
-/* ******************** */
-#temas h3{
-    font-size: 24px;
-    font-weight: bold;
+.ayuda-text-icon {
+	background-color: transparent!important;
+	border-right: 0px solid transparent!important;
 }
-.ayuda-busqueda{
-	padding-left: 0px; 
-}
-.ayuda-busqueda .km-input-content{
-	padding: 4px; 
-	width: 50%;
-	margin-left: 25%;
-}
-.ayuda-busqueda input{
-    font-size: 14px;
-    padding: 9px;
-    width:100%;
-}
-.tema-container{
-    margin: 5px 0px;
-    padding: 10px 0px;
-    text-align: left;
- 
-}
-.tema-container a.title:hover,
-.tema-container a.title{
-	text-decoration: none;
-	font-size: 18px;
-	font-weight: normal;
- border-bottom: 1px solid #efebeb;
- 
-}
-.tema-container a:hover,
-.tema-container a{
-	text-decoration: none;
- 
-	font-weight: bold;
- 
-	font-size: 18px;
-	 
-}
-.tema-content{
-	padding: 10px;
-	margin-top:5px;
-}
-.transparent{
-	background-color: transparent;
-}
-.fondo{
-	background-color: #f3f3f3;
+.ayuda-input{
+	padding-left: 0px!important;
+	border-left: 0px solid transparent!important;
+	border-right: 0px solid	transparent!important;
 }
 
-
-/* ******************** */
-/* Presentacion
-/* ******************** */
-.presentacion{
-	margin: 80px 0px;
-}
- 
-.presentacion article:hover h2,
-.presentacion article a:hover
-{
-	text-decoration: none!important;
-    color:#7ad2c4;	
+.media{
+	margin-top: 35px!important;
 }
 
-
-#destacados:hover h2,
-#destacados a:hover
-{
-	text-decoration: none!important;
-    color:#7ad2c4;	
+.item-container p{
+	font-family: 'Gotham-Pro-Light',arial,sans-serif!important;
+	font-size: 18px; 
+	font-weight: lighter;
+	margin-left: 20px;
+	line-height: 1.3;
+	text-align: left;
 }
 
-
-.presentacion article{
-	width: 40%;
-	float: left;
-	cursor: pointer;
+#sidebar{
+	padding: 15px 30px 35px 30px;
+	background-color: #e7e7e7;
+	display: flex!important;
+	vertical-align: middle;
 }
-.presentacion > article:nth-child(1){
-	margin-left:10%;
-}
-.presentacion h2{ 
-	font-size: 35px; 
-    color: #000;
-	font-weight: normal!important;
-	margin-top: 10px;
-}
-.presentacion img{
-	margin: 0 auto;
-	width: 40%; 
-}
-
-/* ******************** */
-/* Temas sugeridos
-/* ******************** */
- 
-.temas-sugeridos{
-	padding: 0px!important;
-}
- 
-.temas-sugeridos .title{
-    background-color: #7ad2c4;
-    border-radius: 50px 50px 0px 0px;
-    color: #fff;
-    margin: 0 auto;
-	padding: 10px 7%;
-	font-family: 'Poetsen';
-    font-size: 30px;
-    font-weight: bold;
-}
-.sugeridos-content h3{
-	font-size: 17px;
-}
-.temas-sugeridos .sugeridos-content{ 
-    background-color: #7ad2c4;
-    padding: 10px 0px;
-}
-
-
-.ayuda-group h3{
-	font-size: 20px;
-}
-.ayuda-items h3{
+.title-category{
+	font-family: 'Gotham-Pro-Regular',arial,sans-serif!important;
 	font-size: 16px;
-    font-weight: normal;
+	font-weight: bold;
+}
+.title-post{
+	font-family: 'Gotham-Pro-Light',arial,sans-serif!important;
+	font-size: 16px;
 }
 
-@media All and ( max-width: 768px ){
-	h1{
-		font-size: 17px!important;
+.text-content p{
+	margin-left: 40px!important;
+	line-height: 23px!important;
+	font-size: 16px;
+	font-family: 'Gotham-Pro-Light',arial,sans-serif!important;
+}
+
+.contacta-con-nosotros{
+	color: blue;
+}
+
+@media (max-width: 575.98px) {   }
+
+@media (max-width: 767.98px) { 
+	.body-ayuda{
+		display: inline-block;
 	}
-	.ayuda-busqueda .km-input-content{
-	    padding: 4px;
-	    width: 100%;
-	    margin-left: 0;
+	#sidebar{
+		padding: 2px 15px;
+		background-color: #fff;
+		width: 100%;
 	}
-	.presentacion{
-	    margin: 25px 0px;
+	.sidebar-content > h3{
+		margin-top: 0px; 
+		font-size: 18px;
+		font-weight: bold;
 	}
-	.presentacion article a h2{
-		font-size: 19px!important;
+
+	.item-container{
+		display: inline-block;
 	}
-	.presentacion > article:nth-child(1),
-	.presentacion article {
-	    width: 100%;
-	    float: left;
-	    cursor: pointer;
-        margin-left: 0;
-        margin: 10px 0px;
+	.media-left{
+		padding: 5px 2px 15px 2px!important;
 	}
-	.ayuda-group {
-		padding-right: 0px!important;
-		padding-left: 0px!important; 
+	.media{
+		width: 50%;
+		display: inline-block;
 	}
-	.ayuda-group h3 {
-    	font-size: 16px;
+	.item-container p{
+		text-align: center;
+		font-size: 12px;
+		margin-left: 0px;
+	}
+	.titulo-secundario h3{
+		font-size: 15px;
+		font-weight: bold;
+		text-align: center;
+	}
+	.titulo-principal h3{
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	.text-content p{
+		margin-left: 0px!important;
 	}
 }
+
+@media (max-width: 991.98px) {   }
+
+@media (max-width: 1199.98px) {   }
