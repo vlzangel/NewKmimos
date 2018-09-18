@@ -43,7 +43,7 @@
 		        array(
 		            'taxonomy' => 'seccion',
 		            'field'    => 'slug',
-		            'terms'    => $ayuda
+		            'terms'    => [ 'destacado', 'destacados_cuidadores' ]
 		        )
 		    )
 	    )
