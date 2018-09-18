@@ -44,6 +44,11 @@
 				<?php } ?>
 			</article>
 			
+			<div class="text-center col-md-12">
+				<a style="text-decoration:none" href="javascript:history.back();">
+					<h3 class="title-post">Volver</h3>
+				</a>
+			</div>
 		</setion>
 		<aside id="sidebar" class="col-sm-4 col-sm-offset-1">
 			<div class="sidebar-content">			
