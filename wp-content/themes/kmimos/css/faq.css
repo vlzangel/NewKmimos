@@ -38,6 +38,7 @@
 .media{
 	margin-top: 35px!important;
 	cursor: pointer;
+	border:1px solid #ccc;
 }
 
 .item-container p{
