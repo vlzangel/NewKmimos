@@ -68,6 +68,22 @@
 
 			<!-- Ayuda Cliente-Cuidadores -->
 			<article class="col-md-12">
+
+                <?php
+                    foreach ($destacados as $post) { get_posts( $posts->ID ); ?>
+		                <a href="<?php echo get_permalink(); ?>">
+							<div class="media" id="ayudaclientes" onClick="cambiarAyuda(this.id);">
+								<div class="media-left" >
+									<img src="<?php echo get_the_post_thumbnail_url(); ?>" class="img-responsive">
+								</div>
+								<div class="item-container">
+									<p><?php the_title(); ?></p>
+								</div>
+							</div>
+						</a>
+                <?php } ?>
+
+				<!-- 
 				<div class="media" id="ayudaclientes" onClick="cambiarAyuda(this.id);">
 					<div class="media-left" >
 						<img src="<?php echo getTema(); ?>/images/new/ayuda/cliente.png" class="img-responsive">
@@ -84,6 +100,7 @@
 						<p>¿Quieres ser cuidador certificado kmimos?</p>
 					</div>
 				</div>
+				-->
 			</article>
 			
 		</section>
