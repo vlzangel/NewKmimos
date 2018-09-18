@@ -42,11 +42,22 @@
 
     $salida = "<select class='input' id='salida' name='salida'>";
     for ($i=6; $i < 19; $i++) {
-      	if( $i < 10){ $i = "0$i"; }
-      	$salida .= "<option value='{$i}:00:00' ".selected($cuidador->check_out, $i.':00:00', false).">{$i}:00</option>";
-      	$salida .= "<option value='{$i}:30:00' ".selected($cuidador->check_out, $i.':30:00', false).">{$i}:30</option>";
+        if( $i < 10){ $i = "0$i"; }
+        $salida .= "<option value='{$i}:00:00' ".selected($cuidador->check_out, $i.':00:00', false).">{$i}:00</option>";
+        $salida .= "<option value='{$i}:30:00' ".selected($cuidador->check_out, $i.':30:00', false).">{$i}:30</option>";
     }
-  	$salida .= "</select>";
+    $salida .= "</select>";
+
+    $opciones =  array(
+        "No",
+        "Si"
+    );
+
+    $gatos = "<select class='input' id='gatos' name='gatos'>";
+    foreach ($opciones as $value) {
+      	$gatos .= "<option value='{$value}' ".selected($atributos["gatos"], $value, false).">{$value}</option>";
+    }
+  	$gatos .= "</select>";
 
     if( $atributos['video_youtube'] != '' ){
       	$atributos['video_youtube'] = "https://youtu.be/".$atributos['video_youtube'];
@@ -301,7 +312,14 @@
             </label> 
         </section> 
 
-        <section style="width: 75%;"> 
+        <section>
+            <label for="gatos" class="lbl-text">'.esc_html__('Acepta Gatos','kmimos').':</label>
+            <label class="lbl-ui">
+                '.$gatos.'
+            </label> 
+        </section> 
+
+        <section style="width: 50%;"> 
             <label for="video_youtube" class="lbl-text">'.esc_html__('Video de Youtube (URL)','kmimos').':</label>
             <label class="lbl-ui">
                 <input  type="text" id="video_youtube" name="video_youtube" class="input" value="'.$atributos['video_youtube'].'" />

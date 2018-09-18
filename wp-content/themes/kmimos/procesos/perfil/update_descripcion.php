@@ -44,7 +44,8 @@
 		'emergencia' 	=> $emergencia,
 		'video_youtube' => $video_youtube,
 		'nacimiento'	=> $fecha,
-		'tipo_doc'		=> $tipo_doc
+		'tipo_doc'		=> $tipo_doc,
+		'gatos'		=> $gatos
 	);
 	$atributos = serialize($atributos);
 
