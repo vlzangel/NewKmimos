@@ -54,6 +54,13 @@
 
 	extract($_POST);
 
+    /* Filtros por Gatos */
+
+    	$GATOS_CONDICION = "";
+    	if( in_array("gatos", $mascotas) ){
+    		$GATOS_CONDICION .= " AND atributos LIKE '%gatos\";s:2:\"Si%' "; 
+    	}
+
 	if( $USER_ID != "" ){
 
 		$filtros = array(
@@ -389,6 +396,7 @@
 	    	{$nombre_inner}
 	    WHERE 
 	        activo = '1' and cuidadores.hospedaje_desde >= 1 {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION} {$FILTRO_ESPECIA}
+	    	{$GATOS_CONDICION}
 	    ORDER BY {$orderby}";
 
 /*
@@ -471,7 +479,6 @@
 		echo "<pre>";
 			print_r( $sql );
 			print_r( $_POST );
-			print_r( $cuidadores );
 		echo "</pre>";
 	}else{
        	if( $redireccionar == 1 ) {

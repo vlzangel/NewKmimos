@@ -731,6 +731,15 @@ if(!function_exists('get_preguntas_categoria')){
 	    }
 	}
 
+	if(!function_exists('get_tipo_mascotas')){
+	    function get_tipo_mascotas(){
+	    	return [
+		        'perros'      => ['name'=>'Perros'],
+		        'gatos'      => ['name'=>'Gatos']
+	    	];
+	    }
+	}
+
  	if(!function_exists('italo_menus')){
 	    function italo_menus($menus){
 		 global $current_user;

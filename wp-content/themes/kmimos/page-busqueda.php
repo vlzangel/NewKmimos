@@ -77,6 +77,11 @@
 
 	$busqueda = getBusqueda();
 
+/*	echo "<pre>";
+		print_r( $busqueda );
+		print_r( $_SESSION["sql"] );
+	echo "</pre>";*/
+
 	if( $destacados != "" ){
 		$destacados_str = '
 		<strong class="km-leyenda" style ="color: #000000;font-size: 20px;border-radius: 5px; display: inline-block;padding: 5px 20px 5px 0px;margin-bottom: 10px;">Cuidadores Destacados</strong>
@@ -125,6 +130,29 @@
     }
     if( empty($servicios_adicionales_display) ){
 	    $servicios_adicionales_display = 'SERVICIOS ADICIONALES';
+    }
+
+    $check = '';
+    $option_tipo_mascota = '';
+    $tipos_mascotas = get_tipo_mascotas();
+    $tipo_mascota = '';
+    foreach ($tipos_mascotas as $opt_key => $opt_value) {
+    	$check = (servicios_en_session($opt_key, $busqueda, 'mascotas'))? 'checked' : '' ;
+	    $option_tipo_mascota .= '
+		<li> 
+			<label data-target="checkbox" data-content="'.$opt_value['name'].'" >
+				<input type="checkbox" name="mascotas[]" value="'.$opt_key.'" '.$check.' content="'.$opt_value['name'].'">'.
+				$opt_value['name'].
+			'</label>
+		</li>
+	    ';
+		if( $check != ''){
+			$separador = (!empty($tipo_mascota))? ', ' : '';
+		    $tipo_mascota .= $separador . $opt_value['name'];
+		}
+    }
+    if( empty($tipo_mascota) ){
+	    $tipo_mascota = 'TIPO DE MASCOTA';
     }
 
     $check = '';
@@ -299,6 +327,15 @@
 							FILTRAR BÚSQUEDA
 						</div>
 						<div class="km-cajas-filtro">
+							
+							<div class="form-group">
+						    	<button class="btn km-select-custom-button" type="button" title="TIPO MASCOTA">
+						    		'.$tipo_mascota.'
+						    	</button>
+						    	<ul class="list-unstyled km-select-custom-list">
+							    	'.$option_tipo_mascota.'
+								</li>
+							</div>
 							
 							<div class="form-group">
 						    	<button class="btn km-select-custom-button" type="button" title="TIPO SERVICIO">
