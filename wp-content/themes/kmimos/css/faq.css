@@ -37,6 +37,7 @@
 
 .media{
 	margin-top: 35px!important;
+	cursor: pointer;
 }
 
 .item-container p{
