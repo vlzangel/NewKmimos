@@ -3,8 +3,12 @@
 
 	extract($_POST);
 
-	if( $core == "SI" ){
-		include_once($raiz."/wp-load.php");
+	if( isset($core) ){
+		if( $core == "SI" ){
+			include_once($raiz."/wp-load.php");
+		}else{
+			include_once("../funciones/generales.php");
+		}
 	}else{
 		include_once("../funciones/generales.php");
 	}

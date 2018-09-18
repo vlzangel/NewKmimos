@@ -48,9 +48,12 @@
 					wp_enqueue_style('ver_historial', getTema()."/css/ver_historial.css", array(), '1.0.0');
 				break;
 				case 'mascotas':
-					wp_enqueue_style('ver_mascotas', getTema()."/css/ver_mascotas.css", array(), '1.0.0');
-					wp_enqueue_style('ver_mascotas_responsive', getTema()."/css/responsive/ver_mascotas_responsive.css", array(), '1.0.0');
-					wp_enqueue_script('ver_mascotas', getTema()."/js/ver_mascotas.js", array("jquery", "global_js"), '1.0.0');
+					wp_enqueue_style('ver_mascotas', getTema()."/css/nueva_mascotas.css", array(), '1.0.0');
+					wp_enqueue_style('ver_mascotas_responsive', getTema()."/css/responsive/nueva_mascotas_responsive.css", array(), '1.0.0');
+					wp_enqueue_script('ver_mascotas', getTema()."/js/nueva_mascotas.js", array("jquery", "global_js"), '1.0.0');
+					
+				    wp_enqueue_style('checks', getTema()."/css/checks.css", array(), '1.0.0');
+					wp_enqueue_script('checks', getTema()."/js/checks.js", array("jquery", "global_js"), '1.0.0');
 				break;
 			}
 		break;
@@ -68,6 +71,9 @@
 					wp_enqueue_style('nueva_mascotas_responsive', getTema()."/css/responsive/nueva_mascotas_responsive.css", array(), '1.0.0');
 					wp_enqueue_script('nueva_mascotas', getTema()."/js/nueva_mascotas.js", array("jquery", "global_js"), '1.0.0');
 					$btn_txt = "Crear Mascota";
+					
+				    wp_enqueue_style('checks', getTema()."/css/checks.css", array(), '1.0.0');
+					wp_enqueue_script('checks', getTema()."/js/checks.js", array("jquery", "global_js"), '1.0.0');
 				break;
 			}
 		break;
@@ -85,6 +91,8 @@
 		    wp_enqueue_style('descripcion', getTema()."/css/descripcion.css", array(), '1.0.0');
 			wp_enqueue_style('descripcion_responsive', getTema()."/css/responsive/descripcion_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('descripcion', getTema()."/js/descripcion.js", array("jquery", "global_js"), '1.0.0');
+		    wp_enqueue_style('checks', getTema()."/css/checks.css", array(), '1.0.0');
+			wp_enqueue_script('checks', getTema()."/js/checks.js", array("jquery", "global_js"), '1.0.0');
 		break;
 		case 'servicios':
 		    wp_enqueue_style('servicios', getTema()."/css/servicios.css", array(), '1.0.0');

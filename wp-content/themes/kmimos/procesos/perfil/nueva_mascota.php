@@ -38,14 +38,21 @@
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'aggressive_with_pets', '{$aggresive_pets}'); ";
 	$sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'about_pet', '{$pet_observations}'); ";
 
-	$sql .= "INSERT INTO wp_term_relationships VALUES ({$pet_id},{$pet_type},'0');";
+	$comportamiento_gatos = [];
+	$comportamientos_db = $db->get_results("SELECT * FROM comportamientos_mascotas");
+    foreach ($comportamientos_db as $value) {
+    	$comportamiento_gatos[ $value->slug ] = $_POST[ 'comportamiento_gatos_'.$value->slug ];
+    }
+    
+    $sql .= "INSERT INTO wp_postmeta VALUES (NULL, '{$pet_id}', 'comportamiento_gatos', '".json_encode($comportamiento_gatos)."'); ";
+
+	$sql .= "INSERT INTO wp_term_relationships VALUES ({$pet_id}, {$pet_type}, '0');";
 
 	$sql .= $img_portada;
 
 	$db->query_multiple( utf8_decode($sql) );
 
 	$respuesta = array(
-		"status" => "OK",
-		"sql"	 => $sql_1." - ".$sql
+		"status" => "OK"
 	);
 ?>

@@ -55,6 +55,16 @@
         $razas = $razas_str_gatos;
     }
 
+    $comportamientos_db = $wpdb->get_results("SELECT * FROM comportamientos_mascotas");
+    foreach ($comportamientos_db as $value) {
+        $comportamientos[ $value->slug ] =  $value->nombre;
+    }
+
+    $comportamientos_str = "";
+    foreach ($comportamientos as $key => $value) {
+        $comportamientos_str .= '<div class="vlz_input vlz_pin_check vlz_no_check" style="padding: 8px 39px 8px 8px;"><input type="hidden" name="comportamiento_gatos_'.$key.'" value="0">'.$comportamientos[$key].'</div>';
+    }
+
 	$CONTENIDO .= '
     <input type="hidden" name="accion" value="nueva_mascota" />
     <input type="hidden" name="pet_id" value="'.$pet_id.'" />
@@ -205,6 +215,13 @@
             </label>
         </section>
     </div>
+
+    <section id="otras_opciones" style="padding: 0px 5px 10px;">
+        <label for="pet_observations" class="lbl-text">'.esc_html__('Opciones de comportamiento para gatos','kmimos').':</label>
+        <label class="lbl-ui">
+            '.$comportamientos_str.'
+        </label>
+    </section>
 
     <section style="padding: 0px 5px 10px;">
         <label for="pet_observations" class="lbl-text">'.esc_html__('Observaciones','kmimos').':</label>

@@ -40,6 +40,14 @@
 	kmimos_update_post_meta($pet_id, "about_pet", utf8_decode($pet_observations));
 	kmimos_update_post_meta($pet_id, "pet_type", $pet_type);
 
+	$comportamiento_gatos = [];
+	$comportamientos_db = $db->get_results("SELECT * FROM comportamientos_mascotas");
+    foreach ($comportamientos_db as $value) {
+    	$comportamiento_gatos[ $value->slug ] = $_POST[ 'comportamiento_gatos_'.$value->slug ];
+    }
+    
+    kmimos_update_post_meta($pet_id, 'comportamiento_gatos', json_encode($comportamiento_gatos) );
+
 	$sql  = "UPDATE wp_posts SET post_title = '{$pet_name}' WHERE ID = {$pet_id};";
 	
 	kmimos_update_relationship($pet_id, $pet_type);

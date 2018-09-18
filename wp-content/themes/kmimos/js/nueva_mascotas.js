@@ -1,5 +1,5 @@
 jQuery( document ).ready(function() {
-    jQuery("input[value='Crear Mascota']").on("click", function(e){
+    jQuery("input[type='submit']").on("click", function(e){
                 
         if(jQuery("input[name='pet_name']").val()){
             jQuery("#spanpet_name").addClass('hidden');
@@ -101,10 +101,12 @@ jQuery( document ).ready(function() {
             jQuery("[name='aggresive_humans']").val() != "" &&
             jQuery("[name='aggresive_pets']").val()) {
 
+                var titulo = jQuery("#btn_actualizar").val();
                 postJSON( 
                     "form_perfil",
                     URL_PROCESOS_PERFIL, 
                     function( data ) {
+
                         jQuery("#btn_actualizar").val("Procesando...");
                         jQuery("#btn_actualizar").attr("disabled", true);
                         jQuery(".perfil_cargando").css("display", "inline-block");
@@ -112,45 +114,36 @@ jQuery( document ).ready(function() {
                     function( data ) {
                         jQuery(".vlz_img_portada_valor").val("");
 
-                        jQuery("#form_perfil").closest('form').find("input[type=text], textarea, input[type=date]").val("");
-                        jQuery("#form_perfil").closest('form').find("select option[value='']").prop("selected", true);
+                        if( titulo == 'Crear Mascota' ){
+                            jQuery("#form_perfil").closest('form').find("input[type=text], textarea, input[type=date]").val("");
+                            jQuery("#form_perfil").closest('form').find("select option[value='']").prop("selected", true);
+                        }
 
-                        jQuery('#form_perfil .vlz_img_portada_fondo').css("background-image", "url("+IMG_DEFAULT+")");
-                        jQuery('#form_perfil .vlz_img_portada_normal').css("background-image", "url("+IMG_DEFAULT+")");
-
-                        jQuery("#btn_actualizar").val("Crear Mascota");
+                        jQuery("#btn_actualizar").val( titulo );
                         jQuery("#btn_actualizar").attr("disabled", false);
                         jQuery(".perfil_cargando").css("display", "none");
 
-                         var $mensaje="";
-
-                         console.log(data);
-
-                         var obj = jQuery.parseJSON( '{ "status": "OK" }' );
-                         console.log(obj.status);
-
+                        var $mensaje="";
+                        var obj = jQuery.parseJSON( '{ "status": "OK" }' );
                         if( obj.status == "OK"){             
-
                             $mensaje = "El registro de su mascota fue exitoso";
-
                         }else{
-
-                             $mensaje = "Lo sentimos no se pudo registrar a su mascota ";
+                            $mensaje = "Lo sentimos no se pudo registrar a su mascota ";
                         }
 
                         console.log($mensaje);
 
                         jQuery('#btn_actualizar').before('<br><span class="mensaje">'+$mensaje+'</span><br>');  
-
-                              setTimeout(function() { 
-                             jQuery('.mensaje').remove(); 
-
-                                if( obj.status == "OK"){
-                                    location.href ="../";
+                        setTimeout(function() { 
+                            jQuery('.mensaje').remove(); 
+                            if( obj.status == "OK"){
+                                if( titulo == 'Crear Mascota' ){
+                                    location.href = '../';
+                                }else{
+                                    location.reload();
                                 }
-                          
-
-                        },3000); 
+                            }
+                        },3000);
                         
                     }
                 );
@@ -166,10 +159,12 @@ jQuery( document ).ready(function() {
         if( valor == "2605" ){
             var opciones = jQuery("#razas_perros").html();
             jQuery("#pet_breed").html(opciones);
+            jQuery("#otras_opciones").css("display", "none");
         }
         if( valor == "2608" ){
             var opciones = jQuery("#razas_gatos").html();
             jQuery("#pet_breed").html(opciones);
+            jQuery("#otras_opciones").css("display", "block");
         }
     });
 

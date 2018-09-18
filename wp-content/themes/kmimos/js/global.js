@@ -289,6 +289,9 @@ function close_login_modal(){
 function postJSON(FORM, URL, ANTES, RESPUESTA, TIPO = ""){
 	jQuery("#"+FORM).submit(function( event ) {
 	  	event.preventDefault();
+
+        console.log( "Hola" );
+
         if( validarAll(FORM) ){
             ANTES();
             if( TIPO == "json" ){
@@ -619,7 +622,6 @@ function validarAll(Form){
         if( validar( jQuery( this ).attr("id") ) ){
             submit = false;
         }
-console.log( jQuery( this ).attr("id") +": "+submit );
     });
     if(!submit){
         var primer_error = ""; var z = true;
