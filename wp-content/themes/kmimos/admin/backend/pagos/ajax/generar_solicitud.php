@@ -75,7 +75,7 @@
 			    			'".$pago->total."',
 			    			'".$pago->cantidad."',
 			    			'{$detalle}',
-			    			'por autorizar',
+			    			'por_autorizar',
 			    			'".serialize($autorizaciones)."',
 			    			'".$banco['cuenta']."',
 			    			'".$banco['titular']."',
