@@ -102,18 +102,96 @@
             }
 
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
-
+            
+            $cfdi = false;
             if($penalizar){
                 $comision = $total_reserva-($total_reserva/getComision());
                 $saldo -= $comision;
                 update_post_meta($id_reserva, "penalizado", "YES");
+                $cfdi = factura_penalizacion( $id_cliente, $id_orden, $id_reserva, $comision );
             }
 
             $__saldo = $saldo_persistente+$saldo;
-            $__saldo = ( $__saldo < 0 )? 0 : $__saldo ;
+            $__saldo = ( $__saldo < 0 )? $saldo_persistente : $__saldo ;
 
             update_user_meta($id_cliente, "kmisaldo", $__saldo);
+
+            return $cfdi;
+        }
+    }
+
+
+
+    if( !function_exists('factura_penalizacion') ){
+        function factura_penalizacion( $user_id, $id_orden, $id_reserva , $monto ){
+            global $wpdb;
+            include( dirname(dirname(dirname(dirname(__DIR__))))."/themes/kmimos/lib/enlaceFiscal/CFDI.php" );
             
+            $cfdi = false;
+
+            $factura = $CFDI->db->get_row( "select * from facturas where reserva_id = {$id_reserva}");
+            if( isset($factura->id) && $factura->id > 0 ){
+                return false;
+            }else{
+
+                // Desglose de reserva
+                $data_reserva = kmimos_desglose_reserva_data($id_orden, true);
+
+                if( validar_datos_facturacion( $data_reserva['cliente']['id'] ) ){
+        
+                    // Datos complementarios CFDI
+                        $data_reserva['receptor']['rfc'] = get_user_meta( $user_id, 'billing_rfc', true );
+                        $data_reserva['receptor']['razon_social'] = get_user_meta( $user_id, 'billing_razon_social', true );
+                        $data_reserva['receptor']['uso_cfdi'] = get_user_meta( $user_id, "billing_uso_cfdi", true); 
+                        $data_reserva['receptor']['regimen_fiscal'] = get_user_meta( $user_id, "billing_regimen_fiscal", true); 
+                        $data_reserva['receptor']['calle'] = get_user_meta( $user_id, "billing_calle", true); 
+                        $data_reserva['receptor']['postcode'] = get_user_meta( $user_id, "billing_postcode", true); 
+                        $data_reserva['receptor']['noExterior'] = get_user_meta( $user_id, "billing_noExterior", true); 
+                        $data_reserva['receptor']['noInterior'] = get_user_meta( $user_id, "billing_noInterior", true); 
+                        $data_reserva['receptor']['estado'] = get_user_meta( $user_id, "billing_state", true);
+                        $data_reserva['receptor']['city'] = get_user_meta( $user_id, "billing_city", true);
+                        $data_reserva['receptor']['colonia'] = get_user_meta( $user_id, "billing_colonia", true);
+                        $data_reserva['receptor']['localidad'] = get_user_meta( $user_id, "billing_localidad", true);
+                        $data_reserva['receptor']['estado'] = $CFDI->db->get_var('select name from states where country_id=1 and id = '.$data_reserva['receptor']['estado'], 'name' );
+
+                        $user_id = $data_reserva['cliente']['id'];  
+            
+                    // Quitar servicios de variaciones y adicionales
+                        unset( $data_reserva['servicio']['variaciones'] );
+                        unset( $data_reserva['servicio']['adicionales'] );
+                        unset( $data_reserva['servicio']['transporte'] );
+
+                    // Editar monto de facturacion
+                        $data_reserva['servicio']['desglose']['total'] = $monto;
+                        $data_reserva['servicio']['desglose']['deposit'] = $monto;
+                        $data_reserva['servicio']['desglose']['reembolsar'] = 0;
+                        $data_reserva['servicio']['desglose']['descuento'] = 0;
+
+                    // Agregar partida de penalizacion
+                        $data_reserva['servicio']['penalizado'] = [
+                            '0'=> [ 'total' => $monto ],
+                        ];
+
+                    // Facturar
+                        $AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
+
+                        if( !empty($AckEnlaceFiscal['ack']) ){
+                            $ack = json_decode($AckEnlaceFiscal['ack']);
+
+                            // Datos complementarios
+                            $datos['comentario'] = 'Cobro de comision por penalizacion';
+                            $datos['subtotal'] = $AckEnlaceFiscal['data']['CFDi']['subTotal'];
+                            $datos['impuesto'] = $AckEnlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
+                            $datos['total'] = $AckEnlaceFiscal['data']['CFDi']['total'];
+
+                            $CFDI->guardarCfdi( 'cliente', $data_reserva, $ack );
+
+                            $cfdi = $ack;
+                        }
+                }
+            }
+
+            return $cfdi;
         }
     }
 
