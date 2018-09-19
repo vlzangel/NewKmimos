@@ -102,19 +102,21 @@
             }
 
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
-
+            
+            $cfdi = false;
             if($penalizar){
                 $comision = $total_reserva-($total_reserva/getComision());
                 $saldo -= $comision;
                 update_post_meta($id_reserva, "penalizado", "YES");
-                factura_penalizacion( $id_cliente, $id_orden, $id_reserva, $comision );
+                $cfdi = factura_penalizacion( $id_cliente, $id_orden, $id_reserva, $comision );
             }
 
             $__saldo = $saldo_persistente+$saldo;
             $__saldo = ( $__saldo < 0 )? $saldo_persistente : $__saldo ;
 
             update_user_meta($id_cliente, "kmisaldo", $__saldo);
-            
+
+            return $cfdi;
         }
     }
 
@@ -125,6 +127,8 @@
             global $wpdb;
             include( dirname(dirname(dirname(dirname(__DIR__))))."/themes/kmimos/lib/enlaceFiscal/CFDI.php" );
             
+            $cfdi = false;
+
             $factura = $CFDI->db->get_row( "select * from facturas where reserva_id = {$id_reserva}");
             if( isset($factura->id) && $factura->id > 0 ){
                 return false;
@@ -171,22 +175,23 @@
                     // Facturar
                         $AckEnlaceFiscal = $CFDI->generar_Cfdi_Cliente($data_reserva);
 
-                        $respuesta = [];
                         if( !empty($AckEnlaceFiscal['ack']) ){
                             $ack = json_decode($AckEnlaceFiscal['ack']);
 
                             // Datos complementarios
-                            $datos['comentario'] = 'Penalizado';
+                            $datos['comentario'] = 'Cobro de comision por penalizacion';
                             $datos['subtotal'] = $AckEnlaceFiscal['data']['CFDi']['subTotal'];
                             $datos['impuesto'] = $AckEnlaceFiscal['data']['CFDi']['Impuestos']['Totales']['traslados'];
                             $datos['total'] = $AckEnlaceFiscal['data']['CFDi']['total'];
 
                             $CFDI->guardarCfdi( 'cliente', $data_reserva, $ack );
 
-                            return $AckEnlaceFiscal;
+                            $cfdi = $ack;
                         }
                 }
             }
+
+            return $cfdi;
         }
     }
 
