@@ -47,7 +47,7 @@
             
             // Validar si el cuidador tiene datos bancarios
                 $token = md5(serialize($pago->detalle));
-                $checkbox = "<input type='checkbox' data-type='item_selected' name='item_selected[]' data-token='".$token."' value='".$pago->user_id."'>";
+                $checkbox = "<input type='checkbox' data-type='item_selected' data-total='".$pago->total."' name='item_selected[]' data-token='".$token."' value='".$pago->user_id."'>";
                 if( !empty($cuidador->banco) ){
                     //$botones .= "<button style='padding:5px;'><i class='fa fa-money'></i> Generar Solicitud de pago</button>"; 
                 }else{

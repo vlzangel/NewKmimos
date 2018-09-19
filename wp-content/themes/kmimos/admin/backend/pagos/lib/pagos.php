@@ -32,6 +32,16 @@ class Pagos {
 		return $this->db->get_results($sql);
 	}
 
+	public function getPagoGeneradosTotal( $desde, $hasta ){
+		$where = " WHERE estatus = 'in_progress'";
+		if( !empty($desde) && !empty($hasta) ){
+			$where .= " and fecha_creacion >= '{$desde} 00:00:00' and fecha_creacion <= '{$hasta} 23:59:59' ";
+		}
+		$sql = "SELECT sum(total) as total FROM cuidadores_pagos {$where} order by fecha_creacion asc";
+ 	
+		return $this->db->get_results($sql);
+	}
+
 	public function getPagoCuidador($desde, $hasta){
 		$reservas = $this->getReservas($desde, $hasta);
 
