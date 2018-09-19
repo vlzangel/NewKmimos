@@ -104,10 +104,13 @@
         <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="pagosNuevos-tab" data-toggle="tab" href="nuevo" role="tab" aria-controls="pagosNuevos" aria-selected="true">Nuevos Pagos <span class="badge-total">$ 0</span></a>
+                <a class="nav-link active" id="pagosNuevos-tab" data-toggle="tab" href="nuevo" role="tab" aria-controls="pagosNuevos" aria-selected="true">Pendientes de pago <span class="badge-total">$ 0</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="pagosGenerados-tab" data-toggle="tab" href="generados" role="tab" aria-controls="pagosGenerados" aria-selected="false">Solicitudes Generadas <span class="badge-total">$ 0</span></a>
+                <a class="nav-link" id="pagosGenerados-tab" data-toggle="tab" href="generados" role="tab" aria-controls="pagosGenerados" aria-selected="false">Enviadas a pago <span class="badge-total">$ 0</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pagosCompletado-tab" data-toggle="tab" href="completado" role="tab" aria-controls="pagosCompletado" aria-selected="false">Pago completado </a>
               </li>
             </ul>
 

@@ -22,10 +22,19 @@ class Pagos {
 		$this->db = $db;
 	}
 
-	public function getPagoGenerados( $desde, $hasta ){
-		$where = '';
+	public function getPagoCompletados( $desde, $hasta ){
+		$where = " WHERE estatus = 'completed' ";
 		if( !empty($desde) && !empty($hasta) ){
-			$where = " WHERE fecha_creacion >= '{$desde} 00:00:00' and fecha_creacion <= '{$hasta} 23:59:59' ";
+			$where = " and fecha_creacion >= '{$desde} 00:00:00' and fecha_creacion <= '{$hasta} 23:59:59' ";
+		}
+		$sql = "SELECT * FROM cuidadores_pagos {$where} order by fecha_creacion asc";
+		return $this->db->get_results($sql);
+	}	
+
+	public function getPagoGenerados( $desde, $hasta ){
+		$where = " WHERE estatus <> 'completed' ";
+		if( !empty($desde) && !empty($hasta) ){
+			$where = " and fecha_creacion >= '{$desde} 00:00:00' and fecha_creacion <= '{$hasta} 23:59:59' ";
 		}
 		$sql = "SELECT * FROM cuidadores_pagos {$where} order by fecha_creacion asc";
  	

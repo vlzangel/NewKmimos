@@ -66,6 +66,7 @@ jQuery(document).ready(function() {
 
 	  	_tipo = jQuery(this).attr('href'); 
 
+
 		var id = jQuery(this).attr('id');
 		jQuery('#'+id).addClass('active');
 		jQuery('#'+id+'-tab').addClass('active');
@@ -75,7 +76,7 @@ jQuery(document).ready(function() {
 		jQuery('[name="fin"]').val(fecha.fin);
 		jQuery('#opciones-nuevo').css('display', 'block');
 
-		if( jQuery('#'+id).attr('href') == 'generados' ){
+		if( jQuery('#'+id).attr('href') == 'generados' || jQuery('#'+id).attr('href') == 'completado'){
 			jQuery('#opciones-nuevo').css('display', 'none');
 			jQuery('[name="ini"]').val("YYYY-MM-DD");
 			jQuery('[name="fin"]').val("YYYY-MM-DD");
@@ -126,7 +127,6 @@ function updateTotalTag(){
     jQuery.each( jQuery("input[data-type='item_selected']:checked"), function(i,v){
     	total += parseFloat(jQuery(this).attr('data-total'));
     });
-	console.log(total);
 	jQuery('#pagosNuevos-tab span').html('$ '+total);
 }
 function total_pagos_generados(){
@@ -135,7 +135,6 @@ function total_pagos_generados(){
 		{ "tipo": _tipo, 'desde': jQuery('[name="ini"]').val(), "hasta":jQuery('[name="fin"]').val() },
 		function(data){
 			data = JSON.parse(data);
-			console.log(data);
 			jQuery('#pagosGenerados-tab span').html('$ '+data['total']);
 		}
 	);

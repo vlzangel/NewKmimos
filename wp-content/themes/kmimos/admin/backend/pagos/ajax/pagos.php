@@ -12,12 +12,19 @@
 
     extract( $_POST );
 
-    if( $tipo == 'nuevo' ){
-        $pagos_lists = $pagos->getPagoCuidador( $desde, $hasta );    
-    }else{
-        $pagos_lists = $pagos->getPagoGenerados( $desde, $hasta );
+
+    switch ( strtolower($tipo) ) {
+        case 'nuevo':
+            $pagos_lists = $pagos->getPagoCuidador( $desde, $hasta );    
+            break;
+        case 'generados':
+            $pagos_lists = $pagos->getPagoGenerados( $desde, $hasta );
+            break;
+        case 'completado':
+            $pagos_lists = $pagos->getPagoCompletados( $desde, $hasta );
+            break;
     }
- 
+
     $estatus=[
         "" => "",
         "por_autorizar" => "Por autorizar",   
@@ -55,7 +62,7 @@
                     $checkbox = "<input type='checkbox' class='disabled' data-action='error' title='".$cuidador->nombre." ".$cuidador->apellido." no posee datos bancarios'>";
                 }
 
-            if( $tipo == 'generados' ){
+            if( $tipo == 'generados' || $tipo == 'completado' ){
                 // Detalle
                     $pago->detalle = (!empty($pago->detalle))? unserialize($pago->detalle) : [] ;
 
@@ -66,71 +73,72 @@
             // Agregar salto de linea a detalle
                 $detalle = '';
                 $count= 0;
-                foreach ($pago->detalle as $item) {
-                    $count++;
+                if( $pago->detalle ){
+                    foreach ($pago->detalle as $item) {
+                        $count++;
 
-                    // Cargar cupones 
-                    $cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  
-                    FROM `wp_woocommerce_order_items` as items 
-                    INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
-                    INNER JOIN wp_posts as p ON p.ID = ".$item['reserva']." and p.post_type = 'wc_booking' 
-                    WHERE 
-                    meta.meta_key = 'discount_amount'
-                    and items.`order_id` = p.post_parent";
-                    $cupones = $pagos->db->get_results($cupon_sql);
+                        // Cargar cupones 
+                        $cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  
+                        FROM `wp_woocommerce_order_items` as items 
+                        INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
+                        INNER JOIN wp_posts as p ON p.ID = ".$item['reserva']." and p.post_type = 'wc_booking' 
+                        WHERE 
+                        meta.meta_key = 'discount_amount'
+                        and items.`order_id` = p.post_parent";
+                        $cupones = $pagos->db->get_results($cupon_sql);
 
-                    $colores = [
-                        'normal' => '#a6a5a5',
-                        'cupon' => '#8d88e0',
-                        'saldo' => '#88e093',
-                        'ambos' => '#e0888c',
-                    ];
+                        $colores = [
+                            'normal' => '#a6a5a5',
+                            'cupon' => '#8d88e0',
+                            'saldo' => '#88e093',
+                            'ambos' => '#e0888c',
+                        ];
 
 
-                    $info = '';
-                    $color = $colores['normal'];
-                    $tipo_cupon='';
-                    if( !empty($cupones) ){                    
-                        foreach ($cupones as $cupon) {
-                            if( $cupon->monto > 0 ){
-                                $cupon_tipo = $pagos->db->get_var("SELECT m.meta_value 
-                                    FROM wp_posts as p 
-                                    INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = 'descuento_tipo' 
-                                    WHERE post_title = '".$cupon->name."' AND post_type = 'shop_coupon'");
-                                $cupon_tipo = ( $cupon_tipo != '' ) ? " Tipo: ".$cupon_tipo : '' ;
-                                // Informacion extra
-                                    $info .= " [ ".$cupon->name .": " .$cupon->monto . $cupon_tipo . " ] ";
-                                
-                                // determinar tipo de cupones
-                                    if( strpos($cupon->name, 'saldo-') !== false ){
-                                        $tipo_cupon = 'saldo';
-                                    }else if( $tipo_cupon == 'saldo' || $tipo_cupon == 'cupon' || $tipo_cupon == 'ambos' ){
-                                        $tipo_cupon = 'ambos';
-                                    }else{
-                                        $tipo_cupon = 'cupon';
-                                    }
-                                    $color = $colores[ $tipo_cupon ];
+                        $info = '';
+                        $color = $colores['normal'];
+                        $tipo_cupon='';
+                        if( !empty($cupones) ){                    
+                            foreach ($cupones as $cupon) {
+                                if( $cupon->monto > 0 ){
+                                    $cupon_tipo = $pagos->db->get_var("SELECT m.meta_value 
+                                        FROM wp_posts as p 
+                                        INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = 'descuento_tipo' 
+                                        WHERE post_title = '".$cupon->name."' AND post_type = 'shop_coupon'");
+                                    $cupon_tipo = ( $cupon_tipo != '' ) ? " Tipo: ".$cupon_tipo : '' ;
+                                    // Informacion extra
+                                        $info .= " [ ".$cupon->name .": $ " .$cupon->monto . $cupon_tipo . " ] ";
+                                    
+                                    // determinar tipo de cupones
+                                        if( strpos($cupon->name, 'saldo-') !== false ){
+                                            $tipo_cupon = 'saldo';
+                                        }else if( $tipo_cupon == 'saldo' || $tipo_cupon == 'cupon' || $tipo_cupon == 'ambos' ){
+                                            $tipo_cupon = 'ambos';
+                                        }else{
+                                            $tipo_cupon = 'cupon';
+                                        }
+                                        $color = $colores[ $tipo_cupon ];
+                                }
                             }
                         }
-                    }
 
-                    $info = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
+                        $info = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
 
-                    $detalle .= '
-                        <small class="items-span" '.$info.' style="color:#fff; background:'.$color.'!important; ">
-                            <strong>'.$item['reserva'].'</strong> 
-                            <span class="badge" style="margin-left: 10px;">
-                                $'.number_format($item['monto'], 2, ",", ".").'
-                            </span>
-                        </small>
-                    ';
+                        $detalle .= '
+                            <small class="items-span" '.$info.' style="color:#fff; background:'.$color.'!important; ">
+                                <strong>'.$item['reserva'].'</strong> 
+                                <span class="badge" style="margin-left: 10px;">
+                                    $ '.number_format($item['monto'], 2, ",", ".").'
+                                </span>
+                            </small>
+                        ';
 
-                    if( $count == 7 ){ 
-                        $detalle .= "<br>"; 
-                        $count = 0;
+                        if( $count == 7 ){ 
+                            $detalle .= "<br>"; 
+                            $count = 0;
+                        }
                     }
                 }
-
 
             // Agregar descripcion de los Autorizados
                 $autorizado_por = '';
@@ -143,7 +151,7 @@
                         $color_class = ( $value['accion'] == 'negado' )? 'item-danger' : 'item-success';
                         $autorizado_por .= "<div class='items-span {$color_class}'>".utf8_encode($nombre)." ".utf8_encode($apellido)."<span class='badge'>{$value['accion']}</span></div>";
 
-                        $comentarios = $value['comentario'];
+                        $comentarios .= $value['comentario'].'<br>';
                     }
                 }
 
@@ -164,7 +172,7 @@
                 $detalle,
                 $autorizado_por,
                 $botones,
-                '',
+                $comentarios,
             );
 
         }
