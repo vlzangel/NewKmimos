@@ -182,12 +182,58 @@ class CFDI {
 		// Cargar desglose de Partidas
 			$desglose_partidas = $this->db->get_var( "SELECT * FROM wp_postmeta WHERE meta_key = '_booking_desglose' and post_id = ".$data['servicio']['id_reserva'], 'meta_value' );
 
-			if( !empty($desglose_partidas) ){
+			if( !empty($desglose_partidas) && !isset($data['servicio']['penalizado']) ){
 				$_desglose_partidas = unserialize( utf8_encode($desglose_partidas) );
 		
 				$data['servicio']['variaciones'] = $_desglose_partidas['variaciones'];
 				$data['servicio']['transporte'] = $_desglose_partidas['transporte'];
 				$data['servicio']['adicionales'] = $_desglose_partidas['adicionales'];
+			}
+
+		// Agregar Partida: Penalizacion
+			if( isset($data['servicio']['penalizado']) && !empty($data['servicio']['penalizado']) ){
+				foreach ($data['servicio']['penalizado'] as $item) {
+					$codigo_sat = $this->db->get_var("SELECT value FROM facturas_configuracion WHERE clave ='Cancelacion por penalizacion'" );
+
+						$cantidad = 1;
+
+						// Calcular precio base de la partida
+						$base = $item['total'] / $base_iva; // Costo del servicio sin Impuesto
+
+						$subtotal = $base * $cantidad;
+
+						// Calcular impuestos
+						$impuesto = $subtotal * $tasaCuota;
+						$impuesto = number_format($impuesto, 2, ".", "" );
+
+					// Desglose general de la factura
+					// *************************************
+						$_impuesto += number_format($impuesto, 2, ".", "" );
+						$_subtotal += number_format($subtotal, 2, ".", "" );
+						$_total += $subtotal + $impuesto; 
+
+					// Agregar la partida a la factura
+					// *************************************
+						$partidas[] = [
+						    "cantidad" => $cantidad,
+						    "claveUnidad" => "DAY",
+						    "claveProdServ" => $codigo_sat, //  9011150.0 por definir
+						    "descripcion" => 'Pago de comision por penalizacion',
+						    "valorUnitario" =>(float) number_format($base, 2, '.', ''),
+						    "importe" => (float) number_format( $subtotal, 2, '.', ''),
+							"descuento" => (float) number_format( $descuento, 2, '.', ''),
+						    "Impuestos" => [
+						    	0 => [
+									"tipo" => "traslado",
+									"claveImpuesto" => "IVA",
+									"tipoFactor" => "tasa",
+									"tasaOCuota" => (float) $tasaCuota,
+									"baseImpuesto" => (float) number_format( $subtotal, 2, '.', ''),
+									"importe" => (float) number_format( $impuesto, 2, '.', '')
+							    ]
+						    ]
+						];
+				}
 			}
 
 		// Agregar Partida: Variaciones

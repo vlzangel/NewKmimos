@@ -141,7 +141,7 @@ if( is_petsitters() ){
                 <div>
                     <label for="banco" class="lbl-text">'.esc_html__('Banco','kmimos').':</label>
                     <label class="lbl-ui">
-                        <!-- input type="text" id="banco" name="banco" value="'.$userdata['banco'][0].'" data-valid="requerid" autocomplete="off" / -->
+                        <!-- input type="text" id="banco" name="banco" value="'.$datos_banco['titular'].'" data-valid="requerid" autocomplete="off" / -->
                         <select id="banco" name="banco" data-valid="requerid" >
                             <option value="">SELECCIONE UN BANCO</option>
                             <option values="BBVA BANCOMER">BBVA BANCOMER </option> 
