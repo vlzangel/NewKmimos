@@ -48,10 +48,15 @@ jQuery(document).ready(function() {
 
     jQuery("#select-all").on("click", function(e){
     	if( jQuery("input[data-type='item_selected']:checked").size() > 0 ){
-			$("input[data-type='item_selected']").prop('checked', '' );
+			jQuery("input[data-type='item_selected']").prop('checked', '' );
     	}else{
-			$("input[data-type='item_selected']").prop('checked', 'checked' );
+			jQuery("input[data-type='item_selected']").prop('checked', 'checked' );
     	}
+		updateTotalTag();
+    });
+
+    jQuery(document).on('click', '[data-type="item_selected"]' ,function(e){
+    	updateTotalTag();
     });
 
 	jQuery('.nav-link').on('click', function (e) {
@@ -78,6 +83,7 @@ jQuery(document).ready(function() {
 		}
   		 
 	  	loadTabla( _tipo, _hiddenColumns );
+		updateTotalTag();
 	});
 
 	jQuery('#quitar-filtro').on('click', function(){
@@ -115,6 +121,27 @@ jQuery(document).ready(function() {
 
 });
  
+function updateTotalTag(){
+	var total = 0;
+    jQuery.each( jQuery("input[data-type='item_selected']:checked"), function(i,v){
+    	total += parseFloat(jQuery(this).attr('data-total'));
+    });
+	console.log(total);
+	jQuery('#pagosNuevos-tab span').html('$ '+total);
+}
+function total_pagos_generados(){
+	jQuery.post(
+		TEMA+'/admin/backend/pagos/ajax/total_pagos_procesados.php',
+		{ "tipo": _tipo, 'desde': jQuery('[name="ini"]').val(), "hasta":jQuery('[name="fin"]').val() },
+		function(data){
+			data = JSON.parse(data);
+			console.log(data);
+			jQuery('#pagosGenerados-tab span').html('$ '+data['total']);
+		}
+	);
+}
+ 
+
 function generar_solicitud( users, accion ){
 	jQuery.post(
 		TEMA+'/admin/backend/pagos/ajax/generar_solicitud.php',
@@ -130,7 +157,7 @@ function generar_solicitud( users, accion ){
 		}
 	);
 }
- 
+
 function loadTabla( tipo, hiddenColumns ){
  	 
 	table = jQuery('#example').DataTable();
@@ -184,6 +211,8 @@ function loadTabla( tipo, hiddenColumns ){
             "type": "POST"
         }
 	});
+
+	total_pagos_generados();
 }
 
 function abrir_link(e){

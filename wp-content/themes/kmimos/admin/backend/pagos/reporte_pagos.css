@@ -4,6 +4,21 @@
 	visibility: hidden;
 }
 
+.badge-total{
+	padding: 0px 10px;
+	border-radius: 25px;
+	background: #8c8b8b;
+	color:#fff;
+	font-weight: bold;
+}
+
+[role="tab"] span{
+	display: none;
+}
+[role="tab"].active span{
+	display: inline-block;
+}
+
 #popover-content,
 .leyenda,
 .leyenda ul{
