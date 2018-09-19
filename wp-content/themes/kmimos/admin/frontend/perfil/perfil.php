@@ -1,6 +1,9 @@
 <?php
-    
+    global $wpdb;
+
     $userdata = get_user_meta($user_id);
+    $_banco = $wpdb->get_var("select banco from cuidadores where user_id = ".$user_id);
+    $datos_banco = unserialize($_banco);
 
     $referred = $userdata['user_referred'][0];
 
@@ -203,13 +206,13 @@ if( is_petsitters() ){
                 <section>
                     <label for="titular" class="lbl-text">'.esc_html__('Nombre del titular','kmimos').':</label>
                     <label class="lbl-ui">
-                        <input type="text" id="titular" name="titular" value="'.$userdata['titular'][0].'" data-valid="requerid" autocomplete="off" />
+                        <input type="text" id="titular" name="titular" value="'.$datos_banco['titular'].'" data-valid="requerid" autocomplete="off" />
                     </label>
                 </section>
                 <section>
                     <label for="banco_cuenta" class="lbl-text">'.esc_html__('No. de Cuenta bancaria','kmimos').':</label>
                     <label class="lbl-ui">
-                        <input type="text" id="banco_cuenta" name="banco_cuenta" value="'.$userdata['banco_cuenta'][0].'" data-valid="requerid" autocomplete="off" />
+                        <input type="text" id="banco_cuenta" name="banco_cuenta" value="'.$datos_banco['cuenta'].'" data-valid="requerid" autocomplete="off" />
                     </label>
                 </section>
     ';
