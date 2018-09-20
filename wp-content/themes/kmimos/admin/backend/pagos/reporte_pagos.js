@@ -60,12 +60,10 @@ jQuery(document).ready(function() {
     });
 
 	jQuery('.nav-link').on('click', function (e) {
-
 		e.preventDefault();
 		jQuery('.nav-link').removeClass('active');
 
 	  	_tipo = jQuery(this).attr('href'); 
-
 
 		var id = jQuery(this).attr('id');
 		jQuery('#'+id).addClass('active');
@@ -92,10 +90,6 @@ jQuery(document).ready(function() {
 		jQuery('[name="fin"]').val("YYYY-MM-DD");
 		loadTabla( _tipo, _hiddenColumns );
 	});
-
-	jQuery('#generar-solicitud').on('click', function(){
-		
-	});
  
     jQuery(document).on('click', '[data-action="procesar"]', function(e){
     	e.preventDefault();
@@ -120,8 +114,30 @@ jQuery(document).ready(function() {
     	}
     });  
 
-});
+	jQuery('[name="ini"]').on('change', function(){
+		var d = new Date( jQuery(this).val() );
+		var limitDate = sumarDias(d, 30);
  
+		jQuery('[name="fin"]').val( limitDate );
+		jQuery('[name="fin"]').attr('min', jQuery(this).val() );
+		jQuery('[name="fin"]').attr('max', limitDate );
+	});
+
+});
+
+ function sumarDias(fecha, dias){
+	fecha.setDate(fecha.getDate() + dias);
+	var d = '0'+fecha.getDate();
+		d = d.substring(d.length-2, d.length);
+	var m = fecha.getMonth();
+		m += 1;
+		m = '0'+m;
+		m = m.substring(m.length-2, m.length);
+	var y = fecha.getFullYear();
+ 
+	return y+'-'+m+'-'+d;
+}
+
 function updateTotalTag(){
 	var total = 0;
     jQuery.each( jQuery("input[data-type='item_selected']:checked"), function(i,v){
@@ -129,6 +145,7 @@ function updateTotalTag(){
     });
 	jQuery('#pagosNuevos-tab span').html('$ '+total);
 }
+
 function total_pagos_generados(){
 	jQuery.post(
 		TEMA+'/admin/backend/pagos/ajax/total_pagos_procesados.php',
@@ -139,7 +156,6 @@ function total_pagos_generados(){
 		}
 	);
 }
- 
 
 function generar_solicitud( users, accion ){
 	jQuery.post(
