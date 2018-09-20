@@ -57,8 +57,10 @@
     /* Filtros por Gatos */
 
     	$GATOS_CONDICION = "";
-    	if( in_array("gatos", $mascotas) ){
-    		$GATOS_CONDICION .= " AND atributos LIKE '%gatos\";s:2:\"Si%' "; 
+    	if( is_array($mascotas) ){
+	    	if( in_array("gatos", $mascotas) ){
+	    		$GATOS_CONDICION .= " AND atributos LIKE '%gatos\";s:2:\"Si%' "; 
+	    	}
     	}
 
 	if( $USER_ID != "" ){
@@ -355,7 +357,7 @@
 	            if( $latitud != "" && $longitud != "" ){
 	       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
 	                $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
-	                $FILTRO_UBICACION = "HAVING DISTANCIA < 500";
+	                $FILTRO_UBICACION = "HAVING DISTANCIA < 5";
 	                if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
 	            }else{
 	                $DISTANCIA = "";

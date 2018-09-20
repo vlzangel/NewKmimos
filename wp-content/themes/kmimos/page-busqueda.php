@@ -283,6 +283,10 @@
 			<div class="km-contentido-formulario-buscador">
 				<form class="km-formulario-buscador" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php" method="POST">
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+					
+					<input type="hidden" name="latitud" value="19.4162262" />
+					<input type="hidden" name="longitud" value="-99.1661392" />
+					
 					<div class="km-bloque-cajas km-search-wlabel" >
 						<div class="km-div-ubicacion">
 						
