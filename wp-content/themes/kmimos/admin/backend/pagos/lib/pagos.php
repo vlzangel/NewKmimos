@@ -52,6 +52,10 @@ class Pagos {
 	}
 
 	public function getPagoCuidador($desde, $hasta){
+		if( empty($desde) || empty($hasta) ){
+			return [];
+		}
+
 		$reservas = $this->getReservas($desde, $hasta);
 
 		$obj_pagos = [];
@@ -159,6 +163,9 @@ class Pagos {
 
 	    $fecha['ini'] = date('Y-m-d',strtotime('last '.$diaInicio, $date));
 	    $fecha['fin'] = date('Y-m-d',$date);
+	    
+	    $fecha['min'] = $fecha['ini'];
+	    $fecha['max'] = date('Y-m-d',strtotime($diaInicio." +30"));
 
 	    if( date("l",$date) == 'Tuesday' ){
 	        $fecha['fin'] = date('Y-m-d',strtotime('last mon', $date));
@@ -259,7 +266,10 @@ class Pagos {
 			$filtro_adicional = " 
 				AND ( rm_start.meta_value >= '{$desde}000000' and  rm_start.meta_value <= '{$hasta}235959' )
 			";
+		}else{
+			return [];
 		}
+		
 
 		$sql = "
 			SELECT 

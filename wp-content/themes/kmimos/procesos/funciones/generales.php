@@ -1,4 +1,17 @@
 <?php
+
+    if(!function_exists('is_petsitters')){
+        function is_petsitters( $user_id ){
+            global $db;
+            $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
+             
+            if( isset($cuidador->id) && $cuidador->id > 0 ){
+                return $cuidador;
+            }
+            return false;
+        }
+    }
+
 	if(!function_exists('get_home_url')){
         function get_home_url(){
         	global $db;

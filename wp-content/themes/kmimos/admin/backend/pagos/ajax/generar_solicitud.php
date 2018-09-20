@@ -9,12 +9,11 @@
     $tema = (dirname(dirname(dirname(dirname(__DIR__)))));
     include_once($tema."/procesos/funciones/db.php");
     include_once($tema."/procesos/funciones/generales.php");
+    include_once($tema."/procesos/funciones/config.php");
 	include_once($tema.'/lib/openpay/Openpay.php');
     
-    // Cambiar credenciales -----------------------------------------
-    $openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 
-        'sk_883157978fc44604996f264016e6fcb7');
-    // --------------------------------------------------------------
+    $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
+	Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
     $db = new db( new mysqli($host, $user, $pass, $db) );
 

@@ -47,7 +47,8 @@
                 'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
                 'Youtube'               =>  'Youtube',
                 'Otros'                 =>  'Otros',
-                'CC-Petco'              =>  'CC-Petco'
+                'CC-Petco'              =>  'Petco-CC',
+                'Petco-Tienda'          =>  'Petco-Tienda',
             );
             return $opciones;
         }
