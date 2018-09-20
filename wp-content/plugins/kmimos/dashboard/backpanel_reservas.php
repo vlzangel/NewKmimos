@@ -1,4 +1,5 @@
-<?php global $wpdb;
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } 
+ global $wpdb;
 // Reservas 
 require_once('core/ControllerReservas.php');
 // Parametros: Filtro por fecha

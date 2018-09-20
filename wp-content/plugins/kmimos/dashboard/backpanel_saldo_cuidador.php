@@ -1,4 +1,6 @@
-<?php global $wpdb;
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } 
+
+global $wpdb;
 // PagoCuidador 
 require_once('core/ControllerSaldoCuidador.php');
 
