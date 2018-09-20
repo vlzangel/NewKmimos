@@ -10,23 +10,21 @@ jQuery(document).ready(function(){
 		if( cui > 0 ){
 			total += cui;
 		}
-		if( total > 100 ){
-			jQuery('#descuento_kmimos').val( 0 );
-			jQuery('#descuento_cuidador').val( 0 );
-			alert( "El descuento compartido entre Kmimos y el Cuidador no puede ser mayor al 100%" );
+		if( total != 100 ){
+			var cuidador = 100 - jQuery('#descuento_kmimos').val();
+			jQuery('#descuento_cuidador').val( cuidador );
+			alert( "El descuento compartido entre Kmimos y el Cuidador debe ser igual al 100%" );
 		}
 	});
 	jQuery('.limite').on('keydown', function(e){
 		cancelKeypress = [',','-'];
 		if( cancelKeypress.indexOf(e.key) > -1 ){ 
-			console.log('poas1');
 			return false;
 		}else{		
 	 		if( e.key >= 0 && e.key <= 9 ){
 	 			var val = parseFloat(jQuery(this).val()+e.key);
 				console.log(val);
 				if( val < 0 || val > 100 ){
-					console.log('poas3');
 					return false;
 				}
 	 		}

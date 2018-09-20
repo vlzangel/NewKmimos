@@ -1399,7 +1399,7 @@
                 $diferencia = $pago_descuentos-$comision;
             }
 
-            $diferencia = calculo_pago_cuidador( $reserva->ID, $pago );
+            $diferencia = kmimos_calculo_pago_cuidador( $reserva->ID, $pago );
 
             $desglose['total'] = $pago;
             

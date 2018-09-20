@@ -73,11 +73,14 @@ class Pagos {
  
 				if( !isset($reserva_procesada->id) ){
 
+
 					// Datos del cuidador
+						$cuidador = $this->db->get_row('SELECT * FROM cuidadores WHERE user_id = '.$row->cuidador_id);
+
 						$pagos[ $row->cuidador_id ]['fecha_creacion'] = date('Y-m-d', strtotime("now"));
-						$pagos[ $row->cuidador_id ]['user_id'] = $row->cuidador_id ; 
-						$pagos[ $row->cuidador_id ]['nombre'] = $row->nombre ; 
-						$pagos[ $row->cuidador_id ]['apellido'] = $row->apellido ; 
+						$pagos[ $row->cuidador_id ]['user_id'] = $row->cuidador_id; 
+						$pagos[ $row->cuidador_id ]['nombre'] = $cuidador->nombre ; 
+						$pagos[ $row->cuidador_id ]['apellido'] = $cuidador->apellido ; 
 						$pagos[ $row->cuidador_id ]['estatus'] = '';
 
 					// Meta de padido
@@ -248,6 +251,9 @@ class Pagos {
 									}
 								}
 								break;
+							default:
+								$pago_cuidador -= $_cupon['total'];
+								break;
 						}
 					}
 				}
@@ -270,7 +276,8 @@ class Pagos {
 			return [];
 		}
 		
-
+// SQL Original
+/*
 		$sql = "
 			SELECT 
 				us.user_id as cuidador_id,
@@ -305,8 +312,28 @@ class Pagos {
 				and r.post_status = 'confirmed'
 				{$filtro_adicional}
 			;";
+*/			
 
-//echo $sql;
+// SQL Nuevo
+		$sql = "
+			SELECT 
+				pr.post_author as cuidador_id,
+				r.ID as reserva_id,
+				r.post_parent as pedido_id,
+				( IFNULL(rm_cost.meta_value,0) ) as total,
+				rm_start.meta_value as booking_start
+			FROM wp_posts as r
+				LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
+				LEFT JOIN wp_postmeta as rm_cost ON rm_cost.post_id = r.ID and rm_cost.meta_key = '_booking_cost'
+				LEFT JOIN wp_postmeta as rm_start ON rm_start.post_id = r.ID and rm_start.meta_key = '_booking_start'
+				LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')
+				LEFT JOIN wp_posts as pr ON pr.ID = pri.meta_value
+			WHERE r.post_type = 'wc_booking' 
+				and not r.post_status like '%cart%' 
+				and r.post_status = 'confirmed'
+				{$filtro_adicional}
+		;";
+
 		$reservas = $this->db->get_results($sql);
 		return $reservas;
 	}
