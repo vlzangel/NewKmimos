@@ -78,6 +78,9 @@ jQuery(document).ready(function() {
 			jQuery('#opciones-nuevo').css('display', 'none');
 			jQuery('[name="ini"]').val("YYYY-MM-DD");
 			jQuery('[name="fin"]').val("YYYY-MM-DD");
+
+			jQuery('[name="fin"]').removeAttr('min');
+			jQuery('[name="fin"]').removeAttr('max');
 			_hiddenColumns = _hiddenDefault.generados;
 		}
   		 
@@ -115,17 +118,23 @@ jQuery(document).ready(function() {
     });  
 
 	jQuery('[name="ini"]').on('change', function(){
-		var d = new Date( jQuery(this).val() );
-		var limitDate = sumarDias(d, 30);
- 
-		jQuery('[name="fin"]').val( limitDate );
-		jQuery('[name="fin"]').attr('min', jQuery(this).val() );
-		jQuery('[name="fin"]').attr('max', limitDate );
+		console.log(_tipo);
+
+		jQuery('[name="fin"]').removeAttr('min');
+		jQuery('[name="fin"]').removeAttr('max');
+		if( _tipo == 'nuevo' ){		
+			var d = new Date( jQuery(this).val() );
+			var limitDate = sumarDias(d, 30);
+
+			jQuery('[name="fin"]').val( limitDate );
+			jQuery('[name="fin"]').attr('min', jQuery(this).val() );
+			jQuery('[name="fin"]').attr('max', limitDate );
+		}
 	});
 
 });
 
- function sumarDias(fecha, dias){
+function sumarDias(fecha, dias){
 	fecha.setDate(fecha.getDate() + dias);
 	var d = '0'+fecha.getDate();
 		d = d.substring(d.length-2, d.length);

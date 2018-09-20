@@ -163,6 +163,9 @@ class Pagos {
 
 	    $fecha['ini'] = date('Y-m-d',strtotime('last '.$diaInicio, $date));
 	    $fecha['fin'] = date('Y-m-d',$date);
+	    
+	    $fecha['min'] = $fecha['ini'];
+	    $fecha['max'] = date('Y-m-d',strtotime($diaInicio." +30"));
 
 	    if( date("l",$date) == 'Tuesday' ){
 	        $fecha['fin'] = date('Y-m-d',strtotime('last mon', $date));

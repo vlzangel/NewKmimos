@@ -31,7 +31,10 @@
             <div class="col-sm-12 col-md-7 container-search text-right">
                 <form id="form-search" name="search">
                     <span><label class="fecha">Desde: </label><input type="date" name="ini" value="<?php echo $fecha['ini']; ?>"></span>
-                    <span><label class="fecha">Hasta: <input type="date" name="fin" value="<?php echo $fecha['fin']; ?>"></label></span> 
+                    <span><label class="fecha">Hasta: <input type="date" name="fin" 
+                        min="<?php echo $fecha['min']; ?>" 
+                        max="<?php echo $fecha['max']; ?>" 
+                        value="<?php echo $fecha['fin']; ?>"></label></span> 
                     <button class="btn btn-defaut" id="btn-search"><i class="fa fa-search"></i> Buscar</button>
                 </form>
             </div>
