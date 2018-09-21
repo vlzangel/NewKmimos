@@ -10,7 +10,7 @@
     ">
 
         <table style='
-            width: 510px;
+            width: 495px;
             padding: 0px;
         '>
             <tr>
