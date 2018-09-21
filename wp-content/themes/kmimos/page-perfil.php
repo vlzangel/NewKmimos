@@ -87,6 +87,15 @@
 			wp_enqueue_style('historial_responsive', getTema()."/css/responsive/historial_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('historial_js', getTema()."/js/historial.js", array("jquery", "global_js"), '1.0.0');
 		break;
+		case 'cancelar':
+			$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
+			switch ($padre) {
+				case 'historial':
+					$mostrar_btn = false;
+					wp_enqueue_script('factura', getTema()."/js/factura.js", array("jquery", "global_js"), '1.0.0');
+				break;
+			}
+		break;
 		case 'descripcion':
 		    wp_enqueue_style('descripcion', getTema()."/css/descripcion.css", array(), '1.0.0');
 			wp_enqueue_style('descripcion_responsive', getTema()."/css/responsive/descripcion_responsive.css", array(), '1.0.0');
