@@ -37,6 +37,10 @@ jQuery(document).on('click', '[data-target="checkbox"]', function(){
 	});
 });
 
+function km5(valor){
+	jQuery('#km5').val(valor);
+	jQuery(".km-formulario-buscador").submit();
+}
 
 jQuery(document).ready(function(){
 

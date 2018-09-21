@@ -275,6 +275,18 @@ h1.maps {
     color: #FFF; 
 }
 
+.msg_km5{
+    margin-top: 15px;
+    padding: 15px;
+    background: #6B1C9B;
+    color: #FFF;
+}
+
+.msg_km5 a{
+    color: #FFF;
+    font-weight: 600;
+}
+
 @media All and (max-width: 992px){
     .slide-profile {
         margin-top: 40%!important;
