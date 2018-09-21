@@ -1,22 +1,29 @@
 <?php
 	$raiz = dirname(__DIR__);
-	include_once('../wp-content/themes/kmimos/lib/openpay/Openpay.php');
     include_once($raiz."/vlz_config.php");
 
     $tema = $raiz . '/wp-content/themes/kmimos';
     include_once($tema."/procesos/funciones/db.php");
     include_once($tema."/procesos/funciones/generales.php");
+    include_once($tema."/procesos/funciones/config.php");
+    include_once($tema.'/lib/openpay/Openpay.php');
+    
+    // credenciales testing -----------------------------------------
+    // $openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f264016e6fcb7');
+    // --------------------------------------------------------------
+
+    $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
+    Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
      
     $db = new db( new mysqli($host, $user, $pass, $db) );
+ 
 
-
-// Cambiar credenciales -----------------------------------------
-$openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f264016e6fcb7');
-// --------------------------------------------------------------
+$hasta = date('Y-m-d');
+$desde = date('Y-m-d', strtotime(date('Y-m-d') ." - 15 day"));
 
 $findDataRequest = array(
-    'creation[gte]' => '2013-01-01',
-    'creation[lte]' => '2019-12-31',
+    'creation[gte]' => $desde,
+    'creation[lte]' => $hasta,
     'offset' => 0,
     'limit' => 1000
 );
