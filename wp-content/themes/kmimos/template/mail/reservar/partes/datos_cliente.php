@@ -11,6 +11,7 @@
 
         <table  style='
             padding: 0px;
+            width: 90%;
         '>
             <tr>
                 <td align="center" height="160"  style="
@@ -24,7 +25,7 @@
         </table>
 
         <div style="
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             padding: 20px 0px 0px;
         ">
