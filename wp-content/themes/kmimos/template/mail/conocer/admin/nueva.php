@@ -1,8 +1,8 @@
-<div style='width: 100%;'>
+<div style='width: 600px;'>
 	<img src='[URL_IMGS]/new/nueva/[HEADER]/header.png' style='width: 100%;' >
 </div>
 
-<div style='font-family: Verdana; width: 100%;'>
+<div style='font-family: Verdana; width: 600px;'>
 
     <div style='
 	    padding: 30px; 
@@ -29,6 +29,7 @@
             letter-spacing: 0.3px; 
             color: #000000; 
             text-align: left; 
+            max-width: 518px; 
             width: 100%;
         '>
            	Recibimos una solicitud de <strong style="color: #940d99;">[name_cliente]</strong> para conocer a <strong>[name_cuidador]</strong>
@@ -37,6 +38,7 @@
     </div>
 
 	<div style='
+		width: 269px;
 	    font-size: 15px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
@@ -80,7 +82,7 @@
 	       
 	<div style="padding: 30px 30px 10px; text-align: center;">
 
-		<table width="100%" cellpadding="0" cellspacing="0">
+		<table width="600px" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="80" style="vertical-align: top; text-align: left;">
 					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;'>
@@ -169,7 +171,7 @@
 	'>
 
 	    <div style='
-	    	width: 100%;
+	    	width: 550px;
 	        font-size: 15px; 
 	        font-weight: 600; 
 	        letter-spacing: -0.1px; 
@@ -180,10 +182,10 @@
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
-	    <table cellpadding="0" cellspacing="0" style='width: 520px;'>
+	    <table cellpadding="0" cellspacing="0" style='width: 550px;'>
 	    	<tbody style="
 	    		font-family: Verdana;
-			    font-size: 12px;
+			    font-size: 15px;
 			    line-height: 1.2;
 			    letter-spacing: 0.3px;
 			    color: #000000;
@@ -193,7 +195,7 @@
 		            line-height: 1.07; 
 		            letter-spacing: 0.3px; 
 		            font-weight: 600;
-		            font-size: 12px;
+		            font-size: 14px;
 		            text-align: center;
 		        '>
 		            <td style='padding: 7px; width: 20px; border-bottom: solid 1px #940d99;'>
@@ -220,5 +222,4 @@
 	    </table>
 
 	</div>
-
 </div>
