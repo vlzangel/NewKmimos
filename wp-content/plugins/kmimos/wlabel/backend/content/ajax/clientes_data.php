@@ -31,9 +31,29 @@
 
 	$usuarios = $wpdb->get_results($SQL);
 
+	$razas = get_razas();	
+
 	$_data["data"] = [];
 	foreach ($usuarios as $usuario) {
 		$metas = get_user_meta($usuario->ID);
+
+		$estado = $wpdb->get_row('SELECT name FROM states WHERE id = '.$metas["billing_state"][0]);
+		
+		$mascotas = getMascotas($usuario->ID);
+		$pets_nombre = array();
+  		$pets_razas  = array();
+  		$pets_edad	 = array();
+  		if( count($mascotas) > 0 ){
+			foreach( $mascotas as $pet_id => $pet) { 
+				$pets_nombre[] = $pet['nombre'];
+				$pets_razas[] = $razas[ $pet['raza'] ];
+				$pets_edad[] = $pet['edad'];
+			} 
+  		}
+  		$pets_nombre = implode("<br>", $pets_nombre);
+  		$pets_razas  = implode("<br>", $pets_razas);
+  		$pets_edad	 = implode("<br>", $pets_edad);
+
 
 		$rol = strrpos($metas["wp_capabilities"][0], "subscriber");
 
@@ -58,10 +78,55 @@
 	            $metas["user_mobile"][0],
 	            "<div  style='background:".$color."; color: #FFF; font-weight: 600; padding: 5px;'>".$conocio."</div >",
 	            ucfirst($metas["user_gender"][0]),
-	            $metas["user_age"][0]
+	            $metas["user_age"][0],
+	            $pets_nombre,
+	            $pets_razas,
+	            $pets_edad,
+	            utf8_decode($estado->name),
+	            $metas["billing_city"][0],
+
 	        ];
 		}
 	}
 
 	echo json_encode( $_data );
-?>
+
+	function getMascotas($user_id){
+		if(!$user_id>0){ return []; }
+
+		global $wpdb;
+		$mascotas_cliente = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$user_id}' AND post_type='pets' AND post_status = 'publish'");
+	    $mascotas = array();
+	    foreach ($mascotas_cliente as $key => $mascota) {
+	        $metas = get_post_meta($mascota->ID);
+
+	        $anio = $metas["birthdate_pet"][0];
+	        $anio = str_replace("/", "-", $anio);
+	        $anio = strtotime($anio);
+	        $edad_time = time()-$anio;
+
+	        $edad = '';
+	        if( (date("Y", $edad_time)-1970) > 0 ){
+		        $edad = (date("Y", $edad_time)-1970)." año(s) ";
+	        }
+	        $edad .= date("m", $edad_time)." mes(es)";
+	 
+	        $mascotas[] = array(
+	            "nombre" => $mascota->post_title,
+	            "raza" => $metas["breed_pet"][0],
+	            "edad" => $edad
+	        );
+	    }
+		return $mascotas;
+	}
+
+	function get_razas(){
+		global $wpdb;
+		$sql = "SELECT * FROM razas ";
+		$result = $wpdb->get_results($sql);
+		$razas = [];
+		foreach ($result as $raza) {
+			$razas[$raza->id] = $raza->nombre;
+		}
+		return $razas;
+	}
