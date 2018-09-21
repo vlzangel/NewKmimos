@@ -42,7 +42,7 @@
 
 	<div style='
 		width: 269px;
-	    font-size: 12px; 
+	    font-size: 11px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
 	    letter-spacing: 0.3px; 
