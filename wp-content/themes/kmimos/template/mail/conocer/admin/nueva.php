@@ -180,10 +180,10 @@
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
-	    <table cellpadding="0" cellspacing="0" style='width: 100%;'>
+	    <table cellpadding="0" cellspacing="0" style='width: 520px;'>
 	    	<tbody style="
 	    		font-family: Verdana;
-			    font-size: 15px;
+			    font-size: 12px;
 			    line-height: 1.2;
 			    letter-spacing: 0.3px;
 			    color: #000000;
