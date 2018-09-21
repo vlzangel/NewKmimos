@@ -11,7 +11,7 @@
 
         <table  style='
             padding: 0px;
-            width: 90%;
+            width: 100%;
         '>
             <tr>
                 <td align="center" height="160"  style="
