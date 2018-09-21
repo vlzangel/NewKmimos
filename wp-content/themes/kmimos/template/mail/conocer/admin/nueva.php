@@ -1,8 +1,9 @@
-<div style='width: 600px;'>
-	<img src='[URL_IMGS]/new/nueva/[HEADER]/header.png' style='width: 100%;' >
-</div>
 
 <div style='font-family: Verdana; width: 600px;'>
+
+	<div style='width: 600px; margin: 0 auto; text-align: center;'>
+		<img src='[URL_IMGS]/new/nueva/[HEADER]/header.png' width="100%" style='width: 100%;' >
+	</div>
 
     <div style='
     	margin: 0 auto;
@@ -41,7 +42,7 @@
 
 	<div style='
 		width: 269px;
-	    font-size: 15px; 
+	    font-size: 12px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
 	    letter-spacing: 0.3px; 
@@ -130,7 +131,7 @@
 
 	</div>
 
-	<div style="padding: 20px 30px 30px; text-align: center; font-size: 16px;">
+	<div style="padding: 20px 30px 30px; text-align: center; font-size: 13px;">
 
 		<a href='[ACEPTAR]' style='
 			width: auto;
