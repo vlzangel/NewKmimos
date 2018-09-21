@@ -126,7 +126,7 @@
 
 	</div>
 
-	<div style="padding: 20px 30px 30px; text-align: center;">
+	<div style="padding: 20px 30px 30px; text-align: center; font-size: 16px;">
 
 		<a href='[ACEPTAR]' style='
 			width: auto;
