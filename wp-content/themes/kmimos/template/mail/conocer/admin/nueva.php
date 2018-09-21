@@ -5,12 +5,14 @@
 <div style='font-family: Verdana; width: 600px;'>
 
     <div style='
+    	margin: 0 auto;
+    	width: 600px;
 	    padding: 30px; 
         font-size: 14px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #000000;
-    '>
+    	'>
 
         <div style='
             font-size: 16px; 
@@ -19,7 +21,7 @@
             text-align: left;
             color: #940d99;
             font-weight: 600;
-        '>
+        	'>
             ¡Hola Administrador!
         </div>  
 
@@ -31,7 +33,7 @@
             text-align: left; 
             max-width: 518px; 
             width: 100%;
-        '>
+        	'>
            	Recibimos una solicitud de <strong style="color: #940d99;">[name_cliente]</strong> para conocer a <strong>[name_cuidador]</strong>
         </div>
 
@@ -48,7 +50,7 @@
 	    text-align: center;
 	    background-color: #e3e3e3;
 	    margin: 0 auto 30px;
-	'>
+		'>
 	    Tu código de solicitud es #<strong>[id_solicitud]</strong>
 	</div>
 
@@ -60,7 +62,7 @@
         color: #FFF; 
         background-color: #007bd3;
         font-weight: 600;
-    '>
+    	'>
         DATOS DEL CLIENTE
     </div>
     
@@ -74,7 +76,7 @@
         color: #FFF; 
         background-color: #940d99;
         font-weight: 600;
-    '>
+    	'>
         DATOS DEL CUIDADOR
     </div>
     
@@ -141,7 +143,7 @@
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
-		'>
+			'>
 			¡ACEPTAR!
 		</a>
 
@@ -157,7 +159,7 @@
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
-		'>
+			'>
 			AHORA NO PUEDO, RECHAZAR
 		</a>
 
@@ -168,7 +170,7 @@
 	    width: 100%;
 	    padding: 0px 30px 30px; 
 	    box-sizing: border-box;
-	'>
+		'>
 
 	    <div style='
 	    	width: 550px;
@@ -178,7 +180,7 @@
 	        margin-bottom: 15px;
 	        padding-bottom: 5px;
 	        border-bottom: solid 1px #BBB;
-	    '>
+	    	'>
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
@@ -189,7 +191,7 @@
 			    line-height: 1.2;
 			    letter-spacing: 0.3px;
 			    color: #000000;
-	    	">
+	    		">
 		        <tr style='
 		            color: #940d99; 
 		            line-height: 1.07; 
@@ -197,7 +199,7 @@
 		            font-weight: 600;
 		            font-size: 14px;
 		            text-align: center;
-		        '>
+		    	    '>
 		            <td style='padding: 7px; width: 20px; border-bottom: solid 1px #940d99;'>
 		                Nombre
 		            </td>
