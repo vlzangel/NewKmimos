@@ -33,6 +33,11 @@
             <th>Donde nos conocio?</th>
             <th>Sexo</th>
             <th>Edad</th>
+            <th>Mascotas</th>
+            <th>Razas</th>
+            <th>Edades</th>
+            <th>Estado</th>
+            <th>Municipio</th>
         </tr>
     </thead>
     <tbody></tbody>
