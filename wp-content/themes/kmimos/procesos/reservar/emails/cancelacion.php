@@ -7,10 +7,11 @@
         $_SESSION["CODE"] = $CODE;
     }
 
+    $cfdi = false;
     if( $superAdmin == "" && $status == "modified" ){
         
     }else{
-        kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"], $usu);
+        $cfdi = kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"], $usu);
     }
     update_cupos( $id, "-");
     $wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = $id;");
@@ -225,6 +226,51 @@
            kmimos_mails_administradores_new("Cancelación de Reserva", $mensaje_admin);
         }
 
-        $CONTENIDO .= "<div class='msg_acciones'>Te notificamos que la reserva <strong>#".$servicio["id_reserva"]."</strong>, ha sido cancelada exitosamente.</div>";
+        
+        $style = ($cfdi)? '' : 'msg_acciones';
 
+        $CONTENIDO .= '
+            <h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;">
+                <div class="'.$style.'">
+                    Te notificamos que la reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada exitosamente.
+                </div>
+            </h1>
+        ';
+
+        $factura = $wpdb->get_row( "select * from facturas where reserva_id = {$servicio["id_reserva"]}");
+        if( isset($factura->id) && $factura->id > 0 ){
+
+            $CONTENIDO .= '
+                <style type="text/css">
+                    .volver_msg{
+                        display: none;
+                    }
+                </style>
+                <input type="hidden" id="id_orden" name="id_orden" value="'.$factura->pedido_id.'" />
+                <section id="descargar-factura">
+                    <label class="lbl-text" style="font-style:italic;">
+                        El Comprobante Fiscal Digital fue emitido satisfactoriamente
+                    </label>
+                    <hr style="margin: 5px 0px 15px;">
+                    <div class="col-sm-6 col-md-3 btn-factura" >
+                        <a href="'.get_home_url()."/consultar-factura/".$servicio["id_reserva"].'" target="_blank" class="km-btn-primary">Consultar</a>
+                    </div>
+                    <div class="col-sm-6 col-md-3 btn-factura">
+                        <a href="javascript:;" data-pdfxml="'."{$servicio["id_reserva"]}_{$factura->numeroReferencia}".'" class="km-btn-primary">Descargar PDF y XML</a>
+                    </div>
+                    <div class="col-sm-6 col-md-3 btn-factura">
+                        <a href="javascript:;" id="btn_facturar_sendmail" class="km-btn-primary">Enviar por Email</a>
+                    </div>
+                </section>
+                <div class="clear"></div>
+                <section class="col-sm-12 col-md-12" style="margin-top: 20px;">
+                    <div class="perfil_cargando" style="width: 100%; background-image: url('.getTema().'/images/cargando.gif);" ></div>
+                    <br>
+                    <a href="'.get_home_url().'/perfil-usuario/historial">
+                        <i class="fa fa-angle-double-left" aria-hidden="true"></i> Volver 
+                    </a>
+                </section>
+            ';
+
+        }
 ?>
