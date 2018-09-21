@@ -1,10 +1,6 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } 
 
-global $wpdb;
-
-
-
-?>
+global $wpdb; ?>
 
 <div class="wrap">
 

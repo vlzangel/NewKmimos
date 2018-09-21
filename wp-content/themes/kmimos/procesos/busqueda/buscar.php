@@ -57,8 +57,10 @@
     /* Filtros por Gatos */
 
     	$GATOS_CONDICION = "";
-    	if( in_array("gatos", $mascotas) ){
-    		$GATOS_CONDICION .= " AND atributos LIKE '%gatos\";s:2:\"Si%' "; 
+    	if( is_array($mascotas) ){
+	    	if( in_array("gatos", $mascotas) ){
+	    		$GATOS_CONDICION .= " AND atributos LIKE '%gatos\";s:2:\"Si%' "; 
+	    	}
     	}
 
 	if( $USER_ID != "" ){
@@ -265,7 +267,7 @@
     /* Filtro nombre  */
 	    if( isset($nombre) ){ 
 	    	if( $nombre != "" ){ 
-	    		$query_by_nombre = " post_cuidador.post_title LIKE '%".$nombre."%' "; 
+	    		$query_by_nombre = "( post_cuidador.post_title LIKE '%".$nombre."%' "; 
 
 	    		// Eliminar caracteres especiales
 	    		$nombre_espacial = scanear_string( $nombre );
@@ -274,7 +276,7 @@
 	    		} 
 
 	    		// Agregar a condicion
-	    		$condiciones .= " AND ".$query_by_nombre;
+	    		$condiciones .= " AND ".$query_by_nombre." )";
 	    	} 
 	   	}
     /* Fin Filtro nombre */
@@ -346,20 +348,26 @@
 	    
 	    if( $estados != "" && $municipios != "" ){
             $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-            $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$estados."=%' AND ubi.municipios LIKE '%=".$municipios."=%'  )";    
+            $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$estados."=%' AND ubi.municipios LIKE '%=".$municipios."=%'  )";   
+            $_SESSION['km5'] = "No"; 
 	    }else{ 
 	        if( $estados != "" ){
 	            $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
 	            $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$estados."=%' )";
+	            $_SESSION['km5'] = "No";
 	        }else{
-	            if( $latitud != "" && $longitud != "" ){
+	            if( $latitud != "" && $longitud != "" && $km5 != "No" ){
 	       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
 	                $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
-	                $FILTRO_UBICACION = "HAVING DISTANCIA < 500";
+	                $FILTRO_UBICACION = "HAVING DISTANCIA < 5";
+
+	                $_SESSION['km5'] = "Yes";
+
 	                if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
 	            }else{
 	                $DISTANCIA = "";
 	                $FILTRO_UBICACION = "";
+	                $_SESSION['km5'] = "No";
 	            }
 	        }
 	    }

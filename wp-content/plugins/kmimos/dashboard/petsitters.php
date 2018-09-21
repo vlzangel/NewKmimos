@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } 
 
     add_action('init',              'kmimos_register_petsitters');
     add_action('add_meta_boxes',    'kmimos_box_details_of_petsitter');

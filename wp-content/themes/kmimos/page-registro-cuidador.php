@@ -34,7 +34,7 @@
 					<div class="col-xs-12 col-sm-8">
 						<div><img src="<?php echo getTema(); ?>/images/new/km-certificado.svg"></div>
 						<h4>GANA DINERO CON TU HOBBIE</h4>
-						<p>En Kmimos tú tienes la libertad de colocar el precio por tus servicios, considerando tus habilidades y experiencia, sin embargo, te sugerimos este rango de precios basado en las tendencias actuales del mercado.</p>
+						<p style="text-align: justify;">En Kmimos siempre podrás colocar el precio que mejor se te acomode, la decisión es tuya.  Sin embargo, quisiéramos recomendarte el rango de precios mostrados abajo, el cual está creado basado en las tendencias de precios existentes en el mercado actual.</p>
 						<ul>
 							<li>Tamaño pequeño: 120 pesos por noche.</li>
 							<li>Tamaño mediano: 180 pesos por noche.</li>
@@ -55,7 +55,7 @@
 		<!-- SECCIÓN CÓMO SOY CUIDADOR -->
 		<section class="km-comosoycuidador">
 			<div class="container">
-				<h4>¿CÓMO SOY CUIDADOR?</h4>
+				<h4>¿CÓMO ME CONVIERTO EN CUIDADOR?</h4>
 				<div class="row">
 					<div class="col-xs-12 col-sm-4">
 						<p>Regístrate con tus datos.</p>

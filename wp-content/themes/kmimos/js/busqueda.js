@@ -1,3 +1,19 @@
+navigator.geolocation.getCurrentPosition(
+	function(pos) {
+  		var crd = pos.coords;
+  		jQuery('#latitud').val(crd.latitude);
+   		jQuery('#longitud').val(crd.longitude);
+	}, 
+	function error(err) {
+  		console.log("Error");
+	},
+	{
+      	enableHighAccuracy: true,
+      	timeout: 5000,
+      	maximumAge: 0
+    }
+);
+
 jQuery(document).on('click', '.km-select-background-click',function(){
 	jQuery('.km-select-custom-list').css('display', 'none');
 	jQuery(".km-select-background-click").remove();
@@ -21,6 +37,10 @@ jQuery(document).on('click', '[data-target="checkbox"]', function(){
 	});
 });
 
+function km5(valor){
+	jQuery('#km5').val(valor);
+	jQuery(".km-formulario-buscador").submit();
+}
 
 jQuery(document).ready(function(){
 
