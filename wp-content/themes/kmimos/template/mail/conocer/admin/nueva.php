@@ -1,8 +1,8 @@
-<div style='width: 600px;'>
+<div style='width: 100%;'>
 	<img src='[URL_IMGS]/new/nueva/[HEADER]/header.png' style='width: 100%;' >
 </div>
 
-<div style='font-family: Verdana; width: 600px;'>
+<div style='font-family: Verdana; width: 100%;'>
 
     <div style='
 	    padding: 30px; 
@@ -13,7 +13,7 @@
     '>
 
         <div style='
-            font-size: 19px; 
+            font-size: 16px; 
             letter-spacing: 0.4px; 
             padding-bottom: 30px; 
             text-align: left;
@@ -24,12 +24,11 @@
         </div>  
 
         <div style='
-            font-size: 17px; 
+            font-size: 15px; 
             line-height: 1.07; 
             letter-spacing: 0.3px; 
             color: #000000; 
             text-align: left; 
-            max-width: 518px; 
             width: 100%;
         '>
            	Recibimos una solicitud de <strong style="color: #940d99;">[name_cliente]</strong> para conocer a <strong>[name_cuidador]</strong>
@@ -38,8 +37,7 @@
     </div>
 
 	<div style='
-		width: 269px;
-	    font-size: 17px; 
+	    font-size: 15px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
 	    letter-spacing: 0.3px; 
@@ -54,7 +52,7 @@
 
     <div style='
         padding: 20px 30px; 
-        font-size: 17px; 
+        font-size: 15px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #FFF; 
@@ -68,7 +66,7 @@
 
     <div style='
         padding: 20px 30px; 
-        font-size: 17px; 
+        font-size: 15px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #FFF; 
@@ -82,15 +80,15 @@
 	       
 	<div style="padding: 30px 30px 10px; text-align: center;">
 
-		<table width="600px" cellpadding="0" cellspacing="0">
+		<table width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="80" style="vertical-align: top; text-align: left;">
 					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;'>
 				</td>
 				<td style="vertical-align: top;">
-					<strong  style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
+					<strong  style="font-family: Verdana; font-size: 15px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
 					<table>
-						<tbody style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left;">
+						<tbody style="font-family: Verdana; font-size: 15px; color: #000000; text-align: left;">
 							<tr>
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;'>
@@ -122,7 +120,7 @@
 			</tr>
 		</table>
 
-		<div style="padding-top: 20px; text-align: left; font-size: 15px;">
+		<div style="padding-top: 20px; text-align: left; font-size: 12px;">
 			<strong style="color: #940d99; font-family: Verdana;">POSIBLE FECHA DE ESTADÍA:</strong> <span style="color: #000;">Del <strong>[desde]</strong> al <strong>[hasta]</strong> del [anio]</span>
 		</div>
 
@@ -171,8 +169,8 @@
 	'>
 
 	    <div style='
-	    	width: 550px;
-	        font-size: 17px; 
+	    	width: 100%;
+	        font-size: 15px; 
 	        font-weight: 600; 
 	        letter-spacing: -0.1px; 
 	        margin-bottom: 15px;
@@ -182,10 +180,10 @@
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
-	    <table cellpadding="0" cellspacing="0" style='width: 550px;'>
+	    <table cellpadding="0" cellspacing="0" style='width: 100%;'>
 	    	<tbody style="
 	    		font-family: Verdana;
-			    font-size: 17px;
+			    font-size: 15px;
 			    line-height: 1.2;
 			    letter-spacing: 0.3px;
 			    color: #000000;
@@ -195,7 +193,7 @@
 		            line-height: 1.07; 
 		            letter-spacing: 0.3px; 
 		            font-weight: 600;
-		            font-size: 14px;
+		            font-size: 12px;
 		            text-align: center;
 		        '>
 		            <td style='padding: 7px; width: 20px; border-bottom: solid 1px #940d99;'>
@@ -222,4 +220,5 @@
 	    </table>
 
 	</div>
+
 </div>
