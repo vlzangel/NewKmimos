@@ -81,10 +81,7 @@
 	            $metas["user_age"][0],
 	            $pets_nombre,
 	            $pets_razas,
-	            $pets_edad,
-	            utf8_decode($estado->name),
-	            $metas["billing_city"][0],
-
+	            $pets_edad
 	        ];
 		}
 	}

@@ -36,8 +36,6 @@
             <th>Mascotas</th>
             <th>Razas</th>
             <th>Edades</th>
-            <th>Estado</th>
-            <th>Municipio</th>
         </tr>
     </thead>
     <tbody></tbody>
