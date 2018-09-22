@@ -10,7 +10,7 @@
     ">
 
         <table  style='
-            padding: 0px; width: 495px
+            padding: 0px; width: 485px
         '>
             <tr>
                 <td align="center" height="160"  style="
