@@ -1,13 +1,13 @@
 
-<div style='font-family: Verdana; width: 600px;'>
+<div style='font-family: Verdana; width: 630px; margin: 0 auto;'>
 
-	<div style='width: 600px; margin: 0 auto; text-align: center;'>
+	<div style='width: 630px; margin: 0 auto; text-align: center;'>
 		<img src='[URL_IMGS]/new/nueva/[HEADER]/header.png' width="100%" style='width: 100%;' >
 	</div>
 
     <div style='
     	margin: 0 auto;
-    	width: 600px;
+    	width: 630px;
 	    padding: 30px; 
         font-size: 14px; 
         line-height: 1.07; 
@@ -41,7 +41,7 @@
     </div>
 
 	<div style='
-		width: 275px;
+		width: 271px;
 	    font-size: 12px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
@@ -85,15 +85,15 @@
 	       
 	<div style="padding: 30px 30px 10px; text-align: center;">
 
-		<table width="600px" cellpadding="0" cellspacing="0">
+		<table width="630px" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="80" style="vertical-align: top; text-align: left;">
 					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;'>
 				</td>
 				<td style="vertical-align: top;">
-					<strong  style="font-family: Verdana; font-size: 15px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
+					<strong  style="font-family: Verdana; font-size: 16px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
 					<table>
-						<tbody style="font-family: Verdana; font-size: 15px; color: #000000; text-align: left;">
+						<tbody style="font-family: Verdana; font-size: 16px; color: #000000; text-align: left;">
 							<tr>
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;'>
@@ -185,10 +185,10 @@
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
-	    <table cellpadding="0" cellspacing="0" style='width: 550px;'>
+	    <table cellpadding="0" cellspacing="0" style='width: 560px;'>
 	    	<tbody style="
 	    		font-family: Verdana;
-			    font-size: 15px;
+			    font-size: 16px;
 			    line-height: 1.2;
 			    letter-spacing: 0.3px;
 			    color: #000000;
@@ -219,9 +219,7 @@
 		        </tr>
 
 		        [MASCOTAS]
-
 		    </tbody>
-
 	    </table>
 
 	</div>
