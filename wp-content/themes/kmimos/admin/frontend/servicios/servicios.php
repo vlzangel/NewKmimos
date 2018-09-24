@@ -21,6 +21,8 @@
         "gigantes" => "Gigantes",
     );
 
+
+
     $mascotas = array(
 		"pequenos" => "Peque&ntilde;as",
 		"medianos" => "Medianas",
@@ -41,16 +43,44 @@
 
     $cuidador = $wpdb->get_row($sql);
 
+    $atributos = unserialize($cuidador->atributos);
+
+    if( $atributos["gatos"] == "Si" ){
+        $tam["gatos"] = "Gatos";
+        $mascotas["gatos"] = "Gatos";
+    }
+
     $hospedaje = "";
     $precios_hospedaje = unserialize($cuidador->hospedaje);
 
-    foreach ($precios_hospedaje as $key => $value) {
+/*    foreach ($precios_hospedaje as $key => $value) {
     	$hospedaje .= "
     		<div class='vlz_celda_25'>
     			<label>".$tam[$key]."</label>
     			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='hospedaje_".$key."' name='hospedaje_".$key."' value='".$value."' data-toggle='tooltip' data-title='".$preciosSugeridos[ $key ]."' />
 			</div>
     	";
+    }*/
+
+    foreach ($tam as $key => $value) {
+        $hospedaje .= "
+            <div class='vlz_celda_25'>
+                <label>".$value."</label>
+                <input 
+                    type='number' 
+                    step='0.01' 
+                    min=0 
+                    data-minvalue=0 
+                    data-charset='num' 
+                    class='vlz_input' 
+                    id='hospedaje_".$key."' 
+                    name='hospedaje_".$key."' 
+                    value='".$precios_hospedaje[$key]."' 
+                    data-toggle='tooltip' 
+                    data-title='".$preciosSugeridos[ $key ]."' 
+                />
+            </div>
+        ";
     }
 
 

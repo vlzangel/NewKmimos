@@ -201,7 +201,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
-/*	jQuery("#fumador").blur(function(){
+	/*	
+	jQuery("#fumador").blur(function(){
 		
 		if(jQuery("#fumador").val().length == 0){		
 			jQuery("#fumador").parent('div').css('color','red');
@@ -399,15 +400,40 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		switch(jQuery("#tipo_mascota").val()) {
 			case "0":
 				jQuery('#raza_mascota').html('<option value="">Cargando razas</option>');
-				break;
+				jQuery("#comportamiento_gatos").css("display", "none");
+			break;
 			case "2605":
 				listarAjax();
-				break;
+				jQuery("#tamanios_mascota").css("display", "block");
+				jQuery("#comportamiento_gatos").css("display", "none");
+			break;
 			case "2608":
 				jQuery('#raza_mascota').html('<option value="1">Gatos</option>');
-				break;
+				jQuery("#tamanios_mascota").css("display", "none");
+				jQuery("#comportamiento_gatos").css("display", "block");
+
+				var valor='';
+				if (jQuery("#select_1").hasClass("km-opcionactivo")) {
+					valor = jQuery("#select_1").attr('value');
+				}else if(jQuery("#select_2").hasClass("km-opcionactivo")){
+					valor = jQuery("#select_2").attr('value');
+				} else if (jQuery("#select_3").hasClass("km-opcionactivo")){
+					valor = jQuery("#select_3").attr('value');
+				}else if (jQuery("#select_4").hasClass("km-opcionactivo")){
+					valor = jQuery("#select_4").attr('value');
+				}
+
+				if( valor == '' ){
+					jQuery("#select_1").addClass("km-opcionactivo");
+					jQuery("#select_1").attr('value', "1");
+				}
+
+			break;
 		}
 	});
+
+	jQuery("#comportamiento_gatos").css("display", "none");
+
 	jQuery("#tipo_mascota").blur(function(){
 		jQuery("[name='sp-tipo_mascota']").remove();
 		switch(jQuery("#tipo_mascota").val()) {
@@ -519,6 +545,16 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
+
+	jQuery(".km-check-gatos").on('click', function() {
+		if(jQuery(this).val() == "0"){
+			jQuery(this).attr('value','1');
+		}else{
+			jQuery(this).attr('value','0');
+		}
+	});
+
+
 	jQuery(document).on("click", '.popup-registrarte-datos-mascota .km-btn-popup-registrarte-datos-mascota', function ( e ) {
 		e.preventDefault();
 
@@ -534,8 +570,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			valor = jQuery("#select_3").attr('value');
 		}else if (jQuery("#select_4").hasClass("km-opcionactivo")){
 			valor = jQuery("#select_4").attr('value');
-		}else{
-			
 		}
 
 		var nombre_mascota = jQuery("#nombre_mascota").val(),
@@ -584,7 +618,12 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		            'userid': globalData.trim()
 		        };
 
+		        jQuery(".km-check-gatos").each(function(x, input){
+					datos[ jQuery(input).attr("name") ] = jQuery(input).val();
+				});
+
 				jQuery.post( HOME+'/procesos/login/registro_pet.php', datos, function( data ) {
+
 					if( data >= 1 ){
 						jQuery("#btn_cerrar").on("click", function(e){
 							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");

@@ -40,11 +40,11 @@
 		}
 
 
-	    if( strtolower($data_reserva["servicio"]["metodo_pago"]) == "tarjeta" ){
+	 /*   if( strtolower($data_reserva["servicio"]["metodo_pago"]) == "tarjeta" ){
 	    	$pixel = "<script> evento_fbq ('track','Purchase'); </script>";
 	    }else{
 	    	$pixel = "";
-	    }
+	    }*/
 
 	    $info = $pixel.'
 	        <div class="desglose_box">
@@ -238,7 +238,7 @@
 
 
 		if( $_SESSION["wlabel"] == "petco" ){
-			$HTML .= '
+/*			$HTML .= '
 				<script type="text/javascript">
 				    window._adftrack.push({
 				        pm: 1453019,
@@ -261,7 +261,7 @@
 				        <img src="https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_TYP_180907&ADFdivider=|" width="1" height="1" alt="" />
 				    </p>
 				</noscript>
-			';
+			';*/
 		}
 
 
@@ -348,7 +348,7 @@
 	 		$_SESSION["wlabel"] == "petco"
 	 	){
 	 		
-	 		$HTML .= '
+	 		/*$HTML .= '
 				<script>
 					if( "'.strtolower($data_reserva["servicio"]["metodo_pago"]).'" == "tienda" ){
 						evento_google("nueva_reserva_tienda");
@@ -365,7 +365,7 @@
 				</script>
 		 	';
 
-		 	$_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ] = "YA_CONTADO";
+		 	$_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ] = "YA_CONTADO";*/
 	 	}	
 			
 

@@ -20,7 +20,8 @@ function initCarrito(){
 			"pequenos" : [],
 			"medianos" : [],
 			"grandes" : [],
-			"gigantes" : []
+			"gigantes" : [],
+			"gatos" : []
 		};
 
 	CARRITO["adicionales"] = [];
@@ -226,18 +227,6 @@ function calcular(){
 		}
 	}
 
-/*	if( error == "" ){
-		if( CARRITO[ "fechas" ][ "checkin" ] == undefined || CARRITO[ "fechas" ][ "checkin" ] == "" ){
-			error = "Ingrese la hora de checkin";
-		}
-	}
-
-	if( error == "" ){
-		if( CARRITO[ "fechas" ][ "checkout" ] == undefined || CARRITO[ "fechas" ][ "checkout" ] == "" ){
-			error = "Ingrese la hora de checkout";
-		}
-	}*/
-
 	var cant = 0, duracion = 0;
 	jQuery.each( CARRITO[ "cantidades" ], function( key, valor ) {
 		if( key != "cantidad" && valor[0]  != undefined && valor[1] > 0 ){
@@ -390,7 +379,8 @@ function initFactura(){
 		"pequenos" : "Peque&ntilde;a",
 		"medianos" : "Mediana",
 		"grandes" :  "Grande",
-		"gigantes" : "Gigante"
+		"gigantes" : "Gigante",
+		"gatos" : "Gatos"
 	};
 
 	var items = "";

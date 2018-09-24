@@ -75,9 +75,8 @@
 		);
 
 		$_mascotas = $db->get_results("SELECT * FROM wp_posts WHERE post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' ");
-		$mascotas = array();
 		foreach ($_mascotas as $key => $value) {
-			$_metas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key IN ('aggressive_with_humans', 'aggressive_with_pets', 'size_pet')");
+			$_metas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key IN ('aggressive_with_humans', 'aggressive_with_pets', 'size_pet', 'comportamiento_gatos')");
 			$metas = array();
 			foreach ($_metas as $key2 => $value2) {
 				$metas[ $value2->meta_key ] = $value2->meta_value;
@@ -108,9 +107,11 @@
 							break;
 						}
 					break;
+					case 'comportamiento_gatos':
+						$filtros["comportamiento_gatos"] = $value2->meta_value;
+					break;
 				}
 			}
-			$mascotas[] = $metas;
 		}
 
 		$FILTRO_ESPECIA = array();
@@ -139,11 +140,25 @@
 			$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%gigantes\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%gigantes\";s:1:\"1%' ) ";
 		}
 
+		if( is_array($mascotas) ){
+	    	if( in_array("gatos", $mascotas) ){
+				if( $filtros["comportamiento_gatos"] != "" ){
+					$filtros["comportamiento_gatos"] = json_decode($filtros["comportamiento_gatos"]);
+					foreach ($filtros["comportamiento_gatos"] as $key_comportamiento_gato => $value_comportamiento_gato) {
+						if( $value_comportamiento_gato == 1 ){
+							$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%".$key_comportamiento_gato."\";s:1:\"1%' ) ";
+						}
+					}
+				}
+			}
+		}
+
 		if( count($FILTRO_ESPECIA) > 0 ){
 			$FILTRO_ESPECIA = " AND ( ".implode(" AND ", $FILTRO_ESPECIA)." )";
 		}else{
 			$FILTRO_ESPECIA = "";
 		}
+
 	}
 
 	$condiciones = "";

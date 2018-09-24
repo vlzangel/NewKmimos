@@ -280,39 +280,57 @@
 	}
 
 	function getTamanos(){
-		return array(
+		$tamanios = array(
 			"pequenos" => "PEQUEÑO 0 a 25cm",
 			"medianos" => "MEDIANO 25 a 58cm",
 			"grandes"  => "GRANDE 58cm a 73cm",
 			"gigantes" => "GIGANTE 73cm a 200cm"
 		);
+
+		global $cuidador;
+
+		$atributos = unserialize($cuidador->atributos);
+
+	    if( $atributos["gatos"] == "Si" ){
+	        $tamanios["gatos"] = "GATOS";
+	    }
+
+		return $tamanios;
 	}
 
 	function getPrecios($data, $precarga = array(), $aceptados = array() ){
 		$resultado = "";
 		$tamanos = getTamanos();
+		$busqueda = getBusqueda();
+		if( is_array($busqueda["mascotas"]) && count($busqueda["mascotas"]) == 1 AND in_array("gatos", $busqueda["mascotas"]) ) {
+			foreach ($tamanos as $key => $value) {
+				if( $key != "gatos"){
+					unset($tamanos[$key]);
+				}
+			}
+		}
+
 		foreach ($tamanos as $key => $value) {
+
 			if( isset($data[$key]) && $data[$key] > 0 ){
 				$catidad = 0;
 				if( isset($precarga[$key]) ){
 					$catidad = $precarga[$key];
 				}
-				//if( $data[$key] > 0 ){
-					$resultado .= '
-						<div class="km-quantity-height">
-							<div class="km-quantity">
-								<a href="#" class="km-minus disabled">-</a>
-									<span class="km-number">'.$catidad.'</span>
-									<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*getComision() ).'" />
-								<a href="#" class="km-plus">+</a>
-							</div>
-							<div class="km-height">
-								'.$tamanos[$key].'
-								<span>$'.($data[$key]*getComision() ).'</span>
-							</div>
+				$resultado .= '
+					<div class="km-quantity-height">
+						<div class="km-quantity">
+							<a href="#" class="km-minus disabled">-</a>
+								<span class="km-number">'.$catidad.'</span>
+								<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*getComision() ).'" />
+							<a href="#" class="km-plus">+</a>
 						</div>
-					';
-				//}
+						<div class="km-height">
+							'.$tamanos[$key].'
+							<span>$'.($data[$key]*getComision() ).'</span>
+						</div>
+					</div>
+				';
 			}
 		}
 		return $resultado;

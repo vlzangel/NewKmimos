@@ -70,15 +70,6 @@
 		$servicio_name_corto = explode(" - ", $servicio_name);
 		$servicio_name_corto = $servicio_name_corto[0];
 
-/*		$horario = "";
-
-		$inicio = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_in );
-		$fin = strtotime( date("Y", time())."-".date("m", time())."-".date("d", time())." ".$cuidador->check_out );
-
-		for ($i=$inicio; $i <= $fin; $i+=1800) { 
-			$horario .= "<option value='".date("H:i", $i)."'>".date("h:i A", $i)."</option>";
-		}*/
-
 		$USER_ID = $id_user;
 
 		if( $USER_ID != "" ){
@@ -171,49 +162,6 @@
 				}
 			}
 
-
-			/*
-			$FILTRO_ESPECIA = array();
-
-			if( $filtros["agresivo_mascotas"] == 1 ){
-				$FILTRO_ESPECIA[] = " ( comportamientos_aceptados LIKE '%agresivos_perros\";i:1%' OR comportamientos_aceptados LIKE '%agresivos_perros\";s:1:\"1%' ) ";
-			}
-
-			if( $filtros["agresivo_personas"] == 1 ){
-				$FILTRO_ESPECIA[] = " ( comportamientos_aceptados LIKE '%agresivos_personas\";i:1%' OR comportamientos_aceptados LIKE '%agresivos_personas\";s:1:\"1%' ) ";
-			}
-
-			if( $filtros["pequenos"] == 1 ){
-				$FILTRO_ESPECIA[] = " ( tamanos_aceptados LIKE '%pequenos\";i:1%' OR tamanos_aceptados LIKE '%pequenos\";s:1:\"1%' ) ";
-			}
-
-			if( $filtros["medianos"] == 1 ){
-				$FILTRO_ESPECIA[] = " ( tamanos_aceptados LIKE '%medianos\";i:1%' OR tamanos_aceptados LIKE '%medianos\";s:1:\"1%' ) ";
-			}
-
-			if( $filtros["grandes"] == 1 ){
-				$FILTRO_ESPECIA[] = " ( tamanos_aceptados LIKE '%grandes\";i:1%' OR tamanos_aceptados LIKE '%grandes\";s:1:\"1%' ) ";
-			}
-
-			if( $filtros["gigantes"] == 1 ){
-				$FILTRO_ESPECIA[] = " ( tamanos_aceptados LIKE '%gigantes\";i:1%' OR tamanos_aceptados LIKE '%gigantes\";s:1:\"1%' ) ";
-			}
-
-			if( count($FILTRO_ESPECIA) > 0 ){
-				$FILTRO_ESPECIA = " AND ( ".implode(" AND ", $FILTRO_ESPECIA)." )";
-			}else{
-				$FILTRO_ESPECIA = "";
-			}
-
-			$cuidador_valido = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = '{$cuidador->id}' {$FILTRO_ESPECIA} ");
-			echo "<pre>";
-				print_r($mascotas);
-			echo "</pre>";
-			print_r("SELECT * FROM cuidadores WHERE id = '{$cuidador->id}' {$FILTRO_ESPECIA} ");
-
-			if( $cuidador_valido ){
-
-			}*/
 		}
 
 	    $precios = "";
@@ -580,7 +528,7 @@
 			}
 
 			if( $_SESSION["wlabel"] == "petco" ){
-				$HTML .= "
+				/*$HTML .= "
 					<script type='text/javascript'>
 					    window._adftrack.push({
 					        pm: 1453019,
@@ -593,7 +541,7 @@
 					        <img src='https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_Reservar_180907&ADFdivider=|' width='1' height='1' alt='' />
 					    </p>
 					</noscript>
-				";
+				";*/
 			}
 
 			$HTML .= '
@@ -997,9 +945,9 @@
 
 		}
 
-/*		echo "<pre>";
-			print_r($_SESSION);
-		echo "</pre>";*/
+		echo "<pre>";
+			print_r( unserialize($_SESSION["busqueda"]) );
+		echo "</pre>";
 
 		unset($_SESSION["pagando"]);
 

@@ -59,7 +59,7 @@
             var wlabel = "'.$wlabel.'";
 		</script>';
 
-	$HTML .= "
+/*	$HTML .= "
 		<!-- Google Tag Manager 
 		<script>
 			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -94,7 +94,7 @@
 
 
 	";
-
+*/
 /*	$HTML .= '
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-69626366-1"></script>
@@ -106,7 +106,7 @@
 		  gtag("config", "UA-69626366-1");
 		</script>';*/
 
-	$HTML .= "
+/*	$HTML .= "
 		<script>
 
 	        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -116,13 +116,13 @@
 	        ga('create', 'UA-56422840-1', 'auto');
 	        ga('send', 'pageview');
         </script>
-	";
-
+	";*/
+/*
 	if( $_SESSION["wlabel"] == "petco" ){
 		$HTML .= "
 			<script type='text/javascript' src='https://a2.adform.net/serving/scripts/trackpoint/'></script>
 		";
-	}
+	}*/
 
 	$HTML .= '
 	</head>
@@ -130,6 +130,7 @@
 		<script> 
 			var RUTA_IMGS = "'.get_home_url().'/imgs"; 
 
+			/*
 	        var hizo_click = [];
 
 	        hizo_click["paseos"] = false;
@@ -209,13 +210,14 @@
 	        		fbq(tipo, evento); 
 	        	}
 	        }
+	        */
 		</script>
 	';
 
 
 
 	if( $_SESSION["wlabel"] == "petco" ){
-		$HTML .= '
+/*		$HTML .= '
 			<!-- Adform Tracking Code BEGIN -->
 			<script type="text/javascript">
 			    window._adftrack = Array.isArray(window._adftrack) ? window._adftrack : (window._adftrack ? [window._adftrack] : []);
@@ -235,16 +237,16 @@
 			    </p>
 			</noscript>
 			<!-- Adform Tracking Code END -->
-		';
+		';*/
 	}
 
 
-	$HTML .= '
+/*	$HTML .= '
 		<!-- Google Tag Manager (noscript) -->
 			<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SG9NM"
 			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
-	';
+	';*/
 	
 	include_once("funciones.php");
 

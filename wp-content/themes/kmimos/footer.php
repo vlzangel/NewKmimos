@@ -176,13 +176,13 @@ $HTML = '
     ";
 
     if( !isset($_SESSION[ "llego_al_home" ]) ){
-        $HTML .= '
+        /*$HTML .= '
             <script>
                 evento_google("llego_al_home");  
                 evento_fbq("track", "traking_code_llego_al_home");   
             </script>
         ';
-        $_SESSION[ "llego_al_home" ] = "YA_ENTRO";
+        $_SESSION[ "llego_al_home" ] = "YA_ENTRO";*/
     }
 
     if( !isset($_SESSION) ){ session_start(); }
@@ -222,7 +222,15 @@ $HTML = '
 
     echo comprimir_styles($HTML);
 
-    echo "
+/*    echo '
+        <script>
+            jQuery("#popup-registrarte").modal().show();
+            jQuery(".popup-registrarte-1").css("display", "none");
+            jQuery(".popup-registrarte-datos-mascota").css("display", "block");
+        </script>
+    ';*/
+
+/*    echo "
         <!-- BEGIN Evento objetivo GA -->        
         <script>
         window.addEventListener(\"load\",function(){
@@ -237,7 +245,7 @@ $HTML = '
         })
         </script>
         <!-- END Evento objetivo GA -->        
-    ";
+    ";*/
 
 /*	echo "<pre style='display: none;'>";
         	print_r($_SERVER);

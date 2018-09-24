@@ -33,6 +33,31 @@ foreach ($parrafos as $parrafo) {
 	$NEW_HTML_TERMINOS .= "<p>".$parrafo."</p>";
 }
 
+$_comportamiento_gatos = get_post_meta($pet_id, 'comportamiento_gatos', true);
+$_comportamiento_gatos = (array) json_decode($_comportamiento_gatos);
+
+$comportamientos_db = $wpdb->get_results("SELECT * FROM comportamientos_mascotas");
+foreach ($comportamientos_db as $value) {
+    $comportamientos[ $value->slug ] =  $value->nombre;
+}
+
+$comportamientos_str = '<div class="km-registro-checkbox">';
+$i = 0;
+foreach ($comportamientos as $key => $value) {
+    $comportamientos_str .= '
+    	<div class="km-registro-checkbox-opcion">
+			<p>'.$value.'</p>
+			<div class="km-check-gato">
+				<input type="checkbox" value="0" id="km-check-gato-'.$i.'" class="km-check-gatos" name="comportamiento_gatos_'.$key.'" />
+				<label for="km-check-gato-'.$i.'"></label>
+			</div>
+		</div>
+    ';
+    $i++;
+}
+
+$comportamientos_str .= '</div>';
+
 $HTML .='
 <!-- POPUPS REGISTRARTE -->
 <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="popup-registrarte" style="padding: 40px;">
@@ -312,7 +337,7 @@ $HTML .='
 							</div>
 						</div>
 					</div>
-					<div class="row row-sin-padding" class="tamano-mascota-content" style="margin-bottom: 20px;">
+					<div id="tamanios_mascota" class="row row-sin-padding" class="tamano-mascota-content" style="margin-bottom: 20px;">
 						<div class="col-xs-6 col-sm-3">
 							<div class="km-opcion" id="select_1" value="0">
 								<img src="'.getTema().'/images/new/icon/icon-pequenio.svg" width="25">
@@ -381,6 +406,14 @@ $HTML .='
 							</div>
 						</div>
 					</div>
+
+					<div id="comportamiento_gatos">
+						<span style="font-weight: 600; font-size: 15px; color: #777;">Comportamientos para Gatos</span>
+						<div>
+							'.$comportamientos_str.'
+						</div>
+					</div>
+
 				</form>						
 				<a href="#" class="km-btn-correo km-btn-popup-registrarte-datos-mascota">REGISTRARME</a>
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>

@@ -11,6 +11,14 @@
 		"gigantes"
 	);
 
+    $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
+
+    $atributos = unserialize($cuidador->atributos);
+
+    if( $atributos["gatos"] == "Si" ){
+        $tams[] = "gatos";
+    }
+
 	$hospedaje = array();
 	$base_hospedaje = array();
 	foreach ($tams as $value) {

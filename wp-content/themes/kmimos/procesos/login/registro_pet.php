@@ -1,6 +1,7 @@
 <?php  
     include("../../../../../vlz_config.php");
     include("../../../../../wp-load.php");
+    include("../funciones/db.php");
     if(file_exists($config)){
         include_once($config);
     }
@@ -8,6 +9,8 @@
     extract($_POST);
 	
     $conn = new mysqli($host, $user, $pass, $db);
+
+    $db = new db( $conn );
 
 	$errores = array();
 
@@ -48,6 +51,15 @@
             );
             $pet_id = wp_insert_post( $args );
 
+
+            $comportamiento_gatos = [];
+            $comportamientos_db = $db->get_results("SELECT * FROM comportamientos_mascotas");
+            foreach ($comportamientos_db as $value) {
+                $comportamiento_gatos[ $value->slug ] =  $_POST[ 'comportamiento_gatos_'.$value->slug ];
+            }
+            $comportamiento_gatos = json_encode($comportamiento_gatos);
+
+
             $sql = "
                 INSERT INTO wp_postmeta VALUES
                     (NULL, {$pet_id}, 'name_pet',               '{$name_pet}'),
@@ -70,6 +82,9 @@
                     (NULL, {$pet_id}, 'wp_capabilities',        'a:1:{s:10:\"subscriber\";b:1;}'),
                     (NULL, {$pet_id}, 'about_pet',              ''),
                     (NULL, {$pet_id}, 'owner_pet',              '{$user_id}'),
+
+                    (NULL, {$pet_id}, 'comportamiento_gatos',   '{$comportamiento_gatos}'),
+
                     (NULL, {$pet_id}, 'wp_user_level',          '0');
             ";
             $conn->query( utf8_decode( $sql ) );
