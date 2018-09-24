@@ -48,10 +48,12 @@ function form_subscribe(element){
                 }
 
                 var list = "newsletter_home";
-                if (wlabel == "petco") { list = "petco_popup"; }
+                if (wlabel == "petco") { 
+                    list = "petco_popup"; 
+                    evento_google('dejo_el_correo');
+                    evento_fbq("track", "traking_code_dejo_el_correo");
+                }
 
-                evento_google('dejo_el_correo');
-                evento_fbq("track", "traking_code_dejo_el_correo");
 
                 switch( section ){
                     case "landing-volaris":
