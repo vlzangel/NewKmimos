@@ -113,7 +113,7 @@
         function kmimos_mails_administradores_new($titulo, $mensaje){   
             $id_user = get_current_user_id();
             $wlabel = get_user_meta($id_user, "_wlabel", true);
-            $referido = get_user_meta($id_user, "user_referred", true);
+            $referido = strtolower( get_user_meta($id_user, "user_referred", true) );
 
             $info = kmimos_get_info_syte();
             $email_admin = $info["email"];
@@ -125,6 +125,8 @@
 
             }else if($referido == 'Vintermex'){
                 $PREFIJO = 'viajesintermex - ';
+            }else if( strrpos($referido, "pecto") !== false ){
+                $PREFIJO = 'pecto - ';
             }
             if( $PREFIJO == "" ){
                 if( $wlabel != "" ){
