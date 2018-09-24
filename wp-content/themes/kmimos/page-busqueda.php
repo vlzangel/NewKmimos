@@ -294,7 +294,7 @@
 					<input type="hidden" id="latitud" name="latitud" value="19.4162262" />
 					<input type="hidden" id="longitud" name="longitud" value="-99.1661392" />
 
-					<input type="hidden" id="km5" name="km5" />
+					<input type="hidden" id="km5" name="km5" value="'.$busqueda["km5"].'" />
 					
 					<div class="km-bloque-cajas km-search-wlabel" >
 						<div class="km-div-ubicacion">
