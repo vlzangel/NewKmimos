@@ -15,6 +15,8 @@
 
     $class_body = ( $is_iOS ) ? "iOS" : "";   
 
+    $_SESSION["CLIENTE_IP"] = $_SERVER["REMOTE_ADDR"];
+
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -60,6 +62,12 @@
         </div>
 
         <script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__); ?>includes/js/filtros_fechas.js?v=<?php echo time(); ?>"></script>
+
+        <?php
+            echo "<pre style='display: none;'>";
+                print_r($_SESSION["CLIENTE_IP"] );
+            echo "</pre>";
+        ?>
 
     </body>
 </html>

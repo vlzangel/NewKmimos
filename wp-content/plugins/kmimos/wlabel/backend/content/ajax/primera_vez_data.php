@@ -3,7 +3,6 @@
 	if(file_exists($kmimos_load)){
 	    include_once($kmimos_load);
 	}
-    date_default_timezone_set('America/Mexico_City');
 
 	global $wpdb;
 
@@ -104,7 +103,7 @@
 					$_nueva_reserva = $wpdb->get_var($SQL);
 					if( $_nueva_reserva != null){
 						$info = getDataReserva($_nueva_reserva);
-
+						
 						$_info[] = $info['id'];
 						$_info[] = $info['fecha'];
 						$_info[] = $info['checkin'];
@@ -114,6 +113,7 @@
 						$_info[] = $info['cuidador'];
 						$_info[] = $info['servicio'];
 						$_info[] = $info['status'];
+
 
 					}else{
 
@@ -127,7 +127,19 @@
 						$_info[] = "-";
 						$_info[] = "-";
 					}
-				}
+				}else{
+
+						$_info[] = "-";
+						$_info[] = "-";
+						$_info[] = "-";
+						$_info[] = "-";
+						$_info[] = "-";
+						$_info[] = "-";
+						$_info[] = "-";
+						$_info[] = "-";
+						$_info[] = "-";
+
+}
 
 				$reservas++;
 			}else{
@@ -204,16 +216,6 @@
 					$_info[] = "-";
 					$_info[] = "-";
 					$_info[] = "-";
-
-					$_info[] = "-";
-					$_info[] = "-";
-					$_info[] = "-";
-					$_info[] = "-";
-					$_info[] = "-";
-					$_info[] = "-";
-					$_info[] = "-";
-					$_info[] = "-";
-					$_info[] = "-";
 				}
 
 				$reservas++;
@@ -247,6 +249,13 @@
 			
 		}
 	}
-
-	echo json_encode($data);
+	
+	if( $_SESSION["CLIENTE_IP"] != '201.243.255.159' ){
+		echo json_encode($data);
+	}else{
+		/* echo "<pre>";
+			print_r( $data );
+		echo "</pre>"; */
+		echo json_encode($data);
+	}
 ?>
