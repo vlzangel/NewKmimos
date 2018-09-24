@@ -25,7 +25,20 @@
 		'agresivos_humanos'	  => $agresivos_humanos,
 		'agresivos_mascotas'  => $agresivos_mascotas
 	);
+
+	$comportamiento_gatos = [];
+	$comportamientos_db = $db->get_results("SELECT * FROM comportamientos_mascotas");
+    foreach ($comportamientos_db as $value) {
+    	$comportamiento_gatos[ $value->slug ] = $_POST[ 'comportamiento_gatos_'.$value->slug ];
+    }
+
+    $comportamientos_aceptados = [
+    	"perros" => $comportamientos_aceptados,
+    	"gatos" => $comportamiento_gatos
+    ];
+
 	$comportamientos_aceptados = serialize($comportamientos_aceptados);
+	
 	$ini_url = substr($video_youtube, 0, 5);
 	if( $ini_url == 'https' ){
 		preg_match_all("#v=(.*?)&#", $video_youtube."&", $matches);

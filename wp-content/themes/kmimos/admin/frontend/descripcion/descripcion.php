@@ -155,6 +155,9 @@
       	$mascotas_cuidador_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="tengo_'.$key.'" name="tengo_'.$key.'" value="'.$value.'">'.$tamano[$key].'</div>';
     }
 
+    $temp_comportamientos_aceptados = $comportamientos_aceptados;
+    $comportamientos_aceptados = ( isset($comportamientos_aceptados["perros"]) ) ? $comportamientos_aceptados["perros"]: $comportamientos_aceptados;
+
     $compor = array(
         "sociables" => "Sociables",
         "no_sociables" => "No Sociables",
@@ -168,6 +171,7 @@
         if($comportamientos_aceptados[$key] == 1){ $check = "vlz_check"; }else{ $check = ""; }
         $comportamientos_aceptados_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="'.$key.'" name="'.$key.'" value="'.$comportamientos_aceptados[$key].'">'.$compor[$key].'</div>';
     }
+
     $tamanos_aceptados_str = "";
     foreach ($tamanos_aceptados as $key => $value) {
         if($value == 1){ $check = "vlz_check"; }else{ $check = ""; }
@@ -180,7 +184,7 @@
     );
     $edades_aceptadas_str = "";
     foreach ($edades_aceptadas as $key => $value) {
-        if($value == 1){ $check = "vlz_check"; }else{ $check = ""; }
+        if($value == 1){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
         $edades_aceptadas_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="acepta_'.$key.'" name="acepta_'.$key.'" value="'.$edades_aceptadas[$key].'">'.$edades[$key].'</div>';
     }
 
@@ -196,6 +200,24 @@
 
     // wp_enqueue_script( 'google-api','http://maps.googleapis.com/maps/api/js?key=AIzaSyBdswYmnItV9LKa2P4wXfQQ7t8x_iWDVME&sensor=true', array( 'jquery' ) );
     wp_enqueue_script( 'google-maps', getTema().'/js/google-map-cuidador.js', array(  ) ); // 'google-api'
+
+    $comportamientos_db = $wpdb->get_results("SELECT * FROM comportamientos_mascotas");
+    foreach ($comportamientos_db as $value) {
+        $comportamientos[ $value->slug ] =  $value->nombre;
+    }
+
+    $comportamientos_str = "";
+    foreach ($comportamientos as $key => $value) {
+        if($temp_comportamientos_aceptados["gatos"][$key] == 1){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
+        $comportamientos_str .= '
+            <section>
+                <label class="lbl-ui">
+                    <div class="vlz_input vlz_pin_check  '.$check.'" style="padding: 8px 39px 8px 8px;">
+                        <input type="hidden" name="comportamiento_gatos_'.$key.'" value="'.$temp_comportamientos_aceptados["gatos"][$key].'">'.$comportamientos[$key].'
+                    </div>
+                </label>
+            </section>';
+    }
   
   	$CONTENIDO .= '
     <input type="hidden" name="accion" value="update_descripcion" />
@@ -325,6 +347,11 @@
                 <input  type="text" id="video_youtube" name="video_youtube" class="input" value="'.$atributos['video_youtube'].'" />
             </label>
         </section>
+    </div>
+
+    <div class="inputs_containers row_3" style="padding-bottom: 0px;" id="comportamiento_gatos_container">  
+        <label class="lbl-text">'.esc_html__('Comportamientos para Gatos', 'kmimos').':</label>         
+        '.$comportamientos_str.'
     </div>
            
     <div class="inputs_containers row_4" style="padding-bottom: 0px;"> 

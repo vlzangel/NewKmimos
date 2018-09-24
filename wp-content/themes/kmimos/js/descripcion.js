@@ -1,3 +1,12 @@
+function acepta_gatos(){
+    var acepta = jQuery("#gatos").val();
+    if( acepta == "Si" ){
+        jQuery("#comportamiento_gatos_container").css("display", "block");
+    }else{
+        jQuery("#comportamiento_gatos_container").css("display", "none");
+    }
+}
+
 jQuery( document ).ready(function() {
     
     var maxDatePets = new Date();
@@ -63,5 +72,11 @@ jQuery( document ).ready(function() {
     });
 
     jQuery('[data-toggle="tooltip"]').tooltip();
+
+
+    jQuery("#gatos").on("change", function(e){
+        acepta_gatos();
+    });
+    acepta_gatos();
 
 });
