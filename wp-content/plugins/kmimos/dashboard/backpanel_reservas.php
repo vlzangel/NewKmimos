@@ -1,22 +1,35 @@
-<?php if ( ! defined( 'ABSPATH' ) ) { exit; } 
- global $wpdb;
+<?php  if ( ! defined( 'ABSPATH' ) ) { exit; } global $wpdb;
 // Reservas 
 require_once('core/ControllerReservas.php');
 // Parametros: Filtro por fecha
 $date = getdate(); 
-$desde = date("Y-m-01", $date[0] );
-$hasta = date("Y-m-d", $date[0]);
+$desde = date("Y-m", $date[0] );
+$hasta = date("Y-m", $date[0]);
 $_desde = "";
 $_hasta = "";
+
+// $_POST['desde'] = '';
+// $_POST['hasta'] = '';
+
 if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
-	$_desde = (!empty($_POST['desde']))? $_POST['desde']: "";
-	$_hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
+	$_desde = (!empty($_POST['desde']))? $_POST['desde']."-01": "";
+
+	$_desde = date("Y-m-d", strtotime($_desde) );
+	$_hasta = date("Y-m-d", strtotime("+1 month", strtotime($_desde) ) );
+	$_hasta = date("Y-m-d", strtotime("-1 day", strtotime($_hasta) ) );
 }
+
 $razas = get_razas();
 // Buscar Reservas
 $reservas = getReservas($_desde, $_hasta);
 
-
+if(	empty($_POST['desde']) && empty($_POST['hasta']) ){
+	$_desde = $desde;
+	$_hasta = $hasta;
+}else{
+	$_desde = date("Y-m", strtotime($_desde) );
+	$_hasta = date("Y-m", strtotime($_desde) );
+}
 ?>
 
 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -30,18 +43,18 @@ $reservas = getReservas($_desde, $_hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_reservas" method="POST">
+		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_reservas" method="POST">
 				  <label>Filtrar:</label>
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">Desde</div>
-				      <input type="date" class="form-control" name="desde" value="<?php echo $desde; ?>">
+				      <input type="month" class="form-control" name="desde" value="<?php echo $_desde; ?>">
 				    </div>
 				  </div>
-				  <div class="form-group">
+				  <div class="form-group hidden">
 				    <div class="input-group">
 				      <div class="input-group-addon">Hasta</div>
-				      <input type="date" class="form-control" name="hasta" value="<?php echo $hasta ?>">
+				      <input type="month" class="form-control" name="hasta" value="<?php echo $_hasta ?>">
 				    </div>
 				  </div>
 					<button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>			  
