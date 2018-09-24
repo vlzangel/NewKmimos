@@ -7,15 +7,15 @@
 
 	global $wpdb;
 
-    $condicion_referido = "( usermeta.meta_value = '{$_SESSION["label"]->wlabel}' OR usermeta_2.meta_value = '{$_SESSION["label"]->wlabel}' )";
-    if( $_SESSION["label"]->wlabel == "petco" ){
+    $condicion_referido = "( usermeta.meta_value LIKE '%{$_SESSION["label"]->wlabel}%' OR usermeta_2.meta_value LIKE '%{$_SESSION["label"]->wlabel}%' )";
+/*    if( $_SESSION["label"]->wlabel == "petco" ){
         $condicion_referido = "
         ( 
             usermeta.meta_value = '{$_SESSION["label"]->wlabel}' OR 
             usermeta_2.meta_value = '{$_SESSION["label"]->wlabel}' OR 
             usermeta_2.meta_value = 'CC-Petco' 
         )";
-    }
+    }*/
 
 	$SQL = "
 		SELECT 

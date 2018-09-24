@@ -67,7 +67,7 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                         FROM
                             wp_posts AS posts
                             LEFT JOIN wp_postmeta AS postmeta ON (postmeta.post_id=posts.post_parent AND postmeta.meta_key='_wlabel')
-                            LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=posts.post_author AND usermeta.meta_key='_wlabel')
+                            LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=posts.post_author AND (usermeta.meta_key='_wlabel' OR usermeta.meta_key='user_referred') AND usermeta.meta_value LIKE '%{$wlabel}%' )
                         WHERE
                             (
                                 (posts.post_type = 'wc_booking' AND usermeta.meta_value = '{$wlabel}')

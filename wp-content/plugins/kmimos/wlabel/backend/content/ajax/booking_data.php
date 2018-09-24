@@ -59,7 +59,7 @@ from wp_posts as r
                 wlabel_cliente.meta_key = 'user_referred' OR
                 wlabel_cliente.meta_key = '_wlabel' 
             ) AND
-            wlabel_cliente.meta_value = '{$wlabel}'
+            wlabel_cliente.meta_value LIKE '%{$wlabel}%'
         )
 
     LEFT JOIN wp_postmeta as wlabel_reserva ON 

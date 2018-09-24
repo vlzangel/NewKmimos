@@ -7,6 +7,8 @@
 
 	global $wpdb;
 
+	$wlabel=$_wlabel_user->wlabel;
+
 	function getDataReserva($id){
 		global $wpdb;
 
@@ -60,7 +62,7 @@
 		LEFT JOIN wp_usermeta AS wlabel ON ( wp_users.ID = wlabel.user_id )
 		WHERE 
 			( wlabel.meta_key = 'user_referred' OR wlabel.meta_key = '_wlabel' ) AND
-			( wlabel.meta_value = 'cc-petco' OR wlabel.meta_value = 'petco' ) AND
+			( wlabel.meta_value LIKE '%{$wlabel}%' ) AND
 			wp_users.user_registered >= '2018-09-01 00:00:00'
 		GROUP BY wp_users.ID
 	";

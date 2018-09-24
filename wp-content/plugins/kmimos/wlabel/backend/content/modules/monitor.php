@@ -55,15 +55,15 @@
                     <tbody> <?php
 
                         //USER
-                        $condicion_referido = "( usermeta.meta_value = '{$wlabel}' OR usermeta_2.meta_value = '{$wlabel}' )";
-                        if( $wlabel == "petco" ){
+                        $condicion_referido = "( usermeta.meta_value = '{$wlabel}' OR usermeta_2.meta_value = '%{$wlabel}%' )";
+                        /*if( $wlabel == "petco" ){
                             $condicion_referido = "
                             ( 
                                 usermeta.meta_value = '{$wlabel}' OR 
                                 usermeta_2.meta_value = '{$wlabel}' OR 
                                 usermeta_2.meta_value = 'CC-Petco' 
                             )";
-                        }
+                        }*/
 
                         $sql = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$wlabel}' AND time >= '2018-09-01 00:00:00' ";
                         $leads = $wpdb->get_results($sql);
@@ -110,7 +110,7 @@
                                         wlabel_cliente.meta_key = 'user_referred' OR
                                         wlabel_cliente.meta_key = '_wlabel' 
                                     ) AND
-                                    wlabel_cliente.meta_value = '{$wlabel}'
+                                    wlabel_cliente.meta_value LIKE '%{$wlabel}%'
                                 )
 
                             LEFT JOIN wp_postmeta as wlabel_reserva ON 
