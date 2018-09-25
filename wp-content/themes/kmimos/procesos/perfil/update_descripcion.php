@@ -108,18 +108,18 @@
 	$sql .= "UPDATE cuidadores SET mascotas_cuidador = '{$mascotas_cuidador}', tamanos_aceptados = '{$tamanos_aceptados}', edades_aceptadas = '{$edades_aceptadas}', atributos = '{$atributos}', comportamientos_aceptados = '{$comportamientos_aceptados}' WHERE id = {$cuidador_id}; ";
 	$sql .= "UPDATE ubicaciones SET estado = '={$estado}=', municipios = '={$delegacion}=' WHERE cuidador = {$cuidador_id}; ";
 
-	$query = "SELECT * FROM wp_posts WHERE post_author='{$user_id}' AND post_type='product'";
+/*	$query = "SELECT * FROM wp_posts WHERE post_author='{$user_id}' AND post_type='product'";
 	$result = $db->get_results($query);
 	foreach($result as $product){
 		$product_id = $product->ID;
 		$sql .= "UPDATE wp_postmeta SET meta_value = '{$acepto_hasta}' WHERE post_id = {$product_id} AND meta_key = '_wc_booking_qty'; ";
 		$sql .= "UPDATE wp_postmeta SET meta_value = '{$acepto_hasta}' WHERE post_id = {$product_id} AND meta_key = '_wc_booking_max_persons_group'; ";
 	}
-
-	$db->query_multiple( utf8_decode($sql) );
+	$db->query_multiple( utf8_decode($sql) );*/
 
 	$respuesta = array(
-		"status" => "OK"
+		"status" => "OK",
+		"sql" => $sql
 	);
-	
+
 ?>
