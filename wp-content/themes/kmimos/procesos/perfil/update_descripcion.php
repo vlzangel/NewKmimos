@@ -29,7 +29,7 @@
 	$comportamiento_gatos = [];
 	$comportamientos_db = $db->get_results("SELECT * FROM comportamientos_mascotas");
     foreach ($comportamientos_db as $value) {
-    	$comportamiento_gatos[ $value->slug ] = $_POST[ 'comportamiento_gatos_'.$value->slug ]+0;
+    	$comportamiento_gatos[ $value->slug ] = $_POST[ 'comportamiento_gatos_'.$value->slug ];
     }
 
     $comportamientos_aceptados = [
@@ -69,7 +69,7 @@
 	$tamanos_aceptados = str_replace('"', '\"', $tamanos_aceptados);
 	$edades_aceptadas = str_replace('"', '\"', $edades_aceptadas);
 	$atributos = str_replace('"', '\"', $atributos);
-	// $comportamientos_aceptados = str_replace('"', '\"', $comportamientos_aceptados);
+	$comportamientos_aceptados = str_replace('"', '\"', $comportamientos_aceptados);
 
 	switch ( $tipo_doc ) {
         case 'IFE / INE':
@@ -104,28 +104,21 @@
     $db->query("UPDATE cupos SET full = 0 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos < acepta ) ");
 
 
-	$sql = "UPDATE cuidadores SET edades_aceptadas = '{$edades_aceptadas}', atributos = '{$atributos}', tamanos_aceptados = '{$tamanos_aceptados}', mascotas_cuidador = '{$mascotas_cuidador}', dni = '{$dni}', experiencia = '{$cuidando_desde}', direccion = '{$direccion}', check_in = '{$entrada}', check_out = '{$salida}', num_mascotas = '{$num_mascotas_casa}', mascotas_permitidas = '{$acepto_hasta}', latitud = '{$latitud}', longitud = '{$longitud}' WHERE id = {$cuidador_id}; ";
-	$db->query( utf8_decode($sql) );
+	$sql  = "UPDATE cuidadores SET dni = '{$dni}', experiencia = '{$cuidando_desde}', direccion = '{$direccion}', check_in = '{$entrada}', check_out = '{$salida}', num_mascotas = '{$num_mascotas_casa}', mascotas_permitidas = '{$acepto_hasta}', latitud = '{$latitud}', longitud = '{$longitud}' WHERE id = {$cuidador_id}; ";
+	$sql .= "UPDATE cuidadores SET mascotas_cuidador = '{$mascotas_cuidador}', tamanos_aceptados = '{$tamanos_aceptados}', edades_aceptadas = '{$edades_aceptadas}', atributos = '{$atributos}', comportamientos_aceptados = '{$comportamientos_aceptados}' WHERE id = {$cuidador_id}; ";
+	$sql .= "UPDATE ubicaciones SET estado = '={$estado}=', municipios = '={$delegacion}=' WHERE cuidador = {$cuidador_id}; ";
 
-	$sql = "UPDATE cuidadores SET comportamientos_aceptados = '{$comportamientos_aceptados}' WHERE id = {$cuidador_id}; ";
-	$db->query( utf8_decode($sql) );
-	$_sql = $sql;
-
-	$sql = "UPDATE ubicaciones SET estado = '={$estado}=', municipios = '={$delegacion}=' WHERE cuidador = {$cuidador_id}; ";
-	$db->query( utf8_decode($sql) );
-
-/*	$query = "SELECT * FROM wp_posts WHERE post_author='{$user_id}' AND post_type='product'";
+	$query = "SELECT * FROM wp_posts WHERE post_author='{$user_id}' AND post_type='product'";
 	$result = $db->get_results($query);
 	foreach($result as $product){
 		$product_id = $product->ID;
 		$sql .= "UPDATE wp_postmeta SET meta_value = '{$acepto_hasta}' WHERE post_id = {$product_id} AND meta_key = '_wc_booking_qty'; ";
 		$sql .= "UPDATE wp_postmeta SET meta_value = '{$acepto_hasta}' WHERE post_id = {$product_id} AND meta_key = '_wc_booking_max_persons_group'; ";
 	}
-	*/
+
+	$db->query_multiple( utf8_decode($sql) );
 
 	$respuesta = array(
-		"status" => "OK",
-		"sql" => $_sql
+		"status" => "OK"
 	);
-
 ?>
