@@ -9,10 +9,6 @@
     $comportamientos_aceptados = unserialize($cuidador->comportamientos_aceptados);
     $atributos = unserialize($cuidador->atributos);
 
-    echo "<pre>";
-        print_r($comportamientos_aceptados);
-    echo "</pre>";
-
     if( !isset($atributos["nacimiento"]) ){
         $atributos["nacimiento"] = "";
     }
