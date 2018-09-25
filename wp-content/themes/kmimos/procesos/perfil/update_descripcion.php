@@ -29,7 +29,7 @@
 	$comportamiento_gatos = [];
 	$comportamientos_db = $db->get_results("SELECT * FROM comportamientos_mascotas");
     foreach ($comportamientos_db as $value) {
-    	$comportamiento_gatos[ $value->slug ] = $_POST[ 'comportamiento_gatos_'.$value->slug ];
+    	$comportamiento_gatos[ $value->slug ] = $_POST[ 'comportamiento_gatos_'.$value->slug ]+0;
     }
 
     $comportamientos_aceptados = [
