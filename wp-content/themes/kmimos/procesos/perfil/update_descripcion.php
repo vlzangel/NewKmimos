@@ -104,10 +104,10 @@
     $db->query("UPDATE cupos SET full = 0 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos < acepta ) ");
 
 
-	$sql = "UPDATE cuidadores SET mascotas_cuidador = '{$mascotas_cuidador}', dni = '{$dni}', experiencia = '{$cuidando_desde}', direccion = '{$direccion}', check_in = '{$entrada}', check_out = '{$salida}', num_mascotas = '{$num_mascotas_casa}', mascotas_permitidas = '{$acepto_hasta}', latitud = '{$latitud}', longitud = '{$longitud}' WHERE id = {$cuidador_id}; ";
+	$sql = "UPDATE cuidadores SET edades_aceptadas = '{$edades_aceptadas}', atributos = '{$atributos}', tamanos_aceptados = '{$tamanos_aceptados}', mascotas_cuidador = '{$mascotas_cuidador}', dni = '{$dni}', experiencia = '{$cuidando_desde}', direccion = '{$direccion}', check_in = '{$entrada}', check_out = '{$salida}', num_mascotas = '{$num_mascotas_casa}', mascotas_permitidas = '{$acepto_hasta}', latitud = '{$latitud}', longitud = '{$longitud}' WHERE id = {$cuidador_id}; ";
 	$db->query( utf8_decode($sql) );
 
-	$sql = "UPDATE cuidadores SET tamanos_aceptados = '{$tamanos_aceptados}', edades_aceptadas = '{$edades_aceptadas}', atributos = '{$atributos}', comportamientos_aceptados = '{$comportamientos_aceptados}' WHERE id = {$cuidador_id}; ";
+	$sql = "UPDATE cuidadores SET comportamientos_aceptados = '{$comportamientos_aceptados}' WHERE id = {$cuidador_id}; ";
 	$db->query( utf8_decode($sql) );
 	$_sql = $sql;
 
