@@ -65,11 +65,11 @@
 	$latitud  = $lat;
 	$longitud = $lng;
 
-	$mascotas_cuidador = str_replace('"', '\"', $mascotas_cuidador);
-	$tamanos_aceptados = str_replace('"', '\"', $tamanos_aceptados);
-	$edades_aceptadas = str_replace('"', '\"', $edades_aceptadas);
-	$atributos = str_replace('"', '\"', $atributos);
-	$comportamientos_aceptados = str_replace('"', '\"', $comportamientos_aceptados);
+	// $mascotas_cuidador = str_replace('"', '\"', $mascotas_cuidador);
+	// $tamanos_aceptados = str_replace('"', '\"', $tamanos_aceptados);
+	// $edades_aceptadas = str_replace('"', '\"', $edades_aceptadas);
+	// $atributos = str_replace('"', '\"', $atributos);
+	// $comportamientos_aceptados = str_replace('"', '\"', $comportamientos_aceptados);
 
 	switch ( $tipo_doc ) {
         case 'IFE / INE':
