@@ -65,11 +65,11 @@
 	$latitud  = $lat;
 	$longitud = $lng;
 
-	// $mascotas_cuidador = str_replace('"', '\"', $mascotas_cuidador);
-	// $tamanos_aceptados = str_replace('"', '\"', $tamanos_aceptados);
-	// $edades_aceptadas = str_replace('"', '\"', $edades_aceptadas);
-	// $atributos = str_replace('"', '\"', $atributos);
-	// $comportamientos_aceptados = str_replace('"', '\"', $comportamientos_aceptados);
+	$mascotas_cuidador = str_replace('"', '\"', $mascotas_cuidador);
+	$tamanos_aceptados = str_replace('"', '\"', $tamanos_aceptados);
+	$edades_aceptadas = str_replace('"', '\"', $edades_aceptadas);
+	$atributos = str_replace('"', '\"', $atributos);
+	$comportamientos_aceptados = str_replace('"', '\"', $comportamientos_aceptados);
 
 	switch ( $tipo_doc ) {
         case 'IFE / INE':
@@ -115,7 +115,9 @@
 		$sql .= "UPDATE wp_postmeta SET meta_value = '{$acepto_hasta}' WHERE post_id = {$product_id} AND meta_key = '_wc_booking_qty'; ";
 		$sql .= "UPDATE wp_postmeta SET meta_value = '{$acepto_hasta}' WHERE post_id = {$product_id} AND meta_key = '_wc_booking_max_persons_group'; ";
 	}
-	$db->query_multiple( utf8_decode($sql) );*/
+	*/
+
+	$db->query_multiple( utf8_decode($sql) );
 
 	$respuesta = array(
 		"status" => "OK",
