@@ -9,6 +9,10 @@
     $comportamientos_aceptados = unserialize($cuidador->comportamientos_aceptados);
     $atributos = unserialize($cuidador->atributos);
 
+    echo "<pre>";
+        print_r($comportamientos_aceptados);
+    echo "</pre>";
+
     if( !isset($atributos["nacimiento"]) ){
         $atributos["nacimiento"] = "";
     }
@@ -218,7 +222,7 @@
                 </label>
             </section>';
     }
-    
+
   
   	$CONTENIDO .= '
     <input type="hidden" name="accion" value="update_descripcion" />
