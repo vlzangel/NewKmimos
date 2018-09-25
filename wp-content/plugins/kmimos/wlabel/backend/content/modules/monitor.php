@@ -98,7 +98,8 @@
 
                                 inicio.meta_value AS inicio,
                                 fin.meta_value AS fin,
-                                mascotas.meta_value AS mascotas
+                                mascotas.meta_value AS mascotas,
+                                servicio.post_title AS servicio
 
                             FROM
                                 wp_posts AS reservas
@@ -123,6 +124,8 @@
                             LEFT JOIN wp_postmeta AS inicio ON (inicio.post_id = reservas.ID AND inicio.meta_key = '_booking_start')
                             LEFT JOIN wp_postmeta AS fin ON (fin.post_id = reservas.ID AND fin.meta_key = '_booking_end')
                             LEFT JOIN wp_postmeta AS mascotas ON (mascotas.post_id = reservas.ID AND mascotas.meta_key = '_booking_persons')
+                            LEFT JOIN wp_postmeta AS servicio_id ON (servicio_id.post_id = reservas.ID AND servicio_id.meta_key = '_booking_product_id')
+                            LEFT JOIN wp_posts AS servicio ON ( servicio.ID = servicio_id.meta_value )
 
                             LEFT JOIN wp_users as cl ON cl.ID = reservas.post_author
 
@@ -147,7 +150,15 @@
                             if( !isset($_reservas[ $reserva->ID_reserva ]) ){
                                 $inicio = strtotime( $reserva->inicio );
                                 $fin = strtotime( $reserva->fin );
-                                $noches = ( ceil(( $fin - $inicio )/60/60/24)-1 );
+
+                                $servicio = explode(" - ", strtolower($reserva->servicio) );
+                                $servicio = trim( $servicio[0] );
+
+                                if( $servicio == "hospedaje" ){
+                                    $noches = ( ceil(( $fin - $inicio )/60/60/24)-1 );
+                                }else{
+                                    $noches = ( ceil(( $fin - $inicio )/60/60/24) );
+                                }
 
                                 $_mascotas = unserialize( $reserva->mascotas );
                                 $mascotas = 0;

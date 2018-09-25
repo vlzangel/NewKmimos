@@ -75,7 +75,7 @@
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
 						<div>
-							<select name="rc_tipo_documento" class="select_tipo_doc km-select-custom" style="font-size: 13px !important;">
+							<select name="rc_tipo_documento" class="select_tipo_doc km-select-custom" style="font-size: 13px !important;" data-help="El DNI debe ser de al menos 7">
 								<option value="">Seleccione Documento de Identidad</option>
 								<option>IFE / INE</option>
 								<option>Pasaporte</option>

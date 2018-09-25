@@ -265,49 +265,109 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
 
                     //TOTAL DE MONTO POR PAGAR
                     echo '<tr>';
-                    $day_init=strtotime(date('m/d/Y',$WLresult->time));
-                    $day_last=strtotime(date('m/d/Y',time()));
-                    $day_more=(24*60*60);
 
-                    $amount_day=0;
-                    $amount_month=0;
-                    $amount_year=0;
-                    $amount_total=0;
-                    //
-                    for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
+                        $sql = "
+                            SELECT
+                                posts.*
+                            FROM
+                                wp_posts AS posts
+                                LEFT JOIN wp_postmeta AS postmeta ON (postmeta.post_id=posts.post_parent AND postmeta.meta_key='_wlabel')
+                                LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=posts.post_author AND (usermeta.meta_key='_wlabel' OR usermeta.meta_key='user_referred') AND usermeta.meta_value LIKE '%{$wlabel}%' )
+                            WHERE
+                                (
+                                    ( posts.post_type = 'wc_booking' AND usermeta.meta_value LIKE '%{$wlabel}%' )
+                                    OR
+                                    ( posts.post_type = 'wc_booking' AND postmeta.meta_value = '{$wlabel}' )
+                                ) AND 
+                                posts.post_status in ( 'unpaid'  ) AND
+                                posts.post_date >= '2018-09-01 00:00:00'
+                            ORDER BY
+                                posts.ID DESC
+                        ";
+                        $bookings = $wpdb->get_results($sql);
 
-                        foreach($BUILDbookings as $booking){
-                            if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                                $amount_booking=0;
-                                if($booking['status']=='unpaid' && $booking['metas_order']['_payment_method'][0] == 'openpay_stores'){
-                                    $amount_booking=$booking['WCorder_line_total'];
-                                }
-                                $amount_booking=(round($amount_booking*100)/100);
-                                $amount_day=$amount_day+$amount_booking;
-                                $amount_month=$amount_month+$amount_booking;
-                                $amount_year=$amount_year+$amount_booking;
-                                $amount_total=$amount_total+$amount_booking;
-                            }
+                        $_BUILDbookings = array();
+                        foreach($bookings as $key => $booking){
+                            //var_dump($booking);
+                            $ID=$booking->ID;
+                            $date=strtotime($booking->post_date);
+                            $customer=$booking->post_author;
+                            $status=$booking->post_status;
+                            $order=$booking->post_parent;
+                            $status_name=$status;
+
+                            $_metas_booking = get_post_meta($ID);
+                            $_metas_order = get_post_meta($order);
+
+                            $IDproduct=$_metas_booking['_booking_product_id'][0];
+                            $IDcustomer=$_metas_booking['_booking_customer_id'][0];
+                            $IDorder_item=$_metas_booking['_booking_order_item_id'][0];
+
+                            $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_subtotal');
+                            
+                            //CUSTOMER
+                            $_metas_customer = get_user_meta($customer);
+                            $_customer_name = $_metas_customer['first_name'][0] . " " . $_metas_customer['last_name'][0];
+
+                            $product = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID ='$IDproduct'");
+                            
+                            $_BUILDbookings[$ID] = array();
+                            $_BUILDbookings[$ID]['booking'] = $ID;
+                            $_BUILDbookings[$ID]['order'] = $order;
+                            $_BUILDbookings[$ID]['date'] = $date;
+                            $_BUILDbookings[$ID]['customer'] = $customer;
+                            $_BUILDbookings[$ID]['status'] = $status;
+                            $_BUILDbookings[$ID]['status_name'] = $status_name;
+                            $_BUILDbookings[$ID]['metas_booking'] = $_metas_booking;
+                            $_BUILDbookings[$ID]['metas_order'] = $_metas_order;
+                            $_BUILDbookings[$ID]['WCorder_line_total'] = $_meta_WCorder_line_total*1;
                         }
 
-                        if( $amount_day == 0 ){ $amount_day = ""; }else{ $amount_day = number_round($amount_day); }
-                        if( $amount_mont == 0 ){ $amount_mont = ""; }
-                        if( $amount_year == 0 ){ $amount_year = ""; }
 
-                        echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                        $day_init=strtotime(date('m/d/Y',$WLresult->time));
+                        $day_last=strtotime(date('m/d/Y',time()));
+                        $day_more=(24*60*60);
+
                         $amount_day=0;
+                        $amount_month=0;
+                        $amount_year=0;
+                        $amount_total=0;
+                        //
+                        for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 
-                        if(date('t',$day)==date('d',$day) || $day_last==$day){
-                            echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.number_round($amount_month).'</td>';
-                            $amount_month=0;
+                            foreach($_BUILDbookings as $booking){
+                                if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
+                                    $amount_booking=0;
+                                    if($booking['status']=='unpaid' && $booking['metas_order']['_payment_method'][0] == 'openpay_stores'){
+                                        $amount_booking=$booking['WCorder_line_total'];
+                                    }
+                                    $amount_booking=(round($amount_booking*100)/100);
+                                    $amount_day=$amount_day+$amount_booking;
+                                    $amount_month=$amount_month+$amount_booking;
+                                    $amount_year=$amount_year+$amount_booking;
+                                    $amount_total=$amount_total+$amount_booking;
+                                }
+                            }
 
-                            if(date('m',$day)=='12' || $day_last==$day){
-                                echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.number_round($amount_year).'</th>';
-                                $amount_year=0;
+                            if( $amount_day == 0 ){ $amount_day = ""; }else{ $amount_day = number_round($amount_day); }
+                            if( $amount_mont == 0 ){ $amount_mont = ""; }
+                            if( $amount_year == 0 ){ $amount_year = ""; }
+
+                            echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            $amount_day=0;
+
+                            if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.number_round($amount_month).'</td>';
+                                $amount_month=0;
+
+                                if(date('m',$day)=='12' || $day_last==$day){
+                                    echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.number_round($amount_year).'</th>';
+                                    $amount_year=0;
+                                }
                             }
                         }
-                    }
-                    echo '<th class="total tdshow">'.$amount_total.'</th>';
+                        echo '<th class="total tdshow">'.$amount_total.'</th>';
+
                     echo '</tr>';
 
 

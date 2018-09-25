@@ -6,6 +6,8 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 header('P3P: CP="CAO PSA OUR"'); // Makes IE to support cookies
 header("Content-Type: application/json; charset=utf-8");
 
+date_default_timezone_set('America/Mexico_City');
+
 /*
 //echo 'algo: '.$JSONstar;
 $fo = fopen("suscripcion.csv","w"); 
