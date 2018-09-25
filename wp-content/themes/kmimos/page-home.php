@@ -322,7 +322,7 @@
 								<div class="km-testimonial-text">
 									<div class="km-video-testimonial">
 										<a href="javascript:;" 
-											data-video="https://www.youtube.com/embed/Kqn7lOVk6bQ"
+											data-video="https://www.youtube.com/embed/cSVXJhOqcqg"
 											data-target="iframe-testimonio">
 											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
 										</a>
@@ -343,7 +343,7 @@
 								<div class="km-testimonial-text">
 									<div class="km-video-testimonial">
 										<a href="javascript:;" 
-											data-video="https://www.youtube.com/embed/pim_QZKWRAY"
+											data-video="https://www.youtube.com/embed/XCl7PuBHP2g"
 											data-target="iframe-testimonio">
 											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
 										</a>
@@ -363,7 +363,7 @@
 								<div class="km-testimonial-text">
 									<div class="km-video-testimonial">
 										<a href="javascript:;" 
-											data-video="https://www.youtube.com/embed/JMcv5XO5v0M"
+											data-video="https://www.youtube.com/embed/6u3yC778DHw"
 											data-target="iframe-testimonio">
 											<img src="'.getTema().'/images/new/icon/icon-video.svg" width="55">
 										</a>
