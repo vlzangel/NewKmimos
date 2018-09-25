@@ -74,6 +74,8 @@
 
 			$reservas = 0;
 
+			$metas["user_referred"][0] = $wlabel;
+
 			$_info = [
 				$metas["first_name"][0]." ".$metas["last_name"][0],
 				$usuario->user_email,
