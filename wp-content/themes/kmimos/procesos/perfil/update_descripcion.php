@@ -109,6 +109,7 @@
 
 	$sql = "UPDATE cuidadores SET tamanos_aceptados = '{$tamanos_aceptados}', edades_aceptadas = '{$edades_aceptadas}', atributos = '{$atributos}', comportamientos_aceptados = '{$comportamientos_aceptados}' WHERE id = {$cuidador_id}; ";
 	$db->query( utf8_decode($sql) );
+	$_sql = $sql;
 
 	$sql = "UPDATE ubicaciones SET estado = '={$estado}=', municipios = '={$delegacion}=' WHERE cuidador = {$cuidador_id}; ";
 	$db->query( utf8_decode($sql) );
@@ -122,11 +123,9 @@
 	}
 	*/
 
-	$db->query_multiple( utf8_decode($sql) );
-
 	$respuesta = array(
 		"status" => "OK",
-		"sql" => $sql
+		"sql" => $_sql
 	);
 
 ?>
