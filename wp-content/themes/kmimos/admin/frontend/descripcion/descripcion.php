@@ -218,6 +218,7 @@
                 </label>
             </section>';
     }
+    
   
   	$CONTENIDO .= '
     <input type="hidden" name="accion" value="update_descripcion" />
