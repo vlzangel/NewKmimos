@@ -205,6 +205,9 @@
     $_datos_cuidador = getTemplate("reservar/partes/datos_cuidador");
     $instrucciones = getTemplate("reservar/partes/instrucciones");
 
+    $_SESSION["USER_ID_CLIENTE_CORREOS"] = $cliente["id"];
+    $_SESSION["ID_RESERVA_CORREOS"] = $servicio["id_reserva"];
+
     $INFORMACION = [
         // GENERALES
 
