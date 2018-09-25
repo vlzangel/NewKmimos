@@ -111,27 +111,43 @@
 
     if(!function_exists('kmimos_mails_administradores_new')){       
         function kmimos_mails_administradores_new($titulo, $mensaje){   
-            $id_user = get_current_user_id();
-            $wlabel = get_user_meta($id_user, "_wlabel", true);
-            $referido = strtolower( get_user_meta($id_user, "user_referred", true) );
+            $_user_id = $_SESSION["USER_ID_CLIENTE_CORREOS"];
+            $_id_reserva = $_SESSION["ID_RESERVA_CORREOS"];
+
+            $_wlabel = get_user_meta($_user_id, "_wlabel", true);
+            $_referido = get_user_meta($_user_id, "user_referred", true);
+            $_wlabel_reserva = get_post_meta($_id_reserva, "_wlabel", true);
+
+            $wlabes = [
+                "Petco",
+                "Volaris",
+                "Vintermex"
+            ];
+
+            $es_wlabel = "";
+
+            foreach ($wlabes as $value) {
+                if( strtolower($_wlabel) == strtolower($value) || strtolower($_wlabel_reserva) == strtolower($value) || strrpos($_referido, strtolower($value)) > 0 ){
+                    $es_wlabel = $value;
+                }
+            }
 
             $info = kmimos_get_info_syte();
             $email_admin = $info["email"];
 
-            if (!isset($_SESSION)) { session_start(); }
+            /*if (!isset($_SESSION)) { session_start(); }
             $PREFIJO = "";
             if($referido == 'Volaris'){
                 $PREFIJO = 'volaris - ';
 
             }else if($referido == 'Vintermex'){
                 $PREFIJO = 'viajesintermex - ';
-            }else if( strrpos($referido, "pecto") !== false ){
+            }else if( strrpos($referido, "petco") !== false ){
                 $PREFIJO = 'pecto - ';
-            }
-            if( $PREFIJO == "" ){
-                if( $wlabel != "" ){
-                    $PREFIJO = $wlabel.' - ';
-                }
+            }*/
+
+            if( $es_wlabel != "" ){
+                $PREFIJO = $es_wlabel.' - ';
             }
             $PREFIJO = strtoupper($PREFIJO);
             $titulo = $PREFIJO.$titulo;
