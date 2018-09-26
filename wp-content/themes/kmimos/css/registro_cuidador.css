@@ -1,3 +1,11 @@
+.text-help{
+    background: #33e1be57;
+    border-radius: 0px 0px 5px 5px;
+    display: none;
+    font-size: 9px!important;
+    padding: 3px 10px;
+    width: 100%;
+}
 #perfil-img-a{
 	display: inline-block;
 	width: 150px;

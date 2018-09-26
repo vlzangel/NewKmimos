@@ -66,50 +66,74 @@
 					<div class="content-placeholder">
 						<div class="label-placeholder">
 							<label>Nombre</label>
-							<input type="text" data-charset="xlf" id="rc_nombres" name="rc_nombres" value="" class="input-label-placeholder social_firstname solo_letras" maxlength="20">
-							<small data-error="rc_nombres" style="visibility: hidden;"></small>
+							<input data-target="help" type="text" data-charset="xlf" id="rc_nombres" name="rc_nombres" value="" class="input-label-placeholder social_firstname solo_letras" maxlength="20">
+							<small data-help="rc_nombres" class="text-help">
+								Debes ingresar tu nombre <br> Este debe tener mínimo 3 caracteres.
+							</small>
+							<small data-error="rc_nombres" style="visibility: hidden;" class="text-help"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Apellido</label>
-							<input type="text" data-charset="xlf" name="rc_apellidos" value="" class="input-label-placeholder social_lastname solo_letras"  maxlength="20">
+							<input data-target="help" type="text" data-charset="xlf" name="rc_apellidos" value="" class="input-label-placeholder social_lastname solo_letras"  maxlength="20">
+							<small data-help="rc_apellidos" class="text-help">
+								Debes ingresar tu apellido <br> Este debe tener mínimo 3 caracteres.
+							</small>
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
 						<div>
-							<select name="rc_tipo_documento" class="select_tipo_doc km-select-custom" style="font-size: 13px !important;" data-help="El DNI debe ser de al menos 7">
+							<select data-target="help" name="rc_tipo_documento" class="select_tipo_doc km-select-custom" style="font-size: 13px !important;">
 								<option value="">Seleccione Documento de Identidad</option>
 								<option>IFE / INE</option>
 								<option>Pasaporte</option>
 							</select>
+							<small data-help="rc_tipo_documento" class="text-help">
+								Selecciona el tipo de documento de identidad
+							</small>
 							<small data-error="rc_tipo_documento" style="visibility: hidden;"></small>
 						</div>
 						<div id="rc_ife" class="label-placeholder" style="display: none;">
 							<label>IFE/Documento de Identidad</label>
-							<input type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros" data-toggle="tooltip" title="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" >
+							<input data-target="help" type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros" data-toggle="tooltip" title="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" >
+							<small data-help="rc_ife" class="text-help">
+								El DNI debe ser de al menos 13 dígitos
+							</small>
 							<small data-error="rc_ife" style="visibility: hidden;"></small>
 						</div>
 						<div id="rc_pasaporte" class="label-placeholder" style="display: none;">
 							<label>Pasaporte</label>
-							<input type="text" maxlength="28" name="rc_pasaporte" value="" class="input-label-placeholder" data-toggle="tooltip" title="Coloca tu n&uacute;mero de pasaporte" >
+							<input data-target="help" type="text" maxlength="28" name="rc_pasaporte" value="" class="input-label-placeholder" data-toggle="tooltip" title="Coloca tu n&uacute;mero de pasaporte" >
+							<small data-help="rc_pasaporte" class="text-help">
+								El DNI debe ser de al menos 28 dígitos
+							</small>
 							<small data-error="rc_pasaporte" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder fecha_placeholder">
 							<label>Fecha de Nacimiento</label>
-							<input type="text" name="fecha" id="fecha" class="input-label-placeholder" placeholder="dd/mm/yyyy" readonly />
+							<input data-target="help" type="text" name="fecha" id="fecha" class="input-label-placeholder" placeholder="dd/mm/yyyy" readonly />
+							<small data-help="fecha" class="text-help">
+								Indica tu fecha de nacimiento
+							</small>
 							<small data-error="fecha" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Correo electrónico</label>
-							<input type="email" name="rc_email"  maxlength="250" data-charset="cormlfnum" autocomplete="off" type='text' id='email_1' value="" class="social_email input-label-placeholder">
+							<input data-target="help" type="email" name="rc_email"  maxlength="250" data-charset="cormlfnum" autocomplete="off" type='text' id='email_1' value="" class="social_email input-label-placeholder">
+							<small data-help="rc_email" class="text-help">
+								Ingresa tu E-mail <br> Ej: xxxx@xxx.xx
+							</small>
 							<small data-error="rc_email" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Crea tu contraseña</label>
-							<input type="password" data-clear name="rc_clave"  maxlength="50" value="" class="input-label-placeholder" autocomplete="off">
+							<input data-target="help" type="password" data-clear name="rc_clave"  maxlength="50" value="" class="input-label-placeholder" autocomplete="off">
+							<small data-help="rc_clave" class="text-help">
+								Ingresa tu clave 
+							</small>
 							<small data-error="rc_clave" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Teléfono</label>
-							<input 
+							<input data-target="help" 
 							type="text" 
 							name="rc_telefono" 
 							data-charset="num" 
@@ -118,13 +142,15 @@
 							value="" 
 							class="input-label-placeholder solo_numeros"
 							data-toggle="tooltip"
-							title='El tel&eacte;fono debe tener entre 10 y 15 d&iacte;gitos'
 						>
+							<small data-help="rc_telefono" class="text-help">
+								El tel&eacute;fono debe tener entre 10 y 12 d&iacute;gitos
+							</small>
 							<small data-error="rc_telefono" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>¿Cómo nos conoció?</label>
-							<select class="km-datos-estado-opcion km-select-custom" name="rc_referred"><?php
+							<select data-target="help" class="km-datos-estado-opcion km-select-custom" name="rc_referred"><?php
 								if( $_SESSION["wlabel"] != "petco" ){
 									echo '<option value="">Dónde nos conoció?</option>';
 								}
@@ -133,6 +159,9 @@
 									<option value="<?php echo $key; ?>"><?php echo $item; ?></option> <?php
 								} ?>
 							</select>
+							<small data-help="rc_referred" class="text-help">
+								Indica donde nos conosciste
+							</small>
 							<small data-error="rc_referred" style="visibility: hidden;"></small>
 						</div>
 					</div>
@@ -220,7 +249,8 @@
 	                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
 
 	                <input type="hidden" id="vlz_img_perfil" name="rc_vlz_img_perfil" value="" class="vlz_rotar_valor">
-					<br><small data-error="rc_vlz_img_perfil" style="visibility: hidden; color: red; padding: 5px 0px; border: solid 1px; display: block margin-bottom: 5px;"></small>
+					<br>
+					<small data-error="rc_vlz_img_perfil" style="visibility: hidden; color: red; padding: 5px 0px; border: solid 1px; display: block margin-bottom: 5px;"></small>
 	                
 				</div>
 
@@ -232,6 +262,9 @@
 				</div>
 				<div id="rotar" data-id="perfil-img-a" class="km-btn-border" style="display: none;">ROTAR</div> -->
 				
+				<small style="display:block; border-radius: 5px; margin-bottom: 5px;" class="text-help">
+					Te recomendamos que en la foto de perfil, aparezcas tú sonriente con perritos.
+				</small>
 				<a 
 					href="#" 
 					data-load='portada' 
@@ -239,18 +272,23 @@
 					data-toggle="tooltip"
 					title='Te recomendamos que en la foto de perfil, aparezcas tú, sonriente, con perritos'
 				>ACCEDER A TU GALERÍA</a>
-            	<input class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
+            	<input data-target="help" class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
 
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
 				
 				<textarea 
+					style="margin-bottom: 0px;"
+					data-target="help"
 					name="rc_descripcion" 
 					class="km-descripcion-peril-cuidador" 
 					data-toggle="tooltip"
 					title='Cu&eacute;ntanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos'
 					placeholder="Ejemplo: Hola soy María, soy Cuidadora profesional desde hace 15 años, mi familia y yo amamos a los perros, esto no es solo un trabajo sino una pasión para mí, poder darle todo el cuidado y hacerlo sentir en casa es mi propósito. Te garantizo tu mascota regresará feliz.">¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro de mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.
 				</textarea>
+				<small class="text-help" data-help="rc_descripcion">
+					Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos
+				</small>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
 
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-paso1">SIGUIENTE</a>
@@ -284,7 +322,7 @@
 					<div class="content-placeholder">
 						<div class="label-placeholder">
 							<label>Estado</label>
-							<select class="km-datos-estado-opcion km-select-custom" name="rc_estado">
+							<select data-target="help" class="km-datos-estado-opcion km-select-custom" name="rc_estado">
 								<option value="">Selección de Estado</option>
 								<?php
 									global $wpdb;
@@ -296,19 +334,25 @@
 								    echo $str_estados = utf8_decode($str_estados);
 								?>
 							</select>
+							<small class="text-help" data-help="rc_estado">
+								Selecciona tu estado de residencia
+							</small>
 							<small data-error="rc_estado" style="visibility: hidden;"></small>
 
 						</div>
 						<div class="label-placeholder">
 							<label>Municipio</label>
-							<select class="km-datos-municipio-opcion km-select-custom" name="rc_municipio">
+							<select data-target="help" class="km-datos-municipio-opcion km-select-custom" name="rc_municipio">
 								<option value="">Selección de Municipio</option>
 							</select>
+							<small class="text-help" data-help="rc_municipio">
+								Selecciona tu municipio de residencia
+							</small>
 							<small data-error="rc_municipio" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
 							<label>Dirección</label>
-							<input 
+							<input data-target="help" 
 								type="text" 
 								id="rc_direccion" 
 								name="rc_direccion" 
@@ -317,11 +361,14 @@
 								data-toggle="tooltip"
 								title="Escribe la dirección que aparece en tu comprobante de domicilio."
 							>
+							<small class="text-help" data-help="rc_direccion">
+								Escribe la dirección que aparece en tu comprobante de domicilio.
+							</small>
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
 
-						<!-- <input type="hidden" id="latitud" name="latitud" />
-						<input type="hidden" id="longitud" name="longitud" /> -->
+						<!-- <input data-target="help" type="hidden" id="latitud" name="latitud" />
+						<input data-target="help" type="hidden" id="longitud" name="longitud" /> -->
 
 					</div>
 
@@ -369,8 +416,9 @@
 										<span class="km-number">1</span>
 										<a href="#" id="cr_plus" class="cr_minus">+</a>
 
-										<input  type="text" name="rc_num_mascota" value="1" 
+										<input data-target="help"  type="text" name="rc_num_mascota" value="1" 
 												style="display:none;">
+ 
 									</div>
 								</div>
 							</div>

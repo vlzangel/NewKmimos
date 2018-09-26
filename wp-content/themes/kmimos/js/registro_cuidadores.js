@@ -265,11 +265,6 @@ jQuery("#cr_plus").on('click', function(e){
 	}
 });
 
-
-
-
-
-
 jQuery("#btn_si_acepto_cuidador").on("click", function(e){
 	if( !jQuery( "#btn_si_acepto_cuidador" ).hasClass("btn_disable") ){
 		jQuery("#popup-registro-cuidador1 .modal-content > div").hide();
@@ -313,7 +308,6 @@ jQuery( "#popup-registro-cuidador1 .popup-condiciones .terminos_container" ).scr
 		jQuery( "#btn_si_acepto_cuidador" ).removeClass("btn_disable");
 	}
 });
-
 
 jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-cuidador-correo', function ( e ) {
 	e.preventDefault();	
@@ -448,7 +442,6 @@ jQuery(document).on('click', '#finalizar-registro-cuidador', function(){
 	setTimeout(function() {
 		location.href = url;
     },1500);
-
 });
 
 /*POPUP REGISTRO CUIDADOR*/
@@ -490,7 +483,6 @@ jQuery(document).on('change', 'select[name="rc_estado"]', function(e){
 
 jQuery(document).on('change', 'select[name="rc_municipio"]', function(e){
 	var locale=jQuery(this).val();
-	
 });
 
 /*km_cuidador_validar DATOS*/
@@ -660,15 +652,6 @@ function empty(valor){
 	return ( String( valor ).length <= 0 );
 }
 
-
-
-
-
-
-
-
-
-
 var lat = null;
 var lng = null;
 var map = null;
@@ -719,7 +702,6 @@ function initialize() {
     google.maps.event.addListener(marker, 'dragend', function(){
         updatePosition(marker.getPosition());
     });
-     
 }
  
 function codeAddress(zoom) {
