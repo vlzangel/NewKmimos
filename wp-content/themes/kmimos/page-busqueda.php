@@ -479,6 +479,6 @@
 	}*/
 
 	echo "<pre>";
-		print_r($_SESSION['sql']);
+		print_r($_SESSION);
 	echo "</pre>";
 ?>
