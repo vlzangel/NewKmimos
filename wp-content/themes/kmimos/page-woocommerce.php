@@ -945,9 +945,9 @@
 
 		}
 
-		echo "<pre>";
+		/*echo "<pre>";
 			print_r( unserialize($_SESSION["busqueda"]) );
-		echo "</pre>";
+		echo "</pre>";*/
 
 		unset($_SESSION["pagando"]);
 
