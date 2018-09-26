@@ -149,6 +149,15 @@ jQuery(document).on('click', '[data-PdfXml]', function(e){
     download( file );
 });
 
+jQuery(document).on("focusin", '[data-target="help"]', function(e){
+    mostrarAyuda( jQuery(this) );
+});
+
+function mostrarAyuda( objID ){
+    jQuery('[data-help]').css('display', 'none');
+    jQuery('[data-help="'+jQuery(objID).attr('name')+'"]').css('display', 'inline-block');
+}
+
 function download( archivos ){
     jQuery.post(HOME+"procesos/generales/download_zip.php", {'fact_selected': archivos}, function(e){
         e = JSON.parse(e);
