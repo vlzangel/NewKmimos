@@ -284,16 +284,17 @@
 			"pequenos" => "PEQUEÑO 0 a 25cm",
 			"medianos" => "MEDIANO 25 a 58cm",
 			"grandes"  => "GRANDE 58cm a 73cm",
-			"gigantes" => "GIGANTE 73cm a 200cm"
+			"gigantes" => "GIGANTE 73cm a 200cm",
+			"gatos"    => "GATOS",
 		);
 
-		global $cuidador;
+		/*global $cuidador;
 
 		$atributos = unserialize($cuidador->atributos);
 
 	    if( $atributos["gatos"] == "Si" ){
 	        $tamanios["gatos"] = "GATOS";
-	    }
+	    }*/
 
 		return $tamanios;
 	}
