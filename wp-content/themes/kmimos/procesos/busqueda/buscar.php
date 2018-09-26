@@ -118,6 +118,10 @@
 			}
 		}
 
+		echo "<pre>";
+			print_r($filtros);
+		echo "</pre>";
+
 		$FILTRO_ESPECIA = array();
 
 		if( $filtros["agresivo_mascotas"] == 1 ){
