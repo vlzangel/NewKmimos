@@ -8,6 +8,8 @@ header("Content-Type: application/json; charset=utf-8");
 
 date_default_timezone_set('America/Mexico_City');
 
+$__time = date('Y-m-d H:i:s');
+
 /*
 //echo 'algo: '.$JSONstar;
 $fo = fopen("suscripcion.csv","w"); 
@@ -15,6 +17,9 @@ fwrite($fo,$JSONvariable);
 fclose($fo);
 */
 
+include dirname(dirname(dirname(dirname(__DIR__)))).'/wp-load.php';
+
+global $wpdb;
 
 
 
@@ -71,40 +76,57 @@ if(mail_validate($mail)){
 	$table = $_subscribe->table;
 	$result = $_subscribe->result("SELECT * FROM $table WHERE email = '$mail'");
 	if(count($result)==0){
-		$_subscribe->insert(array('name' => $name  ,'email' => $mail , 'source' => $section,'time' => date('Y-m-d H:i:s', time())));
+
+		$wpdb->query(
+			"
+				INSERT INTO
+					wp_kmimos_subscribe
+				VALUES(
+					NULL,
+					NULL,
+					'{$mail}',
+					'{$section} - {$__time}',
+					'{$__time}'
+				);
+			"
+		);
+
 		$return['message']='Registro Exitoso. Por favor revisa tu correo en la Bandeja de Entrada o en No Deseados';
-		$coupon=true;
 
-		if($coupon && !email_exists($mail)){
-			$amount=50;
-			$code = 'SUBSCRIBE'.$section.'-'.$mail;
-			$type = 'fixed_cart'; // Type: fixed_cart, percent, fixed_product, percent_product
-			$expiry= time()+((60*60*24)*30);
-			$data = array(
-				'post_title' => $code,
-				'post_content' => '',
-				'post_status' => 'publish',
-				'post_author' => get_current_user_id(),
-				'post_type' => 'shop_coupon'
-			);
+		/*
+			$coupon=true;
 
-			$couponID = wp_insert_post($data);
-			update_post_meta($couponID, 'discount_type', $type);
-			update_post_meta($couponID, 'coupon_amount', $amount);
-			update_post_meta($couponID, 'individual_use', 'no');
-			update_post_meta($couponID, 'product_ids', '');
-			update_post_meta($couponID, 'exclude_product_ids', '');
-			update_post_meta($couponID, 'usage_limit', '');
-			update_post_meta($couponID, 'expiry_date', date('Y-m-d', $expiry));
-			update_post_meta($couponID, 'apply_before_tax', 'yes');
-			update_post_meta($couponID, 'free_shipping', 'no');
+			if($coupon && !email_exists($mail)){
+				$amount=50;
+				$code = 'SUBSCRIBE'.$section.'-'.$mail;
+				$type = 'fixed_cart';
+				$expiry= time()+((60*60*24)*30);
+				$data = array(
+					'post_title' => $code,
+					'post_content' => '',
+					'post_status' => 'publish',
+					'post_author' => get_current_user_id(),
+					'post_type' => 'shop_coupon'
+				);
 
-			//MAIL
-			/*$subjet='Gracias por tu registro';
-			$message='ten tu cupon '.$code;
-			$message=kmimos_get_email_html($asunto, $message, 'Saludos,', false, true);
-			wp_mail($mail,  $subjet, $message);*/
-		}
+				$couponID = wp_insert_post($data);
+				update_post_meta($couponID, 'discount_type', $type);
+				update_post_meta($couponID, 'coupon_amount', $amount);
+				update_post_meta($couponID, 'individual_use', 'no');
+				update_post_meta($couponID, 'product_ids', '');
+				update_post_meta($couponID, 'exclude_product_ids', '');
+				update_post_meta($couponID, 'usage_limit', '');
+				update_post_meta($couponID, 'expiry_date', date('Y-m-d', $expiry));
+				update_post_meta($couponID, 'apply_before_tax', 'yes');
+				update_post_meta($couponID, 'free_shipping', 'no');
+
+				// MAIL
+				// $subjet='Gracias por tu registro';
+				// $message='ten tu cupon '.$code;
+				// $message=kmimos_get_email_html($asunto, $message, 'Saludos,', false, true);
+				// wp_mail($mail,  $subjet, $message);
+			}
+		*/
 
 	}else{
 		$return['message']='Este correo ya est&aacute; registrado. Por favor intenta con uno nuevo';
