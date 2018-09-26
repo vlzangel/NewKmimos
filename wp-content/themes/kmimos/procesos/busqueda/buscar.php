@@ -29,6 +29,10 @@
 	$hoy = date("d/m/Y");
 	$manana = date("d/m/Y", strtotime("+1 day") );
 
+	if( empty($_POST) ){
+		$_POST = unserialize($_SESSION['busqueda']);
+	}
+
 	$ubicaciones_inner = '';
 	$nombre_inner = '';
 	$ubicaciones_filtro = "";
@@ -42,7 +46,7 @@
 	if( isset($_GET['o']) ){
 		$data = [];
 		if( $_SESSION['busqueda'] != '' ){
-			$data = unserialize($_SESSION['busqueda']);
+			
 			$data['orderby'] = $_GET['o'];
 			$_POST = $data;
 		}
