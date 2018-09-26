@@ -301,7 +301,7 @@
 	function getPrecios($data, $precarga = array(), $aceptados = array() ){
 		$resultado = "";
 		$tamanos = getTamanos();
-		$busqueda = getBusqueda();
+		/*$busqueda = getBusqueda();
 		if( is_array($busqueda["mascotas"]) && count($busqueda["mascotas"]) == 1 AND in_array("gatos", $busqueda["mascotas"]) ) {
 			foreach ($tamanos as $key => $value) {
 				if( $key != "gatos"){
@@ -309,10 +309,18 @@
 				}
 			}
 		}
+*/
+		/*echo "<pre>";
+			print_r($tamanos);
+		echo "</pre>";*/
+
+		global $cuidador;
+
+		$tamanos_aceptados = unserialize($cuidador->tamanos_aceptados);
 
 		foreach ($tamanos as $key => $value) {
 
-			if( isset($data[$key]) && $data[$key] > 0 ){
+			if( isset($data[$key]) && $data[$key] > 0 && $tamanos_aceptados[$key] == 1 ){
 				$catidad = 0;
 				if( isset($precarga[$key]) ){
 					$catidad = $precarga[$key];
