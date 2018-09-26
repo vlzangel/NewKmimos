@@ -209,7 +209,7 @@
     $comportamientos_str = "";
     foreach ($comportamientos as $key => $value) {
         // if($temp_comportamientos_aceptados["gatos"][$key] == 1){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
-        if( $key == "sociable" && $atributos["gatos"] == 'Si' ){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
+        if( $key == "sociable" && $atributos["gatos"] == 'Si' ){ $check = "vlz_check"; $temp_comportamientos_aceptados["gatos"][$key] = 1; }else{ $temp_comportamientos_aceptados["gatos"][$key] = 0; $check = "vlz_no_check"; }
         $comportamientos_str .= '
             <section>
                 <label class="lbl-ui">
