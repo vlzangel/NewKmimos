@@ -378,30 +378,34 @@
 			}
 		}
 
-		if( 
-			( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 6) || ( $hora == 23 ) )  ||
-			( $manana == $busqueda["checkin"] && ( $hora == 23 ) )
-		){
-			// 570 x 320
-			$msg_bloqueador_madrugada = "
-				<div id='vlz_msg_bloqueo_madrugada' class='vlz_bloquear_msg_madrugada'>
-					<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
-				</div>
-			";
-			$bloquear_madrugada = "bloquear_madrugada";
+		if(  $_SESSION['admin_sub_login'] != 'YES' ){
+			if( 
+				( $hoy == $busqueda["checkin"] || $busqueda["checkin"] == "" ) && ( ($hora >= 0 && $hora <= 6) || ( $hora == 23 ) )  ||
+				( $manana == $busqueda["checkin"] && ( $hora == 23 ) )
+			){
+				// 570 x 320
+				$msg_bloqueador_madrugada = "
+					<div id='vlz_msg_bloqueo_madrugada' class='vlz_bloquear_msg_madrugada'>
+						<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
+					</div>
+				";
+				$bloquear_madrugada = "bloquear_madrugada";
 
-			$msg_mismo_dia = "";
-			$msg_bloqueador = "";
-		}else{
-			$msg_bloqueador_madrugada = "
-				<div id='vlz_msg_bloqueo_madrugada' class='vlz_NO_bloquear_msg_madrugada'>
-					<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
-				</div>
-			";
+				$msg_mismo_dia = "";
+				$msg_bloqueador = "";
+			}else{
+				$msg_bloqueador_madrugada = "
+					<div id='vlz_msg_bloqueo_madrugada' class='vlz_NO_bloquear_msg_madrugada'>
+						<img src='".getTema()."/images/alerta_flash/Contenido_3.png' />
+					</div>
+				";
+			}
 		}
 
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
+
+		$super_admin = (  $_SESSION['admin_sub_login'] != 'YES' ) ? 'No': 'Si';
 
 		$HTML .= "
 		<script> 
@@ -421,6 +425,7 @@
 			var HOY = '".$hoy."';
 			var MANANA = '".$manana."';
 			var HORA = '".(date("G", $NOW )+0)."';
+			var SUPERU = '".$super_admin."';
 		</script>";
 
 		if( $error != "" ){
