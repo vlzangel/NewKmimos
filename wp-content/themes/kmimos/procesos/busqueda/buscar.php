@@ -189,8 +189,8 @@
 						}
 					}
 					if( $value != "hospedaje" ){
-						$condiciones .= " AND adicionales LIKE '%".$value."%'";
-						if( in_array($value, $servicios_extras) ){ 
+						// $condiciones .= " AND adicionales LIKE '%".$value."%'";
+						// if( in_array($value, $servicios_extras) ){ 
 							if( strpos($value,'adiestramiento') === false){
 								$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
 							}else{
@@ -200,7 +200,7 @@
 								$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_avanzado";s:1:"1%\' 			';
 								$condiciones .= ')';
 							}
-						}
+						// }
 					}
 
 				}else{
