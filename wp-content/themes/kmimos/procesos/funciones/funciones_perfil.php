@@ -282,10 +282,10 @@
 	                				<div class='datos_de_contacto'>
 	                					<ul>
 		                					<li>
-		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-wsp.svg' style='' /></span> +52 (33) 1261 4186
+		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-wsp.svg' style='' /></span> +52 1 (33) 1261 41 86
 		                					</li>
 		                					<li>
-		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-cel.svg' style='' /></span> (01) 55 3137 4829
+		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-cel.svg' style='' /></span>  01 (55) 8526 1162
 		                					</li>
 		                					<li>
 		                						<span><img src='".getTema()."/images/new/icon/km-redes/icon-mail.svg' style='height: 13px;' /></span> contactomex@kmimos.la
