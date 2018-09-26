@@ -187,7 +187,7 @@ $HTML_CONOCER = '
 				<p style=" font-family: Arial; font-size:16px; font-weight: bold; color:#6b1c9b; text-align:center;">IMPORTANTE</p>
 					
 				<label> Dentro de las siguientes 2-4 horas recibirás una llamada o correo electrónico por parte del Cuidador y/o de un asesor Kmimos para confirmar tu cita o brindarte soporte con este proceso. También podrás contactar al cuidador a partir de este momento, a los teléfonos y/o correos mostrados a continuación para acelerar el proceso si así lo deseas.</label>
-				<label> Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos (01) 55 3137 4829 y WhatsApp +52 (33) 1261 4186, o al correo contactomex@kmimos.la</label>
+				<label> Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos 01 (55) 8526 1162 y WhatsApp +52 1 (33) 1261 41 86, o al correo contactomex@kmimos.la</label>
 				</div>
 			</div>
 			<br>
