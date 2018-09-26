@@ -321,7 +321,7 @@
 
 		foreach ($tamanos as $key => $value) {
 
-			if( isset($data[$key]) && $data[$key] > 0 && $tamanos_aceptados[$key] == 1 ){
+			if( isset($data[$key]) && $data[$key] > 0 && ( $tamanos_aceptados[[$key] == 1 || [$key == 'gatos' ) ){
 				$catidad = 0;
 				if( isset($precarga[$key]) ){
 					$catidad = $precarga[$key];
