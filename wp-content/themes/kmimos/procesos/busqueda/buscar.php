@@ -128,22 +128,28 @@
 
 		$FILTRO_ESPECIA = array();
 
-		if( $filtros["agresivo_mascotas"] == 1 ){
-			$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";s:1:\"1%' ) ";
-		}
-
-		if( $filtros["agresivo_personas"] == 1 ){
-			$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";s:1:\"1%' ) ";
-		}
-
-		$filtrar_tamanios = true;
+		$filtrar_perros = true;
+		$filtrar_gatos = true;
 		if( is_array($mascotas) ){
-	    	if( in_array("gatos", $mascotas) ){
-				$filtrar_tamanios = false;
+	    	if( $mascotas[0] == "gatos" && count($mascotas) == 1 ){
+				$filtrar_gatos = true;
+				$filtrar_perros = false;
+			}
+	    	if( $mascotas[0] == "perros" && count($mascotas) == 1 ){
+				$filtrar_perros = true;
+				$filtrar_gatos = false;
 			}
 		}
 
-		if( $filtrar_tamanios ){
+		if( $filtrar_perros ){
+
+			if( $filtros["agresivo_mascotas"] == 1 ){
+				$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";s:1:\"1%' ) ";
+			}
+
+			if( $filtros["agresivo_personas"] == 1 ){
+				$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";s:1:\"1%' ) ";
+			}
 
 			if( $filtros["pequenos"] == 1 ){
 				$FILTRO_ESPECIA[] = " (  cuidadores.tamanos_aceptados LIKE '%pequenos\";i:1%' OR  cuidadores.tamanos_aceptados LIKE '%pequenos\";s:1:\"1%' ) ";
@@ -163,13 +169,11 @@
 
 		}
 
-		if( is_array($mascotas) ){
-	    	if( in_array("gatos", $mascotas) ){
-				if( $filtros["comportamiento_gatos"] != "" ){
-					foreach ($filtros["comportamiento_gatos"] as $key_comportamiento_gato => $value_comportamiento_gato) {
-						if( $value_comportamiento_gato == 1 ){
-							$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%".$key_comportamiento_gato."\";s:1:\"1%' ) ";
-						}
+		if( $filtrar_gatos ){
+			if( $filtros["comportamiento_gatos"] != "" ){
+				foreach ($filtros["comportamiento_gatos"] as $key_comportamiento_gato => $value_comportamiento_gato) {
+					if( $value_comportamiento_gato == 1 ){
+						$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%".$key_comportamiento_gato."\";s:1:\"1%' ) ";
 					}
 				}
 			}
