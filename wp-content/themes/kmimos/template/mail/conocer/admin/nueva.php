@@ -41,7 +41,7 @@
     </div>
 
 	<div style='
-		width: 271px;
+		width: 100%;
 	    font-size: 12px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
@@ -91,9 +91,9 @@
 					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;'>
 				</td>
 				<td style="vertical-align: top;">
-					<strong  style="font-family: Verdana; font-size: 16px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
+					<strong  style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
 					<table>
-						<tbody style="font-family: Verdana; font-size: 16px; color: #000000; text-align: left;">
+						<tbody style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left;">
 							<tr>
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;'>
@@ -135,7 +135,7 @@
 
 		<a href='[ACEPTAR]' style='
 			width: auto;
-			min-width: 200px;
+			min-width: 80%;
 			padding: 10px 30px;
 			background-color: #940d99;
 			color: #FFF;
@@ -150,7 +150,7 @@
 
 		<a href='[RECHAZAR]' style='
 			width: auto;
-			min-width: 200px;
+			min-width: 80%;
 			padding: 10px 30px;
 			background-color: #FFF;
 			color: #000;
