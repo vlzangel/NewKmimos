@@ -79,9 +79,17 @@
 			"comportamiento_gatos" => []
 		);
 
+		$filtrar_tamanios = true;
+		if( is_array($mascotas) ){
+	    	if( $mascotas[0] == "gatos" && count($mascotas) == 1 ){
+				$filtrar_tamanios = false;
+			}
+		}
+
 		$_mascotas = $db->get_results("SELECT * FROM wp_posts WHERE post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' ");
+		$perros = 0; $gatos = 0;
 		foreach ($_mascotas as $key => $value) {
-			$_metas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key IN ('aggressive_with_humans', 'aggressive_with_pets', 'size_pet', 'comportamiento_gatos')");
+			$_metas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key IN ('aggressive_with_humans', 'aggressive_with_pets', 'size_pet', 'comportamiento_gatos', 'pet_type')");
 			$metas = array();
 			foreach ($_metas as $key2 => $value2) {
 				$metas[ $value2->meta_key ] = $value2->meta_value;
@@ -97,19 +105,21 @@
 						}
 					break;
 					case 'size_pet':
-						switch ($value2->meta_value) {
-							case 0:
-								$filtros["pequenos"] = 1;
-							break;
-							case 1:
-								$filtros["medianos"] = 1;
-							break;
-							case 2:
-								$filtros["grandes"] = 1;
-							break;
-							case 3:
-								$filtros["gigantes"] = 1;
-							break;
+						if( $metas[ 'pet_type' ] == '2605' && $filtrar_tamanios ){
+							switch ($value2->meta_value) {
+								case 0:
+									$filtros["pequenos"] = 1;
+								break;
+								case 1:
+									$filtros["medianos"] = 1;
+								break;
+								case 2:
+									$filtros["grandes"] = 1;
+								break;
+								case 3:
+									$filtros["gigantes"] = 1;
+								break;
+							}
 						}
 					break;
 					case 'comportamiento_gatos':
@@ -122,15 +132,25 @@
 							}
 						}
 					break;
+					case 'pet_type':
+						if( $value2->meta_value == '2605' ){
+							$perros++;
+						}
+						if( $value2->meta_value == '2608' ){
+							$gatos++;
+						}
+					break;
 				}
 			}
 		}
 
 		$FILTRO_ESPECIA = array();
 
-		$filtrar_perros = true;
-		$filtrar_gatos = true;
-		if( is_array($mascotas) ){
+		/*$filtrar_perros = true;
+		$filtrar_gatos = true;*/
+
+
+		/*if( is_array($mascotas) ){
 	    	if( $mascotas[0] == "gatos" && count($mascotas) == 1 ){
 				$filtrar_gatos = true;
 				$filtrar_perros = false;
@@ -139,9 +159,10 @@
 				$filtrar_perros = true;
 				$filtrar_gatos = false;
 			}
-		}
+		}*/
 
-		if( $filtrar_perros ){
+		//if( $filtrar_perros ){
+		if( $perros > 0 ){
 
 			if( $filtros["agresivo_mascotas"] == 1 ){
 				$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_perros\";s:1:\"1%' ) ";
@@ -169,7 +190,8 @@
 
 		}
 
-		if( $filtrar_gatos ){
+		// if( $filtrar_gatos ){
+		if( $gatos > 0 ){
 			if( $filtros["comportamiento_gatos"] != "" ){
 				foreach ($filtros["comportamiento_gatos"] as $key_comportamiento_gato => $value_comportamiento_gato) {
 					if( $value_comportamiento_gato == 1 ){
