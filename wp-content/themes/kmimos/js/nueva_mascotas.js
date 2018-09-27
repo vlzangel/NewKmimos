@@ -49,12 +49,17 @@ jQuery( document ).ready(function() {
             jQuery("#spanpet_gender").addClass('hidden');
         }
 
-        if(jQuery("[name='pet_size']").val()){
-            jQuery("#spanpet_size").addClass('hidden');
-        }else{
-            jQuery("#spanpet_size").css('color', 'red');
-            jQuery("#spanpet_size").removeClass('hidden');
-            jQuery("#pet_breed").focus(function() { jQuery("#spanpet_size").addClass('hidden'); });
+        var selecciono_tamanio = true;
+        if( jQuery("#pet_type").val() == '2605' ){
+            if(jQuery("[name='pet_size']").val()){
+                jQuery("#spanpet_size").addClass('hidden');
+                selecciono_tamanio = true;
+            }else{
+                jQuery("#spanpet_size").css('color', 'red');
+                jQuery("#spanpet_size").removeClass('hidden');
+                jQuery("#pet_breed").focus(function() { jQuery("#spanpet_size").addClass('hidden'); });
+                selecciono_tamanio = false;
+            }
         }
 
         if(jQuery("[name='pet_sterilized']").val()){
@@ -112,7 +117,7 @@ jQuery( document ).ready(function() {
                 jQuery("input[name='pet_birthdate']").val() != "" &&
                 jQuery("#pet_breed").val() != "" &&
                 jQuery("[name='pet_gender']").val() != "" &&
-                jQuery("[name='pet_size']").val() != "" &&
+                selecciono_tamanio &&
                 jQuery("#pet_type").val() != "" &&
                 jQuery("[name='pet_colors']").val() != "" &&
                 jQuery("[name='pet_sterilized']").val() != "" &&
@@ -181,11 +186,13 @@ jQuery( document ).ready(function() {
             var opciones = jQuery("#razas_perros").html();
             jQuery("#pet_breed").html(opciones);
             jQuery("#otras_opciones").css("display", "none");
+            jQuery("#tamanio").css("display", "inline-block");
         }
         if( valor == "2608" ){
             var opciones = jQuery("#razas_gatos").html();
             jQuery("#pet_breed").html(opciones);
             jQuery("#otras_opciones").css("display", "block");
+            jQuery("#tamanio").css("display", "none");
         }
     });
 
