@@ -133,7 +133,7 @@
 
                 // echo 'if( '.strtolower($_wlabel).' == '.strtolower($value).' || '.strtolower($_wlabel_reserva).' == '.strtolower($value).' || strpos( '.strtolower($_referido).', '.strtolower($value).') > 0 ){<br>';
 
-                if( strtolower($_wlabel) == strtolower($value) || strtolower($_wlabel_reserva) == strtolower($value) || strpos( strtolower($_referido), strtolower($value)) > 0 ){
+                if( strtolower($_wlabel) == strtolower($value) || strtolower($_wlabel_reserva) == strtolower($value) || strpos( strtolower($_referido), strtolower($value)."relleno") > 0 ){
                     $es_wlabel = $value;
                 }
             }
