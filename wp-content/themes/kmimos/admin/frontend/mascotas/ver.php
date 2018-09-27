@@ -33,11 +33,12 @@
         $generos_str .= '>'.esc_html( $genero['singular'] ).'</option>';
     }
 
+    
     $tamanos = kmimos_get_sizes_of_pets();
     $tamanos_str = "";
     foreach ( $tamanos as $tamano ) {
         $tamanos_str .= '<option value="'.$tamano['ID'].'"';
-        if($tamano['ID'] == $current_pet['size']) $tamanos_str .= ' selected';
+        if( $current_pet['type'] != 2608 ){ if($tamano['ID'] == $current_pet['size']) $tamanos_str .= ' selected'; }
         $tamanos_str .= '>'.esc_html( $tamano['name'].' ('.$tamano['desc'].')' ).'</option>';
     }
 
@@ -92,6 +93,11 @@
     foreach ($comportamientos as $key => $value) {
         if($_comportamiento_gatos[ $key ] == 1){ $check = "vlz_check"; $valor = 1; }else{ $check = "vlz_no_check"; $valor = 0; }
         $comportamientos_str .= '<div class="vlz_input vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" name="comportamiento_gatos_'.$key.'" value="'.$valor.'">'.$comportamientos[$key].'</div>';
+    }
+
+    $ocultar_tamanios = '';
+    if( $current_pet['type'] == 2608 ){
+        $ocultar_tamanios = ' style="display: none;" ';
     }
 
     $CONTENIDO .= '
@@ -189,7 +195,7 @@
             </label>
         </section>
 
-        <section>
+        <section id="tamanio" '.$ocultar_tamanios.'>
             <label for="pet_size" class="lbl-text">'.esc_html__('Tamaño de la Mascota','kmimos').':
             <span class="hidden" id="spanpet_size">*</span></label>
             <label class="lbl-ui">
@@ -249,6 +255,9 @@
         <label class="lbl-ui">
             '.$comportamientos_str.'
         </label>
+        <div class="error_seleccionar_uno no_error">
+            Debe seleccionar al menos un comportamiento
+        </div>
     </section>
 
     <section style="padding: 0px 5px 10px;">

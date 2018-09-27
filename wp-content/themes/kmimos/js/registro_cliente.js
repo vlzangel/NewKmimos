@@ -591,6 +591,26 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
 					datepets,genero_mascota,tamano_mascota,pet_sterilized,
 					pet_sociable,aggresive_humans,aggresive_pets,img_pet, img_profile];
+
+		
+        if( tipo_mascota == '2608' ){
+            var selecciono_comportamiento = false;
+            jQuery("#comportamiento_gatos input").each(function(i, val){
+                if( jQuery(val).val() == 1 ){
+                    selecciono_comportamiento = true;
+                }
+            });
+            if( selecciono_comportamiento == false ){
+                jQuery(".error_seleccionar_uno").removeClass("no_error");
+            }
+        }else{
+            var selecciono_comportamiento = true;
+        }
+
+        if( selecciono_comportamiento ){
+            jQuery(".error_seleccionar_uno").addClass("no_error");
+        }
+
  
 		if (
 			nombre_mascota != "" && 

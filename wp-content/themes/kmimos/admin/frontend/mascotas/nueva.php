@@ -162,7 +162,7 @@
             </label>
         </section>
 
-        <section>
+        <section id="tamanio">
             <label for="pet_size" class="lbl-text">'.esc_html__('Tamaño de la Mascota','kmimos').':
             <span class="hidden" id="spanpet_size">*</span></label>
             <label class="lbl-ui">
@@ -221,6 +221,9 @@
         <label class="lbl-ui">
             '.$comportamientos_str.'
         </label>
+        <div class="error_seleccionar_uno no_error">
+            Debe seleccionar al menos un comportamiento
+        </div>
     </section>
 
     <section style="padding: 0px 5px 10px;">

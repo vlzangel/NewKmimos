@@ -284,16 +284,17 @@
 			"pequenos" => "PEQUEÑO 0 a 25cm",
 			"medianos" => "MEDIANO 25 a 58cm",
 			"grandes"  => "GRANDE 58cm a 73cm",
-			"gigantes" => "GIGANTE 73cm a 200cm"
+			"gigantes" => "GIGANTE 73cm a 200cm",
+			"gatos"    => "GATOS",
 		);
 
-		global $cuidador;
+		/*global $cuidador;
 
 		$atributos = unserialize($cuidador->atributos);
 
 	    if( $atributos["gatos"] == "Si" ){
 	        $tamanios["gatos"] = "GATOS";
-	    }
+	    }*/
 
 		return $tamanios;
 	}
@@ -301,7 +302,7 @@
 	function getPrecios($data, $precarga = array(), $aceptados = array() ){
 		$resultado = "";
 		$tamanos = getTamanos();
-		$busqueda = getBusqueda();
+		/*$busqueda = getBusqueda();
 		if( is_array($busqueda["mascotas"]) && count($busqueda["mascotas"]) == 1 AND in_array("gatos", $busqueda["mascotas"]) ) {
 			foreach ($tamanos as $key => $value) {
 				if( $key != "gatos"){
@@ -309,10 +310,18 @@
 				}
 			}
 		}
+*/
+		/*echo "<pre>";
+			print_r($tamanos);
+		echo "</pre>";*/
+
+		global $cuidador;
+
+		$tamanos_aceptados = unserialize($cuidador->tamanos_aceptados);
 
 		foreach ($tamanos as $key => $value) {
 
-			if( isset($data[$key]) && $data[$key] > 0 ){
+			if( isset($data[$key]) && $data[$key] > 0 && ( $tamanos_aceptados[$key] == 1 || $key == 'gatos' ) ){
 				$catidad = 0;
 				if( isset($precarga[$key]) ){
 					$catidad = $precarga[$key];

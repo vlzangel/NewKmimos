@@ -110,7 +110,10 @@
 	}
 
     if(!function_exists('kmimos_mails_administradores_new')){       
-        function kmimos_mails_administradores_new($titulo, $mensaje){   
+        function kmimos_mails_administradores_new($titulo, $mensaje){ 
+
+            if( !isset($_SESSION) ){ session_start(); }
+
             $_user_id = $_SESSION["USER_ID_CLIENTE_CORREOS"];
             $_id_reserva = $_SESSION["ID_RESERVA_CORREOS"];
 
@@ -125,26 +128,18 @@
             ];
 
             $es_wlabel = "";
-
             foreach ($wlabes as $value) {
-                if( strtolower($_wlabel) == strtolower($value) || strtolower($_wlabel_reserva) == strtolower($value) || strrpos($_referido, strtolower($value)) > 0 ){
+                if( 
+                    strtolower($_wlabel) == strtolower($value) || 
+                    strtolower($_wlabel_reserva) == strtolower($value) || 
+                    strpos( strtolower("cc-".$_referido."-cc"), strtolower($value) ) > 0 
+                ){
                     $es_wlabel = $value;
                 }
             }
 
             $info = kmimos_get_info_syte();
             $email_admin = $info["email"];
-
-            /*if (!isset($_SESSION)) { session_start(); }
-            $PREFIJO = "";
-            if($referido == 'Volaris'){
-                $PREFIJO = 'volaris - ';
-
-            }else if($referido == 'Vintermex'){
-                $PREFIJO = 'viajesintermex - ';
-            }else if( strrpos($referido, "petco") !== false ){
-                $PREFIJO = 'pecto - ';
-            }*/
 
             if( $es_wlabel != "" ){
                 $PREFIJO = $es_wlabel.' - ';

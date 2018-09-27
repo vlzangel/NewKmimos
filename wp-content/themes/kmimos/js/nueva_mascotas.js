@@ -49,12 +49,17 @@ jQuery( document ).ready(function() {
             jQuery("#spanpet_gender").addClass('hidden');
         }
 
-        if(jQuery("[name='pet_size']").val()){
-            jQuery("#spanpet_size").addClass('hidden');
-        }else{
-            jQuery("#spanpet_size").css('color', 'red');
-            jQuery("#spanpet_size").removeClass('hidden');
-            jQuery("#pet_breed").focus(function() { jQuery("#spanpet_size").addClass('hidden'); });
+        var selecciono_tamanio = true;
+        if( jQuery("#pet_type").val() == '2605' ){
+            if(jQuery("[name='pet_size']").val()){
+                jQuery("#spanpet_size").addClass('hidden');
+                selecciono_tamanio = true;
+            }else{
+                jQuery("#spanpet_size").css('color', 'red');
+                jQuery("#spanpet_size").removeClass('hidden');
+                jQuery("#pet_breed").focus(function() { jQuery("#spanpet_size").addClass('hidden'); });
+                selecciono_tamanio = false;
+            }
         }
 
         if(jQuery("[name='pet_sterilized']").val()){
@@ -89,17 +94,38 @@ jQuery( document ).ready(function() {
             jQuery("#pet_breed").focus(function() { jQuery("#spanaggresive_pets").addClass('hidden'); });
         }
 
-        if (jQuery("input[name='pet_name']").val() != "" &&
-            jQuery("input[name='pet_birthdate']").val() != "" &&
-            jQuery("#pet_breed").val() != "" &&
-            jQuery("[name='pet_gender']").val() != "" &&
-            jQuery("[name='pet_size']").val() != "" &&
-            jQuery("#pet_type").val() != "" &&
-            jQuery("[name='pet_colors']").val() != "" &&
-            jQuery("[name='pet_sterilized']").val() != "" &&
-            jQuery("[name='pet_sociable']").val() != "" &&
-            jQuery("[name='aggresive_humans']").val() != "" &&
-            jQuery("[name='aggresive_pets']").val()) {
+        if( jQuery("#pet_type").val() == '2608' ){
+            var selecciono_comportamiento = false;
+            jQuery("#otras_opciones input").each(function(i, val){
+                if( jQuery(val).val() == 1 ){
+                    selecciono_comportamiento = true;
+                }
+            });
+            if( selecciono_comportamiento == false ){
+                jQuery(".error_seleccionar_uno").removeClass("no_error");
+            }
+        }else{
+            var selecciono_comportamiento = true;
+        }
+
+        if( selecciono_comportamiento ){
+            jQuery(".error_seleccionar_uno").addClass("no_error");
+        }
+
+        if (
+                jQuery("input[name='pet_name']").val() != "" &&
+                jQuery("input[name='pet_birthdate']").val() != "" &&
+                jQuery("#pet_breed").val() != "" &&
+                jQuery("[name='pet_gender']").val() != "" &&
+                selecciono_tamanio &&
+                jQuery("#pet_type").val() != "" &&
+                jQuery("[name='pet_colors']").val() != "" &&
+                jQuery("[name='pet_sterilized']").val() != "" &&
+                jQuery("[name='pet_sociable']").val() != "" &&
+                jQuery("[name='aggresive_humans']").val() != "" &&
+                jQuery("[name='aggresive_pets']").val() != "" &&
+                selecciono_comportamiento
+            ) {
 
                 var titulo = jQuery("#btn_actualizar").val();
                 postJSON( 
@@ -160,11 +186,13 @@ jQuery( document ).ready(function() {
             var opciones = jQuery("#razas_perros").html();
             jQuery("#pet_breed").html(opciones);
             jQuery("#otras_opciones").css("display", "none");
+            jQuery("#tamanio").css("display", "inline-block");
         }
         if( valor == "2608" ){
             var opciones = jQuery("#razas_gatos").html();
             jQuery("#pet_breed").html(opciones);
             jQuery("#otras_opciones").css("display", "block");
+            jQuery("#tamanio").css("display", "none");
         }
     });
 
