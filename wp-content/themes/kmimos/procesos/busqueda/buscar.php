@@ -320,11 +320,10 @@
 
     /* Filtros por servicios y tamaños */
 	  
-	    if( $filtrar_perros ){
-	    	foreach ($tamanos as $key => $value) {
-	     		$condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; 
-	     	} 
-	    }
+    	foreach ($tamanos as $key => $value) {
+     		$condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; 
+     	} 
+     	
     /* Fin Filtros por servicios y tamaños */
 
     /* Filtro nombre  */
