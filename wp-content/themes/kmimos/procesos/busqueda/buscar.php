@@ -129,7 +129,7 @@
 		$FILTRO_ESPECIA = array();
 
 		$filtrar_perros = true;
-		$filtrar_gatos = true;
+		$filtrar_gatos = false;
 		if( is_array($mascotas) ){
 	    	if( $mascotas[0] == "gatos" && count($mascotas) == 1 ){
 				$filtrar_gatos = true;
