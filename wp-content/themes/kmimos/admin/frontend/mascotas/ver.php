@@ -33,14 +33,13 @@
         $generos_str .= '>'.esc_html( $genero['singular'] ).'</option>';
     }
 
-    if( $current_pet['type'] != 2608 ){
-        $tamanos = kmimos_get_sizes_of_pets();
-        $tamanos_str = "";
-        foreach ( $tamanos as $tamano ) {
-            $tamanos_str .= '<option value="'.$tamano['ID'].'"';
-            if($tamano['ID'] == $current_pet['size']) $tamanos_str .= ' selected';
-            $tamanos_str .= '>'.esc_html( $tamano['name'].' ('.$tamano['desc'].')' ).'</option>';
-        }
+    
+    $tamanos = kmimos_get_sizes_of_pets();
+    $tamanos_str = "";
+    foreach ( $tamanos as $tamano ) {
+        $tamanos_str .= '<option value="'.$tamano['ID'].'"';
+        if( $current_pet['type'] != 2608 ){ if($tamano['ID'] == $current_pet['size']) $tamanos_str .= ' selected'; }
+        $tamanos_str .= '>'.esc_html( $tamano['name'].' ('.$tamano['desc'].')' ).'</option>';
     }
 
     $si_no = array('no','si');
