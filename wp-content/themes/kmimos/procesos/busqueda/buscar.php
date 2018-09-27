@@ -108,19 +108,26 @@
 		$_mascotas = $db->get_results("SELECT * FROM wp_posts WHERE post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' ");
 		$perros = 0; $gatos = 0;
 		foreach ($_mascotas as $key => $value) {
-			$_metas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key IN ('aggressive_with_humans', 'aggressive_with_pets', 'size_pet', 'comportamiento_gatos', 'pet_type')");
+			$_metas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key IN ('aggressive_with_humans', 'aggressive_with_pets', 'size_pet', 'comportamiento_gatos', 'pet_type', 'pet_sociable')");
 			$metas = array();
 			foreach ($_metas as $key2 => $value2) {
 				$metas[ $value2->meta_key ] = $value2->meta_value;
+			}
+			foreach ($_metas as $key2 => $value2) {
 				switch ( $value2->meta_key ) {
 					case 'aggressive_with_humans':
-						if( $value2->meta_value == 1 ){
+						if( $metas[ 'pet_type' ] == '2605' && $value2->meta_value == 1 ){
 							$filtros["agresivo_personas"] = 1;
 						}
 					break;
 					case 'aggressive_with_pets':
-						if( $value2->meta_value == 1 ){
+						if( $metas[ 'pet_type' ] == '2605' && $value2->meta_value == 1 ){
 							$filtros["agresivo_mascotas"] = 1;
+						}
+					break;
+					case 'pet_sociable':
+						if( $metas[ 'pet_type' ] == '2605' && $value2->meta_value == 0 ){
+							$filtros["pet_sociable"] = 1;
 						}
 					break;
 					case 'size_pet':
@@ -174,6 +181,10 @@
 
 			if( $filtros["agresivo_personas"] == 1 ){
 				$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";i:1%' OR  cuidadores.comportamientos_aceptados LIKE '%agresivos_personas\";s:1:\"1%' ) ";
+			}
+
+			if( $filtros["pet_sociable"] == 1 ){
+				$FILTRO_ESPECIA[] = " (  cuidadores.comportamientos_aceptados LIKE '%no_sociables\";i:1%' OR cuidadores.comportamientos_aceptados LIKE '%no_sociables\";s:1:\"1%' ) ";
 			}
 
 			if( $filtros["pequenos"] == 1 ){
