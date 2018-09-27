@@ -298,7 +298,7 @@
 
     /* Filtros por servicios y tamaños */
 	  
-	    if( isset($tamanos) && $filtrar_tamanios ){
+	    if( $filtrar_perros ){
 	    	foreach ($tamanos as $key => $value) {
 	     		$condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; 
 	     	} 
