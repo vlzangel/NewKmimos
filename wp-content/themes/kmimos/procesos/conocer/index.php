@@ -67,6 +67,8 @@
         $_datos_cliente = getTemplate("reservar/partes/datos_cliente");
         $_datos_cuidador = getTemplate("reservar/partes/datos_cuidador");
 
+        $_SESSION["USER_ID_CLIENTE_CORREOS"] = $cliente;
+
 		$INFORMACION = [
             // GENERALES
 
@@ -85,8 +87,8 @@
 
             // CLIENTE
                 'DATOS_CLIENTE'         => $_datos_cliente,
-                'NAME_CLIENTE'          => $cliente,
-                'AVATAR_CLIENTE'        => kmimos_get_foto($user_id),
+                'NAME_CLIENTE'          => $cliente_name,
+                'AVATAR_CLIENTE'        => kmimos_get_foto($cliente),
                 'TELEFONOS_CLIENTE'     => $telf_cliente,
                 'CORREO_CLIENTE'        => $email_cliente,
                 
