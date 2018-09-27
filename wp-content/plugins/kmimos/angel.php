@@ -127,24 +127,13 @@
             $es_wlabel = "";
 
             foreach ($wlabes as $value) {
-                if( strtolower($_wlabel) == strtolower($value) || strtolower($_wlabel_reserva) == strtolower($value) || strrpos( strtolower($_referido), strtolower($value)) > 0 ){
+                if( strtolower($_wlabel) == strtolower($value) || strtolower($_wlabel_reserva) == strtolower($value) || strpos( strtolower($_referido), strtolower($value)) > 0 ){
                     $es_wlabel = $value;
                 }
             }
 
             $info = kmimos_get_info_syte();
             $email_admin = $info["email"];
-
-            /*if (!isset($_SESSION)) { session_start(); }
-            $PREFIJO = "";
-            if($referido == 'Volaris'){
-                $PREFIJO = 'volaris - ';
-
-            }else if($referido == 'Vintermex'){
-                $PREFIJO = 'viajesintermex - ';
-            }else if( strrpos($referido, "petco") !== false ){
-                $PREFIJO = 'pecto - ';
-            }*/
 
             if( $es_wlabel != "" ){
                 $PREFIJO = $es_wlabel.' - ';
