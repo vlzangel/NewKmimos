@@ -62,12 +62,12 @@
 			$cliente_name = $metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0];
 			$email_cliente = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = '".$cliente."'");
 
-	    include(__DIR__."/obtener_solicitud.php");
-
         $_datos_cliente = getTemplate("reservar/partes/datos_cliente");
         $_datos_cuidador = getTemplate("reservar/partes/datos_cuidador");
 
-        $_SESSION["USER_ID_CLIENTE_CORREOS"] = $cliente;
+	    include(__DIR__."/obtener_solicitud.php");
+
+        $_SESSION["USER_ID_CLIENTE_CORREOS"] = $metas_solicitud['requester_user'][0];
 
 		$INFORMACION = [
             // GENERALES
