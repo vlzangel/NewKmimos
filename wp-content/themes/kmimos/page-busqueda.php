@@ -477,8 +477,8 @@
 	foreach ($_SESSION as $key => $value) {
 		unset($_SESSION[ $key ]);
 	}*/
-/*
+
 	echo "<pre>";
-		print_r($_SESSION);
-	echo "</pre>";*/
+		print_r($_SESSION["sql"]);
+	echo "</pre>";
 ?>
