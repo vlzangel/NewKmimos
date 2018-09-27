@@ -11,3 +11,15 @@
 #otras_opciones{
 	display: none;
 }
+
+.error_seleccionar_uno{
+    color: red;
+    border: solid 1px red;
+    padding: 5px;
+    margin: 0px 7px;
+    border-radius: 3px;
+}
+
+.no_error{
+	display: none;
+}

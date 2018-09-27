@@ -221,6 +221,9 @@
         <label class="lbl-ui">
             '.$comportamientos_str.'
         </label>
+        <div class="error_seleccionar_uno no_error">
+            Debe seleccionar al menos un comportamiento
+        </div>
     </section>
 
     <section style="padding: 0px 5px 10px;">
