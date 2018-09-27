@@ -110,7 +110,10 @@
 	}
 
     if(!function_exists('kmimos_mails_administradores_new')){       
-        function kmimos_mails_administradores_new($titulo, $mensaje){   
+        function kmimos_mails_administradores_new($titulo, $mensaje){ 
+
+            if( !isset($_SESSION) ){ session_start(); }
+
             $_user_id = $_SESSION["USER_ID_CLIENTE_CORREOS"];
             $_id_reserva = $_SESSION["ID_RESERVA_CORREOS"];
 
@@ -127,6 +130,9 @@
             $es_wlabel = "";
 
             foreach ($wlabes as $value) {
+
+                // echo 'if( '.strtolower($_wlabel).' == '.strtolower($value).' || '.strtolower($_wlabel_reserva).' == '.strtolower($value).' || strpos( '.strtolower($_referido).', '.strtolower($value).') > 0 ){<br>';
+
                 if( strtolower($_wlabel) == strtolower($value) || strtolower($_wlabel_reserva) == strtolower($value) || strpos( strtolower($_referido), strtolower($value)) > 0 ){
                     $es_wlabel = $value;
                 }
