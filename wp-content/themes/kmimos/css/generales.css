@@ -927,3 +927,15 @@ h2.msg_acciones {
 .km-check-gato input[type=checkbox]:checked+label:after {
     opacity:1
 }
+
+.error_seleccionar_uno{
+    color: red;
+    border: solid 1px red;
+    padding: 5px;
+    margin: 0px 7px 15px;
+    border-radius: 3px;
+}
+
+.no_error{
+    display: none;
+}

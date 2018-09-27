@@ -412,6 +412,9 @@ $HTML .='
 						<div>
 							'.$comportamientos_str.'
 						</div>
+						<div class="error_seleccionar_uno no_error">
+				            Debe seleccionar al menos un comportamiento
+				        </div>
 					</div>
 
 				</form>						
