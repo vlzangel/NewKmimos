@@ -162,7 +162,7 @@
             </label>
         </section>
 
-        <section>
+        <section id="tamanio">
             <label for="pet_size" class="lbl-text">'.esc_html__('Tamaño de la Mascota','kmimos').':
             <span class="hidden" id="spanpet_size">*</span></label>
             <label class="lbl-ui">
