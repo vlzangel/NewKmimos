@@ -89,17 +89,38 @@ jQuery( document ).ready(function() {
             jQuery("#pet_breed").focus(function() { jQuery("#spanaggresive_pets").addClass('hidden'); });
         }
 
-        if (jQuery("input[name='pet_name']").val() != "" &&
-            jQuery("input[name='pet_birthdate']").val() != "" &&
-            jQuery("#pet_breed").val() != "" &&
-            jQuery("[name='pet_gender']").val() != "" &&
-            jQuery("[name='pet_size']").val() != "" &&
-            jQuery("#pet_type").val() != "" &&
-            jQuery("[name='pet_colors']").val() != "" &&
-            jQuery("[name='pet_sterilized']").val() != "" &&
-            jQuery("[name='pet_sociable']").val() != "" &&
-            jQuery("[name='aggresive_humans']").val() != "" &&
-            jQuery("[name='aggresive_pets']").val()) {
+        if( jQuery("#pet_type").val() == '2608' ){
+            var selecciono_comportamiento = false;
+            jQuery("#otras_opciones input").each(function(i, val){
+                if( jQuery(val).val() == 1 ){
+                    selecciono_comportamiento = true;
+                }
+            });
+            if( selecciono_comportamiento == false ){
+                jQuery(".error_seleccionar_uno").removeClass("no_error");
+            }
+        }else{
+            var selecciono_comportamiento = true;
+        }
+
+        if( selecciono_comportamiento ){
+            jQuery(".error_seleccionar_uno").addClass("no_error");
+        }
+
+        if (
+                jQuery("input[name='pet_name']").val() != "" &&
+                jQuery("input[name='pet_birthdate']").val() != "" &&
+                jQuery("#pet_breed").val() != "" &&
+                jQuery("[name='pet_gender']").val() != "" &&
+                jQuery("[name='pet_size']").val() != "" &&
+                jQuery("#pet_type").val() != "" &&
+                jQuery("[name='pet_colors']").val() != "" &&
+                jQuery("[name='pet_sterilized']").val() != "" &&
+                jQuery("[name='pet_sociable']").val() != "" &&
+                jQuery("[name='aggresive_humans']").val() != "" &&
+                jQuery("[name='aggresive_pets']").val() != "" &&
+                selecciono_comportamiento
+            ) {
 
                 var titulo = jQuery("#btn_actualizar").val();
                 postJSON( 
