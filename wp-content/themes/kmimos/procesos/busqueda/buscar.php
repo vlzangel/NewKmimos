@@ -119,6 +119,7 @@
 		}
 
 		echo "<pre>";
+			print_r($_mascotas);
 			print_r($filtros);
 		echo "</pre>";
 
