@@ -41,7 +41,7 @@
     </div>
 
 	<div style='
-	    font-size: 12px; 
+	    font-size: 13px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
 	    letter-spacing: 0.3px; 
