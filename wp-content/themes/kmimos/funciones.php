@@ -302,6 +302,8 @@
 	function getPrecios($data, $precarga = array(), $aceptados = array() ){
 		$resultado = "";
 		$tamanos = getTamanos();
+
+
 		/*$busqueda = getBusqueda();
 		if( is_array($busqueda["mascotas"]) && count($busqueda["mascotas"]) == 1 AND in_array("gatos", $busqueda["mascotas"]) ) {
 			foreach ($tamanos as $key => $value) {
@@ -315,13 +317,31 @@
 			print_r($tamanos);
 		echo "</pre>";*/
 
+		global $USER_ID;
 		global $cuidador;
+		global $wpdb;
 
+		$_mascotas = $wpdb->get_var("
+			SELECT 
+				count(*) 
+			FROM 
+				wp_posts AS mascota
+			INNER JOIN wp_postmeta AS tipo ON ( tipo.post_id = mascota.ID AND tipo.meta_key = 'pet_type' AND tipo.meta_value = '2608' ) 
+			WHERE 
+				post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' 
+		");
+		
 		$tamanos_aceptados = unserialize($cuidador->tamanos_aceptados);
 
 		foreach ($tamanos as $key => $value) {
+			$mostrar = false;
 
-			if( isset($data[$key]) && $data[$key] > 0 && ( $tamanos_aceptados[$key] == 1 || $key == 'gatos' ) ){
+			if( isset($data[$key]) && $data[$key] > 0 && ( $tamanos_aceptados[$key] == 1 || $key == 'gatos' ) ){ $mostrar = true; }
+			if( $key == 'gatos' ){ 
+				if($_mascotas > 0) { $mostrar = true; }else{ $mostrar = false; }
+			}
+
+			if( $mostrar ){
 				$catidad = 0;
 				if( isset($precarga[$key]) ){
 					$catidad = $precarga[$key];
