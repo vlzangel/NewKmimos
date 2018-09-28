@@ -25,7 +25,7 @@ class Clientes {
 	public function get_clientes( $desde, $hasta ){
 		$sql = 'SELECT * FROM clientes';
 		if( !empty($desde) && !empty($hasta) ){
-			$sql = " WHERE fecha_registro >= '{$desde} 00:00:00' and fecha_registro <= '{$hasta} 23:59:59' ";
+			$sql .= " WHERE fecha_registro >= '{$desde} 00:00:00' and fecha_registro <= '{$hasta} 23:59:59' ";
 		}
 		return $this->db->get_results($sql);
 	}

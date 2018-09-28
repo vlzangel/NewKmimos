@@ -12,7 +12,7 @@ jQuery(document).ready(function() {
     });
 
     jQuery("#btn-search").on("click", function(e){
-		loadTabla( _tipo, _hiddenColumns );
+		loadTabla();
 	});
 
 });
