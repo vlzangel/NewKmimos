@@ -1459,18 +1459,31 @@
                 foreach ($mascotas_cliente as $key => $mascota) {
                     $data_mascota = get_post_meta($mascota->ID);
                     $temp = array();
-                    foreach ($data_mascota as $key => $value) {
-                        switch ($key) {
-                            case 'pet_sociable':
-                                if( $value[0] == 1 ){ $temp[] = "Sociable"; }else{ $temp[] = "No sociable"; }
-                            break;
-                            case 'aggressive_with_pets':
-                                if( $value[0] == 1 ){ $temp[] = "Agresivo con perros"; }
-                            break;
-                            case 'aggressive_with_humans':
-                                if( $value[0] == 1 ){ $temp[] = "Agresivo con humanos"; }
-                            break;
-                        }
+                    switch ( $data_mascota["pet_type"][0] ){
+                        case '2605':
+                            foreach ($data_mascota as $key => $value) {
+                                switch ($key) {
+                                    case 'pet_sociable':
+                                        if( $value[0] == 1 ){ $temp[] = "Sociable"; }else{ $temp[] = "No sociable"; }
+                                    break;
+                                    case 'aggressive_with_pets':
+                                        if( $value[0] == 1 ){ $temp[] = "Agresivo con perros"; }
+                                    break;
+                                    case 'aggressive_with_humans':
+                                        if( $value[0] == 1 ){ $temp[] = "Agresivo con humanos"; }
+                                    break;
+                                }
+                            }
+                            $tamanio_mascota = $tamanos_array[ $data_mascota['size_pet'][0] ];
+                            $raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
+                            $tipo = "dog";
+                        break;
+                        case '2608':
+                            $temp[] = "Sociable";
+                            $tamanio_mascota = "N/A";
+                            $raza = "Gato";
+                            $tipo = "cat";
+                        break;
                     }
                     $data_mascota['birthdate_pet'][0] = str_replace("/", "-", $data_mascota['birthdate_pet'][0]);
                     $anio = strtotime($data_mascota['birthdate_pet'][0]);
@@ -1478,13 +1491,13 @@
 
                     $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
 
-                    $raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
                     if( $raza == "" ){ $raza = "Affenpinscher"; }
                     $mascotas[] = array(
+                        "tipo" => $tipo,
                         "nombre" => $data_mascota['name_pet'][0],
                         "raza" => $raza,
                         "edad" => $edad,
-                        "tamano" => $tamanos_array[ $data_mascota['size_pet'][0] ],
+                        "tamano" => $tamanio_mascota,
                         "conducta" => implode("<br>", $temp)
                     );
                 }
