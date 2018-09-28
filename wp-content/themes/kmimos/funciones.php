@@ -301,6 +301,7 @@
 
 	function tieneGatos(){
 		global $wpdb;
+		global $USER_ID;
 
 		$_mascotas = $wpdb->get_var("
 			SELECT 
@@ -312,7 +313,24 @@
 				post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' 
 		");
 
-		return ($_mascotas == 0);
+		return ($_mascotas != 0);
+	}
+
+	function tienePerros(){
+		global $wpdb;
+		global $USER_ID;
+
+		$_mascotas = $wpdb->get_var("
+			SELECT 
+				count(*) 
+			FROM 
+				wp_posts AS mascota
+			INNER JOIN wp_postmeta AS tipo ON ( tipo.post_id = mascota.ID AND tipo.meta_key = 'pet_type' AND tipo.meta_value = '2605' ) 
+			WHERE 
+				post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' 
+		");
+
+		return ($_mascotas != 0);
 	}
 
 	function getPrecios($data, $precarga = array(), $aceptados = array() ){
