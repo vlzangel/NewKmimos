@@ -72,6 +72,10 @@
 
 		$USER_ID = $id_user;
 
+		$tieneGatos = tieneGatos();
+		$tienePerros = tienePerros();
+
+
 		if( $USER_ID != "" ){
 
 			$filtros_txt = array(
@@ -236,9 +240,6 @@
 		$saldoTXT = $saldo["cupon"];
 
 		$atributos = unserialize($cuidador->atributos);
-
-		$tieneGatos = tieneGatos();
-		$tienePerros = tienePerros();
 
 		$error = "";
 		if( $id_user  == ""){

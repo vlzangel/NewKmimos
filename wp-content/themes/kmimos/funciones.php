@@ -343,8 +343,6 @@
 
 		global $tieneGatos;
 		global $tienePerros;
-
-		
 		
 		$tamanos_aceptados = unserialize($cuidador->tamanos_aceptados);
 
@@ -358,11 +356,17 @@
 				if( !$tieneGatos ) { 
 					$bloquear_gatos = ' bloquear_gatos';
 					$bloquear_gatos_control = ' disabled';
+				}else{
+					$bloquear_gatos = ' ';
+					$bloquear_gatos_control = ' ';
 				}
 			}else{
 				if( !$tienePerros ) { 
 					$bloquear_gatos = ' bloquear_gatos';
 					$bloquear_gatos_control = ' disabled';
+				}else{
+					$bloquear_gatos = ' ';
+					$bloquear_gatos_control = ' ';
 				}
 			}
 
