@@ -41,8 +41,7 @@
     </div>
 
 	<div style='
-		width: 100%;
-	    font-size: 12px; 
+	    font-size: 13px; 
 	    font-weight: 600;
 	    line-height: 1.07; 
 	    letter-spacing: 0.3px; 
@@ -135,22 +134,21 @@
 
 		<a href='[ACEPTAR]' style='
 			width: auto;
-			min-width: 80%;
 			padding: 10px 30px;
 			background-color: #940d99;
 			color: #FFF;
 			font-weight: 600;
-			margin-bottom: 20px;
+			margin-bottom: 20px; margin: 10px auto;
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
 			'>
 			¡ACEPTAR!
-		</a>
+		</a><br>
 
 		<a href='[RECHAZAR]' style='
 			width: auto;
-			min-width: 80%;
+			margin: 10px auto;
 			padding: 10px 30px;
 			background-color: #FFF;
 			color: #000;
@@ -169,13 +167,13 @@
 	<div style='
 	    font-family: Verdana;
 	    width: 100%;
-	    padding: 0px 30px 30px; 
+	    padding: 0px 30px 0px; 
 	    box-sizing: border-box;
 		'>
 
 	    <div style='
 	    	width: 550px;
-	        font-size: 15px; 
+	        font-size: 14px; 
 	        font-weight: 600; 
 	        letter-spacing: -0.1px; 
 	        margin-bottom: 15px;
@@ -198,7 +196,7 @@
 		            line-height: 1.07; 
 		            letter-spacing: 0.3px; 
 		            font-weight: 600;
-		            font-size: 14px;
+		            font-size: 16px;
 		            text-align: center;
 		    	    '>
 		            <td style='padding: 7px; width: 20px; border-bottom: solid 1px #940d99;'>
