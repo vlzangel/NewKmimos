@@ -312,7 +312,7 @@
 				post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' 
 		");
 
-		return ($_mascotas > 0);
+		return ($_mascotas == 0);
 	}
 
 	function getPrecios($data, $precarga = array(), $aceptados = array() ){
