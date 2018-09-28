@@ -235,6 +235,8 @@
 		$saldoTXT = "";
 		$saldoTXT = $saldo["cupon"];
 
+		$tieneGatos = tieneGatos();
+
 		$error = "";
 		if( $id_user  == ""){
 			$error = "
@@ -263,12 +265,12 @@
 						";
 					}else{
 						$mascotas__ = $busqueda["mascotas"];
-						if( is_array($mascotas__) && $mascotas__[0] == "gatos" && count($mascotas__) == 1 ) {
-							if( !tieneGatos() ){
+						if( is_array($mascotas__) && in_array("gatos", $mascotas__) ) {
+							if( !$tieneGatos ){
 								$error = "
-								<h1 align='justify'>Debes cargar por lo menos un <strong>Gato</strong> para poder realizar esta reserva.</h1>
-								<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/nueva/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlo.<h2>
-							";
+									<h1 align='justify'>Debes cargar por lo menos un <strong>Gato</strong> para poder realizar esta reserva.</h1>
+									<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/nueva/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlo.<h2>
+								";
 							}
 						}
 
@@ -286,6 +288,17 @@
 		if( $busqueda["checkin"] == "" ){
 			$busqueda["checkin"] = $hoy;
 			$busqueda["checkout"] = $manana;
+		}
+
+		$infoGatos = '';
+		if( $atributos["gatos"] == "Si" && !$tieneGatos ){
+			$infoGatos = '
+				<div class="infoGatos">
+					Estimado cliente, este cuidador también acepta <strong>Gatos</strong> en su servicio de <strong>'.$servicio_name_corto.'</strong>, sin embargo en este momento dicha opción
+					se encuentra <strong>bloqueada</strong>, debido a que usted no ha registrado al menos un <strong>Gato</strong> entre sus mascotas.<br><br>
+					Puede picarle <a href="'.get_home_url().'/perfil-usuario/mascotas/nueva/" style="color: #20a2ef; font-weight: 600;">Aquí</a> se desea agregarlos.
+				</div>
+			';
 		}
 
 		//$NOW = (strtotime("now")+25200);
@@ -513,6 +526,7 @@
 				'.$msg_mismo_dia.'
 				'.$msg_bloqueador.'
 				'.$msg_bloqueador_madrugada.'
+				'.$infoGatos.'
 
 				<div id="bloque_info_servicio" class="km-content-step '.$bloquear.' '.$bloquear_madrugada.'">
 					<div class="km-content-new-pet">

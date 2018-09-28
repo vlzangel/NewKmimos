@@ -406,3 +406,14 @@ div#tienda_box img {
 .bloquear_gatos.km-quantity-height * {
     color: #9e9e9e !important;
 }
+
+.infoGatos{
+    background: #99d9ff;
+    padding: 15px;
+    color: #444;
+    font-size: 15px;
+    border-top: solid 2px #20a2ef;
+    border-bottom: solid 2px #20a2ef;
+    margin: 15px 0px 0px;
+    text-align: justify;
+}
