@@ -55,6 +55,18 @@
                     'icon'          =>  '',
                     'position'      =>  4,
                 ),
+                
+                // Menu Pagos a Cuidador
+                array(
+                    'title'         =>  'Clientes',
+                    'short-title'   =>  'Clientes',
+                    'parent'        =>  '',
+                    'slug'          =>  'reporte_clientes',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_clientes',
+                    'icon'          =>  '',
+                    'position'      =>  4,
+                ),
  
  
             );
@@ -226,5 +238,13 @@
         function terminos(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/terminos/page.php');
+        }
+    }
+
+    if(!function_exists('reporte_clientes')){
+        function reporte_clientes(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/clientes/reporte_clientes.php');
         }
     }
