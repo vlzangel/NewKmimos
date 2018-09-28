@@ -49,6 +49,7 @@
 		$tempEdad = explode(" ", $mascota["edad"]);
 		$mascota["edad"] = ( count($tempEdad) == 4 ) ? $tempEdad[0]."<span style='color: #FFF;'>_</span>".$tempEdad[1]."<br>".$tempEdad[2]."<span style='color: #FFF;'>_</span>".$tempEdad[3] : $mascota["edad"];
 		$temp = str_replace('[NOMBRE]', $mascota["nombre"], $mascotas_plantilla);
+		$temp = str_replace('[TYPE]', $mascota["tipo"], $temp);
 		$temp = str_replace('[RAZA]', $mascota["raza"], $temp);
 		$temp = str_replace('[EDAD]', $mascota["edad"], $temp);
 		$temp = str_replace('[TAMANO]', $mascota["tamano"], $temp);
@@ -248,11 +249,6 @@
             'CORREO_CUIDADOR'       => $cuidador["email"],
             'DIRECCION_CUIDADOR'    => $cuidador["direccion"],
     ];
-
-
-
-
-
 
 
 	if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
