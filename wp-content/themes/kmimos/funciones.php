@@ -299,23 +299,25 @@
 		return $tamanios;
 	}
 
+	function tieneGatos(){
+		global $wpdb;
+
+		$_mascotas = $wpdb->get_var("
+			SELECT 
+				count(*) 
+			FROM 
+				wp_posts AS mascota
+			INNER JOIN wp_postmeta AS tipo ON ( tipo.post_id = mascota.ID AND tipo.meta_key = 'pet_type' AND tipo.meta_value = '2608' ) 
+			WHERE 
+				post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' 
+		");
+
+		return ($_mascotas > 0);
+	}
+
 	function getPrecios($data, $precarga = array(), $aceptados = array() ){
 		$resultado = "";
 		$tamanos = getTamanos();
-
-
-		/*$busqueda = getBusqueda();
-		if( is_array($busqueda["mascotas"]) && count($busqueda["mascotas"]) == 1 AND in_array("gatos", $busqueda["mascotas"]) ) {
-			foreach ($tamanos as $key => $value) {
-				if( $key != "gatos"){
-					unset($tamanos[$key]);
-				}
-			}
-		}
-*/
-		/*echo "<pre>";
-			print_r($tamanos);
-		echo "</pre>";*/
 
 		global $USER_ID;
 		global $cuidador;
@@ -337,8 +339,13 @@
 			$mostrar = false;
 
 			if( isset($data[$key]) && $data[$key] > 0 && ( $tamanos_aceptados[$key] == 1 || $key == 'gatos' ) ){ $mostrar = true; }
+			
+			$bloquear_gatos = '';
 			if( $key == 'gatos' ){ 
-				if($_mascotas > 0) { $mostrar = true; }else{ $mostrar = false; }
+				if($_mascotas > 0) { }else{ 
+					$bloquear_gatos = ' bloquear_gatos';
+					$bloquear_gatos_control = ' disabled';
+				}
 			}
 
 			if( $mostrar ){
@@ -347,12 +354,12 @@
 					$catidad = $precarga[$key];
 				}
 				$resultado .= '
-					<div class="km-quantity-height">
+					<div class="km-quantity-height '.$bloquear_gatos.'">
 						<div class="km-quantity">
 							<a href="#" class="km-minus disabled">-</a>
 								<span class="km-number">'.$catidad.'</span>
 								<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*getComision() ).'" />
-							<a href="#" class="km-plus">+</a>
+							<a href="#" class="km-plus '.$bloquear_gatos_control.'">+</a>
 						</div>
 						<div class="km-height">
 							'.$tamanos[$key].'

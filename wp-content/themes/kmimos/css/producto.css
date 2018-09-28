@@ -402,3 +402,7 @@ div#tienda_box img {
         line-height: normal;
         padding: 3px;
     }
+
+.bloquear_gatos.km-quantity-height * {
+    color: #9e9e9e !important;
+}

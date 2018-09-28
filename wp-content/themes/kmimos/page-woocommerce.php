@@ -261,6 +261,17 @@
 							<h1 align='justify'>Debes cargar por lo menos una mascota para poder realizar una reserva.</h1>
 							<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlas.<h2>
 						";
+					}else{
+						$mascotas__ = $busqueda["mascotas"];
+						if( is_array($mascotas__) && $mascotas__[0] == "gatos" && count($mascotas__) == 1 ) {
+							if( !tieneGatos() ){
+								$error = "
+								<h1 align='justify'>Debes cargar por lo menos un <strong>Gato</strong> para poder realizar esta reserva.</h1>
+								<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/nueva/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlo.<h2>
+							";
+							}
+						}
+
 					}
 				}
 			}
