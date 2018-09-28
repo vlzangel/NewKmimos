@@ -330,11 +330,7 @@
 			WHERE 
 				post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' 
 		");
-
-		echo "<pre><br><br><br><br><br><br><br>";
-			print_r($_mascotas);
-		echo "</pre>";
-
+		
 		$tamanos_aceptados = unserialize($cuidador->tamanos_aceptados);
 
 		foreach ($tamanos as $key => $value) {
