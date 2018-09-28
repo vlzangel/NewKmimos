@@ -870,24 +870,27 @@ jQuery(document).ready(function() {
 
 	jQuery(document).on("click", '.page-reservation .km-quantity .km-plus', function ( e ) {
 		e.preventDefault();
-		var el = jQuery(this);
-		var div = el.parent();
-		var span = jQuery(".km-number", div);
-		var minus = jQuery(".km-minus", div);
-		var input = jQuery("input", div);
-		
-		var valor = parseInt(span.html()) + 1;
 
-		var cantidad = parseInt(getCantidad())+1;
-		if(cantidad <= acepta){
-			span.html( valor );
-			input.val( valor );
+		if( !jQuery(this).hasClass("disabled") ){
+			var el = jQuery(this);
+			var div = el.parent();
+			var span = jQuery(".km-number", div);
+			var minus = jQuery(".km-minus", div);
+			var input = jQuery("input", div);
+			
+			var valor = parseInt(span.html()) + 1;
 
-			if ( span.html() > 0 ) {
-				minus.removeClass("disabled");
+			var cantidad = parseInt(getCantidad())+1;
+			if(cantidad <= acepta){
+				span.html( valor );
+				input.val( valor );
+
+				if ( span.html() > 0 ) {
+					minus.removeClass("disabled");
+				}
+
+				calcular();
 			}
-
-			calcular();
 		}
 	});
 
