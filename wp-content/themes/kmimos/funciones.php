@@ -341,15 +341,10 @@
 		global $cuidador;
 		global $wpdb;
 
-		$_mascotas = $wpdb->get_var("
-			SELECT 
-				count(*) 
-			FROM 
-				wp_posts AS mascota
-			INNER JOIN wp_postmeta AS tipo ON ( tipo.post_id = mascota.ID AND tipo.meta_key = 'pet_type' AND tipo.meta_value = '2608' ) 
-			WHERE 
-				post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' 
-		");
+		global $tieneGatos;
+		global $tienePerros;
+
+		
 		
 		$tamanos_aceptados = unserialize($cuidador->tamanos_aceptados);
 
@@ -360,7 +355,12 @@
 			
 			$bloquear_gatos = '';
 			if( $key == 'gatos' ){ 
-				if($_mascotas > 0) { }else{ 
+				if( !$tieneGatos ) { 
+					$bloquear_gatos = ' bloquear_gatos';
+					$bloquear_gatos_control = ' disabled';
+				}
+			}else{
+				if( !$tienePerros ) { 
 					$bloquear_gatos = ' bloquear_gatos';
 					$bloquear_gatos_control = ' disabled';
 				}

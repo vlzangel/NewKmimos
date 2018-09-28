@@ -320,6 +320,16 @@
 			';
 		}
 
+		if( !$tienePerros ){
+			$infoGatos = '
+				<div class="infoGatos">
+					Estimado cliente, este cuidador también acepta <strong>Perros</strong> en su servicio de <strong>'.$servicio_name_corto.'</strong>, sin embargo en este momento dicha opción
+					se encuentra <strong>bloqueada</strong>, debido a que usted no ha registrado al menos un <strong>Perro</strong> entre sus mascotas.<br><br>
+					Puede picarle <a href="'.get_home_url().'/perfil-usuario/mascotas/nueva/" style="color: #20a2ef; font-weight: 600;">Aquí</a> se desea agregarlos.
+				</div>
+			';
+		}
+
 		//$NOW = (strtotime("now")+25200);
 		$NOW = (strtotime("now"));
 
