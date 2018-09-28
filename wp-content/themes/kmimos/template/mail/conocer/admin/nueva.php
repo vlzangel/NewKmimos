@@ -43,10 +43,8 @@
 	<div style='
 	    font-size: 13px; 
 	    font-weight: 600;
-	    line-height: 1.07; 
-	    letter-spacing: 0.3px; 
 	    color: #000000; 
-	    padding: 15px 30px;
+	    padding: 15px 0px;
 	    text-align: center;
 	    background-color: #e3e3e3;
 	    margin: 0 auto 30px;
@@ -90,9 +88,9 @@
 					<img src='[URL_IMGS]/icosNews/Icon-Calendar-Black.png' style='width: 70%;'>
 				</td>
 				<td style="vertical-align: top;">
-					<strong  style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
+					<strong  style="font-family: Verdana; font-size: 22px; color: #000000; text-align: left; display: block; padding-bottom: 10px;">DATOS DE LA REUNIÓN</strong>
 					<table>
-						<tbody style="font-family: Verdana; font-size: 17px; color: #000000; text-align: left;">
+						<tbody style="font-family: Verdana; font-size: 20px; color: #000000; text-align: left;">
 							<tr>
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;'>
@@ -130,10 +128,10 @@
 
 	</div>
 
-	<div style="padding: 20px 30px 30px; text-align: center; font-size: 13px;">
+	<div style="padding: 20px 0px; text-align: center; font-size: 13px;">
 
 		<a href='[ACEPTAR]' style='
-			width: auto;
+			width: 60%;
 			padding: 10px 30px;
 			background-color: #940d99;
 			color: #FFF;
@@ -147,7 +145,7 @@
 		</a><br>
 
 		<a href='[RECHAZAR]' style='
-			width: auto;
+			width: 60%;
 			margin: 10px auto;
 			padding: 10px 30px;
 			background-color: #FFF;
@@ -167,26 +165,27 @@
 	<div style='
 	    font-family: Verdana;
 	    width: 100%;
-	    padding: 0px 30px 0px; 
+	    padding: 0px 0px; 
 	    box-sizing: border-box;
 		'>
 
 	    <div style='
-	    	width: 550px;
+		    width: 560px;
 	        font-size: 14px; 
 	        font-weight: 600; 
 	        letter-spacing: -0.1px; 
 	        margin-bottom: 15px;
 	        padding-bottom: 5px;
 	        border-bottom: solid 1px #BBB;
+	        margin: 0 auto;
 	    	'>
 	        DETALLE DE LAS MASCOTAS
 	    </div>
 
-	    <table cellpadding="0" cellspacing="0" style='width: 560px;'>
+	    <table cellpadding="0" cellspacing="0" style='width: 560px; margin: 0 auto;'>
 	    	<tbody style="
 	    		font-family: Verdana;
-			    font-size: 16px;
+			    font-size: 17px;
 			    line-height: 1.2;
 			    letter-spacing: 0.3px;
 			    color: #000000;
