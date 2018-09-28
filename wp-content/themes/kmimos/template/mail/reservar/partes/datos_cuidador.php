@@ -38,7 +38,7 @@
         ">
             <table width="100%" style='
                 padding: 0px;
-                font-size: 12px;
+                font-size: 10px;
             '>
                 <tr>
                     <td style="width: 30px; text-align: left;">
