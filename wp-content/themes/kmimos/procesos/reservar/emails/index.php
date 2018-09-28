@@ -60,9 +60,10 @@
 	$desglose_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/desglose.php';
     $desglose_plantilla = file_get_contents($desglose_plantilla);
 
-    $desglose = "";
+    $desglose = ""; $gatos = 0;
 	foreach ($servicio["variaciones"] as $variacion) {
 		$plural = ""; if($variacion[0]>1){$plural="s";}
+		if( strtoupper($variacion[1]) == 'GATOS' ){ $gatos++; }
 		$temp = str_replace('[TAMANO]', strtoupper($variacion[1]), $desglose_plantilla);
 		$temp = str_replace('[CANTIDAD]', $variacion[0]." mascota".$plural, $temp);
 		$temp = str_replace('[TIEMPO]', $variacion[2], $temp);
@@ -170,6 +171,11 @@
 
 	$servicios_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/servicios.php';
     $servicios_plantilla = file_get_contents($servicios_plantilla);
+
+    if( $gatos == count($servicio["variaciones"]) ){
+    	$servicios_plantilla = str_replace('dog_black', 'cat_black', $servicios_plantilla);
+    	
+    }
 
 	$servicios_plantilla = str_replace('[inicio]', date("d/m", $servicio["inicio"]), $servicios_plantilla);
 	$servicios_plantilla = str_replace('[desglose]', $desglose, $servicios_plantilla);
