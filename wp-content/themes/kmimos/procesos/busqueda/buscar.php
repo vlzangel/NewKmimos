@@ -46,7 +46,6 @@
 	if( isset($_GET['o']) ){
 		$data = [];
 		if( $_SESSION['busqueda'] != '' ){
-			
 			$data['orderby'] = $_GET['o'];
 			$_POST = $data;
 		}
@@ -334,9 +333,11 @@
     /* Fin Filtros por Flash */
 
     /* Filtros por servicios y tamaños */
-	  
-    	foreach ($tamanos as $key => $value) {
-     		$condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; 
+	  	
+	  	if( is_array($tamanos) ){
+	    	foreach ($tamanos as $key => $value) {
+	     		$condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; 
+	     	} 
      	} 
      	
     /* Fin Filtros por servicios y tamaños */
