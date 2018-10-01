@@ -1482,7 +1482,7 @@
                             $temp[] = "Sociable";
                             $tamanio_mascota = "N/A";
                             $raza = "Gato";
-                            $tipo = "cat";
+                            $tipo = "cat_2";
                         break;
                     }
                     $data_mascota['birthdate_pet'][0] = str_replace("/", "-", $data_mascota['birthdate_pet'][0]);
