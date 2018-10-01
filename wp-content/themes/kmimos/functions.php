@@ -1,4 +1,14 @@
 <?php
+	
+	/* Comentarios */
+
+		function parseNameClient($clent_id){
+			$metas = get_user_meta($clent_id);
+			$nombre = explode(" ", $metas["first_name"][0]);
+			$apellido = mb_substr($metas["last_name"][0], 0, 1, "utf-8");
+
+			return ucfirst($nombre[0])." ".$apellido.".";
+		}
 
 	/* Email */
 
