@@ -1258,7 +1258,7 @@
 
                 update_post_meta($reserva->ID, "_booking_precios_bk", serialize($_precios));
 
-                $metas_reserva['_booking_precios_bk'][0] = serialize($precios);
+                $metas_reserva['_booking_precios_bk'][0] = serialize( serialize($_precios ) );
             }
 
             $tipo_servicio = explode("-", $producto->post_title);
