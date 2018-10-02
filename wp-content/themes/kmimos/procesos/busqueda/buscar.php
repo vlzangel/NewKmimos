@@ -371,7 +371,7 @@
     /* Fin Filtros por rangos */
 
     /* Ordenamientos */
-    	$orderby = ( isset($orderby) )? $orderby : 'rating_desc' ;
+    	// $orderby = ( isset($orderby) )? $orderby : 'rating_desc' ;
 	    switch ($orderby) {
 	    	case 'rating_desc':
 	    		$orderby = "valoraciones DESC, rating DESC";
@@ -437,7 +437,7 @@
 	            if( $latitud != "" && $longitud != "" && $km5 != "No" ){
 	       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
 	                $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
-	                $FILTRO_UBICACION = "HAVING DISTANCIA < 5";
+	               	//  $FILTRO_UBICACION = "HAVING DISTANCIA < 5";
 
 	                $_SESSION['km5'] = "Yes";
 

@@ -1,7 +1,67 @@
 var hasGPS=false;
+var crd;
+var prueba_ubicacion = false;
+
+var limites = {
+    'norte': {
+        "lat": parseFloat("32.7187629"),
+        "lng": parseFloat("-86.5887")
+    },
+    'sur': {
+        "lat": parseFloat("14.3895"),
+        "lng": parseFloat("-118.6523001")
+    }
+};
 
 (function(jQuery) {
     'use strict';
+
+    jQuery("#mi_ubicacion").on("click", function(e){
+        navigator.geolocation.getCurrentPosition(
+            function(pos) {
+                crd = pos.coords;
+
+                if( 
+                    (
+                        limites.norte.lat >= crd.latitude && limites.sur.lat <= crd.latitude &&
+                        limites.norte.lng >= crd.longitude && limites.sur.lng <= crd.longitude
+                    ) || 
+                    prueba_ubicacion == true
+                ){
+                    console.log( "En el rango" );
+
+                    jQuery( '[data-error="ubicacion"]' ).parent().removeClass('has-error');
+                    jQuery( '[data-error="ubicacion"]' ).addClass('hidden');
+
+                    jQuery('#latitud').val(crd.latitude);
+                    jQuery('#longitud').val(crd.longitude);
+
+                    var geocoder = new google.maps.Geocoder();
+
+                    var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
+                    geocoder.geocode({'location': latlng}, function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            var address = results[0]['formatted_address'];
+                            jQuery("#ubicacion_txt").val(address);
+                            jQuery("#ubicacion").val("");
+                        }
+                    });
+                }else{
+                    console.log( "Fuera del rango" );
+                    jQuery( '[data-error="ubicacion"]' ).parent().addClass('has-error');
+                    jQuery( '[data-error="ubicacion"]' ).removeClass('hidden');
+                }
+            }, 
+            function error(err) {
+                console.log("Error");
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            }
+        );
+    });
     
     jQuery('#servicios_adicionales').on('click', function () {
        jQuery('#servicios_adicionales').dropdown('show');
@@ -201,6 +261,9 @@ function validar_busqueda_home(){
     jQuery( '#checkout' ).parent().removeClass('has-error');
     jQuery( '[data-error="checkout"]' ).addClass('hidden');
 
+    jQuery( '#ubicacion' ).parent().removeClass('has-error');
+    jQuery( '[data-error="ubicacion"]' ).addClass('hidden');
+
     if( OUT ){
         jQuery( '#checkout' ).parent().addClass('has-error');
         jQuery( '[data-error="checkin"]' ).removeClass('hidden');
@@ -247,3 +310,12 @@ function stop_video(){
 
     console.log('stop video');
 }
+
+(function(d, s){
+    map = d.createElement(s), e = d.getElementsByTagName(s)[0];
+    map.async=!0;
+    map.setAttribute("charset","utf-8");
+    map.src="//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8";
+    map.type="text/javascript";
+    e.parentNode.insertBefore(map, e);
+})(document,"script");

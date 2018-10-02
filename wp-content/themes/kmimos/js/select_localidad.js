@@ -27,10 +27,6 @@ jQuery(document).ready(function(){
         }
     );
 
-    jQuery(".icon_left").click(function(e){
-        jQuery("#ubicacion_txt").focus();
-    });
-
     jQuery("#ubicacion_txt").on("keyup", function ( e ) {
         buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
     });

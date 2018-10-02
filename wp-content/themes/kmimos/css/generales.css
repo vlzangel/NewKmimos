@@ -939,3 +939,21 @@ h2.msg_acciones {
 .no_error{
     display: none;
 }
+
+i.fa.fa-crosshairs {
+    position: absolute;
+    top: 12px;
+    left: 11px !important;
+    font-size: 22px;
+    z-index: 99;
+    cursor: pointer;
+    color: #7dd1c4;
+}
+
+i.fa.fa-crosshairs:hover {
+    color: #7dd1c4;
+}
+
+.km-select-custom{
+    background: #FFF !important;
+}

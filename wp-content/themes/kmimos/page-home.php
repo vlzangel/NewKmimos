@@ -121,6 +121,10 @@
 			<form id="buscador" class="km-cuidador" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
 				<input type="hidden" name="redireccionar" value="1" />
 				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+
+				<input type="hidden" id="latitud" name="latitud" />
+				<input type="hidden" id="longitud" name="longitud" />
+
 				<div class="container">
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">
@@ -129,7 +133,8 @@
 							<div class="col-xs-12 col-sm-6">
 	
 								<div class="km-select-custom-home km-select-custom km-select-ubicacion btn-group" style="width:100%;">
-									<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
+									
+									<i id="mi_ubicacion" class="fa fa-crosshairs icon_left"></i>
 
 								    <input type="text" 
 										id="ubicacion_txt"  
@@ -148,7 +153,10 @@
 								    	<div class="cerrar_list">X</div>
 								    	<ul id="ubicacion_list" class=""></ul>
 								    </div>
+
+								    
 								</div>
+								<small  class="hidden" data-error="ubicacion">Función disponible solo en México</small>
 								
 							</div>
 
