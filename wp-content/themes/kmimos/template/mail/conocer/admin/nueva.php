@@ -95,7 +95,7 @@
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;'>
 								</td>
-								<td>
+								<td style="font-size: 12px!important;">
 									[fecha]
 								</td>
 							</tr>
@@ -103,7 +103,7 @@
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/min_clock.png' style='text-align: left; width: 80%;'>
 								</td>
-								<td>
+								<td style="font-size: 12px!important;">
 									[hora] horas
 								</td>
 							</tr>
@@ -111,7 +111,7 @@
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/Icon-phonebook.png' style='text-align: left; width: 80%;'>
 								</td>
-								<td>
+								<td style="font-size: 12px!important;">
 									[lugar]
 								</td>
 							</tr>
