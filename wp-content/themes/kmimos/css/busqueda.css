@@ -287,6 +287,12 @@ h1.maps {
     font-weight: 600;
 }
 
+.error_ubicacion{
+    position: absolute;
+    top: 35px;
+    color: #c71111;
+}
+
 @media All and (max-width: 992px){
     .slide-profile {
         margin-top: 40%!important;

@@ -1,18 +1,17 @@
-navigator.geolocation.getCurrentPosition(
-	function(pos) {
-  		var crd = pos.coords;
-  		jQuery('#latitud').val(crd.latitude);
-   		jQuery('#longitud').val(crd.longitude);
-	}, 
-	function error(err) {
-  		console.log("Error");
-	},
-	{
-      	enableHighAccuracy: true,
-      	timeout: 5000,
-      	maximumAge: 0
+var crd;
+var prueba_ubicacion = false;
+
+var limites = {
+    'norte': {
+        "lat": parseFloat("32.7187629"),
+        "lng": parseFloat("-86.5887")
+    },
+    'sur': {
+        "lat": parseFloat("14.3895"),
+        "lng": parseFloat("-118.6523001")
     }
-);
+};
+
 
 jQuery(document).on('click', '.km-select-background-click',function(){
 	jQuery('.km-select-custom-list').css('display', 'none');
@@ -44,6 +43,52 @@ function km5(valor){
 
 jQuery(document).ready(function(){
 
+	jQuery("#mi_ubicacion").on("click", function(e){
+	    navigator.geolocation.getCurrentPosition(
+	        function(pos) {
+	            crd = pos.coords;
+
+	            if( 
+	                (
+	                    limites.norte.lat >= crd.latitude && limites.sur.lat <= crd.latitude &&
+	                    limites.norte.lng >= crd.longitude && limites.sur.lng <= crd.longitude
+	                ) || 
+	                prueba_ubicacion == true
+	            ){
+	                console.log( "En el rango" );
+
+	                jQuery( '[data-error="ubicacion"]' ).parent().removeClass('has-error');
+	                jQuery( '[data-error="ubicacion"]' ).addClass('hidden');
+
+	                jQuery('#latitud').val(crd.latitude);
+	                jQuery('#longitud').val(crd.longitude);
+
+	                var geocoder = new google.maps.Geocoder();
+
+	                var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
+	                geocoder.geocode({'location': latlng}, function(results, status) {
+	                    if (status == google.maps.GeocoderStatus.OK) {
+	                        var address = results[0]['formatted_address'];
+	                        jQuery("#ubicacion_txt").val(address);
+                            jQuery("#ubicacion").val("");
+	                    }
+	                });
+	            }else{
+	                console.log( "Fuera del rango" );
+	                //jQuery( '[data-error="ubicacion"]' ).parent().addClass('has-error');
+	                jQuery( '[data-error="ubicacion"]' ).removeClass('hidden');
+	            }
+	        }, 
+	        function error(err) {
+	            console.log("Error");
+	        },
+	        {
+	            enableHighAccuracy: true,
+	            timeout: 5000,
+	            maximumAge: 0
+	        }
+	    );
+	});
 	jQuery(".km-formulario-buscador").on("submit", function(e){
 		jQuery('#buscando_container').css('display', 'block');
 
@@ -258,17 +303,7 @@ function vlz_top(){
         scrollTop: 0
     }, 500);
 }
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    }
-}
-function showPosition(position) {
-	if( jQuery("#tipo_busqueda option:selected").val() == "mi-ubicacion" ){
-		jQuery("#latitud").val(position.coords.latitude);
-	    jQuery("#longitud").val(position.coords.longitude);
-	}
-}
+
 function vlz_tipo_ubicacion(){
 	if( jQuery("#tipo_busqueda option:selected").val() == "mi-ubicacion" ){
 		jQuery("#vlz_estados").css("display", "none");
