@@ -967,7 +967,6 @@ jQuery(document).ready(function() {
 			}
 			jQuery('.km-option-total').click();
 
-			console.log(CARRITO);
 			if( CARRITO["cantidades"]["cantidad"] == 0 ){
 				CARRITO["adicionales"] = {
 					"bano" : 0,
