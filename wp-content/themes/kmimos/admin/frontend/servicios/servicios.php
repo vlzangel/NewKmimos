@@ -105,17 +105,21 @@
     foreach ($adicionales as $key => $value) {
     	$temp = "";
     	foreach ($tam as $key2 => $value2) {
-    		if( isset($precios_adicionales_cuidador[$key] ) ){
-    			$precio = $precios_adicionales_cuidador[$key][$key2];
-    		}else{
-    			$precio = "";
-    		}
-	    	$temp .= "
-	    		<div class='vlz_celda_25'>
-	    			<label>".$value2."</label>
-	    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='".$key."_".$key2."' name='".$key."_".$key2."' value='".$precio."' data-toggle='tooltip' data-title='Ingresa el precio de {$value} para mascotas ".($mascotas[ $key2 ])."' />
-				</div>
-	    	";
+            if( $key2 == 'gatos' && $key != 'guarderia' ){
+
+            }else{
+                if( isset($precios_adicionales_cuidador[$key] ) ){
+                    $precio = $precios_adicionales_cuidador[$key][$key2];
+                }else{
+                    $precio = "";
+                }
+                $temp .= "
+                    <div class='vlz_celda_25'>
+                        <label>".$value2."</label>
+                        <input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='".$key."_".$key2."' name='".$key."_".$key2."' value='".$precio."' data-toggle='tooltip' data-title='Ingresa el precio de {$value} para mascotas ".($mascotas[ $key2 ])."' />
+                    </div>
+                ";
+            }
     	}
 
 		//if( $status_servicios[ $key ] == 'publish' ){
