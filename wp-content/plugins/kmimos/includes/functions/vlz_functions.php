@@ -1345,7 +1345,9 @@
                         number_format( $unitario, 2, ',', '.'),
                         number_format( ($unitario*$mascotas[$value]*$dias), 2, ',', '.')
                     );
-                    $grupo += $mascotas[$value];
+                    if( $key != "gatos" ){
+                        $grupo += $mascotas[$value];
+                    }
                 }
             }
 

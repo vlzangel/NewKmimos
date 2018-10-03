@@ -132,14 +132,32 @@ function calcular(){
 		CARRITO["pagar"]["reconstruir"] = true;
 	}
 
+	var PERROS = 0;
+	var GATOS = 0;
+
 	CARRITO["cantidades"]["cantidad"] = 0;
 	jQuery("#reservar .tamano").each(function( index ) {
-		CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
+		
+		if( parseFloat( jQuery( this ).val() ) > 0 ){
+			if( jQuery( this ).attr("name") == "gatos" ){
+				GATOS++;
+			}else{
+				PERROS++;
+				CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
+			}
+		}
+
 		CARRITO[ "cantidades" ][ jQuery( this ).attr("name") ] = [
 			parseFloat( jQuery( this ).val() ),
 			parseFloat( jQuery( this ).attr("data-valor") )
 		];
 	});
+
+	if( BLOQUEAR_ADICIONALES == 0 && PERROS == 0 && GATOS > 0 ){
+		jQuery("#contenedor-adicionales").css("display", "none");
+	}else{
+		jQuery("#contenedor-adicionales").css("display", "block");
+	}
 
 	var tranporte = jQuery('#transporte option:selected').val();
 	if( tranporte != undefined && tranporte != "" ){

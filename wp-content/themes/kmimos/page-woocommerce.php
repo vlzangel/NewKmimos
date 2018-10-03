@@ -482,6 +482,7 @@
 			var MANANA = '".$manana."';
 			var HORA = '".(date("G", $NOW )+0)."';
 			var SUPERU = '".$super_admin."';
+			var BLOQUEAR_ADICIONALES = ".( ($bloquear_adicionales) ? 1 : 0 ).";
 		</script>";
 
 		if( $error != "" ){
@@ -526,9 +527,9 @@
 
 			$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$post_id}");
 
-			$_adicionales = '<div class="contenedor-adicionales">'.$adicionales.'</div>';
+			$_adicionales = '<div id="contenedor-adicionales" class="contenedor-adicionales">'.$adicionales.'</div>';
 			if( $bloquear_adicionales ){
-				$_adicionales = '<div style="display: none;" class="contenedor-adicionales">'.$adicionales.'</div>';
+				$_adicionales = '<div style="display: none;" id="contenedor-adicionales" class="contenedor-adicionales">'.$adicionales.'</div>';
 			}
 
 			$precios = '
