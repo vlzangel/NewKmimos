@@ -50,7 +50,8 @@ var limites = {
                 }*/
             }, 
             function error(err) {
-                alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmimos en la configuración de ubicación de su dispositivo.");
+                alert(err.message);
+                // alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmimos en la configuración de ubicación de su dispositivo.");
             },
             {
                 enableHighAccuracy: true,
