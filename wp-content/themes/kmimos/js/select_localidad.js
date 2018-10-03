@@ -45,6 +45,8 @@ jQuery(document).ready(function(){
         if( txt == "" ){
             jQuery("#ubicacion").val( "" );
             jQuery("#ubicacion").attr( "data-value", "" );
+            jQuery("#latitud").val( "" );
+            jQuery("#longitud").val( "" );
         }else{
             if( jQuery("#ubicacion").val() != "" ){
                 if( jQuery("#ubicacion_txt").val() != jQuery("#ubicacion").val() ){

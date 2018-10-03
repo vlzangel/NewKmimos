@@ -532,10 +532,10 @@
 				"lat"  => $cuidador->latitud,
 				"lng"  => $cuidador->longitud,
 				"nom"  => utf8_encode($cuidador->titulo),
-				"url"  => $url,
+				"url"  => utf8_encode($url),
 				"exp"  => $anios_exp,
 				"adi"  => $cuidador->adicionales,
-				"ser"  => "",
+				//"ser"  => "",
 				"rating" => ceil($cuidador->rating),
 				"pre"  => $cuidador->precio
 			);
