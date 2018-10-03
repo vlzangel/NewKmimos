@@ -79,7 +79,11 @@ jQuery(document).ready(function(){
 	            }*/
 	        }, 
 	        function error(err) {
-	            alert("Estimado usuario, debe desbloquear a kmimos en la configuración de ubicación de su dispositivo.");
+                if( err.message == 'User denied Geolocation' ){
+                    alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmimos en la configuración de ubicación de su dispositivo.");
+                }else{
+                    alert(err.message);
+                }
 	        },
 	        {
 	            enableHighAccuracy: true,
