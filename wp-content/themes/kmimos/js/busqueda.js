@@ -79,7 +79,7 @@ jQuery(document).ready(function(){
 	            }*/
 	        }, 
 	        function error(err) {
-	            alert(err);
+	            alert("Estimado usuario, debe desbloquear a kmimos en la configuración de ubicación de su dispositivo.");
 	        },
 	        {
 	            enableHighAccuracy: true,
