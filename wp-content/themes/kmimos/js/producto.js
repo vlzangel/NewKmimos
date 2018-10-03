@@ -403,7 +403,7 @@ function initFactura(){
 		"medianos" : "Mediana",
 		"grandes" :  "Grande",
 		"gigantes" : "Gigante",
-		"gatos" : "Gatos"
+		"gatos" : "Gato"
 	};
 
 	var items = "";
