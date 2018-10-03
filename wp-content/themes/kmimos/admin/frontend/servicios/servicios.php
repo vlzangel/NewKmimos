@@ -113,6 +113,7 @@
                 }else{
                     $precio = "";
                 }
+
                 $temp .= "
                     <div class='vlz_celda_25'>
                         <label>".$value2."</label>
@@ -129,6 +130,15 @@
     		$boton = "<input type='button' value='Desactivado' class='vlz_activador km-btn-primary vlz_desactivado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='0' >";
     	}
 
+        if( $key == "paseos" ){
+            $precios_adicionales .= "
+                <div class='sugerencia_paseos'>
+                    <div>¿Cómo funciona paseos?</div>
+                    <div>El servicio dura de 2 a 3 horas dependiendo las condiciones de cada mascota, pregunta al cliente los hábitos de paseo y coméntale las zonas por donde realizarás la actividad.</div>
+                    <div>El rango sugerido para el precio del paseo es $80 a $100 pesos. Recuerda, tu eres libre de colocar el precio que desees.</div>
+                </div>
+            ";
+        }
     	$precios_adicionales .= "
     		<div class='vlz_seccion'>
     			<div class='vlz_titulo_seccion container_btn'>".$value."  {$boton} </div>
