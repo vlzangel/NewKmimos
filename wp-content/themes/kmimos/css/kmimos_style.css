@@ -4848,7 +4848,7 @@ footer .km-icon-redes {
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-services-content {
-    border:1px solid #000;
+    border-top:1px solid #000;
     border-left:none;
     border-right:none;
     padding-bottom:5px

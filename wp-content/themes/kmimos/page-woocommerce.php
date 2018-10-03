@@ -310,13 +310,14 @@
 			$busqueda["checkout"] = $manana;
 		}
 
+		$bloquear_adicionales = false;
 		$infoGatos = '';
 		if( $atributos["gatos"] == "Si" && !$tieneGatos ){
 			$infoGatos = '
 				<div class="infoGatos">
 					Estimado cliente, este cuidador también acepta <strong>Gatos</strong> en su servicio de <strong>'.$servicio_name_corto.'</strong>, sin embargo en este momento dicha opción
 					se encuentra <strong>bloqueada</strong>, debido a que usted no ha registrado al menos un <strong>Gato</strong> entre sus mascotas.<br><br>
-					Puede picarle <a href="'.get_home_url().'/perfil-usuario/mascotas/nueva/" style="color: #20a2ef; font-weight: 600;">Aquí</a> se desea agregarlos.
+					Puede picarle <a href="'.get_home_url().'/perfil-usuario/mascotas/nueva/" style="color: #20a2ef; font-weight: 600;">Aquí</a> si desea agregarlos.
 				</div>
 			';
 		}
@@ -326,9 +327,10 @@
 				<div class="infoGatos">
 					Estimado cliente, este cuidador también acepta <strong>Perros</strong> en su servicio de <strong>'.$servicio_name_corto.'</strong>, sin embargo en este momento dicha opción
 					se encuentra <strong>bloqueada</strong>, debido a que usted no ha registrado al menos un <strong>Perro</strong> entre sus mascotas.<br><br>
-					Puede picarle <a href="'.get_home_url().'/perfil-usuario/mascotas/nueva/" style="color: #20a2ef; font-weight: 600;">Aquí</a> se desea agregarlos.
+					Puede picarle <a href="'.get_home_url().'/perfil-usuario/mascotas/nueva/" style="color: #20a2ef; font-weight: 600;">Aquí</a> si desea agregarlos.
 				</div>
 			';
+			$bloquear_adicionales = true;
 		}
 
 		//$NOW = (strtotime("now")+25200);
@@ -524,6 +526,11 @@
 
 			$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$post_id}");
 
+			$_adicionales = '<div class="contenedor-adicionales">'.$adicionales.'</div>';
+			if( $bloquear_adicionales ){
+				$_adicionales = '<div style="display: none;" class="contenedor-adicionales">'.$adicionales.'</div>';
+			}
+
 			$precios = '
 				<div class="km-dates-step" style="margin-bottom: 5px;">
 					<div class="km-ficha-fechas">
@@ -563,7 +570,7 @@
 						'.$precios.'
 						<div class="km-services-content">
 							<div class="contenedor-adicionales">'.$transporte.'</div>
-							<div class="contenedor-adicionales">'.$adicionales.'</div>
+							'.$_adicionales.'
 						</div>
 
 						<div class="km-services-total km-total-calculo">
