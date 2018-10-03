@@ -271,7 +271,7 @@ function calcular(){
 			jQuery(".km-price-total").html("$"+numberFormat(cant));
 		}
 	}
-	
+
 	jQuery.each( CARRITO[ "adicionales" ], function( key, valor ) {
 		if( valor > 0 ){
 			cant += (valor*CARRITO["cantidades"]["cantidad"]);
@@ -619,11 +619,7 @@ function calcularDescuento(){
 	CARRITO["pagar"]["descuento_total"] = descuentos;
 
 	if( jQuery(".km-option-deposit").hasClass("active") ){
-		/*if( pre17 == 0 ){
-			jQuery("#metodos_pagos").css("display", "none");
-		}else{
-			jQuery("#metodos_pagos").css("display", "block");
-		}*/
+
 	}else{
 		if( pagoCuidador == 0 ){
 			jQuery("#metodos_pagos").css("display", "none");
@@ -736,36 +732,6 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
-
-	/*jQuery("#hora_checkin").on("change", function(){
-		CARRITO["fechas"]["checkin"] = jQuery("#hora_checkin").val();
-		calcular();
-	});
-
-	jQuery("#hora_checkout").on("change", function(){
-		CARRITO["fechas"]["checkout"] = jQuery("#hora_checkout").val();
-		calcular();
-	});*/
-
-	jQuery("#prueba").on("click", function(e){
-		/*ga('send', 'event', 'reservar', 'tipo_pago', 'parcial', {
-			hitCallback: function() {
-				console.log("Evento Enviado!");
-			}
-		});*/
-
-		gtag('event', 'Prueba', { 
-			'event_category': 'Prueba', 
-			'event_action': 'Click'
-		});
-
-		/*
-		, 
-			'event_label': 'etiqueta', 
-			'value': 'valor'
-		*/
-
-	});
 
 	jQuery(".km-option-total").click();
 
@@ -1000,6 +966,20 @@ jQuery(document).ready(function() {
 				reaplicarCupones();
 			}
 			jQuery('.km-option-total').click();
+
+			console.log(CARRITO);
+			if( CARRITO["cantidades"]["cantidad"] == 0 ){
+				CARRITO["adicionales"] = {
+					"bano" : 0,
+					"corte" : 0,
+					"acupuntura" : 0,
+					"limpieza_dental" : 0,
+					"visita_al_veterinario" : 0
+				}
+
+				initFactura();
+			}
+
 		}
 		e.preventDefault();
 	});
