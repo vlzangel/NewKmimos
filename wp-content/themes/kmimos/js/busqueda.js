@@ -48,14 +48,13 @@ jQuery(document).ready(function(){
 	        function(pos) {
 	            crd = pos.coords;
 
-	            if( 
+	            /*if( 
 	                (
 	                    limites.norte.lat >= crd.latitude && limites.sur.lat <= crd.latitude &&
 	                    limites.norte.lng >= crd.longitude && limites.sur.lng <= crd.longitude
 	                ) || 
 	                prueba_ubicacion == true
-	            ){
-	                console.log( "En el rango" );
+	            ){*/
 
 	                jQuery( '[data-error="ubicacion"]' ).parent().removeClass('has-error');
 	                jQuery( '[data-error="ubicacion"]' ).addClass('hidden');
@@ -73,14 +72,14 @@ jQuery(document).ready(function(){
                             jQuery("#ubicacion").val("");
 	                    }
 	                });
-	            }else{
+	            /*}else{
 	                console.log( "Fuera del rango" );
 	                //jQuery( '[data-error="ubicacion"]' ).parent().addClass('has-error');
 	                jQuery( '[data-error="ubicacion"]' ).removeClass('hidden');
-	            }
+	            }*/
 	        }, 
 	        function error(err) {
-	            console.log("Error");
+	            alert(err);
 	        },
 	        {
 	            enableHighAccuracy: true,

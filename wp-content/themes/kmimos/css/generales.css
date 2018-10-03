@@ -945,7 +945,7 @@ i.fa.fa-crosshairs {
     top: 12px;
     left: 11px !important;
     font-size: 22px;
-    z-index: 99;
+    z-index: 2;
     cursor: pointer;
     color: #7dd1c4;
 }
