@@ -267,7 +267,7 @@
 	text-align: center;
 	margin-top: 30px;
 ">
-	En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono (01) 55 3137 4829, Whatsapp +52 (33) 1261 4186, o al correo contactomex@kmimos.la
+	En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono 01 (55) 8526 1162, Whatsapp +52 (33) 1261 4186, o al correo contactomex@kmimos.la
 </div>
 
 <div style="
