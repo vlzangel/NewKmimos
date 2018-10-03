@@ -75,6 +75,9 @@ function validar(status, txt){
 	}
 }
 
+
+var PERROS = 0;
+var GATOS = 0;
 function calcular(){
 	
 	if( FLASH == "NO" ){
@@ -132,8 +135,8 @@ function calcular(){
 		CARRITO["pagar"]["reconstruir"] = true;
 	}
 
-	var PERROS = 0;
-	var GATOS = 0;
+	PERROS = 0;
+	GATOS = 0;
 
 	CARRITO["cantidades"]["cantidad"] = 0;
 	jQuery("#reservar .tamano").each(function( index ) {
@@ -153,7 +156,7 @@ function calcular(){
 		];
 	});
 
-	if( BLOQUEAR_ADICIONALES == 0 && PERROS == 0 && GATOS > 0 ){
+	if( PERROS == 0 && GATOS > 0 ){
 		jQuery("#contenedor-adicionales").css("display", "none");
 	}else{
 		jQuery("#contenedor-adicionales").css("display", "block");
