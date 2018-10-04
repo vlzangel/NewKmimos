@@ -183,7 +183,7 @@
                 $cont = 0;
                 foreach ($resultados as $key => $_cuidador) {
                     
-                    if( in_array($_cuidador->id, $destacados) && $cuidador->DISTANCIA <= 1000 ){ //
+                    if( in_array($_cuidador->id, $destacados)  ){ //&& $cuidador->DISTANCIA <= 1000
 
                         $cont++;
 
