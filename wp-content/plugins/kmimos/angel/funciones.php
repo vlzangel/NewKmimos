@@ -180,11 +180,14 @@
                     $destacados[] = $value->cuidador;
                 }
 
-                foreach ($resultados as $key => $cuidador) {
+                $cont = 0;
+                foreach ($resultados as $key => $_cuidador) {
                     
-                    if( in_array($cuidador->id, $destacados) && $cuidador->DISTANCIA <= 1000 ){
+                    if( in_array($_cuidador->id, $destacados) && $cuidador->DISTANCIA <= 1000 ){ //
 
-                        $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$cuidador->id}");
+                        $cont++;
+
+                        $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$_cuidador->id}");
                         $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
                         $nombre = $data->nom;
                         $img_url = kmimos_get_foto($cuidador->user_id);
@@ -208,11 +211,6 @@
                                                 <div class="slide-price text-left" style="color:#fff;font-size:12px;">
                                                     Desde <span style="font-size:12px;">MXN $'.($cuidador->hospedaje_desde*getComision()).'</span>
                                                 </div>
-                                                <!--
-                                                <div class="slide-distance">
-                                                    A 96 km de tu búsqueda
-                                                </div>
-                                                -->
                                             </div>
 
                                             <div class="slide-profile">
@@ -226,6 +224,10 @@
 
                                             <div class="slide-expertice  text-center">
                                                 '.$anios_exp.' año(s) de experiencia
+                                            </div>
+
+                                            <div class="slide-expertice  text-center">
+                                                A '.floor($_cuidador->DISTANCIA).' km de tu búsqueda
                                             </div>
 
                                             <div class="slide-ranking  text-center">
@@ -243,6 +245,10 @@
                             </div>
                         ';
 
+                    }
+
+                    if( $cont >= 4 ){
+                        break;
                     }
                 }
 

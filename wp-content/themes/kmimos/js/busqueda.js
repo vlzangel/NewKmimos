@@ -119,7 +119,8 @@ jQuery(document).ready(function(){
 	    slideWidth: 200,
 	    minSlides: 1,
 	    maxSlides: 3,
-	    slideMargin: 10
+	    slideMargin: 10,
+	    infiniteLoop: false
 	});
 
 	jQuery(document).on("click", '.show-map-mobile', function ( e ) {
