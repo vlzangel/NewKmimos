@@ -50,15 +50,6 @@
 
 		$metas_cuidador = get_user_meta($cuidador->user_id);
 
-		$telf_cuidador = $metas_cuidador["user_phone"][0];
-		 if( isset($metas_cuidador["user_mobile"][0]) ){
-			$separador = (!empty($telf_cuidador))? ' / ': "";
-			$telf_cuidador .= $separador . $metas_cuidador["user_mobile"][0];
-		}
-		if( $telf_cuidador == "" ){
-			$telf_cuidador = "No registrado";
-		}
-
 		$asunto     = 'Solicitud para conocer a cuidador';
 		$headers[]  = 'From: Kmimos México <kmimos@kmimos.la>';
 
