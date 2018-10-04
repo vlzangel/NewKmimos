@@ -940,9 +940,8 @@ h2.msg_acciones {
     display: none;
 }
 
-i.fa.fa-crosshairs {
+.icon_left {
     position: absolute;
-    top: 12px;
     left: 11px !important;
     font-size: 22px;
     z-index: 2;
@@ -950,7 +949,7 @@ i.fa.fa-crosshairs {
     color: #7dd1c4;
 }
 
-i.fa.fa-crosshairs:hover {
+.icon_left:hover {
     color: #7dd1c4;
 }
 

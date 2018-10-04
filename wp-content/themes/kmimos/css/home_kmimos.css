@@ -820,6 +820,10 @@ ul.slider_logos_box li{
         background-image: url(../images/home/banner_nutriheroes.png);
     }
 
+    .icon_left {
+        top: 12px !important;
+    }
+
     @media (max-width: 600px){
 
         .banner_home_petco{

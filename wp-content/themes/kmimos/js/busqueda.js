@@ -44,6 +44,10 @@ function km5(valor){
 jQuery(document).ready(function(){
 
 	jQuery("#mi_ubicacion").on("click", function(e){
+
+		jQuery(".icon_left").removeClass("fa-crosshairs");
+		jQuery(".icon_left").addClass("fa-spinner fa-spin");
+
 	    navigator.geolocation.getCurrentPosition(
 	        function(pos) {
 	            crd = pos.coords;
@@ -70,6 +74,9 @@ jQuery(document).ready(function(){
 	                        var address = results[0]['formatted_address'];
 	                        jQuery("#ubicacion_txt").val(address);
                             jQuery("#ubicacion").val("");
+
+							jQuery(".icon_left").removeClass("fa-spinner fa-spin");
+							jQuery(".icon_left").addClass("fa-crosshairs");
 	                    }
 	                });
 	            /*}else{
@@ -79,6 +86,8 @@ jQuery(document).ready(function(){
 	            }*/
 	        }, 
 	        function error(err) {
+				jQuery(".icon_left").removeClass("fa-spinner fa-spin");
+				jQuery(".icon_left").addClass("fa-crosshairs");
                 if( err.message == 'User denied Geolocation' ){
                     alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmimos en la configuración de ubicación de su dispositivo.");
                 }else{
