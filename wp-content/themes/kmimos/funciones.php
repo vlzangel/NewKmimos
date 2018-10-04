@@ -346,7 +346,7 @@
 			],
 			"gatos"    => [
 				"GATOS",
-				"Indistinto",
+				"Sociables",
 				"cat_blue.svg"
 			],
 		);
