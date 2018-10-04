@@ -108,7 +108,7 @@ jQuery(document).ready(function(){
 			jQuery(this).attr("action"),
 			jQuery(this).serialize(),
 			function(respuesta){
-				location.reload();
+				location.href = RAIZ+"busqueda";
 			}
 		);
 
