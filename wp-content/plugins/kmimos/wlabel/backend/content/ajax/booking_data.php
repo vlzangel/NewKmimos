@@ -170,7 +170,6 @@ foreach ($reservas as $key => $reserva) {
         );                  
     if(!in_array('hospedaje', explode("-", $reserva->post_name))){
         $nro_noches += 1;
-        
     }
 
 
