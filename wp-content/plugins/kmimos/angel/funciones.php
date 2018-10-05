@@ -227,7 +227,7 @@
                                             </div>
 
                                             <div class="slide-expertice  text-center">
-                                                A '.floor($_cuidador->DISTANCIA).' km de distancia
+                                                a '.floor($_cuidador->DISTANCIA).' km de distancia
                                             </div>
 
                                             <div class="slide-ranking  text-center">
@@ -649,7 +649,7 @@
         $user_id = $current_user->ID;
 
         $distancia = '';
-        if( isset($cuidador->DISTANCIA) ){ $distancia   = 'A '.floor($cuidador->DISTANCIA).' km de distancia'; }
+        if( isset($cuidador->DISTANCIA) ){ $distancia   = 'a '.floor($cuidador->DISTANCIA).' km de distancia'; }
 
         $anios_exp = $cuidador->experiencia;
         if( $anios_exp > 1900 ){
