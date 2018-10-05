@@ -407,7 +407,7 @@ $HTML .='
 						</div>
 					</div>
 
-					<div id="comportamiento_gatos">
+					<div id="comportamiento_gatos" style="display: none;">
 						<span style="font-weight: 600; font-size: 15px; color: #777;">Comportamientos para Gatos</span>
 						<div>
 							'.$comportamientos_str.'
