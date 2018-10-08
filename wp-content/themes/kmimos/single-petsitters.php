@@ -8,7 +8,7 @@
 	$current_user = wp_get_current_user();
     $user_id = $current_user->ID;
 
-	if( $cuidador->activo == 0 && $user->roles[0] != "administrator" ){
+	if( $cuidador->activo == 0 && $current_user->roles[0] != "administrator" ){
 		header("location: ".get_home_url());
 	}
 

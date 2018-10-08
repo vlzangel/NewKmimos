@@ -912,8 +912,11 @@ jQuery(document).ready(function() {
 		e.preventDefault();
 
 		if( !jQuery(this).hasClass("km-option-3-lineas") ){
-				var el = jQuery(this);
+			var el = jQuery(this);
+			jQuery(".km-method-paid-option", el.parent()).removeClass("active");
 
+			el.addClass("active");
+			
 			if ( el.hasClass("km-option-deposit") ) {
 
 			/*	jQuery(".page-reservation .km-detail-paid-deposit").slideDown("fast");

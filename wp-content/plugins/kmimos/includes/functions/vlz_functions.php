@@ -1313,7 +1313,7 @@
                 "medianos" => "Media",
                 "grandes"   => "Grand", 
                 "gigantes"  => "Gigan",
-                "gatos"     => "Gatos"
+                "gatos"     => "Gato"
             );
 
             $txts = array(
@@ -1321,7 +1321,7 @@
                 "medianos"  => 'Mediana', 
                 "grandes"   => "Grande", 
                 "gigantes"  => "Gigante",
-                "gatos"     => "Gatos"
+                "gatos"     => "Gato"
             );
 
             $dias = ceil(((($xfin - $xini)/60)/60)/24);
@@ -1453,7 +1453,7 @@
                     "Mediano",
                     "Grande",
                     "Gigante",
-                    "Gatos"
+                    "Gato"
                 );
                 
                 $mascotas = array();
