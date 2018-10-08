@@ -1,4 +1,6 @@
 <?php
+
+	include __DIR__.'/NEW/funciones.php';
 	
 	/* Comentarios */
 
