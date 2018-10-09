@@ -10,6 +10,7 @@
     ">
 
         <table  style='
+            width: 100%;
             padding: 0px;
         '>
             <tr>
