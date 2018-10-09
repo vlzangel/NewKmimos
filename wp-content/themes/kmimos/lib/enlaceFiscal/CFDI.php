@@ -516,6 +516,8 @@ class CFDI {
 				'subtotal' => 0,
 				'impuesto' => 0,
 			];
+
+			$notas_creditos_list = []; 
 			foreach ($data['servicio']['desglose'] as $reserva => $desglose) {
 
 				$codigo_sat = $this->db->get_var("SELECT value FROM facturas_configuracion WHERE clave ='".$desglose['tipo']."'" );
@@ -534,6 +536,20 @@ class CFDI {
 					$montos_generales['impuesto'] += (float) number_format( $_impuesto, 2, '.', '');
 					$montos_generales['total'] += (float) number_format( $_total, 2, '.', '');
 
+				// Notas de Credito
+					$descuento_partida = 0; 
+					$descuento = 0; 
+					$notas_credito = $this->db->get_var( "SELECT id, factura, monto FROM notas_creditos WHERE reserva_id = {$reserva} and tipo = 'cuidador' and estatus = 'pendiente'" );
+					if( empty($notas_creditos->factura) && $notas_creditos->monto > 0 ){
+						$descuento += $notas_creditos->monto;
+						$descuento_partida = $notas_creditos->monto;						
+						$notas_creditos_list[] = $notas_credito->id;
+						$personalizados[] = [
+			                "nombreCampo" => "Nota de Credito No. ".$notas_creditos->id,
+			                "valor" => $notas_creditos->monto
+				        ];	
+					}
+
 				// Partida de Factura
 					$partidas[] = [
 					    "cantidad" => 1,
@@ -541,6 +557,7 @@ class CFDI {
 					    "claveProdServ" => $codigo_sat, /// Agregar datos a una tabla
 					    "descripcion" => "Cargo por concepto de gastos administrativos - Reserva No. {$reserva}",
 					    "valorUnitario" =>(float) number_format($_subtotal, 2, '.', ''),
+					    "descuento" => (float) number_format($descuento_partida, 2, '.', ''),
 					    "importe" => (float) number_format( $_subtotal, 2, '.', ''),
 					    "Impuestos" => [
 					    	0 => [
@@ -577,6 +594,7 @@ class CFDI {
 					"fechaEmision" => $data['fechaEmision'],
 					"subTotal" => (float) number_format( $montos_generales['subtotal'], 2, '.', ''), 
 					"total" => (float) number_format( $montos_generales['total'], 2, '.', ''),
+					"descuentos" => (float) number_format( $descuento, 2, '.', ''),
 					"rfc" => $data['rfc'],
 					"DatosDePago" => [
 						"metodoDePago" => "PUE",
@@ -608,6 +626,18 @@ class CFDI {
 
 	 	// return $CFDi;
 		$cfdi_respuesta = $this->request( $CFDi, 'generarCfdi' );
+
+		$id_notas_creditos = implode(",", $notas_creditos_list);  
+
+		// Actualizar Notas de Creditos
+		$ef = json_decode($cfdi_respuesta);
+		if( !empty($notas_creditos_list) ){
+			if( isset($ef->estatusDocumento) && $ef->estatusDocumento == 'aceptado' ){
+				$sql_nc = "UPDATE notas_creditos SET factura = '".$ef->folioInterno."' WHERE id IN ( {$id_notas_creditos} ) ";
+				$this->db->query( $sql_nc );
+			}
+		}
+
 		return [
 			'ack' => $cfdi_respuesta,
 			'data' => $CFDi
