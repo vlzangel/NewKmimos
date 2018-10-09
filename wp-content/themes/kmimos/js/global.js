@@ -4,10 +4,19 @@ jQuery( document ).ready(function() {
         return target.replace(new RegExp(search, 'g'), replacement);
     };
 
+    jQuery( "#popup-iniciar-sesion .popup-login-condiciones .terminos_container" ).scroll(function() {
+        if( jQuery( "#popup-iniciar-sesion .popup-login-condiciones .terminos_container" )[0].scrollHeight <= ( parseInt( jQuery( "#popup-iniciar-sesion .popup-login-condiciones .terminos_container" ).scrollTop() ) + 700  ) ){
+            jQuery( "#login_submit" ).removeClass("btn_disable");
+        }
+    });
+
+
     jQuery('#mostrar_terminos').on('click', function(e){
         e.preventDefault();
-        jQuery('.popup-iniciar-sesion-1').addClass('popuphide');
-        jQuery('.popup-login-condiciones').removeClass('popuphide');
+        if( validar_login() ){
+            jQuery('.popup-iniciar-sesion-1').addClass('popuphide');
+            jQuery('.popup-login-condiciones').removeClass('popuphide');
+        }
     });
 
 
@@ -36,14 +45,16 @@ jQuery( document ).ready(function() {
     });
 
 	jQuery("#login_submit").on("click", function(e){
-        /*if( validar_login() ){*/
+        if( !jQuery( "#login_submit" ).has('btn_disable') ){
             logear();
-        /*}*/
+        }
 		e.preventDefault();
     });
 
     jQuery("#form_login").submit(function(e){ 
-    	logear(); 
+        if( validar_login() ){
+            jQuery('#mostrar_terminos').click();
+        }
         e.preventDefault();
    	});
 
