@@ -1,6 +1,6 @@
 var table = ""; var CTX = "";
 var fechas = '';
-
+var tipo_servicio = '';
 // Variables por defecto de busqueda
 var _hiddenDefault = {};
 var _tipo = 'cuidador';
@@ -13,6 +13,10 @@ jQuery(document).ready(function() {
     jQuery("#close_modal").on("click", function(e){
         cerrar(e);
     });
+
+	jQuery("[data-modal='reserva']").on('click', function(e){
+		abrir_link( jQuery(this) );
+	});
  
     jQuery("#form-search").on("submit", function(e){
 		e.preventDefault();
@@ -53,10 +57,6 @@ jQuery(document).ready(function() {
 	  	loadTabla( _tipo, _hiddenColumns );
 	});
 
-	jQuery("[data-modal='reserva']").on('click', function(e){
-		abrir_link( jQuery(this) );
-	});
-
 	jQuery('[name="ini"]').on('change', function(){
 		var d = new Date( jQuery(this).val() );
 		var limitDate = sumarDias(d, 30);
@@ -66,7 +66,93 @@ jQuery(document).ready(function() {
 		jQuery('[name="fin"]').attr('max', limitDate );
 	});
 
+	jQuery(document).on('click', '.mas_info', function(){
+		jQuery("#mas_info").toggle();
+	});
+
+	jQuery(document).on('change', 'input[name="s_principal[]"]', function(e){
+		var id = jQuery(this).attr('data-group');
+		jQuery('[data-target="'+id+'"]').css('display', 'none');
+		if( jQuery(this).is(":checked") ){
+			jQuery('[data-target="'+id+'"]').css('display', 'block');
+		}
+	});
+
+	jQuery(document).on('change', '[name="servicios[]"]', function(e){
+		calcular_total();
+	});
+
+	jQuery(document).on('change', '[data-name="hasta"]', function(e){
+		var code = jQuery(this).attr('data-code');
+		// monto por noche
+		var monto= jQuery(this).attr('data-monto');		
+		// Fecha final de reserva
+		var max = jQuery(this).attr('max');
+		// Nueva fecha hasta reserva
+		var hasta = jQuery(this).val();
+		// diferencia de noches/dias restantes
+		var noches = num_noches( hasta, max );			
+
+		console.log(tipo_servicio);		
+		if( tipo_servicio.trim() != 'hospedaje' ){
+			noches += 1;
+		}
+
+		var total = (monto) * (noches);
+		// diferencia en monto 
+		jQuery('[name="noches_'+code+'"]').val( noches );
+		jQuery('[name="prorrateo_'+code+'"]').val( total );
+
+		calcular_total();
+
+	});
+
+	jQuery(document).on('change', '[name="reserva"]', function(e){
+		jQuery('#show_notas_creditos').attr('data-id', jQuery(this).val());
+	});
+
+	jQuery(document).on('click', "#nc_save", function(e){
+		jQuery.post(
+			TEMA+'/admin/backend/notas_creditos/ajax/generar.php',
+			jQuery('[name="form-nc"]').serialize(),
+			function(data){
+				loadTabla( _tipo, _hiddenColumns );	
+				cerrar();
+			}
+		);
+	});
+
 });
+
+function num_noches( ini, fin ){
+
+	console.log( 'ini: '+ini+' - fin: '+fin );
+
+	var date_1 = new Date(ini);
+	var date_2 = new Date(fin);
+
+	var day_as_milliseconds = 86400000;
+	var diff_in_millisenconds = date_2 - date_1;
+	var diff_in_days = diff_in_millisenconds / day_as_milliseconds;
+
+	return diff_in_days;
+}
+
+function calcular_total(){	
+		var total = 0;
+
+		// servicio principal
+		jQuery.each( jQuery('[name="s_principal[]"]:checked'), function(i){
+			total += parseFloat( jQuery('[name="'+jQuery(this).attr('data-group')+'"]').val() );
+		});
+
+		// servicios adicionales
+		jQuery.each( jQuery('[name="servicios[]"]:checked'), function(i){
+			total += parseFloat( jQuery(this).attr('data-monto') );
+		});
+
+		jQuery('[data-target="total"]').html('$ '+total);
+}
 
 function sumarDias(fecha, dias){
 	fecha.setDate(fecha.getDate() + dias);
@@ -79,22 +165,6 @@ function sumarDias(fecha, dias){
 	var y = fecha.getFullYear();
  
 	return y+'-'+m+'-'+d;
-}
-
-function generar_solicitud( users, accion ){
-	jQuery.post(
-		TEMA+'/admin/backend/pagos/ajax/generar_solicitud.php',
-		{
-			'ID':ID, 
-			'users':users,
-			'accion':accion, 
-			'comentario': jQuery('[name="observaciones"]').val()
-		},
-		function(data){
-			loadTabla( _tipo, _hiddenColumns );	
-			cerrar();
-		}
-	);
 }
 
 function loadTabla( tipo, hiddenColumns ){
@@ -137,15 +207,9 @@ function loadTabla( tipo, hiddenColumns ){
 			  className: "btn-sm"
 			},
         ],
-		columnDefs: [
-            {
-            	"targets": hiddenColumns,
-                "visible": false
-            }
-        ],
         "scrollX": true,
         "ajax": {
-            "url": TEMA+'/admin/backend/pagos/ajax/pagos.php',
+            "url": TEMA+'/admin/backend/notas_creditos/ajax/notas_creditos.php',
             "data": { "tipo": _tipo, 'desde': jQuery('[name="ini"]').val(), "hasta":jQuery('[name="fin"]').val() },
             "type": "POST"
         }

@@ -27,9 +27,9 @@
             <div class="col-sm-12 col-md-5">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"># Reserva: </span>
-                    <input type="text" class="form-control" placeholder="000000" aria-describedby="basic-addon1">
+                    <input name="reserva" type="text" class="form-control" placeholder="000000" aria-describedby="basic-addon1">
                     <span class="input-group-btn">
-                        <button class="btn btn-success" data-titulo='Datos de la Reserva' data-modal='reserva' data-id="0" > Crear Nota de Cr&eacute;dito</button>
+                        <button id="show_notas_creditos" class="btn btn-success" data-titulo='Datos de la Reserva' data-modal='reserva' data-id="0" > Crear Nota de Cr&eacute;dito</button>
                     </span>
                 </div>
             </div>
@@ -54,7 +54,12 @@
             <div class="col-md-12">
                 <ul data-action="popover" class="list-inline">
                     <li><strong>LEYENDA DE ESTATUS: </strong></li>
-                    <li data-content="<strong>Por autorizar: </strong> El supervisor debe autorizar la solicitud">
+                    <li data-content="<strong>Pendiente: </strong> La nota de credito no posee factura asociada">
+                        <a href="javascript:;">
+                            <div></div> Pendiente
+                        </a>
+                    </li>
+                    <li data-content="<strong>Procesada: </strong> La nota de credito posee una factura asociada">
                         <a href="javascript:;">
                             <div></div> Procesada
                         </a>
@@ -85,16 +90,16 @@
             <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>#</th>
                         <th>Fecha</th>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
+                        <th># Reserva</th>
                         <th>Total</th>
-                        <th>Reservas</th>
                         <th>Factura</th>
+                        <th>Detalle</th>
                         <th>Estatus</th>
-                        <th>Opciones</th>
                         <th>Observaciones</th>
                     </tr>
                 </thead>

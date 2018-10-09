@@ -1,3 +1,93 @@
+.contenedor{
+	width: 49%!important;
+	padding: 5px;
+	display: inline-block;
+}
+#mas_info{
+	-webkit-transition: all 2s; /* Safari */
+    transition: all 2s;
+}
+.mas_info{
+	cursor: pointer;
+	border-top: 1px solid #ccc;
+	text-align: right;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 2px; 
+}
+.mas_info span{
+	border-radius: 0px 0px 5px 5px;
+	background: #ccc;
+	text-align: right;
+	padding: 5px 10px;
+	color: #fff;
+}
+.reserva_total{
+	font-weight: normal;
+	padding: 15px;
+	background: #ececec;
+}
+
+
+.popup-titulo {	
+	font-weight: bold;
+	padding: 15px;
+	background: #ececec;
+	margin-top: 10px;
+}
+.popup-titulo span
+{
+	font-size: 18px!important;
+	font-weight: bold;
+}
+
+
+.servicios article{
+	padding: 5px 0px!important;
+}
+.servicios article:hover{
+	background: #f9f9f9;
+}
+.servicios article input[type="date"],
+.servicios article input[type="text"]
+{
+	margin: 0px!important;
+	width: 100%!important; 
+}
+.servicios article label{
+	margin-bottom: 0px;
+	margin: 0px;
+}
+.servicios .monto{
+	text-align: right!important;
+}
+[data-target^="prorrateo_"]{
+	display: none;
+}
+
+.total-top div:nth-child(2){
+	text-align: right; 
+}
+.total-top div div{
+	font-weight: bold!important;
+	font-size: 18px!important;
+}
+
+
+.totales div{
+	font-size: 22px!important;
+	display: inline-block;
+	width: 49%!important; 
+	text-align: left!important;
+}
+.totales div:nth-child(2){
+	font-weight: bold;
+	text-align: right!important;
+}
+
+
+
+
 #popover-content{
 	padding-bottom: 5px;
 	padding-top: 5px;
