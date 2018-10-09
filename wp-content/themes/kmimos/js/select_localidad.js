@@ -27,10 +27,6 @@ jQuery(document).ready(function(){
         }
     );
 
-    jQuery(".icon_left").click(function(e){
-        jQuery("#ubicacion_txt").focus();
-    });
-
     jQuery("#ubicacion_txt").on("keyup", function ( e ) {
         buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
     });
@@ -49,6 +45,8 @@ jQuery(document).ready(function(){
         if( txt == "" ){
             jQuery("#ubicacion").val( "" );
             jQuery("#ubicacion").attr( "data-value", "" );
+            jQuery("#latitud").val( "" );
+            jQuery("#longitud").val( "" );
         }else{
             if( jQuery("#ubicacion").val() != "" ){
                 if( jQuery("#ubicacion_txt").val() != jQuery("#ubicacion").val() ){

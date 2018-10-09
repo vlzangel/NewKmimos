@@ -273,11 +273,11 @@
 
 	$km5 = '';
 	if( $_SESSION['km5'] == 'Yes' ){
-		$km5 = '
+		/*$km5 = '
 			<div class="msg_km5">
 				Mostrando cuidadores a menos de 5 km de su ubicación actual, si desea ver todos los resultados puede hacer click <a href="#" onclick="km5(\'No\');">aquí</a>
 			</div>
-		';
+		';*/
 	}
 
     $HTML .= '
@@ -300,7 +300,7 @@
 						<div class="km-div-ubicacion">
 						
 							<div class="km-select-custom km-select-ubicacion btn-group" style="width:100%;border-right: 0px; height: 45px;border-top: 0px;">
-								<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
+								<i id="mi_ubicacion" class="fa fa-crosshairs icon_left"></i>
 							    <input type="text" 
 									id="ubicacion_txt" 
 									class="km-fechas" 
@@ -319,6 +319,7 @@
 							    	<ul id="ubicacion_list" class=""></ul>
 							    </div>
 							</div>
+							<small class="hidden error_ubicacion" data-error="ubicacion">Función disponible solo en México</small>
 						</div>
 						<div class="km-div-fechas">
 							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
@@ -478,7 +479,7 @@
 		unset($_SESSION[ $key ]);
 	}*/
 
-	// echo "<pre>";
-	// 	print_r($_SESSION["sql"]);
-	// echo "</pre>";
+/*	echo "<pre>";
+		print_r($_SESSION["sql"]);
+	echo "</pre>";*/
 ?>

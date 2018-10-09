@@ -1,5 +1,5 @@
 <?php
-
+	
 	function get_menu(){
 		$defaults = array(
 		    'theme_location'  => 'pointfinder-main-menu',
@@ -121,24 +121,29 @@
 
 		$class = "";
 		$tamano = "";
-		preg_match_all("#Peque#", $slug, $matches);
+		preg_match_all("#peque#", $slug, $matches);
 		if( count( $matches[0] ) == 1 ){
 			$tamano = "pequenos";
 		}
 		
-		preg_match_all("#Medi#", $slug, $matches);
+		preg_match_all("#medi#", $slug, $matches);
 		if( count( $matches[0] ) == 1 ){
 			$tamano = "medianos";
 		}
 		
-		preg_match_all("#Grand#", $slug, $matches);
+		preg_match_all("#grand#", $slug, $matches);
 		if( count( $matches[0] ) == 1 ){
 			$tamano = "grandes";
 		}
 
-		preg_match_all("#Gigan#", $slug, $matches);
+		preg_match_all("#gigan#", $slug, $matches);
 		if( count( $matches[0] ) == 1 ){
 			$tamano = "gigantes";
+		}
+
+		preg_match_all("#gato#", $slug, $matches);
+		if( count( $matches[0] ) == 1 ){
+			$tamano = "gatos";
 		}
 
 		if( is_array($tamanos) ){
@@ -266,6 +271,32 @@
 						<div class="km-servicio-costo"><b></b></div>
 					</div>';
 				}
+			case 'gatos':
+
+				$ARRAY = array(
+					"tamano" => 'gatos',
+					"precio" => $precio
+				);
+
+				if( $precios["gatos"] > 0 ){
+					$HTML = '
+					<div class="km-servicio-opcion km-servicio-opcionactivo">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/gatos/cat_blue.svg" style="width: 20px;">
+							<div class="km-opcion-text"><b>GATOS</b><br>Indistinto</div>
+						</div>
+						<div class="km-servicio-costo"><b>$'.($precios["gatos"]*getComision() ).'</b></div>
+					</div>';
+				}else{
+					$HTML = '
+					<div class="km-servicio-opcion">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/gatos/cat_blue.svg" style="width: 20px;">
+							<div class="km-opcion-text"><b>GATOS</b><br>Indistinto</div>
+						</div>
+						<div class="km-servicio-costo"><b></b></div>
+					</div>';
+				}
 			break;
 		}
 
@@ -288,51 +319,124 @@
 			"gatos"    => "GATOS",
 		);
 
-		/*global $cuidador;
+		return $tamanios;
+	}
 
-		$atributos = unserialize($cuidador->atributos);
-
-	    if( $atributos["gatos"] == "Si" ){
-	        $tamanios["gatos"] = "GATOS";
-	    }*/
+	function getTamanosData(){
+		$tamanios = array(
+			"pequenos" => [
+				"PEQUEÑO",
+				"0 a 25cm",
+				"icon-pequenio.svg"
+			],
+			"medianos" => [
+				"MEDIANO",
+				"25 a 58cm",
+				"icon-mediano.svg"
+			],
+			"grandes"  => [
+				"GRANDE",
+				"58cm a 73cm",
+				"icon-grande.svg"
+			],
+			"gigantes" => [
+				"GIGANTE",
+				"73cm a 200cm",
+				"icon-gigante.svg"
+			],
+			"gatos"    => [
+				"GATOS",
+				"Sociables",
+				"cat_blue.svg"
+			],
+		);
 
 		return $tamanios;
+	}
+
+	function tieneGatos(){
+		global $wpdb;
+		global $USER_ID;
+
+		$_mascotas = $wpdb->get_var("
+			SELECT 
+				count(*) 
+			FROM 
+				wp_posts AS mascota
+			INNER JOIN wp_postmeta AS tipo ON ( tipo.post_id = mascota.ID AND tipo.meta_key = 'pet_type' AND tipo.meta_value = '2608' ) 
+			WHERE 
+				post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' 
+		");
+
+		return ($_mascotas != 0);
+	}
+
+	function tienePerros(){
+		global $wpdb;
+		global $USER_ID;
+
+		$_mascotas = $wpdb->get_var("
+			SELECT 
+				count(*) 
+			FROM 
+				wp_posts AS mascota
+			INNER JOIN wp_postmeta AS tipo ON ( tipo.post_id = mascota.ID AND tipo.meta_key = 'pet_type' AND tipo.meta_value = '2605' ) 
+			WHERE 
+				post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' 
+		");
+
+		return ($_mascotas != 0);
 	}
 
 	function getPrecios($data, $precarga = array(), $aceptados = array() ){
 		$resultado = "";
 		$tamanos = getTamanos();
-		/*$busqueda = getBusqueda();
-		if( is_array($busqueda["mascotas"]) && count($busqueda["mascotas"]) == 1 AND in_array("gatos", $busqueda["mascotas"]) ) {
-			foreach ($tamanos as $key => $value) {
-				if( $key != "gatos"){
-					unset($tamanos[$key]);
-				}
-			}
-		}
-*/
-		/*echo "<pre>";
-			print_r($tamanos);
-		echo "</pre>";*/
 
+		global $USER_ID;
 		global $cuidador;
+		global $wpdb;
 
+		global $tieneGatos;
+		global $tienePerros;
+		
 		$tamanos_aceptados = unserialize($cuidador->tamanos_aceptados);
 
 		foreach ($tamanos as $key => $value) {
+			$mostrar = false;
 
-			if( isset($data[$key]) && $data[$key] > 0 && ( $tamanos_aceptados[$key] == 1 || $key == 'gatos' ) ){
+			if( isset($data[$key]) && $data[$key] > 0 && ( $tamanos_aceptados[$key] == 1 || $key == 'gatos' ) ){ $mostrar = true; }
+			
+			$bloquear_gatos = '';
+			if( $key == 'gatos' ){ 
+				if( !$tieneGatos ) { 
+					$bloquear_gatos = ' bloquear_gatos';
+					$bloquear_gatos_control = ' disabled';
+				}else{
+					$bloquear_gatos = ' ';
+					$bloquear_gatos_control = ' ';
+				}
+			}else{
+				if( !$tienePerros ) { 
+					$bloquear_gatos = ' bloquear_gatos';
+					$bloquear_gatos_control = ' disabled';
+				}else{
+					$bloquear_gatos = ' ';
+					$bloquear_gatos_control = ' ';
+				}
+			}
+
+			if( $mostrar ){
 				$catidad = 0;
 				if( isset($precarga[$key]) ){
 					$catidad = $precarga[$key];
 				}
 				$resultado .= '
-					<div class="km-quantity-height">
+					<div class="km-quantity-height '.$bloquear_gatos.'">
 						<div class="km-quantity">
 							<a href="#" class="km-minus disabled">-</a>
 								<span class="km-number">'.$catidad.'</span>
 								<input type="hidden" value="'.$catidad.'" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*getComision() ).'" />
-							<a href="#" class="km-plus">+</a>
+							<a href="#" class="km-plus '.$bloquear_gatos_control.'">+</a>
 						</div>
 						<div class="km-height">
 							'.$tamanos[$key].'

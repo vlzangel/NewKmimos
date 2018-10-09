@@ -9,6 +9,7 @@
 	$date = getdate(); 
 
 	$mes_actual = date("Y-m");
+	$mes_anterior = date("Y-m", strtotime("-1 month", time() ) );
 
 	$desde  = ""; $hasta  = "";
 	$_desde = ""; $_hasta = "";
@@ -34,7 +35,7 @@
 	$registros = $wpdb->get_row("SELECT * FROM migracion_reporte_reservas WHERE mes = '{$desde}' ");
 	$actualizar = false;
 	if( $registros != null && $registros != false ){
-		if( $mes_actual == $registros->mes ){
+		if( ($mes_actual == $registros->mes) || ($mes_anterior == $registros->mes) ){
 			$actualizar = true;
 		}
 	}else{

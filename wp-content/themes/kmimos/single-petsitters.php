@@ -8,7 +8,7 @@
 	$current_user = wp_get_current_user();
     $user_id = $current_user->ID;
 
-	if( $cuidador->activo == 0 && $user->roles[0] != "administrator" ){
+	if( $cuidador->activo == 0 && $current_user->roles[0] != "administrator" ){
 		header("location: ".get_home_url());
 	}
 
@@ -85,12 +85,7 @@
 	$foto = kmimos_get_foto($cuidador->user_id);
 
 	$tama_aceptados = unserialize( $cuidador->tamanos_aceptados );
-	$tamanos = array(
-		'pequenos' => 'Pequeños',
-		'medianos' => 'Medianos',
-		'grandes'  => 'Grandes',
-		'gigantes' => 'Gigantes'
-	);
+	$tamanos = getTamanos();
 
 	$aceptados = array();
 	foreach ($tama_aceptados as $key => $value) {
@@ -230,6 +225,7 @@
 	$precios_hospedaje = unserialize($cuidador->hospedaje);
 	$precios_adicionales = unserialize($cuidador->adicionales);
 
+	$tamanosData = getTamanosData();
 
 	$id_hospedaje = 0;
 	$servicios = $wpdb->get_results("
@@ -259,25 +255,38 @@
 		    	$id_hospedaje = $servicio->ID;
 		    }
 		    if( !empty($precios) ){
-		        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' ");// AND post_status = 'publish'
-		        foreach ($tamanos_servicio as $tamano ) {
-		        	$activo = false;
-		        	if( isset($busqueda["servicios"]) ){
+		    	
+	        	$tamanos_txt = '';
+		    	foreach ($tamanosData as $key => $tamano) {
+		    		
+
+		    		/*if( isset($busqueda["servicios"]) ){
 			        	if( in_array($tipo, $busqueda["servicios"]) ){
-			        		$activo = true;
+			        		$activo = 'km-servicio-opcionactivo';
 			        	}
 			        	preg_match_all("#adiestramiento#", $tipo, $matches);
 			        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){
-			        		$activo = true;
+			        		$activo = 'km-servicio-opcionactivo';
 			        	}
+		        	}*/
+
+		        	$activo = 'km-servicio-opcionactivo';
+		        	$precio_txt = '<div class="km-servicio-costo"><b>$'.($precios[ $key ]*getComision() ).'</b></div>';
+		        	if( $precios[ $key ] == 0 ){
+		        		$precio_txt = '<div class="km-servicio-costo"><b>&nbsp;</b></div>';
+		        		$activo = '';
 		        	}
-		        	$temp_tamanos = get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"],$tamano->post_status);
-		        	$tamanos_precios[ $temp_tamanos[0] ] = $temp_tamanos[1];
-		        }
-		        $tamanos_txt = "";
-		        foreach ($tamanos as $key => $value) {
-		        	$tamanos_txt .= $tamanos_precios[$key];
-		        }
+
+		    		$tamanos_txt .= '
+					<div class="km-servicio-opcion '.$activo.'">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/new/icon/'.$tamano[ 2 ].'" style="width: 20px;">
+							<div class="km-opcion-text"><b>'.$tamano[ 0 ].'</b><br>'.$tamano[ 1 ].'</div>
+						</div>
+						'.$precio_txt.'
+					</div>';
+		    	}
+
 				$productos .= '
 				<div class="col-xs-12 col-md-6">
 					<div class="km-ficha-servicio">
@@ -310,7 +319,6 @@
 
 	}else{
 		$BOTON_RESERVAR .= '
-
 			<a href="javascript:;"
 				id="btn_conocer"
 				data-target="#popup-iniciar-sesion"

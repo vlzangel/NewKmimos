@@ -75,6 +75,9 @@ function validar(status, txt){
 	}
 }
 
+
+var PERROS = 0;
+var GATOS = 0;
 function calcular(){
 	
 	if( FLASH == "NO" ){
@@ -132,14 +135,32 @@ function calcular(){
 		CARRITO["pagar"]["reconstruir"] = true;
 	}
 
+	PERROS = 0;
+	GATOS = 0;
+
 	CARRITO["cantidades"]["cantidad"] = 0;
 	jQuery("#reservar .tamano").each(function( index ) {
-		CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
+		
+		if( parseFloat( jQuery( this ).val() ) > 0 ){
+			if( jQuery( this ).attr("name") == "gatos" ){
+				GATOS++;
+			}else{
+				PERROS++;
+				CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
+			}
+		}
+
 		CARRITO[ "cantidades" ][ jQuery( this ).attr("name") ] = [
 			parseFloat( jQuery( this ).val() ),
 			parseFloat( jQuery( this ).attr("data-valor") )
 		];
 	});
+
+	if( PERROS == 0 && GATOS > 0 ){
+		jQuery("#contenedor-adicionales").css("display", "none");
+	}else{
+		jQuery("#contenedor-adicionales").css("display", "block");
+	}
 
 	var tranporte = jQuery('#transporte option:selected').val();
 	if( tranporte != undefined && tranporte != "" ){
@@ -253,7 +274,7 @@ function calcular(){
 			jQuery(".km-price-total").html("$"+numberFormat(cant));
 		}
 	}
-	
+
 	jQuery.each( CARRITO[ "adicionales" ], function( key, valor ) {
 		if( valor > 0 ){
 			cant += (valor*CARRITO["cantidades"]["cantidad"]);
@@ -382,7 +403,7 @@ function initFactura(){
 		"medianos" : "Mediana",
 		"grandes" :  "Grande",
 		"gigantes" : "Gigante",
-		"gatos" : "Gatos"
+		"gatos" : "Gato"
 	};
 
 	var items = "";
@@ -601,11 +622,7 @@ function calcularDescuento(){
 	CARRITO["pagar"]["descuento_total"] = descuentos;
 
 	if( jQuery(".km-option-deposit").hasClass("active") ){
-		/*if( pre17 == 0 ){
-			jQuery("#metodos_pagos").css("display", "none");
-		}else{
-			jQuery("#metodos_pagos").css("display", "block");
-		}*/
+
 	}else{
 		if( pagoCuidador == 0 ){
 			jQuery("#metodos_pagos").css("display", "none");
@@ -718,36 +735,6 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
-
-	/*jQuery("#hora_checkin").on("change", function(){
-		CARRITO["fechas"]["checkin"] = jQuery("#hora_checkin").val();
-		calcular();
-	});
-
-	jQuery("#hora_checkout").on("change", function(){
-		CARRITO["fechas"]["checkout"] = jQuery("#hora_checkout").val();
-		calcular();
-	});*/
-
-	jQuery("#prueba").on("click", function(e){
-		/*ga('send', 'event', 'reservar', 'tipo_pago', 'parcial', {
-			hitCallback: function() {
-				console.log("Evento Enviado!");
-			}
-		});*/
-
-		gtag('event', 'Prueba', { 
-			'event_category': 'Prueba', 
-			'event_action': 'Click'
-		});
-
-		/*
-		, 
-			'event_label': 'etiqueta', 
-			'value': 'valor'
-		*/
-
-	});
 
 	jQuery(".km-option-total").click();
 
@@ -870,24 +857,27 @@ jQuery(document).ready(function() {
 
 	jQuery(document).on("click", '.page-reservation .km-quantity .km-plus', function ( e ) {
 		e.preventDefault();
-		var el = jQuery(this);
-		var div = el.parent();
-		var span = jQuery(".km-number", div);
-		var minus = jQuery(".km-minus", div);
-		var input = jQuery("input", div);
-		
-		var valor = parseInt(span.html()) + 1;
 
-		var cantidad = parseInt(getCantidad())+1;
-		if(cantidad <= acepta){
-			span.html( valor );
-			input.val( valor );
+		if( !jQuery(this).hasClass("disabled") ){
+			var el = jQuery(this);
+			var div = el.parent();
+			var span = jQuery(".km-number", div);
+			var minus = jQuery(".km-minus", div);
+			var input = jQuery("input", div);
+			
+			var valor = parseInt(span.html()) + 1;
 
-			if ( span.html() > 0 ) {
-				minus.removeClass("disabled");
+			var cantidad = parseInt(getCantidad())+1;
+			if(cantidad <= acepta){
+				span.html( valor );
+				input.val( valor );
+
+				if ( span.html() > 0 ) {
+					minus.removeClass("disabled");
+				}
+
+				calcular();
 			}
-
-			calcular();
 		}
 	});
 
@@ -922,8 +912,11 @@ jQuery(document).ready(function() {
 		e.preventDefault();
 
 		if( !jQuery(this).hasClass("km-option-3-lineas") ){
-				var el = jQuery(this);
+			var el = jQuery(this);
+			jQuery(".km-method-paid-option", el.parent()).removeClass("active");
 
+			el.addClass("active");
+			
 			if ( el.hasClass("km-option-deposit") ) {
 
 			/*	jQuery(".page-reservation .km-detail-paid-deposit").slideDown("fast");
@@ -979,6 +972,19 @@ jQuery(document).ready(function() {
 				reaplicarCupones();
 			}
 			jQuery('.km-option-total').click();
+
+			if( CARRITO["cantidades"]["cantidad"] == 0 ){
+				CARRITO["adicionales"] = {
+					"bano" : 0,
+					"corte" : 0,
+					"acupuntura" : 0,
+					"limpieza_dental" : 0,
+					"visita_al_veterinario" : 0
+				}
+
+				initFactura();
+			}
+
 		}
 		e.preventDefault();
 	});

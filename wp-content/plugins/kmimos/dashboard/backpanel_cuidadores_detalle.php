@@ -90,6 +90,9 @@ $users = getUsers($param, $desde, $hasta);
 				  <th>Entrenamiento Avanzado</th>
 				  <th>Servicios Adicionales</th>
 
+				  <th>Transporte Sencillo</th>
+				  <th>Transporte Redondo</th>
+
 			      <th>Estatus</th>
 			    </tr>
 			  </thead>
@@ -241,6 +244,34 @@ $users = getUsers($param, $desde, $hasta);
 									$separador = ", ";
 								}
 							}
+							?>
+						</th>
+
+						<th>
+							<?php
+								$separador = '';
+								if( isset($servicios['transporte'][ 'transportacion_sencilla' ]) ){
+									foreach( $servicios['transporte'][ 'transportacion_sencilla' ] as $key_2 => $val_2 ){
+										if( $val_2['costo'] > 0 ){
+											echo $separador.$val_2['descripcion'].': <span style="font-size:14px!important">$ '.$val_2['costo'].'</span>';	
+											$separador = ", ";
+										}
+									}
+								}
+							?>
+						</th>
+
+						<th>
+							<?php
+								$separador = '';
+								if( isset($servicios['transporte'][ 'transportacion_redonda' ]) ){
+									foreach( $servicios['transporte'][ 'transportacion_redonda' ] as $key_2 => $val_2 ){
+										if( $val_2['costo'] > 0 ){
+											echo $separador.$val_2['descripcion'].': <span style="font-size:14px!important">$ '.$val_2['costo'].'</span>';	
+											$separador = ", ";
+										}
+									}
+								}
 							?>
 						</th>
 

@@ -101,7 +101,7 @@
 					<img src='[URL_IMGS]/icosNews/Icon-whatsapp_2.png' style='height: 50px; width: 50px;' >
 				</td>
 				<td style="padding: 10px 0px; vertical-align: middle; text-align: justify;">
-					Además nos puedes contactar al Staff Kmimos a los teléfonos (01) 55 3137 4829 y WhatsApp +52 (33) 1261 4186
+					Además nos puedes contactar al Staff Kmimos a los teléfonos 01 (55) 8526 1162 y WhatsApp +52 (33) 1261 4186
 				</td>
 			</tr>
 		</table>

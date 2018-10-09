@@ -58,7 +58,7 @@
 	    }
 
 		$resultado[] = array(
-			"cliente"	=> ($comentario->cliente),
+			"cliente"	=> parseNameClient($user_id),
 			"img"	=> $img,
 			"contenido" => ($comentario->contenido),
 			"fecha" => ($fecha),

@@ -1,13 +1,7 @@
 <?php
-	
 	session_start();
 
-	$busqueda = $_SESSION['busqueda'];
+	$pines = unserialize( $_SESSION['pines_array'] );
 
-//	$clave = md5( $_SESSION['busqueda'] );
-//	$pines = unserialize($_SESSION[ $clave ]['pines_array']);
-
-	$pines = unserialize($_SESSION['pines_array']);
-
-	echo json_encode($pines);
+	echo json_encode( $pines, JSON_UNESCAPED_UNICODE );
 ?>

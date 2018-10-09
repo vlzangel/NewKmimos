@@ -72,6 +72,10 @@
 
 		$USER_ID = $id_user;
 
+		$tieneGatos = tieneGatos();
+		$tienePerros = tienePerros();
+
+
 		if( $USER_ID != "" ){
 
 			$filtros_txt = array(
@@ -235,39 +239,68 @@
 		$saldoTXT = "";
 		$saldoTXT = $saldo["cupon"];
 
+		$atributos = unserialize($cuidador->atributos);
+
 		$error = "";
 		if( $id_user  == ""){
 			$error = "
 				<h1 align='justify'>Debes iniciar sesión para poder realizar reservas.</h1>
 				<h2 align='justify'>Pícale <span id='cerrarModal' onclick=\"document.getElementById('login').click(); jQuery('.vlz_modal').css('display', 'none')\" style='color: #00b69d; font-weight: 600; cursor: pointer;'>Aquí</span> para acceder a kmimos.<h2>";
-		}else{
+		}
+
+		if( $error  == ""){
 			$propietario = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".get_the_ID() );
 			if( $propietario == $id_user ){
 				$error = "
 					<h1 align='justify'>No puedes realizarte reservas a tí mismo.</h1>
 					<h2 align='justify'>Pícale <a href='".get_home_url()."/busqueda/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para buscar entre cientos de cuidadores certificados kmimos.<h2>
 				";
-			}else{
-				$meta = get_user_meta($id_user);
-				if( $meta['first_name'][0] == '' ||  $meta['last_name'][0] == '' || ( $meta['user_mobile'][0] == '' ) && ( $meta['user_phone'][0] == '' )){
+			}
+		}
+
+		if( $error  == ""){
+			$meta = get_user_meta($id_user);
+			if( $meta['first_name'][0] == '' ||  $meta['last_name'][0] == '' || ( $meta['user_mobile'][0] == '' ) && ( $meta['user_phone'][0] == '' )){
+				$error = "
+					<h1 align='justify'>Kmiusuario, para continuar con tu reserva debes ir a tu perfil para completar algunos datos de contacto.</h1>
+					<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/?ua=profile' target='_blank' style='color: #00b69d; font-weight: 600;'>Aquí</a> para cargar tu información.<h2>
+				";
+			}
+		}
+
+		if( $error  == ""){
+			$mascotas = $wpdb->get_var("SELECT count(*) FROM wp_posts WHERE post_type = 'pets' AND post_author = ".$id_user );
+			if( $mascotas == 0 ){
+				$error = "
+					<h1 align='justify'>Debes cargar por lo menos una mascota para poder realizar una reserva.</h1>
+					<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlas.<h2>
+				";
+			}
+		}
+
+		if( $error  == ""){
+			$mascotas__ = $busqueda["mascotas"];
+			if( is_array($mascotas__) && in_array("gatos", $mascotas__) ) {
+				if( $atributos["gatos"] == "Si" && !$tieneGatos ){
 					$error = "
-						<h1 align='justify'>Kmiusuario, para continuar con tu reserva debes ir a tu perfil para completar algunos datos de contacto.</h1>
-						<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/?ua=profile' target='_blank' style='color: #00b69d; font-weight: 600;'>Aquí</a> para cargar tu información.<h2>
+						<h1 align='justify'>Debes cargar por lo menos un <strong>Gato</strong> para poder realizar esta reserva.</h1>
+						<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/nueva/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlo.<h2>
 					";
-				}else{
-					$mascotas = $wpdb->get_var("SELECT count(*) FROM wp_posts WHERE post_type = 'pets' AND post_author = ".$id_user );
-					if( $mascotas == 0 ){
-						$error = "
-							<h1 align='justify'>Debes cargar por lo menos una mascota para poder realizar una reserva.</h1>
-							<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlas.<h2>
-						";
-					}
 				}
 			}
 		}
-		//$error = "";
 
-		$atributos = unserialize($cuidador->atributos);
+		if( $error  == ""){
+			if( $atributos["gatos"] != "Si" && !$tienePerros ){
+				$error = "
+					<h1 align='justify'>Debes cargar por lo menos un <strong>Perro</strong> para poder realizar esta reserva.</h1>
+					<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/nueva/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlo.<h2>
+				";
+			}
+		}
+
+
+		//$error = "";
 
 		$hoy = date("d/m/Y");
 		$manana = date("d/m/Y", strtotime("+1 day") );
@@ -275,6 +308,29 @@
 		if( $busqueda["checkin"] == "" ){
 			$busqueda["checkin"] = $hoy;
 			$busqueda["checkout"] = $manana;
+		}
+
+		$bloquear_adicionales = false;
+		$infoGatos = '';
+		if( $atributos["gatos"] == "Si" && !$tieneGatos ){
+			$infoGatos = '
+				<div class="infoGatos">
+					Estimado cliente, este cuidador también acepta <strong>Gatos</strong> en su servicio de <strong>'.$servicio_name_corto.'</strong>, sin embargo en este momento dicha opción
+					se encuentra <strong>no disponible</strong>, debido a que usted no ha registrado al menos un <strong>Gato</strong> entre sus mascotas.<br><br>
+					Puede picarle <a href="'.get_home_url().'/perfil-usuario/mascotas/nueva/" style="color: #20a2ef; font-weight: 600;">Aquí</a> si desea agregarlos.
+				</div>
+			';
+		}
+
+		if( !$tienePerros ){
+			$infoGatos = '
+				<div class="infoGatos">
+					Estimado cliente, este cuidador también acepta <strong>Perros</strong> en su servicio de <strong>'.$servicio_name_corto.'</strong>, sin embargo en este momento dicha opción
+					se encuentra <strong>no disponible</strong>, debido a que usted no ha registrado al menos un <strong>Perro</strong> entre sus mascotas.<br><br>
+					Puede picarle <a href="'.get_home_url().'/perfil-usuario/mascotas/nueva/" style="color: #20a2ef; font-weight: 600;">Aquí</a> si desea agregarlos.
+				</div>
+			';
+			$bloquear_adicionales = true;
 		}
 
 		//$NOW = (strtotime("now")+25200);
@@ -426,6 +482,7 @@
 			var MANANA = '".$manana."';
 			var HORA = '".(date("G", $NOW )+0)."';
 			var SUPERU = '".$super_admin."';
+			var BLOQUEAR_ADICIONALES = ".( ($bloquear_adicionales) ? 1 : 0 ).";
 		</script>";
 
 		if( $error != "" ){
@@ -470,6 +527,11 @@
 
 			$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$post_id}");
 
+			$_adicionales = '<div id="contenedor-adicionales" class="contenedor-adicionales">'.$adicionales.'</div>';
+			if( $bloquear_adicionales ){
+				$_adicionales = '<div style="display: none;" id="contenedor-adicionales" class="contenedor-adicionales">'.$adicionales.'</div>';
+			}
+
 			$precios = '
 				<div class="km-dates-step" style="margin-bottom: 5px;">
 					<div class="km-ficha-fechas">
@@ -502,13 +564,14 @@
 				'.$msg_mismo_dia.'
 				'.$msg_bloqueador.'
 				'.$msg_bloqueador_madrugada.'
+				'.$infoGatos.'
 
 				<div id="bloque_info_servicio" class="km-content-step '.$bloquear.' '.$bloquear_madrugada.'">
 					<div class="km-content-new-pet">
 						'.$precios.'
 						<div class="km-services-content">
 							<div class="contenedor-adicionales">'.$transporte.'</div>
-							<div class="contenedor-adicionales">'.$adicionales.'</div>
+							'.$_adicionales.'
 						</div>
 
 						<div class="km-services-total km-total-calculo">

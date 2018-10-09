@@ -117,6 +117,30 @@ function getServicios( $cuidador ){
 		];
 	}
 
+    $__transporte = array(
+		"transportacion_sencilla" => "Transportación Sencilla",
+		"transportacion_redonda" => "Transportación Redonda"
+	);
+
+    $__transporte_tipo = array(
+		"corto" => "Corto",
+		"medio" => "Medio",
+		"largo" => "Largo"
+	);
+
+	// Añadir servicios de transporte
+	foreach ($precios_adicionales_cuidador as $key => $servicio) {
+		if( isset($__transporte[ $key ]) ){
+			$temp[ 'transporte' ][ $key ] = [];
+			foreach ($servicio as $key_2 => $value_2) {
+				$temp[ 'transporte' ][ $key ][] = [
+					'costo' => $precios_adicionales_cuidador[$key][$key_2],
+					'descripcion' => $__transporte_tipo[ $key_2 ]
+				];
+			}
+		}
+	}
+
 	return $temp;
 }
 

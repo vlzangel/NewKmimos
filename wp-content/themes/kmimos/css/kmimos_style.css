@@ -480,8 +480,8 @@ section {
 .icon_left{
     position: absolute !important;
     left: 13px !important;
-    top: 12px !important;
-    width: 17px !important;
+    top: 10px;
+    width: auto !important;
 }
 .km-servicios-adicionales {
 	margin-top: 30px;
@@ -4848,7 +4848,7 @@ footer .km-icon-redes {
     background-size:36px auto
 }
 .page-reservation .km-content-step .km-content-new-pet .km-services-content {
-    border:1px solid #000;
+    border-top:1px solid #000;
     border-left:none;
     border-right:none;
     padding-bottom:5px
@@ -6591,11 +6591,16 @@ section {
     border-color: #33e1be;
     top: -1px;
 }
-.km-formulario-cuidador img {
-    position: relative;
-    margin-right: 6px;
+.km-servicios img {
+	position: absolute;
+    margin-right: 0px;
     width: 25px;
-    top: -3px;
+    top: 10px;
+    left: 8px;
+}
+.km-servicios .km-opcion {
+    padding: 19px 10px;
+    padding-left: 40px;
 }
 .km-opcion-text {
     display: inline-block;
@@ -6617,14 +6622,14 @@ section {
 }
 .km-fechas input {
     width: 100%;
-    padding: 14px 0px 14px 42px;
+    padding: 14px 0px 14px 37px;
     border: 1px solid #e5e5e5;
     border-radius: 8px;
     margin: 0;
     background: white;
     background-image: url(../images/new/icon/icon-calendario.svg);
     background-repeat: no-repeat;
-    background-position: 20px center!important;
+    background-position: 12px center!important;
 }
 .km-fechas input::-webkit-input-placeholder {
     color: #000!important;

@@ -46,7 +46,6 @@
 	if( isset($_GET['o']) ){
 		$data = [];
 		if( $_SESSION['busqueda'] != '' ){
-			
 			$data['orderby'] = $_GET['o'];
 			$_POST = $data;
 		}
@@ -317,8 +316,7 @@
     		$condiciones .= " AND atributos LIKE '%flash\";s:1:\"1%' "; 
     	}else{
     		if( $hoy == $_POST["checkin"] ||  $manana == $_POST["checkin"] ){
-    			$FLASH_ORDEN = "
-    				, ( 
+    			$FLASH_ORDEN = ", ( 
 		    			SELECT 
 		    				count(*)
 		    			FROM 
@@ -334,9 +332,11 @@
     /* Fin Filtros por Flash */
 
     /* Filtros por servicios y tamaños */
-	  
-    	foreach ($tamanos as $key => $value) {
-     		$condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; 
+	  	
+	  	if( is_array($tamanos) ){
+	    	foreach ($tamanos as $key => $value) {
+	     		$condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; 
+	     	} 
      	} 
      	
     /* Fin Filtros por servicios y tamaños */
@@ -370,7 +370,7 @@
     /* Fin Filtros por rangos */
 
     /* Ordenamientos */
-    	$orderby = ( isset($orderby) )? $orderby : 'rating_desc' ;
+    	// $orderby = ( isset($orderby) )? $orderby : 'rating_desc' ;
 	    switch ($orderby) {
 	    	case 'rating_desc':
 	    		$orderby = "valoraciones DESC, rating DESC";
@@ -412,10 +412,6 @@
 	    	break;
 	    }
 
-	    if( $FLASH_ORDEN != "" ){
-	    	$orderby = "FLASH DESC, ".$orderby;
-	    }
-
     /* Fin Ordenamientos */
 
     /* Filtro de busqueda */
@@ -436,7 +432,7 @@
 	            if( $latitud != "" && $longitud != "" && $km5 != "No" ){
 	       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
 	                $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
-	                $FILTRO_UBICACION = "HAVING DISTANCIA < 5";
+	               	//  $FILTRO_UBICACION = "HAVING DISTANCIA < 5";
 
 	                $_SESSION['km5'] = "Yes";
 
@@ -453,6 +449,10 @@
     /* Filtro predeterminado */
     	if( $orderby == "" ){ $orderby = "rating DESC, valoraciones DESC"; }
     /* Fin Filtro predeterminado */
+
+    if( $FLASH_ORDEN != "" ){
+    	$orderby = "FLASH DESC, ".$orderby;
+    }
 
     $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
 
@@ -531,10 +531,10 @@
 				"lat"  => $cuidador->latitud,
 				"lng"  => $cuidador->longitud,
 				"nom"  => utf8_encode($cuidador->titulo),
-				"url"  => $url,
+				"url"  => utf8_encode($url), 
 				"exp"  => $anios_exp,
 				"adi"  => $cuidador->adicionales,
-				"ser"  => "",
+				//"ser"  => "",
 				"rating" => ceil($cuidador->rating),
 				"pre"  => $cuidador->precio
 			);
