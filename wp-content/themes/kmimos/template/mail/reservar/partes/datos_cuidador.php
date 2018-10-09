@@ -10,12 +10,12 @@
     ">
 
         <table style='
-            width: 485px;
             padding: 0px;
         '>
             <tr>
                 <td align="center" height="160"  style="
                     background-color: #e8e8e8;"
+                    text-align: center;
                 >
                    <img src="[AVATAR_CUIDADOR]" height="160" width="100%" > 
                 </td>
