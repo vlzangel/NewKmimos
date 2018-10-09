@@ -248,7 +248,11 @@
 			</div>
 
 			<div class="testimonios_container">
-				<div class="testimonios_img"></div>
+				<div class="testimonios_img">
+					<span>
+						+1,500 comentarios positivos en perfiles de cuidadores
+					</span>
+				</div>
 
 				<div class="testimonios_item">
 					<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>

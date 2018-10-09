@@ -28,6 +28,18 @@
 							<input type="email" id="email" name="email" placeholder="Ingresa tu correo" />
 							<input type="submit" value="Inscribirme al blog" />
 						</form>
+						<div class="siguenos_alto">
+							<span>Siguenos en</span>
+							<a href="">
+								<img src="'.get_recurso("img").'SVG/Facebook.svg" />
+							</a>
+							<a href="">
+								<img src="'.get_recurso("img").'SVG/Instagram.svg" />
+							</a>
+							<a href="">
+								<img src="'.get_recurso("img").'SVG/Youtube.svg" />
+							</a>
+						</div>
 					</div>
 					<div>
 						<ul>
@@ -50,14 +62,17 @@
 					<div>
 						<ul>
 							<li>Teléfono: 01 (800) 9 564667</li>
-							<li>Whatsapp 1: +52 1 (55) 3137 4829</li>
+							<li>Telef. Local: 01 (55) 8526 1162</li>
+							<li>WhatsApp 1: +52 1 (33) 1261 4186</li>
+							<li>WhatsApp 2: +52 1 (55) 6892 2182</li>
+							<li>WhatsApp 3: +52 1 (55) 6560 2472</li>
 							<li>Email: contactomex@kmimos.la</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="footer_medio">
-				<span>Sigenos en</span>
+				<span>Siguenos en</span>
 				<a href="">
 					<img src="'.get_recurso("img").'SVG/Facebook.svg" />
 				</a>

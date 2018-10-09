@@ -136,7 +136,7 @@ nav .lupa_negra{
 footer{
     background: #f0f0f0;
     padding: 50px 50px 30px;
-    color: #989898;
+    color: #b2b2b2;
 }
 
 footer h2{
@@ -208,22 +208,31 @@ footer ul li {
     border-radius: 0px 3px 3px 0px;
 }
 
-.footer_medio {
-	margin-bottom: 10px;
+.footer_alto .siguenos_alto{
+	padding-top: 25px;
 }
 
-.footer_medio span {
+.footer_medio {
+	display: none;
+	margin-bottom: 10px;
+    padding: 0px 10px;
+}
+
+.footer_medio span,
+.footer_alto span {
 	display: block;
 	margin-bottom: 10px;
 }
 
-.footer_medio img {
-	width: 30px;
-	margin-right: 10px;
+.footer_medio img,
+.footer_alto img {
+	width: 35px;
+    margin-right: 20px;
 }
 
 .footer_bajo{
 	text-align: center;
+	padding-top: 40px;
 }
 
 .footer_bajo a {
