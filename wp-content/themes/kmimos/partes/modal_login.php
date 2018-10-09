@@ -29,12 +29,7 @@ $datos = kmimos_get_info_syte();
 											<!--<label>Contraseña</label>-->
 											<input type="password" id="clave" placeholder="Contraseña" class="input-label-placeholder" autocomplete="off">
 										</div>
-										<p style="color: #979797; margin-top: 20px;">
-											<label>
-												<input type="checkbox" name="login_terminos" >
-												Acepto los <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.
-											</label>
-										</p>
+										 
 									</div>
 								</div>
 							</form>
