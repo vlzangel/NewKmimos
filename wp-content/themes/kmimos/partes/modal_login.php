@@ -56,7 +56,7 @@ $datos = kmimos_get_info_syte();
 							</div>
 							
 							<div class="col-xs-12 col-sm-8" style="text-align: right;">
-								<a href="#" class="km-btn-contraseña-olvidada">¿OLVIDASTE TU CONTRASEÑA?</a>
+								<a href="#" class="km-btn-contraseña-olvidada">¿OLVIDASTE TU CONTRASEÑA?</a><br>
 							</div>
 
 						<div class="line-o hidden">
