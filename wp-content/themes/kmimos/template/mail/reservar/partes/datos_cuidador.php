@@ -17,7 +17,7 @@
                 <td align="center" height="160"  style="
                     background-color: #e8e8e8;"
                 >
-                   <img src="[AVATAR_CUIDADOR]" height="160" width="485" > 
+                   <img src="[AVATAR_CUIDADOR]" height="160" width="100%" > 
                 </td>
             </tr>
         </table>
