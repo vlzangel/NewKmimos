@@ -208,17 +208,16 @@
 
     $comportamientos_str = "";
     foreach ($comportamientos as $key => $value) {
-        // if($temp_comportamientos_aceptados["gatos"][$key] == 1){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
-        if( $atributos["gatos"] == 'Si' ){ $check = "vlz_check";  }else{ $check = "vlz_no_check"; }
         if( $key == "sociable" ){
             $temp_comportamientos_aceptados["gatos"][$key] = 1;
         }else{
             $temp_comportamientos_aceptados["gatos"][$key] = 0;
         }
+        if($temp_comportamientos_aceptados["gatos"][$key] == 1){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
         $comportamientos_str .= '
             <section>
                 <label class="lbl-ui">
-                    <div class="vlz_input vlz_pin_check  '.$check.'" style="padding: 8px 39px 8px 8px;">
+                    <div class="vlz_input vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;">
                         <input type="hidden" name="comportamiento_gatos_'.$key.'" value="'.$temp_comportamientos_aceptados["gatos"][$key].'">'.$comportamientos[$key].'
                     </div>
                 </label>

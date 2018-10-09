@@ -160,74 +160,171 @@
     if(!function_exists('get_destacados')){
         function get_destacados(){
             if( !isset($_SESSION) ){ session_start(); }
-            $_POST = unserialize( $_SESSION['busqueda'] );
-            $ubicacion = explode("_", $_POST["ubicacion"]);
-            if( count($ubicacion) > 0 ){ $estado = $ubicacion[0]; }
+
             global $wpdb;
-            $estado_des = $wpdb->get_var("SELECT name FROM states WHERE id = ".$estado);
-            $sql_top = "SELECT * FROM destacados WHERE estado = '{$estado}'";
-            $tops = $wpdb->get_results($sql_top);
+
+            $_POST = unserialize( $_SESSION['busqueda'] );
+            $resultados = $_SESSION['resultado_busqueda'];
+
+            $lat = $_POST["latitud"];
+            $lng = $_POST["longitud"];
+
             $top_destacados = ""; $cont = 0;
-            foreach ($tops as $value) {
-                $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$value->cuidador}");
-                $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
-                $nombre = $data->nom;
-                $img_url = kmimos_get_foto($cuidador->user_id);
-                $url = get_home_url() . "/petsitters/" . $data->url;
-                $anios_exp = $cuidador->experiencia;
-                if( $anios_exp > 1900 ){
-                    $anios_exp = date("Y")-$anios_exp;
+
+            if( $lat != "" && $lng != "" ){
+
+                $sql_top = $wpdb->get_results("SELECT * FROM destacados");
+                $destacados = [];
+
+                foreach ($sql_top as $key => $value) {
+                    $destacados[] = $value->cuidador;
                 }
-                $top_destacados .= '
-                    <div class="slide">
-                        <div class="item-slide">
-                            <div style="background-image: url('.$img_url.');" class="slider-image">
-                                <div style="filter: blur(1px);width:100%;height:27%;background: #00000094;position:absolute;border-radius:10px 10px 0px 0px;"></div>
+
+                $cont = 0;
+                foreach ($resultados as $key => $_cuidador) {
+                    
+                    if( in_array($_cuidador->id, $destacados) && $cuidador->DISTANCIA <= 200 ){ //
+
+                        $cont++;
+
+                        $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$_cuidador->id}");
+                        $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+                        $nombre = $data->nom;
+                        $img_url = kmimos_get_foto($cuidador->user_id);
+                        $url = get_home_url() . "/petsitters/" . $data->url;
+                        $anios_exp = $cuidador->experiencia;
+                        if( $anios_exp > 1900 ){
+                            $anios_exp = date("Y")-$anios_exp;
+                        }
+                        $top_destacados .= '
+                            <div class="slide">
+                                <div class="item-slide">
+                                    <div style="background-image: url('.$img_url.');" class="slider-image">
+                                        <div style="filter: blur(1px);width:100%;height:27%;background: #00000094;position:absolute;border-radius:10px 10px 0px 0px;"></div>
+                                    </div>
+                                    </a>
+                                    <div class="hidden slide-mask"></div>
+                                    <div class="slide-content">
+                                        <a href="'.$url.'" style="display: block; text-decoration: none;">
+
+                                            <div class="slide-price-distance">
+                                                <div class="slide-price text-left" style="color:#fff;font-size:12px;">
+                                                    Desde <span style="font-size:12px;">MXN $'.($cuidador->hospedaje_desde*getComision()).'</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="slide-profile">
+                                                <div class="slide-profile-image" style=""></div>
+                                            </div>
+
+                                            <div class="slide-name text-center">
+                                                <b>'.strtoupper($nombre).'</b>
+                                            </div>
+                                        </a>
+
+                                            <div class="slide-expertice  text-center">
+                                                '.$anios_exp.' año(s) de experiencia
+                                            </div>
+
+                                            <div class="slide-expertice  text-center">
+                                                a '.floor($_cuidador->DISTANCIA).' km de distancia
+                                            </div>
+
+                                            <div class="slide-ranking  text-center">
+                                                <div class="km-ranking">
+                                                    '.kmimos_petsitter_rating($cuidador->id_post).'
+                                                </div>
+                                            </div>
+
+                                        <div class="slide-buttons">
+                                            <a href="#" role="button" data-name="'.$nombre.'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke" style="height:auto;">CONÓCELO +</a>
+                                            <a href="'.$url.'">RESERVAR</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            </a>
-                            <div class="hidden slide-mask"></div>
-                            <div class="slide-content">
-                                <a href="'.$url.'" style="display: block; text-decoration: none;">
+                        ';
 
-                                    <div class="slide-price-distance">
-                                        <div class="slide-price text-left" style="color:#fff;font-size:12px;">
-                                            Desde <span style="font-size:12px;">MXN $'.($cuidador->hospedaje_desde*getComision()).'</span>
-                                        </div>
-                                        <!--
-                                        <div class="slide-distance">
-                                            A 96 km de tu búsqueda
-                                        </div>
-                                        -->
-                                    </div>
+                    }
 
-                                    <div class="slide-profile">
-                                        <div class="slide-profile-image" style=""></div>
-                                    </div>
+                    if( $cont >= 4 ){
+                        break;
+                    }
+                }
 
-                                    <div class="slide-name text-center">
-                                        <b>'.strtoupper($nombre).'</b>
-                                    </div>
+
+
+            }else{
+
+                $ubicacion = explode("_", $_POST["ubicacion"]);
+                if( count($ubicacion) > 0 ){ $estado = $ubicacion[0]; }
+
+                $estado_des = $wpdb->get_var("SELECT name FROM states WHERE id = ".$estado);
+                $sql_top = "SELECT * FROM destacados WHERE estado = '{$estado}'";
+                $tops = $wpdb->get_results($sql_top);
+
+                foreach ($tops as $value) {
+                    $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$value->cuidador}");
+                    $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+                    $nombre = $data->nom;
+                    $img_url = kmimos_get_foto($cuidador->user_id);
+                    $url = get_home_url() . "/petsitters/" . $data->url;
+                    $anios_exp = $cuidador->experiencia;
+                    if( $anios_exp > 1900 ){
+                        $anios_exp = date("Y")-$anios_exp;
+                    }
+                    $top_destacados .= '
+                        <div class="slide">
+                            <div class="item-slide">
+                                <div style="background-image: url('.$img_url.');" class="slider-image">
+                                    <div style="filter: blur(1px);width:100%;height:27%;background: #00000094;position:absolute;border-radius:10px 10px 0px 0px;"></div>
+                                </div>
                                 </a>
+                                <div class="hidden slide-mask"></div>
+                                <div class="slide-content">
+                                    <a href="'.$url.'" style="display: block; text-decoration: none;">
 
-                                    <div class="slide-expertice  text-center">
-                                        '.$anios_exp.' año(s) de experiencia
-                                    </div>
-
-                                    <div class="slide-ranking  text-center">
-                                        <div class="km-ranking">
-                                            '.kmimos_petsitter_rating($cuidador->id_post).'
+                                        <div class="slide-price-distance">
+                                            <div class="slide-price text-left" style="color:#fff;font-size:12px;">
+                                                Desde <span style="font-size:12px;">MXN $'.($cuidador->hospedaje_desde*getComision()).'</span>
+                                            </div>
+                                            <!--
+                                            <div class="slide-distance">
+                                                A 96 km de tu búsqueda
+                                            </div>
+                                            -->
                                         </div>
-                                    </div>
 
-                                <div class="slide-buttons">
-                                    <a href="#" role="button" data-name="'.$nombre.'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke" style="height:auto;">CONÓCELO +</a>
-                                    <a href="'.$url.'">RESERVAR</a>
+                                        <div class="slide-profile">
+                                            <div class="slide-profile-image" style=""></div>
+                                        </div>
+
+                                        <div class="slide-name text-center">
+                                            <b>'.strtoupper($nombre).'</b>
+                                        </div>
+                                    </a>
+
+                                        <div class="slide-expertice  text-center">
+                                            '.$anios_exp.' año(s) de experiencia
+                                        </div>
+
+                                        <div class="slide-ranking  text-center">
+                                            <div class="km-ranking">
+                                                '.kmimos_petsitter_rating($cuidador->id_post).'
+                                            </div>
+                                        </div>
+
+                                    <div class="slide-buttons">
+                                        <a href="#" role="button" data-name="'.$nombre.'" data-id="'.$cuidador->id_post.'" data-target="#popup-conoce-cuidador" class="km-btn-primary-new stroke" style="height:auto;">CONÓCELO +</a>
+                                        <a href="'.$url.'">RESERVAR</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ';
+                    ';
+                }
             }
+
             return comprimir_styles($top_destacados);
         }
     }
@@ -248,6 +345,20 @@
             }else{
                 return 0;
             }
+        }
+    }
+
+    if(!function_exists('comprimir')){
+        function comprimir($styles){
+            $styles = str_replace("\t", "", $styles);
+            $styles = str_replace("      ", " ", $styles);
+            $styles = str_replace("     ", " ", $styles);
+            $styles = str_replace("    ", " ", $styles);
+            $styles = str_replace("   ", " ", $styles);
+            $styles = str_replace("  ", " ", $styles);
+            return $styles = str_replace("\n", " ", $styles);
+
+            // return $styles;
         }
     }
 
@@ -552,7 +663,7 @@
         $user_id = $current_user->ID;
 
         $distancia = '';
-        if( isset($cuidador->DISTANCIA) ){ $distancia   = 'A '.floor($cuidador->DISTANCIA).' km de tu busqueda'; }
+        if( isset($cuidador->DISTANCIA) ){ $distancia   = 'a '.floor($cuidador->DISTANCIA).' km de distancia'; }
 
         $anios_exp = $cuidador->experiencia;
         if( $anios_exp > 1900 ){

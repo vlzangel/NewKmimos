@@ -1313,7 +1313,7 @@
                 "medianos" => "Media",
                 "grandes"   => "Grand", 
                 "gigantes"  => "Gigan",
-                "gatos"     => "Gatos"
+                "gatos"     => "Gato"
             );
 
             $txts = array(
@@ -1321,7 +1321,7 @@
                 "medianos"  => 'Mediana', 
                 "grandes"   => "Grande", 
                 "gigantes"  => "Gigante",
-                "gatos"     => "Gatos"
+                "gatos"     => "Gato"
             );
 
             $dias = ceil(((($xfin - $xini)/60)/60)/24);
@@ -1345,7 +1345,9 @@
                         number_format( $unitario, 2, ',', '.'),
                         number_format( ($unitario*$mascotas[$value]*$dias), 2, ',', '.')
                     );
-                    $grupo += $mascotas[$value];
+                    if( $key != "gatos" ){
+                        $grupo += $mascotas[$value];
+                    }
                 }
             }
 
@@ -1451,7 +1453,7 @@
                     "Mediano",
                     "Grande",
                     "Gigante",
-                    "Gatos"
+                    "Gato"
                 );
                 
                 $mascotas = array();

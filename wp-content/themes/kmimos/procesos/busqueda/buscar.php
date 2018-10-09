@@ -316,8 +316,7 @@
     		$condiciones .= " AND atributos LIKE '%flash\";s:1:\"1%' "; 
     	}else{
     		if( $hoy == $_POST["checkin"] ||  $manana == $_POST["checkin"] ){
-    			$FLASH_ORDEN = "
-    				, ( 
+    			$FLASH_ORDEN = ", ( 
 		    			SELECT 
 		    				count(*)
 		    			FROM 
@@ -413,10 +412,6 @@
 	    	break;
 	    }
 
-	    if( $FLASH_ORDEN != "" ){
-	    	$orderby = "FLASH DESC, ".$orderby;
-	    }
-
     /* Fin Ordenamientos */
 
     /* Filtro de busqueda */
@@ -454,6 +449,10 @@
     /* Filtro predeterminado */
     	if( $orderby == "" ){ $orderby = "rating DESC, valoraciones DESC"; }
     /* Fin Filtro predeterminado */
+
+    if( $FLASH_ORDEN != "" ){
+    	$orderby = "FLASH DESC, ".$orderby;
+    }
 
     $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
 
@@ -532,10 +531,10 @@
 				"lat"  => $cuidador->latitud,
 				"lng"  => $cuidador->longitud,
 				"nom"  => utf8_encode($cuidador->titulo),
-				"url"  => $url,
+				"url"  => utf8_encode($url), 
 				"exp"  => $anios_exp,
 				"adi"  => $cuidador->adicionales,
-				"ser"  => "",
+				//"ser"  => "",
 				"rating" => ceil($cuidador->rating),
 				"pre"  => $cuidador->precio
 			);

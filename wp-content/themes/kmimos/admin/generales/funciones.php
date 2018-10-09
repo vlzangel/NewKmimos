@@ -43,6 +43,15 @@
                     'page'          =>  'reporte_facturas',
                     'icon'          =>  '',
                 ),
+                array(
+                    'title'         =>  __('Notas de Creditos'),
+                    'short-title'   =>  __('Notas de Creditos'),
+                    'parent'        =>  'reporte_facturas',
+                    'slug'          =>  'reporte_notas_creditos',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_notas_creditos',
+                    'icon'          =>  '',
+                ),
 
                 // Menu Pagos a Cuidador
                 array(
@@ -246,5 +255,13 @@
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/recursos/importador-botones.php');
             include_once(dirname(__DIR__).'/backend/clientes/reporte_clientes.php');
+        }
+    }
+
+    if(!function_exists('reporte_notas_creditos')){
+        function reporte_notas_creditos(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/notas_creditos/reporte.php');
         }
     }

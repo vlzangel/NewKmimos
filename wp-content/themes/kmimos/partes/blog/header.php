@@ -69,7 +69,7 @@ if(array_key_exists('search',$_POST)){
 
                 <div class="phone section">
                     <!-- 01 800 056 4667<br><strong>WhatsApp:</strong>  +52 (33) 1261 4186-->
-                     (01) 55 3137 4829<br><strong>WhatsApp:</strong>  +52 (33) 1261 4186
+                    01 (55) 8526 1162<br><strong>WhatsApp:</strong>  +52 (33) 1261 4186
                 </div>
 
                 <div class="search section">

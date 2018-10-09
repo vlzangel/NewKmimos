@@ -44,18 +44,21 @@ function km5(valor){
 jQuery(document).ready(function(){
 
 	jQuery("#mi_ubicacion").on("click", function(e){
+
+		jQuery(".icon_left").removeClass("fa-crosshairs");
+		jQuery(".icon_left").addClass("fa-spinner fa-spin");
+
 	    navigator.geolocation.getCurrentPosition(
 	        function(pos) {
 	            crd = pos.coords;
 
-	            if( 
+	            /*if( 
 	                (
 	                    limites.norte.lat >= crd.latitude && limites.sur.lat <= crd.latitude &&
 	                    limites.norte.lng >= crd.longitude && limites.sur.lng <= crd.longitude
 	                ) || 
 	                prueba_ubicacion == true
-	            ){
-	                console.log( "En el rango" );
+	            ){*/
 
 	                jQuery( '[data-error="ubicacion"]' ).parent().removeClass('has-error');
 	                jQuery( '[data-error="ubicacion"]' ).addClass('hidden');
@@ -71,16 +74,25 @@ jQuery(document).ready(function(){
 	                        var address = results[0]['formatted_address'];
 	                        jQuery("#ubicacion_txt").val(address);
                             jQuery("#ubicacion").val("");
+
+							jQuery(".icon_left").removeClass("fa-spinner fa-spin");
+							jQuery(".icon_left").addClass("fa-crosshairs");
 	                    }
 	                });
-	            }else{
+	            /*}else{
 	                console.log( "Fuera del rango" );
 	                //jQuery( '[data-error="ubicacion"]' ).parent().addClass('has-error');
 	                jQuery( '[data-error="ubicacion"]' ).removeClass('hidden');
-	            }
+	            }*/
 	        }, 
 	        function error(err) {
-	            console.log("Error");
+				jQuery(".icon_left").removeClass("fa-spinner fa-spin");
+				jQuery(".icon_left").addClass("fa-crosshairs");
+                if( err.message == 'User denied Geolocation' ){
+                    alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmimos en la configuración de ubicación de su dispositivo.");
+                }else{
+                    alert(err.message);
+                }
 	        },
 	        {
 	            enableHighAccuracy: true,
@@ -96,7 +108,7 @@ jQuery(document).ready(function(){
 			jQuery(this).attr("action"),
 			jQuery(this).serialize(),
 			function(respuesta){
-				location.reload();
+				location.href = RAIZ+"busqueda";
 			}
 		);
 
@@ -107,7 +119,8 @@ jQuery(document).ready(function(){
 	    slideWidth: 200,
 	    minSlides: 1,
 	    maxSlides: 3,
-	    slideMargin: 10
+	    slideMargin: 10,
+	    infiniteLoop: false
 	});
 
 	jQuery(document).on("click", '.show-map-mobile', function ( e ) {

@@ -1,0 +1,24 @@
+@media (min-width: 768px){
+
+	.input_check_box:hover .top_check {
+	    opacity: 1;
+	    transition: all .3s ease-in-out;
+	}
+
+}
+
+@media (max-width: 992px){
+
+}
+
+@media (max-width: 768px){
+
+}
+
+@media (max-width: 480px){
+
+}
+
+@media (max-width: 350px){
+    
+}

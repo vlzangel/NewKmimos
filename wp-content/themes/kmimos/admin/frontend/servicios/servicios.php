@@ -53,16 +53,8 @@
     $hospedaje = "";
     $precios_hospedaje = unserialize($cuidador->hospedaje);
 
-/*    foreach ($precios_hospedaje as $key => $value) {
-    	$hospedaje .= "
-    		<div class='vlz_celda_25'>
-    			<label>".$tam[$key]."</label>
-    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='hospedaje_".$key."' name='hospedaje_".$key."' value='".$value."' data-toggle='tooltip' data-title='".$preciosSugeridos[ $key ]."' />
-			</div>
-    	";
-    }*/
-
     foreach ($tam as $key => $value) {
+        if( $precios_hospedaje[$key] == "" ){ $precios_hospedaje[$key] = 0; }
         $hospedaje .= "
             <div class='vlz_celda_25'>
                 <label>".$value."</label>
@@ -105,17 +97,24 @@
     foreach ($adicionales as $key => $value) {
     	$temp = "";
     	foreach ($tam as $key2 => $value2) {
-    		if( isset($precios_adicionales_cuidador[$key] ) ){
-    			$precio = $precios_adicionales_cuidador[$key][$key2];
-    		}else{
-    			$precio = "";
-    		}
-	    	$temp .= "
-	    		<div class='vlz_celda_25'>
-	    			<label>".$value2."</label>
-	    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='".$key."_".$key2."' name='".$key."_".$key2."' value='".$precio."' data-toggle='tooltip' data-title='Ingresa el precio de {$value} para mascotas ".($mascotas[ $key2 ])."' />
-				</div>
-	    	";
+            if( $key2 == 'gatos' && $key != 'guarderia' ){
+
+            }else{
+                if( isset($precios_adicionales_cuidador[$key] ) ){
+                    $precio = $precios_adicionales_cuidador[$key][$key2];
+                }else{
+                    $precio = "";
+                }
+                
+                if( $precio == "" ){ $precio = 0; }
+
+                $temp .= "
+                    <div class='vlz_celda_25'>
+                        <label>".$value2."</label>
+                        <input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='".$key."_".$key2."' name='".$key."_".$key2."' value='".$precio."' data-toggle='tooltip' data-title='Ingresa el precio de {$value} para mascotas ".($mascotas[ $key2 ])."' />
+                    </div>
+                ";
+            }
     	}
 
 		//if( $status_servicios[ $key ] == 'publish' ){
@@ -125,6 +124,15 @@
     		$boton = "<input type='button' value='Desactivado' class='vlz_activador km-btn-primary vlz_desactivado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='0' >";
     	}
 
+        if( $key == "paseos" ){
+            $precios_adicionales .= "
+                <div class='sugerencia_paseos'>
+                    <div>¿Cómo funciona paseos?</div>
+                    <div>El servicio dura de 2 a 3 horas dependiendo las condiciones de cada mascota, pregunta al cliente los hábitos de paseo y coméntale las zonas por donde realizarás la actividad.</div>
+                    <div>El rango sugerido para el precio del paseo es $80 a $100 pesos. Recuerda, tu eres libre de colocar el precio que desees.</div>
+                </div>
+            ";
+        }
     	$precios_adicionales .= "
     		<div class='vlz_seccion'>
     			<div class='vlz_titulo_seccion container_btn'>".$value."  {$boton} </div>

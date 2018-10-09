@@ -123,7 +123,7 @@ class Pagos {
 							$pagos[ $row->cuidador_id ]['detalle']=[]; 
 						}
 						if( $monto > 0 ){
-							$pagos[ $row->cuidador_id ]['detalle'][] = [
+							$pagos[ $row->cuidador_id ]['detalle'][$row->reserva_id] = [
 								'reserva'=>$row->reserva_id,
 								'monto'=>$monto
 							];

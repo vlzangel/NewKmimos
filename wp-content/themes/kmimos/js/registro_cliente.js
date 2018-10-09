@@ -216,74 +216,81 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 	});*/
 
 	jQuery("#btn_si_acepto").on("click", function(e){
-		if( !jQuery( "#btn_si_acepto" ).hasClass("btn_disable") ){
-			jQuery(".popup-condiciones").css("display", "none");
-			jQuery(".popup-registrarte-final").css("display", "block");
+		if( !jQuery( "#btn_si_acepto" ).hasClass("btn_disable") || jQuery( "#btn_si_acepto" ).hasClass("btn_disable_2") ){
+			if( !jQuery( "#btn_si_acepto" ).hasClass("btn_disable_2") ){
 
-			var nombre = jQuery("#nombre").val();
-				apellido = jQuery("#apellido").val(),
-				ife = jQuery("#ife").val(),
-			 	email = jQuery("#email_1").val(), 
-			 	pass = jQuery("#pass").val(), 
-			 	movil = jQuery("#movil").val(), 
-			 	genero = jQuery("#genero").val(), 
-			 	edad = jQuery("#edad").val(), 
-			 	fumador = jQuery("#fumador").val(),
-				referido = jQuery("#referido").val(),
-				img_profile = jQuery("#img_profile").val();
+				jQuery( "#btn_si_acepto" ).addClass("btn_disable");
+				jQuery( "#btn_si_acepto" ).addClass("btn_disable_2");
 
-		 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
+				jQuery(".popup-condiciones").css("display", "none");
+				jQuery(".popup-registrarte-final").css("display", "block");
 
-			var datos = {
-				'name': campos[0],
-				'lastname': campos[1],
-				'idn': campos[2],
-				'email': campos[3],
-				'password': campos[4],
-				'movil': campos[5],
-				'gender': campos[6],
-				'age': campos[7],
-				'smoker': campos[8],
-				'referido': campos[9],
-				'img_profile': campos[10],
-				'social_facebook_id': jQuery('#facebook_cliente_id').val(),
-				'social_google_id': jQuery('#google_cliente_id').val()
-			};
+				var nombre = jQuery("#nombre").val();
+					apellido = jQuery("#apellido").val(),
+					ife = jQuery("#ife").val(),
+				 	email = jQuery("#email_1").val(), 
+				 	pass = jQuery("#pass").val(), 
+				 	movil = jQuery("#movil").val(), 
+				 	genero = jQuery("#genero").val(), 
+				 	edad = jQuery("#edad").val(), 
+				 	fumador = jQuery("#fumador").val(),
+					referido = jQuery("#referido").val(),
+					img_profile = jQuery("#img_profile").val();
 
-			jQuery("#popup-registrarte").on('hidden.bs.modal', function () {
-	            location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
-		    });
+			 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
 
-			jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
-				if( data > 0 ){
-					globalData = data;
-					jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
-					jQuery("#img_pet").val( "" );
-					jQuery("body").scrollTop(0);
+				var datos = {
+					'name': campos[0],
+					'lastname': campos[1],
+					'idn': campos[2],
+					'email': campos[3],
+					'password': campos[4],
+					'movil': campos[5],
+					'gender': campos[6],
+					'age': campos[7],
+					'smoker': campos[8],
+					'referido': campos[9],
+					'img_profile': campos[10],
+					'social_facebook_id': jQuery('#facebook_cliente_id').val(),
+					'social_google_id': jQuery('#google_cliente_id').val()
+				};
 
-					evento_google("nuevo_registro_cliente");
-					evento_fbq("track", "traking_code_nuevo_registro_cliente"); 
+				jQuery("#popup-registrarte").on('hidden.bs.modal', function () {
+		            location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+			    });
 
-					if( wlabel == "petco" ){
-						window.adf&&adf.ClickTrack(this,1453019,'MX_Kmimos_RegistoTYP_180907',{});
+				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
+					if( data > 0 ){
+						globalData = data;
+						jQuery("#km-datos-foto").css("background-image", "url("+jQuery("#km-datos-foto").attr("data-init-img")+")" );
+						jQuery("#img_pet").val( "" );
+						jQuery("body").scrollTop(0);
 
-						//registro campaing monitor
-						jQuery.post( 
-		                    "https://www.kmimos.com.mx/campaing/suscribir.php", 
-		                    {
-		                        "email": datos['email'],
-		                        "list": 'petco_registro'
-		                    }, 
-		                    function( data ) {
-		                        console.log( data );
-		                        console.log("Suscripción enviadas");
-		                    }
-		                );
+						evento_google("nuevo_registro_cliente");
+						evento_fbq("track", "traking_code_nuevo_registro_cliente"); 
+
+						if( wlabel == "petco" ){
+							window.adf&&adf.ClickTrack(this,1453019,'MX_Kmimos_RegistoTYP_180907',{});
+
+							//registro campaing monitor
+							jQuery.post( 
+			                    "https://www.kmimos.com.mx/campaing/suscribir.php", 
+			                    {
+			                        "email": datos['email'],
+			                        "list": 'petco_registro'
+			                    }, 
+			                    function( data ) {
+			                        console.log( data );
+			                        console.log("Suscripción enviadas");
+			                    }
+			                );
+						}
+						
 					}
-					
-				}
-				jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
-			});
+					jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
+				});
+
+			}
 
 		}else{
 			alert("Debe leer los terminos y condiciones primero.");

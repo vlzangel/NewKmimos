@@ -1,5 +1,5 @@
 <?php
-
+	
 	function get_menu(){
 		$defaults = array(
 		    'theme_location'  => 'pointfinder-main-menu',
@@ -121,24 +121,29 @@
 
 		$class = "";
 		$tamano = "";
-		preg_match_all("#Peque#", $slug, $matches);
+		preg_match_all("#peque#", $slug, $matches);
 		if( count( $matches[0] ) == 1 ){
 			$tamano = "pequenos";
 		}
 		
-		preg_match_all("#Medi#", $slug, $matches);
+		preg_match_all("#medi#", $slug, $matches);
 		if( count( $matches[0] ) == 1 ){
 			$tamano = "medianos";
 		}
 		
-		preg_match_all("#Grand#", $slug, $matches);
+		preg_match_all("#grand#", $slug, $matches);
 		if( count( $matches[0] ) == 1 ){
 			$tamano = "grandes";
 		}
 
-		preg_match_all("#Gigan#", $slug, $matches);
+		preg_match_all("#gigan#", $slug, $matches);
 		if( count( $matches[0] ) == 1 ){
 			$tamano = "gigantes";
+		}
+
+		preg_match_all("#gato#", $slug, $matches);
+		if( count( $matches[0] ) == 1 ){
+			$tamano = "gatos";
 		}
 
 		if( is_array($tamanos) ){
@@ -266,6 +271,32 @@
 						<div class="km-servicio-costo"><b></b></div>
 					</div>';
 				}
+			case 'gatos':
+
+				$ARRAY = array(
+					"tamano" => 'gatos',
+					"precio" => $precio
+				);
+
+				if( $precios["gatos"] > 0 ){
+					$HTML = '
+					<div class="km-servicio-opcion km-servicio-opcionactivo">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/gatos/cat_blue.svg" style="width: 20px;">
+							<div class="km-opcion-text"><b>GATOS</b><br>Indistinto</div>
+						</div>
+						<div class="km-servicio-costo"><b>$'.($precios["gatos"]*getComision() ).'</b></div>
+					</div>';
+				}else{
+					$HTML = '
+					<div class="km-servicio-opcion">
+						<div class="km-servicio-desc">
+							<img src="'.getTema().'/images/gatos/cat_blue.svg" style="width: 20px;">
+							<div class="km-opcion-text"><b>GATOS</b><br>Indistinto</div>
+						</div>
+						<div class="km-servicio-costo"><b></b></div>
+					</div>';
+				}
 			break;
 		}
 
@@ -288,13 +319,37 @@
 			"gatos"    => "GATOS",
 		);
 
-		/*global $cuidador;
+		return $tamanios;
+	}
 
-		$atributos = unserialize($cuidador->atributos);
-
-	    if( $atributos["gatos"] == "Si" ){
-	        $tamanios["gatos"] = "GATOS";
-	    }*/
+	function getTamanosData(){
+		$tamanios = array(
+			"pequenos" => [
+				"PEQUEÑO",
+				"0 a 25cm",
+				"icon-pequenio.svg"
+			],
+			"medianos" => [
+				"MEDIANO",
+				"25 a 58cm",
+				"icon-mediano.svg"
+			],
+			"grandes"  => [
+				"GRANDE",
+				"58cm a 73cm",
+				"icon-grande.svg"
+			],
+			"gigantes" => [
+				"GIGANTE",
+				"73cm a 200cm",
+				"icon-gigante.svg"
+			],
+			"gatos"    => [
+				"GATOS",
+				"Sociables",
+				"cat_blue.svg"
+			],
+		);
 
 		return $tamanios;
 	}

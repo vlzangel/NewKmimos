@@ -98,11 +98,24 @@ jQuery(document).ready(function() {
     	e.preventDefault();
     	if( jQuery(this).attr('data-target') == 'autorizado' ){		
 	    	var users = [];
-			jQuery.each(jQuery("input:checked"), function(){
+			jQuery.each(jQuery("[data-type='item_selected']:checked"), function(){
 				var user = jQuery(this).val();
 				var token = jQuery(this).attr('data-token');	
-				users.push({'token':token, 'user_id':user});
+				var reservas = [];
+
+				jQuery.each( jQuery('[name="reservas_'+user+'[]"]:checked'), function(e){
+					reservas.push( jQuery(this).val() );
+				});
+
+				users.push({
+					'token':token, 
+					'user_id':user, 
+					'reservas': reservas
+				});
+
+
 			});
+			console.log(users);
 			generar_solicitud( users, jQuery(this).attr('data-target') );
     	}else{
     		cerrar();
@@ -110,7 +123,7 @@ jQuery(document).ready(function() {
 	});
 	  
     jQuery("[data-modal='autorizar']").on('click', function(){
-    	if( jQuery("input:checked").size() > 0 ){
+    	if( jQuery("[data-type='item_selected']:checked").size() > 0 ){
     		abrir_link( jQuery(this) );
     	}else{
     		alert('Debe seleccionar los registros a procesar');
@@ -132,6 +145,39 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	jQuery(document).on('click', '[data-target="reserva_check"]', function(e){
+
+		var cuidador = jQuery(this).attr('data-cuidador');
+		var selected = jQuery('[data-cuidador="'+cuidador+'"]:checked');
+		var total = 0;
+		var cant = 0;
+		jQuery.each(selected, function(){
+			total += parseFloat(jQuery(this).attr('data-monto'));
+			cant++;
+		});
+		// act - monto Row
+		jQuery('#monto_'+cuidador).html( total );
+		jQuery('#cantidad_'+cuidador).html( cant );
+
+		// act - Monto Check Global
+		jQuery('[data-global="'+cuidador+'"]').attr('data-total', total);
+
+		updateTotalTag();
+	});
+
+	jQuery(document).on('click', "[data-target='liberar']", function(e){
+		jQuery.post(
+			TEMA+'/admin/backend/pagos/ajax/liberar_solicitud.php',
+			{ 'code': jQuery(this).attr('data-id') },
+			function(data){
+				loadTabla( _tipo, _hiddenColumns );
+				if( data != '' ){
+					alert(data);
+				}
+			}
+		);
+	});
+
 });
 
 function sumarDias(fecha, dias){
@@ -150,7 +196,11 @@ function sumarDias(fecha, dias){
 function updateTotalTag(){
 	var total = 0;
     jQuery.each( jQuery("input[data-type='item_selected']:checked"), function(i,v){
-    	total += parseFloat(jQuery(this).attr('data-total'));
+    	if( parseFloat(jQuery(this).attr('data-total')) > 0 ){
+	    	total += parseFloat(jQuery(this).attr('data-total'));
+    	}else{
+    		jQuery(this).attr('checked', false);
+    	}
     });
 	jQuery('#pagosNuevos-tab span').html('$ '+total);
 }
@@ -176,6 +226,7 @@ function generar_solicitud( users, accion ){
 			'comentario': jQuery('[name="observaciones"]').val()
 		},
 		function(data){
+			jQuery('#pagosNuevos-tab span').html('$ 0');
 			loadTabla( _tipo, _hiddenColumns );	
 			cerrar();
 		}
