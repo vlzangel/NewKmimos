@@ -12,6 +12,8 @@
 
     extract( $_POST );
 
+    $display_reserva_check = true;
+    $display_btn_liberar = false;
 
     switch ( strtolower($tipo) ) {
         case 'nuevo':
@@ -19,21 +21,30 @@
             break;
         case 'generados':
             $pagos_lists = $pagos->getPagoGenerados( $desde, $hasta );
+            $display_reserva_check = false;
+            $display_btn_liberar = true;
             break;
         case 'completado':
             $pagos_lists = $pagos->getPagoCompletados( $desde, $hasta );
+            $display_reserva_check = false;
             break;
     }
 
+    $estatus_bloqueados = [
+        'in_progress',
+        'completed',
+    ];
+
     $estatus=[
         "" => "",
-        "por_autorizar" => "Por autorizar",   
-        "autorizado" => "Autorizado",   
+        "por_autorizar" => "No procesado",   
+        "autorizado" => "No procesado",
         "negado" => "Negado",  
         "in_progress" => "En progreso",  
         "cancelled" => "Cancelado",  
         "completed" => "Completado",  
         "failed" => "Error",
+        "error" => "Error",
     ];
 
 //print_r($pagos_lists);
@@ -54,12 +65,12 @@
             
             // Validar si el cuidador tiene datos bancarios
                 $token = md5(serialize($pago->detalle));
-                $checkbox = "<input type='checkbox' data-type='item_selected' data-total='".$pago->total."' name='item_selected[]' data-token='".$token."' value='".$pago->user_id."'>";
+                $checkbox = "<input type='checkbox' data-type='item_selected' data-total='".$pago->total."' name='item_selected[]' data-token='".$token."' value='".$pago->user_id."' data-global='".$pago->user_id."'>";
                 if( !empty($cuidador->banco) ){
                     //$botones .= "<button style='padding:5px;'><i class='fa fa-money'></i> Generar Solicitud de pago</button>"; 
                 }else{
                     $botones .= "No posee datos bancarios"; 
-                    $checkbox = "<input type='checkbox' class='disabled' data-action='error' title='".$cuidador->nombre." ".$cuidador->apellido." no posee datos bancarios'>";
+                    $checkbox = "<input type='checkbox' class='disabled' data-action='error' title='".utf8_encode($cuidador->nombre." ".$cuidador->apellido)." no posee datos bancarios'>";
                 }
 
             if( $tipo == 'generados' || $tipo == 'completado' ){
@@ -124,12 +135,26 @@
 
                         $info = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
 
+                        $reserva_checkbox = '';
+                        if( $display_reserva_check ){
+                            $reserva_checkbox = '
+                                <input type="checkbox" checked
+                                    value="'.$item['reserva'].'"
+                                    data-target="reserva_check"
+                                    data-monto="'.$item['monto'].'"
+                                    data-cuidador="'.$pago->user_id.'"
+                                    name="reservas_'.$pago->user_id.'[]"
+                                >';
+                        }
+
                         $detalle .= '
                             <small class="items-span" '.$info.' style="color:#fff; background:'.$color.'!important; ">
-                                <strong>'.$item['reserva'].'</strong> 
-                                <span class="badge" style="margin-left: 10px;">
-                                    $ '.number_format($item['monto'], 2, ",", ".").'
-                                </span>
+                                <label style="margin-bottom: 0px;">'.$reserva_checkbox.'
+                                        <strong>'.$item['reserva'].'</strong>
+                                        <span class="badge" style="margin-left: 10px;">
+                                            $ '.number_format($item['monto'], 2, ",", ".").'
+                                        </span>
+                                </label>
                             </small>
                         ';
 
@@ -149,7 +174,7 @@
                         $nombre = $pagos->db->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='first_name' and user_id = {$key}", 'meta_value');
                         $apellido = $pagos->db->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='last_name' and user_id = {$key}", 'meta_value');
                         $color_class = ( $value['accion'] == 'negado' )? 'item-danger' : 'item-success';
-                        $autorizado_por .= "<div class='items-span {$color_class}'>".utf8_encode($nombre)." ".utf8_encode($apellido)."<span class='badge'>{$value['accion']}</span></div>";
+                        $autorizado_por .= "<div class='items-span {$color_class}'>".utf8_encode($nombre." ".$apellido)."<span class='badge'>{$value['accion']}</span></div>";
 
                         $comentarios .= $value['comentario'].'<br>';
                     }
@@ -160,6 +185,12 @@
                     $botones .= "<button class='btn btn-default' style='padding:5px;margin:5px;' data-titulo='Comentarios' data-modal='comentarios' data-id='".$pago->id."'><i class='fa fa-comments-o' aria-hidden='true'></i></button>";
                 } 
 
+                if( $display_btn_liberar && !in_array( $pago->estatus, $estatus_bloqueados ) ){
+                    $botones .= "<button class='btn btn-danger' style='padding:5px;margin:5px;' data-target='liberar' data-id='".md5($pago->id)."'><i class='fa fa-close' aria-hidden='true'></i> Cancelar</button>";
+                } 
+
+                $comentarios .= '<br>'.$pago->observaciones;
+
             $data["data"][] = array(
                 $checkbox,
                 date('Y-m-d',strtotime($pago->fecha_creacion)),
@@ -167,8 +198,8 @@
                 $pago->user_id,
                 utf8_encode($cuidador->nombre),
                 utf8_encode($cuidador->apellido),
-                '$ '.number_format($pago->total, 2, ",", "."),
-                $pago->cantidad,
+                "$ <span id='monto_".$pago->user_id."'>".number_format($pago->total, 2,',', '.')."</span>",
+                "<span id='cantidad_".$pago->user_id."'>".$pago->cantidad."</span>",
                 $detalle,
                 $autorizado_por,
                 $botones,

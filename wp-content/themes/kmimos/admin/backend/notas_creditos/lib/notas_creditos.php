@@ -2,13 +2,13 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE );
 date_default_timezone_set('America/Mexico_City');
 
-$pagos = new Pagos();
+$NotasCredito = new NotasCredito();
 
-class Pagos {
+class NotasCredito {
 	
 	public $db;
 	
-	public function Pagos(){
+	public function NotasCredito(){
 		$this->raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
 
 		if( !isset($db) || is_string( $db ) ){
@@ -22,141 +22,19 @@ class Pagos {
 		$this->db = $db;
 	}
 
-	public function getPagoCompletados( $desde, $hasta ){
-		$where = " WHERE estatus = 'completed' ";
-		if( !empty($desde) && !empty($hasta) ){
-			$where = " and fecha_creacion >= '{$desde} 00:00:00' and fecha_creacion <= '{$hasta} 23:59:59' ";
-		}
-		$sql = "SELECT * FROM cuidadores_pagos {$where} order by fecha_creacion asc";
-		return $this->db->get_results($sql);
-	}	
-
-	public function getPagoGenerados( $desde, $hasta ){
-		$where = " WHERE estatus <> 'completed' ";
-		if( !empty($desde) && !empty($hasta) ){
-			$where = " and fecha_creacion >= '{$desde} 00:00:00' and fecha_creacion <= '{$hasta} 23:59:59' ";
-		}
-		$sql = "SELECT * FROM cuidadores_pagos {$where} order by fecha_creacion asc";
- 	
-		return $this->db->get_results($sql);
-	}
-
-	public function getPagoGeneradosTotal( $desde, $hasta ){
+	public function getNotasCredito( $desde, $hasta ){
 		$where = " WHERE estatus = 'in_progress'";
 		if( !empty($desde) && !empty($hasta) ){
 			$where .= " and fecha_creacion >= '{$desde} 00:00:00' and fecha_creacion <= '{$hasta} 23:59:59' ";
 		}
-		$sql = "SELECT sum(total) as total FROM cuidadores_pagos {$where} order by fecha_creacion asc";
+		$sql = "SELECT sum(total) as total FROM factura_nota_credito {$where} order by fecha_creacion asc";
  	
 		return $this->db->get_results($sql);
 	}
 
-	public function getPagoCuidador($desde, $hasta){
-		if( empty($desde) || empty($hasta) ){
-			return [];
-		}
-
-		$reservas = $this->getReservas($desde, $hasta);
-
-		$obj_pagos = [];
-		$pagos = [];
-		$detalle = [];
-		$count = 1;
-
-		$dev = [];
-		if( !empty($reservas) ){
-			foreach ($reservas as $row) {
-
-				$total = 0;
-				$condicion = 's:7:"reserva";s:'.strlen($row->reserva_id).':"'.$row->reserva_id.'";';
-				$reserva_procesada = $this->db->get_row("SELECT * FROM cuidadores_pagos WHERE detalle like '%{$condicion}%' limit 1" );
- 
-				if( !isset($reserva_procesada->id) ){
-
-
-					// Datos del cuidador
-						$cuidador = $this->db->get_row('SELECT * FROM cuidadores WHERE user_id = '.$row->cuidador_id);
-
-						$pagos[ $row->cuidador_id ]['fecha_creacion'] = date('Y-m-d', strtotime("now"));
-						$pagos[ $row->cuidador_id ]['user_id'] = $row->cuidador_id; 
-						$pagos[ $row->cuidador_id ]['nombre'] = $cuidador->nombre ; 
-						$pagos[ $row->cuidador_id ]['apellido'] = $cuidador->apellido ; 
-						$pagos[ $row->cuidador_id ]['estatus'] = '';
-
-					// Meta de padido
-						$meta_pedido = $this->getMetaPedido( $row->pedido_id );
-
-					// Metodos de pago
-						$method_payment = '';
-						if( !empty($meta_pedido['_payment_method_title']) ){
-							$method_payment = $meta_pedido['_payment_method_title']; 
-						}else{
-							if( !empty($meta_reserva['modificacion_de']) ){
-								$method_payment = 'Saldo a favor' ; 
-							}else{
-								$method_payment = 'Manual'; 
-							}
-						}
-
-					// Calculo por reserva
-						$monto = $this->calculo_pago_cuidador( 
-							$row->reserva_id,
-							$row->total
-						);
-
-						$dev2[] = [
-							$row->reserva_id,
-							$row->total,
-							$monto
-						];
-  
- 
-						if( $count == 4 ){
-							$separador = '<br><br>';
-							$count=1;
-						}else{
-							$separador = '';
-							$count++;
-						}
-  
-						if( !isset($pagos[ $row->cuidador_id ]['detalle']) ){
-							$pagos[ $row->cuidador_id ]['detalle']=[]; 
-						}
-						if( $monto > 0 ){
-							$pagos[ $row->cuidador_id ]['detalle'][$row->reserva_id] = [
-								'reserva'=>$row->reserva_id,
-								'monto'=>$monto
-							];
-					    }
-
-						if( array_key_exists('total', $pagos[ $row->cuidador_id ]) ){
-							$monto = $pagos[ $row->cuidador_id ]['total'] + $monto;
-						}
-
-						if( array_key_exists('total_row', $pagos[ $row->cuidador_id ]) ){
-							$total = $pagos[ $row->cuidador_id ]['total_row'] + 1;
-						}
-
-					// Total a pagar
-						$pagos[ $row->cuidador_id ]['total'] = $monto;
-						$pagos[ $row->cuidador_id ]['cantidad'] = count($pagos[ $row->cuidador_id ]['detalle']);
-
-					// Object
-						if( $monto > 0 ){
-							$obj_pagos[$row->cuidador_id ] = (object) $pagos[$row->cuidador_id ];
-						}
-
-				}
-			}
-		}
-		
-		return $obj_pagos;
-	}
-
 	public function getRangoFechas(){
-    	$d = getdate();
-    	$strFecha = strtotime( date("Y-m-d", $d[0]) );
-		$fecha = $this->inicio_fin_semana( $strFecha, 'tue' );
+	    $fecha['ini'] = date('Y-m-d');
+	    $fecha['fin'] = date('Y-m-d',strtotime($fecha['ini']." +30 days "));
 		return $fecha;
 	}
 
@@ -275,46 +153,7 @@ class Pagos {
 		}else{
 			return [];
 		}
-		
-// SQL Original
-/*
-		$sql = "
-			SELECT 
-				us.user_id as cuidador_id,
-	 			us.nombre,
-				us.apellido,
-				r.ID as reserva_id,
-				r.post_parent as pedido_id,
-
-				( IFNULL(rm_cost.meta_value,0) ) as total,
-				( IFNULL(pm_total.meta_value,0) - IFNULL(pm_disco.meta_value,0) ) as total_pago,
-				( IFNULL(pm_remain.meta_value,0) ) as remanente,
-				rm_start.meta_value as booking_start
-			FROM wp_posts as r
-				LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
-				LEFT JOIN wp_postmeta as rm_cost ON rm_cost.post_id = r.ID and rm_cost.meta_key = '_booking_cost'
-				LEFT JOIN wp_postmeta as rm_start ON rm_start.post_id = r.ID and rm_start.meta_key = '_booking_start'
-
-				LEFT JOIN wp_posts as p ON p.ID = r.post_parent
-				LEFT JOIN wp_postmeta as pm_remain ON pm_remain.post_id = p.ID and pm_remain.meta_key = '_wc_deposits_remaining'
-				LEFT JOIN wp_postmeta as pm_total  ON pm_total.post_id = p.ID and pm_total.meta_key = '_order_total'
-				LEFT JOIN wp_postmeta as pm_disco  ON pm_disco.post_id = p.ID and pm_disco.meta_key = '_cart_discount'
-
-				LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')
-				LEFT JOIN wp_posts as pr ON pr.ID = pri.meta_value
-				LEFT JOIN cuidadores as us ON us.user_id = pr.post_author
-				LEFT JOIN wp_users as cl ON cl.ID = r.post_author
-			WHERE r.post_type = 'wc_booking' 
-				and not r.post_status like '%cart%' 
-				and cl.ID > 0 
-				and p.ID > 0
-				and us.user_id > 0
-				and r.post_status = 'confirmed'
-				{$filtro_adicional}
-			;";
-*/			
-
-// SQL Nuevo
+ 
 		$sql = "
 			SELECT 
 				pr.post_author as cuidador_id,

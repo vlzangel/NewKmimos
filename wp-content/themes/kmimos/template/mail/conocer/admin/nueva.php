@@ -8,7 +8,6 @@
     <div style='
     	margin: 0 auto;
     	width: 630px;
-	    padding: 30px; 
         font-size: 14px; 
         line-height: 1.07; 
         letter-spacing: 0.3px; 
@@ -95,7 +94,7 @@
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/min_calendar.png' style='text-align: left; width: 80%;'>
 								</td>
-								<td style="font-size: 12px!important;">
+								<td style="font-size: 20px!important;">
 									[fecha]
 								</td>
 							</tr>
@@ -103,7 +102,7 @@
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/min_clock.png' style='text-align: left; width: 80%;'>
 								</td>
-								<td style="font-size: 12px!important;">
+								<td style="font-size: 20px!important;">
 									[hora] horas
 								</td>
 							</tr>
@@ -111,7 +110,7 @@
 								<td style="padding: 5px 10px 5px 0px;">
 									<img src='[URL_IMGS]/icosNews/Icon-phonebook.png' style='text-align: left; width: 80%;'>
 								</td>
-								<td style="font-size: 12px!important;">
+								<td style="font-size: 20px!important;">
 									[lugar]
 								</td>
 							</tr>
@@ -198,20 +197,11 @@
 		            font-size: 16px;
 		            text-align: center;
 		    	    '>
-		            <td style='padding: 7px; width: 20px; border-bottom: solid 1px #940d99;'>
-		                Nombre
+		            <td style='padding: 7px; border-bottom: solid 1px #940d99;'>
+		                Nombre y Edad
 		            </td>
 		            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-		                Raza
-		            </td>
-		            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-		                Edad
-		            </td>
-		            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-		                Tamaño
-		            </td>
-		            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-		                Comportamiento
+		                Raza, Tamaño y Comportamiento
 		            </td>
 		        </tr>
 
