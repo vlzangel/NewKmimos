@@ -1,7 +1,7 @@
 <div style="
     width: 100%;
     background-color: #efefee;
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
 ">
     <div style="
@@ -14,13 +14,11 @@
             padding: 0px;
         '>
             <tr>
-                <td align="center" height="160" style="
-                    background-image: url('[AVATAR_CUIDADOR]'); 
-                    background-repeat: no-repeat; 
-                    background-position: center; 
-                    background-size: cover; 
+                <td align="center" height="160"  style="
                     background-color: #e8e8e8;"
-                ></td>
+                >
+                   <img src="[AVATAR_CUIDADOR]" height="160" width="485" > 
+                </td>
             </tr>
         </table>
 
