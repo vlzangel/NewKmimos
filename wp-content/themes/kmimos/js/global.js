@@ -45,8 +45,11 @@ jQuery( document ).ready(function() {
     });
 
 	jQuery("#login_submit").on("click", function(e){
-        if( !jQuery( "#login_submit" ).has('btn_disable') ){
+
+        if( !jQuery( "#login_submit" ).hasClass('btn_disable')  ){
             logear();
+        }else{
+            alert("Debe leer los terminos y condiciones primero.");
         }
 		e.preventDefault();
     });
