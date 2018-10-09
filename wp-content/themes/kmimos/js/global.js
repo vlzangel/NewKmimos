@@ -4,6 +4,13 @@ jQuery( document ).ready(function() {
         return target.replace(new RegExp(search, 'g'), replacement);
     };
 
+    jQuery('#mostrar_terminos').on('click', function(e){
+        e.preventDefault();
+        jQuery('.popup-iniciar-sesion-1').addClass('popuphide');
+        jQuery('.popup-login-condiciones').removeClass('popuphide');
+    });
+
+
     jQuery("#close_login").on("click", function(e){
         close_login_modal();
     });
@@ -241,7 +248,10 @@ function logear(){
                         jQuery('[data-id="alert_login"]').remove();
                     },3000);
                 }
-                btn.html('INICIAR SESIÓN AHORA');
+                jQuery('.popup-iniciar-sesion-1').removeClass('popuphide');
+                jQuery('.popup-login-condiciones').addClass('popuphide');
+                btn.html('ACEPTAR TERMINOS Y CONDICIONES');
+//                btn.html('INICIAR SESIÓN AHORA');
             },
             "json"
         );

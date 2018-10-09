@@ -1,6 +1,13 @@
 <?php
 /*wp_enqueue_script('index.js', getTema()."/js/index.js", array("jquery"), '1.0.0');*/
 
+include dirname(__DIR__).'/terminos_HTML.php';
+$NEW_HTML_TERMINOS = "";
+$parrafos = explode("\n", $HTML_TERMINOS);
+foreach ($parrafos as $parrafo) {
+	$NEW_HTML_TERMINOS .= "<p>".$parrafo."</p>";
+}
+
 $datos = kmimos_get_info_syte();
 	$HTML .='
 		<!-- POPUP INICIAR SESIÓN -->
@@ -11,21 +18,30 @@ $datos = kmimos_get_info_syte();
 					<div class="popup-iniciar-sesion-1">
 						<p class="popup-tit">INICIAR SESIÓN</p>
 						
-						<form id="form_login" autocomplete="off">
-							<div class="km-box-form">
-								<div class="content-placeholder">
-									<div class="label-placeholder">
-										<!-- <label>Correo electrónico</label>-->
-										<input type="text" id="usuario" placeholder="Usuario &oacute; Correo El&eacute;ctronico" class="input-label-placeholder">
-									</div>
-									<div class="label-placeholder">
-										<!--<label>Contraseña</label>-->
-										<input type="password" id="clave" placeholder="Contraseña" class="input-label-placeholder" autocomplete="off">
+							<form id="form_login" autocomplete="off">
+								<div class="km-box-form">
+									<div class="content-placeholder">
+										<div class="label-placeholder">
+											<!-- <label>Correo electrónico</label>-->
+											<input type="text" id="usuario" placeholder="Usuario &oacute; Correo El&eacute;ctronico" class="input-label-placeholder">
+										</div>
+										<div class="label-placeholder">
+											<!--<label>Contraseña</label>-->
+											<input type="password" id="clave" placeholder="Contraseña" class="input-label-placeholder" autocomplete="off">
+										</div>
+										<p style="color: #979797; margin-top: 20px;">
+											<label>
+												<input type="checkbox" name="login_terminos" >
+												Acepto los <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.
+											</label>
+										</p>
 									</div>
 								</div>
-							</div>
+							</form>
 							<input type="submit" name="enviar" class="hidden">
-							<a href="#" id="login_submit" class="km-btn-basic">INICIAR SESIÓN AHORA</a>
+							<a href="#" id="mostrar_terminos" class="km-btn-basic">
+								INICIAR SESIÓN AHORA
+							</a>
 
 							<div class="row km-recordatorio">
 								<div class="col-xs-12 col-sm-4">
@@ -37,12 +53,12 @@ $datos = kmimos_get_info_syte();
 									</div>
 
 								</div>
-							</form>
-
+							</div>
+							
 							<div class="col-xs-12 col-sm-8" style="text-align: right;">
 								<a href="#" class="km-btn-contraseña-olvidada">¿OLVIDASTE TU CONTRASEÑA?</a>
 							</div>
-						</div>
+
 						<div class="line-o hidden">
 							<p class="text-line">o</p>
 							<div class="bg-line"></div>
@@ -52,7 +68,8 @@ $datos = kmimos_get_info_syte();
 							display:none;
 				            -webkit-transition: All 1s; /* Safari */
 				            transition: All 1s;" 
-							data-error="auth"></div>
+							data-error="auth">
+						</div>
 
 						<a href="#" onClick="auth_facebook();" class="km-btn-fb hidden">
 							<img src="'.getTema().'/images/new/icon/km-redes/icon-fb-blanco.svg">
@@ -76,6 +93,18 @@ $datos = kmimos_get_info_syte();
 								<a data-target="#popup-registrarte" class="modal_show km-btn-border" ><b>REGÍSTRATE</b></a>
 							</div>
 						</div>
+					</div>
+					<div class="popuphide popup-login-condiciones" style="padding:15px">
+						<h3 style="margin: 0; text-align: center;">TERMINOS Y CONDICIONES</h3>
+						<div class="terminos_container">
+							'.$NEW_HTML_TERMINOS.'
+						</div>
+						<a href="#" id="login_submit" class="km-btn-correo btn_disable">
+							ACEPTAR TERMINOS Y CONDICIONES
+						</a>
+						<a href="#" class="km-btn-correo" data-dismiss="modal" style="    background: #eaeaea;color: #b3b3b3;">
+							No acepto los terminos y condiciones
+						</a>
 					</div>
 					<div class="popuphide popup-olvidaste-contrasena">
 						<p class="popup-tit">¿OLVIDASTE TU CONTRASEÑA?</p>
