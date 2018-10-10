@@ -46,7 +46,7 @@
 					<div class="solo_movil">
 						<div class="boton boton_border_morado">Regístrate</div>
 						<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
-						<span class="banner_txt_2">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
+						<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
 						<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
 					</div>
 				
@@ -304,7 +304,7 @@
 					Más de <strong>1,000 Cuidadores Certificados y 60,000 noches reservadas.</strong> Tu consentido se queda en el hogar de una <strong>VERDADERA FAMILIA,</strong> con cobertura veterinaría
 				</div>
 				<div class="beneficios_buscar_right">
-					<div class="boton boton_verde">Buscar cuidador</div>
+					<div onclick="jQuery(\'body,html\').stop(true,true).animate({ scrollTop: jQuery(\'#buscar\').offset().top }, 1000);" class="boton boton_verde">Buscar cuidador</div>
 				</div>
 			</div>
 
