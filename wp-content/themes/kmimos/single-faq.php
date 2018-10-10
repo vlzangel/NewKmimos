@@ -10,8 +10,31 @@
 
 	//$parents = get_ayuda_categoria( get_the_ID() );
 
-	
 
+	function replace_linktext( $text ){
+		$link_text = [
+			[
+				"find" => '¿Quieres ser cuidador certificado kmimos?',
+				"replace" => '<a href="https://www.kmimos.com.mx/">¿Quieres ser cuidador certificado kmimos?</a>',
+			],
+			[
+				"find" => '¿Necesitas que alguien cuide a tu peludo?',
+				"replace" => '<a href="https://www.kmimos.com.mx/">¿Necesitas que alguien cuide a tu peludo?</a>',
+			],
+			[
+				"find" => '¿Cómo empezar?',
+				"replace" => '<a href="https://www.kmimos.com.mx/">¿Cómo empezar?</a>',
+			],
+			[
+				"find" => '¿Qué es Kmimos?',
+				"replace" => '<a href="https://www.kmimos.com.mx/">¿Qué es Kmimos?</a>',
+			],
+		];	
+		foreach ($link_text as $item) {
+			$text = str_replace( $item['find'], $item['replace'], $text );
+		}
+		return $text;
+	}
 	
 ?>
 
@@ -36,11 +59,11 @@
 				<h3 class="title-category"><?php get_categoria_pregunta(get_the_ID()); ?></h3>
 				<?php if ( have_posts() ){ the_post(); ?>
 					<h3 class="title-post">
-						<?php kmimos_ucfirst(the_title()); ?>
+						<?php echo replace_linktext( kmimos_ucfirst( get_the_title() ) ); ?>
 					</h3>
 					<div class="col-md-12 text-justify text-content">	
 						<?php the_content(); ?>
-					</div>					
+					</div>
 				<?php } ?>
 			</article>
 			
@@ -56,7 +79,7 @@
 				<?php get_ayuda_relacionados(get_the_ID()); ?>
 				<article>
 					<h3 class="title-category">¿No encontraste lo que buscas?</h3>
-					<a href="<?php echo get_home_url() ?>'/contacta-con-nosotros/">
+					<a href="<?php echo get_home_url() ?>/contacta-con-nosotros/">
 						<h3 class="title-post contacta-con-nosotros">Contáctanos</h3>
 					</a>
 				</article>
