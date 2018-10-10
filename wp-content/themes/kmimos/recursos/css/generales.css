@@ -11,7 +11,7 @@ body{
 ::-ms-input-placeholder { color: #CCC; }
 
 a{
-	color: #FFF !important;
+	color: #FFF;
 	text-decoration: none;
 	display: inline-block;
 }
@@ -26,6 +26,10 @@ nav{
 	overflow: hidden;
     z-index: 1000;
     transition: all .3s ease-in-out;
+}
+
+nav td > a{
+	color: #FFF !important;
 }
 
 nav .logo_negro{
