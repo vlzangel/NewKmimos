@@ -50,16 +50,18 @@
 				<?php get_form_filtrar_ayuda(); ?>
 			</article>
  
- 			<article class="col-sm-12 text-left titulo-secundario">
+ 			<!-- article class="col-sm-12 text-left titulo-secundario">
 				<h3>SERVICIOS KMIMOS</h3>
-			</article>
+			</article -->
 
 			<!-- Ayuda Cliente-Cuidadores -->
 			<article class="col-sm-12">
-				<h3 class="title-category"><?php get_categoria_pregunta(get_the_ID()); ?></h3>
+				<!-- h3 class="title-category"><?php get_categoria_pregunta(get_the_ID()); ?></h3 -->
 				<?php if ( have_posts() ){ the_post(); ?>
 					<h3 class="title-post">
-						<?php echo replace_linktext( kmimos_ucfirst( get_the_title() ) ); ?>
+						<strong>
+							<?php echo replace_linktext( kmimos_ucfirst( get_the_title() ) ); ?>
+						</strong>
 					</h3>
 					<div class="col-md-12 text-justify text-content">	
 						<?php the_content(); ?>
