@@ -12,7 +12,7 @@
 						<td class="nav_left">
 							<img class="logo" src="'.get_recurso("img").'PNG/logo.png" />
 							<img class="logo logo_negro" src="'.get_recurso("img").'PNG/logo-negro.png" />
-							<a href="#" id="" class="boton">
+							<a href="#" id="" onclick="ancla_form()" class="boton">
 								<img class="lupa" src="'.get_recurso("img").'PNG/Buscar.png" /> 
 								<img class="lupa_negra" src="'.get_recurso("img").'PNG/Buscar_negro.png" /> 
 								Buscar Cuidador
