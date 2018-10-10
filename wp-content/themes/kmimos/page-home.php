@@ -304,7 +304,7 @@
 					Más de <strong>1,000 Cuidadores Certificados y 60,000 noches reservadas.</strong> Tu consentido se queda en el hogar de una <strong>VERDADERA FAMILIA,</strong> con cobertura veterinaría
 				</div>
 				<div class="beneficios_buscar_right">
-					<div onclick="jQuery(\'body,html\').stop(true,true).animate({ scrollTop: jQuery(\'#buscar\').offset().top }, 1000);" class="boton boton_verde">Buscar cuidador</div>
+					<div onclick="ancla_form()" class="boton boton_verde">Buscar cuidador</div>
 				</div>
 			</div>
 

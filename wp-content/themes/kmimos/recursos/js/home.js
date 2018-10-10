@@ -14,11 +14,20 @@ var limites = {
 };
 
 function fixedHeader() {
+    let ww = jQuery(window).scrollTop();
+    if (ww > 0) {
+        jQuery('nav').addClass('nav_white');
+    } else {
+        jQuery('nav').removeClass('nav_white');
+    }
+}
+
+function ancla_form() {
   	let ww = jQuery(window).scrollTop();
-  	if (ww > 0) {
-    	jQuery('nav').addClass('nav_white');
+  	if ( jQuery('#buscar').offset().top >= 378 ) {
+    	jQuery('body,html').stop(true,true).animate({ scrollTop: jQuery('#buscar').offset().top }, 1000);
   	} else {
-    	jQuery('nav').removeClass('nav_white');
+    	jQuery('body,html').stop(true,true).animate({ scrollTop: 200 }, 1000);
   	}
 }
 
