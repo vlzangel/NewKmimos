@@ -99,11 +99,11 @@ nav .lupa_negra{
 
 	nav.nav_white .boton,
 	nav.nav_white .nav_right > a{
-		color: #000;
+		color: #000 !important;
 	}
 
 	nav.nav_white .boton_morado{
-		color: #FFF;
+		color: #FFF !important;
 	}
 
 .logo{
