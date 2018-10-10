@@ -45,7 +45,8 @@
 	<section class="temas-sugeridos">
 		<div class="sugeridos-content text-center">
 			<div class="container">
-			¿No encontraste lo que buscabas? <a href="<?php echo get_home_url(); ?>/contacta-con-nosotros/"><b> Cont&aacute;ctanos</b></a>
+			<a href="<?php echo get_home_url(); ?>/ayuda/no-encontraste-lo-que-buscas"><h3 class="title-category">¿No encontraste lo que buscas?</h3></a><br> 
+			<a href="<?php echo get_home_url(); ?>/contacta-con-nosotros/"><b> Cont&aacute;ctanos</b></a>
 			</div>
 		</div>
 	</section>
