@@ -393,7 +393,7 @@
 					$postsugeridos = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
 						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id." limit 2");
 
-					$article .= '<h3 class="title-category">'.$categoria->name.'</h3>';
+					//$article .= '<h3 class="title-category">'.$categoria->name.'</h3>';
 
 					foreach ($postsugeridos as $post) { 
 
@@ -905,7 +905,7 @@ if(!function_exists('get_preguntas_categoria')){
 
          /* Temporal ********************* */
 
-          	if ( 	 $current_user->user_email == 'a.pedroza@kmimos.la' ||
+          	if ( $current_user->user_email == 'a.pedroza@kmimos.la' ||
 				 $current_user->user_email == 'r.cuevas@kmimos.la'  ||
 				 $current_user->user_email == 'e.celli@kmimos.la' 	|| 
 				 $current_user->user_email == 'soporte.kmimos@gmail.com'
@@ -949,9 +949,8 @@ if(!function_exists('get_preguntas_categoria')){
       				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
       			);
 
-      			
+		    }
 
-		      }
          /* Temporal ********************* */
 
 			$menus[] = array(
@@ -965,8 +964,6 @@ if(!function_exists('get_preguntas_categoria')){
 			);
 
 			// Menu Mascotas
-      			
-      			
       			
 	        return $menus;
 
