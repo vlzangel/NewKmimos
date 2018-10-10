@@ -55,11 +55,11 @@
 	}
 
 	#buscador .banner_txt_1 {
-       	font-size: 14px;
-	    text-transform: none;
-	    max-width: 450px;
-	    margin: 0px auto;
-	    padding: 0px;
+		font-size: 16px;
+		text-transform: none;
+		max-width: 325px;
+		margin: 0px auto;
+		padding: 0px;
 	}
 
 	#buscador .banner_txt_2 {
