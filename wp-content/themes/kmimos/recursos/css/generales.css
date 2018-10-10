@@ -3,6 +3,7 @@
 body{
 	margin: 0px;
 	font-family: 'Lato', sans-serif;
+    /* overflow-x: hidden; */
 }
 
 ::placeholder { color: #CCC; opacity: 1; }
@@ -31,7 +32,7 @@ nav .logo_negro{
 	display: none;
 }
 
-nav > table {
+nav .nav_table {
 	width: 100%;
 	margin: 15px auto;
 	max-width: 1360px;
@@ -39,7 +40,7 @@ nav > table {
 	padding: 0px 50px;
 }
 
-nav > table * {
+nav .nav_table * {
 	vertical-align: middle;
 }
 
@@ -49,6 +50,14 @@ nav .nav_left{
 nav .nav_right{
 	text-align: right;
 	color: #FFF;
+}
+
+.solo_movil {
+    display: none !important;
+}
+
+.solo_pc {
+    display: block !important;
 }
 
 .boton img{
@@ -80,7 +89,7 @@ nav .lupa_negra{
     	transition: all .3s ease-in-out;
 	}
 
-	nav.nav_white > table {
+	nav.nav_white .nav_table {
 		margin: 3px auto;
 	}
 

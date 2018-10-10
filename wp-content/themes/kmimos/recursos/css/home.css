@@ -23,7 +23,7 @@
 		vertical-align: middle;
 	}
 
-	#banner_home > div > span {
+	#banner_home > div > div > span {
 		display: block;
 		color: #FFF;
 	}
@@ -256,6 +256,18 @@
 	    display: block;
 	}
 
+	.tam_label_pc{
+		display: inline-block;
+	}
+
+	.tam_label_movil{
+		display: none;
+	}
+
+	.tamanios_container .input_check_box img {
+	    display: none;
+	}
+
 
 
 /* BOTÓN BUSCAR */
@@ -284,6 +296,11 @@
 	}
 
 /* BENEFICIOS */
+
+	.beneficios_buscar_top,
+	.beneficios_banner_movil{
+		display: none;
+	}
 
 	.beneficios_container {
 		padding: 50px;
@@ -611,6 +628,11 @@
     	margin: 0px auto;
 	}
 
+	.pasos_celda_top,
+	.pasos_celda_bottom{
+		display: block;
+	}
+
 /* CLUB PATITAS FELICES */
 
 	.club_patitas_container_superior{
@@ -653,11 +675,21 @@
 		border-radius: 2px;
 		padding: 70px;
 		box-sizing: border-box;
+		overflow: hidden;
 	}
 
 	.club_patitas_celda{
 		display: table-cell;
 		vertical-align: middle;
+	}
+
+	.club_patitas_celda.celda_30 {
+	    float: right;
+	    padding-right: 0px !important;
+	}
+
+	.club_patitas_celda.celda_70 {
+	    float: left;
 	}
 
 	.club_patitas_logo{
@@ -694,12 +726,13 @@
 
 	.club_patitas_container input[type='submit']{
 	    width: 100%;
-	    padding: 15px 80px;
+	    padding: 15px 0px;
 	    outline: none;
 	    border: 0px;
 	    font-size: 18px;
 	    font-weight: 600;
 	    margin: 0px 0px 5px;
+	    text-align: center;
 	}
 
 	.club_patitas_container small {

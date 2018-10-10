@@ -11,39 +11,58 @@
 	    $HTML = '
 	    	<div id="banner_home">
 				<div>
-					<span class="banner_txt_1">la red más segura de cuidadores certificados de méxico</span>
-					<span class="banner_txt_2">¡Tu mejor amigo regresa feliz!</span>
+					<div class="solo_pc">
+						<span class="banner_txt_1">la red más segura de cuidadores certificados de México</span>
+						<span class="banner_txt_2">¡Tu mejor amigo regresa feliz!</span>
+					</div>
+					<div class="solo_movil banner_home"></div>
 
 					<form id="busqueda">
+
+						<div class="solo_movil">
+							<div class="boton boton_border_morado">Regístrate</div>
+							<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
+							<span class="banner_txt_2">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
+							<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
+						</div>
 					
 						<div class="servicios_principales_container">
-							<label class="input_check_box" for="hospedaje">
-								<input type="checkbox" id="hospedaje" name="hospedaje"  />
-								<img src="'.get_recurso("img").'SVG/Hospedaje.svg" />
-								<span>Hospedaje</span>
-								<div class="top_check"></div>
-							</label>
 
-							<label class="input_check_box" for="guarderia">
-								<input type="checkbox" id="guarderia" name="guarderia"  />
-								<img src="'.get_recurso("img").'SVG/Guarderia.svg" />
-								<span>Guardería</span>
-								<div class="top_check"></div>
-							</label>
+							<div class="servicios_principales_box">
 
-							<label class="input_check_box" for="paseos">
-								<input type="checkbox" id="paseos" name="paseos"  />
-								<img src="'.get_recurso("img").'SVG/Paseos.svg" />
-								<span>Paseos</span>
-								<div class="top_check"></div>
-							</label>
+								<label class="input_check_box" for="hospedaje">
+									<input type="checkbox" id="hospedaje" name="hospedaje"  />
+									<img class="solo_pc" src="'.get_recurso("img").'SVG/Hospedaje.svg" />
+									<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Hospedaje.png" />
+									<span>Hospedaje</span>
+									<div class="top_check"></div>
+								</label>
 
-							<label class="input_check_box" for="entrenamiento">
-								<input type="checkbox" id="entrenamiento" name="entrenamiento"  />
-								<img src="'.get_recurso("img").'SVG/Entrenamiento.svg" />
-								<span>Entrenamiento</span>
-								<div class="top_check"></div>
-							</label>
+								<label class="input_check_box" for="guarderia">
+									<input type="checkbox" id="guarderia" name="guarderia"  />
+									<img class="solo_pc" src="'.get_recurso("img").'SVG/Guarderia.svg" />
+									<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Guarderia.png" />
+									<span>Guardería</span>
+									<div class="top_check"></div>
+								</label>
+
+								<label class="input_check_box" for="paseos">
+									<input type="checkbox" id="paseos" name="paseos"  />
+									<img class="solo_pc" src="'.get_recurso("img").'SVG/Paseos.svg" />
+									<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Paseos.png" />
+									<span>Paseos</span>
+									<div class="top_check"></div>
+								</label>
+
+								<label class="input_check_box" for="entrenamiento">
+									<input type="checkbox" id="entrenamiento" name="entrenamiento"  />
+									<img class="solo_pc" src="'.get_recurso("img").'SVG/Entrenamiento.svg" />
+									<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Entrenamiento.png" />
+									<span>Entrenamiento</span>
+									<div class="top_check"></div>
+								</label>
+
+							</div>
 						</div>
 
 						<div class="controles_mitad_container">
@@ -55,14 +74,12 @@
 							</div>
 
 							<div class="tipo_mascota_container">
-
 								<label class="input_check_box" for="perro">
 									<input type="checkbox" id="perro" name="perro"  />
 									<img src="'.get_recurso("img").'SVG/Perro.svg" />
 									<span>Perro</span>
 									<div class="top_check"></div>
 								</label>
-
 								<label class="input_check_box" for="gato">
 									<input type="checkbox" id="gato" name="gato"  />
 									<img src="'.get_recurso("img").'SVG/Gato.svg" />
@@ -70,9 +87,7 @@
 									<div class="top_check"></div>
 								</label>
 							</div>
-
 							<div class="fechas_container">
-
 								<div id="desde_container">
 									<img class="icon_fecha" src="'.get_recurso("img").'SVG/Fecha.svg" />
 									<input type="text" id="desde" name="desde" placeholder="Desde">
@@ -81,25 +96,26 @@
 									<img class="icon_fecha" src="'.get_recurso("img").'SVG/Fecha.svg" />
 									<input type="text" id="hasta" name="hasta" placeholder="Hasta">
 								</div>
-
 							</div>
-						
 						</div>
 
 						<div class="tamanios_container">
 							<label class="input_check_box" for="paqueno">
 								<input type="checkbox" id="paqueno" name="paqueno"  />
+								<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Pequenio.svg" />
 								<span>
-									Pequeño
+									<div class="tam_label_pc">Pequeño</div>
+									<div class="tam_label_movil">Peq.</div>
 									<small>0 a 25 cm</small>
 								</span>
 								<div class="top_check"></div>
 							</label>
-
 							<label class="input_check_box" for="mediano">
 								<input type="checkbox" id="mediano" name="mediano"  />
+								<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Mediano.svg" />
 								<span>
-									Mediano
+									<div class="tam_label_pc">Mediano</div>
+									<div class="tam_label_movil">Med.</div>
 									<small>25 a 58 cm</small>
 								</span>
 								<div class="top_check"></div>
@@ -107,8 +123,10 @@
 
 							<label class="input_check_box" for="grande">
 								<input type="checkbox" id="grande" name="grande"  />
+								<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Grande.svg" />
 								<span>
-									Grande
+									<div class="tam_label_pc">Grande</div>
+									<div class="tam_label_movil">Gde</div>
 									<small>58 a 73 cm</small>
 								</span>
 								<div class="top_check"></div>
@@ -116,8 +134,10 @@
 
 							<label class="input_check_box" for="gigante">
 								<input type="checkbox" id="gigante" name="gigante"  />
+								<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Gigante.svg" />
 								<span>
-									Gigante
+									<div class="tam_label_pc">Gigante</div>
+									<div class="tam_label_movil">Gte.</div>
 									<small>73 a 200 cm</small>
 								</span>
 								<div class="top_check"></div>
@@ -137,6 +157,10 @@
 
 			<div class="beneficios_container">
 				
+				<div class="beneficios_buscar_top">
+					Más de <strong>1,000 Cuidadores Certificados y 60,000 noches reservadas.</strong> Tu consentido se queda en el hogar de una <strong>VERDADERA FAMILIA,</strong> con cobertura veterinaría
+				</div>
+
 				<div class="beneficios_registrar_container">
 					<div class="boton boton_border_morado">Regístrate</div>
 					<span class="">
@@ -144,8 +168,11 @@
 					</span>
 				</div>
 				
+				<h2>Conoce los beneficios de dejar tu mascota con cuidadores certificados</h2>
+				<img class="beneficios_banner_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Beneficios-de-dejar---.png" />
+
 				<div class="beneficios_detalles">
-					<h2>Conoce los beneficios de dejar tu mascota con cuidadores certificados</h2>
+
 					<div class="beneficios_detalles_tabla">
 						<div class="beneficios_detalles_col_left">
 							
@@ -248,15 +275,16 @@
 			</div>
 
 			<div class="testimonios_container">
-				<div class="testimonios_img">
-					<span>
-						+1,500 comentarios positivos en perfiles de cuidadores
-					</span>
-				</div>
 
 				<div class="testimonios_item">
 					<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>
 					<span>- Alejandra R.</span>
+				</div>
+
+				<div class="testimonios_img">
+					<span>
+						+1,500 comentarios positivos en perfiles de cuidadores
+					</span>
 				</div>
 
 				<a href="" class="testimonios_link">Ver más comentarios como éste</a>
@@ -268,8 +296,10 @@
 			<div class="pasos_reserva_container">
 				<h2>Tu mascota será parte de una verdadera familia mientras se queda</h2>
 
+				<h2 class="solo_movil">Reserva en 3 simples pasos</h2>
+
 				<div class="pasos_reserva_tabla">
-					<div class="pasos_reserva_row">
+					<div class="pasos_reserva_row pasos_reserva_numeros">
 						<div class="pasos_reserva_celda">
 							<span id="paso_1">1</span>
 						</div>
@@ -282,19 +312,31 @@
 					</div>
 					<div class="pasos_reserva_row">
 						<div class="pasos_reserva_celda">
-							<img src="'.get_recurso("img").'SVG/Paso_1.svg" />
-							<h3>Haz tu búsqueda</h3>
-							<p>Consigue cuidadores cerca de ti, con las características que necesites</p>
+							<div class="pasos_celda_top">
+								<img src="'.get_recurso("img").'SVG/Paso_1.svg" />
+							</div>
+							<div class="pasos_celda_bottom">
+								<h3>Haz tu búsqueda</h3>
+								<p>Consigue cuidadores cerca de ti, con las características que necesites</p>
+							</div>
 						</div>
 						<div class="pasos_reserva_celda">
-							<img src="'.get_recurso("img").'SVG/Paso_2.svg" />
-							<h3>Agenda y haz el pago</h3>
-							<p>Paga con tarjeta de débito, crédito o efectivo en tienda de conveniencia</p>
+							<div class="pasos_celda_top">
+								<img src="'.get_recurso("img").'SVG/Paso_2.svg" />
+							</div>
+							<div class="pasos_celda_bottom">
+								<h3>Agenda y haz el pago</h3>
+								<p>Paga con tarjeta de débito, crédito o efectivo en tienda de conveniencia</p>
+							</div>
 						</div>
 						<div class="pasos_reserva_celda">
-							<img src="'.get_recurso("img").'SVG/Paso_3.svg" />
-							<h3>Tu mascota vuelve feliz</h3>
-							<p>¡Despreocúpate! Tu mejor amigo volverá feliz, esa es la garantía Kmimos</p>
+							<div class="pasos_celda_top">
+								<img src="'.get_recurso("img").'SVG/Paso_3.svg" />
+							</div>
+							<div class="pasos_celda_bottom">
+								<h3>Tu mascota vuelve feliz</h3>
+								<p>¡Despreocúpate! Tu mejor amigo volverá feliz, esa es la garantía Kmimos</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -305,13 +347,15 @@
 
 			<div class="club_patitas_container_superior">
 				<div class="club_patitas_container">
-
 					<div class="club_patitas_tabla">
+						<div class="club_patitas_celda celda_30">
+							<h2>¡Únete al Club de las patitas felices! </h2>
+							<img  class="club_patitas_logo" src="'.get_recurso("img").'SVG/Club_patitas.svg" />
+						</div>
 						<div class="club_patitas_celda celda_70">
 							<h2>¡Únete al Club de las patitas felices! </h2>
 							<span>Cada amigo que complete 1 reservación</span>
 							<h3>Gana $150 y tú ganas otros $150</h3>
-
 							<form>
 								<div class="club_patitas_tabla">
 									<div class="club_patitas_celda celda_70">
@@ -324,9 +368,6 @@
 									</div>
 								</div>
 							</form>
-						</div>
-						<div class="club_patitas_celda celda_30">
-							<img  class="club_patitas_logo" src="'.get_recurso("img").'SVG/Club_patitas.svg" />
 						</div>
 					</div>
 

@@ -13,6 +13,535 @@
 
 @media (max-width: 768px){
 
+	#busqueda .solo_movil .boton_border_morado{
+		width: 100%;
+		max-width: 180px;
+		font-weight: 600;
+		color: #7c169e;
+		margin-bottom: 20px;
+	}
+
+	#banner_home {
+	    background-image: url();
+	    height: 270px;
+	    padding: 0px;
+	}
+
+	.banner_home {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		padding: 0px 50px;
+		display: table;
+		width: 100%;
+		box-sizing: border-box;
+	    background-image: url(../../img/RESPONSIVE/PNG/Principal.png);
+	    height: 270px;
+	    padding: 0px;
+	}
+
+	#banner_home #busqueda {
+		margin: -30px auto 0px;
+		border-radius: 30px 30px 0px 0px;
+		box-shadow: 0px 0px 0px #6d6d6d;
+		padding: 30px 10px 10px;
+		box-sizing: border-box;
+		width: 100%;
+	}
+
+	#busqueda .banner_txt_1, 
+	#busqueda .banner_txt_2 {
+	    display: block;
+	}
+
+	#busqueda .banner_txt_1 {
+       	font-size: 14px;
+	    text-transform: none;
+	    max-width: 450px;
+	    margin: 0px auto;
+	    padding: 0px;
+	}
+
+	#busqueda .banner_txt_2 {
+	    font-family: Lato;
+	    font-size: 13px;
+	    font-weight: 400;
+	    padding: 15px 0px;
+	}
+
+	#busqueda .banner_txt_3 {
+	    font-family: Lato;
+	    font-size: 13px;
+	    font-weight: 600;
+	    padding: 15px 0px;
+	    text-align: left;
+	    display: block;
+	}
+
+	.servicios_principales_container {
+	    overflow: hidden;
+	    width: 100%;
+	}
+
+	.servicios_principales_box{
+	    overflow: auto;
+        white-space: nowrap;
+	}
+
+	.servicios_principales_container .input_check_box {
+	    padding: 0px;
+	    width: calc( 33.33333% - 11px );
+	    height: auto;
+	}
+
+	.servicios_principales_container .input_check_box img {
+	    height: auto;
+	    margin: 0px;
+	    width: 100%;
+	}
+
+	.servicios_principales_container .input_check_box span {
+   		color: #828282;
+	    font-size: 11px;
+	    padding: 6px 0px;
+	    display: inline-block;
+	}
+
+	.ubicacion_container {
+	    position: relative;
+	    display: block;
+	    width: 100%;
+	    box-sizing: border-box;
+	    margin-right: 10px;
+	    margin-bottom: 15px;
+	}
+
+	.tipo_mascota_container {
+	    display: block;
+	    width: 100%;
+	    box-sizing: border-box;
+	    margin-right: 0px;
+	    vertical-align: top;
+	    margin-bottom: 15px;
+	}
+
+	.tipo_mascota_container .input_check_box {
+	    width: calc( 50% - 10px );
+	}
+
+	.fechas_container {
+	    display: block;
+	    width: 100%;
+	}
+
+	.tamanios_container {
+	    display: block;
+	    width: 100%;
+	    box-sizing: border-box;
+	    margin-right: 0px;
+	    padding-left: 0px;
+	    overflow: hidden;
+	    margin-bottom: 15px;
+	}
+
+	.tam_label_pc{
+		display: none;
+	}
+
+	.tam_label_movil{
+		display: block;
+	}
+
+	.tamanios_container .input_check_box {
+        padding: 10px 0px;
+	}
+
+	.tamanios_container .input_check_box span {
+	    font-size: 12px;
+	}
+
+	.tamanios_container .input_check_box img {
+	    display: inline-block;
+	    margin: 0px;
+	    height: 20px;
+	}
+
+	.boton_buscar_container {
+	    width: 100%;
+	    padding-right: 0px;
+	    max-width: 300px;
+	    margin: 25px 0px;
+	}
+
+	.boton_buscar_container .boton_buscar {
+	    font-size: 20px;
+	    padding: 15px 0px;
+	    height: auto;
+	}
+
+	.beneficios_container {
+	    padding: 0px;
+	}
+
+	.beneficios_buscar_top{
+		display: block;
+		padding: 30px;
+	    background: #f2f2f2;
+	    font-size: 14px;
+	}
+
+	.beneficios_registrar_container{
+		display: none;
+	}
+
+	.beneficios_container h2 {
+	    text-transform: none;
+	    font-size: 15px;
+	    padding: 20px;
+	}
+
+	.beneficios_banner_movil{
+		display: block;
+		margin: 0px auto 20px;
+		width: 90%;
+	}
+
+	.beneficios_detalles .beneficios_detalles_tabla > div {
+	    display: block;
+	    vertical-align: top;
+	    padding: 0px 15px;
+	    width: auto;
+	}
+
+	.beneficios_detalles_info h3 {
+	    color: #000;
+	    font-size: 15px;
+	    margin: 5px 0px;
+	}
+
+	.beneficios_detalles_info p {
+	    font-size: 10px;
+	}
+
+	.beneficios_servicios_principales .beneficios_servicios_principales_lista li > div {
+	    vertical-align: middle;
+	    max-width: 70%;
+	}
+
+	.beneficios_servicios_principales .beneficios_servicios_principales_titulo {
+	    font-size: 15px;
+	    color: #000;
+	}
+
+	.beneficios_servicios_principales .beneficios_servicios_principales_lista {
+	    padding: 0px 20px;
+	}
+
+	.beneficios_servicios_principales .beneficios_servicios_principales_lista img {
+	    height: 20px;
+	    margin-right: 10px;
+	    vertical-align: top;
+	}
+
+	.beneficios_servicios_principales .beneficios_servicios_principales_lista strong {
+	    font-size: 15px;
+	    color: #000;
+	}
+
+	.beneficios_servicios_principales .beneficios_servicios_principales_lista p {
+	    font-size: 13px;
+	}
+
+	.beneficios_servicios_principales .beneficios_servicios_principales_lista li {
+	    padding: 0px;
+	}
+
+	.beneficios_buscar_container {
+	    margin-top: 10px;
+	}
+
+	.beneficios_buscar_left {
+	    display: none;
+	}
+
+	.beneficios_buscar_right {
+	    display: block;
+	    width: auto;
+	    text-align: center;
+	}
+
+	.beneficios_buscar_right .boton {
+	    font-size: 16px;
+	    padding: 10px 65px;
+	    margin: 0px;
+	}
+
+	.testimonios_container {
+	    padding: 20px 20px 60px;
+	    position: relative;
+	    box-shadow: 0px 3px 5px #dedede;
+	    overflow: hidden;
+	    margin: 30px 0px 0px;
+	    background: #f2f2f2;
+	}
+
+	.testimonios_container .testimonios_img {
+	    background-image: url(../../img/RESPONSIVE/PNG/Coment-Cuidador.png);
+	    height: 130px;
+        position: relative;
+	}
+
+	.testimonios_container .testimonios_item {
+	    background-color: #FFF;
+	    border-radius: 5px 5px 0px 0px;
+	    position: relative;
+	    bottom: auto;
+	    left: auto;
+	    height: auto;
+	    width: 100%;
+	    box-sizing: border-box;
+	    padding: 20px;
+	    font-size: 10px;
+	    line-height: 1.7;
+	    text-align: justify;
+	    color: #585858;
+	    box-shadow: 0px 0px 0px #CCC;
+	    padding: 10px 10px 35px;
+	}
+
+	.testimonios_container .testimonios_item:before {
+	    content: ' ';
+	    position: absolute;
+	    top: auto;
+	    right: auto;
+	    width: 0px;
+	    height: 0px;
+	    border: solid;
+	    border-color: #fff transparent transparent transparent;
+	    border-width: 20px;
+	    bottom: -40px;
+	    left: 20px;
+	}
+
+	.testimonios_container .testimonios_img span {
+		position: absolute;
+		top: 25px;
+		left: 10px;
+		color: #FFF;
+		font-size: 10px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		width: 42%;
+	}
+
+	.testimonios_container .testimonios_item span {
+	    font-size: 13px;
+	}
+
+	.testimonios_link {
+   		position: absolute;
+	    bottom: 0px;
+	    left: 0px;
+	    font-size: 13px;
+	    color: #FFF;
+	    border-bottom: 0px;
+	    font-weight: 500;
+	    text-align: center;
+	    width: 100%;
+	    background: #1cd3c6;
+	    padding: 10px;
+	    box-sizing: border-box;
+	}
+
+	.pasos_reserva_container h2{
+		display: none;
+	}
+
+	.pasos_reserva_numeros{
+		display: none !important;
+	}
+
+	.pasos_reserva_celda img {
+	    height: 80px;
+	    margin: 0px;
+	}
+
+	.pasos_reserva_row {
+	    display: block;
+	}
+
+	.pasos_reserva_celda {
+	    display: block;
+	    width: 100%;
+	    position: relative;
+	    overflow: hidden;
+	}
+
+	.pasos_celda_top,
+	.pasos_celda_bottom{
+		float: left;
+	}
+
+	.pasos_celda_top{
+		width: 30%;
+		text-align: center;
+	}
+
+	.pasos_celda_bottom{
+		width: 70%;
+		text-align: left;
+	}
+
+	.pasos_reserva_celda h3 {
+		color: #000;
+		font-size: 13px;
+		margin: 18px 0px 5px;
+	}
+
+	.pasos_reserva_celda p {
+	    font-size: 10px;
+	    color: #000000;
+	    max-width: 290px;
+	    width: 100%;
+	    margin: 0px;
+	    padding: 0px 20px 0px 0px;
+	    box-sizing: border-box;
+	}
+
+	.pasos_reserva_container h2.solo_movil {
+	    display: block;
+	    text-transform: none;
+	    text-align: center;
+	    margin: 20px 0px 5px;
+	    font-size: 14px;
+	}
+
+	.club_patitas_container_superior {
+	    padding: 20px;
+	}
+
+	.club_patitas_container {
+	    display: block;
+	    width: 100%;
+	    box-sizing: border-box;
+	    max-width: 100%;
+	    margin: 0px;
+	}
+
+	.club_patitas_tabla {
+	    display: block;
+	    width: 100%;
+	    box-shadow: 0px 0px 1px #a2a2a2;
+	    border-radius: 0px;
+	    padding: 20px;
+	    box-sizing: border-box;
+	}
+
+	.club_patitas_celda {
+	    display: block;
+	    width: 100% !important;
+	    box-sizing: border-box;
+	}
+
+	.club_patitas_container h2 {
+	    font-family: 'Indie Flower', cursive;
+	    font-weight: 400;
+	    font-size: 15px;
+	    margin: 0px;
+	    text-align: center;
+	}
+
+	.club_patitas_celda.celda_30 h2 {
+		margin: 0px 0px 20px;
+	}
+
+	.club_patitas_celda.celda_30 img {
+		width: 50%;
+	}
+
+	.club_patitas_celda.celda_70 h2 {
+		display: none;
+	}
+
+	.club_patitas_container span {
+	    font-weight: 400;
+	    font-size: 11px;
+	    padding-top: 20px;
+	    display: block;
+	    text-align: center;
+	}
+
+	.club_patitas_container h3 {
+	    text-transform: uppercase;
+	    font-size: 13px;
+	    color: #7c169e;
+	    text-align: center;
+	    display: block;
+	}
+
+	.club_patitas_tabla .club_patitas_tabla {
+	    display: block;
+	    width: 100%;
+	}
+
+	.club_patitas_tabla .club_patitas_tabla .club_patitas_celda {
+	    padding: 0px 0px 15px;
+	}
+
+	.club_patitas_container input[type='text'], .club_patitas_container input[type='email'] {
+	    font-size: 12px;
+	}
+
+	.club_patitas_container input[type='submit'] {
+	    padding: 10px 0px;
+	    font-size: 12px;
+	    width: 80%;
+	    display: block;
+	    margin: 0px auto;
+	}
+
+	.club_patitas_container small {
+	    padding: 5px;
+	    font-size: 12px;
+	}
+
+	.quiero_ser_cuidador_container .quiero_ser_cuidador_img {
+	    background-image: url(../../img/RESPONSIVE/PNG/Banner-Cuidador.png);
+	    height: 250px;
+	    border-radius: 5px;
+	}
+
+	.quiero_ser_cuidador_container {
+	    padding: 0px 20px;
+	    position: relative;
+	    overflow: hidden;
+	    margin-bottom: 0px;
+	}
+
+	.quiero_ser_cuidador_container .quiero_ser_cuidador_info {
+	    bottom: 10px;
+	    right: 10px;
+	}
+
+	.quiero_ser_cuidador_container h2 {
+	    color: #FFF;
+	    font-size: 15px;
+	    text-transform: none;
+	    margin: 0px 0px 15px;
+	    padding: 0px 25px 0px 55px;
+	}
+
+	.quiero_ser_cuidador_container span,
+	.quiero_ser_cuidador_container a{
+	    display: none;
+	}
+
+	.conectate_container,
+	.aliados_container,
+	footer
+	{
+	    display: none;
+	}
 }
 
 @media (max-width: 480px){

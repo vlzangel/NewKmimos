@@ -8,6 +8,40 @@
 
 @media (max-width: 768px){
 
+	nav .nav_table {
+	    padding: 0px 5px;
+	}
+
+	td.nav_left .boton {
+	    display: none;
+	}
+
+	.logo {
+	    height: 30px;
+	}
+
+	.solo_movil {
+	    display: block !important;;
+	}
+
+	.solo_pc {
+	    display: none !important;;
+	}
+
+	nav {
+	    background: rgba(0,0,0,0);
+	}
+	
+	td.nav_right img {
+	    height: 28px;
+	}
+
+	td.nav_right > a {
+		color: #000;
+		padding: 0px 0px 5px 0px;
+		font-size: 13px;
+	}
+
 }
 
 @media (max-width: 480px){

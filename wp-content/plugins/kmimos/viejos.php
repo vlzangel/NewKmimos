@@ -25,8 +25,8 @@
     if(!function_exists('get_referred_list_options')){
         function get_referred_list_options(){
             $opciones = array(
+                'Petco-Tienda'  =>  'Tienda Petco',
                 'Petco'         =>  'Petco',
-                'Volaris'       =>  'Volaris',
 
                 /*'Venta de alimento' =>  'Venta de alimento',
                 'Nutriheroes'       =>  'Nutriheroes',*/
@@ -48,7 +48,7 @@
                 'Youtube'               =>  'Youtube',
                 'Otros'                 =>  'Otros',
                 'CC-Petco'              =>  'Petco-CC',
-                'Petco-Tienda'          =>  'Petco-Tienda',
+                'Volaris'               =>  'Volaris'
             );
             return $opciones;
         }
