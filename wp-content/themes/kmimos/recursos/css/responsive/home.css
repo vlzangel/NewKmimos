@@ -13,7 +13,7 @@
 
 @media (max-width: 768px){
 
-	#busqueda .solo_movil .boton_border_morado{
+	#buscador .solo_movil .boton_border_morado{
 		width: 100%;
 		max-width: 180px;
 		font-weight: 600;
@@ -40,7 +40,7 @@
 	    padding: 0px;
 	}
 
-	#banner_home #busqueda {
+	#banner_home #buscador {
 		margin: -30px auto 0px;
 		border-radius: 30px 30px 0px 0px;
 		box-shadow: 0px 0px 0px #6d6d6d;
@@ -49,12 +49,12 @@
 		width: 100%;
 	}
 
-	#busqueda .banner_txt_1, 
-	#busqueda .banner_txt_2 {
+	#buscador .banner_txt_1, 
+	#buscador .banner_txt_2 {
 	    display: block;
 	}
 
-	#busqueda .banner_txt_1 {
+	#buscador .banner_txt_1 {
        	font-size: 14px;
 	    text-transform: none;
 	    max-width: 450px;
@@ -62,14 +62,14 @@
 	    padding: 0px;
 	}
 
-	#busqueda .banner_txt_2 {
+	#buscador .banner_txt_2 {
 	    font-family: Lato;
 	    font-size: 13px;
 	    font-weight: 400;
 	    padding: 15px 0px;
 	}
 
-	#busqueda .banner_txt_3 {
+	#buscador .banner_txt_3 {
 	    font-family: Lato;
 	    font-size: 13px;
 	    font-weight: 600;
