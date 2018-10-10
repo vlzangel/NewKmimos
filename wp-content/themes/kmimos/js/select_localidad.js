@@ -23,7 +23,6 @@ jQuery(document).ready(function(){
     );
 
     jQuery("#ubicacion_txt").on("keyup", function ( e ) {
-        console.log( e );
         buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
     });
 

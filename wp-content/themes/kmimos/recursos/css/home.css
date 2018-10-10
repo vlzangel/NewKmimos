@@ -139,13 +139,15 @@
 		outline: none;
 	}
 
-	.ubicacion_container small {
+	.ubicacion_container small,
+	.fechas_container small {
 	    position: absolute;
 	    left: 0px;
 	    width: 100%;
 	    display: inline-block;
 	    padding: 2px;
 	    color: red;
+	    display: none;
 	}
 
 	.ubicacion_container img {
@@ -156,16 +158,30 @@
 	.ubicacion_container .ubicacion_localizacion
 	{
 		position: absolute;
-		top: 15px;
+		top: 0px;
 	}
 
 	.ubicacion_container .ubicacion_localizacion{
 		left: 12px;
+		top: 15px;
 	}
 
 	.ubicacion_container .ubicacion_gps{
-		right: 12px;
+		right: 0px;
 		cursor: pointer;
+		font-size: 20px;
+		color: #1cd3c6;
+		height: 100%;
+		padding: 15px 12px;
+	}
+
+	.ubicacion_container .barra_ubicacion{
+		position: absolute;
+		right: 40px;
+		border-left: solid 1px #CCC;
+		top: 0px;
+		height: 100%;
+		width: 0px;  
 	}
 
 	#ubicacion_list{
@@ -213,6 +229,14 @@
 	    padding: 10px 20px 15px !important;
 	    font-size: 20px !important;
 	    z-index: 999999999999999999 !important;
+	}
+
+	.error_fecha input {
+		border: solid 1px red !important;
+	}
+
+	.error_fecha small{
+		display: block;
 	}
 
 /* TIPO MASCOTA */

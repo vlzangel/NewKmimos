@@ -16,6 +16,8 @@
 
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
+
+	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0');
             
     get_header();
 
@@ -33,7 +35,7 @@
 				</div>
 				<div class="solo_movil banner_home"></div>
 
-				<form id="buscador" >
+				<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
 
 					<input type="hidden" name="redireccionar" value="1" />
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
@@ -53,7 +55,7 @@
 						<div class="servicios_principales_box">
 
 							<label class="input_check_box" for="hospedaje">
-								<input type="checkbox" id="hospedaje" name="hospedaje"  />
+								<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
 								<img class="solo_pc" src="'.get_recurso("img").'SVG/Hospedaje.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Hospedaje.png" />
 								<span>Hospedaje</span>
@@ -61,7 +63,7 @@
 							</label>
 
 							<label class="input_check_box" for="guarderia">
-								<input type="checkbox" id="guarderia" name="guarderia"  />
+								<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
 								<img class="solo_pc" src="'.get_recurso("img").'SVG/Guarderia.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Guarderia.png" />
 								<span>Guardería</span>
@@ -69,7 +71,7 @@
 							</label>
 
 							<label class="input_check_box" for="paseos">
-								<input type="checkbox" id="paseos" name="paseos"  />
+								<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
 								<img class="solo_pc" src="'.get_recurso("img").'SVG/Paseos.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Paseos.png" />
 								<span>Paseos</span>
@@ -77,7 +79,7 @@
 							</label>
 
 							<label class="input_check_box" for="entrenamiento">
-								<input type="checkbox" id="entrenamiento" name="entrenamiento"  />
+								<input type="checkbox" id="entrenamiento" name="servicios[]" value="entrenamiento"  />
 								<img class="solo_pc" src="'.get_recurso("img").'SVG/Entrenamiento.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Entrenamiento.png" />
 								<span>Entrenamiento</span>
@@ -99,19 +101,21 @@
 						    	<ul id="ubicacion_list" class=""></ul>
 						    </div>
 
-							<img id="mi_ubicacion" class="ubicacion_gps" src="'.get_recurso("img").'SVG/GPS_Off.svg" />
+							<i id="mi_ubicacion" class="fa fa-crosshairs icon_left ubicacion_gps"></i>
+							<div class="barra_ubicacion"></div>
+
 							<small class="hidden" data-error="ubicacion">Función disponible solo en México</small>
 						</div>
 
 						<div class="tipo_mascota_container">
 							<label class="input_check_box" for="perro">
-								<input type="checkbox" id="perro" name="perro"  />
+								<input type="checkbox" id="perro" name="mascotas[]" value="perros"  />
 								<img src="'.get_recurso("img").'SVG/Perro.svg" />
 								<span>Perro</span>
 								<div class="top_check"></div>
 							</label>
 							<label class="input_check_box" for="gato">
-								<input type="checkbox" id="gato" name="gato"  />
+								<input type="checkbox" id="gato" name="mascotas[]" value="gatos"  />
 								<img src="'.get_recurso("img").'SVG/Gato.svg" />
 								<span>Gato</span>
 								<div class="top_check"></div>
@@ -120,18 +124,20 @@
 						<div class="fechas_container">
 							<div id="desde_container">
 								<img class="icon_fecha" src="'.get_recurso("img").'SVG/Fecha.svg" />
-								<input type="text" id="checkin" name="desde" placeholder="Desde" class="date_from" readonly>
+								<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" readonly>
+								<small class="">Requerido</small>
 							</div>
 							<div>
 								<img class="icon_fecha" src="'.get_recurso("img").'SVG/Fecha.svg" />
-								<input type="text" id="checkout" name="hasta" placeholder="Hasta" class="date_to" readonly>
+								<input type="text" id="checkout" name="checkout" placeholder="Hasta" class="date_to" readonly>
+								<small class="">Requerido</small>
 							</div>
 						</div>
 					</div>
 
 					<div class="tamanios_container">
 						<label class="input_check_box" for="paqueno">
-							<input type="checkbox" id="paqueno" name="paqueno"  />
+							<input type="checkbox" id="paqueno" name="tamanos[]" value="paquenos"  />
 							<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Pequenio.svg" />
 							<span>
 								<div class="tam_label_pc">Pequeño</div>
@@ -141,7 +147,7 @@
 							<div class="top_check"></div>
 						</label>
 						<label class="input_check_box" for="mediano">
-							<input type="checkbox" id="mediano" name="mediano"  />
+							<input type="checkbox" id="mediano" name="tamanos[]" value="medianos"  />
 							<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Mediano.svg" />
 							<span>
 								<div class="tam_label_pc">Mediano</div>
@@ -152,7 +158,7 @@
 						</label>
 
 						<label class="input_check_box" for="grande">
-							<input type="checkbox" id="grande" name="grande"  />
+							<input type="checkbox" id="grande" name="tamanos[]" value="grandes"  />
 							<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Grande.svg" />
 							<span>
 								<div class="tam_label_pc">Grande</div>
@@ -163,7 +169,7 @@
 						</label>
 
 						<label class="input_check_box" for="gigante">
-							<input type="checkbox" id="gigante" name="gigante"  />
+							<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes"  />
 							<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Gigante.svg" />
 							<span>
 								<div class="tam_label_pc">Gigante</div>

@@ -23,6 +23,16 @@ function fixedHeader() {
 }
 
 jQuery( document ).ready(function() {
+
+    jQuery("#buscador").submit(function(e){
+        if( jQuery("#checkin").val() != "" && jQuery("#checkout").val() != "" ){
+            jQuery(".fechas_container").removeClass("error_fecha");
+        }else{
+            jQuery(".fechas_container").addClass("error_fecha");
+            e.preventDefault();
+        }
+    });
+
 	fixedHeader();
 	jQuery(window).on('scroll', function () {
 	  	fixedHeader();
@@ -86,3 +96,12 @@ jQuery( document ).ready(function() {
     });
 
 });
+
+(function(d, s){
+    map = d.createElement(s), e = d.getElementsByTagName(s)[0];
+    map.async=!0;
+    map.setAttribute("charset","utf-8");
+    map.src="//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8";
+    map.type="text/javascript";
+    e.parentNode.insertBefore(map, e);
+})(document,"script");

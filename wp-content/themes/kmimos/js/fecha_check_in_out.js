@@ -18,6 +18,7 @@ jQuery(document).ready(function(){
                     if(typeof calcular === 'function') {
                         calcular();
                     }
+                    jQuery(".fechas_container").removeClass("error_fecha");
                 },
                 yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
                 firstDay: 1,
@@ -31,6 +32,7 @@ jQuery(document).ready(function(){
                     if(typeof calcular === 'function') {
                         calcular();
                     }
+                    jQuery(".fechas_container").removeClass("error_fecha");
                 },
                 yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
                 firstDay: 1,
@@ -65,6 +67,7 @@ jQuery(document).ready(function(){
             if(typeof validar_busqueda_home === 'function') {
                 validar_busqueda_home();
             }
+            jQuery(".fechas_container").removeClass("error_fecha");
         },
         yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
         firstDay: 1,
@@ -78,6 +81,7 @@ jQuery(document).ready(function(){
             if(typeof calcular === 'function') {
                 calcular();
             }
+            jQuery(".fechas_container").removeClass("error_fecha");
         },
         yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
         firstDay: 1,
