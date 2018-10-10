@@ -74,7 +74,7 @@
 				</div>
 			</div>
 			<div class="footer_bajo">
-				<a href="'.get_home_url().'">Kmimos.com.</a> Todos los derechos reservados.
+				<a href="'.get_home_url().'">Kmimos.com.mx</a> Todos los derechos reservados.
 			</div>
 		</footer>
 	';
