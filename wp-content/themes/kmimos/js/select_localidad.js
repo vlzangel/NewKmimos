@@ -7,20 +7,15 @@ jQuery(document).ready(function(){
         HOME+"/procesos/busqueda/ubicacion.php",
         {},
         function(data){
-
             jQuery("#ubicacion_list").html(data);
-
             jQuery("#ubicacion_list li").on("click", function(e){
-
                 if( jQuery(this).html() != "X" ){
                     jQuery("#ubicacion_txt").val( jQuery(this).html() );
                     jQuery("#ubicacion").val( jQuery(this).attr("value") );
                     jQuery("#ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
                     jQuery("#ubicacion").attr( "data-txt", jQuery(this).html() );
-
                     jQuery( ".cerrar_list_box" ).css("display", "none");
                 } 
-
                 jQuery("#ubicacion_list").removeClass("ubicacion_list_hover"); 
             });
             jQuery("#ubicacion_txt").attr("readonly", false);
@@ -28,6 +23,7 @@ jQuery(document).ready(function(){
     );
 
     jQuery("#ubicacion_txt").on("keyup", function ( e ) {
+        console.log( e );
         buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
     });
 

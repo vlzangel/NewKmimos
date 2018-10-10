@@ -41,7 +41,7 @@
 		font-weight: 600;
 	}
 
-	#banner_home #busqueda {
+	#banner_home #buscador {
 		background-color: #FFF;
 		padding: 20px;
 		max-width: 1000px;
@@ -76,12 +76,13 @@
 
 	.input_check_box img {
 	    display: block;
-	    margin: 8px auto;
+	    margin: 5px auto;
 	    height: 30px;
 	}
 
 	.input_check_box span {
 	    color: #828282;
+	    font-weight: 400;
 	}
 
 	.input_check_box .top_check {
@@ -104,6 +105,10 @@
 	    margin-right: 0px;
 	}
 
+	.tamanios_container .input_check_box img {
+	    display: none;
+	}
+
 /* CONTROLES MITAD */
 	
 	.controles_mitad_container{
@@ -124,7 +129,7 @@
 	.ubicacion_container input {
 		width: 100%;
 		border: solid 1px #CCC;
-		height: 50px;
+		height: 51px;
 		border-radius: 5px;
 		box-sizing: border-box;
 		padding: 0px 40px 0px 35px;
@@ -132,6 +137,15 @@
 		font-family: Lato;
 		color: #777;
 		outline: none;
+	}
+
+	.ubicacion_container small {
+	    position: absolute;
+	    left: 0px;
+	    width: 100%;
+	    display: inline-block;
+	    padding: 2px;
+	    color: red;
 	}
 
 	.ubicacion_container img {
@@ -154,7 +168,52 @@
 		cursor: pointer;
 	}
 
+	#ubicacion_list{
+		overflow: auto;
+	    max-height: 200px;
+	    padding: 10px;
+	}
 
+
+	.ubicacion_list_hover {
+		display: block !important;
+	}
+
+	#ubicacion_list li {
+	    padding: 2px 10px;
+	    margin: 0;
+	    line-height: 17px;
+	    font-size: 13px;
+	    text-align: left;
+	    font-family: Lato;
+	    cursor: pointer;
+	}
+
+	#ubicacion_list li:hover {
+		background: #DDD;
+	}
+
+	.cerrar_list_box{
+		display: none;
+		position: absolute;
+	    top: 43px;
+	    left: -1px;
+	    width: calc( 100% + 2px );
+	    z-index: 99999999999999;
+	    border: 1px solid #e5e5e5;
+	    border-radius: 0px 0px 5px 5px;
+	    background: #FFF;
+	    min-height: 50px;
+	}
+
+	.cerrar_list {
+	    position: absolute;
+	    top: 0px;
+	    right: 5px;
+	    padding: 10px 20px 15px !important;
+	    font-size: 20px !important;
+	    z-index: 999999999999999999 !important;
+	}
 
 /* TIPO MASCOTA */
 
@@ -172,7 +231,7 @@
 
 	.tipo_mascota_container .input_check_box {
 	    width: calc( 50% - 15px );
-	    height: 48px;
+	    height: 52px;
 	    vertical-align: middle;
 	    padding: 0px;
 	}
@@ -210,8 +269,8 @@
 		height: 50px;
 		border-radius: 5px;
 		box-sizing: border-box;
-		padding: 0px 40px 0px 35px;
-		font-size: 16px;
+		padding: 0px 0px 0px 35px;
+		font-size: 13px;
 		font-family: Lato;
 		color: #777;
 		outline: none;
@@ -227,7 +286,7 @@
 
 	.fechas_container .icon_fecha{
 		position: absolute;
-		top: 15px;
+		top: 17px;
 		cursor: pointer;
 		left: 10px;
 	}
@@ -750,6 +809,10 @@
 	    margin-bottom: 70px;
 	}
 
+	.quiero_ser_cuidador_container_2{
+		display: none;
+	}
+
 	.quiero_ser_cuidador_container .quiero_ser_cuidador_img{
 		background-image: url( ../img/JPG/Banner-Conviertete.jpg );
 		height: 450px;
@@ -793,7 +856,7 @@
 
 	}
 
-	.conectate_container h2 {
+	.conectate_container > h2 {
 		text-transform: uppercase;
 		display: block;
 		text-align: center;
@@ -807,13 +870,16 @@
 		margin: 50px auto 50px;
 	}
 
-
-	.conectate_container span {
+	.conectate_container > span {
 		display: block;
 		color: #1cd3c6;
 		text-align: center;
 		margin-bottom: 50px;
 		font-size: 18px;
+	}
+
+	.conectate_container .mensaje_movil {
+		display: none;
 	}
 
 	.conectate_botones_tabla{

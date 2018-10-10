@@ -42,6 +42,30 @@
 		font-size: 13px;
 	}
 
+	footer {
+	    padding: 15px 5px 30px;
+	}
+
+	.siguenos_alto{
+		display: none;
+	}
+
+	.footer_alto > div > div {
+	    display: inline-block;
+	    width: 50%;
+	    vertical-align: top;
+	    font-size: 12px;
+        padding: 0px 5px;
+	}
+
+	.footer_alto_col_1 {
+	    width: 100% !important;
+	}
+
+	.siguenos_bajo{
+		display: inline-block !important;
+	}
+
 }
 
 @media (max-width: 480px){

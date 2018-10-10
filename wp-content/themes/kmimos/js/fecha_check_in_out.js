@@ -1,3 +1,4 @@
+var fecha = new Date();
 jQuery(document).ready(function(){
 
     jQuery(function() {
