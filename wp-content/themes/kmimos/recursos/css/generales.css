@@ -159,9 +159,11 @@ footer{
 
 footer h2{
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 16px !important;
     color: #000;
     margin-bottom: 5px;
+    font-family: Lato;
+    font-weight: 600;
 }
 
 footer ul {
@@ -198,6 +200,7 @@ footer ul li {
 .footer_alto form {
 	position: relative;
 	overflow: hidden;
+    padding-bottom: 15px;
 }
 
 .footer_alto form input[type='email'] {
@@ -210,6 +213,7 @@ footer ul li {
     padding: 10px;
     box-sizing: border-box;
     border-radius: 3px 0px 0px 3px;
+    background: #FFF !important;
 }
 
 .footer_alto form input[type='submit'] {
@@ -218,7 +222,7 @@ footer ul li {
     width: 40%;
     border: solid 1px #CCC;
     height: 34px;
-    background: #1cd3c6;
+    background: #1cd3c6 !important;
     color: #FFF;
     border-left: 0px;
     font-weight: 500;

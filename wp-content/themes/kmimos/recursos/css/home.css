@@ -402,6 +402,14 @@
     	max-width: 1360px;
 	}
 
+	.beneficios_container h2 {
+		color: #000;
+	    font-weight: 600;
+	    font-family: Lato;
+	    text-transform: uppercase;
+        font-size: 22px;
+	}
+
 	.beneficios_registrar_container .boton{
 		padding: 15px 100px;
 		text-align: center;
@@ -428,7 +436,7 @@
 		color: #313131;
 		display: table-caption;
 		padding-bottom: 20px;
-	    font-size: 22px;
+	    font-size: 22px;	    
 	}
 
 	.beneficios_detalles .beneficios_detalles_tabla {
@@ -590,7 +598,12 @@
 		text-align: justify;
 		color: #585858;
 		box-shadow: 1px 1px 2px #CCC;
-	    padding: 0px 20px;
+	    padding: 10px 20px;
+	}
+
+	.testimonios_container .testimonios_item p {
+		font-size: 22px;
+    	line-height: 1.7;
 	}
 
 	.testimonios_container .testimonios_item span {
@@ -630,10 +643,14 @@
 	}
 
 	.pasos_reserva_container h2 {
-		display: block;
-		text-transform: uppercase;
-		text-align: center;
-		margin-bottom: 70px;
+	    display: block;
+	    text-transform: uppercase;
+	    text-align: center;
+	    margin-bottom: 70px;
+	    font-size: 25px;
+	    color: #000;
+	    font-weight: 600;
+	    font-family: Lato;
 	}
 
 	.pasos_reserva_tabla{
@@ -894,6 +911,10 @@
 		text-transform: uppercase;
 		display: block;
 		text-align: center;
+		font-size: 25px;
+		color: #000;
+		font-weight: 600;
+		font-family: Lato;
 	}
 
 	.conectate_container > img {

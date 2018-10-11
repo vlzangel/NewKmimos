@@ -212,9 +212,9 @@
 		display: none;
 	}
 
-	.beneficios_container h2 {
+	.beneficios_container > h2 {
 	    text-transform: none;
-	    font-size: 15px;
+	    font-size: 15px !important;
 	    padding: 20px;
 	}
 
@@ -327,6 +327,10 @@
 	    padding: 10px 10px 35px;
 	}
 
+	.testimonios_container .testimonios_item p {
+	    font-size: 13px;
+	}
+
 	.testimonios_container .testimonios_item:before {
 	    content: ' ';
 	    position: absolute;
@@ -431,7 +435,7 @@
 	    text-transform: none;
 	    text-align: center;
 	    margin: 20px 0px 5px;
-	    font-size: 14px;
+	    font-size: 14px !important;
 	}
 
 	.club_patitas_container_superior {
