@@ -46,7 +46,7 @@
 	$menu_str = "";
 	if( !is_user_logged_in() ){
 		$menu_str = '
-			<a href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal"> Iniciar Sesión </a>
+			<a href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal"> Iniciar Sesión </a><span style="color: #000 !important;">|</span>
 			<a href="#" role="button" data-target="#popup-registrarte"> Registrarme </a>
 		';
 		$menu_movil_str = '
@@ -110,16 +110,30 @@
 		';
 	}
 
+	$pages_white = [
+		"busqueda"
+	];
+
+	$clase_white = "";
+	if( in_array($post->post_name, $pages_white) ){
+		$clase_white = "nav_white";
+	}
+
 	$HTML .= '
-		<nav>
+    	<script>
+    		var HOME = "'.getTema().'";
+    	</script>
+		<nav class="'.$clase_white.'">
 
 			<div class="solo_pc">
 				<table class="nav_table">
 					<tr>
 						<td class="nav_left">
-							<img class="logo" src="'.get_recurso("img").'PNG/logo.png" />
-							<img class="logo logo_negro" src="'.get_recurso("img").'PNG/logo-negro.png" />
-							<a href="#" id="" onclick="ancla_form()" class="boton">
+							<a href="'.get_home_url().'">
+								<img class="logo" src="'.get_recurso("img").'PNG/logo.png" />
+								<img class="logo logo_negro" src="'.get_recurso("img").'PNG/logo-negro.png" />
+							</a>
+							<a href="'.get_home_url().'#buscar" id="" onclick="ancla_form()" class="boton">
 								<img class="lupa" src="'.get_recurso("img").'PNG/Buscar.png" /> 
 								<img class="lupa_negra" src="'.get_recurso("img").'PNG/Buscar_negro.png" /> 
 								Buscar Cuidador
@@ -137,8 +151,10 @@
 				<table class="nav_table">
 					<tr>
 						<td class="nav_left">
-							<img class="logo" src="'.get_recurso("img").'PNG/logo-verde.png" />
-							<img class="logo logo_negro" src="'.get_recurso("img").'PNG/logo-verde.png" />
+							<a href="'.get_home_url().'">
+								<img class="logo" src="'.get_recurso("img").'PNG/logo-verde.png" />
+								<img class="logo logo_negro" src="'.get_recurso("img").'PNG/logo-verde.png" />
+							</a>
 						</td>
 						<td class="nav_right">
 							'.$menu_movil_str.'

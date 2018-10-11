@@ -12,6 +12,7 @@ jQuery(document).ready(function(){
                 if( jQuery(this).html() != "X" ){
                     jQuery("#ubicacion_txt").val( jQuery(this).html() );
                     jQuery("#ubicacion").val( jQuery(this).attr("value") );
+                    jQuery("#ubicacion").change();
                     jQuery("#ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
                     jQuery("#ubicacion").attr( "data-txt", jQuery(this).html() );
                     jQuery( ".cerrar_list_box" ).css("display", "none");
@@ -42,6 +43,7 @@ jQuery(document).ready(function(){
             jQuery("#ubicacion").attr( "data-value", "" );
             jQuery("#latitud").val( "" );
             jQuery("#longitud").val( "" );
+            jQuery("#ubicacion").change();
         }else{
             if( jQuery("#ubicacion").val() != "" ){
                 if( jQuery("#ubicacion_txt").val() != jQuery("#ubicacion").val() ){

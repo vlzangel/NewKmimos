@@ -1,4 +1,6 @@
 <?php
+	
+	error_reporting(0);
 
     date_default_timezone_set('America/Mexico_City');
 
@@ -484,13 +486,6 @@
 	    	{$GATOS_CONDICION}
 	    ORDER BY {$orderby}";
 
-/*
-		echo "<pre>";
-			print_r( $sql );
-		echo "</pre>";
-*/
-		// print_r( $FILTRO_ESPECIA );
-
     /* FIN SQL cuidadores */
 
     $cuidadores = $db->get_results($sql);
@@ -556,7 +551,7 @@
 
 	$_POST = @array_filter($_POST);
 	unset($_POST['redireccionar']);
-	$_SESSION['busqueda'] = serialize($_POST);
+	$_SESSION['busqueda'] = ($_POST);
 	$_SESSION['sql'] = $sql;
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
@@ -568,6 +563,11 @@
 	}else{
        	if( $redireccionar == 1 ) {
 		 	header("location: {$home}busqueda/");
+		}else{
+			// echo json_encode($cuidadores);
+			echo "<pre>";
+				print_r( $cuidadores );
+			echo "</pre>";
 		}
 	}
 

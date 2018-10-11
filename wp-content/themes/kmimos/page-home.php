@@ -24,14 +24,11 @@
     $user_id = get_current_user_id();
         
     $HTML = '
-    	<script>
-    		var HOME = "'.getTema().'";
-    	</script>
     	<div id="banner_home">
 			<div>
 				<div class="solo_pc">
 					<span class="banner_txt_1">la red más segura de cuidadores certificados de México</span>
-					<span class="banner_txt_2">¡Tu mejor amigo regresa feliz!</span>
+					<span id="buscar" class="banner_txt_2">¡Tu mejor amigo regresa feliz!</span>
 				</div>
 				<div class="solo_movil banner_home"></div>
 

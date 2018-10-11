@@ -21,7 +21,11 @@
 
 	include_once("funciones.php");
 
-	if( is_front_page() ){
+	$pages_new = [
+		"busqueda"
+	];
+
+	if( is_front_page() || in_array($post->post_name, $pages_new) ){
 		include __DIR__.'/NEW/header.php';
 	}else{
 		
