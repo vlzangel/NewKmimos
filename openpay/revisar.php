@@ -61,10 +61,14 @@
 						$id_orden = $value->order_id;
 						$id_reserva = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = {$id_orden} AND post_type LIKE 'wc_booking'");
 
-						$wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = $id_orden;");
+						/*$wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = $id_orden;");
     					$wpdb->query("UPDATE wp_posts SET post_status = 'cancelled' WHERE ID = '$id_reserva';");
 
-    					update_cupos( $id_orden, "-");
+    					update_cupos( $id_orden, "-");*/
+
+    					$acc = "CCL"; $usu = "CLI";
+
+                		include( "../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
 					break;
 
 					case 'completed':
