@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
+/* Menu HOME */
+
+	.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+	    background-color: transparent !important;
+	}
+
+	.nav>li>a:focus, .nav>li>a:hover {
+	    background-color: transparent !important;
+	}
+
 /* BANNER */
 
 	#banner_home{

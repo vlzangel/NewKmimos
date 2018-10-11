@@ -262,17 +262,6 @@ function getAjaxData(url,method, datos){
     }).responseText;
 }
 
-/*MODAL SHOW*/
-jQuery(document).on('click', '.modal_show' ,function(e){
-    modal_show(this)
-});
-function modal_show(element){
-    var modal = jQuery(element).data('modal');
-    jQuery('.modal').modal('hide');
-    jQuery(modal).modal("show");
-}
-
-
 function show_login_modal(seccion){
 	switch(seccion){
         case "login":

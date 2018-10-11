@@ -1,6 +1,9 @@
 <?php
 	wp_enqueue_style( 'generales_css', get_recurso("css")."generales.css", array(), "1.0.0" );
 	wp_enqueue_style( 'generales_responsive_css', get_recurso("css")."responsive/generales.css", array(), "1.0.0" );
+	
+	wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
 
 	$HTML = '
 		<footer>

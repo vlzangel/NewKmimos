@@ -1,3 +1,13 @@
+/*MODAL SHOW*/
+jQuery(document).on('click', '.modal_show' ,function(e){
+    modal_show(this)
+});
+function modal_show(element){
+    var modal = jQuery(element).data('modal');
+    jQuery('.modal').modal('hide');
+    jQuery(modal).modal("show");
+}
+
 jQuery( document ).ready( function(){
 
 	jQuery("#btn_registrar_mascota").on("click", function(){

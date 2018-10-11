@@ -177,7 +177,7 @@
 
 		if($avatar== get_home_url()."/wp-content/themes/kmimos/images/noimg.png"){
 			$avatar=get_home_url()."/wp-content/themes/kmimos/images/image.png";
-				} 	
+		} 	
 
 		if( !is_user_logged_in() ){
 			$HTML .= '	
@@ -268,9 +268,7 @@
 							    	</ul>
 							    </div>
 						    </div>
-		
-
-				    </div>
+				    	</div>
 				</nav>
 			';
 		}
