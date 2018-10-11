@@ -90,8 +90,9 @@ $datos = kmimos_get_info_syte();
 						</div>
 					</div>
 					<div class="popuphide popup-login-condiciones" style="padding:15px">
+						<div class="alert alert-info"><strong>Actualizamos nuestros términos y condiciones, necesitamos que los leas y aceptes para continuar</strong></div> 
 						<h3 style="margin: 0; text-align: center;">TERMINOS Y CONDICIONES</h3>
-						<div class="terminos_container">
+						<div class="terminos_container" style="height:300px!important;">
 							'.$NEW_HTML_TERMINOS.'
 						</div>
 						<a href="#" id="login_submit" class="km-btn-correo btn_disable">
