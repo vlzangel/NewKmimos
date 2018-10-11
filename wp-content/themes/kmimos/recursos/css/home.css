@@ -881,10 +881,12 @@
 	}
 
 	.quiero_ser_cuidador_container h2 {
-		color: #FFF;
-		font-size: 36px;
-		text-transform: uppercase;		
-		margin: 0px 0px 15px;
+	    color: #FFF;
+	    font-size: 28px;
+	    text-transform: uppercase;
+	    margin: 0 0 15px;
+	    font-family: Lato;
+	    font-weight: 600;
 	}
 
 	.quiero_ser_cuidador_container span {
