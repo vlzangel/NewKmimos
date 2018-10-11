@@ -15,7 +15,7 @@
 		$link_text = [
 			[
 				"find" => '¿Quieres ser cuidador certificado kmimos?',
-				"replace" => '<a href="https://www.kmimos.com.mx/">¿Quieres ser cuidador certificado kmimos?</a>',
+				"replace" => '<a href="https://www.kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/">¿Quieres ser cuidador certificado kmimos?</a>',
 			],
 			[
 				"find" => '¿Necesitas que alguien cuide a tu peludo?',
