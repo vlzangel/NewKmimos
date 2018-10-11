@@ -547,10 +547,12 @@
 
 	.quiero_ser_cuidador_container h2 {
 	    color: #FFF;
-	    font-size: 15px;
+	    font-size: 17px !important;
 	    text-transform: none;
 	    margin: 0px 0px 15px;
 	    padding: 0px 25px 0px 55px;
+	    font-family: Lato;
+	    font-weight: 600;
 	}
 
 
