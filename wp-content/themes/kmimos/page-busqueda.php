@@ -30,6 +30,19 @@
 
     $user_id = get_current_user_id();
 
+    $tam = getTamanos();
+    foreach ($tam as $key => $value) {
+    	$check = ( is_array($_SESSION['busqueda']['tamanos']) && in_array($key, $_SESSION['busqueda']['tamanos']) ) ? 'checked': '';
+    	$tam[ $key ] = $check;
+    }
+
+    $tipos = ['perros' => '', 'gatos' => ''];
+    foreach ($tipos as $key => $value) {
+    	$check = ( is_array($_SESSION['busqueda']['mascotas']) && in_array($key, $_SESSION['busqueda']['mascotas']) ) ? 'checked': '';
+    	$tipos[ $key ] = $check;
+    }
+
+
     $HTML = '
     	<div class="busqueda_container">
 
@@ -73,7 +86,7 @@
 
 					<div class="tipo_mascota_container">
 						<label class="input_check_box" for="perro">
-							<input type="checkbox" id="perro" name="mascotas[]" value="perros"  />
+							<input type="checkbox" id="perro" name="mascotas[]" value="perros" '.$tipos['perros'].' />
 							<span>
 								<div class="tam_label_pc">Perro</div>
 							</span>
@@ -81,7 +94,7 @@
 						</label>
 
 						<label class="input_check_box" for="gato">
-							<input type="checkbox" id="gato" name="mascotas[]" value="gatos"  />
+							<input type="checkbox" id="gato" name="mascotas[]" value="gatos" '.$tipos['gatos'].' />
 							<span>
 								<div class="tam_label_pc">Gato</div>
 							</span>
@@ -91,7 +104,7 @@
 
 					<div class="tamanios_container">
 						<label class="input_check_box" for="paqueno">
-							<input type="checkbox" id="paqueno" name="tamanos[]" value="paquenos"  />
+							<input type="checkbox" id="paqueno" name="tamanos[]" value="paquenos" '.$tam['paquenos'].' />
 							<span>
 								<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Pequenio.svg" />
 								<div class="tam_label_pc">Peq.</div>
@@ -100,7 +113,7 @@
 							<div class="top_check"></div>
 						</label>
 						<label class="input_check_box" for="mediano">
-							<input type="checkbox" id="mediano" name="tamanos[]" value="medianos"  />
+							<input type="checkbox" id="mediano" name="tamanos[]" value="medianos" '.$tam['medianos'].' />
 							<span>
 								<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Mediano.svg" />
 								<div class="tam_label_pc">Med.</div>
@@ -112,7 +125,7 @@
 
 					<div class="tamanios_container">
 						<label class="input_check_box" for="grande">
-							<input type="checkbox" id="grande" name="tamanos[]" value="grandes"  />
+							<input type="checkbox" id="grande" name="tamanos[]" value="grandes" '.$tam['grandes'].' />
 							<span>
 								<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Grande.svg" />
 								<div class="tam_label_pc">Gde</div>
@@ -121,7 +134,7 @@
 							<div class="top_check"></div>
 						</label>
 						<label class="input_check_box" for="gigante">
-							<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes"  />
+							<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes" '.$tam['gigantes'].' />
 							<span>
 								<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Gigante.svg" />
 								<div class="tam_label_pc">Gte.</div>
@@ -140,6 +153,9 @@
     			<pre>';
 
     				echo comprimir( $HTML );
+    				print_r( $tipos );
+    				print_r( $tam );
+    				print_r( $_SESSION['busqueda'] );
     				print_r( $_SESSION['resultado_busqueda'] );
 
 

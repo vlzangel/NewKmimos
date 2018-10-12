@@ -564,7 +564,7 @@
        	if( $redireccionar == 1 ) {
 		 	header("location: {$home}busqueda/");
 		}else{
-			// echo json_encode($cuidadores);
+			echo "Cuidadores Encontrados: ".count($cuidadores);
 			echo "<pre>";
 				print_r( $cuidadores );
 			echo "</pre>";
