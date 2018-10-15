@@ -152,121 +152,132 @@ nav .lupa_negra{
 	width: 30%;
 }
 
-footer{
-    background: #f0f0f0;
-    padding: 50px 50px 30px;
-    color: #b2b2b2;
-}
+/* FORMs */
 
-footer h2{
-    text-transform: uppercase;
-    font-size: 16px !important;
-    color: #000;
-    margin-bottom: 5px;
-    font-family: Lato;
-    font-weight: 600;
-}
+	.input{
+		width: 100%;
+		border: solid 1px #CCC;
+		border-radius: 3px;
+		padding: 10px;
+	}
 
-footer ul {
-    list-style: none;
-    margin: 0px 0px 10px;
-    padding: 0px;
-}
+/* FOOTER */
 
-footer ul li {
-    line-height: 1.5;
-}
+	footer{
+	    background: #f0f0f0;
+	    padding: 50px 50px 30px;
+	    color: #b2b2b2;
+	}
 
-.footer_alto{
-	display: table;
-	width: 100%;
-	box-sizing: border-box;
-}
+	footer h2{
+	    text-transform: uppercase;
+	    font-size: 16px !important;
+	    color: #000;
+	    margin-bottom: 5px;
+	    font-family: Lato;
+	    font-weight: 600;
+	}
 
-.footer_alto > div {
-	display: table-row;
-}
+	footer ul {
+	    list-style: none;
+	    margin: 0px 0px 10px;
+	    padding: 0px;
+	}
 
-.footer_alto > div > div {
-	display: table-cell;
-	width: 20%;
-	box-sizing: border-box;
-    padding: 0px 10px;
-}
+	footer ul li {
+	    line-height: 1.5;
+	}
 
-.footer_alto_col_1{
-	width: 30% !important;
-}
+	.footer_alto{
+		display: table;
+		width: 100%;
+		box-sizing: border-box;
+	}
 
-.footer_alto form {
-	position: relative;
-	overflow: hidden;
-    padding-bottom: 15px;
-}
+	.footer_alto > div {
+		display: table-row;
+	}
 
-.footer_alto form input[type='email'] {
-    float: left;
-    width: 60%;
-    border: solid 1px #CCC;
-    height: 34px;
-    border-right: 0px;
-    outline: none;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 3px 0px 0px 3px;
-    background: #FFF !important;
-}
+	.footer_alto > div > div {
+		display: table-cell;
+		width: 20%;
+		box-sizing: border-box;
+	    padding: 0px 10px;
+	}
 
-.footer_alto form input[type='submit'] {
-	position: absolute;
-	right: 0px;
-    width: 40%;
-    border: solid 1px #CCC;
-    height: 34px;
-    background: #1cd3c6 !important;
-    color: #FFF;
-    border-left: 0px;
-    font-weight: 500;
-    font-family: Lato;
-    border-radius: 0px 3px 3px 0px;
-}
+	.footer_alto_col_1{
+		width: 30% !important;
+	}
 
-.footer_alto .siguenos_alto{
-	padding-top: 25px;
-}
+	.footer_alto form {
+		position: relative;
+		overflow: hidden;
+	    padding-bottom: 15px;
+	}
 
-.footer_medio {
-	display: none;
-	margin-bottom: 10px;
-    padding: 0px 10px;
-}
+	.footer_alto form input[type='email'] {
+	    float: left;
+	    width: 60%;
+	    border: solid 1px #CCC;
+	    height: 34px;
+	    border-right: 0px;
+	    outline: none;
+	    padding: 10px;
+	    box-sizing: border-box;
+	    border-radius: 3px 0px 0px 3px;
+	    background: #FFF !important;
+	}
 
-.footer_medio span,
-.footer_alto span {
-	display: block;
-	margin-bottom: 10px;
-}
+	.footer_alto form input[type='submit'] {
+		position: absolute;
+		right: 0px;
+	    width: 40%;
+	    border: solid 1px #CCC;
+	    height: 34px;
+	    background: #1cd3c6 !important;
+	    color: #FFF;
+	    border-left: 0px;
+	    font-weight: 500;
+	    font-family: Lato;
+	    border-radius: 0px 3px 3px 0px;
+	}
 
-.footer_medio img,
-.footer_alto img {
-	width: 35px;
-    margin-right: 20px;
-}
+	.footer_alto .siguenos_alto{
+		padding-top: 25px;
+	}
 
-.footer_bajo{
-	text-align: center;
-	padding-top: 40px;
-}
+	.footer_medio {
+		display: none;
+		margin-bottom: 10px;
+	    padding: 0px 10px;
+	}
 
-.footer_bajo a {
-	color: #1cd3c6;
-}
+	.footer_medio span,
+	.footer_alto span {
+		display: block;
+		margin-bottom: 10px;
+	}
 
-.siguenos_bajo{
-	display: none !important;
-	padding: 37px 0px;
-}
+	.footer_medio img,
+	.footer_alto img {
+		width: 35px;
+	    margin-right: 20px;
+	}
 
-.siguenos_bajo img{
-    margin-right: 10px;
-}
+	.footer_bajo{
+		text-align: center;
+		padding-top: 40px;
+	}
+
+	.footer_bajo a {
+		color: #1cd3c6;
+	}
+
+	.siguenos_bajo{
+		display: none !important;
+		padding: 37px 0px;
+	}
+
+	.siguenos_bajo img{
+	    margin-right: 10px;
+	}

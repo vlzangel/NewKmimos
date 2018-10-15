@@ -53,32 +53,32 @@
 
 							<label class="input_check_box" for="hospedaje">
 								<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
-								<img class="solo_pc" src="'.get_recurso("img").'SVG/Hospedaje.svg" />
-								<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Hospedaje.png" />
+								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
+								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
 								<span>Hospedaje</span>
 								<div class="top_check"></div>
 							</label>
 
 							<label class="input_check_box" for="guarderia">
 								<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
-								<img class="solo_pc" src="'.get_recurso("img").'SVG/Guarderia.svg" />
-								<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Guarderia.png" />
+								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
+								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
 								<span>Guardería</span>
 								<div class="top_check"></div>
 							</label>
 
 							<label class="input_check_box" for="paseos">
 								<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
-								<img class="solo_pc" src="'.get_recurso("img").'SVG/Paseos.svg" />
-								<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Paseos.png" />
+								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
+								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
 								<span>Paseos</span>
 								<div class="top_check"></div>
 							</label>
 
 							<label class="input_check_box" for="entrenamiento">
 								<input type="checkbox" id="entrenamiento" name="servicios[]" value="entrenamiento"  />
-								<img class="solo_pc" src="'.get_recurso("img").'SVG/Entrenamiento.svg" />
-								<img class="solo_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Entrenamiento.png" />
+								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
+								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
 								<span>Entrenamiento</span>
 								<div class="top_check"></div>
 							</label>
@@ -89,7 +89,7 @@
 					<div class="controles_mitad_container">
 
 						<div class="ubicacion_container">
-							<img class="ubicacion_localizacion" src="'.get_recurso("img").'SVG/Localizacion.svg" />
+							<img class="ubicacion_localizacion" src="'.get_recurso("img").'HOME/SVG/Localizacion.svg" />
 							<input type="text" id="ubicacion_txt" name="ubicacion_txt" placeholder="Ubicación estado municipio" autocomplete="off" />
 
 							<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />	
@@ -107,25 +107,25 @@
 						<div class="tipo_mascota_container">
 							<label class="input_check_box" for="perro">
 								<input type="checkbox" id="perro" name="mascotas[]" value="perros"  />
-								<img src="'.get_recurso("img").'SVG/Perro.svg" />
+								<img src="'.get_recurso("img").'HOME/SVG/Perro.svg" />
 								<span>Perro</span>
 								<div class="top_check"></div>
 							</label>
 							<label class="input_check_box" for="gato">
 								<input type="checkbox" id="gato" name="mascotas[]" value="gatos"  />
-								<img src="'.get_recurso("img").'SVG/Gato.svg" />
+								<img src="'.get_recurso("img").'HOME/SVG/Gato.svg" />
 								<span>Gato</span>
 								<div class="top_check"></div>
 							</label>
 						</div>
 						<div class="fechas_container">
 							<div id="desde_container">
-								<img class="icon_fecha" src="'.get_recurso("img").'SVG/Fecha.svg" />
+								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
 								<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" readonly>
 								<small class="">Requerido</small>
 							</div>
 							<div>
-								<img class="icon_fecha" src="'.get_recurso("img").'SVG/Fecha.svg" />
+								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
 								<input type="text" id="checkout" name="checkout" placeholder="Hasta" class="date_to" readonly>
 								<small class="">Requerido</small>
 							</div>
@@ -135,7 +135,7 @@
 					<div class="tamanios_container">
 						<label class="input_check_box" for="paqueno">
 							<input type="checkbox" id="paqueno" name="tamanos[]" value="paquenos"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Pequenio.svg" />
+							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Pequenio.svg" />
 							<span>
 								<div class="tam_label_pc">Pequeño</div>
 								<div class="tam_label_movil">Peq.</div>
@@ -145,7 +145,7 @@
 						</label>
 						<label class="input_check_box" for="mediano">
 							<input type="checkbox" id="mediano" name="tamanos[]" value="medianos"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Mediano.svg" />
+							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Mediano.svg" />
 							<span>
 								<div class="tam_label_pc">Mediano</div>
 								<div class="tam_label_movil">Med.</div>
@@ -156,7 +156,7 @@
 
 						<label class="input_check_box" for="grande">
 							<input type="checkbox" id="grande" name="tamanos[]" value="grandes"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Grande.svg" />
+							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Grande.svg" />
 							<span>
 								<div class="tam_label_pc">Grande</div>
 								<div class="tam_label_movil">Gde</div>
@@ -167,7 +167,7 @@
 
 						<label class="input_check_box" for="gigante">
 							<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'RESPONSIVE/SVG/Gigante.svg" />
+							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Gigante.svg" />
 							<span>
 								<div class="tam_label_pc">Gigante</div>
 								<div class="tam_label_movil">Gte.</div>
@@ -202,7 +202,7 @@
 			</div>
 			
 			<h2>Conoce los beneficios de dejar tu mascota con cuidadores certificados</h2>
-			<img class="beneficios_banner_movil" src="'.get_recurso("img").'RESPONSIVE/PNG/Beneficios-de-dejar---.png" />
+			<img class="beneficios_banner_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Beneficios-de-dejar---.png" />
 
 			<div class="beneficios_detalles">
 
@@ -211,7 +211,7 @@
 						
 						<div class="beneficios_detalles_item">
 							<div class="beneficios_detalles_icon">
-								<img src="'.get_recurso("img").'SVG/Km_Certificado.svg" />
+								<img src="'.get_recurso("img").'HOME/SVG/Km_Certificado.svg" />
 							</div>
 							<div class="beneficios_detalles_info">
 								<h3>Cuidadores Certificados</h3>
@@ -223,7 +223,7 @@
 						
 						<div class="beneficios_detalles_item">
 							<div class="beneficios_detalles_icon">
-								<img src="'.get_recurso("img").'SVG/Km_Veterinario.svg" />
+								<img src="'.get_recurso("img").'HOME/SVG/Km_Veterinario.svg" />
 							</div>
 							<div class="beneficios_detalles_info">
 								<h3>Cobertura Veterinaría</h3>
@@ -235,7 +235,7 @@
 						
 						<div class="beneficios_detalles_item">
 							<div class="beneficios_detalles_icon">
-								<img src="'.get_recurso("img").'SVG/Km_Fotografia.svg" />
+								<img src="'.get_recurso("img").'HOME/SVG/Km_Fotografia.svg" />
 							</div>
 							<div class="beneficios_detalles_info">
 								<h3>Fotos y videos diarios</h3>
@@ -255,7 +255,7 @@
 							<ul class="beneficios_servicios_principales_lista">
 								<li>
 									<div>
-										<img src="'.get_recurso("img").'SVG/Check.svg" align="left" />
+										<img src="'.get_recurso("img").'HOME/SVG/Check.svg" align="left" />
 									</div>
 									<div>
 										<strong>Hospedaje</strong>
@@ -264,7 +264,7 @@
 								</li>
 								<li>
 									<div>
-										<img src="'.get_recurso("img").'SVG/Check.svg" align="left" />
+										<img src="'.get_recurso("img").'HOME/SVG/Check.svg" align="left" />
 									</div>
 									<div>
 										<strong>Guardería</strong>
@@ -273,7 +273,7 @@
 								</li>
 								<li>
 									<div>
-										<img src="'.get_recurso("img").'SVG/Check.svg" align="left" />
+										<img src="'.get_recurso("img").'HOME/SVG/Check.svg" align="left" />
 									</div>
 									<div>
 										<strong>Paseos</strong>
@@ -282,7 +282,7 @@
 								</li>
 								<li>
 									<div>
-										<img src="'.get_recurso("img").'SVG/Check.svg" align="left" />
+										<img src="'.get_recurso("img").'HOME/SVG/Check.svg" align="left" />
 									</div>
 									<div>
 										<strong>Entrenamiento</strong>
@@ -346,7 +346,7 @@
 				<div class="pasos_reserva_row">
 					<div class="pasos_reserva_celda">
 						<div class="pasos_celda_top">
-							<img src="'.get_recurso("img").'SVG/Paso_1.svg" />
+							<img src="'.get_recurso("img").'HOME/SVG/Paso_1.svg" />
 						</div>
 						<div class="pasos_celda_bottom">
 							<h3>Haz tu búsqueda</h3>
@@ -355,7 +355,7 @@
 					</div>
 					<div class="pasos_reserva_celda">
 						<div class="pasos_celda_top">
-							<img src="'.get_recurso("img").'SVG/Paso_2.svg" />
+							<img src="'.get_recurso("img").'HOME/SVG/Paso_2.svg" />
 						</div>
 						<div class="pasos_celda_bottom">
 							<h3>Agenda y haz el pago</h3>
@@ -364,7 +364,7 @@
 					</div>
 					<div class="pasos_reserva_celda">
 						<div class="pasos_celda_top">
-							<img src="'.get_recurso("img").'SVG/Paso_3.svg" />
+							<img src="'.get_recurso("img").'HOME/SVG/Paso_3.svg" />
 						</div>
 						<div class="pasos_celda_bottom">
 							<h3>Tu mascota vuelve feliz</h3>
@@ -383,7 +383,7 @@
 				<div class="club_patitas_tabla">
 					<div class="club_patitas_celda celda_30">
 						<h2>¡Únete al Club de las patitas felices! </h2>
-						<img  class="club_patitas_logo" src="'.get_recurso("img").'SVG/Club_patitas.svg" />
+						<img  class="club_patitas_logo" src="'.get_recurso("img").'HOME/SVG/Club_patitas.svg" />
 					</div>
 					<div class="club_patitas_celda celda_70">
 						<h2>¡Únete al Club de las patitas felices! </h2>
@@ -432,26 +432,26 @@
 
 		<div class="conectate_container">
 			<h2>Conéctate de donde quieras</h2>
-			<img src="'.get_recurso("img").'PNG/Moviles.png" />
+			<img src="'.get_recurso("img").'HOME/PNG/Moviles.png" />
 			<span>Disponible en la web, y en dispositivos iOS y Android</span>
 			<div class="mensaje_movil">
 				<span>Baja nuestra <strong>app</strong>, y conéctate desde donde quieras</span>
 			</div>
 			<div class="conectate_botones_tabla">
-				<div class="conectate_botones_celda"><img src="'.get_recurso("img").'SVG/APP_STORE.svg" /></div>
-				<div class="conectate_botones_celda"><img src="'.get_recurso("img").'SVG/GOOGLE_PLAY.svg" /></div>
+				<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/APP_STORE.svg" /></div>
+				<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/GOOGLE_PLAY.svg" /></div>
 			</div>
 		</div>
 
 		<!-- ALIADOS -->
 
 		<div class="aliados_container">
-			<img src="'.get_recurso("img").'PNG/Reforma.png" />
-			<img src="'.get_recurso("img").'PNG/Mural.png" />
-			<img src="'.get_recurso("img").'PNG/El-norte.png" />
-			<img src="'.get_recurso("img").'PNG/Financiero.png" />
-			<img src="'.get_recurso("img").'PNG/Universal.png" />
-			<img src="'.get_recurso("img").'PNG/Petco.png" />
+			<img src="'.get_recurso("img").'HOME/PNG/Reforma.png" />
+			<img src="'.get_recurso("img").'HOME/PNG/Mural.png" />
+			<img src="'.get_recurso("img").'HOME/PNG/El-norte.png" />
+			<img src="'.get_recurso("img").'HOME/PNG/Financiero.png" />
+			<img src="'.get_recurso("img").'HOME/PNG/Universal.png" />
+			<img src="'.get_recurso("img").'HOME/PNG/Petco.png" />
 		</div>
     ';
 

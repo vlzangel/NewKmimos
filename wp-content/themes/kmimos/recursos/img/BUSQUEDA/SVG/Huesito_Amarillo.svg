@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.728 11.152">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e6b731;
+      }
+    </style>
+  </defs>
+  <title>Huesito Amarillo</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <circle class="cls-1" cx="3.112" cy="3.112" r="3.112"/>
+        <circle class="cls-1" cx="3.112" cy="8.04" r="3.112"/>
+        <circle class="cls-1" cx="13.616" cy="3.112" r="3.112"/>
+        <circle class="cls-1" cx="13.616" cy="8.04" r="3.112"/>
+        <rect class="cls-1" x="3.112" y="3.372" width="10.504" height="4.668"/>
+      </g>
+    </g>
+  </g>
+</svg>

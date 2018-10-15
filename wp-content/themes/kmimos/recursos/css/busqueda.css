@@ -369,11 +369,341 @@
 
 /* RESULTADOS */
 
-	.resultados_container pre{
-		overflow: initial !important;
-		background-color: #FFF;
-		border: 0px;
-	}
+	/* DEBUG */
+
+		.resultados_container pre {
+			overflow: initial !important;
+			background-color: #FFF;
+			border: 0px;
+		}
+	
+	/* Barra */
+	
+		.resultados_container::-webkit-scrollbar-track{
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+			border-radius: 5px;
+			background-color: #F5F5F5;
+		}
+
+		.resultados_container::-webkit-scrollbar{
+			width: 10px;
+			background-color: #F5F5F5;
+		}
+
+		.resultados_container::-webkit-scrollbar-thumb{
+			border-radius: 5px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			background-color: #33E1BE;
+		}
+
+	/* MENSAJE RESERVA INMEDIATA */
+
+		.mesaje_reserva_inmediata_container{
+			display: table;
+			width: 100%;
+		    padding: 30px;
+		}
+
+		.mesaje_reserva_inmediata_izq{
+		    display: table-cell;
+		    width: 60px;
+		    background-size: 60%;
+		    background-position: center;
+		    background-repeat: no-repeat;
+		    vertical-align: middle;
+		    background-image: url(../img/BUSQUEDA/SVG/Reserva_Inmediata.svg);
+		}
+
+		.mesaje_reserva_inmediata_der{
+			display: table-cell;
+		    vertical-align: middle;
+		    text-align: left;
+		    padding: 0px 10px;
+		    font-size: 13px;
+		    color: #747474;
+		}
+
+		.mesaje_reserva_inmediata_der strong {
+		    color: #000;
+		}
+
+	/* DESTACADOS */
+
+		.destacados_container {
+		    height: 275px;
+		    overflow: hidden;
+		    width: 100%;
+		    box-sizing: border-box;
+		    padding: 10px 30px;
+		}
+
+		.destacados_box {
+			height: 100%;
+		    white-space: nowrap;
+		}
+
+		.destacados_item {
+		    height: 100%;
+		    width: calc( 25% + 2px );
+		    box-sizing: border-box;
+		    padding-right: 8px;
+		    display: inline-block;
+		    position: relative;
+		}
+
+		.destacados_item .desacado_img {
+			width: 100%;
+			height: 100px;
+		    overflow: hidden;
+		}
+
+		.destacados_item .desacado_img_interna {
+			width: 100%;
+			height: 100%;
+			border-radius: 5px;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+			filter: blur(1px);
+		}
+
+		.destacados_item .desacado_img_normal {
+			border-radius: 5px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			position: absolute;
+			top: 5px;
+			left: 0px;
+			width: 100%;
+			height: 90px;
+		}
+
+		.destacados_item .desacado_favorito {
+			
+		}
+
+		.destacados_item .desacado_title {
+		    font-size: 14px;
+		    font-weight: bold;
+		    text-transform: uppercase;
+		    padding: 5px 0px;
+		    vertical-align: middle;
+		}
+
+		.destacados_item .desacado_title span {
+		    background-color: #008bf5;
+		    padding: 2px 5px;
+		    color: #FFF;
+		    font-size: 9px;
+		    vertical-align: middle;
+		    border-radius: 3px;
+		    margin-right: 3px;
+		}
+
+		.destacados_item .desacado_experiencia {
+			font-size: 11px;
+			padding: 0px 0px 5px;
+		}
+
+		.destacados_item .desacado_monto {
+		    font-size: 13px;
+			padding: 0px;
+		}
+
+		.destacados_item .desacado_ranking_container .km-ranking a.active {
+		    background-image: url(../img/BUSQUEDA/SVG/Huesito_Amarillo.svg);
+		}
+
+		.destacados_item .desacado_boton_reservar {
+			display: block;
+			border-radius: 3px;
+			text-align: center;
+			color: #FFF;
+			font-weight: 600;
+			background-color: #33E1BE;
+		    padding: 5px;
+		    cursor: pointer;
+		}
+
+	/* CANTIDAD DE RESULTADOS */
+
+	 	.catntidad_resultados_container {
+		    box-sizing: border-box;
+		    padding: 0px 30px;
+		    font-size: 15px;
+		}
+
+	/* CUIDADORES */
+
+		.resultados_box {
+		    margin-top: 15px;
+		}
+
+		.resultado_item{
+			position: relative;
+			border: solid 1px #CCC;
+			padding: 5px;
+			margin: 0px 24px 15px;
+			box-sizing: border-box;
+			box-shadow: 1px 1px 1px #CCC;
+		}
+
+		.resultado_item .resultados_hover {
+			display: none;
+		    position: absolute;
+		    top: -2px;
+		    left: -2px;
+		    width: 5px;
+		    height: calc( 100% + 3px );
+		    background-color: #7c169e;
+		}
+
+		.resultado_item:hover .resultados_hover {
+			display: block;
+		}
+
+		.resultado_item_container{
+		    padding: 5px;
+		}
+
+		.resultados_item_top{
+
+		}
+
+		.resultados_item_middle{
+
+		}
+
+		.resultados_item_info_container {
+		    display: table;
+		    width: 100%;
+		}
+
+		.resultados_item_info_img_container {
+		    height: 130px;
+		    overflow: hidden;
+		    width: 150px;
+		    box-sizing: border-box;
+		    display: table-cell;
+		    vertical-align: top;
+		}
+
+		.resultados_item_info_img_container .resultados_item_info_img_box {
+			height: 100%;
+		    white-space: nowrap;
+		}
+
+		.resultados_item_info_img_container .resultados_item_info_img_box .resultados_item_info_img {
+			height: 100%;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+		}
+
+		.resultados_item_info {
+		    display: table-cell;
+		    vertical-align: top;
+		    padding-left: 10px;
+		    position: relative;
+		}
+
+		.resultados_item_titulo {
+		    font-size: 18px;
+		    font-weight: 600;
+		    text-transform: uppercase;
+		}
+
+		.resultados_item_titulo span {
+		    font-weight: 400;
+		    font-size: 16px;
+		}
+
+		.resultados_item_subtitulo {
+		    font-size: 12px;
+		    font-weight: 400;
+	        padding: 0px 0px 3px;
+		}
+
+		.resultados_item_direccion {
+		    font-size: 12px;
+		    font-weight: 600;
+	        padding: 0px 0px 3px;
+            text-transform: capitalize;
+		}
+
+		.resultados_item_servicios{
+			padding: 5px 0px;	
+		}
+
+		.resultados_item_servicios img {
+			height: 25px;
+		}
+
+		.resultados_item_comentarios {
+		    display: inline-block;
+		    padding: 2px 7px;
+		    border: solid 2px #CCC;
+		    margin-left: 15px;
+		    font-size: 12px;
+		    color: #838383;
+		}
+
+		.resultados_item_ranking {
+		    display: inline-block;
+		}
+
+		.resultados_item_ranking .km-ranking a {
+		    background-image: url(../img/BUSQUEDA/SVG/Huesito_gris.svg) !important;
+		}
+
+		.resultados_item_ranking .km-ranking a.active {
+		    background-image: url(../img/BUSQUEDA/SVG/Huesito_azul.svg) !important;
+		}
+
+		.resultados_item_precio_container {
+		    position: absolute;
+		    top: 15px;
+		    right: 0px;
+		    text-align: right;
+		}
+
+		.resultados_item_precio_container > span {
+		    color: #838383;
+		    font-size: 13px;
+		}
+
+		.resultados_item_precio_container > div {
+		    line-height: 1.1;
+		    color: #7c169e;
+		}
+
+		.resultados_item_precio_container > div strong {
+		    font-size: 35px;
+		}
+
+		.resultados_item_precio_container > div strong span {
+		    font-size: 13px;
+		}
+
+		.resultados_item_bottom{
+			text-align: right;
+			padding: 0px;
+		}
+
+		.resultados_item_bottom .boton{
+			padding: 3px 10px;
+			min-width: 125px;
+			text-align: center;
+			font-size: 11px;
+			text-decoration: none !important;
+			margin: 0px 3px;
+		}
+
+		.resultados_item_bottom .boton_verde{
+			padding: 5px 10px;
+		}
+
 
 /* MAPA */
 

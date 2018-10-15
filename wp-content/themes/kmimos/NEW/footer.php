@@ -21,13 +21,13 @@
 						<div class="siguenos_alto">
 							<span>Siguenos en</span>
 							<a href="">
-								<img src="'.get_recurso("img").'SVG/Facebook.svg" />
+								<img src="'.get_recurso("img").'HOME/SVG/Facebook.svg" />
 							</a>
 							<a href="">
-								<img src="'.get_recurso("img").'SVG/Instagram.svg" />
+								<img src="'.get_recurso("img").'HOME/SVG/Instagram.svg" />
 							</a>
 							<a href="">
-								<img src="'.get_recurso("img").'SVG/Youtube.svg" />
+								<img src="'.get_recurso("img").'HOME/SVG/Youtube.svg" />
 							</a>
 						</div>
 					</div>
@@ -65,13 +65,13 @@
 					<div class="siguenos_bajo">
 						<span>Siguenos en</span>
 						<a href="">
-							<img src="'.get_recurso("img").'SVG/Facebook.svg" />
+							<img src="'.get_recurso("img").'HOME/SVG/Facebook.svg" />
 						</a>
 						<a href="">
-							<img src="'.get_recurso("img").'SVG/Instagram.svg" />
+							<img src="'.get_recurso("img").'HOME/SVG/Instagram.svg" />
 						</a>
 						<a href="">
-							<img src="'.get_recurso("img").'SVG/Youtube.svg" />
+							<img src="'.get_recurso("img").'HOME/SVG/Youtube.svg" />
 						</a>
 					</div>
 				</div>

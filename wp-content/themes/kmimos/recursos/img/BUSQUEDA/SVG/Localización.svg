@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.137 21.904">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #666;
+        stroke: #666;
+        stroke-miterlimit: 10;
+        stroke-width: 0.5px;
+      }
+    </style>
+  </defs>
+  <title>Localización</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g id="Canvas">
+        <g id="Group">
+          <g id="Group-2" data-name="Group">
+            <g id="Vector">
+              <path id="path0_fill" data-name="path0 fill" class="cls-1" d="M8.554.25A8.232,8.232,0,0,0,.264,7.765a7.855,7.855,0,0,0,1.77,5.372l6.2,8.35a.429.429,0,0,0,.354.167.394.394,0,0,0,.354-.167l6.166-8.35a7.925,7.925,0,0,0,1.77-5.4A8.278,8.278,0,0,0,8.554.25Zm5.811,12.414L8.554,20.541,2.713,12.664A7.032,7.032,0,0,1,1.12,7.821,7.422,7.422,0,0,1,8.554,1.085a7.371,7.371,0,0,1,7.4,6.736A7.032,7.032,0,0,1,14.365,12.664Z"/>
+            </g>
+            <g id="Vector-2" data-name="Vector">
+              <path id="path1_fill" data-name="path1 fill" class="cls-1" d="M8.551,5.33a3.347,3.347,0,1,0,3.334,3.347A3.347,3.347,0,0,0,8.551,5.33Zm0,5.814A2.466,2.466,0,1,1,11,8.677,2.462,2.462,0,0,1,8.551,11.144Z"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

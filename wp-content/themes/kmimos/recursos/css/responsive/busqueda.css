@@ -1,0 +1,13 @@
+@media (min-width: 1400px){
+	.destacados_container {
+	    height: 320px;
+	}
+
+	.destacados_item .desacado_img {
+	    height: 135px;
+	}
+
+	.destacados_item .desacado_img_normal {
+	    height: 125px;
+	}
+}

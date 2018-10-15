@@ -51,8 +51,8 @@
 		';
 		$menu_movil_str = '
 			<a href="#" role="button" data-target="#popup-registrarte"> Registrarme </a>
-			<img class="icono" src="'.get_recurso("img").'RESPONSIVE/PNG/Perfil.png" id="login" href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal" />
-			<img class="icono" src="'.get_recurso("img").'RESPONSIVE/PNG/Menu.png" id="ver_menu" />
+			<img class="icono" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Perfil.png" id="login" href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal" />
+			<img class="icono" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Menu.png" id="ver_menu" />
 			<div id="menu_movil" class="hidden-sm hidden-md hidden-lg">
 			<div class="menu_movil_interno">
 				<div class="cerrar_menu_movil clearfix initial_menu_movil">
@@ -88,7 +88,7 @@
 	    	</ul>
 		';
 		$menu_movil_str = '
-			<img class="icono" src="'.get_recurso("img").'RESPONSIVE/PNG/Menu.png" id="ver_menu" />
+			<img class="icono" src="'.get_recurso("img").'HOME//GENERALES/RESPONSIVE/PNG/Menu.png" id="ver_menu" />
 			<div id="menu_movil" class="hidden-sm hidden-md hidden-lg">
 				<div class="menu_movil_interno">
 					<div class="cerrar_menu_movil initial_menu_movil clearfix">
@@ -130,15 +130,15 @@
 					<tr>
 						<td class="nav_left">
 							<a href="'.get_home_url().'">
-								<img class="logo" src="'.get_recurso("img").'PNG/logo.png" />
-								<img class="logo logo_negro" src="'.get_recurso("img").'PNG/logo-negro.png" />
+								<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo.png" />
+								<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-negro.png" />
 							</a>
 							<a href="'.get_home_url().'#buscar" id="" onclick="ancla_form()" class="boton">
-								<img class="lupa" src="'.get_recurso("img").'PNG/Buscar.png" /> 
-								<img class="lupa_negra" src="'.get_recurso("img").'PNG/Buscar_negro.png" /> 
+								<img class="lupa" src="'.get_recurso("img").'HOME/PNG/Buscar.png" /> 
+								<img class="lupa_negra" src="'.get_recurso("img").'HOME/PNG/Buscar_negro.png" /> 
 								Buscar Cuidador
 							</a>
-							<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" id="" class="boton boton_morado"> <img src="'.get_recurso("img").'PNG/Ser_cuidador.png" /> Quiero ser Cuidador</a>
+							<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" id="" class="boton boton_morado"> <img src="'.get_recurso("img").'HOME/PNG/Ser_cuidador.png" /> Quiero ser Cuidador</a>
 						</td>
 						<td class="nav_right">
 							'.$menu_str.'
@@ -152,8 +152,8 @@
 					<tr>
 						<td class="nav_left">
 							<a href="'.get_home_url().'">
-								<img class="logo" src="'.get_recurso("img").'PNG/logo-verde.png" />
-								<img class="logo logo_negro" src="'.get_recurso("img").'PNG/logo-verde.png" />
+								<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />
+								<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />
 							</a>
 						</td>
 						<td class="nav_right">

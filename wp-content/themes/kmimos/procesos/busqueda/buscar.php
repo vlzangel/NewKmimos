@@ -566,6 +566,7 @@
 		}else{
 			echo "Cuidadores Encontrados: ".count($cuidadores);
 			echo "<pre>";
+				// print_r( $sql );
 				print_r( $cuidadores );
 			echo "</pre>";
 		}

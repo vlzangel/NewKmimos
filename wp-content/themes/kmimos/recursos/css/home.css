@@ -13,7 +13,7 @@
 /* BANNER */
 
 	#banner_home{
-		background-image: url( ../img/JPG/Principal.jpg );
+		background-image: url( ../img/HOME/JPG/Principal.jpg );
 		height: 715px;
 		background-size: cover;
 		background-position: center;
@@ -567,7 +567,7 @@
 	}
 
 	.testimonios_container .testimonios_img{
-		background-image: url( ../img/JPG/Coment-Cuidador.jpg );
+		background-image: url( ../img/HOME/JPG/Coment-Cuidador.jpg );
 		height: 480px;
 		background-size: cover;
 		background-position: center;
@@ -866,7 +866,7 @@
 	}
 
 	.quiero_ser_cuidador_container .quiero_ser_cuidador_img{
-		background-image: url( ../img/JPG/Banner-Conviertete.jpg );
+		background-image: url( ../img/HOME/JPG/Banner-Conviertete.jpg );
 		height: 450px;
 		background-size: cover;
 		background-position: center;

@@ -13,8 +13,10 @@
 				jQuery("#buscar").serialize(),
 				function(respuesta){
 					
-					jQuery(".resultados_container").html( respuesta );
-					initMap();
+					// jQuery(".resultados_container").html( respuesta );
+					// initMap();
+
+					location.reload();
 
 				}
 			);

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.5 17.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #7ad2c4;
+        stroke: #4faa99;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>Disponible</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <circle class="cls-1" cx="8.75" cy="8.75" r="8.25"/>
+        <polygon class="cls-2" points="7.072 12.923 14.422 5.574 13.425 4.577 7.07 10.931 4.075 7.937 3.078 8.934 7.067 12.923 7.07 12.921 7.072 12.923"/>
+      </g>
+    </g>
+  </g>
+</svg>
