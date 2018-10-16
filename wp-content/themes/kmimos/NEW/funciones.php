@@ -103,12 +103,64 @@
 		$resultados = $_SESSION['resultado_busqueda'];
 		$HTML = ""; $cont = 1;
 		foreach ($resultados as $key => $cuidador) {
-			$_cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$cuidador->user_id}");
-			$img_url = kmimos_get_foto($cuidador->user_id);
-
+			$_cuidador = $_SESSION["DATA_CUIDADORES"][ $cuidador->id ];
+			$img_url = kmimos_get_foto($_cuidador->user_id);
 			$desde = explode(".", number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, '.', ',') );
-
 			$dir = explode(",", $_cuidador->direccion);
+
+			$ocultar_flash = "ocultar_flash";
+			$ocultar_flash_none = "ocultar_flash_none";
+			$ocultar_descuento = "ocultar_descuento";
+			if( $_cuidador->atributos["flash"] == 1 ){
+				$ocultar_flash = "";
+				$ocultar_flash_none = "";
+			}
+			if( $_cuidador->atributos["destacado"]+0 == 1 ){
+				$ocultar_descuento = "";
+			}
+
+			$ocultar_todo = "";
+			if( $ocultar_flash != "" && $ocultar_descuento != "" ){
+				$ocultar_todo = "ocultar_flash_descuento";
+			}
+
+			$comentario = '';
+			if( isset($_cuidador->comentario->comment_author_email) ){
+				if( strlen($_cuidador->comentario->comment_content) > 200 ){
+					$_cuidador->comentario->comment_content = substr($_cuidador->comentario->comment_content, 0, 200)."...";
+				}
+				$comentario = '
+					<div class="resultados_item_comentario">
+						<div class="resultados_item_comentario_img">
+							<div class="resultados_item_comentario_avatar" style="background-image: url( '.$_cuidador->comentario->foto.' );"></div>
+						</div>
+						<div class="resultados_item_comentario_contenido">
+							'.$_cuidador->comentario->comment_content.' <a href="#">(Ver más)</a>
+						</div>
+						<div class="resultados_item_comentario_favorito">
+							<span></span>
+						</div>
+					</div>
+				';
+			}else{
+				$comentario = '
+					<div class="resultados_item_comentario">
+						<div class="resultados_item_comentario_img"></div>
+						<div class="resultados_item_comentario_contenido"></div>
+						<div class="resultados_item_comentario_favorito">
+							<span></span>
+						</div>
+					</div>
+				';
+			}
+
+			$galeria = '<div class="resultados_item_info_img" style="background-image: url('.$img_url.');"></div>';
+			if( is_array($_cuidador->galeria) ){
+				
+				foreach ($_cuidador->galeria as $key => $value) {
+					$galeria .= '<div class="resultados_item_info_img" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>';
+				}
+			}
 
 			$HTML .= '
 				<div class="resultado_item">
@@ -116,18 +168,26 @@
 					<div class="resultado_item_container">
 						<div class="resultados_item_top">
 
+							<div class="resultados_item_iconos_container '.$ocultar_todo.'">
+								<div class="resultados_item_icono icono_disponibilidad '.$ocultar_flash.'">
+									<span>Disponibilidad inmediata</span>
+								</div>
+								<div class="resultados_item_icono icono_flash '.$ocultar_flash_none.'"><span></span></div>
+								<div class="resultados_item_icono icono_descuento '.$ocultar_descuento.'"><span></span></div>
+							</div>
+
 						</div>
 						<div class="resultados_item_middle">
 							<div class="resultados_item_info_container">
 								<div class="resultados_item_info_img_container">
 									<div class="resultados_item_info_img_box">
-										<div class="resultados_item_info_img" style="background-image: url('.$img_url.');"></div>
+										'.$galeria.'
 									</div>
 								</div>
 								<div class="resultados_item_info">
-									<div class="resultados_item_titulo"> <span>'.$cont.'.</span> '.utf8_encode($cuidador->titulo).'</div>
+									<div class="resultados_item_titulo"> <span>'.$cont.'.</span> '.($_cuidador->titulo).'</div>
 									<div class="resultados_item_subtitulo">"Tus mascotas se sentirán como en casa mietras se queden"</div>
-									<div class="resultados_item_direccion">'.strtolower($dir[0]).'</div>
+									<div class="resultados_item_direccion">'.strtolower(utf8_encode($dir[0])).'</div>
 									<div class="resultados_item_servicios">
 										'.get_servicios_new($_cuidador->adicionales).'
 										<div class="resultados_item_comentarios">
@@ -142,17 +202,22 @@
 										<div>MXN$ <strong>'.$desde[0].'<span>,'.$desde[1].'</span></strong></div>
 										<span>Por noche</span>
 									</div>
+									'.$comentario.'
 								</div>
 							</div>
 						</div>
 						<div class="resultados_item_bottom">
 							<a href="#" class="boton boton_border_gris">Solicitud de conocer</a>
-							<a href="#" class="boton boton_verde">Reservar</a>
+							<a href="'.get_home_url().'/petsitters/'.$_cuidador->url.'" class="boton boton_verde">Reservar</a>
 						</div>
 					</div>
 				</div>
 			';
 			$cont++;
+
+			if( $cont > 5 ){
+				break;
+			}
 		}
 
 		return $HTML;
@@ -175,7 +240,7 @@
         function get_servicios_new($adicionales){
             $r = "";
             
-            $adicionales = unserialize($adicionales);
+            //$adicionales = unserialize($adicionales);
             $adicionales_array = get_list_servicios_adicionales();
 
             if( count($adicionales) > 0 ){
@@ -291,5 +356,132 @@
 
             return $r;
         }
+    }
+
+    function update_ubicacion(){
+    	global $wpdb;
+
+    	$cuidadores = $wpdb->get_results("
+    		SELECT 
+    			c.id,
+    			c.email,
+    			u.estado,
+    			u.municipios
+    		FROM 
+    			cuidadores AS c
+    		INNER JOIN ubicaciones AS u  ON ( u.cuidador = c.id )
+    	");
+
+    	foreach ($cuidadores as $key => $value) {
+    		$est = ( $value->estado == "==" ) ? "": $value->estado;
+    		$mun = ( $value->municipios == "==" ) ? "": $value->municipios;
+    		$wpdb->query("UPDATE cuidadores SET estados = '{$est}', municipios = '{$mun}' WHERE cuidadores.id = {$value->id};");
+    	}
+    }
+
+    function update_titulo(){
+    	global $wpdb;
+
+    	$cuidadores = $wpdb->get_results("
+    		SELECT 
+    			c.id,
+    			p.post_title AS titulo,
+    			p.post_name AS url
+    		FROM 
+    			cuidadores AS c
+    		INNER JOIN wp_posts AS p  ON ( p.ID = c.id_post )
+    	");
+
+    	foreach ($cuidadores as $key => $value) {
+    		$wpdb->query("UPDATE cuidadores SET titulo = '{$value->titulo}', url = '{$value->url}' WHERE cuidadores.id = {$value->id};");
+    	}
+    }
+
+    function pre_carga_data_cuidadores(){
+    	global $wpdb;
+
+    	$cuidadores = $wpdb->get_results("
+    		SELECT 
+    			cuidadores.id,
+    			cuidadores.user_id,
+    			cuidadores.id_post,
+    			cuidadores.experiencia,
+    			cuidadores.latitud,
+    			cuidadores.longitud,
+    			cuidadores.direccion,
+    			cuidadores.hospedaje_desde,
+    			cuidadores.adicionales,
+    			cuidadores.atributos,
+    			cuidadores.rating,
+    			cuidadores.valoraciones,
+    			cuidadores.titulo,
+    			cuidadores.url
+    		FROM 
+    			cuidadores
+    		WHERE 
+    			activo = 1
+    	");
+
+    	$_cuidadores = [];
+    	foreach ($cuidadores as $key => $value) {
+    		$cuidadores[ $key ]->adicionales = unserialize($value->adicionales);
+    		$cuidadores[ $key ]->atributos = unserialize($value->atributos);
+    		$cuidadores[ $key ]->galeria = get_galeria($value->id);
+    		$cuidadores[ $key ]->comentario = get_comment_cuidador($value->id_post);
+
+    		$_cuidadores[ $value->id ] = $cuidadores[ $key ];
+    	}
+
+    	return $_cuidadores;
+
+    }
+
+    function get_galeria($cuidador_id){
+		$id_cuidador = ($cuidador_id)-5000;
+		$sub_path_galeria = "/".$id_cuidador."/";
+		$path_galeria = dirname(dirname(dirname(dirname(__DIR__))))."/wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
+		$galeria_array = array();
+		if( is_dir($path_galeria) ){
+			if ($dh = opendir($path_galeria)) { 
+				$imagenes = array();
+				$cont = 0;
+		        while ( ( ($file = readdir($dh)) !== false ) && $cont <= 7 ) { 
+		            if (!is_dir($path_galeria.$file) && $file!="." && $file!=".."){ 
+		               	$imagenes[] = $sub_path_galeria.$file;
+		            } 
+		            $cont++;
+		        } 
+		      	closedir($dh);
+		      	return $imagenes;
+	  		} 
+		}
+		return "";
+    }
+
+    function get_comment_cuidador($cuidador_post_id){
+    	global $wpdb;
+
+    	$comentario = $wpdb->get_row("
+    		SELECT 
+    			c.comment_author_email,
+    			c.comment_content 
+    		FROM 
+    			wp_comments AS c
+    		INNER JOIN wp_commentmeta AS m ON ( m.comment_id = c.comment_ID AND m.meta_key = 'trust' )
+    		WHERE 
+    			c.comment_post_ID = {$cuidador_post_id} AND c.comment_approved = 1 AND c.comment_content != ''
+    		ORDER BY 
+    			c.comment_ID DESC
+    		LIMIT 0, 1
+    	");
+
+    	if( !empty($comentario) ){
+    		$user_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$comentario->comment_author_email}'");
+			$comentario->foto = kmimos_get_foto( $user_id );
+		}else{
+			$comentario = false;
+		}
+
+    	return $comentario;
     }
 ?>

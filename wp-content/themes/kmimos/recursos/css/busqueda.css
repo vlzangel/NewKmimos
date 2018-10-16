@@ -411,7 +411,7 @@
 		    background-position: center;
 		    background-repeat: no-repeat;
 		    vertical-align: middle;
-		    background-image: url(../img/BUSQUEDA/SVG/Reserva_Inmediata.svg);
+		    background-image: url(../img/BUSQUEDA/SVG/iconos/Reserva_Inmediata.svg);
 		}
 
 		.mesaje_reserva_inmediata_der{
@@ -571,6 +571,74 @@
 
 		}
 
+		.resultados_item_iconos_container{
+			display: table;
+			width: 100%;
+		    margin-bottom: 15px;
+		}
+
+		.resultados_item_icono{
+			display: table-cell;
+			vertical-align: top;
+		}
+
+		.resultados_item_icono span{
+			display: block;
+		    border: solid 2px #CCC;
+		    border-radius: 3px;
+		    background: #EEE;
+		    padding: 10px 40px;
+		    box-sizing: border-box;
+		}
+
+		.icono_disponibilidad{
+
+		}
+
+		.icono_flash, .icono_descuento{
+			position: relative;
+			width: 50px;
+		}
+
+		.icono_flash span, .icono_descuento span{
+		    display: block;
+		    padding: 0px;
+		    height: 42px;
+			margin-left: 5px;
+
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 60%;
+
+		}
+
+		.icono_flash, .icono_descuento{
+			
+		}
+
+		.icono_disponibilidad span{
+			background-image: url(../img/BUSQUEDA/SVG/iconos/Disponible.svg);
+		    background-position: 11px center;
+		    background-repeat: no-repeat;
+		    background-size: 20px;
+		}
+
+		.icono_flash span{
+			background-image: url( ../img/BUSQUEDA/SVG/iconos/Reserva_Inmediata.svg );			
+		}
+
+		.icono_descuento span{
+			background-image: url( ../img/BUSQUEDA/SVG/iconos/Descuento.svg );
+		}
+
+		.ocultar_flash{
+			visibility: hidden;
+		}
+
+		.ocultar_flash_none, .ocultar_descuento, .ocultar_flash_descuento{
+			display: none;
+		}
+
 		.resultados_item_middle{
 
 		}
@@ -599,6 +667,8 @@
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;
+			display: inline-block;
+    		width: 100%;
 		}
 
 		.resultados_item_info {
@@ -647,6 +717,7 @@
 		    margin-left: 15px;
 		    font-size: 12px;
 		    color: #838383;
+		    border-radius: 2px;
 		}
 
 		.resultados_item_ranking {
@@ -686,13 +757,66 @@
 		    font-size: 13px;
 		}
 
+		.resultados_item_comentario{
+			display: table;
+			width: 100%;
+			margin: 5px 0px 8px;
+		}
+
+		.resultados_item_comentario > div {
+			vertical-align: middle;
+		}
+
+		.resultados_item_comentario_img{
+			display: table-cell;
+			width: 50px;
+		}
+
+		.resultados_item_comentario_avatar {
+		    width: 45px;
+		    height: 45px;
+		    background-position: center;
+		    background-size: cover;
+		    border-radius: 50%;
+		}
+
+		.resultados_item_comentario_contenido{
+		    display: table-cell;
+    		font-size: 12px;
+		}
+
+		.resultados_item_comentario_favorito{
+			display: table-cell;
+			width: 50px;
+		}
+
+		.resultados_item_comentario_favorito span{
+	        background-image: url(../img/BUSQUEDA/SVG/iconos/Favorito.svg);
+		    width: 40px;
+		    height: 40px;
+		    background-position: center;
+		    background-size: 70%;
+		    display: block;
+		    background-repeat: no-repeat;
+		    cursor: pointer;
+		    border: solid 2px #CCC;
+		    border-radius: 3px;
+		}
+
+		.resultados_item_comentario_contenido a {
+		    color: #1cd3c6;
+		    font-weight: 600;
+		    padding-left: 5px;
+		    display: inline-block;
+		}
+
 		.resultados_item_bottom{
 			text-align: right;
 			padding: 0px;
 		}
 
 		.resultados_item_bottom .boton{
-			padding: 3px 10px;
+			padding: 5px 10px;
 			min-width: 125px;
 			text-align: center;
 			font-size: 11px;
@@ -701,7 +825,7 @@
 		}
 
 		.resultados_item_bottom .boton_verde{
-			padding: 5px 10px;
+			padding: 7px 10px;
 		}
 
 

@@ -25,7 +25,7 @@
 		if( !isset($_SESSION) ){ session_start(); }
 		$busqueda = array();
 		if( isset($_SESSION["busqueda"]) ){
-			$busqueda = unserialize($_SESSION["busqueda"]);
+			$busqueda = ($_SESSION["busqueda"]);
 		}
 		return $busqueda;
 	}

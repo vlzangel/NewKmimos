@@ -196,6 +196,10 @@
                 "nacimiento" => $fecha
             );
 
+            $_nombres    = trim($nombres);
+            $_apellidos  = trim($apellidos);
+            $nom = strtoupper( substr($_nombres, 0, 1) ).strtolower( substr($_nombres, 1)  )." ".strtoupper( substr($_apellidos, 0, 1) ).".";
+
             $sql = "
                 INSERT INTO cuidadores VALUES (
                     NULL,
@@ -227,6 +231,12 @@
                     '".serialize($atributos)."',
                     '0',
                     '0',
+                    '',
+                    
+                    '',
+                    '',
+
+                    '{$nom}',
                     ''
                 );
             ";
@@ -279,7 +289,7 @@
                 }
                 
                 // Update Cuidadores Usuario                
-                $conn->query( "UPDATE cuidadores SET user_id = '".$user_id."' WHERE id = ".$cuidador_id);
+                $conn->query( "UPDATE cuidadores SET user_id = '".$user_id."', url = '".$user_id."' WHERE id = ".$cuidador_id);
 
                 $sql = "
                     INSERT INTO wp_usermeta VALUES
@@ -307,9 +317,6 @@
                 $conn->query( $sql );
                 
                 // Crear Post Cuidador
-                $nombres    = trim($nombres);
-                $apellidos  = trim($apellidos);
-                $nom = strtoupper( substr($nombres, 0, 1) ).strtolower( substr($nombres, 1)  )." ".strtoupper( substr($apellidos, 0, 1) ).".";
                 $sql_post_cuidador = "
                     INSERT INTO
                         wp_posts 

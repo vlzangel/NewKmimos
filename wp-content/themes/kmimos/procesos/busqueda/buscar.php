@@ -346,12 +346,12 @@
     /* Filtro nombre  */
 	    if( isset($nombre) ){ 
 	    	if( $nombre != "" ){ 
-	    		$query_by_nombre = "( post_cuidador.post_title LIKE '%".$nombre."%' "; 
+	    		$query_by_nombre = "( titulo LIKE '%".$nombre."%' "; 
 
 	    		// Eliminar caracteres especiales
 	    		$nombre_espacial = scanear_string( $nombre );
 		    	if( $nombre_espacial != "" ){ 
-		    		$query_by_nombre .= " OR post_cuidador.post_title LIKE '%".$nombre_espacial."%' "; 
+		    		$query_by_nombre .= " OR titulo LIKE '%".$nombre_espacial."%' "; 
 	    		} 
 
 	    		// Agregar a condicion
@@ -422,13 +422,15 @@
     	$municipios = (count($ubicacion)>1)? $ubicacion[1]: '';
 	    
 	    if( $estados != "" && $municipios != "" ){
-            $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-            $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$estados."=%' AND ubi.municipios LIKE '%=".$municipios."=%'  )";   
+            // $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
+            $ubicaciones_inner = "";
+            $ubicaciones_filtro = "AND ( estados LIKE '%=".$estados."=%' AND municipios LIKE '%=".$municipios."=%'  )";   
             $_SESSION['km5'] = "No"; 
 	    }else{ 
 	        if( $estados != "" ){
-	            $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-	            $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$estados."=%' )";
+	            // $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
+	            $ubicaciones_inner = "";
+	            $ubicaciones_filtro = "AND ( estados LIKE '%=".$estados."=%' )";
 	            $_SESSION['km5'] = "No";
 	        }else{
 	            if( $latitud != "" && $longitud != "" && $km5 != "No" ){
@@ -462,25 +464,11 @@
 
 	    $sql = "
 	    SELECT 
-	        cuidadores.id,
-	        cuidadores.id_post,
-	        cuidadores.user_id,
-	        cuidadores.longitud,
-	        cuidadores.latitud,
-	        cuidadores.rating,
-	        cuidadores.adicionales,
-	        (cuidadores.hospedaje_desde*1.25) AS precio,
-	        cuidadores.experiencia,
-	        cuidadores.valoraciones,
-	        post_cuidador.post_name AS slug,
-	        post_cuidador.post_title AS titulo
+	        cuidadores.id
 	        {$DISTANCIA}
 	        {$FLASH_ORDEN}
 	    FROM 
-	        cuidadores 
-	    	INNER JOIN wp_posts AS post_cuidador ON ( cuidadores.id_post = post_cuidador.ID )
-	    	{$ubicaciones_inner}
-	    	{$nombre_inner}
+	        cuidadores
 	    WHERE 
 	        activo = '1' and cuidadores.hospedaje_desde >= 1 {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION} {$FILTRO_ESPECIA}
 	    	{$GATOS_CONDICION}
@@ -497,7 +485,8 @@
 		$grados = 0;
 		$longitud_init = 0.005;
 
-		foreach ($cuidadores as $key => $cuidador) {
+		foreach ($cuidadores as $key => $_cuidador) {
+			$cuidador = $_SESSION["DATA_CUIDADORES"][$_cuidador->id];
 			$anios_exp = $cuidador->experiencia;
 			if( $anios_exp > 1900 ){
 				$anios_exp = date("Y")-$anios_exp;

@@ -91,7 +91,11 @@
                         mascotas_permitidas = {$num_mascota},
                         latitud = '{$latitud}',
                         longitud = '{$longitud}',
-                        portada = {$foto}
+                        portada = {$foto},
+
+                        estados = '={$estado}=',
+                        municipios = '={$municipio}='
+                        
                     WHERE email = '{$email}'
                 ";
                 $r = $db->query( $cuidador_update );
