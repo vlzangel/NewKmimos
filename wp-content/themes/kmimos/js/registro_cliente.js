@@ -256,7 +256,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				};
 
 				jQuery("#popup-registrarte").on('hidden.bs.modal', function () {
-		            location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+		            finalizar_proceso();
 			    });
 
 				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
@@ -653,7 +653,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 					if( data >= 1 ){
 						jQuery("#btn_cerrar").on("click", function(e){
-							location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+							finalizar_proceso();
 						});
 					}else{
 						jQuery('.km-btn-popup-registrarte-datos-mascota').after('<div style="margin-bottom:15px;" class="col-xs-12">No se pudo registrar la mascota, verifique los datos y vuelva a intentarlo.</div>');
@@ -821,6 +821,16 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
    
 });
 
+function finalizar_proceso(){
+	jQuery.post(
+		HOME+'/procesos/login/enviar_mail_admin.php', 
+		{
+			'email' : jQuery("#email_1").val(),
+		}, 
+		function(_result){
+	    //location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+	});
+}
 
 /*POPUP INICIAR SESIÓN*/
 	jQuery(document).on("click", '.popup-iniciar-sesion-1 .km-btn-contraseña-olvidada', function ( e ) {
