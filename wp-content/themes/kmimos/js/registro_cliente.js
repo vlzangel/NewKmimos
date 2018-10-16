@@ -823,7 +823,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
 
 function finalizar_proceso(){
 	jQuery.post(
-		HOME+'/procesos/login/enviar_mail_admin.php', 
+		HOME+'procesos/login/enviar_mail_admin.php', 
 		{
 			'email' : jQuery("#email_1").val(),
 		}, 
