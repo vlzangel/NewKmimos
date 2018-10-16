@@ -129,4 +129,5 @@ print_r($ID);
 			$content .= '</ul>';
 	}
 
-	wp_mail( 'italococchini@gmail.com', "Registro de Nuevo Cliente", $content);
+	kmimos_mails_administradores_new( "Registro de Nuevo Cliente", $content );
+	//wp_mail( 'italococchini@gmail.com', "Registro de Nuevo Cliente", $content);
