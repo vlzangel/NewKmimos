@@ -25,13 +25,24 @@
 			color: #fff;
 			font-weight: bold;
 		}
-		p.kmimos{
+		.kmimos{
 			color: #59C9A8;
 			font-weight: bold;
 		}
 		.margin-top{
 			margin: 10px 0px; 
 		}
+
+		@media (max-width: 768px) {
+			header{
+				background-position: left;
+			}
+			h1{
+				font-size: 18px;
+			}
+		}
+
+
 	</style>
 </head>
 <body>
@@ -53,10 +64,12 @@
 
 			<p><strong>Espera noticias nuestras proximamente.</strong></p>
 
-			<p><strong>Quieres recibir las nuevas noticias de Kmimos primero que nadie?</strong></p>
-			<p class="kmimos">Dejanos tu nombre, tu telefono y tu correo y un miembro de nuestro equipo te contactara.</p>
+			<p style="padding-top: 25px;">
+				<strong>Quieres recibir las nuevas noticias de Kmimos primero que nadie?</strong>
+				<br><span class="kmimos">Dejanos tu nombre, tu telefono y tu correo y un miembro de nuestro equipo te contactara.</span>
+			</p>
 
-			<form class="col-md-6 col-md-offset-3">
+			<form class="col-md-6 col-md-offset-3" method="post" action="/">
 				<input type="text" class="margin-top form-control" placeholder="Ingresa tu nombre">
 				<input type="text" class="margin-top form-control" placeholder="Ingresa tu telefono">
 				<div class="input-group margin-top">
