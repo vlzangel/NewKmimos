@@ -19,6 +19,7 @@ jQuery(document).ready(function(){
                         calcular();
                     }
                     jQuery(".fechas_container").removeClass("error_fecha");
+                    jQuery('#checkout').change();
                 },
                 yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
                 firstDay: 1,
@@ -33,6 +34,7 @@ jQuery(document).ready(function(){
                         calcular();
                     }
                     jQuery(".fechas_container").removeClass("error_fecha");
+                    jQuery('#checkout').change();
                 },
                 yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
                 firstDay: 1,
@@ -68,6 +70,7 @@ jQuery(document).ready(function(){
                 validar_busqueda_home();
             }
             jQuery(".fechas_container").removeClass("error_fecha");
+            jQuery('#checkin').change();
         },
         yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
         firstDay: 1,
@@ -82,6 +85,7 @@ jQuery(document).ready(function(){
                 calcular();
             }
             jQuery(".fechas_container").removeClass("error_fecha");
+            jQuery('#checkout').change();
         },
         yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
         firstDay: 1,

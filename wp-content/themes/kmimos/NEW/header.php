@@ -88,7 +88,7 @@
 	    	</ul>
 		';
 		$menu_movil_str = '
-			<img class="icono" src="'.get_recurso("img").'HOME//GENERALES/RESPONSIVE/PNG/Menu.png" id="ver_menu" />
+			<img class="icono" src="'.get_recurso("img").'GENERALES/RESPONSIVE/PNG/Menu.png" id="ver_menu" />
 			<div id="menu_movil" class="hidden-sm hidden-md hidden-lg">
 				<div class="menu_movil_interno">
 					<div class="cerrar_menu_movil initial_menu_movil clearfix">

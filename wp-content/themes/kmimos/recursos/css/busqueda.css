@@ -407,6 +407,7 @@
 		.mesaje_reserva_inmediata_izq{
 		    display: table-cell;
 		    width: 60px;
+    		height: 60px;
 		    background-size: 60%;
 		    background-position: center;
 		    background-repeat: no-repeat;
@@ -528,7 +529,7 @@
 
 	/* CANTIDAD DE RESULTADOS */
 
-	 	.catntidad_resultados_container {
+	 	.cantidad_resultados_container {
 		    box-sizing: border-box;
 		    padding: 0px 30px;
 		    font-size: 15px;
@@ -631,8 +632,9 @@
 			background-image: url( ../img/BUSQUEDA/SVG/iconos/Descuento.svg );
 		}
 
-		.ocultar_flash{
-			visibility: hidden;
+		.ocultar_flash span {
+		    background-image: url();
+    		color: #EEE;
 		}
 
 		.ocultar_flash_none, .ocultar_descuento, .ocultar_flash_descuento{
@@ -660,6 +662,7 @@
 		.resultados_item_info_img_container .resultados_item_info_img_box {
 			height: 100%;
 		    white-space: nowrap;
+	        position: relative;
 		}
 
 		.resultados_item_info_img_container .resultados_item_info_img_box .resultados_item_info_img {
@@ -828,6 +831,26 @@
 			padding: 7px 10px;
 		}
 
+		.cargando_mas_resultados{
+			padding: 15px;
+			text-align: center;
+			font-size: 35px;
+		}
+
+		.cargando_mas_resultados i.fa.fa-spinner.fa-spin {
+		    color: #7c169e;
+		}
+
+		.cantidad_resultados_container.cantidad_resultados_fixed {
+		    position: fixed;
+		    top: 55px;
+		    left: 300px;
+		    width: calc( 100% - 660px );
+		    background: #fff;
+		    padding: 10px 25px;
+		    z-index: 10;
+		    box-shadow: 1px 0px 4px #CCC;
+		}
 
 /* MAPA */
 

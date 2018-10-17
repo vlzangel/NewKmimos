@@ -553,11 +553,7 @@
        	if( $redireccionar == 1 ) {
 		 	header("location: {$home}busqueda/");
 		}else{
-			echo "Cuidadores Encontrados: ".count($cuidadores);
-			echo "<pre>";
-				// print_r( $sql );
-				print_r( $cuidadores );
-			echo "</pre>";
+			echo json_encode( $cuidadores );
 		}
 	}
 

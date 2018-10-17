@@ -1,26 +1,78 @@
 /* BUSCAR */
 
-
 	jQuery(document).ready(function(){
 		jQuery("#buscar input").on("change", function(e){ buscar( jQuery(this).attr("id") ); });
 		jQuery("#buscar select").on("change", function(e){ buscar( jQuery(this).attr("id") ); });
+		buscar( "" );
 	});
 
+	jQuery(".resultados_container").on("scroll", function() {
+		var margen = 
+			parseInt( jQuery(".mesaje_reserva_inmediata_container").height() ) +
+			parseInt( jQuery("#seccion_destacados").height() ) +
+			parseInt( jQuery(".cantidad_resultados_container").height() )
+	    var hTotal = parseInt( jQuery(".resultados_box").height() )+margen;
+	    var scrollPosition = parseInt( jQuery(".busqueda_container").height() ) + parseInt( jQuery(".resultados_container").scrollTop() );
+	    //console.log(hTotal+" <= "+scrollPosition);
+	    if ( ( hTotal <= scrollPosition ) && CARGAR_RESULTADOS ) {
+    		CARGAR_RESULTADOS = false;
+	        if( TOTAL_PAGE > (PAGE+1) ){
+	    		// console.log("Cargando mas...");
+	        	PAGE = PAGE + 1;
+	        	getResultados();
+	        	jQuery(".cargando_mas_resultados").css("display", "block");
+	        }else{
+	        	jQuery(".cargando_mas_resultados").css("display", "none");
+	        }
+	    }
+	    if( jQuery(".resultados_container").scrollTop() >= jQuery(".cantidad_resultados_container")[0].offsetTop ){
+	    	jQuery(".cantidad_resultados_container").addClass("cantidad_resultados_fixed");
+	    }else{
+	    	jQuery(".cantidad_resultados_container").removeClass("cantidad_resultados_fixed");
+	    }
+	});
+
+	var PAGE = 0;
+	var TOTAL_PAGE = 0;
+	var CARGAR_RESULTADOS = true;
+	var mapIniciado = false;
 	function buscar( campo ){
 		if( campo != "ubicacion_txt" ){
 			jQuery.post(
 				jQuery("#buscar").attr("action"),
 				jQuery("#buscar").serialize(),
 				function(respuesta){
-					
-					// jQuery(".resultados_container").html( respuesta );
-					// initMap();
-
-					location.reload();
-
-				}
+					jQuery(".cantidad_resultados_container strong").html( respuesta.length );
+					TOTAL_PAGE = Math.ceil(respuesta.length/10);
+					jQuery(".resultados_box .resultados_box_interno").html( "" );
+					PAGE = 0;
+					getResultados();
+					getDestacados();
+					if( mapIniciado ){ initMap(); }
+				}, 'json'
 			);
 		}
+	}
+
+	function getResultados(){
+		jQuery.post(
+			HOME+"/NEW/resultados.php",
+			{ page: PAGE },
+			function(html){
+				jQuery(".resultados_box .resultados_box_interno").append( html );
+				CARGAR_RESULTADOS = true;
+			}
+		);
+	}
+
+	function getDestacados(){
+		jQuery.post(
+			HOME+"/NEW/destacados.php",
+			{},
+			function(html){
+				jQuery("#seccion_destacados").html( html );
+			}
+		);
 	}
 
 /* GEOLOCALIZACION */
@@ -110,6 +162,8 @@
 	var oms = "";
 
 	function initMap() {
+
+		mapIniciado = true;
 		
 		map = new google.maps.Map(document.getElementById("mapa"), {
 	        zoom: 4,

@@ -3,9 +3,6 @@
 	
 	if( !isset($_SESSION) ){ session_start(); }
 
-
-	echo "<pre>"; 
-		// print_r( pre_carga_data_cuidadores() );
-		print_r( $_SESSION );
-	echo "</pre>";
+	update_ubicacion();
+	update_titulo();
 ?>

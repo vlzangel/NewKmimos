@@ -50,8 +50,8 @@
 			$_SESSION["DATA_CUIDADORES"] = pre_carga_data_cuidadores();
 		}
 		
-		$destacados = get_destacados_new();
-		$resultados = get_resultados_new();
+		// $destacados = get_destacados_new();
+		// $resultados = get_resultados_new();
 
 		// update_ubicacion();
 		// update_titulo();
@@ -164,14 +164,19 @@
     				</div>
     			</div>
 
-    			'.$destacados.'
+    			<div id="seccion_destacados">
+    				'.$destacados.'
+    			</div>
 
-    			<div class="catntidad_resultados_container">
+    			<div class="cantidad_resultados_container">
     				Hay <strong>'.count($_SESSION['resultado_busqueda']).' cuidadores</strong> cerca de ti, con las características que necesitas.
     			</div>
 
     			<div class="resultados_box">
-    				'.$resultados.'
+    				<div class="resultados_box_interno">'.$resultados.'</div>
+    				<div class="cargando_mas_resultados">
+	    				<i class="fa fa-spinner fa-spin"></i>
+	    			</div>
     			</div>
 
     		</div>
