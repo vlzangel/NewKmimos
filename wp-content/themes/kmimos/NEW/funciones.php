@@ -11,7 +11,6 @@
         $lat = $_POST["latitud"];
         $lng = $_POST["longitud"];
         $top_destacados = ""; $cont = 0;
-
         if( $lat != "" && $lng != "" ){
             $sql_top = $wpdb->get_results("SELECT * FROM destacados");
             $destacados = [];
@@ -19,7 +18,7 @@
             $DESTACADOS_ARRAY = [];
             $cont = 0;
             foreach ($resultados as $key => $_cuidador) {
-                if( in_array($_cuidador->id, $destacados) && $cuidador->DISTANCIA <= 200 ){ //
+                if( in_array($_cuidador->id, $destacados) && $cuidador->DISTANCIA <= 200 ){
                     $cont++;
                     $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$_cuidador->id}");
                     $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
@@ -91,7 +90,17 @@
 	        		</div>
 	            ';
 	        }
-	        $top_destacados = '<div class="destacados_container"><div class="destacados_box">'.$top_destacados.'</div></div>';
+	        $top_destacados = '
+	        	<div class="destacados_container"  data-total="'.(count($DESTACADOS_ARRAY)+1).'" data-actual="0">
+	        		<h2>Cuidadores destacados</h2>
+	        		<div class="destacados_box">'.$top_destacados.'</div>
+	        	</div>
+				<div class="Flecha_Izquierda ">
+					<img onclick="destacadoAnterior( jQuery(this) );" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_Izquierda.svg" />
+				</div>
+				<div class="Flecha_Derecha '.$ocultar_siguiente_img.'">
+					<img onclick="destacadoSiguiente( jQuery(this) );" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_Derecha.svg" />
+				</div>';
         }
 
         return comprimir($top_destacados);
@@ -103,12 +112,19 @@
 		$resultados = $_SESSION['resultado_busqueda'];
 		$HTML = ""; $total = count($resultados);
 		$fin = ( $total > ($PAGE+10) ) ? $PAGE+10 : $total;
+
 		for ($i = $PAGE; $i < $fin; $i++ ) {
 			$cuidador = $resultados[$i];
 
 			if( isset($_SESSION["DATA_CUIDADORES"][ $cuidador->id ]) ){
 
 				$_cuidador = $_SESSION["DATA_CUIDADORES"][ $cuidador->id ];
+
+				$anios_exp = $_cuidador->experiencia;
+	            if( $anios_exp > 1900 ){
+	                $anios_exp = date("Y")-$anios_exp;
+	            }
+
 				$img_url = kmimos_get_foto($_cuidador->user_id);
 				$desde = explode(".", number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, '.', ',') );
 
@@ -182,7 +198,8 @@
 
 								<div class="resultados_item_iconos_container '.$ocultar_todo.'">
 									<div class="resultados_item_icono icono_disponibilidad '.$ocultar_flash.'">
-										<span>Disponibilidad inmediata</span>
+										<span class="disponibilidad_PC">Disponibilidad inmediata</span>
+										<span class="disponibilidad_MOVIl">Disponible</span>
 									</div>
 									<div class="resultados_item_icono icono_flash '.$ocultar_flash_none.'"><span></span></div>
 									<div class="resultados_item_icono icono_descuento '.$ocultar_descuento.'"><span></span></div>
@@ -195,8 +212,8 @@
 										<div class="resultados_item_info_img_box">
 											'.$galeria.'
 										</div>
-										<img onclick="imgAnterior( jQuery(this) );" class="Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'BUSQUEDA/PNG/Flecha_Izquierda.png" />
-										<img onclick="imgSiguiente( jQuery(this) );" class="Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/PNG/Flecha_Derecha.png" />
+										<img onclick="imgAnterior( jQuery(this) );" class="Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_2.svg" />
+										<img onclick="imgSiguiente( jQuery(this) );" class="Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
 									</div>
 									<div class="resultados_item_info">
 										<div class="resultados_item_titulo"> <span>'.($i+1).'.</span> '.($_cuidador->titulo).'</div>
@@ -211,17 +228,29 @@
 												'.kmimos_petsitter_rating($_cuidador->id_post).'
 											</div>
 										</div>
+										<div class="resultados_item_experiencia">
+											'.$anios_exp.' años de experiencia
+										</div>
 										<div class="resultados_item_precio_container">
 											<span>Desde</span>
 											<div>MXN$ <strong>'.$desde[0].'<span>,'.$desde[1].'</span></strong></div>
-											<span>Por noche</span>
+											<span class="por_noche">Por noche</span>
+										</div>
+										<div class="resultados_item_ranking_movil">
+											'.kmimos_petsitter_rating($_cuidador->id_post).'
+										</div>
+										<div class="resultados_item_valoraciones">
+											'.$_cuidador->valoraciones.' valoraciones
 										</div>
 										'.$comentario.'
 									</div>
 								</div>
 							</div>
 							<div class="resultados_item_bottom">
-								<a href="#" class="boton boton_border_gris">Solicitud de conocer</a>
+								<a href="#" class="boton boton_border_gris">
+									<span class="boton_conocer_PC">Solicitud de conocer</span>
+									<span class="boton_conocer_MOVIl"><span class="boton_conocer_MOVIl">Conocer</span>
+								</a>
 								<a href="'.get_home_url().'/petsitters/'.$_cuidador->url.'" class="boton boton_verde">Reservar</a>
 							</div>
 						</div>

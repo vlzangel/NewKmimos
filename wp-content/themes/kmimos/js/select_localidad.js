@@ -7,64 +7,64 @@ jQuery(document).ready(function(){
         HOME+"/procesos/busqueda/ubicacion.php",
         {},
         function(data){
-            jQuery("#ubicacion_list").html(data);
-            jQuery("#ubicacion_list li").on("click", function(e){
+            jQuery(".ubicacion_list").html(data);
+            jQuery(".ubicacion_list li").on("click", function(e){
                 if( jQuery(this).html() != "X" ){
-                    jQuery("#ubicacion_txt").val( jQuery(this).html() );
-                    jQuery("#ubicacion").val( jQuery(this).attr("value") );
-                    jQuery("#ubicacion").change();
-                    jQuery("#ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
-                    jQuery("#ubicacion").attr( "data-txt", jQuery(this).html() );
+                    jQuery(".ubicacion_txt").val( jQuery(this).html() );
+                    jQuery(".ubicacion").val( jQuery(this).attr("value") );
+                    buscar("ubicacion");
+                    jQuery(".ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
+                    jQuery(".ubicacion").attr( "data-txt", jQuery(this).html() );
                     jQuery( ".cerrar_list_box" ).css("display", "none");
                 } 
-                jQuery("#ubicacion_list").removeClass("ubicacion_list_hover"); 
+                jQuery(".ubicacion_list").removeClass("ubicacion_list_hover");
             });
-            jQuery("#ubicacion_txt").attr("readonly", false);
+            jQuery(".ubicacion_txt").attr("readonly", false);
         }
     );
 
-    jQuery("#ubicacion_txt").on("keyup", function ( e ) {
-        buscarLocacion(String(jQuery("#ubicacion_txt").val()).toLowerCase());
+    jQuery(".ubicacion_txt").on("keyup", function ( e ) {
+        buscarLocacion(String(jQuery(this).val()).toLowerCase(), jQuery(this));
     });
 
-    jQuery("#ubicacion_txt").on("focus", function ( e ) { 
+    jQuery(".ubicacion_txt").on("focus", function ( e ) { 
         jQuery(this).attr("placeholder", "Escribe aquí el municipio");
-        jQuery("#ubicacion_list").addClass("ubicacion_list_hover");    
+        jQuery(this).parent().find(".ubicacion_list").addClass("ubicacion_list_hover");    
     });
 
-    jQuery("#ubicacion_txt").on("blur", function ( e ) { 
+    jQuery(".ubicacion_txt").on("blur", function ( e ) { 
         jQuery(this).attr("placeholder", "UBICACIÓN, ESTADO, MUNICIPIO");
     });
 
-    jQuery("#ubicacion_txt").on("change", function ( e ) {    
-        var txt = getCleanedString( String(jQuery("#ubicacion_txt").val()).toLowerCase() );
+    jQuery(".ubicacion_txt").on("change", function ( e ) {    
+        var txt = getCleanedString( String(jQuery(this).val()).toLowerCase() );
         if( txt == "" ){
-            jQuery("#ubicacion").val( "" );
-            jQuery("#ubicacion").attr( "data-value", "" );
-            jQuery("#latitud").val( "" );
-            jQuery("#longitud").val( "" );
-            jQuery("#ubicacion").change();
+            jQuery(this).parent().find(".ubicacion").val( "" );
+            jQuery(this).parent().find(".ubicacion").attr( "data-value", "" );
+            jQuery(this).parent().find(".latitud").val( "" );
+            jQuery(this).parent().find(".longitud").val( "" );
+            buscar("ubicacion");
         }else{
-            if( jQuery("#ubicacion").val() != "" ){
-                if( jQuery("#ubicacion_txt").val() != jQuery("#ubicacion").val() ){
-                    jQuery("#ubicacion_txt").val( jQuery("#ubicacion").attr( "data-txt" ) );
+            if( jQuery(this).parent().find(".ubicacion").val() != "" ){
+                if( jQuery(this).val() != jQuery(this).parent().find(".ubicacion").val() ){
+                    jQuery(this).val( jQuery(this).parent().find(".ubicacion").attr( "data-txt" ) );
                 }
             }
         }
     });
 
     jQuery(".cerrar_list").on("click", function(e){
-        jQuery( ".cerrar_list_box" ).css("display", "none");
+        jQuery(this).parent().css("display", "none");
     });
 
-    function buscarLocacion(txt){
+    function buscarLocacion(txt, _this){
         clearInterval(intervalo);
         intervalo = setInterval(function(){ 
             var buscar_1 = String(getCleanedString( txt )).trim();
-            jQuery("#ubicacion_list li").css("display", "none");
+            _this.parent().find(".ubicacion_list li").css("display", "none");
             if( buscar_1 != "" ){
                 cant = 0;
-                jQuery("#ubicacion_list li").each(function( index ) {
+                _this.parent().find(".ubicacion_list li").each(function( index ) {
                     if( String(jQuery( this ).attr("data-value")).toLowerCase().search(buscar_1) != -1 ){
                         jQuery( this ).css("display", "block");
                         cant++;
@@ -72,9 +72,9 @@ jQuery(document).ready(function(){
                 });
 
                 if( cant > 0 ){
-                    jQuery( ".cerrar_list_box" ).css("display", "block");
+                    _this.parent().find( ".cerrar_list_box" ).css("display", "block");
                 }else{
-                    jQuery( ".cerrar_list_box" ).css("display", "none");
+                    _this.parent().find( ".cerrar_list_box" ).css("display", "none");
                 }
             }
             clearInterval(intervalo); 

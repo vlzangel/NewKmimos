@@ -36,6 +36,47 @@
 		_this.parent().find(".resultados_item_info_img_box").animate({left: "-"+(actual*100)+"%"});
 	}
 
+	function destacadoAnterior(_this){
+		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
+		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
+
+		console.log( actual+" "+total );
+
+		if( actual == 0 ){
+			actual = total-1;
+		}else{
+			actual--;
+		}
+		if( actual == 0 ){
+			_this.parent().addClass("Ocultar_Flecha");
+		}
+		if( actual != total-1 ){
+			_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
+		}
+		_this.parent().parent().attr("data-actual", actual);
+		_this.parent().parent().find(".destacados_box").animate({left: "-"+(actual*50)+"%"});
+	}
+
+	function destacadoSiguiente(_this){
+		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
+		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
+
+		console.log( actual+" "+total );
+		if( actual == total-1 ){
+			actual = 0;
+		}else{
+			actual++;
+		}
+		if( actual == total-1 ){
+			_this.parent().addClass("Ocultar_Flecha");
+		}
+		if( actual != 0 ){
+			_this.parent().parent().find(".Flecha_Izquierda").removeClass("Ocultar_Flecha");
+		}
+		 _this.parent().parent().find(".destacados_container").attr("data-actual", actual);
+		 _this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*50)+"%"});
+	}
+
 
 /* BUSCAR */
 
@@ -43,6 +84,27 @@
 		jQuery("#buscar input").on("change", function(e){ buscar( jQuery(this).attr("id") ); });
 		jQuery("#buscar select").on("change", function(e){ buscar( jQuery(this).attr("id") ); });
 		buscar( "" );
+
+		jQuery("#ver_filtros").on("click", function(e){
+			jQuery(".filtos_container").animate({ left: "0px" });
+			jQuery("#checkin").click();
+		});
+
+		jQuery("#ver_filtros_fechas").on("click", function(e){
+			jQuery(".filtos_container").animate({ left: "0px" });
+		});
+
+		jQuery("#ver_mapa").on("click", function(e){
+			jQuery(".mapa_container").animate({ right: "0px" });
+		});
+
+		jQuery(".cerrar_filtros_movil").on("click", function(e){
+			jQuery(".filtos_container").animate({ left: "-100%" });
+		});
+
+		jQuery(".cerrar_mapa_movil").on("click", function(e){
+			jQuery(".mapa_container").animate({ right: "-100%" });
+		});
 	});
 
 	jQuery(".resultados_container").on("scroll", function() {
@@ -82,7 +144,7 @@
 				jQuery("#buscar").attr("action"),
 				jQuery("#buscar").serialize(),
 				function(respuesta){
-					jQuery(".cantidad_resultados_container strong").html( respuesta.length );
+					jQuery(".cantidad_resultados_container span").html( respuesta.length );
 					TOTAL_PAGE = Math.ceil(respuesta.length/10);
 					jQuery(".resultados_box .resultados_box_interno").html( "" );
 					PAGE = 0;
@@ -113,6 +175,11 @@
 			{},
 			function(html){
 				jQuery("#seccion_destacados").html( html );
+				if( String(html).trim() == "" ){
+					jQuery("#seccion_destacados").addClass("sin_destacados");
+				}else{
+					jQuery("#seccion_destacados").removeClass("sin_destacados");
+				}
 			}
 		);
 	}
@@ -133,7 +200,7 @@
 
 	jQuery(document).ready(function(){
 
-		jQuery("#mi_ubicacion").on("click", function(e){
+		jQuery(".mi_ubicacion").on("click", function(e){
 
 			jQuery(".icon_left").removeClass("fa-crosshairs");
 			jQuery(".icon_left").addClass("fa-spinner fa-spin");
@@ -153,8 +220,8 @@
 		                jQuery( '[data-error="ubicacion"]' ).parent().removeClass('has-error');
 		                jQuery( '[data-error="ubicacion"]' ).addClass('hidden');
 
-		                jQuery('#latitud').val(crd.latitude);
-		                jQuery('#longitud').val(crd.longitude);
+		                jQuery('.latitud').val(crd.latitude);
+		                jQuery('.longitud').val(crd.longitude);
 
 
 		                var geocoder = new google.maps.Geocoder();
@@ -163,9 +230,9 @@
 		                geocoder.geocode({'location': latlng}, function(results, status) {
 		                    if (status == google.maps.GeocoderStatus.OK) {
 		                        var address = results[0]['formatted_address'];
-		                        jQuery("#ubicacion_txt").val(address);
-		                        jQuery("#ubicacion").val("");
-                        		jQuery("#ubicacion").change();
+		                        jQuery(".ubicacion_txt").val(address);
+		                        jQuery(".ubicacion").val("");
+                        		jQuery(".ubicacion").change();
 
 								jQuery(".icon_left").removeClass("fa-spinner fa-spin");
 								jQuery(".icon_left").addClass("fa-crosshairs");

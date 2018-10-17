@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 /* MENU */
 
 	.nav>li>a>img {
@@ -25,9 +27,16 @@
 		height: 100%;
 		box-sizing: border-box;
 		background-color: #FFF;
-	    overflow-y: auto;
 	    border-right: solid 2px #CCC;
 	    padding: 15px;
+	    transition: all .3s ease-in-out;
+	    z-index: 100;
+	}
+
+	.filtos_container form {
+		height: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
 
 	.resultados_container{
@@ -47,9 +56,16 @@
 		top: 0px;
 		width: 350px;
 		height: 100%;
+		transition: all .3s ease-in-out;
+		background: #FFF;
+	    z-index: 999;
 	}
 
 /* FILTROS */
+	
+	.cerrar_filtros_movil, .cerrar_mapa_movil{
+		display: none;
+	}
 
 	/* SERVICIOS PRINCIPALES */
 
@@ -123,7 +139,7 @@
 			box-sizing: border-box;
 			padding: 0px 40px 0px 35px;
 			font-size: 16px;
-			font-family: Lato;
+			font-family: 'Lato', sans-serif;
 			color: #777;
 			outline: none;
 		}
@@ -191,7 +207,7 @@
 		    line-height: 17px;
 		    font-size: 13px;
 		    text-align: left;
-		    font-family: Lato;
+		    font-family: 'Lato', sans-serif;
 		    cursor: pointer;
 		}
 
@@ -295,7 +311,7 @@
 			box-sizing: border-box;
 			padding: 0px 0px 0px 35px;
 			font-size: 13px;
-			font-family: Lato;
+			font-family: 'Lato', sans-serif;
 			color: #777;
 			outline: none;
 		}
@@ -430,7 +446,40 @@
 
 	/* DESTACADOS */
 
+		div#seccion_destacados {
+		    position: relative;
+		}
+
+		#seccion_destacados .Flecha_Izquierda,
+		#seccion_destacados .Flecha_Derecha {
+		    height: auto;
+		    top: 110px;
+		    border: solid 1px #CCC;
+		    padding: 10px;
+		    background: #FFF;
+		}
+
+		#seccion_destacados .Flecha_Izquierda {
+		    left: 0px;
+		    border-radius: 0px 3px 3px 0px;
+		    border-left: 0px;
+		}
+
+		#seccion_destacados .Flecha_Derecha {
+		    right: 0px;
+		    border-radius: 3px 0px 0px 3px;
+		    border-right: 0px;
+		}
+
+		#seccion_destacados .Flecha_Derecha img,
+		#seccion_destacados .Flecha_Izquierda img
+		{
+		    width: 20px;
+		    height: 20px;
+		}
+
 		.destacados_container {
+			position: relative;
 		    height: 275px;
 		    overflow: hidden;
 		    width: 100%;
@@ -441,6 +490,7 @@
 		.destacados_box {
 			height: 100%;
 		    white-space: nowrap;
+	        position: relative;
 		}
 
 		.destacados_item {
@@ -706,6 +756,11 @@
             text-transform: capitalize;
 		}
 
+		.resultados_item_experiencia,
+		.resultados_item_ranking_movil{
+			display: none;
+		}
+
 		.resultados_item_servicios{
 			padding: 5px 0px;	
 		}
@@ -854,11 +909,26 @@
 		    box-shadow: 1px 0px 4px #CCC;
 		}
 
+		.boton_conocer_PC,
+		.disponibilidad_PC {
+
+		}
+
+		.boton_conocer_MOVIl,
+		.disponibilidad_MOVIl {
+			display: none;
+		}
+
+		.disponibilidad_MOVIl{
+			display: none !important;
+		}
+
 		.Flecha_Izquierda,
 		.Flecha_Derecha{
 			position: absolute;
 			top: 70px;
 			cursor: pointer;
+			height: 20px;
 		}
 
 		.Flecha_Izquierda{
@@ -871,6 +941,94 @@
 
 		.Ocultar_Flecha{
 			display: none;
+		}
+
+		form#buscar_2 {
+		    display: none;
+		}
+
+		.filtro_check{
+		    display: table;
+		    width: 100%;
+		    height: 40px;
+		    padding: 10px 0px 10px;
+		}
+
+		.filtro_check > div{
+			display: table-cell;
+			vertical-align: middle;
+			font-weight: 600;
+			font-size: 11px;
+		}
+
+		.check_descuento{
+			
+		}
+
+		.check_icon{
+		    width: 25px;
+		    background-position: left center;
+		    background-size: 18px;
+		    background-repeat: no-repeat;
+		}
+
+		.check_control{
+		    width: 40px;
+		    background-position: right center;
+		    background-size: 33px;
+		    background-repeat: no-repeat;
+		    cursor: pointer;
+		}
+
+		.check_descuento .check_icon{
+	        background-image: url(../img/BUSQUEDA/SVG/iconos/Descuento.svg);
+		}
+
+		.check_descuento .check_control{
+	        background-image: url(../img/BUSQUEDA/SVG/Boton_descuento.svg);
+		}
+
+		.check_disponibilidad .check_icon{
+	        background-image: url(../img/BUSQUEDA/SVG/iconos/Reserva_Inmediata.svg);
+		}
+
+		.check_disponibilidad .check_control{
+	        background-image: url(../img/BUSQUEDA/SVG/Boton_R_Inmediata.svg);
+		}
+
+		.filtros_movil .boton.boton_gris{
+			display: block;
+    		text-align: center;
+		}
+
+		.destacados_container h2 {
+		    font-family: 'Lato', sans-serif;
+		    font-weight: 600;
+		    font-size: 14px !important;
+		    text-transform: uppercase;
+		    color: #000;
+		}
+
+		form#buscar_2 .filtros_movil .boton {
+		    margin: 3px 0px;
+		    padding: 6px;
+		    display: inline-block;
+		    width: calc( 50% - 2px );
+		    text-align: center;
+		    color: #4b4b4b;
+    		border-color: #CCC !important;
+    		font-weight: 400;
+		}
+
+		form#buscar_2 .filtros_movil .boton_block {
+		    display: block;
+		    width: 100%;
+		    font-weight: 600;
+    		font-size: 12px;
+		}
+
+		form#buscar_2 .filtros_movil {
+		    padding: 5px 0px 0px 10px;
 		}
 
 /* MAPA */

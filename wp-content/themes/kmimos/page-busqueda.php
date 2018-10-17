@@ -60,24 +60,28 @@
     	<div class="busqueda_container">
 
     		<div class="filtos_container">
+
+    			<div class="cerrar_filtros_movil"> x </div>
     			
     			<form id="buscar" action="'.getTema().'/procesos/busqueda/buscar.php" method="POST">
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
-					<input type="hidden" id="latitud" name="latitud" value="'.$_SESSION['busqueda']['latitud'].'" />
-					<input type="hidden" id="longitud" name="longitud" value="'.$_SESSION['busqueda']['longitud'].'" />
 
 					<div class="ubicacion_container">
 						<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion.svg" />
-						<input type="text" id="ubicacion_txt" name="ubicacion_txt" value="'.$_SESSION['busqueda']['ubicacion_txt'].'" placeholder="Ubicación estado municipio" autocomplete="off" />
-						<input type="hidden" id="ubicacion" name="ubicacion" value="'.$_SESSION['busqueda']['ubicacion'].'" />	
+						<input type="text" class="ubicacion_txt" name="ubicacion_txt" value="'.$_SESSION['busqueda']['ubicacion_txt'].'" placeholder="Ubicación estado municipio" autocomplete="off" />
+						<input type="hidden" class="ubicacion" name="ubicacion" value="'.$_SESSION['busqueda']['ubicacion'].'" />	
 					    <div class="cerrar_list_box">
 					    	<div class="cerrar_list">X</div>
-					    	<ul id="ubicacion_list" class=""></ul>
+					    	<ul class="ubicacion_list"></ul>
 					    </div>
-						<i id="mi_ubicacion" class="fa fa-crosshairs icon_left ubicacion_gps"></i>
+						<i class="fa fa-crosshairs icon_left ubicacion_gps mi_ubicacion"></i>
 						<div class="barra_ubicacion"></div>
 						<small class="hidden" data-error="ubicacion">Función disponible solo en México</small>
+
+						<input type="hidden" class="latitud" name="latitud" value="'.$_SESSION['busqueda']['latitud'].'" />
+						<input type="hidden" class="longitud" name="longitud" value="'.$_SESSION['busqueda']['longitud'].'" />
+
 					</div>
 					<div class="fechas_container">
 						<div id="desde_container">
@@ -151,11 +155,63 @@
 						<input type="text" name="nombre" placeholder="Buscar por nombre" class="input" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
 					<a href="#" class="mas_filtros">Más filtros</a>
+    			
     			</form>
 
     		</div>
     		
     		<div class="resultados_container">
+
+    			<form id="buscar_2" action="'.getTema().'/procesos/busqueda/buscar.php" method="POST">
+    				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+
+					<div class="ubicacion_container">
+						<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion.svg" />
+						<input type="text" class="ubicacion_txt" class="ubicacion_txt" name="ubicacion_txt" value="'.$_SESSION['busqueda']['ubicacion_txt'].'" placeholder="Ubicación estado municipio" autocomplete="off" />
+						<input type="hidden" class="ubicacion" class="ubicacion" name="ubicacion" value="'.$_SESSION['busqueda']['ubicacion'].'" />	
+					    <div class="cerrar_list_box">
+					    	<div class="cerrar_list">X</div>
+					    	<ul class="ubicacion_list"></ul>
+					    </div>
+						<i class="fa fa-crosshairs icon_left ubicacion_gps mi_ubicacion"></i>
+						<div class="barra_ubicacion"></div>
+						<small class="hidden" data-error="ubicacion">Función disponible solo en México</small>
+
+
+						<input type="hidden" class="latitud" name="latitud" value="'.$_SESSION['busqueda']['latitud'].'" />
+						<input type="hidden" class="longitud" name="longitud" value="'.$_SESSION['busqueda']['longitud'].'" />
+
+
+					</div>
+
+					<div class="filtros_movil_table">
+						<div class="filtros_movil_cell">
+							<div class="filtro_check check_descuento">
+								<div class="check_icon"></div>
+								<div>con descuento</div>
+								<div class="check_control"></div>
+								<input type="hidden" id="descuento" name="descuento" />
+							</div>
+							<div class="filtro_check check_disponibilidad">
+								<div class="check_icon"></div>
+								<div>reserva inmediata</div>
+								<div class="check_control"></div>
+								<input type="hidden" id="flash" name="flash" />
+							</div>
+						</div>
+						<div class="filtros_movil_cell filtros_movil">
+
+							<div id="ver_filtros_fechas" class="boton boton_border_gris boton_block"> '.$_SESSION['busqueda']['checkin'].' - '.$_SESSION['busqueda']['checkout'].' </div>
+							<div id="ver_filtros" class="boton boton_border_gris">
+								<img src="'.get_recurso("img").'BUSQUEDA/RESPONSIVE/SVG/Ver_fichas.svg" />
+							</div>
+							<div id="ver_mapa" class="boton boton_border_gris">
+								<img src="'.get_recurso("img").'BUSQUEDA/RESPONSIVE/SVG/Ver_mapa.svg" />
+							</div>
+
+						</div>
+					</div>
+    			</form>
 
     			<div class="mesaje_reserva_inmediata_container">
     				<div class="mesaje_reserva_inmediata_izq"></div>
@@ -169,7 +225,8 @@
     			</div>
 
     			<div class="cantidad_resultados_container">
-    				Hay <strong>'.count($_SESSION['resultado_busqueda']).' cuidadores</strong> cerca de ti, con las características que necesitas.
+    				<div class="disponibilidad_PC">Hay <strong><span>'.count($_SESSION['resultado_busqueda']).'</span> cuidadores</strong> cerca de ti, con las características que necesitas.</div>
+    				<div class="disponibilidad_MOVIl"><strong>Resultado de búsqueda,</strong> <span>'.count($_SESSION['resultado_busqueda']).'</span> cuidadores disponibles</div>
     			</div>
 
     			<div class="resultados_box">
@@ -182,6 +239,9 @@
     		</div>
     		
     		<div class="mapa_container">
+
+    			<div class="cerrar_mapa_movil"> x </div>
+
     			<label>
     				Actualizar al mover en el mapa 
     				<input type="checkbox" id="update_to_move" />

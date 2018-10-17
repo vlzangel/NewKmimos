@@ -11,3 +11,337 @@
 	    height: 125px;
 	}
 }
+
+@media (max-width: 768px){
+
+	/* FILTROS */
+	
+		.cerrar_filtros_movil {
+		    display: inline-block;
+		    position: absolute;
+		    top: 0px;
+		    right: -54px;
+		    background-color: #FFF;
+		    padding: 10px 20px;
+		    font-size: 25px;
+		    cursor: pointer;
+		    border-right: solid 2px #CCC;
+		    border-bottom: solid 2px #CCC;
+		    border-radius: 0px 0px 3px 0px;
+		}
+
+		.filtos_container {
+		    left: -100%;
+		    transition: all .3s ease-in-out;
+		}
+
+		.filtos_container.open_filtros{
+			left: 0px;
+		    transition: all .3s ease-in-out;
+		}
+		
+		form#buscar_2 {
+			display: block;
+		    padding: 10px 15px 5px;
+		}
+		
+		form#buscar_2 .filtros_movil_table {
+		   	display: table;
+		   	width: 100%;
+		}
+
+		form#buscar_2 .filtros_movil_cell {
+		    display: table-cell;
+		    width: 50%;
+		    vertical-align: top;
+		}
+
+	/* MAPA */
+
+		.mapa_container {
+		    right: -100%;
+		    width: 300px;
+		    transition: all .3s ease-in-out;
+		}
+
+		.mapa_container.open_mapa{
+			right: 0px;
+		    transition: all .3s ease-in-out;
+		}
+
+		#mapa {
+		    position: absolute;
+		    top: 40px;
+		    right: 0px;
+		    width: calc( 100% - 20px );
+		    height: calc( 100% - 60px );
+		    background: #BBB;
+		}
+	
+		.cerrar_mapa_movil {
+		    display: inline-block;
+		    position: absolute;
+		    top: 0px;
+		    left: -45px;
+		    background-color: #FFF;
+		    padding: 10px 20px;
+		    font-size: 25px;
+		    cursor: pointer;
+		    border-left: solid 2px #CCC;
+		    border-bottom: solid 2px #CCC;
+		    border-radius: 0px 0px 0px 3px;
+		}
+
+	/* RESULTADOS */
+
+		.disponibilidad_MOVIl {
+		    display: block !important;
+		}
+
+		.mesaje_reserva_inmediata_container{
+			display: none;
+		}
+
+		.resultados_container {
+		    left: 0px;
+		    width: 100%;
+		}
+
+		div#seccion_destacados {
+	        margin: 0px 0px 15px;
+    		border-bottom: solid 1px #33e1be;
+		}
+
+		.destacados_container {
+		    padding: 10px 0px;
+		    margin: 0px 15px;
+		    overflow-x: auto;
+		    width: auto;
+		    height: 290px;
+		}
+
+		.destacados_item {
+		    width: calc( 50% + 2px );
+		}
+
+		#buscar_2 .ubicacion_container input {
+		    height: 40px;
+		    font-size: 13px;
+		    font-family: 'Lato', sans-serif;
+		}
+
+		#buscar_2 .ubicacion_container .ubicacion_localizacion {
+		    top: 10px;
+		}
+
+		#buscar_2 .ubicacion_container .ubicacion_gps {
+		    padding: 10px 12px;
+		}
+
+		.cantidad_resultados_container.cantidad_resultados_fixed {
+			top: 35px;
+		    left: 0px;
+		    width: calc( 100% - 10px );
+		    z-index: 100;
+		    box-shadow: -3px 0px 4px #CCC;
+	        padding: 8px 15px 5px;
+		}
+
+		.resultados_box {
+		    margin-top: 0px;
+		}
+
+		.resultado_item {
+		    position: relative;
+		    margin: 0px 0px 0px 0px;
+		    width: calc( 50% - 2px );
+		    display: inline-block;
+		    vertical-align: top;
+		    padding: 0px;
+		    border: 0px;
+    		box-shadow: 0px 0px 0px;
+		}
+
+		.resultados_item_info_container {
+		    display: block;
+		    width: 100%;
+		}
+
+		.resultados_item_info_img_container {
+		    height: 130px;
+		    width: 100%;
+		    display: block;
+		    vertical-align: top;
+		}
+
+		.resultados_box_interno {
+		    padding: 0px 5px;
+		}
+
+		.resultados_item_info_img_container .resultados_item_info_img_box .resultados_item_info_img {
+		    border-radius: 3px;
+		}
+
+		.resultados_item_titulo span {
+		    display: none;
+		}
+
+		.resultado_item:hover .resultados_hover {
+		    display: none;
+		}
+
+		.resultados_item_info {
+		    padding-left: 0px;
+		    display: block;
+		}
+
+		.resultados_item_titulo {
+		    font-size: 15px;
+		    font-weight: 800;
+		    padding-top: 5px;
+		    padding: 5px 3px 0px;
+		}
+
+		.resultados_item_subtitulo,
+		.resultados_item_direccion,
+		.resultados_item_servicios,
+		.por_noche,
+		.resultados_item_comentario {
+		    display: none;
+		}
+
+		.resultados_item_precio_container {
+		    position: relative;
+		    top: auto;
+		    right: auto;
+		    text-align: left;
+		    padding-top: 2px;
+	        font-weight: 700;
+            font-size: 12px;
+            padding: 2px 3px 0px;
+		}
+
+		.resultados_item_precio_container > span,
+		.resultados_item_precio_container,
+		.resultados_item_precio_container > div {
+		    color: #000000;
+		}
+
+		.resultados_item_precio_container > div strong {
+		    font-size: inherit;
+		}
+
+		.resultados_item_precio_container > div,
+		.resultados_item_ranking_movil{
+			display: inline-block;
+		}
+
+		.resultados_item_experiencia{
+			display: block;
+			font-size: 12px;
+			font-weight: 700;
+			padding: 2px 3px 0px;
+		}
+
+		.resultados_item_ranking_movil .km-ranking a {
+		    background-image: url(../../img/BUSQUEDA/SVG/Huesito_gris.svg) !important;
+		}
+
+		.resultados_item_ranking_movil .km-ranking a.active {
+		    background-image: url(../../img/BUSQUEDA/SVG/Huesito_azul.svg) !important;
+		}
+
+		.resultados_item_valoraciones {
+		    font-size: 11px;
+		    font-weight: 700;
+		    padding: 2px 3px 0px;
+		}
+
+		.boton_conocer_PC,
+		.disponibilidad_PC {
+			display: none;
+		}
+
+		.boton_conocer_MOVIl,
+		.disponibilidad_MOVIl {
+			display: block;
+		}
+
+		.resultados_item_bottom {
+		    text-align: center;
+	        margin-top: 5px;
+	    }
+
+		.resultados_item_bottom .boton {
+		    padding: 5px 0px;
+		    min-width: 80px;
+		    text-align: center;
+		    font-size: 11px;
+		    text-decoration: none !important;
+		    margin: 0px;
+		    display: inline-block;
+		}
+
+		.resultados_item_bottom .boton_verde {
+		    padding: 7px 0px;
+		}
+
+		.resultados_item_icono span {
+		    display: block;
+		    border: solid 1px #CCC;
+		    border-radius: 3px;
+		    background-color: #EEE;
+		    padding: 2px 0px;
+		    box-sizing: border-box;
+		}
+
+		.icono_disponibilidad span {
+		    background-position: 7px center;
+		    background-repeat: no-repeat;
+		    background-size: 15px;
+	        padding-left: 30px;
+		}
+
+		.icono_flash, .icono_descuento {
+		    width: 30px;
+		}
+
+		.icono_flash span, .icono_descuento span {
+		    height: 25px;
+		}
+
+		span.disponibilidad_PC {
+		    display: none;
+		}
+
+		.resultados_item_iconos_container {
+		    margin-bottom: 5px;
+		}
+
+		.resultados_item_iconos_container.ocultar_flash_descuento {
+		    display: table;
+		    visibility: hidden;
+		}
+
+		.resultados_item_info_img_container img {
+			display: none;
+		}
+
+		#seccion_destacados.sin_destacados{
+			display: none;
+		}
+
+		.boton_border_gris {
+		    border: solid 1px #969696 !important;
+		}
+
+		.cantidad_resultados_container {
+		    padding: 10px 10px 5px;
+		    font-size: 13px;
+		}
+
+		.busqueda_container {
+		    top: 40px;
+		    height: calc( 100vh - 40px );
+		}
+}
