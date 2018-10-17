@@ -1,3 +1,42 @@
+/* GALERIA */
+
+	function imgAnterior(_this){
+		var actual = _this.parent().attr("data-actual");
+		var total = _this.parent().attr("data-total");
+		if( actual == 0 ){
+			actual = total-1;
+		}else{
+			actual--;
+		}
+		if( actual == 0 ){
+			_this.addClass("Ocultar_Flecha");
+		}
+		if( actual != total-1 ){
+			_this.parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
+		}
+		_this.parent().attr("data-actual", actual);
+		_this.parent().find(".resultados_item_info_img_box").animate({left: "-"+(actual*100)+"%"});
+	}
+
+	function imgSiguiente(_this){
+		var actual = _this.parent().attr("data-actual");
+		var total = _this.parent().attr("data-total");
+		if( actual == total-1 ){
+			actual = 0;
+		}else{
+			actual++;
+		}
+		if( actual == total-1 ){
+			_this.addClass("Ocultar_Flecha");
+		}
+		if( actual != 0 ){
+			_this.parent().find(".Flecha_Izquierda").removeClass("Ocultar_Flecha");
+		}
+		_this.parent().attr("data-actual", actual);
+		_this.parent().find(".resultados_item_info_img_box").animate({left: "-"+(actual*100)+"%"});
+	}
+
+
 /* BUSCAR */
 
 	jQuery(document).ready(function(){
@@ -36,6 +75,7 @@
 	var TOTAL_PAGE = 0;
 	var CARGAR_RESULTADOS = true;
 	var mapIniciado = false;
+
 	function buscar( campo ){
 		if( campo != "ubicacion_txt" ){
 			jQuery.post(
@@ -47,7 +87,9 @@
 					jQuery(".resultados_box .resultados_box_interno").html( "" );
 					PAGE = 0;
 					getResultados();
-					getDestacados();
+					if( campo == "ubicacion" || campo == "latitud" || campo == "longitud" || campo == "" ){
+						getDestacados();
+					}
 					if( mapIniciado ){ initMap(); }
 				}, 'json'
 			);

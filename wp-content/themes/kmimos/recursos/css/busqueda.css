@@ -651,6 +651,7 @@
 		}
 
 		.resultados_item_info_img_container {
+		    position: relative;
 		    height: 130px;
 		    overflow: hidden;
 		    width: 150px;
@@ -786,6 +787,7 @@
 		.resultados_item_comentario_contenido{
 		    display: table-cell;
     		font-size: 12px;
+    		padding: 0px 5px;
 		}
 
 		.resultados_item_comentario_favorito{
@@ -850,6 +852,25 @@
 		    padding: 10px 25px;
 		    z-index: 10;
 		    box-shadow: 1px 0px 4px #CCC;
+		}
+
+		.Flecha_Izquierda,
+		.Flecha_Derecha{
+			position: absolute;
+			top: 70px;
+			cursor: pointer;
+		}
+
+		.Flecha_Izquierda{
+			left: 7px;
+		}
+
+		.Flecha_Derecha{
+			right: 7px;
+		}
+
+		.Ocultar_Flecha{
+			display: none;
 		}
 
 /* MAPA */

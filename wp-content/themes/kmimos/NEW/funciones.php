@@ -172,6 +172,8 @@
 					}
 				}
 
+				$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
+
 				$HTML .= '
 					<div class="resultado_item">
 						<div class="resultados_hover"></div>
@@ -189,10 +191,12 @@
 							</div>
 							<div class="resultados_item_middle">
 								<div class="resultados_item_info_container">
-									<div class="resultados_item_info_img_container">
+									<div class="resultados_item_info_img_container" data-total="'.(count($_cuidador->galeria)+1).'" data-actual="0">
 										<div class="resultados_item_info_img_box">
 											'.$galeria.'
 										</div>
+										<img onclick="imgAnterior( jQuery(this) );" class="Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'BUSQUEDA/PNG/Flecha_Izquierda.png" />
+										<img onclick="imgSiguiente( jQuery(this) );" class="Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/PNG/Flecha_Derecha.png" />
 									</div>
 									<div class="resultados_item_info">
 										<div class="resultados_item_titulo"> <span>'.($i+1).'.</span> '.($_cuidador->titulo).'</div>
@@ -444,8 +448,8 @@
 
     function get_galeria($cuidador_id){
 		$id_cuidador = ($cuidador_id)-5000;
-		$sub_path_galeria = "/".$id_cuidador."/";
-		$path_galeria = dirname(dirname(dirname(dirname(__DIR__))))."/wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
+		$sub_path_galeria = "/".$id_cuidador."/mini/";
+		$path_galeria = dirname(dirname(dirname(dirname(__DIR__))))."/wp-content/uploads/cuidadores/galerias/".$id_cuidador."/mini/";
 		$galeria_array = array();
 		if( is_dir($path_galeria) ){
 			if ($dh = opendir($path_galeria)) { 
