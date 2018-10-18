@@ -100,8 +100,11 @@
 		}
 
 		.mapa_container {
+		    position: fixed;
+		    top: 40px;
 		    right: -100%;
-		    width: 300px;
+		    width: 350px;
+		    height: calc( 100vh - 40px );
 		    transition: all .3s ease-in-out;
 		}
 
@@ -116,11 +119,12 @@
 
 		#mapa {
 		    position: absolute;
-		    top: 40px;
-		    right: 0px;
-		    width: calc( 100% - 20px );
-		    height: calc( 100% - 60px );
 		    background: #BBB;
+		    top: auto;
+		    right: 0px;
+		    width: calc( 100% - 1px );
+		    height: calc( 100% - 40px );
+		    bottom: 0px;
 		}
 
 	/* RESULTADOS */
