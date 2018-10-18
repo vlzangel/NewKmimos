@@ -86,12 +86,12 @@
 
 	jQuery(document).ready(function(){
 		jQuery("#buscar input").on("change", function(e){ 
-			if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){ 
+			if( parseInt( jQuery("body").width() ) > 768 ){ 
 				buscar( jQuery(this).attr("id") ); 
 			}
 		});
 		jQuery("#buscar select").on("change", function(e){
-			if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){ 
+			if( parseInt( jQuery("body").width() ) > 768 ){
 				buscar( jQuery(this).attr("id") ); 
 			}
 		});
@@ -99,10 +99,16 @@
 
 		jQuery("#ver_filtros").on("click", function(e){
 			jQuery(".filtos_container").addClass('open_filtros');
+			if( parseInt( jQuery("body").width() ) < 768 ){
+				jQuery("body").css("overflow-y", "hidden");
+			}
 		});
 
 		jQuery("#ver_filtros_fechas").on("click", function(e){
 			jQuery(".filtos_container").addClass('open_filtros');
+			if( parseInt( jQuery("body").width() ) < 768 ){
+				jQuery("body").css("overflow-y", "hidden");
+			}
 		});
 
 		jQuery("#ver_mapa").on("click", function(e){
@@ -111,10 +117,22 @@
 
 		jQuery(".cerrar_filtros_movil").on("click", function(e){
 			jQuery(".filtos_container").removeClass('open_filtros');
+			if( parseInt( jQuery("body").width() ) < 768 ){
+				jQuery("body").css("overflow-y", "auto");
+			}
 		});
 
 		jQuery(".cerrar_mapa_movil").on("click", function(e){
 			jQuery(".mapa_container").removeClass('open_mapa');
+		});
+
+		jQuery("#buscar").submit(function(e){
+			e.preventDefault();
+			if( parseInt( jQuery("body").width() ) < 768 ){
+				jQuery(".filtos_container").removeClass('open_filtros');
+				jQuery("body").css("overflow-y", "auto");
+			}
+			buscar( '' );
 		});
 	});
 
@@ -187,7 +205,7 @@
 					jQuery(".resultados_box .resultados_box_interno").append( html );
 				}else{
 					jQuery(".resultados_box .resultados_box_interno").html( html );
-					jQuery('html, body').animate({ scrollTop: 180 }, 1000);
+					jQuery('html, body').animate({ scrollTop: 0 }, 1000);
 				}
 				CARGAR_RESULTADOS = true;
 

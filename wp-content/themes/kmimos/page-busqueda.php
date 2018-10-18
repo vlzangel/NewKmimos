@@ -131,7 +131,7 @@
 							<div class="top_check"></div>
 						</label>
 					</div>
-					<div class="tamanios_container">
+					<div class="tamanios_container tamanios_container_derecho">
 						<label class="input_check_box" for="grande">
 							<input type="checkbox" id="grande" name="tamanos[]" value="grandes" '.$tam['grandes'].' />
 							<span>
@@ -154,7 +154,73 @@
 					<div>
 						<input type="text" name="nombre" placeholder="Buscar por nombre" class="input" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
-					<a href="#" class="mas_filtros">Más filtros</a>
+
+
+					<div class="adicionales_container">
+						<label class="input_check_box" for="corte">
+							<input type="checkbox" id="corte" name="servicios[]" value="corte" '.$servicios['corte'].' />
+							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/servicios/AZUL/Corte.svg" />
+								<small>CORTE DE PELO Y UÑAS</small>
+							</span>
+							<div class="top_check"></div>
+						</label>
+						<label class="input_check_box" for="bano">
+							<input type="checkbox" id="bano" name="servicios[]" value="bano" '.$servicios['bano'].' />
+							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/servicios/AZUL/Banio.svg" />
+								<small>BAÑO Y SECADO</small>
+							</span>
+							<div class="top_check"></div>
+						</label>
+						<label class="input_check_box" for="limpieza_dental">
+							<input type="checkbox" id="limpieza_dental" name="servicios[]" value="limpieza_dental" '.$servicios['limpieza_dental'].' />
+							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/servicios/AZUL/Dental.svg" />
+								<small>LIMPIEZA DENTAL</small>
+							</span>
+							<div class="top_check"></div>
+						</label>
+						<label class="input_check_box" for="visita_al_veterinario">
+							<input type="checkbox" id="visita_al_veterinario" name="servicios[]" value="visita_al_veterinario" '.$servicios['visita_al_veterinario'].' />
+							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/servicios/AZUL/Veterinario.svg" />
+								<small>VISITA AL VETERINARIO</small>
+							</span>
+							<div class="top_check"></div>
+						</label>
+						<label class="input_check_box" for="acupuntura">
+							<input type="checkbox" id="acupuntura" name="servicios[]" value="acupuntura" '.$servicios['acupuntura'].' />
+							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/servicios/AZUL/Acupuntura.svg" />
+								<small>ACUPUNTURA</small>
+							</span>
+							<div class="top_check"></div>
+						</label>
+						<label class="input_check_box" for="transportacion_sencilla">
+							<input type="checkbox" id="transportacion_sencilla" name="servicios[]" value="transportacion_sencilla" '.$servicios['transportacion_sencilla'].' />
+							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/servicios/AZUL/Trans_Sencillo.svg" />
+								<small>TRANSPORTE SENCILLO</small>
+							</span>
+							<div class="top_check"></div>
+						</label>
+						<label class="input_check_box" for="transportacion_redonda">
+							<input type="checkbox" id="transportacion_redonda" name="servicios[]" value="transportacion_redonda" '.$servicios['transportacion_redonda'].' />
+							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/servicios/AZUL/Trans_Redondo.svg" />
+								<small>TRANSPORTE REDONDO</small>
+							</span>
+							<div class="top_check"></div>
+						</label>
+					</div>
+
+					<div class="filtros_botones">
+						<input type="reset" class="boton" value="Limpiar" />
+						<input type="submit" class="boton boton_verde" value="Buscar" />
+					</div>
+
+					<!-- <a href="#" class="mas_filtros">Más filtros</a> -->
     			
     			</form>
 

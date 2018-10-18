@@ -60,6 +60,7 @@
 		.filtos_container.open_filtros{
 			left: 0px;
 		    transition: all .3s ease-in-out;
+	        overflow: hidden;
 		}
 
 		.filtos_container {
@@ -67,10 +68,34 @@
 		    height: 100vh;
 		    width: calc( 100% - 40px );
 		    left: -100%;
+		    overflow: auto;
+    		overflow-x: hidden;
 		}
 
 		.filtos_container.open_filtros .cerrar_filtros_movil{		
 			right: -54px;
+		}
+
+		.tamanios_container_derecho{
+			text-align: right;
+		}
+
+		.tamanios_container {
+		    display: inline-block;
+		    width: calc( 50% - 2px );
+		}
+
+		.tamanios_container .input_check_box {
+	        margin-right: 5px;
+		}
+
+		.tamanios_container_derecho .input_check_box{
+			margin-right: 0px;
+			margin-left: 5px;
+		}
+
+		.tamanios_container .input_check_box img {
+		    height: 20px;
 		}
 		
 		form#buscar_2 {
@@ -87,6 +112,10 @@
 		    display: table-cell;
 		    width: 50%;
 		    vertical-align: top;
+		}
+
+		.filtos_container form {
+		    height: calc( 100% - 45px );
 		}
 
 	/* MAPA */
