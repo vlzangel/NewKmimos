@@ -82,9 +82,9 @@
 		</footer>
 	';
 
-	if( $post->post_name != "busqueda" ){
+	// if( $post->post_name != "busqueda" ){
 		echo comprimir($HTML);
-	}
+	// }
 
 	wp_footer();
 ?>

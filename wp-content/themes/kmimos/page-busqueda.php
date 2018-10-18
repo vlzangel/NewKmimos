@@ -164,7 +164,6 @@
 
     			<form id="buscar_2" action="'.getTema().'/procesos/busqueda/buscar.php" method="POST">
     				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
-
 					<div class="ubicacion_container">
 						<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion.svg" />
 						<input type="text" class="ubicacion_txt" class="ubicacion_txt" name="ubicacion_txt" value="'.$_SESSION['busqueda']['ubicacion_txt'].'" placeholder="Ubicación estado municipio" autocomplete="off" />
@@ -176,14 +175,9 @@
 						<i class="fa fa-crosshairs icon_left ubicacion_gps mi_ubicacion"></i>
 						<div class="barra_ubicacion"></div>
 						<small class="hidden" data-error="ubicacion">Función disponible solo en México</small>
-
-
 						<input type="hidden" class="latitud" name="latitud" value="'.$_SESSION['busqueda']['latitud'].'" />
 						<input type="hidden" class="longitud" name="longitud" value="'.$_SESSION['busqueda']['longitud'].'" />
-
-
 					</div>
-
 					<div class="filtros_movil_table">
 						<div class="filtros_movil_cell">
 							<div class="filtro_check check_descuento">
@@ -213,7 +207,7 @@
 					</div>
     			</form>
 
-    			<div class="mesaje_reserva_inmediata_container">
+    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
     				<div class="mesaje_reserva_inmediata_izq"></div>
     				<div class="mesaje_reserva_inmediata_der">
     					<strong>Tu reserva comienza en 3 días.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
@@ -224,24 +218,27 @@
     				'.$destacados.'
     			</div>
 
+    			<div class="mesaje_reserva_inmediata_container disponibilidad_MOVIl">
+    				<div class="mesaje_reserva_inmediata_izq"></div>
+    				<div class="mesaje_reserva_inmediata_der">
+    					<strong>Tu reserva comienza en 3 días.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
+    				</div>
+    			</div>
+    			
     			<div class="cantidad_resultados_container">
     				<div class="disponibilidad_PC">Hay <strong><span>'.count($_SESSION['resultado_busqueda']).'</span> cuidadores</strong> cerca de ti, con las características que necesitas.</div>
     				<div class="disponibilidad_MOVIl"><strong>Resultado de búsqueda,</strong> <span>'.count($_SESSION['resultado_busqueda']).'</span> cuidadores disponibles</div>
     			</div>
-
     			<div class="resultados_box">
     				<div class="resultados_box_interno">'.$resultados.'</div>
     				<div class="cargando_mas_resultados">
 	    				<i class="fa fa-spinner fa-spin"></i>
 	    			</div>
     			</div>
-
     		</div>
     		
     		<div class="mapa_container">
-
     			<div class="cerrar_mapa_movil"> x </div>
-
     			<label>
     				Actualizar al mover en el mapa 
     				<input type="checkbox" id="update_to_move" />
@@ -254,6 +251,6 @@
 
     echo comprimir( $HTML );
     
-    get_footer();
+   	get_footer(); 
 
 ?>

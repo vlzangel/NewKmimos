@@ -10,6 +10,9 @@
 
 	wp_head();
 
+	$HTML .= '</head><body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.' '.$class_iOS.'">';
+	echo comprimir($HTML);
+
 	$MENU = get_menu_header(true);
 
 	if( !isset($MENU["head"]) ){

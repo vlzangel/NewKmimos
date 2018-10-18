@@ -91,11 +91,11 @@
 	            ';
 	        }
 	        $top_destacados = '
-	        	<div class="destacados_container"  data-total="'.(count($DESTACADOS_ARRAY)+1).'" data-actual="0">
+	        	<div class="destacados_container"  data-total="'.(count($DESTACADOS_ARRAY)).'" data-actual="0">
 	        		<h2>Cuidadores destacados</h2>
 	        		<div class="destacados_box">'.$top_destacados.'</div>
 	        	</div>
-				<div class="Flecha_Izquierda ">
+				<div class="Flecha_Izquierda Ocultar_Flecha">
 					<img onclick="destacadoAnterior( jQuery(this) );" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_Izquierda.svg" />
 				</div>
 				<div class="Flecha_Derecha '.$ocultar_siguiente_img.'">

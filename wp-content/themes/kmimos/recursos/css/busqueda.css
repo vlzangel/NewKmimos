@@ -9,6 +9,10 @@
 	}
 
 /* CONTENEDORES PRINCIPALES */
+	
+	footer{
+		display: none !important;
+	}
 
 	.busqueda_container{
 		position: fixed;
@@ -381,6 +385,7 @@
 		    color: #1cd3c6;
 		    font-weight: 600;
 		    font-size: 16px;
+		    padding-top: 10px;
 		}
 
 /* RESULTADOS */
@@ -1011,7 +1016,7 @@
 
 		form#buscar_2 .filtros_movil .boton {
 		    margin: 3px 0px;
-		    padding: 6px;
+		    padding: 8px 4px;
 		    display: inline-block;
 		    width: calc( 50% - 2px );
 		    text-align: center;
@@ -1024,7 +1029,11 @@
 		    display: block;
 		    width: 100%;
 		    font-weight: 600;
-    		font-size: 12px;
+    		font-size: 10px;
+		}
+
+		form#buscar_2 .filtros_movil .boton img {
+		    height: 16px;
 		}
 
 		form#buscar_2 .filtros_movil {

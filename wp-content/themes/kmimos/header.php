@@ -19,6 +19,13 @@
 
 	echo comprimir( $HTML );
 
+	/* Solo para iOS - [ $is_iOS en pre-header.php ] */
+	$class_iOS = '';
+	if( $is_iOS ){
+		$class_iOS = 'iOS';
+		wp_enqueue_style( 'modal_iOS', getTema()."/css/modal-iOS.css", array(), "1.0.0" );
+	}
+
 	include_once("funciones.php");
 
 	$pages_new = [
@@ -38,11 +45,6 @@
 		wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 		wp_enqueue_style( 'generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
 		wp_enqueue_style( 'generales_responsive_css', getTema()."/css/responsive/generales_responsive.css", array(), "1.0.0" );
-
-		/* Solo para iOS - [ $is_iOS en pre-header.php ] */
-		if( $is_iOS ){
-			wp_enqueue_style( 'modal_iOS', getTema()."/css/modal-iOS.css", array(), "1.0.0" );
-		}
 
 		wp_head();
 
@@ -64,7 +66,7 @@
 	            var wlabel = "'.$wlabel.'";
 			</script>
 		</head>
-		<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" onLoad="menu();">
+		<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.' '.$class_iOS.'" onLoad="menu();">
 			<script> 
 				var RUTA_IMGS = "'.get_home_url().'/imgs"; 
 

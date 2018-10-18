@@ -40,41 +40,51 @@
 		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
 		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
 
-		console.log( actual+" "+total );
+		var mostrando = getDestacadosMostrados();
 
 		if( actual == 0 ){
-			actual = total-1;
+			_this.parent().addClass("Ocultar_Flecha");
 		}else{
 			actual--;
+		
+			if( actual != 0 ){
+				_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
+			}else{
+				_this.parent().addClass("Ocultar_Flecha");
+			}
+
+			_this.parent().parent().find(".destacados_container").attr("data-actual", actual);
+			_this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*( 100 / mostrando ) )+"%"});
 		}
-		if( actual == 0 ){
-			_this.parent().addClass("Ocultar_Flecha");
-		}
-		if( actual != total-1 ){
-			_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
-		}
-		_this.parent().parent().attr("data-actual", actual);
-		_this.parent().parent().find(".destacados_box").animate({left: "-"+(actual*50)+"%"});
 	}
 
 	function destacadoSiguiente(_this){
 		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
 		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
 
-		console.log( actual+" "+total );
+		var mostrando = getDestacadosMostrados();
+
 		if( actual == total-1 ){
 			actual = 0;
 		}else{
 			actual++;
 		}
-		if( actual == total-1 ){
+		if( actual == total-mostrando ){
 			_this.parent().addClass("Ocultar_Flecha");
 		}
 		if( actual != 0 ){
 			_this.parent().parent().find(".Flecha_Izquierda").removeClass("Ocultar_Flecha");
 		}
-		 _this.parent().parent().find(".destacados_container").attr("data-actual", actual);
-		 _this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*50)+"%"});
+		_this.parent().parent().find(".destacados_container").attr("data-actual", actual);
+		_this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*( 100 / mostrando ) )+"%"});
+	}
+
+	function getDestacadosMostrados(){
+		if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){
+			return 4;
+		}else{
+			return 2;
+		}
 	}
 
 
@@ -86,51 +96,53 @@
 		buscar( "" );
 
 		jQuery("#ver_filtros").on("click", function(e){
-			jQuery(".filtos_container").animate({ left: "0px" });
-			jQuery("#checkin").click();
+			jQuery(".filtos_container").addClass('open_filtros');
 		});
 
 		jQuery("#ver_filtros_fechas").on("click", function(e){
-			jQuery(".filtos_container").animate({ left: "0px" });
+			jQuery(".filtos_container").addClass('open_filtros');
 		});
 
 		jQuery("#ver_mapa").on("click", function(e){
-			jQuery(".mapa_container").animate({ right: "0px" });
+			jQuery(".mapa_container").addClass('open_mapa');
 		});
 
 		jQuery(".cerrar_filtros_movil").on("click", function(e){
-			jQuery(".filtos_container").animate({ left: "-100%" });
+			jQuery(".filtos_container").removeClass('open_filtros');
 		});
 
 		jQuery(".cerrar_mapa_movil").on("click", function(e){
-			jQuery(".mapa_container").animate({ right: "-100%" });
+			jQuery(".mapa_container").removeClass('open_mapa');
 		});
 	});
 
 	jQuery(".resultados_container").on("scroll", function() {
-		var margen = 
-			parseInt( jQuery(".mesaje_reserva_inmediata_container").height() ) +
-			parseInt( jQuery("#seccion_destacados").height() ) +
-			parseInt( jQuery(".cantidad_resultados_container").height() )
-	    var hTotal = parseInt( jQuery(".resultados_box").height() )+margen;
-	    var scrollPosition = parseInt( jQuery(".busqueda_container").height() ) + parseInt( jQuery(".resultados_container").scrollTop() );
-	    //console.log(hTotal+" <= "+scrollPosition);
-	    if ( ( hTotal <= scrollPosition ) && CARGAR_RESULTADOS ) {
-    		CARGAR_RESULTADOS = false;
-	        if( TOTAL_PAGE > (PAGE+1) ){
-	    		// console.log("Cargando mas...");
-	        	PAGE = PAGE + 1;
-	        	getResultados();
-	        	jQuery(".cargando_mas_resultados").css("display", "block");
-	        }else{
-	        	jQuery(".cargando_mas_resultados").css("display", "none");
-	        }
-	    }
-	    if( jQuery(".resultados_container").scrollTop() >= jQuery(".cantidad_resultados_container")[0].offsetTop ){
-	    	jQuery(".cantidad_resultados_container").addClass("cantidad_resultados_fixed");
-	    }else{
-	    	jQuery(".cantidad_resultados_container").removeClass("cantidad_resultados_fixed");
-	    }
+
+		if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){
+			var margen = 
+				parseInt( jQuery(".mesaje_reserva_inmediata_container").height() ) +
+				parseInt( jQuery("#seccion_destacados").height() ) +
+				parseInt( jQuery(".cantidad_resultados_container").height() )
+		    var hTotal = parseInt( jQuery(".resultados_box").height() )+margen;
+		    var scrollPosition = parseInt( jQuery(".busqueda_container").height() ) + parseInt( jQuery(".resultados_container").scrollTop() );
+		    //console.log(hTotal+" <= "+scrollPosition);
+		    if ( ( hTotal <= scrollPosition ) && CARGAR_RESULTADOS ) {
+	    		CARGAR_RESULTADOS = false;
+		        if( TOTAL_PAGE > (PAGE+1) ){
+		    		// console.log("Cargando mas...");
+		        	PAGE = PAGE + 1;
+		        	getResultados();
+		        	jQuery(".cargando_mas_resultados").css("display", "block");
+		        }else{
+		        	jQuery(".cargando_mas_resultados").css("display", "none");
+		        }
+		    }
+		    if( jQuery(".resultados_container").scrollTop() >= jQuery(".cantidad_resultados_container")[0].offsetTop ){
+		    	jQuery(".cantidad_resultados_container").addClass("cantidad_resultados_fixed");
+		    }else{
+		    	jQuery(".cantidad_resultados_container").removeClass("cantidad_resultados_fixed");
+		    }
+		}
 	});
 
 	var PAGE = 0;
@@ -163,7 +175,11 @@
 			HOME+"/NEW/resultados.php",
 			{ page: PAGE },
 			function(html){
-				jQuery(".resultados_box .resultados_box_interno").append( html );
+				if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){
+					jQuery(".resultados_box .resultados_box_interno").append( html );
+				}else{
+					jQuery(".resultados_box .resultados_box_interno").html( html );
+				}
 				CARGAR_RESULTADOS = true;
 			}
 		);
