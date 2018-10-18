@@ -151,7 +151,7 @@
         	if( $val > 0 ){
 		        echo "
 		        	<label style='background: #eee; padding:10px; border-radius: 5px;' > 
-		        		<input type='checkbox' data-name='retiro_disponible' value='{$key}' checked>
+		        		<input type='checkbox' data-name='retiro_disponible' value='{$key}' data-monto='{$val}'>
 	        			#{$key} 
 	        			<span style='border-radius: 5px; padding: 3px 3px 3px 3px; background: #fff;'>Monto: {$val}</span> 
 	        		</label>
@@ -162,11 +162,11 @@
 
         <div>    	
 	        <label>Descripci&oacute;n: </label>
-	        <input type="text" name="descripcion" class="form-control" value=""data-value="<?php echo $pay->disponible; ?>">
+	        <input type="text" name="descripcion" maxlength="100" class="form-control" value=""data-value="<?php echo $pay->disponible; ?>">
         </div>
         <div class="text-right">
 	        <h4 style="color:#000;">Monto a retirar: $ <span id="modal-subtotal">0</span></h4>
-	        <h4 style="color:#000;">Comisi&oacute;n: $ 10,00</h4>
+	        <h4 style="color:#000;">Comisi&oacute;n: $ -10,00</h4>
 	        <h4><strong>Total a transferir: $ <span id="modal-total">0</span></strong></h4>
         </div>
 

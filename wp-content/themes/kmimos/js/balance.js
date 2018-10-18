@@ -1,7 +1,6 @@
 var timer;
 var table;
 var tr = document.getElementById('tiempo_restante');
-var retiro_total = 0;
 
 jQuery(document).ready(function(){
     timer = setInterval(contador, 1000);
@@ -51,7 +50,10 @@ jQuery(document).ready(function(){
     });
 
     jQuery("[data-name='retiro_disponible']").on('change', function(e){
-        retiro_total += parseFloat(jQuery(this).val()); 
+        retiro_total =0;
+        jQuery.each(jQuery("[data-name='retiro_disponible']:checked"), function(){
+            retiro_total += parseFloat(jQuery(this).attr('data-monto'));
+        });
         jQuery('#modal-subtotal').html( retiro_total );
         jQuery('#modal-total').html( retiro_total - 10 );
     });
@@ -64,10 +66,10 @@ jQuery(document).ready(function(){
         });
         jQuery.post(
             HOME+'admin/frontend/balance/ajax/retirar.php',
-            {'reservas_selected': selected, 'ID': user_id},
+            {'reservas_selected': selected, 'ID': user_id, 'descripcion': jQuery('[name="descripcion"]').val()},
             function(d){
                 console.log(d);
-                window.reload;
+                location.reload();
             }
         );
     });

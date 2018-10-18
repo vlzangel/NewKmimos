@@ -30,7 +30,7 @@
 				{$ID},
 				{$key},
 				'P{$key}',
-				'Pago reserva #{$key}',
+				'Pago reserva #{$key} - {$descripcion}',
 				{$val}
 			);";
 		}
