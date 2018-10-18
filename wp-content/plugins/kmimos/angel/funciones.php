@@ -472,6 +472,10 @@
                             "url"   => get_home_url()."/perfil-usuario/mis-facturas",
                             "icono" => "33"
                         ),
+                        array("name"  => "Balance",
+                            "url"   => get_home_url()."/perfil-usuario/balance",
+                            "icono" => "33"
+                        ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",

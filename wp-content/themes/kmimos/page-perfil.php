@@ -168,6 +168,25 @@
 			wp_enqueue_style('datos-de-facturacion-panel-css', getTema()."/css/datos-de-facturacion.css", array(), '2.0.0');
 			wp_enqueue_script('datos-de-facturacion-panel-js', getTema()."/js/datos-de-facturacion.js", array("jquery", "global_js"), '2.0.0');
 		break;		
+		case 'balance':
+			wp_enqueue_style('balance0-css', getTema().'/css/balance.css', array(), '2.0.0');
+			wp_enqueue_style('balance1-css', getTema().'/admin/recursos/css/dataTables.bootstrap4.min.css', array(), '2.0.0');
+			wp_enqueue_style('balance2-css', getTema().'/admin/recursos/css/buttons.dataTables.min.css', array(), '2.0.0');
+
+			wp_enqueue_script('balance0-js', getTema()."/js/balance.js", array("jquery", "global_js"), '2.0.0');			
+			wp_enqueue_script('balance1-js', getTema().'/admin/recursos/js/jquery.dataTables.min.js', array("jquery", "global_js"), '2.0.0');
+			wp_enqueue_script('balance2-js', getTema().'/admin/recursos/js/dataTables.bootstrap4.min.js', array("jquery", "global_js"), '2.0.0');
+			wp_enqueue_script('balance3-js', getTema().'/admin/recursos/js/dataTables.buttons.min.js', array("jquery", "global_js"), '2.0.0');
+			wp_enqueue_script('balance4-js', getTema().'/admin/recursos/js/buttons.flash.min.js', array("jquery", "global_js"), '2.0.0');
+			wp_enqueue_script('balance5-js', getTema().'/admin/recursos/js/jszip.min.js', array("jquery", "global_js"), '2.0.0');
+
+
+			wp_enqueue_script('balance6-js', get_home_url()."/panel/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js", array("jquery", "global_js"), '2.0.0');
+			wp_enqueue_script('balance7-js', get_home_url()."/panel/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js", array("jquery", "global_js"), '2.0.0');
+			wp_enqueue_script('balance8-js', get_home_url()."/panel/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js", array("jquery", "global_js"), '2.0.0');
+			wp_enqueue_script('balance9-js', get_home_url()."/panel/assets/vendor/datatables.net-buttons/js/buttons.print.min.js", array("jquery", "global_js"), '2.0.0');
+
+		break;		
 	}
 
 	get_header();
@@ -334,6 +353,12 @@
 				}else{
 					$mostrar_btn = true;
 					include("admin/frontend/datos-de-facturacion/clientes.php");
+				}
+			break;
+			case 'balance':
+				$mostrar_btn = false;
+				if( is_petsitters() ){
+					include("admin/frontend/balance/index.php");
 				}
 			break;
 		}

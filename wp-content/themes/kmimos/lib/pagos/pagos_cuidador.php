@@ -1,16 +1,15 @@
 <?php
-error_reporting(E_ERROR | E_WARNING | E_PARSE );
-date_default_timezone_set('America/Mexico_City');
+	error_reporting(E_ERROR);
+//date_default_timezone_set('America/Mexico_City');
 
-$pagos = new Pagos();
+$pagos = new PagoCuidador();
 
-class Pagos {
+class PagoCuidador {
 	
 	public $db;
 	
-	public function Pagos(){
-		$this->raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
-
+	public function PagoCuidador(){
+		$this->raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
 		if( !isset($db) || is_string( $db ) ){
 			include($this->raiz.'/vlz_config.php');
 			if( !class_exists('db') ){
@@ -21,6 +20,143 @@ class Pagos {
 
 		$this->db = $db;
 	}
+
+	public function balance( $user_id ){
+		$hoy = date( "Y/m/d H:i:s" );
+		$habilitado = true;
+		$dia_habil = $hoy;
+
+		$total_NC = $this->get_NC( $user_id );
+		$total_en_progreso = $this->pagos_en_progreso( $user_id );
+		$total_retenido = $this->total_retenido( $user_id );
+		$total_generado = $this->get_total_generado( $user_id );
+		$total_disponible = $this->detalle_disponible( $user_id );
+
+		$ultimo_retiro = $this->ultimo_retiro( $user_id );
+		if( !empty($ultimo_retiro) ){
+			$dia_habil = date( "Y/m/d H:i:s", strtotime($ultimo_retiro." +24 hours" ) );
+			if( $hoy < $dia_habil ){
+				$habilitado = false;
+			}
+		}
+
+		$proximo_pago = ( $total_disponible['total'] > 0 )? $total_disponible['total'] : 0;
+
+		$pay = (object)[
+			"total_generado"	=> $total_generado,
+			"disponible" 		=> $total_disponible['total'],
+			"proximo_pago"		=> $proximo_pago,
+			"en_progreso"		=> $total_en_progreso,
+			"retenido"			=> $total_retenido,
+			"retiro"=>(object)[
+				"habilitado"		=> $habilitado,
+				"ultimo_retiro" 	=> $ultimo_retiro,
+				"tiempo_restante"	=> $dia_habil,
+			],
+			"detalle"=>$total_disponible['detalle'],
+		];
+		return $pay;
+	}
+
+	protected function diferenciaDias($inicio, $fin)
+{
+    $inicio = strtotime($inicio);
+    $fin = strtotime($fin);
+    $dif = $fin - $inicio;
+    $diasFalt = (( ( $dif / 60 ) / 60 ) / 24);
+    return ceil($diasFalt);
+}
+
+	public function detalle_disponible( $user_id ){
+		$reservas = $this->db->get_results( "SELECT * FROM cuidadores_reservas WHERE user_id = {$user_id} and estatus='pendiente'" );
+		$total = 0;
+		$hoy = date('Y-m-d');
+
+		$list = ['total'=>0, 'detalle'=>[]];
+
+		foreach ($reservas as $reserva) {
+
+			$pago_por_noches = $reserva->total_reserva / $reserva->total_dias;
+
+			$dias = $this->diferenciaDias( $reserva->checkin, $hoy );
+			
+			$monto = $pago_por_noches * $dias;
+
+			$tr = $this->total_transacciones_by_reserva( $user_id, $reserva->reserva_id );
+			$nc = $this->get_NC( $user_id, $reserva->reserva_id );
+
+			$total = $monto - ($tr + $nc);
+
+			$list['detalle'][$reserva->reserva_id] = $total;
+			$list['total'] += $total;
+		}
+
+		return $list;
+	}
+
+
+	protected function total_disponible( $user_id ){
+		$reservas = $this->db->get_results( "SELECT * FROM cuidadores_reservas WHERE user_id = {$user_id} and estatus='pendiente'" );
+		$total = 0;
+		$nc = $this->get_NC( $user_id );
+		$hoy = date('Y-m-d');
+
+		foreach ($reservas as $reserva) {
+
+			$pago_por_noches = $reserva->total_reserva / $reserva->total_dias;
+
+			$dias = $this->diferenciaDias( $reserva->checkin, $hoy );
+			
+			$monto = $pago_por_noches * $dias;
+
+			$tr = $this->total_transacciones_by_reserva( $user_id, $reserva->reserva_id );
+
+			$total += $monto - $tr;
+
+		}
+
+		$total -= $nc;
+
+		return ( is_numeric($total) )? $total : 0;
+	}
+
+	protected function pagos_en_progreso( $user_id ){
+		$total = $this->db->get_var( "SELECT SUM(total) as total FROM cuidadores_pagos WHERE user_id = {$user_id} and estatus = 'in_progress'" );
+		return ( $total > 0 )? $total : 0;
+	}
+
+	protected function get_NC( $user_id, $reserva=0 ){
+		$where_reserva = ( $reserva > 0 )? ' AND reserva_id = '.$reserva_id : '' ;
+		$total = $this->db->get_var( "SELECT SUM(monto) as total FROM notas_creditos WHERE user_id = {$user_id} and tipo='cuidador' and estatus='pendiente' {$where_reserva}");
+		return ( $total > 0 )? $total : 0;
+	}
+
+	protected function ultimo_retiro( $user_id ){
+		$fecha = $this->db->get_var( "SELECT fecha FROM cuidadores_transacciones WHERE user_id = {$user_id} AND tipo='pago_c' ORDER BY id desc limit 1" );
+		return ( !empty($fecha) )? date("Y/m/d H:i:s", strtotime($fecha)) : '' ;
+	}
+
+	protected function total_retenido( $user_id ){
+		$total = $this->db->get_var( "SELECT SUM(monto) as total FROM cuidadores_transacciones WHERE user_id = {$user_id} AND tipo='retenido'" );
+		return ( $total > 0 )? $total : 0 ;
+	}
+
+	protected function total_transacciones_by_reserva( $user_id, $reserva_id ){
+		$total = $this->db->get_var( "SELECT SUM(monto) as total FROM cuidadores_transacciones WHERE user_id = {$user_id} AND reserva_id={$reserva_id}" );
+		return ( $total > 0 )? $total : 0 ;
+	}
+
+	protected function get_total_generado( $user_id ){
+		$total = $this->db->get_var( "SELECT SUM(total_reserva) as total FROM cuidadores_reservas WHERE user_id = {$user_id} and estatus='pendiente'" );
+		//$NC = $this->get_NC( $user_id );
+		//if( $NC > 0 ){
+		//	$total -=  $NC;
+		//}
+		return ( $total > 0 )? $total : 0 ;
+	}
+
+
+
 
 	public function getPagoCompletados( $desde, $hasta ){
 		$where = " WHERE estatus = 'completed' ";
@@ -51,16 +187,16 @@ class Pagos {
 		return $this->db->get_results($sql);
 	}
 
-	public function getPagoCuidador($desde, $hasta){
+	public function updatePagoCuidador($desde, $hasta, $user_id=0){
 		if( empty($desde) || empty($hasta) ){
 			return [];
 		}
 
-		$reservas = $this->getReservas($desde, $hasta);
+		$reservas = $this->getReservas($desde, $hasta, $user_id);
 
 		$obj_pagos = [];
-		$pagos = [];
 		$detalle = [];
+		$pagos = [];
 		$count = 1;
 
 		$dev = [];
@@ -73,10 +209,10 @@ class Pagos {
  
 				if( !isset($reserva_procesada->id) ){
 
-
+					$cuidador = $this->db->get_row('SELECT * FROM cuidadores WHERE user_id = '.$row->cuidador_id);
+					if( isset($cuidador->nombre) || isset($cuidador->apellido) ){
+							
 					// Datos del cuidador
-						$cuidador = $this->db->get_row('SELECT * FROM cuidadores WHERE user_id = '.$row->cuidador_id);
-
 						$pagos[ $row->cuidador_id ]['fecha_creacion'] = date('Y-m-d', strtotime("now"));
 						$pagos[ $row->cuidador_id ]['user_id'] = $row->cuidador_id; 
 						$pagos[ $row->cuidador_id ]['nombre'] = $cuidador->nombre ; 
@@ -103,13 +239,6 @@ class Pagos {
 							$row->reserva_id,
 							$row->total
 						);
-
-						$dev2[] = [
-							$row->reserva_id,
-							$row->total,
-							$monto
-						];
-  
  
 						if( $count == 4 ){
 							$separador = '<br><br>';
@@ -125,8 +254,11 @@ class Pagos {
 						if( $monto > 0 ){
 							$pagos[ $row->cuidador_id ]['detalle'][$row->reserva_id] = [
 								'reserva'=>$row->reserva_id,
-								'monto'=>$monto
+								'pedido'=>$row->pedido_id,
+								'monto'=>$monto,
 							];
+
+							// 
 					    }
 
 						if( array_key_exists('total', $pagos[ $row->cuidador_id ]) ){
@@ -143,9 +275,9 @@ class Pagos {
 
 					// Object
 						if( $monto > 0 ){
-							$obj_pagos[$row->cuidador_id ] = (object) $pagos[$row->cuidador_id ];
+							$obj_pagos[ $row->cuidador_id ] = (object) $pagos[ $row->cuidador_id ];
 						}
-
+					}
 				}
 			}
 		}
@@ -211,7 +343,8 @@ class Pagos {
  
 						// tipo de descuento
 						$_cupon = $meta_cupon[ $cupon->name ];
- 
+ 						
+						$_cupon['descuento_tipo'] = ( isset($_cupon['descuento_tipo']) )? $_cupon['descuento_tipo'] : ''; 
 						switch ( strtolower($_cupon['descuento_tipo']) ) {
 							case 'kmimos':
 								if( $pago_kmimos < $_cupon['total'] ){
@@ -227,8 +360,7 @@ class Pagos {
 								}else{
 									$pago_cuidador -= $_cupon['total'];
 								}
-								break;
-							
+								break;						
 							case 'compartido':
 								// Calculo de descuentos
 								$descuento_kmimos = ( $_cupon['descuento_kmimos'] * $_cupon['total'] ) / 100;
@@ -262,14 +394,18 @@ class Pagos {
 		return $pago_cuidador ; 
 	}
 
-	protected function getReservas($desde="", $hasta=""){
+	protected function getReservas($desde="", $hasta="", $user_id=0){
 
 		$filtro_adicional = "";
+
+		if( $user_id > 0 ){
+			$filtro_adicional = " AND pr.post_author = {$user_id}";
+		}
 
 		if( !empty($desde) && !empty($hasta) ){
 			$desde = str_replace('-', '', $desde);
 			$hasta = str_replace('-', '', $hasta);
-			$filtro_adicional = " 
+			$filtro_adicional .= " 
 				AND ( rm_start.meta_value >= '{$desde}000000' and  rm_start.meta_value <= '{$hasta}235959' )
 			";
 		}else{
