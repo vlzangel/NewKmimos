@@ -147,7 +147,7 @@ class PagoCuidador {
 	}
 
 	protected function get_total_generado( $user_id ){
-		$total = $this->db->get_var( "SELECT SUM(total_reserva) as total FROM cuidadores_reservas WHERE user_id = {$user_id} and estatus='pendiente'" );
+		$total = $this->db->get_var( "SELECT SUM(total_reserva) as total FROM cuidadores_reservas WHERE user_id = {$user_id} " );
 		//$NC = $this->get_NC( $user_id );
 		//if( $NC > 0 ){
 		//	$total -=  $NC;
