@@ -119,18 +119,19 @@
 	});
 
 	jQuery(".resultados_container").on("scroll", function() {
-		if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){
+
+		if( parseInt( jQuery("body").width() ) > 768 ){
 			var margen = 
 				parseInt( jQuery(".mesaje_reserva_inmediata_container").height() ) +
 				parseInt( jQuery("#seccion_destacados").height() ) +
 				parseInt( jQuery(".cantidad_resultados_container").height() )
 		    var hTotal = parseInt( jQuery(".resultados_box").height() )+margen;
 		    var scrollPosition = parseInt( jQuery(".busqueda_container").height() ) + parseInt( jQuery(".resultados_container").scrollTop() );
-		    //console.log(hTotal+" <= "+scrollPosition);
+		    
 		    if ( ( hTotal <= scrollPosition ) && CARGAR_RESULTADOS ) {
 	    		CARGAR_RESULTADOS = false;
 		        if( TOTAL_PAGE > (PAGE+1) ){
-		    		// console.log("Cargando mas...");
+		    		console.log("Cargando mas...");
 		        	PAGE = PAGE + 1;
 		        	getResultados();
 		        	jQuery(".cargando_mas_resultados").css("display", "block");
@@ -182,7 +183,7 @@
 			HOME+"/NEW/resultados.php",
 			{ page: PAGE },
 			function(html){
-				if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){
+				if( parseInt( jQuery("body").width() ) > 768 ){
 					jQuery(".resultados_box .resultados_box_interno").append( html );
 				}else{
 					jQuery(".resultados_box .resultados_box_interno").html( html );
@@ -235,11 +236,13 @@
 	}
 
 	function cargando(estado){
-		if( estado == 1 ){
-			jQuery(".cargando_mas_resultados_externo").css("display", "block");
-		}
-		if( estado == 2 ){
-			jQuery(".cargando_mas_resultados_externo").css("display", "none");
+		if( parseInt( jQuery("body").width() ) < 768 ){
+			if( estado == 1 ){
+				jQuery(".cargando_mas_resultados_externo").css("display", "block");
+			}
+			if( estado == 2 ){
+				jQuery(".cargando_mas_resultados_externo").css("display", "none");
+			}
 		}
 	}
 

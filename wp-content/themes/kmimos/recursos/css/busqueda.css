@@ -1074,6 +1074,10 @@
 		    color: #FFF;
 		}
 
+		.cargando_mas_resultados{
+			display: block;
+		}
+
 		.cargando_mas_resultados_externo {
 			display: none;
 		    position: fixed;

@@ -18,6 +18,10 @@
 		display: block !important;
 	}
 
+	.cargando_mas_resultados{
+		display: none !important;
+	}
+
 	/* Barra */
 	
 		.resultados_container::-webkit-scrollbar-track{
