@@ -12,7 +12,8 @@
 	global $wpdb;
 
 	$hoy = date("Y-m-d H:i:s");
-	$desde = date("Y-m-01", strtotime($hoy." -365 days"));
+//	$desde = date("Y-m-01", strtotime($hoy));
+	$desde = date("2018-01-01", strtotime($hoy));
 	$hasta = date("Y-m-d");
 
 	$pagos_list = $pagos->updatePagoCuidador($desde, $hasta);
