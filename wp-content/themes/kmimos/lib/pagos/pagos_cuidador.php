@@ -89,7 +89,7 @@ class PagoCuidador {
 			$nc = $this->get_NC( $user_id, $reserva->reserva_id );
 
 			$total = $monto - ($tr + $nc);
-
+echo 			
 			$list['detalle'][$reserva->reserva_id] = $total;
 			$list['total'] += $total;
 		}
@@ -132,7 +132,7 @@ class PagoCuidador {
 	}
 
 	protected function get_NC( $user_id, $reserva=0 ){
-		$where_reserva = ( $reserva > 0 )? ' AND reserva_id = '.$reserva_id : '' ;
+		$where_reserva = ( $reserva > 0 )? ' AND reserva_id = '.$reserva : '' ;
 		$total = $this->db->get_var( "SELECT SUM(monto) as total FROM notas_creditos WHERE user_id = {$user_id} and tipo='cuidador' and estatus='pendiente' {$where_reserva}");
 		return ( $total > 0 )? $total : 0;
 	}
