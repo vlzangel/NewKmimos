@@ -89,7 +89,7 @@ class PagoCuidador {
 			$nc = $this->get_NC( $user_id, $reserva->reserva_id );
 
 			$total = $monto - ($tr + $nc);
-echo 			
+
 			$list['detalle'][$reserva->reserva_id] = $total;
 			$list['total'] += $total;
 		}
