@@ -37,7 +37,8 @@
 
     $estatus=[
         "" => "",
-        "por_autorizar" => "No procesado",   
+        "pendiente" => "Pendiente",
+        "por_autorizar" => "No procesado",
         "autorizado" => "No procesado",
         "negado" => "Negado",  
         "in_progress" => "En progreso",  
