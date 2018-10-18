@@ -17,7 +17,7 @@
 	}
 
 	.logo {
-	    height: 30px;
+	    height: 35px;
 	}
 
 	.solo_movil {
@@ -37,6 +37,7 @@
 	    border-radius: 0px 0px 10px 10px;
 	    box-sizing: border-box;
 	    padding: 0px 10px;
+	    background-color: #f2f2f2;
 	}
 	
 	td.nav_right img {
