@@ -828,7 +828,7 @@ function finalizar_proceso(){
 			'email' : jQuery("#email_1").val(),
 		}, 
 		function(_result){
-	    //location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+	    location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
 	});
 }
 
