@@ -103,10 +103,13 @@ class PagoCuidador {
 
 		foreach ($reservas as $reserva) {
 
+			$dias = $this->diferenciaDias( $reserva->checkin, $reserva->checkout );			
+			if( $hoy > $reserva->checkout ){
+				$dias = $this->diferenciaDias( $reserva->checkin, $hoy );			
+			}
+
 			$pago_por_noches = $reserva->total_reserva / $reserva->total_dias;
 
-			$dias = $this->diferenciaDias( $reserva->checkin, $hoy );
-			
 			$monto = $pago_por_noches * $dias;
 
 			$tr = $this->total_transacciones_by_reserva( $user_id, $reserva->reserva_id );
