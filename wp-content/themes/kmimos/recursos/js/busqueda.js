@@ -64,7 +64,9 @@
 
 		var mostrando = getDestacadosMostrados();
 
-		if( actual == total-1 ){
+		console.log( mostrando );
+
+		if( actual == total-mostrando ){
 			actual = 0;
 		}else{
 			actual++;
@@ -80,7 +82,7 @@
 	}
 
 	function getDestacadosMostrados(){
-		if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){
+		if( parseInt( jQuery("body").width() ) >= 768 ){
 			return 4;
 		}else{
 			return 2;
