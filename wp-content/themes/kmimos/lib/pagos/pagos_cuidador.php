@@ -78,7 +78,10 @@ class PagoCuidador {
 
 			$pago_por_noches = $reserva->total_reserva / $reserva->total_dias;
 
-			$dias = $this->diferenciaDias( $reserva->checkin, $hoy );
+			$dias = $this->diferenciaDias( $reserva->checkin, $hoy );			
+			if( $dias > $reserva->total_dias ){
+				$dias = $reserva->total_dias;
+			}
 			
 			$monto = $pago_por_noches * $dias;
 
