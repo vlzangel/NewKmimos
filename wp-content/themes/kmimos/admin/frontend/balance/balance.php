@@ -50,7 +50,7 @@
 		</label> 
 
 		<!-- Boton de retiro -->
-		<a id="boton-retiro" class="btn btn-primary  <?php echo ($pay->retiro->habilitado)? '':'hidden'; ?>" data-target="modal-retiros">
+		<a id="<?php echo ($pay->disponible>0)? '':'disabled_'; ?>boton-retiro" class="<?php echo ($pay->disponible>0)? '':'disabled'; ?>btn btn-primary  <?php echo ($pay->retiro->habilitado)? '':'hidden'; ?>" data-target="modal-retiros">
 			<i class="fa fa-money"></i> Retirar ahora
 		</a>
 	</dir>
