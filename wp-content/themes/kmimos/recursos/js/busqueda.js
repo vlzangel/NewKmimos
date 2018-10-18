@@ -134,6 +134,15 @@
 			}
 			buscar( '' );
 		});
+
+		jQuery("#descuento_movil").on("change", function(e){
+			jQuery("#descuento").prop( "checked", jQuery(this).prop("checked") );
+			buscar( 'descuento' );
+		});
+		jQuery("#flash_movil").on("change", function(e){
+			jQuery("#flash").prop( "checked", jQuery(this).prop("checked") );
+			buscar( 'flash' );
+		});
 	});
 
 	jQuery(".resultados_container").on("scroll", function() {

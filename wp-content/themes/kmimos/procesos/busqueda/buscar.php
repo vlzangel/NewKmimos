@@ -59,6 +59,15 @@
 
 	extract($_POST);
 
+	if( $flash == 1 ){
+		$servicios[] = "flash";
+	}
+
+	$DESCUENTO_CONDICION = '';
+	if( $descuento == 1 ){
+		$DESCUENTO_CONDICION .= " AND atributos LIKE '%destacado\";s:1:\"1%'"; 
+	}
+
     /* Filtros por Gatos */
 
     	$GATOS_CONDICION = "";
@@ -470,8 +479,13 @@
 	    FROM 
 	        cuidadores
 	    WHERE 
-	        activo = '1' and cuidadores.hospedaje_desde >= 1 {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION} {$FILTRO_ESPECIA}
+	        activo = '1' and cuidadores.hospedaje_desde >= 1 
+	        {$condiciones} 
+	        {$ubicaciones_filtro} 
+	        {$FILTRO_UBICACION} 
+	        {$FILTRO_ESPECIA}
 	    	{$GATOS_CONDICION}
+	    	$DESCUENTO_CONDICION
 	    ORDER BY {$orderby}";
 
     /* FIN SQL cuidadores */

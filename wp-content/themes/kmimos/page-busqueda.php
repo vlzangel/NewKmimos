@@ -44,6 +44,13 @@
 	    	$tipos[ $key ] = $check;
 	    }
 
+	    $servicios = [];
+	    if( is_array($_SESSION['busqueda']['servicios']) ){
+	    	foreach ( $_SESSION['busqueda']['servicios'] as $key => $value) {
+	    		$servicios[$value] = 'checked';
+	    	}
+	    }
+
 	/* DESTACADOS */
 
 		if( !isset($_SESSION["DATA_CUIDADORES"]) ){
@@ -56,6 +63,54 @@
 		// update_ubicacion();
 		// update_titulo();
 
+		$ordenamientos = array(
+	    	'rating_desc' => array(
+	    		'Valoración (mayor a menor)',
+	    		'rating_desc'
+	    	),
+			'rating_asc' => array(
+				'Valoración (De menor a mayor)',
+				'rating_asc'
+			),
+		/*	'distance_asc' => array(
+				'Distancia al cuidador (De cerca a lejos)',
+				'distance_asc'
+			),
+			'distance_desc' => array(
+				'Distancia al cuidador (De lejos a cerca)',
+				'distance_desc'
+			),*/
+			'price_asc' => array(
+				'Precio del Servicio (De menor a mayor)',
+				'price_asc'
+			),
+			'price_desc' => array(
+				'Precio del Servicio (De mayor a menor)',
+				'price_desc'
+			),
+			'experience_desc' => array(
+				'Experiencia (De menos a más años)',
+				'experience_desc'
+			),
+			'experience_asc' => array(
+				'Experiencia (De más a menos años)',
+				'experience_asc'
+			)
+	    );
+
+	    $titulo_ordenamiento = "ORDENAR POR";
+	    if( $_POST['orderby'] != "" ){
+	    	$titulo_ordenamiento = $ordenamientos[ $_POST['orderby'] ][0];
+	    }
+	    $ordenamiento = "";
+	    foreach ( $ordenamientos as $clave => $valor ) {
+	    	$check = ( $_SESSION["busqueda"]["orderby"] == $valor[1] ) ? "selected": "";
+	    	$ordenamiento .= '<option value="'.$valor[1].'">'.$valor[0].'</option>';
+	    }
+
+	    $check_descuento = ( $_SESSION["busqueda"]["descuento"] == 1 ) ? "checked": "";
+	    $check_flash = ( $_SESSION["busqueda"]["flash"] == 1 ) ? "checked": "";
+
     $HTML = '
     	<div class="busqueda_container">
 
@@ -66,6 +121,21 @@
     			<form id="buscar" action="'.getTema().'/procesos/busqueda/buscar.php" method="POST">
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+
+					<div class="filtros_generales_container">
+						<label class="filtro_check check_descuento" for="descuento" >
+							<input type="checkbox" id="descuento" name="descuento" value="1" '.$check_descuento.' />
+							<div class="check_icon"></div>
+							<div>con descuento</div>
+							<div class="check_control"></div>
+						</label>
+						<label class="filtro_check check_disponibilidad" for="flash" >
+							<input type="checkbox" id="flash" name="flash" value="1" '.$check_flash.' />
+							<div class="check_icon"></div>
+							<div>reserva inmediata</div>
+							<div class="check_control"></div>
+						</label>
+					</div>
 
 					<div class="ubicacion_container">
 						<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion.svg" />
@@ -154,8 +224,6 @@
 					<div>
 						<input type="text" name="nombre" placeholder="Buscar por nombre" class="input" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
-
-
 					<div class="adicionales_container">
 						<label class="input_check_box" for="corte">
 							<input type="checkbox" id="corte" name="servicios[]" value="corte" '.$servicios['corte'].' />
@@ -215,13 +283,17 @@
 						</label>
 					</div>
 
+					<select name="orderby" class="filtros_ordenamiento">
+						'.$ordenamiento.'
+					</select>
+
 					<div class="filtros_botones">
 						<input type="reset" class="boton" value="Limpiar" />
 						<input type="submit" class="boton boton_verde" value="Buscar" />
 					</div>
 
 					<!-- <a href="#" class="mas_filtros">Más filtros</a> -->
-    			
+
     			</form>
 
     		</div>
@@ -244,20 +316,23 @@
 						<input type="hidden" class="latitud" name="latitud" value="'.$_SESSION['busqueda']['latitud'].'" />
 						<input type="hidden" class="longitud" name="longitud" value="'.$_SESSION['busqueda']['longitud'].'" />
 					</div>
+
 					<div class="filtros_movil_table">
 						<div class="filtros_movil_cell">
-							<div class="filtro_check check_descuento">
+
+							<label class="filtro_check check_descuento" for="descuento_movil" >
+								<input type="checkbox" id="descuento_movil" name="descuento" '.$check_descuento.' />
 								<div class="check_icon"></div>
 								<div>con descuento</div>
 								<div class="check_control"></div>
-								<input type="hidden" id="descuento" name="descuento" />
-							</div>
-							<div class="filtro_check check_disponibilidad">
+							</label>
+							<label class="filtro_check check_disponibilidad" for="flash_movil" >
+								<input type="checkbox" id="flash_movil" name="flash" '.$check_flash.' />
 								<div class="check_icon"></div>
 								<div>reserva inmediata</div>
 								<div class="check_control"></div>
-								<input type="hidden" id="flash" name="flash" />
-							</div>
+							</label>
+
 						</div>
 						<div class="filtros_movil_cell filtros_movil">
 

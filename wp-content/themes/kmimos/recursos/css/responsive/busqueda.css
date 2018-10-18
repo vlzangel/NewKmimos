@@ -22,6 +22,19 @@
 		display: none !important;
 	}
 
+	.filtros_botones{
+		display: block;
+	}
+
+	.filtros_generales_container .check_icon {
+		width: 40px;
+	    background-size: 24px;
+	}
+
+	.filtros_generales_container .filtro_check > div {
+	    font-size: 13px;
+	}
+
 	/* Barra */
 	
 		.resultados_container::-webkit-scrollbar-track{
@@ -515,7 +528,7 @@
 	}
 
 	.filtos_container {
-	    padding: 35px 15px 15px;
+	    padding: 35px 10px 15px;
 	}
 
 	.cerrar_mapa_movil {
@@ -553,7 +566,7 @@
 	}
 
 	.filtro_check > div {
-	    font-size: 10px;
+	    font-size: 13px;
 	}
 
 	.check_control {
@@ -591,5 +604,17 @@
 
 	.km-ranking a {
 	    width: 17px;
+	}
+}
+
+
+@media (max-width: 360px){
+	.filtro_check > div {
+	    font-size: 10px;
+	}
+
+	.filtos_container {
+	    padding: 35px 5px 15px;
+	    width: 100%;
 	}
 }
