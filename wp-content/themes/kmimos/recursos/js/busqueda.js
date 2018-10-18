@@ -39,20 +39,16 @@
 	function destacadoAnterior(_this){
 		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
 		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
-
 		var mostrando = getDestacadosMostrados();
-
 		if( actual == 0 ){
 			_this.parent().addClass("Ocultar_Flecha");
 		}else{
 			actual--;
-		
 			if( actual != 0 ){
 				_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
 			}else{
 				_this.parent().addClass("Ocultar_Flecha");
 			}
-
 			_this.parent().parent().find(".destacados_container").attr("data-actual", actual);
 			_this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*( 100 / mostrando ) )+"%"});
 		}
@@ -61,11 +57,7 @@
 	function destacadoSiguiente(_this){
 		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
 		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
-
 		var mostrando = getDestacadosMostrados();
-
-		console.log( mostrando );
-
 		if( actual == total-mostrando ){
 			actual = 0;
 		}else{
@@ -93,8 +85,16 @@
 /* BUSCAR */
 
 	jQuery(document).ready(function(){
-		jQuery("#buscar input").on("change", function(e){ buscar( jQuery(this).attr("id") ); });
-		jQuery("#buscar select").on("change", function(e){ buscar( jQuery(this).attr("id") ); });
+		jQuery("#buscar input").on("change", function(e){ 
+			if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){ 
+				buscar( jQuery(this).attr("id") ); 
+			}
+		});
+		jQuery("#buscar select").on("change", function(e){
+			if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){ 
+				buscar( jQuery(this).attr("id") ); 
+			}
+		});
 		buscar( "" );
 
 		jQuery("#ver_filtros").on("click", function(e){
@@ -119,7 +119,6 @@
 	});
 
 	jQuery(".resultados_container").on("scroll", function() {
-
 		if( parseInt( jQuery(".mesaje_reserva_inmediata_container").width() > 768 ) ){
 			var margen = 
 				parseInt( jQuery(".mesaje_reserva_inmediata_container").height() ) +
@@ -172,7 +171,13 @@
 		}
 	}
 
+	function getPage(indice){
+		PAGE = indice;
+		getResultados();
+	}
+
 	function getResultados(){
+		cargando(1);
 		jQuery.post(
 			HOME+"/NEW/resultados.php",
 			{ page: PAGE },
@@ -181,8 +186,35 @@
 					jQuery(".resultados_box .resultados_box_interno").append( html );
 				}else{
 					jQuery(".resultados_box .resultados_box_interno").html( html );
+					jQuery('html, body').animate({ scrollTop: 180 }, 1000);
 				}
 				CARGAR_RESULTADOS = true;
+
+				var PAG_HTML = "";
+				var FIN_PAG = 0;
+				var INIT_PAG = 0;
+				var ACTIVE = '';
+				if( PAGE > 3 ){
+					INIT_PAG = PAGE-3;
+				}
+				if( TOTAL_PAGE > (INIT_PAG+10) ){
+					FIN_PAG = INIT_PAG+10;
+				}else{
+					FIN_PAG = TOTAL_PAGE;
+				}
+
+				if( PAGE > 3 ){
+					PAG_HTML += '<a onclick="getPage('+(PAGE-1)+')"> <img src="'+HOME+'/recursos/img/BUSQUEDA/SVG/Flecha_Atras.svg" /></a>';
+				}
+
+				for (var i = INIT_PAG; i < FIN_PAG; i++) {
+					ACTIVE = ( PAGE == i ) ? 'active_page' : '';
+					PAG_HTML += '<span onclick="getPage('+i+')" class="'+ACTIVE+'">'+(i+1)+'</span>';
+				}
+				PAG_HTML += '<a onclick="getPage('+(PAGE+1)+')"> <img src="'+HOME+'/recursos/img/BUSQUEDA/SVG/Flecha.svg" /></a>';
+				jQuery(".paginacion_container").html(PAG_HTML);
+
+				cargando(2);
 			}
 		);
 	}
@@ -200,6 +232,15 @@
 				}
 			}
 		);
+	}
+
+	function cargando(estado){
+		if( estado == 1 ){
+			jQuery(".cargando_mas_resultados_externo").css("display", "block");
+		}
+		if( estado == 2 ){
+			jQuery(".cargando_mas_resultados_externo").css("display", "none");
+		}
 	}
 
 /* GEOLOCALIZACION */

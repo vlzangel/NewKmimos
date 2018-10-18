@@ -12,10 +12,10 @@ jQuery(document).ready(function(){
                 if( jQuery(this).html() != "X" ){
                     jQuery(".ubicacion_txt").val( jQuery(this).html() );
                     jQuery(".ubicacion").val( jQuery(this).attr("value") );
-                    buscar("ubicacion");
                     jQuery(".ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
                     jQuery(".ubicacion").attr( "data-txt", jQuery(this).html() );
                     jQuery( ".cerrar_list_box" ).css("display", "none");
+                    buscar("ubicacion");
                 } 
                 jQuery(".ubicacion_list").removeClass("ubicacion_list_hover");
             });
@@ -24,7 +24,16 @@ jQuery(document).ready(function(){
     );
 
     jQuery(".ubicacion_txt").on("keyup", function ( e ) {
-        buscarLocacion(String(jQuery(this).val()).toLowerCase(), jQuery(this));
+        var txt = String(jQuery(this).val()).toLowerCase();
+        if( txt.trim() != "" ){
+            buscarLocacion(txt, jQuery(this));
+        }else{
+            if(typeof buscar === 'function') {
+                jQuery(".ubicacion_txt").val( "" );
+                jQuery(".ubicacion").val( "" );
+                buscar("ubicacion");
+            }
+        }
     });
 
     jQuery(".ubicacion_txt").on("focus", function ( e ) { 

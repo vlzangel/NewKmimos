@@ -14,10 +14,10 @@
 
 @media (max-width: 768px){
 
-	footer{
+	footer, .paginacion_container{
 		display: block !important;
 	}
-	
+
 	/* Barra */
 	
 		.resultados_container::-webkit-scrollbar-track{
@@ -53,14 +53,16 @@
 		    border-radius: 0px 0px 3px 0px;
 		}
 
-		.filtos_container {
-		    left: -100%;
-		    transition: all .3s ease-in-out;
-		}
-
 		.filtos_container.open_filtros{
 			left: 0px;
 		    transition: all .3s ease-in-out;
+		}
+
+		.filtos_container {
+		    position: fixed;
+		    height: 100vh;
+		    width: calc( 100% - 40px );
+		    left: -100%;
 		}
 
 		.filtos_container.open_filtros .cerrar_filtros_movil{		
@@ -439,10 +441,6 @@
 	    margin: 0px 1px;
 	}
 
-	.filtos_container {
-	    width: 280px;
-	}
-
 	.tipo_mascota_container .input_check_box span {
 	    font-size: 13px;
 	}
@@ -485,7 +483,6 @@
 
 	.filtos_container {
 	    padding: 35px 15px 15px;
-	    width: 100%;
 	}
 
 	.cerrar_mapa_movil {

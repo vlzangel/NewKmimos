@@ -230,10 +230,14 @@
     				<div class="disponibilidad_MOVIl"><strong>Resultado de búsqueda,</strong> <span>'.count($_SESSION['resultado_busqueda']).'</span> cuidadores disponibles</div>
     			</div>
     			<div class="resultados_box">
+
     				<div class="resultados_box_interno">'.$resultados.'</div>
+
     				<div class="cargando_mas_resultados">
 	    				<i class="fa fa-spinner fa-spin"></i>
 	    			</div>
+
+    				<div class="paginacion_container"></div>
     			</div>
     		</div>
     		
@@ -247,6 +251,10 @@
     		</div>
 
     	</div>
+
+    	<div class="cargando_mas_resultados_externo">
+			<i class="fa fa-spinner fa-spin"></i>
+		</div>
     ';
 
     echo comprimir( $HTML );

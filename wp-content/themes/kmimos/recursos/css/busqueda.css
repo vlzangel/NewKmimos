@@ -1040,6 +1040,58 @@
 		    padding: 5px 0px 0px 10px;
 		}
 
+	/* PAGINACION */
+
+		.paginacion_container{
+			display: none;
+			text-align: center;
+			margin-top: 15px;
+		}
+
+		.paginacion_container span {
+		    width: 26px;
+		    display: inline-block;
+		    text-align: center;
+		    padding: 3px 0px;
+		    background: #EEE;
+		    border-radius: 50%;
+		    margin: 0px 3px;
+		    cursor: pointer;
+		    font-weight: 700;
+		}
+
+		.paginacion_container a {
+		    width: 20px;
+		}
+
+		.paginacion_container a img {
+		    width: 7px;
+    		padding-bottom: 5px;
+		}
+
+		.paginacion_container .active_page {
+		    background: #1cd3c6;
+		    color: #FFF;
+		}
+
+		.cargando_mas_resultados_externo {
+			display: none;
+		    position: fixed;
+		    top: 0px;
+		    left: 0px;
+		    width: 100vw;
+		    height: 100vh;
+		    background: rgba(255, 255, 255, 0.8);
+		    z-index: 99999999999;
+		    text-align: center;
+		    font-size: 50px;
+		}
+
+		.cargando_mas_resultados_externo i.fa.fa-spinner.fa-spin {
+		    color: #1cd3c6;
+		    margin-top: calc( 50vh - 25px );
+		}
+
 /* MAPA */
 
 	.mapa_container label {
