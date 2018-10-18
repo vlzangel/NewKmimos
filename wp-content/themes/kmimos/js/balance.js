@@ -5,6 +5,18 @@ var tr = document.getElementById('tiempo_restante');
 jQuery(document).ready(function(){
     timer = setInterval(contador, 1000);
 
+    jQuery('[data-action="popover"]').on('click', function(e){
+        var content_old = jQuery( '#help' ).html();
+        var content = jQuery(this).attr('data-content');
+        if( content != content_old ){       
+            jQuery( '#help' ).css( 'visibility', 'visible' );
+            jQuery( '#help' ).html( content );
+        }else{
+            jQuery( '#help' ).css( 'visibility', 'hidden' );
+            jQuery( '#help' ).html( '' );
+        }
+    });
+
     jQuery(".ver_reserva_init").on("click", function(e){
         jQuery(this).parent().parent().parent().addClass("vlz_desplegado");
     });

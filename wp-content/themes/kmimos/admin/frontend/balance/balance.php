@@ -61,7 +61,7 @@
 	<!-- Disponible -->
 	<article class="col-md-3">
 		<div class="alert bg-kmimos">
-			<i class="fa balance-help fa-question-circle" aria-hidden="true"></i>
+			<i class="fa balance-help fa-question-circle" aria-hidden="true" data-action="popover" data-content="<strong>DISPONIBLE: </strong> Saldo disponible en cuenta"></i>
 			<span>DISPONIBLE</span> 
 			<div  style="font-size: 18px;">$ <?php echo number_format($pay->disponible, 2, ',','.'); ?></div>
 		</div>
@@ -70,7 +70,7 @@
 	<!-- Proximo pago -->
 	<article class="col-md-3">
 		<div class="alert bg-kmimos">
-			<i class="fa balance-help fa-question-circle" aria-hidden="true"></i>
+			<i class="fa balance-help fa-question-circle" data-action="popover" data-content="<strong>PROXIMO PAGO: </strong> Monto a pagar en la proxima periodo de pago" aria-hidden="true"></i>
 			<span>PROXIMO PAGO</span> 
 			<div  style="font-size: 18px;">$ <?php echo number_format($pay->proximo_pago, 2, ',','.'); ?></div>
 		</div>
@@ -79,7 +79,7 @@
 	<!-- En progreso -->
 	<article class="col-md-3">
 		<div class="alert bg-kmimos">
-			<i class="fa balance-help fa-question-circle" aria-hidden="true"></i>
+			<i class="fa balance-help fa-question-circle" aria-hidden="true" data-action="popover" data-content="<strong>EN PROGRESO: </strong>Pagos realizados pendientes por aprobaci&oacute;n del banco"></i>
 			<span>EN PROGRESO</span> 
 			<div  style="font-size: 18px;">$ <?php echo number_format($pay->en_progreso, 2, ',','.'); ?></div>
 		</div>
@@ -88,7 +88,7 @@
 	<!-- Retenido -->
 	<article class="col-md-3">
 		<div class="alert bg-kmimos">
-			<i class="fa balance-help fa-question-circle" aria-hidden="true"></i>
+			<i class="fa balance-help fa-question-circle" aria-hidden="true" data-action="popover" data-content="<strong>RETENIDO: </strong> Montos retenidos por falta de datos de facturaci&oacute;n"></i>
 			<span>RETENIDO</span> 
 			<div  style="font-size: 18px;">$ <?php echo number_format($pay->retenido, 2, ',','.'); ?></div>
 		</div>
@@ -96,7 +96,7 @@
 
 	<!-- Mensaje de ayuda -->
 	<article class="col-md-12 text-left">
-		<div class="alert alert-info hidden" role="alert"><strong>DISPONIBLE:</strong> Saldo en cuenta disponible para retiros.</div>
+		<div class="alert alert-info" style="visibility: hidden;" role="alert" id='help'>asd</div>
 	</article>
 
 	<!-- Transacciones -->
@@ -183,4 +183,7 @@
 <script>
     var fecha = new Date('<?php echo $pay->retiro->tiempo_restante; ?>');
     var user_id = <?php echo $user_id; ?>;
+
+
+    
 </script>
