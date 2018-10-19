@@ -177,6 +177,10 @@
 
 	/* RESULTADOS */
 
+		.resultados_item_info_img_container img.favorito {
+			display: block;
+		}
+
 		.disponibilidad_MOVIl {
 		    display: block !important;
 		}
@@ -407,7 +411,7 @@
 		    visibility: hidden;
 		}
 
-		.resultados_item_info_img_container img {
+		.resultados_item_info_img_container img.Flechas {
 			display: none;
 		}
 

@@ -57,12 +57,6 @@
 			$_SESSION["DATA_CUIDADORES"] = pre_carga_data_cuidadores();
 		}
 		
-		// $destacados = get_destacados_new();
-		// $resultados = get_resultados_new();
-
-		// update_ubicacion();
-		// update_titulo();
-
 		$ordenamientos = array(
 	    	'rating_desc' => array(
 	    		'Valoración (mayor a menor)',

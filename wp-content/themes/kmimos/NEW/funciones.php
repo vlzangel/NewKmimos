@@ -60,6 +60,7 @@
                 }
                 $DESTACADOS_ARRAY[] = [
                 	"img" => $img_url,
+                	"id_post" => $cuidador->id_post,
                 	"nombre" => $nombre,
                 	"url" => $url,
                 	"desde" => ($cuidador->hospedaje_desde*getComision()),
@@ -71,14 +72,41 @@
             }
         }
 
+        $user_id = get_current_user_id();
+        $favoritos = get_favoritos();
+
         if( count($DESTACADOS_ARRAY) > 0 ){
 	        foreach ($DESTACADOS_ARRAY as $key => $destacado) {
+
+	        	$fav_check = 'false';
+		        $fav_del = '';
+		        $fav_img = 'Corazon';
+		        if (in_array($destacado["id_post"], $favoritos)) {
+		            $fav_check = 'true'; 
+		            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+		            $fav_del = 'favoritos_delete';
+		            $fav_img = 'Favorito';
+		        }
+
+		        $favorito_movil = '
+		        	<img 
+		        		class="favorito '.$fav_del.'" '.$style_icono.'" 
+		        		data-reload="false"
+			            data-user="'.$user_id.'" 
+			            data-num="'.$destacado["id_post"].'" 
+			            data-active="'.$fav_check.'"
+			            data-favorito="'.$fav_check.'"
+		        		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img.'.svg" 
+		        	/>
+		        ';
+
 	        	$top_destacados .= '
 	        		<div class="destacados_item">
 	        			<div class="desacado_img">
 	        				<div class="desacado_img_interna" style="background-image: url( '.$destacado["img"].' );"></div>
 	        			</div>
 	        			<div class="desacado_img_normal" style="background-image: url( '.$destacado["img"].' );"></div>
+        				'.$favorito_movil.'
 	        			<div class="desacado_title">
 	        				<span>Dest</span> '.$destacado["nombre"].'
 	        			</div>
@@ -112,6 +140,10 @@
 		$resultados = $_SESSION['resultado_busqueda'];
 		$HTML = ""; $total = count($resultados);
 		$fin = ( $total > ($PAGE+10) ) ? $PAGE+10 : $total;
+
+		$user_id = get_current_user_id();
+
+		$favoritos = get_favoritos();
 
 		for ($i = $PAGE; $i < $fin; $i++ ) {
 			$cuidador = $resultados[$i];
@@ -151,6 +183,41 @@
 					$ocultar_todo = "ocultar_flash_descuento";
 				}
 
+				$fav_check = 'false';
+		        $fav_del = '';
+		        $fav_img_pc = 'Corazon_Gris';
+		        $fav_img_movil = 'Corazon';
+		        if (in_array($_cuidador->id_post, $favoritos)) {
+		            $fav_check = 'true'; 
+		            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+		            $fav_del = 'favoritos_delete';
+		            $fav_img_pc = 'Favorito';
+		            $fav_img_movil = 'Favorito';
+		        }
+		        $favorito_movil = '
+		        	<img 
+		        		class="favorito '.$fav_del.'" '.$style_icono.'" 
+		        		data-reload="false"
+			            data-user="'.$user_id.'" 
+			            data-num="'.$_cuidador->id_post.'" 
+			            data-active="'.$fav_check.'"
+			            data-favorito="'.$fav_check.'"
+		        		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img_movil.'.svg" 
+		        	/>
+		        ';
+
+		        $favorito_pc = '
+		        	<img 
+		        		class="'.$fav_del.'" '.$style_icono.'" 
+		        		data-reload="false"
+			            data-user="'.$user_id.'" 
+			            data-num="'.$_cuidador->id_post.'" 
+			            data-active="'.$fav_check.'"
+			            data-favorito="'.$fav_check.'"
+		        		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img_pc.'.svg" 
+		        	/>
+		        ';
+
 				$comentario = '';
 				if( isset($_cuidador->comentario->comment_author_email) ){
 					if( strlen($_cuidador->comentario->comment_content) > 200 ){
@@ -165,7 +232,9 @@
 								'.( $_cuidador->comentario->comment_content ).' <a href="#">(Ver más)</a>
 							</div>
 							<div class="resultados_item_comentario_favorito">
-								<span></span>
+								<span>
+									'.$favorito_pc.'
+								</span>
 							</div>
 						</div>
 					';
@@ -175,7 +244,9 @@
 							<div class="resultados_item_comentario_img"></div>
 							<div class="resultados_item_comentario_contenido"></div>
 							<div class="resultados_item_comentario_favorito">
-								<span></span>
+								<span>
+									'.$favorito_pc.'
+								</span>
 							</div>
 						</div>
 					';
@@ -212,8 +283,9 @@
 										<div class="resultados_item_info_img_box">
 											'.$galeria.'
 										</div>
-										<img onclick="imgAnterior( jQuery(this) );" class="Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_2.svg" />
-										<img onclick="imgSiguiente( jQuery(this) );" class="Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
+										'.$favorito_movil.'
+										<img onclick="imgAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_2.svg" />
+										<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
 									</div>
 									<div class="resultados_item_info">
 										<div class="resultados_item_titulo"> <span>'.($i+1).'.</span> '.($_cuidador->titulo).'</div>
