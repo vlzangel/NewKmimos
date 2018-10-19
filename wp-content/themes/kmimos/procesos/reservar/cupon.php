@@ -65,7 +65,7 @@ ini_set('display_errors', '0');
 					Solo la primera reserva
 				*/
 
-				$_cant_reservas = $db->get_results("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$cliente} AND post_type = 'wc_booking' AND post_status != 'cancelled' ");
+				$_cant_reservas = $db->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$cliente} AND post_type = 'wc_booking' AND post_status != 'cancelled' ");
 				
 				$aplicar = 0;
 				if( $_cant_reservas == 0 ){
