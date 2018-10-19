@@ -84,9 +84,11 @@
 		</footer>
 	';
 
-	// if( $post->post_name != "busqueda" ){
-		echo comprimir($HTML);
-	// }
+	if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
+     	include_once( dirname(__DIR__).'/partes/footer/SubscribeSite.php' ); 
+    }
+
+	echo comprimir($HTML);
 
 	wp_footer();
 ?>

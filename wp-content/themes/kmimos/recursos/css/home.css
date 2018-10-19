@@ -957,7 +957,7 @@
 		height: 60px;
 	}
 
-	/* ALIADOS */
+/* ALIADOS */
 
 	.aliados_container{
 		width: 100%;
@@ -969,4 +969,117 @@
 
 	.aliados_container img{
 		width: 15.5%;
+	}
+
+/* POPUP */
+	
+	#message.Msubscribe .contain {
+	    width: 90%;
+	}
+
+	#PageSubscribe_NEW {
+	    position: relative;
+	    max-width: 300px;
+	    margin: 0 auto;
+	    padding: 0px;
+	    top: auto;
+	    border-radius: 10px;
+	    background: #ffffff;
+	    overflow: hidden;
+	    border: solid 1px #777;
+	}
+	
+	#PageSubscribe_NEW i.exit.fa.fa-times {
+	    position: absolute;
+	    top: 0px;
+	    right: 0px;
+	    font-size: 20px;
+	    color: #a1a1a1;
+	    padding: 8px;
+	    background: #EEE;
+	    cursor: pointer;
+	}
+	
+	#PageSubscribe_NEW h2 {
+	    color: #000;
+	    text-align: center;
+	    text-transform: uppercase;
+	    font-family: Arial;
+	    font-weight: 800;
+	    padding: 25px 0px 0px;
+	    font-size: 18px !important;
+	}
+	
+	#PageSubscribe_NEW p {
+		color: #000;
+		text-align: center;
+		font-size: 15px;
+		font-family: Lato;
+		margin: 0px 25px 15px;
+	}
+	
+	#PageSubscribe_NEW .section_1 {
+	    margin-bottom: 35px;
+	}
+	
+	#PageSubscribe_NEW .section_2 {
+	    position: relative;
+	}
+	
+	#PageSubscribe_NEW .section_2 > div.img_banner {
+	   	background-repeat: no-repeat;
+	   	background-size: cover;
+	   	background-position: center;
+	   	height: 200px;
+	}
+	
+	#PageSubscribe_NEW .section_3 {
+	    text-align: center;
+	    background: #000;
+	    font-size: 15px;
+	    padding: 12px;
+	}
+	
+	#PageSubscribe_NEW form {
+	    margin: 0px 50px;
+	    position: absolute;
+	    top: -25px;
+	}
+	
+	#PageSubscribe_NEW input#mail_suscripcion {
+	    width: 100%;
+	    padding: 7px;
+	    border: solid 1px #CCC;
+	    border-bottom: 0px;
+	    border-radius: 3px 3px 0px 0px;
+	    color: #000;
+	}
+	
+	#PageSubscribe_NEW button {
+	    width: 100%;
+	    padding: 7px;
+	    border: solid 1px #CCC;
+	    border-top: 0px;
+	    border-radius: 0px 0px 3px 3px;
+	    background: #00d2c6;
+	}
+	
+	#PageSubscribe_NEW img {
+	    width: 100%;
+	}
+
+	#message.Msubscribe {
+        height: 100vh; !important;
+	    overflow: auto !important;
+	}
+
+	#message.Msubscribe .contain {
+		display: table;
+		width: 100%;
+		height: 100%;
+	}
+
+	#message.Msubscribe .contain > div {
+	    display: table-cell;
+	    vertical-align: middle;
 	}

@@ -46,20 +46,32 @@ function single_subscribe_add_menu(){
     }
 }
 
+function _comprimir($styles){
+    $styles = str_replace("\t", "", $styles);
+    $styles = str_replace("      ", " ", $styles);
+    $styles = str_replace("     ", " ", $styles);
+    $styles = str_replace("    ", " ", $styles);
+    $styles = str_replace("   ", " ", $styles);
+    $styles = str_replace("  ", " ", $styles);
+    return $styles = str_replace("\n", " ", $styles);
+}
 
 function subscribe_input($section='any'){
     global $_subscribe;
 
-    $html='<div class="subscribe" data-subscribe="'.plugin_dir_url(__DIR__).'">';
-    $html.='<form onsubmit="form_subscribe(this); return false;">';
-    $html.='<input type="hidden" name="section" value="'.$section.'"/>';
-    $html.='<input type="mail" id="mail_suscripcion" name="mail" value="" placeholder="Introduce tu correo aqu&iacute" required/>';
-    $html.='<button type="submit"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>';
-    $html.='</form>';
-    $html.='<br>';
-    $html.='<div class="message"></div>';
-    $html.='</div>';
-    return $html;
-
+    $html = 
+        '<div class="subscribe" data-subscribe="'.plugin_dir_url(__DIR__).'">'.
+            '<form onsubmit="form_subscribe(this); return false;">'.
+            '    <input type="hidden" name="section" value="'.$section.'"/>'.
+            '    <input type="mail" id="mail_suscripcion" name="mail" value="" placeholder="Ingresa tu correo" required/>'.
+            '    <button type="submit">'.
+            '        Suscribirme'.
+            '    </button>'.
+            '   <br>'.
+            '   <div class="message"></div>'.
+            '</form>'.
+        '</div>';
+    return _comprimir($html);
 }
+
 ?>

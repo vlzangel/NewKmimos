@@ -2,11 +2,11 @@
 	$PopUpSection='home';
     $bodyClass=get_body_class();
     if(array_key_exists('wlabel',$_SESSION)){
-            $PopUpSection=$_SESSION['wlabel'];
+    	$PopUpSection=$_SESSION['wlabel'];
     }else if(in_array('page-template-blog',$bodyClass)){
-            $PopUpSection='PopUpBlog';
+    	$PopUpSection='PopUpBlog';
     }else if(in_array('single-post',$bodyClass)){
-            $PopUpSection='PopUpBlogPost';
+    	$PopUpSection='PopUpBlogPost';
     }
 
 	$checkparam = 'true';
@@ -16,7 +16,7 @@
 	    }
 	}
 	    
-	$HTML .= "
+/*	$HTML .= "
 	<script type=\"text/javascript\">
 	    var checkparam = {$checkparam};
 		function SubscribePopUp_Create(html){
@@ -27,7 +27,7 @@
 		    }
 
 		    jQuery(element).find('.contain').html(html);
-		    jQuery(element).fadeIn(5,function(){ /* 500 */
+		    jQuery(element).fadeIn(5,function(){ 
 		    });
 		}
 
@@ -36,12 +36,12 @@
 	        if((body.hasClass('home') && checkparam) || (body.hasClass('page-template-blog') || body.hasClass('single-post'))){
 	            SubscribeTime = setTimeout(function(){
 	                SubscribeSite();
-	            }, 10); /* 7400 */
+	            }, 10);
 	        }
 	    });";
 
 	   	if( $PopUpSection == "petco" ){
-	   		$HTML .= "
+	   		$HTML .= " 
 	   			function SubscribeSite(){
 			        clearTimeout(SubscribeTime);
 
@@ -81,5 +81,40 @@
 			    }
 	   		";
 	   	} $HTML .= "
-	</script>";
+	</script>";*/
+
 ?>
+
+	<script type="text/javascript">
+	    var checkparam = <?= $checkparam ?>;
+		function _SubscribePopUp_Create(html){
+		    var element = '#message.Msubscribe';
+		    if(jQuery(element).length == 0){
+		        jQuery('body').append('<div id="message" class="Msubscribe"></div>');
+		        jQuery(element).append('<div class="contain"></div>');
+		    }
+
+		    jQuery(element).find('.contain').load(html, {
+		    	HOME: HOME,
+		    	FORM: "<?= str_replace('"', '\"', subscribe_input($PopUpSection) ); ?>",
+		    	SECCION: "<?= $PopUpSection ?>"
+		    });
+		    jQuery(element).fadeIn(5,function(){});
+		}
+
+		jQuery(document).ready(function(e){
+	        var body= jQuery('body');
+	        if((body.hasClass('home') && checkparam) || (body.hasClass('page-template-blog') || body.hasClass('single-post'))){
+	            SubscribeTime = setTimeout(function(){
+	                SubscribeSite();
+	            }, 10);
+	        }
+	    });
+
+		function SubscribeSite(){
+	        
+	        clearTimeout(SubscribeTime);
+
+	        _SubscribePopUp_Create( HOME+"/template/banners/banner_home.php" );
+	    }
+	</script>
