@@ -4,7 +4,9 @@
 	    opacity: 1;
 	    transition: all .3s ease-in-out;
 	}
+}
 
+@media (min-width: 600px){
 	/* POPUP */
 
 		#PageSubscribe_NEW {
@@ -788,6 +790,10 @@
 	.aliados_container img {
 	    width: 30.333333%;
 	}
+
+}
+
+@media (max-width: 600px){
 
 /* POPUP */
 	
