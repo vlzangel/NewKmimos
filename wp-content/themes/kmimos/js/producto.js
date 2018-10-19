@@ -702,6 +702,7 @@ function reaplicarCupones(){
 			servicio: SERVICIO_ID,
 			cupones: CARRITO["cupones"],
 			total: CARRITO["pagar"]["total"],
+			duracion: CARRITO["fechas"]["duracion"],
 			cliente: cliente,
 			reaplicar: 1
 		},
