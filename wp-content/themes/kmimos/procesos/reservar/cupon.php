@@ -67,21 +67,28 @@ ini_set('display_errors', '0');
 
 				$_cant_reservas = $db->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$cliente} AND post_type = 'wc_booking' AND post_status != 'cancelled' ");
 				
-				$aplicar = 0;
-				if( $_cant_reservas == 0 ){
-					$aplicar++;
-				}
-
-				if( $duracion > 1){
-					$aplicar++;
+				if( $validar ){
+					if( $_cant_reservas > 0 ){
+						echo json_encode(array(
+							"error" => "Este cupón no esta disponible para tu usuario"
+						));
+						exit;
+					}
+					if( $duracion <= 1){
+						echo json_encode(array(
+							"error" => "La reserva debe ser de minimo 2 noches para aplicar este cupón"
+						));
+						exit;
+					}
+				}else{
+					if( $_cant_reservas > 0 ){
+						return false;
+					}
+					if( $duracion <= 1){
+						return false;
+					}
 				}
 				
-				if( $aplicar != 2 ){
-					echo json_encode(array(
-						"error" => "Este cupón no esta disponible para tu usuario"
-					));
-					exit;
-				}
 			}
 
 		/* Fin Cupones Especiales */
@@ -229,7 +236,10 @@ ini_set('display_errors', '0');
 		$xcupones = array();
 		if( count($cupones) > 0 ){
 			foreach ($cupones as $cupon) {
-				$xcupones[] = aplicarCupon($db, $cupon[0], $xcupones, $total, false, $cliente, $servicio, $duracion);
+				$r = aplicarCupon($db, $cupon[0], $xcupones, $total, false, $cliente, $servicio, $duracion);
+				if( $r !== false ){
+					$xcupones[] = $r;
+				}
 			}
 			$cupones = $xcupones;
 		}
