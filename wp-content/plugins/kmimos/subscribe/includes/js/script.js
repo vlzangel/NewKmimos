@@ -32,6 +32,7 @@ function form_subscribe(element){
                     message.html('<i class="icon fa fa-envelope"></i>'+data['message']+'');
                     vsetTime = setTimeout(function(){
                         message_subscribe(message);
+                        message.removeClass('show');
                     }, 5000);
                 }
                 obj_submit.html(text_submit);
