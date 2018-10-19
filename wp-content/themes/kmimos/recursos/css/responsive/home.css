@@ -121,8 +121,8 @@
 
 	.tipo_mascota_container .input_check_box img {
 	    display: inline-block;
-	    margin: 8px 20px 8px 0px;
-	    height: 30px;
+	    margin: 11px 20px 11px 0px;
+	    height: 22px;
 	}
 
 	.ubicacion_container {
@@ -145,6 +145,7 @@
 
 	.tipo_mascota_container .input_check_box {
 	    width: calc( 50% - 10px );
+	    height: auto;
 	}
 
 	.fechas_container {
