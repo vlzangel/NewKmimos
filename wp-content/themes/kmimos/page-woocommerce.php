@@ -3,6 +3,8 @@
         Template Name: Woocommerce
     */
 
+    error_reporting(0);
+
     if( !isset($_SESSION) ){ session_start(); }
 
 	$post_id = vlz_get_page();

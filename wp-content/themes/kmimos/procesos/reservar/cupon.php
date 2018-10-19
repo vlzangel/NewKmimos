@@ -13,7 +13,7 @@ ini_set('display_errors', '0');
 
 	$db = new db( new mysqli($host, $user, $pass, $db) );
 
-	function aplicarCupon($db, $cupon, $cupones, $total, $validar, $cliente = "", $servicio = ""){
+	function aplicarCupon($db, $cupon, $cupones, $total, $validar, $cliente = "", $servicio = "", $duracion = ""){
 		
 		/* Cupones Especiales */
  
@@ -30,7 +30,12 @@ ini_set('display_errors', '0');
 				}
 			}
 
-			if( strtolower($cupon) == "vol150" ){
+			if( strtolower($cupon) == "vol150" ){ // kp200p
+				/*
+					2 noches minimo
+					Solo la primera reserva
+				*/
+				
 				// echo "SELECT * FROM wp_usermeta WHERE user_id = {$cliente} AND ( meta_key = 'user_referred' OR meta_key = '_wlabel' ) ";
 				$_metas_cliente = $db->get_results("SELECT * FROM wp_usermeta WHERE user_id = {$cliente} AND ( meta_key = 'user_referred' OR meta_key = '_wlabel' ) ");
 				foreach ($_metas_cliente as $key => $value) {
@@ -47,6 +52,31 @@ ini_set('display_errors', '0');
 				}
 
 				if( $aplicar === false ){
+					echo json_encode(array(
+						"error" => "Este cupón no esta disponible para tu usuario"
+					));
+					exit;
+				}
+			}
+
+			if( strtolower($cupon) == "kp200p" ){ // kp200p
+				/*
+					2 noches minimo
+					Solo la primera reserva
+				*/
+
+				$_cant_reservas = $db->get_results("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$cliente} AND post_type = 'wc_booking' AND post_status != 'cancelled' ");
+				
+				$aplicar = 0;
+				if( $_cant_reservas == 0 ){
+					$aplicar++;
+				}
+
+				if( $duracion > 1){
+					$aplicar++;
+				}
+				
+				if( $aplicar != 2 ){
 					echo json_encode(array(
 						"error" => "Este cupón no esta disponible para tu usuario"
 					));
@@ -199,12 +229,12 @@ ini_set('display_errors', '0');
 		$xcupones = array();
 		if( count($cupones) > 0 ){
 			foreach ($cupones as $cupon) {
-				$xcupones[] = aplicarCupon($db, $cupon[0], $xcupones, $total, false, $cliente, $servicio);
+				$xcupones[] = aplicarCupon($db, $cupon[0], $xcupones, $total, false, $cliente, $servicio, $duracion);
 			}
 			$cupones = $xcupones;
 		}
 	}else{
-		$cupones[] = aplicarCupon($db, $cupon, $cupones, $total, true, $cliente, $servicio);
+		$cupones[] = aplicarCupon($db, $cupon, $cupones, $total, true, $cliente, $servicio, $duracion);
 
 	}
 

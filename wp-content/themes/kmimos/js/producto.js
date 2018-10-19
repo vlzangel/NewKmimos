@@ -665,6 +665,7 @@ function aplicarCupon(cupon = ""){
 				cupon: cupon,
 				cupones: CARRITO["cupones"],
 				total: CARRITO["pagar"]["total"],
+				duracion: CARRITO["fechas"]["duracion"],
 				cliente: cliente,
 				reaplicar: 0
 			},
