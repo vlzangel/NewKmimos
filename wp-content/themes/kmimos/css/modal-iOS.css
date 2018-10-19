@@ -5,8 +5,8 @@
 
 .modal-open .modal,
 .modal{
-    overflow-x: initial!important;
-    overflow-y: initial!important;
+   /* overflow-x: initial!important;
+    overflow-y: initial!important;*/
 	position: absolute!important; 
 	width: 100%!important;
 }

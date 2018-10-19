@@ -33,13 +33,26 @@ function ancla_form() {
 
 jQuery( document ).ready(function() {
 
-    jQuery("#buscador").submit(function(e){
+    jQuery("#boton_buscar").on("click", function(e){
         if( jQuery("#checkin").val() != "" && jQuery("#checkout").val() != "" ){
             jQuery(".fechas_container").removeClass("error_fecha");
+            jQuery('#popup-servicios-new').modal('show');
         }else{
             jQuery(".fechas_container").addClass("error_fecha");
-            e.preventDefault();
         }
+        e.preventDefault();
+    });
+
+    jQuery("#agregar_servicios").on("click", function(e){
+        jQuery("#buscador").submit();
+    });
+
+    jQuery("#buscar_no").on("click", function(e){
+        jQuery("#buscador").submit();
+    });
+
+    jQuery('#popup-servicios-new').on('hidden.bs.modal', function () {
+        jQuery("#buscar_no").click();
     });
 
 	fixedHeader();

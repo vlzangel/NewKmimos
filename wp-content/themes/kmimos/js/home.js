@@ -163,7 +163,11 @@ var limites = {
 
     jQuery(function(){
 
-        jQuery("#boton_buscar").on("click", function(e){
+        jQuery("#buscar").on("click", function(e){
+            jQuery("#buscador").submit();
+        });
+
+        jQuery("#buscar_no").on("click", function(e){
             jQuery("#buscador").submit();
         });
 

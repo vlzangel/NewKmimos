@@ -98,10 +98,21 @@
 		buscar( "" );
 
 		jQuery("#ver_filtros").on("click", function(e){
-			jQuery(".filtos_container").addClass('open_filtros');
-			if( parseInt( jQuery("body").width() ) < 768 ){
-				jQuery("body").css("overflow-y", "hidden");
+
+			if( jQuery(".resultado_item").hasClass("full_width") ){
+				jQuery(".resultado_item").removeClass('full_width');
+			}else{
+				jQuery(".resultado_item").addClass('full_width');
 			}
+			
+			
+
+			/*jQuery(".filtos_container").addClass('open_filtros');
+
+			/*if( parseInt( jQuery("body").width() ) < 768 ){
+				jQuery("body").css("overflow-y", "hidden");
+			}*/
+
 		});
 
 		jQuery("#ver_filtros_fechas").on("click", function(e){

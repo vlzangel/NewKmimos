@@ -216,7 +216,7 @@
 						</label>
 					</div>
 					<div>
-						<input type="text" name="nombre" placeholder="Buscar por nombre" class="input" value="'.$_SESSION['busqueda']['nombre'].'" />
+						<input type="text" name="nombre" placeholder="Buscar Cuidador por Nombre" class="input" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
 					<div class="adicionales_container">
 						<label class="input_check_box" for="corte">
@@ -330,7 +330,10 @@
 						</div>
 						<div class="filtros_movil_cell filtros_movil">
 
-							<div id="ver_filtros_fechas" class="boton boton_border_gris boton_block"> '.$_SESSION['busqueda']['checkin'].' - '.$_SESSION['busqueda']['checkout'].' </div>
+							<div id="ver_filtros_fechas" class="boton boton_border_gris boton_block"> 
+								<!-- '.$_SESSION['busqueda']['checkin'].' - '.$_SESSION['busqueda']['checkout'].' -->
+								FILTROS
+							</div>
 							<div id="ver_filtros" class="boton boton_border_gris">
 								<img src="'.get_recurso("img").'BUSQUEDA/RESPONSIVE/SVG/Ver_fichas.svg" />
 							</div>
@@ -356,7 +359,7 @@
     			<div class="mesaje_reserva_inmediata_container disponibilidad_MOVIl">
     				<div class="mesaje_reserva_inmediata_izq"></div>
     				<div class="mesaje_reserva_inmediata_der">
-    					<strong>Tu reserva comienza en 3 días.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
+    					<strong>Tu reserva comienza en 3 días.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece aquí arriba a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
     				</div>
     			</div>
     			

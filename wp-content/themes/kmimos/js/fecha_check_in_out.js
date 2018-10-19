@@ -21,7 +21,7 @@ jQuery(document).ready(function(){
                     jQuery(".fechas_container").removeClass("error_fecha");
                     jQuery('#checkout').change();
 
-                    jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() );
+                    /* jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() ); */
                 },
                 yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
                 firstDay: 1,
@@ -38,7 +38,7 @@ jQuery(document).ready(function(){
                     jQuery(".fechas_container").removeClass("error_fecha");
                     jQuery('#checkout').change();
 
-                    jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() );
+                    /* jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() ); */
                 },
                 yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
                 firstDay: 1,
@@ -76,7 +76,7 @@ jQuery(document).ready(function(){
             jQuery(".fechas_container").removeClass("error_fecha");
             jQuery('#checkin').change();
 
-            jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() );
+            /* jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() ); */
         },
         yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
         firstDay: 1,
@@ -93,7 +93,7 @@ jQuery(document).ready(function(){
             jQuery(".fechas_container").removeClass("error_fecha");
             jQuery('#checkout').change();
 
-            jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() );
+            /* jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() ); */
         },
         yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
         firstDay: 1,

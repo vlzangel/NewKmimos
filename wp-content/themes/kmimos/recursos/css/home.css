@@ -970,3 +970,89 @@
 	.aliados_container img{
 		width: 15.5%;
 	}
+
+/* MODAL ADICIONALES */
+	
+	#popup-servicios-new {
+		text-align: center;
+	}
+	#popup-servicios-new h4 {
+	    font-size: 18px;
+	}
+	#popup-servicios-new .modal-dialog {
+		width: 100%;
+		padding: 10px;
+		max-width: 850px;
+		box-sizing: border-box;
+	}
+	#popup-servicios-new .modal-content {
+		padding: 20px 35px;
+	}
+	#popup-servicios-new .km-btn-primary {
+		line-height: 18px;
+	}
+	#popup-servicios-new .km-opcion {
+	    padding: 14px 0;
+	    min-height: 65px;
+	    align-items: center;
+	    display: table;
+	}
+	#popup-servicios-new .km-opcion .km-opcion-text {
+	    vertical-align: middle;
+	    display: table-cell;
+	    padding-left: 15px;
+	    font-weight: 500;
+	}
+
+	#popup-servicios-new .km-opcion img {
+		position: relative;
+	    margin-right: 6px;
+	    margin-left: 15px;
+	    width: 25px;
+	    top: 5px!important;
+	    vertical-align: middle;
+	    display: table-cell;
+	}
+	#popup-servicios-new .km-opcion img {
+	    position: absolute;
+	    margin: 0px !important;
+	    width: 60px;
+	    top: -3px;
+	    height: 100%;
+	    top: 0px !important;
+	    background: #EEE;
+	    left: 0px !important;
+	    padding: 0px 12px;
+	    border-right: solid 1px #e5e5e5;
+	}
+	#popup-servicios-new .km-servicios-adicionales {
+	    margin-top: 15px;
+	}
+	#popup-servicios-new #buscar {
+	    height: 65px;
+	    border: 0px;
+	    color: #FFF;
+	    box-sizing: border-box;
+	    padding: 25px 0px;
+	}
+
+
+	#popup-servicios-new .km-opcion input ~ span {
+	    display: none;
+	}
+
+
+	#popup-servicios-new .km-opcion input:checked ~ span {
+	    display: inline-block;
+	    position: absolute;
+	    top: -13px;
+	    right: -13px;
+	    width: 30px;
+	    height: 30px;
+	    background-image: url(../img/HOME/PNG/check_adicionales.png);
+	    border: solid 4px #fff;
+	    padding: 3px;
+	    background-position: center;
+	    background-size: contain;
+	    background-repeat: no-repeat;
+	}

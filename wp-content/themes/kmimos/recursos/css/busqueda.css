@@ -432,6 +432,10 @@
 		    border: solid 1px #00d2c6;
 		}
 
+		.adicionales_container .input_check_box span small {
+		    color: #a650c2;
+		}
+
 	/* ORDENAMIENTOS */
 
 		.filtros_ordenamiento{

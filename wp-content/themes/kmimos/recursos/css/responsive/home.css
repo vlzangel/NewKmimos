@@ -792,6 +792,10 @@
 	    width: 30.333333%;
 	}
 
+	#popup-servicios-new .km-opcion .km-opcion-text {
+	    width: 85%!important;
+	}
+
 }
 
 @media (max-width: 600px){
@@ -921,6 +925,22 @@
 
 	#PageSubscribe_NEW .message.show {
 	    opacity: 1;
+	}
+
+	#popup-servicios-new .km-opcion {
+	    padding: 0px 35px;
+	}
+
+	#popup-servicios-new h4 {
+	    line-height: 20px;
+	}
+
+	.modal-open .modal, .modal {
+	    overflow-x: auto !important; 
+	    overflow-y: auto !important; 
+	}
+	#popup-servicios-new .modal-dialog {
+		margin: 0px;
 	}
 }
 
