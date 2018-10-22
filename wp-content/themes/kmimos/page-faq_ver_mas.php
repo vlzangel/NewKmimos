@@ -12,10 +12,13 @@
 
 ?>
 
-
-	<div class="km-ficha-bg" style="background-image: url(<?php echo getTema().'/images/new/ayuda/kmimos_ayuda.jpg'; ?>)">
+	<div class="km-ficha-bg km-ficha-bg_PC" style="background-image: url(<?php echo getTema().'/images/new/ayuda/Ayuda-Kmimos.jpg'; ?>)">
 		<div class="overlay"></div>
 	</div>
+	<div class="km-ficha-bg km-ficha-bg_MOVIL" style="background-image: url(<?php echo getTema().'/images/new/ayuda/Ayuda-Kmimos-responsive.jpg'; ?>)">
+		<div class="overlay"></div>
+	</div>
+	
 	<div class="body body-ayuda container">
 		<div id="ayuda-content" class="main">
 			
