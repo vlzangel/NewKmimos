@@ -3,6 +3,7 @@
 	
 	if( !isset($_SESSION) ){ session_start(); }
 
-	update_ubicacion();
-	update_titulo();
+	// update_ubicacion();
+	// update_titulo();
+	update_cuidador_url();
 ?>

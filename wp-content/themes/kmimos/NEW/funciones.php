@@ -1,4 +1,7 @@
 <?php
+	
+	include dirname(__FILE__).'/reconfiguracion.php';
+
 	function get_recurso($tipo){
 		return getTema()."/recursos/".$tipo."/";
 	}
@@ -467,45 +470,6 @@
 
             return $r;
         }
-    }
-
-    function update_ubicacion(){
-    	global $wpdb;
-
-    	$cuidadores = $wpdb->get_results("
-    		SELECT 
-    			c.id,
-    			c.email,
-    			u.estado,
-    			u.municipios
-    		FROM 
-    			cuidadores AS c
-    		INNER JOIN ubicaciones AS u  ON ( u.cuidador = c.id )
-    	");
-
-    	foreach ($cuidadores as $key => $value) {
-    		$est = ( $value->estado == "==" ) ? "": $value->estado;
-    		$mun = ( $value->municipios == "==" ) ? "": $value->municipios;
-    		$wpdb->query("UPDATE cuidadores SET estados = '{$est}', municipios = '{$mun}' WHERE cuidadores.id = {$value->id};");
-    	}
-    }
-
-    function update_titulo(){
-    	global $wpdb;
-
-    	$cuidadores = $wpdb->get_results("
-    		SELECT 
-    			c.id,
-    			p.post_title AS titulo,
-    			p.post_name AS url
-    		FROM 
-    			cuidadores AS c
-    		INNER JOIN wp_posts AS p  ON ( p.ID = c.id_post )
-    	");
-
-    	foreach ($cuidadores as $key => $value) {
-    		$wpdb->query("UPDATE cuidadores SET titulo = '{$value->titulo}', url = '{$value->url}' WHERE cuidadores.id = {$value->id};");
-    	}
     }
 
     function pre_carga_data_cuidadores(){
