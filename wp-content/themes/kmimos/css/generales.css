@@ -956,3 +956,11 @@ h2.msg_acciones {
 .km-select-custom{
     background: #FFF !important;
 }
+
+.km-ficha-bg_PC{
+    display: block;
+}
+
+.km-ficha-bg_MOVIL{
+    display: none;
+}

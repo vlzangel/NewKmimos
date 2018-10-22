@@ -67,6 +67,16 @@
 	    .publicidad_solo_movil{
 	        display: block;
 	    }
+
+  	/* Banner Ayuda */
+  	
+		.km-ficha-bg_PC{
+		    display: none;
+		}
+
+		.km-ficha-bg_MOVIL{
+		    display: block;
+		}
 }
 
 @media (max-width: 480px){
