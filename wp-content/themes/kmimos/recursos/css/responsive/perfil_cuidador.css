@@ -267,4 +267,44 @@
 	    font-size: 15px;
 	}
 
+	.fechas_container {
+	    padding: 15px;
+	}
+
+	.fechas_container > div {
+	    display: inline-block;
+	    width: calc( 48% - 3px );
+	    margin-bottom: 10px;
+	}
+
+	.fechas_container .boton {
+	    display: inline-block;
+	    margin: 0px 16px 0px 0px;
+	    text-align: center;
+	    font-size: 15px;
+	    width: calc( 50% - 10px );
+	    font-size: 10px;
+	}
+
+	a.boton.boton_verde {
+	    margin-right: 0px;
+	    border: solid 2px #00d2c6;
+	}
+
+	.fechas_container input {
+	    height: 40px;
+	}
+
+	.fechas_container .icon_fecha {
+	    top: 11px;
+	}
+
+	.pc_seccion_2_der > span, .pc_seccion_2_der > label {
+		display: none !important;
+	}
+
+	footer {
+	    display: none !important;
+	}
+
 }
