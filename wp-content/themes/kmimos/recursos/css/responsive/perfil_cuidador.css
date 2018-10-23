@@ -232,6 +232,8 @@
 	.km-review .km-ranking a {
 	    width: 20px !important;
 	    height: 20px !important;
+	    background-image: url(../../img/BUSQUEDA/SVG/Huesito_azul.svg) !important;
+    	background-size: 85% !important;
 	}
 
 	.km-comentario .col-xs-2 .km-foto-comentario-cuidador {
