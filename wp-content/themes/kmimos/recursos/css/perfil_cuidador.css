@@ -43,6 +43,7 @@
 		    background-position: center;
 		    background-size: cover;
 		    background-repeat: no-repeat;
+		    border-radius: 4px;
 		}
 		
 		.pc_info_iconos_container{
@@ -112,12 +113,12 @@
 		.pc_info_container{
 			position: relative;
 			display: table-cell;
-			width: 	500px;
+			width: 	445px;
 			padding: 20px 10px 0px 30px;
 			box-sizing: border-box;
 		}
 
-		.pc_info_container h2 {
+		.pc_info_container .pc_info_titulo {
 			color: #000;
 		    font-family: Lato;
 		    font-size: 34px;
@@ -134,11 +135,11 @@
 			line-height: 0;
 		}
 
-		.pc_info_ranking a {
+		.pc_info_ranking a, .km-comentario a {
 		    background-image: url(../img/BUSQUEDA/SVG/Huesito_gris.svg) !important;
 		}
 
-		.pc_info_ranking .km-ranking a.active {
+		.pc_info_ranking .km-ranking a.active, .km-comentario .km-ranking a.active {
 		    background-image: url(../img/BUSQUEDA/SVG/Huesito_azul.svg) !important;
 		}
 
@@ -205,6 +206,15 @@
 		    display: inline-block;
 		    width: 100%;
 		    border-radius: 5px;
+		}
+
+		.ocultar_flash span {
+		    background-image: url();
+    		color: #EEE;
+		}
+
+		.ocultar_flash_none, .ocultar_descuento, .ocultar_flash_descuento{
+			display: none;
 		}
 
 /* SECCION 2 */
@@ -425,6 +435,73 @@
 		    border-bottom: 0px;
 		}
 
+		a.km-btn-comentario {
+		    height: auto !important;
+		    border: 2px solid black !important;
+		    border-radius: 8px !important;
+		    line-height: 1 !important;
+		    font-family: 'Gotham-Pro-Bold' !important;
+		    text-align: center !important;
+		    display: block !important;
+		    color: black !important;
+		    margin: 5px auto !important;
+		    max-width: 245px !important;
+		    padding: 10px !important;
+		}
+
+		.km-review-categoria .col-xs-6 {
+		    margin-top: 10px !important;
+		    margin: 0px !important;
+		    padding: 0px !important;
+		    width: 25% !important;
+		}
+
+		.row.km-review-categoria {
+		    margin: 0px 15px 5px !important;
+		}
+
+		.km-comentario .col-xs-2 .km-foto-comentario-cuidador {
+		    display: block;
+		    margin: 0px auto;
+		}
+
+		.km-comentario {
+		    margin: 0px 10px;
+		    border: solid 1px #CCC !important;
+		    border-radius: 3px;
+		    margin-bottom: 10px;
+		    box-sizing: border-box;
+		    padding: 5px;
+		    margin-top: 15px !important;
+		}
+
+		.km-comentario .col-xs-2 {
+		    width: 18%;
+		}
+
+		.km-comentario .col-xs-9 {
+		    width: 82%;
+		}
+
+		.km-comentario .col-xs-9 p {
+		    font-size: 13px;
+	        line-height: 1.5;
+	        font-weight: 600;
+		}
+
+		.km-comentario .col-md-12 p {
+		    margin: 10px 15px;
+		    font-size: 13px;
+		}
+
+		.km-review-categoria p {
+		    margin-bottom: 3px !important;
+		}
+
+		#km-comentario label {
+		    padding: 10px 10px 0px;
+		}
+
 	/* DER */
 
 		.pc_seccion_2 .pc_seccion_2_der {
@@ -513,6 +590,12 @@
 		/* MAPA */
 
 			#mapa {
+			    width: 100%;
+			    height: 300px;
+			    margin: 15px 0px;
+			}
+
+			#mapa_movil {
 			    width: 100%;
 			    height: 300px;
 			    margin: 15px 0px;

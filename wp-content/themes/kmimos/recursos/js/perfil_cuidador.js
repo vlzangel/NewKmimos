@@ -33,6 +33,20 @@ function initMap() {
 		position: new google.maps.LatLng(latitud, longitud),
 		icon: "https://www.kmimos.com.mx/wp-content/themes/kmimos/js/images/n1.png"
 	});
+
+	map_cuidador_movil = new google.maps.Map(document.getElementById('mapa_movil'), {
+		zoom: 15,
+		center:  new google.maps.LatLng(latitud, longitud), 
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		scrollwheel: false
+	});
+	marker = new google.maps.Marker({
+		map: map_cuidador_movil,
+		draggable: false,
+		animation: google.maps.Animation.DROP,
+		position: new google.maps.LatLng(latitud, longitud),
+		icon: "https://www.kmimos.com.mx/wp-content/themes/kmimos/js/images/n1.png"
+	});
 }
 
 (function(d, s){
@@ -67,20 +81,21 @@ function comentarios(pagina = 0){
 			comentarios_cuidador[pagina]["limpieza"] 		> 0 &&
 			comentarios_cuidador[pagina]["confianza"] 		> 0
 		){
-
 			comentario += '	<div class="km-comentario">';
-			comentario += '			<div class="row">';
-			comentario += '				<div class="col-xs-2">';
-			comentario += '					<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
-			comentario += '				</div>';
-			comentario += '				<div class="col-xs-9 pull-right">';
-			comentario += '					<p>'+ comentarios_cuidador[pagina]["contenido"]+'</p>';
-			comentario += '					<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
-			comentario += '					<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
-			comentario += '				</div>';
+			comentario += '		<div class="row">';
+			comentario += '			<div class="col-xs-2">';
+			comentario += '				<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
 			comentario += '			</div>';
-			comentario += '			<div class="row km-review-categoria">';
-			comentario += '				<div class="col-xs-6 col-md-3">';
+			comentario += '			<div class="col-xs-9 pull-right">';
+			comentario += '				<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
+			comentario += '				<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
+			comentario += '			</div>';
+			comentario += '		</div>';
+			comentario += '		<div class="row">';
+			comentario += '			<div class="col-md-12"><p>'+ comentarios_cuidador[pagina]["contenido"]+'</p></div>';
+			comentario += '		</div>';
+			comentario += '		<div class="row km-review-categoria">';
+			comentario += '			<div class="col-xs-6 col-md-3">';
 			comentario += '				<p>CUIDADO</p>';
 			comentario += '				<div class="km-ranking">';
 			comentario += 					get_huesitos(comentarios_cuidador[pagina]["cuidado"]);
@@ -106,31 +121,27 @@ function comentarios(pagina = 0){
 			comentario += '			</div>';
 			comentario += '		</div>';
 			comentario += '	</div>';
-
 			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["confianza"]);
 			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["limpieza"]);
 			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["puntualidad"]);
 			bond_testimony = bond_testimony+parseFloat(comentarios_cuidador[pagina]["cuidado"]);
-
 			cantidad_valoraciones++;
-			bond_total=bond_total+bond_testimony;
-
+			bond_total = bond_total+bond_testimony;
 		}else{
-
 			comentario += '	<div class="km-comentario">';
-			comentario += '			<div class="row">';
-			comentario += '				<div class="col-xs-2">';
-			comentario += '					<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
-			comentario += '				</div>';
-			comentario += '				<div class="col-xs-9 pull-right">';
-			comentario += '					<p>'+ comentarios_cuidador[pagina]["contenido"]+'</p>';
-			comentario += '					<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
-			comentario += '					<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
-			comentario += '				</div>';
+			comentario += '		<div class="row">';
+			comentario += '			<div class="col-xs-2">';
+			comentario += '				<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
+			comentario += '			</div>';
+			comentario += '			<div class="col-xs-9 pull-right">';
+			comentario += '				<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
+			comentario += '				<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
 			comentario += '			</div>';
 			comentario += '		</div>';
+			comentario += '		<div class="row">';
+			comentario += '			<div class="col-md-12"><p>'+ comentarios_cuidador[pagina]["contenido"]+'</p></div>';
+			comentario += '		</div>';
 			comentario += '	</div>';
-
 		}
 
 	});

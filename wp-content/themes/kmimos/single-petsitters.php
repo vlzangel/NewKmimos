@@ -290,7 +290,57 @@
 			<div class="overlay"></div>
 		</div>
 
-		<div class="pc_seccion_1_container">
+		<div class="solo_movil info_movil_1">
+
+			<div class="pc_galeria_container_interno">
+				<div class="pc_galeria_box">
+					'.$galeria.'
+				</div>
+			</div>
+
+			<div class="pc_seccion_1">
+				<div class="pc_img_container">
+					<div class="pc_img" style="background-image:url('.$foto.');"></div>
+				</div>
+				<div class="pc_info_container">
+					<div class="pc_info_titulo">'.strtoupper( get_the_title() ).'</div>
+					<div class="pc_info_experiencia">
+						'.$anios_exp.' años de experiencia
+					</div>
+					<div class="pc_info_precio">
+						Desde MXN $ '.number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, ',', '.').'
+					</div>
+					<div class="pc_info_ranking">
+						'.kmimos_petsitter_rating($_cuidador->id_post).'
+					</div>
+					<div class="pc_info_valoraciones">
+						'.$_cuidador->valoraciones.' valoraciones <a href="#">(Ver comentarios)</a>
+					</div>
+					<div class="pc_info_favorito">
+						'.$favorito_pc.'
+					</div>
+				</div>
+			</div>
+			<div class="pc_info_iconos_container '.$ocultar_todo.'">
+				<div class="pc_info_iconos icono_disponibilidad '.$ocultar_flash.'">
+					<span>Acepta reserva inmediata</span>
+				</div>
+				<div class="pc_info_iconos icono_flash '.$ocultar_flash_none.'"><span></span></div>
+				<!-- <div class="pc_info_iconos icono_descuento '.$ocultar_descuento.'"><span></span></div> --> 
+			</div>
+
+			<hr style="margin: 20px 15px;">
+
+		</div>
+
+		<div class="solo_movil info_movil_2">
+			<label>Servicios que ofrezco</label>
+			<div>
+				'.$servicios_str.'
+			</div>
+		</div>
+
+		<div class="solo_pc pc_seccion_1_container">
 			<div class="pc_seccion_1">
 				<div class="pc_img_container">
 					<div class="pc_img" style="background-image:url('.$foto.');"></div>
@@ -305,7 +355,7 @@
 
 				</div>
 				<div class="pc_info_container">
-					<h2>'.strtoupper( get_the_title() ).'</h2>
+					<div class="pc_info_titulo">'.strtoupper( get_the_title() ).'</div>
 					<div class="pc_info_experiencia">
 						'.$anios_exp.' años de experiencia
 					</div>
@@ -333,10 +383,13 @@
 			<div class="pc_seccion_2">
 
 				<div class="pc_seccion_2_izq">
-					<label>Acerca de</label>
-					<p>
-						'.$desc.'
-					</p>
+
+					<div class="solo_pc">
+						<label>Acerca de</label>
+						<p>
+							'.$desc.'
+						</p>
+					</div>
 
 					<label>Datos del cuidador</label>
 					<div class="pc_seccion_2_datos">
@@ -360,7 +413,6 @@
 
 					<label>Datos de propiedad</label>
 					<div class="pc_seccion_2_datos">
-
 						<div class="pc_seccion_2_datos_item">
 							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Mascotas.svg )"></div>
 							<span>Mascotas en casa<br>'.$num_masc.'</span>
@@ -377,36 +429,48 @@
 							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Monto_maximo.svg )"></div>
 							<span>Monto máx. acep.<br>'.$cuidador->mascotas_permitidas.'</span>
 						</div>
-
 					</div>
+
+					<div class="solo_movil">
+						<label>Acerca de</label>
+						<p>
+							'.$desc.'
+						</p>
+
+						<label>Ubicación</label>
+						<div class="mapa">
+							<div id="mapa_movil"></div>
+						</div>
+					</div>
+
 				</div>
 
 				<div class="pc_seccion_2_cen">
-
-					<label>Servicios que ofrezco</label>
+					<div class="solo_pc">
+						<label>Servicios que ofrezco</label>
+						<div> '.$servicios_str.' </div>
+					</div>
 
 					<div>
-						'.$servicios_str.'
-					</div>
-
-					<div id="km-comentario" class="km-ficha-info">
-						<div class="km-review">
-							<div class="km-calificacion">0</div>
-							<p class="km-tit-ficha">comentarios</p>
-							<div class="km-calificacion-icono">
-								<div class="km-calificacion-bondx">
-									'.kmimos_petsitter_rating($cuidador->id_post).'
+						<div id="km-comentario" class="km-ficha-info">
+							<div class="km-review">
+								<div class="km-calificacion">0</div>
+								<p class="km-tit-ficha">comentarios</p>
+								<div class="km-calificacion-icono">
+									<div class="km-calificacion-bondx">
+										'.kmimos_petsitter_rating($cuidador->id_post).'
+									</div>
+									<p>0% Lo recomienda</p>
 								</div>
-								<p>0% Lo recomienda</p>
 							</div>
+							<a href="javascript:;" class="km-btn-comentario" >ESCRIBE UN COMENTARIO</a>
+							<label>Comentarios</label>
+							<div class="BoxComment">';
+							echo comprimir($HTML);
+							comments_template('/template/comment.php'); $HTML = '</div>
+							<div id="comentarios_box"> </div>
 						</div>
-						<a href="javascript:;" class="km-btn-comentario" >ESCRIBE UN COMENTARIO</a>
-						<div class="BoxComment">';
-						echo comprimir($HTML);
-						comments_template('/template/comment.php'); $HTML = '</div>
-						<div id="comentarios_box"> </div>
 					</div>
-
 				</div>
 
 				<div class="pc_seccion_2_der">
@@ -428,11 +492,14 @@
 						<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="boton boton_verde">Reservar</a>
 					</form>
 
-					<label>Ubicación</label>
-					<div class="mapa">
-						<div id="mapa"></div>
-						<a href="#">Expandir mapa</a>
+					<div class="solo_pc">
+						<label>Ubicación</label>
+						<div class="mapa">
+							<div id="mapa"></div>
+							<a href="#">Expandir mapa</a>
+						</div>
 					</div>
+
 				</div>
 
 

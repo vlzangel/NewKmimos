@@ -1,0 +1,270 @@
+@media (max-width: 768px){
+
+	.ocultar_flash_descuento {
+	    display: none !important;
+	}
+
+	.pc_seccion_0 {
+	    border-radius: 0px 0px 30px 30px;
+	    overflow: hidden;
+        height: 200px;
+	}
+
+	.pc_seccion_1 {
+	    padding: 5px 15px;
+	    min-height: auto;
+	}
+
+	.pc_img_container {
+	    width: 95px;
+	}
+
+	.pc_img {
+	    position: relative;
+	    top: auto;
+	    height: 95px;
+	    border-radius: 5px;
+	}
+
+	.pc_info_iconos_container {
+	    display: table;
+	    position: relative;
+	    bottom: auto;
+	}
+
+	.pc_galeria_container_interno {
+        height: 85px;
+	    margin: 10px 35px;
+	}
+
+	.pc_galeria_box {
+	    padding: 10px 0px;
+	}
+
+	.pc_galeria_box .pc_galeria_item {
+	    width: calc( 25% - 2px );
+	    margin: 0px;
+        border: solid 1px #FFF;
+	}
+
+	.pc_info_container {
+	    width: auto;
+	    padding: 0px 0px 0px 15px;
+	}
+
+	.pc_info_container .pc_info_titulo {
+	    font-size: 15px;
+	    line-height: 1;
+	}
+
+	.pc_info_favorito {
+        top: 0px;
+	    right: 0px;
+	    width: 35px;
+	    border: solid 1px #CCC;
+	    padding: 7px 8px;
+	}
+
+	.pc_info_experiencia {
+	    padding: 5px 0px;
+	    font-weight: 600;
+	    font-size: 10px;
+	}
+
+	.pc_info_precio {
+	    padding: 0px 0px 5px;
+	    font-weight: 600;
+	    font-size: 13px;
+	}
+
+	.pc_info_valoraciones {
+	    font-size: 11px;
+	}
+
+	.pc_info_iconos_container {
+	    margin: 0px 15px;
+	    width: calc( 100% - 30px );
+	}
+
+	.pc_info_iconos span {
+	    border: solid 1px #CCC;
+        padding: 5px 0px 5px 35px;
+        font-size: 11px;
+	}
+
+	.icono_flash, .icono_descuento {
+	    width: 40px;
+	}
+
+	.icono_flash span, .icono_descuento span {
+	    height: 28px;
+	}
+
+	.info_movil_2{
+		padding: 0px 10px;
+	}
+
+	.info_movil_2 label {
+	    margin-bottom: 10px;
+	    font-size: 15px;
+	}
+
+	.servicio_item {
+	    padding: 0px 10px 0px 0px;
+	    margin-bottom: 15px;
+	}
+
+	.servicios_container img {
+	    height: 30px;
+	}
+
+	.servicio_celda.servicio_icon {
+	    width: 60px;
+	}
+
+	.servicio_celda.servicio_titulo span {
+	    font-size: 15px;
+	}
+
+	.servicio_celda.servicio_titulo span {
+	    font-size: 15px;
+	}
+
+	.servicio_celda.servicio_titulo small {
+	    font-size: 11px;
+	}
+
+	.servicio_celda.servicio_desde span {
+	    font-size: 13px;
+	    font-weight: 800;
+	}
+
+	.servicio_precios .servicio_celda.servicio_titulo small {
+	    font-size: 10px;
+	    font-weight: 400;
+	}
+
+	.servicio_tamanio .servicio_precio {
+	    font-size: 15px;
+	    padding: 5px 0px 0px;
+	}
+
+	.servicio_tamanio .servicio_icon img {
+	    height: 25px;
+	}
+
+	.pc_seccion_2 .pc_seccion_2_izq,
+	.pc_seccion_2 .pc_seccion_2_cen,
+	.pc_seccion_2 .pc_seccion_2_der {
+	    display: block;
+	    width: 100%;
+	    padding: 0px;
+	}
+
+	.pc_seccion_2 .pc_seccion_2_izq label {
+	    font-size: 15px;
+	    padding: 15px 10px 10px;
+	}
+
+	.pc_seccion_2 .pc_seccion_2_datos {
+	    padding: 0px 0px 0px 5px;
+	}
+
+	.pc_seccion_2 .pc_seccion_2_datos .pc_seccion_2_datos_item {
+	    width: calc( 25% - 5px );
+	    margin: 0px;
+	    margin-right: 5px;
+	    height: 115px;
+	}
+
+	.pc_seccion_2 .pc_seccion_2_datos .pc_seccion_2_datos_item > div {
+	    height: 30px;
+	}
+
+	.pc_seccion_2 .pc_seccion_2_datos .pc_seccion_2_datos_item > span {
+	    font-size: 9px;
+	    padding: 15px 0px 0px;
+	}
+
+	.pc_seccion_2 .pc_seccion_2_izq p {
+	    font-size: 11px;
+	    padding: 0px 15px 0px;
+	    margin: 0px;
+	}
+
+	#mapa_movil {
+	    height: 140px;
+	    margin: 0px;
+	}
+
+	.mapa {
+	    margin: 0px 10px;
+	}
+
+	.km-calificacion {
+	    font-size: 55px;
+	}
+
+	.km-calificacion-icono p {
+	    display: inline-block;
+	    padding-left: 10px;
+	}
+
+	.km-calificacion-bondx {
+	    display: inline-block;
+	}
+
+	.km-calificacion-icono {
+	    padding-top: 5px;
+	}
+
+	.km-tit-ficha {
+        font-size: 13px !important;
+    	margin: 0px !important;
+	}
+
+	.km-calificacion-icono {
+	    display: block !important;
+	    text-align: center !important;
+	    margin-left: 0px !important;
+	}
+
+	.km-review .km-ranking a {
+	    width: 20px !important;
+	    height: 20px !important;
+	}
+
+	.km-comentario .col-xs-2 .km-foto-comentario-cuidador {
+	    display: block;
+	    margin: 0px auto;
+	    width: 40px !important;
+	    height: 40px !important;
+	}
+
+	.km-comentario .col-md-12 p {
+	    margin: 0px 5px 3px;
+	    font-size: 11px;
+	}
+
+	.row.km-review-categoria {
+	    margin: 0px !important;
+	}
+
+	.km-review-categoria .km-ranking a {
+	    width: 12px !important;
+	    background-size: 16px 7px !important;
+	}
+
+	.km-review-categoria p {
+	    font-size: 8px !important;
+	}
+
+	.km-comentario .col-xs-9 p {
+	    font-size: 10px;
+	}
+
+	.pc_seccion_2 .pc_seccion_2_cen label {
+	    font-size: 15px;
+	}
+
+}
