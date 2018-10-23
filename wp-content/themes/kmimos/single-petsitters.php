@@ -502,7 +502,17 @@
 
 				</div>
 
+			</div>
+		</div>
 
+		<div class="solo_movil">
+			<div class="reservar_footer">
+				<div class="">
+					<img src="'.get_recurso("img").'PERFIL_CUIDADOR/RESERVAR.svg" /> RESERVAR >
+				</div>
+				<div class="footer_favorito">
+					<div class="footer_favorito_box">'.$favorito_pc.'</div>
+				</div>
 			</div>
 		</div>
  	';

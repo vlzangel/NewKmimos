@@ -55,9 +55,6 @@
             }
         };
 
-
-
-
         if ($json_array) {
 
             $json_array = json_decode($json_array,true);
@@ -89,27 +86,17 @@
         }else{
 
             if($fav_item_pos !== false){
-
                 if(!empty($json_array)){
-
                     unset($json_array[$fav_item_pos]);
-
                 }else{
-
                     $json_array = array();
-
                 }
-
                 update_user_meta( $cur_user, 'user_favorites', json_encode($json_array));
-
                 $results['active'] = 'false';
                 $results['favtext'] = esc_html__('Add to Favorite','pointfindert2d');
-
             }else{
-
                 $results['active'] = 'false';
                 $results['favtext'] = esc_html__('Add to Favorite','pointfindert2d');
-
             }
 
         }
