@@ -1,91 +1,134 @@
 <?php
 
+	wp_enqueue_style( 'perfil_cuidador', get_recurso("css")."perfil_cuidador.css", array(), "1.0.0" );
+	wp_enqueue_style( 'perfil_cuidador_responsive_css', get_recurso("css")."responsive/perfil_cuidador.css", array(), "1.0.0" );
+
+    wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
+	wp_enqueue_script('perfil_cuidadores', get_recurso("js")."perfil_cuidador.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
+
 	global $wpdb;
 	global $post;
 
-	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
+	if( !isset($_SESSION["DATA_CUIDADORES"]) ){
+		$_temp = pre_carga_data_cuidadores();
+		$_SESSION["DATA_CUIDADORES"] = $_temp[0];
+		$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
+	}
+
+	$_cuidador = $_SESSION["DATA_CUIDADORES"][ $_SESSION["CUIDADORES_USER_ID"][ $post->post_author ] ];
+	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");
 
 	$current_user = wp_get_current_user();
     $user_id = $current_user->ID;
 
-	if( $cuidador->activo == 0 && $current_user->roles[0] != "administrator" ){
+	if( $_cuidador->activo == 0 && $current_user->roles[0] != "administrator" ){
 		header("location: ".get_home_url());
 	}
 
-    wp_enqueue_style('perfil_cuidador', getTema()."/css/perfil_cuidador.css", array(), '1.0.0');
-	wp_enqueue_style('perfil_cuidador_responsive', getTema()."/css/responsive/perfil_cuidador_responsive.css", array(), '1.0.0');
-	
-    wp_enqueue_style('conocer', getTema()."/css/conocer.css", array(), '1.0.0');
-    wp_enqueue_style('conocer_responsive', getTema()."/css/responsive/conocer_responsive.css", array(), '1.0.0');
+	/*
+	if(is_user_logged_in()){
+		include('partes/seleccion_boton_reserva.php');
+		$BOTON_RESERVAR = '
+			<a href="javascript:;"
+				id="btn_conocer"
+	            data-target="#popup-conoce-cuidador"
+	            data-name="'.strtoupper( get_the_title() ).'" 
+	            data-id="'.$cuidador->id_post.'"
+				class="km-btn-secondary" 
+			>CON&Oacute;CELO +</a>
 
-	wp_enqueue_script('perfil_cuidadores', getTema()."/js/perfil_cuidadores.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
+		'.$BOTON_RESERVAR;
+	}else{
+		$BOTON_RESERVAR .= '
+			<a href="javascript:;"
+				id="btn_conocer"
+				data-target="#popup-iniciar-sesion"
+				class="km-btn-secondary" 
+			>CON&Oacute;CELO +</a>
+			<a href="javascript:;"
+				id="btn_reservar"
+				data-target="#popup-iniciar-sesion"
+				class="km-btn-secondary" 
+			>RESERVAR</a>
+		';
+	}*/
+    // include ('partes/cuidador/conocelo.php');
 
 	get_header();
 
-	$post_id = get_the_id();
-	$meta = get_post_meta( $post_id );
-	$descripcion = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
+   	wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+   	wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
-	$user_id = get_current_user_id();
+	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
+	
+
+	$ocultar_flash = "ocultar_flash";
+	$ocultar_flash_none = "ocultar_flash_none";
+	$ocultar_descuento = "ocultar_descuento";
+	if( $_cuidador->atributos["flash"] == 1 ){
+		$ocultar_flash = "";
+		$ocultar_flash_none = "";
+	}
+	if( $_cuidador->atributos["destacado"]+0 == 1 ){
+		$ocultar_descuento = "";
+	}
+
+	$ocultar_todo = "";
+	if( $ocultar_flash != "" && $ocultar_descuento != "" ){
+		$ocultar_todo = "ocultar_flash_descuento";
+	}
+
 	$favoritos = get_favoritos();
+
 	$fav_check = 'false';
-        $fav_del = '';
-        if (in_array($cuidador->id_post, $favoritos)) {
-            $fav_check = 'true'; 
-            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
-            $fav_del = 'favoritos_delete';
-        }
-        $favoritos_link = 
-        '<span href="javascript:;" 
-            data-reload="false"
+    $fav_del = '';
+    $fav_img_pc = 'Corazon_Gris';
+    $fav_img_movil = 'Corazon';
+    if (in_array($_cuidador->id_post, $favoritos)) {
+        $fav_check = 'true'; 
+        $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+        $fav_del = 'favoritos_delete';
+        $fav_img_pc = 'Favorito';
+        $fav_img_movil = 'Favorito';
+    }
+    $favorito_movil = '
+    	<img 
+    		class="favorito '.$fav_del.'" '.$style_icono.'" 
+    		data-reload="false"
             data-user="'.$user_id.'" 
-            data-num="'.$cuidador->id_post.'" 
+            data-num="'.$_cuidador->id_post.'" 
             data-active="'.$fav_check.'"
             data-favorito="'.$fav_check.'"
-            class="km-link-favorito '.$fav_del.'" '.$style_icono.'
-            style="background-image: url('.getTema().'/images/new/bg-foto-resultados.png) !important;"
-            >
-            <i class="fa fa-heart" aria-hidden="true"></i>
-        </span>';
+    		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img_movil.'.svg" 
+    	/>
+    ';
 
-	$slug = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE post_type = 'product' AND post_author = '{$cuidador->user_id}' AND post_name LIKE '%hospedaje%' ");
+    $favorito_pc = '
+    	<img 
+    		class="'.$fav_del.'" '.$style_icono.'" 
+    		data-reload="false"
+            data-user="'.$user_id.'" 
+            data-num="'.$_cuidador->id_post.'" 
+            data-active="'.$fav_check.'"
+            data-favorito="'.$fav_check.'"
+    		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img_pc.'.svg" 
+    	/>
+    ';
 
-	$latitud 	= $cuidador->latitud;
-	$longitud 	= $cuidador->longitud;
-
-	$atributos_cuidador = $wpdb->get_results( "SELECT atributos FROM cuidadores WHERE user_id=".$cuidador->user_id );
-
-    $flash_link = "";
-    if( count($atributos_cuidador) > 0 ){
-        $atributos = unserialize($atributos_cuidador[0]->atributos);
-
-        if( $atributos['flash'] == 1 ){
-            $flash_link = '
-            <div class="cuidador_flash">
-	            <span class="km-contenedor-favorito_2" style="text-transform: uppercase; font-size: 10px;">
-	                <span href="javascript:;" class="km-link-flash">
-	                    <i class="fa fa-bolt" aria-hidden="true"></i>
-	                </span>
-	                Acepta Reserva Inmediata
-	            </span>
-            </div>';
-        }
+	$anios_exp = $_cuidador->experiencia;
+    if( $anios_exp > 1900 ){
+        $anios_exp = date("Y")-$anios_exp;
     }
 
-	$HTML = '
-		<script>
-			var lat = '.$latitud.';
-			var lng = '.$longitud.';
-		</script>
-	';
-
-	echo comprimir_styles($HTML);
-
-	$foto = kmimos_get_foto($cuidador->user_id);
-
 	$tama_aceptados = unserialize( $cuidador->tamanos_aceptados );
-	$tamanos = getTamanos();
+	$tamanos = array(
+		"pequenos" => "Peq",
+		"medianos" => "Med",
+		"grandes"  => "Gde",
+		"gigantes" => "Gig"
+	);
 
 	$aceptados = array();
 	foreach ($tama_aceptados as $key => $value) {
@@ -106,11 +149,21 @@
 		}
 	} 
 
-	$atributos = unserialize( $cuidador->atributos );
+	if( is_array($_cuidador->galeria) ){
+		foreach ($_cuidador->galeria as $key => $value) {
+			$galeria .= '
+			<div class="pc_galeria_item">
+				<div class="pc_galeria_img" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>
+			</div>';
+		}
+	}
+	$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
 
-	$anios_exp = $cuidador->experiencia;
-	if( $anios_exp > 1900 ){
-		$anios_exp = date("Y")-$anios_exp;
+    $foto = kmimos_get_foto($cuidador->user_id);
+
+    $desc = $cuidador->descripcion;
+    if( strlen($desc) > 500 ){
+		$desc = mb_strcut($desc, 0, 500, "UTF-8")."...";
 	}
 
 	$mascota_cuidador = unserialize( $cuidador->mascotas_cuidador );
@@ -136,6 +189,7 @@
 			$acepto = "Todos";
 		}
 	}
+
 	$num_masc = "";
 	if($cuidador->num_mascotas+0 > 0){ 
 		if( count($mascotas_cuidador) > 0 ){
@@ -144,437 +198,252 @@
 			$tams = "";
 		} 
 		if( $cuidador->num_mascotas > 1 ){
-			$num_masc = $cuidador->num_mascotas.' Perro '.$tams;
+			$num_masc = $cuidador->num_mascotas.' Perros '; // .$tams
 		}else{
-			$num_masc = $cuidador->num_mascotas.' Perros '.$tams;
+			$num_masc = $cuidador->num_mascotas.' Perro '; // .$tams
 		}
 	}else{
 		$num_masc = 'No tiene mascotas';
 	}
-	$num_masc = strtoupper($num_masc);
+	$num_masc = ($num_masc);
 
-	$patio = ( $atributos['yard'] == 1 ) ? 'TIENE PATIO' : 'NO TIENE PATIO';
-	$areas = ( $atributos['green'] == 1 ) ? 'TIENE ÁREAS VERDES' : 'NO TIENE ÁREAS VERDES';
+	$patio = ( $_cuidador->atributos['yard'] == 1 ) ? 'Tiene patio' : 'No tengo';
+	$areas = ( $_cuidador->atributos['green'] == 1 ) ? 'Tiene áreas verdes' : 'No tengo';
 
 	if( $cuidador->mascotas_permitidas > 1 ){
-		$cuidador->mascotas_permitidas .= ' PERROS';
+		$cuidador->mascotas_permitidas .= ' Perros';
 	}else{
-		$cuidador->mascotas_permitidas .= ' PERRO';
+		$cuidador->mascotas_permitidas .= ' Perro';
 	}
 
-	/* Galeria */
-	$id_cuidador = ($cuidador->id)-5000;
-	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
-	$galeria_array = array();
+	$tipos_servicios = get_servicios('principales');
+	$tamanos_data = getTamanosData();
 
-	if( is_dir($path_galeria) ){
+	$servicios_str = "<div class='servicios_container'>";
+		foreach ($_cuidador->adicionales as $servicio_id => $servicio) {
+			if( array_key_exists($servicio_id, $tipos_servicios) ){
+				$precios = ''; $desde = 0;
+				foreach ($servicio as $key => $value) {
+					if( $key == "pequenos"){ $desde = $value; }
+					if( $value > 0 && $desde > $value ){ $desde = $value; }
+					$precios .= '
+						<div class="servicio_tamanio">
+							<div class="servicio_table">
+								<div class="servicio_celda servicio_icon">
+									<img src="'.get_recurso("img").'GENERALES/ICONOS/TAMANIOS/'.$key.'.svg" />
+								</div>
+								<div class="servicio_celda servicio_titulo">
+									<span>'.mb_strtolower($tamanos_data[$key][0], 'UTF-8').'</span>
+									<small>'.$tamanos_data[$key][1].'</small>
+								</div>
+								<div class="servicio_celda servicio_precio">
+									MXN $'.number_format( ($value*getComision()) , 2, ',', '.').'
+								</div>
+								<div class="servicio_celda">
 
-		if ($dh = opendir($path_galeria)) { 
-			$imagenes = array();
-	        while (($file = readdir($dh)) !== false) { 
-	            if (!is_dir($path_galeria.$file) && $file!="." && $file!=".."){ 
-	               $imagenes[] = $path_galeria.$file;
-	      			
-	      			$galeria_array[] = $id_cuidador."/".$file;
-	            } 
-	        } 
-	      	closedir($dh);
-
-	      	$cant_imgs = count($imagenes);
-	      	if( $cant_imgs > 0 ){
-	      		$items = array(); 
-	      		$home = get_home_url()."/";
-	      		foreach ($imagenes as $value) {
-
-	      			$items[] = "
-	      				<div class='slide' data-scale='small' data-position='top' onclick=\"vlz_galeria_ver('".$home.$value."')\">
-	      					<div class='vlz_item_fondo' style='background-image: url(".$home.$value."); filter:blur(2px);'></div>
-	      					<div class='vlz_item_imagen' style='background-image: url(".$home.$value.");'></div>
-	      				</div>
-	      			";
-
-	      		}
-
-	      		$galeria = '
-	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
-					<div class="km-galeria-cuidador">
-						<div class="km-galeria-cuidador-slider">
-							<div class="perfil_cuidador_cargando">
-								<div style="background-image: url('.getTema().'/images/cargando.gif);" ></div> Cangando Galer&iacute;a...
+								</div>
 							</div>
 						</div>
-					</div>
-	      		'.
-	      		"
-	      			<div class='vlz_modal_galeria' onclick='vlz_galeria_cerrar()'>
-	      				<span onclick='vlz_galeria_cerrar()' class='close' style='position:absolute;top:10px;right:10px;color:white;z-index:999;'><i class='fa fa-times' aria-hidden='true'></i></span>
-	      				<div class='vlz_modal_galeria_interna'></div>
-	      			</div>
-	      		";
+					';
+				}
 
-
-	      	}else{
-	      		$galeria = "";
-	      	}
-  		} 
-	}
-
-	$busqueda = getBusqueda();
-
-	$precios_hospedaje = unserialize($cuidador->hospedaje);
-	$precios_adicionales = unserialize($cuidador->adicionales);
-
-	$tamanosData = getTamanosData();
-
-	$id_hospedaje = 0;
-	$servicios = $wpdb->get_results("
-		SELECT * 
-			FROM wp_posts 
-			WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' 
-		");
-
-	$productos = '<div class="row">';
-		foreach ($servicios as $servicio) {
-			$tipo = $wpdb->get_var("
-		        SELECT
-		            tipo_servicio.slug AS slug
-		        FROM 
-		            wp_term_relationships AS relacion
-		        LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
-		        WHERE 
-		            relacion.object_id = '{$servicio->ID}' AND
-		            relacion.term_taxonomy_id != 28
-		    ");
-		    $titulo = get_servicio_cuidador($tipo);
-		    $tamanos_precios = array();
-		    $precios = $precios_hospedaje;
-		    if( $tipo != "hospedaje" ){
-		    	$precios = $precios_adicionales[ str_replace('-', '_',  $tipo) ];
-		    }else{
-		    	$id_hospedaje = $servicio->ID;
-		    }
-		    if( !empty($precios) ){
-		    	
-	        	$tamanos_txt = '';
-		    	foreach ($tamanosData as $key => $tamano) {
-		    		
-
-		    		/*if( isset($busqueda["servicios"]) ){
-			        	if( in_array($tipo, $busqueda["servicios"]) ){
-			        		$activo = 'km-servicio-opcionactivo';
-			        	}
-			        	preg_match_all("#adiestramiento#", $tipo, $matches);
-			        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){
-			        		$activo = 'km-servicio-opcionactivo';
-			        	}
-		        	}*/
-
-		        	$activo = 'km-servicio-opcionactivo';
-		        	$precio_txt = '<div class="km-servicio-costo"><b>$'.($precios[ $key ]*getComision() ).'</b></div>';
-		        	if( $precios[ $key ] == 0 ){
-		        		$precio_txt = '<div class="km-servicio-costo"><b>&nbsp;</b></div>';
-		        		$activo = '';
-		        	}
-
-		    		$tamanos_txt .= '
-					<div class="km-servicio-opcion '.$activo.'">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/'.$tamano[ 2 ].'" style="width: 20px;">
-							<div class="km-opcion-text"><b>'.$tamano[ 0 ].'</b><br>'.$tamano[ 1 ].'</div>
+				if( $desde > 0 ){
+					$servicios_str .= '
+					<div class="servicio_item_box">
+						<div class="servicio_item">
+							<div class="servicio_table">
+								<div class="servicio_celda servicio_icon">
+									<img src="'.get_recurso("img").'GENERALES/ICONOS/SERVICIOS_PRINCIPALES/'.$servicio_id.'.svg" />
+								</div>
+								<div class="servicio_celda servicio_titulo">
+									<span>'.$tipos_servicios[$servicio_id][0].'</span>
+									<small>'.$tipos_servicios[$servicio_id][1].'</small>
+								</div>
+								<div class="servicio_celda servicio_desde">
+									<small>Desde</small>
+									<span>MXN $'.number_format( ($desde*getComision()) , 2, ',', '.').'</span>
+								</div>
+							</div>
 						</div>
-						'.$precio_txt.'
+						<div class="servicio_precios">
+							'.$precios.'
+						</div>
 					</div>';
-		    	}
-
-				$productos .= '
-				<div class="col-xs-12 col-md-6">
-					<div class="km-ficha-servicio">
-						<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="">
-							'.$titulo.'
-							<!--p>SELECCIÓN SEGÚN TAMAÑO</p-->
-							'.$tamanos_txt.'
-						</a>
-					</div>
-				</div>';
+				}
 			}
 		}
-	$productos .= '</div>';
+	$servicios_str .= "</div>";
 
-	if(is_user_logged_in()){
-		include('partes/seleccion_boton_reserva.php');
-
-		$BOTON_RESERVAR = '
-
-			<a href="javascript:;"
-				id="btn_conocer"
-	            data-target="#popup-conoce-cuidador"
-	            data-name="'.strtoupper( get_the_title() ).'" 
-	            data-id="'.$cuidador->id_post.'"
-				class="km-btn-secondary" 
-			>CON&Oacute;CELO +</a>
-
-		'.$BOTON_RESERVAR;
-
-
-	}else{
-		$BOTON_RESERVAR .= '
-			<a href="javascript:;"
-				id="btn_conocer"
-				data-target="#popup-iniciar-sesion"
-				class="km-btn-secondary" 
-			>CON&Oacute;CELO +</a>
-
-			<a href="javascript:;"
-				id="btn_reservar"
-				data-target="#popup-iniciar-sesion"
-				class="km-btn-secondary" 
-			>RESERVAR</a>
-
-		';
-	}
-
-    include ('partes/cuidador/conocelo.php');
+/*	foreach ($_cuidador->adicionales as $key => $value) {
+		# code...
+	}*/
 
  	$HTML .= '
  		<script> 
- 			var SERVICIO_ID = "'.$cuidador->id_post.'"; 
- 			var GALERIA = jQuery.parseJSON(\''.json_encode($galeria_array).'\'); 
+			var lat = "'.$cuidador->latitud.'";
+			var lng = "'.$cuidador->longitud.'";
+ 			var SERVICIO_ID = "'.$_cuidador->id_post.'"; 
  		</script>
- 		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
+
+ 		<div class="pc_seccion_0" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 			<div class="overlay"></div>
 		</div>
-		<div class="km-ficha-info-cuidador">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-sm-3">
-						<div class="img_cuidador">
-							'.$favoritos_link.'
-							<img src="'.$foto.'" />
+
+		<div class="pc_seccion_1_container">
+			<div class="pc_seccion_1">
+				<div class="pc_img_container">
+					<div class="pc_img" style="background-image:url('.$foto.');"></div>
+
+					<div class="pc_info_iconos_container '.$ocultar_todo.'">
+						<div class="pc_info_iconos icono_disponibilidad '.$ocultar_flash.'">
+							<span>Acepta reserva inmediata</span>
 						</div>
-						'.$flash_link.'
+						<div class="pc_info_iconos icono_flash '.$ocultar_flash_none.'"><span></span></div>
+						<!-- <div class="pc_info_iconos icono_descuento '.$ocultar_descuento.'"><span></span></div> --> 
 					</div>
-					<div class="col-xs-12 col-sm-6">
-						<div class="km-tit-cuidador">'.strtoupper( get_the_title() ).'</div>
-						<div class="km-ficha-icon">
-							<div class="km-ranking">
-								'.kmimos_petsitter_rating($cuidador->id_post).'
-							</div>
-							<a class="km-link-comentarios" href="#km-comentario">VER COMENTARIOS</a>
+
+				</div>
+				<div class="pc_info_container">
+					<h2>'.strtoupper( get_the_title() ).'</h2>
+					<div class="pc_info_experiencia">
+						'.$anios_exp.' años de experiencia
+					</div>
+					<div class="pc_info_ranking">
+						'.kmimos_petsitter_rating($_cuidador->id_post).'
+					</div>
+					<div class="pc_info_valoraciones">
+						'.$_cuidador->valoraciones.' valoraciones <a href="#">(Ver comentarios)</a>
+					</div>
+					<div class="pc_info_favorito">
+						'.$favorito_pc.'
+					</div>
+				</div>
+				<div class="pc_galeria_container">
+					<div class="pc_galeria_container_interno">
+						<div class="pc_galeria_box">
+							'.$galeria.'
 						</div>
-					</div>
-					<div class="km-costo hidden-xs">
-						<form id="form_cuidador" method="POST" action="'.getTema().'/procesos/reservar/redirigir_reserva.php">
-							<div class="servicio_desde">
-								<p>SERVICIOS DESDE</p>
-								<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*getComision()).'</div>
-							</div>
-							<div class="km-ficha-fechas">
-								<input type="text" id="checkin" data-error="reset" data-valid="requerid" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
-								<input type="text" id="checkout" data-error="reset" name="checkout" data-valid="requerid" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="date_to" readonly>
-								<small class="validacion_fechas">Debe seleccionar las fechas</small>
-							</div>
-							'.$BOTON_RESERVAR.'
-						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="km-ficha-info">
-			<div class="container">
-					<div class="col-xs-12 col-sm-3 hidden-xs">
-						<p class="km-tit-ficha">DATOS DEL CUIDADOR</p>
-						<div class="km-desc-ficha-text">
-							<img src="'.getTema().'/images/new/icon/icon-experiencia-morado.svg">
-							<div class="km-desc-ficha">
-								<p>EXPERIENCIA</p>
-								<p>'.$anios_exp.' AÑO(S)</p>
-							</div>
+		<div class="pc_seccion_2_container">
+			<div class="pc_seccion_2">
+
+				<div class="pc_seccion_2_izq">
+					<label>Acerca de</label>
+					<p>
+						'.$desc.'
+					</p>
+
+					<label>Datos del cuidador</label>
+					<div class="pc_seccion_2_datos">
+						<div class="pc_seccion_2_datos_item">
+							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Experiencia.svg )"></div>
+							<span>Experiencia<br>'.$anios_exp.' años</span>
 						</div>
-						<div class="km-desc-ficha-text">
-							<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
-							<div class="km-desc-ficha">
-								<p>TIPO DE PROPIEDAD</p>
-								<p>'.$housings[ $atributos['propiedad'] ].'</p>
-							</div>
+						<div class="pc_seccion_2_datos_item">
+							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Propiedad.svg )"></div>
+							<span>Tipo de propiedad<br>'.$housings[ $_cuidador->atributos['propiedad'] ].'</span>
 						</div>
-						<div class="km-desc-ficha-text">
-							<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
-							<div class="km-desc-ficha">
-								<p>TAMAÑOS ACEPTADOS</p>
-								<p>'.$acepto.'</p>
-							</div>
+						<div class="pc_seccion_2_datos_item">
+							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Tamanios.svg )"></div>
+							<span>Tam. aceptados<br>'.$acepto.'</span>
 						</div>
-						<div class="km-desc-ficha-text">
-							<img src="'.getTema().'/images/new/icon/icon-edades.svg">
-							<div class="km-desc-ficha">
-								<p>EDADES ACEPTADAS</p>
-								<p>'.implode(', ',$edades_aceptadas).'</p>
-							</div>
-						</div>
-						<p class="km-tit-ficha">DATOS DE PROPIEDAD</p>
-						<div class="km-desc-ficha-text">
-							<img src="'.getTema().'/images/new/icon/icon-mascotas.svg">
-							<div class="km-desc-ficha">
-								<p>MASCOTAS EN CASA</p>
-								<p>'.$num_masc.'</p>
-							</div>
-						</div>
-						<div class="km-desc-ficha-text">
-							<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
-							<div class="km-desc-ficha">
-								<p>DETALLES DE PROPIEDAD</p>
-								<p>'.$patio.'</p>
-							</div>
-						</div>
-						<div class="km-desc-ficha-text">
-							<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
-							<div class="km-desc-ficha">
-								<p>DETALLES DE PROPIEDAD</p>
-								<p>'.$areas.'</p>
-							</div>
-						</div>
-						<div class="km-desc-ficha-text">
-							<img src="'.getTema().'/images/new/icon/icon-mascotas.svg">
-							<div class="km-desc-ficha">
-								<p>CANTIDAD MÁX. ACEPTADA</p>
-								<p>'.$cuidador->mascotas_permitidas.'</p>
-							</div>
+						<div class="pc_seccion_2_datos_item">
+							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Edades.svg )"></div>
+							<span>Edades aceptadas<br>'.implode(', ',$edades_aceptadas).'</span>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-6">
-						<div class="km-ficha-datos hidden-sm hidden-md hidden-lg">
-							<div class="tabbable">
-								<ul class="nav nav-tabs">
-									<li class="active"><a href="#tab1" data-toggle="tab">DATOS DEL <br>CUIDADOR</a></li>
-									<li><a href="#tab2" data-toggle="tab">DATOS DE <br>PROPIEDAD</a></li>
-								</ul>
-								<div class="tab-content">
-									<div class="tab-pane active" id="tab1">
-										
-										<div class="km-desc-ficha-text">
-											<img src="'.getTema().'/images/new/icon/icon-experiencia-morado.svg">
-											<div class="km-desc-ficha">
-												<p>EXPERIENCIA</p>
-												<p>'.$anios_exp.' AÑO(S)</p>
-											</div>
-										</div>
-										<div class="km-desc-ficha-text">
-											<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
-											<div class="km-desc-ficha">
-												<p>TIPO DE PROPIEDAD</p>
-												<p>'.$housings[ $atributos['propiedad'] ].'</p>
-											</div>
-										</div>
-										<div class="km-desc-ficha-text">
-											<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
-											<div class="km-desc-ficha">
-												<p>TAMAÑOS ACEPTADOS</p>
-												<p>'.$acepto.'</p>
-											</div>
-										</div>
-										<div class="km-desc-ficha-text">
-											<img src="'.getTema().'/images/new/icon/icon-edades.svg">
-											<div class="km-desc-ficha">
-												<p>EDADES ACEPTADAS</p>
-												<p>'.implode(', ',$edades_aceptadas).'</p>
-											</div>
-										</div>
 
-									</div>
-									<div class="tab-pane" id="tab2">
+					<label>Datos de propiedad</label>
+					<div class="pc_seccion_2_datos">
 
-										<div class="km-desc-ficha-text">
-											<img src="'.getTema().'/images/new/icon/icon-mascotas.svg">
-											<div class="km-desc-ficha">
-												<p>MASCOTAS EN CASA</p>
-												<p>'.$num_masc.'</p>
-											</div>
-										</div>
-										<div class="km-desc-ficha-text">
-											<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
-											<div class="km-desc-ficha">
-												<p>DETALLES DE PROPIEDAD</p>
-												<p>'.$patio.'</p>
-											</div>
-										</div>
-										<div class="km-desc-ficha-text">
-											<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
-											<div class="km-desc-ficha">
-												<p>DETALLES DE PROPIEDAD</p>
-												<p>'.$areas.'</p>
-											</div>
-										</div>
-										<div class="km-desc-ficha-text">
-											<img src="'.getTema().'/images/new/icon/icon-mascotas.svg">
-											<div class="km-desc-ficha">
-												<p>CANTIDAD MÁX. ACEPTADA</p>
-												<p>'.$cuidador->mascotas_permitidas.'</p>
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
+						<div class="pc_seccion_2_datos_item">
+							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Mascotas.svg )"></div>
+							<span>Mascotas en casa<br>'.$num_masc.'</span>
 						</div>
-						<div class="km-ficha-datos hidden-sm hidden-md hidden-lg">
-							<a href="javascript:;" class="km-btn-primary show-map-mobile">VER UBICACIÓN EN MAPA</a>
+						<div class="pc_seccion_2_datos_item">
+							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Patio.svg )"></div>
+							<span>Detalles de prop.<br>'.$patio.'</span>
 						</div>
-						<p style="text-align: justify;">'.$descripcion.'</p>
-						'.$galeria.'
-						<p class="km-tit-ficha">SERVICIOS QUE OFREZCO</p>
-						'.$productos.'
-					</div>
-					<div class="hidden-xs col-sm-3 km-map-content">
-						<a href="#" class="km-map-close">Cerrar</a>
-						<p class="km-tit-ficha">UBICACIÓN</p>
-
-						<div id="mapa" class="km-ficha-mapa"></div>
+						<div class="pc_seccion_2_datos_item">
+							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Areas_Verdes.svg )"></div>
+							<span>Detalles de prop.<br>'.$areas.'</span>
+						</div>
+						<div class="pc_seccion_2_datos_item">
+							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Monto_maximo.svg )"></div>
+							<span>Monto máx. acep.<br>'.$cuidador->mascotas_permitidas.'</span>
+						</div>
 
 					</div>
 				</div>
+
+				<div class="pc_seccion_2_cen">
+
+					<label>Servicios que ofrezco</label>
+
+					<div>
+						'.$servicios_str.'
+					</div>
+
+					<div id="km-comentario" class="km-ficha-info">
+						<div class="km-review">
+							<div class="km-calificacion">0</div>
+							<p class="km-tit-ficha">comentarios</p>
+							<div class="km-calificacion-icono">
+								<div class="km-calificacion-bondx">
+									'.kmimos_petsitter_rating($cuidador->id_post).'
+								</div>
+								<p>0% Lo recomienda</p>
+							</div>
+						</div>
+						<a href="javascript:;" class="km-btn-comentario" >ESCRIBE UN COMENTARIO</a>
+						<div class="BoxComment">';
+						echo comprimir($HTML);
+						comments_template('/template/comment.php'); $HTML = '</div>
+						<div id="comentarios_box"> </div>
+					</div>
+
+				</div>
+
+				<div class="pc_seccion_2_der">
+					<span>Servicios desde</span>
+					<label>MXN $ '.number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, ',', '.').'</label>
+					<form class="fechas_container">
+						<div id="desde_container">
+							<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/Fecha.svg" />
+							<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" value="'.$_SESSION['busqueda']['checkin'].'" readonly>
+							<small class="">Requerido</small>
+						</div>
+						<div>
+							<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/Fecha.svg" />
+							<input type="text" id="checkout" name="checkout" placeholder="Hasta" class="date_to" value="'.$_SESSION['busqueda']['checkout'].'" readonly>
+							<small class="">Requerido</small>
+						</div>
+
+						<a href="#" class="boton boton_border_gris"> Conocer Cuidador </a>
+						<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="boton boton_verde">Reservar</a>
+					</form>
+
+					<label>Ubicación</label>
+					<div class="mapa">
+						<div id="mapa"></div>
+						<a href="#">Expandir mapa</a>
+					</div>
+				</div>
+
+
 			</div>
 		</div>
  	';
 
-	echo comprimir_styles($HTML);
-?>
+	echo comprimir($HTML);
 
-<div id="km-comentario" class="km-ficha-info">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-offset-3 col-sm-6">
-				<div class="km-review">
-					<p class="km-tit-ficha">COMENTARIOS</p>
-					<div class="km-calificacion">0</div>
-					<div class="km-calificacion-icono">
-						<div class="km-calificacion-bondx">
-							<?php echo kmimos_petsitter_rating($cuidador->id_post); ?>
-						</div>
-						<p>0% Lo recomienda</p>
-					</div>
-				</div>
+	/*echo "<pre>";
+		print_r($_cuidador);
+	echo "</pre>";*/
 
-				<a href="javascript:;" class="km-btn-comentario" >ESCRIBE UN COMENTARIO</a>
-				<div class="BoxComment"><?php comments_template('/template/comment.php'); ?></div>
-				<div id="comentarios_box"> </div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<?php global $margin_extra_footer; ?>
-<?php $margin_extra_footer = "footer-petsitter"; ?>
-<?php get_footer(); ?>
-
-<script>
-	(function(d, s){
-	    $ = d.createElement(s), e = d.getElementsByTagName(s)[0];
-	    $.async=!0;
-	    $.setAttribute('charset','utf-8');
-	    $.src='//www.google.com/recaptcha/api.js?hl=es';
-	    $.type='text/javascript';
-	    e.parentNode.insertBefore($, e)
-	})(document, 'script');
-</script>
+	get_footer(); ?>

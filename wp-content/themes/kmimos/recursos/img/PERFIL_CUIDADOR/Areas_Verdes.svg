@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.439 54.319">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #7d1697;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.5px;
+      }
+    </style>
+  </defs>
+  <title>Areas Verdes</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <polyline class="cls-1" points="65.733 53.069 65.733 39.479 62.637 36.382"/>
+        <line class="cls-1" x1="68.927" y1="36.382" x2="65.782" y2="39.528"/>
+        <circle class="cls-1" cx="65.782" cy="32.08" r="11.407"/>
+        <polyline class="cls-1" points="12.608 53.069 12.608 39.479 9.512 36.382"/>
+        <line class="cls-1" x1="15.802" y1="36.382" x2="12.657" y2="39.528"/>
+        <circle class="cls-1" cx="12.657" cy="32.08" r="11.407"/>
+        <path class="cls-1" d="M20.513,40.347v8.226a4.5,4.5,0,0,0,4.5,4.5H47.543"/>
+        <path class="cls-1" d="M20.513,23.812V20.674l16.616-10a4.109,4.109,0,0,1,4.213-.015L58.254,20.674v2.841"/>
+        <line class="cls-1" x1="57.926" y1="40.347" x2="57.926" y2="53.069"/>
+        <polyline class="cls-1" points="13.716 16.228 39.276 1.25 62.548 16.12"/>
+      </g>
+    </g>
+  </g>
+</svg>

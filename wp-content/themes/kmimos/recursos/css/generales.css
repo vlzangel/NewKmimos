@@ -161,6 +161,14 @@ nav .lupa_negra{
 		padding: 10px;
 	}
 
+	.solo_PC {
+
+	}
+
+	.solo_MOVIl {
+		display: none;
+	}
+
 /* FOOTER */
 
 	footer{

@@ -13,15 +13,6 @@ var limites = {
     }
 };
 
-function fixedHeader() {
-    let ww = jQuery(window).scrollTop();
-    if (ww > 0) {
-        jQuery('nav').addClass('nav_white');
-    } else {
-        jQuery('nav').removeClass('nav_white');
-    }
-}
-
 function ancla_form() {
   	let ww = jQuery(window).scrollTop();
   	if ( jQuery('#buscar').offset().top <= 378 ) {
@@ -54,11 +45,6 @@ jQuery( document ).ready(function() {
     jQuery('#popup-servicios-new').on('hidden.bs.modal', function () {
         jQuery("#buscar_no").click();
     });
-
-	fixedHeader();
-	jQuery(window).on('scroll', function () {
-	  	fixedHeader();
-	});
 
     jQuery("#mi_ubicacion").on("click", function(e){
 

@@ -20,30 +20,32 @@
             foreach ($sql_top as $key => $value) { $destacados[] = $value->cuidador; }
             $DESTACADOS_ARRAY = [];
             $cont = 0;
-            foreach ($resultados as $key => $_cuidador) {
-                if( in_array($_cuidador->id, $destacados) && $cuidador->DISTANCIA <= 200 ){
-                    $cont++;
-                    $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$_cuidador->id}");
-                    $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
-                    $nombre = $data->nom;
-                    $img_url = kmimos_get_foto($cuidador->user_id);
-                    $url = get_home_url() . "/petsitters/" . $data->url;
-                    $anios_exp = $cuidador->experiencia;
-                    if( $anios_exp > 1900 ){
-                        $anios_exp = date("Y")-$anios_exp;
-                    }
-                    $DESTACADOS_ARRAY[] = [
-                    	"img" => $img_url,
-                    	"nombre" => $nombre,
-                    	"url" => $url,
-                    	"desde" => ($cuidador->hospedaje_desde*getComision()),
-                    	"distancia" => floor($_cuidador->DISTANCIA),
-                    	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
-                    	"experiencia" => $anios_exp,
-                		"valoraciones" => $cuidador->valoraciones
-                    ];
-                }
-                if( $cont >= 4 ){ break; }
+            if( count($resultados) > 0 ){
+	            foreach ($resultados as $key => $_cuidador) {
+	                if( in_array($_cuidador->id, $destacados) && $cuidador->DISTANCIA <= 200 ){
+	                    $cont++;
+	                    $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$_cuidador->id}");
+	                    $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+	                    $nombre = $data->nom;
+	                    $img_url = kmimos_get_foto($cuidador->user_id);
+	                    $url = get_home_url() . "/petsitters/" . $data->url;
+	                    $anios_exp = $cuidador->experiencia;
+	                    if( $anios_exp > 1900 ){
+	                        $anios_exp = date("Y")-$anios_exp;
+	                    }
+	                    $DESTACADOS_ARRAY[] = [
+	                    	"img" => $img_url,
+	                    	"nombre" => $nombre,
+	                    	"url" => $url,
+	                    	"desde" => ($cuidador->hospedaje_desde*getComision()),
+	                    	"distancia" => floor($_cuidador->DISTANCIA),
+	                    	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
+	                    	"experiencia" => $anios_exp,
+	                		"valoraciones" => $cuidador->valoraciones
+	                    ];
+	                }
+	                if( $cont >= 4 ){ break; }
+	            }
             }
         }else{
             $ubicacion = explode("_", $_POST["ubicacion"]);
@@ -261,7 +263,6 @@
 						$galeria .= '<div class="resultados_item_info_img" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>';
 					}
 				}
-
 				$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
 
 				$HTML .= '
@@ -291,7 +292,7 @@
 										<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
 									</div>
 									<div class="resultados_item_info">
-										<div class="resultados_item_titulo"> <span>'.($i+1).'.</span> '.($_cuidador->titulo).'</div>
+										<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_titulo"> <span>'.($i+1).'.</span> '.($_cuidador->titulo).'</a>
 										<div class="resultados_item_subtitulo">"Tus mascotas se sentirán como en casa mietras se queden"</div>
 										<div class="resultados_item_direccion" title="'.$_cuidador->direccion.'">'.($direccion).'</div>
 										<div class="resultados_item_servicios">
@@ -326,7 +327,7 @@
 									<span class="boton_conocer_PC">Solicitud de conocer</span>
 									<span class="boton_conocer_MOVIl"><span class="boton_conocer_MOVIl">Conocer</span>
 								</a>
-								<a href="'.get_home_url().'/petsitters/'.$_cuidador->url.'" class="boton boton_verde">Reservar</a>
+								<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="boton boton_verde">Reservar</a>
 							</div>
 						</div>
 					</div>
@@ -478,6 +479,7 @@
     	$cuidadores = $wpdb->get_results("
     		SELECT 
     			cuidadores.id,
+    			cuidadores.activo,
     			cuidadores.user_id,
     			cuidadores.id_post,
     			cuidadores.experiencia,
@@ -489,25 +491,27 @@
     			cuidadores.atributos,
     			cuidadores.rating,
     			cuidadores.valoraciones,
-    			cuidadores.titulo,
-    			cuidadores.url
+    			cuidadores.titulo
     		FROM 
     			cuidadores
     		WHERE 
     			activo = 1
     	");
 
+    	$_cuidadores_user_id = [];
     	$_cuidadores = [];
     	foreach ($cuidadores as $key => $value) {
+    		$_cuidadores_user_id[ $value->id ] = $value->user_id;
     		$cuidadores[ $key ]->adicionales = unserialize($value->adicionales);
     		$cuidadores[ $key ]->atributos = unserialize($value->atributos);
     		$cuidadores[ $key ]->galeria = get_galeria($value->id);
     		$cuidadores[ $key ]->comentario = get_comment_cuidador($value->id_post);
 
     		$_cuidadores[ $value->id ] = $cuidadores[ $key ];
+    		$_cuidadores_user_id[ $value->user_id ] = $value->id;
     	}
 
-    	return $_cuidadores;
+    	return [ $_cuidadores, $_cuidadores_user_id ];
 
     }
 

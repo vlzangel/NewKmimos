@@ -531,20 +531,47 @@
 		);
 	}
 
-	function get_servicios(){
-		return array(
-			"hospedaje" 				=> "Hospedaje",
-            "guarderia" 				=> "Guarderia",
-            "paseos" 					=> "Paseos",
-            "adiestramiento" 			=> "Adiestramiento",
-            "transportacion_sencilla" 	=> "Transportacion sencilla",
-            "transportacion_redonda" 	=> "Transportacion redonda",
-            "corte" 					=> "Corte",
-            "bano" 						=> "Ba&ntilde;o",
-            "visita_al_veterinario" 	=> "Visita al veterinario",
-            "limpieza_dental" 			=> "Limpieza dental",
-            "acupuntura" 				=> "Acupuntura"
-		);
+	function get_servicios($tipo = null){
+		switch ( $tipo ) {
+			case 'principales':
+				return array(
+					"hospedaje" 				=> [ "Hospedaje", "Día y noche" ],
+		            "guarderia" 				=> [ "Guarderia", "Solo día" ],
+		            "paseos" 					=> [ "Paseos", "" ],
+		            "adiestramiento" 			=> [ "Adiestramiento", "" ]
+				);
+			break;
+			case 'adicionales':
+				return array(
+		            "corte" 					=> "Corte",
+		            "bano" 						=> "Ba&ntilde;o",
+		            "visita_al_veterinario" 	=> "Visita al veterinario",
+		            "limpieza_dental" 			=> "Limpieza dental",
+		            "acupuntura" 				=> "Acupuntura"
+				);
+			break;
+			case 'transporte':
+				return array(
+		            "transportacion_sencilla" 	=> "Transportacion sencilla",
+		            "transportacion_redonda" 	=> "Transportacion redonda"
+				);
+			break;
+			default:
+				return array(
+					"hospedaje" 				=> "Hospedaje",
+		            "guarderia" 				=> "Guarderia",
+		            "paseos" 					=> "Paseos",
+		            "adiestramiento" 			=> "Adiestramiento",
+		            "transportacion_sencilla" 	=> "Transportacion sencilla",
+		            "transportacion_redonda" 	=> "Transportacion redonda",
+		            "corte" 					=> "Corte",
+		            "bano" 						=> "Ba&ntilde;o",
+		            "visita_al_veterinario" 	=> "Visita al veterinario",
+		            "limpieza_dental" 			=> "Limpieza dental",
+		            "acupuntura" 				=> "Acupuntura"
+				);
+			break;
+		}
 	}
 
 	function get_filtros($busqueda){

@@ -494,17 +494,17 @@
 	
 		.resultados_container::-webkit-scrollbar-track{
 			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-			border-radius: 5px;
+			border-radius: 0px;
 			background-color: #F5F5F5;
 		}
 
 		.resultados_container::-webkit-scrollbar{
-			width: 10px;
+			width: 7px;
 			background-color: #F5F5F5;
 		}
 
 		.resultados_container::-webkit-scrollbar-thumb{
-			border-radius: 5px;
+			border-radius: 0px;
 			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 			background-color: #00d2c6;
 		}
@@ -852,6 +852,7 @@
 		    font-size: 18px;
 		    font-weight: 600;
 		    text-transform: uppercase;
+		    color: #000;
 		}
 
 		.resultados_item_titulo span {

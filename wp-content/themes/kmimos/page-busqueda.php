@@ -54,7 +54,9 @@
 	/* DESTACADOS */
 
 		if( !isset($_SESSION["DATA_CUIDADORES"]) ){
-			$_SESSION["DATA_CUIDADORES"] = pre_carga_data_cuidadores();
+			$_temp = pre_carga_data_cuidadores();
+			$_SESSION["DATA_CUIDADORES"] = $_temp[0];
+			$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
 		}
 		
 		$ordenamientos = array(
