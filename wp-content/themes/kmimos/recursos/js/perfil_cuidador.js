@@ -10,12 +10,12 @@ jQuery( document ).ready(function() {
 		jQuery('.modal_info_comentar').css("display", "none");
 		jQuery('.comments').slideDown();
 	});
-	jQuery(".servicio_item_box").on("click", function(e){
-		if( jQuery(".servicio_item_box").hasClass("servicio_visible") ){
+	jQuery(".servicio_item").on("click", function(e){
+		if( jQuery(this).parent().hasClass("servicio_visible") ){
 			jQuery(".servicio_item_box").removeClass("servicio_visible");
 		}else{
 			jQuery(".servicio_item_box").removeClass("servicio_visible");
-			jQuery(this).addClass("servicio_visible");
+			jQuery(this).parent().addClass("servicio_visible");
 		}
 	});
 
