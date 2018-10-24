@@ -2,7 +2,7 @@
 	
 	.pc_seccion_0 {
 	    width: 100%;
-	    height: 270px;
+	    height: 230px;
 	    background-size: cover;
 	    background-position: center;
 	    position: relative;
@@ -18,9 +18,9 @@
 	.pc_seccion_1{
 		display: table;
 		width: 100%;
-		min-height: 200px;
 		margin: 0px auto;
-		max-width: 1360px;
+		max-width: 1140px;
+		height: 150px;
 	}
 
 	.pc_seccion_1 div {
@@ -53,7 +53,7 @@
 	.pc_scroll_fixed{
 		position: fixed;
 	    top: 80px;
-	    width: 310px;
+	    width: 260px;
 	}
 
 	footer{
@@ -70,22 +70,25 @@
 		}
 
 		.pc_img {
-		    position: absolute;
-		    top: -125px;
-		    width: 100%;
-		    height: 250px;
-		    background-position: center;
-		    background-size: cover;
-		    background-repeat: no-repeat;
-		    border-radius: 4px;
+			position: absolute;
+			top: -90px;
+			width: 80%;
+			height: 180px;
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+			border-radius: 4px;
+			left: 10%;
+			border: solid 1px #CCC;
 		}
 		
 		.pc_info_iconos_container{
 			display: table;
-			width: 100%;
-		    margin-bottom: 15px;
-	        position: absolute;
-    		bottom: 10px;
+			width: 80%;
+			margin-bottom: 15px;
+			position: absolute;
+			bottom: 2px;
+			left: 10%;
 		}
 
 		.pc_info_iconos{
@@ -95,34 +98,35 @@
 
 		.pc_info_iconos span{
 			display: block;
-		    border: solid 2px #CCC;
+		    border: solid 1px #CCC;
 		    border-radius: 3px;
 		    background: #EEE;
-		    padding: 10px 0px 10px 35px;
+		    padding: 6px 0px 5px 30px;
 		    box-sizing: border-box;
+		    font-size: 11px;
 		}
 
 		.icono_flash, .icono_descuento{
 			position: relative;
-			width: 50px;
+			width: 35px;
 		}
 
 		.icono_flash span, .icono_descuento span{
 		    display: block;
 		    padding: 0px;
-		    height: 42px;
-			margin-left: 5px;
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: 20px;
+		    height: 28px;
+		    margin-left: 5px;
+		    background-position: center;
+		    background-repeat: no-repeat;
+		    background-size: 16px;
 
 		}
 
 		.icono_disponibilidad span{
 			background-image: url(../img/BUSQUEDA/SVG/iconos/Disponible.svg);
-		    background-position: 11px center;
+		    background-position: 7px center;
 		    background-repeat: no-repeat;
-		    background-size: 15px;
+		    background-size: 14px;
 		}
 
 		.icono_flash span{
@@ -147,17 +151,18 @@
 		.pc_info_container{
 			position: relative;
 			display: table-cell;
-			width: 	445px;
+			width: 	400px;
 			padding: 20px 10px 0px 30px;
 			box-sizing: border-box;
 		}
 
 		.pc_info_container .pc_info_titulo {
 			color: #000;
-		    font-family: Lato;
-		    font-size: 34px;
-		    font-weight: 800;
-		    margin: 0px;
+			font-family: Lato;
+			font-size: 26px;
+			font-weight: 800;
+			margin: 0px;
+			line-height: 1;
 		}
 
 		.pc_info_experiencia {
@@ -191,9 +196,9 @@
 			position: absolute;
 			top: 20px;
 			right: 35px;
-			width: 50px;
+			width: 40px;
 			border: solid 2px #CCC;
-			padding: 10px;
+			padding: 7px 8px;
 			border-radius: 3px;
 		}
 
@@ -212,14 +217,14 @@
 
 		.pc_galeria_container_interno{
 		    margin-left: 60px;
-			height: 200px;
+			height: 145px;
 			overflow: hidden;
 		}
 	
 		.pc_galeria_box{
 			white-space: nowrap;
     		position: relative;
-    		padding: 50px 0px;
+    		padding: 35px 0px;
     		box-sizing: border-box;
     		height: 100%;
 		}
@@ -262,7 +267,7 @@
 		width: 100%;
 		min-height: 200px;
 		margin: 0px auto;
-		max-width: 1360px;
+		max-width: 1140px;
 	}
 
 	.pc_seccion_2 div {
@@ -273,37 +278,37 @@
 
 		.pc_seccion_2 .pc_seccion_2_izq {
 		    display: table-cell;
-	    	width: 350px;
-	    	padding: 30px 0px;
+	    	width: 270px;
+	    	padding: 10px 0px;
 		}
 
 		.pc_seccion_2 .pc_seccion_2_izq label {
-	        font-size: 20px;
+	        font-size: 16px;
 	    	display: block;
-	    	padding: 10px 20px 20px;
+	    	padding: 10px 0px 0px;
 		}
 
 		.pc_seccion_2 .pc_seccion_2_izq p {
 			text-align: justify;
 			font-size: 13px;
-	    	padding: 0px 20px 10px;
+	    	padding: 0px 0px 10px;
 		}
 
 		.pc_seccion_2 .pc_seccion_2_datos {
 		    overflow: hidden;
-		    padding: 0px 10px;
+		    padding: 0px;
 		}
 
 		.pc_seccion_2 .pc_seccion_2_datos .pc_seccion_2_datos_item {
 		    display: inline-block;
-			width: calc( 50% - 20px );
+			width: calc( 50% - 10px );
 			float: left;
 			height: auto;
 			box-sizing: border-box;
-			padding: 20px 0px;
+			padding: 10px 0px;
 			border: solid 1px #CCC;
 			border-radius: 4px;
-			margin: 0px 10px 10px;
+			margin: 0px 10px 10px 0px;
 		}
 
 		.pc_seccion_2 .pc_seccion_2_datos .pc_seccion_2_datos_item > div {
@@ -317,7 +322,7 @@
 			color: #BBB;
 			text-align: center;
 			display: block;
-			font-size: 15px;
+			font-size: 12px;
 		    padding: 15px 0px 0px;
 		}
 
@@ -326,7 +331,11 @@
 		.pc_seccion_2 .pc_seccion_2_cen {
 			display: table-cell;
 			box-sizing: border-box;
-    		padding: 30px 20px;
+    		padding: 10px 10px 10px 30px;
+		}
+
+		.pc_seccion_2 .pc_seccion_2_cen .pc_scroll {
+		    padding-right: 25px;
 		}
 
 		.km-tit-ficha {
@@ -334,7 +343,7 @@
 		}
 
 		.pc_seccion_2 .pc_seccion_2_cen label {
-	        font-size: 20px;
+	        font-size: 16px;
 	    	display: block;
 	    	padding: 10px 0px 20px;
 		}
@@ -544,7 +553,7 @@
 		}
 
 		#km-comentario label {
-		    padding: 10px 10px 0px;
+		    padding: 5px 10px 0px;
 		}
 
 		.km-comentario .col-xs-2 .km-foto-comentario-cuidador {
@@ -555,15 +564,15 @@
 		}
 
 		.km-tit-ficha {
-		    font-size: 20px !important;
+		    font-size: 16px !important;
 		}
 
 	/* DER */
 
 		.pc_seccion_2 .pc_seccion_2_der {
 			display: table-cell;
-	    	width: 350px;
-	    	padding: 30px 20px;
+	    	width: 300px;
+	    	padding: 10px 20px;
 		}
 
 		.pc_seccion_2 .pc_seccion_2_der span {
@@ -574,7 +583,7 @@
 		}
 
 		.pc_seccion_2 .pc_seccion_2_der label {
-	        font-size: 20px;
+	        font-size: 16px;
 	    	display: block;
 	    	padding-bottom: 0px;
 		}
@@ -586,7 +595,7 @@
 				width: 100%;
 				box-sizing: border-box;
 			    margin-right: 0px;
-			    margin-bottom: 30px;
+			    margin-bottom: 15px;
 			}
 
 			.fechas_container > div {
@@ -597,17 +606,17 @@
 			}
 
 			.fechas_container input {
-			    width: 100%;
-			    border: solid 1px #CCC;
-			    height: 50px;
-			    border-radius: 5px;
-			    box-sizing: border-box;
-			    padding: 0px 0px 0px 35px;
-			    font-size: 13px;
-			    font-family: 'Lato', sans-serif;
-			    color: #777;
-			    outline: none;
-			    background: transparent;
+				width: 100%;
+				border: solid 1px #CCC;
+				height: 35px;
+				border-radius: 5px;
+				box-sizing: border-box;
+				padding: 0px 0px 0px 35px;
+				font-size: 11px;
+				font-family: 'Lato', sans-serif;
+				color: #777;
+				outline: none;
+				background: transparent;
 			}
 
 			#desde_container{
@@ -618,9 +627,13 @@
 				height: 17px;
 			}
 
+			.fechas_container .boton {
+			    padding: 6px;
+			}
+
 			.fechas_container .icon_fecha{
 				position: absolute;
-				top: 17px;
+				top: 9px;
 				cursor: pointer;
 				left: 10px;
 			}
@@ -640,15 +653,15 @@
 			    display: block;
 			    margin: 0px 0px 10px;
 			    text-align: center;
-			    font-size: 15px;
+			    font-size: 13px;
 			}
 
 		/* MAPA */
 
 			#mapa {
 			    width: 100%;
-			    height: 300px;
-			    margin: 15px 0px;
+			    height: 240px;
+			    margin: 15px 0px 5px;
 			}
 
 			#mapa_movil {

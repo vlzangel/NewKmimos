@@ -11,15 +11,15 @@ jQuery( document ).ready(function() {
 		jQuery('.comments').slideDown();
 	});
 	jQuery(".servicio_item_box").on("click", function(e){
-		jQuery(".servicio_item_box").removeClass("servicio_visible");
-		jQuery(this).addClass("servicio_visible");
+		if( jQuery(".servicio_item_box").hasClass("servicio_visible") ){
+			jQuery(".servicio_item_box").removeClass("servicio_visible");
+		}else{
+			jQuery(".servicio_item_box").removeClass("servicio_visible");
+			jQuery(this).addClass("servicio_visible");
+		}
 	});
 
 	jQuery(window).scroll( function () {
-		console.log( "Hola" );
-
-		console.log( (jQuery(window).scrollTop()+70)+" >= "+jQuery(".pc_seccion_2_der")[0].offsetTop );
-
 		if( (jQuery(window).scrollTop()+70) >= jQuery(".pc_seccion_2_der")[0].offsetTop ){
 	    	jQuery(".pc_scroll_der").addClass("pc_scroll_fixed");
 	    }else{
