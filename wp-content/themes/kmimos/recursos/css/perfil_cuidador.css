@@ -290,7 +290,7 @@
 
 		.pc_seccion_2 .pc_seccion_2_izq p {
 			text-align: justify;
-			font-size: 13px;
+			font-size: 12px;
 	    	padding: 0px 0px 10px;
 		}
 
@@ -576,7 +576,7 @@
 		}
 
 		.pc_seccion_2 .pc_seccion_2_der span {
-	        font-size: 13px;
+	        font-size: 12px;
 	    	display: block;
 	    	padding-bottom: 0px;
 	    	font-weight: 600;
@@ -602,7 +602,7 @@
 				position: relative;
 				display: block;
 				width: 100%;
-				margin-bottom: 15px;
+				margin-bottom: 10px;
 			}
 
 			.fechas_container input {
