@@ -27,6 +27,40 @@
 		vertical-align: top;
 	}
 
+	.pc_scroll{
+		max-height: 800px;
+		overflow: auto;
+		padding-right: 15px;
+	}
+
+	.pc_scroll::-webkit-scrollbar-track{
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+		border-radius: 5px;
+		background-color: #F5F5F5;
+	}
+
+	.pc_scroll::-webkit-scrollbar{
+		width: 5px;
+		background-color: #F5F5F5;
+	}
+
+	.pc_scroll::-webkit-scrollbar-thumb{
+		border-radius: 5px;
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+		background-color: #33E1BE;
+	}
+
+	.pc_scroll_fixed{
+		position: fixed;
+	    top: 80px;
+	    width: 310px;
+	}
+
+	footer{
+		position: relative;
+	    z-index: 100;
+	}
+
 	/* Avatar */
 
 		.pc_img_container{
@@ -475,6 +509,17 @@
 		    margin-top: 15px !important;
 		}
 
+		.km-calificacion-icono {
+		    display: block !important;
+		    text-align: center !important;
+		    margin-left: 0px !important;
+		}
+
+		.km-calificacion-icono p {
+		    display: inline-block;
+		    padding-left: 10px;
+		}
+
 		.km-comentario .col-xs-2 {
 		    width: 18%;
 		}
@@ -500,6 +545,17 @@
 
 		#km-comentario label {
 		    padding: 10px 10px 0px;
+		}
+
+		.km-comentario .col-xs-2 .km-foto-comentario-cuidador {
+		    border-radius: 100%;
+		    width: 55px !important;
+		    height: 55px !important;
+		    margin-top: 5px;
+		}
+
+		.km-tit-ficha {
+		    font-size: 20px !important;
 		}
 
 	/* DER */

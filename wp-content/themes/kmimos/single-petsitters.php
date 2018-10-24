@@ -384,120 +384,135 @@
 
 				<div class="pc_seccion_2_izq">
 
-					<div class="solo_pc">
-						<label>Acerca de</label>
-						<p>
-							'.$desc.'
-						</p>
-					</div>
+					<div class="pc_scroll">
 
-					<label>Datos del cuidador</label>
-					<div class="pc_seccion_2_datos">
-						<div class="pc_seccion_2_datos_item">
-							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Experiencia.svg )"></div>
-							<span>Experiencia<br>'.$anios_exp.' años</span>
+						<div class="solo_pc">
+							<label>Acerca de</label>
+							<p>
+								'.$desc.'
+							</p>
 						</div>
-						<div class="pc_seccion_2_datos_item">
-							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Propiedad.svg )"></div>
-							<span>Tipo de propiedad<br>'.$housings[ $_cuidador->atributos['propiedad'] ].'</span>
-						</div>
-						<div class="pc_seccion_2_datos_item">
-							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Tamanios.svg )"></div>
-							<span>Tam. aceptados<br>'.$acepto.'</span>
-						</div>
-						<div class="pc_seccion_2_datos_item">
-							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Edades.svg )"></div>
-							<span>Edades aceptadas<br>'.implode(', ',$edades_aceptadas).'</span>
-						</div>
-					</div>
 
-					<label>Datos de propiedad</label>
-					<div class="pc_seccion_2_datos">
-						<div class="pc_seccion_2_datos_item">
-							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Mascotas.svg )"></div>
-							<span>Mascotas en casa<br>'.$num_masc.'</span>
+						<label>Datos del cuidador</label>
+						<div class="pc_seccion_2_datos">
+							<div class="pc_seccion_2_datos_item">
+								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Experiencia.svg )"></div>
+								<span>Experiencia<br>'.$anios_exp.' años</span>
+							</div>
+							<div class="pc_seccion_2_datos_item">
+								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Propiedad.svg )"></div>
+								<span>Tipo de propiedad<br>'.$housings[ $_cuidador->atributos['propiedad'] ].'</span>
+							</div>
+							<div class="pc_seccion_2_datos_item">
+								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Tamanios.svg )"></div>
+								<span>Tam. aceptados<br>'.$acepto.'</span>
+							</div>
+							<div class="pc_seccion_2_datos_item">
+								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Edades.svg )"></div>
+								<span>Edades aceptadas<br>'.implode(', ',$edades_aceptadas).'</span>
+							</div>
 						</div>
-						<div class="pc_seccion_2_datos_item">
-							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Patio.svg )"></div>
-							<span>Detalles de prop.<br>'.$patio.'</span>
-						</div>
-						<div class="pc_seccion_2_datos_item">
-							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Areas_Verdes.svg )"></div>
-							<span>Detalles de prop.<br>'.$areas.'</span>
-						</div>
-						<div class="pc_seccion_2_datos_item">
-							<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Monto_maximo.svg )"></div>
-							<span>Monto máx. acep.<br>'.$cuidador->mascotas_permitidas.'</span>
-						</div>
-					</div>
 
-					<div class="solo_movil">
-						<label>Acerca de</label>
-						<p>
-							'.$desc.'
-						</p>
-
-						<label>Ubicación</label>
-						<div class="mapa">
-							<div id="mapa_movil"></div>
+						<label>Datos de propiedad</label>
+						<div class="pc_seccion_2_datos">
+							<div class="pc_seccion_2_datos_item">
+								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Mascotas.svg )"></div>
+								<span>Mascotas en casa<br>'.$num_masc.'</span>
+							</div>
+							<div class="pc_seccion_2_datos_item">
+								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Patio.svg )"></div>
+								<span>Detalles de prop.<br>'.$patio.'</span>
+							</div>
+							<div class="pc_seccion_2_datos_item">
+								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Areas_Verdes.svg )"></div>
+								<span>Detalles de prop.<br>'.$areas.'</span>
+							</div>
+							<div class="pc_seccion_2_datos_item">
+								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Monto_maximo.svg )"></div>
+								<span>Monto máx. acep.<br>'.$cuidador->mascotas_permitidas.'</span>
+							</div>
 						</div>
+
+						<div class="solo_movil">
+							<label>Acerca de</label>
+							<p>
+								'.$desc.'
+							</p>
+
+							<label>Ubicación</label>
+							<div class="mapa">
+								<div id="mapa_movil"></div>
+							</div>
+						</div>
+
 					</div>
 
 				</div>
 
 				<div class="pc_seccion_2_cen">
-					<div class="solo_pc">
-						<label>Servicios que ofrezco</label>
-						<div> '.$servicios_str.' </div>
+
+					<div class="pc_scroll">
+
+						<div class="solo_pc">
+							<label>Servicios que ofrezco</label>
+							<div> '.$servicios_str.' </div>
+						</div>
+
+						<div>
+							<div id="km-comentario" class="km-ficha-info">
+								<div class="km-review">
+									<div class="km-calificacion">0</div>
+									<p class="km-tit-ficha">comentarios</p>
+									<div class="km-calificacion-icono">
+										<div class="km-calificacion-bondx">
+											'.kmimos_petsitter_rating($cuidador->id_post).'
+										</div>
+										<p>0% Lo recomienda</p>
+									</div>
+								</div>
+								<a href="javascript:;" class="km-btn-comentario" >ESCRIBE UN COMENTARIO</a>
+								<label>Comentarios</label>
+								<div class="BoxComment">';
+								echo comprimir($HTML);
+								comments_template('/template/comment.php'); $HTML = '</div>
+								<div id="comentarios_box"> </div>
+							</div>
+						</div>
+
 					</div>
 
-					<div>
-						<div id="km-comentario" class="km-ficha-info">
-							<div class="km-review">
-								<div class="km-calificacion">0</div>
-								<p class="km-tit-ficha">comentarios</p>
-								<div class="km-calificacion-icono">
-									<div class="km-calificacion-bondx">
-										'.kmimos_petsitter_rating($cuidador->id_post).'
-									</div>
-									<p>0% Lo recomienda</p>
-								</div>
-							</div>
-							<a href="javascript:;" class="km-btn-comentario" >ESCRIBE UN COMENTARIO</a>
-							<label>Comentarios</label>
-							<div class="BoxComment">';
-							echo comprimir($HTML);
-							comments_template('/template/comment.php'); $HTML = '</div>
-							<div id="comentarios_box"> </div>
-						</div>
-					</div>
 				</div>
 
 				<div class="pc_seccion_2_der">
-					<span>Servicios desde</span>
-					<label>MXN $ '.number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, ',', '.').'</label>
-					<form class="fechas_container">
-						<div id="desde_container">
-							<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/Fecha.svg" />
-							<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" value="'.$_SESSION['busqueda']['checkin'].'" readonly>
-							<small class="">Requerido</small>
-						</div>
-						<div>
-							<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/Fecha.svg" />
-							<input type="text" id="checkout" name="checkout" placeholder="Hasta" class="date_to" value="'.$_SESSION['busqueda']['checkout'].'" readonly>
-							<small class="">Requerido</small>
+
+					<div class="pc_scroll pc_scroll_der">
+
+						<span>Servicios desde</span>
+						<label>MXN $ '.number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, ',', '.').'</label>
+						<form class="fechas_container">
+							<div id="desde_container">
+								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/Fecha.svg" />
+								<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" value="'.$_SESSION['busqueda']['checkin'].'" readonly>
+								<small class="">Requerido</small>
+							</div>
+							<div>
+								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/Fecha.svg" />
+								<input type="text" id="checkout" name="checkout" placeholder="Hasta" class="date_to" value="'.$_SESSION['busqueda']['checkout'].'" readonly>
+								<small class="">Requerido</small>
+							</div>
+
+							<a href="#" class="boton boton_border_gris"> Conocer Cuidador </a>
+							<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="boton boton_verde">Reservar</a>
+						</form>
+
+						<div class="solo_pc">
+							<label>Ubicación</label>
+							<div class="mapa">
+								<div id="mapa"></div>
+								<a href="#">Expandir mapa</a>
+							</div>
 						</div>
 
-						<a href="#" class="boton boton_border_gris"> Conocer Cuidador </a>
-						<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="boton boton_verde">Reservar</a>
-					</form>
-
-					<div class="solo_pc">
-						<label>Ubicación</label>
-						<div class="mapa">
-							<div id="mapa"></div>
-							<a href="#">Expandir mapa</a>
-						</div>
 					</div>
 
 				</div>
