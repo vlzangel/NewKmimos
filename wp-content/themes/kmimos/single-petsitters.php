@@ -233,7 +233,7 @@
 									MXN $'.number_format( ($value*getComision()) , 2, ',', '.').'
 								</div>
 								<div class="servicio_celda">
-
+									<img class="check" src="'.get_recurso("img").'HOME/SVG/Check.svg" />
 								</div>
 							</div>
 						</div>
@@ -248,10 +248,10 @@
 								<div class="servicio_celda servicio_icon">
 									<img src="'.get_recurso("img").'GENERALES/ICONOS/SERVICIOS_PRINCIPALES/'.$servicio_id.'.svg" />
 								</div>
-								<div class="servicio_celda servicio_titulo">
+								<a class="servicio_celda servicio_titulo" href="'.get_home_url().'/reservar/'.$data_servicios[ $servicio_id ].'/">
 									<span>'.$tipos_servicios[$servicio_id][0].'</span>
 									<small>'.$tipos_servicios[$servicio_id][1].'</small>
-								</div>
+								</a>
 								<div class="servicio_celda servicio_desde">
 									<small>Desde</small>
 									<span>MXN $'.number_format( ($desde*getComision()) , 2, ',', '.').'</span>
