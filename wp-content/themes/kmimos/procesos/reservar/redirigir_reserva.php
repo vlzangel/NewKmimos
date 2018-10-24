@@ -4,12 +4,12 @@
 
 	session_start();
 
-	$busqueda = unserialize($_SESSION["busqueda"]);
+	$busqueda = ($_SESSION["busqueda"]);
 
 	$busqueda["checkin"] = $checkin;
     $busqueda["checkout"] = $checkout;
 
-    $_SESSION["busqueda"] = serialize( $busqueda );
+    $_SESSION["busqueda"] = ( $busqueda );
 
 	header("location: ".$redirigir);
 ?>

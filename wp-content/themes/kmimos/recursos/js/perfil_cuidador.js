@@ -35,6 +35,10 @@ jQuery( document ).ready(function() {
 			jQuery(this).addClass("selected");
 		}
 	});
+
+    jQuery("#servicios").on("click", function(e){
+        show_login_modal("servicios");
+    });
 });
 
 /* GALERIA */

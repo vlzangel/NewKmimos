@@ -26,35 +26,6 @@
 		header("location: ".get_home_url());
 	}
 
-	/*
-	if(is_user_logged_in()){
-		include('partes/seleccion_boton_reserva.php');
-		$BOTON_RESERVAR = '
-			<a href="javascript:;"
-				id="btn_conocer"
-	            data-target="#popup-conoce-cuidador"
-	            data-name="'.strtoupper( get_the_title() ).'" 
-	            data-id="'.$cuidador->id_post.'"
-				class="km-btn-secondary" 
-			>CON&Oacute;CELO +</a>
-
-		'.$BOTON_RESERVAR;
-	}else{
-		$BOTON_RESERVAR .= '
-			<a href="javascript:;"
-				id="btn_conocer"
-				data-target="#popup-iniciar-sesion"
-				class="km-btn-secondary" 
-			>CON&Oacute;CELO +</a>
-			<a href="javascript:;"
-				id="btn_reservar"
-				data-target="#popup-iniciar-sesion"
-				class="km-btn-secondary" 
-			>RESERVAR</a>
-		';
-	}*/
-    // include ('partes/cuidador/conocelo.php');
-
 	get_header();
 
    	wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
@@ -95,7 +66,7 @@
     }
     $favorito_movil = '
     	<img 
-    		class="favorito '.$fav_del.'" '.$style_icono.'" 
+    		class="favorito '.$fav_del.' '.$style_icono.'" 
     		data-reload="false"
             data-user="'.$user_id.'" 
             data-num="'.$_cuidador->id_post.'" 
@@ -107,7 +78,7 @@
 
     $favorito_pc = '
     	<img 
-    		class="'.$fav_del.'" '.$style_icono.'" 
+    		class="'.$fav_del.' '.$style_icono.'" 
     		data-reload="false"
             data-user="'.$user_id.'" 
             data-num="'.$_cuidador->id_post.'" 
@@ -220,6 +191,27 @@
 	$tipos_servicios = get_servicios('principales');
 	$tamanos_data = getTamanosData();
 
+	$data_servicios = [];
+	$servicios_ids = $wpdb->get_results("
+		SELECT 
+			p.ID,
+			tipo_servicio.slug
+		FROM 
+			wp_posts AS p
+		INNER JOIN wp_term_relationships AS relacion ON ( p.ID = relacion.object_id )
+		INNER JOIN wp_terms AS tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id AND relacion.term_taxonomy_id != 28 )
+		WHERE 
+			post_author = {$_cuidador->user_id} AND 
+			post_type = 'product' AND 
+			post_status = 'publish'
+	");
+
+	foreach ($servicios_ids as $key => $value) {
+		$data_servicios[ $value->slug ] = $value->ID;
+	}
+
+	$id_hospedaje = $data_servicios[ "hospedaje" ];
+
 	$servicios_str = "<div class='servicios_container'>";
 		foreach ($_cuidador->adicionales as $servicio_id => $servicio) {
 			if( array_key_exists($servicio_id, $tipos_servicios) ){
@@ -275,9 +267,34 @@
 		}
 	$servicios_str .= "</div>";
 
-/*	foreach ($_cuidador->adicionales as $key => $value) {
-		# code...
-	}*/
+	
+	if(is_user_logged_in()){
+		include('partes/seleccion_boton_reserva.php');
+		$BOTON_RESERVAR = '
+			<a href="javascript:;"
+				id="btn_conocer"
+	            data-target="#popup-conoce-cuidador"
+	            data-name="'.strtoupper( get_the_title() ).'" 
+	            data-id="'.$cuidador->id_post.'"
+				class="boton boton_border_gris" 
+			>CON&Oacute;CELO +</a>
+
+		'.$BOTON_RESERVAR;
+	}else{
+		$BOTON_RESERVAR .= '
+			<a href="javascript:;"
+				id="btn_conocer"
+				data-target="#popup-iniciar-sesion"
+				class="boton boton_border_gris" 
+			>CON&Oacute;CELO +</a>
+			<a href="javascript:;"
+				id="btn_reservar"
+				data-target="#popup-iniciar-sesion"
+				class="boton boton_verde" 
+			>RESERVAR</a>
+		';
+	}
+    include ('partes/cuidador/conocelo.php');
 
  	$HTML .= '
  		<script> 
@@ -497,7 +514,7 @@
 
 						<span>Servicios desde</span>
 						<label>MXN $ '.number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, ',', '.').'</label>
-						<form class="fechas_container">
+						<form class="fechas_container" id="form_cuidador" method="POST" action="'.getTema().'/procesos/reservar/redirigir_reserva.php">
 							<div id="desde_container">
 								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/Fecha.svg" />
 								<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" value="'.$_SESSION['busqueda']['checkin'].'" readonly>
@@ -509,8 +526,7 @@
 								<small class="">Requerido</small>
 							</div>
 
-							<a href="#" class="boton boton_border_gris"> Conocer Cuidador </a>
-							<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="boton boton_verde">Reservar</a>
+							'.$BOTON_RESERVAR.'
 						</form>
 
 						<div class="solo_pc">
@@ -542,8 +558,8 @@
 
 	echo comprimir($HTML);
 
-	/*echo "<pre>";
-		print_r($_cuidador);
-	echo "</pre>";*/
+	echo "<pre>";
+		print_r($_SESSION['busqueda']);
+	echo "</pre>";
 
 	get_footer(); ?>

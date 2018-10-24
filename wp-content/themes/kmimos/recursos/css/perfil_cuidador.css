@@ -10,6 +10,11 @@
 	}
 
 /* SECCION 1 */
+
+	.datepick-month a, .datepick-month td span {
+	    font-size: 12px;
+	}
+
 	.pc_seccion_1_container{
 		display: block;
 		border-bottom: solid 2px #CCC;
@@ -399,7 +404,7 @@
 		}
 
 		.servicios_container img {
-			height: 40px;
+			height: 35px;
 		}
 
 		.servicio_item {
@@ -450,7 +455,7 @@
 		}
 
 		.servicio_celda.servicio_titulo small {
-		    font-size: 13px;
+		    font-size: 11px;
 		    font-weight: 600;
 		}
 
@@ -464,7 +469,7 @@
 		}
 
 		.servicio_celda.servicio_desde span {
-		    font-size: 18px;
+		    font-size: 15px;
 		    font-weight: 600;
 		}
 
@@ -685,6 +690,7 @@
 				color: #777;
 				outline: none;
 				background: transparent;
+				cursor: pointer;
 			}
 
 			#desde_container{
@@ -722,6 +728,8 @@
 			    margin: 0px 0px 10px;
 			    text-align: center;
 			    font-size: 13px;
+			    width: 100%;
+    			border: transparent;
 			}
 
 		/* MAPA */

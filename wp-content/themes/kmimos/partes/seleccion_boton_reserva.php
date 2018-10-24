@@ -20,8 +20,8 @@
 	];
 	$url_servicio = [];
 	$ids = "";
-	if( isset($_SESSION['busqueda']) ){
-		$busqueda = unserialize($_SESSION['busqueda']); 
+	if( isset($_SESSION['busqueda']) && count($_SESSION['busqueda']) > 0 ){
+		$busqueda = ($_SESSION['busqueda']); 
 		$busqueda_servicios = $busqueda['servicios']; 
 		$condicion = "";
 		if( $busqueda_servicios>0 ){
@@ -31,7 +31,7 @@
 		$sql = "
 			SELECT * 
 			FROM wp_posts 
-			WHERE post_author = {$cuidador->user_id} 
+			WHERE post_author = {$_cuidador->user_id} 
 				AND post_status = 'publish'
 				AND ( {$where} )
 		";
@@ -60,7 +60,7 @@
 	if( count($url_servicio) > 1 ){
 
 		$content_modal .= '
-		<a href="#" id="servicios" name="redirigir" class="km-btn-secondary">
+		<a href="#" id="servicios" name="redirigir" class="boton boton_verde">
 		  	RESERVAR
 		</a>
 
@@ -85,11 +85,11 @@
 	}else{
 		if( count($url_servicio) == 1){
 			foreach ($url_servicio as $item) {
-				$BOTON_RESERVAR .= '<button id="btn_reservar" name="redirigir" class="km-btn-secondary" value="'.$item['url'].'">RESERVAR</button>';
+				$BOTON_RESERVAR .= '<button id="btn_reservar" name="redirigir" class="boton boton_verde" value="'.$item['url'].'">RESERVAR</button>';
 				break;
 			}
 		}else{				
-			$BOTON_RESERVAR .= '<button id="btn_reservar" name="redirigir" class="km-btn-secondary" value="'.get_home_url().'/reservar/'.$id_hospedaje.'/'.'">RESERVAR</button>';
+			$BOTON_RESERVAR .= '<button id="btn_reservar" name="redirigir" class="boton boton_verde" value="'.get_home_url().'/reservar/'.$id_hospedaje.'/'.'">RESERVAR</button>';
 		}
 	}
 ?>
