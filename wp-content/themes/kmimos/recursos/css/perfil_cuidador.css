@@ -400,6 +400,7 @@
 		    font-size: 17px;
 		    font-weight: 400;
 		    text-transform: capitalize;
+		    color: #797979;
 		}
 
 		.servicio_celda.servicio_titulo small {
@@ -461,7 +462,7 @@
 		}
 
 		.servicio_tamanio .servicio_icon img{
-		    height: 35px;
+		    height: 25px;
 		}
 
 		.servicio_tamanio .servicio_precio{
@@ -472,6 +473,10 @@
 
 		.servicio_tamanio {
 		    border-bottom: solid 1px #CCC;
+		}
+
+		.servicio_tamanio .servicio_celda small {    
+			color: #797979;
 		}
 
 		.servicio_precios .servicio_tamanio:last-child{
