@@ -292,10 +292,14 @@
 
 		<div class="solo_movil info_movil_1">
 
-			<div class="pc_galeria_container_interno">
-				<div class="pc_galeria_box">
-					'.$galeria.'
+			<div style="position: relative;" data-total="'.(count($_cuidador->galeria)).'" data-actual="0" data-paso="4">
+				<div class="pc_galeria_container_interno">
+					<div class="pc_galeria_box">
+						'.$galeria.'
+					</div>
 				</div>
+				<img onclick="imgAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_2.svg" />
+				<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_1.svg" />
 			</div>
 
 			<div class="pc_seccion_1">
@@ -370,10 +374,14 @@
 					</div>
 				</div>
 				<div class="pc_galeria_container">
-					<div class="pc_galeria_container_interno">
-						<div class="pc_galeria_box">
-							'.$galeria.'
+					<div style="position: relative; max-width: 390px; display: inline-block; width: 100%;" data-total="'.(count($_cuidador->galeria)).'" data-actual="0" data-paso="5">
+						<div class="pc_galeria_container_interno">
+							<div class="pc_galeria_box">
+								'.$galeria.'
+							</div>
 						</div>
+						<img onclick="imgAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_2.svg" />
+						<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_1.svg" />
 					</div>
 				</div>
 			</div>
@@ -414,7 +422,7 @@
 						</div>
 
 						<label>Datos de propiedad</label>
-						<div class="pc_seccion_2_datos">
+						<div class="pc_seccion_2_datos pc_seccion_2_propiedad">
 							<div class="pc_seccion_2_datos_item">
 								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Mascotas.svg )"></div>
 								<span>Mascotas en casa<br>'.$num_masc.'</span>

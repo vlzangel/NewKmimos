@@ -1,5 +1,29 @@
 @media (max-width: 768px){
 
+	body {
+	    overflow-x: hidden;
+	}
+
+	.pc_scroll {
+	    max-height: none;
+	    overflow: unset;
+	    padding-right: 0px !important;
+	}
+
+	.Flecha_Izquierda, .Flecha_Derecha {
+	    top: 24px;
+	    height: 30px;
+	    padding: 9px;
+	}
+
+	.Flecha_Izquierda {
+    	left: -1px;
+	}
+
+	.Flecha_Derecha {
+	    right: -1px;
+	}
+
 	.ocultar_flash_descuento {
 	    display: none !important;
 	}
@@ -13,6 +37,7 @@
 	.pc_seccion_1 {
 	    padding: 5px 15px;
 	    min-height: auto;
+	    height: auto;
 	}
 
 	.pc_img_container {
@@ -24,6 +49,8 @@
 	    top: auto;
 	    height: 95px;
 	    border-radius: 5px;
+	    width: 100%;
+	    left: 0px;
 	}
 
 	.pc_info_iconos_container {
@@ -82,8 +109,9 @@
 	}
 
 	.pc_info_iconos_container {
-	    margin: 0px 15px;
+	    margin: 0px;
 	    width: calc( 100% - 30px );
+	    left: 15px;
 	}
 
 	.pc_info_iconos span {
@@ -306,11 +334,11 @@
 	}
 
 	footer {
-	    display: none !important;
+	    #display: none !important;
 	}
 
 	.pc_seccion_2 {
-	    margin: 0px auto 35px;
+	    margin: 0px auto;
 	}
 
 	.reservar_footer {
@@ -325,6 +353,7 @@
         color: #FFF;
 	    font-size: 14px;
 	    font-weight: 600;
+	    z-index: 10000000;
 	}
 
 	.reservar_footer img {
@@ -354,6 +383,11 @@
 	    border: solid 1px #CCC;
 	    border-radius: 4px;
 	    background: #FFF;
+	}
+
+	.pc_seccion_2 .pc_seccion_2_der span,
+	.pc_seccion_2 .pc_seccion_2_der label {
+	    display: none;
 	}
 
 }

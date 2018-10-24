@@ -151,7 +151,7 @@
 		.pc_info_container{
 			position: relative;
 			display: table-cell;
-			width: 	400px;
+			width: 	380px;
 			padding: 20px 10px 0px 30px;
 			box-sizing: border-box;
 		}
@@ -194,7 +194,7 @@
 
 		.pc_info_favorito {
 			position: absolute;
-			top: 20px;
+			top: 23px;
 			right: 35px;
 			width: 40px;
 			border: solid 2px #CCC;
@@ -213,28 +213,34 @@
 	
 		.pc_galeria_container{
 			display: table-cell;
+			position: relative;
+		    text-align: right;
 		}
 
 		.pc_galeria_container_interno{
-		    margin-left: 60px;
+		    margin-left: 0px;
 			height: 145px;
 			overflow: hidden;
+			position: relative;
 		}
 	
 		.pc_galeria_box{
 			white-space: nowrap;
     		position: relative;
-    		padding: 35px 0px;
+    		padding: 37px 0px;
     		box-sizing: border-box;
     		height: 100%;
+    		vertical-align: middle;
 		}
 	
 		.pc_galeria_box .pc_galeria_item {
 		    height: 100%;
-		    width: calc( 20% - 20px );
-		    margin: 0px 8px;
+		    width: calc( 20% - 3px );
+		    margin: 0px;
 		    display: inline-block;
 		    border: solid 2px #FFF;
+		    vertical-align: middle;
+		    padding: 5px 2px;
 		}
 	
 		.pc_galeria_box .pc_galeria_item .pc_galeria_img{
@@ -247,12 +253,46 @@
 		    border-radius: 5px;
 		}
 
+		.pc_galeria_item.selected {
+		    padding: 0px;
+		    margin: 0px;
+		}
+
+		.pc_galeria_item.selected > div {
+		    border: solid 2px #00d2c6;
+		}
+
 		.ocultar_flash span {
 		    background-image: url();
     		color: #EEE;
 		}
 
 		.ocultar_flash_none, .ocultar_descuento, .ocultar_flash_descuento{
+			display: none;
+		}
+
+		.Flecha_Izquierda,
+		.Flecha_Derecha{
+		    position: absolute;
+		    top: 55px;
+		    cursor: pointer;
+		    height: 35px;
+		    padding: 10px 15px;
+		    background: #FFF;
+		    border: solid 1px #666;
+		}
+
+		.Flecha_Izquierda{
+			left: -45px;
+    		border-radius: 0px 3px 3px 0px;
+		}
+
+		.Flecha_Derecha{
+			right: -45px;
+    		border-radius: 3px 0px 0px 3px;
+		}
+
+		.Ocultar_Flecha{
 			display: none;
 		}
 
@@ -292,6 +332,7 @@
 			text-align: justify;
 			font-size: 12px;
 	    	padding: 0px 0px 10px;
+    	    line-height: 1.4;
 		}
 
 		.pc_seccion_2 .pc_seccion_2_datos {
@@ -324,6 +365,11 @@
 			display: block;
 			font-size: 12px;
 		    padding: 15px 0px 0px;
+		}
+
+		.pc_seccion_2 .pc_seccion_2_propiedad .pc_seccion_2_datos_item > div{
+		    height: 30px;
+	        margin-top: 10px;
 		}
 
 	/* CEN */
@@ -532,6 +578,9 @@
 		.km-calificacion-icono p {
 		    display: inline-block;
 		    padding-left: 10px;
+		    margin: 0px;
+		    padding-top: 7px;
+		    font-weight: 600;
 		}
 
 		.km-comentario .col-xs-2 {
@@ -570,6 +619,20 @@
 
 		.km-tit-ficha {
 		    font-size: 16px !important;
+		}
+
+		.km-calificacion-bondx .km-ranking a.active {
+		    background-image: url(../img/BUSQUEDA/SVG/Huesito_azul.svg);
+		}
+
+		.km-review .km-ranking a {
+		    width: 22px;
+		    height: 25px;
+		    margin: 0px 3px;
+		}
+
+		.km-calificacion-bondx {
+		    display: inline-block;
 		}
 
 	/* DER */
