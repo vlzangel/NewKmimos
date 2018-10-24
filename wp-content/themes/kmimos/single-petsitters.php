@@ -558,8 +558,8 @@
 
 	echo comprimir($HTML);
 
-	echo "<pre>";
+	/*echo "<pre>";
 		print_r($_SESSION['busqueda']);
-	echo "</pre>";
+	echo "</pre>";*/
 
 	get_footer(); ?>
