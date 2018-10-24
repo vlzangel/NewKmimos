@@ -335,7 +335,7 @@
 						'.kmimos_petsitter_rating($_cuidador->id_post).'
 					</div>
 					<div class="pc_info_valoraciones">
-						'.$_cuidador->valoraciones.' valoraciones <a href="#">(Ver comentarios)</a>
+						'.$_cuidador->valoraciones.' valoraciones <a href="#km-comentario">(Ver comentarios)</a>
 					</div>
 					<div class="pc_info_favorito">
 						'.$favorito_pc.'
@@ -384,7 +384,7 @@
 						'.kmimos_petsitter_rating($_cuidador->id_post).'
 					</div>
 					<div class="pc_info_valoraciones">
-						'.$_cuidador->valoraciones.' valoraciones <a href="#">(Ver comentarios)</a>
+						'.$_cuidador->valoraciones.' valoraciones <a href="#km-comentario">(Ver comentarios)</a>
 					</div>
 					<div class="pc_info_favorito">
 						'.$favorito_pc.'
