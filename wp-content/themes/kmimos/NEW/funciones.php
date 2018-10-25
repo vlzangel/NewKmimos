@@ -504,7 +504,11 @@
     		$_cuidadores_user_id[ $value->id ] = $value->user_id;
     		$cuidadores[ $key ]->adicionales = unserialize($value->adicionales);
     		$cuidadores[ $key ]->atributos = unserialize($value->atributos);
-    		$cuidadores[ $key ]->galeria = get_galeria($value->id);
+
+    		$galeria = get_galeria($value->id);
+    		$cuidadores[ $key ]->galeria = $galeria[0];
+    		$cuidadores[ $key ]->galeria_normales = $galeria[1];
+
     		$cuidadores[ $key ]->comentario = get_comment_cuidador($value->id_post);
 
     		$_cuidadores[ $value->id ] = $cuidadores[ $key ];
@@ -517,21 +521,25 @@
 
     function get_galeria($cuidador_id){
 		$id_cuidador = ($cuidador_id)-5000;
-		$sub_path_galeria = "/".$id_cuidador."/mini/";
-		$path_galeria = dirname(dirname(dirname(dirname(__DIR__))))."/wp-content/uploads/cuidadores/galerias/".$id_cuidador."/mini/";
+		$sub_path_galeria = "/".$id_cuidador."/";
+		$path_galeria = dirname(dirname(dirname(dirname(__DIR__))))."/wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 		$galeria_array = array();
 		if( is_dir($path_galeria) ){
 			if ($dh = opendir($path_galeria)) { 
-				$imagenes = array();
+				$imagenes_mini = array();
+				$imagenes_normales = array();
 				$cont = 0;
-		        while ( ( ($file = readdir($dh)) !== false ) && $cont <= 7 ) { 
+		        while ( ( ($file = readdir($dh)) !== false ) ) { 
 		            if (!is_dir($path_galeria.$file) && $file!="." && $file!=".."){ 
-		               	$imagenes[] = $sub_path_galeria.$file;
+		               	$imagenes_normales[] = $sub_path_galeria.$file;
+		               	if( $cont <= 7 ){
+		               		$imagenes_mini[] = $sub_path_galeria."mini/".$file;
+		               	}
 		            } 
 		            $cont++;
 		        } 
 		      	closedir($dh);
-		      	return $imagenes;
+		      	return [ $imagenes_mini, $imagenes_normales ];
 	  		} 
 		}
 		return "";

@@ -51,9 +51,6 @@
 		$ocultar_todo = "ocultar_flash_descuento";
 	}
 
-
-
-
 	$favoritos = get_favoritos();
 
 	$fav_check = 'false';
@@ -72,15 +69,6 @@
             data-active="'.$fav_check.'"
     	></div>
     ';
-
-
-
-
-
-
-
-
-
 
 	$anios_exp = $_cuidador->experiencia;
     if( $anios_exp > 1900 ){
@@ -114,15 +102,19 @@
 		}
 	} 
 
-	if( is_array($_cuidador->galeria) ){
-		foreach ($_cuidador->galeria as $key => $value) {
+	$_galeria = get_galeria($cuidador->id);
+	/*echo "<pre>";
+		print_r($galeria);
+	echo "</pre>";*/
+	if( is_array($_galeria[1]) ){
+		foreach ($_galeria[1] as $key => $value) {
 			$galeria .= '
-			<div class="pc_galeria_item">
+			<div class="pc_galeria_item" data-img="'.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.'">
 				<div class="pc_galeria_img" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>
 			</div>';
 		}
 	}
-	$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
+	$ocultar_siguiente_img = ( count($_cuidador->galeria_normales) > 1 ) ? '': 'Ocultar_Flecha';
 
     $foto = kmimos_get_foto($cuidador->user_id);
 
@@ -315,7 +307,7 @@
 
 			<div class="pc_seccion_1">
 				<div class="pc_img_container">
-					<div class="pc_img" style="background-image:url('.$foto.');"></div>
+					<div class="pc_img" data-img="'.$foto.'" style="background-image:url('.$foto.');"></div>
 				</div>
 				<div class="pc_info_container">
 					<div class="pc_info_titulo">'.strtoupper( get_the_title() ).'</div>
@@ -358,7 +350,7 @@
 		<div class="solo_pc pc_seccion_1_container">
 			<div class="pc_seccion_1">
 				<div class="pc_img_container">
-					<div class="pc_img" style="background-image:url('.$foto.');"></div>
+					<div class="pc_img" data-img="'.$foto.'" style="background-image:url('.$foto.');"></div>
 
 					<div class="pc_info_iconos_container '.$ocultar_todo.'">
 						<div class="pc_info_iconos icono_disponibilidad '.$ocultar_flash.'">
@@ -521,6 +513,20 @@
 							</div>
 
 							'.$BOTON_RESERVAR.'
+
+
+
+							<div class="solo_movil">
+								<div class="reservar_footer">
+									<div id="btn_reservar_fixed">
+										<img src="'.get_recurso("img").'PERFIL_CUIDADOR/RESERVAR.svg" /> RESERVAR >
+									</div>
+									<div class="footer_favorito">
+										<div class="footer_favorito_box favorito_replicas">'.$favorito.'</div>
+									</div>
+								</div>
+							</div>
+
 						</form>
 
 						<div class="solo_pc">
@@ -538,14 +544,10 @@
 			</div>
 		</div>
 
-		<div class="solo_movil">
-			<div class="reservar_footer">
-				<div class="">
-					<img src="'.get_recurso("img").'PERFIL_CUIDADOR/RESERVAR.svg" /> RESERVAR >
-				</div>
-				<div class="footer_favorito">
-					<div class="footer_favorito_box favorito_replicas">'.$favorito.'</div>
-				</div>
+		<div class="galeria_container_fixed">
+			<div class="galeria_celda">
+				<span id="cerrar_galeria" class="cerrar">×</span>
+				<div class="galeria_img_fixed"></div>
 			</div>
 		</div>
  	';

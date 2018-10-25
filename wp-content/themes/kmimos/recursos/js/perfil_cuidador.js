@@ -33,15 +33,39 @@ jQuery( document ).ready(function() {
 		}else{
 			jQuery(".pc_galeria_item").removeClass("selected");
 			jQuery(this).addClass("selected");
+			showImgGaleria( jQuery(this) );
 		}
 	});
 
     jQuery("#servicios").on("click", function(e){
         show_login_modal("servicios");
     });
+
+    jQuery(".pc_img").on("click", function(e){
+        showImgGaleria( jQuery(this) );
+    });
+
+    jQuery("#cerrar_galeria").on("click", function(e){
+        jQuery(".galeria_container_fixed").removeClass("show_galeria");
+    });
+
+    jQuery(".galeria_container_fixed").on("click", function(e){
+        jQuery(".galeria_container_fixed").removeClass("show_galeria");
+    });
+
+    jQuery("#btn_reservar_fixed").on("click", function(e){
+        jQuery("#btn_reservar").click();
+    });
+
 });
 
 /* GALERIA */
+	
+	function showImgGaleria( _this ){
+		var img = _this.attr("data-img");
+		jQuery(".galeria_img_fixed").css("background-image", "url("+img+")");
+		jQuery(".galeria_container_fixed").addClass("show_galeria");
+	}
 
 	function imgAnterior(_this){
 		var actual = _this.parent().attr("data-actual");

@@ -74,6 +74,15 @@
         border: solid 1px #FFF;
 	}
 
+	.galeria_container_fixed .galeria_celda {
+	    padding: 15px;
+	}
+
+	.galeria_container_fixed .cerrar {
+	    right: 15px;
+	    top: 15px;
+	}
+
 	.pc_info_container {
 	    width: auto;
 	    padding: 0px 0px 0px 15px;
