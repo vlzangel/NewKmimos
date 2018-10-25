@@ -147,7 +147,6 @@
 		$fin = ( $total > ($PAGE+10) ) ? $PAGE+10 : $total;
 
 		$user_id = get_current_user_id();
-
 		$favoritos = get_favoritos();
 
 		for ($i = $PAGE; $i < $fin; $i++ ) {

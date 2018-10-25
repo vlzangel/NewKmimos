@@ -546,8 +546,8 @@
 
 		<div class="galeria_container_fixed">
 			<div class="galeria_celda">
+				<img src="http://localhost/kmimos/wp-content/uploads/cuidadores/galerias//611/1.jpg">
 				<span id="cerrar_galeria" class="cerrar">×</span>
-				<div class="galeria_img_fixed"></div>
 			</div>
 		</div>
  	';

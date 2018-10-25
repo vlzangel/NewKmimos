@@ -314,11 +314,11 @@
 		    position: fixed;
 		    top: 0px;
 		    left: 0px;
-		    width: 100%;
-		    height: 100%;
 		    z-index: 999999999999999999;
 		    background: #0008;
 		    display: none;
+		    width: 100vw;
+		    height: 100vh;
 		}
 
 		.galeria_container_fixed.show_galeria {
@@ -330,27 +330,25 @@
 		    vertical-align: middle;
 		    text-align: center;
         	padding: 50px;
+		    width: 100vw;
+        	height: 100vh;
 		}
 
-		.galeria_img_fixed {
-		    width: 100%;
+		.galeria_container_fixed .galeria_celda img {
 		    height: 100%;
-
-		    background-repeat: no-repeat;
-		    background-size: contain;
-		    background-position: center;
+		    vertical-align: top;
 		}
 
 		.galeria_container_fixed .cerrar {
-		    color: #FFF;
-		    font-size: 60px;
-		    position: absolute;
-		    right: 30px;
-		    top: 30px;
-		    line-height: 0.8;
-		    padding: 0px;
-		    margin: 0px;
-		    cursor: pointer;
+			color: #FFF;
+			font-size: 60px;
+			line-height: 0.8;
+			padding: 0px;
+			margin: 0px;
+			left: 15px;
+			cursor: pointer;
+			position: relative;
+			top: -10px;
 		}
 
 /* SECCION 2 */

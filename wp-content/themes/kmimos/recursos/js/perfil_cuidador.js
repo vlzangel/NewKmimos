@@ -46,11 +46,11 @@ jQuery( document ).ready(function() {
     });
 
     jQuery("#cerrar_galeria").on("click", function(e){
-        jQuery(".galeria_container_fixed").removeClass("show_galeria");
+        hideImgGaleria();
     });
 
     jQuery(".galeria_container_fixed").on("click", function(e){
-        jQuery(".galeria_container_fixed").removeClass("show_galeria");
+        hideImgGaleria();
     });
 
     jQuery("#btn_reservar_fixed").on("click", function(e){
@@ -63,8 +63,14 @@ jQuery( document ).ready(function() {
 	
 	function showImgGaleria( _this ){
 		var img = _this.attr("data-img");
-		jQuery(".galeria_img_fixed").css("background-image", "url("+img+")");
+		jQuery("body").css("overflow", "hidden");
+		jQuery(".galeria_container_fixed img").attr("src", img);
 		jQuery(".galeria_container_fixed").addClass("show_galeria");
+	}
+	
+	function hideImgGaleria(){
+		jQuery("body").css("overflow", "auto");
+        jQuery(".galeria_container_fixed").removeClass("show_galeria");
 	}
 
 	function imgAnterior(_this){

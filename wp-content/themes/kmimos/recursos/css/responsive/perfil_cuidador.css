@@ -79,8 +79,16 @@
 	}
 
 	.galeria_container_fixed .cerrar {
+	    left: auto;
+	    position: fixed;
 	    right: 15px;
-	    top: 15px;
+    	top: 10px;
+	}
+	
+	.galeria_container_fixed .galeria_celda img {
+	    height: auto;
+	    vertical-align: top;
+	    width: 100%;
 	}
 
 	.pc_info_container {
