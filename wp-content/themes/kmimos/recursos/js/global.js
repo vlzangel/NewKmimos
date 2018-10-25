@@ -6,10 +6,12 @@ jQuery( document ).ready(function() {
 });
 
 function fixedHeader() {
-    let ww = jQuery(window).scrollTop();
-    if (ww > 0) {
-        jQuery('nav').addClass('nav_white');
-    } else {
-        jQuery('nav').removeClass('nav_white');
+    if( !jQuery('nav').hasClass("nav_busqueda") ){
+        let ww = jQuery(window).scrollTop();
+        if (ww > 0) {
+            jQuery('nav').addClass('nav_white');
+        } else {
+            jQuery('nav').removeClass('nav_white');
+        }
     }
 }

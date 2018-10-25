@@ -85,6 +85,10 @@
 /* BUSCAR */
 
 	jQuery(document).ready(function(){
+
+		jQuery('nav').addClass('nav_busqueda');
+		jQuery('nav').addClass('nav_white');
+
 		jQuery("#buscar input").on("change", function(e){ 
 			if( parseInt( jQuery("body").width() ) > 768 ){ 
 				buscar( jQuery(this).attr("id") ); 
