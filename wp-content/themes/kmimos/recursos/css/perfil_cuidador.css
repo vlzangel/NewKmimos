@@ -509,8 +509,12 @@
 		}
 
 		.servicio_tamanio .servicio_titulo{
-		    padding-left: 20px;
-		    width: 40%;
+		    padding-left: 10px;
+		    width: 30%;
+		}
+
+		.servicio_tamanio .servicio_celda.servicio_icon {
+			width: 115px;
 		}
 
 		.servicio_tamanio .servicio_icon img{
@@ -518,7 +522,6 @@
 		}
 
 		.servicio_tamanio .servicio_precio{
-		    width: 40%;
 		    font-size: 16px;
 	        padding: 20px 0px 0px;
 		}
