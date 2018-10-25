@@ -51,42 +51,36 @@
 		$ocultar_todo = "ocultar_flash_descuento";
 	}
 
+
+
+
 	$favoritos = get_favoritos();
 
 	$fav_check = 'false';
     $fav_del = '';
-    $fav_img_pc = 'Corazon_Gris';
-    $fav_img_movil = 'Corazon';
     if (in_array($_cuidador->id_post, $favoritos)) {
         $fav_check = 'true'; 
         $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
         $fav_del = 'favoritos_delete';
         $fav_img_pc = 'Favorito';
-        $fav_img_movil = 'Favorito';
     }
-    $favorito_movil = '
-    	<img 
-    		class="favorito '.$fav_del.' '.$style_icono.'" 
-    		data-reload="false"
+    $favorito = '
+    	<div 
+    		class="favorito '.$fav_del.'" 
             data-user="'.$user_id.'" 
             data-num="'.$_cuidador->id_post.'" 
             data-active="'.$fav_check.'"
-            data-favorito="'.$fav_check.'"
-    		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img_movil.'.svg" 
-    	/>
+    	></div>
     ';
 
-    $favorito_pc = '
-    	<img 
-    		class="'.$fav_del.' '.$style_icono.'" 
-    		data-reload="false"
-            data-user="'.$user_id.'" 
-            data-num="'.$_cuidador->id_post.'" 
-            data-active="'.$fav_check.'"
-            data-favorito="'.$fav_check.'"
-    		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img_pc.'.svg" 
-    	/>
-    ';
+
+
+
+
+
+
+
+
 
 	$anios_exp = $_cuidador->experiencia;
     if( $anios_exp > 1900 ){
@@ -338,7 +332,7 @@
 						'.$_cuidador->valoraciones.' valoraciones <a href="#km-comentario">(Ver comentarios)</a>
 					</div>
 					<div class="pc_info_favorito">
-						'.$favorito_pc.'
+						'.$favorito.'
 					</div>
 				</div>
 			</div>
@@ -387,7 +381,7 @@
 						'.$_cuidador->valoraciones.' valoraciones <a href="#km-comentario">(Ver comentarios)</a>
 					</div>
 					<div class="pc_info_favorito">
-						'.$favorito_pc.'
+						'.$favorito.'
 					</div>
 				</div>
 				<div class="pc_galeria_container">
@@ -550,7 +544,7 @@
 					<img src="'.get_recurso("img").'PERFIL_CUIDADOR/RESERVAR.svg" /> RESERVAR >
 				</div>
 				<div class="footer_favorito">
-					<div class="footer_favorito_box">'.$favorito_pc.'</div>
+					<div class="footer_favorito_box">'.$favorito.'</div>
 				</div>
 			</div>
 		</div>

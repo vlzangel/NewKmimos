@@ -197,15 +197,24 @@
 		 	padding-left: 10px;
 		}
 
-		.pc_info_favorito {
+		.pc_info_favorito > div {
 			position: absolute;
 			top: 23px;
 			right: 35px;
 			width: 40px;
+		    height: 40px;
 			border: solid 2px #CCC;
 			padding: 7px 8px;
 			border-radius: 3px;
+			background: url(../img/BUSQUEDA/SVG/iconos/Corazon_Gris.svg) no-repeat center center;
+			background-size: 55%;
 		}
+
+		.favorito.favoritos_delete {
+			background-image: url(../img/BUSQUEDA/SVG/iconos/Favorito.svg);
+		}
+
+
 
 		.km-ranking a {
 		    width: 20px;
