@@ -1,25 +1,21 @@
 <?php
-
-	if($_POST){
-		extract($_POST);
-	}
+	extract($_POST);
 
 	$sql  = "SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'user_favorites'";
 	$favoritos = $db->get_var($sql, "meta_value");
 
-    $favoritos = (array) json_decode($favoritos);
+    $_favoritos = (array) json_decode($favoritos);
 
-	$index = 0;
-	foreach ($favoritos as $key => $value) {
-		if( $value == $cuidador_id ){
-			$index = $key;
+	$fav = [];
+	foreach ($_favoritos as $key => $value) {
+		if( $value != "" && $value != $cuidador_id ){
+			$fav[] = $value;
 		}
 	}
-	unset($favoritos[$index]);
 
-	$favoritos = json_encode($favoritos);
+	$fav = json_encode($fav);
 
-	$sql = "UPDATE wp_usermeta SET meta_value = '".$favoritos."' WHERE user_id = '".$user_id."' AND meta_key = 'user_favorites';";
+	$sql = "UPDATE wp_usermeta SET meta_value = '".$fav."' WHERE user_id = '".$user_id."' AND meta_key = 'user_favorites';";
 
 	$db->query( utf8_decode($sql) );
 
