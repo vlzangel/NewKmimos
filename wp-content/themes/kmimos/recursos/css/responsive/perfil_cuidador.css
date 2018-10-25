@@ -85,11 +85,25 @@
 	}
 
 	.pc_info_favorito {
-        top: 0px;
+        position: absolute;
+	    top: 0px;
 	    right: 0px;
 	    width: 35px;
+	    height: 35px;
 	    border: solid 1px #CCC;
-	    padding: 7px 8px;
+	    padding: 0px;
+	}
+
+	.pc_info_favorito > div {
+	    position: absolute;
+	    top: auto;
+	    right: auto;
+	    width: 100%;
+	    height: 100%;
+	    border: 0px;
+	    padding: 0px;
+	    border-radius: 3px;
+	    background-size: 55%;
 	}
 
 	.pc_info_experiencia {
@@ -316,6 +330,12 @@
 	    font-size: 10px;
 	}
 
+	button#btn_reservar {
+        margin-right: 0px;
+	    font-size: 11px;
+	    padding: 8px;
+	}
+
 	a.boton.boton_verde {
 	    margin-right: 0px;
 	    border: solid 2px #00d2c6;
@@ -377,12 +397,27 @@
         margin: 0px 10px;
 	}
 
-	.footer_favorito_box {
-	    display: inline-block;
-	    padding: 7px 0px;
-	    border: solid 1px #CCC;
-	    border-radius: 4px;
-	    background: #FFF;
+	.footer_favorito_box {    
+		position: absolute;
+	    top: 10px;
+	    right: 30px;
+	    width: 40px;
+	    height: 40px;
+	    border: solid 2px #CCC;
+	    padding: 7px 8px;
+	    border-radius: 3px;
+	}
+
+	.footer_favorito_box .favorito {
+		background: url(../../img/BUSQUEDA/SVG/iconos/Corazon_Gris.svg) no-repeat center center;
+	    background-size: contain;
+	    width: 100%;
+	    height: 100%;
+	}
+
+	.footer_favorito_box .favorito.favoritos_delete {
+		background-image: url(../../img/BUSQUEDA/SVG/iconos/Favorito.svg);
+	    background-size: contain;
 	}
 
 	.pc_seccion_2 .pc_seccion_2_der span,

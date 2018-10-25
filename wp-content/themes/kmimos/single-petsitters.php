@@ -331,7 +331,7 @@
 					<div class="pc_info_valoraciones">
 						'.$_cuidador->valoraciones.' valoraciones <a href="#km-comentario">(Ver comentarios)</a>
 					</div>
-					<div class="pc_info_favorito">
+					<div class="pc_info_favorito favorito_replicas">
 						'.$favorito.'
 					</div>
 				</div>
@@ -380,7 +380,7 @@
 					<div class="pc_info_valoraciones">
 						'.$_cuidador->valoraciones.' valoraciones <a href="#km-comentario">(Ver comentarios)</a>
 					</div>
-					<div class="pc_info_favorito">
+					<div class="pc_info_favorito favorito_replicas">
 						'.$favorito.'
 					</div>
 				</div>
@@ -544,7 +544,7 @@
 					<img src="'.get_recurso("img").'PERFIL_CUIDADOR/RESERVAR.svg" /> RESERVAR >
 				</div>
 				<div class="footer_favorito">
-					<div class="footer_favorito_box">'.$favorito.'</div>
+					<div class="footer_favorito_box favorito_replicas">'.$favorito.'</div>
 				</div>
 			</div>
 		</div>
