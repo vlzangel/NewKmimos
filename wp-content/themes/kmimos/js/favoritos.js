@@ -9,18 +9,25 @@ jQuery( document ).ready(function() {
             cuidador_id: fav_num,
             user_id: fav_user
         };
-	   	jQuery.post(
-	   		URL_PROCESOS_PERFIL, 
-	   		data,
-	   		function(data){
+
+        jQuery.ajax({
+            type: "POST",
+            url: HOME + '/procesos/perfil/index.php', 
+            data: {
+                accion: "delete_favorito",
+                cuidador_id: fav_num,
+                user_id: fav_user
+            },
+            success: function(data){
                 if(data.status='OK' && remove == 'true'){   
                     obj.parent().parent().parent().remove();
                 }else{
                     obj.removeClass('favoritos_delete');
                     obj.attr('data-active', false);
                 }
-		   	}
-	   	);
+            }
+        });
+
     });
 });
 
@@ -36,6 +43,9 @@ jQuery(document).on('click','[data-favorito="false"]',function(){
         'security': ''
     };
     jQuery.post( HOME + '/procesos/generales/favorites.php', data, function( data ) {
+
+        console.log( data );
+
         var result = data;
         if( result['user'] > 0 ){
             fav.data('active',result['active']);

@@ -383,15 +383,9 @@
             $id_user = get_current_user_id()+0;
             if( $id_user > 0 ){
                 $rf = $wpdb->get_row("SELECT * FROM wp_usermeta WHERE user_id = $id_user AND meta_key = 'user_favorites' ");
-                $rows = str_replace( '"",', '', $rf->meta_value );
-                $rows = str_replace( '"', '', $rows );
-                $rows = str_replace( '[', '', $rows );
-                $rows = str_replace( ']', '', $rows );
-                if( !empty($rows) ){
-                    $favoritos = explode(',', $rows);
-                }
+                return (array) json_decode($rf->meta_value);
             }
-            return $favoritos;
+            return [];
         }
     }
     
