@@ -537,6 +537,7 @@
 
 		.servicio_tamanio {
 		    border-bottom: solid 1px #CCC;
+		    display: block;
 		}
 
 		.servicio_tamanio .servicio_celda small {    

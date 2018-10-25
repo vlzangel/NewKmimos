@@ -214,7 +214,7 @@
 					if( $key == "pequenos"){ $desde = $value; }
 					if( $value > 0 && $desde > $value ){ $desde = $value; }
 					$precios .= '
-						<div class="servicio_tamanio">
+						<a class="servicio_tamanio" href="'.get_home_url().'/reservar/'.$data_servicios[ $servicio_id ].'/">
 							<div class="servicio_table">
 								<div class="servicio_celda servicio_icon">
 									<img src="'.get_recurso("img").'GENERALES/ICONOS/TAMANIOS/'.$key.'.svg" />
@@ -230,7 +230,7 @@
 									<img class="check" src="'.get_recurso("img").'HOME/SVG/Check.svg" />
 								</div>
 							</div>
-						</div>
+						</a>
 					';
 				}
 
@@ -242,10 +242,10 @@
 								<div class="servicio_celda servicio_icon">
 									<img src="'.get_recurso("img").'GENERALES/ICONOS/SERVICIOS_PRINCIPALES/'.$servicio_id.'.svg" />
 								</div>
-								<a class="servicio_celda servicio_titulo" href="'.get_home_url().'/reservar/'.$data_servicios[ $servicio_id ].'/">
+								<div class="servicio_celda servicio_titulo">
 									<span>'.$tipos_servicios[$servicio_id][0].'</span>
 									<small>'.$tipos_servicios[$servicio_id][1].'</small>
-								</a>
+								</div>
 								<div class="servicio_celda servicio_desde">
 									<small>Desde</small>
 									<span>MXN $'.number_format( ($desde*getComision()) , 2, ',', '.').'</span>
