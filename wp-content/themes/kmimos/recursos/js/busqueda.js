@@ -102,21 +102,11 @@
 		buscar( "" );
 
 		jQuery("#ver_filtros").on("click", function(e){
-
 			if( jQuery(".resultado_item").hasClass("full_width") ){
 				jQuery(".resultado_item").removeClass('full_width');
 			}else{
 				jQuery(".resultado_item").addClass('full_width');
 			}
-			
-			
-
-			/*jQuery(".filtos_container").addClass('open_filtros');
-
-			/*if( parseInt( jQuery("body").width() ) < 768 ){
-				jQuery("body").css("overflow-y", "hidden");
-			}*/
-
 		});
 
 		jQuery("#ver_filtros_fechas").on("click", function(e){
@@ -143,11 +133,14 @@
 
 		jQuery("#buscar").submit(function(e){
 			e.preventDefault();
+		});
+
+		jQuery(".filtros_botones input.boton.boton_verde").on("click", function(e){
 			if( parseInt( jQuery("body").width() ) < 768 ){
 				jQuery(".filtos_container").removeClass('open_filtros');
 				jQuery("body").css("overflow-y", "auto");
+				buscar("");
 			}
-			buscar( '' );
 		});
 
 		jQuery("#descuento_movil").on("change", function(e){
@@ -173,7 +166,6 @@
 		    if ( ( hTotal <= scrollPosition ) && CARGAR_RESULTADOS ) {
 	    		CARGAR_RESULTADOS = false;
 		        if( TOTAL_PAGE > (PAGE+1) ){
-		    		console.log("Cargando mas...");
 		        	PAGE = PAGE + 1;
 		        	getResultados();
 		        	jQuery(".cargando_mas_resultados").css("display", "block");
@@ -220,6 +212,7 @@
 	}
 
 	function getResultados(){
+		console.log("Entro");
 		cargando(1);
 		jQuery.post(
 			HOME+"/NEW/resultados.php",
