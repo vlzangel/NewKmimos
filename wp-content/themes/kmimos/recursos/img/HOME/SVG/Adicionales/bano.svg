@@ -14,12 +14,12 @@
       }
 
       .cls-4 {
-        fill: #7ad2c4;
+        fill: #00d2c6;
       }
 
       .cls-5 {
         fill: none;
-        stroke: #7ad2c4;
+        stroke: #00d2c6;
         stroke-linejoin: round;
         stroke-width: 2px;
       }

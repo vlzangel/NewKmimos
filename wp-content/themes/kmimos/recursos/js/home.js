@@ -48,8 +48,9 @@ jQuery( document ).ready(function() {
 
     jQuery("#mi_ubicacion").on("click", function(e){
 
-        jQuery(".icon_left").removeClass("fa-crosshairs");
         jQuery(".icon_left").addClass("fa-spinner fa-spin");
+
+        jQuery(this).css("display", "none");
         
         navigator.geolocation.getCurrentPosition(
             function(pos) {
@@ -78,7 +79,9 @@ jQuery( document ).ready(function() {
                             jQuery("#ubicacion").val("");
 
                             jQuery(".icon_left").removeClass("fa-spinner fa-spin");
-                            jQuery(".icon_left").addClass("fa-crosshairs");
+
+                            jQuery("#mi_ubicacion").attr("src", HOME+"/recursos/img/HOME/SVG/GPS_On.svg");
+                            jQuery("#mi_ubicacion").css("display", "inline-block");
                         }
                     });
                 /*}else{

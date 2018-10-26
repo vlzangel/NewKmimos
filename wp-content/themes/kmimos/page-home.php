@@ -98,7 +98,10 @@
 						    	<ul id="ubicacion_list" class=""></ul>
 						    </div>
 
-							<i id="mi_ubicacion" class="fa fa-crosshairs icon_left ubicacion_gps"></i>
+							<i id="_mi_ubicacion" class="fa icon_left ubicacion_gps"></i>
+
+							<img id="mi_ubicacion" src="'.get_recurso("img").'HOME/SVG/GPS_Off.svg" />
+
 							<div class="barra_ubicacion"></div>
 
 							<small class="hidden" data-error="ubicacion">Función disponible solo en México</small>

@@ -7,7 +7,7 @@ jQuery( document ).ready(function() {
 
 function fixedHeader() {
     var ajustar = true;
-    if( !jQuery('nav').hasClass("nav_busqueda") ){ ajustar = false; }
+    if( jQuery('nav').hasClass("nav_busqueda") ){ ajustar = false; }
     if( parseInt( jQuery("body").width() ) < 768 ){ ajustar = true; }
     if( ajustar ){
         let ww = jQuery(window).scrollTop();

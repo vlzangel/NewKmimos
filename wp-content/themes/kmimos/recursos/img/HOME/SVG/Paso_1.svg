@@ -10,7 +10,7 @@
       }
 
       .cls-2, .cls-6, .cls-7 {
-        stroke: #7ad2c4;
+        stroke: #00d2c6;
         stroke-miterlimit: 10;
         stroke-width: 4px;
       }
@@ -28,7 +28,7 @@
       }
 
       .cls-9 {
-        fill: #7ad2c4;
+        fill: #00d2c6;
       }
     </style>
     <clipPath id="clip-path">
