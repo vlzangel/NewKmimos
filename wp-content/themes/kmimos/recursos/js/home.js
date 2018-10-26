@@ -49,7 +49,6 @@ jQuery( document ).ready(function() {
     jQuery("#mi_ubicacion").on("click", function(e){
 
         jQuery(".icon_left").addClass("fa-spinner fa-spin");
-
         jQuery(this).css("display", "none");
         
         navigator.geolocation.getCurrentPosition(

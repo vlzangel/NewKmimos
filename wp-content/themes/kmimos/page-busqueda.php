@@ -141,7 +141,10 @@
 					    	<div class="cerrar_list">X</div>
 					    	<ul class="ubicacion_list"></ul>
 					    </div>
-						<i class="fa fa-crosshairs icon_left ubicacion_gps mi_ubicacion"></i>
+
+						<i id="_mi_ubicacion" class="fa icon_left ubicacion_gps"></i>
+						<img class="mi_ubicacion" src="'.get_recurso("img").'HOME/SVG/GPS_Off.svg" />
+
 						<div class="barra_ubicacion"></div>
 						<small class="hidden" data-error="ubicacion">Función disponible solo en México</small>
 

@@ -173,6 +173,13 @@
 			height: 20px;
 		}
 
+		img.mi_ubicacion {
+		    position: absolute;
+		    top: 11px;
+		    right: 10px;
+		    z-index: 100;
+		}
+
 		.ubicacion_container .ubicacion_gps,
 		.ubicacion_container .ubicacion_localizacion
 		{
@@ -780,7 +787,7 @@
 		    border: solid 1px #CCC;
 		    border-radius: 3px;
 		    background: #EEE;
-		    padding: 10px 40px;
+		    padding: 5px 40px;
 		    box-sizing: border-box;
 		}
 
@@ -794,14 +801,13 @@
 		}
 
 		.icono_flash span, .icono_descuento span{
-		    display: block;
-		    padding: 0px;
-		    height: 40px;
+			display: block;
+			padding: 0px;
+			height: 30px;
 			margin-left: 5px;
-
 			background-position: center;
 			background-repeat: no-repeat;
-			background-size: 60%;
+			background-size: 50%;
 
 		}
 
@@ -813,7 +819,7 @@
 			background-image: url(../img/BUSQUEDA/SVG/iconos/Disponible.svg);
 		    background-position: 11px center;
 		    background-repeat: no-repeat;
-		    background-size: 20px;
+		    background-size: 17px;
 		}
 
 		.icono_flash span{
