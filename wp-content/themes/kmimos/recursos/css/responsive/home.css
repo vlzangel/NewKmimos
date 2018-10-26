@@ -677,6 +677,8 @@
 
 	.club_patitas_celda.celda_30 h2 {
 		margin: 0px 0px 20px;
+	    display: block;
+    	font-size: 19px !important;
 	}
 
 	.club_patitas_celda.celda_30 img {
