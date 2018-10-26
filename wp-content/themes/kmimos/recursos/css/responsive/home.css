@@ -260,7 +260,6 @@
 
 	.servicios_principales_box{
 	    white-space: nowrap;
-	    #left: -34%;
 	    position: relative;
 	}
 
@@ -296,6 +295,7 @@
 	}
 
 	#servicios_principales_container img.Flechas {
+		display: inline-block;
 	    position: absolute;
 	    top: 50px;
 	    height: 38px;

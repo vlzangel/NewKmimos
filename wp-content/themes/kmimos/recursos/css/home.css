@@ -73,6 +73,10 @@
 	    margin-bottom: 15px;
 	}
 
+	#servicios_principales_container img.Flechas {
+	    display: none;
+	}
+
 	.input_check_box {
 		position: relative;
 	    display: inline-block;
