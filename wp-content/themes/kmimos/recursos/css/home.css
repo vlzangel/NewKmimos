@@ -399,7 +399,6 @@
 	    padding: 0px;
 	    width: 100%;
 	    box-sizing: border-box;
-	    /* font-family: 'Lato', sans-serif; */
 	    font-family: Gotham-Pro-Bold;
 	    outline: none;
 	}
@@ -432,6 +431,13 @@
 		font-size: 18px;
 		font-weight: 600;
 		color: #7c169e;
+		transition: all .3s ease-in-out;
+	}
+
+	.beneficios_registrar_container .boton.boton_border_morado:hover {
+	    background: #7c169e;
+	    color: #FFF;
+	    transition: all .3s ease-in-out;
 	}
 
 	.beneficios_registrar_container span{
@@ -916,7 +922,6 @@
 	    font-size: 28px;
 	    text-transform: uppercase;
 	    margin: 0 0 15px;
-	    font-family: 'Lato', sans-serif;
 	    font-weight: 600;
 	}
 
@@ -948,7 +953,6 @@
 		font-size: 25px;
 		color: #000;
 		font-weight: 600;
-		font-family: 'Lato', sans-serif;
 	}
 
 	.conectate_container > img {
