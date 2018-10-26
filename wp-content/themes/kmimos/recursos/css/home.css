@@ -922,6 +922,7 @@
 	    font-size: 28px;
 	    text-transform: uppercase;
 	    margin: 0 0 15px;
+	    font-family: Gotham-Pro-Bold;
 	    font-weight: 600;
 	}
 
@@ -953,6 +954,7 @@
 		font-size: 25px;
 		color: #000;
 		font-weight: 600;
+		font-family: Gotham-Pro-Bold;
 	}
 
 	.conectate_container > img {
