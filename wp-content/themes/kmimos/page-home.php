@@ -46,44 +46,47 @@
 						<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
 						<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
 					</div>
-				
-					<div class="servicios_principales_container">
+					
+					<div id="servicios_principales_container">
+						<div class="servicios_principales_container">
+							<div class="servicios_principales_box">
+								<label class="input_check_box" for="hospedaje">
+									<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
+									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
+									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
+									<span>Hospedaje</span>
+									<div class="top_check"></div>
+								</label>
 
-						<div class="servicios_principales_box">
+								<label class="input_check_box" for="guarderia">
+									<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
+									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
+									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
+									<span>Guardería</span>
+									<div class="top_check"></div>
+								</label>
 
-							<label class="input_check_box" for="hospedaje">
-								<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
-								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
-								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
-								<span>Hospedaje</span>
-								<div class="top_check"></div>
-							</label>
+								<label class="input_check_box" for="paseos">
+									<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
+									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
+									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
+									<span>Paseos</span>
+									<div class="top_check"></div>
+								</label>
 
-							<label class="input_check_box" for="guarderia">
-								<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
-								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
-								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
-								<span>Guardería</span>
-								<div class="top_check"></div>
-							</label>
-
-							<label class="input_check_box" for="paseos">
-								<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
-								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
-								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
-								<span>Paseos</span>
-								<div class="top_check"></div>
-							</label>
-
-							<label class="input_check_box" for="entrenamiento">
-								<input type="checkbox" id="entrenamiento" name="servicios[]" value="entrenamiento"  />
-								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
-								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
-								<span>Entrenamiento</span>
-								<div class="top_check"></div>
-							</label>
-
+								<label class="input_check_box" for="entrenamiento">
+									<input type="checkbox" id="entrenamiento" name="servicios[]" value="entrenamiento"  />
+									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
+									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
+									<span>Entrenamiento</span>
+									<div class="top_check"></div>
+								</label>
+							</div>
 						</div>
+
+						<img onclick="serviciosAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_2.svg" />
+						<img onclick="serviciosSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_1.svg" />
+			
 					</div>
 
 					<div class="controles_mitad_container">

@@ -221,6 +221,7 @@
 		padding: 30px 10px 10px;
 		box-sizing: border-box;
 		width: 100%;
+		position: relative
 	}
 
 	#buscador .banner_txt_1, 
@@ -229,7 +230,7 @@
 	}
 
 	#buscador .banner_txt_1 {
-		font-size: 16px;
+		font-size: 14px;
 		text-transform: none;
 		max-width: 325px;
 		margin: 0px auto;
@@ -237,14 +238,13 @@
 	}
 
 	#buscador .banner_txt_2 {
-	    font-family: 'Lato', sans-serif;
-	    font-size: 13px;
-	    font-weight: 400;
-	    padding: 15px 0px;
+		font-size: 12px;
+		font-weight: 400;
+		padding: 15px 0px;
+		font-family: 'Gotham-Pro-Regular', arial, sans-serif;
 	}
 
 	#buscador .banner_txt_3 {
-	    font-family: 'Lato', sans-serif;
 	    font-size: 13px;
 	    font-weight: 600;
 	    padding: 15px 0px;
@@ -255,17 +255,19 @@
 	.servicios_principales_container {
 	    overflow: hidden;
 	    width: 100%;
+	    position: relative;
 	}
 
 	.servicios_principales_box{
-	    overflow: auto;
-        white-space: nowrap;
+	    white-space: nowrap;
+	    #left: -34%;
+	    position: relative;
 	}
 
 	.servicios_principales_container .input_check_box {
-	    padding: 0px;
-	    width: calc( 40% - 11px );
-	    height: auto;
+		padding: 0px;
+		width: calc( 34% - 12px );
+		height: auto;
 	}
 
 	.servicios_principales_container .input_check_box img {
@@ -287,6 +289,31 @@
 	    background-color: transparent;
 	    border-radius: 5px;
 	    border: solid 2px #00d2c6;
+	}
+
+	#servicios_principales_container {
+	    position: relative;
+	}
+
+	#servicios_principales_container img.Flechas {
+	    position: absolute;
+	    top: 50px;
+	    height: 38px;
+	    z-index: 100;
+	    padding: 12px 15px;
+	    border: solid 1px #CCC;
+	    background: #FFF;
+	}
+
+	#servicios_principales_container .Flecha_Izquierda {
+	    left: -14px;
+        border-radius: 0px 3px 3px 0px;
+	}
+
+	#servicios_principales_container .Flecha_Derecha {
+        right: -11px !important;
+    	left: auto !important;
+	    border-radius: 3px 0px 0px 3px;
 	}
 
 	.tipo_mascota_container .input_check_box span {

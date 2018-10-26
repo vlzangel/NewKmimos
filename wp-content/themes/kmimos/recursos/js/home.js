@@ -1,4 +1,12 @@
-var hasGPS=false;
+function serviciosAnterior(_this){
+    jQuery(".servicios_principales_box").animate({ left: "0px"});
+}
+
+function serviciosSiguiente(_this){
+    jQuery(".servicios_principales_box").animate({ left: "-34%"});
+}
+
+    var hasGPS=false;
 var crd;
 var prueba_ubicacion = false;
 
