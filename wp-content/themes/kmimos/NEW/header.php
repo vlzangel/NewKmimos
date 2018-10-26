@@ -122,9 +122,14 @@
 		$clase_white = "nav_white";
 	}
 
+	$wlabel = add_wlabel();
+
 	$HTML .= '
     	<script>
-    		var HOME = "'.getTema().'";
+    		var HOME = "'.getTema().'/";
+    		var RAIZ = "'.get_home_url().'/";
+    		var RUTA_IMGS = "'.get_home_url().'/imgs/";
+    		var wlabel = "'.$wlabel.'";
     	</script>
 		<nav class="'.$clase_white.'">
 

@@ -3,6 +3,22 @@ jQuery( document ).ready(function() {
 	jQuery(window).on('scroll', function () {
 	  	fixedHeader();
 	});
+
+    if(navigator.platform.substr(0, 2) == 'iP'){
+        /*jQuery('html').addClass('iOS');*/
+        jQuery(".label-placeholder").addClass("focus");
+    } else {
+        jQuery(document).on("focus", "input.input-label-placeholder", function(){
+            jQuery(this).parent().addClass("focus");
+        }).on("blur", "input.input-label-placeholder", function(){
+            let i = jQuery(this);
+            if ( i.val() !== "" ) jQuery(this).parent().addClass("focused");
+            else jQuery(this).parent().removeClass("focused");
+
+            jQuery(this).parent().removeClass("focus");
+        });
+    }
+    
 });
 
 function fixedHeader() {
