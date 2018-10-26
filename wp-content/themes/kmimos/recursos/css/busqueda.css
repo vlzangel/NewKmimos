@@ -1304,3 +1304,51 @@
 	    height: calc( 100% - 0px );
 	    background: #BBB;
 	}
+
+	.maps_h1{
+	    text-transform: uppercase;
+	    font-size: 16px;
+	    font-family: Gotham-Pro-Bold;
+	    margin: 0px 0px 2px;
+	}
+
+	.maps_p{
+		color: #555;
+		padding: 2px 0px;
+	}
+
+	.maps_ranking .active {
+		background-image: url(../img/BUSQUEDA/SVG/Huesito_azul.svg) !important;
+	    height: 11px;
+	    background-size: 20px 11px;
+	}
+
+	.maps_ranking .no_active {
+		background-image: url(../img/BUSQUEDA/SVG/Huesito_gris.svg) !important;
+	    height: 11px;
+	    background-size: 20px 11px;
+	}
+
+	.km-opciones.maps .precio span {
+	    color: #333;
+	    font-weight: 600;
+	    font-size: 12px;
+	}
+
+	.km-opciones.maps .precio {
+	    color: #1488d0 !important;
+	    font-weight: 600;
+	}
+
+	.km-ranking.maps_ranking {
+	    padding: 2px 0px;
+	}
+
+	.km-opciones.maps .boton{
+	    display: block;
+	    text-align: center;
+	    margin: 7px 0px 0px;
+	    padding: 5px 15px;
+	    border-width: 1px !important;
+	    text-decoration: none !important;
+	}

@@ -528,13 +528,11 @@
 				"user" => $cuidador->user_id,
 				"lat"  => $cuidador->latitud,
 				"lng"  => $cuidador->longitud,
-				"nom"  => utf8_encode($cuidador->titulo),
+				"nom"  => ($cuidador->titulo),
 				"url"  => utf8_encode($url), 
 				"exp"  => $anios_exp,
-				"adi"  => $cuidador->adicionales,
-				//"ser"  => "",
 				"rating" => ceil($cuidador->rating),
-				"pre"  => $cuidador->precio
+				"pre"  => $cuidador->hospedaje_desde
 			);
 
 		}

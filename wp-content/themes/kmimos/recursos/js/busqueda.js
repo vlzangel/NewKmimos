@@ -226,7 +226,7 @@
 				}
 
 				accionFavorito();
-				
+
 				CARGAR_RESULTADOS = true;
 
 				var PAG_HTML = "";
@@ -414,13 +414,6 @@
 				            icon: HOME+"/js/images/n2.png"
 				        });
 
-				        var servicios = "";
-				        if( cuidador["ser"] != undefined && cuidador["ser"].length > 0 ){
-					        jQuery.each(cuidador["ser"], function( index, servicio ) {
-					        	servicios += '<img src="'+HOME+'/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
-					        });
-				        }
-
 				        var rating = "";
 				        var rating_value = 0;
 				        if( cuidador["rating"] != undefined && cuidador["rating"] > 0 ){
@@ -435,17 +428,17 @@
 				        }
 
 				        infos[index] = new google.maps.InfoWindow({ 
-				            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
-										+'<p style="margin-bottom:0px;">'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
-										+'<div class="km-ranking">'
+				            content: 	'<h1 class="maps_h1">'+cuidador.nom+'</h1>'
+										+'<p class="maps_p" style="margin-bottom:0px;">'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
+										+'<div class="km-ranking maps_ranking">'
 										+	'<div class="km-ranking rating" style="display:inline-block">'
 										+		rating
 										+	'</div>'
 										+'</div>'
 										+'<div class="km-opciones maps">'
-										+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
-										+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
-										+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
+										+'    <div class="precio"><span>desde</span> MXN $ '+cuidador.pre+'</div>'
+										+'    <a href="'+cuidador.url+'" class="boton boton_border_gris">Conocer cuidador</a>'
+										+'    <a href="'+cuidador.url+'" class="boton boton_verde">Reservar</a>'
 										+'</div>'
 				        });
 
