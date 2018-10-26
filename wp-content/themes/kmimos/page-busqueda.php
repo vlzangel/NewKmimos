@@ -131,9 +131,7 @@
 			}
 		}
 
-		echo "<pre>";
-			print_r($_SESSION["busqueda"]["servicios"]);
-		echo "</pre>";
+    include ('partes/cuidador/conocelo.php');
 
     $HTML = '
     	<div class="busqueda_container">

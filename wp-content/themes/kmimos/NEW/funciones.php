@@ -306,9 +306,17 @@
 								</div>
 							</div>
 							<div class="resultados_item_bottom">
-								<a href="#" class="boton boton_border_gris">
+								<a 
+									role="button" href="#" 
+                                    data-name="'.$titulo.'" 
+                                    data-id="'.$_cuidador->id_post.'" 
+                                    data-target="#popup-conoce-cuidador"
+                                    href="#" class="boton boton_border_gris"
+                                >
+
 									<span class="boton_conocer_PC">Solicitud de conocer</span>
 									<span class="boton_conocer_MOVIl"><span class="boton_conocer_MOVIl">Conocer</span>
+
 								</a>
 								<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="boton boton_verde">Reservar</a>
 							</div>
