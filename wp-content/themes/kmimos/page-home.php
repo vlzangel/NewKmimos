@@ -260,7 +260,7 @@
 											</label>
 										</div>
 										<div class="col-xs-12 col-sm-3">
-											<a id="agregar_servicios" href="javascript:;" class="km-btn-primary">AGREGAR SERVICIO</a>
+											<a id="agregar_servicios" href="javascript:;" class="boton_buscar boton_verde">AGREGAR SERVICIO</a>
 										</div>
 									</div>
 								</div>

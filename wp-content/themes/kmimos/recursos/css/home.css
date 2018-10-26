@@ -1087,3 +1087,10 @@
 	    background-size: contain;
 	    background-repeat: no-repeat;
 	}
+
+	a#agregar_servicios {
+	    padding: 25px;
+	    width: 100%;
+	    border-radius: 5px;
+	    text-decoration: none !important;
+	}
