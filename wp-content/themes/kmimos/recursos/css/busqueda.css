@@ -1125,7 +1125,7 @@
 			display: table-cell;
 			vertical-align: middle;
 			font-weight: 600;
-			font-size: 11px;
+			font-size: 13px;
 		}
 
 		.check_descuento{
@@ -1228,6 +1228,106 @@
 
 		form#buscar_2 .filtros_movil {
 		    padding: 5px 0px 0px 10px;
+		}
+
+		.principales_container {
+			position: relative;
+			height: 65px;
+		}
+
+		.principales_container i {
+		    position: absolute;
+		    top: 0px;
+		    right: 0px;
+		    z-index: 99999;
+		    font-size: 20px;
+		    cursor: pointer;
+		    padding: 17px 15px;
+		    border-radius: 0px 5px 5px 0px;
+		}
+
+		/*.principales_container i:hover {
+		    color: #FFF;
+		    background-color: #00d2c6;
+		}*/
+
+		.principales_container .principales_box {
+		    position: absolute;
+		    top: 60px;
+		    left: 0px;
+		    width: 100%;
+		    z-index: 999;
+		    background: #FFF;
+		    display: none;
+		    opacity: 0;
+		    transition: all .3s ease-in-out;
+		}
+
+		.principales_container:hover .principales_box {
+		    display: block;
+		    opacity: 1;
+		    transition: all .3s ease-in-out;
+		}
+
+		.principales_container .input_check_box {
+			width: 100%;
+			overflow: hidden;
+			height: 55px;
+			display: table;
+			padding: 0px;
+		}
+
+		.principales_container .input_check_box .principales_img {
+			display: table-cell;
+			vertical-align: middle;
+		    width: 60px;
+		    text-align: center;
+		    box-sizing: border-box;
+		}
+
+		.principales_container .input_check_box .principales_info {
+		    display: table-cell;
+		    vertical-align: middle;
+		    width: calc( 100% - 60px );
+		    text-align: left;
+	        padding-top: 2px;
+		    padding-left: 15px;
+		}
+
+		.principales_container .input_check_box .principales_info div {
+		    color: #777;
+		    font-weight: 500;
+		}
+
+		.principales_container .input_check_box .principales_info span {
+		    color: #AAA;
+		}
+
+		.principales_container .input_check_box .principales_img {
+		    background-size: 45%;
+		    background-position: center;
+		    background-repeat: no-repeat;
+		    background-color: #cdcdcd;
+		}
+
+		.principales_container .input_check_box input:checked ~ .principales_img {
+		    background-color: #00d2c6;
+		}
+
+		.principales_container .input_check_box .principales_img.prin_icon_hospedaje {
+		    background-image: url( ../img/BUSQUEDA/SVG/principales/hospedaje.svg );
+		}
+
+		.principales_container .input_check_box .principales_img.prin_icon_guarderia {
+		    background-image: url( ../img/BUSQUEDA/SVG/principales/guarderia.svg );
+		}
+
+		.principales_container .input_check_box .principales_img.prin_icon_paseos {
+		    background-image: url( ../img/BUSQUEDA/SVG/principales/paseos.svg );
+		}
+
+		.principales_container .input_check_box .principales_img.prin_icon_adiestramiento {
+		    background-image: url( ../img/BUSQUEDA/SVG/principales/adiestramiento.svg );
 		}
 
 	/* PAGINACION */

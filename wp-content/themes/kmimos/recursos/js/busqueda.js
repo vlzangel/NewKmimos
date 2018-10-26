@@ -151,6 +151,18 @@
 			jQuery("#flash").prop( "checked", jQuery(this).prop("checked") );
 			buscar( 'flash' );
 		});
+
+		jQuery(".principales_container").on("click", function(e){
+			if( jQuery(this).hasClass("show_princ") ){
+				jQuery(this).removeClass("show_princ");
+				jQuery(this).find("i").addClass("fa-caret-down");
+				jQuery(this).find("i").removeClass("fa-caret-up");
+			}else{
+				jQuery(this).addClass("show_princ");
+				jQuery(this).find("i").removeClass("fa-caret-down");
+				jQuery(this).find("i").addClass("fa-caret-up");
+			}
+		});
 	});
 
 	jQuery(".resultados_container").on("scroll", function() {

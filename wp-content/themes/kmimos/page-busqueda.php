@@ -107,6 +107,34 @@
 	    $check_descuento = ( $_SESSION["busqueda"]["descuento"] == 1 ) ? "checked": "";
 	    $check_flash = ( $_SESSION["busqueda"]["flash"] == 1 ) ? "checked": "";
 
+	/* PRINCIPALES */
+
+		$servicios_principales = get_servicios("principales");
+		$servicios_principales_hospedaje_str = '';
+		$servicios_principales_str = '';
+		foreach ($servicios_principales as $key => $servicio) {
+			$_checked = ( is_array($_SESSION["busqueda"]["servicios"]) && in_array($key, $_SESSION["busqueda"]["servicios"]) ) ? "checked" : "";
+			$_temp = '
+				<label class="input_check_box" for="'.$key.'">
+					<input type="checkbox" id="'.$key.'" name="servicios[]" value="'.$key.'" '.$_checked.' />
+					<div class="principales_img prin_icon_'.$key.'"></div>
+					<div class="principales_info">
+						<div>'.$servicio[0].'</div>
+						<span>'.$servicio[1].'</span>
+					</div>
+				</label>
+			';
+			if( $key == "hospedaje" ){
+				$servicios_principales_hospedaje_str = $_temp;
+			}else{
+				$servicios_principales_str[] = $_temp;
+			}
+		}
+
+		echo "<pre>";
+			print_r($_SESSION["busqueda"]["servicios"]);
+		echo "</pre>";
+
     $HTML = '
     	<div class="busqueda_container">
 
@@ -131,6 +159,14 @@
 							<div>reserva inmediata</div>
 							<div class="check_control"></div>
 						</label>
+					</div>
+
+					<div class="principales_container">
+						<i class="fa fa-caret-down" aria-hidden="true"></i>
+						'.$servicios_principales_hospedaje_str.'
+						<div class="principales_box">
+							'.implode('', $servicios_principales_str).'
+						</div>
 					</div>
 
 					<div class="ubicacion_container">

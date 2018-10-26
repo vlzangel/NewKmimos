@@ -536,7 +536,7 @@
 			case 'principales':
 				return array(
 					"hospedaje" 				=> [ "Hospedaje", "Día y noche" ],
-		            "guarderia" 				=> [ "Guarderia", "Solo día" ],
+		            "guarderia" 				=> [ "Guardería", "Solo día" ],
 		            "paseos" 					=> [ "Paseos", "" ],
 		            "adiestramiento" 			=> [ "Adiestramiento", "" ]
 				);
