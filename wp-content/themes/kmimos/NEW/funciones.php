@@ -28,7 +28,7 @@
 	                    $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
 	                    $nombre = $data->nom;
 	                    $img_url = kmimos_get_foto($cuidador->user_id);
-	                    $url = get_home_url() . "/petsitters/" . $data->url;
+	                    $url = get_home_url() . "/petsitters/" . $cuidador->user_id;
 	                    $anios_exp = $cuidador->experiencia;
 	                    if( $anios_exp > 1900 ){
 	                        $anios_exp = date("Y")-$anios_exp;
@@ -58,7 +58,7 @@
                 $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
                 $nombre = $data->nom;
                 $img_url = kmimos_get_foto($cuidador->user_id);
-                $url = get_home_url() . "/petsitters/" . $data->url;
+                $url = get_home_url() . "/petsitters/" . $cuidador->user_id;
                 $anios_exp = $cuidador->experiencia;
                 if( $anios_exp > 1900 ){
                     $anios_exp = date("Y")-$anios_exp;
@@ -118,7 +118,7 @@
 	        			<div class="desacado_monto">Desde <strong>MXN $ '.$destacado["desde"].'</strong></div>
 	        			<div class="desacado_ranking_container">'.$destacado["ranking"].'</div>
 	        			<div class="desacado_experiencia">'.$destacado["valoraciones"].' valoraciones</div>
-	        			<a class="desacado_boton_reservar">Reservar</a>
+	        			<a class="desacado_boton_reservar" href="'.$destacado["url"].'">Reservar</a>
 	        		</div>
 	            ';
 	        }
