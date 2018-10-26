@@ -1,13 +1,13 @@
 jQuery( document ).ready(function() {
-    jQuery(".favorito").on("click", function(e){
+    accionFavorito();
+});
+
+function accionFavorito(){
+    jQuery(".favorito").unbind("click").bind("click", function(e){
         var fav_active = jQuery(this).attr('data-active');
         var fav_num = jQuery(this).attr('data-num');
-        
-        var fav = jQuery(this);
-        var fav_2 = jQuery(".favorito_replicas .favorito");
-
+        var fav = jQuery( '[data-num="'+fav_num+'"]' );
         if( fav_active == "false" ){
-            var fav = jQuery(this);
             var data = {
                 'action': 'get_favorites',
                 'item': fav_num,
@@ -19,9 +19,6 @@ jQuery( document ).ready(function() {
                 if( result['user'] > 0 ){
                     fav.addClass('favoritos_delete');
                     fav.attr('data-active', result['active']);
-
-                    fav_2.addClass('favoritos_delete');
-                    fav_2.attr('data-active', result['active']);
                 }else{
                     jQuery('#popup-iniciar-sesion').modal('show');
                 }
@@ -44,16 +41,11 @@ jQuery( document ).ready(function() {
                 success: function(data){
                     fav.attr('data-active', false);
                     fav.removeClass('favoritos_delete');
-
-                    fav_2.attr('data-active', false);
-                    fav_2.removeClass('favoritos_delete');
                 }
             });
         }
-
-
     });
-});
+}
 
 
 /*jQuery(document).on('click','favorito',function(){

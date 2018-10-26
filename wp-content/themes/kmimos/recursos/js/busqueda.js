@@ -224,6 +224,9 @@
 					jQuery(".resultados_box .resultados_box_interno").html( html );
 					jQuery('html, body').animate({ scrollTop: 0 }, 1000);
 				}
+
+				accionFavorito();
+				
 				CARGAR_RESULTADOS = true;
 
 				var PAG_HTML = "";
@@ -261,6 +264,7 @@
 			{},
 			function(html){
 				jQuery("#seccion_destacados").html( html );
+				accionFavorito();
 				if( String(html).trim() == "" ){
 					jQuery("#seccion_destacados").addClass("sin_destacados");
 				}else{

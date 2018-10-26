@@ -308,7 +308,9 @@
 		.resultados_item_direccion,
 		.resultados_item_servicios,
 		.por_noche,
-		.resultados_item_comentario {
+		.resultados_item_comentario_img,
+		.resultados_item_comentario_contenido
+		{
 		    display: none;
 		}
 
@@ -495,6 +497,17 @@
 
 		.cargando_mas_resultados {
 		    display: none;
+		}
+
+		.resultados_item_comentario_favorito span {
+		    position: absolute;
+		    top: -124px;
+		    right: 8px;
+	        border: 0px;
+		}
+
+		.resultados_item_comentario_favorito span .favorito {
+		    background-image: url(../../img/BUSQUEDA/SVG/iconos/Corazon.svg);
 		}
 }
 

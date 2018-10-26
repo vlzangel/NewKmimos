@@ -94,15 +94,14 @@
 		        }
 
 		        $favorito_movil = '
-		        	<img 
+		        	<div 
 		        		class="favorito '.$fav_del.'" '.$style_icono.'" 
 		        		data-reload="false"
 			            data-user="'.$user_id.'" 
 			            data-num="'.$destacado["id_post"].'" 
 			            data-active="'.$fav_check.'"
 			            data-favorito="'.$fav_check.'"
-		        		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img.'.svg" 
-		        	/>
+		        	></div>
 		        ';
 
 	        	$top_destacados .= '
@@ -189,37 +188,23 @@
 
 				$fav_check = 'false';
 		        $fav_del = '';
-		        $fav_img_pc = 'Corazon_Gris';
-		        $fav_img_movil = 'Corazon';
+		        $fav_img = 'Corazon';
 		        if (in_array($_cuidador->id_post, $favoritos)) {
 		            $fav_check = 'true'; 
 		            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
 		            $fav_del = 'favoritos_delete';
-		            $fav_img_pc = 'Favorito';
-		            $fav_img_movil = 'Favorito';
+		            $fav_img = 'Favorito';
 		        }
-		        $favorito_movil = '
-		        	<img 
-		        		class="favorito '.$fav_del.'" '.$style_icono.'" 
-		        		data-reload="false"
-			            data-user="'.$user_id.'" 
-			            data-num="'.$_cuidador->id_post.'" 
-			            data-active="'.$fav_check.'"
-			            data-favorito="'.$fav_check.'"
-		        		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img_movil.'.svg" 
-		        	/>
-		        ';
 
-		        $favorito_pc = '
-		        	<img 
-		        		class="'.$fav_del.'" '.$style_icono.'" 
+		        $favorito_movil = '
+		        	<div 
+		        		class="favorito '.$fav_del.'" 
 		        		data-reload="false"
 			            data-user="'.$user_id.'" 
 			            data-num="'.$_cuidador->id_post.'" 
 			            data-active="'.$fav_check.'"
 			            data-favorito="'.$fav_check.'"
-		        		src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/'.$fav_img_pc.'.svg" 
-		        	/>
+		        	></div>
 		        ';
 
 				$comentario = '';
@@ -237,7 +222,7 @@
 							</div>
 							<div class="resultados_item_comentario_favorito">
 								<span>
-									'.$favorito_pc.'
+									'.$favorito_movil.'
 								</span>
 							</div>
 						</div>
@@ -249,7 +234,7 @@
 							<div class="resultados_item_comentario_contenido"></div>
 							<div class="resultados_item_comentario_favorito">
 								<span>
-									'.$favorito_pc.'
+									'.$favorito_movil.'
 								</span>
 							</div>
 						</div>
@@ -286,7 +271,6 @@
 										<div class="resultados_item_info_img_box">
 											'.$galeria.'
 										</div>
-										'.$favorito_movil.'
 										<img onclick="imgAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_2.svg" />
 										<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
 									</div>
