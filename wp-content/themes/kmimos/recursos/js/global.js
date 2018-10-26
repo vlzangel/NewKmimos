@@ -24,7 +24,7 @@ jQuery( document ).ready(function() {
 function fixedHeader() {
     var ajustar = true;
     if( jQuery('nav').hasClass("nav_busqueda") ){ ajustar = false; }
-    if( parseInt( jQuery("body").width() ) < 768 ){ ajustar = true; }
+    if( parseInt( jQuery("body").width() ) < 768 && ajustar ){ ajustar = false; }
     if( ajustar ){
         let ww = jQuery(window).scrollTop();
         if (ww > 0) {
