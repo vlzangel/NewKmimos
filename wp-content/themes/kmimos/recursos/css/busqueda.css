@@ -915,17 +915,17 @@
 		}
 
 		.resultados_item_servicios img {
-			height: 25px;
+			height: 23px;
 		}
 
 		.resultados_item_comentarios {
-		    display: inline-block;
-		    padding: 2px 7px;
-		    border: solid 2px #CCC;
-		    margin-left: 15px;
-		    font-size: 12px;
-		    color: #838383;
-		    border-radius: 2px;
+			display: inline-block;
+			padding: 2px 5px;
+			border: solid 1px #CCC;
+			margin-left: 5px;
+			font-size: 12px;
+			color: #838383;
+			border-radius: 2px;
 		}
 
 		.resultados_item_ranking {
@@ -962,7 +962,11 @@
 		}
 
 		.resultados_item_precio_container > div strong span {
-		    font-size: 13px;
+		    font-size: 12px;
+		}
+
+		.resultados_item_valoraciones {
+		    font-size: 12px;
 		}
 
 		.resultados_item_comentario{
