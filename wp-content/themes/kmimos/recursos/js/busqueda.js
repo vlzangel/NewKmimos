@@ -451,7 +451,7 @@
 										+'</div>'
 										+'<div class="km-opciones maps">'
 										+'    <div class="precio"><span>desde</span> MXN $ '+cuidador.pre+'</div>'
-										+'    <a href="'+cuidador.url+'" class="boton boton_border_gris">Conocer cuidador</a>'
+										+'    <a href="#" role="button" data-name="'+cuidador.nom+'" data-id="'+cuidador.post_id+'" data-target="#popup-conoce-cuidador"class="boton boton_border_gris">Conocer cuidador</a>'
 										+'    <a href="'+cuidador.url+'" class="boton boton_verde">Reservar</a>'
 										+'</div>'
 				        });
