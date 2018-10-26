@@ -1324,9 +1324,12 @@
                 "gatos"     => "Gato"
             );
 
-            $dias = ceil(((($xfin - $xini)/60)/60)/24);
+            // $dias = ceil(((($xfin - $xini)/60)/60)/24);
 
-            $dias_noches = "Noche"; if( trim($tipo_servicio) != "Hospedaje" ){ $dias_noches = "Día"; }else{ $dias--; }
+            $dias = explode(" ", $detalles_reserva["Duración"]);
+            $dias = $dias[0];
+
+            $dias_noches = "Noche"; if( trim($tipo_servicio) != "Hospedaje" ){ $dias_noches = "Día"; }else{  }
             $plural_dias = ""; if( $dias > 1 ){ $plural_dias = "s"; } $dias_noches .= $plural_dias;
 
             $info = kmimos_get_info_syte();
