@@ -89,7 +89,7 @@
 					<div class="controles_mitad_container">
 
 						<div class="ubicacion_container">
-							<img class="ubicacion_localizacion" src="'.get_recurso("img").'HOME/SVG/Localizacion_2.svg" />
+							<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion_2.svg" />
 							<input type="text" id="ubicacion_txt" name="ubicacion_txt" placeholder="Ubicación estado municipio" autocomplete="off" />
 
 							<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />	
