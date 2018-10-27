@@ -531,6 +531,10 @@
 		.tipo_mascota_container .input_check_box {
 		    height: auto;
 		}
+
+		.tipo_mascota_container .input_check_box span {
+		    padding: 7px 0px 4px;
+		}
 }
 
 @media (max-width: 400px){
