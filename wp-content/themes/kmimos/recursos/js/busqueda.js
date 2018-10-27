@@ -86,6 +86,8 @@
 
 	jQuery(document).ready(function(){
 
+		jQuery("footer").addClass("show_footer");
+
 		jQuery('nav').addClass('nav_busqueda');
 		jQuery('nav').addClass('nav_white');
 
@@ -107,6 +109,7 @@
 			}else{
 				jQuery(".resultado_item").addClass('full_width');
 			}
+			jQuery("footer").removeClass("show_footer");
 		});
 
 		jQuery("#ver_filtros_fechas").on("click", function(e){
@@ -114,6 +117,7 @@
 			if( parseInt( jQuery("body").width() ) < 768 ){
 				jQuery("body").css("overflow-y", "hidden");
 			}
+			jQuery("footer").removeClass("show_footer");
 		});
 
 		jQuery("#ver_mapa").on("click", function(e){
@@ -125,10 +129,12 @@
 			if( parseInt( jQuery("body").width() ) < 768 ){
 				jQuery("body").css("overflow-y", "auto");
 			}
+			jQuery("footer").addClass("show_footer");
 		});
 
 		jQuery(".cerrar_mapa_movil").on("click", function(e){
 			jQuery(".mapa_container").removeClass('open_mapa');
+			jQuery("footer").addClass("show_footer");
 		});
 
 		jQuery("#buscar").submit(function(e){
