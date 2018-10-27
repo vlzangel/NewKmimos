@@ -713,7 +713,7 @@ section .left{
         .menu_movil_interno {
             position: relative;
             left: 0;
-            background: #7dd1c4;
+            background: #00d2c6;
             width: 100%;
             max-width: 300px;
             padding: 15px 15px 15px 15px;
