@@ -1372,7 +1372,7 @@
 		}
 
 		.cargando_mas_resultados{
-			display: block;
+			display: none;
 		}
 
 		.cargando_mas_resultados_externo {
