@@ -81,14 +81,16 @@
 	.galeria_container_fixed .cerrar {
 	    left: auto;
 	    position: fixed;
-	    right: 15px;
-    	top: 10px;
+	    right: 5px;
+    	top: auto;
+    	font-size: 40px;
+	    line-height: 0.5;
 	}
 	
 	.galeria_container_fixed .galeria_celda img {
 	    height: auto;
 	    vertical-align: top;
-	    width: 100%;
+        width: 85%;
 	}
 
 	.pc_info_container {

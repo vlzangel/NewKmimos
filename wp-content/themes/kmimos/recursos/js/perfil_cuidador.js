@@ -49,6 +49,10 @@ jQuery( document ).ready(function() {
         hideImgGaleria();
     });
 
+    jQuery("#cerrar_galeria_2").on("click", function(e){
+        hideImgGaleria();
+    });
+
     jQuery(".galeria_container_fixed").on("click", function(e){
         hideImgGaleria();
     });
