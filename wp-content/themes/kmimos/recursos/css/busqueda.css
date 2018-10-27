@@ -128,6 +128,7 @@
 
 		.input_check_box input:checked ~ .top_check {
 		    border: solid 2px #00d2c6;
+	        opacity: 1;
 		}
 
 		.input_check_box:last-child {
@@ -361,6 +362,11 @@
 			width: calc( 50% - 15px );
 			margin: 15px 5px;
 			padding: 5px 10px;
+			border-radius: 3px;
+		}
+
+		.filtros_botones input.boton.boton_verde {
+		    border: solid 1px #00d2c6;
 		}
 
 	/* TAMAÑOS */
@@ -506,7 +512,7 @@
 		    height: 35px;
 			padding: 4px;
 			border-radius: 3px;
-			background: url(../img/BUSQUEDA/SVG/iconos/Corazon.svg) no-repeat center center;
+			background: url(../img/BUSQUEDA/SVG/iconos/Corazon_Azul.svg) no-repeat center center;
 			background-size: 55%;
 		}
 
@@ -862,6 +868,7 @@
 			height: 100%;
 		    white-space: nowrap;
 	        position: relative;
+            display: block;
 		}
 
 		.resultados_item_info_img_container .resultados_item_info_img_box .resultados_item_info_img {
@@ -1018,11 +1025,11 @@
 		.resultados_item_comentario_favorito span .favorito{
 		    top: 2px;
     		right: 0px;
-		    background-image: url(../img/BUSQUEDA/SVG/iconos/Corazon_Gris.svg);
+		    background-image: url(../img/BUSQUEDA/SVG/iconos/Corazon_Azul.svg);
 		}
 
 		.resultados_item_comentario_favorito span .favorito.favoritos_delete {
-		    background-image: url(../img/BUSQUEDA/SVG/iconos/Corazon_Azul.svg);
+		    background-image: url(../img/BUSQUEDA/SVG/iconos/Corazon_Amarillo.svg);
 		}
 
 		.resultados_item_comentario_favorito span img {

@@ -268,9 +268,9 @@
 							<div class="resultados_item_middle">
 								<div class="resultados_item_info_container">
 									<div class="resultados_item_info_img_container" data-total="'.(count($_cuidador->galeria)+1).'" data-actual="0">
-										<div class="resultados_item_info_img_box">
+										<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_info_img_box">
 											'.$galeria.'
-										</div>
+										</a>
 										<img onclick="imgAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_2.svg" />
 										<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
 									</div>
