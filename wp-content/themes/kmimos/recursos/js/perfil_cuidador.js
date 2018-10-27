@@ -138,7 +138,7 @@ function initMap() {
 		draggable: false,
 		animation: google.maps.Animation.DROP,
 		position: new google.maps.LatLng(latitud, longitud),
-		icon: "https://www.kmimos.com.mx/wp-content/themes/kmimos/js/images/n1.png"
+		icon: HOME+"/js/images/n1_new.png"
 	});
 
 	map_cuidador_movil = new google.maps.Map(document.getElementById('mapa_movil'), {
@@ -152,7 +152,7 @@ function initMap() {
 		draggable: false,
 		animation: google.maps.Animation.DROP,
 		position: new google.maps.LatLng(latitud, longitud),
-		icon: "https://www.kmimos.com.mx/wp-content/themes/kmimos/js/images/n1.png"
+		icon: HOME+"/js/images/n1_new.png"
 	});
 }
 

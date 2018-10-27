@@ -206,12 +206,12 @@
 			border: solid 2px #CCC;
 			padding: 7px 8px;
 			border-radius: 3px;
-			background: url(../img/BUSQUEDA/SVG/iconos/Corazon_Gris.svg) no-repeat center center;
+			background: url(../img/BUSQUEDA/SVG/iconos/Corazon_Azul.svg) no-repeat center center;
 			background-size: 55%;
 		}
 
 		.favorito.favoritos_delete {
-			background-image: url(../img/BUSQUEDA/SVG/iconos/Favorito.svg);
+			background-image: url(../img/BUSQUEDA/SVG/iconos/Corazon_Amarillo.svg);
 		}
 
 
