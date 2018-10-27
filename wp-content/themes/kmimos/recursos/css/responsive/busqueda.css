@@ -12,7 +12,21 @@
 	}
 }
 
+@media (min-width: 768px){
+	.principales_container:hover .principales_box {
+	    display: block;
+	    opacity: 1;
+	    transition: all .3s ease-in-out;
+	}
+}
+
 @media (max-width: 768px){
+
+	.show_princ .principales_box{
+	    display: block;
+	    opacity: 1;
+	    transition: all .3s ease-in-out;
+	}
 
 	footer.show_footer{
 		display: block !important;

@@ -1270,12 +1270,6 @@
 		    transition: all .3s ease-in-out;
 		}
 
-		.principales_container:hover .principales_box {
-		    display: block;
-		    opacity: 1;
-		    transition: all .3s ease-in-out;
-		}
-
 		.principales_container .input_check_box {
 			width: 100%;
 			overflow: hidden;
