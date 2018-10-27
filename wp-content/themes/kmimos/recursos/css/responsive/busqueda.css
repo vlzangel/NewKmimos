@@ -527,6 +527,10 @@
 		.resultados_item_comentario_favorito span .favorito {
 		    background-image: url(../../img/BUSQUEDA/SVG/iconos/Corazon.svg);
 		}
+
+		.tipo_mascota_container .input_check_box {
+		    height: auto;
+		}
 }
 
 @media (max-width: 400px){
