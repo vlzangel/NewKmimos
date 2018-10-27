@@ -528,8 +528,13 @@
 	    margin: 0px 1px;
 	}
 
+	.tipo_mascota_container .input_check_box {
+	    height: auto;
+	}
+
 	.tipo_mascota_container .input_check_box span {
 	    font-size: 13px;
+        padding: 8px 0px;
 	}
 
 	.fechas_container input {
