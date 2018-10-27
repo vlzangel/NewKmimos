@@ -54,7 +54,7 @@
 		';
 		$menu_movil_str = '
 			<a href="#" role="button" data-target="#popup-registrarte"> Registrarme </a>
-			<img class="icono" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Perfil.png" id="login" href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal" />
+			<img class="icono" src="'.get_recurso("img").'HOME/SVG/Perfil.svg" id="login" href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal" />
 			<img class="icono" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Menu.png" id="ver_menu" />
 			<div id="menu_movil" class="hidden-sm hidden-md hidden-lg">
 			<div class="menu_movil_interno">
