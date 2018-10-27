@@ -170,7 +170,7 @@
 							<div class="top_check"></div>
 						</label>
 
-						<label class="input_check_box" for="gigante">
+						<label class="input_check_box" for="gigante" style="margin-right: 0px;">
 							<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes"  />
 							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Gigante.svg" />
 							<span>
