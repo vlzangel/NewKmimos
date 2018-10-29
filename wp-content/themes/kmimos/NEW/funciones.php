@@ -119,6 +119,7 @@
 	        			<div class="desacado_ranking_container">'.$destacado["ranking"].'</div>
 	        			<div class="desacado_experiencia">'.$destacado["valoraciones"].' valoraciones</div>
 	        			<a class="desacado_boton_reservar" href="'.$destacado["url"].'">Reservar</a>
+	        			<a class="desacado_reservar_abs" href="'.$destacado["url"].'"></a>
 	        		</div>
 	            ';
 	        }

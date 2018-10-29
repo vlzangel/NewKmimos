@@ -31,7 +31,6 @@
 					<span id="buscar" class="banner_txt_2">¡Tu mejor amigo regresa feliz!</span>
 				</div>
 				<div class="solo_movil banner_home"></div>
-
 				<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
 
 					<input type="hidden" name="redireccionar" value="1" />
@@ -40,14 +39,15 @@
 					<input type="hidden" id="latitud" name="latitud" />
 					<input type="hidden" id="longitud" name="longitud" />
 
-					<div class="solo_movil">
+					<div class="solo_movil" style="padding: 0px 10px;">
 						<div class="boton boton_border_morado">Regístrate</div>
 						<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
 						<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
 						<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
 					</div>
-					
+
 					<div id="servicios_principales_container">
+						
 						<div class="servicios_principales_container">
 							<div class="servicios_principales_box">
 								<label class="input_check_box" for="hospedaje">
@@ -86,7 +86,6 @@
 
 						<img onclick="serviciosAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_2.svg" />
 						<img onclick="serviciosSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_1.svg" />
-			
 					</div>
 
 					<div class="controles_mitad_container">
@@ -280,8 +279,10 @@
 				</form>
 
 			</div>	
-		</div>
+		</div>';
 
+		
+		$HTML .= '
 		<!-- BENEFICIOS -->
 
 		<div class="beneficios_container">
@@ -401,7 +402,10 @@
 				</div>
 			</div>
 
-		</div>
+		
+		</div>';
+		
+		$HTML .= '
 
 		<div class="testimonios_container">
 
@@ -418,7 +422,10 @@
 
 			<a href="" class="testimonios_link">Ver más comentarios como éste</a>
 
-		</div>
+		
+		</div>';
+		
+		$HTML .= '
 
 		<!-- PASOS PARA RESERVAR -->
 
@@ -470,7 +477,9 @@
 				</div>
 			</div>
 
-		</div>
+		</div>';
+		
+		$HTML .= '
 
 		<!-- CLUB PATITAS FELICES -->
 
@@ -499,9 +508,10 @@
 						</form>
 					</div>
 				</div>
-
 			</div>
-		</div>
+		</div>';
+		
+		$HTML .= '
 
 		<!-- QUIERO SER CUIDADOR -->
 
@@ -521,9 +531,9 @@
 		<div class="quiero_ser_cuidador_container_2">
 			<span>Kmimos necesita doglovers como tú</span>
 			<a href="" class="boton boton_border_gris">Empezar a cuidar</a>
-		</div>
-
-
+		</div>';
+		
+		$HTML .= '
 		<!-- CONECTATE -->
 
 		<div class="conectate_container" style="display: none;" >
@@ -537,10 +547,10 @@
 				<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/APP_STORE.svg" /></div>
 				<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/GOOGLE_PLAY.svg" /></div>
 			</div>
-		</div>
-
+		</div>';
+		
+		$HTML .= '
 		<!-- ALIADOS -->
-
 		<div class="aliados_container">
 			<img src="'.get_recurso("img").'HOME/PNG/Reforma.png" />
 			<img src="'.get_recurso("img").'HOME/PNG/Mural.png" />
@@ -548,8 +558,7 @@
 			<img src="'.get_recurso("img").'HOME/PNG/Financiero.png" />
 			<img src="'.get_recurso("img").'HOME/PNG/Universal.png" />
 			<img src="'.get_recurso("img").'HOME/PNG/Petco.png" style="display: none;" />
-		</div>
-    ';
+		</div>';
 
     echo comprimir($HTML);
     
