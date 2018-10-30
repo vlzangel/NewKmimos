@@ -992,10 +992,6 @@
 
 @media (max-width: 350px){
 
-	.footer_alto > div > div {
-	    font-size: 8px !important;
-	}
-
 	.servicios_principales_container .input_check_box span {
 	    font-size: 10px;
 	}

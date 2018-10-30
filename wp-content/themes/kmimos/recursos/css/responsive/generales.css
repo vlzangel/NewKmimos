@@ -81,5 +81,9 @@
 }
 
 @media (max-width: 350px){
-    
+
+	.footer_alto > div > div {
+	    font-size: 8px !important;
+	}
+
 }
