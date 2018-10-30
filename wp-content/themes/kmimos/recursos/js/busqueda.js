@@ -120,6 +120,7 @@
 				jQuery("body").css("overflow-y", "hidden");
 			}
 			jQuery("footer").removeClass("show_footer");
+			jQuery("body").css("overflow-y", "hidden");
 		});
 
 		jQuery("#ver_mapa").on("click", function(e){
@@ -132,6 +133,7 @@
 				jQuery("body").css("overflow-y", "auto");
 			}
 			jQuery("footer").addClass("show_footer");
+			jQuery("body").css("overflow-y", "auto");
 		});
 
 		jQuery(".cerrar_mapa_movil").on("click", function(e){
