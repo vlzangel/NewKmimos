@@ -168,6 +168,7 @@ function modules_filter_tddate(element, type, table){
     }else{
         table.find('td.tdshow, th.tdshow').removeClass('noshow_select');
     }
+    table.find('th.total').removeClass('noshow_select');
     return;
 }
 

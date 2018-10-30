@@ -84,6 +84,7 @@
 
 /* BUSCAR */
 
+
 	jQuery(document).ready(function(){
 
 		jQuery("footer").addClass("show_footer");
@@ -109,6 +110,7 @@
 			}else{
 				jQuery(".resultado_item").addClass('full_width');
 			}
+			jQuery('html, body').animate({ scrollTop: parseInt( jQuery(".resultados_box")[0].offsetTop-50 ) });
 			jQuery("footer").removeClass("show_footer");
 		});
 

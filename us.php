@@ -29,7 +29,6 @@
 		INNER JOIN wp_terms AS t ON ( t.term_id = re.term_taxonomy_id AND re.term_taxonomy_id != 28 )
 		WHERE
 			post_type = 'wc_booking' AND 
-			post_date >= '{$date}' AND 
 			post_status = 'confirmed'
 	";
 
@@ -39,28 +38,57 @@
 
 	foreach ($reservas as $reserva) {
 		if( $mes_1 <= strtotime($reserva->fecha) ){
-			$grupos[ $reserva->tipo ][ $reserva->user ][ "mes_1" ][] = $reserva;
+			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_1" ][] = $reserva;
 		}
 		if( $mes_3 <= strtotime($reserva->fecha) ){
-			$grupos[ $reserva->tipo ][ $reserva->user ][ "mes_3" ][] = $reserva;
+			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_3" ][] = $reserva;
 		}
 		if( $mes_6 <= strtotime($reserva->fecha) ){
-			$grupos[ $reserva->tipo ][ $reserva->user ][ "mes_6" ][] = $reserva;
+			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_6" ][] = $reserva;
 		}
 		if( $mes_12 <= strtotime($reserva->fecha) ){
-			$grupos[ $reserva->tipo ][ $reserva->user ][ "mes_12" ][] = $reserva;
+			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_12" ][] = $reserva;
 		}
 	}
 
 	$recompras = [];
+	$_plantilla = [
+		"mes_1" => "false",
+		"mes_3" => "false",
+		"mes_6" => "false",
+		"mes_12" => "false"
+	];
 	foreach ($grupos as $key => $servicio) {
-		foreach ($servicio as $key => $value) {
-			# code...
+		foreach ($servicio as $user_email => $value) {
+			$recompras[$user_email] = $_plantilla;
+			foreach ($value as $rango_mes => $value) {
+				if( count($value) > 0 ){
+					$recompras[$user_email][$rango_mes] = "true";
+				}
+			}
+		}
+	}
+
+	$listas = [
+		"mes_1" => [],
+		"mes_3" => [],
+		"mes_6" => [],
+		"mes_12" => []
+	];
+	foreach ($recompras as $user_email => $_listas) {
+		$lista = "";
+		foreach ($_listas as $key => $value) {
+			if( $value == "false" ){
+				$lista = $key;
+			}
+		}
+		if( $lista != "" ){
+			$listas[ $lista ][] = $user_email;
 		}
 	}
 
 	echo "<pre>";
-		print_r($grupos);
+		print_r($listas);
 	echo "</pre>";
 
 ?>

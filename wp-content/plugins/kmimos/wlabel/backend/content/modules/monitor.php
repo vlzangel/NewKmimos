@@ -37,18 +37,32 @@
                 <table cellspacing="0" cellpadding="0">
                     <thead>
                         <tr><?php
+
                             $day_init = strtotime(date('m/d/Y',$WLresult->time));
-                            $day_last = strtotime(date('m/d/Y',time()));
+                            $day_last = strtotime("12/31/".date('Y', time()));
                             $day_more = (24*60*60);
+
+                            $_28 = true;
                             for( $day = $day_init; $day <= $day_last ; $day = $day+$day_more ){
-                                echo '<th class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('d/m/Y',$day).'</th>';
-                                if( date('t', $day) == date('d', $day) || $day_last == $day ){
-                                    echo '<th class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('F/Y',$day).'</th>';
-                                    if( date('m',$day) == '12' || $day_last == $day ){
-                                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('Y',$day).'</th>';
+                                $print = true;
+                                if( date('d/m/Y',$day) == "28/10/2018" ){
+                                    if($_28){
+                                        $_28 = false;
+                                    }else{
+                                        $print = false;
+                                    }
+                                }
+                                if( $print ){
+                                    echo '<th class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('d/m/Y',$day).'</th>';
+                                    if( date('t', $day) == date('d', $day) || $day_last == $day ){
+                                        echo '<th class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('F/Y',$day).'</th>';
+                                        if( date('m',$day) == '12' || $day_last == $day ){
+                                            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('Y',$day).'</th>';
+                                        }
                                     }
                                 }
                             }
+                            
                             echo '<th class="total" >Acumulado '.(date('Y',$day)).'</th>'; ?>
                         </tr>
                     </thead>
@@ -133,27 +147,28 @@
                         $_reservas_clientes = [];
                         foreach ($reservas as $key => $reserva) {
 
-                            $inicio = strtotime( $reserva->inicio );
-                            $fin = strtotime( $reserva->fin );
+                                $inicio = strtotime( $reserva->inicio );
+                                $fin = strtotime( $reserva->fin );
 
-                            $servicio = explode(" - ", strtolower($reserva->servicio) );
-                            $servicio = trim( $servicio[0] );
-            
-                            if( $servicio == "hospedaje" ){
-                                $noches = ( floor(( $fin - $inicio )/60/60/24)-1 );
-                            }else{
-                                $noches = ( ceil(( $fin - $inicio )/60/60/24) );
-                            }
+                                $servicio = explode(" - ", strtolower($reserva->servicio) );
+                                $servicio = trim( $servicio[0] );
+                
+                                if( $servicio == "hospedaje" ){
+                                    $noches = ( floor(( $fin - $inicio )/60/60/24)-1 );
+                                }else{
+                                    $noches = ( ceil(( $fin - $inicio )/60/60/24) );
+                                }
 
-                            $_mascotas = unserialize( $reserva->mascotas );
-                            $mascotas = 0;
-                            foreach ($_mascotas as $valor) {
-                                $mascotas += $valor;
-                            }
+                                $_mascotas = unserialize( $reserva->mascotas );
+                                $mascotas = 0;
+                                foreach ($_mascotas as $valor) {
+                                    $mascotas += $valor;
+                                }
 
-                            $total_noches += $noches*$mascotas;
+                                $total_noches += $noches*$mascotas;
 
-                            $reservas[ $key ]->noches = $noches*$mascotas;
+                                $reservas[ $key ]->noches = $noches*$mascotas;
+
 
                             if( !isset($_reservas[ $reserva->ID_reserva ]) ){
                                 $_reservas[ $reserva->ID_reserva ] = $reservas[ $key ];
@@ -164,13 +179,13 @@
                             }
 
                         }
-
+/*
                         echo "<pre>";
                             print_r($_reservas);
                         echo "</pre>";
-
+*/
                         $day_init=strtotime(date('m/d/Y',$WLresult->time));
-                        $day_last=strtotime(date('m/d/Y',time()));
+                        $day_last=strtotime("12/31/".date('Y', time()));
                         $day_more=(24*60*60);
 
                         // Leads
@@ -180,34 +195,46 @@
                             $amount_month=0;
                             $amount_year=0;
                             $amount_total=0;
+                            $_28 = true;
 
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
 
-                                foreach($leads as $reserva){
-                                    $fecha = strtotime( date('m/d/Y', strtotime($reserva->time) ) );
-                                    $hoy = strtotime(date('m/d/Y', $day));
-
-                                    if( $fecha == $hoy ){
-
-                                        $amount_day += 1;
-                                        $amount_month += 1;
-                                        $amount_year += 1;
-                                        $amount_total += 1;
+                                $print = true;
+                                if( date('d/m/Y',$day) == "28/10/2018" ){
+                                    if($_28){
+                                        $_28 = false;
+                                    }else{
+                                        $print = false;
                                     }
                                 }
 
-                                if( $amount_day == 0 ){ $amount_day = ""; }
-                                if( $amount_mont == 0 ){ $amount_mont = ""; }
-                                if( $amount_year == 0 ){ $amount_year = ""; }
+                                if( $print ){
+                                    foreach($leads as $reserva){
+                                        $fecha = strtotime( date('m/d/Y', strtotime($reserva->time) ) );
+                                        $hoy = strtotime(date('m/d/Y', $day));
 
-                                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                                $amount_day=0;
-                                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                                    $amount_month=0;
-                                    if(date('m',$day)=='12' || $day_last==$day){
-                                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                        $amount_year=0;
+                                        if( $fecha == $hoy ){
+
+                                            $amount_day += 1;
+                                            $amount_month += 1;
+                                            $amount_year += 1;
+                                            $amount_total += 1;
+                                        }
+                                    }
+
+                                    if( $amount_day == 0 ){ $amount_day = ""; }
+                                    if( $amount_mont == 0 ){ $amount_mont = ""; }
+                                    if( $amount_year == 0 ){ $amount_year = ""; }
+
+                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    $amount_day=0;
+                                    if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                        echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                                        $amount_month=0;
+                                        if(date('m',$day)=='12' || $day_last==$day){
+                                            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                                            $amount_year=0;
+                                        }
                                     }
                                 }
                             }
@@ -222,40 +249,52 @@
                             $amount_month=0;
                             $amount_year=0;
                             $amount_total=0;
+                            $_28 = true;
 
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
 
-                                foreach($users as $user){
-                                    $metas = get_user_meta($user->ID);
-                                    $rol = strrpos($metas["wp_capabilities"][0], "subscriber");
-                                    if( $rol !== false ){
-
-                                        $fecha = strtotime( date('m/d/Y', strtotime($user->date) ) );
-                                        $hoy = strtotime(date('m/d/Y', $day));
-
-                                        if( $fecha == $hoy ){
-                                            $amount_user = 1;
-                                            $amount_day += $amount_user;
-                                            $amount_month += $amount_user;
-                                            $amount_year += $amount_user;
-                                            $amount_total += $amount_user;
-                                        }
-
+                                $print = true;
+                                if( date('d/m/Y',$day) == "28/10/2018" ){
+                                    if($_28){
+                                        $_28 = false;
+                                    }else{
+                                        $print = false;
                                     }
                                 }
 
-                                if( $amount_day == 0 ){ $amount_day = ""; }
-                                if( $amount_mont == 0 ){ $amount_mont = ""; }
-                                if( $amount_year == 0 ){ $amount_year = ""; }
+                                if( $print ){
+                                    foreach($users as $user){
+                                        $metas = get_user_meta($user->ID);
+                                        $rol = strrpos($metas["wp_capabilities"][0], "subscriber");
+                                        if( $rol !== false ){
 
-                                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                                $amount_day=0;
-                                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                                    $amount_month=0;
-                                    if(date('m',$day)=='12' || $day_last==$day){
-                                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                        $amount_year=0;
+                                            $fecha = strtotime( date('m/d/Y', strtotime($user->date) ) );
+                                            $hoy = strtotime(date('m/d/Y', $day));
+
+                                            if( $fecha == $hoy ){
+                                                $amount_user = 1;
+                                                $amount_day += $amount_user;
+                                                $amount_month += $amount_user;
+                                                $amount_year += $amount_user;
+                                                $amount_total += $amount_user;
+                                            }
+
+                                        }
+                                    }
+
+                                    if( $amount_day == 0 ){ $amount_day = ""; }
+                                    if( $amount_mont == 0 ){ $amount_mont = ""; }
+                                    if( $amount_year == 0 ){ $amount_year = ""; }
+
+                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    $amount_day=0;
+                                    if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                        echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                                        $amount_month=0;
+                                        if(date('m',$day)=='12' || $day_last==$day){
+                                            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                                            $amount_year=0;
+                                        }
                                     }
                                 }
                             }
@@ -270,37 +309,48 @@
                             $amount_month=0;
                             $amount_year=0;
                             $amount_total=0;
+                            $_28 = true;
 
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
 
-                                foreach($_reservas_clientes as $reserva){
-                                    $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
-                                    $hoy = strtotime(date('m/d/Y', $day));
-                    
-echo "<div style='display: none;'>{$fecha} == {$hoy} - {$reserva->date}</div>";
-                                    if( $fecha == $hoy ){
-
-                                    
-                                        $amount_user = 1;
-                                        $amount_day += $amount_user;
-                                        $amount_month += $amount_user;
-                                        $amount_year += $amount_user;
-                                        $amount_total += $amount_user;
+                                $print = true;
+                                if( date('d/m/Y',$day) == "28/10/2018" ){
+                                    if($_28){
+                                        $_28 = false;
+                                    }else{
+                                        $print = false;
                                     }
                                 }
 
-                                if( $amount_day == 0 ){ $amount_day = ""; }
-                                if( $amount_mont == 0 ){ $amount_mont = ""; }
-                                if( $amount_year == 0 ){ $amount_year = ""; }
+                                if( $print ){
+                                    foreach($_reservas_clientes as $reserva){
+                                        $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                                        $hoy = strtotime(date('m/d/Y', $day));
+                        
+                                        if( $fecha == $hoy ){
 
-                                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                                $amount_day=0;
-                                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                                    $amount_month=0;
-                                    if(date('m',$day)=='12' || $day_last==$day){
-                                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                        $amount_year=0;
+                                        
+                                            $amount_user = 1;
+                                            $amount_day += $amount_user;
+                                            $amount_month += $amount_user;
+                                            $amount_year += $amount_user;
+                                            $amount_total += $amount_user;
+                                        }
+                                    }
+
+                                    if( $amount_day == 0 ){ $amount_day = ""; }
+                                    if( $amount_mont == 0 ){ $amount_mont = ""; }
+                                    if( $amount_year == 0 ){ $amount_year = ""; }
+
+                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    $amount_day=0;
+                                    if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                        echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                                        $amount_month=0;
+                                        if(date('m',$day)=='12' || $day_last==$day){
+                                            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                                            $amount_year=0;
+                                        }
                                     }
                                 }
                             }
@@ -315,34 +365,46 @@ echo "<div style='display: none;'>{$fecha} == {$hoy} - {$reserva->date}</div>";
                             $amount_month=0;
                             $amount_year=0;
                             $amount_total=0;
+                            $_28 = true;
 
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
 
-                                foreach($_reservas as $reserva){
-                                    $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
-                                    $hoy = strtotime(date('m/d/Y', $day));
-
-                                    if( $fecha == $hoy ){
-                                        $amount_user = 1;
-                                        $amount_day += $amount_user;
-                                        $amount_month += $amount_user;
-                                        $amount_year += $amount_user;
-                                        $amount_total += $amount_user;
+                                $print = true;
+                                if( date('d/m/Y',$day) == "28/10/2018" ){
+                                    if($_28){
+                                        $_28 = false;
+                                    }else{
+                                        $print = false;
                                     }
                                 }
 
-                                if( $amount_day == 0 ){ $amount_day = ""; }
-                                if( $amount_mont == 0 ){ $amount_mont = ""; }
-                                if( $amount_year == 0 ){ $amount_year = ""; }
+                                if( $print ){
+                                    foreach($_reservas as $reserva){
+                                        $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                                        $hoy = strtotime(date('m/d/Y', $day));
 
-                                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                                $amount_day=0;
-                                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                                    $amount_month=0;
-                                    if(date('m',$day)=='12' || $day_last==$day){
-                                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                        $amount_year=0;
+                                        if( $fecha == $hoy ){
+                                            $amount_user = 1;
+                                            $amount_day += $amount_user;
+                                            $amount_month += $amount_user;
+                                            $amount_year += $amount_user;
+                                            $amount_total += $amount_user;
+                                        }
+                                    }
+
+                                    if( $amount_day == 0 ){ $amount_day = ""; }
+                                    if( $amount_mont == 0 ){ $amount_mont = ""; }
+                                    if( $amount_year == 0 ){ $amount_year = ""; }
+
+                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    $amount_day=0;
+                                    if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                        echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                                        $amount_month=0;
+                                        if(date('m',$day)=='12' || $day_last==$day){
+                                            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                                            $amount_year=0;
+                                        }
                                     }
                                 }
                             }
@@ -357,35 +419,46 @@ echo "<div style='display: none;'>{$fecha} == {$hoy} - {$reserva->date}</div>";
                             $amount_month=0;
                             $amount_year=0;
                             $amount_total=0;
+                            $_28 = true;
 
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
 
-                                
-                                foreach($reservas as $reserva){
-                                    $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
-                                    $hoy = strtotime(date('m/d/Y', $day));
-
-                                    if( $fecha == $hoy ){
-
-                                        $amount_day += $reserva->noches;
-                                        $amount_month += $reserva->noches;
-                                        $amount_year += $reserva->noches;
-                                        $amount_total += $reserva->noches;
+                                $print = true;
+                                if( date('d/m/Y',$day) == "28/10/2018" ){
+                                    if($_28){
+                                        $_28 = false;
+                                    }else{
+                                        $print = false;
                                     }
                                 }
 
-                                if( $amount_day == 0 ){ $amount_day = ""; }
-                                if( $amount_mont == 0 ){ $amount_mont = ""; }
-                                if( $amount_year == 0 ){ $amount_year = ""; }
+                                if( $print ){
+                                    foreach($reservas as $reserva){
+                                        $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                                        $hoy = strtotime(date('m/d/Y', $day));
 
-                                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                                $amount_day=0;
-                                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                                    $amount_month=0;
-                                    if(date('m',$day)=='12' || $day_last==$day){
-                                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                        $amount_year=0;
+                                        if( $fecha == $hoy ){
+
+                                            $amount_day += $reserva->noches;
+                                            $amount_month += $reserva->noches;
+                                            $amount_year += $reserva->noches;
+                                            $amount_total += $reserva->noches;
+                                        }
+                                    }
+
+                                    if( $amount_day == 0 ){ $amount_day = ""; }
+                                    if( $amount_mont == 0 ){ $amount_mont = ""; }
+                                    if( $amount_year == 0 ){ $amount_year = ""; }
+
+                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    $amount_day=0;
+                                    if(date('t',$day)==date('d',$day) || $day_last==$day){
+                                        echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                                        $amount_month=0;
+                                        if(date('m',$day)=='12' || $day_last==$day){
+                                            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                                            $amount_year=0;
+                                        }
                                     }
                                 }
                             }
