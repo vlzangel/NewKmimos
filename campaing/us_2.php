@@ -37,17 +37,25 @@
 	$grupos = [];
 
 	foreach ($reservas as $reserva) {
+		$entro = false;
 		if( $mes_1 <= strtotime($reserva->fecha) ){
 			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_1" ][] = $reserva;
+			$entro = true;
 		}
 		if( $mes_3 <= strtotime($reserva->fecha) ){
 			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_3" ][] = $reserva;
+			$entro = true;
 		}
 		if( $mes_6 <= strtotime($reserva->fecha) ){
 			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_6" ][] = $reserva;
+			$entro = true;
 		}
 		if( $mes_12 <= strtotime($reserva->fecha) ){
 			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_12" ][] = $reserva;
+			$entro = true;
+		}
+		if( $mes_12 > strtotime($reserva->fecha) ){
+			$grupos[ $reserva->tipo ][ $reserva->email ][ "mas_12" ][] = $reserva;
 		}
 	}
 
@@ -56,7 +64,8 @@
 		"mes_1" => "false",
 		"mes_3" => "false",
 		"mes_6" => "false",
-		"mes_12" => "false"
+		"mes_12" => "false",
+		"mas_12" => "false"
 	];
 	foreach ($grupos as $servicio_id => $servicio) {
 		$servicio_id = ( strpos($servicio_id, "adiestramiento") !== false ) ? "entrenamiento": $servicio_id;
@@ -115,7 +124,8 @@
 		echo $key.": ".count($value)."<br>";
 	}
 	echo "<pre>";
-		print_r($listas);
+		print_r($grupos);
+		// print_r($listas);
 	echo "</pre>";
 
 /*	$credenciales = $wpdb->get_var("SELECT data FROM campaing WHERE id = 1");
