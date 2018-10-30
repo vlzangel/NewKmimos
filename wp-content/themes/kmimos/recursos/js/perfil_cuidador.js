@@ -20,10 +20,12 @@ jQuery( document ).ready(function() {
 	});
 
 	jQuery(window).scroll( function () {
-		if( (jQuery(window).scrollTop()+70) >= jQuery(".pc_seccion_2_der")[0].offsetTop ){
-	    	jQuery(".pc_scroll_der").addClass("pc_scroll_fixed");
-	    }else{
-	    	jQuery(".pc_scroll_der").removeClass("pc_scroll_fixed");
+		if( parseInt( jQuery("body").width() ) > 768 ){
+			if( (jQuery(window).scrollTop()+70) >= jQuery(".pc_seccion_2_der")[0].offsetTop ){
+		    	jQuery(".pc_scroll_der").addClass("pc_scroll_fixed");
+		    }else{
+		    	jQuery(".pc_scroll_der").removeClass("pc_scroll_fixed");
+		    }
 	    }
     });
 

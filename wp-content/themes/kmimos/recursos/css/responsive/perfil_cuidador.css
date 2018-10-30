@@ -332,6 +332,14 @@
 
 	.fechas_container {
 	    padding: 15px;
+	    position: fixed;
+	    left: 0px;
+	    bottom: 0px;
+	    width: 100%;
+	    z-index: 999999999999999999;
+	    background: #FFF;
+	    margin: 0px;
+	    padding: 8px 8px 0px;
 	}
 
 	.fechas_container > div {
@@ -361,11 +369,11 @@
 	}
 
 	.fechas_container input {
-	    height: 40px;
+	    height: 35px;
 	}
 
 	.fechas_container .icon_fecha {
-	    top: 11px;
+	    top: 8px;
 	}
 
 	.pc_seccion_2_der > span, .pc_seccion_2_der > label {
@@ -381,7 +389,7 @@
 	}
 
 	.reservar_footer {
-	    display: block;
+	    display: none;
 	    position: fixed;
 	    left: 0px;
 	    bottom: 0px;
