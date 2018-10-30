@@ -117,10 +117,10 @@
 		jQuery("#ver_filtros_fechas").on("click", function(e){
 			jQuery(".filtos_container").addClass('open_filtros');
 			if( parseInt( jQuery("body").width() ) < 768 ){
-				jQuery("body").css("overflow-y", "hidden");
+				jQuery("body").css("overflow", "hidden");
 			}
 			jQuery("footer").removeClass("show_footer");
-			jQuery("body").css("overflow-y", "hidden");
+			jQuery("body").css("overflow", "hidden");
 		});
 
 		jQuery("#ver_mapa").on("click", function(e){
@@ -130,10 +130,10 @@
 		jQuery(".cerrar_filtros_movil").on("click", function(e){
 			jQuery(".filtos_container").removeClass('open_filtros');
 			if( parseInt( jQuery("body").width() ) < 768 ){
-				jQuery("body").css("overflow-y", "auto");
+				jQuery("body").css("overflow", "auto");
 			}
 			jQuery("footer").addClass("show_footer");
-			jQuery("body").css("overflow-y", "auto");
+			jQuery("body").css("overflow", "auto");
 		});
 
 		jQuery(".cerrar_mapa_movil").on("click", function(e){
