@@ -716,4 +716,21 @@
 	.cerrar_filtros_movil_panel {
 		display: none !important;
 	}
+
+	.filtros_generales_container {
+	    width: calc( 100% - 30px );
+	}
+
+	.cerrar_filtros_movil {
+	    display: inline-block;
+	    position: absolute; 
+	    padding: 10px;
+	    font-size: 20px;
+	    border: solid 1px #CCC;
+	    border-right: 0px;
+	    border-top: 0px;
+	    border-radius: 0px 0px 0px 4px;
+	    z-index: 1000;
+        right: 10px !important;
+	}
 }

@@ -1256,7 +1256,7 @@
 		    position: absolute;
 		    top: 0px;
 		    right: 0px;
-		    z-index: 99999;
+		    z-index: 100;
 		    font-size: 20px;
 		    cursor: pointer;
 		    padding: 17px 15px;
