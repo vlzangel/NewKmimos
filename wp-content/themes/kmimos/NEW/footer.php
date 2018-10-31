@@ -59,9 +59,9 @@
 						<ul>
 							<li>Teléfono: 01 (800) 9 564667</li>
 							<li>Telef. Local: 01 (55) 85261162</li>
-							<li>WhatsApp 1: +52 1 (33) 12614186</li>
-							<li>WhatsApp 2: +52 1 (55) 68922182</li>
-							<li>WhatsApp 3: +52 1 (55) 65602472</li>
+							<li>WhatsApp: +52 1 (33) 12614186</li>
+							<li>WhatsApp: +52 1 (55) 68922182</li>
+							<li>WhatsApp: +52 1 (55) 65602472</li>
 							<li>Email: contactomex@kmimos.la</li>
 						</ul>
 					</div>
