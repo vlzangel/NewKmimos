@@ -148,7 +148,7 @@
 		}
 
 		.filtos_container form {
-		    height: calc( 100% - 45px );
+		    height: 100%;
 		}
 
 	/* MAPA */
