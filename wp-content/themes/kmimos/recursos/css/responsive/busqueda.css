@@ -705,11 +705,15 @@
 	}
 
 	.filtos_container {
-	    padding: 35px 5px 15px;
+	    padding: 0px 5px 15px;
 	    width: 100%;
 	}
 
 	.input_check_box span small {
 	    font-size: 9px;
+	}
+
+	.cerrar_filtros_movil_panel {
+		display: none !important;
 	}
 }
