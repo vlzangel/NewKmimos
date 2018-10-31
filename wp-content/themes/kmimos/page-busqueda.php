@@ -25,7 +25,6 @@
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
-
     get_header();
 
     $user_id = get_current_user_id();
@@ -135,7 +134,6 @@
 
     $HTML = '
     	<div class="busqueda_container">
-
     		<div class="filtos_container">
 
     			<div class="cerrar_filtros_movil"> x </div>
@@ -330,6 +328,8 @@
     			</form>
 
     		</div>
+    		
+			<div class="cerrar_filtros_movil_panel"></div>
     		
     		<div class="resultados_container">
 

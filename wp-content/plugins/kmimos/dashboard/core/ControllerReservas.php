@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__.'/base_db.php');
-require_once(__DIR__.'/GlobalFunction.php');
+require_once('base_db.php');
+require_once('GlobalFunction.php');
 
 // ***************************************
 // Cargar listados de Reservas
@@ -17,11 +17,33 @@ function getRazaDescripcion($id, $razas){
 	return $nombre;
 }
 
-
-
 function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
+	$hoy = time();
+	$mes_1 = strtotime ( '-1 month' , $hoy );
+	$mes_3 = strtotime ( '-3 month' , $hoy );
+	$mes_6 = strtotime ( '-6 month' , $hoy );
+	$mes_12 = strtotime ( '-12 month' , $hoy );
 
-	$filtro_adicional = "";
+	switch ( $interval+0 ) {
+		case 1:
+			$desde = date("Y-m-d", time() );
+			$hasta = date("Y-m-d", $mes_1);
+		break;
+		case 3:
+			$desde = date("Y-m-d", $mes_1);
+			$hasta = date("Y-m-d", $mes_3);
+		break;
+		case 6:
+			$desde = date("Y-m-d", $mes_3);
+			$hasta = date("Y-m-d", $mes_6);
+		break;
+		case 12:
+			$desde = date("Y-m-d", $mes_6);
+			$hasta = date("Y-m-d", $mes_12);
+		break;
+	}
+
+/*	$filtro_adicional = "";
 	if( !empty($landing) ){
 		$filtro_adicional = " source = '{$landing}'";
 	}
@@ -33,10 +55,9 @@ function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
 	}else{
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
 		$filtro_adicional .= " MONTH(post_date_gmt) = MONTH(NOW()) AND YEAR(post_date_gmt) = YEAR(NOW()) ";
-	}
+	}*/
 
-
-	$filtro_adicional = ( !empty($filtro_adicional) )? " WHERE {$filtro_adicional}" : $filtro_adicional ;
+	$filtro_adicional .= "( post_date >= '{$hasta}' and post_date <= '{$desde}' )";
 
 	$result = [];
 	$sql = "
@@ -44,11 +65,12 @@ function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
 			count(ID) as cant
 		FROM wp_posts
 		WHERE post_type = 'wc_booking' 
-			AND not post_status like '%cart%'
 			AND post_status = 'confirmed' 
 			AND post_author = {$author_id}
-			AND post_date_gmt > DATE_SUB(CURDATE(), INTERVAL {$interval} MONTH)
+			AND {$filtro_adicional}
 	";
+
+	// echo $sql."<br>";
 
 	$result = get_fetch_assoc($sql);
 	return $result;
@@ -84,7 +106,6 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 			if( $sts_pedido == 'wc-on-hold'){
 				if( in_array($forma_pago, $payment_method_cards) ){
 					$sts_largo = "Pendiente por confirmar el cuidador"; // metodo de pago es por TDC / TDD ( parcial )
-					$sts_corto = "Pago fallido";
 				}elseif( in_array($forma_pago, $payment_method_store) ){
 					$sts_largo = "Pendiente de pago en tienda"; // Tienda por conv
 				}else{
@@ -117,12 +138,6 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 		case 'cancelled':
 			$sts_corto = 'Cancelado';
 			$sts_largo = 'Cancelado';
-
-			$penalizado = get_post_meta( $id_reserva, 'penalizado', true );
-			if( $penalizado == "YES" ){
-				$sts_corto = 'Penalizado';
-				$sts_largo = 'Cancelado con penalización';
-			}
 		break;
 		// Modificacion Ángel Veloz
 		case 'modified':
@@ -165,13 +180,8 @@ function getMascotas($user_id){
         $anio = str_replace("/", "-", $anio);
         $anio = strtotime($anio);
         $edad_time = time()-$anio;
+        $edad = (date("Y", $edad_time)-1970)." año(s) ".date("m", $edad_time)." mes(es)";
 
-        $edad = '';
-        if( (date("Y", $edad_time)-1970) > 0 ){
-	        $edad = (date("Y", $edad_time)-1970)." año(s) ";
-        }
-        $edad .= date("m", $edad_time)." mes(es)";
- 
         $mascotas[] = array(
             "nombre" => $mascota->post_title,
             "raza" => $metas["breed_pet"][0],
@@ -217,7 +227,7 @@ function getServices( $num_reserva = 0 ){
 			-- Reserva
 			LEFT JOIN wp_posts as re ON re.ID = i.meta_value -- No. Reserva
 		WHERE	
-			( i.meta_key like 'Servicios Adicionales%' or i.meta_key like 'Servicios de %' ) 
+			( i.meta_key like 'Servicios Adicionales%' or i.meta_key like 'Servicios de %' )
 			and i.order_item_id = o.order_item_id
 	";
 	$services = $wpdb->get_results($sql);
@@ -245,9 +255,9 @@ function getMetaCliente( $user_id ){
 }
 
 function getMetaCuidador( $user_id ){
-	// $condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_referred')";
-	// $result = get_metaUser($user_id, $condicion);
-	$result = get_metaUser($user_id);
+	//$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_referred')";
+	//$result = get_metaUser($user_id, $condicion);
+	$result = get_metaUser($user_id, $condicion);
 	$data = [
 		'first_name' =>'', 
 		'last_name' =>'', 
@@ -343,17 +353,18 @@ function getReservas($desde="", $hasta=""){
 
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional = " 
-			AND ( r.post_date_gmt >= '{$desde} 00:00:00' and  r.post_date_gmt <= '{$hasta} 23:59:59' )
+			AND ( p.post_date >= '{$desde} 00:00:00' and p.post_date <= '{$hasta} 23:59:59' )
 		";
 	}else{
-		$filtro_adicional = " AND MONTH(r.post_date_gmt) = MONTH(NOW()) AND YEAR(r.post_date_gmt) = YEAR(NOW()) ";
+		$filtro_adicional = " AND MONTH(p.post_date) = MONTH(NOW()) AND YEAR(p.post_date) = YEAR(NOW()) ";
 	}
 
 	global $wpdb;
 	$sql = "
 		SELECT 
 			r.ID as 'nro_reserva',
- 			DATE_FORMAT(r.post_date_gmt,'%Y-%m-%d') as 'fecha_solicitud',
+ 			DATE_FORMAT(p.post_date,'%Y-%m-%d') as 'fecha_pago',
+ 			DATE_FORMAT(p.post_date_gmt,'%Y-%m-%d') as 'fecha_solicitud',
  			r.post_status as 'estatus_reserva',
  			p.ID as 'nro_pedido',
  			p.post_status as 'estatus_pago', 			

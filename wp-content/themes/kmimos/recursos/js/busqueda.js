@@ -97,6 +97,7 @@
 				buscar( jQuery(this).attr("id") ); 
 			}
 		});
+
 		jQuery("#buscar select").on("change", function(e){
 			if( parseInt( jQuery("body").width() ) > 768 ){
 				buscar( jQuery(this).attr("id") ); 
@@ -128,12 +129,11 @@
 		});
 
 		jQuery(".cerrar_filtros_movil").on("click", function(e){
-			jQuery(".filtos_container").removeClass('open_filtros');
-			if( parseInt( jQuery("body").width() ) < 768 ){
-				jQuery("body").css("overflow", "auto");
-			}
-			jQuery("footer").addClass("show_footer");
-			jQuery("body").css("overflow", "auto");
+			cerrar_filtros();
+		});
+
+		jQuery(".cerrar_filtros_movil_panel").on("click", function(e){
+			cerrar_filtros();
 		});
 
 		jQuery(".cerrar_mapa_movil").on("click", function(e){
@@ -174,6 +174,15 @@
 			}
 		});
 	});
+
+	function cerrar_filtros(){
+		jQuery(".filtos_container").removeClass('open_filtros');
+		if( parseInt( jQuery("body").width() ) < 768 ){
+			jQuery("body").css("overflow", "auto");
+		}
+		jQuery("footer").addClass("show_footer");
+		jQuery("body").css("overflow", "auto");
+	}
 
 	jQuery(".resultados_container").on("scroll", function() {
 

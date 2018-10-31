@@ -42,6 +42,7 @@
 		$actualizar = true;
 		$wpdb->query("INSERT INTO migracion_reporte_reservas VALUES (NULL, '{$desde}', '0')");
 	}
+	
 	if( $actualizar){
 		$razas = get_razas();
 		$reservas = getReservas($_desde, $_hasta);
@@ -158,28 +159,28 @@
 									  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "12");
 									  		if(array_key_exists('rows', $cliente_n_reserva)){
 										  		foreach ($cliente_n_reserva["rows"] as $value) {
-									  				$recompra_12M = ($value['cant']>1)? "SI" : "NO" ;
+									  				$recompra_12M = ($value['cant']>0)? "SI" : "NO" ;
 										  		}
 										  	}
 									  		# Recompra 1 Meses
 									  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "1");
 									  		if(array_key_exists('rows', $cliente_n_reserva)){
 										  		foreach ($cliente_n_reserva["rows"] as $value) {
-									  				$recompra_1M = ($value['cant']>1)? "SI" : "NO" ;
+									  				$recompra_1M = ($value['cant']>0)? "SI" : "NO" ;
 										  		}
 										  	}
 									  		# Recompra 3 Meses
 									  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "3");
 									  		if(array_key_exists('rows', $cliente_n_reserva)){
 										  		foreach ($cliente_n_reserva["rows"] as $value) {
-									  				$recompra_3M = ($value['cant']>1)? "SI" : "NO" ;
+									  				$recompra_3M = ($value['cant']>0)? "SI" : "NO" ;
 										  		}
 										  	}
 									  		# Recompra 6 Meses
 									  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "6");
 									  		if(array_key_exists('rows', $cliente_n_reserva)){
 										  		foreach ($cliente_n_reserva["rows"] as $value) {
-									  				$recompra_6M = ($value['cant']>1)? "SI" : "NO" ;
+									  				$recompra_6M = ($value['cant']>0)? "SI" : "NO" ;
 										  		}
 										  	}
 
@@ -462,12 +463,30 @@
 												$SQL = "INSERT INTO reporte_reserva VALUES (NULL,'".implode("','", $data_sql)."');";
 												$wpdb->query( $SQL );
 											}else{
+													$SQL = "
+														UPDATE 
+															reporte_reserva 
+														SET 
+															status = '{$estatus['sts_corto']}',
+															recompra_1_mes = '{$recompra_1M}',
+															recompra_3_mes = '{$recompra_3M}',
+															recompra_6_mes = '{$recompra_6M}',
+															recompra_12_mes = '{$recompra_12M}',
+															observacion = '{$estatus['sts_largo']}'
+														WHERE 
+															id = {$existe->id};
+													";
+													$wpdb->query( $SQL );
 												if( $existe->status != $estatus['sts_corto'] ){
 													$SQL = "
 														UPDATE 
 															reporte_reserva 
 														SET 
 															status = '{$estatus['sts_corto']}',
+															recompra_1_mes = '{$recompra_1M}',
+															recompra_3_mes = '{$recompra_3M}',
+															recompra_6_mes = '{$recompra_6M}',
+															recompra_12_mes = '{$recompra_12M}',
 															observacion = '{$estatus['sts_largo']}'
 														WHERE 
 															id = {$existe->id};

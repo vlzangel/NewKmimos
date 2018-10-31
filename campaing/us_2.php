@@ -123,8 +123,22 @@
 	foreach ($listas as $key => $value) {
 		echo $key.": ".count($value)."<br>";
 	}
+
+
+	$hoy = time();
+	
+	$mes_1 = strtotime ( '-1 month' , $hoy );
+	$mes_3 = strtotime ( '-3 month' , $hoy );
+	$mes_6 = strtotime ( '-6 month' , $hoy );
+	$mes_12 = strtotime ( '-12 month' , $hoy );
+
+	echo date("m-d-Y", time())." - ".date("m-d-Y", $mes_1)."<br>";
+	echo date("m-d-Y", $mes_1)." - ".date("m-d-Y", $mes_3)."<br>";
+	echo date("m-d-Y", $mes_3)." - ".date("m-d-Y", $mes_6)."<br>";
+	echo date("m-d-Y", $mes_6)." - ".date("m-d-Y", $mes_12);
+
 	echo "<pre>";
-		print_r($grupos);
+		// print_r($grupos);
 		// print_r($listas);
 	echo "</pre>";
 
