@@ -243,7 +243,6 @@
 	}
 
 	function getResultados(){
-		console.log("Entro");
 		cargando(1);
 		jQuery.post(
 			HOME+"/NEW/resultados.php",
