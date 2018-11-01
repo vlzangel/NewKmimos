@@ -38,7 +38,7 @@ function getStatus(){
 
 function updateStatus(){
 	if( !jQuery("#confirmar").hasClass("disable") ){
-		var confirmed = confirm("Esta seguro de cambiar el status de la reserva a [ "+String(jQuery("#status").val()).toUpperCase()+" ].?");
+		var confirmed = confirm("Esta seguro de cambiar el status de la solicitud a [ "+String(jQuery("#status").val()).toUpperCase()+" ].?");
     	if (confirmed == true) {
 			jQuery("#confirmar").addClass("disable");
 			jQuery("#confirmar").val("Procesando...");
