@@ -45,7 +45,7 @@ function updateStatus(){
 			jQuery.post(
 				TEMA+"/admin/backend/status_solicitudes/ajax/updateStatus.php",
 				{
-					id: jQuery("#orden").val(),
+					id: jQuery("#id").val(),
 					status: jQuery("#status").val()
 				},
 				function(HTML){
