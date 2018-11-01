@@ -226,7 +226,7 @@
     if(!function_exists('status_solicitudes')){
         function status_solicitudes(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
-            include_once(dirname(__DIR__).'/backend/status_solicitudes/index.php');
+            include_once(dirname(__DIR__).'/backend/status_solicitudes/panel.php');
         }
     }
 
