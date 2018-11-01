@@ -26,7 +26,7 @@
             $new_status = "Pendiente con env&iacute;o de correo";
             $db->query("UPDATE wp_posts SET post_status = 'pending' WHERE ID = {$id};");
             $db->query("UPDATE wp_postmeta SET meta_value = '1' WHERE post_id = {$id} AND meta_key = 'request_status';");
-            include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+            include( $raiz."/wp-content/themes/kmimos/procesos/conocer/index.php");
 
         break;
 
@@ -36,7 +36,7 @@
             
             $acc = "CFM"; $usu = "CUI"; $NO_ENVIAR = "NO";
 
-            include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+            include( $raiz."/wp-content/themes/kmimos/procesos/conocer/index.php");
 
         break;
 
@@ -46,7 +46,7 @@
             
             $acc = "CFM"; $usu = "CUI";
 
-            include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+            include( $raiz."/wp-content/themes/kmimos/procesos/conocer/index.php");
 
         break;
 
@@ -56,7 +56,7 @@
             
             $acc = "CCL"; $usu = "CUI"; $NO_ENVIAR = "NO";
 
-            include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+            include( $raiz."/wp-content/themes/kmimos/procesos/conocer/index.php");
 
         break;
 
@@ -66,7 +66,7 @@
             
             $acc = "CCL"; $usu = "CUI";
 
-            include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+            include( $raiz."/wp-content/themes/kmimos/procesos/conocer/index.php");
 
         break;
     
