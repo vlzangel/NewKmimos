@@ -126,16 +126,16 @@
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_otros',
                 );
-
-                $opciones_menu_reporte[] = array(
-                    'title'         =>  __('Status Solicitudes'),
-                    'short-title'   =>  __('Status Solicitudes'),
-                    'parent'        =>  'reporte_fotos',
-                    'slug'          =>  'status_solicitudes',
-                    'access'        =>  'manage_options',
-                    'page'          =>  'status_solicitudes',
-                );
             }
+
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Status Solicitudes'),
+                'short-title'   =>  __('Status Solicitudes'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'status_solicitudes',
+                'access'        =>  'manage_options',
+                'page'          =>  'status_solicitudes',
+            );
 
             $opciones_menu_reporte[] = array(
                 'title'         =>  __('Términos Aceptados'),
