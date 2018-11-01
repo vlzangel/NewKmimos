@@ -392,55 +392,57 @@
 	// }
 
 
-	// function wpdm_filter_siteurl($content) {
-	// 	$current_server = $_SERVER['SERVER_NAME'];
-	//    	return "http://".$current_server."/";
-	// }
+	/* MULTIPLES DOMINIOS */
+	
+/*		function wpdm_filter_siteurl($content) {
+			$current_server = $_SERVER['SERVER_NAME'];
+		   	return "http://".$current_server."/";
+		}
 
-	// function wpdm_filter_home($content) {
-	// 	$current_server = $_SERVER['SERVER_NAME'];
-	//    	return "http://".$current_server."/";
-	// }
+		function wpdm_filter_home($content) {
+			$current_server = $_SERVER['SERVER_NAME'];
+		   	return "http://".$current_server."/";
+		}
 
-	// function wpdm_conv_tag($content) {
-	// 	$search = "/\[dmWpAddr\]/";
-	// 	if (preg_match($search, $content)){
-	// 		$replace = get_option('siteurl');
-	// 		$content = preg_replace ($search, $replace, $content);
-	// 	}
-	// 	$search = "/\[dmBlogAddr\]/";
-	// 	if (preg_match($search, $content)){
-	// 		$replace = get_option('home');
-	// 		$content = preg_replace ($search, $replace, $content);
-	// 	}
-	// 	$search = "/\[dmBlogTitle\]/";
-	// 	if (preg_match($search, $content)){
-	// 		$replace = get_option('blogname');
-	// 		$content = preg_replace ($search, $replace, $content);
-	// 	}
-	// 	$search = "/\[dmTagLine\]/";
-	// 	if (preg_match($search, $content)){
-	// 		$replace = get_option('blogdescription');
-	// 		$content = preg_replace ($search, $replace, $content);
-	// 	}
-	// 	return $content;
-	// }
+		function wpdm_conv_tag($content) {
+			$search = "/\[dmWpAddr\]/";
+			if (preg_match($search, $content)){
+				$replace = get_option('siteurl');
+				$content = preg_replace ($search, $replace, $content);
+			}
+			$search = "/\[dmBlogAddr\]/";
+			if (preg_match($search, $content)){
+				$replace = get_option('home');
+				$content = preg_replace ($search, $replace, $content);
+			}
+			$search = "/\[dmBlogTitle\]/";
+			if (preg_match($search, $content)){
+				$replace = get_option('blogname');
+				$content = preg_replace ($search, $replace, $content);
+			}
+			$search = "/\[dmTagLine\]/";
+			if (preg_match($search, $content)){
+				$replace = get_option('blogdescription');
+				$content = preg_replace ($search, $replace, $content);
+			}
+			return $content;
+		}
 
-	// // Add the hooks:
-	// add_filter('option_siteurl', 'wpdm_filter_siteurl', 1);
-	// add_filter('option_home', 'wpdm_filter_home', 1);
+		// Add the hooks:
+		add_filter('option_siteurl', 'wpdm_filter_siteurl', 1);
+		add_filter('option_home', 'wpdm_filter_home', 1);
 
 
-	// function vlz_plugins_url($path = '', $plugin = '') {
-	// 	$new_path = explode("/", $path);
-	// 	$new_path[2] = $_SERVER['SERVER_NAME'];
-	// 	return implode("/", $new_path);
-	// }
-	// add_filter('plugins_url', 'vlz_plugins_url', -10);
+		function vlz_plugins_url($path = '', $plugin = '') {
+			$new_path = explode("/", $path);
+			$new_path[2] = $_SERVER['SERVER_NAME'];
+			return implode("/", $new_path);
+		}
+		add_filter('plugins_url', 'vlz_plugins_url', -10);
 
-	// add_filter('the_content', 'wpdm_conv_tag'); 
-	// add_filter('the_excerpt', 'wpdm_conv_tag'); 
-
+		add_filter('the_content', 'wpdm_conv_tag'); 
+		add_filter('the_excerpt', 'wpdm_conv_tag'); 
+*/
 	
 	include(__DIR__."/admin/generales/funciones.php");
 	include(dirname(dirname(dirname(__DIR__)))."/monitor/conf/menu.php");

@@ -1,5 +1,8 @@
 <?php
 
+	header('Content-type: application/vnd.ms-excel;charset=iso-8859-15');
+	header('Content-Disposition: attachment; filename=nombre_archivo.xls');
+
 	include 'wp-load.php';
 
 	global $wpdb;
@@ -15,6 +18,7 @@
 			cliente_apellido.meta_value AS cliente_apellido,
 			cliente.user_email AS email_cliente,
 			CONCAT( cliente_movil.meta_value, ' / ', cliente_phone.meta_value ) AS telefonos_cliente,
+			cliente_conocio.meta_value AS cliente_conocio,
 
 
 			cuidador.ID AS cuidador,
@@ -22,7 +26,8 @@
 			cuidador_apellido.meta_value AS cuidador_apellido,
 			post_producto.post_title AS servicio,
 			cuidador.user_email AS email_cuidador,
-			CONCAT( cuidador_movil.meta_value, ' / ', cuidador_phone.meta_value ) AS telefonos_cuidador
+			CONCAT( cuidador_movil.meta_value, ' / ', cuidador_phone.meta_value ) AS telefonos_cuidador,
+			cuidador_conocio.meta_value AS cuidador_conocio
 		FROM
 			wp_posts as u
 		INNER JOIN wp_postmeta AS inicio ON ( u.ID = inicio.post_id AND inicio.meta_key = '_booking_start' )
@@ -37,11 +42,13 @@
 		INNER JOIN wp_usermeta AS cliente_apellido ON ( cliente.ID = cliente_apellido.user_id AND cliente_apellido.meta_key = 'last_name' )
 		INNER JOIN wp_usermeta AS cliente_movil ON ( cliente.ID = cliente_movil.user_id AND cliente_movil.meta_key = 'user_mobile' )
 		INNER JOIN wp_usermeta AS cliente_phone ON ( cliente.ID = cliente_phone.user_id AND cliente_phone.meta_key = 'user_phone' )
+		INNER JOIN wp_usermeta AS cliente_conocio ON ( cliente.ID = cliente_conocio.user_id AND cliente_conocio.meta_key = 'user_referred' )
 
 		INNER JOIN wp_usermeta AS cuidador_nombre ON ( cuidador.ID = cuidador_nombre.user_id AND cuidador_nombre.meta_key = 'first_name' )
 		INNER JOIN wp_usermeta AS cuidador_apellido ON ( cuidador.ID = cuidador_apellido.user_id AND cuidador_apellido.meta_key = 'last_name' )
 		INNER JOIN wp_usermeta AS cuidador_movil ON ( cuidador.ID = cuidador_movil.user_id AND cuidador_movil.meta_key = 'user_mobile' )
 		INNER JOIN wp_usermeta AS cuidador_phone ON ( cuidador.ID = cuidador_phone.user_id AND cuidador_phone.meta_key = 'user_phone' )
+		INNER JOIN wp_usermeta AS cuidador_conocio ON ( cuidador.ID = cuidador_conocio.user_id AND cuidador_conocio.meta_key = 'user_referred' )
 
 		WHERE
 			u.post_type = 'wc_booking' AND
@@ -53,7 +60,60 @@
 
 	$re = $wpdb->get_results($sql);
 
-	echo "<pre>";
+/*	echo "<pre>";
 		print_r($re);
-	echo "</pre>";
+	echo "</pre>";*/
+
+	$filas = '';
+	foreach ($re as $key => $value) {
+		$filas .= '
+			<tr>
+		        <td>'.$value->ID.'</td>
+		        <td>'.$value->inicio.'</td>
+		        <td>'.$value->fin.'</td>
+
+		        <td>'.$value->cliente.'</td>
+		        <td>'.$value->cliente_nombre.'</td>
+		        <td>'.$value->cliente_apellido.'</td>
+		        <td>'.$value->email_cliente.'</td>
+		        <td>'.$value->telefonos_cliente.'</td>
+		        <td>'.$value->cliente_conocio.'</td>
+
+		        <td>'.$value->cuidador.'</td>
+		        <td>'.$value->cuidador_nombre.'</td>
+		        <td>'.$value->cuidador_apellido.'</td>
+		        <td>'.$value->servicio.'</td>
+		        <td>'.$value->email_cuidador.'</td>
+		        <td>'.$value->telefonos_cuidador.'</td>
+		        <td>'.$value->cuidador_conocio.'</td>
+			</tr>
+		';
+	}
+
+	echo '
+		<table border="1" cellpadding="2" cellspacing="0" width="100%">
+		    <caption>Reservas</caption>
+		    <tr>
+		        <td># Reserva</td>
+		        <td>Inicio</td>
+		        <td>Fin</td>
+
+		        <td>Cliente ID</td>
+		        <td>Cliente Nombre</td>
+		        <td>Cliente Apellido</td>
+		        <td>Cliente Email</td>
+		        <td>Cliente Teléfonos</td>
+		        <td>Cliente Nos conocio por:</td>
+
+		        <td>Cuidador ID</td>
+		        <td>Cuidador Nombre</td>
+		        <td>Cuidador Apellido</td>
+		        <td>Cuidador Servicio</td>
+		        <td>Cuidador Email</td>
+		        <td>Cuidador Teléfonos</td>
+		        <td>Cuidador Nos conocio por:</td>
+		    </tr>
+		    '.$filas.'
+		</table>
+	';
 ?>

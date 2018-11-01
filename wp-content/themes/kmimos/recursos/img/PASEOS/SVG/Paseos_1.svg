@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+  <defs>
+    <style>
+      .cls-1, .cls-6 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #cffbf2;
+      }
+
+      .cls-3, .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #b1f8e7;
+      }
+
+      .cls-5, .cls-6 {
+        stroke: #7ad2c4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4px;
+      }
+    </style>
+  </defs>
+  <title>Paseos 1</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <rect class="cls-1" width="150" height="150"/>
+        <rect class="cls-2" x="38.61" y="122.844" width="83.414" height="13.231"/>
+        <g>
+          <path class="cls-3" d="M38.61,136.075V78.1L26.324,36.549s-2.816-14.01,8.807-18.977,19.815,4.442,21.153,8.771,6.039,16.511,6.039,16.511l.007-16.449S62.624,10.1,77.69,10.1,94,25.454,94,25.454v27.9l28.024,23.781V134.1h-5.019Z"/>
+          <ellipse class="cls-2" cx="77.727" cy="79.692" rx="25.439" ry="20.531"/>
+          <ellipse class="cls-2" cx="69.186" cy="98.166" rx="14.981" ry="12.09"/>
+          <ellipse class="cls-2" cx="94.709" cy="91.849" rx="15.064" ry="12.157"/>
+          <ellipse class="cls-4" cx="55.096" cy="79.552" rx="14.375" ry="17.125"/>
+          <path class="cls-5" d="M38.61,136.075V108.167S18.529,97.663,30.269,74.8c1.991-3.876,6.832-13.146,16.4-14.205,4.923-.545,10.616,1.14,14.088,5.008,6.066,6.757,5.3,20.123-4.227,30.514"/>
+          <path class="cls-6" d="M35.351,67.138,26.324,36.549a15.841,15.841,0,0,1,10.71-19.677h0a15.841,15.841,0,0,1,19.677,10.71l6,20.341"/>
+          <path class="cls-6" d="M94.352,37.2,94,25.454A15.841,15.841,0,0,0,77.69,10.1h0a15.841,15.841,0,0,0-15.359,16.31l.637,21.2"/>
+          <ellipse class="cls-4" cx="90.363" cy="63.438" rx="14.375" ry="13.698"/>
+          <ellipse class="cls-4" cx="106.637" cy="75" rx="14.375" ry="13.698"/>
+          <rect class="cls-5" x="76.711" y="43.179" width="36.168" height="24.303" rx="12.152" ry="12.152" transform="matrix(0.548, -0.837, 0.837, 0.548, -3.433, 104.308)"/>
+          <rect class="cls-5" x="95.53" y="58.596" width="36.168" height="24.303" rx="12.152" ry="12.152" transform="translate(-7.823 127.02) rotate(-56.773)"/>
+          <line class="cls-6" x1="122.024" y1="80.087" x2="122.024" y2="136.075"/>
+          <circle class="cls-2" cx="40.721" cy="31.293" r="8.187"/>
+          <circle class="cls-2" cx="77.727" cy="24.407" r="8.187"/>
+        </g>
+        <line class="cls-6" x1="25.672" y1="136.075" x2="137.167" y2="136.075"/>
+        <path class="cls-6" d="M108.744,29.167a12.884,12.884,0,0,1,9.512,9.52"/>
+        <path class="cls-6" d="M15.4,87.641s-.665-10.385,4.814-15.891"/>
+      </g>
+    </g>
+  </g>
+</svg>
