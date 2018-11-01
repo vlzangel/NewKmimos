@@ -126,6 +126,15 @@
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_otros',
                 );
+
+                $opciones_menu_reporte[] = array(
+                    'title'         =>  __('Status Solicitudes'),
+                    'short-title'   =>  __('Status Solicitudes'),
+                    'parent'        =>  'reporte_fotos',
+                    'slug'          =>  'status_solicitudes',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'status_solicitudes',
+                );
             }
 
             $opciones_menu_reporte[] = array(
@@ -211,6 +220,13 @@
         function reporte_otros(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/otros/reporte_otros.php');
+        }
+    }
+
+    if(!function_exists('status_solicitudes')){
+        function status_solicitudes(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/backend/status_solicitudes/index.php');
         }
     }
 
