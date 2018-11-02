@@ -422,13 +422,14 @@
 		}
 		
 		.adicionales_container .input_check_box{
-			padding: 4px 0px;
+			padding: 5px 2px;
 			box-sizing: border-box;
 			float: left;
 			width: 100%;
 			text-align: left;
 			height: 40px;
 			margin-right: 0px;
+			border: 0px;
 		}
 		
 		.adicionales_container .input_check_box img {
@@ -450,8 +451,8 @@
 		    background-color: transparent;
 		    border-radius: 5px;
 		    transition: all .3s ease-in-out;
-		    opacity: 0;
-		    border: solid 1px #00d2c6;
+		    opacity: 1;
+    		border: solid 1px #CCC;
 		}
 
 		.adicionales_container .input_check_box span small {
