@@ -367,6 +367,7 @@
 	a.boton.boton_verde {
 	    margin-right: 0px;
 	    border: solid 2px #00d2c6;
+	    font-family: Gotham-Pro-Bold;
 	}
 
 	.fechas_container input {

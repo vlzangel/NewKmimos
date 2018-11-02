@@ -332,16 +332,16 @@
 	}
 
 	.ubicacion_container {
-	    position: relative;
+        position: relative;
 	    display: block;
 	    width: 100%;
 	    box-sizing: border-box;
-	    margin-right: 10px;
-	    margin-bottom: 15px;
+	    padding: 0px 10px;
+	    margin-bottom: 10px;
 	}
 
 	.ubicacion_container input {
-	    width: calc( 100% - 5px );
+	    width: 100%;
 	}
 
 	.tipo_mascota_container {
@@ -359,8 +359,17 @@
 	}
 
 	.fechas_container {
-	    display: block;
-	    width: 100%;
+		display: block;
+		width: calc( 100% - 20px );
+		overflow: hidden;
+		margin-left: 10px;
+	}
+
+	.fechas_container > div {
+		position: relative;
+		display: inline-block;
+		width: calc( 50% - 8px );
+		float: left;
 	}
 
 	.tamanios_container {
@@ -837,6 +846,15 @@
 	    width: 85%!important;
 	}
 
+	.controles_top_container{
+		display: none;
+	}
+
+	.controles_mitad_container {
+	    padding: 0px;
+        text-align: left;
+	}
+
 }
 
 @media (max-width: 600px){
@@ -987,6 +1005,34 @@
 	    top: 23px;
 	    text-align: right;
 	    padding: 2px 7px;
+	}
+
+	.dias_container {
+		width: calc( 100% - 10px );
+	    margin: 0px 5px 10px;
+	    margin-left: 0px;
+	    margin-right: 0px;
+	}
+
+	.dias_container .input_check_box {
+		width: calc( 14.286% - 10px );
+		margin-left: 10px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		float: left;
+		text-align: center;
+	}
+
+	img#mi_ubicacion {
+	    right: 20px;
+	}
+
+	.ubicacion_container .barra_ubicacion {
+	    right: 50px;
+	}
+
+	.ubicacion_container .ubicacion_localizacion {
+	    left: 20px;
 	}
 }
 
