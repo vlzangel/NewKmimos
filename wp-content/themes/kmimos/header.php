@@ -34,7 +34,7 @@
         "paseos",
     ];
 
-    if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new) ){
+    if( true ){
 
 		if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new) ){
 			include __DIR__.'/NEW/header.php';
