@@ -931,6 +931,8 @@
 	    border-top: 0px;
 	    border-radius: 0px 0px 3px 3px;
 	    background: #00d2c6;
+	    text-transform: uppercase;
+    	font-weight: 800;
 	}
 	
 	#PageSubscribe_NEW img {
