@@ -15,7 +15,7 @@
 					<div class="footer_alto_col_1">
 						<h2>Entérate de los últimos ciudados para tu mascota</h2>
 						<ul>
-							<li>¡Inscribete a nuestro blog y conócelas!</li>
+							<li style="font-size: 13px;">¡Inscribete a nuestro blog y conócelas!</li>
 						</ul>
 						<form id="suscribirse">
 							<input type="email" id="email" name="email" placeholder="Ingresa tu correo" />
@@ -56,13 +56,13 @@
 					</div>
 					<div>
 						<h2>Contáctanos</h2>
-						<ul>
-							<li>Teléfono: 01 (800) 9 564667</li>
-							<li>Telef. Local: 01 (55) 85261162</li>
-							<li>WhatsApp: +52 1 (33) 12614186</li>
-							<li>WhatsApp: +52 1 (55) 68922182</li>
-							<li>WhatsApp: +52 1 (55) 65602472</li>
-							<li>Email: contactomex@kmimos.la</li>
+						<ul class="info_contacto">
+							<li><i class="fa fa-phone" aria-hidden="true"></i> <span>Teléfono:</span> 01 (800) 9 564667</li>
+							<li><i class="fa fa-phone" aria-hidden="true"></i> <span>Telef. Local:</span> 01 (55) 85261162</li>
+							<li><i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (33) 12614186</li>
+							<li><i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (55) 68922182</li>
+							<li><i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (55) 65602472</li>
+							<li><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email:</span> contactomex@kmimos.la</li>
 						</ul>
 					</div>
 					<div class="siguenos_bajo">

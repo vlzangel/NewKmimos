@@ -310,27 +310,29 @@ nav .lupa_negra{
 	    float: left;
 	    width: 60%;
 	    border: solid 1px #CCC;
-	    height: 34px;
+	    height: auto;
 	    border-right: 0px;
 	    outline: none;
 	    padding: 10px;
 	    box-sizing: border-box;
 	    border-radius: 3px 0px 0px 3px;
 	    background: #FFF !important;
+        line-height: 1 !important;
 	}
 
 	.footer_alto form input[type='submit'] {
 		position: absolute;
 		right: 0px;
 	    width: 40%;
-	    border: solid 1px #CCC;
-	    height: 34px;
+	    border: solid 1px #00d2c6;
+	    height: 33px;
 	    background: #00d2c6 !important;
 	    color: #FFF;
 	    border-left: 0px;
 	    font-weight: 500;
 	    font-family: 'Gotham-Pro-Regular', arial, sans-serif;
 	    border-radius: 0px 3px 3px 0px;
+        font-size: 11px !important;
 	}
 
 	.footer_alto .siguenos_alto{
@@ -371,4 +373,8 @@ nav .lupa_negra{
 
 	.siguenos_bajo img{
 	    margin-right: 10px;
+	}
+
+	.info_contacto li i {
+		display: none;
 	}

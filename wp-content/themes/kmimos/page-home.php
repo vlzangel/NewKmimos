@@ -522,7 +522,7 @@
 				<h2>Conviértete en cuidador certificado kmimos</h2>
 				<div>
 					<span>Kmimos necesita doglovers como tú</span>
-					<a href="" class="boton boton_verde">Empezar a cuidar</a>
+					<a href="" class="boton boton_verde">Conviértete en Cuidador</a>
 				</div>
 			</div>
 
@@ -530,7 +530,7 @@
 		
 		<div class="quiero_ser_cuidador_container_2">
 			<span>Kmimos necesita doglovers como tú</span>
-			<a href="" class="boton boton_border_gris">Empezar a cuidar</a>
+			<a href="" class="boton boton_border_gris">Conviértete en Cuidador</a>
 		</div>';
 		
 		$HTML .= '

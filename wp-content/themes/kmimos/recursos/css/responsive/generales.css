@@ -78,13 +78,22 @@
 	    font-size: 10px !important;
 	}
 
+	.info_contacto li span {
+		display: none;
+	}
+
+	.info_contacto li i {
+		display: inline-block;
+		font-size: 14px;
+	    width: 16px;
+	    color: #000000;
+	}
+
 }
 
 @media (max-width: 480px){
 }
 
 @media (max-width: 350px){
-	.footer_alto > div > div {
-	    font-size: 8px !important;
-	}
+	
 }
