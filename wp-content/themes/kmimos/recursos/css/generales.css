@@ -242,6 +242,7 @@ nav .lupa_negra{
 		border: solid 1px #CCC;
 		border-radius: 3px;
 		padding: 10px;
+		line-height: 1;
 	}
 
 	.solo_PC {
