@@ -717,6 +717,7 @@
 	.filtos_container {
 	    padding: 0px 5px 15px;
 	    width: 100%;
+	    z-index: 999999999999;
 	}
 
 	.input_check_box span small {
