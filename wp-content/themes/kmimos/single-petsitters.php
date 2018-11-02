@@ -282,6 +282,8 @@
 	}
     include ('partes/cuidador/conocelo.php');
 
+    $galeria = '';
+
  	$HTML .= '
  		<script> 
 			var lat = "'.$cuidador->latitud.'";
