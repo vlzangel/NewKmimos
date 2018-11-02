@@ -309,7 +309,7 @@
 							<div class="resultados_item_bottom">
 								<a 
 									role="button" href="#" 
-                                    data-name="'.$titulo.'" 
+                                    data-name="'.$_cuidador->titulo.'" 
                                     data-id="'.$_cuidador->id_post.'" 
                                     data-target="#popup-conoce-cuidador"
                                     href="#" class="boton boton_border_gris"

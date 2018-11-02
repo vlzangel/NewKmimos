@@ -257,7 +257,7 @@
 	if(is_user_logged_in()){
 		include('partes/seleccion_boton_reserva.php');
 		$BOTON_RESERVAR = '
-			<a href="javascript:;"
+			<a  role="button" href="#" 
 				id="btn_conocer"
 	            data-target="#popup-conoce-cuidador"
 	            data-name="'.strtoupper( get_the_title() ).'" 
@@ -268,7 +268,7 @@
 		'.$BOTON_RESERVAR;
 	}else{
 		$BOTON_RESERVAR .= '
-			<a href="javascript:;"
+			<a  role="button" href="#" 
 				id="btn_conocer"
 				data-target="#popup-iniciar-sesion"
 				class="boton boton_border_gris" 
