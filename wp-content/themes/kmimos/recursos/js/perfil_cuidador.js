@@ -29,16 +29,6 @@ jQuery( document ).ready(function() {
 	    }
     });
 
-	jQuery(".pc_galeria_item").on("click", function(e){
-		if( jQuery(this).hasClass("selected") ){
-			jQuery(".pc_galeria_item").removeClass("selected");
-		}else{
-			jQuery(".pc_galeria_item").removeClass("selected");
-			jQuery(this).addClass("selected");
-			showImgGaleria( jQuery(this) );
-		}
-	});
-
     jQuery("#servicios").on("click", function(e){
         show_login_modal("servicios");
     });
@@ -62,6 +52,19 @@ jQuery( document ).ready(function() {
     jQuery("#btn_reservar_fixed").on("click", function(e){
         jQuery("#btn_reservar").click();
     });
+
+    window.onload = function(){
+		jQuery(".pc_galeria_box").html(GALERIA);
+		jQuery(".pc_galeria_item").on("click", function(e){
+			if( jQuery(this).hasClass("selected") ){
+				jQuery(".pc_galeria_item").removeClass("selected");
+			}else{
+				jQuery(".pc_galeria_item").removeClass("selected");
+				jQuery(this).addClass("selected");
+				showImgGaleria( jQuery(this) );
+			}
+		});
+    }
 
 });
 

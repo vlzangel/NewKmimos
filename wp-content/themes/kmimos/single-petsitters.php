@@ -108,10 +108,10 @@
 	echo "</pre>";*/
 	if( is_array($_galeria[1]) ){
 		foreach ($_galeria[1] as $key => $value) {
-			$galeria .= '
-			<div class="pc_galeria_item" data-img="'.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.'">
-				<div class="pc_galeria_img" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>
-			</div>';
+			$galeria .=
+			"<div class='pc_galeria_item' data-img='".get_home_url()."/wp-content/uploads/cuidadores/galerias/".$value."'>".
+				"<div class='pc_galeria_img' style='background-image: url(".get_home_url()."/wp-content/uploads/cuidadores/galerias/".$value.");'></div>".
+			"</div>";
 		}
 	}
 	$ocultar_siguiente_img = ( count($_cuidador->galeria_normales) > 1 ) ? '': 'Ocultar_Flecha';
@@ -282,6 +282,7 @@
 	}
     include ('partes/cuidador/conocelo.php');
 
+    $_galeria = $galeria;
     $galeria = '';
 
  	$HTML .= '
@@ -289,6 +290,7 @@
 			var lat = "'.$cuidador->latitud.'";
 			var lng = "'.$cuidador->longitud.'";
  			var SERVICIO_ID = "'.$_cuidador->id_post.'"; 
+ 			var GALERIA = "'.$_galeria.'";
  		</script>
 
  		<div class="pc_seccion_0" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
@@ -300,7 +302,9 @@
 			<div style="position: relative;" data-total="'.(count($_cuidador->galeria)).'" data-actual="0" data-paso="4">
 				<div class="pc_galeria_container_interno">
 					<div class="pc_galeria_box">
-						'.$galeria.'
+						<div class="perfil_cuidador_cargando">
+							<div style="background-image: url('.getTema().'/images/cargando.gif);" ></div> Cangando Galer&iacute;a...
+						</div>
 					</div>
 				</div>
 				<img onclick="imgAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_2.svg" />
@@ -382,7 +386,9 @@
 					<div style="position: relative; max-width: 390px; display: inline-block; width: 100%;" data-total="'.(count($_cuidador->galeria)).'" data-actual="0" data-paso="5">
 						<div class="pc_galeria_container_interno">
 							<div class="pc_galeria_box">
-								'.$galeria.'
+								<div class="perfil_cuidador_cargando">
+									<div style="background-image: url('.getTema().'/images/cargando.gif);" ></div> Cangando Galer&iacute;a...
+								</div>
 							</div>
 						</div>
 						<img onclick="imgAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_2.svg" />

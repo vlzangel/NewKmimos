@@ -245,6 +245,7 @@
     		box-sizing: border-box;
     		height: 100%;
     		vertical-align: middle;
+    		text-align: left;
 		}
 	
 		.pc_galeria_box .pc_galeria_item {
@@ -861,4 +862,21 @@
 
 		.reservar_footer {
 		    display: none;
+		}
+
+		.perfil_cuidador_cargando {
+		    background: #EEE;
+   			padding: 20px 35px;
+		}
+
+		.perfil_cuidador_cargando > div {
+		    background-image: url(http://localhost/kmimos/wp-content/themes/kmimos/images/cargando.gif);
+		    background-repeat: no-repeat;
+		    background-position: center;
+		    background-size: contain;
+		    height: 30px;
+		    display: inline-block;
+		    width: 30px;
+		    vertical-align: middle;
+		    margin-right: 10px;
 		}
