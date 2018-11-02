@@ -567,6 +567,8 @@
 
 	.filtos_container.open_filtros .cerrar_filtros_movil {
 	    right: auto;
+	    
+        right: 0px !important;
 	}
 
 	.mapa_container.open_mapa .cerrar_mapa_movil {
@@ -742,7 +744,6 @@
 	    border-top: 0px;
 	    border-radius: 0px 0px 0px 4px;
 	    z-index: 1000;
-        right: 0px !important;
 	}
 
 	.iOS .cerrar_filtros_movil {
