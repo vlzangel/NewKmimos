@@ -7,6 +7,9 @@
 	wp_enqueue_script('perfil_cuidadores', get_recurso("js")."perfil_cuidador.js", array("jquery"), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
+    wp_enqueue_style('conocer', getTema()."/css/conocer.css", array(), '1.0.0');
+    wp_enqueue_style('conocer_responsive', getTema()."/css/responsive/conocer_responsive.css", array(), '1.0.0');
+
 	global $wpdb;
 	global $post;
 
