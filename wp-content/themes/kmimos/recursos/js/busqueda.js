@@ -39,10 +39,13 @@
 			jQuery("body").css("overflow", "hidden");
 
 			jQuery('nav').addClass('open_filtros');
+			jQuery('.zopim').css('z-index', "0 !important");
+
 		});
 
 		jQuery("#ver_mapa").on("click", function(e){
 			jQuery(".mapa_container").addClass('open_mapa');
+			jQuery('.zopim').css('z-index', "0 !important");
 		});
 
 		jQuery(".cerrar_filtros_movil").on("click", function(e){
@@ -56,10 +59,12 @@
 		jQuery(".cerrar_mapa_movil").on("click", function(e){
 			jQuery(".mapa_container").removeClass('open_mapa');
 			jQuery("footer").addClass("show_footer");
+			jQuery('.zopim').css('z-index', "16000002");
 		});
 
 		jQuery("#buscar").submit(function(e){
 			e.preventDefault();
+			cerrar_filtros();
 		});
 
 		jQuery(".filtros_botones input.boton.boton_verde").on("click", function(e){
@@ -101,6 +106,7 @@
 		jQuery("body").css("overflow", "auto");
 
 		jQuery('nav').removeClass('open_filtros');
+		jQuery('.zopim').css('z-index', "16000002");
 	}
 
 	jQuery(".resultados_container").on("scroll", function() {
@@ -137,7 +143,6 @@
 	var mapIniciado = false;
 
 	function buscar( campo ){
-		console.log(campo);
 		if( campo != "ubicacion_txt" ){
 			if( campo == "ubicacion" ){
 				jQuery(".latitud").val("");

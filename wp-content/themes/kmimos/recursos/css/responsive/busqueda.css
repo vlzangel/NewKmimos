@@ -95,18 +95,19 @@
 		.filtos_container.open_filtros{
 			left: 0px;
 		    transition: all .3s ease-in-out;
-	        overflow: inherit;
+	        overflow: auto;
 		}
 
 		.filtos_container {
 		    position: fixed;
-		    top: 40px;
-		    height: calc( 100% - 40px );
+		    top: 0px;
+		    height: 100%;
 		    width: calc( 100% - 40px );
 		    left: -100%;
-		    overflow: auto;
-		    overflow-x: hidden;
+		    overflow: unset;
+		    overflow-x: unset;
 		    max-width: 350px;
+	        padding: 5px;
 		}
 
 		.filtos_container.open_filtros .cerrar_filtros_movil{		
@@ -153,6 +154,7 @@
 
 		.filtos_container form {
 		    height: 100%;
+		    overflow: unset;
 		}
 
 	/* MAPA */
@@ -554,10 +556,6 @@
 
 	.mapa_container {
         width: 100%;
-	}
-
-	.filtos_container {
-	    padding: 0px 10px 15px;
 	}
 
 	.cerrar_mapa_movil {
