@@ -31,11 +31,10 @@
 	$pages_new = [
 		"busqueda",
 		"petsitters",
-	];
+        "paseos",
+    ];
 
-	include __DIR__.'/NEW/header.php';
-
-	if( false ){
+    if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new) ){
 
 		if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new) ){
 			include __DIR__.'/NEW/header.php';
