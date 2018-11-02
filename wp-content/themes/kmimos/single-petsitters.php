@@ -508,12 +508,12 @@
 						<span>Servicios desde</span>
 						<label>MXN $ '.number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, ',', '.').'</label>
 						<form class="fechas_container" id="form_cuidador" method="POST" action="'.getTema().'/procesos/reservar/redirigir_reserva.php">
-							<div id="desde_container">
+							<div id="desde_container" class="fechas_box">
 								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/Fecha.svg" />
 								<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" value="'.$_SESSION['busqueda']['checkin'].'" readonly>
 								<small class="">Requerido</small>
 							</div>
-							<div>
+							<div id="hasta_container" class="fechas_box">
 								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/SVG/Fecha.svg" />
 								<input type="text" id="checkout" name="checkout" placeholder="Hasta" class="date_to" value="'.$_SESSION['busqueda']['checkout'].'" readonly>
 								<small class="">Requerido</small>

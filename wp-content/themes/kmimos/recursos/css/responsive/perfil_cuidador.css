@@ -343,7 +343,7 @@
 	    padding: 8px 8px 0px;
 	}
 
-	.fechas_container > div {
+	.fechas_container .fechas_box {
 	    display: inline-block;
 	    width: calc( 48% - 3px );
 	    margin-bottom: 10px;
