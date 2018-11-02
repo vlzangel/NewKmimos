@@ -356,7 +356,7 @@
 			text-align: center;
 		}
 
-		.filtros_botones input {
+		.filtros_botones button {
 			border: solid 1px #CCC;
 			border-radius: 0px;
 			width: calc( 50% - 15px );
@@ -365,7 +365,7 @@
 			border-radius: 3px;
 		}
 
-		.filtros_botones input.boton.boton_verde {
+		.filtros_botones button.boton.boton_verde {
 		    border: solid 1px #00d2c6;
 		}
 

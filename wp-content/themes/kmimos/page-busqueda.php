@@ -100,7 +100,7 @@
 	    $ordenamiento = "";
 	    foreach ( $ordenamientos as $clave => $valor ) {
 	    	$check = ( $_SESSION["busqueda"]["orderby"] == $valor[1] ) ? "selected": "";
-	    	$ordenamiento .= '<option value="'.$valor[1].'">'.$valor[0].'</option>';
+	    	$ordenamiento .= '<option id="'.$valor[1].'" value="'.$valor[1].'">'.$valor[0].'</option>';
 	    }
 
 	    $check_descuento = ( $_SESSION["busqueda"]["descuento"] == 1 ) ? "checked": "";
@@ -319,8 +319,8 @@
 					</select>
 
 					<div class="filtros_botones">
-						<input type="reset" class="boton" value="Limpiar" />
-						<input type="submit" class="boton boton_verde" value="Buscar" />
+						<button type="button" onclick="limpiar_filtros()" class="boton" >Limpiar</button>
+						<button type="submit" class="boton boton_verde" >Buscar</button>
 					</div>
 
 					<!-- <a href="#" class="mas_filtros">Más filtros</a> -->

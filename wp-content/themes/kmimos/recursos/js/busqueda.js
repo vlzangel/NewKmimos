@@ -109,6 +109,12 @@
 		jQuery('.zopim').css('z-index', "16000002");
 	}
 
+	function limpiar_filtros(){
+		jQuery('input').prop("checked", false);
+		jQuery('input').val("");
+		jQuery('#rating_desc').prop("selected", true);
+	}
+
 	jQuery(".resultados_container").on("scroll", function() {
 
 		if( parseInt( jQuery("body").width() ) > 768 ){
