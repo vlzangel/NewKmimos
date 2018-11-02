@@ -871,7 +871,7 @@
 	}
 	
 	#PageSubscribe_NEW h2 {
-	    color: #000;
+	    color: #444;
 	    text-align: center;
 	    text-transform: uppercase;
 	    font-family: Gotham-Pro-Bold;
@@ -881,10 +881,10 @@
 	}
 	
 	#PageSubscribe_NEW p {
-		color: #000;
+		color: #444;
 		text-align: center;
 		font-size: 15px;
-		margin: 0px 25px 15px;
+		margin: 0px 22px 15px;
 	}
 	
 	#PageSubscribe_NEW .section_1 {
@@ -912,7 +912,7 @@
 	#PageSubscribe_NEW form {
 	    margin: 0px 50px;
 	    position: absolute;
-	    top: -25px;
+	    top: -20px;
 	}
 	
 	#PageSubscribe_NEW input#mail_suscripcion {
@@ -1035,18 +1035,23 @@
 	}
 
 	#PageSubscribe_NEW h2 {
-	    padding: 25px 25px 0px;
-	    font-size: 12px !important;
-	    text-align: justify;
+	    padding: 25px 34px 0px;
+	    font-size: 25px !important;
+	    text-align: center;
 	}
 
 	#PageSubscribe_NEW p {
-	    text-align: justify;
-	    font-size: 11px;
+	    text-align: center;
+	    font-size: 14px;
+	}
+
+	p.p_1 {
+        font-size: 16px !important;
 	}
 
 	#PageSubscribe_NEW .section_3 {
-	    font-size: 10px;
+	    font-size: 13px;
+        font-family: Gotham-Pro-Bold;
 	}
 
 	#PageSubscribe_NEW .section_2 > div.img_banner {
@@ -1058,11 +1063,11 @@
 	}
 
 	#PageSubscribe_NEW input#mail_suscripcion {
-	    font-size: 10px;
+	    font-size: 12px;
 	}
 
 	#PageSubscribe_NEW button {
-	    font-size: 11px;
+	    font-size: 12px;
 	}
 
 	#buscador .solo_movil .boton_border_morado {
