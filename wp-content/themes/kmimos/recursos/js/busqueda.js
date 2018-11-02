@@ -115,6 +115,10 @@
 		jQuery('#rating_desc').prop("selected", true);
 	}
 
+	function filtros_buscar(){
+		buscar("");
+	}
+
 	jQuery(".resultados_container").on("scroll", function() {
 
 		if( parseInt( jQuery("body").width() ) > 768 ){

@@ -320,7 +320,7 @@
 
 					<div class="filtros_botones">
 						<button type="button" onclick="limpiar_filtros()" class="boton" >Limpiar</button>
-						<button type="submit" class="boton boton_verde" >Buscar</button>
+						<button type="button" onclick="filtros_buscar()" class="boton boton_verde" >Buscar</button>
 					</div>
 
 					<!-- <a href="#" class="mas_filtros">Más filtros</a> -->
