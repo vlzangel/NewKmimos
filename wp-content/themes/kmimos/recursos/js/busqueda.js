@@ -116,6 +116,7 @@
 	}
 
 	function filtros_buscar(){
+		cerrar_filtros();
 		buscar("");
 	}
 
