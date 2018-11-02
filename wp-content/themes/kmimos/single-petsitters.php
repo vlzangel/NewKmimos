@@ -268,14 +268,10 @@
 		'.$BOTON_RESERVAR;
 	}else{
 		$BOTON_RESERVAR .= '
-			<a  role="button" href="#" 
-				id="btn_conocer"
-				data-target="#popup-iniciar-sesion"
+			<a  href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal"
 				class="boton boton_border_gris" 
 			>CON&Oacute;CELO +</a>
-			<a href="javascript:;"
-				id="btn_reservar"
-				data-target="#popup-iniciar-sesion"
+			<a  href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal"
 				class="boton boton_verde" 
 			>RESERVAR</a>
 		';
