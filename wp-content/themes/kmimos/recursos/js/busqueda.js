@@ -218,7 +218,12 @@
 	var mapIniciado = false;
 
 	function buscar( campo ){
+		console.log(campo);
 		if( campo != "ubicacion_txt" ){
+			if( campo == "ubicacion" ){
+				jQuery(".latitud").val("");
+				jQuery(".longitud").val("");
+			}
 			jQuery.post(
 				jQuery("#buscar").attr("action"),
 				jQuery("#buscar").serialize(),

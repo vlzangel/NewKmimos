@@ -467,6 +467,11 @@
     	$orderby = "FLASH DESC, ".$orderby;
     }
 
+    if( $latitud != "" && $longitud != "" ){
+    	$orderby = "DISTANCIA ASC";
+    	$FLASH_ORDEN = "";
+    }
+
     $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
 
     /* SQL cuidadores */
