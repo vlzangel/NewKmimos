@@ -22,6 +22,10 @@
 
 @media (max-width: 768px){
 
+	nav.open_filtros {
+	    top: -42px;
+	}
+
 	.show_princ .principales_box{
 	    display: block;
 	    opacity: 1;
@@ -538,19 +542,11 @@
 		    padding: 8px 0px 2px;
 		}
 
-	.iOS .filtos_container {
-	    top: 41px;
-	    height: calc( 100% - 41px );
-	    width: calc( 100% - 40px );
-	}
-
-
-
 	.cerrar_filtros_movil {
 	    display: block;
 	    position: relative;
 	    text-align: right;
-	    padding: 10px 0px;
+	    padding: 10px;
 	    font-size: 20px;
 	    border-right: 0px;
 	    border-bottom: 0px;
@@ -607,12 +603,28 @@
 	    background: #000A;
 	    z-index: 999;
 	}
+
+
+
+	.iOS .filtos_container {
+	    top: 0px;
+	    height: 100%;
+	    width: 100%;
+	    padding: 5px;
+	    overflow: auto;
+	}
+
+	.iOS .filtos_container form {
+	    overflow: unset !important;
+        height: auto !important;
+	}
+
 }
 
 @media (max-width: 400px){
 
 	.filtos_container.open_filtros ~ .cerrar_filtros_movil_panel{
-	    width: calc( 100% - 335px );
+	    width: calc( 100% - 350px );
 	}
 
 	.paginacion_container span {
@@ -732,5 +744,9 @@
 	    border-radius: 0px 0px 0px 4px;
 	    z-index: 1000;
         right: 10px !important;
+	}
+
+	.iOS .cerrar_filtros_movil {
+	    right: 0px !important;
 	}
 }

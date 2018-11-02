@@ -1,89 +1,4 @@
-/* GALERIA */
-
-	function imgAnterior(_this){
-		var actual = _this.parent().attr("data-actual");
-		var total = _this.parent().attr("data-total");
-		if( actual == 0 ){
-			actual = total-1;
-		}else{
-			actual--;
-		}
-		if( actual == 0 ){
-			_this.addClass("Ocultar_Flecha");
-		}
-		if( actual != total-1 ){
-			_this.parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
-		}
-		_this.parent().attr("data-actual", actual);
-		_this.parent().find(".resultados_item_info_img_box").animate({left: "-"+(actual*100)+"%"});
-	}
-
-	function imgSiguiente(_this){
-		var actual = _this.parent().attr("data-actual");
-		var total = _this.parent().attr("data-total");
-		if( actual == total-1 ){
-			actual = 0;
-		}else{
-			actual++;
-		}
-		if( actual == total-1 ){
-			_this.addClass("Ocultar_Flecha");
-		}
-		if( actual != 0 ){
-			_this.parent().find(".Flecha_Izquierda").removeClass("Ocultar_Flecha");
-		}
-		_this.parent().attr("data-actual", actual);
-		_this.parent().find(".resultados_item_info_img_box").animate({left: "-"+(actual*100)+"%"});
-	}
-
-	function destacadoAnterior(_this){
-		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
-		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
-		var mostrando = getDestacadosMostrados();
-		if( actual == 0 ){
-			_this.parent().addClass("Ocultar_Flecha");
-		}else{
-			actual--;
-			if( actual != 0 ){
-				_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
-			}else{
-				_this.parent().addClass("Ocultar_Flecha");
-			}
-			_this.parent().parent().find(".destacados_container").attr("data-actual", actual);
-			_this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*( 100 / mostrando ) )+"%"});
-		}
-	}
-
-	function destacadoSiguiente(_this){
-		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
-		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
-		var mostrando = getDestacadosMostrados();
-		if( actual == total-mostrando ){
-			actual = 0;
-		}else{
-			actual++;
-		}
-		if( actual == total-mostrando ){
-			_this.parent().addClass("Ocultar_Flecha");
-		}
-		if( actual != 0 ){
-			_this.parent().parent().find(".Flecha_Izquierda").removeClass("Ocultar_Flecha");
-		}
-		_this.parent().parent().find(".destacados_container").attr("data-actual", actual);
-		_this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*( 100 / mostrando ) )+"%"});
-	}
-
-	function getDestacadosMostrados(){
-		if( parseInt( jQuery("body").width() ) >= 768 ){
-			return 4;
-		}else{
-			return 2;
-		}
-	}
-
-
 /* BUSCAR */
-
 
 	jQuery(document).ready(function(){
 
@@ -91,7 +6,7 @@
 
 		jQuery('nav').addClass('nav_busqueda');
 		jQuery('nav').addClass('nav_white');
-
+		
 		jQuery("#buscar input").on("change", function(e){ 
 			if( parseInt( jQuery("body").width() ) > 768 ){ 
 				buscar( jQuery(this).attr("id") ); 
@@ -122,6 +37,8 @@
 			}
 			jQuery("footer").removeClass("show_footer");
 			jQuery("body").css("overflow", "hidden");
+
+			jQuery('nav').addClass('open_filtros');
 		});
 
 		jQuery("#ver_mapa").on("click", function(e){
@@ -182,6 +99,8 @@
 		}
 		jQuery("footer").addClass("show_footer");
 		jQuery("body").css("overflow", "auto");
+
+		jQuery('nav').removeClass('open_filtros');
 	}
 
 	jQuery(".resultados_container").on("scroll", function() {
@@ -317,6 +236,89 @@
 			if( estado == 2 ){
 				jQuery(".cargando_mas_resultados_externo").css("display", "none");
 			}
+		}
+	}
+
+/* GALERIA */
+
+	function imgAnterior(_this){
+		var actual = _this.parent().attr("data-actual");
+		var total = _this.parent().attr("data-total");
+		if( actual == 0 ){
+			actual = total-1;
+		}else{
+			actual--;
+		}
+		if( actual == 0 ){
+			_this.addClass("Ocultar_Flecha");
+		}
+		if( actual != total-1 ){
+			_this.parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
+		}
+		_this.parent().attr("data-actual", actual);
+		_this.parent().find(".resultados_item_info_img_box").animate({left: "-"+(actual*100)+"%"});
+	}
+
+	function imgSiguiente(_this){
+		var actual = _this.parent().attr("data-actual");
+		var total = _this.parent().attr("data-total");
+		if( actual == total-1 ){
+			actual = 0;
+		}else{
+			actual++;
+		}
+		if( actual == total-1 ){
+			_this.addClass("Ocultar_Flecha");
+		}
+		if( actual != 0 ){
+			_this.parent().find(".Flecha_Izquierda").removeClass("Ocultar_Flecha");
+		}
+		_this.parent().attr("data-actual", actual);
+		_this.parent().find(".resultados_item_info_img_box").animate({left: "-"+(actual*100)+"%"});
+	}
+
+	function destacadoAnterior(_this){
+		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
+		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
+		var mostrando = getDestacadosMostrados();
+		if( actual == 0 ){
+			_this.parent().addClass("Ocultar_Flecha");
+		}else{
+			actual--;
+			if( actual != 0 ){
+				_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
+			}else{
+				_this.parent().addClass("Ocultar_Flecha");
+			}
+			_this.parent().parent().find(".destacados_container").attr("data-actual", actual);
+			_this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*( 100 / mostrando ) )+"%"});
+		}
+	}
+
+	function destacadoSiguiente(_this){
+		var actual = _this.parent().parent().find(".destacados_container").attr("data-actual");
+		var total = _this.parent().parent().find(".destacados_container").attr("data-total");
+		var mostrando = getDestacadosMostrados();
+		if( actual == total-mostrando ){
+			actual = 0;
+		}else{
+			actual++;
+		}
+		if( actual == total-mostrando ){
+			_this.parent().addClass("Ocultar_Flecha");
+		}
+		if( actual != 0 ){
+			_this.parent().parent().find(".Flecha_Izquierda").removeClass("Ocultar_Flecha");
+		}
+		_this.parent().parent().find(".destacados_container").attr("data-actual", actual);
+		_this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*( 100 / mostrando ) )+"%"});
+	}
+
+	function getDestacadosMostrados(){
+		if( parseInt( jQuery("body").width() ) >= 768 ){
+			return 4;
+		}else{
+			return 2;
 		}
 	}
 
