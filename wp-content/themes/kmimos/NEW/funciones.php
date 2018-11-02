@@ -115,7 +115,7 @@
 	        				<span>Dest</span> '.$destacado["nombre"].'
 	        			</div>
 	        			<div class="desacado_experiencia">'.$destacado["experiencia"].' años de experiencia</div>
-	        			<div class="desacado_monto">Desde <strong>MXN $ '.$destacado["desde"].'</strong></div>
+	        			<div class="desacado_monto">Desde <strong>MXN $ '.round($destacado["desde"]).'</strong></div>
 	        			<div class="desacado_ranking_container">'.$destacado["ranking"].'</div>
 	        			<div class="desacado_experiencia">'.$destacado["valoraciones"].' valoraciones</div>
 	        			<a class="desacado_boton_reservar" href="'.$destacado["url"].'">Reservar</a>
