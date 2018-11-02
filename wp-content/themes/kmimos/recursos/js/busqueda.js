@@ -39,13 +39,13 @@
 			jQuery("body").css("overflow", "hidden");
 
 			jQuery('nav').addClass('open_filtros');
-			jQuery('.zopim').css('z-index', "0 !important");
+			jQuery('.zopim').css('z-index', "0");
 
 		});
 
 		jQuery("#ver_mapa").on("click", function(e){
 			jQuery(".mapa_container").addClass('open_mapa');
-			jQuery('.zopim').css('z-index', "0 !important");
+			jQuery('.zopim').css('z-index', "0");
 		});
 
 		jQuery(".cerrar_filtros_movil").on("click", function(e){
