@@ -1384,6 +1384,13 @@
 		    background-image: url( ../img/BUSQUEDA/SVG/principales/adiestramiento.svg );
 		}
 
+		h2.pocos_resultados {
+		    color: #00d2c6;
+		    font-size: 20px;
+		    font-family: Gotham-Pro-Bold;
+		    padding: 0px 30px;
+		}
+
 	/* PAGINACION */
 
 		.paginacion_container{
