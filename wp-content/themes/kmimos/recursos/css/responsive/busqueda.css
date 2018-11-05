@@ -183,8 +183,11 @@
 		}
 
 		.mapa_container.open_mapa{
-			right: 0px;
+			top: 0px;
+		    right: 0px;
 		    transition: all .3s ease-in-out;
+		    z-index: 99999999999999;
+		    height: 100%;
 		}
 
 		.mapa_container.open_mapa .cerrar_mapa_movil{
