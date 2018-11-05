@@ -46,6 +46,12 @@
 		jQuery("#ver_mapa").on("click", function(e){
 			jQuery(".mapa_container").addClass('open_mapa');
 			jQuery('.zopim').css('z-index', "0");
+
+			google.maps.event.trigger(map, 'resize');
+			map.setZoom(4);
+	    	map.setCenter( new google.maps.LatLng(23.634501, -102.552784) );
+	    	jQuery( "#mapa" ).addClass("resize");
+
 		});
 
 		jQuery(".cerrar_filtros_movil").on("click", function(e){
@@ -466,11 +472,11 @@
 			}
 	    });
 
-	    oms = new OverlappingMarkerSpiderfier(map, { 
+	    /*oms = new OverlappingMarkerSpiderfier(map, { 
 		    markersWontMove: true,
 		    markersWontHide: true,
 		    basicFormatEvents: true
-		});
+		});*/
 
 	    var bounds = new google.maps.LatLngBounds();
 	    
@@ -527,7 +533,7 @@
 				            infos[this.vlz_index].open(map, this);
 				        });
 
-						oms.addMarker(markers[index]);
+						/*oms.addMarker(markers[index]);*/
 
 					}
 			    });
@@ -537,7 +543,7 @@
 
 			    minClusterZoom = 14;
 			    markerCluster.setMaxZoom(minClusterZoom);
-			    window.oms = oms;
+			    /*window.oms = oms;*/
 			}else{
 				map = new google.maps.Map(document.getElementById("mapa"), {
 			        zoom: 4,

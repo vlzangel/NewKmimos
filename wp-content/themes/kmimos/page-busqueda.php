@@ -18,8 +18,9 @@
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
-    wp_enqueue_script('markerclusterer_js', getTema()."/js/markerclusterer.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('oms_js', getTema()."/js/oms.min.js", array("jquery"), '1.0.0');
+    // wp_enqueue_script('markerclusterer_js', getTema()."/js/markerclusterer.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('markerclusterer_js', "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js", array("jquery"), '1.0.0');
+    // wp_enqueue_script('oms_js', getTema()."/js/oms.min.js", array("jquery"), '1.0.0');
 
 	wp_enqueue_script('buscar_home', get_recurso("js")."busqueda.js", array(), '1.0.0');
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
@@ -419,17 +420,17 @@
     				<div class="paginacion_container"></div>
     			</div>
     		</div>
-    		
-    		<div class="mapa_container">
-    			<div class="cerrar_mapa_movil"> x </div>
-    			<label>
-    				Actualizar al mover en el mapa 
-    				<input type="checkbox" id="update_to_move" />
-    			</label>
-    			<div id="mapa"></div>
-    		</div>
 
     	</div>
+    		
+		<div class="mapa_container">
+			<div class="cerrar_mapa_movil"> x </div>
+			<label>
+				Actualizar al mover en el mapa 
+				<input type="checkbox" id="update_to_move" />
+			</label>
+			<div id="mapa"></div>
+		</div>
 
     	<div class="cargando_mas_resultados_externo">
 			<i class="fa fa-spinner fa-spin"></i>
