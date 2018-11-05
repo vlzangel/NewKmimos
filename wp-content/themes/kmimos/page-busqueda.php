@@ -148,12 +148,14 @@
 							<div class="check_icon"></div>
 							<div>con descuento</div>
 							<div class="check_control"></div>
+							<div class="check_control_off"></div>
 						</label>
 						<label class="filtro_check check_disponibilidad" for="flash" >
 							<input type="checkbox" id="flash" name="flash" value="1" '.$check_flash.' />
 							<div class="check_icon"></div>
 							<div>reserva inmediata</div>
 							<div class="check_control"></div>
+							<div class="check_control_off"></div>
 						</label>
 					</div>
 

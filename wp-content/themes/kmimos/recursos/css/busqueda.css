@@ -1184,6 +1184,16 @@
 		}
 
 		.check_control{
+			display: none;
+		    width: 40px;
+		    background-position: right center;
+		    background-size: 33px;
+		    background-repeat: no-repeat;
+		    cursor: pointer;
+		}
+
+		.check_control_off{
+			display: none;
 		    width: 40px;
 		    background-position: right center;
 		    background-size: 33px;
@@ -1195,23 +1205,28 @@
 	        background-image: url(../img/BUSQUEDA/SVG/iconos/Descuento.svg);
 		}
 
-		.check_descuento .check_control{
-	        background-image: url(../img/BUSQUEDA/SVG/iconos/Boton_OFF.svg);
-		}
-
-		.check_descuento input:checked ~ .check_control{
-	        background-image: url(../img/BUSQUEDA/SVG/Boton_descuento.svg);
-		}
-
 		.check_disponibilidad .check_icon{
 	        background-image: url(../img/BUSQUEDA/SVG/iconos/Reserva_Inmediata.svg);
 		}
 
-		.check_disponibilidad .check_control{
+		.check_descuento .check_control_off,
+		.check_disponibilidad .check_control_off{
+			display: table-cell;
 	        background-image: url(../img/BUSQUEDA/SVG/iconos/Boton_OFF.svg);
 		}
 
+		.check_descuento input:checked ~ .check_control_off,
+		.check_disponibilidad input:checked ~ .check_control_off{
+			display: none;
+		}
+
+		.check_descuento input:checked ~ .check_control{
+			display: table-cell;
+	        background-image: url(../img/BUSQUEDA/SVG/Boton_descuento.svg);
+		}
+
 		.check_disponibilidad input:checked ~ .check_control{
+			display: table-cell;
 	        background-image: url(../img/BUSQUEDA/SVG/Boton_R_Inmediata.svg);
 		}
 
@@ -1243,7 +1258,8 @@
 		    width: 30px;
 		}
 
-		.filtros_generales_container .check_control {
+		.filtros_generales_container .check_control,
+		.filtros_generales_container .check_control_off{
 		    width: 50px;
 		    background-size: 45px;
 		}
