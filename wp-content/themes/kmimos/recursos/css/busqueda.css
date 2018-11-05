@@ -883,12 +883,38 @@
 		}
 
 		.resultados_item_info_img_container .resultados_item_info_img_box .resultados_item_info_img {
+			position: relative;
 			height: 100%;
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;
 			display: inline-block;
     		width: 100%;
+    		overflow: hidden;
+		}
+
+		.resultados_item_info_img .img_fondo {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			height: 100%;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			display: inline-block;
+    		width: 100%;
+		}
+
+		.resultados_item_info_img .img_normal {
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			height: calc( 100% - 10px );
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			display: inline-block;
+			width: calc( 100% - 10px );
 		}
 
 		.resultados_item_info {

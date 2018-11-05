@@ -242,10 +242,18 @@
 					';
 				}
 
-				$galeria = '<div class="resultados_item_info_img" style="background-image: url('.$img_url.');"></div>';
+				$galeria =
+					'<div class="resultados_item_info_img" style="background-image: url('.$img_url.');">'.
+						'<div class="img_fondo" style="background-image: url('.$img_url.');"></div>'.
+						'<div class="img_normal" style="background-image: url('.$img_url.');"></div>'.
+					'</div>';
 				if( is_array($_cuidador->galeria) ){
 					foreach ($_cuidador->galeria as $key => $value) {
-						$galeria .= '<div class="resultados_item_info_img" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>';
+						$galeria .=
+							'<div class="resultados_item_info_img">'.
+								'<div class="img_fondo" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>'.
+								'<div class="img_normal" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>'.
+							'</div>';
 					}
 				}
 				$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
