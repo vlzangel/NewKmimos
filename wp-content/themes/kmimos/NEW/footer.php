@@ -23,13 +23,13 @@
 						</form>
 						<div class="siguenos_alto">
 							<span>Siguenos en</span>
-							<a href="">
+							<a href="https://www.facebook.com/Kmimosmx/" target="_blank">
 								<img src="'.get_recurso("img").'HOME/SVG/Facebook.svg" />
 							</a>
-							<a href="">
+							<a href="https://twitter.com/kmimosmx/" target="_blank">
 								<img src="'.get_recurso("img").'HOME/SVG/Instagram.svg" />
 							</a>
-							<a href="">
+							<a href="https://www.instagram.com/kmimosmx/" target="_blank">
 								<img src="'.get_recurso("img").'HOME/SVG/Youtube.svg" />
 							</a>
 						</div>
@@ -67,13 +67,13 @@
 					</div>
 					<div class="siguenos_bajo">
 						<span>Siguenos en</span>
-						<a href="">
+						<a href="https://www.facebook.com/Kmimosmx/" target="_blank">
 							<img src="'.get_recurso("img").'HOME/SVG/Facebook.svg" />
 						</a>
-						<a href="">
+						<a href="https://twitter.com/kmimosmx/" target="_blank">
 							<img src="'.get_recurso("img").'HOME/SVG/Instagram.svg" />
 						</a>
-						<a href="">
+						<a href="https://www.instagram.com/kmimosmx/" target="_blank">
 							<img src="'.get_recurso("img").'HOME/SVG/Youtube.svg" />
 						</a>
 					</div>
