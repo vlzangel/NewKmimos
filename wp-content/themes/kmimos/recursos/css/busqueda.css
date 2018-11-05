@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
-
 /* MENU */
 
 	.nav>li>a>img {
@@ -1199,6 +1197,7 @@
 		    background-size: 33px;
 		    background-repeat: no-repeat;
 		    cursor: pointer;
+	        background-image: url(../img/BUSQUEDA/SVG/iconos/Boton_OFF.svg);
 		}
 
 		.check_descuento .check_icon{
@@ -1209,10 +1208,19 @@
 	        background-image: url(../img/BUSQUEDA/SVG/iconos/Reserva_Inmediata.svg);
 		}
 
+		.check_descuento .check_control{
+			display: none;
+	        background-image: url(../img/BUSQUEDA/SVG/Boton_descuento.svg);
+		}
+
+		.check_disponibilidad .check_control{
+			display: none;
+	        background-image: url(../img/BUSQUEDA/SVG/Boton_R_Inmediata.svg);
+		}
+
 		.check_descuento .check_control_off,
 		.check_disponibilidad .check_control_off{
 			display: table-cell;
-	        background-image: url(../img/BUSQUEDA/SVG/iconos/Boton_OFF.svg);
 		}
 
 		.check_descuento input:checked ~ .check_control_off,
