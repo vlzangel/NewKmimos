@@ -92,19 +92,15 @@
 
 						<div class="ubicacion_container">
 							<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion_2.svg" />
-							<input type="text" id="ubicacion_txt" name="ubicacion_txt" placeholder="Ubicación estado municipio" autocomplete="off" />
-
-							<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />	
+							<input type="text" class="ubicacion_txt" name="ubicacion_txt" value="'.$_SESSION['busqueda']['ubicacion_txt'].'" placeholder="Ubicación estado municipio" autocomplete="off" />
+							<input type="hidden" class="ubicacion" name="ubicacion" value="'.$_SESSION['busqueda']['ubicacion'].'" />	
 						    <div class="cerrar_list_box">
 						    	<div class="cerrar_list">X</div>
-						    	<ul id="ubicacion_list" class=""></ul>
+						    	<ul class="ubicacion_list"></ul>
 						    </div>
-
 							<i id="_mi_ubicacion" class="fa icon_left ubicacion_gps"></i>
-							<img id="mi_ubicacion" src="'.get_recurso("img").'HOME/SVG/GPS_Off.svg" />
-
+							<img class="mi_ubicacion" src="'.get_recurso("img").'HOME/SVG/GPS_Off.svg" />
 							<div class="barra_ubicacion"></div>
-
 							<small class="hidden" data-error="ubicacion">Función disponible solo en México</small>
 						</div>
 
