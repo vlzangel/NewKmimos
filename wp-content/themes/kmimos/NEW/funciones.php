@@ -22,7 +22,7 @@
             $cont = 0;
             if( count($resultados) > 0 ){
 	            foreach ($resultados as $key => $_cuidador) {
-	                if( in_array($_cuidador->id, $destacados) && $cuidador->DISTANCIA <= 200 ){
+	                if( in_array($_cuidador->id, $destacados) && $_cuidador->DISTANCIA <= 30 ){
 	                    $cont++;
 	                    $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$_cuidador->id}");
 	                    $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
@@ -41,7 +41,9 @@
 	                    	"distancia" => floor($_cuidador->DISTANCIA),
 	                    	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
 	                    	"experiencia" => $anios_exp,
-	                		"valoraciones" => $cuidador->valoraciones
+	                		"valoraciones" => $cuidador->valoraciones,
+		                	"latitud" => $cuidador->latitud,
+		                	"longitud" => $cuidador->longitud
 	                    ];
 	                }
 	                if( $cont >= 4 ){ break; }
@@ -72,7 +74,9 @@
                 	"distancia" => floor($_cuidador->DISTANCIA),
                 	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
                 	"experiencia" => $anios_exp,
-                	"valoraciones" => $cuidador->valoraciones
+                	"valoraciones" => $cuidador->valoraciones,
+                	"latitud" => $cuidador->latitud,
+                	"longitud" => $cuidador->longitud
                 ];
             }
         }
@@ -105,7 +109,7 @@
 		        ';
 
 	        	$top_destacados .= '
-	        		<div class="destacados_item">
+	        		<div class="destacados_item" data-latitud="'.$destacado["latitud"].'" data-longitud="'.$destacado["longitud"].'">
 	        			<div class="desacado_img">
 	        				<div class="desacado_img_interna" style="background-image: url( '.$destacado["img"].' );"></div>
 	        			</div>

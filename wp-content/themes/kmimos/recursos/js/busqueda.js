@@ -163,9 +163,6 @@
 				jQuery("#buscar").attr("action"),
 				jQuery("#buscar").serialize(),
 				function(respuesta){
-
-					console.log( respuesta );
-
 					if( respuesta != false ){
 						jQuery(".cantidad_resultados_container span").html( respuesta.length );
 						TOTAL_PAGE = Math.ceil(respuesta.length/10);
@@ -361,6 +358,16 @@
 	        "lng": parseFloat("-118.6523001")
 	    }
 	};
+	var limitesDestacados = {
+	    'lat': {
+	        "der": 0,
+	        "izq": 0
+	    },
+	    'lng': {
+	        "sup": 0,
+	        "inf": 0
+	    }
+	};
 
 	jQuery(document).ready(function(){
 
@@ -387,12 +394,20 @@
 		                jQuery('.latitud').val(crd.latitude);
 		                jQuery('.longitud').val(crd.longitude);
 
-
 		                var geocoder = new google.maps.Geocoder();
 
 		                var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
 		                geocoder.geocode({'location': latlng}, function(results, status) {
 		                    if (status == google.maps.GeocoderStatus.OK) {
+
+		                    	console.log( results );
+
+		                    	limitesDestacados.lat.der = results[6].geometry.bounds.f.b;
+		                    	limitesDestacados.lat.izq = results[6].geometry.bounds.f.f;
+
+		                    	limitesDestacados.lng.sup = results[6].geometry.bounds.b.b;
+		                    	limitesDestacados.lng.inf = results[6].geometry.bounds.b.f;
+
 		                        var address = results[0]['formatted_address'];
 		                        jQuery(".ubicacion_txt").val(address);
 		                        jQuery(".ubicacion").val("");
