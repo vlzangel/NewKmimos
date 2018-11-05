@@ -1182,23 +1182,21 @@
 		}
 
 		.check_control{
-			display: none;
-		    width: 40px;
-		    background-position: right center;
-		    background-size: 33px;
+		    width: 50px;
+		    background-position: 0px 0px;
+		    background-size: 100px 27px;
 		    background-repeat: no-repeat;
 		    cursor: pointer;
 		}
 
-		.check_control_off{
-			display: none;
+/*		.check_control_off{
 		    width: 40px;
 		    background-position: right center;
 		    background-size: 33px;
 		    background-repeat: no-repeat;
 		    cursor: pointer;
 	        background-image: url(../img/BUSQUEDA/SVG/iconos/Boton_OFF.svg);
-		}
+		}*/
 
 		.check_descuento .check_icon{
 	        background-image: url(../img/BUSQUEDA/SVG/iconos/Descuento.svg);
@@ -1209,34 +1207,32 @@
 		}
 
 		.check_descuento .check_control{
-			display: none;
-	        background-image: url(../img/BUSQUEDA/SVG/Boton_descuento.svg);
+	        background-image: url(../img/BUSQUEDA/PNG/Boton_descuento_2.png);
 		}
 
 		.check_disponibilidad .check_control{
-			display: none;
-	        background-image: url(../img/BUSQUEDA/SVG/Boton_R_Inmediata.svg);
+	        background-image: url(../img/BUSQUEDA/PNG/Boton_R_Inmediata_2.png);
 		}
 
-		.check_descuento .check_control_off,
+/*		.check_descuento .check_control_off,
 		.check_disponibilidad .check_control_off{
-			display: table-cell;
+			visibility: visible;
+		}*/
+
+		.check_descuento input:checked ~ .check_control,
+		.check_disponibilidad input:checked ~ .check_control{
+			background-position: -50px 0px;
 		}
 
-		.check_descuento input:checked ~ .check_control_off,
-		.check_disponibilidad input:checked ~ .check_control_off{
-			display: none;
-		}
-
-		.check_descuento input:checked ~ .check_control{
-			display: table-cell;
+/*		.check_descuento input:checked ~ .check_control{
+			visibility: visible;
 	        background-image: url(../img/BUSQUEDA/SVG/Boton_descuento.svg);
 		}
 
 		.check_disponibilidad input:checked ~ .check_control{
-			display: table-cell;
+			visibility: visible;
 	        background-image: url(../img/BUSQUEDA/SVG/Boton_R_Inmediata.svg);
-		}
+		}*/
 
 		.filtros_movil .boton.boton_gris{
 			display: block;
@@ -1265,12 +1261,12 @@
 		.filtros_generales_container .check_icon {
 		    width: 30px;
 		}
-
+/*
 		.filtros_generales_container .check_control,
 		.filtros_generales_container .check_control_off{
 		    width: 50px;
 		    background-size: 45px;
-		}
+		}*/
 
 		form#buscar_2 .filtros_movil .boton {
 		    margin: 3px 0px;

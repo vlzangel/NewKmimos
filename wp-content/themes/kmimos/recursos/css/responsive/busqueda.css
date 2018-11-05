@@ -676,8 +676,14 @@
 	}
 
 	.check_control {
-	    width: 30px;
-	    background-size: 27px;
+		width: 30px;
+		background-size: 60px 16px;
+		background-position: 0px center;
+	}
+
+	.check_descuento input:checked ~ .check_control,
+	.check_disponibilidad input:checked ~ .check_control{
+		background-position: -30px center;
 	}
 
 	.filtro_check {
