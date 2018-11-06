@@ -142,6 +142,20 @@
 	    margin-right: 0px;
 	}
 
+	.ubicacion_msg {
+	    position: absolute;
+	    top: -20px;
+	    color: #999;
+	}
+
+	.dias_msg {
+	    position: absolute;
+	    top: -20px;
+	    color: #999;
+	    width: 375px;
+	    text-align: left;
+	}
+
 /* CONTROLES MITAD */
 	
 	.controles_mitad_container{
@@ -283,6 +297,7 @@
 /* DIAS */
 
 	.dias_container{
+		position: relative;
 		display: inline-block;
 		width: 30%;
 		box-sizing: border-box;
@@ -699,6 +714,10 @@
 		font-weight: 600;
 	}
 
+	.paquete_title i {
+		display: none;
+	}
+
 	.paquete_list {
 	    float: left;
 	    width: 100%;
@@ -745,7 +764,7 @@
 
 	.paq_1 .paquete_top .paquete_title {
 		color: #555;
-		background: #CCC;
+		background: #EEE;
 	}
 	.paq_2 .paquete_top .paquete_title {
 		color: #000;
@@ -949,6 +968,10 @@
 	.pasos_celda_top,
 	.pasos_celda_bottom{
 		display: block;
+	}
+
+	.pasos_celda_bottom strong {
+		display: none;
 	}
 
 /* CLUB PATITAS FELICES */

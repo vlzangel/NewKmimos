@@ -5,18 +5,13 @@
 
     wp_enqueue_style('home_kmimos', get_recurso("css")."paseos.css", array(), '1.0.0');
     wp_enqueue_style('home_responsive', get_recurso("css")."responsive/paseos.css", array(), '1.0.0');
-
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
-
-
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
-
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
-
 	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0');
             
     get_header();
@@ -48,7 +43,7 @@
     	<div id="banner_home">
 			<div>
 				<div class="solo_pc">
-					<span class="banner_txt_1">la red de <em>paseadores</em> certificados de México</span>
+					<span class="banner_txt_1">La red de <em>paseadores</em> certificados de México</span>
 					<span id="buscar" class="banner_txt_2">¡Tu mejor amigo regresa feliz!</span>
 				</div>
 				<div class="solo_movil banner_home"></div>
@@ -56,29 +51,31 @@
 
 					<input type="hidden" name="redireccionar" value="1" />
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
-
 					<input type="hidden" id="latitud" name="latitud" />
 					<input type="hidden" id="longitud" name="longitud" />
 
 					<div class="solo_movil" style="padding: 0px 10px;">
 						<div class="boton boton_border_morado">Regístrate</div>
-						<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
+						<span class="banner_txt_1">Disfruta de la red de más segura de <em>paseadores</em> certificados de México</span>
 						<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
-						<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
+						<span class="banner_txt_3">Cuándo y comó te gustaría pasearlo</span>
 					</div>
 
 					<div class="controles_top_container">
 						<div class="ubicacion_container">
-							Dinos donde te encuentras
+							&nbsp;
 						</div>
 						<div class="dias_container">
-							Selecciona que días de la semana deseas que paseen a tu mascota
+							&nbsp;
 						</div>
 					</div>
 
 					<div class="controles_mitad_container">
 
 						<div class="ubicacion_container">
+							<div class="ubicacion_msg">
+								Dinos donde te encuentras
+							</div>
 							<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion_2.svg" />
 							<input type="text" id="ubicacion_txt" name="ubicacion_txt" placeholder="Ubicación estado municipio" autocomplete="off" />
 							<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />	
@@ -93,6 +90,9 @@
 						</div>
 
 						<div class="dias_container">
+							<div class="dias_msg">
+								Selecciona que días de la semana deseas que paseen a tu mascota
+							</div>
 							'.$dias_str.'
 						</div>
 
@@ -247,7 +247,7 @@
 					<!-- END MODAL SERVICIOS ADICIONALES -->
 
 					<div class="boton_buscar_container">
-						<input type="button" id="boton_buscar" class="boton_buscar boton_verde" value="Buscar cuidador">
+						<input type="button" id="boton_buscar" class="boton_buscar boton_verde" value="Buscar paseador">
 					</div>
 
 				</form>
@@ -262,7 +262,7 @@
 		<div class="beneficios_container">
 			
 			<div class="beneficios_buscar_top">
-				Más de <strong>1,000 Cuidadores Certificados y 60,000 noches reservadas.</strong> Tu consentido se queda en el hogar de una <strong>VERDADERA FAMILIA,</strong> con cobertura veterinaría
+				Cientos de Paseadores Certificados a nivel nacional
 			</div>
 
 			<div class="beneficios_registrar_container">
@@ -297,7 +297,9 @@
 			</div>
 		</div>
 
-		<img class="importancia_banner" src="'.get_recurso("img").'PASEOS/PNG/Banner-paseo-gratis.png" />
+
+		<img class="importancia_banner solo_movil" src="'.get_recurso("img").'PASEOS/RESPONSIVE/Banner-paseo-gratis.png" />
+		<img class="importancia_banner solo_pc" src="'.get_recurso("img").'PASEOS/PNG/Banner-paseo-gratis.png" />
 			
 		<div class="beneficios_container">
 			<h2 class="beneficios_title">Conoce los beneficios de dejar tu mascota con cuidadores certificados</h2>
@@ -392,11 +394,14 @@
 			<p>Aprovecha las promociones por paseos semanales, mensuales, bimensuales y trimestrales. Ahorra tiempo y dinero</p>
 
 			<div class="paquetes_tabla">
-				<div class="paquetes_celdas">
+				<label class="paquetes_celdas" for="paq_1">
+					<input type="checkbox" id="paq_1" name="paq_1" />
 					<div class="paquete_item paq_1">
 						<div class="paquete_top">
 							<div class="paquete_title">
 								1 Semana
+								<i class="fa fa-angle-down" aria-hidden="true"></i>
+								<i class="fa fa-angle-up" aria-hidden="true"></i>
 							</div>
 							<div class="paquete_list">
 								<ul>
@@ -411,12 +416,15 @@
 							<button>Solicitar</button>
 						</div>
 					</div>
-				</div>
-				<div class="paquetes_celdas">
+				</label>
+				<label class="paquetes_celdas" for="paq_2">
+					<input type="checkbox" id="paq_2" name="paq_2" />
 					<div class="paquete_item paq_2">
 						<div class="paquete_top">
 							<div class="paquete_title">
 								1 Mes
+								<i class="fa fa-angle-down" aria-hidden="true"></i>
+								<i class="fa fa-angle-up" aria-hidden="true"></i>
 							</div>
 							<div class="paquete_list">
 								<ul>
@@ -431,12 +439,15 @@
 							<button>Solicitar</button>
 						</div>
 					</div>
-				</div>
-				<div class="paquetes_celdas">
+				</label>
+				<label class="paquetes_celdas" for="paq_3">
+					<input type="checkbox" id="paq_3" name="paq_3" />
 					<div class="paquete_item paq_3">
 						<div class="paquete_top">
 							<div class="paquete_title">
 								2 Meses
+								<i class="fa fa-angle-down" aria-hidden="true"></i>
+								<i class="fa fa-angle-up" aria-hidden="true"></i>
 							</div>
 							<div class="paquete_list">
 								<ul>
@@ -452,12 +463,15 @@
 							<button>Solicitar</button>
 						</div>
 					</div>
-				</div>
-				<div class="paquetes_celdas">
+				</label>
+				<label class="paquetes_celdas" for="paq_4">
+					<input type="checkbox" id="paq_4" name="paq_4" />
 					<div class="paquete_item paq_4">
 						<div class="paquete_top">
 							<div class="paquete_title">
 								3 Meses
+								<i class="fa fa-angle-down" aria-hidden="true"></i>
+								<i class="fa fa-angle-up" aria-hidden="true"></i>
 							</div>
 							<div class="paquete_list">
 								<ul>
@@ -473,19 +487,19 @@
 							<button>Solicitar</button>
 						</div>
 					</div>
-				</div>
+				</label>
 			</div>
 		</div>';
 		
 		$HTML .= '
 		<div class="testimonios_container">
 			<div class="testimonios_item">
-				<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>
+				<p>He estado llevando mi perrito con Gabriel, estoy muy agradecido y encantado con él los paseos que le han dado éstas ultimas dos semanas. Durante éstas me envió de mi perrito conociendo nuevos amigos, y cada vez que volvía, se veía más feliz que nunca.</p>
 				<span>- Alejandra R.</span>
 			</div>
 			<div class="testimonios_img">
 				<span>
-					+1,500 comentarios positivos en perfiles de cuidadores
+					+1,500 comentarios positivos en perfiles de paseadores certificados
 				</span>
 			</div>
 			<a href="" class="testimonios_link">Ver más comentarios como éste</a>
@@ -498,7 +512,7 @@
 		<div class="pasos_reserva_container">
 			<h2>Tu mascota vuelve feliz de sus paseos diarios, además de estar más saludable que nunca</h2>
 
-			<h2 class="solo_movil">Reserva en 3 simples pasos</h2>
+			<h2 class="solo_movil">Tu mascota vuelve feliz de sus paseos diarios, además de estar más saludable que nunca</h2>
 
 			<div class="pasos_reserva_tabla">
 				<div class="pasos_reserva_row pasos_reserva_numeros">
@@ -518,7 +532,7 @@
 							<img src="'.get_recurso("img").'HOME/SVG/Paso_1.svg" />
 						</div>
 						<div class="pasos_celda_bottom">
-							<h3>Haz tu búsqueda</h3>
+							<h3><strong>1.</strong> Haz tu búsqueda</h3>
 							<p>Consigue paseadores cerca de ti, con las características que necesites</p>
 						</div>
 					</div>
@@ -527,7 +541,7 @@
 							<img src="'.get_recurso("img").'HOME/SVG/Paso_2.svg" />
 						</div>
 						<div class="pasos_celda_bottom">
-							<h3>Agenda y haz el pago</h3>
+							<h3><strong>2.</strong> Agenda y haz el pago</h3>
 							<p>Paga con tarjeta de débito, crédito o efectivo en tienda de conveniencia</p>
 						</div>
 					</div>
@@ -536,7 +550,7 @@
 							<img src="'.get_recurso("img").'HOME/SVG/Paso_3.svg" />
 						</div>
 						<div class="pasos_celda_bottom">
-							<h3>Tu mascota vuelve feliz</h3>
+							<h3><strong>3.</strong> Tu mascota vuelve feliz</h3>
 							<p>¡Despreocúpate! Tu mejor amigo volverá feliz, esa es la garantía Kmimos</p>
 						</div>
 					</div>

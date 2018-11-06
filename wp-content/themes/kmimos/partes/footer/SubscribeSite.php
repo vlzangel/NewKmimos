@@ -112,9 +112,7 @@
 	    });
 
 		function SubscribeSite(){
-	        
 	        clearTimeout(SubscribeTime);
-
 	        _SubscribePopUp_Create( HOME+"/template/banners/banner_home.php" );
 	    }
 	</script>
