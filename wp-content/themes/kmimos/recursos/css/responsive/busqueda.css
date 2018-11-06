@@ -96,6 +96,7 @@
 			left: 0px;
 		    transition: all .3s ease-in-out;
 	        overflow: auto;
+	        z-index: 999999999999999999999999999;
 		}
 
 		.filtos_container {
@@ -604,7 +605,7 @@
 	    width: calc( 100% - 350px );
 	    height: 100%;
 	    background: #000A;
-	    z-index: 999;
+	    z-index: 999999999999999999999999999;
 	}
 
 
@@ -615,6 +616,7 @@
 	    width: 100%;
 	    padding: 5px;
 	    overflow: auto;
+	    z-index: 999999999999999999999999999;
 	}
 
 	.iOS .filtos_container form {
