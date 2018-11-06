@@ -202,7 +202,7 @@
 		height: 20px;
 	}
 
-	img#mi_ubicacion {
+	img.mi_ubicacion {
 	    position: absolute;
 	    top: 13px;
 	    right: 10px;
@@ -240,7 +240,7 @@
 		width: 0px;  
 	}
 
-	#ubicacion_list{
+	.ubicacion_list{
 		overflow: auto;
 	    max-height: 200px;
 	    padding: 10px;
@@ -251,7 +251,7 @@
 		display: block !important;
 	}
 
-	#ubicacion_list li {
+	.ubicacion_list li {
 	    padding: 2px 10px;
 	    margin: 0;
 	    line-height: 17px;
@@ -260,7 +260,7 @@
 	    cursor: pointer;
 	}
 
-	#ubicacion_list li:hover {
+	.ubicacion_list li:hover {
 		background: #DDD;
 	}
 
