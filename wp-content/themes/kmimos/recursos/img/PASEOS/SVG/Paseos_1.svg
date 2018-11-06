@@ -18,7 +18,7 @@
       }
 
       .cls-5, .cls-6 {
-        stroke: #7ad2c4;
+        stroke: #00d2c6;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-width: 4px;
