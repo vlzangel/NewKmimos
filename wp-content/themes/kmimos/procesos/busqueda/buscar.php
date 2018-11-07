@@ -510,7 +510,7 @@
 			if( $anios_exp > 1900 ){
 				$anios_exp = date("Y")-$anios_exp;
 			}
-			$url = $home."/petsitters/".$cuidador->slug;
+			$url = $home."petsitters/".$cuidador->user_id;
 
 			$coord = $cuidador->latitud."_".$cuidador->longitud;
 	    	if( array_key_exists($coord, $pines_ubicados) !== false ){
@@ -543,17 +543,10 @@
 		}
     }
 
-	$pines_json = json_encode($pines);
-    $pines_json = "<script>var pines = eval('".$pines_json."');</script>";
-	$_SESSION['pines'] = $pines_json;
+/*	$pines_json = json_encode($pines);
+    $pines_json = "<script>var pines = eval('".$pines_json."');</script>";*/
+	$_SESSION['pines'] = "";
 	$_SESSION['pines_array'] = serialize($pines);
-
-	$temp_rangos = @array_filter($_POST["rangos"]);
-	if( count($temp_rangos) > 0 ){
-		$_POST["rangos"] = $temp_rangos;
-	}else{
-		unset($_POST["rangos"]);
-	}
 
 	$_POST = @array_filter($_POST);
 	unset($_POST['redireccionar']);

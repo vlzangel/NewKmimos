@@ -1,4 +1,10 @@
 jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(e){
+    open_conocer( jQuery(this) )
+});
+
+function open_conocer( _this ){
+
+    console.log("Hola");
 
     jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
@@ -9,14 +15,14 @@ jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(
     jQuery('.popup-iniciar-sesion-1 #pet_conoce input').prop("checked", false);
     jQuery('.popup-iniciar-sesion-1 #pet_conoce input').removeClass("active");
 
-    jQuery( '#modal-name-cuidador' ).html( jQuery(this).data('name') );
-    jQuery( '[name="post_id"]' ).val( jQuery(this).data('id') );
-    jQuery( jQuery(this).data('target') ).modal('show');
+    jQuery( '#modal-name-cuidador' ).html( _this.data('name') );
+    jQuery( '[name="post_id"]' ).val( _this.data('id') );
+    jQuery( _this.data('target') ).modal('show');
     jQuery('.popup-iniciar-sesion-2').css('display', 'none');
     jQuery('.popup-iniciar-sesion-1').css('display', 'block');
 
-    jQuery("#btn_reserva_conocer").attr("href", jQuery(this).parent().find(".active").attr("href") );
-});
+    jQuery("#btn_reserva_conocer").attr("href", _this.parent().find(".active").attr("href") );
+}
 
 jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
     e.preventDefault();

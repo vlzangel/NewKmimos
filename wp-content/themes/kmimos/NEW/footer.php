@@ -95,4 +95,6 @@
 	echo comprimir($HTML);
 
 	wp_footer();
+
+	echo "</body></html>";
 ?>
