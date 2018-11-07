@@ -54,7 +54,7 @@ jQuery( document ).ready(function() {
         jQuery("#buscar_no").click();
     });
 
-    jQuery("#mi_ubicacion").on("click", function(e){
+    jQuery(".mi_ubicacion").on("click", function(e){
 
         jQuery(".icon_left").addClass("fa-spinner fa-spin");
         jQuery(this).css("display", "none");
@@ -82,13 +82,13 @@ jQuery( document ).ready(function() {
                     geocoder.geocode({'location': latlng}, function(results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
                             var address = results[0]['formatted_address'];
-                            jQuery("#ubicacion_txt").val(address);
-                            jQuery("#ubicacion").val("");
+                            jQuery(".ubicacion_txt").val(address);
+                            jQuery(".ubicacion").val("");
 
                             jQuery(".icon_left").removeClass("fa-spinner fa-spin");
 
-                            jQuery("#mi_ubicacion").attr("src", HOME+"/recursos/img/HOME/SVG/GPS_On.svg");
-                            jQuery("#mi_ubicacion").css("display", "inline-block");
+                            jQuery(".mi_ubicacion").attr("src", HOME+"/recursos/img/HOME/SVG/GPS_On.svg");
+                            jQuery(".mi_ubicacion").css("display", "inline-block");
                         }
                     });
                 /*}else{
