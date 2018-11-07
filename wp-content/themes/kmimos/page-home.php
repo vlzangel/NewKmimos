@@ -476,9 +476,7 @@
 		</div>';
 		
 		$HTML .= '
-
 		<!-- CLUB PATITAS FELICES -->
-
 		<div class="club_patitas_container_superior">
 			<div class="club_patitas_container">
 				<div class="club_patitas_tabla">
@@ -490,11 +488,20 @@
 						<h2>¡Únete al Club de las patitas felices! </h2>
 						<span>Cada amigo que complete 1 reservación</span>
 						<h3>Gana $150 y tú ganas otros $150</h3>
-						<form>
+						<form id="club_patitas">
 							<div class="club_patitas_tabla">
 								<div class="club_patitas_celda celda_70">
-									<input type="text" name="club_nombre" placeholder="Nombres y Apellidos" />
-									<input type="text" name="club_nombre" placeholder="Correo Electrónico"  />
+
+									<div>
+										<input type="text" id="cp_nombre" name="cp_nombre" placeholder="Nombres y Apellidos" />
+									</div>
+									<div>
+										<input type="text" id="cp_email" name="cp_email" placeholder="Correo Electrónico"  />
+									</div>
+
+									<div id="cp_loading" class="hidden">
+										<div id="msg"></div>
+									</div>
 								</div>
 								<div class="club_patitas_celda celda_30">
 									<input type="submit" value="Inscribete y gana" class="boton boton_morado">
@@ -559,6 +566,7 @@
     echo comprimir($HTML);
     
     wp_enqueue_script('buscar_home', get_recurso("js")."home.js", array(), '1.0.0');
+    wp_enqueue_script('club_patitas', get_recurso("js")."club_patitas.js", array(), '1.0.0');
 
     get_footer(); 
 ?>

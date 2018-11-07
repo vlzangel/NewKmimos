@@ -890,6 +890,14 @@
         color: #636363;
 	}
 
+	#cp_loading {
+		padding: 5px 10px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		margin-top: 15px;
+		text-align: center;
+	}
+
 /* QUIERO SER CUIDADOR */
 
 	.quiero_ser_cuidador_container{

@@ -113,6 +113,73 @@ jQuery( document ).ready(function() {
         );
     });
 
+
+    jQuery('[data-target="patitas-felices"]').on('click', function(){
+
+        if( jQuery('#cp_email').val() != '' && jQuery('#cp_nombre').val() != ''){
+
+            jQuery('#msg').html('Enviando solicitud.');
+            jQuery('#cp_loading').removeClass('hidden');
+            jQuery('#cp_loading').fadeIn(1500);
+
+            var urls = RAIZ+"/landing/list-subscriber.php?source=kmimos-mx-clientes-referidos&email="+jQuery('#cp_email').val();
+            jQuery.get( urls, function(e){});
+
+            var urluser = RAIZ+"landing/registro-usuario.php?email="+jQuery('#cp_email').val()+"&name="+jQuery('#cp_nombre').val()+"&referencia=kmimos-home";
+            jQuery.get( urluser, function(e){
+
+                var redirect = RAIZ+"/referidos/compartir/?e="+jQuery('#cp_email').val();
+                switch (jQuery.trim(e)){
+                    case '0':
+                        jQuery('#msg').html('¡No pudimos completar su solicitud!');
+                        break;
+                    case '1':
+                        jQuery('#msg').html('¡Felicidades, ya formas parte de nuestro Club!');
+                        jQuery('a[data-redirect="patitas-felices"]').attr('href', redirect);
+                        jQuery('a[data-redirect="patitas-felices"]').click();
+                        window.open( redirect, '_blank' );
+                        break;
+                    case '2':
+                        jQuery('#msg').html('¡Ya formas parte de nuestro Club!');
+                        jQuery('a[data-redirect="patitas-felices"]').attr('href', redirect);
+                        jQuery('a[data-redirect="patitas-felices"]').click();
+                        window.open( redirect, '_blank' );
+                        break;
+                    default:
+                        jQuery('#msg').html('Registro: No pudimos completar su solicitud, intente nuevamente');
+                        jQuery('#cp_loading').addClass('hidden');
+                        break;
+                }
+                setTimeout(function() {
+                    jQuery('#cp_loading').fadeOut(1500);
+                },3000);
+            })
+            .fail(function() {
+                jQuery('#msg').html('Registro: No pudimos completar su solicitud, intente nuevamente');
+                jQuery('#cp_loading').addClass('hidden');
+            }); 
+
+        }else{
+           
+            var danger_color =  '#c71111';
+            var border_color =  '#c71111';
+            var visible = 'visible';
+ 
+            jQuery('[data-error="cp_nombre"]').css('visibility', visible);
+            jQuery('[data-error="cp_nombre"]').css('color', danger_color);
+            jQuery('[data-error="cp_nombre"]').html(msg);
+            jQuery('[name="cp_nombre"]').css('border-bottom', '1px solid ' + border_color);
+            jQuery('[name="cp_nombre"]').css('color', danger_color);
+
+            jQuery('[data-error="cp_email"]').css('visibility', visible);
+            jQuery('[data-error="cp_email"]').css('color', danger_color);
+            jQuery('[data-error="cp_email"]').html(msg);
+            jQuery('[name="cp_email"]').css('border-bottom', '1px solid ' + border_color);
+            jQuery('[name="cp_email"]').css('color', danger_color);
+
+        }
+    });
+
 });
 
 (function(d, s){
