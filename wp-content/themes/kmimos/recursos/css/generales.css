@@ -265,7 +265,7 @@ nav .lupa_negra{
 	    text-transform: uppercase;
 	    font-size: 16px !important;
 	    color: #000;
-	    margin-bottom: 5px;
+	    margin-bottom: 10px;
 	    font-weight: 600;
 	    font-family: Gotham-Pro-Bold;
 	}
@@ -326,7 +326,7 @@ nav .lupa_negra{
 		right: 0px;
 	    width: 40%;
 	    border: solid 1px #00d2c6;
-	    height: 33px;
+	    height: 37px;
 	    background: #00d2c6 !important;
 	    color: #FFF;
 	    border-left: 0px;
@@ -348,7 +348,7 @@ nav .lupa_negra{
 
 	.footer_medio span,
 	.footer_alto span {
-		display: block;
+		display: inline-block;
 		margin-bottom: 10px;
 	}
 

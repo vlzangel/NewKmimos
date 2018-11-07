@@ -8,6 +8,10 @@
 
 @media (max-width: 768px){
 
+	.footer_alto form input[type='submit'] {
+	    height: 33px;
+	}
+
 	nav .nav_table {
 	    padding: 0px 5px;
 	}

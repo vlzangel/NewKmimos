@@ -37,21 +37,21 @@
 					<div>
 						<h2>Servicios</h2>
 						<ul>
-							<li>Quiero ser cuidador</li>
-							<li>Buscar cuidador certificado</li>
-							<li>Blog</li>
+                            <p><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros">Quiero ser cuidador</a></p>
+                            <p><a href="'.get_home_url().'/busqueda">Buscar cuidador certificado</a></p>
+                            <p><a target="blank" href="https://kmimos.com.mx/blog">Blog</a></p>
 						</ul>
 					</div>
 					<div>
 						<h2>Navega</h2>
 						<ul>
-							<li>Nosotros</li>
-							<li>Preguntas y respuestas</li>
-							<li>Cobertura veterinaria</li>
-							<li>Comunicados de prensa</li>
-							<li>Términos y condiciones</li>
-							<li>Nuestros aliados</li>
-							<li>Contáctanos</li>
+                            <p><a href="'.get_home_url().'">Nosotros</a></p>
+                            <p><a href="'.get_home_url().'/faq">Preguntas y Respuestas</a></p>
+                            <p><a href="'.get_home_url().'/coberturas-de-servicios-veterinarios/">Cobertura Veterinaria</a></p>
+                            <p><a href="'.get_home_url().'">Comunicados de prensa</a></p>
+                            <p><a href="'.get_home_url().'/terminos-y-condiciones/">Términos y Condiciones</a></p>
+                            <p><a href="'.get_home_url().'">Nuestros Aliados</a></p>
+                            <p><a href="'.get_home_url().'/contacta-con-nosotros/">Contáctanos</a></p> 
 						</ul>
 					</div>
 					<div>
@@ -85,8 +85,11 @@
 		</footer>
 	';
 
-	if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
-     	include_once( dirname(__DIR__).'/partes/footer/SubscribeSite.php' ); 
+	if( is_front_page() && $_SESSION["POPUP_HOME"] == "" ) {
+		if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
+	     	include_once( dirname(__DIR__).'/partes/footer/SubscribeSite.php' );
+	     	$_SESSION["POPUP_HOME"] = "YES"; 
+	    }
     }
 
 	echo comprimir($HTML);

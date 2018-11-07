@@ -288,7 +288,7 @@
 			</div>
 
 			<div class="beneficios_registrar_container">
-				<div class="boton boton_border_morado">Regístrate</div>
+				<div data-target="#popup-registrarte" role="button" class="boton boton_border_morado">Regístrate</div>
 				<span class="">
 					Crea tu perfil, y comienza a disfrutar de los servicios que te trae Kmimos
 				</span>
@@ -518,7 +518,7 @@
 				<h2>Conviértete en cuidador certificado kmimos</h2>
 				<div>
 					<span>Kmimos necesita doglovers como tú</span>
-					<a href="" class="boton boton_verde">Conviértete en Cuidador</a>
+					<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="boton boton_verde">Conviértete en Cuidador</a>
 				</div>
 			</div>
 
@@ -526,7 +526,7 @@
 		
 		<div class="quiero_ser_cuidador_container_2">
 			<span>Kmimos necesita doglovers como tú</span>
-			<a href="" class="boton boton_border_gris">Conviértete en Cuidador</a>
+			<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="boton boton_border_gris">Conviértete en Cuidador</a>
 		</div>';
 		
 		$HTML .= '
