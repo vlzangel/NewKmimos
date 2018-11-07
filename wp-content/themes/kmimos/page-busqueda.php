@@ -133,6 +133,11 @@
 
     include ('partes/cuidador/conocelo.php');
 
+    $dias = "";
+    foreach ($_SESSION['busqueda']['dias'] as $key => $value) {
+    	$dias .= '<input type="hidden" name="dias[]" value="'.$value.'" />';
+    }
+
     $HTML = '
     	<div class="busqueda_container">
     		<div class="filtos_container">
@@ -142,6 +147,10 @@
     			<form id="buscar" action="'.getTema().'/procesos/busqueda/buscar.php" method="POST">
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+
+
+					<input type="hidden" name="paquete" value="'.$_SESSION['busqueda']['paquete'].'" />
+					'.$dias.'
 
 					<div class="filtros_generales_container">
 						<label class="filtro_check check_descuento" for="descuento" >

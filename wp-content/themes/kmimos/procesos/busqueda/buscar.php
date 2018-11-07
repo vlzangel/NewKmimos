@@ -10,21 +10,6 @@
 	include(realpath(__DIR__."/../funciones/db.php"));
 	include(realpath(__DIR__."/../funciones/cambiar_char_especiales.php"));
 
-	if( isset($_GET["flash"]) ){
-		//$_POST = unserialize($_SESSION['busqueda']);
-
-		$ini = $_POST["checkin"];
-		$fin = $_POST["checkout"];
-
-		$_POST = array(
-			"checkin" => $ini,
-			"checkout" => $fin,
-			"servicios" => array(
-				"flash"
-			)
-		);
-	}
-
 	$conn = new mysqli($host, $user, $pass, $db);
 	$db = new db($conn); 
 
@@ -32,7 +17,7 @@
 	$manana = date("d/m/Y", strtotime("+1 day") );
 
 	if( empty($_POST) ){
-		$_POST = unserialize($_SESSION['busqueda']);
+		$_POST = ($_SESSION['busqueda']);
 	}
 
 	$ubicaciones_inner = '';
@@ -40,22 +25,6 @@
 	$ubicaciones_filtro = "";
 	$latitud = (isset($latitud))? $latitud: "";
 	$longitud = (isset($longitud))? $longitud: "";
-
-	// Marca para retornar a la pagina #1 con nuevas busquedas
-	$_SESSION['nueva_busqueda'] = 1;
-
-	// Ordenar busqueda 
-	if( isset($_GET['o']) ){
-		$data = [];
-		if( $_SESSION['busqueda'] != '' ){
-			$data['orderby'] = $_GET['o'];
-			$_POST = $data;
-		}
-	}
-
-	if( isset($_GET['redireccionar']) ){
-		$_POST['redireccionar'] = $_GET['redireccionar'];
-	}
 
 	extract($_POST);
 
@@ -86,6 +55,7 @@
 			"medianos" => 0,
 			"grandes" => 0,
 			"gigantes" => 0,
+			"pet_sociable" => 0,
 			"comportamiento_gatos" => []
 		);
 
@@ -543,8 +513,6 @@
 		}
     }
 
-/*	$pines_json = json_encode($pines);
-    $pines_json = "<script>var pines = eval('".$pines_json."');</script>";*/
 	$_SESSION['pines'] = "";
 	$_SESSION['pines_array'] = serialize($pines);
 

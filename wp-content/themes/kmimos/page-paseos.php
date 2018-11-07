@@ -32,7 +32,7 @@
     	$letra = substr($value, 0, 1);
     	$dias_str .= 
     	'	<label class="input_check_box" title="'.$value.'" for="'.$key.'">'.
-		'		<input type="checkbox" id="'.$key.'" name="mascotas[]" value="'.$key.'"  />'.
+		'		<input type="checkbox" id="'.$key.'" name="dias[]" value="'.$key.'"  />'.
 		'		<span>'.$letra.'</span>'.
 		'		<div class="top_check"></div>'.
 		'	</label>'
@@ -53,6 +53,8 @@
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 					<input type="hidden" id="latitud" name="latitud" />
 					<input type="hidden" id="longitud" name="longitud" />
+
+					<input type="hidden" id="servicios" name="servicios[]" value="paseos" />
 
 					<input type="hidden" id="paquete" name="paquete" value="" />
 

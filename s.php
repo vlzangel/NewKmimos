@@ -2,6 +2,6 @@
 	session_start();
 	// session_destroy();
 	echo "<pre>";
-		print_r($_SESSION);
+		print_r($_SESSION["busqueda"]);
 	echo "</pre>";
 ?>
