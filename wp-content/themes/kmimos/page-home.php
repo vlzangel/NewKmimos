@@ -416,7 +416,7 @@
 				</span>
 			</div>
 
-			<a href="" class="testimonios_link">Ver más comentarios como éste</a>
+			<a href="'.get_home_url().'/testimonios" class="testimonios_link">Ver más comentarios como éste</a>
 
 		
 		</div>';

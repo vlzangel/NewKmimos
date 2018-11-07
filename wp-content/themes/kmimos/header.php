@@ -32,6 +32,7 @@
 		"busqueda",
 		"petsitters",
         "paseos",
+        "testimonios",
     ];
 
     if( true ){
