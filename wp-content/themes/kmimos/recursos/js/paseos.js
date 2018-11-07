@@ -30,36 +30,58 @@ function ancla_form() {
   	}
 }
 
+function form_is_valid(){
+    var sin_error = 0;
+    if( jQuery("#checkin").val() != "" && jQuery("#checkout").val() != "" ){
+        jQuery(".fechas_container").removeClass("error_fecha");
+    }else{
+        jQuery(".fechas_container").addClass("error_fecha");
+        sin_error++;
+    }
+    var dias_seleccionados = 0;
+    jQuery(".input_check_box input").each(function(i, v){
+        if( jQuery(this).prop("checked") ){
+            dias_seleccionados++;
+        }
+    });
+    if( dias_seleccionados == 0 ){
+        jQuery(".dias_msg").addClass("error_dias");
+        sin_error++;
+    }else{
+        jQuery(".dias_msg").removeClass("error_dias");
+    }
+    if( sin_error == 0 ){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 jQuery( document ).ready(function() {
     jQuery("#boton_buscar").on("click", function(e){
-        var sin_error = 0;
-
-        if( jQuery("#checkin").val() != "" && jQuery("#checkout").val() != "" ){
-            jQuery(".fechas_container").removeClass("error_fecha");
-        }else{
-            jQuery(".fechas_container").addClass("error_fecha");
-            sin_error++;
-        }
-
-        var dias_seleccionados = 0;
-        jQuery(".input_check_box input").each(function(i, v){
-            if( jQuery(this).prop("checked") ){
-                dias_seleccionados++;
+        if( form_is_valid() ){
+            if( jQuery("#paquete").val() == "" ){
+                jQuery('body,html').stop(true, true).animate({ scrollTop: jQuery('#paquetes').offset().top }, 1000);
+            }else{
+                jQuery("#buscador").submit();
             }
-        });
-
-        if( dias_seleccionados == 0 ){
-            jQuery(".dias_msg").addClass("error_dias");
-            sin_error++;
-        }else{
-            jQuery(".dias_msg").removeClass("error_dias");
         }
-
-        if( sin_error == 0 ){
-            jQuery('body,html').stop(true,true).animate({ scrollTop: jQuery('#paquetes').offset().top }, 1000);
-        }
-
         e.preventDefault();
+    });
+
+    jQuery(".btn_paq").on("click", function(e){
+        jQuery("#paquete").val( jQuery(this).attr("data-id") );
+        jQuery(".input_radio").prop("checked", false);
+        jQuery("#paq_"+jQuery(this).attr("data-id")+"_radio").prop("checked", true);
+        if( form_is_valid() ){
+            jQuery("#buscador").submit();
+        }else{
+            if( parseInt( jQuery("body").width() ) > 768 ){ 
+                jQuery('body,html').stop(true, true).animate({ scrollTop: jQuery('#banner_home').offset().top }, 1000);
+            }else{
+                jQuery('body,html').stop(true, true).animate({ scrollTop: jQuery('#buscador').offset().top }, 1000);
+            }
+        }
     });
 
     jQuery("#mi_ubicacion").on("click", function(e){
@@ -112,13 +134,6 @@ jQuery( document ).ready(function() {
                 maximumAge: 0
             }
         );
-    });
-
-    jQuery(".btn_paq").on("click", function(e){
-        jQuery("#paquete").val( jQuery(this).attr("data-id") );
-        jQuery(".input_radio").prop("checked", false);
-        jQuery("#paq_"+jQuery(this).attr("data-id")+"_radio").prop("checked", true);
-        jQuery("#buscador").submit();
     });
 
 });
