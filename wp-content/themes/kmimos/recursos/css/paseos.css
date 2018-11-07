@@ -13,7 +13,7 @@
 /* BANNER */
 
 	#banner_home{
-		background-image: url( ../img/HOME/JPG/Principal.jpg );
+		background-image: url( ../img/PASEOS/PNG/Principal-1.png );
 		height: 715px;
 		background-size: cover;
 		background-position: center;
@@ -154,6 +154,12 @@
 	    color: #999;
 	    width: 375px;
 	    text-align: left;
+	}
+
+	.dias_msg.error_dias {
+	    color: red;
+	    font-weight: 600;
+	    font-size: 10px;
 	}
 
 /* CONTROLES MITAD */
@@ -726,6 +732,14 @@
 	}
 	
 
+	.paquete_item label {
+	    display: block;
+	    max-width: 100%;
+	    margin-bottom: 0px;
+	    font-weight: 700;
+	}
+	
+
 	.paquete_item button{
 		border: solid 1px #CCC;
 		border-radius: 4px;
@@ -736,6 +750,12 @@
 		font-size: 16px;
 		font-weight: 600;
 		background: #FFF;
+	}
+
+	input.input_radio:checked ~ button {
+		color: #FFF;
+		background: #00d2c6;
+		border-color: solid 1px #00d2c6;
 	}
 
 	.paquete_list ul {

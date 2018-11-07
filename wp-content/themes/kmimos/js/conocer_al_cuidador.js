@@ -14,6 +14,8 @@ jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(
     jQuery( jQuery(this).data('target') ).modal('show');
     jQuery('.popup-iniciar-sesion-2').css('display', 'none');
     jQuery('.popup-iniciar-sesion-1').css('display', 'block');
+
+    jQuery("#btn_reserva_conocer").attr("href", jQuery(this).parent().find(".active").attr("href") );
 });
 
 jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){

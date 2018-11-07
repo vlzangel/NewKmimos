@@ -31,38 +31,43 @@ function ancla_form() {
 }
 
 jQuery( document ).ready(function() {
-
     jQuery("#boton_buscar").on("click", function(e){
+        var sin_error = 0;
+
         if( jQuery("#checkin").val() != "" && jQuery("#checkout").val() != "" ){
             jQuery(".fechas_container").removeClass("error_fecha");
-            jQuery('#popup-servicios-new').modal('show');
         }else{
             jQuery(".fechas_container").addClass("error_fecha");
+            sin_error++;
         }
+
+        var dias_seleccionados = 0;
+        jQuery(".input_check_box input").each(function(i, v){
+            if( jQuery(this).prop("checked") ){
+                dias_seleccionados++;
+            }
+        });
+
+        if( dias_seleccionados == 0 ){
+            jQuery(".dias_msg").addClass("error_dias");
+            sin_error++;
+        }else{
+            jQuery(".dias_msg").removeClass("error_dias");
+        }
+
+        if( sin_error == 0 ){
+            jQuery('body,html').stop(true,true).animate({ scrollTop: jQuery('#paquetes').offset().top }, 1000);
+        }
+
         e.preventDefault();
     });
 
-    jQuery("#agregar_servicios").on("click", function(e){
-        jQuery("#buscador").submit();
-    });
-
-    jQuery("#buscar_no").on("click", function(e){
-        jQuery("#buscador").submit();
-    });
-
-    jQuery('#popup-servicios-new').on('hidden.bs.modal', function () {
-        jQuery("#buscar_no").click();
-    });
-
     jQuery("#mi_ubicacion").on("click", function(e){
-
         jQuery(".icon_left").addClass("fa-spinner fa-spin");
         jQuery(this).css("display", "none");
-        
         navigator.geolocation.getCurrentPosition(
             function(pos) {
                 crd = pos.coords;
-
                 /*if( 
                     (
                         limites.norte.lat >= crd.latitude && limites.sur.lat <= crd.latitude &&
@@ -72,12 +77,9 @@ jQuery( document ).ready(function() {
                 ){*/
                     jQuery( '[data-error="ubicacion"]' ).parent().removeClass('has-error');
                     jQuery( '[data-error="ubicacion"]' ).addClass('hidden');
-
                     jQuery('#latitud').val(crd.latitude);
                     jQuery('#longitud').val(crd.longitude);
-
                     var geocoder = new google.maps.Geocoder();
-
                     var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
                     geocoder.geocode({'location': latlng}, function(results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
@@ -104,13 +106,19 @@ jQuery( document ).ready(function() {
                 }else{
                     alert(err.message);
                 }
-            },
-            {
+            },{
                 enableHighAccuracy: true,
                 timeout: 5000,
                 maximumAge: 0
             }
         );
+    });
+
+    jQuery(".btn_paq").on("click", function(e){
+        jQuery("#paquete").val( jQuery(this).attr("data-id") );
+        jQuery(".input_radio").prop("checked", false);
+        jQuery("#paq_"+jQuery(this).attr("data-id")+"_radio").prop("checked", true);
+        jQuery("#buscador").submit();
     });
 
 });
