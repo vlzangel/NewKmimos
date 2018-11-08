@@ -425,7 +425,7 @@ $HTML .='
 			<div class="popuphide popup-registrarte-final-0">
 				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU MASCOTA SE REGISTRO EXITOSAMENTE!</h3>
 				<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
-				<a href="javascript:;" onclick="location.href = \''.get_home_url().'/#buscar\';" id="btn_iniciar_sesion" data-url="'.get_home_url().'/#buscar" class="km-btn-correo">INICIAR SESIÓN</a>
+				<a href="javascript:;" onclick="location.href = \''.get_home_url().'/#buscar\';" id="btn_iniciar_sesion" data-url="'.get_home_url().'/#buscar" class="km-btn-correo" data-dismiss="modal">INICIAR SESIÓN</a>
 			</div>
 		</div>
 	</div>
