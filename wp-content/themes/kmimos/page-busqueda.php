@@ -444,7 +444,7 @@
 		</div>
     ';
 
-    echo "<pre style='position: fixed; top: 0px; left: 0px; width: 100%, height: 100%; z-index: 9999999999999999999; display: none;'>";
+    echo "<pre style='position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 9999999999999999999; display: none;'>";
     	print_r($_SESSION['sql']);
     echo "</pre>";
 

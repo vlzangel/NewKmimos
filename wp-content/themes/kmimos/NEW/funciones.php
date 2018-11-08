@@ -178,7 +178,7 @@
 				$ocultar_flash = "ocultar_flash";
 				$ocultar_flash_none = "ocultar_flash_none";
 				$ocultar_descuento = "ocultar_descuento";
-				if( $_cuidador->atributos["flash"] == 1 ){
+				if( $_cuidador->atributos["flash"]+0 == 1 ){
 					$ocultar_flash = "";
 					$ocultar_flash_none = "";
 				}
