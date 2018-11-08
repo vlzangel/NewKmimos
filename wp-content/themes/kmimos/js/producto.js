@@ -59,6 +59,9 @@ function initCarrito(){
 			"anio" : "",
 			"codigo" : ""
 		};
+
+	CARRITO[ "pagar" ][ "tipo_servicio" ] = tipo_servicio;
+	CARRITO[ "pagar" ][ "paquete" ] = PAQUETE;
     
 }
 initCarrito();
@@ -333,9 +336,9 @@ function get_dias_semana(dias){
     	"viernes": 5,
     	"sabado": 6
     };
-    var dias_seleccionados = [];
+    var _dias_seleccionados = [];
     jQuery.each(dias, function(i, v){
-    	dias_seleccionados.push(_dias[ v ] );
+    	_dias_seleccionados.push(_dias[ v ] );
     });
     var num_dias = 0;
     var cont = 0;
@@ -349,11 +352,14 @@ function get_dias_semana(dias){
 		cont++;
 		fecha_temp = new Date(i);
 		dia = fecha_temp.getDay();
-		if( dias_seleccionados.indexOf(dia) != -1 ){
+		if( _dias_seleccionados.indexOf(dia) != -1 ){
 			num_dias++;
 			DIAS_SELECCIONADOS.push(dia);
 		}
 	}
+
+	CARRITO[ "fechas" ][ "dias" ] = DIAS_SELECCIONADOS;
+
 	return num_dias;
 }
 

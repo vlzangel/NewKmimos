@@ -155,19 +155,15 @@
 			        case 'bano':
 			            $resultado["Baño (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
-			        
 			        case 'corte':
 			            $resultado["Corte de Pelo y Uñas (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
-			        
 			        case 'visita_al_veterinario':
 			            $resultado["Visita al Veterinario (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
-			        
 			        case 'limpieza_dental':
 			            $resultado["Limpieza Dental (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
-			        
 			        case 'acupuntura':
 			            $resultado["Acupuntura (precio por mascota)"] = "Servicios Adicionales (precio por mascota) (&#36;".$value.")";
 			        break;
@@ -222,7 +218,14 @@
 		"pagoCuidador"			=> $pagoCuidador,
 
 		"reservaFlash"			=> $fechas->flash,
+
+		"paquete"			=> $fechas->flash,
 	);
+
+	if( $pagar->tipo_servicio == "paseos" ){
+		$data_reserva["paquete"] = $pagar->paquete;
+		$data_reserva["dias"] = json_encode($fechas->dias);
+	}
 
     $data_cliente = array();
     $xdata_cliente = $db->get_results("

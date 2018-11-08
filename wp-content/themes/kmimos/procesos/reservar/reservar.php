@@ -83,9 +83,14 @@ class Reservas {
             // $wlabel = "(NULL, '{$id_reserva}', '_wlabel', '".$_SESSION["wlabel"]."'),";
         }
 
+        $otros_metas = '';
+        if( isset($paquete) ){ $otros_metas .= "(NULL, '{$id_reserva}', '_booking_paquete', '{$paquete}'),"; }
+        if( isset($dias) ){ $otros_metas .= "(NULL, '{$id_reserva}', '_booking_dias', '{$dias}'),"; }
+
         $sql = "
             INSERT INTO wp_postmeta VALUES
                 {$wlabel}
+                {$otros_metas}
                 (NULL, '{$id_reserva}', '_booking_flash',           '{$reservaFlash}'),
                 (NULL, '{$id_reserva}', '_booking_checkin',         '{$checkin}'),
                 (NULL, '{$id_reserva}', '_booking_checkout',        '{$checkout}'),

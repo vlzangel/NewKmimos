@@ -460,6 +460,9 @@
 			}
 		}
 
+		if( $tipo == "paseos" ){
+			$PAQUETE = "var PAQUETE = '".$busqueda["paquete"]."';";
+		}
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
 
@@ -485,6 +488,7 @@
 			var HORA = '".(date("G", $NOW )+0)."';
 			var SUPERU = '".$super_admin."';
 			var BLOQUEAR_ADICIONALES = ".( ($bloquear_adicionales) ? 1 : 0 ).";
+			".$PAQUETE."
 		</script>";
 
 		if( $error != "" ){
