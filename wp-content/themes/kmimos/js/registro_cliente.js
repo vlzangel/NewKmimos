@@ -284,7 +284,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 							//registro campaing monitor
 							jQuery.post( 
-			                    "https://www.kmimos.com.mx/campaing/suscribir.php", 
+			                    RAIZ+"campaing/suscribir.php", 
 			                    {
 			                        "email": datos['email'],
 			                        "list": 'petco_registro'

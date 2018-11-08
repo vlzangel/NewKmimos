@@ -13,7 +13,7 @@
     $result = CS_REST_General::exchange_token(
         "114514",
         "Gay0i0rL0Tk0y6jGE0QV00Dr00lACN0czTk30E0Rd0JnbFeHBbLp50yW00PVV00rk0oS0v0F1xv9F0Vs",
-        "https://www.kmimos.com.mx/monitor_suscribir/correcto.php",
+        "https://www.kmimos.com.mx/campaing/correcto.php",
         $code
     );
     
