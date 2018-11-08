@@ -534,6 +534,31 @@
 				$_adicionales = '<div style="display: none;" id="contenedor-adicionales" class="contenedor-adicionales">'.$adicionales.'</div>';
 			}
 
+			$dias_str = '';
+			if( $tipo == "paseos" ){
+			    $dias = [
+			    	"lunes" => "Lunes",
+			    	"martes" => "Martes",
+			    	"miercoles" => "Miercoles",
+			    	"jueves" => "Jueves",
+			    	"viernes" => "Viernes",
+			    	"sabado" => "Sábado",
+			    	"domingo" => "Domingo"
+			    ];
+			    foreach ($dias as $key => $value) {
+			    	$letra = substr( $value, 0, 1);
+			    	$checked = ( in_array($key, $_SESSION['busqueda']['dias']) ) ? "checked": "";
+			    	$dias_str .= 
+			    	'	<label class="input_check_box" title="'.$value.'" for="'.$key.'">'.
+					'		<input type="checkbox" id="'.$key.'" name="dias[]" value="'.$key.'" '.$checked.' />'.
+					'		<span>'.$letra.'</span>'.
+					'		<div class="top_check"></div>'.
+					'	</label>'
+			    	;
+			    }
+			    $dias_str = '<div class="dias_container">'.$dias_str.'</div>';
+			}
+
 			$precios = '
 				<div class="km-dates-step" style="margin-bottom: 5px;">
 					<div class="km-ficha-fechas">
@@ -542,27 +567,7 @@
 					</div>
 				</div>
 
-				<!--
-				<div class="km-dates-step">
-					<div class="km-ficha-fechas">
-						<div class="listas_check">	
-							<select id="hora_checkin" name="hora_checkin" class="date_from">
-								<option>Hora Entrada</option>
-								'.$horario.'
-							</select>
-						</div>
-
-						<div class="listas_check">	
-							<select id="hora_checkout" name="hora_checkout" class="date_from">
-								<option>Hora Salida</option>
-								'.$horario.'
-							</select>
-						</div>
-
-					</div>
-				</div>
-				-->
-
+				'.$dias_str.'
 				'.$msg_mismo_dia.'
 				'.$msg_bloqueador.'
 				'.$msg_bloqueador_madrugada.'
@@ -624,7 +629,6 @@
 								<li class="line"></li><li><span class="number">2</span></li>
 								<li class="line"></li><li><span class="number">3</span></li>
 							</ul>
-
 							<div class="km-title-step">
 								RESERVACIÓN<br>
 								'.$servicio_name_corto.'<br>
@@ -633,23 +637,16 @@
 									<div>'.$descripcion.'</div>
 								</div>
 							</div>
-
 							<div class="km-sub-title-step">
 								Reserva las fechas y los servicios con tu cuidador(a) '.$cuidador_name.'
 							</div>
-
 							'.$precios.'
-
 						</div>
 					</div>
 
-
 					<div id="step_2" class="km-col-steps">
-
 						<div class="km-col-content">
-
 							<div id="atras_1" class="atras"> < </div>
-
 							<ul class="steps-numbers">
 								<li>
 									<span class="number checked">1</span>
@@ -663,21 +660,17 @@
 									<span class="number">3</span>
 								</li>
 							</ul>
-
 							<div class="km-title-step">
 								RESUMEN DE TU RESERVA
 							</div>
-
 							<div class="km-sub-title-step">
 								Queremos confirmar tu reservación y tu método de pago
 							</div>
-
 							<div class="km-content-step km-content-step-2">
 								<div class="km-option-resume">
 									<span class="label-resume">CUIDADOR SELECCIONADO</span>
 									<span class="value-resume">'.$cuidador_name.'</span>
 								</div>
-
 								<div class="km-option-resume">
 									<span class="label-resume">FECHA</span>
 									<span class="value-resume">
@@ -686,22 +679,16 @@
 										<span class="fecha_fin"></span>
 									</span>
 								</div>
-
 								<div class="km-option-resume">
-
 									<div class="km-option-resume-service">
 										<span class="label-resume-service">'.$servicio_name.'</span>
 									</div>
-
 									<div class="items_reservados"></div>
-
 								</div>
-
 								<div class="cupones_desglose km-option-resume">
 									<span class="label-resume">Descuentos</span>
 									<div></div>
 								</div>
-
 								<div class="km-services-total">
 									<span class="km-text-total">TOTAL</span>
 									<span class="km-price-total2">$420.00</span>
@@ -709,7 +696,6 @@
 							</div>
 
 							<div class="modal_20_porciento">
-								<!-- <i class="fa fa-times"></i> -->
 								Por los momentos no disponemos del pago del 20%, por lo que te invitamos hacer el pago total de tu reserva.
 								<div id="click_pago_total" class="km-end-btn-form" style="max-width: 300px; margin: 15px auto 0px;">
 									Pago Total

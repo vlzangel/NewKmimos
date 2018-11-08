@@ -75,6 +75,7 @@ function validar(status, txt){
 	}
 }
 
+var DIAS_SELECCIONADOS = [];
 
 var PERROS = 0;
 var GATOS = 0;
@@ -140,7 +141,6 @@ function calcular(){
 
 	CARRITO["cantidades"]["cantidad"] = 0;
 	jQuery("#reservar .tamano").each(function( index ) {
-		
 		if( parseFloat( jQuery( this ).val() ) > 0 ){
 			if( jQuery( this ).attr("name") == "gatos" ){
 				GATOS++;
@@ -149,7 +149,6 @@ function calcular(){
 				CARRITO["cantidades"]["cantidad"] += parseInt(jQuery( this ).val());
 			}
 		}
-
 		CARRITO[ "cantidades" ][ jQuery( this ).attr("name") ] = [
 			parseFloat( jQuery( this ).val() ),
 			parseFloat( jQuery( this ).attr("data-valor") )
@@ -228,25 +227,38 @@ function calcular(){
 			if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
 				error = "Ingrese la fecha de finalizaci&oacute;n";
 			}else{
-				var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
-				var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
-				var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
-				var diff = fechaFin - fechaInicio;
-				dias = parseInt( diff/(1000*60*60*24) );
-		    }
-
-			if( tipo_servicio != "hospedaje" ){
-				if( dias == 0 ){
-					dias=1;
+				if( tipo_servicio == "paseos" ){
+					var dias_array = [];
+					jQuery(".dias_container input").each(function(i, v){
+						if( jQuery(this).prop("checked") ){
+							dias_array.push( jQuery(this).val() );
+						}
+					});
+					dias = parseInt( get_dias_semana(dias_array) );
+					CARRITO[ "fechas" ][ "duracion" ] = dias;
+					if( dias == 0 ){
+						error = "Los días marcados no se encuentran en el rango seleccionado";
+					}
 				}else{
-					dias += 1;
+					var fechaInicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
+					var fechaFin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
+					var temp = String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0];
+					var diff = fechaFin - fechaInicio;
+					dias = parseInt( diff/(1000*60*60*24) );
+					if( tipo_servicio != "hospedaje" ){
+						if( dias == 0 ){
+							dias=1;
+						}else{
+							dias += 1;
+						}
+					}else{
+						if( dias == 0 ){
+							error = "Fecha de finalizaci&oacute;n debe ser diferente a la de inicio";
+						}
+					}
+			        CARRITO[ "fechas" ][ "duracion" ] = dias;
 				}
-			}else{
-				if( dias == 0 ){
-					error = "Fecha de finalizaci&oacute;n debe ser diferente a la de inicio";
-				}
-			}
-	        CARRITO[ "fechas" ][ "duracion" ] = dias;
+		    }
 		}
 	}
 
@@ -296,10 +308,8 @@ function calcular(){
 	}
 	
 	if( error == "" ){
-
 		jQuery(".pago_17").html( "$" + numberFormat(cant*0.2) );
 		jQuery(".pago_cuidador").html( "$" +  numberFormat(cant-(cant*0.2)) );
-
 		jQuery(".monto_total").html( "$" + numberFormat(cant) );
 		CARRITO["pagar"]["total"] = cant;
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
@@ -311,6 +321,40 @@ function calcular(){
 	}
 	initFactura();
     
+}
+
+function get_dias_semana(dias){
+	var _dias = {
+    	"domingo": 0,
+    	"lunes": 1,
+    	"martes": 2,
+    	"miercoles": 3,
+    	"jueves": 4,
+    	"viernes": 5,
+    	"sabado": 6
+    };
+    var dias_seleccionados = [];
+    jQuery.each(dias, function(i, v){
+    	dias_seleccionados.push(_dias[ v ] );
+    });
+    var num_dias = 0;
+    var cont = 0;
+    var inicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
+	var fin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
+	var fecha_temp = 0;
+	inicio += 86400000;
+	fin += 86400000;
+	DIAS_SELECCIONADOS = [];
+	for (i=inicio; i <= fin; i+=86400000) { 
+		cont++;
+		fecha_temp = new Date(i);
+		dia = fecha_temp.getDay();
+		if( dias_seleccionados.indexOf(dia) != -1 ){
+			num_dias++;
+			DIAS_SELECCIONADOS.push(dia);
+		}
+	}
+	return num_dias;
 }
 
 function numberFormat(numero){
@@ -389,6 +433,30 @@ function initFactura(){
 	CARRITO["pagar"]["cuidador"] = cuidador;
 	CARRITO["pagar"]["email"] = email;
 
+	var items = "";
+
+	if( tipo_servicio == "paseos" ){
+		var _dias = [
+	    	"Domingo",
+	    	"Lunes",
+	    	"Martes",
+	    	"Miercoles",
+	    	"Jueves",
+	    	"Viernes",
+	    	"Sábado"
+	    ];
+	    var dias_en_rango = [];
+		jQuery.each(DIAS_SELECCIONADOS, function(i, v){
+			if( dias_en_rango.indexOf( _dias[ v ] ) == -1 ){
+				dias_en_rango.push( _dias[ v ] );
+			}
+		});
+		items += '<div class="km-option-resume-service">'
+		items += '	<span class="label-resume-service">'+( dias_en_rango.join(" - ") )+'</span>'
+		items += '	<span class="value-resume-service"></span>'
+		items += '</div>';
+	}
+
 	diaNoche = "d&iacute;a";
 	if( tipo_servicio == "hospedaje" ){
 		diaNoche = "Noche";
@@ -406,27 +474,21 @@ function initFactura(){
 		"gatos" : "Gato"
 	};
 
-	var items = "";
 	var subtotal = 0;
 	jQuery.each(tamanos, function( key, tamano ) {
-		
 		if( CARRITO["cantidades"][key][0] != undefined && CARRITO["cantidades"][key][0] > 0 && CARRITO["cantidades"][key][1] > 0 ){
-			
 			var plural = "";
 			if( CARRITO["cantidades"][key][0] > 1 ){
 				plural += "s";
 			}
-
 			subtotal = 	parseInt( CARRITO["cantidades"][key][0] ) *
 						parseInt( CARRITO["fechas"]["duracion"] ) *
 						parseFloat( CARRITO["cantidades"][key][1] );
-
 			items += '<div class="km-option-resume-service">'
 			items += '	<span class="label-resume-service">'+CARRITO["cantidades"][key][0]+' Mascota'+plural+' '+tamano+plural+' x '+CARRITO["fechas"]["duracion"]+' '+diaNoche+' x $'+CARRITO["cantidades"][key][1]+' </span>'
 			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
 			items += '</div>';
 		}
-
 	});
 
 	var adicionales = {
@@ -438,17 +500,13 @@ function initFactura(){
 	};
 
 	jQuery.each(adicionales, function( key, adicional ) {
-		
 		if( CARRITO["adicionales"][key] != undefined && CARRITO["adicionales"][key] != "" && CARRITO["adicionales"][key] > 0 ){
-			
 			var plural = "";
 			if( CARRITO["cantidades"]["cantidad"] > 1 ){
 				plural += "s";
 			}
-
 			subtotal = 	parseInt( CARRITO["cantidades"]["cantidad"] ) *
 						parseFloat( CARRITO["adicionales"][key] );
-
 			items += '<div class="km-option-resume-service">'
 			items += '	<span class="label-resume-service">'+adicional+' - '+CARRITO["cantidades"]["cantidad"]+' Mascota'+plural+' x $'+CARRITO["adicionales"][key]+'</span>'
 			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
@@ -737,6 +795,10 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+	jQuery(".dias_container input").on("change", function(e){
+		calcular();
+	});
 
 	jQuery(".km-option-total").click();
 
