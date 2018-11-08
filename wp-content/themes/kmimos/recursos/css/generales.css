@@ -379,3 +379,7 @@ nav .lupa_negra{
 	.info_contacto li i {
 		display: none;
 	}
+
+	.info_contacto a {
+	    padding-bottom: 5px;
+	}

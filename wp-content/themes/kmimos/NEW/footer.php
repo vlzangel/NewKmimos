@@ -66,7 +66,7 @@
 						</ul>
 					</div>
 					<div class="siguenos_bajo">
-						<span>Siguenos en</span>
+						<span style="display: block;">Siguenos en</span>
 						<a href="https://www.facebook.com/Kmimosmx/" target="_blank">
 							<img src="'.get_recurso("img").'HOME/SVG/Facebook.svg" />
 						</a>
