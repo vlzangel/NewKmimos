@@ -37,25 +37,17 @@
 	$grupos = [];
 
 	foreach ($reservas as $reserva) {
-		$entro = false;
 		if( $mes_1 <= strtotime($reserva->fecha) ){
 			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_1" ][] = $reserva;
-			$entro = true;
 		}
 		if( $mes_3 <= strtotime($reserva->fecha) ){
 			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_3" ][] = $reserva;
-			$entro = true;
 		}
 		if( $mes_6 <= strtotime($reserva->fecha) ){
 			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_6" ][] = $reserva;
-			$entro = true;
 		}
 		if( $mes_12 <= strtotime($reserva->fecha) ){
 			$grupos[ $reserva->tipo ][ $reserva->email ][ "mes_12" ][] = $reserva;
-			$entro = true;
-		}
-		if( $mes_12 > strtotime($reserva->fecha) ){
-			$grupos[ $reserva->tipo ][ $reserva->email ][ "mas_12" ][] = $reserva;
 		}
 	}
 
@@ -64,8 +56,7 @@
 		"mes_1" => "false",
 		"mes_3" => "false",
 		"mes_6" => "false",
-		"mes_12" => "false",
-		"mas_12" => "false"
+		"mes_12" => "false"
 	];
 	foreach ($grupos as $servicio_id => $servicio) {
 		$servicio_id = ( strpos($servicio_id, "adiestramiento") !== false ) ? "entrenamiento": $servicio_id;
@@ -123,23 +114,8 @@
 	foreach ($listas as $key => $value) {
 		echo $key.": ".count($value)."<br>";
 	}
-
-
-	$hoy = time();
-	
-	$mes_1 = strtotime ( '-1 month' , $hoy );
-	$mes_3 = strtotime ( '-3 month' , $hoy );
-	$mes_6 = strtotime ( '-6 month' , $hoy );
-	$mes_12 = strtotime ( '-12 month' , $hoy );
-
-	echo date("m-d-Y", time())." - ".date("m-d-Y", $mes_1)."<br>";
-	echo date("m-d-Y", $mes_1)." - ".date("m-d-Y", $mes_3)."<br>";
-	echo date("m-d-Y", $mes_3)." - ".date("m-d-Y", $mes_6)."<br>";
-	echo date("m-d-Y", $mes_6)." - ".date("m-d-Y", $mes_12);
-
 	echo "<pre>";
-		// print_r($grupos);
-		// print_r($listas);
+		print_r($listas);
 	echo "</pre>";
 
 /*	$credenciales = $wpdb->get_var("SELECT data FROM campaing WHERE id = 1");

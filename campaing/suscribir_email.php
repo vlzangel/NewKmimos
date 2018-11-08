@@ -1,6 +1,6 @@
 <?php
 	
-	extract($_POST);
+	extract($_GET);
 
 	include dirname(__DIR__)."/wp-load.php";
 	global $wpdb;

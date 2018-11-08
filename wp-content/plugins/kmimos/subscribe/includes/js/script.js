@@ -63,7 +63,7 @@ function form_subscribe(element){
                 }
 
                 jQuery.post( 
-                    "https://www.kmimos.com.mx/campaing/suscribir.php", 
+                    RAIZ+"campaing/suscribir.php", 
                     {
                         "email": email,
                         "list": list

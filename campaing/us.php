@@ -111,14 +111,11 @@
 		"entrenamiento_mes_12" => "47f2c68820a612324a5b3b1636ffb671"
 	];
 
-	foreach ($listas as $key => $value) {
-		echo $key.": ".count($value)."<br>";
-	}
 /*	echo "<pre>";
 		print_r($listas);
 	echo "</pre>";*/
 
-/*	$credenciales = $wpdb->get_var("SELECT data FROM campaing WHERE id = 1");
+	$credenciales = $wpdb->get_var("SELECT data FROM campaing WHERE id = 1");
 	require_once __DIR__.'/campaing/csrest_campaigns.php';
 	$credenciales = json_decode( $credenciales );
 
@@ -137,6 +134,6 @@
 			    "ConsentToTrack" => "Yes"
 			]);
 		}
-	}*/
+	}
 
 ?>
