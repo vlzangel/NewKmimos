@@ -37,8 +37,18 @@
 	}
 	
 ?>
+	<style type="text/css">
+		.km-ficha-bg{
+			background-image: url(<?php echo getTema().'/images/new/ayuda/Ayuda-Kmimos.jpg'; ?>);
+		}
+		@media (max-width: 700px) {	
+			.km-ficha-bg{
+				background-image: url(<?php echo getTema().'/images/new/ayuda/Ayuda-Kmimos-responsive.jpg'; ?>);
+			}
+		}
+	</style>
 
-	<div class="km-ficha-bg" style="background-image: url(<?php echo getTema().'/images/new/ayuda/kmimos_ayuda.jpg'; ?>)">
+	<div class="km-ficha-bg" >
 		<div class="overlay"></div>
 	</div>
 	<div class="body-ayuda">
