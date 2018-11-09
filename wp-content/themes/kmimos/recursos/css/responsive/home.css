@@ -133,7 +133,7 @@
 		#PageSubscribe_NEW button {
 		    width: 39%;
 		    padding: 10px;
-		    border: solid 1px #CCC;
+		    border: solid 1px #00d2c6;
 		    border-left: 0px;
 		    border-radius: 0px 3px 3px 0px;
 		    background: #00d2c6;
@@ -178,6 +178,18 @@
 		    opacity: 1;
 		}
 
+}
+
+@media (min-width: 768px){
+	#PageSubscribe_NEW button:hover,
+	.boton_buscar_container .boton_buscar:hover,
+	.beneficios_buscar_right .boton:hover,
+	.quiero_ser_cuidador_container a:hover,
+	a#agregar_servicios:hover {
+	    background: #49eada;
+	    text-decoration: none;
+	    color: #FFF !important;
+	}
 }
 
 @media (max-width: 992px){

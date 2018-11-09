@@ -1,3 +1,9 @@
+@media (min-width: 768px){
+	.fechas_container .boton:hover {
+	    background: #49eada !important;
+	}
+
+}
 @media (max-width: 768px){
 
 	body {

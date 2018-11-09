@@ -18,6 +18,12 @@
 	    opacity: 1;
 	    transition: all .3s ease-in-out;
 	}
+
+	.resultados_item_bottom .boton:hover,
+	.km-opciones.maps .boton:hover {
+	    background: #49eada !important;
+	}
+
 }
 
 @media (max-width: 768px){

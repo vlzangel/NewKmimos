@@ -6,6 +6,12 @@
 
 }
 
+@media (min-width: 768px){
+	.footer_alto form input[type='submit']:hover {
+	    background: #49eada !important;
+	}
+}
+
 @media (max-width: 768px){
 
 	.footer_alto form input[type='submit'] {
