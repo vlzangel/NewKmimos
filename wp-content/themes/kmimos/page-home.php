@@ -106,11 +106,11 @@
 									<div class="top_check"></div>
 								</label>
 
-								<label class="input_check_box" for="entrenamiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
-									<input type="checkbox" id="entrenamiento" name="servicios[]" value="entrenamiento"  />
+								<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
+									<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento"  />
 									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
 									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
-									<span>Entrenamiento</span>
+									<span>Adiestramiento</span>
 									<div class="top_check"></div>
 								</label>
 							</div>
@@ -165,8 +165,8 @@
 					</div>
 
 					<div class="tamanios_container">
-						<label class="input_check_box" for="paqueno">
-							<input type="checkbox" id="paqueno" name="tamanos[]" value="paquenos"  />
+						<label class="input_check_box" for="pequenos">
+							<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos"  />
 							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Pequenio.svg" />
 							<span>
 								<div class="tam_label_pc">Pequeño</div>

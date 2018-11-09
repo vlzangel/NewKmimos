@@ -234,8 +234,8 @@
 						</label>
 					</div>
 					<div class="tamanios_container">
-						<label class="input_check_box" for="paqueno">
-							<input type="checkbox" id="paqueno" name="tamanos[]" value="pequenos" '.$tam['pequenos'].' />
+						<label class="input_check_box" for="pequenos">
+							<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos" '.$tam['pequenos'].' />
 							<span>
 								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/RESPONSIVE/SVG/Pequenio.svg" />
 								<div class="tam_label_pc">Peq.</div>

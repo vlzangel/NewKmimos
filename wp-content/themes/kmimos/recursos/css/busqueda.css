@@ -125,7 +125,7 @@
 		}
 
 		.input_check_box input:checked ~ .top_check {
-		    /*border: solid 2px #00d2c6;*/
+		    border: solid 2px #00d2c6;
 	        opacity: 1;
 		}
 
@@ -133,6 +133,9 @@
 		    margin-right: 0px;
 		}
 
+		.adicionales_container .input_check_box input:checked ~ .top_check {
+		    border: solid 1px #CCC;
+		}
 
 	/* UBICACION */
 
