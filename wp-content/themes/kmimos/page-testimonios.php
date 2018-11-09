@@ -22,11 +22,9 @@
 			    position: relative;
 			    z-index: -1;
 			}
-
 			.testimonios_container .testimonios_item {
 			    bottom: 25px;
 			}
-
 			.testimonios_container {
 			    padding: 50px;
 			    margin-bottom: 0px;
@@ -35,7 +33,7 @@
 				border: solid 1px #CCC;
 			    padding: 20px;
 			    border-radius: 4px;
-			    margin: 50px 50px 0px;
+			    margin: 50px;
 			    box-shadow: 1px 1px 1px #BBB;
 			}
 			.info_home a {
@@ -61,33 +59,33 @@
 			<div class="overlay"></div>
 		</div>
 
+		<div class="testimonios_container">
+			<div class="testimonios_item">
+				<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>
+				<span>- Alejandra R.</span>
+			</div>
+			<div class="testimonios_img"></div>
+		</div>
+		<div class="testimonios_container">
+			<div class="testimonios_item">
+				<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>
+				<span>- Alejandra R.</span>
+			</div>
+			<div class="testimonios_img"></div>
+		</div>
+		<div class="testimonios_container">
+			<div class="testimonios_item">
+				<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>
+				<span>- Alejandra R.</span>
+			</div>
+			<div class="testimonios_img"></div>
+		</div>
+
 		<div class="info_home">
 			<div class="info">Para encontrar más testimonios como estos, busca en los perfiles de cientos de cuidadores certificados Kmimos.</div>
 			<div style="text-align: center;">
 				<a href="'.get_home_url().'/#buscar" class="boton boton_border_morado">Regresar</a>
 			</div>
-		</div>
-
-		<div class="testimonios_container">
-			<div class="testimonios_item">
-				<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>
-				<span>- Alejandra R.</span>
-			</div>
-			<div class="testimonios_img"></div>
-		</div>
-		<div class="testimonios_container">
-			<div class="testimonios_item">
-				<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>
-				<span>- Alejandra R.</span>
-			</div>
-			<div class="testimonios_img"></div>
-		</div>
-		<div class="testimonios_container">
-			<div class="testimonios_item">
-				<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>
-				<span>- Alejandra R.</span>
-			</div>
-			<div class="testimonios_img"></div>
 		</div>
 	';
 
