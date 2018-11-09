@@ -53,7 +53,7 @@
                                 <div class="col-xs-12 col-sm-2">
                                     <h5>NAVEGA</h5>
                                     <p><a href="'.get_home_url().'">Nosotros</a></p>
-                                    <p><a href="'.get_home_url().'/faq">Preguntas y Respuestas</a></p>
+                                    <p><a href="'.get_home_url().'/preguntas-frecuentes">Preguntas y Respuestas</a></p>
                                     <p><a href="'.get_home_url().'/coberturas-de-servicios-veterinarios/">Cobertura Veterinaria</a></p>
                                     <p><a href="'.get_home_url().'">Comunicados de prensa</a></p>
                                     <p><a href="'.get_home_url().'/terminos-y-condiciones/">Términos y Condiciones</a></p>
