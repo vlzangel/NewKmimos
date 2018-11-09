@@ -175,7 +175,7 @@
 
 	$HTML .= '
 	</head>
-	<body class="' . join(' ', get_body_class($class)) . ' ' . $reserrvacion_page . '" onLoad="menu();"><script> 
+	<body class="' . join(' ', get_body_class($class)) . ' ' . $reserrvacion_page . '"><script> 
 			var RUTA_IMGS = "'.get_home_url().'/imgs"; 
 
 	        var hizo_click = [];
