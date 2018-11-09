@@ -94,16 +94,13 @@ $HTML = '
     ';
 }    
     echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';
-
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
     wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
     wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
     wp_enqueue_script('comments', getTema()."/js/comment.js", array("jquery"), '1.0.0');
-
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
-    
     wp_enqueue_script('bxslider', getTema()."/js/jquery.bxslider.js", array("jquery"), '1.0.0');
 
     // Descomentar para inicializar la tabla fotos
@@ -156,13 +153,10 @@ $HTML = '
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
-
             ga('create', 'UA-56422840-1', 'auto');
             ga('send', 'pageview');
         </script>
-
         <link type='text/css' href='".getTema()."/css/fontello.min.css' rel='stylesheet' />
-
         <script type='text/javascript'>
             jQuery('img').attr('alt', '".get_bloginfo('title', false)."');
         </script>        
@@ -196,7 +190,6 @@ $HTML = '
                         <i class='fa fa-times vlz_cerrar_modal' aria-hidden='true'></i>
                         Recuerda subir las fotos diarias de tus huéspedes:<br>
                         Ingresa en tus reservas activas y da click en <strong>“Subir fotos”</strong>
-
                         <div class='botonera_modal_subir'>
                             <a href='#' id='btn_modal_subir_tarde'>M&aacute;s Tarde</a>
                             <a href='".get_home_url()."/perfil-usuario/fotos/' id='btn_modal_subir'>Subir Fotos</a>
