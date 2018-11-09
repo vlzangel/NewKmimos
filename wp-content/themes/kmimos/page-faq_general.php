@@ -18,14 +18,9 @@
 	unset($_SESSION['ayuda']['default']);
 
 ?>
-
-	<div class="km-ficha-bg km-ficha-bg_PC" style="background-image: url(<?php echo getTema().'/images/new/ayuda/Ayuda-Kmimos.jpg'; ?>)">
+	<div class="km-ficha-bg" style="background-image: url(<?php echo getTema().'/images/new/ayuda/kmimos_ayuda.jpg'; ?>)">
 		<div class="overlay"></div>
 	</div>
-	<div class="km-ficha-bg km-ficha-bg_MOVIL" style="background-image: url(<?php echo getTema().'/images/new/ayuda/Ayuda-Kmimos-responsive.jpg'; ?>)">
-		<div class="overlay"></div>
-	</div>
-	
 	<div class="body-ayuda">
 
 		<setion id="ayuda-content" class="col-sm-6 col-sm-offset-1">
@@ -139,7 +134,7 @@
 				<h3 class=" text-left">Temas sugeridos</h3>
 				<?php get_ayuda_sugeridos($sugerido); ?>
 				<article>
-					<h3 class="title-category">¿No encontraste lo que buscas?</h3>
+					<a href="<?php echo get_home_url(); ?>/ayuda/no-encontraste-lo-que-buscas"><h3 class="title-category">¿No encontraste lo que buscas?</h3></a>
 					<a href="<?php echo get_home_url() ?>'/contacta-con-nosotros/">
 						<h3 class="title-post contacta-con-nosotros">Contáctanos</h3>
 					</a>
