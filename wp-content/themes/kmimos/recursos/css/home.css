@@ -715,7 +715,7 @@
 	    top: 15px;
 		width: calc( 50% - 45px );
 		height: 0px;
-		border-bottom: dotted 2px #00d2c6;
+		border-bottom: dotted 2px #999;
 	}
 
 	.pasos_reserva_container #paso_2:before {
@@ -725,7 +725,7 @@
 	    top: 15px;
 		width: calc( 50% - 45px );
 		height: 0px;
-		border-bottom: dotted 2px #00d2c6;
+		border-bottom: dotted 2px #999;
 	}
 
 	.pasos_reserva_container #paso_2:after {
@@ -735,7 +735,7 @@
 	    top: 15px;
 		width: calc( 50% - 45px );
 		height: 0px;
-		border-bottom: dotted 2px #00d2c6;
+		border-bottom: dotted 2px #999;
 	}
 
 	.pasos_reserva_container #paso_3:before {
@@ -745,7 +745,7 @@
 	    top: 15px;
 		width: calc( 50% - 45px );
 		height: 0px;
-		border-bottom: dotted 2px #00d2c6;
+		border-bottom: dotted 2px #999;
 	}
 
 	.pasos_reserva_celda img {
