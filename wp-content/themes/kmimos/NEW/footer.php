@@ -51,7 +51,7 @@
 						<h2>Navega</h2>
 						<ul>
                             <p><a href="'.get_home_url().'">Nosotros</a></p>
-                            <p><a href="'.get_home_url().'/faq">Preguntas y Respuestas</a></p>
+                            <p><a href="'.get_home_url().'/preguntas-frecuentes">Preguntas y Respuestas</a></p>
                             <p><a href="'.get_home_url().'/coberturas-de-servicios-veterinarios/">Cobertura Veterinaria</a></p>
                             <p><a href="'.get_home_url().'">Comunicados de prensa</a></p>
                             <p><a href="'.get_home_url().'/terminos-y-condiciones/">Términos y Condiciones</a></p>
