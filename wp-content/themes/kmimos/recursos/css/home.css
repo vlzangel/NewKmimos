@@ -861,11 +861,19 @@
 
 	.club_patitas_tabla .club_patitas_tabla{
 		display: table;
-		width: 90%;
+		width: 100%;
 		box-shadow: 0px 0px 0px #a2a2a2;
 		border-radius: 0px;
 		padding: 0px;
 		box-sizing: border-box;
+	}
+
+	.club_patitas_celda.celda_70 {
+	    width: 55%;
+	}
+
+	.club_patitas_celda.celda_30 {
+	    width: 45%;
 	}
 
 	.club_patitas_tabla .club_patitas_tabla .club_patitas_celda{
