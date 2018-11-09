@@ -43,6 +43,18 @@
 		';
 	}
 
+	if( !is_user_logged_in() ){
+		$btn_registro = '<div data-target="#popup-registrarte" role="button" class="boton boton_border_morado">Regístrate</div>';
+		$info_registro = '
+			<div class="beneficios_registrar_container">
+				<div data-target="#popup-registrarte" role="button" class="boton boton_border_morado">Regístrate</div>
+				<span class="">
+					Crea tu perfil, y comienza a disfrutar de los servicios que te trae Kmimos
+				</span>
+			</div>
+		';
+	}
+
     $HTML .= '
     	<div id="banner_home">
 			<div>
@@ -60,7 +72,7 @@
 					<input type="hidden" id="longitud" name="longitud" />
 
 					<div class="solo_movil" style="padding: 0px 10px;">
-						<div class="boton boton_border_morado">Regístrate</div>
+						'.$btn_registro.'
 						<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
 						<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
 						<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
@@ -307,12 +319,7 @@
 				Más de <strong>1,000 Cuidadores Certificados y 60,000 noches reservadas.</strong> Tu consentido se queda en el hogar de una <strong>VERDADERA FAMILIA,</strong> con cobertura veterinaría
 			</div>
 
-			<div class="beneficios_registrar_container">
-				<div data-target="#popup-registrarte" role="button" class="boton boton_border_morado">Regístrate</div>
-				<span class="">
-					Crea tu perfil, y comienza a disfrutar de los servicios que te trae Kmimos
-				</span>
-			</div>
+			'.$info_registro.'
 			
 			<h2>Conoce los beneficios de dejar tu mascota con cuidadores certificados</h2>
 			<img class="beneficios_banner_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Beneficios-de-dejar---.png" />
