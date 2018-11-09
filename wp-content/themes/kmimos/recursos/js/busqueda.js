@@ -197,23 +197,14 @@
 
 	function verificar_msg(){
 		var ini = String(jQuery("#checkin").val()).split("/");
-		var fin = String(jQuery("#checkout").val()).split("/");
-
-		var fechaInicio = new Date( ini[1]+"-"+ini[0]+"-"+ini[2] ).getTime();
-		var fechaFin    = new Date( fin[1]+"-"+fin[0]+"-"+fin[2] ).getTime();
-
-		var diff = fechaFin - fechaInicio;
+		var actual = new Date();
+		var fechaActual = new Date( (actual.getMonth()+1)+"-"+actual.getDate()+"-"+actual.getFullYear() ).getTime();
+		var fechaInicio    = new Date( ini[1]+"-"+ini[0]+"-"+ini[2] ).getTime();
+		var diff = fechaInicio - fechaActual;
 		dias = parseInt( diff/(1000*60*60*24) );
-
-		console.log( ini[1]+"-"+ini[0]+"-"+ini[2] );
-		console.log( fin[1]+"-"+fin[0]+"-"+fin[2] );
-		console.log( "Dias: "+dias );
-
 		if( dias <= 3 ){
 			var dias_str = ( dias != 1 ) ? "días": "día";
-
 			var msg = ( dias == 0 ) ? "Tu reserva está por comenzar": "Tu reserva comienza en "+dias+" "+dias_str;
-
 			jQuery(".mesaje_reserva_inmediata_container span").html( msg);
 			jQuery(".mesaje_reserva_inmediata_container").css("display", "block");
 			jQuery(".resultados_container").css("padding-top", "0px");
@@ -221,7 +212,6 @@
 			jQuery(".mesaje_reserva_inmediata_container").css("display", "none");
 			jQuery(".resultados_container").css("padding-top", "20px");
 		}
-		// jQuery(".mesaje_reserva_inmediata_container.disponibilidad_PC")
 	}
 
 	function getPage(indice){
