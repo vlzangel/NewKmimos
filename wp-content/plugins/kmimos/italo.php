@@ -240,7 +240,7 @@
 				'menu_position' => 3,
 				'public' => true,
 				'has_archive' => false,
-				'rewrite' => array('slug' => 'ayuda'),
+				'rewrite' => array('slug' => 'preguntas-frecuentes'),
 				'supports' => array( 'title', 'editor', 'thumbnail', 'seccion' ),
 	            'taxonomies' => array( 'seccion' ),
 	            'menu_icon' => '',
