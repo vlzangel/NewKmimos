@@ -37,13 +37,11 @@
 	    	$check = ( is_array($_SESSION['busqueda']['tamanos']) && in_array($key, $_SESSION['busqueda']['tamanos']) ) ? 'checked': '';
 	    	$tam[ $key ] = $check;
 	    }
-
 	    $tipos = ['perros' => '', 'gatos' => ''];
 	    foreach ($tipos as $key => $value) {
 	    	$check = ( is_array($_SESSION['busqueda']['mascotas']) && in_array($key, $_SESSION['busqueda']['mascotas']) ) ? 'checked': '';
 	    	$tipos[ $key ] = $check;
 	    }
-
 	    $servicios = [];
 	    if( is_array($_SESSION['busqueda']['servicios']) ){
 	    	foreach ( $_SESSION['busqueda']['servicios'] as $key => $value) {
@@ -68,14 +66,6 @@
 				'Valoración (De menor a mayor)',
 				'rating_asc'
 			),
-		/*	'distance_asc' => array(
-				'Distancia al cuidador (De cerca a lejos)',
-				'distance_asc'
-			),
-			'distance_desc' => array(
-				'Distancia al cuidador (De lejos a cerca)',
-				'distance_desc'
-			),*/
 			'price_asc' => array(
 				'Precio del Servicio (De menor a mayor)',
 				'price_asc'
@@ -138,7 +128,28 @@
     	$dias .= '<input type="hidden" name="dias[]" value="'.$value.'" />';
     }
 
-    $HTML = '
+
+	$HTML = '';
+	if( $_SESSION["wlabel"] == "petco" ){
+		$HTML .= '
+	    	<!-- Adform Tracking Code BEGIN -->
+			<script type="text/javascript">
+			    window._adftrack.push({
+			        pm: 1453019,
+			        divider: encodeURIComponent("|"),
+			        pagename: encodeURIComponent("MX_Kmimos_EncontrarCuidador_180907")
+			    });
+			</script>
+			<noscript>
+			    <p style="margin:0;padding:0;border:0;">
+			        <img src="https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_EncontrarCuidador_180907&ADFdivider=|" width="1" height="1" alt="" />
+			    </p>
+			</noscript>
+			<!-- Adform Tracking Code END -->
+		';
+	}
+
+    $HTML .= '
     	<div class="busqueda_container">
     		<div class="filtos_container">
 

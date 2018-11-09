@@ -16,17 +16,13 @@
 		global $wpdb;
 		
 		$orden_id = vlz_get_page();
-
 		$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
 		if( $pdf != "" ){
 			$pdf = "<a class='btn_fin_reserva' href='{$pdf}' target='_blank'>DESCARGAR INSTRUCCIONES PARA PAGO EN TIENDA DE CONVENIENCIA</a>";
 		}
-
 		$data_reserva = kmimos_desglose_reserva_data($orden_id, true);
-
 		kmimos_guardar_desglose_reserva_data( $data_reserva["servicio"]["id_reserva"], $data_reserva );
 		
-
 		if( !validar_datos_facturacion( $data_reserva['cliente']['id'] ) ){
 			$mensaje_facturacion = "Tu comprobante será emitido al finalizar la reserva. Déjanos tu información para emitir la Factura y te avisaremos cuando esté lista. <br />
 				<div class='text-center'>
@@ -237,9 +233,8 @@
 			</div>";
 	    }
 
-
 		if( $_SESSION["wlabel"] == "petco" ){
-/*			$HTML .= '
+			$HTML .= '
 				<script type="text/javascript">
 				    window._adftrack.push({
 				        pm: 1453019,
@@ -262,9 +257,8 @@
 				        <img src="https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_TYP_180907&ADFdivider=|" width="1" height="1" alt="" />
 				    </p>
 				</noscript>
-			';*/
+			';
 		}
-
 
 		$HTML .= '
 	 		<div class="km-content km-step-end" style="max-width: 840px;">

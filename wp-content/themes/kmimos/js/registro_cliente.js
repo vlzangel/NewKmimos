@@ -20,39 +20,30 @@ function cerrar_modal(){
 	var actual = window.location.href;
 	actual = actual.split("?");
 	actual = actual[0];
-
 	location.href = RAIZ+'/#buscar';
-	
 	if( RAIZ == actual ){
 		location.reload();
 	}
 }
 
 var globalData = "";
- 
 jQuery(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	e.preventDefault();
-
 	jQuery('[data-error="auth"]').fadeOut("fast");
-
 	jQuery("#popup-registrarte .modal-content > div").css("display", "none");
 	jQuery(".popup-registrarte-1").css("display", 'block');
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
 	jQuery(".popup-registrarte-final").css('display', 'none');
 	jQuery(".popup-registrarte-final-0").css('display', 'none');
-
 	jQuery('#km-datos-foto-profile').css('background-image', 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
 	jQuery("#km-datos-foto-profile").css("background-image", 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
-
 	jQuery('#form_nuevo_cliente')[0].reset();
 	jQuery( jQuery(this).data('target') ).modal('show');
 });
 
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
-
     jQuery("#nombre").blur(function(){
-		
 		if(jQuery("#nombre").val().length < 3){
 			jQuery("#nombre").parent('div').css('color','red');
 			jQuery("#nombre").after('<span name="sp-nombre">Ingrese su Nombre</span>').css('color','red');
@@ -74,7 +65,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			jQuery("#apellido").parent('div').css('color','green');
 			jQuery('[name="sp-apellido"]').remove();
 		}
-		
 	});
 
 	jQuery("#ife").blur(function(){
@@ -292,12 +282,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 						// evento_fbq("track", "traking_code_nuevo_registro_cliente"); 
 
 						if( wlabel == "petco" ){
-							// window.adf&&adf.ClickTrack(this,1453019,'MX_Kmimos_RegistoTYP_180907',{});
-
+							window.adf&&adf.ClickTrack(this,1453019,'MX_Kmimos_RegistoTYP_180907',{});
 							//registro campaing monitor
 							jQuery.post( 
-			                    RAIZ+"campaing/suscribir.php", 
-			                    {
+			                    RAIZ+"campaing/suscribir.php",{
 			                        "email": datos['email'],
 			                        "list": 'petco_registro'
 			                    }, 
@@ -307,13 +295,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 			                    }
 			                );
 						}
-						
 					}
 					jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
 				});
-
 			}
-
 		}else{
 			alert("Debe leer los terminos y condiciones primero.");
 		}
@@ -857,7 +842,7 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
 		jQuery(".popup-registrarte-nuevo-correo").css("display", "block");
 
 		if( wlabel == "petco" ){
-			// adf.ClickTrack(this,1453019,'MX_Kmimos_Registo_180907',{});
+			adf.ClickTrack(this,1453019,'MX_Kmimos_Registo_180907',{});
 		}
 	});
 /*FIN POPUP INICIAR SESIÓN*/

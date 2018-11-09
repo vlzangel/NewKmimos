@@ -609,7 +609,7 @@
 			}
 
 			if( $_SESSION["wlabel"] == "petco" ){
-				/*$HTML .= "
+				$HTML .= "
 					<script type='text/javascript'>
 					    window._adftrack.push({
 					        pm: 1453019,
@@ -622,7 +622,7 @@
 					        <img src='https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_Reservar_180907&ADFdivider=|' width='1' height='1' alt='' />
 					    </p>
 					</noscript>
-				";*/
+				";
 			}
 
 			$HTML .= '
