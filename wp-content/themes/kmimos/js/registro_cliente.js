@@ -16,6 +16,18 @@ jQuery( document ).ready( function(){
 	});
 });
 
+function cerrar_modal(){
+	var actual = window.location.href;
+	actual = actual.split("?");
+	actual = actual[0];
+
+	location.href = RAIZ+'/#buscar';
+	
+	if( RAIZ == actual ){
+		location.reload();
+	}
+}
+
 var globalData = "";
  
 jQuery(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
