@@ -22,8 +22,28 @@
     get_header();
 
     $user_id = get_current_user_id();
-        
-    $HTML = '
+    
+    $HTML = '';
+	if( $_SESSION["wlabel"] == "petco" ){
+		$HTML .= '
+			<!-- Adform Tracking Code BEGIN -->
+			<script type="text/javascript">
+			    window._adftrack.push({
+			        pm: 1453019,
+			        divider: encodeURIComponent("|"),
+			        pagename: encodeURIComponent("MX_Kmimos_Home_180907")
+			    });
+			</script>
+			<noscript>
+			    <p style="margin:0;padding:0;border:0;">
+			        <img src="https://a2.adform.net/Serving/TrackPoint/?pm=1453019&ADFPageName=MX_Kmimos_Home_180907&ADFdivider=|" width="1" height="1" alt="" />
+			    </p>
+			</noscript>
+			<!-- Adform Tracking Code END -->
+		';
+	}
+
+    $HTML .= '
     	<div id="banner_home">
 			<div>
 				<div class="solo_pc">
@@ -402,23 +422,17 @@
 		</div>';
 		
 		$HTML .= '
-
 		<div class="testimonios_container">
-
 			<div class="testimonios_item">
 				<p>Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota. Durante toda la estadía me envió fotos de mi perrito feliz mientras yo viajaba.</p>
 				<span>- Alejandra R.</span>
 			</div>
-
 			<div class="testimonios_img">
 				<span>
 					+1,500 comentarios positivos en perfiles de cuidadores
 				</span>
 			</div>
-
 			<a href="'.get_home_url().'/testimonios" class="testimonios_link">Ver más comentarios como éste</a>
-
-		
 		</div>';
 		
 		$HTML .= '
