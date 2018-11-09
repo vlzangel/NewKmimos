@@ -170,6 +170,13 @@
 	    display: none;
 	}
 
+	img.icon_flecha_fecha {
+	    position: absolute;
+	    top: 16px;
+	    right: 8px;
+	    width: 15px;
+	}
+
 	.ubicacion_container img {
 		height: 20px;
 	}

@@ -375,6 +375,10 @@
 	    width: 100%;
 	}
 
+	img.icon_flecha_fecha {
+	    top: 13px;
+	}
+
 	.tamanios_container {
 	    display: block;
 	    width: calc( 100% - 10px );

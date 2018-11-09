@@ -154,6 +154,7 @@
 							<div id="desde_container">
 								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
 								<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" readonly>
+								<img class="icon_flecha_fecha" src="'.get_recurso("img").'HOME/SVG/Flecha.svg" />
 								<small class="">Requerido</small>
 							</div>
 							<div>
@@ -525,7 +526,7 @@
 									</div>
 								</div>
 								<div class="club_patitas_celda celda_30">
-									<input type="submit" value="Inscribete y gana" class="boton boton_morado">
+									<input type="submit" value="Inscríbete y gana" class="boton boton_morado">
 									<small>Ingresa los datos y haz click aquí</small>
 								</div>
 							</div>
