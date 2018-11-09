@@ -3,6 +3,40 @@
 	include_once('includes/functions/kmimos_functions.php');
 
 	//
+
+	if( !function_exists('kmimos_crear_cupon') ){
+		function kmimos_crear_cupon( $cupon_nombre, $monto, $tipo='kmimos' ){
+
+			$coupon_code = $cupon_nombre; // Code
+			$amount = $monto; // Amount
+			$discount_type = 'fixed_cart'; // Type: fixed_cart, percent, fixed_product, percent_product
+
+			$coupon = array(
+				'post_title' => $coupon_code,
+				'post_content' => '',
+				'post_status' => 'publish',
+				'post_author' => 1,
+				'post_type'		=> 'shop_coupon'
+			);
+								
+			$new_coupon_id = wp_insert_post( $coupon );
+								
+			// Add meta
+			update_post_meta( $new_coupon_id, 'descuento_tipo', $tipo );
+			update_post_meta( $new_coupon_id, 'discount_type', $discount_type );
+			update_post_meta( $new_coupon_id, 'coupon_amount', $amount );
+			update_post_meta( $new_coupon_id, 'individual_use', 'no' );
+			update_post_meta( $new_coupon_id, 'product_ids', '' );
+			update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
+			update_post_meta( $new_coupon_id, 'usage_limit', '' );
+			update_post_meta( $new_coupon_id, 'expiry_date', '' );
+			update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
+			update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
+
+			return $new_coupon_id;
+		}
+	}
+
 	function add_coupon_type_discount() { 
 
 	    woocommerce_wp_select(
@@ -393,7 +427,7 @@
 					$postsugeridos = $wpdb->get_results("select p.ID,p.post_title from wp_term_relationships tr 
 						inner join wp_posts p on tr.object_id=p.ID where tr.term_taxonomy_id=".$categoria->term_id." limit 2");
 
-					$article .= '<h3 class="title-category">'.$categoria->name.'</h3>';
+					//$article .= '<h3 class="title-category">'.$categoria->name.'</h3>';
 
 					foreach ($postsugeridos as $post) { 
 
@@ -905,7 +939,7 @@ if(!function_exists('get_preguntas_categoria')){
 
          /* Temporal ********************* */
 
-          	if ( 	 $current_user->user_email == 'a.pedroza@kmimos.la' ||
+          	if ( $current_user->user_email == 'a.pedroza@kmimos.la' ||
 				 $current_user->user_email == 'r.cuevas@kmimos.la'  ||
 				 $current_user->user_email == 'e.celli@kmimos.la' 	|| 
 				 $current_user->user_email == 'soporte.kmimos@gmail.com'
@@ -949,9 +983,8 @@ if(!function_exists('get_preguntas_categoria')){
       				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
       			);
 
-      			
+		    }
 
-		      }
          /* Temporal ********************* */
 
 			$menus[] = array(
@@ -965,8 +998,6 @@ if(!function_exists('get_preguntas_categoria')){
 			);
 
 			// Menu Mascotas
-      			
-      			
       			
 	        return $menus;
 
