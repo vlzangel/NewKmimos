@@ -19,7 +19,7 @@
 						</ul>
 					
 						<form id="suscribirse" onsubmit="form_subscribe(this); return false;" class="subscribe" data-subscribe="'.get_home_url().'/wp-content/plugins/kmimos">
-                            <input type="hidden" name="section" value="home" class="form-control" placeholder="Ingresa tu correo">
+                            <input type="hidden" name="section" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">
                             <input type="hidden" id="wlabelSubscribeFooter" name="wlabelSubscribeFooter" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">
 							<input type="email" id="email" name="mail" placeholder="Ingresa tu correo" />
 							<input type="submit" value="Inscribirme al blog" />
