@@ -160,6 +160,10 @@
 	var mapIniciado = false;
 
 	function buscar( campo ){
+		// if( campo == "checkin" || campo == "checkout" ){
+			verificar_msg();
+		// }
+
 		if( campo != "ubicacion_txt" ){
 			if( campo == "ubicacion" ){
 				jQuery(".latitud").val("");
@@ -189,6 +193,32 @@
 				}, 'json'
 			);
 		}
+	}
+
+	function verificar_msg(){
+		var ini = String(jQuery("#checkin").val()).split("/");
+		var fin = String(jQuery("#checkout").val()).split("/");
+
+		var fechaInicio = new Date( ini[1]+"-"+ini[0]+"-"+ini[2] ).getTime();
+		var fechaFin    = new Date( fin[1]+"-"+fin[0]+"-"+fin[2] ).getTime();
+
+		var diff = fechaFin - fechaInicio;
+		dias = parseInt( diff/(1000*60*60*24) );
+
+		console.log( ini[1]+"-"+ini[0]+"-"+ini[2] );
+		console.log( fin[1]+"-"+fin[0]+"-"+fin[2] );
+		console.log( "Dias: "+dias );
+
+		if( dias <= 3 ){
+			var dias_str = ( dias != 1 ) ? "días": "día";
+			jQuery(".mesaje_reserva_inmediata_container.disponibilidad_PC span").html( dias+" "+dias_str);
+			jQuery(".mesaje_reserva_inmediata_container.disponibilidad_PC").css("display", "block");
+			jQuery(".resultados_container").css("padding-top", "0px");
+		}else{
+			jQuery(".mesaje_reserva_inmediata_container.disponibilidad_PC").css("display", "none");
+			jQuery(".resultados_container").css("padding-top", "20px");
+		}
+		// jQuery(".mesaje_reserva_inmediata_container.disponibilidad_PC")
 	}
 
 	function getPage(indice){
