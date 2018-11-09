@@ -17,10 +17,15 @@
 						<ul>
 							<li style="font-size: 13px;">¡Inscribete a nuestro blog y conócelas!</li>
 						</ul>
-						<form id="suscribirse">
-							<input type="email" id="email" name="email" placeholder="Ingresa tu correo" />
+					
+						<form id="suscribirse" onsubmit="form_subscribe(this); return false;" class="subscribe" data-subscribe="'.get_home_url().'/wp-content/plugins/kmimos">
+                            <input type="hidden" name="section" value="home" class="form-control" placeholder="Ingresa tu correo">
+                            <input type="hidden" id="wlabelSubscribeFooter" name="wlabelSubscribeFooter" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">
+							<input type="email" id="email" name="mail" placeholder="Ingresa tu correo" />
 							<input type="submit" value="Inscribirme al blog" />
+                            <div class="message message-especial"></div>
 						</form>
+
 						<div class="siguenos_alto">
 							<span>Siguenos en</span>
 							<a href="https://www.facebook.com/Kmimosmx/" target="_blank">

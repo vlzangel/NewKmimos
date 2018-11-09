@@ -383,3 +383,17 @@ nav .lupa_negra{
 	.info_contacto a {
 	    padding-bottom: 5px;
 	}
+
+#suscribirse .message-especial {
+    background-color: #00d2c6 !important;
+    color: #ffffff !important;
+    border-radius: 3px !important;
+    margin-top: 45px !important;
+    font-family: Gotham-Pro-Bold !important;
+    padding: 10px 25px !important;
+    display: none;
+}
+
+#suscribirse .message-especial i {
+    margin-right: 10px;
+}
