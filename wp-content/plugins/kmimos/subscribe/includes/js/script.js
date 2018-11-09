@@ -44,7 +44,7 @@ function form_subscribe(element){
             
             if( data['result']===true ){
                 var wlabel = jQuery("#wlabelSubscribe").val();
-                if( wlabel == "" ){
+                if( wlabel == undefined || wlabel == "" ){
                     wlabel = jQuery("#wlabelSubscribeFooter").val();
                 }
 
