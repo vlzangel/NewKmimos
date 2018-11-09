@@ -134,7 +134,7 @@
 				<h3 class=" text-left">Temas sugeridos</h3>
 				<?php get_ayuda_sugeridos($sugerido); ?>
 				<article>
-					<a href="<?php echo get_home_url(); ?>/ayuda/no-encontraste-lo-que-buscas"><h3 class="title-category">¿No encontraste lo que buscas?</h3></a>
+					<a href="<?php echo get_home_url(); ?>/preguntas-frecuentes/no-encontraste-lo-que-buscas"><h3 class="title-category">¿No encontraste lo que buscas?</h3></a>
 					<a href="<?php echo get_home_url() ?>'/contacta-con-nosotros/">
 						<h3 class="title-post contacta-con-nosotros">Contáctanos</h3>
 					</a>
