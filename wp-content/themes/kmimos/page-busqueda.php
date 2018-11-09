@@ -408,7 +408,7 @@
     			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
     				<div class="mesaje_reserva_inmediata_izq"></div>
     				<div class="mesaje_reserva_inmediata_der">
-    					<strong>Tu reserva comienza en <span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
+    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
     				</div>
     			</div>
 
@@ -419,7 +419,7 @@
     			<div class="mesaje_reserva_inmediata_container disponibilidad_MOVIl">
     				<div class="mesaje_reserva_inmediata_izq"></div>
     				<div class="mesaje_reserva_inmediata_der">
-    					<strong>Tu reserva comienza en 3 días.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece aquí arriba a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
+    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece aquí arriba a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
     				</div>
     			</div>
     			
