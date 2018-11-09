@@ -462,6 +462,8 @@
 
 		if( $tipo == "paseos" ){
 			$PAQUETE = "var PAQUETE = '".$busqueda["paquete"]."';";
+		}else{
+			$PAQUETE = "var PAQUETE = '';";
 		}
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
