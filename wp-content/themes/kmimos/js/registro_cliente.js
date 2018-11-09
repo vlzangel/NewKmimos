@@ -278,8 +278,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 						jQuery("#img_pet").val( "" );
 						jQuery("body").scrollTop(0);
 
-						// evento_google("nuevo_registro_cliente");
-						// evento_fbq("track", "traking_code_nuevo_registro_cliente"); 
+						evento_google("nuevo_registro_cliente");
+						evento_fbq("track", "traking_code_nuevo_registro_cliente"); 
 
 						if( wlabel == "petco" ){
 							window.adf&&adf.ClickTrack(this,1453019,'MX_Kmimos_RegistoTYP_180907',{});

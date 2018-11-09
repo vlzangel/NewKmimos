@@ -343,7 +343,7 @@
 	 		$_SESSION["wlabel"] == "petco"
 	 	){
 	 		
-	 		/*$HTML .= '
+	 		$HTML .= '
 				<script>
 					if( "'.strtolower($data_reserva["servicio"]["metodo_pago"]).'" == "tienda" ){
 						evento_google("nueva_reserva_tienda");
@@ -360,7 +360,7 @@
 				</script>
 		 	';
 
-		 	$_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ] = "YA_CONTADO";*/
+		 	$_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ] = "YA_CONTADO";
 	 	}	
 			
 

@@ -78,7 +78,7 @@
 									<div class="top_check"></div>
 								</label>
 
-								<label class="input_check_box" for="guarderia">
+								<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia\'); evento_fbq("track", "traking_code_boton_guarderia");">
 									<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
 									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
 									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
@@ -86,7 +86,7 @@
 									<div class="top_check"></div>
 								</label>
 
-								<label class="input_check_box" for="paseos">
+								<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos\'); evento_fbq("track", "traking_code_boton_paseos"); ">
 									<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
 									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
 									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
@@ -94,7 +94,7 @@
 									<div class="top_check"></div>
 								</label>
 
-								<label class="input_check_box" for="entrenamiento">
+								<label class="input_check_box" for="entrenamiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
 									<input type="checkbox" id="entrenamiento" name="servicios[]" value="entrenamiento"  />
 									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
 									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />

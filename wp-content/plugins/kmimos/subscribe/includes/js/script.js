@@ -51,13 +51,12 @@ function form_subscribe(element){
                 var list = "newsletter_home";
                 if (wlabel == "petco") { 
                     list = "petco_popup"; 
-                    // evento_google('dejo_el_correo');
-                    // evento_fbq("track", "traking_code_dejo_el_correo");
+                    evento_google('dejo_el_correo');
+                    evento_fbq("track", "traking_code_dejo_el_correo");
                 }
                 if (wlabel == "volaris") { 
                     list = "newsletter_volaris"; 
                 }
-
 
                 switch( section ){
                     case "landing-volaris":
@@ -76,11 +75,6 @@ function form_subscribe(element){
                         console.log("Suscripción enviadas");
                     }
                 );
-                
-                /*if( fbq != undefined ){
-                    evento_fbq ('track','CompleteRegistration');
-                    evento_fbq ('track','PopUpHome');
-                }*/
             }
         });
     }
