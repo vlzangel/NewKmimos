@@ -8,6 +8,8 @@
 
     wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
 
+	$seccion = ( $_SESSION["wlabel"] != "" && strtolower($_SESSION["wlabel"]) != "quitar" ) ? $_SESSION["wlabel"] : "home";
+
 	$HTML = '
 		<footer>
 			<div class="footer_alto">
@@ -19,7 +21,7 @@
 						</ul>
 					
 						<form id="suscribirse" onsubmit="form_subscribe(this); return false;" class="subscribe" data-subscribe="'.get_home_url().'/wp-content/plugins/kmimos">
-                            <input type="hidden" name="section" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">
+                            <input type="hidden" name="section" value="'.$seccion.'" class="form-control" placeholder="Ingresa tu correo">
                             <input type="hidden" id="wlabelSubscribeFooter" name="wlabelSubscribeFooter" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">
 							<input type="email" id="email" name="mail" placeholder="Ingresa tu correo" />
 							<input type="submit" value="Inscribirme al blog" />
