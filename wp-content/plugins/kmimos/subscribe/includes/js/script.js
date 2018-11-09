@@ -54,6 +54,9 @@ function form_subscribe(element){
                     // evento_google('dejo_el_correo');
                     // evento_fbq("track", "traking_code_dejo_el_correo");
                 }
+                if (wlabel == "volaris") { 
+                    list = "newsletter_volaris"; 
+                }
 
 
                 switch( section ){
