@@ -280,7 +280,7 @@
 						</label>
 					</div>
 					<div>
-						<input type="text" name="nombre" placeholder="Buscar Cuidador por Nombre" class="input" value="'.$_SESSION['busqueda']['nombre'].'" />
+						<input type="text" id="nombre" name="nombre" placeholder="Buscar Cuidador por Nombre" class="input nombre" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
 					<div class="adicionales_container">
 						<label class="input_check_box" for="corte">
