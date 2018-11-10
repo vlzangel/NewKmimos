@@ -198,13 +198,11 @@
 	function verificar_msg(){
 		var ini = String(jQuery("#checkin").val()).split("/");
 		var actual = new Date();
-		// jQuery("#nombre").val( actual.getFullYear()+"-"+(actual.getMonth()+1)+"-"+actual.getDate() );
-
 		var fechaActual = new Date( actual.getFullYear()+"-"+(actual.getMonth()+1)+"-"+actual.getDate() ).getTime();
+		var fechaInicio    = new Date( ini[2]+"-"+ini[1]+"-"+ini[0] ).getTime();
 
-		jQuery(".nombre").val( actual.getFullYear()+"-"+(actual.getMonth()+1)+"-"+actual.getDate() + " - " + fechaActual );
+		jQuery(".nombre").val( fechaInicio );
 
-		var fechaInicio    = new Date( ini[1]+"-"+ini[0]+"-"+ini[2] ).getTime();
 		var diff = fechaInicio - fechaActual;
 		dias = parseInt( diff/(1000*60*60*24) );
 		if( dias <= 3 ){
