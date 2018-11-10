@@ -537,7 +537,7 @@
 		            if (!is_dir($path_galeria.$file) && $file!="." && $file!=".."){ 
 		               	$imagenes_normales[] = $sub_path_galeria.$file;
 		               	if( $cont <= 7 ){
-		               		$imagenes_mini[] = $sub_path_galeria."mini/".$file;
+		               		$imagenes_mini[] = $sub_path_galeria.$file;
 		               	}
 		            } 
 		            $cont++;
