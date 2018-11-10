@@ -591,7 +591,7 @@
 /* TESTIMONIOS */
 
 	.testimonios_container{
-		padding: 150px 50px 150px; /* padding: 150px 50px 200px; */
+		padding: 50px; /* padding: 150px 50px 200px; */
 	    position: relative;
 	    box-shadow: 0px 3px 5px #dedede;
 	    overflow: hidden;
@@ -599,19 +599,20 @@
 	}
 
 	.testimonios_container .testimonios_img{
+		position: relative;
 		background-image: url( ../img/HOME/JPG/Coment-Cuidador.jpg );
-		height: 350px;
+		height: 375px;
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
 	}
 
 	.testimonios_container .testimonios_img span {
-        position: absolute;
-	    top: 45px;
-	    left: 45px;
+	    position: absolute;
+	    top: 20px;
+	    left: 40px;
 	    color: #FFF;
-	    font-size: 23px;
+	    font-size: 18px;
 	    font-weight: 600;
 	    letter-spacing: 2px;
 	}
@@ -620,7 +621,8 @@
 	    background-color: #FFF;
 	    border-radius: 5px 0px 5px 5px;
 	    position: absolute;
-	    bottom: 165px; /* bottom: 100px; */
+	    bottom: 70px;
+	    /* bottom: 100px; */
 	    left: 200px;
 	    height: 280px;
 	    width: 300px;
@@ -632,6 +634,7 @@
 	    color: #585858;
 	    box-shadow: 1px 1px 2px #CCC;
 	    padding: 10px 20px;
+	    z-index: 100;
 	}
 
 	.testimonios_container .testimonios_item p {
