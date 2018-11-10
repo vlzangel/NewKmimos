@@ -71,7 +71,6 @@
                 	"nombre" => $nombre,
                 	"url" => $url,
                 	"desde" => ($cuidador->hospedaje_desde*getComision()),
-                	"distancia" => floor($_cuidador->DISTANCIA),
                 	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
                 	"experiencia" => $anios_exp,
                 	"valoraciones" => $cuidador->valoraciones,
@@ -108,6 +107,11 @@
 		        	></div>
 		        ';
 
+		        $distancia = '';
+		        if( isset($destacado["distancia"]) ){
+		        	$distancia = '<div class="desacado_experiencia">a '.$destacado["distancia"].' de tu búsqueda</div>';
+		        }
+
 	        	$top_destacados .= '
 	        		<div class="destacados_item" data-latitud="'.$destacado["latitud"].'" data-longitud="'.$destacado["longitud"].'">
 	        			<div class="desacado_img">
@@ -120,6 +124,7 @@
 	        			</div>
 	        			<div class="desacado_experiencia">'.$destacado["experiencia"].' años de experiencia</div>
 	        			<div class="desacado_monto">Desde <strong>MXN $ '.round($destacado["desde"]).'</strong></div>
+	        			'.$distancia.'
 	        			<div class="desacado_ranking_container">'.$destacado["ranking"].'</div>
 	        			<div class="desacado_experiencia">'.$destacado["valoraciones"].' valoraciones</div>
 	        			<a class="desacado_boton_reservar" href="'.$destacado["url"].'">Reservar</a>
@@ -223,7 +228,7 @@
 								<div class="resultados_item_comentario_avatar" style="background-image: url( '.$_cuidador->comentario->foto.' );"></div>
 							</div>
 							<div class="resultados_item_comentario_contenido">
-								'.( $_cuidador->comentario->comment_content ).' <a href="#">(Ver más)</a>
+								'.( $_cuidador->comentario->comment_content ).' <a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'/#km-comentario">(Ver más)</a>
 							</div>
 							<div class="resultados_item_comentario_favorito">
 								<span>
@@ -262,6 +267,10 @@
 				}
 				$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
 
+				if( isset($cuidador->DISTANCIA) ){
+					$distancia = '<div class="resultados_item_subtitulo">a '.floor($cuidador->DISTANCIA).' km de tu búsqueda</div>';
+				}
+
 				$HTML .= '
 					<div class="resultado_item">
 						<div class="resultados_hover"></div>
@@ -289,7 +298,7 @@
 									</div>
 									<div class="resultados_item_info">
 										<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_titulo"> <span>'.($i+1).'.</span> '.($_cuidador->titulo).'</a>
-										<div class="resultados_item_subtitulo">"Tus mascotas se sentirán como en casa mietras se queden"</div>
+										'.$distancia.'
 										<div class="resultados_item_direccion" title="'.$_cuidador->direccion.'">'.($direccion).'</div>
 										<div class="resultados_item_servicios">
 											'.get_servicios_new($_cuidador->adicionales).'

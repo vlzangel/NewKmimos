@@ -33,10 +33,10 @@
 							<a href="https://www.facebook.com/Kmimosmx/" target="_blank">
 								<img src="'.get_recurso("img").'HOME/SVG/Facebook.svg" />
 							</a>
-							<a href="https://twitter.com/kmimosmx/" target="_blank">
+							<a href="https://www.instagram.com/kmimosmx/" target="_blank">
 								<img src="'.get_recurso("img").'HOME/SVG/Instagram.svg" />
 							</a>
-							<a href="https://www.instagram.com/kmimosmx/" target="_blank">
+							<a href="https://www.youtube.com/channel/UCZuzqWCgGdboK-w5yGQjACQ" target="_blank">
 								<img src="'.get_recurso("img").'HOME/SVG/Youtube.svg" />
 							</a>
 						</div>
@@ -53,11 +53,11 @@
 						<h2>Navega</h2>
 						<ul>
                             <p><a href="'.get_home_url().'">Nosotros</a></p>
-                            <p><a href="'.get_home_url().'/preguntas-frecuentes">Preguntas y Respuestas</a></p>
+                            <p><a href="javascript:;">Preguntas y Respuestas</a></p>
                             <p><a href="'.get_home_url().'/coberturas-de-servicios-veterinarios/">Cobertura Veterinaria</a></p>
                             <p><a href="'.get_home_url().'">Comunicados de prensa</a></p>
                             <p><a href="'.get_home_url().'/terminos-y-condiciones/">Términos y Condiciones</a></p>
-                            <p><a href="'.get_home_url().'">Nuestros Aliados</a></p>
+                            <p><a href="javascript:;">Nuestros Aliados</a></p>
                             <p><a href="'.get_home_url().'/contacta-con-nosotros/">Contáctanos</a></p> 
 						</ul>
 					</div>
@@ -77,10 +77,10 @@
 						<a href="https://www.facebook.com/Kmimosmx/" target="_blank">
 							<img src="'.get_recurso("img").'HOME/SVG/Facebook.svg" />
 						</a>
-						<a href="https://twitter.com/kmimosmx/" target="_blank">
+						<a href="https://www.instagram.com/kmimosmx/" target="_blank">
 							<img src="'.get_recurso("img").'HOME/SVG/Instagram.svg" />
 						</a>
-						<a href="https://www.instagram.com/kmimosmx/" target="_blank">
+						<a href="https://www.youtube.com/channel/UCZuzqWCgGdboK-w5yGQjACQ" target="_blank">
 							<img src="'.get_recurso("img").'HOME/SVG/Youtube.svg" />
 						</a>
 					</div>

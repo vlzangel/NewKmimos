@@ -13,11 +13,9 @@
 	global $wpdb;
 	global $post;
 
-	if( !isset($_SESSION["DATA_CUIDADORES"]) ){
-		$_temp = pre_carga_data_cuidadores();
-		$_SESSION["DATA_CUIDADORES"] = $_temp[0];
-		$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
-	}
+	$_temp = pre_carga_data_cuidadores();
+	$_SESSION["DATA_CUIDADORES"] = $_temp[0];
+	$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
 
 	$_cuidador = $_SESSION["DATA_CUIDADORES"][ $_SESSION["CUIDADORES_USER_ID"][ $post->post_author ] ];
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");
@@ -540,7 +538,7 @@
 							<label>Ubicación</label>
 							<div class="mapa">
 								<div id="mapa"></div>
-								<a href="#">Expandir mapa</a>
+								<a href="#" style="display: none;">Expandir mapa</a>
 							</div>
 						</div>
 
@@ -558,6 +556,12 @@
 			</div>
 		</div>
  	';
+
+	if( $_SESSION["wlabel"] == "petco" ){
+		$HTML .= "
+			<script type='text/javascript' src='https://a2.adform.net/serving/scripts/trackpoint/'></script>
+		";
+	}
 
 	echo comprimir($HTML);
 

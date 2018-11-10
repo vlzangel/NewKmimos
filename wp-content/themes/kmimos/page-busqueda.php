@@ -30,6 +30,10 @@
 
     $user_id = get_current_user_id();
 
+    if( !is_array($_SESSION['busqueda']) ){
+    	$_SESSION['busqueda'] = unserialize($_SESSION['busqueda']);
+    }
+
     /* FILTROS */
 
 	    $tam = getTamanos();

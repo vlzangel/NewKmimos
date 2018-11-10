@@ -198,7 +198,7 @@
 	function verificar_msg(){
 		var ini = String(jQuery("#checkin").val()).split("/");
 		var actual = new Date();
-		var fechaActual = new Date( (actual.getMonth()+1)+"-"+actual.getDate()+"-"+actual.getFullYear() ).getTime();
+		var fechaActual = new Date( actual.getFullYear()+"-"+(actual.getMonth()+1)+"-"+actual.getDate() ).getTime();
 		var fechaInicio    = new Date( ini[1]+"-"+ini[0]+"-"+ini[2] ).getTime();
 		var diff = fechaInicio - fechaActual;
 		dias = parseInt( diff/(1000*60*60*24) );
@@ -338,11 +338,16 @@
 			_this.parent().addClass("Ocultar_Flecha");
 		}else{
 			actual--;
-			if( actual != 0 ){
-				_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
+			if( actual > 0 ){
+				_this.parent().parent().find(".Flecha_Izquierda").removeClass("Ocultar_Flecha");
 			}else{
 				_this.parent().addClass("Ocultar_Flecha");
 			}
+
+			if( total > actual+actual ){
+					_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
+			}
+
 			_this.parent().parent().find(".destacados_container").attr("data-actual", actual);
 			_this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*( 100 / mostrando ) )+"%"});
 		}
