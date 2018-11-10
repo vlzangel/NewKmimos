@@ -112,7 +112,7 @@
 									<span>Adiestramiento</span>
 									<div class="top_check"></div>
 								</label>
-								<small id="error_principales" style="position: absolute; bottom: -13px; left: 6px; color: red; display: none;">
+								<small class="error_principales" style="position: absolute; bottom: -13px; left: 6px; color: red; display: none;">
 									Debe seleccionar al menos un servicio principal
 								</small>
 							</div>
@@ -126,8 +126,8 @@
 
 						<div class="ubicacion_container">
 							<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion_2.svg" />
-							<input type="text" class="ubicacion_txt" name="ubicacion_txt" value="'.$_SESSION['busqueda']['ubicacion_txt'].'" placeholder="Ubicación estado municipio" autocomplete="off" />
-							<input type="hidden" class="ubicacion" name="ubicacion" value="'.$_SESSION['busqueda']['ubicacion'].'" />	
+							<input type="text" class="ubicacion_txt" name="ubicacion_txt" placeholder="Ubicación estado municipio" autocomplete="off" />
+							<input type="hidden" class="ubicacion" name="ubicacion" />	
 						    <div class="cerrar_list_box">
 						    	<div class="cerrar_list">X</div>
 						    	<ul class="ubicacion_list"></ul>

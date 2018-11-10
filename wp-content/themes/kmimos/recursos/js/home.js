@@ -46,9 +46,9 @@ jQuery( document ).ready(function() {
         });
         if( seleccionados == 0 ){
             errores++;
-            jQuery("#error_principales").css("display", "block");
+            jQuery(".error_principales").css("display", "block");
         }else{
-            jQuery("#error_principales").css("display", "none");
+            jQuery(".error_principales").css("display", "none");
         }
         if( errores == 0 ){
             jQuery('#popup-servicios-new').modal('show');
