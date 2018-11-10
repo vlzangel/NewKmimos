@@ -440,7 +440,7 @@
 					+1,500 comentarios positivos en perfiles de cuidadores
 				</span>
 			</div>
-			<a href="'.get_home_url().'/testimonios" class="testimonios_link">Ver más comentarios como éste</a>
+			<a href="'.get_home_url().'/testimonios" class="testimonios_link" style="display: none;">Ver más comentarios como éste</a>
 		</div>';
 		
 		$HTML .= '
