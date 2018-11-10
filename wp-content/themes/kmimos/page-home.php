@@ -79,9 +79,8 @@
 					</div>
 
 					<div id="servicios_principales_container">
-						
 						<div class="servicios_principales_container">
-							<div class="servicios_principales_box">
+							<div class="servicios_principales_box"  style="position: relative;">
 								<label class="input_check_box" for="hospedaje">
 									<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
 									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
@@ -113,6 +112,9 @@
 									<span>Adiestramiento</span>
 									<div class="top_check"></div>
 								</label>
+								<small id="error_principales" style="position: absolute; bottom: -13px; left: 6px; color: red; display: none;">
+									Debe seleccionar al menos un servicio principal
+								</small>
 							</div>
 						</div>
 
