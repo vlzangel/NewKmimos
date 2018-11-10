@@ -200,9 +200,6 @@
 		var actual = new Date();
 		var fechaActual = new Date( actual.getFullYear()+"-"+(actual.getMonth()+1)+"-"+actual.getDate() ).getTime();
 		var fechaInicio    = new Date( ini[2]+"-"+ini[1]+"-"+ini[0] ).getTime();
-
-		jQuery(".nombre").val( fechaInicio );
-
 		var diff = fechaInicio - fechaActual;
 		dias = parseInt( diff/(1000*60*60*24) );
 		if( dias <= 3 ){
