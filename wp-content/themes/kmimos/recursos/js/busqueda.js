@@ -206,10 +206,10 @@
 			var dias_str = ( dias != 1 ) ? "días": "día";
 			var msg = ( dias == 0 ) ? "Tu reserva está por comenzar": "Tu reserva comienza en "+dias+" "+dias_str;
 			jQuery(".mesaje_reserva_inmediata_container span").html( msg);
-			jQuery(".mesaje_reserva_inmediata_container").css("display", "block");
+			jQuery(".msg_inicio_reserva").css("display", "block");
 			jQuery(".resultados_container").css("padding-top", "0px");
 		}else{
-			jQuery(".mesaje_reserva_inmediata_container").css("display", "none");
+			jQuery(".msg_inicio_reserva").css("display", "none");
 			jQuery(".resultados_container").css("padding-top", "20px");
 		}
 	}

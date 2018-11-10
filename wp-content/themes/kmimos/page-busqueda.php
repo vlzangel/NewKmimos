@@ -124,8 +124,10 @@
     include ('partes/cuidador/conocelo.php');
 
     $dias = "";
-    foreach ($_SESSION['busqueda']['dias'] as $key => $value) {
-    	$dias .= '<input type="hidden" name="dias[]" value="'.$value.'" />';
+    if( is_array($_SESSION['busqueda']['dias']) && count($_SESSION['busqueda']['dias']) > 0 ){
+	    foreach ($_SESSION['busqueda']['dias'] as $key => $value) {
+	    	$dias .= '<input type="hidden" name="dias[]" value="'.$value.'" />';
+	    }
     }
 
 
@@ -405,22 +407,26 @@
 					</div>
     			</form>
 
-    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
-    				<div class="mesaje_reserva_inmediata_izq"></div>
-    				<div class="mesaje_reserva_inmediata_der">
-    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
-    				</div>
+    			<div class="msg_inicio_reserva">
+	    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
+	    				<div class="mesaje_reserva_inmediata_izq"></div>
+	    				<div class="mesaje_reserva_inmediata_der">
+	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
+	    				</div>
+	    			</div>
     			</div>
 
     			<div id="seccion_destacados">
     				'.$destacados.'
     			</div>
 
-    			<div class="mesaje_reserva_inmediata_container disponibilidad_MOVIl">
-    				<div class="mesaje_reserva_inmediata_izq"></div>
-    				<div class="mesaje_reserva_inmediata_der">
-    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece aquí arriba a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
-    				</div>
+    			<div class="msg_inicio_reserva">
+	    			<div class="mesaje_reserva_inmediata_container disponibilidad_MOVIl">
+	    				<div class="mesaje_reserva_inmediata_izq"></div>
+	    				<div class="mesaje_reserva_inmediata_der">
+	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece aquí arriba a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
+	    				</div>
+	    			</div>
     			</div>
     			
     			<div class="cantidad_resultados_container">
