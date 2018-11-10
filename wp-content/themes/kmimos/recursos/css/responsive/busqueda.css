@@ -630,6 +630,13 @@
         height: auto !important;
 	}
 
+	.resultados_item_subtitulo {
+	    font-size: 9px;
+	    font-weight: 400;
+	    padding: 0px 3px 3px;
+	    display: block !important;
+	}
+
 }
 
 @media (max-width: 400px){
