@@ -12,6 +12,8 @@
 
 	wp_head();
 
+	$HTML = '';
+
 	// $HTML .= '</head><body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.' '.$class_iOS.'">';
 	// echo comprimir($HTML);
 
