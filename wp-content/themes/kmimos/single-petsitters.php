@@ -203,54 +203,58 @@
 
 	$servicios_str = "<div class='servicios_container'>";
 		foreach ($_cuidador->adicionales as $servicio_id => $servicio) {
-			if( array_key_exists($servicio_id, $tipos_servicios) ){
-				$precios = ''; $desde = 0;
-				foreach ($servicio as $key => $value) {
-					if( $key == "pequenos"){ $desde = $value; }
-					if( $value > 0 && $desde > $value ){ $desde = $value; }
-					$precios .= '
-						<a class="servicio_tamanio" href="'.get_home_url().'/reservar/'.$data_servicios[ $servicio_id ].'/">
-							<div class="servicio_table">
-								<div class="servicio_celda servicio_icon">
-									<img src="'.get_recurso("img").'GENERALES/ICONOS/TAMANIOS/'.$key.'.svg" />
-								</div>
-								<div class="servicio_celda servicio_titulo">
-									<span>'.mb_strtolower($tamanos_data[$key][0], 'UTF-8').'</span>
-									<small>'.$tamanos_data[$key][1].'</small>
-								</div>
-								<div class="servicio_celda servicio_precio">
-									MXN $'.number_format( ($value*getComision()) , 2, ',', '.').'
-								</div>
-								<div class="servicio_celda">
-									<img class="check" src="'.get_recurso("img").'HOME/SVG/Check.svg" />
-								</div>
-							</div>
-						</a>
-					';
-				}
+			if( array_key_exists($servicio_id, $tipos_servicios) ) {
 
-				if( $desde > 0 ){
-					$servicios_str .= '
-					<div class="servicio_item_box">
-						<div class="servicio_item">
-							<div class="servicio_table">
-								<div class="servicio_celda servicio_icon">
-									<img src="'.get_recurso("img").'GENERALES/ICONOS/SERVICIOS_PRINCIPALES/'.$servicio_id.'.svg" />
+				if( $servicio_id == "hospedaje" || $_cuidador->adicionales["status_".$servicio_id]+0 == 1 ){
+
+					$precios = ''; $desde = 0;
+					foreach ($servicio as $key => $value) {
+						if( $key == "pequenos"){ $desde = $value; }
+						if( $value > 0 && $desde > $value ){ $desde = $value; }
+						$precios .= '
+							<a class="servicio_tamanio" href="'.get_home_url().'/reservar/'.$data_servicios[ $servicio_id ].'/">
+								<div class="servicio_table">
+									<div class="servicio_celda servicio_icon">
+										<img src="'.get_recurso("img").'GENERALES/ICONOS/TAMANIOS/'.$key.'.svg" />
+									</div>
+									<div class="servicio_celda servicio_titulo">
+										<span>'.mb_strtolower($tamanos_data[$key][0], 'UTF-8').'</span>
+										<small>'.$tamanos_data[$key][1].'</small>
+									</div>
+									<div class="servicio_celda servicio_precio">
+										MXN $'.number_format( ($value*getComision()) , 2, ',', '.').'
+									</div>
+									<div class="servicio_celda">
+										<img class="check" src="'.get_recurso("img").'HOME/SVG/Check.svg" />
+									</div>
 								</div>
-								<div class="servicio_celda servicio_titulo">
-									<span>'.$tipos_servicios[$servicio_id][0].'</span>
-									<small>'.$tipos_servicios[$servicio_id][1].'</small>
-								</div>
-								<div class="servicio_celda servicio_desde">
-									<small>Desde</small>
-									<span>MXN $'.number_format( ($desde*getComision()) , 2, ',', '.').'</span>
+							</a>
+						';
+					}
+
+					if( $desde > 0 ){
+						$servicios_str .= '
+						<div class="servicio_item_box">
+							<div class="servicio_item">
+								<div class="servicio_table">
+									<div class="servicio_celda servicio_icon">
+										<img src="'.get_recurso("img").'GENERALES/ICONOS/SERVICIOS_PRINCIPALES/'.$servicio_id.'.svg" />
+									</div>
+									<div class="servicio_celda servicio_titulo">
+										<span>'.$tipos_servicios[$servicio_id][0].'</span>
+										<small>'.$tipos_servicios[$servicio_id][1].'</small>
+									</div>
+									<div class="servicio_celda servicio_desde">
+										<small>Desde</small>
+										<span>MXN $'.number_format( ($desde*getComision()) , 2, ',', '.').'</span>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="servicio_precios">
-							'.$precios.'
-						</div>
-					</div>';
+							<div class="servicio_precios">
+								'.$precios.'
+							</div>
+						</div>';
+					}
 				}
 			}
 		}
@@ -287,6 +291,10 @@
     if( $cuidador->mascotas_permitidas > 6 ){
     	$cuidador->mascotas_permitidas = 6;
     }
+
+    echo "<pre>";
+    	print_r($_cuidador->adicionales);
+    echo "</pre>";
 
  	$HTML .= '
  		<script> 
