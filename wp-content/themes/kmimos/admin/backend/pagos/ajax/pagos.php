@@ -99,10 +99,11 @@
                         $cupones = $pagos->db->get_results($cupon_sql);
 
                         $colores = [
-                            'normal' => '#a6a5a5',
-                            'cupon' => '#8d88e0',
-                            'saldo' => '#88e093',
-                            'ambos' => '#e0888c',
+                            'normal'    => '#a6a5a5',
+                            'cupon'     => '#8d88e0',
+                            'saldo'     => '#88e093',
+                            'ambos'     => '#e0888c',
+                            'especial'  => '#7C169E',
                         ];
 
 

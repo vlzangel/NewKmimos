@@ -13,11 +13,11 @@
 	include_once($tema.'/lib/openpay/Openpay.php');
 
     
-//	$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
-//	Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
+	$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
+	Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
 //	Test IC
-$openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f264016e6fcb7');
+// $openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f264016e6fcb7');
 
 
     $db = new db( new mysqli($host, $user, $pass, $db) );
@@ -105,14 +105,15 @@ $openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f
 		                    $payoutData = array(
 		                        'method' => 'bank_account',
 		                        'amount' => number_format($total, 2, '.', ''),
-		                        'name' => $banco['titular'],
+		                        'name' => utf8_encode( $banco['titular'] ),
 		                        'bank_account' => array(
 		                            'clabe' => $banco['cuenta'],
-		                            'holder_name' => $banco['titular'],
+		                            'holder_name' => utf8_encode($banco['titular']),
 		                        ),
-		                        'description' => '#'.$row_id." ".$cuidador->nombre." ".$cuidador->apellido
-		                    );
+			                'description' => '#'.$row_id." ".$cuidador->ID." ".$cuidador->email
 
+		                    );
+print_r( $payoutData );
 		                //  Enviar solicitud a OpenPay            
 		                    try{
 		                        $payout = $openpay->payouts->create($payoutData);
