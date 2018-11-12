@@ -282,6 +282,10 @@
     $_galeria = $galeria;
     $galeria = '';
 
+    if( $cuidador->mascotas_permitidas > 6 ){
+    	$cuidador->mascotas_permitidas = 6;
+    }
+
  	$HTML .= '
  		<script> 
 			var lat = "'.$cuidador->latitud.'";
