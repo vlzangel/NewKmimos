@@ -302,14 +302,12 @@
 										<div class="resultados_item_direccion" title="'.$_cuidador->direccion.'">'.($direccion).'</div>
 										<div class="resultados_item_servicios">
 											'.get_servicios_new($_cuidador->adicionales).'
-											<div class="huesitos_container">
-												<div class="resultados_item_comentarios">
-													'.$_cuidador->valoraciones.' comentarios
-												</div>
+											<!-- <div class="resultados_item_comentarios">
+												'.$_cuidador->valoraciones.' comentarios
+											</div> -->
 												<div class="resultados_item_ranking">
 													'.kmimos_petsitter_rating($_cuidador->id_post).'
 												</div>
-											</div>
 										</div>
 										<div class="resultados_item_experiencia">
 											'.$anios_exp.' años de experiencia
