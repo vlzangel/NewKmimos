@@ -197,14 +197,11 @@ class Pagos {
 			if( !empty($cupones) ){
 				foreach ($cupones as $cupon) {
 
-					if( strtoupper($cupon->name) == '+2MASC' ){
-
-						$total -= $cupon->monto; 
-						$pago_cuidador = $total / 1.25;
-						$pago_kmimos = $total - $pago_cuidador;
-
+					if( $cupon->name == '+2MASC' ){
+                        $total -= $cupon->monto; 
+                        $pago_cuidador = $total / 1.25;
+                        $pago_kmimos = $total - $pago_cuidador;
 					}else{
-
 						$cupon_id = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title = '".$cupon->name."' ");
 						$metas =  $this->db->get_results("SELECT meta_key, meta_value FROM wp_postmeta WHERE meta_key like 'descuento%' and post_id = ".$cupon_id );
 
@@ -264,8 +261,7 @@ class Pagos {
 							}
 						}
 					}
-
-
+					
 				}
 			}
 
