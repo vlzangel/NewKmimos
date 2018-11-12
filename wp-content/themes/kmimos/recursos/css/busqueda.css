@@ -963,6 +963,14 @@
 			height: 23px;
 		}
 
+		.huesitos_container{
+			display: block;
+	   		margin-top: 10px;
+		}
+		.huesitos_container .resultados_item_comentarios{
+			margin-left: 0px;
+		}
+
 		.resultados_item_comentarios {
 			display: inline-block;
 			padding: 2px 5px;

@@ -26,6 +26,12 @@
 
 }
 
+@media (min-width: 1375px){
+	.huesitos_container{
+		display: inline-block;
+	}
+}
+
 @media (max-width: 768px){
 
 	nav.open_filtros {
