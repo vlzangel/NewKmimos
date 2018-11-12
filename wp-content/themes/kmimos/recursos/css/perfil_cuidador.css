@@ -427,6 +427,12 @@
 	        margin-top: 10px;
 		}
 
+		.ver_mas{
+		    color: #00d2c6;
+    		font-weight: 600;
+   	 		cursor: pointer;
+		}
+
 	/* CEN */
 
 		.pc_seccion_2 .pc_seccion_2_cen {

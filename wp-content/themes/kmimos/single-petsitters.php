@@ -120,9 +120,11 @@
     $foto = kmimos_get_foto($cuidador->user_id);
 
     $desc = $cuidador->descripcion;
-    /*if( strlen($desc) > 500 ){
-		$desc = mb_strcut($desc, 0, 500, "UTF-8")."...";
-	}*/
+    $mas_info = '';
+    if( strlen($desc) > 500 ){
+		$mas_info = mb_strcut($desc, 500, NULL, "UTF-8");
+		$desc = mb_strcut($desc, 0, 500, "UTF-8").'<span class="mas_info" data-info="'.$mas_info.'">...</span> <span class="ver_mas">Ver más</span>';
+	}
 
 	$mascota_cuidador = unserialize( $cuidador->mascotas_cuidador );
 	$mascotas_cuidador = array();

@@ -66,6 +66,16 @@ jQuery( document ).ready(function() {
 		});
     }
 
+    jQuery(".ver_mas").on("click", function(e){
+    	if( jQuery(".mas_info").html() == "..." ){
+    		jQuery(".mas_info").html( jQuery(".mas_info").attr("data-info") );
+    		jQuery(this).html("Ver menos");
+    	}else{
+    		jQuery(".mas_info").html( "..." );
+    		jQuery(this).html("Ver más");
+    	}
+    });
+
 });
 
 /* GALERIA */
