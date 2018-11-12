@@ -292,9 +292,9 @@
     	$cuidador->mascotas_permitidas = 6;
     }
 
-    echo "<pre>";
+    /*echo "<pre>";
     	print_r($_cuidador->adicionales);
-    echo "</pre>";
+    echo "</pre>";*/
 
  	$HTML .= '
  		<script> 
