@@ -1496,6 +1496,8 @@
 	    font-size: 16px;
 	    font-family: Gotham-Pro-Bold;
 	    margin: 0px 0px 2px;
+	    color: #000;
+	    text-decoration: none !important;
 	}
 
 	.maps_p{

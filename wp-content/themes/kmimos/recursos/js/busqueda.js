@@ -546,7 +546,7 @@
 				        }
 
 				        infos[index] = new google.maps.InfoWindow({ 
-				            content: 	'<h1 class="maps_h1">'+cuidador.nom+'</h1>'
+				            content: 	'<a href="'+cuidador.url+'" class="maps_h1">'+cuidador.nom+'</a>'
 										+'<p class="maps_p" style="margin-bottom:0px;">'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
 										+'<div class="km-ranking maps_ranking">'
 										+	'<div class="km-ranking rating" style="display:inline-block">'
