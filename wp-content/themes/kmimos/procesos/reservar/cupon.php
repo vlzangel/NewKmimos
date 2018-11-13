@@ -13,6 +13,11 @@ ini_set('display_errors', '0');
 
 	$db = new db( new mysqli($host, $user, $pass, $db) );
 
+	function es_petco($db, $user_id){
+		$metas = $db->get_results("SELECT meta_value FROM wp_usermeta WHERE user_id = '{$user_id}' AND ( meta_key = '_wlabel' OR meta_key = 'user_referred' ) AND meta_value LIKE '%petco%'");
+		return ( $metas !== false );
+	}
+
 	function aplicarCupon($params){
 		/* 
 			$db, 
@@ -51,6 +56,17 @@ ini_set('display_errors', '0');
 		/* Cupones Especiales */
 
 			if( $cupon == "1ngpet" ){
+
+				if( !es_petco($db, $cliente) ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "El cupón solo es válido para usuarios de Petco"
+						)); exit;
+					}else{
+						return false;
+					}
+				}
+
 				$descuento = 0;
 				$usado = 0;
 				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
@@ -81,7 +97,7 @@ ini_set('display_errors', '0');
 						}
 					}
 				}else{
-					if( $usado > 1 ){
+					if( $usado > 1 ){ 
 						if( $validar ){
 							echo json_encode(array(
 								"error" => "Ya se ha usado la noche gratis"
@@ -105,6 +121,17 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "2pgpet" ){
+
+				if( !es_petco($db, $cliente) ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "El cupón solo es válido para usuarios de Petco"
+						)); exit;
+					}else{
+						return false;
+					}
+				}
+				
 				$descuento = 0;
 				$usado = 0;
 				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
@@ -191,6 +218,17 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "2ngpet" ){
+
+				if( !es_petco($db, $cliente) ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "El cupón solo es válido para usuarios de Petco"
+						)); exit;
+					}else{
+						return false;
+					}
+				}
+				
 				$descuento = 0;
 				$usado = 0;
 				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
@@ -279,6 +317,17 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "3pgpet" ){
+
+				if( !es_petco($db, $cliente) ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "El cupón solo es válido para usuarios de Petco"
+						)); exit;
+					}else{
+						return false;
+					}
+				}
+				
 				$descuento = 0;
 				$usado = 0;
 				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
