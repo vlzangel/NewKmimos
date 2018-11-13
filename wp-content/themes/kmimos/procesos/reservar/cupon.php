@@ -57,7 +57,6 @@ ini_set('display_errors', '0');
 				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
 				if( $cupon_meta != false ){
 					$usado = count($cupon_meta);
-					$paseos = [];
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
@@ -70,7 +69,7 @@ ini_set('display_errors', '0');
 					if( $duracion < 7 ){
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más."
+								"error" => "El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más"
 							)); exit;
 						}else{
 							return false;
@@ -107,24 +106,19 @@ ini_set('display_errors', '0');
 				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
 				if( $cupon_meta != false ){
 					$usado = count($cupon_meta);
-				}
-				$paseos = [];
-				for ($i=0; $i < $duracion; $i++) { 
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$paseos[] = $value[0]*$value[1];
+								$descuento += $value[0]*$value[1];
 							}
 						}
 					}
 				}
-				asort($paseos);
-				$duracion_con_mascotas = count($paseos);
 				if( $usado == 0 ){
-					if( $duracion_con_mascotas < 7 ){
+					if( $duracion < 7 ){
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más."
+								"error" => "El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más"
 							));
 							exit;
 						}else{
@@ -193,24 +187,19 @@ ini_set('display_errors', '0');
 				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
 				if( $cupon_meta != false ){
 					$usado = count($cupon_meta);
-				}
-				$paseos = [];
-				for ($i=0; $i < $duracion; $i++) { 
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$paseos[] = $value[0]*$value[1];
+								$descuento += $value[0]*$value[1];
 							}
 						}
 					}
 				}
-				asort($paseos);
-				$duracion_con_mascotas = count($paseos);
 				if( $usado == 0 ){
-					if( $duracion_con_mascotas < 7 ){
+					if( $duracion < 7 ){
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más."
+								"error" => "El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más"
 							));
 							exit;
 						}else{
@@ -281,24 +270,19 @@ ini_set('display_errors', '0');
 				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
 				if( $cupon_meta != false ){
 					$usado = count($cupon_meta);
-				}
-				$paseos = [];
-				for ($i=0; $i < $duracion; $i++) { 
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$paseos[] = $value[0]*$value[1];
+								$descuento += $value[0]*$value[1];
 							}
 						}
 					}
 				}
-				asort($paseos);
-				$duracion_con_mascotas = count($paseos);
 				if( $usado == 0 ){
-					if( $duracion_con_mascotas < 7 ){
+					if( $duracion < 7 ){
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más.",
+								"error" => "El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más",
 							));
 							exit;
 						}else{
@@ -414,7 +398,7 @@ ini_set('display_errors', '0');
 				if( $duracion < 7 ){
 					if( $validar ){
 						echo json_encode(array(
-							"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más.",
+							"error" => "El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más",
 						));
 						exit;
 					}else{
