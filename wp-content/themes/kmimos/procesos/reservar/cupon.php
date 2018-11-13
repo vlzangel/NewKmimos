@@ -462,12 +462,13 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "+2masc" ){
-				$mascotas = cant_mascotas($mascotas);
-				if( $mascotas <= 1 ){
+				$_mascotas = cant_mascotas($mascotas);
+				if( $_mascotas <= 1 ){
 					if( $validar ){
 						echo json_encode(array( "error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón" )); exit;
 					}else{ return false; }
 				}
+
 				$descuento = 0;
 				$sub_total = 0;
 				$valor_mascotas = [];
@@ -497,7 +498,11 @@ ini_set('display_errors', '0');
 					}
 					$cont++;
 				}
+
+				$temp_desc = $descuento;
+
 				$descuento = $sub_total-$descuento;
+
 				$sub_descuento += $descuento;
 				if( ($total-$sub_descuento) < 0 ){
 					$descuento += ( $total-$sub_descuento );
@@ -506,29 +511,27 @@ ini_set('display_errors', '0');
 					return array(
 						$cupon,
 						$descuento,
-						1
+						1,
+						$sub_total,
+						$temp_desc
 					);
 				}else{
 					return array(
 						$cupon,
 						$descuento,
-						0
+						0,
+						$sub_total,
+						$temp_desc
 					);
 				}
 			}
 
 			if( $cupon == "350desc" ){
-				$mascotas = cant_mascotas($mascotas);
-
-				if( $mascotas <= 1 ){
+				$_mascotas = cant_mascotas($mascotas);
+				if( $_mascotas <= 1 ){
 					if( $validar ){
-						echo json_encode(array(
-							"error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón"
-						));
-						exit;
-					}else{
-						return false;
-					}
+						echo json_encode(array( "error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón" )); exit;
+					}else{ return false; }
 				}
 
 				$descuento = 0;
