@@ -27,10 +27,28 @@ ini_set('display_errors', '0');
 		*/
 
 		extract($params);
+
+		$cupon = trim( strtolower($cupon) );
+
+		$xcupon = $db->get_row("SELECT * FROM wp_posts WHERE post_title = '{$cupon}'");
+		$xmetas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$xcupon->ID}'");
+		$metas = array();
+		foreach ($xmetas as $value) {
+			$metas[ $value->meta_key ] = $value->meta_value;
+		}
+
+		if( count($cupones) > 0 ){
+			foreach ($cupones as $value) {
+				if( $value[2] == 1 ){
+					echo json_encode(array(
+						"error" => "El cupón [ {$value[0]} ] ya esta aplicado y no puede ser usado junto a otros cupones"
+					));
+					exit;
+				}
+			}
+		}
 		
 		/* Cupones Especiales */
-
-			$cupon = trim( strtolower($cupon) );
 
 			if( $cupon == "1ngpet" ){
 				$descuento = 0;
@@ -345,6 +363,55 @@ ini_set('display_errors', '0');
 					);
 				}
 			}
+
+			if( $cupon == "+2masc" ){
+				$descuento = 0;
+				$valor_mascotas = [];
+				foreach ($mascotas as $key => $value) {
+					if( is_array($value) ){
+						if( $value[0]+0 > 0 ){
+							for ($i=0; $i < $value[0]; $i++) { 
+								$valor_mascotas[] = $value[1]*$duracion;
+							}
+						}
+					}
+				}
+				asort($valor_mascotas);
+
+				$cont = 0;
+				foreach ($valor_mascotas as $value) {
+					switch ( $cont ) {
+						case 0:
+							$descuento += $value;
+						break;
+						case 1:
+							$descuento += ($value*0.5);
+						break;
+						default:
+							$descuento += ($value*0.25);
+						break;
+					}
+					$cont++;
+				}
+
+				$sub_descuento += $descuento;
+				if( ($total-$sub_descuento) < 0 ){
+					$descuento += ( $total-$sub_descuento );
+				}
+				if( $metas["individual_use"] == "yes" ){
+					return array(
+						$cupon,
+						$descuento,
+						1
+					);
+				}else{
+					return array(
+						$cupon,
+						$descuento,
+						0
+					);
+				}
+			}
  
 
 
@@ -466,14 +533,6 @@ ini_set('display_errors', '0');
 						exit;
 					}
 				}
-			}
-
-			$xcupon = $db->get_row("SELECT * FROM wp_posts WHERE post_title = '{$cupon}'");
-
-			$xmetas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$xcupon->ID}'");
-			$metas = array();
-			foreach ($xmetas as $value) {
-				$metas[ $value->meta_key ] = $value->meta_value;
 			}
 
 			$se_uso = $db->get_var("SELECT count(*) FROM wp_postmeta WHERE post_id = {$xcupon->ID} AND meta_key = '_used_by' AND meta_value = {$cliente}");
