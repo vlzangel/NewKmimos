@@ -105,11 +105,12 @@ ini_set('display_errors', '0');
 				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
 				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
 				if( $cupon_meta != false ){
+					$paseos = [];
 					$usado = count($cupon_meta);
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$descuento += $value[0]*$value[1];
+								$paseos[] = $value[0]*$value[1];
 							}
 						}
 					}
@@ -186,11 +187,12 @@ ini_set('display_errors', '0');
 				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
 				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
 				if( $cupon_meta != false ){
+					$noches = [];
 					$usado = count($cupon_meta);
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$descuento += $value[0]*$value[1];
+								$noches[] = $value[0]*$value[1];
 							}
 						}
 					}
