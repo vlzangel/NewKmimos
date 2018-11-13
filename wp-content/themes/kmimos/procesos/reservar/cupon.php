@@ -368,7 +368,6 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "3pgpet" ){
-
 				if( !es_petco($db, $cliente) ){
 					if( $validar ){
 						echo json_encode(array(
@@ -388,7 +387,6 @@ ini_set('display_errors', '0');
 						return false;
 					}
 				}
-				
 				$descuento = 0;
 				$usado = 0;
 				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
@@ -424,39 +422,26 @@ ini_set('display_errors', '0');
 				}else{
 					if( $tipo_servicio == "paseos" ){
 						$data_cupon = json_decode( $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = 'paseos_{$cliente}'") );
-						
 						if( $data_cupon->disponibles == 0 ){
 							if( $validar ){
-								echo json_encode(array(
-									"error" => "Ya uso los 3 paseos gratis"
-								));
-								exit;
-							}else{
-								return false;
-							}
+								echo json_encode(array( "error" => "Ya uso los 3 paseos gratis" )); exit;
+							}else{ return false; }
 						}else{
 							$cont = 0;
 							foreach ($paseos as $key => $value) {
 								$descuento += $value;
 								$cont++;
-								if( $cont == $data_cupon->disponibles ){
-									break;
-								}
+								if( $cont == $data_cupon->disponibles ){ break; }
 							}
 						}
-
 					}else{
 						if( $validar ){
-							echo json_encode(array(
-								"error" => "Solo puedes aplicar este cupón en servicios de paseo"
-							));
-							exit;
+							echo json_encode(array( "error" => "Solo puedes aplicar este cupón en servicios de paseo" )); exit;
 						}else{
 							return false;
 						}
 					}
 				}
-
 				$sub_descuento += $descuento;
 				if( ($total-$sub_descuento) < 0 ){
 					$descuento += ( $total-$sub_descuento );
@@ -478,31 +463,25 @@ ini_set('display_errors', '0');
 
 			if( $cupon == "+2masc" ){
 				$mascotas = cant_mascotas($mascotas);
-
 				if( $mascotas <= 1 ){
 					if( $validar ){
-						echo json_encode(array(
-							"error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón"
-						));
-						exit;
-					}else{
-						return false;
-					}
+						echo json_encode(array( "error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón" )); exit;
+					}else{ return false; }
 				}
-				
 				$descuento = 0;
+				$sub_total = 0;
 				$valor_mascotas = [];
 				foreach ($mascotas as $key => $value) {
 					if( is_array($value) ){
 						if( $value[0]+0 > 0 ){
 							for ($i=0; $i < $value[0]; $i++) { 
 								$valor_mascotas[] = $value[1]*$duracion;
+								$sub_total = $value[1]*$duracion;
 							}
 						}
 					}
 				}
 				arsort($valor_mascotas);
-
 				$cont = 0;
 				foreach ($valor_mascotas as $value) {
 					switch ( $cont ) {
@@ -518,9 +497,7 @@ ini_set('display_errors', '0');
 					}
 					$cont++;
 				}
-
-				$descuento = $total-$descuento;
-
+				$descuento = $sub_total-$descuento;
 				$sub_descuento += $descuento;
 				if( ($total-$sub_descuento) < 0 ){
 					$descuento += ( $total-$sub_descuento );
@@ -553,7 +530,7 @@ ini_set('display_errors', '0');
 						return false;
 					}
 				}
-				
+
 				$descuento = 0;
 				if( $duracion < 7 ){
 					if( $validar ){
