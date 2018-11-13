@@ -333,6 +333,40 @@ class Reservas {
                         }
                     break;
 
+                    case '2ngpet':
+                        $veces_usado = $this->db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = '_used_by' AND meta_value = '{$this->user_id}'");
+                        if( $veces_usado !== false ){
+                            $datos = json_decode( $this->db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = 'usos_{$this->user_id}' ") );
+                            
+                            $cont_paseos = [];
+                            for ($i=0; $i < $duracion; $i++) { 
+                                foreach ($mascotas as $mascota) {
+                                    if( is_array($mascota) ){
+                                        if( $mascota[0]+0 > 0 ){
+                                            $cont_paseos[] = $mascota[0]*$mascota[1];
+                                        }
+                                    }
+                                }
+                            }
+
+                            $num = count($cont_paseos);
+                            $num = $datos->disponibles-$num;
+                            $num = ( $num >= 0 ) ? $num: 0;
+                            $datos->orden[] = $order;
+                            $usos = json_encode([
+                                "orden" => $datos->orden,
+                                "disponibles" => $num
+                            ]);
+                            $this->db->query( utf8_decode( "UPDATE wp_postmeta SET meta_value = '{$usos}' WHERE post_id = {$id_cupon} AND meta_key LIKE 'usos_{$this->user_id}' " ) );
+                        }else{
+                            $usos = json_encode([
+                                "orden" => [$order],
+                                "disponibles" => 2
+                            ]);
+                            $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', 'usos_{$this->user_id}', '{$usos}');" ) );
+                        }
+                    break;
+
                 }
 
                 $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', '_used_by', '{$this->user_id}');" ) );

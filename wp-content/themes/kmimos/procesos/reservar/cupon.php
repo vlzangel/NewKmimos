@@ -30,7 +30,7 @@ ini_set('display_errors', '0');
 		
 		/* Cupones Especiales */
 
-			$cupon = strtolower($cupon);
+			$cupon = trim( strtolower($cupon) );
 
 			if( $cupon == "1ngpet" ){
 				$descuento = 0;
@@ -38,14 +38,15 @@ ini_set('display_errors', '0');
 				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
 				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
 				if( $cupon_meta != false ){
-					$usado = count($cupon_meta);
+					$usado = count($cupon_meta); $noches = [];
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$descuento += $value[0]*$value[1];
+								$noches[] = $value[0]*$value[1];
 							}
 						}
 					}
+					asort($noches);
 				}
 				if( $usado == 0 ){
 					if( $duracion < 7 ){
@@ -66,6 +67,8 @@ ini_set('display_errors', '0');
 						}else{
 							return false;
 						}
+					}else{
+						$descuent = $noches[0];
 					}
 				}
 				$sub_descuento += $descuento;
@@ -143,6 +146,90 @@ ini_set('display_errors', '0');
 							return false;
 						}
 					}
+				}
+
+				$sub_descuento += $descuento;
+				if( ($total-$sub_descuento) < 0 ){
+					$descuento += ( $total-$sub_descuento );
+				}
+				if( $metas["individual_use"] == "yes" ){
+					return array(
+						$cupon,
+						$descuento,
+						1
+					);
+				}else{
+					return array(
+						$cupon,
+						$descuento,
+						0
+					);
+				}
+			}
+
+			if( $cupon == "2ngpet" ){
+				$descuento = 0;
+				$usado = 0;
+				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
+				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
+				if( $cupon_meta != false ){
+					$usado = count($cupon_meta); $noches = [];
+					foreach ($mascotas as $key => $value) {
+						if( is_array($value) ){
+							if( $value[0]+0 > 0 ){
+								$noches[] = $value[0]*$value[1];
+							}
+						}
+					}
+					asort($noches);
+				}
+				if( $usado == 0 ){
+					if( $duracion < 7 ){
+						if( $validar ){
+							echo json_encode(array(
+								"error" => "El cupón [ {$cupon} ] solo es valido por 7 noches o más."
+							));
+							exit;
+						}else{
+							return false;
+						}
+					}
+				}else{
+					// if( $tipo_servicio == "hospedaje" ){
+						$data_cupon = json_decode( $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = 'usos_{$cliente}'") );
+						
+						if( $data_cupon->disponibles == 0 ){
+							if( $validar ){
+								echo json_encode(array(
+									"error" => "Ya uso las 2 noches gratis",
+									"cupon" => $cupon_post,
+									"data" => $data_cupon
+								));
+								exit;
+							}else{
+								return false;
+							}
+						}else{
+							$cont = 0;
+							foreach ($noches as $key => $value) {
+								$descuento += $value;
+								$cont++;
+								if( $cont == $data_cupon->disponibles ){
+									break;
+								}
+							}
+						}
+
+					/*}else{
+						if( $validar ){
+							echo json_encode(array(
+								"error" => "Solo puedes aplicar este cupon en servicios de hospedaje"
+							));
+							exit;
+						}else{
+							return false;
+						}
+					}*/
 				}
 
 				$sub_descuento += $descuento;
@@ -384,7 +471,8 @@ ini_set('display_errors', '0');
 			if( $descuento == 0 ){
 				if( strpos( $cupon, "saldo" ) === false ){
 					echo json_encode(array(
-						"error" => "El cupón no será aplicado. El total a pagar por su reserva es 0."
+						"error" => "El cupón no será aplicado. El total a pagar por su reserva es 0.",
+						"cupon" => $cupon,
 					));
 					exit;
 				}
