@@ -541,6 +541,19 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "350desc" ){
+				$mascotas = cant_mascotas($mascotas);
+
+				if( $mascotas <= 1 ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón"
+						));
+						exit;
+					}else{
+						return false;
+					}
+				}
+				
 				$descuento = 0;
 				if( $duracion < 7 ){
 					if( $validar ){
