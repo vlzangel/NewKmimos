@@ -94,7 +94,9 @@ ini_set('display_errors', '0');
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$paseos[] = $value[0]*$value[1];
+								for ($i=0; $i < $value[0]; $i++) { 
+									$paseos[] = $value[1];
+								}								
 							}
 						}
 					}
@@ -169,7 +171,9 @@ ini_set('display_errors', '0');
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$paseos[] = $value[0]*$value[1];
+								for ($i=0; $i < $value[0]; $i++) { 
+									$paseos[] = $value[1];
+								}			
 							}
 						}
 					}
@@ -276,7 +280,9 @@ ini_set('display_errors', '0');
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$paseos[] = $value[0]*$value[1];
+								for ($i=0; $i < $value[0]; $i++) { 
+									$paseos[] = $value[1];
+								}			
 							}
 						}
 					}
