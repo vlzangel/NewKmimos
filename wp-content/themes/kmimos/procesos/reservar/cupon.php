@@ -13,10 +13,103 @@ ini_set('display_errors', '0');
 
 	$db = new db( new mysqli($host, $user, $pass, $db) );
 
-	function aplicarCupon($db, $cupon, $cupones, $total, $validar, $cliente = "", $servicio = "", $duracion = ""){
+	function aplicarCupon($params){
+		// $db, $cupon, $cupones, $total, $validar, $cliente = "", $servicio = "", $duracion = ""
+		extract($params);
 		
 		/* Cupones Especiales */
+
+			$cupon = strtolower($cupon);
+
+			if( $cupon == "1ngpet" ){
+				$descuento = 0;
+				$usado = 0;
+				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
+				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
+				if( $cupon_meta != false ){
+					$usado = count($cupon_meta);
+					foreach ($mascotas as $key => $value) {
+						if( is_array($value) ){
+							if( $value[0]+0 > 0 ){
+								$descuento += $value[0]*$value[1];
+							}
+						}
+					}
+				}
+
+				if( $usado == 0 ){
+					if( $duracion < 7 ){
+						if( $validar ){
+							echo json_encode(array(
+								"error" => "El cupón [ {$cupon} ] solo es valido por 7 noches o más."
+							));
+							exit;
+						}else{
+							return false;
+						}
+					}
+				}else{
+					if( $usado > 1 ){
+						if( $validar ){
+							echo json_encode(array(
+								"error" => "Ya se ha usado la noche gratis"
+							));
+							exit;
+						}else{
+							return false;
+						}
+					}
+				}
+
+				$sub_descuento += $descuento;
+				if( ($total-$sub_descuento) < 0 ){
+					$descuento += ( $total-$sub_descuento );
+				}
+
+				if( $metas["individual_use"] == "yes" ){
+					return array(
+						$cupon,
+						$descuento,
+						1
+					);
+				}else{
+					return array(
+						$cupon,
+						$descuento,
+						0
+					);
+				}
+
+			}
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			
 			if( strtolower($cupon) == "buenfin17" || strtolower($cupon) == "grito2018" ){
 				$cuidador = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio}'");
@@ -191,8 +284,6 @@ ini_set('display_errors', '0');
 			}
 
 
-
-
 			if( $servicio != 0){
 				if( !isset($_SESSION)){ session_start(); }
 				$id_session = 'MR_'.$servicio."_".md5($cliente);
@@ -236,7 +327,17 @@ ini_set('display_errors', '0');
 		$xcupones = array();
 		if( count($cupones) > 0 ){
 			foreach ($cupones as $cupon) {
-				$r = aplicarCupon($db, $cupon[0], $xcupones, $total, false, $cliente, $servicio, $duracion);
+				$r = aplicarCupon([
+					"db" => $db, 
+					"cupon" => $cupon[0], 
+					"cupones" => $xcupones, 
+					"total" => $total, 
+					"validar" => false, 
+					"cliente" => $cliente, 
+					"servicio" => $servicio, 
+					"duracion" => $duracion,
+					"mascotas" => $mascotas
+				]);
 				if( $r !== false ){
 					$xcupones[] = $r;
 				}
@@ -244,7 +345,17 @@ ini_set('display_errors', '0');
 			$cupones = $xcupones;
 		}
 	}else{
-		$cupones[] = aplicarCupon($db, $cupon, $cupones, $total, true, $cliente, $servicio, $duracion);
+		$cupones[] = aplicarCupon([
+			"db" => $db, 
+			"cupon" => $cupon, 
+			"cupones" => $cupones, 
+			"total" => $total, 
+			"validar" => true, 
+			"cliente" => $cliente, 
+			"servicio" => $servicio, 
+			"duracion" => $duracion,
+			"mascotas" => $mascotas
+		]);
 
 	}
 

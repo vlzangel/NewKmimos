@@ -266,29 +266,23 @@ class Reservas {
         foreach ($cupones as $key => $cupon) {
             $this->db->query( utf8_decode( "INSERT INTO wp_woocommerce_order_items VALUES (NULL, '{$cupon[0]}', 'coupon', '{$order}');" ) );
             $id_item = $this->db->insert_id();
-
             $sql = "
                 INSERT INTO wp_woocommerce_order_itemmeta VALUES
                     (NULL, '{$id_item}', 'discount_amount',     '{$cupon[1]}'),
                     (NULL, '{$id_item}', 'discount_amount_tax', '0');
             ";
-
             $this->db->multi_query( utf8_decode($sql) );
-
             $id_seccion = 'MR_'.$this->servicio."_".md5($this->user_id);
-
             $xsaldo = $this->db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id='{$this->user_id}' AND meta_key='kmisaldo'");
             $saldo = $xsaldo;
             if( strpos($cupon[0], "saldo") !== false  ){
                 if( isset($_SESSION[$id_seccion] ) ){
-
                     $saldo_temporal = $saldo+$_SESSION[$id_seccion]['saldo_temporal'];
                     if( $cupon[1] < $saldo_temporal ){
                         $saldo = $saldo_temporal-$cupon[1];
                     }else{
                         $saldo = 0;
                     }
-
                 }else{
                     $saldo -= $cupon[1];
                     if( $saldo < 0){ $saldo = 0; }
@@ -301,7 +295,6 @@ class Reservas {
                 }else{
                     $this->db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$this->user_id} AND meta_key = 'kmisaldo';");
                 }
-
             }else{
                 $id_cupon = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title='{$cupon[0]}' AND post_type='shop_coupon'");
                 $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', '_used_by', '{$this->user_id}');" ) );
@@ -313,7 +306,6 @@ class Reservas {
                 }else{
                     $this->db->query("INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', 'usage_count', '1');");
                 }
-
             }
         }
 

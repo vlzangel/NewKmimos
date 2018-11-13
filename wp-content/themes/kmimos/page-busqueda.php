@@ -108,10 +108,11 @@
 		$servicios_principales_str = '';
 		foreach ($servicios_principales as $key => $servicio) {
 			$_checked = ( is_array($_SESSION["busqueda"]["servicios"]) && in_array($key, $_SESSION["busqueda"]["servicios"]) ) ? "checked" : "";
+			$icono = ( strpos($key, "adiestramiento") === false ) ? $key: "adiestramiento";
 			$_temp = '
 				<label class="input_check_box" for="'.$key.'">
 					<input type="checkbox" id="'.$key.'" name="servicios[]" value="'.$key.'" '.$_checked.' />
-					<div class="principales_img prin_icon_'.$key.'"></div>
+					<div class="principales_img prin_icon_'.$icono.'"></div>
 					<div class="principales_info">
 						<div>'.$servicio[0].'</div>
 						<span>'.$servicio[1].'</span>

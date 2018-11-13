@@ -620,16 +620,23 @@ function mostrarCupones(){
 	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
 		var nombreCupon = cupon[0];
 
-		if( nombreCupon != "" && cupon[1] > 0 ){
+		if( nombreCupon != ""  ){ /* && cupon[1] > 0 */
 			var eliminarCupo = '<a href="#" data-id="'+cupon[0]+'">Eliminar</a>';
 			if( nombreCupon.indexOf("saldo") > -1 ){
 				nombreCupon = "Saldo a favor";
 				eliminarCupo = "";
 			}
-			items += '<div class="km-option-resume-service">'
-			items += '	<span class="label-resume-service">'+nombreCupon+'</span>'
-			items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>'
-			items += '</div>';
+			if( eliminarCupo != "" ){
+				items += '<div class="km-option-resume-service">';
+				items += '	<span class="label-resume-service">'+nombreCupon+'</span>';
+
+				if(cupon[1] > 0){
+					items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>';
+				}else{
+					items += '	<span class="value-resume-service">'+eliminarCupo+' </span>';
+				}
+				items += '</div>';
+			}
 		}
 
 	});
@@ -730,11 +737,12 @@ function aplicarCupon(cupon = ""){
 				cupones: CARRITO["cupones"],
 				total: CARRITO["pagar"]["total"],
 				duracion: CARRITO["fechas"]["duracion"],
+				mascotas: CARRITO["cantidades"],
 				cliente: cliente,
 				reaplicar: 0
 			},
 			function(data){
-				/*console.log( data );*/
+				console.log( data );
 
 				if( data.error == undefined ){
 					CARRITO["cupones"] = data.cupones;
@@ -760,18 +768,20 @@ function aplicarCupon(cupon = ""){
 }
 
 function reaplicarCupones(){
+	console.log("Entro");
 	jQuery.post(
 		HOME+"/procesos/reservar/cupon.php",
 		{
 			servicio: SERVICIO_ID,
 			cupones: CARRITO["cupones"],
 			total: CARRITO["pagar"]["total"],
+			mascotas: CARRITO["cantidades"],
 			duracion: CARRITO["fechas"]["duracion"],
 			cliente: cliente,
 			reaplicar: 1
 		},
 		function(data){
-			/*console.log( data );*/
+			console.log( data );
 
 			if( data.error == undefined ){
 				CARRITO["cupones"] = data.cupones;
