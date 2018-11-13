@@ -141,6 +141,7 @@
 		$precios = serialize( $precios );
 	}
 
+	$duracion = $fechas->duracion;
     if( $fechas->duracion > 1 ){
     	$fechas->duracion .= " ".$diaNoche."s";
     }else{
@@ -219,7 +220,7 @@
 
 		"reservaFlash"			=> $fechas->flash,
 
-		"paquete"			=> $fechas->flash,
+		"paquete"			=> "",
 	);
 
 	if( $pagar->tipo_servicio == "paseos" ){
@@ -260,7 +261,16 @@
 		
 		$reservar = new Reservas($db, $data_reserva);
 	    $id_orden = $reservar->new_reserva();
-	    $reservar->aplicarCupones($id_orden, $cupones);
+
+	    $temp_masc = $cantidades;
+	    unset($temp_masc->cantidad);
+
+	    $reservar->aplicarCupones([
+	    	"order" => $id_orden,
+		    "cupones" => $cupones,
+		    "duracion" => $duracion,
+		    "mascotas" => $temp_masc,
+		]);
 
 	    if( isset($_SESSION[$id_session] ) ){
 			$new_reserva = $reservar->data["id_reserva"];

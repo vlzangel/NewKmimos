@@ -737,6 +737,7 @@ function aplicarCupon(cupon = ""){
 				cupones: CARRITO["cupones"],
 				total: CARRITO["pagar"]["total"],
 				duracion: CARRITO["fechas"]["duracion"],
+				tipo_servicio: tipo_servicio,
 				mascotas: CARRITO["cantidades"],
 				cliente: cliente,
 				reaplicar: 0
@@ -777,6 +778,7 @@ function reaplicarCupones(){
 			total: CARRITO["pagar"]["total"],
 			mascotas: CARRITO["cantidades"],
 			duracion: CARRITO["fechas"]["duracion"],
+			tipo_servicio: tipo_servicio,
 			cliente: cliente,
 			reaplicar: 1
 		},
