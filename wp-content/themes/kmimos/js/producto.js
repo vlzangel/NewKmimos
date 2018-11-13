@@ -3,6 +3,7 @@ var MENSAJES_CUPONES = {
 	"1ngpet": "Este cupón te da 1 noche de regalo (válida hasta el 31 de Enero de 2019)",
 	"2pgpet": "Este cupón te da 2 paseos de regalo (válidos hasta el 31 de Enero de 2019)",
 	"2ngpet": "Este cupón te da 2 noche de regalo (válidas hasta el 31 de Enero de 2019)",
+	"3pgpet": "Este cupón te da 3 paseos de regalo (válidos hasta el 31 de Enero de 2019)",
 	"350desc": "",
 	"+2masc": "",
 };
