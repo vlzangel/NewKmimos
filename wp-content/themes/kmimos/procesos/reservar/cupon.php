@@ -477,7 +477,7 @@ ini_set('display_errors', '0');
 						if( $value[0]+0 > 0 ){
 							for ($i=0; $i < $value[0]; $i++) { 
 								$valor_mascotas[] = $value[1]*$duracion;
-								$sub_total = $value[1]*$duracion;
+								$sub_total += $value[1]*$duracion;
 							}
 						}
 					}
@@ -513,15 +513,14 @@ ini_set('display_errors', '0');
 						$descuento,
 						1,
 						$sub_total,
-						$temp_desc
+						$temp_desc,
+						$valor_mascotas
 					);
 				}else{
 					return array(
 						$cupon,
 						$descuento,
-						0,
-						$sub_total,
-						$temp_desc
+						0
 					);
 				}
 			}
