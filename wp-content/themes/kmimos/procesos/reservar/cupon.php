@@ -26,7 +26,9 @@ ini_set('display_errors', '0');
 	function cant_mascotas($mascotas){
 		$cant = 0;
 		foreach ($mascotas as $key => $value) {
-			$cant += $value[0];
+			if( $key != "cantidad" ){
+				$cant += $value[0];
+			}
 		}
 		return $cant;
 	}
@@ -463,7 +465,7 @@ ini_set('display_errors', '0');
 
 			if( $cupon == "+2masc" ){
 				$_mascotas = cant_mascotas($mascotas);
-				if( $_mascotas <= 1 ){
+				if( $_mascotas < 2 ){
 					if( $validar ){
 						echo json_encode(array( "error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón" )); exit;
 					}else{ return false; }
@@ -512,9 +514,8 @@ ini_set('display_errors', '0');
 						$cupon,
 						$descuento,
 						1,
-						$sub_total,
-						$temp_desc,
-						$valor_mascotas
+						$_mascotas,
+						$mascotas
 					);
 				}else{
 					return array(
@@ -527,7 +528,7 @@ ini_set('display_errors', '0');
 
 			if( $cupon == "350desc" ){
 				$_mascotas = cant_mascotas($mascotas);
-				if( $_mascotas <= 1 ){
+				if( $_mascotas < 2 ){
 					if( $validar ){
 						echo json_encode(array( "error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón" )); exit;
 					}else{ return false; }
