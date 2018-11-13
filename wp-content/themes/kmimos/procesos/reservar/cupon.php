@@ -18,6 +18,11 @@ ini_set('display_errors', '0');
 		return ( $metas !== false );
 	}
 
+	function es_nuevo($db, $user_id){
+		$_cant_reservas = $db->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$user_id} AND post_type = 'wc_booking' AND post_status != 'cancelled' ");
+		return ( $_cant_reservas > 0 );
+	}
+
 	function aplicarCupon($params){
 		/* 
 			$db, 
@@ -61,6 +66,16 @@ ini_set('display_errors', '0');
 					if( $validar ){
 						echo json_encode(array(
 							"error" => "El cupón solo es válido para usuarios de Petco"
+						)); exit;
+					}else{
+						return false;
+					}
+				}
+
+				if( !es_nuevo($db, $cliente) ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "El cupón solo es válido para usuarios nuevos"
 						)); exit;
 					}else{
 						return false;
@@ -131,7 +146,17 @@ ini_set('display_errors', '0');
 						return false;
 					}
 				}
-				
+
+				if( !es_nuevo($db, $cliente) ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "El cupón solo es válido para usuarios nuevos"
+						)); exit;
+					}else{
+						return false;
+					}
+				}
+
 				$descuento = 0;
 				$usado = 0;
 				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
@@ -223,6 +248,16 @@ ini_set('display_errors', '0');
 					if( $validar ){
 						echo json_encode(array(
 							"error" => "El cupón solo es válido para usuarios de Petco"
+						)); exit;
+					}else{
+						return false;
+					}
+				}
+
+				if( !es_nuevo($db, $cliente) ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "El cupón solo es válido para usuarios nuevos"
 						)); exit;
 					}else{
 						return false;
@@ -322,6 +357,16 @@ ini_set('display_errors', '0');
 					if( $validar ){
 						echo json_encode(array(
 							"error" => "El cupón solo es válido para usuarios de Petco"
+						)); exit;
+					}else{
+						return false;
+					}
+				}
+
+				if( !es_nuevo($db, $cliente) ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "El cupón solo es válido para usuarios nuevos"
 						)); exit;
 					}else{
 						return false;
