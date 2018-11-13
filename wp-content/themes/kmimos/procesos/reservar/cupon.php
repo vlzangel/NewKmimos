@@ -94,7 +94,7 @@ ini_set('display_errors', '0');
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								for ($i=0; $i < $value[0]; $i++) { 
+								for ($i2=0; $i2 < $value[0]; $i2++) { 
 									$paseos[] = $value[1];
 								}								
 							}
@@ -171,7 +171,7 @@ ini_set('display_errors', '0');
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								for ($i=0; $i < $value[0]; $i++) { 
+								for ($i2=0; $i2 < $value[0]; $i2++) { 
 									$paseos[] = $value[1];
 								}			
 							}
@@ -275,18 +275,20 @@ ini_set('display_errors', '0');
 				if( $cupon_meta != false ){
 					$usado = count($cupon_meta);
 				}
+
 				$paseos = [];
 				for ($i=0; $i < $duracion; $i++) { 
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								for ($i=0; $i < $value[0]; $i++) { 
+								for ($i2=0; $i2 < $value[0]; $i2++) { 
 									$paseos[] = $value[1];
 								}			
 							}
 						}
 					}
 				}
+
 				asort($paseos);
 				$duracion_con_mascotas = count($paseos);
 				if( $usado == 0 ){
@@ -391,7 +393,9 @@ ini_set('display_errors', '0');
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
-								$paseos[] = $value[0]*$value[1];
+								for ($i2=0; $i2 < $value[0]; $i2++) { 
+									$paseos[] = $value[1];
+								}		
 							}
 						}
 					}
