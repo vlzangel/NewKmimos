@@ -121,7 +121,7 @@ ini_set('display_errors', '0');
 							return false;
 						}
 					}else{
-						$descuent = $noches[0];
+						$descuento = $noches[0];
 					}
 				}
 				$sub_descuento += $descuento;
