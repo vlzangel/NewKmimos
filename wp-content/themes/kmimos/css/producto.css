@@ -458,3 +458,8 @@ div#tienda_box img {
         opacity: 1;
         transition: all .3s ease-in-out;
     }
+
+    .mensaje_cupon{
+        clear: both;
+        font-size: 13px;
+    }

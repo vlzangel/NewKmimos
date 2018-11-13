@@ -641,7 +641,7 @@ function mostrarCupones(){
 					items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>';
 				}else{
 					items += '	<span class="value-resume-service">'+eliminarCupo+' </span>';
-					items += '	<div style="clear: both; font-size: 13px;">'+MENSAJES_CUPONES[nombreCupon]+' </div>';
+					items += '	<div class="mensaje_cupon">'+MENSAJES_CUPONES[nombreCupon]+' </div>';
 				}
 				items += '</div>';
 			}

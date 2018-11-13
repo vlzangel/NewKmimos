@@ -626,7 +626,6 @@
 			}
 
 			$HTML .= '
-
 		 		<form id="reservar" class="km-content km-content-reservation">
 					<div id="step_1" class="km-col-steps">
 						<div class="km-col-content">
