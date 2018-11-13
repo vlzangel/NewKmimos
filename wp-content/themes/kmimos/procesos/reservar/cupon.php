@@ -489,7 +489,7 @@ ini_set('display_errors', '0');
 				foreach ($valor_mascotas as $value) {
 					switch ( $cont ) {
 						case 0:
-							$descuento += $value;
+							$descuento += 0;
 						break;
 						case 1:
 							$descuento += ($value*0.5);
@@ -501,9 +501,9 @@ ini_set('display_errors', '0');
 					$cont++;
 				}
 
-				$temp_desc = $descuento;
+				// $temp_desc = $descuento;
 
-				$descuento = $sub_total-$descuento;
+				// $descuento = $sub_total-$descuento;
 
 				$sub_descuento += $descuento;
 				if( ($total-$sub_descuento) < 0 ){
