@@ -19,8 +19,16 @@ ini_set('display_errors', '0');
 	}
 
 	function es_nuevo($db, $user_id){
-		$_cant_reservas = $db->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$user_id} AND post_type = 'wc_booking' AND post_status != 'cancelled' ");
+		$_cant_reservas = $db->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$user_id} AND post_type = 'wc_booking'"); // AND post_status != 'cancelled'
 		return ( $_cant_reservas > 0 );
+	}
+
+	function cant_mascotas($mascotas){
+		$cant = 0;
+		foreach ($mascotas as $key => $value) {
+			$cant += $value[0];
+		}
+		return $cant;
 	}
 
 	function aplicarCupon($params){
@@ -218,7 +226,7 @@ ini_set('display_errors', '0');
 					}else{
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "Solo puedes aplicar este cupon en servicios de paseo"
+								"error" => "Solo puedes aplicar este cupón en servicios de paseo"
 							));
 							exit;
 						}else{
@@ -440,7 +448,7 @@ ini_set('display_errors', '0');
 					}else{
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "Solo puedes aplicar este cupon en servicios de paseo"
+								"error" => "Solo puedes aplicar este cupón en servicios de paseo"
 							));
 							exit;
 						}else{
@@ -469,6 +477,19 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "+2masc" ){
+				$mascotas = cant_mascotas($mascotas);
+
+				if( $mascotas <= 1 ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón"
+						));
+						exit;
+					}else{
+						return false;
+					}
+				}
+				
 				$descuento = 0;
 				$valor_mascotas = [];
 				foreach ($mascotas as $key => $value) {
@@ -480,7 +501,7 @@ ini_set('display_errors', '0');
 						}
 					}
 				}
-				asort($valor_mascotas);
+				arsort($valor_mascotas);
 
 				$cont = 0;
 				foreach ($valor_mascotas as $value) {
@@ -497,6 +518,8 @@ ini_set('display_errors', '0');
 					}
 					$cont++;
 				}
+
+				$descuento = $total-$descuento;
 
 				$sub_descuento += $descuento;
 				if( ($total-$sub_descuento) < 0 ){
