@@ -412,6 +412,66 @@ ini_set('display_errors', '0');
 					);
 				}
 			}
+
+			if( $cupon == "350desc" ){
+				$descuento = 0;
+				if( $duracion < 7 ){
+					if( $validar ){
+						echo json_encode(array(
+							"error" => "El cupón [ {$cupon} ] solo es valido por 7 noches o más.",
+						));
+						exit;
+					}else{
+						return false;
+					}
+				}else{
+					$valor_mascotas = [];
+					for ($i=0; $i < $duracion; $i++) { 
+						foreach ($mascotas as $key => $value) {
+							if( is_array($value) ){
+								if( $value[0]+0 > 0 ){
+									$valor_mascotas[] = $value[0]*$value[1];
+								}
+							}
+						}
+					}
+					asort($valor_mascotas);
+
+					$cont = 0;
+					foreach ($valor_mascotas as $value) {
+						switch ( $cont ) {
+							case 0:
+								$descuento += $value;
+							break;
+							case 1:
+								$descuento += ($value*0.5);
+							break;
+						}
+						$cont++;
+						if( $cont == 2 ){
+							break;
+						}
+					}
+
+					$sub_descuento += $descuento;
+					if( ($total-$sub_descuento) < 0 ){
+						$descuento += ( $total-$sub_descuento );
+					}
+					if( $metas["individual_use"] == "yes" ){
+						return array(
+							$cupon,
+							$descuento,
+							1
+						);
+					}else{
+						return array(
+							$cupon,
+							$descuento,
+							0
+						);
+					}
+				}
+			}
  
 
 
