@@ -74,7 +74,7 @@ ini_set('display_errors', '0');
 					if( $duracion_con_mascotas < 7 ){
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] solo es valido por 7 noches o más."
+								"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más."
 							)); exit;
 						}else{
 							return false;
@@ -128,7 +128,7 @@ ini_set('display_errors', '0');
 					if( $duracion_con_mascotas < 7 ){
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] solo es valido por 7 noches o más."
+								"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más."
 							));
 							exit;
 						}else{
@@ -214,7 +214,7 @@ ini_set('display_errors', '0');
 					if( $duracion_con_mascotas < 7 ){
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] solo es valido por 7 noches o más."
+								"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más."
 							));
 							exit;
 						}else{
@@ -302,7 +302,7 @@ ini_set('display_errors', '0');
 					if( $duracion_con_mascotas < 7 ){
 						if( $validar ){
 							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] solo es valido por 7 noches o más.",
+								"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más.",
 							));
 							exit;
 						}else{
@@ -418,7 +418,7 @@ ini_set('display_errors', '0');
 				if( $duracion < 7 ){
 					if( $validar ){
 						echo json_encode(array(
-							"error" => "El cupón [ {$cupon} ] solo es valido por 7 noches o más.",
+							"error" => "El cupón [ {$cupon} ] solo es valido si reservas 7 noches o más.",
 						));
 						exit;
 					}else{
