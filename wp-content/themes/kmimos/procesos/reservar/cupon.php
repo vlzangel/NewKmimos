@@ -170,116 +170,40 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "2ngpet" ){
+				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
+				if( !es_nuevo($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
 
-				if( !es_petco($db, $cliente) ){
-					if( $validar ){
-						echo json_encode(array(
-							"error" => "El cupón solo es válido para usuarios de Petco"
-						)); exit;
-					}else{
-						return false;
-					}
-				}
+				$descuento = 0; $_noches = 2;
+				$uso_cupon = get_cupon($db, $cupon, $cliente);
+				if( $uso_cupon != false ){ $_noches = $uso_cupon->disponible; }
+				if( $_noches == 0 ){ if( $validar ){ error("Ya se ha usado la noche gratis"); }else{ return false; } }
 
-				if( !es_nuevo($db, $cliente) ){
-					if( $validar ){
-						echo json_encode(array(
-							"error" => "El cupón solo es válido para usuarios nuevos"
-						)); exit;
-					}else{
-						return false;
-					}
-				}
-				
-				$descuento = 0;
-				$usado = 0;
-				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
-				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
-				if( $cupon_meta != false ){
-					$usado = count($cupon_meta);
-				}
-
-				$paseos = [];
+				$noches = [];
 				for ($i=0; $i < $duracion; $i++) { 
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
 								for ($i2=0; $i2 < $value[0]; $i2++) { 
-									$paseos[] = $value[1];
-								}			
+									$noches[] = $value[1];
+								}								
 							}
 						}
 					}
-				}
+				} sort($noches);
 
-				asort($paseos);
-				$duracion_con_mascotas = count($paseos);
-				if( $usado == 0 ){
-					if( $duracion_con_mascotas < 7 ){
-						if( $validar ){
-							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más"
-							));
-							exit;
-						}else{
-							return false;
-						}
-					}
-				}else{
-					// if( $tipo_servicio == "hospedaje" ){
-						$data_cupon = json_decode( $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = 'usos_{$cliente}'") );
-						
-						if( $data_cupon->disponibles == 0 ){
-							if( $validar ){
-								echo json_encode(array(
-									"error" => "Ya uso las 2 noches gratis",
-									"cupon" => $cupon_post,
-									"data" => $data_cupon
-								));
-								exit;
-							}else{
-								return false;
-							}
-						}else{
-							$cont = 0;
-							foreach ($noches as $key => $value) {
-								$descuento += $value;
-								$cont++;
-								if( $cont == $data_cupon->disponibles ){
-									break;
-								}
-							}
-						}
+				if( $uso_cupon == false ){ if( count($noches) < 7 ){ if( $validar ){ error("El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más"); }else{ return false; } } }
 
-					/*}else{
-						if( $validar ){
-							echo json_encode(array(
-								"error" => "Solo puedes aplicar este cupon en servicios de hospedaje"
-							));
-							exit;
-						}else{
-							return false;
-						}
-					}*/
-				}
+				if( $tipo_servicio == "hospedaje" ){
+					$descuento = $noches[0]+$noches[1]; // CALCULO DESCUENTO
+				}else{ if( $uso_cupon != false ){
+					if( $validar ){ error("El cupón sólo es válido para servicios de hospedaje"); }else{ return false; }
+				} }
 
+				if( $descuento > 0 ){ $_noches = 0; }
+				
 				$sub_descuento += $descuento;
-				if( ($total-$sub_descuento) < 0 ){
-					$descuento += ( $total-$sub_descuento );
-				}
-				if( $metas["individual_use"] == "yes" ){
-					return array(
-						$cupon,
-						$descuento,
-						1
-					);
-				}else{
-					return array(
-						$cupon,
-						$descuento,
-						0
-					);
-				}
+				$descuento += ( ($total-$sub_descuento) < 0 ) ? $descuento += ( $total-$sub_descuento ) : 0 ;
+				return array( $cupon, $descuento, $individual_use, $_noches );
 			}
 
 			if( $cupon == "3pgpet" ){
