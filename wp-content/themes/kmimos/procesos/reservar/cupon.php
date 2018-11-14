@@ -304,10 +304,6 @@ ini_set('display_errors', '0');
 					$cont++;
 				}
 
-				// $temp_desc = $descuento;
-
-				// $descuento = $sub_total-$descuento;
-
 				$sub_descuento += $descuento;
 				if( ($total-$sub_descuento) < 0 ){
 					$descuento += ( $total-$sub_descuento );
@@ -337,8 +333,21 @@ ini_set('display_errors', '0');
 					}else{ return false; }
 				}
 
-				$descuento = 0;
-				if( $duracion < 7 ){
+				$paseos = [];
+				for ($i=0; $i < $duracion; $i++) { 
+					foreach ($mascotas as $key => $value) {
+						if( is_array($value) ){
+							if( $value[0]+0 > 0 ){
+								for ($i2=0; $i2 < $value[0]; $i2++) { 
+									$paseos[] = $value[1];
+								}			
+							}
+						}
+					}
+				} sort($paseos);
+
+				$_descuento = 0;
+				if( count($paseos) < 7 ){
 					if( $validar ){
 						echo json_encode(array(
 							"error" => "El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más",
@@ -348,26 +357,14 @@ ini_set('display_errors', '0');
 						return false;
 					}
 				}else{
-					$valor_mascotas = [];
-					for ($i=0; $i < $duracion; $i++) { 
-						foreach ($mascotas as $key => $value) {
-							if( is_array($value) ){
-								if( $value[0]+0 > 0 ){
-									$valor_mascotas[] = $value[0]*$value[1];
-								}
-							}
-						}
-					}
-					asort($valor_mascotas);
-
 					$cont = 0;
-					foreach ($valor_mascotas as $value) {
+					foreach ($paseos as $value) {
 						switch ( $cont ) {
 							case 0:
-								$descuento += $value;
+								$_descuento += $value;
 							break;
 							case 1:
-								$descuento += ($value*0.5);
+								$_descuento += ($value*0.5);
 							break;
 						}
 						$cont++;
@@ -375,25 +372,10 @@ ini_set('display_errors', '0');
 							break;
 						}
 					}
-
-					$sub_descuento += $descuento;
-					if( ($total-$sub_descuento) < 0 ){
-						$descuento += ( $total-$sub_descuento );
-					}
-					if( $metas["individual_use"] == "yes" ){
-						return array(
-							$cupon,
-							$descuento,
-							1
-						);
-					}else{
-						return array(
-							$cupon,
-							$descuento,
-							0
-						);
-					}
 				}
+
+				$sub_descuento += $_descuento;
+				return array( $cupon, $_descuento, $individual_use );
 			}
  
 
