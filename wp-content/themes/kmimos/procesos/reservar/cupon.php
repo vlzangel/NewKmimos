@@ -33,6 +33,23 @@ ini_set('display_errors', '0');
 		return $cant;
 	}
 
+	function error($msg, $data = ""){
+		echo json_encode(array( 
+			"error" => $msg,
+			"data" => $data
+		)); 
+		exit;
+	}
+
+	function get_cupon($db, $cupon, $cliente){
+		$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
+		$uso_cupon = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = 'uso_{$cliente}' ");
+		if( $uso_cupon != false ){
+			$uso_cupon = json_decode($uso_cupon);
+		}
+		return $uso_cupon;
+	}
+
 	function aplicarCupon($params){
 		/* 
 			$db, 
@@ -48,6 +65,8 @@ ini_set('display_errors', '0');
 
 		extract($params);
 
+		$sub_descuento = 0; $otros_cupones = 0;
+
 		$cupon = trim( strtolower($cupon) );
 
 		$xcupon = $db->get_row("SELECT * FROM wp_posts WHERE post_title = '{$cupon}'");
@@ -57,117 +76,64 @@ ini_set('display_errors', '0');
 			$metas[ $value->meta_key ] = $value->meta_value;
 		}
 
+		$individual_use = ( $metas["individual_use"] == "yes" ) ? 1 : 0;
+
 		if( count($cupones) > 0 ){
 			foreach ($cupones as $value) {
 				if( $value[2] == 1 ){
-					echo json_encode(array(
-						"error" => "El cupón [ {$value[0]} ] ya esta aplicado y no puede ser usado junto a otros cupones"
-					));
-					exit;
+					if( $validar ){ error("El cupón [ {$value[0]} ] ya esta aplicado y no puede ser usado junto a otros cupones"); }else{ return false; }
 				}
 			}
 		}
 		
 		/* Cupones Especiales */
 
+			/*echo json_encode(array(
+				"error" => "LOG",
+				"data" => $uso_cupon
+			)); exit;*/
+
 			if( $cupon == "1ngpet" ){
+				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
+				if( !es_nuevo($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
 
-				if( !es_petco($db, $cliente) ){
-					if( $validar ){
-						echo json_encode(array(
-							"error" => "El cupón solo es válido para usuarios de Petco"
-						)); exit;
-					}else{
-						return false;
-					}
-				}
+				$descuento = 0; $_noches = 1;
+				$uso_cupon = get_cupon($db, $cupon, $cliente);
+				if( $uso_cupon != false ){ $_noches = $uso_cupon->disponible; }
+				if( $_noches == 0 ){ if( $validar ){ error("Ya se ha usado la noche gratis"); }else{ return false; } }
 
-				if( !es_nuevo($db, $cliente) ){
-					if( $validar ){
-						echo json_encode(array(
-							"error" => "El cupón solo es válido para usuarios nuevos"
-						)); exit;
-					}else{
-						return false;
-					}
-				}
-
-				$descuento = 0;
-				$usado = 0;
-				$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
-				$cupon_meta = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = '_used_by' AND meta_value = '{$cliente}'");
-				if( $cupon_meta != false ){
-					$usado = count($cupon_meta);
-				}
-				$paseos = [];
+				$noches = [];
 				for ($i=0; $i < $duracion; $i++) { 
 					foreach ($mascotas as $key => $value) {
 						if( is_array($value) ){
 							if( $value[0]+0 > 0 ){
 								for ($i2=0; $i2 < $value[0]; $i2++) { 
-									$paseos[] = $value[1];
+									$noches[] = $value[1];
 								}								
 							}
 						}
 					}
-				}
-				asort($paseos);
-				$duracion_con_mascotas = count($paseos);
-				if( $usado == 0 ){
-					if( $duracion_con_mascotas < 7 ){
-						if( $validar ){
-							echo json_encode(array(
-								"error" => "El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más"
-							)); exit;
-						}else{
-							return false;
-						}
-					}
-				}else{
-					if( $usado > 1 ){ 
-						if( $validar ){
-							echo json_encode(array(
-								"error" => "Ya se ha usado la noche gratis"
-							)); exit;
-						}else{
-							return false;
-						}
-					}else{
-						$descuento = $paseos[0];
-					}
-				}
+				} asort($noches);
+
+				if( $uso_cupon == false ){ if( count($noches) < 7 ){ if( $validar ){ error("El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más"); }else{ return false; } } }
+
+				if( $tipo_servicio == "hospedaje" ){
+					$descuento = $noches[0];
+				}else{ if( $uso_cupon != false ){
+					if( $validar ){ error("El cupón sólo es válido para servicios de hospedaje"); }else{ return false; }
+				} }
+
+				if( $descuento > 0 ){ $_noches = 0; }
+				
 				$sub_descuento += $descuento;
-				if( ($total-$sub_descuento) < 0 ){
-					$descuento += ( $total-$sub_descuento );
-				}
-				if( $metas["individual_use"] == "yes" ){
-					return array( $cupon, $descuento, 1 );
-				}else{
-					return array( $cupon, $descuento, 0 );
-				}
+				$descuento += ( ($total-$sub_descuento) < 0 ) ? $descuento += ( $total-$sub_descuento ) : 0 ;
+				return array( $cupon, $descuento, $individual_use, $_noches, $uso_cupon );
 			}
 
 			if( $cupon == "2pgpet" ){
 
-				if( !es_petco($db, $cliente) ){
-					if( $validar ){
-						echo json_encode(array(
-							"error" => "El cupón solo es válido para usuarios de Petco"
-						)); exit;
-					}else{
-						return false;
-					}
-				}
-
-				if( !es_nuevo($db, $cliente) ){
-					if( $validar ){
-						echo json_encode(array(
-							"error" => "El cupón solo es válido para usuarios nuevos"
-						)); exit;
-					}else{
-						return false;
-					}
-				}
+				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
+				if( !es_nuevo($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
 
 				$descuento = 0;
 				$usado = 0;
@@ -699,7 +665,6 @@ ini_set('display_errors', '0');
 
 		/* Get Data */
 
-			$sub_descuento = 0; $otros_cupones = 0;
 			if( count($cupones) > 0 ){
 				foreach ($cupones as $value) {
 					$sub_descuento += $value[1];
