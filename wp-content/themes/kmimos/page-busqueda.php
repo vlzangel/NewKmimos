@@ -476,11 +476,39 @@
 		</div>
     ';
 
-    echo "<pre style='position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 9999999999999999999; display: none;'>";
+/*    echo "<pre style='position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 9999999999999999999; display: none;'>";
     	print_r($_SESSION['sql']);
-    echo "</pre>";
+    echo "</pre>";*/
 
     echo comprimir( $HTML );
+
+
+
+    if( isset($_GET["d"]) && !isset($_SESSION["mostar_popup"]) ){
+    	echo '
+			<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>Modal body text goes here.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script>
+				jQuery(document).ready(function(){
+					jQuery("#exampleModal").modal("show");
+				});
+			</script>
+    	';
+    	$_SESSION["mostar_popup"] = true;
+    }
     
    	get_footer(); 
 
