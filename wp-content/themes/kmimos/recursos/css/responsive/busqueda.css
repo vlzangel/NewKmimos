@@ -20,7 +20,9 @@
 	}
 
 	.resultados_item_bottom .boton:hover,
-	.km-opciones.maps .boton:hover {
+	.km-opciones.maps .boton:hover,
+	.km-opciones.maps .boton:hover,
+	.modal button.btn.boton.boton_verde:hover {
 	    background: #49eada !important;
 	}
 

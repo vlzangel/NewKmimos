@@ -39,9 +39,11 @@
     }
 
     if( isset($_GET["d"]) ){
-    	$_SESSION["busqueda"]["descuento"] = 1;
-    	$_SESSION["busqueda"]["checkin"] = date("d/m/Y");
-    	$_SESSION["busqueda"]["checkout"] = date("d/m/Y");
+    	$_SESSION["busqueda"] = [
+    		"descuento" => 1,
+    		"checkin" => date("d/m/Y"),
+    		"checkout" => date("d/m/Y")
+    	];
     }
 
     /* FILTROS */
@@ -484,20 +486,25 @@
 
 
 
-    if( isset($_GET["d"]) && !isset($_SESSION["mostar_popup"]) ){
+    if( isset($_GET["d"]) ){ // && !isset($_SESSION["mostar_popup"])
     	echo '
 			<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
+							<h5 class="modal-title">Cuidadores con descuentos</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							<p>Modal body text goes here.</p>
+							<p>
+								Este es el listado de cuidadores con oferta en todo México. Selecciona tu ubicación para encontrar los que están más cerca de ti.
+							</p>
 						</div>
+						<div class="modal-footer">
+					        <button type="button" class="btn boton boton_verde" data-dismiss="modal">Aceptar</button>
+				      	</div>
 					</div>
 				</div>
 			</div>
