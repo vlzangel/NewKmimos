@@ -30,8 +30,18 @@
 
     $user_id = get_current_user_id();
 
-    if( !is_array($_SESSION['busqueda']) ){
+    if( !is_array($_SESSION['busqueda']) && $_SESSION['busqueda'] != "" ){
     	$_SESSION['busqueda'] = unserialize($_SESSION['busqueda']);
+    }
+
+    if( $_SESSION['busqueda'] == "" ){
+    	$_SESSION["busqueda"] = [];
+    }
+
+    if( isset($_GET["d"]) ){
+    	$_SESSION["busqueda"]["descuento"] = 1;
+    	$_SESSION["busqueda"]["checkin"] = date("d/m/Y");
+    	$_SESSION["busqueda"]["checkout"] = date("d/m/Y");
     }
 
     /* FILTROS */

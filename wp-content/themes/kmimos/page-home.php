@@ -314,6 +314,14 @@
 
 		
 		$HTML .= '
+			<a href="'.get_home_url().'/busqueda/?d=1" style="display: block;">
+				<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/PC.jpg" width="100%" class="solo_pc" />
+				<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/MOVIL.jpg" width="100%" class="solo_movil" />
+			</a>
+		';
+
+
+		$HTML .= '
 		<!-- BENEFICIOS -->
 
 		<div class="beneficios_container">

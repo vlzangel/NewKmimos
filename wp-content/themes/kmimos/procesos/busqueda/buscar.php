@@ -14,7 +14,7 @@
 	$db = new db($conn); 
 
 	$hoy = date("d/m/Y");
-	$manana = date("d/m/Y", strtotime("+1 day") );
+	$manana = date("d/m/Y", strtotime("+1 day") );	
 
 	if( empty($_POST) ){
 		$_POST = ($_SESSION['busqueda']);
