@@ -287,7 +287,7 @@ ini_set('display_errors', '0');
 						}
 					}
 				}
-				arsort($valor_mascotas);
+				sort($valor_mascotas);
 				$cont = 0;
 				foreach ($valor_mascotas as $value) {
 					switch ( $cont ) {
