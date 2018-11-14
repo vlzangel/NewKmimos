@@ -119,7 +119,7 @@
 
     $foto = kmimos_get_foto($cuidador->user_id);
 
-    $desc = $cuidador->descripcion;
+    $desc = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
     $mas_info = '';
     if( strlen($desc) > 500 ){
 		$mas_info = mb_strcut($desc, 500, NULL, "UTF-8");
