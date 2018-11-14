@@ -159,11 +159,12 @@ ini_set('display_errors', '0');
 					$cont = 0; $disp = $_paseos; // CALCULO DESCUENTO
 					foreach ($paseos as $key => $value) {
 						if( $cont < $disp ){
-							$descuento = $value;
+							$descuento += $value;
 							$_paseos--;
 						}else{
 							break;
 						}
+						$cont++;
 					}
 				}else{ if( $uso_cupon != false ){
 					if( $validar ){ error("El cupón sólo es válido para servicios de paseos"); }else{ return false; }
@@ -203,11 +204,12 @@ ini_set('display_errors', '0');
 					$cont = 0; $disp = $_noches; // CALCULO DESCUENTO
 					foreach ($noches as $key => $value) {
 						if( $cont < $disp ){
-							$descuento = $value;
+							$descuento += $value;
 							$_noches--;
 						}else{
 							break;
 						}
+						$cont++;
 					}
 				}else{ if( $uso_cupon != false ){
 					if( $validar ){ error("El cupón sólo es válido para servicios de hospedaje"); }else{ return false; }
@@ -247,11 +249,12 @@ ini_set('display_errors', '0');
 					$cont = 0; $disp = $_paseos; // CALCULO DESCUENTO
 					foreach ($paseos as $key => $value) {
 						if( $cont < $disp ){
-							$descuento = $value;
+							$descuento += $value;
 							$_paseos--;
 						}else{
 							break;
 						}
+						$cont++;
 					}
 				}else{ if( $uso_cupon != false ){
 					if( $validar ){ error("El cupón sólo es válido para servicios de paseos"); }else{ return false; }
