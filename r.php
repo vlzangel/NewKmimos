@@ -46,7 +46,7 @@
 	$eliminar = [];
 
 	$path_galeria = __DIR__."/wp-content/uploads/cuidadores/galerias/";
-	function listar_directorios_ruta($ruta, $nivel = 0){ 
+	function listar_directorios_ruta($ruta, $nivel = 0, $sub_path = '/'){ 
 	   	global $imagenes;
 	   	global $eliminar;
 
@@ -55,12 +55,14 @@
 
 	      		if( $nivel <= 1 ){
 		      		$imagenes[ md5("$ruta") ] = [
-	               		"path" => "$ruta",
+	               		"path" => $ruta,
+	               		"sub_path" => $sub_path,
 	               		"imgs" => []
 	               	];
                	}else{
 		      		$eliminar[ md5("$ruta") ] = [
-	               		"path" => "$ruta",
+	               		"path" => $ruta,
+	               		"sub_path" => $sub_path,
 	               		"imgs" => []
 	               	];
                	}
@@ -68,7 +70,7 @@
 		            if (is_dir($ruta . $file) && $file!="." && $file!=".."){ 
 		               	// echo "<br>Directorio: $ruta$file"; 
 		               	// if( $nivel <= 1 ){
-		               		listar_directorios_ruta($ruta . $file . "/", $nivel+1 ); 
+		               		listar_directorios_ruta($ruta . $file . "/", $nivel+1,  $file); 
 		               	// }
 		            }else{
 		            	if ( $file!="." && $file!=".."){ 
@@ -90,13 +92,13 @@
 
 	listar_directorios_ruta($path_galeria);
 
-	foreach ($imagenes as $key => $value) {
-		if( count($value["imgs"]) > 0 ){
-			foreach ($value["imgs"] as $_key => $_value) {
-				redi( $value["path"], $_value );
-			}
-		}
-	}
+	// foreach ($imagenes as $key => $value) {
+	// 	if( count($value["imgs"]) > 0 ){
+	// 		foreach ($value["imgs"] as $_key => $_value) {
+	// 			redi( $value["path"], $_value );
+	// 		}
+	// 	}
+	// }
 
 /*	foreach ($eliminar as $key => $value) {
 		foreach ($value["imgs"] as $_key => $_value) {
