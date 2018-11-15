@@ -50,6 +50,15 @@
 */
 	echo comprimir( $HTML );
 
+    if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){
+		$current_user = wp_get_current_user();
+	    $user_id = $current_user->ID;
+	    set_uso_banner([
+    		"user_id" => $user_id
+    	]);
+    	unset($_SESSION["save_uso_banner"]);
+    }
+
 	/* Solo para iOS - [ $is_iOS en pre-header.php ] */
 	$class_iOS = '';
 	if( $is_iOS ){

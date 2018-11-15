@@ -525,13 +525,6 @@
     	}
 
     }
-
-    if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){
-	    set_uso_banner([
-    		"user_id" => $user_id
-    	]);
-    	unset($_SESSION["save_uso_banner"]);
-    }
     
    	get_footer(); 
 
