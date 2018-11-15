@@ -262,6 +262,12 @@
 		$reservar = new Reservas($db, $data_reserva);
 	    $id_orden = $reservar->new_reserva();
 
+	    set_uso_banner([
+    		"user_id" => $pagar->cliente,
+    		"type" => "reserva",
+    		"reserva_id" => $id_orden
+    	]);
+
 	    $temp_masc = $cantidades;
 	    unset($temp_masc->cantidad);
 

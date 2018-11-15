@@ -2,6 +2,57 @@
 	
 	include dirname(__FILE__).'/reconfiguracion.php';
 
+	function set_uso_banner($params){
+		extract($params);
+		if( !isset($_SESSION) ){ session_start(); }
+        global $wpdb;
+
+        /*
+			user_id
+			type
+			reserva_id > Opcional
+			conocer_id > Opcional
+        */
+
+		$item = $wpdb->get_row("SELECT * FROM usos_banner WHERE user_id = '{$user_id}' ");
+		if( $item == false ){ 
+			$wpdb->query("INSERT INTO usos_banner VALUES (NULL, '{$user_id}', NULL, NULL)"); 
+			$item = $wpdb->get_row("SELECT * FROM usos_banner WHERE user_id = '{$user_id}' ");
+		}
+
+		switch ( $type ) {
+			case 'reserva':
+				if( $item->reservas == "" ){
+					$reservas = [];
+				}else{
+					$reservas = json_decode($item->reservas);
+				}
+				$reservas[] = $reserva_id;
+				$reservas = json_encode($reservas);
+				$wpdb->query("UPDATE usos_banner SET reservas = '{$reservas}' WHERE id = '{$item->id}';");
+			break;
+			case 'conocer':
+				if( $item->conocer == "" ){
+					$conocer = [];
+				}else{
+					$conocer = json_decode($item->conocer);
+				}
+				$conocer[] = $conocer_id;
+				$conocer = json_encode($conocer);
+				$wpdb->query("UPDATE usos_banner SET conocer = '{$conocer}' WHERE id = '{$item->id}';");
+			break;
+		}
+        
+	}
+
+
+
+
+
+
+
+
+
 	function get_recurso($tipo){
 		return getTema()."/recursos/".$tipo."/";
 	}

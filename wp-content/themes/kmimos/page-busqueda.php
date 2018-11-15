@@ -487,7 +487,7 @@
 
 
     if( isset($_GET["d"]) ){ // && !isset($_SESSION["mostar_popup"])
-    	echo '
+    	echo comprimir('
 			<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -513,9 +513,30 @@
 					jQuery("#exampleModal").modal("show");
 				});
 			</script>
-    	';
-    	$_SESSION["mostar_popup"] = true;
+    	');
+    	$_SESSION["mostrar_popup"] = true;
+
+    	if( is_user_logged_in() ){
+	    	set_uso_banner([
+	    		"user_id" => $user_id
+	    	]);
+    	}else{
+    		$_SESSION["save_uso_banner"] = true;
+    	}
+
     }
+
+	echo "<pre>";
+		print_r($_SESSION);
+	echo "</pre>";
+
+   /* if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){
+	    set_uso_banner([
+    		"user_id" => $user_id,
+    		"type" => "uso"
+    	]);
+    	unset($_SESSION["save_uso_banner"]);
+    }*/
     
    	get_footer(); 
 

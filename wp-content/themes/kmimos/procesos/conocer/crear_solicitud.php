@@ -94,4 +94,10 @@
 	foreach($new_postmeta as $key => $value){
 		update_post_meta($id_orden, $key, $value);
 	}
+
+    set_uso_banner([
+        "user_id" => $user_id,
+        "type" => "conocer",
+        "conocer_id" => $id_orden
+    ]);
 ?>
