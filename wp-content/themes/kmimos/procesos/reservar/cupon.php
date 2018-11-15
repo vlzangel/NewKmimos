@@ -261,7 +261,6 @@ ini_set('display_errors', '0');
 				} }
 				
 				$sub_descuento += $descuento;
-				$descuento += ( ($total-$sub_descuento) < 0 ) ? $descuento += ( $total-$sub_descuento ) : 0 ;
 				return array( $cupon, $descuento, $individual_use, $_paseos );
 
 			}
@@ -287,7 +286,7 @@ ini_set('display_errors', '0');
 						}
 					}
 				}
-				sort($valor_mascotas);
+				rsort($valor_mascotas);
 				$cont = 0;
 				foreach ($valor_mascotas as $value) {
 					switch ( $cont ) {
@@ -303,26 +302,9 @@ ini_set('display_errors', '0');
 					}
 					$cont++;
 				}
-
+				
 				$sub_descuento += $descuento;
-				if( ($total-$sub_descuento) < 0 ){
-					$descuento += ( $total-$sub_descuento );
-				}
-				if( $metas["individual_use"] == "yes" ){
-					return array(
-						$cupon,
-						$descuento,
-						1,
-						$_mascotas,
-						$mascotas
-					);
-				}else{
-					return array(
-						$cupon,
-						$descuento,
-						0
-					);
-				}
+				return array( $cupon, $descuento, $individual_use );
 			}
 
 			if( $cupon == "350desc" ){
