@@ -156,6 +156,16 @@
                 'page'          =>  'reporte_otro',
                 'icon'          =>  '',
             );
+
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Reporte Banner'),
+                'short-title'   =>  __('Reporte Banner'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'reporte_usos',
+                'access'        =>  'manage_options',
+                'page'          =>  'reporte_usos',
+                'icon'          =>  '',
+            );
  
             $opciones_menu_reporte[] = array(
                 'title'         =>  __('Configuracion'),
@@ -263,6 +273,14 @@
         function terminos(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/terminos/page.php');
+        }
+    }
+
+    if(!function_exists('reporte_usos')){
+        function reporte_usos(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/seguimiento/page.php');
         }
     }
 
