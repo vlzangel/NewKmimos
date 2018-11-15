@@ -44,11 +44,11 @@
             $remanente = unserialize($remanente);
 
             if( $remanente["enable"] != 'no' ){
-                $wpdb->query("UPDATE wp_posts SET post_status = 'unpaid' WHERE ID = $id_orden;");
-                $wpdb->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = '$id_reserva';");
+                $wpdb->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = $id_orden;");
+                $wpdb->query("UPDATE wp_posts SET post_status = 'unpaid' WHERE ID = '$id_reserva';");
             }else{
-                $wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE ID = $id_orden;");
-                $wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = '$id_reserva';");
+                $wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = $id_orden;");
+                $wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE ID = '$id_reserva';");
             }
 
         break;
@@ -69,11 +69,11 @@
             $remanente = unserialize($remanente);
 
             if( $remanente["enable"] != 'no' ){
-                $wpdb->query("UPDATE wp_posts SET post_status = 'unpaid' WHERE ID = $id_orden;");
-                $wpdb->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = '$id_reserva';");
+                $wpdb->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = $id_orden;");
+                $wpdb->query("UPDATE wp_posts SET post_status = 'unpaid' WHERE ID = '$id_reserva';");
             }else{
-                $wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE ID = $id_orden;");
-                $wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = '$id_reserva';");
+                $wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = $id_orden;");
+                $wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE ID = '$id_reserva';");
             }
 
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");

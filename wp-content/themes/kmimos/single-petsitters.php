@@ -203,6 +203,7 @@
 	");
 
 	foreach ($servicios_ids as $key => $value) {
+		$value->slug = str_replace("-", "_", $value->slug);
 		$data_servicios[ $value->slug ] = $value->ID;
 	}
 

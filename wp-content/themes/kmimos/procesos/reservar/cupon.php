@@ -20,7 +20,7 @@ ini_set('display_errors', '0');
 
 	function es_nuevo($db, $user_id){
 		$_cant_reservas = $db->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$user_id} AND post_type = 'wc_booking'"); // AND post_status != 'cancelled'
-		return ( $_cant_reservas > 0 );
+		return ( $_cant_reservas == 0 );
 	}
 
 	function cant_mascotas($mascotas){
@@ -88,10 +88,12 @@ ini_set('display_errors', '0');
 		
 		/* Cupones Especiales */
 
-			/*echo json_encode(array(
-				"error" => "LOG",
-				"data" => $uso_cupon
-			)); exit;*/
+			if( $cupon == "kpet15" ){
+				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
+				if( !es_nuevo($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
+			}
+
+
 
 			if( $cupon == "1ngpet" ){
 				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }

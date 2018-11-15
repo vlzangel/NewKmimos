@@ -634,7 +634,7 @@ function mostrarCupones(){
 				nombreCupon = "Saldo a favor";
 				eliminarCupo = "";
 			}
-			if( eliminarCupo != "" ){
+			// if( eliminarCupo != "" ){
 				items += '<div class="km-option-resume-service">';
 				items += '	<span class="label-resume-service">'+nombreCupon+'</span>';
 
@@ -645,7 +645,7 @@ function mostrarCupones(){
 					items += '	<div class="mensaje_cupon">'+MENSAJES_CUPONES[nombreCupon]+' </div>';
 				}
 				items += '</div>';
-			}
+			// }
 		}
 
 	});
