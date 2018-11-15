@@ -265,7 +265,7 @@
 	    set_uso_banner([
     		"user_id" => $pagar->cliente,
     		"type" => "reserva",
-    		"reserva_id" => $id_orden
+    		"reserva_id" => $reservar->data["id_reserva"];
     	]);
 
 	    $temp_masc = $cantidades;
