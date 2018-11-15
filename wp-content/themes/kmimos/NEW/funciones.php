@@ -16,7 +16,7 @@
 
 		$item = $wpdb->get_row("SELECT * FROM usos_banner WHERE user_id = '{$user_id}' ");
 		if( $item == false ){ 
-			$wpdb->query("INSERT INTO usos_banner VALUES (NULL, '{$user_id}', NULL, NULL, NOW() )"); 
+			$wpdb->query("INSERT INTO usos_banner VALUES (NULL, '{$user_id}', '', '', NOW() )"); 
 			$item = $wpdb->get_row("SELECT * FROM usos_banner WHERE user_id = '{$user_id}' ");
 		}
 
