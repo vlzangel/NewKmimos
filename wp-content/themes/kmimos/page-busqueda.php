@@ -516,15 +516,15 @@
     	');
     	$_SESSION["mostrar_popup"] = true;
 
-    	if( is_user_logged_in() ){
-	    	set_uso_banner([
-	    		"user_id" => $user_id
-	    	]);
-    	}else{
-    		$_SESSION["save_uso_banner"] = true;
-    	}
-
     }
+
+	if( is_user_logged_in() ){
+    	set_uso_banner([
+    		"user_id" => $user_id
+    	]);
+	}else{
+		$_SESSION["save_uso_banner"] = true;
+	}
     
    	get_footer(); 
 
