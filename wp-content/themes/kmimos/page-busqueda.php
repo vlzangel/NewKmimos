@@ -486,7 +486,7 @@
 
 
 
-    if( isset($_GET["d"]) ){ // && !isset($_SESSION["mostar_popup"])
+    if( isset($_GET["d"]) && !isset($_SESSION["mostar_popup"]) ){
     	echo comprimir('
 			<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
