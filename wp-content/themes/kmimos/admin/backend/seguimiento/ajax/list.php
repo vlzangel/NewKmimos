@@ -14,7 +14,7 @@
                 utf8_encode($Procesos->get_cliente( $uso->user_id )),
                 implode(" - ", json_decode($uso->reservas)),
                 implode(" - ", json_decode($uso->conocer)),
-                date('d/m/Y', strtotime($uso->fecha))
+                date('d/m/Y H:i:s', strtotime($uso->fecha))
             );
 
         }
