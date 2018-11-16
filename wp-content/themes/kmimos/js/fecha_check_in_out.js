@@ -19,6 +19,7 @@ jQuery(document).ready(function(){
                         calcular();
                     }
                     jQuery(".fechas_container").removeClass("error_fecha");
+                    jQuery(".icon_flecha_fecha").css("display", "none");
                     jQuery('#checkout').change();
 
                     /* jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() ); */
@@ -36,6 +37,7 @@ jQuery(document).ready(function(){
                         calcular();
                     }
                     jQuery(".fechas_container").removeClass("error_fecha");
+                    jQuery(".icon_flecha_fecha").css("display", "none");
                     jQuery('#checkout').change();
 
                     /* jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() ); */
@@ -74,6 +76,7 @@ jQuery(document).ready(function(){
                 validar_busqueda_home();
             }
             jQuery(".fechas_container").removeClass("error_fecha");
+            jQuery(".icon_flecha_fecha").css("display", "none");
             jQuery('#checkin').change();
 
             /* jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() ); */
@@ -91,6 +94,7 @@ jQuery(document).ready(function(){
                 calcular();
             }
             jQuery(".fechas_container").removeClass("error_fecha");
+            jQuery(".icon_flecha_fecha").css("display", "none");
             jQuery('#checkout').change();
 
             /* jQuery("#ver_filtros_fechas").html( jQuery('#checkin').val()+" - "+jQuery('#checkout').val() ); */

@@ -3,6 +3,8 @@
         Template Name: Home
     */
 
+	date_default_timezone_set('America/Mexico_City');
+
     wp_enqueue_style('home_kmimos', get_recurso("css")."home.css", array(), '1.0.0');
     wp_enqueue_style('home_responsive', get_recurso("css")."responsive/home.css", array(), '1.0.0');
 
@@ -79,9 +81,8 @@
 					</div>
 
 					<div id="servicios_principales_container">
-						
 						<div class="servicios_principales_container">
-							<div class="servicios_principales_box">
+							<div class="servicios_principales_box"  style="position: relative;">
 								<label class="input_check_box" for="hospedaje">
 									<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
 									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
@@ -106,13 +107,16 @@
 									<div class="top_check"></div>
 								</label>
 
-								<label class="input_check_box" for="entrenamiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
-									<input type="checkbox" id="entrenamiento" name="servicios[]" value="entrenamiento"  />
+								<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
+									<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento"  />
 									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
 									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
-									<span>Entrenamiento</span>
+									<span>Adiestramiento</span>
 									<div class="top_check"></div>
 								</label>
+								<small class="error_principales" style="position: absolute; bottom: -13px; left: 6px; color: red; display: none;">
+									Debe seleccionar al menos un servicio principal
+								</small>
 							</div>
 						</div>
 
@@ -124,8 +128,8 @@
 
 						<div class="ubicacion_container">
 							<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion_2.svg" />
-							<input type="text" class="ubicacion_txt" name="ubicacion_txt" value="'.$_SESSION['busqueda']['ubicacion_txt'].'" placeholder="Ubicación estado municipio" autocomplete="off" />
-							<input type="hidden" class="ubicacion" name="ubicacion" value="'.$_SESSION['busqueda']['ubicacion'].'" />	
+							<input type="text" class="ubicacion_txt" name="ubicacion_txt" placeholder="Ubicación estado municipio" autocomplete="off" />
+							<input type="hidden" class="ubicacion" name="ubicacion" />	
 						    <div class="cerrar_list_box">
 						    	<div class="cerrar_list">X</div>
 						    	<ul class="ubicacion_list"></ul>
@@ -154,6 +158,7 @@
 							<div id="desde_container">
 								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
 								<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" readonly>
+								<img class="icon_flecha_fecha" src="'.get_recurso("img").'HOME/SVG/Flecha.svg" />
 								<small class="">Requerido</small>
 							</div>
 							<div>
@@ -165,8 +170,8 @@
 					</div>
 
 					<div class="tamanios_container">
-						<label class="input_check_box" for="paqueno">
-							<input type="checkbox" id="paqueno" name="tamanos[]" value="paquenos"  />
+						<label class="input_check_box" for="pequenos">
+							<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos"  />
 							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Pequenio.svg" />
 							<span>
 								<div class="tam_label_pc">Pequeño</div>
@@ -309,7 +314,16 @@
 			</div>	
 		</div>';
 
-		
+		if( time() > strtotime("2018-11-16 00:00:00") ){
+			$HTML .= '
+				<a href="'.get_home_url().'/busqueda/?d=1" style="display: block;">
+					<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/PC.jpg" width="100%" class="solo_pc" />
+					<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/MOVIL.jpg" width="100%" class="solo_movil" />
+				</a>
+			';
+		}
+
+
 		$HTML .= '
 		<!-- BENEFICIOS -->
 
@@ -439,7 +453,7 @@
 					+1,500 comentarios positivos en perfiles de cuidadores
 				</span>
 			</div>
-			<a href="'.get_home_url().'/testimonios" class="testimonios_link">Ver más comentarios como éste</a>
+			<a href="'.get_home_url().'/testimonios" class="testimonios_link" style="display: none;">Ver más comentarios como éste</a>
 		</div>';
 		
 		$HTML .= '
@@ -525,7 +539,7 @@
 									</div>
 								</div>
 								<div class="club_patitas_celda celda_30">
-									<input type="submit" value="Inscribete y gana" class="boton boton_morado">
+									<input type="submit" value="Inscríbete y gana" class="boton boton_morado">
 									<small>Ingresa los datos y haz click aquí</small>
 								</div>
 							</div>

@@ -197,28 +197,21 @@
 
 	function verificar_msg(){
 		var ini = String(jQuery("#checkin").val()).split("/");
-		var fin = String(jQuery("#checkout").val()).split("/");
-
-		var fechaInicio = new Date( ini[1]+"-"+ini[0]+"-"+ini[2] ).getTime();
-		var fechaFin    = new Date( fin[1]+"-"+fin[0]+"-"+fin[2] ).getTime();
-
-		var diff = fechaFin - fechaInicio;
+		var actual = new Date();
+		var fechaActual = new Date( actual.getFullYear()+"-"+(actual.getMonth()+1)+"-"+actual.getDate() ).getTime();
+		var fechaInicio    = new Date( ini[2]+"-"+ini[1]+"-"+ini[0] ).getTime();
+		var diff = fechaInicio - fechaActual;
 		dias = parseInt( diff/(1000*60*60*24) );
-
-		console.log( ini[1]+"-"+ini[0]+"-"+ini[2] );
-		console.log( fin[1]+"-"+fin[0]+"-"+fin[2] );
-		console.log( "Dias: "+dias );
-
 		if( dias <= 3 ){
 			var dias_str = ( dias != 1 ) ? "días": "día";
-			jQuery(".mesaje_reserva_inmediata_container.disponibilidad_PC span").html( dias+" "+dias_str);
-			jQuery(".mesaje_reserva_inmediata_container.disponibilidad_PC").css("display", "block");
+			var msg = ( dias == 0 ) ? "Tu reserva está por comenzar": "Tu reserva comienza en "+dias+" "+dias_str;
+			jQuery(".mesaje_reserva_inmediata_container span").html( msg);
+			jQuery(".msg_inicio_reserva").css("display", "block");
 			jQuery(".resultados_container").css("padding-top", "0px");
 		}else{
-			jQuery(".mesaje_reserva_inmediata_container.disponibilidad_PC").css("display", "none");
+			jQuery(".msg_inicio_reserva").css("display", "none");
 			jQuery(".resultados_container").css("padding-top", "20px");
 		}
-		// jQuery(".mesaje_reserva_inmediata_container.disponibilidad_PC")
 	}
 
 	function getPage(indice){
@@ -345,11 +338,16 @@
 			_this.parent().addClass("Ocultar_Flecha");
 		}else{
 			actual--;
-			if( actual != 0 ){
-				_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
+			if( actual > 0 ){
+				_this.parent().parent().find(".Flecha_Izquierda").removeClass("Ocultar_Flecha");
 			}else{
 				_this.parent().addClass("Ocultar_Flecha");
 			}
+
+			if( total > actual+actual ){
+					_this.parent().parent().find(".Flecha_Derecha").removeClass("Ocultar_Flecha");
+			}
+
 			_this.parent().parent().find(".destacados_container").attr("data-actual", actual);
 			_this.parent().parent().find(".destacados_container").find(".destacados_box").animate({left: "-"+(actual*( 100 / mostrando ) )+"%"});
 		}
@@ -548,7 +546,7 @@
 				        }
 
 				        infos[index] = new google.maps.InfoWindow({ 
-				            content: 	'<h1 class="maps_h1">'+cuidador.nom+'</h1>'
+				            content: 	'<a href="'+cuidador.url+'" class="maps_h1">'+cuidador.nom+'</a>'
 										+'<p class="maps_p" style="margin-bottom:0px;">'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
 										+'<div class="km-ranking maps_ranking">'
 										+	'<div class="km-ranking rating" style="display:inline-block">'
@@ -557,8 +555,8 @@
 										+'</div>'
 										+'<div class="km-opciones maps">'
 										+'    <div class="precio"><span>desde</span> MXN $ '+cuidador.pre+'</div>'
-										+'    <a href="'+cuidador.url+'" class="boton boton_border_gris solo_movil" >Conocer cuidador</a>'
-										+'    <a href="#" data-name="'+cuidador.nom+'" data-id="'+cuidador.post_id+'" class="boton boton_border_gris solo_pc" data-target="#popup-conoce-cuidador" onclick="open_conocer( jQuery( this ) )" >Conocer cuidador</a>'
+										+'    <a href="'+cuidador.url+'" class="boton boton_border_gris" >Conocer cuidador</a>'
+										/* +'    <a href="#" data-name="'+cuidador.nom+'" data-id="'+cuidador.post_id+'" class="boton boton_border_gris solo_pc" data-target="#popup-conoce-cuidador" onclick="open_conocer( jQuery( this ) )" >Conocer cuidador</a>' */
 										+'    <a href="'+cuidador.url+'" class="boton boton_verde">Reservar</a>'
 										+'</div>'
 				        });

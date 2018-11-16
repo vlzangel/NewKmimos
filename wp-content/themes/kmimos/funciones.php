@@ -538,7 +538,9 @@
 					"hospedaje" 				=> [ "Hospedaje", "Día y noche" ],
 		            "guarderia" 				=> [ "Guardería", "Solo día" ],
 		            "paseos" 					=> [ "Paseos", "" ],
-		            "adiestramiento" 			=> [ "Adiestramiento", "" ]
+		            "adiestramiento_basico" 	=> [ "Adiestramiento Básico", "" ],
+		            "adiestramiento_intermedio" => [ "Adiestramiento Intermedio", "" ],
+		            "adiestramiento_avanzado" 	=> [ "Adiestramiento Avanzado", "" ]
 				);
 			break;
 			case 'adicionales':

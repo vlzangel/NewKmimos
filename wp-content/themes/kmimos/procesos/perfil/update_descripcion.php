@@ -105,8 +105,8 @@
 
 
 	$sql  = "UPDATE cuidadores SET dni = '{$dni}', experiencia = '{$cuidando_desde}', direccion = '{$direccion}', check_in = '{$entrada}', check_out = '{$salida}', num_mascotas = '{$num_mascotas_casa}', mascotas_permitidas = '{$acepto_hasta}', latitud = '{$latitud}', longitud = '{$longitud}' WHERE id = {$cuidador_id}; ";
-	$sql .= "UPDATE cuidadores SET mascotas_cuidador = '{$mascotas_cuidador}', tamanos_aceptados = '{$tamanos_aceptados}', edades_aceptadas = '{$edades_aceptadas}', atributos = '{$atributos}', comportamientos_aceptados = '{$comportamientos_aceptados}' WHERE id = {$cuidador_id}; ";
-	$sql .= "UPDATE ubicaciones SET estado = '={$estado}=', municipios = '={$delegacion}=' WHERE cuidador = {$cuidador_id}; ";
+	$sql .= "UPDATE cuidadores SET estados = '={$estado}=', municipios = '={$delegacion}=', mascotas_cuidador = '{$mascotas_cuidador}', tamanos_aceptados = '{$tamanos_aceptados}', edades_aceptadas = '{$edades_aceptadas}', atributos = '{$atributos}', comportamientos_aceptados = '{$comportamientos_aceptados}' WHERE id = {$cuidador_id}; ";
+	//$sql .= "UPDATE ubicaciones SET estados = '={$estado}=', municipios = '={$delegacion}=' WHERE cuidador = {$cuidador_id}; ";
 
 	$query = "SELECT * FROM wp_posts WHERE post_author='{$user_id}' AND post_type='product'";
 	$result = $db->get_results($query);

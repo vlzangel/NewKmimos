@@ -141,6 +141,7 @@
 		$precios = serialize( $precios );
 	}
 
+	$duracion = $fechas->duracion;
     if( $fechas->duracion > 1 ){
     	$fechas->duracion .= " ".$diaNoche."s";
     }else{
@@ -219,7 +220,7 @@
 
 		"reservaFlash"			=> $fechas->flash,
 
-		"paquete"			=> $fechas->flash,
+		"paquete"			=> "",
 	);
 
 	if( $pagar->tipo_servicio == "paseos" ){
@@ -260,7 +261,22 @@
 		
 		$reservar = new Reservas($db, $data_reserva);
 	    $id_orden = $reservar->new_reserva();
-	    $reservar->aplicarCupones($id_orden, $cupones);
+
+	    set_uso_banner([
+    		"user_id" => $pagar->cliente,
+    		"type" => "reserva",
+    		"reserva_id" => $reservar->data["id_reserva"]
+    	]);
+
+	    $temp_masc = $cantidades;
+	    unset($temp_masc->cantidad);
+
+	    $reservar->aplicarCupones([
+	    	"order" => $id_orden,
+		    "cupones" => $cupones,
+		    "duracion" => $duracion,
+		    "mascotas" => $temp_masc,
+		]);
 
 	    if( isset($_SESSION[$id_session] ) ){
 			$new_reserva = $reservar->data["id_reserva"];
@@ -548,13 +564,13 @@
 		   		case 'tienda':
 		   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 48 hours'));
 		   			
-		   			$id_orden = $id_orden."_local";
+		   			// $id_orden = $id_orden."_local";
 
 		   			$chargeRequest = array(
 					    'method' => 'store',
 					    'amount' => (float) $pagar->total,
 					    'description' => 'Tienda',
-					    'order_id' => $id_orden,
+					    'order_id' => "0_".$id_orden,
 					    'due_date' => $due_date
 					);
 

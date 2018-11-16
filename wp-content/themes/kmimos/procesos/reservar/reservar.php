@@ -259,60 +259,71 @@ class Reservas {
         $this->db->multi_query( utf8_decode($sql) );
     }
 
-    function aplicarCupones($order, $cupones){
+    function aplicarCupones($params){
+        extract($params);
 
         if( !isset($_SESSION)){ session_start(); }
 
         foreach ($cupones as $key => $cupon) {
             $this->db->query( utf8_decode( "INSERT INTO wp_woocommerce_order_items VALUES (NULL, '{$cupon[0]}', 'coupon', '{$order}');" ) );
             $id_item = $this->db->insert_id();
-
             $sql = "
                 INSERT INTO wp_woocommerce_order_itemmeta VALUES
                     (NULL, '{$id_item}', 'discount_amount',     '{$cupon[1]}'),
                     (NULL, '{$id_item}', 'discount_amount_tax', '0');
             ";
-
             $this->db->multi_query( utf8_decode($sql) );
-
             $id_seccion = 'MR_'.$this->servicio."_".md5($this->user_id);
-
             $xsaldo = $this->db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id='{$this->user_id}' AND meta_key='kmisaldo'");
             $saldo = $xsaldo;
             if( strpos($cupon[0], "saldo") !== false  ){
                 if( isset($_SESSION[$id_seccion] ) ){
-
                     $saldo_temporal = $saldo+$_SESSION[$id_seccion]['saldo_temporal'];
                     if( $cupon[1] < $saldo_temporal ){
                         $saldo = $saldo_temporal-$cupon[1];
                     }else{
                         $saldo = 0;
                     }
-
                 }else{
                     $saldo -= $cupon[1];
                     if( $saldo < 0){ $saldo = 0; }
                 }
-
-                $saldo = ( $saldo < 0 )? 0 : $saldo ;
-
+                $saldo = ( $saldo < 0 ) ? 0 : $saldo ;
                 if( $xsaldo === false ){
                     $this->db->query("INSERT INTO wp_usermeta VALUES (NULL, {$this->user_id}, 'kmisaldo', '{$saldo}');");
                 }else{
                     $this->db->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$this->user_id} AND meta_key = 'kmisaldo';");
                 }
-
             }else{
                 $id_cupon = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title='{$cupon[0]}' AND post_type='shop_coupon'");
-                $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', '_used_by', '{$this->user_id}');" ) );
 
-                $usage_count = $this->db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key LIKE 'usage_count'");
-                if( $usage_count != false ){
-                    $usage_count++;
-                    $this->db->query("UPDATE wp_postmeta SET meta_value = '{$usage_count}' WHERE post_id = {$id_cupon} AND meta_key LIKE 'usage_count'");
-                }else{
-                    $this->db->query("INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', 'usage_count', '1');");
+                $especiales = [
+                    "1ngpet",
+                    "2pgpet",
+                    "2ngpet",
+                    "3pgpet"
+                ];
+                if( in_array($cupon[0], $especiales) ){
+                    $uso_cupon = $this->db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = 'uso_{$this->user_id}' ");
+                    if( $uso_cupon == false ){
+                        $data = json_encode([
+                            "ordenes" => [$order],
+                            "disponible" => $cupon[3]
+                        ]);
+                        $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', 'uso_{$this->user_id}', '{$data}');" ) );
+                    }else{
+                        $uso_cupon = json_decode($uso_cupon);
+                        $uso_cupon->ordenes[] = $order;
+                        $uso_cupon = json_encode([
+                            "ordenes" => $uso_cupon->ordenes,
+                            "disponible" => $cupon[3]
+                        ]);
+                        $this->db->query( utf8_decode( "UPDATE wp_postmeta SET meta_value = '{$uso_cupon}' WHERE post_id = {$id_cupon} AND meta_key = 'uso_{$this->user_id}' " ) );
+                    }
                 }
+
+                $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', '_used_by', '{$this->user_id}');" ) );
+                $this->db->query("UPDATE wp_postmeta SET meta_value = (meta_value + 1) WHERE post_id = {$id_cupon} AND meta_key = 'usage_count'");
 
             }
         }
@@ -320,5 +331,115 @@ class Reservas {
     }
 
 }
+
+
+
+
+                
+                /*switch ( $cupon[0] ) {
+
+                    case '2pgpet':
+                        $veces_usado = $this->db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = '_used_by' AND meta_value = '{$this->user_id}'");
+                        if( $veces_usado !== false ){
+                            $datos = json_decode( $this->db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = 'paseos_{$this->user_id}' ") );
+                            
+                            $cont_paseos = [];
+                            for ($i=0; $i < $duracion; $i++) { 
+                                foreach ($mascotas as $mascota) {
+                                    if( is_array($mascota) ){
+                                        if( $mascota[0]+0 > 0 ){
+                                            $cont_paseos[] = $mascota[0]*$mascota[1];
+                                        }
+                                    }
+                                }
+                            }
+
+                            $num = count($cont_paseos);
+                            $num = $datos->disponibles-$num;
+                            $num = ( $num >= 0 ) ? $num: 0;
+                            $datos->orden[] = $order;
+                            $paseos = json_encode([
+                                "orden" => $datos->orden,
+                                "disponibles" => $num
+                            ]);
+                            $this->db->query( utf8_decode( "UPDATE wp_postmeta SET meta_value = '{$paseos}' WHERE post_id = {$id_cupon} AND meta_key LIKE 'paseos_{$this->user_id}' " ) );
+                        }else{
+                            $paseos = json_encode([
+                                "orden" => [$order],
+                                "disponibles" => 2
+                            ]);
+                            $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', 'paseos_{$this->user_id}', '{$paseos}');" ) );
+                        }
+                    break;
+
+                    case '2ngpet':
+                        $veces_usado = $this->db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = '_used_by' AND meta_value = '{$this->user_id}'");
+                        if( $veces_usado !== false ){
+                            $datos = json_decode( $this->db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = 'usos_{$this->user_id}' ") );
+                            
+                            $cont_paseos = [];
+                            for ($i=0; $i < $duracion; $i++) { 
+                                foreach ($mascotas as $mascota) {
+                                    if( is_array($mascota) ){
+                                        if( $mascota[0]+0 > 0 ){
+                                            $cont_paseos[] = $mascota[0]*$mascota[1];
+                                        }
+                                    }
+                                }
+                            }
+
+                            $num = count($cont_paseos);
+                            $num = $datos->disponibles-$num;
+                            $num = ( $num >= 0 ) ? $num: 0;
+                            $datos->orden[] = $order;
+                            $usos = json_encode([
+                                "orden" => $datos->orden,
+                                "disponibles" => $num
+                            ]);
+                            $this->db->query( utf8_decode( "UPDATE wp_postmeta SET meta_value = '{$usos}' WHERE post_id = {$id_cupon} AND meta_key LIKE 'usos_{$this->user_id}' " ) );
+                        }else{
+                            $usos = json_encode([
+                                "orden" => [$order],
+                                "disponibles" => 2
+                            ]);
+                            $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', 'usos_{$this->user_id}', '{$usos}');" ) );
+                        }
+                    break;
+
+                    case '3pgpet':
+                        $veces_usado = $this->db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = '_used_by' AND meta_value = '{$this->user_id}'");
+                        if( $veces_usado !== false ){
+                            $datos = json_decode( $this->db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = 'paseos_{$this->user_id}' ") );
+                            
+                            $cont_paseos = [];
+                            for ($i=0; $i < $duracion; $i++) { 
+                                foreach ($mascotas as $mascota) {
+                                    if( is_array($mascota) ){
+                                        if( $mascota[0]+0 > 0 ){
+                                            $cont_paseos[] = $mascota[0]*$mascota[1];
+                                        }
+                                    }
+                                }
+                            }
+
+                            $num = count($cont_paseos);
+                            $num = $datos->disponibles-$num;
+                            $num = ( $num >= 0 ) ? $num: 0;
+                            $datos->orden[] = $order;
+                            $paseos = json_encode([
+                                "orden" => $datos->orden,
+                                "disponibles" => $num
+                            ]);
+                            $this->db->query( utf8_decode( "UPDATE wp_postmeta SET meta_value = '{$paseos}' WHERE post_id = {$id_cupon} AND meta_key LIKE 'paseos_{$this->user_id}' " ) );
+                        }else{
+                            $paseos = json_encode([
+                                "orden" => [$order],
+                                "disponibles" => 3
+                            ]);
+                            $this->db->query( utf8_decode( "INSERT INTO wp_postmeta VALUES (NULL, '{$id_cupon}', 'paseos_{$this->user_id}', '{$paseos}');" ) );
+                        }
+                    break;
+
+                }*/
 
 ?>

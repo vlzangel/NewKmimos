@@ -5,5 +5,7 @@
 
 	// update_ubicacion();
 	// update_titulo();
-	update_cuidador_url();
+	// update_cuidador_url();
+
+	update_servicios();
 ?>

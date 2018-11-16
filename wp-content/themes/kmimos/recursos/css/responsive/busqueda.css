@@ -20,10 +20,18 @@
 	}
 
 	.resultados_item_bottom .boton:hover,
-	.km-opciones.maps .boton:hover {
+	.km-opciones.maps .boton:hover,
+	.km-opciones.maps .boton:hover,
+	.modal button.btn.boton.boton_verde:hover {
 	    background: #49eada !important;
 	}
 
+}
+
+@media (min-width: 1375px){
+	.huesitos_container{
+		display: inline-block;
+	}
 }
 
 @media (max-width: 768px){
@@ -628,6 +636,13 @@
 	.iOS .filtos_container form {
 	    overflow: unset !important;
         height: auto !important;
+	}
+
+	.resultados_item_subtitulo {
+	    font-size: 9px;
+	    font-weight: 400;
+	    padding: 0px 3px 3px;
+	    display: block !important;
 	}
 
 }

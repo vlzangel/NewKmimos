@@ -457,7 +457,7 @@
 
 	.pc_seccion_2 .pc_seccion_2_der span,
 	.pc_seccion_2 .pc_seccion_2_der label {
-	    display: none;
+	    display: none !important;
 	}
 
 	#desde_container{

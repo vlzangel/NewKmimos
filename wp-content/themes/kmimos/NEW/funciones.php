@@ -2,6 +2,57 @@
 	
 	include dirname(__FILE__).'/reconfiguracion.php';
 
+	function set_uso_banner($params){
+		extract($params);
+		if( !isset($_SESSION) ){ session_start(); }
+        global $wpdb;
+
+        /*
+			user_id
+			type
+			reserva_id > Opcional
+			conocer_id > Opcional
+        */
+
+		$item = $wpdb->get_row("SELECT * FROM usos_banner WHERE user_id = '{$user_id}' ");
+		if( $item == false ){ 
+			$wpdb->query("INSERT INTO usos_banner VALUES (NULL, '{$user_id}', '', '', NOW() )"); 
+			$item = $wpdb->get_row("SELECT * FROM usos_banner WHERE user_id = '{$user_id}' ");
+		}
+
+		switch ( $type ) {
+			case 'reserva':
+				if( $item->reservas == "" ){
+					$reservas = [];
+				}else{
+					$reservas = json_decode($item->reservas);
+				}
+				$reservas[] = $reserva_id;
+				$reservas = json_encode($reservas);
+				$wpdb->query("UPDATE usos_banner SET reservas = '{$reservas}' WHERE id = '{$item->id}';");
+			break;
+			case 'conocer':
+				if( $item->conocer == "" ){
+					$conocer = [];
+				}else{
+					$conocer = json_decode($item->conocer);
+				}
+				$conocer[] = $conocer_id;
+				$conocer = json_encode($conocer);
+				$wpdb->query("UPDATE usos_banner SET conocer = '{$conocer}' WHERE id = '{$item->id}';");
+			break;
+		}
+        
+	}
+
+
+
+
+
+
+
+
+
 	function get_recurso($tipo){
 		return getTema()."/recursos/".$tipo."/";
 	}
@@ -71,7 +122,6 @@
                 	"nombre" => $nombre,
                 	"url" => $url,
                 	"desde" => ($cuidador->hospedaje_desde*getComision()),
-                	"distancia" => floor($_cuidador->DISTANCIA),
                 	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
                 	"experiencia" => $anios_exp,
                 	"valoraciones" => $cuidador->valoraciones,
@@ -108,6 +158,11 @@
 		        	></div>
 		        ';
 
+		        $distancia = '';
+		        if( isset($destacado["distancia"]) ){
+		        	$distancia = '<div class="desacado_experiencia">a '.$destacado["distancia"].' de tu búsqueda</div>';
+		        }
+
 	        	$top_destacados .= '
 	        		<div class="destacados_item" data-latitud="'.$destacado["latitud"].'" data-longitud="'.$destacado["longitud"].'">
 	        			<div class="desacado_img">
@@ -120,6 +175,7 @@
 	        			</div>
 	        			<div class="desacado_experiencia">'.$destacado["experiencia"].' años de experiencia</div>
 	        			<div class="desacado_monto">Desde <strong>MXN $ '.round($destacado["desde"]).'</strong></div>
+	        			'.$distancia.'
 	        			<div class="desacado_ranking_container">'.$destacado["ranking"].'</div>
 	        			<div class="desacado_experiencia">'.$destacado["valoraciones"].' valoraciones</div>
 	        			<a class="desacado_boton_reservar" href="'.$destacado["url"].'">Reservar</a>
@@ -227,7 +283,7 @@
 								<div class="resultados_item_comentario_avatar" style="background-image: url( '.$_cuidador->comentario->foto.' );"></div>
 							</div>
 							<div class="resultados_item_comentario_contenido">
-								'.( $_cuidador->comentario->comment_content ).' <a href="#">(Ver más)</a>
+								'.( $_cuidador->comentario->comment_content ).' <a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'/#km-comentario">(Ver más)</a>
 							</div>
 							<div class="resultados_item_comentario_favorito">
 								<span>
@@ -266,6 +322,10 @@
 				}
 				$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
 
+				if( isset($cuidador->DISTANCIA) ){
+					$distancia = '<div class="resultados_item_subtitulo">a '.floor($cuidador->DISTANCIA).' km de tu búsqueda</div>';
+				}
+
 				$HTML .= '
 					<div class="resultado_item">
 						<div class="resultados_hover"></div>
@@ -293,16 +353,16 @@
 									</div>
 									<div class="resultados_item_info">
 										<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_titulo"> <span>'.($i+1).'.</span> '.($_cuidador->titulo).'</a>
-										<div class="resultados_item_subtitulo">"Tus mascotas se sentirán como en casa mietras se queden"</div>
+										'.$distancia.'
 										<div class="resultados_item_direccion" title="'.$_cuidador->direccion.'">'.($direccion).'</div>
 										<div class="resultados_item_servicios">
 											'.get_servicios_new($_cuidador->adicionales).'
-											<div class="resultados_item_comentarios">
+											<!-- <div class="resultados_item_comentarios">
 												'.$_cuidador->valoraciones.' comentarios
-											</div>
-											<div class="resultados_item_ranking">
-												'.kmimos_petsitter_rating($_cuidador->id_post).'
-											</div>
+											</div> -->
+												<div class="resultados_item_ranking">
+													'.kmimos_petsitter_rating($_cuidador->id_post).'
+												</div>
 										</div>
 										<div class="resultados_item_experiencia">
 											'.$anios_exp.' años de experiencia
@@ -541,7 +601,7 @@
 		            if (!is_dir($path_galeria.$file) && $file!="." && $file!=".."){ 
 		               	$imagenes_normales[] = $sub_path_galeria.$file;
 		               	if( $cont <= 7 ){
-		               		$imagenes_mini[] = $sub_path_galeria."mini/".$file;
+		               		$imagenes_mini[] = $sub_path_galeria.$file;
 		               	}
 		            } 
 		            $cont++;

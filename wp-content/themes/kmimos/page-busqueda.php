@@ -30,6 +30,22 @@
 
     $user_id = get_current_user_id();
 
+    if( !is_array($_SESSION['busqueda']) && $_SESSION['busqueda'] != "" ){
+    	$_SESSION['busqueda'] = unserialize($_SESSION['busqueda']);
+    }
+
+    if( $_SESSION['busqueda'] == "" ){
+    	$_SESSION["busqueda"] = [];
+    }
+
+    if( isset($_GET["d"]) ){
+    	$_SESSION["busqueda"] = [
+    		"descuento" => 1,
+    		"checkin" => date("d/m/Y"),
+    		"checkout" => date("d/m/Y")
+    	];
+    }
+
     /* FILTROS */
 
 	    $tam = getTamanos();
@@ -104,10 +120,11 @@
 		$servicios_principales_str = '';
 		foreach ($servicios_principales as $key => $servicio) {
 			$_checked = ( is_array($_SESSION["busqueda"]["servicios"]) && in_array($key, $_SESSION["busqueda"]["servicios"]) ) ? "checked" : "";
+			$icono = ( strpos($key, "adiestramiento") === false ) ? $key: "adiestramiento";
 			$_temp = '
 				<label class="input_check_box" for="'.$key.'">
 					<input type="checkbox" id="'.$key.'" name="servicios[]" value="'.$key.'" '.$_checked.' />
-					<div class="principales_img prin_icon_'.$key.'"></div>
+					<div class="principales_img prin_icon_'.$icono.'"></div>
 					<div class="principales_info">
 						<div>'.$servicio[0].'</div>
 						<span>'.$servicio[1].'</span>
@@ -124,8 +141,10 @@
     include ('partes/cuidador/conocelo.php');
 
     $dias = "";
-    foreach ($_SESSION['busqueda']['dias'] as $key => $value) {
-    	$dias .= '<input type="hidden" name="dias[]" value="'.$value.'" />';
+    if( is_array($_SESSION['busqueda']['dias']) && count($_SESSION['busqueda']['dias']) > 0 ){
+	    foreach ($_SESSION['busqueda']['dias'] as $key => $value) {
+	    	$dias .= '<input type="hidden" name="dias[]" value="'.$value.'" />';
+	    }
     }
 
 
@@ -234,8 +253,8 @@
 						</label>
 					</div>
 					<div class="tamanios_container">
-						<label class="input_check_box" for="paqueno">
-							<input type="checkbox" id="paqueno" name="tamanos[]" value="pequenos" '.$tam['pequenos'].' />
+						<label class="input_check_box" for="pequenos">
+							<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos" '.$tam['pequenos'].' />
 							<span>
 								<img class="icon_fecha" src="'.get_recurso("img").'BUSQUEDA/RESPONSIVE/SVG/Pequenio.svg" />
 								<div class="tam_label_pc">Peq.</div>
@@ -274,7 +293,7 @@
 						</label>
 					</div>
 					<div>
-						<input type="text" name="nombre" placeholder="Buscar Cuidador por Nombre" class="input" value="'.$_SESSION['busqueda']['nombre'].'" />
+						<input type="text" id="nombre" name="nombre" placeholder="Buscar Cuidador por Nombre" class="input nombre" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
 					<div class="adicionales_container">
 						<label class="input_check_box" for="corte">
@@ -405,22 +424,26 @@
 					</div>
     			</form>
 
-    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
-    				<div class="mesaje_reserva_inmediata_izq"></div>
-    				<div class="mesaje_reserva_inmediata_der">
-    					<strong>Tu reserva comienza en <span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
-    				</div>
+    			<div class="msg_inicio_reserva">
+	    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
+	    				<div class="mesaje_reserva_inmediata_izq"></div>
+	    				<div class="mesaje_reserva_inmediata_der">
+	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
+	    				</div>
+	    			</div>
     			</div>
 
     			<div id="seccion_destacados">
     				'.$destacados.'
     			</div>
 
-    			<div class="mesaje_reserva_inmediata_container disponibilidad_MOVIl">
-    				<div class="mesaje_reserva_inmediata_izq"></div>
-    				<div class="mesaje_reserva_inmediata_der">
-    					<strong>Tu reserva comienza en 3 días.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece aquí arriba a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
-    				</div>
+    			<div class="msg_inicio_reserva">
+	    			<div class="mesaje_reserva_inmediata_container disponibilidad_MOVIl">
+	    				<div class="mesaje_reserva_inmediata_izq"></div>
+	    				<div class="mesaje_reserva_inmediata_der">
+	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece aquí arriba a tu izquierda, para encontrar cuidadores con los que puedas reservar al momento.
+	    				</div>
+	    			</div>
     			</div>
     			
     			<div class="cantidad_resultados_container">
@@ -455,11 +478,53 @@
 		</div>
     ';
 
-    echo "<pre style='position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 9999999999999999999; display: none;'>";
+/*    echo "<pre style='position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 9999999999999999999; display: none;'>";
     	print_r($_SESSION['sql']);
-    echo "</pre>";
+    echo "</pre>";*/
 
     echo comprimir( $HTML );
+
+
+
+    if( isset($_GET["d"]) && !isset($_SESSION["mostar_popup"]) ){
+    	echo comprimir('
+			<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Cuidadores con descuentos</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>
+								Este es el listado de cuidadores con oferta en todo México. Selecciona tu ubicación para encontrar los que están más cerca de ti.
+							</p>
+						</div>
+						<div class="modal-footer">
+					        <button type="button" class="btn boton boton_verde" data-dismiss="modal">Aceptar</button>
+				      	</div>
+					</div>
+				</div>
+			</div>
+			<script>
+				jQuery(document).ready(function(){
+					jQuery("#exampleModal").modal("show");
+				});
+			</script>
+    	');
+    	$_SESSION["mostrar_popup"] = true;
+
+    }
+
+	if( is_user_logged_in() ){
+    	set_uso_banner([
+    		"user_id" => $user_id
+    	]);
+	}else{
+		$_SESSION["save_uso_banner"] = true;
+	}
     
    	get_footer(); 
 

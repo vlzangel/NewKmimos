@@ -11,6 +11,11 @@
 	.vlz_destacados_contenedor {
 	    width: 50%;
 	}
+
+    .mensaje_cupon{
+        clear: both !important;
+        font-size: 10px !important;
+    }
 }
 @media (max-width: 500px){
 

@@ -13,17 +13,22 @@
 	global $wpdb;
 	global $post;
 
-	if( !isset($_SESSION["DATA_CUIDADORES"]) ){
-		$_temp = pre_carga_data_cuidadores();
-		$_SESSION["DATA_CUIDADORES"] = $_temp[0];
-		$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
-	}
+	$_temp = pre_carga_data_cuidadores();
+	$_SESSION["DATA_CUIDADORES"] = $_temp[0];
+	$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
 
 	$_cuidador = $_SESSION["DATA_CUIDADORES"][ $_SESSION["CUIDADORES_USER_ID"][ $post->post_author ] ];
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");
 
 	$current_user = wp_get_current_user();
     $user_id = $current_user->ID;
+
+    if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){
+	    set_uso_banner([
+    		"user_id" => $user_id
+    	]);
+    	unset($_SESSION["save_uso_banner"]);
+    }
 
 	if( $_cuidador->activo == 0 && $current_user->roles[0] != "administrator" ){
 		header("location: ".get_home_url());
@@ -121,9 +126,11 @@
 
     $foto = kmimos_get_foto($cuidador->user_id);
 
-    $desc = $cuidador->descripcion;
+    $desc = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
+    $mas_info = '';
     if( strlen($desc) > 500 ){
-		$desc = mb_strcut($desc, 0, 500, "UTF-8")."...";
+		$mas_info = mb_strcut($desc, 500, NULL, "UTF-8");
+		$desc = mb_strcut($desc, 0, 500, "UTF-8").'<span class="mas_info" data-info="'.$mas_info.'">...</span> <span class="ver_mas">Ver más</span>';
 	}
 
 	$mascota_cuidador = unserialize( $cuidador->mascotas_cuidador );
@@ -196,6 +203,7 @@
 	");
 
 	foreach ($servicios_ids as $key => $value) {
+		$value->slug = str_replace("-", "_", $value->slug);
 		$data_servicios[ $value->slug ] = $value->ID;
 	}
 
@@ -203,54 +211,58 @@
 
 	$servicios_str = "<div class='servicios_container'>";
 		foreach ($_cuidador->adicionales as $servicio_id => $servicio) {
-			if( array_key_exists($servicio_id, $tipos_servicios) ){
-				$precios = ''; $desde = 0;
-				foreach ($servicio as $key => $value) {
-					if( $key == "pequenos"){ $desde = $value; }
-					if( $value > 0 && $desde > $value ){ $desde = $value; }
-					$precios .= '
-						<a class="servicio_tamanio" href="'.get_home_url().'/reservar/'.$data_servicios[ $servicio_id ].'/">
-							<div class="servicio_table">
-								<div class="servicio_celda servicio_icon">
-									<img src="'.get_recurso("img").'GENERALES/ICONOS/TAMANIOS/'.$key.'.svg" />
-								</div>
-								<div class="servicio_celda servicio_titulo">
-									<span>'.mb_strtolower($tamanos_data[$key][0], 'UTF-8').'</span>
-									<small>'.$tamanos_data[$key][1].'</small>
-								</div>
-								<div class="servicio_celda servicio_precio">
-									MXN $'.number_format( ($value*getComision()) , 2, ',', '.').'
-								</div>
-								<div class="servicio_celda">
-									<img class="check" src="'.get_recurso("img").'HOME/SVG/Check.svg" />
+			if( array_key_exists($servicio_id, $tipos_servicios) ) {
+				if( $servicio_id == "hospedaje" || $_cuidador->adicionales["status_".$servicio_id]+0 == 1 ){
+					$precios = ''; $desde = 0;
+					foreach ($servicio as $key => $value) {
+						if( $key == "pequenos"){ $desde = $value; }
+						if( $value > 0 && $desde > $value ){ $desde = $value; }
+						if( $desde == 0 ){ $desde = $value; }
+						if( $value > 0 ){
+							$precios .= '
+								<a class="servicio_tamanio" href="'.get_home_url().'/reservar/'.$data_servicios[ $servicio_id ].'/">
+									<div class="servicio_table">
+										<div class="servicio_celda servicio_icon">
+											<img src="'.get_recurso("img").'GENERALES/ICONOS/TAMANIOS/'.$key.'.svg" />
+										</div>
+										<div class="servicio_celda servicio_titulo">
+											<span>'.mb_strtolower($tamanos_data[$key][0], 'UTF-8').'</span>
+											<small>'.$tamanos_data[$key][1].'</small>
+										</div>
+										<div class="servicio_celda servicio_precio">
+											MXN $'.number_format( ($value*getComision()) , 2, ',', '.').'
+										</div>
+										<div class="servicio_celda">
+											<img class="check" src="'.get_recurso("img").'HOME/SVG/Check.svg" />
+										</div>
+									</div>
+								</a>
+							';
+						}
+					}
+					if( $desde > 0 ){
+						$servicios_str .= '
+						<div class="servicio_item_box">
+							<div class="servicio_item">
+								<div class="servicio_table">
+									<div class="servicio_celda servicio_icon">
+										<img src="'.get_recurso("img").'GENERALES/ICONOS/SERVICIOS_PRINCIPALES/'.$servicio_id.'.svg" />
+									</div>
+									<div class="servicio_celda servicio_titulo">
+										<span>'.$tipos_servicios[$servicio_id][0].'</span>
+										<small>'.$tipos_servicios[$servicio_id][1].'</small>
+									</div>
+									<div class="servicio_celda servicio_desde">
+										<small>Desde</small>
+										<span>MXN $'.number_format( ($desde*getComision()) , 2, ',', '.').'</span>
+									</div>
 								</div>
 							</div>
-						</a>
-					';
-				}
-
-				if( $desde > 0 ){
-					$servicios_str .= '
-					<div class="servicio_item_box">
-						<div class="servicio_item">
-							<div class="servicio_table">
-								<div class="servicio_celda servicio_icon">
-									<img src="'.get_recurso("img").'GENERALES/ICONOS/SERVICIOS_PRINCIPALES/'.$servicio_id.'.svg" />
-								</div>
-								<div class="servicio_celda servicio_titulo">
-									<span>'.$tipos_servicios[$servicio_id][0].'</span>
-									<small>'.$tipos_servicios[$servicio_id][1].'</small>
-								</div>
-								<div class="servicio_celda servicio_desde">
-									<small>Desde</small>
-									<span>MXN $'.number_format( ($desde*getComision()) , 2, ',', '.').'</span>
-								</div>
+							<div class="servicio_precios">
+								'.$precios.'
 							</div>
-						</div>
-						<div class="servicio_precios">
-							'.$precios.'
-						</div>
-					</div>';
+						</div>';
+					}
 				}
 			}
 		}
@@ -283,6 +295,14 @@
 
     $_galeria = $galeria;
     $galeria = '';
+
+    if( $cuidador->mascotas_permitidas > 6 ){
+    	$cuidador->mascotas_permitidas = 6;
+    }
+
+   /* echo "<pre>";
+    	print_r($_cuidador->adicionales);
+    echo "</pre>";*/
 
  	$HTML .= '
  		<script> 
@@ -540,7 +560,7 @@
 							<label>Ubicación</label>
 							<div class="mapa">
 								<div id="mapa"></div>
-								<a href="#">Expandir mapa</a>
+								<a href="#" style="display: none;">Expandir mapa</a>
 							</div>
 						</div>
 
@@ -558,6 +578,12 @@
 			</div>
 		</div>
  	';
+
+	if( $_SESSION["wlabel"] == "petco" ){
+		$HTML .= "
+			<script type='text/javascript' src='https://a2.adform.net/serving/scripts/trackpoint/'></script>
+		";
+	}
 
 	echo comprimir($HTML);
 

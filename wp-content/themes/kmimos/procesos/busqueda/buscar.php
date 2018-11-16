@@ -14,7 +14,7 @@
 	$db = new db($conn); 
 
 	$hoy = date("d/m/Y");
-	$manana = date("d/m/Y", strtotime("+1 day") );
+	$manana = date("d/m/Y", strtotime("+1 day") );	
 
 	if( empty($_POST) ){
 		$_POST = ($_SESSION['busqueda']);
@@ -415,7 +415,7 @@
 	            if( $latitud != "" && $longitud != "" && $km5 != "No" ){
 	       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
 	                $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
-	               	//  $FILTRO_UBICACION = "HAVING DISTANCIA < 5";
+	               	$FILTRO_UBICACION = "HAVING DISTANCIA < 10";
 
 	                $_SESSION['km5'] = "Yes";
 

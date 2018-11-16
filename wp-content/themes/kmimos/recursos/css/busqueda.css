@@ -125,7 +125,7 @@
 		}
 
 		.input_check_box input:checked ~ .top_check {
-		    /*border: solid 2px #00d2c6;*/
+		    border: solid 2px #00d2c6;
 	        opacity: 1;
 		}
 
@@ -133,6 +133,9 @@
 		    margin-right: 0px;
 		}
 
+		.adicionales_container .input_check_box input:checked ~ .top_check {
+		    border: solid 1px #CCC;
+		}
 
 	/* UBICACION */
 
@@ -960,6 +963,14 @@
 			height: 23px;
 		}
 
+		.huesitos_container{
+			display: block;
+	   		margin-top: 10px;
+		}
+		.huesitos_container .resultados_item_comentarios{
+			margin-left: 0px;
+		}
+
 		.resultados_item_comentarios {
 			display: inline-block;
 			padding: 2px 5px;
@@ -1485,6 +1496,8 @@
 	    font-size: 16px;
 	    font-family: Gotham-Pro-Bold;
 	    margin: 0px 0px 2px;
+	    color: #000;
+	    text-decoration: none !important;
 	}
 
 	.maps_p{

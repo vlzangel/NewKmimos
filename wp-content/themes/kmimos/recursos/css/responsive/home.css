@@ -269,6 +269,11 @@
         width: calc( 100% - 20px );
 	    position: relative;
 	    margin-left: 10px;
+	    padding: 0px 0px 10px;
+	}
+
+	.error_principales{
+	    bottom: -12px;
 	}
 
 	.servicios_principales_box{
@@ -373,6 +378,10 @@
 	.fechas_container {
 	    display: block;
 	    width: 100%;
+	}
+
+	img.icon_flecha_fecha {
+	    top: 13px;
 	}
 
 	.tamanios_container {
@@ -1095,7 +1104,7 @@
 	}
 
 	.servicios_principales_container {
-	    margin-bottom: 5px;
+	    margin-bottom: 0px;
 	}
 
 	#popup-servicios-new h4 {

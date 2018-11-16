@@ -39,20 +39,43 @@
     }
 
     function update_titulo(){
+        global $wpdb;
+
+        $cuidadores = $wpdb->get_results("
+            SELECT 
+                c.id,
+                p.post_title AS titulo
+            FROM 
+                cuidadores AS c
+            INNER JOIN wp_posts AS p  ON ( p.ID = c.id_post )
+        ");
+
+        foreach ($cuidadores as $key => $value) {
+            $wpdb->query("UPDATE cuidadores SET titulo = '{$value->titulo}' WHERE cuidadores.id = {$value->id};");
+        }
+    }
+
+    function update_servicios(){
     	global $wpdb;
 
-    	$cuidadores = $wpdb->get_results("
-    		SELECT 
-    			c.id,
-    			p.post_title AS titulo
-    		FROM 
-    			cuidadores AS c
-    		INNER JOIN wp_posts AS p  ON ( p.ID = c.id_post )
-    	");
+    	$cuidadores = $wpdb->get_results("SELECT * FROM `cuidadores` WHERE `adicionales` NOT LIKE '%hospedaje%'");
+
+        $new_adicionales = [];
 
     	foreach ($cuidadores as $key => $value) {
-    		$wpdb->query("UPDATE cuidadores SET titulo = '{$value->titulo}' WHERE cuidadores.id = {$value->id};");
+            $hospedaje = unserialize($value->hospedaje);
+            $adicionales = unserialize($value->adicionales);
+            $adicionales["hospedaje"] = $hospedaje;
+
+            $new_adicionales[] = $adicionales;
+            
+            $adicionales = serialize($adicionales);
+    		$wpdb->query("UPDATE cuidadores SET adicionales = '{$adicionales}' WHERE cuidadores.id = {$value->id};");
     	}
+
+/*        echo "<pre>";
+            print_r($new_adicionales);
+        echo "</pre>";*/
     }
 
 ?>

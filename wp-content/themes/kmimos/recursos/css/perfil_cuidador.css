@@ -163,7 +163,6 @@
 
 		.pc_info_container .pc_info_titulo {
 			color: #000;
-			font-family: Lato;
 			font-size: 26px;
 			font-weight: 800;
 			margin: 0px;
@@ -199,8 +198,8 @@
 
 		.pc_info_favorito > div {
 			position: absolute;
-			top: 23px;
-			right: 35px;
+			top: 20px;
+    		right: 0px;
 			width: 40px;
 		    height: 40px;
 			border: solid 2px #CCC;
@@ -426,6 +425,12 @@
 		.pc_seccion_2 .pc_seccion_2_propiedad .pc_seccion_2_datos_item > div{
 		    height: 30px;
 	        margin-top: 10px;
+		}
+
+		.ver_mas{
+		    color: #00d2c6;
+    		font-weight: 600;
+   	 		cursor: pointer;
 		}
 
 	/* CEN */

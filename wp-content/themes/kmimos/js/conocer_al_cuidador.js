@@ -3,9 +3,6 @@ jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(
 });
 
 function open_conocer( _this ){
-
-    console.log("Hola");
-
     jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
     jQuery('.popup-iniciar-sesion-1 #service_start').val("");

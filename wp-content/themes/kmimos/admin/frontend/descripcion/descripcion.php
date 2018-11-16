@@ -70,9 +70,7 @@
         'gigantes'=>'Gigante (73 - 200cm)'
     );
 
-    $ubicaciones = $wpdb->get_row("SELECT * FROM ubicaciones WHERE cuidador = ".$cuidador->id);
-
-    $mis_estados = str_replace("==", "=", $ubicaciones->estado);
+    $mis_estados = str_replace("==", "=", $cuidador->estados);
     $mis_estados = explode("=", $mis_estados);
 
     $estados_ids = array();
@@ -91,7 +89,7 @@
       	$mi_estado = "";
     }
 
-    $mis_delegaciones = str_replace("==", "=", $ubicaciones->municipios);
+    $mis_delegaciones = str_replace("==", "=", $cuidador->municipios);
     $mis_delegaciones = explode("=", $mis_delegaciones);
 
     $delegaciones_estado = array(); 
