@@ -359,20 +359,21 @@
 	 		echo "ES_USUARIO_PETCO";
 	 		$HTML .= '
 				<script>
-
-					switch ( "'.trim(strtolower($data_reserva["servicio"]["metodo_pago"])).'" ) {
-			 			case "tienda":
-			 				evento_google("nueva_reserva_tienda_completado");
-							evento_fbq("track", "traking_code_nueva_reserva_tienda_completado");
-			 			break;
-			 			case "tarjeta":
-			 				evento_google("nueva_reserva_tarjeta_completado");
-							evento_fbq("track", "traking_code_nueva_reserva_tarjeta_completado");
-			 			break;
-			 			case "nueva_reserva_descuento_saldo":
-			 				evento_google("nueva_reserva_descuento_saldo");
-							evento_fbq("track", "traking_code_nueva_reserva_descuento_saldo");
-			 			break;
+					jQuery( document ).ready(function() {
+						switch ( "'.trim(strtolower($data_reserva["servicio"]["metodo_pago"])).'" ) {
+				 			case "tienda":
+				 				evento_google("nueva_reserva_tienda_completado");
+								evento_fbq("track", "traking_code_nueva_reserva_tienda_completado");
+				 			break;
+				 			case "tarjeta":
+				 				evento_google("nueva_reserva_tarjeta_completado");
+								evento_fbq("track", "traking_code_nueva_reserva_tarjeta_completado");
+				 			break;
+				 			case "nueva_reserva_descuento_saldo":
+				 				evento_google("nueva_reserva_descuento_saldo");
+								evento_fbq("track", "traking_code_nueva_reserva_descuento_saldo");
+				 			break;
+				 		}
 			 		}
 
 				</script>
