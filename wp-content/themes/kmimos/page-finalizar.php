@@ -345,12 +345,16 @@
 	 		$_user_wlabel = true;
 	 	}
 
-	 	if( 
+	 	/*
+			
 	 		strrpos($_SERVER["HTTP_REFERER"], "reservar") > 0 && 
 	 		!isset($_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ]) &&
+	 	*/
+
+	 	if( 
 	 		$_user_wlabel
 	 	){
-	 		
+	 		echo "ES_USUARIO_PETCO";
 	 		$HTML .= '
 				<script>
 
