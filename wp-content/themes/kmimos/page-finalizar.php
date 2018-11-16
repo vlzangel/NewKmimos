@@ -335,6 +335,7 @@
 	 	$_user_wlabel = false;
 	 	if( $_SESSION["wlabel"] == "petco" ){
 	 		$_user_wlabel = true;
+	 		echo "ESTAS_EN_WLABEL";
 	 	}
 	 	$data = $wpdb->get_var("SELECT count(*) FROM wp_usermeta WHERE ( meta_key = '_wlabel' OR meta_key = 'user_referred' ) AND meta_value LIKE '%Petco%' ");
 	 	if( $data > 0 ){
