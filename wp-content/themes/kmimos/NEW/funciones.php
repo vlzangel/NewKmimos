@@ -244,7 +244,7 @@
 					$ocultar_descuento = "";
 					$ocultar_flash = "";
 					$text_descuento_pc = "50% en 2da Mascota. 25% en 3era.";
-					$text_descuento_movil = "50% y 25% +2 Mascotas";
+					$text_descuento_movil = "50% 2da Mascotas";
 				}
 
 				$ocultar_todo = "";
