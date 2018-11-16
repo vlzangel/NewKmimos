@@ -324,11 +324,13 @@
 
 				$mensaje_disp = "Disponibilidad inmediata";
 				$mensaje_disp_movil = "Disponible";
+				$mensaje_disp_movil_corto = "";
 				$show_msg_desc = "";
 				if( $ocultar_descuento == "" ){
 					$mensaje_disp = "50% en 2da mascota. 25% en 3era.";
 					$mensaje_disp_movil = "50% en 2da masc. 25% en 3era.";
 					$show_msg_desc = "show_msg_descuento";
+					$mensaje_disp_movil_corto = "Descuento";
 				}
 
 				$HTML .= '
@@ -340,7 +342,10 @@
 								<div class="resultados_item_iconos_container '.$ocultar_todo.'">
 									<div class="resultados_item_icono icono_disponibilidad '.$ocultar_flash.' '.$show_msg_desc.'">
 										<span class="disponibilidad_PC">'.$mensaje_disp.'</span>
-										<span class="disponibilidad_MOVIl"><div class="msg_largo">'.$mensaje_disp_movil.'</div> <div class="msg_corto">Descuento</div></span>
+										<span class="disponibilidad_MOVIl">
+											<div class="msg_largo">'.$mensaje_disp_movil.'</div> 
+											<div class="msg_corto">'.$mensaje_disp_movil_corto.'</div>
+										</span>
 									</div>
 									<div class="resultados_item_icono icono_flash '.$ocultar_flash_none.'"><span></span></div>
 									<div class="resultados_item_icono icono_descuento '.$ocultar_descuento.'"><span></span></div>
