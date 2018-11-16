@@ -3,6 +3,8 @@
         Template Name: Home
     */
 
+	date_default_timezone_set('America/Mexico_City');
+
     wp_enqueue_style('home_kmimos', get_recurso("css")."home.css", array(), '1.0.0');
     wp_enqueue_style('home_responsive', get_recurso("css")."responsive/home.css", array(), '1.0.0');
 
@@ -312,13 +314,14 @@
 			</div>	
 		</div>';
 
-		
-		$HTML .= '
-			<a href="'.get_home_url().'/busqueda/?d=1" style="display: block;">
-				<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/PC.jpg" width="100%" class="solo_pc" />
-				<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/MOVIL.jpg" width="100%" class="solo_movil" />
-			</a>
-		';
+		if( time() > strtotime("2018-11-16 00:00:00") ){
+			$HTML .= '
+				<a href="'.get_home_url().'/busqueda/?d=1" style="display: block;">
+					<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/PC.jpg" width="100%" class="solo_pc" />
+					<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/MOVIL.jpg" width="100%" class="solo_movil" />
+				</a>
+			';
+		}
 
 
 		$HTML .= '

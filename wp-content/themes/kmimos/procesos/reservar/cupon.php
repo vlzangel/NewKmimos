@@ -50,6 +50,45 @@ ini_set('display_errors', '0');
 		return $uso_cupon;
 	}
 
+	function cuidador_valido($db, $servicio){
+		$user_id_cuidador = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = {$servicio} ");
+		$cuidador_email = $db->get_row("SELECT email FROM cuidadores WHERE user_id = {$user_id_cuidador} ");
+
+		$cuidadores_destacados = [
+			"chopskasalata@gmail.com",
+			"jovanovska@hotmail.com",
+			"jose.antonio.carsolio@gmail.com",
+			"vbazani@gmail.com",
+			"veronicaqbp@hotmail.com",
+			"nohemi.pflc@gmail.com",
+			"espinozapalmerosluzvictoria91@gmail.com",
+			"merrikc@hotmail.com",
+			"brendagales@hotmail.com",
+			"naz_mvz@hotmail.com",
+			"jessi-taz@hotmail.com",
+			"parys9@hotmail.com",
+			"kanonlabcorp@outlook.com",
+			"maafercg.04@gmail.com",
+			"maliderezgocanino@gmail.com",
+			"salma_ac98@hotmail.com",
+			"tulipinkmafer@gmail.com",
+			"ami_disq.55@hotmail.com",
+			"belbeder88@hotmail.com",
+			"david.brena1@gmail.com",
+			"huesca.79@hotmail.com",
+			"monficalata@gmail.com",
+			"rocioicela@gmail.com",
+			"sophnf04@gmail.com",
+			"zara.gamez.zk@gmail.com",
+			"rmz.mtz.lourdes@hotmail.com",
+			"netojamaicaska@hotmail.com",
+			"Alelotof@gmail.com",
+			"angelica.colion@gmail.com"
+		];
+
+		return ( in_array($cuidador_email, $cuidadores_destacados) );
+	}
+
 	function aplicarCupon($params){
 		/* 
 			$db, 
@@ -268,11 +307,14 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "+2masc" ){
+
+				if( !cuidador_valido($db, $servicio) ){
+					if( $validar ){ error("Este cuidador no acepta el cupón [ +2masc ]"); }else{ return false; }
+				}
+
 				$_mascotas = cant_mascotas($mascotas);
 				if( $_mascotas < 2 ){
-					if( $validar ){
-						echo json_encode(array( "error" => "Debe tener al menos 2 mascotas para poder aplicar este cupón" )); exit;
-					}else{ return false; }
+					if( $validar ){ error("Debe tener al menos 2 mascotas para poder aplicar este cupón"); }else{ return false; }
 				}
 
 				$descuento = 0;
