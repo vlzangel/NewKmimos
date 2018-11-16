@@ -570,7 +570,7 @@
 					    'method' => 'store',
 					    'amount' => (float) $pagar->total,
 					    'description' => 'Tienda',
-					    'order_id' => $id_orden,
+					    'order_id' => "0_".$id_orden,
 					    'due_date' => $due_date
 					);
 
