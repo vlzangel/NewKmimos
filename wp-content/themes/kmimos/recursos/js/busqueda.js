@@ -179,15 +179,15 @@
 						jQuery(".resultados_box .resultados_box_interno").html( "" );
 						PAGE = 0;
 						getResultados();
-						if( campo == "ubicacion" || campo == "latitud" || campo == "longitud" || campo == "" ){
-							getDestacados();
-						}
 						if( mapIniciado ){ initMap(); }
 
 					}else{
 						PAGE = 0;
 						jQuery(".resultados_box .resultados_box_interno").html( '<h2 class="pocos_resultados">Si quieres obtener más resultados, por favor pícale <a style="color:#7c169e;" href="'+RAIZ+'">aquí</a> para ajustar los filtros de búsqueda.</h2>' );
 						jQuery(".cantidad_resultados_container span").html( 0 );
+					}
+					if( campo == "flash" ||  campo == "descuento" ||  campo == "ubicacion" || campo == "latitud" || campo == "longitud" || campo == "" ){
+						getDestacados();
 					}
 
 				}, 'json'

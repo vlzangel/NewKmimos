@@ -61,6 +61,11 @@
 		if( !isset($_SESSION) ){ session_start(); }
         global $wpdb;
         $_POST = $_SESSION['busqueda'];
+
+        if( $_POST["descuento"] == 1 || $_POST["flash"] == 1 ){
+        	return "";
+        }
+
         $resultados = $_SESSION['resultado_busqueda'];
         $lat = $_POST["latitud"];
         $lng = $_POST["longitud"];
