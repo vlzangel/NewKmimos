@@ -242,6 +242,7 @@
 				}
 				if( $_cuidador->atributos["destacado"]+0 == 1 ){
 					$ocultar_descuento = "";
+					$ocultar_flash = "";
 					$text_descuento_pc = "50% en 2da Mascota. 25% en 3era.";
 					$text_descuento_movil = "50% en 2da Mascota. 25% en 3era.";
 				}
