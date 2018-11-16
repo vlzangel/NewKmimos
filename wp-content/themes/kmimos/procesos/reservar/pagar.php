@@ -564,7 +564,7 @@
 		   		case 'tienda':
 		   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 48 hours'));
 		   			
-		   			$id_orden = $id_orden."_local";
+		   			// $id_orden = $id_orden."_local";
 
 		   			$chargeRequest = array(
 					    'method' => 'store',
