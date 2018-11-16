@@ -163,7 +163,7 @@
 
 		.pc_info_container .pc_info_titulo {
 			color: #000;
-			font-size: 26px;
+			font-size: 22px;
 			font-weight: 800;
 			margin: 0px;
 			line-height: 1;
@@ -197,16 +197,16 @@
 		}
 
 		.pc_info_favorito > div {
-			position: absolute;
-			top: 20px;
-    		right: 0px;
-			width: 40px;
+		    position: absolute;
+		    top: 12px;
+		    right: 0px;
+		    width: 40px;
 		    height: 40px;
-			border: solid 2px #CCC;
-			padding: 7px 8px;
-			border-radius: 3px;
-			background: url(../img/BUSQUEDA/SVG/iconos/Corazon_Azul.svg) no-repeat center center;
-			background-size: 55%;
+		    border: solid 2px #CCC;
+		    padding: 7px 8px;
+		    border-radius: 3px;
+		    background: url(../img/BUSQUEDA/SVG/iconos/Corazon_Azul.svg) no-repeat center center;
+		    background-size: 55%;
 		}
 
 		.favorito.favoritos_delete {
