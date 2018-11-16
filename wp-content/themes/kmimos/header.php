@@ -16,7 +16,7 @@
 
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';
 	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script>';
-/*
+
 	$HTML .= "
 		<!-- Google Tag Manager -->
 		<script>
@@ -47,7 +47,7 @@
 	        ga('send', 'pageview');
         </script>
 	";
-*/
+
 	echo comprimir( $HTML );
 
     if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){
