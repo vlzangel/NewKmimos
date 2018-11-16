@@ -346,10 +346,7 @@
 	 		!isset($_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ]) &&
 	 	*/
 
-	 	if( 
-	 		$_user_wlabel
-	 	){
-	 		echo "ES_USUARIO_PETCO";
+	 	if( $_user_wlabel ){
 	 		$HTML .= '<script>';
 	 		switch ( trim(strtolower($data_reserva["servicio"]["metodo_pago"])) ) {
 	 			case "tienda":
