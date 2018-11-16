@@ -164,7 +164,7 @@
 			verificar_msg();
 		// }
 
-		if( campo != "ubicacion_txt" ){
+		// if( campo != "ubicacion_txt" ){
 			if( campo == "ubicacion" ){
 				jQuery(".latitud").val("");
 				jQuery(".longitud").val("");
@@ -192,7 +192,7 @@
 
 				}, 'json'
 			);
-		}
+		// }
 	}
 
 	function verificar_msg(){
