@@ -335,20 +335,13 @@
 	 	$_user_wlabel = false;
 	 	if( $_SESSION["wlabel"] == "petco" ){
 	 		$_user_wlabel = true;
-	 		echo "WLABEL_PETCO<br>";
 	 	}
 	 	$data = $wpdb->get_var("SELECT count(*) FROM wp_usermeta WHERE ( meta_key = '_wlabel' OR meta_key = 'user_referred' ) AND meta_value LIKE '%Petco%' ");
 	 	if( $data > 0 ){
 	 		$_user_wlabel = true;
-	 		echo "USER_PETCO<br>";
 	 	}
 
-	 	/*echo "<pre>";
-	 		print_r($data_reserva);
-	 	echo "</pre>";*/
-
 	 	/*
-			
 	 		strrpos($_SERVER["HTTP_REFERER"], "reservar") > 0 && 
 	 		!isset($_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ]) &&
 	 	*/
@@ -362,19 +355,19 @@
 	 			case "tienda":
 	 				$HTML .= '
 	 					evento_google("nueva_reserva_tienda_completado");
-						evento_fbq("track", "traking_code_nueva_reserva_tienda_completado");
+						evento_fbq_2("track", "traking_code_nueva_reserva_tienda_completado");
 					';
 	 			break;
 	 			case "tarjeta":
 	 				$HTML .= '
 		 				evento_google("nueva_reserva_tarjeta_completado");
-						evento_fbq("track", "traking_code_nueva_reserva_tarjeta_completado");
+						evento_fbq_2("track", "traking_code_nueva_reserva_tarjeta_completado");
 					';
 	 			break;
 	 			case "nueva_reserva_descuento_saldo":
 	 				$HTML .= '
 		 				evento_google("nueva_reserva_descuento_saldo");
-						evento_fbq("track", "traking_code_nueva_reserva_descuento_saldo");
+						evento_fbq_2("track", "traking_code_nueva_reserva_descuento_saldo");
 					';
 	 			break;
 	 		}

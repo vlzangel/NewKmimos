@@ -194,6 +194,10 @@
 			        		fbq(tipo, evento); 
 			        	}
 			        }
+
+			        function evento_fbq_2(tipo, evento){
+			        	fbq(tipo, evento); 
+			        }
 				</script>
 			';
 
