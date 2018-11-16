@@ -339,6 +339,7 @@
 	 	}
 	 	$data = $wpdb->get_var("SELECT count(*) FROM wp_usermeta WHERE ( meta_key = '_wlabel' OR meta_key = 'user_referred' ) AND meta_value LIKE '%Petco%' ");
 	 	if( $data > 0 ){
+	 		echo "ERES_USUARIO_PETCO";
 	 		$_user_wlabel = true;
 	 	}
 
