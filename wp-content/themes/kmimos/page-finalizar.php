@@ -343,9 +343,9 @@
 	 		echo "USER_PETCO<br>";
 	 	}
 
-	 	echo "<pre>";
+	 	/*echo "<pre>";
 	 		print_r($data_reserva);
-	 	echo "</pre>";
+	 	echo "</pre>";*/
 
 	 	/*
 			
@@ -357,27 +357,28 @@
 	 		$_user_wlabel
 	 	){
 	 		echo "ES_USUARIO_PETCO";
-	 		$HTML .= '
-				<script>
-					jQuery( document ).ready(function() {
-						switch ( "'.trim(strtolower($data_reserva["servicio"]["metodo_pago"])).'" ) {
-				 			case "tienda":
-				 				evento_google("nueva_reserva_tienda_completado");
-								evento_fbq("track", "traking_code_nueva_reserva_tienda_completado");
-				 			break;
-				 			case "tarjeta":
-				 				evento_google("nueva_reserva_tarjeta_completado");
-								evento_fbq("track", "traking_code_nueva_reserva_tarjeta_completado");
-				 			break;
-				 			case "nueva_reserva_descuento_saldo":
-				 				evento_google("nueva_reserva_descuento_saldo");
-								evento_fbq("track", "traking_code_nueva_reserva_descuento_saldo");
-				 			break;
-				 		}
-			 		}
-
-				</script>
-		 	';
+	 		$HTML .= '<script>';
+	 		switch ( trim(strtolower($data_reserva["servicio"]["metodo_pago"])) ) {
+	 			case "tienda":
+	 				$HTML .= '
+	 					evento_google("nueva_reserva_tienda_completado");
+						evento_fbq("track", "traking_code_nueva_reserva_tienda_completado");
+					';
+	 			break;
+	 			case "tarjeta":
+	 				$HTML .= '
+		 				evento_google("nueva_reserva_tarjeta_completado");
+						evento_fbq("track", "traking_code_nueva_reserva_tarjeta_completado");
+					';
+	 			break;
+	 			case "nueva_reserva_descuento_saldo":
+	 				$HTML .= '
+		 				evento_google("nueva_reserva_descuento_saldo");
+						evento_fbq("track", "traking_code_nueva_reserva_descuento_saldo");
+					';
+	 			break;
+	 		}
+	 		$HTML .= '</script>';
 
 		 	$_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ] = "YA_CONTADO";
 	 	}	
