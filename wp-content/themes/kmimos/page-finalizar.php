@@ -344,7 +344,7 @@
 	 	}
 
 	 	echo "<pre>";
-	 		print_r($data);
+	 		print_r($data_reserva);
 	 	echo "</pre>";
 
 	 	/*
