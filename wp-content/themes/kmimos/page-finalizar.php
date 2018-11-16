@@ -332,10 +332,6 @@
 			</div>
 	 	';
 
-	 	echo "<pre>";
-	 		print_r($data_reserva);
-	 	echo "</pre>";
-
 	 	$_user_wlabel = false;
 	 	if( $_SESSION["wlabel"] == "petco" ){
 	 		$_user_wlabel = true;
