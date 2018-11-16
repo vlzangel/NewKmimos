@@ -176,10 +176,11 @@
 					if( respuesta != false ){
 						jQuery(".cantidad_resultados_container span").html( respuesta.length );
 						TOTAL_PAGE = Math.ceil(respuesta.length/10);
-						jQuery(".resultados_box .resultados_box_interno").html( "" );
 						PAGE = 0;
-						getResultados();
-						if( mapIniciado ){ initMap(); }
+						jQuery(".resultados_box .resultados_box_interno").html( "" ).promise().done(function(){
+							getResultados();
+							if( mapIniciado ){ initMap(); }
+						});
 
 					}else{
 						PAGE = 0;
