@@ -181,9 +181,13 @@
 				if( $_cuidador->atributos["flash"]+0 == 1 ){
 					$ocultar_flash = "";
 					$ocultar_flash_none = "";
+					$text_descuento_pc = "Disponibilidad inmediata";
+					$text_descuento_movil = "Disponibilidad";
 				}
 				if( $_cuidador->atributos["destacado"]+0 == 1 ){
 					$ocultar_descuento = "";
+					$text_descuento_pc = "50% en 2da Mascota. 25% en 3era.";
+					$text_descuento_movil = "50% en 2da Mascota. 25% en 3era.";
 				}
 
 				$ocultar_todo = "";
@@ -270,8 +274,8 @@
 
 								<div class="resultados_item_iconos_container '.$ocultar_todo.'">
 									<div class="resultados_item_icono icono_disponibilidad '.$ocultar_flash.'">
-										<span class="disponibilidad_PC">Disponibilidad inmediata</span>
-										<span class="disponibilidad_MOVIl">Disponible</span>
+										<span class="disponibilidad_PC">'.$text_descuento_pc.'</span>
+										<span class="disponibilidad_MOVIl">'.$text_descuento_movil.'</span>
 									</div>
 									<div class="resultados_item_icono icono_flash '.$ocultar_flash_none.'"><span></span></div>
 									<div class="resultados_item_icono icono_descuento '.$ocultar_descuento.'"><span></span></div>
