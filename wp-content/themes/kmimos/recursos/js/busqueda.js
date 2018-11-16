@@ -160,11 +160,13 @@
 	var mapIniciado = false;
 
 	function buscar( campo ){
+
+		console.log( campo );
 		// if( campo == "checkin" || campo == "checkout" ){
 			verificar_msg();
 		// }
 
-		// if( campo != "ubicacion_txt" ){
+		if( campo != undefined ){
 			if( campo == "ubicacion" ){
 				jQuery(".latitud").val("");
 				jQuery(".longitud").val("");
@@ -193,7 +195,7 @@
 
 				}, 'json'
 			);
-		// }
+		}
 	}
 
 	function verificar_msg(){
