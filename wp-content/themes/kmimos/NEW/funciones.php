@@ -237,14 +237,9 @@
 				if( $_cuidador->atributos["flash"]+0 == 1 ){
 					$ocultar_flash = "";
 					$ocultar_flash_none = "";
-					$text_descuento_pc = "Disponibilidad inmediata";
-					$text_descuento_movil = "Disponibilidad";
 				}
 				if( $_cuidador->atributos["destacado"]+0 == 1 ){
 					$ocultar_descuento = "";
-					$ocultar_flash = "";
-					$text_descuento_pc = "50% en 2da Mascota. 25% en 3era.";
-					$text_descuento_movil = "50% 2da Mascotas";
 				}
 
 				$ocultar_todo = "";
@@ -327,6 +322,15 @@
 					$distancia = '<div class="resultados_item_subtitulo">a '.floor($cuidador->DISTANCIA).' km de tu búsqueda</div>';
 				}
 
+				$mensaje_disp = "Disponibilidad inmediata";
+				$mensaje_disp_movil = "Disponible";
+				$show_msg_desc = "";
+				if( $ocultar_descuento == "" ){
+					$mensaje_disp = "50% en 2da mascota. 25% en 3era.";
+					$mensaje_disp_movil = "50% en 2da masc. 25% en 3era.";
+					$show_msg_desc = "show_msg_descuento";
+				}
+
 				$HTML .= '
 					<div class="resultado_item">
 						<div class="resultados_hover"></div>
@@ -334,9 +338,9 @@
 							<div class="resultados_item_top">
 
 								<div class="resultados_item_iconos_container '.$ocultar_todo.'">
-									<div class="resultados_item_icono icono_disponibilidad '.$ocultar_flash.'">
-										<span class="disponibilidad_PC">'.$text_descuento_pc.'</span>
-										<span class="disponibilidad_MOVIl">'.$text_descuento_movil.'</span>
+									<div class="resultados_item_icono icono_disponibilidad '.$ocultar_flash.' '.$show_msg_desc.'">
+										<span class="disponibilidad_PC">'.$mensaje_disp.'</span>
+										<span class="disponibilidad_MOVIl"><div class="msg_largo">'.$mensaje_disp_movil.'</div> <div class="msg_corto">Descuento</div></span>
 									</div>
 									<div class="resultados_item_icono icono_flash '.$ocultar_flash_none.'"><span></span></div>
 									<div class="resultados_item_icono icono_descuento '.$ocultar_descuento.'"><span></span></div>

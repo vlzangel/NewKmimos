@@ -857,6 +857,28 @@
 			display: none;
 		}
 
+		.show_msg_descuento span {
+		    background-image: url();
+		    color: #000 !important;
+		    padding: 5px !important;
+		}
+
+		.show_msg_descuento span > .msg_largo {
+			display: none;
+		}
+
+		.show_msg_descuento span > .msg_corto {
+			display: block;
+		}
+
+		.full_width .show_msg_descuento span > .msg_largo {
+			display: block;
+		}
+
+		.full_width .show_msg_descuento span > .msg_corto {
+			display: none;
+		}
+
 		.resultados_item_middle{
 
 		}

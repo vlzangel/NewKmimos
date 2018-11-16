@@ -36,6 +36,10 @@
 
 @media (max-width: 768px){
 
+	.show_msg_descuento span {
+		font-size: 10px !important;
+	}
+
 	nav.open_filtros {
 	    top: -42px;
 	}

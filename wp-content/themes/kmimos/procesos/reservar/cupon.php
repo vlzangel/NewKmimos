@@ -89,6 +89,10 @@ ini_set('display_errors', '0');
 		return ( in_array($cuidador_email, $cuidadores_destacados) );
 	}
 
+	function ini_valido($inicio){
+		return ( strtotime($inicio) < strtotime("2019-02-01 00:00:00") );
+	}
+
 	function aplicarCupon($params){
 		/* 
 			$db, 
@@ -135,6 +139,8 @@ ini_set('display_errors', '0');
 
 
 			if( $cupon == "1ngpet" ){
+				if( !ini_valido($inicio) ){ if( $validar ){ error("La fecha de inicio valida para este cupón es hasta el 31/01/2019"); }else{ return false; } }
+
 				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
 				if( !es_nuevo($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
 
@@ -650,6 +656,7 @@ ini_set('display_errors', '0');
 					"cliente" => $cliente, 
 					"servicio" => $servicio, 
 					"tipo_servicio" => $tipo_servicio,
+					"inicio" => $inicio,
 					"duracion" => $duracion,
 					"mascotas" => $mascotas
 				]);
@@ -668,6 +675,7 @@ ini_set('display_errors', '0');
 			"validar" => true, 
 			"cliente" => $cliente, 
 			"servicio" => $servicio, 
+			"inicio" => $inicio,
 			"duracion" => $duracion,
 			"tipo_servicio" => $tipo_servicio,
 			"mascotas" => $mascotas
