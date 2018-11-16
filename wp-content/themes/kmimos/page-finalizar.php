@@ -337,7 +337,7 @@
 	 		$_user_wlabel = true;
 	 		echo "WLABEL_PETCO<br>";
 	 	}
-	 	$data = $wpdb->get_var("SELECT count(*) FROM wp_postmeta WHERE ( meta_key = '_wlabel' OR meta_key = 'user_referred' ) AND meta_value LIKE '%Petco%' ");
+	 	$data = $wpdb->get_var("SELECT count(*) FROM wp_usermeta WHERE ( meta_key = '_wlabel' OR meta_key = 'user_referred' ) AND meta_value LIKE '%Petco%' ");
 	 	if( $data > 0 ){
 	 		$_user_wlabel = true;
 	 		echo "USER_PETCO<br>";
