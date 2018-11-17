@@ -201,7 +201,16 @@
 				</script>
 			';
 
-			if( $_SESSION["wlabel"] == "petco" ){
+		 	$_user_wlabel = false;
+		 	if( $_SESSION["wlabel"] == "petco" ){
+		 		$_user_wlabel = true;
+		 	}
+		 	$data = $wpdb->get_var("SELECT count(*) FROM wp_usermeta WHERE user_id = '{$user_id}' AND ( meta_key = '_wlabel' OR meta_key = 'user_referred' ) AND meta_value LIKE '%Petco%' ");
+		 	if( $data > 0 ){
+		 		$_user_wlabel = true;
+		 	}
+
+			if( $_user_wlabel ){
 				$HTML .= '
 					<!-- Adform Tracking Code BEGIN -->
 					<script type="text/javascript">
