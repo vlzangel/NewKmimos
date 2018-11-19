@@ -72,12 +72,11 @@
 
             <section class="container text-left col-md-4">
                 <h2 style="font-size:24px; padding-top:20px;">Contactanos</h2>
-                <p>Telef. Local: 01 (55) 8526 1162</p>
-                <!-- <p>Llamada Sin Costo: '.$datos['telefono_sincosto'].'</p> -->
-                <p>WhatsApp 1: +52 1 (33) 1261 41 86</p>
-                <p>WhatsApp 2: +52 1 55 6892 2182</p>
-                <p>WhatsApp 3: +52 1 55 6560 2472</p>
-                <p>Email: '.$datos['email'].'</p>
+                <p><strong>Telef. Local</strong>: 01 (55) 8526 1162</p>
+                <p><strong>WhatsApp 1</strong>: +52 1 (33) 1261 41 86</p>
+                <p><strong>WhatsApp 2</strong>: +52 1 55 6892 2182</p>
+                <p><strong>WhatsApp 3</strong>: +52 1 55 6560 2472</p>
+                <p><strong>Email</strong>: '.$datos['email'].'</p>
             </section>
         </div>
     </div>';
