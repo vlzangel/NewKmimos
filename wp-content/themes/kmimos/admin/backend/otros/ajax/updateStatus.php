@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
 	
 	extract($_POST);
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
@@ -142,6 +143,10 @@
             break;
 
             case "wc-on-hold-unpaid":
+                return "Pendiente por pago en tienda";
+            break;
+
+            case "wc-pending-unpaid":
                 return "Pendiente por pago en tienda";
             break;
             
