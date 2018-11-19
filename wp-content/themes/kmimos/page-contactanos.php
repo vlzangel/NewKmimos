@@ -13,9 +13,9 @@
     <div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
         <div class="overlay"></div>
     </div>
-    <div class="container">
+    <div class="container" style="margin-bottom: 20px; margin-top: 20px;">
         <div class="row">
-            <section class="container text-left col-md-8">
+            <section class="container text-left col-md-8" style="border-right: solid 1px #CCC;">
 
                 <h2 style="font-size:24px; padding-top:20px;">
                     Por favor llene el siguiente formulario y lo contactaremos a la brevedad posible
