@@ -163,11 +163,12 @@ $HTML .='
 								<label>Apellido</label>
 								<input type="text" name="apellido" id="apellido" maxlength="30"  data-charset="alfxlf" data-change="alfxlf" class="input-label-placeholder social_lastname" pattern=".{3,}">
 							</div>
-
+<!--
 							<div class="label-placeholder">
 								<label>IFE/Documento de Identidad</label>
 								<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" data-change="num" maxlength="13">
 							</div>
+-->
 							<div class="label-placeholder verify">
 								<label>Correo electrónico</label>
 								<input
