@@ -71,7 +71,7 @@
             </section>
 
             <section class="container text-left col-md-4">
-                <h2 style="font-size:24px; padding-top:20px;">Contactanos</h2>
+                <h2 style="font-size:24px; padding-top:20px;">Contáctanos</h2>
                 <p><strong>Telef. Local</strong>: 01 (55) 8526 1162</p>
                 <p><strong>WhatsApp 1</strong>: +52 1 (33) 1261 41 86</p>
                 <p><strong>WhatsApp 2</strong>: +52 1 55 6892 2182</p>
