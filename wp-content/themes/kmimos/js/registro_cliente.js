@@ -350,9 +350,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		
 		jQuery("#km-datos-foto-profile").css('border', "0px solid transparent");
 
+		/*	ife.length > 2 && */
+		
 		if (nombre.length > 2 && 
 			apellido.length > 2 && 
-			ife.length > 2 && 
 			email.length > 2 && 
 			pass.length > 0 && 
 			movil.length > 2 && 

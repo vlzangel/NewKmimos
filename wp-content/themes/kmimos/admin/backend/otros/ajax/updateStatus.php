@@ -85,7 +85,7 @@
 
             $new_status = "Confirmado";
             
-            $acc = "CFM"; $usu = "CUI"; $NO_ENVIAR = "NO";
+            $acc = "CFM"; $usu = "CUI"; $NO_ENVIAR = "YES";
 
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
 
@@ -105,7 +105,7 @@
 
             $new_status = "Cancelado";
             
-            $acc = "CCL"; $usu = "CUI"; $NO_ENVIAR = "NO";
+            $acc = "CCL"; $usu = "CUI"; $NO_ENVIAR = "YES";
 
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
 
