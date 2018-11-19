@@ -61,8 +61,8 @@
                             <button id="enviar_mensaje" type="button" class="btn km-btn-primary">Enviar mensaje</button>
                         </div>
 
-                        <div class="col-xs-12" style="padding:20px 0px;">
-                            <span id="mensaje" class="alert" style="display:none;"></span>
+                        <div class="col-xs-12">
+                            <span id="mensaje" class="alert" style="display:none; padding:20px 0px;"></span>
                         </div>
 
                     </div>
