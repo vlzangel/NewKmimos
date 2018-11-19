@@ -463,3 +463,7 @@ div#tienda_box img {
         clear: both;
         font-size: 13px;
     }
+
+    input:disabled {
+        background-color: #EEE !important;
+    }

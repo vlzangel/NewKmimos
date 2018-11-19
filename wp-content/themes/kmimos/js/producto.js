@@ -7,6 +7,7 @@ var MENSAJES_CUPONES = {
 	"350desc": "",
 	"+2masc": "",
 };
+var PROCESAR_PAQUETE = true;
 function initCarrito(){
 	CARRITO = [];
 
@@ -70,9 +71,25 @@ function initCarrito(){
 
 	CARRITO[ "pagar" ][ "tipo_servicio" ] = tipo_servicio;
 	CARRITO[ "pagar" ][ "paquete" ] = PAQUETE;
-    
 }
-initCarrito();
+
+function get_dias_paquete(paq){
+	switch( parseInt(paq) ){
+		case 1:
+			return 7;
+		break;
+		case 2:
+			return 30;
+		break;
+		case 3:
+			return 60;
+		break;
+		case 4:
+			return 90;
+		break;
+	}
+	return 0;
+}
 
 function validar(status, txt){
 	if( status ){
@@ -202,6 +219,17 @@ function calcular(){
 		jQuery(".fecha_fin").html( jQuery('#checkout').val() );
 	}
 
+	if( tipo_servicio == "paseos" && PAQUETE != "" ){
+		var dias = get_dias_paquete(PAQUETE);
+		var inicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
+		var fin = inicio+(dias*86400000);
+		fin = new Date(fin);
+		var mes = ( (fin.getMonth()+1) < 10 ) ? "0"+(fin.getMonth()+1) : (fin.getMonth()+1);
+		CARRITO[ "fechas" ][ "fin" ] = fin.getFullYear()+"-"+mes+"-"+fin.getDate()+" 00:00:00";
+		jQuery('#checkout').val( fin.getDate()+"/"+mes+"/"+fin.getFullYear() );
+	}
+    
+
 	var error = "";
 
 	var cupos = verificarCupos();
@@ -245,6 +273,7 @@ function calcular(){
 							dias_array.push( jQuery(this).val() );
 						}
 					});
+
 					dias = parseInt( get_dias_semana(dias_array) );
 					CARRITO[ "fechas" ][ "duracion" ] = dias;
 					if( dias == 0 ){
@@ -352,6 +381,7 @@ function get_dias_semana(dias){
     var cont = 0;
     var inicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
 	var fin    = new Date(String(CARRITO[ "fechas" ][ "fin" ]).split(" ")[0]).getTime();
+
 	var fecha_temp = 0;
 	inicio += 86400000;
 	fin += 86400000;
@@ -630,14 +660,21 @@ function mostrarCupones(){
 
 		if( nombreCupon != ""  ){ /* && cupon[1] > 0 */
 			var eliminarCupo = '<a href="#" data-id="'+cupon[0]+'">Eliminar</a>';
+			var es_saldo = false;
 			if( nombreCupon.indexOf("saldo") > -1 ){
 				nombreCupon = "Saldo a favor";
 				eliminarCupo = "";
+				es_saldo = true;
 			}
-			// if( eliminarCupo != "" ){
+			if( es_saldo ){
+				if(cupon[1] > 0){
+					items += '<div class="km-option-resume-service">';
+					items += '	<span class="label-resume-service">'+nombreCupon+'</span>';
+					items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+'</span>';
+				}
+			}else{
 				items += '<div class="km-option-resume-service">';
 				items += '	<span class="label-resume-service">'+nombreCupon+'</span>';
-
 				if(cupon[1] > 0){
 					items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>';
 				}else{
@@ -645,7 +682,8 @@ function mostrarCupones(){
 					items += '	<div class="mensaje_cupon">'+MENSAJES_CUPONES[nombreCupon]+' </div>';
 				}
 				items += '</div>';
-			// }
+			}
+
 		}
 
 	});
@@ -824,6 +862,8 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+	initCarrito();
 
 	jQuery(".dias_container input").on("change", function(e){
 		calcular();

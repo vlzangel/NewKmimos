@@ -460,8 +460,17 @@
 			}
 		}
 
+		$paquetes = [
+			"1 semena",
+			"1 mes",
+			"2 meses",
+			"3 meses"
+		];
+
+		$bloq_checkout = '';
 		if( $tipo == "paseos" ){
 			$PAQUETE = "var PAQUETE = '".$busqueda["paquete"]."';";
+			$bloq_checkout = 'disabled';
 		}else{
 			$PAQUETE = "var PAQUETE = '';";
 		}
@@ -563,13 +572,24 @@
 			    	;
 			    }
 			    $dias_str = '<div class="dias_container">'.$dias_str.'</div>';
+			}	
+
+			$bloq_checkout_str = '';
+
+			if( $bloq_checkout != "" ){
+				$bloq_checkout_str = '
+					<div style="margin-bottom: 15px; font-size: 15px;" class="msg_bloqueador_no_valido">
+						Estimado usuario el <strong>checkout</strong> será establecido de manera automatica para coincidir con
+						el tiempo del paquete seleccinado de <strong>'.$paquetes[ $busqueda["paquete"]-1 ].'</strong>.
+					</div>
+				';
 			}
 
-			$precios = '
+			$precios = $bloq_checkout_str.'
 				<div class="km-dates-step" style="margin-bottom: 5px;">
 					<div class="km-ficha-fechas">
-						<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
-						<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly>
+						<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly />
+						<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly '.$bloq_checkout.' />
 					</div>
 				</div>
 
