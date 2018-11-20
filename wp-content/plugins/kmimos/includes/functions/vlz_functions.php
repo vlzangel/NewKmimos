@@ -1507,6 +1507,40 @@
                     );
                 }
 
+
+            $paquete = '';
+            $info_correo = [];
+            if( 
+                trim( strtolower($metas_reserva["_booking_dias"][0]) ) != "" &&
+                trim( strtolower($metas_reserva["_booking_paquete"][0]) ) != "" 
+            ){
+                $paq = [
+                    '',
+                    '1 Semena',
+                    '1 Mes',
+                    '2 Meses',
+                    '3 Meses',
+                ];
+                $metas_reserva["_booking_dias"][0] = json_decode($metas_reserva["_booking_dias"][0]);
+
+                $info_correo['dias'] = implode(' - ', $metas_reserva["_booking_dias"][0]);
+                $info_correo['paquete'] = $paq[ $metas_reserva["_booking_paquete"][0] ];
+
+                $paquete = "
+                    <div class='desglose_box'>
+                        <strong>INFORMACIÓN DE LOS PASEOS</strong>
+                        <div class='item'>
+                            <div>Paquete</div>
+                            <span>".$paq[ $metas_reserva["_booking_paquete"][0] ]."</span>
+                        </div>
+                        <div class='item'>
+                            <div>Días</div>
+                            <span>".implode(' - ', $metas_reserva["_booking_dias"][0])."</span>
+                        </div>
+                    </div>
+                ";
+            }
+
             $detalle = array(
                 "aceptar_rechazar" => $aceptar_rechazar,
                 "id_reserva" => $reserva->ID,
@@ -1532,8 +1566,7 @@
                 "inicio" => $inicio,
                 "fin" => $fin,
 
-                "dias" => $metas_reserva["_booking_dias"][0],
-                "paquete" => $metas_reserva["_booking_paquete"][0],
+                "paquete" => $paquete
             );
 
             $desglose["deposit"] = $desglose["deposit"];
@@ -1584,8 +1617,7 @@
                     "checkin" => date("g:i a", strtotime( $metas_reserva['_booking_checkin'][0] ) ),
                     "checkout" => date("g:i a", strtotime( $metas_reserva['_booking_checkout'][0] ) ),
 
-                    "dias" => $metas_reserva["_booking_dias"][0],
-                    "paquete" => $metas_reserva["_booking_paquete"][0],
+                    "info_paquete" => $info_correo
                 ),
             );
 

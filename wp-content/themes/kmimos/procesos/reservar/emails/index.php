@@ -254,6 +254,11 @@
             'TELEFONOS_CUIDADOR'    => $cuidador["telefono"],
             'CORREO_CUIDADOR'       => $cuidador["email"],
             'DIRECCION_CUIDADOR'    => $cuidador["direccion"],
+
+        // INFO PASEOS
+            'DISPLAY_PASEOS' => ( count($servicio["info_paquete"]) > 0 ) ? 'block' : 'none' ,
+            'PAQUETE' => ( count($servicio["info_paquete"]) > 0 ) ? $servicio["info_paquete"]['paquete'] : '' ,
+            'DIAS' =>    ( count($servicio["info_paquete"]) > 0 ) ? $servicio["info_paquete"]['dias']    : ''
     ];
 
 

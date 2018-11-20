@@ -99,6 +99,7 @@
             <strong>Mascotas</strong>
             ".$variaciones."
         </div>
+        ".$data_reserva["servicio"]["paquete"]."
     ";
 
     $adicionales = "";
