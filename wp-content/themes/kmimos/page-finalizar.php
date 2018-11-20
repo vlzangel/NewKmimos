@@ -35,14 +35,33 @@
 				</div>";
 		}
 
-
-	 /*   if( strtolower($data_reserva["servicio"]["metodo_pago"]) == "tarjeta" ){
-	    	$pixel = "<script> evento_fbq ('track','Purchase'); </script>";
-	    }else{
-	    	$pixel = "";
-	    }*/
-
-
+		$paquete = '';
+		if( 
+			trim( strtolower($data_reserva["servicio"]["dias"]) ) != "" &&
+			trim( strtolower($data_reserva["servicio"]["paquete"]) ) != "" 
+		){
+			$paq = [
+				'',
+				'1 Semena',
+				'1 Mes',
+				'2 Meses',
+				'3 Meses',
+			];
+			$data_reserva["servicio"]["dias"] = json_decode($data_reserva["servicio"]["dias"]);
+			$paquete = "
+				<div class='desglose_box'>
+		            <strong>INFORMACIÓN DE LOS PASEOS</strong>
+		            <div class='item'>
+		                <div>Paquete</div>
+		                <span>".$paq[ $data_reserva["servicio"]["paquete"] ]."</span>
+		            </div>
+		            <div class='item'>
+		                <div>Días</div>
+		                <span>".implode(' - ', $data_reserva["servicio"]["dias"])."</span>
+		            </div>
+	            </div>
+			";
+		}
 
 	    $info = $pixel.'
 	        <div class="desglose_box">
@@ -104,6 +123,7 @@
 	            <strong>Mascotas</strong>
 	            ".$variaciones."
 	        </div>
+            ".$paquete."
 	    ";
 
 	    $numero_servicios = 1;

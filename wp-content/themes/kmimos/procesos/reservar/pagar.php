@@ -225,7 +225,7 @@
 
 	if( $pagar->tipo_servicio == "paseos" ){
 		$data_reserva["paquete"] = $pagar->paquete;
-		$data_reserva["dias"] = json_encode($fechas->dias);
+		$data_reserva["dias"] = json_encode($fechas->dias_str);
 	}
 
     $data_cliente = array();

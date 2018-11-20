@@ -1530,7 +1530,10 @@
                 "cuidador" => $producto->post_author,
                 "cliente" => $metas_reserva["_booking_customer_id"][0],
                 "inicio" => $inicio,
-                "fin" => $fin
+                "fin" => $fin,
+
+                "dias" => $metas_reserva["_booking_dias"][0],
+                "paquete" => $metas_reserva["_booking_paquete"][0],
             );
 
             $desglose["deposit"] = $desglose["deposit"];
@@ -1579,7 +1582,10 @@
                     "flash" => $metas_reserva['_booking_flash'][0],
 
                     "checkin" => date("g:i a", strtotime( $metas_reserva['_booking_checkin'][0] ) ),
-                    "checkout" => date("g:i a", strtotime( $metas_reserva['_booking_checkout'][0] ) )
+                    "checkout" => date("g:i a", strtotime( $metas_reserva['_booking_checkout'][0] ) ),
+
+                    "dias" => $metas_reserva["_booking_dias"][0],
+                    "paquete" => $metas_reserva["_booking_paquete"][0],
                 ),
             );
 

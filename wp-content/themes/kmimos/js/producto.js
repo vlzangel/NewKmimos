@@ -224,9 +224,10 @@ function calcular(){
 		var inicio = new Date(String(CARRITO[ "fechas" ][ "inicio" ]).split(" ")[0]).getTime();
 		var fin = inicio+(dias*86400000);
 		fin = new Date(fin);
+		var dia = ( (fin.getDate()+1) < 10 ) ? "0"+(fin.getDate()+1) : (fin.getDate()+1);
 		var mes = ( (fin.getMonth()+1) < 10 ) ? "0"+(fin.getMonth()+1) : (fin.getMonth()+1);
 		CARRITO[ "fechas" ][ "fin" ] = fin.getFullYear()+"-"+mes+"-"+fin.getDate()+" 00:00:00";
-		jQuery('#checkout').val( fin.getDate()+"/"+mes+"/"+fin.getFullYear() );
+		jQuery('#checkout').val( dia+"/"+mes+"/"+fin.getFullYear() );
 	}
     
 
@@ -397,6 +398,7 @@ function get_dias_semana(dias){
 	}
 
 	CARRITO[ "fechas" ][ "dias" ] = DIAS_SELECCIONADOS;
+	CARRITO[ "fechas" ][ "dias_str" ] = dias;
 
 	return num_dias;
 }
