@@ -20,7 +20,6 @@
 
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';
 	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script><style> 
-		.modal p { font-family: arial, sans-serif !important; color: #333 !important; } 
 		.modal p a { font-family: arial, sans-serif !important; color: #333 !important; } 
 	</style>';
 /*
