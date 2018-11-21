@@ -1,6 +1,6 @@
 <?php include 'pre-header.php'; ?><!doctype html>
 <html lang="es-ES" class="no-js"><head>
-	<title> <?php bloginfo('title'); ?> </title>
+	<title>Mucho mejor que una pensión para perros - Cuidadores Certificados - kmimos.com.mx</title>
 	<meta charset="UTF-8"><?php 
 	$HTML = '';	
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
@@ -11,7 +11,11 @@
 		$descripcion = get_post_meta($post->ID, 'kmimos_descripcion', true);
 		if( $descripcion != ""){
 			$HTML .= "<meta name='description' content='{$descripcion}'>";
+		}else{
+			$HTML .= "<meta name='description' content='Mucho mejor que una pensión para perros - Cuidadores Certificados - kmimos.com.mx'>";
 		}
+	}else{
+		$HTML .= "<meta name='description' content='Mucho mejor que una pensión para perros - Cuidadores Certificados - kmimos.com.mx'>";
 	}
 
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';
@@ -250,7 +254,7 @@
 			$avatar = getTema().'/images/new/km-navbar-mobile.svg';
 			$avatar_circle = '';
 			if( !is_user_logged_in() ){
-				include_once('partes/modal_login.php');
+				
 			}else{
 				$current_user = wp_get_current_user();
 				$user_id = $current_user->ID;
@@ -357,10 +361,6 @@
 					    	</div>
 					</nav>
 				';
-			}
-
-			if( !is_user_logged_in() ){
-				include_once('partes/modal_register.php');
 			}
 			
 			echo comprimir_styles($HTML);

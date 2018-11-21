@@ -34,8 +34,6 @@
 	$avatar_circle = '';
 	if( !is_user_logged_in() ){
 		$btn_quiero = '<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" id="" class="boton boton_morado"> <img src="'.get_recurso("img").'HOME/PNG/Ser_cuidador.png" /> Quiero ser Cuidador</a>';
-		include_once(dirname(__DIR__).'/partes/modal_login.php');
-		include_once(dirname(__DIR__).'/partes/modal_register.php');
 		wp_enqueue_script('modales', getTema()."/js/registro_cliente.js", array("jquery"), '1.0.0');
 	}else{
 		$current_user = wp_get_current_user();
