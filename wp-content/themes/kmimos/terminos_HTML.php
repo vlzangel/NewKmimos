@@ -3,7 +3,6 @@ $HTML_TERMINOS = '<div style="text-align: justify">
 <strong><u>I. Términos y Condiciones Kmimos.</u></strong>
 <strong>1. Utilización de este Sitio. </strong>
 <p>1.1. Este es el sitio en la red de <strong>Kmimos</strong> (el "Sitio"), mismo que incluye todos los recursos disponibles contenidos en el nombre de dominio "<strong>kmimos</strong>.mx", “<strong>kmimos</strong>.la”, "<strong>kmimos</strong>.com.mx", "cani.mx". Por el sólo hecho de ingresar a, o utilizar este Sitio, usted (el "Usuario"), (i) manifiesta haber leído, entendido y aceptado incondicionalmente los términos y condiciones de uso (los "Términos") del Sitio que a continuación se detallan; y (ii) se compromete a hacer uso del mismo estrictamente bajo los Términos, aceptando que dicha utilización le atribuye la calidad de usuario del Sitio e implica la adhesión plena y sin reservas a todos y cada uno de los Términos. En caso de que usted no esté de acuerdo con los Términos, por favor absténgase de utilizar este Sitio. </p>
-
 <strong>2. Condiciones de Utilización. </strong>
 <p>2.1. El Usuario se compromete a utilizar el Sitio de acuerdo con estos Términos y las normas jurídicas vigentes en los Estados Unidos Mexicanos, así como se obliga a no usar el Sitio con fines ilícitos, contrarios a estos Términos, lesivos a los intereses de terceros, o de tal manera que puedan dañar, sobrecargar, deteriorar o inutilizar el Sitio. </p>
 <p>2.2. El Usuario manifiesta saber y entender que el Sitio está destinado a Usuarios que no son consumidores para los efectos de la Ley Federal de Protección al Consumidor. Asimismo, manifiesta que el uso que haga del Sitio, así como cualquier negociación o acto jurídico relacionado con el Sitio, lo hace con la intención de integrar los bienes y/o servicios en su caso involucrados a una o varias cadenas productivas, por lo que el Usuario en ningún momento será un consumidor, ni <strong>Kmimos</strong> un proveedor, para los efectos de la mencionada Ley. </p>
@@ -98,8 +97,6 @@ $HTML_TERMINOS = '<div style="text-align: justify">
 <p>Si usted Usuario, como cliente realiza una reserva de un servicio de cuidado proporcionado dentro de la plataforma <strong>Kmimos</strong> y no presenta al inicio de dicho servicio la cartilla de vacunación de su(s) mascota(s) que certifique que se encuentra(n) en estado de salud adecuado, usted Usuario acepta tener conocimiento y estar de acuerdo en que su(s) mascota(s) será(n) considerada(s) con estatus de esquema de vacunación no completo y la cobertura veterinaria no aplicará en la reserva para los casos de enfermedad y que <strong>Kmimos</strong> como el cuidador <strong>Kmimos</strong>, no serán responsables y por lo tanto el Usuario deslindan de todo tipo de responsabilidad derivada por cualquier eventualidad que pudiera ocurrir durante su estadía con el cuidador <strong>Kmimos</strong>, relacionada a padecimientos y/o las complicaciones derivadas de éstos. El cuidador <strong>Kmimos</strong>, tendrá la facultad opcional de acudir al Médico veterinario zootécnico en caos que su(s) mascota(s) se encuentra(n) con síntomas de enfermedad, siendo responsabilidad y obligación plena del Usuario, reembolsar los gastos generados por estas revisiones médicas.</p>
 <strong>15. Domicilio. </strong>
 <p>12.1. Cualquier notificación o comunicación dirigida a <strong>Kmimos</strong> deberá enviarse a Independencia 1018. Col. Parques del Bosque, C.P 45609. Tlaquepaque, Jal. Teléfono 55 4742 3162. Correo Electrónico: contactomex@<strong>kmimos</strong>.la</p>
-
-
 <strong><u>II. Políticas de Privacidad.</u></strong>
 <p><strong>Kmimos</strong> (en adelante denominado "<strong>Kmimos</strong>" o "<strong>kmimos</strong>.mx" o "<strong>kmimos</strong>.com.mx" o "<strong>kmimos</strong>.la") respeta su privacidad. Debido a que reunimos información importante de nuestros usuarios, visitantes, suscriptores y clientes (colectivamente "usted" o "su"), hemos establecido esta Política de privacidad como un medio para comunicar nuestra información de recopilación y difusión prácticas. Al acceder o utilizar <strong>kmimos</strong>.la (el "Sitio") o cualquiera de nuestras aplicaciones móviles o servicios (el Sitio, y este tipo de aplicaciones y servicios, colectivamente, "Servicios"), usted reconoce y acepta que esta Política de Privacidad y también de acuerdo a los Términos de Servicio</p>
 <p>Nuestros objetivos principales en la recopilación de información son para proporcionar y mejorar nuestros servicios, y para que los usuarios puedan disfrutar de los Servicios. Así mismo utilizar su información personal u otra información para comunicarnos con usted en el futuro para informarle sobre productos, promociones o servicios que creemos serán de interés para usted.</p>
@@ -133,7 +130,6 @@ $HTML_TERMINOS = '<div style="text-align: justify">
 <p>Cualquier política de privacidad revisada se aplicará tanto a la información que ya tenemos sobre usted en el momento del cambio, y cualquier información generada o recibida después de que el cambio entre en vigencia. Le recomendamos encarecidamente que vuelva a leer periódicamente esta Política de Privacidad, para ver si ha habido algún cambio en nuestras políticas que pueden afectarle. El uso continuado de los Servicios después de cualquier cambio o revisión de esta Política de Privacidad deberá indicar su acuerdo con los términos de dicha Política de privacidad actualizada.</p>
 <p>En caso de que exista alguna actualización o modificación, <strong>Kmimos</strong> lo hará de su conocimiento a través de nuestro Portal (http://www.<strong>kmimos</strong>.com.mx/).</p>
 <p>Por lo consiguiente acepto la Política de Privacidad dispuesta en este documento.</p>
-
 <strong><u>III. Guía del Servicio.</u></strong>
 <strong>1. Certificación.</strong>
 <p>1.1. Certificación </p>
@@ -298,5 +294,12 @@ $HTML_TERMINOS = '<div style="text-align: justify">
 <p>29.	Promoción de bebidas de alta graduación alcohólica y bebidas espirituosas.</p>
 <p>30.	Promoción de sitios web de juegos de apuestas en línea.</p>
 <p>31.	Farmacias en línea y de medicamentos con receta.</p>
+</div>';
 
-</div>'; ?>
+$NEW_HTML_TERMINOS = "";
+$parrafos = explode("\n", $HTML_TERMINOS);
+foreach ($parrafos as $parrafo) {
+	$NEW_HTML_TERMINOS .= "<p>".$parrafo."</p>";
+}
+
+echo $NEW_HTML_TERMINOS; ?>

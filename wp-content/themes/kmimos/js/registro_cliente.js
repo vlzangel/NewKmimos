@@ -14,6 +14,9 @@ jQuery( document ).ready( function(){
 		jQuery(".popup-registrarte-final").css("display", "none");
 		jQuery(".popup-registrarte-datos-mascota").css("display", "block");
 	});
+
+	jQuery(".terminos_container").load(HOME+"/terminos_HTML.php");
+
 });
 
 function cerrar_modal(){

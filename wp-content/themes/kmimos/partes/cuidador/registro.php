@@ -1,11 +1,5 @@
 <!-- POPUPS REGISTRO -->
 <?php 
-	include dirname(dirname(__DIR__)).'/terminos_HTML.php';
-	$NEW_HTML_TERMINOS = "";
-	$parrafos = explode("\n", $HTML_TERMINOS);
-	foreach ($parrafos as $parrafo) {
-		$NEW_HTML_TERMINOS .= "<p>".$parrafo."</p>";
-	}
 	$info = kmimos_get_info_syte(); 
 ?>
 <div id="popup-registro-cuidador1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -189,9 +183,7 @@
 
 			<div class="popuphide popup-condiciones">
 				<h3 style="margin: 0; text-align: center;">TERMINOS Y CONDICIONES</h3>
-				<div class="terminos_container">
-					<?php echo $NEW_HTML_TERMINOS; ?>
-				</div>
+				<div class="terminos_container"></div>
 				<a href="#" id="btn_si_acepto_cuidador" class="km-btn-correo btn_disable">
 					ACEPTAR TERMINOS Y CONDICIONES
 				</a>

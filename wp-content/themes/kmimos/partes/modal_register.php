@@ -25,14 +25,6 @@ foreach ($referidos as $key => $value) {
 	$referidos_options.= "<option value='{$key}' $selected>{$value}</option>";
 }
 
-include dirname(__DIR__).'/terminos_HTML.php';
-
-$NEW_HTML_TERMINOS = "";
-$parrafos = explode("\n", $HTML_TERMINOS);
-foreach ($parrafos as $parrafo) {
-	$NEW_HTML_TERMINOS .= "<p>".$parrafo."</p>";
-}
-
 $_comportamiento_gatos = get_post_meta($pet_id, 'comportamiento_gatos', true);
 $_comportamiento_gatos = (array) json_decode($_comportamiento_gatos);
 
@@ -251,9 +243,7 @@ $HTML .='
 
 			<div class="popuphide popup-condiciones">
 				<h3 style="margin: 0; text-align: center;">TERMINOS Y CONDICIONES</h3>
-				<div class="terminos_container">
-					'.$NEW_HTML_TERMINOS.'
-				</div>
+				<div class="terminos_container"></div>
 				<a 
 					href="#" 
 					id="btn_si_acepto" 
