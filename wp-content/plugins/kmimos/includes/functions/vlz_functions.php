@@ -1566,6 +1566,7 @@
                 "inicio" => $inicio,
                 "fin" => $fin,
 
+                "info_paquete" => $info_correo,
                 "paquete" => $paquete
             );
 
@@ -1617,7 +1618,8 @@
                     "checkin" => date("g:i a", strtotime( $metas_reserva['_booking_checkin'][0] ) ),
                     "checkout" => date("g:i a", strtotime( $metas_reserva['_booking_checkout'][0] ) ),
 
-                    "info_paquete" => $info_correo
+                    "info_paquete" => $info_correo,
+                    "paquete" => $paquete
                 ),
             );
 
