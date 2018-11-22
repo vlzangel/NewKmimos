@@ -405,12 +405,14 @@
             $ubicaciones_inner = "";
             $ubicaciones_filtro = "AND ( estados LIKE '%=".$estados."=%' AND municipios LIKE '%=".$municipios."=%'  )";   
             $_SESSION['km5'] = "No"; 
+            $FILTRO_UBICACION = "";
 	    }else{ 
 	        if( $estados != "" ){
 	            // $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
 	            $ubicaciones_inner = "";
 	            $ubicaciones_filtro = "AND ( estados LIKE '%=".$estados."=%' )";
 	            $_SESSION['km5'] = "No";
+	            $FILTRO_UBICACION = "";
 	        }else{
 	            if( $latitud != "" && $longitud != "" && $km5 != "No" ){
 	       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
@@ -437,7 +439,7 @@
     	$orderby = "FLASH DESC, ".$orderby;
     }
 
-    if( $latitud != "" && $longitud != "" ){
+    if( $latitud != "" && $longitud != "" && ( $estados == "" ) ){
     	$orderby = "DISTANCIA ASC";
     	$FLASH_ORDEN = "";
     }
