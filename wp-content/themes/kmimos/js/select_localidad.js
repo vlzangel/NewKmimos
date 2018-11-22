@@ -15,6 +15,9 @@ jQuery(document).ready(function(){
                     jQuery(".ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
                     jQuery(".ubicacion").attr( "data-txt", jQuery(this).html() );
                     jQuery( ".cerrar_list_box" ).css("display", "none");
+                    jQuery(".latitud").val( "" );
+                    jQuery(".longitud").val( "" );
+                    
                     buscar("ubicacion");
                 } 
                 jQuery(".ubicacion_list").removeClass("ubicacion_list_hover");
@@ -31,6 +34,8 @@ jQuery(document).ready(function(){
             if(typeof buscar === 'function') {
                 jQuery(".ubicacion_txt").val( "" );
                 jQuery(".ubicacion").val( "" );
+                jQuery(".latitud").val( "" );
+                jQuery(".longitud").val( "" );
                 buscar("ubicacion");
             }
         }

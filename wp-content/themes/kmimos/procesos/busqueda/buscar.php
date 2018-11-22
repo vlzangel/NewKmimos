@@ -456,11 +456,11 @@
 	    WHERE 
 	        activo = '1' and cuidadores.hospedaje_desde >= 1 
 	        {$condiciones} 
-	        {$ubicaciones_filtro} 
-	        {$FILTRO_UBICACION} 
 	        {$FILTRO_ESPECIA}
 	    	{$GATOS_CONDICION}
 	    	$DESCUENTO_CONDICION
+	        {$ubicaciones_filtro} 
+	        {$FILTRO_UBICACION} 
 	    ORDER BY {$orderby}";
 
     /* FIN SQL cuidadores */
