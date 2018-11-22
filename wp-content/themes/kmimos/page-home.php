@@ -317,12 +317,11 @@
 		if( time() > strtotime("2018-11-16 00:00:00") ){
 			$HTML .= '
 				<a href="'.get_home_url().'/busqueda/?d=1" style="display: block;">
-					<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/PC.jpg" width="100%" class="solo_pc" />
-					<img src="'.get_recurso("img").'BANNERS/Banner_Descuentos/MOVIL.jpg" width="100%" class="solo_movil" />
+					<img src="'.get_recurso("img").'BANNERS/banner_rotativo/pc/1.jpg" width="100%" class="solo_pc" />
+					<img src="'.get_recurso("img").'BANNERS/banner_rotativo/movil/1.jpg" width="100%" class="solo_movil" />
 				</a>
 			';
 		}
-
 
 		$HTML .= '
 		<!-- BENEFICIOS -->

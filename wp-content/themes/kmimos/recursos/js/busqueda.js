@@ -440,11 +440,11 @@
 
 		                    	console.log( results );
 
-		                    	limitesDestacados.lat.der = results[6].geometry.bounds.f.b;
-		                    	limitesDestacados.lat.izq = results[6].geometry.bounds.f.f;
+		                    	limitesDestacados.lat.der = results[6].geometry.bounds.j.j;
+		                    	limitesDestacados.lat.izq = results[6].geometry.bounds.j.l;
 
-		                    	limitesDestacados.lng.sup = results[6].geometry.bounds.b.b;
-		                    	limitesDestacados.lng.inf = results[6].geometry.bounds.b.f;
+		                    	limitesDestacados.lng.sup = results[6].geometry.bounds.l.j;
+		                    	limitesDestacados.lng.inf = results[6].geometry.bounds.l.l;
 
 		                        var address = results[0]['formatted_address'];
 		                        jQuery(".ubicacion_txt").val(address);
