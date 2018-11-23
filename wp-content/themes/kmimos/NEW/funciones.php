@@ -2,6 +2,229 @@
 	
 	include dirname(__FILE__).'/reconfiguracion.php';
 
+	function get_tipo($servicio_id){
+		global $wpdb;
+		$cats = array(
+            2601 => "paseos"                    ,
+            2602 => "adiestramiento_basico"     ,
+            2606 => "adiestramiento_intermedio" ,
+            2607 => "adiestramiento_avanzado"   ,
+            2599 => "guarderia"                 ,
+            2598 => "hospedaje"                 
+        );
+		return $cats[ $wpdb->get_var( "SELECT ts.term_id AS slug FROM wp_term_relationships AS r LEFT JOIN wp_terms as ts ON ( ts.term_id = r.term_taxonomy_id ) WHERE r.object_id = '{$servicio_id}' AND r.term_taxonomy_id != 28" ) ];
+	}
+
+	function get_cupos($servicio_id){
+		global $wpdb;
+		return $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= '".date("Y-m-d", time())."'" );
+	}
+
+	function COMPROBAR_ERRORES(){
+		global $wpdb;
+		global $USER_ID;
+
+		global $tieneGatos;
+		global $tienePerros;
+
+		$error = "";
+		if( $USER_ID  == ""){
+			$error = "
+				<h1 align='justify'>Debes iniciar sesión para poder realizar reservas.</h1>
+				<h2 align='justify'>
+					Pícale <span id='cerrarModal' onclick=\"document.getElementById('login').click(); jQuery('.vlz_modal').css('display', 'none')\" style='color: #00b69d; font-weight: 600; cursor: pointer;'>Aquí</span> para acceder a kmimos.
+				<h2>
+			";
+		}
+
+		if( $error  == ""){
+			$propietario = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".get_the_ID() );
+			if( $propietario == $USER_ID ){
+				$error = "
+					<h1 align='justify'>No puedes realizarte reservas a tí mismo.</h1>
+					<h2 align='justify'>Pícale <a href='".get_home_url()."/busqueda/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para buscar entre cientos de cuidadores certificados kmimos.<h2>
+				";
+			}
+		}
+
+		if( $error  == ""){
+			$meta = get_user_meta($USER_ID);
+			if( $meta['first_name'][0] == '' ||  $meta['last_name'][0] == '' || ( $meta['user_mobile'][0] == '' ) && ( $meta['user_phone'][0] == '' )){
+				$error = "
+					<h1 align='justify'>Kmiusuario, para continuar con tu reserva debes ir a tu perfil para completar algunos datos de contacto.</h1>
+					<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/?ua=profile' target='_blank' style='color: #00b69d; font-weight: 600;'>Aquí</a> para cargar tu información.<h2>
+				";
+			}
+		}
+
+		if( $error  == ""){
+			$mascotas = $wpdb->get_var("SELECT count(*) FROM wp_posts WHERE post_type = 'pets' AND post_author = ".$USER_ID );
+			if( $mascotas == 0 ){
+				$error = "
+					<h1 align='justify'>Debes cargar por lo menos una mascota para poder realizar una reserva.</h1>
+					<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlas.<h2>
+				";
+			}
+		}
+
+		if( $error  == ""){
+			$mascotas__ = $busqueda["mascotas"];
+			if( is_array($mascotas__) && in_array("gatos", $mascotas__) ) {
+				if( $atributos["gatos"] == "Si" && !$tieneGatos ){
+					$error = "
+						<h1 align='justify'>Debes cargar por lo menos un <strong>Gato</strong> para poder realizar esta reserva.</h1>
+						<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/nueva/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlo.<h2>
+					";
+				}
+			}
+		}
+
+		if( $error  == "" ){
+			if( $atributos["gatos"] != "Si" && !$tienePerros ){
+				$error = "
+					<h1 align='justify'>Debes cargar por lo menos un <strong>Perro</strong> para poder realizar esta reserva.</h1>
+					<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/nueva/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlo.<h2>
+				";
+			}
+		}
+
+		if( $error != "" ){
+			$actual = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+			$referencia = $_SERVER['HTTP_REFERER'];
+			if( $actual == $referencia ){ $referencia = get_home_url(); }
+			$HTML .= "
+				<style>
+					body{ font-family: Arial; }
+					.vlz_modal{ position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: table; z-index: 10000; background: rgba(0, 0, 0, 0.8); vertical-align: middle !important; }
+					h1{ font-size: 18px; }
+					h2{ font-size: 16px; }
+					.vlz_modal_interno{ display: table-cell; text-align: center; vertical-align: middle !important; }
+					.vlz_modal_ventana{ position: relative; display: inline-block; width: 60%!important; text-align: left; box-shadow: 0px 0px 4px #FFF; border-radius: 5px; z-index: 1000; }
+					.vlz_modal_titulo{ background: #FFF; padding: 15px 10px; font-size: 18px; color: #52c8b6; font-weight: 600; border-radius: 5px 5px 0px 0px; }
+					.vlz_modal_contenido{ background: #FFF; height: 450px; box-sizing: border-box; padding: 5px 15px; border-top: solid 1px #d6d6d6; border-bottom: solid 1px #d6d6d6; overflow: auto; text-align: justify; height: auto; }
+					.vlz_modal_pie{ background: #FFF; padding: 15px 10px; border-radius: 0px 0px 5px 5px; border-radius: 0px 0px 5px 5px!important; height: auto; overflow: hidden; }
+					.vlz_modal_fondo{ position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 500; }
+					.vlz_boton_siguiente{ padding: 10px 50px; display: inline-block; font-size: 16px; border: solid 1px #00d2c6; border-radius: 3px; float: right; cursor: pointer; background-color: #00d2c6; color: #FFF; } 
+					@media screen and (max-width: 750px){ .vlz_modal_ventana{ width: 90% !important; } }
+				</style>
+				<div id='jj_modal_ir_al_inicio' class='vlz_modal'>
+					<div class='vlz_modal_interno'>
+						<div class='vlz_modal_ventana jj_modal_ventana'S>
+							<div class='vlz_modal_titulo'>¡Oops!</div>
+							<div class='vlz_modal_contenido'>".$error."</div>
+							<div class='vlz_modal_pie'>
+								<a href='".$referencia."' ><input type='button' style='text-align: center;' class='vlz_boton_siguiente' value='Volver'/></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			";
+			echo comprimir($HTML);
+			exit();
+		}
+		
+	}
+
+	function get_filtros_user($USER_ID){
+		global $wpdb;
+		global $cuidador;
+
+		$filtros = [];
+
+		$filtros_txt = array(
+			"agresivo_mascotas" => "Agresivas con otras mascotas",
+			"agresivo_personas" => "Agresivas con humanos",
+			"pequenos" => "Peque&ntilde;as",
+			"medianos" => "Medianas",
+			"grandes" => "Grandes",
+			"gigantes" => "Gigantes"
+		);
+
+		$filtros = array(
+			"agresivo_mascotas" => 0,
+			"agresivo_personas" => 0,
+			"pequenos" => 0,
+			"medianos" => 0,
+			"grandes" => 0,
+			"gigantes" => 0
+		);
+
+		$_mascotas = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$USER_ID}' AND post_type = 'pets' AND post_status = 'publish' ");
+		$mascotas = array();
+		foreach ($_mascotas as $key => $value) {
+			$_metas = $wpdb->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key IN ('aggressive_with_humans', 'aggressive_with_pets', 'size_pet')");
+			$metas = array();
+			foreach ($_metas as $key2 => $value2) {
+				$metas[ $value2->meta_key ] = $value2->meta_value;
+				switch ( $value2->meta_key ) {
+					case 'aggressive_with_humans':
+						if( $value2->meta_value == 1 ){
+							$filtros["agresivo_personas"] = 1;
+						}
+					break;
+					case 'aggressive_with_pets':
+						if( $value2->meta_value == 1 ){
+							$filtros["agresivo_mascotas"] = 1;
+						}
+					break;
+					case 'size_pet':
+						switch ($value2->meta_value) {
+							case 0:
+								$filtros["pequenos"] = 1;
+							break;
+							case 1:
+								$filtros["medianos"] = 1;
+							break;
+							case 2:
+								$filtros["grandes"] = 1;
+							break;
+							case 3:
+								$filtros["gigantes"] = 1;
+							break;
+						}
+					break;
+				}
+			}
+			$mascotas[] = $metas;
+		}
+		
+		foreach ($filtros as $key => $value) {
+			if( $value == 0 ){
+				unset($filtros[$key]);
+			}
+		}
+
+		$FILTRO_ESPECIA = array();
+
+		$tamanos_aceptados = unserialize( $cuidador->tamanos_aceptados );
+		$conductas = unserialize( $cuidador->comportamientos_aceptados );
+
+		if( $filtros["agresivo_mascotas"] == 1 ){
+			if( $conductas["agresivos_perros"]+0 == 0 && $conductas["agresivos_mascotas"]+0 == 0 ){
+				$filtros["agresivo_mascotas"]++;
+			}
+		}
+
+		if( $filtros["agresivo_personas"] == 1 ){
+			if( $conductas["agresivos_personas"]+0 == 0 && $conductas["agresivos_humanos"]+0 == 0 ){
+				$filtros["agresivo_personas"]++;
+			}
+		}
+
+		foreach ($filtros as $key => $value) {
+			if( $key != "agresivo_mascotas" && $key != "agresivo_personas" ){
+				if( $tamanos_aceptados[ $key ]+0 == 0 ){
+					$filtros[ $key ]++;
+				}
+			}
+		}
+
+		return [
+			$filtros,
+			$mascotas
+		];
+	}
+
 	function set_uso_banner($params){
 		extract($params);
 		if( !isset($_SESSION) ){ session_start(); }
@@ -44,14 +267,6 @@
 		}
         
 	}
-
-
-
-
-
-
-
-
 
 	function get_recurso($tipo){
 		return getTema()."/recursos/".$tipo."/";

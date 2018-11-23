@@ -21,6 +21,16 @@
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';
 	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script><style> 
 		.modal p a { font-family: arial, sans-serif !important; color: #333 !important; } 
+
+		pre {
+			position: fixed;
+		    top: 0px;
+		    left: 0px;
+		    width: 100%;
+		    height: 100%;
+		    z-index: 99999999;
+		    display: none !important;
+		}
 	</style>';
 /*
 	$HTML .= "
@@ -92,7 +102,13 @@
 			wp_enqueue_style( 'jquery.bxslider', getTema()."/css/jquery.bxslider.css", array(), "1.0.0" );
 			wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 			wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
-			wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
+
+			if( in_array("reservar", explode("/", $_SERVER["REQUEST_URI"])) ){
+				wp_enqueue_style( 'kmimos_style', getTema()."/css/reserva_proceso.css", array(), "1.0.0" );
+			}else{
+				wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
+			}
+
 			wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 			wp_enqueue_style( 'generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
 			wp_enqueue_style( 'generales_responsive_css', getTema()."/css/responsive/generales_responsive.css", array(), "1.0.0" );

@@ -168,6 +168,10 @@
 		';
 	}
 
+	echo "<pre>";
+		print_r( $_SESSION['sql'] );
+	echo "</pre>";
+
     $HTML .= '
     	<div class="busqueda_container">
     		<div class="filtos_container">
@@ -476,11 +480,11 @@
     	<div class="cargando_mas_resultados_externo">
 			<i class="fa fa-spinner fa-spin"></i>
 		</div>
-    ';
+    ';   
 
-/*    echo "<pre style='position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 9999999999999999999; display: none;'>";
+    echo "<pre>";
     	print_r($_SESSION['sql']);
-    echo "</pre>";*/
+    echo "</pre>";
 
     echo comprimir( $HTML );
 

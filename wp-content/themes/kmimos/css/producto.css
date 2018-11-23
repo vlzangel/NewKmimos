@@ -66,7 +66,8 @@
 
 .km-input-custom {
     border-bottom: solid 1px #CCC !important;
-    padding: 10px 20px !important;
+    padding: 8px 0px !important;
+    color: #979797 !important;
     text-align: left;
     box-sizing: border-box;
     width: 100% !important;
@@ -117,7 +118,7 @@
 
 .km-quantity-height .km-height span{
     float: right;
-    font-weight: 600;
+    font-weight: 800;
 }
 
 #step_1{
@@ -136,7 +137,7 @@
 
 .expiration{
     width: calc( 50% - 10px ) !important;
-    margin: 0px 4px;
+    margin: 0px;
     text-align: center;
 }
 
@@ -152,9 +153,9 @@
 }
 
 .metodos_container {
-    border: solid 1px #EEE;
+    border: 0px;
     border-radius: 5px;
-    padding: 20px 20px 5px;
+    padding: 10px 0px 0px;
 }
 
 div#tienda_box {
@@ -163,7 +164,7 @@ div#tienda_box {
 }
 
 div#tienda_box img {
-    width: 90%;
+    width: 100%;
     margin-bottom: 15px;
 }
 
@@ -174,9 +175,13 @@ div#tienda_box img {
 
 .km-cupones > div {
     display: inline-block;
-    width: 50%;
+    width: 65%;
     float: left;
-    height: 60px;
+    height: 50px;
+}
+
+.km-cupones > div:last-child {
+    width: 35%;
 }
 
 .km-cupones input {
@@ -184,7 +189,7 @@ div#tienda_box img {
     height: 100%;
     padding: 10px 20px;
     border-radius: 3px 0px 0px 3px;
-    border: solid 1px #5fc4b0;
+    border: solid 1px #777;
     font-size: 17px;
 }
 
@@ -192,14 +197,16 @@ div#tienda_box img {
     display: inline-block;
     width: 100%;
     text-align: center;
-    background: #5fc4b0;
+    background: #007cd6;
     color: #FFF;
     height: 100%;
-    padding: 17px 10px;
+    padding: 15px;
     border-radius: 0px 3px 3px 0px;
-    border: solid 1px #5fc4b0;
+    border: solid 1px #007cd6;
     border-left: 0;
-    font-size: 17px;
+    font-size: 15px;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 .cupones_desglose{
@@ -207,22 +214,38 @@ div#tienda_box img {
 }
 
 .atras{
-    border: solid 1px #CCC;
-    padding: 5px 15px;
+    padding: 0px 0px 15px;
     border-radius: 4px;
     font-size: 18px;
     cursor: pointer;
-    float: left;
 }
 
 .km-info{
-    font-size: 25px !important;
+    font-size: 20px;
     cursor: pointer;
-    color: #000 !important;
+    color: #33e1be;
+    border: solid 2px #AAA;
+    padding: 5px 10px;
+    border-radius: 3px;
 }
 
 .km-info:hover{
     color: #2196F3 !important;
+}
+
+.km-info-box a{
+    position: absolute;
+    top: 0px;
+    right: 40px;
+    border: solid 2px #AAA;
+    padding: 3px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 600;
+    color: #444;
+    text-decoration: none !important;
+    cursor: pointer;
 }
 
 .km-info-box{
@@ -466,4 +489,139 @@ div#tienda_box img {
 
     input:disabled {
         background-color: #EEE !important;
+    }
+
+    .page-reservation .km-content .km-col-steps::-webkit-scrollbar-track{
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 0px;
+        background-color: #F5F5F5;
+    }
+
+    .page-reservation .km-content .km-col-steps::-webkit-scrollbar{
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+
+    .page-reservation .km-content .km-col-steps::-webkit-scrollbar-thumb{
+        border-radius: 0px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #00d2c6;
+    }
+
+    .flecha_fecha {
+        width: 25px;
+        position: absolute;
+        margin-left: -40px;
+        margin-top: 22px;
+    }
+
+    .contenedor_info{
+        display: table;
+        width: 570px;
+    }
+
+    .contenedor_info > label,
+    .contenedor_info > div {
+        display: table-cell;
+    }
+
+    .contenedor_info > label {
+        text-transform: uppercase;
+        width: 230px;
+        padding: 15px 50px 0px 0px;
+        vertical-align: top;
+        color: #000;
+    }
+
+    .contenedor-adicionales .contenedor_info{
+        padding-bottom: 25px;
+    }
+
+    .contenedor-adicionales {
+        border-top: solid 1px #CCC;
+        border-bottom: solid 1px #CCC;
+        padding-top: 15px;
+        margin-top: 15px;
+    }
+
+    .barra_inferior_container,
+    .barra_inferior_2_container{
+        display: table;
+        width: 100%;
+    }
+
+    .barra_inferior_container > div {
+        display: table-cell;
+        vertical-align: middle;
+        height: 80px;
+    }
+
+    .btn_container{
+        width: 230px;
+        padding-left: 30px;
+    }
+
+    span.km-price-total {
+        color: #7c169e;
+    }
+
+    .cuidador_select {
+        padding: 30px 0px 10px;
+        font-size: 20px;
+    }
+
+    .cuidador_select span {
+        color: #7c169e;
+        font-weight: 600;
+    }
+
+    .fechas_select {
+        padding: 10px 0px;
+        font-size: 16px;
+    }
+
+    .km-content-step.km-content-step-2 {
+        margin-right: 30px;
+    }
+
+    span.km-price-total2 {
+        color: #7c169e;
+        font-weight: 800;
+    }
+
+    .barra_inferior_2_container {
+        width: calc( 100% - 30px );
+    }
+
+    .barra_inferior_2_container > div,
+    .barra_inferior_2_container > span{
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .barra_inferior_2_container > div{
+        padding-right: 20px;
+    }
+
+    .km-term-conditions a {
+        color: #007cd6;
+        text-decoration: underline;
+    }
+
+    span#reserva_btn_next_3 {
+        display: inline-block;
+        float: right;
+        padding: 0px 30px;
+        font-size: 18px;
+    }
+
+    .datos_tarjeta_container{
+        display: table;
+        width: 100%;
+    }
+
+    .datos_tarjeta_container > div {
+        display: table-cell;
+        width: 50%;
+        vertical-align: top;
     }

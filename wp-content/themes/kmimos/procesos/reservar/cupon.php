@@ -131,7 +131,12 @@ ini_set('display_errors', '0');
 		
 		/* Cupones Especiales */
 
-			if( $cupon == "kpet15" ){
+			$cupones_solo_petco = [
+				"kpet15",
+				"cpet30",
+				"cpet25",
+			];
+			if( in_array($cupon, $cupones_solo_petco) ){
 				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
 				if( !es_nuevo($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
 			}
@@ -313,6 +318,8 @@ ini_set('display_errors', '0');
 			}
 
 			if( $cupon == "+2masc" ){
+
+				if( $validar ){ error("Este cupón no es valido"); }else{ return false; }
 
 				if( !cuidador_valido($db, $servicio) ){
 					if( $validar ){ error("Este cuidador no acepta el cupón [ +2masc ]"); }else{ return false; }

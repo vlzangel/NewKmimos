@@ -2,10 +2,10 @@
 
     $HTML = '';
 
-    // if( !is_user_logged_in() ){
+    if( !is_user_logged_in() ){
         include_once(__DIR__.'/partes/modal_login.php');
         include_once(__DIR__.'/partes/modal_register.php');
-    // }
+    }
 
     echo comprimir( $HTML );
 
