@@ -130,6 +130,36 @@ ini_set('display_errors', '0');
 		}
 		
 		/* Cupones Especiales */
+			
+			if( $cupon == "bnv1sb" ){
+				if( !es_nuevo($db, $servicio) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
+				$se_uso = $db->get_var("SELECT count(*) FROM wp_postmeta WHERE post_id = {$xcupon->ID} AND meta_key = '_used_by' AND meta_value = {$cliente}");
+				if( $se_uso >= $metas["usage_limit_per_user"]+0 ){ if( $validar ){ error("El cupón ya fue usado"); }else{ return false; } }
+
+				$noches = [];
+				for ($i=0; $i < $duracion; $i++) { 
+					foreach ($mascotas as $key => $value) {
+						if( is_array($value) ){
+							if( $value[0]+0 > 0 ){
+								for ($i2=0; $i2 < $value[0]; $i2++) { 
+									$noches[] = $value[1];
+								}								
+							}
+						}
+					}
+				} sort($noches);
+
+				if( $tipo_servicio == "hospedaje" || $tipo_servicio == "guarderia" || $tipo_servicio == "paseos" ){
+					$descuento = $noches[0]; // CALCULO DESCUENTO
+				}else{ if( $uso_cupon != false ){
+					if( $validar ){ error("El cupón sólo es válido para servicios de hospedaje"); }else{ return false; }
+				} }
+
+				$sub_descuento += $descuento;
+				$descuento += ( ($total-$sub_descuento) < 0 ) ? $descuento += ( $total-$sub_descuento ) : 0 ;
+				return array( $cupon, $descuento, $individual_use, $_noches );
+
+			}
 
 			$cupones_solo_petco = [
 				"kpet15",
