@@ -32,6 +32,7 @@
                 'Nutriheroes'       =>  'Nutriheroes',*/
 
                 'Facebook'      =>  'Facebook',
+                'FacebookSB'      =>  'FacebookSB',
                 'Google'       =>  'Buscador de Google',
                 'Instagram'     =>  'Instagram',
                 'Twitter'       =>  'Twitter',
