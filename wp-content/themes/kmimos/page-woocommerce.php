@@ -252,7 +252,7 @@
 			<div class="km-dates-step" style="margin-bottom: 5px;">
 				<div class="km-ficha-fechas">
 					<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly />
-					<img class="flecha_fecha" src="http://localhost/kmimos/wp-content/themes/kmimos/recursos/img/HOME/SVG/Flecha.svg">
+					<img class="flecha_fecha" src="'.get_recurso("img").'/HOME/SVG/Flecha.svg">
 					<input style="margin-right: 0px;" type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly '.$bloq_checkout.' />
 				</div>
 			</div>
