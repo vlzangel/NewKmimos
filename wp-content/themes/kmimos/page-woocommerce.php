@@ -66,10 +66,10 @@
 
 	/* Recursos */
 
+		get_header();
+
 	    wp_enqueue_style('producto', getTema()."/css/producto.css", array(), '1.0.0');
 		wp_enqueue_style('producto_responsive', getTema()."/css/responsive/producto_responsive.css", array(), '1.0.0');
-
-		get_header();
 
 		wp_enqueue_script('producto', getTema()."/js/producto.js", array("jquery"), '1.0.0');
 	    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
@@ -253,7 +253,7 @@
 				<div class="km-ficha-fechas">
 					<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly />
 					<img class="flecha_fecha" src="http://localhost/kmimos/wp-content/themes/kmimos/recursos/img/HOME/SVG/Flecha.svg">
-					<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly '.$bloq_checkout.' />
+					<input style="margin-right: 0px;" type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" readonly '.$bloq_checkout.' />
 				</div>
 			</div>
 
