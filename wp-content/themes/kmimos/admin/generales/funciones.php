@@ -166,6 +166,16 @@
                 'page'          =>  'reporte_usos',
                 'icon'          =>  '',
             );
+
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Social Blue'),
+                'short-title'   =>  __('Social Blue'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'social_blue',
+                'access'        =>  'manage_options',
+                'page'          =>  'social_blue',
+                'icon'          =>  '',
+            );
  
             $opciones_menu_reporte[] = array(
                 'title'         =>  __('Configuracion'),
@@ -281,6 +291,14 @@
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/recursos/importador-botones.php');
             include_once(dirname(__DIR__).'/backend/seguimiento/page.php');
+        }
+    }
+
+    if(!function_exists('social_blue')){
+        function social_blue(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            // include_once(dirname(__DIR__).'/backend/importar/page_.php');
+            include_once(dirname(__DIR__).'/backend/social_blue/page.php');
         }
     }
 
