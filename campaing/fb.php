@@ -37,7 +37,7 @@
 				$existe = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$datos[5]}' ");
 				$correos[] = $datos[5];
 				if( $existe == null ){
-					$pass = substr(md5( $datos[5] ), 0, 5);
+					$pass = 123; // substr(md5( $datos[5] ), 0, 5);
 					$new_user = "
 			            INSERT INTO wp_users VALUES (
 			                NULL,
