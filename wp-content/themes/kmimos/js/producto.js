@@ -1,5 +1,6 @@
 var CARRITO = [];
 var MENSAJES_CUPONES = {
+	"1pgkam": "Este cupón te da 1 paseo de regalo (válida hasta el 31 de Diciembre de 2018)",
 	"1ngpet": "Este cupón te da 1 noche de regalo (válida hasta el 31 de Enero de 2019)",
 	"2pgpet": "Este cupón te da 2 paseos de regalo (válidos hasta el 31 de Enero de 2019)",
 	"2ngpet": "Este cupón te da 2 noche de regalo (válidas hasta el 31 de Enero de 2019)",
@@ -769,9 +770,20 @@ function calcularDescuento(){
 	
 	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
 	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+
 }
 
 function aplicarCupon(cupon = ""){
+
+	var total = CARRITO["pagar"]["total"] - CARRITO["pagar"]["descuento_total"];
+	if( total <= 0 ){
+		alert( "El cupón no será aplicado. El total a pagar por su reserva es 0." );
+		jQuery("#cupon_btn").html("Cup&oacute;n");
+		jQuery("#cupon_btn").removeClass("disabled");
+		jQuery("#cupon").val("");
+		return;
+	}
+
 
 	jQuery("#cupon_btn").html("Aplicando");
 	jQuery("#cupon_btn").addClass("disabled");
