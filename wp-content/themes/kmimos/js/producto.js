@@ -780,6 +780,7 @@ function aplicarCupon(cupon = ""){
 		alert( "El cupón no será aplicado. El total a pagar por su reserva es 0." );
 		jQuery("#cupon_btn").html("Cup&oacute;n");
 		jQuery("#cupon_btn").removeClass("disabled");
+		jQuery("#cupon").val("");
 		return;
 	}
 
