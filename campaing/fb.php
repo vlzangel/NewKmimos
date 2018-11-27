@@ -12,8 +12,6 @@
 		if( $formato == "NO" ){
 			echo "error-El Excel no tiene el formato correcto";
 		}else{
-			exit();
-
 			$data = [];
 			$z = false;
 			foreach ($info as $value) {
