@@ -7,7 +7,7 @@
 	if( count($_POST) ){
 		$correos = [];
 		$info = explode("\n", utf8_encode( file_get_contents($_FILES[0]['tmp_name']) ) );
-		$formato = explode("	", $info[0]);
+		$formato = explode(";", $info[0]);
 		$formato = ( count($formato) == 18 ) ? "YES" : "NO";
 		if( $formato == "NO" ){
 			echo "error-El Excel no tiene el formato correcto";
@@ -16,7 +16,7 @@
 			$z = false;
 			foreach ($info as $value) {
 				if( $value != "" ){
-					$temp = explode("	", $value);
+					$temp = explode(";", $value);
 					if( $z ){
 						$data[] = [
 							$temp[12],
@@ -37,7 +37,7 @@
 				$existe = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$datos[5]}' ");
 				$correos[] = $datos[5];
 				if( $existe == null ){
-					$pass = 123; // substr(md5( $datos[5] ), 0, 5);
+					$pass = substr(md5( $datos[5] ), 0, 5);
 					$new_user = "
 			            INSERT INTO wp_users VALUES (
 			                NULL,
