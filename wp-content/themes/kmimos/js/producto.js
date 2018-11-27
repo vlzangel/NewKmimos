@@ -771,15 +771,17 @@ function calcularDescuento(){
 	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
 	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
 
-	if( CARRITO["pagar"]["total"]-descuentos < 0 ){
-		jQuery("#cupon").attr('disabled');
-	}else{
-		jQuery("#cupon").removeAttr('disabled');
-	}
 }
 
 function aplicarCupon(cupon = ""){
 
+	var total = CARRITO["pagar"]["total"] - CARRITO["pagar"]["descuento_total"];
+	if( total <= 0 ){
+		alert( "El cupón no será aplicado. El total a pagar por su reserva es 0." );
+		jQuery("#cupon_btn").html("Cup&oacute;n");
+		jQuery("#cupon_btn").removeClass("disabled");
+		return;
+	}
 
 
 	jQuery("#cupon_btn").html("Aplicando");
