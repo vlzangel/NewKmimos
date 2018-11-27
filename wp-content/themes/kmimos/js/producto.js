@@ -770,9 +770,17 @@ function calcularDescuento(){
 	
 	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
 	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+
+	if( CARRITO["pagar"]["total"]-descuentos < 0 ){
+		jQuery("#cupon").attr('disabled');
+	}else{
+		jQuery("#cupon").removeAttr('disabled');
+	}
 }
 
 function aplicarCupon(cupon = ""){
+
+
 
 	jQuery("#cupon_btn").html("Aplicando");
 	jQuery("#cupon_btn").addClass("disabled");
