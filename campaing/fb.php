@@ -7,7 +7,7 @@
 	if( count($_POST) ){
 		$correos = [];
 		$info = explode("\n", utf8_encode( file_get_contents($_FILES[0]['tmp_name']) ) );
-		$formato = explode(";", $info[0]);
+		$formato = explode("	", $info[0]);
 		$formato = ( count($formato) == 18 ) ? "YES" : "NO";
 		if( $formato == "NO" ){
 			echo "error-El Excel no tiene el formato correcto";
