@@ -93,6 +93,10 @@ ini_set('display_errors', '0');
 		return ( strtotime($inicio) < strtotime("2019-02-01 00:00:00") );
 	}
 
+	function hasta_valido($hasta){
+		return ( strtotime(date('Y-m-d H:i:s')) < strtotime($hasta) );
+	}
+
 	function aplicarCupon($params){
 		/* 
 			$db, 
@@ -447,11 +451,54 @@ ini_set('display_errors', '0');
 				return array( $cupon, $_descuento, $individual_use );
 			}
  
+			if( $cupon == "1pgkam" ){
 
+				if( !hasta_valido("2018-12-31 11:59:00") ){ if( $validar ){ error("El cupón esta vencido"); }else{ return false; } }
 
+				$descuento = 0; $_paseos = 1;
+				$uso_cupon = get_cupon($db, $cupon, $cliente);
+				if( $uso_cupon != false ){ $_paseos = $uso_cupon->disponible; }
+				if( $_paseos == 0 ){ if( $validar ){ error("Ya uso el paseos gratis"); }else{ return false; } }
 
+				$paseos = [];
+				for ($i=0; $i < $duracion; $i++) { 
+					foreach ($mascotas as $key => $value) {
+						if( is_array($value) ){
+							if( $value[0]+0 > 0 ){
+								for ($i2=0; $i2 < $value[0]; $i2++) { 
+									$paseos[] = $value[1];
+								}			
+							}
+						}
+					}
+				} sort($paseos);
 
+				if( $uso_cupon == false ){ if( count($paseos) < 7 ){ if( $validar ){ error("El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más"); }else{ return false; } } }
 
+				if( $tipo_servicio == "paseos" ){
+					$cont = 0; $disp = $_paseos; // CALCULO DESCUENTO
+					foreach ($paseos as $key => $value) {
+						if( $cont < $disp ){
+							$descuento += $value;
+							$_paseos--;
+						}else{
+							break;
+						}
+						$cont++;
+					}
+				}else{ if( $uso_cupon != false ){
+					if( $validar ){ error("El cupón sólo es válido para servicios de paseos"); }else{ return false; }
+				} }
+				
+				$sub_descuento += $descuento;
+				$descuento += ( ($total-$sub_descuento) < 0 ) ? $descuento += ( $total-$sub_descuento ) : 0 ;
+				return array( $cupon, $descuento, $individual_use, $_paseos );
+
+			}
+
+			if( $cupon == "kpet30" ){
+				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
+			}
 
 
 
