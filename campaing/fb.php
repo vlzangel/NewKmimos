@@ -16,7 +16,7 @@
 			$z = false;
 			foreach ($info as $value) {
 				if( $value != "" ){
-					$temp = explode(";", $value);
+					$temp = explode("	", $value);
 					if( $z ){
 						$data[] = [
 							$temp[12],
