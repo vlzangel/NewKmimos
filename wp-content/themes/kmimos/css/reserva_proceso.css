@@ -4137,10 +4137,10 @@ footer .km-icon-redes {
     /*margin-top:100px*/
 }
 .page-reservation .km-content .km-col-steps {
-    width:66.40625%;
+    width: 75%;
     background:#fff;
     float:left;
-    padding: 125px 15px 32px 35px;
+    padding: 125px 15px 32px 50px;
     position: relative;
     height: 100vh;
     overflow: auto;
@@ -4151,7 +4151,7 @@ footer .km-icon-redes {
     max-width:570px
 }
 .page-reservation .km-content .km-col-empty {
-    width:33.59375%;
+    width: 25%;
     float:left;
     padding: 85px 0px 32px 0px;
 }
@@ -4467,7 +4467,8 @@ footer .km-icon-redes {
     #padding-top:15px!important
 }
 .page-reservation .km-content-step .km-option-resume .km-option-resume-service .label-resume-service {
-    float:left
+    float:left;
+    font-size: 14px;
 }
 .page-reservation .km-content-step .km-option-resume .km-option-resume-service .value-resume-service {
     float:right

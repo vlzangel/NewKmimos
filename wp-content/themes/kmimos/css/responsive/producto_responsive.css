@@ -590,6 +590,7 @@
 	    position: relative;
 	    right: auto;
 	    top: auto;
+	    width: 110px;
 	}
 
 	.page-reservation .km-content .km-col-steps {
@@ -631,11 +632,12 @@
 	}
 
 	span#reserva_btn_next_3 {
-	    display: inline-block;
-	    float: right;
-	    padding: 15px 30px;
-	    font-size: 14px;
-	    margin-top: 15px;
+		display: block;
+		float: none;
+		padding: 15px 30px;
+		font-size: 14px;
+		margin-top: 15px;
+		margin: 15px auto 0px;
 	}
 
 	.page-reservation .km-term-conditions label {
@@ -660,30 +662,35 @@
 	}
 
 	.km-info-box a {    
-		position: relative;
-	    top: -3px;
+	    position: relative;
+	    top: 0px;
 	    right: auto;
 	    padding: 3px 10px;
 	    height: 30px;
 	    display: inline-block;
+	    float: left;
 	}
 
 	.km-info-box .km-info:hover ~ div, .km-info-box .km-info ~ div:hover {
-	    line-height: 1;
 	    top: 35px;
-	    left: 70px;
-	    width: 80%;
+	    left: -75px;
+	    width: 275px;
 	    font-size: 10px;
+	    text-align: left;
+	    line-height: 1.3;
 	}
 
 	.km-info {
-	    font-size: 15px;
+		font-size: 16px;
+		padding: 5px 10px;
+		float: right;
 	}
 
 	.page-reservation .km-sub-title-step {
 	    padding: 20px 25px;
 	    text-align: center;
 	    font-size: 17px;
+	    clear: both;
 	}
 
 }
@@ -705,6 +712,10 @@
     .mensaje_cupon{
         clear: both !important;
         font-size: 10px !important;
+    }
+
+    .km-tarjeta span {
+    	display: none;
     }
 }
 @media (max-width: 500px){
@@ -745,6 +756,7 @@
 
 	.contenedor_info > label, .contenedor_info > div {
 	    display: block;
+	    width: 100%;
 	}
 
 	.page-reservation .km-content-step .km-content-new-pet {

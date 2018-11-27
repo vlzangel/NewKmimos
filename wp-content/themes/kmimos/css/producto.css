@@ -218,6 +218,7 @@ div#tienda_box img {
     border-radius: 4px;
     font-size: 18px;
     cursor: pointer;
+    text-decoration: underline;
 }
 
 .km-info{
@@ -225,7 +226,7 @@ div#tienda_box img {
     cursor: pointer;
     color: #33e1be;
     border: solid 2px #AAA;
-    padding: 5px 10px;
+    padding: 3px 10px;
     border-radius: 3px;
 }
 
@@ -249,7 +250,7 @@ div#tienda_box img {
 }
 
 .km-info-box{
-    position: relative;
+    position: absolute;
     font-size: 16px;
     line-height: 20px;
     background: #FFF;
@@ -271,7 +272,7 @@ div#tienda_box img {
     box-sizing: border-box;
     position: absolute;
     background: #FFF;
-    top: 25px;
+    top: 35px;
     z-index: 0;
     font-weight: 400;
     font-size: 13px;
@@ -511,8 +512,13 @@ div#tienda_box img {
     .flecha_fecha {
         width: 25px;
         position: absolute;
-        margin-left: -40px;
+        margin-left: -45px;
         margin-top: 22px;
+    }
+
+    .fechas_select img {
+        width: 16px;
+        margin: 0px 10px 4px;
     }
 
     .contenedor_info{
@@ -528,7 +534,7 @@ div#tienda_box img {
     .contenedor_info > label {
         text-transform: uppercase;
         width: 230px;
-        padding: 15px 50px 0px 0px;
+        padding: 15px 25px 0px 0px;
         vertical-align: top;
         color: #000;
     }

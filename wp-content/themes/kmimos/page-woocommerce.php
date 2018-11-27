@@ -319,7 +319,7 @@
 				<div id="step_1" class="km-col-steps">
 					<div class="km-col-content">
 					
-						<div id="atras_0" class="atras"> &nbsp; </div>
+						<div id="atras_0" class="atras" style="visibility: hidden;"> &nbsp; </div>
 					
 						<div class="barra_titulo">
 							<ul class="steps-numbers">
@@ -364,12 +364,14 @@
 						</div>
 
 						<div class="cuidador_select">
-							<strong>Cuidador seleccionado</strong> <span>'.$cuidador_name.'</span>
+							<strong>Cuidador seleccionado:</strong> <span>'.$cuidador_name.'</span>
 						</div>
 
 						<div class="fechas_select">
 							<span class="value-resume">
+								<img class="" src="'.get_recurso("img").'/HOME/SVG/Fecha.svg" align="center">
 								<span class="fecha_ini"></span>
+								<img class="" src="'.get_recurso("img").'/HOME/SVG/Flecha.svg" align="center">
 								&nbsp; &gt; &nbsp;
 								<span class="fecha_fin"></span>
 							</span>
@@ -433,7 +435,7 @@
 						</div>
 
 						<div class="cuidador_select">
-							<strong>Cuidador seleccionado</strong> <span>'.$cuidador_name.'</span>
+							<strong>Cuidador seleccionado:</strong> <span>'.$cuidador_name.'</span>
 						</div>
 
 						<div class="fechas_select">
@@ -485,7 +487,7 @@
 											<div class="km-method-paid-option km-tarjeta km-option-3-lineas ">
 												<div class="km-text-one">
 													<div class="km-text-one">								
-														PAGO CON TARJETA DE CRÉDITO O DÉBITO
+														<span>PAGO CON </span>TARJETA DE CRÉDITO O DÉBITO
 													</div>
 												</div>
 
@@ -565,39 +567,6 @@
 					<img src="'.getTema().'/images/new/bg-cachorro.png" style="max-width: 100%;">
 				</div>
 			</form>
-
-			<!-- SECCIÓN BENEFICIOS
-			<div class="km-beneficios km-beneficios-footer" style="margin-top: 60px;">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-4">
-							<div class="km-beneficios-icon">
-								<img src="'.getTema().'/images/new/km-pago.svg">
-							</div>
-							<div class="km-beneficios-text">
-								<h5 class="h5-sub">PAGO EN EFECTIVO O CON TARJETA</h5>
-							</div>
-						</div>
-						<div class="col-xs-4 brd-lr">
-							<div class="km-beneficios-icon">
-								<img src="'.getTema().'/images/new/km-certificado.svg">
-							</div>
-							<div class="km-beneficios-text">
-								<h5 class="h5-sub">CUIDADORES CERTIFICADOS</h5>
-							</div>
-						</div>
-						<div class="col-xs-4">
-							<div class="km-beneficios-icon">
-								<img src="'.getTema().'/images/new/km-veterinaria.svg">
-							</div>
-							<div class="km-beneficios-text">
-								<h5 class="h5-sub">COBERTURA VETERINARIA</h5>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			 -->
 		</div>
 	 	';
 
