@@ -6,8 +6,11 @@ function get_primera_reserva( $user_id = 0 ){
 	$sql = "
 		SELECT * 
 		FROM wp_posts 
-		WHERE post_type = 'wc_booking' AND post_author = 125222 
-			ORDER BY post_date_gmt asc limit 1	
+		WHERE post_type = 'wc_booking' 
+			AND not post_status like '%cart%'
+			AND post_status = 'confirmed' 
+			AND post_author = {$user_id}
+		ORDER BY post_date_gmt asc limit 1	
 	"; 
 	$result = get_fetch_assoc($sql);
 	return $result;
