@@ -92,17 +92,9 @@ $users = getUsers($desde, $hasta);
 			      		<th>Mascota(s)</th>
 			      		<th>Raza(s)</th>
 			  		-->
-			      	<th>Primera Sol. Conocer ( 15 Días )</th>
-			      	<th>Primera Sol. Conocer ( 30 Días )</th>
-			      	<th>Primera Sol. Conocer ( 45 Días )</th>
-			      	<th>Primera Sol. Conocer ( 60 Días )</th>
-			      	<th>Primera Sol. Conocer ( +60 Días )</th>
+			      	<th>Primera Sol. Conocer </th>
 
-			      	<th>Primera Reserva ( 15 Días )</th>
-			      	<th>Primera Reserva ( 30 Días )</th>
-			      	<th>Primera Reserva ( 45 Días )</th>
-			      	<th>Primera Reserva ( 60 Días )</th>
-			      	<th>Primera Reserva ( +60 Días )</th>
+			      	<th>Primera Reserva </th>
 
 			    </tr>
 			  </thead>
@@ -138,47 +130,40 @@ $users = getUsers($desde, $hasta);
 				  		}
 
 
-						$reserva_15 = 0;
-						$reserva_30 = 0;
-						$reserva_45 = 0;
-						$reserva_60 = 0;
-						$reserva_mas = 0;
+						$reserva_15 = '';
 						$p_reserva = get_primera_reservas(  $row['ID'] );
-print_r($p_reserva);						
-						if( isset($p_reserva['row'][0]['post_date_gmt']) ){
-							$dif = diferenciaDias($row['user_registered'], $p_reserva['row'][0]['post_date_gmt']);
+						$dif = null;
+						if( isset($p_reserva['rows'][0]['post_date_gmt']) ){
+							$dif = diferenciaDias($row['user_registered'], $p_reserva['rows'][0]['post_date_gmt']);
 							if( $dif['dia'] >= 0 && $dif['dia'] <= 15 ){
-								$reserva_15++;
+								$reserva_15 = '15 Dias';
 							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 30 ){
-								$reserva_30++;
+								$reserva_15 = '30 Dias';
 							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 45 ){
-								$reserva_45++;
+								$reserva_15 = '45 Dias';
 							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 60 ){
-								$reserva_60++;
+								$reserva_15 = '60 Dias';
 							}else {
-								$reserva_mas++;
+								$reserva_15 = '+60 Dias';
 							}
 						}
 
-						$conocer_15 = 0;
-						$conocer_30 = 0;
-						$conocer_45 = 0;
-						$conocer_60 = 0;
-						$conocer_mas = 0;
+						$conocer_15 = '';
 						$p_conocer = get_primera_reservas(  $row['ID'] );
-print_r($p_conocer);						
-						if( isset($p_conocer['row'][0]['post_date_gmt']) ){
-							$dif = diferenciaDias($row['user_registered'], $p_conocer['row'][0]['post_date_gmt']);
+						$dif = null;
+						if( isset($p_conocer['rows'][0]['post_date_gmt']) ){
+
+							$dif = diferenciaDias($row['user_registered'], $p_conocer['rows'][0]['post_date_gmt']);
 							if( $dif['dia'] >= 0 && $dif['dia'] <= 15 ){
-								$conocer_15++;
+								$conocer_15 = '15 Dias';
 							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 30 ){
-								$conocer_30++;
+								$conocer_15 = '30 Dias';
 							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 45 ){
-								$conocer_45++;
+								$conocer_15 = '45 Dias';
 							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 60 ){
-								$conocer_60++;
+								$conocer_15 = '60 Dias';
 							}else {
-								$conocer_mas++;
+								$conocer_15 = '+60 Dias';
 							}
 
 						}
@@ -206,18 +191,8 @@ print_r($p_conocer);
 						
 
 						<th><?php echo $conocer_15 ; ?></th>
-						<th><?php echo $conocer_30 ; ?></th>
-						<th><?php echo $conocer_45 ; ?></th>
-						<th><?php echo $conocer_60 ; ?></th>
-						<th><?php echo $conocer_mas; ?></th> 
 
 						<th><?php echo $reserva_15 ; ?></th>
-						<th><?php echo $reserva_30 ; ?></th>
-						<th><?php echo $reserva_45 ; ?></th>
-						<th><?php echo $reserva_60 ; ?></th>
-						<th><?php echo $reserva_mas; ?></th> 
-
-
 
 						<?php 
 							/*
