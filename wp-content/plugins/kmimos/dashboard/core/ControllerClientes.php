@@ -91,3 +91,55 @@ function getRazaDescripcion($id, $razas){
 	}
 	return $nombre;
 }
+
+function get_primera_reservas( $author_id=0 ){
+	$result = [];
+	$sql = "
+		SELECT * 
+		FROM wp_posts 
+		WHERE post_type = 'wc_booking' 
+			AND not post_status like '%cart%'
+			AND post_status = 'confirmed' 
+			AND post_author = {$author_id}
+		ORDER BY post_date_gmt asc limit 1
+	";
+	$result = get_fetch_assoc($sql);
+	return $result;
+}
+function get_primera_conocer( $author_id=0 ){
+	$result = [];
+	$sql = "
+		SELECT 
+			p.*
+		FROM wp_postmeta as m
+			LEFT JOIN wp_posts as p  ON p.ID = m.post_id 
+			LEFT JOIN wp_postmeta as pc ON p.ID = pc.post_id and pc.meta_key = 'requested_petsitter' 
+		WHERE 
+			m.meta_key = 'request_status'
+			p.post_author = {$author_id}
+		ORDER BY p.post_date_gmt asc limit 1
+	";
+	$result = get_fetch_assoc($sql);
+	return $result;
+}
+
+
+function diferenciaDias( $inicio, $fin ){
+	$fecha1 = new DateTime($inicio);
+	$fecha2 = new DateTime($fin);
+	$intervalo = $fecha1->diff($fecha2);
+	return [
+		'obj' => $intervalo,
+		'anio' => $intervalo->format('%Y'),
+		'mes' => $intervalo->format('%m'),
+		'dia' => $intervalo->format('%d'),
+		'hora' => $intervalo->format('%H'),
+		'minuto' => $intervalo->format('%i'),
+		'segundo' => $intervalo->format('%s'),
+	];
+    // $inicio = strtotime($inicio);
+    // $fin = strtotime($fin);
+    // $dif = $fin - $inicio;
+    // $diasFalt = (( ( $dif / 60 ) / 60 ) / 24);
+    // return ceil($diasFalt);
+}
