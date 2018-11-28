@@ -144,6 +144,7 @@ $users = getUsers($desde, $hasta);
 						$reserva_60 = 0;
 						$reserva_mas = 0;
 						$p_reserva = get_primera_reservas(  $row['ID'] );
+print_r($p_reserva);						
 						if( isset($p_reserva['row'][0]['post_date_gmt']) ){
 							$dif = diferenciaDias($row['user_registered'], $p_reserva['row'][0]['post_date_gmt']);
 							if( $dif['dia'] >= 0 && $dif['dia'] <= 15 ){
@@ -165,6 +166,7 @@ $users = getUsers($desde, $hasta);
 						$conocer_60 = 0;
 						$conocer_mas = 0;
 						$p_conocer = get_primera_reservas(  $row['ID'] );
+print_r($p_conocer);						
 						if( isset($p_conocer['row'][0]['post_date_gmt']) ){
 							$dif = diferenciaDias($row['user_registered'], $p_conocer['row'][0]['post_date_gmt']);
 							if( $dif['dia'] >= 0 && $dif['dia'] <= 15 ){
