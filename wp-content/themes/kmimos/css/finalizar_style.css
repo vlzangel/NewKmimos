@@ -29,6 +29,7 @@ body {
 :focus {
 	outline: 0!important;
 }
+
 img {
 	user-drag: none;
 	user-select: none;
@@ -493,6 +494,14 @@ footer .km-icon-redes {
     padding: 0px 50px;
 }
 
+.solo_PC{
+    display: block !important;
+}
+.solo_movil{
+    display: none !important;
+}
+
+
 @media (max-width: 768px) {
 
     .izq {
@@ -578,6 +587,13 @@ footer .km-icon-redes {
     }
 
     footer {
+        display: block !important;
+    }
+
+    .solo_PC{
+        display: none !important;
+    }
+    .solo_movil{
         display: block !important;
     }
 
