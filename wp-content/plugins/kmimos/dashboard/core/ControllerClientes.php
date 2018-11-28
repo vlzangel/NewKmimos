@@ -113,7 +113,6 @@ function get_primera_conocer( $author_id=0 ){
 			p.*
 		FROM wp_postmeta as m
 			LEFT JOIN wp_posts as p  ON p.ID = m.post_id 
-			LEFT JOIN wp_postmeta as pc ON p.ID = pc.post_id and pc.meta_key = 'requested_petsitter' 
 		WHERE 
 			m.meta_key = 'request_status'
 			p.post_author = {$author_id}
