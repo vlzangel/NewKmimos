@@ -32,7 +32,7 @@
 							Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.
 						</span>
 					</div>
-					<div style="text-align: left; max-width: 840px; padding: 0px 50px;" >
+					<div style="container_general" >
 						'.$CONTENIDO.'
 					</div>
 					'.$que_hacer.'

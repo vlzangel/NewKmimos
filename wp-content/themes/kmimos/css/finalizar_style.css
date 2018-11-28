@@ -313,109 +313,6 @@ section {
 	text-decoration: underline;
 }
 
-.km-div-ubicacion{
-	float: left;
-	width: 42.890995%;
-}
-
-.km-div-fechas{
-	float: left;
-	width: 32.938389%;
-}
-
-.km-div-enviar{
-	float: right;
-	width: 24.170616%;
-}
-
-.km-div-ubicacion select{
-	width: 100%;
-	padding-left: 6.077348%;
-	padding-right: 10.220994%;
-}
-
-.km-div-fechas:after{
-	content: "";
-	clear: both;
-	display: table;
-}
-
-.km-input-custom{
-	margin: 0;
-	padding: 0;
-	width: auto;
-	border: none;
-	color: #000000;
-	background: #FFF;
-	display: inline-block;
-}
-.km-input-custom::-webkit-input-placeholder {
-	color: #000000!important;
-	-webkit-transform: translateY(0px)!important;
-			transform: translateY(0px)!important;
-}
-.km-input-custom::-moz-placeholder {
-	color: #000000!important;
-	-webkit-transform: translateY(0px)!important;
-			transform: translateY(0px)!important;
-}
-.km-input-custom:-ms-input-placeholder {
-	color: #000000!important;
-	-webkit-transform: translateY(0px)!important;
-			transform: translateY(0px)!important;
-}
-.km-input-custom:-moz-placeholder {
-	color: #000000!important;
-	-webkit-transform: translateY(0px)!important;
-			transform: translateY(0px)!important;
-}
-
-.km-div-fechas .date_from {
-	width: 50%;
-	padding-left: 15px;
-	padding-right: 15px;
-	border-right: 1px solid rgba(0, 0, 0, 0.2);
-	background-image: url(../images/new/icon/icon-calendario.svg)!important;
-}
-
-.km-div-fechas .date_to{
-	width: 50%;
-	padding-left: 15px;
-	padding-right: 15px;
-	background-image: url(../images/new/icon/icon-calendario.svg);
-}
-
-.km-submit-custom{
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	border: none;
-	height: 100%;
-	display: block;
-	color: #6B1C9B;
-	background: #7DD1C4;
-
-	-webkit-border-radius: 0px 6px 6px 0px;
-	-moz-border-radius: 0px 6px 6px 0px;
-	border-radius: 0px 6px 6px 0px;
-
-	appearance:none;
-	-moz-appearance:none;
-	-webkit-appearance:none;
-}
-
-.km-div-filtro{
-	padding-top: 41px;
-}
-
-.km-div-filtro .km-titulo-filtro{
-	color: #FFFFFF;
-	font-size: 11px;
-	font-family: 'Gotham-Pro-Medium',arial,sans-serif;
-	padding-bottom: 15px;
-	letter-spacing: 1px;
-}
-
 .dropdown-option li a input{
 	vertical-align: middle;
 	width: 20px!important;
@@ -509,54 +406,6 @@ footer input:focus{
     float: right;
 }
 
-@media (min-width: 410px) {
-	.km-ficha-datos br {
-		display: none;
-	}
-}
-
-@media (max-width: 767px) {
-
-	.bx-wrapper .bx-prev, .bx-wrapper .bx-next {
-		display: none;
-	}
-	h2 {
-		font-size: 29px;
-	}
-	h4 {
-		line-height: 24px;
-	}
-	p {
-		line-height: 15px;
-	}
-	section {
-		text-align: left;
-	}
-	.h5-sub {
-		font-size: 9px;
-	}
-
-	/* SECCIÓN FOOTER */
-	footer .btn {
-		padding: 10px;
-	}
-	footer .input-group {
-		width: 100%;
-	}
-	footer .row .col-xs-12:nth-child(2) {
-        margin:15px 0px 0px 0px;
-	}
-	/* FIN SECCIÓN FOOTER */
-}
-@media (max-width: 480px) {
-	.bx-wrapper .bx-pager a {
-		margin: 0 8px;
-	}
-	.bx-wrapper .bx-pager-item{
-		width: 100px;
-	}
-}
-
 footer {
     background-color:#f5f5f5;
     padding:30px 0;
@@ -637,159 +486,99 @@ footer .km-icon-redes {
     text-align:center;
     font-size:12px
 }
-@media (max-width:500px) {
-    .page-reservation .header {
-        padding-top:20px;
-        padding-bottom:20px
-    }
-    .page-reservation .header img {
-        height:36px
-    }
-    .page-reservation .header .btn-cuidador {
-        display:none!important
-    }
-    .page-reservation .km-content .km-col-steps {
-        padding-top:32px
-    }
-    .page-reservation .km-title-step {
-        padding-top:30px;
-        padding-bottom:10px;
-        font-size:20px
-    }
-    .page-reservation .km-sub-title-step {
-        padding-bottom:17px;
-        font-size:13px
-    }
-    .page-reservation .km-content-step .km-content-new-pet {
-        padding-left:20px;
-        padding-right:20px
-    }
-    .page-reservation .km-content-step .km-content-new-pet .km-services-content .km-services .km-service-col {
-        width:100%;
-        float:none
-    }
-    .page-reservation .km-text-end-form {
-        font-size:13px
-    }
-    .page-reservation .km-content-step .km-option-resume .label-resume {
-        float:none;
-        display:block;
-        font-size:14px
-    }
-    .page-reservation .km-content-step .km-option-resume .value-resume {
-        float:none;
-        display:block;
-        font-size:15px
-    }
-    .page-reservation .km-content-step .km-option-resume .km-option-resume-service {
-        font-size:10px
-    }
-    .page-reservation .km-content-step .km-services-total .km-text-total {
-        font-size:18px
-    }
-    .page-reservation .km-content-step .km-services-total .km-price-total {
-        font-size:19px
-    }
-    .page-reservation .km-content-step .km-services-total {
-        padding-top:10px
-    }
-    .page-reservation .km-select-method-paid .km-method-paid-title {
-        font-size:15px;
-        padding-bottom:10px
-    }
-    .page-reservation .km-select-method-paid .km-method-paid-options .km-method-paid-option {
-        float:none;
-        width:100%;
-        height:95px
-    }
-    .page-reservation .km-select-method-paid .km-method-paid-options .km-method-paid-option.km-option-deposit {
-        margin-bottom:15px
-    }
-    .page-reservation .km-select-method-paid .km-method-paid-options .km-option-deposit .km-text-one {
-        font-size:15px;
-        margin-top:15px
-    }
-    .page-reservation .km-select-method-paid .km-method-paid-options .km-option-deposit .km-text-two {
-        font-size:11px
-    }
-    .page-reservation .km-select-method-paid .km-method-paid-options .km-option-deposit .km-text-three {
-        font-size:13px
-    }
-    .page-reservation .km-select-method-paid .km-method-paid-options .km-option-total .km-text-one {
-        margin-top:32px
-    }
-    .page-reservation .km-detail-paid-deposit .km-detail-paid-line-two .km-detail-label {
-        line-height:130%;
-        margin-top:12px;
-        font-size:12px
-    }
-    .page-reservation .km-detail-paid-deposit .km-detail-paid-line-two {
-        font-size:18px
-    }
-    .page-reservation .km-detail-paid-deposit .km-detail-paid-line-three .km-detail-label, .page-reservation .km-detail-paid-deposit .km-detail-paid-line-three .km-detail-value {
-        font-size:20px
-    }
-    .page-reservation .km-detail-paid-deposit .km-detail-paid-line-two .km-detail-label b {
-        display:block
-    }
-    .page-reservation .content-placeholder .label-placeholder {
-        float:none;
-        width:100%
-    }
-    .page-reservation .km-step-end {
-        font-size:20px
-    }
-    .page-reservation .km-step-end img {
-        width:157px
-    }
 
-    .page-reservation .km-content-step .km-content-new-pet .km-height {
-	    width:calc(100% - 100px);
-	    font-size: 10px;
-	}
-
-}
-@media (max-width: 800px) {
-
-	.navbar-right {
-	    margin-right: 10px !important;
-	}
-
-	.page-reservation .km-content .km-col-steps {
-	    padding: 100px 15px 32px 15px;
-	}
-
-    .page-reservation .km-col-empty {
-        display:none
-    }
-    .page-reservation .header {
-        padding-left:15px;
-        padding-right:15px
-    }
-    .page-reservation .km-content .km-col-steps {
-        width:100%;
-        padding-left:15px;
-        padding-right:15px
-    }
-    footer .btn {
-        padding:10px
-    }
-    footer .input-group {
-        width:100%
-    }
-    footer .row .col-xs-12:nth-child(2) {
-        margin:15px 0px 0px 0px;
-    }
+.container_general{
+    text-align: left; 
+    max-width: 840px; 
+    padding: 0px 50px;
 }
 
-@media (max-width: 767px) {
-    .navbar {
-	    height: 60px !important;
-	}
-}
+@media (max-width: 768px) {
 
-@media (max-width:480px) {
-    .bx-wrapper .bx-pager a {
-        margin:0 8px
+    .izq {
+        width: 100%;
+        height: auto;
     }
+
+    .der {
+        display: none;
+    }
+
+    .izq img {
+        width: 300px;
+        padding: 30px 20px 20px;
+    }
+
+    .finalizar_titulo {
+        font-size: 18px;
+    }
+
+    .finalizar_sub_titulo {
+        font-size: 20px;
+    }
+
+    .que_debo_hacer {
+        margin: 15px 25px;
+    }
+
+    .que_debo_hacer div {
+        padding-bottom: 5px;
+    }
+
+    .que_debo_hacer span {
+        color: #9927d2;
+        padding: 0px 10px;
+        display: inline-block;
+    }
+
+    .desglose_box {
+        padding-right: 0px;
+    }
+
+    .container_general{
+        padding: 0px;
+    }
+
+    .desglose_box strong {
+        text-align: left;
+        font-weight: 800 !important;
+        color: #000;
+    }
+
+    .sub_titulo_top{
+        font-weight: 800 !important;
+        color: #000 !important;
+    }
+
+    .desglose_box > div.item {
+        margin: 10px 0px 10px 10px;
+    }
+
+    .que_debo_hacer li span {
+        color: #888;
+        vertical-align: middle;
+        font-size: 12px;
+    }
+
+    .que_debo_hacer ul {
+        margin: 10px 0px 10px 25px;
+    }
+
+    .boton {
+        margin: 0px 10px 10px;
+        padding: 10px;
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .banner_inferior img {
+        width: 100% !important;
+        padding: 0px !important;
+        margin: 30px 0px !important;
+    }
+
+    footer {
+        display: block !important;
+    }
+
 }

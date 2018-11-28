@@ -24,11 +24,11 @@
     $info = $pixel.'
         <div class="desglose_box">
             <div>
-                <div class="sub_titulo">RESERVA</div>
+                <div class="sub_titulo sub_titulo_top">RESERVA</div>
                 <span>'.$data_reserva["servicio"]["id_reserva"].'</span>
             </div>
             <div>
-                <div class="sub_titulo">MÉTODO DE PAGO</div>
+                <div class="sub_titulo sub_titulo_top">MÉTODO DE PAGO</div>
                 <span>Pago por '.$data_reserva["servicio"]["metodo_pago"].'</span>
             </div>
         </div>
@@ -191,7 +191,7 @@
     ;
 
     $que_hacer = "
-    <div class='que_debo_hacer'>
+    <div class='que_debo_hacer que_debo_hacer_2'>
 		<div style='text-align: left;'>¿QUÉ DEBO HACER AHORA?</div>
 		<ul>
 			<li><span>Revisa tu correo. Te enviaremos la Confirmación o Rechazo de tu Reserva en unos momentos (puede durar desde 30 min a 4 horas).</span></li>
@@ -201,7 +201,7 @@
 	</div>";
     if( $data_reserva["metodo_pago"] == "Tienda" ){
 	    $que_hacer = "
-	    <div class='que_debo_hacer'>
+	    <div class='que_debo_hacer que_debo_hacer_2'>
 			<div>¿QUÉ DEBO HACER AHORA?</div>
 			<ul>
 				<li><span>Pícale al botón con las Instrucciones para pagar en la Tienda de Conveniencia que elijas.</span></li>
