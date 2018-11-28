@@ -2,10 +2,22 @@
 require_once('base_db.php');
 require_once('GlobalFunction.php');
 
-
+function get_primera_reserva( $user_id = 0 ){
+	$sql = "
+		SELECT * 
+		FROM wp_posts 
+		WHERE post_type = 'wc_booking' 
+			AND not post_status like '%cart%'
+			AND post_status = 'confirmed' 
+			AND post_author = {$user_id}
+		ORDER BY post_date_gmt asc limit 1	
+	"; 
+	$result = get_fetch_assoc($sql);
+	return $result;
+}
 
 function get_metaCuidador($user_id=0){
-	$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_phone', 'user_mobile')";
+	$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_phone', 'user_mobile', 'user_referred')";
 	$result = get_metaUser($user_id, $condicion);
 	$data = [
 		'id' =>'',
