@@ -131,11 +131,8 @@
 					$content .= '<div>Telefono: '. $datos[4].' </div>';
 					$content .= '<div>Donde nos conocio: FacebookSB</div>';
 					$content .= '<h2>Datos de la Mascota</h2>';
-					$content .= '<h2>Nombre de la Mascota: Mascota</h2>';
-			    	$content .= '<ul>';	    
-					$content .= '<li><div>Raza de la Mascota: '.$data[0].'</div></li>';
-					$content .= '<li><div>Tamaño de la Mascota: '.$data[1].'</div></li>';
-					$content .= '</ul>';
+					$content .= '<h2>Nombre de la Mascota: Mascota</h2>';   
+					$content .= '<div>No agreg&oacute; mascota en el registro</div>';
 					
 					kmimos_mails_administradores_new( "Registro de Nuevo Cliente", $content );
 
