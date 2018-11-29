@@ -810,7 +810,7 @@
     		$cuidadores[ $key ]->comentario = get_comment_cuidador($value->id_post);
 
 			$desde = 0;
-    		// if( $value->hospedaje_desde == 0 ){
+    		if( $value->hospedaje_desde == 0 ){
 				$adic = $cuidadores[ $key ]->adicionales;
 				foreach ($adic as $key_1 => $value_1) {
 					if( count($value_1) >= 4 ){
@@ -824,7 +824,7 @@
 						}
 					}
 				}
-			// }
+			}
 
 			$cuidadores[ $key ]->hospedaje_desde = $desde;
 
