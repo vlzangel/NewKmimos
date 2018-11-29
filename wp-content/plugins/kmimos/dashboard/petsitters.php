@@ -113,15 +113,15 @@
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
             $ubicacion = $wpdb->get_row("SELECT * FROM ubicaciones WHERE cuidador = ".$cuidador->id);
 
-            if( $cuidador->hospedaje_desde > 0  || $cuidador->activo == 1 ){
+            // if( $cuidador->hospedaje_desde > 0  || $cuidador->activo == 1 ){
                 if( $post->post_status == 'pending' ){
                     $link = "<a class='vlz_activar' href='".getTema()."/procesos/cuidador/activar_cuidadores.php?p=".$post->ID."&a=1&u=".$post->post_author."'>Activar Cuidador</a>";
                 }else{
                     $link = "<a class='vlz_desactivar' href='".getTema()."/procesos/cuidador/activar_cuidadores.php?p=".$post->ID."&a=0&u=".$post->post_author."'>Desactivar Cuidador</a>";
                 }
-            }else{
+            /* }else{
                 $link = "Este cuidador no tiene precios de hospedaje, no puede ser activado";
-            }
+            } */
             
             $fecha = strtotime($usuario->user_registered);
             $hora = date("H:i", $fecha);

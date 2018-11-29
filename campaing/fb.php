@@ -97,12 +97,22 @@
 		                'post_type'     => 'pets'
 		            );
 		            $pet_id = wp_insert_post( $args );
+
+			        $tam = [
+			        	"pequeño" => 0,
+			        	"mediano" => 1,
+			        	"grande" => 2,
+			        	"gigante" => 3
+			        ];
+
+			        $raza = $wpdb->get_var("SELECT id FROM razas WHERE nombre LIKE '%{$data[0]}%'");
+
 		            update_post_meta($pet_id, "owner_pet", $user_id);
 		            update_post_meta($pet_id, "name_pet", "Mascota");
-		            update_post_meta($pet_id, "breed_pet", "5");
 		            update_post_meta($pet_id, "colors_pet", "Blanco");
 		            update_post_meta($pet_id, "birthdate_pet", "2018-10-01");
-		            update_post_meta($pet_id, "size_pet", "1");
+		            update_post_meta($pet_id, "size_pet", $tam[ $data[1] ]);
+		            update_post_meta($pet_id, "breed_pet", $raza);
 		            update_post_meta($pet_id, "gender_pet", "2");
 		            update_post_meta($pet_id, "pet_sterilized", "");
 		            update_post_meta($pet_id, "pet_sociable", "");
@@ -111,7 +121,24 @@
 		            update_post_meta($pet_id, "about_pet", "");
 		            update_post_meta($pet_id, "pet_type", "2605");
 
-			        // wp_mail( $datos[5], "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message);
+			        wp_mail( $datos[5], "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message);
+
+		        	$content = '';
+					$content = '<h2>Datos del Cliente</h2>';
+					$content .= '<div>Nombre: '. $datos[2] .'</div>';
+					$content .= '<div>Apellido: '. $datos[3] . '</div>';
+					$content .= '<div>Correo: '. $datos[5] .'</div>';
+					$content .= '<div>Telefono: '. $datos[4].' </div>';
+					$content .= '<div>Donde nos conocio: FacebookSB</div>';
+					$content .= '<h2>Datos de la Mascota</h2>';
+					$content .= '<h2>Nombre de la Mascota: Mascota</h2>';
+			    	$content .= '<ul>';	    
+					$content .= '<li><div>Raza de la Mascota: '.$data[0].'</div></li>';
+					$content .= '<li><div>Tamaño de la Mascota: '.$data[1].'</div></li>';
+					$content .= '</ul>';
+					
+					kmimos_mails_administradores_new( "Registro de Nuevo Cliente", $content );
+
 				}
 				$credenciales = $wpdb->get_var("SELECT data FROM campaing WHERE id = 1");
 				require_once __DIR__.'/campaing/csrest_campaigns.php';
