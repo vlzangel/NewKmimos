@@ -485,7 +485,10 @@
 				foreach ($adic as $key => $value) {
 					if( count($value) == 4 ){
 						foreach ($value as $_key => $_value) {
-							if( $desde == 0 || $_value < $desde ){
+							if( $desde == 0 ){
+								$desde = $_value;
+							}
+							if( $_value < $desde ){
 								$desde = $_value;
 							}
 						}
