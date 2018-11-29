@@ -821,7 +821,7 @@
 							if( $desde == 0 ){
 								$desde = $value_2;
 							}
-							if( $value_2 < $desde ){
+							if( $value_2 != 0 && $value_2 < $desde ){
 								$desde = $value_2;
 							}
 						}
