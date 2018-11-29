@@ -809,6 +809,7 @@
 
     		$cuidadores[ $key ]->comentario = get_comment_cuidador($value->id_post);
 
+			$desde = $value->hospedaje_desde;
     		if( $value->hospedaje_desde == 0 ){
 				$adic = $cuidadores[ $key ]->adicionales;
 				foreach ($adic as $key_1 => $value_1) {
