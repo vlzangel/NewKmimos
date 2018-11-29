@@ -175,6 +175,9 @@
 				jQuery("#buscar").attr("action"),
 				jQuery("#buscar").serialize(),
 				function(respuesta){
+
+					console.log( respuesta );
+
 					if( respuesta != false ){
 						jQuery(".cantidad_resultados_container span").html( respuesta.length );
 						TOTAL_PAGE = Math.ceil(respuesta.length/10);

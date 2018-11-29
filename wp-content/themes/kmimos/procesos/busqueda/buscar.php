@@ -456,7 +456,7 @@
 	    FROM 
 	        cuidadores
 	    WHERE 
-	        activo = '1' and cuidadores.hospedaje_desde >= 1 
+	        activo = '1' 
 	        {$condiciones} 
 	        {$FILTRO_ESPECIA}
 	    	{$GATOS_CONDICION}
@@ -478,6 +478,7 @@
 
 		foreach ($cuidadores as $key => $_cuidador) {
 			$cuidador = $_SESSION["DATA_CUIDADORES"][$_cuidador->id];
+
 			$anios_exp = $cuidador->experiencia;
 			if( $anios_exp > 1900 ){
 				$anios_exp = date("Y")-$anios_exp;

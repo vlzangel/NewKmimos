@@ -7,25 +7,29 @@
 	if( count($_POST) ){
 		$correos = [];
 		$info = explode("\n", utf8_encode( file_get_contents($_FILES[0]['tmp_name']) ) );
-		$formato = explode(";", $info[0]);
+		$separador = ";";
+		$formato = explode($separador, $info[0]);
+		if ( count($formato) != 18 ){
+			$separador = ",";
+			$formato = explode($separador, $info[0]);
+		}
+
 		$formato = ( count($formato) == 18 ) ? "YES" : "NO";
 		if( $formato == "NO" ){
 			echo "error-El Excel no tiene el formato correcto";
 		}else{
-			exit();
-
 			$data = [];
 			$z = false;
 			foreach ($info as $value) {
 				if( $value != "" ){
-					$temp = explode(";", $value);
+					$temp = explode($separador, $value);
 					if( $z ){
 						$data[] = [
 							$temp[12],
 							$temp[13],
 							$temp[14],
 							$temp[15],
-							$temp[16],
+							str_replace("p:", "", $temp[16]),
 							$temp[17]
 						];
 					}else{
@@ -33,6 +37,7 @@
 					}
 				}
 			}
+
 			$hoy = date("Y-m-d H:i:s");
 			foreach ($data as $key => $datos) {
 				$datos[5] = trim($datos[5]);
@@ -56,6 +61,7 @@
 			        ";
 			        $wpdb->query( ( $new_user ) );
 			        $user_id = $wpdb->insert_id;
+
 			        update_user_meta($user_id, 'nickname', $datos[5]);
 			        update_user_meta($user_id, 'first_name', $datos[2]);
 			        update_user_meta($user_id, 'last_name', $datos[3]);
@@ -104,7 +110,8 @@
 		            update_post_meta($pet_id, "aggressive_with_pets", "");
 		            update_post_meta($pet_id, "about_pet", "");
 		            update_post_meta($pet_id, "pet_type", "2605");
-			        wp_mail( $datos[5], "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message);
+
+			        // wp_mail( $datos[5], "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message);
 				}
 				$credenciales = $wpdb->get_var("SELECT data FROM campaing WHERE id = 1");
 				require_once __DIR__.'/campaing/csrest_campaigns.php';

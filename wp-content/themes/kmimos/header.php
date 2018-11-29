@@ -106,7 +106,11 @@
 			if( in_array("reservar", explode("/", $_SERVER["REQUEST_URI"])) ){
 				wp_enqueue_style( 'kmimos_style', getTema()."/css/reserva_proceso.css", array(), "1.0.0" );
 			}else{
-				wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
+				if( in_array("finalizar", explode("/", $_SERVER["REQUEST_URI"])) ){
+					wp_enqueue_style( 'kmimos_style', getTema()."/css/finalizar_style.css", array(), "1.0.0" );
+				}else{
+					wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
+				}
 			}
 
 			wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
