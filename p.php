@@ -7,5 +7,7 @@
 	// update_titulo();
 	// update_cuidador_url();
 
-	update_servicios();
+	// update_servicios();
+
+	pre_carga_data_cuidadores();
 ?>

@@ -809,14 +809,11 @@
 
     		$cuidadores[ $key ]->comentario = get_comment_cuidador($value->id_post);
 
-    		$_cuidadores[ $value->id ] = $cuidadores[ $key ];
-    		$_cuidadores_user_id[ $value->user_id ] = $value->id;
-
 			$desde = 0;
-    		if( $value->hospedaje_desde == 0 ){
+    		// if( $value->hospedaje_desde == 0 ){
 				$adic = $cuidadores[ $key ]->adicionales;
 				foreach ($adic as $key_1 => $value_1) {
-					if( count($value_1) == 4 ){
+					if( count($value_1) >= 4 ){
 						foreach ($value_1 as $key_2 => $value_2) {
 							if( $desde == 0 ){
 								$desde = $value_2;
@@ -827,9 +824,12 @@
 						}
 					}
 				}
-			}
+			// }
 
 			$cuidadores[ $key ]->hospedaje_desde = $desde;
+
+    		$_cuidadores[ $value->id ] = $cuidadores[ $key ];
+    		$_cuidadores_user_id[ $value->user_id ] = $value->id;
     	}
 
     	return [ $_cuidadores, $_cuidadores_user_id ];
