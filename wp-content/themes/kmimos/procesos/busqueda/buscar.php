@@ -456,7 +456,7 @@
 	    FROM 
 	        cuidadores
 	    WHERE 
-	        activo = '1' and cuidadores.hospedaje_desde >= 1 
+	        activo = '1' 
 	        {$condiciones} 
 	        {$FILTRO_ESPECIA}
 	    	{$GATOS_CONDICION}
@@ -478,6 +478,23 @@
 
 		foreach ($cuidadores as $key => $_cuidador) {
 			$cuidador = $_SESSION["DATA_CUIDADORES"][$_cuidador->id];
+
+			if( $cuidador->hospedaje_desde == 0 ){
+				$desde = 0;
+				$adic = $cuidador->adicionales;
+				foreach ($adic as $key => $value) {
+					if( count($value) == 4 ){
+						foreach ($value as $_key => $_value) {
+							if( $desde == 0 || $_value < $desde ){
+								$desde = $_value;
+							}
+						}
+					}
+				}
+			}
+
+			$_SESSION["DATA_CUIDADORES"][$_cuidador->id]->hospedaje_desde = $desde;
+
 			$anios_exp = $cuidador->experiencia;
 			if( $anios_exp > 1900 ){
 				$anios_exp = date("Y")-$anios_exp;
