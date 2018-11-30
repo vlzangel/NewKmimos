@@ -32,10 +32,26 @@
 	}
 }
 @media (min-width: 767px) {
-
-	/* HOME */
-
-	/* FIN HOME */
+	.km-info:hover{
+	    color: #2196F3 !important;
+	}
+	.km-info-box .km-info:hover ~ div,
+	.km-info-box .km-info ~ div:hover{
+	    display: block;
+	    overflow: hidden;
+	    text-transform: none;
+	    line-height: 16px;
+	    border: solid 1px #CCC;
+	    padding: 10px;
+	    box-sizing: border-box;
+	    position: absolute;
+	    background: #FFF;
+	    top: 35px;
+	    z-index: 0;
+	    font-weight: 400;
+	    font-size: 13px;
+	    text-align: justify;
+	}
 
 	/* FOOTER */
 	footer .km-icon-redes svg {
@@ -55,6 +71,14 @@
 }
 @media (max-width: 767px) {
 
+	.km-info-box input:checked ~ div{
+        top: 35px;
+        left: -75px;
+        width: 275px;
+        font-size: 10px;
+        text-align: left;
+        line-height: 1.3;
+	}
 
 	.footer-petsitter{
 		margin-bottom: 110px!important;
@@ -672,15 +696,6 @@
 	    height: 30px;
 	    display: inline-block;
 	    float: left;
-	}
-
-	.km-info-box .km-info:hover ~ div, .km-info-box .km-info ~ div:hover {
-	    top: 35px;
-	    left: -75px;
-	    width: 275px;
-	    font-size: 10px;
-	    text-align: left;
-	    line-height: 1.3;
 	}
 
 	.km-info {

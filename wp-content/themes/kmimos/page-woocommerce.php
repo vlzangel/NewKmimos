@@ -331,11 +331,12 @@
 								RESERVACIÓN <span>'.$servicio_name_corto.'</span> *
 								<div>'.$descripcion_1.'</div>
 							</div>
-							<div class="km-info-box">
+							<label for="mostrar_info" class="km-info-box">
+								<input type="checkbox" id="mostrar_info" />
 								<i class="fa fa-info km-info"></i>
 								<div>'.$descripcion_2.'</div>
 								<a href="'.get_home_url().'/petsitters/'.$post->post_author.'">Cambiar</a>
-							</div>
+							</label>
 						</div>
 
 						<div class="km-sub-title-step">
