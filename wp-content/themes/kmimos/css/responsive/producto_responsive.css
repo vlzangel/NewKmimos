@@ -263,6 +263,9 @@
 	/* FIN SECCIÓN FOOTER */
 }
 @media (max-width: 480px) {
+	.flecha_fecha{
+		display: none;
+	}
 	.bx-wrapper .bx-pager a {
 		margin: 0 8px;
 	}
