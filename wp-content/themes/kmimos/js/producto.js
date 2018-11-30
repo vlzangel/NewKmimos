@@ -877,6 +877,8 @@ var descripciones = "";
 
 jQuery(document).ready(function() { 
 
+	jQuery("#reservar").trigger("reset");
+
 	jQuery('nav').addClass("nav_busqueda");
 
 	initCarrito();

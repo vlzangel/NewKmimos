@@ -578,14 +578,6 @@
 
 		echo comprimir($HTML);
 
-		if( in_array("finalizar", explode("/", $_SERVER["HTTP_REFERER"]) ) ){
-			echo '
-				<script type="text/javascript">
-					location.reload();
-				</script>
-			';
-		}
-
 		unset($_SESSION["pagando"]);
 
     get_footer(); 
