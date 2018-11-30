@@ -210,7 +210,7 @@
 			</div>
 		</div>
 
-		<img class="importancia_banner solo_movil" src="'.get_recurso("img").'PASEOS/RESPONSIVE/Banner-paseo-gratis.png" />
+		<img class="importancia_banner solo_movil" src="'.get_recurso("img").'PASEOS/RESPONSIVE/Banner-paseo-gratis_2.jpg" />
 		<img class="importancia_banner solo_pc" src="'.get_recurso("img").'PASEOS/PNG/Banner-paseo-gratis_2.png" />
 			
 		<div class="beneficios_container">
