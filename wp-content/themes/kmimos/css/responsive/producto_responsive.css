@@ -715,6 +715,10 @@
 	    clear: both;
 	}
 
+	.page-reservation .km-content-step .km-option-resume .km-option-resume-service .label-resume-service {
+	    font-size: 12px;
+	}
+
 }
 
 @media (max-width: 992px){
