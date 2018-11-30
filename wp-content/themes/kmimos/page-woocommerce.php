@@ -213,7 +213,7 @@
 		}
 
 		$dias_str = '';
-		if( $tipo == "paseos" ){
+		if( $tipo == "paseos" && is_array($_SESSION['busqueda']['dias']) ){
 		    $dias = [
 		    	"lunes" => "Lunes",
 		    	"martes" => "Martes",
@@ -296,7 +296,7 @@
 			$precios = $msg_bloqueador_no_valido;
 		}
 
-		if( $_SESSION["wlabel"] == "petco" ){
+/*		if( $_SESSION["wlabel"] == "petco" ){
 			$HTML .= "
 				<script type='text/javascript'>
 				    window._adftrack.push({
@@ -311,7 +311,7 @@
 				    </p>
 				</noscript>
 			";
-		}
+		}*/
 
 		$HTML .= '
 		<div class="page-reservation">
@@ -560,9 +560,8 @@
 						</span>
 
 					</div>
-				</div>';
-
-		$HTML .= '
+				</div>
+				
 				<div class="km-col-empty">
 					<img src="'.getTema().'/images/new/bg-cachorro.png" style="max-width: 100%;">
 				</div>
@@ -570,7 +569,7 @@
 		</div>
 	 	';
 
-		echo comprimir_styles($HTML);
+		echo comprimir($HTML);
 
 		unset($_SESSION["pagando"]);
 
