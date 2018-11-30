@@ -240,9 +240,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery(".popup-condiciones").css("display", "none");
 				jQuery(".popup-registrarte-final").css("display", "block");
 
-				var nombre = jQuery("#nombre").val();
+				var nombre = jQuery('#form_nuevo_cliente [name="nombre"] ').val();
 					apellido = jQuery("#apellido").val(),
-					ife = jQuery("#ife").val(),
 				 	email = jQuery("#email_1").val(), 
 				 	pass = jQuery("#pass").val(), 
 				 	movil = jQuery("#movil").val(), 
@@ -252,12 +251,11 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					referido = jQuery("#referido").val(),
 					img_profile = jQuery("#img_profile").val();
 
-			 	var campos = [nombre,apellido,ife,email,pass,movil,genero,edad,fumador,referido,img_profile];
+			 	var campos = [nombre,apellido,"",email,pass,movil,genero,edad,fumador,referido,img_profile];
 
 				var datos = {
 					'name': campos[0],
 					'lastname': campos[1],
-					'idn': campos[2],
 					'email': campos[3],
 					'password': campos[4],
 					'movil': campos[5],
@@ -323,7 +321,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 		jQuery('#siguiente').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> GUARDANDO');
 
-		var nombre = jQuery("#nombre").val();
+		// var nombre = jQuery("#nombre").val();
+		var nombre = jQuery('#form_nuevo_cliente [name="nombre"]').val(),
 			apellido = jQuery("#apellido").val(),
 			ife = jQuery("#ife").val(),
 		 	email = jQuery("#email_1").val(), 
@@ -353,8 +352,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		
 		jQuery("#km-datos-foto-profile").css('border', "0px solid transparent");
 
-		/*	ife.length > 2 && */
-		
 		if (nombre.length > 2 && 
 			apellido.length > 2 && 
 			email.length > 2 && 
@@ -745,7 +742,7 @@ function km_cliente_validar( fields ){
 				}
 			}
 		});
-	    jQuery('html, body').animate({ scrollTop: jQuery("#"+primer_error).offset().top-180 }, 2000);
+	   // jQuery('html, body').animate({ scrollTop: jQuery("#"+primer_error).offset().top-180 }, 2000);
 	}
 	return status;
 }
