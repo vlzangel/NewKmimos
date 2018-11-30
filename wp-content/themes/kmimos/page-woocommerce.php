@@ -373,7 +373,7 @@
 								<img class="" src="'.get_recurso("img").'/HOME/SVG/Fecha.svg" align="center">
 								<span class="fecha_ini"></span>
 								<img class="" src="'.get_recurso("img").'/HOME/SVG/Flecha.svg" align="center">
-								&nbsp; &gt; &nbsp;
+								&nbsp;  &nbsp;
 								<span class="fecha_fin"></span>
 							</span>
 						</div>
@@ -441,8 +441,10 @@
 
 						<div class="fechas_select">
 							<span class="value-resume">
+								<img class="" src="'.get_recurso("img").'/HOME/SVG/Fecha.svg" align="center">
 								<span class="fecha_ini"></span>
-								&nbsp; &gt; &nbsp;
+								<img class="" src="'.get_recurso("img").'/HOME/SVG/Flecha.svg" align="center">
+								&nbsp;  &nbsp;
 								<span class="fecha_fin"></span>
 							</span>
 						</div>
