@@ -89,6 +89,7 @@
 		"petsitters",
         "paseos",
         "testimonios",
+        "product",
     ];
 
     if( true ){

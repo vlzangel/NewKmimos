@@ -72,10 +72,14 @@
 		wp_enqueue_style('producto_responsive', getTema()."/css/responsive/producto_responsive.css", array(), '1.0.0');
 
 		wp_enqueue_script('producto', getTema()."/js/producto.js", array("jquery"), '1.0.0');
-	    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 		wp_enqueue_script('openpay-v1', getTema()."/js/openpay.v1.min.js", array("jquery"), '1.0.0');
 		wp_enqueue_script('openpay-data', getTema()."/js/openpay-data.v1.min.js", array("jquery", "openpay-v1"), '1.0.0');
+
+        wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+        wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+
+	    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 	    $precios = "";
 	    
@@ -319,7 +323,7 @@
 				<div id="step_1" class="km-col-steps">
 					<div class="km-col-content">
 					
-						<div id="atras_0" class="atras" style="visibility: hidden;"> &nbsp; </div>
+						<div id="atras_0" class="atras" style="display: none;"> &nbsp; </div>
 					
 						<div class="barra_titulo">
 							<ul class="steps-numbers">

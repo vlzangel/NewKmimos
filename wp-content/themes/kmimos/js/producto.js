@@ -877,6 +877,8 @@ var descripciones = "";
 
 jQuery(document).ready(function() { 
 
+	jQuery('nav').addClass("nav_busqueda");
+
 	initCarrito();
 
 	jQuery(".dias_container input").on("change", function(e){
