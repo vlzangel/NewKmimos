@@ -71,6 +71,10 @@
 }
 @media (max-width: 767px) {
 
+	.page-reservation .km-select-method-paid .km-method-paid-options .km-option-3-lineas .km-text-one {
+	    font-size: 12px;
+	}
+
 	.km-info-box input:checked ~ div{
         top: 35px;
         left: -75px;
