@@ -49,7 +49,7 @@ function initCarrito(){
 		CARRITO["pagar"] = {
 			"total" : "",
 			"tipo" : "tienda",
-			"metodo" : "deposito",
+			"metodo" : "completo",
 			"token" : "",
 			"deviceIdHiddenFieldName" : "",
 			"id_fallida" : 0,
