@@ -1,4 +1,7 @@
-
+<?php
+  wp_enqueue_style('finalizar', getTema()."/css/finalizar.css", array(), '1.0.0');
+  wp_enqueue_style('finalizar_responsive', getTema()."/css/responsive/finalizar_responsive.css", array(), '1.0.0');
+?>
 <link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/agregar_cupon/style.css'>
 <script src='<?php echo getTema(); ?>/admin/backend/agregar_cupon/script.js'></script>
 
@@ -14,11 +17,11 @@
       <form id="frm-cupon">
         <div class="form-group">
           <label for="reserva">Reserva</label>
-          <input type="text" class="form-control" name="idReserva" id="reserva" placeholder="Reserva ID" value="199879">
+          <input type="text" class="form-control" name="idReserva" id="reserva" placeholder="Reserva ID" value="199879" required>
         </div>
         <div class="form-group">
           <label for="cupon">Cupon</label>
-          <input type="text" class="form-control" id="cupon" name="cupon" placeholder="Cupon">
+          <input type="text" class="form-control" id="cupon" name="cupon" placeholder="Cupon" required>
         </div>
         <div class="checkbox">
           <label>
@@ -29,5 +32,14 @@
       </form>
     </div>
 
-    <div class="col-md-6" id="view_data"></div>
+    <div class="col-md-5" style="border:1px solid #ccc; margin: 5px; display:inline-block; vertical-align:top; display:inline-block;" >
+      <h3>Reserva Original</h3>
+      <hr>
+      <div style="width: 100%;" id="view_data_old"> Sin datos para mostrar </div>
+    </div>
+    <div class="col-md-5" style="border:1px solid #ccc; margin: 5px; display:inline-block; vertical-align:top; display:inline-block;" >
+      <h3>Reserva Modificada</h3>
+      <hr>
+      <div style="width: 100%;" id="view_data_new"> Sin datos para mostrar </div>
+    </div>
 </div>
