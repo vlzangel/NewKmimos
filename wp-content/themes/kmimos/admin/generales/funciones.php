@@ -156,6 +156,16 @@
                 'page'          =>  'reporte_otro',
                 'icon'          =>  '',
             );
+            
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Agregar cupon'),
+                'short-title'   =>  __('Agregar cupon'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'reporte_cupon',
+                'access'        =>  'manage_options',
+                'page'          =>  'reporte_cupon',
+                'icon'          =>  '',
+            );
 
             $opciones_menu_reporte[] = array(
                 'title'         =>  __('Reporte Banner'),
@@ -240,6 +250,13 @@
         function reporte_otros(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/backend/otros/reporte_otros.php');
+        }
+    }
+
+    if(!function_exists('reporte_cupon')){
+        function reporte_cupon(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/backend/agregar_cupon/index.php');
         }
     }
 
