@@ -1,5 +1,4 @@
 <?php
-	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'fontello', getTema()."/css/fontello.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'old_generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
@@ -9,6 +8,16 @@
 
 	wp_enqueue_style( 'generales_css', get_recurso("css")."generales.css", array(), "1.0.0" );
 	wp_enqueue_style( 'generales_responsive_css', get_recurso("css")."responsive/generales.css", array(), "1.0.0" );
+
+    if( in_array("reservar", explode("/", $_SERVER["REQUEST_URI"])) ){
+		wp_enqueue_style( 'kmimos_style', getTema()."/css/reserva_proceso.css", array(), "1.0.0" );
+	}else{
+		if( in_array("finalizar", explode("/", $_SERVER["REQUEST_URI"])) ){
+			wp_enqueue_style( 'kmimos_style', getTema()."/css/finalizar_style.css", array(), "1.0.0" );
+		}else{
+			wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
+		}
+	}
 
 	wp_head();
 

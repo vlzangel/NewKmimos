@@ -237,6 +237,7 @@ b, strong {
     display: block;
     margin: 10px 0px;
     text-transform: uppercase;
+    text-align: left;
 }
 
 .volver{

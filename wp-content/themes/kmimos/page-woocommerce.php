@@ -72,10 +72,14 @@
 		wp_enqueue_style('producto_responsive', getTema()."/css/responsive/producto_responsive.css", array(), '1.0.0');
 
 		wp_enqueue_script('producto', getTema()."/js/producto.js", array("jquery"), '1.0.0');
-	    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 		wp_enqueue_script('openpay-v1', getTema()."/js/openpay.v1.min.js", array("jquery"), '1.0.0');
 		wp_enqueue_script('openpay-data', getTema()."/js/openpay-data.v1.min.js", array("jquery", "openpay-v1"), '1.0.0');
+
+        wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+        wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+
+	    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 	    $precios = "";
 	    
@@ -213,7 +217,7 @@
 		}
 
 		$dias_str = '';
-		if( $tipo == "paseos" ){
+		if( $tipo == "paseos" && is_array($_SESSION['busqueda']['dias']) ){
 		    $dias = [
 		    	"lunes" => "Lunes",
 		    	"martes" => "Martes",
@@ -296,7 +300,7 @@
 			$precios = $msg_bloqueador_no_valido;
 		}
 
-		if( $_SESSION["wlabel"] == "petco" ){
+/*		if( $_SESSION["wlabel"] == "petco" ){
 			$HTML .= "
 				<script type='text/javascript'>
 				    window._adftrack.push({
@@ -311,7 +315,7 @@
 				    </p>
 				</noscript>
 			";
-		}
+		}*/
 
 		$HTML .= '
 		<div class="page-reservation">
@@ -319,7 +323,7 @@
 				<div id="step_1" class="km-col-steps">
 					<div class="km-col-content">
 					
-						<div id="atras_0" class="atras" style="visibility: hidden;"> &nbsp; </div>
+						<div id="atras_0" class="atras" style="display: none;"> &nbsp; </div>
 					
 						<div class="barra_titulo">
 							<ul class="steps-numbers">
@@ -331,11 +335,12 @@
 								RESERVACIÓN <span>'.$servicio_name_corto.'</span> *
 								<div>'.$descripcion_1.'</div>
 							</div>
-							<div class="km-info-box">
+							<label for="mostrar_info" class="km-info-box">
+								<input type="checkbox" id="mostrar_info" />
 								<i class="fa fa-info km-info"></i>
 								<div>'.$descripcion_2.'</div>
 								<a href="'.get_home_url().'/petsitters/'.$post->post_author.'">Cambiar</a>
-							</div>
+							</label>
 						</div>
 
 						<div class="km-sub-title-step">
@@ -372,7 +377,7 @@
 								<img class="" src="'.get_recurso("img").'/HOME/SVG/Fecha.svg" align="center">
 								<span class="fecha_ini"></span>
 								<img class="" src="'.get_recurso("img").'/HOME/SVG/Flecha.svg" align="center">
-								&nbsp; &gt; &nbsp;
+								&nbsp;  &nbsp;
 								<span class="fecha_fin"></span>
 							</span>
 						</div>
@@ -440,8 +445,10 @@
 
 						<div class="fechas_select">
 							<span class="value-resume">
+								<img class="" src="'.get_recurso("img").'/HOME/SVG/Fecha.svg" align="center">
 								<span class="fecha_ini"></span>
-								&nbsp; &gt; &nbsp;
+								<img class="" src="'.get_recurso("img").'/HOME/SVG/Flecha.svg" align="center">
+								&nbsp;  &nbsp;
 								<span class="fecha_fin"></span>
 							</span>
 						</div>
@@ -560,9 +567,8 @@
 						</span>
 
 					</div>
-				</div>';
-
-		$HTML .= '
+				</div>
+				
 				<div class="km-col-empty">
 					<img src="'.getTema().'/images/new/bg-cachorro.png" style="max-width: 100%;">
 				</div>
@@ -570,9 +576,11 @@
 		</div>
 	 	';
 
-		echo comprimir_styles($HTML);
+		echo comprimir($HTML);
 
 		unset($_SESSION["pagando"]);
 
     get_footer(); 
 ?>
+
+				

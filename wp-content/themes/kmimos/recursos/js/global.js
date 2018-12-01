@@ -1,4 +1,6 @@
 jQuery( document ).ready(function() {
+
+
 	fixedHeader();
 	jQuery(window).on('scroll', function () {
 	  	fixedHeader();
@@ -23,7 +25,10 @@ jQuery( document ).ready(function() {
 
 function fixedHeader() {
     var ajustar = true;
-    if( jQuery('nav').hasClass("nav_busqueda") ){ ajustar = false; }
+    if( jQuery('nav').hasClass("nav_busqueda") ){ 
+        ajustar = false; 
+        jQuery('nav').addClass('nav_white');
+    }
     if( parseInt( jQuery("body").width() ) < 768 && jQuery('nav').hasClass("nav_busqueda") ){ ajustar = false; }
     if( ajustar ){
         let ww = jQuery(window).scrollTop();

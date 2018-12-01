@@ -13,7 +13,7 @@
 
     $pdf = get_post_meta($orden_id, "_openpay_pdf", true);
     if( $pdf != "" ){
-        $pdf = "<a class='boton boton_verde' href='{$pdf}' target='_blank'>DESCARGAR INSTRUCCIONES PARA PAGO EN TIENDA DE CONVENIENCIA</a>";
+        $pdf = "<a class='boton boton_verde' href='{$pdf}' target='_blank' style='width: calc( 83% + 4px ); margin-bottom: 10px;'>DESCARGAR INSTRUCCIONES PARA PAGO EN TIENDA DE CONVENIENCIA</a>";
     }
     $data_reserva = kmimos_desglose_reserva_data($orden_id, true);
     
@@ -21,6 +21,18 @@
         kmimos_guardar_desglose_reserva_data( $data_reserva["servicio"]["id_reserva"], $data_reserva );
     }
     
+/* 
+	global $wpdb;
+		
+	$orden_id = vlz_get_page();
+	$pdf = get_post_meta($orden_id, "_openpay_pdf", true);
+	if( $pdf != "" ){
+		$pdf = "<a class='boton boton_verde' href='{$pdf}' target='_blank' style='width: calc( 83% + 4px ); margin-bottom: 10px;'>DESCARGAR INSTRUCCIONES PARA PAGO EN TIENDA DE CONVENIENCIA</a>";
+	}
+	$data_reserva = kmimos_desglose_reserva_data($orden_id, true);
+	kmimos_guardar_desglose_reserva_data( $data_reserva["servicio"]["id_reserva"], $data_reserva );
+*/	
+
 	if( !validar_datos_facturacion( $data_reserva['cliente']['id'] ) ){
 		$mensaje_facturacion = "Tu comprobante será emitido al finalizar la reserva. Déjanos tu información para emitir la Factura y te avisaremos cuando esté lista. <br />
 			<div class='text-center'>
