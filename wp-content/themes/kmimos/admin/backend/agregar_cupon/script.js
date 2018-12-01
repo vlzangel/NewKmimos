@@ -4,7 +4,8 @@ jQuery(document).ready(function(){
 		jQuery.post( TEMA+'/admin/backend/agregar_cupon/ajax/agregar_cupon.php', jQuery(this).serialize(),
 			function(r){
 				
-				jQuery('#view_data').html(r.contenido);
+				jQuery('#view_data_antes').html(r.antes);
+				jQuery('#view_data_despues').html(r.despues);
 
 			}, 'json'
 		);

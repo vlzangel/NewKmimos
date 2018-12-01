@@ -29,5 +29,6 @@
       </form>
     </div>
 
-    <div class="col-md-6" id="view_data"></div>
+    <div class="col-md-6" id="view_data_old"></div>
+    <div class="col-md-6" id="view_data_new"></div>
 </div>
