@@ -83,7 +83,8 @@ ini_set('display_errors', '0');
 			"rmz.mtz.lourdes@hotmail.com",
 			"netojamaicaska@hotmail.com",
 			"Alelotof@gmail.com",
-			"angelica.colion@gmail.com"
+			"angelica.colion@gmail.com",
+			"angelveloz91@gmail.com"
 		];
 
 		return ( in_array($cuidador_email, $cuidadores_destacados) );
@@ -353,7 +354,7 @@ ini_set('display_errors', '0');
 
 			if( $cupon == "+2masc" ){
 
-				if( $validar ){ error("Este cupón no es valido"); }else{ return false; }
+				// if( $validar ){ error("Este cupón no es valido"); }else{ return false; }
 
 				if( !cuidador_valido($db, $servicio) ){
 					if( $validar ){ error("Este cuidador no acepta el cupón [ +2masc ]"); }else{ return false; }
@@ -771,7 +772,8 @@ ini_set('display_errors', '0');
 		echo json_encode(array(
 			"cupones" => $cupones,
 			"reaplicar"    => $reaplicar,
-			"post"		=> $_POST
+			"post"		=> $_POST,
+
 		));
 
 ?>
