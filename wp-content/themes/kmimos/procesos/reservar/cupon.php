@@ -94,6 +94,13 @@ ini_set('display_errors', '0');
 		return ( strtotime($inicio) < strtotime("2019-02-01 00:00:00") );
 	}
 
+	function es_destacado($db, $servicio){
+		$user_id_cuidador = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = {$servicio} ");
+		$atributos = $db->get_row("SELECT atributos FROM cuidadores WHERE user_id = {$user_id_cuidador} ");
+		$atributos = unserialize($atributos);
+		return ( $atributos["destacado"]+0 == 1 );
+	}
+
 	function hasta_valido($hasta){
 		return ( strtotime(date('Y-m-d H:i:s')) < strtotime($hasta) );
 	}
@@ -356,7 +363,8 @@ ini_set('display_errors', '0');
 
 				// if( $validar ){ error("Este cupón no es valido"); }else{ return false; }
 
-				if( !cuidador_valido($db, $servicio) ){
+
+				if( cuidador_valido($db, $servicio) || es_destacado($db, $servicio) ){ } else{
 					if( $validar ){ error("Este cuidador no acepta el cupón [ +2masc ]"); }else{ return false; }
 				}
 

@@ -154,7 +154,7 @@
                                 $servicio = trim( $servicio[0] );
                 
                                 if( $servicio == "hospedaje" ){
-                                    $noches = ( floor(( $fin - $inicio )/60/60/24)-1 );
+                                    $noches = ( ceil(( $fin - $inicio )/60/60/24)-1 );
                                 }else{
                                     $noches = ( ceil(( $fin - $inicio )/60/60/24) );
                                 }
