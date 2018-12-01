@@ -202,12 +202,19 @@
 			post_status = 'publish'
 	");
 
+	$temp_id_servicio = "";
 	foreach ($servicios_ids as $key => $value) {
 		$value->slug = str_replace("-", "_", $value->slug);
+		if( $temp_id_servicio == "" ){
+			$temp_id_servicio = $value->ID;
+		}
 		$data_servicios[ $value->slug ] = $value->ID;
 	}
 
 	$id_hospedaje = $data_servicios[ "hospedaje" ];
+	if( $id_hospedaje == "" ){
+		$id_hospedaje = $temp_id_servicio;
+	}
 
 	$servicios_str = "<div class='servicios_container'>";
 		foreach ($_cuidador->adicionales as $servicio_id => $servicio) {

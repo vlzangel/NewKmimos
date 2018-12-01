@@ -49,7 +49,7 @@ function initCarrito(){
 		CARRITO["pagar"] = {
 			"total" : "",
 			"tipo" : "tienda",
-			"metodo" : "deposito",
+			"metodo" : "completo",
 			"token" : "",
 			"deviceIdHiddenFieldName" : "",
 			"id_fallida" : 0,
@@ -876,6 +876,10 @@ function getCantidad(){
 var descripciones = "";
 
 jQuery(document).ready(function() { 
+
+	jQuery("#reservar").trigger("reset");
+
+	jQuery('nav').addClass("nav_busqueda");
 
 	initCarrito();
 

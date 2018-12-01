@@ -209,7 +209,7 @@
 		display: table;
 		width: 100%;
 		box-sizing: border-box;
-	    background-image: url(../../img/PASEOS/PNG/Principal-1.png);
+	    background-image: url(../../img/PASEOS/RESPONSIVE/header_2.jpg);
 	    height: 270px;
 	    padding: 0px;
 	}
@@ -570,10 +570,10 @@
 	}
 
 	.testimonios_container .testimonios_img {
-	    background-image: url(../../img/PASEOS/RESPONSIVE/Coment-paseador_4.png);
+	    background-image: url(../../img/PASEOS/RESPONSIVE/Coment-paseador_2.jpg);
 	    height: 180px;
         position: relative;
-    	background-position: -100px center;
+    	background-position: center;
 	}
 
 	.testimonios_container .testimonios_item {
@@ -810,7 +810,7 @@
 	}
 
 	.quiero_ser_cuidador_container .quiero_ser_cuidador_img {
-	    background-image: url(../../img/PASEOS/RESPONSIVE/Banner-conviertete.png);
+	    background-image: url(../../img/PASEOS/RESPONSIVE/Banner-conviertete_2.jpg);
 	    height: 250px;
 	    border-radius: 5px;
 	}
