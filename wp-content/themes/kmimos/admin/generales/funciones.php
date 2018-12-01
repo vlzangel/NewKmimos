@@ -256,7 +256,7 @@
     if(!function_exists('reporte_cupon')){
         function reporte_cupon(){
             include_once(dirname(__DIR__).'/recursos/importador.php');
-            include_once(dirname(__DIR__).'/backend/agregar_cupon/index.php');
+            include_once(dirname(__DIR__).'/backend/agregar_cupon/agregar_cupon.php');
         }
     }
 
