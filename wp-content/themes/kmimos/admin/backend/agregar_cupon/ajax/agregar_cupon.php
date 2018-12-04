@@ -32,9 +32,6 @@
 
     	$servicio = $_db->get_row( "SELECT * FROM wp_postmeta WHERE meta_key = '_booking_product_id' and ID = ".$reserva->ID );
  
- 
-  		include dirname(dirname(dirname(dirname(__DIR__)))).'/NEW/data_finalizar.php';
-		$antes = $CONTENIDO;
 
     // *************************************
     // Aplicar Cupon
@@ -196,7 +193,6 @@
 				    		WHERE meta_key = '_cart_discount' 
 				    			AND post_id=".$reserva->post_parent;
 				    	$_db->query( $sql3 );
-				    	print_r($sql3);
 
 
 				    	// asignar saldo a favor
@@ -219,12 +215,9 @@
 
 	    }
  
-    // *************************************
-    // Mostrar desglose de reserva
-    // *************************************
-	    include dirname(dirname(dirname(dirname(__DIR__)))).'/NEW/data_finalizar.php';
-	    $despues = $CONTENIDO;
 
-
-	    print_r(json_encode(['antes'=>$antes, 'despues'=>$despues]));
-
+$idReserva = $reserva->ID;
+$CONTENIDO = '';
+$no_print = true;
+include('desglose.php');
+print_r( json_encode(['error'=>"", 'despues'=>$CONTENIDO]));

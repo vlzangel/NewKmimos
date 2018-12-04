@@ -12,7 +12,7 @@
     $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
     $_wlabel_user->wlabel_Export('client','CLIENTES','table'); ?>
 
-
+    <?= strtotime("2018/09/01") ?>
     <div class="module_title">
         Funnel de Conversión
     </div>
@@ -39,7 +39,7 @@
                         <tr><?php
 
                             $day_init = strtotime(date('m/d/Y',$WLresult->time));
-                            $day_last = strtotime("12/31/".date('Y', time()));
+                            $day_last=strtotime( "01/01/".( date('Y', time())+1 ) );
                             $day_more = (24*60*60);
 
                             $_28 = true;
@@ -63,7 +63,7 @@
                                 }
                             }
                             
-                            echo '<th class="total" >Acumulado '.(date('Y',$day)).'</th>'; ?>
+                            echo '<th class="total" >Acumulado '.(date('Y', time() )).'</th>'; ?>
                         </tr>
                     </thead>
                     <tbody> <?php
@@ -179,14 +179,6 @@
                             }
 
                         }
-/*
-                        echo "<pre>";
-                            print_r($_reservas);
-                        echo "</pre>";
-*/
-                        $day_init=strtotime(date('m/d/Y',$WLresult->time));
-                        $day_last=strtotime("12/31/".date('Y', time()));
-                        $day_more=(24*60*60);
 
                         // Leads
                         echo '<tr>';

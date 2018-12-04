@@ -436,7 +436,7 @@ jQuery(document).on('click', '#finalizar-registro-cuidador', function(){
 
 	var url = jQuery(this).attr('data-href');
 
-	$("<a>").attr("href", "https://kmimos.ilernus.com/login/index.php").attr("target", "_blank")[0].click();
+	// $("<a>").attr("href", "https://kmimos.ilernus.com/login/index.php").attr("target", "_blank")[0].click();
 
 	setTimeout(function() {
 		location.href = url;

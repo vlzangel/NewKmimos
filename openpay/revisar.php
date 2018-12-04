@@ -66,8 +66,7 @@
 
     					update_cupos( $id_orden, "-");*/
 
-    					$acc = "CCL"; $usu = "CLI";
-
+    					$acc = "CCL"; $usu = "OPENPAY";
                 		include( "../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
 					break;
 

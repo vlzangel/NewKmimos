@@ -82,43 +82,27 @@
         break;
 
         case 'confirmado':
-
             $new_status = "Confirmado";
-            
             $acc = "CFM"; $usu = "CUI"; $NO_ENVIAR = "YES";
-
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
-
         break;
 
         case 'confirmado_email':
-
             $new_status = "Confirmado con env&iacute;o de correo";
-            
             $acc = "CFM"; $usu = "CUI";
-
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
-
         break;
 
         case 'cancelado':
-
             $new_status = "Cancelado";
-            
             $acc = "CCL"; $usu = "CUI"; $NO_ENVIAR = "YES";
-
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
-
         break;
 
         case 'cancelado_email':
-
             $new_status = "Cancelado con env&iacute;o de correo";
-            
             $acc = "CCL"; $usu = "CUI";
-
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
-
         break;
     
     }

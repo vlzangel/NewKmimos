@@ -122,10 +122,10 @@ function modules_filter(element){
         filters[modules] = jQuery('.filters');
 
     if(type=='trdate'){
-        modules_filter_trdate(element, type, table);
+        // modules_filter_trdate(element, type, table);
         return;
     }else if(type=='tddate'){
-        modules_filter_tddate(element, type, table);
+        // modules_filter_tddate(element, type, table);
         return;
     }else if(type=='tdcheck'){
         modules_filter_tdcheck(element, type, table);
@@ -179,11 +179,12 @@ function modules_filter_tdcheck(element, type, table){
         var count = jQuery(element).closest('.type').find('input[type="checkbox"]:checked').length;
         var mes = jQuery('[name="month"]').val();
 
+        if(jQuery(this).is(':checked')) {
 
-        if(jQuery(this).is(':checked')) {// .val()=='yes'
             table.find('td[data-check="'+name+'"]').removeClass('noshow_check');
             table.find('th[data-check="'+name+'"]').removeClass('noshow_check');
             if( name == 'total' ){
+                /*
                 if( mes > 0 && count == 1 ){
                     table.find('td[data-check="year"]').removeClass('noshow_select');
                     table.find('td[data-check="year"]').removeClass('noshow_check');
@@ -191,7 +192,9 @@ function modules_filter_tdcheck(element, type, table){
                 }else{
                     table.find('th[data-check="'+name+'"]').removeClass('noshow_select');
                 }
+                */
             }
+
         }else{
             table.find('td[data-check="'+name+'"]').addClass('noshow_check');
             table.find('th[data-check="'+name+'"]').addClass('noshow_check');
@@ -205,6 +208,11 @@ function modules_filter_tdcheck(element, type, table){
                 }
             }
         }
+
+        var fecha = new Date();
+        var anio_actual = fecha.getFullYear();
+        table.find('.year[data-year="'+anio_actual+'"]').addClass('noshow_select');
+
     });
     return;
 }

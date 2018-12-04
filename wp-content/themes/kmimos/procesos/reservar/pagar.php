@@ -10,7 +10,7 @@
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");
 	include_once("../funciones/config.php");
-	include_once("../../lib/openpay/Openpay.php");
+	include_once("../../lib/openpay2/Openpay.php");
 
 	include_once("reservar.php");
 
