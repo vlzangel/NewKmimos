@@ -124,7 +124,6 @@
     $MONTO = "";
 
     if( $servicio["desglose"]["enable"] == "yes" ){
-    	//$servicio["desglose"]["remaining"] -= $servicio["desglose"]["descuento"];
     	$deposito_plantilla = str_replace('[REMANENTE]', number_format( $servicio["desglose"]["remaining"], 2, ',', '.'), $deposito_plantilla);
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
@@ -135,7 +134,6 @@
         $totales_plantilla = str_replace('[TOTAL]', number_format( $servicio["desglose"]["total"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[PAGO]', number_format( $servicio["desglose"]["deposit"], 2, ',', '.'), $totales_plantilla);
     	$totales_plantilla = str_replace('[DETALLES]', $deposito_plantilla, $totales_plantilla);
-    	// $MONTO = number_format( $servicio["desglose"]["deposit"]-$servicio["desglose"]["descuento"], 2, ',', '.');
     	$MONTO = number_format( $servicio["desglose"]["deposit"], 2, ',', '.');
     }
 	
@@ -177,6 +175,8 @@
     	
     }
 
+
+
 	$servicios_plantilla = str_replace('[inicio]', date("d/m", $servicio["inicio"]), $servicios_plantilla);
 	$servicios_plantilla = str_replace('[desglose]', $desglose, $servicios_plantilla);
     $servicios_plantilla = str_replace('[ADICIONALES]', $adicionales, $servicios_plantilla);
@@ -198,7 +198,6 @@
 	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
     	}
     }
-
 
 
 
@@ -263,26 +262,21 @@
 
 
 	if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
-		
 		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
 		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
 			include(__DIR__."/tienda.php");
 		}else{
 			include(__DIR__."/otro.php");
 		}
-
 	}
 
 	if( $acc != ""  ){
 
 		$status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = '".$servicio["id_reserva"]."'");
-
 		$continuar = true;
-
 		$usuario = $cuidador["nombre"];
 
 		if( $superAdmin == "" ){
-
 			if( $usu == "CLI" ){ 
 				$usuario = $cliente["nombre"]; 
 
@@ -307,7 +301,6 @@
 			   		$CONTENIDO .= $msg;
 			   		$continuar = false;
 				}
-
 			}else{
 
 				$mostrar_msgs = false;
@@ -352,13 +345,9 @@
 		if( $continuar ){
 
 			if( $acc == "CFM" ){
-
 				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
 	    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
-
 				include("confirmacion.php");
-
-
 				$count_reservas = $wpdb->get_var( "SELECT  
 							count(ID) as cant
 						FROM wp_posts
@@ -366,7 +355,6 @@
 							AND not post_status like '%cart%' AND post_status = 'confirmed' 
 							AND post_author = ".$cliente["id"]."
 							AND DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('2017-05-12','%m-%d-%Y') and DATE_FORMAT(now(),'%m-%d-%Y')" );
-
 				if(  $_SESSION['admin_sub_login'] != 'YES' && $count_reservas == 1){
 			   		if(isset($cliente["id"])){	
 				   		$user_referido = get_user_meta($cliente["id"], 'landing-referencia', true);

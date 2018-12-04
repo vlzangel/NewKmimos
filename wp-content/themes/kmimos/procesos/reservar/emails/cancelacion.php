@@ -7,6 +7,13 @@
         $_SESSION["CODE"] = $CODE;
     }
 
+    $orden_sin_pagar = false;
+    $status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = $id;");
+    $_payment_method = get_post_meta($id, '_payment_method', true);
+    if($status == 'wc-on-hold' && $_payment_method == 'tienda'){
+        $orden_sin_pagar = true;
+    }
+
     $cfdi = false;
     if( $superAdmin == "" && $status == "modified" ){
         
@@ -101,11 +108,18 @@
 
             $CANCELADO_POR = "reservas/cliente";
         }else{
-            $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
-            $msg_cuidador = "Te notificamos que la reserva ha sido <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelada</span> exitosamente.";
-            $msg_administrador = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
+            if( $usu == "OPENPAY" ){
+                $msg_cliente = "Te notificamos que se ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva por vencimiento de pago en tienda.";
+                $msg_administrador = "Te notificamos que se ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva por vencimiento de pago en tienda.";
 
-            $CANCELADO_POR = "reservas/cuidador";
+                $CANCELADO_POR = "reservas/openpay";
+            }else{
+                $msg_cliente = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
+                $msg_cuidador = "Te notificamos que la reserva ha sido <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelada</span> exitosamente.";
+                $msg_administrador = "Te notificamos que el cuidador <strong>[name_cuidador]</strong> ha <span style='font-size: 20px; color: #7d1696; font-weight: 600; text-transform: uppercase;'>cancelado</span> la reserva.";
+
+                $CANCELADO_POR = "reservas/cuidador";
+            }
         }
     }
 
@@ -119,13 +133,16 @@
         case 'CLI':
             $titulo_cancelacion = "Solicitud Cancelada por el Cliente";
         break;
+        case 'OPENPAY':
+            $titulo_cancelacion = "Cancelación de reserva automática por vencimiento de pago en tienda";
+        break;
         
         default:
             $titulo_cancelacion = "Solicitud Cancelada por el Sistema";
         break;
     }
 
-    if( $usu == "CLI" ){
+    if( $usu == "CLI" || $usu == "OPENPAY" ){
         $str_sugeridos = "";
         $plantilla_sugeridos = "";
     }
@@ -145,7 +162,7 @@
         $mensaje_cliente = str_replace('[URL_IMGS]', $URL_IMGS, $mensaje_cliente);
         $mensaje_cliente = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_cliente);
     	
-        if( $usu == "CLI" ){
+        if( $usu == "CLI" || $usu == "OPENPAY" ){
             $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false, true);	
         }else{
             $mensaje_cliente = get_email_html($mensaje_cliente, true, true, $cliente["id"], false); 
@@ -179,7 +196,9 @@
         if( $NO_ENVIAR != "" ){
             echo $mensaje_cuidador;
         }else{
-           wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
+            if( $orden_sin_pagar ){}else{
+                wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
+            }
         }
 
         $file = $PATH_TEMPLATE.'/template/mail/reservar/admin/cancelar.php';
@@ -196,7 +215,7 @@
         $mensaje_admin = str_replace('[name_cuidador]', $cuidador["nombre"], $mensaje_admin);
         $mensaje_admin = str_replace('[id_reserva]', $servicio["id_reserva"], $mensaje_admin);
 
-        if( $usu == "CLI" ){
+        if( $usu == "CLI" || $usu == "OPENPAY" ){
             $mensaje_admin = str_replace('[SUGERENCIAS]', "", $mensaje_admin);
         }else{
             $mensaje_admin = str_replace('[SUGERENCIAS]', "<div style='background-color: #efefef; font-family: Verdana; font-size: 16px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 30px 30px 20px;'>
@@ -214,7 +233,7 @@
         $mensaje_admin = str_replace('[URL_IMGS]', $URL_IMGS, $mensaje_admin);
         $mensaje_admin = str_replace('[CANCELADO_POR]', $CANCELADO_POR, $mensaje_admin);
 
-        if( $usu == "CLI" ){
+        if( $usu == "CLI" || $usu == "OPENPAY" ){
             $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"], false, true); 
         }else{
             $mensaje_admin = get_email_html($mensaje_admin, true, true, $cliente["id"], false);
