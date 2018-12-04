@@ -220,7 +220,7 @@ class Pagos {
 								case 'kmimos':
 									if( $pago_kmimos < $_cupon['total'] ){
 										$diferencia = $_cupon['total'] - $pago_kmimos;
-										$pago_cuidador -= $diferencia;
+										// $pago_cuidador -= $diferencia;
 									}else{
 										$pago_kmimos -= $_cupon['total'];
 									}
