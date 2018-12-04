@@ -38,13 +38,24 @@
 
 	if( is_petsitters() ){
 		if(isset($banco) && isset($banco_cuenta) && isset($titular)){
-			if(!empty($banco) && !empty($banco_cuenta) && !empty($titular)){
+			if(!empty($banco) && !empty($banco_cuenta) && strlen($banco_cuenta)==18 && !empty($titular)){
 				$datos_banco = serialize([ 
 					'banco'=> utf8_decode($banco),
 					'cuenta'=> $banco_cuenta,
 					'titular'=> utf8_decode($titular)
 				]);
 				$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
+			}else{
+				$datos_banco = serialize([ 
+					'banco'=> '',
+					'cuenta'=> '',
+					'titular'=> ''
+				]);
+				$respuesta = array(
+					"status" 	  => "NO",
+				);
+				$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
+				return;
 			}
 		}
 	}
