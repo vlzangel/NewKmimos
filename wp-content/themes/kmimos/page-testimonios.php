@@ -40,7 +40,8 @@
 					</div>
 
 					<div class="componente_box">
-						<img src="'.get_recurso('img').'/TESTIMONIOS/3-fichas.png" />
+						<img class="solo_PC" src="'.get_recurso('img').'/TESTIMONIOS/3-fichas.png" />
+						<img class="solo_movil" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/3-fichas.png" />
 					</div>
 
 					<div class="txt_middle">
