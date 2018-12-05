@@ -7,162 +7,44 @@
             
     get_header();
 
-    $user_id = get_current_user_id();
+    wp_enqueue_style('home_kmimos', get_recurso("css")."testimonios.css", array(), '1.0.0');
+    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/testimonios.css", array(), '1.0.0');
+
+    if( !is_user_logged_in() ){
+		wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
+		wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
+		wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
+
+
+	    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+	    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+	}
 
 	$HTML .= '
-		<style>
-			.pc_seccion_0 {
-			    width: 100%;
-			    height: 350px;
-			    background-size: cover;
-			    background-position: center;
-			    position: relative;
-			    z-index: -1;
-			}
-			h1 {
-				padding: 30px;
-				text-align: center;
-				font-family: Gotham-Pro-Bold;
-				text-transform: uppercase;
-				font-size: 22px;
-			}
-			h3 {
-				padding: 15px;
-				text-align: left;
-				font-family: Gotham-Pro-Bold;
-    			vertical-align: middle;
-		    	font-size: 16px;
-			}
-			h3 img {
-				width: 20px;
-    			vertical-align: middle;
-			    padding-bottom: 5px;
-		        margin-right: 10px;
-			}
+	<div id="testimonios">
 
-			.container{
-				display: table;
-				width: 100%;
-			    max-width: 1360px;
-			    margin: 70px auto 40px;
-			}
-
-			.izq, .der{
-				display: table-cell;
-			}
-
-			.izq {
-				width: calc( 100% - 250px );
-				text-align: justify;
-				font-size: 14px;
-			}
-
-			.izq a {
-				color: #008bf3 !important;
-			}
-
-			.der {
-				width: 350px;
-				padding: 0px 35px;
-			}
-
-			.der a {
-				display: block;
-				margin-bottom: 15px;
-				text-align: center;
-			}
-
-			.boton {
-				border-radius: 3px;
-			}
-
-			.boton_morado {
-				color: #FFF !important;
-				padding: 15px 50px;
-				display: inline-block;
-				text-align: center;
-				margin: 0px auto 70px;
-				text-transform: none !important;
-				text-decoration: none !important;
-				font-family: Gotham-Pro-Bold;
-			}
-
-			.banner_cuidador{
-				width: 100%;
-			}
-
-			.promesa{
-				text-align: center;
-				font-family: Gotham-Pro-Bold;
-				font-size: 18px;
-			}
-
-			.promesa span {
-				color: #7c169e;
-			}
-
-			.img_footer {
-				position: relative; 
-				padding: 50px;
-			}
-
-			.img_footer img {
-				width: 100%;
-			}
-
-			.btns_container{
-				position: absolute;
-				left: 0px;
-				bottom: 50px;
-				width: 100%;
-				box-sizing: border-box;
-				padding: 25px 50px;
-				text-align: center;
-			}
-
-			.btns_container .boton {
-				width: 250px;
-				padding: 15px 0px;
-				text-decoration: none !important;
-				font-family: Gotham-Pro-Bold;
-				font-size: 16px;
-			}
-
-			.btns_container a.boton.boton_border_gris {
-				background: #FFF;
-			}
-
-			.ir_home{
-				text-align: center;
-				font-family: Gotham-Pro-Bold;
-				font-size: 16px;
-				margin-bottom: 50px;
-			}
-
-			.ir_home a {
-				color: #00d2c6;
-				text-decoration: underline !important;
-			}
-
-		</style>
-		<div class="pc_seccion_0" style="background-image:url('.get_recurso('img').'/TESTIMONIOS/Header.jpg);"></div>
+		<div class="solo_PC pc_seccion_0" style="background-image:url('.get_recurso('img').'/TESTIMONIOS/Header.jpg);"></div>
+		<div class="solo_movil pc_seccion_0" style="background-image:url('.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/Header-responsive.jpg);"></div>
 
 		<h1>Miles y miles de comentarios de dueños de mascotas felices</h1>
 
 		<div class="container" style="margin: 0px auto 40px;">
 			<h3>
 				<img src="'.get_recurso('img').'/TESTIMONIOS/Estrella_1.svg">
-				Mira estos perfiles de Cuidadores recomendados para ti
+				<span>Mira estos perfiles de Cuidadores recomendados para ti</span>
 			</h3>
 		</div>
 
-		<img class="banner_cuidador" src="'.get_recurso('img').'/TESTIMONIOS/Maru-S.png" />
+
+
+		<img class="solo_PC banner_cuidador" src="'.get_recurso('img').'/TESTIMONIOS/Maru-S.png" />
+		<img class="solo_movil banner_cuidador" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/Maru-S-responsive.png" />
 		<div class="container">
 			<div class="izq">
 				Mis dos hijos y yo vivimos en un departamento muy grande en compañía de nuestros perros Ortzi y Cholo, quienes son unos amables 
 				y compartidos anfitriones. No uso jaulas así que los perros están libres, jugando por toda el área, siempre acompañados por 
-				nosotros y sus nuevos camaradas perrunos. Salimos a pasear tres veces al día y los alimentos se les dan en forma separada. 
-				Solamente acepto perros consentidos, sociables y nada agresivos... <a>Ver más</a><br>
+				nosotros y sus nuevos camaradas perrunos<span class="ver_mas_PC">. Salimos a pasear tres veces al día y los alimentos se les dan en forma separada. 
+				Solamente acepto perros consentidos, sociables y nada agresivos...<br></span><span class="ver_mas_movil">...</span> <a>Ver más</a>
 			</div>
 			<div class="der">
 				<a class="boton boton_border_gris">Conocer cuidador</a>
@@ -179,7 +61,8 @@
 
 
 
-		<img class="banner_cuidador" src="'.get_recurso('img').'/TESTIMONIOS/Claudia-R.png" />
+		<img class="solo_PC banner_cuidador" src="'.get_recurso('img').'/TESTIMONIOS/Claudia-R.png" />
+		<img class="solo_movil banner_cuidador" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/Claudia-R-responsive.png" />
 		<div class="container">
 			<div class="izq">
 				Horario de ingreso partir de 8:30am. ¡¡Listos para jugar?!! ¿Reservación para navidad? Hola! Soy Claudia Ramírez. Zona tlalpan por tec 
@@ -199,7 +82,8 @@
 
 
 
-		<img class="banner_cuidador" src="'.get_recurso('img').'/TESTIMONIOS/Benjamin-G.png" />
+		<img class="solo_PC banner_cuidador" src="'.get_recurso('img').'/TESTIMONIOS/Benjamin-G.png" />
+		<img class="solo_movil banner_cuidador" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/Benjamin-G-responsive.png" />
 		<div class="container">
 			<div class="izq">
 				Benjamín González les da la bienvenidas a todos ustedes a este hogar donde vivimos mi familia y mis mascotas, mi profesión es médico veterinario 
@@ -232,7 +116,7 @@
 		<div class="ir_home">
 			<a>Ir al home</a>
 		</div>
-	';
+	</div>';
 
     echo comprimir($HTML);
     
