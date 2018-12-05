@@ -27,6 +27,59 @@ h3 img {
     margin-right: 10px;
 }
 
+.componente_container{
+	display: block;
+	max-width: 1360px;
+	margin: 0px auto;
+    padding: 0px 30px;
+}
+
+.componente{
+	position: relative;
+	display: table;
+}
+
+.componente_izq, .componente_der{
+	display: table-cell;
+	width: 50%;
+	vertical-align: middle;
+}
+
+.componente_der{
+    text-align: right;
+}
+
+.txt_top {
+    padding: 35px 35px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.txt_middle {
+    padding: 35px;
+    text-align: center;
+    font-size: 17px;
+    background: #7c169e;
+    color: #FFF;
+}
+
+.txt_bottom {
+    padding: 35px 30px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.componente_box{
+	position: absolute;
+    right: 0px;
+    top: 0px;
+    max-width: 45%;
+}
+
+.componente_box img {
+	width: 100%
+}
+
 .container{
 	display: table;
 	width: 100%;
@@ -63,8 +116,8 @@ h3 img {
 
 #testimonios .boton {
 	border-radius: 3px;
-	margin-left: 0px !important;
-	margin-right: 0px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
 }
 
 #testimonios .boton_morado {

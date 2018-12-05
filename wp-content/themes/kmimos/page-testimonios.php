@@ -30,6 +30,34 @@
 
 		<h1>Miles y miles de comentarios de dueños de mascotas felices</h1>
 
+		<div class="componente_container">
+			<div class="componente">
+				<div class="componente_izq">
+					<div class="txt_top">
+						Nos importa muchísimo la experiencia de nuestros clientes durante el cuidador de su mejor 
+						amigo peludo, por eso, puedes encontrar los comentarios de su cómo les fue a los perritos 
+						o gatitos en su estadía, y cómo se sintió el dueño o dueña mientras viajaba.
+					</div>
+
+					<div class="componente_box">
+						<img src="'.get_recurso('img').'/TESTIMONIOS/3-fichas.png" />
+					</div>
+
+					<div class="txt_middle">
+						Encuentra en el perfil de tus cuidadores las recomendaciones de otros usuarios, y consigue
+						el cuidador que más te guste
+					</div>
+					<div class="txt_bottom">
+						¡Así mismo, podrás relatar tu experiencia cuando tu consentido esté de vuelta!
+					</div>
+				</div>
+				<div class="componente_der">
+					
+				</div>
+			</div>
+		</div>
+
+
 		<div class="container" style="margin: 0px auto 40px;">
 			<h3>
 				<img src="'.get_recurso('img').'/TESTIMONIOS/Estrella_1.svg" style="max-width: 100px;">
