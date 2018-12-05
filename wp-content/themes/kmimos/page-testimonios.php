@@ -13,15 +13,12 @@
     wp_enqueue_style('conocer', getTema()."/css/conocer.css", array(), '1.0.0');
     wp_enqueue_style('conocer_responsive', getTema()."/css/responsive/conocer_responsive.css", array(), '1.0.0');
 
-    if( !is_user_logged_in() ){
-		wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
-		wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
-		wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
+	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 
-
-	    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
-	    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
-	}
+    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
 	include ('partes/cuidador/conocelo.php');
 
@@ -153,13 +150,13 @@
 			<img class="solo_movil" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/Banner-responsive.png" />
 
 			<div class="btns_container">
-				<a class="boton boton_verde">Buscar cuidador</a>
-				<a class="boton boton_border_gris">Quiero ser cuidador</a>
+				<a href="'.get_home_url().'/#buscador" class="boton boton_verde">Buscar cuidador</a>
+				<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="boton boton_border_gris">Quiero ser cuidador</a>
 			</div>
 		</div>
 
 		<div class="ir_home">
-			<a>Ir al home</a>
+			<a href="'.get_home_url().'">Ir al home</a>
 		</div>
 	</div>';
 

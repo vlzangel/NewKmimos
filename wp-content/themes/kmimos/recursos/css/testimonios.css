@@ -32,6 +32,7 @@ h3 img {
 	width: 100%;
     max-width: 1360px;
     margin: 120px auto 60px;
+    padding: 0px 50px;
 }
 
 .izq, .der{
@@ -50,7 +51,7 @@ h3 img {
 
 .der {
 	width: 350px;
-	padding: 0px 35px;
+	padding: 0px 0px 0px 35px;
 	vertical-align: top;
 }
 
@@ -62,6 +63,8 @@ h3 img {
 
 #testimonios .boton {
 	border-radius: 3px;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
 }
 
 #testimonios .boton_morado {

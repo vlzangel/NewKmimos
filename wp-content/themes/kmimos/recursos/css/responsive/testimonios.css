@@ -36,6 +36,7 @@
 	.container {
 		display: block;
 	    margin: 10px auto 40px;
+        padding: 5px 15px;
 	}
 
 	.izq {
