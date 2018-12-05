@@ -51,6 +51,7 @@ h3 img {
 .der {
 	width: 350px;
 	padding: 0px 35px;
+	vertical-align: top;
 }
 
 .der a {

@@ -38,10 +38,15 @@
 	    margin: 10px auto 40px;
 	}
 
-	.izq, .der {
+	.izq {
 	    display: block;
 	    width: 100%;
-        font-size: 12px;
+        font-size: 10px;
+	}
+
+
+	.der {
+	    display: none;
 	}
 
 	.ver_mas_PC{
@@ -50,5 +55,29 @@
 
 	.ver_mas_movil{
 		display: inline-block;
+	}
+
+	.promesa {
+	    font-size: 16px;
+	}
+
+	.promesa span {
+	    display: block;
+	}
+
+	.img_footer {
+	    padding: 50px 0px 0px;
+	}
+
+	.btns_container {
+	    position: relative;
+	    left: auto;
+	    bottom: auto;
+	    padding: 50px 0px 20px;
+	}
+
+	.btns_container .boton {
+	    margin-bottom: 25px;
+	    padding: 10px 0px;
 	}
 }
