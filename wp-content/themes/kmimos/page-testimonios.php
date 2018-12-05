@@ -32,7 +32,7 @@
 
 		<div class="container" style="margin: 0px auto 40px;">
 			<h3>
-				<img src="'.get_recurso('img').'/TESTIMONIOS/Estrella_1.svg">
+				<img src="'.get_recurso('img').'/TESTIMONIOS/Estrella_1.svg" style="max-width: 100px;">
 				<span>Mira estos perfiles de Cuidadores recomendados para ti</span>
 			</h3>
 		</div>
