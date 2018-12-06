@@ -40,7 +40,21 @@
 					</div>
 
 					<div class="componente_box">
-						<img class="solo_PC" src="'.get_recurso('img').'/TESTIMONIOS/3-fichas.png" />
+						<img class="solo_PC img_comp_1" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-1.png" />
+						<img class="solo_PC img_comp_2" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-2.png" />
+						<img class="solo_PC img_comp_3" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-3.png" />
+						<img class="solo_PC" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-3.png" style="visibility: hidden;" />
+
+
+
+
+
+
+
+
+
+
+
 						<img class="solo_movil" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/3-fichas.png" />
 					</div>
 
