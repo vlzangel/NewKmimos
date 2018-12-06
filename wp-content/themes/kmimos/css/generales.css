@@ -499,6 +499,7 @@ section .left{
         border-radius: 3px;
         margin: 0px auto;
         margin-top: -4px;
+        position: absolute;
     }
 
     .has-error,
