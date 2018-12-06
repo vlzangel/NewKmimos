@@ -36,7 +36,11 @@
 	kmimos_update_user_meta($user_id, "nickname", utf8_decode($nickname));
 	kmimos_update_user_meta($user_id, "user_recibir_fotos", utf8_decode($user_recibir_fotos));
 
-	if( is_petsitters() ){
+
+
+
+
+if( is_petsitters($user_id) ){
 		if(isset($banco) && isset($banco_cuenta) && isset($titular)){
 			if(!empty($banco) && !empty($banco_cuenta) && strlen($banco_cuenta)==18 && !empty($titular)){
 				$datos_banco = serialize([ 
@@ -52,13 +56,15 @@
 					'titular'=> ''
 				]);
 				$respuesta = array(
-					"status" 	  => "NO",
+					"status" => "NO",
+					"msg" => "Debe completar los datos de facturacion" 
 				);
 				$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
 				return;
-			}
+			}	
 		}
 	}
+
 
 	$sql  = "UPDATE wp_users SET display_name = '{$nickname}' WHERE ID = {$user_id}; ";
 	if( isset($img_portada) ){

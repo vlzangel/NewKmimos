@@ -34,6 +34,11 @@ jQuery( document ).ready(function() {
 
             }else{
                  $mensaje = "Lo sentimos no se pudo actualizar los datos";
+		    if( typeof data.msg != 'undefined' ){
+			    if( data.msg != '' ){
+			$mensaje = data.msg;
+			    }
+		    }
             }
 
             jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');  
