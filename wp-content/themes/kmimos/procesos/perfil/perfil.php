@@ -57,7 +57,7 @@ if( is_petsitters($user_id) ){
 				]);
 				$respuesta = array(
 					"status" => "NO",
-					"msg" => "Debe completar los datos de facturacion" 
+					"msg" => "Debe completar los datos bancarios, el nro. de cuenta bancaria debe tener 18 digitos" 
 				);
 				$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
 				return;
