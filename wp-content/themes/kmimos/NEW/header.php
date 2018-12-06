@@ -19,6 +19,8 @@
 		}
 	}
 
+	wp_enqueue_style( 'style', getTema()."/css/popup-datos-bancarios.css", array(), "1.0.0" );
+	
 	wp_head();
 
 	$HTML = '';

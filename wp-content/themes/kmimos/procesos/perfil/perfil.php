@@ -40,7 +40,7 @@
 
 
 
-if( is_petsitters($user_id) ){
+	if( is_petsitters($user_id) ){
 		if(isset($banco) && isset($banco_cuenta) && isset($titular)){
 			if(!empty($banco) && !empty($banco_cuenta) && strlen($banco_cuenta)==18 && !empty($titular)){
 				$datos_banco = serialize([ 
