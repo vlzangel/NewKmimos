@@ -351,7 +351,7 @@
 	 		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 				<div class="overlay"></div>
 			</div>
-			<div class="body km-content-reservation">
+			<div class="body container km-content-reservation">
 				<div class="menu_perfil">
 					<div class="vlz_img_portada">
 						<div class="vlz_img_portada_fondo" style="background-image: url('.$avatar.'); filter:blur(2px);" ></div>
