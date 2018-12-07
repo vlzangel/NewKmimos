@@ -111,9 +111,6 @@
 
 	echo comprimir($HTML);
 
-	/* Recordatorio a cuidador para completar datos bancarios */
-    include_once( dirname(__DIR__).'/template/popup/datos_bancarios.php' );
-
 	wp_footer();
 
 	echo "</body></html>";

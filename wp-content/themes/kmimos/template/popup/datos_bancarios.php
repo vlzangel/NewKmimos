@@ -1,34 +1,33 @@
 <?php
 	session_start();
-	if( !is_user_logged_in() && $_SESSION['popup_datos_banco'] ){
-		//return;
-	}
 
-	global $wpdb;
+	$mostrar = false;
+	if( is_user_logged_in() && is_petsitters() && !isset($_SESSION['popup_datos_banco']) ){
 
-	$user_id = get_current_user_id();
-	$data = $wpdb->get_row( "SELECT nombre, apellido, banco FROM cuidadores where user_id = ". $user_id );
+		global $wpdb;
 
-	$mostrar = 'hidden';
-	if( isset($data->banco) ){
-		$banco = unserialize($data->banco);
-		if( !isset($banco->cuenta) || strlen($banco->cuenta) != 18 ){
-			$mostrar = '';
+		$user_id = get_current_user_id();
+		$data = $wpdb->get_row( "SELECT nombre, apellido, banco FROM cuidadores where user_id = ". $user_id );
+
+		$mostrar = true;
+		$_SESSION['popup_datos_banco'] = true;
+
+		if( isset($data->banco) ){
+			$banco = [];
+			if( !empty($data->banco) ){
+				$banco = unserialize($data->banco);
+				if( isset($banco['cuenta']) && strlen($banco['cuenta']) == 18 ){
+					$mostrar = false;
+				}
+			}
 		}
 	}
 
-	
 
 ?>
 
-<section class="<?php echo $mostrar; ?>">
-
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-	  Test modal datos bancos
-	</button>
-
-	<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<?php if( $mostrar ){ ?>
+	<div class="modal fade " id="notificacion-bancaria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog modal-lg modal-dialog-especial" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -68,5 +67,9 @@
 			</div>
 		</div>
 	</div>
-	
-</section>	
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery('#notificacion-bancaria').modal('show');
+		});
+	</script>
+<?php } ?>

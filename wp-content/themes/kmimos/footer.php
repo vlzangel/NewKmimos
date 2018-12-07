@@ -17,6 +17,9 @@
         "product",
     ];
 
+    /* Recordatorio a cuidador para completar datos bancarios */
+    include_once( '/template/popup/datos_bancarios.php' );
+
     if( true ){
 
         if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new) ){
@@ -175,7 +178,7 @@
 
             echo "</body></html>";
         }
-    }
 
+    }
 ?>
         

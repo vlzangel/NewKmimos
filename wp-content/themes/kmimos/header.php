@@ -90,7 +90,11 @@
         "paseos",
         "testimonios",
         "product",
+
     ];
+
+    /* Recordatorio a cuidador para completar datos bancarios */
+	wp_enqueue_style( 'style', getTema()."/css/popup-datos-bancarios.css", array(), "1.0.0" );
 
     if( true ){
 
