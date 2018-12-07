@@ -2,22 +2,26 @@
 	session_start();
 
 	$mostrar = false;
-	if( is_user_logged_in() && is_petsitters() && !isset($_SESSION['popup_datos_banco']) ){
+	if( is_user_logged_in() && !isset($_SESSION['popup_datos_banco']) ){
 
 		global $wpdb;
 
-		$user_id = get_current_user_id();
-		$data = $wpdb->get_row( "SELECT nombre, apellido, banco FROM cuidadores where user_id = ". $user_id );
+		$cuidador = is_petsitters();
+		if( isset($cuidador->user_id) && $cuidador->user_id > 0 ){
 
-		$mostrar = true;
-		$_SESSION['popup_datos_banco'] = true;
+			// $user_id = get_current_user_id();
+			// $cuidador = $wpdb->get_row( "SELECT nombre, apellido, banco FROM cuidadores where user_id = ". $user_id );
 
-		if( isset($data->banco) ){
-			$banco = [];
-			if( !empty($data->banco) ){
-				$banco = unserialize($data->banco);
-				if( isset($banco['cuenta']) && strlen($banco['cuenta']) == 18 ){
-					$mostrar = false;
+			$mostrar = true;
+			$_SESSION['popup_datos_banco'] = true;
+
+			if( isset($cuidador->banco) ){
+				$banco = [];
+				if( !empty($cuidador->banco) ){
+					$banco = unserialize($cuidador->banco);
+					if( isset($banco['cuenta']) && strlen($banco['cuenta']) == 18 ){
+						$mostrar = false;
+					}
 				}
 			}
 		}
@@ -32,7 +36,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h3 style="" class="text-left">¡Hola <strong><?php echo $data->nombre." ".$data->apellido; ?>!</strong></h3>
+					<h3 style="" class="text-left">¡Hola <strong><?php echo $cuidador->nombre." ".$cuidador->apellido; ?>!</strong></h3>
 				</div>
 				<div class="modal-body text-justify">
 					<div class="row">					
