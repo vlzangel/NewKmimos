@@ -29,7 +29,7 @@
 	right: 40px;
 	top: -40px;
 	display: block;
-	float: right;
+	float: right!important;
 }
 
 .banco-movil-imagen,
