@@ -55,7 +55,7 @@
 									Tel&eacute;fono: <span style="color: #00d2c6;">55 3137 4829</span>
 								</p>
 								<div class="text-center">
-									<a href="" class="btn btn-default btn-popup-bancos" style="
+									<a href="<?php echo get_home_url(); ?>/perfil-usuario" class="btn btn-default btn-popup-bancos" style="
 									    "> IR A MI PERFIL <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
 								</div>
 							</div>
