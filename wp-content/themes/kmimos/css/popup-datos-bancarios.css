@@ -1,0 +1,77 @@
+.modal-dialog-especial{
+	max-width: 800px!important;
+}
+.modal-dialog-especial .modal-content{
+	border-radius: 25px;
+}
+.modal-dialog-especial .modal-header{
+	background: #eebf33; 
+	border-radius: 25px 25px 0px 0px; 
+	padding: 10px 50px;
+}
+.modal-dialog-especial .modal-header h3{
+	padding: 0px!important;
+}
+.modal-dialog-especial .modal-body{
+	padding: 20px 50px 20px 50px;
+}
+
+.btn-popup-bancos{
+	background: #eebf33;
+	border: 0px;
+	padding: 10px 15px;
+	color: #fff;
+}
+
+.col-imagen{
+	padding-left: 0px; padding-right: 0px; 
+	position: absolute;
+	right: 40px;
+	top: -40px;
+	display: block;
+}
+
+.banco-movil-imagen,
+.banco-movil{
+	width: 100%;
+}
+.banco-movil-imagen{
+	display: none;
+}
+
+@media (max-width: 992px){
+	.col-imagen{
+		display: none;
+	}
+}
+
+@media (max-width: 600px){
+	.banco-movil-imagen{
+		display: inline-block!important;
+		vertical-align: top;
+	}
+	.banco-movil-imagen,
+	.banco-movil{
+		width: 50%;
+		float: left;
+	}
+	.modal-dialog-especial .modal-body{
+		padding: 20px 10px 20px 10px;
+	}
+
+}
+
+@media (max-width: 480px){
+    ul.beneficios li h1 {
+	    font-size: 20px;
+	}
+
+    ul.beneficios li p {
+	    margin: 20px;
+	    font-size: 16px;
+	}
+}
+
+@media (max-width: 350px){
+    
+}

@@ -18,7 +18,7 @@
 			wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
 		}
 	}
-
+	
 	wp_head();
 
 	$HTML = '';
