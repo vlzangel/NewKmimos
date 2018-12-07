@@ -63,7 +63,7 @@
 								<img src="<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/popup-datos-bancarios/dog-movil.png" class="img-responsive">
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-4 col-xm-12 col-imagen">
+						<div class="col-md-4 col-sm-4 col-xm-12 col-imagen pull-right">
 							<img src="<?php echo get_home_url(); ?>/wp-content/themes/kmimos/images/popup-datos-bancarios/dog.png" class="img-responsive">
 						</div>
 					</div>
