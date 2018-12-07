@@ -12,10 +12,10 @@
 		if( $descripcion != ""){
 			$HTML .= "<meta name='description' content='{$descripcion}'>";
 		}else{
-			$HTML .= "<meta name='description' content='Mucho mejor que una pensión para perros - Cuidadores Certificados - kmimos.com.mx'>";
+			$HTML .= "<meta name='description' content='Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota'>";
 		}
 	}else{
-		$HTML .= "<meta name='description' content='Mucho mejor que una pensión para perros - Cuidadores Certificados - kmimos.com.mx'>";
+		$HTML .= "<meta name='description' content='Por segunda vez dejé a mi perro con Gabriel y su familia, estoy muy agradecido y encantado con el cuidado que le ha dado a mi mascota'>";
 	}
 
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';

@@ -207,7 +207,6 @@
 		preg_match_all("#-(.*?)\n#i", "-".$descripcion, $matches_1);
 		preg_match_all("#<small>(.*?)</small>#", $descripcion, $matches_2);
 		$descripcion_1 = $matches_1[1][0];
-		// $descripcion_2 = $matches_2[1][0];
 		$descripcion_2 = 'Precio final (incluye cobertura veterinaria y gastos administrativos; no incluye servicios adicionales)';
 		if( $descripcion_1 != "" ){
 			$descripcion_1 = "* ".$descripcion_1;
@@ -355,9 +354,7 @@
 		$HTML .= '
 				<div id="step_2" class="km-col-steps">
 					<div class="km-col-content">
-
 						<div id="atras_1" class="atras"> Volver </div>
-					
 						<div class="barra_titulo">
 							<ul class="steps-numbers">
 								<li><span class="number checked">1</span></li>
@@ -425,11 +422,8 @@
 
 		$HTML .= '
 				<div id="step_3" class="km-col-steps">
-
 					<div class="km-col-content">
-
 						<div id="atras_2" class="atras"> Volver </div>
-					
 						<div class="barra_titulo">
 							<ul class="steps-numbers">
 								<li><span class="number checked">1</span></li>
@@ -579,6 +573,10 @@
 	 	';
 
 		echo comprimir($HTML);
+
+		echo "<pre>";
+			print_r($_SESSION["sql"]);
+		echo "</pre>";
 
 		unset($_SESSION["pagando"]);
 

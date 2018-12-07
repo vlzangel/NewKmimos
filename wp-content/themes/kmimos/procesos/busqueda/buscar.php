@@ -46,7 +46,7 @@
 	    	}
     	}
 
-	if( $USER_ID != "" ){
+	if( $USER_ID+0 > 0 ){
 
 		$filtros = array(
 			"agresivo_mascotas" => 0,
