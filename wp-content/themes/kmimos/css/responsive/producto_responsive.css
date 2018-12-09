@@ -700,6 +700,7 @@
 	    height: 30px;
 	    display: inline-block;
 	    float: left;
+	    margin: 0px -3px;
 	}
 
 	.km-info {
@@ -798,7 +799,7 @@
 
 	.page-reservation .km-content-step .km-content-new-pet .km-height {
 	    padding: 7px 0px 0px 10px;
-	    font-size: 12px;
+	    font-size: 10px;
 	}
 
 	.contenedor-adicionales .contenedor_info {
@@ -918,5 +919,22 @@
 	.km-cupones input {
     	padding: 10px;
     	font-size: 13px;
+	}
+
+	.contenedor_info {
+	    width: 100%;
+	}
+
+	.page-reservation .km-content-step .km-content-new-pet .km-quantity-height {
+	    width: 100%;
+	}
+
+	.contenedor_info > label {
+		padding: 10px 0px;
+	    font-size: 11px;
+	}
+
+	.page-reservation .km-content-step .km-content-new-pet .km-height {
+	    width: calc(100% - 105px);
 	}
 }

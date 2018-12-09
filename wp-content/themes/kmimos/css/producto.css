@@ -105,7 +105,7 @@
 .invalido {
     display: none;
     background: #ff8300;
-    padding: 10px;
+    padding: 10px 0px;
     text-align: center;
     font-size: 15px;
     color: #FFF;

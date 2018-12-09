@@ -117,7 +117,7 @@
 
 		$servicios_principales = get_servicios("principales");
 		$servicios_principales_hospedaje_str = '';
-		$servicios_principales_str = '';
+		$servicios_principales_str = [];
 		foreach ($servicios_principales as $key => $servicio) {
 			$_checked = ( is_array($_SESSION["busqueda"]["servicios"]) && in_array($key, $_SESSION["busqueda"]["servicios"]) ) ? "checked" : "";
 			$icono = ( strpos($key, "adiestramiento") === false ) ? $key: "adiestramiento";
@@ -147,7 +147,7 @@
 	    }
     }
 
-
+    /*
 	$HTML = '';
 	if( $_SESSION["wlabel"] == "petco" ){
 		$HTML .= '
@@ -167,9 +167,9 @@
 			<!-- Adform Tracking Code END -->
 		';
 	}
-
+	*/
 	echo "<pre>";
-		print_r( $_SESSION['sql'] );
+		print_r( $_SESSION );
 	echo "</pre>";
 
     $HTML .= '
@@ -451,8 +451,8 @@
     			</div>
     			
     			<div class="cantidad_resultados_container">
-    				<div class="disponibilidad_PC">Hay <strong><span>'.count($_SESSION['resultado_busqueda']).'</span> cuidadores</strong> cerca de ti, con las características que necesitas.</div>
-    				<div class="disponibilidad_MOVIl"><strong>Resultado de búsqueda,</strong> <span>'.count($_SESSION['resultado_busqueda']).'</span> cuidadores disponibles</div>
+    				<div class="disponibilidad_PC">Hay <strong><span>0</span> cuidadores</strong> cerca de ti, con las características que necesitas.</div>
+    				<div class="disponibilidad_MOVIl"><strong>Resultado de búsqueda,</strong> <span>0</span> cuidadores disponibles</div>
     			</div>
     			<div class="resultados_box">
 
