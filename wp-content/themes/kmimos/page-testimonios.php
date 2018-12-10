@@ -20,6 +20,9 @@
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
+
+    wp_enqueue_script('testimonios', get_recurso("js")."testimonios.js", array(), '1.0.0');
+
 	include ('partes/cuidador/conocelo.php');
 
 	$HTML .= '
@@ -40,9 +43,9 @@
 					</div>
 
 					<div class="componente_box">
-						<img class="solo_PC img_comp_1" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-1.png" />
-						<img class="solo_PC img_comp_2" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-2.png" />
-						<img class="solo_PC img_comp_3" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-3.png" />
+						<img id="img_comp_1" data-id="img_1" class="solo_PC img_comp img_comp_1" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-1.png" />
+						<img id="img_comp_2" data-id="img_2" class="solo_PC img_comp img_comp_2" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-2.png" />
+						<img id="img_comp_3" data-id="img_3" class="solo_PC img_comp img_comp_3" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-3.png" />
 						<img class="solo_PC" src="'.get_recurso('img').'/TESTIMONIOS/Ficha-3.png" style="visibility: hidden;" />
 
 
