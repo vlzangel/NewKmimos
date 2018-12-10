@@ -79,7 +79,9 @@
 			        update_user_meta($user_id, 'comment_shortcuts', 'false');
 			        update_user_meta($user_id, 'user_referred', 'FacebookSB');
 			        update_user_meta($user_id, 'show_admin_bar_front', 'false');
-			        update_user_meta($user_id, 'wp_capabilities', 'a:1:{s:10:"subscriber";b:1;}');
+
+					$wpdb->query("INSERT INTO wp_usermeta VALUES (NULL, {$user_id}, 'wp_capabilities', 'a:1:{s:10:\"subscriber\";b:1;}');");
+
 			        $mensaje = buildEmailTemplate(
 			            'registro', 
 			            [

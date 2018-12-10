@@ -50,15 +50,11 @@
 
 
 
+						<img id="img_movil_comp_1" data-id="img_1" class="solo_movil img_comp img_comp_1" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/Ficha-1.png" />
+						<img id="img_movil_comp_2" data-id="img_2" class="solo_movil img_comp img_comp_2" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/Ficha-2.png" />
+						<img id="img_movil_comp_3" data-id="img_3" class="solo_movil img_comp img_comp_3" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/Ficha-3.png" />
 
-
-
-
-
-
-
-
-						<img class="solo_movil" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/3-fichas.png" />
+						<img class="solo_movil" src="'.get_recurso('img').'/TESTIMONIOS/RESPONSIVE/3-fichas.png" style="visibility: hidden;" />
 					</div>
 
 					<div class="txt_middle">

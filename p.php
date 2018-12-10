@@ -1,7 +1,7 @@
 <?php
-	include 'wp-load.php';
+	// include 'wp-load.php';
 	
-	if( !isset($_SESSION) ){ session_start(); }
+	// if( !isset($_SESSION) ){ session_start(); }
 
 	// update_ubicacion();
 	// update_titulo();
@@ -9,5 +9,7 @@
 
 	// update_servicios();
 
-	pre_carga_data_cuidadores();
+	// pre_carga_data_cuidadores();
+
+	echo serialize([ "subscriber" => true ]);
 ?>
