@@ -228,6 +228,19 @@
 					}
 				}
 	        }
+
+
+ 			function evento_fbq_kmimos(tipo, evento){
+	        	fbq(tipo, evento); 
+	        }
+
+	        function evento_google_kmimos(evento){
+	        	switch ( evento ) {
+					case "paseos":
+						ga("send", "event", "wlabel", "click", "traking_code_boton_paseos_kmimos", "1");
+					break;
+				}
+	        }
 		</script>
 	';
 
