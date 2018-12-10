@@ -2,7 +2,7 @@ jQuery( document ).ready(function() {
 
     jQuery(".img_comp").on("click", function(e){
         
-        if( jQuery(this).attr("data-status") == "" ){
+        if( jQuery(this).attr("data-status") == "" || jQuery(this).attr("data-status") == undefined ){
 
             jQuery(".img_comp").attr("data-status", "no_activo");
         
