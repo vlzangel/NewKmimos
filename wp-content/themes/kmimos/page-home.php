@@ -99,7 +99,7 @@
 									<div class="top_check"></div>
 								</label>
 
-								<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos\'); evento_fbq("track", "traking_code_boton_paseos"); ">
+								<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos\'); evento_fbq("track", "traking_code_boton_paseos"); evento_google_2(\'paseos\'); evento_fbq_2("track", "traking_code_boton_paseos_kmimos"); ">
 									<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
 									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
 									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />

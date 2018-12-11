@@ -333,7 +333,7 @@
 								<li class="line"></li><li><span class="number">3</span></li>
 							</ul>
 							<div class="km-title-step">
-								RESERVACIÓN <span>'.$servicio_name_corto.'</span> *
+								RESERVACIÓN <span>'.$servicio_name_corto.'</span>
 								<div>'.$descripcion_1.'</div>
 							</div>
 							<label for="mostrar_info" class="km-info-box">

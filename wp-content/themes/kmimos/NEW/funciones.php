@@ -354,7 +354,7 @@
         $user_id = get_current_user_id();
         $favoritos = get_favoritos();
 
-        if( count($DESTACADOS_ARRAY) > 0 ){
+        if( is_array($DESTACADOS_ARRAY) && count($DESTACADOS_ARRAY) > 0 ){
 	        foreach ($DESTACADOS_ARRAY as $key => $destacado) {
 
 	        	$fav_check = 'false';
@@ -536,7 +536,11 @@
 							'</div>';
 					}
 				}
-				$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
+				if( is_array($_cuidador->galeria) ){
+					$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
+				}else{
+					$ocultar_siguiente_img = 'Ocultar_Flecha';
+				}
 
 				if( isset($cuidador->DISTANCIA) ){
 					$distancia = '<div class="resultados_item_subtitulo">a '.floor($cuidador->DISTANCIA).' km de tu búsqueda</div>';
@@ -551,6 +555,10 @@
 					$mensaje_disp_movil = "50% en 2da masc. 25% en 3era.";
 					$show_msg_desc = "show_msg_descuento";
 					$mensaje_disp_movil_corto = "Descuento";
+				}
+
+				if( !is_array($_cuidador->galeria) ){
+					$_cuidador->galeria = [];
 				}
 
 				$HTML .= '
@@ -813,7 +821,7 @@
     		if( $value->hospedaje_desde == 0 ){
 				$adic = $cuidadores[ $key ]->adicionales;
 				foreach ($adic as $key_1 => $value_1) {
-					if( count($value_1) >= 4 ){
+					if( is_array($value_1) && count($value_1) >= 4 ){
 						foreach ($value_1 as $key_2 => $value_2) {
 							if( $desde == 0 ){
 								$desde = $value_2;

@@ -322,7 +322,7 @@ function calcular(){
 
 	if( error == "" ){
 		if( cant == 0 ){
-			error = "Ingrese la cantidad de mascotas";
+			error = "Seleccione número de mascotas en la sección de arriba";
 		}else{
 			cant *= parseFloat( dias );
 			jQuery(".km-price-total").html("$"+numberFormat(cant));
