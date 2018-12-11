@@ -17,6 +17,7 @@
         "product",
     ];
 
+
     if( true ){
 
         if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new) ){
@@ -175,7 +176,7 @@
 
             echo "</body></html>";
         }
-    }
 
+    }
 ?>
         

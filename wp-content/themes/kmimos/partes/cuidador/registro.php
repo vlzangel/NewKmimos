@@ -430,9 +430,14 @@
 					<h2 style="font-size: 25px; color: white; text-align: center;">SIGUIENTES PASOS PARA ACTIVAR TU PERFIL:</h2>		
 
 					<aside class="text-left col-sm-10 col-sm-offset-1">
+						<p style="font-size: 18px;">1. En el transcurso del día, te enviaremos un correo con la liga de las pruebas de conocimientos y psicometría, es necesario que las contestes para poder continuar con el proceso.</p>
+						<p style="font-size: 18px;">2. El equipo de certificación Kmimos te contactará en breve para acompañarte y resolver tus dudas, también puedes contactarnos a través de Whatsapp al (55) 4621 8027.</p>
+						<p style="font-size: 18px;">Te recordamos tus credenciales para tu perfil de Kmimos:</p>
+						<!--
 						<p style="font-size: 18px;">1. Da click en el botón CONTINUAR (mostrado abajo), serás redirigido de inmediato a las pruebas de Conocimientos Veterinarios.</p>
 						<p style="font-size: 18px;">2. Al final del día te enviaremos un correo con la liga de las pruebas de conocimientos veterinarios (guarda este correo en caso que necesites retomar la prueba más adelante y/o cargar tus documentos).</p>
 						<p style="font-size: 18px;">3. Al dar click en el botón CONTINUAR, deberás iniciar sesión con las siguientes credenciales:</p>
+						-->
 						<p style="text-align: center; font-size: 18px;">
 							<strong>Usuario:</strong> <span data-id="ilernus-user"></span>
 							</br>
@@ -447,6 +452,7 @@
 					<!--
 						<p style="font-size: 15px;">Completaste tu perfil perfectamente</p>
 					-->
+
 				</div>
 			</div>
 		</form>

@@ -25,15 +25,17 @@ jQuery( document ).ready(function() {
       			jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
 
-              var $mensaje="";
+            var $mensaje="";
 
-               if( data.status == "OK"){
-
-
-                $mensaje = "Los datos fueron actualizados";
-
+            if( data.status == "OK"){
+              $mensaje = "Los datos fueron actualizados";
             }else{
-                 $mensaje = "Lo sentimos no se pudo actualizar los datos";
+              $mensaje = "Lo sentimos no se pudo actualizar los datos";
+      		    if( typeof data.msg != 'undefined' ){
+      			    if( data.msg != '' ){
+      			     $mensaje = data.msg;
+      			    }
+      		    }
             }
 
             jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');  

@@ -10,7 +10,7 @@
     position: relative;
     top: -85px;
 }
-
+ 
 .menu_perfil ul{    
 	border-bottom: solid 1px #CCC;
 	margin-top: 10px;
@@ -76,7 +76,7 @@ li.vlz_resaltar {
 	    box-sizing: border-box;
 	    padding: 0px 5px;
 	    display: inline-block;
-	    margin: 0px -2px;
+	    margin: 5px -2px;
 	}
 
 	.lbl-text{

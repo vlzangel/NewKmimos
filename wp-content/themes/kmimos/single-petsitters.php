@@ -315,7 +315,7 @@
  		<script> 
 			var lat = "'.$cuidador->latitud.'";
 			var lng = "'.$cuidador->longitud.'";
- 			var SERVICIO_ID = "'.$_cuidador->id_post.'"; 
+ 			var SERVICIO_ID = "'.$cuidador->id_post.'"; 
  			var GALERIA = "'.$_galeria.'";
  		</script>
 
@@ -442,19 +442,19 @@
 						<div class="pc_seccion_2_datos">
 							<div class="pc_seccion_2_datos_item">
 								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Experiencia.svg )"></div>
-								<span>Experiencia<br>'.$anios_exp.' años</span>
+								<span>Experiencia<br>'.($anios_exp+1).' años</span>
 							</div>
 							<div class="pc_seccion_2_datos_item">
 								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Propiedad.svg )"></div>
-								<span>Tipo de propiedad<br>'.$housings[ $_cuidador->atributos['propiedad'] ].'</span>
+								<span>Tipo de propiedad<br>&nbsp;'.$housings[ $_cuidador->atributos['propiedad'] ].'</span>
 							</div>
 							<div class="pc_seccion_2_datos_item">
 								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Tamanios.svg )"></div>
-								<span>Tam. aceptados<br>'.$acepto.'</span>
+								<span>Tam. aceptados<br>&nbsp;'.$acepto.'</span>
 							</div>
 							<div class="pc_seccion_2_datos_item">
 								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Edades.svg )"></div>
-								<span>Edades aceptadas<br>'.implode(', ',$edades_aceptadas).'</span>
+								<span>Edades aceptadas<br>&nbsp;'.implode(', ',$edades_aceptadas).'</span>
 							</div>
 						</div>
 
@@ -462,19 +462,19 @@
 						<div class="pc_seccion_2_datos pc_seccion_2_propiedad">
 							<div class="pc_seccion_2_datos_item">
 								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Mascotas.svg )"></div>
-								<span>Mascotas en casa<br>'.$num_masc.'</span>
+								<span>Mascotas en casa<br>&nbsp;'.$num_masc.'</span>
 							</div>
 							<div class="pc_seccion_2_datos_item">
 								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Patio.svg )"></div>
-								<span>Detalles de prop.<br>'.$patio.'</span>
+								<span>Detalles de prop.<br>&nbsp;'.$patio.'</span>
 							</div>
 							<div class="pc_seccion_2_datos_item">
 								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Areas_Verdes.svg )"></div>
-								<span>Detalles de prop.<br>'.$areas.'</span>
+								<span>Detalles de prop.<br>&nbsp;'.$areas.'</span>
 							</div>
 							<div class="pc_seccion_2_datos_item">
 								<div style="background-image: url( '.get_recurso("img").'PERFIL_CUIDADOR/Monto_maximo.svg )"></div>
-								<span>Monto máx. acep.<br>'.$cuidador->mascotas_permitidas.'</span>
+								<span>Monto máx. acep.<br>&nbsp;'.$cuidador->mascotas_permitidas.'</span>
 							</div>
 						</div>
 

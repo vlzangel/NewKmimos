@@ -482,10 +482,6 @@
 		</div>
     ';   
 
-    echo "<pre>";
-    	print_r($_SESSION['sql']);
-    echo "</pre>";
-
     echo comprimir( $HTML );
 
 
