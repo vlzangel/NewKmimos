@@ -80,7 +80,7 @@ function getUsers($desde="", $hasta=""){
 
 	$filtro_adicional = (!empty($filtro_adicional))? ' WHERE '.$filtro_adicional : $filtro_adicional ;
 	$sql = "
-		SELECT u.*, c.activo as 'estatus', c.direccion, p.post_title as 'cuidador_title', p.ID as 'cuidador_post' 
+		SELECT u.*, c.activo as 'estatus', c.direccion, p.post_title as 'cuidador_title', p.ID as 'cuidador_post', c.estados as estado, c.municipios as municipio
 		FROM wp_users as u
 			INNER JOIN cuidadores as c ON c.user_id = u.ID
 			INNER JOIN wp_posts as p ON p.post_author = u.ID AND p.post_type = 'petsitters'

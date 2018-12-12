@@ -48,10 +48,15 @@
             FROM 
                 cuidadores AS c
             INNER JOIN wp_posts AS p  ON ( p.ID = c.id_post )
+            WHERE c.titulo = ''
         ");
 
+        echo "<pre>";
+            print_r($cuidadores);
+        echo "</pre>";
+
         foreach ($cuidadores as $key => $value) {
-            $wpdb->query("UPDATE cuidadores SET titulo = '{$value->titulo}' WHERE cuidadores.id = {$value->id};");
+            // $wpdb->query("UPDATE cuidadores SET titulo = '{$value->titulo}' WHERE cuidadores.id = {$value->id};");
         }
     }
 

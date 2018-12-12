@@ -169,7 +169,7 @@
 	}
 	*/
 	echo "<pre>";
-		print_r( $_SESSION );
+		print_r( $_SESSION['resultado_busqueda'] );
 	echo "</pre>";
 
     $HTML .= '

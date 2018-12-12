@@ -13,6 +13,7 @@
 /* BANNER */
 
 	#banner_home{
+		position: relative;
 		background-image: url( ../img/PASEOS/PNG/Principal-1.png );
 		height: 715px;
 		background-size: cover;
@@ -24,13 +25,26 @@
 		box-sizing: border-box;
 	}
 
+	.fondo_banner{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100% !important;
+		height: 100% !important;
+		display: block !important;
+		background: #0006;
+		z-index: 0;
+	}
+
 	#banner_home > div {
+		position: relative;
 		display: table-cell;
 		width: 100%;
 		margin: 0px;
 		height: 100%;
 		text-align: center;
 		vertical-align: middle;
+		z-index: 10;
 	}
 
 	#banner_home > div > div > span {
@@ -41,7 +55,7 @@
 	#banner_home .banner_txt_1 {
 		text-transform: uppercase;
 		font-weight: 600;
-		font-size: 24px;
+		font-size: 34px;
 		padding: 20px 0px;
 		font-family: Gotham-Pro-Bold;
 	}

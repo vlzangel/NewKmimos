@@ -284,13 +284,20 @@ function close_login_modal(){
     jQuery(".modal_login").hide();
 }
 
-function postJSON(FORM, URL, ANTES, RESPUESTA, TIPO = ""){
+function postJSON(FORM, URL, ANTES, RESPUESTA, TIPO = "", GUARDAR_SIN_VALIDAR){
 	jQuery("#"+FORM).submit(function( event ) {
 	  	event.preventDefault();
 
         console.log( "Hola" );
 
-        if( validarAll(FORM) ){
+        var re_va = validarAll(FORM);
+
+        var validado = true;
+        if( GUARDAR_SIN_VALIDAR != 'guardar_sin_validar'){
+            validado = re_va;
+        }
+
+        if( validado ){
             ANTES();
             if( TIPO == "json" ){
                 jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json').fail(function(e) {
@@ -442,7 +449,6 @@ function contenedor_temp(){
 }
 
 function rotar(orientacion){
-
     var img_rotada = _rotar(orientacion);
     if( img_rotada != null ){
         jQuery("#kmimos_redimencionar_imagenes img").attr("src", img_rotada);
@@ -451,19 +457,13 @@ function rotar(orientacion){
     }else{
         alert("No hay imagen seleccionada");
     }
-
 }
-
-
 
 function rotar_img(orientacion, id){
     console.log(id+" "+orientacion);
     var img_rotada = _rotar(orientacion, id);
     if( img_rotada != null ){
-
         jQuery("#"+id).attr("src", img_rotada );
-
-
     }else{
         alert("No hay imagen seleccionada");
     }
@@ -550,7 +550,6 @@ function validar(id){
     var e = jQuery("#"+id);
     var validaciones = String(e.attr("data-valid")).split(",");
     var error = false;
-
     jQuery.each(validaciones, function( index, value ) {
         var validacion = value.split(":");
         switch(validacion[0]){
@@ -577,9 +576,7 @@ function validar(id){
             break;
         }
     });
-
     aplicar_error(id, error);
-
     return error;
 }
 

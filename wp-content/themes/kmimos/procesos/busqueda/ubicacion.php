@@ -38,7 +38,7 @@
     		"txt" => $value->name
     	);
 
-		if( count($municipios) > 1 ){
+		if( is_array($municipios) && count($municipios) > 1 ){
 			$cont = 0;
     		foreach ($municipios as $key => $municipio) {
     			$municipio_value = normaliza( ($municipio->name) );

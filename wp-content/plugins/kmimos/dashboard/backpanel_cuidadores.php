@@ -97,7 +97,10 @@ $users = getUsers($desde, $hasta);
 
 			  			$direccion = getDireccion( $row['ID'] );
 
-			  			$ubicacion = getEstadoMunicipio($direccion['estado'], $direccion['municipios']);
+            			$estado = array_filter( explode("=", $row["estado"]) );
+            			$municipio = array_filter( explode("=", $row["municipio"]) );
+
+			  			$ubicacion = getEstadoMunicipio($estado, $municipio);
 
 /*
 			  			# Recompra 1 Meses

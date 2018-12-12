@@ -2,12 +2,12 @@
 	date_default_timezone_set('America/Mexico_City');
     extract($_POST);
 
-	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$post_id."'");
-	if( $cuidador->activo == 0 ){
-		$data = array( 'error' => 'Error, este cuidador esta inactivo!' );
-		echo json_encode($data);
-		exit;
-	}
+    $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$post_id."'");
+    if( $cuidador->activo == 0 ){
+        $data = array( 'error' => 'Error, este cuidador esta inactivo!' );
+        echo json_encode($data);
+        exit;
+    }
 
 	if( $user_id+0 == 0 ){
 		$info = kmimos_get_info_syte();

@@ -20,6 +20,12 @@
 		return $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= '".date("Y-m-d", time())."'" );
 	}
 
+	function get_cupos_by_user_id($user_id){
+		global $wpdb;
+		$hoy = date("Y-m-d", time());
+		return $wpdb->get_results("SELECT * FROM cupos WHERE cuidador = '{$user_id}' AND fecha = '{$hoy}' AND no_disponible = 1");
+	}
+
 	function COMPROBAR_ERRORES(){
 		global $wpdb;
 		global $USER_ID;
@@ -327,27 +333,29 @@
             $sql_top = "SELECT * FROM destacados WHERE estado = '{$estado}'";
             $tops = $wpdb->get_results($sql_top);
             foreach ($tops as $value) {
-                $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$value->cuidador}");
-                $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
-                $nombre = $data->nom;
-                $img_url = kmimos_get_foto($cuidador->user_id);
-                $url = get_home_url() . "/petsitters/" . $cuidador->user_id;
-                $anios_exp = $cuidador->experiencia;
-                if( $anios_exp > 1900 ){
-                    $anios_exp = date("Y")-$anios_exp;
-                }
-                $DESTACADOS_ARRAY[] = [
-                	"img" => $img_url,
-                	"id_post" => $cuidador->id_post,
-                	"nombre" => $nombre,
-                	"url" => $url,
-                	"desde" => ($cuidador->hospedaje_desde*getComision()),
-                	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
-                	"experiencia" => $anios_exp,
-                	"valoraciones" => $cuidador->valoraciones,
-                	"latitud" => $cuidador->latitud,
-                	"longitud" => $cuidador->longitud
-                ];
+            	if( in_array($value->cuidador, $_SESSION['cuidadores']) ){
+	                $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$value->cuidador}");
+	                $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+	                $nombre = $data->nom;
+	                $img_url = kmimos_get_foto($cuidador->user_id);
+	                $url = get_home_url() . "/petsitters/" . $cuidador->user_id;
+	                $anios_exp = $cuidador->experiencia;
+	                if( $anios_exp > 1900 ){
+	                    $anios_exp = date("Y")-$anios_exp;
+	                }
+	                $DESTACADOS_ARRAY[] = [
+	                	"img" => $img_url,
+	                	"id_post" => $cuidador->id_post,
+	                	"nombre" => $nombre,
+	                	"url" => $url,
+	                	"desde" => ($cuidador->hospedaje_desde*getComision()),
+	                	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
+	                	"experiencia" => $anios_exp,
+	                	"valoraciones" => $cuidador->valoraciones,
+	                	"latitud" => $cuidador->latitud,
+	                	"longitud" => $cuidador->longitud
+	                ];
+            	}
             }
         }
 
@@ -561,6 +569,22 @@
 					$_cuidador->galeria = [];
 				}
 
+				$btn_conocer = '<strong>No disponible para conocer</strong>';
+				if( $_cuidador->activo_hoy ){
+					$btn_conocer = '
+						<a 
+							role="button" href="#" 
+                            data-name="'.$_cuidador->titulo.'" 
+                            data-id="'.$_cuidador->id_post.'" 
+                            data-target="#popup-conoce-cuidador"
+                            href="#" class="boton boton_border_gris"
+                        >
+							<span class="boton_conocer_PC">Solicitud de conocer</span>
+							<span class="boton_conocer_MOVIl"><span class="boton_conocer_MOVIl">Conocer</span>
+						</a>
+					';
+				}
+
 				$HTML .= '
 					<div class="resultado_item">
 						<div class="resultados_hover"></div>
@@ -621,18 +645,7 @@
 								</div>
 							</div>
 							<div class="resultados_item_bottom">
-								<a 
-									role="button" href="#" 
-                                    data-name="'.$_cuidador->titulo.'" 
-                                    data-id="'.$_cuidador->id_post.'" 
-                                    data-target="#popup-conoce-cuidador"
-                                    href="#" class="boton boton_border_gris"
-                                >
-
-									<span class="boton_conocer_PC">Solicitud de conocer</span>
-									<span class="boton_conocer_MOVIl"><span class="boton_conocer_MOVIl">Conocer</span>
-
-								</a>
+								'.$btn_conocer.'
 								<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="boton boton_verde">Reservar</a>
 							</div>
 						</div>
@@ -815,6 +828,9 @@
     		$cuidadores[ $key ]->galeria = $galeria[0];
     		$cuidadores[ $key ]->galeria_normales = $galeria[1];
 
+    		$activo_hoy = get_cupos_by_user_id( $value->user_id );
+    		$cuidadores[ $key ]->activo_hoy = ( $activo_hoy == null ) ? true: false;
+
     		$cuidadores[ $key ]->comentario = get_comment_cuidador($value->id_post);
 
 			$desde = $value->hospedaje_desde;
@@ -838,6 +854,7 @@
 
     		$_cuidadores[ $value->id ] = $cuidadores[ $key ];
     		$_cuidadores_user_id[ $value->user_id ] = $value->id;
+
     	}
 
     	return [ $_cuidadores, $_cuidadores_user_id ];

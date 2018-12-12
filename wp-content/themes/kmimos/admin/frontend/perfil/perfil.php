@@ -169,13 +169,13 @@ if( is_petsitters() ){
                 <section>
                     <label for="titular" class="lbl-text">'.esc_html__('Nombre del titular','kmimos').':</label>
                     <label class="lbl-ui">
-                        <input type="text" id="titular" name="titular" value="'.$datos_banco['titular'].'" data-valid="requerid" autocomplete="off" />
+                        <input type="text" id="titular" name="titular" value="'.$datos_banco['titular'].'" autocomplete="off" data-valid="requerid" />
                     </label>
                 </section>
                 <section>
                     <label for="banco_cuenta" class="lbl-text">'.esc_html__('No. de Cuenta bancaria','kmimos').':</label>
                     <label class="lbl-ui">
-                        <input type="text" id="banco_cuenta" data-title="Campo requerido, debe tener 18 dígitos" name="banco_cuenta" value="'.$datos_banco['cuenta'].'" data-valid="requerid,min:18,max:18" autocomplete="off" />
+                        <input type="text" id="banco_cuenta" data-title="Campo requerido, debe tener 18 dígitos" name="banco_cuenta" value="'.$datos_banco['cuenta'].'" autocomplete="off" data-valid="requerid,min:18,max:18" />
                     </label>
                 </section>
     ';
