@@ -50,6 +50,7 @@
 				<div class="solo_movil banner_home"></div>
 				<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
 
+					<input type="hidden" name="landing_paseos" value="yes" />
 					<input type="hidden" name="redireccionar" value="1" />
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 					<input type="hidden" id="latitud" name="latitud" />

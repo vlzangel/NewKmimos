@@ -530,6 +530,10 @@
     $_SESSION['resultado_busqueda'] = $cuidadores;
     $_SESSION['cuidadores'] = $ids_validos;
 
+    if( $_POST["landing_paseos"] == "yes" ){
+    	$_SESSION['landing_paseos'] = "yes";
+    }
+
 	if( isset($_GET["log"]) ){
 		echo "<pre>";
 			print_r( $sql );

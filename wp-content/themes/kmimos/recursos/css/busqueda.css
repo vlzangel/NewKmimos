@@ -482,6 +482,12 @@
 			display: none;
 		}
 
+	/* NOMBRE */
+
+	input#nombre {
+	    border-color: #00d2c6;
+	}
+
 /* RESULTADOS */
 
 	/* DEBUG */
