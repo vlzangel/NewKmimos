@@ -388,7 +388,7 @@
 		echo comprimir_styles($HTML);
 
 
-	      /* Recordatorio a cuidador para completar datos bancarios */
+	/* Recordatorio a cuidador para completar datos bancarios */
     include_once( 'template/popup/datos_bancarios.php' );
 
 
