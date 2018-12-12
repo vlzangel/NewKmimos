@@ -302,26 +302,35 @@
 	                if( in_array($_cuidador->id, $destacados) && $_cuidador->DISTANCIA <= 30 ){
 	                    $cont++;
 	                    $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$_cuidador->id}");
-	                    $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
-	                    $nombre = $data->nom;
-	                    $img_url = kmimos_get_foto($cuidador->user_id);
-	                    $url = get_home_url() . "/petsitters/" . $cuidador->user_id;
-	                    $anios_exp = $cuidador->experiencia;
-	                    if( $anios_exp > 1900 ){
-	                        $anios_exp = date("Y")-$anios_exp;
+
+	                    $agregar = true;
+	                    $adicionales = unserialize($cuidador->adicionales);
+	                    if( ( $_SESSION['landing_paseos'] == 'yes' ) && $adicionales["status_paseos"] != 1 ){
+	                    	$agregar = false;
 	                    }
-	                    $DESTACADOS_ARRAY[] = [
-	                    	"img" => $img_url,
-	                    	"nombre" => $nombre,
-	                    	"url" => $url,
-	                    	"desde" => ($cuidador->hospedaje_desde*getComision()),
-	                    	"distancia" => floor($_cuidador->DISTANCIA),
-	                    	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
-	                    	"experiencia" => $anios_exp,
-	                		"valoraciones" => $cuidador->valoraciones,
-		                	"latitud" => $cuidador->latitud,
-		                	"longitud" => $cuidador->longitud
-	                    ];
+
+	                    if( $agregar){
+		                    $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+		                    $nombre = $data->nom;
+		                    $img_url = kmimos_get_foto($cuidador->user_id);
+		                    $url = get_home_url() . "/petsitters/" . $cuidador->user_id;
+		                    $anios_exp = $cuidador->experiencia;
+		                    if( $anios_exp > 1900 ){
+		                        $anios_exp = date("Y")-$anios_exp;
+		                    }
+		                    $DESTACADOS_ARRAY[] = [
+		                    	"img" => $img_url,
+		                    	"nombre" => $nombre,
+		                    	"url" => $url,
+		                    	"desde" => ($cuidador->hospedaje_desde*getComision()),
+		                    	"distancia" => floor($_cuidador->DISTANCIA),
+		                    	"ranking" => kmimos_petsitter_rating($cuidador->id_post),
+		                    	"experiencia" => $anios_exp,
+		                		"valoraciones" => $cuidador->valoraciones,
+			                	"latitud" => $cuidador->latitud,
+			                	"longitud" => $cuidador->longitud
+		                    ];
+	                    }
 	                }
 	                if( $cont >= 4 ){ break; }
 	            }
