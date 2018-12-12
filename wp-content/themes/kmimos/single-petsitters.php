@@ -278,16 +278,24 @@
 	
 	if(is_user_logged_in()){
 		include('partes/seleccion_boton_reserva.php');
-		$BOTON_RESERVAR = '
-			<a  role="button" href="#" 
-				id="btn_conocer"
-	            data-target="#popup-conoce-cuidador"
-	            data-name="'.strtoupper( get_the_title() ).'" 
-	            data-id="'.$cuidador->id_post.'"
-				class="boton boton_border_gris" 
-			>CON&Oacute;CELO +</a>
 
-		'.$BOTON_RESERVAR;
+		$activo_hoy = get_cupos_by_user_id( $post->post_author );
+		$activo_hoy = ( $activo_hoy == null ) ? true: false;
+
+		$btn_conocer = '<a  role="button" href="#" class="boton boton_border_gris"><strong>No disponible para conocer</strong></a>';
+		if( $activo_hoy ){
+			$btn_conocer = '
+				<a  role="button" href="#" 
+					id="btn_conocer"
+		            data-target="#popup-conoce-cuidador"
+		            data-name="'.strtoupper( get_the_title() ).'" 
+		            data-id="'.$cuidador->id_post.'"
+					class="boton boton_border_gris" 
+				>CON&Oacute;CELO +</a>
+			';
+		}
+
+		$BOTON_RESERVAR = $btn_conocer.$BOTON_RESERVAR;
 	}else{
 		$BOTON_RESERVAR .= '
 			<a  href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal"

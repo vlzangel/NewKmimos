@@ -469,6 +469,8 @@
 
     $cuidadores = $db->get_results($sql);
 
+    $ids_validos = [];
+
     $pines = array(); $pines_ubicados = array();
     if( $cuidadores != false ){
 	
@@ -478,6 +480,8 @@
 
 		foreach ($cuidadores as $key => $_cuidador) {
 			$cuidador = $_SESSION["DATA_CUIDADORES"][$_cuidador->id];
+
+			$ids_validos[] = $_cuidador->id;
 
 			$anios_exp = $cuidador->experiencia;
 			if( $anios_exp > 1900 ){
@@ -524,6 +528,7 @@
 	$_SESSION['busqueda'] = ($_POST);
 	$_SESSION['sql'] = $sql;
     $_SESSION['resultado_busqueda'] = $cuidadores;
+    $_SESSION['cuidadores'] = $ids_validos;
 
 	if( isset($_GET["log"]) ){
 		echo "<pre>";

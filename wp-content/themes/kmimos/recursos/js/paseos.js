@@ -6,9 +6,10 @@ function serviciosSiguiente(_this){
     jQuery(".servicios_principales_box").animate({ left: "-34%"});
 }
 
-    var hasGPS=false;
+var hasGPS=false;
 var crd;
 var prueba_ubicacion = false;
+var SELECCIONAR_PAQUETES = false;
 
 var limites = {
     'norte': {
@@ -28,6 +29,21 @@ function ancla_form() {
   	} else {
     	jQuery('body,html').stop(true,true).animate({ scrollTop: 200 }, 1000);
   	}
+}
+
+function calcular(){
+    var ini = String( jQuery('#checkin').val() ).split("/");
+    inicio = ini[2]+"-"+ini[1]+"-"+ini[0];
+
+    var fin = String( jQuery('#checkout').val() ).split("/");
+    fin = fin[2]+"-"+fin[1]+"-"+fin[0];
+
+    var inicio = new Date( inicio ).getTime();
+    var fin = new Date( fin ).getTime();
+
+    var dias = (fin-inicio)/86400000;  
+
+    SELECCIONAR_PAQUETES = ( dias > 7 ); 
 }
 
 function form_is_valid(){
@@ -58,9 +74,12 @@ function form_is_valid(){
 }
 
 jQuery( document ).ready(function() {
+
+    jQuery("#quiero_ser_menu").html("Quiero ser Paseador");
+
     jQuery("#boton_buscar").on("click", function(e){
         if( form_is_valid() ){
-            if( jQuery("#paquete").val() == "" ){
+            if( jQuery("#paquete").val() == "" && SELECCIONAR_PAQUETES ){
                 jQuery('body,html').stop(true, true).animate({ scrollTop: jQuery('#paquetes').offset().top }, 1000);
             }else{
                 jQuery("#buscador").submit();

@@ -37,10 +37,8 @@
 	kmimos_update_user_meta($user_id, "user_recibir_fotos", utf8_decode($user_recibir_fotos));
 
 
-
-
-
 	if( is_petsitters($user_id) ){
+		/*
 		if(isset($banco) && isset($banco_cuenta) && isset($titular)){
 			if(!empty($banco) && !empty($banco_cuenta) && strlen($banco_cuenta)==18 && !empty($titular)){
 				$datos_banco = serialize([ 
@@ -48,21 +46,26 @@
 					'cuenta'=> $banco_cuenta,
 					'titular'=> utf8_decode($titular)
 				]);
-				$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
-			}else{
+			}
+		if(isset($banco) && isset($banco_cuenta) && isset($titular)){
+			if(!empty($banco) && !empty($banco_cuenta) && strlen($banco_cuenta)==18 && !empty($titular)){
 				$datos_banco = serialize([ 
-					'banco'=> '',
-					'cuenta'=> '',
-					'titular'=> ''
+					'banco'=> utf8_decode($banco),
+					'cuenta'=> $banco_cuenta,
+					'titular'=> utf8_decode($titular)
 				]);
-				$respuesta = array(
-					"status" => "NO",
-					"msg" => "Debe completar los datos bancarios, el nro. de cuenta bancaria debe tener 18 digitos" 
-				);
-				$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
-				return;
-			}	
+			}
+			
+			$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
 		}
+		*/
+
+		$datos_banco = serialize([ 
+			'banco'=> utf8_decode($banco),
+			'cuenta'=> $banco_cuenta,
+			'titular'=> utf8_decode($titular)
+		]);
+		$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
 	}
 
 

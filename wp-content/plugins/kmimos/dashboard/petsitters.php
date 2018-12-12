@@ -111,7 +111,6 @@
 
             $usuario = $wpdb->get_row("SELECT * FROM wp_users WHERE ID = ".$post->post_author);
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
-            $ubicacion = $wpdb->get_row("SELECT * FROM ubicaciones WHERE cuidador = ".$cuidador->id);
 
             // if( $cuidador->hospedaje_desde > 0  || $cuidador->activo == 1 ){
                 if( $post->post_status == 'pending' ){
@@ -125,13 +124,13 @@
             
             $fecha = strtotime($usuario->user_registered);
             $hora = date("H:i", $fecha);
-            $fecha = "El ".date("d/m/Y", $fecha)." a las ".$hora;
+            $fecha = "El ".date("d/m/Y", $fecha)." a las ".$hora." --- ".$usuario->user_registered;
             $captacion = get_user_meta($cuidador->user_id, "user_referred", true);
-            $direccion = get_user_meta($cuidador->user_id, "user_address", true);
+            $direccion = $cuidador->direccion;
             if( $captacion == "" ){ $captacion = "Otro"; }
 
-            $estado = array_filter( explode("=", $ubicacion->estado) );
-            $municipio = array_filter( explode("=", $ubicacion->municipios) );
+            $estado = array_filter( explode("=", $cuidador->estados) );
+            $municipio = array_filter( explode("=", $cuidador->municipios) );
 
             $estado = utf8_decode($wpdb->get_var("SELECT name FROM states WHERE id = ".$estado[1]));
             $municipio = utf8_decode($wpdb->get_var("SELECT name FROM locations WHERE id = ".$municipio[1]));
