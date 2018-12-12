@@ -41,7 +41,7 @@
         
     $HTML = '
     	<div id="banner_home">
-    		<p class="fondo_banner"></p>
+    		<div class="fondo_banner"></div>
 			<div>
 				<div class="solo_pc">
 					<span class="banner_txt_1">La red de <em>paseadores</em> certificados de México</span>
