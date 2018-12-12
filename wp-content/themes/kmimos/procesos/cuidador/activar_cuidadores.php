@@ -24,7 +24,7 @@
 
     $filename = dirname(__DIR__).'/activar_cuidador.php';
 	$db->query("INSERT INTO seglog ( user_id, tabla, row_id, accion, filename ) VALUES (
-         {$user_id},
+         {$m},
         'cuidadores',
          {$u},
         '{$accion}',
