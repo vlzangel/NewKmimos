@@ -630,3 +630,7 @@ div#tienda_box img {
         width: 50%;
         vertical-align: top;
     }
+
+    .contenedor_info_extra{
+        margin-right: 50px;
+    }

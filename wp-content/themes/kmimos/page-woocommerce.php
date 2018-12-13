@@ -246,9 +246,11 @@
 
 		if( $bloq_checkout != "" ){
 			$bloq_checkout_str = '
-				<div style="margin-bottom: 15px; font-size: 15px;" class="msg_bloqueador_no_valido">
-					Estimado usuario el <strong>checkout</strong> será establecido de manera automatica para coincidir con
-					el tiempo del paquete seleccinado de <strong>'.$paquetes[ $busqueda["paquete"]-1 ].'</strong>.
+				<div class="contenedor_info_extra">
+					<div style="margin-bottom: 15px; font-size: 15px;" class="msg_bloqueador_no_valido">
+						Estimado usuario la <strong>fecha final</strong> se estableció de manera automatica para coincidir con
+						el tiempo del paquete seleccinado de <strong>'.$paquetes[ $busqueda["paquete"]-1 ].'</strong>.
+					</div>
 				</div>
 			';
 		}
@@ -262,11 +264,13 @@
 				</div>
 			</div>
 
-			'.$dias_str.'
-			'.$msg_mismo_dia.'
-			'.$msg_bloqueador.'
-			'.$msg_bloqueador_madrugada.'
-			'.$infoGatos.'
+			<div class="contenedor_info_extra">
+				'.$dias_str.'
+				'.$msg_mismo_dia.'
+				'.$msg_bloqueador.'
+				'.$msg_bloqueador_madrugada.'
+				'.$infoGatos.'
+			</div>
 
 			<div id="bloque_info_servicio" class="km-content-step '.$bloquear.' '.$bloquear_madrugada.'">
 				<div class="km-content-new-pet">
