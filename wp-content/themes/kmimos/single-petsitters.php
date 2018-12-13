@@ -298,11 +298,21 @@
 		$BOTON_RESERVAR = $btn_conocer.$BOTON_RESERVAR;
 	}else{
 		$BOTON_RESERVAR .= '
-			<a  href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal"
+			<a  
+				href="#" 
+				data-target="#popup-iniciar-sesion" 
+				role="button" 
+				data-toggle="modal"
 				class="boton boton_border_gris" 
+				onclick="jQuery(\'#proceso\').val(\'conocer\');"
 			>CON&Oacute;CELO +</a>
-			<a  href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal"
+			<a
+				href="#" 
+				data-target="#popup-iniciar-sesion" 
+				role="button" 
+				data-toggle="modal"
 				class="boton boton_verde" 
+				onclick="jQuery(\'#proceso\').val(\'reservar\');"
 			>RESERVAR</a>
 		';
 	}
@@ -602,8 +612,26 @@
 
 	echo comprimir($HTML);
 
-	/*echo "<pre>";
-		print_r($_SESSION['busqueda']);
-	echo "</pre>";*/
+	/*
+	echo "<pre>";
+		print_r($_SESSION);
+	echo "</pre>";
+	*/
 
-	get_footer(); ?>
+	get_footer();
+
+	if( $_SESSION['sesion_proceso'] != "" ){
+		$HTML = '<script>';
+		switch ( $_SESSION['sesion_proceso'] ) {
+			case 'conocer':
+				$HTML .= 'jQuery("#btn_conocer").click();';
+			break;
+			case 'reservar':
+				$HTML .= 'jQuery("#servicios").click();';
+			break;
+		}
+		$HTML .= '</script>';
+		echo comprimir($HTML);
+	}
+	$_SESSION['sesion_proceso'] = "";
+?>

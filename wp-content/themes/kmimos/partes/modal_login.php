@@ -12,6 +12,9 @@ $datos = kmimos_get_info_syte();
 						<p class="popup-tit">INICIAR SESIÓN</p>
 						
 						<form id="form_login" autocomplete="off">
+
+							<input type="hidden" id="proceso" name="proceso" value="" />
+
 							<div class="km-box-form">
 								<div class="content-placeholder">
 									<div class="label-placeholder">

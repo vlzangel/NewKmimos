@@ -230,7 +230,8 @@ function logear(){
             HOME+"/procesos/login/login.php", 
             {
                 usu: jQuery("#form_login #usuario").val(),
-                clv: jQuery("#form_login #clave").val()
+                clv: jQuery("#form_login #clave").val(),
+                proceso: jQuery("#form_login #proceso").val()
             },
             function( data ) {
                 if( data.login ){
