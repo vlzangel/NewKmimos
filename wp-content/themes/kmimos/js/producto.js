@@ -831,7 +831,6 @@ function aplicarCupon(cupon = ""){
 }
 
 function reaplicarCupones(){
-	console.log("Entro");
 	jQuery.post(
 		HOME+"/procesos/reservar/cupon.php",
 		{
@@ -846,15 +845,11 @@ function reaplicarCupones(){
 			reaplicar: 1
 		},
 		function(data){
-			console.log( data );
-
 			if( data.error == undefined ){
 				CARRITO["cupones"] = data.cupones;
-
 				mostrarCupones();
 				eliminarCuponesHandler();
 				jQuery("#cupon").val("");
-
 				calcularDescuento();
 
 			}
@@ -874,14 +869,26 @@ function getCantidad(){
 }
 
 var descripciones = "";
-
 jQuery(document).ready(function() { 
-
 	jQuery("#reservar").trigger("reset");
-
 	jQuery('nav').addClass("nav_busqueda");
-
 	initCarrito();
+
+	var PAQs = [
+		"",
+		"Paquete_1",
+		"Paquete_2",
+		"Paquete_3",
+		"Paquete_4",
+	];
+
+	if( tipo_servicio == "paseos" && PAQUETE != "" ){
+		CARRITO["cupones"].push([
+			PAQs[PAQUETE],
+			0,
+			0
+		]);
+	}
 
 	jQuery(".dias_container input").on("change", function(e){
 		calcular();
