@@ -628,6 +628,7 @@
 			break;
 			case 'reservar':
 				$HTML .= 'jQuery("#servicios").click();';
+				$HTML .= 'jQuery("#btn_reservar").click();';
 			break;
 		}
 		$HTML .= '</script>';

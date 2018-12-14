@@ -174,7 +174,7 @@
 		print_r( $_SESSION['resultado_busqueda'] );
 	echo "</pre>";
 
-	$tipo_cuidador = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Paseadores' : 'Cuidadores';
+	$tipo_cuidador = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Paseador' : 'Cuidador';
 
     $HTML .= '
     	<div class="busqueda_container">
@@ -301,7 +301,7 @@
 						</label>
 					</div>
 					<div>
-						<input type="text" id="nombre" name="nombre" placeholder="Buscar Cuidador por Nombre" class="input nombre" value="'.$_SESSION['busqueda']['nombre'].'" />
+						<input type="text" id="nombre" name="nombre" placeholder="'.$tipo_cuidador.' por Nombre" class="input nombre" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
 					<div class="adicionales_container">
 						<label class="input_check_box" for="corte">
@@ -436,7 +436,7 @@
 	    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
 	    				<div class="mesaje_reserva_inmediata_izq"></div>
 	    				<div class="mesaje_reserva_inmediata_der">
-	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar '.$tipo_cuidador.' con los que puedas reservar al momento.
+	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar '.$tipo_cuidador.'es con los que puedas reservar al momento.
 	    				</div>
 	    			</div>
     			</div>
@@ -449,14 +449,14 @@
 	    			<div class="mesaje_reserva_inmediata_container disponibilidad_MOVIl">
 	    				<div class="mesaje_reserva_inmediata_izq"></div>
 	    				<div class="mesaje_reserva_inmediata_der">
-	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece aquí arriba a tu izquierda, para encontrar '.$tipo_cuidador.' con los que puedas reservar al momento.
+	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece aquí arriba a tu izquierda, para encontrar '.$tipo_cuidador.'es con los que puedas reservar al momento.
 	    				</div>
 	    			</div>
     			</div>
     			
     			<div class="cantidad_resultados_container">
-    				<div class="disponibilidad_PC">Hay <strong><span>0</span> '.$tipo_cuidador.'</strong> cerca de ti, con las características que necesitas.</div>
-    				<div class="disponibilidad_MOVIl"><strong>Resultado de búsqueda,</strong> <span>0</span> '.$tipo_cuidador.' disponibles</div>
+    				<div class="disponibilidad_PC">Hay <strong><span>0</span> '.$tipo_cuidador.'(es)</strong> cerca de ti, con las características que necesitas.</div>
+    				<div class="disponibilidad_MOVIl"><strong>Resultado de búsqueda,</strong> <span>0</span> '.$tipo_cuidador.'(es) disponibles</div>
     			</div>
     			<div class="resultados_box">
 
@@ -496,14 +496,14 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">'.$tipo_cuidador.' con descuentos</h5>
+							<h5 class="modal-title">'.$tipo_cuidador.'es con descuentos</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
 							<p>
-								Este es el listado de '.$tipo_cuidador.' con oferta en todo México. Selecciona tu ubicación para encontrar los que están más cerca de ti.
+								Este es el listado de '.$tipo_cuidador.'es con oferta en todo México. Selecciona tu ubicación para encontrar los que están más cerca de ti.
 							</p>
 						</div>
 						<div class="modal-footer">
