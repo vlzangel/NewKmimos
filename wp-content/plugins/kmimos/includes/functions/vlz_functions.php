@@ -1533,7 +1533,7 @@
                     </div>
                     <div class='item'>
                         <div>Días</div>
-                        <span>".implode(' - ', $metas_reserva["_booking_dias"][0])."</span>
+                        <span style='text-transform: Capitalize;'>".implode(' - ', $metas_reserva["_booking_dias"][0])."</span>
                     </div>
                 ";
             }
