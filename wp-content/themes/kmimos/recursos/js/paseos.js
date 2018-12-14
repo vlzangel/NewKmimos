@@ -76,6 +76,7 @@ function form_is_valid(){
 jQuery( document ).ready(function() {
 
     jQuery("#quiero_ser_menu").html("Quiero ser Paseador");
+    jQuery("#buscar_cuidador_btn_nav span").html("Buscar Paseador");
 
     jQuery("#boton_buscar").on("click", function(e){
         if( form_is_valid() ){

@@ -288,16 +288,11 @@ function close_login_modal(){
 function postJSON(FORM, URL, ANTES, RESPUESTA, TIPO = "", GUARDAR_SIN_VALIDAR){
 	jQuery("#"+FORM).submit(function( event ) {
 	  	event.preventDefault();
-
-        console.log( "Hola" );
-
         var re_va = validarAll(FORM);
-
         var validado = true;
         if( GUARDAR_SIN_VALIDAR != 'guardar_sin_validar'){
             validado = re_va;
         }
-
         if( validado ){
             ANTES();
             if( TIPO == "json" ){

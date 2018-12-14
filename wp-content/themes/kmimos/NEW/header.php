@@ -276,10 +276,10 @@
 								<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo.png" />
 								<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-negro.png" />
 							</a>
-							<a href="'.get_home_url().'#buscar" id="" onclick="ancla_form()" class="boton">
+							<a href="'.get_home_url().'#buscar" id="buscar_cuidador_btn_nav" onclick="ancla_form()" class="boton">
 								<img class="lupa" src="'.get_recurso("img").'HOME/PNG/Buscar.png" /> 
 								<img class="lupa_negra" src="'.get_recurso("img").'HOME/PNG/Buscar_negro.png" /> 
-								Buscar Cuidador
+								<span>Buscar Cuidador</span>
 							</a>
 							'.$btn_quiero.'
 						</td>
