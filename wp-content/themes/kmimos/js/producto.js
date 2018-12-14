@@ -876,10 +876,10 @@ jQuery(document).ready(function() {
 
 	var PAQs = [
 		"",
-		"Paquete_1",
-		"Paquete_2",
-		"Paquete_3",
-		"Paquete_4",
+		"p1sem",
+		"p1mes",
+		"p2meses",
+		"p3meses",
 	];
 
 	if( tipo_servicio == "paseos" && PAQUETE != "" ){
