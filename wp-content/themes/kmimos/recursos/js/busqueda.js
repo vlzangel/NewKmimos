@@ -2,6 +2,11 @@
 
 	jQuery(document).ready(function(){
 
+		if( landing == 'paseos' ){
+    		jQuery("#quiero_ser_menu").html("Quiero ser Paseador");
+    		jQuery("#buscar_cuidador_btn_nav span").html("Buscar Paseador");
+		}
+
 		jQuery("footer").addClass("show_footer");
 
 		jQuery('nav').addClass('nav_busqueda');

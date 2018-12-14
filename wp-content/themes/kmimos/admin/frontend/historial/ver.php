@@ -67,12 +67,12 @@
                     <span>".date("d/m/Y", $data_reserva["servicio"]["fin"])."</span>
                 </span>
             </div>
+            ".$data_reserva["servicio"]["paquete"]."
         </div>
         <div class='desglose_box'>
             <strong>Mascotas</strong>
             ".$variaciones."
         </div>
-        ".$data_reserva["servicio"]["paquete"]."
     ";
 
     $adicionales = "";

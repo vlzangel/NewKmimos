@@ -67,11 +67,11 @@
 
 	/* DESTACADOS */
 
-		// if( !isset($_SESSION["DATA_CUIDADORES"]) ){
+		if( !isset($_SESSION["DATA_CUIDADORES"]) ){
 			$_temp = pre_carga_data_cuidadores();
 			$_SESSION["DATA_CUIDADORES"] = $_temp[0];
 			$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
-		// }
+		}
 		
 		$ordenamientos = array(
 	    	'rating_desc' => array(
@@ -177,6 +177,9 @@
 	$tipo_cuidador = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Paseador' : 'Cuidador';
 
     $HTML .= '
+    	<script>
+    		var landing = "'.$key_principal.'";
+    	</script>
     	<div class="busqueda_container">
     		<div class="filtos_container">
 
@@ -301,7 +304,7 @@
 						</label>
 					</div>
 					<div>
-						<input type="text" id="nombre" name="nombre" placeholder="'.$tipo_cuidador.' por Nombre" class="input nombre" value="'.$_SESSION['busqueda']['nombre'].'" />
+						<input type="text" id="nombre" name="nombre" placeholder="Buscar '.$tipo_cuidador.' por Nombre" class="input nombre" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
 					<div class="adicionales_container">
 						<label class="input_check_box" for="corte">
