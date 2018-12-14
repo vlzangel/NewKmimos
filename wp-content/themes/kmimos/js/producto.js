@@ -8,6 +8,15 @@ var MENSAJES_CUPONES = {
 	"350desc": "",
 	"+2masc": "",
 };
+
+var PAQs = [
+	"",
+	"p1sem",
+	"p1mes",
+	"p2meses",
+	"p3meses",
+];
+
 var PROCESAR_PAQUETE = true;
 function initCarrito(){
 	CARRITO = [];
@@ -677,12 +686,19 @@ function mostrarCupones(){
 				}
 			}else{
 				items += '<div class="km-option-resume-service">';
-				items += '	<span class="label-resume-service">'+nombreCupon+'</span>';
-				if(cupon[1] > 0){
-					items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>';
+				if( PAQs.indexOf(nombreCupon) != -1 ){
+
+					items += '	<span class="label-resume-service"> Descuento '+(PAQUETE*5)+'%</span>';
+					items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+'</span>';
+
 				}else{
-					items += '	<span class="value-resume-service">'+eliminarCupo+' </span>';
-					items += '	<div class="mensaje_cupon">'+MENSAJES_CUPONES[nombreCupon]+' </div>';
+					items += '	<span class="label-resume-service">'+nombreCupon+'</span>';
+					if(cupon[1] > 0){
+						items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>';
+					}else{
+						items += '	<span class="value-resume-service">'+eliminarCupo+' </span>';
+						items += '	<div class="mensaje_cupon">'+MENSAJES_CUPONES[nombreCupon]+' </div>';
+					}
 				}
 				items += '</div>';
 			}
@@ -873,14 +889,6 @@ jQuery(document).ready(function() {
 	jQuery("#reservar").trigger("reset");
 	jQuery('nav').addClass("nav_busqueda");
 	initCarrito();
-
-	var PAQs = [
-		"",
-		"p1sem",
-		"p1mes",
-		"p2meses",
-		"p3meses",
-	];
 
 	if( tipo_servicio == "paseos" && PAQUETE != "" ){
 		CARRITO["cupones"].push([
