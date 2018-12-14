@@ -4142,8 +4142,6 @@ footer .km-icon-redes {
     float:left;
     padding: 125px 15px 32px 50px;
     position: relative;
-    height: 100vh;
-    overflow: auto;
 }
 .page-reservation .km-content .km-col-steps .km-col-content {
     width:100%;
