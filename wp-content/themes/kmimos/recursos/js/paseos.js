@@ -34,16 +34,12 @@ function ancla_form() {
 function calcular(){
     var ini = String( jQuery('#checkin').val() ).split("/");
     inicio = ini[2]+"-"+ini[1]+"-"+ini[0];
-
     var fin = String( jQuery('#checkout').val() ).split("/");
     fin = fin[2]+"-"+fin[1]+"-"+fin[0];
-
     var inicio = new Date( inicio ).getTime();
     var fin = new Date( fin ).getTime();
-
     var dias = (fin-inicio)/86400000;  
-
-    SELECCIONAR_PAQUETES = ( dias > 7 ); 
+    SELECCIONAR_PAQUETES = ( dias >= 7 ); 
 }
 
 function form_is_valid(){
