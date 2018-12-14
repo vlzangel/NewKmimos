@@ -157,7 +157,7 @@ b, strong {
 
 .desglose_box > div {
     overflow: hidden;    
-    padding: 10px 0;
+    padding: 0px;
 }
 
 .desglose_box > div.item {

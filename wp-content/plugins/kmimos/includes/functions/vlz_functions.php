@@ -1527,16 +1527,13 @@
                 $info_correo['paquete'] = $paq[ $metas_reserva["_booking_paquete"][0] ];
 
                 $paquete = "
-                    <div class='desglose_box'>
-                        <strong>INFORMACIÓN DE LOS PASEOS</strong>
-                        <div class='item'>
-                            <div>Paquete</div>
-                            <span>".$paq[ $metas_reserva["_booking_paquete"][0] ]."</span>
-                        </div>
-                        <div class='item'>
-                            <div>Días</div>
-                            <span>".implode(' - ', $metas_reserva["_booking_dias"][0])."</span>
-                        </div>
+                    <div class='item'>
+                        <div>Paquete</div>
+                        <span>".$paq[ $metas_reserva["_booking_paquete"][0] ]."</span>
+                    </div>
+                    <div class='item'>
+                        <div>Días</div>
+                        <span>".implode(' - ', $metas_reserva["_booking_dias"][0])."</span>
                     </div>
                 ";
             }
