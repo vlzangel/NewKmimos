@@ -38,7 +38,8 @@ function calcular(){
     fin = fin[2]+"-"+fin[1]+"-"+fin[0];
     var inicio = new Date( inicio ).getTime();
     var fin = new Date( fin ).getTime();
-    var dias = (fin-inicio)/86400000;  
+    var dias = (fin-inicio)/86400000;
+    dias++;
     SELECCIONAR_PAQUETES = ( dias >= 7 ); 
 }
 
