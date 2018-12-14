@@ -168,7 +168,7 @@
 		];
 
 		$bloq_checkout = '';
-		if( $tipo == "paseos" ){
+		if( $tipo == "paseos" && $busqueda["paquete"] != "" ){
 			$PAQUETE = "var PAQUETE = '".$busqueda["paquete"]."';";
 			$bloq_checkout = 'disabled';
 		}else{
@@ -243,12 +243,11 @@
 		}	
 
 		$bloq_checkout_str = '';
-
-		if( $bloq_checkout != "" ){
+		if( $bloq_checkout != "" && $busqueda["paquete"] != "" ){
 			$bloq_checkout_str = '
 				<div class="contenedor_info_extra">
 					<div style="margin-bottom: 15px; font-size: 15px;" class="msg_bloqueador_no_valido">
-						Estimado usuario la <strong>fecha final</strong> se estableció de manera automatica para coincidir con
+						Estimado usuario la <strong>fecha final</strong> se estableció de manera automática para coincidir con
 						el tiempo del paquete seleccinado de <strong>'.$paquetes[ $busqueda["paquete"]-1 ].'</strong>.
 					</div>
 				</div>
