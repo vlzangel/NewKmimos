@@ -436,7 +436,7 @@
 				  	);
 					$customer = $openpay->customers->add($customerData);
 					$cliente_openpay = $customer->id;
-					update_user_meta($user_id, "openpay_id", $cliente_openpay);
+					update_user_meta($user_id, "_openpay_customer_id", $customer->id);
 					$id_invalido = false;
 				} catch (Exception $e) {
 					$error = $e->getErrorCode();
@@ -464,7 +464,7 @@
 					  	);
 						$customer = $openpay->customers->add($customerData);
 						$cliente_openpay = $customer->id;
-						update_user_meta($user_id, "openpay_id", $cliente_openpay);
+						update_user_meta($user_id, "_openpay_customer_id", $customer->id);
 					} catch (Exception $e) {
 						$error = $e->getErrorCode();
 						unset($_SESSION["pagando"]);
@@ -479,6 +479,8 @@
 					}
 			    }
 		   	}
+
+		   	update_post_meta($id_orden, '_openpay_customer_id', $customer->id);
 
 		   	switch ( $pagar->tipo ) {
 		   		case 'tarjeta':
