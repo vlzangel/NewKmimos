@@ -28,16 +28,13 @@
         echo "Orden: ".$reserva->post_parent;
 
         try {
-            $customer = $openpay->customers->get($cliente_openpay);
-                
-
             $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
             // Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
             $_openpay_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%open%'");
 
             echo $_openpay_id."<br>";
-            
+
             /*
             $customer = $openpay->customers->get( $_openpay_id );
 
