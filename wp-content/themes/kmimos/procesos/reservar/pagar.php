@@ -511,6 +511,13 @@
 								$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
 							}
 
+							$para_buscar = array(
+								"cliente" => $customer->id,
+								"transaccion_id" => $charge->id
+							);
+							$para_buscar = serialize($para_buscar);
+							$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_busqueda', '{$para_buscar}');");
+
 				            echo json_encode(array(
 								"order_id" => $id_orden
 							));

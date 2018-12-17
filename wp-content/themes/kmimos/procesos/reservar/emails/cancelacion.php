@@ -197,7 +197,11 @@
             echo $mensaje_cuidador;
         }else{
             if( $orden_sin_pagar ){}else{
-                wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
+
+                if( $usu != "OPENPAY" ){
+                    wp_mail( $cuidador["email"], "Cancelación de Reserva", $mensaje_cuidador);
+                }
+                
             }
         }
 

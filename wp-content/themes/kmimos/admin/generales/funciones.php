@@ -195,6 +195,15 @@
                 'access'        =>  'manage_options',
                 'page'          =>  'reporte_configuracion',
             );
+ 
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Openpay'),
+                'short-title'   =>  __('Openpay'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'openpay',
+                'access'        =>  'manage_options',
+                'page'          =>  'openpay',
+            );
 
             foreach($opciones_menu_reporte as $opcion){
                 if( $opcion['parent'] == '' ){
@@ -316,6 +325,13 @@
             include_once(dirname(__DIR__).'/recursos/importador.php');
             // include_once(dirname(__DIR__).'/backend/importar/page_.php');
             include_once(dirname(__DIR__).'/backend/social_blue/page.php');
+        }
+    }
+
+    if(!function_exists('openpay')){
+        function openpay(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/backend/openpay/page.php');
         }
     }
 
