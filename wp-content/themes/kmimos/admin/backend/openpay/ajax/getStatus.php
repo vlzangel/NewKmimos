@@ -62,7 +62,7 @@
             echo "</pre>";
 
         } catch (Exception $e) {
-            echo "Error: ".$e->getDescriction();
+            echo "Error: ".$e->getErrorCode();
         }
 
     }
