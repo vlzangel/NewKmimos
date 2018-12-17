@@ -31,13 +31,9 @@
             $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
             // Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
-            echo "SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%open%'";
 
-            $_openpay_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%open%'");
+            $_openpay_id = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$reserva->post_parent} AND meta_key LIKE '%_openpay_customer_id%'");
 
-            echo "_openpay_id: ".$_openpay_id."<br>";
-
-            /*
             $customer = $openpay->customers->get( $_openpay_id );
 
             $limite = date("Y-m-d", strtotime("-1 day"));
@@ -62,7 +58,7 @@
             echo "<pre>";
                 print_r( $resp );
             echo "</pre>";
-            */
+            
 
         } catch (Exception $e) {
             echo "Error: ".$e->getErrorCode();
