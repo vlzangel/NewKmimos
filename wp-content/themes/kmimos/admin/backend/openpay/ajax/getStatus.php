@@ -32,17 +32,9 @@
         $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
         // Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
-        /*
-        $customer = $openpay->customers->get('ayajrydofdds1owipuak');
+        $_openpay_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%open%'");
 
-        $chargeList = $customer->charges->getList($findDataRequest);
-
-        echo "<pre>";
-            print_r( $chargeList );
-        echo "</pre>";
-        */
-
-        $customer = $openpay->customers->get('arkfgbjjn355g0ejcvok');
+        $customer = $openpay->customers->get( $_openpay_id );
 
         $limite = date("Y-m-d", strtotime("-1 day"));
 
