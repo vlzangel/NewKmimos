@@ -36,6 +36,9 @@
 
             $_openpay_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%open%'");
 
+            echo $_openpay_id."<br>";
+            
+            /*
             $customer = $openpay->customers->get( $_openpay_id );
 
             $limite = date("Y-m-d", strtotime("-1 day"));
@@ -60,6 +63,7 @@
             echo "<pre>";
                 print_r( $resp );
             echo "</pre>";
+            */
 
         } catch (Exception $e) {
             echo "Error: ".$e->getErrorCode();
