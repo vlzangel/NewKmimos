@@ -25,39 +25,45 @@
         echo "El ID no pertenece a una reserva";
     }else{
         $orden = $db->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva->post_parent}'");
-        
-
         echo "Orden: ".$reserva->post_parent;
 
-        $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
-        // Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
+        try {
+            $customer = $openpay->customers->get($cliente_openpay);
+                
 
-        $_openpay_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%open%'");
+            $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
+            // Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
-        $customer = $openpay->customers->get( $_openpay_id );
+            $_openpay_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%open%'");
 
-        $limite = date("Y-m-d", strtotime("-1 day"));
+            $customer = $openpay->customers->get( $_openpay_id );
 
-        $findDataRequest = array(
-            'creation[gte]' => $limite
-        );
+            $limite = date("Y-m-d", strtotime("-1 day"));
 
-        $chargeList = $customer->charges->getList($findDataRequest);
+            $findDataRequest = array(
+                'creation[gte]' => $limite
+            );
 
-        $resp = [];
-        foreach ($chargeList as $key => $value) {
-            $resp[] = [
-                $value->id,
-                $value->method,
-                $value->status,
-                $value->order_id,
-                $value->error_message,
-            ];
+            $chargeList = $customer->charges->getList($findDataRequest);
+
+            $resp = [];
+            foreach ($chargeList as $key => $value) {
+                $resp[] = [
+                    $value->id,
+                    $value->method,
+                    $value->status,
+                    $value->order_id,
+                    $value->error_message,
+                ];
+            }
+
+            echo "<pre>";
+                print_r( $resp );
+            echo "</pre>";
+
+        } catch (Exception $e) {
+            echo "Error: ".$e->getDescriction();
         }
-
-        echo "<pre>";
-            print_r( $resp );
-        echo "</pre>";
 
     }
     
