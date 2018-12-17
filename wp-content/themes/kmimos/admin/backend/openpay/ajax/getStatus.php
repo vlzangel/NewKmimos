@@ -31,6 +31,8 @@
             $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
             // Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
+            echo "SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%open%'";
+
             $_openpay_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%open%'");
 
             echo "_openpay_id: ".$_openpay_id."<br>";
