@@ -25,9 +25,8 @@
         echo "El ID no pertenece a una reserva";
     }else{
         $orden = $db->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva->post_parent}'");
-        try {
 
-            
+        try {            
             $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
             Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
@@ -75,6 +74,9 @@
             foreach ($_metas_clientes as $key => $value) { $metas_clientes[ $value->meta_key ] = $value->meta_value; }
 
             $servicio = $db->get_row("SELECT * FROM wp_posts WHERE ID = {$metas_reserva[ '_booking_product_id' ]}");
+
+            $db->query("INSERT INTO solicitudes_openpay VALUES (NULL, '{$user_id}', '{$reserva->ID}', NOW(), 'Consulta');");
+
 
             echo utf8_encode('
                 <div class="contenedor" >

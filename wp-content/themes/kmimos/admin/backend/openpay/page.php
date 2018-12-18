@@ -26,6 +26,10 @@
 
 </div>
 
+<script type="text/javascript">
+    var USER_ID = "<?= get_current_user_id() ?>";
+</script>
+
 <style type="text/css">
     .contenedor{
         display: table;

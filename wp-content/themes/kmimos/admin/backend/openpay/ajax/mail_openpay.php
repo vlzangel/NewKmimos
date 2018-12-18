@@ -5,6 +5,18 @@
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
     include_once($raiz."/wp-load.php");
 
+    global $wpdb;
+
+    $wpdb->query("
+        UPDATE 
+            solicitudes_openpay 
+        SET
+            status = 'Correo Enviado'
+        WHERE 
+            solicitante = '{$user_id}' AND
+            reserva = '{$reserva}'
+    ;");
+
     $info = json_decode( $json );
 
     $info = $info[0];
@@ -33,7 +45,7 @@
     // $mensaje = get_email_html($mensaje);
 
     wp_mail( "a.veloz@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
-    wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
+    // wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
 
 	print_r( $info );
 ?>
