@@ -20,8 +20,7 @@
         <div id="info_user"></div>
 
         <div class='botones_container confirmaciones'>
-            <input type='button' id='correo_openpay' value='Correo a Openpay' onClick='mail_openpay()' class="button button-primary button-large" style="float: left;" />
-            <input type='button' id='correo_admin' value='Correo a Alfredo' onClick='mail_admin()' class="button button-primary button-large" />
+            <input type='button' id='correo_openpay' value='Correo a Openpay' onClick='mail_openpay()' class="button button-primary button-large" />
         </div>
     </form>
 
