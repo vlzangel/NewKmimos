@@ -3,7 +3,7 @@
 	<div style='font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000;'>
 
 		<div style='font-family: Arial; font-size: 14px; letter-spacing: 0.4px; color: #000; padding-bottom: 30px;'>
-			Buenas, les escribo para solicitar el desbloqueo de las tarjetas de nuestra cliente Kmimos. Intentó realizar su pago en varias ocaciones y no pudo:
+			Buenas, les escribo para solicitar el desbloqueo de la tarjeta de nuestro cliente Kmimos:
 		</div>	
 
 	    <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 30px;'>

@@ -43,7 +43,7 @@ function mail_openpay(){
 					console.log( HTML );
 
 		            jQuery("#correo_openpay").removeClass("disable");
-		            jQuery("#correo_openpay").val("Correo a Openpay");
+		            jQuery("#correo_openpay").val("Enviar solicitud");
 		        }
 		    ); 
 		}
@@ -67,7 +67,7 @@ function mail_admin(){
 					console.log( HTML );
 
 		            jQuery("#correo_admin").removeClass("disable");
-		            jQuery("#correo_admin").val("Confirmar");
+		            jQuery("#correo_admin").val("Consultar");
 		        }
 		    ); 
 		}

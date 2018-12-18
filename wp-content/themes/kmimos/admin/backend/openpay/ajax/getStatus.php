@@ -26,21 +26,18 @@
     }else{
         $orden = $db->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva->post_parent}'");
         try {
+
+            
             $openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
-            // Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
+            Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
             $_openpay_id = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$reserva->post_parent} AND meta_key LIKE '%_openpay_customer_id%'");
-
             $customer = $openpay->customers->get( $_openpay_id );
-
             $limite = date("Y-m-d", strtotime("-1 day"));
-
             $findDataRequest = array(
                 'creation[gte]' => $limite
             );
-
             $chargeList = $customer->charges->getList($findDataRequest);
-
             $resp = [];
             foreach ($chargeList as $key => $value) {
                 $resp[] = [
@@ -65,38 +62,45 @@
                         "brand" => $value->card->brand,
                     ]
                 ];
-            }  
+            } 
 
-            echo '
+            $falla = $value->error_message;
+            
+            $_metas_reserva = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = {$reserva->ID}");
+            $metas_reserva = [];
+            foreach ($_metas_reserva as $key => $value) { $metas_reserva[ $value->meta_key ] = $value->meta_value; }
+
+            $_metas_clientes = $db->get_results("SELECT * FROM wp_usermeta WHERE user_id = {$metas_reserva[ '_booking_customer_id' ]}");
+            $metas_clientes = [];
+            foreach ($_metas_clientes as $key => $value) { $metas_clientes[ $value->meta_key ] = $value->meta_value; }
+
+            $servicio = $db->get_row("SELECT * FROM wp_posts WHERE ID = {$metas_reserva[ '_booking_product_id' ]}");
+
+            echo utf8_encode('
                 <div class="contenedor" >
-                    <div>
-                        <h2>Datos del pago</h2>
-                        <div>
-                            <label>ID:</label> '.$value->id.'<br>
-                            <label>Status:</label> '.$value->status.'<br>
-                            <label>ID ORDEN:</label> '.$value->order_id.'<br>
-                        </div>  
-                    </div>
                     <div>
                         <h2>Datos del cliente</h2>
                         <div>
-                            <label>Nombre:</label> '.$customer->name.' '.$customer->last_name.'<br>
+                            <label>Nombre:</label> '.$metas_clientes["first_name"].' '.$metas_clientes["last_name"].'<br>
                             <label>Email:</label> '.$customer->email.'<br>
+                            <label>Tel&eacute;fonos:</label> '.$metas_clientes["user_phone"].' / '.$metas_clientes["user_mobile"].'<br>
                         </div>  
                     </div>
+            ');
+
+            echo '
                     <div>
-                        <h2>Datos de la tarjeta</h2>
+                        <h2>Datos de la reserva</h2>
                         <div>
-                            <label>Titular:</label> '.$value->card->holder_name.'<br>
-                            <label>Número:</label> '.$value->card->card_number.'<br>
-                            <label>Vencimiento:</label> '.$value->card->expiration_month.' / '.$value->card->expiration_year.'<br>
-                            <label>Tipo:</label> '.$value->card->type.' - '.$value->card->brand.'<br>
-                            <label>Banco:</label> '.$value->card->bank_name.'<br>
+                            <label>Reserva:</label> '.$reserva->ID.'<br>
+                            <label>Fecha:</label> '.date("d/m/Y", strtotime($reserva->post_date) ).'<br>
+                            <label>Servicio:</label> '.$servicio->post_title.'<br>
+                            <label>Desde:</label> '.date("d/m/Y", strtotime($metas_reserva[ '_booking_start' ]) ).' <label>Hasta:</label> '.date("d/m/Y", strtotime($metas_reserva[ '_booking_end' ]) ).'<br>
                         </div>  
                     </div>
                 </div>
                 <div style="">
-                    <label>Razón del fallo:</label> '.$value->error_message.'
+                    <label>Razón del fallo:</label> '.$falla.'
                 </div>
             ';
 

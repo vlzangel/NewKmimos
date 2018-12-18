@@ -20,7 +20,7 @@
         <div id="info_user"></div>
 
         <div class='botones_container confirmaciones'>
-            <input type='button' id='correo_openpay' value='Correo a Openpay' onClick='mail_openpay()' class="button button-primary button-large" />
+            <input type='button' id='correo_openpay' value='Enviar solicitud' onClick='mail_openpay()' class="button button-primary button-large" />
         </div>
     </form>
 
@@ -33,7 +33,8 @@
     }
     .contenedor > div {
         display: table-cell;
-        width: 33.333333%;
+        width: 50%;
+        font-size: 14px;
     }
     #form label {
         display: inline-block !important;
