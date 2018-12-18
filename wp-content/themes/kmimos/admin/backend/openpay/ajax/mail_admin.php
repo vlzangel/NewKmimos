@@ -14,7 +14,7 @@
     $admin_email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = {$admin_user_id}");
     $metas_admin = get_user_meta($admin_user_id);
 
-    $file = $PATH_TEMPLATE.'/template/mail/status/admin.php';
+    $file = $PATH_TEMPLATE.'/template/mail/status/fallida_openpay.php';
     $mensaje = file_get_contents($file);
 
     $mensaje = str_replace('[RESERVA]', $reserva->ID, $mensaje);

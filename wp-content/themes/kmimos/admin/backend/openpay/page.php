@@ -20,9 +20,60 @@
         <div id="info_user"></div>
 
         <div class='botones_container confirmaciones'>
-            <input type='button' id='cancelar' value='Cerrar' onClick='cerrarInfo()' class="button button-primary button-large" style="float: left;" />
-            <input type='button' id='confirmar' value='Confirmar' onClick='updateStatus()' class="button button-primary button-large" />
+            <input type='button' id='correo_openpay' value='Correo a Openpay' onClick='mail_openpay()' class="button button-primary button-large" style="float: left;" />
+            <input type='button' id='correo_admin' value='Correo a Alfredo' onClick='mail_admin()' class="button button-primary button-large" />
         </div>
     </form>
 
 </div>
+
+<style type="text/css">
+    .contenedor{
+        display: table;
+        width: 100%;
+    }
+    .contenedor > div {
+        display: table-cell;
+        width: 33.333333%;
+    }
+    #form label {
+        display: inline-block !important;
+        font-weight: 600;
+        margin: 0px !important;
+    }
+
+    .botones_container {
+        margin: 10px 0px 0px;
+        padding: 10px 0px 0px;
+        text-align: right;
+        border-top: solid 1px #CCC;
+    }
+
+    .contenedor h2, .contenedor .h2 {
+        font-size: 20px;
+        text-transform: uppercase;
+        border-bottom: solid 2px;
+        margin-right: 10px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .contenedor{
+            display: block;
+            width: 100%;
+        }
+        .contenedor > div {
+            display: block;
+            width: 100%;
+        }
+
+        .contenedor > div {
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        h2, .h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    }
+</style>
