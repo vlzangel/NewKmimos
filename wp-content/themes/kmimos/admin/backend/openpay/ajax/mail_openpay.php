@@ -45,7 +45,7 @@
     // $mensaje = get_email_html($mensaje);
 
     wp_mail( "a.veloz@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
-    // wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
+    wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
 
 	print_r( $info );
 ?>
