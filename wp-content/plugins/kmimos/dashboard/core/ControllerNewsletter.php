@@ -11,11 +11,14 @@ $dev['hasta']=$hasta;
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
 		$filtro_adicional .= " 
-			DATE_FORMAT(time, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+			SUBTIME(time, '5:00:00') >= '{$desde} 00:00:00' AND 
+			SUBTIME(time, '5:00:00') <= '{$hasta} 23:59:59'
 		";
 	}else{
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
-		$filtro_adicional .= " MONTH(time) = MONTH(NOW()) AND YEAR(time) = YEAR(NOW()) ";
+		$filtro_adicional .= " 
+			MONTH(SUBTIME(time, '5:00:00')) = MONTH(NOW()) AND 
+			YEAR(SUBTIME(time, '5:00:00')) = YEAR(NOW()) ";
 	}
 
 	$filtro_adicional = ( !empty($filtro_adicional) )? " WHERE {$filtro_adicional}" : $filtro_adicional ;

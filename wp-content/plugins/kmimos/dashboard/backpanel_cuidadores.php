@@ -25,7 +25,7 @@ $users = getUsers($desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_cuidadores" method="POST">
+		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_cuidadores" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
@@ -95,12 +95,7 @@ $users = getUsers($desde, $hasta);
 			  				$name = $usermeta['nickname'];
 			  			}
 
-			  			$direccion = getDireccion( $row['ID'] );
-
-            			$estado = array_filter( explode("=", $row["estado"]) );
-            			$municipio = array_filter( explode("=", $row["municipio"]) );
-
-			  			$ubicacion = getEstadoMunicipio($estado, $municipio);
+			  			$ubicacion = getEstadoMunicipio($row["estado"], $row["municipio"]);
 
 /*
 			  			# Recompra 1 Meses
@@ -134,7 +129,7 @@ $users = getUsers($desde, $hasta);
 				  				$r12 = ($value['cant']>1)? "SI" : "NO" ;
 					  		}
 					  	}
-*/	
+*/
 					  	$atributos = $wpdb->get_var("SELECT atributos FROM cuidadores WHERE user_id = ".$row['ID']);
 					  	$atributos = unserialize($atributos);
 
@@ -162,7 +157,7 @@ $users = getUsers($desde, $hasta);
 				    <tr>
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
 						<th><?php echo $flash; ?></th>
-						<th><?php echo date_convert($row['user_registered'], 'Y-m-d') ; ?></th>
+						<th><?php echo date_convert($row['user_registered'], 'd-m-Y') ; ?></th>
 						<th><?php echo $atributos["nacimiento"] ; ?></th>
 						<th><?php echo $name; ?></th>
 						<th><?php echo $usermeta["first_name"]; ?></th>
@@ -172,13 +167,14 @@ $users = getUsers($desde, $hasta);
 								<?php echo $row["cuidador_title"]; ?>	
 							</a>
 						</th>
- 
+
 
 						<!-- <th><?php echo $r1; ?></th>
 						<th><?php echo $r3; ?></th>
 						<th><?php echo $r6; ?></th>
 						<th><?php echo $r12; ?></th> -->
- 
+
+
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>

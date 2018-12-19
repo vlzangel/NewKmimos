@@ -64,7 +64,8 @@ $users = getUsers($param, $desde, $hasta);
 			    <tr>
 			      <th>ID</th>
 			      <th>Flash</th>
-			      <th>Nombre y Apellido</th>
+			      <th>Nombre</th>
+			      <th>Apellido</th>
 			      <th>Cuidador</th>
 			      <th>Email</th>
 			      <th>Estado</th>
@@ -104,7 +105,8 @@ $users = getUsers($param, $desde, $hasta);
 			  			$usermeta = getmetaUser( $row['ID'] );
 			  			$link_login = "/?i=".md5($row['ID']);
 
-			  			$name = "{$usermeta['first_name']} {$usermeta['last_name']}";
+			  			$name = $usermeta['first_name'];
+			  			$lastname = $usermeta['last_name'];
 			  			if(empty($name)){
 			  				$name = $usermeta['nickname'];
 			  			}
@@ -175,6 +177,7 @@ $users = getUsers($param, $desde, $hasta);
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
 						<th><?php echo $flash; ?></th>
 						<th><?php echo $name; ?></th>
+						<th><?php echo $lastname; ?></th>
 						<th>
 					  		<a href="<?php echo get_home_url().'/wp-admin/post.php?action=edit&post='.$row['cuidador_post']; ?>">
 								<?php echo $row["cuidador_title"]; ?>	

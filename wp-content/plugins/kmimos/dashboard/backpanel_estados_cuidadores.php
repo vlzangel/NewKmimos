@@ -25,7 +25,7 @@ $users = getUsers($desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_usuarios" method="POST">
+		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_usuarios" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
@@ -61,7 +61,8 @@ $users = getUsers($desde, $hasta);
 			    <tr>
 			      <th>#</th>
 			      <th>ID</th>
-			      <th>Nombre y Apellido</th>
+			      <th>Nombre</th>
+			      <th>Apellido</th>
 			      <th>Email</th>
 			      <th>Telef.</th>
 			      <th>Estado</th>
@@ -82,7 +83,8 @@ $users = getUsers($desde, $hasta);
 				    <tr>
 				    	<th><?php echo ++$count; ?></th>
 				    	<th><?php echo $row['user_id']; ?></th>
-						<th><?php echo "{$usermeta['first_name']} {$usermeta['last_name']}"; ?></th>
+						<th><?php echo $usermeta['first_name']; ?></th>
+						<th><?php echo $usermeta['last_name']; ?></th>
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['email']; ?>

@@ -115,7 +115,7 @@ function get_primera_conocer( $author_id=0 ){
 			LEFT JOIN wp_posts as p  ON p.ID = m.post_id 
 		WHERE 
 			m.meta_key = 'request_status'
-			p.post_author = {$author_id}
+			AND p.post_author = {$author_id}
 		ORDER BY p.post_date_gmt asc limit 1
 	";
 	$result = get_fetch_assoc($sql);

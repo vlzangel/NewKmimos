@@ -80,7 +80,8 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Noches</th>
 			      <th># Mascotas</th>
 			      <th># Noches Totales</th>
-			      <th>Cliente</th>
+			      <th>Nombre Cliente</th>
+			      <th>Apellido Cliente</th>
  
 			      <th>Cupon (es)</th>
 			    </tr>
@@ -208,7 +209,8 @@ $reservas = getReservas($_desde, $_hasta);
 						<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
 						<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 						<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
-						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
+						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'];?></a></th>
+						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['last_name']; ?></a></th>
 						<th> 
 							<?php echo $cupones; ?>
 						</th>

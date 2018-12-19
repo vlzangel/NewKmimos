@@ -35,7 +35,8 @@ $razas = get_razas();
 			      <th>Raza</th>
 			      <th>Edad</th>
 			      <th>Genero</th>
-			      <th>Propietario</th>
+			      <th>Nombre Propietario</th>
+			      <th>Apellido Propietario</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -60,7 +61,8 @@ $razas = get_razas();
 				    	<th class="text-center"><?php echo $row['breed_pet']; ?></th>
 				    	<th class="text-center"><?php echo getEdad($row['birthdate_pet']); ?></th>
 				    	<th class="text-center"><?php echo kmimos_manage_pets_columns('gender', $rows["ID"]); ?></th>
-				    	<th class="text-center"><?php echo "{$user['first_name']} {$user['last_name']}"; ?></th>
+				    	<th class="text-center"><?php echo $user['first_name'];?>
+				    	<th class="text-center"><?php echo $user['last_name']; ?></th>
 				    </tr>
 			   	<?php } ?>
 			  </tbody>

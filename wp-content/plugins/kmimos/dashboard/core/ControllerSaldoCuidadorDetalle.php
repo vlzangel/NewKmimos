@@ -1,4 +1,3 @@
-
 <?php
 require_once('base_db.php');
 require_once('GlobalFunction.php');
@@ -6,37 +5,13 @@ require_once('GlobalFunction.php');
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
- function calculo_pago_cuidador( $id_reserva, $total, $pago, $remanente, $discount=0, $deposits=0, $method='' ){
-		$saldo_cuidador = 0;
 
-		$pago_cuidador_real = 0;
-		$saldo_cuidador = 0;
-		$pago_kmimos = 0;
-		$dif = $remanente + $pago;
-		$pago_cuidador_real = ($total / 1.25) - ( $discount );
-
-		if( $deposits > 0 ){
-
-			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
-		        $saldo_cuidador = $pago_cuidador_real - $remanente;
-			}else{
-				$saldo_cuidador = $deposits;
-			}
-		}else{
-			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
-		        $saldo_cuidador = $pago_cuidador_real;  
-		    }
-		}
-
-		return $saldo_cuidador ; 
-	}
-/*
-	function calculo_pago_cuidador( $id_reserva, $total, $pago, $remanente, $deposits=0, $discount=0, $method='' ){
+function calculo_pago_cuidador( $id_reserva, $total, $pago, $remanente, $deposits=0, $discount=0, $method='' ){
 
 	$saldo_cuidador = 0;
 
 	//	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
-	//	$pago_kmimos = $total - ($total / 1.25);
+	//	$pago_kmimos = $total - ($total / 1.2);
 	//	$pago_cuidador_real = $total - $pago_kmimos;
 	//	$saldo_cuidador = $pago_cuidador_real - $remanente;
 
@@ -60,7 +35,7 @@ require_once('GlobalFunction.php');
 	} 
 	return $saldo_cuidador;  
 }
-*/
+
 function getReservas($desde="", $hasta=""){
 
 	$filtro_adicional = "";

@@ -79,7 +79,8 @@ $users = getUsers($desde, $hasta);
 			    <tr>
 			      	<th>#</th>
 			      	<th>Fecha Registro</th>
-			      	<th>Nombre y Apellido</th>
+			      	<th>Nombre</th>
+			      	<th>Apellido</th>
 			      	<th>Email</th>
 			      	<th>Teléfono</th>
 			      	<th>Donde nos conocio?</th>
@@ -95,6 +96,8 @@ $users = getUsers($desde, $hasta);
 			      	<th>Primera Sol. Conocer </th>
 
 			      	<th>Primera Reserva </th>
+
+			      	<!-- th>Depurar datos (Testing)</th -->
 
 			    </tr>
 			  </thead>
@@ -119,7 +122,8 @@ $users = getUsers($desde, $hasta);
 
 			  			$link_login = get_home_url()."/?i=".md5($row['ID']);
 
-			  			$name = "{$usermeta['first_name']} {$usermeta['last_name']}";
+			  			$name = "{$usermeta['first_name']}";
+			  			$lastname = "{$usermeta['last_name']}";
 			  			if(empty( trim($name)) ){
 			  			 	$name = $usermeta['nickname'];
 			  			}
@@ -131,6 +135,7 @@ $users = getUsers($desde, $hasta);
 
 
 						$reserva_15 = '';
+						$_reserva_15 = '';
 						$p_reserva = get_primera_reservas(  $row['ID'] );
 						$dif = null;
 						if( isset($p_reserva['rows'][0]['post_date_gmt']) ){
@@ -146,25 +151,28 @@ $users = getUsers($desde, $hasta);
 							}else {
 								$reserva_15 = '+60 Dias';
 							}
+							$_reserva_15 = $dif['dia'];
 						}
 
 						$conocer_15 = '';
-						$p_conocer = get_primera_reservas(  $row['ID'] );
-						$dif = null;
+						$_conocer_15 = '';
+						$p_conocer = get_primera_conocer(  $row['ID'] );
+						$dif_conocer = null;
 						if( isset($p_conocer['rows'][0]['post_date_gmt']) ){
 
-							$dif = diferenciaDias($row['user_registered'], $p_conocer['rows'][0]['post_date_gmt']);
-							if( $dif['dia'] >= 0 && $dif['dia'] <= 15 ){
+							$dif_conocer = diferenciaDias($row['user_registered'], $p_conocer['rows'][0]['post_date_gmt']);
+							if( $dif_conocer['dia'] >= 0 && $dif_conocer['dia'] <= 15 ){
 								$conocer_15 = '15 Dias';
-							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 30 ){
+							}else if( $dif_conocer['dia'] >= 16 && $dif_conocer['dia'] <= 30 ){
 								$conocer_15 = '30 Dias';
-							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 45 ){
+							}else if( $dif_conocer['dia'] >= 16 && $dif_conocer['dia'] <= 45 ){
 								$conocer_15 = '45 Dias';
-							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 60 ){
+							}else if( $dif_conocer['dia'] >= 16 && $dif_conocer['dia'] <= 60 ){
 								$conocer_15 = '60 Dias';
 							}else {
 								$conocer_15 = '+60 Dias';
 							}
+							$_conocer_15 = $dif_conocer['dia'];
 
 						}
 
@@ -174,6 +182,7 @@ $users = getUsers($desde, $hasta);
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
 						<th><?php echo date_convert($row['user_registered'], 'Y-m-d') ; ?></th>
 						<th><?php echo $name; ?></th>
+						<th><?php echo $lastname; ?></th>
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>
@@ -193,6 +202,8 @@ $users = getUsers($desde, $hasta);
 						<th><?php echo $conocer_15 ; ?></th>
 
 						<th><?php echo $reserva_15 ; ?></th>
+
+						<!-- th><?php echo 'Reserva:'.$_reserva_15.' Conocer: '.$_conocer_15 ; ?></th -->
 
 						<?php 
 							/*

@@ -1,4 +1,4 @@
-<pre><?php
+<?php
 	include("../../../../../wp-load.php");
 	global $wpdb;
 
@@ -6,12 +6,24 @@
 
 	$content = '';
 
-	$ID = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '".$email."'");
+	$user_row = $wpdb->get_row("SELECT * FROM wp_users WHERE user_email = '".$email."'");
+
+	$ID = $user_row->ID;
+	$fecha_registro = date('Ymd', strtotime($user_row->user_registered));
+	$hoy = date('Ymd');
 
 	$userdata = get_user_meta($ID);
 	$mascotas = kmimos_get_my_pets($ID);
 
 print_r($ID);
+
+	$_list = ['first_name','last_name','user_phone','user_mobile','user_gender','user_age','user_referred'];
+	foreach ($_list as $val) {
+		if( !isset($userdata[$val][0]) || empty($userdata[$val][0]) ){
+			wp_mail( 'italococchini@gmail.com', "Registro de Nuevo Cliente con Error", "{$email} ({$ID})- {$val}");
+			exit();
+		}
+	}
 
 	// Datos del Cliente
 	$content = '<h2>Datos del Cliente</h2>';
@@ -132,5 +144,15 @@ print_r($ID);
 	}else{
 		$content .= '<div>No agreg&oacute; mascota en el registro</div>';
 	}
-	kmimos_mails_administradores_new( "Registro de Nuevo Cliente", $content );
-	//wp_mail( 'italococchini@gmail.com', "Registro de Nuevo Cliente", $content);
+	if( $fecha_registro == $hoy && isset( $userdata['first_name'][0]) && !empty( $userdata['first_name'][0])  ){
+		kmimos_mails_administradores_new( "Registro de Nuevo Cliente", $content );
+		try{
+			wp_mail( 
+				'italococchini@gmail.com', 
+				"Registro de Nuevo Cliente ", 
+				$content.'<br><hr>Fecha Registro: '.$fecha_registro.'<br><hr>'.serialize($_POST).'<br><hr>'.json_encode($_SERVER['HTTP_REFERER'])
+			);
+		}catch(Exception $e){}
+	}
+	
+	

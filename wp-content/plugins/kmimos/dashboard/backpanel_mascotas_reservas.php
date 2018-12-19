@@ -81,13 +81,15 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Check-In</th>
 			      <th>Check-Out</th>
 			      <th>Noches</th>
-			      <th>Cliente</th>
+			      <th>Nombre Cliente</th>
+			      <th>Apellido Cliente</th>
 			      <th>Correo Cliente</th>
 			      <th>Tel&eacute;fono Cliente</th>
  			      <th>Mascotas</th>
 			      <th>Razas</th>
 			      <th>Edad</th>
-			      <th>Cuidador</th>
+			      <th>Nombre Cuidador</th>
+			      <th>Apellido Cuidador</th>
 			      <th>Correo Cuidador</th>
 			      <th>Tel&eacute;fono Cuidador</th>
 			      <th>Servicio Principal</th> 
@@ -233,7 +235,8 @@ $reservas = getReservas($_desde, $_hasta);
 								<th><?php echo date_convert($meta_reserva['_booking_end'], 'Y-m-d', true); ?></th>
 
 								<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
-		 						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
+		 						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'] ; ?></a></th>
+		 						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['last_name']; ?></a></th>
 								<th><?php echo $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cliente_id); ?></th>
 								<th><?php echo implode(", ", $telf_cliente); ?></a></th>
 
@@ -243,7 +246,8 @@ $reservas = getReservas($_desde, $_hasta);
 								<th><?php echo $pets_edad; ?></th>
 
 
-								<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
+								<th><?php echo $meta_cuidador['first_name']; ?></th>
+								<th><?php echo $meta_cuidador['last_name']; ?></th>
 								<th><?php echo $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cuidador_id); ?></th>
 								<th><?php echo implode(", ", $telf_cuidador); ?></a></th>
 								<th><?php echo $reserva->producto_title; ?></th>

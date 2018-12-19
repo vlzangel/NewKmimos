@@ -13,7 +13,6 @@ function getRangoFechas(){
 }
 
 function getPagoCuidador($desde, $hasta){
-	global $wpdb;
 	$reservas = getReservas($desde, $hasta);
 	$pagos = [];
 	$detalle = [];
@@ -29,7 +28,6 @@ $dev = [];
 		$pagos[ $row->cuidador_id ]['nombre'] = $row->nombre;
 		$pagos[ $row->cuidador_id ]['apellido'] = $row->apellido;
 
-		$meta_reserva = getMetaReserva( $row->reserva_id );
 		$meta_pedido = getMetaPedido( $row->pedido_id );
 
 
@@ -89,30 +87,9 @@ $dev = [];
 		}
 
 		//[ {$row->reserva_id}: $". number_format($monto, 2, ",", ".")." ]{$separador}
-
-		// Cargar cupones 
-		$cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  FROM `wp_woocommerce_order_items` as items 
-		INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
-		INNER JOIN wp_posts as p ON p.ID = ".$row->reserva_id." and p.post_type = 'wc_booking' 
-		WHERE 
-		meta.meta_key = 'discount_amount'
-		and items.`order_id` = p.post_parent";
-		$cupones = $wpdb->get_results($cupon_sql);
-
-		$info = '';
-		if( !empty($cupones) ){                    
-		    foreach ($cupones as $cupon) {
-		        if( $cupon->monto > 0 ){
-		            $info .= " [ ".$cupon->name .": " .$cupon->monto . " ] ";
-		        }
-		    }
-		}
-		$info = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
-
-
 		if( $monto > 0 ){
 			$pagos[ $row->cuidador_id ]['detalle'] .= $r.'
-				<small '.$info.' class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
+				<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
 				  '.$row->reserva_id.' <span class="badge" style="background:#fff;color:#000;">$'.number_format($monto, 2, ",", ".").'</span>
 				</small>
 			'.$separador;
@@ -135,7 +112,10 @@ $dev = [];
 
 	}
 	
- 
+
+	echo '<pre style="display:none; data-italo">';
+	print_r( $dev2 );
+	echo '</pre>';
 	return $pagos;
 }
 
@@ -153,37 +133,13 @@ function inicio_fin_semana( $date, $str_to_date  ){
     return $fecha;
 }
 
- function calculo_pago_cuidador( $total, $pago, $remanente, $discount=0, $deposits=0, $method='' ){
-		$saldo_cuidador = 0;
 
-		$pago_cuidador_real = 0;
-		$saldo_cuidador = 0;
-		$pago_kmimos = 0;
-		$dif = $remanente + $pago;
-		$pago_cuidador_real = ($total / 1.25) - ( $discount );
-
-		if( $deposits > 0 ){
-
-			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
-		        $saldo_cuidador = $pago_cuidador_real - $remanente;
-			}else{
-				$saldo_cuidador = $deposits;
-			}
-		}else{
-			if( $dif != $total || ($remanente == 0 && $dif == $total) || $method == "Saldo y/o Descuentos" ){
-		        $saldo_cuidador = $pago_cuidador_real;  
-		    }
-		}
-
-		return $saldo_cuidador ; 
-	}
-/*
 function calculo_pago_cuidador( $total, $pago, $remanente, $deposits=0, $discount=0, $method='' ){
 
 	$saldo_cuidador = 0;
 
 	//	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
-	//	$pago_kmimos = $total - ($total / 1.25);
+	//	$pago_kmimos = $total - ($total / 1.2);
 	//	$pago_cuidador_real = $total - $pago_kmimos;
 	//	$saldo_cuidador = $pago_cuidador_real - $remanente;
 
@@ -208,7 +164,6 @@ function calculo_pago_cuidador( $total, $pago, $remanente, $deposits=0, $discoun
 
 	return $saldo_cuidador; // . " <span style='display:none;' data-italo> ( $dif != $total || ($remanente == 0 && $dif == $total) || $method == Saldo y/o Descuentos </span>";
 }
-*/
 
 function getReservas($desde="", $hasta=""){
 

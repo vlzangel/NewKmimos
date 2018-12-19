@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) { exit; } 
+<?php  if ( ! defined( 'ABSPATH' ) ) { exit; } 
 // Subscribe 
 require_once('core/ControllerCtrReferidos.php');
 // Parametros: Filtro por fecha
@@ -91,6 +91,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 			    	<?php } ?>
 			      <th>Email Referidos</th>
 			      <th>Nombre Referido</th>
+			      <th>Apellido Referido</th>
 			      <th>Cant. Reservas</th>
 			      <th>Referencia</th>
 			      <th>Landing</th>
@@ -134,7 +135,8 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 				    	<?php } ?>
 
 						<th class="bg-info"><?php echo $row['user_email']; ?></th>
-						<th><?php echo $metaReferido['first_name']." ".$metaReferido['last_name']; ?></th>
+						<th><?php echo $metaReferido['first_name']; ?></th>
+						<th><?php echo $metaReferido['last_name']; ?></th>
 						<th><?php echo ($metaReservas['cant']>0)? "1": "0" ; ?></th>
 				    	<th data-target="ref"><?php echo $referencia['referencia']; ?></th>
 						<th><?php echo $row['source']; ?></th>
