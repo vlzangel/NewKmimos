@@ -13,9 +13,11 @@
 	global $wpdb;
 	global $post;
 
-	$_temp = pre_carga_data_cuidadores();
-	$_SESSION["DATA_CUIDADORES"] = $_temp[0];
-	$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
+	if( !isset($_SESSION["DATA_CUIDADORES"]) ){
+		$_temp = pre_carga_data_cuidadores();
+		$_SESSION["DATA_CUIDADORES"] = $_temp[0];
+		$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
+	}
 
 	$_cuidador = $_SESSION["DATA_CUIDADORES"][ $_SESSION["CUIDADORES_USER_ID"][ $post->post_author ] ];
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");

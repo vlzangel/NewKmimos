@@ -1,5 +1,7 @@
 <?php
     error_reporting(0);
+
+    $CORREO_OPENPAY = "true";
 	
 	extract($_POST);
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
@@ -44,8 +46,57 @@
     
     // $mensaje = get_email_html($mensaje);
 
-    wp_mail( "a.veloz@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
+    /*
+    function my_phpmailer_init_smtp($phpmailer){
+        $phpmailer->Mailer = "smtp";
+        $phpmailer->SMTPSecure = "tls";
+        $phpmailer->Host = "smtp.gmail.com";
+        $phpmailer->Port = 587;
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Username = "desarrollokmimos@gmail.com";
+        $phpmailer->Password = "Kmimos2017";
+        
+        $phpmailer->smtpConnect([
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            ]
+        ]);
+        $phpmailer->IsHTML(true);
+
+        $phpmailer = apply_filters('wp_mail_smtp_custom_options', $phpmailer);
+    }
+    add_action('phpmailer_init','my_phpmailer_init_smtp');
+    */
+
+    add_action('phpmailer_init','send_smtp_email');
+    function send_smtp_email( $phpmailer ) {
+        $phpmailer->isSMTP();
+        $phpmailer->Host = "smtp.gmail.com";
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Port = "587";
+        $phpmailer->Username = "desarrollokmimos@gmail.com";
+        $phpmailer->Password = "Kmimos2017";
+        $phpmailer->SMTPSecure = "tls";
+        
+        $phpmailer->smtpConnect([
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            ]
+        ]);
+        $phpmailer->IsHTML(true);
+     
+        $phpmailer->From = "desarrollokmimos@gmail.com";
+        $phpmailer->FromName = "Soporte Kmimos";
+    }
+
+    wp_mail( "vlzangel91@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
     wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
+
+    // wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
 
 	print_r( $info );
 ?>
