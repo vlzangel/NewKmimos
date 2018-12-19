@@ -392,8 +392,8 @@ function getReservas($desde="", $hasta=""){
 			and r.post_status like 'confirme%'
 			and cl.ID > 0 
 			and p.ID > 0
-			and DATE_FORMAT(fin.meta_value,'%Y-%m-%d 00:00:00') >= NOW() 
-			and DATE_FORMAT(ini.meta_value,'%Y-%m-%d 23:59:59') <= NOW()
+			and DATE_FORMAT(fin.meta_value,'%Y-%m-%d 23:59:59') >= NOW() 
+			and DATE_FORMAT(ini.meta_value,'%Y-%m-%d 00:00:00') <= NOW()
 		ORDER BY r.ID desc
 		;";
 

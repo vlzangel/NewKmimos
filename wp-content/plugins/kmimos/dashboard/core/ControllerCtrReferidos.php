@@ -42,7 +42,8 @@ function getReferencia( $email = '', $landing = '' ){
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
 		$filtro_adicional .= " 
-			DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+			post_date >= '{$desde} 00:00:00' AND 
+			post_date <= '{$hasta} 23:59:59'
 		";
 	}else{
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
@@ -82,7 +83,7 @@ function getListsuscribe($landing="", $referido="", $desde="", $hasta=""){
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
 		$filtro_adicional .= " 
-			DATE_FORMAT(fecha, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+			fecha >= '{$desde}' and fecha <= '{$hasta}'
 		";
 	}else{
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;

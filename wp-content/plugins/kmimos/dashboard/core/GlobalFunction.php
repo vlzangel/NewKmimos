@@ -89,7 +89,6 @@ function get_metaPost($post_id=0, $condicion=''){
 			u.post_id = {$post_id} 
 			{$condicion}
 	";	
- 	
 	$result = get_fetch_assoc($sql);
 	return $result;	
 }

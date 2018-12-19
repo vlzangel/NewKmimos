@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) { exit; } 
+<?php  if ( ! defined( 'ABSPATH' ) ) { exit; } 
 // Subscribe 
 require_once('core/ControllerCtrReferidos.php');
 // Parametros: Filtro por fecha

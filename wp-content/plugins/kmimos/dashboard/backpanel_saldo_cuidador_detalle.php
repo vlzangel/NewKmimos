@@ -30,7 +30,7 @@ $reservas = getReservas($desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=<?php echo $_GET['page']; ?>" method="POST">
+		    	<form class="form-inline" action="/wp-admin/admin.php?page=<?php echo $_GET['page']; ?>" method="POST">
 				  <label>Filtrar:</label>
 				  <div class="form-group">
 				    <div class="input-group">
@@ -92,7 +92,6 @@ $reservas = getReservas($desde, $hasta);
 			      <th>Monto Remanente</th>
 			      <th>Pago Cuidador</th>
 			      <th># Pedido</th>
-			      <th>Cupones</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -164,27 +163,7 @@ $reservas = getReservas($desde, $hasta);
 							$meta_Pedido['_wc_deposits_remaining'],
 							$method_payment
 						);
-
-						// Cargar cupones 
-						$cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  FROM `wp_woocommerce_order_items` as items 
-						INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
-						INNER JOIN wp_posts as p ON p.ID = ".$reserva->nro_reserva." and p.post_type = 'wc_booking' 
-						WHERE 
-						meta.meta_key = 'discount_amount'
-						and items.`order_id` = p.post_parent";
-						$cupones = $wpdb->get_results($cupon_sql);
-
-						$info = '';
-						if( !empty($cupones) ){                    
-						    foreach ($cupones as $cupon) {
-						        if( $cupon->monto > 0 ){
-						            $info .=  '<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">'.$cupon->name . ' <span class="badge" style="background:#fff;color:#000;">' .$cupon->monto . " </span></small> ";
-						        }
-						    }
-						}
 						
-
-
 				  	?>
 				    <tr>
 				    	<th class="text-center"><?php echo ++$count; ?></th>
@@ -207,7 +186,6 @@ $reservas = getReservas($desde, $hasta);
 					<th><?php echo currency_format($meta_Pedido['remanente']); ?></th>
 				    <th class="text-center"><?php echo $pago_cuidador; ?></th>
 					<th><?php echo $reserva->nro_pedido; ?></th>
-					<th><?php echo $info; ?></th>
 
 				    </tr>
 			   	<?php } ?>

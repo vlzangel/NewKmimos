@@ -1,5 +1,4 @@
 <?php  if ( ! defined( 'ABSPATH' ) ) { exit; } 
-
 // Subscribe 
 require_once('core/ControllerCtrParticipantes.php');
 // Parametros: Filtro por fecha
