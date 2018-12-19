@@ -79,7 +79,8 @@ $users = getUsers($desde, $hasta);
 			    <tr>
 			      	<th>#</th>
 			      	<th>Fecha Registro</th>
-			      	<th>Nombre y Apellido</th>
+			      	<th>Nombre</th>
+			      	<th>Apellido</th>
 			      	<th>Email</th>
 			      	<th>Teléfono</th>
 			      	<th>Donde nos conocio?</th>
@@ -121,7 +122,8 @@ $users = getUsers($desde, $hasta);
 
 			  			$link_login = get_home_url()."/?i=".md5($row['ID']);
 
-			  			$name = "{$usermeta['first_name']} {$usermeta['last_name']}";
+			  			$name = "{$usermeta['first_name']}";
+			  			$lastname = "{$usermeta['last_name']}";
 			  			if(empty( trim($name)) ){
 			  			 	$name = $usermeta['nickname'];
 			  			}
@@ -180,6 +182,7 @@ $users = getUsers($desde, $hasta);
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
 						<th><?php echo date_convert($row['user_registered'], 'Y-m-d') ; ?></th>
 						<th><?php echo $name; ?></th>
+						<th><?php echo $lastname; ?></th>
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>

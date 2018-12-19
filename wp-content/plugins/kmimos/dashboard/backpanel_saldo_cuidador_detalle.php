@@ -80,10 +80,12 @@ $reservas = getReservas($desde, $hasta);
 			      <th>Fecha Fin Reserva</th>
 
 
-			      <th>Cliente</th>
+			      <th>Nombre Cliente</th>
+			      <th>Apellido Cliente</th>
 
 			      <th>Cuidador ID</th>
-			      <th>Cuidador</th>
+			      <th>Nombre Cuidador</th>
+			      <th>Apellido Cuidador</th>
 			      <th>Servicio Principal</th> 
 			      <th>Forma de Pago</th>
 
@@ -174,10 +176,12 @@ $reservas = getReservas($desde, $hasta);
 					<th class="text-center"><?php echo date_convert($meta_reserva['_booking_start'],'d-m-Y'); ?></th>
 					<th class="text-center"><?php echo date_convert($meta_reserva['_booking_end'], 'd-m-Y'); ?></th>
 
-					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
+					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name']; ?></a></th>
+					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['last_name']; ?></a></th>
 
 					<th><?php echo 'UC'.$reserva->cuidador_id; ?></th>
-					<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
+					<th><?php echo $meta_cuidador['first_name']; ?></th>
+					<th><?php echo $meta_cuidador['last_name']; ?></th>
 					<th><?php echo $reserva->producto_title; ?></th>
 					<th><?php echo $method_payment; ?>
 					</th> 

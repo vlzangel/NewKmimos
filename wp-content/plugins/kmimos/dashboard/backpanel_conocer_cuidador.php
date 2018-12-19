@@ -65,10 +65,12 @@ $solicitudes = getSolicitud($desde, $hasta);
 					<!-- nombre de la(s) mascota -->
 					<!-- tamaño -->
 					<th>Nombre del cliente</th>
+					<th>Apellido del cliente</th>
 					<th>Teléfono del cliente</th>
 					<th>Correo del cliente</th>
 
 					<th>Nombre del cuidador</th>
+					<th>Apellido del cuidador</th>
 					<th>Teléfono del cuidador</th>
 					<th>Correo del cuidador</th>
 
@@ -120,11 +122,13 @@ $solicitudes = getSolicitud($desde, $hasta);
 						<!-- nombre de la(s) mascota -->
 						<!-- tamaño -->
 
-						<th><?php echo "{$cliente['first_name']} {$cliente['last_name']}"; ?></th>
+						<th><?php echo $cliente['first_name']; ?></th> 
+						<th><?php echo $cliente['last_name']; ?></th>
 						<th><?php echo $cliente['phone'];?></th>
 						<th><?php echo $cliente['email'];?></th>
 
-						<th><?php echo "{$cuidador['first_name']} {$cuidador['last_name']}"; ?></th>
+						<th><?php echo $cuidador['first_name']; ?></th>
+						<th><?php echo $cuidador['last_name']; ?></th>
 						<th><?php echo $cuidador['phone'];?></th>
 						<th><?php echo $cuidador['email'];?></th>
 

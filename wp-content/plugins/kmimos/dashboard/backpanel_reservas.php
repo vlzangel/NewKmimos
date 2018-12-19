@@ -109,7 +109,10 @@
 										<th>Noches</th>
 										<th># Mascotas</th>
 										<th># Noches Totales</th>
-										<th>Cliente</th>
+
+										<th>Nombre Cliente</th>
+										<th>Apellido Cliente</th>
+
 										<th>Correo Cliente</th>
 										<th>Tel&eacute;fono Cliente</th>
 										<th>Recompra (1Mes)</th>
@@ -120,7 +123,10 @@
 										<th>Mascotas</th>
 										<th>Razas</th>
 										<th>Edad</th>
-										<th>Cuidador</th>
+
+										<th>Nombre Cuidador</th>
+										<th>Apellido Cuidador</th>
+
 										<th>Correo Cuidador</th>
 										<th>Tel&eacute;fono Cuidador</th>
 										<th>Servicio Principal</th> 
@@ -365,7 +371,10 @@
 												$nro_noches . $Day,
 												$reserva->nro_mascotas,
 												$nro_noches * $reserva->nro_mascotas,
-												"<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name']." ".$cliente['last_name']."</a>",
+
+												"<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name']."</a>",
+												"<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['last_name']."</a>",
+
 												$wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cliente_id),
 												implode(", ", $telf_cliente),
 
@@ -390,7 +399,8 @@
 												$pets_nombre,
 												$pets_razas,
 												$pets_edad,
-												$meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name'],
+												$meta_cuidador['first_name'],
+												$meta_cuidador['last_name'],
 												$wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cuidador_id),
 												implode(", ", $telf_cuidador),
 												$reserva->producto_title,
@@ -418,7 +428,10 @@
 												$nro_noches . $Day,
 												$reserva->nro_mascotas,
 												$nro_noches * $reserva->nro_mascotas,
-												"<a href=\'".get_home_url()."/?i=".md5($reserva->cliente_id)."\'>".$cliente['first_name']." ".$cliente['last_name']."</a>",
+												
+												"<a href=\'".get_home_url()."/?i=".md5($reserva->cliente_id)."\'>".$cliente['first_name']."</a>",
+												$cliente['last_name'],
+
 												$wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cliente_id),
 												implode(", ", $telf_cliente),
 												$recompra_1M,
@@ -429,7 +442,10 @@
 												$pets_nombre,
 												$pets_razas,
 												$pets_edad,
-												$meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name'],
+												
+												$meta_cuidador['first_name'],
+												$meta_cuidador['last_name'],
+												
 												$wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$reserva->cuidador_id),
 												implode(", ", $telf_cuidador),
 												$reserva->producto_title,
@@ -522,7 +538,10 @@
 												$value->noches,
 												$value->num_mascotas,
 												$value->num_noches_totales,
+
 												$value->cliente,
+												$value->apellido_cliente,
+
 												$value->correo_cliente,
 												$value->telefono_cliente,
 
@@ -547,7 +566,10 @@
 												$value->mascotas,
 												$value->razas,
 												$value->edad,
+
 												$value->cuidador,
+												$value->apellido_cuidador,
+
 												$value->correo_cuidador,
 												$value->telefono_cuidador,
 												$value->servicio_principal,

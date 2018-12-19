@@ -91,7 +91,8 @@ $reservas = getReservas($desde, $hasta);
 
 					<th># Reserva</th>
 					<th>Cuidador ID</th>
-					<th>Cuidador</th>
+					<th>Nombre Cuidador</th>
+					<th>Apellido Cuidador</th>
 					<th>Total a pagar</th>
 					<th>Monto Pagado</th>
 					<th>Pago de Cuidador</th>
@@ -192,7 +193,8 @@ $reservas = getReservas($desde, $hasta);
 
 						<th><?php echo $reserva->nro_reserva; ?></th>
 						<th><?php echo 'UC'.$reserva->cuidador_id; ?></th>
-						<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
+						<th><?php echo $meta_cuidador['first_name']; ?></th>
+						<th><?php echo $meta_cuidador['last_name']; ?></th>
 						<th><?php echo currency_format($meta_reserva['_booking_cost']); ?></th>
 						<th><?php echo currency_format($meta_Pedido['_order_total']); ?></th>
 						<th><?php echo currency_format($pago_cuidador); ?></th>

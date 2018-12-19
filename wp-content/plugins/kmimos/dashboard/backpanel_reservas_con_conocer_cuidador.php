@@ -83,7 +83,10 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Noches</th>
 			      <th># Mascotas</th>
 			      <th># Noches Totales</th>
-			      <th>Cliente</th>
+
+			      <th>Nombre Cliente</th>
+			      <th>Apellido Cliente</th>
+
 			      <th>Recompra (1Mes)</th>
 			      <th>Recompra (3Meses)</th>
 			      <th>Recompra (6Meses)</th>
@@ -92,7 +95,10 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Mascotas</th>
 			      <th>Razas</th>
 			      <th>Edad</th>
-			      <th>Cuidador</th>
+			      
+			      <th>Nombre Cuidador</th>
+			      <th>Apellido Cuidador</th>
+			      
 			      <th>Servicio Principal</th> 
 			      <th>Servicios Especiales</th> <!-- Servicios adicionales -->
 			      <th>Estado</th>
@@ -270,7 +276,10 @@ $reservas = getReservas($_desde, $_hasta);
 						<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
 						<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 						<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
-						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
+						
+						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name']; ?></a></th>
+						<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['last_name']; ?></a></th>
+						
 						<th class="text-center"><?php echo $recompra_1M; ?></th>
 						<th class="text-center"><?php echo $recompra_3M; ?></th>
 						<th class="text-center"><?php echo $recompra_6M; ?></th>
@@ -279,7 +288,10 @@ $reservas = getReservas($_desde, $_hasta);
 						<th><?php echo $pets_nombre; ?></th>
 						<th><?php echo $pets_razas; ?></th>
 						<th><?php echo $pets_edad; ?></th>
-						<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
+						
+						<th><?php echo $meta_cuidador['first_name']; ?></th>
+						<th><?php echo $meta_cuidador['last_name']; ?></th>
+						
 						<th><?php echo $reserva->producto_title; ?></th>
 						<th>
 						<?php foreach( $services as $service ){ ?>
