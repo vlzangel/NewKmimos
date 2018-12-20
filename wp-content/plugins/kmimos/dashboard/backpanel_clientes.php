@@ -80,10 +80,10 @@ $user_id = $current_user->ID
 	      		367
 	      	];
 
-	      	$acciones_titulo = '<th> Acciones </th>';
+	      	$acciones_titulo = '';
 	      	$acciones_info = false;
 	      	if( in_array($user_id, $permitidos) ){
-	      		$acciones_titulo = '';
+	      		$acciones_titulo = '<th> Acciones </th>';
 	      		$acciones_info = true;
 	      	}
 
