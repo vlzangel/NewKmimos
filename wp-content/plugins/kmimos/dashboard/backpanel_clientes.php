@@ -73,8 +73,7 @@ $users = getUsers($desde, $hasta);
 	      	}
   			echo '
 	    	<div class="row">
-	    		<div class="col-sm-12" id="table-container" style="font-size: 10px!important;">
-					<table id="tblusers" class="table table-striped table-bordered dt-responsive table-hover table-responsive nowrap datatable-buttons" cellspacing="0" width="100%">
+	    		<div class="col-sm-12" id="table-container" style="font-size: 10px!important;"> <table id="tblusers" class="table table-striped table-bordered dt-responsive table-hover table-responsive nowrap datatable-buttons" cellspacing="0" width="100%">
 			  			<thead>
 						    <tr>
 						      	<th>#</th>
@@ -163,9 +162,9 @@ $users = getUsers($desde, $hasta);
 
 									$referido_por = (!empty($usermeta['user_referred'])) ? $usermeta['user_referred'] : 'Otros' ;
 
-									$cant_reservas = '';
+									$_cant_reservas = '';
 									if( $mostrar_total_reserva ){
-										$cant_reservas = '<th>'.$cant_reservas['rows'][0]['cant'].'</th>';
+										$_cant_reservas = '<th>'.$_cant_reservas['rows'][0]['cant'].'</th>';
 								    }
 								}
 
@@ -187,7 +186,7 @@ $users = getUsers($desde, $hasta);
 										</th>
 										<th>'.$usermeta['phone'].'</th>
 										<th>'.$referido_por.'</th>
-								        '.$cant_reservas.'
+								        '.$_cant_reservas.'
 										<th style="text-transform: capitalize;">'.$usermeta['user_gender'].'</th>
 										<th>'.$usermeta['user_age'].'</th>
 										<th>'.$conocer_15.'</th>
