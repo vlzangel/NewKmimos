@@ -129,7 +129,7 @@ print_r($payout->status);
 		                            $list_pagos_id[] = $row_id;
 
 									$pago_parcial = false;
-									include($tema.'/admin/backend/pagos/email/index.php');
+									include($tema.'/admin/backend/pagos/email/email.php');
 echo 'paso email';
 		                        }else{
 		                            $observaciones = $payout->status;
