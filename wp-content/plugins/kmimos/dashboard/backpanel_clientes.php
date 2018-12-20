@@ -63,201 +63,175 @@ $users = getUsers($desde, $hasta);
 		<div class="clear"></div>
 		<hr>
 	</div>
-  	<div class="col-sm-12">  	
+  	<div class="col-sm-12"><?php 
+  		if( empty($users) ){
+	    	echo '<div class="row alert alert-info"> No existen datos para mostrar</div>';
+  		}else{ 
+  			$cant_reser_titulo = '';
+  			if( $mostrar_total_reserva ){
+	      		$cant_reser_titulo = '<th>Cant. Reservas</th>';
+	      	}
+  			echo '
+	    	<div class="row">
+	    		<div class="col-sm-12" id="table-container" style="font-size: 10px!important;">
+					<table id="tblusers" class="table table-striped table-bordered dt-responsive table-hover table-responsive nowrap datatable-buttons" cellspacing="0" width="100%">
+			  			<thead>
+						    <tr>
+						      	<th>#</th>
+						      	<th>Fecha Registro</th>
+						      	<th>Nombre</th>
+						      	<th>Apellido</th>
+						      	<th>Email</th>
+						      	<th>Teléfono</th>
+						      	<th>Donde nos conocio?</th>
+						      	<th>Sexo</th>
+						      	<th>Edad</th>
+						      	'.$cant_reser_titulo.'
+						      	<th>Primera Sol. Conocer </th>
+						      	<th>Primera Reserva </th>
+						      	<th> Acciones </th>
+						    </tr>
+			  			</thead>
+			  			<tbody>';
+			  				
+			  				foreach( $users['rows'] as $key => $row ){ 
+			  					$usermeta = getmetaUser( $row['ID'] );
 
-  	<?php if( empty($users) ){ ?>
-  		<!-- Mensaje Sin Datos -->
-	    <div class="row alert alert-info"> No existen datos para mostrar</div>
-  	<?php }else{ ?>
-	    <div class="row">
-	    	<div class="col-sm-12" id="table-container" 
-	    		style="font-size: 10px!important;">
-	  		<!-- Listado de users -->
-			<table id="tblusers" class="table table-striped table-bordered dt-responsive table-hover table-responsive nowrap datatable-buttons" 
-					cellspacing="0" width="100%">
-			  <thead>
-			    <tr>
-			      	<th>#</th>
-			      	<th>Fecha Registro</th>
-			      	<th>Nombre</th>
-			      	<th>Apellido</th>
-			      	<th>Email</th>
-			      	<th>Teléfono</th>
-			      	<th>Donde nos conocio?</th>
-			      	<th>Sexo</th>
-			      	<th>Edad</th>
-			      	<?php if( $mostrar_total_reserva ){ ?>
-			      		<th>Cant. Reservas</th>
-			      	<?php } ?>
-			      	<!--
-			      		<th>Mascota(s)</th>
-			      		<th>Raza(s)</th>
-			  		-->
-			      	<th>Primera Sol. Conocer </th>
+					  			if( $usermeta['user_age'] == "" ){
+					  				$usermeta['user_age'] = "25-35 A&ntilde;os";
+					  			}else{
+					  				$usermeta['user_age'] .= " A&ntilde;os";
+					  			}
+					  			if( $usermeta['phone'] == "" ){
+					  				if( $usermeta['user_referred'] != "Petco-CPF" ){
+					  					$usermeta['user_referred'] = "CPF";
+					  				}
+					  			}
 
-			      	<th>Primera Reserva </th>
+			  					$link_login = get_home_url()."/?i=".md5($row['ID']);
 
-			      	<!-- th>Depurar datos (Testing)</th -->
+					  			$name = "{$usermeta['first_name']}";
+					  			$lastname = "{$usermeta['last_name']}";
+					  			if(empty( trim($name)) ){
+					  			 	$name = $usermeta['nickname'];
+					  			}
 
-			    </tr>
-			  </thead>
-			  <tbody>
-			  	<?php $count=0; ?>
-			  	<?php foreach( $users['rows'] as $row ){ ?>
-			  		<?php
-			  			// Metadata usuarios
-			  			$usermeta = getmetaUser( $row['ID'] );
-
-			  			if( $usermeta['user_age'] == "" ){
-			  				$usermeta['user_age'] = "25-35 A&ntilde;os";
-			  			}else{
-			  				$usermeta['user_age'] .= " A&ntilde;os";
-			  			}
-
-			  			if( $usermeta['phone'] == "" ){
-			  				if( $usermeta['user_referred'] != "Petco-CPF" ){
-			  					$usermeta['user_referred'] = "CPF";
-			  				}
-			  			}
-
-			  			$link_login = get_home_url()."/?i=".md5($row['ID']);
-
-			  			$name = "{$usermeta['first_name']}";
-			  			$lastname = "{$usermeta['last_name']}";
-			  			if(empty( trim($name)) ){
-			  			 	$name = $usermeta['nickname'];
-			  			}
-
-			  			$cant_reservas = 0;
-				        if( $mostrar_total_reserva ){ 
-				  			$cant_reservas = getCountReservas( $row['ID'] );
-				  		}
-
-
-						$reserva_15 = '';
-						$_reserva_15 = '';
-						$p_reserva = get_primera_reservas(  $row['ID'] );
-						$dif = null;
-						if( isset($p_reserva['rows'][0]['post_date_gmt']) ){
-							$dif = diferenciaDias($row['user_registered'], $p_reserva['rows'][0]['post_date_gmt']);
-							if( $dif['dia'] >= 0 && $dif['dia'] <= 15 ){
-								$reserva_15 = '15 Dias';
-							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 30 ){
-								$reserva_15 = '30 Dias';
-							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 45 ){
-								$reserva_15 = '45 Dias';
-							}else if( $dif['dia'] >= 16 && $dif['dia'] <= 60 ){
-								$reserva_15 = '60 Dias';
-							}else {
-								$reserva_15 = '+60 Dias';
-							}
-							$_reserva_15 = $dif['dia'];
-						}
-
-						$conocer_15 = '';
-						$_conocer_15 = '';
-						$p_conocer = get_primera_conocer(  $row['ID'] );
-						$dif_conocer = null;
-						if( isset($p_conocer['rows'][0]['post_date_gmt']) ){
-
-							$dif_conocer = diferenciaDias($row['user_registered'], $p_conocer['rows'][0]['post_date_gmt']);
-							if( $dif_conocer['dia'] >= 0 && $dif_conocer['dia'] <= 15 ){
-								$conocer_15 = '15 Dias';
-							}else if( $dif_conocer['dia'] >= 16 && $dif_conocer['dia'] <= 30 ){
-								$conocer_15 = '30 Dias';
-							}else if( $dif_conocer['dia'] >= 16 && $dif_conocer['dia'] <= 45 ){
-								$conocer_15 = '45 Dias';
-							}else if( $dif_conocer['dia'] >= 16 && $dif_conocer['dia'] <= 60 ){
-								$conocer_15 = '60 Dias';
-							}else {
-								$conocer_15 = '+60 Dias';
-							}
-							$_conocer_15 = $dif_conocer['dia'];
-
-						}
-
-
-			  		?>
-				    <tr>
-				    	<th class="text-center"><?php echo $row['ID']; ?></th>
-						<th><?php echo date_convert($row['user_registered'], 'Y-m-d') ; ?></th>
-						<th><?php echo $name; ?></th>
-						<th><?php echo $lastname; ?></th>
-						<th>
-					  		<a href="<?php echo $link_login; ?>">
-								<?php echo $row['user_email']; ?>
-							</a>
-						</th>
-						<th><?php echo $usermeta['phone']; ?></th>
-						<th><?php echo (!empty($usermeta['user_referred']))? $usermeta['user_referred'] : 'Otros' ; ?></th>
-				        
-				        <?php if( $mostrar_total_reserva ){ ?>
-							<th><?php print_r( $cant_reservas['rows'][0]['cant'] ); ?></th>
-				        <?php } ?>
-
-						<th style="text-transform: capitalize;"><?php echo $usermeta['user_gender']; ?></th>
-						<th><?php echo $usermeta['user_age']; ?></th>
-						
-
-						<th><?php echo $conocer_15 ; ?></th>
-
-						<th><?php echo $reserva_15 ; ?></th>
-
-						<!-- th><?php echo 'Reserva:'.$_reserva_15.' Conocer: '.$_conocer_15 ; ?></th -->
-
-						<?php 
-							/*
-					  		# Mascotas del Cliente
-					  		$mypets = getMascotas($row['ID']); 
-					  		$pets_nombre = array();
-					  		$pets_razas  = array();
-					  		$pets_edad	 = array();
-							foreach( $mypets as $pet_id => $pet) { 
-								$pets_nombre[] = $pet['nombre'];
-								$pets_razas[] = $pet['raza'];
-								$pets_edad[] = $pet['edad'];
-							} 
-
-							if( count($pets_nombre) > 0 ){
-
-						  		$raza = "Bien";
-						  		foreach ($pets_razas as $key => $value) {
-						  			if( $value == "" || $value == 0 ){
-						  				$raza = "Malos";
-						  				break;
-						  			}
+					  			$cant_reservas = 0;
+						        if( $mostrar_total_reserva ){ 
+						  			$cant_reservas = getCountReservas( $row['ID'] );
 						  		}
-						  		$pets_razas = $raza;
 
-						  		$edad = $pets_edad[0];
-						  		foreach ($pets_edad as $value) {
-						  			if( $edad < $value ){
-						  				$edad = $value;
-						  			}
-						  		}
-						  		$pets_edad = $edad;
+								$reserva_15 = '';
+								$_reserva_15 = '';
+								$p_reserva = get_primera_reservas(  $row['ID'] );
+								$dif = null;
+								if( isset($p_reserva['rows'][0]['post_date_gmt']) ){
+									$dif = diferenciaDias($row['user_registered'], $p_reserva['rows'][0]['post_date_gmt']);
+									if( $dif['dia'] >= 0 && $dif['dia'] <= 15 ){
+										$reserva_15 = '15 Dias';
+									}else if( $dif['dia'] >= 16 && $dif['dia'] <= 30 ){
+										$reserva_15 = '30 Dias';
+									}else if( $dif['dia'] >= 16 && $dif['dia'] <= 45 ){
+										$reserva_15 = '45 Dias';
+									}else if( $dif['dia'] >= 16 && $dif['dia'] <= 60 ){
+										$reserva_15 = '60 Dias';
+									}else {
+										$reserva_15 = '+60 Dias';
+									}
+									$_reserva_15 = $dif['dia'];
+								}
 
+								$conocer_15 = '';
+								$_conocer_15 = '';
+								$p_conocer = get_primera_conocer(  $row['ID'] );
+								$dif_conocer = null;
+								if( isset($p_conocer['rows'][0]['post_date_gmt']) ){
 
-						  		$pets_nombre = implode(", ", $pets_nombre);
-							}else{
-						  		$pets_nombre = "_";
-						  		$pets_razas  = "_";
-						  		$pets_edad	 = "_";
-							}
-						?>
-						<th><?php echo $pets_nombre; ?></th>
-						<th><?php echo $pets_razas; ?></th>
-						<th><?php echo $pets_edad; ?></th>
-						*/ ?>
+									$dif_conocer = diferenciaDias($row['user_registered'], $p_conocer['rows'][0]['post_date_gmt']);
+									if( $dif_conocer['dia'] >= 0 && $dif_conocer['dia'] <= 15 ){
+										$conocer_15 = '15 Dias';
+									}else if( $dif_conocer['dia'] >= 16 && $dif_conocer['dia'] <= 30 ){
+										$conocer_15 = '30 Dias';
+									}else if( $dif_conocer['dia'] >= 16 && $dif_conocer['dia'] <= 45 ){
+										$conocer_15 = '45 Dias';
+									}else if( $dif_conocer['dia'] >= 16 && $dif_conocer['dia'] <= 60 ){
+										$conocer_15 = '60 Dias';
+									}else {
+										$conocer_15 = '+60 Dias';
+									}
+									$_conocer_15 = $dif_conocer['dia'];
 
-				    </tr>
-			   	<?php } ?>
-			  </tbody>
-			</table>
-			</div>
-		</div>
-	<?php } ?>	
-  </div>
+									$referido_por = (!empty($usermeta['user_referred'])) ? $usermeta['user_referred'] : 'Otros' ;
+
+									$cant_reservas = '';
+									if( $mostrar_total_reserva ){
+										$cant_reservas = '<th>'.$cant_reservas['rows'][0]['cant'].'</th>';
+								    }
+								}
+
+							    $_status = '<span id="user_'.$row['ID'].'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$row['ID'].'" data-status="inactivo">Desactivar</span>';
+							    if( $usermeta['status_user'] == 'inactivo' ){
+							    	$_status = '<span id="user_'.$row['ID'].'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$row['ID'].'" data-status="activo">Activar</span>';
+							    }
+
+								echo '
+								    <tr>
+								    	<th class="text-center">'.$row['ID'].'</th>
+										<th>'.date_convert($row['user_registered'], 'Y-m-d').'</th>
+										<th>'.$name.'</th>
+										<th>'.$lastname.'</th>
+										<th>
+									  		<a href="'.$link_login.'">
+												'.$row['user_email'].'
+											</a>
+										</th>
+										<th>'.$usermeta['phone'].'</th>
+										<th>'.$referido_por.'</th>
+								        '.$cant_reservas.'
+										<th style="text-transform: capitalize;">'.$usermeta['user_gender'].'</th>
+										<th>'.$usermeta['user_age'].'</th>
+										<th>'.$conocer_15.'</th>
+										<th>'.$reserva_15.'</th>
+										<th>'.$_status.'</th>
+								    </tr>';
+			   				} echo '
+			  			</tbody>
+					</table>
+				</div>
+			</div>';
+		} echo '
+  		</div>
+	</div>
 </div>
-</div>
-<div class="clearfix"></div>	
+<div class="clearfix"></div>'; ?>
+<style type="text/css">
+	.enlace{
+		cursor: pointer;
+		color: #337ab7;
+	}
+	.enlace:hover{
+		color: #23527c;
+	}
+</style>
+<script type="text/javascript">
+	function change_status(_this) {
+		jQuery.post(
+			"<?= plugins_url('kmimos/dashboard/core/ajax/change_status_user.php') ?>",
+			{
+				user_id: _this.attr('data-id'),
+				status: _this.attr('data-status')
+			},
+			function(data){
+				console.log( data );
+				if( data.status == 'activo' ){
+					jQuery("#user_"+_this.attr('data-id')).attr('data-status', 'inactivo');
+					jQuery("#user_"+_this.attr('data-id')).html('Desactivar');
+				}else{
+					jQuery("#user_"+_this.attr('data-id')).attr('data-status', 'activo');
+					jQuery("#user_"+_this.attr('data-id')).html('Activar');
+				}
+			},
+			'json'
+		);
+	}
+</script>

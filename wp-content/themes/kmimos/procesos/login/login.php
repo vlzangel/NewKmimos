@@ -26,22 +26,30 @@
 	  		)
 	  	);
 	} else {
+		$status_user = get_user_meta($user_signon->ID, 'status_user', true);
 
-		$_SESSION["sesion_proceso"] = $_POST["proceso"];
-
-	  	wp_set_auth_cookie($user_signon->ID, $info['remember']);
-
-	  	$user = new WP_User( $user_signon->ID );
-	
-	  	if( $user->roles[0] == "vendor" ){
-	  		tiene_fotos_por_subir($user_signon->ID, true);
-	  	}
-	  	echo json_encode( 
-	  		array( 
-	  			'login' => true, 
-	  			'mes'   => "Login Exitoso!"
-	  		)
-	  	);
+		if( $status_user == 'inactivo' ){
+		  	echo json_encode( 
+		  		array( 
+		  			'login' => false, 
+		  			'mes'   => "Email y contraseña invalidos."
+		  		)
+		  	);
+		}else{
+			$_SESSION["sesion_proceso"] = $_POST["proceso"];
+		  	wp_set_auth_cookie($user_signon->ID, $info['remember']);
+		  	$user = new WP_User( $user_signon->ID );
+		
+		  	if( $user->roles[0] == "vendor" ){
+		  		tiene_fotos_por_subir($user_signon->ID, true);
+		  	}
+		  	echo json_encode( 
+		  		array( 
+		  			'login' => true, 
+		  			'mes'   => "Login Exitoso!"
+		  		)
+		  	);
+		}
 	}
 
 	exit;
