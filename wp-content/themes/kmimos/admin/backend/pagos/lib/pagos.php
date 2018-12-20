@@ -104,11 +104,35 @@ class Pagos {
 							$row->total
 						);
 
-						$dev2[] = [
-							$row->reserva_id,
-							$row->total,
-							$monto
-						];
+					// Pago realizado anteriormente
+						$reserva_modificada = 0;
+						$sql_modificado = "
+							SELECT meta_value 
+							FROM wp_postmeta 
+							WHERE meta_key = 'modificacion_de' AND post_id = ".$row->reserva_id;
+						$modificacion_de = $this->db->get_var( $sql_modificado );
+
+						if( $modificacion_de > 0 ){
+							$condicion = 's:7:"reserva";s:'.strlen($modificacion_de).':"'.$modificacion_de.'";';
+							$sql_pago = " 
+								SELECT * 
+								FROM cuidadores_pagos 
+								WHERE detalle like '%".$condicion."%' 
+									AND estatus in ('in_progress', 'completed') 
+							";
+							$pago = $this->db->get_row( $sql_pago );
+							if( isset($pago->detalle) && !empty($pago->detalle) ){
+								$desglose = unserialize($pago->detalle);
+								foreach ($desglose as $val) {
+									if( $val['reserva'] == $modificacion_de ){
+										$monto -= $val['monto'];
+										$reserva_modificada = $val['monto'];
+										break;
+									}
+								}
+							}
+						}
+
   
  
 						if( $count == 4 ){
@@ -125,7 +149,8 @@ class Pagos {
 						if( $monto > 0 ){
 							$pagos[ $row->cuidador_id ]['detalle'][$row->reserva_id] = [
 								'reserva'=>$row->reserva_id,
-								'monto'=>$monto
+								'monto'=>$monto,
+								'modificado'=>$reserva_modificada
 							];
 					    }
 
@@ -196,12 +221,12 @@ class Pagos {
 			$meta_cupon = [];
 			if( !empty($cupones) ){
 				foreach ($cupones as $cupon) {
-
-					if( $cupon->name == '+2MASC' ){
-                        $total -= $cupon->monto; 
-                        $pago_cuidador = $total / 1.25;
-                        $pago_kmimos = $total - $pago_cuidador;
+					if( strtoupper($cupon->name) == '+2MASC' ){
+						$total -= $cupon->monto; 
+						$pago_cuidador = $total / 1.25;
+						$pago_kmimos = $total - $pago_cuidador;
 					}else{
+
 						$cupon_id = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title = '".$cupon->name."' ");
 						$metas =  $this->db->get_results("SELECT meta_key, meta_value FROM wp_postmeta WHERE meta_key like 'descuento%' and post_id = ".$cupon_id );
 
@@ -258,10 +283,10 @@ class Pagos {
 								default:
 									$pago_cuidador -= $_cupon['total'];
 									break;
+							
 							}
 						}
 					}
-					
 				}
 			}
 
@@ -315,7 +340,7 @@ class Pagos {
 				and cl.ID > 0 
 				and p.ID > 0
 				and us.user_id > 0
-				and r.post_status = 'confirmed'
+				and r.post_status = 'confirmed' 
 				{$filtro_adicional}
 			;";
 */			
