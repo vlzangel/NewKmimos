@@ -32,8 +32,8 @@
 <table width="100%" style="width: 100%;">
 	<thead>
 		<tr style="color:#940d99;line-height:1.07;letter-spacing:0.3px;font-weight:600;font-size:14px;">
-			<td width="50%" style="padding: 7px; border-bottom: solid 1px #940d99; vertical-align: middle; text-align: center;">CONCEPTO</td>
-			<td width="50%" style="padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99; vertical-align: middle; text-align: right!important;">MONTO</td>
+			<td width="65%" style="padding: 7px; border-bottom: solid 1px #940d99; vertical-align: middle; text-align: center;">CONCEPTO</td>
+			<td width="35%" style="padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99; vertical-align: middle; text-align: right!important;">MONTO</td>
 		</tr>
 	</thead>
 	<tbody>
