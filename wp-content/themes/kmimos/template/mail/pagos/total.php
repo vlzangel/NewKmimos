@@ -1,6 +1,6 @@
 
 <div style='text-align:center; margin-bottom: 34px;'>
-	<img src='[URL_IMGS]/Image-1.jpg' style='width: 100%;' >
+	<img src='[URL_IMGS]/new/pagos_cuidador/header.jpg' style='width: 100%;' >
 </div>
 
 <div style='padding: 0px;'>
