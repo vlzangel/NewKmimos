@@ -16,6 +16,10 @@ if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 // Buscar Reservas
 $razas = get_razas();
 $users = getUsers($desde, $hasta);
+
+global $current_user;
+$user_id = $current_user->ID
+
 ?>
 
 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -71,6 +75,18 @@ $users = getUsers($desde, $hasta);
   			if( $mostrar_total_reserva ){
 	      		$cant_reser_titulo = '<th>Cant. Reservas</th>';
 	      	}
+
+	      	$permitidos = [
+	      		367
+	      	];
+
+	      	$acciones_titulo = '<th> Acciones </th>';
+	      	$acciones_info = false;
+	      	if( in_array($user_id, $permitidos) ){
+	      		$acciones_titulo = '';
+	      		$acciones_info = true;
+	      	}
+
   			echo '
 	    	<div class="row">
 	    		<div class="col-sm-12" id="table-container" style="font-size: 10px!important;"> <table id="tblusers" class="table table-striped table-bordered dt-responsive table-hover table-responsive nowrap datatable-buttons" cellspacing="0" width="100%">
@@ -88,7 +104,7 @@ $users = getUsers($desde, $hasta);
 						      	'.$cant_reser_titulo.'
 						      	<th>Primera Sol. Conocer </th>
 						      	<th>Primera Reserva </th>
-						      	<th> Acciones </th>
+						      	'.$acciones_titulo.'
 						    </tr>
 			  			</thead>
 			  			<tbody>';
@@ -168,9 +184,13 @@ $users = getUsers($desde, $hasta);
 									$_cant_reservas = '<th>'.$_cant_reservas['rows'][0]['cant'].'</th>';
 							    }
 
-							    $_status = '<span id="user_'.$row['ID'].'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$row['ID'].'" data-status="inactivo">Desactivar</span>';
-							    if( $usermeta['status_user'] == 'inactivo' ){
-							    	$_status = '<span id="user_'.$row['ID'].'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$row['ID'].'" data-status="activo">Activar</span>';
+							    $_status = '';
+							    if( $acciones_info ){
+								    $_status = '<span id="user_'.$row['ID'].'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$row['ID'].'" data-status="inactivo">Desactivar</span>';
+								    if( $usermeta['status_user'] == 'inactivo' ){
+								    	$_status = '<span id="user_'.$row['ID'].'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$row['ID'].'" data-status="activo">Activar</span>';
+								    }
+								    $_status = '<th>'.$_status.'</th>';
 							    }
 
 								echo '
@@ -191,7 +211,7 @@ $users = getUsers($desde, $hasta);
 										<th>'.$usermeta['user_age'].'</th>
 										<th>'.$conocer_15.'</th>
 										<th>'.$reserva_15.'</th>
-										<th>'.$_status.'</th>
+										'.$_status.'
 								    </tr>';
 			   				} echo '
 			  			</tbody>
