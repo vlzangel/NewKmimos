@@ -983,3 +983,48 @@ h2.msg_acciones {
 .km-ficha-bg_MOVIL{
     display: none;
 }
+
+/* banner_descuento_registro */
+
+.banner_descuento_registro_container {
+    position: relative;
+}
+
+.banner_descuento_registro_container img {
+    position: absolute;
+    width: 800px !important;
+    left: 0px;
+    top: 0px;
+}
+.modal_descuento .modal-dialog,
+.modal_descuento .modal-content {
+    width: 800px !important;
+}
+
+.cronometro_descuento {
+    position: absolute;
+    top: 325px;
+    right: 140px;
+    width: 105px;
+}
+
+.cronometro_descuento > div {
+    float: left;
+    margin: 0px 3px;
+    padding: 3px 0px;
+    background-color: #FFF;
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+    width: 40px;
+}
+
+.cronometro_descuento > span {
+    float: left;
+    display: inline-block;
+    margin: 0px 3px;
+    padding: 3px 0px;
+    font-size: 20px;
+    color: #FFF;
+    font-family: Gotham-Pro-Black;
+}

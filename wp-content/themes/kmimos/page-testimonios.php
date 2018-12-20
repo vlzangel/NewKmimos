@@ -4,11 +4,11 @@
     */
 
 	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0');
-            
-    get_header();
 
     wp_enqueue_style('home_kmimos', get_recurso("css")."testimonios.css", array(), '1.0.0');
     wp_enqueue_style('home_responsive', get_recurso("css")."responsive/testimonios.css", array(), '1.0.0');
+            
+    get_header();
 
     wp_enqueue_style('conocer', getTema()."/css/conocer.css", array(), '1.0.0');
     wp_enqueue_style('conocer_responsive', getTema()."/css/responsive/conocer_responsive.css", array(), '1.0.0');
