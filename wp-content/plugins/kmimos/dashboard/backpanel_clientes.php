@@ -161,12 +161,12 @@ $users = getUsers($desde, $hasta);
 									$_conocer_15 = $dif_conocer['dia'];
 
 									$referido_por = (!empty($usermeta['user_referred'])) ? $usermeta['user_referred'] : 'Otros' ;
-
-									$_cant_reservas = '';
-									if( $mostrar_total_reserva ){
-										$_cant_reservas = '<th>'.$_cant_reservas['rows'][0]['cant'].'</th>';
-								    }
 								}
+
+								$_cant_reservas = '';
+								if( $mostrar_total_reserva ){
+									$_cant_reservas = '<th>'.$_cant_reservas['rows'][0]['cant'].'</th>';
+							    }
 
 							    $_status = '<span id="user_'.$row['ID'].'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$row['ID'].'" data-status="inactivo">Desactivar</span>';
 							    if( $usermeta['status_user'] == 'inactivo' ){
