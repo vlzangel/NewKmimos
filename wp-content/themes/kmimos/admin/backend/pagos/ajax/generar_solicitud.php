@@ -8,16 +8,17 @@
 
     $tema = (dirname(dirname(dirname(dirname(__DIR__)))));
     include_once($tema."/procesos/funciones/db.php");
-    include_once($tema."/procesos/funciones/generales.php");
+    // include_once($tema."/procesos/funciones/generales.php");
     include_once($tema."/procesos/funciones/config.php");
-	include_once($tema.'/lib/openpay/Openpay.php');
+	include_once($tema.'/lib/openpay2/Openpay.php');
+	include($raiz.'/wp-load.php');
 
     
-	$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
-	Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
+	//$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
+	//Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
 //	Test IC
-// $openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f264016e6fcb7');
+$openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f264016e6fcb7');
 
 
     $db = new db( new mysqli($host, $user, $pass, $db) );
@@ -107,21 +108,27 @@
 		                        'amount' => number_format($total, 2, '.', ''),
 		                        'name' => utf8_encode( $banco['titular'] ),
 		                        'bank_account' => array(
-		                            'clabe' => $banco['cuenta'],
+		                            'clabe' => '012298026516924616',
 		                            'holder_name' => utf8_encode($banco['titular']),
 		                        ),
-			                'description' => '#'.$row_id." ".$cuidador->ID." ".$cuidador->email
+			                'description' => 'Prueba de pago #'.$row_id
 
 		                    );
-print_r( $payoutData );
 		                //  Enviar solicitud a OpenPay            
 		                    try{
 		                        $payout = $openpay->payouts->create($payoutData);
 		                        $estatus = 'Autorizado';
+print_r($payout->status);
 		                        if( $payout->status == 'in_progress' ){
 		                            $observaciones = '';
 		                            $estatus = 'in_progress';
-		                            $openpay_id = $payout->id;
+		                            $openpay_id = $payout->id;	
+
+		                            $list_pagos_id[] = $row_id;
+
+									$pago_parcial = false;
+									include('../email/index.php');
+echo 'paso email';
 		                        }else{
 		                            $observaciones = $payout->status;
 		                        }
@@ -150,7 +157,7 @@ print_r( $payoutData );
 		                    }
 		                
 		                //  Actualizar registro
-		                    $db->query("
+		                    $wpdb->query("
 		                    	UPDATE cuidadores_pagos 
 		                    	SET 
 		                    		estatus='".$estatus."', 
@@ -158,6 +165,7 @@ print_r( $payoutData );
 		                    		openpay_id='".$openpay_id."' 
 		                    	WHERE id = " . $row_id 
 		                   	);
+
 					}
 
 					print_r($sql);
