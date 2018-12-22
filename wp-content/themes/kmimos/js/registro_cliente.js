@@ -66,7 +66,7 @@ jQuery(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	jQuery(".popup-registrarte-1").css("display", 'block');
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
-	jQuery(".popup-registrarte-final").css('display', 'none');
+	// jQuery(".popup-registrarte-final").css('display', 'none');
 	jQuery(".popup-registrarte-final-0").css('display', 'none');
 	jQuery('#km-datos-foto-profile').css('background-image', 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
 	jQuery("#km-datos-foto-profile").css("background-image", 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');

@@ -410,31 +410,35 @@ $HTML .='
 
 
 $nuevo_banner = '
-<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
-<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
-<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
-	REGISTRAR UNA MASCOTA
-</a>';
+<div class="popup-registrarte-final" style="padding-bottom: 15px;">
+	<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
+	<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
+	<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
+		REGISTRAR UNA MASCOTA
+	</a>
+</div>';
 
-$nuevo_banner = '
-	<div class="banner_descuento_registro_container" >
-		<img class="publicidad_solo_pc" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_2.png" />
-		<img class="publicidad_solo_movil" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_movil_1.png" />
+if( time() >= strtotime("2018-12-22 14:29:00") ){
+	$nuevo_banner = '
+		<div class="banner_descuento_registro_container" >
+			<img class="publicidad_solo_pc" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_2.png" />
+			<img class="publicidad_solo_movil" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_movil_1.png" />
 
-		<div class="cronometro_descuento">
-			<div class="cronometro_h">23</div>
-			<span>:</span>
-			<div class="cronometro_m">60</div>
-			<span>:</span>
-			<div class="cronometro_s">00</div>
+			<div class="cronometro_descuento">
+				<div class="cronometro_h">23</div>
+				<span>:</span>
+				<div class="cronometro_m">60</div>
+				<span>:</span>
+				<div class="cronometro_s">00</div>
+			</div>
+			<div class="btn_registrar_mascota_container">
+				<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
+					REGISTRAR UNA MASCOTA
+				</a>
+			</div>
 		</div>
-		<div class="btn_registrar_mascota_container">
-			<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
-				REGISTRAR UNA MASCOTA
-			</a>
-		</div>
-	</div>
-';
+	';
+}
 
 $HTML .='
 	<!-- POPUPS DESCUENTO -->
