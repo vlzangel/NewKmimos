@@ -28,10 +28,13 @@ function iniciar_cronometro(){
 jQuery( document ).ready( function(){
 
 	jQuery("#btn_registrar_mascota").on("click", function(){
-		jQuery(".popup-registrarte-final").css("display", "none");
+		jQuery("#popup-registrarte-2").modal("hide");
+		jQuery("#popup-registrarte").modal("show");
+
+		jQuery(".popup-registrarte-1").css("display", "none");
+		jQuery(".popup-condiciones").css("display", "none");
 		jQuery(".popup-registrarte-datos-mascota").css("display", "block");
 	});
-
 	jQuery(".terminos_container").load(HOME+"/terminos_HTML.php");
 
 });
@@ -62,6 +65,12 @@ jQuery(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	jQuery("#km-datos-foto-profile").css("background-image", 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
 	jQuery('#form_nuevo_cliente')[0].reset();
 	jQuery( jQuery(this).data('target') ).modal('show');
+
+	/*
+	jQuery("#popup-registrarte").modal("hide");
+	jQuery("#popup-registrarte-2").modal("show");
+	iniciar_cronometro();
+	*/
 });
 
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
@@ -256,8 +265,12 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery( "#btn_si_acepto" ).addClass("btn_disable");
 				jQuery( "#btn_si_acepto" ).addClass("btn_disable_2");
 
-				jQuery(".popup-condiciones").css("display", "none");
-				jQuery(".popup-registrarte-final").css("display", "block");
+				// jQuery(".popup-condiciones").css("display", "none");
+				// jQuery(".popup-registrarte-final").css("display", "block");
+
+				jQuery("#popup-registrarte").modal("hide");
+				jQuery("#popup-registrarte-2").modal("show");
+				iniciar_cronometro();
 
 				var nombre = jQuery('#form_nuevo_cliente [name="nombre"] ').val();
 					apellido = jQuery("#apellido").val(),

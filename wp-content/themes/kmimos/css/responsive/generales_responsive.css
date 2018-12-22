@@ -32,8 +32,15 @@
 
 	.cronometro_descuento {
 	    top: 240px;
-	    right: 95px;
-	    width: 105px;
+	    right: 65px;
+	}
+
+	.btn_registrar_mascota_container {
+	    top: 165px;
+	}
+
+	.btn_registrar_mascota_container #btn_registrar_mascota {
+	    padding: 9px 30px;
 	}
 }
 
@@ -62,8 +69,15 @@
 	.cronometro_descuento {
 	    position: absolute;
 	    top: 430px;
-	    right: 145px;
-	    width: 105px;
+	    right: 120px;
+	}
+
+	.btn_registrar_mascota_container {
+	    top: 244px;
+	}
+
+	.btn_registrar_mascota_container #btn_registrar_mascota {
+	    padding: 8px 30px;
 	}
 
 
@@ -128,8 +142,7 @@
 
 	.cronometro_descuento {
 	    top: 300px;
-	    right: 85px;
-	    width: 105px;
+	    right: 50px;
 	}
 
 	.cronometro_descuento > div {
@@ -140,6 +153,14 @@
 
 	.cronometro_descuento > span {
 	    padding: 0px;
+	}
+
+	.btn_registrar_mascota_container {
+	    top: 170px;
+	}
+
+	.btn_registrar_mascota_container #btn_registrar_mascota {
+	    padding: 5px 20px;
 	}
 }
 

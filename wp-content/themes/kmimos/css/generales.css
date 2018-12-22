@@ -1004,8 +1004,8 @@ h2.msg_acciones {
 .cronometro_descuento {
     position: absolute;
     top: 325px;
-    right: 140px;
-    width: 105px;
+    right: 110px;
+    width: 162px;
 }
 
 .cronometro_descuento > div {
@@ -1027,4 +1027,18 @@ h2.msg_acciones {
     font-size: 20px;
     color: #FFF;
     font-family: Gotham-Pro-Black;
+}
+
+.btn_registrar_mascota_container {
+    position: absolute;
+    top: 222px;
+    right: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.btn_registrar_mascota_container #btn_registrar_mascota {
+    display: inline-block;
+    padding: 12px 30px;
+    font-family: Gotham-Pro-Bold;
 }

@@ -248,12 +248,15 @@ $HTML .='
 			</div>
 
 
-			<div class="popuphide popup-registrarte-final">
+			<div class="popuphide popup-registrarte-final">';
+				/*
 				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
 				<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
 				<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
 					REGISTRAR UNA MASCOTA
 				</a>
+				*/
+			$HTML .= '
 			</div>
 
 
@@ -394,12 +397,9 @@ $HTML .='
 				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p>
 			</div>
 			<div class="popuphide popup-registrarte-final-0">
-				'.$nuevo_banner.'
-				<!--
-					<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU MASCOTA SE REGISTRO EXITOSAMENTE!</h3>
-					<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
-					<a href="javascript:;" onclick="cerrar_modal()" id="btn_iniciar_sesion" data-url="'.get_home_url().'/#buscar" class="km-btn-correo" data-dismiss="modal">INICIAR SESIÓN</a>
-				-->
+				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU MASCOTA SE REGISTRO EXITOSAMENTE!</h3>
+				<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
+				<a href="javascript:;" onclick="cerrar_modal()" id="btn_iniciar_sesion" data-url="'.get_home_url().'/#buscar" class="km-btn-correo" data-dismiss="modal">INICIAR SESIÓN</a>
 			</div>
 		</div>
 	</div>
@@ -410,10 +410,11 @@ $HTML .='
 
 
 $nuevo_banner = '
-	<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU MASCOTA SE REGISTRO EXITOSAMENTE!</h3>
-	<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
-	<a href="javascript:;" onclick="cerrar_modal()" id="btn_iniciar_sesion" data-url="'.get_home_url().'/#buscar" class="km-btn-correo" data-dismiss="modal">INICIAR SESIÓN</a>
-';
+<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
+<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
+<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
+	REGISTRAR UNA MASCOTA
+</a>';
 
 $nuevo_banner = '
 	<div class="banner_descuento_registro_container" >
@@ -421,16 +422,23 @@ $nuevo_banner = '
 		<img class="publicidad_solo_movil" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_movil_1.png" />
 
 		<div class="cronometro_descuento">
+			<div class="cronometro_h">24</div>
+			<span>:</span>
 			<div class="cronometro_m">60</div>
 			<span>:</span>
 			<div class="cronometro_s">00</div>
+		</div>
+		<div class="btn_registrar_mascota_container">
+			<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
+				REGISTRAR UNA MASCOTA
+			</a>
 		</div>
 	</div>
 ';
 
 $HTML .='
 	<!-- POPUPS DESCUENTO -->
-	<div id="popup-registrarte-2" class="modal modal_descuento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding: 40px;">
+	<div id="popup-registrarte-2" class="modal modal_descuento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding: 40px 0px !important;">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar" >×</button>
