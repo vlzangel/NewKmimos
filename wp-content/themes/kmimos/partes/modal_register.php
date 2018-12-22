@@ -422,7 +422,7 @@ $nuevo_banner = '
 		<img class="publicidad_solo_movil" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_movil_1.png" />
 
 		<div class="cronometro_descuento">
-			<div class="cronometro_h">24</div>
+			<div class="cronometro_h">23</div>
 			<span>:</span>
 			<div class="cronometro_m">60</div>
 			<span>:</span>
