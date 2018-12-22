@@ -279,6 +279,20 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery("#popup-registrarte-2").modal("show");
 				iniciar_cronometro();
 
+				jQuery("#btn_cerrar_2").on("click", function(e){
+					finalizar_proceso();
+				});
+
+				jQuery("#popup-registrarte").on('hidden.bs.modal', function () {
+					finalizar_proceso();
+			    });
+
+				jQuery("#popup-registrarte-2").on('hidden.bs.modal', function () {
+					if( CERRAR_MODAL ){
+		            	finalizar_proceso();
+					}
+			    });
+
 				var nombre = jQuery('#form_nuevo_cliente [name="nombre"] ').val();
 					apellido = jQuery("#apellido").val(),
 				 	email = jQuery("#email_1").val(), 
@@ -306,12 +320,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					'social_facebook_id': jQuery('#facebook_cliente_id').val(),
 					'social_google_id': jQuery('#google_cliente_id').val()
 				};
-
-				jQuery("#popup-registrarte-2").on('hidden.bs.modal', function () {
-					if( CERRAR_MODAL ){
-		            	finalizar_proceso();
-					}
-			    });
 
 				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
 					if( data > 0 ){
@@ -701,7 +709,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery.post( HOME+'/procesos/login/registro_pet.php', datos, function( data ) {
 
 					if( data >= 1 ){
-						jQuery("#btn_cerrar").on("click", function(e){
+						jQuery("#btn_cerrar_1").on("click", function(e){
 							finalizar_proceso();
 						});
 					}else{
@@ -1033,7 +1041,6 @@ function recuperar_clave(_this){
 }
 
 function finalizar_proceso(){
-
 	jQuery.post(
 		HOME+'procesos/login/enviar_mail_admin.php', 
 		{

@@ -62,7 +62,7 @@ $HTML .='
 <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="popup-registrarte" style="padding: 40px;">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar" >×</button>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar_1" >×</button>
 			<div class="popup-registrarte-1">
 				<p class="popup-tit">REGISTRARME</p>
 				
@@ -441,7 +441,7 @@ $HTML .='
 	<div id="popup-registrarte-2" class="modal modal_descuento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding: 40px 0px !important;">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar" >×</button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar_2" >×</button>
 				'.$nuevo_banner.'
 			</div>
 		</div>
