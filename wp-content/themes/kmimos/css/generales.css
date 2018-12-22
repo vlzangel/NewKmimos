@@ -1042,3 +1042,7 @@ h2.msg_acciones {
     padding: 12px 30px;
     font-family: Gotham-Pro-Bold;
 }
+
+button.close {
+    z-index: 999;
+}
