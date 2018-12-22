@@ -717,16 +717,10 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					}
 					jQuery('.km-btn-popup-registrarte-datos-mascota').html('REGISTRARME');
 				});
-
-				/*
+				
 				jQuery(".popup-registrarte-datos-mascota").css("display", "none");
 				jQuery(".popup-registrarte-final-0").css("display", "block");
-				*/
-
-				jQuery("#popup-registrarte").modal("hide");
-				jQuery("#popup-registrarte-2").modal("show");
-				iniciar_cronometro();
-
+				
 				jQuery("body").scrollTop(0);
 				jQuery(".modal").scrollTop(0);
 
