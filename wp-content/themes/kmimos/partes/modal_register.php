@@ -418,7 +418,7 @@ $nuevo_banner = '
 	</a>
 </div>';
 
-if( time() >= strtotime("2018-12-22 14:29:00") ){
+if( time() >= strtotime("2018-12-25 00:00:00") ){
 	$nuevo_banner = '
 		<div class="banner_descuento_registro_container" >
 			<img class="publicidad_solo_pc" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_2.png" />
