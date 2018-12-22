@@ -1,4 +1,7 @@
 /*MODAL SHOW*/
+
+var CERRAR_MODAL = true;
+
 jQuery(document).on('click', '.modal_show' ,function(e){
     modal_show(this);
 });
@@ -28,8 +31,12 @@ function iniciar_cronometro(){
 jQuery( document ).ready( function(){
 
 	jQuery("#btn_registrar_mascota").on("click", function(){
+		CERRAR_MODAL = false;
+
 		jQuery("#popup-registrarte-2").modal("hide");
 		jQuery("#popup-registrarte").modal("show");
+
+		CERRAR_MODAL = true;
 
 		jQuery(".popup-registrarte-1").css("display", "none");
 		jQuery(".popup-condiciones").css("display", "none");
@@ -301,7 +308,9 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				};
 
 				jQuery("#popup-registrarte-2").on('hidden.bs.modal', function () {
-		            finalizar_proceso();
+					if( CERRAR_MODAL ){
+		            	finalizar_proceso();
+					}
 			    });
 
 				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
@@ -1024,6 +1033,7 @@ function recuperar_clave(_this){
 }
 
 function finalizar_proceso(){
+
 	jQuery.post(
 		HOME+'procesos/login/enviar_mail_admin.php', 
 		{
