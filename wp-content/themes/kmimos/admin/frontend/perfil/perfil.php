@@ -58,10 +58,6 @@
 
     $tipoUsuario = unserialize($userdata['wp_capabilities'][0]);
 
-/*    echo "<pre>";
-        print_r($tipoUsuario);
-    echo "</pre>";*/
-
     $validacionesDescripcion = '';
     if( isset($tipoUsuario['vendor']) ){
         $validacionesDescripcion = '
@@ -78,7 +74,9 @@
         <input type="hidden" name="core" value="SI" />
         <input type="hidden" id="sub_path" name="sub_path" value="'.$img_perfil["sub_path"].'" />
 
-        <h1 style="margin: 0px; padding: 0px;">Mi Perfil</h1><hr style="margin: 5px 0px 10px;">
+        <h1>Mi Perfil</h1>';
+
+        /*
         <section>
             <div class="vlz_img_portada_perfil">
                 <div class="vlz_img_portada_fondo vlz_rotar" style="background-image: url('.$avatar.');"></div>
@@ -96,7 +94,9 @@
 
             <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
         </section>
+        */
 
+$CONTENIDO .=  $pixel.'
         <div class="inputs_containers">
 
             <section>
@@ -238,8 +238,6 @@ $CONTENIDO .='
                     />
                 </label>
             </section>
-
-            
 
         </div>
     ';

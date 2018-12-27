@@ -679,7 +679,7 @@ section .left{
     }
 
     .navbar-fixed-top{
-        z-index: 4 !important;
+        z-index: 999 !important;
     }
 
     .dropdown-toggle:hover{

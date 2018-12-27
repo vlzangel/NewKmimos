@@ -90,6 +90,7 @@
         "paseos",
         "testimonios",
         "product",
+        "perfil-usuario",
 
     ];
 
