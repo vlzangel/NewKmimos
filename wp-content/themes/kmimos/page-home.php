@@ -316,9 +316,9 @@
 
 		if( time() > strtotime("2018-11-16 00:00:00") ){
 			$HTML .= '
-				<a href="'.get_home_url().'/busqueda/?d=1" style="display: block;">
-					<img src="'.get_recurso("img").'BANNERS/banner_rotativo/pc/2_2.jpg" width="100%" class="solo_pc" />
-					<img src="'.get_recurso("img").'BANNERS/banner_rotativo/movil/2_2.jpg" width="100%" class="solo_movil" />
+				<a href="https://www.nomadas.life/?publicmap=kmimos" style="display: block;">
+					<img src="'.get_recurso("img").'BANNERS/banner_rotativo/pc/4.jpg" width="100%" class="solo_pc" />
+					<img src="'.get_recurso("img").'BANNERS/banner_rotativo/movil/4.jpg" width="100%" class="solo_movil" />
 				</a>
 			';
 		}
