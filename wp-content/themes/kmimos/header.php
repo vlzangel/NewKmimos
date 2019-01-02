@@ -90,16 +90,18 @@
         "paseos",
         "testimonios",
         "product",
-        "perfil-usuario",
+        "page-perfil.php",
 
     ];
+
+    $plantilla = get_post_meta($post->ID, '_wp_page_template', true);
 
     /* Recordatorio a cuidador para completar datos bancarios */
 	wp_enqueue_style( 'style', getTema()."/css/popup-datos-bancarios.css", array(), "1.0.0" );
 
     if( true ){
 
-		if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new) ){
+		if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new)  || in_array($plantilla, $pages_new) ){
 			include __DIR__.'/NEW/header.php';
 		}else{
 			

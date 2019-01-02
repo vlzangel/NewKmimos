@@ -1,10 +1,12 @@
 .mascotas_container{
 	overflow: hidden;
 	list-style: none;
+	margin-bottom: 120px;
+    padding: 0px;
 }
 .mascotas_box{
 	float: left;
-	width: 33.333333%;
+	width: 25%;
 	box-sizing: border-box;
 	padding: 0px 5px 10px;
 }
@@ -16,7 +18,6 @@
 	box-sizing: border-box;
 	padding: 0px;
 	width: 100%;
-	height: 290px;
 }
 .mascotas_item a.mascotas_content{
 	position: absolute;
@@ -31,18 +32,29 @@
     margin: 0px;
 }
 .mascotas_data{
-    margin: 0px 8px;
+    margin: 0px 8px 15px;
     text-align: center;
 }
 .mascotas_data a {
-	display: block;
-	text-align: center;
+    display: block;
+    text-align: center;
     margin: 0px;
-    font-size: 24px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: Gotham-Pro-Bold;
+    padding: 15px 0px;
 }
-.mascotas_item a.mascotas_content:hover h3{
-	/* color: #59c9a8; */
+
+.mascotas_data a.boton {
+	display: block;
+    text-align: center;
+    margin: 0px 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 7px 10px;
+    color: #FFF !important;
 }
+
 .mascotas_delete{
 	position: absolute;
     top: 0px;
@@ -55,10 +67,12 @@
     cursor: pointer;
     z-index: 999999999;
 }
+/*
 .mascotas_delete:hover{
     border-top: solid 1px #c72929;
     background: #c72929;
 }
+*/
 .mascotas_vacio{
 	text-align: center;
 }

@@ -17,6 +17,11 @@
 .body{
 	position: relative;
 }
+
+form#form_perfil > div {
+	padding: 35px 40px 0px 50px;
+}
+
 .menu_perfil{
 	float: left;
 	width: 270px;
@@ -168,7 +173,7 @@ li.vlz_resaltar {
 
 	.container_btn{
 	    overflow: hidden;
-	    padding: 0px 0px 10px;
+	    padding: 0px 0px 30px !important;
 	    margin: 0px 45px 0px;
 	}
 
@@ -180,6 +185,12 @@ li.vlz_resaltar {
 		border-bottom: 3px solid #00d2c6;
 		font-size: 16px;
 		font-family: Gotham-Pro-Bold;
+	}
+
+	.container_btn img {
+		float: right;
+		width: 60px;
+		cursor: pointer;
 	}
 
 	.perfil_cargando{

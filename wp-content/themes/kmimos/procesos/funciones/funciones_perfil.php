@@ -378,7 +378,7 @@
 	        }
 
 	        foreach($args as $tipo_item => $reservas){
-	        	if( count($reservas['facturas']) > 0 ){
+	        	if( is_array($reservas['facturas']) && count($reservas['facturas']) > 0 ){
 
 
     				$cliente_title = 'Cliente';

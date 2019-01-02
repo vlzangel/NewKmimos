@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #333;
+      }
+
+      .cls-2 {
+        font-size: 14.924px;
+        fill: #fff;
+        font-family: GothamBlack, Gotham Black;
+      }
+    </style>
+  </defs>
+  <title>Salir</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <circle class="cls-1" cx="15" cy="15" r="15"/>
+        <text class="cls-2" transform="translate(9.871 20.305)">X</text>
+      </g>
+    </g>
+  </g>
+</svg>

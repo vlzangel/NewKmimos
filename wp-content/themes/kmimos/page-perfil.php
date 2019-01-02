@@ -25,7 +25,7 @@
 			wp_enqueue_style('mascotas_responsive', getTema()."/css/responsive/mascotas_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('mascotas', getTema()."/js/mascotas.js", array("jquery", "global_js"), '1.0.0');
 
-			$btn_txt = "Nueva Mascota";
+			$btn_txt = "+";
 		break;
 		case 'valorar':
 			$btn_txt = "Enviar valoración";
@@ -342,15 +342,16 @@
 
 		$HTML_BTN = '';
 		if( $mostrar_btn ){
+			$type_btn = ( $btn_txt == '+' ) ? '<img src="'.get_recurso('img/PERFILES').'BOTON.svg" onclick="press_btn(jQuery(this))" data-id="#btn_actualizar" /> <input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'" style="display: none;">' : '<input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'">';
 			$HTML_BTN = '
 			<div class="container_btn">
-				<input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'">
+				'.$type_btn.'
 				<div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div>
 			</div>';
 		}
 
 		$HTML = '
-	 		<div class="km-ficha-bg" style="background-image:url('.get_recurso('img/PERFILES').'Banner.jpg);">
+	 		<div class="km-ficha-bg" style="background-image:url('.get_recurso('img/PERFILES').'Banner_PC.jpg);">
 				<div class="overlay" style="display: none;"></div>
 			</div>
 			<div class="body container km-content-reservation">

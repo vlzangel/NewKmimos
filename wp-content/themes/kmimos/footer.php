@@ -15,13 +15,15 @@
         "paseos",
         "testimonios",
         "product",
-        "perfil-usuario",
+        "page-perfil.php",
     ];
+
+    $plantilla = get_post_meta($post->ID, '_wp_page_template', true);
 
 
     if( true ){
 
-        if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new) ){
+        if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new)  || in_array($plantilla, $pages_new) ){
             include __DIR__.'/NEW/footer.php';
         }else{
             
