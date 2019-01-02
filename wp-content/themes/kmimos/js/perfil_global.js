@@ -1,6 +1,6 @@
 jQuery( document ).ready(function() {
 
-    initImg("portada");
+    initImg("portada_2");
 
 });
 
