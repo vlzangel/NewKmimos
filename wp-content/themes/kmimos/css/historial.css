@@ -63,6 +63,7 @@
 
 .main h1.titulo_pequenio {
     font-size: 19px;
+    padding-bottom: 20px !important;
 }
 
 .main .vlz_tabla {

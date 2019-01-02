@@ -63,7 +63,7 @@
 							"factura_PdfXml" => $factura->reserva_id.'_'.$factura->numeroReferencia,
 						),
 					);
-					break;
+				break;
 				case 'cliente':
 
 					$archivos['liquidacion'][] = $factura->reserva_id.'_'.$factura->numeroReferencia;
@@ -125,7 +125,7 @@
 			<h1>Mis Facturas</h1>
 
 			<div class="contenedor-botones '.$ocultar.'">
-				<label>Filtrar por: &nbsp;</label>
+				<!-- <label>Filtrar por: &nbsp;</label> -->
 				<select data-action="filtro" name="filtro_mes" >
 					<option value="0">Mes</option>
 					<option value="01">Enero</option>
