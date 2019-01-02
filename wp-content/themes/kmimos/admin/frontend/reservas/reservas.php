@@ -209,7 +209,7 @@
 			$modificadas = construir_listado(['modificadas'=>$reservas_array['modificadas']]);
 			
 			$CONTENIDO .= '
-			<h1 style="margin: 0px; padding: 0px;">Mis Reservas</h1><hr style="margin: 5px 0px 10px;">
+			<h1>Mis Reservas</h1>
 			<div>
 			  <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">

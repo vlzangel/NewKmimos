@@ -140,13 +140,12 @@
 				                	</div>
 				                	<div class="vlz_tabla_superior">
 					                	<div class="vlz_tabla_cuidador vlz_celda">
-					                		<span>Servicio</span>
-					                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div>
+					                		<span>Servicio: <a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></span>
 					                		'.$reserva["cliente"].'
 					                	</div>
 					                	<div class="vlz_tabla_cuidador vlz_celda">
 					                		<span>Fecha</span>
-					                		<div>'.$reserva["inicio"].' <b> > </b> '.$reserva["fin"].'</div>
+					                		<div>'.$reserva["inicio"].' a '.$reserva["fin"].'</div>
 					                	</div>
 					                	<div class="vlz_tabla_cuidador vlz_cerrar">
 					                		<span>Reserva</span>
@@ -154,7 +153,7 @@
 					                	</div>
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
-				                		<a class="ver_reserva_init_fuera">Ver Reserva</a>
+				                		<a class="ver_reserva_init_fuera boton boton_borde_gris">Ver Reserva</a>
 				                	</div>
 				                	<div class="vlz_tabla_inferior">
 				                		
@@ -190,21 +189,17 @@
 				                	</div>
 				                	<div class="vlz_tabla_superior">
 					                	<div class="vlz_tabla_cuidador vlz_celda">
-					                		<span>Servicio</span>
-					                		<div><a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></div> 
+					                		<span>Servicio: <a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></span>
 					                		'.$reserva["cliente"].'
+
+					                		<span>Fecha: '.$reserva["inicio"].' a '.$reserva["fin"].'</span>
 					                	</div>
-					                	<div class="vlz_tabla_cuidador vlz_celda">
-					                		<span>Fecha</span>
-					                		<div>'.$reserva["inicio"].' <b> > </b> '.$reserva["fin"].'</div>
-					                	</div>
-					                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno">
+					                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno" style="vertical-align: middle;">
 					                		'.$cancelar.'
-					                		<a class="ver_reserva_init">Ver Reserva</a>
+					                		<a class="ver_reserva_init boton boton_border_gris">Ver Reserva</a>
 					                	</div>
-					                	<div class="vlz_tabla_cuidador vlz_cerrar">
-					                		<span>Reserva</span>
-					                		<div>'.$reserva["id"].'</div>
+					                	<div class="vlz_tabla_cuidador vlz_cerrar" style="vertical-align: top;">
+					                		<span>Reserva: '.$reserva["id"].'</span>
 					                	</div>
 				                	</div>
 			                		<i class="fa fa-times ver_reserva_init_closet" aria-hidden="true"></i>

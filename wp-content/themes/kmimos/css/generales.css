@@ -458,7 +458,10 @@ section .left{
     .kmisaldo{
         padding: 10px 0px;
         font-size: 15px;
-        margin-bottom: 10px;
+        margin-bottom: 25px;
+        color: #7c169e;
+        background-color: #f0f0f0;
+        border-color: #cecece;
     }
 
     .vlz_img_portada{ position: relative; height: 150px; overflow: hidden; border: solid 1px #ccc; background: #EEE; }
