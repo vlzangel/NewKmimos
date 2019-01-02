@@ -68,17 +68,16 @@ $auto_facturar = ( $check )? 'checked' : '' ;
 $CONTENIDO = '	
 <div class="text-left">
     
-    <h1 style="margin: 10px 0px 5px 0px; padding: 0px;">Datos de Comprobante Fiscal Digital</h1>
+    <h1>Datos de Comprobante Fiscal Digital</h1>
 	
-	<label class="lbl-text" style="font-style:italic;">
-		Los siguientes datos ser&aacute;n utilizados para emitir su CFDI
-	</label>
-    <hr style="margin: 5px 0px 15px;">
- 
     <input type="hidden" name="accion" value="update-datos-facturacion" />
     <input type="hidden" name="core" value="SI" />
 		
 	<div class="inputs_containers">
+
+		<label class="lbl-text" style="font-style:bold;border-bottom: solid 1px #CCC; padding: 0px 0px 5px; margin-bottom: 30px;">
+			Los siguientes datos ser&aacute;n utilizados para emitir su CFDI
+		</label>
 		
 		<div>
 			<h4>Datos generales:</h4>

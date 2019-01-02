@@ -122,7 +122,7 @@
 				});
 			</script>
 
-			<h1 style="margin: 0px; padding: 0px;">Mis Facturas</h1><hr style="margin: 5px 0px 10px;">
+			<h1>Mis Facturas</h1><
 
 			<div class="contenedor-botones '.$ocultar.'">
 				<label>Filtrar por: </label>
