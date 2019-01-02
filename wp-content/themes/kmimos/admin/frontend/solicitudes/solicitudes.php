@@ -50,19 +50,23 @@
 
 	        $reservas_array = array(
 				"pendientes_confirmar" => array(
-					"titulo" => 'Solicitudes Pendientes por Confirmar',
+					// "titulo" => 'Solicitudes Pendientes por Confirmar',
+					"titulo" => '',
 					"solicitudes" => array()
 				),
 				"confirmadas" => array(
-					"titulo" => 'Solicitudes Confirmadas',
+					// "titulo" => 'Solicitudes Confirmadas',
+					"titulo" => '',
 					"solicitudes" => array()
 				),
 				"canceladas" => array(
-					"titulo" => 'Solicitudes Canceladas',
+					// "titulo" => 'Solicitudes Canceladas',
+					"titulo" => '',
 					"solicitudes" => array()
 				),
 				"otras" => array(
-					"titulo" => 'Otras Solicitudes',
+					// "titulo" => 'Otras Solicitudes',
+					"titulo" => '',
 					"solicitudes" => array()
 				)
 			);
@@ -195,7 +199,7 @@
 			$otros = construir_listado(['otras'=>$reservas_array['otras']]);
 
 	        if($strcaregiver!=''){
-	            $_CONTENIDO .= '<h1 style="line-height: normal;">'.$strcaregiver.'</h1><hr>';
+	            $_CONTENIDO .= '<h1>'.$strcaregiver.'</h1>';
 	        }
 
 	        // $_CONTENIDO .= construir_listado($reservas_array);
@@ -260,7 +264,7 @@
 		$mostrar_cuidador = 'none';
 		$mostrar_cliente = 'block';
 	}
-
+	/*
 	$CONTENIDO .= '
 		<div class="text-right" style="display:'.$mostrar_cuidador.'; margin: 20px 0px!important; ">
 			<div class="btn-group" role="group">
@@ -274,6 +278,9 @@
 		<div id="list-cliente" data-action="switch-content" style="display:'.$mostrar_cliente.'">'.
 			get_caregiver_tables("cl.meta_value={$user_id}", $como_cliente,'No hay solicitudes como cliente.',true).
 		'</div>';
+		*/
+
+	$CONTENIDO .= get_caregiver_tables("cl.meta_value={$user_id}", $como_cliente,'No hay solicitudes como cliente.',true);
 
 
 	global $count;
