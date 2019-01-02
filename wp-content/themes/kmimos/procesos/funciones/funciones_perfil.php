@@ -46,13 +46,13 @@
 
 
 	    			case 'factura_pdf':
-	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i>Descargar PDF</a>';
+	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver boton boton_border_gris"> <i class="fa fa-cloud-download" aria-hidden="true"></i>Descargar PDF</a>';
     				break;
 	    			case 'factura_xml':
-	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i>Descargar XML</a>';
+	    				$respuesta .= '<a href="'.$accion.'" class="vlz_accion vlz_ver boton boton_border_gris"> <i class="fa fa-cloud-download" aria-hidden="true"></i>Descargar XML</a>';
     				break;
 	    			case 'factura_PdfXml':
-	    				$respuesta .= '<a data-pdfxml="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-download" aria-hidden="true"></i> PDF y XML</a>';
+	    				$respuesta .= '<a data-pdfxml="'.$accion.'" class="vlz_accion vlz_ver boton boton_border_gris"> <i class="fa fa-cloud-download" aria-hidden="true"></i> PDF y XML</a>';
     				break;
 	    			
 	    		}
@@ -71,7 +71,7 @@
 	                	<h1 class="titulo">'.$reservas['titulo'].'</h1>
 	                	<div class="vlz_tabla_box">
 	                ';
-		        	if( count($reservas['reservas']) > 0 ){
+		        	if( is_array($reservas['reservas']) && count($reservas['reservas']) > 0 ){
 
 		                foreach ($reservas['reservas'] as $reserva) {
 
@@ -411,7 +411,7 @@
 				                		<div style="text-transform: uppercase;" >'.$reserva["serie"].'-'.$reserva["reserva_id"].'</div>
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno">
-				                		<a class="ver_reserva_init"><i class="fa fa-eye"></i> Ver</a>
+				                		<a class="ver_reserva_init boton boton_border_gris"><i class="fa fa-eye"></i> Ver</a>
 				                		'.$botones.'
 				                	</div>
 				                	<div class="vlz_tabla_cuidador vlz_cerrar">

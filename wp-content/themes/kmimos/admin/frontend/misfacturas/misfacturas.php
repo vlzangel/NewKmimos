@@ -122,10 +122,10 @@
 				});
 			</script>
 
-			<h1>Mis Facturas</h1><
+			<h1>Mis Facturas</h1>
 
 			<div class="contenedor-botones '.$ocultar.'">
-				<label>Filtrar por: </label>
+				<label>Filtrar por: &nbsp;</label>
 				<select data-action="filtro" name="filtro_mes" >
 					<option value="0">Mes</option>
 					<option value="01">Enero</option>
@@ -150,7 +150,7 @@
 			<div>
 
 			  <!-- Nav tabs -->
-			  <ul class="nav nav-tabs" role="tablist">
+			  <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 20px;">
 			    <li role="presentation" class="active">
 			    	<a href="#Liquidaciones" aria-controls="Liquidaciones" role="tab" data-toggle="tab">Liquidaciones</a>
 			    </li>

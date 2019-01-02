@@ -167,8 +167,13 @@
 		break;
 		// para el cuidador
 		case 'mis-facturas':
+
 		    wp_enqueue_style('misfacturas', getTema()."/css/misfacturas.css", array(), '1.0.0');
 			wp_enqueue_style('misfacturas_responsive', getTema()."/css/responsive/misfacturas_responsive.css", array(), '1.0.0');
+
+		    wp_enqueue_style('historial', getTema()."/css/historial.css", array(), '1.0.0');
+			wp_enqueue_style('historial_responsive', getTema()."/css/responsive/historial_responsive.css", array(), '1.0.0');
+			
 			wp_enqueue_script('misfacturas_js', getTema()."/js/misfacturas.js", array("jquery", "global_js"), '1.0.0');
 		break;
 		case 'datos-de-facturacion':
