@@ -5,8 +5,7 @@
     $favoritos = get_favoritos($user_id);
 
     if( count($favoritos)>0 ) {
-        $CONTENIDO .= '<h1 style="margin: 0px; padding: 0px;">Mis Favoritos</h1>
-        <hr style="margin: 5px 0px 10px;">
+        $CONTENIDO .= '<h1>Mis Favoritos</h1>
         <input type="hidden" id="user_id" name="user_id" value="'.$user_id.'" />
         <ul class="favoritos_container">';
         $CONTENIDO .= '<div class="km-resultados-grid">';

@@ -1,5 +1,6 @@
 <?php
 	
+	error_reporting(0);
 		$sql = "
 			SELECT 
 				posts.post_status AS status,
