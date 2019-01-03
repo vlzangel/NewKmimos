@@ -1,0 +1,121 @@
+@media (max-width: 992px){
+
+	.logo-white{
+		display: none;
+	}
+	.logo-black{
+		display: block;
+	}
+	header {
+		margin-right: 0px!important;
+		margin-left: 0px!important;
+		padding: 15px 0px;
+	    background-position: top;
+	}
+	header img {
+		width: 90px;
+	}
+	header > div{
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	header h2{
+		font-size: 22px!important;
+	}
+	header p{
+		font-size: 15px!important;
+	}
+	.navbar-fixed-top{
+		position: relative!important;
+	}
+	.title-secundario{
+		font-size: 16px!important;
+	}
+
+	#sidebar{
+		padding-left: 15px!important;
+		height: auto;
+	}
+	.title-secundario {
+    	font-size: 13px;
+	}
+	#club-content{
+		margin: 0px auto;
+		padding-left: 15px;
+	}
+	label.terminos{
+		font-size: 11px;
+	}
+	.btn-club{
+		width: 100%;
+	}
+
+	/********** content **********/
+
+	.media-body .media,
+	#club-content div{
+		margin-bottom: 30px;
+		text-align: justify;
+	}
+
+	#club-content,
+	#club-content div p,
+	.media-body p,
+	.body-content{
+		display: inline;
+	    font-size: 12px!important;
+	    line-height: 22px!important;
+		height: auto!important;
+	    text-align: justify!important;
+	}
+
+
+	/********** imagen content **********/
+	.media-object{
+	    text-align: justify;
+	    padding: 5px;
+	}
+
+	/******** compartir **********/
+	#compartir-club-cover{ 
+		height:40vh;
+		position: relative!important;
+	}
+	.btn-club-azul{
+		width: 100%;
+	}
+	.titulo{
+		font-size: 22px!important;
+	}
+	.cupon{
+		padding: 20px 15px!important; 
+	}
+	.button-mensaje{
+		position: relative;
+		width: 100%;
+	    line-height: 18px;
+	}
+	.button-mensaje p{
+	    font-size: 12px!important;
+	}
+
+}
+@media (max-width: 768px){
+	.content-compartir-club{
+		width: 100%;
+	}
+	.cupon{
+		padding: 0px!important; 
+	}
+	.row{
+		padding-left: 0px!important;
+		padding-right: 0px!important;
+	}
+	.btn-group-shared{
+		margin: 60px 0px;
+	}
+}
+@media (max-width: 480px){
+}
+@media (max-width: 350px){
+}

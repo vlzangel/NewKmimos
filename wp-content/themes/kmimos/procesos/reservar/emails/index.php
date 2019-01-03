@@ -357,17 +357,106 @@
 							AND DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('2017-05-12','%m-%d-%Y') and DATE_FORMAT(now(),'%m-%d-%Y')" );
 				if(  $_SESSION['admin_sub_login'] != 'YES' && $count_reservas == 1){
 			   		if(isset($cliente["id"])){	
-				   		$user_referido = get_user_meta($cliente["id"], 'landing-referencia', true);
-				   		if(!empty($user_referido)){
-							$username = $cliente["nombre"];
-							$http = (isset($_SERVER['HTTPS']))? 'https://' : 'http://' ;
-							require_once( $PATH_TEMPLATE.'/template/mail/reservar/club-referido-primera-reserva.php');
-							$user_participante = $wpdb->get_results( "SELECT ID, user_email FROM wp_users WHERE md5(user_email) = '{$user_referido}'" );
-							$user_participante = (count($user_participante)>0)? $user_participante[0] : [];
-							if(isset($user_participante->user_email)){
-								wp_mail( $user_participante->user_email, "¡Felicidades, otro perrhijo moverá su colita de felicidad!", $html );
-							}
-						} 
+				   		// buscar cupones
+				   		$cupones = $wpdb->get_results("SELECT items.order_item_name as name
+				            FROM `wp_woocommerce_order_items` as items 
+				                INNER JOIN wp_woocommerce_order_itemmeta as meta ON 
+				                	meta.order_item_id = items.order_item_id
+				                INNER JOIN wp_posts as p ON 
+				                	p.ID = ".$servicio["id_reserva"]." and p.post_type = 'wc_booking' 
+				                WHERE meta.meta_key = 'discount_amount'
+				                    and items.`order_id` = p.post_parent
+				                    and not items.order_item_name like ('saldo-%')
+				            ;");
+
+				   		// validar si son del club
+					   		$propietario_id=0;
+					   		$propietario_nombre = '';
+					   		$propietario_apellido = '';
+					   		$propietario_email = '';
+					   		$cupon_code = '';
+				   		if( !empty($cupones) ){			   			
+
+					   		// Validar si son del club 
+					   		foreach ($cupones as $key => $cupon) {
+					   			$propietario_id = $wpdb->get_var("
+					   				select user_id from wp_usermeta where meta_key = 'club-patitas-cupon' and meta_value = '".$cupon->name."'
+					   			");
+					   			if( $propietario_id > 0 ){
+					   				$propietario_nombre = get_user_meta( $propietario_id, 'first_name', true );
+					   				$propietario_apellido = get_user_meta( $propietario_id, 'last_name', true );
+					   				$cupon_code = $cupon->name;
+					   				break;
+					   			}else{
+
+					   				$propietario_id = 0;
+					   			}
+					   		}
+							if( $propietario_id > 0 ){
+
+								if( !is_petsitters( $propietario_id ) ){
+									// agregar saldo a favor
+									$saldo = get_user_meta( $propietario_id, 'kmisaldo', true );
+									$saldo += 150;
+									update_user_meta( $propietario_id, 'kmisaldo', $saldo );
+								}else{
+									// agregar pago a cuidador
+									include_once( $PATH_TEMPLATE.'/lib/pagos_cuidador.php');
+									$pagos->cargar_retiros( $propietario_id, 150, 'Pago por uso de cupon Club patitas felices' );
+								}
+
+								// agregar transaccion en balance
+								$wpdb->query("INSERT INTO cuidadores_transacciones (
+									tipo,
+									user_id,
+									fecha,
+									referencia,
+									descripcion,
+									monto,
+									reservas,
+									comision
+								)values(
+									'saldo_club',
+									{$propietario_id},
+									NOW(),
+									'".$servicio["id_reserva"]."',
+									'Saldo a favor Club de las patitas felices ".$cupon_code."',
+									150,
+									'',
+									0									
+								) 
+								");
+
+								// enviar email
+								$mail_info = realpath( $PATH_TEMPLATE.'/template/mail/clubPatitas/partes/info_sin_perfil.php');
+								$phone = get_user_meta( $propietario_id, 'user_phone', true );
+								if( !empty($phone) ){
+									$mail_info = realpath(
+										$PATH_TEMPLATE.'/template/mail/clubPatitas/partes/info_con_perfil.php'
+									);
+								}
+								$message_info = file_get_contents($mail_info);
+
+								$mail_file = realpath( 
+									$PATH_TEMPLATE.'/template/mail/clubPatitas/notificacion_de_uso.php'
+								);
+								$message_mail = file_get_contents($mail_file);
+
+								$message_mail = str_replace('[INFO]', $message_info, $message_mail);
+								$message_mail = str_replace('[URL_IMG]', site_url()."/wp-content/themes/kmimos/images", $message_mail);
+								$message_mail = str_replace('[name]', $propietario_nombre.' '.$propietario_apellido, $message_mail);
+								$message_mail = str_replace('[url]', site_url(), $message_mail);
+								$message_mail = str_replace('[CUPON]', $cupon_code, $message_mail);
+
+								$propietario = get_userdata($propietario_id);
+								if( isset($propietario->user_email) ){
+									wp_mail( $propietario->user_email, "Confirmación de uso cupon Club Patitas Felices!", $message_mail);
+									wp_mail( 'italococchini@gmail.com', "Confirmación de uso cupon Club Patitas Felices!", $message_mail);
+								}
+
+							}				   		
+
+				   		}
 					}
 				}
 
