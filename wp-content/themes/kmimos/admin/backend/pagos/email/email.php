@@ -64,4 +64,4 @@ print_r($list_pagos_id);
 			[]
 		);
 		// wp_mail( $cuidador->email, "Notificación de pago", $mensaje );
-		wp_mail( 'italococchini@gmail.com', "Notificación de pago", $mensaje );
+		wp_mail( 'i.cocchini@kmimos.la', "Notificación de pago", $mensaje );
