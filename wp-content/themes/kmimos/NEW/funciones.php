@@ -245,7 +245,7 @@
 
 		$item = $wpdb->get_row("SELECT * FROM usos_banner WHERE user_id = '{$user_id}' ");
 		if( $item == false ){ 
-			$wpdb->query("INSERT INTO usos_banner VALUES (NULL, '{$user_id}', '', '', NOW() )"); 
+			$wpdb->query("INSERT INTO usos_banner VALUES (NULL, '{$user_id}', '', '', NOW(), '' )"); 
 			$item = $wpdb->get_row("SELECT * FROM usos_banner WHERE user_id = '{$user_id}' ");
 		}
 
@@ -271,6 +271,11 @@
 				$wpdb->query("UPDATE usos_banner SET conocer = '{$conocer}' WHERE id = '{$item->id}';");
 			break;
 		}
+
+		if( isset($tag) && !empty($tag) ){
+			$wpdb->query("UPDATE usos_banner SET tag = '{$tag}' WHERE id = '{$item->id}';");
+		}
+
         
 	}
 
