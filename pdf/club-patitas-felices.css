@@ -1,0 +1,132 @@
+
+input[type="checkbox"]{
+	margin: 20px 0px!important;
+}
+input[type="email"],
+input[type="text"]{
+	padding: 20px;
+	margin: 10px 0px!important;
+	text-align: center;
+}
+a{
+	color: #17ad8f!important;
+}
+section{
+	padding-top: 20px!important;
+	padding-bottom: 60px; 
+}
+h2{
+	font-size: 40px!important;
+	color: #fff!important;
+}
+.km-ficha-bg{
+	height: 260px!important;
+}
+header {
+	padding: 30px 65px;
+	width: 100%;
+	height: auto;
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-position: left center; 
+	margin: 0px!important;
+}
+header div a{
+	color: #fff!important;
+}
+header div{
+	color: #fff;
+	text-align: right;
+	color: #fff;
+	width: 100%;
+	vertical-align: middle; 
+	right: 0px;
+}
+
+p.subtitle{
+	font-size: 14px;
+	color: #fff;
+}
+.align-bottom{
+	vertical-align: bottom;
+	bottom: 0px;
+}
+
+.btn-club{
+	border:1px solid #6B1C9A!important; 
+	background: #6B1C9A!important; 
+	margin:5px 0px; 
+	border-radius: 10px;
+	padding: 10px 30px!important;
+}
+.btn-club-azul{
+	margin-top: 50px;
+	border:1px solid #007BDC!important; 
+	background: #007BDC!important; 
+	margin:5px 0px; 
+	color: #fff;
+	border-radius: 10px;
+	padding: 10px 30px!important;
+}
+.title-secundario{
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+#sidebar div {
+	display: table-cell!important;
+	vertical-align: middle;
+}
+
+#sidebar{
+	padding-top:5%!important;
+	padding-left:0px!important;
+	padding-bottom:20px!important;
+	display: inline-block;
+	height: 80vh;
+	background: #ccc;
+}
+
+#club-content{
+	padding-left: 50px;
+	height: 80vh;
+}
+.media-body p{
+	margin: 0px!important;
+}
+.media-body{
+	vertical-align: middle!important;
+}
+.item{
+	margin-left: 5px;
+}
+
+
+
+/* ******************** Compartir ******************** */
+#compartir-club-cover{
+	display:inline-flex; 
+	height:100vh;
+	background-position: center bottom ; 
+	background-size: cover;
+}
+.compartir-section{
+	display:inline-flex; 
+	height: calc(100vh - 30px) ; 
+	margin-top: 30px;
+	vertical-align: middle;
+	padding: 0px 15px;
+}
+.titulo{
+	color: #515151!important;
+	font-size: 23px!important;
+}
+.cupon{
+	padding:20px 20px!important; 
+	background:#ccc;
+	color:#7D169E;
+	border-radius:15px;
+	font-size: 50px;
+	font-weight: bold;
+	margin-bottom:20px;
+}

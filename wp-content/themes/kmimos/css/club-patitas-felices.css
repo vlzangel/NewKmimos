@@ -1,0 +1,224 @@
+body {
+    font-family: 'Gotham-Pro-Regular', arial, sans-serif;
+    font-size: 13px;
+}
+@font-face {
+    font-family: 'Poetsen';
+    src: url(../fonts/poetsen_one/PoetsenOne-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Gotham-Pro-Light';
+    src: url(../fonts/gotham_pro/gotham-pro-light.otf) format('opentype');
+}
+@font-face {
+    font-family: 'Gotham-Pro-Regular';
+    src: url(../fonts/gotham_pro/gotham-pro-regular.otf) format('opentype');
+}
+@font-face {
+    font-family: 'Gotham-Pro-Medium';
+    src: url(../fonts/gotham_pro/gotham-pro-medium.otf) format('opentype');
+}
+@font-face {
+    font-family: 'Gotham-Pro-Bold';
+    src: url(../fonts/gotham_pro/gotham-pro-bold.otf) format('opentype');
+}
+@font-face {
+    font-family: 'Gotham-Pro-Black';
+    src: url(../fonts/gotham_pro/gotham-pro-black.otf) format('opentype');
+}
+
+/********** Error **********/
+
+.info-error{
+	border: 1px solid red!important; 
+}
+
+
+input[type="checkbox"]{
+	margin: 20px 0px!important;
+}
+input[type="email"],
+input[type="text"]{
+	border-radius: 2px;
+	padding: 20px;
+	margin: 2px 0px 0px 0px!important;
+	margin: 10px 0px!important;
+	text-align: center;
+	width: 100%!important;
+}
+a{
+	color: #17ad8f!important;
+}
+section{
+	padding-top: 20px!important;
+	padding-bottom: 60px; 
+}
+h2{
+	font-size: 40px!important;
+	color: #fff!important;
+	font-family: "Gotham-Pro-Black"!important;
+}
+.gotham-bold{
+	font-family: "Gotham-Pro-Black"!important;
+}
+.km-ficha-bg{
+	height: 260px!important;
+}
+header {
+	padding: 30px 65px;
+	width: 100%;
+	height: auto;
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-position: left center; 
+	margin: 0px!important;
+}
+header div a{
+	color: #fff!important;
+}
+header div{
+	color: #fff;
+	text-align: right;
+	color: #fff;
+	width: 100%;
+	vertical-align: middle; 
+	right: 0px;
+}
+.redes-sociales-hidden{
+	position: absolute; left: -6000px; 
+}
+p.subtitle{
+	font-size: 14px;
+	color: #fff;
+}
+.align-bottom{
+	vertical-align: bottom;
+	bottom: 0px;
+}
+
+.btn-facebook,
+.btn-whatsapp,
+.btn-twitter{
+	padding-left: 5px!important;
+    padding-right: 5px!important;
+}
+.btn-twitter a{
+	color:#fff!important;
+	width: 99px!important;
+	height: 28px!important;
+	padding: 3px 12px!important;
+}
+.btn-whatsapp a{
+	color: #fff!important;
+	font-size:11px; 
+	font-weight: bold; 
+	background: #25D366!important;  
+	width: 99px!important; 
+	height: 28px!important;
+}
+
+.btn-club{
+	border:1px solid #6B1C9A!important; 
+	background: #6B1C9A!important; 
+	margin:5px 0px; 
+	border-radius: 10px;
+	padding: 10px 30px!important;
+}
+.btn-club-azul{
+	margin-top: 50px;
+	border:1px solid #007BDC!important; 
+	background: #007BDC!important; 
+	margin:5px 0px; 
+	color: #fff;
+	border-radius: 10px;
+	padding: 10px 30px!important;
+}
+.title-secundario{
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+#sidebar div {
+	display: table-cell!important;
+	vertical-align: middle;
+}
+
+#sidebar{
+	padding-top:5%!important;
+	padding-left:0px!important;
+	padding-bottom:20px!important;
+	display: inline-block;
+	height: 80vh;
+	background: #ccc;
+}
+
+#club-content{
+	padding-left: 50px;
+	height: 80vh;
+}
+.media-body p{
+	margin: 0px!important;
+}
+.media-body{
+	vertical-align: middle!important;
+}
+.item{
+	margin-left: 5px;
+}
+
+.body-content{
+	height: 55vh; 
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+}
+
+
+/* ******************** Compartir ******************** */
+#compartir-club-cover{
+	display:inline-flex; 
+	height:100vh;
+	background-position: center bottom ; 
+	background-size: cover;
+	position: fixed;
+}
+.compartir-section{
+	display:inline-flex; 
+	height: calc(100vh - 30px) ; 
+	margin-top: 40px;
+	vertical-align: middle;
+	padding: 0px 0px!important;
+	float: right!important;
+}
+.titulo{
+	color: #515151!important;
+	font-size: 23px!important;
+	margin-top: 20px;
+}
+.cupon{
+	font-family: "Gotham-Pro-Black";
+	padding: 10px 20px!important; 
+	background:#ccc;
+	color:#7D169E;
+	border-radius:15px;
+	font-size: 50px;
+	font-weight: bold;
+	margin-bottom:20px;
+}
+
+.bottom-mensaje{
+	bottom: 0px;
+	font-size: 17px;padding: 25px 0px;
+	position: absolute;
+	text-align: justify;
+}
+
+.btn-group-shared{
+	margin: 30px 0px;
+}
