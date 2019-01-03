@@ -9,12 +9,18 @@
 
     if( $usos != false ){
         foreach ($usos as $uso) {
+            $tag = '';
+            if(isset($uso->tag) && !empty($uso->tag)){
+                $tag = $uso->tag;
+            }
+
             $data["data"][] = array(
                 $uso->id,
                 utf8_encode($Procesos->get_cliente( $uso->user_id )),
                 implode(" - ", json_decode($uso->reservas)),
                 implode(" - ", json_decode($uso->conocer)),
-                date('d/m/Y H:i:s', strtotime($uso->fecha))
+                date('d/m/Y H:i:s', strtotime($uso->fecha)),
+                $tag
             );
 
         }
