@@ -1,6 +1,6 @@
 <?php
-require_once('base_db.php');
-require_once('GlobalFunction.php');
+require_once(__DIR__.'/base_db.php');
+require_once(__DIR__.'/GlobalFunction.php');
 
 // ***************************************
 // Cargar listados de Reservas
@@ -17,6 +17,199 @@ function getRazaDescripcion($id, $razas){
 	return $nombre;
 }
 
+function get_cupones_reserva( $reserva_id ){
+	global $wpdb;
+
+    // Cargar cupones 
+    $cupon_sql = "SELECT items.order_item_name as name, meta.meta_value as monto  
+    FROM `wp_woocommerce_order_items` as items 
+    INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
+    INNER JOIN wp_posts as p ON p.ID = ".$reserva_id." and p.post_type = 'wc_booking' 
+    WHERE 
+    meta.meta_key = 'discount_amount'
+    and items.`order_id` = p.post_parent";
+    $cupones = $wpdb->get_results($cupon_sql);
+
+    $info = '';
+    $color = $colores['normal'];
+    $tipo_cupon='';
+    if( !empty($cupones) ){                    
+        foreach ($cupones as $cupon) {
+            if( $cupon->monto > 0 ){
+                $tipo = $wpdb->get_var("SELECT m.meta_value 
+                    FROM wp_posts as p 
+                    INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = 'descuento_tipo' 
+                    WHERE post_title = '".$cupon->name."' AND post_type = 'shop_coupon'");
+                $cupon_tipo = ( $tipo != '' ) ? " Tipo: ".$tipo : '' ;
+
+                // Saldo a favor
+                $es_saldo=false;
+                if( strpos($cupon->name, 'saldo-') !== false ){
+
+	                $es_saldo=true;
+                    $info = " [ ".$cupon->name .": $ " .$cupon->monto . " Tipo: Saldo a favor ] ";
+				    $tooltip = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
+		    	    $detalle[ 'kmimos' ] = '
+				        <small class="items-span" '.$tooltip.' style="color:#fff; background:#88e093!important; padding: 10px;">
+				            <label style="margin-bottom: 0px;">
+				                    <strong>Saldo a favor </strong>
+				                    <span class="badge" style="margin-left: 10px;">
+				                        $ '.number_format($cupon->monto, 2, ",", ".").'
+				                    </span>
+				            </label>
+				        </small>
+				    ';
+                }
+
+                // Cupones a Kmimos
+                if( ($tipo == 'compartido' ||  $tipo == 'kmimos') || ( empty($tipo) && !$es_saldo ) ) {
+                	$monto_kmimos = $cupon->monto;	                
+	                if( $tipo == 'compartido' ){
+		                $percent_kmimos = $wpdb->get_var("SELECT m.meta_value 
+		                    FROM wp_posts as p 
+		                    INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = 'descuento_kmimos' 
+		                    WHERE post_title = '".$cupon->name."' AND post_type = 'shop_coupon'");
+		                if( $cupon->monto > 0 && $percent_kmimos > 0 ){
+		                    $monto_kmimos = ( $cupon->monto * $percent_kmimos ) / 100;
+		                }
+	                }
+
+                    $info = " [ ".$cupon->name .": $ " .$cupon->monto . " Tipo: ".$tipo . " ] ";
+				    $tooltip = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
+		    	    $detalle[ 'kmimos' ] .= '
+				        <small class="items-span" '.$tooltip.' style="color:#fff; background:#8d88e0!important; padding: 10px;">
+				            <label style="margin-bottom: 0px;">
+				                    <strong>'.$cupon->name .'</strong>
+				                    <span class="badge" style="margin-left: 10px;">
+				                        $ '.number_format($monto_kmimos, 2, ",", ".").'
+				                    </span>
+				            </label>
+				        </small>
+				    ';
+                }
+
+                // Cupones a cuidador
+                if( $tipo == 'compartido' ||  $tipo == 'cuidador' ){
+                	$monto_cuidador = $cupon->monto;
+	                if( $tipo == 'compartido' ){
+		                $percent_cuidador = $wpdb->get_var("SELECT m.meta_value 
+		                    FROM wp_posts as p 
+		                    INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = 'descuento_cuidador' 
+		                    WHERE post_title = '".$cupon->name."' AND post_type = 'shop_coupon'");
+		                if( $cupon->monto > 0 && $percent_cuidador > 0 ){
+		                    $monto_cuidador = ( $cupon->monto * $percent_cuidador ) / 100;
+		                }
+		            }
+	                
+                    $info = " [ ".$cupon->name .": $ " .$cupon->monto . " Tipo: ".$tipo . " ] ";
+				    $tooltip = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
+		    	    $detalle[ 'cuidador' ] = '
+				        <small class="items-span" '.$tooltip.' style="color:#fff; background:#e0888c!important; padding: 10px;">
+				            <label style="margin-bottom: 0px;">
+				                    <strong>'.$cupon->name .'</strong>
+				                    <span class="badge" style="margin-left: 10px;">
+				                        $ '.number_format($monto_cuidador, 2, ",", ".").'
+				                    </span>
+				            </label>
+				        </small>
+				    ';
+                }
+
+
+            }
+        }
+    }
+
+    return $detalle;
+
+}
+
+/*
+function __calculo_pago_cuidador( $reserva_id, $total ){
+
+	$pago_cuidador = $total / 1.25;
+	$pago_kmimos = $total - $pago_cuidador;
+
+	// Cupones de la reserva
+		$cupones = $this->db->get_results("SELECT items.order_item_name as name, meta.meta_value as monto  
+        FROM `wp_woocommerce_order_items` as items 
+            INNER JOIN wp_woocommerce_order_itemmeta as meta ON meta.order_item_id = items.order_item_id
+            INNER JOIN wp_posts as p ON p.ID = ".$reserva_id." and p.post_type = 'wc_booking' 
+            WHERE meta.meta_key = 'discount_amount'
+                and items.`order_id` = p.post_parent
+                and not items.order_item_name like ('saldo-%')
+        ;");
+
+	// Datos de los cupones
+		$meta_cupon = [];
+		if( !empty($cupones) ){
+			foreach ($cupones as $cupon) {
+
+
+				$cupon_id = $this->db->get_var("SELECT ID FROM wp_posts WHERE post_title = '".$cupon->name."' ");
+				$metas =  $this->db->get_results("SELECT meta_key, meta_value FROM wp_postmeta WHERE meta_key like 'descuento%' and post_id = ".$cupon_id );
+
+				$meta_cupon[ $cupon->name ][ 'total' ] = $cupon->monto; 
+				if( $cupon->monto > 0 ){
+					if( !empty($metas) ){
+						foreach ($metas as $meta) {
+							$meta_cupon[ $cupon->name ][ $meta->meta_key ] = $meta->meta_value;
+						}
+					}
+
+					// tipo de descuento
+					$_cupon = $meta_cupon[ $cupon->name ];
+
+					switch ( strtolower($_cupon['descuento_tipo']) ) {
+						case 'kmimos':
+							if( $pago_kmimos < $_cupon['total'] ){
+								$diferencia = $_cupon['total'] - $pago_kmimos;
+								$pago_cuidador -= $diferencia;
+							}else{
+								$pago_kmimos -= $_cupon['total'];
+							}
+							break;
+						case 'cuidador':
+							if( $pago_cuidador < $_cupon['total'] ){
+								$pago_cuidador = 0;
+							}else{
+								$pago_cuidador -= $_cupon['total'];
+							}
+							break;
+						
+						case 'compartido':
+							// Calculo de descuentos
+							$descuento_kmimos = ( $_cupon['descuento_kmimos'] * $_cupon['total'] ) / 100;
+							$descuento_cuidador = ( $_cupon['descuento_cuidador'] * $_cupon['total'] ) / 100;
+							if( $pago_cuidador <= $descuento_cuidador ){
+								$pago_cuidador = 0;
+							}else{
+								// validar si el monto de kmimos es superior a la comision
+								$diferencia = 0;
+								if( $pago_kmimos < $descuento_kmimos ){
+									$diferencia = $descuento_kmimos - $pago_kmimos;
+									$descuento_cuidador += $diferencia;
+									$pago_kmimos = 0;
+								}
+
+								if( $descuento_cuidador >= $pago_cuidador ){
+									$pago_cuidador = 0;
+								}else{
+									$pago_cuidador -= $descuento_cuidador;
+								}
+							}
+							break;
+						default:
+							$pago_cuidador -= $_cupon['total'];
+							break;
+					}
+				}
+			}
+		}
+
+	return $pago_cuidador ; 
+}
+*/
 
 
 function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
@@ -83,7 +276,7 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 			$sts_corto = "Pendiente";
 			if( $sts_pedido == 'wc-on-hold'){
 				if( in_array($forma_pago, $payment_method_cards) ){
-					$sts_largo = "Pendiente por confirmar el cuidador"; // metodo de pago es por TDC / TDD ( parcial )
+					$sts_largo = "Pago fallido"; // metodo de pago es por TDC / TDD ( parcial )
 					$sts_corto = "Pago fallido";
 				}elseif( in_array($forma_pago, $payment_method_store) ){
 					$sts_largo = "Pendiente de pago en tienda"; // Tienda por conv
@@ -217,7 +410,7 @@ function getServices( $num_reserva = 0 ){
 			-- Reserva
 			LEFT JOIN wp_posts as re ON re.ID = i.meta_value -- No. Reserva
 		WHERE	
-			( i.meta_key like 'Servicios Adicionales%' or i.meta_key like 'Servicios de %' )
+			( i.meta_key like 'Servicios Adicionales%' or i.meta_key like 'Servicios de %' ) 
 			and i.order_item_id = o.order_item_id
 	";
 	$services = $wpdb->get_results($sql);
@@ -263,7 +456,7 @@ function getMetaCuidador( $user_id ){
 }
 
 function getMetaReserva( $post_id ){
-	$condicion = "";
+	//$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost', 'modificacion_de', '_booking_order_item_id' )";
 	$result = get_metaPost($post_id, $condicion);
 
 	$data = [
@@ -301,10 +494,9 @@ function getMetaPedido( $post_id ){
 function get_ubicacion_cuidador( $user_id ){
 	global $wpdb;
 	$sql = "
-		SELECT ub.*
-		from  ubicaciones as ub
-			inner join cuidadores as u ON u.id = ub.cuidador  
- 	 	WHERE u.user_id = $user_id
+		SELECT *
+		from  cuidadores
+ 	 	WHERE user_id = $user_id
  	";
 	$ubi = $wpdb->get_results($sql);
 	$ubicacion=$ubi;
@@ -317,7 +509,7 @@ function get_ubicacion_cuidador( $user_id ){
 	if(count($ubi)>0){
 		$ubicacion = $ubi[0];
 
-		$estado = explode('=', $ubicacion->estado);
+		$estado = explode('=', $ubicacion->estados);
 		$munici = explode('=', $ubicacion->municipios);
 
 		$est = $wpdb->get_results("select * from states as est where est.id = ".$estado[1]);
@@ -341,24 +533,21 @@ function getReservas($desde="", $hasta=""){
 
 	$filtro_adicional = "";
 
-	if( !empty($desde) && !empty($hasta) ){
-		$filtro_adicional = " 
-			AND ( DATE_FORMAT(ini.meta_value,'%Y-%m-%d 00:00:00') >= '{$desde} 00:00:00' 
-			AND  DATE_FORMAT(ini.meta_value,'%Y-%m-%d 23:59:59') <= '{$hasta} 23:59:59' )
-		";
-	}else{
-		$filtro_adicional = " 
-			and DATE_FORMAT(ini.meta_value,'%Y-%m-%d 23:59:59') >= NOW() 
-			and DATE_FORMAT(ini.meta_value,'%Y-%m-%d 00:00:00') <= NOW()
-		";		
-	}
+	// if( !empty($desde) && !empty($hasta) ){
+	// 	$filtro_adicional = " 
+	// 		AND ( r.post_date_gmt >= '{$desde} 00:00:00' and  r.post_date_gmt <= '{$hasta} 23:59:59' )
+	// 	";
+	// }else{
+	// 	$filtro_adicional = " AND MONTH(r.post_date_gmt) = MONTH(NOW()) AND YEAR(r.post_date_gmt) = YEAR(NOW()) ";
+	// }
 
 	global $wpdb;
 	$sql = "
-		 SELECT 
+		SELECT 
 			DATE_FORMAT(fin.meta_value,'%Y-%m-%d 00:00:00') as fin, 
 			DATE_FORMAT(ini.meta_value,'%Y-%m-%d 23:59:59') as ini,
 			NOW() as hoy,
+
 			r.ID as 'nro_reserva',
  			DATE_FORMAT(r.post_date_gmt,'%Y-%m-%d') as 'fecha_solicitud',
  			r.post_status as 'estatus_reserva',
@@ -393,14 +582,14 @@ function getReservas($desde="", $hasta=""){
 			LEFT JOIN cuidadores as us ON us.user_id = pr.post_author
 			LEFT JOIN wp_users as cl ON cl.ID = r.post_author
 		WHERE r.post_type = 'wc_booking' 
-			and r.post_status like 'confirme%'
+			and not r.post_status like '%cart%' 
 			and cl.ID > 0 
 			and p.ID > 0
-			{$filtro_adicional}
+			and DATE_FORMAT(ini.meta_value,'%Y-%m-%d 00:00:00') <= '{$desde} 00:00:00' 
+			and DATE_FORMAT(fin.meta_value,'%Y-%m-%d 23:59:59') >= '{$desde} 00:00:00'
 		ORDER BY r.ID desc
 		;";
 
-// echo $sql;
 	$reservas = $wpdb->get_results($sql);
 	return $reservas;
 }

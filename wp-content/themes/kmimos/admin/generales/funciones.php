@@ -92,6 +92,9 @@
                 14720, // Alfredo
                 9726, // Roberto
             );
+            $user_cupones = array(
+                14720, // Alfredo
+            );
 
             if( in_array($user_id, $permitidos ) ){
                 
@@ -105,7 +108,6 @@
                 );
             
             }
-
 
             if( in_array($user_id, $user_especiales)  ){
 
@@ -126,6 +128,17 @@
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_otros',
                 );
+            }else{
+                if( in_array($user_id, $user_cupones)  ){
+                    $opciones_menu_reporte[] = array(
+                        'title'         =>  __('Cupones'),
+                        'short-title'   =>  __('Cupones'),
+                        'parent'        =>  'reporte_fotos',
+                        'slug'          =>  'reporte_cupones',
+                        'access'        =>  'manage_options',
+                        'page'          =>  'reporte_cupones',
+                    );
+                }
             }
 
             $opciones_menu_reporte[] = array(

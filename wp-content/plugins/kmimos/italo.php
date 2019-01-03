@@ -118,11 +118,10 @@
 				$meta_cupon = [];
 				if( !empty($cupones) ){
 					foreach ($cupones as $cupon) {
-
-						if( $cupon->name == '+2MASC' ){
-	                        			$total -= $cupon->monto; 
-	                       				$pago_cuidador = $total / 1.25;
-	                       				$pago_kmimos = $total - $pago_cuidador;
+						if( strtoupper($cupon->name) == '+2MASC' ){
+                			$total -= $cupon->monto; 
+               				$pago_cuidador = $total / 1.25;
+               				$pago_kmimos = $total - $pago_cuidador;
 						}else{
 
 							$cupon_id = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_title = '".$cupon->name."' ");

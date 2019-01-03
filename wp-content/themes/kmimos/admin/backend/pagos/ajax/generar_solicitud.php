@@ -1,6 +1,6 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 
 	session_start();
     date_default_timezone_set('America/Mexico_City');
@@ -110,10 +110,10 @@ $openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f
 		                        'amount' => number_format($total, 2, '.', ''),
 		                        'name' => utf8_encode( $banco['titular'] ),
 		                        'bank_account' => array(
-		                            'clabe' => '012298026516924616',
+		                            'clabe' => $banco['cuenta'],
 		                            'holder_name' => utf8_encode($banco['titular']),
 		                        ),
-			                'description' => 'Prueba de pago #'.$row_id
+			                'description' => 'Pago #'.$row_id
 
 		                    );
 		                //  Enviar solicitud a OpenPay            
