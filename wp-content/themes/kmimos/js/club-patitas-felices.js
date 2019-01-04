@@ -30,8 +30,8 @@ jQuery(document).ready( function (){
 			  function(d){
 			       	console.log(d);
 					if(d.sts == 1){
-						window.location = RAIZ+'/club-patitas-felices/compartir';
-						document.location.href = RAIZ+'/club-patitas-felices/compartir';
+						window.location = RAIZ+'club-patitas-felices/compartir';
+						document.location.href = RAIZ+'club-patitas-felices/compartir';
 						return true;
 						// location.reload();
 						// if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
