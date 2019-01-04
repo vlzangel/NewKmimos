@@ -109,7 +109,7 @@
 		}
  	}else{
  		$sts = 0;
- 		$msg ='Debes iniciar sesion para registrate en el club';
+ 		$msg ='Debes iniciar sesion para registrarte en el club';
  	}
 
  	if( isset($_POST['redirect']) && $_POST['redirect'] == 1 ){
