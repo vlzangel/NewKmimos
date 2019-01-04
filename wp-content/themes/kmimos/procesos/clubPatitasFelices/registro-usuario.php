@@ -116,5 +116,13 @@
  		$_SESSION['redirect_cpf_compartir'] == 1;
  	}
 
-	echo json_encode(['sts'=>$sts,'msg'=>$msg]);
+ 	if( isset($_POST['redirect']) && $_POST['redirect'] == 1 ){
+ 		$url = get_home_url().'/club-patitas-felices';
+	 	if( $sts == 1 ){
+	 		$url .= '/compartir';
+	 	}
+	 	header('location:'.$url);
+ 	}else{
+		echo json_encode(['sts'=>$sts,'msg'=>$msg]);
+ 	}
 
