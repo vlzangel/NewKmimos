@@ -3,6 +3,10 @@
         Template Name: Club patitas
     */
 
+    if( $_POST ){
+    	include_once( __DIR__ . '/procesos/clubPatitasFelices/registro-usuario.php' );
+    }
+
     $url_img = get_home_url() .'/wp-content/themes/kmimos/images/club-patitas/';
     
     $no_top_menu = false;
@@ -69,7 +73,8 @@
 		<aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4 <?php echo $display_registro; ?>">
 			<div class="text-center col-md-10 col-md-offset-1 text-center">
 				<h3 class="title-secundario">¡Estás a un paso de ser parte del club!</h3>
-				<form method="post" action="#" id="form-registro">
+				<form method="post" action="<?php echo get_home_url(); ?>/club-patitas-felices" id="form-registro">
+					<input type="hidden" name="redirect" value="1">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<input required class="form-control" style="margin:5px 0px; border-radius: 10px;" type="text" name="nombre" placeholder="Nombre" value="<?php echo $nombre; ?>" <?php echo $readonly; ?>>
 					</div>
