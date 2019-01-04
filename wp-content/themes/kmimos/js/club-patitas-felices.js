@@ -19,29 +19,32 @@ jQuery(document).ready( function (){
 	});
 	
 	jQuery('#form-registro').on('submit', function(e){
-		// e.preventDefault();
+		e.preventDefault();
 		var btn = jQuery('#form-registro button[type="submit"]');
 		if( !btn.hasClass('disabled') ){
 			btn.addClass('disabled');
 			btn.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Procesando');
-			// jQuery.post(
-			//   HOME+'procesos/clubPatitasFelices/registro-usuario.php',
-			//   jQuery(this).serialize(),
-			//   function(d){
-			//        	console.log(d);
-			//		if(d.sts == 1){
-			// 			//location.reload();
-			// 			if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-			// 			   location.replace( RAIZ+'/club-patitas-felices/compartir' );
-			// 			}else{
-			// 				window.location.href = RAIZ+'/club-patitas-felices/compartir';
-			// 			}
-			//		}else{
-			// 			btn.html('Genera tu código aquí');
-			// 			btn.removeClass('disabled');
-			// 			alert(d.msg);
-			//    	}
-			// }, 'json');
+			jQuery.post(
+			  HOME+'procesos/clubPatitasFelices/registro-usuario.php',
+			  jQuery(this).serialize(),
+			  function(d){
+			       	console.log(d);
+					if(d.sts == 1){
+						window.location = RAIZ+'/club-patitas-felices/compartir';
+						document.location.href = RAIZ+'/club-patitas-felices/compartir';
+						return true;
+						// location.reload();
+						// if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+						//    location.replace( RAIZ+'/club-patitas-felices/compartir' );
+						// }else{
+						// 	window.location.href = RAIZ+'/club-patitas-felices/compartir';
+						// }
+					}else{
+						btn.html('Genera tu código aquí');
+						btn.removeClass('disabled');
+						alert(d.msg);
+			   	}
+			}, 'json');
 		}
 	});
 

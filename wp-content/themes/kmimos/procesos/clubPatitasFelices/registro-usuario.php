@@ -112,10 +112,6 @@
  		$msg ='Debes iniciar sesion para registrate en el club';
  	}
 
- 	if( $sts == 1 ){
- 		$_SESSION['redirect_cpf_compartir'] == 1;
- 	}
-
  	if( isset($_POST['redirect']) && $_POST['redirect'] == 1 ){
  		$url = get_home_url().'/club-patitas-felices';
 	 	if( $sts == 1 ){
