@@ -30,7 +30,7 @@
     opacity: 1;
 }
 
-.nav>li>a:hover {
+.main .nav>li>a:hover {
     background-color: #7c169e !important;
     opacity: 1;
 }

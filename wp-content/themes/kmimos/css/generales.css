@@ -1049,3 +1049,17 @@ h2.msg_acciones {
 button.close {
     z-index: 999;
 }
+
+.menu-link img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.dropdown-menu .menu-link img {
+    width: 17px;
+    margin: 0px 5px;
+}
+
+.dropdown-menu>li>a i {
+    color: #666;
+}
