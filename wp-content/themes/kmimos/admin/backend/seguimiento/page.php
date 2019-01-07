@@ -31,6 +31,7 @@
                     <th>Reservas</th>
                     <th>Conocer</th>
                     <th>Fecha</th>
+                    <th>Etiquetas</th>
                 </tr>
             </thead>
             <tbody></tbody>

@@ -29,20 +29,20 @@ $reservas = getReservas($_desde, $_hasta);
 		<div class="clearfix"></div>
 		</div>
 		<!-- Filtros -->
-		<div class="row text-right hidden"> 
+		<div class="row text-right"> 
 			<div class="col-sm-12">
 		    	<form class="form-inline" action="<?php echo get_home_url() . '/wp-admin/admin.php?page='.$_GET['page'] ?>" method="POST">
 				  <label>Filtrar:</label>
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">Desde</div>
-				      <input type="date" class="form-control" name="desde" value="<?php echo $desde; ?>">
+				      <input type="date" class="form-control" name="desde" value="<?php echo $_desde; ?>">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">Hasta</div>
-				      <input type="date" class="form-control" name="hasta" value="<?php echo $hasta ?>">
+				      <input type="date" class="form-control" name="hasta" value="<?php echo $_hasta ?>">
 				    </div>
 				  </div>
 					<button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>			  

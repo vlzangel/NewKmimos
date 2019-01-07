@@ -176,7 +176,6 @@ $user_id = $current_user->ID
 									}
 									$_conocer_15 = $dif_conocer['dia'];
 
-									$referido_por = (!empty($usermeta['user_referred'])) ? $usermeta['user_referred'] : 'Otros' ;
 								}
 
 								$_cant_reservas = '';
@@ -192,6 +191,8 @@ $user_id = $current_user->ID
 								    }
 								    $_status = '<th>'.$_status.'</th>';
 							    }
+
+								$referido_por = (!empty($usermeta['user_referred'])) ? $usermeta['user_referred'] : 'Otros' ;
 
 								echo '
 								    <tr>

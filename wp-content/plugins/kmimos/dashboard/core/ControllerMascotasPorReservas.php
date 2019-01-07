@@ -343,10 +343,14 @@ function getReservas($desde="", $hasta=""){
 
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional = " 
-			AND ( r.post_date_gmt >= '{$desde} 00:00:00' and  r.post_date_gmt <= '{$hasta} 23:59:59' )
+			AND ( DATE_FORMAT(ini.meta_value,'%Y-%m-%d 00:00:00') >= '{$desde} 00:00:00' 
+			AND  DATE_FORMAT(ini.meta_value,'%Y-%m-%d 23:59:59') <= '{$hasta} 23:59:59' )
 		";
 	}else{
-		$filtro_adicional = " AND r.post_date_gmt) = MONTH(NOW()) AND YEAR(r.post_date_gmt) = YEAR(NOW()) ";
+		$filtro_adicional = " 
+			and DATE_FORMAT(ini.meta_value,'%Y-%m-%d 23:59:59') >= NOW() 
+			and DATE_FORMAT(ini.meta_value,'%Y-%m-%d 00:00:00') <= NOW()
+		";		
 	}
 
 	global $wpdb;
@@ -392,11 +396,11 @@ function getReservas($desde="", $hasta=""){
 			and r.post_status like 'confirme%'
 			and cl.ID > 0 
 			and p.ID > 0
-			and DATE_FORMAT(fin.meta_value,'%Y-%m-%d 23:59:59') >= NOW() 
-			and DATE_FORMAT(ini.meta_value,'%Y-%m-%d 00:00:00') <= NOW()
+			{$filtro_adicional}
 		ORDER BY r.ID desc
 		;";
 
+// echo $sql;
 	$reservas = $wpdb->get_results($sql);
 	return $reservas;
 }
