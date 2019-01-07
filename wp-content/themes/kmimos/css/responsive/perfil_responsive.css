@@ -12,6 +12,12 @@
 	}
 
 	.menu_perfil {
+	    width: 100%;
+	    padding: 20px 5px 10px;
+	    top: 0px;
+	}
+
+	.menu_perfil ul {
 	    display: none;
 	}
 	.main {
@@ -30,6 +36,21 @@
         background-image: url(../../recursos/img/PERFILES/Banner-responsive.jpg) !important;
         border-radius: 0px 0px 30px 30px;
 	}
+
+	.vlz_img_portada_perfil {
+	    height: 100%;
+	}
+
+	.btn_aplicar_rotar {
+	    width: auto;
+	    padding: 5px;
+	    font-size: 11px;
+	    z-index: 99999999999999;
+	    position: absolute;
+	    top: 5px;
+	    right: 5px;
+	}
+
 }
 
 @media (max-width: 480px){
@@ -37,6 +58,10 @@
 	    width: 100%;
 	}
 	.vlz_cambiar_portada {
+	    font-size: 20px !important;
+	    padding: 5px 10px !important;
+	}
+	.main .vlz_cambiar_portada {
 	    font-size: 11px !important;
 	    padding: 5px 10px !important;
 	}
@@ -47,7 +72,7 @@
 }
 
 @media (max-width: 350px){
-	.vlz_img_portada_perfil {
+	.main .vlz_img_portada_perfil {
 	    height: 250px;
 	}
 }
