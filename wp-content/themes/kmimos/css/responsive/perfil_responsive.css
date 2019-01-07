@@ -3,6 +3,14 @@
 }
 
 @media (max-width: 768px){
+	form#form_perfil > div {
+	    padding: 20px 0px;
+	}
+
+	form h1 {
+	    text-align: center;
+	}
+
 	.menu_perfil {
 	    display: none;
 	}
@@ -12,6 +20,15 @@
 	}
 	.vlz_img_portada_perfil {
 	    height: 300px;
+	}
+
+	.main .mascotas_item .vlz_img_portada_perfil {
+	    height: 100px;
+	}
+
+	.km-ficha-bg {
+        background-image: url(../../recursos/img/PERFILES/Banner-responsive.jpg) !important;
+        border-radius: 0px 0px 30px 30px;
 	}
 }
 

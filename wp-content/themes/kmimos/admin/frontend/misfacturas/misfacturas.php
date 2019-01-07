@@ -154,7 +154,7 @@
 			    <li role="presentation" class="active">
 			    	<a href="#Liquidaciones" aria-controls="Liquidaciones" role="tab" data-toggle="tab">Liquidaciones</a>
 			    </li>
-			    <li role="presentation"><a href="#Comisiones" aria-controls="Comisiones" role="tab" data-toggle="tab">Comisiones</a></li>
+			    <li role="presentation"><a href="#Comisiones" aria-controls="Comisiones" role="tab" data-toggle="tab">Notas de crédito</a></li>
 			  </ul>
 
 			  <!-- Tab panes -->
