@@ -11,10 +11,10 @@
 	    				$respuesta .= '<a data-accion="'.get_home_url().'/perfil-usuario/reservas/subir/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir Fotos</a>';
     				break;
 	    			case 'confirmar':
-	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
+	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> <span>Confirmar</span> </a>';
     				break;
 	    			case 'cancelar':
-	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
+	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> <span>Cancelar</span> </a>';
     				break;
 	    			case 'modificar':
 	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_modificar"> <i class="fa fa-pencil" aria-hidden="true"></i> Modificar </a>';
@@ -31,10 +31,10 @@
 	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-info" aria-hidden="true"></i> Ver</a>';
     				break;
 	    			case 'confirmar_s':
-	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> Confirmar </a>';
+	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> <span>Confirmar</span> </a>';
     				break;
 	    			case 'cancelar_s':
-	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Cancelar</a>';
+	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> <span>Cancelar</span> </a>';
     				break;
 	    			case 'facturar':
 	    				$respuesta .= '<a data-accion="factura/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-file-o" aria-hidden="true"></i> Generar factura</a>';
@@ -142,7 +142,6 @@
 					                	<div class="vlz_tabla_superior">
 						                	<div class="vlz_tabla_cuidador vlz_celda">
 						                		<span>Servicio: <a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></span>
-						                		'.$reserva["cliente"].'
 						                	</div>
 						                	<div class="vlz_tabla_cuidador vlz_celda">
 						                		<span>Fecha</span>
@@ -174,7 +173,7 @@
 					                		<div class="total_reserva">
 						                		<div class="item_desglose">
 						                			<div>TOTAL</div>
-						                			<span>$'.number_format( $reserva["desglose"]["total"]+0, 2, ',', '.').'</span>
+						                			<span class="total_desglose">$'.number_format( $reserva["desglose"]["total"]+0, 2, ',', '.').'</span>
 						                		</div>
 					                		</div>
 					                		<div class="ver_reserva_botones">
@@ -191,8 +190,6 @@
 					                	<div class="vlz_tabla_superior">
 						                	<div class="vlz_tabla_cuidador vlz_celda">
 						                		<span>Servicio: <a href="'.get_home_url().'/reservar/'.$reserva["servicio_id"].'/">'.$reserva["servicio"].'</a></span>
-						                		'.$reserva["cliente"].'
-
 						                		<span>Fecha: '.$reserva["inicio"].' a '.$reserva["fin"].'</span>
 						                	</div>
 						                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno" style="vertical-align: middle;">
@@ -203,7 +200,7 @@
 						                		<span>Reserva: '.$reserva["id"].'</span>
 						                	</div>
 					                	</div>
-				                		<i class="fa fa-times ver_reserva_init_closet" aria-hidden="true"></i>
+				                		<i class="fa fa-times-circle ver_reserva_init_closet" aria-hidden="true"></i>
 					                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
 					                		<a class="ver_reserva_init_fuera">Ver Reserva</a>
 					                	</div>
@@ -225,7 +222,7 @@
 					                		<div class="total_reserva">
 						                		<div class="item_desglose">
 						                			<div>TOTAL</div>
-						                			<span>$'.number_format( $reserva["desglose"]["total"]+0, 2, ',', '.').'</span>
+						                			<span class="total_desglose">$'.number_format( $reserva["desglose"]["total"]+0, 2, ',', '.').'</span>
 						                		</div>
 					                		</div>
 					                		<div class="ver_reserva_botones">
@@ -318,7 +315,7 @@
 					                		<div>'.$reserva["id"].'</div>
 					                	</div>
 				                	</div>
-			                		<i class="fa fa-times ver_reserva_init_closet" aria-hidden="true"></i>
+			                		<i class="fa fa-times-circle ver_reserva_init_closet" aria-hidden="true"></i>
 				                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
 				                		<a class="ver_reserva_init_fuera">Ver Solicitud</a>
 				                	</div>
@@ -421,7 +418,7 @@
 				                		<div>'.$reserva["numeroReferencia"].'</div>
 				                	</div>
 			                	</div>
-		                		<i class="fa fa-times ver_reserva_init_closet" aria-hidden="true"></i>
+		                		<i class="fa fa-times-circle ver_reserva_init_closet" aria-hidden="true"></i>
 			                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_fuera">
 			                		<a class="ver_reserva_init_fuera"><i class="fa fa-eye"></i> Ver</a>
 			                	</div>
@@ -445,7 +442,7 @@
 			                		<div class="total_reserva">
 				                		<div class="item_desglose">
 				                			<div>TOTAL</div>
-				                			<span>$'.number_format( $reserva["total"]+0, 2, ',', '.').'</span>
+				                			<span class="total_desglose">$'.number_format( $reserva["total"]+0, 2, ',', '.').'</span>
 				                		</div>
 			                		</div>
 			                		<div class="ver_reserva_botones">

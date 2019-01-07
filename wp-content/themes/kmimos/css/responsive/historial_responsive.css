@@ -1,4 +1,5 @@
 @media (max-width: 992px){
+	/*
 	.main .vlz_tabla .ver_reserva_botones a{
 	    margin-top: 10px;
 	}
@@ -9,88 +10,104 @@
 	.main .vlz_tabla .vlz_botones a.cancelar {
 	    padding: 6px 8px;
 	}
+	*/
 }
 @media (max-width: 650px){
+	/*
 	.main .vlz_tabla .ver_reserva_botones a {
 	    padding: 8px 15px 8px 5px;
 	}
+	*/
 }
 @media (max-width: 500px){
-	.main .vlz_tabla .ver_reserva_botones a {
-	    width: calc( 100% - 5px );
-	    padding: 15px;
-	}	
-	.main .vlz_tabla .boton_interno {
-		display: none !important;
-	}
-	.main .vlz_tabla .boton_fuera {
-		display: block !important;
-	}
 
 	.main .vlz_tabla .vlz_tabla_superior {
-	    display: block;
-	    float: left;
-	    height: auto;
-	}
-
-	.main .vlz_tabla .vlz_tabla_cuidador span {
-	    font-size: 14px;
-	}
-
-	.main .vlz_tabla .vlz_tabla_cuidador {
-	    width: 100%;
+	    height: 55px;
+	    width: calc( 100% - 45px );
 	}
 
 	.main .vlz_tabla .vlz_tabla_superior > div.vlz_celda {
-	    display: block;
+	    padding: 0px 3px 0px 0px;
 	}
 
-	.main .vlz_tabla .vlz_tabla_inferior {
-	    float: left;
-	    width: 100%;
-	    margin: 0px;
-	    padding: 0px 10px 10px;
+	.main .vlz_tabla .vlz_tabla_cuidador {
+	    width: auto;
 	}
 
-	.main .vlz_tabla .vlz_tabla_inferior .desglose_reserva .item_desglose {
-	    font-size: 11px;
+	.main .vlz_tabla .vlz_tabla_cuidador span {
+	    font-size: 8px;
 	}
 
-	.main .vlz_tabla.vlz_desplegado .vlz_cerrar {
-	    display: none !important;
+	.main .vlz_tabla .vlz_botones {
+	    width: 75px !important;
 	}
 
 	.main .vlz_tabla .vlz_img span {
-	    width: 50px;
-	    height: 50px;
+	    width: 30px;
+	    height: 30px;
 	}
 
-	.main .vlz_tabla .vlz_img {
-	    padding: 20px 0px;
+	.ver_reserva_init_closet {
+	    top: 5px;
+	    right: 5px;
+	    font-size: 20px !important;
+	}
+
+	.main .vlz_tabla .vlz_botones a {
+	    font-size: 7px;
+	    padding: 5px;
+	}
+
+	.main .vlz_tabla.vlz_desplegado .vlz_tabla_superior > div.vlz_celda,
+	.main .vlz_tabla.vlz_desplegado .vlz_cerrar {
+	    display: block;
+	}
+
+	.main .vlz_tabla.vlz_desplegado .vlz_tabla_cuidador span {
+	    font-size: 10px;
+	}
+
+	.main .vlz_tabla .vlz_tabla_inferior {
+	    margin-left: 0px;
+	    margin-right: 0px;
+	    padding: 0px 10px;
+	    width: 100%;
+	}
+
+	.main .vlz_tabla .vlz_tabla_inferior .desglose_reserva {
+	    font-size: 10px;
+	}
+
+	.main .vlz_tabla .vlz_tabla_inferior .total_reserva {
+	    margin-top: 5px;
+	}
+
+	.vlz_confirmar ,
+	.vlz_cancelar  {    
+		padding: 5px 5px 8px 5px !important;
+		text-align: center !important;
+	}
+
+	.vlz_confirmar span,
+	.vlz_cancelar span {
+		display: none;
+	}
+
+	.main .vlz_tabla .ver_reserva_botones {
+	    padding: 15px 0px;
+	}
+
+	.total_desglose {
+		color: #7c169e;
+	}
+
+	.main .vlz_tabla .vlz_tabla_inferior .desglose_reserva .vlz_bold {
+	    font-weight: 400;
 	}
 
 	form h1 {
 	    font-size: 15px !important;
 	    font-weight: 600;
-	}
-
-	.main .vlz_tabla .vlz_tabla_cuidador span {
-	    font-size: 12px;
-	}
-
-	.main .vlz_tabla .vlz_tabla_cuidador div {
-	    font-size: 11px;
-	}
-
-	.main .vlz_tabla .ver_reserva_botones {
-	    padding-top: 0px;
-	}
-	.main .vlz_tabla .ver_reserva_botones a {
-	    padding: 10px;
-	}
-
-	.vlz_solo_movil {
-	    margin-bottom: 10px;
 	}
 
 
@@ -129,10 +146,10 @@
     	font-size: 10px;
 	}
 	.main .vlz_tabla .vlz_img {
-	    width: 70px;
+	    width: 45px;
 	}
 	.main .vlz_tabla.vlz_desplegado .vlz_tabla_superior {
-	    width: calc( 100% - 105px );
+	    width: calc( 100% - 65px );
 	}
 }
 
