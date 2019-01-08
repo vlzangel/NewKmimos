@@ -1,0 +1,20 @@
+@media (max-width: 770px){
+
+	.item-favorito{
+	    width: calc( 100% - 20px );
+	}
+
+	.favoritos_container {
+	    overflow: hidden;
+	    margin: 0px;
+	    padding: 0px;
+	}
+
+	.km-resultados {
+	    padding-top: 15px;
+	}
+
+	.item-favorito {
+	    margin: 0px 10px 30px;
+	}
+}

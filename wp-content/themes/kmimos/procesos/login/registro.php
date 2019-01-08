@@ -11,6 +11,11 @@
     date_default_timezone_set('America/Mexico_City');
     extract($_POST);
 
+    /*
+        echo 367;
+        exit();
+    */
+
     if( preg_match("/[\+]{1,}/", $email) || !filter_var($email, FILTER_VALIDATE_EMAIL) ){
         $fields = [ 'name'=>'email', 'msg'=>"Formato de E-mail invalido"];
         echo "Formato de E-mail invalido";

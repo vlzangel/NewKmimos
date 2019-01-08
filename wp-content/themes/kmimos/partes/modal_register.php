@@ -50,12 +50,19 @@ foreach ($comportamientos as $key => $value) {
 
 $comportamientos_str .= '</div>';
 
+$nuevo_banner = '
+	<div class="banner_descuento_registro_container" >
+		<img class="publicidad_solo_pc" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_2.png" />
+		<img class="publicidad_solo_movil" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_movil_1.png" />
+	</div>
+';
+
 $HTML .='
 <!-- POPUPS REGISTRARTE -->
 <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="popup-registrarte" style="padding: 40px;">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar" >×</button>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar_1" >×</button>
 			<div class="popup-registrarte-1">
 				<p class="popup-tit">REGISTRARME</p>
 				
@@ -91,13 +98,6 @@ $HTML .='
 
 
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
-
-				<!--
-				<p><b>Dudas escríbenos</b></p>
-				<div class="row">
-					<div class="col-xs-12"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p></div>
-				</div>
-				-->
 
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
@@ -214,10 +214,7 @@ $HTML .='
 						</div>
 					</div>
 				</form>
-				
-				<!-- span id="guardando"></span -->
-				<!-- div id="resp"></div -->
-				
+							
 				<a href="#" id="siguiente" class="km-btn-correo km-btn-popup-registrarte-nuevo-correo">SIGUIENTE</a>
 
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
@@ -227,8 +224,6 @@ $HTML .='
 					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada: 01 (55) 8526 1162</p></div>
 				</div>
 
-				<!-- p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p -->
-				
 				<hr>
 				<div class="row">
 					<div class="col-xs-5">
@@ -244,33 +239,24 @@ $HTML .='
 			<div class="popuphide popup-condiciones">
 				<h3 style="margin: 0; text-align: center;">TERMINOS Y CONDICIONES</h3>
 				<div class="terminos_container"></div>
-				<a 
-					href="#" 
-					id="btn_si_acepto" 
-					class="km-btn-correo btn_disable"
-				>
+				<a href="#" id="btn_si_acepto" class="km-btn-correo btn_disable" >
 					ACEPTAR TERMINOS Y CONDICIONES
 				</a>
-				<a 
-					href="#" 
-					id="btn_no_acepto" 
-					class=""
-				>
+				<a href="#" id="btn_no_acepto">
 					No acepto los terminos y condiciones
 				</a>
 			</div>
 
 
-			<div class="popuphide popup-registrarte-final">
+			<div class="popuphide popup-registrarte-final">';
+				/*
 				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
 				<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
-				<a 
-					href="javascript:;" 
-					id="btn_registrar_mascota" 
-					class="km-btn-correo"
-				>
+				<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
 					REGISTRAR UNA MASCOTA
 				</a>
+				*/
+			$HTML .= '
 			</div>
 
 
@@ -286,13 +272,10 @@ $HTML .='
 								<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
 							</div>
 						</div>
-
 						<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
 		                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
-
 		                <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
 					</div>
-					
 					<input type="file" class="hidden" id="carga_foto" accept="image/*">
 					<input type="hidden" id="img_pet" name="img_pet" value="" class="vlz_rotar_valor">
 					
@@ -420,6 +403,51 @@ $HTML .='
 			</div>
 		</div>
 	</div>
-</div>	
+</div>';
 
+
+
+
+
+$nuevo_banner = '
+<div class="popup-registrarte-final" style="padding-bottom: 15px;">
+	<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
+	<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
+	<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
+		REGISTRAR UNA MASCOTA
+	</a>
+</div>';
+
+if( time() >= strtotime("2018-12-25 00:00:00") ){
+	$nuevo_banner = '
+		<div class="banner_descuento_registro_container" >
+			<img class="publicidad_solo_pc" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_2.png" />
+			<img class="publicidad_solo_movil" src="'.get_recurso('img').'BANNERS/REGISTRO/fondo_movil_1.png" />
+
+			<div class="cronometro_descuento">
+				<div class="cronometro_h">23</div>
+				<span>:</span>
+				<div class="cronometro_m">60</div>
+				<span>:</span>
+				<div class="cronometro_s">00</div>
+			</div>
+			<div class="btn_registrar_mascota_container">
+				<a href="javascript:;" id="btn_registrar_mascota" class="km-btn-correo">
+					REGISTRAR UNA MASCOTA
+				</a>
+			</div>
+		</div>
+	';
+}
+
+$HTML .='
+	<!-- POPUPS DESCUENTO -->
+	<div id="popup-registrarte-2" class="modal modal_descuento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding: 40px 0px !important;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn_cerrar_2" >×</button>
+				'.$nuevo_banner.'
+			</div>
+		</div>
+	</div>	
 ';

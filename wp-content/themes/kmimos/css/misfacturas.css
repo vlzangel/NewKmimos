@@ -26,9 +26,6 @@ select {
     color: #fff!important;
 }
 
-.main *{
-    font-family: "Roboto Condensed",Arial, Helvetica, sans-serif;
-}
 .main p,
 .main dl{
     margin: 0px;
@@ -154,21 +151,6 @@ select {
     overflow: hidden;
 }
 
-.main .vlz_tabla .vlz_botones a {     
-    font-weight: 600;
-    color: #59c9a8;
-    padding: 0px;
-    display: inline-block;
-    font-size: 13px;
-    padding: 15px;
-    border: solid 1px #59c9a8;
-    border-radius: 5px;
-    margin-left: 5px;
-    text-transform: uppercase;
-    float: right;
-    cursor: pointer;
-    text-decoration: none !important;
-}
 
 .main .vlz_tabla .vlz_botones a.vlz_cancelar {   
     padding: 13px 15px;
@@ -386,4 +368,14 @@ a.vlz_accion.vlz_pdf {
 
 .datos_de_contacto span img {
     height: 100%;
+}
+
+select {
+    background: #FFF;
+    border-radius: 2px;
+}
+
+.contenedor-botones button {
+    background-color: #FFF;
+    border: 0px;
 }

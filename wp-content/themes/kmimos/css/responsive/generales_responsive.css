@@ -19,6 +19,29 @@
 	    width: 50px;
 	    height: 50px;
 	}
+
+	.modal_descuento .modal-dialog,
+	.modal_descuento .modal-content,
+	.banner_descuento_registro_container,
+	.banner_descuento_registro_container img {
+	    width: 600px !important;
+	}
+	.modal_descuento .modal-dialog{
+        margin: 10px auto;
+	}
+
+	.cronometro_descuento {
+	    top: 240px;
+	    right: 65px;
+	}
+
+	.btn_registrar_mascota_container {
+	    top: 165px;
+	}
+
+	.btn_registrar_mascota_container #btn_registrar_mascota {
+	    padding: 9px 30px;
+	}
 }
 
 @media (min-width: 768px){
@@ -28,14 +51,46 @@
 }
 
 @media (max-width: 768px){
+
+
+	.modal_descuento .modal-dialog,
+	.modal_descuento .modal-content,
+	.banner_descuento_registro_container,
+	.banner_descuento_registro_container img {
+	    width: 400px !important;
+	}
+	.modal_descuento .modal-dialog{
+        margin: 10px auto;
+	}
+	div#popup-registrarte {
+	    padding-right: 0px !important;
+	}
+
+	.cronometro_descuento {
+	    position: absolute;
+	    top: 430px;
+	    right: 120px;
+	}
+
+	.btn_registrar_mascota_container {
+	    top: 244px;
+	}
+
+	.btn_registrar_mascota_container #btn_registrar_mascota {
+	    padding: 8px 30px;
+	}
+
+
 	.nav-tabs li{
-	    width: 49%;
+	    width: auto;
 	}
 	.nav-tabs li a{
-	    font-size: 12px;
-	    padding-left: 5px!important;
-	    padding-right: 5px!important;
-	    text-align: center;
+		font-size: 10px;
+		padding-left: 5px!important;
+		padding-right: 5px!important;
+		text-align: center;
+		padding: 7px 10px !important;
+		margin: 0px 5px 5px 0px;
 	}
 	.bg-white-secondary{
 	    padding-top: 0px;
@@ -77,6 +132,38 @@
 		.km-ficha-bg_MOVIL{
 		    display: block;
 		}
+}
+
+@media (max-width: 450px){
+	.modal_descuento .modal-dialog,
+	.modal_descuento .modal-content,
+	.banner_descuento_registro_container,
+	.banner_descuento_registro_container img {
+	    width: 280px !important;
+	}
+
+	.cronometro_descuento {
+	    top: 300px;
+	    right: 50px;
+	}
+
+	.cronometro_descuento > div {
+	    padding: 3px 0px 0px;
+	    font-size: 16px;
+	    width: 34px;
+	}
+
+	.cronometro_descuento > span {
+	    padding: 0px;
+	}
+
+	.btn_registrar_mascota_container {
+	    top: 170px;
+	}
+
+	.btn_registrar_mascota_container #btn_registrar_mascota {
+	    padding: 5px 20px;
+	}
 }
 
 @media (max-width: 480px){

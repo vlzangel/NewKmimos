@@ -1,4 +1,3 @@
-
 .favoritos_container{
 	overflow: hidden;
 }
@@ -49,3 +48,75 @@
     margin: 0px auto;
 }
 
+.km-ranking a {
+    background-image: url(../recursos/img/BUSQUEDA/SVG/Huesito_gris.svg) !important;
+
+    width: 20px;
+    height: 9px;
+    background-size: 20px 9px;
+}
+
+.km-ranking a.active {
+    background-image: url(../recursos/img/BUSQUEDA/SVG/Huesito_azul.svg) !important;
+}
+
+.favoritos_container h1 a {
+	font-family: Gotham-Pro-Regular;
+	font-size: 15px;
+    font-weight: 800;
+    display: inline-block;
+    padding: 0px 2px;
+}
+
+.favoritos_container .experiencia {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 2px;
+}
+
+b.precio {
+    font-size: 13px;
+    padding: 0px 2px;
+}
+
+.valoraciones {
+	font-size: 11px;
+    font-weight: 700;
+    padding: 5px 3px 0px;
+}
+
+.km-ranking {
+    padding: 2px 0px;
+}
+
+.km-resultados{
+	overflow: hidden;
+	padding-top: 65px;
+}
+
+.item-favorito{
+    width: calc( 25% - 20px );
+    float: left;
+    margin: 0px 10px 5px;
+}
+
+.item-favorito .boton {
+    margin: 10px 3px 0px !important;
+    padding: 8px 5px 5px !important;
+    text-align: center;
+    display: block;
+    font-weight: 800;
+}
+
+.km-contenedor-favorito {
+    top: 0 !important;
+    right: 8px !important;
+    width: 35px !important;
+    height: 35px !important;
+    background: transparent !important;
+}
+
+a.km-foto {
+    border-radius: 3px;
+    overflow: hidden;
+}

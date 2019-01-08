@@ -7,22 +7,36 @@
     padding-left: 10px!important;
 }
 .nav>li>a {
-    padding: 20px 18px 15px!important;
+    padding: 10px 9px !important;
 }
+
+.nav-tabs {
+    border-bottom: 0px !important;
+}
+
 .nav-tabs>li>a, 
 .nav-tabs>li>a:focus, 
 .nav-tabs>li>a:hover{
-    background-color: #e8e8e8;
+    background-color: #7c169e;
+    opacity: 0.5;
+    color: #fff!important;
+    border-radius: 4px !important;
 }
 .nav-tabs>li.active>a, 
 .nav-tabs>li.active>a:focus, 
 .nav-tabs>li.active>a:hover{
-    background-color: #59c9a8!important;
+    background-color: #7c169e !important;
     color: #fff!important;
+    opacity: 1;
+}
+
+.main .nav>li>a:hover {
+    background-color: #7c169e !important;
+    opacity: 1;
 }
 
 .main *{
-    font-family: "Roboto Condensed",Arial, Helvetica, sans-serif;
+    
 }
 
 .main p,
@@ -40,13 +54,16 @@
 
 .main h1.titulo {
     margin: 0px 0px 5px;
-    color: #59c9a8;
+    color: #505050;
     border-top: solid 2px #59c9a8;
     padding-top: 10px !important;
+    text-transform: none;
+    font-weight: 600;
 }
 
 .main h1.titulo_pequenio {
     font-size: 19px;
+    padding-bottom: 20px !important;
 }
 
 .main .vlz_tabla {
@@ -62,11 +79,11 @@
 
 .main .vlz_tabla .vlz_tabla_superior {
     display: table;
-    width: calc( 100% - 100px );
+    width: calc( 100% - 75px );
     overflow: hidden;
     padding: 10px 0px;
     float: left;
-    height: 100px;
+    height: 70px;
 }
 
 .main .vlz_tabla.vlz_desplegado .vlz_tabla_superior {
@@ -94,10 +111,11 @@
 .main .vlz_tabla .vlz_tabla_superior > div.vlz_celda {
     display: table-cell;
     padding: 0px 10px 0px 0px;
+    vertical-align: middle;
 }
 
 .main .vlz_tabla .vlz_img {    
-    width: 100px;
+    width: 70px;
     padding: 12px 0px;
     text-align: center;
     float: left;
@@ -106,8 +124,8 @@
 .main .vlz_tabla .vlz_img span {  
     display: inline-block;   
     text-align: center;
-    width: 70px;
-    height: 70px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background-size: cover;
     background-position: center;
@@ -118,16 +136,19 @@
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador span {     
-    font-weight: 600;
-    color: #969696;
+    font-weight: 400;
+    color: #777777;
     padding: 0px;
     display: inline-block;
     font-size: 16px;
 }
 
+.main .vlz_tabla .vlz_tabla_cuidador span a {     
+    color: #777777;
+}
+
 .main .vlz_tabla .vlz_tabla_cuidador div {     
     font-size: 15px;
-    text-transform: uppercase;
     font-weight: 600;
 }
 
@@ -149,14 +170,13 @@
 
 .main .vlz_tabla .vlz_botones a {     
     font-weight: 600;
-    color: #59c9a8;
     padding: 0px;
     display: inline-block;
     font-size: 13px;
-    padding: 15px;
-    border: solid 1px #59c9a8;
+    padding: 5px 15px;
     border-radius: 5px;
     margin-left: 5px;
+    margin-right: 0px;
     text-transform: uppercase;
     float: right;
     cursor: pointer;
@@ -217,18 +237,19 @@
 .main .vlz_tabla .ver_reserva_botones{
     overflow: hidden;
     padding-top: 15px;
+    text-align: right;
 }
 
 .main .vlz_tabla .ver_reserva_botones a{
     display: inline-block;
     text-decoration: none;
     font-weight: 600;
-    color: #59c9a8;
+    color: #4e4e4e;
     padding: 0px;
     display: inline-block;
     font-size: 11px;
-    padding: 8px 15px 8px 10px;
-    border: solid 1px #59c9a8;
+    padding: 5px 10px 5px 5px;
+    border: solid 1px #4e4e4e;
     border-radius: 5px;
     margin-left: 5px;
     text-transform: uppercase;
@@ -374,4 +395,9 @@ a.vlz_accion.vlz_pdf {
 
 .datos_de_contacto span img {
     height: 100%;
+}
+
+a.vlz_accion.vlz_pdf {
+    background: #7c169e;
+    color: #FFF !important;
 }

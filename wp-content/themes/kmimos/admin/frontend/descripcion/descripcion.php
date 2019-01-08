@@ -149,8 +149,8 @@
 
     $mascotas_cuidador_str = "";
     foreach ($mascotas_cuidador as $key => $value) {
-      	if($value == 1){ $check = "vlz_check"; }else{ $check = ""; }
-      	$mascotas_cuidador_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="tengo_'.$key.'" name="tengo_'.$key.'" value="'.$value.'">'.$tamano[$key].'</div>';
+      	if($value == 1){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
+      	$mascotas_cuidador_str .= '<div class="vlz_input vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="tengo_'.$key.'" name="tengo_'.$key.'" value="'.$value.'">'.$tamano[$key].'</div>';
     }
 
     $temp_comportamientos_aceptados = $comportamientos_aceptados;
@@ -159,21 +159,21 @@
     $compor = array(
         "sociables" => "Sociables",
         "no_sociables" => "No Sociables",
-        "agresivos_personas" => "Agresivos con Humanos",
-        "agresivos_perros" => "Agresivos con Mascotas",
-        "agresivos_humanos" => "Agresivos con Humanos",
-        "agresivos_mascotas" => "Agresivos con Mascotas"
+        "agresivos_personas" => "Agre. con Humanos",
+        "agresivos_perros" => "Agre. con Mascotas",
+        "agresivos_humanos" => "Agre. con Humanos",
+        "agresivos_mascotas" => "Agre. con Mascotas"
     );
     $comportamientos_aceptados_str = "";
     foreach ($comportamientos_aceptados as $key => $value) {
-        if($comportamientos_aceptados[$key] == 1){ $check = "vlz_check"; }else{ $check = ""; }
-        $comportamientos_aceptados_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="'.$key.'" name="'.$key.'" value="'.$comportamientos_aceptados[$key].'">'.$compor[$key].'</div>';
+        if($comportamientos_aceptados[$key] == 1){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
+        $comportamientos_aceptados_str .= '<div class="vlz_input vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="'.$key.'" name="'.$key.'" value="'.$comportamientos_aceptados[$key].'">'.$compor[$key].'</div>';
     }
 
     $tamanos_aceptados_str = "";
     foreach ($tamanos_aceptados as $key => $value) {
-        if($value == 1){ $check = "vlz_check"; }else{ $check = ""; }
-      	$tamanos_aceptados_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="acepta_'.$key.'" name="acepta_'.$key.'" value="'.$value.'">'.$tamano[$key].'</div>';
+        if($value == 1){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
+      	$tamanos_aceptados_str .= '<div class="vlz_input vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="acepta_'.$key.'" name="acepta_'.$key.'" value="'.$value.'">'.$tamano[$key].'</div>';
     }
 
     $edades = array(
@@ -183,7 +183,7 @@
     $edades_aceptadas_str = "";
     foreach ($edades_aceptadas as $key => $value) {
         if($value == 1){ $check = "vlz_check"; }else{ $check = "vlz_no_check"; }
-        $edades_aceptadas_str .= '<div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="acepta_'.$key.'" name="acepta_'.$key.'" value="'.$edades_aceptadas[$key].'">'.$edades[$key].'</div>';
+        $edades_aceptadas_str .= '<div class="vlz_input vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="acepta_'.$key.'" name="acepta_'.$key.'" value="'.$edades_aceptadas[$key].'">'.$edades[$key].'</div>';
     }
 
     $tipos = array(
@@ -228,7 +228,7 @@
     <input type="hidden" name="cuidador_id" value="'.$cuidador->id.'" />
     <input type="hidden" name="user_id" value="'.$user_id.'" />
 
-    <h1 style="margin: 0px; padding: 0px;">Mi informaci&oacute;n como Cuidador</h1><hr style="margin: 5px 0px 10px;">
+    <h1>Mi informaci&oacute;n como Cuidador</h1>
     <div class="inputs_containers row_4" style="padding-bottom: 0px;">
         <section> 
             <label for="tipo_doc" class="lbl-text">'.esc_html__('Tipo de Documento','kmimos').':</label>

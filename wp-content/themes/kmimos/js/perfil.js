@@ -39,7 +39,8 @@ jQuery( document ).ready(function() {
       'html',
       'guardar_sin_validar'
    	);
-    initImg("portada");
+    
+    // initImg("portada");
 
     jQuery("#form_perfil [data-valid]").each(function( index ) {
         pre_validar( jQuery( this ) );

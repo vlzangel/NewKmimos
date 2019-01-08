@@ -27,7 +27,6 @@
     color: #6b1c9b;
     font-size: 12px;
     line-height: 18px;
-     font-family: Arial; 
 }
 
 
@@ -4627,7 +4626,6 @@ footer .km-icon-redes {
 }
 .page-reservation {
     background:rgba(242, 242, 242, .5);
-    font-family:Lato, Arial
 }
 .page-reservation .km-content-step .km-content-new-pet .km-services-content .km-services::after, 
 .page-reservation .km-content-step .km-content-new-pet .km-services-total::after, 
@@ -4724,7 +4722,6 @@ footer .km-icon-redes {
     border-radius:50%;
     text-align:center;
     color:rgba(0, 0, 0, .2);
-    font-family:Lato, Arial;
     font-size:17px
 }
 .page-reservation .steps-numbers li .number.active {
@@ -5176,7 +5173,6 @@ footer .km-icon-redes {
     font-size:18px;
     font-weight:300;
     position:absolute;
-    font-family:Lato, Arial, serif;
     color:#979797;
     transition:all .15s ease-in;
     margin-bottom:0;
@@ -5192,7 +5188,6 @@ footer .km-icon-redes {
     font-weight:500;
     letter-spacing:.2px;
     background:0 0;
-    font-family:Lato, Arial, sans-serif;
     border-bottom:1px solid #ccc
 }
 .page-reservation .label-placeholder.focus label, .page-reservation .label-placeholder.focused label {
@@ -5272,7 +5267,6 @@ h1.maps {
     display:none
 }
 .km-item-resultado .km-descripcion h1 {
-    font-family:Lato, Arial!important;
     font-weight:700
 }
 .btnOpenPopup {

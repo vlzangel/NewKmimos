@@ -1,9 +1,11 @@
 <?php
-    error_reporting(0);
+    error_reporting(E_ALL);
+
+    ini_set('display_errors', 'On');
 
     $CORREO_OPENPAY = "true";
-	
-	extract($_POST);
+    
+    extract($_POST);
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
     include_once($raiz."/wp-load.php");
 
@@ -44,59 +46,20 @@
         $mensaje = str_replace('['.$key.']', $value, $mensaje);
     }
     
-    // $mensaje = get_email_html($mensaje);
-
-    /*
-    function my_phpmailer_init_smtp($phpmailer){
-        $phpmailer->Mailer = "smtp";
-        $phpmailer->SMTPSecure = "tls";
-        $phpmailer->Host = "smtp.gmail.com";
-        $phpmailer->Port = 587;
-        $phpmailer->SMTPAuth = true;
-        $phpmailer->Username = "desarrollokmimos@gmail.com";
-        $phpmailer->Password = "Kmimos2017";
-        
-        $phpmailer->smtpConnect([
-            'ssl' => [
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-            ]
-        ]);
-        $phpmailer->IsHTML(true);
-
-        $phpmailer = apply_filters('wp_mail_smtp_custom_options', $phpmailer);
-    }
-    add_action('phpmailer_init','my_phpmailer_init_smtp');
-    */
-
+    
     add_action('phpmailer_init','send_smtp_email');
     function send_smtp_email( $phpmailer ) {
-        $phpmailer->isSMTP();
-        $phpmailer->Host = "smtp.gmail.com";
-        $phpmailer->SMTPAuth = true;
-        $phpmailer->Port = "587";
-        $phpmailer->Username = "desarrollokmimos@gmail.com";
-        $phpmailer->Password = "Kmimos2017";
-        $phpmailer->SMTPSecure = "tls";
-        
-        $phpmailer->smtpConnect([
-            'ssl' => [
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-            ]
-        ]);
-        $phpmailer->IsHTML(true);
-     
         $phpmailer->From = "desarrollokmimos@gmail.com";
         $phpmailer->FromName = "Soporte Kmimos";
     }
+    
+    wp_mail( "soporte@openpay.mx", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Soporte de Openpay
 
-    wp_mail( "vlzangel91@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
-    wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
+    wp_mail( "vlzangel91@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Angel
+    wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Yrcel
 
-    // wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje);
+    wp_mail( "e.viera@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Eyderman
+    wp_mail( "a.vera@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Alfredo
 
-	print_r( $info );
+    // print_r( $info );
 ?>

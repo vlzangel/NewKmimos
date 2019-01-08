@@ -1,20 +1,47 @@
 /*MODAL SHOW*/
+
+var CERRAR_MODAL = true;
+
 jQuery(document).on('click', '.modal_show' ,function(e){
-    modal_show(this)
+    modal_show(this);
 });
+
 function modal_show(element){
     var modal = jQuery(element).data('modal');
     jQuery('.modal').modal('hide');
     jQuery(modal).modal("show");
 }
 
+var hora = 3600;
+function iniciar_cronometro(){
+	setInterval(function(){
+		hora--;
+		var minutos = (hora/60);
+		var m = parseInt(minutos);
+		var s = parseInt( hora-(m*60) );
+
+		m = ( m < 10 ) ? "0"+m : m; 
+		s = ( s < 10 ) ? "0"+s : s; 
+
+		jQuery(".cronometro_m").html(m);
+		jQuery(".cronometro_s").html(s);
+	}, 1000);
+}
+
 jQuery( document ).ready( function(){
 
 	jQuery("#btn_registrar_mascota").on("click", function(){
-		jQuery(".popup-registrarte-final").css("display", "none");
+		CERRAR_MODAL = false;
+
+		jQuery("#popup-registrarte-2").modal("hide");
+		jQuery("#popup-registrarte").modal("show");
+
+		CERRAR_MODAL = true;
+
+		jQuery(".popup-registrarte-1").css("display", "none");
+		jQuery(".popup-condiciones").css("display", "none");
 		jQuery(".popup-registrarte-datos-mascota").css("display", "block");
 	});
-
 	jQuery(".terminos_container").load(HOME+"/terminos_HTML.php");
 
 });
@@ -33,16 +60,24 @@ var globalData = "";
 jQuery(document).on("click", '[data-target="#popup-registrarte"]' ,function(e){
 	e.preventDefault();
 	jQuery('[data-error="auth"]').fadeOut("fast");
-	jQuery("#popup-registrarte .modal-content > div").css("display", "none");
+
+	// jQuery("#popup-registrarte .modal-content > div").css("display", "none");
+
 	jQuery(".popup-registrarte-1").css("display", 'block');
 	jQuery(".popup-registrarte-nuevo-correo").css("display", 'none');
 	jQuery(".popup-registrarte-datos-mascota").css('display', 'none');
-	jQuery(".popup-registrarte-final").css('display', 'none');
+	// jQuery(".popup-registrarte-final").css('display', 'none');
 	jQuery(".popup-registrarte-final-0").css('display', 'none');
 	jQuery('#km-datos-foto-profile').css('background-image', 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
 	jQuery("#km-datos-foto-profile").css("background-image", 'url('+HOME+'/images/popups/registro-cuidador-foto.png)');
 	jQuery('#form_nuevo_cliente')[0].reset();
 	jQuery( jQuery(this).data('target') ).modal('show');
+
+	/*
+	jQuery("#popup-registrarte").modal("hide");
+	jQuery("#popup-registrarte-2").modal("show");
+	iniciar_cronometro();
+	*/
 });
 
 jQuery("#popup-registrarte-datos-mascota").ready(function(){
@@ -237,8 +272,26 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery( "#btn_si_acepto" ).addClass("btn_disable");
 				jQuery( "#btn_si_acepto" ).addClass("btn_disable_2");
 
-				jQuery(".popup-condiciones").css("display", "none");
-				jQuery(".popup-registrarte-final").css("display", "block");
+				// jQuery(".popup-condiciones").css("display", "none");
+				// jQuery(".popup-registrarte-final").css("display", "block");
+
+				jQuery("#popup-registrarte").modal("hide");
+				jQuery("#popup-registrarte-2").modal("show");
+				iniciar_cronometro();
+
+				jQuery("#btn_cerrar_2").on("click", function(e){
+					finalizar_proceso();
+				});
+
+				jQuery("#popup-registrarte").on('hidden.bs.modal', function () {
+					finalizar_proceso();
+			    });
+
+				jQuery("#popup-registrarte-2").on('hidden.bs.modal', function () {
+					if( CERRAR_MODAL ){
+		            	finalizar_proceso();
+					}
+			    });
 
 				var nombre = jQuery('#form_nuevo_cliente [name="nombre"] ').val();
 					apellido = jQuery("#apellido").val(),
@@ -267,11 +320,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					'social_facebook_id': jQuery('#facebook_cliente_id').val(),
 					'social_google_id': jQuery('#google_cliente_id').val()
 				};
-
-				jQuery("#popup-registrarte").on('hidden.bs.modal', function () {
-		            finalizar_proceso();
-		            //location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
-			    });
 
 				jQuery.post( HOME+'/procesos/login/registro.php', datos, function( data ) {
 					if( data > 0 ){
@@ -661,19 +709,18 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery.post( HOME+'/procesos/login/registro_pet.php', datos, function( data ) {
 
 					if( data >= 1 ){
-						jQuery("#btn_cerrar").on("click", function(e){
+						jQuery("#btn_cerrar_1").on("click", function(e){
 							finalizar_proceso();
-							//location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
 						});
 					}else{
 						jQuery('.km-btn-popup-registrarte-datos-mascota').after('<div style="margin-bottom:15px;" class="col-xs-12">No se pudo registrar la mascota, verifique los datos y vuelva a intentarlo.</div>');
 					}
 					jQuery('.km-btn-popup-registrarte-datos-mascota').html('REGISTRARME');
 				});
-
+				
 				jQuery(".popup-registrarte-datos-mascota").css("display", "none");
 				jQuery(".popup-registrarte-final-0").css("display", "block");
-
+				
 				jQuery("body").scrollTop(0);
 				jQuery(".modal").scrollTop(0);
 

@@ -15,12 +15,15 @@
         "paseos",
         "testimonios",
         "product",
+        "page-perfil.php",
     ];
+
+    $plantilla = get_post_meta($post->ID, '_wp_page_template', true);
 
 
     if( true ){
 
-        if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new) ){
+        if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new)  || in_array($plantilla, $pages_new) ){
             include __DIR__.'/NEW/footer.php';
         }else{
             
@@ -98,7 +101,7 @@
                     </footer>
                 ';
             }    
-            echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';
+           
 
             wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
             wp_enqueue_script('global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');

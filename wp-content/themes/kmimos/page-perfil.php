@@ -11,7 +11,14 @@
 	wp_enqueue_style('perfil_responsive', getTema()."/css/responsive/perfil_responsive.css", array(), '1.0.0');
 	wp_enqueue_script('perfil_global', getTema()."/js/perfil_global.js", array("jquery", "global_js"), '1.0.0');
 
+	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
+
+    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+
 	$btn_txt = "Actualizar";
+
+	echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';
 
 	$mostrar_btn = true;
 	switch ( $post->post_name ) {
@@ -23,7 +30,7 @@
 			wp_enqueue_style('mascotas_responsive', getTema()."/css/responsive/mascotas_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('mascotas', getTema()."/js/mascotas.js", array("jquery", "global_js"), '1.0.0');
 
-			$btn_txt = "Nueva Mascota";
+			$btn_txt = "+";
 		break;
 		case 'valorar':
 			$btn_txt = "Enviar valoración";
@@ -160,8 +167,13 @@
 		break;
 		// para el cuidador
 		case 'mis-facturas':
+
 		    wp_enqueue_style('misfacturas', getTema()."/css/misfacturas.css", array(), '1.0.0');
 			wp_enqueue_style('misfacturas_responsive', getTema()."/css/responsive/misfacturas_responsive.css", array(), '1.0.0');
+
+		    wp_enqueue_style('historial', getTema()."/css/historial.css", array(), '1.0.0');
+			wp_enqueue_style('historial_responsive', getTema()."/css/responsive/historial_responsive.css", array(), '1.0.0');
+			
 			wp_enqueue_script('misfacturas_js', getTema()."/js/misfacturas.js", array("jquery", "global_js"), '1.0.0');
 		break;
 		case 'datos-de-facturacion':
@@ -340,22 +352,42 @@
 
 		$HTML_BTN = '';
 		if( $mostrar_btn ){
+			$type_btn = ( $btn_txt == '+' ) ? '<img src="'.get_recurso('img/PERFILES').'BOTON.svg" onclick="press_btn(jQuery(this))" data-id="#btn_actualizar" /> <input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'" style="display: none;">' : '<input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'">';
 			$HTML_BTN = '
 			<div class="container_btn">
-				<input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'">
+				'.$type_btn.'
 				<div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div>
 			</div>';
 		}
 
 		$HTML = '
-	 		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
-				<div class="overlay"></div>
+	 		<div class="km-ficha-bg" style="background-image:url('.get_recurso('img/PERFILES').'Banner_PC.jpg);">
+				<div class="overlay" style="display: none;"></div>
 			</div>
 			<div class="body container km-content-reservation">
 				<div class="menu_perfil">
 					<div class="vlz_img_portada">
-						<div class="vlz_img_portada_fondo" style="background-image: url('.$avatar.'); filter:blur(2px);" ></div>
-						<div class="vlz_img_portada_normal" style="background-image: url('.$avatar.');"></div>
+
+				            <div class="vlz_img_portada_perfil">
+				                <div class="vlz_img_portada_fondo vlz_rotar" style="background-image: url('.$avatar.');"></div>
+				                <div class="vlz_img_portada_normal vlz_rotar" style="background-image: url('.$avatar.');"></div>
+				                <div class="vlz_img_portada_cargando vlz_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
+				                <div class="vlz_cambiar_portada">
+				                    <i class="fa fa-camera" aria-hidden="true"></i>
+				                    <input type="file" id="portada_2" name="xportada" accept="image/*" />
+				                </div>
+				                <div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
+				                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
+				            </div>
+				            <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" name="portada" data-valid="requerid" />
+
+				            <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
+				      
+
+        				<!--
+							<div class="vlz_img_portada_fondo" style="background-image: url('.$avatar.'); filter:blur(2px);" ></div>
+							<div class="vlz_img_portada_normal" style="background-image: url('.$avatar.');"></div>
+						-->
 					</div>
 					<ul>
 						'.$MENU["body"].'

@@ -1,9 +1,12 @@
 .mascotas_container{
 	overflow: hidden;
+	list-style: none;
+	margin-bottom: 120px;
+    padding: 0px;
 }
 .mascotas_box{
 	float: left;
-	width: 33.333333%;
+	width: 25%;
 	box-sizing: border-box;
 	padding: 0px 5px 10px;
 }
@@ -13,9 +16,8 @@
 	border: solid 1px #CCC;
 	border-radius: 3px;
 	box-sizing: border-box;
-	padding: 10px;
+	padding: 0px;
 	width: 100%;
-	height: 290px;
 }
 .mascotas_item a.mascotas_content{
 	position: absolute;
@@ -27,37 +29,50 @@
 }
 .vlz_img_portada_perfil {
     height: 150px;
-    margin: 8px;
+    margin: 0px;
 }
 .mascotas_data{
-    margin: 0px 8px;
+    margin: 0px 8px 15px;
     text-align: center;
 }
-.mascotas_data h3{
+.mascotas_data a {
+    display: block;
+    text-align: center;
     margin: 0px;
-    font-size: 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: Gotham-Pro-Bold;
+    padding: 15px 0px;
 }
-.mascotas_item a.mascotas_content:hover h3{
-	color: #59c9a8;
+
+.mascotas_data a.boton {
+	display: block;
+    text-align: center;
+    margin: 0px 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 7px 10px;
+    color: #FFF !important;
 }
+
 .mascotas_delete{
 	position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
+    top: 0px;
+    right: 0px;
+    width: auto;
     text-align: center;
-    padding: 5px;
+    padding: 10px 15px;
     font-size: 16px;
-    border-top: solid 1px #909090;
-    background: #909090;
     color: #FFF;
-    border-radius: 0px 0px 3px 3px;
     cursor: pointer;
+    z-index: 999999999;
 }
+/*
 .mascotas_delete:hover{
     border-top: solid 1px #c72929;
     background: #c72929;
 }
+*/
 .mascotas_vacio{
 	text-align: center;
 }

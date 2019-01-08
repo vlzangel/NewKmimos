@@ -1,7 +1,7 @@
 <?php
-	error_reporting(0);
+    error_reporting(0);
     
-	extract($_POST);
+    extract($_POST);
 
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
     include_once($raiz."/vlz_config.php");
@@ -31,6 +31,11 @@
             Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
             $_openpay_id = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$reserva->post_parent} AND meta_key LIKE '%_openpay_customer_id%'");
+            
+            if( $_openpay_id == false ){
+                $_openpay_id = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$reserva->post_author} AND meta_key LIKE '%openpay%'");
+            }
+
             $customer = $openpay->customers->get( $_openpay_id );
             $limite = date("Y-m-d", strtotime("-1 day"));
             $findDataRequest = array(
@@ -39,28 +44,30 @@
             $chargeList = $customer->charges->getList($findDataRequest);
             $resp = [];
             foreach ($chargeList as $key => $value) {
-                $resp[] = [
-                    "id" => $value->id,
-                    "metodo" => $value->method,
-                    "status" => $value->status,
-                    "order_id" => $value->order_id,
-                    "error_message" => $value->error_message,
-                    "cliente" => [
-                        "id" => $_openpay_id,
-                        "nombre" => $customer->name.' '.$customer->last_name,
-                        "email" => $customer->email,
-                        "direccion" => 'México, '.$customer->address->state.', '.$customer->address->city.' - '.$customer->address->postal_code,
-                        "creacion" => $customer->creation_date,
-                    ],
-                    "tarjeta" => [
-                        "titular" => $value->card->holder_name,
-                        "numero" => $value->card->brand." ".$value->card->card_number,
-                        "expiracion" => $value->card->expiration_month.' / '.$value->card->expiration_year,
-                        "banco" => $value->card->bank_name,
-                        "tipo" => $value->card->type,
-                        "brand" => $value->card->brand,
-                    ]
-                ];
+                if( $value->order_id == $reserva->post_parent && $value->method == 'card' ){
+                    $resp[] = [
+                        "id" => $value->id,
+                        "metodo" => $value->method,
+                        "status" => $value->status,
+                        "order_id" => $value->order_id,
+                        "error_message" => $value->error_message,
+                        "cliente" => [
+                            "id" => $_openpay_id,
+                            "nombre" => $customer->name.' '.$customer->last_name,
+                            "email" => $customer->email,
+                            "direccion" => 'México, '.$customer->address->state.', '.$customer->address->city.' - '.$customer->address->postal_code,
+                            "creacion" => $customer->creation_date,
+                        ],
+                        "tarjeta" => [
+                            "titular" => $value->card->holder_name,
+                            "numero" => $value->card->brand." ".$value->card->card_number,
+                            "expiracion" => $value->card->expiration_month.' / '.$value->card->expiration_year,
+                            "banco" => $value->card->bank_name,
+                            "tipo" => $value->card->type,
+                            "brand" => $value->card->brand,
+                        ]
+                    ];
+                }
             } 
 
             $falla = $value->error_message;
@@ -115,5 +122,5 @@
 
     }
     
-	exit;
+    exit;
 ?>

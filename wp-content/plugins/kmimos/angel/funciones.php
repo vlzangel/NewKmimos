@@ -403,7 +403,8 @@
                     "vendor" => array(
                         array("name"  => "Mi Perfil",
                             "url"   => get_home_url()."/perfil-usuario/",
-                            "icono" => "460"
+                            "icono" => "460",
+                            "img" => "Perfil.svg",
                         ),
                         array("name"  => "Informaci&oacute;n de Perfil",
                             "url"   => get_home_url()."/perfil-usuario/descripcion",
@@ -426,26 +427,31 @@
                         array("name"  => "Cuidadores Favoritos",
                             "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "icono" => "375",
-                            "ocultar_menu_principal"  => 'true'
+                            "ocultar_menu_principal"  => 'true',
+                            "img" => "Favoritos.svg",
                         ),
                         array("name"  => "Mis Mascotas",
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "icono" => "871",
-                            "ocultar_menu_principal"  => 'true'
+                            "ocultar_menu_principal"  => 'true',
+                            "img" => "Mascotas.svg",
                         ),
                         array("name"  => "Reservas para mis mascotas",
                             "url"   => get_home_url()."/perfil-usuario/historial",
                             "icono" => "33",
-                            "ocultar_menu_principal"  => 'true'
+                            "ocultar_menu_principal"  => 'true',
+                            "img" => "Reservas.svg",
                         ),                   
                         array("name"  => "Reservas",
                             "url"   => get_home_url()."/perfil-usuario/reservas",
                             "icono" => "33",
-                            "resaltar_movil"  => true
+                            "resaltar_movil"  => true,
+                            "img" => "Reservas.svg",
                         ),
                         array("name"  => "Citas para Conocerme",
                             "url"   => get_home_url()."/perfil-usuario/solicitudes",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "img" => "Conocer.svg",
                         ),
                         array("name"  => "Fotos del día",
                             "url"   => get_home_url()."/perfil-usuario/fotos",
@@ -455,7 +461,8 @@
                         ),
                         array("name"  => "Datos de Facturaci&oacute;n",
                             "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "img" => "Facturacion.svg"
                         ),
                         array("name"  => "Mis Facturas",
                             "url"   => get_home_url()."/perfil-usuario/mis-facturas",
@@ -464,86 +471,102 @@
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
-                            "icono" => "476"
+                            "icono" => "476",
+                            "img" => "Cerrar_sesion.svg",
                         ),
                     ),
                     "subscriber" => array(
                         array(
                             "url"   => get_home_url()."/perfil-usuario/",
                             "name"  => "Mi Perfil",
-                            "icono" => "460"
+                            "icono" => "460",
+                            "img" => "Perfil.svg",
                         ),                        
                         array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
-                            "icono" => "871"
+                            "icono" => "871",
+                            "img" => "Mascotas.svg",
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/historial",
                             "name"  => "Reservas",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "img" => "Reservas.svg",
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/solicitudes",
                             "name"  => "Citas para conocer",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "img" => "Conocer.svg",
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
-                            "icono" => "375"
+                            "icono" => "375",
+                            "img" => "Favoritos.svg",
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
                             "name"  => "Datos de Facturaci&oacute;n",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "img" => "Facturacion.svg"
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
-                            "icono" => "476"
+                            "icono" => "476",
+                            "img" => "Cerrar_sesion.svg",
                         )
                     ),
                     "administrator" => array(
                         array(
                             "url"   => get_home_url()."/perfil-usuario/",
                             "name"  => "Mi Perfil",
-                            "icono" => "460"
+                            "icono" => "460",
+                            "img" => "Perfil.svg",
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
-                            "icono" => "871"
+                            "icono" => "871",
+                            "img" => "Mascotas.svg",
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/historial",
                             "name"  => "Reservas",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "img" => "Reservas.svg",
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/solicitudes",
                             "name"  => "Citas para Conocer",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "img" => "Conocer.svg",
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
-                            "icono" => "375"
+                            "icono" => "375",
+                            "img" => "Favoritos.svg",
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
                             "name"  => "Datos de Facturaci&oacute;n",
-                            "icono" => "33"
+                            "icono" => "33",
+                            "img" => "Facturacion.svg"
                         ),
                         array(
                             "url"   => get_home_url()."/wp-admin/",
                             "name"  => "Panel de Control",
-                            "icono" => "421"
+                            "icono" => "421",
+                            "img" => "Panel_de_control.svg",
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
-                            "icono" => "476"
+                            "icono" => "476",
+                            "img" => "Cerrar_sesion.svg",
                         )
                     )
                 );
@@ -572,6 +595,7 @@
                         
                         if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
                         if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
+                        if( isset($value["img"]) ){ $icono = '<img src="'.get_recurso('img/PERFILES').$value["img"].'"></i> '; }
                         $MENU["body"] .=
                             '<li class="'.$sts.'">
                                 <a href="'.$value["url"].'" class="pd-tb11 menu-link">
@@ -664,11 +688,11 @@
 
         /* BEGIN Cuidadores destacados */
         $style_icono = ''; $flash_link = "";
-        $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados.png)!important;"';
+        // $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados.png)!important;"';
         if( count($atributos_cuidador)>0 ){
             $atributos = unserialize($atributos_cuidador[0]->atributos);
             if( $atributos['destacado'] == 1 ){
-                $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados-destacado.png)!important;width: 69px!important;height: 69px!important;"';
+                // $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados-destacado.png)!important;width: 69px!important;height: 69px!important;"';
                 $style_icono = 'style="margin: 8px 0px 0px 37px"!important';
             }
             if( $atributos['flash'] == 1 ){
@@ -697,11 +721,10 @@
             data-active="'.$fav_check.'"
             data-favorito="'.$fav_check.'"
             class="km-link-favorito '.$fav_del.'" '.$style_icono.'>
-            <i class="fa fa-heart" aria-hidden="true"></i>
-        </span>';
+            
+            <img src="'.get_recurso('img/PERFILES').'favorito.png" />
 
-        // // validaciones para el link de conocer al cuidador
-        // $attr_link_conocer_cuidador = get_attr_link_conocer_cuidador( utf8_encode($cuidador->titulo), $cuidador->id_post);
+        </span>';
 
         $titulo = utf8_encode($cuidador->titulo);
         if( $listado_favorito ){
@@ -718,56 +741,9 @@
         }
 
         switch ($disenio) {
-            case 'list':
-                $ficha = '
-                    <div class="km-item-resultado active">
-                        <a href="'.$url.'" class="km-foto">
-                            <div class="km-img">
-                                <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
-                                <div class="km-subimg" style="background-image: url('.$img.');"></div>
-                            </div>
-                            <span class="km-contenedor-favorito" '.$marca_destacado.'>'.$favoritos_link.'</span>
-                        </a>
-
-                        <div class="km-contenedor-descripcion-opciones">
-                            <div class="km-descripcion" style="position: relative;">
-
-                                '.$flash_link.'
-
-                                <h1><a href="'.$url.'">'.$titulo.'</a></h1>
-
-                                <p>'.$anios_exp.' año(s) años de experiencia</p>
-
-                                <div class="km-ranking">
-                                    '.kmimos_petsitter_rating($cuidador->id_post).'
-                                </div>
-
-                                <div class="km-valoraciones">
-                                    '.$valoraciones.'
-                                </div>
-
-                                <div class="km-sellos">
-                                    '.vlz_servicios($cuidador->adicionales).'
-                                </div>
-                            </div>
-
-                            <div class="km-opciones">
-                                <div class="precio">MXN $ '.$cuidador->precio.'</div>
-                                <div class="distancia">'.$distancia.'</div>
-                                <a role="button" href="#" 
-                                    data-name="'.$titulo.'" 
-                                    data-id="'.$cuidador->id_post.'" 
-                                    data-target="#popup-conoce-cuidador"
-                                    class="km-btn-primary-new stroke">CONÓCELO +</a>
-                                <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new basic">RESERVA</a>
-                            </div>
-                        </div>
-                    </div>
-                ';
-            break;
             case 'grid':
                 $ficha = '
-                    <div class="km-item-resultado">
+                    <div class="item-favorito">
                         <a href="'.$url.'" class="km-foto">
                             <div class="km-img">
                                 <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
@@ -775,33 +751,21 @@
                             </div>
                             <span class="km-contenedor-favorito" '.$marca_destacado.'>'.$favoritos_link.'</span>
                         </a>
-                        <div class="km-descripcion">
+                        <div class="">
                             
                             '.$flash_link.'
 
                             <h1><a href="'.$url.'">'.$titulo.'</a></h1>
-                            <p>'.$anios_exp.' año(s) de experiencia
-                                <br><b>MXN $ '.$cuidador->precio.'</b>
-                                <br><small>'.$distancia.'</small>
-                            </p>
+                            <div class="experiencia">'.$anios_exp.' año(s) de experiencia</div>
+                            <b class="precio">Desde MXN$ '.$cuidador->precio.'</b>
                             <div class="km-ranking">
                                 '.kmimos_petsitter_rating($cuidador->id_post).'
                             </div>
-
-                            <div class="km-valoraciones">
+                            <div class="valoraciones">
                                 '.$valoraciones.'
                             </div>
-
-                            <div class="km-sellos">
-                                '.vlz_servicios($cuidador->adicionales).'
-                            </div>
-                            <div class="km-buttons">
-                                <a role="button" href="#" 
-                                    data-name="'.$titulo.'" 
-                                    data-id="'.$cuidador->id_post.'" 
-                                    data-target="#popup-conoce-cuidador"
-                                    class="km-btn-primary-new stroke">CONÓCELO +</a>
-                                <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="active">RESERVAR</a>
+                            <div class="resultados_item_bottom">
+                                <a href="'.get_home_url()."/petsitters/".$cuidador->user_id.'" class="boton boton_verde">Reservar</a>
                             </div>
                         </div>
                     </div>

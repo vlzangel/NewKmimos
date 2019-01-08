@@ -1,6 +1,6 @@
 <?php
-	$CONTENIDO .= '<div class="lista_reservas" data-user="'.$user_id.'">';
-
+	
+	error_reporting(0);
 		$sql = "
 			SELECT 
 				posts.post_status AS status,
@@ -32,23 +32,28 @@
 
 			$reservas_array = array(
 				"pendientes_confirmar" => array(
-					"titulo" => 'Reservas Pendientes',
+					// "titulo" => 'Reservas Pendientes',
+					"titulo" => '',
 					"reservas" => array()
 				),
 				"confirmadas" => array(
-					"titulo" => 'Reservas Confirmadas',
+					// "titulo" => 'Reservas Confirmadas',
+					"titulo" => '',
 					"reservas" => array()
 				),
 				"completadas" => array(
-					"titulo" => 'Reservas Completadas',
+					// "titulo" => 'Reservas Completadas',
+					"titulo" => '',
 					"reservas" => array()
 				),
 				"canceladas" => array(
-					"titulo" => 'Reservas Canceladas',
+					// "titulo" => 'Reservas Canceladas',
+					"titulo" => '',
 					"reservas" => array()
 				),
 				"modificadas" => array(
-					"titulo" => 'Reservas Modificadas',
+					// "titulo" => 'Reservas Modificadas',
+					"titulo" => '',
 					"reservas" => array()
 				)
 			);
@@ -207,55 +212,53 @@
 			$completadas = construir_listado(['completadas'=>$reservas_array['completadas']]);
 			$canceladas = construir_listado(['canceladas'=>$reservas_array['canceladas']]);
 			$modificadas = construir_listado(['modificadas'=>$reservas_array['modificadas']]);
-			
+		
 			$CONTENIDO .= '
-			<h1 style="margin: 0px; padding: 0px;">Mis Reservas</h1><hr style="margin: 5px 0px 10px;">
-			<div>
-			  <!-- Nav tabs -->
-			  <ul class="nav nav-tabs" role="tablist">
-			    
-			    <li role="presentation" class="active">
-			    	<a href="#por_confirmar" aria-controls="por_confirmar" role="tab" data-toggle="tab">
-			    		Por Confirmar 
-			    	</a>
-			    </li>
-			    <li role="presentation">
-			    	<a href="#confirmadas" aria-controls="confirmadas" role="tab" data-toggle="tab">
-			    		Confirmadas 
-			    	</a>
-			    </li>
-			    <li role="presentation">
-			    	<a href="#completadas" aria-controls="completadas" role="tab" data-toggle="tab">
-			    		Completadas 
-			    	</a>
-			    </li>
-			    <li role="presentation">
-			    	<a href="#canceladas" aria-controls="canceladas" role="tab" data-toggle="tab">
-			    		Canceladas 
-			    	</a>
-			    </li>
-			    <li role="presentation">
-			    	<a href="#modificadas" aria-controls="modificadas" role="tab" data-toggle="tab">
-			    		Modificadas 
-			    	</a>
-			    </li> 
+				<h1>Mis Reservas</h1>
+				<div class="lista_reservas" data-user="'.$user_id.'">
+				<div>
+				  <!-- Nav tabs -->
+				  <ul class="nav nav-tabs" role="tablist">
+				    
+				    <li role="presentation" class="active">
+				    	<a href="#por_confirmar" aria-controls="por_confirmar" role="tab" data-toggle="tab">
+				    		Por Confirmar 
+				    	</a>
+				    </li>
+				    <li role="presentation">
+				    	<a href="#confirmadas" aria-controls="confirmadas" role="tab" data-toggle="tab">
+				    		Confirmadas 
+				    	</a>
+				    </li>
+				    <li role="presentation">
+				    	<a href="#completadas" aria-controls="completadas" role="tab" data-toggle="tab">
+				    		Completadas 
+				    	</a>
+				    </li>
+				    <li role="presentation">
+				    	<a href="#canceladas" aria-controls="canceladas" role="tab" data-toggle="tab">
+				    		Canceladas 
+				    	</a>
+				    </li>
+				    <li role="presentation">
+				    	<a href="#modificadas" aria-controls="modificadas" role="tab" data-toggle="tab">
+				    		Modificadas 
+				    	</a>
+				    </li> 
 
-			  </ul>
+				  </ul>
 
-			  <!-- Tab panes -->
-			  <div class="tab-content"> 
-			    <div role="tabpanel" class="tab-pane active" id="por_confirmar">'.$por_confirmar.'</div>
-			    <div role="tabpanel" class="tab-pane " id="confirmadas">'.$confirmadas.'</div>
-			    <div role="tabpanel" class="tab-pane " id="completadas">'.$completadas.'</div>
-			    <div role="tabpanel" class="tab-pane " id="canceladas">'.$canceladas.'</div>
-			    <div role="tabpanel" class="tab-pane " id="modificadas">'.$modificadas.'</div> 
-			  </div>
-			</div>
+				  <!-- Tab panes -->
+				  <div class="tab-content"> 
+				    <div role="tabpanel" class="tab-pane active" id="por_confirmar">'.$por_confirmar.'</div>
+				    <div role="tabpanel" class="tab-pane " id="confirmadas">'.$confirmadas.'</div>
+				    <div role="tabpanel" class="tab-pane " id="completadas">'.$completadas.'</div>
+				    <div role="tabpanel" class="tab-pane " id="canceladas">'.$canceladas.'</div>
+				    <div role="tabpanel" class="tab-pane " id="modificadas">'.$modificadas.'</div> 
+				  </div>
+				</div>
 
 			';
-
-
-			
 		}else{
 			$CONTENIDO .= "<h1 style='line-height: normal;' class='vlz_no_aun'>Usted no tiene reservas pendientes</h1>";
 		}

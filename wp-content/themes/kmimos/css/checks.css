@@ -10,8 +10,10 @@
     text-align: left;
 }
 .vlz_check{
-    background-color: #a8d8c9 !important;
-    border: 1px solid #87b8ab !important;
+    color: #FFF !important;
+    background-color: #00d2c6 !important;
+    border: 1px solid #6b6b6b !important;
+    font-weight: 600;
 }
 .vlz_no_check:after{
     content: ' ';
