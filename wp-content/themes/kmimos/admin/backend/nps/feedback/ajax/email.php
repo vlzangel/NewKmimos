@@ -18,9 +18,8 @@
 		[]
 	);
 
-	// wp_mail( $cuidador->email, "Notificación de pago", $mensaje );
 	$sts = 0;
-	if( wp_mail( 'i.cocchini@kmimos.la', "Kmimos Feedback", $mensaje ) ){
+	if( wp_mail( $email, "Kmimos Feedback", $mensaje ) ){
 		$sts = 1;
 		$wpdb->query( "INSERT INTO nps_comentario (pregunta_id, tipo, comentario, code) 
 	    		VALUES ( {$respuesta_id}, 'admin', '{$comentario}', '{$code}' ) " );
