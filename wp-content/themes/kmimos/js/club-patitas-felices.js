@@ -30,21 +30,15 @@ jQuery(document).ready( function (){
 			  function(d){
 			       	console.log(d);
 					if(d.sts == 1){
-						window.location = RAIZ+'club-patitas-felices/compartir';
-						document.location.href = RAIZ+'club-patitas-felices/compartir';
-						return true;
-						// location.reload();
-						// if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-						//    location.replace( RAIZ+'/club-patitas-felices/compartir' );
-						// }else{
-						// 	window.location.href = RAIZ+'/club-patitas-felices/compartir';
-						// }
+						location.reload();
 					}else{
 						btn.html('Genera tu código aquí');
 						btn.removeClass('disabled');
 						alert(d.msg);
-			   	}
-			}, 'json');
+				   	}
+				}, 
+				'json'
+			);
 		}
 	});
 

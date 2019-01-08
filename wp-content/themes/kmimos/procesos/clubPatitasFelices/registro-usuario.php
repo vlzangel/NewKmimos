@@ -1,7 +1,7 @@
 <?php
 
-	session_start();
 	include ( '../../../../../wp-load.php' );
+	session_start();
 
 // Parametros
 	global $wpdb;
@@ -105,11 +105,14 @@
 
 		        wp_mail( $email, "¡Bienvenid@ al club!", $message_mail);
 		        wp_mail( 'italococchini@gmail.com', "¡Bienvenid@ al club!", $message_mail);
+
+		        $_SESSION['CPF'] = "OK";
 			}
 		}
  	}else{
  		$sts = 0;
  		$msg ='Ya eres miembro del Club, debes iniciar sesion para ver tus creditos';
+        $_SESSION['CPF'] = "OK";
  	}
 
  	if( isset($_POST['redirect']) && $_POST['redirect'] == 1 ){
