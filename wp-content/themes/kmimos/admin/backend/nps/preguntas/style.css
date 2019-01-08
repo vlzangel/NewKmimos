@@ -1,0 +1,275 @@
+[role="tab"] span{
+	display: none;
+}
+[role="tab"].active span{
+	display: inline-block;
+}
+
+#popover-content,
+.leyenda,
+.leyenda ul{
+	margin-bottom: 0px;
+}
+
+.list-inline li div:hover{
+	background-color: #22712c;
+}
+.list-inline li div a:hover{
+	text-decoration: none;
+}
+.list-inline li aside{
+	color: #fff;
+}
+.list-inline li aside,
+.list-inline li div{
+	padding:10px;
+	border-radius: 10px 0px 10px 0px;
+	background-color: #ccc;
+	height: 3px;
+	width: 15px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.list-inline li{
+	display: inline-block!important;
+	margin:5px ;
+	vertical-align: middle;
+}
+.list-inline {
+	font-size: 12px;
+}
+.titulos{
+	margin-top: 15px;
+}
+.status{
+    width: 15px;
+    height: 15px;
+    margin: 0px auto;
+    border-radius: 50%;
+}
+.buttons-html5{
+	border-radius: 5px;
+	margin: 0px!important;
+	padding: 5px 10px!important;
+}
+ 
+input[type="date"]{
+	border-radius: 5px;
+	margin: 5px 5px 0px 5px ;
+	padding: 5px;
+}
+
+.modal > div > div * {
+	font-size: 13px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.modal label{
+	margin-top: .5rem;
+	margin-bottom: .2rem;
+}
+.tabla_vertical > tbody > tr > th{
+	text-align: left;
+	width: 100px;
+}
+
+.tabla_vertical > tbody > tr > td{
+	text-align: left;
+}
+
+.tabla_horizontal{
+	border: solid 1px #CCC;
+	border-bottom: solid 1px #CCC;
+}
+
+.tabla_horizontal > tbody > tr > th{
+	background: #EEE;
+	border-bottom: solid 1px #CCC;
+	border-right: solid 1px #CCC;
+    padding: 5px;
+    text-align: center;
+}
+
+.tabla_horizontal > tbody > tr > td:last-child{
+	border-right: solid 1px #CCC;
+}
+
+table.table-bordered.dataTable tbody th, 
+table.table-bordered.dataTable tbody td{
+	vertical-align: middle;
+}
+
+.items-span{
+	color: #555;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	padding: 5px; 
+	border-radius: 5px;
+	font-size: 12px;
+	margin: 5px;
+	display: inline-flex;
+}
+.items-span span{
+	background:#fff;
+	color:#000;
+	font-size: 12px;
+}
+.tabla_horizontal > tbody > tr > td{
+	border-bottom: solid 1px #CCC;
+	padding: 5px;
+    text-align: center;
+}
+
+.tabla_horizontal > tbody > tr:hover td{
+	background: #EEE;
+}
+
+.left{
+	text-align: left !important;
+}
+
+.right{
+	text-align: right !important;
+}
+
+.center{
+	text-align: center !important;
+}
+
+.top{
+	vertical-align: top !important;
+}
+
+.input_container {
+    margin: 10px 15px;
+    padding: 10px;
+    text-align: left;
+}
+
+.botones_container {
+    background: #f7f7f7;
+    margin: 10px 15px;
+    padding: 10px;
+    text-align: left;
+    border-radius: 3px;
+}
+
+.botones_container input {
+	border: solid 1px #CCC;
+    background: #CCC;
+    padding: 10px 20px;
+    cursor: pointer;
+	box-shadow: 0px 0px 0px #CCC;
+}
+
+.botones_container input:hover {
+	background: #dfdfdf;
+	box-shadow: 0px 0px 0px #CCC !important;
+	border: solid 1px #CCC;
+}
+
+.botones_container input:focus {
+	box-shadow: 0px 0px 0px #CCC !important;
+	border: solid 1px #CCC;
+}
+
+input[type=checkbox]:checked:before {
+	margin: 0px -2px;
+    font-size: 20px;
+}
+
+input[type=checkbox] {
+    height: 20px !important;
+    width: 20px !important;
+}
+
+.well{
+	background-color: #e9eaea!important;
+	border-radius: 5px;
+	padding: 10px; 
+}
+
+.modal .tab-content .active{
+	display: block!important;
+}
+.modal .tab-content .tab-pane{
+	display: none;
+}
+.modal .nav-tabs .active{
+    background: #fff!important;
+}
+.modal .nav-tabs li a{
+	text-decoration: none;
+}
+.modal .nav-tabs li{
+    padding: 5px 10px;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-radius: 5px 5px 0px 0px;
+    margin-bottom: -1px;
+}
+.modal p{
+	margin-top: 1rem;
+}
+.table-alert{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 0px!important;
+    padding: 3px!important;
+	text-align: center;
+
+}
+.table-progress{
+	height: 5px;
+} 
+.table-container-progress{
+	width:80%;
+	display:inline-block;
+	vertical-align:middle;
+}
+.table-ptos-nps{
+	font-size: 16px;
+	width:20%;
+	display:inline-block;
+	vertical-align:middle;
+	text-align: center;
+}
+
+.leyenda-item span.success,
+.progress-bar-success{
+	background-color: #5cb85c;
+}
+.leyenda-item span.warning,
+.progress-bar-warning{
+	background-color: #f0ad4e;
+}
+.leyenda-item span.danger,
+.progress-bar-danger{
+	background-color: #d9534f;
+}
+
+.leyenda-item{
+	display: inline-block;
+	padding: 10px 5px;
+	font-size: 12px;
+}
+.leyenda-item span{
+	padding: 0px 10px;
+	border-radius: 10px 0px 10px 0px; 
+	margin-right: 5px;
+}
+
+
+@media (max-width: 500px){
+	.container-search label{
+		width: 100%!important;
+	}
+	.container-search input[type="date"]{
+		width: 100%!important;
+		margin: 5px 0px 5px 0px;
+	}
+	.container-search button{
+		width: 100%!important;
+	}
+}

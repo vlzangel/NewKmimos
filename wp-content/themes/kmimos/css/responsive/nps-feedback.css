@@ -1,0 +1,6 @@
+@media screen and (max-width: 650px) {
+	.col-item { width: 100%;
+	 }
+	.tag-nivel{ display: none;
+	}
+}
