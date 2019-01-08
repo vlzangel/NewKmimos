@@ -77,6 +77,18 @@
                     'position'      =>  4,
                 ),
  
+                // Menu NPS
+                array(
+                    'title'         =>  'NPS',
+                    'short-title'   =>  'NPS',
+                    'parent'        =>  '',
+                    'slug'          =>  'nps_preguntas',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'nps_preguntas',
+                    'icon'          =>  '',
+                    'position'      =>  4,
+                ),
+ 
  
             );
 
@@ -218,6 +230,24 @@
                 'page'          =>  'openpay',
             );
 
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Detalle'),
+                'short-title'   =>  __('Detalle'),
+                'parent'        =>  'nps_preguntas',
+                'slug'          =>  'nps_detalle',
+                'access'        =>  'manage_options',
+                'page'          =>  'nps_detalle',
+            );
+
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Feedback'),
+                'short-title'   =>  __('Feedback'),
+                'parent'        =>  'nps_preguntas',
+                'slug'          =>  'nps_feedback',
+                'access'        =>  'manage_options',
+                'page'          =>  'nps_feedback',
+            );
+
             foreach($opciones_menu_reporte as $opcion){
                 if( $opcion['parent'] == '' ){
                     add_menu_page(
@@ -246,6 +276,30 @@
     }
 
     /* Inclucion de paginas */
+    if(!function_exists('nps_feedback')){
+        function nps_feedback(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/nps/feedback/reporte.php');
+        }
+    }
+
+    if(!function_exists('nps_preguntas')){
+        function nps_preguntas(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/nps/preguntas/reporte.php');
+        }
+    }
+
+    if(!function_exists('nps_detalle')){
+        function nps_detalle(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/recursos/importador-chart.php');
+            include_once(dirname(__DIR__).'/backend/nps/detalle/reporte.php');
+        }
+    }
 
     if(!function_exists('reporte_fotos')){
         function reporte_fotos(){
