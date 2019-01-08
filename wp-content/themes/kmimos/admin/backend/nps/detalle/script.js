@@ -140,7 +140,7 @@ function load_dashboard(){
 		TEMA+'/admin/backend/nps/detalle/ajax/feedback_por_ptos.php',
 		{ 'id': ID },
 		function(data){
-			grafico_score_detalle( data );
+			desglose_de_puntuacion( data );
 		},
 	'json');
 }
@@ -282,7 +282,7 @@ function grafico_nps_por_dia(data){
 	});
 }
 
-function grafico_score_detalle(data){
+function desglose_de_puntuacion(data){
 	var chart = AmCharts.makeChart("grafico_detalle", {
 	  "type": "serial",
 	  "theme": "light",
@@ -310,7 +310,9 @@ function grafico_score_detalle(data){
 	    "title": "Puntos",
 	    "type": "column",
 	    "valueField": "total",
-	    "valueAxis": "totalAxis"
+	    "valueAxis": "totalAxis",
+	    "colorField": "color",
+	    "lineColorField": "color"
 	  }],
 	  "chartCursor": {
 	    "categoryBalloonDateFormat": "DD",
