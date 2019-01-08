@@ -2,10 +2,12 @@
 	/*
         Template Name: Club patitas
     */
+    session_start();
+    if( isset($_SESSION['CPF']) && $_SESSION['CPF'] == 'OK' ){
+    	unset($_SESSION['CPF']);
+    	header('location:'.get_home_url().'/club-patitas-felices/compartir');
+    }
 
-    //if( $_POST ){
-    //	include_once( __DIR__ . '/procesos/clubPatitasFelices/registro-usuario.php' );
-    //}
 
     $url_img = get_home_url() .'/wp-content/themes/kmimos/images/club-patitas/';
     
@@ -46,8 +48,6 @@
 	}
 ?>
 	 
-
-	
 	<header class="row" style="background-image: url(<?php echo getTema().'/images/club-patitas/Kmimos-Club-de-las-patitas-felices-2.jpg'; ?>)">
 		<div class="col-xm-12 col-sm-12 col-md-12">
 			<?php if( !is_user_logged_in() ){ ?>
