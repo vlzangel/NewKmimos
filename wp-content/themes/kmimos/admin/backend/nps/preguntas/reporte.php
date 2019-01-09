@@ -1,3 +1,11 @@
+<?php
+    $user = wp_get_current_user();
+    $user_email = $user->user_email;
+
+?>
+<script type="text/javascript">
+    var email_user = '<?php echo $user_email; ?>';    
+</script>
 
 <link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/nps/preguntas/style.css'>
 <script src='<?php echo getTema(); ?>/admin/backend/nps/preguntas/script.js'></script>

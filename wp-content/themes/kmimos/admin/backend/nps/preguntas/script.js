@@ -61,7 +61,8 @@ jQuery(document).ready(function() {
 							"modulo": "nps/preguntas",
 							"modal": 'generador_codigo',
 							"info": {
-								"ID": data.id
+								"ID": data.id,
+								"email_user": email
 							}
 						});
 					}else{
@@ -133,7 +134,11 @@ function loadTabla( ){
         "scrollX": true,
         "ajax": {
             "url": TEMA+'/admin/backend/nps/preguntas/ajax/list.php',
-            "data": { 'desde': jQuery('[name="ini"]').val(), "hasta":jQuery('[name="fin"]').val() },
+            "data": { 
+            	'desde': jQuery('[name="ini"]').val(), 
+            	"hasta":jQuery('[name="fin"]').val(),
+            	"email": email_user
+            },
             "type": "POST"
         }
 	});
@@ -145,7 +150,8 @@ function abrir_link(e){
 		"modulo": "nps/preguntas",
 		"modal": e.attr("data-modal"),
 		"info": {
-			"ID": e.attr("data-id")
+			"ID": e.attr("data-id"),
+			"email": email_user,
 		}
 	});
 }
