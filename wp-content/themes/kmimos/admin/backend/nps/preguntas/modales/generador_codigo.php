@@ -12,7 +12,7 @@
 		$pregunta_id = $_POST['ID'];
 
 		$home = $nps->db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
-		$link = $home.'feedback/?o='.md5($pregunta_id).'&t=external&e=[Email del cliente]';
+		$link = $home.'feedback/?o='.md5($pregunta_id).'&t=external&e=[email]';
 
 		$link_code = '<a style="display: inline-block;padding: 6px 12px;margin-top: 10px;margin-bottom: 10px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px; color: #fff;background-color: #337ab7;border-color: #2e6da4;" href="'.$link.'">Feedback</a>';
 
@@ -66,7 +66,7 @@
 					<textarea row="8" col="10" style="text-align:left;height:75px;width: 100%;color:#000;margin-top:10px;" class="disabled well"><?php echo $link_code; ?></textarea>
 				</div>
 				<div group="tabpanel1" class="tab-pane text-center" id="link_preview">
-					<?php echo $link_code; ?>
+					<?php echo str_replace('[email]', $_POST['email'], $link_code); ?>
 				</div>
 			</div>
 			<div style="margin-top: 5px;font-size: 12px;font-style: italic;"><small><strong>Enlace:</strong> <?php echo $link; ?></small></div>
@@ -85,7 +85,7 @@
 					<textarea row="8" col="10" style="text-align:left;height:75px;width: 100%;color:#000;margin-top:10px;" class="disabled well"><?php echo $html_code; ?></textarea>
 				</div>
 				<div role="tabpanel" group="tabpanel2" id="html_preview" class="tab-pane text-center">
-					<?php echo $html_code; ?>
+					<?php echo str_replace('[email]', $_POST['email'], $html_code); ?>
 				</div>
 			</div>
 		</div>	
