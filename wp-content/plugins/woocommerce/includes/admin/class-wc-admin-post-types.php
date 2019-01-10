@@ -521,10 +521,16 @@ class WC_Admin_Post_Types {
 				}
 			break;
 			case 'usage' :
-				$usage_count = absint( get_post_meta( $post->ID, 'usage_count', true ) );
-				$usage_limit = esc_html( get_post_meta( $post->ID, 'usage_limit', true ) );
-				$usage_url   = sprintf( '<a href="%s">%s</a>', admin_url( sprintf( 'edit.php?s=%s&post_status=all&post_type=shop_order', esc_html( $post->post_title ) ) ), $usage_count );
+				$total_usos = get_post_meta( $post->ID, '_used_by' );
 
+				// $usage_count = absint( get_post_meta( $post->ID, 'usage_count', true ) );
+				$usage_count = absint( count($total_usos) );
+
+				$usage_limit = esc_html( get_post_meta( $post->ID, 'usage_limit', true ) );
+				//$usage_url   = sprintf( '<a href="%s">%s</a>', admin_url( sprintf( 'edit.php?s=%s&post_status=all&post_type=shop_order', esc_html( $post->post_title ) ) ), $usage_count );
+				
+				$usage_url   = $usage_count;
+				
 				if ( $usage_limit ) {
 					printf( __( '%s / %s', 'woocommerce' ), $usage_url, $usage_limit );
 				} else {

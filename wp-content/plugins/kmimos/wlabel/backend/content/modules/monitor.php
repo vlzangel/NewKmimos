@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
     $kmimos_load = dirname(dirname(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))))).'/wp-load.php';
     if(file_exists($kmimos_load)){
         include_once($kmimos_load);
@@ -10,7 +11,7 @@
     $WLresult = $_wlabel_user->wlabel_result;
     // $_wlabel_user->wlabel_Options('client');
     $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
-    $_wlabel_user->wlabel_Export('client','CLIENTES','table'); ?>
+    $_wlabel_user->wlabel_Export('monitor','Funnel de Conversión','table'); ?>
 
     <?= strtotime("2018/09/01") ?>
     <div class="module_title">
@@ -39,7 +40,8 @@
                         <tr><?php
 
                             $day_init = strtotime(date('m/d/Y',$WLresult->time));
-                            $day_last=strtotime( "01/01/".( date('Y', time())+1 ) );
+                            // $day_last=strtotime( "01/01/".( date('Y', time())+1 ) );
+                            $day_last=strtotime( date("Y")."-".(date('m')+1)."-01" );
                             $day_more = (24*60*60);
 
                             $_28 = true;
@@ -53,7 +55,9 @@
                                     }
                                 }
                                 if( $print ){
-                                    echo '<th class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('d/m/Y',$day).'</th>';
+                                    if( time() > $day-84600 ){
+                                        echo '<th class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('d/m/Y',$day).'</th>';
+                                    }
                                     if( date('t', $day) == date('d', $day) || $day_last == $day ){
                                         echo '<th class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('F/Y',$day).'</th>';
                                         if( date('m',$day) == '12' || $day_last == $day ){
@@ -189,7 +193,17 @@
                             $amount_total=0;
                             $_28 = true;
 
+                            $anio = date("Y", $day_init);
+
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                                $anio_act = date("Y", $day);
+                                if( $anio_act != $anio ){
+                                    $amount_day=0;
+                                    $amount_month=0;
+                                    $amount_year=0;
+                                    $amount_total=0;
+                                    $anio = $anio_act;
+                                }
 
                                 $print = true;
                                 if( date('d/m/Y',$day) == "28/10/2018" ){
@@ -218,7 +232,9 @@
                                     if( $amount_mont == 0 ){ $amount_mont = ""; }
                                     if( $amount_year == 0 ){ $amount_year = ""; }
 
-                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    if( time() > $day-84600 ){
+                                        echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    }
                                     $amount_day=0;
                                     if(date('t',$day)==date('d',$day) || $day_last==$day){
                                         echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
@@ -241,9 +257,18 @@
                             $amount_month=0;
                             $amount_year=0;
                             $amount_total=0;
-                            $_28 = true;
+
+                            $anio = date("Y", $day_init);
 
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                                $anio_act = date("Y", $day);
+                                if( $anio_act != $anio ){
+                                    $amount_day=0;
+                                    $amount_month=0;
+                                    $amount_year=0;
+                                    $amount_total=0;
+                                    $anio = $anio_act;
+                                }
 
                                 $print = true;
                                 if( date('d/m/Y',$day) == "28/10/2018" ){
@@ -278,7 +303,9 @@
                                     if( $amount_mont == 0 ){ $amount_mont = ""; }
                                     if( $amount_year == 0 ){ $amount_year = ""; }
 
-                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    if( time() > $day-84600 ){
+                                        echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    }
                                     $amount_day=0;
                                     if(date('t',$day)==date('d',$day) || $day_last==$day){
                                         echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
@@ -303,7 +330,17 @@
                             $amount_total=0;
                             $_28 = true;
 
+                            $anio = date("Y", $day_init);
+
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                                $anio_act = date("Y", $day);
+                                if( $anio_act != $anio ){
+                                    $amount_day=0;
+                                    $amount_month=0;
+                                    $amount_year=0;
+                                    $amount_total=0;
+                                    $anio = $anio_act;
+                                }
 
                                 $print = true;
                                 if( date('d/m/Y',$day) == "28/10/2018" ){
@@ -334,7 +371,9 @@
                                     if( $amount_mont == 0 ){ $amount_mont = ""; }
                                     if( $amount_year == 0 ){ $amount_year = ""; }
 
-                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    if( time() > $day-84600 ){
+                                        echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    }
                                     $amount_day=0;
                                     if(date('t',$day)==date('d',$day) || $day_last==$day){
                                         echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
@@ -359,7 +398,17 @@
                             $amount_total=0;
                             $_28 = true;
 
+                            $anio = date("Y", $day_init);
+
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                                $anio_act = date("Y", $day);
+                                if( $anio_act != $anio ){
+                                    $amount_day=0;
+                                    $amount_month=0;
+                                    $amount_year=0;
+                                    $amount_total=0;
+                                    $anio = $anio_act;
+                                }
 
                                 $print = true;
                                 if( date('d/m/Y',$day) == "28/10/2018" ){
@@ -388,7 +437,9 @@
                                     if( $amount_mont == 0 ){ $amount_mont = ""; }
                                     if( $amount_year == 0 ){ $amount_year = ""; }
 
-                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    if( time() > $day-84600 ){
+                                        echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    }
                                     $amount_day=0;
                                     if(date('t',$day)==date('d',$day) || $day_last==$day){
                                         echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
@@ -413,7 +464,17 @@
                             $amount_total=0;
                             $_28 = true;
 
+                            $anio = date("Y", $day_init);
+
                             for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                                $anio_act = date("Y", $day);
+                                if( $anio_act != $anio ){
+                                    $amount_day=0;
+                                    $amount_month=0;
+                                    $amount_year=0;
+                                    $amount_total=0;
+                                    $anio = $anio_act;
+                                }
 
                                 $print = true;
                                 if( date('d/m/Y',$day) == "28/10/2018" ){
@@ -442,7 +503,9 @@
                                     if( $amount_mont == 0 ){ $amount_mont = ""; }
                                     if( $amount_year == 0 ){ $amount_year = ""; }
 
-                                    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    if( time() > $day-84600 ){
+                                        echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                                    }
                                     $amount_day=0;
                                     if(date('t',$day)==date('d',$day) || $day_last==$day){
                                         echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
@@ -454,7 +517,7 @@
                                     }
                                 }
                             }
-                            echo '<th class="total" >'.$total_noches.'</th>';
+                            echo '<th class="total" >'.$amount_total.'</th>';
                         echo '</tr>'; ?>
                         
                     </tbody>

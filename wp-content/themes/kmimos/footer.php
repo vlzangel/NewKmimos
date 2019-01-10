@@ -16,6 +16,7 @@
         "testimonios",
         "product",
         "page-perfil.php",
+        "page-recargar.php",
     ];
 
     $plantilla = get_post_meta($post->ID, '_wp_page_template', true);

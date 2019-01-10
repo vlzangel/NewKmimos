@@ -44,11 +44,22 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                     <tr>
                         <?php
                             $day_init=strtotime(date('m/d/Y',$WLresult->time));
-                            $day_last = strtotime("12/31/".date('Y', time()));
+                            $day_last=strtotime( date("Y")."-".(date('m')+1)."-01" );
                             $day_more=(24*60*60);
                             $_28 = true;
 
-                            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
+                            $anio = date("Y", $day_init);
+
+                            for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                                $anio_act = date("Y", $day);
+                                if( $anio_act != $anio ){
+                                    $amount_day=0;
+                                    $amount_month=0;
+                                    $amount_year=0;
+                                    $amount_total=0;
+                                    $anio = $anio_act;
+                                }
+
                                 $print = true;
                                 if( date('d/m/Y',$day) == "28/10/2018" ){
                                     if($_28){
@@ -58,7 +69,10 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                                     }
                                 }
                                 if( $print ){
-                                    echo '<th class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('d/m/Y',$day).' (MXN)</th>';//date('d',$day).'--'.
+                                    if( time() > $day-84600 ){
+                                        echo '<th class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('d/m/Y',$day).' (MXN)</th>';
+                                    }
+                                    //date('d',$day).'--'.
                                     if(date('t',$day)==date('d',$day) || $day_last==$day){
                                         echo '<th class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.date('F/Y',$day).' (MXN)</th>';
                                         if(date('m',$day)=='12' || $day_last==$day){
@@ -137,7 +151,18 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                     $amount_total=0;
                     $_28 = true;
 
-                    for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
+                            $anio = date("Y", $day_init);
+
+                            for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                                $anio_act = date("Y", $day);
+                                if( $anio_act != $anio ){
+                                    $amount_day=0;
+                                    $amount_month=0;
+                                    $amount_year=0;
+                                    $amount_total=0;
+                                    $anio = $anio_act;
+                                }
+
                             
                         $print = true;
                         if( date('d/m/Y',$day) == "28/10/2018" ){
@@ -167,7 +192,10 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                             if( $amount_mont == 0 ){ $amount_mont = ""; }
                             if( $amount_year == 0 ){ $amount_year = ""; }
 
-                            echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            if( time() > $day-84600 ){
+                                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            }
+                                 
                             $amount_day=0;
 
                             if(date('t',$day)==date('d',$day) || $day_last==$day){
@@ -195,8 +223,18 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                     $amount_total=0;
                     $_28 = true;
 
-                    for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-                            
+                    $anio = date("Y", $day_init);
+
+                    for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                        $anio_act = date("Y", $day);
+                        if( $anio_act != $anio ){
+                            $amount_day=0;
+                            $amount_month=0;
+                            $amount_year=0;
+                            $amount_total=0;
+                            $anio = $anio_act;
+                        }
+
                         $print = true;
                         if( date('d/m/Y',$day) == "28/10/2018" ){
                             if($_28){
@@ -224,7 +262,10 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                             if( $amount_mont == 0 ){ $amount_mont = ""; }
                             if( $amount_year == 0 ){ $amount_year = ""; }
 
-                            echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            if( time() > $day-84600 ){
+                                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            }
+                                 
                             $amount_day=0;
 
                             if(date('t',$day)==date('d',$day) || $day_last==$day){
@@ -253,8 +294,18 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                     $amount_total=0;
                     $_28 = true;
 
-                    for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-                            
+                    $anio = date("Y", $day_init);
+
+                    for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                        $anio_act = date("Y", $day);
+                        if( $anio_act != $anio ){
+                            $amount_day=0;
+                            $amount_month=0;
+                            $amount_year=0;
+                            $amount_total=0;
+                            $anio = $anio_act;
+                        }
+
                         $print = true;
                         if( date('d/m/Y',$day) == "28/10/2018" ){
                             if($_28){
@@ -282,7 +333,10 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                             if( $amount_mont == 0 ){ $amount_mont = ""; }
                             if( $amount_year == 0 ){ $amount_year = ""; }
 
-                            echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            if( time() > $day-84600 ){
+                                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            }
+                                 
                             $amount_day=0;
 
                             if(date('t',$day)==date('d',$day) || $day_last==$day){
@@ -368,9 +422,19 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                         $amount_year=0;
                         $amount_total=0;
                         $_28 = true;
-                        //
-                        for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-                            
+
+                        $anio = date("Y", $day_init);
+
+                        for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                            $anio_act = date("Y", $day);
+                            if( $anio_act != $anio ){
+                                $amount_day=0;
+                                $amount_month=0;
+                                $amount_year=0;
+                                $amount_total=0;
+                                $anio = $anio_act;
+                            }
+
                             $print = true;
                             if( date('d/m/Y',$day) == "28/10/2018" ){
                                 if($_28){
@@ -398,7 +462,10 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                                 if( $amount_mont == 0 ){ $amount_mont = ""; }
                                 if( $amount_year == 0 ){ $amount_year = ""; }
 
+                            if( time() > $day-84600 ){
                                 echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            }
+                                 
                                 $amount_day=0;
 
                                 if(date('t',$day)==date('d',$day) || $day_last==$day){
@@ -425,8 +492,18 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                     $amount_total=0;
                     $_28 = true;
 
-                    for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-                            
+                    $anio = date("Y", $day_init);
+
+                    for($day = $day_init; $day <= $day_last; $day+=$day_more){
+                        $anio_act = date("Y", $day);
+                        if( $anio_act != $anio ){
+                            $amount_day=0;
+                            $amount_month=0;
+                            $amount_year=0;
+                            $amount_total=0;
+                            $anio = $anio_act;
+                        }
+
                         $print = true;
                         if( date('d/m/Y',$day) == "28/10/2018" ){
                             if($_28){
@@ -454,7 +531,10 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
                             if( $amount_mont == 0 ){ $amount_mont = ""; }
                             if( $amount_year == 0 ){ $amount_year = ""; }
 
-                            echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            if( time() > $day-84600 ){
+                                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'"> '.$amount_day.'</td>';
+                            }
+                                 
                             $amount_day=0;
 
                             if(date('t',$day)==date('d',$day) || $day_last==$day){

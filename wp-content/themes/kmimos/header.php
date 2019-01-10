@@ -91,6 +91,7 @@
         "testimonios",
         "product",
         "page-perfil.php",
+        "page-recargar.php",
 
     ];
 

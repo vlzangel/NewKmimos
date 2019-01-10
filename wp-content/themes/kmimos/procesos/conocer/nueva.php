@@ -74,11 +74,16 @@
 
     setSessionCode();
 
+    usar_cupo_conocer($user_id);
+
+    $cupos_disponibles = get_cupos_conocer($user_id)." de 3 ";
+
     $data = array(
         'n_solicitud' => $request_id,
         'nombre' => $nombre_cuidador,
         'telefono' => $telf_cuidador,
         'email' => $email_cuidador,
+        'cupos_disponibles' => $cupos_disponibles,
         'error' => ''
     );
 

@@ -13,6 +13,8 @@
 	global $wpdb;
 	global $post;
 
+	$ACCION_ADICIONAL = vlz_get_page();
+
 	if( !isset($_SESSION["DATA_CUIDADORES"]) ){
 		$_temp = pre_carga_data_cuidadores();
 		$_SESSION["DATA_CUIDADORES"] = $_temp[0];
@@ -124,7 +126,7 @@
 			"</div>";
 		}
 	}
-	$ocultar_siguiente_img = ( count($_cuidador->galeria_normales) > 1 ) ? '': 'Ocultar_Flecha';
+	$ocultar_siguiente_img = ( is_array($_cuidador->galeria_normales) && count($_cuidador->galeria_normales) > 1 ) ? '': 'Ocultar_Flecha';
 
     $foto = kmimos_get_foto($cuidador->user_id);
 
@@ -609,6 +611,12 @@
 	if( $_SESSION["wlabel"] == "petco" ){
 		$HTML .= "
 			<script type='text/javascript' src='https://a2.adform.net/serving/scripts/trackpoint/'></script>
+		";
+	}
+
+	if( $ACCION_ADICIONAL == 1 ){
+		$HTML .= "
+			<script> jQuery(document).ready(function() {  jQuery('#btn_conocer').click(); }); </script>
 		";
 	}
 

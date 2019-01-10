@@ -184,6 +184,10 @@
 
 	get_header();
 
+		echo '
+			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		';
+
 		global $post;
 		global $wpdb;
 

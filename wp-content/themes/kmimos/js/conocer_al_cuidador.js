@@ -38,6 +38,8 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
                	    if( data['error'] != '' ){
                         alert(data['error']);
                     }else{
+                        jQuery("#cupos_disponibles").html( data['cupos_disponibles'] );
+
                         jQuery("#fecha").html( jQuery("#meeting_when").val() );
                         jQuery("#hora_reu").html( jQuery("#meeting_time").val() );
                         jQuery("#lugar_reu").html( jQuery("#meeting_where").val() );
@@ -137,6 +139,13 @@ jQuery(document).ready(function(){
     jQuery(".km-group-checkbox input").on("change", function(e){
         jQuery(this).toggleClass("active");
     });
+
+    jQuery("#recargar_saldo").on('click', function(e){
+        console.log("Hola");
+        console.log( RAIZ+"recargar/"+jQuery('[name="post_id"]').val() );
+        location.href = RAIZ+"recargar/"+jQuery('[name="post_id"]').val();
+    });
+
 });
 
     

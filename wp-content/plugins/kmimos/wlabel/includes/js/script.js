@@ -34,20 +34,39 @@ function WhiteLabel_panel_export(element){
 
     var data="";
     if(type=='table'){
-        jQuery('table').each(function(e){
+
+        var TITULOS = []; // table_titles
+
+        jQuery('.table_container .table_titles table').each(function(e){
             jQuery(this).find('tr:not(.noshow)').each(function(e){
+                jQuery(this).find('th, td').each(function(e){//
+                    if(!jQuery(this).hasClass('noshow') && !jQuery(this).hasClass('noshow_check') && !jQuery(this).hasClass('noshow_select')){
+                        TITULOS.push( jQuery(this).html() );
+                    }
+                });
+            });
+        });
+
+        jQuery('.table_container .table_rows table').each(function(e){
+            var CONT = 0;
+            jQuery(this).find('tr:not(.noshow)').each(function(e){
+                data+=TITULOS[CONT]+";";
                 jQuery(this).find('th, td').each(function(e){//
                     if(!jQuery(this).hasClass('noshow') && !jQuery(this).hasClass('noshow_check') && !jQuery(this).hasClass('noshow_select')){
                         data+=jQuery(this).html()+';';
                     }
                 });
                 data+="\n";
+                CONT++;
             });
             data+="\n\n\n";
         });
     }
 
     jQuery(element).html('Espere ...');
+
+    console.log( title );
+
     jQuery.post(url, { module: module, title: title, data: data, urlbase: urlbase }, function(data){
         //console.log(data);
         data=jQuery.parseJSON(data);
@@ -113,6 +132,10 @@ function getPaginacion(PAGE){
 
 //MODULES
 jQuery(document).on('change click','.filter select, .filter input',function(e){
+    var name = jQuery(this).attr('name');
+    if( name == 'year' ){
+        jQuery('select[name="month"]').val('');
+    }
     modules_filter(this);
 });
 
@@ -122,10 +145,10 @@ function modules_filter(element){
         filters[modules] = jQuery('.filters');
 
     if(type=='trdate'){
-        // modules_filter_trdate(element, type, table);
+        modules_filter_trdate(element, type, table);
         return;
     }else if(type=='tddate'){
-        // modules_filter_tddate(element, type, table);
+        modules_filter_tddate(element, type, table);
         return;
     }else if(type=='tdcheck'){
         modules_filter_tdcheck(element, type, table);
@@ -184,7 +207,7 @@ function modules_filter_tdcheck(element, type, table){
             table.find('td[data-check="'+name+'"]').removeClass('noshow_check');
             table.find('th[data-check="'+name+'"]').removeClass('noshow_check');
             if( name == 'total' ){
-                /*
+                
                 if( mes > 0 && count == 1 ){
                     table.find('td[data-check="year"]').removeClass('noshow_select');
                     table.find('td[data-check="year"]').removeClass('noshow_check');
@@ -192,7 +215,7 @@ function modules_filter_tdcheck(element, type, table){
                 }else{
                     table.find('th[data-check="'+name+'"]').removeClass('noshow_select');
                 }
-                */
+                
             }
 
         }else{

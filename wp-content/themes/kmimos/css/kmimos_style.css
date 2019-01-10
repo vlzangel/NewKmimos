@@ -6239,6 +6239,7 @@ AGREGANDO CODIGO DAJAN
     max-width: 300px;
 }
 .km-btn-basic {
+	cursor: pointer;
     background-color: #33E1BE;
     border-radius: 5px;
     color: white;

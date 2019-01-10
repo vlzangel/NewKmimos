@@ -432,7 +432,8 @@
 				try {
 					$customerData = array(
 				     	'name' => $nombre,
-				     	'email' => $email
+				     	'email' => $email,
+				     	'requires_account' => false,
 				  	);
 					$customer = $openpay->customers->add($customerData);
 					$cliente_openpay = $customer->id;
@@ -460,7 +461,8 @@
 					try {
 				    	$customerData = array(
 					     	'name' => $nombre,
-					     	'email' => $email
+					     	'email' => $email,
+				     	'requires_account' => false,
 					  	);
 						$customer = $openpay->customers->add($customerData);
 						$cliente_openpay = $customer->id;

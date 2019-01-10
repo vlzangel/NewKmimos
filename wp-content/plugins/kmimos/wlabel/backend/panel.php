@@ -1,4 +1,7 @@
-<?php $_wlabel_user->LogOut_Html(); ?>
+<?php 
+    error_reporting(0);
+    $_wlabel_user->LogOut_Html();
+?>
 
 <div id="loading">
 	<table>
@@ -16,6 +19,7 @@
         include_once(dirname(__FILE__).'/content/modules.php');
     ?>
 </div>
+<div class="file_cont"></div>
 <?= $_wlabel->Css(); ?>
 
 

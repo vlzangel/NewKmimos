@@ -2,6 +2,22 @@
 	
 	include dirname(__FILE__).'/reconfiguracion.php';
 
+	function usar_cupo_conocer($user_id){
+		global $wpdb;
+		$cupos = get_cupos_conocer($user_id);
+		$wpdb->query("UPDATE conocer_pedidos SET usos = usos - 1 WHERE user_id = {$user_id} AND status = 'Pagado'");
+	}
+
+	function get_cupos_conocer($user_id){
+		global $wpdb;
+		$cupos = $wpdb->get_results("SELECT * FROM conocer_pedidos WHERE user_id = {$user_id} AND status = 'Pagado' ");
+		$num_cupos = 0;
+		foreach ($cupos as $key => $value) {
+			$num_cupos += $value->usos;
+		}
+		return $num_cupos;
+	}
+
 	function get_tipo($servicio_id){
 		global $wpdb;
 		$cats = array(
@@ -44,7 +60,7 @@
 		}
 
 		if( $error  == ""){
-			$propietario = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".get_the_ID() );
+			$propietario = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".vlz_get_page() );
 			if( $propietario == $USER_ID ){
 				$error = "
 					<h1 align='justify'>No puedes realizarte reservas a tí mismo.</h1>
@@ -92,6 +108,60 @@
 					<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/mascotas/nueva/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlo.<h2>
 				";
 			}
+		}
+
+		if( $error != "" ){
+			$actual = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+			$referencia = $_SERVER['HTTP_REFERER'];
+			if( $actual == $referencia ){ $referencia = get_home_url(); }
+			$HTML .= "
+				<style>
+					body{ font-family: Arial; }
+					.vlz_modal{ position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: table; z-index: 10000; background: rgba(0, 0, 0, 0.8); vertical-align: middle !important; }
+					h1{ font-size: 18px; }
+					h2{ font-size: 16px; }
+					.vlz_modal_interno{ display: table-cell; text-align: center; vertical-align: middle !important; }
+					.vlz_modal_ventana{ position: relative; display: inline-block; width: 60%!important; text-align: left; box-shadow: 0px 0px 4px #FFF; border-radius: 5px; z-index: 1000; }
+					.vlz_modal_titulo{ background: #FFF; padding: 15px 10px; font-size: 18px; color: #52c8b6; font-weight: 600; border-radius: 5px 5px 0px 0px; }
+					.vlz_modal_contenido{ background: #FFF; height: 450px; box-sizing: border-box; padding: 5px 15px; border-top: solid 1px #d6d6d6; border-bottom: solid 1px #d6d6d6; overflow: auto; text-align: justify; height: auto; }
+					.vlz_modal_pie{ background: #FFF; padding: 15px 10px; border-radius: 0px 0px 5px 5px; border-radius: 0px 0px 5px 5px!important; height: auto; overflow: hidden; }
+					.vlz_modal_fondo{ position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 500; }
+					.vlz_boton_siguiente{ padding: 10px 50px; display: inline-block; font-size: 16px; border: solid 1px #00d2c6; border-radius: 3px; float: right; cursor: pointer; background-color: #00d2c6; color: #FFF; } 
+					@media screen and (max-width: 750px){ .vlz_modal_ventana{ width: 90% !important; } }
+				</style>
+				<div id='jj_modal_ir_al_inicio' class='vlz_modal'>
+					<div class='vlz_modal_interno'>
+						<div class='vlz_modal_ventana jj_modal_ventana'S>
+							<div class='vlz_modal_titulo'>¡Oops!</div>
+							<div class='vlz_modal_contenido'>".$error."</div>
+							<div class='vlz_modal_pie'>
+								<a href='".$referencia."' ><input type='button' style='text-align: center;' class='vlz_boton_siguiente' value='Volver'/></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			";
+			echo comprimir($HTML);
+			exit();
+		}
+		
+	}
+
+	function COMPROBAR_ERRORES_CONOCER(){
+		global $wpdb;
+		global $USER_ID;
+
+		global $tieneGatos;
+		global $tienePerros;
+
+		$error = "";
+		if( $USER_ID  == ""){
+			$error = "
+				<h1 align='justify'>Debes iniciar sesión para poder realizar reservas.</h1>
+				<h2 align='justify'>
+					Pícale <span id='cerrarModal' onclick=\"document.getElementById('login').click(); jQuery('.vlz_modal').css('display', 'none')\" style='color: #00b69d; font-weight: 600; cursor: pointer;'>Aquí</span> para acceder a kmimos.
+				<h2>
+			";
 		}
 
 		if( $error != "" ){
