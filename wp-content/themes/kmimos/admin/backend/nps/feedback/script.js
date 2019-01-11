@@ -4,14 +4,15 @@ jQuery(document).ready(function() {
 
 	jQuery(document).on('click','[data-target="load-comentarios"]', function(){
 		loadComentarios( jQuery(this).attr('data-code') );
+		if( $(window).width() <= 500 ){		
+			jQuery('[data-id]').removeClass('active');
+			jQuery('[data-objetivo]').css('position', 'absolute');
+			jQuery('[data-objetivo]').css('left', '-1000px');
 
-		jQuery('[data-id]').removeClass('active');
-		jQuery('[data-objetivo]').css('position', 'absolute');
-		jQuery('[data-objetivo]').css('left', '-1000px');
-
-		jQuery('[data-id="comentario"]').addClass('active');
-		jQuery('[data-objetivo="list-comentario"]').css('position', 'initial');
-		jQuery('[data-objetivo="list-comentario"]').css('rigth', '0px');
+			jQuery('[data-id="comentario"]').addClass('active');
+			jQuery('[data-objetivo="list-comentario"]').css('position', 'initial');
+			jQuery('[data-objetivo="list-comentario"]').css('rigth', '0px');
+		}
 
 	});
 

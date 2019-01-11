@@ -7,7 +7,8 @@ $nps = new NPS();
 class NPS {
 	
 	public $db;
-	
+	protected $raiz;
+
 	public function NPS(){
 		$this->raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))))));
 		if( !isset($db) || is_string( $db ) ){
@@ -60,16 +61,28 @@ class NPS {
 		return $this->db->get_row($sql);
 	}
 
+	public function get_remitentes_byId( $pregunta_id ){
+		$pregunta = $this->get_pregunta_byId( $pregunta_id );
+		$campaing_id = $pregunta->id_campaing;
+
+		include_once( $this->raiz.'/campaing/get_recipients.php' );
+		$total = 0;
+		if( isset($total_recipients) ){
+			$total = $total_recipients; 
+		}
+		return $total;
+	}
+
 	public function create( $arg ){
-		$sql = "INSERT INTO nps_preguntas (titulo, total_receptores, fecha_inicio, estatus, pregunta) VALUES (
+		$sql = "INSERT INTO nps_preguntas (titulo, id_campaing, fecha_inicio, estatus, pregunta) VALUES (
 			'".$arg['nombre']."', 
-			".$arg['remitentes'].", 
+			'".$arg['remitentes']."', 
 			'".date('Y-m-d', strtotime($arg['fecha_ini']))."', 
 			0, 
 			'".$arg['pregunta']."'
 		)";
 		$this->db->query($sql);
-		return $this->db->insert_id();
+		return $this->db->insert_id();;
 	}
 
 	public function feedback_byId( $id ){

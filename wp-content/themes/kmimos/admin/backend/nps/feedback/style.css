@@ -527,6 +527,13 @@ ul.scale li:after {
     display: none;
 }
 
+#list-comentario,
+#list-usuario,
+[data-objetivo="list-comentario"]{
+    position: initial;
+    right: 0px;
+}
+
 @media (max-width: 500px){
     .container-search label{
         width: 100%!important;
