@@ -50,9 +50,12 @@
                   </div>
                 </div>';
             }
-
-
         }
+    }else{
+        $comentarios = '
+            <div class="alert alert-warning">
+                No posee comentarios
+            </div>';
     }
 
     echo json_encode(['comentarios'=>$comentarios, 'email'=>$email, 'id' => $respuesta_id], JSON_UNESCAPED_UNICODE);

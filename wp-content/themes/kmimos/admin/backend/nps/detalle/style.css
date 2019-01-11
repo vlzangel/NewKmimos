@@ -488,16 +488,53 @@ ul.scale li:after {
 	margin-right: 5px;
 }
 
-
+.nps-progress{
+    width:80%; display:inline-block; vertical-align:top;
+}
+.nps-score{
+    text-align:center;width:15%;font-size:30px;display:inline-block;vertical-align:top;font-weight: bold;
+}
 @media (max-width: 500px){
-	.container-search label{
-		width: 100%!important;
-	}
-	.container-search input[type="date"]{
-		width: 100%!important;
-		margin: 5px 0px 5px 0px;
-	}
-	.container-search button{
-		width: 100%!important;
-	}
+    .container-search label{
+        width: 100%!important;
+    }
+    .container-search input[type="date"]{
+        width: 100%!important;
+        margin: 5px 0px 5px 0px;
+    }
+    .container-search button{
+        width: 100%!important;
+    }
+    
+    .nps-score{
+        width: 100%;
+        text-align: center;
+    }
+    .nps-progress{
+        width: 100%;
+        font-size: 9px;
+    }
+    [data-id="score-desc"]{
+        font-size: 9px
+    }
+    .progress-bar{
+    }
+    .score_nps_progress{
+        width: 100%;
+    }
+
+    .col-container{
+        flex-direction: column;
+    }
+    .col-25,
+    .col-30,
+    .col-50,
+    .col-70,
+    .col-75,
+    .col-100{
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 100%;
+        width: 100%;
+    }
 }

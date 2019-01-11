@@ -23,12 +23,12 @@
             <div style="width: 100%;">
                 <div id="nps_por_dia" style="height: 300px"></div>
             </div>
-            <div style="width:80%; display:inline-block; vertical-align:top;">
+            <div class="nps-progress">
                 <div class="progress" id="score_nps_progress">
                     <div class="progress-bar progress-bar-success" style="width: 0%"></div>
                 </div>
             </div>        
-            <div style="text-align:center;width:15%;font-size:30px;display:inline-block;vertical-align:top;font-weight: bold;">
+            <div class="nps-score">
                 <div id="score_nps_global">0</div>
             </div>
             <hr>
