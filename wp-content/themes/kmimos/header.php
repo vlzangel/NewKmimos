@@ -32,7 +32,7 @@
 		    display: none !important;
 		}
 	</style>';
-/*
+
 	$HTML .= "
 		<!-- Google Tag Manager -->
 		<script>
@@ -63,7 +63,7 @@
 	        ga('send', 'pageview');
         </script>
 	";
-*/
+
 	echo comprimir( $HTML );
 
     if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){
