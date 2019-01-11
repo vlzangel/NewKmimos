@@ -2,6 +2,12 @@
 	
 	include dirname(__FILE__).'/reconfiguracion.php';
 
+	function revertir_cupo_conocer($user_id){
+		global $wpdb;
+		$cupos = get_cupos_conocer($user_id);
+		$wpdb->query("UPDATE conocer_pedidos SET usos = usos + 1 WHERE user_id = {$user_id} AND status = 'Pagado'");
+	}
+
 	function usar_cupo_conocer($user_id){
 		global $wpdb;
 		$cupos = get_cupos_conocer($user_id);
@@ -158,6 +164,14 @@
 		if( $USER_ID  == ""){
 			$error = "
 				<h1 align='justify'>Debes iniciar sesión para poder realizar reservas.</h1>
+				<h2 align='justify'>
+					Pícale <span id='cerrarModal' onclick=\"document.getElementById('login').click(); jQuery('.vlz_modal').css('display', 'none')\" style='color: #00b69d; font-weight: 600; cursor: pointer;'>Aquí</span> para acceder a kmimos.
+				<h2>
+			";
+		}
+		if( get_cupos_conocer($USER_ID) > 0 ){
+			$error = "
+				<h1 align='justify'>Usted ya cuenta con cupos para realzar solicitudes</h1>
 				<h2 align='justify'>
 					Pícale <span id='cerrarModal' onclick=\"document.getElementById('login').click(); jQuery('.vlz_modal').css('display', 'none')\" style='color: #00b69d; font-weight: 600; cursor: pointer;'>Aquí</span> para acceder a kmimos.
 				<h2>

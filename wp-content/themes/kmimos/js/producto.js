@@ -56,6 +56,7 @@ function initCarrito(){
 	CARRITO["pagar"] = [];
 
 		CARRITO["pagar"] = {
+			"fee" : 0,
 			"total" : "",
 			"tipo" : "tienda",
 			"metodo" : "completo",
@@ -81,6 +82,8 @@ function initCarrito(){
 
 	CARRITO[ "pagar" ][ "tipo_servicio" ] = tipo_servicio;
 	CARRITO[ "pagar" ][ "paquete" ] = PAQUETE;
+
+	CARRITO[ "pagar" ][ "fee" ] = parseInt( fee_conocer );
 }
 
 function get_dias_paquete(paq){
@@ -706,6 +709,14 @@ function mostrarCupones(){
 		}
 
 	});
+
+	if( fee_conocer > 0 ){
+		items += '<div class="km-option-resume-service">';
+			items += '	<span class="label-resume-service"> Saldo Conocer</span>';
+			items += '	<span class="value-resume-service">$'+numberFormat(fee_conocer)+'</span>';
+		items += '</div>';
+	}
+
 	if( items != "" ){
 		jQuery(".cupones_desglose div").html(items);
 		jQuery(".cupones_desglose").css("display", "block");
@@ -718,6 +729,10 @@ function mostrarCupones(){
 function calcularDescuento(){
 	var descuentos = 0;
 	var saldo = 0;
+
+	var total = CARRITO["pagar"]["total"]-fee_conocer;
+
+
 	jQuery.each(CARRITO["cupones"], function( key, cupon ) {
 		if( cupon[1] == "" ){
 			cupon[1] = 0;
@@ -729,8 +744,8 @@ function calcularDescuento(){
         }
 	});
 
-	var pre17 = CARRITO["pagar"]["total"]*0.2;
-	var pagoCuidador = CARRITO["pagar"]["total"]-(CARRITO["pagar"]["total"]*0.20);
+	var pre17 = total*0.2;
+	var pagoCuidador = total-(total*0.20);
 
 	var reciduo_0 = 0;
 	if( pagoCuidador >= descuentos ){
@@ -768,7 +783,7 @@ function calcularDescuento(){
 		}
 	}
 
-	jQuery(".sub_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]) );
+	jQuery(".sub_total").html( "$" + numberFormat(total) );
 	if( descuentos == 0 ){
 		jQuery(".descuento").html( "$" + numberFormat(descuentos) );
 
@@ -784,14 +799,16 @@ function calcularDescuento(){
 	jQuery(".pago_17").html( "$" + numberFormat(pre17) );
 	jQuery(".pago_cuidador").html( "$" +  numberFormat(pagoCuidador) );
 	
-	jQuery(".monto_total").html( "$" + numberFormat(CARRITO["pagar"]["total"]-descuentos) );
-	jQuery(".km-price-total2").html("$"+numberFormat( CARRITO["pagar"]["total"]-descuentos ));
+	jQuery(".monto_total").html( "$" + numberFormat(total-descuentos) );
+	jQuery(".km-price-total2").html("$"+numberFormat( total-descuentos ));
 
 }
 
 function aplicarCupon(cupon = ""){
 
-	var total = CARRITO["pagar"]["total"] - CARRITO["pagar"]["descuento_total"];
+	var total = CARRITO["pagar"]["total"]-fee_conocer;
+	var total = total - CARRITO["pagar"]["descuento_total"];
+
 	if( total <= 0 ){
 		alert( "El cupón no será aplicado. El total a pagar por su reserva es 0." );
 		jQuery("#cupon_btn").html("Cup&oacute;n");
@@ -812,7 +829,7 @@ function aplicarCupon(cupon = ""){
 				servicio: SERVICIO_ID,
 				cupon: cupon,
 				cupones: CARRITO["cupones"],
-				total: CARRITO["pagar"]["total"],
+				total: total,
 				duracion: CARRITO["fechas"]["duracion"],
 				inicio: CARRITO["fechas"]["inicio"],
 				tipo_servicio: tipo_servicio,
@@ -847,12 +864,15 @@ function aplicarCupon(cupon = ""){
 }
 
 function reaplicarCupones(){
+
+	var total = CARRITO["pagar"]["total"]-fee_conocer;
+
 	jQuery.post(
 		HOME+"/procesos/reservar/cupon.php",
 		{
 			servicio: SERVICIO_ID,
 			cupones: CARRITO["cupones"],
-			total: CARRITO["pagar"]["total"],
+			total: total,
 			mascotas: CARRITO["cantidades"],
 			duracion: CARRITO["fechas"]["duracion"],
 			inicio: CARRITO["fechas"]["inicio"],

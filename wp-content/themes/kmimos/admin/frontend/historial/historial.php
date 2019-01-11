@@ -79,7 +79,12 @@
 				$items[ $item->meta_key ] = $item->meta_value;
 			}
 
+			$fee = $_metas_orden["_order_fee"][0];
+
 			$pago = unserialize($items["_wc_deposit_meta"]);
+
+			$items["_line_subtotal"] += $fee;
+			$_metas_orden["_cart_discount"][0] += $fee;
 
 			$desglose = $pago;
 			if( $pago["enable"] == "yes" ){

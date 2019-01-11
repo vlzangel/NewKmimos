@@ -1385,8 +1385,12 @@
                 }
             }
 
+            $fee = $metas_orden["_order_fee"][0];
+
             $pago = ($detalles_reserva['_line_subtotal']);
+            $pago += $fee;
             $desglose = unserialize($detalles_reserva['_wc_deposit_meta']);
+            $metas_orden["_cart_discount"][0] += $fee;
             $descuento = $metas_orden["_cart_discount"][0];
 
             if( $desglose['enable'] == "no" ){

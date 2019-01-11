@@ -8,9 +8,11 @@
 
     switch ( $usu ) {
         case 'STM':
+            revertir_cupo_conocer($user_id);
             $titulo_cancelacion = "Solicitud Cancelada por el Sistema";
         break;
         case 'CUI':
+            revertir_cupo_conocer($user_id);
             $titulo_cancelacion = "Solicitud Cancelada por el Cuidador";
         break;
         case 'CLI':
@@ -18,6 +20,7 @@
         break;
         
         default:
+            revertir_cupo_conocer($user_id);
             $titulo_cancelacion = "Solicitud Cancelada por el Sistema";
         break;
     }

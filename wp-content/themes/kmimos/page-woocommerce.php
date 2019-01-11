@@ -46,6 +46,8 @@
 		$saldo = getSaldo();
 		$saldoTXT = $saldo["cupon"];
 
+		$fee_conocer = get_cupos_conocer($USER_ID)*10;
+
 	/* Generales */
 		$busqueda = getBusqueda();
 
@@ -181,6 +183,8 @@
 
 		$HTML .= "
 		<script> 
+			var fee_conocer = '".$fee_conocer."';
+			
 			var SERVICIO_ID = '".get_the_ID()."';
 			var cupos = eval('".json_encode($cupos)."');
 			var tipo_servicio = '".$tipo."'; 

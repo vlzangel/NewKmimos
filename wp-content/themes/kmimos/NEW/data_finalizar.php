@@ -154,7 +154,7 @@
     $totales = ""; $descuento = "";
 
     if( $data_reserva["servicio"]["desglose"]["descuento"]+0 > 0 ){
-        $descuento = "
+        $descuento .= "
             <div class='item'>
                 <div>Descuento</div>
                 <span>".number_format( $data_reserva["servicio"]["desglose"]["descuento"], 2, ',', '.')."</span>

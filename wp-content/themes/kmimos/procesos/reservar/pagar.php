@@ -41,6 +41,8 @@
 
 	extract($parametros);
 
+	$pagar->total = $pagar->total-$pagar->fee;
+
 	$id_orden = 0;
 
 	if( $pagar->id_fallida != 0 ){
@@ -202,6 +204,7 @@
 		"checkout" 				=> $fechas->checkout,
 
 		"monto" 				=> $pagar->total,
+		"fee" 					=> $pagar->fee,
 		"num_mascotas" 			=> $num_mascotas,
 		"metodo_pago" 			=> $pagar->tipo,
 		"metodo_pago_titulo" 	=> $titulo_pago,

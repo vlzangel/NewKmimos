@@ -99,6 +99,7 @@ class Reservas {
                 (NULL, '{$id_reserva}', '_booking_start',           '{$inicio}000000'),
                 (NULL, '{$id_reserva}', '_booking_end',             '{$fin}235959'),
                 (NULL, '{$id_reserva}', '_booking_cost',            '{$monto}'),
+                (NULL, '{$id_reserva}', '_booking_fee',             '{$fee}'),
                 (NULL, '{$id_reserva}', '_booking_persons',         '{$num_mascotas}'),
                 (NULL, '{$id_reserva}', '_booking_order_item_id',   '{$id_item}'),
                 (NULL, '{$id_reserva}', '_booking_product_id',      '{$servicio}');
@@ -165,6 +166,7 @@ class Reservas {
             (NULL, '{$id_order}', '_customer_user',                         '{$cliente}'),
             
             (NULL, '{$id_order}', '_order_total',                           '{$total}'),
+            (NULL, '{$id_order}', '_order_fee',                             '{$fee}'),
             (NULL, '{$id_order}', '_cart_discount',                         '{$descuento}'),
 
             (NULL, '{$id_order}', '_order_key',                             'wc_order_{$token}'),
