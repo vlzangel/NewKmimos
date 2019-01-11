@@ -55,3 +55,17 @@
 .boton_pdf_conocer:hover {
     background: #EEE;
 }
+
+.btn_otra_solicitud {
+    background: #7dd1c4;
+    color: #6b1c9b;
+    display: block;
+    font-weight: 700;
+    font-size: 17px;
+    text-align: center;
+    line-height: 55px;
+    margin-top: 30px;
+    max-width: 500px;
+    margin: 30px auto 40px;
+    text-decoration: none;
+}
