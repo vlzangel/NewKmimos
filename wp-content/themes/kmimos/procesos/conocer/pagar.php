@@ -163,7 +163,9 @@
 						NULL,
 						'{$hoy}',
 						'Pendiente',
-						3
+						30,
+						3,
+						''
 					);
 				");
 
@@ -244,7 +246,7 @@
 					    'method' => 'store',
 					    'amount' => (float) $pagar->total,
 					    'description' => 'Tienda',
-					    'order_id' => "0_".$id_orden,
+					    'order_id' => "conocer_".$id_orden,
 					    'due_date' => $due_date
 					);
 
@@ -272,7 +274,7 @@
 							SET										
 								transaccion_id = '{$charge->id}',
 								tipo_pago = 'Tienda',
-								info = '{$info}'
+								metadata = '{$info}'
 							WHERE 
 								id = {$id_orden}
 						");

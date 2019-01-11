@@ -72,12 +72,35 @@ $HTML_CONOCER = '
 
 				if( count($mascotas)>0 && $validar_perfil_completo ){
 					if( $puede_conocer == false ){
+
+						$pendientes = get_cupos_conocer_pendientes($user_id);
+
+						$pendientes_str = '';
+						if( $pendientes !== false ){
+							$metadata = json_decode($pendientes->metadata);
+							$pendientes_str = '
+								<div style="padding: 20px 0px 0px; font-weight: 600; color: #7c169e;">
+									Usted tiene un pago en tienda pendiente, debe dirigirse a su tienda de conveniencia más cercana para realizar el pago
+									y así tener solicitudes para conocer disponibles.
+
+									<div style="text-align: center; padding: 10px 0px 0px;">
+										<a href="'.$metadata->pdf.'" target="_blank" class="boton_pdf_conocer">Descargar comprobante de pago</a>
+									</div>
+								</div>
+							';
+						}
+
 						$HTML_CONOCER .= '
 							<input name="post_id" type="hidden" value="">
-							Pasos y beneficios del nuevo proceso:
+
+							'.$pendientes_str.'
+
+							<div style="padding: 20px 0px; font-weight: 600;">
+								Pasos y beneficios del nuevo proceso aquí
+							</div>
 
 							<div class="">
-								<span id="recargar_saldo" class="km-btn-basic">Recargar saldo a favor</span>
+								<span id="recargar_saldo" class="km-btn-basic" style="text-transform: uppercase; font-weight: 600;">Adquirir solicitudes</span>
 							</div> 
 						';
 					}else{

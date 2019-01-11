@@ -24,6 +24,15 @@
 		return $num_cupos;
 	}
 
+	function get_cupos_conocer_pendientes($user_id){
+		global $wpdb;
+		$cupos = $wpdb->get_row("SELECT * FROM conocer_pedidos WHERE user_id = {$user_id} AND tipo_pago = 'Tienda' AND status = 'Pendiente' ORDER BY id  DESC");
+		if( $cupos !== false ){
+			return $cupos;
+		}
+		return false;
+	}
+
 	function get_tipo($servicio_id){
 		global $wpdb;
 		$cats = array(
