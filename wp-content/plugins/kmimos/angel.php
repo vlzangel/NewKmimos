@@ -77,6 +77,16 @@
                 echo kmimos_style($styles = array("no_descargar"));
             }
 
+            echo "
+                <style>
+                    @media (min-width: 768px){
+                        .modal-dialog {
+                            margin: 45px auto !important;
+                        }
+                    }   
+                </style>
+            ";
+
 	    }
 	}
 
@@ -833,7 +843,7 @@
                         .plugins .active.update th.check-column, .plugins .active.update+.plugin-update-tr .plugin-update,
                         .plugin-update-tr.active td, .plugins .active th.check-column {
                             border-left: 4px solid #ffffff !important;
-                        }    
+                        } 
 
                     ";
                 }

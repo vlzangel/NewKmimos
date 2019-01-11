@@ -146,7 +146,7 @@
 
 </div>
 
- <?php
+<?php
     include_once(dirname(dirname(__DIR__)).'/recursos/modal.php');
 ?>
  

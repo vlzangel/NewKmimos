@@ -12,6 +12,35 @@ if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 $solicitudes = getSolicitud($desde, $hasta);
 ?>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Información</h4>
+			</div>
+			<div class="modal-body">
+				
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Fecha</th>
+							<th>Solicitudes disponibles</th>
+						</tr>
+					</thead>
+					<tbody id="contenido"></tbody>
+				</table>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="col-md-12 col-sm-12 col-xs-12">
 <div class="x_panel">
   <div class="x_title">
@@ -68,6 +97,7 @@ $solicitudes = getSolicitud($desde, $hasta);
 					<th>Apellido del cliente</th>
 					<th>Teléfono del cliente</th>
 					<th>Correo del cliente</th>
+					<th>Pagos Conocer</th>
 
 					<th>Nombre del cuidador</th>
 					<th>Apellido del cuidador</th>
@@ -127,6 +157,8 @@ $solicitudes = getSolicitud($desde, $hasta);
 						<th><?php echo $cliente['phone'];?></th>
 						<th><?php echo $cliente['email'];?></th>
 
+						<th><a href="#" onclick="ver_info( jQuery(this) )" data-id="<?= $solicitud['Cliente_id'] ?>"> VER INFO </a> </th>
+
 						<th><?php echo $cuidador['first_name']; ?></th>
 						<th><?php echo $cuidador['last_name']; ?></th>
 						<th><?php echo $cuidador['phone'];?></th>
@@ -148,3 +180,31 @@ $solicitudes = getSolicitud($desde, $hasta);
 </div>
 </div>
 <div class="clearfix"></div>	
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+
+	});
+
+	function ver_info(_this){
+		var USER_ID = _this.attr("data-id");
+		jQuery.post(
+			"<?= get_home_url()."/wp-content/plugins/kmimos/dashboard/core/ajax/get_info_conocer.php" ?>",
+			{
+				user_id: USER_ID
+			},
+			function(d){
+				console.log( d );
+
+				var HTML = '';
+				jQuery.each(d, function(i, v){
+					HTML += '<tr><td>'+v.transaccion_id+'</td><td>'+v.fecha+'</td><td style="text-align: center;">'+v.disponible+'</td></tr>';
+				});
+
+				jQuery("#contenido").html( HTML );
+
+				jQuery('#myModal').modal('show');
+			}, 'json'
+		);
+	}
+</script>
