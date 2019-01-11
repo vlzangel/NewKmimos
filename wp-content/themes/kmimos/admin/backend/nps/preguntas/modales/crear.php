@@ -11,8 +11,8 @@
 			<input class="form-control" type="text" name="pregunta" placeholder="¿Qué probabilidades hay de que recomiendes a un amigo o colega?" required>
 		</div>
 		<div class="col-md-12">
-			<label>Total de destinatarios</label>
-			<input class="form-control" type="text" name="remitentes" placeholder="100" required>
+			<label>ID Campa&ntilde;a;</label>
+			<input class="form-control" type="text" name="remitentes" placeholder="83843bb16df558d3dd25d2d3374a4ff7" required>
 		</div>
 		<div class="col-md-12">
 			<label>Fecha de Inicio</label>

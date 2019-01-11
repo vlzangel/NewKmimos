@@ -57,7 +57,7 @@
         </div>
 
         <div class="col col-box col-25">
-            <h5><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Puntuación media</font></font></h5>
+            <h5><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Puntuación Media</font></font></h5>
             <div class="progress progress-bar-vertical mean-score-box">
                 <div id="progress-media" class="progress-bar progress-bar-warning" style="height: 0%; position: absolute;"></div>
                 <div class="mean-score">
@@ -71,7 +71,10 @@
         </div>
 
         <div class="col col-box col-25">
-            <canvas id="feedback_recibidos" width="100%" height="100%"></canvas>
+            <h5 class="text-center">Finalización de Seguimiento</h5>
+            <div id="feedback_recibidos_container">
+                <canvas id="feedback_recibidos" width="100%" height="100%"></canvas>
+            </div>
         </div>
     </div>
     <div class="clear"></div>
