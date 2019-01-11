@@ -7,7 +7,8 @@ $nps = new NPS();
 class NPS {
 	
 	public $db;
-	
+	protected $raiz;
+
 	public function NPS(){
 		$this->raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))))));
 		if( !isset($db) || is_string( $db ) ){
@@ -18,6 +19,18 @@ class NPS {
 		    $db = new db( new mysqli($host, $user, $pass, $db) );
 		}
 		$this->db = $db;
+	}
+
+	public function get_remitentes_byId( $pregunta_id ){
+		$pregunta = $this->get_pregunta_byId( $pregunta_id );
+		$campaing_id = $pregunta->id_campaing;
+
+		include_once( $this->raiz.'/campaing/get_recipients.php' );
+		$total = 0;
+		if( isset($total_recipients) ){
+			$total = $total_recipients; 
+		}
+		return $total;
 	}
 
 	public function get_estatus( $index='', $type="" ){

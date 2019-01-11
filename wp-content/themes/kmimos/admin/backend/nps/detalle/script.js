@@ -121,7 +121,17 @@ function load_dashboard(){
 		TEMA+'/admin/backend/nps/detalle/ajax/feedback_recibidos.php',
 		{ 'id': ID },
 		function(data){
-			grafico_feedback_recibidos( data );
+			var label = [
+		        'Completado (%)',
+		        'Pendiente (%)',
+		    ];
+		    if( data.total > 0 ){
+				grafico_feedback_recibidos( data, label );
+		    }else{
+		    	jQuery('#feedback_recibidos_container').html(
+		    		'<div style="padding:20px 0px">La campa&ntilde;a a&uacute;n no posee destinatarios<div>'
+		    	);
+		    }
 		},
 	'json');
 
@@ -180,7 +190,7 @@ function calcular_score_nps(){
 	'json');
 }
 
-function grafico_feedback_recibidos(data){
+function grafico_feedback_recibidos(data, label){
 	var feedback_recibidos = new Chart('feedback_recibidos', {
 	    type: 'doughnut',
 	    data: {
@@ -188,10 +198,7 @@ function grafico_feedback_recibidos(data){
 		        data: [data.recibidos, data.total],
 		        backgroundColor: ['#5cb85c']
 		    }],
-		    labels: [
-		        'Completado (%)',
-		        'Pendiente (%)',
-		    ]
+		    labels: label
 		}
 	});
 }
