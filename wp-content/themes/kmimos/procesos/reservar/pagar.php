@@ -265,6 +265,10 @@
 		$reservar = new Reservas($db, $data_reserva);
 	    $id_orden = $reservar->new_reserva();
 
+	    if( $pagar->fee > 0 ){
+	    	quitar_cupos_conocer( $pagar->cliente );
+	    }
+
 	    set_uso_banner([
     		"user_id" => $pagar->cliente,
     		"type" => "reserva",

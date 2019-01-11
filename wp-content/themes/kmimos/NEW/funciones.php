@@ -2,6 +2,12 @@
 	
 	include dirname(__FILE__).'/reconfiguracion.php';
 
+	function quitar_cupos_conocer($user_id){
+		global $wpdb;
+		$cupos = get_cupos_conocer($user_id);
+		$wpdb->query("UPDATE conocer_pedidos SET usos = 0 WHERE user_id = {$user_id} AND status = 'Pagado'");
+	}
+
 	function revertir_cupo_conocer($user_id){
 		global $wpdb;
 		$cupos = get_cupos_conocer($user_id);

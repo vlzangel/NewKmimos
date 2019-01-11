@@ -46,7 +46,12 @@
 		$saldo = getSaldo();
 		$saldoTXT = $saldo["cupon"];
 
-		$fee_conocer = get_cupos_conocer($USER_ID)*10;
+		$fee_conocer = get_cupos_conocer($USER_ID);
+		if( $fee_conocer == 3 ){
+			$fee_conocer = 0;
+		}else{
+			$fee_conocer = $fee_conocer*10;
+		}
 
 	/* Generales */
 		$busqueda = getBusqueda();
