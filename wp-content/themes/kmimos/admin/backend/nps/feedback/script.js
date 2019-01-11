@@ -4,6 +4,15 @@ jQuery(document).ready(function() {
 
 	jQuery(document).on('click','[data-target="load-comentarios"]', function(){
 		loadComentarios( jQuery(this).attr('data-code') );
+
+		jQuery('[data-id]').removeClass('active');
+		jQuery('[data-objetivo]').css('position', 'absolute');
+		jQuery('[data-objetivo]').css('left', '-1000px');
+
+		jQuery('[data-id="comentario"]').addClass('active');
+		jQuery('[data-objetivo="list-comentario"]').css('position', 'initial');
+		jQuery('[data-objetivo="list-comentario"]').css('rigth', '0px');
+
 	});
 
 	jQuery('#email-feedback').on('submit', function(e){
@@ -24,6 +33,22 @@ jQuery(document).ready(function() {
 					btn.html('<i class="fa fa-envelope-o" aria-hidden="true"></i> Enviar comentario');
 				},
 			'json');		
+		}
+	});
+
+	jQuery('[data-id]').on('click', function(){
+		var id = jQuery(this).attr('data-id');
+		 
+		if( id == 'usuario' ){		
+			jQuery('[data-id]').removeClass('active');
+			jQuery('[data-objetivo]').css('position', 'absolute');
+			jQuery('[data-objetivo]').css('left', '-1000px');
+
+			jQuery('[data-id="'+id+'"]').addClass('active');
+			jQuery('[data-objetivo="list-'+id+'"]').css('position', 'initial');
+			jQuery('[data-objetivo="list-'+id+'"]').css('rigth', '0px');
+		}else{
+			alert( "Debe seleccionar un usuario para ver sus comentarios." );
 		}
 	});
 

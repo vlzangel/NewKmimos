@@ -17,23 +17,31 @@
         <h5><?php echo utf8_encode($encuesta->pregunta); ?></h5>
     </div>
 
-    <div style="display: flex;">
-        <div class="col col-30">
+    <div class="col-container">
+        <div class="col col-100 items-list">
+            <ul class="list-unstyled list-inline">
+                <li data-id="usuario" class="active">Usuarios</li>
+                <li data-id="comentario">Comentarios</li>
+            </ul>
+        </div>
+        <div class="col col-30" data-objetivo="list-usuario">
             <div class="col-box col-md-12">
                 <h5>Usuarios</h5>
-                <hr>
-                <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Descripci&oacute;n</th>
-                            <th width="10%">Puntos</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div>
+                    <hr>
+                    <table id="example" class="table table-striped table-bordereds nowrap" cellspacing="0" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Descripci&oacute;n</th>
+                                <th width="10%">Puntos</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="col col-70">
+        <div class="col col-70" data-objetivo="list-comentario">
             <div class="col-box col-md-12">
                 <h5>Comentarios</h5>
                 <hr>
@@ -61,7 +69,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 

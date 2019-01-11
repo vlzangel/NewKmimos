@@ -9,9 +9,9 @@
     $progress = '<div class="progress-bar progress-bar-default" style="width: 0%"></div>';
 
     if( $score['total_rows'] > 0 ){	
-		$progress = '<div class="progress-bar progress-bar-success" style="width: '.$score['promoters']['porcentaje'].'%"> '.$score['promoters']['porcentaje'].'% <br> PROMOTERS </div>';
-		$progress .= '<div class="progress-bar progress-bar-warning" style="width: '.$score['pasivos']['porcentaje'].'%"> '.$score['pasivos']['porcentaje'].'% <br> PASIVOS </div>';
-        $progress .= '<div class="progress-bar progress-bar-danger"  style="width: '.$score['detractores']['porcentaje'].'%"> '.$score['detractores']['porcentaje'].'% <br> DETRACTORES </div>';
+		$progress = '<div class="progress-bar progress-bar-success" style="width: '.$score['promoters']['porcentaje'].'%"> '.$score['promoters']['porcentaje'].'% <br> <span data-id="score-desc">PROMOTERS</span> </div>';
+		$progress .= '<div class="progress-bar progress-bar-warning" style="width: '.$score['pasivos']['porcentaje'].'%"> '.$score['pasivos']['porcentaje'].'% <br> <span data-id="score-desc">PASIVOS</span> </div>';
+        $progress .= '<div class="progress-bar progress-bar-danger"  style="width: '.$score['detractores']['porcentaje'].'%"> '.$score['detractores']['porcentaje'].'% <br> <span data-id="score-desc">DETRACTORES</span> </div>';
     }
 
     $score['progress'] = $progress;
