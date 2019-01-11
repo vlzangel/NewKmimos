@@ -76,7 +76,7 @@ $HTML_CONOCER = '
 						$pendientes = get_cupos_conocer_pendientes($user_id);
 
 						$pendientes_str = '';
-						if( $pendientes !== false ){
+						if( $pendientes != null ){
 							$metadata = json_decode($pendientes->metadata);
 							$pendientes_str = '
 								<div style="padding: 20px 0px 0px; font-weight: 600; color: #7c169e;">

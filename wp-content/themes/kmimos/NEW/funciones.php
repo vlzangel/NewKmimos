@@ -4,14 +4,26 @@
 
 	function quitar_cupos_conocer($user_id){
 		global $wpdb;
-		$cupos = get_cupos_conocer($user_id);
-		$wpdb->query("UPDATE conocer_pedidos SET usos = 0 WHERE user_id = {$user_id} AND status = 'Pagado'");
+		$cupos = get_cupos_conocer_registro($user_id);
+		$metas = json_decode( $cupos->metadata );
+		$metas->cupos_quitados = $cupos->usos;
+		$metadata = json_encode( $metas );
+		$wpdb->query("UPDATE conocer_pedidos SET usos = 0, metadata='{$metadata}' WHERE user_id = {$user_id} AND status = 'Pagado'");
 	}
 
 	function revertir_cupo_conocer($user_id){
 		global $wpdb;
-		$cupos = get_cupos_conocer($user_id);
 		$wpdb->query("UPDATE conocer_pedidos SET usos = usos + 1 WHERE user_id = {$user_id} AND status = 'Pagado'");
+	}
+
+	function revertir_saldo_conocer($user_id){
+		global $wpdb;
+		$cupos = get_cupos_conocer_registro($user_id);
+		$metas = json_decode( $cupos->metadata );
+		$cupos_quitados = $metas->cupos_quitados;
+		$metas->cupos_quitados = 0;
+		$metadata = json_encode( $metas );
+		$wpdb->query("UPDATE conocer_pedidos SET usos = '{$cupos_quitados}', metadata='{$metadata}' WHERE user_id = {$user_id} AND status = 'Pagado'");
 	}
 
 	function usar_cupo_conocer($user_id){
@@ -22,12 +34,13 @@
 
 	function get_cupos_conocer($user_id){
 		global $wpdb;
-		$cupos = $wpdb->get_results("SELECT * FROM conocer_pedidos WHERE user_id = {$user_id} AND status = 'Pagado' ");
-		$num_cupos = 0;
-		foreach ($cupos as $key => $value) {
-			$num_cupos += $value->usos;
-		}
-		return $num_cupos;
+		$cupos = get_cupos_conocer_registro($user_id);
+		return $cupos->usos;
+	}
+
+	function get_cupos_conocer_registro($user_id){
+		global $wpdb;
+		return $wpdb->get_row("SELECT * FROM conocer_pedidos WHERE user_id = {$user_id} AND status = 'Pagado' ");
 	}
 
 	function get_cupos_conocer_pendientes($user_id){

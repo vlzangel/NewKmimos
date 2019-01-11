@@ -126,14 +126,17 @@
     switch ( $usu ) {
         case 'STM':
             $titulo_cancelacion = "Solicitud Cancelada por el Sistema";
+            revertir_saldo_conocer($cliente["id"]);
         break;
         case 'CUI':
             $titulo_cancelacion = "Solicitud Cancelada por el Cuidador";
+            revertir_saldo_conocer($cliente["id"]);
         break;
         case 'CLI':
             $titulo_cancelacion = "Solicitud Cancelada por el Cliente";
         break;
         case 'OPENPAY':
+            revertir_saldo_conocer($cliente["id"]);
             $titulo_cancelacion = "Cancelación de reserva automática por vencimiento de pago en tienda";
         break;
         
