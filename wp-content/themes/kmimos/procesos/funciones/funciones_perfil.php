@@ -17,7 +17,7 @@
 	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> <span>Cancelar</span> </a>';
     				break;
 	    			case 'modificar':
-	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_modificar"> <i class="fa fa-pencil" aria-hidden="true"></i> Modificar </a>';
+	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_modificar"> <img src="'.get_recurso('img/PERFILES').'Modificar.svg" /> Modificar </a>';
     				break;
 	    			case 'pdf':
 	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_pdf"> <i class="fa fa-download" aria-hidden="true"></i> ¿Com&oacute; pagar? </a>';
