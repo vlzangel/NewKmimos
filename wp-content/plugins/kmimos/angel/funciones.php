@@ -506,12 +506,14 @@
                             "icono" => "375",
                             "img" => "Favoritos.svg",
                         ),
+                        /*
                         array(
                             "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
                             "name"  => "Datos de Facturaci&oacute;n",
                             "icono" => "33",
                             "img" => "Facturacion.svg"
                         ),
+                        */
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
@@ -550,12 +552,14 @@
                             "icono" => "375",
                             "img" => "Favoritos.svg",
                         ),
+                        /*
                         array(
                             "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
                             "name"  => "Datos de Facturaci&oacute;n",
                             "icono" => "33",
                             "img" => "Facturacion.svg"
                         ),
+                        */
                         array(
                             "url"   => get_home_url()."/wp-admin/",
                             "name"  => "Panel de Control",
@@ -693,7 +697,7 @@
             $atributos = unserialize($atributos_cuidador[0]->atributos);
             if( $atributos['destacado'] == 1 ){
                 // $marca_destacado = 'style="background-image: url('.getTema().'/images/new/bg-foto-resultados-destacado.png)!important;width: 69px!important;height: 69px!important;"';
-                $style_icono = 'style="margin: 8px 0px 0px 37px"!important';
+                // $style_icono = 'style="margin: 8px 0px 0px 37px"!important';
             }
             if( $atributos['flash'] == 1 ){
                 $flash_link = '
@@ -747,7 +751,7 @@
                         <a href="'.$url.'" class="km-foto">
                             <div class="km-img">
                                 <div class="km-fondo-img" style="background-image: url('.$img.');"></div>
-                                <div class="km-subimg" style="background-image: url('.$img.');"></div>
+                                <!-- <div class="km-subimg" style="background-image: url('.$img.');"></div> -->
                             </div>
                             <span class="km-contenedor-favorito" '.$marca_destacado.'>'.$favoritos_link.'</span>
                         </a>

@@ -50,10 +50,9 @@
 
 .km-ranking a {
     background-image: url(../recursos/img/BUSQUEDA/SVG/Huesito_gris.svg) !important;
-
-    width: 20px;
-    height: 9px;
-    background-size: 20px 9px;
+    width: 24px !important;
+    height: 12px !important;
+    background-size: 24px 12px !important;
 }
 
 .km-ranking a.active {
@@ -61,26 +60,26 @@
 }
 
 .favoritos_container h1 a {
-	font-family: Gotham-Pro-Regular;
-	font-size: 15px;
+	font-family: Gotham-Pro-Bold;
+    font-size: 18px;
     font-weight: 800;
     display: inline-block;
     padding: 0px 2px;
 }
 
 .favoritos_container .experiencia {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
-    padding: 4px 2px;
+    padding: 7px 2px;
 }
 
 b.precio {
-    font-size: 13px;
+    font-size: 16px;
     padding: 0px 2px;
 }
 
 .valoraciones {
-	font-size: 11px;
+	font-size: 14px;
     font-weight: 700;
     padding: 5px 3px 0px;
 }
@@ -95,17 +94,19 @@ b.precio {
 }
 
 .item-favorito{
-    width: calc( 25% - 20px );
+    position: relative;
+    width: calc( 33.3333% - 40px );
     float: left;
-    margin: 0px 10px 5px;
+    margin: 0px 20px 40px;
 }
 
 .item-favorito .boton {
     margin: 10px 3px 0px !important;
-    padding: 8px 5px 5px !important;
+    padding: 10px 5px 8px !important;
     text-align: center;
     display: block;
     font-weight: 800;
+    font-size: 15px;
 }
 
 .km-contenedor-favorito {
@@ -119,4 +120,13 @@ b.precio {
 a.km-foto {
     border-radius: 3px;
     overflow: hidden;
+}
+
+span.km-contenedor-favorito_2 {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    z-index: 999999999;
+    color: #FFF;
+    font-size: 17px;
 }

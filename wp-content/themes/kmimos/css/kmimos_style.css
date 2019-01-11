@@ -1074,7 +1074,7 @@ button.close {
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
-    filter:blur(3px);
+    /* filter:blur(3px); */
 }
 .km-subimg{
     background-size: contain;
