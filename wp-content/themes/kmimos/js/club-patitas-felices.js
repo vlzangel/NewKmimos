@@ -30,7 +30,7 @@ jQuery(document).ready( function (){
 			  function(d){
 			       	console.log(d);
 					if(d.sts == 1){
-						location.reload();
+						location.href = RAIZ+'/club-patitas-felices/compartir';
 					}else{
 						btn.html('Genera tu código aquí');
 						btn.removeClass('disabled');
