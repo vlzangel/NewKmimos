@@ -11,6 +11,7 @@
 
 	$atributos['destacado'] = $destacado;
 	$atributos['flash'] = $flash;
+	$atributos['geo'] = $geo;
 
 	$atributos = serialize($atributos);
 	$db->query("UPDATE cuidadores SET atributos = '{$atributos}' WHERE id = {$cuidador};");

@@ -588,6 +588,7 @@
 				$ocultar_flash = "ocultar_flash";
 				$ocultar_flash_none = "ocultar_flash_none";
 				$ocultar_descuento = "ocultar_descuento";
+				$ocultar_geo = "ocultar_geo";
 				if( $_cuidador->atributos["flash"]+0 == 1 ){
 					$ocultar_flash = "";
 					$ocultar_flash_none = "";
@@ -596,8 +597,12 @@
 					$ocultar_descuento = "";
 				}
 
+				if( $_cuidador->atributos["geo"]+0 == 1 ){
+					$ocultar_geo = "";
+				}
+
 				$ocultar_todo = "";
-				if( $ocultar_flash != "" && $ocultar_descuento != "" ){
+				if( $ocultar_flash != "" && $ocultar_descuento != "" && $ocultar_geo != "" ){
 					$ocultar_todo = "ocultar_flash_descuento";
 				}
 
@@ -727,6 +732,7 @@
 									</div>
 									<div class="resultados_item_icono icono_flash '.$ocultar_flash_none.'"><span></span></div>
 									<div class="resultados_item_icono icono_descuento '.$ocultar_descuento.'"><span></span></div>
+									<div class="resultados_item_icono icono_geo '.$ocultar_geo.'"><span></span></div>
 								</div>
 
 							</div>

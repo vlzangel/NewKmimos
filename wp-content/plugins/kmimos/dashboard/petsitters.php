@@ -166,6 +166,21 @@
             }
             $flash = "<select id='flash' name='flash'>{$destacado_opt}</select>";
 
+            $geo = "";
+            $atributos = unserialize($cuidador->atributos);
+            if( isset($atributos["geo"]) && $atributos["geo"] == "1" ){
+                $destacado_opt = '
+                    <option value=1>Si</option>
+                    <option value=0>No</option>
+                ';
+            }else{
+                $destacado_opt = '
+                    <option value=0>No</option>
+                    <option value=1>Si</option>
+                ';
+            }
+            $geo = "<select id='geo' name='geo'>{$destacado_opt}</select>";
+
             $HTML .= "
                 <div class='vlz_contenedor_datos_cuidador'>
 
@@ -192,6 +207,7 @@
                             <input type='hidden' id='cuidador' name='cuidador' value='{$cuidador->id}' />
                             <div><strong>Destacado:</strong> {$destacado}</div>
                             <div><strong>Flash:</strong> {$flash}</div>
+                            <div><strong>Geolocalización:</strong> {$geo}</div>
 
                             <div class='vlz_contenedor_botones'>
                                 <span id='actualizar_btn' class='vlz_activar'>Actualizar</span>
@@ -206,15 +222,14 @@
                     jQuery( document ).ready(function() {
 
                         jQuery('#actualizar_btn').on('click', function(e){
-                            
                             jQuery('#actualizar_btn').html('Procesando...');
-
                             jQuery.post( 
                                 '".get_home_url()."/wp-content/plugins/kmimos/dashboard/setup/php/update_cuidador.php', 
                                 {
                                     cuidador: jQuery('#cuidador').val(),
                                     destacado: jQuery('#destacado').val(),
-                                    flash: jQuery('#flash').val()
+                                    flash: jQuery('#flash').val(),
+                                    geo: jQuery('#geo').val(),
                                 },
                                 function( data ) {
                                     jQuery('#actualizar_btn').html('Actualizar');

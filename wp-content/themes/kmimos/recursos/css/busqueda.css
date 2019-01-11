@@ -819,12 +819,12 @@
 
 		}
 
-		.icono_flash, .icono_descuento{
+		.icono_flash, .icono_descuento, .icono_geo{
 			position: relative;
 			width: 50px;
 		}
 
-		.icono_flash span, .icono_descuento span{
+		.icono_flash span, .icono_descuento span, .icono_geo span{
 			display: block;
 			padding: 0px;
 			height: 30px;
@@ -854,12 +854,16 @@
 			background-image: url( ../img/BUSQUEDA/SVG/iconos/Descuento.svg );
 		}
 
+		.icono_geo span{
+			background-image: url( ../img/BUSQUEDA/SVG/iconos/Geo.svg );
+		}
+
 		.ocultar_flash span {
 		    background-image: url();
     		color: #EEE;
 		}
 
-		.ocultar_flash_none, .ocultar_descuento, .ocultar_flash_descuento{
+		.ocultar_flash_none, .ocultar_descuento, .ocultar_flash_descuento, .ocultar_geo{
 			display: none;
 		}
 
