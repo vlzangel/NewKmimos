@@ -229,7 +229,11 @@ p.subtitle{
 {
 	padding-left: 30px;
 }
-#form_login img{
+.cpf-img-user{
 	position: absolute; 
-	bottom:12px;
+	top:55px;	
+}
+.cpf-img-pass{
+	position: absolute; 
+	top:28px;
 }

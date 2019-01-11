@@ -20,12 +20,12 @@ $datos = kmimos_get_info_syte();
 						<div class="content-placeholder">
 							<div class="label-placeholder">
 								<!-- <label>Correo electrónico</label>-->
-								<img width="15px;" src="<?php echo getTema(); ?>/recursos/img/PERFILES/Perfil.svg">
+								<img class="cpf-img-user" width="15px;" src="<?php echo getTema(); ?>/recursos/img/PERFILES/Perfil.svg">
 								<input type="text" id="usuario" placeholder="Usuario &oacute; Correo El&eacute;ctronico" class="text-left input-label-placeholder">
 							</div>
 							<div class="text-left label-placeholder">
 								<!--<label>Contraseña</label>-->
-								<img width="15px;" src="<?php echo getTema(); ?>/recursos/img/PERFILES/pass.svg">
+								<img class="cpf-img-pass" width="15px;" src="<?php echo getTema(); ?>/recursos/img/PERFILES/pass.svg">
 								<input type="password" id="clave" placeholder="Contraseña" class="input-label-placeholder" autocomplete="off">
 							</div>
 						</div>
