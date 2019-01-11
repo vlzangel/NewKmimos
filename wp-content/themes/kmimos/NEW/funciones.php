@@ -696,6 +696,13 @@
 					$mensaje_disp_movil_corto = "Descuento";
 				}
 
+				if( $ocultar_geo == "" ){
+					$mensaje_disp = "Cuenta con localizador GPS";
+					$mensaje_disp_movil = "Localizador GPS";
+					$show_msg_desc = "show_msg_descuento";
+					$mensaje_disp_movil_corto = "Localizador";
+				}
+
 				if( !is_array($_cuidador->galeria) ){
 					$_cuidador->galeria = [];
 				}
