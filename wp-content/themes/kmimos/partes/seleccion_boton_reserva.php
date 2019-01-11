@@ -85,11 +85,11 @@
 	}else{
 		if( count($url_servicio) == 1){
 			foreach ($url_servicio as $item) {
-				$BOTON_RESERVAR .= '<button id="btn_reservar" name="redirigir" class="boton boton_verde" value="'.$item['url'].'">RESERVAR</button>';
+				$BOTON_RESERVAR .= '<button id="btn_reservar" onclick="evento_google_kmimos(\'reservar_ficha\'); evento_fbq_kmimos(\'reservar_ficha\');" name="redirigir" class="boton boton_verde" value="'.$item['url'].'">RESERVAR</button>';
 				break;
 			}
 		}else{				
-			$BOTON_RESERVAR .= '<button id="btn_reservar" name="redirigir" class="boton boton_verde" value="'.get_home_url().'/reservar/'.$id_hospedaje.'/'.'">RESERVAR</button>';
+			$BOTON_RESERVAR .= '<button id="btn_reservar" onclick="evento_google_kmimos(\'reservar_ficha\'); evento_fbq_kmimos(\'reservar_ficha\');" name="redirigir" class="boton boton_verde" value="'.get_home_url().'/reservar/'.$id_hospedaje.'/'.'">RESERVAR</button>';
 		}
 	}
 ?>

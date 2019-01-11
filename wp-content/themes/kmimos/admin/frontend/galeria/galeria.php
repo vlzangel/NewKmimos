@@ -22,8 +22,9 @@
                                     <div class="vlz_img_portada_normal" style="background-image: url('.get_home_url().'/'.$path_galeria.$file.');"></div>
                                 </div>
                             </a>
+
                             <div class="mascotas_delete" data-usu="'.$tmp_user_id.'" data-img="'.$file.'">
-                                Eliminar
+                                x
                             </div>
                         </div>
                     </li>';

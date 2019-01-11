@@ -286,7 +286,7 @@
 		$activo_hoy = get_cupos_by_user_id( $post->post_author );
 		$activo_hoy = ( $activo_hoy == null ) ? true: false;
 
-		$btn_conocer = '<a  role="button" href="#" class="boton boton_border_gris"><strong>No disponible para conocer</strong></a>';
+		$btn_conocer = '<a onclick="evento_google_kmimos(\'conocer_ficha\'); evento_fbq_kmimos(\'conocer_ficha\');" role="button" href="#" class="boton boton_border_gris"><strong>No disponible para conocer</strong></a>';
 		if( $activo_hoy ){
 			$btn_conocer = '
 				<a  role="button" href="#" 
@@ -295,6 +295,7 @@
 		            data-name="'.strtoupper( get_the_title() ).'" 
 		            data-id="'.$cuidador->id_post.'"
 					class="boton boton_border_gris" 
+					onclick="evento_google_kmimos(\'conocer_ficha\'); evento_fbq_kmimos(\'conocer_ficha\');"
 				>CON&Oacute;CELO +</a>
 			';
 		}
@@ -308,7 +309,7 @@
 				role="button" 
 				data-toggle="modal"
 				class="boton boton_border_gris" 
-				onclick="jQuery(\'#proceso\').val(\'conocer\');"
+				onclick="jQuery(\'#proceso\').val(\'conocer\'); evento_google_kmimos(\'conocer_ficha\'); evento_fbq_kmimos(\'conocer_ficha\');"
 			>CON&Oacute;CELO +</a>
 			<a
 				href="#" 
@@ -316,7 +317,7 @@
 				role="button" 
 				data-toggle="modal"
 				class="boton boton_verde" 
-				onclick="jQuery(\'#proceso\').val(\'reservar\');"
+				onclick="jQuery(\'#proceso\').val(\'reservar\'); evento_google_kmimos(\'reservar_ficha\'); evento_fbq_kmimos(\'reservar_ficha\');"
 			>RESERVAR</a>
 		';
 	}
@@ -569,8 +570,6 @@
 							</div>
 
 							'.$BOTON_RESERVAR.'
-
-
 
 							<div class="solo_movil">
 								<div class="reservar_footer">

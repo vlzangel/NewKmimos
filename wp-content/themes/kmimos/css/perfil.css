@@ -91,7 +91,7 @@ form#form_perfil > section {
 }
 
 li.vlz_resaltar a {
-    color: #FFF;
+    color: #FFF !important;
 }
 
 li.vlz_resaltar {

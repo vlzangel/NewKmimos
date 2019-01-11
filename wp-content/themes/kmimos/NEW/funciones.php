@@ -709,6 +709,7 @@
                             data-id="'.$_cuidador->id_post.'" 
                             data-target="#popup-conoce-cuidador"
                             href="#" class="boton boton_border_gris"
+                            onclick="evento_google_kmimos(\'conocer_busqueda\'); evento_fbq_kmimos(\'conocer_busqueda\');"
                         >
 							<span class="boton_conocer_PC">Solicitud de conocer</span>
 							<span class="boton_conocer_MOVIl"><span class="boton_conocer_MOVIl">Conocer</span>
@@ -778,7 +779,7 @@
 							</div>
 							<div class="resultados_item_bottom">
 								'.$btn_conocer.'
-								<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="boton boton_verde">Reservar</a>
+								<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" onclick="evento_google_kmimos(\'reservar_busqueda\'); evento_fbq_kmimos(\'reservar_busqueda\');" class="boton boton_verde">Reservar</a>
 							</div>
 						</div>
 					</div>

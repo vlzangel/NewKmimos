@@ -129,7 +129,8 @@
 		    wp_enqueue_style('galeria', getTema()."/css/galeria.css", array(), '1.0.0');
 			wp_enqueue_style('galeria_responsive', getTema()."/css/responsive/galeria_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('galeria', getTema()."/js/galeria.js", array("jquery", "global_js"), '1.0.0');
-			$btn_txt = "Nueva Foto";
+
+			$btn_txt = "+";
 		break;
 		case 'reservas':
 		    wp_enqueue_style('historial', getTema()."/css/historial.css", array(), '1.0.0');

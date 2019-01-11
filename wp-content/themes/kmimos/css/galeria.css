@@ -40,22 +40,20 @@
 	color: #59c9a8;
 }
 .mascotas_delete{
-	position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: auto;
     text-align: center;
-    padding: 5px;
+    padding: 10px 15px;
     font-size: 16px;
-    border-top: solid 1px #909090;
-    background: #909090;
     color: #FFF;
-    border-radius: 0px 0px 3px 3px;
     cursor: pointer;
+    z-index: 999999999;
 }
 .mascotas_delete:hover{
-    border-top: solid 1px #c72929;
-    background: #c72929;
+    /* border-top: solid 1px #c72929;
+    background: #c72929; */
 }
 .mascotas_vacio{
 	text-align: center;
@@ -63,4 +61,8 @@
 .mascotas_vacio img{
     display: block;
     margin: 0px auto;
+}
+
+ul.mascotas_container {
+    list-style: none !important;
 }

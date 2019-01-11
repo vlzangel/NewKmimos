@@ -412,3 +412,7 @@ a.vlz_accion.vlz_pdf {
     background: #7c169e;
     color: #FFF !important;
 }
+
+.datos_de_contacto ul {
+    list-style: none !important;
+}

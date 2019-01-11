@@ -493,13 +493,13 @@
 
 										<div class="km-method-paid-options km-medio-paid-options">
 
-											<div class="km-method-paid-option km-tienda km-option-3-lineas active">
+											<div onclick="evento_google_kmimos(\'tienda\'); evento_fbq_kmimos(\'tienda\');" class="km-method-paid-option km-tienda km-option-3-lineas active">
 												<div class="km-text-one">
 													PAGO EN TIENDA DE CONVENIENCIA
 												</div>
 											</div>
 
-											<div class="km-method-paid-option km-tarjeta km-option-3-lineas ">
+											<div onclick="evento_google_kmimos(\'tarjeta\'); evento_fbq_kmimos(\'tarjeta\');" class="km-method-paid-option km-tarjeta km-option-3-lineas ">
 												<div class="km-text-one">
 													<div class="km-text-one">								
 														<span>PAGO CON </span>TARJETA DE CRÉDITO O DÉBITO

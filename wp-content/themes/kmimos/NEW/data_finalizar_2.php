@@ -62,4 +62,6 @@
 
 	 	$_SESSION[ "reserva_".$data_reserva["servicio"]["id_reserva"] ] = "YA_CONTADO";
  	}	
+
+ 	echo '<script> evento_google_kmimos(\'confirmacion_reserva\'); evento_fbq_kmimos(\'confirmacion_reserva\'); </script>';
 ?>

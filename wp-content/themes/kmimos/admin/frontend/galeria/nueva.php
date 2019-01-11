@@ -7,6 +7,7 @@
     <input type="hidden" name="accion" value="nueva_galeria" />
     <input type="hidden" name="user_id" value="'.$tmp_user_id.'" />
 
+    <div style="padding: 30px;"></div>
     <section>
 
         <div class="vlz_img_portada_perfil">
@@ -26,5 +27,6 @@
         <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
 
     </section>
+    <div style="padding: 10px;"></div>
     ';
 ?>
