@@ -239,34 +239,34 @@
 
 	        	switch ( evento ) {
 					case "paseos":
-						evento = "km_traking_code_boton_paseos";
+						evento = "km_tracking_code_boton_paseos";
 					break;
 					case "buscar_home":
-						evento = "km_traking_code_boton_home_buscar";
+						evento = "km_tracking_code_boton_home_buscar";
 					break;
 					case "conocer_busqueda":
-						evento = "km_traking_code_boton_conocer_busqueda";
+						evento = "km_tracking_code_boton_conocer_busqueda";
 					break;
 					case "reservar_busqueda":
-						evento = "km_traking_code_boton_reservar_busqueda";
+						evento = "km_tracking_code_boton_reservar_busqueda";
 					break;
 					case "conocer_ficha":
-						evento = "km_traking_code_boton_conocer_ficha";
+						evento = "km_tracking_code_boton_conocer_ficha";
 					break;
 					case "reservar_ficha":
-						evento = "km_traking_code_boton_reservar_ficha";
+						evento = "km_tracking_code_boton_reservar_ficha";
 					break;
 					case "tienda":
-						evento = "km_traking_code_boton_tienda";
+						evento = "km_tracking_code_boton_tienda";
 					break;
 					case "tarjeta":
-						evento = "km_traking_code_boton_tarjeta";
+						evento = "km_tracking_code_boton_tarjeta";
 					break;
 					case "confirmacion_reserva":
-						evento = "km_traking_code_confirmacion_reserva";
+						evento = "km_tracking_code_confirmacion_reserva";
 					break;
 					case "banner_home":
-						evento = "km_traking_code_banner_home";
+						evento = "km_tracking_code_banner_home";
 					break;
 				}
 
@@ -276,34 +276,34 @@
 	        function evento_google_kmimos(evento){
 	        	switch ( evento ) {
 					case "paseos":
-						ga("send", "event", "wlabel", "click", "km_traking_code_boton_paseos", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_boton_paseos", "1");
 					break;
 					case "buscar_home":
-						ga("send", "event", "wlabel", "click", "km_traking_code_boton_home_buscar", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_boton_home_buscar", "1");
 					break;
 					case "conocer_busqueda":
-						ga("send", "event", "wlabel", "click", "km_traking_code_boton_conocer_busqueda", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_boton_conocer_busqueda", "1");
 					break;
 					case "reservar_busqueda":
-						ga("send", "event", "wlabel", "click", "km_traking_code_boton_reservar_busqueda", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_boton_reservar_busqueda", "1");
 					break;
 					case "conocer_ficha":
-						ga("send", "event", "wlabel", "click", "km_traking_code_boton_conocer_ficha", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_boton_conocer_ficha", "1");
 					break;
 					case "reservar_ficha":
-						ga("send", "event", "wlabel", "click", "km_traking_code_boton_reservar_ficha", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_boton_reservar_ficha", "1");
 					break;
 					case "tienda":
-						ga("send", "event", "wlabel", "click", "km_traking_code_boton_tienda", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_boton_tienda", "1");
 					break;
 					case "tarjeta":
-						ga("send", "event", "wlabel", "click", "km_traking_code_boton_tarjeta", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_boton_tarjeta", "1");
 					break;
 					case "confirmacion_reserva":
-						ga("send", "event", "wlabel", "click", "km_traking_code_confirmacion_reserva", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_confirmacion_reserva", "1");
 					break;
 					case "banner_home":
-						ga("send", "event", "wlabel", "click", "km_traking_code_banner_home", "1");
+						ga("send", "event", "wlabel", "click", "km_tracking_code_banner_home", "1");
 					break;
 				}
 	        }
