@@ -34,10 +34,10 @@
     }
 
     if(!function_exists('kmimos_get_kmisaldo')){
-        function kmimos_get_kmisaldo(){
+        function kmimos_get_kmisaldo($con_conocer = false){
             global $current_user;
-            return get_user_meta($current_user->ID, "kmisaldo", true)+0;
-            
+            $saldo_conocer = ( $con_conocer ) ? get_cupos_conocer($current_user->ID)*10 : 0;
+            return get_user_meta($current_user->ID, "kmisaldo", true)+$saldo_conocer;
         }
     }
 

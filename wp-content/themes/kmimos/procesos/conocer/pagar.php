@@ -198,9 +198,6 @@
 						
 						if ($charge != false) {
 
-							$saldo = get_user_meta($pagar->cliente, "saldo_conocer", true)+0;
-							update_user_meta($pagar->cliente, "saldo_conocer", $saldo+30);
-
 							$db->query("
 								UPDATE 
 									conocer_pedidos 

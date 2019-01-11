@@ -245,7 +245,7 @@
 			<div>
 			
 				<div class="kmisaldo alert alert-info" role="alert">
-					<strong>'.kmimos_saldo_titulo().':</strong> MXN $'.kmimos_get_kmisaldo().'
+					<strong>'.kmimos_saldo_titulo().':</strong> MXN $'.kmimos_get_kmisaldo(true).'
 				</div>
 
 			  	<!-- Nav tabs -->
