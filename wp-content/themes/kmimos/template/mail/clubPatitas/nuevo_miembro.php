@@ -46,13 +46,7 @@
 		</p>
 
 		<div style="margin: 60px 0px;">
-			<a href="[url]/club-patitas-felices/compartir" style="
-				padding: 15px 60px 15px 60px;
-				background: #000000;
-				color: #fff; 
-				border-radius: 10px;
-				text-decoration: none;
-			"><img src="[IMG_URL]/club-patitas/Compartir.jpg"></a>
+			<a href="[url]/club-patitas-felices/compartir"><img src="[IMG_URL]/club-patitas/Compartir.jpg"></a>
 		</div>
 
 	</div>
