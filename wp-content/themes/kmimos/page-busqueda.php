@@ -475,7 +475,7 @@
 	    			<div class="mesaje_reserva_inmediata_container">
 	    				<div class="mesaje_reserva_inmediata_izq"></div>
 	    				<div class="mesaje_reserva_inmediata_der">
-	    					Estimado usuario la fecha final se estableció de manera automática para coincidir con el tiempo del paquete seleccinado de <span></span>
+	    					Estimado usuario la fecha final se estableció de manera automática para coincidir con el tiempo del paquete seleccinado de <strong></strong>
 	    				</div>
 	    			</div>
     			</div>
