@@ -1,6 +1,19 @@
 var table;
 var URL_SALIR;
 jQuery(document).ready( function (){
+	
+	jQuery("[data-atras]").on('click', function(){
+		mostrar_popup_sesion("popup-iniciar-sesion-1");
+	});
+
+	// jQuery("[login-group]").on('click', function(){
+	// 	mostrar_popup_sesion("popup-iniciar-sesion-1");
+	// });
+
+	jQuery('#show-iniciar-sesion').on('click', function(){
+		mostrar_popup_sesion("popup-iniciar-sesion-1");
+	})
+
 	jQuery('#logo-white').attr('src', jQuery('#logo-black').attr('src') );
 
 	jQuery('#compartir_now').on('click', function(e){
@@ -17,7 +30,7 @@ jQuery(document).ready( function (){
 			obj.css('display', 'none');
 		}
 	});
-	
+
 	jQuery('#form-registro').on('submit', function(e){
 		e.preventDefault();
 		var btn = jQuery('#form-registro button[type="submit"]');
@@ -34,7 +47,7 @@ jQuery(document).ready( function (){
 					}else{
 						btn.html('Genera tu código aquí');
 						btn.removeClass('disabled');
-						alert(d.msg);
+						mostrar_popup_sesion("popup-msg-registrado");
 				   	}
 				}, 
 				'json'
@@ -55,6 +68,14 @@ jQuery(document).ready( function (){
 
 });
 
+function mostrar_popup_sesion( id ){
+	jQuery("[login-group]").addClass("popuphide");
+	jQuery("[login-group]").css("display", 'none');
+	jQuery("."+id).removeClass("popuphide");
+	jQuery("."+id).css("display", 'block');
+	jQuery("#popup-iniciar-sesion").modal("show");
+}
+
 function club_validar(){
 	jQuery.each( jQuery('#form-registro input'), function(i){
 		var input = jQuery(this);
@@ -74,7 +95,6 @@ function total_generado(){
         	jQuery('#total_creditos').html( d.total );
 	    }, 'json'
 	);
-
 }
 
 function menuClub(){

@@ -11,7 +11,7 @@
 	$user = wp_get_current_user();
 	$cupon = get_user_meta( $user->ID, 'club-patitas-cupon', true );
  	if( empty($cupon) ){
-		// header('location:'.get_home_url().'/club-patitas-felices');
+		header('location:'.get_home_url().'/club-patitas-felices');
 	}
 	
     $url_img = get_home_url() .'/wp-content/themes/kmimos/images/club-patitas/';

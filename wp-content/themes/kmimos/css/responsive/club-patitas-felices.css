@@ -99,6 +99,13 @@
 	    font-size: 12px!important;
 	}
 
+.cpf-img-user,
+.cpf-img-pass
+{
+	position: absolute; 
+	top:28px;
+}
+
 }
 @media (max-width: 768px){
 	.content-compartir-club{
