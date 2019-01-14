@@ -19,7 +19,7 @@
 		font-size: 13px;
 		margin: 30px 0px;
 	">
-		<span style="color:#6b1c9a;">Completa tu regístro</span> ahora y deja a tu amigo peludo seguro en las mejores manos
+		<span style="color:#6b1c9a;font'font-weight: bold;">Completa tu regístro</span> ahora y deja a tu amigo peludo seguro en las mejores manos
 	</p>
 
 	<div>
