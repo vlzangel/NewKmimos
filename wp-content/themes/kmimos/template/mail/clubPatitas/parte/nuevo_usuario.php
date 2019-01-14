@@ -25,12 +25,12 @@
 	<div>
 		<div style="width: 80%; margin: 0 auto;">
 		    <div style='display: table-cell; vertical-align:top; width: 100%; height: 10vh; text-align: left;'>
-		        <div style='font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>E-mail</div>                   
-		        <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: -0.1px; color: #000000; margin-bottom: 12px;'>
+		        <div style='font-size: 15px; font-weight: bold; letter-spacing: -0.1px; color: #000000;'>E-mail</div>                   
+		        <div style='font-family: Arial; font-size: 15px; font-weight: normal; letter-spacing: -0.1px; color: #000000; margin-bottom: 12px;'>
 		        	<a href="mailto:[email]" style="color: #000; text-decoration: none;">[email]</a>
 		        </div>
-		        <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>Contraseña</div>
-		        <div style='font-family: Arial; color:#0d7ad8;font-size: 12px; font-weight: bold; letter-spacing: -0.1px;'>[pass]</div>    
+		        <div style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: -0.1px; color: #000000;'>Contraseña</div>
+		        <div style='font-family: Arial; color:#0d7ad8;font-size: 17px; font-weight: bold; letter-spacing: -0.1px;'>[pass]</div>    
 		    </div>
 		</div>
 	</div>

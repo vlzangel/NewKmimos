@@ -42,7 +42,7 @@
 			Durante el proceso de reserva para tus mascotas, podr&aacute;s ver tambi&eacute;n tus cr&eacute;ditos. &Eacute;stos se restar&aacute;n autom&aacute;ticamente del costo de tu reservaci&oacute;n <span style="font-weight:bold; color:#6B1C9A; ">¡Podr&aacute;s ahorrar muchisimo!</span>
 		</p>
 		<p style="text-align: center;">		
-			<span style="color:#0d7ad8;font-weight: bold;">¡Más compartes, más ganas! </span>
+			<span style="color:#0d7ad8;font-weight: bold;font-size: 20px;">¡Más compartes, más ganas! </span>
 		</p>
 
 		<div style="margin: 60px 0px;">
