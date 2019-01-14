@@ -27,6 +27,7 @@
 						<span style="
 							font-size: 30px;
 							font-weight: bold;
+							vertical-align: middle;
 						">
 							[CUPON]
 						</span>
