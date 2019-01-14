@@ -453,6 +453,18 @@
 	    outline: none;
 	}
 
+/* BOTÓN VER PAQUETES */
+	
+	#boton_ver_paquetes {
+		border: 0;
+		padding: 10px 35px 7px;
+		text-transform: uppercase;
+		font-family: Gotham-Pro-Bold;
+		font-size: 16px;
+		margin: 10px 0px;
+		border-radius: 5px;
+	}
+
 /* IMPORTANCIA */
 
 	.importancia_detalles{

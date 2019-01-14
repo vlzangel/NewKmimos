@@ -281,19 +281,23 @@
 	}
 
 	function getDestacados(){
-		jQuery.post(
-			HOME+"/NEW/destacados.php",
-			{},
-			function(html){
-				jQuery("#seccion_destacados").html( html );
-				accionFavorito();
-				if( String(html).trim() == "" ){
-					jQuery("#seccion_destacados").addClass("sin_destacados");
-				}else{
-					jQuery("#seccion_destacados").removeClass("sin_destacados");
+		if( landing != "paseos" ){
+			jQuery.post(
+				HOME+"/NEW/destacados.php",
+				{},
+				function(html){
+					jQuery("#seccion_destacados").html( html );
+					accionFavorito();
+					if( String(html).trim() == "" ){
+						jQuery("#seccion_destacados").addClass("sin_destacados");
+					}else{
+						jQuery("#seccion_destacados").removeClass("sin_destacados");
+					}
 				}
-			}
-		);
+			);
+
+		}
+
 	}
 
 	function cargando(estado){

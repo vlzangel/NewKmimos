@@ -105,12 +105,12 @@
 						<div class="fechas_container">
 							<div id="desde_container">
 								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
-								<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" readonly>
+								<input type="text" id="checkin" name="checkin" placeholder="Inicio del paseo" class="date_from" readonly>
 								<small class="">Requerido</small>
 							</div>
 							<div>
 								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
-								<input type="text" id="checkout" name="checkout" placeholder="Hasta" class="date_to" readonly>
+								<input type="text" id="checkout" name="checkout" placeholder="Fin del paseo" class="date_to" readonly>
 								<small class="">Requerido</small>
 							</div>
 						</div>
@@ -163,6 +163,10 @@
 
 					<div class="boton_buscar_container">
 						<input type="button" id="boton_buscar" class="boton_buscar boton_verde" value="Buscar paseador">
+					</div>
+
+					<div class="boton_ver_paquetes_container">
+						<input type="button" id="boton_ver_paquetes" class="boton_buscar boton_verde" value="Ver paquetes">
 					</div>
 
 				</form>

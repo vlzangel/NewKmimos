@@ -86,6 +86,11 @@ jQuery( document ).ready(function() {
         e.preventDefault();
     });
 
+    jQuery("#boton_ver_paquetes").on("click", function(e){
+        jQuery('body,html').stop(true, true).animate({ scrollTop: jQuery('#paquetes').offset().top }, 1000);
+        e.preventDefault();
+    });
+
     jQuery(".btn_paq").on("click", function(e){
         jQuery("#paquete").val( jQuery(this).attr("data-id") );
         jQuery(".input_radio").prop("checked", false);
