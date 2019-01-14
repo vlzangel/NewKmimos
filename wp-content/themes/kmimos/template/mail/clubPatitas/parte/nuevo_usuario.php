@@ -19,11 +19,10 @@
 		font-size: 13px;
 		margin: 30px 0px;
 	">
-		<span style="color:#6b1c9a;font'font-weight: bold;">Completa tu regístro</span> ahora y deja a tu amigo peludo seguro en las mejores manos
+		<span style="color:#6b1c9a;font-weight: bold;">Completa tu regístro</span> ahora y deja a tu amigo peludo seguro en las mejores manos
 	</p>
 
 	<div>
-		<p style="font-size: 12px;">Te entregamos tus credenciales para que tengas acceso a Kmimos: </p>
 		<div style="width: 80%; margin: 0 auto;">
 		    <div style='display: table-cell; vertical-align:top; width: 100%; height: 10vh; text-align: left;'>
 		        <div style='font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>E-mail</div>                   
@@ -31,7 +30,7 @@
 		        	<a href="mailto:[email]" style="color: #000; text-decoration: none;">[email]</a>
 		        </div>
 		        <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>Contraseña</div>
-		        <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: -0.1px; color: #000000;'>[pass]</div>    
+		        <div style='font-family: Arial; color:#0d7ad8;font-size: 12px; font-weight: bold; letter-spacing: -0.1px;'>[pass]</div>    
 		    </div>
 		</div>
 	</div>
