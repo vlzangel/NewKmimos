@@ -106,17 +106,17 @@
 		    border: solid 1px #CCC;
 		    border-radius: 3px;
 		    background: #EEE;
-		    padding: 6px 0px 5px 30px;
+		    padding: 7px 8px 5px;
 		    box-sizing: border-box;
 		    font-size: 10px;
 		}
 
-		.icono_flash, .icono_descuento{
+		.icono_flash, .icono_descuento, .icono_geo{
 			position: relative;
 			width: 35px;
 		}
 
-		.icono_flash span, .icono_descuento span{
+		.icono_flash span, .icono_descuento span, .icono_geo span{
 		    display: block;
 		    padding: 0px;
 		    height: 28px;
@@ -127,12 +127,14 @@
 
 		}
 
+		/*
 		.icono_disponibilidad span{
 			background-image: url(../img/BUSQUEDA/SVG/iconos/Disponible.svg);
-		    background-position: 7px center;
+		    background-position: 4px center;
 		    background-repeat: no-repeat;
-		    background-size: 14px;
+		    background-size: 12px;
 		}
+		*/
 
 		.icono_flash span{
 			background-image: url( ../img/BUSQUEDA/SVG/iconos/Reserva_Inmediata.svg );			
@@ -142,12 +144,16 @@
 			background-image: url( ../img/BUSQUEDA/SVG/iconos/Descuento.svg );
 		}
 
+		.icono_geo span{
+			background-image: url( ../img/BUSQUEDA/SVG/iconos/Geo.svg );
+		}
+
 		.ocultar_flash span {
 		    background-image: url();
 			color: #EEE;
 		}
 
-		.ocultar_flash_none, .ocultar_descuento, .ocultar_flash_descuento{
+		.ocultar_flash_none, .ocultar_descuento, .ocultar_flash_descuento, .ocultar_geo{
 			display: none;
 		}
 

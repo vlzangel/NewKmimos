@@ -45,23 +45,6 @@
 
 	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
-	
-
-	$ocultar_flash = "ocultar_flash";
-	$ocultar_flash_none = "ocultar_flash_none";
-	$ocultar_descuento = "ocultar_descuento";
-	if( $_cuidador->atributos["flash"] == 1 ){
-		$ocultar_flash = "";
-		$ocultar_flash_none = "";
-	}
-	if( $_cuidador->atributos["destacado"]+0 == 1 ){
-		$ocultar_descuento = "";
-	}
-
-	$ocultar_todo = "";
-	if( $ocultar_flash != "" && $ocultar_descuento != "" ){
-		$ocultar_todo = "ocultar_flash_descuento";
-	}
 
 	$favoritos = get_favoritos();
 
@@ -330,9 +313,33 @@
     	$cuidador->mascotas_permitidas = 6;
     }
 
-   /* echo "<pre>";
-    	print_r($_cuidador->adicionales);
-    echo "</pre>";*/
+    $txt_iconos = "";
+
+	$ocultar_flash = "ocultar_flash";
+	$ocultar_flash_none = "ocultar_flash_none";
+	$ocultar_descuento = "ocultar_descuento";
+	$ocultar_geo = "ocultar_geo";
+
+	if( $_cuidador->atributos["flash"] == 1 ){
+		$ocultar_flash = "";
+		$ocultar_flash_none = "";
+		$txt_iconos = "Disponible";
+	}
+	if( $_cuidador->atributos["destacado"]+0 == 1 ){
+		$ocultar_descuento = "";
+		$txt_iconos = "Descuento";
+	}
+	if( $_cuidador->atributos["geo"]+0 == 1 ){
+		$ocultar_geo = "";
+		$txt_iconos = "Geolocalización";
+	}
+
+	$ocultar_todo = "";
+	if( $ocultar_flash != "" && $ocultar_descuento != "" && $ocultar_geo != "" ){
+		$ocultar_todo = "ocultar_flash_descuento";
+	}
+
+
 
  	$HTML .= '
  		<script> 
@@ -384,11 +391,12 @@
 				</div>
 			</div>
 			<div class="pc_info_iconos_container '.$ocultar_todo.'">
-				<div class="pc_info_iconos icono_disponibilidad '.$ocultar_flash.'">
-					<span>Acepta reserva inmediata</span>
+				<div class="pc_info_iconos icono_disponibilidad">
+					<span>'.$txt_iconos.'</span>
 				</div>
 				<div class="pc_info_iconos icono_flash '.$ocultar_flash_none.'"><span></span></div>
-				<!-- <div class="pc_info_iconos icono_descuento '.$ocultar_descuento.'"><span></span></div> --> 
+				<div class="pc_info_iconos icono_descuento '.$ocultar_descuento.'"><span></span></div>
+				<div class="pc_info_iconos icono_geo '.$ocultar_geo.'"><span></span></div>
 			</div>
 
 			<hr style="margin: 20px 15px;">
@@ -408,11 +416,12 @@
 					<div class="pc_img" data-img="'.$foto.'" style="background-image:url('.$foto.');"></div>
 
 					<div class="pc_info_iconos_container '.$ocultar_todo.'">
-						<div class="pc_info_iconos icono_disponibilidad '.$ocultar_flash.'">
-							<span>Acepta reserva inmediata</span>
+						<div class="pc_info_iconos icono_disponibilidad">
+							<span>'.$txt_iconos.'</span>
 						</div>
 						<div class="pc_info_iconos icono_flash '.$ocultar_flash_none.'"><span></span></div>
-						<!-- <div class="pc_info_iconos icono_descuento '.$ocultar_descuento.'"><span></span></div> --> 
+						<div class="pc_info_iconos icono_descuento '.$ocultar_descuento.'"><span></span></div>
+						<div class="pc_info_iconos icono_geo '.$ocultar_geo.'"><span></span></div>
 					</div>
 
 				</div>
