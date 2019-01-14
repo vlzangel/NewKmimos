@@ -170,7 +170,7 @@
 
 	function buscar( campo ){
 
-		console.log( campo );
+		// console.log( campo );
 		// if( campo == "checkin" || campo == "checkout" ){
 			verificar_msg();
 		// }
@@ -185,7 +185,7 @@
 				jQuery("#buscar").serialize(),
 				function(respuesta){
 
-					console.log( respuesta );
+					// console.log( respuesta );
 
 					if( respuesta != false ){
 						jQuery(".cantidad_resultados_container span").html( respuesta.length );
@@ -450,7 +450,7 @@
 		                geocoder.geocode({'location': latlng}, function(results, status) {
 		                    if (status == google.maps.GeocoderStatus.OK) {
 
-		                    	console.log( results );
+		                    	// console.log( results );
 
 		                    	limitesDestacados.lat.der = results[6].geometry.bounds.j.j;
 		                    	limitesDestacados.lat.izq = results[6].geometry.bounds.j.l;

@@ -1265,6 +1265,10 @@
 	        background-image: url(../img/BUSQUEDA/PNG/Boton_Geo_2.png);
 		}
 
+		.check_geo .check_icon {    
+			background-size: 23px;
+		}
+
 /*		.check_descuento .check_control_off,
 		.check_disponibilidad .check_control_off{
 			visibility: visible;
