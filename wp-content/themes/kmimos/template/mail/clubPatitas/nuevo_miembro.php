@@ -52,7 +52,7 @@
 				color: #fff; 
 				border-radius: 10px;
 				text-decoration: none;
-			"><img src="[IMG_URL]/club-patitas/Compartir.svg"> Compartir ahora</a>
+			"><img src="[IMG_URL]/club-patitas/Compartir.jpg" width="20px;"> Compartir ahora</a>
 		</div>
 
 	</div>
@@ -61,7 +61,7 @@
 
 	<div>
 		<a href="https://www.kmimos.com.mx/club-patitas-felices" style="text-decoration: none;">
-			<img src="[IMG_URL]/club-patitas/Footer-desktop.jpg">
+			<img width="100%" src="[IMG_URL]/club-patitas/Footer-desktop.jpg">
 		</a>
 	</div>
 
