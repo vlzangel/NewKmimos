@@ -9,19 +9,18 @@ $datos = kmimos_get_info_syte();
 	<div class="modal-dialog modal-md">
 		<div class="modal-content ">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<div class="popup-iniciar-sesion-1" style="padding: 20px;">
-
+			
+			<div login-group class="popup-iniciar-sesion-1" style="padding: 20px;">
 				<p class="popup-tit">Inicia sesi&oacute;n en el club de las patitas</p>
 				<p class="text-center col-md-8 col-md-offset-2" style="color:#0D7AD8;">Recuerda tener a la mano las credenciales que te hemos enviado al correo electr&oacute;nico</p>
-				
 				<form id="form_login" autocomplete="off">
 					<input type="hidden" id="proceso" name="proceso" value="" />
 					<div class="km-box-form">
 						<div class="content-placeholder">
 							<div class="label-placeholder">
 								<!-- <label>Correo electrónico</label>-->
-								<img class="cpf-img-user" width="15px;" src="<?php echo getTema(); ?>/recursos/img/PERFILES/Perfil.svg">
 								<input type="text" id="usuario" placeholder="Usuario &oacute; Correo El&eacute;ctronico" class="text-left input-label-placeholder">
+								<img class="cpf-img-user" width="15px;" src="<?php echo getTema(); ?>/recursos/img/PERFILES/Perfil.svg">
 							</div>
 							<div class="text-left label-placeholder">
 								<!--<label>Contraseña</label>-->
@@ -52,10 +51,17 @@ $datos = kmimos_get_info_syte();
 						</div>				
 					</div>
 				</form>
-
 			</div>
-			<div class="popuphide popup-olvidaste-contrasena">
-				<p class="popup-tit">¿OLVIDASTE TU CONTRASEÑA?</p>
+
+			<div login-group class="popuphide popup-olvidaste-contrasena" style="padding: 20px;">
+				<div class="col-md-12">				
+					<div class="col-md-1 text-left">
+						<a href="javascript:;" data-atras="true"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
+					</div>
+					<div class="col-md-10 text-center">
+						<p class="popup-tit">¿OLVIDASTE TU CONTRASEÑA?</p>
+					</div>
+				</div>
 				<p>No te preocupes, a todos nos pasa. Ingresa tu correo electrónico y listo!</p>
 				<form id="form_recuperar" onsubmit="return false;">
 					<div class="km-box-form">
@@ -73,6 +79,30 @@ $datos = kmimos_get_info_syte();
 						</div>
 					</div>
 				</form>
+			</div>
+
+			<div login-group class="popuphide popup-msg-registrado row" style="padding: 20px;">
+				<div class="col-md-12">
+					<div class="col-md-1 text-left">
+						<a href="javascript:;" data-atras="true"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
+					</div>
+					<div class="col-md-10 text-center">
+						<p class="popup-tit">¡UUUPS!</p>
+					</div>
+				</div>
+				<div class="col-md-12 text-center">
+					<div class="col-md-4 col-md-offset-4">
+						<img src="<?php echo getTema(); ?>/recursos/img/PERFILES/Dog.svg" class="img-responsive">
+					</div>
+				</div>
+				<div class="col-md-12 text-center">
+					<h3 style="font-size: 16px;"><strong>¡Parece que ya te has registrado en el club!</strong></h3>
+					<p style="color:#4f4f4f;font-weight:100;">Inicia sesi&oacute;n para ver tus cr&eacute;ditos</p>
+					<button id="show-iniciar-sesion" type="submit" class="btn btn-club btn-lg btn-info">
+						Iniciar sesi&oacute;n
+					</button>
+					<div class="clear"></div>
+				</div>
 			</div>
 
 		</div>
