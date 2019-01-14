@@ -8,13 +8,13 @@
 	<div style="padding: 0px 15px; width: 90%; margin: 0 auto; text-align: center;">
 
 		<h1 style="
-			margin: 40px 0px; 
-			color: #0d7ad8; 
+			margin: 40px 0px 10px 0px; 
+			color: #000000; 
 			font-weight: bold;
 			text-align: center;
 		">¡BIENVENIDO AL CLUB!</h1>
 
-		<p style="text-align:center;color:#0D7AD8;">Generamos para ti un c&oacute;digo &uacute;nico y credenciales de ingreso que podr&aacute;s conseguir en este mismo correo</p>
+		<p style="margin: 0px 0px 40px 0px; text-align:center;color:#0D7AD8;">Generamos para ti un c&oacute;digo &uacute;nico y credenciales de ingreso que podr&aacute;s conseguir en este mismo correo</p>
 
 		<div style="text-align: center; color:#fff; background-color: #6B1C9A; width: 100%;">
 			<table border="0" width="100%;">
