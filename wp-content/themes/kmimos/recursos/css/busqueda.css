@@ -17,6 +17,10 @@
 	    border: solid 1px #000;
 	}
 
+	#msg_paseos .mesaje_reserva_inmediata_der {
+    	padding: 0px 20px;
+	}
+
 /* MENU */
 
 	.nav>li>a>img {
