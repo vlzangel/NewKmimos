@@ -52,7 +52,7 @@
 				color: #fff; 
 				border-radius: 10px;
 				text-decoration: none;
-			"><img src="[IMG_URL]/club-patitas/Compartir.jpg" width="20px;"> Compartir ahora</a>
+			"><img src="[IMG_URL]/club-patitas/Compartir.jpg"></a>
 		</div>
 
 	</div>
