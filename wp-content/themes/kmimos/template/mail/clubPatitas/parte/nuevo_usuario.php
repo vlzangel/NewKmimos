@@ -24,8 +24,8 @@
 
 	<div>
 		<p style="font-size: 12px;">Te entregamos tus credenciales para que tengas acceso a Kmimos: </p>
-		<div style="width: 50%; margin: 0 auto;">
-		    <div style='display: table-cell; vertical-align:top; width: 100%; height: 10vh; text-align: left; padding-left: 16px;'>
+		<div style="width: 80%; margin: 0 auto;">
+		    <div style='display: table-cell; vertical-align:top; width: 100%; height: 10vh; text-align: left;'>
 		        <div style='font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>E-mail</div>                   
 		        <div style='font-family: Arial; font-size: 12px; font-weight: bold; letter-spacing: -0.1px; color: #000000; margin-bottom: 12px;'>
 		        	<a href="mailto:[email]" style="color: #000; text-decoration: none;">[email]</a>
@@ -39,11 +39,10 @@
 	<div style="margin: 25px 0px;">
 		<a href="[url]" style="
 			padding: 10px 70px;
-			background: #6b1c9a;
 			font-size: 12px;
 			color: #fff; 
 			border-radius: 10px;
 			text-decoration: none;
-		">Completar regístro</a>
+		"><img src="[IMG_URL]/club-patitas/completar_perfil.jpg"></a>
 	</div>
 </div>	
