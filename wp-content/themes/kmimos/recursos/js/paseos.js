@@ -40,7 +40,7 @@ function calcular(){
     var fin = new Date( fin ).getTime();
     var dias = (fin-inicio)/86400000;
     dias++;
-    SELECCIONAR_PAQUETES = ( dias >= 7 ); 
+    SELECCIONAR_PAQUETES = dias; 
 }
 
 function form_is_valid(){
@@ -77,7 +77,11 @@ jQuery( document ).ready(function() {
 
     jQuery("#boton_buscar").on("click", function(e){
         if( form_is_valid() ){
-            if( jQuery("#paquete").val() == "" && SELECCIONAR_PAQUETES ){
+            var seccionados = 0;
+            jQuery(".input_check_box input").each(function(i, v){
+                if( jQuery(this).prop("checked") ){ seccionados++; }
+            });
+            if( ( jQuery("#paquete").val() == "" && ( SELECCIONAR_PAQUETES >= 7 ) ) || ( seccionados == 7 )  ){
                 jQuery('body,html').stop(true, true).animate({ scrollTop: jQuery('#paquetes').offset().top }, 1000);
             }else{
                 jQuery("#buscador").submit();
