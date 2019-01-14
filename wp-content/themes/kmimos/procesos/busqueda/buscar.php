@@ -37,6 +37,10 @@
 		$DESCUENTO_CONDICION .= " AND atributos LIKE '%destacado\";s:1:\"1%'"; 
 	}
 
+	if( $geo == 1 ){
+		$DESCUENTO_CONDICION .= " AND atributos LIKE '%geo\";s:1:\"1%'"; 
+	}
+
     /* Filtros por Gatos */
 
     	$GATOS_CONDICION = "";

@@ -112,6 +112,7 @@
 
 	    $check_descuento = ( $_SESSION["busqueda"]["descuento"] == 1 ) ? "checked": "";
 	    $check_flash = ( $_SESSION["busqueda"]["flash"] == 1 ) ? "checked": "";
+	    $check_geo = ( $_SESSION["busqueda"]["geo"] == 1 ) ? "checked": "";
 
 	/* PRINCIPALES */
 
@@ -204,6 +205,12 @@
 							<input type="checkbox" id="flash" name="flash" value="1" '.$check_flash.' />
 							<div class="check_icon"></div>
 							<div>reserva inmediata</div>
+							<div class="check_control"></div>
+						</label>
+						<label class="filtro_check check_geo" for="geo" >
+							<input type="checkbox" id="geo" name="geo" value="1" '.$check_geo.' />
+							<div class="check_icon"></div>
+							<div>geolocalización</div>
 							<div class="check_control"></div>
 						</label>
 					</div>

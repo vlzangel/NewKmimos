@@ -1249,6 +1249,10 @@
 	        background-image: url(../img/BUSQUEDA/SVG/iconos/Reserva_Inmediata.svg);
 		}
 
+		.check_geo .check_icon{
+	        background-image: url(../img/BUSQUEDA/SVG/iconos/Geo.svg);
+		}
+
 		.check_descuento .check_control{
 	        background-image: url(../img/BUSQUEDA/PNG/Boton_descuento_2.png);
 		}
@@ -1257,13 +1261,18 @@
 	        background-image: url(../img/BUSQUEDA/PNG/Boton_R_Inmediata_2.png);
 		}
 
+		.check_geo .check_control{
+	        background-image: url(../img/BUSQUEDA/PNG/Boton_Geo_2.png);
+		}
+
 /*		.check_descuento .check_control_off,
 		.check_disponibilidad .check_control_off{
 			visibility: visible;
 		}*/
 
 		.check_descuento input:checked ~ .check_control,
-		.check_disponibilidad input:checked ~ .check_control{
+		.check_disponibilidad input:checked ~ .check_control,
+		.check_geo input:checked ~ .check_control{
 			background-position: -50px 0px;
 		}
 

@@ -94,6 +94,10 @@
 			jQuery("#flash").prop( "checked", jQuery(this).prop("checked") );
 			buscar( 'flash' );
 		});
+		jQuery("#geo").on("change", function(e){
+			// jQuery("#geo").prop( "checked", jQuery(this).prop("checked") );
+			// buscar( 'geo' );
+		});
 
 		jQuery(".principales_container").on("click", function(e){
 			if( jQuery(this).hasClass("show_princ") ){
