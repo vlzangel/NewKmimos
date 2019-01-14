@@ -5,6 +5,8 @@
 		if( landing == 'paseos' ){
     		jQuery("#quiero_ser_menu").html("Quiero ser Paseador");
     		jQuery("#buscar_cuidador_btn_nav span").html("Buscar Paseador");
+
+    		calcular();
 		}
 
 		jQuery("footer").addClass("show_footer");
@@ -310,6 +312,61 @@
 			}
 		}
 	}
+
+/* LANDING PASEOS */
+
+function calcular(){
+	if( PAQUETE != "" && landing == "paseos" ){
+		var dias = get_dias_paquete(PAQUETE);
+		var init_array = String( jQuery('#checkin').val() ).split("/");
+		var inicio = new Date( init_array[2]+'-'+init_array[1]+'-'+init_array[0] ).getTime();
+		var fin = inicio+(dias*86400000);
+		fin = new Date(fin);
+		var dia = ( (fin.getDate()+1) < 10 ) ? "0"+(fin.getDate()+1) : (fin.getDate()+1);
+		var mes = ( (fin.getMonth()+1) < 10 ) ? "0"+(fin.getMonth()+1) : (fin.getMonth()+1);
+		jQuery('#checkout').val( dia+"/"+mes+"/"+fin.getFullYear() );
+		jQuery("#msg_paseos").html("Estimado usuario la fecha final se estableció de manera automática para coincidir con el tiempo del paquete seleccinado de "+get_paquete(PAQUETE)+".");
+		jQuery("#msg_paseos").css("display", "block");
+
+		jQuery('#checkout').prop("disabled", true);
+	}
+}
+
+function get_dias_paquete(paq){
+	switch( parseInt(paq) ){
+		case 1:
+			return 7;
+		break;
+		case 2:
+			return 30;
+		break;
+		case 3:
+			return 60;
+		break;
+		case 4:
+			return 90;
+		break;
+	}
+	return 0;
+}
+
+function get_paquete(paq){
+	switch( parseInt(paq) ){
+		case 1:
+			return '1 semana';
+		break;
+		case 2:
+			return '1 mes';
+		break;
+		case 3:
+			return '2 meses';
+		break;
+		case 4:
+			return '3 meses';
+		break;
+	}
+	return 0;
+}
 
 /* GALERIA */
 

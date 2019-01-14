@@ -174,6 +174,16 @@
 			</div>	
 		</div>';
 
+
+		$HTML .= '
+			<a 
+				onclick="evento_google_kmimos(\'banner\'); evento_fbq_kmimos(\'banner\');" 
+				target="_blanck" href="'.get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos" style="display: block;">
+				<img src="'.get_recurso("img").'BANNERS/banner_rotativo/pc/4.jpg" width="100%" class="solo_pc" />
+				<img src="'.get_recurso("img").'BANNERS/banner_rotativo/movil/4.jpg" width="100%" class="solo_movil" />
+			</a>
+		';
+
 		
 		$HTML .= '
 		<!-- BENEFICIOS -->

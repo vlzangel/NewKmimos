@@ -172,7 +172,7 @@
 	*/
 
 	echo "<pre>";
-		print_r( $_SESSION['resultado_busqueda'] );
+		print_r( $_SESSION['busqueda'] );
 	echo "</pre>";
 
 	$tipo_cuidador = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Paseador' : 'Cuidador';
@@ -180,6 +180,7 @@
     $HTML .= '
     	<script>
     		var landing = "'.$key_principal.'";
+    		var PAQUETE = "'.$_SESSION['busqueda']["paquete"].'";
     	</script>
     	<div class="busqueda_container">
     		<div class="filtos_container">
@@ -469,6 +470,8 @@
 	    				</div>
 	    			</div>
     			</div>
+
+    			<div id="msg_paseos"></div>
     			
     			<div class="cantidad_resultados_container">
     				<div class="disponibilidad_PC">Hay <strong><span>0</span> '.$tipo_cuidador.'(es)</strong> cerca de ti, con las características que necesitas.</div>

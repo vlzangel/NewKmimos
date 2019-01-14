@@ -1,3 +1,15 @@
+/* LANDING PASEOS */
+
+	#msg_paseos{
+		display: none;
+		background: orange;
+	    color: #FFF;
+	    padding: 15px 30px;
+	    font-size: 13px;
+	    font-family: Gotham-Pro-Bold;
+	    margin-bottom: 15px;
+	}
+
 /* MENU */
 
 	.nav>li>a>img {
