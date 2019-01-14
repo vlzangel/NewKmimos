@@ -37,12 +37,6 @@
 	</div>
 
 	<div style="margin: 25px 0px;">
-		<a href="[url]" style="
-			padding: 10px 70px;
-			font-size: 12px;
-			color: #fff; 
-			border-radius: 10px;
-			text-decoration: none;
-		"><img src="[IMG_URL]/club-patitas/completar_perfil.jpg"></a>
+		<a href="[url]"><img src="[IMG_URL]/club-patitas/completar_perfil.jpg"></a>
 	</div>
 </div>	
