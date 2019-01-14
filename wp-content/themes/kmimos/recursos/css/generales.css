@@ -397,3 +397,11 @@ nav .lupa_negra{
 #suscribirse .message-especial i {
     margin-right: 10px;
 }
+
+.menu_movil_interno .vlz_resaltar {
+	background-color: #FFF;
+}
+
+.menu_movil_interno .vlz_resaltar a {
+	color: #000 !important;
+}

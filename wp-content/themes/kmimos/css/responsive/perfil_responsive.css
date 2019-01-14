@@ -29,7 +29,7 @@
 	}
 
 	.main .mascotas_item .vlz_img_portada_perfil {
-	    height: 100px;
+	    height: calc( 100% - 15px );
 	}
 
 	.km-ficha-bg {
@@ -49,6 +49,16 @@
 	    position: absolute;
 	    top: 5px;
 	    right: 5px;
+	}
+
+	.container_btn img {
+		width: 45px;
+	    right: 10px;
+	    bottom: 10px;
+	}
+
+	.mascotas_item a.mascotas_content {
+	    height: 100% !important;
 	}
 
 }

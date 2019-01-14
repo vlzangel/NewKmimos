@@ -203,7 +203,7 @@ li.vlz_resaltar {
 		width: 60px;
 		cursor: pointer;
 	    position: fixed;
-	    z-index: 99999999999;
+	    z-index: 10;
 	    right: 50px;
 	    bottom: 50px;
 	}
