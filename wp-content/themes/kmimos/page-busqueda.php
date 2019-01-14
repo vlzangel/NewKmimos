@@ -409,7 +409,7 @@
 					</div>
 
 					<div class="filtros_movil_table">
-						<div class="filtros_movil_cell">
+						<div class="filtros_movil_cell" style="padding-top: 5px;">
 
 							<label class="filtro_check check_descuento" for="descuento_movil" >
 								<input type="checkbox" id="descuento_movil" name="descuento" '.$check_descuento.' />
@@ -423,9 +423,15 @@
 								<div>reserva inmediata</div>
 								<div class="check_control"></div>
 							</label>
+							<label class="filtro_check check_geo" for="geo_movil" >
+								<input type="checkbox" id="geo_movil" name="geo" '.$check_geo.' />
+								<div class="check_icon"></div>
+								<div>geolocalización</div>
+								<div class="check_control"></div>
+							</label>
 
 						</div>
-						<div class="filtros_movil_cell filtros_movil">
+						<div class="filtros_movil_cell filtros_movil" style="padding-left: 10px;">
 
 							<div id="ver_filtros_fechas" class="boton boton_border_gris boton_block"> 
 								<!-- '.$_SESSION['busqueda']['checkin'].' - '.$_SESSION['busqueda']['checkout'].' -->
