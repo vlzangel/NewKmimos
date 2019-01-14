@@ -27,6 +27,10 @@
             jQuery.post("'.get_home_url().'/u.php", {}, function(e){});
         </script>
     ';
+
+    echo "<pre>";
+        print_r($_SERVER);
+    echo "</pre>";
     */
 
     if( true ){

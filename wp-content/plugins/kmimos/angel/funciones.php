@@ -402,70 +402,70 @@
                 $MENUS = array(
                     "vendor" => array(
                         array("name"  => "Mi Perfil",
-                            "url"   => get_home_url()."/perfil-usuario/",
+                            "url"   => "/perfil-usuario/",
                             "icono" => "460",
                             "img" => "Perfil.svg",
                         ),
                         array("name"  => "Informaci&oacute;n de Perfil",
-                            "url"   => get_home_url()."/perfil-usuario/descripcion",
+                            "url"   => "/perfil-usuario/descripcion",
                             "icono" => "664",
                             "ocultar_menu_principal"  => 'true'
                         ),
                         array("name"  => "Mis Fotos",
-                            "url"   => get_home_url()."/perfil-usuario/galeria",
+                            "url"   => "/perfil-usuario/galeria",
                             "icono" => "82",
                             "ocultar_menu_principal"  => 'true'
                         ),
                         array("name"  => "Mis Servicios",
-                            "url"   => get_home_url()."/perfil-usuario/servicios",
+                            "url"   => "/perfil-usuario/servicios",
                             "icono" => "453"
                         ),
                         array("name"  => "Disponibilidad",
-                            "url"   => get_home_url()."/perfil-usuario/disponibilidad",
+                            "url"   => "/perfil-usuario/disponibilidad",
                             "icono" => "29"
                         ),
                         array("name"  => "Cuidadores Favoritos",
-                            "url"   => get_home_url()."/perfil-usuario/favoritos",
+                            "url"   => "/perfil-usuario/favoritos",
                             "icono" => "375",
                             "ocultar_menu_principal"  => 'true',
                             "img" => "Favoritos.svg",
                         ),
                         array("name"  => "Mis Mascotas",
-                            "url"   => get_home_url()."/perfil-usuario/mascotas",
+                            "url"   => "/perfil-usuario/mascotas",
                             "icono" => "871",
                             "ocultar_menu_principal"  => 'true',
                             "img" => "Mascotas.svg",
                         ),
                         array("name"  => "Reservas para mis mascotas",
-                            "url"   => get_home_url()."/perfil-usuario/historial",
+                            "url"   => "/perfil-usuario/historial",
                             "icono" => "33",
                             "ocultar_menu_principal"  => 'true',
                             "img" => "Reservas.svg",
                         ),                   
                         array("name"  => "Reservas",
-                            "url"   => get_home_url()."/perfil-usuario/reservas",
+                            "url"   => "/perfil-usuario/reservas",
                             "icono" => "33",
                             "resaltar_movil"  => true,
                             "img" => "Reservas.svg",
                         ),
                         array("name"  => "Citas para Conocerme",
-                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
+                            "url"   => "/perfil-usuario/solicitudes",
                             "icono" => "33",
                             "img" => "Conocer.svg",
                         ),
                         array("name"  => "Fotos del día",
-                            "url"   => get_home_url()."/perfil-usuario/fotos",
+                            "url"   => "/perfil-usuario/fotos",
                             "icono" => "82",
                             "resaltar"  => true,
                             "resaltar_movil"  => true
                         ),
                         array("name"  => "Datos de Facturaci&oacute;n",
-                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
+                            "url"   => "/perfil-usuario/datos-de-facturacion/",
                             "icono" => "33",
                             "img" => "Facturacion.svg"
                         ),
                         array("name"  => "Mis Facturas",
-                            "url"   => get_home_url()."/perfil-usuario/mis-facturas",
+                            "url"   => "/perfil-usuario/mis-facturas",
                             "icono" => "33"
                         ),
                         array(
@@ -477,38 +477,38 @@
                     ),
                     "subscriber" => array(
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/",
+                            "url"   => "/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460",
                             "img" => "Perfil.svg",
                         ),                        
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/mascotas",
+                            "url"   => "/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
                             "icono" => "871",
                             "img" => "Mascotas.svg",
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/historial",
+                            "url"   => "/perfil-usuario/historial",
                             "name"  => "Reservas",
                             "icono" => "33",
                             "img" => "Reservas.svg",
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
+                            "url"   => "/perfil-usuario/solicitudes",
                             "name"  => "Citas para conocer",
                             "icono" => "33",
                             "img" => "Conocer.svg",
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/favoritos",
+                            "url"   => "/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
                             "icono" => "375",
                             "img" => "Favoritos.svg",
                         ),
                         /*
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
+                            "url"   => "/perfil-usuario/datos-de-facturacion/",
                             "name"  => "Datos de Facturaci&oacute;n",
                             "icono" => "33",
                             "img" => "Facturacion.svg"
@@ -523,45 +523,45 @@
                     ),
                     "administrator" => array(
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/",
+                            "url"   => "/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460",
                             "img" => "Perfil.svg",
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/mascotas",
+                            "url"   => "/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
                             "icono" => "871",
                             "img" => "Mascotas.svg",
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/historial",
+                            "url"   => "/perfil-usuario/historial",
                             "name"  => "Reservas",
                             "icono" => "33",
                             "img" => "Reservas.svg",
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
+                            "url"   => "/perfil-usuario/solicitudes",
                             "name"  => "Citas para Conocer",
                             "icono" => "33",
                             "img" => "Conocer.svg",
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/favoritos",
+                            "url"   => "/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
                             "icono" => "375",
                             "img" => "Favoritos.svg",
                         ),
                         /*
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/datos-de-facturacion/",
+                            "url"   => "/perfil-usuario/datos-de-facturacion/",
                             "name"  => "Datos de Facturaci&oacute;n",
                             "icono" => "33",
                             "img" => "Facturacion.svg"
                         ),
                         */
                         array(
-                            "url"   => get_home_url()."/wp-admin/",
+                            "url"   => "/wp-admin/",
                             "name"  => "Panel de Control",
                             "icono" => "421",
                             "img" => "Panel_de_control.svg",
@@ -588,21 +588,24 @@
                             }
                             if( tiene_fotos_por_subir($user_id) ){
                                 if( array_key_exists('resaltar_movil', $value) ){
-                                    $sts = "vlz_resaltar_movil";
+                                    //$sts = "vlz_resaltar_movil";
                                 }
                             }
                         }else{
                             if( array_key_exists('resaltar', $value) ){
-                                $sts = "vlz_resaltar";
+                                //$sts = "vlz_resaltar";
                             }
                         }
                         
                         if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
                         if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
                         if( isset($value["img"]) ){ $icono = '<img src="'.get_recurso('img/PERFILES').$value["img"].'"></i> '; }
+
+                        $resaltar = ( $_SERVER["REQUEST_URI"] == $value["url"]."/" ) ? 'vlz_resaltar': '';
+
                         $MENU["body"] .=
-                            '<li class="'.$sts.'">
-                                <a href="'.$value["url"].'" class="pd-tb11 menu-link">
+                            '<li class="'.$resaltar.'">
+                                <a href="'.get_home_url().$value["url"].'" class="pd-tb11 menu-link">
                                     '.$icono.'
                                     '.$value["name"].'
                                 </a>
