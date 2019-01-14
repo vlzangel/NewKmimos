@@ -2,12 +2,19 @@
 
 	#msg_paseos{
 		display: none;
-		background: orange;
-	    color: #FFF;
-	    padding: 15px 30px;
-	    font-size: 13px;
-	    font-family: Gotham-Pro-Bold;
-	    margin-bottom: 15px;
+	}
+
+	#msg_paseos .mesaje_reserva_inmediata_container {
+	    padding: 0px 44px 20px !important;
+	}
+
+	#msg_paseos .mesaje_reserva_inmediata_izq {    
+		background-image: url(../img/BUSQUEDA/SVG/Fecha_msg.svg);
+	    background-color: #ffd62c;
+	    border-radius: 50%;
+	    width: 35px;
+	    height: 35px;
+	    border: solid 1px #000;
 	}
 
 /* MENU */
@@ -592,7 +599,7 @@
 		.mesaje_reserva_inmediata_container{
 			display: table;
 			width: 100%;
-		    padding: 30px;
+		    padding: 20px 30px;
 		}
 
 		.mesaje_reserva_inmediata_izq{

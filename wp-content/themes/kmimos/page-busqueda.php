@@ -471,6 +471,15 @@
 	    			</div>
     			</div>
 
+    			<div id="msg_paseos" class="msg_inicio_reserva">
+	    			<div class="mesaje_reserva_inmediata_container">
+	    				<div class="mesaje_reserva_inmediata_izq"></div>
+	    				<div class="mesaje_reserva_inmediata_der">
+	    					Estimado usuario la fecha final se estableció de manera automática para coincidir con el tiempo del paquete seleccinado de <span></span>
+	    				</div>
+	    			</div>
+    			</div>
+
     			<div id="msg_paseos"></div>
     			
     			<div class="cantidad_resultados_container">

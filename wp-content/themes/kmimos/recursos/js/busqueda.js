@@ -325,7 +325,7 @@ function calcular(){
 		var dia = ( (fin.getDate()) < 10 ) ? "0"+(fin.getDate()) : (fin.getDate());
 		var mes = ( (fin.getMonth()+1) < 10 ) ? "0"+(fin.getMonth()+1) : (fin.getMonth()+1);
 		jQuery('#checkout').val( dia+"/"+mes+"/"+fin.getFullYear() );
-		jQuery("#msg_paseos").html("Estimado usuario la fecha final se estableció de manera automática para coincidir con el tiempo del paquete seleccinado de "+get_paquete(PAQUETE)+".");
+		jQuery("#msg_paseos span").html(get_paquete(PAQUETE)+".");
 		jQuery("#msg_paseos").css("display", "block");
 		jQuery('#checkout').prop("disabled", true);
 	}
