@@ -7,15 +7,19 @@
 	-moz-box-shadow: -1px 79px 114px -45px rgba(0,0,0,0.13);
 	box-shadow: -1px 79px 114px -45px rgba(0,0,0,0.13);
 	">
-	<img src="[IMG_URL]/club-patitas/nuevo-usuario.jpg" style="width: 100%;">			
+			
 	<p style="
-		font-size: 13px;
+		font-size: 18px;
 		font-weight: bold;
 		margin: 30px 0px;
 	">
 		¿Aún no tienes un perfil Kmimos?
-		<br>
-		Completa tu regístro ahora y deja a tu amigo peludo seguro en las mejores manos
+	</p>
+	<p style="
+		font-size: 13px;
+		margin: 30px 0px;
+	">
+		<span style="color:#6b1c9a;">Completa tu regístro</span> ahora y deja a tu amigo peludo seguro en las mejores manos
 	</p>
 
 	<div>
