@@ -165,11 +165,11 @@
 						<input type="button" id="boton_buscar" class="boton_buscar boton_verde" value="Buscar paseador">
 					</div>
 
-					<div class="boton_ver_paquetes_container">
-						<input type="button" id="boton_ver_paquetes" class="boton_buscar boton_verde" value="Ver paquetes">
-					</div>
-
 				</form>
+
+				<div class="boton_ver_paquetes_container">
+					<input type="button" id="boton_ver_paquetes" class="boton_buscar boton_verde" value="Ver paquetes">
+				</div>
 
 			</div>	
 		</div>';
@@ -178,7 +178,7 @@
 		$HTML .= '
 			<a 
 				onclick="evento_google_kmimos(\'banner\'); evento_fbq_kmimos(\'banner\');" 
-				target="_blanck" href="'.get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos" style="display: block;">
+				target="_blanck" href="'.get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos_paseos&url=https://www.nomadas.life/?publicmap=kmimos" style="display: block;">
 				<img src="'.get_recurso("img").'BANNERS/banner_rotativo/pc/4.jpg" width="100%" class="solo_pc" />
 				<img src="'.get_recurso("img").'BANNERS/banner_rotativo/movil/4.jpg" width="100%" class="solo_movil" />
 			</a>

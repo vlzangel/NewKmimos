@@ -331,6 +331,8 @@
 		';
 	}
 
+	$link_home = ( $_SESSION['landing_paseos'] == 'yes' ) ? get_home_url().'/paseos' : get_home_url();
+
 	$HTML .= '
 		<nav class="'.$clase_white.'">
 
@@ -338,7 +340,7 @@
 				<table class="nav_table">
 					<tr>
 						<td class="nav_left">
-							<a href="'.get_home_url().'">
+							<a id="link_home" href="'.$link_home.'">
 								<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo.png" />
 								<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-negro.png" />
 							</a>
