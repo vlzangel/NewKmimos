@@ -17,7 +17,7 @@
         <hr>
         
     </div>
-    <div class="col-container">
+    <div class="col-container" style="display:none;">
         <div class="col col-row">
             <label>Campaña NPS: </label>
             <select name="redirect-pregunta" class="form-control">
