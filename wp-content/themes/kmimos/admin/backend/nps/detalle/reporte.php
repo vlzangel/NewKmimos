@@ -15,7 +15,7 @@
     <div class='titulos'>
         <h2>Campañas NPS: <?php echo $encuesta->titulo; ?></h2>
         <hr>
-        <h2 style="font-size:19px; "><?php echo utf8_encode($encuesta->pregunta); ?></h2>
+        <h2 style="font-size:19px; "><?php echo $encuesta->pregunta; ?></h2>
     </div>
 
     <div class='col-md-12 text-center'>
