@@ -1,9 +1,10 @@
 <?php 
     include_once('lib/nps.php'); 
     $encuesta = $nps->get_pregunta_byId($_GET['campana_id']);
+    $preguntas = $nps->get_preguntas('','');
 ?>
 <script type="text/javascript">
-    var ID = <?php echo $_GET['campana_id']; ?>
+    var ID = <?php echo (isset($_GET['campana_id']))? $_GET['campana_id'] : 0 ; ?>
 </script>
 
 <link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/nps/feedback/style.css'>
@@ -14,7 +15,21 @@
     <div class='titulos'>
         <h2>Feedback</h2>
         <hr>
-        <h5><?php echo $encuesta->pregunta; ?></h5>
+        
+    </div>
+    <div class="col-container">
+        <div class="col col-row">
+            <label>Campaña NPS: </label>
+            <select name="redirect-pregunta" class="form-control">
+                <option value="0">Selecciona una campaña NPS</option>
+                <?php foreach ($preguntas as $key => $value) { $select = ($encuesta->id == $value->id)? 'selected':''; ?>
+                    <option <?php echo $select; ?> data-pregunta="<?php echo $value->pregunta; ?>" value="<?php echo $value->id; ?>"><?php echo $value->titulo; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+    </div>
+    <div class="col col-row" style="margin: 0px!important">
+        <h3 id="pregunta-title" style="font-size:19px; "><?php echo $encuesta->pregunta; ?></h3>
     </div>
 
     <div class="col-container">

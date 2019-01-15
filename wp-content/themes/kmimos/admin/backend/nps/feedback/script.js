@@ -16,6 +16,14 @@ jQuery(document).ready(function() {
 
 	});
 
+    jQuery('[name="redirect-pregunta"]').on("change", function(e){
+        // location.href = RAIZ+'wp-admin/admin.php?page=nps_feedback&campana_id='+jQuery(this).val();
+        ID = jQuery(this).val();
+        jQuery( "#pregunta-title" ).html( jQuery('option:selected',this).attr('data-pregunta') );
+        loadTabla();
+        loadComentarios( '' );
+    });
+
 	jQuery('#email-feedback').on('submit', function(e){
 		e.preventDefault();
 		var btn = jQuery('#enviar_email');
@@ -57,6 +65,7 @@ jQuery(document).ready(function() {
 });
 
 function loadComentarios( code ){
+	jQuery('#comentarios').html('<div class="media alert alert-warning"><div class="media-body">Selecciona un usuario para cargar los comentarios</div></div>');
 	jQuery.post(
 		TEMA+'/admin/backend/nps/feedback/ajax/comentarios.php',
 		{ 'code': code },
