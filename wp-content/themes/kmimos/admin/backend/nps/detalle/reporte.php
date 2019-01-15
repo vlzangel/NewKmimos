@@ -13,7 +13,7 @@
 <div class="container_listados">
 
     <div class='titulos'>
-        <h2>Campañas NPS: <?php echo utf8_encode($encuesta->titulo); ?></h2>
+        <h2>Campañas NPS: <?php echo $encuesta->titulo; ?></h2>
         <hr>
         <h2 style="font-size:19px; "><?php echo utf8_encode($encuesta->pregunta); ?></h2>
     </div>
