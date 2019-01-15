@@ -1,9 +1,7 @@
 var table = ""; 
 
 jQuery(document).ready(function() {
-
-	loadTabla();
-
+ 
 	jQuery(document).on('click', '[data-toggle="tab"]', function(e){
     	e.preventDefault();
 
@@ -23,12 +21,20 @@ jQuery(document).ready(function() {
         cerrar(e);
     });
  
+    jQuery('[name="redirect-pregunta"]').on("change", function(e){
+        // location.href = RAIZ+'wp-admin/admin.php?page=nps_detalle&campana_id='+jQuery(this).val();
+        ID = jQuery(this).val();
+        jQuery( "#pregunta-title" ).html( jQuery('option:selected',this).attr('data-pregunta') );
+        loadTabla();
+        load_dashboard();
+    });
+ 
     jQuery("#form-search").on("submit", function(e){
 		e.preventDefault();
     });
 
     jQuery("#btn-search").on("click", function(e){
-		loadTabla( _tipo, _hiddenColumns );
+		loadTabla( );
 	});
  
     /* CAMPANAS */
@@ -40,6 +46,7 @@ jQuery(document).ready(function() {
 		abrir_link( jQuery(this) );
     });
 
+	loadTabla();
 	load_dashboard();
 });
 
