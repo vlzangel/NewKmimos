@@ -1,6 +1,9 @@
 var table = ""; 
-
+var global_counter = 50;
+var option_list_campaing = '<option value="">Seleccione una campaña</option>';
 jQuery(document).ready(function() {
+
+
 
 	loadTabla();
 
@@ -32,6 +35,8 @@ jQuery(document).ready(function() {
 	});
  
     /* CAMPANAS */
+
+    
 
     jQuery("[data-modal='crear']").on('click', function(){
 		abrir_link( jQuery(this) );
@@ -75,8 +80,29 @@ jQuery(document).ready(function() {
 		}
     });
 
+    jQuery(document).on('click', '[data-campaing="update"]', function() {
+    	load_list_campaing();
+    })
+
 	calcular_score_nps();
+	load_list_campaing();
 });
+
+function load_list_campaing(){
+	jQuery.post(
+		RAIZ+'/campaing/getCampaing.php',
+		{},
+		function(data){
+			var option = '<option value="">Seleccione una campaña</option>';
+			jQuery.each(data, function(i,v){
+				option += '<option value="'+v.CampaignID+'">'+v.Name+'</option>';
+			})
+			option_list_campaing = option;
+		},
+		'json'
+	);	
+	jQuery('[name="remitentes"]').html(option_list_campaing);
+}
 
 function calcular_score_nps(){
 	jQuery.post(
@@ -152,6 +178,7 @@ function abrir_link(e){
 		"info": {
 			"ID": e.attr("data-id"),
 			"email": email_user,
+			"list_campana": option_list_campaing,
 		}
 	});
 }
