@@ -270,10 +270,11 @@
 					break;
 				}
 
-	        	fbq("track", evento); 
+	        	// fbq("track", evento); 
 	        }
 
 	        function evento_google_kmimos(evento){
+	        	/*
 	        	switch ( evento ) {
 					case "paseos":
 						ga("send", "event", "wlabel", "click", "km_tracking_code_boton_paseos", "1");
@@ -306,6 +307,7 @@
 						ga("send", "event", "wlabel", "click", "km_tracking_code_banner_home", "1");
 					break;
 				}
+				*/
 	        }
 		</script>
 	';
