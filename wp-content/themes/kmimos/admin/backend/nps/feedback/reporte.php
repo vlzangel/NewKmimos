@@ -14,7 +14,7 @@
     <div class='titulos'>
         <h2>Feedback</h2>
         <hr>
-        <h5><?php echo utf8_encode($encuesta->pregunta); ?></h5>
+        <h5><?php echo $encuesta->pregunta; ?></h5>
     </div>
 
     <div class="col-container">
