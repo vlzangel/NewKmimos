@@ -270,7 +270,7 @@
 					break;
 				}
 
-	        	// fbq("track", evento); 
+	        	/* fbq("track", evento); */
 	        }
 
 	        function evento_google_kmimos(evento){
