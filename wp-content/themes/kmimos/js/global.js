@@ -97,6 +97,7 @@ jQuery( document ).ready(function() {
         if( !jQuery(".btn_aplicar_rotar").hasClass("btn_aplicar_rotar_inactivo") ){
             jQuery('.btn_aplicar_rotar').addClass("btn_aplicar_rotar_inactivo");
             var img_rotada = jQuery("#kmimos_redimencionar_imagenes img").attr("src");
+            var padre = jQuery(this).parent().find(".vlz_img_portada_perfil");
             jQuery('.vlz_cargando').css("display", "block");
             redimencionar(img_rotada, function(img_reducida){
                 var a = RAIZ+"imgs/procesar.php";
@@ -110,6 +111,12 @@ jQuery( document ).ready(function() {
                         jQuery('.vlz_cargando').css("display", "none");
                         jQuery('.btn_aplicar_rotar').css("display", "none");
                         jQuery('.btn_aplicar_rotar').removeClass("btn_aplicar_rotar_inactivo");
+
+                        if( padre.attr("data-id") == "perfil" ){
+                            CB_perfil( url );
+
+                            console.log( url );
+                        }
                     },
                     beforeSend:function(){},
                     error:function(objXMLHttpRequest){}
@@ -328,6 +335,12 @@ function subirImg(evt){
                             padre.children('.vlz_cambiar_portada').children('input').val("");
 
                             jQuery(".btn_rotar").css("display", "block");
+
+                            if( padre.attr("data-id") == "perfil" ){
+                                CB_perfil( url );
+
+                                console.log( url );
+                            }
                         });
                     });      
                 };

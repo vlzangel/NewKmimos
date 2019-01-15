@@ -185,10 +185,6 @@
 
 	get_header();
 
-		echo '
-			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		';
-
 		global $post;
 		global $wpdb;
 
@@ -365,7 +361,19 @@
 			</div>';
 		}
 
+		$role = ( array ) $current_user->roles;
+		if( $role[0] == "vendor" ){
+			$cuidador_id = $wpdb->get_var("SELECT id FROM cuidadores WHERE user_id = ".$user_id);
+			$tipo = 'cuidadores/avatares/'.$cuidador_id;
+		}else{
+			$tipo = 'avatares_clientes/'.$user_id;
+		}
+
 		$HTML = '
+			<script> 
+				var USER_ID = "'.$user_id.'";
+				var TIPO_USER = "'.$tipo.'";
+			</script>
 	 		<div class="km-ficha-bg" style="background-image:url('.get_recurso('img/PERFILES').'Banner_PC.jpg);">
 				<div class="overlay" style="display: none;"></div>
 			</div>
@@ -373,7 +381,7 @@
 				<div class="menu_perfil">
 					<div class="vlz_img_portada">
 
-				            <div class="vlz_img_portada_perfil">
+				            <div class="vlz_img_portada_perfil" data-id="perfil">
 				                <div class="vlz_img_portada_fondo vlz_rotar" style="background-image: url('.$avatar.');"></div>
 				                <div class="vlz_img_portada_normal vlz_rotar" style="background-image: url('.$avatar.');"></div>
 				                <div class="vlz_img_portada_cargando vlz_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
