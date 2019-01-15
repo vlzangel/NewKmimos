@@ -176,7 +176,7 @@
 	echo "</pre>";
 
 	$tipo_cuidador = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Paseador' : 'Cuidador';
-
+	
     $HTML .= '
     	<script>
     		var landing = "'.$key_principal.'";

@@ -724,6 +724,8 @@
 					';
 				}
 
+				$por_noche_paseo = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Por paseo' : 'Por noche';
+
 				$HTML .= '
 					<div class="resultado_item">
 						<div class="resultados_hover"></div>
@@ -772,7 +774,7 @@
 										<div class="resultados_item_precio_container">
 											<span>Desde</span>
 											<div>MXN$ <strong>'.$desde[0].'<span>,'.$desde[1].'</span></strong></div>
-											<span class="por_noche">Por noche</span>
+											<span class="por_noche">'.$por_noche_paseo.'</span>
 										</div>
 										<div class="resultados_item_ranking_movil">
 											'.kmimos_petsitter_rating($_cuidador->id_post).'
