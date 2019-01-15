@@ -32,6 +32,7 @@ jQuery(document).ready(function() {
 					}
 					btn.removeClass('disabled');
 					btn.html('<i class="fa fa-envelope-o" aria-hidden="true"></i> Enviar comentario');
+					jQuery('[name="comentario"]').val('');
 				},
 			'json');		
 		}
