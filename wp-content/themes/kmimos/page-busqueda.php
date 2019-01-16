@@ -211,7 +211,7 @@
 						<label class="filtro_check check_geo" for="geo" >
 							<input type="checkbox" id="geo" name="geo" value="1" '.$check_geo.' />
 							<div class="check_icon"></div>
-							<div>geolocalización</div>
+							<div>Con GPS</div>
 							<div class="check_control"></div>
 						</label>
 					</div>
