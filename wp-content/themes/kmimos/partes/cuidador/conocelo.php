@@ -48,6 +48,7 @@ if ( !is_user_logged_in() ){
 
 $puede_conocer = false;
 $saldo_conocer = get_cupos_conocer($user_id);
+echo "<br><br><br><br><br><br><br><br>saldo_conocer: $saldo_conocer, user_id: $user_id";
 if( $saldo_conocer > 0 ){
 	$puede_conocer = true;
 }

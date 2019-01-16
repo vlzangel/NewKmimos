@@ -13,7 +13,6 @@
 
 	/* Cliente */
 		$USER_ID = get_current_user_id();
-		echo "SELECT url FROM cuidadores WHERE id_post = ".vlz_get_page();
 		$CUIDADOR = $wpdb->get_var( "SELECT url FROM cuidadores WHERE id_post = ".vlz_get_page() );
 
 		COMPROBAR_ERRORES_CONOCER();
