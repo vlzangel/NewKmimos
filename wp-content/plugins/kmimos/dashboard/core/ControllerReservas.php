@@ -34,6 +34,11 @@ function get_cupones_reserva( $reserva_id ){
     $color = $colores['normal'];
     $tipo_cupon='';
     if( !empty($cupones) ){                    
+
+        // total cupones
+        $detalle[ 'kmimos_num' ] = 0;
+        $detalle[ 'cuidador_num' ] = 0;
+
         foreach ($cupones as $cupon) {
             if( $cupon->monto > 0 ){
                 $tipo = $wpdb->get_var("SELECT m.meta_value 
@@ -59,6 +64,7 @@ function get_cupones_reserva( $reserva_id ){
 				            </label>
 				        </small>
 				    ';
+				    $detalle[ 'kmimos_num' ] += number_format($cupon->monto, 2);
                 }
 
                 // Cupones a Kmimos
@@ -86,6 +92,7 @@ function get_cupones_reserva( $reserva_id ){
 				            </label>
 				        </small>
 				    ';
+				    $detalle[ 'kmimos_num' ] += number_format($monto_kmimos, 2);
                 }
 
                 // Cupones a cuidador
@@ -113,6 +120,7 @@ function get_cupones_reserva( $reserva_id ){
 				            </label>
 				        </small>
 				    ';
+				    $detalle[ 'cuidador_num' ] += number_format($monto_cuidador, 2);				    
                 }
 
 
