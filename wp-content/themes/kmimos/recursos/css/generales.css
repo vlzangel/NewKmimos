@@ -405,3 +405,10 @@ nav .lupa_negra{
 .menu_movil_interno .vlz_resaltar a {
 	color: #000 !important;
 }
+
+.msg_pago {
+    text-align: center;
+    font-size: 20px;
+    color: #33e1be;
+    font-family: Gotham-Pro-Bold;
+}

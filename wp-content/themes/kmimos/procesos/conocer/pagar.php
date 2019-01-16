@@ -198,13 +198,18 @@
 						
 						if ($charge != false) {
 
+							$metas = json_encode([
+								"show_pago" => 1
+							]);
+
 							$db->query("
 								UPDATE 
 									conocer_pedidos 
 								SET										
 									transaccion_id = '{$charge->id}',
 									tipo_pago = 'Tarjeta',
-									status = 'Pagado'
+									status = 'Pagado',
+									metadata = '{$metas}'
 								WHERE 
 									id = {$id_orden}
 							");

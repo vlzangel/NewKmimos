@@ -2,6 +2,8 @@
 <?php
 	wp_enqueue_script('conocer_al_cuidador_js', getTema()."/js/conocer_al_cuidador.js", array("jquery"), '1.0.0');
 
+	global $wpdb;
+
 global $current_user;
 date_default_timezone_set('America/Mexico_City');
 $user_id = $current_user->ID;
@@ -47,10 +49,26 @@ if ( !is_user_logged_in() ){
 }
 
 $puede_conocer = false;
-$saldo_conocer = get_cupos_conocer($user_id);
-echo "<br><br><br><br><br><br><br><br>saldo_conocer: $saldo_conocer, user_id: $user_id";
-if( $saldo_conocer > 0 ){
+$pagado = false;
+$saldo_conocer = get_cupos_conocer_registro($user_id);
+if( $saldo_conocer->usos > 0 ){
 	$puede_conocer = true;
+	$metas = json_decode( $saldo_conocer->metadata );
+	if( $metas->show_pago == 1 ){
+		$pagado = true;
+		$metas->show_pago = 0;
+		$metadata = json_encode($metas);
+		$wpdb->query("UPDATE conocer_pedidos SET metadata='{$metadata}' WHERE id = ".$saldo_conocer->id);
+	}
+}
+
+$msg_pago = '';
+if( $pagado ){
+	$msg_pago = '
+		<div class="msg_pago">
+			Pago Exitoso!
+		</div>
+	';
 }
 
 $HTML_CONOCER = '
@@ -69,7 +87,7 @@ $HTML_CONOCER = '
 						<li>'.$btn_perfil['icon'].' Completar todos los datos requeridos en '.$btn_perfil['btn'].'</li>
 						<li>'.$btn_mascota['icon'].' Completar tu '.$btn_mascota['btn'].' en tu perfil</li>
 					</ol>
-				</div>';
+				</div>'.$msg_pago;
 
 				if( count($mascotas)>0 && $validar_perfil_completo ){
 					if( $puede_conocer == false ){
