@@ -311,6 +311,10 @@
 							<div class="top_check"></div>
 						</label>
 					</div>
+					<label class="titulo_ordenamiento">'.$titulo_ordenamiento.'</label>
+					<select name="orderby" class="filtros_ordenamiento">
+						'.$ordenamiento.'
+					</select>
 					<div>
 						<input type="text" id="nombre" name="nombre" placeholder="Buscar '.$tipo_cuidador.' por Nombre" class="input nombre" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
@@ -372,10 +376,6 @@
 							<div class="top_check"></div>
 						</label>
 					</div>
-
-					<select name="orderby" class="filtros_ordenamiento">
-						'.$ordenamiento.'
-					</select>
 
 					<div class="filtros_botones">
 						<button type="button" onclick="limpiar_filtros()" class="boton" >Limpiar</button>

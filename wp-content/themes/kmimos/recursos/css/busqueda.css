@@ -485,12 +485,20 @@
 
 	/* ORDENAMIENTOS */
 
+		.titulo_ordenamiento{
+			margin-top: 10px;
+		    font-size: 11px;
+		    font-family: Gotham-Pro-Bold;
+		    margin-bottom: 0px;
+		}
+
 		.filtros_ordenamiento{
 			margin: 10px 0px;
 			border: solid 1px #CCC;
 			width: 100%;
 			padding: 10px;
 			outline: none;
+		    margin-top: 0px;
 		}
 
 		.mas_filtros{
