@@ -142,6 +142,8 @@
 										<th>Cupones Cuidador</th>
 										<th># Pedido</th>
 										<th>Observaci&oacute;n</th>
+										<th>Cupon Kmimos</th>
+										<th>Cupon Cuidador</th>
 			    					</tr>
 			  					</thead>
 			  					<tbody> <?php 
@@ -416,6 +418,9 @@
 												$cupones['cuidador'],
 												$reserva->nro_pedido,
 												$estatus['sts_largo'],
+												$cupones['kmimos_num'],
+												$cupones['cuidador_num'],
+
 											];
 
 											$data_sql = [
@@ -585,6 +590,8 @@
 												$cupones['cuidador'],
 												$value->pedido,
 												$value->observacion,
+												$cupones['kmimos_num'],
+												$cupones['cuidador_num'],
 											];
 
 											echo "<tr>";
