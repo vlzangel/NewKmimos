@@ -4,9 +4,9 @@ body{
     /* overflow-x: hidden; */
 }
 
-::placeholder { color: #777; opacity: 1; }
-:-ms-input-placeholder { color: #777; }
-::-ms-input-placeholder { color: #777; }
+::placeholder { color: #000; opacity: 1; }
+:-ms-input-placeholder { color: #000; }
+::-ms-input-placeholder { color: #000; }
 
 a{
 	color: #FFF;
