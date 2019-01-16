@@ -40,7 +40,7 @@
 
 	function get_cupos_conocer_registro($user_id){
 		global $wpdb;
-		return $wpdb->get_row("SELECT * FROM conocer_pedidos WHERE user_id = {$user_id} AND status = 'Pagado' ");
+		return $wpdb->get_row("SELECT * FROM conocer_pedidos WHERE user_id = {$user_id} AND status = 'Pagado' ORDER BY id DESC");
 	}
 
 	function get_cupos_conocer_pendientes($user_id){
