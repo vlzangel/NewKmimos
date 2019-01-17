@@ -20,6 +20,8 @@ jQuery( document ).ready(function() {
             jQuery(this).parent().removeClass("focus");
         });
     }
+
+    jQuery.post( RAIZ+"c.php", {}, function(e){} );
     
 });
 

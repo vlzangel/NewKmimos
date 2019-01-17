@@ -937,6 +937,8 @@
     function pre_carga_data_cuidadores(){
     	global $wpdb;
 
+    	if( !isset($_SESSION) ){ session_start(); }
+
     	$cuidadores = $wpdb->get_results("
     		SELECT 
     			cuidadores.id,
@@ -976,16 +978,21 @@
     		$cuidadores[ $key ]->comentario = get_comment_cuidador($value->id_post);
 
 			$desde = $value->hospedaje_desde;
-    		if( $value->hospedaje_desde == 0 ){
+    		if( $value->hospedaje_desde == 0 || $_SESSION['landing_paseos'] == 'yes' ){
 				$adic = $cuidadores[ $key ]->adicionales;
 				foreach ($adic as $key_1 => $value_1) {
-					if( is_array($value_1) && count($value_1) >= 4 ){
-						foreach ($value_1 as $key_2 => $value_2) {
-							if( $desde == 0 ){
-								$desde = $value_2;
-							}
-							if( $value_2 != 0 && $value_2 < $desde ){
-								$desde = $value_2;
+					$verificar = true;
+					if( $_SESSION['landing_paseos'] == 'yes' && $key_1 != "paseos" ){ $verificar = false; }
+
+					if( $verificar ){
+						if( is_array($value_1) && count($value_1) >= 4 ){
+							foreach ($value_1 as $key_2 => $value_2) {
+								if( $desde == 0 ){
+									$desde = $value_2;
+								}
+								if( $value_2 != 0 && $value_2 < $desde ){
+									$desde = $value_2;
+								}
 							}
 						}
 					}
