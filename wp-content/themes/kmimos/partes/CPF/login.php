@@ -31,7 +31,7 @@ $datos = kmimos_get_info_syte();
 							</div>
 						</div>
 					</div>
-					<div class="row km-recordatorio ">
+					<div class="row km-recordatorio">
 						<div class="col-xs-12 col-sm-4">
 							<div class="km-checkbox_">
 								<label for="km-checkbox">
@@ -42,15 +42,19 @@ $datos = kmimos_get_info_syte();
 						</div>
 						<div class="col-xs-12 col-sm-8" style="text-align: right;">
 							<a href="#" class="km-btn-contraseña-olvidada" id="olvidaste-contrasena">Recuperar credenciales</a>
+							<div class="clear"></div>
 						</div>
-						<div class="col-md-12 text-center" style="margin-top: 20px;">
+					</div>
+					<div class="row km-recordatorio" style="margin-top:5px;">
+						<div class="col-md-12 text-center">
+							<div class="clear"></div>
 							<input type="submit" name="enviar" class="hidden">
 							<!-- <a href="#" id="login_submit" class="btn btn-club btn-lg btn-info">INICIAR SESIÓN AHORA</a> -->
 
 							<button id="login_submit" type="submit" class="btn btn-club btn-lg btn-info">
 								INGRESAR
 							</button>
-						</div>				
+						</div>
 					</div>
 				</form>
 			</div>
