@@ -39,7 +39,7 @@ $datos = kmimos_get_info_syte();
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-8" style="text-align: right;">
-							<a href="#" class="km-btn-contraseña-olvidada">¿OLVIDASTE TU CONTRASEÑA?</a>
+							<a href="#" class="km-btn-contraseña-olvidada">Recuperar credenciales</a>
 						</div>
 						<div class="col-md-12 text-center" style="margin-top: 20px;">
 							<input type="submit" name="enviar" class="hidden">

@@ -14,6 +14,11 @@ jQuery(document).ready( function (){
 		mostrar_popup_sesion("popup-iniciar-sesion-1");
 	})
 
+	jQuery('#registrar-cpf').on('click', function(){
+		jQuery(document).scrollTop(0);
+	});
+
+
 	jQuery('#logo-white').attr('src', jQuery('#logo-black').attr('src') );
 
 	jQuery('#compartir_now').on('click', function(e){

@@ -51,9 +51,7 @@
 	<header class="row" style="background-image: url(<?php echo getTema().'/images/club-patitas/Kmimos-Club-de-las-patitas-felices-2.jpg'; ?>)">
 		<div class="col-xm-12 col-sm-12 col-md-12">
 			<?php if( !is_user_logged_in() ){ ?>
-				<a href="#" data-target="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">Ver mis créditos</a>
-				|
-				<a href="#" data-target="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">Obtener mi código</a>
+				<a href="#" data-target="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">Iniciar sesi&oacute;n</a>
 			<?php }else{ ?>
 				<a href="<?php echo get_home_url(); ?>/club-patitas-felices/creditos">Ver mis créditos</a>
 				|
@@ -138,6 +136,11 @@
 					</div>
 
 				</div>
+
+			</div>
+			<div class="hidden-md hidden-lg">
+				<a href="#" data-target="#popup-iniciar-sesion" style="color:#fff!important; cursor: pointer;" class="btn btn-club btn-info" role="button" data-toggle="modal">Iniciar sesi&oacute;n</a>
+				<button id="registrar-cpf" class="btn btn-info" style="color: #fff; width: 100%; margin: 5px 0px; padding: 10px; background: #007bdc; border:1px solid #007bdc; cursor: pointer;">Registrar</button>
 			</div>
 		</section>
 	</div>
