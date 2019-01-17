@@ -64,7 +64,7 @@
 						<div class="boton boton_border_morado">Regístrate</div>
 						<span class="banner_txt_1">Disfruta de la red de más segura de <em>paseadores</em> certificados de México</span>
 						<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
-						<span class="banner_txt_3">Cuándo y comó te gustaría pasearlo</span>
+						<span class="banner_txt_3">Cuándo y cómo te gustaría pasearlo</span>
 					</div>
 
 					<div class="controles_top_container">
