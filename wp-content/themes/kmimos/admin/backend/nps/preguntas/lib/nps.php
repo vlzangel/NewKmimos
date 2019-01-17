@@ -99,6 +99,15 @@ class NPS {
 		return $this->db->get_results( 'SELECT * FROM nps_respuestas WHERE pregunta = '.$id );
 	}
 
+	protected function format_porcent( $monto ){
+        if( $monto == 0 || $monto == 100 || $monto == -100 ){
+        	$monto = number_format( $monto, 0 );
+        }else{
+        	$monto = number_format( $monto, 2 );
+        }
+		return $monto;
+	}
+
 	public function get_score_nps_detalle( $pregunta_id ){
 		$feedbacks = $this->feedback_byId( $pregunta_id );
 		$score_group = [
@@ -121,16 +130,16 @@ class NPS {
                 }
             }
             if( $score_group['detractores']['ptos'] > 0 ){
-                $score_group['detractores']['porcentaje'] =   number_format(($score_group['detractores']['ptos'] * 100) / $score_group['total_rows'] ,2);
+                $score_group['detractores']['porcentaje'] = $this->format_porcent( ($score_group['detractores']['ptos']*100)/$score_group['total_rows'] ) ;
             }
             if( $score_group['pasivos']['ptos'] > 0 ){
-                $score_group['pasivos']['porcentaje'] =   number_format(( $score_group['pasivos']['ptos'] * 100 ) / $score_group['total_rows'] ,2);
+                $score_group['pasivos']['porcentaje'] = $this->format_porcent( ($score_group['pasivos']['ptos']*100)/$score_group['total_rows'] );
             }
             if( $score_group['promoters']['ptos'] > 0 ){
-                $score_group['promoters']['porcentaje'] =   number_format(( $score_group['promoters']['ptos'] * 100 ) / $score_group['total_rows'] ,2);
+                $score_group['promoters']['porcentaje'] = $this->format_porcent( ($score_group['promoters']['ptos']*100)/$score_group['total_rows'] );
             }
 
-            $score_group['score_nps'] = number_format( $score_group['promoters']['porcentaje'] - $score_group['detractores']['porcentaje'], 2 );
+            $score_group['score_nps'] = $this->format_porcent( $score_group['promoters']['porcentaje'] - $score_group['detractores']['porcentaje'] );
         }
 
         return $score_group;
