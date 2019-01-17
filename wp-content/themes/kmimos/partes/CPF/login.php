@@ -15,6 +15,8 @@ $datos = kmimos_get_info_syte();
 				<p class="text-center col-md-8 col-md-offset-2" style="color:#0D7AD8;">Recuerda tener a la mano las credenciales que te hemos enviado al correo electr&oacute;nico</p>
 				<form id="form_login" autocomplete="off">
 					<input type="hidden" id="proceso" name="proceso" value="" />
+					<input type="hidden" id="is_cpf" name="is_cpf" value="1" />
+
 					<div class="km-box-form">
 						<div class="content-placeholder">
 							<div class="label-placeholder">

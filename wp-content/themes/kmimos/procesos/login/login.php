@@ -2,6 +2,8 @@
 	include("../../../../../wp-load.php");
 	extract($_POST);
 
+	global $wpdb;
+
 	if( !isset($_SESSION) ){ session_start(); }
  
 	$user = get_user_by( 'email', $usu );
@@ -18,21 +20,28 @@
 
     $user_signon = wp_signon( $info, true );
 
+    $CPF = 0;
 	if ( is_wp_error( $user_signon )) {
 	  	echo json_encode( 
 	  		array( 
 	  			'login' => false, 
-	  			'mes'   => "Email y contraseña invalidos."
+	  			'mes'   => "Email y contraseña invalidos.",
+	  			'CPF'   => $CPF,
 	  		)
 	  	);
 	} else {
 		$status_user = get_user_meta($user_signon->ID, 'status_user', true);
+		$cupon_cpf = get_user_meta($user_signon->ID, 'club-patitas-cupon', true);
+		if( !empty($cupon_cpf) ){
+			$CPF = 1;
+		}
 
 		if( $status_user == 'inactivo' ){
 		  	echo json_encode( 
 		  		array( 
 		  			'login' => false, 
-		  			'mes'   => "Email y contraseña invalidos."
+		  			'mes'   => "Email y contraseña invalidos.",
+		  			'CPF' => $CPF,
 		  		)
 		  	);
 		}else{
@@ -46,7 +55,8 @@
 		  	echo json_encode( 
 		  		array( 
 		  			'login' => true, 
-		  			'mes'   => "Login Exitoso!"
+		  			'mes'   => "Login Exitoso!",
+		  			'CPF' => $CPF,
 		  		)
 		  	);
 		}

@@ -8,53 +8,54 @@
     	header('location:'.get_home_url().'/club-patitas-felices/compartir');
     }
 
-
-    $url_img = get_home_url() .'/wp-content/themes/kmimos/images/club-patitas/';
-    
     $no_top_menu = false;
-
-    wp_enqueue_style('club_style', getTema()."/css/club-patitas-felices.css", array(), '1.0.0');
-    wp_enqueue_style('club_responsive', getTema()."/css/responsive/club-patitas-felices.css", array(), '1.0.0');
-
-	wp_enqueue_script('club_script2', getTema()."/js/club-patitas-felices.js", array(), '2.0.0');
-
-	get_header();
-
+    $url_img = get_home_url() .'/wp-content/themes/kmimos/images/club-patitas/';
+	$user = wp_get_current_user();
+	
 	$display_registro = '';
 	$center_content = '';
-	$user = wp_get_current_user();
+	$readonly='';	
 
-	$nombre = "";
-	if( $user->ID > 0 ){
-		$nombre = get_user_meta( $user->ID, 'first_name', true );
+	$email = '';
+	$nombre = '';
+	$apellido = '';
+	$usuario_titulo = '';
+    
+	if( isset($user->ID) && $user->ID > 0 ){
+		$nombre = " ";
+		$nombre .= get_user_meta( $user->ID, 'first_name', true );
 		$nombre .= " ";
 		$nombre .= get_user_meta( $user->ID, 'last_name', true );
+		if( !empty($nombre) ){
+			$nombre = ' ' .$user->user_firstname;
+		}
+		$email = $user->user_email;
+		$apellido = $user->user_lastname ;
+		$readonly = 'readonly';
 	}
-
 	$cupon = get_user_meta( $user->ID, 'club-patitas-cupon', true );
  	if( !empty($cupon) ){
 		$display_registro = 'hidden';
 		$center_content = 'col-md-offset-2';
+		$usuario_titulo = $nombre;
 	}
-	$email = '';
-	$nombre = '';
-	$apellido = '';
-	$readonly='';	
-	if( isset($user->ID) && $user->ID > 0 ){
-		$email = $user->user_email;
-		$nombre = ' ' .$user->user_firstname ;
-		$apellido = $user->user_lastname ;
-		$readonly = 'readonly';
-	}
+
+    wp_enqueue_style('club_style', getTema()."/css/club-patitas-felices.css", array(), '1.0.0');
+    wp_enqueue_style('club_responsive', getTema()."/css/responsive/club-patitas-felices.css", array(), '1.0.0');
+	wp_enqueue_script('club_script2', getTema()."/js/club-patitas-felices.js", array(), '2.0.0');
+
+	get_header();
 ?>
 	 
 	<header class="row" style="background-image: url(<?php echo getTema().'/images/club-patitas/Kmimos-Club-de-las-patitas-felices-2.jpg'; ?>)">
 		<div class="col-xm-12 col-sm-12 col-md-12">
-			<?php if( !is_user_logged_in() ){ ?>
-				<a href="#" data-target="#popup-iniciar-sesion" style="padding-right: 15px" role="button" data-toggle="modal">Iniciar sesi&oacute;n</a>
+			<?php if( !is_user_logged_in() || empty($cupon) ){ ?>
+				<a href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal">Iniciar sesi&oacute;n</a>
+				<span style="margin:0px 10px;">|</span>
+				<a href="javascript:;" style="padding-right: 15px">Registrar</a>
 			<?php }else{ ?>
 				<a href="<?php echo get_home_url(); ?>/club-patitas-felices/creditos">Ver mis créditos</a>
-				|
+				<span style="margin:0px 10px;">|</span>
 	            <a href="<?php echo get_home_url(); ?>/club-patitas-felices/compartir">Obtener mi código</a>
 			<?php } ?>
 		</div>
@@ -66,7 +67,7 @@
 	</header>
 	<div class="body-club">
 		<aside class="col-xs-12 col-sm-12 col-md-7 hidden-md hidden-lg">
-			<h3 class="text-center gotham-bold" style="font-size: 33px; font-weight:bold; margin:10px 0px;"><strong style="color:#0D7AD8;">¡Bienvenido al club<?php echo $nombre; ?>!</strong></h3>
+			<h3 class="text-center gotham-bold" style="font-size: 33px; font-weight:bold; margin:10px 0px;"><strong style="color:#0D7AD8;">¡Bienvenido al club<?php echo $usuario_titulo; ?>!</strong></h3>
 		</aside>
 		<aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4 <?php echo $display_registro; ?>">
 			<div class="text-center col-md-10 col-md-offset-1 text-center">
@@ -95,7 +96,7 @@
 		</aside>
 		<section id="club-content" class="col-xs-12 col-sm-12 col-md-7 <?php echo $center_content; ?>">
 			<div>
-				<h3 class="hidden-xs hidden-sm text-left gotham-bold" style="font-weight:bold;"><strong style="color:#0D7AD8;">¡Bienvenido al club<?php echo $nombre; ?>!</strong></h3>
+				<h3 class="hidden-xs hidden-sm text-left gotham-bold" style="font-weight:bold;"><strong style="color:#0D7AD8;">¡Bienvenido al club<?php echo $usuario_titulo; ?>!</strong></h3>
 
 			 	<p class="text-justify">El club de las patitas felices te recompensa con $150 MXN para que los uses en cualquiera de nuestros servicios. Es muy sencillo, por cada vez que compartas tu código de las patitas felices tu referido obtendrá $150 MXN para utilizarlo en su primera reserva y una vez que complete su reservación a ti se te abonarán tus $150 MXN de crédito en Kmimos. </p>
 			</div>
