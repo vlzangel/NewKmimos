@@ -51,8 +51,8 @@
 		<div class="col-xm-12 col-sm-12 col-md-12">
 			<?php if( !is_user_logged_in() || empty($cupon) ){ ?>
 				<a href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal">Iniciar sesi&oacute;n</a>
-				<span style="margin:0px 10px;">|</span>
-				<a href="javascript:;" style="padding-right: 15px">Registrar</a>
+				<span style="display:none; margin:0px 10px;">|</span>
+				<a href="javascript:;" style="display:none; padding-right: 15px">Registrar</a>
 			<?php }else{ ?>
 				<a href="<?php echo get_home_url(); ?>/club-patitas-felices/creditos">Ver mis créditos</a>
 				<span style="margin:0px 10px;">|</span>
