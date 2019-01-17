@@ -56,7 +56,7 @@
 <script type="text/javascript">
 	jQuery(document).ready( function(){
 		intaface_id = '<?php echo $intaface_id; ?>';
-		jQuery('option[value="'+intaface+'"]').attr('selected');
-		jQuery('[name="remitentes"]').val(intaface);
+		jQuery('option[value="'+intaface_id+'"]').attr('selected');
+		jQuery('[name="remitentes"]').val(intaface_id);
 	});
 </script>
