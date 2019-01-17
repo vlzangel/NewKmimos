@@ -37,6 +37,9 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
 
                	    if( data['error'] != '' ){
                         alert(data['error']);
+                        if( data['error'] == "Error, debe recargar para poder realizar más solicitudes!" ){
+                            location.href = RAIZ+"petsitters/"+data['cuidador']+"/1";
+                        }
                     }else{
                         jQuery("#cupos_disponibles").html( data['cupos_disponibles'] );
 
