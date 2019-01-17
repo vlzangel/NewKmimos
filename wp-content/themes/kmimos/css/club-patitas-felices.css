@@ -33,6 +33,13 @@ body {
 	border: 1px solid red!important; 
 }
 
+.creditos-uso{
+	font-weight: bold; 
+	font-size: 24px; 
+	text-align: center;
+	margin-top: 10%;
+	color: #337ab7;
+}
 
 #form-registro input[type="checkbox"]{
 	margin: 20px 0px!important;

@@ -121,6 +121,16 @@
 	.btn-group-shared{
 		margin: 60px 0px;
 	}
+
+	.compartir-section{
+		margin-top: 5px;
+	}
+	.compartir-section div section a{
+		font-size: 18px;
+	}
+	.creditos-uso{
+		font-size: 22px; 
+	}
 }
 @media (max-width: 480px){
 }

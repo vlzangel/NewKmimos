@@ -65,13 +65,7 @@
 					<div class="col-md-12">
 						<img src="<?php echo getTema().'/images/club-patitas/Kmimos-Club-de-las-patitas-felices-6.png'; ?>">
 						<h2 class="titulo">¡Tus cr&eacute;ditos del club <?php echo $nombre; ?>!</h2><hr>
-						<p style="
-							font-weight: bold; 
-							font-size: 24px; 
-							text-align: center;
-							margin-top: 10%;
-							color: #337ab7;
-							">Créditos disponibles para usar</p>
+						<p class="creditos-uso">Créditos disponibles para usar</p>
 						<div class="cupon" style="background: transparent!important; border: 2px solid #4f4f4f;">
 							$ <span id="total_creditos">0.00</span>
 						</div>
