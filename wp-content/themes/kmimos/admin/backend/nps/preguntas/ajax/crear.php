@@ -4,7 +4,12 @@
 
     include_once(dirname(__DIR__).'/lib/nps.php');
 
-    $id = $nps->create( $_POST );
+    $id = 0;
+    if( $_POST['campana_id'] > 0 ){
+        $id = $nps->update( $_POST );
+    }else{
+        $id = $nps->create( $_POST );
+    }
 
     $data=[
     	'id' => 0,

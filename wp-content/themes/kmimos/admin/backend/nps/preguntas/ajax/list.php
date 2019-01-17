@@ -27,7 +27,9 @@
 
             $link = $home . 'wp-admin/admin.php?page=nps_detalle&campana_id=' . $pregunta->id;
 
-            $botones = '<button class="btn btn-sm btn-default" data-titulo="INTEGRACION" data-modal="generador_codigo" data-id="'.$pregunta->id.'">LINK / HTML</button>';
+            $botones = '<button style="margin:2px;" class="btn btn-sm btn-default" data-titulo="INTEGRACION" data-modal="generador_codigo" data-id="'.$pregunta->id.'">Html</button>';
+
+            $botones .= '<button style="margin:2px;" class="btn btn-sm btn-info" data-titulo="EDITAR" data-modal="crear" data-id="'.$pregunta->id.'">Editar</button>';
 
             $score = $nps->get_score_nps_detalle( $pregunta->id );
             

@@ -1,19 +1,38 @@
- 
+<?php
+
+	extract($_POST);
+	$nombre = '';
+	$pregunta = '';
+	$fecha_inicio = '00/00/0000';
+	if( isset($ID) && $ID > 0 ){
+		include_once('../lib/nps.php');
+		$encuesta = $nps->get_pregunta_byId( $ID );
+
+		$nombre = $encuesta->titulo;
+		$pregunta = $encuesta->pregunta;
+		$fecha_inicio = $encuesta->fecha_inicio;
+	}else{
+		$ID = 0;
+	}
+
+?> 
+
 <article class="input_container">
 
 	<form id="crear_campana">
+		<input type="text" name="campana_id" value="<?php echo ($ID > 0)? $ID : 0; ?>">
 		<div class="col-md-12">
 			<label>Nombre:</label>
-			<input class="form-control" type="text" name="nombre" placeholder="Titulo de la campa&ntilde;a" required>
+			<input class="form-control" type="text" name="nombre" placeholder="Titulo de la campa&ntilde;a" required value="<?php echo $nombre; ?>">
 		</div>
 		<div class="col-md-12">
 			<label>Encuesta:</label>
-			<input class="form-control" type="text" name="pregunta" placeholder="¿Qué probabilidades hay de que recomiendes a un amigo o colega?" required>
+			<input class="form-control" type="text" name="pregunta" placeholder="¿Qué probabilidades hay de que recomiendes a un amigo o colega?" required value="<?php echo $pregunta; ?>">
 		</div>
 		<div class="col-md-12">
 			<label>Campañas:</label>
 			<div class="input-group">
-				<select class="form-control" type="text" name="remitentes" required>
+				<select class="form-control" type="text" name="remitentes" >
 					<?php echo $_POST['list_campana']; ?>
 				</select>
  				<span class="input-group-btn hidden">
@@ -23,7 +42,7 @@
 		</div>
 		<div class="col-md-12">
 			<label>Fecha de Inicio:</label>
-			<input class="form-control disabled" type="date" name="fecha_ini" value="<?php date('Y-m-d'); ?>" required style="margin:0px!important">
+			<input class="form-control disabled" type="date" name="fecha_ini" required style="margin:0px!important" value="<?php echo $fecha_inicio; ?>">
 		</div>
 
 		<div class="botones_container text-right">
