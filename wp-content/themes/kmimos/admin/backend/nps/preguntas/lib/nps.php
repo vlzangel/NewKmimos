@@ -100,7 +100,8 @@ class NPS {
 	}
 
 	protected function format_porcent( $monto ){
-        if( $monto == 0 || $monto == 100 || $monto == -100 ){
+        // if( $monto == 0 || $monto == 100 || $monto == -100 ){
+        if( !is_float( $monto ) ){
         	$monto = number_format( $monto, 0 );
         }else{
         	$monto = number_format( $monto, 2 );
