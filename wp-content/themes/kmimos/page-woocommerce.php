@@ -289,6 +289,11 @@
 
 					'.$servicios_extras.'
 
+					<div class="items_reservados_paso_1_container">
+						<label class="items_reservados_paso_1_titulo">DESGLOSE</label>
+						<div class="items_reservados_paso_1 items_reservados"></div>
+					</div>
+
 					<div class="km-services-total km-total-calculo">
 						<div class="invalido"></div>
 						<div class="valido">

@@ -175,8 +175,14 @@
 		print_r( $_SESSION['busqueda'] );
 	echo "</pre>";
 
-	$tipo_cuidador = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Paseador' : 'Cuidador';
-	
+	if( $_SESSION['landing_paseos'] == 'yes' ) {
+		$tipo_cuidador = 'Paseador';
+		$ocultar_por_comenzar = 'display: none;';
+	}else{
+		$ocultar_por_comenzar = '';
+		$tipo_cuidador = 'Cuidador';
+	}
+
     $HTML .= '
     	<script>
     		var landing = "'.$key_principal.'";
@@ -449,12 +455,14 @@
 					</div>
     			</form>
 
-    			<div class="msg_inicio_reserva">
-	    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
-	    				<div class="mesaje_reserva_inmediata_izq"></div>
-	    				<div class="mesaje_reserva_inmediata_der">
-	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar '.$tipo_cuidador.'es con los que puedas reservar al momento.
-	    				</div>
+    			<div style="'.$ocultar_por_comenzar.'">
+	    			<div class="msg_inicio_reserva">
+		    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
+		    				<div class="mesaje_reserva_inmediata_izq"></div>
+		    				<div class="mesaje_reserva_inmediata_der">
+		    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar '.$tipo_cuidador.'es con los que puedas reservar al momento.
+		    				</div>
+		    			</div>
 	    			</div>
     			</div>
 

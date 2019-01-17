@@ -369,9 +369,13 @@ function calcular(){
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").removeClass("disabled");
 		calcularDescuento();
+
+		jQuery(".items_reservados_paso_1_container").css("display", "block");
 	}else{
 		jQuery("#reserva_btn_next_1").addClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").addClass("disabled");
+
+		jQuery(".items_reservados_paso_1_container").css("display", "none");
 	}
 	initFactura();
     
