@@ -10,6 +10,10 @@ jQuery(document).ready( function (){
 	// 	mostrar_popup_sesion("popup-iniciar-sesion-1");
 	// });
 
+	jQuery('#olvidaste-contrasena').on('click', function(){
+		mostrar_popup_sesion("popup-olvidaste-contrasena");
+	})
+
 	jQuery('#show-iniciar-sesion').on('click', function(){
 		mostrar_popup_sesion("popup-iniciar-sesion-1");
 	})
