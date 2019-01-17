@@ -230,7 +230,7 @@ function logear(){
 
     var btn = jQuery('#login_submit');
         btn.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> INICIANDO SESI&Oacute;N');
-
+    var is_cpf = jQuery("#form_login #is_cpf").val();
     if( validar_login() ){
 
         jQuery.post( 
@@ -241,15 +241,33 @@ function logear(){
                 proceso: jQuery("#form_login #proceso").val()
             },
             function( data ) {
-                if( data.login ){
-                    location.reload();
+
+                if( is_cpf == 1 ){
+                    if( data.CPF == 1 && data.login ){
+                        location.reload();
+                    }else{
+                        if( data.CPF == 0 ){
+                            data.mes = 'Las credenciales no están registradas en el club';
+                        }else{
+                            data.mes = 'Credenciales invalidas';
+                        }
+                        jQuery('#login_submit').before('<div data-id="alert_login" class="alert alert-danger"><strong>'+data.mes+'</strong></div>');
+                        setTimeout(function() {
+                            jQuery('[data-id="alert_login"]').remove();
+                        },3000);                        
+                    }
                 }else{
-                    jQuery('#login_submit').before('<div data-id="alert_login" class="alert alert-danger"><strong>'+data.mes+'</strong></div>');
-                    setTimeout(function() {
-                        jQuery('[data-id="alert_login"]').remove();
-                    },3000);
+                    if( data.login ){
+                        location.reload();
+                    }else{
+                        jQuery('#login_submit').before('<div data-id="alert_login" class="alert alert-danger"><strong>'+data.mes+'</strong></div>');
+                        setTimeout(function() {
+                            jQuery('[data-id="alert_login"]').remove();
+                        },3000);
+                    }
                 }
                 btn.html('INICIAR SESIÓN AHORA');
+
             },
             "json"
         );

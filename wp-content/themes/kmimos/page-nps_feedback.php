@@ -93,7 +93,7 @@
 				<input type="hidden" name="email" value="<?php echo $e; ?>">
 				<input type="hidden" name="code" value="<?php echo $code; ?>">
 
-				<h3 class="titulo text-left"><?php echo $encuesta->pregunta; ?></h3>
+				<h3 class="titulo text-left"><?php echo utf8_decode($encuesta->pregunta); ?></h3>
 				<div class="text-left" style="width: 100%; padding: 10px 0px;">
 					<?php for( $i = 1; $i <= 10; $i++ ){ 
 						$activo = ( $respuesta == $i )? 'col-item-active' : '';

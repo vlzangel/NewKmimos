@@ -14,6 +14,7 @@ $datos = kmimos_get_info_syte();
 						<form id="form_login" autocomplete="off">
 
 							<input type="hidden" id="proceso" name="proceso" value="" />
+							<input type="hidden" id="is_cpf" name="is_cpf" value="0" />
 
 							<div class="km-box-form">
 								<div class="content-placeholder">

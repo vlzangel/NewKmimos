@@ -28,7 +28,7 @@
 				.tag-nivel{ display: none;}
 			}
 			</style>
-			<div style="border: 3px solid #ccc; border-radius: 10px; padding:10px; margin-top:20px;"><h1 class="titulo">'.utf8_encode($encuesta->pregunta).'</h1><div style="width: 100%; padding: 10px; "> 
+			<div style="border: 3px solid #ccc; border-radius: 10px; padding:10px; margin-top:20px;"><h1 class="titulo">'.$encuesta->pregunta.'</h1><div style="width: 100%; padding: 10px; "> 
 				'.$link_opciones.'
 			</div>
 			<div class="tag-nivel">

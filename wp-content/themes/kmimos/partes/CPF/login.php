@@ -15,6 +15,8 @@ $datos = kmimos_get_info_syte();
 				<p class="text-center col-md-8 col-md-offset-2" style="color:#0D7AD8;">Recuerda tener a la mano las credenciales que te hemos enviado al correo electr&oacute;nico</p>
 				<form id="form_login" autocomplete="off">
 					<input type="hidden" id="proceso" name="proceso" value="" />
+					<input type="hidden" id="is_cpf" name="is_cpf" value="1" />
+
 					<div class="km-box-form">
 						<div class="content-placeholder">
 							<div class="label-placeholder">
@@ -39,7 +41,7 @@ $datos = kmimos_get_info_syte();
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-8" style="text-align: right;">
-							<a href="#" class="km-btn-contraseña-olvidada">¿OLVIDASTE TU CONTRASEÑA?</a>
+							<a href="#" class="km-btn-contraseña-olvidada">Recuperar credenciales</a>
 						</div>
 						<div class="col-md-12 text-center" style="margin-top: 20px;">
 							<input type="submit" name="enviar" class="hidden">
