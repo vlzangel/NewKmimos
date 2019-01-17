@@ -526,6 +526,9 @@ ul.scale li:after {
     .col-container{
         flex-direction: column;
     }
+    .col-box{
+        height: 360px;
+    }
     .col-25,
     .col-30,
     .col-50,
