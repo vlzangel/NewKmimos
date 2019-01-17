@@ -20,7 +20,7 @@
 <article class="input_container">
 
 	<form id="crear_campana">
-		<input type="text" name="campana_id" value="<?php echo ($ID > 0)? $ID : 0; ?>">
+		<input type="hidden" name="campana_id" value="<?php echo ($ID > 0)? $ID : 0; ?>">
 		<div class="col-md-12">
 			<label>Nombre:</label>
 			<input class="form-control" type="text" name="nombre" placeholder="Titulo de la campa&ntilde;a" required value="<?php echo $nombre; ?>">
