@@ -4,6 +4,7 @@
 	$nombre = '';
 	$pregunta = '';
 	$fecha_inicio = '00/00/0000';
+	$intaface_id = '';
 	if( isset($ID) && $ID > 0 ){
 		include_once('../lib/nps.php');
 		$encuesta = $nps->get_pregunta_byId( $ID );
@@ -11,6 +12,7 @@
 		$nombre = $encuesta->titulo;
 		$pregunta = $encuesta->pregunta;
 		$fecha_inicio = $encuesta->fecha_inicio;
+		$intaface_id = $encuesta->id_campaing;
 	}else{
 		$ID = 0;
 	}
@@ -51,3 +53,10 @@
 	</form>
 
 </article>
+<script type="text/javascript">
+	jQuery(document).ready( function(){
+		intaface_id = '<?php echo $intaface_id; ?>';
+		jQuery('option[value="'+intaface+'"]').attr('selected');
+		jQuery('[name="remitentes"]').val(intaface);
+	});
+</script>

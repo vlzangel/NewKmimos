@@ -1,6 +1,7 @@
 var table = ""; 
 var global_counter = 50;
 var option_list_campaing = '<option value="">Seleccione una campaña</option>';
+var intaface_id= '';
 jQuery(document).ready(function() {
 
 
@@ -95,7 +96,8 @@ function load_list_campaing(){
 		function(data){
 			var option = '<option value="">Seleccione una campaña</option>';
 			jQuery.each(data, function(i,v){
-				option += '<option value="'+v.CampaignID+'">'+v.Name+'</option>';
+				var select = ( intaface_id == v.CampaignID )? 'selected' : '';
+				option += '<option value="'+v.CampaignID+'" '+select+'>'+v.Name+'</option>';
 			})
 			option_list_campaing = option;
 		},
