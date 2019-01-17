@@ -15,6 +15,8 @@ jQuery(document).ready( function (){
 	})
 
 	jQuery('#registrar-cpf').on('click', function(){
+		jQuery('#form-registro input[name="nombre"]').focus();
+		jQuery('html, body').animate({ scrollTop: jQuery('#form-registro').offset().top-140 }, 2000); 
 		jQuery(document).scrollTop(0);
 	});
 
