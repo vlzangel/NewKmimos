@@ -38,7 +38,7 @@ jQuery(document).ready(function() {
 
     
 
-    jQuery("[data-modal='crear']").on('click', function(){
+    jQuery(document).on('click', "[data-modal='crear']", function(){
 		abrir_link( jQuery(this) );
     });
     jQuery(document).on('click', '[data-modal="generador_codigo"]', function(e){

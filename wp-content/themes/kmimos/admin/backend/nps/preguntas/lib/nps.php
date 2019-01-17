@@ -82,7 +82,17 @@ class NPS {
 			'".$arg['pregunta']."'
 		)";
 		$this->db->query($sql);
-		return $this->db->insert_id();;
+		return $this->db->insert_id();
+	}
+
+	public function update( $arg ){
+		$sql = "UPDATE nps_preguntas SET 
+				titulo = '".$arg['nombre']."',
+				id_campaing = '".$arg['remitentes']."',
+				fecha_inicio= '".date("Y-m-d", strtotime($arg['fecha_ini']))."'
+			WHERE id = ".$arg['campana_id'];
+		$this->db->query($sql);
+		return $arg['campana_id'];
 	}
 
 	public function feedback_byId( $id ){
