@@ -142,7 +142,7 @@
 			<?php if( !is_user_logged_in() || empty($cupon) ){ ?>
 				<div class="hidden-md hidden-lg">
 					<a href="#" data-target="#popup-iniciar-sesion" style="color:#fff!important; cursor: pointer;" class="btn btn-club btn-info" role="button" data-toggle="modal">Iniciar sesi&oacute;n</a>
-					<button id="registrar-cpf" class="btn btn-info" style="color: #fff; width: 100%; margin: 5px 0px; padding: 10px; background: #007bdc; border:1px solid #007bdc; cursor: pointer;">Registrar</button>
+					<button id="registrar-cpf" class="btn btn-info" style="color: #fff; width: 100%; margin: 5px 0px; padding: 10px; background: #007bdc; border:1px solid #007bdc; cursor: pointer;">Registrarme</button>
 				</div>
 			<?php } ?>
 		</section>
