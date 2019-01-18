@@ -29,6 +29,7 @@
 	    $INFORMACION = [
 	        // GENERALES
 
+	            'id'                	=> $id,
 	            'HEADER'                => "pago_solicitud",
 
 	            'CODIGO'				=> end( explode("/", $metas["pdf"]) ),
@@ -48,6 +49,7 @@
 	    $INFORMACION = [
 	        // GENERALES
 
+	            'id'                	=> $id,
 	            'HEADER'                => "pago_solicitud",
 
 	        // CLIENTE
@@ -56,7 +58,14 @@
 	    ];
 	}
 
-
-    include(__DIR__."/pagado.php");
+	if( $orden->status == "Pagado" ){
+    	include(__DIR__."/pagado.php");
+	}else{
+		if( $orden->tipo_pago == 'Tienda' ){
+    		include(__DIR__."/pendiente_tienda.php");
+		}else{
+			// LOG: echo "El pago por tarjeta fallo";
+		}
+	}
 
 ?>

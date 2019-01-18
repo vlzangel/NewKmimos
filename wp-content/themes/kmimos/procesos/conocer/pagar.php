@@ -219,7 +219,7 @@
 								"status" => "Pagada",
 							));
 							
-							// include(__DIR__."/emails/index.php");
+							include(__DIR__."/emails/index.php");
 
 				        }else{
 							unset($_SESSION["pagando"]);
@@ -287,7 +287,7 @@
 							"status" => "Pendiente",
 						));
 
-						// include(__DIR__."/emails/index.php");
+						include(__DIR__."/emails/index.php");
 
 					}else{
 						unset($_SESSION["pagando"]);

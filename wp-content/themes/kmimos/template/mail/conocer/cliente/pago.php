@@ -27,7 +27,7 @@
             color: #000000; 
             text-align: left; 
         '>
-           	Recibimos tu pago por 3 solicitudes para conocer a cuidadores kmimos.   
+           	Recibimos tu pago por <strong>tres (3)</strong> solicitudes para conocer a cuidadores kmimos.   
         </div>
 
     </div>
