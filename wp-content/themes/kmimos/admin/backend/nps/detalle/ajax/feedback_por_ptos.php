@@ -24,7 +24,9 @@
 	    "10"=>['date'=>10, 'total'=>0, 'color'=>'#5cb85c' ]
 	];
     foreach ($score as $item) {
-		$t[ $item->puntos ]['total'] =$item->cant;
+        if( $item->puntos > 0 ){
+    		$t[ $item->puntos ]['total'] =$item->cant;
+        }
     }
     ksort($t);
 
