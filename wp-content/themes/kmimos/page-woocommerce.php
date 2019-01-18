@@ -444,8 +444,8 @@
 						<div class="barra_titulo">
 							<ul class="steps-numbers">
 								<li><span class="number checked">1</span></li>
-								<li class="line"></li><li><span class="number active">2</span></li>
-								<li class="line"></li><li><span class="number">3</span></li>
+								<li class="line"></li><li><span class="number checked">2</span></li>
+								<li class="line"></li><li><span class="number active">3</span></li>
 							</ul>
 							<div class="km-title-step">
 								REALIZA TU PAGO

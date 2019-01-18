@@ -697,10 +697,10 @@
 				}
 
 				if( $ocultar_geo == "" ){
-					$mensaje_disp = "Con GPS";
-					$mensaje_disp_movil = "Con GPS";
+					$mensaje_disp = "con GPS";
+					$mensaje_disp_movil = "con GPS";
 					$show_msg_desc = "show_msg_descuento";
-					$mensaje_disp_movil_corto = "Con GPS";
+					$mensaje_disp_movil_corto = "con GPS";
 				}
 
 				if( !is_array($_cuidador->galeria) ){
