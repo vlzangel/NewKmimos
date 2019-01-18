@@ -24,12 +24,11 @@ class NPS {
 	public function get_remitentes_byId( $pregunta_id ){
 		$pregunta = $this->get_pregunta_byId( $pregunta_id );
 		$campaing_id = $pregunta->id_campaing;
-
 		include_once( $this->raiz.'/campaing/get_recipients.php' );
 		$total = 0;
 		if( isset($total_recipients) ){
-			$total = $total_recipients; 
-		}
+			$total = trim($total_recipients); 
+		}		
 		return $total;
 	}
 

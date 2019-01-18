@@ -8,18 +8,21 @@
     $feedback = $nps->feedback_byId( $_POST['id'] );
 
     $total_receptores = $nps->get_remitentes_byId( $_POST['id'] );
+    $total_receptores = (int) trim($total_receptores);
 
-    $total = (int) $total_receptores - $recibidos;
+    $completado = (int) $total_receptores - $recibidos;
     $recibidos = count($feedback);
 
     $data = [
         'total' => 0,
+        'completado' => 0,
         'recibidos' => 0,
     ];
-    if( $total > 0 ){
+    if( $total_receptores > 0 ){
         $data = [
-            'total' => number_format((($total * 100)/$total), 2),
-            'recibidos' => number_format((($recibidos * 100)/$total), 2),
+            'total' => $total_receptores,
+            'completado' => $completado,
+            'recibidos' => $recibidos,
         ];
     }
 

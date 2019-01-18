@@ -13,5 +13,6 @@ echo "
     <script src='".getTema()."/admin/recursos/plugins/amcharts/export.min.js'></script>
 
     <script src='".getTema()."/admin/recursos/lib/Chart.min.js'></script>
+    <script src='".getTema()."/admin/recursos/plugins/chartjs-plugin-labels.js'></script>
 
 ";

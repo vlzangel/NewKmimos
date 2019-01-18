@@ -88,7 +88,7 @@
         <div class="col col-box col-25">
             <h5 class="text-center">Finalización de Seguimiento</h5>
             <div id="feedback_recibidos_container">
-                <canvas id="feedback_recibidos" width="100%" height="100%"></canvas>
+                <canvas id="feedback_recibidos" width="30%" height="30%"></canvas>
             </div>
         </div>
     </div>
