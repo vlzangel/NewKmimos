@@ -129,11 +129,11 @@ function load_dashboard(){
 		{ 'id': ID },
 		function(data){
 			var label = [
-		        'Completado (%)',
-		        'Pendiente (%)',
+		        'Completados',
+		        'Pendientes',
 		    ];
 		    if( data.total > 0 ){
-				grafico_feedback_recibidos( data, label );
+				grafico_feedback_recibidos( data );
 		    }else{
 		    	jQuery('#feedback_recibidos_container').html(
 		    		'<div style="padding:20px 0px">La campa&ntilde;a a&uacute;n no posee destinatarios<div>'
@@ -197,7 +197,59 @@ function calcular_score_nps(){
 	'json');
 }
 
-function grafico_feedback_recibidos(data, label){
+function grafico_feedback_recibidos(data){
+	console.log(data);
+ 
+	var feedback_recibidos = new Chart('feedback_recibidos', {
+	  type: 'doughnut',
+	  data: {
+        labels: ['Completados', 'Pendientes'],
+        datasets: [
+          {
+            label: 'Total enviados '+data.total,
+            data: [data.recibidos, data.completado],
+            backgroundColor: [
+              '#5cb85c',
+            ]
+          }
+        ]
+	  },
+	  options: {
+	    plugins: {
+	      // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+	      	labels: {
+      	        render: 'value',
+      	        fontColor:['white'],
+      	        precision: 2,
+			}
+	    },
+		elements: {
+			center: {
+				title: 'Enviados',
+				text: data.total,
+				fontSize: '12px',
+			}
+		}
+	  }
+	});
+
+	createChart('feedback_recibidos', 'doughnut', {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          labels: [
+            {
+              render: 'label',
+              position: 'outside'
+            },
+            {
+              render: 'percentage'
+            }
+          ]
+        }
+	});
+
+/*
 	var feedback_recibidos = new Chart('feedback_recibidos', {
 	    type: 'doughnut',
 	    data: {
@@ -206,8 +258,9 @@ function grafico_feedback_recibidos(data, label){
 		        backgroundColor: ['#5cb85c']
 		    }],
 		    labels: label
-		}
+		},
 	});
+*/	
 }
 
 function grafico_nps_por_dia(data){
