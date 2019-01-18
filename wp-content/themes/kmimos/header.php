@@ -171,9 +171,10 @@
 		<!-- Your customer chat code -->
 		<div class="fb-customerchat"
 		  attribution=setup_tool
-		  page_id="126793200846202">
+		  page_id="587104528419977"
+		  logged_in_greeting="Hola! Como podemos ayudarte?"
+		  logged_out_greeting="Hola! Como podemos ayudarte?">
 		</div>
-
 
 				<script> 
 					var RUTA_IMGS = "'.get_home_url().'/imgs"; 

@@ -323,7 +323,7 @@
 			  js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
 			  fjs.parentNode.insertBefore(js, fjs);
 			}(document, \'script\', \'facebook-jssdk\'));
-			
+
 			window.fbAsyncInit = function() {
 				FB.init({
 					appId            : \'264829233920818\',
@@ -335,8 +335,10 @@
 		</script>
 		<!-- Your customer chat code -->
 		<div class="fb-customerchat"
-		  attribution=setup_tool
-		  page_id="126793200846202">
+		  	attribution=setup_tool
+			page_id="587104528419977"
+			logged_in_greeting="Hola! Como podemos ayudarte?"
+			logged_out_greeting="Hola! Como podemos ayudarte?">
 		</div>
 		';
 
