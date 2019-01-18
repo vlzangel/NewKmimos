@@ -668,3 +668,15 @@ div#tienda_box img {
         float: right;
         font-weight: 600;
     }
+
+    .label-resume-service_movil{
+        display: none;
+    }
+
+    .vlv_1{
+        display: block;
+    }
+
+    .vlv_2{
+        display: none;
+    }

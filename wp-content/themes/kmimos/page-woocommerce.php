@@ -371,7 +371,7 @@
 		$HTML .= '
 				<div id="step_2" class="km-col-steps">
 					<div class="km-col-content">
-						<div id="atras_1" class="atras"> Volver </div>
+						<div id="atras_1" class="atras"> <span class="vlv_1">Volver</span> <span class="vlv_2"> < </span> </div>
 						<div class="barra_titulo">
 							<ul class="steps-numbers">
 								<li><span class="number checked">1</span></li>
@@ -440,7 +440,7 @@
 		$HTML .= '
 				<div id="step_3" class="km-col-steps">
 					<div class="km-col-content">
-						<div id="atras_2" class="atras"> Volver </div>
+						<div id="atras_2" class="atras"> <span class="vlv_1">Volver</span> <span class="vlv_2"> < </span> </div>
 						<div class="barra_titulo">
 							<ul class="steps-numbers">
 								<li><span class="number checked">1</span></li>
@@ -448,7 +448,7 @@
 								<li class="line"></li><li><span class="number">3</span></li>
 							</ul>
 							<div class="km-title-step">
-								RESUMEN DE TU RESERVA
+								REALIZA TU PAGO
 							</div>
 						</div>
 

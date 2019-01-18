@@ -923,6 +923,17 @@
 	    font-family: Gotham-Pro-Bold;
 	}
 
+	.boton_ver_paquetes_container{
+		background-color: #FFF;
+	}
+
+	#boton_ver_paquetes {
+	    background: #FFF;
+	    color: #00d2c6;
+	    border: solid 1px #00d2c6;
+	    text-transform: capitalize;
+	}
+
 }
 
 @media (max-width: 600px){
