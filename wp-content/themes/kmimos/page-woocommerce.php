@@ -290,7 +290,7 @@
 					'.$servicios_extras.'
 
 					<div class="items_reservados_paso_1_container">
-						<label class="items_reservados_paso_1_titulo">DESGLOSE</label>
+						<label class="items_reservados_paso_1_titulo">DETALLE</label>
 						<div class="items_reservados_paso_1 items_reservados"></div>
 					</div>
 
