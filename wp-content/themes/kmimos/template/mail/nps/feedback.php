@@ -13,9 +13,16 @@
 			font-weight: bold;
 		">¡Hola!</h1>
 		<div style="text-align: left; margin-bottom: 10px;">
-			<p>Hemos recibido sus comentarios, su opinión es muy importante para nosotros. ¡Gracias por compartirla! </p>
+			<p>Hemos recibido sus comentarios, su opinión es muy importante para nosotros. ¡Gracias por compartirla!</p>
+			
+			<h1 style="
+				margin: 18px 0px; 
+				color: #000; 
+				font-weight: bold;
+			">Kmimos te respondió:</h1>
 			<p>[respuesta]</p>
 		</div>
+		
 
 	</div>
 
