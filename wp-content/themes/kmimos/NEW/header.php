@@ -153,6 +153,7 @@
 	$HTML .= '
 	</head>
 	<body class="' . join(' ', get_body_class($class)) . ' ' . $reserrvacion_page . '">
+
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
