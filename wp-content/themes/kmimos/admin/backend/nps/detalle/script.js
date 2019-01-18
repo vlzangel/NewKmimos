@@ -25,6 +25,7 @@ jQuery(document).ready(function() {
         // location.href = RAIZ+'wp-admin/admin.php?page=nps_detalle&campana_id='+jQuery(this).val();
         ID = jQuery(this).val();
         jQuery( "#pregunta-title" ).html( jQuery('option:selected',this).attr('data-pregunta') );
+        jQuery('#link_feedback').attr('href', RAIZ+"wp-admin/admin.php?page=nps_feedback&campana_id="+ID)
         loadTabla();
         load_dashboard();
     });

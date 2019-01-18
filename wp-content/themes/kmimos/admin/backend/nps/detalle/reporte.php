@@ -144,7 +144,7 @@
     
     <div class='col-md-12'>
         <hr>
-        <h5>Puntajes Recientes <a href="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=nps_feedback&campana_id=<?php echo $_GET['campana_id']; ?>" class="pull-right btn btn-especial btn-primary" style="margin-right: 15px;">Ver mas</a></h5>
+        <h5>Puntajes Recientes <a id="link_feedback" href="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=nps_feedback&campana_id=<?php echo $_GET['campana_id']; ?>" class="pull-right btn btn-especial btn-primary" style="margin-right: 15px;">Ver mas</a></h5>
         <br>
         <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
             <thead>
