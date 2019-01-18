@@ -147,6 +147,34 @@
 				</script>
 			</head>
 			<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.' '.$class_iOS.'" onLoad="menu();">
+
+		<!-- Load Facebook SDK for JavaScript -->
+		<div id="fb-root"></div>
+		<script>
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, \'script\', \'facebook-jssdk\'));
+			
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId            : \'264829233920818\',
+					autoLogAppEvents : true,
+					xfbml            : true,
+					version          : \'v3.2\'
+				});
+			};
+		</script>
+		<!-- Your customer chat code -->
+		<div class="fb-customerchat"
+		  attribution=setup_tool
+		  page_id="126793200846202">
+		</div>
+
+
 				<script> 
 					var RUTA_IMGS = "'.get_home_url().'/imgs"; 
 
