@@ -12,8 +12,10 @@
 
     if( count($encuesta) > 0 ){
 	    foreach ($encuesta as $row) {
-	    	$total++;
-	    	$suma += $row->puntos;
+            if( $row->puntos > 0 ){
+                $total++;
+                $suma += $row->puntos;
+            }
 	    }
 	    $media = $suma / $total;
 	    $media = number_format($media, 1);

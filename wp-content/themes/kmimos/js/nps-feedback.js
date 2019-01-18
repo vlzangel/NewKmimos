@@ -10,21 +10,26 @@ jQuery(document).ready(function(){
 	jQuery('#feedback-form').on('submit', function(e){
 		e.preventDefault();
     	var btn = jQuery('#enviar-feedback');
-		if( !btn.hasClass('disabled') ){
-			btn.addClass('disabled');
-			btn.html('Guardando');
-			jQuery.post(
-				HOME+'/procesos/nps_feedback/update_feedback.php',
-				jQuery(this).serialize(),
-				function(data){
-					if( data.sts == 1 ){
-						location.reload();					
-					}else{
-						btn.removeClass('disabled');
-						btn.html('Enviar comentarios');
-					}
-				},
-			'json');
+		var respuesta = jQuery('[name="respuesta"]').val();
+		if( respuesta > 0 ){
+			if( !btn.hasClass('disabled') ){
+				btn.addClass('disabled');
+				btn.html('Guardando');
+				jQuery.post(
+					HOME+'/procesos/nps_feedback/update_feedback.php',
+					jQuery(this).serialize(),
+					function(data){
+						if( data.sts == 1 ){
+							location.reload();					
+						}else{
+							btn.removeClass('disabled');
+							btn.html('Enviar comentarios');
+						}
+					},
+				'json');
+			}
+		}else{
+			jQuery('.col-item').css("border", "1px solid red");
 		}
 	})
 
