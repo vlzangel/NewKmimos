@@ -102,12 +102,12 @@
 
 	    $titulo_ordenamiento = "ORDENAR POR";
 	    if( $_POST['orderby'] != "" ){
-	    	$titulo_ordenamiento = $ordenamientos[ $_POST['orderby'] ][0];
+	    	// $titulo_ordenamiento = $ordenamientos[ $_POST['orderby'] ][0];
 	    }
 	    $ordenamiento = "";
 	    foreach ( $ordenamientos as $clave => $valor ) {
 	    	$check = ( $_SESSION["busqueda"]["orderby"] == $valor[1] ) ? "selected": "";
-	    	$ordenamiento .= '<option id="'.$valor[1].'" value="'.$valor[1].'">'.$valor[0].'</option>';
+	    	$ordenamiento .= '<option id="'.$valor[1].'" value="'.$valor[1].'" '.$check.'>'.$valor[0].'</option>';
 	    }
 
 	    $check_descuento = ( $_SESSION["busqueda"]["descuento"] == 1 ) ? "checked": "";
@@ -196,6 +196,7 @@
     			<form id="buscar" action="'.getTema().'/procesos/busqueda/buscar.php" method="POST">
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+					<input type="hidden" name="landing_paseos" value="'.$_SESSION['landing_paseos'].'" />
 
 
 					<input type="hidden" name="paquete" value="'.$_SESSION['busqueda']['paquete'].'" />

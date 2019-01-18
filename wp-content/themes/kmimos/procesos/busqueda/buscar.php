@@ -356,6 +356,7 @@
 
     /* Ordenamientos */
     	// $orderby = ( isset($orderby) )? $orderby : 'rating_desc' ;
+
 	    switch ($orderby) {
 	    	case 'rating_desc':
 	    		$orderby = "valoraciones DESC, rating DESC";
@@ -370,10 +371,18 @@
 	    		$orderby = "DISTANCIA DESC";
 	    	break;
 	    	case 'price_asc':
-	    		$orderby = "hospedaje_desde ASC";
+	    		if( $_POST["landing_paseos"] == 'yes'  ){
+	    			$orderby = "paseos_desde ASC";
+		    	}else{
+	    			$orderby = "hospedaje_desde ASC";
+		    	}
 	    	break;
 	    	case 'price_desc':
-	    		$orderby = "hospedaje_desde DESC";
+	    		if( $_POST["landing_paseos"] == 'yes'  ){
+	    			$orderby = "paseos_desde DESC";
+		    	}else{
+	    			$orderby = "hospedaje_desde DESC";
+		    	}
 	    	break;
 	    	case 'experience_asc':
 	    		$orderby = "experiencia ASC";

@@ -934,6 +934,10 @@
 	    text-transform: capitalize;
 	}
 
+	.registrar_container .beneficios_registrar_container {
+	    display: block !important;
+	}
+
 }
 
 @media (max-width: 600px){

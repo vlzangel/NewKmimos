@@ -576,7 +576,11 @@
 	            }
 
 				$img_url = kmimos_get_foto($_cuidador->user_id);
-				$desde = explode(".", number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, '.', ',') );
+				$desde = $_cuidador->hospedaje_desde;
+				if( $_SESSION['landing_paseos'] == 'yes' ){
+					$desde = $_cuidador->paseos_desde;
+				}
+				$desde = explode(".", number_format( ($desde*getComision()) , 2, '.', ',') );
 
 				$direccion = $_cuidador->direccion;
 				if( strlen($_cuidador->direccion) > 50 ){
@@ -950,6 +954,7 @@
     			cuidadores.longitud,
     			cuidadores.direccion,
     			cuidadores.hospedaje_desde,
+    			cuidadores.paseos_desde,
     			cuidadores.adicionales,
     			cuidadores.atributos,
     			cuidadores.rating,
@@ -978,21 +983,16 @@
     		$cuidadores[ $key ]->comentario = get_comment_cuidador($value->id_post);
 
 			$desde = $value->hospedaje_desde;
-    		if( $value->hospedaje_desde == 0 || $_SESSION['landing_paseos'] == 'yes' ){
+    		if( $value->hospedaje_desde == 0 ){
 				$adic = $cuidadores[ $key ]->adicionales;
 				foreach ($adic as $key_1 => $value_1) {
-					$verificar = true;
-					if( $_SESSION['landing_paseos'] == 'yes' && $key_1 != "paseos" ){ $verificar = false; }
-
-					if( $verificar ){
-						if( is_array($value_1) && count($value_1) >= 4 ){
-							foreach ($value_1 as $key_2 => $value_2) {
-								if( $desde == 0 ){
-									$desde = $value_2;
-								}
-								if( $value_2 != 0 && $value_2 < $desde ){
-									$desde = $value_2;
-								}
+					if( is_array($value_1) && count($value_1) >= 4 ){
+						foreach ($value_1 as $key_2 => $value_2) {
+							if( $desde == 0 ){
+								$desde = $value_2;
+							}
+							if( $value_2 != 0 && $value_2 < $desde ){
+								$desde = $value_2;
 							}
 						}
 					}
