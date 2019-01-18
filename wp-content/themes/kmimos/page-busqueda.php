@@ -433,7 +433,7 @@
 							<label class="filtro_check check_geo" for="geo_movil" >
 								<input type="checkbox" id="geo_movil" name="geo" '.$check_geo.' />
 								<div class="check_icon"></div>
-								<div>geolocalización</div>
+								<div>con GPS</div>
 								<div class="check_control"></div>
 							</label>
 
