@@ -153,7 +153,6 @@
 	$HTML .= '
 	</head>
 	<body class="' . join(' ', get_body_class($class)) . ' ' . $reserrvacion_page . '">
-
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -163,6 +162,7 @@
   js.src = \'https://connect.facebook.net/es_LA/sdk/xfbml.customerchat.js\';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, \'script\', \'facebook-jssdk\'));</script>
+
 
 <!-- Your customer chat code -->
 <div class="fb-customerchat"
