@@ -19,6 +19,7 @@
 	);
 
 	$sts = 0;
+
 	if( wp_mail( $email, "KMIMOS ha respondido a tu comentario", $mensaje ) ){
 		$sts = 1;
 		$wpdb->query( "INSERT INTO nps_comentario (pregunta_id, tipo, comentario, code) 
