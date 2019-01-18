@@ -78,11 +78,21 @@ class NPS {
 	}
 
 	public function feedback_byId( $id ){
-		return $this->db->get_results( 'SELECT * FROM nps_respuestas WHERE pregunta = '.$id );
+		return $this->db->get_results( 'SELECT * FROM nps_respuestas WHERE puntos > 0 AND pregunta = '.$id );
 	}
 
 	public function feedback_group_ptos( $id ){
 		return $this->db->get_results( "SELECT puntos, count(id) as cant FROM nps_respuestas WHERE pregunta = $id GROUP BY puntos" );
+	}
+
+protected function format_porcent( $monto ){
+        // if( $monto == 0 || $monto == 100 || $monto == -100 ){
+        if( !is_float( $monto ) ){
+        	$monto = number_format( $monto, 0 );
+        }else{
+        	$monto = number_format( $monto, 2 );
+        }
+		return $monto;
 	}
 
 	public function get_score_nps_detalle( $pregunta_id ){
@@ -97,26 +107,28 @@ class NPS {
        
         if( $feedbacks != false ){
             foreach ( $feedbacks as $row ) {
-                $score_group['total_rows']++;
-                if( $row->puntos > 0 && $row->puntos <= 6 ){
-                    $score_group['detractores']['ptos']++;
-                }else if( $row->puntos == 7 || $row->puntos == 8 ){
-                    $score_group['pasivos']['ptos']++;
-                }else if( $row->puntos == 9 || $row->puntos == 10 ){
-                    $score_group['promoters']['ptos']++;
+            	if( $row->puntos > 0 ){
+	                $score_group['total_rows']++;
+	                if( $row->puntos > 0 && $row->puntos <= 6 ){
+	                    $score_group['detractores']['ptos']++;
+	                }else if( $row->puntos == 7 || $row->puntos == 8 ){
+	                    $score_group['pasivos']['ptos']++;
+	                }else if( $row->puntos == 9 || $row->puntos == 10 ){
+	                    $score_group['promoters']['ptos']++;
+	            	}
                 }
             }
             if( $score_group['detractores']['ptos'] > 0 ){
-                $score_group['detractores']['porcentaje'] =   number_format(($score_group['detractores']['ptos'] * 100) / $score_group['total_rows'] ,2);
+                $score_group['detractores']['porcentaje'] = $this->format_porcent( ($score_group['detractores']['ptos']*100)/$score_group['total_rows'] ) ;
             }
             if( $score_group['pasivos']['ptos'] > 0 ){
-                $score_group['pasivos']['porcentaje'] =   number_format(( $score_group['pasivos']['ptos'] * 100 ) / $score_group['total_rows'] ,2);
+                $score_group['pasivos']['porcentaje'] = $this->format_porcent( ($score_group['pasivos']['ptos']*100)/$score_group['total_rows'] );
             }
             if( $score_group['promoters']['ptos'] > 0 ){
-                $score_group['promoters']['porcentaje'] =   number_format(( $score_group['promoters']['ptos'] * 100 ) / $score_group['total_rows'] ,2);
+                $score_group['promoters']['porcentaje'] = $this->format_porcent( ($score_group['promoters']['ptos']*100)/$score_group['total_rows'] );
             }
 
-            $score_group['score_nps'] = number_format( $score_group['promoters']['porcentaje'] - $score_group['detractores']['porcentaje'], 2 );
+            $score_group['score_nps'] = $this->format_porcent( $score_group['promoters']['porcentaje'] - $score_group['detractores']['porcentaje'] );
         }
 
         return $score_group;

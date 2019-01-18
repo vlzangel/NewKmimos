@@ -121,14 +121,16 @@ class NPS {
        
         if( $feedbacks != false ){
             foreach ( $feedbacks as $row ) {
-                $score_group['total_rows']++;
-                if( $row->puntos > 0 && $row->puntos <= 6 ){
-                    $score_group['detractores']['ptos']++;
-                }else if( $row->puntos == 7 || $row->puntos == 8 ){
-                    $score_group['pasivos']['ptos']++;
-                }else if( $row->puntos == 9 || $row->puntos == 10 ){
-                    $score_group['promoters']['ptos']++;
-                }
+            	if( $row->puntos > 0 ){
+	                $score_group['total_rows']++;
+	                if( $row->puntos > 0 && $row->puntos <= 6 ){
+	                    $score_group['detractores']['ptos']++;
+	                }else if( $row->puntos == 7 || $row->puntos == 8 ){
+	                    $score_group['pasivos']['ptos']++;
+	                }else if( $row->puntos == 9 || $row->puntos == 10 ){
+	                    $score_group['promoters']['ptos']++;
+	                }
+            	}
             }
             if( $score_group['detractores']['ptos'] > 0 ){
                 $score_group['detractores']['porcentaje'] = $this->format_porcent( ($score_group['detractores']['ptos']*100)/$score_group['total_rows'] ) ;
@@ -155,7 +157,7 @@ class NPS {
             'score_nps' => 0,
         ];
 		
-		$feedbacks = $this->db->get_results( "SELECT tipo, count(id) as cant FROM nps_respuestas GROUP BY tipo" );
+		$feedbacks = $this->db->get_results( "SELECT tipo, count(id) as cant FROM nps_respuestas WHERE puntos > 0 GROUP BY tipo" );
 		if( $feedbacks != false ){
 			foreach ($feedbacks as $item) {
 				$score_group[ strtolower($item->tipo) ]['ptos'] = $item->cant;

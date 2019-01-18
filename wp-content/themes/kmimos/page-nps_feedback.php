@@ -32,11 +32,12 @@
 	    }
 	    
 	    if( isset($e) && !empty($e) ){
-			$respuesta_id = $wpdb->get_var( "SELECT id FROM nps_respuestas WHERE email = '{$e}' AND pregunta = ".$encuesta->id );
-			if( $respuesta_id > 0 ){
+			$row = $wpdb->get_row( "SELECT * FROM nps_respuestas WHERE email = '{$e}' AND pregunta = ".$encuesta->id );
+			$respuesta_id = ( isset($row->id) )? $row->id : 0 ; 
+			if( $respuesta_id > 0 && $row->puntos > 0 ){
 				$show_mensaje = '';
 				$show_encuesta= 'hidden';
-			}else{
+			}else{				
 				$tipo_nps = '';
 		    	if( $respuesta > 0 && $respuesta <= 6 ){
 	                $tipo_nps = 'detractores';
@@ -46,8 +47,10 @@
 	                $tipo_nps = 'promoters';
 	            }
 	            $code = md5( $encuesta->id . $e );
-				$sql = "INSERT INTO nps_respuestas ( email, pregunta, puntos, tipo, code ) VALUES ( '{$e}', ".$encuesta->id.", {$respuesta}, '{$tipo_nps}', '{$code}' )";	            				
-		    	$wpdb->query( $sql );
+	            if( !isset($row->id) ){
+					$sql = "INSERT INTO nps_respuestas ( email, pregunta, puntos, tipo, code ) VALUES ( '{$e}', ".$encuesta->id.", {$respuesta}, '{$tipo_nps}', '{$code}' )";	            				
+			    	$wpdb->query( $sql );
+	            }
 				$respuesta_id = $wpdb->get_var( "SELECT id FROM nps_respuestas WHERE email='{$e}' AND pregunta=".$encuesta->id );
 			}
 		}else{

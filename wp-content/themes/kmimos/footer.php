@@ -189,6 +189,8 @@
 
             echo comprimir_styles($HTML);
 
+
+
             echo "</body></html>";
         }
 
