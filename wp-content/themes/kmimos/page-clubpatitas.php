@@ -98,7 +98,7 @@
 			<div>
 				<h3 class="hidden-xs hidden-sm text-left gotham-bold" style="font-weight:bold;"><strong style="color:#0D7AD8;">¡Bienvenido al club<?php echo $usuario_titulo; ?>!</strong></h3>
 
-			 	<p class="text-justify">El club de las patitas felices te recompensa con $150 MXN para que los uses en cualquiera de nuestros servicios. Es muy sencillo, por cada vez que compartas tu código de las patitas felices tu referido obtendrá $150 MXN para utilizarlo en su primera reserva y una vez que complete su reservación a ti se te abonarán tus $150 MXN de crédito en Kmimos. </p>
+			 	<p class="text-justify">El club de las patitas felices te recompensa con $150 MXN para que los uses en cualquiera de nuestros servicios. Es muy sencillo, por cada vez que compartas tu código de las patitas felices tu referido obtendrá <strong>$150 MXN para utilizarlo en su primera reserva</strong> y una vez que complete su reservación a ti se te abonarán tus $150 MXN de crédito en Kmimos. </p>
 			</div>
 			<div class="body-content">
 
@@ -121,7 +121,7 @@
 					    </a>
 					  </div>
 					  <div class="media-body text-left">
-					  	<p>Comparte tu código con tus amigos, familiares, conocidos, etc.. Ellos obtendrán $150 MXN para realizar su primera reserva con Kmimos
+					  	<p>Comparte tu código con tus amigos, familiares, conocidos, etc.. Ellos obtendrán <strong>$150 MXN para realizar su primera reserva</strong> con Kmimos
 						</p>
 					  </div>
 					</div>
@@ -132,7 +132,7 @@
 					    </a>
 					  </div>
 					  <div class="media-body text-left">
-					  	<p>Cada vez que alguien use tu código y complete una reserva con Kmimos recibirás $150 MXN en crédito para que lo uses en servicios de nuestra plataforma. ¡Lo mejor es que son totalmente acumulables!</p>
+					  	<p>Cada vez que alguien use tu código y complete una reserva con Kmimos <strong>recibirás $150 MXN</strong> en crédito para que lo uses en servicios de nuestra plataforma. ¡Lo mejor es que son <strong>totalmente acumulables!</strong></p>
 					  </div>
 					</div>
 

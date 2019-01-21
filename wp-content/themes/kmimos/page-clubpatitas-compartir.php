@@ -56,7 +56,7 @@
 		<section class="col-xs-12 col-sm-12 col-md-7 compartir-section" style="<?php echo $center_content; ?>">
 			<div class="col-md-8 col-md-offset-2">
 				<section clss="text-center" style="padding: 20px 0px!important; ">
-		            <a href="<?php echo get_home_url(); ?>/club-patitas-felices">Como funciona</a>
+		            <a href="<?php echo get_home_url(); ?>/club-patitas-felices">Cómo funciona</a>
 					<span style="padding:0px 10px;">|</span>
 					<a href="<?php echo get_home_url(); ?>/club-patitas-felices/creditos">Ver mis créditos</a>
 				</section>				
@@ -75,10 +75,9 @@
 							<?php echo strtoupper($cupon); ?>
 						</div>
 
-						<p style="font-weight: bold; font-size: 16px;">Hemos enviado tu código a la cuenta de correo regístrada</p>
-						<p>Recuerda, por cada vez que alguien use tu código y complete una reservación con un Cuidador
-						Kmimos <strong>tú ganas $150 MXN</strong> acumulables.</p>
-						<p style="font-weight:bold;font-size:16px;color:#0D7AD8;">¡Más compartes, más ganas! </p>
+						<p style="font-weight: bold; font-size: 16px;">Hemos enviado tu código a la cuenta de correo registrada</p>
+						<p>Recuerda, comparte tu código y cada vez que algún amigo haga su primera reserva con Kmimos <strong>tú ganarás $150 MXN</strong> acumulables.</p>
+						<p style="font-weight:bold;font-size:16px;color:#0D7AD8;">!Más compartes, más ganas!</p>
 
 						<!-- INI Compartir -->
 						<div id="redes-sociales" class="row text-center redes-sociales-hidden" style="margin: 30px 0px 0px 0px; background: #e8e8e8; border-radius: 5px; padding: 10px 0px; ">
