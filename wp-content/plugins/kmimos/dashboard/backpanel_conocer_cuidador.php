@@ -138,6 +138,23 @@ $solicitudes = getSolicitud($desde, $hasta);
 
 				  		$cuidador = merge_phone($cuidador);
 				  		$cliente = merge_phone($cliente);
+
+				  		switch ( strtolower( $solicitud['Estatus'] ) ) {
+
+				  			case 'pending':
+				  				$solicitud['Estatus'] = 'pendiente';
+				  				break;
+
+				  			case 'confirmed':
+				  			case 'publish':
+				  				$solicitud['Estatus'] = 'confirmadas';
+				  				break;
+
+				  			case 'cancelled':
+				  			case 'draft':
+				  				$solicitud['Estatus'] = 'canceladas';
+				  				break;
+				  		}
 				  	?> 
 				    <tr>
 				    	<th class="text-center"><?php echo ++$count; ?></th>
@@ -168,7 +185,7 @@ $solicitudes = getSolicitud($desde, $hasta);
 						<th><?php echo $detalle['servicio']['tipo'];?></th>
 						<th><?php echo $detalle['servicio']['duracion'];?></th>
 
-						<th><?php echo $solicitud['Estatus'];?></th>
+						<th><?php echo $solicitud['Estatus']; ?></th>
 				    </tr>
 			   	<?php } ?>
 			  </tbody>
