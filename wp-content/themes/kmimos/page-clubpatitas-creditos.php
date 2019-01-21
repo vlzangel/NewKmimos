@@ -56,7 +56,7 @@
 		<section class="col-xs-12 col-sm-12 col-md-7 compartir-section" style="<?php echo $center_content; ?>" style="padding-right: 0px!important; padding-left: 0px!important;   ">
 			<div style="width: 100%;">
 				<section class="text-center col-md-6 col-md-offset-3" style="padding: 5% 0px!important; ">
-		            <a href="<?php echo get_home_url(); ?>/club-patitas-felices">Como funciona</a>
+		            <a href="<?php echo get_home_url(); ?>/club-patitas-felices">Cómo funciona</a>
 					<span style="padding:0px 10px;">|</span>
 					<a href="<?php echo get_home_url(); ?>/club-patitas-felices/compartir">Obtener mi código</a>
 					<br>

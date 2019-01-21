@@ -37,7 +37,7 @@
 		</div>
 
 		<p>
-			Recuerda, por cada vez que alguien use tu código y complete una reservación con un Cuidador Kmimos tú ganas $150 MXN acumulables.
+			Recuerda, comparte tu código y cada vez que algún amigo haga su primera reserva con Kmimos tú ganarás <strong>$150 MXN</strong> acumulables.
 		</p>
 		<p>
 			Durante el proceso de reserva para tus mascotas, podr&aacute;s ver tambi&eacute;n tus cr&eacute;ditos. &Eacute;stos se restar&aacute;n autom&aacute;ticamente del costo de tu reservaci&oacute;n <span style="font-weight:bold; color:#6B1C9A; ">¡Podr&aacute;s ahorrar muchisimo!</span>
