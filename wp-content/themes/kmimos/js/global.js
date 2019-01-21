@@ -242,9 +242,11 @@ function logear(){
             },
             function( data ) {
 
+                console.log( data );
+
                 if( is_cpf == 1 ){
                     if( data.CPF == 1 && data.login ){
-                        location.reload();
+                        // location.reload();
                     }else{
                         if( data.CPF == 0 ){
                             data.mes = 'Las credenciales no están registradas en el club';
@@ -258,7 +260,7 @@ function logear(){
                     }
                 }else{
                     if( data.login ){
-                        location.reload();
+                        // location.reload();
                     }else{
                         jQuery('#login_submit').before('<div data-id="alert_login" class="alert alert-danger"><strong>'+data.mes+'</strong></div>');
                         setTimeout(function() {
