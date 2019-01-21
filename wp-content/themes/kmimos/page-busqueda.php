@@ -172,7 +172,7 @@
 	*/
 
 	echo "<pre>";
-		print_r( $_SESSION['busqueda'] );
+		print_r( $_SERVER );
 	echo "</pre>";
 
 	if( $_SESSION['landing_paseos'] == 'yes' ) {
@@ -319,7 +319,7 @@
 						</label>
 					</div>
 					<label class="titulo_ordenamiento">'.$titulo_ordenamiento.'</label>
-					<select name="orderby" class="filtros_ordenamiento">
+					<select id="orderby" name="orderby" class="filtros_ordenamiento">
 						'.$ordenamiento.'
 					</select>
 					<div>
@@ -565,6 +565,12 @@
     	]);
 	}else{
 		$_SESSION["save_uso_banner"] = true;
+	}
+
+	if( $_SERVER["REDIRECT_URL"] == "/busqueda/" ){
+		echo '
+			evento_google_kmimos(\'busqueda\'); evento_fbq_kmimos(\'busqueda\');
+		';
 	}
     
    	get_footer(); 
