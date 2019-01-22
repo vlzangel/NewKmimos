@@ -91,12 +91,12 @@
 								<li class="line"></li><li><span class="number">3</span></li>
 							</ul>
 							<div class="km-title-step">
-								RECARGAR SALDO
+								ADQUIERE TUS CUPONES
 							</div>
 						</div>
 
 						<div class="km-sub-title-step">
-							Recarga saldo para poder realizar solicitudes para conocer cuidadores
+							Adquiere tus cupones para poder conocer a cualquier cuidador
 						</div>
 
 						'.$precios.'

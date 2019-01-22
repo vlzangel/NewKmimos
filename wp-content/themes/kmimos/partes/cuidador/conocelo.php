@@ -50,6 +50,7 @@ if ( !is_user_logged_in() ){
 
 $puede_conocer = false;
 $pagado = false;
+$ocupa = '';
 $saldo_conocer = get_cupos_conocer_registro($user_id);
 if( $saldo_conocer->usos > 0 ){
 	$puede_conocer = true;
@@ -59,14 +60,19 @@ if( $saldo_conocer->usos > 0 ){
 		$metas->show_pago = 0;
 		$metadata = json_encode($metas);
 		$wpdb->query("UPDATE conocer_pedidos SET metadata='{$metadata}' WHERE id = ".$saldo_conocer->id);
+	}else{
+		$cupones = ( $saldo_conocer->usos == 1 ) ? $saldo_conocer->usos." cupón" : $saldo_conocer->usos." cupones";
+		$ocupa = ( $saldo_conocer->usos == 3 ) ? "<br>Ocupa tu primer cupón!" : "";
 	}
 }
 
 $msg_pago = '';
 if( $pagado ){
-	$msg_pago = '
-		<div class="msg_pago">
-			Pago Exitoso!
+	$HTML_CONOCER_REQUISITOS = '
+		<p class="popup-tit" style="text-align: center;">Pago Exitoso!</p>
+		<div style="font-weight: 600; color: #7c169e; font-size: 17px; text-align: center;">
+			Tienes 3 cupones en tu cuenta para conocer cuidadores<br>
+			Ocupa tu primer cupón!
 		</div>
 	';
 }
@@ -77,8 +83,9 @@ $HTML_CONOCER = '
 		<div class="modal-content">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<div class="popup-iniciar-sesion-1">
-				<p class="popup-tit">Solicitud para conocer a <span id="modal-name-cuidador"></span></p>';
+				';
 
+				/*
 				$HTML_CONOCER .= '
 				<div class="pre_requisitos">
 					<p>Para poder conocer al cuidador primero tienes que:</p>
@@ -88,6 +95,7 @@ $HTML_CONOCER = '
 						<li>'.$btn_mascota['icon'].' Completar tu '.$btn_mascota['btn'].' en tu perfil</li>
 					</ol>
 				</div>'.$msg_pago;
+				*/
 
 				if( count($mascotas)>0 && $validar_perfil_completo ){
 					if( $puede_conocer == false ){
@@ -97,32 +105,60 @@ $HTML_CONOCER = '
 						$pendientes_str = '';
 						if( $pendientes != null ){
 							$metadata = json_decode($pendientes->metadata);
-							$pendientes_str = '
-								<div style="padding: 20px 0px 0px; font-weight: 600; color: #7c169e;">
-									Usted tiene un pago en tienda pendiente, debe dirigirse a su tienda de conveniencia más cercana para realizar el pago
-									y así tener solicitudes para conocer disponibles.
+							$HTML_CONOCER .= '
+								<div style="padding: 20px 0px 0px; font-weight: 600; color: #7c169e; font-size: 17px; text-align: center;">
+									Ya casi acabamos! solo necesitas pagar en una tienda de conveniencia para tener tus cupones disponibles
 
-									<div style="text-align: center; padding: 10px 0px 0px;">
-										<a href="'.$metadata->pdf.'" target="_blank" class="boton_pdf_conocer">Descargar comprobante de pago</a>
+									<div style="text-align: center; padding: 30px 0px 0px;">
+										<a href="'.$metadata->pdf.'" target="_blank" class="km-btn-basic" style="text-transform: uppercase; font-weight: 600;">Descargar comprobante de pago</a>
 									</div>
+								</div>
+							';
+						}else{
+							$HTML_CONOCER .= '
+								<p class="popup-tit">
+									Conoce al cuidador <span id="modal-name-cuidador"></span> antes de Reservar su servicio
+								</p>
+								<div class="pre_requisitos">
+									<p>Para poder conocer al cuidador primero tienes que:</p>
+									<ul>
+										<li>Completa tu perfil y registra a tus mascotas</li>
+										<li>Adquiere por $30 pesos, 3 cupones para conocer a cualquier cuidador*</li>
+										<li>Solicita tu cita con tu cuidador y posteriormente reserva.</li>
+									</ul>
+								</div>
+
+								<input name="post_id" type="hidden" value="">
+
+								<p style="text-align: justify;">
+									*Al adquirir el paquete de conocer cuidador de $30 pesos, tendrás la opción de escoger 3 cuidadores en un lapso de 3 meses máximo, y en caso de reservar con alguno de esos 3 cuidadores tus servicios para tu peludo, te bonificaremos esos $30 pesos en la reservación o te lo reembolsaremos en efectivo.
+								</p>
+								<p style="text-align: justify;">
+									En caso de que el cuidador cancele la solicitud de conocerte o la reserva, se te regresará tu saldo a favor para que tengas la opción de conocer a otro cuidador disponible. Si tu cancelas la solicitud para conocer al cuidador, se tomará esa cancelación a cuenta del paquete que contrataste.
+								</p>
+
+								'.$pendientes_str.'
+
+								<div style="margin-top: 50px;">
+									<span id="recargar_saldo" class="km-btn-basic" style="text-transform: uppercase; font-weight: 600;">Adquirir solicitudes</span>
+								</div> 
+							';
+						}
+
+					}else{
+						
+						if( !$pagado ){
+							$HTML_CONOCER_REQUISITOS = '
+								<p class="popup-tit">
+									Conoce al cuidador <span id="modal-name-cuidador"></span> antes de Reservar su servicio
+								</p>
+								<div style="font-weight: 600; color: #7c169e; font-size: 17px; text-align: center;">
+									Tienes '.$cupones.' en tu cuenta para conocer cuidadores
+									'.$ocupa.'
 								</div>
 							';
 						}
 
-						$HTML_CONOCER .= '
-							<input name="post_id" type="hidden" value="">
-
-							'.$pendientes_str.'
-
-							<div style="padding: 20px 0px; font-weight: 600;">
-								Pasos y beneficios del nuevo proceso aquí
-							</div>
-
-							<div class="">
-								<span id="recargar_saldo" class="km-btn-basic" style="text-transform: uppercase; font-weight: 600;">Adquirir solicitudes</span>
-							</div> 
-						';
-					}else{
 						$HTML_CONOCER .= $HTML_CONOCER_REQUISITOS.'
 						<form id="conoce_cuidador" style="padding:0px;" method="post">
 
@@ -199,7 +235,7 @@ $HTML_CONOCER = '
 										<small data-error="service_end" style="display: none;">Debes ingresar una fecha</small>
 									</div>
 									</br>							
-									<a href="javascript:;" id="btn_enviar_conocer" data-id="enviar_datos" class="km-btn-basic">ENVIAR SOLICITUD</a>
+									<a href="javascript:;" id="btn_enviar_conocer" data-id="enviar_datos" class="km-btn-basic" style="margin-bottom: 0px !important;">ENVIAR SOLICITUD</a>
 								</div>
 							</div>
 						</form>';
