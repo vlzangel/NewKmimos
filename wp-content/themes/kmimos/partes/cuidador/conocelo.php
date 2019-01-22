@@ -61,7 +61,7 @@ if( $saldo_conocer->usos > 0 ){
 		$metadata = json_encode($metas);
 		$wpdb->query("UPDATE conocer_pedidos SET metadata='{$metadata}' WHERE id = ".$saldo_conocer->id);
 	}else{
-		$cupones = ( $saldo_conocer->usos == 1 ) ? $saldo_conocer->usos." cupón" : $saldo_conocer->usos." créditos";
+		$cupones = ( $saldo_conocer->usos == 1 ) ? $saldo_conocer->usos." crédito" : $saldo_conocer->usos." créditos";
 		$ocupa = ( $saldo_conocer->usos == 3 ) ? "<br>Ocupa tu primer crédito!" : "";
 	}
 }
