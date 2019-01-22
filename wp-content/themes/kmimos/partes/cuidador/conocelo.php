@@ -61,8 +61,8 @@ if( $saldo_conocer->usos > 0 ){
 		$metadata = json_encode($metas);
 		$wpdb->query("UPDATE conocer_pedidos SET metadata='{$metadata}' WHERE id = ".$saldo_conocer->id);
 	}else{
-		$cupones = ( $saldo_conocer->usos == 1 ) ? $saldo_conocer->usos." cupón" : $saldo_conocer->usos." cupones";
-		$ocupa = ( $saldo_conocer->usos == 3 ) ? "<br>Ocupa tu primer cupón!" : "";
+		$cupones = ( $saldo_conocer->usos == 1 ) ? $saldo_conocer->usos." cupón" : $saldo_conocer->usos." créditos";
+		$ocupa = ( $saldo_conocer->usos == 3 ) ? "<br>Ocupa tu primer crédito!" : "";
 	}
 }
 
@@ -71,7 +71,7 @@ if( $pagado ){
 	$HTML_CONOCER_REQUISITOS = '
 		<p class="popup-tit" style="text-align: center;">Pago Exitoso!</p>
 		<div style="font-weight: 600; color: #7c169e; font-size: 17px; text-align: center;">
-			Tienes 3 cupones en tu cuenta para conocer cuidadores<br>
+			Tienes 3 créditos en tu cuenta para conocer cuidadores<br>
 			Ocupa tu primer cupón!
 		</div>
 	';
@@ -107,7 +107,7 @@ $HTML_CONOCER = '
 							$metadata = json_decode($pendientes->metadata);
 							$HTML_CONOCER .= '
 								<div style="padding: 20px 0px 0px; font-weight: 600; color: #7c169e; font-size: 17px; text-align: center;">
-									Ya casi acabamos! solo necesitas pagar en una tienda de conveniencia para tener tus cupones disponibles
+									Ya casi acabamos! solo necesitas pagar en una tienda de conveniencia para tener tus créditos disponibles
 
 									<div style="text-align: center; padding: 30px 0px 0px;">
 										<a href="'.$metadata->pdf.'" target="_blank" class="km-btn-basic" style="text-transform: uppercase; font-weight: 600;">Descargar comprobante de pago</a>
@@ -123,7 +123,7 @@ $HTML_CONOCER = '
 									<p>Para poder conocer al cuidador primero tienes que:</p>
 									<ul>
 										<li>Completa tu perfil y registra a tus mascotas</li>
-										<li>Adquiere por $30 pesos, 3 cupones para conocer a cualquier cuidador*</li>
+										<li>Adquiere por $30 pesos, 3 créditos para conocer a cualquier cuidador*</li>
 										<li>Solicita tu cita con tu cuidador y posteriormente reserva.</li>
 									</ul>
 								</div>

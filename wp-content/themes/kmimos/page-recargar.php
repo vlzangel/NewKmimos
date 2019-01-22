@@ -91,12 +91,12 @@
 								<li class="line"></li><li><span class="number">3</span></li>
 							</ul>
 							<div class="km-title-step">
-								ADQUIERE TUS CUPONES
+								ADQUIERE TUS CRÉDITOS
 							</div>
 						</div>
 
 						<div class="km-sub-title-step">
-							Adquiere tus cupones para poder conocer a cualquier cuidador
+							Adquiere tus créditos para poder conocer a cualquier cuidador
 						</div>
 
 						'.$precios.'
