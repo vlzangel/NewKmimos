@@ -22,6 +22,12 @@ jQuery( document ).ready(function() {
     }
 
     jQuery.post( RAIZ+"c.php", {}, function(e){} );
+
+    console.log( window.devicePixelRatio );
+
+    if( window.devicePixelRatio != 1 ){
+        alert("Hemos detectado que tienes zoom en tu navegador. Para ver la página correctamente ajústalo al 100%.");
+    }
     
 });
 
