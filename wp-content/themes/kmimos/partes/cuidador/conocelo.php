@@ -112,6 +112,10 @@ $HTML_CONOCER = '
 									<div style="text-align: center; padding: 30px 0px 0px;">
 										<a href="'.$metadata->pdf.'" target="_blank" class="km-btn-basic" style="text-transform: uppercase; font-weight: 600;">Descargar comprobante de pago</a>
 									</div>
+
+									<div style="margin-top: 50px;">
+										<span id="recargar_saldo" class="km-btn-basic" style="text-transform: uppercase; font-weight: 600;">Generar otra solicitud de pago</span>
+									</div> 
 								</div>
 							';
 						}else{
