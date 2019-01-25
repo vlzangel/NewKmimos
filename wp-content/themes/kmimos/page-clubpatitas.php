@@ -98,7 +98,9 @@
 			<div>
 				<h3 class="hidden-xs hidden-sm text-left gotham-bold" style="font-weight:bold;"><strong style="color:#0D7AD8;">¡Bienvenido al club<?php echo $usuario_titulo; ?>!</strong></h3>
 
-			 	<p class="text-justify">El club de las patitas felices te recompensa con $150 MXN para que los uses en cualquiera de nuestros servicios. Es muy sencillo, por cada vez que compartas tu código de las patitas felices tu referido obtendrá <strong>$150 MXN para utilizarlo en su primera reserva</strong> y una vez que complete su reservación a ti se te abonarán tus $150 MXN de crédito en Kmimos. </p>
+			 	<p class="text-justify">
+					El club de las patitas felices te recompensa con $150 MXN para que los uses en cualquiera de nuestros servicios. Es muy sencillo, por cada vez que compartas tu código de las patitas felices, tu referido obtendrá <strong>$150 MXN para utilizarlo en su primera reserva</strong> y una vez que complete su reservación a ti se te abonarán tus $150 MXN de crédito en Kmimos. 
+			 	</p>
 			</div>
 			<div class="body-content">
 
