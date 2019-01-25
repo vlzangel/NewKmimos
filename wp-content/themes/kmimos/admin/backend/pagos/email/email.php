@@ -8,8 +8,6 @@
 
 	// Desglose y detalle de transaccion
 		$desglose_detalle = '';
-		
-print_r($list_pagos_id);
 
 		$total = 0;
 		if( isset($list_pagos_id) && count($list_pagos_id) > 0 ){
@@ -64,4 +62,4 @@ print_r($list_pagos_id);
 			[]
 		);
 		// wp_mail( $cuidador->email, "Notificación de pago", $mensaje );
-		wp_mail( 'i.cocchini@kmimos.la', "Notificación de pago", $mensaje );
+		wp_mail( 'italococchini@kmimos.la', "Notificación de pago", $mensaje );
