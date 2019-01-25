@@ -102,6 +102,7 @@ $openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f
 					
 					$db->query($sql);
 					$row_id = $db->insert_id();
+					$list_pagos_id = [];
 					if( $row_id > 0 ){
 
 						// Parametros solicitud
@@ -114,23 +115,16 @@ $openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f
 		                            'holder_name' => utf8_encode($banco['titular']),
 		                        ),
 			                'description' => 'Pago #'.$row_id
-
 		                    );
 		                //  Enviar solicitud a OpenPay            
 		                    try{
 		                        $payout = $openpay->payouts->create($payoutData);
 		                        $estatus = 'Autorizado';
-print_r($payout->status);
 		                        if( $payout->status == 'in_progress' ){
 		                            $observaciones = '';
 		                            $estatus = 'in_progress';
 		                            $openpay_id = $payout->id;	
-
 		                            $list_pagos_id[] = $row_id;
-
-									$pago_parcial = false;
-									include($tema.'/admin/backend/pagos/email/email.php');
-echo 'paso email';
 		                        }else{
 		                            $observaciones = $payout->status;
 		                        }
@@ -158,7 +152,7 @@ echo 'paso email';
 		                        }
 		                    }
 		                
-		                //  Actualizar registro
+		               	//  Actualizar registro
 		                    $wpdb->query("
 		                    	UPDATE cuidadores_pagos 
 		                    	SET 
@@ -167,6 +161,22 @@ echo 'paso email';
 		                    		openpay_id='".$openpay_id."' 
 		                    	WHERE id = " . $row_id 
 		                   	);
+		                   	
+		                // Enviar email
+		                    if( $estatus == 'in_progress' ){
+			                    try {
+									$pago_parcial = false;
+									include($tema.'/admin/backend/pagos/email/email.php');
+			                    } catch (Exception $e) {
+			                    	$info_error = [
+			                    		'Datos' => $payoutData,
+			                    		'Pagos' => $payout,
+			                    		'Observaciones' => $observaciones,
+			                    		'Mensaje' => $e->getMessage(),
+			                    	];
+	                                wp_mail( 'italococchini@gmail.com', "Notificación de pago - Error en mensaje", json_encode($info_error) );
+			                    }
+		                    }
 
 					}
 

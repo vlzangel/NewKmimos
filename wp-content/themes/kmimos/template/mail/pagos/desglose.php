@@ -6,7 +6,7 @@
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #FFF; 
-        background-color: #007bd3;
+        background-color: #00d2c6;
         font-weight: 600;">
         DATOS DE TRANSFERENCIA
     </div>
@@ -24,9 +24,9 @@
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #FFF; 
-        background-color: #007bd3;
+        background-color: #00d2c6;
         font-weight: 600;">
-	DETALLE DE PAGO
+	DETALLE DE TRANSFERENCIA
 </div>
 <br>
 <table width="100%" style="width: 100%;">
