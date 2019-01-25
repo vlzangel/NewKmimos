@@ -73,6 +73,7 @@
 						 
 						<p>*Los créditos disponibles No son intercambiables por dinero en efectivo. válido dentro de la plataforma Kmimos. Aplican para cualquier servicio ofrecido por tu Cuidador Favorito. </p>
 						 
+						<a href="<?php echo get_home_url(); ?>/busqueda" class="btn btn-lg" style="color: #fff!important; width: 100%; margin: 5px 0px; padding: 10px; background: #7D169E; border:1px solid #7D169E; cursor: pointer;">Usar cr&eacute;ditos ahora</a>
 					</div>
 
 					<div class="clear"></div>
