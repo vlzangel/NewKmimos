@@ -56,14 +56,12 @@
     $headers_admins = array(
         'BCC: vlzangel91@gmail.com',
         'BCC: chaudaryy@gmail.com',
-        /*
         'BCC: e.viera@kmimos.la',
         'BCC: a.vera@kmimos.la',
-        */
     );
     
-    // wp_mail( "soporte@openpay.mx", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
-    wp_mail( "a.veloz@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
+    wp_mail( "soporte@openpay.mx", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
+    // wp_mail( "a.veloz@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
 
     /*
     wp_mail( "vlzangel91@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Angel
