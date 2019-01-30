@@ -62,7 +62,8 @@
         */
     );
     
-    wp_mail( "soporte@openpay.mx", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
+    // wp_mail( "soporte@openpay.mx", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
+    wp_mail( "a.veloz@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
 
     /*
     wp_mail( "vlzangel91@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Angel
