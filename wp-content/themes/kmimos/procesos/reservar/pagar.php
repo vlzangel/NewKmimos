@@ -642,6 +642,8 @@
 					    	"cantidad" => $cupos_a_decrementar
 					    ), "+");
 
+						sleep(1);
+
 						include(__DIR__."/emails/index.php");
 
 					}else{
