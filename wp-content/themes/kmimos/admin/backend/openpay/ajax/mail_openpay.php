@@ -52,14 +52,25 @@
         $phpmailer->From = "desarrollokmimos@gmail.com";
         $phpmailer->FromName = "Soporte Kmimos";
     }
-    
-    wp_mail( "soporte@openpay.mx", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Soporte de Openpay
 
+    $headers_admins = array(
+        'BCC: vlzangel91@gmail.com',
+        'BCC: chaudaryy@gmail.com',
+        /*
+        'BCC: e.viera@kmimos.la',
+        'BCC: a.vera@kmimos.la',
+        */
+    );
+    
+    wp_mail( "soporte@openpay.mx", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
+
+    /*
     wp_mail( "vlzangel91@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Angel
     wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Yrcel
 
     wp_mail( "e.viera@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Eyderman
     wp_mail( "a.vera@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Alfredo
+    */
 
     // print_r( $info );
 ?>
