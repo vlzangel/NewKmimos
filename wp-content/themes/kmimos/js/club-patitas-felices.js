@@ -54,6 +54,7 @@ jQuery(document).ready( function (){
 			  function(d){
 			       	console.log(d);
 					if(d.sts == 1){
+						evento_google_kmimos('CPF_Registro');
 						location.href = RAIZ+'club-patitas-felices/compartir';
 					}else{
 						btn.html('Genera tu código aquí');

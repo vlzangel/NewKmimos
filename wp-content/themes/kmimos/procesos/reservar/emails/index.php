@@ -348,6 +348,10 @@
 				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
 	    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
 				include("confirmacion.php");
+				
+				// **********************************
+				// BEGIN Club de las Patitas Felices
+				// **********************************
 				$count_reservas = $wpdb->get_var( "SELECT  
 							count(ID) as cant
 						FROM wp_posts
@@ -459,7 +463,9 @@
 				   		}
 					}
 				}
-
+				// **********************************
+				// END Club de las Patitas Felices
+				// **********************************
 
 			}
 
