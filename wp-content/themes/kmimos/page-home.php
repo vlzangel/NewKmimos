@@ -27,6 +27,8 @@
     $user_id = get_current_user_id();
     
     $HTML = '';
+    $cuidadores_destacados = '';
+
 	if( $_SESSION["wlabel"] == "petco" ){
 		$HTML .= '
 			<!-- Adform Tracking Code BEGIN -->
@@ -45,6 +47,54 @@
 			<!-- Adform Tracking Code END -->
 		';
 	}
+
+		/*
+			img
+			nombre
+			link
+			ranking
+			msg
+			experiencia
+		*/
+		$destacados = get_destacados_home();
+
+		echo "<pre>";
+			print_r($destacados);
+		echo "</pre>";
+
+		$desta_str = '';
+		foreach ($destacados as $key => $cuidador) {
+			$desta_str .= '
+				<div class="destacados_item">
+					<div class="img_destacado" style="background-image: url('.$cuidador->img.');"></div>
+					<div class="datos_destacado_containder">
+						<div class="datos_top_destacado_containder">
+							<div class="avatar_destacado" style="background-image: url('.$cuidador->img.');"></div>
+							<div class="nombre_destacado">
+								<a href="'.$cuidador->link.'">'.$cuidador->nombre.'</a>
+								<span>'.$cuidador->experiencia.'</span>
+							</div>
+							<div class="ranking_destacado">'.$cuidador->ranking.'</div>
+						</div>
+						<div class="msg_destacado_containder">
+							"'.$cuidador->msg.'"
+						</div>
+					</div>
+					<a href="'.$cuidador->link.'" class="boton">Ver perfil</a>
+				</div>
+			';
+		}
+
+    	$cuidadores_destacados = '
+    	<div class="seccion_destacados">
+    		<h2>Conoce a los mejores <span>cuidadores kmimos</span></h2>
+    		<div class="destacados_container">
+    			<div class="destacados_box">
+    				'.$desta_str.'
+    			</div>
+    		</div>
+    	</div>';
+
 
 	if( !is_user_logged_in() ){
 		$btn_registro = '<div data-target="#popup-registrarte" role="button" class="boton boton_border_morado">Regístrate</div>';
@@ -315,7 +365,7 @@
 			</div>	
 		</div>';
 
-		if( time() > strtotime("2018-11-16 00:00:00") ){
+		if( time() > strtotime("2018-11-16 00:00:00") && $cuidadores_destacados == '' ){
 
 			$HTML .= '
 				<a 
@@ -326,6 +376,8 @@
 				</a>
 			';
 		}
+
+		$HTML .= $cuidadores_destacados;
 
 		$HTML .= '
 		<!-- BENEFICIOS -->
