@@ -37,7 +37,7 @@ $openpay = Openpay::getInstance('mbkjg8ctidvv84gb8gan', 'sk_883157978fc44604996f
     		$total = 0;
 
     		// Metadatos
-	    		$cuidador = $db->get_row("SELECT user_id, nombre, apellido, banco FROM cuidadores WHERE user_id = {$pago->user_id}");
+	    		$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$pago->user_id}");
 	    		$banco = unserialize($cuidador->banco);
 	    		$token = serialize($pago->detalle);
 			

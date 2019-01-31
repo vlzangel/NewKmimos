@@ -305,6 +305,21 @@
 
 			        function evento_google_kmimos(evento){
 			        	switch ( evento ) {
+			        		case "CPF_Compartir_pdf":
+								ga("send", "event", "wlabel", "click", "km_tracking_cpf_compartir_pdf", "1");
+								break;
+							case "CPF_Registro":
+								ga("send", "event", "wlabel", "click", "km_tracking_cpf_registro", "1");
+								break;
+							case "CPF_Compartir_twitter":
+								ga("send", "event", "wlabel", "click", "km_tracking_cpf_compartir_twitter", "1");
+								break;
+							case "CPF_Compartir_facebook":
+								ga("send", "event", "wlabel", "click", "km_tracking_cpf_compartir_facebook", "1");
+								break;
+							case "CPF_Compartir_whatsapp":
+								ga("send", "event", "wlabel", "click", "km_tracking_cpf_compartir_whatsapp", "1");
+								break;
 							case "paseos":
 								ga("send", "event", "wlabel", "click", "km_tracking_code_boton_paseos", "1");
 							break;

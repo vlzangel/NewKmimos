@@ -177,6 +177,16 @@
     </div>
   </div>
 </div>	
+
+<script type="text/javascript">
+<?php session_start();
+if( !isset($_SESSION['CPF_Track']) ) {$_SESSION['CPF_Track'] = 1; ?>
+	evento_google_kmimos('CPF_Home');
+<?php }else{ 
+	echo '// $_SESSION['CPF_Track'] = '.$_SESSION['CPF_Track'];
+} ?>
+</script>
+
 <?php 
 	$no_display_footer = true;
  	get_footer(); 

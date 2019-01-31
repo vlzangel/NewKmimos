@@ -17,7 +17,7 @@
 				$detalle_pago = unserialize($row->detalle);
 				if( !empty($detalle_pago) ){
 					foreach ($detalle_pago as $r) {
-						$descripcion = "Pago reserva #".$r['reserva'];
+						$descripcion = "Reserva #".$r['reserva'];
 						if( isset($r['descripcion']) && !empty($r['descripcion']) ){
 							$descripcion = $r['descripcion'];
 						} 
@@ -61,5 +61,6 @@
 			$mensaje, 
 			[]
 		);
+		
 		// wp_mail( $cuidador->email, "Notificación de pago", $mensaje );
-		wp_mail( 'italococchini@kmimos.la', "Notificación de pago", $mensaje );
+		wp_mail( 'italococchini@gmail.com',  "Notificación de pago", $mensaje);
