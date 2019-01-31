@@ -2,6 +2,33 @@
 	
 	include dirname(__FILE__).'/reconfiguracion.php';
 
+	/* DESTACADOS HOME */
+
+		function get_destacados_home(){
+			global $wpdb;
+			$destacados = $wpdb->get_results("SELECT * FROM cuidadores WHERE activo = 1 AND atributos LIKE '%destacado_home\";s:1:\"1%' ");
+			$resultado = [];
+			if( is_array($destacados) ){
+				foreach ($destacados as $key => $cuidador) {
+					$atributos = unserialize($cuidador->atributos);
+					$anios_exp = $cuidador->experiencia;
+                    if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
+                    $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
+					$resultado[] = (object)[
+						"img" => kmimos_get_foto($cuidador->user_id),
+						"nombre" => $cuidador->titulo,
+						"link" => get_home_url()."/petsitters/".$cuidador->user_id,
+						"ranking" => kmimos_petsitter_rating($cuidador->id_post),
+						"msg" => $atributos["msg_destacado"],
+						"experiencia" => $expe
+					];
+				}
+			}
+			return $resultado;
+		}
+
+	/* OTROS */
+
 	function quitar_cupos_conocer($user_id){
 		global $wpdb;
 		$cupos = get_cupos_conocer_registro($user_id);

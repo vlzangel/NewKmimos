@@ -10,6 +10,14 @@
 	    background-color: transparent !important;
 	}
 
+	h2 {
+	    color: #000 !important;
+	    font-weight: 600 !important;
+	    font-family: Gotham-Pro-Bold !important; 
+	    text-transform: uppercase !important;
+	    font-size: 18px !important;
+	}
+
 /* BANNER */
 
 	#banner_home{
@@ -409,6 +417,130 @@
 	    box-sizing: border-box;
 	    font-family: Gotham-Pro-Bold;
 	    outline: none;
+	}
+
+/* DESTACADOS */
+
+	.seccion_destacados h2{
+		text-transform: none !important;	
+		margin: 40px auto;
+		text-align: center;
+		font-size: 24px !important;
+	}
+
+	.seccion_destacados h2 span {
+		color: #00d2c6;
+	}
+
+	.destacados_container{
+		height: 450px; 
+	}
+
+	.destacados_box{
+		position:relative;
+		width: 1200px;
+		height: 100%; 
+		margin: 0px auto;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	.destacados_item{
+		display: inline-block;
+		width: 33.33333334%;
+		height: 100%; 
+		float: left;
+		box-sizing: border-box;
+		padding: 0px 20px;
+	}
+
+	.img_destacado {
+	    height: 245px;
+	    background-position: center;
+	    background-size: cover;
+	}
+
+	.datos_top_destacado_containder {
+	    padding: 5px 0px;
+	    overflow: hidden;
+	}
+
+	.avatar_destacado {
+	    background-position: center;
+	    background-size: cover;
+	    height: 40px;
+	    width: 40px;
+	    border-radius: 50%;
+	    display: inline-block;
+	    float: left;
+	}
+
+	.nombre_destacado {
+	    float: left;
+	    padding: 4px 0px 4px 10px; 
+	}
+
+	.nombre_destacado a {
+	    text-decoration: none;
+	    font-size: 18px;
+	    font-family: Gotham-Pro-Regular;
+	    font-weight: 600;
+	    text-transform: uppercase;
+	    display: block;
+	    line-height: 1;
+	    text-align: left;
+	}
+
+	.nombre_destacado span {
+	    display: block;
+	    font-weight: 600;
+	}
+
+	.datos_destacado_containder {
+	    border: solid 1px #7abab7;
+	    border-top: 0px;
+	    border-radius: 0px 0px 25px 25px;
+	    background: #FFF;
+	    padding: 10px;
+	}
+
+	.destacados_item {
+	    text-align: center;
+	}
+
+	.destacados_item > a {
+	    display: inline-block;
+	    padding: 10px;
+	    background: #00d2c6;
+	    color: #FFF !important;
+	    width: 65%;
+	    margin: 10px 0px;
+	    text-align: center;
+	    font-family: Gotham-Pro-Bold;
+	    text-decoration: none !important;
+	}
+
+	.msg_destacado_containder {
+	    padding: 5px 10px 5px 50px;
+	    text-align: justify;
+		white-space: normal;
+	}
+
+	.ranking_destacado {
+	    float: right;
+	    padding-top: 8px;
+	}
+
+	.km-ranking a {
+		width: 25px !important;
+	    height: 15px !important;
+	    background-size: 25px 12px !important;
+		float: right !important;	
+	    background-image: url(../img/HOME/SVG/WLABEL/calificacion_individual_vacia.svg) !important;
+	}
+
+	.km-ranking a.active {
+	    background-image: url(../img/HOME/SVG/WLABEL/calificacion_individual.svg) !important;
 	}
 
 /* BENEFICIOS */
