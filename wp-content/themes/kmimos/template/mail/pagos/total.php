@@ -23,13 +23,13 @@
             color: #000000; 
             text-align: left; 
         '>
-            Tu solicitud de pago fue procesada por <strong>$[monto]</strong>.
+            Le informamos que le fue enviada una Transferencia interbancaria a cuenta de cheques/ahorro, bajo las siguientes condiciones.
         </div>
 
 	    <div style='display: block; margin-bottom: 8px; text-align: left;'>
 	    	[desglose]
 	    </div>
-
+        <small style='font-size:10px;'>Este correo constituye sólo una referencia de los términos en que se realizó la operación en base al saldo que el usuario tiene como "Disponible" para retiro en su cuenta registrada en www.kmimos.com.mx. Esta operación no con lleva bajo ningún concepto algún pago relacionado a algún servicios que el usuario haya prestado a Kmimos SAPI de CV.</small>
 	</div>
 
 </div>
