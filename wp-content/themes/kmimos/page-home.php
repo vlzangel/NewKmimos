@@ -46,21 +46,10 @@
 			</noscript>
 			<!-- Adform Tracking Code END -->
 		';
-	}
 
-		/*
-			img
-			nombre
-			link
-			ranking
-			msg
-			experiencia
-		*/
+		/* DESTACADOS */
+		
 		$destacados = get_destacados_home();
-
-		echo "<pre>";
-			print_r($destacados);
-		echo "</pre>";
 
 		$desta_str = '';
 		foreach ($destacados as $key => $cuidador) {
@@ -90,10 +79,13 @@
     		<h2>Conoce a los mejores <span>cuidadores kmimos</span></h2>
     		<div class="destacados_container">
     			<div class="destacados_box">
-    				'.$desta_str.'
+	    			<div>
+	    				'.$desta_str.'
+	    			</div>
     			</div>
     		</div>
     	</div>';
+	}
 
 
 	if( !is_user_logged_in() ){

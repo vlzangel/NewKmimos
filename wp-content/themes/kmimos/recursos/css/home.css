@@ -426,6 +426,7 @@
 		margin: 40px auto;
 		text-align: center;
 		font-size: 24px !important;
+		min-height: 75px;
 	}
 
 	.seccion_destacados h2 span {
@@ -433,12 +434,12 @@
 	}
 
 	.destacados_container{
-		height: 450px; 
+		height: 420px; 
 	}
 
 	.destacados_box{
 		position:relative;
-		width: 1200px;
+		width: 1000px;
 		height: 100%; 
 		margin: 0px auto;
 		overflow: hidden;
@@ -455,7 +456,7 @@
 	}
 
 	.img_destacado {
-	    height: 245px;
+	    height: 200px;
 	    background-position: center;
 	    background-size: cover;
 	}
@@ -482,7 +483,7 @@
 
 	.nombre_destacado a {
 	    text-decoration: none;
-	    font-size: 18px;
+	    font-size: 14px;
 	    font-family: Gotham-Pro-Regular;
 	    font-weight: 600;
 	    text-transform: uppercase;
@@ -494,6 +495,7 @@
 	.nombre_destacado span {
 	    display: block;
 	    font-weight: 600;
+	    font-size: 11px;
 	}
 
 	.datos_destacado_containder {
@@ -524,6 +526,7 @@
 	    padding: 5px 10px 5px 50px;
 	    text-align: justify;
 		white-space: normal;
+		min-height: 75px;
 	}
 
 	.ranking_destacado {
@@ -532,9 +535,9 @@
 	}
 
 	.km-ranking a {
-		width: 25px !important;
-	    height: 15px !important;
-	    background-size: 25px 12px !important;
+		width: 17px !important;
+	    height: 9px !important;
+	    background-size: 17px 9px !important;
 		float: right !important;	
 	    background-image: url(../img/HOME/SVG/WLABEL/calificacion_individual_vacia.svg) !important;
 	}
