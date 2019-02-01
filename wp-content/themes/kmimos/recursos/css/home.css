@@ -426,7 +426,6 @@
 		margin: 40px auto;
 		text-align: center;
 		font-size: 24px !important;
-		min-height: 75px;
 	}
 
 	.seccion_destacados h2 span {
@@ -435,22 +434,33 @@
 
 	.destacados_container{
 		height: 420px; 
+		display: table;
+		margin: 0px auto;
 	}
 
 	.destacados_box{
-		position:relative;
-		width: 1000px;
-		height: 100%; 
-		margin: 0px auto;
-		overflow: hidden;
+		position: relative;
+	    overflow: hidden;
+	    width: 1000px;
+	    box-sizing: border-box;
+	    display: table-cell;
+	    vertical-align: top;
+	}
+
+	.destacados_box > div {
+		height: 100%;
 		white-space: nowrap;
+		position: relative;
+		display: block;
+
+		left: 0%;
 	}
 
 	.destacados_item{
+		position: relative;
 		display: inline-block;
 		width: 33.33333334%;
 		height: 100%; 
-		float: left;
 		box-sizing: border-box;
 		padding: 0px 20px;
 	}

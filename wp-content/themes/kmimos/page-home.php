@@ -58,25 +58,24 @@
 
 		$desta_str = '';
 		foreach ($destacados as $key => $cuidador) {
-			$desta_str .= '
-				<div class="destacados_item">
-					<div class="img_destacado" style="background-image: url('.$cuidador->img.');"></div>
-					<div class="datos_destacado_containder">
-						<div class="datos_top_destacado_containder">
-							<div class="avatar_destacado" style="background-image: url('.$cuidador->img.');"></div>
-							<div class="nombre_destacado">
-								<a href="'.$cuidador->link.'">'.$cuidador->nombre.'</a>
-								<span>'.$cuidador->experiencia.'</span>
-							</div>
-							<div class="ranking_destacado">'.$cuidador->ranking.'</div>
-						</div>
-						<div class="msg_destacado_containder">
-							"'.$cuidador->msg.'"
-						</div>
-					</div>
-					<a href="'.$cuidador->link.'" class="boton">Ver perfil</a>
-				</div>
-			';
+			$desta_str .= 
+				'<div class="destacados_item">'.
+					'<div class="img_destacado" style="background-image: url('.$cuidador->img.');"></div>'.
+					'<div class="datos_destacado_containder">'.
+						'<div class="datos_top_destacado_containder">'.
+							'<div class="avatar_destacado" style="background-image: url('.$cuidador->img.');"></div>'.
+							'<div class="nombre_destacado">'.
+								'<a href="'.$cuidador->link.'">'.$cuidador->nombre.'</a>'.
+								'<span>'.$cuidador->experiencia.'</span>'.
+							'</div>'.
+							'<div class="ranking_destacado">'.$cuidador->ranking.'</div>'.
+						'</div>'.
+						'<div class="msg_destacado_containder">'.
+							'"'.$cuidador->msg.'"'.
+						'</div>'.
+					'</div>'.
+					'<a href="'.$cuidador->link.'" class="boton">Ver perfil</a>'.
+				'</div>';
 		}
 
     	$cuidadores_destacados = '
@@ -84,9 +83,7 @@
     		<h2>Conoce a los mejores <span>cuidadores kmimos</span></h2>
     		<div class="destacados_container">
     			<div class="destacados_box">
-	    			<div>
-	    				'.$desta_str.'
-	    			</div>
+	    			<div>'.$desta_str.'</div>
     			</div>
     		</div>
     	</div>';
