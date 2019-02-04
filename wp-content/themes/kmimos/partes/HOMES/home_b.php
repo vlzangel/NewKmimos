@@ -12,7 +12,7 @@
 					'<div class="img_destacado" style="background-image: url('.$cuidador->img.');"></div>'.
 					'<div class="datos_destacado_containder">'.
 						'<div class="datos_top_destacado_containder">'.
-							'<div class="avatar_destacado" style="background-image: url('.$cuidador->img.');"></div>'.
+							'<div class="avatar_destacado" style="background-image: url('.$cuidador->cliente.');"></div>'.
 							'<div class="nombre_destacado">'.
 								'<a href="'.$cuidador->link.'">'.$cuidador->nombre.'</a>'.
 								'<span>'.$cuidador->experiencia.'</span>'.

@@ -198,6 +198,16 @@
             $destacado_home = "<select id='destacado_home' name='destacado_home'>{$destacado_opt}</select>";
             $msg_destacado = $atributos["msg_destacado"];
 
+            $comentarios = '';
+            $_comentarios = $wpdb->get_results("SELECT * FROM wp_comments WHERE comment_post_ID = ".$post->ID);
+            if( is_array($_comentarios) && count($_comentarios) > 0){
+                foreach ($_comentarios as $key => $comentario) {
+                    $comentarios .= '
+                        <option value='.$comentario->comment_ID.'>'.$comentario->comment_content.'</option>
+                    ';
+                }
+            }
+
             $HTML .= "
                 <div class='vlz_contenedor_datos_cuidador'>
 
@@ -226,7 +236,13 @@
                             <div><strong>Flash:</strong> {$flash}</div>
                             <div><strong>Geolocalización:</strong> {$geo}</div>
                             <div><strong>Destacado Home:</strong> {$destacado_home}</div>
-                            <div style='{$msg_destacado_status}'><strong style='vertical-align: top;'>Mensaje Dest.:</strong> <textarea id='msg_destacado' name='msg_destacado'>{$msg_destacado}</textarea></div>
+                            <div style='{$msg_destacado_status}'>
+                                <strong style='vertical-align: top;'>Comentario:</strong> 
+                                <select id='msg_destacado' name='msg_destacado'>{$comentarios}</select>
+                                <!--
+                                    <textarea id='msg_destacado' name='msg_destacado'>{$msg_destacado}</textarea>
+                                -->
+                            </div>
 
                             <div class='vlz_contenedor_botones'>
                                 <span id='actualizar_btn' class='vlz_activar'>Actualizar</span>
@@ -265,7 +281,6 @@
                     #msg_destacado{
                         resize: none;
                         width: 300px;
-                        height: 80px;
                     }
                 </style>
             ";

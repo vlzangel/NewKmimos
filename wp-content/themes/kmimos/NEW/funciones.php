@@ -14,12 +14,20 @@
 					$anios_exp = $cuidador->experiencia;
                     if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
                     $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
+
+                    $msg_destacado = $wpdb->get_row("SELECT * FROM wp_comments WHERE comment_ID = ".$atributos["msg_destacado"]);
+                    $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 90);
+                    $msg_destacado = ( strlen($msg_destacado) > 90 ) ? $_msg_destacado.'...' : $_msg_destacado;
+
+                    $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = ".$msg_destacado->comment_author_email );
+
 					$resultado[] = (object)[
 						"img" => kmimos_get_foto($cuidador->user_id),
+						"cliente" => kmimos_get_foto( $cliente_id ),
 						"nombre" => $cuidador->titulo,
 						"link" => get_home_url()."/petsitters/".$cuidador->user_id,
 						"ranking" => kmimos_petsitter_rating($cuidador->id_post),
-						"msg" => $atributos["msg_destacado"],
+						"msg" => $msg_destacado,
 						"experiencia" => $expe
 					];
 				}
