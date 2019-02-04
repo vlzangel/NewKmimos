@@ -433,6 +433,7 @@
 	}
 
 	.destacados_container{
+		position: relative;
 		height: 420px; 
 		display: table;
 		margin: 0px auto;
@@ -556,6 +557,23 @@
 	.km-ranking a.active {
 	    background-image: url(../img/HOME/SVG/WLABEL/calificacion_individual.svg) !important;
 	}
+
+	.seccion_destacados_flechas{
+		position: absolute;
+		top: calc( 50% - 25px );
+		width: 60px;
+		height: auto;
+		z-index: 9999;
+	}
+
+	.seccion_destacados_izq {
+		left: -70px;
+	}
+
+	.seccion_destacados_der {
+		right: -70px;
+	}
+
 
 /* BENEFICIOS */
 

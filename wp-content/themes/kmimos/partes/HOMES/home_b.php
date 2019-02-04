@@ -3,6 +3,8 @@
 	/* DESTACADOS */
 	$destacados = get_destacados_home();
 	if( is_array($destacados) && count($destacados) > 0 ){
+		$final_pc = count($destacados)-3;
+		$final_movil = count($destacados);
 		$desta_str = '';
 		foreach ($destacados as $key => $cuidador) {
 			$desta_str .= 
@@ -29,9 +31,11 @@
     	<div class="seccion_destacados">
     		<h2>Conoce a los mejores <span>cuidadores kmimos</span></h2>
     		<div class="destacados_container">
-    			<div class="destacados_box">
+    			<div class="destacados_box" data-paso="0" data-final_pc="'.$final_pc.'" data-final_movil="'.$final_movil.'">
 	    			<div>'.$desta_str.'</div>
     			</div>
+    			<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_anterior.svg" />
+    			<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_siguiente.svg" />
     		</div>
     	</div>';
 	}
