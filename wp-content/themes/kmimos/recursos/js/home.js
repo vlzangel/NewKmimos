@@ -37,9 +37,7 @@ function show_hiden_arrow(){
     }else{
         var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
     }
-
     if( paso == 0 ){ jQuery(".seccion_destacados_izq").css("display", "none"); }else{ jQuery(".seccion_destacados_izq").css("display", "block"); }
-
     if( paso == final ){ jQuery(".seccion_destacados_der").css("display", "none"); }else{ jQuery(".seccion_destacados_der").css("display", "block"); }
 }
 
