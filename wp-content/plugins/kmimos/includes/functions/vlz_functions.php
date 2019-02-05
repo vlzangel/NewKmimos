@@ -36,7 +36,7 @@
     if(!function_exists('kmimos_get_kmisaldo')){
         function kmimos_get_kmisaldo($con_conocer = false){
             global $current_user;
-            $saldo_conocer = ( $con_conocer ) ? get_cupos_conocer($current_user->ID)*10 : 0;
+            $saldo_conocer = ( $con_conocer ) ? 30 : 0;
             return get_user_meta($current_user->ID, "kmisaldo", true)+$saldo_conocer;
         }
     }

@@ -10,6 +10,14 @@
 	    background-color: transparent !important;
 	}
 
+	h2 {
+	    color: #000 !important;
+	    font-weight: 600 !important;
+	    font-family: Gotham-Pro-Bold !important; 
+	    text-transform: uppercase !important;
+	    font-size: 18px !important;
+	}
+
 /* BANNER */
 
 	#banner_home{
@@ -410,6 +418,162 @@
 	    font-family: Gotham-Pro-Bold;
 	    outline: none;
 	}
+
+/* DESTACADOS */
+
+	.seccion_destacados h2{
+		text-transform: none !important;	
+		margin: 40px auto;
+		text-align: center;
+		font-size: 24px !important;
+	}
+
+	.seccion_destacados h2 span {
+		color: #00d2c6;
+	}
+
+	.destacados_container{
+		position: relative;
+		height: 420px; 
+		display: table;
+		margin: 0px auto;
+	}
+
+	.destacados_box{
+		position: relative;
+	    overflow: hidden;
+	    width: 1000px;
+	    box-sizing: border-box;
+	    display: table-cell;
+	    vertical-align: top;
+	}
+
+	.destacados_box > div {
+		height: 100%;
+		white-space: nowrap;
+		position: relative;
+		display: block;
+
+		left: 0%;
+	}
+
+	.destacados_item{
+		position: relative;
+		display: inline-block;
+		width: 33.33333334%;
+		height: 100%; 
+		box-sizing: border-box;
+		padding: 0px 20px;
+		vertical-align: top;
+	}
+
+	.img_destacado {
+	    height: 200px;
+	    background-position: center;
+	    background-size: cover;
+	}
+
+	.datos_top_destacado_containder {
+	    padding: 5px 0px;
+	    overflow: hidden;
+	}
+
+	.avatar_destacado {
+	    background-position: center;
+	    background-size: cover;
+	    height: 40px;
+	    width: 40px;
+	    border-radius: 50%;
+	    display: inline-block;
+	    float: left;
+	}
+
+	.nombre_destacado {
+	    float: left;
+	    padding: 4px 0px 4px 10px; 
+	}
+
+	.nombre_destacado a {
+	    text-decoration: none;
+	    font-size: 14px;
+	    font-family: Gotham-Pro-Regular;
+	    font-weight: 600;
+	    text-transform: uppercase;
+	    display: block;
+	    line-height: 1;
+	    text-align: left;
+	}
+
+	.nombre_destacado span {
+	    display: block;
+	    font-weight: 600;
+	    font-size: 11px;
+	}
+
+	.datos_destacado_containder {
+	    border: solid 1px #7abab7;
+	    border-top: 0px;
+	    border-radius: 0px 0px 25px 25px;
+	    background: #FFF;
+	    padding: 10px 10px 0px;
+	}
+
+	.destacados_item {
+	    text-align: center;
+	}
+
+	.destacados_item > a {
+	    display: inline-block;
+	    padding: 10px;
+	    background: #00d2c6;
+	    color: #FFF !important;
+	    width: 65%;
+	    margin: 10px 0px;
+	    text-align: center;
+	    font-family: Gotham-Pro-Bold;
+	    text-decoration: none !important;
+	}
+
+	.msg_destacado_containder {
+	    padding: 5px 10px 5px 50px;
+	    text-align: justify;
+		white-space: normal;
+		min-height: 75px;
+	}
+
+	.ranking_destacado {
+	    float: right;
+	    padding-top: 8px;
+	}
+
+	.km-ranking a {
+		width: 17px !important;
+	    height: 9px !important;
+	    background-size: 17px 9px !important;
+		float: right !important;	
+	    background-image: url(../img/HOME/SVG/WLABEL/calificacion_individual_vacia.svg) !important;
+	}
+
+	.km-ranking a.active {
+	    background-image: url(../img/HOME/SVG/WLABEL/calificacion_individual.svg) !important;
+	}
+
+	.seccion_destacados_flechas{
+		position: absolute;
+		top: calc( 50% - 25px );
+		width: 60px;
+		height: auto;
+		z-index: 9;
+	}
+
+	.seccion_destacados_izq {
+		left: -70px;
+	}
+
+	.seccion_destacados_der {
+		right: -70px;
+	}
+
 
 /* BENEFICIOS */
 
@@ -945,12 +1109,12 @@
 	}
 
 	.quiero_ser_cuidador_container h2 {
-	    color: #FFF;
-	    font-size: 28px;
+	    color: #FFF !important;
+	    font-size: 26px !important;
 	    text-transform: uppercase;
 	    margin: 0 0 15px;
 	    font-family: Gotham-Pro-Bold;
-	    font-weight: 600;
+	    font-weight: 600 !important;
 	}
 
 	.quiero_ser_cuidador_container span {
@@ -958,6 +1122,7 @@
 		color: #FFF;
 		font-size: 16px;	
 		margin: 0px 0px 70px;
+		font-weight: 800;
 	}
 
 	.quiero_ser_cuidador_container a {

@@ -331,7 +331,7 @@
 	}
 	if( $_cuidador->atributos["geo"]+0 == 1 ){
 		$ocultar_geo = "";
-		$txt_iconos = "Geolocalización";
+		$txt_iconos = "con GPS";
 	}
 
 	$ocultar_todo = "";

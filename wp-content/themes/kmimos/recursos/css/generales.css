@@ -4,9 +4,9 @@ body{
     /* overflow-x: hidden; */
 }
 
-::placeholder { color: #CCC; opacity: 1; }
-:-ms-input-placeholder { color: #CCC; }
-::-ms-input-placeholder { color: #CCC; }
+::placeholder { color: #000; opacity: 1; }
+:-ms-input-placeholder { color: #000; }
+::-ms-input-placeholder { color: #000; }
 
 a{
 	color: #FFF;
@@ -404,4 +404,11 @@ nav .lupa_negra{
 
 .menu_movil_interno .vlz_resaltar a {
 	color: #000 !important;
+}
+
+.msg_pago {
+    text-align: center;
+    font-size: 20px;
+    color: #33e1be;
+    font-family: Gotham-Pro-Bold;
 }

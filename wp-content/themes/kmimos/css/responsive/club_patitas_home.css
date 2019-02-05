@@ -9,10 +9,11 @@
 	color:#fff;
 }
 .km-club-patitas h2{
-	margin-top:15px;
-	font-size:30px;
-	color:#fff;
-	font-family: "Gotham black"!important;
+	margin-top: 15px;
+    font-size: 30px !important;
+    color: #fff !important;
+    font-family: 'Poetsen' !important;
+    text-transform: none !important;
 }
 .btn-club-patitas{
 	border:1px solid #3387e0!important; 
@@ -22,6 +23,19 @@
 	font-size: 20px!important;
 	border-radius: 10px;
 	padding: 10px 60px!important;
+}
+
+.gana_150{
+	padding: 5px 15px 2px;
+    color: #3387e0;
+    background-color: #FFF;
+    font-size: 24px;
+    font-family: Gotham-Pro-Black;
+    border-radius: 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 992px){

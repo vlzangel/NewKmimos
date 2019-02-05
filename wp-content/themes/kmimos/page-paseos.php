@@ -50,6 +50,7 @@
 				<div class="solo_movil banner_home"></div>
 				<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
 
+					<input type="hidden" name="orderby" value="price_asc" />
 					<input type="hidden" name="landing_paseos" value="yes" />
 					<input type="hidden" name="redireccionar" value="1" />
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
@@ -64,7 +65,7 @@
 						<div class="boton boton_border_morado">Regístrate</div>
 						<span class="banner_txt_1">Disfruta de la red de más segura de <em>paseadores</em> certificados de México</span>
 						<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
-						<span class="banner_txt_3">Cuándo y comó te gustaría pasearlo</span>
+						<span class="banner_txt_3">Cuándo y cómo te gustaría pasearlo</span>
 					</div>
 
 					<div class="controles_top_container">
@@ -105,12 +106,12 @@
 						<div class="fechas_container">
 							<div id="desde_container">
 								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
-								<input type="text" id="checkin" name="checkin" placeholder="Inicio del paseo" class="date_from" readonly>
+								<input type="text" id="checkin" name="checkin" placeholder="Inicio de Paseos" class="date_from" readonly>
 								<small class="">Requerido</small>
 							</div>
 							<div>
 								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
-								<input type="text" id="checkout" name="checkout" placeholder="Fin del paseo" class="date_to" readonly>
+								<input type="text" id="checkout" name="checkout" placeholder="Fin de Paseos" class="date_to" readonly>
 								<small class="">Requerido</small>
 							</div>
 						</div>
@@ -193,13 +194,6 @@
 			<div class="beneficios_buscar_top">
 				Cientos de Paseadores Certificados a nivel nacional
 			</div>
-
-			<div class="beneficios_registrar_container">
-				<div data-target="#popup-registrarte" role="button" class="boton boton_border_morado">Regístrate</div>
-				<span class="">
-					Crea tu perfil, y comienza a disfrutar de los servicios que te trae Kmimos
-				</span>
-			</div>
 			
 			<h2>¿Por qué son tan importantes los paseos para tu mascota? </h2>
 			<img class="beneficios_banner_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Beneficios-de-dejar---.png" />
@@ -228,6 +222,15 @@
 
 		<img class="importancia_banner solo_movil" src="'.get_recurso("img").'PASEOS/RESPONSIVE/Banner-paseo-gratis_2.jpg" />
 		<img class="importancia_banner solo_pc" src="'.get_recurso("img").'PASEOS/PNG/Banner-paseo-gratis_2.png" />
+
+		<div class="registrar_container">
+			<div class="beneficios_registrar_container">
+				<div data-target="#popup-registrarte" role="button" class="boton boton_border_morado">Regístrate</div>
+				<span class="">
+					Crea tu perfil, y comienza a disfrutar de los servicios que te trae Kmimos
+				</span>
+			</div>
+		</div>
 			
 		<div class="beneficios_container">
 			<h2 class="beneficios_title">Conoce los beneficios de dejar tu mascota con cuidadores certificados</h2>
@@ -312,13 +315,14 @@
 					<div onclick="ancla_form()" class="boton boton_verde">Buscar Paseador</div>
 				</div>
 			</div>
+			<div id="paquetes"></div>
 
 		
 		</div>';
 		
 		$HTML .= '
-		<div id="paquetes" class="paquetes_container">
-			<h2>Encuentra el <span>paquete perfecto</span> para tu mejor amigo</h2>
+		<div class="paquetes_container">
+			<h2>Selecciona el <span>paquete perfecto</span> para tu mejor amigo</h2>
 			<p>Aprovecha las promociones por paseos semanales, mensuales, bimensuales y trimestrales. Ahorra tiempo y dinero</p>
 
 			<div class="paquetes_tabla">
@@ -391,7 +395,7 @@
 						</div>
 						<div>
 							<input type="radio" id="paq_3_radio" value="3" class="input_radio" />
-							<button class="btn_paq" data-id="3">Solicitar</button>
+							<button class="btn_paq paq_3_btn" data-id="3">Solicitar</button>
 						</div>
 					</div>
 				</label>

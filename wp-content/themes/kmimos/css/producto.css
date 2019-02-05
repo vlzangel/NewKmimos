@@ -634,3 +634,49 @@ div#tienda_box img {
     .contenedor_info_extra{
         margin-right: 50px;
     }
+
+    .items_reservados_paso_1_container{
+        display: none;
+        overflow: hidden;
+    }
+
+    .items_reservados_paso_1_titulo {
+        width: 230px;
+        float: left;
+
+        text-transform: uppercase;
+        padding: 15px 25px 0px 0px;
+        vertical-align: top;
+    }
+
+    .items_reservados_paso_1.items_reservados {
+        width: calc( 100% - 230px );
+        padding: 15px 0px;
+        float: right;
+        color: #979797;
+    }
+
+    .items_reservados_paso_1.items_reservados .km-option-resume-service:first-child {
+        display: none;
+    }
+
+    .items_reservados_paso_1.items_reservados span {
+        font-size: 15px;
+    }
+
+    .items_reservados_paso_1.items_reservados span.value-resume-service {
+        float: right;
+        font-weight: 600;
+    }
+
+    .label-resume-service_movil{
+        display: none;
+    }
+
+    .vlv_1{
+        display: block;
+    }
+
+    .vlv_2{
+        display: none;
+    }

@@ -547,7 +547,7 @@
 
 	.beneficios_registrar_container span{
 	    display: block;
-	    padding: 30px 0px 60px;
+	    padding: 30px 0px 0px;
 	    color: #777;
 	    font-size: 16px;
 	}
@@ -685,6 +685,11 @@
 	    font-size: 18px;
 	    padding: 15px 60px;
 	    margin: 0px;
+	}
+
+	.registrar_container{
+		text-align: center;
+		padding: 50px 0px 0px;
 	}
 
 /* PAQUETES */
@@ -828,6 +833,11 @@
 
 	.paquetes_tabla input {
 	    display: none;
+	}
+
+	.paq_3_btn{
+		background: #00d2c6 !important;
+		color: #FFF;
 	}
 
 /* TESTIMONIOS */

@@ -13,5 +13,7 @@
 
 	// echo serialize([ "subscriber" => true ]);
 
-	update_titulo();
+	// update_titulo();
+	
+	update_precios_paseos();
 ?>

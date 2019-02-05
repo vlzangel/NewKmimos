@@ -102,12 +102,12 @@
 
 	    $titulo_ordenamiento = "ORDENAR POR";
 	    if( $_POST['orderby'] != "" ){
-	    	$titulo_ordenamiento = $ordenamientos[ $_POST['orderby'] ][0];
+	    	// $titulo_ordenamiento = $ordenamientos[ $_POST['orderby'] ][0];
 	    }
 	    $ordenamiento = "";
 	    foreach ( $ordenamientos as $clave => $valor ) {
 	    	$check = ( $_SESSION["busqueda"]["orderby"] == $valor[1] ) ? "selected": "";
-	    	$ordenamiento .= '<option id="'.$valor[1].'" value="'.$valor[1].'">'.$valor[0].'</option>';
+	    	$ordenamiento .= '<option id="'.$valor[1].'" value="'.$valor[1].'" '.$check.'>'.$valor[0].'</option>';
 	    }
 
 	    $check_descuento = ( $_SESSION["busqueda"]["descuento"] == 1 ) ? "checked": "";
@@ -172,11 +172,17 @@
 	*/
 
 	echo "<pre>";
-		print_r( $_SESSION['busqueda'] );
+		print_r( $_SERVER );
 	echo "</pre>";
 
-	$tipo_cuidador = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Paseador' : 'Cuidador';
-	
+	if( $_SESSION['landing_paseos'] == 'yes' ) {
+		$tipo_cuidador = 'Paseador';
+		$ocultar_por_comenzar = 'display: none;';
+	}else{
+		$ocultar_por_comenzar = '';
+		$tipo_cuidador = 'Cuidador';
+	}
+
     $HTML .= '
     	<script>
     		var landing = "'.$key_principal.'";
@@ -190,6 +196,7 @@
     			<form id="buscar" action="'.getTema().'/procesos/busqueda/buscar.php" method="POST">
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+					<input type="hidden" name="landing_paseos" value="'.$_SESSION['landing_paseos'].'" />
 
 
 					<input type="hidden" name="paquete" value="'.$_SESSION['busqueda']['paquete'].'" />
@@ -211,7 +218,7 @@
 						<label class="filtro_check check_geo" for="geo" >
 							<input type="checkbox" id="geo" name="geo" value="1" '.$check_geo.' />
 							<div class="check_icon"></div>
-							<div>geolocalización</div>
+							<div>con GPS</div>
 							<div class="check_control"></div>
 						</label>
 					</div>
@@ -311,6 +318,10 @@
 							<div class="top_check"></div>
 						</label>
 					</div>
+					<label class="titulo_ordenamiento">'.$titulo_ordenamiento.'</label>
+					<select id="orderby" name="orderby" class="filtros_ordenamiento">
+						'.$ordenamiento.'
+					</select>
 					<div>
 						<input type="text" id="nombre" name="nombre" placeholder="Buscar '.$tipo_cuidador.' por Nombre" class="input nombre" value="'.$_SESSION['busqueda']['nombre'].'" />
 					</div>
@@ -373,10 +384,6 @@
 						</label>
 					</div>
 
-					<select name="orderby" class="filtros_ordenamiento">
-						'.$ordenamiento.'
-					</select>
-
 					<div class="filtros_botones">
 						<button type="button" onclick="limpiar_filtros()" class="boton" >Limpiar</button>
 						<button type="button" onclick="filtros_buscar()" class="boton boton_verde" >Buscar</button>
@@ -427,7 +434,7 @@
 							<label class="filtro_check check_geo" for="geo_movil" >
 								<input type="checkbox" id="geo_movil" name="geo" '.$check_geo.' />
 								<div class="check_icon"></div>
-								<div>geolocalización</div>
+								<div>con GPS</div>
 								<div class="check_control"></div>
 							</label>
 
@@ -449,12 +456,14 @@
 					</div>
     			</form>
 
-    			<div class="msg_inicio_reserva">
-	    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
-	    				<div class="mesaje_reserva_inmediata_izq"></div>
-	    				<div class="mesaje_reserva_inmediata_der">
-	    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar '.$tipo_cuidador.'es con los que puedas reservar al momento.
-	    				</div>
+    			<div style="'.$ocultar_por_comenzar.'">
+	    			<div class="msg_inicio_reserva">
+		    			<div class="mesaje_reserva_inmediata_container disponibilidad_PC">
+		    				<div class="mesaje_reserva_inmediata_izq"></div>
+		    				<div class="mesaje_reserva_inmediata_der">
+		    					<strong><span></span>.</strong> Utiliza el filtro de reserva inmediata en la sección de <strong>filtros</strong> que aparece a tu izquierda, para encontrar '.$tipo_cuidador.'es con los que puedas reservar al momento.
+		    				</div>
+		    			</div>
 	    			</div>
     			</div>
 
@@ -556,6 +565,12 @@
     	]);
 	}else{
 		$_SESSION["save_uso_banner"] = true;
+	}
+
+	if( $_SERVER["REDIRECT_URL"] == "/busqueda/" ){
+		echo '
+			evento_google_kmimos(\'busqueda\'); evento_fbq_kmimos(\'busqueda\');
+		';
 	}
     
    	get_footer(); 

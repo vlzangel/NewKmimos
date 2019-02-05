@@ -2,6 +2,43 @@
 	
 	include dirname(__FILE__).'/reconfiguracion.php';
 
+	/* DESTACADOS HOME */
+
+		function get_destacados_home(){
+			global $wpdb;
+			$destacados = $wpdb->get_results("SELECT * FROM cuidadores WHERE activo = 1 AND atributos LIKE '%destacado_home\";s:1:\"1%' ");
+			$resultado = [];
+			if( is_array($destacados) ){
+				foreach ($destacados as $key => $cuidador) {
+					$atributos = unserialize($cuidador->atributos);
+					$anios_exp = $cuidador->experiencia;
+                    if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
+                    $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
+                    
+                    $msg_destacado = $wpdb->get_row("SELECT * FROM wp_comments WHERE comment_ID = ".$atributos["msg_destacado"]);
+                    $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 90);
+                    if( $_msg_destacado != "" ){
+                    	$msg_destacado = ( strlen($_msg_destacado) > 90 ) ? $_msg_destacado.'...' : $_msg_destacado;
+                    }
+                    
+                    $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = ".$msg_destacado->comment_author_email );
+
+					$resultado[] = (object)[
+						"img" => kmimos_get_foto($cuidador->user_id),
+						"cliente" => kmimos_get_foto( $cliente_id ),
+						"nombre" => $cuidador->titulo,
+						"link" => get_home_url()."/petsitters/".$cuidador->user_id,
+						"ranking" => kmimos_petsitter_rating($cuidador->id_post),
+						"msg" => $msg_destacado,
+						"experiencia" => $expe
+					];
+				}
+			}
+			return $resultado;
+		}
+
+	/* OTROS */
+
 	function quitar_cupos_conocer($user_id){
 		global $wpdb;
 		$cupos = get_cupos_conocer_registro($user_id);
@@ -40,7 +77,7 @@
 
 	function get_cupos_conocer_registro($user_id){
 		global $wpdb;
-		return $wpdb->get_row("SELECT * FROM conocer_pedidos WHERE user_id = {$user_id} AND status = 'Pagado' ");
+		return $wpdb->get_row("SELECT * FROM conocer_pedidos WHERE user_id = {$user_id} AND status = 'Pagado' ORDER BY id DESC");
 	}
 
 	function get_cupos_conocer_pendientes($user_id){
@@ -576,7 +613,11 @@
 	            }
 
 				$img_url = kmimos_get_foto($_cuidador->user_id);
-				$desde = explode(".", number_format( ($_cuidador->hospedaje_desde*getComision()) , 2, '.', ',') );
+				$desde = $_cuidador->hospedaje_desde;
+				if( $_SESSION['landing_paseos'] == 'yes' ){
+					$desde = $_cuidador->paseos_desde;
+				}
+				$desde = explode(".", number_format( ($desde*getComision()) , 2, '.', ',') );
 
 				$direccion = $_cuidador->direccion;
 				if( strlen($_cuidador->direccion) > 50 ){
@@ -697,10 +738,10 @@
 				}
 
 				if( $ocultar_geo == "" ){
-					$mensaje_disp = "Cuenta con localizador GPS";
-					$mensaje_disp_movil = "Localizador GPS";
+					$mensaje_disp = "con GPS";
+					$mensaje_disp_movil = "con GPS";
 					$show_msg_desc = "show_msg_descuento";
-					$mensaje_disp_movil_corto = "Localizador";
+					$mensaje_disp_movil_corto = "con GPS";
 				}
 
 				if( !is_array($_cuidador->galeria) ){
@@ -937,6 +978,8 @@
     function pre_carga_data_cuidadores(){
     	global $wpdb;
 
+    	if( !isset($_SESSION) ){ session_start(); }
+
     	$cuidadores = $wpdb->get_results("
     		SELECT 
     			cuidadores.id,
@@ -948,6 +991,7 @@
     			cuidadores.longitud,
     			cuidadores.direccion,
     			cuidadores.hospedaje_desde,
+    			cuidadores.paseos_desde,
     			cuidadores.adicionales,
     			cuidadores.atributos,
     			cuidadores.rating,

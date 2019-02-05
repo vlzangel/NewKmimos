@@ -162,7 +162,7 @@
             </html>";
 
             if( $test ){
-                $html = str_replace(get_home_url(), "http://kmimosmx.sytes.net/QA2", $html);
+                $html = str_replace(get_home_url(), "https://kmimos.com.mx/QA2", $html);
             }
 
             return $html;

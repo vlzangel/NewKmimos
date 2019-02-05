@@ -30,7 +30,56 @@ function ancla_form() {
   	}
 }
 
+function show_hiden_arrow(){
+    var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
+    if( parseInt( jQuery("body").width() ) > 768 ){
+        var final = parseInt( jQuery(".destacados_box").attr("data-final_pc") );
+    }else{
+        var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
+    }
+    if( paso == 0 ){ jQuery(".seccion_destacados_izq").css("display", "none"); }else{ jQuery(".seccion_destacados_izq").css("display", "block"); }
+    if( paso == final ){ jQuery(".seccion_destacados_der").css("display", "none"); }else{ jQuery(".seccion_destacados_der").css("display", "block"); }
+}
+
+function mover_destacado(dir){
+    if( parseInt( jQuery("body").width() ) > 768 ){
+        var h = 33.333333334;
+    }else{
+        var h = 100;
+    }
+    switch(dir){
+        case 'izq':
+            var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
+            if( paso > 0 ){ paso--; }
+            jQuery(".destacados_box").attr("data-paso", paso);
+            jQuery(".destacados_box > div").animate({left: (-1*(paso*h))+"%" }, 1000);
+        break;
+        case 'der':
+            if( parseInt( jQuery("body").width() ) > 768 ){
+                var final = parseInt( jQuery(".destacados_box").attr("data-final_pc") );
+            }else{
+                var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
+            }
+            var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
+            if( paso < final ){ paso++; }
+            jQuery(".destacados_box").attr("data-paso", paso);
+            jQuery(".destacados_box > div").animate({left: (-1*(paso*h))+"%" }, 1000);
+        break;
+    }
+    show_hiden_arrow();
+}
+
 jQuery( document ).ready(function() {
+
+    jQuery(".seccion_destacados_izq").on('click', function(e){
+        console.log("izq");
+        mover_destacado("izq");
+    });
+    jQuery(".seccion_destacados_der").on('click', function(e){
+        console.log("der");
+        mover_destacado("der");
+    });
+    show_hiden_arrow();
 
     jQuery("#boton_buscar").on("click", function(e){
 

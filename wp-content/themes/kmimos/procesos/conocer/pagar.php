@@ -198,13 +198,18 @@
 						
 						if ($charge != false) {
 
+							$metas = json_encode([
+								"show_pago" => 1
+							]);
+
 							$db->query("
 								UPDATE 
 									conocer_pedidos 
 								SET										
 									transaccion_id = '{$charge->id}',
 									tipo_pago = 'Tarjeta',
-									status = 'Pagado'
+									status = 'Pagado',
+									metadata = '{$metas}'
 								WHERE 
 									id = {$id_orden}
 							");
@@ -213,7 +218,8 @@
 								"order_id" => $id_orden,
 								"status" => "Pagada",
 							));
-							// include(__DIR__."/emails/index.php");
+							
+							include(__DIR__."/emails/index.php");
 
 				        }else{
 							unset($_SESSION["pagando"]);
@@ -281,7 +287,7 @@
 							"status" => "Pendiente",
 						));
 
-						// include(__DIR__."/emails/index.php");
+						include(__DIR__."/emails/index.php");
 
 					}else{
 						unset($_SESSION["pagando"]);

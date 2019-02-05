@@ -5,7 +5,7 @@
 	}
 
 	#msg_paseos .mesaje_reserva_inmediata_container {
-	    padding: 0px 44px 20px !important;
+	    padding: 30px 44px 30px !important;
 	}
 
 	#msg_paseos .mesaje_reserva_inmediata_izq {    
@@ -485,12 +485,20 @@
 
 	/* ORDENAMIENTOS */
 
+		.titulo_ordenamiento{
+			margin-top: 10px;
+		    font-size: 11px;
+		    font-family: Gotham-Pro-Bold;
+		    margin-bottom: 0px;
+		}
+
 		.filtros_ordenamiento{
 			margin: 10px 0px;
 			border: solid 1px #CCC;
 			width: 100%;
 			padding: 10px;
 			outline: none;
+		    margin-top: 0px;
 		}
 
 		.mas_filtros{

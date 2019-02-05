@@ -369,9 +369,13 @@ function calcular(){
 		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").removeClass("disabled");
 		calcularDescuento();
+
+		jQuery(".items_reservados_paso_1_container").css("display", "block");
 	}else{
 		jQuery("#reserva_btn_next_1").addClass("km-end-btn-form-disabled");
 		jQuery("#reserva_btn_next_1").addClass("disabled");
+
+		jQuery(".items_reservados_paso_1_container").css("display", "none");
 	}
 	initFactura();
     
@@ -533,6 +537,14 @@ function initFactura(){
 		"gatos" : "Gato"
 	};
 
+	var tamanos_movil = {
+		"pequenos" : "Peq.",
+		"medianos" : "Med.",
+		"grandes" :  "Grd.",
+		"gigantes" : "Gig.",
+		"gatos" : "Gato"
+	};
+
 	var subtotal = 0;
 	jQuery.each(tamanos, function( key, tamano ) {
 		if( CARRITO["cantidades"][key][0] != undefined && CARRITO["cantidades"][key][0] > 0 && CARRITO["cantidades"][key][1] > 0 ){
@@ -545,6 +557,7 @@ function initFactura(){
 						parseFloat( CARRITO["cantidades"][key][1] );
 			items += '<div class="km-option-resume-service">'
 			items += '	<span class="label-resume-service">'+CARRITO["cantidades"][key][0]+' Mascota'+plural+' '+tamano+plural+' x '+CARRITO["fechas"]["duracion"]+' '+diaNoche+' x $'+CARRITO["cantidades"][key][1]+' </span>'
+			items += '	<span class="label-resume-service_movil">'+CARRITO["cantidades"][key][0]+' Masc. '+tamanos_movil[key]+' x '+CARRITO["fechas"]["duracion"]+' '+diaNoche+' x $'+CARRITO["cantidades"][key][1]+' </span>'
 			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
 			items += '</div>';
 		}

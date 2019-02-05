@@ -139,6 +139,14 @@
 
     $addons = "";
 
+    $paseos = $adicionales["paseos"];
+    $menor_paseos = 0;
+    foreach ($paseos as $key => $value_2) {
+        if( ($value_2 != 0 && $value_2 < $menor) || $menor == 0 ){
+            $menor_paseos = $value_2;
+        }
+    }
+
     // Historico para cambio de Precios
     try{
         $sql = "INSERT INTO cuidadores_historico (user_id, adicionales, hospedaje, hospedaje_desde)
@@ -146,7 +154,7 @@
         $db->query($sql);
     }catch(Exception $e){}
 
-	$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."', hospedaje = '".serialize($hospedaje)."', hospedaje_desde = '".$base_hospedaje."' WHERE user_id = ".$user_id.";";    
+	$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."', hospedaje = '".serialize($hospedaje)."', hospedaje_desde = '".$base_hospedaje."', paseos_desde = '".$menor_paseos."' WHERE user_id = ".$user_id.";";    
     $db->query($sql);
 
 	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");

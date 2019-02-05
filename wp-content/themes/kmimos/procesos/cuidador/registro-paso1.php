@@ -227,6 +227,7 @@
                     '{$comportamientos_aceptados}',
                     '{$hospedaje}',
                     0,
+                    0,
                     'a:0:{}',
                     '".serialize($atributos)."',
                     '0',

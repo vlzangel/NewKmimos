@@ -13,7 +13,6 @@
 
 	/* Cliente */
 		$USER_ID = get_current_user_id();
-		echo "SELECT url FROM cuidadores WHERE id_post = ".vlz_get_page();
 		$CUIDADOR = $wpdb->get_var( "SELECT url FROM cuidadores WHERE id_post = ".vlz_get_page() );
 
 		COMPROBAR_ERRORES_CONOCER();
@@ -92,12 +91,12 @@
 								<li class="line"></li><li><span class="number">3</span></li>
 							</ul>
 							<div class="km-title-step">
-								RECARGAR SALDO
+								ADQUIERE TUS CRÉDITOS
 							</div>
 						</div>
 
 						<div class="km-sub-title-step">
-							Recarga saldo para poder realizar solicitudes para conocer cuidadores
+							Adquiere tus créditos para poder conocer a cualquier cuidador
 						</div>
 
 						'.$precios.'

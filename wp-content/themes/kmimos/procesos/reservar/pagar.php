@@ -409,43 +409,66 @@
 	    }else{
 		    $pagar->total = $pre17;
 	    }
-	 
 
-		if( $pagar->deviceIdHiddenFieldName != "" ){
 
-			$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
-			Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
+		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
+		Openpay::setProductionMode( ($OPENPAY_PRUEBAS == 0) );
 
-			foreach ($data_cliente as $key => $value) {
-				if( $data_cliente[$key] == "" ){
-					$data_cliente[$key] = "_";
-				}
+		foreach ($data_cliente as $key => $value) {
+			if( $data_cliente[$key] == "" ){
+				$data_cliente[$key] = "_";
 			}
+		}
 
-			$nombre 	= $data_cliente["first_name"];
-			$apellido 	= $data_cliente["last_name"];
-			$email 		= $pagar->email;
-			$telefono 	= $data_cliente["user_mobile"];
-			$direccion 	= $data_cliente["billing_address_1"];
-			$estado 	= $data_cliente["billing_state"];
-			$municipio 	= $data_cliente["billing_city"];
-			$postal  	= $data_cliente["billing_postcode"];
+		$nombre 	= $data_cliente["first_name"];
+		$apellido 	= $data_cliente["last_name"];
+		$email 		= $pagar->email;
+		$telefono 	= $data_cliente["user_mobile"];
+		$direccion 	= $data_cliente["billing_address_1"];
+		$estado 	= $data_cliente["billing_state"];
+		$municipio 	= $data_cliente["billing_city"];
+		$postal  	= $data_cliente["billing_postcode"];
 
-			$cliente_openpay = $data_cliente["_openpay_customer_id"];
+		$cliente_openpay = $data_cliente["_openpay_customer_id"];
 
-			$id_invalido = true;
+		$id_invalido = true;
+		if( $cliente_openpay == "" ){
+			try {
+				$customerData = array(
+			     	'name' => $nombre,
+			     	'email' => $email,
+			     	'requires_account' => false,
+			  	);
+				$customer = $openpay->customers->add($customerData);
+				$cliente_openpay = $customer->id;
+				update_user_meta($pagar->cliente, "_openpay_customer_id", $customer->id);
+				$id_invalido = false;
+			} catch (Exception $e) {
+				$error = $e->getErrorCode();
+				unset($_SESSION["pagando"]);
+	            echo json_encode(array(
+					"error" => $id_orden,
+					"tipo_error" => $error,
+					"status" => "Error, obteniendo customer 1"
+				));
+				exit();
+			}
+	    }
 
-			if( $cliente_openpay == "" ){
+	    if( $id_invalido ){
+		    try {
+				$customer = $openpay->customers->get($cliente_openpay);
+			} catch (Exception $e) {
+
 				try {
-					$customerData = array(
+			    	$customerData = array(
 				     	'name' => $nombre,
 				     	'email' => $email,
-				     	'requires_account' => false,
+			     	'requires_account' => false,
 				  	);
 					$customer = $openpay->customers->add($customerData);
 					$cliente_openpay = $customer->id;
-					update_user_meta($user_id, "_openpay_customer_id", $customer->id);
-					$id_invalido = false;
+					update_user_meta($pagar->cliente, "_openpay_customer_id", $customer->id);
 				} catch (Exception $e) {
 					$error = $e->getErrorCode();
 					unset($_SESSION["pagando"]);
@@ -453,43 +476,18 @@
 		            echo json_encode(array(
 						"error" => $id_orden,
 						"tipo_error" => $error,
-						"status" => "Error, pago fallido"
+						"status" => "Error, obteniendo customer 2"
 					));
 
 					exit();
 				}
 		    }
+	   	}
+	   	
+	   	update_post_meta($id_orden, '_openpay_customer_id', $customer->id);
+ 
 
-		    if( $id_invalido ){
-			    try {
-					$customer = $openpay->customers->get($cliente_openpay);
-				} catch (Exception $e) {
-
-					try {
-				    	$customerData = array(
-					     	'name' => $nombre,
-					     	'email' => $email,
-				     	'requires_account' => false,
-					  	);
-						$customer = $openpay->customers->add($customerData);
-						$cliente_openpay = $customer->id;
-						update_user_meta($user_id, "_openpay_customer_id", $customer->id);
-					} catch (Exception $e) {
-						$error = $e->getErrorCode();
-						unset($_SESSION["pagando"]);
-
-			            echo json_encode(array(
-							"error" => $id_orden,
-							"tipo_error" => $error,
-							"status" => "Error, pago fallido"
-						));
-
-						exit();
-					}
-			    }
-		   	}
-
-		   	update_post_meta($id_orden, '_openpay_customer_id', $customer->id);
+		if( $pagar->deviceIdHiddenFieldName != "" ){
 
 		   	switch ( $pagar->tipo ) {
 		   		case 'tarjeta':
@@ -643,6 +641,8 @@
 					    	"fin" => strtotime($parametros["fechas"]->fin),
 					    	"cantidad" => $cupos_a_decrementar
 					    ), "+");
+
+						sleep(1);
 
 						include(__DIR__."/emails/index.php");
 

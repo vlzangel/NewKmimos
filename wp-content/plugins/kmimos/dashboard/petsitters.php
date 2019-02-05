@@ -181,6 +181,34 @@
             }
             $geo = "<select id='geo' name='geo'>{$destacado_opt}</select>";
 
+            $destacado_home = ""; $msg_destacado_status = '';
+            $atributos = unserialize($cuidador->atributos);
+            if( isset($atributos["destacado_home"]) && $atributos["destacado_home"] == "1" ){
+                $destacado_opt = '
+                    <option value=1>Si</option>
+                    <option value=0>No</option>
+                ';
+            }else{
+                // $msg_destacado_status = 'display: none;';
+                $destacado_opt = '
+                    <option value=0>No</option>
+                    <option value=1>Si</option>
+                ';
+            }
+            $destacado_home = "<select id='destacado_home' name='destacado_home'>{$destacado_opt}</select>";
+            $msg_destacado = $atributos["msg_destacado"];
+
+            $comentarios = '';
+            $_comentarios = $wpdb->get_results("SELECT * FROM wp_comments WHERE comment_post_ID = ".$post->ID);
+            if( is_array($_comentarios) && count($_comentarios) > 0){
+                foreach ($_comentarios as $key => $comentario) {
+                    $selected = ($comentario->comment_ID == $msg_destacado) ? 'selected' : '';
+                    $comentarios .= '
+                        <option value='.$comentario->comment_ID.' '.$selected.'>'.$comentario->comment_content.'</option>
+                    ';
+                }
+            }
+
             $HTML .= "
                 <div class='vlz_contenedor_datos_cuidador'>
 
@@ -208,6 +236,14 @@
                             <div><strong>Destacado:</strong> {$destacado}</div>
                             <div><strong>Flash:</strong> {$flash}</div>
                             <div><strong>Geolocalización:</strong> {$geo}</div>
+                            <div><strong>Destacado Home:</strong> {$destacado_home}</div>
+                            <div style='{$msg_destacado_status}'>
+                                <strong style='vertical-align: top;'>Comentario:</strong> 
+                                <select id='msg_destacado' name='msg_destacado'>{$comentarios}</select>
+                                <!--
+                                    <textarea id='msg_destacado' name='msg_destacado'>{$msg_destacado}</textarea>
+                                -->
+                            </div>
 
                             <div class='vlz_contenedor_botones'>
                                 <span id='actualizar_btn' class='vlz_activar'>Actualizar</span>
@@ -230,6 +266,8 @@
                                     destacado: jQuery('#destacado').val(),
                                     flash: jQuery('#flash').val(),
                                     geo: jQuery('#geo').val(),
+                                    destacado_home: jQuery('#destacado_home').val(),
+                                    msg_destacado: jQuery('#msg_destacado').val(),
                                 },
                                 function( data ) {
                                     jQuery('#actualizar_btn').html('Actualizar');
@@ -239,6 +277,13 @@
 
                     });
                 </script>
+
+                <style>
+                    #msg_destacado{
+                        resize: none;
+                        width: 300px;
+                    }
+                </style>
             ";
 
             echo comprimir_styles($HTML);

@@ -603,9 +603,11 @@
 
                         $resaltar = ( $_SERVER["REQUEST_URI"] == $value["url"]."/" ) ? 'vlz_resaltar': '';
 
+                        $url = ( $value["img"] == "Cerrar_sesion.svg" ) ? $value["url"] : get_home_url().$value["url"];
+                        
                         $MENU["body"] .=
                             '<li class="'.$resaltar.'">
-                                <a href="'.get_home_url().$value["url"].'" class="pd-tb11 menu-link">
+                                <a href="'.$url.'" class="pd-tb11 menu-link">
                                     '.$icono.'
                                     '.$value["name"].'
                                 </a>

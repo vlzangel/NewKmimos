@@ -61,13 +61,13 @@
     }
 
     function update_servicios(){
-    	global $wpdb;
+        global $wpdb;
 
-    	$cuidadores = $wpdb->get_results("SELECT * FROM `cuidadores` WHERE `adicionales` NOT LIKE '%hospedaje%'");
+        $cuidadores = $wpdb->get_results("SELECT * FROM `cuidadores` WHERE `adicionales` NOT LIKE '%hospedaje%'");
 
         $new_adicionales = [];
 
-    	foreach ($cuidadores as $key => $value) {
+        foreach ($cuidadores as $key => $value) {
             $hospedaje = unserialize($value->hospedaje);
             $adicionales = unserialize($value->adicionales);
             $adicionales["hospedaje"] = $hospedaje;
@@ -75,12 +75,35 @@
             $new_adicionales[] = $adicionales;
             
             $adicionales = serialize($adicionales);
-    		$wpdb->query("UPDATE cuidadores SET adicionales = '{$adicionales}' WHERE cuidadores.id = {$value->id};");
-    	}
+            $wpdb->query("UPDATE cuidadores SET adicionales = '{$adicionales}' WHERE cuidadores.id = {$value->id};");
+        }
 
 /*        echo "<pre>";
             print_r($new_adicionales);
         echo "</pre>";*/
+    }
+
+    function update_precios_paseos(){
+    	global $wpdb;
+
+    	$cuidadores = $wpdb->get_results("SELECT * FROM `cuidadores` WHERE `adicionales` LIKE '%paseos%'");
+
+        $new_adicionales = [];
+
+    	foreach ($cuidadores as $key => $value_1) {
+            $adicionales = unserialize($value_1->adicionales);
+
+            $paseos = $adicionales["paseos"];
+            $menor = 0;
+            foreach ($paseos as $key => $value_2) {
+                if( ($value_2 != 0 && $value_2 < $menor) || $menor == 0 ){
+                    $menor = $value_2;
+                }
+            }
+
+    		$wpdb->query("UPDATE cuidadores SET paseos_desde = '{$menor}' WHERE cuidadores.id = {$value_1->id};");
+    	}
+
     }
 
 ?>

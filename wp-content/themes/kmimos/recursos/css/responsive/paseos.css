@@ -247,9 +247,9 @@
 
 	#buscador .banner_txt_2 {
 		font-size: 11px;
-		font-weight: 400;
+		font-weight: 800;
 		padding: 15px 0px;
-		font-family: 'Gotham-Pro-Regular', arial, sans-serif;
+		font-family: 'Gotham-Pro-Bold', arial, sans-serif;
 	}
 
 	#buscador .banner_txt_3 {
@@ -270,7 +270,7 @@
 	    color: #2d2d2d;
 	    width: auto;
 	    text-align: left;
-	    font-size: 9px;
+	    font-size: 10px;
 	    padding: 4px 0px 2px 10px;
 	    font-weight: 600;
 	}
@@ -923,9 +923,28 @@
 	    font-family: Gotham-Pro-Bold;
 	}
 
+	.boton_ver_paquetes_container{
+		background-color: #FFF;
+	}
+
+	#boton_ver_paquetes {
+	    background: #FFF;
+	    color: #00d2c6;
+	    border: solid 1px #00d2c6;
+	    text-transform: capitalize;
+	}
+
+	.registrar_container .beneficios_registrar_container {
+	    display: block !important;
+	}
+
 }
 
 @media (max-width: 600px){
+
+	.dias_msg {
+	    font-size: 9px;
+	}
 
 /* POPUP */
 	
@@ -1424,8 +1443,8 @@
 	    margin-top: 7px !important;
 	}
 
-	.dias_msg {
-	    font-size: 8px;
+	.dias_msg{
+		top: -31px;
 	}
 
 }
