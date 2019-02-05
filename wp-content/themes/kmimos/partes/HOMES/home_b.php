@@ -4,7 +4,7 @@
 	$destacados = get_destacados_home();
 	if( is_array($destacados) && count($destacados) > 0 ){
 		$final_pc = count($destacados)-3;
-		$final_movil = count($destacados);
+		$final_movil = count($destacados)-1;
 		$desta_str = '';
 		foreach ($destacados as $key => $cuidador) {
 			$desta_str .= 

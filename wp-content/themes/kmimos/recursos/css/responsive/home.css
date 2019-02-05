@@ -436,6 +436,93 @@
 	    height: auto;
 	}
 
+/* DESTACADOS */
+	
+	.destacados_container{
+		display: block;
+	    width: 70%;
+	    height: 305px;
+	}
+
+	.destacados_box{
+		display: block;
+		width: 100%;
+	}
+
+	.destacados_item{
+		width: 100%;
+	    padding: 0px 5px;
+	}
+
+	.destacados_item > a {
+	    width: 90%;
+	}
+
+	.seccion_destacados_flechas {
+	    width: 40px;
+	    top: calc( 50% - 80px );
+	}
+
+	.seccion_destacados_izq {
+	    left: -45px;
+	}
+
+	.seccion_destacados_der {
+	    right: -45px;
+	}
+
+	.img_destacado {
+	    height: 160px;
+	}
+
+	.avatar_destacado {
+	    height: 25px;
+	    width: 25px;
+	}
+
+	.datos_destacado_containder {
+	    border-radius: 0px 0px 15px 15px;
+	    padding: 5px 5px 0px;
+	}
+
+	.nombre_destacado a {
+	    font-size: 10px;
+	}
+
+	.nombre_destacado span {
+	    font-size: 8px;
+	}
+
+	.km-ranking a {
+	    width: 12px !important;
+	    height: 6px !important;
+	    background-size: 12px 6px !important;
+	}
+
+	.ranking_destacado {
+	    padding-top: 0px;
+	}
+
+	.msg_destacado_containder {
+	    padding: 0px 10px 5px 30px;
+	    text-align: justify;
+	    white-space: normal;
+	    min-height: 45px;
+	    font-size: 9px;
+	}
+
+	.seccion_destacados h2 {
+	    margin: 20px auto;
+	    font-size: 20px !important;
+	    font-size: 11px !important;
+	}
+
+/* BENEFICIOS */
+
+	.pasos_reserva_container {
+	    padding: 30px 0px;
+	}
+
 	.beneficios_container {
 	    padding: 0px;
 	}
@@ -674,7 +761,7 @@
 	    display: block;
 	    text-transform: none;
 	    text-align: center;
-	    margin: 20px 0px 5px;
+	    margin: 0px 0px 15px;
 	    font-size: 14px !important;
 	}
 

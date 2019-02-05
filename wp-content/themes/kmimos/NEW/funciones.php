@@ -14,11 +14,13 @@
 					$anios_exp = $cuidador->experiencia;
                     if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
                     $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
-
+                    
                     $msg_destacado = $wpdb->get_row("SELECT * FROM wp_comments WHERE comment_ID = ".$atributos["msg_destacado"]);
                     $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 90);
-                    $msg_destacado = ( strlen($msg_destacado) > 90 ) ? $_msg_destacado.'...' : $_msg_destacado;
-
+                    if( $_msg_destacado != "" ){
+                    	$msg_destacado = ( strlen($_msg_destacado) > 90 ) ? $_msg_destacado.'...' : $_msg_destacado;
+                    }
+                    
                     $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = ".$msg_destacado->comment_author_email );
 
 					$resultado[] = (object)[

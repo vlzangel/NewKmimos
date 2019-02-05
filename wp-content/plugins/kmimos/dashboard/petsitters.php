@@ -202,8 +202,9 @@
             $_comentarios = $wpdb->get_results("SELECT * FROM wp_comments WHERE comment_post_ID = ".$post->ID);
             if( is_array($_comentarios) && count($_comentarios) > 0){
                 foreach ($_comentarios as $key => $comentario) {
+                    $selected = ($comentario->comment_ID == $msg_destacado) ? 'selected' : '';
                     $comentarios .= '
-                        <option value='.$comentario->comment_ID.'>'.$comentario->comment_content.'</option>
+                        <option value='.$comentario->comment_ID.' '.$selected.'>'.$comentario->comment_content.'</option>
                     ';
                 }
             }
