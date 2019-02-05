@@ -5,13 +5,10 @@ var isMobile = {
 }
 
 jQuery( document ).ready(function() {
-
-
 	fixedHeader();
 	jQuery(window).on('scroll', function () {
 	  	fixedHeader();
 	});
-
     if(navigator.platform.substr(0, 2) == 'iP'){
         /*jQuery('html').addClass('iOS');*/
         jQuery(".label-placeholder").addClass("focus");
@@ -26,15 +23,10 @@ jQuery( document ).ready(function() {
             jQuery(this).parent().removeClass("focus");
         });
     }
-
     jQuery.post( RAIZ+"c.php", {}, function(e){} );
-
-    // console.log( window.devicePixelRatio );
-
     if( !isMobile.mobilecheck() && window.devicePixelRatio != 1 ){
         alert("Hemos detectado que tienes zoom en tu navegador. Para ver la página correctamente ajústalo al 100%.");
     }
-    
 });
 
 function fixedHeader() {
