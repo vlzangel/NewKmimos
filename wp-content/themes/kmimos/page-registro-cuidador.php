@@ -49,7 +49,7 @@
 
 		<section class="container section-banner-top">
 			<div class="col-md-10 col-md-offset-1">
-				<p class="title">Kmimos es un servicio digital que conecta Doglovers como t&uacute;. con personas que necesitan que les cuiden a sus peludos mientras no estan en casa.</p>
+				<p class="title">Kmimos es un servicio digital que conecta Doglovers como t&uacute;. con personas que necesitan que les cuiden a sus peludos mientras no están en casa.</p>
 			</div>
 		</section>
 
@@ -68,7 +68,7 @@
 							<div class="box_info">
 								<h3>Gana dinero con tu hobbie</h3>
 								<p>
-									En Kmimos siempre podras colocar el precio que mejor se acomode, la decision es tuya. sin embargo quisieramos recomendate el rango de precios mostrados abajo, el cual esta creado basado en las tendencias de precios existentes en el mercado actual
+									En Kmimos siempre podrás colocar el precio que mejor se acomode, la decisión es tuya. Sin embargo quisiéramos recomendarte el rango de precios mostrados abajo, el cual esta creado basado en las tendencias de precios existentes en el mercado actual
 								</p>
 								<ul class="list-unstyled">
 									<li><p><strong>Tamaño pequeño:</strong> 120 pesos por noches</p></li>
@@ -96,7 +96,7 @@
 
 						<div class="box">
 							<div class="titulo">
-								¿Como me convierto en cuidador?
+								¿Cómo me convierto en cuidador?
 							</div>
 							<ul class="item-list">
 								<li>
@@ -104,7 +104,7 @@
 										<img src="<?php echo getTema(); ?>/images/new/km-cuidador/1.jpg" align="left">
 									</div>
 									<div style="width: 75%">
-										<strong>Registrate como aspirante para cuidador</strong>
+										<strong>Regístrate como aspirante para cuidador</strong>
 									</div>
 								</li>
 								<li>
@@ -113,7 +113,7 @@
 									</div>
 									<div style="width: 75%">
 										<strong>Aprueba los test de certificaci&oacute;n y sube fotos de tu hogar</strong>
-										<p>Nuestras pruebas son psicometricas, de conocimientos veterinarios, y una persona del equipo de kmimos te visitara par auna entrevista personal.</p>
+										<p>Nuestras pruebas son psicométricas, de conocimientos veterinarios, y una persona del equipo de kmimos te visitara para una entrevista personal.</p>
 									</div>
 								</li>
 								<li>
