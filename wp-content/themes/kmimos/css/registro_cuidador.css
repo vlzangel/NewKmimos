@@ -118,8 +118,15 @@ small[data-error="rc_vlz_img_perfil"]{
     display: block;
 }
 
+
+
+
+
+
+
 @media ( max-width: 600px ){
     .popup-registro-exitoso-text aside p {
         font-size: 15px !important;
     }
 }
+
