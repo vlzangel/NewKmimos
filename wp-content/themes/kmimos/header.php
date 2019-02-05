@@ -92,6 +92,7 @@
         "product",
         "page-perfil.php",
         "page-recargar.php",
+        "page-registro-cuidador.php",
 
     ];
 
