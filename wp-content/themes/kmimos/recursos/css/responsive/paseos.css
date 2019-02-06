@@ -1131,11 +1131,17 @@
 
 	.input_check_box input:checked ~ .top_check {
 	    border: solid 1px #00d2c6;
-	    background: #00d2c6;
+	    background: #00d2c6!important;
+	    color: #fff!important;
+	}
+
+	.input_check_box input:checked ~ .icon_fecha {
+	    background: #fff!important;
+	    fill: #fff!important;
 	}
 
 	.input_check_box input:checked ~ span {
-	    color: #FFF !important;
+	    color: #FFF!important;
         z-index: 100;
     	position: relative;
 	}
@@ -1447,4 +1453,20 @@
 		top: -31px;
 	}
 
+	#buscador .banner_txt_1 {
+		font-size: 13px;
+	}
+
+	#buscador .banner_txt_1 em {
+        font-size: 14px;
+	}
+	#buscador .banner_txt_2 {
+        font-size: 10px;
+	}
+	.dias_container{
+		margin: 35px 5px 10px;
+	}
+	.beneficios_container > h2{
+		font-size: 13px!important;
+	}
 }

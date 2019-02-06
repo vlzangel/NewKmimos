@@ -120,45 +120,45 @@
 					<div class="tamanios_container">
 						<label class="input_check_box" for="paqueno">
 							<input type="checkbox" id="paqueno" name="tamanos[]" value="paquenos"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Pequenio.svg" />
+							<div class="top_check"></div>
 							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Pequenio.svg" />
 								<div class="tam_label_pc">Pequeño</div>
 								<div class="tam_label_movil">Peq.</div>
 								<small>0 a 25 cm</small>
 							</span>
-							<div class="top_check"></div>
 						</label>
 						<label class="input_check_box" for="mediano">
 							<input type="checkbox" id="mediano" name="tamanos[]" value="medianos"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Mediano.svg" />
+							<div class="top_check"></div>
 							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Mediano.svg" />
 								<div class="tam_label_pc">Mediano</div>
 								<div class="tam_label_movil">Med.</div>
 								<small>25 a 58 cm</small>
 							</span>
-							<div class="top_check"></div>
 						</label>
 
 						<label class="input_check_box" for="grande">
 							<input type="checkbox" id="grande" name="tamanos[]" value="grandes"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Grande.svg" />
+							<div class="top_check"></div>
 							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Grande.svg" />
 								<div class="tam_label_pc">Grande</div>
 								<div class="tam_label_movil">Gde</div>
 								<small>58 a 73 cm</small>
 							</span>
-							<div class="top_check"></div>
 						</label>
 
 						<label class="input_check_box" for="gigante" style="margin-right: 0px;">
 							<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Gigante.svg" />
+							<div class="top_check"></div>
 							<span>
+								<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Gigante.svg" />
 								<div class="tam_label_pc">Gigante</div>
 								<div class="tam_label_movil">Gte.</div>
 								<small>73 a 200 cm</small>
 							</span>
-							<div class="top_check"></div>
 						</label>
 					</div>
 
@@ -430,7 +430,7 @@
 		$HTML .= '
 		<div class="testimonios_container">
 			<div class="testimonios_item">
-				<p>He estado llevando mi perrito con Gabriel, estoy muy agradecido y encantado con él los paseos que le han dado éstas ultimas dos semanas. Durante éstas me envió de mi perrito conociendo nuevos amigos, y cada vez que volvía, se veía más feliz que nunca.</p>
+				<p>He estado llevando mi perrito con Gabriel, estoy muy agradecido y encantado con los paseos que le han dado estas últimas dos semanas. Durante estos paseos me envió fotos de mi perrito conociendo nuevos amigos, y cada vez que volvía, se veía más feliz que nunca.</p>
 				<span>- Alejandra R.</span>
 			</div>
 			<div class="testimonios_img">
