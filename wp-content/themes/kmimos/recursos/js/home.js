@@ -31,6 +31,7 @@ function ancla_form() {
 }
 
 function show_hiden_arrow(){
+    /*
     var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
     if( parseInt( jQuery("body").width() ) > 768 ){
         var final = parseInt( jQuery(".destacados_box").attr("data-final_pc") );
@@ -39,6 +40,7 @@ function show_hiden_arrow(){
     }
     if( paso == 0 ){ jQuery(".seccion_destacados_izq").css("display", "none"); }else{ jQuery(".seccion_destacados_izq").css("display", "block"); }
     if( paso == final ){ jQuery(".seccion_destacados_der").css("display", "none"); }else{ jQuery(".seccion_destacados_der").css("display", "block"); }
+    */
 }
 
 function mover_destacado(dir){
@@ -52,7 +54,7 @@ function mover_destacado(dir){
             var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
             if( paso > 0 ){ paso--; }
             jQuery(".destacados_box").attr("data-paso", paso);
-            jQuery(".destacados_box > div").animate({left: (-1*(paso*h))+"%" }, 1000);
+            jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
         break;
         case 'der':
             if( parseInt( jQuery("body").width() ) > 768 ){
@@ -63,7 +65,7 @@ function mover_destacado(dir){
             var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
             if( paso < final ){ paso++; }
             jQuery(".destacados_box").attr("data-paso", paso);
-            jQuery(".destacados_box > div").animate({left: (-1*(paso*h))+"%" }, 1000);
+            jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
         break;
     }
     show_hiden_arrow();

@@ -435,25 +435,32 @@
 	.destacados_container{
 		position: relative;
 		height: 420px; 
-		display: table;
+		display: block;
 		margin: 0px auto;
+    	text-align: center;
 	}
 
-	.destacados_box{
+	.destacados_box {
+		position: relative;
+		display: inline-block;
+	}
+
+	.destacados_box > div{
 		position: relative;
 	    overflow: hidden;
-	    width: 1000px;
+	    width: 100%;
+	    max-width: 1000px;
 	    box-sizing: border-box;
-	    display: table-cell;
+	    display: block;
 	    vertical-align: top;
+	    margin: 0px auto;
 	}
 
-	.destacados_box > div {
+	.destacados_box > div > div {
 		height: 100%;
 		white-space: nowrap;
 		position: relative;
 		display: block;
-
 		left: 0%;
 	}
 
