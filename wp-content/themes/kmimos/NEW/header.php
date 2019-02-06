@@ -347,13 +347,15 @@
 					version          : \'v3.2\'
 				});
 			};
+			setTimeout(function(){ jQuery(".fb-customerchat").css("display", block) }, 200000);
 		</script>
+
 		<!-- Your customer chat code -->
-		<div class="fb-customerchat"
+		<div style="display:none;" class="fb-customerchat"
 		  	attribution=setup_tool
 			page_id="587104528419977"
-			logged_in_greeting="Hola! Como podemos ayudarte?"
-			logged_out_greeting="Hola! Como podemos ayudarte?">
+			logged_in_greeting="Preguntas? Chatea con Nosotros"
+			logged_out_greeting="Preguntas? Chatea con Nosotros">
 		</div>
 		';
 
