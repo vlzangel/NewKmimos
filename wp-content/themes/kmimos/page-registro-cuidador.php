@@ -21,6 +21,7 @@
 			<!-- solo para movil -->
 			<div class="hidden-md hidden-lg">			
 				<div class="km-hero-bg" style="background-image:url(<?php echo getTema(); ?>/images/new/km-cuidador/head-responsive.jpg);">
+					<div class="overlay"></div>
 				</div>
 				<header>
 					<div class="container text-center">
