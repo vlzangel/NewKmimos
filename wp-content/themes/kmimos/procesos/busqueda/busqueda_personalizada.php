@@ -43,6 +43,14 @@
 		$DESCUENTO_CONDICION .= " AND atributos LIKE '%green\";s:1:\"1%' ";  
 	}
 
+	if( $es_agresiva == 1 ){
+		$DESCUENTO_CONDICION .= " AND comportamientos_aceptados LIKE '%no_sociables\";s:1:\"1%' ";  
+	}
+
+	if( $es_agresiva == 1 ){
+		$DESCUENTO_CONDICION .= " AND ( adicionales LIKE '%status_transportacion_sencilla\";s:1:\"1%' OR adicionales LIKE '%status_transportacion_redonda\";s:1:\"1%' ) ";  
+	}
+
 
     /* Filtros por Gatos */
 
