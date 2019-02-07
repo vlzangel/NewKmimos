@@ -63,6 +63,8 @@
 		';
 	}
 
+	$personalizada = ( $_GET["landing_b"] == 'yes' ) ? '<input type="hidden" id="personalizada" name="personalizada" value="1" />' : '';
+
     $HTML .= '
     	<div id="banner_home">
 			<div>
@@ -75,6 +77,7 @@
 
 					<input type="hidden" name="redireccionar" value="1" />
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+					'.$personalizada.'
 
 					<input type="hidden" id="latitud" name="latitud" />
 					<input type="hidden" id="longitud" name="longitud" />
