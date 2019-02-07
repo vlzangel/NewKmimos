@@ -14,6 +14,16 @@
 	$hoy = date("d/m/Y");
 	$manana = date("d/m/Y", strtotime("+1 day") );	
 
+	/*
+		Array
+		(
+		    [mascotas_propias] => 1
+		    [con_transporte] => 1
+		    [areas_verdes] => 1
+		    [es_agresiva] => 1
+		)
+	*/
+
 
 	$ubicaciones_inner = '';
 	$nombre_inner = '';
@@ -23,7 +33,15 @@
 
 	extract($_POST);
 
-	$DESCUENTO_CONDICION .= " AND atributos LIKE '%destacado_home\";s:1:\"1%'"; 
+	$DESCUENTO_CONDICION .= " AND atributos LIKE '%destacado_home\";s:1:\"1%' "; 
+
+	if( $mascotas_propias == 1 ){
+		$DESCUENTO_CONDICION .= " AND num_mascotas > 0 "; 
+	}
+
+	if( $areas_verdes == 1 ){
+		$DESCUENTO_CONDICION .= " AND atributos LIKE '%green\";s:1:\"1%' ";  
+	}
 
 
     /* Filtros por Gatos */

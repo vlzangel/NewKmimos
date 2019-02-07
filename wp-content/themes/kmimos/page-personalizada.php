@@ -66,6 +66,59 @@
     	';
 	}
 
+	/*
+		Array
+		(
+		    [tamanos] => Array
+		        (
+		            [0] => medianos
+		            [1] => gigantes
+		        )
+
+		    [servicios] => Array
+		        (
+		            [0] => hospedaje
+		            [1] => guarderia
+		        )
+
+		    [mascotas_propias] => 1
+		    [con_transporte] => 1
+		    [areas_verdes] => 1
+		    [es_agresiva] => 1
+		)
+	*/
+
+	$tamanos = [];
+	if( is_array($_SESSION['busqueda']["tamanos"]) ){
+		foreach ($_SESSION['busqueda']["tamanos"] as $key => $value) {
+			$tamanos[ $value] = 'checked';
+		}
+	}
+
+	$servicios = [];
+	if( is_array($_SESSION['busqueda']["servicios"]) ){
+		foreach ($_SESSION['busqueda']["servicios"] as $key => $value) {
+			$servicios[ $value ] = 'checked';
+		}
+	}
+
+	$mascotas = [];
+	if( is_array($_SESSION['busqueda']["mascotas"]) ){
+		foreach ($_SESSION['busqueda']["mascotas"] as $key => $value) {
+			$mascotas[ $value ] = 'checked';
+		}
+	}
+
+	$mascotas_propias = ( $_SESSION["busqueda"]["mascotas_propias"] == 1 ) ? 'checked' : '';
+	$con_transporte = ( $_SESSION["busqueda"]["con_transporte"] == 1 ) ? 'checked' : '';
+	$areas_verdes = ( $_SESSION["busqueda"]["areas_verdes"] == 1 ) ? 'checked' : '';
+	$es_agresiva = ( $_SESSION["busqueda"]["es_agresiva"] == 1 ) ? 'checked' : '';
+
+	echo "<pre>";
+		print_r($_SESSION['busqueda']);
+		print_r($tamanos);
+	echo "</pre>";	
+
     $HTML .= $cuidadores_destacados.'
     	<div id="banner_home">
 			<div>
@@ -77,8 +130,8 @@
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 
-					<input type="hidden" id="latitud" name="latitud" />
-					<input type="hidden" id="longitud" name="longitud" />
+					<input type="hidden" id="latitud" name="latitud" value="'.$_SESSION['busqueda']['latitud'].'" />
+					<input type="hidden" id="longitud" name="longitud" value="'.$_SESSION['busqueda']['longitud'].'" />
 
 					<table>
 						<tr>
@@ -86,8 +139,8 @@
 								<label class="titulo_form">Ubicación<br>&nbsp;</label>
 								<div class="ubicacion_container">
 									<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion_2.svg" />
-									<input type="text" class="ubicacion_txt" name="ubicacion_txt" placeholder="Ubicación estado municipio" autocomplete="off" />
-									<input type="hidden" class="ubicacion" name="ubicacion" />	
+									<input type="text" class="ubicacion_txt" name="ubicacion_txt" placeholder="Ubicación estado municipio" autocomplete="off" value="'.$_SESSION['busqueda']['ubicacion_txt'].'" />
+									<input type="hidden" class="ubicacion" name="ubicacion" value="'.$_SESSION['busqueda']['ubicacion'].'" />	
 								    <div class="cerrar_list_box">
 								    	<div class="cerrar_list">X</div>
 								    	<ul class="ubicacion_list"></ul>
@@ -103,13 +156,13 @@
 									<label class="titulo_form">Características de tu mascota</label>
 									<div style="clear: both;"></div>
 									<label class="input_check_box" for="perro">
-										<input type="checkbox" id="perro" name="mascotas[]" value="perros"  />
+										<input type="checkbox" id="perro" name="mascotas[]" value="perros" '.$mascotas[ 'perros' ].' />
 										<img src="'.get_recurso("img").'HOME/SVG/Perro.svg" />
 										<span>Perro</span>
 										<div class="top_check"></div>
 									</label>
 									<label class="input_check_box" for="gato">
-										<input type="checkbox" id="gato" name="mascotas[]" value="gatos"  />
+										<input type="checkbox" id="gato" name="mascotas[]" value="gatos" '.$mascotas[ 'gatos' ].' />
 										<img src="'.get_recurso("img").'HOME/SVG/Gato.svg" />
 										<span>Gato</span>
 										<div class="top_check"></div>
@@ -120,7 +173,7 @@
 									<label class="titulo_form">&nbsp;<br>&nbsp;</label>
 									<div style="clear: bold;"></div>
 									<label class="input_check_box" for="pequenos">
-										<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos"  />
+										<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos" '.$tamanos[ 'pequenos' ].' />
 										<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Pequenio.svg" />
 										<span>
 											<div class="tam_label_movil">Pequeño</div>
@@ -129,7 +182,7 @@
 										<div class="top_check"></div>
 									</label>
 									<label class="input_check_box" for="mediano">
-										<input type="checkbox" id="mediano" name="tamanos[]" value="medianos"  />
+										<input type="checkbox" id="mediano" name="tamanos[]" value="medianos" '.$tamanos[ 'medianos' ].' />
 										<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Mediano.svg" />
 										<span>
 											<div class="tam_label_movil">Mediano</div>
@@ -139,7 +192,7 @@
 									</label>
 
 									<label class="input_check_box" for="grande">
-										<input type="checkbox" id="grande" name="tamanos[]" value="grandes"  />
+										<input type="checkbox" id="grande" name="tamanos[]" value="grandes" '.$tamanos[ 'grandes' ].' />
 										<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Grande.svg" />
 										<span>
 											<div class="tam_label_movil">Grande</div>
@@ -149,7 +202,7 @@
 									</label>
 
 									<label class="input_check_box" for="gigante" style="margin-right: 0px;">
-										<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes"  />
+										<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes" '.$tamanos[ 'gigantes' ].' />
 										<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Gigante.svg" />
 										<span>
 											<div class="tam_label_movil">Gigante.</div>
@@ -166,7 +219,7 @@
 									<div class="servicios_principales_container">
 										<div class="servicios_principales_box"  style="position: relative;">
 											<label class="input_check_box" for="hospedaje">
-												<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
+												<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje" '.$servicios[ 'hospedaje' ].' />
 												<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
 												<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
 												<span>Hospedaje</span>
@@ -174,7 +227,7 @@
 											</label>
 
 											<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia\'); evento_fbq("track", "traking_code_boton_guarderia");">
-												<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
+												<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia" '.$servicios[ 'guarderia' ].' />
 												<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
 												<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
 												<span>Guardería</span>
@@ -182,7 +235,7 @@
 											</label>
 
 											<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos\'); evento_fbq("track", "traking_code_boton_paseos"); evento_google_2(\'paseos\'); evento_fbq_2("track", "traking_code_boton_paseos_kmimos"); ">
-												<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
+												<input type="checkbox" id="paseos" name="servicios[]" value="paseos" '.$servicios[ 'paseos' ].' />
 												<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
 												<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
 												<span>Paseos</span>
@@ -190,7 +243,7 @@
 											</label>
 
 											<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
-												<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento"  />
+												<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento" '.$servicios[ 'adiestramiento' ].' />
 												<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
 												<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
 												<span>Adiestramiento</span>
@@ -221,7 +274,7 @@
 											mascotas propias
 										</label>
 										<span>
-											<input type="checkbox" id="check_1" />
+											<input type="checkbox" id="check_1" name="mascotas_propias" value="1" '.$mascotas_propias.' />
 											<div class="check_icon"></div>
 										</span>
 									</div>
@@ -231,7 +284,7 @@
 											transporte
 										</label>
 										<span>
-											<input type="checkbox" id="check_2" />
+											<input type="checkbox" id="check_2" name="con_transporte" value="1" '.$con_transporte.' />
 											<div class="check_icon"></div>
 										</span>
 									</div>
@@ -243,7 +296,7 @@
 											áreas verdes
 										</label>
 										<span>
-											<input type="checkbox" id="check_3" />
+											<input type="checkbox" id="check_3" name="areas_verdes" value="1" '.$areas_verdes.' />
 											<div class="check_icon"></div>
 										</span>
 									</div>
@@ -254,7 +307,7 @@
 											no es muy sociable?
 										</label>
 										<span>
-											<input type="checkbox" id="check_4" />
+											<input type="checkbox" id="check_4" name="es_agresiva" value="1" '.$es_agresiva.' />
 											<div class="check_icon_2 check_no"></div>
 											<div class="check_icon_2 check_si"></div>
 										</span>
