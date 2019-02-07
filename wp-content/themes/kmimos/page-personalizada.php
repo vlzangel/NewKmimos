@@ -58,7 +58,7 @@
 
     	$cuidadores_destacados = '
     	<div class="seccion_destacados">
-    		<h2>Bienvenido a los <span>filtros perzonalizados</span> <img src="'.get_recurso('img').'PERSONALIZADA/PNG/logo-verde.png" style="width: 130px;" /></h2>
+    		<h2>Bienvenido a los <span>filtros personalizados</span> <img src="'.get_recurso('img').'PERSONALIZADA/PNG/logo-verde.png" style="width: 130px;" /></h2>
     		<div class="seccion_destacados_subtitulo">
     			Para facilitar tu búsqueda hemos seleccionado estos tres cuidadores para ti. Ajusta los <span>filtros de personalización</span> para encontrar al Cuidador deal para tu mascota. También puedes <a class="">omitir este paso y ver la lista completa de Cuidadores</a> 
     		</div>
