@@ -9,15 +9,8 @@
     wp_enqueue_style('home_responsive', get_recurso("css")."responsive/personalizada.css", array(), '1.0.0');
 
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
-	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
-	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
-
-
-    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
-    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
-    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0');
             
@@ -63,8 +56,8 @@
     			Para facilitar tu búsqueda hemos seleccionado estos tres cuidadores para ti. Ajusta los <span>filtros de personalización</span> para encontrar al Cuidador deal para tu mascota. También puedes <a class="">omitir este paso y ver la lista completa de Cuidadores</a> 
     		</div>
     		<div class="destacados_container">
-    			<div class="destacados_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'">
-	    			<div><div>'.$desta_str.'</div></div>
+    			<div class="destacados_box" data-paso="0" data-final_pc="0" data-final_movil="0">
+	    			<div><div></div></div>
     				<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_anterior.svg" />
     				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_siguiente.svg" />
     			</div>
@@ -76,13 +69,12 @@
     $HTML .= $cuidadores_destacados.'
     	<div id="banner_home">
 			<div>
-				<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
+				<form id="buscador" method="POST" >
 
 					<div class="cada_vez">
 						Cada vez que modifiques un filtro, tu búsqueda será mucho más personalizada.
 					</div>
 
-					<input type="hidden" name="redireccionar" value="1" />
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 
 					<input type="hidden" id="latitud" name="latitud" />
@@ -287,8 +279,7 @@
 
     echo comprimir($HTML);
     
-    wp_enqueue_script('buscar_home', get_recurso("js")."home.js", array(), '1.0.0');
-    wp_enqueue_script('club_patitas', get_recurso("js")."club_patitas.js", array(), '1.0.0');
+    wp_enqueue_script('buscar_home', get_recurso("js")."personalizada.js", array(), '1.0.0');
 
     get_footer(); 
 ?>

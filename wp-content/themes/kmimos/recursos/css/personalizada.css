@@ -539,19 +539,24 @@
 	.check_container{
 		overflow: hidden;
 	    padding-bottom: 20px;
+	    position: relative;
 	}
 
 	.check_container label{
+		position: relative;
 		float: left;
-		width: 70%;
+		width: 100%;
 		font-size: 12px;
 		font-weight: 400;
+		z-index: 10;
 	}
 
 	.check_container span{
-		float: right;
 		width: 30%;
 		padding-right: 15px;
+		position: absolute;
+		right: 0px;
+		z-index: 0;
 	}
 
 	.boton_verde{
