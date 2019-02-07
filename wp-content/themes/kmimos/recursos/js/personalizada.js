@@ -133,7 +133,7 @@ jQuery( document ).ready(function() {
     });
     resize_carrusel();
 
-    jQuery("#buscar input").on("change", function(e){ 
+    jQuery("#buscador input").on("change", function(e){ 
         if( parseInt( jQuery("body").width() ) > 768 ){ 
             buscar( jQuery(this).attr("id") ); 
         }
