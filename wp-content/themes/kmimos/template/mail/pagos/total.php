@@ -16,7 +16,7 @@
 			Hola [name]
 		</div>	
 
-		<div style='
+        <div style='
             font-size: 17px; 
             line-height: 1.07; 
             letter-spacing: 0.3px; 
@@ -24,6 +24,16 @@
             text-align: left; 
         '>
             Le informamos que le fue enviada una Transferencia interbancaria a cuenta de cheques/ahorro, bajo las siguientes condiciones.
+        </div>
+
+		<div style='
+            font-size: 14px; 
+            line-height: 1.07; 
+            letter-spacing: 0.3px; 
+            color: #000000; 
+            text-align: left; 
+        '>
+            (La transferencia se verá reflejada en la cuenta al siguiente día hábil de recibir este correo en un horario de las 15:00 hrs a 18:30 hrs dependiendo de la institución bancaria recepctora.) 
         </div>
 
 	    <div style='display: block; margin-bottom: 8px; text-align: left;'>
