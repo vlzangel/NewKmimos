@@ -256,7 +256,7 @@
 										</span>
 									</div>
 									<div class="check_container">
-										<label for="check_4" style="padding-top: 10px;">
+										<label for="check_4" style="padding-top: 10px; color: #e53340;">
 											¿Tu mascota es Agresiva con<br>
 											otras mascotas, personas, o<br>
 											no es muy sociable?
