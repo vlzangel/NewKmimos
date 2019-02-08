@@ -89,7 +89,11 @@
 				    <label class="terminos">
 				      <input name="terminos" required type="checkbox"> <strong>Acepto los <a href="javascript:;" data-toggle="modal" data-target="#myModal">términos y condiciones</a> del club</strong>
 				    </label>
-					<div style="padding:20px 0px;" class="g-recaptcha" data-sitekey="6LeX9TYUAAAAAF5L3Sr57SDQPlxUY74AojSrCYBW"></div>
+					
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div style="padding:20px 0px;" class="g-recaptcha" data-sitekey="6LeX9TYUAAAAAF5L3Sr57SDQPlxUY74AojSrCYBW"></div>
+					</div>
+
 					<button type="submit" class="btn btn-club btn-lg btn-info">
 						Genera tu c&oacute;digo aqu&iacute;
 					</button>
