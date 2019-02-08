@@ -44,6 +44,8 @@
     wp_enqueue_style('club_responsive', getTema()."/css/responsive/club-patitas-felices.css", array(), '1.0.0');
 	wp_enqueue_script('club_script2', getTema()."/js/club-patitas-felices.js", array(), '2.0.0');
 
+    wp_enqueue_script('recaptcha_CPF', "https://www.google.com/recaptcha/api.js", array(), '1.0.0');
+
 	get_header();
 ?>
 	 
