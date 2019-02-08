@@ -103,9 +103,6 @@ function buscar( campo ){
                                 '</div>'+
                                 '<div class="ranking_destacado">'+cuidador.ranking+'</div>'+
                             '</div>'+
-                            '<div class="msg_destacado_containder">'+
-                                '"'+cuidador.msg+'"'+
-                            '</div>'+
                         '</div>'+
                         '<a href="'+cuidador.link+'" class="boton">Ver perfil</a>'+
                     '</div>';

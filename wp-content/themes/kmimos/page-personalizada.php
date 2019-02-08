@@ -6,9 +6,15 @@
 	date_default_timezone_set('America/Mexico_City');
 
     wp_enqueue_style('home_kmimos', get_recurso("css")."personalizada.css", array(), '1.0.0');
-    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/personalizada.css", array(), '1.0.0');
+    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/personalizada_2.css", array(), '1.0.0');
 
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
+
+
+    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
 
@@ -41,9 +47,6 @@
 							'</div>'.
 							'<div class="ranking_destacado">'.$cuidador->ranking.'</div>'.
 						'</div>'.
-						'<div class="msg_destacado_containder">'.
-							'"'.$cuidador->msg.'"'.
-						'</div>'.
 					'</div>'.
 					'<a href="'.$cuidador->link.'" class="boton">Ver perfil</a>'.
 				'</div>';
@@ -51,7 +54,7 @@
 
     	$cuidadores_destacados = '
     	<div class="seccion_destacados">
-    		<h2>Bienvenido a los <span>filtros personalizados</span> <img src="'.get_recurso('img').'PERSONALIZADA/PNG/logo-verde.png" style="width: 130px;" /></h2>
+    		<h2>Bienvenido a los <span>filtros personalizados <img src="'.get_recurso('img').'PERSONALIZADA/PNG/logo-verde.png" /></span> </h2>
     		<div class="seccion_destacados_subtitulo">
     			Para facilitar tu búsqueda hemos seleccionado estos tres cuidadores para ti. Ajusta los <span>filtros de personalización</span> para encontrar al Cuidador deal para tu mascota. También puedes <a class="">omitir este paso y ver la lista completa de Cuidadores</a> 
     		</div>
@@ -62,31 +65,16 @@
     				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_siguiente.svg" />
     			</div>
     		</div>
+    		<div class="botones_movil">
+    			<a href="'.get_home_url().'/busqueda" class="boton boton_verde">Ajustar filtros</a>
+    			<a href="'.get_home_url().'/busqueda" class="boton boton_verde">Omitir</a>
+				<span>
+					Al omitir verás a los más de 1,000 Cuidadores Certificados
+				</span>
+    		</div>
     	</div>
     	';
 	}
-
-	/*
-		Array
-		(
-		    [tamanos] => Array
-		        (
-		            [0] => medianos
-		            [1] => gigantes
-		        )
-
-		    [servicios] => Array
-		        (
-		            [0] => hospedaje
-		            [1] => guarderia
-		        )
-
-		    [mascotas_propias] => 1
-		    [con_transporte] => 1
-		    [areas_verdes] => 1
-		    [es_agresiva] => 1
-		)
-	*/
 
 	$tamanos = [];
 	if( is_array($_SESSION['busqueda']["tamanos"]) ){
@@ -114,10 +102,12 @@
 	$areas_verdes = ( $_SESSION["busqueda"]["areas_verdes"] == 1 ) ? 'checked' : '';
 	$es_agresiva = ( $_SESSION["busqueda"]["es_agresiva"] == 1 ) ? 'checked' : '';
 
+	/*
 	echo "<pre>";
 		print_r($_SESSION['busqueda']);
 		print_r($tamanos);
 	echo "</pre>";	
+	*/
 
     $HTML .= $cuidadores_destacados.'
     	<div id="banner_home">

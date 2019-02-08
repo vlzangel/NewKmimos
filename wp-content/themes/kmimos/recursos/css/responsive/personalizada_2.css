@@ -1,0 +1,151 @@
+@media screen and ( max-width: 768px ){
+
+	.seccion_destacados {
+	    padding: 60px 0px 0px;
+	    border-bottom: solid 0px #CCC;
+	    box-shadow: 0px 0px 0px #CCC;
+	}
+
+	.seccion_destacados h2 {
+	    text-align: left;
+	    margin: 0px;
+	    padding: 0px 15px 15px;
+	    font-size: 16px !important;
+	    font-family: Gotham-Pro-Black !important;
+	}
+
+	.seccion_destacados h2 span {
+	    display: block;
+	}
+
+	.seccion_destacados h2 span img {
+	   	width: 70px;
+	}
+
+	.seccion_destacados_subtitulo {
+	    margin: 0px auto 30px;
+	    max-width: 1200px;
+	    font-size: 9px;
+	    padding: 0px 10px;
+	    text-align: justify;
+	}
+
+	/* DESTACADOS */
+	
+	.destacados_container{
+		display: block;
+	    width: 90%;
+	    height: 340px;
+	    overflow: auto;
+	}
+
+	.destacados_box{
+		display: block;
+		width: 100%;
+	}
+
+	.destacados_item{
+		width: 100%;
+	    padding: 0px 5px;
+        margin-bottom: 15px;
+	}
+
+	.destacados_item > a {
+		display: none;
+
+	    width: 90%;
+	}
+
+	.seccion_destacados_flechas {
+		display: none;
+
+	    width: 40px;
+	    top: calc( 50% - 80px );
+	}
+
+	.seccion_destacados_izq {
+	    left: -45px;
+	}
+
+	.seccion_destacados_der {
+	    right: -45px;
+	}
+
+	.img_destacado {
+	    height: 100px;
+	    width: 50%;
+    	float: left;
+	}
+
+	.avatar_destacado {
+	    height: 23px;
+    	width: 23px;
+	    position: absolute;
+	    left: 5px;
+	    top: 11px;
+	}
+
+	.datos_destacado_containder {
+	    border-radius: 0px 10px 10px 0px;
+	    padding: 5px 5px 0px;
+
+	    width: 50%;
+    	float: right;
+    	position: relative;
+    	border-top: solid 1px #7abab7;
+    	border-left: 0px; 
+	    height: 100px;
+	}
+
+	.nombre_destacado a {
+	    font-size: 10px;
+	}
+
+	.nombre_destacado span {
+	    font-size: 8px;
+	}
+
+	.km-ranking a {
+		width: 16px !important;
+		height: 10px !important;
+		background-size: 16px 8px !important;
+	}
+
+	.ranking_destacado {
+		padding-top: 0px;
+		padding-left: 29px;
+    	float: left;
+	}
+
+	.nombre_destacado {
+	    float: left;
+	    padding: 4px 0px 0px 30px;
+	}
+
+	.destacados_box > div > div {
+	    white-space: normal;
+	}
+
+	/* Filtros */
+
+		#banner_home{
+			display: none;
+		}
+
+		.botones_movil{
+			
+		}
+
+		.botones_movil > a {
+			margin: 5px auto 10px !important;
+		    width: 220px;
+		    padding: 10px 0px !important;
+		    font-size: 11px;
+		}
+
+		.botones_movil > span {
+			text-align: center;
+			display: block;
+			font-size: 9px;
+		}
+}

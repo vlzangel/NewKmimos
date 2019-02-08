@@ -621,3 +621,20 @@
 	.check_container input:checked ~ .check_icon_2.check_si {
 		background-image: url(../img/PERSONALIZADA/PNG/seleccionado_SI.png);
 	}
+
+	.seccion_destacados h2 span img {
+	   	width: 150px;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
