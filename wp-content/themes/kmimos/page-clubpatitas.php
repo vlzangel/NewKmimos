@@ -75,10 +75,10 @@
 				<form method="post" action="<?php echo get_home_url(); ?>/club-patitas-felices" id="form-registro">
 					<!-- input type="hidden" name="redirect" value="1" -->
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<input required class="form-control" style="margin:5px 0px; border-radius: 10px;" type="text" name="nombre" placeholder="Nombre" value="<?php echo $nombre; ?>" <?php echo $readonly; ?>>
+						<input required class="form-control" style="margin:5px 0px; border-radius: 10px;" type="text" name="nombre" placeholder="Nombre" value="<?php echo $nombre; ?>" <?php #echo $readonly; ?>>
 					</div>
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<input required class="form-control" style="margin:5px 0px; border-radius: 10px;" type="text" name="apellido" placeholder="Apellido" value="<?php echo $apellido; ?>" <?php echo $readonly; ?>>
+						<input required class="form-control" style="margin:5px 0px; border-radius: 10px;" type="text" name="apellido" placeholder="Apellido" value="<?php echo $apellido; ?>" <?php #echo $readonly; ?>>
 					</div>
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<input required class="form-control" style="margin:5px 0px; border-radius: 10px;" type="email" name="email" placeholder="Direccion correo electronico" value="<?php echo $email; ?>" <?php echo $readonly; ?>>
@@ -87,7 +87,7 @@
 				    <label class="terminos">
 				      <input name="terminos" required type="checkbox"> <strong>Acepto los <a href="javascript:;" data-toggle="modal" data-target="#myModal">términos y condiciones</a> del club</strong>
 				    </label>
-					 
+					<div style="padding:20px 0px;" class="g-recaptcha" data-sitekey="6LeX9TYUAAAAAF5L3Sr57SDQPlxUY74AojSrCYBW"></div>
 					<button type="submit" class="btn btn-club btn-lg btn-info">
 						Genera tu c&oacute;digo aqu&iacute;
 					</button>
@@ -179,12 +179,15 @@
 </div>	
 
 <script type="text/javascript">
-<?php session_start();
-if( !isset($_SESSION['CPF_Track']) ) {$_SESSION['CPF_Track'] = 1; ?>
-	evento_google_kmimos('CPF_Home');
-<?php }else{ 
-	echo '// $_SESSION['CPF_Track'] = '.$_SESSION['CPF_Track'];
-} ?>
+<?php 
+	session_start(); 
+	if( !isset($_SESSION['CPF_Track']) ) {
+		$_SESSION['CPF_Track'] = 1; 
+		echo "evento_google_kmimos('CPF_Home');";
+	}else{ 
+		echo ' CPF_track = home ';
+	} 
+?>
 </script>
 
 <?php 
