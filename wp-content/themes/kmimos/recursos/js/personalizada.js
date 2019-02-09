@@ -177,9 +177,6 @@ jQuery( document ).ready(function() {
 
     jQuery("#boton_buscar").on("click", function(e){
 
-        evento_google_kmimos("buscar_home");
-        evento_fbq_kmimos('buscar_home');
-
         var errores = 0;
         if( jQuery("#checkin").val() != "" && jQuery("#checkout").val() != "" ){
             jQuery(".fechas_container").removeClass("error_fecha");
