@@ -125,15 +125,40 @@ function buscar( campo ){
 
 jQuery( document ).ready(function() {
 
+    jQuery("#btn_aplicar_filtros").on("click", function(e){
+        e.preventDefault();
+
+        jQuery("body").css("overflow", "auto");
+        jQuery("#buscador").animate({
+            "top": "-100%"
+        }, 1000);
+
+        setTimeout(function(e){
+            jQuery("#banner_home").css("display", "none");
+        }, 1000);
+    });
+
+    jQuery("#aplicar_btn").on("click", function(e){
+        e.preventDefault();
+        jQuery("#banner_home").css("display", "block");
+        jQuery("body").css("overflow", "hidden");
+
+        jQuery("#buscador").animate({
+            "top": "10px"
+        }, 1000);
+
+    });
+
     jQuery(window).on('resize', function () {
         resize_carrusel();
     });
+
     resize_carrusel();
 
     jQuery("#buscador input").on("change", function(e){ 
-        if( parseInt( jQuery("body").width() ) > 768 ){ 
+        // if( parseInt( jQuery("body").width() ) > 768 ){ 
             buscar( jQuery(this).attr("id") ); 
-        }
+        // }
     });
 
     buscar( "" ); 

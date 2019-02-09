@@ -66,7 +66,7 @@
     			</div>
     		</div>
     		<div class="botones_movil">
-    			<a href="'.get_home_url().'/busqueda" class="boton boton_verde">Ajustar filtros</a>
+    			<a id="aplicar_btn" href="#" class="boton boton_verde">Ajustar filtros</a>
     			<a href="'.get_home_url().'/busqueda" class="boton boton_verde">Omitir</a>
 				<span>
 					Al omitir verás a los más de 1,000 Cuidadores Certificados
@@ -115,11 +115,13 @@
 				<form id="buscador" method="POST" >
 
 					<div class="cada_vez">
+						<div>
+							<span>Modifica los filtros personalizados</span> de acuerdo a tus preferencias.
+						</div>
 						Cada vez que modifiques un filtro, tu búsqueda será mucho más personalizada.
 					</div>
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
-
 					<input type="hidden" id="latitud" name="latitud" value="'.$_SESSION['busqueda']['latitud'].'" />
 					<input type="hidden" id="longitud" name="longitud" value="'.$_SESSION['busqueda']['longitud'].'" />
 
@@ -142,8 +144,8 @@
 								</div>
 							</td>
 							<td class="celda_2">
+								<label class="titulo_form">Características de tu<br>mascota</label>
 								<div class="tipo_mascota_container">
-									<label class="titulo_form">Características de tu mascota</label>
 									<div style="clear: both;"></div>
 									<label class="input_check_box" for="perro">
 										<input type="checkbox" id="perro" name="mascotas[]" value="perros" '.$mascotas[ 'perros' ].' />
@@ -160,7 +162,6 @@
 								</div>
 
 								<div class="tamanios_container">
-									<label class="titulo_form">&nbsp;<br>&nbsp;</label>
 									<div style="clear: bold;"></div>
 									<label class="input_check_box" for="pequenos">
 										<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos" '.$tamanos[ 'pequenos' ].' />
@@ -195,7 +196,7 @@
 										<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes" '.$tamanos[ 'gigantes' ].' />
 										<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Gigante.svg" />
 										<span>
-											<div class="tam_label_movil">Gigante.</div>
+											<div class="tam_label_movil">Gigante</div>
 											<small>73 a 200 cm</small>
 										</span>
 										<div class="top_check"></div>
@@ -210,32 +211,28 @@
 										<div class="servicios_principales_box"  style="position: relative;">
 											<label class="input_check_box" for="hospedaje">
 												<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje" '.$servicios[ 'hospedaje' ].' />
-												<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
-												<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
+												<img class="" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
 												<span>Hospedaje</span>
 												<div class="top_check"></div>
 											</label>
 
 											<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia\'); evento_fbq("track", "traking_code_boton_guarderia");">
 												<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia" '.$servicios[ 'guarderia' ].' />
-												<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
-												<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
+												<img class="" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
 												<span>Guardería</span>
 												<div class="top_check"></div>
 											</label>
 
 											<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos\'); evento_fbq("track", "traking_code_boton_paseos"); evento_google_2(\'paseos\'); evento_fbq_2("track", "traking_code_boton_paseos_kmimos"); ">
 												<input type="checkbox" id="paseos" name="servicios[]" value="paseos" '.$servicios[ 'paseos' ].' />
-												<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
-												<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
+												<img class="" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
 												<span>Paseos</span>
 												<div class="top_check"></div>
 											</label>
 
 											<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
 												<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento" '.$servicios[ 'adiestramiento' ].' />
-												<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
-												<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
+												<img class="" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
 												<span>Adiestramiento</span>
 												<div class="top_check"></div>
 											</label>
@@ -305,8 +302,9 @@
 								</div>
 							</td>
 							<td class="omitir_btn">
-								<a href="'.get_home_url().'/busqueda" class="boton boton_verde">Omitir filtros personalizados</a>
-								<span>
+								<a id="btn_aplicar_filtros" href="#" class="solo_movil boton boton_verde">Personalizar mi búsqueda</a>
+								<a href="'.get_home_url().'/busqueda" class="solo_pc boton boton_verde">Omitir filtros personalizados</a>
+								<span class="solo_pc">
 									Al darle click verás a los más de 1,000<br>
 									Cuidadores Certificados
 								</span>
