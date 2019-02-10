@@ -45,9 +45,9 @@ function show_hiden_arrow(){
 
 function mover_destacado(dir){
     if( parseInt( jQuery("body").width() ) > 768 ){
-        var h = 33.333333334;
+        var h = parseInt( jQuery(".destacados_box").attr("data-h_pc") );
     }else{
-        var h = 100;
+        var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
     }
     switch(dir){
         case 'izq':
