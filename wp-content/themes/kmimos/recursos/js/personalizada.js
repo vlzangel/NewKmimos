@@ -26,12 +26,17 @@ function show_hiden_arrow(){
 
 }
 
-function resize_carrusel(){
-    var w = parseInt( jQuery(".destacados_box > div").width() );
-    if( w > 768 ){
-        var h = 0.33333334;
-    }else{ var h = 1; }
-    jQuery(".destacados_item").css("width", w*h);
+function resize_carrusel(_w){
+    if( _w == "" ){
+        var w = parseInt( jQuery(".destacados_box > div").width() );
+        if( w > 768 ){
+            var h = 0.33333334;
+        }else{ var h = 1; }
+        jQuery(".destacados_item").css("width", w*h);
+    }else{
+        jQuery(".destacados_item").css("width", _w);
+    }
+    jQuery(".destacados_item").css("height", jQuery(".destacados_container").css("height") );
 }
 
 function mover_destacado(dir){
@@ -73,38 +78,49 @@ function buscar( campo ){
             jQuery("#buscador").serialize(),
             function(respuesta){
 
-                console.log( respuesta[2] );
-
                 var desta_str = '';
 
                 var items = respuesta[2].length;
                 var final_pc = items-3;
                 var final_movil = items-1;
 
-                jQuery.each(respuesta[2], function(i, cuidador){
-                    desta_str += 
-                    '<div class="destacados_item">'+
-                        '<div class="img_destacado" style="background-image: url('+cuidador.img+');">'+
-                            '<img class="img_destacado_2" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/Banderin_top_cuidador.svg" />'+
-                            '<img class="img_patitas" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/icono_kmimos.svg" />'+
-                        '</div>'+
-                        '<div class="datos_destacado_containder">'+
-                            '<div class="datos_top_destacado_containder">'+
-                                '<div class="avatar_destacado" style="background-image: url('+cuidador.cliente+');"></div>'+
-                                '<div class="nombre_destacado">'+
-                                    '<a href="'+cuidador.link+'">'+cuidador.nombre+'</a>'+
-                                    '<span>'+cuidador.experiencia+'</span>'+
+                if( respuesta[2].length > 0){
+                    jQuery.each(respuesta[2], function(i, cuidador){
+                        desta_str += 
+                        '<div class="destacados_item">'+
+                            '<div class="img_destacado" style="background-image: url('+cuidador.img+');">'+
+                                '<img class="img_destacado_2" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/Banderin_top_cuidador.svg" />'+
+                                '<img class="img_patitas" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/icono_kmimos.svg" />'+
+                            '</div>'+
+                            '<div class="datos_destacado_containder">'+
+                                '<div class="datos_top_destacado_containder">'+
+                                    '<div class="avatar_destacado" style="background-image: url('+cuidador.cliente+');"></div>'+
+                                    '<div class="nombre_destacado">'+
+                                        '<a href="'+cuidador.link+'">'+cuidador.nombre+'</a>'+
+                                        '<span>'+cuidador.experiencia+'</span>'+
+                                    '</div>'+
+                                    '<div class="ranking_destacado">'+cuidador.ranking+'</div>'+
+                                    '<div class="ubicacion">'+cuidador.ubicacion+'</div>'+
                                 '</div>'+
-                                '<div class="ranking_destacado">'+cuidador.ranking+'</div>'+
-                                '<div class="ubicacion">'+cuidador.ubicacion+'</div>'+
+                                '<div class="datos_bottom_destacado_container">'+
+                                    cuidador.precio+
+                                '</div>'+
                             '</div>'+
-                            '<div class="datos_bottom_destacado_container">'+
-                                cuidador.precio+
-                            '</div>'+
-                        '</div>'+
-                        '<a href="'+cuidador.link+'" class="boton">Ver perfil</a>'+
+                            '<a href="'+cuidador.link+'" class="boton">Ver perfil</a>'+
+                        '</div>';
+                    });
+                }else{
+                    desta_str += 
+                    '<div class="destacados_item" height=>'+
+                        '<table style="width: 100%; height: 100%;">'+
+                            '<tr>'+
+                                '<td class="sin_resultados">'+
+                                    'Lo sentimos, ningún cuidador encaja con tu búsqueda. Ajusta los filtros personalizados o llámanos al 01 800 9 KMIMOS (01 800 9 564667), donde con gusto te ayudaremos a encontrar un Cuidador ideal para tu peludo.'+
+                                '</td>'+
+                            '</tr>'+
+                        '</table>'+
                     '</div>';
-                });
+                }
 
                 jQuery(".destacados_box").attr("data-paso", 0);
                 jQuery(".destacados_box").attr("data-final_pc", final_pc);
@@ -112,7 +128,11 @@ function buscar( campo ){
 
                 jQuery(".destacados_box > div > div").html( desta_str );
 
-                resize_carrusel();
+                if( respuesta[2].length > 0){
+                    resize_carrusel("");
+                }else{
+                    resize_carrusel("100%");
+                }
 
             }, 'json'
         );

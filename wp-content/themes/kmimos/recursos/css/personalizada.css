@@ -271,6 +271,16 @@
 	    display: none;
 	}
 
+	.sin_resultados{
+		text-align: center;
+	    vertical-align: middle;
+	    padding: 100px;
+	    white-space: normal;
+	    font-size: 20px;
+	    font-family: Gotham-Pro-Bold;
+	    color: #00d2c6;
+	}
+
 
 /* Menu HOME */
 
