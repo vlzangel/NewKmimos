@@ -31,7 +31,7 @@
     	$cuidadores_destacados = '
     	<div class="seccion_destacados">
     		<div class="destacados_container">
-    			<div class="destacados_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="50" data-h_movil="1">
+    			<div class="destacados_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="50" data-h_movil="100">
 	    			<div><div>'.$desta_str.'</div></div>
     				<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_anterior.svg" />
     				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_siguiente.svg" />
