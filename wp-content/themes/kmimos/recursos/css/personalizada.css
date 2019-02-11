@@ -267,6 +267,10 @@
 	    top: 25px;
 	}
 
+	.img_destacado img.img_patitas {
+	    display: none;
+	}
+
 
 /* Menu HOME */
 
