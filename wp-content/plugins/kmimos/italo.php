@@ -297,6 +297,11 @@
 	    }
 	}
 
+	if(!function_exists('italo_include_admin_css')){
+	    function italo_include_admin_css(){
+	    }
+	}
+
 	if(!function_exists('italo_include_admin_script')){
 	    function italo_include_admin_script(){
 	        include_once('dashboard/assets/config_backpanel.php');
@@ -600,19 +605,23 @@ if(!function_exists('get_preguntas_categoria')){
 
 
 	if(!function_exists('validar_perfil_completo')){
-	    function validar_perfil_completo(){
+	    function validar_perfil_completo( $user_id=0 ){
 	    	global $current_user;
-	    	$user_id = $current_user->ID;
+	    	if( $user_id == 0 ){
+		    	$user_id = $current_user->ID;
+	    	}
 	    	if( $user_id > 0 ){	    		
 		    	$datos_perfil=[ 
 					'user_mobile',
-			    	'user_phone'
+			    	'user_phone',
+			    	'last_name',
+			    	'first_name',
 		    	]; 
 
 		    	foreach( $datos_perfil as $key ){
 			    	$value = get_user_meta( $user_id, $key, true );
 			    	if( empty($value) ){
-			    		echo $key.': '.$value;
+			    		//echo $key.': '.$value;
 						return false;
 			    	}
 		    	}
