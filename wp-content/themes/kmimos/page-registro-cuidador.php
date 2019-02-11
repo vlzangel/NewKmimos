@@ -10,10 +10,11 @@
 	wp_enqueue_style('registro_cuidador', get_recurso("css")."registro_cuidador.css", array(), '1.0.0');
 	wp_enqueue_style('registro_cuidador_responsive', get_recurso("css")."responsive/registro_cuidador.css", array(), '1.0.0');
 
-/*	
-	wp_enqueue_style('registro_cuidador', getTema()."/css/registro_cuidador.css", array("kmimos_style"), '1.0.0');
-	wp_enqueue_style('registro_cuidador_responsive', getTema()."/css/responsive/registro_cuidador_responsive.css", array("kmimos_style"), '1.0.0');
-*/
+
+	wp_enqueue_style('OLD_registro_cuidador', getTema()."/css/registro_cuidador.css", array("kmimos_style"), '1.0.0');
+	wp_enqueue_style('OLD_registro_cuidador_responsive', getTema()."/css/responsive/registro_cuidador_responsive.css", array("kmimos_style"), '1.0.0');
+	wp_enqueue_style( 'OLD_datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
+
     get_header(); ?>
 
 		<!-- INICIO SECCIÓN HEADER-->

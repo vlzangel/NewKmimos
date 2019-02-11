@@ -2,17 +2,23 @@
     section h2{
         font-size: 17px;
         font-weight: bold;
-        font-family: "Gotham black";
+        font-family: "Gotham Black";
         color:#000;
     }
     p{
         font-size: 15px!important;
         font-weight: lighter;
         line-height:1.7;
+        font-family: "Gotham-Pro-Light";
+    }
+    p > strong{
+        font-family: "Gotham-Pro-Regular";
+        font-weight: bold;
     }
     p.title{
         font-size: 17px!important;
-        font-weight: bold;
+        font-weight: lighter;
+        font-family: "Gotham-Pro-Light";
     }
     .container section{
         padding: 30px 10px;
