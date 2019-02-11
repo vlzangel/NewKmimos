@@ -1,5 +1,9 @@
 @media screen and ( max-width: 768px ){
 
+	.botones_movil{
+		display: block;
+	}
+
 	.seccion_destacados {
 	    padding: 60px 0px 0px;
 	    border-bottom: solid 0px #CCC;
@@ -75,6 +79,7 @@
 	    height: 100px;
 	    width: 50%;
     	float: left;
+	    height: 125px;
 	}
 
 	.avatar_destacado {
@@ -94,7 +99,7 @@
     	position: relative;
     	border-top: solid 1px #7abab7;
     	border-left: 0px; 
-	    height: 100px;
+	    height: 125px;
 	}
 
 	.nombre_destacado a {
@@ -126,7 +131,63 @@
 	    white-space: normal;
 	}
 
+	.img_destacado img.img_destacado_2 {
+	    position: absolute;
+	    left: 10px;
+	    top: 0px;
+	    width: 35px;
+	}
+
+	.img_destacado img.img_patitas {
+	    position: absolute;
+	    right: 10px;
+	    top: 5px;
+	    width: 25px;
+	}
+
+	.datos_bottom_destacado_container > div {
+	    font-size: 9px;
+	}
+
+	.datos_bottom_destacado_container > div strong {
+	    font-size: 16px;
+	}
+
+	.datos_bottom_destacado_container > span {
+	    font-size: 9px;
+	}
+
+	.datos_bottom_destacado_container > div strong span {
+	    font-size: 9px;
+	}
+
+	.datos_top_destacado_containder .ubicacion {
+	    position: relative;
+	    top: auto;
+	    right: auto;
+	    font-weight: 600;
+	    font-size: 9px;
+	    text-align: right;
+	    padding-right: 5px;
+	    float: right;
+    	padding-top: 3px;
+	}
+
+	.datos_top_destacado_containder {
+	    padding: 5px 0px 2px;
+	}
+
+	.datos_bottom_destacado_container > span:last-child {
+	    top: -4px;
+	    position: relative;
+	}
+
+
 	/* Filtros */
+
+		.barra_right{{
+			border-right: 0px;
+		}
 
 		#banner_home{
 			display: none;

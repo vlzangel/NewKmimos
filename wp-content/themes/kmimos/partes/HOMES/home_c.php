@@ -67,7 +67,9 @@
 
 				<input type="hidden" name="redireccionar" value="1" />
 				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
-				'.$personalizada.'
+
+				<input type="hidden" name="personalizada" value="1" />
+
 
 				<input type="hidden" id="latitud" name="latitud" />
 				<input type="hidden" id="longitud" name="longitud" />

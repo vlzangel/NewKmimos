@@ -73,19 +73,42 @@
 		width: 33.33333334%;
 		height: 100%; 
 		box-sizing: border-box;
-		padding: 0px 40px;
+		padding: 0px 20px;
 		vertical-align: top;
 	}
 
 	.img_destacado {
+		position: relative;
 	    height: 200px;
 	    background-position: center;
 	    background-size: cover;
 	}
 
+	.img_destacado img.img_destacado_2 {
+	    position: absolute;
+	    left: 20px;
+	    top: 0px;
+	    width: 60px;
+	}
+
+	.img_destacado img.img_patitas {
+	    position: absolute;
+	    right: 20px;
+	    top: 5px;
+	    width: 45px;
+	}
+
 	.datos_top_destacado_containder {
-	    padding: 5px 0px;
+		position: relative;
+	    padding: 5px 0px 0px;
 	    overflow: hidden;
+	}
+
+	.datos_top_destacado_containder .ubicacion {
+	    position: absolute;
+	    top: 5px;
+	    right: 5px;
+	    font-weight: 600;
 	}
 
 	.avatar_destacado {
@@ -99,8 +122,9 @@
 	}
 
 	.nombre_destacado {
-	    float: left;
-	    padding: 4px 0px 4px 10px; 
+		float: none;
+		padding: 4px 0px 0px 50px;
+		text-align: left;
 	}
 
 	.nombre_destacado a {
@@ -134,10 +158,10 @@
 
 	.destacados_item > a {
 	    display: inline-block;
-	    padding: 10px;
+	    padding: 15px;
 	    background: #00d2c6;
 	    color: #FFF !important;
-	    width: 65%;
+	    width: 70%;
 	    margin: 10px 0px;
 	    text-align: center;
 	    font-family: Gotham-Pro-Bold;
@@ -152,15 +176,18 @@
 	}
 
 	.ranking_destacado {
-	    float: right;
-	    padding-top: 8px;
+	    float: none;
+	    padding-top: 0px;
+	    padding-left: 50px;
+	    display: block;
+	    text-align: left;
 	}
 
 	.km-ranking a {
 		width: 17px !important;
 	    height: 9px !important;
 	    background-size: 17px 9px !important;
-		float: right !important;	
+		float: left !important;	
 	    background-image: url(../img/HOME/SVG/WLABEL/calificacion_individual_vacia.svg) !important;
 	}
 
@@ -183,6 +210,63 @@
 	.seccion_destacados_der {
 		right: -70px;
 	}
+
+	.botones_movil{
+		display: none;
+	}
+
+	.datos_bottom_destacado_container {
+	    display: block;
+	    text-align: right;
+	    padding: 0px 5px 10px 0px;
+	}
+
+	.datos_bottom_destacado_container > div {
+	    color: #7c169e;
+	    line-height: 1;
+	}
+
+	.datos_bottom_destacado_container > div strong {
+	    font-size: 35px;
+	}
+
+	.datos_bottom_destacado_container > div strong span {
+	    font-size: 12px;
+	}
+
+	.datos_bottom_destacado_container > span {
+	    color: #4b4b4b;
+	    font-size: 13px;
+	}
+
+	.barra_right{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		height: 100%;
+		border-right: solid 1px #CCC;
+	}
+
+	#buscador table td,
+	.tipo_mascota_container,
+	.tamanios_container {
+		position: relative;
+	}
+
+	.barra_right {
+	    position: absolute;
+	    top: 2px;
+	    right: 10px;
+	    height: calc( 100% - 7px );
+	    border-right: solid 2px #CCC;
+	}
+
+	.personaliza_title .barra_right {
+	    height: calc( 100% - 70px );
+	    right: 15px;
+	    top: 25px;
+	}
+
 
 /* Menu HOME */
 
@@ -269,7 +353,8 @@
 	}
 
 	.tamanios_container  .input_check_box {
-	    width: 75px;
+	    width: 70px;
+    	margin-right: 5px;
 	}
 
 	.servicios_principales_box  .input_check_box {
@@ -498,8 +583,9 @@
 
 	.tamanios_container {
 	    width: 65%;
-	    text-align: center;
+	    text-align: right;
 	    float: right;
+	    padding-right: 25px;
 	}
 
 	.tipo_mascota_container {

@@ -29,6 +29,18 @@
 	                    
 	                    $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = ".$msg_destacado->comment_author_email );
 
+	                    $desde = $cuidador->hospedaje_desde;
+						$desde = explode(".", number_format( ($desde*getComision()) , 2, '.', ',') );
+
+						$cuidador->estados = explode("=", $cuidador->estados);
+						$cuidador->municipios = explode("=", $cuidador->municipios);
+
+						$mun = $wpdb->get_var("SELECT iso FROM states WHERE id = {$cuidador->estados[1]}");
+						$est = $wpdb->get_var("SELECT name FROM locations WHERE id = {$cuidador->municipios[1]}");
+						$ubicacion = $est.', '. ucfirst( strtolower($mun) );
+
+						$atributos = unserialize($cuidador->atributos);
+
 						$resultado[] = (object)[
 							"img" => kmimos_get_foto($cuidador->user_id),
 							"cliente" => kmimos_get_foto( $cliente_id ),
@@ -36,7 +48,13 @@
 							"link" => get_home_url()."/petsitters/".$cuidador->user_id,
 							"ranking" => kmimos_petsitter_rating($cuidador->id_post),
 							"msg" => $msg_destacado,
-							"experiencia" => $expe
+							"experiencia" => $expe,
+							"ubicacion" => $ubicacion,
+							"destacado" => $atributos["destacado"],
+							"precio" => '
+							<span>Desde</span>
+							<div>MXN$ <strong>'.$desde[0].'<span>,'.$desde[1].'</span></strong></div>
+							<span class="por_noche">Por noche</span>',
 						];
 					}
 				}

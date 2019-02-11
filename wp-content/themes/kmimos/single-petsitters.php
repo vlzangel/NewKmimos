@@ -614,6 +614,18 @@
 				<span id="cerrar_galeria" class="cerrar">×</span>
 			</div>
 		</div>
+
+		<div class="modal_msg">
+			<div class="modal_msg_container">
+				<div class="modal_msg_box">
+					Este cuidador pertenece a la zona de <strong>'.$zona.'</strong>. Si el Cuidador no pertenece a tu Ciudad o si deseas encontrar uno más cercano, puedes usar nuestra nueva función de filtros perzonalizados.
+					<div class="btn_container">
+						<a href="'.get_home_url().'/personalizada" class="boton boton_verde">Ir a los filtros personalizados</a>
+						<a id="ocultar_msg" href="#" class="boton boton_borde_verde">Ignorar este mensaje</a>
+					</div>
+				</div>
+			</div>
+		</div>
  	';
 
 	if( $_SESSION["wlabel"] == "petco" ){

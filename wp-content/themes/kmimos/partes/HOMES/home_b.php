@@ -10,6 +10,8 @@
 			<div class="solo_movil banner_home"></div>
 			<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
 
+				<input type="hidden" name="personalizada" value="1" />
+
 				<input type="hidden" name="redireccionar" value="1" />
 				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 				'.$personalizada.'

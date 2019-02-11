@@ -880,7 +880,7 @@
 		}
 
 		.perfil_cuidador_cargando > div {
-		    background-image: url(http://localhost/kmimos/wp-content/themes/kmimos/images/cargando.gif);
+		    background-image: url(../../images/cargando.gif);
 		    background-repeat: no-repeat;
 		    background-position: center;
 		    background-size: contain;
@@ -890,3 +890,50 @@
 		    vertical-align: middle;
 		    margin-right: 10px;
 		}
+
+	.modal_msg{
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		z-index: 999999999;
+		background-color: #0007;
+		display: table;
+	}
+
+	.modal_msg_container{
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	.modal_msg_box {
+	    padding: 30px 30px 20px;
+	    background-color: #FFF;
+	    border: solid 3px orange;
+	    border-radius: 30px;
+	    max-width: 650px;
+	    text-align: left;
+	    font-size: 16px;
+	    margin: 0px 50px;
+	    display: inline-block;
+	}
+
+	.btn_container{
+		text-align: center;
+		margin-top: 30px;
+	}
+
+	.btn_container .boton {
+		width: 250px;
+		margin-bottom: 10px;
+		cursor: pointer;
+		text-decoration: none !important;
+	}
+
+	a.boton.boton_borde_verde {
+	    border: solid 1px #00d2c6;
+	    color: #00d2c6;
+	    font-weight: 600;
+	}

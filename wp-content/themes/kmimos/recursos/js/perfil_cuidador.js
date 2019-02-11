@@ -1,4 +1,10 @@
 jQuery( document ).ready(function() {
+
+	jQuery("#ocultar_msg").on('click', function(e){
+		e.preventDefault();
+		jQuery(".modal_msg").css("display", "none");
+	});
+
 	GetComments();
 	jQuery(".km-btn-comentario").on("click", function(e){
 		jQuery('.modal_info_comentar').css("display", "block");

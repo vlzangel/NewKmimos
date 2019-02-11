@@ -23,16 +23,7 @@ var limites = {
 
 
 function show_hiden_arrow(){
-    /*
-    var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
-    if( parseInt( jQuery("body").width() ) > 768 ){
-        var final = parseInt( jQuery(".destacados_box").attr("data-final_pc") );
-    }else{
-        var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
-    }
-    if( paso == 0 ){ jQuery(".seccion_destacados_izq").css("display", "none"); }else{ jQuery(".seccion_destacados_izq").css("display", "block"); }
-    if( paso == final ){ jQuery(".seccion_destacados_der").css("display", "none"); }else{ jQuery(".seccion_destacados_der").css("display", "block"); }
-    */
+
 }
 
 function resize_carrusel(){
@@ -82,7 +73,7 @@ function buscar( campo ){
             jQuery("#buscador").serialize(),
             function(respuesta){
 
-                // console.log( respuesta[2] );
+                console.log( respuesta[2] );
 
                 var desta_str = '';
 
@@ -93,7 +84,10 @@ function buscar( campo ){
                 jQuery.each(respuesta[2], function(i, cuidador){
                     desta_str += 
                     '<div class="destacados_item">'+
-                        '<div class="img_destacado" style="background-image: url('+cuidador.img+');"></div>'+
+                        '<div class="img_destacado" style="background-image: url('+cuidador.img+');">'+
+                            '<img class="img_destacado_2" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/Banderin_top_cuidador.svg" />'+
+                            '<img class="img_patitas" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/icono_kmimos.svg" />'+
+                        '</div>'+
                         '<div class="datos_destacado_containder">'+
                             '<div class="datos_top_destacado_containder">'+
                                 '<div class="avatar_destacado" style="background-image: url('+cuidador.cliente+');"></div>'+
@@ -102,13 +96,15 @@ function buscar( campo ){
                                     '<span>'+cuidador.experiencia+'</span>'+
                                 '</div>'+
                                 '<div class="ranking_destacado">'+cuidador.ranking+'</div>'+
+                                '<div class="ubicacion">'+cuidador.ubicacion+'</div>'+
+                            '</div>'+
+                            '<div class="datos_bottom_destacado_container">'+
+                                cuidador.precio+
                             '</div>'+
                         '</div>'+
                         '<a href="'+cuidador.link+'" class="boton">Ver perfil</a>'+
                     '</div>';
                 });
-
-                // console.log( desta_str );
 
                 jQuery(".destacados_box").attr("data-paso", 0);
                 jQuery(".destacados_box").attr("data-final_pc", final_pc);

@@ -28,53 +28,29 @@
     $cuidadores_destacados = '';
 
 	/* DESTACADOS */
-	$destacados = get_destacados_home();
-	if( is_array($destacados) && count($destacados) > 0 ){
-		$items = count($destacados);
-		$final_pc = $items-3;
-		$final_movil = $items-1;
-		$desta_str = '';
-		foreach ($destacados as $key => $cuidador) {
-			$desta_str .= 
-				'<div class="destacados_item">'.
-					'<div class="img_destacado" style="background-image: url('.$cuidador->img.');"></div>'.
-					'<div class="datos_destacado_containder">'.
-						'<div class="datos_top_destacado_containder">'.
-							'<div class="avatar_destacado" style="background-image: url('.$cuidador->cliente.');"></div>'.
-							'<div class="nombre_destacado">'.
-								'<a href="'.$cuidador->link.'">'.$cuidador->nombre.'</a>'.
-								'<span>'.$cuidador->experiencia.'</span>'.
-							'</div>'.
-							'<div class="ranking_destacado">'.$cuidador->ranking.'</div>'.
-						'</div>'.
-					'</div>'.
-					'<a href="'.$cuidador->link.'" class="boton">Ver perfil</a>'.
-				'</div>';
-		}
 
-    	$cuidadores_destacados = '
-    	<div class="seccion_destacados">
-    		<h2>Bienvenido a los <span>filtros personalizados <img src="'.get_recurso('img').'PERSONALIZADA/PNG/logo-verde.png" /></span> </h2>
-    		<div class="seccion_destacados_subtitulo">
-    			Para facilitar tu búsqueda hemos seleccionado estos tres cuidadores para ti. Ajusta los <span>filtros de personalización</span> para encontrar al Cuidador deal para tu mascota. También puedes <a class="">omitir este paso y ver la lista completa de Cuidadores</a> 
-    		</div>
-    		<div class="destacados_container">
-    			<div class="destacados_box" data-paso="0" data-final_pc="0" data-final_movil="0">
-	    			<div><div></div></div>
-    				<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_anterior.svg" />
-    				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_siguiente.svg" />
-    			</div>
-    		</div>
-    		<div class="botones_movil">
-    			<a id="aplicar_btn" href="#" class="boton boton_verde">Ajustar filtros</a>
-    			<a href="'.get_home_url().'/busqueda" class="boton boton_verde">Omitir</a>
-				<span>
-					Al omitir verás a los más de 1,000 Cuidadores Certificados
-				</span>
-    		</div>
-    	</div>
-    	';
-	}
+	$cuidadores_destacados = '
+	<div class="seccion_destacados">
+		<h2>Bienvenido a los <span>filtros personalizados <img src="'.get_recurso('img').'PERSONALIZADA/PNG/logo-verde.png" /></span> </h2>
+		<div class="seccion_destacados_subtitulo">
+			Para facilitar tu búsqueda hemos seleccionado estos tres cuidadores para ti. Ajusta los <span>filtros de personalización</span> para encontrar al Cuidador deal para tu mascota. También puedes <a class="">omitir este paso y ver la lista completa de Cuidadores</a> 
+		</div>
+		<div class="destacados_container">
+			<div class="destacados_box" data-paso="0" data-final_pc="0" data-final_movil="0">
+    			<div><div></div></div>
+				<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_anterior.svg" />
+				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_siguiente.svg" />
+			</div>
+		</div>
+		<div class="botones_movil">
+			<a id="aplicar_btn" href="#" class="boton boton_verde">Ajustar filtros</a>
+			<a href="'.get_home_url().'/busqueda" class="boton boton_verde">Omitir</a>
+			<span>
+				Al omitir verás a los más de 1,000 Cuidadores Certificados
+			</span>
+		</div>
+	</div>
+	';
 
 	$tamanos = [];
 	if( is_array($_SESSION['busqueda']["tamanos"]) ){
@@ -101,13 +77,6 @@
 	$con_transporte = ( $_SESSION["busqueda"]["con_transporte"] == 1 ) ? 'checked' : '';
 	$areas_verdes = ( $_SESSION["busqueda"]["areas_verdes"] == 1 ) ? 'checked' : '';
 	$es_agresiva = ( $_SESSION["busqueda"]["es_agresiva"] == 1 ) ? 'checked' : '';
-
-	/*
-	echo "<pre>";
-		print_r($_SESSION['busqueda']);
-		print_r($tamanos);
-	echo "</pre>";	
-	*/
 
     $HTML .= $cuidadores_destacados.'
     	<div id="banner_home">
@@ -159,6 +128,8 @@
 										<span>Gato</span>
 										<div class="top_check"></div>
 									</label>
+
+									<div class="barra_right"></div>
 								</div>
 
 								<div class="tamanios_container">
@@ -201,6 +172,8 @@
 										</span>
 										<div class="top_check"></div>
 									</label>
+
+									<div class="barra_right"></div>
 								</div>
 
 							</td>
@@ -252,6 +225,8 @@
 						<tr>
 							<td class="personaliza_title">
 								Personaliza tu búsqueda
+
+								<div class="barra_right"></div>
 							</td>
 							<td class="celda_2">
 								<div class="checkes_bottom">
