@@ -9,8 +9,12 @@
     wp_enqueue_script('favorites', getTema()."/js/favoritos.js", array("jquery"), '1.0.0');
 
     if( $plantilla == 'page-registro-cuidador.php' ){
-    	wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
-    	wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+        wp_enqueue_script('Old_global_js', getTema()."/js/global.js", array("jquery"), '1.0.0');
+        wp_enqueue_script('Old_main', getTema()."/js/main.js", array("jquery"), '1.0.0');
+
+    	wp_enqueue_script('Old_jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+    	wp_enqueue_script('Old_jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+
 	}
 	$seccion = ( $_SESSION["wlabel"] != "" && strtolower($_SESSION["wlabel"]) != "quitar" ) ? $_SESSION["wlabel"] : "home";
 

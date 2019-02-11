@@ -116,16 +116,16 @@
 
         }else{
             $msg = "Se encontraron los siguientes errores:\n\n";
-            while($datos = $user->fetch_assoc()){
-                if( strtolower($datos['user_email']) == strtolower($email) ){
+            //while($datos = $user->fetch_assoc()){
+                if( strtolower($user->user_email) == strtolower($email) ){
                     $msg .= "Este E-mail [{$email}] ya esta en uso\n";
                     $fields[] = 'email';
                 }
-                if( strtolower($datos['user_login']) == strtolower($email) ){
+                if( strtolower($user->user_login) == strtolower($email) ){
                     $msg .= "Este nombre de Usuario [{$email}] ya esta en uso\n";
                     $fields[] = 'email';
                 }
-            }
+            //}
 
             $error = array(
                 "error" => "SI",
