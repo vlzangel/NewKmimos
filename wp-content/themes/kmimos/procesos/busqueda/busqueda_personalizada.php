@@ -405,7 +405,8 @@
 	    	$DESCUENTO_CONDICION
 	        {$ubicaciones_filtro} 
 	        {$FILTRO_UBICACION} 
-	    ORDER BY {$orderby}";
+	    ORDER BY {$orderby}
+	    LIMIT 0, 3";
 
     /* FIN SQL cuidadores */
 
