@@ -37,7 +37,9 @@
 
 						$mun = $wpdb->get_var("SELECT iso FROM states WHERE id = {$cuidador->estados[1]}");
 						$est = $wpdb->get_var("SELECT name FROM locations WHERE id = {$cuidador->municipios[1]}");
-						$ubicacion = $est.', '. ucfirst( strtolower($mun) );
+
+						$est = htmlentities($est);
+						$ubicacion = $est.', '. ucfirst( strtolower( htmlentities($mun) ) );
 
 						$atributos = unserialize($cuidador->atributos);
 
