@@ -2,7 +2,7 @@
     section h2{
         font-size: 17px;
         font-weight: bold;
-        font-family: "Gotham Black";
+        font-family: "Gotham-Pro-Bold";
         color:#000;
     }
     p{
@@ -43,7 +43,7 @@
 
     /* ************************************* */
     header .titulo-principal{
-        font-family: "Gotham black"!important;
+        font-family: "Gotham-Pro-Bold"!important;
         font-size: 41px;
         color:#fff;
         text-transform: uppercase;
@@ -156,7 +156,7 @@
         color: #7c169e;
         font-size: 18px;
         font-weight: bold;
-        font-family: "Gotham black";
+        font-family: "Gotham-Pro-Bold";
     }
 
     
@@ -173,7 +173,7 @@
     .section-banner div h2{
         font-size: 50px;
         font-weight: bold;
-        font-family: "Gotham black";
+        font-family: "Gotham-Pro-Bold"!important;
         color:#fff;
     }
     .section-banner div h3{
