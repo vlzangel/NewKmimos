@@ -264,7 +264,7 @@
 	$destacados = get_destacados_home();
 	if( is_array($destacados) && count($destacados) > 0 ){
 		$items = count($destacados);
-		$final_pc = $items-3;
+		$final_pc = $items-4;
 		$final_movil = $items-1;
 		$desta_str = '';
 		foreach ($destacados as $key => $cuidador) {
@@ -283,19 +283,26 @@
 						'<div class="msg_destacado_containder">'.
 							'"'.$cuidador->msg.'"'.
 						'</div>'.
+						'<a href="'.$cuidador->link.'" class="boton boton_verde">Ver perfil</a>'.
 					'</div>'.
 					'<a href="'.$cuidador->link.'" class="boton">Ver perfil</a>'.
 				'</div>';
 		}
 
+		$items_movil = '';
+		for ($i=0; $i < $final_movil; $i++) { 
+			$active = ( $i == 0 ) ? 'active' : '';
+			$items_movil .= '<span class="control_item '.$active.'" data-id="'.$i.'"></span>';
+		}
     	$cuidadores_destacados = '
     	<div class="seccion_destacados">
     		<h2>Conoce a los mejores <span>cuidadores kmimos</span></h2>
     		<div class="destacados_container">
-    			<div class="destacados_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.33333334" data-h_movil="100">
+    			<div class="destacados_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.33333334" data-h_movil="50">
 	    			<div><div>'.$desta_str.'</div></div>
     				<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_anterior.svg" />
     				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_siguiente.svg" />
+    				<label class="controles_movil">'.$items_movil.'</label>
     			</div>
     		</div>
     	</div>';

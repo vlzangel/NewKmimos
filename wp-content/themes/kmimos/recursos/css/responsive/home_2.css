@@ -196,7 +196,7 @@
 	}
 
 	#banner_home {
-	    background-image: url();
+	    background-image: '';
 	    height: 270px;
 	    padding: 0px;
 	}
@@ -429,7 +429,7 @@
 	.destacados_container{
 		display: block;
 	    width: calc( 100% - 10px );
-	    height: 305px;
+	    height: auto;
 	}
 
 	.destacados_box{
@@ -439,11 +439,12 @@
 
 	.destacados_item{
 		width: 50%;
-    	padding: 0px 8px;
+    	padding: 0px 4px;
 	}
 
 	.destacados_item > a {
-	    width: 90%;
+	    width: 85%;
+    	font-size: 9px;
 	}
 
 	.seccion_destacados_flechas {
@@ -461,7 +462,7 @@
 	}
 
 	.img_destacado {
-	    height: 100px;
+	    height: 75px;
 	}
 
 	.avatar_destacado {
@@ -477,38 +478,74 @@
 	.datos_top_destacado_containder {
 	    padding: 0px;
 	    overflow: hidden;
+	    position: relative;
 	}
 
 	.nombre_destacado a {
-	    font-size: 10px;
+	    font-size: 7px;
 	}
 
 	.nombre_destacado span {
-	    font-size: 8px;
+	    font-size: 7px;
 	}
 
 	.km-ranking a {
-	    width: 12px !important;
-	    height: 6px !important;
-	    background-size: 12px 6px !important;
+	    width: 8px !important;
+	    height: 5px !important;
+	    background-size: 8px 4px !important;
 	}
 
 	.ranking_destacado {
+	    float: none;
 	    padding-top: 0px;
+	    position: absolute;
+	    top: -5px;
+	    right: 0px;
+	    white-space: normal;
+    	overflow: hidden;
 	}
 
 	.msg_destacado_containder {
-	    padding: 0px 10px 5px 30px;
-	    text-align: justify;
-	    white-space: normal;
-	    min-height: 45px;
-	    font-size: 9px;
+		padding: 0px 0px 5px 20px;
+		text-align: justify;
+		white-space: normal;
+		min-height: 35px;
+		font-size: 7px;
 	}
 
 	.seccion_destacados h2 {
 	    margin: 20px auto;
 	    font-size: 20px !important;
 	    font-size: 11px !important;
+	}
+
+	.datos_destacado_containder > a.boton.boton_verde {
+		display: block;
+	    padding: 3px 0px 2px;
+	    font-size: 9px;
+	    margin-bottom: 5px;
+	}
+
+	.destacados_item > a {
+		display: none;
+	}
+
+	.controles_movil{
+		text-align: center;
+		padding: 10px 0px 0px;
+		margin: 0px;
+	}
+
+	.controles_movil > span {
+	    padding: 5px;
+	    border: solid 1px #00d2c6;
+	    display: inline-block;
+	    margin: 0px 3px;
+	    border-radius: 50%;
+	}
+
+	.controles_movil > span.active {
+	    background-color: #00d2c6;
 	}
 
 /* BENEFICIOS */

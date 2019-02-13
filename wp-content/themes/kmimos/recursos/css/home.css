@@ -423,9 +423,9 @@
 
 	.seccion_destacados h2{
 		text-transform: none !important;	
-		margin: 40px auto;
+		margin: 30px auto 25px;
 		text-align: center;
-		font-size: 24px !important;
+		font-size: 20px !important;
 	}
 
 	.seccion_destacados h2 span {
@@ -434,7 +434,7 @@
 
 	.destacados_container{
 		position: relative;
-		height: 420px; 
+		height: 255px; 
 		display: block;
 		margin: 0px auto;
     	text-align: center;
@@ -467,7 +467,7 @@
 	.destacados_item{
 		position: relative;
 		display: inline-block;
-		width: 33.33333334%;
+		width: 25%;
 		height: 100%; 
 		box-sizing: border-box;
 		padding: 0px 20px;
@@ -475,7 +475,7 @@
 	}
 
 	.img_destacado {
-	    height: 200px;
+	    height: 120px;
 	    background-position: center;
 	    background-size: cover;
 	}
@@ -488,8 +488,8 @@
 	.avatar_destacado {
 	    background-position: center;
 	    background-size: cover;
-	    height: 40px;
-	    width: 40px;
+	    height: 25px;
+	    width: 25px;
 	    border-radius: 50%;
 	    display: inline-block;
 	    float: left;
@@ -497,12 +497,12 @@
 
 	.nombre_destacado {
 	    float: left;
-	    padding: 4px 0px 4px 10px; 
+	    padding: 4px 0px 4px 5px; 
 	}
 
 	.nombre_destacado a {
 	    text-decoration: none;
-	    font-size: 14px;
+	    font-size: 10px;
 	    font-family: Gotham-Pro-Regular;
 	    font-weight: 600;
 	    text-transform: uppercase;
@@ -514,7 +514,7 @@
 	.nombre_destacado span {
 	    display: block;
 	    font-weight: 600;
-	    font-size: 11px;
+	    font-size: 8px;
 	}
 
 	.datos_destacado_containder {
@@ -522,7 +522,7 @@
 	    border-top: 0px;
 	    border-radius: 0px 0px 25px 25px;
 	    background: #FFF;
-	    padding: 10px 10px 0px;
+	    padding: 5px 5px 0px;
 	}
 
 	.destacados_item {
@@ -531,7 +531,7 @@
 
 	.destacados_item > a {
 	    display: inline-block;
-	    padding: 10px;
+	    padding: 5px;
 	    background: #00d2c6;
 	    color: #FFF !important;
 	    width: 65%;
@@ -542,10 +542,11 @@
 	}
 
 	.msg_destacado_containder {
-	    padding: 5px 10px 5px 50px;
+	    padding: 0px 10px 5px 25px;
 	    text-align: justify;
 		white-space: normal;
-		min-height: 75px;
+		min-height: 50px;
+	    font-size: 10px;
 	}
 
 	.ranking_destacado {
@@ -554,10 +555,10 @@
 	}
 
 	.km-ranking a {
-		width: 17px !important;
-	    height: 9px !important;
-	    background-size: 17px 9px !important;
-		float: right !important;	
+		width: 12px !important;
+	    height: 7px !important;
+	    background-size: 14px 7px !important;
+	    float: right !important;
 	    background-image: url(../img/HOME/SVG/WLABEL/calificacion_individual_vacia.svg) !important;
 	}
 
@@ -579,6 +580,10 @@
 
 	.seccion_destacados_der {
 		right: -70px;
+	}
+
+	.datos_destacado_containder > a {
+		display: none;
 	}
 
 	/* Landing C */

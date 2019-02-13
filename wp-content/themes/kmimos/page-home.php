@@ -7,7 +7,7 @@
 
     wp_enqueue_style('home_club_responsive', getTema()."/css/responsive/club_patitas_home.css", array(), '1.0.0');
     wp_enqueue_style('home_kmimos', get_recurso("css")."home.css", array(), '1.0.0');
-    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/home.css", array(), '1.0.0');
+    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/home_2.css", array(), '1.0.0');
 
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
