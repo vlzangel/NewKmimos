@@ -586,6 +586,12 @@
 		display: none;
 	}
 
+	.seccion_destacados .datos_destacado_containder > a {
+		display: block;
+	}
+
+
+
 	/* Landing C */
 
 		#banner_home .destacados_container {

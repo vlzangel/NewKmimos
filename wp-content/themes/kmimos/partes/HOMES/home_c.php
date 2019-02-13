@@ -28,13 +28,21 @@
 				'</div>';
 		}
 
+		$items_movil = '';
+		for ($i=0; $i < $final_movil; $i++) { 
+			$active = ( $i == 0 ) ? 'active' : '';
+			$items_movil .= '<span class="control_item '.$active.'" data-id="'.$i.'"></span>';
+		}
+
     	$cuidadores_destacados = '
+    	<span class="solo_movil banner_txt_0">Conoce a los mejores <span>cuidadores kmimos</span> </span>
     	<div class="seccion_destacados">
     		<div class="destacados_container">
-    			<div class="destacados_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="50" data-h_movil="100">
+    			<div class="destacados_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="50" data-h_movil="50">
 	    			<div><div>'.$desta_str.'</div></div>
     				<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_anterior.svg" />
     				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_siguiente.svg" />
+    				<label class="controles_movil">'.$items_movil.'</label>
     			</div>
     		</div>
     	</div>';
@@ -50,19 +58,20 @@
 			</a>
 		';
 	}
+
+	$btn_registro = $cuidadores_destacados.$btn_registro;
 	
     $HTML .= '
 	<div id="banner_home" class="landing_c">
 		<div>
 
-			'.$cuidadores_destacados.'
+			<div class="solo_movil banner_home"></div>
 
 			<div class="solo_pc">
+				'.$cuidadores_destacados.'
 				<span class="banner_txt_1">la red más segura de cuidadores certificados de México</span>
 			</div>
 
-
-			<div class="solo_movil banner_home"></div>
 			<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
 
 				<input type="hidden" name="redireccionar" value="1" />
