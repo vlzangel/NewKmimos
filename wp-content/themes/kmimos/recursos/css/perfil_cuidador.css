@@ -920,6 +920,10 @@
 	    display: inline-block;
 	}
 
+	.modal_msg_box strong {
+	    font-weight: 600;
+	}
+
 	.btn_container{
 		text-align: center;
 		margin-top: 30px;

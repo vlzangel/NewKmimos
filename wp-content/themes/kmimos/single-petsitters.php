@@ -339,7 +339,18 @@
 		$ocultar_todo = "ocultar_flash_descuento";
 	}
 
+	$_cuidador->estados = explode("=", $_cuidador->estados);
+	$_cuidador->municipios = explode("=", $_cuidador->municipios);
 
+	$mun = $wpdb->get_var("SELECT iso FROM states WHERE id = {$_cuidador->estados[1]}");
+	$est = $wpdb->get_var("SELECT name FROM locations WHERE id = {$_cuidador->municipios[1]}");
+
+	$est = htmlentities( utf8_decode($est) );
+	$ubicacion = $est.', '. ucfirst( strtolower( $mun ) );
+
+	echo "<pre>";
+		print_r( $_cuidador );
+	echo "</pre>";
 
  	$HTML .= '
  		<script> 
@@ -618,7 +629,7 @@
 		<div class="modal_msg">
 			<div class="modal_msg_container">
 				<div class="modal_msg_box">
-					Este cuidador pertenece a la zona de <strong>'.$zona.'</strong>. Si el Cuidador no pertenece a tu Ciudad o si deseas encontrar uno más cercano, puedes usar nuestra nueva función de filtros perzonalizados.
+					Este cuidador pertenece a la zona de <strong>'.$ubicacion.'</strong>. Si el Cuidador no pertenece a tu Ciudad o si deseas encontrar uno más cercano, puedes usar nuestra nueva función de filtros perzonalizados.
 					<div class="btn_container">
 						<a href="'.get_home_url().'/personalizada" class="boton boton_verde">Ir a los filtros personalizados</a>
 						<a id="ocultar_msg" href="#" class="boton boton_borde_verde">Ignorar este mensaje</a>

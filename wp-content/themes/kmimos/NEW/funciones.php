@@ -1080,7 +1080,9 @@
     			cuidadores.atributos,
     			cuidadores.rating,
     			cuidadores.valoraciones,
-    			cuidadores.titulo
+    			cuidadores.titulo,
+    			cuidadores.estados,
+    			cuidadores.municipios
     		FROM 
     			cuidadores
     		WHERE 
