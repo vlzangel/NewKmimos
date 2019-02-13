@@ -6,61 +6,118 @@
 
 		function get_destacados_home($ids_validos = ''){
 			global $wpdb;
-			$destacados = $wpdb->get_results("SELECT * FROM cuidadores WHERE activo = 1 AND atributos LIKE '%destacado_home\";s:1:\"1%' ");
+
 			$resultado = [];
-			if( is_array($destacados) ){
-				foreach ($destacados as $key => $cuidador) {
-					$valido = true;
-					if( is_array($ids_validos) && !in_array($cuidador->id, $ids_validos) ){
-						$valido = false;
-					}
 
-					if( $valido  ){
-						$atributos = unserialize($cuidador->atributos);
-						$anios_exp = $cuidador->experiencia;
-	                    if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
-	                    $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
-	                    
-	                    $msg_destacado = $wpdb->get_row("SELECT * FROM wp_comments WHERE comment_ID = ".$atributos["msg_destacado"]);
-	                    $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 90);
-	                    if( $_msg_destacado != "" ){
-	                    	$msg_destacado = ( strlen($_msg_destacado) > 90 ) ? $_msg_destacado.'...' : $_msg_destacado;
-	                    }
-	                    
-	                    $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = ".$msg_destacado->comment_author_email );
+			if( is_array($ids_validos) ){
 
-	                    $desde = $cuidador->hospedaje_desde;
-						$desde = explode(".", number_format( ($desde*getComision()) , 2, '.', ',') );
+				foreach ($ids_validos as $key => $id) {
+					$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$id}");
 
-						$cuidador->estados = explode("=", $cuidador->estados);
-						$cuidador->municipios = explode("=", $cuidador->municipios);
+					$atributos = unserialize($cuidador->atributos);
+					$anios_exp = $cuidador->experiencia;
+                    if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
+                    $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
+                    
+                    $msg_destacado = $wpdb->get_row("SELECT * FROM wp_comments WHERE comment_ID = ".$atributos["msg_destacado"]);
+                    $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 90);
+                    if( $_msg_destacado != "" ){
+                    	$msg_destacado = ( strlen($_msg_destacado) > 90 ) ? $_msg_destacado.'...' : $_msg_destacado;
+                    }
+                    
+                    $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = ".$msg_destacado->comment_author_email );
 
-						$mun = $wpdb->get_var("SELECT iso FROM states WHERE id = {$cuidador->estados[1]}");
-						$est = $wpdb->get_var("SELECT name FROM locations WHERE id = {$cuidador->municipios[1]}");
+                    $desde = $cuidador->hospedaje_desde;
+					$desde = explode(".", number_format( ($desde*getComision()) , 2, '.', ',') );
 
-						$est = htmlentities( utf8_decode($est) );
-						$ubicacion = $est.', '. ucfirst( strtolower( $mun ) );
+					$cuidador->estados = explode("=", $cuidador->estados);
+					$cuidador->municipios = explode("=", $cuidador->municipios);
 
-						$atributos = unserialize($cuidador->atributos);
+					$mun = $wpdb->get_var("SELECT iso FROM states WHERE id = {$cuidador->estados[1]}");
+					$est = $wpdb->get_var("SELECT name FROM locations WHERE id = {$cuidador->municipios[1]}");
 
-						$resultado[] = (object)[
-							"img" => kmimos_get_foto($cuidador->user_id),
-							"cliente" => kmimos_get_foto( $cliente_id ),
-							"nombre" => $cuidador->titulo,
-							"link" => get_home_url()."/petsitters/".$cuidador->user_id,
-							"ranking" => kmimos_petsitter_rating($cuidador->id_post),
-							"msg" => $msg_destacado,
-							"experiencia" => $expe,
-							"ubicacion" => $ubicacion,
-							"destacado" => $atributos["destacado"],
-							"precio" => '
-							<span>Desde</span>
-							<div>MXN$ <strong>'.$desde[0].'<span>,'.$desde[1].'</span></strong></div>
-							<span class="por_noche">Por noche</span>',
-						];
+					$est = htmlentities( utf8_decode($est) );
+					$ubicacion = $est.', '. ucfirst( strtolower( $mun ) );
+
+					$atributos = unserialize($cuidador->atributos);
+
+					$resultado[] = (object)[
+						"img" => kmimos_get_foto($cuidador->user_id),
+						"cliente" => kmimos_get_foto( $cliente_id ),
+						"nombre" => $cuidador->titulo,
+						"link" => get_home_url()."/petsitters/".$cuidador->user_id,
+						"ranking" => kmimos_petsitter_rating($cuidador->id_post),
+						"msg" => $msg_destacado,
+						"experiencia" => $expe,
+						"ubicacion" => $ubicacion,
+						"destacado" => $atributos["destacado"],
+						"precio" => '
+						<span>Desde</span>
+						<div>MXN$ <strong>'.$desde[0].'<span>,'.$desde[1].'</span></strong></div>
+						<span class="por_noche">Por noche</span>',
+					];
+				}
+
+			}else{
+
+				$destacados = $wpdb->get_results("SELECT * FROM cuidadores WHERE activo = 1 AND atributos LIKE '%destacado_home\";s:1:\"1%' ");
+				
+				if( is_array($destacados) ){
+					foreach ($destacados as $key => $cuidador) {
+						$valido = true;
+						if( is_array($ids_validos) && !in_array($cuidador->id, $ids_validos) ){
+							$valido = false;
+						}
+
+						if( $valido  ){
+							$atributos = unserialize($cuidador->atributos);
+							$anios_exp = $cuidador->experiencia;
+		                    if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
+		                    $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
+		                    
+		                    $msg_destacado = $wpdb->get_row("SELECT * FROM wp_comments WHERE comment_ID = ".$atributos["msg_destacado"]);
+		                    $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 90);
+		                    if( $_msg_destacado != "" ){
+		                    	$msg_destacado = ( strlen($_msg_destacado) > 90 ) ? $_msg_destacado.'...' : $_msg_destacado;
+		                    }
+		                    
+		                    $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = ".$msg_destacado->comment_author_email );
+
+		                    $desde = $cuidador->hospedaje_desde;
+							$desde = explode(".", number_format( ($desde*getComision()) , 2, '.', ',') );
+
+							$cuidador->estados = explode("=", $cuidador->estados);
+							$cuidador->municipios = explode("=", $cuidador->municipios);
+
+							$mun = $wpdb->get_var("SELECT iso FROM states WHERE id = {$cuidador->estados[1]}");
+							$est = $wpdb->get_var("SELECT name FROM locations WHERE id = {$cuidador->municipios[1]}");
+
+							$est = htmlentities( utf8_decode($est) );
+							$ubicacion = $est.', '. ucfirst( strtolower( $mun ) );
+
+							$atributos = unserialize($cuidador->atributos);
+
+							$resultado[] = (object)[
+								"img" => kmimos_get_foto($cuidador->user_id),
+								"cliente" => kmimos_get_foto( $cliente_id ),
+								"nombre" => $cuidador->titulo,
+								"link" => get_home_url()."/petsitters/".$cuidador->user_id,
+								"ranking" => kmimos_petsitter_rating($cuidador->id_post),
+								"msg" => $msg_destacado,
+								"experiencia" => $expe,
+								"ubicacion" => $ubicacion,
+								"destacado" => $atributos["destacado"],
+								"precio" => '
+								<span>Desde</span>
+								<div>MXN$ <strong>'.$desde[0].'<span>,'.$desde[1].'</span></strong></div>
+								<span class="por_noche">Por noche</span>',
+							];
+						}
 					}
 				}
+
 			}
+
 			return $resultado;
 		}
 

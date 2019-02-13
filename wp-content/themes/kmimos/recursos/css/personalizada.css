@@ -3,16 +3,17 @@
 /* DESTACADOS */
 
 	.seccion_destacados {
-	    padding: 90px 0px 0px;
+	    padding: 80px 0px 0px;
 		border-bottom: solid 1px #CCC;
 		box-shadow: 0px 4px 15px #CCC;
 	}
 
 	.seccion_destacados h2{
 		text-transform: none !important;	
-		padding: 20px 0px 10px;
+		padding: 10px 0px 0px;
 		text-align: center;
-		font-size: 30px !important;
+		font-size: 24px !important;
+		margin-bottom: 0px;
 	}
 
 	.seccion_destacados h2 span {
@@ -20,9 +21,9 @@
 	}
 
 	.seccion_destacados_subtitulo{
-		margin: 0px auto 30px;
-		max-width: 1200px;
-		font-size: 15px;
+	    margin: 0px auto 20px;
+	    max-width: 1000px;
+	    font-size: 13px;
 	}
 
 	.seccion_destacados_subtitulo span {
@@ -35,7 +36,7 @@
 
 	.destacados_container{
 		position: relative;
-		height: 420px; 
+		height: 305px; 
 		display: block;
 		margin: 0px auto;
     	text-align: center;
@@ -45,14 +46,14 @@
 		position: relative;
 		display: inline-block;
 	    width: 100%;
-    	max-width: 1200px;
+    	max-width: 800px;
 	}
 
 	.destacados_box > div{
 		position: relative;
 	    overflow: hidden;
 	    width: 100%;
-	    max-width: 1200px;
+	    max-width: 800px;
 	    box-sizing: border-box;
 	    display: block;
 	    vertical-align: top;
@@ -79,7 +80,7 @@
 
 	.img_destacado {
 		position: relative;
-	    height: 200px;
+	    height: 135px;
 	    background-position: center;
 	    background-size: cover;
 	}
@@ -100,22 +101,23 @@
 
 	.datos_top_destacado_containder {
 		position: relative;
-	    padding: 5px 0px 0px;
+	    padding: 0px;
 	    overflow: hidden;
 	}
 
 	.datos_top_destacado_containder .ubicacion {
-	    position: absolute;
-	    top: 5px;
-	    right: 5px;
-	    font-weight: 600;
+		position: absolute;
+		top: 2px;
+		right: 5px;
+		font-weight: 600;
+		font-size: 10px;
 	}
 
 	.avatar_destacado {
 	    background-position: center;
 	    background-size: cover;
-	    height: 40px;
-	    width: 40px;
+	    height: 28px;
+	    width: 28px;
 	    border-radius: 50%;
 	    display: inline-block;
 	    float: left;
@@ -123,13 +125,13 @@
 
 	.nombre_destacado {
 		float: none;
-		padding: 4px 0px 0px 50px;
+		padding: 4px 0px 0px 35px;
 		text-align: left;
 	}
 
 	.nombre_destacado a {
 	    text-decoration: none;
-	    font-size: 14px;
+	    font-size: 10px;
 	    font-family: Gotham-Pro-Regular;
 	    font-weight: 600;
 	    text-transform: uppercase;
@@ -141,15 +143,15 @@
 	.nombre_destacado span {
 	    display: block;
 	    font-weight: 600;
-	    font-size: 11px;
+	    font-size: 9px;
 	}
 
 	.datos_destacado_containder {
 	    border: solid 1px #7abab7;
 	    border-top: 0px;
-	    border-radius: 0px 0px 25px 25px;
+	    border-radius: 0px 0px 20px 20px;
 	    background: #FFF;
-	    padding: 10px 10px 0px;
+	    padding: 10px 2px 0px 5px;
 	}
 
 	.destacados_item {
@@ -158,7 +160,7 @@
 
 	.destacados_item > a {
 	    display: inline-block;
-	    padding: 15px;
+	    padding: 5px 15px;
 	    background: #00d2c6;
 	    color: #FFF !important;
 	    width: 70%;
@@ -178,7 +180,7 @@
 	.ranking_destacado {
 	    float: none;
 	    padding-top: 0px;
-	    padding-left: 50px;
+	    padding-left: 33px;
 	    display: block;
 	    text-align: left;
 	}
@@ -218,7 +220,7 @@
 	.datos_bottom_destacado_container {
 	    display: block;
 	    text-align: right;
-	    padding: 0px 5px 10px 0px;
+	    padding: 0px 5px 5px 0px;
 	}
 
 	.datos_bottom_destacado_container > div {
@@ -227,7 +229,7 @@
 	}
 
 	.datos_bottom_destacado_container > div strong {
-	    font-size: 35px;
+	    font-size: 24px;
 	}
 
 	.datos_bottom_destacado_container > div strong span {
@@ -236,7 +238,7 @@
 
 	.datos_bottom_destacado_container > span {
 	    color: #4b4b4b;
-	    font-size: 13px;
+	    font-size: 10px;
 	}
 
 	.barra_right{
@@ -610,8 +612,8 @@
 	}
 
 	.cada_vez{
-		font-size: 16px;
-		margin: 20px 0px 30px;
+		font-size: 12px;
+		margin: 0px 0px 15px;
 	}
 
 	.titulo_form {

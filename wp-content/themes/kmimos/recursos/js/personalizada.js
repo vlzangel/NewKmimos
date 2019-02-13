@@ -36,7 +36,11 @@ function resize_carrusel(_w){
     }else{
         jQuery(".destacados_item").css("width", _w);
     }
-    jQuery(".destacados_item").css("height", jQuery(".destacados_container").css("height") );
+    if( parseInt( jQuery("body").width() ) > 768 ){
+        jQuery(".destacados_item").css("height", jQuery(".destacados_container").css("height") );
+    }else{
+        jQuery(".destacados_item").css("height", "auto" );
+    }
 }
 
 function mover_destacado(dir){
