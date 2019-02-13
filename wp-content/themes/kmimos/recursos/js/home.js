@@ -43,11 +43,11 @@ function show_hiden_arrow(){
     */
 }
 
-function mover_destacado(dir){
+function mover_destacado(dir, _paso){
     if( parseInt( jQuery("body").width() ) > 768 ){
-        var h = 33.333333334;
+        var h = parseInt( jQuery(".destacados_box").attr("data-h_pc") );
     }else{
-        var h = 100;
+        var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
     }
     switch(dir){
         case 'izq':
@@ -67,11 +67,27 @@ function mover_destacado(dir){
             jQuery(".destacados_box").attr("data-paso", paso);
             jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
         break;
+        case 'movil':
+            if( parseInt( jQuery("body").width() ) > 768 ){
+                var final = parseInt( jQuery(".destacados_box").attr("data-final_pc") );
+            }else{
+                var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
+            }
+            var paso = parseInt( _paso.attr("data-id") );
+            jQuery(".destacados_box").attr("data-paso", paso);
+            jQuery(".control_item").removeClass("active");
+            _paso.addClass("active");
+            jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
+        break;
     }
     show_hiden_arrow();
 }
 
 jQuery( document ).ready(function() {
+
+    jQuery(".control_item").on('click', function(e){
+        mover_destacado('movil', jQuery(this) );
+    });
 
     jQuery(".seccion_destacados_izq").on('click', function(e){
         console.log("izq");

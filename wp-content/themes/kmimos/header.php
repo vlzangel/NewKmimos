@@ -93,6 +93,7 @@
         "page-perfil.php",
         "page-recargar.php",
         "page-registro-cuidador.php",
+        "page-personalizada.php",
 
     ];
 

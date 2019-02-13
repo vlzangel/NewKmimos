@@ -7,7 +7,7 @@
 
     wp_enqueue_style('home_club_responsive', getTema()."/css/responsive/club_patitas_home.css", array(), '1.0.0');
     wp_enqueue_style('home_kmimos', get_recurso("css")."home.css", array(), '1.0.0');
-    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/home.css", array(), '1.0.0');
+    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/home_2.css", array(), '1.0.0');
 
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
@@ -63,295 +63,47 @@
 		';
 	}
 
-    $HTML .= '
-    	<div id="banner_home">
-			<div>
-				<div class="solo_pc">
-					<span class="banner_txt_1">la red más segura de cuidadores certificados de México</span>
-					<span id="buscar" class="banner_txt_2">¡Tu mejor amigo regresa feliz!</span>
-				</div>
-				<div class="solo_movil banner_home"></div>
-				<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
+	$personalizada = ( $_GET["landing_b"] == 'yes' ) ? '<input type="hidden" id="personalizada" name="personalizada" value="1" />' : '';
 
-					<input type="hidden" name="redireccionar" value="1" />
-					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
-
-					<input type="hidden" id="latitud" name="latitud" />
-					<input type="hidden" id="longitud" name="longitud" />
-
-					<div class="solo_movil" style="padding: 0px 10px;">
-						'.$btn_registro.'
-						<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
-						<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
-						<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
-					</div>
-
-					<div id="servicios_principales_container">
-						<div class="servicios_principales_container">
-							<div class="servicios_principales_box"  style="position: relative;">
-								<label class="input_check_box" for="hospedaje">
-									<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
-									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
-									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
-									<span>Hospedaje</span>
-									<div class="top_check"></div>
-								</label>
-
-								<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia\'); evento_fbq("track", "traking_code_boton_guarderia");">
-									<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
-									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
-									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
-									<span>Guardería</span>
-									<div class="top_check"></div>
-								</label>
-
-								<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos\'); evento_fbq("track", "traking_code_boton_paseos"); evento_google_2(\'paseos\'); evento_fbq_2("track", "traking_code_boton_paseos_kmimos"); ">
-									<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
-									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
-									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
-									<span>Paseos</span>
-									<div class="top_check"></div>
-								</label>
-
-								<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
-									<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento"  />
-									<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
-									<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
-									<span>Adiestramiento</span>
-									<div class="top_check"></div>
-								</label>
-								<small class="error_principales" style="position: absolute; bottom: -13px; left: 6px; color: red; display: none;">
-									Debe seleccionar al menos un servicio principal
-								</small>
-							</div>
-						</div>
-
-						<img onclick="serviciosAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_2.svg" />
-						<img onclick="serviciosSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'PERFIL_CUIDADOR/Flecha_1.svg" />
-					</div>
-
-					<div class="controles_mitad_container">
-
-						<div class="ubicacion_container">
-							<img class="ubicacion_localizacion" src="'.get_recurso("img").'BUSQUEDA/SVG/Localizacion_2.svg" />
-							<input type="text" class="ubicacion_txt" name="ubicacion_txt" placeholder="Ubicación estado municipio" autocomplete="off" />
-							<input type="hidden" class="ubicacion" name="ubicacion" />	
-						    <div class="cerrar_list_box">
-						    	<div class="cerrar_list">X</div>
-						    	<ul class="ubicacion_list"></ul>
-						    </div>
-							<i id="_mi_ubicacion" class="fa icon_left ubicacion_gps"></i>
-							<img class="mi_ubicacion" src="'.get_recurso("img").'HOME/SVG/GPS_Off.svg" />
-							<div class="barra_ubicacion"></div>
-							<small class="hidden" data-error="ubicacion">Función disponible solo en México</small>
-						</div>
-
-						<div class="tipo_mascota_container">
-							<label class="input_check_box" for="perro">
-								<input type="checkbox" id="perro" name="mascotas[]" value="perros"  />
-								<img src="'.get_recurso("img").'HOME/SVG/Perro.svg" />
-								<span>Perro</span>
-								<div class="top_check"></div>
-							</label>
-							<label class="input_check_box" for="gato">
-								<input type="checkbox" id="gato" name="mascotas[]" value="gatos"  />
-								<img src="'.get_recurso("img").'HOME/SVG/Gato.svg" />
-								<span>Gato</span>
-								<div class="top_check"></div>
-							</label>
-						</div>
-						<div class="fechas_container">
-							<div id="desde_container">
-								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
-								<input type="text" id="checkin" name="checkin" placeholder="Desde" class="date_from" readonly>
-								<img class="icon_flecha_fecha" src="'.get_recurso("img").'HOME/SVG/Flecha.svg" />
-								<small class="">Requerido</small>
-							</div>
-							<div>
-								<img class="icon_fecha" src="'.get_recurso("img").'HOME/SVG/Fecha.svg" />
-								<input type="text" id="checkout" name="checkout" placeholder="Hasta" class="date_to" readonly>
-								<small class="">Requerido</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="tamanios_container">
-						<label class="input_check_box" for="pequenos">
-							<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Pequenio.svg" />
-							<span>
-								<div class="tam_label_pc">Pequeño</div>
-								<div class="tam_label_movil">Peq.</div>
-								<small>0 a 25 cm</small>
-							</span>
-							<div class="top_check"></div>
-						</label>
-						<label class="input_check_box" for="mediano">
-							<input type="checkbox" id="mediano" name="tamanos[]" value="medianos"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Mediano.svg" />
-							<span>
-								<div class="tam_label_pc">Mediano</div>
-								<div class="tam_label_movil">Med.</div>
-								<small>25 a 58 cm</small>
-							</span>
-							<div class="top_check"></div>
-						</label>
-
-						<label class="input_check_box" for="grande">
-							<input type="checkbox" id="grande" name="tamanos[]" value="grandes"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Grande.svg" />
-							<span>
-								<div class="tam_label_pc">Grande</div>
-								<div class="tam_label_movil">Gde</div>
-								<small>58 a 73 cm</small>
-							</span>
-							<div class="top_check"></div>
-						</label>
-
-						<label class="input_check_box" for="gigante" style="margin-right: 0px;">
-							<input type="checkbox" id="gigante" name="tamanos[]" value="gigantes"  />
-							<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Gigante.svg" />
-							<span>
-								<div class="tam_label_pc">Gigante</div>
-								<div class="tam_label_movil">Gte.</div>
-								<small>73 a 200 cm</small>
-							</span>
-							<div class="top_check"></div>
-						</label>
-					</div>
-
-					<!-- BEGIN MODAL SERVICIOS ADICIONALES -->
-					<div id="popup-servicios-new" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4><b>Tu consentido merece lo mejor, mira todo lo que le ofrecemos</b></h4>
-								<div class="km-servicios-adicionales">
-									<div class="row">
-										<div class="col-xs-12 col-sm-3">
-											<label for="corte" class="km-opcion">
-												<input type="checkbox" name="servicios[]" value="corte" id="corte" >
-												<span></span>
-												<img src="'.get_recurso("img").'HOME/SVG/Adicionales/corte.svg">
-												<div class="km-opcion-text">
-													CORTE DE PELO<br> Y UÑAS
-												</div>
-											</label>
-										</div>
-										<div class="col-xs-12 col-sm-3">
-											<label for="bano" class="km-opcion">
-												<input type="checkbox" name="servicios[]" value="bano" id="bano" >
-												<span></span>
-												<img src="'.get_recurso("img").'HOME/SVG/Adicionales/bano.svg">
-												<div class="km-opcion-text">
-													BAÑO Y SECADO
-												</div>
-											</label>
-										</div>
-										<div class="col-xs-12 col-sm-3">
-											<label for="limpieza_dental" class="km-opcion">
-												<input type="checkbox" name="servicios[]" value="limpieza_dental" id="limpieza_dental" >
-												<span></span>
-												<img src="'.get_recurso("img").'HOME/SVG/Adicionales/limpieza_dental.svg">
-												<div class="km-opcion-text">
-													LIMPIEZA DENTAL
-												</div>
-											</label>
-										</div>
-										<div class="col-xs-12 col-sm-3">
-											<label for="visita_al_veterinario" class="km-opcion">
-												<input type="checkbox" name="servicios[]" value="visita_al_veterinario" id="visita_al_veterinario" >
-												<span></span>
-												<img src="'.get_recurso("img").'HOME/SVG/Adicionales/visita_al_veterinario.svg">
-												<div class="km-opcion-text">
-													VISITA AL<br> VETERINARIO
-												</div>
-											</label>
-										</div>
-									</div>
-									<div class="row mtb-10">
-										<div class="col-xs-12 col-sm-3">
-											<label for="acupuntura" class="km-opcion">
-												<input type="checkbox" name="servicios[]" value="acupuntura" id="acupuntura" >
-												<span></span>
-												<img src="'.get_recurso("img").'HOME/SVG/Adicionales/acupuntura.svg">
-												<div class="km-opcion-text">
-													ACUPUNTURA
-												</div>
-											</label>
-										</div>
-										<div class="col-xs-12 col-sm-3">
-											<label for="transportacion_sencilla" class="km-opcion">
-												<input type="checkbox" name="servicios[]" value="transportacion_sencilla" id="transportacion_sencilla" >
-												<span></span>
-												<img src="'.get_recurso("img").'HOME/SVG/Adicionales/transportacion_sencilla.svg">
-												<div class="km-opcion-text">
-													TRANSPORTE<br> SENCILLO
-												</div>
-											</label>
-										</div>
-										<div class="col-xs-12 col-sm-3">
-											<label for="transportacion_redonda" class="km-opcion">
-												<input type="checkbox" name="servicios[]" value="transportacion_redonda" id="transportacion_redonda" >
-												<span></span>
-												<img src="'.get_recurso("img").'HOME/SVG/Adicionales/transportacion_redonda.svg">
-												<div class="km-opcion-text">
-													TRANSPORTE<br> REDONDO
-												</div>
-											</label>
-										</div>
-										<div class="col-xs-12 col-sm-3">
-											<a id="agregar_servicios" href="javascript:;" class="boton_buscar boton_verde">AGREGAR SERVICIO</a>
-										</div>
-									</div>
-								</div>
-								<a href="javascript:;" id="buscar_no" class="km-link" style="color: black; display:block; margin-top: 15px;">NO DESEO POR AHORA, GRACIAS</a>
-							</div>
-						</div>
-					</div>
-					<!-- END MODAL SERVICIOS ADICIONALES -->
-
-					<div class="boton_buscar_container">
-						<input type="button" id="boton_buscar" class="boton_buscar boton_verde" value="Buscar cuidador">
-					</div>
-
-				</form>
-
-			</div>	
-		</div>';
-
-		if( $_GET["landing_b"] == 'yes' ){
+	switch ( $_GET["landing"] ) {
+		case 'b':
 			include dirname(__FILE__).'/partes/HOMES/home_b.php';
-		}else{
+		break;
+		case 'c':
+			include dirname(__FILE__).'/partes/HOMES/home_c.php';
+		break;
+		
+		default:
 			include dirname(__FILE__).'/partes/HOMES/home_a.php';
-		}
-		
-		$HTML .= '
-		<!-- CONECTATE -->
+		break;
+	}
+			
+	$HTML .= '
+	<!-- CONECTATE -->
 
-		<div class="conectate_container" style="display: none;" >
-			<h2>Conéctate de donde quieras</h2>
-			<img src="'.get_recurso("img").'HOME/PNG/Moviles.png" />
-			<span>Disponible en la web, y en dispositivos iOS y Android</span>
-			<div class="mensaje_movil">
-				<span>Baja nuestra <strong>app</strong>, y conéctate desde donde quieras</span>
-			</div>
-			<div class="conectate_botones_tabla">
-				<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/APP_STORE.svg" /></div>
-				<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/GOOGLE_PLAY.svg" /></div>
-			</div>
-		</div>';
-		
-		$HTML .= '
-		<!-- ALIADOS -->
-		<div class="aliados_container">
-			<img src="'.get_recurso("img").'HOME/PNG/Reforma.png" />
-			<img src="'.get_recurso("img").'HOME/PNG/Mural.png" />
-			<img src="'.get_recurso("img").'HOME/PNG/El-norte.png" />
-			<img src="'.get_recurso("img").'HOME/PNG/Financiero.png" />
-			<img src="'.get_recurso("img").'HOME/PNG/Universal.png" />
-			<img src="'.get_recurso("img").'HOME/PNG/Petco.png" style="display: none;" />
-		</div>';
+	<div class="conectate_container" style="display: none;" >
+		<h2>Conéctate de donde quieras</h2>
+		<img src="'.get_recurso("img").'HOME/PNG/Moviles.png" />
+		<span>Disponible en la web, y en dispositivos iOS y Android</span>
+		<div class="mensaje_movil">
+			<span>Baja nuestra <strong>app</strong>, y conéctate desde donde quieras</span>
+		</div>
+		<div class="conectate_botones_tabla">
+			<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/APP_STORE.svg" /></div>
+			<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/GOOGLE_PLAY.svg" /></div>
+		</div>
+	</div>';
+	
+	$HTML .= '
+	<!-- ALIADOS -->
+	<div class="aliados_container">
+		<img src="'.get_recurso("img").'HOME/PNG/Reforma.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/Mural.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/El-norte.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/Financiero.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/Universal.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/Petco.png" style="display: none;" />
+	</div>';
 
     echo comprimir($HTML);
     

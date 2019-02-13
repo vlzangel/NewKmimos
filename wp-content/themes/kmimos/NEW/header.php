@@ -332,6 +332,7 @@
 		</script>
 	';
 
+	/*
 	$HTML .= '<!-- Load Facebook SDK for JavaScript -->
 		<div id="fb-root"></div>
 		<script>
@@ -362,6 +363,7 @@
 			logged_out_greeting="Preguntas? Chatea con Nosotros">
 		</div>
 		';
+	*/
 
 	if( $_SESSION["wlabel"] == "petco" ){
 		$HTML .= '

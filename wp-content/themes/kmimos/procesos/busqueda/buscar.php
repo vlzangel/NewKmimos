@@ -554,7 +554,11 @@
 		echo "</pre>";
 	}else{
        	if( $redireccionar == 1 ) {
-		 	header("location: {$home}busqueda/");
+       		if( $personalizada == 1 ){
+       			header("location: {$home}personalizada/");
+       		}else{
+       			header("location: {$home}busqueda/");
+       		}
 		}else{
 			echo json_encode( $cuidadores );
 		}

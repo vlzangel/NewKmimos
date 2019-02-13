@@ -145,6 +145,10 @@ nav .lupa_negra{
 	border: solid 2px #7c169e;
 }
 
+.boton_border_verde{
+	border: solid 2px #00d2c6;
+}
+
 .nav_right > a {
 	font-weight: 500;
     letter-spacing: 1px;
