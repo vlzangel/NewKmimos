@@ -612,8 +612,13 @@
 	}
 
 	.cada_vez{
-		font-size: 12px;
+		font-size: 14px;
 		margin: 0px 0px 15px;
+	}
+
+	.cada_vez span {
+		color: #e5cc00;
+		font-weight: 800;
 	}
 
 	.titulo_form {
