@@ -586,7 +586,7 @@
 		display: none;
 	}
 
-	.seccion_destacados .datos_destacado_containder > a {
+	#banner_home .seccion_destacados .datos_destacado_containder > a {
 		display: block;
 	}
 
