@@ -32,6 +32,7 @@
 
 	.seccion_destacados_subtitulo a {
 		color: #00d2c6;
+		display: inline;
 	}
 
 	.destacados_container{
