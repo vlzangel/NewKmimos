@@ -604,10 +604,6 @@
 		    width: calc( 100% - 55px );
 		}
 
-		#banner_home .seccion_destacados .destacados_box > div {
-		    overflow: auto;
-		}
-
 		#banner_home .banner_txt_0 {
 		    font-weight: 600;
 		    font-size: 13px;

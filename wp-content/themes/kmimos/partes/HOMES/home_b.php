@@ -265,7 +265,7 @@
 	if( is_array($destacados) && count($destacados) > 0 ){
 		$items = count($destacados);
 		$final_pc = $items-4;
-		$final_movil = $items-1;
+		$final_movil = $items-2;
 		$desta_str = '';
 		foreach ($destacados as $key => $cuidador) {
 			$desta_str .= 
@@ -290,9 +290,9 @@
 		}
 
 		$items_movil = '';
-		for ($i=0; $i < $final_movil; $i++) { 
+		for ($i=0; $i < $final_movil+1; $i++) { 
 			$active = ( $i == 0 ) ? 'active' : '';
-			$items_movil .= '<span class="control_item '.$active.'" data-id="'.$i.'"></span>';
+			$items_movil .= '<span class="control_item '.$active.' item_'.$i.'" data-id="'.$i.'"></span>';
 		}
     	$cuidadores_destacados = '
     	<div class="seccion_destacados">

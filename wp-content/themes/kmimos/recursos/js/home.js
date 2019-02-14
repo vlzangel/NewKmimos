@@ -31,16 +31,7 @@ function ancla_form() {
 }
 
 function show_hiden_arrow(){
-    /*
-    var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
-    if( parseInt( jQuery("body").width() ) > 768 ){
-        var final = parseInt( jQuery(".destacados_box").attr("data-final_pc") );
-    }else{
-        var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
-    }
-    if( paso == 0 ){ jQuery(".seccion_destacados_izq").css("display", "none"); }else{ jQuery(".seccion_destacados_izq").css("display", "block"); }
-    if( paso == final ){ jQuery(".seccion_destacados_der").css("display", "none"); }else{ jQuery(".seccion_destacados_der").css("display", "block"); }
-    */
+  
 }
 
 function mover_destacado(dir, _paso){
@@ -49,9 +40,10 @@ function mover_destacado(dir, _paso){
     }else{
         var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
     }
+    
+    var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
     switch(dir){
         case 'izq':
-            var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
             if( paso > 0 ){ paso--; }
             jQuery(".destacados_box").attr("data-paso", paso);
             jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
@@ -62,7 +54,6 @@ function mover_destacado(dir, _paso){
             }else{
                 var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
             }
-            var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
             if( paso < final ){ paso++; }
             jQuery(".destacados_box").attr("data-paso", paso);
             jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
@@ -75,15 +66,69 @@ function mover_destacado(dir, _paso){
             }
             var paso = parseInt( _paso.attr("data-id") );
             jQuery(".destacados_box").attr("data-paso", paso);
-            jQuery(".control_item").removeClass("active");
-            _paso.addClass("active");
+            // jQuery(".control_item").removeClass("active");
+            // _paso.addClass("active");
             jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
         break;
     }
+
+    console.log( paso );
+
+    jQuery(".control_item").removeClass("active");
+    jQuery(".item_"+paso).addClass("active");
+
     show_hiden_arrow();
 }
 
+var TX1 = 0;
+var TX2 = 0;
+
 jQuery( document ).ready(function() {
+
+    jQuery(".destacados_container").on('touchstart', function(e){
+        if( parseInt( jQuery("body").width() ) < 768 ){
+            var ev = e.originalEvent;
+            if (ev.targetTouches.length == 1) { 
+                var touch = ev.targetTouches[0]; 
+                TX1 = touch.pageX; // + " en Y " + touch.pageY);
+                console.log( TX1 );
+            }
+        }
+    });
+
+    jQuery(".destacados_container").on('touchmove', function(e){
+        if( parseInt( jQuery("body").width() ) < 768 ){
+            var ev = e.originalEvent;
+            if (ev.targetTouches.length == 1) { 
+                var touch = ev.targetTouches[0]; 
+                TX2 = touch.pageX;
+
+                var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
+                var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
+
+                var d = TX1-TX2;
+                if( Math.abs( d ) < 30 ){
+                    d = (paso*h)+(d*0.2);
+                    jQuery(".destacados_box > div > div").css("left", (-1*d)+"%");
+                }
+
+            }
+        }
+    });
+
+    jQuery(".destacados_container").on('touchend', function(e){
+        if( parseInt( jQuery("body").width() ) < 768 ){
+            var d = TX1-TX2;
+            if( Math.abs( d ) > 30 ){
+                console.log( "Mover" );
+                if( d > 0 ){
+                    mover_destacado("der");
+                }else{
+                    mover_destacado("izq");
+                }
+            }
+        }
+    });
 
     jQuery(".control_item").on('click', function(e){
         mover_destacado('movil', jQuery(this) );

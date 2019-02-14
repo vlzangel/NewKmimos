@@ -470,4 +470,18 @@
 	    bottom: 16%!important;
 	}
 
+	.modal_msg_box {
+	    padding: 15px 15px 10px;
+	    max-width: 95%;
+	    text-align: justify;
+	    font-size: 14px;
+	    margin: 0px auto;
+	    border-radius: 20px;
+	}
+
+	a.boton.boton_verde,
+	#ocultar_msg {
+	    font-size: 12px;
+	}
+
 }

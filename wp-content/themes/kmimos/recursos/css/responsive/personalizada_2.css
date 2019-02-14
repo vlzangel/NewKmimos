@@ -409,4 +409,9 @@
 		    padding: 12px 0px !important;
 		    margin: 0px auto 10px !important;
 		}
+
+	.celda_2 label.titulo_form br {
+	    display: none;
+	}
+
 }
