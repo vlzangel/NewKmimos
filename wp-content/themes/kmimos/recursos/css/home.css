@@ -453,7 +453,7 @@
 		position: relative;
 	    overflow: hidden;
 	    width: 100%;
-	    max-width: 1000px;
+	    max-width: 900px;
 	    box-sizing: border-box;
 	    display: block;
 	    vertical-align: top;
@@ -600,7 +600,7 @@
 
 		#banner_home .destacados_container {
 			background-color: #FFF;
-			height: 170px;
+			height: 140px;
 			padding: 10px 0px;
 		}
 
@@ -615,7 +615,7 @@
 		}
 
 		#banner_home .img_destacado {
-		    height: 150px;
+		    height: 120px;
 		    width: 200px;
 	    	float: left;
 		}
@@ -625,7 +625,7 @@
 		    padding: 5px 5px 0px;
 
 		    width: calc( 100% - 200px );
-		    height: 150px;
+		    height: 120px;
 	    	float: right;
 	    	position: relative;
 	    	border-top: solid 1px #7abab7;
@@ -633,9 +633,9 @@
 		}
 
 		#banner_home .ranking_destacado {
-		    float: left;
+		    float: right;
 		    padding-top: 0px;
-		    padding-left: 10px;
+		    padding-right: 7px;
 		}
 
 		#banner_home .nombre_destacado {
@@ -645,7 +645,7 @@
 		#banner_home .msg_destacado_containder {
 		    padding: 5px 10px 5px 10px;
 		    min-height: auto;
-		    font-size: 11px;
+		    font-size: 9px;
 		}
 
 		#banner_home .datos_top_destacado_containder {
@@ -658,10 +658,10 @@
 		}
 
 		#banner_home .nombre_destacado a {
-		    font-size: 12px;
+		    font-size: 11px;
 		}
 		#banner_home .nombre_destacado span {
-		    font-size: 10px;
+		    font-size: 8px;
 		}
 
 		#banner_home .datos_destacado_containder a.boton.boton_verde {
@@ -670,6 +670,7 @@
 		    padding: 5px 0px;
 		    left: 20px;
 		    width: calc( 100% - 55px );
+		    font-size: 10px;
 		}
 
 		#banner_home .km-ranking a {

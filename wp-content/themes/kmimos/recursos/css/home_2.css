@@ -575,7 +575,7 @@
 	}
 
 	.km-ranking a {
-		width: 12px !important;
+		width: 14px !important;
 	    height: 7px !important;
 	    background-size: 14px 7px !important;
 	    float: right !important;
@@ -631,9 +631,9 @@
 		}
 
 		#banner_home .img_destacado {
-		    height: 150px;
-		    width: 200px;
-	    	float: left;
+	        float: right;
+		    padding-top: 0px;
+		    padding-right: 7px;
 		}
 
 		#banner_home .datos_destacado_containder {
