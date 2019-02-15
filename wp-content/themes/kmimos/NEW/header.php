@@ -154,9 +154,13 @@
     	</script>
 	';
 
+	global $HOME; 
+	$home_2 = '';
+    if( $HOME == "2" ){ $home_2 = 'home_2'; }
+
 	$HTML .= '
 	</head>
-	<body class="' . join(' ', get_body_class($class)) . ' ' . $reserrvacion_page . '">
+	<body class="' . join(' ', get_body_class($class)) . ' ' . $reserrvacion_page . ' '.$home_2.'">
 	<script> 
 			var RUTA_IMGS = "'.get_home_url().'/imgs"; 
 
@@ -388,6 +392,18 @@
 
 	$link_home = ( $_SESSION['landing_paseos'] == 'yes' ) ? get_home_url().'/paseos' : get_home_url();
 
+	$menu_home_2 = '';
+	if( $HOME == "2" ){
+		$menu_home_2 = '
+			<ul class="menu_horizontal">
+				<li class="menu_activo">Gana 150$</li>
+				<li> <div class="mensajes_container">Mensajes <span class="new_mensaje"></span></div> </li>
+				<li>Ayuda</li>
+				<li>Mi perfil</li>
+			</ul>
+		';
+	}
+
 	$HTML .= '
 		<nav class="'.$clase_white.'">
 
@@ -398,6 +414,7 @@
 							<a id="link_home" href="'.$link_home.'">
 								<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo.png" />
 								<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-negro.png" />
+								<img class="logo logo_verde" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />
 							</a>
 							<a href="'.get_home_url().'#buscar" id="buscar_cuidador_btn_nav" onclick="ancla_form()" class="boton">
 								<img class="lupa" src="'.get_recurso("img").'HOME/PNG/Buscar.png" /> 
@@ -407,6 +424,7 @@
 							'.$btn_quiero.'
 						</td>
 						<td class="nav_right">
+							'.$menu_home_2.'
 							'.$menu_str.'
 						</td>
 					</tr>

@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 /* Menu HOME */
-	
-	.logo_verde {
-		display: none;
-	}
 
 	.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
 	    background-color: transparent !important;
@@ -22,18 +18,36 @@
 	    font-size: 18px !important;
 	}
 
+/* BANNER ROTATIVO */
+
+	.banner_rotativo {
+		position: relative;
+		overflow: hidden;
+	    height: 195px;
+	    white-space: nowrap;
+	    display: block;
+
+	}
+
+	.banner_rotativo_item {
+	    height: 100%;
+	    background-size: cover;
+	    background-position: center;
+	    background-repeat: no-repeat;
+	}
+
 /* BANNER */
 
 	#banner_home{
-		background-image: url( ../img/HOME/JPG/Principal.jpg );
-		height: 500px;
+		height: auto;
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
-		padding: 0px 50px;
+		padding: 100px 0px 0px;
 		display: table;
-		width: 100%;
+		width: 1000px;
 		box-sizing: border-box;
+		margin: 0px auto;
 	}
 
 	#banner_home > div {
@@ -66,11 +80,14 @@
 
 	#banner_home #buscador {
 		background-color: #FFF;
-		padding: 15px 10px 5px;
-		max-width: 800px;
-		margin: 15px auto 10px;
-		border-radius: 5px;
-		box-shadow: 0px 0px 5px #6d6d6d;
+		padding: 30px 25px 20px;
+		max-width: 100%;
+		margin: 0px auto;
+		border-radius: 0px;
+		box-shadow: none;
+    	background: #fafafa;
+    	overflow: hidden;
+    	border: solid 1px #CCC;
 	}
 
 	#banner_home #buscador {
@@ -82,7 +99,7 @@
 /* SERVICIOS PRINCIPALES */
 
 	.servicios_principales_container{
-	    margin-bottom: 15px;
+	    margin-bottom: 10px;
 	}
 
 	#servicios_principales_container img.Flechas {
@@ -94,11 +111,12 @@
 	    display: inline-block;
 	    width: calc( 25% - 15px );
 	    border: solid 1px #CCC;
-	    height: 60px;
+	    height: 48px;
 	    margin-right: 10px;
 	    border-radius: 5px;
 	    cursor: pointer;
 	    padding: 5px 0px;
+	    background: #FFF;
 	}
 
 	.input_check_box input {
@@ -107,8 +125,8 @@
 
 	.input_check_box img {
 	    display: block;
-	    margin: 5px auto;
-	    height: 22px;
+	    margin: 3px auto;
+	    height: 17px;
 	}
 
 	.input_check_box span {
@@ -132,10 +150,6 @@
 	    opacity: 1;
 	}
 
-	.input_check_box:last-child {
-	    margin-right: 0px;
-	}
-
 	.tamanios_container .input_check_box img {
 	    display: none;
 	}
@@ -143,7 +157,7 @@
 /* CONTROLES MITAD */
 	
 	.controles_mitad_container{
-		margin-bottom: 15px;
+		margin-bottom: 10px;
 		padding: 0px;
 	}
 
@@ -365,16 +379,17 @@
 /* TAMAÑOS */
 
 	.tamanios_container{
-		display: inline-block;
-		width: 60%;
-		box-sizing: border-box;
+	    display: inline-block;
+	    width: 50%;
+	    box-sizing: border-box;
 	    margin-right: 10px;
 	    padding-left: 6px;
 	    overflow: hidden;
+	    float: left;
 	}
 
 	.tamanios_container .input_check_box{
-		padding: 17px 0px;
+		padding: 11px 0px;
 		box-sizing: border-box;
 	    float: left;
         width: calc( 25% - 8px );
@@ -401,19 +416,20 @@
 /* BOTÓN BUSCAR */
 
 	.boton_buscar_container{
-		display: inline-block;
-		width: calc( 40% - 15px );
-		box-sizing: border-box;
+	    display: inline-block;
+	    width: calc( 40% - 15px );
+	    box-sizing: border-box;
 	    vertical-align: top;
 	    padding-right: 5px;
+	    float: right;
 	}
 
 	.boton_buscar_container .boton_buscar{
 	    display: block;
-	    font-size: 18px;
+	    font-size: 14px;
 	    font-weight: 500;
 	    border: 1px #00d2c6;
-	    height: 60px;
+	    height: 48px;
 	    border-radius: 5px;
 	    cursor: pointer;
 	    padding: 0px;
@@ -802,6 +818,14 @@
 	.beneficios_servicios_principales{
 		border: solid 1px #e6e6e6;
 		border-radius: 5px;
+	}
+
+	.servicios_principales_box label {
+		margin-right: 12px !important;
+	}
+
+	.servicios_principales_box > label:nth-child(4) {
+		margin-right: 0px !important;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_titulo{
@@ -1417,4 +1441,91 @@
 	    width: 100%;
 	    border-radius: 5px;
 	    text-decoration: none !important;
+	}
+
+/* HOME 2 */
+
+	.home_2 nav {
+	    background: rgb(255, 255, 255);
+	}
+	
+	.home_2 .logo,
+	.home_2 .nav_white .logo {
+		display: none !important;
+	}
+	
+	.home_2 .logo_verde,
+	.home_2 .nav_white .logo_verde {
+		display: inline-block !important;
+	}
+
+	.home_2 nav .nav_table a {
+	    color: #000 !important;
+	}
+
+	.home_2 nav .lupa {
+	    display: none !important;
+	}
+
+	.home_2 nav .lupa_negra,
+	.home_2 nav.nav_white .lupa_negra {
+	    display: inline-block !important;
+	}
+
+	.home_2 .nav > li > a > img {
+	    width: 40px;
+	    height: 40px;
+	}
+
+	.home_2 nav {
+	    padding: 10px 50px;
+	    box-shadow: 0px 5px 5px #EEE;
+	}
+
+	.home_2 nav.nav_white {
+		border-bottom: solid 1px #EEE !important;
+	    box-shadow: 0px 0px 0px #EEE;
+	}
+
+	.home_2 nav .nav_table {
+	    margin: 0px auto;
+	}
+
+	.menu_horizontal {
+		list-style: none;
+		display: inline-block;
+		padding-right: 15px;
+		margin: 0px;
+	}
+
+	.menu_horizontal li {
+		position: relative;
+		color: #000;
+		text-align: left;
+		display: inline-block;
+		padding: 12px 15px 10px;
+		cursor: pointer;
+	}
+
+	.menu_activo:before{
+		content: ' ';
+		position: absolute;
+		left: 30px;
+		bottom: 0px;
+		border-bottom: solid 2px purple;
+		width: calc( 100% - 60px );
+	}
+
+	.mensajes_container{
+		position: relative;
+		display: inline-block;
+	}
+
+	.new_mensaje{
+		position: absolute;
+		right: -5px;
+		top: -5px;
+		background-color: red;
+		padding: 3px;
+		border-radius: 50%;
 	}

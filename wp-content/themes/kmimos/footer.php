@@ -19,6 +19,7 @@
         "page-recargar.php",
         "page-registro-cuidador.php",
         "page-personalizada.php",
+        "page-home_2.php",
     ];
 
     $plantilla = get_post_meta($post->ID, '_wp_page_template', true);
@@ -34,6 +35,9 @@
         print_r($_SERVER);
     echo "</pre>";
     */
+
+    global $HOME;
+    if( $HOME == "2" ){ wp_enqueue_style( 'home_2', get_recurso('css')."home_2.css", array(), "1.0.0" ); }
 
     if( true ){
 

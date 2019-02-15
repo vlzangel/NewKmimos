@@ -135,11 +135,9 @@ jQuery( document ).ready(function() {
     });
 
     jQuery(".seccion_destacados_izq").on('click', function(e){
-        console.log("izq");
         mover_destacado("izq");
     });
     jQuery(".seccion_destacados_der").on('click', function(e){
-        console.log("der");
         mover_destacado("der");
     });
     show_hiden_arrow();
