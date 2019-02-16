@@ -43,7 +43,13 @@
 	<div id="banner_home">
 		<div>
 			<div class="banner_rotativo">
-				'.$items.'
+				<div class="banner_rotativo_container">
+					<div class="banner_rotativo_box">
+						'.$items.'
+					</div>
+				</div>
+				<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 			</div>
 
 			<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
@@ -287,6 +293,98 @@
 
 		</div>	
 	</div>';
+
+	$SERVICIOS_PRINCIPALES = [
+		[
+			'Hospedaje.jpg',
+			'Hospedaje',
+			'¿Te vas de viaje? Tu mejor amigo será huesped en el propio hogar de uno de nuestros cuidadores'
+		],
+		[
+			'Guarderia.jpg',
+			'Guardería',
+			'Uno de nuestros cuidadores lo apapachará y jugará con el durante el día'
+		],
+		[
+			'Paseos.jpg',
+			'Paseos',
+			'¿Sabías que un paseo de al menos dos horas para tu peludo baja sus niveles de estrés?'
+		],
+	];
+
+	$items = '';
+	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
+		$items .= 
+		'<div class="carrusel_servicios_principales_item">'.
+			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/'.$servicio[0].');"></div>'.
+			'<div class="carrusel_servicios_principales_data">'.
+				'<label>'.strtoupper($servicio[1]).'</label>'.
+				'<p>'.$servicio[2].'</p>'.
+			'</div>'.
+		'</div>';
+	}
+
+	$HTML .= '
+		<div class="carrusel_servicios">
+			<h2>¿Qué estás buscando para tu mascota? > </h2>
+
+			<div class="carrusel_servicios_principales_container">
+				<div class="carrusel_servicios_principales_box">
+					'.$items.'
+				</div>
+			</div>
+			<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
+		</div>
+	';
+
+	$cuidadores = get_recomendaciones_homa_2();
+
+	echo "<pre>";
+		print_r( $cuidadores );
+	echo "</pre>";
+
+	$items = '';
+	foreach ($cuidadores as $key => $c) {
+		$items .= 
+		'<div class="carrusel_recomendados_item">'.
+			'<div class="carrusel_recomendados_img" style="background-image: url('.$c->img.');"></div>'.
+			'<div class="carrusel_recomendados_data">'.
+				'<span>'.$c->nombre.'</span>'.
+				'<div class="carrusel_recomendados_experiencia">'.$c->experiencia.'</div>'.
+				'<div class="carrusel_recomendados_precio">Desde MXN $ '.$c->precio.'</div>'.
+				'<div class="carrusel_recomendados_ranking">'.$c->ranking.'</div>'.
+				'<div class="carrusel_recomendados_experiencia">'.$c->valoraciones.'</div>'.
+			'</div>'.
+			'<a href="'.$c->link.'"></a>'.
+		'</div>';
+	}
+
+	$HTML .= '
+		<div class="carrusel_recomendados">
+			<h2>Te recomendamos estos cuidadores mejor evaluados > </h2>
+
+			<div class="carrusel_recomendados_container">
+				<div class="carrusel_recomendados_box">
+					'.$items.'
+				</div>
+			</div>
+			<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
+		</div>
+	';
+
+	$HTML .= '
+		<div class="suscribir_blog">
+			<h2>Entérate de los últimos cuidados para tu mascota <span>¡Inscribete a nuestro blog y conócelas!</span></h2>
+
+			<form id="suscribir">
+				<input type="text" id="email_home" name="email_home" placeholder="Ingresa tu correo" />
+				<input type="submit" value="Inscribirme al blog" />
+			</form>
+
+		</div>
+	';
 
 	$HTML .= '
 	<!-- BENEFICIOS -->

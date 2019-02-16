@@ -2,6 +2,40 @@
 	
 	include dirname(__FILE__).'/reconfiguracion.php';
 
+	/* RECOMENDACIONES HOME 2 */
+
+		function get_recomendaciones_homa_2(){
+			global $wpdb;
+			$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores WHERE activo = 1 ORDER BY valoraciones DESC LIMIT 0, 10");
+
+			$resultado = [];
+			foreach ($cuidadores as $key => $cuidador) {
+
+				$atributos = unserialize($cuidador->atributos);
+				$anios_exp = $cuidador->experiencia;
+                if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
+                $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
+                
+                $desde = $cuidador->hospedaje_desde;
+				$desde = explode(".", number_format( ($desde*getComision()) , 2, '.', ',') );
+
+				$cuidador->valoraciones = ( $cuidador->valoraciones == 1 ) ? $cuidador->valoraciones." valoración": $cuidador->valoraciones." valoraciones";
+				
+				$resultado[] = (object)[
+					"id" => $cuidador->user_id,
+					"img" => kmimos_get_foto($cuidador->user_id),
+					"nombre" => $cuidador->titulo,
+					"link" => get_home_url()."/petsitters/".$cuidador->user_id,
+					"ranking" => kmimos_petsitter_rating($cuidador->id_post),
+					"experiencia" => $expe,
+					"destacado" => $atributos["destacado"],
+					"precio" => number_format( $cuidador->hospedaje_desde*getComision(), 2, ',', '.'),
+					"valoraciones" => $cuidador->valoraciones,
+				];
+			}
+			return $resultado;
+		}
+
 	/* DESTACADOS HOME */
 
 		function get_destacados_home($ids_validos = ''){

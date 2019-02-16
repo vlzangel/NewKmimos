@@ -36,9 +36,6 @@
     echo "</pre>";
     */
 
-    global $HOME;
-    if( $HOME == "2" ){ wp_enqueue_style( 'home_2', get_recurso('css')."home_2.css", array(), "1.0.0" ); }
-
     if( true ){
 
         if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new)  || in_array($plantilla, $pages_new) ){
