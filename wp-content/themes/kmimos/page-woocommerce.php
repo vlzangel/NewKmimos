@@ -186,6 +186,8 @@
 
 		$super_admin = (  $_SESSION['admin_sub_login'] != 'YES' ) ? 'No': 'Si';
 
+		$_SESSION["flash_".$cuidador->id_post] = $ES_FLASH;
+
 		$HTML .= "
 		<script> 
 			var fee_conocer = '".$fee_conocer."';
