@@ -22,6 +22,7 @@
 					);
 					$request = Requests::post( get_home_url()."/wp-content/themes/kmimos/procesos/reservar/pagar.php", array(), $options );
 					$body = json_decode($request->body);
+					print_r($body);
 					if( $body->order_id > 0 ){
 						unset($_SESSION['paypal']);
 						header( 'location:'.get_home_url().'/finalizar/'.$body->order_id );
@@ -30,5 +31,5 @@
 			}
 			break;
 	}
-	echo 'paso prueba';
+	// echo 'paso prueba';
 	// header( 'location:'.get_home_url() );
