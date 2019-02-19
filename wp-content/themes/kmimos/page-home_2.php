@@ -314,6 +314,11 @@
 			'Paseos',
 			'¿Sabías que un paseo de al menos dos horas para tu peludo baja sus niveles de estrés?'
 		],
+		[
+			'Entrenamiento.jpg',
+			'Entrenamiento',
+			'Encuentra especialistas para cualquier tipo de comportamiento'
+		],
 	];
 
 	$items = '';
@@ -337,7 +342,7 @@
 			<h2>¿Qué estás buscando para tu mascota? > </h2>
 
 			<div class="carrusel_servicios_principales_container">
-				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="100" data-h_movil="100" data-t="1500">
+				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="100" data-t="1000">
 					'.$items.'
 				</div>
 			</div>
@@ -373,7 +378,7 @@
 			<h2>Te recomendamos estos cuidadores mejor evaluados > </h2>
 
 			<div class="carrusel_recomendados_container">
-				<div class="carrusel_recomendados_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="20" data-h_movil="100" data-t="1000">
+				<div class="carrusel_recomendados_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="20" data-h_movil="100" data-t="800">
 					'.$items.'
 				</div>
 			</div>
