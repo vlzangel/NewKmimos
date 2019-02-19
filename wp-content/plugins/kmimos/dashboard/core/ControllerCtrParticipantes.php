@@ -6,7 +6,7 @@ function getListsuscribe($landing="", $desde="", $hasta=""){
 
 	$filtro_adicional = "";
 	if( !empty($landing) ){
-		$filtro_adicional = " source = '{$landing}'";
+		$filtro_adicional = " source in ({$landing})";
 	}
 
 /*	if( !empty($desde) && !empty($hasta) ){

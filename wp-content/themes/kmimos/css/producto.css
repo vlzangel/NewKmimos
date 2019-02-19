@@ -1,3 +1,31 @@
+/* PASARELAS DE PAGOS */
+    #pasarela-container{
+        display:inline-flex;
+        font-size:11px;
+        font-weight: bold;
+        text-align: center; 
+        width: 100%;
+    }
+    #pasarela-container .active{
+        color: #00d2c6;
+        border: solid 1px #00d2c6!important;
+    }
+    #pasarela-container .km-method-paid-option{
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: flex;
+        margin: 10px 5px;
+        padding: 20px 5px;
+        width: 24%;
+    }
+
+    #pasarela-container .km-method-paid-option > div{
+        align-self: center;
+        text-align: center;
+        width: 100%;
+    }
+
+
 /* New */
 
 .modal_20_porciento{

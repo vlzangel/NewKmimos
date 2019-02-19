@@ -10,7 +10,7 @@ if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 	$hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
 }
 // Buscar Reservas
-$landing = 'kmimos-mx-clientes-referidos';
+$landing = "'kmimos-mx-clientes-referidos', 'CPF'";
 $subscribe = getListsuscribe($landing, $desde, $hasta);
 ?>
 
@@ -66,11 +66,9 @@ $subscribe = getListsuscribe($landing, $desde, $hasta);
 			      <th>Fecha Registro</th>
 			      <th>Tipo de Usuario</th>
 			      <th>Estatus</th>
-			      			      <th>Facebook</th>
+			      <th>Facebook</th>
 			      <th>Twitter</th>
 			      <th>Email</th>
-
-
 			    </tr>
 			  </thead>
 			  <tbody>

@@ -204,29 +204,32 @@
 											Medio de pago
 										</div>
 
-										<div class="km-method-paid-options km-medio-paid-options">
-
-											<div class="km-method-paid-option km-tienda km-option-3-lineas active">
-												<div class="km-text-one">
-													PAGO EN TIENDA DE CONVENIENCIA
-												</div>
+										<div id="pasarela-container">
+											<div class="km-method-paid-option km-option-3-lineas km-tienda active"
+												onclick="evento_google_kmimos(\'tienda\'); evento_fbq_kmimos(\'tienda\');" >
+												<div class="km-text-one">PAGO EN TIENDA DE CONVENIENCIA</div>
 											</div>
-
-											<div class="km-method-paid-option km-tarjeta km-option-3-lineas ">
-												<div class="km-text-one">
-													<div class="km-text-one">								
-														<span>PAGO CON </span>TARJETA DE CRÉDITO O DÉBITO
-													</div>
-												</div>
-
+											<div class="km-method-paid-option km-option-3-lineas km-tarjeta"
+												onclick="evento_google_kmimos(\'tarjeta\'); evento_fbq_kmimos(\'tarjeta\');" >
+												<div class="km-text-one"><span>PAGO CON </span>TARJETA DE CRÉDITO O DÉBITO</div>
 											</div>
-
+											<div class="km-method-paid-option km-option-3-lineas km-paypal"
+												onclick="evento_google_kmimos(\'paypal\'); evento_fbq_kmimos(\'paypal\');" >
+												<div class="km-text-one">PAGO CON PAYPAL</div>
+											</div>
+											<div class="km-method-paid-option km-option-3-lineas km-mercadopago"
+												onclick="evento_google_kmimos(\'mercadopago\'); evento_fbq_kmimos(\'mercadopago\');">
+												<div class="km-text-one">PAGO CON MERCADOPAGO</div>					
+											</div>
 										</div>
+
 									</div>
 
 									<select id="tipo_pago" style="display: none;">
 										<option value="tienda">PAGO EN TIENDA DE CONVENIENCIA</option>
 										<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
+										<option value="paypal">PAGO CON PAYPAL</option>
+										<option value="mercadopago">PAGO CON MERCADOPAGO</option>
 									</select>
 
 									<div class="errores_box">
