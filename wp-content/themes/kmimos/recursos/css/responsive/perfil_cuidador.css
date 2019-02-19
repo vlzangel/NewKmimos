@@ -482,6 +482,7 @@
 	a.boton.boton_verde,
 	#ocultar_msg {
 	    font-size: 12px;
+	    margin: 0px 0px 8px !important;
 	}
 
 }
