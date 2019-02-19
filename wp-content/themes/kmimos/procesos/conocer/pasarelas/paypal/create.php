@@ -24,7 +24,7 @@ class CreateOrder
 
   private static function buildRequestBody( $data )
   {	
-	  	$info = explode("===", $data);
+	  	$info = explode("===", $data['info']);
 
 		$parametros_label = array(
 			"pagar",
@@ -46,8 +46,8 @@ class CreateOrder
 	            'intent' => 'CAPTURE',
 	            'application_context' =>
 	                array(
-	                    'return_url' => 'https://mx.kmimos.la/recargar/validar/?p=paypal&t=return',
-	                    'cancel_url' => 'https://mx.kmimos.la/recargar/validar/?p=paypal&t=cancel',
+	                    'return_url' => $data['ruta'].'/recargar/validar/?p=paypal&t=return',
+	                    'cancel_url' => $data['ruta'].'/recargar/validar/?p=paypal&t=cancel',
 	                ),
 	            'purchase_units' =>
 	                array(
@@ -129,6 +129,6 @@ class CreateOrder
 
 if( !isset($_SESSION)){ session_start(); }
 if( isset($_POST['info']) ){
-	$orden = CreateOrder::create($_POST['info'], true);
+	$orden = CreateOrder::create($_POST, true);
 	$_SESSION['paypal'] = $_POST['info'];
 }
