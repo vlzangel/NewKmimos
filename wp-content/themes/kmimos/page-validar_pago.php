@@ -20,9 +20,8 @@
 						'PayerID' => $_GET['PayerID'],
 						'token' => $_GET['token'],
 					);
-					$request = Requests::post( "http://mx.kmimos.la/wp-content/themes/kmimos/procesos/reservar/pagar.php", array(), $options );
-					$body = json_decode($request->body);				
-print_r($body);
+					$request = Requests::post( get_home_url()."/wp-content/themes/kmimos/procesos/reservar/pagar.php", array(), $options );
+					$body = json_decode($request->body);
 					if( $body->order_id > 0 ){
 						unset($_SESSION['paypal']);
 						header( 'location:'.get_home_url().'/finalizar/'.$body->order_id );
@@ -31,4 +30,5 @@ print_r($body);
 			}
 			break;
 	}
+	echo 'paso prueba';
 	// header( 'location:'.get_home_url() );
