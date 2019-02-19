@@ -1230,7 +1230,10 @@ jQuery(document).ready(function() {
 						jQuery("#reserva_btn_next_3").addClass("cargando");
 						var info = convertCARRITO();
 						jQuery.post(HOME+"/procesos/reservar/pasarelas/paypal/create.php",
-							{info},
+							{
+								'info': info,
+								'ruta': RAIZ,
+							},
 							function(data){
 								if( data.status == 'CREATED' ){
 									jQuery.each(data.links, function(i,r){								
