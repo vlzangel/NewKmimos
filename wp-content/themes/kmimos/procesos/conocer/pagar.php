@@ -300,6 +300,30 @@
 
 	   			break;
 
+	   			case 'paypal':
+					$metas = json_encode([
+						"show_pago" => 1
+					]);
+
+					$db->query("
+						UPDATE 
+							conocer_pedidos 
+						SET										
+							transaccion_id = '".$_POST['token']."',
+							tipo_pago = 'Paypal',
+							status = 'Pagado',
+							metadata = '{$metas}'
+						WHERE 
+							id = {$id_orden}
+					");
+
+		            echo json_encode(array(
+						"order_id" => $id_orden,
+						"status" => "Pagada",
+					));
+					
+					include(__DIR__."/emails/index.php");
+	   				break;
 		   	}
 
 		}else{

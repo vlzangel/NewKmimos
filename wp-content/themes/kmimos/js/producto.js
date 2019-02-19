@@ -16,7 +16,7 @@ var PAQs = [
 	"p2meses",
 	"p3meses",
 ];
-
+var PAYPAL_LINK = ''; 
 var PROCESAR_PAQUETE = true;
 function initCarrito(){
 	CARRITO = [];
@@ -597,18 +597,11 @@ function initFactura(){
 	jQuery(".items_reservados").html( items );
 }
 
-
-function pagarReserva(id_invalido = false){
-
-	jQuery("#reserva_btn_next_3 span").html("Procesando");
-	jQuery("#reserva_btn_next_3").addClass("disabled");
-	jQuery("#reserva_btn_next_3").addClass("cargando");
-
+function convertCARRITO(){
 	var transporte = "==="; 
 	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
 		transporte = JSON.stringify( CARRITO["transportacion"] )+"===";
 	}
-
 	var json =  
 		JSON.stringify( CARRITO["pagar"] )+"==="+
 		JSON.stringify( CARRITO["tarjeta"] )+"==="+
@@ -617,6 +610,16 @@ function pagarReserva(id_invalido = false){
 		JSON.stringify( CARRITO["adicionales"] )+"==="+
 		JSON.stringify( CARRITO["cupones"] )
 	;
+	return json;
+}
+
+function pagarReserva(id_invalido = false){
+
+	jQuery("#reserva_btn_next_3 span").html("Procesando");
+	jQuery("#reserva_btn_next_3").addClass("disabled");
+	jQuery("#reserva_btn_next_3").addClass("cargando");
+
+	var json = convertCARRITO();
 
 	jQuery.post(
 		HOME+"/procesos/reservar/pagar.php",
@@ -681,6 +684,7 @@ function pagarReserva(id_invalido = false){
 				location.href = RAIZ+"/finalizar/"+data.order_id;
 			}
 		}, "json"
+	
 	).fail(function(e) {
 
     	console.log( e );
@@ -1144,9 +1148,9 @@ jQuery(document).ready(function() {
 
 	jQuery(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
 		e.preventDefault();
-
 		if( !jQuery(this).hasClass("km-option-3-lineas") ){
 			var el = jQuery(this);
+			
 			jQuery(".km-method-paid-option", el.parent()).removeClass("active");
 
 			el.addClass("active");
@@ -1250,13 +1254,34 @@ jQuery(document).ready(function() {
 				if( jQuery("#metodos_pagos").css("display") != "none" ){
 					CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
 					CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
+					
 					if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
 						jQuery("#reserva_btn_next_3 span").html("Validando...");
 						jQuery("#reserva_btn_next_3").addClass("disabled");
 						OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+					
+					}else if( CARRITO["pagar"]["tipo"] == "paypal" ){
+						jQuery("#reserva_btn_next_3").addClass("disabled");
+						jQuery("#reserva_btn_next_3").addClass("cargando");
+						var info = convertCARRITO();
+						jQuery.post(HOME+"/procesos/reservar/pasarelas/paypal/create.php",
+							{info},
+							function(data){
+								if( data.status == 'CREATED' ){
+									jQuery.each(data.links, function(i,r){								
+										if(r.rel == 'approve'){
+											location.href = r.href;
+											return false;
+										}
+									});
+								}
+							}, 'json'
+						);
+					
 					}else{
 						pagarReserva();
 					}
+
 				}else{
 					CARRITO["pagar"]["tipo"] = "Saldo y/o Descuentos";
 					pagarReserva();
@@ -1295,11 +1320,18 @@ jQuery(document).ready(function() {
 	jQuery("#tipo_pago").on("change", function(e){
 		jQuery(".metodos_container").css("display", "none");
 		jQuery("#"+jQuery(this).val()+"_box").css("display", "block");
-		if( jQuery(this).val() != "tarjeta" ){
-			jQuery(".errores_box").css("display", "none");
-			CARRITO["pagar"]["tipo"] = "tienda";
-		}else{
-			CARRITO["pagar"]["tipo"] = "tarjeta";
+		switch( jQuery(this).val() ){
+			case 'tarjeta':
+				CARRITO["pagar"]["tipo"] = "tarjeta";
+				break;
+			case 'paypal':
+				jQuery(".errores_box").css("display", "none");
+				CARRITO["pagar"]["tipo"] = "paypal";
+				break;
+			default:
+				jQuery(".errores_box").css("display", "none");
+				CARRITO["pagar"]["tipo"] = jQuery(this).val();
+				break;
 		}
 	});
 
@@ -1318,10 +1350,12 @@ jQuery(document).ready(function() {
 
 	calcular();
 
-	jQuery(document).on("click", '.page-reservation .km-medio-paid-options .km-method-paid-option', function ( e ) {
+
+	jQuery(document).on("click", '#pasarela-container .km-method-paid-option', function ( e ) {
 		e.preventDefault();
 		var el = jQuery(this);
-		jQuery(".km-method-paid-option", el.parent()).removeClass("active");
+		
+		jQuery("#pasarela-container .active").removeClass("active");
 
 		el.addClass("active");
 
@@ -1342,6 +1376,36 @@ jQuery(document).ready(function() {
 				evento_google("boton_nueva_reserva_tienda");
 				evento_fbq("track", "traking_code_boton_nueva_reserva_tienda");
 				console.log('traking_code_boton_nueva_reserva_tienda');
+			}
+		} 
+		
+		if ( el.hasClass("km-paypal") ) {
+			jQuery("#tipo_pago").val("paypal");
+			jQuery("#tipo_pago").change();
+			if( wlabel == 'petco' ){
+				evento_google("boton_nueva_reserva_paypal");
+				evento_fbq("track", "traking_code_boton_nueva_reserva_paypal");
+				console.log('traking_code_boton_nueva_reserva_paypal');
+			}
+		} 
+
+		if ( el.hasClass("km-bancomer") ) {
+			jQuery("#tipo_pago").val("bancomer");
+			jQuery("#tipo_pago").change();
+			if( wlabel == 'petco' ){
+				evento_google("boton_nueva_reserva_bancomer");
+				evento_fbq("track", "traking_code_boton_nueva_reserva_bancomer");
+				console.log('traking_code_boton_nueva_reserva_bancomer');
+			}
+		} 
+
+		if ( el.hasClass("km-mercadopago") ) {
+			jQuery("#tipo_pago").val("mercadopago");
+			jQuery("#tipo_pago").change();
+			if( wlabel == 'petco' ){
+				evento_google("boton_nueva_reserva_mercadopago");
+				evento_fbq("track", "traking_code_boton_nueva_reserva_mercadopago");
+				console.log('traking_code_boton_nueva_reserva_mercadopago');
 			}
 		} 
 		
