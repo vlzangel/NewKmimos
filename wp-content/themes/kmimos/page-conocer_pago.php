@@ -19,7 +19,7 @@
 						'token' => $_GET['token'],
 						'info' => $_SESSION['paypal'],
 					);
-					$request = Requests::post( "http://mx.kmimos.la/wp-content/themes/kmimos/procesos/conocer/pagar.php", array(), $options );
+					$request = Requests::post( get_home_url()."/wp-content/themes/kmimos/procesos/conocer/pagar.php", array(), $options );
 					$body = json_decode($request->body);				
 					if( $body->order_id > 0 ){
 						unset($_SESSION['paypal']);
@@ -29,4 +29,5 @@
 			}
 			break;
 	}
+	echo 'paso prueba';
 	//header( 'location:'.get_home_url() );
