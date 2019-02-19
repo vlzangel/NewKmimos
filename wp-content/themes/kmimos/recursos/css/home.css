@@ -485,6 +485,7 @@
 	}
 
 	.datos_top_destacado_containder {
+	    position: relative;
 	    padding: 5px 0px;
 	    overflow: hidden;
 	}
@@ -549,13 +550,15 @@
 	    padding: 0px 10px 5px 25px;
 	    text-align: justify;
 		white-space: normal;
-		min-height: 65px;
+		min-height: 75px;
 	    font-size: 10px;
 	}
 
 	.ranking_destacado {
-	    float: right;
-	    padding-top: 8px;
+	    position: absolute;
+	    top: 0px;
+	    right: 0px;
+	    white-space: normal;
 	}
 
 	.km-ranking a {
