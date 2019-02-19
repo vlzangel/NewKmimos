@@ -20,6 +20,10 @@
 
 /* BANNER ROTATIVO */
 
+	.banner_box {
+	    position: relative;
+	}
+
 	.banner_rotativo {
 		position: relative;
 	    height: 195px;
@@ -112,7 +116,7 @@
 /* SERVICIOS PRINCIPALES */
 
 	.servicios_principales_container{
-	    margin-bottom: 10px;
+	    margin-bottom: 15px;
 	}
 
 	#servicios_principales_container img.Flechas {

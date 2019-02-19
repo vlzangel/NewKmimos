@@ -38,18 +38,22 @@
     foreach ($info_banner as $key => $url) {
     	$items .= '<div class="banner_rotativo_item" style="background-image: url('.get_recurso('img').'HOME_2/Muestra'.$url.');"></div>';
     }
+
+    $items_count = count($info_banner);
+	$final_pc = $items_count-1;
+	$final_movil = $items_count-1;
     
 	$HTML = '
 	<div id="banner_home">
 		<div>
 			<div class="banner_rotativo">
 				<div class="banner_rotativo_container">
-					<div class="banner_rotativo_box">
+					<div class="banner_rotativo_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="100" data-h_movil="100" data-t="1500">
 						'.$items.'
 					</div>
 				</div>
-				<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
-				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
+				<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+				<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 			</div>
 
 			<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
@@ -94,7 +98,7 @@
 								<span>Adiestramiento</span>
 								<div class="top_check"></div>
 							</label>
-							<small class="error_principales" style="position: absolute; bottom: -13px; left: 6px; color: red; display: none;">
+							<small class="error_principales" style="position: absolute; bottom: -12px; left: 10px; color: red; display: none;">
 								Debe seleccionar al menos un servicio principal
 							</small>
 						</div>
@@ -324,25 +328,25 @@
 		'</div>';
 	}
 
+    $items_count = count($SERVICIOS_PRINCIPALES);
+	$final_pc = $items_count-3;
+	$final_movil = $items_count-1;
+
 	$HTML .= '
 		<div class="carrusel_servicios">
 			<h2>¿Qué estás buscando para tu mascota? > </h2>
 
 			<div class="carrusel_servicios_principales_container">
-				<div class="carrusel_servicios_principales_box">
+				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="100" data-h_movil="100" data-t="1500">
 					'.$items.'
 				</div>
 			</div>
-			<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
-			<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 		</div>
 	';
 
 	$cuidadores = get_recomendaciones_homa_2();
-
-	echo "<pre>";
-		print_r( $cuidadores );
-	echo "</pre>";
 
 	$items = '';
 	foreach ($cuidadores as $key => $c) {
@@ -360,27 +364,35 @@
 		'</div>';
 	}
 
+    $items_count = count($cuidadores);
+	$final_pc = $items_count-5;
+	$final_movil = $items_count-1;
+
 	$HTML .= '
 		<div class="carrusel_recomendados">
 			<h2>Te recomendamos estos cuidadores mejor evaluados > </h2>
 
 			<div class="carrusel_recomendados_container">
-				<div class="carrusel_recomendados_box">
+				<div class="carrusel_recomendados_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="20" data-h_movil="100" data-t="1000">
 					'.$items.'
 				</div>
 			</div>
-			<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
-			<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 		</div>
 	';
 
+	$seccion = ( $_SESSION["wlabel"] != "" && strtolower($_SESSION["wlabel"]) != "quitar" ) ? $_SESSION["wlabel"] : "home";
 	$HTML .= '
 		<div class="suscribir_blog">
 			<h2>Entérate de los últimos cuidados para tu mascota <span>¡Inscribete a nuestro blog y conócelas!</span></h2>
 
-			<form id="suscribir">
-				<input type="text" id="email_home" name="email_home" placeholder="Ingresa tu correo" />
+			<form id="suscribir" onsubmit="form_subscribe(this); return false;" class="subscribe" data-subscribe="'.get_home_url().'/wp-content/plugins/kmimos">
+				<input type="hidden" name="section" value="'.$seccion.'" class="form-control" placeholder="Ingresa tu correo">
+				<input type="hidden" id="wlabelSubscribeFooter" name="wlabelSubscribeFooter" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">
+				<input type="text" id="email" name="email" placeholder="Ingresa tu correo" />
 				<input type="submit" value="Inscribirme al blog" />
+				<div class="message message-especial"></div>
 			</form>
 
 		</div>
@@ -640,7 +652,7 @@
 
     echo comprimir($HTML);
     
-    wp_enqueue_script('buscar_home', get_recurso("js")."home.js", array(), '1.0.0');
+    wp_enqueue_script('buscar_home', get_recurso("js")."home_2.js", array(), '1.0.0');
     wp_enqueue_script('club_patitas', get_recurso("js")."club_patitas.js", array(), '1.0.0');
 
     get_footer(); 
