@@ -215,6 +215,9 @@
     $adicionales = generarAdicionales($adicionales);
 
     $titulo_pago = "Tarjeta";
+    if( $pagar->tipo == "mercadopago" ){
+    	$titulo_pago = "Mercadopago";
+    }
     if( $pagar->tipo == "paypal" ){
     	$titulo_pago = "Paypal";
     }
@@ -539,6 +542,7 @@
 						    'amount' 			=> (float) $pagar->total,
 						    'order_id' 			=> $id_orden,
 						    'description' 		=> "Tarjeta",
+						    'use_card_points'	=> $tarjeta->puntos,
 						    'device_session_id' => $pagar->deviceIdHiddenFieldName
 					    );
 

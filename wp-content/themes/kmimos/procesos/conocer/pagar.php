@@ -178,12 +178,11 @@
 		   		case 'tarjeta':
 		   			
 		   			if( $pagar->token != "" ){
-
 						$chargeData = array(
 						    'method' 			=> 'card',
 						    'source_id' 		=> $pagar->token,
 						    'amount' 			=> (float) $pagar->total,
-						    'order_id' 			=> $id_orden,
+						    'order_id' 			=> "RECARGA".$id_orden,
 						    'description' 		=> "Tarjeta",
 						    'device_session_id' => $pagar->deviceIdHiddenFieldName
 					    );

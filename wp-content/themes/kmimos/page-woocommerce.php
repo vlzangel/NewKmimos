@@ -609,7 +609,26 @@
 				</div>
 			</form>
 		</div>
-	 	';
+		';
+
+		$HTML .= '
+			<div class="modal fade" role="dialog" data-backdrop="false" id="card-points-dialog">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h4 class="modal-title">Pagar con Puntos</h4>
+			      </div>
+			      <div class="modal-body">
+			        <p>¿Desea usar los puntos de su tarjeta para realizar este pago?</p>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal" id="points-no-button">No</button>
+			        <button type="button" class="btn btn-success" data-dismiss="modal" id="points-yes-button">Si</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		';
 
 		echo comprimir($HTML);
 
