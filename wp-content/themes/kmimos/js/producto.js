@@ -77,7 +77,8 @@ function initCarrito(){
 			"numero" : "",
 			"mes" : "",
 			"anio" : "",
-			"codigo" : ""
+			"codigo" : "",
+			"puntos" : false,
 		};
 
 	CARRITO[ "pagar" ][ "tipo_servicio" ] = tipo_servicio;
@@ -1382,6 +1383,16 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	jQuery("#points-yes-button").on('click', function(){
+		CARRITO["tarjeta"]['puntos'] = true;
+    	pagarReserva();
+	});
+
+	jQuery("#points-no-button").on('click', function(){
+		CARRITO["tarjeta"]['puntos'] = false;
+    	pagarReserva();
+	});
+
 	/* Configuración Openpay */
 
 		OpenPay.setId( OPENPAY_TOKEN );
@@ -1394,7 +1405,11 @@ jQuery(document).ready(function() {
 	        var token_id = response.data.id;
 	        CARRITO["pagar"]["token"] = token_id;
 	        jQuery(".errores_box").css("display", "none");
-	        pagarReserva();
+	        if (response.data.card.points_card) {
+				jQuery("#card-points-dialog").modal("show");
+			} else {
+	        	pagarReserva();
+			}
 	    };
 
 	    var error_callbak = function(response) {
