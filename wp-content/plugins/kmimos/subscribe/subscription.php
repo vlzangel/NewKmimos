@@ -91,7 +91,9 @@ if(mail_validate($mail)){
 		);
 
 		$return['message']='Registro Exitoso. Por favor revisa tu correo en la Bandeja de Entrada o en No Deseados';
+		$return['result']=true;
 	}else{
+		$return['result']=true;
 		$return['message']='Este correo ya est&aacute; registrado. Por favor intenta con uno nuevo';
 	}
 
@@ -99,7 +101,6 @@ if(mail_validate($mail)){
 	$return['result']=false;
 	$return['message']='El email es incorrecto';
 }
-$return['result']=true;
 $return['data']=$datos;
 echo json_encode($return);
 ?>
