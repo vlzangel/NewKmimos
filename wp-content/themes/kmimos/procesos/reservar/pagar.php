@@ -63,8 +63,6 @@
 		exit();
 	}
 
-	$manana = strtotime("");
-
 	if( $_SESSION["flash_".$pagar->cuidador] == "NO" && 
 		$fechas->inicio == date("Y-m-d", strtotime('+1 day' , time()) )." 00:00:00" &&
 		date("G") >= 18

@@ -114,6 +114,10 @@
 
 
 /* SERVICIOS PRINCIPALES */
+	
+	#buscador_2{
+		display: none;
+	}
 
 	.servicios_principales_container{
 	    margin-bottom: 15px;

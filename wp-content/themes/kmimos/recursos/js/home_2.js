@@ -127,6 +127,12 @@ var TX2 = 0;
 
 jQuery( document ).ready(function() {
 
+    jQuery("#buscador_2 input").on("change", function(e){
+        console.log( jQuery(this).attr("id") );
+
+        jQuery("#buscador_2").submit();
+    });
+
     jQuery(".destacados_container").on('touchstart', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var ev = e.originalEvent;
