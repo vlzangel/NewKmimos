@@ -39,7 +39,7 @@
 	.destacados_container{
 		display: block;
 	    width: 90%;
-	    height: 340px;
+	    height: auto;
 	    overflow: auto;
 	}
 
@@ -185,7 +185,7 @@
 
 	/* Filtros */
 
-		.barra_right{{
+		.barra_right{
 			border-right: 0px;
 		}
 
@@ -194,7 +194,7 @@
 		}
 
 		.botones_movil{
-			padding: 15px 0px 20px;
+			padding: 0px 0px 20px;
 		}
 
 		.botones_movil > a {
@@ -300,7 +300,7 @@
 		}
 
 		.tam_label_movil {
-		    font-size: 9px;
+		    font-size: 8px;
 		}
 
 		.input_check_box .small, 
@@ -309,7 +309,7 @@
 		}
 
 		.tamanios_container .input_check_box {
-		    width: 45px;
+		    width: 43px;
 		}
 
 		.tipo_mascota_container {
@@ -319,6 +319,7 @@
 		.tamanios_container {
 		    width: 72%;
 	        text-align: right;
+            padding-right: 0px;
 		}
 
 		.ubicacion_container {
@@ -408,4 +409,9 @@
 		    padding: 12px 0px !important;
 		    margin: 0px auto 10px !important;
 		}
+
+	.celda_2 label.titulo_form br {
+	    display: none;
+	}
+
 }

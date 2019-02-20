@@ -30,23 +30,48 @@ function ancla_form() {
   	}
 }
 
-function show_hiden_arrow(){
-  
-}
-
-function mover_destacado(dir, _paso){
-    if( parseInt( jQuery("body").width() ) > 768 ){
-        var h = parseInt( jQuery(".destacados_box").attr("data-h_pc") );
-    }else{
-        var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
-    }
-    
-    var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
+function ajustar_items(dir, w){
     switch(dir){
         case 'izq':
+            var last = jQuery(".destacados_box > div > div > div:last-child").html();
+            jQuery(".destacados_box > div > div").html( '<div class="destacados_item" style="margin-left: -'+w+'px">'+last+"</div>"+jQuery(".destacados_box > div > div").html() );
+            jQuery(".destacados_box > div > div > div:last-child").remove();
+        break;
+        case 'der':
+            var first = jQuery(".destacados_box > div > div > div:first-child").html();
+            jQuery(".destacados_box > div > div").html( jQuery(".destacados_box > div > div").html()+'<div class="destacados_item">'+first+"</div>" );
+            jQuery(".destacados_box > div > div > div:first-child").remove();
+
+            jQuery(".destacados_box > div > div > div:first-child").css( "margin-left", w+"px" );
+        break;
+    }
+}
+
+function mover_destacado(dir, animacion){
+    if( parseInt( jQuery("body").width() ) > 768 ){
+        var h = 0.33333334;
+    }else{
+        var h = 1;
+    }
+    var w = parseInt( jQuery(".destacados_box > div").width() )*h;
+
+    ajustar_items(dir, w);
+    resize_carrusel();
+
+    switch(dir){
+        case 'izq':
+            var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
             if( paso > 0 ){ paso--; }
             jQuery(".destacados_box").attr("data-paso", paso);
-            jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
+
+            setTimeout( function() {
+                if( animacion ){
+                    // jQuery(".destacados_box > div > div").animate({left: (-1*(paso*w))+"px" }, 1000);
+                    jQuery(".destacados_box > div > div > div:first-child").animate({"margin-left": "0px" }, 1000);
+                }else{
+                    // jQuery(".destacados_box > div > div").css({left: (-1*(paso*w))+"px" });
+                }
+           }, 100);
         break;
         case 'der':
             if( parseInt( jQuery("body").width() ) > 768 ){
@@ -54,93 +79,48 @@ function mover_destacado(dir, _paso){
             }else{
                 var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
             }
+            var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
             if( paso < final ){ paso++; }
             jQuery(".destacados_box").attr("data-paso", paso);
-            jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
-        break;
-        case 'movil':
-            if( parseInt( jQuery("body").width() ) > 768 ){
-                var final = parseInt( jQuery(".destacados_box").attr("data-final_pc") );
-            }else{
-                var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
-            }
-            var paso = parseInt( _paso.attr("data-id") );
-            jQuery(".destacados_box").attr("data-paso", paso);
-            // jQuery(".control_item").removeClass("active");
-            // _paso.addClass("active");
-            jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
+
+            setTimeout( function() {
+                if( animacion ){
+                    jQuery(".destacados_box > div > div").animate({left: (-1*(paso*w))+"px" }, 1000);
+                }else{
+                    jQuery(".destacados_box > div > div").css({left: (-1*(paso*w))+"px" });
+                }
+           }, 100);
+
         break;
     }
-
-    console.log( paso );
-
-    jQuery(".control_item").removeClass("active");
-    jQuery(".item_"+paso).addClass("active");
-
-    show_hiden_arrow();
 }
 
-var TX1 = 0;
-var TX2 = 0;
+function resize_carrusel(){
+    var w = parseInt( jQuery(".destacados_box > div").width() );
+    if( w > 768 ){
+        var h = 0.33333334;
+    }else{ var h = 1; }
+    jQuery(".destacados_item").css("width", w*h);
+}
 
 jQuery( document ).ready(function() {
 
-    jQuery(".destacados_container").on('touchstart', function(e){
-        if( parseInt( jQuery("body").width() ) < 768 ){
-            var ev = e.originalEvent;
-            if (ev.targetTouches.length == 1) { 
-                var touch = ev.targetTouches[0]; 
-                TX1 = touch.pageX; // + " en Y " + touch.pageY);
-                console.log( TX1 );
-            }
-        }
+    jQuery(window).on('resize', function () {
+        resize_carrusel();
     });
-
-    jQuery(".destacados_container").on('touchmove', function(e){
-        if( parseInt( jQuery("body").width() ) < 768 ){
-            var ev = e.originalEvent;
-            if (ev.targetTouches.length == 1) { 
-                var touch = ev.targetTouches[0]; 
-                TX2 = touch.pageX;
-
-                var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
-                var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
-
-                var d = TX1-TX2;
-                if( Math.abs( d ) < 30 ){
-                    d = (paso*h)+(d*0.2);
-                    jQuery(".destacados_box > div > div").css("left", (-1*d)+"%");
-                }
-
-            }
-        }
-    });
-
-    jQuery(".destacados_container").on('touchend', function(e){
-        if( parseInt( jQuery("body").width() ) < 768 ){
-            var d = TX1-TX2;
-            if( Math.abs( d ) > 30 ){
-                console.log( "Mover" );
-                if( d > 0 ){
-                    mover_destacado("der");
-                }else{
-                    mover_destacado("izq");
-                }
-            }
-        }
-    });
-
-    jQuery(".control_item").on('click', function(e){
-        mover_destacado('movil', jQuery(this) );
-    });
+    resize_carrusel();
 
     jQuery(".seccion_destacados_izq").on('click', function(e){
-        mover_destacado("izq");
+        mover_destacado("izq", true);
     });
     jQuery(".seccion_destacados_der").on('click', function(e){
-        mover_destacado("der");
+        mover_destacado("der", true);
     });
-    show_hiden_arrow();
+    // show_hiden_arrow();
+
+    mover_destacado("der", false);
+    mover_destacado("der", false);
+    mover_destacado("der", false);
 
     jQuery("#boton_buscar").on("click", function(e){
 

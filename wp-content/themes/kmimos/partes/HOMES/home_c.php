@@ -31,7 +31,7 @@
 		$items_movil = '';
 		for ($i=0; $i < $final_movil; $i++) { 
 			$active = ( $i == 0 ) ? 'active' : '';
-			$items_movil .= '<span class="control_item '.$active.'" data-id="'.$i.'"></span>';
+			$items_movil .= '<span class="control_item '.$active.' item_'.$i.'" data-id="'.$i.'"></span>';
 		}
 
     	$cuidadores_destacados = '

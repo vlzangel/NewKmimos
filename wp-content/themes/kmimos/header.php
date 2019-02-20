@@ -19,19 +19,12 @@
 	}
 
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';
-	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script><style> 
-		.modal p a { font-family: arial, sans-serif !important; color: #333 !important; } 
+	$HTML .= ' <script src="'.getTema().'/js/jquery.min.js"></script>'.
+		'<style>'.
+			'.modal p a { font-family: arial, sans-serif !important; color: #333 !important; } '.
+			'pre { position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 99999999; display: none !important; }'.
+		'</style>';
 
-		pre {
-			position: fixed;
-		    top: 0px;
-		    left: 0px;
-		    width: 100%;
-		    height: 100%;
-		    z-index: 99999999;
-		    display: none !important;
-		}
-	</style>';
 /*
 	$HTML .= "
 		<!-- Google Tag Manager -->
@@ -69,18 +62,12 @@
     if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){
 		$current_user = wp_get_current_user();
 	    $user_id = $current_user->ID;
-	    set_uso_banner([
-    		"user_id" => $user_id
-    	]);
+	    set_uso_banner([ "user_id" => $user_id ]);
     	unset($_SESSION["save_uso_banner"]);
     }
 
 	/* Solo para iOS - [ $is_iOS en pre-header.php ] */
-	$class_iOS = '';
-	if( $is_iOS ){
-		$class_iOS = 'iOS';
-		wp_enqueue_style( 'modal_iOS', getTema()."/css/modal-iOS.css", array(), "1.0.0" );
-	}
+	$class_iOS = ''; if( $is_iOS ){ $class_iOS = 'iOS'; wp_enqueue_style( 'modal_iOS', getTema()."/css/modal-iOS.css", array(), "1.0.0" ); }
 
 	include_once("funciones.php");
 
@@ -94,6 +81,7 @@
         "page-recargar.php",
         "page-registro-cuidador.php",
         "page-personalizada.php",
+        "page-home_2.php",
 
     ];
 

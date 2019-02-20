@@ -1,30 +1,70 @@
-<?php
-	
-    $HTML .= '
+<?php 
+    /*
+        Template Name: Home 2
+    */
+
+    $HOME = 2;
+
+	date_default_timezone_set('America/Mexico_City');
+
+    wp_enqueue_style('home_club_responsive', getTema()."/css/responsive/club_patitas_home.css", array(), '1.0.0');
+    wp_enqueue_style('home_kmimos', get_recurso("css")."home_2.css", array(), '1.0.0');
+    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/home_2.css", array(), '1.0.0');
+
+	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
+
+
+    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+
+    wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
+    wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
+
+	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0');
+            
+    get_header();
+
+    $user_id = get_current_user_id();
+
+    $items = '';
+    $info_banner = [
+    	'_CPF.jpg',
+    	'_Cuidadores.jpg',
+    	'_GPS.jpg',
+    	'_Paseos.jpg',
+    ];
+    foreach ($info_banner as $key => $url) {
+    	$items .= '<div class="banner_rotativo_item" style="background-image: url('.get_recurso('img').'HOME_2/Muestra'.$url.');"></div>';
+    }
+
+    $items_count = count($info_banner);
+	$final_pc = $items_count-1;
+	$final_movil = $items_count-1;
+    
+	$HTML = '
 	<div id="banner_home">
 		<div>
-			<div class="solo_pc">
-				<span class="banner_txt_1">la red más segura de cuidadores certificados de México</span>
-				<span id="buscar" class="banner_txt_2">¡Tu mejor amigo regresa feliz!</span>
+			<div class="banner_rotativo">
+				<div class="banner_rotativo_container">
+					<div class="banner_rotativo_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="100" data-h_movil="100" data-t="1500">
+						'.$items.'
+					</div>
+				</div>
+				<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+				<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 			</div>
-			<div class="solo_movil banner_home"></div>
+
 			<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
 
-				<input type="hidden" name="personalizada" value="1" />
+				<input type="hidden" name="personalizada" value="1" />  
 
 				<input type="hidden" name="redireccionar" value="1" />
 				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
-				'.$personalizada.'
 
 				<input type="hidden" id="latitud" name="latitud" />
 				<input type="hidden" id="longitud" name="longitud" />
-
-				<div class="solo_movil" style="padding: 0px 10px;">
-					'.$btn_registro.'
-					<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
-					<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
-					<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
-				</div>
 
 				<div id="servicios_principales_container">
 					<div class="servicios_principales_container">
@@ -60,7 +100,7 @@
 								<span>Adiestramiento</span>
 								<div class="top_check"></div>
 							</label>
-							<small class="error_principales" style="position: absolute; bottom: -13px; left: 6px; color: red; display: none;">
+							<small class="error_principales" style="position: absolute; bottom: -12px; left: 10px; color: red; display: none;">
 								Debe seleccionar al menos un servicio principal
 							</small>
 						</div>
@@ -260,118 +300,126 @@
 		</div>	
 	</div>';
 
-	/* DESTACADOS */
-	$destacados = get_destacados_home();
-	if( is_array($destacados) && count($destacados) > 0 ){
-		$items = count($destacados);
-		$final_pc = $items-4;
-		$final_movil = $items-2;
-		$desta_str = '';
-		foreach ($destacados as $key => $cuidador) {
-			$desta_str .= 
-				'<div class="destacados_item">'.
-					'<div class="img_destacado" style="background-image: url('.$cuidador->img.');"></div>'.
-					'<div class="datos_destacado_containder">'.
-						'<div class="datos_top_destacado_containder">'.
-							'<div class="avatar_destacado" style="background-image: url('.$cuidador->cliente.');"></div>'.
-							'<div class="nombre_destacado">'.
-								'<a href="'.$cuidador->link.'">'.$cuidador->nombre.'</a>'.
-								'<span>'.$cuidador->experiencia.'</span>'.
-							'</div>'.
-							'<div class="ranking_destacado">'.$cuidador->ranking.'</div>'.
-						'</div>'.
-						'<div class="msg_destacado_containder">'.
-							'"'.$cuidador->msg.'"'.
-						'</div>'.
-						'<a href="'.$cuidador->link.'" class="boton boton_verde">Ver perfil</a>'.
-					'</div>'.
-					'<a href="'.$cuidador->link.'" class="boton">Ver perfil</a>'.
-				'</div>';
-		}
+	$SERVICIOS_PRINCIPALES = [
+		[
+			'Hospedaje.jpg',
+			'Hospedaje',
+			'¿Te vas de viaje? Tu mejor amigo será huesped en el propio hogar de uno de nuestros cuidadores',
+			'hospedaje'
+		],
+		[
+			'Guarderia.jpg',
+			'Guardería',
+			'Uno de nuestros cuidadores lo apapachará y jugará con el durante el día',
+			'guarderia'
+		],
+		[
+			'Paseos.jpg',
+			'Paseos',
+			'¿Sabías que un paseo de al menos dos horas para tu peludo baja sus niveles de estrés?',
+			'paseos'
+		],
+		[
+			'Entrenamiento.jpg',
+			'Entrenamiento',
+			'Encuentra especialistas para cualquier tipo de comportamiento',
+			'adiestramiento'
+		],
+	];
 
-		$items_movil = '';
-		for ($i=0; $i < $final_movil+1; $i++) { 
-			$active = ( $i == 0 ) ? 'active' : '';
-			$items_movil .= '<span class="control_item '.$active.' item_'.$i.'" data-id="'.$i.'"></span>';
-		}
-    	$cuidadores_destacados = '
-    	<div class="seccion_destacados">
-    		<h2>Conoce a los mejores <span>cuidadores kmimos</span></h2>
-    		<div class="destacados_container">
-    			<div class="destacados_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="25" data-h_movil="50">
-	    			<div><div>'.$desta_str.'</div></div>
-    				<img class="seccion_destacados_flechas seccion_destacados_izq" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_anterior.svg" />
-    				<img class="seccion_destacados_flechas seccion_destacados_der" src="'.get_recurso('img').'HOME/SVG/WLABEL/boton_siguiente.svg" />
-    				<label class="controles_movil">'.$items_movil.'</label>
-    			</div>
-    		</div>
-    	</div>';
+	$items = '';
+	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
+		$items .= 
+		'<label class="carrusel_servicios_principales_item" for="'.$servicio[3].'_2">'.
+			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/'.$servicio[0].');"></div>'.
+			'<div class="carrusel_servicios_principales_data">'.
+				'<label>'.strtoupper($servicio[1]).'</label>'.
+				'<p>'.$servicio[2].'</p>'.
+			'</div>'.
+		'</label>';
 	}
 
-	if( time() > strtotime("2018-11-16 00:00:00") && $cuidadores_destacados == '' ){
-		$HTML .= '
-			<a 
-				onclick="evento_google_kmimos(\'banner\'); evento_fbq_kmimos(\'banner\');" 
-				target="_blanck" href="'.get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos" style="display: block;">
-				<img src="'.get_recurso("img").'BANNERS/banner_rotativo/pc/4.jpg" width="100%" class="solo_pc" />
-				<img src="'.get_recurso("img").'BANNERS/banner_rotativo/movil/4.jpg" width="100%" class="solo_movil" />
-			</a>
-		';
-	}
-
-	$HTML .= $cuidadores_destacados;
+    $items_count = count($SERVICIOS_PRINCIPALES);
+	$final_pc = $items_count-3;
+	$final_movil = $items_count-1;
 
 	$HTML .= '
-	<!-- PASOS PARA RESERVAR -->
-	<div class="pasos_reserva_container">
-		<h2>Tu mascota será parte de una verdadera familia mientras se queda</h2>
+		<div class="carrusel_servicios">
+			<h2>¿Qué estás buscando para tu mascota? > </h2>
 
-		<h2 class="solo_movil">Reserva en 3 simples pasos</h2>
-
-		<div class="pasos_reserva_tabla">
-			<div class="pasos_reserva_row pasos_reserva_numeros">
-				<div class="pasos_reserva_celda">
-					<span id="paso_1">1</span>
-				</div>
-				<div class="pasos_reserva_celda">
-					<span id="paso_2">2</span>
-				</div>
-				<div class="pasos_reserva_celda">
-					<span id="paso_3">3</span>
+			<div class="carrusel_servicios_principales_container">
+				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="100" data-t="1000">
+					'.$items.'
 				</div>
 			</div>
-			<div class="pasos_reserva_row">
-				<div class="pasos_reserva_celda">
-					<div class="pasos_celda_top">
-						<img src="'.get_recurso("img").'HOME/SVG/Paso_1.svg" />
-					</div>
-					<div class="pasos_celda_bottom">
-						<h3>Haz tu búsqueda</h3>
-						<p>Consigue cuidadores cerca de ti, con las características que necesites</p>
-					</div>
-				</div>
-				<div class="pasos_reserva_celda">
-					<div class="pasos_celda_top">
-						<img src="'.get_recurso("img").'HOME/SVG/Paso_2.svg" />
-					</div>
-					<div class="pasos_celda_bottom">
-						<h3>Agenda y haz el pago</h3>
-						<p>Paga con tarjeta de débito, crédito o efectivo en tienda de conveniencia</p>
-					</div>
-				</div>
-				<div class="pasos_reserva_celda">
-					<div class="pasos_celda_top">
-						<img src="'.get_recurso("img").'HOME/SVG/Paso_3.svg" />
-					</div>
-					<div class="pasos_celda_bottom">
-						<h3>Tu mascota vuelve feliz</h3>
-						<p>¡Despreocúpate! Tu mejor amigo volverá feliz, esa es la garantía Kmimos</p>
-					</div>
-				</div>
-			</div>
+			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 		</div>
+		<form id="buscador_2" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
 
-	</div>';
+			<input type="hidden" name="personalizada" value="1" />  
+
+			<input type="hidden" name="redireccionar" value="1" />
+			<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+
+			<input type="radio" id="hospedaje_2" name="servicios[]" value="hospedaje"  />
+			<input type="radio" id="guarderia_2" name="servicios[]" value="guarderia"  />
+			<input type="radio" id="paseos_2" name="servicios[]" value="paseos"  />
+			<input type="radio" id="adiestramiento_2" name="servicios[]" value="adiestramiento"  />
+		</form>
+	';
+
+	$cuidadores = get_recomendaciones_homa_2();
+
+	$items = '';
+	foreach ($cuidadores as $key => $c) {
+		$items .= 
+		'<div class="carrusel_recomendados_item">'.
+			'<div class="carrusel_recomendados_img" style="background-image: url('.$c->img.');"></div>'.
+			'<div class="carrusel_recomendados_data">'.
+				'<span>'.$c->nombre.'</span>'.
+				'<div class="carrusel_recomendados_experiencia">'.$c->experiencia.'</div>'.
+				'<div class="carrusel_recomendados_precio">Desde MXN $ '.$c->precio.'</div>'.
+				'<div class="carrusel_recomendados_ranking">'.$c->ranking.'</div>'.
+				'<div class="carrusel_recomendados_experiencia">'.$c->valoraciones.'</div>'.
+			'</div>'.
+			'<a href="'.$c->link.'"></a>'.
+		'</div>';
+	}
+
+    $items_count = count($cuidadores);
+	$final_pc = $items_count-5;
+	$final_movil = $items_count-1;
+
+	$HTML .= '
+		<div class="carrusel_recomendados">
+			<h2>Te recomendamos estos cuidadores mejor evaluados > </h2>
+
+			<div class="carrusel_recomendados_container">
+				<div class="carrusel_recomendados_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="20" data-h_movil="100" data-t="800">
+					'.$items.'
+				</div>
+			</div>
+			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
+		</div>
+	';
+
+	$seccion = ( $_SESSION["wlabel"] != "" && strtolower($_SESSION["wlabel"]) != "quitar" ) ? $_SESSION["wlabel"] : "home";
+	$HTML .= '
+		<div class="suscribir_blog">
+			<h2>Entérate de los últimos cuidados para tu mascota <span>¡Inscribete a nuestro blog y conócelas!</span></h2>
+
+			<form id="suscribir" onsubmit="form_subscribe(this); return false;" class="subscribe" data-subscribe="'.get_home_url().'/wp-content/plugins/kmimos">
+				<input type="hidden" name="section" value="'.$seccion.'" class="form-control" placeholder="Ingresa tu correo">
+				<input type="hidden" id="wlabelSubscribeFooter" name="wlabelSubscribeFooter" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">
+				<input type="text" id="email" name="email" placeholder="Ingresa tu correo" />
+				<input type="submit" value="Inscribirme al blog" />
+				<div class="message message-especial"></div>
+			</form>
+
+		</div>
+	';
 
 	$HTML .= '
 	<!-- BENEFICIOS -->
@@ -381,8 +429,6 @@
 		<div class="beneficios_buscar_top">
 			Más de <strong>1,000 Cuidadores Certificados y 60,000 noches reservadas.</strong> Tu consentido se queda en el hogar de una <strong>VERDADERA FAMILIA,</strong> con cobertura veterinaría
 		</div>
-
-		'.$info_registro.'
 		
 		<h2>Conoce los beneficios de dejar tu mascota con cuidadores certificados</h2>
 		<img class="beneficios_banner_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Beneficios-de-dejar---.png" />
@@ -506,6 +552,60 @@
 	</div>';
 	
 	$HTML .= '
+
+	<!-- PASOS PARA RESERVAR -->
+
+	<div class="pasos_reserva_container">
+		<h2>Tu mascota será parte de una verdadera familia mientras se queda</h2>
+
+		<h2 class="solo_movil">Reserva en 3 simples pasos</h2>
+
+		<div class="pasos_reserva_tabla">
+			<div class="pasos_reserva_row pasos_reserva_numeros">
+				<div class="pasos_reserva_celda">
+					<span id="paso_1">1</span>
+				</div>
+				<div class="pasos_reserva_celda">
+					<span id="paso_2">2</span>
+				</div>
+				<div class="pasos_reserva_celda">
+					<span id="paso_3">3</span>
+				</div>
+			</div>
+			<div class="pasos_reserva_row">
+				<div class="pasos_reserva_celda">
+					<div class="pasos_celda_top">
+						<img src="'.get_recurso("img").'HOME/SVG/Paso_1.svg" />
+					</div>
+					<div class="pasos_celda_bottom">
+						<h3>Haz tu búsqueda</h3>
+						<p>Consigue cuidadores cerca de ti, con las características que necesites</p>
+					</div>
+				</div>
+				<div class="pasos_reserva_celda">
+					<div class="pasos_celda_top">
+						<img src="'.get_recurso("img").'HOME/SVG/Paso_2.svg" />
+					</div>
+					<div class="pasos_celda_bottom">
+						<h3>Agenda y haz el pago</h3>
+						<p>Paga con tarjeta de débito, crédito o efectivo en tienda de conveniencia</p>
+					</div>
+				</div>
+				<div class="pasos_reserva_celda">
+					<div class="pasos_celda_top">
+						<img src="'.get_recurso("img").'HOME/SVG/Paso_3.svg" />
+					</div>
+					<div class="pasos_celda_bottom">
+						<h3>Tu mascota vuelve feliz</h3>
+						<p>¡Despreocúpate! Tu mejor amigo volverá feliz, esa es la garantía Kmimos</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>';
+	
+	$HTML .= '
 	<!-- SECCIÓN 4 - CLUB PATITAS FELICES -->
 	<div class="km-club-patitas" style="background-image: url('.getTema().'/images/club-patitas/Kmimos-Club-de-las-patitas-felices-3.png);">
 		<div class="row">
@@ -514,10 +614,10 @@
 				<h2>
 					Club de las patitas felices
 				</h2>
-				<span class="gana_150">Gana $150</span>
-				<p> cada véz que un amigo tuyo reserve con Kmimos </p>
+				<p>
+					Únete al club que te recompensa por cada amigo tuyo que reserve con un cuidador Kmimos
+				</p>
 			</header>
-			<div class="saber_mas"> Saber más >> </div>
 		</div>
 		<div class="row">
 			<div class="col-sm-6 col-xs-12 col-md-5 pull-right text-center">
@@ -528,6 +628,7 @@
 	<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->';
 
 	$HTML .= '
+
 	<!-- QUIERO SER CUIDADOR -->
 	<div class="quiero_ser_cuidador_container">
 		<div class="quiero_ser_cuidador_img"></div>
@@ -535,13 +636,49 @@
 			<h2>Conviértete en cuidador certificado kmimos</h2>
 			<div>
 				<span>Kmimos necesita doglovers como tú</span>
-				<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="boton boton_verde">Empieza a cuidar</a>
+				<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="boton boton_verde">Conviértete en Cuidador</a>
 			</div>
 		</div>
 	</div>
+	
 	<div class="quiero_ser_cuidador_container_2">
 		<span>Kmimos necesita doglovers como tú</span>
-		<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="boton boton_border_gris">Empieza a cuidar</a>
+		<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="boton boton_border_gris">Conviértete en Cuidador</a>
+	</div>';
+			
+	$HTML .= '
+	<!-- CONECTATE -->
+
+	<div class="conectate_container" style="display: none;" >
+		<h2>Conéctate de donde quieras</h2>
+		<img src="'.get_recurso("img").'HOME/PNG/Moviles.png" />
+		<span>Disponible en la web, y en dispositivos iOS y Android</span>
+		<div class="mensaje_movil">
+			<span>Baja nuestra <strong>app</strong>, y conéctate desde donde quieras</span>
+		</div>
+		<div class="conectate_botones_tabla">
+			<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/APP_STORE.svg" /></div>
+			<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/GOOGLE_PLAY.svg" /></div>
+		</div>
 	</div>';
 	
+	$HTML .= '
+	<!-- ALIADOS -->
+	<div class="aliados_container">
+		<img src="'.get_recurso("img").'HOME/PNG/Reforma.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/Mural.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/El-norte.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/Financiero.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/Universal.png" />
+		<img src="'.get_recurso("img").'HOME/PNG/Petco.png" style="display: none;" />
+	</div>';
+
+    echo comprimir($HTML);
+    
+    wp_enqueue_script('buscar_home', get_recurso("js")."home_2.js", array(), '1.0.0');
+    wp_enqueue_script('club_patitas', get_recurso("js")."club_patitas.js", array(), '1.0.0');
+
+    get_footer(); 
 ?>
+
+

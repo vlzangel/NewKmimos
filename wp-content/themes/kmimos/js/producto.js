@@ -631,20 +631,55 @@ function pagarReserva(id_invalido = false){
 		function(data){
 			console.log( data );
 			if( data.error != "" && data.error != undefined ){
+
+				var es_fallida_con_orden = true;
+				switch( data.tipo_error ){
+					case 'sin_mascotas':
+						var error = "Error procesando la reserva<br>";
+				    	error += "No hay mascotas seleccionadas<br>";
+
+				    	setTimeout(function(e){
+				    		location.reload();
+				    	}, 1500);
+				    	es_fallida_con_orden = false;
+					break;
+					case 'no_flash':
+						var error = "Error procesando la reserva<br>";
+				    	error += "Este cuidador no acepta reserva inmediata<br>";
+
+				    	setTimeout(function(e){
+				    		location.reload();
+				    	}, 1500);
+				    	es_fallida_con_orden = false;
+					break;
+
+					default:
+						var error = "Error procesando la reserva<br>";
+				    	error += "Por favor intente nuevamente.<br>";
+				    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+					break;
+				}
+
+				/*
 				if( data.tipo_error != "3003" ){
-					var error = "Error procesando la reserva<br>";
-			    	error += "Por favor intente nuevamente.<br>";
-			    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
+					if( data.tipo_error != "sin_mascotas" ){
+						
+				    }else{
+				    }
 				}else{
 					var error = "Error procesando la reserva<br>";
 			    	error += "La tarjeta no tiene fondos suficientes.<br>";
 				}
+				*/
+
 		    	jQuery(".errores_box").html(error);
 				jQuery(".errores_box").css("display", "block");
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 				jQuery("#reserva_btn_next_3").removeClass("disabled");
 				jQuery("#reserva_btn_next_3").removeClass("cargando");
-				CARRITO["pagar"]["id_fallida"] = data.error;
+				if( es_fallida_con_orden ){
+					CARRITO["pagar"]["id_fallida"] = data.error;
+				}
 			}else{
 				CARRITO["pagar"]["id_fallida"] = 0;
 				location.href = RAIZ+"/finalizar/"+data.order_id;

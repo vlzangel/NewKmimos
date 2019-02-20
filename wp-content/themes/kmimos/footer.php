@@ -19,6 +19,7 @@
         "page-recargar.php",
         "page-registro-cuidador.php",
         "page-personalizada.php",
+        "page-home_2.php",
     ];
 
     $plantilla = get_post_meta($post->ID, '_wp_page_template', true);

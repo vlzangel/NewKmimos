@@ -509,7 +509,7 @@
 		padding: 0px 0px 5px 20px;
 		text-align: justify;
 		white-space: normal;
-		min-height: 35px;
+		min-height: 45px;
 		font-size: 7px;
 	}
 
@@ -604,10 +604,6 @@
 		    width: calc( 100% - 55px );
 		}
 
-		#banner_home .seccion_destacados .destacados_box > div {
-		    overflow: auto;
-		}
-
 		#banner_home .banner_txt_0 {
 		    font-weight: 600;
 		    font-size: 13px;
@@ -622,7 +618,7 @@
 /* BENEFICIOS */
 
 	.pasos_reserva_container {
-	    padding: 30px 0px;
+	    padding: 55px 0px 30px;
 	}
 
 	.beneficios_container {

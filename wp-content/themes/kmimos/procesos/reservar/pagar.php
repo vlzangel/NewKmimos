@@ -41,7 +41,40 @@
 
 	extract($parametros);
 
-//print_r($tarjeta);
+	if( $cantidades->cantidad == 0 ){
+		unset($_SESSION["pagando"]);
+        echo json_encode(array(
+			"error" => 'sin_mascotas',
+			"tipo_error" => 'sin_mascotas',
+			"status" => "Error, no hay mascotas seleccionadas"
+		));
+		exit();
+	}
+
+	if( $_SESSION["flash_".$pagar->cuidador] == "NO" && 
+		( $fechas->inicio == "" || $fechas->inicio == date("Y-m-d")." 00:00:00" ) 
+	){
+		unset($_SESSION["pagando"]);
+        echo json_encode(array(
+			"error" => 'no_flash',
+			"tipo_error" => 'no_flash',
+			"status" => "Error, este cuidador no acepta reserva inmediata"
+		));
+		exit();
+	}
+
+	if( $_SESSION["flash_".$pagar->cuidador] == "NO" && 
+		$fechas->inicio == date("Y-m-d", strtotime('+1 day' , time()) )." 00:00:00" &&
+		date("G") >= 18
+	){
+		unset($_SESSION["pagando"]);
+        echo json_encode(array(
+			"error" => 'no_flash',
+			"tipo_error" => 'no_flash',
+			"status" => "Error, este cuidador no acepta reserva inmediata"
+		));
+		exit();
+	}
 
 	$pagar->total = $pagar->total-$pagar->fee;
 

@@ -6,7 +6,7 @@ function serviciosSiguiente(_this){
     jQuery(".servicios_principales_box").animate({ left: "-34%"});
 }
 
-    var hasGPS=false;
+var hasGPS=false;
 var crd;
 var prueba_ubicacion = false;
 
@@ -32,6 +32,50 @@ function ancla_form() {
 
 function show_hiden_arrow(){
   
+}
+
+function mover_carrusel(box, dir, _paso){
+    if( parseInt( jQuery("body").width() ) > 768 ){
+        var h = parseInt( box.attr("data-h_pc") );
+    }else{
+        var h = parseInt( box.attr("data-h_movil") );
+    }
+    
+    var paso = parseInt( box.attr("data-paso") );
+    switch(dir){
+        case 'izq':
+            if( paso > 0 ){ paso--; }
+            box.attr("data-paso", paso);
+            box.animate({left: (-1*(paso*h))+"%" }, parseInt( box.attr("data-t") ) );
+        break;
+        case 'der':
+            if( parseInt( jQuery("body").width() ) > 768 ){
+                var final = parseInt( box.attr("data-final_pc") );
+            }else{
+                var final = parseInt( box.attr("data-final_movil") );
+            }
+            if( paso < final ){ paso++; }
+            box.attr("data-paso", paso);
+            box.animate({left: (-1*(paso*h))+"%" }, parseInt( box.attr("data-t") ) );
+        break;
+        case 'movil':
+            if( parseInt( jQuery("body").width() ) > 768 ){
+                var final = parseInt( box.attr("data-final_pc") );
+            }else{
+                var final = parseInt( box.attr("data-final_movil") );
+            }
+            var paso = parseInt( _paso.attr("data-id") );
+            box.attr("data-paso", paso);
+            box.animate({left: (-1*(paso*h))+"%" }, parseInt( box.attr("data-t") ) );
+        break;
+    }
+
+    console.log( paso );
+
+    jQuery(".control_item").removeClass("active");
+    jQuery(".item_"+paso).addClass("active");
+
+    show_hiden_arrow();
 }
 
 function mover_destacado(dir, _paso){
@@ -66,8 +110,6 @@ function mover_destacado(dir, _paso){
             }
             var paso = parseInt( _paso.attr("data-id") );
             jQuery(".destacados_box").attr("data-paso", paso);
-            // jQuery(".control_item").removeClass("active");
-            // _paso.addClass("active");
             jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
         break;
     }
@@ -84,6 +126,12 @@ var TX1 = 0;
 var TX2 = 0;
 
 jQuery( document ).ready(function() {
+
+    jQuery("#buscador_2 input").on("change", function(e){
+        console.log( jQuery(this).attr("id") );
+
+        jQuery("#buscador_2").submit();
+    });
 
     jQuery(".destacados_container").on('touchstart', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
@@ -130,16 +178,29 @@ jQuery( document ).ready(function() {
         }
     });
 
-    jQuery(".control_item").on('click', function(e){
-        mover_destacado('movil', jQuery(this) );
+
+
+
+    jQuery(".seccion_destacados_flechas").on('click', function(e){
+        console.log( jQuery(this).attr("data-dir") );
+        mover_carrusel(jQuery(this).parent().find(".banner_box"), jQuery(this).attr("data-dir") );
     });
 
-    jQuery(".seccion_destacados_izq").on('click', function(e){
-        mover_destacado("izq");
-    });
-    jQuery(".seccion_destacados_der").on('click', function(e){
-        mover_destacado("der");
-    });
+    /* Suscribir 
+
+        jQuery("#suscribir").submit(function(e){
+            e.preventDefault();
+
+            jQuery.post(
+                '',
+                {},
+                function(data){
+
+                }
+            );
+        });
+    */
+
     show_hiden_arrow();
 
     jQuery("#boton_buscar").on("click", function(e){
