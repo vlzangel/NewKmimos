@@ -1797,3 +1797,7 @@
 		    text-align: left;
 		    font-weight: 600;
 		}
+
+		.banner_rotativo .solo_pc {
+		    display: inline-block !important;
+		}
