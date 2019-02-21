@@ -36,7 +36,8 @@
     	'_Paseos.jpg',
     ];
     foreach ($info_banner as $key => $url) {
-    	$items .= '<div class="banner_rotativo_item" style="background-image: url('.get_recurso('img').'HOME_2/Muestra'.$url.');"></div>';
+    	$items .= '<div class="banner_rotativo_item solo_pc" style="background-image: url('.get_recurso('img').'HOME_2/Muestra'.$url.');"></div>';
+    	$items .= '<div class="banner_rotativo_item solo_movil" style="background-image: url('.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url.');"></div>';
     }
 
     $items_count = count($info_banner);
@@ -57,6 +58,8 @@
 			</div>
 
 			<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
+
+				<div class="titulo_banner_top">Selecciona los filtros para búsqueda avanzada</div>
 
 				<input type="hidden" name="personalizada" value="1" />  
 
@@ -133,7 +136,7 @@
 							<span>Perro</span>
 							<div class="top_check"></div>
 						</label>
-						<label class="input_check_box" for="gato">
+						<label class="input_check_box gato" for="gato">
 							<input type="checkbox" id="gato" name="mascotas[]" value="gatos"  />
 							<img src="'.get_recurso("img").'HOME/SVG/Gato.svg" />
 							<span>Gato</span>
@@ -345,11 +348,12 @@
 
 	$HTML .= '
 		<div class="carrusel_servicios">
-			<h2>¿Qué estás buscando para tu mascota? > </h2>
+			<h2 class="solo_pc">¿Qué estás buscando para tu mascota? > </h2>
+			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
 
 			<div class="carrusel_servicios_principales_container">
 				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="100" data-t="1000">
-					'.$items.'
+					'.$items.''.$items.'
 				</div>
 			</div>
 			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
