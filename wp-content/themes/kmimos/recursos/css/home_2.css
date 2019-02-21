@@ -1791,3 +1791,9 @@
 		    font-size: 12px;
 		    height: 34px;
 		}
+
+		.carrusel_recomendados_ubicacion {
+		    padding: 0px;
+		    text-align: left;
+		    font-weight: 600;
+		}

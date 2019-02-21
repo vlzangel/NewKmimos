@@ -382,6 +382,7 @@
 			'<div class="carrusel_recomendados_img" style="background-image: url('.$c->img.');"></div>'.
 			'<div class="carrusel_recomendados_data">'.
 				'<span>'.$c->nombre.'</span>'.
+				'<div class="carrusel_recomendados_ubicacion">'.$c->ubicacion.'</div>'.
 				'<div class="carrusel_recomendados_experiencia">'.$c->experiencia.'</div>'.
 				'<div class="carrusel_recomendados_precio">Desde MXN $ '.$c->precio.'</div>'.
 				'<div class="carrusel_recomendados_ranking">'.$c->ranking.'</div>'.
@@ -400,7 +401,7 @@
 			<h2>Te recomendamos estos cuidadores mejor evaluados > </h2>
 
 			<div class="carrusel_recomendados_container">
-				<div class="carrusel_recomendados_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="20" data-h_movil="100" data-t="800">
+				<div class="carrusel_recomendados_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="20" data-h_movil="50" data-t="800">
 					'.$items.'
 				</div>
 			</div>

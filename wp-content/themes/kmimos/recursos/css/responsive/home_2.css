@@ -1445,4 +1445,50 @@
 		    line-height: 1.4;
 		}
 
+		.carrusel_recomendados h2 {
+		    font-size: 13px !important;
+		    padding: 0px 15px 20px;
+		}
+
+		.carrusel_recomendados_item {
+		    width: 50%;
+		}
+
+		.carrusel_recomendados_container {
+		    margin: 0px 10px;
+		}
+
+		.carrusel_recomendados_data > span {
+		    font-size: 12px;
+		}
+
+		.carrusel_recomendados_experiencia {
+		    font-size: 9px;
+		}
+
+		.carrusel_recomendados_precio {
+		    font-size: 11px;
+		}
+
+		.carrusel_recomendados_ranking .km-ranking a {
+		    width: 15px !important;
+		    height: 8px !important;
+		    background-size: 15px 8px !important;
+		}
+
+		.carrusel_recomendados .seccion_destacados_flechas {
+		    display: inline-block !important;
+		    width: 27px !important;
+		    padding: 8px 9px !important;
+		}
+
+		.carrusel_recomendados .seccion_destacados_flechas.seccion_destacados_izq {
+		    left: -2px !important;
+		}
+
+
+		.carrusel_recomendados .seccion_destacados_flechas.seccion_destacados_der {
+		    right: -2px !important;
+		}
+
 }
