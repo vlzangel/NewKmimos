@@ -90,10 +90,14 @@ function buscar( campo ){
 
                 if( respuesta[2].length > 0){
                     jQuery.each(respuesta[2], function(i, cuidador){
+                        var BANDERIN = '';
+                        if( cuidador['atributos']['supercuidador'] == "1" ){
+                            BANDERIN = '<img class="img_destacado_2" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/Banderin_top_cuidador.svg" />';
+                        }
                         desta_str += 
                         '<div class="destacados_item">'+
                             '<div class="img_destacado" style="background-image: url('+cuidador.img+');">'+
-                                '<img class="img_destacado_2" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/Banderin_top_cuidador.svg" />'+
+                                BANDERIN+
                                 '<img class="img_patitas" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/icono_kmimos.svg" />'+
                             '</div>'+
                             '<div class="datos_destacado_containder">'+

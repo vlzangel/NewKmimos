@@ -12,6 +12,7 @@
 	$atributos['destacado'] = $destacado;
 	$atributos['flash'] = $flash;
 	$atributos['geo'] = $geo;
+	$atributos['supercuidador'] = $supercuidador;
 	$atributos['destacado_home'] = $destacado_home;
 	$atributos['msg_destacado'] = htmlentities($msg_destacado);
 

@@ -113,7 +113,7 @@
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
 
             // if( $cuidador->hospedaje_desde > 0  || $cuidador->activo == 1 ){
-            $_admin_id = get_current_user_id();
+                $_admin_id = get_current_user_id();
                 if( $post->post_status == 'pending' ){
                     $link = "<a class='vlz_activar' href='".getTema()."/procesos/cuidador/activar_cuidadores.php?m=".$_admin_id."&p=".$post->ID."&a=1&u=".$post->post_author."'>Activar Cuidador</a>";
                 }else{
@@ -181,6 +181,21 @@
             }
             $geo = "<select id='geo' name='geo'>{$destacado_opt}</select>";
 
+            $supercuidador = "";
+            $atributos = unserialize($cuidador->atributos);
+            if( isset($atributos["supercuidador"]) && $atributos["supercuidador"] == "1" ){
+                $destacado_opt = '
+                    <option value=1>Si</option>
+                    <option value=0>No</option>
+                ';
+            }else{
+                $destacado_opt = '
+                    <option value=0>No</option>
+                    <option value=1>Si</option>
+                ';
+            }
+            $supercuidador = "<select id='supercuidador' name='supercuidador'>{$destacado_opt}</select>";
+
             $destacado_home = ""; $msg_destacado_status = '';
             $atributos = unserialize($cuidador->atributos);
             if( isset($atributos["destacado_home"]) && $atributos["destacado_home"] == "1" ){
@@ -236,6 +251,7 @@
                             <div><strong>Destacado:</strong> {$destacado}</div>
                             <div><strong>Flash:</strong> {$flash}</div>
                             <div><strong>Geolocalización:</strong> {$geo}</div>
+                            <div><strong>Supercuidador:</strong> {$supercuidador}</div>
                             <div><strong>Destacado Home:</strong> {$destacado_home}</div>
                             <div style='{$msg_destacado_status}'>
                                 <strong style='vertical-align: top;'>Comentario:</strong> 
@@ -266,6 +282,7 @@
                                     destacado: jQuery('#destacado').val(),
                                     flash: jQuery('#flash').val(),
                                     geo: jQuery('#geo').val(),
+                                    supercuidador: jQuery('#supercuidador').val(),
                                     destacado_home: jQuery('#destacado_home').val(),
                                     msg_destacado: jQuery('#msg_destacado').val(),
                                 },

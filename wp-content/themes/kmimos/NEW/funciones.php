@@ -76,6 +76,8 @@
 					$atributos = unserialize($cuidador->atributos);
 
 					$resultado[] = (object)[
+						"atributos" => $atributos,
+
 						"img" => kmimos_get_foto($cuidador->user_id),
 						"cliente" => kmimos_get_foto( $cliente_id ),
 						"nombre" => $cuidador->titulo,
