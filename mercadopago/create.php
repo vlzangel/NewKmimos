@@ -10,13 +10,13 @@
 	# Building an item
 	$item1 = new MercadoPago\Item();
 		$item1->id = "00001";
-		$item1->title = "item"; 
+		$item1->title = "item 1"; 
 		$item1->quantity = 2;
 		$item1->unit_price = 100;
 
 	$item2 = new MercadoPago\Item();
 		$item2->id = "00001";
-		$item2->title = "item"; 
+		$item2->title = "item 2"; 
 		$item2->quantity = 2;
 		$item2->unit_price = 100;
 
