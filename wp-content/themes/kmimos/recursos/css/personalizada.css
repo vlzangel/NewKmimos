@@ -3,7 +3,7 @@
 /* DESTACADOS */
 
 	.seccion_destacados {
-	    padding: 80px 0px 0px;
+	    padding: 80px 0px 30px;
 		border-bottom: solid 1px #CCC;
 		box-shadow: 0px 4px 15px #CCC;
 	}
@@ -277,7 +277,7 @@
 	.sin_resultados{
 		text-align: center;
 	    vertical-align: middle;
-	    padding: 100px;
+	    padding: 100px 0px;
 	    white-space: normal;
 	    font-size: 20px;
 	    font-family: Gotham-Pro-Bold;
@@ -734,9 +734,17 @@
 	   	width: 150px;
 	}
 
+	img.logo {
+	    display: none;
+	}
 
+	img.logo.logo_verde {
+	    display: block;
+	}
 
-
+	footer {
+	    display: none !important;
+	}
 
 
 
