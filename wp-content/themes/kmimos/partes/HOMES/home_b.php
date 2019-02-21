@@ -280,6 +280,9 @@
 							'</div>'.
 							'<div class="ranking_destacado">'.$cuidador->ranking.'</div>'.
 						'</div>'.
+						'<div class="ubicacion_destacado_containder">'.
+							$cuidador->ubicacion.
+						'</div>'.
 						'<div class="msg_destacado_containder">'.
 							'"'.$cuidador->msg.'"'.
 						'</div>'.
