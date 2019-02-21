@@ -55,6 +55,10 @@
 
 /* BANNER */
 
+	.titulo_banner_top{
+		display: none;
+	}
+
 	#banner_home{
 		height: auto;
 		background-size: cover;
@@ -1579,6 +1583,7 @@
 		    padding: 5px;
 		    white-space: normal;
 		    text-align: center;
+		    cursor: pointer;
 		}
 
 		.carrusel_servicios_principales_img {

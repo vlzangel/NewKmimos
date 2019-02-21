@@ -1340,109 +1340,109 @@
 	    margin-top: 7px !important;
 	}
 
+	/* BANNER */
+
+		#banner_home{
+			width: 100%;
+		}
+
+		.banner_rotativo {
+		    height: 195px;
+		    margin-top: 35px;
+		}
+
+		#banner_home #buscador {
+		    margin: 0px 0px 0px;
+		    border-radius: 0px;
+		    box-shadow: none;
+		    border: 0px;
+		    background: #FFF;
+	        padding-bottom: 0px;
+		}
+
+		.home_2 nav {
+		    box-shadow: none;
+		}
+
+		.home_2 td.nav_right img {
+		    height: 20px !important;
+		}
+
+
+		.home_2 td.nav_right > a {
+		    font-size: 11px;
+		}
+
+		.home_2 .logo, .home_2 .nav_white .logo {
+		    display: block !important;
+		}
+
+		.home_2 .logo_negro, .home_2 .nav_white .logo_negro {
+		    display: none !important;
+		}
+
+		.titulo_banner_top{
+			display: block;
+			font-weight: 600;
+			padding: 20px 0px;
+		}
+
+		.tipo_mascota_container {
+		    text-align: left;
+		}
+
+		.tipo_mascota_container .input_check_box {
+		    width: calc( 50% - 10px );
+		    height: auto;
+		    margin-right: 15px;
+		    text-align: center;
+		}
+
+		.tipo_mascota_container .input_check_box.gato {
+	        margin-right: 0px;
+		}
+
+		.input_check_box .top_check {
+		    bottom: -1px;
+		    left: -1px;
+		    top: auto;
+		    width: calc( 100% + 2px );
+		    height: 4px;
+		    background-color: transparent;
+		    border-radius: 0px 0px 5px 5px;
+		    border: solid 2px #00d2c6;
+		}
+
+		.banner_rotativo .solo_movil {
+		    display: inline-block !important;
+		}
+
+		.carrusel_servicios h2 {
+		    font-size: 12px !important;
+		    padding: 0px 15px 20px;
+		}
+
+		.carrusel_servicios {
+		    margin: 20px auto 0px;
+		}
+
+		.carrusel_servicios_principales_item {
+		    width: 70%;
+		}
+
+		.carrusel_servicios_principales_img {
+		    height: 130px;
+		}
+
+		.carrusel_servicios_principales_data label {
+		    padding: 10px 0px 5px;
+		    font-size: 10px;
+		}
+
+		.carrusel_servicios_principales_data p {
+		    font-size: 8px;
+		    font-weight: 400 !important;
+		    line-height: 1.4;
+		}
+
 }
-
-
-/* BANNER */
-
-	#banner_home{
-		width: 100%;
-	}
-
-	.banner_rotativo {
-	    height: 195px;
-	    margin-top: 35px;
-	}
-
-	#banner_home #buscador {
-	    margin: 0px 0px 0px;
-	    border-radius: 0px;
-	    box-shadow: none;
-	    border: 0px;
-	    background: #FFF;
-        padding-bottom: 0px;
-	}
-
-	.home_2 nav {
-	    box-shadow: none;
-	}
-
-	.home_2 td.nav_right img {
-	    height: 20px !important;
-	}
-
-
-	.home_2 td.nav_right > a {
-	    font-size: 11px;
-	}
-
-	.home_2 .logo, .home_2 .nav_white .logo {
-	    display: block !important;
-	}
-
-	.home_2 .logo_negro, .home_2 .nav_white .logo_negro {
-	    display: none !important;
-	}
-
-	.titulo_banner_top{
-		font-weight: 600;
-		padding: 20px 0px;
-	}
-
-	.tipo_mascota_container {
-	    text-align: left;
-	}
-
-	.tipo_mascota_container .input_check_box {
-	    width: calc( 50% - 10px );
-	    height: auto;
-	    margin-right: 15px;
-	    text-align: center;
-	}
-
-	.tipo_mascota_container .input_check_box.gato {
-        margin-right: 0px;
-	}
-
-	.input_check_box .top_check {
-	    bottom: -1px;
-	    left: -1px;
-	    top: auto;
-	    width: calc( 100% + 2px );
-	    height: 4px;
-	    background-color: transparent;
-	    border-radius: 0px 0px 5px 5px;
-	    border: solid 2px #00d2c6;
-	}
-
-	.banner_rotativo .solo_movil {
-	    display: inline-block !important;
-	}
-
-	.carrusel_servicios h2 {
-	    font-size: 12px !important;
-	    padding: 0px 15px 20px;
-	}
-
-	.carrusel_servicios {
-	    margin: 20px auto 0px;
-	}
-
-	.carrusel_servicios_principales_item {
-	    width: 70%;
-	}
-
-	.carrusel_servicios_principales_img {
-	    height: 130px;
-	}
-
-	.carrusel_servicios_principales_data label {
-	    padding: 10px 0px 5px;
-	    font-size: 10px;
-	}
-
-	.carrusel_servicios_principales_data p {
-	    font-size: 8px;
-	    font-weight: 400 !important;
-	    line-height: 1.4;
-	}
