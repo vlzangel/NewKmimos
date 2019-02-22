@@ -63,9 +63,9 @@
 		';
 	}
 
-	$personalizada = ( $_GET["landing_b"] == 'yes' ) ? '<input type="hidden" id="personalizada" name="personalizada" value="1" />' : '';
+	$landing = ( isset($_GET["landing"]) ) ? $_GET["landing"] : $_SESSION['landing_test'];
 
-	switch ( $_GET["landing"] ) {
+	switch ( $landing ) {
 		case 'b':
 			include dirname(__FILE__).'/partes/HOMES/home_b.php';
 		break;
