@@ -4,8 +4,7 @@
 	MercadoPago\SDK::initialize(); 
 	$config = MercadoPago\SDK::config(); 
 
-	MercadoPago\SDK::setClientId("163023365316267");
-	MercadoPago\SDK::setClientSecret("NxbY4SWM2xYtGMRnni1BoxUUO0tyo8l8");
+	MercadoPago\SDK::setAccessToken("TEST-163023365316267-021914-c0d0782be83745a7ad3a11eaf96626e5-405963188");
 
 	# Building an item
 	$item1 = new MercadoPago\Item();
@@ -53,14 +52,42 @@
 	# Preference
 	$url = 'https://mx.kmimos.la/mercadopago/response/';
 	$payment = new MercadoPago\Payment();
+		$payment->site_id = 'MLM';
+		$payment->installments = 1;
+		$payment->capture = true;
 		$payment->callback_url = $url . "callback.php";
+		$payment->notification_url = $url . "notificacion.php";
+		$payment->order = [
+			'type' => 'mercadopago',
+			'id' => '234',
+		];
 
 	# Preference
 	$preference = new MercadoPago\Preference();
   		$preference->items = array($item1, $item2);
+		$preference->external_reference = 'RESERVA_ID_001';
 		$preference->payer = $payer;
 		$preference->binary_mode = true;
-		$preference->notification_url = $url . "notificacion.php";
+		$preference->back_urls = array(
+		    "success" => $url . "callback.php",
+		    "failure" => $url . "callback.php",
+		    "pending" => $url . "callback.php",
+		);
+		$preference->payment_methods = array(
+		  "excluded_payment_methods" => array(
+		    // array("id" => "credit_card"),
+		    // array("id" => "prepaid_card"),
+		    // array("id" => "ticket"),
+		    // array("id" => "atm"),
+		    // array("id" => "account_money"),
+		    // array("id" => "digital_currency"),
+		  ),
+		  "installments" => 1
+		);
+		$preference->auto_return = "approved";
+
 		$preference->save();
 
-	echo $preference->init_point;
+	echo $preference->init_point. '<br><pre>';
+
+	print_r($preference);

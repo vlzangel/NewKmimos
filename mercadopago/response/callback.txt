@@ -1,0 +1,4 @@
+{"collection_id":"17901216","collection_status":"approved","preference_id":"405963188-734bff1d-22d0-4218-ad0f-0d52ecc6d42b","external_reference":"RESERVA_ID_001","payment_type":"credit_card","merchant_order_id":"974415528"}
+--------------------------------------------
+{"collection_id":"17912069","collection_status":"approved","preference_id":"405963188-d47d935e-c4fb-489e-aa0b-93a1543e10d7","external_reference":"RESERVA_ID_001","payment_type":"credit_card","merchant_order_id":"974970563"}
+--------------------------------------------
