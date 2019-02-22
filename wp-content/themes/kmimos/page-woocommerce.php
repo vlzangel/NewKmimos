@@ -539,7 +539,6 @@
 										<option value="tienda">PAGO EN TIENDA DE CONVENIENCIA</option>
 										<option value="tarjeta">PAGO CON TARJETA DE CRÉDITO O DÉBITO</option>
 										<option value="paypal">PAGO CON PAYPAL</option>
-										<option value="bancomer">PAGO CON BANCOMER</option>
 										<option value="mercadopago">PAGO CON MERCADOPAGO</option>
 									</select>
 

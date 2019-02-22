@@ -16,7 +16,7 @@ var PAQs = [
 	"p2meses",
 	"p3meses",
 ];
-var PAYPAL_LINK = ''; 
+
 var PROCESAR_PAQUETE = true;
 function initCarrito(){
 	CARRITO = [];
@@ -1281,6 +1281,22 @@ jQuery(document).ready(function() {
 								}
 							}, 'json'
 						);
+
+					}else if( CARRITO["pagar"]["tipo"] == "mercadopago" ){
+						jQuery("#reserva_btn_next_3").addClass("disabled");
+						jQuery("#reserva_btn_next_3").addClass("cargando");
+						var info = convertCARRITO();
+						jQuery.post(HOME+"/procesos/reservar/pasarelas/mercadopago/create.php",
+							{
+								'info': info,
+								'ruta': RAIZ,
+							},
+							function(data){
+								if( data.status == 'CREATED' ){
+									location.href = data.links;
+								}
+							}, 'json'
+						);
 					
 					}else{
 						pagarReserva();
@@ -1331,6 +1347,10 @@ jQuery(document).ready(function() {
 			case 'paypal':
 				jQuery(".errores_box").css("display", "none");
 				CARRITO["pagar"]["tipo"] = "paypal";
+				break;
+			case 'mercadopago':
+				jQuery(".errores_box").css("display", "none");
+				CARRITO["pagar"]["tipo"] = "mercadopago";
 				break;
 			default:
 				jQuery(".errores_box").css("display", "none");
@@ -1392,17 +1412,7 @@ jQuery(document).ready(function() {
 				console.log('traking_code_boton_nueva_reserva_paypal');
 			}
 		} 
-
-		if ( el.hasClass("km-bancomer") ) {
-			jQuery("#tipo_pago").val("bancomer");
-			jQuery("#tipo_pago").change();
-			if( wlabel == 'petco' ){
-				evento_google("boton_nueva_reserva_bancomer");
-				evento_fbq("track", "traking_code_boton_nueva_reserva_bancomer");
-				console.log('traking_code_boton_nueva_reserva_bancomer');
-			}
-		} 
-
+ 
 		if ( el.hasClass("km-mercadopago") ) {
 			jQuery("#tipo_pago").val("mercadopago");
 			jQuery("#tipo_pago").change();
