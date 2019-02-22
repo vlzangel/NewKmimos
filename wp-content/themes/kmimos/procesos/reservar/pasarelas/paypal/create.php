@@ -49,6 +49,7 @@ class CreateOrder
 		$noches = $fechas->duracion;
 		$total = $pagar->total; 
 		$descuento = $pagar->fee;
+		$total_mascotas = 0;
 		
 		$tamanios = [
 			'pequenos' => "Masc. Peq.",
@@ -73,6 +74,7 @@ class CreateOrder
 			                'quantity' => $value[0],
 			                'category' => 'PHYSICAL_GOODS',                
 			            );
+			            $total_mascotas += $value[1];
 					}			
 				}		
 			}
@@ -109,7 +111,7 @@ class CreateOrder
 	                		'currency_code' => 'MXN',
 		                  	'value' => $value,
 		                ),
-		                'quantity' => 1,
+		                'quantity' => $total_mascotas,
 		                'category' => 'PHYSICAL_GOODS',                
 		            );
 				}		
