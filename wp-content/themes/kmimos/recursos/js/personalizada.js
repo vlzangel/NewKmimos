@@ -123,7 +123,7 @@ function buscar( campo ){
                         '<table style="width: 100%; height: 100%;">'+
                             '<tr>'+
                                 '<td class="sin_resultados">'+
-                                    'Lo sentimos, no hay cuidadores que cumplan con tus preferencias o características de tus mascotas. Ajusta los filtros personalizados o llámanos al 01 800 9 KMIMOS (01 800 9 564667), donde con gusto te ayudaremos a encontrar un Cuidador ideal para tu peludo.'+
+                                    'Lo sentimos, no hay cuidadores que cumplan con tus preferencias o características de tus mascotas. Ajusta los filtros personalizados o <span>llámanos al 01 800 9 KMIMOS</span> (01 800 9 564667), donde <span>Con gusto te ayudaremos a encontrar un Cuidador ideal</span> para tu peludo.'+
                                 '</td>'+
                             '</tr>'+
                         '</table>'+
