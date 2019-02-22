@@ -3,6 +3,12 @@
         Template Name: Home
     */
 
+    $landing = ( isset($_GET["landing"]) ) ? $_GET["landing"] : $_SESSION['landing_test'];
+
+    if( $landing == 'd' ){
+    	header("location: ".get_home_url()."/home-2/" );
+    }
+
 	date_default_timezone_set('America/Mexico_City');
 
     wp_enqueue_style('home_club_responsive', getTema()."/css/responsive/club_patitas_home.css", array(), '1.0.0');
@@ -62,8 +68,6 @@
 			</div>
 		';
 	}
-
-	$landing = ( isset($_GET["landing"]) ) ? $_GET["landing"] : $_SESSION['landing_test'];
 
 	switch ( $landing ) {
 		case 'b':
