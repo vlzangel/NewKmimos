@@ -14,12 +14,15 @@
 			case 'a':
 				$ult_landing = 'b';
 			break;
+			
+			/*
 			case 'b':
 				$ult_landing = 'c';
 			break;
 			case 'c':
 				$ult_landing = 'd';
 			break;
+			*/
 			
 			default:
 				$ult_landing = 'a';
