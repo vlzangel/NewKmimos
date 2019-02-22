@@ -74,7 +74,7 @@ class CreateOrder
 			                'quantity' => $value[0],
 			                'category' => 'PHYSICAL_GOODS',                
 			            );
-			            $total_mascotas += $value[1];
+			            $total_mascotas += $value[0];
 					}			
 				}		
 			}
@@ -183,7 +183,7 @@ class CreateOrder
 	                        )
 	                )
 	        );
-
+// print_r($return);
         return $return;
   }
   
