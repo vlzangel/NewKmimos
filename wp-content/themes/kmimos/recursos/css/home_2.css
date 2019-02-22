@@ -1798,6 +1798,10 @@
 		    font-weight: 600;
 		}
 
-		.banner_rotativo .solo_pc {
-		    display: inline-block !important;
+		.banner_rotativo .solo_pc_banner {
+		    display: inline-block;
+		}
+
+		.banner_rotativo .solo_movil_banner {
+		    display: none;
 		}

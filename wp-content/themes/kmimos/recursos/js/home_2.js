@@ -34,13 +34,12 @@ function show_hiden_arrow(){
   
 }
 
-function mover_carrusel(box, dir, _paso){
+function mover_carrusel(box, dir){
     if( parseInt( jQuery("body").width() ) > 768 ){
         var h = parseInt( box.attr("data-h_pc") );
     }else{
         var h = parseInt( box.attr("data-h_movil") );
     }
-    
     var paso = parseInt( box.attr("data-paso") );
     switch(dir){
         case 'izq':
@@ -64,61 +63,13 @@ function mover_carrusel(box, dir, _paso){
             }else{
                 var final = parseInt( box.attr("data-final_movil") );
             }
-            var paso = parseInt( _paso.attr("data-id") );
+            var paso = parseInt( box.attr("data-id") );
             box.attr("data-paso", paso);
             box.animate({left: (-1*(paso*h))+"%" }, parseInt( box.attr("data-t") ) );
         break;
     }
-
-    console.log( paso );
-
     jQuery(".control_item").removeClass("active");
     jQuery(".item_"+paso).addClass("active");
-
-    show_hiden_arrow();
-}
-
-function mover_destacado(dir, _paso){
-    if( parseInt( jQuery("body").width() ) > 768 ){
-        var h = parseInt( jQuery(".destacados_box").attr("data-h_pc") );
-    }else{
-        var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
-    }
-    
-    var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
-    switch(dir){
-        case 'izq':
-            if( paso > 0 ){ paso--; }
-            jQuery(".destacados_box").attr("data-paso", paso);
-            jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
-        break;
-        case 'der':
-            if( parseInt( jQuery("body").width() ) > 768 ){
-                var final = parseInt( jQuery(".destacados_box").attr("data-final_pc") );
-            }else{
-                var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
-            }
-            if( paso < final ){ paso++; }
-            jQuery(".destacados_box").attr("data-paso", paso);
-            jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
-        break;
-        case 'movil':
-            if( parseInt( jQuery("body").width() ) > 768 ){
-                var final = parseInt( jQuery(".destacados_box").attr("data-final_pc") );
-            }else{
-                var final = parseInt( jQuery(".destacados_box").attr("data-final_movil") );
-            }
-            var paso = parseInt( _paso.attr("data-id") );
-            jQuery(".destacados_box").attr("data-paso", paso);
-            jQuery(".destacados_box > div > div").animate({left: (-1*(paso*h))+"%" }, 1000);
-        break;
-    }
-
-    console.log( paso );
-
-    jQuery(".control_item").removeClass("active");
-    jQuery(".item_"+paso).addClass("active");
-
     show_hiden_arrow();
 }
 
@@ -128,51 +79,49 @@ var TX2 = 0;
 jQuery( document ).ready(function() {
 
     jQuery("#buscador_2 input").on("change", function(e){
-        console.log( jQuery(this).attr("id") );
-
         jQuery("#buscador_2").submit();
     });
 
-    jQuery(".destacados_container").on('touchstart', function(e){
+    jQuery(".carrusel_servicios").on('touchstart', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var ev = e.originalEvent;
             if (ev.targetTouches.length == 1) { 
                 var touch = ev.targetTouches[0]; 
-                TX1 = touch.pageX; // + " en Y " + touch.pageY);
+                TX1 = touch.pageX;
                 console.log( TX1 );
             }
         }
     });
 
-    jQuery(".destacados_container").on('touchmove', function(e){
+    jQuery(".carrusel_servicios").on('touchmove', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var ev = e.originalEvent;
             if (ev.targetTouches.length == 1) { 
                 var touch = ev.targetTouches[0]; 
                 TX2 = touch.pageX;
 
-                var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
-                var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
+                var h = parseInt( jQuery(this).find(".destacados_box").attr("data-h_movil") );
+                var paso = parseInt( jQuery(this).find(".destacados_box").attr("data-paso") );
 
                 var d = TX1-TX2;
                 if( Math.abs( d ) < 30 ){
                     d = (paso*h)+(d*0.2);
-                    jQuery(".destacados_box > div > div").css("left", (-1*d)+"%");
+                    jQuery(this).find(".destacados_box > div > div").css("left", (-1*d)+"%");
                 }
 
             }
         }
     });
 
-    jQuery(".destacados_container").on('touchend', function(e){
+    jQuery(".carrusel_servicios").on('touchend', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var d = TX1-TX2;
             if( Math.abs( d ) > 30 ){
                 console.log( "Mover" );
                 if( d > 0 ){
-                    mover_destacado("der");
+                    mover_carrusel(jQuery(this).find(".destacados_box"), "der");
                 }else{
-                    mover_destacado("izq");
+                    mover_carrusel(jQuery(this).find(".destacados_box"), "izq");
                 }
             }
         }

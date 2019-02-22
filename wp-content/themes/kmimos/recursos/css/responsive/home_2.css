@@ -1491,4 +1491,45 @@
 		    right: -2px !important;
 		}
 
+		.suscribir_blog h2 {
+		    float: none;
+		    width: 100%;
+		    font-size: 9px !important;
+		    padding: 0px 15px;
+		    line-height: 1.4;
+		}
+
+		.suscribir_blog {
+		    max-width: 100%;
+		    padding: 25px 0px 25px;
+		}
+
+		.suscribir_blog > form {
+		    float: none;
+		    width: 100%;
+		    padding: 0px 15px;
+		}
+
+		form#suscribir input[type="submit"] {
+		    width: 115px;
+		    font-size: 8px;
+		}
+
+		form#suscribir input[type="text"] {
+		    padding: 9px 10px;
+		    width: calc( 100% - 115px );
+		    font-size: 10px;
+		}
+
+		.suscribir_blog h2 span {
+		    font-size: 8px !important;
+		}
+
+		.banner_rotativo .solo_pc_banner {
+		    display: none;
+		}
+
+		.banner_rotativo .solo_movil_banner {
+		    display: inline-block;
+		}
 }

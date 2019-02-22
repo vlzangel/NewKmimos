@@ -36,8 +36,8 @@
     	'_Paseos.jpg',
     ];
     foreach ($info_banner as $key => $url) {
-    	$items .= '<div class="banner_rotativo_item solo_pc" style="background-image: url('.get_recurso('img').'HOME_2/Muestra'.$url.');"></div>';
-    	$items .= '<div class="banner_rotativo_item solo_movil" style="background-image: url('.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url.');"></div>';
+    	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/Muestra'.$url.');"></div>';
+    	$items .= '<div class="banner_rotativo_item solo_movil_banner" style="background-image: url('.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url.');"></div>';
     }
 
     $items_count = count($info_banner);
