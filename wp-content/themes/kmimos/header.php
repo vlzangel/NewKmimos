@@ -239,6 +239,10 @@
 								case "dejo_el_correo":
 									ga("send", "event", "wlabel", "click", "traking_code_dejo_el_correo", "1");
 								break;
+		
+								default:
+									ga("send", "event", "wlabel", "click", "traking_code_"+evento, "1");
+								break;
 							}
 						}
 			        }
