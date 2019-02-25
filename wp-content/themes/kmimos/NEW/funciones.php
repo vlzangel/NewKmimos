@@ -971,7 +971,7 @@
 									<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
 								</div>
 								<div class="resultados_item_info">
-									<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_titulo"> <span>'.$testing.' :: '.$i.'.</span> '.($_cuidador->titulo).'</a>
+									<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_titulo"> <span>'.$i.'.</span> '.($_cuidador->titulo).'</a>
 									'.$distancia.'
 									<div class="resultados_item_direccion" title="'.$_cuidador->direccion.'">'.($direccion).'</div>
 									<div class="resultados_item_servicios">
