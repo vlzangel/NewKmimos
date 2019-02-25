@@ -104,7 +104,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia\'); evento_fbq("track", "traking_code_boton_guarderia");">
+							<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia_c\'); evento_fbq("track", "traking_code_boton_guarderia_c");">
 								<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
@@ -112,7 +112,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos\'); evento_fbq("track", "traking_code_boton_paseos"); evento_google_2(\'paseos\'); evento_fbq_2("track", "traking_code_boton_paseos_kmimos"); ">
+							<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos_c\'); evento_fbq("track", "traking_code_boton_paseos_c"); evento_google_2(\'paseos\'); evento_fbq_2("track", "traking_code_boton_paseos_kmimos"); ">
 								<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
@@ -120,7 +120,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
+							<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento_c\'); evento_fbq("track", "traking_code_boton_entrenamiento_c"); ">
 								<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />

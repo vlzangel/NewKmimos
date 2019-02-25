@@ -88,7 +88,6 @@ jQuery( document ).ready(function() {
             if (ev.targetTouches.length == 1) { 
                 var touch = ev.targetTouches[0]; 
                 TX1 = touch.pageX;
-                console.log( TX1 );
             }
         }
     });
