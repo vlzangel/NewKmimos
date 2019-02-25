@@ -723,250 +723,284 @@
 	function get_resultados_new($PAGE = 0){
 		if( !isset($_SESSION) ){ session_start(); }
         global $wpdb;
-		$resultados = $_SESSION['resultado_busqueda'];
-		$HTML = ""; $total = count($resultados);
-		$fin = ( $total > ($PAGE+10) ) ? $PAGE+10 : $total;
-
+		$HTML = ""; 
 		$user_id = get_current_user_id();
 		$favoritos = get_favoritos();
+		$resultados = $_SESSION['resultado_busqueda'];
+		$total = count($resultados);
 
-		for ($i = $PAGE; $i < $fin; $i++ ) {
-			$cuidador = $resultados[$i];
+		# BEGIN - alternar cuidadores
+		$_PAGE = $PAGE / 10;
+		$PAGE = $_PAGE * 6;
+		$contador = ( $_PAGE>0 )? $_PAGE * 10 : $PAGE ;
+		# END - alternar cuidadores
 
-			if( isset($_SESSION["DATA_CUIDADORES"][ $cuidador->id ]) ){
+		for ($invertir_orden=0; $invertir_orden <= 1; $invertir_orden++) 
+		{
+			# Resultados invertidos
+			if( $invertir_orden == 1 ){
+				$testing = 'INV';
+				$fin = ( $total > ($PAGE+4) ) ? $PAGE+4 : $total;
+				$resultados = array_reverse($resultados, false);
 
-				$_cuidador = $_SESSION["DATA_CUIDADORES"][ $cuidador->id ];
+			# Resultados ordenados
+			}else{				
+				$testing = 'ORD';
+				$fin = ( $total > ($PAGE+6) ) ? $PAGE+6 : $total;			
+			}
 
-				$anios_exp = $_cuidador->experiencia;
-	            if( $anios_exp > 1900 ){
-	                $anios_exp = date("Y")-$anios_exp;
-	            }
+			# Crear ficha de cuidadores
+			for ($i = $PAGE; $i < $fin; $i++ ) {
+				$cuidador = $resultados[$i];
+				$contador++;
+				$HTML .= crear_ficha_busqueda([
+					'testing' => $testing,
+					'i' => $contador,
+					'cuidador'=>$cuidador, 
+					'favoritos'=>$favoritos,
+					'user_id'=>$user_id,
+				]);
+			}
+		}
 
-				$img_url = kmimos_get_foto($_cuidador->user_id);
-				$desde = $_cuidador->hospedaje_desde;
-				if( $_SESSION['landing_paseos'] == 'yes' ){
-					$desde = $_cuidador->paseos_desde;
+		return $HTML;
+	}
+
+	function crear_ficha_busqueda($parametros=[]){
+		$HTML = '';
+		extract($parametros);
+		if( isset($_SESSION["DATA_CUIDADORES"][ $cuidador->id ]) ){
+
+			$_cuidador = $_SESSION["DATA_CUIDADORES"][ $cuidador->id ];
+
+			$anios_exp = $_cuidador->experiencia;
+            if( $anios_exp > 1900 ){
+                $anios_exp = date("Y")-$anios_exp;
+            }
+
+			$img_url = kmimos_get_foto($_cuidador->user_id);
+			$desde = $_cuidador->hospedaje_desde;
+			if( $_SESSION['landing_paseos'] == 'yes' ){
+				$desde = $_cuidador->paseos_desde;
+			}
+			$desde = explode(".", number_format( ($desde*getComision()) , 2, '.', ',') );
+
+			$direccion = $_cuidador->direccion;
+			if( strlen($_cuidador->direccion) > 50 ){
+				$direccion = mb_strcut($_cuidador->direccion, 0, 50, "UTF-8")."...";
+			}
+
+			if( $direccion == "0" ){ $direccion = ""; }
+
+			$ocultar_flash = "ocultar_flash";
+			$ocultar_flash_none = "ocultar_flash_none";
+			$ocultar_descuento = "ocultar_descuento";
+			$ocultar_geo = "ocultar_geo";
+			if( $_cuidador->atributos["flash"]+0 == 1 ){
+				$ocultar_flash = "";
+				$ocultar_flash_none = "";
+			}
+			if( $_cuidador->atributos["destacado"]+0 == 1 ){
+				$ocultar_descuento = "";
+			}
+
+			if( $_cuidador->atributos["geo"]+0 == 1 ){
+				$ocultar_geo = "";
+			}
+
+			$ocultar_todo = "";
+			if( $ocultar_flash != "" && $ocultar_descuento != "" && $ocultar_geo != "" ){
+				$ocultar_todo = "ocultar_flash_descuento";
+			}
+
+			$fav_check = 'false';
+	        $fav_del = '';
+	        $fav_img = 'Corazon';
+	        if (in_array($_cuidador->id_post, $favoritos)) {
+	            $fav_check = 'true'; 
+	            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
+	            $fav_del = 'favoritos_delete';
+	            $fav_img = 'Favorito';
+	        }
+
+	        $favorito_movil = '
+	        	<div 
+	        		class="favorito '.$fav_del.'" 
+	        		data-reload="false"
+		            data-user="'.$user_id.'" 
+		            data-num="'.$_cuidador->id_post.'" 
+		            data-active="'.$fav_check.'"
+		            data-favorito="'.$fav_check.'"
+	        	></div>
+	        ';
+
+			$comentario = '';
+			if( isset($_cuidador->comentario->comment_author_email) ){
+				if( strlen($_cuidador->comentario->comment_content) > 200 ){
+					$_cuidador->comentario->comment_content = mb_strcut($_cuidador->comentario->comment_content, 0, 200, "UTF-8")."...";
 				}
-				$desde = explode(".", number_format( ($desde*getComision()) , 2, '.', ',') );
-
-				$direccion = $_cuidador->direccion;
-				if( strlen($_cuidador->direccion) > 50 ){
-					$direccion = mb_strcut($_cuidador->direccion, 0, 50, "UTF-8")."...";
-				}
-
-				if( $direccion == "0" ){ $direccion = ""; }
-
-				$ocultar_flash = "ocultar_flash";
-				$ocultar_flash_none = "ocultar_flash_none";
-				$ocultar_descuento = "ocultar_descuento";
-				$ocultar_geo = "ocultar_geo";
-				if( $_cuidador->atributos["flash"]+0 == 1 ){
-					$ocultar_flash = "";
-					$ocultar_flash_none = "";
-				}
-				if( $_cuidador->atributos["destacado"]+0 == 1 ){
-					$ocultar_descuento = "";
-				}
-
-				if( $_cuidador->atributos["geo"]+0 == 1 ){
-					$ocultar_geo = "";
-				}
-
-				$ocultar_todo = "";
-				if( $ocultar_flash != "" && $ocultar_descuento != "" && $ocultar_geo != "" ){
-					$ocultar_todo = "ocultar_flash_descuento";
-				}
-
-				$fav_check = 'false';
-		        $fav_del = '';
-		        $fav_img = 'Corazon';
-		        if (in_array($_cuidador->id_post, $favoritos)) {
-		            $fav_check = 'true'; 
-		            $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
-		            $fav_del = 'favoritos_delete';
-		            $fav_img = 'Favorito';
-		        }
-
-		        $favorito_movil = '
-		        	<div 
-		        		class="favorito '.$fav_del.'" 
-		        		data-reload="false"
-			            data-user="'.$user_id.'" 
-			            data-num="'.$_cuidador->id_post.'" 
-			            data-active="'.$fav_check.'"
-			            data-favorito="'.$fav_check.'"
-		        	></div>
-		        ';
-
-				$comentario = '';
-				if( isset($_cuidador->comentario->comment_author_email) ){
-					if( strlen($_cuidador->comentario->comment_content) > 200 ){
-						$_cuidador->comentario->comment_content = mb_strcut($_cuidador->comentario->comment_content, 0, 200, "UTF-8")."...";
-					}
-					$comentario = '
-						<div class="resultados_item_comentario">
-							<div class="resultados_item_comentario_img">
-								<div class="resultados_item_comentario_avatar" style="background-image: url( '.$_cuidador->comentario->foto.' );"></div>
-							</div>
-							<div class="resultados_item_comentario_contenido">
-								'.( $_cuidador->comentario->comment_content ).' <a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'/#km-comentario">(Ver más)</a>
-							</div>
-							<div class="resultados_item_comentario_favorito">
-								<span>
-									'.$favorito_movil.'
-								</span>
-							</div>
+				$comentario = '
+					<div class="resultados_item_comentario">
+						<div class="resultados_item_comentario_img">
+							<div class="resultados_item_comentario_avatar" style="background-image: url( '.$_cuidador->comentario->foto.' );"></div>
 						</div>
-					';
-				}else{
-					$comentario = '
-						<div class="resultados_item_comentario">
-							<div class="resultados_item_comentario_img"></div>
-							<div class="resultados_item_comentario_contenido"></div>
-							<div class="resultados_item_comentario_favorito">
-								<span>
-									'.$favorito_movil.'
-								</span>
-							</div>
+						<div class="resultados_item_comentario_contenido">
+							'.( $_cuidador->comentario->comment_content ).' <a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'/#km-comentario">(Ver más)</a>
 						</div>
-					';
-				}
-
-				$galeria =
-					'<div class="resultados_item_info_img" style="background-image: url('.$img_url.');">'.
-						'<div class="img_fondo" style="background-image: url('.$img_url.');"></div>'.
-						'<div class="img_normal" style="background-image: url('.$img_url.');"></div>'.
-					'</div>';
-				if( is_array($_cuidador->galeria) ){
-					foreach ($_cuidador->galeria as $key => $value) {
-						$galeria .=
-							'<div class="resultados_item_info_img">'.
-								'<div class="img_fondo" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>'.
-								'<div class="img_normal" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>'.
-							'</div>';
-					}
-				}
-				if( is_array($_cuidador->galeria) ){
-					$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
-				}else{
-					$ocultar_siguiente_img = 'Ocultar_Flecha';
-				}
-
-				if( isset($cuidador->DISTANCIA) ){
-					$distancia = '<div class="resultados_item_subtitulo">a '.floor($cuidador->DISTANCIA).' km de tu búsqueda</div>';
-				}
-
-				$mensaje_disp = "Disponibilidad inmediata";
-				$mensaje_disp_movil = "Disponible";
-				$mensaje_disp_movil_corto = "";
-				$show_msg_desc = "";
-				if( $ocultar_descuento == "" ){
-					$mensaje_disp = "50% en 2da mascota. 25% en 3era.";
-					$mensaje_disp_movil = "50% en 2da masc. 25% en 3era.";
-					$show_msg_desc = "show_msg_descuento";
-					$mensaje_disp_movil_corto = "Descuento";
-				}
-
-				if( $ocultar_geo == "" ){
-					$mensaje_disp = "con GPS";
-					$mensaje_disp_movil = "con GPS";
-					$show_msg_desc = "show_msg_descuento";
-					$mensaje_disp_movil_corto = "con GPS";
-				}
-
-				if( !is_array($_cuidador->galeria) ){
-					$_cuidador->galeria = [];
-				}
-
-				$btn_conocer = '<strong>No disponible para conocer</strong>';
-				if( $_cuidador->activo_hoy ){
-					$btn_conocer = '
-						<a 
-							role="button" href="#" 
-                            data-name="'.$_cuidador->titulo.'" 
-                            data-id="'.$_cuidador->id_post.'" 
-                            data-target="#popup-conoce-cuidador"
-                            href="#" class="boton boton_border_gris"
-                            onclick="evento_google_kmimos(\'conocer_busqueda\'); evento_fbq_kmimos(\'conocer_busqueda\');"
-                        >
-							<span class="boton_conocer_PC">Solicitud de conocer</span>
-							<span class="boton_conocer_MOVIl"><span class="boton_conocer_MOVIl">Conocer</span>
-						</a>
-					';
-				}
-
-				$por_noche_paseo = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Por paseo' : 'Por noche';
-
-				$HTML .= '
-					<div class="resultado_item">
-						<div class="resultados_hover"></div>
-						<div class="resultado_item_container">
-							<div class="resultados_item_top">
-
-								<div class="resultados_item_iconos_container '.$ocultar_todo.'">
-									<div class="resultados_item_icono icono_disponibilidad '.$ocultar_flash.' '.$show_msg_desc.'">
-										<span class="disponibilidad_PC">'.$mensaje_disp.'</span>
-										<span class="disponibilidad_MOVIl">
-											<div class="msg_largo">'.$mensaje_disp_movil.'</div> 
-											<div class="msg_corto">'.$mensaje_disp_movil_corto.'</div>
-										</span>
-									</div>
-									<div class="resultados_item_icono icono_flash '.$ocultar_flash_none.'"><span></span></div>
-									<div class="resultados_item_icono icono_descuento '.$ocultar_descuento.'"><span></span></div>
-									<div class="resultados_item_icono icono_geo '.$ocultar_geo.'"><span></span></div>
-								</div>
-
-							</div>
-							<div class="resultados_item_middle">
-								<div class="resultados_item_info_container">
-									<div class="resultados_item_info_img_container" data-total="'.(count($_cuidador->galeria)+1).'" data-actual="0">
-										<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_info_img_box">
-											'.$galeria.'
-										</a>
-										<img onclick="imgAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_2.svg" />
-										<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
-									</div>
-									<div class="resultados_item_info">
-										<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_titulo"> <span>'.($i+1).'.</span> '.($_cuidador->titulo).'</a>
-										'.$distancia.'
-										<div class="resultados_item_direccion" title="'.$_cuidador->direccion.'">'.($direccion).'</div>
-										<div class="resultados_item_servicios">
-											'.get_servicios_new($_cuidador->adicionales).'
-											<!-- <div class="resultados_item_comentarios">
-												'.$_cuidador->valoraciones.' comentarios
-											</div> -->
-												<div class="resultados_item_ranking">
-													'.kmimos_petsitter_rating($_cuidador->id_post).'
-												</div>
-										</div>
-										<div class="resultados_item_experiencia">
-											'.$anios_exp.' años de experiencia
-										</div>
-										<div class="resultados_item_precio_container">
-											<span>Desde</span>
-											<div>MXN$ <strong>'.$desde[0].'<span>,'.$desde[1].'</span></strong></div>
-											<span class="por_noche">'.$por_noche_paseo.'</span>
-										</div>
-										<div class="resultados_item_ranking_movil">
-											'.kmimos_petsitter_rating($_cuidador->id_post).'
-										</div>
-										<div class="resultados_item_valoraciones">
-											'.$_cuidador->valoraciones.' valoraciones
-										</div>
-										'.$comentario.'
-									</div>
-								</div>
-							</div>
-							<div class="resultados_item_bottom">
-								'.$btn_conocer.'
-								<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" onclick="evento_google_kmimos(\'reservar_busqueda\'); evento_fbq_kmimos(\'reservar_busqueda\');" class="boton boton_verde">Reservar</a>
-							</div>
+						<div class="resultados_item_comentario_favorito">
+							<span>
+								'.$favorito_movil.'
+							</span>
+						</div>
+					</div>
+				';
+			}else{
+				$comentario = '
+					<div class="resultados_item_comentario">
+						<div class="resultados_item_comentario_img"></div>
+						<div class="resultados_item_comentario_contenido"></div>
+						<div class="resultados_item_comentario_favorito">
+							<span>
+								'.$favorito_movil.'
+							</span>
 						</div>
 					</div>
 				';
 			}
-		}
 
+			$galeria =
+				'<div class="resultados_item_info_img" style="background-image: url('.$img_url.');">'.
+					'<div class="img_fondo" style="background-image: url('.$img_url.');"></div>'.
+					'<div class="img_normal" style="background-image: url('.$img_url.');"></div>'.
+				'</div>';
+			if( is_array($_cuidador->galeria) ){
+				foreach ($_cuidador->galeria as $key => $value) {
+					$galeria .=
+						'<div class="resultados_item_info_img">'.
+							'<div class="img_fondo" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>'.
+							'<div class="img_normal" style="background-image: url('.get_home_url().'/wp-content/uploads/cuidadores/galerias/'.$value.');"></div>'.
+						'</div>';
+				}
+			}
+			if( is_array($_cuidador->galeria) ){
+				$ocultar_siguiente_img = ( count($_cuidador->galeria) > 1 ) ? '': 'Ocultar_Flecha';
+			}else{
+				$ocultar_siguiente_img = 'Ocultar_Flecha';
+			}
+
+			if( isset($cuidador->DISTANCIA) ){
+				$distancia = '<div class="resultados_item_subtitulo">a '.floor($cuidador->DISTANCIA).' km de tu búsqueda</div>';
+			}
+
+			$mensaje_disp = "Disponibilidad inmediata";
+			$mensaje_disp_movil = "Disponible";
+			$mensaje_disp_movil_corto = "";
+			$show_msg_desc = "";
+			if( $ocultar_descuento == "" ){
+				$mensaje_disp = "50% en 2da mascota. 25% en 3era.";
+				$mensaje_disp_movil = "50% en 2da masc. 25% en 3era.";
+				$show_msg_desc = "show_msg_descuento";
+				$mensaje_disp_movil_corto = "Descuento";
+			}
+
+			if( $ocultar_geo == "" ){
+				$mensaje_disp = "con GPS";
+				$mensaje_disp_movil = "con GPS";
+				$show_msg_desc = "show_msg_descuento";
+				$mensaje_disp_movil_corto = "con GPS";
+			}
+
+			if( !is_array($_cuidador->galeria) ){
+				$_cuidador->galeria = [];
+			}
+
+			$btn_conocer = '<strong>No disponible para conocer</strong>';
+			if( $_cuidador->activo_hoy ){
+				$btn_conocer = '
+					<a 
+						role="button" href="#" 
+                        data-name="'.$_cuidador->titulo.'" 
+                        data-id="'.$_cuidador->id_post.'" 
+                        data-target="#popup-conoce-cuidador"
+                        href="#" class="boton boton_border_gris"
+                        onclick="evento_google_kmimos(\'conocer_busqueda\'); evento_fbq_kmimos(\'conocer_busqueda\');"
+                    >
+						<span class="boton_conocer_PC">Solicitud de conocer</span>
+						<span class="boton_conocer_MOVIl"><span class="boton_conocer_MOVIl">Conocer</span>
+					</a>
+				';
+			}
+
+			$por_noche_paseo = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'Por paseo' : 'Por noche';
+
+			$HTML .= '
+				<div class="resultado_item">
+					<div class="resultados_hover"></div>
+					<div class="resultado_item_container">
+						<div class="resultados_item_top">
+
+							<div class="resultados_item_iconos_container '.$ocultar_todo.'">
+								<div class="resultados_item_icono icono_disponibilidad '.$ocultar_flash.' '.$show_msg_desc.'">
+									<span class="disponibilidad_PC">'.$mensaje_disp.'</span>
+									<span class="disponibilidad_MOVIl">
+										<div class="msg_largo">'.$mensaje_disp_movil.'</div> 
+										<div class="msg_corto">'.$mensaje_disp_movil_corto.'</div>
+									</span>
+								</div>
+								<div class="resultados_item_icono icono_flash '.$ocultar_flash_none.'"><span></span></div>
+								<div class="resultados_item_icono icono_descuento '.$ocultar_descuento.'"><span></span></div>
+								<div class="resultados_item_icono icono_geo '.$ocultar_geo.'"><span></span></div>
+							</div>
+
+						</div>
+						<div class="resultados_item_middle">
+							<div class="resultados_item_info_container">
+								<div class="resultados_item_info_img_container" data-total="'.(count($_cuidador->galeria)+1).'" data-actual="0">
+									<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_info_img_box">
+										'.$galeria.'
+									</a>
+									<img onclick="imgAnterior( jQuery(this) );" class="Flechas Flecha_Izquierda Ocultar_Flecha" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_2.svg" />
+									<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
+								</div>
+								<div class="resultados_item_info">
+									<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_titulo"> <span>'.$i.'.</span> '.($_cuidador->titulo).'</a>
+									'.$distancia.'
+									<div class="resultados_item_direccion" title="'.$_cuidador->direccion.'">'.($direccion).'</div>
+									<div class="resultados_item_servicios">
+										'.get_servicios_new($_cuidador->adicionales).'
+										<!-- <div class="resultados_item_comentarios">
+											'.$_cuidador->valoraciones.' comentarios
+										</div> -->
+											<div class="resultados_item_ranking">
+												'.kmimos_petsitter_rating($_cuidador->id_post).'
+											</div>
+									</div>
+									<div class="resultados_item_experiencia">
+										'.$anios_exp.' años de experiencia
+									</div>
+									<div class="resultados_item_precio_container">
+										<span>Desde</span>
+										<div>MXN$ <strong>'.$desde[0].'<span>,'.$desde[1].'</span></strong></div>
+										<span class="por_noche">'.$por_noche_paseo.'</span>
+									</div>
+									<div class="resultados_item_ranking_movil">
+										'.kmimos_petsitter_rating($_cuidador->id_post).'
+									</div>
+									<div class="resultados_item_valoraciones">
+										'.$_cuidador->valoraciones.' valoraciones
+									</div>
+									'.$comentario.'
+								</div>
+							</div>
+						</div>
+						<div class="resultados_item_bottom">
+							'.$btn_conocer.'
+							<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" onclick="evento_google_kmimos(\'reservar_busqueda\'); evento_fbq_kmimos(\'reservar_busqueda\');" class="boton boton_verde">Reservar</a>
+						</div>
+					</div>
+				</div>
+			';
+		}
 		return $HTML;
 	}
 

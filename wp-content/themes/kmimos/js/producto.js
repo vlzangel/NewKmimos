@@ -16,7 +16,7 @@ var PAQs = [
 	"p2meses",
 	"p3meses",
 ];
-
+var order_id = 0;
 var PROCESAR_PAQUETE = true;
 function initCarrito(){
 	CARRITO = [];
@@ -652,7 +652,6 @@ function pagarReserva(id_invalido = false){
 				    	}, 1500);
 				    	es_fallida_con_orden = false;
 					break;
-
 					default:
 						var error = "Error procesando la reserva<br>";
 				    	error += "Por favor intente nuevamente.<br>";
@@ -1285,11 +1284,13 @@ jQuery(document).ready(function() {
 					}else if( CARRITO["pagar"]["tipo"] == "mercadopago" ){
 						jQuery("#reserva_btn_next_3").addClass("disabled");
 						jQuery("#reserva_btn_next_3").addClass("cargando");
+						// pagarReserva();
 						var info = convertCARRITO();
 						jQuery.post(HOME+"/procesos/reservar/pasarelas/mercadopago/create.php",
 							{
 								'info': info,
 								'ruta': RAIZ,
+								'order_id': order_id,
 							},
 							function(data){
 								if( data.status == 'CREATED' ){

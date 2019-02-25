@@ -1,0 +1,76 @@
+<?php
+[
+	'payer' => [
+		'id' => 'asd',
+		'entity_type' => 'individual',
+		'type' => 'guest',
+		'email' => 'asd@asd.com',
+		'identification' => [
+			'type' => 'DNI',
+			'number' => '123412341234',
+		],
+		'phone' => [
+			'area_code' => '2344',
+			'number' => '1234444444',
+			'extension' => '',
+		],
+		'first_name' => 'ssdffg',
+		'last_name' => 'gggggg',
+	],
+	'binary_mode' => true,
+	'order' => [
+		'type' => 'mercadopago',
+		'id' => '234',
+	],
+	
+	'external_reference' => '234234',
+	'description' => '2sdffgsdfg sdfgd',
+	'transaction_amount' => '100',
+	'coupon_amount' => '0',
+	'differential_pricing_id' => '123',
+	'application_fee' => '0',
+	'capture' => true,
+	'payment_method_id' => '100',
+	'issuer_id' => 'qwe',
+	'token' => 'qwee',
+	'statement_descriptor' => '',
+
+	'installments' => 1,
+	'notification_url' => '',
+	'callback_url' => '',
+	'additional_info' => [
+		'ip_address' => '',
+		'items' => [
+			'id' => '',
+			'title' => '',
+			'description' => '',
+			'picture_url' => '',
+			'category_id' => '',
+			'quantity' => '',
+			'unit_price' => '',
+		],
+		'payer' => [
+			'first_name' => '',
+			'last_name' => '',
+			'phone' => [
+				'area_code' => '',
+				'number' => '',
+			]
+			'address' => [
+				'zip_code' => '',
+				'street_name' => '',
+				'street_number' => '',
+			]
+			'registration_date' => '',
+		]
+		'shipments' => [
+			'receiver_address' => [
+				'zip_code' => '',
+				'street_name' => '',
+				'street_number' => '',
+				'floor' => '',
+				'apartment' => '',
+			]
+		]
+	]
+]

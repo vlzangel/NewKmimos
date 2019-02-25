@@ -755,6 +755,43 @@
 		   			}
 
 	   			break;
+
+	   			case 'mercadopago':
+		   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 48 hours'));
+		   			 
+					$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
+					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_mercadopago_vence', '{$due_date}');");
+					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_mercadopago_data', '');");
+	   				
+	   				echo json_encode(array(
+	   					"user_id" => $customer->id,
+						"order_id" => $id_orden,
+						"return_data" => true,
+					));
+			    
+				    if( isset($_SESSION[$id_session] ) ){
+				    	update_cupos( array(
+					    	"servicio" => $_SESSION[$id_session]["servicio"],
+					    	"tipo" => $parametros["pagar"]->tipo_servicio,
+				    		"autor" => $parametros["pagar"]->cuidador,
+					    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
+					    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
+					    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
+					    ), "-");
+						$_SESSION[$id_session] = "";
+						unset($_SESSION[$id_session]);
+					}
+
+					update_cupos( array(
+				    	"servicio" => $parametros["pagar"]->servicio,
+				    	"tipo" => $parametros["pagar"]->tipo_servicio,
+				    	"autor" => $parametros["pagar"]->cuidador,
+				    	"inicio" => strtotime($parametros["fechas"]->inicio),
+				    	"fin" => strtotime($parametros["fechas"]->fin),
+				    	"cantidad" => $cupos_a_decrementar
+				    ), "+");
+ 
+	   			break;
 		   	}
 
 		}else{
