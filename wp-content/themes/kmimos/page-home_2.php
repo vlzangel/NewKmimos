@@ -352,7 +352,7 @@
 			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
 
 			<div class="carrusel_servicios_principales_container">
-				<div class="carrusel_servicios_principales_box banner_box" data-paso="7" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="70" data-t="1000">
+				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-paso-movil="7" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="70" data-t="1000">
 					'.$items.''.$items.''.$items.''.$items.''.$items.'
 				</div>
 			</div>

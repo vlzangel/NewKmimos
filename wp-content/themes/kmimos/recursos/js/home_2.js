@@ -76,7 +76,28 @@ function mover_carrusel(box, dir){
 var TX1 = 0;
 var TX2 = 0;
 
+function ajustar_carrusel_servicios_movil(){
+
+    if( parseInt( jQuery("body").width() ) < 768 ){
+        var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
+        var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso-movil") );
+        var d = 55+(paso*h);
+        jQuery(this).find(".banner_box").animate({left: (-1*d)+"%"}, 1000);
+    }
+
+}
+
+
 jQuery( document ).ready(function() {
+
+    jQuery(window).on('resize', function () {
+        if( parseInt( jQuery("body").width() ) < 768 ){
+            ajustar_carrusel_servicios_movil();
+        }else{
+            jQuery(".carrusel_servicios_principales_box").css("left", "0%");
+        }
+    });
+    ajustar_carrusel_servicios_movil();
 
     jQuery("#buscador_2 input").on("change", function(e){
         jQuery("#buscador_2").submit();
@@ -100,7 +121,7 @@ jQuery( document ).ready(function() {
                 TX2 = touch.pageX;
 
                 var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
-                var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso") );
+                var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso-movil") );
 
                 var d = TX1-TX2;
                 if( Math.abs( d ) < 30 ){
@@ -117,7 +138,7 @@ jQuery( document ).ready(function() {
 
         if( parseInt( jQuery("body").width() ) < 768 ){
             var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
-            var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso") );
+            var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso-movil") );
 
             var d = TX1-TX2;
             if( Math.abs( d ) > 30 ){
@@ -125,11 +146,11 @@ jQuery( document ).ready(function() {
                 if( d > 0 ){
                     console.log( "Mover der" );
                     paso++;
-                    jQuery(this).find(".banner_box").attr("data-paso", paso);
+                    jQuery(this).find(".banner_box").attr("data-paso-movil", paso);
                 }else{
                     console.log( "Mover izq" );
                     paso--;
-                    jQuery(this).find(".banner_box").attr("data-paso", paso);
+                    jQuery(this).find(".banner_box").attr("data-paso-movil", paso);
                 }
 
                 d = 55+(paso*h);
@@ -137,68 +158,6 @@ jQuery( document ).ready(function() {
 
             }
         }
-
-        // jQuery(this).find(".banner_box").css("left", "0%");
-        /*
-        jQuery(this).find("#item_principal_0").css("left", "-"+(55)+"%");
-        jQuery(this).find("#item_principal_1").css("left", (15)+"%");
-        jQuery(this).find("#item_principal_2").css("left", (85)+"%");
-        */
-
-
-        /*
-        if( parseInt( jQuery("body").width() ) < 768 ){
-
-            var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
-                var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
-
-                var d = TX1-TX2;
-                if( Math.abs( d ) < 30 ){
-                    d = (paso*h)+(d*0.2);
-                    jQuery(".destacados_box > div > div").css("left", (-1*d)+"%");
-                }
-
-            var paso = jQuery(this).find(".banner_box").attr("data-paso");
-
-            var d = TX1-TX2;
-            if( Math.abs( d ) > 30 ){
-
-                // jQuery(this).find("#item_principal_0").css("left", "-"+(55)+"%");
-                // jQuery(this).find("#item_principal_1").css("left", (15)+"%");
-                // jQuery(this).find("#item_principal_2").css("left", (85)+"%");
-
-                /*
-                jQuery(this).find("#item_principal_0").removeClass("item_principal_0");
-                jQuery(this).find("#item_principal_1").removeClass("item_principal_1");
-                jQuery(this).find("#item_principal_2").removeClass("item_principal_2");
-                jQuery(this).find("#item_principal_3").removeClass("item_principal_3");
-
-                if( d > 0 ){
-                    console.log( "Mover der" );
-
-                    jQuery(this).find("#item_principal_0").addClass("item_principal_3");
-                    jQuery(this).find("#item_principal_1").addClass("item_principal_0");
-                    jQuery(this).find("#item_principal_2").addClass("item_principal_1");
-                    jQuery(this).find("#item_principal_3").addClass("item_principal_2");
-
-                }else{
-                    console.log( "Mover izq" );
-
-                    jQuery(this).find("#item_principal_0").addClass("item_principal_1");
-                    jQuery(this).find("#item_principal_1").addClass("item_principal_2");
-                    jQuery(this).find("#item_principal_2").addClass("item_principal_3");
-                    jQuery(this).find("#item_principal_3").addClass("item_principal_0");
-
-                }
-
-                jQuery(this).find(".item_principal_0").attr("id", "item_principal_0");
-                jQuery(this).find(".item_principal_1").attr("id", "item_principal_1");
-                jQuery(this).find(".item_principal_2").attr("id", "item_principal_2");
-                jQuery(this).find(".item_principal_3").attr("id", "item_principal_3");
-                
-            }
-        }
-        */
         
     });
 
@@ -206,7 +165,6 @@ jQuery( document ).ready(function() {
 
 
     jQuery(".seccion_destacados_flechas").on('click', function(e){
-        console.log( jQuery(this).attr("data-dir") );
         mover_carrusel(jQuery(this).parent().find(".banner_box"), jQuery(this).attr("data-dir") );
     });
 
