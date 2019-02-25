@@ -1,5 +1,15 @@
 <?php
 
+    if( !isset($_SESSION[ "llego_al_home_c" ]) ){
+        $HTML .= '
+            <script>
+                evento_google("llego_al_home_c");  
+                evento_fbq("track", "traking_code_llego_al_home_c");   
+            </script>
+        ';
+        $_SESSION[ "llego_al_home_c" ] = "YA_ENTRO";
+    }
+
 	/* DESTACADOS */
 	$destacados = get_destacados_home();
 	if( is_array($destacados) && count($destacados) > 0 ){

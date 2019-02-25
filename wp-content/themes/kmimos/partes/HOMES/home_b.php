@@ -1,4 +1,14 @@
 <?php
+
+    if( !isset($_SESSION[ "llego_al_home_b" ]) ){
+        $HTML .= '
+            <script>
+                evento_google("llego_al_home_b");  
+                evento_fbq("track", "traking_code_llego_al_home_b");   
+            </script>
+        ';
+        $_SESSION[ "llego_al_home_b" ] = "YA_ENTRO";
+    }
 	
     $HTML .= '
 	<div id="banner_home">
