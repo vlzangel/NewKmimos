@@ -77,7 +77,7 @@
 	    wp_enqueue_style('producto', getTema()."/css/producto.css", array(), '1.0.0');
 		wp_enqueue_style('producto_responsive', getTema()."/css/responsive/producto_responsive.css", array(), '1.0.0');
 
-		wp_enqueue_script('producto', getTema()."/js/producto.js", array("jquery"), '1.0.0');
+		wp_enqueue_script('producto', getTema()."/js/producto.js", array("jquery"), '2.0.0');
 
 		wp_enqueue_script('openpay-v1', getTema()."/js/openpay.v1.min.js", array("jquery"), '1.0.0');
 		wp_enqueue_script('openpay-data', getTema()."/js/openpay-data.v1.min.js", array("jquery", "openpay-v1"), '1.0.0');

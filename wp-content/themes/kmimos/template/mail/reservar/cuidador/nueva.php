@@ -154,19 +154,10 @@
             text-align: center;
         '>
             <td style='padding: 7px; width: 20px; border-bottom: solid 1px #940d99;'>
-                Nombre
+                Nombre / Raza
             </td>
             <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-                Raza
-            </td>
-            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-                Edad
-            </td>
-            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-                Tamaño
-            </td>
-            <td style='padding: 7px; border-bottom: solid 1px #940d99; border-left: solid 1px #940d99;'>
-                Comportamiento
+                Edad / Tamaño / Comportamiento
             </td>
         </tr>
 
