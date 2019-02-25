@@ -21,6 +21,15 @@
 
 				$cuidador->valoraciones = ( $cuidador->valoraciones == 1 ) ? $cuidador->valoraciones." valoración": $cuidador->valoraciones." valoraciones";
 				
+				$cuidador->estados = explode("=", $cuidador->estados);
+				$cuidador->municipios = explode("=", $cuidador->municipios);
+
+				$mun = $wpdb->get_var("SELECT iso FROM states WHERE id = {$cuidador->estados[1]}");
+				$est = $wpdb->get_var("SELECT name FROM locations WHERE id = {$cuidador->municipios[1]}");
+
+				$est = htmlentities( utf8_decode($est) );
+				$ubicacion = $est.', '. ucfirst( strtolower( $mun ) );
+
 				$resultado[] = (object)[
 					"id" => $cuidador->user_id,
 					"img" => kmimos_get_foto($cuidador->user_id),
@@ -31,6 +40,7 @@
 					"destacado" => $atributos["destacado"],
 					"precio" => number_format( $cuidador->hospedaje_desde*getComision(), 2, ',', '.'),
 					"valoraciones" => $cuidador->valoraciones,
+					"ubicacion" => $ubicacion
 				];
 			}
 			return $resultado;
@@ -76,6 +86,8 @@
 					$atributos = unserialize($cuidador->atributos);
 
 					$resultado[] = (object)[
+						"atributos" => $atributos,
+
 						"img" => kmimos_get_foto($cuidador->user_id),
 						"cliente" => kmimos_get_foto( $cliente_id ),
 						"nombre" => $cuidador->titulo,

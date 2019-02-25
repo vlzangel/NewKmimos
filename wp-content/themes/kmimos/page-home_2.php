@@ -36,7 +36,8 @@
     	'_Paseos.jpg',
     ];
     foreach ($info_banner as $key => $url) {
-    	$items .= '<div class="banner_rotativo_item" style="background-image: url('.get_recurso('img').'HOME_2/Muestra'.$url.');"></div>';
+    	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/Muestra'.$url.');"></div>';
+    	$items .= '<div class="banner_rotativo_item solo_movil_banner" style="background-image: url('.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url.');"></div>';
     }
 
     $items_count = count($info_banner);
@@ -57,6 +58,8 @@
 			</div>
 
 			<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
+
+				<div class="titulo_banner_top">Selecciona los filtros para búsqueda avanzada</div>
 
 				<input type="hidden" name="personalizada" value="1" />  
 
@@ -133,7 +136,7 @@
 							<span>Perro</span>
 							<div class="top_check"></div>
 						</label>
-						<label class="input_check_box" for="gato">
+						<label class="input_check_box gato" for="gato">
 							<input type="checkbox" id="gato" name="mascotas[]" value="gatos"  />
 							<img src="'.get_recurso("img").'HOME/SVG/Gato.svg" />
 							<span>Gato</span>
@@ -345,11 +348,12 @@
 
 	$HTML .= '
 		<div class="carrusel_servicios">
-			<h2>¿Qué estás buscando para tu mascota? > </h2>
+			<h2 class="solo_pc">¿Qué estás buscando para tu mascota? > </h2>
+			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
 
 			<div class="carrusel_servicios_principales_container">
 				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="100" data-t="1000">
-					'.$items.'
+					'.$items.''.$items.'
 				</div>
 			</div>
 			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
@@ -378,6 +382,7 @@
 			'<div class="carrusel_recomendados_img" style="background-image: url('.$c->img.');"></div>'.
 			'<div class="carrusel_recomendados_data">'.
 				'<span>'.$c->nombre.'</span>'.
+				'<div class="carrusel_recomendados_ubicacion">'.$c->ubicacion.'</div>'.
 				'<div class="carrusel_recomendados_experiencia">'.$c->experiencia.'</div>'.
 				'<div class="carrusel_recomendados_precio">Desde MXN $ '.$c->precio.'</div>'.
 				'<div class="carrusel_recomendados_ranking">'.$c->ranking.'</div>'.
@@ -396,7 +401,7 @@
 			<h2>Te recomendamos estos cuidadores mejor evaluados > </h2>
 
 			<div class="carrusel_recomendados_container">
-				<div class="carrusel_recomendados_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="20" data-h_movil="100" data-t="800">
+				<div class="carrusel_recomendados_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="20" data-h_movil="50" data-t="800">
 					'.$items.'
 				</div>
 			</div>
@@ -413,7 +418,7 @@
 			<form id="suscribir" onsubmit="form_subscribe(this); return false;" class="subscribe" data-subscribe="'.get_home_url().'/wp-content/plugins/kmimos">
 				<input type="hidden" name="section" value="'.$seccion.'" class="form-control" placeholder="Ingresa tu correo">
 				<input type="hidden" id="wlabelSubscribeFooter" name="wlabelSubscribeFooter" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">
-				<input type="text" id="email" name="email" placeholder="Ingresa tu correo" />
+				<input type="text" id="mail" name="mail" placeholder="Ingresa tu correo" />
 				<input type="submit" value="Inscribirme al blog" />
 				<div class="message message-especial"></div>
 			</form>

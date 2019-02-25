@@ -55,6 +55,10 @@
 
 /* BANNER */
 
+	.titulo_banner_top{
+		display: none;
+	}
+
 	#banner_home{
 		height: auto;
 		background-size: cover;
@@ -1579,6 +1583,7 @@
 		    padding: 5px;
 		    white-space: normal;
 		    text-align: center;
+		    cursor: pointer;
 		}
 
 		.carrusel_servicios_principales_img {
@@ -1785,4 +1790,18 @@
 		    font-family: Gotham-Pro-Bold;
 		    font-size: 12px;
 		    height: 34px;
+		}
+
+		.carrusel_recomendados_ubicacion {
+		    padding: 0px;
+		    text-align: left;
+		    font-weight: 600;
+		}
+
+		.banner_rotativo .solo_pc_banner {
+		    display: inline-block;
+		}
+
+		.banner_rotativo .solo_movil_banner {
+		    display: none;
 		}

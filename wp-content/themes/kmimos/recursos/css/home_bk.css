@@ -486,20 +486,8 @@
 
 	.datos_top_destacado_containder {
 	    position: relative;
-	    padding: 5px 0px 0px;
+	    padding: 5px 0px;
 	    overflow: hidden;
-	}
-
-	.ubicacion_destacado_containder {
-	    font-size: 10px;
-	    font-weight: 600;
-	    padding: 3px 10px;
-	    text-align: right;
-	}
-
-	#banner_home .ubicacion_destacado_containder {
-	    font-size: 9px;
-	    padding: 0px 10px;
 	}
 
 	.avatar_destacado {
@@ -658,7 +646,7 @@
 		}
 
 		#banner_home .msg_destacado_containder {
-		    padding: 1px 10px 5px 10px;
+		    padding: 5px 10px 5px 10px;
 		    min-height: auto;
 		    font-size: 9px;
 		}

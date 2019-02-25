@@ -90,10 +90,14 @@ function buscar( campo ){
 
                 if( respuesta[2].length > 0){
                     jQuery.each(respuesta[2], function(i, cuidador){
+                        var BANDERIN = '';
+                        if( cuidador['atributos']['supercuidador'] == "1" ){
+                            BANDERIN = '<img class="img_destacado_2" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/Banderin_top_cuidador.svg" />';
+                        }
                         desta_str += 
                         '<div class="destacados_item">'+
                             '<div class="img_destacado" style="background-image: url('+cuidador.img+');">'+
-                                '<img class="img_destacado_2" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/Banderin_top_cuidador.svg" />'+
+                                BANDERIN+
                                 '<img class="img_patitas" src="'+HOME+'/recursos/img/PERSONALIZADA/SVG/icono_kmimos.svg" />'+
                             '</div>'+
                             '<div class="datos_destacado_containder">'+
@@ -119,7 +123,7 @@ function buscar( campo ){
                         '<table style="width: 100%; height: 100%;">'+
                             '<tr>'+
                                 '<td class="sin_resultados">'+
-                                    'Lo sentimos, ningún cuidador encaja con tu búsqueda. Ajusta los filtros personalizados o llámanos al 01 800 9 KMIMOS (01 800 9 564667), donde con gusto te ayudaremos a encontrar un Cuidador ideal para tu peludo.'+
+                                    'Lo sentimos, no hay cuidadores que cumplan con tus preferencias o características de tus mascotas. Ajusta los filtros personalizados o <span>llámanos al 01 800 9 KMIMOS</span> (01 800 9 564667), donde <span>Con gusto te ayudaremos a encontrar un Cuidador ideal</span> para tu peludo.'+
                                 '</td>'+
                             '</tr>'+
                         '</table>'+

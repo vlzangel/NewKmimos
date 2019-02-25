@@ -33,8 +33,10 @@
 
 	extract($_POST);
 
-	$DESCUENTO_CONDICION .= " AND atributos LIKE '%destacado_home\";s:1:\"1%' "; 
+	// $DESCUENTO_CONDICION .= " AND atributos LIKE '%destacado_home\";s:1:\"1%' "; 
 
+	$DESCUENTO_CONDICION = '';
+	
 	if( $mascotas_propias == 1 ){
 		$DESCUENTO_CONDICION .= " AND num_mascotas > 0 "; 
 	}

@@ -31,9 +31,9 @@
 
 	$cuidadores_destacados = '
 	<div class="seccion_destacados">
-		<h2>Bienvenido a los <span>filtros personalizados <img src="'.get_recurso('img').'PERSONALIZADA/PNG/logo-verde.png" /></span> </h2>
+		<h2>Bienvenido a los <span>filtros personalizados <img src="'.get_recurso('img').'HOME/PNG/logo-verde.png" /></span> </h2>
 		<div class="seccion_destacados_subtitulo">
-			Para facilitar tu búsqueda hemos seleccionado estos tres cuidadores para ti. Ajusta los <span>filtros mostrados abajo</span> para encontrar al Cuidador ideal para tu mascota. También puedes <a class="'.get_home_url().'/busqueda">omitir este paso y ver la lista completa de Cuidadores.</a>
+			Para facilitar tu búsqueda hemos seleccionado estos tres cuidadores para ti. Ajusta los <span>filtros mostrados abajo</span> para encontrar al Cuidador ideal para tu mascota. También puedes <a href="'.get_home_url().'/busqueda">omitir este paso y ver la lista completa de Cuidadores.</a>
 		</div>
 		<div class="destacados_container">
 			<div class="destacados_box" data-paso="0" data-final_pc="0" data-final_movil="0">
@@ -85,7 +85,7 @@
 						<div>
 							Modifica los <span>filtros personalizados</span> de acuerdo a tus preferencias.
 						</div>
-						IMPORTANTE: Cada vez que modifiques un filtro, los Cuidadores mostrados se actualizarán.
+						IMPORTANTE: Cada vez que modifiques un filtro, los Cuidadores mostrados arriba se actualizarán.
 					</div>
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />

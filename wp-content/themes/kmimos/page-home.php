@@ -3,11 +3,17 @@
         Template Name: Home
     */
 
+    $landing = ( isset($_GET["landing"]) ) ? $_GET["landing"] : $_SESSION['landing_test'];
+
+    if( $landing == 'd' ){
+    	header("location: ".get_home_url()."/home-2/" );
+    }
+
 	date_default_timezone_set('America/Mexico_City');
 
     wp_enqueue_style('home_club_responsive', getTema()."/css/responsive/club_patitas_home.css", array(), '1.0.0');
     wp_enqueue_style('home_kmimos', get_recurso("css")."home.css", array(), '1.0.0');
-    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/home_2.css", array(), '1.0.0');
+    wp_enqueue_style('home_responsive', get_recurso("css")."responsive/home.css", array(), '1.0.0');
 
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
@@ -63,9 +69,7 @@
 		';
 	}
 
-	$personalizada = ( $_GET["landing_b"] == 'yes' ) ? '<input type="hidden" id="personalizada" name="personalizada" value="1" />' : '';
-
-	switch ( $_GET["landing"] ) {
+	switch ( $landing ) {
 		case 'b':
 			include dirname(__FILE__).'/partes/HOMES/home_b.php';
 		break;

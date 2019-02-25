@@ -14,7 +14,6 @@
 
 				<input type="hidden" name="redireccionar" value="1" />
 				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
-				'.$personalizada.'
 
 				<input type="hidden" id="latitud" name="latitud" />
 				<input type="hidden" id="longitud" name="longitud" />
@@ -279,6 +278,9 @@
 								'<span>'.$cuidador->experiencia.'</span>'.
 							'</div>'.
 							'<div class="ranking_destacado">'.$cuidador->ranking.'</div>'.
+						'</div>'.
+						'<div class="ubicacion_destacado_containder">'.
+							$cuidador->ubicacion.
 						'</div>'.
 						'<div class="msg_destacado_containder">'.
 							'"'.$cuidador->msg.'"'.

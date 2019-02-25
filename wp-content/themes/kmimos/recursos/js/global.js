@@ -7,7 +7,6 @@ var isMobile = {
 jQuery( document ).ready(function() {
 	fixedHeader();
 	jQuery(window).on('scroll', function () {
-        console.log( "Hola" );
 	  	fixedHeader();
 	});
     if(navigator.platform.substr(0, 2) == 'iP'){
