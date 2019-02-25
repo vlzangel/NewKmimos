@@ -731,23 +731,31 @@
 
 		# BEGIN - alternar cuidadores
 		$_PAGE = $PAGE / 10;
-		$PAGE = $_PAGE * 6;
+		$PAGE = $_PAGE * 8;
 		$contador = ( $_PAGE>0 )? $_PAGE * 10 : $PAGE ;
 		# END - alternar cuidadores
+		$orden_default = $_SESSION['orden_default'];
 
 		for ($invertir_orden=0; $invertir_orden <= 1; $invertir_orden++) 
 		{
-			# Resultados invertidos
-			if( $invertir_orden == 1 ){
-				$testing = 'INV';
-				$fin = ( $total > ($PAGE+4) ) ? $PAGE+4 : $total;
-				$resultados = array_reverse($resultados, false);
+			if( $orden_default == 'NO' ){
+				$testing = 'DEF';
+				$invertir_orden = 2;
+				$fin = ( $total > ($PAGE+10) ) ? $PAGE+10 : $total;
+			}else{
+				# Resultados invertidos
+				if( $invertir_orden == 1 ){
+					$testing = 'INV';
+					$fin = ( $total > ($PAGE+2) ) ? $PAGE+2 : $total;
+					$resultados = array_reverse($resultados, false);
 
-			# Resultados ordenados
-			}else{				
-				$testing = 'ORD';
-				$fin = ( $total > ($PAGE+6) ) ? $PAGE+6 : $total;			
+				# Resultados ordenados
+				}else{				
+					$testing = 'ORD';
+					$fin = ( $total > ($PAGE+8) ) ? $PAGE+8 : $total;			
+				}
 			}
+
 
 			# Crear ficha de cuidadores
 			for ($i = $PAGE; $i < $fin; $i++ ) {
