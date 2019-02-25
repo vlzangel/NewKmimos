@@ -96,7 +96,7 @@
 				<div id="servicios_principales_container">
 					<div class="servicios_principales_container">
 						<div class="servicios_principales_box"  style="position: relative;">
-							<label class="input_check_box" for="hospedaje">
+							<label class="input_check_box" for="hospedaje" onclick="evento_google(\'hospedaje_c\'); evento_fbq("track", "traking_code_boton_hospedaje_c");">
 								<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
