@@ -99,13 +99,14 @@ jQuery( document ).ready(function() {
                 var touch = ev.targetTouches[0]; 
                 TX2 = touch.pageX;
 
-                var h = parseInt( jQuery(this).find(".destacados_box").attr("data-h_movil") );
-                var paso = parseInt( jQuery(this).find(".destacados_box").attr("data-paso") );
+                var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
+                var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso") );
 
                 var d = TX1-TX2;
                 if( Math.abs( d ) < 30 ){
                     d = (paso*h)+(d*0.2);
-                    jQuery(this).find(".destacados_box > div > div").css("left", (-1*d)+"%");
+                    d = -55-d;
+                    jQuery(this).find(".banner_box").css("left", (d)+"%");
                 }
 
             }
@@ -113,17 +114,92 @@ jQuery( document ).ready(function() {
     });
 
     jQuery(".carrusel_servicios").on('touchend', function(e){
+
         if( parseInt( jQuery("body").width() ) < 768 ){
+            var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
+            var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso") );
+
             var d = TX1-TX2;
             if( Math.abs( d ) > 30 ){
-                console.log( "Mover" );
+
                 if( d > 0 ){
-                    mover_carrusel(jQuery(this).find(".destacados_box"), "der");
+                    console.log( "Mover der" );
+                    paso++;
+                    jQuery(this).find(".banner_box").attr("data-paso", paso);
                 }else{
-                    mover_carrusel(jQuery(this).find(".destacados_box"), "izq");
+                    console.log( "Mover izq" );
+                    paso--;
+                    jQuery(this).find(".banner_box").attr("data-paso", paso);
                 }
+
+                d = 55+(paso*h);
+                jQuery(this).find(".banner_box").animate({left: (-1*d)+"%"}, 1000);
+
             }
         }
+
+        // jQuery(this).find(".banner_box").css("left", "0%");
+        /*
+        jQuery(this).find("#item_principal_0").css("left", "-"+(55)+"%");
+        jQuery(this).find("#item_principal_1").css("left", (15)+"%");
+        jQuery(this).find("#item_principal_2").css("left", (85)+"%");
+        */
+
+
+        /*
+        if( parseInt( jQuery("body").width() ) < 768 ){
+
+            var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
+                var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
+
+                var d = TX1-TX2;
+                if( Math.abs( d ) < 30 ){
+                    d = (paso*h)+(d*0.2);
+                    jQuery(".destacados_box > div > div").css("left", (-1*d)+"%");
+                }
+
+            var paso = jQuery(this).find(".banner_box").attr("data-paso");
+
+            var d = TX1-TX2;
+            if( Math.abs( d ) > 30 ){
+
+                // jQuery(this).find("#item_principal_0").css("left", "-"+(55)+"%");
+                // jQuery(this).find("#item_principal_1").css("left", (15)+"%");
+                // jQuery(this).find("#item_principal_2").css("left", (85)+"%");
+
+                /*
+                jQuery(this).find("#item_principal_0").removeClass("item_principal_0");
+                jQuery(this).find("#item_principal_1").removeClass("item_principal_1");
+                jQuery(this).find("#item_principal_2").removeClass("item_principal_2");
+                jQuery(this).find("#item_principal_3").removeClass("item_principal_3");
+
+                if( d > 0 ){
+                    console.log( "Mover der" );
+
+                    jQuery(this).find("#item_principal_0").addClass("item_principal_3");
+                    jQuery(this).find("#item_principal_1").addClass("item_principal_0");
+                    jQuery(this).find("#item_principal_2").addClass("item_principal_1");
+                    jQuery(this).find("#item_principal_3").addClass("item_principal_2");
+
+                }else{
+                    console.log( "Mover izq" );
+
+                    jQuery(this).find("#item_principal_0").addClass("item_principal_1");
+                    jQuery(this).find("#item_principal_1").addClass("item_principal_2");
+                    jQuery(this).find("#item_principal_2").addClass("item_principal_3");
+                    jQuery(this).find("#item_principal_3").addClass("item_principal_0");
+
+                }
+
+                jQuery(this).find(".item_principal_0").attr("id", "item_principal_0");
+                jQuery(this).find(".item_principal_1").attr("id", "item_principal_1");
+                jQuery(this).find(".item_principal_2").attr("id", "item_principal_2");
+                jQuery(this).find(".item_principal_3").attr("id", "item_principal_3");
+                
+            }
+        }
+        */
+        
     });
 
 

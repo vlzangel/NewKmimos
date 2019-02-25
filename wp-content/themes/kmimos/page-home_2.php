@@ -330,44 +330,21 @@
 		],
 	];
 
-	$items = ''; $cont = 0;
+	$items = '';
 	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
 		$items .= 
-		'<label id="item_principal_'.$key.'" class="carrusel_servicios_principales_item item_principal_'.$cont.'" for="'.$servicio[3].'_2">'.
+		'<label class="carrusel_servicios_principales_item" for="'.$servicio[3].'_2">'.
 			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/'.$servicio[0].');"></div>'.
 			'<div class="carrusel_servicios_principales_data">'.
 				'<label>'.strtoupper($servicio[1]).'</label>'.
 				'<p>'.$servicio[2].'</p>'.
 			'</div>'.
 		'</label>';
-		$cont++;
-	}
-	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
-		$items .= 
-		'<label id="item_principal_'.$key.'" class="carrusel_servicios_principales_item item_principal_'.$cont.'" for="'.$servicio[3].'_2">'.
-			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/'.$servicio[0].');"></div>'.
-			'<div class="carrusel_servicios_principales_data">'.
-				'<label>'.strtoupper($servicio[1]).'</label>'.
-				'<p>'.$servicio[2].'</p>'.
-			'</div>'.
-		'</label>';
-		$cont++;
-	}
-	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
-		$items .= 
-		'<label id="item_principal_'.$key.'" class="carrusel_servicios_principales_item item_principal_'.$cont.'" for="'.$servicio[3].'_2">'.
-			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/'.$servicio[0].');"></div>'.
-			'<div class="carrusel_servicios_principales_data">'.
-				'<label>'.strtoupper($servicio[1]).'</label>'.
-				'<p>'.$servicio[2].'</p>'.
-			'</div>'.
-		'</label>';
-		$cont++;
 	}
 
     $items_count = count($SERVICIOS_PRINCIPALES);
 	$final_pc = $items_count-3;
-	$final_movil = $items_count-1;
+	$final_movil = ($items_count)-1;
 
 	$HTML .= '
 		<div class="carrusel_servicios">
@@ -375,8 +352,8 @@
 			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
 
 			<div class="carrusel_servicios_principales_container">
-				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="100" data-t="1000">
-					'.$items.'
+				<div class="carrusel_servicios_principales_box banner_box" data-paso="7" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="70" data-t="1000">
+					'.$items.''.$items.''.$items.''.$items.''.$items.'
 				</div>
 			</div>
 			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
