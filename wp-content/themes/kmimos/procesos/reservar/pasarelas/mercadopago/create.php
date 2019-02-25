@@ -1,6 +1,6 @@
 <?php
-	require_once(dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/mercadopago/mercadopago.php');
-    include_once(dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/Requests/Requests.php');
+	require(dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/mercadopago/mercadopago.php');
+    include(dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/Requests/Requests.php');
 
 	# Parametros
 	extract($_POST);
