@@ -25,7 +25,6 @@
 			'pre { position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 99999999; display: none !important; }'.
 		'</style>';
 
-/*
 	$HTML .= "
 		<!-- Google Tag Manager -->
 		<script>
@@ -56,7 +55,7 @@
 	        ga('send', 'pageview');
         </script>
 	";
-*/
+
 	echo comprimir( $HTML );
 
     if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){
