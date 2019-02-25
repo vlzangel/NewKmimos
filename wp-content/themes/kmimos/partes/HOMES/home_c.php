@@ -26,7 +26,7 @@
 						'<div class="msg_destacado_containder">'.
 							'"'.$cuidador->msg.'"'.
 						'</div>'.
-						'<a href="'.$cuidador->link.'" onclick="evento_google(\'ver_perfil_prueba_b\'); evento_fbq("track", "traking_code_ver_perfil_prueba_b");" class="boton boton_verde">Ver perfil</a>'.
+						'<a href="'.$cuidador->link.'" onclick="evento_google(\'ver_perfil_prueba_c\'); evento_fbq("track", "traking_code_ver_perfil_prueba_c");" class="boton boton_verde">Ver perfil</a>'.
 					'</div>'.
 				'</div>';
 		}
