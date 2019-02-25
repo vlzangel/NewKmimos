@@ -1,5 +1,5 @@
 <?php
-	require_once dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/mercadopago/mercadopago.php';
+	include_once dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/mercadopago/mercadopago.php';
     include_once(dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/Requests/Requests.php');
 
 	# Parametros
@@ -38,8 +38,7 @@
 
 	# Crear Orden
 	Requests::register_autoloader();
-		$path = 'http://mx.kmimos.la/wp-content/themes/kmimos/procesos/reservar/pagar.php';
-        //$reserva_data = Requests::post($ruta.'/wp-content/themes/kmimos/procesos/reservar/pagar.php',array(),$options);
+		$path = $ruta.'/wp-content/themes/kmimos/procesos/reservar/pagar.php';
         $reserva_data = Requests::post($path,array(),$_POST);
         $reserva = json_decode($reserva_data->body);
 
