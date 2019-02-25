@@ -735,10 +735,10 @@
 		$contador = ( $_PAGE>0 )? $_PAGE * 10 : $PAGE ;
 		# END - alternar cuidadores
 
-		for ($orden=0; $orden <= 1; $orden++) { 
-
+		for ($invertir_orden=0; $invertir_orden <= 1; $invertir_orden++) 
+		{
 			# Resultados invertidos
-			if( $orden == 1 ){
+			if( $invertir_orden == 1 ){
 				$testing = 'INV';
 				$fin = ( $total > ($PAGE+4) ) ? $PAGE+4 : $total;
 				$resultados = array_reverse($resultados, false);
