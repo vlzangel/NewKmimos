@@ -739,10 +739,9 @@
 
 			# Resultados invertidos
 			if( $orden == 1 ){
-				$inv_cuidadores = $resultados;
-				$resultados = array_reverse($inv_cuidadores, false);
-				$fin = ( $total > ($PAGE+4) ) ? $PAGE+4 : $total;
 				$testing = 'INV';
+				$fin = ( $total > ($PAGE+4) ) ? $PAGE+4 : $total;
+				$resultados = array_reverse($resultados, false);
 
 			# Resultados ordenados
 			}else{				
