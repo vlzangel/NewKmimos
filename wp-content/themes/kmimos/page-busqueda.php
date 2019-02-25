@@ -104,7 +104,7 @@
 	    if( $_POST['orderby'] != "" ){
 	    	// $titulo_ordenamiento = $ordenamientos[ $_POST['orderby'] ][0];
 	    }
-	    $ordenamiento = "";
+	    $ordenamiento = '<option value="default">Selecciona una opci&oacute;n</option>';
 	    foreach ( $ordenamientos as $clave => $valor ) {
 	    	$check = ( $_SESSION["busqueda"]["orderby"] == $valor[1] ) ? "selected": "";
 	    	$ordenamiento .= '<option id="'.$valor[1].'" value="'.$valor[1].'" '.$check.'>'.$valor[0].'</option>';

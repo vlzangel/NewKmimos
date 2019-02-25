@@ -28,6 +28,12 @@
 
 	extract($_POST);
 
+	$orden_default = 'NO';
+	if( $orderby == 'default' ){
+		$orden_default = 'SI';
+		$orderby = 'rating_desc';
+	}
+
 	if( $flash == 1 ){
 		$servicios[] = "flash";
 	}
@@ -445,7 +451,9 @@
     /* Fin Filtro de busqueda */
 
     /* Filtro predeterminado */
-    	if( $orderby == "" ){ $orderby = "rating DESC, valoraciones DESC"; }
+	if( $orderby == "" ){ 
+		$orderby = "rating DESC, valoraciones DESC"; 
+	}
     /* Fin Filtro predeterminado */
 
     if( $FLASH_ORDEN != "" ){
@@ -542,6 +550,7 @@
 	$_SESSION['sql'] = $sql;
     $_SESSION['resultado_busqueda'] = $cuidadores;
     $_SESSION['cuidadores'] = $ids_validos;
+    $_SESSION['orden_default'] = $orden_default;
 
     if( $_POST["landing_paseos"] == "yes" ){
     	$_SESSION['landing_paseos'] = "yes";
