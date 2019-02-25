@@ -330,16 +330,39 @@
 		],
 	];
 
-	$items = '';
+	$items = ''; $cont = 0;
 	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
 		$items .= 
-		'<label class="carrusel_servicios_principales_item" for="'.$servicio[3].'_2">'.
+		'<label id="item_principal_'.$key.'" class="carrusel_servicios_principales_item item_principal_'.$cont.'" for="'.$servicio[3].'_2">'.
 			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/'.$servicio[0].');"></div>'.
 			'<div class="carrusel_servicios_principales_data">'.
 				'<label>'.strtoupper($servicio[1]).'</label>'.
 				'<p>'.$servicio[2].'</p>'.
 			'</div>'.
 		'</label>';
+		$cont++;
+	}
+	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
+		$items .= 
+		'<label id="item_principal_'.$key.'" class="carrusel_servicios_principales_item item_principal_'.$cont.'" for="'.$servicio[3].'_2">'.
+			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/'.$servicio[0].');"></div>'.
+			'<div class="carrusel_servicios_principales_data">'.
+				'<label>'.strtoupper($servicio[1]).'</label>'.
+				'<p>'.$servicio[2].'</p>'.
+			'</div>'.
+		'</label>';
+		$cont++;
+	}
+	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
+		$items .= 
+		'<label id="item_principal_'.$key.'" class="carrusel_servicios_principales_item item_principal_'.$cont.'" for="'.$servicio[3].'_2">'.
+			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/'.$servicio[0].');"></div>'.
+			'<div class="carrusel_servicios_principales_data">'.
+				'<label>'.strtoupper($servicio[1]).'</label>'.
+				'<p>'.$servicio[2].'</p>'.
+			'</div>'.
+		'</label>';
+		$cont++;
 	}
 
     $items_count = count($SERVICIOS_PRINCIPALES);
@@ -353,7 +376,7 @@
 
 			<div class="carrusel_servicios_principales_container">
 				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="100" data-t="1000">
-					'.$items.''.$items.'
+					'.$items.'
 				</div>
 			</div>
 			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
@@ -388,7 +411,7 @@
 				'<div class="carrusel_recomendados_ranking">'.$c->ranking.'</div>'.
 				'<div class="carrusel_recomendados_experiencia">'.$c->valoraciones.'</div>'.
 			'</div>'.
-			'<a href="'.$c->link.'"></a>'.
+			'<a href="'.$c->link.'?ldg=d"></a>'.
 		'</div>';
 	}
 

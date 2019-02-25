@@ -1426,8 +1426,28 @@
 		    margin: 20px auto 0px;
 		}
 
+		.carrusel_servicios_principales_box {
+		    left: -55%;
+		    height: 206px;
+		}
+
 		.carrusel_servicios_principales_item {
 		    width: 70%;
+		    #position: absolute;
+		    #top: 0px;
+		    #left: 15%;
+		}
+
+		.item_principal_0 {
+			#left: -55%;
+		}
+
+		.item_principal_2 {
+			#left: 85%;
+		}
+
+		.item_principal_3 {
+			#display: none;
 		}
 
 		.carrusel_servicios_principales_img {
@@ -1480,6 +1500,7 @@
 		    display: inline-block !important;
 		    width: 27px !important;
 		    padding: 8px 9px !important;
+	        top: calc( 50% - 10px ) !important;
 		}
 
 		.carrusel_recomendados .seccion_destacados_flechas.seccion_destacados_izq {
@@ -1531,5 +1552,9 @@
 
 		.banner_rotativo .solo_movil_banner {
 		    display: inline-block;
+		}
+
+		.carrusel_recomendados_ubicacion {
+		    font-size: 10px;
 		}
 }

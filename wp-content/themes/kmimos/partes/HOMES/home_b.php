@@ -295,9 +295,9 @@
 						'<div class="msg_destacado_containder">'.
 							'"'.$cuidador->msg.'"'.
 						'</div>'.
-						'<a href="'.$cuidador->link.'" class="boton boton_verde" onclick="evento_google(\'ver_perfil_prueba_b\'); evento_fbq("track", "traking_code_ver_perfil_prueba_b");">Ver perfil</a>'.
+						'<a href="'.$cuidador->link.'?ldg=b" class="boton boton_verde" onclick="evento_google(\'ver_perfil_prueba_b\'); evento_fbq("track", "traking_code_ver_perfil_prueba_b");">Ver perfil</a>'.
 					'</div>'.
-					'<a href="'.$cuidador->link.'" class="boton" onclick="evento_google(\'ver_perfil_prueba_b\'); evento_fbq("track", "traking_code_ver_perfil_prueba_b");">Ver perfil</a>'.
+					'<a href="'.$cuidador->link.'?ldg=b" class="boton" onclick="evento_google(\'ver_perfil_prueba_b\'); evento_fbq("track", "traking_code_ver_perfil_prueba_b");">Ver perfil</a>'.
 				'</div>';
 		}
 
