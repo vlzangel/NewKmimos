@@ -1255,6 +1255,10 @@
 		    font-size: 10px;
 		}
 
+		.banner_rotativo_item.solo_movil_banner img {
+		    width: 100%;
+		}
+
 }
 
 @media (max-width: 600px){
