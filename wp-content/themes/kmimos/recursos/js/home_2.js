@@ -164,6 +164,23 @@ jQuery( document ).ready(function() {
 
 
 
+    jQuery(".banner_rotativo .banner_rotativo_item.solo_movil_banner").on('click', function(e){
+        var banner_box = jQuery(".banner_rotativo .banner_box");
+
+        var paso = banner_box.attr("data-paso");
+        var h = banner_box.attr("data-h_movil");
+        var final = banner_box.attr("data-final_movil");
+
+        paso++;
+        if( paso > final ){
+            paso = 0;
+        }
+
+        banner_box.attr("data-paso", paso);
+
+        banner_box.animate({left: (-1*(paso*h))+"%"}, 1000);
+    });
+
     jQuery(".seccion_destacados_flechas").on('click', function(e){
         mover_carrusel(jQuery(this).parent().find(".banner_box"), jQuery(this).attr("data-dir") );
     });
