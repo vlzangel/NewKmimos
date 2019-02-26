@@ -1588,6 +1588,7 @@ body{
 		    white-space: normal;
 		    text-align: center;
 		    cursor: pointer;
+		    vertical-align: top;
 		}
 
 		.carrusel_servicios_principales_img {
