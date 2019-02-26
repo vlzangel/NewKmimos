@@ -1,5 +1,12 @@
 @media screen and ( max-width: 768px ){
 
+	#buscador i.fa.fa-times {
+	    position: absolute;
+	    top: 6px;
+	    right: 6px;
+	    font-size: 20px;
+	}
+
 	.botones_movil{
 		display: block;
 	}
@@ -249,6 +256,10 @@
 		    font-family: Gotham-Pro-Black;
 		}
 
+		.cada_vez > span {
+		    display: none;
+		}
+
 		.titulo_form {
 		    font-size: 9px;
 		    margin-bottom: 8px;
@@ -410,8 +421,12 @@
 		    margin: 0px auto 10px !important;
 		}
 
-	.celda_2 label.titulo_form br {
-	    display: none;
+		.celda_2 label.titulo_form br {
+		    display: none;
+		}
+
+	.seccion_destacados span span {
+		display: none;
 	}
 
 }

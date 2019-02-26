@@ -173,6 +173,20 @@ jQuery( document ).ready(function() {
 
     });
 
+    jQuery("#buscador i.fa.fa-times").on("click", function(e){
+        e.preventDefault();
+
+        jQuery("body").css("overflow", "auto");
+        jQuery("#buscador").animate({
+            "top": "-100%"
+        }, 1000);
+
+        setTimeout(function(e){
+            jQuery("#banner_home").css("display", "none");
+        }, 1000);
+
+    });
+
     jQuery(window).on('resize', function () {
         resize_carrusel();
     });
