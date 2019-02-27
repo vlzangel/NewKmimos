@@ -298,6 +298,7 @@
 					<input type="button" id="boton_buscar" class="boton_buscar boton_verde" value="Buscar cuidador">
 				</div>
 
+				<div style="clear: both;"></div>
 			</form>
 
 		</div>	
@@ -348,7 +349,7 @@
 
 	$HTML .= '
 		<div class="carrusel_servicios">
-			<h2 class="solo_pc">¿Qué estás buscando para tu mascota? > </h2>
+			<h2 class="solo_pc">¿Qué estás buscando para tu mascota? <span>></span> </h2>
 			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
 
 			<div class="carrusel_servicios_principales_container">
@@ -398,7 +399,7 @@
 
 	$HTML .= '
 		<div class="carrusel_recomendados">
-			<h2>Te recomendamos estos cuidadores mejor evaluados > </h2>
+			<h2>Te recomendamos estos cuidadores mejor evaluados <span>></span> </h2>
 
 			<div class="carrusel_recomendados_container">
 				<div class="carrusel_recomendados_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="20" data-h_movil="50" data-t="800">

@@ -393,11 +393,24 @@
 	$link_home = ( $_SESSION['landing_paseos'] == 'yes' ) ? get_home_url().'/paseos' : get_home_url();
 
 	$menu_home_2 = '';
-	if( $HOME == "2" ){
+	if( $HOME == "2" && is_user_logged_in() ){
 		$menu_home_2 = '
 			<ul class="menu_horizontal">
-				<li class="menu_activo">Gana 150$</li>
-				<li> <div class="mensajes_container">Mensajes <span class="new_mensaje"></span></div> </li>
+				<li class="menu_activo">
+					<div class="club_container">
+						Gana 150$
+						<ul>
+							<li class="titulo_menu_club">Notificaciones (2)</li>
+							<li>Invita a un amigo y consigue recompensas</li>
+							<li>Ver mi saldo disponible</li>
+						</ul>
+					</div>
+				</li>
+				<li> 
+					<div class="mensajes_container">
+						Mensajes <span class="new_mensaje"></span>
+					</div> 
+				</li>
 				<li>Ayuda</li>
 				<li>Mi perfil</li>
 			</ul>

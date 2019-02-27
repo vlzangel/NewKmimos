@@ -53,7 +53,9 @@ function mover_carrusel(box, dir){
             }else{
                 var final = parseInt( box.attr("data-final_movil") );
             }
-            if( paso < final ){ paso++; }
+            if( paso < final ){ paso++; }else{
+                paso = 0;
+            }
             box.attr("data-paso", paso);
             box.animate({left: (-1*(paso*h))+"%" }, parseInt( box.attr("data-t") ) );
         break;
@@ -162,8 +164,6 @@ jQuery( document ).ready(function() {
     });
 
 
-
-
     jQuery(".banner_rotativo .banner_rotativo_item.solo_movil_banner").on('click', function(e){
         var banner_box = jQuery(".banner_rotativo .banner_box");
 
@@ -180,6 +180,14 @@ jQuery( document ).ready(function() {
 
         banner_box.animate({left: (-1*(paso*h))+"%"}, 1000);
     });
+
+    setInterval(function(e){
+        if( parseInt( jQuery("body").width() ) < 768 ){
+            jQuery(".banner_rotativo .banner_rotativo_item.solo_movil_banner").click();
+        }else{
+            jQuery(".banner_rotativo .seccion_destacados_der").click();
+        }
+    }, 6000);
 
     jQuery(".seccion_destacados_flechas").on('click', function(e){
         mover_carrusel(jQuery(this).parent().find(".banner_box"), jQuery(this).attr("data-dir") );
