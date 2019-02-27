@@ -394,15 +394,16 @@
 
 	$menu_home_2 = '';
 	if( $HOME == "2" && is_user_logged_in() ){
+		$notificacion = 0;
 		$menu_home_2 = '
 			<ul class="menu_horizontal">
-				<li class="menu_activo">
+				<li class="menu_activo li_club_container">
 					<div class="club_container">
 						Gana 150$
 						<ul>
-							<li class="titulo_menu_club">Notificaciones (2)</li>
-							<li>Invita a un amigo y consigue recompensas</li>
-							<li>Ver mi saldo disponible</li>
+							<li class="titulo_menu_club">Notificaciones ('.$notificacion.')</li>
+							<li> <a href="'.get_home_url().'/club-patitas-felices/compartir/"> Invita a un amigo y consigue recompensas </a> </li>
+							<li> <a href="'.get_home_url().'/club-patitas-felices/creditos/"> Ver mi saldo disponible </a> </li>
 						</ul>
 					</div>
 				</li>
