@@ -38,8 +38,7 @@
 
 	# Crear Orden
 	Requests::register_autoloader();
-		$path = 'http://mx.kmimos.la/wp-content/themes/kmimos/procesos/reservar/pagar.php';
-		//$path = $ruta.'/wp-content/themes/kmimos/procesos/reservar/pagar.php';
+		$path = $ruta.'/wp-content/themes/kmimos/procesos/reservar/pagar.php';
         $reserva_data = Requests::post($path,array(),$_POST);
         $reserva = json_decode($reserva_data->body);
 
