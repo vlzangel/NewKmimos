@@ -16,7 +16,6 @@ ini_set('display_errors', '1');
 			$paypal_order = new Order();
 
 			if( $paypal_order->validar( $_GET['token'] ) ){
-
 				$sql = "SELECT post_id FROM wp_postmeta WHERE meta_value ='".$_GET['token']."' AND meta_key='_paypal_order_id'";	
 				$orden = $wpdb->get_row( $sql );
 				if( isset($orden->post_id) && $orden->post_id > 0 ){
