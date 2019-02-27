@@ -729,20 +729,21 @@
 		$resultados = $_SESSION['resultado_busqueda'];
 		$total = count($resultados);
 
-		# BEGIN - alternar cuidadores
-		$_PAGE = $PAGE / 10;
-		$PAGE = $_PAGE * 8;
-		$contador = ( $_PAGE>0 )? $_PAGE * 10 : $PAGE ;
-		# END - alternar cuidadores
 		$orden_default = $_SESSION['orden_default'];
 
+		$_PAGE = $PAGE / 10;
 		for ($invertir_orden=0; $invertir_orden <= 1; $invertir_orden++) 
 		{
-			if( $orden_default == 'NO' ){
+			if( $orden_default == 'NO' || $total <= 10 ){
 				$testing = 'DEF';
 				$invertir_orden = 2;
 				$fin = ( $total > ($PAGE+10) ) ? $PAGE+10 : $total;
+				$contador = ( $_PAGE>0 )? $_PAGE * 10 : $PAGE ;
 			}else{
+				# Ajustar numero de cuidadores por pagina
+				$PAGE = $_PAGE * 8;
+				$contador = ( $_PAGE>0 )? $_PAGE * 10 : $PAGE ;
+
 				# Resultados invertidos
 				if( $invertir_orden == 1 ){
 					$testing = 'INV';
@@ -755,7 +756,6 @@
 					$fin = ( $total > ($PAGE+8) ) ? $PAGE+8 : $total;			
 				}
 			}
-
 
 			# Crear ficha de cuidadores
 			for ($i = $PAGE; $i < $fin; $i++ ) {
@@ -971,7 +971,7 @@
 									<img onclick="imgSiguiente( jQuery(this) );" class="Flechas Flecha_Derecha '.$ocultar_siguiente_img.'" src="'.get_recurso("img").'BUSQUEDA/SVG/iconos/Flecha_1.svg" />
 								</div>
 								<div class="resultados_item_info">
-									<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_titulo"> <span>'.$i.'.</span> '.($_cuidador->titulo).'</a>
+									<a href="'.get_home_url().'/petsitters/'.$_cuidador->user_id.'" class="resultados_item_titulo"> <span>'.$testing.$i.'.</span> '.($_cuidador->titulo).'</a>
 									'.$distancia.'
 									<div class="resultados_item_direccion" title="'.$_cuidador->direccion.'">'.($direccion).'</div>
 									<div class="resultados_item_servicios">
