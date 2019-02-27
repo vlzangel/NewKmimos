@@ -549,6 +549,12 @@
 									<div id="tienda_box" class="metodos_container" style="display:block;">
 										<img src="'.get_recurso("img").'RESERVA/pago_tienda.png" />
 									</div>
+									<div id="mercadopago_box" class="metodos_container" style="display:none;">
+										<img class="img-responsive" src="'.get_recurso("img").'RESERVA/pago_mercadopago.png" /><br>
+									</div>
+									<div id="paypal_box" class="metodos_container" style="display:none;">
+										<img class="img-responsive" src="'.get_recurso("img").'RESERVA/pago_paypal.png" /><br>
+									</div>
 									<div id="tarjeta_box" class="metodos_container" style="display:none;">
 
 										<div class="datos_tarjeta_container">
@@ -618,7 +624,7 @@
 			        <h4 class="modal-title">Pagar con Puntos</h4>
 			      </div>
 			      <div class="modal-body">
-			        <p>¿Desea usar los puntos de su tarjeta para realizar este pago?</p>
+			        <p>¿Desea usar los Puntos Bancomer de su tarjeta para realizar este pago?</p>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal" id="points-no-button">No</button>
