@@ -1,6 +1,7 @@
 <?php
 
 require dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/paypal/vendor/autoload.php';
+include(dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/Requests/Requests.php');
 
 use Sample\PayPalClient;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
@@ -10,15 +11,31 @@ class CreateOrder
 
   public static function create($data=[], $echo=false)
   {
+  		extract($data);
+  		$resultado='';
+
+		# Crear Orden Paypal
 	    $request = new OrdersCreateRequest();
-	    $request->prefer('return=representation');
-	    $request->body = self::buildRequestBody( $data );
-	    $client = PayPalClient::client();
-	    $response = $client->execute($request);
-	    if ($echo)
-	    {
-	       echo json_encode($response->result, JSON_PRETTY_PRINT);
+		    $request->prefer('return=representation');
+		    $request->body = self::buildRequestBody( $data );
+		    $client = PayPalClient::client();
+		    $response = $client->execute($request);
+			$resultado = json_encode($response->result, JSON_PRETTY_PRINT);
+
+		# Crear Orden Kmimos
+		Requests::register_autoloader();
+			$path = 'http://mx.kmimos.la/wp-content/themes/kmimos/procesos/reservar/pagar.php';
+			$data['_paypal_order_id'] = $response->result->id;
+			
+	        $reserva_data = Requests::post($path,array(),$data);
+	        $reserva = json_decode($reserva_data->body);
+ 
+	    if( $reserva->order_id > 0 ){
+	    	if ($echo){
+				echo $resultado;
+		    }
 	    }
+
 	    return $response;
   }
 
@@ -183,7 +200,7 @@ class CreateOrder
 	                        )
 	                )
 	        );
-// print_r($return);
+		// print_r($return);
         return $return;
   }
   
@@ -192,5 +209,8 @@ class CreateOrder
 if( !isset($_SESSION)){ session_start(); }
 if( isset($_POST['info']) ){
 	$orden = CreateOrder::create($_POST, true);
-	$_SESSION['paypal'] = $_POST['info'];
+	$_SESSION['paypal'] = [
+		'info' => $_POST['info'],
+		'orden' => $orden,
+	];
 }
