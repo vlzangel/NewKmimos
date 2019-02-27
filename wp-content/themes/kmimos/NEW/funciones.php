@@ -741,8 +741,10 @@
 				$contador = ( $_PAGE>0 )? $_PAGE * 10 : $PAGE ;
 			}else{
 				# Ajustar numero de cuidadores por pagina
-				$PAGE = $_PAGE * 8;
-				$contador = ( $_PAGE>0 )? $_PAGE * 10 : $PAGE ;
+				if( !isset($contador) ){
+					$PAGE = $_PAGE * 8;
+					$contador = ( $_PAGE>0 )? $_PAGE * 10 : $PAGE ;
+				}
 
 				# Resultados invertidos
 				if( $invertir_orden == 1 ){
