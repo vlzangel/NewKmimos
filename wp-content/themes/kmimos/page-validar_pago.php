@@ -14,7 +14,6 @@
 		case 'paypal':
 			require_once( 'procesos/reservar/pasarelas/paypal/validar.php' );
 			$paypal_order = new Order();
-
 			if( $paypal_order->validar( $_GET['token'] ) ){
 				$sql = "SELECT post_id FROM wp_postmeta WHERE meta_value ='".$_GET['token']."' AND meta_key='_paypal_order_id'";	
 				$orden = $wpdb->get_row( $sql );
@@ -71,8 +70,16 @@
 				$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
 				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
 				include_once(__DIR__."/procesos/reservar/emails/index.php");
+				header( 'location:'.get_home_url().'/finalizar/'.$_GET['external_reference'] );
+			}else if( strtolower($_GET['collection_status']) == 'pending' ){
+				header( 'location:'.get_home_url().'/finalizar/'.$_GET['external_reference'] );
+			}else{
+				$wpdb->query( "UPDATE wp_postmeta SET meta_value = '".json_encode($_GET)."' 
+					WHERE meta_key = '_mercadopago_data' AND post_id = {$id_orden}  )");
+				$wpdb->query("UPDATE wp_posts SET post_status = 'canceled' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+				header( 'location:'.get_home_url() .'/busqueda' );
 			}
-			header( 'location:'.get_home_url().'/finalizar/'.$_GET['external_reference'] );
 
 			# Transferencia
 				// p=mercadopago
