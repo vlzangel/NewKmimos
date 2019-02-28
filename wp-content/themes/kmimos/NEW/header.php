@@ -336,7 +336,7 @@
 		</script>
 	';
 
-	/*
+	
 	$HTML .= '<!-- Load Facebook SDK for JavaScript -->
 		<div id="fb-root"></div>
 		<script>
@@ -356,18 +356,18 @@
 					version          : \'v3.2\'
 				});
 			};
-			setTimeout(function(){ jQuery(".fb-customerchat").css("display", block) }, 200000);
 		</script>
 
 		<!-- Your customer chat code -->
-		<div style="display:none;" class="fb-customerchat"
-		  	attribution=setup_tool
-			page_id="361445711358167"
-			logged_in_greeting="Preguntas? Chatea con Nosotros"
-			logged_out_greeting="Preguntas? Chatea con Nosotros">
+		<div class="fb-customerchat"
+			attribution=setup_tool
+			page_id="1473614136234432"
+			theme_color="#00d2c6"
+			logged_in_greeting="Hola! Cómo puedo ayudarte?"
+			logged_out_greeting="Hola! Cómo puedo ayudarte?">
 		</div>
 		';
-	*/
+	
 
 	if( $_SESSION["wlabel"] == "petco" ){
 		$HTML .= '
