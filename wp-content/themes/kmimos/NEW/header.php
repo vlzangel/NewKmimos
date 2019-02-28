@@ -412,8 +412,8 @@
 						Mensajes <span class="new_mensaje"></span>
 					</div> 
 				</li>
-				<li>Ayuda</li>
-				<li>Mi perfil</li>
+				<li> <a href="'.get_home_url().'/ayuda/"> Ayuda </a> </li>
+				<li> <a href="'.get_home_url().'/perfil/"> Mi perfil </a> </li>
 			</ul>
 		';
 	}

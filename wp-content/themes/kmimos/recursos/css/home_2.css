@@ -4,6 +4,10 @@ body{
     overflow-x: hidden !important;
 }
 
+.labels_ocultos{
+	display: none;
+}
+
 ::placeholder { color: #828282 !important; opacity: 1 !important; }
 :-ms-input-placeholder { color: #828282 !important; }
 ::-ms-input-placeholder { color: #828282 !important; }
@@ -1872,7 +1876,7 @@ body{
 		display: block;
 	}
 
-	.club_container ul li a {
+	.menu_horizontal a, .club_container ul li a {
 	    text-decoration: none !important;
 	}
 

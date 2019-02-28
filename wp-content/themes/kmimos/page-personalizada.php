@@ -79,6 +79,23 @@
 	$areas_verdes = ( $_SESSION["busqueda"]["areas_verdes"] == 1 ) ? 'checked' : '';
 	$es_agresiva = ( $_SESSION["busqueda"]["es_agresiva"] == 1 ) ? 'checked' : '';
 
+	$adicionales_arra = [
+		'corte',
+		'bano',
+		'limpieza_dental',
+		'visita_al_veterinario',
+		'acupuntura',
+		'transportacion_sencilla',
+		'transportacion_redonda',
+	];
+	$adicionales = '';
+	foreach ($adicionales_arra as $key => $value) {
+		if( in_array($value, $_SESSION['busqueda']['servicios']) ){
+			$adicionales .= '<input type="hidden" name="servicios[]" value="'.$value.'" >';
+		}
+	}
+	
+
     $HTML .= $cuidadores_destacados.'
     	<div id="banner_home">
 			<div>
@@ -87,10 +104,10 @@
 					<i class="fa fa-times" aria-hidden="true"></i>
 
 					<div class="cada_vez">
-						<div>
+						<div class="modifica">
 							Modifica los <span>filtros personalizados</span> de acuerdo a tus preferencias.
 						</div>
-						IMPORTANTE: Cada vez que modifiques un filtro, los Cuidadores mostrados <span>arriba</span> se actualizarán.
+						<div class="importante">IMPORTANTE: Cada vez que modifiques un filtro, los Cuidadores mostrados <span>arriba</span> se actualizarán.</div>
 					</div>
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
@@ -287,6 +304,8 @@
 						</tr>
 
 					</table>
+
+					'.$adicionales.'
 
 				</form>
 

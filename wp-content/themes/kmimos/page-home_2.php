@@ -45,6 +45,98 @@
 	$final_movil = $items_count-1;
     
 	$HTML = '
+
+	<!-- BEGIN MODAL SERVICIOS ADICIONALES -->
+		<div id="popup-servicios-new" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4><b>Tu consentido merece lo mejor, mira todo lo que le ofrecemos</b></h4>
+					<div class="km-servicios-adicionales">
+						<div class="row">
+							<div class="col-xs-12 col-sm-3">
+								<label for="corte" class="km-opcion">
+									<input type="checkbox" value="corte" id="corte" >
+									<span></span>
+									<img src="'.get_recurso("img").'HOME/SVG/Adicionales/corte.svg">
+									<div class="km-opcion-text">
+										CORTE DE PELO<br> Y UÑAS
+									</div>
+								</label>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<label for="bano" class="km-opcion">
+									<input type="checkbox" value="bano" id="bano" >
+									<span></span>
+									<img src="'.get_recurso("img").'HOME/SVG/Adicionales/bano.svg">
+									<div class="km-opcion-text">
+										BAÑO Y SECADO
+									</div>
+								</label>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<label for="limpieza_dental" class="km-opcion">
+									<input type="checkbox" value="limpieza_dental" id="limpieza_dental" >
+									<span></span>
+									<img src="'.get_recurso("img").'HOME/SVG/Adicionales/limpieza_dental.svg">
+									<div class="km-opcion-text">
+										LIMPIEZA DENTAL
+									</div>
+								</label>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<label for="visita_al_veterinario" class="km-opcion">
+									<input type="checkbox" value="visita_al_veterinario" id="visita_al_veterinario" >
+									<span></span>
+									<img src="'.get_recurso("img").'HOME/SVG/Adicionales/visita_al_veterinario.svg">
+									<div class="km-opcion-text">
+										VISITA AL<br> VETERINARIO
+									</div>
+								</label>
+							</div>
+						</div>
+						<div class="row mtb-10">
+							<div class="col-xs-12 col-sm-3">
+								<label for="acupuntura" class="km-opcion">
+									<input type="checkbox" value="acupuntura" id="acupuntura" >
+									<span></span>
+									<img src="'.get_recurso("img").'HOME/SVG/Adicionales/acupuntura.svg">
+									<div class="km-opcion-text">
+										ACUPUNTURA
+									</div>
+								</label>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<label for="transportacion_sencilla" class="km-opcion">
+									<input type="checkbox" value="transportacion_sencilla" id="transportacion_sencilla" >
+									<span></span>
+									<img src="'.get_recurso("img").'HOME/SVG/Adicionales/transportacion_sencilla.svg">
+									<div class="km-opcion-text">
+										TRANSPORTE<br> SENCILLO
+									</div>
+								</label>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<label for="transportacion_redonda" class="km-opcion">
+									<input type="checkbox" value="transportacion_redonda" id="transportacion_redonda" >
+									<span></span>
+									<img src="'.get_recurso("img").'HOME/SVG/Adicionales/transportacion_redonda.svg">
+									<div class="km-opcion-text">
+										TRANSPORTE<br> REDONDO
+									</div>
+								</label>
+							</div>
+							<div class="col-xs-12 col-sm-3">
+								<a id="agregar_servicios" href="javascript:;" class="boton_buscar boton_verde">AGREGAR SERVICIO</a>
+							</div>
+						</div>
+					</div>
+					<a href="javascript:;" id="buscar_no" class="km-link" style="color: black; display:block; margin-top: 15px;">NO DESEO POR AHORA, GRACIAS</a>
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL SERVICIOS ADICIONALES -->
+
 	<div id="banner_home">
 		<div>
 			<div class="banner_rotativo">
@@ -58,6 +150,24 @@
 			</div>
 
 			<form id="buscador" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
+
+				<div class="labels_ocultos">
+					<label id="corte_2_label" for="corte_2"></label>
+					<label id="bano_2_label" for="bano_2"></label>
+					<label id="limpieza_dental_2_label" for="limpieza_dental_2"></label>
+					<label id="visita_al_veterinario_2_label" for="visita_al_veterinario_2"></label>
+					<label id="acupuntura_2_label" for="acupuntura_2"></label>
+					<label id="transportacion_sencilla_2_label" for="transportacion_sencilla_2"></label>
+					<label id="transportacion_redonda_2_label" for="transportacion_redonda_2"></label>
+
+					<input type="checkbox" name="servicios[]" value="corte" id="corte_2" >
+					<input type="checkbox" name="servicios[]" value="bano" id="bano_2" >
+					<input type="checkbox" name="servicios[]" value="limpieza_dental" id="limpieza_dental_2" >
+					<input type="checkbox" name="servicios[]" value="visita_al_veterinario" id="visita_al_veterinario_2" >
+					<input type="checkbox" name="servicios[]" value="acupuntura" id="acupuntura_2" >
+					<input type="checkbox" name="servicios[]" value="transportacion_sencilla" id="transportacion_sencilla_2" >
+					<input type="checkbox" name="servicios[]" value="transportacion_redonda" id="transportacion_redonda_2" >
+				</div>
 
 				<div class="titulo_banner_top">Selecciona los filtros para búsqueda avanzada</div>
 
@@ -203,102 +313,12 @@
 					</label>
 				</div>
 
-				<!-- BEGIN MODAL SERVICIOS ADICIONALES -->
-				<div id="popup-servicios-new" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							<h4><b>Tu consentido merece lo mejor, mira todo lo que le ofrecemos</b></h4>
-							<div class="km-servicios-adicionales">
-								<div class="row">
-									<div class="col-xs-12 col-sm-3">
-										<label for="corte" class="km-opcion">
-											<input type="checkbox" name="servicios[]" value="corte" id="corte" >
-											<span></span>
-											<img src="'.get_recurso("img").'HOME/SVG/Adicionales/corte.svg">
-											<div class="km-opcion-text">
-												CORTE DE PELO<br> Y UÑAS
-											</div>
-										</label>
-									</div>
-									<div class="col-xs-12 col-sm-3">
-										<label for="bano" class="km-opcion">
-											<input type="checkbox" name="servicios[]" value="bano" id="bano" >
-											<span></span>
-											<img src="'.get_recurso("img").'HOME/SVG/Adicionales/bano.svg">
-											<div class="km-opcion-text">
-												BAÑO Y SECADO
-											</div>
-										</label>
-									</div>
-									<div class="col-xs-12 col-sm-3">
-										<label for="limpieza_dental" class="km-opcion">
-											<input type="checkbox" name="servicios[]" value="limpieza_dental" id="limpieza_dental" >
-											<span></span>
-											<img src="'.get_recurso("img").'HOME/SVG/Adicionales/limpieza_dental.svg">
-											<div class="km-opcion-text">
-												LIMPIEZA DENTAL
-											</div>
-										</label>
-									</div>
-									<div class="col-xs-12 col-sm-3">
-										<label for="visita_al_veterinario" class="km-opcion">
-											<input type="checkbox" name="servicios[]" value="visita_al_veterinario" id="visita_al_veterinario" >
-											<span></span>
-											<img src="'.get_recurso("img").'HOME/SVG/Adicionales/visita_al_veterinario.svg">
-											<div class="km-opcion-text">
-												VISITA AL<br> VETERINARIO
-											</div>
-										</label>
-									</div>
-								</div>
-								<div class="row mtb-10">
-									<div class="col-xs-12 col-sm-3">
-										<label for="acupuntura" class="km-opcion">
-											<input type="checkbox" name="servicios[]" value="acupuntura" id="acupuntura" >
-											<span></span>
-											<img src="'.get_recurso("img").'HOME/SVG/Adicionales/acupuntura.svg">
-											<div class="km-opcion-text">
-												ACUPUNTURA
-											</div>
-										</label>
-									</div>
-									<div class="col-xs-12 col-sm-3">
-										<label for="transportacion_sencilla" class="km-opcion">
-											<input type="checkbox" name="servicios[]" value="transportacion_sencilla" id="transportacion_sencilla" >
-											<span></span>
-											<img src="'.get_recurso("img").'HOME/SVG/Adicionales/transportacion_sencilla.svg">
-											<div class="km-opcion-text">
-												TRANSPORTE<br> SENCILLO
-											</div>
-										</label>
-									</div>
-									<div class="col-xs-12 col-sm-3">
-										<label for="transportacion_redonda" class="km-opcion">
-											<input type="checkbox" name="servicios[]" value="transportacion_redonda" id="transportacion_redonda" >
-											<span></span>
-											<img src="'.get_recurso("img").'HOME/SVG/Adicionales/transportacion_redonda.svg">
-											<div class="km-opcion-text">
-												TRANSPORTE<br> REDONDO
-											</div>
-										</label>
-									</div>
-									<div class="col-xs-12 col-sm-3">
-										<a id="agregar_servicios" href="javascript:;" class="boton_buscar boton_verde">AGREGAR SERVICIO</a>
-									</div>
-								</div>
-							</div>
-							<a href="javascript:;" id="buscar_no" class="km-link" style="color: black; display:block; margin-top: 15px;">NO DESEO POR AHORA, GRACIAS</a>
-						</div>
-					</div>
-				</div>
-				<!-- END MODAL SERVICIOS ADICIONALES -->
-
 				<div class="boton_buscar_container">
 					<input type="button" id="boton_buscar" class="boton_buscar boton_verde" value="Buscar cuidador">
 				</div>
 
 				<div style="clear: both;"></div>
+
 			</form>
 
 		</div>	

@@ -36,7 +36,7 @@
 	.seccion_destacados_subtitulo {
 	    margin: 0px auto 30px;
 	    max-width: 1200px;
-	    font-size: 9px;
+	    font-size: 11px;
 	    padding: 0px 10px;
 	    text-align: justify;
 	}
@@ -93,7 +93,7 @@
 	    height: 23px;
     	width: 23px;
 	    position: absolute;
-	    left: 5px;
+	    left: 1px;
 	    top: 11px;
 	}
 
@@ -114,7 +114,9 @@
 	}
 
 	.nombre_destacado span {
-	    font-size: 8px;
+	    font-size: 6px;
+	    line-height: 1;
+	    padding: 2px 0px 0px;
 	}
 
 	.km-ranking a {
@@ -177,11 +179,11 @@
 	    text-align: right;
 	    padding-right: 5px;
 	    float: right;
-    	padding-top: 3px;
+    	padding-top: 0px;
 	}
 
 	.datos_top_destacado_containder {
-	    padding: 5px 0px 2px;
+	    padding: 5px 0px 0px;
 	}
 
 	.datos_bottom_destacado_container > span:last-child {
@@ -214,7 +216,7 @@
 		.botones_movil > span {
 			text-align: center;
 			display: block;
-			font-size: 9px;
+			font-size: 10px;
 		}
 
 		#banner_home table, #banner_home tbody, #banner_home tr, #banner_home td {
@@ -429,4 +431,27 @@
 		display: none;
 	}
 
+}
+
+@media screen and (max-width: 350px){
+	.tamanios_container .input_check_box span {
+	    padding: 9px 0px;
+	    line-height: 1.3;
+	}
+
+	.tam_label_movil {
+	    font-size: 7px;
+	}
+
+	.input_check_box .small, .input_check_box small {
+	    font-size: 5px;
+	}
+
+	.tipo_mascota_container .input_check_box span {
+	    font-size: 7px;
+	}
+
+	.input_check_box img {
+	    height: 13px;
+	}
 }

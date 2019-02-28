@@ -92,6 +92,10 @@ function ajustar_carrusel_servicios_movil(){
 
 jQuery( document ).ready(function() {
 
+    jQuery("#popup-servicios-new input").on("change", function(e){
+        jQuery("#"+jQuery(this).attr("id")+"_2_label"  ).click();
+    });
+
     jQuery(window).on('resize', function () {
         if( parseInt( jQuery("body").width() ) < 768 ){
             ajustar_carrusel_servicios_movil();
