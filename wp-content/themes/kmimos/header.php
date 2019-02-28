@@ -160,10 +160,11 @@
 		</script>
 		<!-- Your customer chat code -->
 		<div class="fb-customerchat"
-		  attribution=setup_tool
-		  page_id="361445711358167"
-		  logged_in_greeting="Hola! Como podemos ayudarte?"
-		  logged_out_greeting="Hola! Como podemos ayudarte?">
+			attribution=setup_tool
+			page_id="1473614136234432"
+			theme_color="#00d2c6"
+			logged_in_greeting="Hola! Cómo puedo ayudarte?"
+			logged_out_greeting="Hola! Cómo puedo ayudarte?">
 		</div>
 
 				<script> 
