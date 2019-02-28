@@ -454,4 +454,8 @@
 	.input_check_box img {
 	    height: 13px;
 	}
+
+	.servicios_principales_box .input_check_box span {
+	    font-size: 7px;
+	}
 }
