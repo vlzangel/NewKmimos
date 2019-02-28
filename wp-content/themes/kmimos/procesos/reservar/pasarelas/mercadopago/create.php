@@ -36,8 +36,11 @@
 		$descuento = $pagar->fee;
 		$total_mascotas = 0;
 
-	# Crear Orden
+	# Crear Orden en Kmimos
 	Requests::register_autoloader();
+		if( $ruta == 'https://mx.kmimos.la/' ){
+			$ruta = 'http://mx.kmimos.la';
+		}
 		$path = $ruta.'/wp-content/themes/kmimos/procesos/reservar/pagar.php';
         $reserva_data = Requests::post($path,array(),$_POST);
         $reserva = json_decode($reserva_data->body);
