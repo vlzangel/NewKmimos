@@ -130,5 +130,7 @@ class CreateOrder
 if( !isset($_SESSION)){ session_start(); }
 if( isset($_POST['info']) ){
 	$orden = CreateOrder::create($_POST, true);
-	$_SESSION['paypal'] = $_POST['info'];
+	$_SESSION['conocer'] = [
+		'paypal' => $_POST['info']
+	];
 }
