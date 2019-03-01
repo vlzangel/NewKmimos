@@ -2,8 +2,8 @@
 	/*
         Template Name: Validar Pagos
     */
-	error_reporting(0);
-	ini_set('display_errors', '0');
+	error_reporting(E_ERROR ^ E_NOTICE);
+	ini_set('display_errors', '1');
     
     global $wpdb;
 
@@ -27,8 +27,7 @@
 						$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
 
 						$acc='';
-						echo __DIR__."/procesos/reservar/emails/index.php";
-						include_once(__DIR__."/procesos/reservar/emails/index.php");				
+						include(__DIR__."/procesos/reservar/emails/index.php");				
 					}
 					header( 'location:'.get_home_url().'/finalizar/'.$id_orden );
 				}
