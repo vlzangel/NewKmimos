@@ -471,7 +471,14 @@
 
 	    $sql = "
 	    SELECT 
-	        cuidadores.id
+	        cuidadores.id,
+	        cuidadores.experiencia,
+	        cuidadores.user_id,
+	        cuidadores.latitud,
+	        cuidadores.longitud,
+	        cuidadores.rating,
+	        cuidadores.titulo,
+	        cuidadores.hospedaje_desde
 	        {$DISTANCIA}
 	        {$FLASH_ORDEN}
 	    FROM 
@@ -499,10 +506,10 @@
 		$grados = 0;
 		$longitud_init = 0.005;
 
-		foreach ($cuidadores as $key => $_cuidador) {
-			$cuidador = $_SESSION["DATA_CUIDADORES"][$_cuidador->id];
+		foreach ($cuidadores as $key => $cuidador) {
+			// $cuidador = $_SESSION["DATA_CUIDADORES"][$_cuidador->id];
 
-			$ids_validos[] = $_cuidador->id;
+			$ids_validos[] = $cuidador->id;
 
 			$anios_exp = $cuidador->experiencia;
 			if( $anios_exp > 1900 ){
@@ -531,7 +538,7 @@
 				"user" => $cuidador->user_id,
 				"lat"  => $cuidador->latitud,
 				"lng"  => $cuidador->longitud,
-				"nom"  => ($cuidador->titulo),
+				"nom"  => utf8_encode($cuidador->titulo),
 				"url"  => utf8_encode($url), 
 				"exp"  => $anios_exp,
 				"rating" => ceil($cuidador->rating),
@@ -569,7 +576,7 @@
        			header("location: {$home}busqueda/");
        		}
 		}else{
-			echo json_encode( $cuidadores );
+			echo json_encode( $ids_validos );
 		}
 	}
 
