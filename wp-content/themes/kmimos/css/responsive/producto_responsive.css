@@ -293,6 +293,26 @@
 	    margin-right: 0px;
 	}
 	/* FIN SECCIÓN FOOTER */
+
+	/* OPCIONES DE PAGO */
+	#mensaje-puntos-bancomer img{
+		margin: 0 auto;
+	}
+	#mensaje-puntos-bancomer{
+		text-align: center;		
+	}
+	#pasarela-container {
+		display: inline-block;
+	}	
+	#pasarela-container .km-method-paid-option{	
+		display: inline-block;
+		width: 47%;
+		height: 70px;
+		vertical-align: top;
+		margin: 2px 0px;
+	}
+
+	/* OPCIONES DE PAGO */
 }
 @media (max-width: 480px) {
 	.flecha_fecha{
