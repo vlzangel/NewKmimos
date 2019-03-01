@@ -130,7 +130,7 @@
 			    "apartment" => "C"
 			);
 
-		# Preference
+		# Payment
 		$payment = new MercadoPago\Payment();
 			$payment->site_id = 'MLM';
 			$payment->installments = 1;
