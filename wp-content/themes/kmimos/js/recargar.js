@@ -26,7 +26,8 @@ function initCarrito(){
 			"numero" : "",
 			"mes" : "",
 			"anio" : "",
-			"codigo" : ""
+			"codigo" : "",
+			"punto" : false,
 		};
 }
 
@@ -513,6 +514,22 @@ jQuery(document).ready(function() {
 								}
 							}, 'json'
 						);
+					}else if( CARRITO["pagar"]["tipo"] == "mercadopago" ){
+						jQuery("#reserva_btn_next_3").addClass("disabled");
+						jQuery("#reserva_btn_next_3").addClass("cargando");
+						// pagarReserva();
+						var info = convertCARRITO();
+						jQuery.post(HOME+"/procesos/conocer/pasarelas/mercadopago/create.php",
+							{
+								'info': info,
+								'ruta': RAIZ,
+							},
+							function(data){
+								if( data.status == 'CREATED' ){
+									location.href = data.links;
+								}
+							}, 'json'
+						);
 					}else{
 						pagarReserva();
 					}
@@ -557,6 +574,10 @@ jQuery(document).ready(function() {
         switch( jQuery(this).val() ){
             case 'tarjeta':
                 CARRITO["pagar"]["tipo"] = "tarjeta";
+                break;
+            case 'mercadopago':
+                jQuery(".errores_box").css("display", "none");
+                CARRITO["pagar"]["tipo"] = "mercadopago";
                 break;
             case 'paypal':
                 jQuery(".errores_box").css("display", "none");
@@ -647,6 +668,15 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	jQuery("#points-yes-button").on('click', function(){
+		CARRITO["tarjeta"]['puntos'] = true;
+    	pagarReserva();
+	});
+
+	jQuery("#points-no-button").on('click', function(){
+		CARRITO["tarjeta"]['puntos'] = false;
+    	pagarReserva();
+	});
 	/* Configuración Openpay */
 
 		OpenPay.setId( OPENPAY_TOKEN );
@@ -656,10 +686,18 @@ jQuery(document).ready(function() {
 	    var deviceSessionId = OpenPay.deviceData.setup("reservar", "deviceIdHiddenFieldName");
 
 	    var sucess_callbak = function(response) {
-	        var token_id = response.data.id;
+	    	var token_id = response.data.id;
 	        CARRITO["pagar"]["token"] = token_id;
 	        jQuery(".errores_box").css("display", "none");
-	        pagarReserva();
+	        if (response.data.card.points_card) {
+				jQuery("#card-points-dialog").modal("show");
+			} else {
+	        	pagarReserva();
+			}
+	        // var token_id = response.data.id;
+	        // CARRITO["pagar"]["token"] = token_id;
+	        // jQuery(".errores_box").css("display", "none");
+	        // pagarReserva();
 	    };
 
 	    var error_callbak = function(response) {

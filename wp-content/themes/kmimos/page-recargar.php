@@ -235,7 +235,12 @@
 									<div class="errores_box">
 										Datos de la tarjeta invalidos
 									</div>
-
+									<div id="mercadopago_box" class="metodos_container" style="display:none;">
+										<img class="img-responsive" src="'.get_recurso("img").'RESERVA/pago_mercadopago.png" /><br>
+									</div>
+									<div id="paypal_box" class="metodos_container" style="display:none;">
+										<img class="img-responsive" src="'.get_recurso("img").'RESERVA/pago_paypal.png" /><br>
+									</div>
 									<div id="tienda_box" class="metodos_container" style="display:block;">
 										<img src="'.get_recurso("img").'RESERVA/pago_tienda.png" />
 									</div>
@@ -299,6 +304,34 @@
 			</form>
 		</div>
 	 	';
+
+		$HTML .= '
+			<div class="modal fade" role="dialog" data-backdrop="false" id="card-points-dialog">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+                  <div class="modal-footer" style="border:0px solid transparent!important">
+				      <div id="mensaje-puntos-bancomer">
+				      	<div class="col-md-6 col-sm-12">
+					      	<img src="'.getTema().'/recursos/img/RESERVA/pago-bancomer.png" class="img-responsive solo-pc">
+					      	<div class="button-container col-md-12 text-center">
+					        	<button type="button" class="btn btn-default" data-dismiss="modal" id="points-no-button">No</button>
+					        	<button type="button" class="btn btn-primary" data-dismiss="modal" id="points-yes-button">Si</button>
+					        </div>
+					        <div class="clear"></div>
+					    </div>
+				      	<div class="col-md-6 col-sm-12 hidden-sm hidden-xs">
+					      	<img src="'.getTema().'/recursos/img/RESERVA/pago-bancomer-tdc.png" class="img-responsive">
+					        <div class="clear"></div>
+					    </div>
+				      </div>
+                  </div>
+
+			    </div>
+			  </div>
+			</div>
+		';
+
+
 
 		echo comprimir($HTML);
 
