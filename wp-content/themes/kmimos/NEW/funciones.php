@@ -759,6 +759,16 @@
 				}
 			}
 
+			$verificar_cache = [];
+			for ($i = $PAGE; $i < $fin; $i++ ) {
+				if( !isset($_SESSION["DATA_CUIDADORES"][ $resultados[$i]->id ]) ){
+					$verificar_cache[] = $resultados[$i]->id;
+				}
+			}
+			if( count($verificar_cache) > 0 ){
+				pre_carga_data_cuidadores($verificar_cache);
+			}
+
 			# Crear ficha de cuidadores
 			for ($i = $PAGE; $i < $fin; $i++ ) {
 				$cuidador = $resultados[$i];
@@ -1149,10 +1159,12 @@
         }
     }
 
-    function pre_carga_data_cuidadores(){
+    function pre_carga_data_cuidadores($cuidadores = null){
     	global $wpdb;
 
     	if( !isset($_SESSION) ){ session_start(); }
+
+    	$con_cuidadores = ( $cuidadores != null ) ? ' AND cuidadores.id IN ('.implode(",", $cuidadores).')' : '';
 
     	$cuidadores = $wpdb->get_results("
     		SELECT 
@@ -1176,7 +1188,7 @@
     		FROM 
     			cuidadores
     		WHERE 
-    			activo = 1
+    			activo = 1 ".$con_cuidadores."
     	");
 
     	$_cuidadores_user_id = [];
@@ -1217,9 +1229,12 @@
     		$_cuidadores[ $value->id ] = $cuidadores[ $key ];
     		$_cuidadores_user_id[ $value->user_id ] = $value->id;
 
+    		$_SESSION["DATA_CUIDADORES"][ $value->id ] = $cuidadores[ $key ];
+			$_SESSION["CUIDADORES_USER_ID"][ $value->user_id ] = $value->id;
+
     	}
 
-    	return [ $_cuidadores, $_cuidadores_user_id ];
+    	// return [ $_cuidadores, $_cuidadores_user_id ];
 
     }
 

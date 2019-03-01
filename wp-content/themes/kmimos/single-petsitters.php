@@ -15,14 +15,24 @@
 
 	$ACCION_ADICIONAL = vlz_get_page();
 
-	if( !isset($_SESSION["DATA_CUIDADORES"]) ){
+	/*
+	if( !isset($_SESSION["DATA_CUIDADORES"][]) ){
 		$_temp = pre_carga_data_cuidadores();
 		$_SESSION["DATA_CUIDADORES"] = $_temp[0];
 		$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
 	}
+	*/
+
+	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");
+
+	if( !isset($_SESSION["CUIDADORES_USER_ID"][ $post->post_author ]) ){
+		pre_carga_data_cuidadores([
+			$cuidador->id
+		]);
+	}
 
 	$_cuidador = $_SESSION["DATA_CUIDADORES"][ $_SESSION["CUIDADORES_USER_ID"][ $post->post_author ] ];
-	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");
+	
 
 	$current_user = wp_get_current_user();
     $user_id = $current_user->ID;
