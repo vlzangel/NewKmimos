@@ -11,12 +11,6 @@
 
 	if( !isset($_SESSION)){ session_start(); }
 
-
-$acc='';
-echo __DIR__."/procesos/reservar/emails/index.php";
-include_once(__DIR__."/procesos/reservar/emails/index.php");				
-exit();
-
 	switch ( strtolower($_GET['p']) ) {
 		case 'paypal':
 			require_once( 'procesos/reservar/pasarelas/paypal/validar.php' );
