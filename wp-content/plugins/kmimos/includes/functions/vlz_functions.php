@@ -1546,16 +1546,18 @@
                 ";
             }
 
+            $meta_pdf = '';
+            $metas_vence = '';
             switch($metas_orden['_payment_method_title'][0]){
                 case 'openpay':
+                    $meta_pdf = $metas_orden['_openpay_pdf'][0];
+                    $metas_vence = $metas_orden['_openpay_tienda_vence'][0];
                     break;
                 case 'mercadopago':
-                    $metas_orden['_openpay_pdf'][0] = '';
-                    $metas_orden['_openpay_tienda_vence'][0] = $metas_orden['_mercadopago_vence'][0];
+                    $metas_vence = $metas_orden['_mercadopago_vence'][0];
                     break;
                 case 'paypal':
-                    $metas_orden['_openpay_pdf'][0] = '';
-                    $metas_orden['_openpay_tienda_vence'][0] = $metas_orden['_paypal_vence'][0];
+                    $metas_vence = $metas_orden['_mercadopago_vence'][0];
                     break;
 
             }
@@ -1576,7 +1578,7 @@
 
 
                 "metodo_pago" => $metas_orden['_payment_method_title'][0],
-                "pdf" => $metas_orden['_openpay_pdf'][0],
+                "pdf" => $metas_pdf,
 
                 "servicio" => $producto->ID,
                 "servicio_titulo" => $producto->post_title,
@@ -1627,8 +1629,8 @@
                     "transporte" => $transporte_desglose,
                     "adicionales" => $adicionales_desglose,
 
-                    "pdf" => $metas_orden['_openpay_pdf'][0],
-                    "vence" => $metas_orden['_openpay_tienda_vence'][0],
+                    "pdf" => $metas_pdf,
+                    "vence" => $metas_vence,
 
                     "aceptar_rechazar" => $aceptar_rechazar,
 
