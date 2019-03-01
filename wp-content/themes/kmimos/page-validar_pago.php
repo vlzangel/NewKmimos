@@ -2,12 +2,12 @@
 	/*
         Template Name: Validar Pagos
     */
-	error_reporting(E_ERROR ^ E_NOTICE);
-	ini_set('display_errors', '1');
-    
     global $wpdb;
-
 	date_default_timezone_set('America/Mexico_City');
+	
+	include(__DIR__.'/lib/Requests/Requests.php');
+	Requests::register_autoloader();
+	
 
 	if( !isset($_SESSION)){ session_start(); }
 
@@ -25,9 +25,8 @@
 						$wpdb->query( "UPDATE wp_postmeta SET meta_value = '".json_encode($_GET)."' WHERE meta_key = '_paypal_data' AND post_id = {$id_orden}  )");
 						$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
 						$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
-
-						$acc='';
-						include(__DIR__."/procesos/reservar/emails/index.php");				
+						$path=get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php';
+						$reserva_data = Requests::post($path,array(),['id_orden' => $id_orden]);
 					}
 					header( 'location:'.get_home_url().'/finalizar/'.$id_orden );
 				}
@@ -72,7 +71,9 @@
 					WHERE meta_key = '_mercadopago_data' AND post_id = {$id_orden}  )");
 				$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
 				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
-				include_once(__DIR__."/procesos/reservar/emails/index.php");
+
+				$path=get_home_url().'/wp-content/themes/kmimos/procesos/reservar/emails/index.php';
+				$reserva_data = Requests::post($path,array(),['id_orden'=>$id_orden]);
 				header( 'location:'.get_home_url().'/finalizar/'.$_GET['external_reference'] );
 			}else if( strtolower($_GET['collection_status']) == 'pending' ){
 				header( 'location:'.get_home_url().'/finalizar/'.$_GET['external_reference'] );
