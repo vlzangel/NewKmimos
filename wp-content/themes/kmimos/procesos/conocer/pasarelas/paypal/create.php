@@ -46,8 +46,8 @@ class CreateOrder
 	            'intent' => 'CAPTURE',
 	            'application_context' =>
 	                array(
-	                    'return_url' => $data['ruta'].'/recargar/validar/?p=paypal&t=return',
-	                    'cancel_url' => $data['ruta'].'/recargar/validar/?p=paypal&t=cancel',
+	                    'return_url' => $data['ruta'].'/recargar/validar/?km=paypal&t=return',
+	                    'cancel_url' => $data['ruta'].'/recargar/validar/?km=paypal&t=cancel',
 	                ),
 	            'purchase_units' =>
 	                array(

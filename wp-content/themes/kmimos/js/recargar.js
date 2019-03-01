@@ -513,6 +513,22 @@ jQuery(document).ready(function() {
 								}
 							}, 'json'
 						);
+					}else if( CARRITO["pagar"]["tipo"] == "mercadopago" ){
+						jQuery("#reserva_btn_next_3").addClass("disabled");
+						jQuery("#reserva_btn_next_3").addClass("cargando");
+						// pagarReserva();
+						var info = convertCARRITO();
+						jQuery.post(HOME+"/procesos/conocer/pasarelas/mercadopago/create.php",
+							{
+								'info': info,
+								'ruta': RAIZ,
+							},
+							function(data){
+								if( data.status == 'CREATED' ){
+									location.href = data.links;
+								}
+							}, 'json'
+						);
 					}else{
 						pagarReserva();
 					}
@@ -557,6 +573,10 @@ jQuery(document).ready(function() {
         switch( jQuery(this).val() ){
             case 'tarjeta':
                 CARRITO["pagar"]["tipo"] = "tarjeta";
+                break;
+            case 'mercadopago':
+                jQuery(".errores_box").css("display", "none");
+                CARRITO["pagar"]["tipo"] = "mercadopago";
                 break;
             case 'paypal':
                 jQuery(".errores_box").css("display", "none");

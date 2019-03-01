@@ -7,7 +7,7 @@
 
 	if( !isset($_SESSION)){ session_start(); }
 
-	switch ( $_GET['p'] ) {
+	switch ( $_GET['km'] ) {
 		case 'paypal':
 			if( isset($_SESSION['conocer']['paypal']) ){
 				$_POST['info'] = $_SESSION['conocer']['paypal'];
@@ -28,6 +28,27 @@
 				}
 			}
 			break;
+
+		case 'mercadopago';
+
+
+			if( strtolower($_GET['collection_status']) == 'approved' ){
+				$id_orden = $_GET['external_reference'];
+					$wpdb->query("
+						UPDATE 
+							conocer_pedidos 
+						SET										
+							transaccion_id = '".$_GET['merchant_order_id']."',
+							tipo_pago = 'Mercadopago',
+							status = 'Pagado',
+							metadata = '{$metas}'
+						WHERE 
+							id = {$id_orden}
+					");
+
+			}
+
+			break;
 	}
-	echo 'paso prueba';
-	//header( 'location:'.get_home_url() );
+	$cuidador = $wpdb->get_var( "SELECT url FROM cuidadores order by id desc" );
+	header( 'location:'.get_home_url() . "/petsitters/"+$cuidador+"/1/" );
