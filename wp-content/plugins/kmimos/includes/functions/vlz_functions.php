@@ -1337,7 +1337,8 @@
             $variaciones = array(); $grupo = 0;
             foreach ($variaciones_array as $key => $value) {
                 if( isset( $mascotas[$value] ) ){
-                    $plural_tamanos = ""; if( $detalles_reserva[$value] > 1 ){ $plural_tamanos = "s"; }
+                    $plural_tamanos = ""; 
+                    if( isset($detalles_reserva[$value]) && $detalles_reserva[$value] > 1 ){ $plural_tamanos = "s"; }
                     
                     $unitario = $precios[$key]*getComision();
                     
@@ -1514,6 +1515,9 @@
 
             $paquete = '';
             $info_correo = [];
+            if(!isset($metas_reserva["_booking_dias"][0])){
+                $metas_reserva["_booking_dias"][0] = '';
+            }
             if( 
                 trim( strtolower($metas_reserva["_booking_dias"][0]) ) != "" &&
                 trim( strtolower($metas_reserva["_booking_paquete"][0]) ) != "" 
@@ -1540,6 +1544,20 @@
                         <span style='text-transform: Capitalize;'>".implode(' - ', $metas_reserva["_booking_dias"][0])."</span>
                     </div>
                 ";
+            }
+
+            switch($metas_orden['_payment_method_title'][0]){
+                case 'openpay':
+                    break;
+                case 'mercadopago':
+                    $metas_orden['_openpay_pdf'][0] = '';
+                    $metas_orden['_openpay_tienda_vence'][0] = $metas_orden['_mercadopago_vence'][0];
+                    break;
+                case 'paypal':
+                    $metas_orden['_openpay_pdf'][0] = '';
+                    $metas_orden['_openpay_tienda_vence'][0] = $metas_orden['_paypal_vence'][0];
+                    break;
+
             }
 
             $detalle = array(
@@ -1577,7 +1595,7 @@
 
             $tipo_pago = "PAGO";
             if( $metas_orden['_payment_method_title'][0] == "Tienda" ){ $tipo_pago = "PAGO EN TIENDA"; }
-
+ 
             $correos = array(
 
                 "cliente" => array(
