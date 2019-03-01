@@ -37,7 +37,7 @@ jQuery( document ).ready(function() {
         },3000);
      	},
       'html',
-      'guardar_sin_validar'
+      ''
    	);
     
     // initImg("portada");
