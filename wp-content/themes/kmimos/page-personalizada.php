@@ -103,13 +103,17 @@
 			<div>
 				<form id="buscador" method="POST" >
 
-					<i class="fa fa-times" aria-hidden="true"></i>
+					<i class="solo_movil fa fa-times" aria-hidden="true"></i>
 
-					<div class="cada_vez">
+					<div class="solo_movil cada_vez">
 						<div class="modifica">
 							Modifica los <span>filtros personalizados</span> de acuerdo a tus preferencias.
 						</div>
 						<div class="importante"><strong>IMPORTANTE:</strong> Cada vez que modifiques un filtro, los Cuidadores mostrados <span>arriba</span> se actualizarán.</div>
+					</div>
+
+					<div class="solo_pc cada_vez">
+						Cada vez que modifiques un filtro, tu búsqueda será mucho más personalizada.
 					</div>
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
