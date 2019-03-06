@@ -161,7 +161,7 @@
 		<!-- Your customer chat code -->
 		<div class="fb-customerchat"
 			attribution=setup_tool
-			page_id="1473614136234432"
+			page_id="361445711358167"
 			theme_color="#00d2c6"
 			logged_in_greeting="Hola! Cómo puedo ayudarte?"
 			logged_out_greeting="Hola! Cómo puedo ayudarte?">
