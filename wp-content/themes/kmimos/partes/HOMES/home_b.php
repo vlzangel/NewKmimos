@@ -32,7 +32,7 @@
 					'.$btn_registro.'
 					<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
 					<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
-					<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
+					<span class="banner_txt_3">¿Qué estás buscando para tu mascota?</span>
 				</div>
 
 				<div id="servicios_principales_container">
@@ -293,7 +293,7 @@
 							$cuidador->ubicacion.
 						'</div>'.
 						'<div class="msg_destacado_containder">'.
-							'"'.$cuidador->msg.'"'.
+							$cuidador->msg.
 						'</div>'.
 						'<a href="'.$cuidador->link.'?ldg=b" class="boton boton_verde" onclick="evento_google(\'ver_perfil_prueba_b\'); evento_fbq("track", "traking_code_ver_perfil_prueba_b");">Ver perfil</a>'.
 					'</div>'.

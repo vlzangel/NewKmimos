@@ -780,6 +780,10 @@
 	    font-size: 9px;
 	    text-align: justify;
 	}
+
+	.importante strong{
+	    font-weight: normal;
+	}
 	.modifica{
 	    font-size: 9px;
 	    text-align: justify;

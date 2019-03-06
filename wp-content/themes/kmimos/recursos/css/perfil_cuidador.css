@@ -254,7 +254,7 @@
 	
 		.pc_galeria_box .pc_galeria_item {
 		    height: 100%;
-		    width: calc( 20% - 3px );
+		    width: 20%;
 		    margin: 0px;
 		    display: inline-block;
 		    border: solid 2px #FFF;

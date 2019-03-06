@@ -20,7 +20,7 @@
 	.seccion_destacados h2 {
 	    text-align: left;
 	    margin: 0px;
-	    padding: 0px 15px 15px;
+	    padding: 0px 10px 15px;
 	    font-size: 16px !important;
 	    font-family: Gotham-Pro-Black !important;
 	}
@@ -250,7 +250,7 @@
 
 		.cada_vez {
 		    font-size: 8px;
-		    margin: 5px 3px 20px;
+		    margin: 15px 3px;
 		}
 
 		.cada_vez > div > span {
@@ -263,7 +263,7 @@
 		}
 
 		.titulo_form {
-		    font-size: 9px;
+		    font-size: 11px;
 		    margin-bottom: 8px;
 		}
 
@@ -296,7 +296,7 @@
 		}
 
 		.tipo_mascota_container .input_check_box {
-		    width: 35px;
+		    width: calc( 50% - 2px );
 		}
 
 		.input_check_box img {
@@ -322,16 +322,17 @@
 		}
 
 		.tamanios_container .input_check_box {
-		    width: 43px;
+	        width: calc( 25% - 3px );
+    		margin-right: 0px;
 		}
 
 		.tipo_mascota_container {
-		    width: 28%;
+		    width: 100%;
 		}
 
 		.tamanios_container {
-		    width: 72%;
-	        text-align: right;
+		    width: 100%;
+	        text-align: center;
             padding-right: 0px;
 		}
 
@@ -373,7 +374,7 @@
 
 		td.personaliza_title {
 		    padding: 15px 0px;
-		    font-size: 9px;
+		    font-size: 11px;
 		}
 
 		.check_container {
@@ -412,7 +413,7 @@
 		}
 
 		.omitir_btn{
-			#display: none !important;
+			
 		}
 
 		.omitir_btn a.solo_movil.boton.boton_verde {
@@ -431,28 +432,41 @@
 		display: none;
 	}
 
+	.modifica {
+	    font-size: 11px;
+	}
+
+	.importante {
+	    font-size: 11px;
+	    padding-top: 10px;
+	}
+
+	.importante strong{
+	    font-weight: bold;
+	}
+
 }
 
 @media screen and (max-width: 350px){
 	.tamanios_container .input_check_box span {
-	    padding: 9px 0px;
+	    padding: 8px 0px;
 	    line-height: 1.3;
 	}
 
 	.tam_label_movil {
-	    font-size: 7px;
+	    font-size: 10px;
 	}
 
 	.input_check_box .small, .input_check_box small {
-	    font-size: 5px;
+	    font-size: 8px;
 	}
 
 	.tipo_mascota_container .input_check_box span {
-	    font-size: 7px;
+	    font-size: 10px;
 	}
 
 	.input_check_box img {
-	    height: 13px;
+	    height: 15px;
 	}
 
 	.servicios_principales_box .input_check_box span {

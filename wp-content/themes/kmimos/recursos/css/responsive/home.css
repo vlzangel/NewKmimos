@@ -521,7 +521,7 @@
 		padding: 0px 0px 5px 20px;
 		text-align: justify;
 		white-space: normal;
-		min-height: 45px;
+		min-height: 35px;
 		font-size: 7px;
 	}
 
@@ -669,12 +669,13 @@
 
 	.beneficios_detalles_info h3 {
 	    color: #000;
-	    font-size: 15px;
+	    font-size: 14px;
 	    margin: 5px 0px;
 	}
 
 	.beneficios_detalles_info p {
 	    font-size: 10px;
+	    text-align: justify;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista li > div {
@@ -865,6 +866,7 @@
 	    margin: 0px;
 	    padding: 0px 20px 0px 0px;
 	    box-sizing: border-box;
+	    text-align: justify;
 	}
 
 	.pasos_reserva_container h2.solo_movil {

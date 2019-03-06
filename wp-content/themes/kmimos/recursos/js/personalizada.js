@@ -173,6 +173,17 @@ jQuery( document ).ready(function() {
 
     });
 
+    jQuery("#aplicar_btn_2").on("click", function(e){
+        e.preventDefault();
+        jQuery("#banner_home").css("display", "block");
+        jQuery("body").css("overflow", "hidden");
+
+        jQuery("#buscador").animate({
+            "top": "10px"
+        }, 1000);
+
+    });
+
     jQuery("#buscador i.fa.fa-times").on("click", function(e){
         e.preventDefault();
 

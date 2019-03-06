@@ -41,7 +41,7 @@
 	}
 
 	.pc_seccion_1 {
-	    padding: 5px 15px;
+	    padding: 5px 10px;
 	    min-height: auto;
 	    height: auto;
 	}
@@ -75,7 +75,7 @@
 	}
 
 	.pc_galeria_box .pc_galeria_item {
-	    width: calc( 25% - 2px );
+	    width: 25%;
 	    margin: 0px;
         border: solid 1px #FFF;
 	}
@@ -101,7 +101,7 @@
 
 	.pc_info_container {
 	    width: auto;
-	    padding: 0px 0px 0px 15px;
+	    padding: 0px 0px 0px 7px;
 	}
 
 	.pc_info_container .pc_info_titulo {
@@ -144,7 +144,11 @@
 	}
 
 	.pc_info_valoraciones {
-	    font-size: 11px;
+	    font-size: 10px;
+	}
+
+	.pc_info_valoraciones a {
+	    padding-left: 0px;
 	}
 
 	.pc_info_iconos_container {

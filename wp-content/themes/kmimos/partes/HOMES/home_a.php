@@ -21,7 +21,7 @@
 					'.$btn_registro.'
 					<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
 					<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
-					<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
+					<span class="banner_txt_3">¿Qué estás buscando para tu mascota?</span>
 				</div>
 
 				<div id="servicios_principales_container">
