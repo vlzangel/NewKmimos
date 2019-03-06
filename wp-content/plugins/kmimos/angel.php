@@ -176,8 +176,6 @@
                 'BCC: r.gonzalez@kmimos.la',
                 'BCC: m.castellon@kmimos.la',
                 'BCC: e.viera@kmimos.la',
-                'BCC: g.leon@kmimos.la',
-                'BCC: j.chumpitaz@kmimos.la',
                 'BCC: reservacionesmx@kmimos.la',
                 'BCC: conocercuidadormx@kmimos.la ',
 
