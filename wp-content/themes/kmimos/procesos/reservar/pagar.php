@@ -268,7 +268,7 @@
 		"paquete"			=> "",
 	);
 
-	if( $pagar->tipo_servicio == "paseos" ){
+	if( $pagar->tipo_servicio == "paseos" && $pagar->paquete != ""){
 		$data_reserva["paquete"] = $pagar->paquete;
 		$data_reserva["dias"] = json_encode($fechas->dias_str);
 	}

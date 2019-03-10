@@ -281,7 +281,7 @@ function calcular(){
 			if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
 				error = "Ingrese la fecha de finalizaci&oacute;n";
 			}else{
-				if( tipo_servicio == "paseos" ){
+				if( tipo_servicio == "paseos" && PAQUETE != "" ){
 					var dias_array = [];
 					jQuery(".dias_container input").each(function(i, v){
 						if( jQuery(this).prop("checked") ){
@@ -499,7 +499,7 @@ function initFactura(){
 
 	var items = "";
 
-	if( tipo_servicio == "paseos" ){
+	if( tipo_servicio == "paseos" && PAQUETE != ""  ){
 		var _dias = [
 	    	"Domingo",
 	    	"Lunes",

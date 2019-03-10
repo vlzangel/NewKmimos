@@ -277,7 +277,7 @@
 		include('partes/seleccion_boton_reserva.php');
 
 		$activo_hoy = get_cupos_by_user_id( $post->post_author );
-		$activo_hoy = ( $activo_hoy == null ) ? true: false;
+		$activo_hoy = ( $activo_hoy == null ) ? true : false;
 
 		$btn_conocer = '<a onclick="evento_google_kmimos(\'conocer_ficha\'); evento_fbq_kmimos(\'conocer_ficha\');" role="button" href="#" class="boton boton_border_gris"><strong>No disponible para conocer</strong></a>';
 		if( $activo_hoy ){
