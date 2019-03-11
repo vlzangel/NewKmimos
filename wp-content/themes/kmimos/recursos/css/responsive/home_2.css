@@ -669,7 +669,7 @@
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista li > div {
 	    vertical-align: middle;
-	    max-width: 70%;
+	    max-width: 85%;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_titulo {
@@ -688,12 +688,13 @@
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista strong {
-	    font-size: 15px;
+	    font-size: 14px;
 	    color: #000;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista p {
-	    font-size: 13px;
+	    font-size: 12px;
+	    text-align: justify;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista li {
@@ -855,6 +856,7 @@
 	    margin: 0px;
 	    padding: 0px 20px 0px 0px;
 	    box-sizing: border-box;
+	    text-align: justify;
 	}
 
 	.pasos_reserva_container h2.solo_movil {
