@@ -139,7 +139,7 @@
 								</div>
 							</td>
 							<td class="celda_2">
-								<label class="titulo_form">Características de tu<br>mascota</label>
+								<label class="titulo_form">Características de tu<br> mascota</label>
 								<div class="tipo_mascota_container">
 									<div style="clear: both;"></div>
 									<label class="input_check_box" for="perro">
