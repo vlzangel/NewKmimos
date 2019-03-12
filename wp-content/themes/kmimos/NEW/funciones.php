@@ -749,8 +749,15 @@
 				# Resultados invertidos
 				if( $invertir_orden == 1 ){
 					$testing = 'INV';
+
+					$fin_paginas = $total / 2;
+					$fin_paginas = round( $fin_paginas, 0, PHP_ROUND_HALF_DOWN );
+					$PAGE = rand( 1, $fin_paginas );
+
 					$fin = ( $total > ($PAGE+2) ) ? $PAGE+2 : $total;
 					$resultados = array_reverse($resultados, false);
+
+
 
 				# Resultados ordenados
 				}else{				
