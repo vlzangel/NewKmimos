@@ -359,7 +359,7 @@
 	$ubicacion = $est.', '. ucfirst( strtolower( $mun ) );
 
 	echo "<pre>";
-		print_r( $_cuidador );
+		print_r( $busqueda );
 	echo "</pre>";
 
  	$HTML .= '

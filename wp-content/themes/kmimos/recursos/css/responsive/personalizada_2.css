@@ -442,8 +442,17 @@
 	    padding-top: 10px;
 	}
 
-	.importante strong{
+	.importante strong {
 	    font-weight: bold;
+        font-size: 12px;
+	}
+
+	.importante span {
+	    display: none;
+	}
+
+	#aplicar_btn{
+		display: none !important;
 	}
 
 }
@@ -455,15 +464,15 @@
 	}
 
 	.tam_label_movil {
-	    font-size: 10px;
-	}
-
-	.input_check_box .small, .input_check_box small {
 	    font-size: 9px;
 	}
 
+	.input_check_box .small, .input_check_box small {
+	    font-size: 8px;
+	}
+
 	.tipo_mascota_container .input_check_box span {
-	    font-size: 10px;
+	    font-size: 9px;
 	}
 
 	.input_check_box img {
@@ -471,6 +480,6 @@
 	}
 
 	.servicios_principales_box .input_check_box span {
-	    font-size: 8px;
+	    font-size: 7px;
 	}
 }

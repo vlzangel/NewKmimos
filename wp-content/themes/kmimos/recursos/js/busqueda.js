@@ -327,7 +327,9 @@ function calcular(){
 		jQuery('#checkout').val( dia+"/"+mes+"/"+fin.getFullYear() );
 		jQuery("#msg_paseos strong").html(get_paquete(PAQUETE));
 		jQuery("#msg_paseos").css("display", "block");
-		jQuery('#checkout').prop("disabled", true);
+		// jQuery('#checkout').prop("disabled", true);
+
+		buscar( 'checkout' );
 	}
 }
 

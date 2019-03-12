@@ -97,7 +97,6 @@
 		}
 	}
 	
-
     $HTML .= $cuidadores_destacados.'
     	<div id="banner_home">
 			<div>

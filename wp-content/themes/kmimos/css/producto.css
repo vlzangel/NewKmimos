@@ -502,7 +502,7 @@ div#tienda_box img {
         display: none;
     }
 
-    .input_check_box .top_check {
+    .dias_container .input_check_box .top_check {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -514,7 +514,7 @@ div#tienda_box img {
         opacity: 0;
     }
 
-    .input_check_box input:checked ~ .top_check {
+    .dias_container .input_check_box input:checked ~ .top_check {
         opacity: 1;
         transition: all .3s ease-in-out;
     }

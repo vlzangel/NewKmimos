@@ -1243,6 +1243,10 @@
 
 			$cuidadores[ $key ]->hospedaje_desde = $desde;
 
+			if( $_SESSION['landing_paseos'] == 'yes' ){
+				$cuidadores[ $key ]->hospedaje_desde = $cuidadores[ $key ]->paseos_desde;
+			}
+
     		$_cuidadores[ $value->id ] = $cuidadores[ $key ];
     		$_cuidadores_user_id[ $value->user_id ] = $value->id;
 

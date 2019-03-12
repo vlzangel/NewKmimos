@@ -467,6 +467,12 @@
 
     $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
 
+	if( $_POST["landing_paseos"] == 'yes'  ){
+		$con_precio_paseos = " AND paseos_desde > 0";
+	}else{
+		$con_precio_paseos = "";
+	}
+
     /* SQL cuidadores */
 
 	    $sql = "
@@ -491,6 +497,7 @@
 	    	$DESCUENTO_CONDICION
 	        {$ubicaciones_filtro} 
 	        {$FILTRO_UBICACION} 
+	        {$con_precio_paseos}
 	    ORDER BY {$orderby}";
 
     /* FIN SQL cuidadores */
