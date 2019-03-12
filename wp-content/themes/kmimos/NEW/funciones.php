@@ -730,6 +730,7 @@
 		$total = count($resultados);
 
 		$orden_default = $_SESSION['orden_default'];
+		$_SESSION['random_by_page'] = [];
 
 		$_PAGE = $PAGE / 10;
 		for ($invertir_orden=0; $invertir_orden <= 1; $invertir_orden++) 
@@ -750,9 +751,18 @@
 				if( $invertir_orden == 1 ){
 					$testing = 'INV';
 
-					$fin_paginas = $total / 2;
-					$fin_paginas = round( $fin_paginas, 0, PHP_ROUND_HALF_DOWN );
-					$PAGE = rand( 1, $fin_paginas );
+					// BEGIN Random
+					if( isset($_SESSION['random_by_page'][ $PAGE ]) && $_SESSION['random_by_page'][ $PAGE ] > 0 ){
+						$PAGE = $_SESSION['random_by_page'][ $PAGE ];
+					}else{
+						$fin_paginas = $total / 2;
+						$fin_paginas = round( $fin_paginas, 0, PHP_ROUND_HALF_DOWN );
+						$rand_page = rand( 1, $fin_paginas );
+						$_SESSION['random_by_page'][ $PAGE ] = $rand_page;
+						$PAGE = $rand_page;
+					}
+					// END Random
+
 
 					$fin = ( $total > ($PAGE+2) ) ? $PAGE+2 : $total;
 					$resultados = array_reverse($resultados, false);
