@@ -646,7 +646,7 @@
 						<h2>¡Únete al Club de las patitas felices! </h2>
 						<span>Cada amigo que complete 1 reservación</span>
 						<h3>Gana $150 y tú ganas otros $150</h3>
-						<form>
+						<form id="club_patitas">
 							<div class="club_patitas_tabla">
 								<div class="club_patitas_celda celda_70">
 									<input type="text" name="club_nombre" placeholder="Nombres y Apellidos" />
