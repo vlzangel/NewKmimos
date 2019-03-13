@@ -42,13 +42,19 @@
 	extract($parametros);
 
 	if( $cantidades->cantidad == 0 ){
-		unset($_SESSION["pagando"]);
-        echo json_encode(array(
-			"error" => 'sin_mascotas',
-			"tipo_error" => 'sin_mascotas',
-			"status" => "Error, no hay mascotas seleccionadas"
-		));
-		exit();
+		$sin_cantidades = false;
+		if( is_array( $cantidades->gatos ) && $cantidades->gatos[0] == 0 ){
+			$sin_cantidades = true;
+		}
+		if( $sin_cantidades ){
+			unset($_SESSION["pagando"]);
+	        echo json_encode(array(
+				"error" => 'sin_mascotas',
+				"tipo_error" => 'sin_mascotas',
+				"status" => "Error, no hay mascotas seleccionadas"
+			));
+			exit();
+		}
 	}
 
 	if( $_SESSION["flash_".$pagar->cuidador] == "NO" && 
