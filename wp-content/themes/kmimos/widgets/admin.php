@@ -30,6 +30,8 @@
 		
 		global $wpdb;
 
+		include('graficos/resumen-reservas.php');
+
 		$inicio = date("Y-m")."-01 00:00:00";
 		$fin = date("Y-m", strtotime ( '+1 month' , time() ) )."-01 23:59:59";
 
@@ -219,7 +221,9 @@
 				</ul>
 			</div>
 		';
+
 	}
+	
 
 	function ventas_dashboard_widget_function() {
 
