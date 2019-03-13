@@ -494,7 +494,39 @@
 			</div>
 
 		</div>';
-		
+
+		$HTML .= '
+		<!-- SECCIÓN 4 - CLUB PATITAS FELICES -->
+		<div class="club_patitas_container_superior">
+			<div class="club_patitas_container">
+				<div class="club_patitas_tabla">
+					<div class="club_patitas_celda celda_30">
+						<h2>¡Únete al Club de las patitas felices! </h2>
+						<img  class="club_patitas_logo" src="'.get_recurso('img/HOME/SVG').'Club_patitas.svg" />
+					</div>
+					<div class="club_patitas_celda celda_70">
+						<h2>¡Únete al Club de las patitas felices! </h2>
+						<span>Cada amigo que complete 1 reservación</span>
+						<h3>Gana $150 y tú ganas otros $150</h3>
+						<form id="club_patitas">
+							<div class="club_patitas_tabla">
+								<div class="club_patitas_celda celda_70">
+									<input type="text" name="club_nombre" placeholder="Nombres y Apellidos" />
+									<input type="text" name="club_nombre" placeholder="Correo Electrónico"  />
+								</div>
+								<div class="club_patitas_celda celda_30">
+									<input type="submit" value="Inscribete y gana" class="boton boton_morado">
+									<small>Ingresa los datos y haz click aquí</small>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->';
+
+		/*
 		$HTML .= '
 
 		<!-- CLUB PATITAS FELICES -->
@@ -526,7 +558,8 @@
 				</div>
 			</div>
 		</div>';
-		
+		*/
+
 		$HTML .= '
 
 		<!-- QUIERO SER CUIDADOR -->
