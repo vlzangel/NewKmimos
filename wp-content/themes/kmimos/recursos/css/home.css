@@ -483,6 +483,10 @@
 	    background-position: center;
 	    background-size: cover;
 	}
+	
+	.img_destacado img {
+	    display: none;
+	}
 
 	.datos_top_destacado_containder {
 	    position: relative;

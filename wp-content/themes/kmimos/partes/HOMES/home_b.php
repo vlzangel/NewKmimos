@@ -279,7 +279,9 @@
 		foreach ($destacados as $key => $cuidador) {
 			$desta_str .= 
 				'<div class="destacados_item">'.
-					'<div class="img_destacado" style="background-image: url('.$cuidador->img.');"></div>'.
+					'<div class="img_destacado" style="background-image: url('.$cuidador->img.');">
+						<img src="'.get_recurso('img/PERSONALIZADA/SVG').'/icono_kmimos.svg" />
+					</div>'.
 					'<div class="datos_destacado_containder">'.
 						'<div class="datos_top_destacado_containder">'.
 							'<div class="avatar_destacado" style="background-image: url('.$cuidador->cliente.');"></div>'.
