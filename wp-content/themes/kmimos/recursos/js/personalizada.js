@@ -114,7 +114,7 @@ function buscar( campo ){
                                     cuidador.precio+
                                 '</div>'+
                             '</div>'+
-                            '<a href="'+cuidador.link+'" class="boton">Ver perfil</a>'+
+                            '<a href="'+cuidador.link+'?ldg=d" class="boton"> <span> Ver perfil </span> </a>'+
                         '</div>';
                     });
                 }else{

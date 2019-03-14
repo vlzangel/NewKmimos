@@ -15,5 +15,11 @@
 
 	// update_titulo();
 	
-	update_precios_paseos();
+	// update_precios_paseos();
+
+	$_cuidador = $_SESSION["DATA_CUIDADORES"][ $_SESSION["CUIDADORES_USER_ID"][ $post->post_author ] ];
+
+	echo '<pre>';
+		print_r($_SESSION["DATA_CUIDADORES"]);
+	echo '</pre>';
 ?>
