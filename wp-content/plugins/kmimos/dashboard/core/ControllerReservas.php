@@ -38,9 +38,13 @@ function get_cupones_reserva( $reserva_id ){
         // total cupones
         $detalle[ 'kmimos_num' ] = 0;
         $detalle[ 'cuidador_num' ] = 0;
+        $detalle[ 'total' ] = 0;
 
         foreach ($cupones as $cupon) {
             if( $cupon->monto > 0 ){
+
+            	$detalle[ 'total' ] += $cupon->monto;
+
                 $tipo = $wpdb->get_var("SELECT m.meta_value 
                     FROM wp_posts as p 
                     INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = 'descuento_tipo' 
