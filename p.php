@@ -20,7 +20,7 @@
 	echo '</pre>';
 	*/
 
-	$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores_2 WHERE activo = 1");
+	$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores_2");
 	$cambios_total = 0;
 	foreach ($cuidadores as $indice => $cuidador) {
 		if( $cuidador->paseos_desde > 0 && $cuidador->paseos_desde < 40 ){
