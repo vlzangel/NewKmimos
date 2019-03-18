@@ -828,7 +828,7 @@ function calcularDescuento(){
 	if( jQuery(".km-option-deposit").hasClass("active") ){
 
 	}else{
-		if( pagoCuidador == 0 ){
+		if( total == descuentos ){
 			jQuery("#metodos_pagos").css("display", "none");
 		}else{
 			jQuery("#metodos_pagos").css("display", "block");
