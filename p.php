@@ -23,6 +23,10 @@
 	$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores");
 	$cambios_total = 0;
 	foreach ($cuidadores as $indice => $cuidador) {
+		if( $cuidador->hospedaje_desde > 0 && $cuidador->hospedaje_desde < 40 ){
+			$cuidador->hospedaje_desde = 40;
+			$wpdb->query("UPDATE cuidadores SET hospedaje_desde = '40' WHERE id = ".$cuidador->id);
+		}
 		if( $cuidador->paseos_desde > 0 && $cuidador->paseos_desde < 40 ){
 			$cuidador->paseos_desde = 40;
 			$wpdb->query("UPDATE cuidadores SET paseos_desde = '40' WHERE id = ".$cuidador->id);
