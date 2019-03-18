@@ -778,9 +778,9 @@
 
 			$verificar_cache = [];
 			for ($i = $PAGE; $i < $fin; $i++ ) {
-				if( !isset($_SESSION["DATA_CUIDADORES"][ $resultados[$i]->id ]) ){
+				// if( !isset($_SESSION["DATA_CUIDADORES"][ $resultados[$i]->id ]) ){
 					$verificar_cache[] = $resultados[$i]->id;
-				}
+				// }
 			}
 			if( count($verificar_cache) > 0 ){
 				pre_carga_data_cuidadores($verificar_cache);
