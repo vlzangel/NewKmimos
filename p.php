@@ -20,12 +20,12 @@
 	echo '</pre>';
 	*/
 
-	$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores_2");
+	$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores");
 	$cambios_total = 0;
 	foreach ($cuidadores as $indice => $cuidador) {
 		if( $cuidador->paseos_desde > 0 && $cuidador->paseos_desde < 40 ){
 			$cuidador->paseos_desde = 40;
-			$wpdb->query("UPDATE cuidadores_2 SET paseos_desde = '40' WHERE id = ".$cuidador->id);
+			$wpdb->query("UPDATE cuidadores SET paseos_desde = '40' WHERE id = ".$cuidador->id);
 		}
 		$adicionales = unserialize($cuidador->adicionales);
 		$cambio = false;
@@ -42,7 +42,7 @@
 		if( $cambio ){
 			$cambios_total++;
 			$cuidadores[ $indice ]->adicionales = serialize( $adicionales );
-			$wpdb->query("UPDATE cuidadores_2 SET adicionales = '".serialize( $adicionales )."' WHERE id = ".$cuidador->id);
+			$wpdb->query("UPDATE cuidadores SET adicionales = '".serialize( $adicionales )."' WHERE id = ".$cuidador->id);
 		}
 	}
 	echo $cambios_total;
