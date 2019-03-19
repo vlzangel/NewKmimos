@@ -1,3 +1,9 @@
+@media screen and ( min-width: 768px ){
+	div#banner_home {
+	    display: block !important;
+	}
+}
+
 @media screen and ( max-width: 768px ){
 
 	#buscador i.fa.fa-times {
