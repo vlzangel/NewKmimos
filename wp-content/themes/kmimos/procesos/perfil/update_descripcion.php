@@ -1,4 +1,7 @@
 <?php 
+
+	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
+
 	$mascotas_cuidador = array(
 		'pequenos' => $tengo_pequenos,
 		'medianos' => $tengo_medianos,
@@ -49,6 +52,7 @@
 			$video_youtube = $matches[1][0];
 		}
 	}
+	/*
 	$atributos = array(
 		'yard'	  		=> $yard,
 		'green'		  	=> $green,
@@ -60,6 +64,21 @@
 		'tipo_doc'		=> $tipo_doc,
 		'gatos'		=> $gatos
 	);
+	$atributos = serialize($atributos);
+	*/
+
+	$atributos = (array) unserialize( $cuidador->atributos );
+
+	$atributos["yard"] = $yard;
+	$atributos["green"] = $green;
+	$atributos["propiedad"] = $propiedad;
+	$atributos["esterilizado"] = $solo_esterilizadas;
+	$atributos["emergencia"] = $emergencia;
+	$atributos["video_youtube"] = $video_youtube;
+	$atributos["nacimiento"] = $fecha;
+	$atributos["tipo_doc"] = $tipo_doc;
+	$atributos["gatos"] = $gatos;
+
 	$atributos = serialize($atributos);
 
 	$latitud  = $lat;
@@ -91,8 +110,6 @@
 
         break;
     }
-
-	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
 
 	$ubicacion = $db->get_row("SELECT * FROM ubicaciones WHERE cuidador = {$cuidador_id}; ");
 	if( $ubicacion === false ){

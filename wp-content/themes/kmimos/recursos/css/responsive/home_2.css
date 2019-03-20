@@ -289,8 +289,8 @@
 	}
 
 	.servicios_principales_container .input_check_box .top_check {
-	    width: 100%;
-	    height: 100%;
+	    width: calc( 100% + 2px );
+    	height: calc( 100% + 2px );
 	    background-color: transparent;
 	    border-radius: 5px;
 	    border: solid 2px #00d2c6;
@@ -414,7 +414,6 @@
 	.boton_buscar_container {
 	    width: 100%;
 	    padding-right: 0px;
-	    max-width: 300px;
         margin: 0px 0px 10px;
         text-align: center;
 	}
@@ -670,7 +669,7 @@
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista li > div {
 	    vertical-align: middle;
-	    max-width: 70%;
+	    max-width: 85%;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_titulo {
@@ -689,12 +688,13 @@
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista strong {
-	    font-size: 15px;
+	    font-size: 14px;
 	    color: #000;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista p {
-	    font-size: 13px;
+	    font-size: 12px;
+	    text-align: justify;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista li {
@@ -856,6 +856,7 @@
 	    margin: 0px;
 	    padding: 0px 20px 0px 0px;
 	    box-sizing: border-box;
+	    text-align: justify;
 	}
 
 	.pasos_reserva_container h2.solo_movil {
@@ -1051,6 +1052,215 @@
 	    width: 85%!important;
 	}
 
+
+
+	/* BANNER */
+
+		#banner_home{
+			width: 100%;
+		}
+
+		.banner_rotativo {
+		    height: 245px;
+		    margin-top: 35px;
+		}
+
+		#banner_home #buscador {
+		    margin: 0px 0px 0px;
+		    border-radius: 0px;
+		    box-shadow: none;
+		    border: 0px;
+		    background: #FFF;
+	        padding-bottom: 0px;
+		}
+
+		.home_2 nav {
+		    box-shadow: none;
+		}
+
+		.home_2 td.nav_right img {
+		    height: 20px !important;
+		}
+
+
+		.home_2 td.nav_right > a {
+		    font-size: 11px;
+		}
+
+		.home_2 .logo, .home_2 .nav_white .logo {
+		    display: block !important;
+		}
+
+		.home_2 .logo_negro, .home_2 .nav_white .logo_negro {
+		    display: none !important;
+		}
+
+		.titulo_banner_top{
+			display: block;
+			font-weight: 600;
+			padding: 20px 0px;
+		}
+
+		.tipo_mascota_container {
+		    text-align: left;
+		}
+
+		.tipo_mascota_container .input_check_box {
+		    width: calc( 50% - 10px );
+		    height: auto;
+		    margin-right: 15px;
+		    text-align: center;
+		}
+
+		.tipo_mascota_container .input_check_box.gato {
+	        margin-right: 0px;
+		}
+
+		.input_check_box .top_check {
+		    bottom: -1px;
+		    left: -1px;
+		    top: auto;
+		    width: calc( 100% + 2px );
+		    height: 4px;
+		    background-color: transparent;
+		    border-radius: 0px 0px 5px 5px;
+		    border: solid 2px #00d2c6;
+		}
+
+		.banner_rotativo .solo_movil {
+		    display: inline-block !important;
+		}
+
+		.carrusel_servicios h2 {
+		    font-size: 12px !important;
+		    padding: 0px 15px 20px;
+		}
+
+		.carrusel_servicios {
+		    margin: 20px auto 0px;
+		}
+
+		.carrusel_servicios_principales_box {
+		    left: -545%;
+		    height: 225px;
+		}
+
+		.carrusel_servicios_principales_item {
+		    width: 70%;
+		}
+
+		.carrusel_servicios_principales_img {
+		    height: 155px;
+		}
+
+		.carrusel_servicios_principales_data label {
+		    padding: 10px 0px 5px;
+		    font-size: 10px;
+		}
+
+		.carrusel_servicios_principales_data p {
+		    font-size: 8px;
+		    font-weight: 400 !important;
+		    line-height: 1.4;
+		}
+
+		.carrusel_recomendados h2 {
+		    font-size: 13px !important;
+		    padding: 0px 15px 20px;
+		}
+
+		.carrusel_recomendados_item {
+		    width: 50%;
+		}
+
+		.carrusel_recomendados_container {
+		    margin: 0px 10px;
+		}
+
+		.carrusel_recomendados_data > span {
+		    font-size: 12px;
+		}
+
+		.carrusel_recomendados_experiencia {
+		    font-size: 9px;
+		}
+
+		.carrusel_recomendados_precio {
+		    font-size: 11px;
+		}
+
+		.carrusel_recomendados_ranking .km-ranking a {
+		    width: 15px !important;
+		    height: 8px !important;
+		    background-size: 15px 8px !important;
+		}
+
+		.carrusel_recomendados .seccion_destacados_flechas {
+	        display: inline-block !important;
+		    width: 30px !important;
+		    padding: 8px 9px !important;
+		    top: calc( 50% - 45px ) !important;
+		}
+
+		.carrusel_recomendados .seccion_destacados_flechas.seccion_destacados_izq {
+		    left: -2px !important;
+		}
+
+
+		.carrusel_recomendados .seccion_destacados_flechas.seccion_destacados_der {
+		    right: -2px !important;
+		}
+
+		.suscribir_blog h2 {
+		    float: none;
+		    width: 100%;
+		    font-size: 9px !important;
+		    padding: 0px 15px;
+		    line-height: 1.4;
+		}
+
+		.suscribir_blog {
+		    max-width: 100%;
+		    padding: 25px 0px 25px;
+		}
+
+		.suscribir_blog > form {
+		    float: none;
+		    width: 100%;
+		    padding: 0px 15px;
+		}
+
+		form#suscribir input[type="submit"] {
+		    width: 115px;
+		    font-size: 8px;
+		}
+
+		form#suscribir input[type="text"] {
+		    padding: 9px 10px;
+		    width: calc( 100% - 115px );
+		    font-size: 10px;
+		}
+
+		.suscribir_blog h2 span {
+		    font-size: 8px !important;
+		}
+
+		.banner_rotativo .solo_pc_banner {
+		    display: none;
+		}
+
+		.banner_rotativo .solo_movil_banner {
+		    display: inline-block;
+		}
+
+		.carrusel_recomendados_ubicacion {
+		    font-size: 10px;
+		}
+
+		.banner_rotativo_item.solo_movil_banner img {
+		    width: 100%;
+		}
+
 }
 
 @media (max-width: 600px){
@@ -1196,13 +1406,17 @@
 	    overflow-y: auto !important; 
 	}
 	#popup-servicios-new .modal-dialog {
-	    margin: 100px 0px 0px;
+	    margin: 10px 0px 0px;
 	}
 
 	.ubicacion_container small, .fechas_container small {
 	    top: 23px;
 	    text-align: right;
 	    padding: 2px 7px;
+	}
+
+	.modal {
+	    top: 0px !important;
 	}
 }
 
@@ -1340,196 +1554,22 @@
 	    margin-top: 7px !important;
 	}
 
-	/* BANNER */
+	.carrusel_servicios_principales_box {
+	    height: 206px;
+	}
 
-		#banner_home{
-			width: 100%;
-		}
+	.carrusel_servicios_principales_img {
+	    height: 130px;
+	}
 
-		.banner_rotativo {
-		    height: 195px;
-		    margin-top: 35px;
-		}
+	.banner_rotativo {
+	    height: 195px;
+	}
 
-		#banner_home #buscador {
-		    margin: 0px 0px 0px;
-		    border-radius: 0px;
-		    box-shadow: none;
-		    border: 0px;
-		    background: #FFF;
-	        padding-bottom: 0px;
-		}
+	.carrusel_recomendados .seccion_destacados_flechas {
+	    width: 27px !important;
+	    padding: 8px 9px !important;
+        top: calc( 50% - 10px ) !important;
+	}
 
-		.home_2 nav {
-		    box-shadow: none;
-		}
-
-		.home_2 td.nav_right img {
-		    height: 20px !important;
-		}
-
-
-		.home_2 td.nav_right > a {
-		    font-size: 11px;
-		}
-
-		.home_2 .logo, .home_2 .nav_white .logo {
-		    display: block !important;
-		}
-
-		.home_2 .logo_negro, .home_2 .nav_white .logo_negro {
-		    display: none !important;
-		}
-
-		.titulo_banner_top{
-			display: block;
-			font-weight: 600;
-			padding: 20px 0px;
-		}
-
-		.tipo_mascota_container {
-		    text-align: left;
-		}
-
-		.tipo_mascota_container .input_check_box {
-		    width: calc( 50% - 10px );
-		    height: auto;
-		    margin-right: 15px;
-		    text-align: center;
-		}
-
-		.tipo_mascota_container .input_check_box.gato {
-	        margin-right: 0px;
-		}
-
-		.input_check_box .top_check {
-		    bottom: -1px;
-		    left: -1px;
-		    top: auto;
-		    width: calc( 100% + 2px );
-		    height: 4px;
-		    background-color: transparent;
-		    border-radius: 0px 0px 5px 5px;
-		    border: solid 2px #00d2c6;
-		}
-
-		.banner_rotativo .solo_movil {
-		    display: inline-block !important;
-		}
-
-		.carrusel_servicios h2 {
-		    font-size: 12px !important;
-		    padding: 0px 15px 20px;
-		}
-
-		.carrusel_servicios {
-		    margin: 20px auto 0px;
-		}
-
-		.carrusel_servicios_principales_item {
-		    width: 70%;
-		}
-
-		.carrusel_servicios_principales_img {
-		    height: 130px;
-		}
-
-		.carrusel_servicios_principales_data label {
-		    padding: 10px 0px 5px;
-		    font-size: 10px;
-		}
-
-		.carrusel_servicios_principales_data p {
-		    font-size: 8px;
-		    font-weight: 400 !important;
-		    line-height: 1.4;
-		}
-
-		.carrusel_recomendados h2 {
-		    font-size: 13px !important;
-		    padding: 0px 15px 20px;
-		}
-
-		.carrusel_recomendados_item {
-		    width: 50%;
-		}
-
-		.carrusel_recomendados_container {
-		    margin: 0px 10px;
-		}
-
-		.carrusel_recomendados_data > span {
-		    font-size: 12px;
-		}
-
-		.carrusel_recomendados_experiencia {
-		    font-size: 9px;
-		}
-
-		.carrusel_recomendados_precio {
-		    font-size: 11px;
-		}
-
-		.carrusel_recomendados_ranking .km-ranking a {
-		    width: 15px !important;
-		    height: 8px !important;
-		    background-size: 15px 8px !important;
-		}
-
-		.carrusel_recomendados .seccion_destacados_flechas {
-		    display: inline-block !important;
-		    width: 27px !important;
-		    padding: 8px 9px !important;
-		}
-
-		.carrusel_recomendados .seccion_destacados_flechas.seccion_destacados_izq {
-		    left: -2px !important;
-		}
-
-
-		.carrusel_recomendados .seccion_destacados_flechas.seccion_destacados_der {
-		    right: -2px !important;
-		}
-
-		.suscribir_blog h2 {
-		    float: none;
-		    width: 100%;
-		    font-size: 9px !important;
-		    padding: 0px 15px;
-		    line-height: 1.4;
-		}
-
-		.suscribir_blog {
-		    max-width: 100%;
-		    padding: 25px 0px 25px;
-		}
-
-		.suscribir_blog > form {
-		    float: none;
-		    width: 100%;
-		    padding: 0px 15px;
-		}
-
-		form#suscribir input[type="submit"] {
-		    width: 115px;
-		    font-size: 8px;
-		}
-
-		form#suscribir input[type="text"] {
-		    padding: 9px 10px;
-		    width: calc( 100% - 115px );
-		    font-size: 10px;
-		}
-
-		.suscribir_blog h2 span {
-		    font-size: 8px !important;
-		}
-
-		.banner_rotativo .solo_pc_banner {
-		    display: none;
-		}
-
-		.banner_rotativo .solo_movil_banner {
-		    display: inline-block;
-		}
 }

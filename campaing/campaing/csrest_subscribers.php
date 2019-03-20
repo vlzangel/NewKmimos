@@ -83,7 +83,7 @@ if (!class_exists('CS_REST_Subscribers')) {
          * @return CS_REST_Wrapper_Result A successful response will be empty
          */
         function add($subscriber) {
-            echo $this->_subscribers_base_route.'.json';
+            // echo $this->_subscribers_base_route.'.json';
             return $this->post_request($this->_subscribers_base_route.'.json', $subscriber);
         }
 

@@ -3,6 +3,8 @@
         Template Name: Personalizada
     */
 
+        error_reporting( 0 );
+
 	date_default_timezone_set('America/Mexico_City');
 
     wp_enqueue_style('home_kmimos', get_recurso("css")."personalizada.css", array(), '1.0.0');
@@ -33,7 +35,10 @@
 	<div class="seccion_destacados">
 		<h2>Bienvenido a los <span>filtros personalizados <img src="'.get_recurso('img').'HOME/PNG/logo-verde.png" /></span> </h2>
 		<div class="seccion_destacados_subtitulo">
-			Para facilitar tu búsqueda hemos seleccionado estos tres cuidadores para ti. Ajusta los <span>filtros mostrados abajo</span> para encontrar al Cuidador ideal para tu mascota. También puedes <a href="'.get_home_url().'/busqueda">omitir este paso y ver la lista completa de Cuidadores.</a>
+			Para facilitar tu búsqueda hemos seleccionado estos tres cuidadores para ti. Ajusta los <span>filtros <span>mostrados abajo</span></span> para encontrar al Cuidador ideal para tu mascota. También puedes <a href="'.get_home_url().'/busqueda">omitir este paso y ver la lista completa de Cuidadores.</a>
+		</div>
+		<div class="botones_movil">
+			<a id="aplicar_btn_2" href="#" class="boton boton_verde">Ajustar filtros</a>
 		</div>
 		<div class="destacados_container">
 			<div class="destacados_box" data-paso="0" data-final_pc="0" data-final_movil="0">
@@ -76,16 +81,38 @@
 	$areas_verdes = ( $_SESSION["busqueda"]["areas_verdes"] == 1 ) ? 'checked' : '';
 	$es_agresiva = ( $_SESSION["busqueda"]["es_agresiva"] == 1 ) ? 'checked' : '';
 
+	$adicionales_arra = [
+		'corte',
+		'bano',
+		'limpieza_dental',
+		'visita_al_veterinario',
+		'acupuntura',
+		'transportacion_sencilla',
+		'transportacion_redonda',
+	];
+	$adicionales = '';
+	foreach ($adicionales_arra as $key => $value) {
+		if( in_array($value, $_SESSION['busqueda']['servicios']) ){
+			$adicionales .= '<input type="hidden" name="servicios[]" value="'.$value.'" >';
+		}
+	}
+	
     $HTML .= $cuidadores_destacados.'
     	<div id="banner_home">
 			<div>
 				<form id="buscador" method="POST" >
 
-					<div class="cada_vez">
-						<div>
+					<i class="solo_movil fa fa-times" aria-hidden="true"></i>
+
+					<div class="solo_movil cada_vez">
+						<div class="modifica">
 							Modifica los <span>filtros personalizados</span> de acuerdo a tus preferencias.
 						</div>
-						IMPORTANTE: Cada vez que modifiques un filtro, los Cuidadores mostrados arriba se actualizarán.
+						<div class="importante"><strong>IMPORTANTE:</strong> Cada vez que modifiques un filtro, los Cuidadores mostrados <span>arriba</span> se actualizarán.</div>
+					</div>
+
+					<div class="solo_pc cada_vez">
+						Cada vez que modifiques un filtro, tu búsqueda será mucho más personalizada.
 					</div>
 
 					<input type="hidden" name="USER_ID" value="'.$user_id.'" />
@@ -111,7 +138,7 @@
 								</div>
 							</td>
 							<td class="celda_2">
-								<label class="titulo_form">Características de tu<br>mascota</label>
+								<label class="titulo_form">Características de tu<br> mascota</label>
 								<div class="tipo_mascota_container">
 									<div style="clear: both;"></div>
 									<label class="input_check_box" for="perro">
@@ -282,6 +309,8 @@
 						</tr>
 
 					</table>
+
+					'.$adicionales.'
 
 				</form>
 

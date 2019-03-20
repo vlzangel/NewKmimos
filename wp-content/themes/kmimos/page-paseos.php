@@ -3,6 +3,8 @@
         Template Name: Paseos
     */
 
+    wp_enqueue_style('home_club_responsive', getTema()."/css/responsive/club_patitas_home.css", array(), '1.0.0');
+    
     wp_enqueue_style('home_kmimos', get_recurso("css")."paseos.css", array(), '1.0.0');
     wp_enqueue_style('home_responsive', get_recurso("css")."responsive/paseos.css", array(), '1.0.0');
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
@@ -494,7 +496,59 @@
 			</div>
 
 		</div>';
-		
+
+		$HTML .= '
+		<!-- SECCIÓN 4 - CLUB PATITAS FELICES -->
+		<div class="km-club-patitas" style="background-image: url('.getTema().'/images/club-patitas/Kmimos-Club-de-las-patitas-felices-3.png );"> 
+			<div class="row"> 
+				<header class="col-sm-12 col-xs-8 col-md-5 pull-right text-center"> 
+					<img src="'.getTema().'/images/club-patitas/Kmimos-Club-de-las-patitas-felices-5.png"> 
+					<h2> Club de las patitas felices </h2> 
+					<p> Únete al club que te recompensa por cada amigo tuyo que reserve con un cuidador Kmimos </p> 
+				</header> 
+			</div> 
+			<div class="row"> 
+				<div class="col-sm-6 col-xs-12 col-md-5 pull-right text-center"> 
+					<a class="btn btn-club-patitas" href="'.get_home_url().'/club-patitas-felices/?utm_source=homepage&amp;utm_medium=banner&amp;utm_campaign=club-patitas-felices" target="_blanck">
+						Ingresa aquí
+					</a> 
+				</div>
+			</div> 
+		</div>
+		<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->';
+/*
+		$HTML .= '
+		<!-- SECCIÓN 4 - CLUB PATITAS FELICES -->
+		<div class="club_patitas_container_superior">
+			<div class="club_patitas_container">
+				<div class="club_patitas_tabla">
+					<div class="club_patitas_celda celda_30">
+						<h2>¡Únete al Club de las patitas felices! </h2>
+						<img  class="club_patitas_logo" src="'.get_recurso('img/HOME/SVG').'Club_patitas.svg" />
+					</div>
+					<div class="club_patitas_celda celda_70">
+						<h2>¡Únete al Club de las patitas felices! </h2>
+						<span>Cada amigo que complete 1 reservación</span>
+						<h3>Gana $150 y tú ganas otros $150</h3>
+						<form id="club_patitas">
+							<div class="club_patitas_tabla">
+								<div class="club_patitas_celda celda_70">
+									<input type="text" name="club_nombre" placeholder="Nombres y Apellidos" />
+									<input type="text" name="club_nombre" placeholder="Correo Electrónico"  />
+								</div>
+								<div class="club_patitas_celda celda_30">
+									<input type="submit" value="Inscribete y gana" class="boton boton_morado">
+									<small>Ingresa los datos y haz click aquí</small>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->';
+*/
+		/*
 		$HTML .= '
 
 		<!-- CLUB PATITAS FELICES -->
@@ -526,7 +580,8 @@
 				</div>
 			</div>
 		</div>';
-		
+		*/
+
 		$HTML .= '
 
 		<!-- QUIERO SER CUIDADOR -->
@@ -579,6 +634,7 @@
     echo comprimir($HTML);
     
     wp_enqueue_script('buscar_home', get_recurso("js")."paseos.js", array(), '1.0.0');
+    wp_enqueue_script('club_patitas', get_recurso("js")."club_patitas.js", array(), '1.0.0');
 
     get_footer(); 
 ?>

@@ -1,5 +1,15 @@
 <?php
 
+    if( !isset($_SESSION[ "llego_al_home_c" ]) ){
+        $HTML .= '
+            <script>
+                evento_google("llego_al_home_c");  
+                evento_fbq("track", "traking_code_llego_al_home_c");   
+            </script>
+        ';
+        $_SESSION[ "llego_al_home_c" ] = "YA_ENTRO";
+    }
+
 	/* DESTACADOS */
 	$destacados = get_destacados_home();
 	if( is_array($destacados) && count($destacados) > 0 ){
@@ -10,7 +20,9 @@
 		foreach ($destacados as $key => $cuidador) {
 			$desta_str .= 
 				'<div class="destacados_item">'.
-					'<div class="img_destacado" style="background-image: url('.$cuidador->img.');"></div>'.
+					'<div class="img_destacado" style="background-image: url('.$cuidador->img.');">
+						<img src="'.get_recurso('img/PERSONALIZADA/SVG').'/icono_kmimos.svg" />
+					</div>'.
 					'<div class="datos_destacado_containder">'.
 						'<div class="datos_top_destacado_containder">'.
 							'<div class="avatar_destacado" style="background-image: url('.$cuidador->cliente.');"></div>'.
@@ -26,7 +38,7 @@
 						'<div class="msg_destacado_containder">'.
 							'"'.$cuidador->msg.'"'.
 						'</div>'.
-						'<a href="'.$cuidador->link.'" class="boton boton_verde">Ver perfil</a>'.
+						'<a href="'.$cuidador->link.'?ldg=b" onclick="evento_google(\'ver_perfil_prueba_c\'); evento_fbq("track", "traking_code_ver_perfil_prueba_c");" class="boton boton_verde">Ver perfil</a>'.
 					'</div>'.
 				'</div>';
 		}
@@ -90,13 +102,13 @@
 					'.$btn_registro.'
 					<span class="banner_txt_1">Kmimos es la red más segura de cuidadores certificados de México</span>
 					<span class="banner_txt_2" id="buscar">Nuestra promesa: ¡Tu mejor amigo regresa feliz!</span>
-					<span class="banner_txt_3">¿Qué estas buscando para tu mascota?</span>
+					<span class="banner_txt_3">¿Qué estás buscando para tu mascota?</span>
 				</div>
 
 				<div id="servicios_principales_container">
 					<div class="servicios_principales_container">
 						<div class="servicios_principales_box"  style="position: relative;">
-							<label class="input_check_box" for="hospedaje">
+							<label class="input_check_box" for="hospedaje" onclick="evento_google(\'hospedaje_c\'); evento_fbq("track", "traking_code_boton_hospedaje_c");">
 								<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
@@ -104,7 +116,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia\'); evento_fbq("track", "traking_code_boton_guarderia");">
+							<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia_c\'); evento_fbq("track", "traking_code_boton_guarderia_c");">
 								<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
@@ -112,7 +124,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos\'); evento_fbq("track", "traking_code_boton_paseos"); evento_google_2(\'paseos\'); evento_fbq_2("track", "traking_code_boton_paseos_kmimos"); ">
+							<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos_c\'); evento_fbq("track", "traking_code_boton_paseos_c"); evento_google_2(\'paseos\'); evento_fbq_2("track", "traking_code_boton_paseos_kmimos"); ">
 								<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
@@ -120,7 +132,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
+							<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento_c\'); evento_fbq("track", "traking_code_boton_entrenamiento_c"); ">
 								<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />

@@ -54,7 +54,7 @@
 		if( $fee_conocer == 3 ){
 			$fee_conocer = 0;
 		}else{
-			$fee_conocer = 30;
+			$fee_conocer = 0;
 		}
 
 	/* Generales */

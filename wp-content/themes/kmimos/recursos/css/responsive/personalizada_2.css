@@ -1,4 +1,17 @@
+@media screen and ( min-width: 768px ){
+	div#banner_home {
+	    display: block !important;
+	}
+}
+
 @media screen and ( max-width: 768px ){
+
+	#buscador i.fa.fa-times {
+	    position: absolute;
+	    top: 6px;
+	    right: 6px;
+	    font-size: 20px;
+	}
 
 	.botones_movil{
 		display: block;
@@ -13,7 +26,7 @@
 	.seccion_destacados h2 {
 	    text-align: left;
 	    margin: 0px;
-	    padding: 0px 15px 15px;
+	    padding: 0px 10px 15px;
 	    font-size: 16px !important;
 	    font-family: Gotham-Pro-Black !important;
 	}
@@ -29,7 +42,7 @@
 	.seccion_destacados_subtitulo {
 	    margin: 0px auto 30px;
 	    max-width: 1200px;
-	    font-size: 9px;
+	    font-size: 11px;
 	    padding: 0px 10px;
 	    text-align: justify;
 	}
@@ -55,9 +68,19 @@
 	}
 
 	.destacados_item > a {
-		display: none;
-
+	    /* display: none; */
 	    width: 90%;
+	    position: absolute;
+	    left: 5px;
+	    top: -10px;
+	    border-radius: 0px;
+	    width: 100%;
+	    height: 100%;
+	    background: transparent;
+	}
+
+	.destacados_item > a span {
+	    display: none;
 	}
 
 	.seccion_destacados_flechas {
@@ -86,7 +109,7 @@
 	    height: 23px;
     	width: 23px;
 	    position: absolute;
-	    left: 5px;
+	    left: 1px;
 	    top: 11px;
 	}
 
@@ -107,7 +130,9 @@
 	}
 
 	.nombre_destacado span {
-	    font-size: 8px;
+	    font-size: 6px;
+	    line-height: 1;
+	    padding: 2px 0px 0px;
 	}
 
 	.km-ranking a {
@@ -170,11 +195,11 @@
 	    text-align: right;
 	    padding-right: 5px;
 	    float: right;
-    	padding-top: 3px;
+    	padding-top: 0px;
 	}
 
 	.datos_top_destacado_containder {
-	    padding: 5px 0px 2px;
+	    padding: 5px 0px 0px;
 	}
 
 	.datos_bottom_destacado_container > span:last-child {
@@ -202,12 +227,14 @@
 		    width: 220px;
 		    padding: 10px 0px !important;
 		    font-size: 11px;
+		    font-weight: 800;
 		}
 
 		.botones_movil > span {
 			text-align: center;
 			display: block;
-			font-size: 9px;
+			font-size: 10px;
+		    font-family: Gotham-Pro-Bold;
 		}
 
 		#banner_home table, #banner_home tbody, #banner_home tr, #banner_home td {
@@ -241,7 +268,7 @@
 
 		.cada_vez {
 		    font-size: 8px;
-		    margin: 5px 3px 20px;
+		    margin: 15px 3px;
 		}
 
 		.cada_vez > div > span {
@@ -249,8 +276,12 @@
 		    font-family: Gotham-Pro-Black;
 		}
 
+		.cada_vez > span {
+		    display: none;
+		}
+
 		.titulo_form {
-		    font-size: 9px;
+		    font-size: 11px;
 		    margin-bottom: 8px;
 		}
 
@@ -283,7 +314,7 @@
 		}
 
 		.tipo_mascota_container .input_check_box {
-		    width: 35px;
+		    width: calc( 50% - 2px );
 		}
 
 		.input_check_box img {
@@ -309,16 +340,17 @@
 		}
 
 		.tamanios_container .input_check_box {
-		    width: 43px;
+	        width: calc( 25% - 3px );
+    		margin-right: 0px;
 		}
 
 		.tipo_mascota_container {
-		    width: 28%;
+		    width: 100%;
 		}
 
 		.tamanios_container {
-		    width: 72%;
-	        text-align: right;
+		    width: 100%;
+	        text-align: center;
             padding-right: 0px;
 		}
 
@@ -360,7 +392,7 @@
 
 		td.personaliza_title {
 		    padding: 15px 0px;
-		    font-size: 9px;
+		    font-size: 11px;
 		}
 
 		.check_container {
@@ -399,7 +431,7 @@
 		}
 
 		.omitir_btn{
-			#display: none !important;
+			
 		}
 
 		.omitir_btn a.solo_movil.boton.boton_verde {
@@ -410,8 +442,61 @@
 		    margin: 0px auto 10px !important;
 		}
 
-	.celda_2 label.titulo_form br {
+		.celda_2 label.titulo_form br {
+		    display: none;
+		}
+
+	.seccion_destacados span span {
+		display: none;
+	}
+
+	.modifica {
+	    font-size: 11px;
+	}
+
+	.importante {
+	    font-size: 11px;
+	    padding-top: 10px;
+	}
+
+	.importante strong {
+	    font-weight: bold;
+        font-size: 12px;
+	}
+
+	.importante span {
 	    display: none;
 	}
 
+	#aplicar_btn{
+		display: none !important;
+	}
+
+}
+
+@media screen and (max-width: 350px){
+	.tamanios_container .input_check_box span {
+	    padding: 8px 0px;
+	    line-height: 1.3;
+	}
+
+	.tam_label_movil {
+	    font-size: 9px;
+	}
+
+	.input_check_box .small, .input_check_box small {
+	    font-size: 8px;
+	}
+
+	.tipo_mascota_container .input_check_box span {
+	    font-size: 9px;
+	}
+
+	.input_check_box img {
+	    height: 15px;
+	}
+
+	.servicios_principales_box .input_check_box span {
+	    font-size: 7px;
+	}
 }

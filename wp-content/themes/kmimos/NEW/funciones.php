@@ -64,9 +64,9 @@
                     $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
                     
                     $msg_destacado = $wpdb->get_row("SELECT * FROM wp_comments WHERE comment_ID = ".$atributos["msg_destacado"]);
-                    $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 90);
+                    $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 80);
                     if( $_msg_destacado != "" ){
-                    	$msg_destacado = ( strlen($_msg_destacado) > 90 ) ? $_msg_destacado.'...' : $_msg_destacado;
+                    	$msg_destacado = ( strlen($msg_destacado->comment_content) > 80 ) ? $_msg_destacado.'...' : $_msg_destacado;
                     }
                     
                     $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = ".$msg_destacado->comment_author_email );
@@ -122,9 +122,9 @@
 		                    $expe = ( $anios_exp == 1 ) ? $anios_exp." año de experiencia" : $anios_exp." años de experiencia";
 		                    
 		                    $msg_destacado = $wpdb->get_row("SELECT * FROM wp_comments WHERE comment_ID = ".$atributos["msg_destacado"]);
-		                    $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 90);
+		                    $_msg_destacado = mb_substr($msg_destacado->comment_content, 0, 80);
 		                    if( $_msg_destacado != "" ){
-		                    	$msg_destacado = ( strlen($_msg_destacado) > 90 ) ? $_msg_destacado.'...' : $_msg_destacado;
+		                    	$msg_destacado = ( strlen($msg_destacado->comment_content) > 80 ) ? $_msg_destacado.'...' : $_msg_destacado;
 		                    }
 		                    
 		                    $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = ".$msg_destacado->comment_author_email );
@@ -775,6 +775,16 @@
 				}
 			}
 
+			$verificar_cache = [];
+			for ($i = $PAGE; $i < $fin; $i++ ) {
+				// if( !isset($_SESSION["DATA_CUIDADORES"][ $resultados[$i]->id ]) ){
+					$verificar_cache[] = $resultados[$i]->id;
+				// }
+			}
+			if( count($verificar_cache) > 0 ){
+				pre_carga_data_cuidadores($verificar_cache);
+			}
+
 			# Crear ficha de cuidadores
 			for ($i = $PAGE; $i < $fin; $i++ ) {
 				$cuidador = $resultados[$i];
@@ -1165,10 +1175,12 @@
         }
     }
 
-    function pre_carga_data_cuidadores(){
+    function pre_carga_data_cuidadores($cuidadores = null){
     	global $wpdb;
 
     	if( !isset($_SESSION) ){ session_start(); }
+
+    	$con_cuidadores = ( $cuidadores != null ) ? ' AND cuidadores.id IN ('.implode(",", $cuidadores).')' : '';
 
     	$cuidadores = $wpdb->get_results("
     		SELECT 
@@ -1192,7 +1204,7 @@
     		FROM 
     			cuidadores
     		WHERE 
-    			activo = 1
+    			activo = 1 ".$con_cuidadores."
     	");
 
     	$_cuidadores_user_id = [];
@@ -1230,12 +1242,19 @@
 
 			$cuidadores[ $key ]->hospedaje_desde = $desde;
 
+			if( $_SESSION['landing_paseos'] == 'yes' ){
+				$cuidadores[ $key ]->hospedaje_desde = $cuidadores[ $key ]->paseos_desde;
+			}
+
     		$_cuidadores[ $value->id ] = $cuidadores[ $key ];
     		$_cuidadores_user_id[ $value->user_id ] = $value->id;
 
+    		$_SESSION["DATA_CUIDADORES"][ $value->id ] = $cuidadores[ $key ];
+			$_SESSION["CUIDADORES_USER_ID"][ $value->user_id ] = $value->id;
+
     	}
 
-    	return [ $_cuidadores, $_cuidadores_user_id ];
+    	// return [ $_cuidadores, $_cuidadores_user_id ];
 
     }
 

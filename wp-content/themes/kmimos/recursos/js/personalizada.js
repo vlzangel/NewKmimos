@@ -114,7 +114,7 @@ function buscar( campo ){
                                     cuidador.precio+
                                 '</div>'+
                             '</div>'+
-                            '<a href="'+cuidador.link+'" class="boton">Ver perfil</a>'+
+                            '<a href="'+cuidador.link+'?ldg=d" class="boton"> <span> Ver perfil </span> </a>'+
                         '</div>';
                     });
                 }else{
@@ -169,6 +169,31 @@ jQuery( document ).ready(function() {
 
         jQuery("#buscador").animate({
             "top": "10px"
+        }, 1000);
+
+    });
+
+    jQuery("#aplicar_btn_2").on("click", function(e){
+        e.preventDefault();
+        jQuery("#banner_home").css("display", "block");
+        jQuery("body").css("overflow", "hidden");
+
+        jQuery("#buscador").animate({
+            "top": "10px"
+        }, 1000);
+
+    });
+
+    jQuery("#buscador i.fa.fa-times").on("click", function(e){
+        e.preventDefault();
+
+        jQuery("body").css("overflow", "auto");
+        jQuery("#buscador").animate({
+            "top": "-100%"
+        }, 1000);
+
+        setTimeout(function(e){
+            jQuery("#banner_home").css("display", "none");
         }, 1000);
 
     });

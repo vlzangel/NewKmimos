@@ -37,7 +37,7 @@ nav td > a{
 	color: #FFF !important;
 }
 
-nav .logo_negro{
+nav .logo_negro, nav .logo.logo_verde {
 	display: none;
 }
 

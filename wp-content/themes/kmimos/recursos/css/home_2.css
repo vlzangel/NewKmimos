@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
+body{
+    overflow-x: hidden !important;
+}
+
+.labels_ocultos{
+	display: none;
+}
+
+::placeholder { color: #828282 !important; opacity: 1 !important; }
+:-ms-input-placeholder { color: #828282 !important; }
+::-ms-input-placeholder { color: #828282 !important; }
+
 /* Menu HOME */
 
 	.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
@@ -107,7 +119,6 @@
 		border-radius: 0px;
 		box-shadow: none;
     	background: #fafafa;
-    	overflow: hidden;
     	border: solid 1px #CCC;
 	}
 
@@ -524,7 +535,7 @@
 	    background-position: center;
 	    background-size: cover;
 	}
-
+	
 	.datos_top_destacado_containder {
 	    padding: 5px 0px;
 	    overflow: hidden;
@@ -608,7 +619,7 @@
 	}
 
 	.km-ranking a.active {
-	    background-image: url(../img/HOME/SVG/WLABEL/calificacion_individual.svg) !important;
+	    background-image: url(../img/HOME_2/SVG/calificacion_individual.svg) !important;
 	}
 
 	.seccion_destacados_flechas{
@@ -1214,11 +1225,11 @@
 	}
 
 	.club_patitas_celda.celda_70 {
-	    width: 55%;
+	    width: 70%;
 	}
 
 	.club_patitas_celda.celda_30 {
-	    width: 45%;
+	    width: 30%;
 	}
 
 	.club_patitas_tabla .club_patitas_tabla .club_patitas_celda{
@@ -1584,6 +1595,7 @@
 		    white-space: normal;
 		    text-align: center;
 		    cursor: pointer;
+		    vertical-align: top;
 		}
 
 		.carrusel_servicios_principales_img {
@@ -1597,10 +1609,18 @@
 			text-transform: none !important;
 			font-size: 18px !important;
 			font-weight: 400 !important;
-			font-family: Gotham-Pro-Bold !important;
+			font-family: Gotham-Pro-Medium !important;
 			margin: 0px;
 			padding: 0px 0px 20px;
 			color: #333 !important;
+		}
+
+		.carrusel_servicios h2 span {
+			display: none;
+		}
+
+		.carrusel_servicios:hover h2 span {
+			display: inline-block;
 		}
 
 		.carrusel_servicios_principales_data label {
@@ -1609,6 +1629,7 @@
 		}
 
 		.carrusel_servicios_principales_data p {
+			font-family: Gotham-Pro-Light;
 		    font-size: 13px;
 		}
 
@@ -1664,10 +1685,18 @@
 			text-transform: none !important;
 			font-size: 18px !important;
 			font-weight: 400 !important;
-			font-family: Gotham-Pro-Bold !important;
+			font-family: Gotham-Pro-Medium !important;
 			margin: 0px;
 			padding: 0px 0px 20px;
 			color: #333 !important;
+		}
+
+		.carrusel_recomendados h2 span {
+			display: none;
+		}
+
+		.carrusel_recomendados:hover h2 span {
+			display: inline-block;
 		}
 
 		.carrusel_recomendados_data > span {
@@ -1805,3 +1834,68 @@
 		.banner_rotativo .solo_movil_banner {
 		    display: none;
 		}
+
+		a#quiero_ser_menu {
+		    color: #FFF !important;
+		}
+
+/* Menu */
+	.club_container{
+		position: relative;
+		padding: 12px 15px 10px;
+	}
+
+	.club_container ul {  
+		position: absolute;
+		top: 35px;
+		left: -80px;
+		margin: 0px;
+		padding: 5px 15px;
+		width: 320px;
+		background-color: #FFF;
+		border: solid 1px #CCC;
+		border-radius: 4px;
+		box-shadow: 0px 0px 5px #CCC;
+		transition: all .2s ease-in-out;
+
+		opacity: 0;
+	}
+
+	.club_container:hover ul{
+		opacity: 1;
+	}
+
+	.club_container ul:hover{
+		opacity: 1;
+	}
+
+	.club_container ul li {
+	    margin: 0px;
+	    padding: 5px;
+		border-top: solid 1px #DDD;
+		display: block;
+	}
+
+	.menu_horizontal a, .club_container ul li a {
+	    text-decoration: none !important;
+	}
+
+	.club_container ul li:hover {
+	    background-color: #0001;
+	}
+
+	.club_container ul li.titulo_menu_club:hover {
+	    background-color: transparent !important;
+	}
+
+	.titulo_menu_club{
+		color: #eb0000 !important;
+    	font-family: Gotham-Pro-Medium;
+		border-top: 0px !important;
+	}
+
+	.li_club_container{
+		min-width: 100px;
+	    padding: 0px !important;
+	    min-height: 40px;
+	}

@@ -288,9 +288,11 @@
 	    display: inline-block;
 	}
 
-	.servicios_principales_container .input_check_box .top_check {
-	    width: 100%;
-	    height: 100%;
+	.servicios_principales_container .input_check_box .top_check {    
+		top: -1px;
+    	left: -1px;
+	    width: calc( 100% + 2px );
+    	height: calc( 100% + 2px );
 	    background-color: transparent;
 	    border-radius: 5px;
 	    border: solid 2px #00d2c6;
@@ -462,7 +464,7 @@
 	}
 
 	.img_destacado {
-	    height: 75px;
+	    height: 100px;
 	}
 
 	.avatar_destacado {
@@ -482,45 +484,53 @@
 	}
 
 	.ubicacion_destacado_containder {
-	    font-size: 9px;
-	    padding: 0px 0px 3px;
+	    font-size: 8px;
+	    padding: 0px 0px 2px;
+	    text-align: left;
 	}
 
 	#banner_home .ubicacion_destacado_containder {
 	    font-size: 8px !important;
-	    padding: 2px 10px !important;
+	    padding: 2px 0px !important;
 	}
 
 	.nombre_destacado a {
-	    font-size: 7px;
+	    font-size: 8px;
+	    font-weight: 400;
 	}
 
 	.nombre_destacado span {
 	    font-size: 7px;
+	    font-weight: 400;
 	}
 
 	.km-ranking a {
-	    width: 8px !important;
-	    height: 5px !important;
-	    background-size: 8px 4px !important;
+	    width: 12px !important;
+	    height: 6px !important;
+	    background-size: 10px 6px !important;
 	}
 
 	.ranking_destacado {
 	    float: none;
 	    padding-top: 0px;
 	    position: absolute;
-	    top: -5px;
-	    right: 0px;
+	    top: 0px;
+	    right: -2px;
 	    white-space: normal;
     	overflow: hidden;
 	}
 
+	#banner_home .ranking_destacado {
+	    padding-right: 0px;
+	}
+
 	.msg_destacado_containder {
-		padding: 0px 0px 5px 20px;
+		padding: 0px 0px 5px 0px;
 		text-align: justify;
 		white-space: normal;
-		min-height: 45px;
-		font-size: 7px;
+		min-height: 35px;
+		font-size: 8px;
+		line-height: 1.2;
 	}
 
 	.seccion_destacados h2 {
@@ -580,8 +590,12 @@
 		    height: auto;
 		}
 
+		#banner_home .nombre_destacado {
+		    padding: 4px 0px 0px 5px;
+		}
+
 		#banner_home .seccion_destacados .img_destacado {
-		    height: 75px;
+		    height: 100px;
 		    width: 100%;
 		    float: none;
 		}
@@ -590,7 +604,7 @@
 		    border-radius: 0px 0px 10px 10px;
 		    padding: 5px 5px 0px;
 		    width: 100%;
-		    height: 115px;
+		    height: 105px;
 		    float: none;
 		    position: relative;
 		    border-top: 0px;
@@ -603,6 +617,9 @@
 		    font-size: 7px;
 		}
 
+		#banner_home .msg_destacado_containder {
+		    padding: 1px 0px 5px 0px;
+		}
 		#banner_home .seccion_destacados .datos_top_destacado_containder {
 		    padding: 0px;
 		}
@@ -667,17 +684,19 @@
 
 	.beneficios_detalles_info h3 {
 	    color: #000;
-	    font-size: 15px;
+	    font-size: 14px;
 	    margin: 5px 0px;
 	}
 
 	.beneficios_detalles_info p {
 	    font-size: 10px;
+	    text-align: justify;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista li > div {
 	    vertical-align: middle;
-	    max-width: 70%;
+	    max-width: 85%;
+    	text-align: justify;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_titulo {
@@ -701,7 +720,7 @@
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista p {
-	    font-size: 13px;
+	    font-size: 12px;
 	}
 
 	.beneficios_servicios_principales .beneficios_servicios_principales_lista li {
@@ -863,6 +882,7 @@
 	    margin: 0px;
 	    padding: 0px 20px 0px 0px;
 	    box-sizing: border-box;
+	    text-align: justify;
 	}
 
 	.pasos_reserva_container h2.solo_movil {
@@ -1210,6 +1230,14 @@
 	    top: 23px;
 	    text-align: right;
 	    padding: 2px 7px;
+	}
+
+	.img_destacado img {
+		display: inline-block;
+	    position: absolute;
+	    top: 5px;
+	    right: 10px;
+	    width: 20px;
 	}
 }
 

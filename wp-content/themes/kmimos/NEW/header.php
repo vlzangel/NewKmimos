@@ -395,13 +395,27 @@
 	$link_home = ( $_SESSION['landing_paseos'] == 'yes' ) ? get_home_url().'/paseos' : get_home_url();
 
 	$menu_home_2 = '';
-	if( $HOME == "2" ){
+	if( $HOME == "2" && is_user_logged_in() ){
+		$notificacion = 0;
 		$menu_home_2 = '
 			<ul class="menu_horizontal">
-				<li class="menu_activo">Gana 150$</li>
-				<li> <div class="mensajes_container">Mensajes <span class="new_mensaje"></span></div> </li>
-				<li>Ayuda</li>
-				<li>Mi perfil</li>
+				<li class="menu_activo li_club_container">
+					<div class="club_container">
+						Gana 150$
+						<ul>
+							<li class="titulo_menu_club">Notificaciones ('.$notificacion.')</li>
+							<li> <a href="'.get_home_url().'/club-patitas-felices/compartir/"> Invita a un amigo y consigue recompensas </a> </li>
+							<li> <a href="'.get_home_url().'/club-patitas-felices/creditos/"> Ver mi saldo disponible </a> </li>
+						</ul>
+					</div>
+				</li>
+				<li> 
+					<div class="mensajes_container">
+						Mensajes <span class="new_mensaje"></span>
+					</div> 
+				</li>
+				<li> <a href="'.get_home_url().'/ayuda/"> Ayuda </a> </li>
+				<li> <a href="'.get_home_url().'/perfil/"> Mi perfil </a> </li>
 			</ul>
 		';
 	}

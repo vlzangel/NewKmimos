@@ -25,7 +25,6 @@
 			'pre { position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 99999999; display: none !important; }'.
 		'</style>';
 
-/*
 	$HTML .= "
 		<!-- Google Tag Manager -->
 		<script>
@@ -56,7 +55,7 @@
 	        ga('send', 'pageview');
         </script>
 	";
-*/
+
 	echo comprimir( $HTML );
 
     if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){
@@ -176,6 +175,12 @@
 			        hizo_click["guarderia"] = false;
 			        hizo_click["entrenamiento"] = false;
 
+			        function evento_google(evento, landing){
+			        	if( wlabel == "petco" && landing != "a" ){
+			        		ga("send", "event", "wlabel", "click", landing+"_traking_code_"+evento, "1");
+			        	}
+			        }
+
 			        function evento_google(evento){
 			        	if( wlabel == "petco" ){
 				        	switch ( evento ) {
@@ -239,6 +244,10 @@
 
 								case "dejo_el_correo":
 									ga("send", "event", "wlabel", "click", "traking_code_dejo_el_correo", "1");
+								break;
+		
+								default:
+									ga("send", "event", "wlabel", "click", "traking_code_"+evento, "1");
 								break;
 							}
 						}

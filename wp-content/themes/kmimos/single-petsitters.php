@@ -15,14 +15,17 @@
 
 	$ACCION_ADICIONAL = vlz_get_page();
 
-	if( !isset($_SESSION["DATA_CUIDADORES"]) ){
-		$_temp = pre_carga_data_cuidadores();
-		$_SESSION["DATA_CUIDADORES"] = $_temp[0];
-		$_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
-	}
+
+	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");
+
+	// if( !isset($_SESSION["CUIDADORES_USER_ID"][ $post->post_author ]) ){
+		pre_carga_data_cuidadores([
+			$cuidador->id
+		]);
+	// }
 
 	$_cuidador = $_SESSION["DATA_CUIDADORES"][ $_SESSION["CUIDADORES_USER_ID"][ $post->post_author ] ];
-	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");
+	
 
 	$current_user = wp_get_current_user();
     $user_id = $current_user->ID;
@@ -267,7 +270,7 @@
 		include('partes/seleccion_boton_reserva.php');
 
 		$activo_hoy = get_cupos_by_user_id( $post->post_author );
-		$activo_hoy = ( $activo_hoy == null ) ? true: false;
+		$activo_hoy = ( $activo_hoy == null ) ? true : false;
 
 		$btn_conocer = '<a onclick="evento_google_kmimos(\'conocer_ficha\'); evento_fbq_kmimos(\'conocer_ficha\');" role="button" href="#" class="boton boton_border_gris"><strong>No disponible para conocer</strong></a>';
 		if( $activo_hoy ){
@@ -349,7 +352,7 @@
 	$ubicacion = $est.', '. ucfirst( strtolower( $mun ) );
 
 	echo "<pre>";
-		print_r( $_cuidador );
+		print_r( $busqueda );
 	echo "</pre>";
 
  	$HTML .= '
@@ -625,19 +628,23 @@
 				<span id="cerrar_galeria" class="cerrar">×</span>
 			</div>
 		</div>
+ 	';
 
-		<div class="modal_msg">
-			<div class="modal_msg_container">
-				<div class="modal_msg_box">
-					Este cuidador pertenece a la zona de <strong>'.$ubicacion.'</strong>. Si el Cuidador no pertenece a tu Ciudad o si deseas encontrar uno más cercano, puedes usar nuestra nueva función de filtros perzonalizados.
-					<div class="btn_container">
-						<a href="'.get_home_url().'/personalizada" class="boton boton_verde">Ir a los filtros personalizados</a>
-						<a id="ocultar_msg" href="#" class="boton boton_borde_verde">Ignorar este mensaje</a>
+ 	if( isset($_GET["ldg"]) ){
+ 		$HTML .= '
+	 		<div class="modal_msg">
+				<div class="modal_msg_container">
+					<div class="modal_msg_box">
+						Este cuidador pertenece a la zona de <strong>'.$ubicacion.'</strong>. Si el Cuidador no pertenece a tu Ciudad o si deseas encontrar uno más cercano, puedes usar nuestra nueva función de filtros perzonalizados.
+						<div class="btn_container">
+							<a href="'.get_home_url().'/personalizada" class="boton boton_verde">Ir a los filtros personalizados</a>
+							<a id="ocultar_msg" href="#" class="boton boton_borde_verde">Ignorar este mensaje</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
- 	';
+		';
+ 	}
 
 	if( $_SESSION["wlabel"] == "petco" ){
 		$HTML .= "

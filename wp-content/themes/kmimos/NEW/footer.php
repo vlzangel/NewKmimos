@@ -100,9 +100,9 @@
 		</footer>
 	';
 
-	if( is_front_page()  ) { // && $_SESSION["POPUP_HOME"] == ""
+	if( is_front_page() || $plantilla == 'page-paseos.php' ) {
 		if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
-	     	// include_once( dirname(__DIR__).'/partes/footer/SubscribeSite.php' );
+	     	include_once( dirname(__DIR__).'/partes/footer/SubscribeSite.php' );
 	     	$_SESSION["POPUP_HOME"] = "YES"; 
 	    }
     }
@@ -122,5 +122,5 @@
 	wp_footer();
 
 
-	echo "</body></html>";
+	echo  "</body></html>";
 ?>

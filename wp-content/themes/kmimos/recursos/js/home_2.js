@@ -53,7 +53,9 @@ function mover_carrusel(box, dir){
             }else{
                 var final = parseInt( box.attr("data-final_movil") );
             }
-            if( paso < final ){ paso++; }
+            if( paso < final ){ paso++; }else{
+                paso = 0;
+            }
             box.attr("data-paso", paso);
             box.animate({left: (-1*(paso*h))+"%" }, parseInt( box.attr("data-t") ) );
         break;
@@ -76,7 +78,32 @@ function mover_carrusel(box, dir){
 var TX1 = 0;
 var TX2 = 0;
 
+function ajustar_carrusel_servicios_movil(){
+
+    if( parseInt( jQuery("body").width() ) < 768 ){
+        var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
+        var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso-movil") );
+        var d = 55+(paso*h);
+        jQuery(this).find(".banner_box").animate({left: (-1*d)+"%"}, 1000);
+    }
+
+}
+
+
 jQuery( document ).ready(function() {
+
+    jQuery("#popup-servicios-new input").on("change", function(e){
+        jQuery("#"+jQuery(this).attr("id")+"_2_label"  ).click();
+    });
+
+    jQuery(window).on('resize', function () {
+        if( parseInt( jQuery("body").width() ) < 768 ){
+            ajustar_carrusel_servicios_movil();
+        }else{
+            jQuery(".carrusel_servicios_principales_box").css("left", "0%");
+        }
+    });
+    ajustar_carrusel_servicios_movil();
 
     jQuery("#buscador_2 input").on("change", function(e){
         jQuery("#buscador_2").submit();
@@ -88,7 +115,6 @@ jQuery( document ).ready(function() {
             if (ev.targetTouches.length == 1) { 
                 var touch = ev.targetTouches[0]; 
                 TX1 = touch.pageX;
-                console.log( TX1 );
             }
         }
     });
@@ -100,13 +126,14 @@ jQuery( document ).ready(function() {
                 var touch = ev.targetTouches[0]; 
                 TX2 = touch.pageX;
 
-                var h = parseInt( jQuery(this).find(".destacados_box").attr("data-h_movil") );
-                var paso = parseInt( jQuery(this).find(".destacados_box").attr("data-paso") );
+                var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
+                var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso-movil") );
 
                 var d = TX1-TX2;
                 if( Math.abs( d ) < 30 ){
                     d = (paso*h)+(d*0.2);
-                    jQuery(this).find(".destacados_box > div > div").css("left", (-1*d)+"%");
+                    d = -55-d;
+                    jQuery(this).find(".banner_box").css("left", (d)+"%");
                 }
 
             }
@@ -114,24 +141,59 @@ jQuery( document ).ready(function() {
     });
 
     jQuery(".carrusel_servicios").on('touchend', function(e){
+
         if( parseInt( jQuery("body").width() ) < 768 ){
+            var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
+            var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso-movil") );
+
             var d = TX1-TX2;
             if( Math.abs( d ) > 30 ){
-                console.log( "Mover" );
+
                 if( d > 0 ){
-                    mover_carrusel(jQuery(this).find(".destacados_box"), "der");
+                    console.log( "Mover der" );
+                    paso++;
+                    jQuery(this).find(".banner_box").attr("data-paso-movil", paso);
                 }else{
-                    mover_carrusel(jQuery(this).find(".destacados_box"), "izq");
+                    console.log( "Mover izq" );
+                    paso--;
+                    jQuery(this).find(".banner_box").attr("data-paso-movil", paso);
                 }
+
+                d = 55+(paso*h);
+                jQuery(this).find(".banner_box").animate({left: (-1*d)+"%"}, 1000);
+
             }
         }
+        
     });
 
 
+    jQuery(".banner_rotativo .banner_rotativo_item.solo_movil_banner").on('click', function(e){
+        var banner_box = jQuery(".banner_rotativo .banner_box");
 
+        var paso = banner_box.attr("data-paso");
+        var h = banner_box.attr("data-h_movil");
+        var final = banner_box.attr("data-final_movil");
+
+        paso++;
+        if( paso > final ){
+            paso = 0;
+        }
+
+        banner_box.attr("data-paso", paso);
+
+        banner_box.animate({left: (-1*(paso*h))+"%"}, 1000);
+    });
+
+    setInterval(function(e){
+        if( parseInt( jQuery("body").width() ) < 768 ){
+            jQuery(".banner_rotativo .banner_rotativo_item.solo_movil_banner").click();
+        }else{
+            jQuery(".banner_rotativo .seccion_destacados_der").click();
+        }
+    }, 6000);
 
     jQuery(".seccion_destacados_flechas").on('click', function(e){
-        console.log( jQuery(this).attr("data-dir") );
         mover_carrusel(jQuery(this).parent().find(".banner_box"), jQuery(this).attr("data-dir") );
     });
 

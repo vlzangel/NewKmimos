@@ -77,7 +77,7 @@ $datos = kmimos_get_info_syte();
 								<p>REGÍSTRATE AHORA - Es Gratis</p>
 							</div>
 							<div class="col-xs-12 col-sm-7">
-								<a data-target="#popup-registrarte" class="modal_show km-btn-border" ><b>REGÍSTRATE</b></a>
+								<a data-modal="#popup-registrarte" class="modal_show km-btn-border" ><b>REGÍSTRATE</b></a>
 							</div>
 						</div>
 					</div>

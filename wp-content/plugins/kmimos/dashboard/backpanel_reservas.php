@@ -140,6 +140,7 @@
 										<th>Monto Remanente ($)</th>
 										<th>Cupones kmimos</th>
 										<th>Cupones Cuidador</th>
+										<th>Total cupones</th>
 										<th># Pedido</th>
 										<th>Observaci&oacute;n</th>
 										<th>Cupon Kmimos</th>
@@ -416,6 +417,7 @@
 												$meta_Pedido['_wc_deposits_remaining'],
 												$cupones['kmimos'],
 												$cupones['cuidador'],
+												$cupones['total'],
 												$reserva->nro_pedido,
 												$estatus['sts_largo'],
 												$cupones['kmimos_num'],
@@ -588,6 +590,7 @@
 												$value->monto_remanente,
 												$cupones['kmimos'],
 												$cupones['cuidador'],
+												$cupones['total'],
 												$value->pedido,
 												$value->observacion,
 												$cupones['kmimos_num'],

@@ -33,7 +33,9 @@
 		$opciones .= "<option value='{$servicio->ID}' data-type='{$tipo}' >".$servicios[ $tipo ]."</option>";
 	}
 
-    $no_disponibilidades = $wpdb->get_results("SELECT * FROM cupos WHERE cuidador = '{$user_id}' AND no_disponible = 1 AND fecha >= NOW()");
+	$date = date("Y-m-d");
+
+    $no_disponibilidades = $wpdb->get_results("SELECT * FROM cupos WHERE cuidador = '{$user_id}' AND no_disponible = 1 AND fecha >= '{$date}'");
 
     $_rangos = array();
 
