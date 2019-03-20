@@ -105,3 +105,22 @@
 	font-size: 11px;
 	margin-top: 5px; 
 }
+
+@media (max-width: 768px){
+	.contenedor_widget .wbox{
+		padding: 5px 5px;
+	}
+	.contenedor_widget{
+		display: inline-block;
+	}
+	
+	.contenedor_widget .wbox .total{
+		font-size: 20px;
+	}
+	
+	.wbox-4,
+	.wbox-8,
+	.wbox-12{
+		width: 95%!important;
+	}
+}
