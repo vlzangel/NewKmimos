@@ -1271,6 +1271,7 @@ jQuery(document).ready(function() {
 							},
 							function(data){
 								if( data.status == 'CREATED' ){
+									console.log(data.links);
 									jQuery.each(data.links, function(i,r){								
 										if(r.rel == 'approve'){
 											location.href = r.href;
@@ -1291,6 +1292,8 @@ jQuery(document).ready(function() {
 								'info': info,
 								'ruta': RAIZ,
 								'order_id': order_id,
+								'cliente': cliente_data,
+								'cuidador': cuidador_data,
 							},
 							function(data){
 								if( data.status == 'CREATED' ){

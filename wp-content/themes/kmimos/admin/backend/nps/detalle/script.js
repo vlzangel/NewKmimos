@@ -250,7 +250,7 @@ function grafico_feedback_recibidos(data){
         }
 	});
 
-/*
+	/*
 	var feedback_recibidos = new Chart('feedback_recibidos', {
 	    type: 'doughnut',
 	    data: {
@@ -261,7 +261,7 @@ function grafico_feedback_recibidos(data){
 		    labels: label
 		},
 	});
-*/	
+	*/	
 }
 
 function grafico_nps_por_dia(data){

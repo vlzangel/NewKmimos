@@ -24,7 +24,7 @@ class CreateOrder
 
 		# Crear Orden Kmimos
 		Requests::register_autoloader();
-			$path = $data['ruta'].'/wp-content/themes/kmimos/procesos/reservar/pagar.php';
+			$path = 'http://mx.kmimos.la/wp-content/themes/kmimos/procesos/reservar/pagar.php';
 			$data['_paypal_order_id'] = $response->result->id;
 	        $reserva_data = Requests::post($path,array(),$data);
 	        $reserva = json_decode($reserva_data->body);
@@ -137,8 +137,8 @@ class CreateOrder
 	            'intent' => 'CAPTURE',
 	            'application_context' =>
 	                array(
-	                    'return_url' => $data['ruta'].'/reservar/validar-pago/?p=paypal&t=return',
-	                    'cancel_url' => $data['ruta'].'/reservar/validar-pago/?p=paypal&t=cancel',
+	                    'return_url' => 'http://mx.kmimos.la/reservar/validar-pago/?p=paypal&t=return',
+	                    'cancel_url' => 'http://mx.kmimos.la/reservar/validar-pago/?p=paypal&t=cancel',
 	                ),
 	            'purchase_units' =>
 	                array(
