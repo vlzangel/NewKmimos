@@ -25,6 +25,8 @@ class PANEL {
 
 	public function resumen(){
  
+	 	include($this->raiz.'/wp-load.php');
+
 		$inicio = date("Y-m")."-01 00:00:00";
 		$fin = date("Y-m", strtotime ( '+1 month' , time() ) )."-01 23:59:59";
 		
