@@ -96,7 +96,7 @@ ini_set('display_errors', '0');
 
 	function es_destacado($db, $servicio){
 		$user_id_cuidador = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = {$servicio} ");
-		$atributos = $db->get_row("SELECT atributos FROM cuidadores WHERE user_id = {$user_id_cuidador} ");
+		$atributos = $db->get_var("SELECT atributos FROM cuidadores WHERE user_id = {$user_id_cuidador} ");
 		$atributos = unserialize($atributos);
 		return ( $atributos["destacado"]+0 == 1 );
 	}
@@ -356,7 +356,7 @@ ini_set('display_errors', '0');
 				
 				$sub_descuento += $descuento;
 				return array( $cupon, $descuento, $individual_use, $_paseos );
-
+				
 			}
 
 			if( $cupon == "+2masc" ){
@@ -364,7 +364,7 @@ ini_set('display_errors', '0');
 				// if( $validar ){ error("Este cupón no es valido"); }else{ return false; }
 
 
-				if( cuidador_valido($db, $servicio) || es_destacado($db, $servicio) ){ } else{
+				if( es_destacado($db, $servicio) ){ } else{ // cuidador_valido($db, $servicio) || 
 					if( $validar ){ error("Este cuidador no acepta el cupón [ +2masc ]"); }else{ return false; }
 				}
 
