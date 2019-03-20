@@ -60,12 +60,12 @@ function load_donu_chart(id, label, data ){
 	series.slices.template.innerCornerRadius = 7;
 	series.alignLabels = false;
 	series.labels.template.padding(0,0,0,0);
-	series.labels.template.fill = am4core.color("white");
+	series.labels.template.fill = am4core.color("#000");
 	series.labels.template.bent = true;
 	series.labels.template.radius = 4;
 
 	series.slices.template.states.getKey("hover").properties.scale = 1.1;
-	series.labels.template.states.create("hover").properties.fill = am4core.color("#fff");
+	series.labels.template.states.create("hover").properties.fill = am4core.color("#000");
 
 	series.slices.template.events.on("over", function (event) {
 	    event.target.dataItem.label.isHover = true;
