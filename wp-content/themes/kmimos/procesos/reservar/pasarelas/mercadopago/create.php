@@ -2,6 +2,9 @@
 	require(dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/mercadopago/mercadopago.php');
     include(dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/Requests/Requests.php');
 
+    include(dirname(dirname(dirname(dirname(__DIR__)))) . '/procesos/funciones/db.php');
+
+
 	# Parametros
 	extract($_POST);
 		$tamanios = [
@@ -33,7 +36,7 @@
 		$descripcion = ucfirst($pagar->tipo_servicio) . " - " . $pagar->name_servicio;
 		$noches = $fechas->duracion;
 		$total = $pagar->total; 
-		$descuento = $pagar->fee;
+		$descuento = ( isset($pagar->fee) && $pagar->fee>0 )? $pagar->fee : 0 ;
 		$total_mascotas = 0;
 
 	# Crear Orden en Kmimos
@@ -99,36 +102,37 @@
 						$items[] = $obj;
 					}		
 				}
-
+ 
 		# Create a payer object ( falta )
+		$cliente = (object) $cliente;
 		$payer = new MercadoPago\Payer();
-			$payer->email = "i.cocchini-buyer@kmimos.la";
-			$payer->name = "italo";
-			$payer->surname = "buyer";
+			$payer->email = $cliente->email;
+			$payer->name = $cliente->name;
+			$payer->surname = $cliente->lastname;
 			$payer->date_created = "2018-06-02T12:58:41.425-04:00";
-			$payer->phone = array(
-				"area_code" => "",
-				"number" => "991 455 689"
-			);
-			$payer->identification = array(
-				"type" => "DNI",
-				"number" => "12345678"
-			);
-			$payer->address = array(
-				"street_name" => "Subida Concepción",
-				"street_number" => 1819,
-				"zip_code" => "76254"
-			);  
+			// $payer->phone = array(
+			// 	"area_code" => "",
+			// 	"number" => "991 455 689"
+			// );
+			// $payer->identification = array(
+			// 	"type" => "DNI",
+			// 	"number" => "12345678"
+			// );
+			// $payer->address = array(
+			// 	"street_name" => "Subida Concepción",
+			// 	"street_number" => 1819,
+			// 	"zip_code" => "76254"
+			// );  
 
 		# Shipments ( falta )
-		$shipments = new MercadoPago\Shipments();
-			$shipments->receiver_address = array(
-			    "zip_code" => "76254",
-			    "street_number" => 1819,
-			    "street_name" => "Subida Concepción",
-			    "floor" => 16,
-			    "apartment" => "C"
-			);
+		//  $shipments = new MercadoPago\Shipments();
+		// 	$shipments->receiver_address = array(
+		// 	    "zip_code" => "76254",
+		// 	    "street_number" => 1,
+		// 	    "street_name" => "Mexico",
+		// 	    "floor" => 1,
+		// 	    "apartment" => "A"
+		// 	);
 
 		# Payment
 		$payment = new MercadoPago\Payment();
@@ -170,7 +174,7 @@
 
 		# Respuesta
 		if( $preference->init_point != '' ){
-			$res = ['status'=>'CREATED', 'links'=>$preference->init_point];
+			$res = ['status'=>'CREATED', 'links'=>$preference->init_point, 'response'=>$preference];
 		}
 	}
 	echo json_encode($res);

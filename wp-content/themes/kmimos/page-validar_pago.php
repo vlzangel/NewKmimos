@@ -13,57 +13,33 @@
 		case 'paypal':
 			require_once( 'procesos/reservar/pasarelas/paypal/validar.php' );
 			$paypal_order = new Order();
+			
 			if( $paypal_order->validar( $_GET['token'] ) ){
-				$sql = "SELECT post_id FROM wp_postmeta WHERE meta_value ='".$_GET['token']."' AND meta_key='_paypal_order_id'";	
-				$orden = $wpdb->get_row( $sql );
-				if( isset($orden->post_id) && $orden->post_id > 0 ){
-					$id_orden = $orden->post_id;
-					$pedido = $wpdb->get_row("SELECT * FROM wp_posts WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
-					if( isset( $pedido->post_status ) && $pedido->post_status == 'unpaid' ){
-						$wpdb->query( "UPDATE wp_postmeta SET meta_value = '".json_encode($_GET)."' WHERE meta_key = '_paypal_data' AND post_id = {$id_orden}  )");
-						$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
-						$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+				$captura = $paypal_order->capture( $_GET['token'] );
 
-						$acc='';
-						ob_start();
-						include(__DIR__."/procesos/reservar/emails/index.php");				
-						ob_end_clean ();
-					}
-					header( 'location:'.get_home_url().'/finalizar/'.$id_orden );
-				}
-			}else{
-				header( 'location:'.get_home_url() .'/busqueda' );
-			}
+				if( isset($captura->result->status) && $captura->result->status == 'COMPLETED' ){
 
-			/*
-			if( isset($_SESSION['paypal']) ){
-
-				$_POST['info'] = $_SESSION['paypal'];
-				include('lib/Requests/Requests.php');
-				if( $_GET['t'] == 'return' && isset($_GET['PayerID']) ){
-					Requests::register_autoloader();
-					$options = array(
-						'info' => $_SESSION['paypal'],
-						'id_invalido' => false,
-						'PayerID' => $_GET['PayerID'],
-						'token' => $_GET['token'],
-					);
-	
-					if( get_home_url() == 'https://mx.kmimos.la/' ){
-						$request = Requests::post( "http://mx.kmimos.la/wp-content/themes/kmimos/procesos/reservar/pagar.php", array(), $options );
-					}else{
-						$request = Requests::post( get_home_url()."/wp-content/themes/kmimos/procesos/reservar/pagar.php", array(), $options );
+					$sql = "SELECT post_id FROM wp_postmeta WHERE meta_value ='".$_GET['token']."' AND meta_key='_paypal_order_id'";	
+					$orden = $wpdb->get_row( $sql );
+					if( isset($orden->post_id) && $orden->post_id > 0 ){
+						$id_orden = $orden->post_id;
+						$pedido = $wpdb->get_row("SELECT * FROM wp_posts WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+						if( isset( $pedido->post_status ) && $pedido->post_status == 'unpaid' ){
+							$wpdb->query( "UPDATE wp_postmeta SET meta_value = '".json_encode($_GET)."' WHERE meta_key = '_paypal_data' AND post_id = {$id_orden}  )");
+							$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+							$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+							$acc='';
+							ob_start();
+							include(__DIR__."/procesos/reservar/emails/index.php");				
+							ob_end_clean ();
+						}
+						header( 'location:'.get_home_url().'/finalizar/'.$id_orden );
 					}
-	
-					$body = json_decode($request->body);
-					print_r($body);
-					if( $body->order_id > 0 ){
-						//unset($_SESSION['paypal']);
-						header( 'location:'.get_home_url().'/finalizar/'.$body->order_id );
-					}
+					
+				}else{
+					header( 'location:'.get_home_url() .'/busqueda' );
 				}
 			}
-			*/
 		break;
 
 		case 'mercadopago':
@@ -127,4 +103,4 @@
 		break;
 	}
 	// echo 'paso prueba';
-	//header( 'location:'.get_home_url() );
+	// header( 'location:'.get_home_url() );

@@ -2,6 +2,7 @@
 require dirname(dirname(dirname(dirname(__DIR__)))) . '/lib/paypal/vendor/autoload.php';
 
 use Sample\PayPalClient;
+use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 
 class Order
@@ -10,6 +11,20 @@ class Order
     {
         $client = PayPalClient::client();
         $response = $client->execute(new OrdersGetRequest( $orderId ));
+        return $response;
+    }
+
+    public function capture($order_id){
+        $client = PayPalClient::client();
+        $request = new OrdersCaptureRequest($order_id);
+        $request->prefer('return=representation');
+        try {
+            $response = $client->execute($request);
+        }catch (HttpException $ex) {
+            // echo $ex->statusCode;
+            // print_r($ex->getMessage());
+            $response = null;
+        }
         return $response;
     }
 

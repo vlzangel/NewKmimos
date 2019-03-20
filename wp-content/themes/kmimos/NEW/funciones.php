@@ -730,7 +730,6 @@
 		$total = count($resultados);
 
 		$orden_default = $_SESSION['orden_default'];
-		$_SESSION['random_by_page'] = [];
 
 		$_PAGE = $PAGE / 10;
 		for ($invertir_orden=0; $invertir_orden <= 1; $invertir_orden++) 

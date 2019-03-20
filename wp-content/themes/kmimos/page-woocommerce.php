@@ -42,6 +42,10 @@
 
 		COMPROBAR_ERRORES();
 
+		$cliente_name = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='first_name' and user_id = {$USER_ID}");
+		$cliente_lastname = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='last_name' and  user_id = {$USER_ID}");
+
+
 		$email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = {$USER_ID}");
 		$saldo = getSaldo();
 		$saldoTXT = $saldo["cupon"];
@@ -196,6 +200,18 @@
 			var tipo_servicio = '".$tipo."'; 
 			var name_servicio = '".$servicio_name."'; 
 			var cliente = '".$USER_ID."'; 
+			var cliente_data = {
+					id:'".$USER_ID."',
+					name:'".$cliente_name."',
+					lastname:'".$cliente_lastname."',
+					email:'".$email."',
+				}; 
+			var cuidador_data = {
+					id:'".$cuidador->user_id."',
+					name:'".$cuidador->nombre."',
+					lastname:'".$cuidador->apellido."',
+					email:'".$cuidador->email."',
+				}; 
 			var cuidador = '".$cuidador->id_post."'; 
 			var email = '".$email."'; 
 			var saldo = '".$saldoTXT."';

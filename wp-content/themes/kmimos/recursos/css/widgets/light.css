@@ -1,0 +1,45 @@
+/* BEGIN Dark Theme */
+#woocommerce_dashboard_status .wc_status_list li{
+    border-top: 1px solid transparent!important; */
+}
+
+.postbox .hndle, .stuffbox .hndle{
+	border-bottom: 1px solid #1a2a47;
+}
+
+#resumen_dashboard_widget{
+	background: #fff; 
+}
+
+#resumen_dashboard_widget h2{
+	color: #8a8a8a;
+}
+
+
+
+.titulo .contenedor_widget .wbox{
+	background: #6794dc;
+}
+
+.titulo .contenedor_widget .wbox,
+.titulo .contenedor_widget .wbox div,
+.titulo .contenedor_widget .wbox h2{
+	color: #fff!important;
+}
+
+.contenedor_widget{
+	border: 0px solid transparent;
+}
+
+.contenedor_widget .wbox{
+	background: #f9f9f9;
+}
+
+.contenedor_widget .wbox div{
+	color: #000;
+}
+
+.contenedor_widget .wbox h1{
+	border-bottom: 1px solid #847f7f;
+	color: #847f7f;
+}
