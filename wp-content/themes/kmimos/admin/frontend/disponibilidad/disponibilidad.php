@@ -35,21 +35,44 @@
 
 	$date = date("Y-m-d");
 
-    $no_disponibilidades = $wpdb->get_results("SELECT * FROM cupos WHERE cuidador = '{$user_id}' AND no_disponible = 1 AND fecha >= '{$date}'");
+    $no_disponibilidades = $wpdb->get_results("SELECT * FROM cupos WHERE cuidador = '{$user_id}' AND no_disponible = 1 AND fecha >= '{$date}' ORDER BY fecha ASC");
 
     $_rangos = array();
 
+    $meses = [
+    	"",
+    	"Enero",
+    	"Febrero",
+    	"Marzo",
+    	"Abril",
+    	"Mayo",
+    	"Junio",
+    	"Julio",
+    	"Agosto",
+    	"Septiembre",
+    	"Octubre",
+    	"Noviembre",
+    	"Diciembre",
+    ];
+
     foreach ($no_disponibilidades as $data) {
     	$_rangos[ $data->tipo ][] = array(
-    		"servicio_id" => $data->servicio_id,
+    		"servicio_id" => $data->servicio,
     		"servicio_str" => $data->tipo,
     		"fecha" 	  => dateFormat($data->fecha)
     	);
+
+    	$fecha = dateFormat($data->fecha);
+    	$_mes = explode("/", $fecha);
+    	$mes = $_mes[1]+0;
+    	if( !in_array($_mes[0], $_rangos_2[ $data->tipo ][ $meses[ $mes ]." ".$_mes[2] ]) ){
+    		$_rangos_2[ $data->tipo ][ $meses[ $mes ]." ".$_mes[2] ][] = $_mes[0];
+    	}
     }
 
     $tabla = '<div id="lista_fechas">';
-	    if( count($_rangos) > 0 ){
-		    foreach ($_rangos as $servicio => $rangos) {
+	    if( count($_rangos_2) > 0 ){
+		    foreach ($_rangos_2 as $servicio => $rangos) {
 
 		    	$rangos_html = '';
 		    	$rangos_del = '';
@@ -58,8 +81,11 @@
 			    	$rangos_html .= '
 			    		<div>
 			    			<span>
-			    				'.$rango['fecha'].'
+			    				'.$key.'
 			    			</span>
+			    			<div>
+			    				'.implode(", ", $rango).'
+			    			</div>
 			    		</div>
 			    	';
 		    	}
@@ -73,7 +99,7 @@
 			                		<div>'.$servicios[ $servicio ].'</div>
 			                	</div>
 			                	<div class="vlz_tabla_cuidador vlz_celda">
-			                		<span>Fecha</span>
+			                		<span>Fechas</span>
 			                		<div class="vlz_rangos">'.$rangos_html.'</div>
 			                	</div>
 		                	</div>
