@@ -68,6 +68,10 @@
 	/* Solo para iOS - [ $is_iOS en pre-header.php ] */
 	$class_iOS = ''; if( $is_iOS ){ $class_iOS = 'iOS'; wp_enqueue_style( 'modal_iOS', getTema()."/css/modal-iOS.css", array(), "1.0.0" ); }
 
+	if( isset($_GET['test_conocer']) ){
+		$_SESSION['test_conocer'] = $_GET['test_conocer'];
+	}
+
 	include_once("funciones.php");
 
 	$pages_new = [

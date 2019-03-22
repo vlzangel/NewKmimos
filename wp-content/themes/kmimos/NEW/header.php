@@ -336,7 +336,7 @@
 		</script>
 	';
 
-	
+	/*
 	$HTML .= '<!-- Load Facebook SDK for JavaScript -->
 		<div id="fb-root"></div>
 		<script>
@@ -370,7 +370,8 @@
 		// page_id="1473614136234432" - Chat Facebook Produccion
 		// page_id="361445711358167"  - Chat Facebook QA
 	
-
+	*/
+		
 	if( $_SESSION["wlabel"] == "petco" ){
 		$HTML .= '
 			<!-- Adform Tracking Code BEGIN -->

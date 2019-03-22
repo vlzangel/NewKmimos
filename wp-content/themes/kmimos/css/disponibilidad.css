@@ -143,7 +143,7 @@
 }
 
 .main *{
-    font-family: "Roboto Condensed",Arial, Helvetica, sans-serif;
+    font-family: Gotham-Pro-Regular;
 }
 
 .main p,
@@ -206,6 +206,7 @@
 
 .main .vlz_tabla .vlz_tabla_superior > div {
     vertical-align: middle;
+    overflow: hidden;
 }
 
 .main .vlz_tabla .vlz_tabla_superior > div.vlz_celda {
@@ -214,21 +215,25 @@
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador {   
-    width: 49%;
+    width: 65%;
     display: inline-block;
     vertical-align: middle;
+    box-sizing: border-box;
+    float: left;
 }
 
 .main .vlz_tabla .vlz_servicio {  
     vertical-align: top;
+    width: 35%;
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador > span {     
     font-weight: 600;
     color: #969696;
     padding: 0px;
-    display: inline-block;
+    display: block;
     font-size: 16px;
+    padding-bottom: 10px;
 }
 
 .main .vlz_tabla .vlz_rangos > div {  
@@ -250,6 +255,7 @@
 .main .vlz_tabla .vlz_rangos span {  
     padding: 0px;
     display: inline-block;
+    font-weight: 600;
 }
 
 .main .vlz_tabla .vlz_tabla_cuidador div {     
@@ -258,6 +264,7 @@
     font-weight: 600;
     margin: 0px;
     overflow: hidden;
+    font-weight: 400;
 }
 
 
@@ -300,4 +307,11 @@
 
 h2 {
     font-size: 24px !important;
+}
+
+.main .vlz_tabla .vlz_tabla_cuidador div > div {
+    font-size: 12px;
+    padding-left: 10px;
+    text-align: justify;
+    padding-bottom: 5px;
 }
