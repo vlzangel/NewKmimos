@@ -553,6 +553,8 @@
 						    'device_session_id' => $pagar->deviceIdHiddenFieldName
 					    );
 
+
+
 						$charge = ""; $error = "";
 
 						try {
@@ -612,7 +614,8 @@
 				            echo json_encode(array(
 								"error" => $id_orden,
 								"tipo_error" => $error,
-								"status" => "Error, pago fallido"
+								"status" => "Error, pago fallido",
+								"info_pago" => $chargeData
 							));
 
 				        }

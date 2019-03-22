@@ -82,7 +82,7 @@ $HTML_CONOCER = '
 <div id="popup-conoce-cuidador" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<button type="button" class="close cerrar_conocer_'.$_SESSION['test_conocer'].'" data-dismiss="modal" aria-hidden="true">×</button>
 			<div class="popup-iniciar-sesion-1 popup_conocer_'.$_SESSION['test_conocer'].'">';
 
 				if ( !is_user_logged_in() ){ 

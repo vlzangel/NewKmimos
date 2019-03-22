@@ -568,9 +568,7 @@
 	}
 
 	if( $_SERVER["REDIRECT_URL"] == "/busqueda/" ){
-		echo '
-			evento_google_kmimos(\'busqueda\'); evento_fbq_kmimos(\'busqueda\');
-		';
+		// echo ' evento_google_kmimos(\'busqueda\'); evento_fbq_kmimos(\'busqueda\'); ';
 	}
     
    	get_footer(); 

@@ -957,6 +957,7 @@
 						role="button" href="#" 
                         data-name="'.$_cuidador->titulo.'" 
                         data-id="'.$_cuidador->id_post.'" 
+                        data-url="petsitters/'.$_cuidador->url.'" 
                         data-target="#popup-conoce-cuidador"
                         href="#" class="boton boton_border_gris"
                         onclick="evento_google_kmimos(\'conocer_busqueda\'); evento_fbq_kmimos(\'conocer_busqueda\');"
@@ -1200,7 +1201,8 @@
     			cuidadores.valoraciones,
     			cuidadores.titulo,
     			cuidadores.estados,
-    			cuidadores.municipios
+    			cuidadores.municipios,
+    			cuidadores.url
     		FROM 
     			cuidadores
     		WHERE 

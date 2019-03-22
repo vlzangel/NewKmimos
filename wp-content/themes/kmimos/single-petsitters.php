@@ -280,6 +280,7 @@
 		            data-target="#popup-conoce-cuidador"
 		            data-name="'.strtoupper( get_the_title() ).'" 
 		            data-id="'.$cuidador->id_post.'"
+		            data-user_id="reservar/'.$cuidador->id_post.'"
 					class="boton boton_border_gris" 
 					onclick="evento_google_kmimos(\'conocer_ficha\'); evento_fbq_kmimos(\'conocer_ficha\');"
 				>CON&Oacute;CELO +</a>

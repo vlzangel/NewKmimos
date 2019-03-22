@@ -14,6 +14,15 @@ function open_conocer( _this ){
 
     jQuery( '#modal-name-cuidador' ).html( _this.data('name') );
     jQuery( '[name="post_id"]' ).val( _this.data('id') );
+
+    if( _this.data('url') != undefined ){
+        jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('url') );
+    }else{
+        jQuery( '.boton_izq' ).attr("href", "javascript: jQuery( '#btn_reservar' ).click();" );
+        // jQuery( '.btn_reservar' ).click();
+    }
+    
+
     jQuery( _this.data('target') ).modal('show');
     jQuery('.popup-iniciar-sesion-2').css('display', 'none');
     jQuery('.popup-iniciar-sesion-1').css('display', 'block');

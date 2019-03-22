@@ -25,53 +25,55 @@
 
     $info = $info[0];
 
-    $file = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/status/fallida_openpay.php';
-    $mensaje = file_get_contents($file);
+    if( is_array($info) && count($info) > 0 ){
+        $file = dirname(dirname(dirname(dirname(__DIR__)))).'/template/mail/status/fallida_openpay.php';
+        $mensaje = file_get_contents($file);
 
-    $data = [
-        "ID" => $info->cliente->id,
-        "CLIENTE" => $info->cliente->nombre,
-        "CREACION" => $info->cliente->creacion,
-        "EMAIL" => $info->cliente->email,
-        "DIRECCION" => $info->cliente->direccion,
+        $data = [
+            "ID" => $info->cliente->id,
+            "CLIENTE" => $info->cliente->nombre,
+            "CREACION" => $info->cliente->creacion,
+            "EMAIL" => $info->cliente->email,
+            "DIRECCION" => $info->cliente->direccion,
 
-        "TITULAR" => $info->tarjeta->titular,
-        "TARJETA" => $info->tarjeta->numero,
-        "EXPIRACION" => $info->tarjeta->expiracion,
-        "TIPO" => $info->tarjeta->tipo,
-        "BANCO" => $info->tarjeta->banco,
-    ];
+            "TITULAR" => $info->tarjeta->titular,
+            "TARJETA" => $info->tarjeta->numero,
+            "EXPIRACION" => $info->tarjeta->expiracion,
+            "TIPO" => $info->tarjeta->tipo,
+            "BANCO" => $info->tarjeta->banco,
+        ];
 
-    foreach ($data as $key => $value) {
-        $mensaje = str_replace('['.$key.']', $value, $mensaje);
-    }
-    
-    
-    add_action('phpmailer_init','send_smtp_email');
-    function send_smtp_email( $phpmailer ) {
-        $phpmailer->From = "desarrollokmimos@gmail.com";
-        $phpmailer->FromName = "Soporte Kmimos";
-    }
+        foreach ($data as $key => $value) {
+            $mensaje = str_replace('['.$key.']', $value, $mensaje);
+        }
+        
+        
+        add_action('phpmailer_init','send_smtp_email');
+        function send_smtp_email( $phpmailer ) {
+            $phpmailer->From = "desarrollokmimos@gmail.com";
+            $phpmailer->FromName = "Soporte Kmimos";
+        }
 
-    $headers_admins = array(
-        'CC: vlzangel91@gmail.com',
-        'CC: chaudaryy@gmail.com',
+        $headers_admins = array(
+            //'CC: vlzangel91@gmail.com',
+            // 'CC: chaudaryy@gmail.com',
+            /*
+            'CC: e.viera@kmimos.la',
+            'CC: a.vera@kmimos.la',
+            */
+        );
+        
+        // wp_mail( "soporte@openpay.mx", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
+        wp_mail( "a.veloz@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
+
         /*
-        'CC: e.viera@kmimos.la',
-        'CC: a.vera@kmimos.la',
+        wp_mail( "vlzangel91@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Angel
+        wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Yrcel
+
+        wp_mail( "e.viera@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Eyderman
+        wp_mail( "a.vera@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Alfredo
         */
-    );
+    }
+
     
-    // wp_mail( "soporte@openpay.mx", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
-    wp_mail( "a.veloz@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje, $headers_admins); // Soporte de Openpay
-
-    /*
-    wp_mail( "vlzangel91@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Angel
-    wp_mail( "chaudaryy@gmail.com", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Yrcel
-
-    wp_mail( "e.viera@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Eyderman
-    wp_mail( "a.vera@kmimos.la", "Solicitud de desbloqueo de tarjeta - Kmimos", $mensaje); // Alfredo
-    */
-
-    // print_r( $info );
 ?>
