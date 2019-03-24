@@ -133,6 +133,11 @@
 			                		$ayuda = "<small>Tienes problemas con tu facturación? Escríbenos a este número <i class='fa fa-whatsapp'></i> +52 (33) 1261 4186, o al correo contactomex@kmimos.la</small>";
 			                	}
 
+			                	$conocer = '';
+			                	if( isset($reserva['conocer']) && $reserva['conocer'] = 'b'  ){
+			                		$conocer = '<a class="ver_conocer_init boton boton_border_gris">Conocer Cuidador</a>';
+			                	}
+
 			                	if( isset($reserva["desplegado"]) ){
 									$table.='
 					                <div class="vlz_tabla vlz_desplegado">
@@ -194,7 +199,10 @@
 						                	</div>
 						                	<div class="vlz_tabla_cuidador vlz_botones vlz_celda boton_interno" style="vertical-align: middle;">
 						                		'.$cancelar.'
+
 						                		<a class="ver_reserva_init boton boton_border_gris">Ver Reserva</a>
+
+						                		'.$conocer.'
 						                	</div>
 						                	<div class="vlz_tabla_cuidador vlz_cerrar" style="vertical-align: top;">
 						                		<span>Reserva: '.$reserva["id"].'</span>

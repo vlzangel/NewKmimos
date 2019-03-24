@@ -200,6 +200,7 @@
 					'servicio' => $servicio->post_title, 
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
+					'conocer' => $_metas_reserva['_booking_test_conocer'][0], 
 					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver,
