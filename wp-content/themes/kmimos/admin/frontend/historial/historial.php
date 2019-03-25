@@ -64,7 +64,11 @@
 			$inicio = strtotime( $_metas_reserva['_booking_start'][0] );
 			$fin    = strtotime( $_metas_reserva['_booking_end'][0] );
 
-			$foto = kmimos_get_foto( $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0]) ) ;
+			$cuidador_user_id = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0]);
+
+			$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$cuidador_user_id);
+
+			$foto = kmimos_get_foto( $cuidador_user_id ) ;
 
 			$pdf = $_metas_orden['_openpay_pdf'][0];
 			$ver = $reserva->post_parent;
@@ -201,6 +205,11 @@
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
 					'conocer' => $_metas_reserva['_booking_test_conocer'][0], 
+					'data_conocer' => [
+						'id' => $cuidador->id_post,
+						'url' => 'petsitters/'.$cuidador->url,
+						'name' => $cuidador->titulo,
+					], 
 					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver,

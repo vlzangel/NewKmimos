@@ -1,5 +1,10 @@
 <?php
 	if( count($mascotas)>0 && $validar_perfil_completo ){
+
+		if( $ES_PERFIL == 'YES' ){
+			$puede_conocer = true;
+		}
+
 		if( $puede_conocer == false ){
 
 			$pendientes = get_cupos_conocer_pendientes($user_id);

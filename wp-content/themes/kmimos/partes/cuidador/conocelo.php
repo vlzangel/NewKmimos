@@ -97,18 +97,22 @@ $HTML_CONOCER = '
 					</div>';
 				}else{
 
-					$PRUEBA = 'a';
-					switch ( $_SESSION['test_conocer'] ) {
-						case 'b':
-							$PRUEBA = 'b';
-						break;
-						case 'c':
-							$PRUEBA = 'c';
-						break;
-						
-						default:
-							$PRUEBA = 'a';
-						break;
+					if( $ES_PERFIL == 'YES' ){
+						$PRUEBA = 'b2';
+					}else{
+						$PRUEBA = 'a';
+						switch ( $_SESSION['test_conocer'] ) {
+							case 'b':
+								$PRUEBA = 'b';
+							break;
+							case 'c':
+								$PRUEBA = 'c';
+							break;
+							
+							default:
+								$PRUEBA = 'a';
+							break;
+						}
 					}
 
 					include( dirname(__FILE__)."/PRUEBAS/".$PRUEBA.".php" );

@@ -135,7 +135,16 @@
 
 			                	$conocer = '';
 			                	if( isset($reserva['conocer']) && $reserva['conocer'] = 'b'  ){
-			                		$conocer = '<a class="ver_conocer_init boton boton_border_gris">Conocer Cuidador</a>';
+			                		$conocer = '
+			                		<a 
+			                			role="button" 
+			                			data-name="'.$reserva['data_conocer']['name'].'" 
+			                			data-id="'.$reserva['data_conocer']['id'].'" 
+			                			data-url="'.$reserva['data_conocer']['url'].'" 
+			                			data-target="#popup-conoce-cuidador" 
+			                			class="ver_conocer_init boton boton_border_gris"
+			                			onclick="evento_google_kmimos(\'conocer_busqueda\'); evento_fbq_kmimos(\'conocer_busqueda\');"
+			                		>Conocer Cuidador</a>';
 			                	}
 
 			                	if( isset($reserva["desplegado"]) ){

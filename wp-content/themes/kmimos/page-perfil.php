@@ -93,6 +93,10 @@
 		    wp_enqueue_style('historial', getTema()."/css/historial.css", array(), '1.0.0');
 			wp_enqueue_style('historial_responsive', getTema()."/css/responsive/historial_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('historial_js', getTema()."/js/historial.js", array("jquery", "global_js"), '1.0.0');
+
+
+		    wp_enqueue_style('conocer', get_recurso("css")."conocer.css", array(), '1.0.0');
+		    wp_enqueue_style('conocer_responsive', get_recurso("css/responsive")."conocer.css", array(), '1.0.0');
 		break;
 		case 'cancelar':
 			$padre = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE ID = {$post->post_parent}");
@@ -283,6 +287,10 @@
 			case 'historial':
 				$mostrar_btn = false;
 				include("admin/frontend/historial/historial.php");
+
+				$ES_PERFIL = 'YES';
+				include ('partes/cuidador/conocelo.php');
+
 			break;
 			case 'descripcion':
 				include("admin/frontend/descripcion/descripcion.php");
