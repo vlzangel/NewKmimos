@@ -5,6 +5,42 @@
     	display: none;
 	}
 
+	.ver_conocer_init b {
+	    display: none;
+	}
+
+	a.ver_conocer_init.boton.boton_border_gris {
+	    padding: 5px 12px;
+	}
+
+	.popup-iniciar-sesion-1.popup_conocer_b {
+	    padding: 0px !important;
+	}
+
+	.desde_hasta > div {
+	    float: left;
+	    width: 100%;
+	    box-sizing: border-box;
+	    padding: 5px 0px;
+	}
+
+	.desde_hasta > div > div {
+	    padding: 15px;
+	}
+
+	#popup-conoce-cuidador p {
+	    font-size: 17px !important;
+	}
+
+	p.popup-tit > span {
+	    font-size: 17px;
+	}
+
+	.mensaje_1 {
+	    font-size: 10px !important;
+	    padding-top: 15px;
+	}
+
 }
 
 @media (max-width: 480px){
@@ -21,7 +57,7 @@
 	    padding: 0px 30px;
 	}
 
-	#popup-conoce-cuidador *{
+	#popup-conoce-cuidador *{    
 		font-size: 10px;
 	}
 

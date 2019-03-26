@@ -188,7 +188,7 @@
 			                			data-target="#popup-conoce-cuidador" 
 			                			class="ver_conocer_init boton boton_border_gris"
 			                			onclick="evento_google_kmimos(\'conocer_busqueda\'); evento_fbq_kmimos(\'conocer_busqueda\');"
-			                		>Conocer Cuidador</a>';
+			                		>Conocer <b>Cuidador</b> </a>';
 			                	}
 
 			                	if( isset($reserva["desplegado"]) ){

@@ -199,3 +199,7 @@ span#txt_da {
 #te_quedan{
     display: none !important;
 }
+
+.ver_conocer_init b {
+    color: #000 !important;
+}
