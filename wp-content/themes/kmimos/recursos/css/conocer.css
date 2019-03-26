@@ -191,7 +191,7 @@ span#txt_da {
     padding: 0px 20px !important;
 }
 
-#popup-conoce-cuidador p {
+#popup-conoce-cuidador .popup-iniciar-sesion-2 p {
     text-align: justify !important;
     font-size: 14px !important;
 }
