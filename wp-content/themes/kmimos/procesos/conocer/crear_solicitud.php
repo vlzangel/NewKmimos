@@ -4,13 +4,15 @@
 
     $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$post_id."'");
 
-    $saldo_conocer = get_cupos_conocer_registro($user_id);
-    if( $saldo_conocer->usos == 0 ){
-        echo json_encode([
-            'error' => 'Error, debe recargar para poder realizar más solicitudes!',
-            'cuidador' => $cuidador->url
-        ]);
-        exit;
+    if( $test_conocer != 'b' ){
+        $saldo_conocer = get_cupos_conocer_registro($user_id);
+        if( $saldo_conocer->usos == 0 ){
+            echo json_encode([
+                'error' => 'Error, debe recargar para poder realizar más solicitudes!',
+                'cuidador' => $cuidador->url
+            ]);
+            exit;
+        }
     }
 
     $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '".$post_id."'");

@@ -133,7 +133,7 @@ $HTML_CONOCER = '
 				<p style=" font-family: Arial;  font-weight: bold; color:#6b1c9b;" >Te acabamos de enviar un correo a tu dirección registrada con ésta información. Por favor revisa tu Buzón de Entrada o Buzón de No Deseados.</p>
 				<br>  
 
-				<p style="font-weight: 800; font-size: 15px;">Te quedan <span id="cupos_disponibles"></span> solicitudes disponibles </p>
+				<p id="te_quedan" style="font-weight: 800; font-size: 15px;">Te quedan <span id="cupos_disponibles"></span> solicitudes disponibles </p>
 				<br>  
 
 				<p>Recibimos la solicitud realizada para Conocer a un Cuidador Kmimos.</p>

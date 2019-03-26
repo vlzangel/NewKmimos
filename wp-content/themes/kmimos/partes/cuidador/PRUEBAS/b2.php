@@ -22,6 +22,8 @@
 			<input id="fecha_ini" name="fecha_ini" type="hidden" />
 			<input id="fecha_fin" name="fecha_fin" type="hidden" />
 
+			<input id="test_conocer" name="test_conocer" type="hidden" value="b" />
+
 			<div class="km-box-form">
 				<div class="content-placeholder">
 

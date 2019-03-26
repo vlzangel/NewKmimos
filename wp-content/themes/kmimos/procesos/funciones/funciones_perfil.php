@@ -158,7 +158,7 @@
 								    $desde = strtotime( $_desde );
 								    $hasta = $_hasta;
 
-								    $dia_anterior = date('d-m-Y', strtotime( '-1 day', $desde ) );
+								    $_dia_anterior = date('d-m-Y', strtotime( '-1 day', $desde ) );
 
 								    $desde = explode('-', $_desde);
 								    $desde = $desde[0].'-'.strtoupper($meses[ $desde[1]+0 ]).'-'.$desde[2];
@@ -166,7 +166,7 @@
 								    $hasta = explode('-', $_hasta);
 								    $hasta = $hasta[0].'-'.strtoupper($meses[ $hasta[1]+0 ]).'-'.$hasta[2];
 
-								    $dia_anterior = explode('-', $dia_anterior);
+								    $dia_anterior = explode('-', $_dia_anterior);
 								    $dia_anterior = $dia_anterior[0].'-'.($meses[ $dia_anterior[1]+0 ]).'-'.$dia_anterior[2];
 
 			                		$conocer = '
@@ -182,6 +182,7 @@
 			                			data-desde="'.$desde.'" 
 			                			data-hasta="'.$hasta.'" 
 			                			data-dia_anterior="'.$dia_anterior.'" 
+			                			data-limite_conocer="'.$_dia_anterior.'" 
 
 			                			data-target="#popup-conoce-cuidador" 
 			                			class="ver_conocer_init boton boton_border_gris"

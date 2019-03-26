@@ -2,6 +2,8 @@ jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(
     open_conocer( jQuery(this) )
 });
 
+var fecha_limite = new Date();
+
 function open_conocer( _this ){
     jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
@@ -21,6 +23,8 @@ function open_conocer( _this ){
     jQuery( '#txt_ini' ).html( _this.data('desde') );
     jQuery( '#txt_fin' ).html( _this.data('hasta') );
     jQuery( '#txt_da' ).html( _this.data('dia_anterior') );
+
+    fecha_limite = new Date( _this.data('limite_conocer') );
 
     if( _this.data('url') != undefined ){
         jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('url') );
@@ -51,31 +55,36 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
                 
                 if( data != "" ){
 
+                    /*
                	    if( data['error'] != '' ){
                         alert(data['error']);
                         if( data['error'] == "Error, debe recargar para poder realizar más solicitudes!" ){
                             location.href = RAIZ+"petsitters/"+data['cuidador']+"/1";
                         }
                     }else{
-                        jQuery("#cupos_disponibles").html( data['cupos_disponibles'] );
-
-                        jQuery("#fecha").html( jQuery("#meeting_when").val() );
-                        jQuery("#hora_reu").html( jQuery("#meeting_time").val() );
-                        jQuery("#lugar_reu").html( jQuery("#meeting_where").val() );
-                        jQuery("#fecha_ini").html( jQuery("#service_start").val() );              
-                        jQuery("#fecha_fin").html( jQuery("#service_end").val() );
-                        jQuery("#n_solicitud").html( data['n_solicitud'] );
-                        jQuery("#nombre").html( data['nombre']);
-                        jQuery("#telefono").html( data['telefono']);
-                        jQuery("#email").html( data['email'] );
-                        jQuery('#popup-conoce-cuidador').modal('show');
-                        jQuery('.popup-iniciar-sesion-1').css('display', 'none');
-                        jQuery('.popup-iniciar-sesion-2').css('display', 'block');
-
-                        evento_google("conocer_cuidador");
-                        evento_fbq("track", "traking_code_conocer_cuidador"); 
+                        
                     }
+                    */
+
+                    jQuery("#cupos_disponibles").html( data['cupos_disponibles'] );
+
+                    jQuery("#fecha").html( jQuery("#meeting_when").val() );
+                    jQuery("#hora_reu").html( jQuery("#meeting_time").val() );
+                    jQuery("#lugar_reu").html( jQuery("#meeting_where").val() );
+                    jQuery("#fecha_ini").html( jQuery("#service_start").val() );              
+                    jQuery("#fecha_fin").html( jQuery("#service_end").val() );
+                    jQuery("#n_solicitud").html( data['n_solicitud'] );
+                    jQuery("#nombre").html( data['nombre']);
+                    jQuery("#telefono").html( data['telefono']);
+                    jQuery("#email").html( data['email'] );
+                    jQuery('#popup-conoce-cuidador').modal('show');
+                    jQuery('.popup-iniciar-sesion-1').css('display', 'none');
+                    jQuery('.popup-iniciar-sesion-2').css('display', 'block');
+
+                    evento_google("conocer_cuidador");
+                    evento_fbq("track", "traking_code_conocer_cuidador"); 
                 }
+                
                 jQuery("#btn_enviar_conocer").html('ENVIAR SOLICITUD');
                 jQuery("#btn_enviar_conocer").removeClass("disabled");
                 
@@ -143,6 +152,7 @@ jQuery(document).ready(function(){
     jQuery('#meeting_when').datepick({
         dateFormat: 'dd/mm/yyyy',
         minDate: fecha,
+        maxDate: fecha_limite,
         onSelect: function(date1) {
             var preDate = getFecha("service_start", date1);
             initDate('service_start', date1[0], function(date2) {
