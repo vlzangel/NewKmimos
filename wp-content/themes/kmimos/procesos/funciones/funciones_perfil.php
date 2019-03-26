@@ -155,7 +155,8 @@
 								    $_desde = str_replace("/", "-", $reserva["inicio"] );
 								    $_hasta = str_replace("/", "-", $reserva["fin"] );
 
-								    $desde = strtotime( $_desde );
+								    $desde_time = strtotime( $_desde );
+								    $desde = $desde_time;
 								    $hasta = $_hasta;
 
 								    $_dia_anterior = date('d-m-Y', strtotime( '-1 day', $desde ) );
@@ -182,7 +183,7 @@
 			                			data-desde="'.$desde.'" 
 			                			data-hasta="'.$hasta.'" 
 			                			data-dia_anterior="'.$dia_anterior.'" 
-			                			data-limite_conocer="'.$_dia_anterior.'" 
+			                			data-limite_conocer="'.$desde_time.'" 
 
 			                			data-target="#popup-conoce-cuidador" 
 			                			class="ver_conocer_init boton boton_border_gris"

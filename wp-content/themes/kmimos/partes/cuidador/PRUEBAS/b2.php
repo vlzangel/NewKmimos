@@ -19,8 +19,8 @@
 			<input name="post_id" type="hidden" value="" />
 			<input name="user_id" type="hidden" value="'.$user_id.'" />
 
-			<input id="fecha_ini" name="fecha_ini" type="hidden" />
-			<input id="fecha_fin" name="fecha_fin" type="hidden" />
+			<input id="service_start" name="service_start" type="hidden" />
+			<input id="service_end" name="service_end" type="hidden" />
 
 			<input id="test_conocer" name="test_conocer" type="hidden" value="b" />
 

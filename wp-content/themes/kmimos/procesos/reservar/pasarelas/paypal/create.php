@@ -64,7 +64,13 @@ class CreateOrder
 		$descripcion = ucfirst($pagar->tipo_servicio) . " - " . $pagar->name_servicio;
 		$noches = $fechas->duracion;
 		$total = $pagar->total; 
-		$descuento = $pagar->fee;
+
+		$descuento = 0;
+	    foreach ($cupones as $key => $value) {
+	    	$descuento += $value[1];
+	    }
+
+		$descuento += $pagar->fee;
 		$total_mascotas = 0;
 		
 		$tamanios = [

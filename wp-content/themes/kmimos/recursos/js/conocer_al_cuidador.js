@@ -4,6 +4,8 @@ jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(
 
 var fecha_limite = new Date();
 
+var tempo = 0;
+
 function open_conocer( _this ){
     jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
@@ -17,14 +19,36 @@ function open_conocer( _this ){
     jQuery( '#modal-name-cuidador' ).html( _this.data('name') );
     jQuery( '[name="post_id"]' ).val( _this.data('id') );
 
-    jQuery( '#fecha_ini' ).val( _this.data('inicio') );
-    jQuery( '#fecha_fin' ).val( _this.data('fin') );
+    jQuery( '#service_start' ).val( _this.data('inicio') );
+    jQuery( '#service_end' ).val( _this.data('fin') );
 
     jQuery( '#txt_ini' ).html( _this.data('desde') );
     jQuery( '#txt_fin' ).html( _this.data('hasta') );
     jQuery( '#txt_da' ).html( _this.data('dia_anterior') );
 
-    fecha_limite = new Date( _this.data('limite_conocer') );
+    tempo =  _this.data('limite_conocer');
+
+    fecha_limite = new Date( _this.data('limite_conocer')*1000 );
+
+    if( jQuery('#meeting_when').hasClass("is-datepick") ){
+        jQuery('#meeting_when').datepick('destroy');
+    }
+    
+    jQuery('#meeting_when').datepick({
+        dateFormat: 'dd/mm/yyyy',
+        minDate: fecha,
+        maxDate: fecha_limite,
+        onSelect: function(date1) {
+            var preDate = getFecha("service_start", date1);
+            initDate('service_start', date1[0], function(date2) {
+                var preDate2 = getFecha("service_end", date2);
+                initDate('service_end', date2[0], function(date3) { }, preDate2);
+            }, preDate);
+        },
+        yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
 
     if( _this.data('url') != undefined ){
         jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('url') );
@@ -84,7 +108,7 @@ jQuery(document).on("click", '[data-id="enviar_datos"]' ,function(e){
                     evento_google("conocer_cuidador");
                     evento_fbq("track", "traking_code_conocer_cuidador"); 
                 }
-                
+
                 jQuery("#btn_enviar_conocer").html('ENVIAR SOLICITUD');
                 jQuery("#btn_enviar_conocer").removeClass("disabled");
                 
@@ -154,11 +178,7 @@ jQuery(document).ready(function(){
         minDate: fecha,
         maxDate: fecha_limite,
         onSelect: function(date1) {
-            var preDate = getFecha("service_start", date1);
-            initDate('service_start', date1[0], function(date2) {
-                var preDate2 = getFecha("service_end", date2);
-                initDate('service_end', date2[0], function(date3) { }, preDate2);
-            }, preDate);
+            
         },
         yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
         firstDay: 1,
@@ -167,12 +187,6 @@ jQuery(document).ready(function(){
 
     jQuery(".km-group-checkbox input").on("change", function(e){
         jQuery(this).toggleClass("active");
-    });
-
-    jQuery("#recargar_saldo").on('click', function(e){
-        console.log("Hola");
-        console.log( RAIZ+"recargar/"+jQuery('[name="post_id"]').val() );
-        location.href = RAIZ+"recargar/"+jQuery('[name="post_id"]').val();
     });
 
 });
