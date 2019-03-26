@@ -154,3 +154,17 @@
         background: #CCC !important;
         border-radius: 0px 5px 0px 0px !important;
     }
+
+    .conocer_b ul li div {
+        display: inline-block;
+        width: calc( 100% - 50px );
+    }
+
+    #popup-conoce-cuidador button.close {
+        right: 0px !important;
+    }
+
+    .botones_b .boton_izq {
+        background-color: #00d2c6;
+        margin-bottom: 7px !important;
+    }

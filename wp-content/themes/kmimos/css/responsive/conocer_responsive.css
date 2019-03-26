@@ -5,6 +5,10 @@
     	display: none;
 	}
 
+	.conocer_b ul {
+	    padding: 0px 35px 10px;
+	}
+
 }
 
 @media (max-width: 480px){
