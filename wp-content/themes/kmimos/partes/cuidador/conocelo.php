@@ -1,8 +1,6 @@
 <!-- POPUP CONOCE AL CUIDADOR -->
 <?php
-	wp_enqueue_script('conocer_al_cuidador_js', getTema()."/js/conocer_al_cuidador.js", array("jquery"), '1.0.0');
-
-	global $wpdb;
+global $wpdb;
 
 global $current_user;
 date_default_timezone_set('America/Mexico_City');
@@ -183,6 +181,10 @@ $HTML_CONOCER = '
 		</div>
 	</div>
 </div>';
+
+if( $PRUEBA != 'b2' ){
+	wp_enqueue_script('conocer_al_cuidador_js', getTema()."/js/conocer_al_cuidador.js", array("jquery"), '1.0.0');
+}
 
 echo comprimir_styles( $HTML_CONOCER );
 

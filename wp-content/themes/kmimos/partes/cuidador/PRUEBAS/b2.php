@@ -12,20 +12,39 @@
 			';
 		}
 
+
 		$HTML_CONOCER .= $HTML_CONOCER_REQUISITOS.'
 		<form id="conoce_cuidador" style="padding:0px;" method="post">
 
-			<input name="post_id" type="hidden" value="">
-			<input name="user_id" type="hidden" value="'.$user_id.'">
+			<input name="post_id" type="hidden" value="" />
+			<input name="user_id" type="hidden" value="'.$user_id.'" />
+
+			<input id="fecha_ini" name="fecha_ini" type="hidden" />
+			<input id="fecha_fin" name="fecha_fin" type="hidden" />
 
 			<div class="km-box-form">
 				<div class="content-placeholder">
+
+					<div class="km-calendario desde_hasta">
+						<label>Tu reserva:</label>
+						<div>
+							<div> <span class="icon_calendario"></span> Desde: <span id="txt_ini"></span> </div>
+						</div>
+						<div>
+							<div> <span class="icon_calendario"></span> Hasta: <span id="txt_fin"></span> </div>
+						</div>
+					</div>
+
+					<div class="km-calendario dia_anterior">
+						<label>Tienes hasta <div>  <span class="icon_calendario"></span> <span id="txt_da"></span></div> Para conocer a este Cuidador </label>
+					</div>
 
 					<div class="km-calendario">
 						<label>¿Cuándo deseas conocer al cuidador?</label>
 						<input type="text" id="meeting_when" name="meeting_when" placeholder="dd/mm/aaaa" class="km-calendario date_from" readonly>
 						<small data-error="meeting_when" style="display: none;">Debes ingresar una fecha</small>
 					</div>
+
 					<div class="km-datos-mascota">
 						<select class="km-datos-mascota-opcion" data-charset="all" id="meeting_time" name="meeting_time">
 							<option value="" class="vacio">¿A qué hora te convendría la reunión?</option>
@@ -85,4 +104,6 @@
 			</div>
 		</form>';
 	}
+
+	wp_enqueue_script('conocer_al_cuidador_js', get_recurso('js')."conocer_al_cuidador.js", array("jquery"), '1.0.0');
 ?>

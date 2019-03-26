@@ -9,8 +9,9 @@
 .mensaje_1{
     font-weight: 600; 
     color: #74cd80; 
-    font-size: 17px; 
+    font-size: 16px; 
     text-align: center;
+    font-family: Gotham-Pro-Light;
 }
 
 .mensaje_2{
@@ -122,4 +123,70 @@ span#modal-name-cuidador {
 #popup-conoce-cuidador p {
     text-align: center !important;
     font-size: 20px !important;
+}
+
+#popup-conoce-cuidador .km-calendario label {
+    text-align: left!important;
+    font-size: 12px;
+    line-height: 18px;
+    float: left;
+    width: 100%;
+}
+
+.desde_hasta {
+    overflow: hidden;
+}
+
+.desde_hasta > div {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.desde_hasta > div > div {
+    position: relative;
+    text-align: center;
+    border: solid 1px #CCC;
+    padding: 15px;
+    padding-left: 50px;
+    line-height: 0.7;
+    border-radius: 5px;
+    font-family: Gotham-Pro-Bold;
+    font-size: 13px;
+}
+
+.dia_anterior div {
+    position: relative;
+    padding: 5px;
+    padding-left: 35px;
+    display: inline-block;
+}
+
+.icon_calendario {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    background-image: url(../img/TEST_CONOCER/B/calendario.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+}
+
+.dia_anterior div .icon_calendario {
+    top: 3px;
+    left: 2px;
+}
+
+span#txt_da {
+    font-family: Gotham-Pro-Bold;
+    font-size: 13px;
+    color: #000;
+}
+
+.popup-iniciar-sesion-1.popup_conocer_b {
+    padding: 0px 20px !important;
 }

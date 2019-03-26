@@ -135,12 +135,54 @@
 
 			                	$conocer = '';
 			                	if( isset($reserva['conocer']) && $reserva['conocer'] = 'b'  ){
+
+			                		$meses = [
+								    	"",
+								    	"Enero",
+								    	"Febrero",
+								    	"Marzo",
+								    	"Abril",
+								    	"Mayo",
+								    	"Junio",
+								    	"Julio",
+								    	"Agosto",
+								    	"Septiembre",
+								    	"Octubre",
+								    	"Noviembre",
+								    	"Diciembre",
+								    ];
+
+								    $_desde = str_replace("/", "-", $reserva["inicio"] );
+								    $_hasta = str_replace("/", "-", $reserva["fin"] );
+
+								    $desde = strtotime( $_desde );
+								    $hasta = $_hasta;
+
+								    $dia_anterior = date('d-m-Y', strtotime( '-1 day', $desde ) );
+
+								    $desde = explode('-', $_desde);
+								    $desde = $desde[0].'-'.strtoupper($meses[ $desde[1]+0 ]).'-'.$desde[2];
+
+								    $hasta = explode('-', $_hasta);
+								    $hasta = $hasta[0].'-'.strtoupper($meses[ $hasta[1]+0 ]).'-'.$hasta[2];
+
+								    $dia_anterior = explode('-', $dia_anterior);
+								    $dia_anterior = $dia_anterior[0].'-'.($meses[ $dia_anterior[1]+0 ]).'-'.$dia_anterior[2];
+
 			                		$conocer = '
 			                		<a 
 			                			role="button" 
 			                			data-name="'.$reserva['data_conocer']['name'].'" 
 			                			data-id="'.$reserva['data_conocer']['id'].'" 
-			                			data-url="'.$reserva['data_conocer']['url'].'" 
+			                			data-url="'.$reserva['data_conocer']['url'].'"
+
+			                			data-inicio="'.$reserva["inicio"].'" 
+			                			data-fin="'.$reserva["fin"].'" 
+
+			                			data-desde="'.$desde.'" 
+			                			data-hasta="'.$hasta.'" 
+			                			data-dia_anterior="'.$dia_anterior.'" 
+
 			                			data-target="#popup-conoce-cuidador" 
 			                			class="ver_conocer_init boton boton_border_gris"
 			                			onclick="evento_google_kmimos(\'conocer_busqueda\'); evento_fbq_kmimos(\'conocer_busqueda\');"
