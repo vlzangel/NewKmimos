@@ -121,6 +121,18 @@
 
 	wp_footer();
 
+    if( $_GET['r'] == 'cli' ){
+        $HTML = '
+            <script>
+            	jQuery( document ).ready(function() {
+            		jQuery("[data-target=#popup-registrarte]").click();
+            	});
+            </script>
+        ';
+    }
+
+	echo comprimir($HTML);
+
 
 	echo  "</body></html>";
 ?>
