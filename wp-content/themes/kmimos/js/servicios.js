@@ -24,6 +24,7 @@ jQuery( document ).ready(function(){
 		}
 	});
 
+	/*
 	jQuery( '.vlz_activador' ).each(function( index ) {
 	  	jQuery( this ).on('click', function(e){
 	  		var status = jQuery('#oculto_'+e.target.id).val();
@@ -40,6 +41,7 @@ jQuery( document ).ready(function(){
 	  		}
 	  	});
 	});
+	*/
 
 	postJSON( 
   		"form_perfil",
