@@ -15,6 +15,8 @@
 }
 
 .grafico-container h2,
+#registro_dashboard_widget h2,
+#leads_dashboard_widget h2,
 #ventas_dashboard_widget h2,
 #noches_dashboard_widget h2,
 #resumen_dashboard_widget h2{
