@@ -126,6 +126,7 @@
             <script>
             	jQuery( document ).ready(function() {
             		jQuery("[data-target=#popup-registrarte]").click();
+            		jQuery(".km-btn-popup-registrarte-1").click();
             	});
             </script>
         ';
