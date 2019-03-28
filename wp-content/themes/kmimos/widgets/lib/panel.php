@@ -446,7 +446,7 @@ class PANEL {
 
 	public function leads(){
 
-		$SQL = "SELECT count(id) as total, DATE_FORMAT(time, '%Y-%m-%d') as fecha FROM `wp_kmimos_subscribe` group by DATE_FORMAT(time, '%Y-%m-%d') order by time ASC;";
+		$SQL = "SELECT count(id) as total, DATE_FORMAT(time, '%Y-%m-%d') as fecha FROM `wp_kmimos_subscribe` group by DATE_FORMAT(time, '%Y-%m-%d') order by fecha ASC;";
 		$usuarios = $this->db->get_results($SQL);
 
 	    $_data['byMonth']=[];
@@ -498,7 +498,7 @@ class PANEL {
 			FROM wp_users as u
 					LEFT JOIN cuidadores as c ON c.user_id = u.ID
 			GROUP BY DATE_FORMAT(u.user_registered,'%Y-%m-%d'), CASE WHEN c.id is NULL THEN 'cuidador' ELSE 'cliente' END
-			ORDER BY u.user_registered ASC;
+			ORDER BY fecha ASC;
 		";
 		$usuarios = $this->db->get_results($SQL);
 
