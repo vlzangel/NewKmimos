@@ -1,0 +1,15 @@
+#adminmenumain,
+#adminmenuwrap,
+#wpadminbar,
+#screen-meta-links,
+#wpfooter,
+#screen-meta{
+	display: none!important;
+}
+#wpcontent{
+	width: 90%!important;
+	margin: 0 auto!important;
+}
+#side-sortables{
+	border-color: transparent;
+}

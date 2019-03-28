@@ -398,6 +398,7 @@
                 $user_id = $current_user->ID;
                 $user = new WP_User( $user_id );
                 $salir = wp_logout_url( home_url() );
+                $tipo_usuario = get_usermeta( $user_id, "tipo_usuario", true );
 
                 $MENUS = array(
                     "vendor" => array(
@@ -572,15 +573,24 @@
                             "icono" => "476",
                             "img" => "Cerrar_sesion.svg",
                         )
-                    )
+                    ),
+                    "inversor" => array(
+                        array(
+                            "url"   => "/wp-admin/",
+                            "name"  => "Panel de Control",
+                            "icono" => "421",
+                            "img" => "Panel_de_control.svg",
+                        ),
+                    ),
                 );
 
                 $MENU["head"] = '<li><a href="#" class="km-nav-link"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
                 $MENU["head_movil"] = '<li><a href="#" class="km-nav-link"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
                 $MENU["body"] = "";
 
-                if( $MENUS[ $user->roles[0] ] != "" ){
-                    foreach ($MENUS[ $user->roles[0] ] as $key => $value) {
+                $role = ( strtolower($tipo_usuario) == 'inversor' )? strtolower($tipo_usuario) : $user->roles[0] ;
+                if( $MENUS[ $role ] != "" ){
+                    foreach ($MENUS[ $role ] as $key => $value) {
                         $sts = "";
                         if( $menu_principal ){
                             if( array_key_exists('ocultar_menu_principal', $value) ){
