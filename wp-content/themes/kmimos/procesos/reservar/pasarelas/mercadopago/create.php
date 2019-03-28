@@ -36,8 +36,12 @@
 		$descripcion = ucfirst($pagar->tipo_servicio) . " - " . $pagar->name_servicio;
 		$noches = $fechas->duracion;
 		$total = $pagar->total; 
-		$descuento = ( isset($pagar->fee) && $pagar->fee>0 )? $pagar->fee : 0 ;
 		$total_mascotas = 0;
+		$descuento = 0;
+		$descuento = ( isset($pagar->fee) && $pagar->fee>0 )? $pagar->fee : 0 ;
+	    foreach ($cupones as $key => $value) {
+	    	$descuento += $value[1];
+	    }
 
 	# Crear Orden en Kmimos
 	Requests::register_autoloader();
