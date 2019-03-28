@@ -81,7 +81,7 @@ function load_chart_leads(id, data, tipo, format_date){
 	if( leads_type == 'byDay' ){	
 		var f = new Date();
 		chart.events.on("ready", function () {
-		  dateAxis.zoomToIndexes({start:0.7, end:0.9 });
+		  dateAxis.zoomToIndexes(0,0.5);
 		});
 	}else{	
 		chart.events.on("datavalidated", function () {
