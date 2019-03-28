@@ -203,3 +203,7 @@ span#txt_da {
 .ver_conocer_init b {
     color: #000 !important;
 }
+
+.btn_otra_solicitud{
+    display: none;
+}
