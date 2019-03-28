@@ -88,6 +88,8 @@ class Reservas {
         if( isset($dias) ){ $otros_metas .= "(NULL, '{$id_reserva}', '_booking_dias', '{$dias}'),"; }
 
         if( isset($_SESSION['test_conocer']) ){ $otros_metas .= "(NULL, '{$id_reserva}', '_booking_test_conocer', '".$_SESSION['test_conocer']."'),"; }
+        
+        if( isset($_SESSION['landing_test']) ){ $otros_metas .= "(NULL, '{$id_reserva}', '_booking_landing_test_petco', '".$_SESSION['landing_test']."'),"; }
 
         $sql = "
             INSERT INTO wp_postmeta VALUES

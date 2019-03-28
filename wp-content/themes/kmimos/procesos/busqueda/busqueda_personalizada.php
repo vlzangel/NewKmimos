@@ -393,12 +393,12 @@
 
 	    $sql = "
 	    SELECT 
-	        c.id,
-	        c.nombre
+	        cuidadores.id,
+	        cuidadores.nombre
 	        {$DISTANCIA}
 	        {$FLASH_ORDEN}
 	    FROM 
-	        cuidadores AS c
+	        cuidadores
 	    WHERE 
 	        activo = '1' 
 	        {$condiciones} 

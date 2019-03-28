@@ -158,6 +158,15 @@
 	$home_2 = '';
     if( $HOME == "2" ){ $home_2 = 'home_2'; }
 
+    $landing = 'A';
+    if( isset($_GET["landing"]) ){
+    	$landing = strtoupper($_GET["landing"]);
+    }
+
+    if( isset($_SESSION['landing_test']) ){
+    	$landing = strtoupper($_SESSION['landing_test']);
+    }
+
 	$HTML .= '
 	</head>
 	<body class="' . join(' ', get_body_class($class)) . ' ' . $reserrvacion_page . ' '.$home_2.'">
@@ -172,7 +181,7 @@
 
  			function evento_fbq(tipo, evento){
 	        	if( wlabel == "petco" ){ 
-	        		fbq(tipo, evento); 
+	        		fbq(tipo, evento+"_'.$landing.'"); 
 	        	}
 	        }
 
@@ -180,64 +189,64 @@
 	        	if( wlabel == "petco" ){
 		        	switch ( evento ) {
 						case "boton_nueva_reserva_tarjeta":
-							ga("send", "event", "wlabel", "click", "traking_code_boton_nueva_reserva_tarjeta", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_boton_nueva_reserva_tarjeta_'.$landing.'", "1");
 						break;
 						
 						case "boton_nueva_reserva_tienda":
-							ga("send", "event", "wlabel", "click", "traking_code_boton_nueva_reserva_tienda", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_boton_nueva_reserva_tienda_'.$landing.'", "1");
 						break;
 
 						case "paseos":
 							if( !hizo_click["paseos"] ){
-								ga("send", "event", "wlabel", "click", "traking_code_boton_paseos", "1");
+								ga("send", "event", "wlabel", "click", "traking_code_boton_paseos_'.$landing.'", "1");
 								hizo_click["paseos"] = true;
 							}
 						break;
 
 						case "guarderia":
 							if( !hizo_click["guarderia"] ){
-								ga("send", "event", "wlabel", "click", "traking_code_boton_guarderia", "1");
+								ga("send", "event", "wlabel", "click", "traking_code_boton_guarderia_'.$landing.'", "1");
 								hizo_click["guarderia"] = true;
 							}
 						break;
 						
 						case "entrenamiento":
 							if( !hizo_click["entrenamiento"] ){
-								ga("send", "event", "wlabel", "click", "traking_code_boton_entrenamiento", "1");
+								ga("send", "event", "wlabel", "click", "traking_code_boton_entrenamiento_'.$landing.'", "1");
 								hizo_click["entrenamiento"] = true;
 							}
 						break;
 
 						case "conocer_cuidador":
-							ga("send", "event", "wlabel", "click", "traking_code_conocer_cuidador", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_conocer_cuidador_'.$landing.'", "1");
 						break;
 
 						case "nuevo_registro_cliente":
-							ga("send", "event", "wlabel", "click", "traking_code_nuevo_registro_cliente", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_nuevo_registro_cliente_'.$landing.'", "1");
 						break;
 
 						case "nuevo_registro_cuidador":
-							ga("send", "event", "wlabel", "click", "traking_code_nuevo_registro_cuidador", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_nuevo_registro_cuidador_'.$landing.'", "1");
 						break;
 
 						case "nueva_reserva_tienda":
-							ga("send", "event", "wlabel", "click", "traking_code_nueva_reserva_tienda", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_nueva_reserva_tienda_'.$landing.'", "1");
 						break;
 
 						case "nueva_reserva_tarjeta":
-							ga("send", "event", "wlabel", "click", "traking_code_nueva_reserva_tarjeta", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_nueva_reserva_tarjeta_'.$landing.'", "1");
 						break;
 
 						case "nueva_reserva_descuento_saldo":
-							ga("send", "event", "wlabel", "click", "traking_code_nueva_reserva_descuento_saldo", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_nueva_reserva_descuento_saldo_'.$landing.'", "1");
 						break;
 
 						case "llego_al_home":
-							ga("send", "event", "wlabel", "click", "traking_code_llego_al_home", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_llego_al_home_'.$landing.'", "1");
 						break;
 
 						case "dejo_el_correo":
-							ga("send", "event", "wlabel", "click", "traking_code_dejo_el_correo", "1");
+							ga("send", "event", "wlabel", "click", "traking_code_dejo_el_correo_'.$landing.'", "1");
 						break;
 					}
 				}

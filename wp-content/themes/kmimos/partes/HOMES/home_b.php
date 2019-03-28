@@ -1,13 +1,13 @@
 <?php
 
-    if( !isset($_SESSION[ "llego_al_home_b" ]) ){
+    if( !isset($_SESSION[ "llego_al_home" ]) ){
         $HTML .= '
             <script>
-                evento_google("llego_al_home_b");  
-                evento_fbq("track", "traking_code_llego_al_home_b");   
+                evento_google("llego_al_home");  
+                evento_fbq("track", "traking_code_llego_al_home");   
             </script>
         ';
-        $_SESSION[ "llego_al_home_b" ] = "YA_ENTRO";
+        $_SESSION[ "llego_al_home" ] = "YA_ENTRO";
     }
 	
     $HTML .= '
@@ -38,7 +38,7 @@
 				<div id="servicios_principales_container">
 					<div class="servicios_principales_container">
 						<div class="servicios_principales_box"  style="position: relative;">
-							<label class="input_check_box" for="hospedaje" onclick="evento_google(\'hospedaje_b\'); evento_fbq("track", "traking_code_boton_hospedaje_b");">
+							<label class="input_check_box" for="hospedaje" onclick="evento_google(\'hospedaje\'); evento_fbq(\'track\', \'traking_code_boton_hospedaje\');">
 								<input type="checkbox" id="hospedaje" name="servicios[]" value="hospedaje"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Hospedaje.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
@@ -46,7 +46,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia_b\'); evento_fbq("track", "traking_code_boton_guarderia_b");">
+							<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia\'); evento_fbq(\'track\', \'traking_code_boton_guarderia\');">
 								<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
@@ -54,7 +54,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos_b\'); evento_fbq("track", "traking_code_boton_paseos_b"); evento_google_2(\'paseos\'); evento_fbq_2("track", "traking_code_boton_paseos_kmimos"); ">
+							<label class="input_check_box" for="paseos" onclick="evento_google(\'paseos\'); evento_fbq(\'track\', \'traking_code_boton_paseos\'); evento_google_2(\'paseos\'); evento_fbq_2(\'track\', \'traking_code_boton_paseos_kmimos\'); ">
 								<input type="checkbox" id="paseos" name="servicios[]" value="paseos"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Paseos.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Paseos.png" />
@@ -62,7 +62,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento_b\'); evento_fbq("track", "traking_code_boton_entrenamiento_b"); ">
+							<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq(\'track\', \'traking_code_boton_entrenamiento\'); ">
 								<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
@@ -297,9 +297,9 @@
 						'<div class="msg_destacado_containder">'.
 							$cuidador->msg.
 						'</div>'.
-						'<a href="'.$cuidador->link.'?ldg=b" class="boton boton_verde" onclick="evento_google(\'ver_perfil_prueba_b\'); evento_fbq("track", "traking_code_ver_perfil_prueba_b");">Ver perfil</a>'.
+						'<a href="'.$cuidador->link.'?ldg=b" class="boton boton_verde" onclick="evento_google(\'ver_perfil_prueba\'); evento_fbq(\'track\', \'traking_code_ver_perfil_prueba\');">Ver perfil</a>'.
 					'</div>'.
-					'<a href="'.$cuidador->link.'?ldg=b" class="boton" onclick="evento_google(\'ver_perfil_prueba_b\'); evento_fbq("track", "traking_code_ver_perfil_prueba_b");">Ver perfil</a>'.
+					'<a href="'.$cuidador->link.'?ldg=b" class="boton" onclick="evento_google(\'ver_perfil_prueba\'); evento_fbq(\'track\', \'traking_code_ver_perfil_prueba\');">Ver perfil</a>'.
 				'</div>';
 		}
 

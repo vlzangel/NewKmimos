@@ -119,9 +119,9 @@
 
 		//if( $status_servicios[ $key ] == 'publish' ){
 		if(isset($precios_adicionales_cuidador['status_'.$key]) && $precios_adicionales_cuidador['status_'.$key]==1){
-    		$boton = "<input type='button' value='Activado' class='vlz_activador km-btn-primary vlz_activado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='1' >";
+    		// $boton = "<input type='button' value='Activado' class='vlz_activador km-btn-primary vlz_activado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='1' >";
     	}else{
-    		$boton = "<input type='button' value='Desactivado' class='vlz_activador km-btn-primary vlz_desactivado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='0' >";
+    		// $boton = "<input type='button' value='Desactivado' class='vlz_activador km-btn-primary vlz_desactivado' id='status_{$key}' > <input type='hidden' id='oculto_status_{$key}' name='status_{$key}' value='0' >";
     	}
 
         if( $key == "paseos" ){

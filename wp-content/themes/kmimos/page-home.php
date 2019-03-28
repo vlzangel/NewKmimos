@@ -5,6 +5,18 @@
 
     $landing = ( isset($_GET["landing"]) ) ? $_GET["landing"] : $_SESSION['landing_test'];
 
+    if( isset($_GET["landing"]) || isset($_SESSION['landing_test']) ){
+    	if( !isset($_SESSION['landing_test']) ){
+    		$_SESSION['landing_test'] = $_GET["landing"];
+    		$landing = $_GET["landing"];
+    	}else{
+    		$landing = $_SESSION['landing_test'];
+    	}
+    	
+    }else{
+    	$landing = 'a';
+    }
+
     if( $landing == 'd' ){
     	header("location: ".get_home_url()."/home-2/" );
     }
@@ -69,17 +81,21 @@
 		';
 	}
 
-	switch ( $landing ) {
-		case 'b':
-			include dirname(__FILE__).'/partes/HOMES/home_b.php';
-		break;
-		case 'c':
-			include dirname(__FILE__).'/partes/HOMES/home_c.php';
-		break;
-		
-		default:
-			include dirname(__FILE__).'/partes/HOMES/home_a.php';
-		break;
+	if( $_SESSION["wlabel"] == "petco" ){
+		switch ( $landing ) {
+			case 'b':
+				include dirname(__FILE__).'/partes/HOMES/home_b.php';
+			break;
+			case 'c':
+				include dirname(__FILE__).'/partes/HOMES/home_c.php';
+			break;
+			
+			default:
+				include dirname(__FILE__).'/partes/HOMES/home_a.php';
+			break;
+		}
+	}else{
+		include dirname(__FILE__).'/partes/HOMES/home_a.php';
 	}
 			
 	$HTML .= '

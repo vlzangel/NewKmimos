@@ -37,8 +37,6 @@
 		$wpdb->query("INSERT INTO landing_test VALUES (NULL, {$user_id}, '{$ult_landing}')");
 	}
 
-	// echo "Landing: {$ult_landing}<br>";
-
 	$param = ( !empty($_SERVER['QUERY_STRING']) && isset($_GET['utm_campaign']) )? '&'.$_SERVER['QUERY_STRING'] : '&utm_source=web&utm_medium=banner&utm_campaign=petco_kmimos&utm_term=white_label_petco' ;	
 	
 	if( $ult_landing == 'a' ){
