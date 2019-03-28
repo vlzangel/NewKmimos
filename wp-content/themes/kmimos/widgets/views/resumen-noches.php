@@ -1,6 +1,6 @@
 <?php 
-	// $theme = 'light';
-	$theme = 'dark'; 
+	$theme = 'light';
+	// $theme = 'dark'; 
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo get_recurso('css'); ?>/widgets/panel.css">

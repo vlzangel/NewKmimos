@@ -29,6 +29,20 @@
 	}
 /* END Icon */
 
+/* Componentes */
+button.active{
+	background-color: #5175af;
+	color: #fff;
+}
+.btn{
+	margin: 0px!important;
+	padding: 5px 25px!important;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	color: #000;
+	font-weight: bold;
+}
+
 /* BEGIN Graficos */
 	#grafica_dia_curso,
 	#grafica_vs_meses{
@@ -36,7 +50,10 @@
 		max-height: 250px;
 		height: 65vh;
 	}
-	
+
+	.grafico-container,
+	#grafico_leads,
+	#grafico_registro,
 	#grafico_resumen_ventas,
 	#grafico_resumen_por_dia,
 	#dona_resumen_este_mes{
