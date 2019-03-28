@@ -443,4 +443,133 @@ class PANEL {
 			"ventas_anio_curso" => "$ ".number_format( $ventas_anio_curso, 2, ",", "." )." MXN",
 		];
 	}
+
+	public function leads(){
+
+		$SQL = "SELECT count(id) as total, DATE_FORMAT(time, '%Y-%m-%d') as fecha FROM `wp_kmimos_subscribe` group by DATE_FORMAT(time, '%Y-%m-%d') order by time ASC;";
+		$usuarios = $this->db->get_results($SQL);
+
+	    $_data['byMonth']=[];
+	    $_data['byDay']=[];
+	    $lead_total =0;
+		foreach ($usuarios as $lead) {
+			// By Day
+			$fecha =  $lead->fecha;
+			$_data['byDay'][$fecha]['value'] = $lead->total;
+			$_data['byDay'][$fecha]['date'] = $fecha;
+
+			// By Month
+			$month = date( 'Y-m', strtotime($lead->fecha) );
+			if( isset($_data['byMonth'][$month]) ){
+				$_data['byMonth'][$month]['value'] += $lead->total;
+			}else{
+				$_data['byMonth'][$month]['value'] = $lead->total;
+				$_data['byMonth'][$month]['date'] = $month;
+			}
+
+			// Acumulado
+			$lead_total += $lead->total;
+			if( isset($_data['total'][$month]) ){
+				$_data['total'][$month]['value'] = $lead_total;
+			}else{
+				$_data['total'][$month]['value'] = $lead_total;
+				$_data['total'][$month]['date'] = $month;
+			}
+		}
+
+		ksort($_data['byDay']);
+		$data['byDay'] = array_values($_data['byDay']);
+
+		ksort($_data['byMonth']);
+		$data['byMonth'] = array_values($_data['byMonth']);
+
+		ksort($_data['total']);
+		$data['total'] = array_values($_data['total']);
+
+		return $data;
+	}
+
+	public function registro(){
+
+		$SQL = "SELECT 
+					count(u.ID) as total,
+					DATE_FORMAT(u.user_registered,'%Y-%m-%d') as fecha,
+					CASE WHEN c.id is NULL THEN 'cuidador' ELSE 'cliente' END as tipo
+			FROM wp_users as u
+					LEFT JOIN cuidadores as c ON c.user_id = u.ID
+			GROUP BY DATE_FORMAT(u.user_registered,'%Y-%m-%d'), CASE WHEN c.id is NULL THEN 'cuidador' ELSE 'cliente' END
+			ORDER BY u.user_registered ASC;
+		";
+		$usuarios = $this->db->get_results($SQL);
+
+	    $_data['byMonth']=[];
+	    $_data['byDay']=[];
+
+	    $total = 0;
+	    $cliente = 0;
+	    $cuidador = 0;
+		foreach ($usuarios as $item) {
+			// By Day
+				$fecha =  $item->fecha;
+				if( isset($_data['byDay'][$month]) ){
+					$_data['byDay'][$fecha]['value'] += $item->total;
+				}else{
+					$_data['byDay'][$fecha]['value'] = $item->total;
+					$_data['byDay'][$fecha]['date'] = $fecha;
+					$_data['byDay'][$fecha]['cliente'] = 0;
+					$_data['byDay'][$fecha]['cuidador'] = 0;
+				}
+				if( $item->tipo == 'cliente' ){
+					$_data['byDay'][$fecha]['cliente'] += $item->total;
+				}else{
+					$_data['byDay'][$fecha]['cuidador'] += $item->total;
+				}
+
+			// By Month
+				$month = date( 'Y-m', strtotime($item->fecha) );
+				if( isset($_data['byMonth'][$month]) ){
+					$_data['byMonth'][$month]['value'] += $item->total;
+				}else{
+					$_data['byMonth'][$month]['value'] = $item->total;
+					$_data['byMonth'][$month]['date'] = $month;
+					$_data['byMonth'][$month]['cliente'] = 0;
+					$_data['byMonth'][$month]['cuidador'] = 0;
+				}
+				if( $item->tipo == 'cliente' ){
+					$_data['byMonth'][$month]['cliente'] += $item->total;
+				}else{
+					$_data['byMonth'][$month]['cuidador'] += $item->total;
+				}
+
+			// Acumulado
+				$total += $item->total;
+				if( isset($_data['total'][$month]) ){
+					$_data['total'][$month]['value'] = $total;
+				}else{
+					$_data['total'][$month]['value'] = $total;
+					$_data['total'][$month]['date'] = $month;
+					$_data['total'][$month]['cliente'] = 0;
+					$_data['total'][$month]['cuidador'] = 0;
+				}
+				if( $item->tipo == 'cliente' ){
+					$cliente += $item->total;
+					$_data['total'][$month]['cliente'] = $cliente;
+				}else{
+					$cuidador += $item->total;
+					$_data['total'][$month]['cuidador'] = $cuidador;
+				}
+
+		}
+
+		ksort($_data['byDay']);
+		$data['byDay'] = array_values($_data['byDay']);
+
+		ksort($_data['byMonth']);
+		$data['byMonth'] = array_values($_data['byMonth']);
+
+		ksort($_data['total']);
+		$data['total'] = array_values($_data['total']);
+
+		return $data;
+	}
 }
