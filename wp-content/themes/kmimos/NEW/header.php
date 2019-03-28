@@ -367,6 +367,8 @@
 			logged_out_greeting="Hola! Cómo puedo ayudarte?">
 		</div>
 		';
+		// greeting_dialog_display="hide"
+		// FB.CustomerChat.hideDialog();
 		// page_id="1473614136234432" - Chat Facebook Produccion
 		// page_id="361445711358167"  - Chat Facebook QA
 	
