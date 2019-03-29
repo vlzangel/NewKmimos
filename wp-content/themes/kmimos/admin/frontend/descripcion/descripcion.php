@@ -275,7 +275,7 @@
         </section>
 
         <section> 
-          	<label for="solo_esterilizadas" class="lbl-text">'.esc_html__('¿No Esterilizadas?','kmimos').':</label>
+          	<label for="solo_esterilizadas" class="lbl-text">'.esc_html__('¿Aceptas Mascotas No Esterilizadas?','kmimos').':</label>
             <label class="lbl-ui">
 	            <select id="solo_esterilizadas" name="solo_esterilizadas" class="input">
 	                <option value="0" '.selected($atributos['esterilizado'], 0, false).'>No</option>
