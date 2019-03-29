@@ -121,6 +121,7 @@
 
 	wp_footer();
 
+	$HTML = '';
     if( $_GET['r'] == 'cli' ){
         $HTML = '
             <script>
