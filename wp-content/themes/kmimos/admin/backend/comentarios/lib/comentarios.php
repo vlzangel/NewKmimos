@@ -67,4 +67,30 @@ class comentarios {
 		";
 		return $this->db->get_row($sql);
 	}
+
+	public function get_reservas_confimadas( $user_id ){
+		$SQL = "
+			SELECT 
+				r.ID as 'nro_reserva'
+			FROM wp_posts as r
+				LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
+				LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')
+				LEFT JOIN wp_posts as pr ON pr.ID = pri.meta_value
+				LEFT JOIN cuidadores as us ON us.user_id = pr.post_author
+			WHERE r.post_type = 'wc_booking' 
+				and r.post_status in ('confirmed','completed')
+				and us.user_id = $user_id
+			ORDER BY r.ID desc
+		";
+		$reservas = $this->db->get_results($SQL);		
+		$res = 'Sin reservas';
+		$data = [];
+		if( !empty($reservas) ){		
+			foreach ($reservas as $reserva) {
+				$data[] = $reserva->nro_reserva; 
+			}
+			$res = implode(",",$data);
+		}
+		return $res;
+	}
 }

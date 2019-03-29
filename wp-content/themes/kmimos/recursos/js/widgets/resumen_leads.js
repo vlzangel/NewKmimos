@@ -75,10 +75,20 @@ function load_chart_leads(id, data, tipo, format_date){
 	chart.scrollbarX = new am4charts.XYChartScrollbar();
 	chart.scrollbarX.series.push(series);
 
+	console.log(leads_data.date);
 
-	chart.events.on("datavalidated", function () {
-	    dateAxis.zoom({start:0.8, end:1});
-	});
+
+	if( leads_type == 'byDay' ){	
+		var f = new Date();
+		chart.events.on("ready", function () {
+		  dateAxis.zoomToIndexes(0,0.5);
+		});
+	}else{	
+		chart.events.on("datavalidated", function () {
+		    dateAxis.zoom({start:0.8, end:1});
+		});
+	}
+
 
 }
 /*function _load_chart_ventas(id, data){

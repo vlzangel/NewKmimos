@@ -89,6 +89,18 @@
                     'position'      =>  4,
                 ),
  
+                // Comentarios
+                array(
+                    'title'         =>  'Valoraciones',
+                    'short-title'   =>  'Valoraciones',
+                    'parent'        =>  '',
+                    'slug'          =>  'valoraciones',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'valoraciones',
+                    'icon'          =>  '',
+                    'position'      =>  4,
+                ),
+ 
  
             );
 
@@ -273,6 +285,15 @@
         }
 
         add_action('admin_menu','kmimos_menu_reportes');
+    }
+
+    /* Inclucion de paginas */
+    if(!function_exists('valoraciones')){
+        function valoraciones(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/comentarios/reporte_comentario.php');
+        }
     }
 
     /* Inclucion de paginas */

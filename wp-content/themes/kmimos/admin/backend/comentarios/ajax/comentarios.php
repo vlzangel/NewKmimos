@@ -23,7 +23,8 @@
             $punctuality = $comentarios->get_criterio_valoracion( $cuidador->user_id, 'punctuality');
             $care = $comentarios->get_criterio_valoracion( $cuidador->user_id, 'care');
             $total = $comentarios->get_criterio_general( $cuidador->user_id );
-             
+            $reservas = $comentarios->get_reservas_confimadas( $cuidador->user_id );
+
             $data["data"][] = array(
                 ++$i,
                 $cuidador->user_id,
@@ -51,8 +52,9 @@
                 $total->minimo,
                 number_format( $total->promedio,2),
 
+                $reservas
             );
-
+ 
         }
     }
 

@@ -479,6 +479,7 @@ class PANEL {
 
 		ksort($_data['byDay']);
 		$data['byDay'] = array_values($_data['byDay']);
+		$data['date'] = array_keys($_data['byDay']);
 
 		ksort($_data['byMonth']);
 		$data['byMonth'] = array_values($_data['byMonth']);
