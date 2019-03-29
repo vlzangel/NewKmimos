@@ -360,7 +360,7 @@
            
     <div class="inputs_containers row_4" style="padding-bottom: 0px;"> 
 
-	    <section>
+	    <section class="tam_mis_mascotas">
 	         <label for="ages_accepted" class="lbl-text">'.esc_html__('Tamaños de mis mascotas','kmimos').':</label>
             <label class="lbl-ui">
 	          	'.$mascotas_cuidador_str.'     

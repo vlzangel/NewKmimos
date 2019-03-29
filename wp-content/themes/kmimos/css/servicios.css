@@ -149,3 +149,22 @@
     color: #000;
     text-shadow: 0px 0px 2px #FFF;
 }
+
+.vlz_titulo_seccion.container_btn > label {
+    background-image: url(http://kmimos.git/wp-content/themes/kmimos/recursos/img/BUSQUEDA/SVG/iconos/Boton_OFF.svg);
+    width: 50px;
+    height: 30px;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.vlz_titulo_seccion.container_btn > input {
+    display: none;
+}
+
+.vlz_titulo_seccion.container_btn input:checked ~ label {
+    background-image: url(http://kmimos.git/wp-content/themes/kmimos/recursos/img/BUSQUEDA/SVG/Boton_descuento.svg);
+}

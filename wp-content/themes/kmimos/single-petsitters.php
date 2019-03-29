@@ -37,7 +37,7 @@
     	unset($_SESSION["save_uso_banner"]);
     }
 
-	if( $_cuidador->activo == 0 && $current_user->roles[0] != "administrator" ){
+	if( $cuidador->activo == 0 && $current_user->roles[0] != "administrator" ){
 		header("location: ".get_home_url());
 	}
 
@@ -351,10 +351,6 @@
 
 	$est = htmlentities( utf8_decode($est) );
 	$ubicacion = $est.', '. ucfirst( strtolower( $mun ) );
-
-	echo "<pre>";
-		print_r( $busqueda );
-	echo "</pre>";
 
  	$HTML .= '
  		<script> 

@@ -75,3 +75,7 @@ div{
     background-position: 1px 1px;
     background-image: url("https://www.kmimos.com.mx/wp-content/themes/kmimos/images/new_check.png");
 }
+
+section.tam_mis_mascotas {
+    border-right: solid 1px #CCC;
+}
