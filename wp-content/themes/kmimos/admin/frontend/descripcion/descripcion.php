@@ -274,7 +274,7 @@
             </label>
         </section>
 
-        <section> 
+        <section style="width: 50%;"> 
           	<label for="solo_esterilizadas" class="lbl-text">'.esc_html__('¿Aceptas Mascotas No Esterilizadas?','kmimos').':</label>
             <label class="lbl-ui">
 	            <select id="solo_esterilizadas" name="solo_esterilizadas" class="input">
@@ -345,7 +345,7 @@
             </label> 
         </section> 
 
-        <section style="width: 50%;"> 
+        <section> 
             <label for="video_youtube" class="lbl-text">'.esc_html__('Video de Youtube (URL)','kmimos').':</label>
             <label class="lbl-ui">
                 <input  type="text" id="video_youtube" name="video_youtube" class="input" value="'.$atributos['video_youtube'].'" />
