@@ -581,6 +581,12 @@
                             "icono" => "421",
                             "img" => "Panel_de_control.svg",
                         ),
+                        array(
+                            "url"   => $salir,
+                            "name"  => "Cerrar Sesión",
+                            "icono" => "476",
+                            "img" => "Cerrar_sesion.svg",
+                        )
                     ),
                 );
 
