@@ -1,7 +1,10 @@
 <?php
+
 	$HTML_CONOCER .= '
 		<div class="conocer_c">
-			<div class="titulo_c">Cómo conocer al Cuidador <strong><span id="modal-name-cuidador"></span></strong> antes de dejar a su cuidado a tu amigo peludo.</div>
+			<div class="titulo_c">
+				Asegura tu reserva con descuento ahora y conoce al Cuidador <strong><span id="modal-name-cuidador"></span></strong> antes de dejar a tu peludo
+			</div>
 			<ul>
 				<li> <strong>1</strong> <div> Realiza tu reserva con el Cuidador </div> </li>
 				<li> <strong>2</strong> <div> En tu perfil Kmimos, ingresa a la sección Reservas </div> </li>

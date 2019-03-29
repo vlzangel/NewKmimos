@@ -17,7 +17,7 @@
     padding: 5px;
     border-radius: 0px 3px 3px 3px;
     font-weight: 600;
-    background-color: rgb(249, 249, 249);
+    /* background-color: rgb(249, 249, 249); */
     box-shadow: 1px 1px 1px #CCC;
 }
 .vlz_seccion label{
