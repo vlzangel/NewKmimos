@@ -179,13 +179,47 @@
         
     }
 
-    .conocer_c .titulo_c{
-        font-size: 14px;
-        padding: 25px 30px 10px;
+    .conocer_c .titulo_c {
+        font-size: 18px;
+        padding: 30px 30px 20px;
+        background: #eebf31;
+        text-align: center;
+        color: #FFF;
+        border-radius: 5px 5px 0px 0px;
     }
 
-    .conocer_c .titulo_c strong {
-        font-family: Gotham-Pro-Black;
+    .conocer_c .titulo_c_2 {
+        text-align: center;
+        padding: 15px 20px 10px;
+        font-size: 14px;
+        font-family: Gotham-Pro-Light;
+    }
+
+    .conocer_c .titulo_c_3 {
+        text-align: center;
+        font-size: 18px;
+        color: #00d2c6;
+        line-height: 1;
+        padding: 0px 0px 15px;
+    }
+
+    .conocer_c .titulo_c_3 span {
+        font-size: 45px;
+        font-family: Gotham-Pro-Bold;
+    }
+
+    .conocer_c .titulo_c_4 {
+        font-size: 13px;
+        padding: 15px 60px;
+        background: #eebf31;
+        text-align: left;
+        color: #FFF;
+        margin-bottom: 10px;
+    }
+
+    .conocer_c .titulo_c strong,
+    .conocer_c .titulo_c_2 strong {
+        font-family: Gotham-Pro-Light;
     }
 
     .popup_conocer_c {
@@ -193,7 +227,7 @@
     }
 
     .conocer_c ul {
-        padding: 0px 60px 10px;
+        padding: 5px 60px 10px;
         list-style: none;
     }
 
@@ -201,14 +235,14 @@
         background: #74cd80;
         color: #FFF !important;
         padding: 15px 30px;
-        font-family: Gotham-Pro-Bold;
+        font-family: Gotham-Pro-Regular;
         font-size: 12px;
     }
 
     .conocer_c li {
         font-size: 13px;
         line-height: 2;
-        border-bottom: solid 1px #000;
+        border-bottom: solid 1px #b5b5b5;
         padding: 2px 0px 1px;
     }
 
@@ -274,4 +308,42 @@
 
     .pre_requisitos {
         padding: 20px 20px 5px;
+    }
+
+    .contador_c{
+        padding: 15px 0px 30px;
+    }
+
+    .conocer_c .cronometro_descuento_c {
+        width: 166px;
+        display: block;
+        margin: 0px auto;
+    }
+
+    .conocer_c .cronometro_descuento_c > div {
+        float: left;
+        margin: 0px;
+        padding: 3px 0px;
+        background-color: #FFF;
+        font-size: 20px;
+        color: #000;
+        text-align: center;
+        width: 45px;
+    }
+
+    .conocer_c .cronometro_descuento_c > span {
+        float: left;
+        display: inline-block;
+        margin: 0px 2px;
+        padding: 3px 0px;
+        font-size: 20px;
+        color: #000;
+        font-family: Gotham-Pro-Black;
+        padding-left: 2px;
+    }
+
+    .conocer_c .cronometro_descuento_c > div span {
+        border: solid 1px #000;
+        padding: 3px;
+        margin: 0px 1px;
     }

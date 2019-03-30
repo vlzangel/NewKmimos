@@ -13,6 +13,7 @@ function open_conocer( _this ){
     jQuery('.popup-iniciar-sesion-1 #pet_conoce input').removeClass("active");
 
     jQuery( '#modal-name-cuidador' ).html( _this.data('name') );
+    jQuery( '.modal-name-cuidador' ).html( _this.data('name') );
     jQuery( '[name="post_id"]' ).val( _this.data('id') );
 
     if( _this.data('url') != undefined ){
