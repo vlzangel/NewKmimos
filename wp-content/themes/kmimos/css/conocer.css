@@ -347,3 +347,15 @@
         padding: 3px;
         margin: 0px 1px;
     }
+
+    div#popup-conoce-cuidador{
+        padding-right: 0px !important;
+    }
+
+    div#popup-conoce-cuidador .modal-content {
+        margin: 75px auto 0px;
+    }
+
+    #popup-conoce-cuidador button.close {
+        right: 5px !important;
+    }

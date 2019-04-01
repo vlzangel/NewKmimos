@@ -1,7 +1,7 @@
 <?php
 	
 	$HTML_CONOCER .= '
-		<div style="font-size: 16px;"> 
+		<div style="font-size: 16px; margin: 30px 0px;"> 
 			En este momento esta función no está disponible, te invitamos a darle click al botón Reservar. 
 		</div>   
 		<div class="km-buttons" style="text-align: center; margin-top: 20px;">  
