@@ -69,7 +69,8 @@ class comentarios {
 	}
 
 	public function get_reservas_confimadas( $user_id ){
-		$SQL = "
+/*		
+	$SQL = "
 			SELECT 
 				r.ID as 'nro_reserva'
 			FROM wp_posts as r
@@ -82,15 +83,23 @@ class comentarios {
 				and us.user_id = $user_id
 			ORDER BY r.ID desc
 		";
+*/
+
+		$email = $this->db->get_var( 'select email from cuidadores where user_id = '.$user_id );
+
+		$SQL = "select * from sheet1 where CorreoCuidador = '{$email}' and Estatus = 'Confirmado'";
 		$reservas = $this->db->get_results($SQL);		
 		$res = 'Sin reservas';
 		$data = [];
 		if( !empty($reservas) ){		
 			foreach ($reservas as $reserva) {
-				$data[] = $reserva->nro_reserva; 
+				$data[] = $reserva->Reserva; 
 			}
 			$res = implode(",",$data);
 		}
-		return $res;
+		return [
+			'list' => $res, 
+			'total'=> count($data)
+		];
 	}
 }
