@@ -8352,3 +8352,8 @@ textarea.vlz_input {
 /*.popuphide {
     display: block !important;
 }*/
+
+.km-btn-secondary {
+    background-color: #7c169e !important;
+    border-bottom: 3px solid #7c169e !important;
+}
