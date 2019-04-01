@@ -87,6 +87,7 @@ $solicitudes = getSolicitud($desde, $hasta);
 					<th>#</th>
 					<th># Solicitud</th>
 					<th>Fecha</th>
+					<th># Noches</th>
 					<th>Desde</th>
 					<th>Hasta</th>
 					<th>Lugar</th>
@@ -120,14 +121,27 @@ $solicitudes = getSolicitud($desde, $hasta);
 				  		// *************************************
 				  		// Buscar Reservas
 				  		// *************************************
-				  		$_reserva = get_primera_reserva( $solicitud['Cliente_id'] );
-				  		$reserva = $_reserva['rows'][0];
-				  		$detalle = kmimos_desglose_reserva_data( $reserva['post_parent'], true);
-		
-				  		if( empty($detalle['servicio']['id_orden'] ) ){
-							$detalle['servicio']['duracion'] = '';
-							$detalle['servicio']['tipo'] = '';
-						}
+				  		// $_reserva = get_primera_reserva( $solicitud['Cliente_id'] );
+				  		// $reserva = $_reserva['rows'][0];
+				  		// $detalle = kmimos_desglose_reserva_data( $reserva['post_parent'], true);
+				  		// if( empty($detalle['servicio']['id_orden'] ) ){
+						// 	$detalle['servicio']['duracion'] = '';
+						// 	$detalle['servicio']['tipo'] = '';
+						// }
+
+
+
+						$arr_ini = explode('/',	$solicitud['Servicio_desde']);
+						$arr_fin = explode('/',	$solicitud['Servicio_hasta']);
+						$_ini = $arr_ini[2].'-'.$arr_ini[1].'-'.$arr_ini[0];
+						$_fin = $arr_fin[2].'-'.$arr_fin[1].'-'.$arr_fin[0];
+						$dias	= (strtotime( $_fin )-strtotime( $_ini ))/86400;
+						$dias 	= abs($dias); 
+						$diff = floor($dias);		
+
+						$duracion = $diff . ' Noches';
+
+
 
 				  		// *************************************
 				  		// Cargar Metadatos
@@ -158,8 +172,10 @@ $solicitudes = getSolicitud($desde, $hasta);
 				  	?> 
 				    <tr>
 				    	<th class="text-center"><?php echo ++$count; ?></th>
+
 						<th><?php echo $solicitud['Nro_solicitud']; ?></th>
 						<th><?php echo $solicitud['Fecha_solicitud']; ?></th>
+						<th><?php echo $duracion; ?></th>
 
 						<th><?php echo $solicitud['Servicio_desde']; ?></th>
 						<th><?php echo $solicitud['Servicio_hasta']; ?></th>
@@ -182,8 +198,8 @@ $solicitudes = getSolicitud($desde, $hasta);
 						<th><?php echo $cuidador['email'];?></th>
 
 						<th><?php echo $cuidador['user_referred'];?></th>
-						<th><?php echo $detalle['servicio']['tipo'];?></th>
-						<th><?php echo $detalle['servicio']['duracion'];?></th>
+						<!-- <th><?php #echo $detalle['servicio']['tipo'];?></th>
+						<th><?php #echo $detalle['servicio']['duracion'];?></th> -->
 
 						<th><?php echo $solicitud['Estatus']; ?></th>
 				    </tr>
