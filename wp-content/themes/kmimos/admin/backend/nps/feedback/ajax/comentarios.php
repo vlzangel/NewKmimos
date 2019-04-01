@@ -43,10 +43,10 @@
                 $comentarios .= '
                 <div class="media alert alert-'.$color[$encuesta->tipo].' '.$align.'">
                   <div class="media-body">
-                    <h5 style="font-size:16px;" class="media-heading">'.$titulo.'</h5>
+                    <h5 style="font-size:16px;" class="media-heading">'.utf8_encode($titulo).'</h5>
                     <small style="font-size: 10px;font-style:italic;">'.date('Y-m-d H:i:s', strtotime($encuesta->fecha)).'</small> '.$encuesta_email.' 
                     <hr>
-                    <p>'.$encuesta->comentario.'</p>
+                    <p>'.utf8_encode($encuesta->comentario).'</p>
                   </div>
                 </div>';
             }
