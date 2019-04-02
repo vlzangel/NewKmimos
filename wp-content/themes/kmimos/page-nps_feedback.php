@@ -89,7 +89,7 @@
 		<p>¡Tu opinión es muy importante para nosotros!</p>
 	</div>
 	
-	<div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
+	<div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3 text-left">
 		<form id="feedback-form">		
 			<div class="row feedback-container">
 				<input type="hidden" name="respuesta_id" value="<?php echo $respuesta_id; ?>">
@@ -105,7 +105,7 @@
 						<div data-item="<?php echo $i; ?>" class="col-item <?php echo $activo; ?>"><?php echo $i; ?></div>
 					<?php } ?>		
 				</div>
-				<div class="tag-nivel text-left">
+				<div class="tag-nivel">
 					<div style="display:inline-block;width:30%;text-align:left;">Nada probable</div>
 					<div style="display:inline-block;width:60%;text-align:right;">Extremadamente probable</div>
 				</div>
