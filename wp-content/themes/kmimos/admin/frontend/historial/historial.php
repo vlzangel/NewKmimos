@@ -198,6 +198,22 @@
 			//RESERVAS PNDIENTES POR CONFIRMAR
 			}else if($reserva->post_status!='confirmed'){
 
+				$data_conocer = [
+					'id' => $cuidador->id_post,
+					'url' => 'petsitters/'.$cuidador->url,
+					'name' => $cuidador->titulo,
+				];
+
+				if( $_metas_reserva['_booking_test_conocer'][0] == 'c' ){
+					$uso_cupon = $wpdb->get_row("SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$reserva->post_parent}' AND order_item_name = 'cpc10%' ");
+					
+					if( $uso_cupon == null ){
+						echo "Entro: {$reserva->post_parent}";
+						$_metas_reserva['_booking_test_conocer'][0] = '';
+						$data_conocer = [];
+					}
+				}
+
 				$reservas_array["pendientes_confirmar"]["reservas"][] = array(
 					'id' => $reserva->ID, 
 					'servicio_id' => $servicio->ID, 
@@ -205,11 +221,7 @@
 					'inicio' => date('d/m/Y', $inicio), 
 					'fin' => date('d/m/Y', $fin), 
 					'conocer' => $_metas_reserva['_booking_test_conocer'][0], 
-					'data_conocer' => [
-						'id' => $cuidador->id_post,
-						'url' => 'petsitters/'.$cuidador->url,
-						'name' => $cuidador->titulo,
-					], 
+					'data_conocer' => $data_conocer, 
 					'foto' => $foto,
 					'acciones' => array(
 						"ver" => $ver,

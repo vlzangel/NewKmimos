@@ -970,6 +970,14 @@ jQuery(document).ready(function() {
 		]);
 	}
 
+	if( cupon_conocer_c == 'YES' ){
+		CARRITO["cupones"].push([
+			"cpc10%", 
+			0, 
+			0
+		]);
+	}
+
 	jQuery(".dias_container input").on("change", function(e){
 		calcular();
 	});

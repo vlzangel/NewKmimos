@@ -19,6 +19,7 @@ function open_conocer( _this ){
     if( _this.data('url') != undefined ){
         jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('url') );
         jQuery( '#btn_reserva_conocer' ).attr("href", RAIZ+_this.data('url') );
+        jQuery( '#url_cuidador' ).val(RAIZ+_this.data('url') );
     }else{
         jQuery( '.boton_izq' ).attr("href", "javascript: jQuery( '#btn_reservar' ).click();" );
         // jQuery( '.btn_reservar' ).click();
@@ -155,9 +156,34 @@ jQuery(document).ready(function(){
     });
 
     jQuery("#recargar_saldo").on('click', function(e){
-        console.log("Hola");
-        console.log( RAIZ+"recargar/"+jQuery('[name="post_id"]').val() );
         location.href = RAIZ+"recargar/"+jQuery('[name="post_id"]').val();
+    });
+
+    jQuery("#no_usar_descuento").on('click', function(e){
+        jQuery.post(
+            HOME+'/procesos/conocer/uso_cupon_test_c.php',
+            { usar: 'NO' },
+            function(data){
+                jQuery(".conocer_c").css('display', 'none');
+                jQuery("#conoce_cuidador").css('display', 'block');
+            }
+        );
+    });
+
+    jQuery("#usar_descuento").on('click', function(e){
+        jQuery.post(
+            HOME+'/procesos/conocer/uso_cupon_test_c.php',
+            { usar: 'YES' },
+            function(data){
+                location.href = jQuery( '#url_cuidador' ).val();
+            }
+        );
+    });
+
+
+    jQuery("#popup-conoce-cuidador").on('hidden.bs.modal', function () {
+        jQuery(".conocer_c").css('display', 'block');
+        jQuery("#conoce_cuidador").css('display', 'none');
     });
 
 });

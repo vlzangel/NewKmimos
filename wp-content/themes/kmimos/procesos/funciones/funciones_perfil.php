@@ -134,7 +134,7 @@
 			                	}
 
 			                	$conocer = '';
-			                	if( isset($reserva['conocer']) && $reserva['conocer'] = 'b'  ){
+			                	if( $reserva['conocer'] == 'b' || $reserva['conocer'] == 'c'  ){
 
 			                		$meses = [
 								    	"",

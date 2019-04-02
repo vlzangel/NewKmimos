@@ -356,6 +356,10 @@
         margin: 75px auto 0px;
     }
 
-    #popup-conoce-cuidador button.close {
+    .cerrar_conocer_b {
         right: 5px !important;
+    }
+
+    .modal_conocer_c .popup-iniciar-sesion-2 {
+        padding: 10px 40px !important;
     }

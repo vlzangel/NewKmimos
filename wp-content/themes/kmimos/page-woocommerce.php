@@ -191,8 +191,11 @@
 
 		$_SESSION["flash_".$cuidador->id_post] = $ES_FLASH;
 
+		$cupon_conocer_c = ( $_SESSION['cupon_test_c'] == 'YES' ) ? 'YES' : 'NO';
+
 		$HTML .= "
 		<script> 
+			var cupon_conocer_c = '".$cupon_conocer_c."';
 			var fee_conocer = '".$fee_conocer."';
 			
 			var SERVICIO_ID = '".get_the_ID()."';
