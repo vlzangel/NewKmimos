@@ -83,9 +83,10 @@
 </section>
 
 <section class="<?php echo $show_encuesta; ?>">
-	<div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-		<p>Tómese un minuto para dejarnos sus comentarios sinceros para que podamos continuar mejorando. Nuestro equipo leerá cada respuesta. No te contengas, queremos saber lo que realmente piensas.</p>
-		<p>¡Su opinión es muy importante para nosotros, gracias!</p>
+	<div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3 text-left">
+		<p>¡Queremos mejorar para ti!</p>
+		<p>Ayúdanos dejando tus comentarios sinceros. Te tomará solo un minuto y ayudarás a cientos de peluditos que se quedan en casa de nuestros Cuidadores Certificados Kmimos.</p>
+		<p>¡Tu opinión es muy importante para nosotros!</p>
 	</div>
 	
 	<div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
@@ -111,7 +112,7 @@
 				<div class="clear"></div>
 			</div>
 			<div class="row feedback-container">
-				<h3 class="titulo text-left">¿Cuál es la razón más importante para tu puntuación?</h3>
+				<h3 class="titulo text-left">Cuéntanos un poco más la razón de tu calificación, nuestro equipo leerá todos y cada uno de los comentarios.</h3>
 				<textarea class="form-control col-md-12" name="observacion" style="height: 200px;"></textarea>
 				<div class="clear"></div>
 			</div>
