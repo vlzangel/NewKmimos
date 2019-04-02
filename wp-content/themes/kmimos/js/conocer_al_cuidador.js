@@ -24,6 +24,21 @@ function open_conocer( _this ){
         jQuery( '.boton_izq' ).attr("href", "javascript: jQuery( '#btn_reservar' ).click();" );
         // jQuery( '.btn_reservar' ).click();
     }
+
+    if( jQuery("#tcc").val() == 'yes' ){
+        if( contador_tcc == 0 ){
+            jQuery.post(
+            HOME+'/procesos/conocer/init_contador_tcc.php',
+            { 
+                usar: 'YES',
+                cuidador: jQuery("#post_id").val()
+            },
+            function(data){
+                contador_tcc = parseInt( data );
+            }
+        );
+        }
+    }
     
 
     jQuery( _this.data('target') ).modal('show');
@@ -162,7 +177,10 @@ jQuery(document).ready(function(){
     jQuery("#no_usar_descuento").on('click', function(e){
         jQuery.post(
             HOME+'/procesos/conocer/uso_cupon_test_c.php',
-            { usar: 'NO' },
+            { 
+                usar: 'NO',
+                cuidador: jQuery("#post_id").val() 
+            },
             function(data){
                 jQuery(".conocer_c").css('display', 'none');
                 jQuery("#conoce_cuidador").css('display', 'block');
@@ -179,7 +197,7 @@ jQuery(document).ready(function(){
                 cuidador: jQuery("#post_id").val()
             },
             function(data){
-                // location.href = jQuery( '#url_cuidador' ).val();
+                location.href = jQuery( '#url_cuidador' ).val();
             }
         );
     });
