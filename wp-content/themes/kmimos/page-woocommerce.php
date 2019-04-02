@@ -191,7 +191,7 @@
 
 		$_SESSION["flash_".$cuidador->id_post] = $ES_FLASH;
 
-		$cupon_conocer_c = ( $_SESSION['cupon_test_c'] == 'YES' ) ? 'YES' : 'NO';
+		$cupon_conocer_c = ( $_SESSION[ 'cupon_test_c'.$cuidador->id_post ] == 'YES' ) ? 'YES' : 'NO';
 
 		$HTML .= "
 		<script> 

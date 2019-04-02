@@ -171,11 +171,15 @@ jQuery(document).ready(function(){
     });
 
     jQuery("#usar_descuento").on('click', function(e){
+        e.preventDefault();
         jQuery.post(
             HOME+'/procesos/conocer/uso_cupon_test_c.php',
-            { usar: 'YES' },
+            { 
+                usar: 'YES',
+                cuidador: jQuery("#post_id").val()
+            },
             function(data){
-                location.href = jQuery( '#url_cuidador' ).val();
+                // location.href = jQuery( '#url_cuidador' ).val();
             }
         );
     });
