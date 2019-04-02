@@ -33,9 +33,15 @@
 </section>
 
 <section>
+	<aside class="options-container">
+		<h1>Ventas</h1>
+		<hr>
+		<button type="button" data-target="ventas-change" data-id="day" class="btn ">Diario</button>
+		<button type="button" data-target="ventas-change" data-id="month" class="btn">Mensual</button>
+		<button type="button" data-target="ventas-change" data-id="total" class="btn active">Acumulado</button>
+	</aside>
 	<div class="contenedor_widget">
 		<div class="wbox wbox-12"> 
-			<h1>Ventas</h1>
 			<div id="grafico_resumen_ventas"></div>
 		</div>
 	</div>

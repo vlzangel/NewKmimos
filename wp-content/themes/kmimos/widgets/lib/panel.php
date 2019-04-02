@@ -349,10 +349,11 @@ class PANEL {
 				orden.post_date >= '{$fin}' AND 
 				orden.post_type = 'shop_order' AND 
 				metas.meta_key = '_booking_cost' 
+			ORDER BY fecha ASC
 		";
 
 		$pedidos = $this->db->get_results( $sql );
-		
+
 		$ventas_hoy = 0;
 		$ventas_mes = 0;
 		$ventas_mes_anterior = 0;
@@ -371,70 +372,111 @@ class PANEL {
 
 		$por_dia=[];
 
+
+		$data= [
+			'dia' => [],
+			'mes' => [],
+			'acumulado' => [],
+		];
+		$acumulado = 0;
 		foreach ($pedidos as $pedido) {
 			// $fin_reserva = strtotime( get_post_meta($pedido->reservaID, "_booking_end", true) );
 
-			$fecha = strtotime( $pedido->fecha );
-			$monto = 0;
+			// -------
+				$fecha = strtotime( $pedido->fecha );
+				$monto = 0;
 
-			switch ( $pedido->ordenStatus ) {
-				case 'wc-confirmed':
-					$monto = $pedido->monto;
-				break;
-				case 'wc-completed':
-					$monto = $pedido->monto;
-				break;
-				case 'wc-partially-paid':
-					$monto = $pedido->monto;
-				break;
-			}
+				switch ( $pedido->ordenStatus ) {
+					case 'wc-confirmed':
+						$monto = $pedido->monto;
+					break;
+					case 'wc-completed':
+						$monto = $pedido->monto;
+					break;
+					case 'wc-partially-paid':
+						$monto = $pedido->monto;
+					break;
+				}
 
-			if( $dia_en_curso <= $fecha ){
-				$ventas_hoy += $monto;
-			}
+				if( $dia_en_curso <= $fecha ){
+					$ventas_hoy += $monto;
+				}
 
-			if( $mes_en_curso <= $fecha ){
-				$ventas_mes += $monto;
-			}
+				if( $mes_en_curso <= $fecha ){
+					$ventas_mes += $monto;
+				}
 
-			if( $mes_anterior <= $fecha && $fecha < $mes_en_curso ){
-				$ventas_mes_anterior += $monto;
-			}
+				if( $mes_anterior <= $fecha && $fecha < $mes_en_curso ){
+					$ventas_mes_anterior += $monto;
+				}
 
-			if( $anio_en_curso <= $fecha ){
-				$ventas_anio_curso += $monto;
-			}
+				if( $anio_en_curso <= $fecha ){
+					$ventas_anio_curso += $monto;
+				}
 
-			if( $hace_90_dias <= $fecha ){
-				$ventas_90 += $monto;
-			}
+				if( $hace_90_dias <= $fecha ){
+					$ventas_90 += $monto;
+				}
 
-			if( $hace_12_meses <= $fecha ){
-				$ventas_12 += $monto;
-			}
-
+				if( $hace_12_meses <= $fecha ){
+					$ventas_12 += $monto;
+				}
 
 			if( $monto > 0 ){
-				$date = date('Y-m-d', strtotime( $pedido->fecha ));
-				if( !isset( $por_dia[ $date ] ) ){
-					$por_dia[ $date ] = [
-						'date' => $date,
-						'monto' => $monto,
-					];
-				}else{
-					$por_dia[ $date ]['monto'] += $monto;
-				}
+
+				// Por dia
+					$date = date('Y-m-d', strtotime( $pedido->fecha ));
+					if( !isset( $data['dia'][ $date ] ) ){
+						$data['dia'][ $date ] = [
+							'date' => $date,
+							'monto' => $monto,
+						];
+					}else{
+						$data['dia'][ $date ]['monto'] += $monto;
+					}
+
+				// Por mes
+					$month = date('Y-m', strtotime( $pedido->fecha ));
+					if( !isset( $data['mes'][ $month ] ) ){
+						$data['mes'][ $month ] = [
+							'date' => $month,
+							'monto' => $monto,
+						];
+					}else{
+						$data['mes'][ $month ]['monto'] += $monto;
+					}
+
+				// Acumulado
+					$acumulado += $monto; 
+					if( !isset( $data['acumulado'][ $month ] ) ){
+						$item += 1;
+						$data['acumulado'][ $month ] = [
+							'date' => $month,
+							'monto' => $acumulado,
+							'item' => $item,
+						];
+					}else{
+						$data['acumulado'][ $month ]['monto'] = $acumulado;
+					}
 			}
 		}
 
-		$temp = [];
-		sort($por_dia);
-		foreach ($por_dia as $value) {
-			$temp[] = $value;
-		}
+
+		ksort($data['dia']);
+		$r_day = array_values($data['dia']);
+
+		ksort($data['mes']);
+		$r_month = array_values($data['mes']);
+
+		ksort($data['acumulado']);
+		$r_total = array_values($data['acumulado']);
 
 		return [
-			"por_dia" => $temp,
+			
+			'byDay' => $r_day,
+			'byMonth' => $r_month,
+			'total' => $r_total,
+
 			"ventas_hoy" => "$ ".number_format( $ventas_hoy, 2, ",", "." )." MXN",
 			"ventas_mes" => "$ ".number_format( $ventas_mes, 2, ",", "." )." MXN",
 			"ventas_mes_anterior" => "$ ".number_format( $ventas_mes_anterior, 2, ",", "." )." MXN",
