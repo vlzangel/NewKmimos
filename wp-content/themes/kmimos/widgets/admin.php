@@ -19,7 +19,7 @@
 		wp_add_dashboard_widget( 'resumen_dashboard_widget', 'Resumen de Reservas', 'resumen_dashboard_widget_function' );
 		wp_add_dashboard_widget( 'registro_dashboard_widget', 'Resumen de Registros', 'registro_dashboard_widget_function' );
 
-        if( !in_array($current_user->ID, array(
+        if( in_array($current_user->ID, array(
             367, // Kmimos
             8604, // Rob
             12795, // Rodriguez
@@ -29,7 +29,7 @@
             wp_add_dashboard_widget( 'ventas_dashboard_widget', 'Resumen de Ventas', 'ventas_dashboard_widget_function' );	
         }
 
-        if( !in_array($current_user->ID, array(
+        if( in_array($current_user->ID, array(
             367, // Kmimos
             8604, // Rob
             12795, // Rodriguez

@@ -37,6 +37,7 @@
                 <th>General (Val. Min.)</th>
                 <th>General (Promedio)</th>
 
+                <th>Total Reservas Confirmadas</th>
                 <th>Reservas Confirmadas</th>
 
             </tr>

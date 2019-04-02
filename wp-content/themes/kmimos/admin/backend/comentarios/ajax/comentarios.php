@@ -52,7 +52,8 @@
                 $total->minimo,
                 number_format( $total->promedio,2),
 
-                $reservas
+                $reservas['total'],
+                $reservas['list'],
             );
  
         }
