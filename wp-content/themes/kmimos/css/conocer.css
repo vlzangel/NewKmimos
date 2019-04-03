@@ -173,7 +173,7 @@
         padding: 20px 20px 5px;
     }
 
-/* PRUEBA B*/
+/* PRUEBA C*/
 
     .conocer_c{
         
@@ -311,11 +311,11 @@
     }
 
     .contador_c{
-        padding: 15px 0px 30px;
+        padding: 15px 0px 0px;
     }
 
     .conocer_c .cronometro_descuento_c {
-        width: 166px;
+        width: 190px;
         display: block;
         margin: 0px auto;
     }
@@ -328,7 +328,7 @@
         font-size: 20px;
         color: #000;
         text-align: center;
-        width: 45px;
+        width: 55px;
     }
 
     .conocer_c .cronometro_descuento_c > span {
@@ -344,8 +344,10 @@
 
     .conocer_c .cronometro_descuento_c > div span {
         border: solid 1px #000;
-        padding: 3px;
+        padding: 0px 3px;
         margin: 0px 1px;
+        width: 25px;
+        display: inline-block;
     }
 
     div#popup-conoce-cuidador{
@@ -362,4 +364,9 @@
 
     .modal_conocer_c .popup-iniciar-sesion-2 {
         padding: 10px 40px !important;
+    }
+
+    .modal_conocer_c .btn_otra_solicitud,
+    .modal_conocer_c #te_quedan {
+        display: none;
     }

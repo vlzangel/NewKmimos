@@ -2,6 +2,48 @@ jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(
     open_conocer( jQuery(this) )
 });
 
+
+var hora_total = 86400;
+
+function iniciar_cronometro(){
+    setInterval(function(){
+        var hora = new Date().getTime();
+        hora /= 1000;
+        hora = hora-contador_tcc;
+        SR = parseInt( hora_total - hora ); // SR: segundos restantes
+        if( SR > 0 ){
+            var h = parseInt(SR/3600); // h: horas restantes
+            var m = parseInt(SR/60)-(h*60); // m: minutos restantes
+            var s = parseInt(SR)-( (h*3600)+(m*60)); // s: segundos restantes
+            h = ( h < 10 ) ? "0"+h : h; 
+            m = ( m < 10 ) ? "0"+m : m; 
+            s = ( s < 10 ) ? "0"+s : s; 
+            var h2 = String(h).split('');
+            var m2 = String(m).split('');
+            var s2 = String(s).split('');
+
+            jQuery(".cronometro_h .sp_1").html(h2[0]);
+            jQuery(".cronometro_h .sp_2").html(h2[1]);
+
+            jQuery(".cronometro_m .sp_1").html(m2[0]);
+            jQuery(".cronometro_m .sp_2").html(m2[1]);
+
+            jQuery(".cronometro_s .sp_1").html(s2[0]);
+            jQuery(".cronometro_s .sp_2").html(s2[1]);
+        }else{
+            jQuery(".cronometro_h .sp_1").html('0');
+            jQuery(".cronometro_h .sp_2").html('0');
+
+            jQuery(".cronometro_m .sp_1").html('0');
+            jQuery(".cronometro_m .sp_2").html('0');
+
+            jQuery(".cronometro_s .sp_1").html('0');
+            jQuery(".cronometro_s .sp_2").html('0');
+        }
+            
+    }, 1000);
+}
+
 function open_conocer( _this ){
     jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
@@ -28,16 +70,23 @@ function open_conocer( _this ){
     if( jQuery("#tcc").val() == 'yes' ){
         if( contador_tcc == 0 ){
             jQuery.post(
-            HOME+'/procesos/conocer/init_contador_tcc.php',
-            { 
-                usar: 'YES',
-                cuidador: jQuery("#post_id").val()
-            },
-            function(data){
-                contador_tcc = parseInt( data );
-            }
-        );
+                HOME+'/procesos/conocer/init_contador_tcc.php',
+                { 
+                    usar: 'YES',
+                    cuidador: jQuery("#post_id").val()
+                },
+                function(data){
+                    contador_tcc = parseInt( data );
+                    //contador_tcc *= 1000;
+                    iniciar_cronometro();
+                }
+            );
+        }else{
+            //contador_tcc *= 1000;
+            iniciar_cronometro();
         }
+
+        
     }
     
 

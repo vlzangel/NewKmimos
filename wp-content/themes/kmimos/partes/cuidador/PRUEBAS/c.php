@@ -27,11 +27,11 @@
 			</div>
 			<div class="contador_c">
 				<div class="cronometro_descuento_c">
-					<div class="cronometro_h"> <span>2</span><span>3</span></div>
+					<div class="cronometro_h"> <span class="sp_1">2</span><span class="sp_2">3</span></div>
 					<span>:</span>
-					<div class="cronometro_m"> <span>6</span><span>0</span></div>
+					<div class="cronometro_m"> <span class="sp_1">6</span><span class="sp_2">0</span></div>
 					<span>:</span>
-					<div class="cronometro_s"> <span>0</span><span>0</span></div>
+					<div class="cronometro_s"> <span class="sp_1">0</span><span class="sp_2">0</span></div>
 				</div>
 			</div>
 			<div class="botones_c">
