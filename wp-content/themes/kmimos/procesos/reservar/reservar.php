@@ -307,7 +307,8 @@ class Reservas {
                     "1ngpet",
                     "2pgpet",
                     "2ngpet",
-                    "3pgpet"
+                    "3pgpet",
+                    "2pagk", // Agregado el 03-04-19
                 ];
                 if( in_array($cupon[0], $especiales) ){
                     $uso_cupon = $this->db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$id_cupon} AND meta_key = 'uso_{$this->user_id}' ");

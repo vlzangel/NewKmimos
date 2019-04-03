@@ -516,6 +516,57 @@ ini_set('display_errors', '0');
 
 
 
+			if( $cupon == "2pagk" ){  // Agregado el 03-04-19
+
+				if( $_SESSION['landing_paseos'] == 'yes' ) { if( $validar ){ error("El cupón solo es válido desde el landing de Paseos"); }else{ return false; } }
+				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
+				// if( !es_nuevo($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
+
+				$descuento = 0; $_paseos = 2;
+				$uso_cupon = get_cupon($db, $cupon, $cliente);
+				if( $uso_cupon != false ){ $_paseos = $uso_cupon->disponible; }
+				if( $_paseos == 0 ){ if( $validar ){ error("Ya uso los 2 paseos gratis"); }else{ return false; } }
+
+				$paseos = [];
+				for ($i=0; $i < $duracion; $i++) { 
+					foreach ($mascotas as $key => $value) {
+						if( is_array($value) ){
+							if( $value[0]+0 > 0 ){
+								for ($i2=0; $i2 < $value[0]; $i2++) { 
+									$paseos[] = $value[1];
+								}			
+							}
+						}
+					}
+				} sort($paseos);
+
+				// if( $uso_cupon == false ){ if( count($paseos) < 7 ){ if( $validar ){ error("El cupón [ {$cupon} ] sólo es válido si reservas 7 noches o más"); }else{ return false; } } }
+
+				if( $tipo_servicio == "paseos" ){
+					$cont = 0; $disp = $_paseos; // CALCULO DESCUENTO
+					foreach ($paseos as $key => $value) {
+						if( $cont < $disp ){
+							$descuento += $value;
+							$_paseos--;
+						}else{
+							break;
+						}
+						$cont++;
+					}
+				}else{ if( $uso_cupon != false ){
+					if( $validar ){ error("El cupón sólo es válido para servicios de paseos"); }else{ return false; }
+				} }
+				
+				$sub_descuento += $descuento;
+				return array( $cupon, $descuento, $individual_use, $_paseos );
+				
+			}
+
+
+
+
+
+
 
 
 
