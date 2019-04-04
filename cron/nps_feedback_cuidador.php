@@ -56,7 +56,7 @@ echo 'paso1';
 
 			$_sql="select * from nps_feedback_cuidador where reserva_id = ".$reserva->ID;
 			$sended = $wpdb->get_row($_sql);
-			if( !isset($sender->reserva_id ) ){
+			if( !isset($sended->reserva_id ) ){
 				$sql = "INSERT INTO nps_feedback_cuidador( 
 						email, 
 						reserva_id, 
