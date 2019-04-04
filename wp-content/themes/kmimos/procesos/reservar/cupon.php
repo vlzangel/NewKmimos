@@ -558,6 +558,9 @@
 					if( $validar ){ error("El cupón sólo es válido para servicios de paseos"); }else{ return false; }
 				} }
 				
+				if( $total <= $descuento ){
+					$descuento = $total;
+				}
 				$sub_descuento += $descuento;
 				return array( $cupon, $descuento, $individual_use, $_paseos );
 				
