@@ -50,6 +50,9 @@ ini_set('display_errors', '1');
 		);
 
 		// Enviar email
+
+		$reserva->email = 'italococchini@gmail.com'; //testing
+
 		if( wp_mail($reserva->email, $asunto, $mensaje) ){
 			$wpdb->query( "UPDATE nps_feedback_cuidador SET estatus = {$estatus}, intentos_cant = (intentos_cant + 1) WHERE id =".$reserva->id );
 		}
