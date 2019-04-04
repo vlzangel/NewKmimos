@@ -3,8 +3,8 @@
 <div style="width: 600px; margin: 0 auto; font-family: sans-serif; ">
 		
 	<div style="width: 100%">
-		<img src="[IMG_URL]/header_cliente_1.jpg" style="width: 100%;">			
-		<img src="[IMG_URL]/header_cliente_2.jpg" style="width: 100%;">			
+		<img src="[IMG_URL]/header_cliente_1.svg" style="width: 100%;">			
+		<img src="[IMG_URL]/header_cliente_2.svg" style="width: 100%;">			
 	</div>
 
 
@@ -61,8 +61,8 @@
 	</div>
 
 	<div style="width: 100%">
-		<img src="[IMG_URL]/footer_cliente_1.jpg" style="width: 100%;">
-		<img src="[IMG_URL]/footer_cliente_2.jpg" style="width: 100%;">
+		<img src="[IMG_URL]/footer_cliente_1.svg" style="width: 100%;">
+		<img src="[IMG_URL]/footer_cliente_2.svg" style="width: 100%;">
 	</div>
 
 
