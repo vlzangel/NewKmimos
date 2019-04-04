@@ -28,7 +28,7 @@
 				.tag-nivel{ display: none;}
 			}
 			</style>
-			<div style="border: 3px solid #ccc; border-radius: 10px; padding:10px; margin-top:20px;">
+			<div style="border: 3px solid transparent; border-radius: 10px; padding:10px; margin-top:20px;">
 				<h1 class="titulo">¿Recomendarías a Kmimos con tus amigos y familiares?</h1>
 				<div style="width: 100%; padding: 10px; "> 
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=1">

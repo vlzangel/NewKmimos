@@ -37,8 +37,6 @@ ini_set('display_errors', '1');
 			$estatus = 0;
 		}
 
-print_r($reserva);
-
 
 		// Construir y enviar email
 		$mensaje = buildEmailTemplate(
@@ -51,10 +49,8 @@ print_r($reserva);
 			]
 		);
 
-echo $mensaje;
-
 		// Enviar email
-		if( wp_mail('italococchini@gmail.com', $asunto, $mensaje) ){
+		if( wp_mail($reserva->email, $asunto, $mensaje) ){
 			$wpdb->query( "UPDATE nps_feedback_cuidador SET estatus = {$estatus}, intentos_cant = (intentos_cant + 1) WHERE id =".$reserva->id );
 		}
 
