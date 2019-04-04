@@ -21,6 +21,7 @@ ini_set('display_errors', '1');
 
 	$reservas = $wpdb->get_results($sql);
 	foreach($reservas as $key => $reserva){
+print_r($reserva);
 
 		$_metas_reserva = get_post_meta($reserva->ID);
 		$_metas_orden = get_post_meta($reserva->post_parent);
@@ -47,9 +48,11 @@ ini_set('display_errors', '1');
 		// Validar y enviar email
 		if( $reserva->post_status=='complete' || ( $reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0]) < time() )){
 
-			$primer = date('Y-m-d', strtotime("NOW"));
-			$segundo = date('Y-m-d', strtotime($primer." +7 day "));
-			$tercer = date('Y-m-d', strtotime($segundo." +14 day "));
+echo 'paso1';
+
+			$primero = date('Y-m-d', strtotime("NOW"));
+			$segundo = date('Y-m-d', strtotime($primero." +7 day "));
+			$tercero = date('Y-m-d', strtotime($segundo." +14 day "));
 
 			$_sql="select * from nps_feedback_cuidador where reserva_id = ".$reserva->ID;
 			$sended = $wpdb->get_row($_sql);
@@ -67,9 +70,9 @@ ini_set('display_errors', '1');
 						'".$user->user_email."',
 						".$reserva->ID.",
 						'".$cuidador->user_id."',
-						'".$primer."',
+						'".$primero."',
 						'".$segundo."',
-						'".$tercer."',
+						'".$tercero."',
 						1,
 						1
 					);
@@ -90,9 +93,12 @@ ini_set('display_errors', '1');
 						'IMG_URL' => get_recurso('img/NPS'),
 					]
 				);
+echo $mensaje;
+				$user->user_email = 'italococchini@gmail.com'; //testing
+				
+				wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $mensaje) ;
 
-				if( wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $BODY) ){
-				}
+
 			}
 		}
 	}
