@@ -10,6 +10,7 @@
 	// t=external
 	// v=2
 	// e=italococchini@gmail.com
+	// internal=4 [ opcional: ID encuestas clientes ]
 
     $show_mensaje = 'hidden';
     $show_encuesta= '';
@@ -50,6 +51,13 @@
 	            if( !isset($row->id) ){
 					$sql = "INSERT INTO nps_respuestas ( email, pregunta, puntos, tipo, code ) VALUES ( '{$e}', ".$encuesta->id.", {$respuesta}, '{$tipo_nps}', '{$code}' )";	            				
 			    	$wpdb->query( $sql );
+
+			    	// Encuesta para los clientes sobre calidad de servicios
+			    	if( isset($_GET['internal']) && $_GET['internal'] > 0 ){
+			    		$update_cliente = 'UPDATE nps_feedback_cuidador SET estatus =0 WHERE id ='.$_GET['internal'];
+				    	$wpdb->query( $update_cliente );
+			    	}
+			    	
 	            }
 				$respuesta_id = $wpdb->get_var( "SELECT id FROM nps_respuestas WHERE email='{$e}' AND pregunta=".$encuesta->id );
 			}
