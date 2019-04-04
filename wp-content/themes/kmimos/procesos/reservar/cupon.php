@@ -1,14 +1,15 @@
 <?php
-error_reporting(0);
-ini_set('display_errors', '0');
+	if( !isset($_SESSION)){ session_start(); }
+
+	error_reporting(0);
+	ini_set('display_errors', '0');
 
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");
 	include_once("../funciones/generales.php");
 
-	if( !isset($_SESSION)){ session_start(); }
-
+	
 	extract($_POST);
 
 	$db = new db( new mysqli($host, $user, $pass, $db) );
@@ -518,7 +519,7 @@ ini_set('display_errors', '0');
 
 			if( $cupon == "2pagk" ){  // Agregado el 03-04-19
 
-				if( $_SESSION['landing_paseos'] == 'yes' ) { if( $validar ){ error("El cupón solo es válido desde el landing de Paseos"); }else{ return false; } }
+				if( $_SESSION['landing_paseos'] != 'yes' ) { if( $validar ){ error("El cupón solo es válido desde el landing de Paseos"); }else{ return false; } }
 				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
 				// if( !es_nuevo($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
 
