@@ -36,7 +36,7 @@
     	'_Paseos.jpg',
     ];
     foreach ($info_banner as $key => $url) {
-    	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/Muestra'.$url.');"></div>';
+    	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/NEW/Carrusel'.$url.');"></div>';
     	$items .= '<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url.'" /> </div>';
     }
 
@@ -562,6 +562,156 @@
 
 	
 	</div>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	$SERVICIOS_PRINCIPALES = [
+		[
+			'Banner-CPF.jpg',
+			'Club de las patittas felices',
+			'Consigue recompensas',
+			'¡Cada amigo que complete una reservación gana $150 y tú $150 más!',
+			'cpf'
+		],
+		[
+			'Banner-GPS.jpg',
+			'GPS',
+			'Seguridad total durante su estadía',
+			'Monitoreo en tiempo real durante el paseo o estadía.<br>¡Busca a los cuidadores con localización GPS!',
+			'gps'
+		],
+		[
+			'Banner-Conviertete.jpg',
+			'Conviértete en cuidador',
+			'¿Gana dinero con tu hobbie favorito?',
+			'¡Kmimos necesita Doglovers como tú! Gana hasta $30.000 mensuales cuidando mascotas en tu hogar',
+			'conviertete'
+		]
+	];
+
+	$items = '';
+	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
+		$items .= 
+		'<label class="carrusel_servicios_principales_item" for="'.$servicio[3].'_2">'.
+			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/NEW/'.$servicio[0].');"></div>'.
+			'<div class="carrusel_servicios_principales_data">'.
+				'<label>'.($servicio[1]).'</label>'.
+				'<label class="label_2">'.($servicio[2]).'</label>'.
+				'<p>'.$servicio[3].'</p>'.
+			'</div>'.
+		'</label>';
+	}
+
+
+    $items_count = count($SERVICIOS_PRINCIPALES);
+	$final_pc = $items_count-3;
+	$final_movil = ($items_count)-1;
+
+	$HTML .= '
+		<div class="carrusel_servicios carrusel_servicios_2">
+			<h2 class="solo_pc">Lo nuevo que trae kmimos <span>></span> </h2>
+			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
+
+			<div class="carrusel_servicios_principales_container">
+				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-paso-movil="7" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="70" data-t="1000">
+					'.$items.'
+				</div>
+			</div>
+		</div>
+	';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	$SERVICIOS_PRINCIPALES = [
+		[
+			'Guadalajara.png',
+			'3',
+			'Jalisco, Guadalajara',
+		],
+		[
+			'CDMX.png',
+			'1',
+			'Ciudad de México',
+		],
+		[
+			'Monterrey.png',
+			'4',
+			'Nuevo León, Monterrey',
+		],
+		[
+			'Puebla.png',
+			'23',
+			'Puebla',
+		],
+		[
+			'Queretaro.png',
+			'24',
+			'Queretaro',
+		]
+	];
+
+	$items = '';
+	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
+		$items .= 
+		'<label class="carrusel_servicios_principales_item" data-id="'.$servicio[1].'" data-nombre="'.$servicio[2].'">'.
+			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/NEW/'.$servicio[0].');"></div>'.
+			'<div class="carrusel_servicios_principales_data">'.
+				'<div class="carrusel_capa"></div>'.
+			'</div>'.
+		'</label>';
+	}
+
+
+    $items_count = count($SERVICIOS_PRINCIPALES);
+	$final_pc = $items_count-3;
+	$final_movil = ($items_count)-1;
+
+	$HTML .= '
+		<div class="carrusel_servicios carrusel_servicios_3">
+			<h2 class="solo_pc">Lo nuevo que trae kmimos <span>></span> </h2>
+			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
+
+			<div class="carrusel_servicios_principales_container">
+				<div class="carrusel_servicios_principales_box">
+					'.$items.'
+				</div>
+			</div>
+		</div>
+	';
+
+
+
+
+
+
+
+	
+
+
+
 	
 	$HTML .= '
 	<div class="testimonios_container">
@@ -575,7 +725,8 @@
 			</span>
 		</div>
 		<a href="'.get_home_url().'/testimonios" class="testimonios_link">Ver más comentarios como éste</a>
-	</div>';
+	</div>
+	<div class="testimonio_separador"></div>';
 	
 	$HTML .= '
 
@@ -631,83 +782,6 @@
 
 	</div>';
 
-
-	
-	$HTML .= '
-		<!-- SECCIÓN 4 - CLUB PATITAS FELICES -->
-		<div class="club_patitas_container_superior">
-			<div class="club_patitas_container">
-				<div class="club_patitas_tabla">
-					<div class="club_patitas_celda celda_30">
-						<h2>¡Únete al Club de las patitas felices! </h2>
-						<img  class="club_patitas_logo" src="'.get_recurso('img/HOME/SVG').'Club_patitas.svg" />
-					</div>
-					<div class="club_patitas_celda celda_70">
-						<h2>¡Únete al Club de las patitas felices! </h2>
-						<span>Cada amigo que complete 1 reservación</span>
-						<h3>Gana $150 y tú ganas otros $150</h3>
-						<form id="club_patitas">
-							<div class="club_patitas_tabla">
-								<div class="club_patitas_celda celda_70">
-									<input type="text" name="club_nombre" placeholder="Nombres y Apellidos" />
-									<input type="text" name="club_nombre" placeholder="Correo Electrónico"  />
-								</div>
-								<div class="club_patitas_celda celda_30">
-									<input type="submit" value="Inscribete y gana" class="boton boton_morado">
-									<small>Ingresa los datos y haz click aquí</small>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->';
-
-		/*
-	
-	$HTML .= '
-	<!-- SECCIÓN 4 - CLUB PATITAS FELICES -->
-	<div class="km-club-patitas" style="background-image: url('.getTema().'/images/club-patitas/Kmimos-Club-de-las-patitas-felices-3.png);">
-		<div class="row">
-			<header class="col-sm-12 col-xs-8 col-md-5 pull-right text-center">
-				<img src="'.getTema().'/images/club-patitas/Kmimos-Club-de-las-patitas-felices-5.png">
-				<h2>
-					Club de las patitas felices
-				</h2>
-				<p>
-					Únete al club que te recompensa por cada amigo tuyo que reserve con un cuidador Kmimos
-				</p>
-			</header>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 col-xs-12 col-md-5 pull-right text-center">
-				<a class="btn btn-club-patitas" href="'.get_home_url().'/club-patitas-felices">Ingresa aquí</a>
-			</div>
-		</div>
-	</div>
-	<!-- FIN SECCIÓN 4 - CLUB PATITAS FELICES -->';
-	*/
-
-	$HTML .= '
-
-	<!-- QUIERO SER CUIDADOR -->
-	<div class="quiero_ser_cuidador_container">
-		<div class="quiero_ser_cuidador_img"></div>
-		<div class="quiero_ser_cuidador_info">
-			<h2>Conviértete en cuidador certificado kmimos</h2>
-			<div>
-				<span>Kmimos necesita doglovers como tú</span>
-				<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="boton boton_verde">Conviértete en Cuidador</a>
-			</div>
-		</div>
-	</div>
-	
-	<div class="quiero_ser_cuidador_container_2">
-		<span>Kmimos necesita doglovers como tú</span>
-		<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="boton boton_border_gris">Conviértete en Cuidador</a>
-	</div>';
-			
 	$HTML .= '
 	<!-- CONECTATE -->
 
