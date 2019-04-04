@@ -117,7 +117,7 @@ function updateSaldo(){
 				},
 				function(HTML){
 
-					// console.log( HTML );
+					console.log( HTML );
 
 		            jQuery("#confirmar").removeClass("disable");
 		            jQuery("#confirmar").val("Confirmar");
