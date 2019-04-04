@@ -13,10 +13,10 @@ ini_set('display_errors', '1');
 		SELECT m.meta_value as '_booking_end', p.*
 		FROM wp_posts as p
 			INNER JOIN wp_postmeta as m ON m.post_id = p.ID AND m.meta_key = '_booking_end'
-		WHERE post_type = 'wc_booking'
-			AND post_status in ('confirmed', 'completed')
+		WHERE p.post_type = 'wc_booking'
+			AND p.post_status in ('confirmed', 'completed')
 			AND m.meta_value = '{$yesterday}' 
-		ORDER BY meta_value DESC;
+		ORDER BY m.meta_value DESC;
 	";
 
 	$reservas = $wpdb->get_results($sql);
@@ -74,13 +74,24 @@ ini_set('display_errors', '1');
 						1
 					);
 				";
+				$wpdb->query( $sql );
 
-				echo $sql;
-				echo '<br>';
+				$id = $wpdb->get_var( "SELECT id FROM nps_feedback_cuidador WHERE reserva_id =".$reserva->ID );
+				$nombre  = get_post_meta($user->ID, 'first_name', true);
+				$nombre .= get_post_meta($user->ID, 'last_name', true);
+				
+				// Construir y enviar email
+				$mensaje = buildEmailTemplate(
+					'nps/feedback_cliente',
+					[
+						'id' => $reserva->id,
+						'email' => $user->user_email,
+						'nombre' => $nombre,
+						'IMG_URL' => get_recurso('img/NPS'),
+					]
+				);
 
-				$BODY = 'prueba';
-				if( wp_mail('ITALOCOCCHINI@GMAIL.COM', '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $BODY) ){
-					$wpdb->query( $sql );
+				if( wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $BODY) ){
 				}
 			}
 		}
