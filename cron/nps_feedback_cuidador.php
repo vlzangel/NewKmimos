@@ -80,8 +80,8 @@ echo 'paso1';
 				$wpdb->query( $sql );
 
 				$id = $wpdb->get_var( "SELECT id FROM nps_feedback_cuidador WHERE reserva_id =".$reserva->ID );
-				$nombre  = get_post_meta($user->ID, 'first_name', true);
-				$nombre .= get_post_meta($user->ID, 'last_name', true);
+				$nombre  = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='first_name' and user_id = ".$user->ID );
+				$apellido  = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='last_name' and user_id = ".$user->ID );
 				
 				// Construir y enviar email
 				$mensaje = buildEmailTemplate(
@@ -89,14 +89,21 @@ echo 'paso1';
 					[
 						'id' => $reserva->id,
 						'email' => $user->user_email,
-						'nombre' => $nombre,
+						'nombre' => "{$nombre} {$apellido}",
 						'IMG_URL' => get_recurso('img/NPS'),
 					]
 				);
+print_r([
+		'id' => $reserva->id,
+						'email' => $user->user_email,
+						'nombre' => $nombre,
+						'IMG_URL' => get_recurso('img/NPS'),
+	]);
+
 echo $mensaje;
 				//$user->user_email = 'italococchini@gmail.com'; //testing
 				
-				wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $mensaje) ;
+//				wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $mensaje) ;
 
 
 			}
