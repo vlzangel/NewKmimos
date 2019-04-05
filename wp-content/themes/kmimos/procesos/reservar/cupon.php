@@ -234,7 +234,7 @@
 
 				$descuento = 0; $_paseos = 2;
 				$uso_cupon = get_cupon($db, $cupon, $cliente);
-				// if( $uso_cupon != false ){ $_paseos = $uso_cupon->disponible; }
+				if( $uso_cupon != false ){ $_paseos = $uso_cupon->disponible; }
 				if( $_paseos == 0 ){ if( $validar ){ error("Ya uso los 2 paseos gratis"); }else{ return false; } }
 
 				$paseos = [];
@@ -527,7 +527,7 @@
 
 				$descuento = 0; $_paseos = 2;
 				$uso_cupon = get_cupon($db, $cupon, $cliente);
-				if( $uso_cupon != false ){ $_paseos = $uso_cupon->disponible; }
+				// if( $uso_cupon != false ){ $_paseos = $uso_cupon->disponible; }
 				// if( $_paseos == 0 ){ if( $validar ){ error("Ya uso los 2 paseos gratis"); }else{ return false; } }
 
 				$paseos = [];
