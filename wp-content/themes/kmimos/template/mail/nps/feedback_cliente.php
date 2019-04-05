@@ -3,8 +3,7 @@
 <div style="width: 600px; margin: 0 auto; font-family: sans-serif; ">
 		
 	<div style="width: 100%">
-		<img src="[IMG_URL]header_cliente_1.png" style="width: 100%;">			
-		<img src="[IMG_URL]header_cliente_2.png" style="width: 100%;">			
+		<img src="[IMG_URL]header_cliente.png" style="width: 100%;">			
 	</div>
 
 
@@ -22,7 +21,9 @@
 			</p>
 		</div>
 		
-		<style>.titulo{ margin-top: 15px; margin-bottom: 15px; font-size:25px!important; font-weight:bold;text-align:center; } .col-item { display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center; width: 8%; padding: 10px; margin:2px;} 
+		<style>.titulo{ margin-top: 15px; margin-bottom: 15px; font-size:25px!important; font-weight:bold;text-align:center; } .col-item { display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;
+   				 padding: 10px;
+				 margin: 6px 5px;} 
 			@media screen and (max-width: 650px) {
 				.col-item { width: 100%; }
 				.tag-nivel{ display: none;}
@@ -30,6 +31,10 @@
 			</style>
 			<div style="border: 3px solid transparent; border-radius: 10px; padding:10px; margin-top:20px;">
 				<h1 class="titulo">¿Recomendarías a Kmimos con tus amigos y familiares?</h1>
+				<div class="tag-nivel" style="padding: 10px; width: 100%!important; text-align:left!important">
+					<div style="display:inline-block;width:30%;text-align:left;">Nada probable</div>
+				</div>
+
 				<div style="width: 100%; padding: 10px; "> 
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=1">
 						<div class="col-item">1</div></a>
@@ -52,8 +57,7 @@
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=10">
 						<div class="col-item">10</div></a>
 				</div>
-				<div class="tag-nivel">
-					<div style="display:inline-block;width:30%;text-align:left;">Nada probable</div>
+				<div class="tag-nivel"  style="padding: 10px;  width: 100%!important; text-align:right!important">
 					<div style="display:inline-block;width:60%;text-align:right;">Extremadamente probable</div>
 				</div>
 			</div>
@@ -61,8 +65,7 @@
 	</div>
 
 	<div style="width: 100%">
-		<img src="[IMG_URL]footer_cliente_1.png" style="width: 100%;">
-		<img src="[IMG_URL]footer_cliente_2.png" style="width: 100%;">
+		<img src="[IMG_URL]footer_cliente.png" style="width: 100%;">
 	</div>
 
 
