@@ -21,41 +21,39 @@
 			</p>
 		</div>
 		
-		<style>.titulo{ margin-top: 15px; margin-bottom: 15px; font-size:25px!important; font-weight:bold;text-align:center; } .col-item { display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;
-   				 padding: 10px;
-				 margin: 6px 5px;} 
+		<style>
 			@media screen and (max-width: 650px) {
 				.col-item { width: 100%; }
 				.tag-nivel{ display: none;}
 			}
 			</style>
 			<div style="border: 3px solid transparent; border-radius: 10px; padding:10px; margin-top:20px;">
-				<h1 class="titulo">¿Recomendarías a Kmimos con tus amigos y familiares?</h1>
+				<h1 style="margin-top: 15px; margin-bottom: 15px; font-size:25px!important; font-weight:bold;text-align:center;">¿Recomendarías a Kmimos con tus amigos y familiares?</h1>
 				<div class="tag-nivel" style="padding: 10px; width: 100%!important; text-align:left!important">
 					<div style="display:inline-block;width:30%;text-align:left;">Nada probable</div>
 				</div>
 
 				<div style="width: 100%; padding: 10px; "> 
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=1">
-						<div class="col-item">1</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">1</div></a>
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=2">
-						<div class="col-item">2</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">2</div></a>
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=3">
-						<div class="col-item">3</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">3</div></a>
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=4">
-						<div class="col-item">4</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">4</div></a>
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=5">
-						<div class="col-item">5</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">5</div></a>
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=6">
-						<div class="col-item">6</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">6</div></a>
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=7">
-						<div class="col-item">7</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">7</div></a>
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=8">
-						<div class="col-item">8</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">8</div></a>
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=9">
-						<div class="col-item">9</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">9</div></a>
 					<a href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=10">
-						<div class="col-item">10</div></a>
+						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">10</div></a>
 				</div>
 				<div class="tag-nivel"  style="padding: 10px;  width: 100%!important; text-align:right!important">
 					<div style="display:inline-block;width:60%;text-align:right;">Extremadamente probable</div>

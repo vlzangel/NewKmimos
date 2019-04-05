@@ -1,4 +1,8 @@
-<?php get_header(); 
+<?php 
+ini_set('display_errors', '0');
+error_reporting(0);
+
+get_header(); 
     wp_enqueue_style('finalizar', getTema()."/css/finalizar.css", array(), '1.0.0');
 	wp_enqueue_style('finalizar_responsive', getTema()."/css/responsive/finalizar_responsive.css", array(), '1.0.0');
 
