@@ -103,7 +103,7 @@ print_r([
 echo $mensaje;
 				//$user->user_email = 'italococchini@gmail.com'; //testing
 				
-//				wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $mensaje) ;
+				wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $mensaje) ;
 
 
 			}
