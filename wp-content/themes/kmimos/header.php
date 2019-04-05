@@ -85,6 +85,7 @@
         "page-registro-cuidador.php",
         "page-personalizada.php",
         "page-home_2.php",
+        'page-validar_pago.php'
 
     ];
 
