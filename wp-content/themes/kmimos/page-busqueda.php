@@ -124,6 +124,14 @@
 		$servicios_principales_hospedaje_str = '';
 		$servicios_principales_str = [];
 		$key_principal = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'paseos' : 'hospedaje';
+
+		if( $_GET['lp'] == '1' && !isset($_SESSION["busqueda"]["servicios"]) ){
+			$_SESSION["busqueda"] = [
+				"servicios" => ['paseos'],
+				"dias" => []
+			];
+    	}
+
 		foreach ($servicios_principales as $key => $servicio) {
 			$_checked = ( is_array($_SESSION["busqueda"]["servicios"]) && in_array($key, $_SESSION["busqueda"]["servicios"]) ) ? "checked" : "";
 			$icono = ( strpos($key, "adiestramiento") === false ) ? $key: "adiestramiento";
