@@ -24,8 +24,8 @@ ini_set('display_errors', '1');
 		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE estatus = 1 user_id = ".$reserva->cuidador_id);
 		$user = $wpdb->get_row("SELECT * FROM $wpdb->users WHERE user_email = ".$reserva->email );
 
-		$nombre  = get_post_meta($user->ID, 'first_name', true);
-		$nombre .= get_post_meta($user->ID, 'last_name', true);
+		$nombre  = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='first_name' and user_id = ".$user->ID );
+		$nombre  .= $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='last_name' and user_id = ".$user->ID );
 
 		// Asunto segundo intento
 		$asunto = '¡Queremos mejorar para ti y tu mejor amigo! 🐶😺 Ayúdanos a contestar esta breve encuesta de 1 minuto sobre tu experiencia con Kmimos'; 

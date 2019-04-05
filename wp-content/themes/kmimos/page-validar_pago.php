@@ -55,6 +55,7 @@
 			}catch( Exception $e){
 				include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 			}
+			
 		break;
 
 		case 'mercadopago':
