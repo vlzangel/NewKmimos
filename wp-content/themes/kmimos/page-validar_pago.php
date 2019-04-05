@@ -13,42 +13,46 @@
 			require_once( 'procesos/reservar/pasarelas/paypal/validar.php' );
 			$paypal_order = new Order();
 			
-			if( isset($_GET['token']) && !empty($_GET['token']) ){
-				if( $paypal_order->validar( $_GET['token'] ) ){
-					$captura = $paypal_order->capture( $_GET['token'] );
-					$payments_status = '';
-					if( isset($captura->result->purchase_units[0]->payments->captures[0]->status) ){
-						$payments_status = $captura->result->purchase_units[0]->payments->captures[0]->status;
-					}
-
-					if( isset($captura->result->status) 
-						&& $captura->result->status == 'COMPLETED' 
-						&& $payments_status == 'COMPLETED' ){
-	 
-						$sql = "SELECT post_id FROM wp_postmeta WHERE meta_value ='".$_GET['token']."' AND meta_key='_paypal_order_id'";	
-						$orden = $wpdb->get_row( $sql );
-						if( isset($orden->post_id) && $orden->post_id > 0 ){
-							$id_orden = $orden->post_id;
-							$pedido = $wpdb->get_row("SELECT * FROM wp_posts WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
-							if( isset( $pedido->post_status ) && $pedido->post_status == 'unpaid' ){
-								$wpdb->query( "UPDATE wp_postmeta SET meta_value = '".json_encode($_GET)."' WHERE meta_key = '_paypal_data' AND post_id = {$id_orden}  )");
-								$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
-								$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
-								$acc='';
-								ob_start();
-								include(__DIR__."/procesos/reservar/emails/index.php");				
-								ob_end_clean ();
-							}
-							header( 'location:'.get_home_url().'/finalizar/'.$id_orden );
+			try{
+				if( isset($_GET['token']) && !empty($_GET['token']) ){
+					if( $paypal_order->validar( $_GET['token'] ) ){
+						$captura = $paypal_order->capture( $_GET['token'] );
+						$payments_status = '';
+						if( isset($captura->result->purchase_units[0]->payments->captures[0]->status) ){
+							$payments_status = $captura->result->purchase_units[0]->payments->captures[0]->status;
 						}
-						
+
+						if( isset($captura->result->status) 
+							&& $captura->result->status == 'COMPLETED' 
+							&& $payments_status == 'COMPLETED' ){
+		 
+							$sql = "SELECT post_id FROM wp_postmeta WHERE meta_value ='".$_GET['token']."' AND meta_key='_paypal_order_id'";	
+							$orden = $wpdb->get_row( $sql );
+							if( isset($orden->post_id) && $orden->post_id > 0 ){
+								$id_orden = $orden->post_id;
+								$pedido = $wpdb->get_row("SELECT * FROM wp_posts WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+								if( isset( $pedido->post_status ) && $pedido->post_status == 'unpaid' ){
+									$wpdb->query( "UPDATE wp_postmeta SET meta_value = '".json_encode($_GET)."' WHERE meta_key = '_paypal_data' AND post_id = {$id_orden}  )");
+									$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+									$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+									$acc='';
+									ob_start();
+									include(__DIR__."/procesos/reservar/emails/index.php");				
+									ob_end_clean ();
+								}
+								header( 'location:'.get_home_url().'/finalizar/'.$id_orden );
+							}
+							
+						}else{
+							include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
+						}
 					}else{
 						include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 					}
 				}else{
 					include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 				}
-			}else{
+			}catch( Exception $e){
 				include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 			}
 		break;
