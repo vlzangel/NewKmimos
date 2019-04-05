@@ -528,7 +528,7 @@
 				$descuento = 0; $_paseos = 2;
 				$uso_cupon = get_cupon($db, $cupon, $cliente);
 				if( $uso_cupon != false ){ $_paseos = $uso_cupon->disponible; }
-				if( $_paseos == 0 ){ if( $validar ){ error("Ya uso los 2 paseos gratis"); }else{ return false; } }
+				// if( $_paseos == 0 ){ if( $validar ){ error("Ya uso los 2 paseos gratis"); }else{ return false; } }
 
 				$paseos = [];
 				for ($i=0; $i < $duracion; $i++) { 
@@ -557,7 +557,7 @@
 						$cont++;
 					}
 				}else{ if( $uso_cupon != false ){
-					// if( $validar ){ error("El cupón sólo es válido para servicios de paseos"); }else{ return false; }
+					if( $validar ){ error("El cupón sólo es válido para servicios de paseos"); }else{ return false; }
 				} }
 				
 				if( $total <= $descuento ){
