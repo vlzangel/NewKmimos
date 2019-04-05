@@ -515,7 +515,7 @@ function initFactura(){
 				dias_en_rango.push( _dias[ v ] );
 			}
 		});
-		items += '<div class="km-option-resume-service">'
+		items += '<div class="km-option-resume-service km-option-resume-service-dias">'
 		items += '	<span class="label-resume-service">'+( dias_en_rango.join(" - ") )+'</span>'
 		items += '	<span class="value-resume-service"></span>'
 		items += '</div>';

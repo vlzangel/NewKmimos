@@ -693,7 +693,7 @@ div#tienda_box img {
         color: #979797;
     }
 
-    .items_reservados_paso_1.items_reservados .km-option-resume-service:first-child {
+    .km-option-resume-service-dias {
         display: none;
     }
 

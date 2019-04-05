@@ -126,10 +126,11 @@
 		$key_principal = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'paseos' : 'hospedaje';
 
 		if( $_GET['lp'] == '1' && !isset($_SESSION["busqueda"]["servicios"]) ){
-			$_SESSION["busqueda"] = [
-				"servicios" => ['paseos'],
-				"dias" => []
-			];
+			$_SESSION["busqueda"]["servicios"] = ['paseos'];
+    	}
+
+		if( $_GET['lp'] == '1' && !isset($_SESSION["busqueda"]["dias"]) ){
+			$_SESSION["busqueda"]["dias"] = [];
     	}
 
 		foreach ($servicios_principales as $key => $servicio) {
@@ -154,11 +155,16 @@
 
     include ('partes/cuidador/conocelo.php');
 
+    print_r($_SESSION['busqueda']);
     $dias = "";
     if( is_array($_SESSION['busqueda']['dias']) && count($_SESSION['busqueda']['dias']) > 0 ){
 	    foreach ($_SESSION['busqueda']['dias'] as $key => $value) {
 	    	$dias .= '<input type="hidden" name="dias[]" value="'.$value.'" />';
 	    }
+    }else{
+    	if( is_array($_SESSION['busqueda']['dias']) && count($_SESSION['busqueda']['dias']) == 0 ){
+			$dias .= '<input type="hidden" name="dias[]" value="" />';
+    	}
     }
 
     /*
