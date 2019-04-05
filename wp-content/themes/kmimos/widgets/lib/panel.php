@@ -346,11 +346,13 @@ class PANEL {
 			INNER JOIN wp_posts AS reserva ON ( orden.ID = reserva.post_parent )
 			INNER JOIN wp_postmeta AS metas ON ( reserva.ID = metas.post_id )
 			WHERE 
-				orden.post_date >= '{$fin}' AND 
+				
 				orden.post_type = 'shop_order' AND 
 				metas.meta_key = '_booking_cost' 
 			ORDER BY fecha ASC
 		";
+
+		// orden.post_date >= '{$fin}' AND 
 
 		$pedidos = $this->db->get_results( $sql );
 

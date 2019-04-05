@@ -66,11 +66,13 @@
                 14720, // Alfredo
                 8966, // Mariana
                 9726, // Roberto
+                /*
                 10780,
                 8613,
                 14720,
                 12389,
                 12393
+                */
             );
 
             if( !in_array($current_user->ID, $permitidos)){

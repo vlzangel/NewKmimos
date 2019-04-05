@@ -134,10 +134,12 @@
 
 		$individual_use = ( $metas["individual_use"] == "yes" ) ? 1 : 0;
 
-		if( count($cupones) > 0 ){
-			foreach ($cupones as $value) {
-				if( $value[2] == 1 ){
-					if( $validar ){ error("El cupón [ {$value[0]} ] ya esta aplicado y no puede ser usado junto a otros cupones"); }else{ return false; }
+		if( $cupon != "2pagk" ){
+			if( count($cupones) > 0 ){
+				foreach ($cupones as $value) {
+					if( $value[2] == 1 ){
+						if( $validar ){ error("El cupón [ {$value[0]} ] ya esta aplicado y no puede ser usado junto a otros cupones"); }else{ return false; }
+					}
 				}
 			}
 		}
