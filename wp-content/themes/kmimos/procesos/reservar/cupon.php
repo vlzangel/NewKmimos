@@ -557,7 +557,7 @@
 						$cont++;
 					}
 				}else{ if( $uso_cupon != false ){
-					if( $validar ){ error("El cupón sólo es válido para servicios de paseos"); }else{ return false; }
+					// if( $validar ){ error("El cupón sólo es válido para servicios de paseos"); }else{ return false; }
 				} }
 				
 				if( $total <= $descuento ){
