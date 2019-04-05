@@ -3,7 +3,7 @@
 <div style="width: 600px; margin: 0 auto; font-family: sans-serif; ">
 		
 	<div style="width: 100%">
-		<img src="[IMG_URL]header_cliente.png" style="width: 100%;">			
+		<img src="[IMG_URL]header_cliente.jpg" style="width: 100%;">			
 	</div>
 
 
@@ -65,7 +65,7 @@
 	</div>
 
 	<div style="width: 100%">
-		<img src="[IMG_URL]footer_cliente.png" style="width: 100%;">
+		<img src="[IMG_URL]footer_cliente.jpg" style="width: 100%;">
 	</div>
 
 
