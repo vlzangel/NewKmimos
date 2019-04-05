@@ -2,6 +2,48 @@ jQuery(document).on("click", '[data-target="#popup-conoce-cuidador"]' ,function(
     open_conocer( jQuery(this) )
 });
 
+
+var hora_total = 86400;
+
+function iniciar_cronometro(){
+    setInterval(function(){
+        var hora = new Date().getTime();
+        hora /= 1000;
+        hora = hora-contador_tcc;
+        SR = parseInt( hora_total - hora ); // SR: segundos restantes
+        if( SR > 0 ){
+            var h = parseInt(SR/3600); // h: horas restantes
+            var m = parseInt(SR/60)-(h*60); // m: minutos restantes
+            var s = parseInt(SR)-( (h*3600)+(m*60)); // s: segundos restantes
+            h = ( h < 10 ) ? "0"+h : h; 
+            m = ( m < 10 ) ? "0"+m : m; 
+            s = ( s < 10 ) ? "0"+s : s; 
+            var h2 = String(h).split('');
+            var m2 = String(m).split('');
+            var s2 = String(s).split('');
+
+            jQuery(".cronometro_h .sp_1").html(h2[0]);
+            jQuery(".cronometro_h .sp_2").html(h2[1]);
+
+            jQuery(".cronometro_m .sp_1").html(m2[0]);
+            jQuery(".cronometro_m .sp_2").html(m2[1]);
+
+            jQuery(".cronometro_s .sp_1").html(s2[0]);
+            jQuery(".cronometro_s .sp_2").html(s2[1]);
+        }else{
+            jQuery(".cronometro_h .sp_1").html('0');
+            jQuery(".cronometro_h .sp_2").html('0');
+
+            jQuery(".cronometro_m .sp_1").html('0');
+            jQuery(".cronometro_m .sp_2").html('0');
+
+            jQuery(".cronometro_s .sp_1").html('0');
+            jQuery(".cronometro_s .sp_2").html('0');
+        }
+            
+    }, 1000);
+}
+
 function open_conocer( _this ){
     jQuery('.popup-iniciar-sesion-1 #meeting_when').val("");
     jQuery('.popup-iniciar-sesion-1 #meeting_where').val("");
@@ -13,13 +55,38 @@ function open_conocer( _this ){
     jQuery('.popup-iniciar-sesion-1 #pet_conoce input').removeClass("active");
 
     jQuery( '#modal-name-cuidador' ).html( _this.data('name') );
+    jQuery( '.modal-name-cuidador' ).html( _this.data('name') );
     jQuery( '[name="post_id"]' ).val( _this.data('id') );
 
     if( _this.data('url') != undefined ){
         jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('url') );
+        jQuery( '#btn_reserva_conocer' ).attr("href", RAIZ+_this.data('url') );
+        jQuery( '#url_cuidador' ).val(RAIZ+_this.data('url') );
     }else{
         jQuery( '.boton_izq' ).attr("href", "javascript: jQuery( '#btn_reservar' ).click();" );
         // jQuery( '.btn_reservar' ).click();
+    }
+
+    if( jQuery("#tcc").val() == 'yes' ){
+        if( contador_tcc == 0 ){
+            jQuery.post(
+                HOME+'/procesos/conocer/init_contador_tcc.php',
+                { 
+                    usar: 'YES',
+                    cuidador: jQuery("#post_id").val()
+                },
+                function(data){
+                    contador_tcc = parseInt( data );
+                    //contador_tcc *= 1000;
+                    iniciar_cronometro();
+                }
+            );
+        }else{
+            //contador_tcc *= 1000;
+            iniciar_cronometro();
+        }
+
+        
     }
     
 
@@ -153,9 +220,41 @@ jQuery(document).ready(function(){
     });
 
     jQuery("#recargar_saldo").on('click', function(e){
-        console.log("Hola");
-        console.log( RAIZ+"recargar/"+jQuery('[name="post_id"]').val() );
         location.href = RAIZ+"recargar/"+jQuery('[name="post_id"]').val();
+    });
+
+    jQuery("#no_usar_descuento").on('click', function(e){
+        jQuery.post(
+            HOME+'/procesos/conocer/uso_cupon_test_c.php',
+            { 
+                usar: 'NO',
+                cuidador: jQuery("#post_id").val() 
+            },
+            function(data){
+                jQuery(".conocer_c").css('display', 'none');
+                jQuery("#conoce_cuidador").css('display', 'block');
+            }
+        );
+    });
+
+    jQuery("#usar_descuento").on('click', function(e){
+        e.preventDefault();
+        jQuery.post(
+            HOME+'/procesos/conocer/uso_cupon_test_c.php',
+            { 
+                usar: 'YES',
+                cuidador: jQuery("#post_id").val()
+            },
+            function(data){
+                location.href = jQuery( '#url_cuidador' ).val();
+            }
+        );
+    });
+
+
+    jQuery("#popup-conoce-cuidador").on('hidden.bs.modal', function () {
+        jQuery(".conocer_c").css('display', 'block');
+        jQuery("#conoce_cuidador").css('display', 'none');
     });
 
 });

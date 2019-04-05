@@ -145,12 +145,20 @@
 
 	$wlabel = add_wlabel();
 
+	$contador = 0;
+	if( $_SESSION['test_conocer'] == 'c' ){
+		if( isset($_SESSION['tcc_contador']) ) {
+			$contador = $_SESSION['tcc_contador'];
+		}
+	}
+
 	$HTML .= '
     	<script>
     		var HOME = "'.getTema().'/";
     		var RAIZ = "'.get_home_url().'/";
     		var RUTA_IMGS = "'.get_home_url().'/imgs/";
     		var wlabel = "'.$wlabel.'";
+    		var contador_tcc = '.$contador.';
     	</script>
 	';
 

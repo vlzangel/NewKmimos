@@ -281,7 +281,7 @@ function calcular(){
 			if( CARRITO[ "fechas" ][ "fin" ] == undefined || CARRITO[ "fechas" ][ "fin" ] == "" ){
 				error = "Ingrese la fecha de finalizaci&oacute;n";
 			}else{
-				if( tipo_servicio == "paseos" && PAQUETE != "" ){
+				if( tipo_servicio == "paseos" && es_landing_paseos ){
 					var dias_array = [];
 					jQuery(".dias_container input").each(function(i, v){
 						if( jQuery(this).prop("checked") ){
@@ -966,6 +966,14 @@ jQuery(document).ready(function() {
 		CARRITO["cupones"].push([
 			PAQs[PAQUETE],
 			0,
+			0
+		]);
+	}
+
+	if( cupon_conocer_c == 'YES' ){
+		CARRITO["cupones"].push([
+			"cpc10%", 
+			0, 
 			0
 		]);
 	}

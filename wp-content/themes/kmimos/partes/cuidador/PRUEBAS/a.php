@@ -1,4 +1,15 @@
 <?php
+	
+	$HTML_CONOCER .= '
+		<div style="font-size: 16px; margin: 30px 0px;"> 
+			En este momento esta función no está disponible, te invitamos a darle click al botón Reservar. 
+		</div>   
+		<div class="km-buttons" style="text-align: center; margin-top: 20px;">  
+			<a id="btn_reserva_conocer" href="" class="km-btn-secondary">RESERVAR</a>  
+		</div>
+	';
+
+/*
 	if( count($mascotas)>0 && $validar_perfil_completo ){
 
 		if( $ES_PERFIL == 'YES' ){
@@ -154,4 +165,5 @@
 			</form>';
 		} 
 	}
+	*/
 ?>

@@ -274,8 +274,8 @@
             </label>
         </section>
 
-        <section> 
-          	<label for="solo_esterilizadas" class="lbl-text">'.esc_html__('¿No Esterilizadas?','kmimos').':</label>
+        <section style="width: 50%;"> 
+          	<label for="solo_esterilizadas" class="lbl-text">'.esc_html__('¿Aceptas Mascotas No Esterilizadas?','kmimos').':</label>
             <label class="lbl-ui">
 	            <select id="solo_esterilizadas" name="solo_esterilizadas" class="input">
 	                <option value="0" '.selected($atributos['esterilizado'], 0, false).'>No</option>
@@ -345,7 +345,7 @@
             </label> 
         </section> 
 
-        <section style="width: 50%;"> 
+        <section> 
             <label for="video_youtube" class="lbl-text">'.esc_html__('Video de Youtube (URL)','kmimos').':</label>
             <label class="lbl-ui">
                 <input  type="text" id="video_youtube" name="video_youtube" class="input" value="'.$atributos['video_youtube'].'" />
@@ -360,7 +360,7 @@
            
     <div class="inputs_containers row_4" style="padding-bottom: 0px;"> 
 
-	    <section>
+	    <section class="tam_mis_mascotas">
 	         <label for="ages_accepted" class="lbl-text">'.esc_html__('Tamaños de mis mascotas','kmimos').':</label>
             <label class="lbl-ui">
 	          	'.$mascotas_cuidador_str.'     

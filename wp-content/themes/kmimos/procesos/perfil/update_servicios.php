@@ -142,7 +142,7 @@
     $paseos = $adicionales["paseos"];
     $menor_paseos = 0;
     foreach ($paseos as $key => $value_2) {
-        if( ($value_2 != 0 && $value_2 < $menor) || $menor == 0 ){
+        if( ($value_2 != 0 && $value_2 < $menor_paseos) || $menor_paseos == 0 ){
             $menor_paseos = $value_2;
         }
     }

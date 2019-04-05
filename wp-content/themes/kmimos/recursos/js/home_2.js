@@ -92,6 +92,12 @@ function ajustar_carrusel_servicios_movil(){
 
 jQuery( document ).ready(function() {
 
+    jQuery(".carrusel_servicios_3 .carrusel_servicios_principales_item").on('click', function(e){
+        jQuery(".ubicacion").val( jQuery(this).data('id') );
+        jQuery(".ubicacion_txt").val( jQuery(this).data('nombre') );
+        jQuery("#buscador").submit();
+    });
+
     jQuery("#popup-servicios-new input").on("change", function(e){
         jQuery("#"+jQuery(this).attr("id")+"_2_label"  ).click();
     });

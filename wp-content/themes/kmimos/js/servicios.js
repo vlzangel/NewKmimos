@@ -24,6 +24,7 @@ jQuery( document ).ready(function(){
 		}
 	});
 
+	/*
 	jQuery( '.vlz_activador' ).each(function( index ) {
 	  	jQuery( this ).on('click', function(e){
 	  		var status = jQuery('#oculto_'+e.target.id).val();
@@ -40,6 +41,7 @@ jQuery( document ).ready(function(){
 	  		}
 	  	});
 	});
+	*/
 
 	postJSON( 
   		"form_perfil",
@@ -53,9 +55,11 @@ jQuery( document ).ready(function(){
 
        		console.log( data );
 
+       		
 			jQuery("#btn_actualizar").val("Actualizar");
 			jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
+            
        	}
    	);
 

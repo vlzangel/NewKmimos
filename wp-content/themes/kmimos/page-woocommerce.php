@@ -188,12 +188,15 @@
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
 
 		$super_admin = (  $_SESSION['admin_sub_login'] != 'YES' ) ? 'No': 'Si';
-
 		$_SESSION["flash_".$cuidador->id_post] = $ES_FLASH;
+		$cupon_conocer_c = ( $_SESSION[ 'cupon_test_c'.$cuidador->id_post ] == 'YES' ) ? 'YES' : 'NO';
+		$es_landing_paseos = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'true' : 'false';
 
 		$HTML .= "
 		<script> 
+			var cupon_conocer_c = '".$cupon_conocer_c."';
 			var fee_conocer = '".$fee_conocer."';
+			var es_landing_paseos = '".$es_landing_paseos."';
 			
 			var SERVICIO_ID = '".get_the_ID()."';
 			var cupos = eval('".json_encode($cupos)."');

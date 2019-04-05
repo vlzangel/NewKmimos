@@ -1,4 +1,6 @@
 <?php
+
+    error_reporting(0);
 	
 	extract($_POST);
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));

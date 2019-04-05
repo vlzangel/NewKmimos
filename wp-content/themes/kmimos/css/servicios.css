@@ -17,7 +17,7 @@
     padding: 5px;
     border-radius: 0px 3px 3px 3px;
     font-weight: 600;
-    background-color: rgb(249, 249, 249);
+    /* background-color: rgb(249, 249, 249); */
     box-shadow: 1px 1px 1px #CCC;
 }
 .vlz_seccion label{
@@ -148,4 +148,23 @@
     padding: 5px 0px;
     color: #000;
     text-shadow: 0px 0px 2px #FFF;
+}
+
+.vlz_titulo_seccion.container_btn > label {
+    background-image: url(../recursos/img/BUSQUEDA/SVG/iconos/Boton_OFF.svg);
+    width: 50px;
+    height: 30px;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.vlz_titulo_seccion.container_btn > input {
+    display: none;
+}
+
+.vlz_titulo_seccion.container_btn input:checked ~ label {
+    background-image: url(../recursos/img/BUSQUEDA/SVG/Boton_descuento.svg);
 }

@@ -8,7 +8,7 @@
 
     global $wpdb;
 
-    $PATH_TEMPLATE = dirname(dirname(dirname(dirname(__DIR__))));
+    $PATH_TEMPLATE = (dirname(dirname(dirname(dirname(__DIR__)))));
 
     $_user_ID = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$email}' ");
 
@@ -23,7 +23,14 @@
     	$wpdb->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$_user_ID} AND meta_key = 'kmisaldo' ");
     }
 
+
     if( $ORIGINAL != $saldo ){
+
+        $current_user = wp_get_current_user();
+        $admin = $current_user->ID;
+
+        $wpdb->query("INSERT INTO cambios_saldos VALUES (NULL, '{$_user_ID}', '{$admin}', '{$ORIGINAL}', '{$saldo}', '".date('Y-m-d H:i:s')."') ");
+
         $file = $PATH_TEMPLATE.'/template/mail/saldos/admin.php';
         $mensaje = file_get_contents($file);
 
@@ -36,7 +43,7 @@
         $mensaje = get_email_html($mensaje);    
 
         wp_mail( "a.veloz@kmimos.la", "Actualización de Saldo", $mensaje);
-        wp_mail( "chaudaryy@gmail.com", "Actualización de Saldo", $mensaje);
+        // wp_mail( "chaudaryy@gmail.com", "Actualización de Saldo", $mensaje);
     }
 
 	exit;
