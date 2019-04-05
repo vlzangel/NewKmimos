@@ -20,6 +20,7 @@
         "page-registro-cuidador.php",
         "page-personalizada.php",
         "page-home_2.php",
+        'page-validar_pago.php',
     ];
 
     $plantilla = get_post_meta($post->ID, '_wp_page_template', true);
