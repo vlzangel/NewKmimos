@@ -106,7 +106,11 @@
 	    }
 	    $ordenamiento = '<option value="default">Selecciona una opci&oacute;n</option>';
 	    foreach ( $ordenamientos as $clave => $valor ) {
-	    	$check = ( $_SESSION["busqueda"]["orderby"] == $valor[1] ) ? "selected": "";
+	    	if( $_GET['lp'] == '1' ){
+				$check = ( 'price_asc' == $valor[1] ) ? "selected": "";
+	    	}else{
+	    		$check = ( $_SESSION["busqueda"]["orderby"] == $valor[1] ) ? "selected": "";
+	    	}
 	    	$ordenamiento .= '<option id="'.$valor[1].'" value="'.$valor[1].'" '.$check.'>'.$valor[0].'</option>';
 	    }
 
@@ -170,10 +174,6 @@
 		';
 	}
 	*/
-
-	echo "<pre>";
-		print_r( $_SERVER );
-	echo "</pre>";
 
 	if( $_SESSION['landing_paseos'] == 'yes' ) {
 		$tipo_cuidador = 'Paseador';
