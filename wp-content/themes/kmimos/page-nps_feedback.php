@@ -41,7 +41,7 @@
 			}
 			$reserva_feedback = ( isset($row2->id) )? $row2->id : 0 ; 
 
-			if( $respuesta_id > 0 && $row->puntos > 0 && $reserva_feedback = 0 ){
+			if( $respuesta_id > 0 && $row->puntos > 0 && $reserva_feedback == 0 ){
 				$show_mensaje = '';
 				$show_encuesta= 'hidden';
 			}else{				
