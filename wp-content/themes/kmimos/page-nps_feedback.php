@@ -10,7 +10,7 @@
 	// t=external
 	// v=2
 	// e=italococchini@gmail.com
-	// internal=4 [ opcional: ID encuestas clientes ]
+	// r=4 [ opcional: ID encuestas clientes / Reserva ]
 
     $show_mensaje = 'hidden';
     $show_encuesta= '';
@@ -35,7 +35,13 @@
 	    if( isset($e) && !empty($e) ){
 			$row = $wpdb->get_row( "SELECT * FROM nps_respuestas WHERE email = '{$e}' AND pregunta = ".$encuesta->id );
 			$respuesta_id = ( isset($row->id) )? $row->id : 0 ; 
-			if( $respuesta_id > 0 && $row->puntos > 0 ){
+
+			if( isset($r) && $r > 0 ){
+				$row2 = $wpdb->get_row( "SELECT * FROM nps_feedback_cuidador WHERE estatus =1 AND email = '{$e}' AND id = ".$r );
+			}
+			$reserva_feedback = ( isset($row2->id) )? $row2->id : 0 ; 
+
+			if( $respuesta_id > 0 && $row->puntos > 0 && $reserva_feedback = 0 ){
 				$show_mensaje = '';
 				$show_encuesta= 'hidden';
 			}else{				
@@ -53,8 +59,8 @@
 			    	$wpdb->query( $sql );
 
 			    	// Encuesta para los clientes sobre calidad de servicios
-			    	if( isset($_GET['internal']) && $_GET['internal'] > 0 ){
-			    		$update_cliente = 'UPDATE nps_feedback_cuidador SET estatus =0 WHERE id ='.$_GET['internal'];
+			    	if( isset($_GET['r']) && $_GET['r'] > 0 ){
+			    		$update_cliente = 'UPDATE nps_feedback_cuidador SET estatus =0 WHERE id ='.$_GET['r'];
 				    	$wpdb->query( $update_cliente );
 			    	}
 			    	

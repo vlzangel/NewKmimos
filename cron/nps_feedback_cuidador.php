@@ -21,7 +21,7 @@ ini_set('display_errors', '1');
 
 	$reservas = $wpdb->get_results($sql);
 	foreach($reservas as $key => $reserva){
-print_r($reserva);
+//print_r($reserva);
 
 		$_metas_reserva = get_post_meta($reserva->ID);
 		$_metas_orden = get_post_meta($reserva->post_parent);
@@ -48,7 +48,6 @@ print_r($reserva);
 		// Validar y enviar email
 		if( $reserva->post_status=='complete' || ( $reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0]) < time() )){
 
-echo 'paso1';
 
 			$primero = date('Y-m-d', strtotime("NOW"));
 			$segundo = date('Y-m-d', strtotime($primero." +7 day "));
@@ -93,14 +92,13 @@ echo 'paso1';
 						'IMG_URL' => get_recurso('img/NPS'),
 					]
 				);
-print_r([
-		'id' => $reserva->id,
-						'email' => $user->user_email,
-						'nombre' => $nombre,
-						'IMG_URL' => get_recurso('img/NPS'),
-	]);
+				print_r([
+					'id' => $reserva->id,
+									'email' => $user->user_email,
+									'nombre' => $nombre,
+									'IMG_URL' => get_recurso('img/NPS'),
+				]);
 
-echo $mensaje;
 				//$user->user_email = 'italococchini@gmail.com'; //testing
 				
 				wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $mensaje) ;
