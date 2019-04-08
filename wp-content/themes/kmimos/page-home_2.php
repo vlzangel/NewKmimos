@@ -171,7 +171,7 @@
 
 				<div class="titulo_banner_top">Selecciona los filtros para búsqueda avanzada</div>
 
-				<input type="hidden" name="personalizada" value="1" />  
+				<input type="hidden" id="personalizada" name="personalizada" value="1" />  
 
 				<input type="hidden" name="redireccionar" value="1" />
 				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
@@ -620,8 +620,8 @@
 
 	$HTML .= '
 		<div class="carrusel_servicios carrusel_servicios_2">
-			<h2 class="solo_pc">Lo nuevo que trae kmimos <span>></span> </h2>
-			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
+			<h2 class="solo_pc">Lo nuevo de Kmimos <span>></span> </h2>
+			<h2 class="solo_movil">Lo nuevo de Kmimos > </h2>
 
 			<div class="carrusel_servicios_principales_container">
 				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-paso-movil="7" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="70" data-t="1000">
@@ -691,8 +691,8 @@
 
 	$HTML .= '
 		<div class="carrusel_servicios carrusel_servicios_3">
-			<h2 class="solo_pc">Lo nuevo que trae kmimos <span>></span> </h2>
-			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
+			<h2 class="solo_pc">Buscar Cuidadores por ciudad <span>></span> </h2>
+			<h2 class="solo_movil">Buscar Cuidadores por ciudad > </h2>
 
 			<div class="carrusel_servicios_principales_container">
 				<div class="carrusel_servicios_principales_box">
