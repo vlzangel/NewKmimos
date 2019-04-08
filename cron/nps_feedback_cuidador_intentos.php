@@ -50,7 +50,8 @@ ini_set('display_errors', '1');
 			]
 		);
 
-		// Enviar email
+// Enviar email
+//echo $mensaje;
 
 		// $reserva->email = 'italococchini@gmail.com'; //testing
 
