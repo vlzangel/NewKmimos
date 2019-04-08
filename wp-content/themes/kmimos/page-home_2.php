@@ -30,14 +30,21 @@
 
     $items = '';
     $info_banner = [
-    	'_CPF.jpg',
-    	'_Cuidadores.jpg',
-    	'_GPS.jpg',
-    	'_Paseos.jpg',
+    	['_CPF.jpg', true, get_home_url().'/club-patitas-felices'],
+    	['_Cuidadores.jpg', false, "#ancla_ciudades"],
+    	['_GPS.jpg',true,  get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos'],
+    	['_Paseos.jpg', true, get_home_url().'/paseos'],
     ];
     foreach ($info_banner as $key => $url) {
-    	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/NEW/Carrusel'.$url.');"></div>';
-    	$items .= '<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url.'" /> </div>';
+    	$link = ( $url[1] ) ? $url[2].'" target="_blank' : $url[2];
+    	$items .= '
+    	<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/NEW/Carrusel'.$url[0].');">
+    		<a href="'.$link.'"></a>
+    	</div>';
+    	$items .= '
+    	<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url[0].'" /> 
+    		<a href="'.$link.'"></a>
+    	</div>';
     }
 
     $items_count = count($info_banner);
@@ -620,6 +627,8 @@
 
 	$HTML .= '
 		<div class="carrusel_servicios carrusel_servicios_2">
+
+			<a id="ancla_ciudades" style="position: absolute; top: 150px;"></a>
 			<h2 class="solo_pc">Lo nuevo de Kmimos <span>></span> </h2>
 			<h2 class="solo_movil">Lo nuevo de Kmimos > </h2>
 

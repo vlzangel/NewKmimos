@@ -57,12 +57,22 @@ body{
 	}
 
 	.banner_rotativo_item {
+		position: relative;
 	    display: inline-block;
 	    width: 100%;
 	    height: 100%;
 	    background-size: cover;
 	    background-position: center;
 	    background-repeat: no-repeat;
+	}
+
+	.banner_rotativo_item a {
+	    display: inline-block;
+	    width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    top: 0px;
+	    left: 0px;
 	}
 
 /* BANNER */
