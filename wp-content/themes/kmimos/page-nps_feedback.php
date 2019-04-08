@@ -11,6 +11,7 @@
 	// v=2
 	// e=italococchini@gmail.com
 	// r=4 [ opcional: ID encuestas clientes / Reserva ]
+//print_r($_GET);
 
     $show_mensaje = 'hidden';
     $show_encuesta= '';
@@ -33,15 +34,20 @@
 	    }
 	    
 	    if( isset($e) && !empty($e) ){
+
 			$row = $wpdb->get_row( "SELECT * FROM nps_respuestas WHERE email = '{$e}' AND pregunta = ".$encuesta->id );
 			$respuesta_id = ( isset($row->id) )? $row->id : 0 ; 
-
 			if( isset($internal) && $internal > 0 ){
-				$row2 = $wpdb->get_row( "SELECT * FROM nps_feedback_cuidador WHERE estatus =1 AND email = '{$e}' AND id = ".$internal );
+				$row2 = $wpdb->get_row( 
+					"SELECT * FROM nps_feedback_cuidador WHERE estatus =1 AND email = '{$e}' AND id = ".$internal 
+				);
 			}
-			$reserva_feedback = ( isset($row2->id) )? $row2->id : 0 ; 
 
-			if( $respuesta_id > 0 && $row->puntos > 0 && $reserva_feedback == 0 ){
+			if( isset($row2->id) ){
+				$reserva_feedback = $row2->id;
+			}
+
+			if( ($respuesta_id > 0 && $row->puntos > 0) || (isset($reserva_feedback) && $reserva_feedback == 0) ){
 				$show_mensaje = '';
 				$show_encuesta= 'hidden';
 			}else{				
@@ -55,17 +61,23 @@
 	            }
 	            $code = md5( $encuesta->id . $e );
 	            if( !isset($row->id) ){
-					$sql = "INSERT INTO nps_respuestas ( email, pregunta, puntos, tipo, code ) VALUES ( '{$e}', ".$encuesta->id.", {$respuesta}, '{$tipo_nps}', '{$code}' )";	            				
+					$sql = "INSERT INTO nps_respuestas ( email, pregunta, puntos, tipo, code ) 
+						VALUES ( '{$e}', ".$encuesta->id.", {$respuesta}, '{$tipo_nps}', '{$code}' )";	            				
 			    	$wpdb->query( $sql );
+ 					$respuesta_id = $wpdb->insert_id;
 
-			    	// Encuesta para los clientes sobre calidad de servicios
+			    	// Encuesta para los clientes sobre calidad de servicios			    		
 			    	if( isset($_GET['internal']) && $_GET['internal'] > 0 ){
 			    		$update_cliente = 'UPDATE nps_feedback_cuidador SET estatus =0 WHERE id ='.$_GET['internal'];
 				    	$wpdb->query( $update_cliente );
 			    	}
 			    	
 	            }
-				$respuesta_id = $wpdb->get_var( "SELECT id FROM nps_respuestas WHERE email='{$e}' AND pregunta=".$encuesta->id );
+	            if( $respuesta_id <= 0 ){            	
+					$respuesta_id = $wpdb->get_var( 
+						"SELECT id FROM nps_respuestas WHERE email='{$e}' AND pregunta=".$encuesta->id 
+					);
+	            }
 			}
 		}else{
 			$show_mensaje = '';
