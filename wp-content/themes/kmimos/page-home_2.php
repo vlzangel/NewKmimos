@@ -589,21 +589,24 @@
 			'Club de las patittas felices',
 			'Consigue recompensas',
 			'¡Cada amigo que complete una reservación gana $150 y tú $150 más!',
-			'cpf'
+			'cpf',
+			get_home_url().'/club-patitas-felices'
 		],
 		[
 			'Banner-GPS.jpg',
 			'GPS',
 			'Seguridad total durante su estadía',
 			'Monitoreo en tiempo real durante el paseo o estadía.<br>¡Busca a los cuidadores con localización GPS!',
-			'gps'
+			'gps',
+			 get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos'
 		],
 		[
 			'Banner-Conviertete.jpg',
 			'Conviértete en cuidador',
 			'¿Gana dinero con tu hobbie favorito?',
 			'¡Kmimos necesita Doglovers como tú! Gana hasta $30.000 mensuales cuidando mascotas en tu hogar',
-			'conviertete'
+			'conviertete',
+			get_home_url().'/quiero-ser-cuidador-certificado-de-perros'
 		]
 	];
 
@@ -611,6 +614,7 @@
 	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
 		$items .= 
 		'<label class="carrusel_servicios_principales_item" for="'.$servicio[3].'_2">'.
+			'<a href="'.$servicio[5].'" target="_blank"></a>'.
 			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/NEW/'.$servicio[0].');"></div>'.
 			'<div class="carrusel_servicios_principales_data">'.
 				'<label>'.($servicio[1]).'</label>'.
