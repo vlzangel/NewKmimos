@@ -36,8 +36,8 @@
 			$row = $wpdb->get_row( "SELECT * FROM nps_respuestas WHERE email = '{$e}' AND pregunta = ".$encuesta->id );
 			$respuesta_id = ( isset($row->id) )? $row->id : 0 ; 
 
-			if( isset($r) && $r > 0 ){
-				$row2 = $wpdb->get_row( "SELECT * FROM nps_feedback_cuidador WHERE estatus =1 AND email = '{$e}' AND id = ".$r );
+			if( isset($internal) && $internal > 0 ){
+				$row2 = $wpdb->get_row( "SELECT * FROM nps_feedback_cuidador WHERE estatus =1 AND email = '{$e}' AND id = ".$internal );
 			}
 			$reserva_feedback = ( isset($row2->id) )? $row2->id : 0 ; 
 
@@ -59,8 +59,8 @@
 			    	$wpdb->query( $sql );
 
 			    	// Encuesta para los clientes sobre calidad de servicios
-			    	if( isset($_GET['r']) && $_GET['r'] > 0 ){
-			    		$update_cliente = 'UPDATE nps_feedback_cuidador SET estatus =0 WHERE id ='.$_GET['r'];
+			    	if( isset($_GET['internal']) && $_GET['internal'] > 0 ){
+			    		$update_cliente = 'UPDATE nps_feedback_cuidador SET estatus =0 WHERE id ='.$_GET['internal'];
 				    	$wpdb->query( $update_cliente );
 			    	}
 			    	
