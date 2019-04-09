@@ -84,14 +84,14 @@
         case 'confirmado':
             $new_status = "Confirmado";
             $acc = "CFM"; $usu = "CUI"; $NO_ENVIAR = "YES";
-            $_GET['u'] = 'sistema_cambio_status'
+            $_GET['u'] = 'sistema_cambio_status';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
 
         case 'confirmado_email':
             $new_status = "Confirmado con env&iacute;o de correo";
             $acc = "CFM"; $usu = "CUI";
-            $_GET['u'] = 'sistema_cambio_status'
+            $_GET['u'] = 'sistema_cambio_status';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
 
