@@ -214,6 +214,8 @@
     $_SESSION["USER_ID_CLIENTE_CORREOS"] = $cliente["id"];
     $_SESSION["ID_RESERVA_CORREOS"] = $servicio["id_reserva"];
 
+    $superAdmin = (  $_SESSION['admin_sub_login'] == 'YES' ) ? 'YES' : '';
+
     $INFORMACION = [
         // GENERALES
 
