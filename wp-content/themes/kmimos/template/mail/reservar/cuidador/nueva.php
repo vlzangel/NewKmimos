@@ -70,7 +70,7 @@
 		</div>
 		
 		<div style="text-align: center;">
-			<a href='[ACEPTAR]' style='
+			<a href='[ACEPTAR]?u=cui' style='
 				max-width: 250px;
 				width: 100%;
 				padding: 10px;

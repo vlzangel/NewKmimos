@@ -11,6 +11,12 @@
         kmimos_registros_fotos( $servicio["id_reserva"] );
     }
 
+    if( $superAdmin != "YES" ){
+        update_post_meta($servicio["id_reserva"], 'confirmado_por', $_GET["u"]);
+    }else{
+        update_post_meta($servicio["id_reserva"], 'confirmado_por', $_GET["u"]."_super_admin");
+    }
+
    /* Correo CLIENTE */
 
         $mensaje = buildEmailTemplate(
