@@ -420,16 +420,17 @@
 				<li class="menu_activo li_club_container">
 					<div class="club_container">
 						Gana 150$
+					</div>
+				</li>
+				<li> 
+					<div class="club_container mensajes_container">
+						Mensajes <span class="new_mensaje"></span>
+						Mensajes <span class="new_mensaje"></span>
 						<ul>
 							<li class="titulo_menu_club">Notificaciones ('.$notificacion.')</li>
 							<li> <a href="'.get_home_url().'/club-patitas-felices/compartir/"> Invita a un amigo y consigue recompensas </a> </li>
 							<li> <a href="'.get_home_url().'/club-patitas-felices/creditos/"> Ver mi saldo disponible </a> </li>
 						</ul>
-					</div>
-				</li>
-				<li> 
-					<div class="mensajes_container">
-						Mensajes <span class="new_mensaje"></span>
 					</div> 
 				</li>
 				<li> <a href="'.get_home_url().'/ayuda/"> Ayuda </a> </li>

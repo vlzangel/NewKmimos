@@ -95,6 +95,7 @@ jQuery( document ).ready(function() {
     jQuery(".carrusel_servicios_3 .carrusel_servicios_principales_item").on('click', function(e){
         jQuery(".ubicacion").val( jQuery(this).data('id') );
         jQuery(".ubicacion_txt").val( jQuery(this).data('nombre') );
+        jQuery("#personalizada").val( 0 );
         jQuery("#buscador").submit();
     });
 

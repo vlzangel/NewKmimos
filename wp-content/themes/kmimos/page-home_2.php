@@ -30,14 +30,21 @@
 
     $items = '';
     $info_banner = [
-    	'_CPF.jpg',
-    	'_Cuidadores.jpg',
-    	'_GPS.jpg',
-    	'_Paseos.jpg',
+    	['_CPF.jpg', true, get_home_url().'/club-patitas-felices'],
+    	['_Cuidadores.jpg', false, "#ancla_ciudades"],
+    	['_GPS.jpg',true,  get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos'],
+    	['_Paseos.jpg', true, get_home_url().'/paseos'],
     ];
     foreach ($info_banner as $key => $url) {
-    	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/NEW/Carrusel'.$url.');"></div>';
-    	$items .= '<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url.'" /> </div>';
+    	$link = ( $url[1] ) ? $url[2].'" target="_blank' : $url[2];
+    	$items .= '
+    	<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/NEW/Carrusel'.$url[0].');">
+    		<a href="'.$link.'"></a>
+    	</div>';
+    	$items .= '
+    	<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url[0].'" /> 
+    		<a href="'.$link.'"></a>
+    	</div>';
     }
 
     $items_count = count($info_banner);
@@ -171,7 +178,7 @@
 
 				<div class="titulo_banner_top">Selecciona los filtros para búsqueda avanzada</div>
 
-				<input type="hidden" name="personalizada" value="1" />  
+				<input type="hidden" id="personalizada" name="personalizada" value="1" />  
 
 				<input type="hidden" name="redireccionar" value="1" />
 				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
@@ -582,21 +589,24 @@
 			'Club de las patittas felices',
 			'Consigue recompensas',
 			'¡Cada amigo que complete una reservación gana $150 y tú $150 más!',
-			'cpf'
+			'cpf',
+			get_home_url().'/club-patitas-felices'
 		],
 		[
 			'Banner-GPS.jpg',
 			'GPS',
 			'Seguridad total durante su estadía',
 			'Monitoreo en tiempo real durante el paseo o estadía.<br>¡Busca a los cuidadores con localización GPS!',
-			'gps'
+			'gps',
+			 get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos'
 		],
 		[
 			'Banner-Conviertete.jpg',
 			'Conviértete en cuidador',
 			'¿Gana dinero con tu hobbie favorito?',
 			'¡Kmimos necesita Doglovers como tú! Gana hasta $30.000 mensuales cuidando mascotas en tu hogar',
-			'conviertete'
+			'conviertete',
+			get_home_url().'/quiero-ser-cuidador-certificado-de-perros'
 		]
 	];
 
@@ -604,6 +614,7 @@
 	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
 		$items .= 
 		'<label class="carrusel_servicios_principales_item" for="'.$servicio[3].'_2">'.
+			'<a href="'.$servicio[5].'" target="_blank"></a>'.
 			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/NEW/'.$servicio[0].');"></div>'.
 			'<div class="carrusel_servicios_principales_data">'.
 				'<label>'.($servicio[1]).'</label>'.
@@ -620,8 +631,10 @@
 
 	$HTML .= '
 		<div class="carrusel_servicios carrusel_servicios_2">
-			<h2 class="solo_pc">Lo nuevo que trae kmimos <span>></span> </h2>
-			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
+
+			<a id="ancla_ciudades" style="position: absolute; top: 150px;"></a>
+			<h2 class="solo_pc">Lo nuevo de Kmimos <span>></span> </h2>
+			<h2 class="solo_movil">Lo nuevo de Kmimos > </h2>
 
 			<div class="carrusel_servicios_principales_container">
 				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-paso-movil="7" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="70" data-t="1000">
@@ -691,8 +704,8 @@
 
 	$HTML .= '
 		<div class="carrusel_servicios carrusel_servicios_3">
-			<h2 class="solo_pc">Lo nuevo que trae kmimos <span>></span> </h2>
-			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
+			<h2 class="solo_pc">Buscar Cuidadores por ciudad <span>></span> </h2>
+			<h2 class="solo_movil">Buscar Cuidadores por ciudad > </h2>
 
 			<div class="carrusel_servicios_principales_container">
 				<div class="carrusel_servicios_principales_box">
