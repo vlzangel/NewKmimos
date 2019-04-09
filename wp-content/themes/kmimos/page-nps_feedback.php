@@ -143,7 +143,7 @@
 				<div class="clear"></div>
 			</div>
 			<div class="row feedback-container-button">
-				<button type="submit" id="enviar-feedback" class="btn btn-primary">Enviar comentarios</button>
+				<button type="submit" id="enviar-feedback" class="btn btn-primary">Enviar evaluaci&oacute;n</button>
 			</div>
 		</form>
 	</div>
