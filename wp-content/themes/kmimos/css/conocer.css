@@ -166,7 +166,7 @@
 
     .botones_b .boton_izq {
         background-color: #00d2c6;
-        margin-bottom: 7px !important;
+        border: solid 1px #00d2c6;
     }
 
     .pre_requisitos {
