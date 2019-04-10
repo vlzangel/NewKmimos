@@ -31,7 +31,7 @@ jQuery( document ).ready(function() {
   			    }
   		    }
         }
-        jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');  
+        jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'<i class="fa fa-times" aria-hidden="true"></i></span>');  
 
         jQuery('.mensaje').on('click', function(e){
           jQuery('.mensaje').remove(); 

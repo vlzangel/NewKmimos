@@ -2217,6 +2217,16 @@ footer input:focus{
     cursor: pointer;
 }
 
+.mensaje i {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    font-size: 18px;
+    color: #FFF;
+    cursor: pointer;
+    font-weight: 400;
+}
+
 
 
 
