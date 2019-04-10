@@ -255,14 +255,15 @@
         line-height: 1;
     }
 
-    .conocer_c  li span {
-        color: #74cd80;
-        font-family: Gotham-Pro-Bold;
+    .conocer_c li span {
+        color: #000000;
+        font-family: Gotham-Pro-Black;
     }
 
     .botones_c {
         text-align: center;
         padding: 20px;
+        overflow: hidden;
     }
 
     .botones_c .boton {
@@ -303,7 +304,7 @@
 
     .botones_c .boton_izq {
         background-color: #00d2c6;
-        margin-bottom: 7px !important;
+        border: solid 1px #00d2c6;
     }
 
     .pre_requisitos {
@@ -312,6 +313,7 @@
 
     .contador_c{
         padding: 15px 0px 0px;
+        overflow: hidden;
     }
 
     .conocer_c .cronometro_descuento_c {

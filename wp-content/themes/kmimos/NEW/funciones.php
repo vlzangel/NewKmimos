@@ -803,6 +803,7 @@
 	}
 
 	function crear_ficha_busqueda($parametros=[]){
+		global $wpdb;
 		$HTML = '';
 		extract($parametros);
 		if( isset($_SESSION["DATA_CUIDADORES"][ $cuidador->id ]) ){
@@ -952,12 +953,18 @@
 
 			$btn_conocer = '<strong>No disponible para conocer</strong>';
 			if( $_cuidador->activo_hoy ){
+
+				$hospedaje_id = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_type = 'product' AND post_author = '{$_cuidador->user_id}' AND post_name LIKE '%hospedaje%'");
+				$reservar_url = 'reservar/'.$hospedaje_id;
+				$data_url = 'petsitters/'.$_cuidador->url.'?r=1';
+
 				$btn_conocer = '
 					<a 
 						role="button" href="#" 
                         data-name="'.$_cuidador->titulo.'" 
                         data-id="'.$_cuidador->id_post.'" 
-                        data-url="petsitters/'.$_cuidador->url.'" 
+                        data-url="'.$data_url.'" 
+                        data-reservar="'.$reservar_url.'" 
                         data-target="#popup-conoce-cuidador"
                         href="#" class="boton boton_border_gris"
                         onclick="evento_google_kmimos(\'conocer_busqueda\'); evento_fbq_kmimos(\'conocer_busqueda\');"
