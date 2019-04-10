@@ -2214,7 +2214,8 @@ footer input:focus{
     letter-spacing: 1px;
     width: 100%;
     float: right;
-    }
+    cursor: pointer;
+}
 
 
 

@@ -32,14 +32,18 @@ jQuery( document ).ready(function() {
   		    }
         }
         jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'</span>');  
-        setTimeout(function() { 
+
+        jQuery('.mensaje').on('click', function(e){
           jQuery('.mensaje').remove(); 
+        });
+        setTimeout(function() { 
+          // jQuery('.mensaje').remove(); 
         },3000);
      	},
       'html',
       ''
    	);
-    
+
     // initImg("portada");
 
     jQuery("#form_perfil [data-valid]").each(function( index ) {

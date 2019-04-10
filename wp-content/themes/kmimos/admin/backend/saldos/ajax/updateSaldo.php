@@ -17,12 +17,7 @@
     $CLIENTE = get_user_meta($_user_ID, 'first_name', true)." ".get_user_meta($_user_ID, 'last_name', true);
     $saldo += 0;
 
-    if( $ORIGINAL == 0 ){
-    	$wpdb->query("INSERT INTO wp_usermeta VALUES (NULL, '{$_user_ID}', 'kmisaldo', '{$saldo}') ");
-    }else{
-    	$wpdb->query("UPDATE wp_usermeta SET meta_value = '{$saldo}' WHERE user_id = {$_user_ID} AND meta_key = 'kmisaldo' ");
-    }
-
+    update_user_meta($_user_ID, 'kmisaldo', $saldo);
 
     if( $ORIGINAL != $saldo ){
 
