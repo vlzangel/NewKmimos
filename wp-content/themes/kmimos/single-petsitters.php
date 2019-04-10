@@ -665,6 +665,8 @@
 
 	get_footer();
 
+	$HTML = '';
+
 	if( $_SESSION['sesion_proceso'] != "" ){
 		$HTML = '<script>';
 		switch ( $_SESSION['sesion_proceso'] ) {
@@ -680,4 +682,9 @@
 		echo comprimir($HTML);
 	}
 	$_SESSION['sesion_proceso'] = "";
+
+	if( $_GET['r'] == "1" ){
+		$HTML = '<script>jQuery("#btn_reservar").click();</script>';
+		echo comprimir($HTML);
+	}
 ?>

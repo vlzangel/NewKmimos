@@ -14,7 +14,7 @@
 			</div>
 			<div class="botones_b">
 				<a href="#" class="boton boton_izq">Reservar y conocer</a>
-				<a href="'.get_home_url().'/perfil-usuario/historial/" class="boton boton_der">He hecho la reserva</a>
+				<a href="#" id="url_cuidador" class="boton boton_der">Ver perfil</a>
 			</div>
 		</div> 
 	';

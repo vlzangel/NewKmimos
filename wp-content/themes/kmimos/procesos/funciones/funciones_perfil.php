@@ -159,7 +159,7 @@
 								    $desde = $desde_time;
 								    $hasta = $_hasta;
 
-								    $_dia_anterior = date('d-m-Y', strtotime( '-1 day', $desde ) );
+								    $_dia_anterior = date('d-m-Y', strtotime( '-2 day', $desde ) );
 
 								    $desde = explode('-', $_desde);
 								    $desde = $desde[0].'-'.strtoupper($meses[ $desde[1]+0 ]).'-'.$desde[2];

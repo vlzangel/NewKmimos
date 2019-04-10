@@ -941,3 +941,7 @@
 	    color: #00d2c6;
 	    font-weight: 600;
 	}
+
+a#url_cuidador {
+    display: none;
+}

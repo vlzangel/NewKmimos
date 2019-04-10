@@ -59,7 +59,8 @@ function open_conocer( _this ){
     jQuery( '[name="post_id"]' ).val( _this.data('id') );
 
     if( _this.data('url') != undefined ){
-        jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('url') );
+        jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('url')+"?r=1" );
+        jQuery( '.boton_der' ).attr("href", RAIZ+_this.data('url') );
         jQuery( '#btn_reserva_conocer' ).attr("href", RAIZ+_this.data('url') );
         jQuery( '#url_cuidador' ).val(RAIZ+_this.data('url') );
     }else{

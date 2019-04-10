@@ -208,7 +208,6 @@
 					$uso_cupon = $wpdb->get_row("SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$reserva->post_parent}' AND order_item_name = 'cpc10%' ");
 					
 					if( $uso_cupon == null ){
-						echo "Entro: {$reserva->post_parent}";
 						$_metas_reserva['_booking_test_conocer'][0] = '';
 						$data_conocer = [];
 					}

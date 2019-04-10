@@ -118,9 +118,9 @@
         line-height: 1;
     }
 
-    .conocer_b  li span {
-        color: #74cd80;
-        font-family: Gotham-Pro-Bold;
+    .conocer_b li span {
+        color: #000000;
+        font-family: Gotham-Pro-Black;
     }
 
     .botones_b {
