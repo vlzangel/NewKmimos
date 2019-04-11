@@ -116,7 +116,7 @@ jQuery( document ).ready(function() {
         jQuery("#buscador_2").submit();
     });
 
-    jQuery(".carrusel_servicios").on('touchstart', function(e){
+    jQuery(".carrusel_servicios_1").on('touchstart', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var ev = e.originalEvent;
             if (ev.targetTouches.length == 1) { 
@@ -126,7 +126,7 @@ jQuery( document ).ready(function() {
         }
     });
 
-    jQuery(".carrusel_servicios").on('touchmove', function(e){
+    jQuery(".carrusel_servicios_1").on('touchmove', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var ev = e.originalEvent;
             if (ev.targetTouches.length == 1) { 
@@ -147,7 +147,7 @@ jQuery( document ).ready(function() {
         }
     });
 
-    jQuery(".carrusel_servicios").on('touchend', function(e){
+    jQuery(".carrusel_servicios_1").on('touchend', function(e){
 
         if( parseInt( jQuery("body").width() ) < 768 ){
             var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
@@ -203,21 +203,6 @@ jQuery( document ).ready(function() {
     jQuery(".seccion_destacados_flechas").on('click', function(e){
         mover_carrusel(jQuery(this).parent().find(".banner_box"), jQuery(this).attr("data-dir") );
     });
-
-    /* Suscribir 
-
-        jQuery("#suscribir").submit(function(e){
-            e.preventDefault();
-
-            jQuery.post(
-                '',
-                {},
-                function(data){
-
-                }
-            );
-        });
-    */
 
     show_hiden_arrow();
 

@@ -155,7 +155,6 @@
 
     include ('partes/cuidador/conocelo.php');
 
-    print_r($_SESSION['busqueda']);
     $dias = "";
     if( is_array($_SESSION['busqueda']['dias']) && count($_SESSION['busqueda']['dias']) > 0 ){
 	    foreach ($_SESSION['busqueda']['dias'] as $key => $value) {

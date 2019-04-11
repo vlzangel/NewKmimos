@@ -375,7 +375,7 @@
 	$final_movil = ($items_count)-1;
 
 	$HTML .= '
-		<div class="carrusel_servicios">
+		<div class="carrusel_servicios carrusel_servicios_1">
 			<h2 class="solo_pc">¿Qué estás buscando para tu mascota? <span>></span> </h2>
 			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
 
@@ -388,12 +388,9 @@
 			<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 		</div>
 		<form id="buscador_2" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
-
 			<input type="hidden" name="personalizada" value="1" />  
-
 			<input type="hidden" name="redireccionar" value="1" />
 			<input type="hidden" name="USER_ID" value="'.$user_id.'" />
-
 			<input type="radio" id="hospedaje_2" name="servicios[]" value="hospedaje"  />
 			<input type="radio" id="guarderia_2" name="servicios[]" value="guarderia"  />
 			<input type="radio" id="paseos_2" name="servicios[]" value="paseos"  />
@@ -637,10 +634,13 @@
 			<h2 class="solo_movil">Lo nuevo de Kmimos > </h2>
 
 			<div class="carrusel_servicios_principales_container">
-				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-paso-movil="7" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="70" data-t="1000">
+				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="0" data-h_movil="100" data-t="800">
 					'.$items.'
 				</div>
 			</div>
+
+			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 		</div>
 	';
 
@@ -700,7 +700,7 @@
 
     $items_count = count($SERVICIOS_PRINCIPALES);
 	$final_pc = $items_count-3;
-	$final_movil = ($items_count)-1;
+	$final_movil = ($items_count)-2;
 
 	$HTML .= '
 		<div class="carrusel_servicios carrusel_servicios_3">
@@ -708,10 +708,13 @@
 			<h2 class="solo_movil">Buscar Cuidadores por ciudad > </h2>
 
 			<div class="carrusel_servicios_principales_container">
-				<div class="carrusel_servicios_principales_box">
+				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="0" data-h_movil="50" data-t="800">
 					'.$items.'
 				</div>
 			</div>
+
+			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 		</div>
 	';
 

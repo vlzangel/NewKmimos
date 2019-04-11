@@ -640,6 +640,12 @@ body{
 		z-index: 9;
 	}
 
+	.carrusel_servicios_2 .seccion_destacados_flechas,
+	.carrusel_servicios_3 .seccion_destacados_flechas
+	{
+		display: none;
+	}
+
 	.seccion_destacados_izq {
 		left: -70px;
 	}
