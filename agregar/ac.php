@@ -1,7 +1,5 @@
 <?php
-	include 'wp-load.php';
-
-	global $wpdb;
+	include 'db.php';
 
 	$ids = [
 		21640,
@@ -16,7 +14,7 @@
 
 	$mensajes = [
 		[
-			21333,
+			254570,
 			[
 				'Son muy amorosos con mi perrhija me da confianza y me informa todo el tiempo de mi bebe  ',
 				'Emilio regreso feliz a casa, Fer estuvo muy al pendiente y nos estuvo enviando fotos y videos de Emilio y sus compañeros de fin de semana. Barush es muy amable, esta fue la 1era vez que dejamos a Emilio y quedamos muy satisfechos con la experiencia, definitivamente volvería a recurrir a Fer y Barush, la recomiendo ampliamente. Saludos  ',
@@ -27,7 +25,7 @@
 			]
 		],
 		[
-			14940,
+			214633,
 			[
 				'Recomiendo ampliamente a Elvi para el cuidado de tu mascota porque es muy linda y dedicada. Los trata con mucho cariño y se aprecia que le gusta lo que hace.  ',
 				'Excelente cuidadora , cariñosa y muy al pendiente de mis perritas ',
@@ -38,7 +36,7 @@
 			]
 		],
 		[
-			17367,
+			231910,
 			[
 				'Muy recomendable!!! ya es el cuidador oficial de mi bb, lo cuida muy bien y lo pasea mucho, ademas de que convive con sus perros y se divierte, sin duda me da mucha confianza dejarselo, me mantiene informada siempre',
 				'Thor estuvo muy contento y consentido tal cual como si estuviese en casa :). Alfredo 100% recomendable.',
@@ -60,9 +58,9 @@
 
 			$user_id = $ids[ $cla[ $key_2 ] ];
 
-		    $email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = {$user_id}");
-		    $nombre = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'first_name'");
-		    $apellido = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'last_name'");
+		    $email = $db->get_var("SELECT user_email FROM wp_users WHERE ID = {$user_id}");
+		    $nombre = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'first_name'");
+		    $apellido = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$user_id} AND meta_key = 'last_name'");
 
 			$sql_comentario = "
 		    	INSERT INTO 
@@ -78,29 +76,27 @@
 			    	'{$hoy}', 
 			    	'{$comentario}', 
 			    	'0', 
-			    	'0', 
+			    	'1', 
 			    	'', 
 			    	'', 
 			    	'0', 
 			    	'{$user_id}'
-			   	);<br>
+			   	);
 			";	
 
-			$wpdb->query( utf8_decode($sql) );
-			$coment_id = $wpdb->insert_id();
+			$db->query( utf8_decode($sql_comentario) );
+			$coment_id = $db->insert_id();
 
-			$sql  = "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'care', '{$cuidado}'); ";
-			$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'punctuality', '{$puntualidad}'); ";
-			$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'cleanliness', '{$limpieza}'); ";
-			$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'trust', '{$confianza}'); ";
+			$sql  = "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'care', '5');";
+			$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'punctuality', '5');";
+			$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'cleanliness', '5');";
+			$sql .= "INSERT INTO wp_commentmeta VALUES (NULL, '{$coment_id}', 'trust', '5');";
 
-			$db->query_multiple( utf8_decode($sql) );
 
 			echo $sql_comentario."<br>";
-			echo $sql;
-			//break;
+			echo str_replace(";", ";<br>", $sql);
 		}
 
-		echo "<br><br><br><br>";
+		echo "<br><br>";
 	}
 ?>
