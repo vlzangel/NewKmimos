@@ -21,6 +21,7 @@ jQuery( document ).ready(function() {
   			jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
             var $mensaje="";
+            
             if( data.status == "OK"){
                 if( data.pass_change == "SI" ){
                     $mensaje = "La contraseña ha sido cambiada, por medidas de seguridad su sesión será cerrada y deberá ingresar con su nueva contraseña";
@@ -35,7 +36,9 @@ jQuery( document ).ready(function() {
       			    }
       		    }
             }
+
             jQuery('#btn_actualizar').before('<span class="mensaje">'+$mensaje+'<i class="fa fa-times" aria-hidden="true"></i></span>');  
+
             if( data.pass_change != "SI" ){
                 jQuery('.mensaje').on('click', function(e){
                   jQuery('.mensaje').remove(); 
