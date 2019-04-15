@@ -83,11 +83,11 @@ function open_conocer( _this ){
         // jQuery( '.btn_reservar' ).click();
     }
 
-    /*
+    
     if( _this.data('reservar') != undefined ){
         jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('reservar'));
     }
-    */
+    
 
     if( jQuery("#tcc").val() == 'yes' ){
         if( contador_tcc == 0 ){
