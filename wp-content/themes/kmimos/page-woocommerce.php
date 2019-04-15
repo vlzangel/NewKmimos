@@ -52,7 +52,7 @@
 
 		$fee_conocer = get_cupos_conocer($USER_ID);
 		if( $fee_conocer == 3 ){
-			$fee_conocer = 0;
+			$fee_conocer = 30;
 		}else{
 			$fee_conocer = 0;
 		}
