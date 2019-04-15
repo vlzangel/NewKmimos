@@ -372,3 +372,8 @@
     .modal_conocer_c #te_quedan {
         display: none;
     }
+
+    .modal_conocer_c span.modal-name-cuidador {
+        color: #000 !important;
+        font-family: Gotham-Pro-Bold !important;
+    }

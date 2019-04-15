@@ -9,7 +9,7 @@
 				Si reservas ahora mismo con el Cuidador <strong><span class="modal-name-cuidador"></span></strong> obtienes un:
 			</div>
 			<div class="titulo_c_3">
-				<span>10%</span> de desc
+				Descuento por conocer <span>10%</span>
 			</div>
 			<div class="titulo_c_4">
 				¿Cómo asegurar tu reservación con descuento y conocer al Cuidador<br>

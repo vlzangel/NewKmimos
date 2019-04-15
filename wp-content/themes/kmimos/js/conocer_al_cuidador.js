@@ -59,8 +59,23 @@ function open_conocer( _this ){
     jQuery( '[name="post_id"]' ).val( _this.data('id') );
 
     if( _this.data('url') != undefined ){
-        jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('url') );
-        jQuery( '.boton_der' ).attr("href", RAIZ+_this.data('url') );
+        var url = RAIZ+_this.data('url');
+        var reservar = RAIZ+_this.data('reservar');
+
+        switch(test_conocer){
+            case 'b':
+                jQuery( '.boton_izq' ).attr("href", url );
+                jQuery( '.boton_der' ).attr("href", url );
+            break;
+            case 'c':
+                jQuery( '.boton_izq' ).attr("href", reservar );
+                jQuery( '.boton_der' ).attr("href", "javascript: jQuery( '.conocer_c' ).css('display', 'none');" );
+            break;
+            default:
+                
+            break;
+        }
+
         jQuery( '#btn_reserva_conocer' ).attr("href", RAIZ+_this.data('url') );
         jQuery( '#url_cuidador' ).val(RAIZ+_this.data('url') );
     }else{

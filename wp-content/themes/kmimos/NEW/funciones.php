@@ -956,7 +956,7 @@
 
 				$hospedaje_id = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_type = 'product' AND post_author = '{$_cuidador->user_id}' AND post_name LIKE '%hospedaje%'");
 				$reservar_url = 'reservar/'.$hospedaje_id;
-				$data_url = 'petsitters/'.$_cuidador->url.'?r=1';
+				$data_url = 'petsitters/'.$_cuidador->url;
 
 				$btn_conocer = '
 					<a 
