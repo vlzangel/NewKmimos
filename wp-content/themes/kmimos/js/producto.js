@@ -7,6 +7,7 @@ var MENSAJES_CUPONES = {
 	"3pgpet": "Este cupón te da 3 paseos de regalo (válidos hasta el 31 de Enero de 2019)",
 	"350desc": "",
 	"+2masc": "",
+	"cpc10%": "",
 };
 
 var PAQs = [

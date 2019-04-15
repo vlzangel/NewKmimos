@@ -83,9 +83,11 @@ function open_conocer( _this ){
         // jQuery( '.btn_reservar' ).click();
     }
 
+    /*
     if( _this.data('reservar') != undefined ){
         jQuery( '.boton_izq' ).attr("href", RAIZ+_this.data('reservar'));
     }
+    */
 
     if( jQuery("#tcc").val() == 'yes' ){
         if( contador_tcc == 0 ){
@@ -244,6 +246,7 @@ jQuery(document).ready(function(){
     });
 
     jQuery("#no_usar_descuento").on('click', function(e){
+        e.preventDefault();
         jQuery.post(
             HOME+'/procesos/conocer/uso_cupon_test_c.php',
             { 
@@ -259,6 +262,9 @@ jQuery(document).ready(function(){
 
     jQuery("#usar_descuento").on('click', function(e){
         e.preventDefault();
+
+        jQuery( '#url_cuidador' ).val( jQuery(this).attr("data-reservar") );
+
         jQuery.post(
             HOME+'/procesos/conocer/uso_cupon_test_c.php',
             { 
