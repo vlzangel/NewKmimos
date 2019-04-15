@@ -263,7 +263,7 @@ jQuery(document).ready(function(){
     jQuery("#usar_descuento").on('click', function(e){
         e.preventDefault();
 
-        jQuery( '#url_cuidador' ).val( jQuery(this).attr("data-reservar") );
+        jQuery( '#url_cuidador' ).val( jQuery(this).attr("href") );
 
         jQuery.post(
             HOME+'/procesos/conocer/uso_cupon_test_c.php',
