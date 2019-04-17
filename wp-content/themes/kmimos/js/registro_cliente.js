@@ -455,6 +455,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		console.log( m );
 
 		jQuery('#datepets').attr("type", "date");
+		jQuery('#datepets').attr("placeholder", "dd/mm/aaaa");
 		jQuery('#datepets').attr("max", da.getFullYear()+"-"+m+"-"+da.getDate());
 		jQuery('#datepets').prop("readonly", false);
 	}
@@ -900,8 +901,11 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
 
 	jQuery(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
 		e.preventDefault();
+
+
 		jQuery(".popup-registrarte-1").css("display", "none");
-		jQuery(".popup-registrarte-nuevo-correo").css("display", "block");
+		// jQuery(".popup-registrarte-nuevo-correo").css("display", "block");
+		jQuery(".popup-registrarte-datos-mascota").css("display", "block");
 
 		if( wlabel == "petco" ){
 			adf.ClickTrack(this,1453019,'MX_Kmimos_Registo_180907',{});
