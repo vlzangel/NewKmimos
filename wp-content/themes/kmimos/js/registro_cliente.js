@@ -456,6 +456,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 
 		jQuery('#datepets').attr("type", "date");
 		jQuery('#datepets').attr("placeholder", "dd/mm/aaaa");
+		jQuery('#datepets').val(da.getFullYear()+"-"+m+"-"+da.getDate());
 		jQuery('#datepets').attr("max", da.getFullYear()+"-"+m+"-"+da.getDate());
 		jQuery('#datepets').prop("readonly", false);
 	}
