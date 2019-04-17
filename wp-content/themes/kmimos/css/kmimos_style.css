@@ -8368,3 +8368,21 @@ textarea.vlz_input {
     background-color: #7c169e !important;
     border-bottom: 3px solid #7c169e !important;
 }
+
+.km-box-form .label-placeholder-2 {
+    position: relative;
+}
+
+.km-box-form .label-placeholder-2 label {
+    left: 0;
+    z-index: 0;
+    font-weight: 300;
+    position: absolute;
+    font-family: Gotham-Pro-Regular, Arial, serif;
+    color: #979797;
+    transition: all .15s ease-in;
+    margin-bottom: 0;
+    font-weight: 700;
+    top: 12px;
+    font-size: 11px;
+}
