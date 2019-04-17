@@ -4409,7 +4409,7 @@ a.km-btn-comentario {
     background:#fff;
     background-image:url(../images/new/icon/icon-calendario.svg);
     background-repeat:no-repeat;
-    background-position:0 22px!important
+    background-position: 0px 36px!important;
 }
 .km-fecha-nacimiento input::-webkit-input-placeholder {
     font-size:15px;

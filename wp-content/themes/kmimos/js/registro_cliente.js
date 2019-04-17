@@ -433,19 +433,31 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 		'tamano_mascota'
 	];
 
-	var maxDatePets = new Date();
-	jQuery('#datepets').datepick({
-		dateFormat: 'dd/mm/yyyy',
-		maxDate: maxDatePets,
-		onSelect: function(xdate) {
+	if( !jQuery("body").hasClass("iOS") ){
+		var maxDatePets = new Date();
+		jQuery('#datepets').datepick({
+			dateFormat: 'dd/mm/yyyy',
+			maxDate: maxDatePets,
+			onSelect: function(xdate) {
 
-			if( jQuery('#datepets').val() != '' ){
-				jQuery('[name="sp-date_birth"]').remove();
-				jQuery('#datepets').css('color', 'black');
-			}
-		},
-		yearRange: (parseInt(maxDatePets.getFullYear())-30)+':'+maxDatePets.getFullYear(),
-	});
+				if( jQuery('#datepets').val() != '' ){
+					jQuery('[name="sp-date_birth"]').remove();
+					jQuery('#datepets').css('color', 'black');
+				}
+			},
+			yearRange: (parseInt(maxDatePets.getFullYear())-30)+':'+maxDatePets.getFullYear(),
+		});
+	}else{
+		var da = new Date();
+		var m = da.getMonth()+1;
+
+		m = ( m < 10 ) ? "0"+m : m;
+		console.log( m );
+
+		jQuery('#datepets').attr("type", "date");
+		jQuery('#datepets').attr("max", da.getFullYear()+"-"+m+"-"+da.getDate());
+		jQuery('#datepets').prop("readonly", false);
+	}
 
 	jQuery("#nombre_mascota").blur(function(){
 		if(jQuery("#nombre_mascota").val().length == 0){		

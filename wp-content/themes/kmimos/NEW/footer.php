@@ -132,6 +132,29 @@
             </script>
         ';
     }
+            
+    if(  $_SESSION['admin_sub_login'] == 'YES' ){
+        $HTML .= "
+            <a href='".get_home_url()."/?i=".md5($_SESSION['id_admin'])."&admin=YES' class='theme_button' style='
+			    position: fixed;
+			    display: inline-block;
+			    left: 50px;
+			    bottom: 50px;
+			    padding: 10px 25px;
+			    font-size: 40px;
+			    font-family: Roboto;
+			    z-index: 999999999999999999;
+			    text-decoration: none;
+			    color: #FFF;
+			    border-radius: 50%;
+			    font-weight: 600;
+		        background-color: #00d2c6;
+    			border-color: #00d2c6;
+            '>
+                X
+            </a>
+        ";
+    }
 
 	echo comprimir($HTML);
 

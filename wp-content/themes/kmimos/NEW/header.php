@@ -177,7 +177,7 @@
 
 	$HTML .= '
 	</head>
-	<body class="' . join(' ', get_body_class($class)) . ' ' . $reserrvacion_page . ' '.$home_2.'">
+	<body class="' . join(' ', get_body_class($class)) . ' ' . $reserrvacion_page . ' '.$home_2.' '.$class_iOS.'">
 	<script> 
 			var RUTA_IMGS = "'.get_home_url().'/imgs"; 
 
