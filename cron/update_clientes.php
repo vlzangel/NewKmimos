@@ -130,7 +130,7 @@
 	foreach ($data as $key => $cliente) {
 		$sql = "
 			INSERT INTO
-				clientes
+				clientes_bp
 			VALUES
 			(
 				NULL,

@@ -4,11 +4,10 @@
 	include 'init.php';
 	include 'funciones.php';
 
-	$modulo = "cliente";
+	$modulo = "cuidador";
 
 	$desde = $_SESSION[ "desde_".$modulo ];
 	$hasta = $_SESSION[ "hasta_".$modulo ];
-	$total_reservas_cliente = $_SESSION[ "total_reservas_".$modulo ];
 
 	$condicion = "";
 
@@ -16,15 +15,15 @@
 		$condicion = " WHERE registro >= '{$desde} 00:00:00' AND registro <= '{$hasta} 00:00:00'";
 	}
 	
-	$sql = "SELECT * FROM clientes_bp {$condicion}";
+	$sql = "SELECT * FROM cuidadores_bp {$condicion}";
 
-	$users = $db->get_results( $sql );
+	$cuidadores = $db->get_results( $sql );
 
 	$data["data"] = [];
 
-	if( $users != null ){
+	if( $cuidadores != null ){
 
-		foreach( $users as $key => $r ){ 
+		foreach( $cuidadores as $key => $r ){ 
 
 			$link_login = md5($r->user_id);
 
@@ -35,28 +34,21 @@
 		    	$_status = '<span id="user_'.$r->user_id.'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$r->user_id.'" data-status="activo">Activar</span>';
 		    } 
 
-		    $_cant_reservas = "N/A";
-
-		    if( $total_reservas_cliente == "YES" ){
-		    	$_cant_reservas = getCountReservas($r->user_id, $desde, $hasta);
-		    }
-
-		    $r->primera_solicitud = ( $r->primera_solicitud == "" ) ? "-" : $r->primera_solicitud;
-		    $r->primera_reserva = ( $r->primera_reserva == "" ) ? "-" : $r->primera_reserva;
-
 		    $data["data"][] = [
 		    	$r->user_id,
+		    	$r->flash,
 		    	date('Y-m-d', strtotime($r->registro)),
+		    	$r->nacimiento,
+				utf8_encode( $r->full_name ),
 				utf8_encode( $r->nombre ),
 				utf8_encode( $r->apellido ),
-				utf8_encode( '<a href="'.$_GET['home']."/?i=".$link_login.'"> '.$r->email.' </a>'),
-				utf8_encode( $r->telefono ),
-				utf8_encode( $r->donde_nos_conocio),
-				$r->sexo,
-				$r->edad,
-				$_cant_reservas,
-				$r->primera_solicitud,
-				$r->primera_reserva,
+				utf8_encode( '<a target="_blank" href="'.$_GET['home'].'/wp-admin/post.php?post='.$r->post_id.'&action=edit"> '.$r->cuidador.' </a>'),
+				utf8_encode( '<a target="_blank" href="'.$_GET['home']."/?i=".$link_login.'"> '.$r->email.' </a>'),
+				utf8_encode( $r->estado ),
+				utf8_encode( $r->municipio),
+				utf8_encode( $r->direccion),
+				$r->telefono,
+				$r->nos_conocio,
 				$_status
 		    ];
 
