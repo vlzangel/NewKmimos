@@ -10,7 +10,7 @@
 				<li> <strong>5</strong> <div> Llena la solicitud y <span>listo</span> </div> </li>
 			</ul>
 			<div class="mensaje_b">
-				Y no te preocupes, si después de haberlo(a) conocido no te convence, puedes elegir a otro cuidador o cancelar tu reservación obteniendo un reembolso completo de tu pago.
+				Y no te preocupes, si después de haberlo(a) conocido no te convence y quieres cambiar de cuidador, puedes cancelar tu reservación obteniendo un reembolso completo de tu pago.
 			</div>
 			<div class="botones_b">
 				<a href="#" class="boton boton_izq">Reservar y conocer</a>
