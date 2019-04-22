@@ -905,8 +905,8 @@ jQuery( document ).on('keypress', '[data-charset]', function(e){
 
 
 		jQuery(".popup-registrarte-1").css("display", "none");
-		// jQuery(".popup-registrarte-nuevo-correo").css("display", "block");
-		jQuery(".popup-registrarte-datos-mascota").css("display", "block");
+		jQuery(".popup-registrarte-nuevo-correo").css("display", "block");
+		// jQuery(".popup-registrarte-datos-mascota").css("display", "block");
 
 		if( wlabel == "petco" ){
 			adf.ClickTrack(this,1453019,'MX_Kmimos_Registo_180907',{});

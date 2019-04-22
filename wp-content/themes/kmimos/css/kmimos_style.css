@@ -8386,3 +8386,7 @@ textarea.vlz_input {
     top: 12px;
     font-size: 11px;
 }
+
+.label_iOS{
+	display: none;
+}

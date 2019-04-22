@@ -120,6 +120,7 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 			
 			function init_DataTables() {
 				
+
 				console.log('run_datatables');
 				
 				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
@@ -204,11 +205,13 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 
 				TableManageButtons.init();
 				$('#adminmenuwrap').css('position', 'fixed');
+
 			};
 	   
 	$(document).ready(function() {
-		init_DataTables();	
-
+		if( jQuery("#_table").html() == undefined ){
+			init_DataTables();	
+		}
 	});	
 	
 

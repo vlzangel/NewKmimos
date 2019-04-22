@@ -300,7 +300,7 @@ $HTML .='
 								<input type="text" name="color_mascota" data-charset="xlf" data-change="xlf" id="color_mascota" class="input-label-placeholder">
 							</div>
 							<div class="km-fecha-nacimiento label-placeholder-2">
-								<label>Fecha de nacimiento de tu mascota</label>
+								<label class="label_iOS">Fecha de nacimiento de tu mascota</label>
 								<input type="text" name="date_birth" id="datepets" placeholder="Fecha de Nacimiento" class="date_birth" readonly>
 							</div>
 							<div class="km-datos-mascota">

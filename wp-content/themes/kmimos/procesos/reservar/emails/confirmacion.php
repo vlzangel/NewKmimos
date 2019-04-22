@@ -84,12 +84,12 @@
             kmimos_mails_administradores_new($confirmacion_titulo, $mensaje);
         }
 
-        if( $superAdmin == "" ){
+        // if( $superAdmin == "" ){
             $CONTENIDO .= "<div class='msg_acciones'>
                 <strong>¡Todo esta listo!</strong><br>
                 La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.
             </div>";
-        }
+        // }
 
     setSessionCode();
 ?>
