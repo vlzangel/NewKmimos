@@ -49,7 +49,7 @@
 						<p>Para poder conocer al cuidador primero tienes que:</p>
 						<ul>
 							<li>Completa tu perfil y registra a tus mascotas</li>
-							<li>Adquiere por $30 pesos, 3 créditos para conocer a cualquier cuidador*</li>
+							<li>Adquiere por $30 pesos, 3 créditos para conocer hasta 3 cuidadores*</li>
 							<li>Solicita tu cita con tu cuidador y posteriormente reserva.</li>
 						</ul>
 					</div>
@@ -57,7 +57,7 @@
 					<input name="post_id" type="hidden" value="">
 
 					<p style="text-align: justify;">
-						*Al adquirir el paquete de conocer cuidador de $30 pesos, tendrás la opción de escoger 3 cuidadores en un lapso de 3 meses máximo, y en caso de reservar con alguno de esos 3 cuidadores tus servicios para tu peludo, te bonificaremos esos $30 pesos en la reservación o te lo reembolsaremos en efectivo.
+						*Al adquirir el paquete de conocer cuidador de $30 pesos, tendrás la opción de escoger 3 cuidadores en un lapso de 3 meses máximo, y en caso de reservar con alguno de esos 3 cuidadores tus servicios para tu peludo, <strong>te bonificaremos esos $30 pesos en la reservación o te lo reembolsaremos en efectivo</strong>.
 					</p>
 					<p style="text-align: justify;">
 						En caso de que el cuidador cancele la solicitud de conocerte o la reserva, se te regresará tu saldo a favor para que tengas la opción de conocer a otro cuidador disponible. Si tu cancelas la solicitud para conocer al cuidador, se tomará esa cancelación a cuenta del paquete que contrataste.

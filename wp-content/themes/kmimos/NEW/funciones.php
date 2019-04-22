@@ -202,7 +202,7 @@
 	function get_cupos_conocer($user_id){
 		global $wpdb;
 		$cupos = get_cupos_conocer_registro($user_id);
-		return $cupos->usos;
+		return ( $cupos == false ) ? 0 : $cupos->usos;
 	}
 
 	function get_cupos_conocer_registro($user_id){

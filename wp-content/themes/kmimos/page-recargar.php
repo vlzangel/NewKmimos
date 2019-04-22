@@ -116,7 +116,7 @@
 							</ul>
 							<div class="km-title-step">
 								RESUMEN DE TU COMPRA
-								<div>Queremos confirmar tu método de pago</div>
+								<div>Al picarle en Siguiente, procederás al pago para adquirir tus tres créditos</div>
 							</div>
 						</div>
 
@@ -292,7 +292,7 @@
 						</div>
 
 						<span id="reserva_btn_next_3" class="km-end-btn-form vlz_btn_reservar disabled">
-							<div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div> <span>Terminar reserva</span>
+							<div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div> <span>Pagar</span>
 						</span>
 
 					</div>

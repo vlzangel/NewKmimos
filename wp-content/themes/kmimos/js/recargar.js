@@ -97,7 +97,7 @@ function initFactura(){
 	var items = "";
 
 	var tamanos = {
-		"cupo_1" : "Cupos",
+		"cupo_1" : "créditos",
 	};
 
 	var subtotal = 0;
@@ -106,7 +106,7 @@ function initFactura(){
 			subtotal = 	parseInt( CARRITO["cantidades"][key][0] ) *
 						parseFloat( CARRITO["cantidades"][key][1] );
 			items += '<div class="km-option-resume-service">'
-			items += '	<span class="label-resume-service">'+CARRITO["cantidades"][key][0]+' '+tamano+' x $'+CARRITO["cantidades"][key][1]+' </span>'
+			items += '	<span class="label-resume-service">'+CARRITO["cantidades"][key][0]+' '+tamano+' x $'+CARRITO["cantidades"][key][1]+' c/u </span>'
 			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
 			items += '</div>';
 		}
@@ -677,6 +677,9 @@ jQuery(document).ready(function() {
 		CARRITO["tarjeta"]['puntos'] = false;
     	pagarReserva();
 	});
+
+	jQuery("#reserva_btn_next_1").click();
+
 	/* Configuración Openpay */
 
 		OpenPay.setId( OPENPAY_TOKEN );

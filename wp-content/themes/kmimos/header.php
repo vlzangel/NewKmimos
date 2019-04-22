@@ -69,6 +69,16 @@
 		";
 
 		echo comprimir( $HTML );
+	}else{
+		$_SESSION['test_conocer'] = $_GET['test_conocer'];
+
+		$HTML = "
+			<script>
+		        var test_conocer = undefined;
+	        </script>
+		";
+
+		echo comprimir( $HTML );
 	}
 
     if( is_user_logged_in() && $_SESSION["save_uso_banner"] ){

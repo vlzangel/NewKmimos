@@ -76,6 +76,8 @@
 
     usar_cupo_conocer($user_id);
 
+    $cupos = get_cupos_conocer($user_id)+0;
+
     $cupos_disponibles = get_cupos_conocer($user_id)." de 3 ";
 
     $data = array(
