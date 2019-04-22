@@ -16,6 +16,8 @@
     $xhora_actual = date("H", $hora_actual);
 
     $acc = "CCL"; $usu = "STM";
+    
+    $_GET['CONFIRMACION'] = 'YES';
 
     if( ($xhora_actual-$rango) < $inicio ){
         $hoy = date("d-m-Y", $hora_actual);

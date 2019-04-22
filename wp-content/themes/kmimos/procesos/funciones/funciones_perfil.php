@@ -14,7 +14,7 @@
 	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'?u=cuip" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> <span>Confirmar</span> </a>';
     				break;
 	    			case 'cancelar':
-	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> <span>Cancelar</span> </a>';
+	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'?CONFIRMACION=YES" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> <span>Cancelar</span> </a>';
     				break;
 	    			case 'modificar':
 	    				$respuesta .= '<a data-accion="'.$accion.'" class="vlz_accion vlz_modificar"> <img src="'.get_recurso('img/PERFILES').'Modificar.svg" /> Modificar </a>';

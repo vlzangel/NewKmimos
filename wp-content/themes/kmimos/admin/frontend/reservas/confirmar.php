@@ -10,5 +10,12 @@
 
     include($PATH_TEMPLATE."/procesos/reservar/emails/index.php");
 
-    $CONTENIDO .= "<a class='km-btn-primary volver_msg' href='".get_home_url()."/perfil-usuario/reservas/'>Volver</a>";
+    if( $_GET["CONFIRMACION"] == "YES" ){
+    	$CONTENIDO .= "<a class='km-btn-primary volver_msg' href='".get_home_url()."/perfil-usuario/reservas/'>Volver</a>";
+    }else{
+    	$CONTENIDO .= "
+    		<a style='display: inline-block; margin-left: 15px !important;' class='km-btn-primary volver_msg' href='".get_home_url()."/perfil-usuario/reservas/confirmar/".$id_orden."?u=cui&CONFIRMACION=YES'>SI</a>
+    		<a class='km-btn-primary volver_msg' href='".get_home_url()."/perfil-usuario/reservas/'>NO</a>
+    	";
+    }
 ?>

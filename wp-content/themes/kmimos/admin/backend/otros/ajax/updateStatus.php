@@ -85,6 +85,7 @@
             $new_status = "Confirmado";
             $acc = "CFM"; $usu = "CUI"; $NO_ENVIAR = "YES";
             $_GET['u'] = 'sistema_cambio_status';
+            $_GET['CONFIRMACION'] = 'YES';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
 
@@ -92,18 +93,21 @@
             $new_status = "Confirmado con env&iacute;o de correo";
             $acc = "CFM"; $usu = "CUI";
             $_GET['u'] = 'sistema_cambio_status';
+            $_GET['CONFIRMACION'] = 'YES';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
 
         case 'cancelado':
             $new_status = "Cancelado";
             $acc = "CCL"; $usu = "CUI"; $NO_ENVIAR = "YES";
+            $_GET['CONFIRMACION'] = 'YES';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
 
         case 'cancelado_email':
             $new_status = "Cancelado con env&iacute;o de correo";
             $acc = "CCL"; $usu = "CUI";
+            $_GET['CONFIRMACION'] = 'YES';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
     
