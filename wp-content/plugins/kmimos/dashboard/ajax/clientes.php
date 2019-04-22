@@ -35,7 +35,7 @@
 		    	$_status = '<span id="user_'.$r->user_id.'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$r->user_id.'" data-status="activo">Activar</span>';
 		    } 
 
-		    $_cant_reservas = 0;
+		    $_cant_reservas = "N/A";
 
 		    if( $total_reservas_cliente == "YES" ){
 		    	$_cant_reservas = getCountReservas($r->user_id, $desde, $hasta);
