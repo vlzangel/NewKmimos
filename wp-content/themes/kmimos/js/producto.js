@@ -7,7 +7,10 @@ var MENSAJES_CUPONES = {
 	"3pgpet": "Este cupón te da 3 paseos de regalo (válidos hasta el 31 de Enero de 2019)",
 	"350desc": "",
 	"+2masc": "",
-	"cpc10%": "",
+};
+
+var NOMBRE_CUPONES = {
+	"cpc10%": "Descuento por conocer 10%",
 };
 
 var PAQs = [
@@ -748,8 +751,12 @@ function mostrarCupones(){
 					items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+'</span>';
 
 				}else{
-					items += '	<span class="label-resume-service">'+nombreCupon+'</span>';
-					if(cupon[1] > 0){
+					if( NOMBRE_CUPONES[nombreCupon] == undefined || NOMBRE_CUPONES[nombreCupon] == "" ){
+						items += '	<span class="label-resume-service">'+nombreCupon+'</span>';
+					}else{
+						items += '	<span class="label-resume-service">'+NOMBRE_CUPONES[nombreCupon]+'</span>';
+					}
+					if(cupon[1] > 0 ){
 						items += '	<span class="value-resume-service">$'+numberFormat(cupon[1])+' '+eliminarCupo+' </span>';
 					}else{
 						items += '	<span class="value-resume-service">'+eliminarCupo+' </span>';
