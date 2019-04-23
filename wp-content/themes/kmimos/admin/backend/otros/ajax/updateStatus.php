@@ -160,13 +160,13 @@
 
         $data = [
             "admin" => $admin_user_id,
+            "status_a" => $status_actual,
+            "status_n" => $new_status,
             "hora" => date("H:i:s"),
             "fecha" => date("d-m-Y")
         ];
 
         $data = json_encode($data);
-
-        // $wpdb->query("INSERT INTO wp_postmeta VALUES (NULL, '{$id_reserva}', 'status_change', '{$data}')");
 
         add_post_meta($id_reserva, 'status_change', $data);
 
