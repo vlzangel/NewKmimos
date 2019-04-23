@@ -70,7 +70,7 @@
 		</div>
 
         <div style="text-align: center;">
-            <a href='[ACEPTAR]?u=adm' style='
+            <a href='[ACEPTAR]?u=adm&CONFIRMACION=YES' style='
                 max-width: 200px;
                 width: 100%;
                 padding: 10px;
@@ -88,7 +88,7 @@
         </div>
 
         <div style="text-align: center;">
-            <a href='[RECHAZAR]' style='
+            <a href='[RECHAZAR]?CONFIRMACION=YES' style='
                 max-width: 200px;
                 width: 100%;
                 padding: 10px;

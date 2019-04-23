@@ -11,7 +11,7 @@
 	    				$respuesta .= '<a data-accion="'.get_home_url().'/perfil-usuario/reservas/subir/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir Fotos</a>';
     				break;
 	    			case 'confirmar':
-	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'?u=cuip" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> <span>Confirmar</span> </a>';
+	    				$respuesta .= '<a data-accion="confirmar/'.$accion.'?u=cuip&CONFIRMACION=YES" class="vlz_accion vlz_confirmar"> <i class="fa fa-check" aria-hidden="true"></i> <span>Confirmar</span> </a>';
     				break;
 	    			case 'cancelar':
 	    				$respuesta .= '<a data-accion="cancelar/'.$accion.'?CONFIRMACION=YES" class="vlz_accion vlz_cancelar"> <i class="fa fa-trash-o" aria-hidden="true"></i> <span>Cancelar</span> </a>';

@@ -177,8 +177,6 @@
     	
     }
 
-
-
 	$servicios_plantilla = str_replace('[inicio]', date("d/m", $servicio["inicio"]), $servicios_plantilla);
 	$servicios_plantilla = str_replace('[desglose]', $desglose, $servicios_plantilla);
     $servicios_plantilla = str_replace('[ADICIONALES]', $adicionales, $servicios_plantilla);
@@ -189,19 +187,20 @@
     	$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
     	if ( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva != "wc-on-hold" ){
 	    	$acc = "CFM";
+	    	$CONFIRMACION = "YES";
 	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
     	}
     	if ( strtolower($servicio["metodo_pago"]) == "tarjeta" && $status_reserva != "pending" ){
 	    	$acc = "CFM";
+	    	$CONFIRMACION = "YES";
 	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
     	}
     	if ( strtolower($servicio["metodo_pago"]) == "saldo y/o descuentos" && $status_reserva != "pending" ){
 	    	$acc = "CFM";
+	    	$CONFIRMACION = "YES";
 	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
     	}
     }
-
-
 
 	$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
     $vence = strtotime( $servicio["vence"]);
@@ -487,7 +486,7 @@
 					}else{ // Bloque Confirmacion
 						$CONTENIDO .= "
 						<div class='msg_acciones'>
-			                <strong>Esta seguro de confirmar la reserva #".$servicio["id_reserva"].".</strong>
+			                <strong>Esta seguro de CONFIRMAR la reserva #".$servicio["id_reserva"].".</strong>
 			            </div>";
 					}
 
@@ -524,7 +523,7 @@
 					}else{ // Bloque Confirmacion
 						$CONTENIDO .= "
 						<div class='msg_acciones'>
-			                <strong>Esta seguro de cancelar la reserva #".$servicio["id_reserva"].".</strong>
+			                <strong>Esta seguro de CANCELAR la reserva #".$servicio["id_reserva"].".</strong>
 			            </div>";
 					}
 

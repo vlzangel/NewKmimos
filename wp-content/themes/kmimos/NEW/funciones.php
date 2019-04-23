@@ -186,11 +186,13 @@
 	function revertir_saldo_conocer($user_id){
 		global $wpdb;
 		$cupos = get_cupos_conocer_registro($user_id);
-		$metas = json_decode( $cupos->metadata );
-		$cupos_quitados = $metas->cupos_quitados;
-		$metas->cupos_quitados = 0;
-		$metadata = json_encode( $metas );
-		$wpdb->query("UPDATE conocer_pedidos SET usos = '{$cupos_quitados}', metadata='{$metadata}' WHERE user_id = {$user_id} AND status = 'Pagado'");
+		if( $cupos != null ){
+			$metas = json_decode( $cupos->metadata );
+			$cupos_quitados = $metas->cupos_quitados;
+			$metas->cupos_quitados = 0;
+			$metadata = json_encode( $metas );
+			$wpdb->query("UPDATE conocer_pedidos SET usos = '{$cupos_quitados}', metadata = '{$metadata}' WHERE user_id = {$user_id} AND status = 'Pagado'");
+		}
 	}
 
 	function usar_cupo_conocer($user_id){
