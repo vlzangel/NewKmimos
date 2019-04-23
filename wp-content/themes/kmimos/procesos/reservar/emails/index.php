@@ -200,6 +200,16 @@
 	    	$CONFIRMACION = "YES";
 	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
     	}
+    	if ( strtolower($servicio["metodo_pago"]) == "paypal" && $status_reserva != "pending" ){
+	    	$acc = "CFM";
+	    	$CONFIRMACION = "YES";
+	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
+    	}
+    	if ( strtolower($servicio["metodo_pago"]) == "mercadopago" && $status_reserva != "pending" ){
+	    	$acc = "CFM";
+	    	$CONFIRMACION = "YES";
+	    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
+    	}
     }
 
 	$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
