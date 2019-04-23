@@ -1,5 +1,7 @@
 <?php
     error_reporting(0);
+
+    date_default_timezone_set('America/Mexico_City');
 	
 	extract($_POST);
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
@@ -14,6 +16,8 @@
     $orden_status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = {$id_orden}");
     $reserva = $wpdb->get_row("SELECT * FROM wp_posts WHERE post_parent = {$id_orden} AND post_type LIKE 'wc_booking'");
     $reserva_status = $reserva->post_status;
+
+    $id_reserva = $reserva->ID;
 
     $cliente_id = $reserva->post_author;
 
@@ -154,6 +158,18 @@
         $current_user = wp_get_current_user();
         $admin_user_id = $current_user->ID;
 
+        $data = [
+            "admin" => $admin_user_id,
+            "hora" => date("H:i:s"),
+            "fecha" => date("d-m-Y")
+        ];
+
+        $data = json_encode($data);
+
+        // $wpdb->query("INSERT INTO wp_postmeta VALUES (NULL, '{$id_reserva}', 'status_change', '{$data}')");
+
+        add_post_meta($id_reserva, 'status_change', $data);
+
         $admin_email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = {$admin_user_id}");
         $metas_admin = get_user_meta($admin_user_id);
 
@@ -177,8 +193,8 @@
         
         $mensaje = get_email_html($mensaje);
 
-        wp_mail( "a.veloz@kmimos.la", "Actualización de Status", $mensaje);
-        wp_mail( "chaudaryy@gmail.com", "Actualización de Status", $mensaje);
+        // wp_mail( "a.veloz@kmimos.la", "Actualización de Status", $mensaje);
+        // wp_mail( "chaudaryy@gmail.com", "Actualización de Status", $mensaje);
     }
 
 	exit;
