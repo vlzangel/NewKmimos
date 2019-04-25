@@ -70,11 +70,11 @@
 
 		echo comprimir( $HTML );
 	}else{
-		$_SESSION['test_conocer'] = $_GET['test_conocer'];
+		$_SESSION['test_conocer'] = "b";
 
 		$HTML = "
 			<script>
-		        var test_conocer = undefined;
+		        var test_conocer = 'b';
 	        </script>
 		";
 

@@ -98,7 +98,8 @@ $HTML_CONOCER = '
 					if( $ES_PERFIL == 'YES' ){
 						$PRUEBA = 'b2';
 					}else{
-						$PRUEBA = 'a';
+						// $PRUEBA = 'a';
+						$PRUEBA = 'b';
 						switch ( $_SESSION['test_conocer'] ) {
 							case 'b':
 								$PRUEBA = 'b';
@@ -108,7 +109,8 @@ $HTML_CONOCER = '
 							break;
 							
 							default:
-								$PRUEBA = 'a';
+								// $PRUEBA = 'a';
+								$PRUEBA = 'b';
 							break;
 						}
 					}
