@@ -354,6 +354,8 @@
 		}
 
 		if( $NO_ENVIAR != "" ){ $continuar = true; }
+
+		$CONFIRMACION == "YES";
 		
 		if( $continuar ){
 

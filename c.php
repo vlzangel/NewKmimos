@@ -3,11 +3,53 @@
 	
 	if( !isset($_SESSION) ){ session_start(); }
 
-	// $_temp = pre_carga_data_cuidadores();
-	// $_SESSION["DATA_CUIDADORES"] = $_temp[0];
-	// $_SESSION["CUIDADORES_USER_ID"] = $_temp[1];
+	global $wpdb;
 
-	echo date("d/m/Y H:i:s", 1555967110);
-	echo "<br><br>";
-	echo date("d/m/Y H:i:s", 1555964790);
+	$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores WHERE activo = 1");
+
+	$cuida = [];
+
+	foreach ($cuidadores as $key => $cuidador) {
+		$estados = explode("=", $cuidador->estados);
+		$municipios = explode("=", $cuidador->municipios);
+		if( count( $estados ) > 3 || count( $municipios ) > 3 ){
+			/*
+			$cuida[] = [
+				$cuidador->nombre." ".$cuidador->apellido,
+				$cuidador->titulo,
+				$cuidador->email,
+				$cuidador->telefono,
+				$cuidador->estados,
+				$cuidador->municipios
+			];
+			*/
+			$cuida[] = $cuidador->id;
+		}
+	}
+
+	/*
+	echo "Total: ".count($cuidadores)."<br>";
+	echo "Con mult: ".count($cuida)."<br>";
+
+	echo "<pre>";
+		print_r( $cuida );
+	echo "</pre>";
+	*/
+
+	$ids = implode(",", $cuida);
+
+	echo "
+		SELECT
+			nombre,
+			apellido,
+			titulo,
+			email,
+			telefono,
+			estados,
+			municipios
+		FROM
+			cuidadores
+		WHERE
+			id IN ({$ids})
+	";
 ?>
