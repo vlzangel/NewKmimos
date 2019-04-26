@@ -8,6 +8,8 @@
 
     $acc = "CCL"; $usu = "CUI";
 
+    $_GET["CONFIRMACION"] = "YES";
+
     include($PATH_TEMPLATE."/procesos/reservar/emails/index.php");
 
     // if( $_GET["CONFIRMACION"] == "YES" ){
