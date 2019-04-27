@@ -355,197 +355,257 @@
 
 		if( $NO_ENVIAR != "" ){ $continuar = true; }
 
-		$CONFIRMACION == "YES";
+		$CONFIRMACION = "YES";
 		
 		if( $continuar ){
 
-			if( $acc == "CFM" ){
-				$continuar_accion = true;
-				$time_cancelado = get_post_meta($servicio["id_reserva"], 'cancelado_a', true);
-				if( $time_cancelado != false && $time_cancelado > 0 ){
-					$time_cancelado = $time_cancelado - time();
-					if( $time_cancelado <= 600 ){
-						$continuar_accion = false;
+			$CORRECTO = false;
+
+			if( $acc == "CFM" || $acc == "CCL" ){
+				$pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
+
+				if( $pre_change_status == null ){
+
+					$confirmado_por = "";
+					if( isset($_GET["u"]) ){
+						if( $superAdmin != "YES" ){
+					        $confirmado_por = $_GET["u"];
+					    }else{
+					        $confirmado_por = $_GET["u"]."_super_admin";
+					    }
+					}
+
+					$data = [
+						"acc" => $acc,
+						"usu" => $usu,
+						"hora" => time(),
+						"confirmado_por" => $confirmado_por
+					];
+
+					$data = json_encode($data);
+					update_post_meta($servicio["id_reserva"], 'pre_change_status', $data );	
+
+					$wpdb->query( "UPDATE wp_posts SET ping_status = '{$acc}' WHERE ID = ".$servicio["id_orden"] );	
+
+					if( $acc == "CFM" ){
+						$CONTENIDO .= "<div class='msg_acciones'>
+			                <strong>¡Todo esta listo!</strong><br>
+			                La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.
+			            </div>";
+					}else{
+						$CONTENIDO .= '
+				            <h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;">
+				                <div class="'.$style.'">
+				                    Te notificamos que la reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada exitosamente.
+				                </div>
+				            </h1>
+				        ';
+					}			
+				}else{
+					$pre_change_status = json_decode( $pre_change_status );
+
+					if( $pre_change_status->hora > ( time() + 60 ) ){
+						$CORRECTO = true;
+					}else{
+						if( $pre_change_status->acc != $acc ){
+							delete_post_meta($servicio["id_reserva"], 'pre_change_status');		
+						}
 					}
 				}
 
-				if( $continuar_accion ){
+				if( $CORRECTO ){
 
-					if( $CONFIRMACION == "YES" ){
-
-						update_post_meta($servicio["id_reserva"], 'confirmado_a', time() );
-
-						$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
-			    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
-						include("confirmacion.php");
-						
-						// **********************************
-						// BEGIN Club de las Patitas Felices
-						// **********************************
-						$count_reservas = $wpdb->get_var( "SELECT  
-									count(ID) as cant
-								FROM wp_posts
-								WHERE post_type = 'wc_booking' 
-									AND not post_status like '%cart%' AND post_status = 'confirmed' 
-									AND post_author = ".$cliente["id"]."
-									AND DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('2017-05-12','%m-%d-%Y') and DATE_FORMAT(now(),'%m-%d-%Y')" );
-						
-						if(  $_SESSION['admin_sub_login'] != 'YES' && $count_reservas == 1){
-					   		if(isset($cliente["id"])){	
-						   		// buscar cupones
-						   		$cupones = $wpdb->get_results("SELECT items.order_item_name as name
-						            FROM `wp_woocommerce_order_items` as items 
-						                INNER JOIN wp_woocommerce_order_itemmeta as meta ON 
-						                	meta.order_item_id = items.order_item_id
-						                INNER JOIN wp_posts as p ON 
-						                	p.ID = ".$servicio["id_reserva"]." and p.post_type = 'wc_booking' 
-						                WHERE meta.meta_key = 'discount_amount'
-						                    and items.`order_id` = p.post_parent
-						                    and not items.order_item_name like ('saldo-%')
-						            ;");
-
-						   		// validar si son del club
-							   		$propietario_id=0;
-							   		$propietario_nombre = '';
-							   		$propietario_apellido = '';
-							   		$propietario_email = '';
-							   		$cupon_code = '';
-						   		if( !empty($cupones) ){			   			
-
-							   		// Validar si son del club 
-							   		foreach ($cupones as $key => $cupon) {
-							   			$propietario_id = $wpdb->get_var("
-							   				select user_id from wp_usermeta where meta_key = 'club-patitas-cupon' and meta_value = '".$cupon->name."'
-							   			");
-							   			if( $propietario_id > 0 ){
-							   				$propietario_nombre = get_user_meta( $propietario_id, 'first_name', true );
-							   				$propietario_apellido = get_user_meta( $propietario_id, 'last_name', true );
-							   				$cupon_code = $cupon->name;
-							   				break;
-							   			}else{
-
-							   				$propietario_id = 0;
-							   			}
-							   		}
-									if( $propietario_id > 0 ){
-
-										if( !is_petsitters( $propietario_id ) ){
-											// agregar saldo a favor
-											$saldo = get_user_meta( $propietario_id, 'kmisaldo', true );
-											$saldo += 150;
-											update_user_meta( $propietario_id, 'kmisaldo', $saldo );
-										}else{
-											// agregar pago a cuidador
-											include_once( $PATH_TEMPLATE.'/lib/pagos_cuidador.php');
-											$pagos->cargar_retiros( $propietario_id, 150, 'Pago por uso de cupon Club patitas felices' );
-										}
-
-										// agregar transaccion en balance
-										$wpdb->query("INSERT INTO cuidadores_transacciones (
-											tipo,
-											user_id,
-											fecha,
-											referencia,
-											descripcion,
-											monto,
-											reservas,
-											comision
-										)values(
-											'saldo_club',
-											{$propietario_id},
-											NOW(),
-											'".$servicio["id_reserva"]."',
-											'Saldo a favor Club de las patitas felices ".$cupon_code."',
-											150,
-											'',
-											0									
-										) 
-										");
-
-										// enviar email
-										$mail_info = realpath( $PATH_TEMPLATE.'/template/mail/clubPatitas/partes/info_sin_perfil.php');
-										$phone = get_user_meta( $propietario_id, 'user_phone', true );
-										if( !empty($phone) ){
-											$mail_info = realpath(
-												$PATH_TEMPLATE.'/template/mail/clubPatitas/partes/info_con_perfil.php'
-											);
-										}
-										$message_info = file_get_contents($mail_info);
-
-										$mail_file = realpath( 
-											$PATH_TEMPLATE.'/template/mail/clubPatitas/notificacion_de_uso.php'
-										);
-										$message_mail = file_get_contents($mail_file);
-
-										$message_mail = str_replace('[INFO]', $message_info, $message_mail);
-										$message_mail = str_replace('[URL_IMG]', site_url()."/wp-content/themes/kmimos/images", $message_mail);
-										$message_mail = str_replace('[name]', $propietario_nombre.' '.$propietario_apellido, $message_mail);
-										$message_mail = str_replace('[url]', site_url(), $message_mail);
-										$message_mail = str_replace('[CUPON]', $cupon_code, $message_mail);
-
-										$propietario = get_userdata($propietario_id);
-										if( isset($propietario->user_email) ){
-											wp_mail( $propietario->user_email, "Confirmación de uso cupon Club Patitas Felices!", $message_mail);
-											wp_mail( 'italococchini@gmail.com', "Confirmación de uso cupon Club Patitas Felices!", $message_mail);
-										}
-
-									}				   		
-
-						   		}
+					if( $acc == "CFM" ){
+						$continuar_accion = true;
+						$time_cancelado = get_post_meta($servicio["id_reserva"], 'cancelado_a', true);
+						if( $time_cancelado != false && $time_cancelado > 0 ){
+							$time_cancelado = $time_cancelado - time();
+							if( $time_cancelado <= 600 ){
+								$continuar_accion = false;
 							}
 						}
 
-					}else{ // Bloque Confirmacion
-						$CONTENIDO .= "
-						<div class='msg_acciones'>
-			                <strong>Esta seguro de CONFIRMAR la reserva #".$servicio["id_reserva"].".</strong>
-			            </div>";
+						if( $continuar_accion ){
+
+							if( $CONFIRMACION == "YES" ){
+
+								update_post_meta($servicio["id_reserva"], 'confirmado_a', time() );
+
+								$wpdb->query("UPDATE wp_posts SET post_status = 'wc-confirmed' WHERE ID = '{$servicio["id_orden"]}';");
+					    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
+								include("confirmacion.php");
+								
+								// **********************************
+								// BEGIN Club de las Patitas Felices
+								// **********************************
+								$count_reservas = $wpdb->get_var( "SELECT  
+											count(ID) as cant
+										FROM wp_posts
+										WHERE post_type = 'wc_booking' 
+											AND not post_status like '%cart%' AND post_status = 'confirmed' 
+											AND post_author = ".$cliente["id"]."
+											AND DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('2017-05-12','%m-%d-%Y') and DATE_FORMAT(now(),'%m-%d-%Y')" );
+								
+								if(  $_SESSION['admin_sub_login'] != 'YES' && $count_reservas == 1){
+							   		if(isset($cliente["id"])){	
+								   		// buscar cupones
+								   		$cupones = $wpdb->get_results("SELECT items.order_item_name as name
+								            FROM `wp_woocommerce_order_items` as items 
+								                INNER JOIN wp_woocommerce_order_itemmeta as meta ON 
+								                	meta.order_item_id = items.order_item_id
+								                INNER JOIN wp_posts as p ON 
+								                	p.ID = ".$servicio["id_reserva"]." and p.post_type = 'wc_booking' 
+								                WHERE meta.meta_key = 'discount_amount'
+								                    and items.`order_id` = p.post_parent
+								                    and not items.order_item_name like ('saldo-%')
+								            ;");
+
+								   		// validar si son del club
+									   		$propietario_id=0;
+									   		$propietario_nombre = '';
+									   		$propietario_apellido = '';
+									   		$propietario_email = '';
+									   		$cupon_code = '';
+								   		if( !empty($cupones) ){			   			
+
+									   		// Validar si son del club 
+									   		foreach ($cupones as $key => $cupon) {
+									   			$propietario_id = $wpdb->get_var("
+									   				select user_id from wp_usermeta where meta_key = 'club-patitas-cupon' and meta_value = '".$cupon->name."'
+									   			");
+									   			if( $propietario_id > 0 ){
+									   				$propietario_nombre = get_user_meta( $propietario_id, 'first_name', true );
+									   				$propietario_apellido = get_user_meta( $propietario_id, 'last_name', true );
+									   				$cupon_code = $cupon->name;
+									   				break;
+									   			}else{
+
+									   				$propietario_id = 0;
+									   			}
+									   		}
+											if( $propietario_id > 0 ){
+
+												if( !is_petsitters( $propietario_id ) ){
+													// agregar saldo a favor
+													$saldo = get_user_meta( $propietario_id, 'kmisaldo', true );
+													$saldo += 150;
+													update_user_meta( $propietario_id, 'kmisaldo', $saldo );
+												}else{
+													// agregar pago a cuidador
+													include_once( $PATH_TEMPLATE.'/lib/pagos_cuidador.php');
+													$pagos->cargar_retiros( $propietario_id, 150, 'Pago por uso de cupon Club patitas felices' );
+												}
+
+												// agregar transaccion en balance
+												$wpdb->query("INSERT INTO cuidadores_transacciones (
+													tipo,
+													user_id,
+													fecha,
+													referencia,
+													descripcion,
+													monto,
+													reservas,
+													comision
+												)values(
+													'saldo_club',
+													{$propietario_id},
+													NOW(),
+													'".$servicio["id_reserva"]."',
+													'Saldo a favor Club de las patitas felices ".$cupon_code."',
+													150,
+													'',
+													0									
+												) 
+												");
+
+												// enviar email
+												$mail_info = realpath( $PATH_TEMPLATE.'/template/mail/clubPatitas/partes/info_sin_perfil.php');
+												$phone = get_user_meta( $propietario_id, 'user_phone', true );
+												if( !empty($phone) ){
+													$mail_info = realpath(
+														$PATH_TEMPLATE.'/template/mail/clubPatitas/partes/info_con_perfil.php'
+													);
+												}
+												$message_info = file_get_contents($mail_info);
+
+												$mail_file = realpath( 
+													$PATH_TEMPLATE.'/template/mail/clubPatitas/notificacion_de_uso.php'
+												);
+												$message_mail = file_get_contents($mail_file);
+
+												$message_mail = str_replace('[INFO]', $message_info, $message_mail);
+												$message_mail = str_replace('[URL_IMG]', site_url()."/wp-content/themes/kmimos/images", $message_mail);
+												$message_mail = str_replace('[name]', $propietario_nombre.' '.$propietario_apellido, $message_mail);
+												$message_mail = str_replace('[url]', site_url(), $message_mail);
+												$message_mail = str_replace('[CUPON]', $cupon_code, $message_mail);
+
+												$propietario = get_userdata($propietario_id);
+												if( isset($propietario->user_email) ){
+													wp_mail( $propietario->user_email, "Confirmación de uso cupon Club Patitas Felices!", $message_mail);
+													wp_mail( 'italococchini@gmail.com', "Confirmación de uso cupon Club Patitas Felices!", $message_mail);
+												}
+
+											}				   		
+
+								   		}
+									}
+								}
+
+							}else{ // Bloque Confirmacion
+								$CONTENIDO .= "
+								<div class='msg_acciones'>
+					                <strong>Esta seguro de CONFIRMAR la reserva #".$servicio["id_reserva"].".</strong>
+					            </div>";
+							}
+
+							// **********************************
+							// END Club de las Patitas Felices
+							// **********************************
+						
+						}else{
+							$CONTENIDO .= "
+							<div class='msg_acciones'>
+				                <strong>¡Lo sentimos!</strong><br>
+				                La reserva #".$servicio["id_reserva"]." ha sido cancelada previamente, si desea confirmarla, por favor esperar unos 5 minutos antes de intentar nuevamente.
+				            </div>";
+						}
+
 					}
 
-					// **********************************
-					// END Club de las Patitas Felices
-					// **********************************
-				
-				}else{
-					$CONTENIDO .= "
-					<div class='msg_acciones'>
-		                <strong>¡Lo sentimos!</strong><br>
-		                La reserva #".$servicio["id_reserva"]." ha sido cancelada previamente, si desea confirmarla, por favor esperar unos 5 minutos antes de intentar nuevamente.
-		            </div>";
-				}
+					if( $acc == "CCL" ){
+						
+						$continuar_accion = true;
+						$time_cancelado = get_post_meta($servicio["id_reserva"], 'confirmado_a', true);
+						if( $time_cancelado != false && $time_cancelado > 0 ){
+							$time_cancelado = $time_cancelado - time();
+							if( $time_cancelado <= 600 ){
+								$continuar_accion = false;
+							}
+						}
 
-			}
+						if( $continuar_accion ){
 
-			if( $acc == "CCL" ){
-				
-				$continuar_accion = true;
-				$time_cancelado = get_post_meta($servicio["id_reserva"], 'confirmado_a', true);
-				if( $time_cancelado != false && $time_cancelado > 0 ){
-					$time_cancelado = $time_cancelado - time();
-					if( $time_cancelado <= 600 ){
-						$continuar_accion = false;
+							if( $CONFIRMACION == "YES" ){
+								update_post_meta($servicio["id_reserva"], 'cancelado_a', time() );
+								include(__DIR__."/cancelacion.php");
+							}else{ // Bloque Confirmacion
+								$CONTENIDO .= "
+								<div class='msg_acciones'>
+					                <strong>Esta seguro de CANCELAR la reserva #".$servicio["id_reserva"].".</strong>
+					            </div>";
+							}
+
+						}else{
+							$CONTENIDO .= "
+							<div class='msg_acciones'>
+				                <strong>¡Lo sentimos!</strong><br>
+				                La reserva #".$servicio["id_reserva"]." ha sido confirmada previamente, si desea cancelarla, por favor esperar unos 5 minutos antes de intentar nuevamente.
+				            </div>";
+						}
 					}
 				}
 
-				if( $continuar_accion ){
 
-					if( $CONFIRMACION == "YES" ){
-						update_post_meta($servicio["id_reserva"], 'cancelado_a', time() );
-						include(__DIR__."/cancelacion.php");
-					}else{ // Bloque Confirmacion
-						$CONTENIDO .= "
-						<div class='msg_acciones'>
-			                <strong>Esta seguro de CANCELAR la reserva #".$servicio["id_reserva"].".</strong>
-			            </div>";
-					}
-
-				}else{
-					$CONTENIDO .= "
-					<div class='msg_acciones'>
-		                <strong>¡Lo sentimos!</strong><br>
-		                La reserva #".$servicio["id_reserva"]." ha sido confirmada previamente, si desea cancelarla, por favor esperar unos 5 minutos antes de intentar nuevamente.
-		            </div>";
-				}
 			}
 		
 		}
