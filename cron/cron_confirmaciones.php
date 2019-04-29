@@ -24,31 +24,34 @@
 
     
     echo "<pre>";
-        print_r( $r );
-    echo "</pre>";
     
+        if( count($r) > 0 ){
 
-    if( count($r) > 0 ){
+            foreach ($r as $request) {
 
-        foreach ($r as $request) {
+                $pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
+                $pre_change_status = json_decode( $pre_change_status );
 
-            $pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
-            $pre_change_status = json_decode( $pre_change_status );
+                // print_r( $r );
 
-            if( $pre_change_status->hora > ( time() + 60 ) ){
+                echo "$pre_change_status->hora > ."( time() + 60)." <br>";
 
-                $acc = $pre_change_status->acc; 
-                $usu = $pre_change_status->usu;
+                if( $pre_change_status->hora > ( time() + 60 ) ){
 
-                $_GET["CONFIRMACION"] = "YES";
+                    $acc = $pre_change_status->acc; 
+                    $usu = $pre_change_status->usu;
 
-                $id_orden = $r->ID;
+                    $_GET["CONFIRMACION"] = "YES";
 
-                include( "../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+                    $id_orden = $r->ID;
+
+                    // include( "../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+                }
+
             }
 
         }
-
-    }
+        
+    echo "</pre>";
 
 ?>
