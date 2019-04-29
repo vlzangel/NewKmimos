@@ -25,7 +25,7 @@
     
     echo "<pre>";
 
-        // print_r( $r );
+        print_r( $r );
     
         if( count($r) > 0 ){
 
