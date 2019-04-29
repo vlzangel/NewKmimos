@@ -605,6 +605,8 @@
 				            </div>";
 						}
 					}
+				}else{
+					$CONTENIDO .= "CORRECTO es falso";
 				}
 
 
