@@ -7,6 +7,8 @@
 		include((dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))))."/wp-load.php");
 	}
 
+	echo "Fecha: ".date("d/m/Y H:i:s", time() );
+
 	global $URL_LOCAL;
 
 	$PATH_TEMPLATE = (dirname(dirname(dirname(__DIR__))));

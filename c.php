@@ -1,4 +1,5 @@
 <?php
+	/*
 	include 'wp-load.php';
 	
 	if( !isset($_SESSION) ){ session_start(); }
@@ -13,29 +14,14 @@
 		$estados = explode("=", $cuidador->estados);
 		$municipios = explode("=", $cuidador->municipios);
 		if( count( $estados ) > 3 || count( $municipios ) > 3 ){
-			/*
-			$cuida[] = [
-				$cuidador->nombre." ".$cuidador->apellido,
-				$cuidador->titulo,
-				$cuidador->email,
-				$cuidador->telefono,
-				$cuidador->estados,
-				$cuidador->municipios
-			];
-			*/
 			$cuida[] = $cuidador->id;
 		}
 	}
-
-	/*
-	echo "Total: ".count($cuidadores)."<br>";
-	echo "Con mult: ".count($cuida)."<br>";
-
-	echo "<pre>";
-		print_r( $cuida );
-	echo "</pre>";
 	*/
 
+	echo "Fecha: ".date("d/m/Y H:i:s", 1556552986);
+
+	/*
 	$ids = implode(",", $cuida);
 
 	echo "
@@ -52,4 +38,5 @@
 		WHERE
 			id IN ({$ids})
 	";
+	*/
 ?>
