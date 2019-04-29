@@ -419,8 +419,40 @@
 							];
 							$_data = json_encode($_data);
 
-							update_post_meta( $servicio["id_reserva"], 'eliminacion_de_pre_change', $_data );		
+							update_post_meta( $servicio["id_reserva"], 'eliminacion_de_pre_change', $_data );	
+
+							if( $acc == "CFM" ){
+								$CONTENIDO .= "<div class='msg_acciones'>
+					                La reserva #".$servicio["id_reserva"].", recibió una solicitud de cancelación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para confirmarla. 
+					            </div>";
+							}else{
+								$CONTENIDO .= '
+						            <h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;">
+						                <div class="'.$style.'">
+					                		La reserva #".$servicio["id_reserva"].", recibió una solicitud de confirmación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para cancelarla. 
+						                </div>
+						            </h1>
+						        ';
+							}	
+
+						}else{
+
+							if( $acc == "CFM" ){
+								$CONTENIDO .= "<div class='msg_acciones'>
+					                <strong>¡Todo esta listo!</strong><br>
+					                La reserva #".$servicio["id_reserva"].", ha sido confirmada pronto recibiras los correos de confirmación.
+					            </div>";
+							}else{
+								$CONTENIDO .= '
+						            <h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;">
+						                <div class="'.$style.'">
+						                    La reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada pronto recibiras los correos de cancelación.
+						                </div>
+						            </h1>
+						        ';
+							}	
 						}
+
 					}
 				}
 
@@ -614,8 +646,6 @@
 				            </div>";
 						}
 					}
-				}else{
-					$CONTENIDO .= "CORRECTO es falso";
 				}
 
 
