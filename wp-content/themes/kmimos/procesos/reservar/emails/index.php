@@ -406,7 +406,7 @@
 				}else{
 					$pre_change_status = json_decode( $pre_change_status );
 
-					if( $pre_change_status->hora > ( time() + 60 ) ){
+					if( ( time() + 60 ) > $pre_change_status->hora ){
 						$CORRECTO = true;
 					}else{
 						if( $pre_change_status->acc != $acc ){
