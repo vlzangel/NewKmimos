@@ -37,11 +37,9 @@
 
                 // print_r( $pre_change_status );
 
-                echo date("H:i:s", $pre_change_status->hora)." > ".date("H:i:s", ( time() + 60))." <br>";
+                if( ( time() + 60 ) > $pre_change_status->hora ){
 
-                if( $pre_change_status->hora > ( time() + 60 ) ){
-
-                    echo $pre_change_status->hora." > ".( time() + 60)." <br>";
+                    echo date("H:i:s", ( time() + 60))." > ".date("H:i:s", $pre_change_status->hora)." <br>";
 
                     $acc = $pre_change_status->acc; 
                     $usu = $pre_change_status->usu;
