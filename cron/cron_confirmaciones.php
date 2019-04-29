@@ -35,7 +35,7 @@
                 $pre_change_status = get_post_meta($reserva_id, 'pre_change_status', true);
                 $pre_change_status = json_decode( $pre_change_status );
 
-                // print_r( $pre_change_status );
+                print_r( $pre_change_status );
 
                 if( ( time() + 60 ) > $pre_change_status->hora ){
 
