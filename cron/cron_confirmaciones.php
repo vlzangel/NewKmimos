@@ -23,9 +23,9 @@
     $r = $wpdb->get_results( $sql );
 
     
-    echo "<pre>";
+    // echo "<pre>";
 
-        print_r( $r );
+        // print_r( $r );
     
         if( count($r) > 0 ){
 
@@ -39,9 +39,9 @@
 
                 if( ( time() + 60 ) > $pre_change_status->hora ){
 
-                    print_r( $pre_change_status );
+                    // print_r( $pre_change_status );
 
-                    echo date("d/m/Y H:i:s", ( time() + 60))." > ".date("d/m/Y H:i:s", $pre_change_status->hora)." <br>";
+                    // echo date("d/m/Y H:i:s", ( time() + 60))." > ".date("d/m/Y H:i:s", $pre_change_status->hora)." <br>";
 
                     $acc = $pre_change_status->acc; 
                     $usu = $pre_change_status->usu;
@@ -51,14 +51,15 @@
                     $id_orden = $request->ID;
 
                     include( dirname(__DIR__)."/wp-content/themes/kmimos/procesos/reservar/emails/index.php" );
-
-                    echo $CONTENIDO;
+                    
                 }
 
             }
 
+            // echo $CONTENIDO;
+
         }
         
-    echo "</pre>";
+    // echo "</pre>";
 
 ?>
