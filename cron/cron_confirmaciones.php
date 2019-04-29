@@ -37,6 +37,8 @@
 
                 // print_r( $pre_change_status );
 
+                echo date("H:i:s", $pre_change_status->hora)." > ".date("H:i:s", ( time() + 60))." <br>";
+
                 if( $pre_change_status->hora > ( time() + 60 ) ){
 
                     echo $pre_change_status->hora." > ".( time() + 60)." <br>";
