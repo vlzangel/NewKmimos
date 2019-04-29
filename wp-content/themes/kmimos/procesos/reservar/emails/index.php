@@ -7,8 +7,6 @@
 
 	date_default_timezone_set('America/Mexico_City');
 
-	echo "Fecha: ".date("d/m/Y H:i:s", time() );
-
 	global $URL_LOCAL;
 
 	$PATH_TEMPLATE = (dirname(dirname(dirname(__DIR__))));
