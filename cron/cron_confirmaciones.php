@@ -29,7 +29,7 @@
 
             foreach ($r as $request) {
 
-                $$pre_change_status->hora > ( time() + 60  = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
+                $pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
                 $pre_change_status = json_decode( $pre_change_status );
 
                 print_r( $pre_change_status );
