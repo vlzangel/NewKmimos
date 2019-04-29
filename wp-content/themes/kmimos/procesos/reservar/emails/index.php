@@ -1,11 +1,11 @@
 <?php
-
-	date_default_timezone_set('America/Mexico_City');
 	
 	extract($_GET);
 	if( isset($_GET["id_orden"]) ){
 		include((dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))))."/wp-load.php");
 	}
+
+	date_default_timezone_set('America/Mexico_City');
 
 	echo "Fecha: ".date("d/m/Y H:i:s", time() );
 
