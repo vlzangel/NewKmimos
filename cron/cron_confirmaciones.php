@@ -48,7 +48,7 @@
 
                     $id_orden = $r->ID;
 
-                    // include( "../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+                    include( "../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
                 }
 
             }
