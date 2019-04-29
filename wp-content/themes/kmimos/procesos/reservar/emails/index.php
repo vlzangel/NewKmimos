@@ -406,35 +406,37 @@
 				}else{
 					$pre_change_status = json_decode( $pre_change_status );
 
-					if( ( time() + 60 ) > $pre_change_status->hora ){
-						$CORRECTO = true;
+					
+					if( $pre_change_status->acc != $acc ){
+						delete_post_meta($servicio["id_reserva"], 'pre_change_status');		
+
+						$_data = [
+							"antes" => $acc,
+							"ahora" => $pre_change_status->acc,
+							"hora" => time()
+						];
+						$_data = json_encode($_data);
+
+						update_post_meta( $servicio["id_reserva"], 'eliminacion_de_pre_change', $_data );	
+
+						if( $acc == "CFM" ){
+							$CONTENIDO .= "<div class='msg_acciones'>
+				                La reserva #".$servicio["id_reserva"].", recibió una solicitud de cancelación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para confirmarla. 
+				            </div>";
+						}else{
+							$CONTENIDO .= '
+					            <h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;">
+					                <div class="'.$style.'">
+				                		La reserva #".$servicio["id_reserva"].", recibió una solicitud de confirmación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para cancelarla. 
+					                </div>
+					            </h1>
+					        ';
+						}	
+
 					}else{
-						if( $pre_change_status->acc != $acc ){
-							delete_post_meta($servicio["id_reserva"], 'pre_change_status');		
 
-							$_data = [
-								"antes" => $acc,
-								"ahora" => $pre_change_status->acc,
-								"hora" => time()
-							];
-							$_data = json_encode($_data);
-
-							update_post_meta( $servicio["id_reserva"], 'eliminacion_de_pre_change', $_data );	
-
-							if( $acc == "CFM" ){
-								$CONTENIDO .= "<div class='msg_acciones'>
-					                La reserva #".$servicio["id_reserva"].", recibió una solicitud de cancelación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para confirmarla. 
-					            </div>";
-							}else{
-								$CONTENIDO .= '
-						            <h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;">
-						                <div class="'.$style.'">
-					                		La reserva #".$servicio["id_reserva"].", recibió una solicitud de confirmación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para cancelarla. 
-						                </div>
-						            </h1>
-						        ';
-							}	
-
+						if( ( time() + 60 ) > $pre_change_status->hora ){
+							$CORRECTO = true;
 						}else{
 
 							if( $acc == "CFM" ){
@@ -452,7 +454,7 @@
 						        ';
 							}	
 						}
-
+						
 					}
 				}
 

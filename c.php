@@ -21,7 +21,7 @@
 
 	date_default_timezone_set('America/Mexico_City');
 
-	echo "Fecha: ".date("d/m/Y H:i:s", 1556554713)."<br>";
+	echo "Fecha: ".date("d/m/Y H:i:s", 1556563873)."<br>";
 	echo "Fecha Ahora: ".date("d/m/Y H:i:s", ( time() + 60 ) );
 
 	/*
