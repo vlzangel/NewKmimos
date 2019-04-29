@@ -411,6 +411,15 @@
 					}else{
 						if( $pre_change_status->acc != $acc ){
 							delete_post_meta($servicio["id_reserva"], 'pre_change_status');		
+
+							$_data = [
+								"antes" => $acc,
+								"ahora" => $pre_change_status->acc,
+								"hora" => time()
+							];
+							$_data = json_encode($_data);
+
+							update_post_meta( $servicio["id_reserva"], 'eliminacion_de_pre_change', $_data );		
 						}
 					}
 				}
