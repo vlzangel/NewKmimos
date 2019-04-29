@@ -22,11 +22,11 @@
     ";
     $r = $wpdb->get_results( $sql );
 
-    /*
+    
     echo "<pre>";
         print_r( $r );
     echo "</pre>";
-    */
+    
 
     if( count($r) > 0 ){
 
