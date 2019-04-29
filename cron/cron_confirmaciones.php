@@ -23,7 +23,7 @@
     $r = $wpdb->get_results( $sql );
 
     
-    // echo "<pre>";
+    echo "<pre>";
 
         // print_r( $r );
     
@@ -37,7 +37,7 @@
 
                 // print_r( $pre_change_status );
 
-                // echo $pre_change_status->hora." > ".( time() + 60)." <br>";
+                echo $pre_change_status->hora." > ".( time() + 60)." <br>";
 
                 if( $pre_change_status->hora > ( time() + 60 ) ){
 
@@ -55,6 +55,6 @@
 
         }
         
-    // echo "</pre>";
+    echo "</pre>";
 
 ?>
