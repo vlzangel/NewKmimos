@@ -31,22 +31,24 @@
 
             foreach ($r as $request) {
 
-                $reserva_id = $wpdb->get_var("SELECT * FROM wp_posts WHERE post_parent = ".$request->ID);
+                $reserva_id = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = ".$request->ID);
                 $pre_change_status = get_post_meta($reserva_id, 'pre_change_status', true);
                 $pre_change_status = json_decode( $pre_change_status );
 
-                print_r( $pre_change_status );
+                
 
                 if( ( time() + 60 ) > $pre_change_status->hora ){
 
-                    echo date("H:i:s", ( time() + 60))." > ".date("H:i:s", $pre_change_status->hora)." <br>";
+                    print_r( $pre_change_status );
+
+                    echo date("d/m/Y H:i:s", ( time() + 60))." > ".date("d/m/Y H:i:s", $pre_change_status->hora)." <br>";
 
                     $acc = $pre_change_status->acc; 
                     $usu = $pre_change_status->usu;
 
                     $_GET["CONFIRMACION"] = "YES";
 
-                    $id_orden = $r->ID;
+                    $id_orden = $request->ID;
 
                     include( dirname(__DIR__)."/wp-content/themes/kmimos/procesos/reservar/emails/index.php" );
 
