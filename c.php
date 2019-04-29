@@ -19,7 +19,10 @@
 	}
 	*/
 
-	echo "Fecha: ".date("d/m/Y H:i:s", 1556552986);
+	date_default_timezone_set('America/Mexico_City');
+
+	echo "Fecha: ".date("d/m/Y H:i:s", 1556554713);
+	echo "Fecha Ahora: ".date("d/m/Y H:i:s", time() );
 
 	/*
 	$ids = implode(",", $cuida);

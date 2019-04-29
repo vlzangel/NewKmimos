@@ -7,6 +7,8 @@
 
 	date_default_timezone_set('America/Mexico_City');
 
+	$time_ahora = time();
+
 	global $URL_LOCAL;
 
 	$PATH_TEMPLATE = (dirname(dirname(dirname(__DIR__))));
@@ -378,7 +380,7 @@
 					$data = [
 						"acc" => $acc,
 						"usu" => $usu,
-						"hora" => time(),
+						"hora" => $time_ahora,
 						"confirmado_por" => $confirmado_por
 					];
 
