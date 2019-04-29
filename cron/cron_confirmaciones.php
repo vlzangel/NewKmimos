@@ -23,18 +23,21 @@
     $r = $wpdb->get_results( $sql );
 
     
-    echo "<pre>";
+    // echo "<pre>";
+
+        // print_r( $r );
     
         if( count($r) > 0 ){
 
             foreach ($r as $request) {
 
-                $pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
+                $reserva_id = $wpdb->get_var("SELECT * FROM wp_posts WHERE post_parent = ".$request->ID);
+                $pre_change_status = get_post_meta($reserva_id, 'pre_change_status', true);
                 $pre_change_status = json_decode( $pre_change_status );
 
-                print_r( $pre_change_status );
+                // print_r( $pre_change_status );
 
-                echo $pre_change_status->hora." > ".( time() + 60)." <br>";
+                // echo $pre_change_status->hora." > ".( time() + 60)." <br>";
 
                 if( $pre_change_status->hora > ( time() + 60 ) ){
 
@@ -52,6 +55,6 @@
 
         }
         
-    echo "</pre>";
+    // echo "</pre>";
 
 ?>
