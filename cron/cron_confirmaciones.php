@@ -6,6 +6,8 @@
 
     date_default_timezone_set('America/Mexico_City');
 
+    $time_ahora = time();
+
     global $wpdb;
 
     $sql = "
