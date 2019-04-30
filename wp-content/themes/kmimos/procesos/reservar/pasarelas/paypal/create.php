@@ -24,7 +24,7 @@ class CreateOrder
 
 		# Crear Orden Kmimos
 		Requests::register_autoloader();
-			$path = 'http://mx.kmimos.la/wp-content/themes/kmimos/procesos/reservar/pagar.php';
+			$path = 'https://kmimos.com.mx/QA2/wp-content/themes/kmimos/procesos/reservar/pagar.php';
 			$data['_paypal_order_id'] = $response->result->id;
 	        $reserva_data = Requests::post($path,array(),$data);
 	        $reserva = json_decode($reserva_data->body);
