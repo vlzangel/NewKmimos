@@ -292,7 +292,7 @@
 				}
 			}
 			if( count($no_disponibles) > 0 ){
-				$condiciones .= " AND user_id NOT IN (".implode(",", $no_disponibles).") ";
+				$condiciones .= " AND cuidadores.user_id NOT IN (".implode(",", $no_disponibles).") ";
 			}
 	   	}
 
@@ -304,7 +304,7 @@
 
     	$FLASH_ORDEN = "";
     	if( $FLASH ){
-    		$condiciones .= " AND atributos LIKE '%flash\";s:1:\"1%' "; 
+    		$condiciones .= " AND cuidadores.atributos LIKE '%flash\";s:1:\"1%' "; 
     	}else{
     		if( $hoy == $_POST["checkin"] ||  $manana == $_POST["checkin"] ){
     			$FLASH_ORDEN = ", ( 

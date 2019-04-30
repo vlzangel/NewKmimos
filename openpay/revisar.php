@@ -38,7 +38,7 @@
 		$findDataRequest = array(
 		    'creation[gte]' => $limite,
 		    'offset' => 0,
-		    'limit' => 10000
+		    'limit' => 500
 	    );
 
 		$chargeList = $openpay->charges->getList($findDataRequest);
