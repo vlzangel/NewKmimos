@@ -89,7 +89,7 @@
             if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'tienda'){
                 $saldo = $descuento; 
             }else{
-                if( $status != 'pending' ){
+                if( $status != 'wc-pending' ){
                     $saldo += $descuento;  
                 }              
             }
