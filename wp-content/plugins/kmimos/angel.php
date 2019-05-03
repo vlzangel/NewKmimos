@@ -121,6 +121,15 @@
 	    }
 	}
 
+    if(!function_exists('kmimos_get_mail_admins')){       
+        function kmimos_get_mail_admins(){ 
+            return array(
+                'BCC: a.veloz@kmimos.la',
+                'BCC: y.chaudary@kmimos.la',
+            );
+        }
+    }
+
     if(!function_exists('kmimos_mails_administradores_new')){       
         function kmimos_mails_administradores_new($titulo, $mensaje){ 
 
@@ -161,10 +170,7 @@
 
             $email_admin = "soporte.kmimos@gmail.com";
 
-            $headers_admins = array(
-                'BCC: a.veloz@kmimos.la',
-                'BCC: y.chaudary@kmimos.la',
-            );
+            $headers_admins = kmimos_get_mail_admins();
 
             wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
       
