@@ -1,6 +1,6 @@
 <?php
-    error_reporting(0);
     $kmimos_load = dirname(dirname(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))))).'/wp-load.php';
+    error_reporting(0);
     if(file_exists($kmimos_load)){
         include_once($kmimos_load);
     }

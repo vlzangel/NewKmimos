@@ -139,4 +139,3 @@
  	}else{
 		echo json_encode(['sts'=>$sts,'msg'=>$msg]);
  	}
-
