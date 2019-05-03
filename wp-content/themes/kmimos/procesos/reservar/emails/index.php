@@ -356,18 +356,13 @@
 		}
 
 		if( $NO_ENVIAR != "" ){ $continuar = true; }
-
-		$CONFIRMACION = "YES";
 		
+		$CONFIRMACION = "YES";
 		if( $continuar ){
-
 			$CORRECTO = false;
-
 			if( $acc == "CFM" || $acc == "CCL" ){
 				$pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
-
 				if( $pre_change_status == null ){
-
 					$confirmado_por = "";
 					if( isset($_GET["u"]) ){
 						if( $superAdmin != "YES" ){
@@ -376,85 +371,46 @@
 					        $confirmado_por = $_GET["u"]."_super_admin";
 					    }
 					}
-
 					$data = [
 						"acc" => $acc,
 						"usu" => $usu,
 						"hora" => $time_ahora,
 						"confirmado_por" => $confirmado_por
 					];
-
 					$data = json_encode($data);
 					update_post_meta($servicio["id_reserva"], 'pre_change_status', $data );	
-
 					$wpdb->query( "UPDATE wp_posts SET ping_status = '{$acc}' WHERE ID = ".$servicio["id_orden"] );	
-
 					if( $acc == "CFM" ){
-						$CONTENIDO .= "<div class='msg_acciones'>
-			                <strong>¡Todo esta listo!</strong><br>
-			                La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.
-			            </div>";
+						$CONTENIDO .= "<div class='msg_acciones'><strong>¡Todo esta listo!</strong><br>La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.</div>";
 					}else{
-						$CONTENIDO .= '
-				            <h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;">
-				                <div class="'.$style.'">
-				                    Te notificamos que la reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada exitosamente.
-				                </div>
-				            </h1>
-				        ';
+						$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">Te notificamos que la reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada exitosamente.</div></h1>';
 					}			
 				}else{
 					$pre_change_status = json_decode( $pre_change_status );
-
-					
 					if( $pre_change_status->acc != $acc ){
 						delete_post_meta($servicio["id_reserva"], 'pre_change_status');		
-
 						$_data = [
 							"antes" => $acc,
 							"ahora" => $pre_change_status->acc,
 							"hora" => time()
 						];
 						$_data = json_encode($_data);
-
 						update_post_meta( $servicio["id_reserva"], 'eliminacion_de_pre_change', $_data );	
-
 						if( $acc == "CFM" ){
-							$CONTENIDO .= "<div class='msg_acciones'>
-				                La reserva #".$servicio["id_reserva"].", recibió una solicitud de cancelación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para confirmarla. 
-				            </div>";
+							$CONTENIDO .= "<div class='msg_acciones'>La reserva #".$servicio["id_reserva"].", recibió una solicitud de cancelación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para confirmarla. </div>";
 						}else{
-							$CONTENIDO .= '
-					            <h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;">
-					                <div class="'.$style.'">
-				                		La reserva #".$servicio["id_reserva"].", recibió una solicitud de confirmación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para cancelarla. 
-					                </div>
-					            </h1>
-					        ';
+							$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">La reserva #".$servicio["id_reserva"].", recibió una solicitud de confirmación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para cancelarla. </div></h1>';
 						}	
-
 					}else{
-
-						if( ( time() + 60 ) > $pre_change_status->hora ){
+						if( time() > ($pre_change_status->hora+60) ){
 							$CORRECTO = true;
 						}else{
-
 							if( $acc == "CFM" ){
-								$CONTENIDO .= "<div class='msg_acciones'>
-					                <strong>¡Todo esta listo!</strong><br>
-					                La reserva #".$servicio["id_reserva"].", ha sido confirmada pronto recibiras los correos de confirmación.
-					            </div>";
+								$CONTENIDO .= "<div class='msg_acciones'><strong>¡Todo esta listo!</strong><br> La reserva #".$servicio["id_reserva"].", ha sido confirmada pronto recibiras los correos de confirmación.</div>";
 							}else{
-								$CONTENIDO .= '
-						            <h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;">
-						                <div class="'.$style.'">
-						                    La reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada pronto recibiras los correos de cancelación.
-						                </div>
-						            </h1>
-						        ';
+								$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">La reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada pronto recibiras los correos de cancelación.</div></h1>';
 							}	
 						}
-						
 					}
 				}
 
@@ -480,20 +436,18 @@
 					    		$wpdb->query("UPDATE wp_posts SET post_status = 'confirmed' WHERE ID = '{$servicio["id_reserva"]}';");
 								include("confirmacion.php");
 								
-								// **********************************
 								// BEGIN Club de las Patitas Felices
-								// **********************************
 								$count_reservas = $wpdb->get_var( "SELECT  
-											count(ID) as cant
-										FROM wp_posts
-										WHERE post_type = 'wc_booking' 
-											AND not post_status like '%cart%' AND post_status = 'confirmed' 
-											AND post_author = ".$cliente["id"]."
-											AND DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('2017-05-12','%m-%d-%Y') and DATE_FORMAT(now(),'%m-%d-%Y')" );
+									count(ID) as cant
+								FROM wp_posts
+								WHERE post_type = 'wc_booking' 
+									AND not post_status like '%cart%' AND post_status = 'confirmed' 
+									AND post_author = ".$cliente["id"]."
+									AND DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('2017-05-12','%m-%d-%Y') and DATE_FORMAT(now(),'%m-%d-%Y')
+								");
 								
 								if(  $_SESSION['admin_sub_login'] != 'YES' && $count_reservas == 1){
-							   		if(isset($cliente["id"])){	
-								   		// buscar cupones
+							   		if(isset($cliente["id"])){ // buscar cupones
 								   		$cupones = $wpdb->get_results("SELECT items.order_item_name as name
 								            FROM `wp_woocommerce_order_items` as items 
 								                INNER JOIN wp_woocommerce_order_itemmeta as meta ON 
