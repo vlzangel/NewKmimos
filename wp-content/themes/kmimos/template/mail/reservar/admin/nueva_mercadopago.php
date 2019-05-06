@@ -1,5 +1,5 @@
-<div style='width: 100%;'>
-    <img src='[URL_IMGS]/new/nueva/[HEADER]/header.png' style='width: 100%;' >
+<div style='text-align:center; margin-bottom: 34px;'>
+    <img src='[URL_IMGS]/header_nueva_reserva.png' style='width: 100%;' >
 </div>
 
 <div style='font-family: Verdana; width: 100%'>
