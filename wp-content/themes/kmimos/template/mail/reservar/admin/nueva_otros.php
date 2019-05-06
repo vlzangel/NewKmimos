@@ -15,7 +15,7 @@
             Recibimos una solicitud de reserva de <strong>[tipo_servicio]</strong> con <strong>[name_cuidador]</strong>.
         </div>
         <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 15px;'>
-            Han seleccionado como método de pago: <strong>[tipo_pago]</strong>, por lo que la misma se encuentra <strong>PENDIENTE DE PAGO</strong>.
+            Han seleccionado como método de pago: <strong>[tipo_pago]</strong>, y se encuentra <strong>PENDIENTE DE PAGO</strong>.
         </div>
     </div>
 
