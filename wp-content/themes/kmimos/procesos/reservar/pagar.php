@@ -724,8 +724,8 @@
 		            $file = dirname(dirname(__DIR__)).'/template/mail/reservar/admin/nueva_paypal.php';
 		            $mensaje = file_get_contents($file);
 		            $mensaje = str_replace('[RESERVA_ID]', $reservar->data["id_reserva"], $mensaje);
-		            $mensaje = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje);
 		            $mensaje = get_email_html($mensaje);
+		            $mensaje = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje);
 
 		            $admins = kmimos_get_mail_admins();
 					wp_mail( 'soporte.kmimos@gmail.com', "Pendiente de pago paypal", $mensaje, $admins);
@@ -773,8 +773,8 @@
 		            $file = dirname(dirname(__DIR__)).'/template/mail/reservar/admin/nueva_mercadopago.php';
 		            $mensaje = file_get_contents($file);
 		            $mensaje = str_replace('[RESERVA_ID]', $reservar->data["id_reserva"], $mensaje);
-		            $mensaje = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje);
 		            $mensaje = get_email_html($mensaje);
+		            $mensaje = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje);
 
 		            $admins = kmimos_get_mail_admins();
 					wp_mail( 'soporte.kmimos@gmail.com', "Pendiente de pago mercadopago", $mensaje, $admins);
