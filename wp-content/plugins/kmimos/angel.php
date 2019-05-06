@@ -125,7 +125,7 @@
         function kmimos_get_mail_admins(){ 
             return array(
                 'BCC: a.veloz@kmimos.la',
-                // 'BCC: y.chaudary@kmimos.la',
+                'BCC: y.chaudary@kmimos.la',
             );
         }
     }
