@@ -669,6 +669,10 @@ endif;
 login_footer('user_pass');
 break;
 
+case 'register' :
+	header("location: ".get_home_url()."/wp-login.php?action=login");
+break;
+
 	/*
 	case 'register' :
 		if ( is_multisite() ) {
