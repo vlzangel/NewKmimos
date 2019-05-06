@@ -277,11 +277,15 @@
 
 
 	if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
-		$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
-		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva == "wc-on-hold"  ){
+		$status_orden = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
+		if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_orden == "wc-on-hold"  ){
 			include(__DIR__."/tienda.php");
 		}else{
-			include(__DIR__."/otro.php");
+			if( $status_orden == "wc-on-hold"  ){
+				include(__DIR__."/nuevos.php");
+			}else{
+				include(__DIR__."/otro.php");
+			}
 		}
 	}
 
