@@ -93,6 +93,7 @@
 	}
 </style>
 <script type="text/javascript">
+
     var table = "";
     jQuery(document).ready(function() {
 
@@ -123,9 +124,23 @@
             "ajax": {
                 "url": "<?= plugins_url('kmimos/dashboard/ajax/clientes.php').'?home='.get_home_url() ?>",
                 "type": "POST"
-            }
+            },
+			buttons: [
+				{
+				  extend: "csv",
+				  className: "btn-sm"
+				},
+				{
+				  extend: "excelHtml5",
+				  className: "btn-sm"
+				},
+			],
+			'order': [[ 1, 'asc' ]],
+			'columnDefs': [
+				{ orderable: true, targets: [0] }
+			],
+			dom: '<"col-md-6"B><"col-md-6"f><"#tblreserva"t><"col-sm-12"i>',
         });
-
 
         jQuery("#filtros").submit(function(e){
         	e.preventDefault();

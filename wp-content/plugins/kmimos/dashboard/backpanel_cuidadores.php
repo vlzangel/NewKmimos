@@ -121,7 +121,22 @@
             "ajax": {
                 "url": "<?= plugins_url('kmimos/dashboard/ajax/cuidadores.php').'?home='.get_home_url() ?>",
                 "type": "POST"
-            }
+            },
+			buttons: [
+				{
+				  extend: "csv",
+				  className: "btn-sm"
+				},
+				{
+				  extend: "excelHtml5",
+				  className: "btn-sm"
+				},
+			],
+			'order': [[ 1, 'asc' ]],
+			'columnDefs': [
+				{ orderable: true, targets: [0] }
+			],
+			dom: '<"col-md-6"B><"col-md-6"f><"#tblreserva"t><"col-sm-12"i>',
         });
 
 
