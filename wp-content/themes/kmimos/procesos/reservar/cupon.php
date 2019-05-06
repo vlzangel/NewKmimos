@@ -521,8 +521,8 @@
 
 			if( $cupon == "2pagk" ){  // Agregado el 03-04-19
 
-				if( $_SESSION['landing_paseos'] != 'yes' ) { if( $validar ){ error("El cupón solo es válido desde el landing de Paseos"); }else{ return false; } }
-				// if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
+				// if( $_SESSION['landing_paseos'] != 'yes' ) { if( $validar ){ error("El cupón solo es válido desde el landing de Paseos"); }else{ return false; } }
+				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
 				// if( !es_nuevo($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios nuevos"); }else{ return false; } }
 
 				$descuento = 0; $_paseos = 2;
