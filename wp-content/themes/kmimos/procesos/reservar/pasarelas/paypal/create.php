@@ -15,7 +15,7 @@ class CreateOrder
   		$resultado='';
 
 		# Crear Orden Paypal
-	    $request = new OrdersCreateRequest();
+	    	$request = new OrdersCreateRequest();
 		    $request->prefer('return=representation');
 		    $request->body = self::buildRequestBody( $data );
 		    $client = PayPalClient::client();
@@ -24,9 +24,11 @@ class CreateOrder
 
 		# Crear Orden Kmimos
 		Requests::register_autoloader();
-			$path = 'https://kmimos.com.mx/QA2/wp-content/themes/kmimos/procesos/reservar/pagar.php';
+			// $path = 'https://kmimos.com.mx/QA2/wp-content/themes/kmimos/procesos/reservar/pagar.php';
+			$path = 'http://kmimos.git/wp-content/themes/kmimos/procesos/reservar/pagar.php';
 			$data['_paypal_order_id'] = $response->result->id;
-	        $reserva_data = Requests::post($path,array(),$data);
+	        $reserva_data = Requests::post($path,array(), $data);
+
 	        $reserva = json_decode($reserva_data->body);
  
 	    if( $reserva->order_id > 0 ){
@@ -83,7 +85,7 @@ class CreateOrder
 		$items = [];
 		// Servicios
 			foreach ($cantidades as $key => $value) {	
-				if( count($value) > 1 ){
+				if( is_array($value) && count($value) > 1 ){
 					if( $value[0] > 0 ){
 						$items[] = array(
 			              	'name' => $value[0] ." ". $tamanios[$key] . " x " . $value[1],
@@ -143,8 +145,12 @@ class CreateOrder
 	            'intent' => 'CAPTURE',
 	            'application_context' =>
 	                array(
+	                	/*
 	                    'return_url' => 'http://mx.kmimos.la/reservar/validar-pago/?p=paypal&t=return',
 	                    'cancel_url' => 'http://mx.kmimos.la/reservar/validar-pago/?p=paypal&t=cancel',
+	                    */
+	                    'return_url' => 'http://kmimos.git/reservar/validar-pago/?p=paypal&t=return',
+	                    'cancel_url' => 'http://kmimos.git/reservar/validar-pago/?p=paypal&t=cancel',
 	                ),
 	            'purchase_units' =>
 	                array(

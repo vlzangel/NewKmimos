@@ -718,8 +718,17 @@
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_paypal_vence', '{$due_date}');");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_paypal_order_id', '".$_paypal_order_id."');");
 
-					$RESERVA_ID = $reservar->data["id_reserva"];
-					include(__DIR__."/emails/pendientes/paypal.php");
+					// $RESERVA_ID = $reservar->data["id_reserva"];
+					// include(__DIR__."/emails/pendientes/paypal.php");
+
+		            $file = dirname(dirname(__DIR__)).'/template/mail/reservar/admin/nueva_paypal.php';
+		            $mensaje = file_get_contents($file);
+		            $mensaje = str_replace('[RESERVA_ID]', $reservar->data["id_reserva"], $mensaje);
+		            $mensaje = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje);
+		            $mensaje = get_email_html($mensaje);
+
+		            $admins = kmimos_get_mail_admins();
+					wp_mail( 'soporte.kmimos@gmail.com', "Pendiente de pago paypal", $mensaje, $admins);
 	   				
 	   				echo json_encode(array(
 	   					"user_id" => $customer->id,
@@ -758,8 +767,17 @@
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_mercadopago_vence', '{$due_date}');");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_mercadopago_data', '');");
 
-					$RESERVA_ID = $reservar->data["id_reserva"];
-					include(__DIR__."/emails/pendientes/mercadopago.php");
+					//$RESERVA_ID = $reservar->data["id_reserva"];
+					//include(__DIR__."/emails/pendientes/mercadopago.php");
+
+		            $file = dirname(dirname(__DIR__)).'/template/mail/reservar/admin/nueva_mercadopago.php';
+		            $mensaje = file_get_contents($file);
+		            $mensaje = str_replace('[RESERVA_ID]', $reservar->data["id_reserva"], $mensaje);
+		            $mensaje = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $mensaje);
+		            $mensaje = get_email_html($mensaje);
+
+		            $admins = kmimos_get_mail_admins();
+					wp_mail( 'soporte.kmimos@gmail.com', "Pendiente de pago mercadopago", $mensaje, $admins);
 
 	   				echo json_encode(array(
 	   					"user_id" => $customer->id,
