@@ -673,10 +673,10 @@ function pagarReserva(id_invalido = false){
 				}
 			}else{
 				CARRITO["pagar"]["id_fallida"] = 0;
-				if(data.urlPaypal == "" ){
+				if(data.url_pago == "" ){
 					location.href = RAIZ+"/finalizar/"+data.order_id;
 				}else{
-					location.href = data.urlPaypal;
+					location.href = data.url_pago;
 				}
 			}
 		}, "json"

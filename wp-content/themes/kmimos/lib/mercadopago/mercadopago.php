@@ -1,5 +1,5 @@
 <?php
-	require_once 'lib/vendor/autoload.php';
+	include __DIR__.'/lib/vendor/autoload.php';
 
 	MercadoPago\SDK::initialize(); 
 	$config = MercadoPago\SDK::config(); 

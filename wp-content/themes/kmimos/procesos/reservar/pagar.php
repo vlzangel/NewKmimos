@@ -349,6 +349,8 @@
 
 	}
 
+	unset($_SESSION["pagando"]);
+
 	if( $_SESSION["pagando"] == ""){
 		$_SESSION["pagando"] = "YES";
 
@@ -703,7 +705,7 @@
 	   					"user_id" => $customer->id,
 						"order_id" => $id_orden,
 						"return_data" => true,
-						"urlPaypal" => $url_paypal,
+						"url_pago" => $url_paypal,
 					));
 				    if( isset($_SESSION[$id_session] ) ){
 				    	update_cupos( array(
@@ -729,39 +731,25 @@
 
 	   			case 'mercadopago':
 		   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 48 hours'));
-		   			
-		   			include dirname(__FILE__)."/pasarelas/paypal/create.php";
-
-					$orden_class = new CreateOrder();
-					$orden = $orden_class->create(get_home_url(), $_POST, true);
-					$_SESSION['paypal'] = [
-						'info' => $_POST['info'],
-						'orden' => $orden,
-					];
-
-					$orden = json_decode($orden);
-
-					$_paypal_order_id = $orden->id;
-					$url_paypal = '';
-					if( $orden->status == 'CREATED' ){
-						foreach ($orden->links as $key => $r) {
-							if($r->rel == 'approve'){
-								$url_paypal = $r->href;
-								break;
-							}
-						}
-					}
 		   			 
 					$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_mercadopago_vence', '{$due_date}');");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_mercadopago_data', '');");
 
-					include(__DIR__."/emails/index.php");
+		   			$ruta = get_home_url();
+		   			
+		   			include dirname(dirname(__DIR__)).'/lib/mercadopago/mercadopago.php';
+		   			include dirname(__FILE__)."/pasarelas/mercadopago/create.php";
+
+		   			// $id_mercado_pago = $res;
+
+					// include(__DIR__."/emails/index.php");
 
 	   				echo json_encode(array(
 	   					"user_id" => $customer->id,
 						"order_id" => $id_orden,
 						"return_data" => true,
+						"url_pago" => $res["links"],
 					));
 			    
 				    if( isset($_SESSION[$id_session] ) ){
