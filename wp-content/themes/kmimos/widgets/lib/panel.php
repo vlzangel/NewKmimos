@@ -576,6 +576,7 @@ class PANEL {
 	    $_data['byMonth']=[];
 	    $_data['byDay']=[];
 	    $_data['total']=[];
+	    $total_reservas =0;
 
 	    // foreach ($reservas_por_dia as $i => $reserva) {
 	    for ($i = $min_date; $i <= $max_date; $i += 86400) { 
@@ -583,28 +584,29 @@ class PANEL {
 	    	$cant_reservas = 0;
 			if( isset( $reservas_por_dia[ $i ] ) ){
 				$cant_reservas = $reservas_por_dia[ $i ];
-			}
 
-			// Por dia
-			$fecha = date("Y-m-d", $i); 
-			$_data['byDay'][$fecha]['value'] = $cant_reservas;
-			$_data['byDay'][$fecha]['date'] = $fecha;
+				// Por dia
+				$fecha = date("Y-m-d", $i); 
+				$_data['byDay'][$fecha]['value'] = $cant_reservas;
+				$_data['byDay'][$fecha]['date'] = $fecha;
 
-			// Por mes
-			$mes_id = date("Y-m", $i); 
-			if( isset($_data['byMonth'][ $mes_id ]) ){
-				$_data['byMonth'][$mes_id]['value'] += $cant_reservas;
-			}else{
-				$_data['byMonth'][$mes_id]['value'] = $cant_reservas;
-				$_data['byMonth'][$mes_id]['date'] = $mes_id;
-			}
+				// Por mes
+				$mes_id = date("Y-m", $i); 
+				if( isset($_data['byMonth'][ $mes_id ]) ){
+					$_data['byMonth'][$mes_id]['value'] += $cant_reservas;
+				}else{
+					$_data['byMonth'][$mes_id]['value'] = $cant_reservas;
+					$_data['byMonth'][$mes_id]['date'] = $mes_id;
+				}
 
-			// Acumulado
-			if( isset($_data['total'][$mes_id]) ){
-				$_data['total'][$mes_id]['value'] += $cant_reservas;
-			}else{
-				$_data['total'][$mes_id]['value'] += $cant_reservas;
-				$_data['total'][$mes_id]['date'] = $mes_id;
+				// Acumulado
+				$total_reservas += $cant_reservas;
+				if( isset($_data['total'][$mes_id]) ){
+					$_data['total'][$mes_id]['value'] += $total_reservas;
+				}else{
+					$_data['total'][$mes_id]['value'] += $total_reservas;
+					$_data['total'][$mes_id]['date'] = $mes_id;
+				}
 			}
 	    }
 
