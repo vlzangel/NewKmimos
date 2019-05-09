@@ -633,7 +633,7 @@ function pagarReserva(id_invalido = false){
 			id_invalido: id_invalido
 		},
 		function(data){
-			console.log( data );
+			// console.log( data );
 			if( data.error != "" && data.error != undefined ){
 
 				var es_fallida_con_orden = true;
@@ -663,18 +663,6 @@ function pagarReserva(id_invalido = false){
 					break;
 				}
 
-				/*
-				if( data.tipo_error != "3003" ){
-					if( data.tipo_error != "sin_mascotas" ){
-						
-				    }else{
-				    }
-				}else{
-					var error = "Error procesando la reserva<br>";
-			    	error += "La tarjeta no tiene fondos suficientes.<br>";
-				}
-				*/
-
 		    	jQuery(".errores_box").html(error);
 				jQuery(".errores_box").css("display", "block");
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
@@ -685,7 +673,11 @@ function pagarReserva(id_invalido = false){
 				}
 			}else{
 				CARRITO["pagar"]["id_fallida"] = 0;
-				location.href = RAIZ+"/finalizar/"+data.order_id;
+				if(data.urlPaypal == "" ){
+					location.href = RAIZ+"/finalizar/"+data.order_id;
+				}else{
+					location.href = data.urlPaypal;
+				}
 			}
 		}, "json"
 	
@@ -1276,48 +1268,48 @@ jQuery(document).ready(function() {
 						jQuery("#reserva_btn_next_3").addClass("disabled");
 						OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
 					
-					}else if( CARRITO["pagar"]["tipo"] == "paypal" ){
-						jQuery("#reserva_btn_next_3").addClass("disabled");
-						jQuery("#reserva_btn_next_3").addClass("cargando");
-						var info = convertCARRITO();
-						jQuery.post(HOME+"/procesos/reservar/pasarelas/paypal/create.php",
-							{
-								'info': info,
-								'ruta': RAIZ,
-							},
-							function(data){
-								if( data.status == 'CREATED' ){
-									console.log(data.links);
-									jQuery.each(data.links, function(i,r){								
-										if(r.rel == 'approve'){
-											location.href = r.href;
-											return false;
-										}
-									});
-								}
-							}, 'json'
-						);
+						/* }else if( CARRITO["pagar"]["tipo"] == "paypal" ){
+							jQuery("#reserva_btn_next_3").addClass("disabled");
+							jQuery("#reserva_btn_next_3").addClass("cargando");
+							var info = convertCARRITO();
+							jQuery.post(HOME+"/procesos/reservar/pasarelas/paypal/create.php",
+								{
+									'info': info,
+									'ruta': RAIZ,
+								},
+								function(data){
+									if( data.status == 'CREATED' ){
+										console.log(data.links);
+										jQuery.each(data.links, function(i,r){								
+											if(r.rel == 'approve'){
+												location.href = r.href;
+												return false;
+											}
+										});
+									}
+								}, 'json'
+							);
 
-					}else if( CARRITO["pagar"]["tipo"] == "mercadopago" ){
-						jQuery("#reserva_btn_next_3").addClass("disabled");
-						jQuery("#reserva_btn_next_3").addClass("cargando");
-						// pagarReserva();
-						var info = convertCARRITO();
-						jQuery.post(HOME+"/procesos/reservar/pasarelas/mercadopago/create.php",
-							{
-								'info': info,
-								'ruta': RAIZ,
-								'order_id': order_id,
-								'cliente': cliente_data,
-								'cuidador': cuidador_data,
-							},
-							function(data){
-								if( data.status == 'CREATED' ){
-									location.href = data.links;
-								}
-							}, 'json'
-						);
-					
+							}else if( CARRITO["pagar"]["tipo"] == "mercadopago" ){
+							jQuery("#reserva_btn_next_3").addClass("disabled");
+							jQuery("#reserva_btn_next_3").addClass("cargando");
+							// pagarReserva();
+							var info = convertCARRITO();
+							jQuery.post(HOME+"/procesos/reservar/pasarelas/mercadopago/create.php",
+								{
+									'info': info,
+									'ruta': RAIZ,
+									'order_id': order_id,
+									'cliente': cliente_data,
+									'cuidador': cuidador_data,
+								},
+								function(data){
+									if( data.status == 'CREATED' ){
+										location.href = data.links;
+									}
+								}, 'json'
+							);
+						*/
 					}else{
 						pagarReserva();
 					}

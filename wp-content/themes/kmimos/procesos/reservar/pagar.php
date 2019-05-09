@@ -3,6 +3,8 @@
 
 	include_once($raiz."/wp-load.php");
 
+	error_reporting(0);
+
 	date_default_timezone_set('America/Mexico_City');
 
 	if( !isset($_SESSION)){ session_start(); }
@@ -508,12 +510,11 @@
 		    try {
 				$customer = $openpay->customers->get($cliente_openpay);
 			} catch (Exception $e) {
-
 				try {
 			    	$customerData = array(
 				     	'name' => $nombre,
 				     	'email' => $email,
-			     	'requires_account' => false,
+			     		'requires_account' => false,
 				  	);
 					$customer = $openpay->customers->add($customerData);
 					$cliente_openpay = $customer->id;
@@ -527,15 +528,12 @@
 						"tipo_error" => $error,
 						"status" => "Error, obteniendo customer 2"
 					));
-
 					exit();
 				}
 		    }
 	   	}
-	   	
 	   	update_post_meta($id_orden, '_openpay_customer_id', $customer->id);
  
-
 		if( $pagar->deviceIdHiddenFieldName != "" ){
 
 		   	switch ( $pagar->tipo ) {
@@ -552,37 +550,28 @@
 						    'use_card_points'	=> $tarjeta->puntos,
 						    'device_session_id' => $pagar->deviceIdHiddenFieldName
 					    );
-
-
-
 						$charge = ""; $error = "";
-
 						try {
 				            $charge = $customer->charges->create($chargeData);
 				        } catch (Exception $e) {
 				        	$error = $e->getErrorCode();
 				        }
-						
 						if ($charge != false) {
-
 							if( $deposito["enable"] == "yes" ){
 								$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
 							}else{
 								$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
 								$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
 							}
-
 							$para_buscar = array(
 								"cliente" => $customer->id,
 								"transaccion_id" => $charge->id
 							);
 							$para_buscar = serialize($para_buscar);
 							$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_busqueda', '{$para_buscar}');");
-
 				            echo json_encode(array(
 								"order_id" => $id_orden
 							));
-
 						    if( isset($_SESSION[$id_session] ) ){
 						    	update_cupos( array(
 							    	"servicio" => $_SESSION[$id_session]["servicio"],
@@ -595,7 +584,6 @@
 								$_SESSION[$id_session] = "";
 								unset($_SESSION[$id_session]);
 							}
-
 							update_cupos( array(
 						    	"servicio" => $parametros["pagar"]->servicio,
 						    	"tipo" => $parametros["pagar"]->tipo_servicio,
@@ -604,22 +592,16 @@
 						    	"fin" => strtotime($parametros["fechas"]->fin),
 						    	"cantidad" => $cupos_a_decrementar
 						    ), "+");
-			    
 							include(__DIR__."/emails/index.php");
-
 				        }else{
-
 							unset($_SESSION["pagando"]);
-
 				            echo json_encode(array(
 								"error" => $id_orden,
 								"tipo_error" => $error,
 								"status" => "Error, pago fallido",
 								"info_pago" => $chargeData
 							));
-
 				        }
-
 		   			}else{
 		   				unset($_SESSION["pagando"]);
 		   				echo json_encode(array(
@@ -627,14 +609,10 @@
 							"Data"  => $_POST
 						));
 		   			}
-
 	   			break;
 
 		   		case 'tienda':
 		   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 48 hours'));
-		   			
-		   			// $id_orden = $id_orden."_local";
-
 		   			$chargeRequest = array(
 					    'method' => 'store',
 					    'amount' => (float) $pagar->total,
@@ -642,37 +620,29 @@
 					    'order_id' => "0_".$id_orden,
 					    'due_date' => $due_date
 					);
-
 					$charge = $customer->charges->create($chargeRequest);
-
 					try {
 			            $charge = $customer->charges->create($chargeRequest);
 			        } catch (Exception $e) {
 			        	$error = $e->getErrorCode();
 			        }
-
 					if ($charge != false) {
-
 						$pdf = $OPENPAY_URL."/paynet-pdf/".$MERCHANT_ID."/".$charge->payment_method->reference;
-
 						$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 						$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_pdf', '{$pdf}');");
 						$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_tienda_vence', '{$due_date}');");
-
 						$para_buscar = array(
 							"cliente" => $customer->id,
 							"transaccion_id" => $charge->id
 						);
 						$para_buscar = serialize($para_buscar);
 						$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_openpay_busqueda', '{$para_buscar}');");
-
 		   				echo json_encode(array(
 		   					"user_id" => $customer->id,
 							"pdf" => $pdf,
 							"barcode_url"  => $charge->payment_method->barcode_url,
 							"order_id" => $id_orden
 						));
-				    
 					    if( isset($_SESSION[$id_session] ) ){
 					    	update_cupos( array(
 						    	"servicio" => $_SESSION[$id_session]["servicio"],
@@ -685,7 +655,6 @@
 							$_SESSION[$id_session] = "";
 							unset($_SESSION[$id_session]);
 						}
-
 						update_cupos( array(
 					    	"servicio" => $parametros["pagar"]->servicio,
 					    	"tipo" => $parametros["pagar"]->tipo_servicio,
@@ -694,11 +663,8 @@
 					    	"fin" => strtotime($parametros["fechas"]->fin),
 					    	"cantidad" => $cupos_a_decrementar
 					    ), "+");
-
 						sleep(1);
-
 						include(__DIR__."/emails/index.php");
-
 					}else{
 						unset($_SESSION["pagando"]);
 			            echo json_encode(array(
@@ -707,25 +673,38 @@
 							"status" => "Error, pago fallido"
 						));
 			        }
-
 	   			break;
 
 		   		case 'paypal':
-		   			
 		   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 48 hours'));
-		   			 
+		   			include dirname(__FILE__)."/pasarelas/paypal/create.php";
+					$orden_class = new CreateOrder();
+					$orden = $orden_class->create(get_home_url(), $_POST, true);
+					$_SESSION['paypal'] = [
+						'info' => $_POST['info'],
+						'orden' => $orden,
+					];
+					$orden = json_decode($orden);
+					$_paypal_order_id = $orden->id;
+					$url_paypal = '';
+					if( $orden->status == 'CREATED' ){
+						foreach ($orden->links as $key => $r) {
+							if($r->rel == 'approve'){
+								$url_paypal = $r->href;
+								break;
+							}
+						}
+					}
 					$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_paypal_vence', '{$due_date}');");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_paypal_order_id', '".$_paypal_order_id."');");
-
 					include(__DIR__."/emails/index.php");
-	   				
 	   				echo json_encode(array(
 	   					"user_id" => $customer->id,
 						"order_id" => $id_orden,
 						"return_data" => true,
+						"urlPaypal" => $url_paypal,
 					));
-			    
 				    if( isset($_SESSION[$id_session] ) ){
 				    	update_cupos( array(
 					    	"servicio" => $_SESSION[$id_session]["servicio"],
@@ -738,7 +717,6 @@
 						$_SESSION[$id_session] = "";
 						unset($_SESSION[$id_session]);
 					}
-
 					update_cupos( array(
 				    	"servicio" => $parametros["pagar"]->servicio,
 				    	"tipo" => $parametros["pagar"]->tipo_servicio,
@@ -747,11 +725,32 @@
 				    	"fin" => strtotime($parametros["fechas"]->fin),
 				    	"cantidad" => $cupos_a_decrementar
 				    ), "+");
-
 	   			break;
 
 	   			case 'mercadopago':
 		   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 48 hours'));
+		   			
+		   			include dirname(__FILE__)."/pasarelas/paypal/create.php";
+
+					$orden_class = new CreateOrder();
+					$orden = $orden_class->create(get_home_url(), $_POST, true);
+					$_SESSION['paypal'] = [
+						'info' => $_POST['info'],
+						'orden' => $orden,
+					];
+
+					$orden = json_decode($orden);
+
+					$_paypal_order_id = $orden->id;
+					$url_paypal = '';
+					if( $orden->status == 'CREATED' ){
+						foreach ($orden->links as $key => $r) {
+							if($r->rel == 'approve'){
+								$url_paypal = $r->href;
+								break;
+							}
+						}
+					}
 		   			 
 					$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_mercadopago_vence', '{$due_date}');");
