@@ -39,6 +39,9 @@
             wp_add_dashboard_widget( 'noches_dashboard_widget', 'Resumen de Noches Reservadas', 'noches_dashboard_widget_function' );	
         }
 
+
+		wp_add_dashboard_widget( 'noches_reservadas_dashboard_widget', 'Noches Reservadas General', 'noches_reservadas_dashboard_widget_function' );
+
         // Ocultar menu para inversores
         $tipo = get_usermeta( $current_user->ID, "tipo_usuario", true ); 
         if( $tipo == 'Inversor' ){
@@ -64,6 +67,10 @@
 
 	function leads_dashboard_widget_function(){
 		include('views/resumen-leads.php');
+	}
+
+	function noches_reservadas_dashboard_widget_function(){
+		include('views/resumen-noches_reservadas.php');
 	}
 
 	function registro_dashboard_widget_function(){

@@ -21,8 +21,8 @@ function update_ventas(){
 		{},
 		function(data){
 
-			console.log( "Data ventas: ");
-			console.log( data );
+			// console.log( "Data ventas: ");
+			// console.log( data );
 			ventas_data = data;
 
 			// TOP
@@ -46,18 +46,18 @@ function load_ventas(){
 	switch( ventas_by ){
 		case 'day':
 			load_chart_ventas( 'grafico_resumen_ventas','day', ventas_data.byDay );
-			console.log( 'Ventas por dia' );
-			console.log( ventas_data.byDay );
+			// console.log( 'Ventas por dia' );
+			// console.log( ventas_data.byDay );
 			break;
 		case 'month':
 			load_chart_ventas( 'grafico_resumen_ventas','month', ventas_data.byMonth );
-			console.log( 'Ventas por mes' );
-			console.log( ventas_data.byMonth );
+			// console.log( 'Ventas por mes' );
+			// console.log( ventas_data.byMonth );
 			break;
 		default:
 			load_chart_ventas( 'grafico_resumen_ventas','month', ventas_data.total );
-			console.log( 'Ventas total' );
-			console.log( ventas_data.total );
+			// console.log( 'Ventas total' );
+			// console.log( ventas_data.total );
 			break;
 	}	
 }

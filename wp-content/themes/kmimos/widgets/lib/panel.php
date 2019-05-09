@@ -534,6 +534,132 @@ class PANEL {
 		return $data;
 	}
 
+	public function noches_reservadas(){
+
+		$SQL = "
+			SELECT 
+				r.ID,
+				m_i.meta_value AS inicio,
+				m_f.meta_value AS fin
+			FROM
+				wp_posts AS r
+			INNER JOIN wp_postmeta AS m_i ON (r.ID = m_i.post_id)
+			INNER JOIN wp_postmeta AS m_f ON (r.ID = m_f.post_id)
+			WHERE
+				r.post_type = 'wc_booking' AND r.post_status = 'confirmed' AND
+				m_i.meta_key = '_booking_start' AND 
+				m_f.meta_key = '_booking_end'
+			ORDER BY r.post_date ASC
+		";
+		$reservas = $this->db->get_results($SQL);
+		$min_date = '';
+		$max_date = '';
+		$reservas_por_dia = [];
+	    foreach ($reservas as $key => $reserva) {
+	    	$ini = strtotime($reserva->inicio);
+	    	$fin = strtotime($reserva->fin);
+
+	    	for ($i=$ini; $i <= $fin; $i+=86400) { 
+	    		$anio = date("Y", $i);
+	    		if( $anio > 2015){
+		    		$min_date = ($min_date == '' || $min_date > $i) ? $i : $min_date;
+		    		$max_date = ($max_date == '' || $max_date < $i) ? $i : $max_date;
+	    		}
+				$reservas_por_dia[ $i ] += 1;
+	    	}
+	    }
+
+	    // ksort($reservas_por_dia);
+
+
+		$_data = [];
+	    $_data['byMonth']=[];
+	    $_data['byDay']=[];
+	    $_data['total']=[];
+
+	    // foreach ($reservas_por_dia as $i => $reserva) {
+	    for ($i = $min_date; $i <= $max_date; $i += 86400) { 
+
+	    	$cant_reservas = 0;
+			if( isset( $reservas_por_dia[ $i ] ) ){
+				$cant_reservas = $reservas_por_dia[ $i ];
+			}
+
+			// Por dia
+			$fecha = date("Y-m-d", $i); 
+			$_data['byDay'][$fecha]['value'] = $cant_reservas;
+			$_data['byDay'][$fecha]['date'] = $fecha;
+
+			// Por mes
+			$mes_id = date("Y-m", $i); 
+			if( isset($_data['byMonth'][ $mes_id ]) ){
+				$_data['byMonth'][$mes_id]['value'] += $cant_reservas;
+			}else{
+				$_data['byMonth'][$mes_id]['value'] = $cant_reservas;
+				$_data['byMonth'][$mes_id]['date'] = $mes_id;
+			}
+
+			// Acumulado
+			if( isset($_data['total'][$mes_id]) ){
+				$_data['total'][$mes_id]['value'] += $cant_reservas;
+			}else{
+				$_data['total'][$mes_id]['value'] += $cant_reservas;
+				$_data['total'][$mes_id]['date'] = $mes_id;
+			}
+	    }
+
+
+
+	    /*
+		echo "<pre>";
+			print_r($_data);
+		echo "</pre>";
+
+		/*
+	    $_data['byMonth']=[];
+	    $_data['byDay']=[];
+	    $_data['total']=[];
+	    $lead_total =0;
+	    /*
+		foreach ($usuarios as $lead) {
+			// By Day
+			$fecha =  $lead->fecha;
+			$_data['byDay'][$fecha]['value'] = $lead->total;
+			$_data['byDay'][$fecha]['date'] = $fecha;
+
+			// By Month
+			$month = date( 'Y-m', strtotime($lead->fecha) );
+			if( isset($_data['byMonth'][$month]) ){
+				$_data['byMonth'][$month]['value'] += $lead->total;
+			}else{
+				$_data['byMonth'][$month]['value'] = $lead->total;
+				$_data['byMonth'][$month]['date'] = $month;
+			}
+
+			// Acumulado
+			$lead_total += $lead->total;
+			if( isset($_data['total'][$month]) ){
+				$_data['total'][$month]['value'] = $lead_total;
+			}else{
+				$_data['total'][$month]['value'] = $lead_total;
+				$_data['total'][$month]['date'] = $month;
+			}
+		}
+		*/
+
+		// ksort($_data['byDay']);
+		$data['byDay'] = array_values($_data['byDay']);
+		$data['date'] = array_keys($_data['byDay']);
+
+		// ksort($_data['byMonth']);
+		$data['byMonth'] = array_values($_data['byMonth']);
+
+		ksort($_data['total']);
+		$data['total'] = array_values($_data['total']);
+
+		return $data;
+	}
+
 	public function registro(){
 
 		$SQL = "SELECT 

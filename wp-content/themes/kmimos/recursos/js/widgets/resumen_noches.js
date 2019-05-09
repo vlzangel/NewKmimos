@@ -31,7 +31,7 @@ function update_noches(){
 				  "dif": (data.mes_curso - data.dia_curso),
 				  "total": (parseInt(data.mes_curso) + 1),
 				}];
-				console.log(estructura2);
+				// console.log(estructura2);
 			load_chart_cilindro('grafica_dia_curso', estructura2);
 
 		}
