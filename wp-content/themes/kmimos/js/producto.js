@@ -673,9 +673,11 @@ function pagarReserva(id_invalido = false){
 				}
 			}else{
 				CARRITO["pagar"]["id_fallida"] = 0;
-				if(data.url_pago == "" ){
+				if(data.url_pago == undefined && data.url_pago == "" ){
+					console.log("1");
 					// location.href = RAIZ+"/finalizar/"+data.order_id;
 				}else{
+					console.log("2");
 					// location.href = data.url_pago;
 				}
 			}
