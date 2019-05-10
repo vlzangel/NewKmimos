@@ -44,15 +44,19 @@
 							}
 							
 						}else{
+							echo "Error en el punto: [4]";
 							include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 						}
 					}else{
+						echo "Error en el punto: [3]";
 						include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 					}
 				}else{
+					echo "Error en el punto: [2]";
 					include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 				}
 			}catch( Exception $e){
+				echo "Error en el punto: [1]";
 				include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 			}
 			
