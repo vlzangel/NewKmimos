@@ -30,6 +30,9 @@ class Order
 
     public function validar( $orderId ){
     	$order = $this->get( $orderId );
+        echo "<pre>";
+            print_r($order);
+        echo "</pre>";
     	if( isset($order->result->status) && $order->result->status == 'APPROVED' ){
     		return true;
     	}
