@@ -60,12 +60,16 @@
 		}
 		*/
 
-		$datos_banco = serialize([ 
-			'banco'=> utf8_decode($banco),
-			'cuenta'=> $banco_cuenta,
-			'titular'=> utf8_decode($titular)
-		]);
-		$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
+		if(isset($banco) && isset($banco_cuenta) && isset($titular)){
+			$datos_banco = serialize([ 
+				'banco'=> utf8_decode($banco),
+				'cuenta'=> $banco_cuenta,
+				'titular'=> utf8_decode($titular)
+			]);
+			$db->query("UPDATE cuidadores SET banco = '{$datos_banco}' WHERE user_id = ".$user_id);
+		}else{
+			// $db->query("UPDATE cuidadores SET banco = '' WHERE user_id = ".$user_id);
+		}
 	}
 
 

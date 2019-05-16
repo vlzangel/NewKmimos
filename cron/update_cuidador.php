@@ -4,6 +4,15 @@
     date_default_timezone_set('America/Mexico_City');
     global $wpdb;
 
+	$_registros = $wpdb->get_results("SELECT email FROM cuidadores_bp");
+	$registros = [];
+
+	if( is_array($_registros) && count($_registros) > 0 ){
+		foreach ($_registros as $key => $value) {
+			$registros[] = $value->email;
+		}
+	}
+
 
     $_estados = $wpdb->get_results("SELECT * FROM states ORDER BY id ASC");
     $estados = [];
@@ -87,6 +96,8 @@
 		$muni = explode("=", $row->municipios);
 		$muni = $mun[ $muni[1] ];
 
+		$existe = ( in_array($row->email, $registros) ) ? true : false;
+
 		$data[] = [
 	    	$row->user_id,
 	    	$row->id_post,
@@ -103,42 +114,61 @@
 			$usermeta["user_address"][0],
 			$telefono,
 			$referido_por,
-			$_status
+			$_status,
+			$existe
 		];
 
 	}
 
-/*
-		echo "<pre>";
-			print_r( $data );
-		echo "</pre>";
-*/
+
 	
 	foreach ($data as $key => $cuidador) {
-		$sql = "
-			INSERT INTO
-				cuidadores_bp
-			VALUES
-			(
-				NULL,
-				'{$cuidador[0]}',
-				'{$cuidador[1]}',
-				'{$cuidador[2]}',
-				'{$cuidador[3]}',
-				'{$cuidador[4]}',
-				'{$cuidador[5]}',
-				'{$cuidador[6]}',
-				'{$cuidador[7]}',
-				'{$cuidador[8]}',
-				'{$cuidador[9]}',
-				'{$cuidador[10]}',
-				'{$cuidador[11]}',
-				'{$cuidador[12]}',
-				'{$cuidador[13]}',
-				'{$cuidador[14]}',
-				'{$cuidador[15]}'
-			)
-		";
+		if( $cuidador[16] ){
+			$sql = "
+				UPDATE 
+					cuidadores_bp
+				SET
+					flash = '{$cuidador[2]}',
+					nacimiento = '{$cuidador[4]}',
+					full_name = '{$cuidador[5]}',
+					nombre = '{$cuidador[6]}',
+					apellido = '{$cuidador[7]}',
+					cuidador = '{$cuidador[8]}',
+					estado = '{$cuidador[10]}',
+					municipio = '{$cuidador[11]}',
+					direccion = '{$cuidador[12]}',
+					telefono = '{$cuidador[13]}',
+					nos_conocio = '{$cuidador[14]}',
+					estatus = '{$cuidador[15]}'
+				WHERE
+					email = '{$cuidador[9]}'
+			";
+		}else{
+			$sql = "
+				INSERT INTO
+					cuidadores_bp
+				VALUES
+				(
+					NULL,
+					'{$cuidador[0]}',
+					'{$cuidador[1]}',
+					'{$cuidador[2]}',
+					'{$cuidador[3]}',
+					'{$cuidador[4]}',
+					'{$cuidador[5]}',
+					'{$cuidador[6]}',
+					'{$cuidador[7]}',
+					'{$cuidador[8]}',
+					'{$cuidador[9]}',
+					'{$cuidador[10]}',
+					'{$cuidador[11]}',
+					'{$cuidador[12]}',
+					'{$cuidador[13]}',
+					'{$cuidador[14]}',
+					'{$cuidador[15]}'
+				)
+			";
+		}
 
 		$wpdb->query($sql);
 	}

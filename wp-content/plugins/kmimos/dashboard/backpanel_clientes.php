@@ -28,7 +28,7 @@
 								  <input type="date" class="form-control" id="hasta" name="hasta" value="<?php echo $_SESSION[ "hasta_".$modulo] ?>">
 								</div>
 							</div>
-							<button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>
+							<button id="submit" type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>
 						</div>
 						<div class="col-sm-10 col-sm-offset-1" style="padding-top:10px;">
 							<div class="checkbox">
@@ -46,7 +46,7 @@
 	  	<div class="col-sm-12">  		
 	    	<div class="row">
 	    		<div class="col-sm-12" style="font-size: 10px!important;"> 
-	    			<table id="_table" class="table table-striped table-bordered table-hover nowrap datatable-buttons" cellspacing="0" width="100%">
+	    			<table id="_table" class="table table-striped table-bordered table-hover nowrap" cellspacing="0" width="100%">
 			  			<thead>
 						    <tr>
 						      	<th>#</th>
@@ -91,6 +91,18 @@
 	.form-inline .radio input[type="radio"], .form-inline .checkbox input[type="checkbox"] {
 	    margin: 0px 5px 0px 0px;
 	}
+	div.dataTables_wrapper div.dataTables_filter {
+	    display: inline-block;
+	    width: 300px;
+	    float: right;
+	}
+	div.dataTables_wrapper div.dataTables_info {
+	    float: left;
+	}
+	div#tblreserva {
+	    overflow: auto;
+	    width: 100%;
+	}
 </style>
 <script type="text/javascript">
 
@@ -125,6 +137,7 @@
                 "url": "<?= plugins_url('kmimos/dashboard/ajax/clientes.php').'?home='.get_home_url() ?>",
                 "type": "POST"
             },
+            dom: 'Bfrtip',
 			buttons: [
 				{
 				  extend: "csv",
@@ -135,16 +148,16 @@
 				  className: "btn-sm"
 				},
 			],
-			'order': [[ 1, 'asc' ]],
-			'columnDefs': [
-				{ orderable: true, targets: [0] }
-			],
-			dom: '<"col-md-6"B><"col-md-6"f><"#tblreserva"t><"col-sm-12"i>',
+			responsive: false,
+			scrollX: true
         });
 
         jQuery("#filtros").submit(function(e){
         	e.preventDefault();
         	var val = jQuery(this).val();
+
+        	jQuery("#submit").html('<i class="fa fa-spinner fa-spin"></i> Buscando...');
+        	jQuery("#submit").prop("disabled", true);
 
         	var cont = ( jQuery("#mostrar_total_reserva").prop("checked") ) ? "YES" : "NO";
 
@@ -156,8 +169,10 @@
         			hasta_cliente: jQuery("#hasta").val() 
         		},
         		function(data){
-        			console.log( data );
-        			table.ajax.reload(); //  null, false 
+        			table.ajax.reload(function(r){
+        				jQuery("#submit").html('<i class="fa fa-search"></i> Buscar');
+        				jQuery("#submit").prop("disabled", false);
+        			}, true);
         		}
         	);
 

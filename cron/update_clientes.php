@@ -6,6 +6,15 @@
 
     require_once('../wp-content/plugins/kmimos/dashboard/core/ControllerClientes.php');
 
+	$_registros = $wpdb->get_results("SELECT email FROM clientes_bp");
+	$registros = [];
+
+	if( is_array($_registros) && count($_registros) > 0 ){
+		foreach ($_registros as $key => $value) {
+			$registros[] = $value->email;
+		}
+	}
+
     $landing = '';
 	$date = getdate();
 	$desde = '';
@@ -109,6 +118,8 @@
 
 		$referido_por = (!empty($usermeta['user_referred'])) ? $usermeta['user_referred'] : 'Otros' ;
 
+		$existe = ( in_array($row['user_email'], $registros) ) ? true : false;
+
 		$data[] = [
 	    	$row['ID'],
 			date_convert($row['user_registered'], 'Y-m-d'),
@@ -121,34 +132,54 @@
 			$usermeta['user_age'],
 			$conocer_15,
 			$reserva_15,
-			$_status
+			$_status,
+			$existe
 		];
-
 	}
 
-
 	foreach ($data as $key => $cliente) {
-		$sql = "
-			INSERT INTO
-				clientes_bp
-			VALUES
-			(
-				NULL,
-				'{$cliente[0]}',
-				'{$cliente[1]}',
-				'{$cliente[2]}',
-				'{$cliente[3]}',
-				'{$cliente[4]}',
-				'{$cliente[5]}',
-				'{$cliente[6]}',
-				'{$cliente[7]}',
-				'{$cliente[8]}',
-				'{$cliente[9]}',
-				'{$cliente[10]}',
-				'{$cliente[11]}'
-			)
-		";
+		if( $cliente[12] ){
+			$sql = "
+				UPDATE 
+					clientes_bp
+				SET
+					nombre = '{$cliente[2]}',
+					apellido = '{$cliente[3]}',
+					telefono = '{$cliente[5]}',
+					donde_nos_conocio = '{$cliente[6]}',
+					sexo = '{$cliente[7]}',
+					edad = '{$cliente[8]}',
+					primera_solicitud = '{$cliente[9]}',
+					primera_reserva = '{$cliente[10]}',
+					status = '{$cliente[11]}'
+				WHERE
+					email = '{$cliente[4]}'
+			";
+		}else{
+			$sql = "
+				INSERT INTO
+					clientes_bp
+				VALUES
+				(
+					NULL,
+					'{$cliente[0]}',
+					'{$cliente[1]}',
+					'{$cliente[2]}',
+					'{$cliente[3]}',
+					'{$cliente[4]}',
+					'{$cliente[5]}',
+					'{$cliente[6]}',
+					'{$cliente[7]}',
+					'{$cliente[8]}',
+					'{$cliente[9]}',
+					'{$cliente[10]}',
+					'{$cliente[11]}'
+				)
+			";
+		}
 
 		$wpdb->query($sql);
 	}
+
+	echo "Listo";
 ?>

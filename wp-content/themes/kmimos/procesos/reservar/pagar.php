@@ -676,7 +676,9 @@
 	   			break;
 
 		   		case 'paypal':
+
 		   			$due_date = date('Y-m-d\TH:i:s', strtotime('+ 48 hours'));
+
 		   			include dirname(__FILE__)."/pasarelas/paypal/create.php";
 					$orden_class = new CreateOrder();
 					$orden = $orden_class->create(get_home_url(), $_POST, true);
@@ -695,6 +697,7 @@
 							}
 						}
 					}
+
 					$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_paypal_vence', '{$due_date}');");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_paypal_order_id', '".$_paypal_order_id."');");
@@ -707,6 +710,7 @@
 						"return_data" => true,
 						"url_pago" => $url_paypal,
 					));
+					
 				    if( isset($_SESSION[$id_session] ) ){
 				    	update_cupos( array(
 					    	"servicio" => $_SESSION[$id_session]["servicio"],
@@ -740,6 +744,8 @@
 		   			
 		   			include dirname(dirname(__DIR__)).'/lib/mercadopago/mercadopago.php';
 		   			include dirname(__FILE__)."/pasarelas/mercadopago/create.php";
+					
+					include(__DIR__."/emails/index.php");
 
 		   			// $id_mercado_pago = $res;
 

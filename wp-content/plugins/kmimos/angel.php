@@ -27,6 +27,26 @@
                     echo kmimos_style($styles = array("customer_services"));
                     echo "<script> window.onload = function(){ jQuery('#toplevel_page_kmimos > a').attr('href', 'admin.php?page=bp_reservas'); }; </script>";
 	            break;
+                case 'Admin 2':
+                    global $post;
+                    echo kmimos_style(array(
+                        "quitar_edicion",
+                        "menu_kmimos",
+                        "menu_reservas"
+                    ));
+                    echo kmimos_style($styles = array("customer_services"));
+                    echo "<script> window.onload = function(){ jQuery('#toplevel_page_kmimos > a').attr('href', 'admin.php?page=bp_reservas'); }; </script>";
+                    echo "<style> 
+                        #toplevel_page_kmimos ul.wp-submenu li,
+                        #toplevel_page_reporte_fotos ul.wp-submenu li {
+                            display: block;
+                        } 
+                        #toplevel_page_kmimos li:last-child,
+                        #toplevel_page_reporte_fotos li:nth-child(4) {
+                            display: none !important;
+                        }
+                    </style>";
+                break;
 
                 case 'Teleoperador':
                     echo kmimos_style($styles = array("teleoperadores"));
@@ -125,7 +145,7 @@
         function kmimos_get_mail_admins(){ 
             return array(
                 'BCC: a.veloz@kmimos.la',
-                'BCC: y.chaudary@kmimos.la',
+                // 'BCC: y.chaudary@kmimos.la',
             );
         }
     }

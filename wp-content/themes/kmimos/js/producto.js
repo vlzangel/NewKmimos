@@ -1269,49 +1269,6 @@ jQuery(document).ready(function() {
 						jQuery("#reserva_btn_next_3 span").html("Validando...");
 						jQuery("#reserva_btn_next_3").addClass("disabled");
 						OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
-					
-						/* }else if( CARRITO["pagar"]["tipo"] == "paypal" ){
-							jQuery("#reserva_btn_next_3").addClass("disabled");
-							jQuery("#reserva_btn_next_3").addClass("cargando");
-							var info = convertCARRITO();
-							jQuery.post(HOME+"/procesos/reservar/pasarelas/paypal/create.php",
-								{
-									'info': info,
-									'ruta': RAIZ,
-								},
-								function(data){
-									if( data.status == 'CREATED' ){
-										console.log(data.links);
-										jQuery.each(data.links, function(i,r){								
-											if(r.rel == 'approve'){
-												location.href = r.href;
-												return false;
-											}
-										});
-									}
-								}, 'json'
-							);
-
-							}else if( CARRITO["pagar"]["tipo"] == "mercadopago" ){
-							jQuery("#reserva_btn_next_3").addClass("disabled");
-							jQuery("#reserva_btn_next_3").addClass("cargando");
-							// pagarReserva();
-							var info = convertCARRITO();
-							jQuery.post(HOME+"/procesos/reservar/pasarelas/mercadopago/create.php",
-								{
-									'info': info,
-									'ruta': RAIZ,
-									'order_id': order_id,
-									'cliente': cliente_data,
-									'cuidador': cuidador_data,
-								},
-								function(data){
-									if( data.status == 'CREATED' ){
-										location.href = data.links;
-									}
-								}, 'json'
-							);
-						*/
 					}else{
 						pagarReserva();
 					}

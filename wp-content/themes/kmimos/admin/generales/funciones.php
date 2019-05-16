@@ -260,6 +260,23 @@
                 'page'          =>  'nps_feedback',
             );
 
+            $permitidos = [
+                367
+            ];
+
+            if( in_array($user_id, $permitidos ) ){
+                
+                $opciones_menu_reporte[] = array(
+                    'title'         =>  __('Consolidados'),
+                    'short-title'   =>  __('Consolidados'),
+                    'parent'        =>  'reporte_fotos',
+                    'slug'          =>  'reporte_consolidados',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_consolidados',
+                );
+            
+            }
+
             foreach($opciones_menu_reporte as $opcion){
                 if( $opcion['parent'] == '' ){
                     add_menu_page(
@@ -436,5 +453,13 @@
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/recursos/importador-botones.php');
             include_once(dirname(__DIR__).'/backend/notas_creditos/reporte.php');
+        }
+    }
+
+    if(!function_exists('reporte_consolidados')){
+        function reporte_consolidados(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/consolidados/page.php');
         }
     }
