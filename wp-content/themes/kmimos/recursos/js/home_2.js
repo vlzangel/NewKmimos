@@ -183,9 +183,9 @@ jQuery( document ).ready(function() {
     
     setInterval(function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
-            // jQuery("img.seccion_destacados_flechas.seccion_destacados_der").click();
+            jQuery("img.seccion_destacados_flechas.seccion_destacados_der").click();
         }else{
-            // jQuery("img.seccion_destacados_flechas.seccion_destacados_der").click();
+            jQuery("img.seccion_destacados_flechas.seccion_destacados_der").click();
         }
     }, 6000);
     
