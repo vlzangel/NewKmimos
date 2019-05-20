@@ -68,9 +68,9 @@
 
 		$name = "{$row->nombre} {$row->apellido}";
 
-	    $_status = 'Activo';
-	    if( $row->status == 1 ){
-	    	$_status = 'Inactivo';
+	    $_status = 'Inactivo';
+	    if( $row->activo == 1 ){
+	    	$_status = 'Activo';
 	    }
 	    $_status = $_status;
 

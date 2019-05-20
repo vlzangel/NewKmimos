@@ -30,7 +30,7 @@
 			$link_login = md5($r->user_id);
 
 		    $_status = '';
-		    if( $r->status == "activo" ){
+		    if( $r->status == "Activo" ){
 			    $_status = '<span id="user_'.$r->user_id.'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$r->user_id.'" data-status="inactivo">Desactivar</span>';
 		    }else{
 		    	$_status = '<span id="user_'.$r->user_id.'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$r->user_id.'" data-status="activo">Activar</span>';

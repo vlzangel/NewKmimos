@@ -84,27 +84,19 @@
 	$reservas_acumulado = [];
 	$total = 0;
 
-	$mes_oct = 0;
-
     foreach ($reservas as $key => $reserva) {
-
     	$reserva->inicio = ( strlen($reserva->inicio) > 8 ) ? substr($reserva->inicio, 0, 8) : $reserva->inicio;
     	$reserva->fin = ( strlen($reserva->fin) > 8 ) ? substr($reserva->fin, 0, 8) : $reserva->fin;
-
     	$ini = strtotime($reserva->inicio);
     	$fin = strtotime($reserva->fin);
-
     	$_mas = unserialize($reserva->mascotas);
     	$mas = 0;
     	foreach ($_mas as $key => $value) {
     		$mas += $value;
     	}
-
     	$tipo = explode("-", $reserva->servicio);
     	$tipo = $tipo[0];
-
     	$fin = ( $tipo == 'hospedaje' ) ? $fin-86400 : $fin;
-
     	for ($i=$ini; $i <= $fin; $i+=86400) { 
     		$anio = date("Y", $i);
     		if( $anio > 2015){
@@ -117,8 +109,6 @@
     		}
     		$reservas_por_mes[ $mes_id ] += $mas;
 			$reservas_por_dia[ date("Y-m-d", $i) ] += $mas;
-			// $total += $mas;
-			// $reservas_acumulado[ $mes_id ] = $total;
     	}
     }
 
