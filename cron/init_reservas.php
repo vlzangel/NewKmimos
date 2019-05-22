@@ -9,7 +9,7 @@
     $_desde = date("Y-m-d", strtotime("-30 day") );
 	$_hasta = date("Y-m-d");
 
-    $reservas = getReservas($_desde, $_hasta);
+    $reservas = getReservas("", "");
 
     $all_reservas = [];
 
