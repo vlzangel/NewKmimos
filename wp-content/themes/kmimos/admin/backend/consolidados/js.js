@@ -48,6 +48,15 @@ jQuery(document).ready(function() {
         cerrar(e);
     });
 
+    jQuery("#actualizar_list").on("click", function(e){
+    	jQuery("#actualizar_list").html('<i class="fa fa-spinner fa-spin"></i> Actualizando...');
+        jQuery("#actualizar_list").prop("disabled", true);
+
+    	table.ajax.reload(function(r){
+			jQuery("#actualizar_list").html('Actualizar');
+			jQuery("#actualizar_list").prop("disabled", false);
+		}, true);
+    });
 } );
 
 function updateInfo(_this){

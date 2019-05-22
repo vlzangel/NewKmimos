@@ -3,8 +3,9 @@
 
 <div class="container_listados">
 
-    <div class='titulos' style="padding-top: 10px;">
+    <div class='titulos' style="padding-top: 10px; position: relative;">
         <h2>Consolidados</h2>
+        <button id="actualizar_list" class="button button-primary button-large" style="position: absolute; top: 10px; right: 15px;">Actualizar</button>
         <hr style="margin: 10px 0px;">
     </div>
 
