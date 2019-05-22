@@ -248,20 +248,20 @@
 			$data_sql
 		];
 
-		$existe = $wpdb->get_row("SELECT id FROM reporte_reserva WHERE reserva_id = ".$reserva->nro_reserva);
+		$existe = $wpdb->get_row("SELECT id FROM reporte_reserva_new WHERE reserva_id = ".$reserva->nro_reserva);
 		if( $existe == null || $existe == false ){
 			foreach ($data as $key => $value) {
 				$data[ $key ] = str_replace("'", "\'", $value);
 			}
 			$campos = implode("','", $data);
-			$SQL = "INSERT INTO reporte_reserva VALUES (NULL,'".$campos."', '', NULL, 0);";
+			$SQL = "INSERT INTO reporte_reserva_new VALUES (NULL,'".$campos."', '', NULL, 0);";
 
 			$wpdb->query( $SQL );
 		}else{
 			if( $existe->status != $estatus['sts_corto'] ){
 				$SQL = "
 					UPDATE 
-						reporte_reserva 
+						reporte_reserva_new 
 					SET 
 						status = '{$estatus['sts_corto']}',
 						observacion = '{$estatus['sts_largo']}',
