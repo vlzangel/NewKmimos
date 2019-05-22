@@ -19,7 +19,7 @@
     $_desde = ""; $_hasta = "";
     // $reservas = getReservas($_desde, $_hasta);
 
-    $reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '2019-03-01' AND fecha_reservacion <= NOW()  ORDER BY fecha_reservacion DESC"); // WHERE fecha_reservacion >= '{$_desde}' AND fecha_reservacion <= '{$_hasta}' 
+    $reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '2019-03-01' AND fecha_reservacion <= NOW()  ORDER BY reserva_id DESC"); // WHERE fecha_reservacion >= '{$_desde}' AND fecha_reservacion <= '{$_hasta}' 
 
     /*
     echo "<pre>";
