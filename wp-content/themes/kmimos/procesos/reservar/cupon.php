@@ -125,7 +125,7 @@
 
 		$cupon = trim( strtolower($cupon) );
 
-		$xcupon = $db->get_row("SELECT * FROM wp_posts WHERE post_title = '{$cupon}'");
+		$xcupon = $db->get_row("SELECT * FROM wp_posts WHERE post_title = '{$cupon}' AND post_type = 'shop_coupon' ");
 		$xmetas = $db->get_results("SELECT * FROM wp_postmeta WHERE post_id = '{$xcupon->ID}'");
 		$metas = array();
 		foreach ($xmetas as $value) {
@@ -512,13 +512,6 @@
 				if( !es_petco($db, $cliente) ){ if( $validar ){ error("El cupón solo es válido para usuarios de Petco"); }else{ return false; } }
 			}
 
-
-
-
-
-
-
-
 			if( $cupon == "2pagk" ){  // Agregado el 03-04-19
 
 				// if( $_SESSION['landing_paseos'] != 'yes' ) { if( $validar ){ error("El cupón solo es válido desde el landing de Paseos"); }else{ return false; } }
@@ -567,24 +560,6 @@
 				return array( $cupon, $descuento, $individual_use, $_paseos );
 				
 			}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -742,6 +717,7 @@
 			}
 
 		/* Calculo */
+
 			$descuento = 0;
 			switch ( $metas["discount_type"] ) {
 				case "percent":
@@ -768,6 +744,7 @@
 				$descuento += ( $total-$sub_descuento );
 			}
 
+			/*
 			if( $descuento == 0 ){
 				if( strpos( $cupon, "saldo" ) === false ){
 					echo json_encode(array(
@@ -777,6 +754,7 @@
 					exit;
 				}
 			}
+			*/
 
 			if( $metas["individual_use"] == "yes" ){
 				return array(

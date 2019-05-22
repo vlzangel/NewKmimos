@@ -1,6 +1,9 @@
 <?php global $wpdb;
 // Usuarios 
 require_once('core/ControllerCuidadoresDetalle.php');
+
+// error_reporting(0);
+
 // Parametros: Filtro por fecha
 $landing = '';
 $date = getdate();
@@ -111,7 +114,7 @@ $users = getUsers($param, $desde, $hasta);
 			  				$name = $usermeta['nickname'];
 			  			}
 
-			  			$ubicacion = getEstadoMunicipio($row['estado'], $row['municipios']);
+			  			$ubicacion = getEstadoMunicipio($row['estados'], $row['municipios']);
 
   					    $mascotas_cuidador = '';
   					    $mascotas_cuidador_t = unserialize( $row['mascotas_cuidador']);

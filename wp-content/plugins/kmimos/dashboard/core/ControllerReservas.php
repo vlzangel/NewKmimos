@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__.'/base_db.php');
+// require_once(__DIR__.'/base_db.php');
 require_once(__DIR__.'/GlobalFunction.php');
 
 // ***************************************

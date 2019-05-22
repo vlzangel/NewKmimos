@@ -4,43 +4,78 @@
 
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
     include_once($raiz."/vlz_config.php");
+    include_once($raiz."/wp-load.php");
 
     $tema = (dirname(dirname(dirname(dirname(__DIR__)))));
 
     include_once($tema."/procesos/funciones/db.php");
     include_once($tema."/procesos/funciones/generales.php");
 
+
+    require_once(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/plugins/kmimos/dashboard/core/base_db.php');
+    require_once(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/plugins/kmimos/dashboard/core/GlobalFunction.php');
+    require_once(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/plugins/kmimos/dashboard/core/ControllerReservas.php');
+
+    $_desde = ""; $_hasta = "";
+    // $reservas = getReservas($_desde, $_hasta);
+
+    $reservas = $wpdb->get_results("SELECT * FROM reporte_reserva WHERE fecha_reservacion >= '2019-03-01' AND fecha_reservacion <= NOW()  ORDER BY fecha_reservacion DESC"); // WHERE fecha_reservacion >= '{$_desde}' AND fecha_reservacion <= '{$_hasta}' 
+
+    /*
+    echo "<pre>";
+        print_r( $reservas );
+    echo "</pre>";
+    */
+
+    $editores = [
+        0 => "Seleccione...",
+        1 => "Nikole Merlo",
+        2 => "Eyderman Peraza",
+        3 => "Leomar Albarrán",
+        4 => "Mariana Castello",
+        5 => "Yrcel Chaudary",
+    ];
+
     $db = new db( new mysqli($host, $user, $pass, $db) );
 
     $data["data"] = array();
+    $contador = 1; 
+    foreach ($reservas as $key => $datos) {
+        $item = []; $id_actual = 0;
+        foreach ($datos as $key => $info) {
 
-    $r = $db->get_results("
-        SELECT 
-            c.*,
-            email.user_email AS email,
-            nombre.meta_value AS nombre,
-            apellido.meta_value AS apellido
-        FROM 
-            consolidados AS c
-        INNER JOIN wp_users AS email ON ( email.ID = c.user_id ) 
-        INNER JOIN wp_usermeta AS nombre ON ( nombre.user_id = c.user_id AND nombre.meta_key = 'first_name' ) 
-        INNER JOIN wp_usermeta AS apellido ON ( apellido.user_id = c.user_id AND apellido.meta_key = 'last_name' ) 
-    ");
+            switch ( $key ) {
+                case 'id':
+                    $item[] = $contador;
+                    $id_actual = $info;
+                break;
 
-    if( $r != false ){
+                case 'comentarios':
+                    $item[] = '<textarea class="comentarios" onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="comentarios">'.$info.'</textarea>';
+                break;
 
-        foreach ($r as $key => $value) {
+                case 'ult_contacto':
+                    $fecha = ( $info == NULL ) ? '' : date("Y-m-d", strtotime($info) ) ;
+                    $item[] = '<input onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="ult_contacto" type="date" value="'.$fecha.'" />';
+                break;
 
-            $user = utf8_encode("{$value->nombre} {$value->apellido} ({$value->email})");
-            $value->modificado = date( "d/m/Y h:i a", strtotime($value->modificado) );
+                case 'atendido_por':
+                    $lista = '<select onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="atendido_por">';
+                    foreach ($editores as $key => $value) {
+                        $lista .= '<option value="'.$key.'" '.selected($key, $info, false).'>'.$value.'</option>';
+                    }
+                    $lista .= '</select>';
+                    $item[] = $lista;
+                break;
+                
+                default:
+                    $item[] = $info;
+                break;
+            }
 
-            $data["data"][] = array(
-                $value->id,
-                $value->comentarios,
-                $value->modificado,
-                $user
-            );
         }
+        $contador++;
+        $data["data"][] = $item;
     }
 
     echo json_encode($data);

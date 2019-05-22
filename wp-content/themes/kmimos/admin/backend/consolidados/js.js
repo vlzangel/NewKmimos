@@ -37,13 +37,20 @@ jQuery(document).ready(function() {
 
 } );
 
-function abrir_link(e){
-	init_modal({
-		"titulo": e.attr("data-titulo"),
-		"modulo": "fotos",
-		"modal": e.attr("data-modal"),
-		"info": {
-			"ID": e.attr("data-id")
-		}
-	});
+function updateInfo(_this){
+
+	console.log( _this.val() );
+
+    jQuery.post(
+        TEMA+'/admin/backend/consolidados/ajax/update.php',
+        {
+        	id: _this.data("id"),
+        	valor: _this.val(),
+        	campo: _this.data("type"),
+        },
+        function(data){
+        	console.log( data );
+        }, 'json'
+    );
+
 }
