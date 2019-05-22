@@ -3,9 +3,9 @@
 
 <div class="container_listados">
 
-    <div class='titulos' style="padding-top: 30px;">
+    <div class='titulos' style="padding-top: 10px;">
         <h2>Consolidados</h2>
-        <hr>
+        <hr style="margin: 10px 0px;">
     </div>
 
     <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;" >

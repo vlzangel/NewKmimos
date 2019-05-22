@@ -28,7 +28,20 @@ jQuery(document).ready(function() {
         "ajax": {
             "url": TEMA+'/admin/backend/consolidados/ajax/list.php',
             "type": "POST"
-        }
+        },
+        /*
+        dom: 'lBfrtip',
+        buttons: [
+            {
+                columns: ':not(:first-child)',
+            },
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+        ],
+        */
+        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]]
 	});
 
     jQuery("#close_modal").on("click", function(e){
