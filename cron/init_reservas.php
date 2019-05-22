@@ -258,9 +258,9 @@
 
 	} 
 
-	/*
+	
     echo "<pre>";
     	print_r( $all_reservas );
     echo "</pre>";
-    */
+    
 ?>
