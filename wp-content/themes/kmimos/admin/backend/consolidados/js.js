@@ -41,28 +41,52 @@ jQuery(document).ready(function() {
             'pdfHtml5',
         ],
         */
-        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]]
-	});
+        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]],
 
+        "initComplete": function(settings, json) {
+            confirmadas_handler();
+        }
+	});
     jQuery("#close_modal").on("click", function(e){
         cerrar(e);
     });
-
     jQuery("#actualizar_list").on("click", function(e){
     	jQuery("#actualizar_list").html('<i class="fa fa-spinner fa-spin"></i> Actualizando...');
         jQuery("#actualizar_list").prop("disabled", true);
-
     	table.ajax.reload(function(r){
 			jQuery("#actualizar_list").html('Actualizar');
 			jQuery("#actualizar_list").prop("disabled", false);
 		}, true);
     });
+    jQuery("#mostrar_confirmadas").on("click", function(e){
+        confirmadas_handler(); 
+    });
 } );
 
+function confirmadas_handler(){
+    if( jQuery("#mostrar_confirmadas").attr("data-mostrar") == "true" ){
+        jQuery.fn.dataTable.ext.search.pop();
+        table.draw();
+        jQuery("#mostrar_confirmadas").attr("data-mostrar", "false");
+        jQuery("#mostrar_confirmadas").addClass("button-secundary");
+        jQuery("#mostrar_confirmadas").removeClass("button-primary");
+        jQuery("#mostrar_confirmadas").html("Quitar Confirmadas");
+    }else{
+        console.log( "Entro" );
+        jQuery.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                return jQuery(table.row(dataIndex).node()).find("td")[3].innerHTML != "Confirmado";
+            }
+        );
+        table.draw();
+        jQuery("#mostrar_confirmadas").attr("data-mostrar", "true");
+        jQuery("#mostrar_confirmadas").removeClass("button-secundary");
+        jQuery("#mostrar_confirmadas").addClass("button-primary");
+        jQuery("#mostrar_confirmadas").html("Mostrar Confirmadas");
+    }
+}
+
 function updateInfo(_this){
-
-	console.log( _this.val() );
-
     jQuery.post(
         TEMA+'/admin/backend/consolidados/ajax/update.php',
         {
@@ -74,5 +98,4 @@ function updateInfo(_this){
         	console.log( data );
         }, 'json'
     );
-
 }

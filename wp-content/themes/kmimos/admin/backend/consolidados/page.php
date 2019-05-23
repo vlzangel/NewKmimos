@@ -1,11 +1,24 @@
+<?php
+    error_reporting( 0 );
+    session_start();
+
+    if( $_SESSION["MOSTRAR_CONFIRMADAS"] != true ){
+        $msg = '<button id="mostrar_confirmadas" class="button button-primary button-large">Mostrar Confirmadas</button>';
+    }else{
+        $msg = '<button id="mostrar_confirmadas" class="button button-secundary button-large">Quitar Confirmadas</button>';
+    }
+?>
 <link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/consolidados/css.css?v=<?= time() ?>'>
 <script src='<?php echo getTema(); ?>/admin/backend/consolidados/js.js?v=<?= time() ?>'></script>
 
 <div class="container_listados">
 
-    <div class='titulos' style="padding-top: 10px; position: relative;">
+    <div class='titulos' style="padding-top: 10px; margin-top: 10px; position: relative;">
         <h2>Consolidados</h2>
-        <button id="actualizar_list" class="button button-primary button-large" style="position: absolute; top: 10px; right: 15px;">Actualizar</button>
+        <div style="position: absolute; top: 10px; right: 15px; text-align: right;">
+            <?= $msg ?>
+            <button id="actualizar_list" class="button button-primary button-large">Actualizar</button>
+        </div>
         <hr style="margin: 10px 0px;">
     </div>
 
