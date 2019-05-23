@@ -18,8 +18,6 @@
         5 => "Yrcel Chaudary",
     ];
 
-    $db = new db( new mysqli($host, $user, $pass, $db) );
-
     $data["data"] = array();
     $contador = 1; 
     foreach ($reservas as $key => $datos) {
