@@ -31,3 +31,11 @@ input[type="date"] {
 #wpbody-content {
     padding-bottom: 0px !important;
 }
+
+input[type="text"] {
+    padding: 8px 10px;
+}
+
+.table td {
+    padding: 8px 8px 0px;
+}
