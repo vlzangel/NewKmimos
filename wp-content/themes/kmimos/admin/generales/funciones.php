@@ -261,7 +261,9 @@
             );
 
             $permitidos = [
-                367
+                367,
+                8966,
+                12389
             ];
 
             if( in_array($user_id, $permitidos ) ){
@@ -273,6 +275,15 @@
                     'slug'          =>  'reporte_consolidados',
                     'access'        =>  'manage_options',
                     'page'          =>  'reporte_consolidados',
+                );
+                
+                $opciones_menu_reporte[] = array(
+                    'title'         =>  __('Requerimientos'),
+                    'short-title'   =>  __('Requerimientos'),
+                    'parent'        =>  'reporte_fotos',
+                    'slug'          =>  'reporte_requerimientos',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_requerimientos',
                 );
             
             }
@@ -461,5 +472,13 @@
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/recursos/importador-botones.php');
             include_once(dirname(__DIR__).'/backend/consolidados/page.php');
+        }
+    }
+
+    if(!function_exists('reporte_requerimientos')){
+        function reporte_requerimientos(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/requerimientos/page.php');
         }
     }
