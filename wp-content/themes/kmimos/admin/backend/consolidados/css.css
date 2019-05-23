@@ -37,3 +37,7 @@ input[type="date"] {
     padding: 0px 5px;
     vertical-align: middle;
 }
+
+table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable td:last-child, table.table-bordered.dataTable td:last-child {
+    text-align: left;
+}
