@@ -17,6 +17,7 @@
 	resize: none;
 	width: 250px;
 	height: 60px;
+    margin: 5px 0px 0px;
 }
 
 .items-span strong {
@@ -32,10 +33,7 @@ input[type="date"] {
     padding-bottom: 0px !important;
 }
 
-input[type="text"] {
-    padding: 8px 10px;
-}
-
 .table td {
-    padding: 8px 8px 0px;
+    padding: 0px 5px;
+    vertical-align: middle;
 }

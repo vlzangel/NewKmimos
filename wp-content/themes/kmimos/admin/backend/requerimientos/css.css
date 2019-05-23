@@ -35,6 +35,7 @@ input[type="date"] {
 textarea {
     resize: none;
     height: 80px;
+    margin: 5px 0px 0px;
 }
 
 .comentarios{
@@ -49,6 +50,6 @@ input[type="text"] {
 }
 
 .table td {
-    padding: 8px 8px 0px;
+    padding: 0px 5px;
     vertical-align: middle;
 }
