@@ -70,7 +70,7 @@ function confirmadas_handler(){
         jQuery("#mostrar_confirmadas").attr("data-mostrar", "false");
         jQuery("#mostrar_confirmadas").addClass("button-secundary");
         jQuery("#mostrar_confirmadas").removeClass("button-primary");
-        jQuery("#mostrar_confirmadas").html("Quitar Confirmadas");
+        jQuery("#mostrar_confirmadas").html("Ocultar Confirmadas");
     }else{
         console.log( "Entro" );
         jQuery.fn.dataTable.ext.search.push(
