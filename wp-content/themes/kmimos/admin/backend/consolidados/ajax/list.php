@@ -1,31 +1,13 @@
 <?php
 
-    date_default_timezone_set('America/Mexico_City');
-
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
-    include_once($raiz."/vlz_config.php");
     include_once($raiz."/wp-load.php");
 
-    $tema = (dirname(dirname(dirname(dirname(__DIR__)))));
-
-    include_once($tema."/procesos/funciones/db.php");
-    include_once($tema."/procesos/funciones/generales.php");
-
-
-    require_once(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/plugins/kmimos/dashboard/core/base_db.php');
-    require_once(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/plugins/kmimos/dashboard/core/GlobalFunction.php');
-    require_once(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/plugins/kmimos/dashboard/core/ControllerReservas.php');
+    date_default_timezone_set('America/Mexico_City');
 
     $_desde = ""; $_hasta = "";
-    // $reservas = getReservas($_desde, $_hasta);
 
-    $reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '2019-03-01' AND fecha_reservacion <= NOW()  ORDER BY reserva_id DESC"); // WHERE fecha_reservacion >= '{$_desde}' AND fecha_reservacion <= '{$_hasta}' 
-
-    /*
-    echo "<pre>";
-        print_r( $reservas );
-    echo "</pre>";
-    */
+    $reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new ORDER BY reserva_id DESC"); // WHERE fecha_reservacion >= '{$_desde}' AND fecha_reservacion <= '{$_hasta}' 
 
     $editores = [
         0 => "Seleccione...",
