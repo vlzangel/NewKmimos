@@ -40,5 +40,5 @@ input[type="date"] {
 
 td.dataTables_empty {
     padding: 10px;
-    text-align: left;
+    text-align: left !important;
 }
