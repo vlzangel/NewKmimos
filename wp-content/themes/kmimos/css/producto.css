@@ -717,3 +717,7 @@ div#tienda_box img {
     .vlv_2{
         display: none;
     }
+
+.invalido ul {
+    list-style: none;
+}

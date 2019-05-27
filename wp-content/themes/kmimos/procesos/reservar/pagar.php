@@ -82,6 +82,53 @@
 		exit();
 	}
 
+	/*
+		acepta: "6"
+		cuidador: "8631"
+		cupos: "1"
+		fecha: "2019-07-15"
+		full: "0"
+		id: "37"
+		no_disponible: "0"
+		servicio: "150448"
+		tipo: "hospedaje"
+	*/
+
+
+	$_cupos = $_SESSION["cupos_".$pagar->cuidador];
+
+	$_ini_cupos = strtotime($fechas->inicio);
+	$_fin_cupos = strtotime($fechas->fin);
+
+	$fechas_bloqueadas = [];
+	foreach ($_cupos as $key => $item) {
+		if( $item->no_disponible == 1 ){
+			$fecha_cupo = strtotime($item->fecha);
+			if( $_ini_cupos <= $fecha_cupo && $fecha_cupo <= $_fin_cupos ){
+				$fechas_bloqueadas[] = date("d/m/Y", strtotime($item->fecha));
+			}
+		}
+	}
+
+	if( count($fechas_bloqueadas) > 0 ){
+		unset($_SESSION["pagando"]);
+        echo json_encode(array(
+			"error" => 'no_cupos',
+			"tipo_error" => 'no_cupos',
+			"status" => "Lo sentimos, el cuidador ha bloqueado las siguientes fechas:<br> ".implode("<br>", $fechas_bloqueadas)."<br>En breve será redirigido al primer paso para que pueda ajustar las mismas."
+		));
+		exit();
+	}
+
+	/*
+    echo json_encode(array(
+		"error" => 'todo_bien',
+		"tipo_error" => 'todo_bien',
+		"status" => "Todo bien hasta aquí, bloqueo por pruebas"
+	));
+	exit();
+	*/
+
 	$pagar->total = $pagar->total-$pagar->fee;
 
 	$id_orden = 0;

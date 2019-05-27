@@ -192,6 +192,8 @@
 		$cupon_conocer_c = ( $_SESSION[ 'cupon_test_c'.$cuidador->id_post ] == 'YES' ) ? 'YES' : 'NO';
 		$es_landing_paseos = ( $_SESSION['landing_paseos'] == 'yes' ) ? 'true' : 'false';
 
+		$_SESSION["cupos_".$cuidador->id_post] = $cupos;
+
 		$HTML .= "
 		<script> 
 			var cupon_conocer_c = '".$cupon_conocer_c."';

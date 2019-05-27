@@ -23,7 +23,7 @@ jQuery( document ).ready(function() {
             jQuery(this).parent().removeClass("focus");
         });
     }
-    jQuery.post( RAIZ+"c.php", {}, function(e){} );
+    // jQuery.post( RAIZ+"c.php", {}, function(e){} );
     if( !isMobile.mobilecheck() && window.devicePixelRatio != 1 ){
         // alert("Hemos detectado que tienes zoom en tu navegador. Para ver la página correctamente ajústalo al 100%.");
     }

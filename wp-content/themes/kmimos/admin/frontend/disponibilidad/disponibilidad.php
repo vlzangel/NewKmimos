@@ -1,4 +1,6 @@
 <?php
+	error_reporting(0);
+
 	date_default_timezone_set('America/Mexico_City');
 
     global $wpdb;

@@ -492,6 +492,20 @@ function verificarCupos(){
 	return validacion;
 }
 
+function update_cupos(){
+	jQuery.post(
+		HOME+"/procesos/reservar/update_cupos.php", {c:cuidador},
+		function(data){
+			cupos = data;
+			calcular();
+			setTimeout(function(e){
+	    		jQuery("#atras_1").click();
+	    		jQuery(".errores_box").css("display", "none");
+	    	}, 10000);
+		}, 'json'
+	);
+}
+
 function initFactura(){
 
 	CARRITO["pagar"]["servicio"] = SERVICIO_ID;
@@ -655,6 +669,18 @@ function pagarReserva(id_invalido = false){
 				    		location.reload();
 				    	}, 1500);
 				    	es_fallida_con_orden = false;
+					break;
+					case 'no_cupos':
+						var error = data.status+"<br>";
+
+						update_cupos();
+
+				    	/*
+				    	setTimeout(function(e){
+				    		location.reload();
+				    	}, 1500);
+				    	es_fallida_con_orden = false;
+				    	*/
 					break;
 					default:
 						var error = "Error procesando la reserva<br>";
