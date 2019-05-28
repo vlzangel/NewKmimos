@@ -60,9 +60,6 @@ jQuery(document).ready(function() {
 } );
 
 function updateInfo(_this){
-
-	console.log( _this.val() );
-
     jQuery.post(
         TEMA+'/admin/backend/requerimientos/ajax/update.php',
         {

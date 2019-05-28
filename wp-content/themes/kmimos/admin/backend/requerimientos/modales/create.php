@@ -91,25 +91,28 @@
 
 	<div class="form-group">
 		<div class="row">
-	    	<div class="col-4">
-    			<label for="cliente"><i class="fa fa-search" aria-hidden="true"></i> Nombre</label>
-    			<input type="text" id="cliente_nonbre" class="form-control" style="margin-bottom: 5px;" />
+	    	<div class="col-6">
+    			<label for="cliente">Nombre</label>
+    			<input type="text" id="cliente_nonbre" name="nombre" class="form-control" style="margin-bottom: 5px;" required />
     		</div>
-	    	<div class="col-4">
-    			<label for="cliente"><i class="fa fa-search" aria-hidden="true"></i> Apellido</label>
-    			<input type="text" id="cliente_apellido" class="form-control" style="margin-bottom: 5px;" />
-    		</div>
-	    	<div class="col-4">
-    			<label for="cliente"><i class="fa fa-search" aria-hidden="true"></i> Email</label>
-    			<input type="text" id="cliente_email" class="form-control" style="margin-bottom: 5px;" />
+	    	<div class="col-6">
+    			<label for="cliente">Apellido</label>
+    			<input type="text" id="cliente_apellido" name="apellido" class="form-control" style="margin-bottom: 5px;" required />
     		</div>
     	</div>
 	</div>
 
 	<div class="form-group">
-		<select class="form-control" id="cliente_id" name="cliente_id" required>
-			<option value="">Seleccione un cliente...</option>
-		</select>
+		<div class="row">
+	    	<div class="col-6">
+    			<label for="cliente">Email</label>
+    			<input type="email" id="cliente_email" name="email" class="form-control" style="margin-bottom: 5px;" required />
+    		</div>
+	    	<div class="col-6">
+    			<label for="cliente_telf">Teléfono</label>
+    			<input type="number" id="cliente_telf" name="telf" class="form-control" style="margin-bottom: 5px;" required />
+    		</div>
+    	</div>
 	</div>
 
 	<div class="form-group">
@@ -178,13 +181,40 @@
 
 					jQuery("#btn_form_create").html("Crear Requerimiento");
 					jQuery("#btn_form_create").prop("disabled", false);
+
+					table.ajax.reload(function(r){
+						jQuery("#close_modal").click();  
+					}, true);
+
 		        }, 'json'
 		    );
 		    
 		});
 
+		jQuery("#checkin").on("change", function(e){
+			calcular();
+		});
+
+		jQuery("#checkout").on("change", function(e){
+			calcular();
+		});
+
+
    	});
 
+   	function calcular(){
+   		var ini = jQuery("#checkin").val();
+   		var fin = jQuery("#checkout").val();
+   		if( ini != "" && fin != "" ){
+   			var fechaInicio = new Date(ini).getTime();
+			var fechaFin    = new Date(fin).getTime();
+			var diff = fechaFin - fechaInicio;
+			dias = parseInt( diff/(1000*60*60*24) );
+   			jQuery("#total_noches").val(dias);
+   		}
+   	}
+
+	/*
 	jQuery("#cliente_nonbre").unbind("keyup").bind("keyup", function(e){
 		if( jQuery(this).val().length >= 3 ){
 			console.log("Buscar");
@@ -237,6 +267,7 @@
 		    );
 		}
 	});
+	*/
 
 	function update_list(data){
 		var options = '';

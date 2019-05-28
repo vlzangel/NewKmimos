@@ -82,19 +82,6 @@
 		exit();
 	}
 
-	/*
-		acepta: "6"
-		cuidador: "8631"
-		cupos: "1"
-		fecha: "2019-07-15"
-		full: "0"
-		id: "37"
-		no_disponible: "0"
-		servicio: "150448"
-		tipo: "hospedaje"
-	*/
-
-
 	$_cupos = $_SESSION["cupos_".$pagar->cuidador];
 
 	$_ini_cupos = strtotime($fechas->inicio);

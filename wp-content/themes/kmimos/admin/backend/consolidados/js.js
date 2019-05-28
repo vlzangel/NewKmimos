@@ -8,7 +8,7 @@ jQuery(document).ready(function() {
 			"infoFiltered":			"(filtrados de un total de _MAX_ registros)",
 			"infoPostFix":			" (actualizados)",
 			"lengthMenu":			"Mostrar _MENU_ registros",
-			"loadingRecords":		"Cargando...",
+			"loadingRecords":		"Cargando, por favor espere...",
 			"processing":			"Procesando...",
 			"search":				"Buscar:",
 			"searchPlaceholder":	"Dato para buscar",
