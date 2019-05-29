@@ -1430,7 +1430,7 @@
 	}
 
 	.carrusel_servicios_2 .carrusel_servicios_principales_img {
-	    height: 250px !important;
+	    height: 210px !important;
 	}
 
 	.carrusel_servicios_2 .carrusel_servicios h2 {
@@ -1479,6 +1479,10 @@
 }
 
 @media (max-width: 350px){
+
+	.carrusel_servicios_2 .carrusel_servicios_principales_item {
+	    padding: 5px 10px 5px 10px !important;
+	}
 
 	.servicios_principales_container .input_check_box span {
 	    font-size: 10px;
@@ -1613,7 +1617,7 @@
 	}
 
 	.carrusel_servicios_principales_box {
-	    height: 206px;
+	    height: 360px;
 	}
 
 	.carrusel_servicios_principales_img {
