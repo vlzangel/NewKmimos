@@ -672,15 +672,7 @@ function pagarReserva(id_invalido = false){
 					break;
 					case 'no_cupos':
 						var error = data.status+"<br>";
-
 						update_cupos();
-
-				    	/*
-				    	setTimeout(function(e){
-				    		location.reload();
-				    	}, 1500);
-				    	es_fallida_con_orden = false;
-				    	*/
 					break;
 					default:
 						var error = "Error procesando la reserva<br>";
