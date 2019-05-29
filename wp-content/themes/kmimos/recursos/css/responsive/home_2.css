@@ -1142,7 +1142,7 @@
 
 		.carrusel_servicios_principales_box {
 		    left: -545%;
-		    height: 225px;
+		    height: 380px;
 		}
 
 		.carrusel_servicios_principales_item {
@@ -1158,10 +1158,15 @@
 		    font-size: 10px;
 		}
 
+		.carrusel_servicios_2 .carrusel_servicios_principales_data label {
+		    padding: 15px 0px 5px;
+		}
+
 		.carrusel_servicios_principales_data p {
 		    font-size: 8px;
 		    font-weight: 400 !important;
 		    line-height: 1.4;
+		    margin: 5px 0px 0px !important;
 		}
 
 		.carrusel_recomendados h2 {
@@ -1425,7 +1430,7 @@
 	}
 
 	.carrusel_servicios_2 .carrusel_servicios_principales_img {
-	    height: 210px !important;
+	    height: 250px !important;
 	}
 
 	.carrusel_servicios_2 .carrusel_servicios h2 {
