@@ -46,6 +46,16 @@
     	];
     }
 
+    if( isset($_GET["g"]) ){
+    	$_SESSION["busqueda"] = [
+    		"servicios" => [
+    			"guarderia"
+    		],
+    		"checkin" => date("d/m/Y"),
+    		"checkout" => date("d/m/Y")
+    	];
+    }
+
     /* FILTROS */
 
 	    $tam = getTamanos();
@@ -127,6 +137,10 @@
 
 		if( $_GET['lp'] == '1' && !isset($_SESSION["busqueda"]["servicios"]) ){
 			$_SESSION["busqueda"]["servicios"] = ['paseos'];
+    	}
+
+    	if( isset($_GET["g"]) ){
+    		$key_principal = "guarderia";
     	}
 
 		if( $_GET['lp'] == '1' && !isset($_SESSION["busqueda"]["dias"]) ){

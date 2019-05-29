@@ -81,6 +81,11 @@
 		';
 	}
 
+	$check_guarderia = '';
+	if( isset($_GET["g"]) ){
+		$check_guarderia = 'checked';
+	}
+
 	if( $_SESSION["wlabel"] == "petco" ){
 		switch ( $landing ) {
 			case 'b':

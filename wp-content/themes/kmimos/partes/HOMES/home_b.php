@@ -47,7 +47,7 @@
 							</label>
 
 							<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia\'); evento_fbq(\'track\', \'traking_code_boton_guarderia\');">
-								<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia"  />
+								<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia" '.$check_guarderia.' />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Guarderia.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Guarderia.png" />
 								<span>Guardería</span>
