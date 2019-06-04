@@ -41,6 +41,21 @@ jQuery(document).ready(function(){
         }
     });
 
+    jQuery(".ubicacion_txt").on("paste", function ( e ) {
+        var txt = String(jQuery(this).val()).toLowerCase();
+        if( txt.trim() != "" ){
+            buscarLocacion(txt, jQuery(this));
+        }else{
+            if(typeof buscar === 'function') {
+                jQuery(".ubicacion_txt").val( "" );
+                jQuery(".ubicacion").val( "" );
+                jQuery(".latitud").val( "" );
+                jQuery(".longitud").val( "" );
+                buscar("ubicacion");
+            }
+        }
+    });
+
     jQuery(".ubicacion_txt").on("focus", function ( e ) { 
         jQuery(this).attr("placeholder", "Escribe aquí el municipio");
         jQuery(this).parent().find(".ubicacion_list").addClass("ubicacion_list_hover");    
