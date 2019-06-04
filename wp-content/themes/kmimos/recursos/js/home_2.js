@@ -96,7 +96,7 @@ jQuery( document ).ready(function() {
         jQuery(".ubicacion").val( jQuery(this).data('id') );
         jQuery(".ubicacion_txt").val( jQuery(this).data('nombre') );
         jQuery("#personalizada").val( 0 );
-        // jQuery("#buscador").submit();
+        jQuery("#buscador").submit();
     });
 
     jQuery("#popup-servicios-new input").on("change", function(e){
