@@ -580,14 +580,9 @@
        		if( $personalizada == 1 ){
        			header("location: {$home}personalizada/");
        		}else{
-       			// header("location: {$home}busqueda/");
+       			header("location: {$home}busqueda/");
        		}
 		}else{
 			echo json_encode( $ids_validos );
 		}
 	}
-
-	echo "<pre>";
-		print_r( $sql );
-		print_r( $_POST );
-	echo "</pre>";

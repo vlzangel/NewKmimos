@@ -202,6 +202,10 @@
 	}
 	*/
 
+	echo "<pre>";
+		print_r($_SESSION['busqueda']);
+	echo "</pre>";
+
 	if( $_SESSION['landing_paseos'] == 'yes' ) {
 		$tipo_cuidador = 'Paseador';
 		$ocultar_por_comenzar = 'display: none;';
