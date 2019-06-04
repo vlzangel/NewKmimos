@@ -553,7 +553,7 @@
 
 		<div class="beneficios_buscar_container">
 			<div class="beneficios_buscar_left">
-				Más de <strong>1,000 Cuidadores Certificados y 60,000 noches reservadas.</strong> Tu consentido se queda en el hogar de una <strong>VERDADERA FAMILIA,</strong> con cobertura veterinaría
+				Más de <strong>1,000 Cuidadores Certificados y 60,000 noches reservadas.</strong> Tu consentido se queda en el hogar de una <strong>VERDADERA FAMILIA,</strong> con cobertura veterinaria
 			</div>
 			<div class="beneficios_buscar_right">
 				<div onclick="ancla_form()" class="boton boton_verde">Buscar cuidador</div>

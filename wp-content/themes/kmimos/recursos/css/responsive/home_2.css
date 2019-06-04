@@ -1617,7 +1617,7 @@
 	}
 
 	.carrusel_servicios_principales_box {
-	    height: 360px;
+	    height: auto;
 	}
 
 	.carrusel_servicios_principales_img {
