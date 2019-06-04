@@ -570,7 +570,7 @@
     	$_SESSION['landing_paseos'] = "yes";
     }
 
-	if( isset($_GET["log"]) ){
+	if( isset($_POST["log"]) && isset($_GET["log"]) ){
 		echo "<pre>";
 			print_r( $sql );
 			print_r( $_POST );
@@ -580,10 +580,14 @@
        		if( $personalizada == 1 ){
        			header("location: {$home}personalizada/");
        		}else{
-       			header("location: {$home}busqueda/");
+       			// header("location: {$home}busqueda/");
        		}
 		}else{
 			echo json_encode( $ids_validos );
 		}
 	}
 
+	echo "<pre>";
+		print_r( $sql );
+		print_r( $_POST );
+	echo "</pre>";
