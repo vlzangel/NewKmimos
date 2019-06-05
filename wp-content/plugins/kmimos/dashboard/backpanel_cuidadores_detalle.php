@@ -4,6 +4,8 @@ require_once('core/ControllerCuidadoresDetalle.php');
 
 // error_reporting(0);
 
+extract($_GET);
+
 // Parametros: Filtro por fecha
 $landing = '';
 $date = getdate();
@@ -17,9 +19,29 @@ if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 $param = [];
 
 // Buscar Reservas
-$users = getUsers($param, $desde, $hasta);
+$users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 ?>
+<style type="text/css">
+	.form-inline .input-group .input-group-addon, .form-inline .input-group .input-group-btn, .form-inline .input-group .form-control {
+	    width: 150px;
+	}
+	.vlz_row{
+		margin-bottom: 10px;
+	}
 
+	form.form-inline {
+	    width: 465px;
+	    display: inline-block;
+	}
+
+	form.form-inline > label {
+        text-align: left;
+    	display: block;
+	}
+	.input-group-addon {
+	    width: 80px !important;
+	}
+</style>
 <div class="col-md-12 col-sm-12 col-xs-12">
 <div class="x_panel">
 	<div class="col-md-12 col-sm-12 col-xs-12">
@@ -31,18 +53,36 @@ $users = getUsers($param, $desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page="<?php echo $_GET['page']; ?> method="POST">
-					<label>Filtrar:</label>
-					<div class="form-group">
-						<div class="input-group">
-						  <div class="input-group-addon">Desde</div>
-						  <input type="date" class="form-control" name="desde" value="<?php echo $desde; ?>">
+		    	<form class="form-inline" action="<?php echo get_home_url(); ?>/wp-admin/admin.php?page=bp_cuidadores_detalle" method="GET">
+		    		<input type="hidden" name="page" value="bp_cuidadores_detalle">
+					<label>Registrados:</label>
+					<div class="vlz_row">
+						<div class="form-group">
+							<div class="input-group">
+							  <div class="input-group-addon">Desde</div>
+							  <input type="date" class="form-control" name="desde" value="<?php echo $desde; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+							  <div class="input-group-addon">Hasta</div>
+							  <input type="date" class="form-control" name="hasta" value="<?php echo $hasta ?>">
+							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="input-group">
-						  <div class="input-group-addon">Hasta</div>
-						  <input type="date" class="form-control" name="hasta" value="<?php echo $hasta ?>">
+					<label>Disponibles:</label>
+					<div class="vlz_row">
+						<div class="form-group">
+							<div class="input-group">
+							  <div class="input-group-addon">Desde</div>
+							  <input type="date" class="form-control" name="disp_desde" value="<?php echo $_GET['disp_desde']; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+							  <div class="input-group-addon">Hasta</div>
+							  <input type="date" class="form-control" name="disp_hasta" value="<?php echo $_GET['disp_hasta'] ?>">
+							</div>
 						</div>
 					</div>
 					<button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>			  
@@ -118,38 +158,46 @@ $users = getUsers($param, $desde, $hasta);
 
   					    $mascotas_cuidador = '';
   					    $mascotas_cuidador_t = unserialize( $row['mascotas_cuidador']);
-  					    foreach($mascotas_cuidador_t as $key => $val){
-  					    	if( $val > 0 ){
-	  					    	$mascotas_cuidador .= ( $mascotas_cuidador != '' )? ', ': '' ;
-	  					    	$mascotas_cuidador .= $key;
-	  						}
+  					    if( is_array($mascotas_cuidador_t) ){
+	  					    foreach($mascotas_cuidador_t as $key => $val){
+	  					    	if( $val > 0 ){
+		  					    	$mascotas_cuidador .= ( $mascotas_cuidador != '' )? ', ': '' ;
+		  					    	$mascotas_cuidador .= $key;
+		  						}
+	  					    }
   					    }
 
   					    $tamanos_aceptados = '';
   					    $tamanos_aceptados_t = unserialize( $row['tamanos_aceptados']);
-  					    foreach($tamanos_aceptados_t as $key => $val){
-  					    	if( $val > 0 ){
-	  					    	$tamanos_aceptados .= ( $tamanos_aceptados != '' )? ', ': '' ;
-	  					    	$tamanos_aceptados .= $key;
-	  						}
+  					    if( is_array($tamanos_aceptados_t) ){
+	  					    foreach($tamanos_aceptados_t as $key => $val){
+	  					    	if( $val > 0 ){
+		  					    	$tamanos_aceptados .= ( $tamanos_aceptados != '' )? ', ': '' ;
+		  					    	$tamanos_aceptados .= $key;
+		  						}
+	  					    }
   					    }
 
   					    $edades_aceptadas = '';
   					    $edades_aceptadas_t = unserialize( $row['edades_aceptadas']);
-  					    foreach($edades_aceptadas_t as $key => $val){
-  					    	if( $val > 0 ){
-	  					    	$edades_aceptadas .= ( $edades_aceptadas != '' )? ', ': '' ;
-	  					    	$edades_aceptadas .= $key;
-	  						}
+  					    if( is_array($edades_aceptadas_t) ){
+	  					    foreach($edades_aceptadas_t as $key => $val){
+	  					    	if( $val > 0 ){
+		  					    	$edades_aceptadas .= ( $edades_aceptadas != '' )? ', ': '' ;
+		  					    	$edades_aceptadas .= $key;
+		  						}
+	  					    }
   					    }
 
   					    $comportamientos_aceptados = '';
   					    $comportamientos_aceptados_t = unserialize( $row['comportamientos_aceptados']);
-  					    foreach($comportamientos_aceptados_t as $key => $val){
-  					    	if( $val > 0 ){
-	  					    	$comportamientos_aceptados .= ( $comportamientos_aceptados != '' )? ', ': '' ;
-	  					    	$comportamientos_aceptados .= $key;
-	  						}
+  					    if( is_array($comportamientos_aceptados_t) ){
+	  					    foreach($comportamientos_aceptados_t as $key => $val){
+	  					    	if( $val > 0 ){
+		  					    	$comportamientos_aceptados .= ( $comportamientos_aceptados != '' )? ', ': '' ;
+		  					    	$comportamientos_aceptados .= $key;
+		  						}
+	  					    }
   					    }
 
   					    $adicionales_t = unserialize( $row['adicionales']);

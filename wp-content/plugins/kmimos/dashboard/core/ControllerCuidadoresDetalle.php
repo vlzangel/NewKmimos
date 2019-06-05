@@ -99,7 +99,7 @@ function getServicios( $cuidador ){
 
 
 
-	$temp = "";
+	$temp = [];
     $precios_adicionales = "";
     foreach ($adicionales as $key => $value) {
     	foreach ($tam as $key2 => $value2) {
@@ -130,14 +130,16 @@ function getServicios( $cuidador ){
 	);
 
 	// Añadir servicios de transporte
-	foreach ($precios_adicionales_cuidador as $key => $servicio) {
-		if( isset($__transporte[ $key ]) ){
-			$temp[ 'transporte' ][ $key ] = [];
-			foreach ($servicio as $key_2 => $value_2) {
-				$temp[ 'transporte' ][ $key ][] = [
-					'costo' => $precios_adicionales_cuidador[$key][$key_2],
-					'descripcion' => $__transporte_tipo[ $key_2 ]
-				];
+	if( is_array($precios_adicionales_cuidador) ){
+		foreach ($precios_adicionales_cuidador as $key => $servicio) {
+			if( isset($__transporte[ $key ]) ){
+				$temp[ 'transporte' ][ $key ] = [];
+				foreach ($servicio as $key_2 => $value_2) {
+					$temp[ 'transporte' ][ $key ][] = [
+						'costo' => $precios_adicionales_cuidador[$key][$key_2],
+						'descripcion' => $__transporte_tipo[ $key_2 ]
+					];
+				}
 			}
 		}
 	}
@@ -146,7 +148,9 @@ function getServicios( $cuidador ){
 }
 
 
-function getUsers($param = array(), $desde="", $hasta=""){
+function getUsers($param = array(), $desde="", $hasta="", $disp_desde="", $disp_hasta=""){
+	global $wpdb;
+
 	$filtro_adicional = " c.activo = 1 ";
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
@@ -154,13 +158,25 @@ function getUsers($param = array(), $desde="", $hasta=""){
 			DATE_FORMAT(u.user_registered, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
 		";
 	}
-
 	foreach ($param as $key => $value) {
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
 		$filtro_adicional .= " {$key} = {$value} " ;		
 	}
 
-	$filtro_adicional = (!empty($filtro_adicional))? ' WHERE '.$filtro_adicional : $filtro_adicional ;
+	if( $disp_desde != "" && $disp_hasta != "" ){
+		$no_disponibles = [];
+		$_no_disponibles = $wpdb->get_results("SELECT DISTINCT cuidador FROM cupos WHERE fecha >= '{$disp_desde}' AND fecha <= '{$disp_hasta}' AND ( full = 1 OR no_disponible = 1 )");
+		foreach ($_no_disponibles as $key => $value) {
+			$no_disponibles[] = $value->cuidador;
+		}
+		if( count($no_disponibles) > 0 ){
+			$_temp = implode(",", $no_disponibles);
+			$filtro_adicional .= (!empty($filtro_adicional)) ? ' AND ' : '' ;
+			$filtro_adicional .= " user_id NOT IN ({$_temp}) " ;
+		}
+	}
+
+	$filtro_adicional = (!empty($filtro_adicional)) ? ' WHERE '.$filtro_adicional : $filtro_adicional ;
 	$sql = "
 		SELECT u.*, c.activo as 'estatus', c.*, p.post_title as 'cuidador_title', p.ID as 'cuidador_post' 
 		FROM wp_users as u
