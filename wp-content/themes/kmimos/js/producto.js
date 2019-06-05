@@ -62,7 +62,7 @@ function initCarrito(){
 		CARRITO["pagar"] = {
 			"fee" : 0,
 			"total" : "",
-			"tipo" : "tienda",
+			"tipo" : "",
 			"metodo" : "completo",
 			"token" : "",
 			"deviceIdHiddenFieldName" : "",
@@ -1256,9 +1256,43 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery("#reserva_btn_next_2").on("click", function(e){
-		jQuery(".km-col-steps").css("display", "none");
-		jQuery("#step_3").css("display", "block");
-		jQuery(document).scrollTop(0);
+
+		if( SUPERU != "Si" ){
+			jQuery(".km-col-steps").css("display", "none");
+			jQuery("#step_3").css("display", "block");
+			jQuery(document).scrollTop(0);
+		}else{
+			CARRITO["pagar"]["pre_reserva"] = "Si";
+
+			jQuery("#reserva_btn_next_2 span").html("Procesando");
+			jQuery("#reserva_btn_next_2").addClass("disabled");
+			jQuery("#reserva_btn_next_2").addClass("cargando");
+
+			var json = convertCARRITO();
+
+			jQuery.post(
+				HOME+"/procesos/reservar/pagar.php",
+				{
+					info: json
+				},
+				function(data){
+					// console.log( data );
+					if( data.error != "" && data.error != undefined ){
+						alert("Error procesando la pre-reserva");
+					}else{
+						jQuery(".msg_pre_container").css("display", "block");
+
+						setTimeout(function(e){
+				    		location.href = RAIZ+"/perfil-usuario/historial/";
+				    	}, 5000);
+							
+					}
+				}, "json"
+			
+			);
+
+			// alert("Realizar pre-reserva");
+		}
 
 		e.preventDefault();
 	});

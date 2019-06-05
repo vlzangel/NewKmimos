@@ -255,12 +255,14 @@
 
     $adicionales = generarAdicionales($adicionales);
 
-    $titulo_pago = "Tarjeta";
     if( $pagar->tipo == "mercadopago" ){
     	$titulo_pago = "Mercadopago";
     }
     if( $pagar->tipo == "paypal" ){
     	$titulo_pago = "Paypal";
+    }
+    if( $pagar->tipo == "tarjeta" ){
+    	$titulo_pago = "Tarjeta";
     }
     if( $pagar->tipo == "tienda" ){
     	$titulo_pago = "Tienda";
@@ -271,6 +273,8 @@
 
     $data_reserva = array(
 		"precios" 				=> $precios,
+
+		"pre_reserva" 			=> $pagar->pre_reserva,
 
 		"servicio" 				=> $pagar->servicio,
 		"titulo_servicio" 		=> $pagar->name_servicio,
@@ -381,13 +385,14 @@
 
 	}
 
-	unset($_SESSION["pagando"]);
+	
 
 	if( $_SESSION["pagando"] == ""){
 		$_SESSION["pagando"] = "YES";
 
 	    $cupos_a_decrementar = $parametros["cantidades"]->cantidad;
 
+	    /*
 	    if( $pre17 == 0 && $deposito["enable"] == "yes"  ){
 	    	$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
 	    	echo json_encode(array(
@@ -448,6 +453,42 @@
 				$_SESSION[$id_session] = "";
 				unset($_SESSION[$id_session]);
 			}
+
+			include(__DIR__."/emails/index.php");
+			exit;
+	    }
+	    */
+
+	    if( $pagar->pre_reserva == "Si" ){
+	    	// $db->query("UPDATE wp_posts SET post_status = 'unpaid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+			$db->query("UPDATE wp_posts SET post_status = 'wc-por-pagar' WHERE ID = {$id_orden};");
+
+
+			update_cupos( array(
+		    	"servicio" => $parametros["pagar"]->servicio,
+		    	"tipo" => $parametros["pagar"]->tipo_servicio,
+		    	"autor" => $parametros["pagar"]->cuidador,
+		    	"inicio" => strtotime($parametros["fechas"]->inicio),
+		    	"fin" => strtotime($parametros["fechas"]->fin),
+		    	"cantidad" => $cupos_a_decrementar
+		    ), "+");
+
+			if( isset($_SESSION[$id_session] ) ){
+		    	update_cupos( array(
+			    	"servicio" => $_SESSION[$id_session]["servicio"],
+			    	"tipo" => $parametros["pagar"]->tipo_servicio,
+		    		"autor" => $parametros["pagar"]->cuidador,
+			    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
+			    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
+			    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
+			    ), "-");
+				$_SESSION[$id_session] = "";
+				unset($_SESSION[$id_session]);
+			}
+
+			echo json_encode(array(
+				"order_id" => $id_orden,
+			));
 
 			include(__DIR__."/emails/index.php");
 			exit;

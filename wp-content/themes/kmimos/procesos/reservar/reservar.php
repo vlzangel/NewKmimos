@@ -91,10 +91,15 @@ class Reservas {
         
         if( isset($_SESSION['landing_test']) ){ $otros_metas .= "(NULL, '{$id_reserva}', '_booking_landing_test_petco', '".$_SESSION['landing_test']."'),"; }
 
+        if( isset($_SESSION['id_admin']) ){ $otros_metas .= "(NULL, '{$id_reserva}', '_booking_id_admin', '".$_SESSION['id_admin']."'),"; }
+
         $sql = "
             INSERT INTO wp_postmeta VALUES
                 {$wlabel}
                 {$otros_metas}
+
+                (NULL, '{$id_reserva}', '_booking_pre_reserva',     '{$pre_reserva}'),
+
                 (NULL, '{$id_reserva}', '_booking_flash',           '{$reservaFlash}'),
                 (NULL, '{$id_reserva}', '_booking_checkin',         '{$checkin}'),
                 (NULL, '{$id_reserva}', '_booking_checkout',        '{$checkout}'),
@@ -164,14 +169,22 @@ class Reservas {
             $remanente = "(NULL, '{$id_order}', '_wc_deposits_remaining', '0'),";
         }
 
+        $otros_metas = '';
+        if( isset($_SESSION['id_admin']) ){ $otros_metas .= "(NULL, '{$id_order}', '_id_admin', '".$_SESSION['id_admin']."'),"; }
+
         $sql = "
             INSERT INTO wp_postmeta VALUES
             {$remanente}
+            {$otros_metas}
+
             (NULL, '{$id_order}', '_customer_user',                         '{$cliente}'),
             
             (NULL, '{$id_order}', '_order_total',                           '{$total}'),
             (NULL, '{$id_order}', '_order_fee',                             '{$fee}'),
             (NULL, '{$id_order}', '_cart_discount',                         '{$descuento}'),
+
+
+            (NULL, '{$id_order}', '_pre_reserva',                           '{$pre_reserva}'),
 
             (NULL, '{$id_order}', '_order_key',                             'wc_order_{$token}'),
             (NULL, '{$id_order}', '_order_stock_reduced',                   '1'),

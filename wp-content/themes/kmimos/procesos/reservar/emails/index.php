@@ -1,5 +1,7 @@
 <?php
 	
+	session_start();
+
 	extract($_GET);
 	if( isset($_GET["id_orden"]) ){
 		include((dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))))."/wp-load.php");
@@ -283,6 +285,26 @@
 	            'DIAS' =>    ( count($servicio["info_paquete"]) > 0 ) ? $servicio["info_paquete"]['dias']    : ''
 	    ];
 
+	    function getUrlImgs_TEMP(){
+			$url = get_home_url()."/wp-content/themes/kmimos/images/emails";
+			return $url;
+		}
+
+	    function getTemplate_TEMP($plantilla){
+			$template = dirname(dirname(dirname(__DIR__))).'/template/mail/'.$plantilla.'.php';
+			return file_get_contents($template);
+		}
+
+		function buildEmailTemplate_TEMP($plantilla, $params){
+			$HTML = getTemplate_TEMP($plantilla);
+			foreach ($params as $key => $value) {
+	            $HTML = str_replace('['.strtolower($key).']', $value, $HTML);
+	            $HTML = str_replace('['.strtoupper($key).']', $value, $HTML);
+	        }
+	        $HTML = str_replace('[URL_IMGS]', getUrlImgs_TEMP($test), $HTML);
+	        return $HTML;
+		}
+
 
 		if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
 			$status_orden = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
@@ -292,7 +314,12 @@
 				if( $status_orden == "wc-on-hold"  ){
 					include(__DIR__."/nuevos.php");
 				}else{
-					include(__DIR__."/otro.php");
+					$pre_reserva = get_post_meta($servicio["id_orden"], '_pre_reserva', true);
+					if( $status_orden == "wc-pending" && $pre_reserva == 'Si'  ){
+						include(__DIR__."/pre_reserva.php");
+					}else{
+						include(__DIR__."/otro.php");
+					}
 				}
 			}
 		}

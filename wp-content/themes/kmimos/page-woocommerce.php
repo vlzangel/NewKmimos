@@ -197,6 +197,7 @@
 		$HTML .= "
 		<script> 
 			var cupon_conocer_c = '".$cupon_conocer_c."';
+			var id_admin = '".$_SESSION['id_admin']."';
 			var fee_conocer = '".$fee_conocer."';
 			var es_landing_paseos = '".$es_landing_paseos."';
 			
@@ -357,6 +358,24 @@
 			";
 		}*/
 
+		$pasos = [
+			'<li><span class="number active">1</span></li> <li class="line"></li><li><span class="number">2</span></li> <li class="line"></li><li><span class="number">3</span></li>',
+			'<li><span class="number checked">1</span></li> <li class="line"></li><li><span class="number active">2</span></li> <li class="line"></li><li><span class="number">3</span></li>',
+			'<li><span class="number checked">1</span></li> <li class="line"></li><li><span class="number checked">2</span></li> <li class="line"></li><li><span class="number active">3</span></li>',
+		];
+		$btn_txt_paso_2 = "Siguiente";
+		$msg_container = '';
+
+		if(  $_SESSION['admin_sub_login'] == 'YES' ){
+			$pasos = [
+				'<li><span class="number active">1</span></li> <li class="line"></li><li><span class="number">2</span></li>',
+				'<li><span class="number checked">1</span></li> <li class="line"></li><li><span class="number active">2</span></li>',
+				'',
+			];
+			$btn_txt_paso_2 = "Terminar";
+			$msg_container = '<div class="msg_pre_container">Pre-reserva Completada Exitosamente!</div>';
+		}
+
 		$HTML .= '
 		<div class="page-reservation">
 	 		<form id="reservar" class="km-content km-content-reservation">
@@ -366,11 +385,7 @@
 						<div id="atras_0" class="atras" style="display: none;"> &nbsp; </div>
 					
 						<div class="barra_titulo">
-							<ul class="steps-numbers">
-								<li><span class="number active">1</span></li>
-								<li class="line"></li><li><span class="number">2</span></li>
-								<li class="line"></li><li><span class="number">3</span></li>
-							</ul>
+							<ul class="steps-numbers"> '.$pasos[0].' </ul>
 							<div class="km-title-step">
 								RESERVACIÓN <span>'.$servicio_name_corto.'</span>
 								<div>'.$descripcion_1.'</div>
@@ -395,11 +410,7 @@
 					<div class="km-col-content">
 						<div id="atras_1" class="atras"> <span class="vlv_1">Volver</span> <span class="vlv_2"> < </span> </div>
 						<div class="barra_titulo">
-							<ul class="steps-numbers">
-								<li><span class="number checked">1</span></li>
-								<li class="line"></li><li><span class="number active">2</span></li>
-								<li class="line"></li><li><span class="number">3</span></li>
-							</ul>
+							<ul class="steps-numbers"> '.$pasos[1].' </ul>
 							<div class="km-title-step">
 								RESUMEN DE TU RESERVA
 								<div>Queremos confirmar tu reservación y tu método de pago</div>
@@ -451,24 +462,24 @@
 								</div>
 							</div>
 							<span id="reserva_btn_next_2" class="km-end-btn-form vlz_btn_reservar">
-								<span>Siguiente</span>
+								<div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div>
+								<span>'.$btn_txt_paso_2.'</span>
 							</span>
 						</div>
+
+						'.$msg_container.'
 
 					</div>
 
 				</div>';
 
-		$HTML .= '
+		if(  $_SESSION['admin_sub_login'] != 'YES' ){
+			$HTML .= '
 				<div id="step_3" class="km-col-steps">
 					<div class="km-col-content">
 						<div id="atras_2" class="atras"> <span class="vlv_1">Volver</span> <span class="vlv_2"> < </span> </div>
 						<div class="barra_titulo">
-							<ul class="steps-numbers">
-								<li><span class="number checked">1</span></li>
-								<li class="line"></li><li><span class="number checked">2</span></li>
-								<li class="line"></li><li><span class="number active">3</span></li>
-							</ul>
+							<ul class="steps-numbers"> '.$pasos[2].' </ul>
 							<div class="km-title-step">
 								REALIZA TU PAGO
 							</div>
@@ -518,42 +529,24 @@
 											Medio de pago
 										</div>
 
-										<!-- 
-											<div class="km-method-paid-options km-medio-paid-options" >
-												<div onclick="evento_google_kmimos(\'tienda\'); evento_fbq_kmimos(\'tienda\');" class="km-method-paid-option km-tienda km-option-3-lineas active">
-													<div class="km-text-one">
-														PAGO EN TIENDA DE CONVENIENCIA
-													</div>
-												</div>
-
-												<div onclick="evento_google_kmimos(\'tarjeta\'); evento_fbq_kmimos(\'tarjeta\');" class="km-method-paid-option km-tarjeta km-option-3-lineas ">
-													<div class="km-text-one">
-														<div class="km-text-one">								
-															<span>PAGO CON </span>TARJETA DE CRÉDITO O DÉBITO
-														</div>
-													</div>
-												</div>
+										<div id="pasarela-container">
+											<div class="km-method-paid-option km-option-3-lineas km-tienda active"
+												onclick="evento_google_kmimos(\'tienda\'); evento_fbq_kmimos(\'tienda\');" >
+												<div class="km-text-one">PAGO EN TIENDA DE CONVENIENCIA</div>
 											</div>
-										-->
-
-				<div id="pasarela-container">
-					<div class="km-method-paid-option km-option-3-lineas km-tienda active"
-						onclick="evento_google_kmimos(\'tienda\'); evento_fbq_kmimos(\'tienda\');" >
-						<div class="km-text-one">PAGO EN TIENDA DE CONVENIENCIA</div>
-					</div>
-					<div class="km-method-paid-option km-option-3-lineas km-tarjeta"
-						onclick="evento_google_kmimos(\'tarjeta\'); evento_fbq_kmimos(\'tarjeta\');" >
-						<div class="km-text-one"><span>PAGO CON </span>TARJETA DE CRÉDITO O DÉBITO</div>
-					</div>
-					<div class="km-method-paid-option km-option-3-lineas km-paypal"
-						onclick="evento_google_kmimos(\'paypal\'); evento_fbq_kmimos(\'paypal\');" >
-						<div class="km-text-one">PAGO CON PAYPAL</div>
-					</div>
-					<div class="km-method-paid-option km-option-3-lineas km-mercadopago"
-						onclick="evento_google_kmimos(\'mercadopago\'); evento_fbq_kmimos(\'mercadopago\');">
-						<div class="km-text-one">PAGO CON MERCADOPAGO</div>					
-					</div>
-				</div>
+											<div class="km-method-paid-option km-option-3-lineas km-tarjeta"
+												onclick="evento_google_kmimos(\'tarjeta\'); evento_fbq_kmimos(\'tarjeta\');" >
+												<div class="km-text-one"><span>PAGO CON </span>TARJETA DE CRÉDITO O DÉBITO</div>
+											</div>
+											<div class="km-method-paid-option km-option-3-lineas km-paypal"
+												onclick="evento_google_kmimos(\'paypal\'); evento_fbq_kmimos(\'paypal\');" >
+												<div class="km-text-one">PAGO CON PAYPAL</div>
+											</div>
+											<div class="km-method-paid-option km-option-3-lineas km-mercadopago"
+												onclick="evento_google_kmimos(\'mercadopago\'); evento_fbq_kmimos(\'mercadopago\');">
+												<div class="km-text-one">PAGO CON MERCADOPAGO</div>					
+											</div>
+										</div>
 									</div>
 
 									<select id="tipo_pago" style="display: none;">
@@ -628,8 +621,10 @@
 						</span>
 
 					</div>
-				</div>
-				
+				</div>';
+		}
+
+		$HTML .= '
 				<div class="km-col-empty">
 					<img src="'.getTema().'/images/new/bg-cachorro.png" style="max-width: 100%;">
 				</div>
