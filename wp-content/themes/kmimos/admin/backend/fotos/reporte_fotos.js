@@ -100,6 +100,21 @@ function ver_foto(e){
 }
 
 
+function des_excel(){
+	jQuery.post(
+		TEMA+"/admin/backend/fotos/ajax/excel.php",
+		{
+			title: ['Reserva', 'Cuidador', 'Cliente', 'Mascotas', 'Fotos 12 m', 'Fotos 06 pm', 'Bloqueo', 'Status'],
+			urlbase : HOME
+		},
+		function(HTML){
+            console.log(HTML);
+            location.href = HTML["file"];
+        }, 'json'
+    ); 
+}
+
+
 
 
 

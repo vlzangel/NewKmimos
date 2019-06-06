@@ -3,6 +3,7 @@
 
 <div class="botones_container">
     <input type='button' value='Moderar Fotos' onClick='moderar()' class="button button-primary button-large" />
+    <input type='button' value='Excel' onClick='des_excel()' class="button button-primary button-large" />
 </div>
 
 <div class="container_listados">
