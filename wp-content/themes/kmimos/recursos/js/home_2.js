@@ -89,6 +89,7 @@ function ajustar_carrusel_servicios_movil(){
 
 }
 
+var animacion_banner = "";
 
 jQuery( document ).ready(function() {
 
@@ -116,9 +117,12 @@ jQuery( document ).ready(function() {
         jQuery("#buscador_2").submit();
     });
 
-    jQuery(".carrusel_servicios_1").on('touchstart', function(e){
+    jQuery(".banner_rotativo_container").on('touchstart', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var ev = e.originalEvent;
+
+            clearInterval(animacion_banner);
+
             if (ev.targetTouches.length == 1) { 
                 var touch = ev.targetTouches[0]; 
                 TX1 = touch.pageX;
@@ -126,7 +130,7 @@ jQuery( document ).ready(function() {
         }
     });
 
-    jQuery(".carrusel_servicios_1").on('touchmove', function(e){
+    jQuery(".banner_rotativo_container").on('touchmove', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var ev = e.originalEvent;
             if (ev.targetTouches.length == 1) { 
@@ -140,14 +144,14 @@ jQuery( document ).ready(function() {
                 if( Math.abs( d ) < 30 ){
                     d = (paso*h)+(d*0.2);
                     d = -55-d;
-                    jQuery(this).find(".banner_box").css("left", (d)+"%");
+                    
                 }
 
             }
         }
     });
 
-    jQuery(".carrusel_servicios_1").on('touchend', function(e){
+    jQuery(".banner_rotativo_container").on('touchend', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
             var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso-movil") );
@@ -156,14 +160,24 @@ jQuery( document ).ready(function() {
                 if( d > 0 ){
                     console.log( "Mover der" );
                     paso++;
-                    jQuery(this).find(".banner_box").attr("data-paso-movil", paso);
+                    jQuery("#banner_home img.seccion_destacados_flechas.seccion_destacados_der").click();
+                    // jQuery(this).find(".banner_box").attr("data-paso-movil", paso);
                 }else{
                     console.log( "Mover izq" );
                     paso--;
-                    jQuery(this).find(".banner_box").attr("data-paso-movil", paso);
+                    jQuery("#banner_home img.seccion_destacados_flechas.seccion_destacados_izq").click();
+                    // jQuery(this).find(".banner_box").attr("data-paso-movil", paso);
                 }
                 d = 55+(paso*h);
-                jQuery(this).find(".banner_box").animate({left: (-1*d)+"%"}, 1000);
+                // jQuery(this).find(".banner_box").animate({left: (-1*d)+"%"}, 1000);
+
+                animacion_banner = setInterval(function(e){
+                    if( parseInt( jQuery("body").width() ) < 768 ){
+                        jQuery("#banner_home img.seccion_destacados_flechas.seccion_destacados_der").click();
+                    }else{
+                        jQuery("#banner_home img.seccion_destacados_flechas.seccion_destacados_der").click();
+                    }
+                }, 6000);
             }
         }
     });
@@ -181,7 +195,7 @@ jQuery( document ).ready(function() {
         banner_box.animate({left: (-1*(paso*h))+"%"}, 1000);
     });
     
-    setInterval(function(e){
+    animacion_banner = setInterval(function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             jQuery("#banner_home img.seccion_destacados_flechas.seccion_destacados_der").click();
         }else{
