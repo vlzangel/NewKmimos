@@ -9,7 +9,7 @@
 	wp_enqueue_style( 'generales_css', get_recurso("css")."generales.css", array(), "1.0.0" );
 	wp_enqueue_style( 'generales_responsive_css', get_recurso("css")."responsive/generales.css", array(), "1.0.0" );
 
-    if( in_array("reservar", explode("/", $_SERVER["REQUEST_URI"])) || in_array("recargar", explode("/", $_SERVER["REQUEST_URI"])) ){
+    if( in_array("pagar", explode("/", $_SERVER["REQUEST_URI"])) || in_array("reservar", explode("/", $_SERVER["REQUEST_URI"])) || in_array("recargar", explode("/", $_SERVER["REQUEST_URI"])) ){
 		wp_enqueue_style( 'kmimos_style', getTema()."/css/reserva_proceso.css", array(), "1.0.0" );
 
 		if( in_array("recargar", explode("/", $_SERVER["REQUEST_URI"])) ){
@@ -390,6 +390,7 @@
 	*/
 		
 	if( $_SESSION["wlabel"] == "petco" ){
+		/*
 		$HTML .= '
 			<!-- Adform Tracking Code BEGIN -->
 			<script type="text/javascript">
@@ -408,6 +409,7 @@
 			</noscript>
 			<!-- Adform Tracking Code END -->
 		';
+		*/
 	}
 
 	$link_home = ( $_SESSION['landing_paseos'] == 'yes' ) ? get_home_url().'/paseos' : get_home_url();

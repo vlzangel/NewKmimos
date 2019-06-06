@@ -109,12 +109,14 @@
     }
 
     if( !isset($_SESSION[ "llego_al_home" ]) ){
+    	/*
         $HTML .= '
             <script>
                 evento_google("llego_al_home");  
                 evento_fbq("track", "traking_code_llego_al_home");   
             </script>
         ';
+        */
         $_SESSION[ "llego_al_home" ] = "YA_ENTRO";
     }
 

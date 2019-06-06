@@ -101,8 +101,29 @@
 				$desglose["tipo"] = "PAGO TOTAL";
 			}
 
+			// echo $orden_status."<br>";
+
 			//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
-			if($orden_status == 'wc-pending') {
+			if( $orden_status == 'wc-por-pagar'){
+
+				$reservas_array["error"]["reservas"][] = array(
+					'id' => $reserva->ID, 
+					'servicio_id' => $servicio->ID, 
+					'servicio' => $servicio->post_title, 
+					'inicio' => date('d/m/Y', $inicio), 
+					'fin' => date('d/m/Y', $fin), 
+					'conocer' => $_metas_reserva['_booking_test_conocer'][0], 
+					'data_conocer' => $data_conocer, 
+					'foto' => $foto,
+					'acciones' => array(
+						"ver" => $ver,			
+						"pagar" => $ver,			
+					),
+					"desglose" => $desglose
+				);
+
+			//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
+			}else  if($orden_status == 'wc-pending') {
 
 
 			}else if($orden_status == 'wc-on-hold' && ( $_metas_orden['_payment_method'][0] == 'openpay_stores' || $_metas_orden['_payment_method'][0] == 'tienda' ) ){
@@ -232,27 +253,6 @@
 					"desglose" => $desglose
 				);
 
-			// RESERVAS PENDIENTES POR PAGAR - SUPER ADMIN
-			}else if( $orden_status != 'wc-por-pagar'){
-
-				$reservas_array["error"]["reservas"][] = array(
-					'id' => $reserva->ID, 
-					'servicio_id' => $servicio->ID, 
-					'servicio' => $servicio->post_title, 
-					'inicio' => date('d/m/Y', $inicio), 
-					'fin' => date('d/m/Y', $fin), 
-					'conocer' => $_metas_reserva['_booking_test_conocer'][0], 
-					'data_conocer' => $data_conocer, 
-					'foto' => $foto,
-					'acciones' => array(
-						"ver" => $ver,
-						"modificar" => $modificar,
-						"cancelar" => $cancelar,
-						"noFacturar" => 'info_facturacion',						
-					),
-					"desglose" => $desglose
-				);
-
 			}else{
 
 				$reservas_array["otros"]["reservas"][] = array(
@@ -271,6 +271,12 @@
 
 			}
 		}
+
+		/*
+		echo "<pre>";
+			print_r($reservas_array["error"]["reservas"]);
+		echo "</pre>";
+		*/
 
 		$pendientes = construir_listado(['pendientes_tienda'=>$reservas_array['pendientes_tienda']]);
 		$por_confirmar = construir_listado(['pendientes_confirmar'=>$reservas_array['pendientes_confirmar']]);

@@ -7,6 +7,9 @@
 	    			case 'ver':
 	    				$respuesta .= '<a data-accion="ver/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-info" aria-hidden="true"></i> Ver</a>';
     				break;
+	    			case 'pagar':
+	    				$respuesta .= '<a data-accion="'.get_home_url().'/pagar/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-credit-card" aria-hidden="true"></i> Pagar</a>';
+    				break;
 	    			case 'subir_fotos':
 	    				$respuesta .= '<a data-accion="'.get_home_url().'/perfil-usuario/reservas/subir/'.$accion.'" class="vlz_accion vlz_ver"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir Fotos</a>';
     				break;

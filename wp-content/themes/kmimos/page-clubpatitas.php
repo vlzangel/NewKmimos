@@ -91,7 +91,7 @@
 				    </label>
 					
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div style="padding:20px 0px;" class="g-recaptcha" data-sitekey="6LeX9TYUAAAAAF5L3Sr57SDQPlxUY74AojSrCYBW"></div>
+						<div style="padding: 0px 0px 10px;" class="g-recaptcha" data-sitekey="6LeX9TYUAAAAAF5L3Sr57SDQPlxUY74AojSrCYBW"></div>
 					</div>
 
 					<button type="submit" class="btn btn-club btn-lg btn-info">

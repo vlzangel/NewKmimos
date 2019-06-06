@@ -25,6 +25,7 @@
 			'pre { position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 99999999; display: none !important; }'.
 		'</style>';
 
+	/*
 	$HTML .= "
 		<!-- Google Tag Manager -->
 		<script>
@@ -55,6 +56,7 @@
 	        ga('send', 'pageview');
         </script>
 	";
+	*/
 
 	echo comprimir( $HTML );
 
@@ -103,6 +105,7 @@
         "paseos",
         "testimonios",
         "product",
+        "pagar",
         "page-perfil.php",
         "page-recargar.php",
         "page-registro-cuidador.php",
@@ -165,34 +168,34 @@
 			</head>
 			<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.' '.$class_iOS.'" onLoad="menu();">
 
-		<!-- Load Facebook SDK for JavaScript -->
-		<div id="fb-root"></div>
-		<script>
-			(function(d, s, id) {
-			  var js, fjs = d.getElementsByTagName(s)[0];
-			  if (d.getElementById(id)) return;
-			  js = d.createElement(s); js.id = id;
-			  js.src = "https://connect.facebook.net/es_ES/sdk/xfbml.customerchat.js";
-			  fjs.parentNode.insertBefore(js, fjs);
-			}(document, \'script\', \'facebook-jssdk\'));
-			
-			window.fbAsyncInit = function() {
-				FB.init({
-					appId            : \'264829233920818\',
-					autoLogAppEvents : true,
-					xfbml            : true,
-					version          : \'v3.2\'
-				});
-			};
-		</script>
-		<!-- Your customer chat code -->
-		<div class="fb-customerchat"
-			attribution=setup_tool
-			page_id="361445711358167"
-			theme_color="#00d2c6"
-			logged_in_greeting="Hola! Cómo puedo ayudarte?"
-			logged_out_greeting="Hola! Cómo puedo ayudarte?">
-		</div>
+			<!-- Load Facebook SDK for JavaScript 
+				<div id="fb-root"></div>
+				<script>
+					(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+					  js.src = "https://connect.facebook.net/es_ES/sdk/xfbml.customerchat.js";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, \'script\', \'facebook-jssdk\'));
+					
+					window.fbAsyncInit = function() {
+						FB.init({
+							appId            : \'264829233920818\',
+							autoLogAppEvents : true,
+							xfbml            : true,
+							version          : \'v3.2\'
+						});
+					};
+				</script>
+				<div class="fb-customerchat"
+					attribution=setup_tool
+					page_id="361445711358167"
+					theme_color="#00d2c6"
+					logged_in_greeting="Hola! Cómo puedo ayudarte?"
+					logged_out_greeting="Hola! Cómo puedo ayudarte?">
+				</div>
+			-->
 
 				<script> 
 					var RUTA_IMGS = "'.get_home_url().'/imgs"; 
