@@ -131,13 +131,7 @@
 	.creditos-uso{
 		font-size: 22px; 
 	}
-}
 
-@media (max-width: 480px){
-
-}
-
-@media (max-width: 350px){
 	aside#sidebar {
 	    padding: 10px !important;
 	}
@@ -154,4 +148,12 @@
 	.title-secundario {
 	    font-size: 14px !important;
 	}
+	
+}
+
+@media (max-width: 480px){
+
+}
+
+@media (max-width: 350px){
 }

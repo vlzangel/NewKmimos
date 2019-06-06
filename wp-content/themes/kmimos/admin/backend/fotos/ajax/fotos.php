@@ -21,7 +21,17 @@
     if( date("H", $actual) > 12 ){
         $PERIODO = 2;
     }
-    $fotos = $db->get_results("SELECT * FROM fotos WHERE fecha = '".date("Y-m-d")."' ");
+
+    $hoy = date("Y-m-d");
+
+    $fotos = $db->get_results("
+        SELECT * 
+        FROM fotos AS f
+        INNER JOIN wp_posts AS r ON ( r.ID = f.reserva )
+        WHERE 
+            f.fecha = '{$hoy}' AND
+            r.post_status = 'confirmed'
+    ");
 
     if( $fotos != false ){
         $i = 0;
