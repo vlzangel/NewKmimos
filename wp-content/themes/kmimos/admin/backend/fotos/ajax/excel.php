@@ -60,9 +60,9 @@
         }
         $mascotas_txt = "";
         foreach ($mascotas as $mascota) {
-            $mascotas_txt .= utf8_encode($mascota['nombre'])." (".$mascota['edad'].", ".utf8_encode($mascota['raza']).", ".utf8_encode($mascota['conducta']).")<br>";
+            $mascotas_txt .= "<b>".utf8_encode($mascota['nombre'])."</b> (".$mascota['edad'].", ".utf8_encode($mascota['raza']).", ".($mascota['conducta']).")<br>";
         }
-        return $mascotas_txt;
+        return ($mascotas_txt);
     }
 
     $data = array( "data" => array() );
@@ -94,9 +94,9 @@
             $telf[] = $metas_cliente["user_phone"];
             $telf = implode(" / ", $telf);
 
-            $cliente_name = $metas_cliente["first_name"]." ".$metas_cliente["last_name"]." (";
-            $cliente_name .= $telf.", ";
-            $cliente_name .= $db->get_var("SELECT user_email FROM wp_users WHERE ID = {$cliente_id}").")";
+            $cliente_name = "<b>".$metas_cliente["first_name"]." ".$metas_cliente["last_name"]."</b><br>";
+            $cliente_name .= $telf."<br>";
+            $cliente_name .= $db->get_var("SELECT user_email FROM wp_users WHERE ID = {$cliente_id}");
 
 
             $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$value->cuidador}");
@@ -109,9 +109,9 @@
             $telf[] = $metas_cuidador["user_phone"];
             $telf = implode(" / ", $telf);
 
-            $cuidador_name = utf8_encode($cuidador_name)." (";
-            $cuidador_name .=  $telf.", ";
-            $cuidador_name .=  $db->get_var("SELECT user_email FROM wp_users WHERE ID = {$cuidador->user_id}").")";
+            $cuidador_name = "<b>".utf8_encode($cuidador_name)."</b><br>";
+            $cuidador_name .=  $telf."<br>";
+            $cuidador_name .=  $db->get_var("SELECT user_email FROM wp_users WHERE ID = {$cuidador->user_id}");
 
             $cliente_name = utf8_encode($cliente_name);
             $status_val = $value->subio_12+$value->subio_06;
@@ -187,7 +187,7 @@
     $file_path = dirname(__DIR__).$file;
     $file_url = $urlbase.'admin/backend/fotos'.$file;
 
-    $HTML = '<table border="1" cellpadding="2" cellspacing="0" width="100%">
+    $HTML = '<style> br {mso-data-placement:same-cell;} </style><table border="1" cellpadding="2" cellspacing="0" width="100%">
     <caption><h3>Reporte de fotos '.date('d/m/Y').'</h3></caption>';
     $HTML .= '<tr>';
         foreach ($title as $key_2 => $td) {
