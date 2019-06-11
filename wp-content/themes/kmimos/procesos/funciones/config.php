@@ -12,4 +12,12 @@
 		$OPENPAY_KEY_SECRET = "sk_684a7f8598784911a42ce52fb9df936f";
 		$OPENPAY_KEY_PUBLIC = "pk_3b4f570da912439fab89303ab9f787a1";
 	}
+	
+	/* Sandbox a.veloz
+	if( $OPENPAY_PRUEBAS == 1 ){
+		$MERCHANT_ID = "mbdcldmwlolrgxkd55an";
+		$OPENPAY_KEY_SECRET = "sk_532855907c61452898d492aa521c8c9f";
+		$OPENPAY_KEY_PUBLIC = "pk_94d15185c54841a68c568d14e0d0debd";
+	}
+	*/
 ?>
