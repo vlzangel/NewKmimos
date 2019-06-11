@@ -144,9 +144,9 @@
     if(!function_exists('kmimos_get_mail_admins')){       
         function kmimos_get_mail_admins(){ 
             return array(
-                'BCC: vlzangel91@gmail.com',
-                // 'BCC: a.veloz@kmimos.la',
-                // 'BCC: y.chaudary@kmimos.la',
+                // 'BCC: vlzangel91@gmail.com',
+                'BCC: a.veloz@kmimos.la',
+                'BCC: y.chaudary@kmimos.la',
             );
         }
     }
