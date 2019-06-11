@@ -327,27 +327,36 @@
 			"pequenos" => [
 				"PEQUEÑO",
 				"0 a 25cm",
-				"icon-pequenio.svg"
+				"icon-pequenio.svg",
+				"Pequeña",
+				"Peq."
 			],
 			"medianos" => [
 				"MEDIANO",
 				"25 a 58cm",
-				"icon-mediano.svg"
+				"icon-mediano.svg",
+				"Mediana",
+				"Med."
 			],
 			"grandes"  => [
 				"GRANDE",
 				"58cm a 73cm",
-				"icon-grande.svg"
+				"icon-grande.svg",
+				"Grande",
+				"Gra."
 			],
 			"gigantes" => [
 				"GIGANTE",
 				"73cm a 200cm",
-				"icon-gigante.svg"
+				"icon-gigante.svg",
+				"Gigante",
+				"Gig."
 			],
 			"gatos"    => [
 				"GATOS",
 				"Sociables",
-				"cat_blue.svg"
+				"cat_blue.svg",
+				"Gatos"
 			],
 		);
 

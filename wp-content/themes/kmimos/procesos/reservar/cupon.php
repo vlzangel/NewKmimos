@@ -43,7 +43,7 @@
 	}
 
 	function get_cupon($db, $cupon, $cliente){
-		$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}'");
+		$cupon_post = $db->get_var("SELECT ID FROM wp_posts WHERE post_name = '{$cupon}' AND post_status = 'publish' ");
 		$uso_cupon = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = {$cupon_post} AND meta_key = 'uso_{$cliente}' ");
 		if( $uso_cupon != false ){
 			$uso_cupon = json_decode($uso_cupon);

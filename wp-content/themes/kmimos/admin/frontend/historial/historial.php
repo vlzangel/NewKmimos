@@ -301,7 +301,12 @@
 			  	<ul class="nav nav-tabs" role="tablist">
 				    <li role="presentation" class="active">
 				    	<a href="#pendiente" aria-controls="pendiente" role="tab" data-toggle="tab">
-				    		Pendiente de Pago
+				    		Por Tienda
+				    	</a>
+				    </li>
+				    <li role="presentation">
+				    	<a href="#error" aria-controls="error" role="tab" data-toggle="tab">
+				    		Por Pagar
 				    	</a>
 				    </li>
 				    <li role="presentation">
@@ -329,6 +334,7 @@
 				    		Modificadas 
 				    	</a>
 				    </li>
+				    <!--
 				    <li role="presentation">
 				    	<a href="#error" aria-controls="error" role="tab" data-toggle="tab">
 				    		Error
@@ -339,6 +345,7 @@
 				    		Otros
 				    	</a>
 				    </li>
+				    -->
 			  	</ul>
 
 			  <!-- Tab panes -->

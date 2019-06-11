@@ -39,13 +39,6 @@
 
 		include( dirname(__FILE__)."/procesos/funciones/config.php" );
 
-		$HTML .= "
-		<script> 
-			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
-			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
-			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
-		</script>";
-
 		$descripcion = $wpdb->get_var("SELECT post_excerpt FROM wp_posts WHERE ID = {$servicio_id}");
 		preg_match_all("#-(.*?)\n#i", "-".$descripcion, $matches_1);
 		preg_match_all("#<small>(.*?)</small>#", $descripcion, $matches_2);
@@ -54,6 +47,96 @@
 		if( $descripcion_1 != "" ){
 			$descripcion_1 = "* ".$descripcion_1;
 		}
+
+		$metas_orden = get_post_meta($order_id);
+		$metas_reserva = get_post_meta($reserva);
+		
+
+		$desde = date("d/m/Y", strtotime($metas_reserva["_booking_start"][0]) );
+		$hasta = date("d/m/Y", strtotime($metas_reserva["_booking_end"][0]) );
+
+		$CARRITO = unserialize( unserialize( $metas_orden["CARRITO"][0]) );
+
+
+		$tamanios = getTamanosData();
+		$duracion = $CARRITO["fechas"]->duracion;
+		$total = $CARRITO["pagar"]->total;
+
+		$info = ''; $cantidad = 0;
+		foreach ($CARRITO["cantidades"] as $key => $tam) {
+			if( $tam[0] > 0 ){
+				$plu = ($tam[0] == 1) ? '' : 's';
+				if( $key != "gatos" ){
+					$cantidad += $tam[0];
+				}
+				$info .= '
+					<div class="km-option-resume-service">	
+						<span class="label-resume-service">'.$tam[0].' Mascota'.$plu.' '.$tamanios[ $key ][3].$plu.' x '.$duracion.' x $'.$tam[1].' </span>	
+						<span class="label-resume-service_movil">1 Masc. '.$tamanios[ $key ][4].' x '.$duracion.' x $'.$tam[1].' </span>	
+						<span class="value-resume-service">$'.($tam[0]*$tam[1]).'</span>
+					</div>
+				';
+			}
+		}
+
+		$adicionales = get_servicios("adicionales");
+		$plural = ($cantidad == 1) ? '' : 's';
+		foreach ($CARRITO["adicionales"] as $key => $adicional) {
+			if( $adicional > 0 ){
+				$info .= '
+					<div class="km-option-resume-service">	
+						<span class="label-resume-service">'.$adicionales[$key].' - '.$cantidad.' Mascota'.$plural.' x $'.$adicional.' </span>		
+						<span class="value-resume-service">$'.($cantidad*$adicional).'</span>
+					</div>
+				';
+			}
+		}
+
+		if( is_array($CARRITO["transporte"]) && count($CARRITO["transporte"]) > 0 ){
+			$info .= '
+				<div class="km-option-resume-service">	
+					<span class="label-resume-service">'.$CARRITO["transporte"][0].' - Precio por Grupo </span>		
+					<span class="value-resume-service">$'.($CARRITO["transporte"][1]).'</span>
+				</div>
+			';
+		}
+
+		$descu = ''; $total_descu = 0;
+		foreach ($CARRITO["cupones"] as $key => $value) {
+			if( $value[1] > 0 ){
+				$total_descu += $value[1];
+				$nom_cup = ( strpos("_".$value[0], "saldo") !== false ) ? 'Saldo a Favor' : $value[0];
+				$descu .= '
+					<div>
+						<div class="km-option-resume-service">	
+							<span class="label-resume-service">'.$nom_cup.'</span>	
+							<span class="value-resume-service"> - $'.number_format($value[1], 2, ',', '.').'</span>
+						</div>
+					</div>
+				';
+			}
+		}
+		if( $descu != "" ){ $descu = '<div class="cupones_desglose km-option-resume" style="display: block;"> '.$descu.' </div>'; }
+
+		echo "<pre>";
+			print_r( $CARRITO );
+		echo "</pre>";
+
+		$user_id = get_post_meta($reserva, '_booking_customer_id', true);
+
+		$HTML .= "
+		<script> 
+			var OPENPAY_TOKEN = '".$MERCHANT_ID."';
+			var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
+			var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
+
+			var PRE = {
+				reserva_id: '{$reserva}',
+				orden_id: '{$order_id}',
+				cliente_id: '{$user_id}',
+				total: '".($total-$total_descu)."',
+			};
+		</script>";
 
 		$HTML .= '
 		<div class="page-reservation">
@@ -74,50 +157,31 @@
 						<div class="fechas_select">
 							<span class="value-resume">
 								<img class="" src="'.get_recurso("img").'/HOME/SVG/Fecha.svg" align="center">
-								<span class="fecha_ini">17/06/2019</span>
+								<span class="fecha_ini">'.$desde.'</span>
 								<img class="" src="'.get_recurso("img").'/HOME/SVG/Flecha.svg" align="center" style="margin: 0px 0px 4px 10px;">
 							
 								<img class="" src="'.get_recurso("img").'/HOME/SVG/Fecha.svg" align="center">
-								<span class="fecha_fin">19/06/2019</span>
+								<span class="fecha_fin">'.$hasta.'</span>
 							</span>
 						</div>
 
 						<div class="km-content-step km-content-step-2">
+
 							<div class="km-option-resume">
 								<div class="km-option-resume-service">
 									<span class="label-resume-service">'.$post->post_title.'</span>
 								</div>
 								<div class="items_reservados reservados">
-									<div class="km-option-resume-service">	
-										<span class="label-resume-service">1 Mascota Pequeña x 1 Noche x $162.5 </span>	
-										<span class="label-resume-service_movil">1 Masc. Peq. x 1 Noche x $162.5 </span>	
-										<span class="value-resume-service">$162.50</span>
-									</div>
-									<div class="km-option-resume-service">	
-										<span class="label-resume-service">1 Mascota Mediana x 1 Noche x $250 </span>	
-										<span class="label-resume-service_movil">1 Masc. Med. x 1 Noche x $250 </span>	
-										<span class="value-resume-service">$250.00</span>
-									</div>
-									<div class="km-option-resume-service">	
-										<span class="label-resume-service">Corte de pelo y uñas - 2 Mascotas x $7.5</span>	
-										<span class="value-resume-service">$15.00</span>
-									</div>
-									<div class="km-option-resume-service">	
-										<span class="label-resume-service">Transp. Sencillo - Rutas Cortas - Precio por Grupo </span>	
-										<span class="value-resume-service">$1.25</span>
-									</div>
+									'.$info.'
 								</div>
 							</div>
-							<div class="cupones_desglose km-option-resume">
-								<div>
-									<span class="label-resume">Descuentos</span>
-									<div></div>
-								</div>
-							</div>
+
+							'.$descu.'
+
 							<div class="km-services-total">
 								<div style="max-width: 70%;">
 									<span class="km-text-total">TOTAL</span>
-									<span class="km-price-total2">$428.75</span>
+									<span class="km-price-total2">$'.number_format( ($total-$total_descu) , 2, ',', '.').'</span>
 								</div>
 							</div>
 						</div>

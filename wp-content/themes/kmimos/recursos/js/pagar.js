@@ -5,13 +5,14 @@ function initCarrito(){
 	CARRITO["pagar"] = [];
 
 		CARRITO["pagar"] = {
-			"total" : "",
+			"total" : PRE.total,
 			"tipo" : "",
 			"metodo" : "completo",
 			"token" : "",
 			"deviceIdHiddenFieldName" : "",
 			"id_fallida" : 0,
-			"reconstruir" : false
+			"reserva_id" : PRE.reserva_id,
+			"orden_id" : PRE.orden_id,
 		};
 
 	CARRITO["tarjeta"] = [];
@@ -141,7 +142,6 @@ jQuery(document).ready(function() {
 		el.removeClass("medium");
 		el.removeClass("large");
 		el.removeClass("extra-large");
-
 		el.addClass( el.val() );
 	});
 
@@ -177,7 +177,6 @@ jQuery(document).ready(function() {
 				if( jQuery("#metodos_pagos").css("display") != "none" ){
 					CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
 					CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
-					
 					if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
 						jQuery("#reserva_btn_next_3 span").html("Validando...");
 						jQuery("#reserva_btn_next_3").addClass("disabled");
@@ -185,7 +184,6 @@ jQuery(document).ready(function() {
 					}else{
 						pagarReserva();
 					}
-
 				}else{
 					CARRITO["pagar"]["tipo"] = "Saldo y/o Descuentos";
 					pagarReserva();
@@ -378,9 +376,7 @@ jQuery(document).ready(function() {
 
 });
 
-
 /* FUNCIONES */
-
 function convertCARRITO(){
 	var json =  
 		JSON.stringify( CARRITO["pagar"] )+"==="+
@@ -390,54 +386,25 @@ function convertCARRITO(){
 }
 
 function pagarReserva(id_invalido = false){
-
 	jQuery("#reserva_btn_next_3 span").html("Procesando");
 	jQuery("#reserva_btn_next_3").addClass("disabled");
 	jQuery("#reserva_btn_next_3").addClass("cargando");
-
 	var json = convertCARRITO();
-
+	// console.log( CARRITO );
 	jQuery.post(
 		HOME+"/procesos/reservar/solo_pagar.php",
-		{
-			info: json,
-			id_invalido: id_invalido
-		},
+		{ info: json, id_invalido: id_invalido },
 		function(data){
 			// console.log( data );
 			if( data.error != "" && data.error != undefined ){
-
 				var es_fallida_con_orden = true;
 				switch( data.tipo_error ){
-					case 'sin_mascotas':
-						var error = "Error procesando la reserva<br>";
-				    	error += "No hay mascotas seleccionadas<br>";
-
-				    	setTimeout(function(e){
-				    		location.reload();
-				    	}, 1500);
-				    	es_fallida_con_orden = false;
-					break;
-					case 'no_flash':
-						var error = "Error procesando la reserva<br>";
-				    	error += "Este cuidador no acepta reserva inmediata<br>";
-
-				    	setTimeout(function(e){
-				    		location.reload();
-				    	}, 1500);
-				    	es_fallida_con_orden = false;
-					break;
-					case 'no_cupos':
-						var error = data.status+"<br>";
-						update_cupos();
-					break;
 					default:
 						var error = "Error procesando la reserva<br>";
 				    	error += "Por favor intente nuevamente.<br>";
 				    	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
 					break;
 				}
-
 		    	jQuery(".errores_box").html(error);
 				jQuery(".errores_box").css("display", "block");
 				jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
@@ -449,29 +416,21 @@ function pagarReserva(id_invalido = false){
 			}else{
 				CARRITO["pagar"]["id_fallida"] = 0;
 				if(data.url_pago == undefined || data.url_pago == "" ){
-					// console.log("1");
 					location.href = RAIZ+"/finalizar/"+data.order_id;
 				}else{
-					// console.log("2");
 					location.href = data.url_pago;
 				}
 			}
 		}, "json"
-	
 	).fail(function(e) {
-
-    	console.log( e );
-
+    	// console.log( e );
     	var error = "Error procesando la reserva<br>";
     	error += "Por favor intente nuevamente.<br>";
     	error += "Si el error persiste por favor comuniquese con el soporte Kmimos.<br>";
-
     	jQuery(".errores_box").html(error);
 		jQuery(".errores_box").css("display", "block");
-
 		jQuery("#reserva_btn_next_3 span").html("TERMINAR RESERVA");
 		jQuery("#reserva_btn_next_3").removeClass("disabled");
 		jQuery("#reserva_btn_next_3").removeClass("cargando");
-
   	});
 }
