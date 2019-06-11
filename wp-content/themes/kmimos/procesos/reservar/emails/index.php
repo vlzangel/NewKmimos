@@ -315,7 +315,7 @@
 					include(__DIR__."/nuevos.php");
 				}else{
 					$pre_reserva = get_post_meta($servicio["id_orden"], '_pre_reserva', true);
-					if( $status_orden == "wc-pending" && $pre_reserva == 'Si'  ){
+					if( $status_orden == "wc-por-pagar" && $pre_reserva == 'Si'  ){
 						include(__DIR__."/pre_reserva.php");
 					}else{
 						include(__DIR__."/otro.php");
