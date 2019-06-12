@@ -14,7 +14,7 @@
         </div>  
 
         <div style='font-size: 17px; color: #000000; text-align: justify;'>
-            ¡Si estas buscando dejar a tu mascota en las excelentes manos de un cuidador certificado has llegado al lugar indicado! Kmimos te ofrece cuidado en casa del cuidador que más sea de tu agrado, sin jaulas, sin encierros, con el trato cálido y amoroso de un hogar.
+            ¡Si estás buscando dejar a tu mascota en las excelentes manos de un cuidador certificado has llegado al lugar indicado! Kmimos te ofrece cuidado en casa del cuidador que más sea de tu agrado, sin jaulas, sin encierros, con el trato cálido y amoroso de un hogar.
         </div>
 
     </div>
