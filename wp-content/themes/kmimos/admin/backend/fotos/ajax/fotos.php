@@ -99,7 +99,7 @@
             $dia = "No"; 
             if( $value->subio_12 == 1 ){ 
                 $moderar = "&nbsp;";
-                if( date("H", $actual) < 12 ){
+                // if( date("H", $actual) < 12 ){
                     if( isset( $moderacion[1] ) ){
                         $moderar = "<div><strong>Fue moderado</strong><br></div>";
                     }
@@ -112,15 +112,17 @@
                     $moderar .= "<div id='fotos_{$i}' class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='1' >{$moderar_imgs}</div>";
                     $i++;
                     $dia = $moderar; 
+                /*
                 }else{
                     $dia = "Imagenes cargadas y enviadas"; 
                 }
+                */
             }
 
             $noche = "No"; 
             if( $value->subio_06 == 1 ){ 
                 $moderar = "&nbsp;";
-                if( date("H", $actual) < 18 ){
+                // if( date("H", $actual) < 18 ){
                     if( isset( $moderacion[2] ) ){
                         $moderar = "<div><strong>Fue moderado</strong><br></div>";
                     }
@@ -133,9 +135,11 @@
                     $moderar .= "<div id='fotos_{$i}' class='fotos_container fotos_{$i}' data-reserva='{$value->reserva}' data-periodo='2' >{$moderar_imgs}</div>";
                     $i++;
                     $noche = $moderar;
+                /*
                 }else{
                     $noche = "Imagenes cargadas y enviadas"; 
                 }
+                */
             }
 
             $bloqueo = "No";
