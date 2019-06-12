@@ -12,8 +12,13 @@
         <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: left;'>
             Se ha realizado una pre-reserva de <strong>[tipo_servicio]</strong> con <strong>[name_cuidador]</strong>
         </div>
-        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: left;'>
-            Link para completar pago: <strong><a href="[LINK_PAGO]">REALIZAR PAGO</a></strong>.
+
+        <div style='text-align: center; display: block; border-radius: 2.8px; background-color: #f4f4f4; width: 147px; margin: 0px auto 29px; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 12px 0px;'>
+            Reserva #: <strong>[id_reserva] </strong>
+        </div>
+
+        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: center;'>
+            <strong><a style="text-decoration: none; color: #6b1e9b; display: inline-block; padding: 15px 50px; background: #7dd1c4; box-shadow: 2px 2px 2px #68afa4;  border-radius: 5px;" href="[LINK_PAGO]">REALIZAR PAGO</a></strong>
         </div>
     </div>
 
@@ -22,10 +27,6 @@
 <div style='padding: 0px; margin-bottom: 34px;'>
 
     <div style='text-align: center;'>
-
-        <div style='display: block; border-radius: 2.8px; background-color: #f4f4f4; width: 147px; margin: 0px auto 29px; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000; padding: 12px 0px;'>
-            Reserva #: <strong>[id_reserva] </strong>
-        </div>
         
         <div style='margin: 0px auto; width: 300px;'>
             
@@ -87,16 +88,7 @@
                 <td style='padding: 7px; padding-left: 37px; width: 20px;'>
                     NOMBRE
                 </td>
-                <td style='padding: 7px; width: 100px;'>
-                    RAZA
-                </td>
-                <td style='padding: 7px; width: 100px;'>
-                    EDAD
-                </td>
-                <td style='padding: 7px; width: 50px;'>
-                    TAMA&Ntilde;O
-                </td>
-                <td style='padding: 7px;'>
+                <td style='padding: 7px; text-align: center;'>
                     COMPORTAMIENTO
                 </td>
             </tr>

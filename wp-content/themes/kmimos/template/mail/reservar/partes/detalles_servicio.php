@@ -22,7 +22,7 @@
         </td>
     </tr>
     
-    <tr style=''>
+    <tr id="tipo_pago">
         <td style='height: 20px; text-align: center; vertical-align: middle; width: 50px;'>
           <img style="padding: 3px 0px;" src='[URL_IMGS]/icosNews/min_cash.png'  > 
         </td>

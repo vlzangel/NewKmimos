@@ -14,6 +14,10 @@
         $totales_plantilla = str_replace('[REEMBOLSAR]', "", $totales_plantilla);
     }
 
+    $detalles_plantilla = str_replace('id="tipo_pago"', 'style="display: none;"', $detalles_plantilla);
+    $totales_plantilla = str_replace('Pago', 'Pagar', $totales_plantilla);
+    $totales_plantilla = str_replace('PAGO', 'PAGAR', $totales_plantilla);
+
     $INFOR = [
         "desglose" => $desglose,
         "ADICIONALES" => $adicionales,
