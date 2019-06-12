@@ -37,7 +37,7 @@
         <div style='display: table; width: 100%;'>
             <div style="display: table-row; ">
                 <div style='padding: 0px 30px 40px 0px;display: table-cell; vertical-align: middle; font-size: 17px; color: #000000; text-align: justify;'>
-                    <img style="width: 60px;" src="[URL_IMGS]/correos/confirmacion_disponibilidad/iconos/1.svg" />
+                    <img style="width: 60px;" src="[URL_IMGS]/correos/confirmacion_disponibilidad/iconos/1.png" />
                 </div>
                 <div style='padding-bottom: 40px; display: table-cell; vertical-align: middle; font-size: 17px; color: #000000; text-align: justify;'>
                     En efectivo en alguna de nuestras tiendas de conveniencia.
@@ -45,7 +45,7 @@
             </div>
             <div style="display: table-row;">
                 <div style='padding: 0px 30px 0px 0px;display: table-cell; vertical-align: middle; font-size: 17px; color: #000000; text-align: justify;'>
-                    <img style="width: 60px;" src="[URL_IMGS]/correos/confirmacion_disponibilidad/iconos/2.svg" />
+                    <img style="width: 60px;" src="[URL_IMGS]/correos/confirmacion_disponibilidad/iconos/2.png" />
                 </div>
                 <div style='display: table-cell; vertical-align: middle; font-size: 17px; color: #000000; text-align: justify;'>
                     Transferencia bancaria (SPEI) o depósito bancario.
