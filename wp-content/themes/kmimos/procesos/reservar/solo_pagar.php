@@ -29,7 +29,6 @@
 	);
 
 	$parametros = array();
-
 	foreach ($info as $key => $value) {
 		$parametros[ $parametros_label[ $key ] ] = json_decode( str_replace('\"', '"', $value) );
 	}
@@ -210,6 +209,9 @@
 				            echo json_encode(array(
 								"order_id" => $id_orden
 							));
+
+				            update_post_meta($id_orden, '_ya_pago', "listo");
+
 							include(__DIR__."/emails/index.php");
 				        }else{
 							unset($_SESSION["pagando"]);
@@ -263,6 +265,9 @@
 							"barcode_url"  => $charge->payment_method->barcode_url,
 							"order_id" => $id_orden
 						));
+
+						update_post_meta($id_orden, '_ya_pago', "en_espera_tienda");
+
 						sleep(1);
 						include(__DIR__."/emails/index.php");
 					}else{
@@ -300,6 +305,8 @@
 					$db->query("UPDATE wp_posts SET post_status = 'wc-on-hold' WHERE ID = {$id_orden};");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_paypal_vence', '{$due_date}');");
 					$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$id_orden}, '_paypal_order_id', '".$_paypal_order_id."');");
+
+					update_post_meta($id_orden, '_ya_pago', "en_espera_paypal");
 					
 					include(__DIR__."/emails/index.php");
 	   				
@@ -323,6 +330,8 @@
 		   			
 		   			include dirname(dirname(__DIR__)).'/lib/mercadopago/mercadopago.php';
 		   			include dirname(__FILE__)."/pasarelas/mercadopago/create.php";
+
+					update_post_meta($id_orden, '_ya_pago', "en_espera_mercadopago");
 					
 					include(__DIR__."/emails/index.php");
 

@@ -21,6 +21,11 @@
 		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$author);
 		$cuidador_name = $cuidador->titulo;
 
+		$_ya_pago = get_post_meta($order_id, "_ya_pago", true);
+		if( $_ya_pago == "listo" ){
+			header( "location: ".get_home_url() );
+		}
+
 	/* Servicio */
 		$servicio_name_corto = explode(" - ", $post->post_title);
 		$servicio_name = $servicio_name_corto[1];

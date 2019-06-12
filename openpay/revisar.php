@@ -89,6 +89,8 @@
 							$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE ID = $id_orden;");
     						$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = '$id_reserva';");
 						}
+								
+						update_post_meta($id_orden, '_ya_pago', "listo");
 
                 		include( "../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
 

@@ -40,6 +40,9 @@
 									include(__DIR__."/procesos/reservar/emails/index.php");				
 									ob_end_clean ();
 								}
+								
+								update_post_meta($id_orden, '_ya_pago', "listo");
+
 								header( 'location:'.get_home_url().'/finalizar/'.$id_orden );
 							}
 							
@@ -70,6 +73,8 @@
 					WHERE meta_key = '_mercadopago_data' AND post_id = {$id_orden}  )");
 				$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
 				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+								
+				update_post_meta($id_orden, '_ya_pago', "listo");
 
 				ob_start();
 				include_once(__DIR__."/procesos/reservar/emails/index.php");
