@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.139 133.03">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke: #333;
+        stroke-width: 3px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2, .cls-4 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #c9c9c9;
+      }
+
+      .cls-4 {
+        stroke-linecap: round;
+      }
+
+      .cls-5 {
+        fill: #00d2c6;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <title>Icon Pago</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <path class="cls-1" d="M32.5,99.836v6.111A25.583,25.583,0,0,0,58.083,131.53H86.778a3.861,3.861,0,0,0,3.861-3.861V75.153a24.892,24.892,0,0,0-5.612-15.744L63.5,33.046v66.79h-31"/>
+        <rect class="cls-2" x="1.5" y="1.5" width="62" height="98.336" rx="8.807" ry="8.807"/>
+        <rect class="cls-3" x="39.236" y="1.5" width="11.174" height="98.336"/>
+        <line class="cls-4" x1="23.592" y1="10.44" x2="23.592" y2="28.319"/>
+        <line class="cls-4" x1="12.417" y1="10.44" x2="12.417" y2="39.494"/>
+        <rect class="cls-5" x="12.417" y="73.017" width="16.785" height="16.785"/>
+        <path class="cls-1" d="M72.66,84.284l-31-31a7.3,7.3,0,0,0-10.32,0h0a7.3,7.3,0,0,0,0,10.32L53.4,85.668c-.456.943-5.411,11.664.6,22.113a24.064,24.064,0,0,0,14.735,10.984"/>
+      </g>
+    </g>
+  </g>
+</svg>

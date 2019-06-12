@@ -287,6 +287,15 @@
                 );
             
             }
+                
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Correo'),
+                'short-title'   =>  __('Correo'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'confirmacion_disponibilidad',
+                'access'        =>  'manage_options',
+                'page'          =>  'confirmacion_disponibilidad',
+            );
 
             foreach($opciones_menu_reporte as $opcion){
                 if( $opcion['parent'] == '' ){
@@ -313,6 +322,15 @@
         }
 
         add_action('admin_menu','kmimos_menu_reportes');
+    }
+
+    /* Inclucion de paginas */
+    if(!function_exists('confirmacion_disponibilidad')){
+        function confirmacion_disponibilidad(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            // include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/confirmacion_disponibilidad/page.php');
+        }
     }
 
     /* Inclucion de paginas */
