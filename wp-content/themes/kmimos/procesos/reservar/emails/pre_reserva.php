@@ -50,13 +50,13 @@
     ];
 
     /* Administrador */
-        $cliente = buildEmailTemplate_TEMP( "reservar/admin/pre_reserva", $INFOR);
-        $cliente = get_email_html($cliente);
+        $mensaje = buildEmailTemplate_TEMP( "reservar/admin/pre_reserva", $INFOR);
+        $mensaje = get_email_html($mensaje);
 
         if( isset($NO_ENVIAR) ){
-            echo $cliente;
+            echo $mensaje;
         }else{
-            kmimos_mails_administradores_new("Solicitud de reserva #".$servicio["id_reserva"], $cliente);
+            kmimos_mails_administradores_new("Solicitud de reserva #".$servicio["id_reserva"], $mensaje);
         }
 
 
@@ -67,6 +67,6 @@
         if( isset($NO_ENVIAR) ){
             echo $mensaje;
         }else{
-            wp_mail( $cliente["email"], "Solicitud de Reserva por Pagar", $mensaje);
+            wp_mail( $cliente["email"], "Reserva por Pagar", $mensaje);
         }
 ?>
