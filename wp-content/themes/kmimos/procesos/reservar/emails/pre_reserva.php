@@ -3,7 +3,7 @@
     $admin_id = get_post_meta($servicio["id_reserva"], "_booking_id_admin", true);
     $nombre_admin = get_user_meta($admin_id, "first_name", true)." ".get_user_meta($admin_id, "last_name", true);
     $email_admin = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$admin_id);
-    $LINK_PAGO = get_home_url()."/pagar/".$servicio["id_reserva"];
+    $LINK_PAGO = get_home_url()."/pagar/".$servicio["id_orden"];
     
     if( $servicio["desglose"]["reembolsar"]+0 > 0 ){
         $descuento_plantilla = $PATH_TEMPLATE.'/template/mail/reservar/partes/reembolsar.php';
