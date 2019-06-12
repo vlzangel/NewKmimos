@@ -63,7 +63,7 @@
     '>
 
         <div style='font-size: 17px; color: #000000; text-align: justify;'>
-            Te recordamos que una vez completes el pago de la Reserva, <strong>asegurarás el lugar de tu mascota en el hogar del cuidador.</strong>
+            Le recordamos que una vez completes el pago de la Reserva, <strong>asegurarás el lugar de tu mascota en el hogar del cuidador.</strong>
         </div>
 
     </div>
