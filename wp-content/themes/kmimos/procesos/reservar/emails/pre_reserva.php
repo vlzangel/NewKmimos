@@ -67,6 +67,6 @@
         if( isset($NO_ENVIAR) ){
             echo $mensaje;
         }else{
-            wp_mail( $cliente["email"], "Reserva por Pagar", $mensaje);
+            wp_mail( $cliente["email"], "Solicitud de reserva", $mensaje);
         }
 ?>

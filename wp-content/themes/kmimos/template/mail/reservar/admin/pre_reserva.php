@@ -12,7 +12,7 @@
             ¡Hola Administrador!
         </div>  
         <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: left;'>
-            Se ha realizado una pre-reserva de <strong>[tipo_servicio]</strong> con <strong>[name_cuidador]</strong>
+            Se ha realizado una reserva de <strong>[tipo_servicio]</strong> con <strong>[name_cuidador]</strong>
         </div>
         <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: left;'>
             Por el Super Administrador: <strong>[ADMIN_NAME]</strong> (<strong>[ADMIN_EMAIL]</strong>).

@@ -312,14 +312,8 @@
 
 		$status_orden = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
 
-		//echo "status_orden: $status_orden";
-
-	   // exit();
-
 		if( $status_orden == "wc-pending" ){
-
 			include(__DIR__."/fallidos.php");
-
 			exit();
 		}
 
