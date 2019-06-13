@@ -30,7 +30,7 @@
 
     $items = '';
     $info_banner = [
-    	['_Cuidadores.jpg', false, get_home_url().'/busqueda'],
+    	['_Cuidadores_1.jpg', false, get_home_url().'/busqueda'],
     	['_CPF.jpg', true, get_home_url().'/club-patitas-felices'],
     	['_GPS.jpg',true,  get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos'],
     	['_Paseos.jpg', true, get_home_url().'/paseos'],
