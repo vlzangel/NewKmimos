@@ -29,7 +29,6 @@
     <div style='text-align: center;'>
         
         <div style='margin: 0px auto; width: 300px;'>
-            
             <div style='display: table-cell; width: 62px; padding-right: 20px;'>
                 <img src='[avatar_cliente]' style='width: 62px; height: 62px; border-radius: 50%;' >
             </div>
@@ -47,29 +46,6 @@
                     [correo_cliente]
                 </div>
             </div>
-            
-        </div>
-
-        <div style='margin: 0px auto; width: 300px;'>
-            
-            <div style='display: table-cell; width: 62px; padding-right: 20px;'>
-                <img src='[avatar_cuidador]' style='width: 62px; height: 62px; border-radius: 50%;' >
-            </div>
-            <div style='display: table-cell; vertical-align: middle; padding-left: 0px; text-align: left; '>
-                <div style='font-family: Arial; font-size: 11px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9;'>
-                    DATOS DEL CUIDADOR 
-                </div>                  
-                <div style='font-family: Arial; font-size: 20px; font-weight: bold; letter-spacing: 0.4px; color: #000000; margin-bottom: 2px;'>
-                    [name_cuidador]
-                </div>              
-                <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 2px;'>
-                    [telefonos_cuidador]
-                </div>          
-                <div style='font-family: Arial; font-size: 14px; letter-spacing: 0.3px; color: #000000; margin-bottom: 12px;'>
-                    [correo_cuidador]
-                </div>
-            </div>
-            
         </div>
 
     </div>
