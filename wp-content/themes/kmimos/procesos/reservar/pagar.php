@@ -604,12 +604,15 @@
 							include(__DIR__."/emails/index.php");
 				        }else{
 							unset($_SESSION["pagando"]);
+
 				            echo json_encode(array(
 								"error" => $id_orden,
 								"tipo_error" => $error,
 								"status" => "Error, pago fallido",
 								"info_pago" => $chargeData
 							));
+
+							include(__DIR__."/emails/index.php");
 				        }
 		   			}else{
 		   				unset($_SESSION["pagando"]);
