@@ -38,14 +38,15 @@
                 <th>Nombre Cliente</th>
                 <th>Correo Cliente</th>
                 <th>Tel&eacute;fono Cliente</th>
+                <th>Donde nos conocio?</th>
+                <!--
                 <th>Recompra (1Mes)</th>
                 <th>Recompra (3Meses)</th>
                 <th>Recompra (6Meses)</th>
                 <th>Recompra (12Meses)</th>
-                <th>Donde nos conocio?</th>
                 <th>Mascotas</th>
                 <th>Razas</th>
-                <th>Edad</th>
+                <th>Edad</th> -->
                 <th>Nombre Cuidador</th>
                 <th>Correo Cuidador</th>
                 <th>Tel&eacute;fono Cuidador</th>

@@ -25,6 +25,16 @@
         foreach ($datos as $key => $info) {
 
             switch ( $key ) {
+
+                case 'recompra_1_mes':
+                case 'recompra_3_meses':
+                case 'recompra_6_meses':
+                case 'recompra_12_meses':
+                case 'mascotas':
+                case 'razas':
+                case 'edad':
+                break;
+
                 case 'id':
                     $item[] = $contador;
                     $id_actual = $info;
