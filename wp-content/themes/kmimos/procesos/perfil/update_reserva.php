@@ -58,6 +58,21 @@
 				}
 			}
 
+			if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'tienda'){ 
+            }else{
+                if( $status != 'wc-pending' ){
+                    $deposito = unserialize( $items2['_wc_deposit_meta'] );
+					$saldo = 0;
+					if( $deposito['enable'] == 'yes' ){
+						$saldo = $deposito['deposit'];
+					}else{
+		                $saldo = $items2['_line_subtotal'];
+		                $saldo -= $metas_orden['_cart_discount'];
+					} 
+                }              
+            }
+
+            /*
 			if( $order_status == 'wc-on-hold' && strtolower($metas_orden['_payment_method']) == 'tienda'){ }else{
 
 				$deposito = unserialize( $items2['_wc_deposit_meta'] );
@@ -69,8 +84,7 @@
 	                $saldo -= $metas_orden['_cart_discount'];
 				}
 			}
-
-			//echo "Saldo: ".$saldo;
+			*/
 
 			$variaciones = array();
 
