@@ -21,7 +21,7 @@ ini_set('display_errors', '1');
 
 	$reservas = $wpdb->get_results($sql);
 	foreach($reservas as $key => $reserva){
-//print_r($reserva);
+		//print_r($reserva);
 
 		$_metas_reserva = get_post_meta($reserva->ID);
 		$_metas_orden = get_post_meta($reserva->post_parent);
@@ -94,14 +94,14 @@ ini_set('display_errors', '1');
 				);
 				print_r([
 					'id' => $reserva->id,
-									'email' => $user->user_email,
-									'nombre' => $nombre,
-									'IMG_URL' => get_recurso('img/NPS'),
+					'email' => $user->user_email,
+					'nombre' => $nombre,
+					'IMG_URL' => get_recurso('img/NPS'),
 				]);
 
 				//$user->user_email = 'italococchini@gmail.com'; //testing
 				
-				wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $mensaje) ;
+				wp_mail( $user->user_email, '¿Cómo cuidamos a tu peludo 🐶😺? Ayúdanos a mejorar contestando esta breve encuesta sobre tu reserva con Kmimos.', $mensaje);
 
 
 			}

@@ -34,25 +34,25 @@
 				</div>
 
 				<div style="width: 100%; padding: 10px; "> 
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=1">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=1">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">1</div></a>
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=2">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=2">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">2</div></a>
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=3">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=3">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">3</div></a>
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=4">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=4">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">4</div></a>
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=5">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=5">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">5</div></a>
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=6">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=6">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">6</div></a>
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=7">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=7">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">7</div></a>
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=8">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=8">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">8</div></a>
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=9">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=9">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">9</div></a>
-					<a style="color:#000!important;font-weight:bold;" href="https://kmimos.com.mx/QA2/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=10">
+					<a style="color:#000!important;font-weight:bold;" href="[URL_HOME]/feedback/?o=c51ce410c124a10e0db5e4b97fc2af39&t=external&internal=[id]&e=[email]&v=10">
 						<div style="display: inline-block; border: 1px solid #ccc; border-radius: 5px; text-align: center;     width: 13%;padding: 10px;margin: 6px 5px;">10</div></a>
 				</div>
 				<div class="tag-nivel"  style="padding: 10px;  width: 100%!important; text-align:right!important">

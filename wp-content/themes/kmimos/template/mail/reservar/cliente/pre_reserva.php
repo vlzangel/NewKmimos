@@ -20,6 +20,22 @@
         <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: center;'>
             <strong><a style="text-decoration: none; color: #6b1e9b; display: inline-block; padding: 15px 50px; background: #7dd1c4; box-shadow: 2px 2px 2px #68afa4;  border-radius: 5px;" href="[LINK_PAGO]">REALIZAR PAGO</a></strong>
         </div>
+
+        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-top: 25px; text-align: center;'>
+            <img src='[URL_IMGS]/correos/pre_reserva/tarjetas_1.png' style='max-width: 100%;' >
+        </div>
+
+        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding: 5px 0px; text-align: center;'>
+            <img src='[URL_IMGS]/correos/pre_reserva/tarjetas_2.png' style='max-width: 100%;' >
+        </div>
+
+        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 5px; text-align: center;'>
+            <img src='[URL_IMGS]/correos/pre_reserva/tiendas.png' style='max-width: 100%;' >
+        </div>
+
+        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 5px; text-align: center;'>
+            <img src='[URL_IMGS]/correos/pre_reserva/candado.png' style='max-width: 100%; height: 50px;' >
+        </div>
     </div>
 
 </div>
