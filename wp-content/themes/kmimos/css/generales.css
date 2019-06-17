@@ -1067,3 +1067,67 @@ button.close {
 a#btn_no_acepto_cuidador {
     color: #777;
 }
+
+.fotos_btn {
+    position: relative;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: solid 1px #777;
+    padding: 14px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.fotos_btn:hover{    
+    background-color: #33e1be;
+    color: #FFF;
+    border: solid 1px #33e1be;
+}
+
+.fotos_btn input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+a.km-btn-correo.km-btn-popup-registro-cuidador-paso1 {
+    margin-top: 15px;
+}
+
+.galeria_container {
+    margin: 15px 0px;
+    text-align: center;
+    border: solid 1px #AAA;
+    padding: 15px 0px 0px;
+    display: none;
+}
+
+.galeria_container > div {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border: solid 1px #DDD;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.galeria_container > div > i.fa.fa-times {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 6px;
+    background: #FFF;
+    border: solid 1px #CCC;
+    border-radius: 50%;
+    cursor: pointer;
+}

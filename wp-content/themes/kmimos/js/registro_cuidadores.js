@@ -1,5 +1,93 @@
+function removeFoto(_this){
+	var index = _this.data("index");
+	var new_array = [];
+	jQuery.each(fotos_array, function(i, d){
+		if(d[0] != index){
+			new_array.push( d );
+			jQuery("#foto_"+index).remove();
+		}
+	});
+
+	fotos_array = new_array;
+}
+
+function subir_fotos(){
+	jQuery.post(
+		HOME+"/procesos/cuidador/subir_fotos.php",
+		{
+			"email": jQuery('[name="rc_email"]').val(),
+			"fotos": fotos_array
+		},
+		function(data){
+			console.log(data);
+			console.log("Imágenes subidas");
+		}, 'json'
+	);	
+}
+
+var fotos_array = []; var indices = 0;
 jQuery( document ).ready(function() {
 	
+	jQuery("#fotos").on("change", function(e){
+
+		console.log( "Inicio: "+fotos_array.length );
+
+		if( fotos_array.length < 6 ){
+			jQuery.each(e.target.files, function(i, d){
+				console.log(d);
+				getRealMime(d).then(function(MIME){
+			        if( MIME.match("image.*") ){
+
+			            var reader = new FileReader();
+			            reader.onload = (function(theFile) {
+			                return function(e) {
+			                    redimencionar(e.target.result, function(img_reducida){
+
+			                    	// console.log( img_reducida );
+		                    		
+
+			                    	if( fotos_array.length < 6 ){
+			                    		console.log( "Entro: "+fotos_array.length );
+			                    		var HTML = '<div id="foto_'+indices+'" style="background-image: url('+img_reducida+');"> <i class="fa fa-times" onclick="removeFoto(jQuery(this))" data-index="'+indices+'" ></i> </div>';
+			                    		jQuery(".galeria_container").append( HTML );
+			                    		fotos_array.push( [indices, img_reducida] );
+			                    		indices++;
+			                    	}
+
+			                    	jQuery(".galeria_container").css("display", "block");
+
+			                    	/*
+			                        var img_pre = jQuery(".vlz_rotar_valor").attr("value");
+			                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: img_pre}, function( url ) {
+			                            padre.children('.vlz_img_portada_fondo').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
+			                            padre.children('.vlz_img_portada_normal').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
+			                            padre.children('.vlz_img_portada_cargando').css("display", "none");
+			                            padre.siblings('.vlz_img_portada_valor').val(url);
+			                            padre.children('.vlz_cambiar_portada').children('input').val("");
+
+			                            jQuery(".btn_rotar").css("display", "block");
+
+			                            if( padre.attr("data-id") == "perfil" ){
+			                                CB_perfil( url );
+
+			                                console.log( url );
+			                            }
+			                        });
+			                        */
+			                    });      
+			                };
+			           })(d);
+			           reader.readAsDataURL(d);
+			        }else{
+			            alert("Solo se permiten imagenes");
+			        }
+			    }).catch(function(error){
+			        alert("Solo se permiten imagenes");
+			    });  	
+			});
+		}
+	});
+
 	var maxDatePets = new Date();
 	jQuery('#fecha').datepick({
 		dateFormat: 'dd/mm/yyyy',
@@ -386,7 +474,9 @@ jQuery(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-regis
 	var valid = km_cuidador_validar(list, err);
 	if( valid ){
 		jQuery(".popup-registro-cuidador-paso1").hide();
-		jQuery(".popup-registro-cuidador-paso2").fadeIn("fast");		
+		jQuery(".popup-registro-cuidador-paso2").fadeIn("fast");	
+
+		subir_fotos();
 	}
 });
 

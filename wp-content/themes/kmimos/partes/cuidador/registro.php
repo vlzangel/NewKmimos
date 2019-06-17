@@ -268,11 +268,6 @@
 				>ACCEDER A TU GALERÍA</a>
             	<input data-target="help" class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
 
-				<h3 style="margin-top: 20px;">Otras fotos del perfil</h3>
-
-            	<input type="file" id="fotos" name="rc_fotos" accept="image/*" multiple />
-
-
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
 				<textarea 
@@ -288,6 +283,16 @@
 					Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos
 				</small>
 				<small data-error="rc_descripcion" style="visibility: hidden;"></small>
+
+				<div class="fotos_btn">
+					Cargar las fotos de mi galería
+            		<input type="file" id="fotos" name="rc_fotos" accept="image/*" multiple />
+				</div>
+
+				<div class="galeria_container"></div>
+				<small class="text-help" data-help="rc_descripcion">
+					Solo se permiten 6 imágenes maximo
+				</small>
 
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-paso1">SIGUIENTE</a>
 				<!-- <a href="#km-registro-tip1" class="km-registro-tip" role="button" data-toggle="modal"></a> -->
