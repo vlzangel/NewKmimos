@@ -43,9 +43,6 @@ jQuery( document ).ready(function() {
 			                return function(e) {
 			                    redimencionar(e.target.result, function(img_reducida){
 
-			                    	// console.log( img_reducida );
-		                    		
-
 			                    	if( fotos_array.length < 6 ){
 			                    		console.log( "Entro: "+fotos_array.length );
 			                    		var HTML = '<div id="foto_'+indices+'" style="background-image: url('+img_reducida+');"> <i class="fa fa-times" onclick="removeFoto(jQuery(this))" data-index="'+indices+'" ></i> </div>';
@@ -55,25 +52,6 @@ jQuery( document ).ready(function() {
 			                    	}
 
 			                    	jQuery(".galeria_container").css("display", "block");
-
-			                    	/*
-			                        var img_pre = jQuery(".vlz_rotar_valor").attr("value");
-			                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: img_pre}, function( url ) {
-			                            padre.children('.vlz_img_portada_fondo').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
-			                            padre.children('.vlz_img_portada_normal').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
-			                            padre.children('.vlz_img_portada_cargando').css("display", "none");
-			                            padre.siblings('.vlz_img_portada_valor').val(url);
-			                            padre.children('.vlz_cambiar_portada').children('input').val("");
-
-			                            jQuery(".btn_rotar").css("display", "block");
-
-			                            if( padre.attr("data-id") == "perfil" ){
-			                                CB_perfil( url );
-
-			                                console.log( url );
-			                            }
-			                        });
-			                        */
 			                    });      
 			                };
 			           })(d);
