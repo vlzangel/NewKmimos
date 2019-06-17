@@ -17,10 +17,16 @@
             Reserva #: <strong>[id_reserva] </strong>
         </div>
 
+        <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 30px; text-align: center;'>
+            <img src='[URL_IMGS]/correos/pre_reserva/candado_2.png' style='max-width: 100%; height: 18px; vertical-align: middle; margin-right: 5px;' >
+            <span style="display: inline-block; vertical-align: middle; font-weight: 600; font-size: 16px;">
+                Compra Protegida
+            </span>
+        </div>
+
         <div style='font-family: Arial; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; padding-bottom: 25px; text-align: center;'>
             <strong>
                 <a style="text-decoration: none; color: #6b1e9b; display: inline-block; padding: 15px 50px; background: #7dd1c4; box-shadow: 2px 2px 2px #68afa4;  border-radius: 5px;" href="[LINK_PAGO]">
-                    <img src='[URL_IMGS]/correos/pre_reserva/candado.png' style='max-width: 100%; height: 15px; vertical-align: middle; margin-right: 5px;' >
                     <span style="display: inline-block; vertical-align: middle;">
                         REALIZAR PAGO
                     </span>

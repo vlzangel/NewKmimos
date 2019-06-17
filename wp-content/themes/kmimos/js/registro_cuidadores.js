@@ -121,6 +121,7 @@ jQuery( document ).ready(function() {
 	    );
 	});
 
+	/*
 	jQuery('[name="rc_tipo_documento"]').on("change", function(e){
 		switch( jQuery(this).val() ){
 			case "":
@@ -137,6 +138,7 @@ jQuery( document ).ready(function() {
 			break;
 		}
 	});
+	*/
 
 	jQuery("").on("click", function(e){
 		jQuery(".btn_rotar").css("display", "none");
@@ -319,14 +321,14 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 		'rc_email',
 		'rc_nombres',
 		'rc_apellidos',
-		'rc_tipo_documento',
+		// 'rc_tipo_documento',
 		'fecha',
 		'rc_email',
 		'rc_clave',
 		'rc_telefono',
 		'rc_referred'
 	];
-
+	/*
 	switch( jQuery('[name="rc_tipo_documento"]').val() ){
 		case "IFE / INE":
 			list.push("rc_ife");
@@ -335,6 +337,7 @@ jQuery(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-regi
 			list.push("rc_pasaporte");
 		break;
 	}
+	*/
 	var valid = km_cuidador_validar(list);
 	if( valid ){
 		jQuery("#popup-registro-cuidador1 .modal-content > div").hide();

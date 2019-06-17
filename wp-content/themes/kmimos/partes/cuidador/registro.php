@@ -31,8 +31,8 @@
 				<p style="color: #979797">Al crear una cuenta, <a href="<?php echo get_home_url(); ?>/terminos-y-condiciones/">aceptas las condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> 01 (55) 8526 1162</p></div>
-					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
+					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> +52 1 55 7850 7572</p></div>
+					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">y.chaudary@kmimos.la</a></p></div>
 				</div>
 				<hr>
 				<div class="row">
@@ -74,8 +74,10 @@
 							</small>
 							<small data-error="rc_apellidos" style="visibility: hidden;"></small>
 						</div>
-						<div>
+						
+						<div style="display: none;">
 							<select data-target="help" name="rc_tipo_documento" class="select_tipo_doc km-select-custom" style="font-size: 13px !important;">
+								<option>IFE / INE</option>
 								<option value="">Seleccione Documento de Identidad</option>
 								<option>IFE / INE</option>
 								<option>Pasaporte</option>
@@ -87,7 +89,7 @@
 						</div>
 						<div id="rc_ife" class="label-placeholder" style="display: none;">
 							<label>IFE/Documento de Identidad</label>
-							<input data-target="help" type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="" class="input-label-placeholder solo_numeros" data-toggle="tooltip" title="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" >
+							<input data-target="help" type="text"  maxlength="13" minlength="13" data-charset="num" name="rc_ife" value="0000000000000" class="input-label-placeholder solo_numeros" data-toggle="tooltip" title="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" >
 							<small data-help="rc_ife" class="text-help">
 								El DNI debe ser de al menos 13 dígitos
 							</small>
@@ -166,8 +168,8 @@
 				
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> 01 (55) 8526 1162</p></div>
-					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
+					<div class="col-xs-6"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-wsp.svg"> +52 1 55 7850 7572</p></div>
+					<div class="col-xs-6"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="<?php echo getTema(); ?>/images/new/icon/km-redes/icon-mail.svg">y.chaudary@kmimos.la</a></p></div>
 				</div>
 
 				<hr>
@@ -266,9 +268,13 @@
 				>ACCEDER A TU GALERÍA</a>
             	<input data-target="help" class="hidden" type="file" id="portada" name="rc_portada" accept="image/*" />
 
+				<h3 style="margin-top: 20px;">Otras fotos del perfil</h3>
+
+            	<input type="file" id="fotos" name="rc_fotos" accept="image/*" multiple />
+
+
 				<h3 style="margin-top: 20px;">Descripción de tu perfil</h3>
 				<p style="color: #979797">Preséntate en la comunidad de Cuidadores Kmimos</p>
-				
 				<textarea 
 					style="margin-bottom: 0px;"
 					data-target="help"
@@ -425,7 +431,7 @@
 			<div class="popuphide popup-registro-exitoso-final">
 				<div class="overlay" style="background: rgba(0, 0, 0, 0.75);"></div>
 				<div class="popup-registro-exitoso-text" style="overflow: hidden;">
-					<h2 style="font-size: 18px; color: white;">Listo <span data-target="name"></span>!</h2>
+					<h2 style="font-size: 18px; color: white;">Tu perfil está listo <span data-target="name"></span>!</h2>
 					<h2 style="font-size: 18px; color: white;">Recibimos tu solicitud para sumarte a la familia de cuidadores Kmimos.</h2>		
 					<h2 style="font-size: 25px; color: white; text-align: center;">SIGUIENTES PASOS PARA ACTIVAR TU PERFIL:</h2>		
 
