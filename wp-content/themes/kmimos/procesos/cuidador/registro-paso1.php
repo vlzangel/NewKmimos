@@ -56,6 +56,7 @@
 
     extract($_POST);
 
+    /*
     switch ( $rc_tipo_documento ) {
         case 'IFE / INE':
 
@@ -98,6 +99,7 @@
 
         break;
     }
+    */
 
     if ($conn->connect_error) {
         echo json_encode(['error'=>'NO','msg'=>'Error de conexion', 'fields'=>[]]);

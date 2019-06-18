@@ -296,6 +296,15 @@
                 'access'        =>  'manage_options',
                 'page'          =>  'confirmacion_disponibilidad',
             );
+                
+            $opciones_menu_reporte[] = array(
+                'title'         =>  __('Genérico'),
+                'short-title'   =>  __('Genérico'),
+                'parent'        =>  'reporte_fotos',
+                'slug'          =>  'correo_generico',
+                'access'        =>  'manage_options',
+                'page'          =>  'correo_generico',
+            );
 
             foreach($opciones_menu_reporte as $opcion){
                 if( $opcion['parent'] == '' ){
@@ -330,6 +339,13 @@
             include_once(dirname(__DIR__).'/recursos/importador.php');
             // include_once(dirname(__DIR__).'/recursos/importador-botones.php');
             include_once(dirname(__DIR__).'/backend/confirmacion_disponibilidad/page.php');
+        }
+    }
+    if(!function_exists('correo_generico')){
+        function correo_generico(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            // include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/correo_generico/page.php');
         }
     }
 

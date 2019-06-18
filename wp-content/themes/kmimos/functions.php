@@ -27,8 +27,22 @@
 		function buildEmailTemplate($plantilla, $params){
 			$HTML = getTemplate($plantilla);
 			foreach ($params as $key => $value) {
-	            $HTML = str_replace('['.strtolower($key).']', $value, $HTML);
-	            $HTML = str_replace('['.strtoupper($key).']', $value, $HTML);
+				if( is_array($value) ){
+					$temp_html = '';
+					foreach ($value as $key_2 => $value_2) {
+						$pre_plantilla = getTemplate($key_2);
+						foreach ($value_2 as $key_3 => $value_3) {
+				            $pre_plantilla = str_replace('['.strtolower($key_3).']', $value_3, $pre_plantilla);
+				            $pre_plantilla = str_replace('['.strtoupper($key_3).']', $value_3, $pre_plantilla);
+						}
+			            $temp_html .= $pre_plantilla;
+					}
+		            $HTML = str_replace('['.strtolower($key).']', $temp_html, $HTML);
+		            $HTML = str_replace('['.strtoupper($key).']', $temp_html, $HTML);
+				}else{
+		            $HTML = str_replace('['.strtolower($key).']', $value, $HTML);
+		            $HTML = str_replace('['.strtoupper($key).']', $value, $HTML);
+				}
 	        }
 	        $HTML = str_replace('[URL_IMGS]', getUrlImgs($test), $HTML);
 	        return $HTML;

@@ -29,8 +29,7 @@
     }else{
         // Validar si existe el usuario
         $user = $db->get_row( "SELECT * FROM wp_users WHERE user_email = '{$email}'" );
-
-        if( isset($user->ID) && $user->ID > 0 ){
+        if( $user !== false ){
             $user_id = $user->ID;
             $cuidador = $db->get_row( "SELECT * FROM cuidadores WHERE email = '".$email."'" );
             if( isset($cuidador->id) && $cuidador->id > 0 ){
