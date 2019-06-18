@@ -55,8 +55,7 @@
 			[SERVICIOS]
 			<span id="precio" style="font-family: Arial; font-size: 13px; font-weight: 600; letter-spacing: -0.1px; text-align: left; vertical-align: middle; display: inline-block;">
 				DESDE MXN$ 
-				<span style='font-family: Arial; font-size: 18px;'>[MONTO]</span>
-				[MONTO_DECIMALES]
+				<span style='font-family: Arial; font-size: 18px;'>[MONTO]</span>[MONTO_DECIMALES]
 			</span>
 		</div>
 

@@ -141,8 +141,8 @@
                     "fields" => $fields,
                 );
             }
-            echo "(".json_encode( $error ).")";
-            exit;
+            echo json_encode( $error );
+            exit();
 
         }else{
             $msg = "Se encontraron los siguientes errores:\n\n";
@@ -162,8 +162,7 @@
                 "msg" => $msg,
                 "fields" => $fields,
             );
-
-            echo "(".json_encode( $error ).")";
-            exit;
+            echo json_encode( $error );
+            exit();
         }        
 	}

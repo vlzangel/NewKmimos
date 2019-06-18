@@ -30,8 +30,6 @@ jQuery( document ).ready(function() {
 
 	jQuery("#fotos").on("change", function(e){
 
-		console.log( "Inicio: "+fotos_array.length );
-
 		if( fotos_array.length < 6 ){
 			jQuery.each(e.target.files, function(i, d){
 				console.log(d);
@@ -226,29 +224,22 @@ function redireccionar(){
 }
 
 function vlz_coordenadas(position){
-	console.log("Hola 3");
     if(position.latitude != '' && position.longitude != '') {
         LAT = position.latitude;
         LNG = position.longitude;        
     }
-
     if( LAT == 0 || LNG == 0 ){ }else{
 		jQuery.ajax({
 	        url:   'https://maps.googleapis.com/maps/api/geocode/json?latlng='+LAT+','+LNG+'&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8',
 	        type:  'get',
 	        success:  function (response) {
-
                 jQuery(".km-datos-estado-opcion option:contains('"+response.results[0].address_components[5].long_name+"')").prop('selected', true);
                 var estado_id = jQuery(".km-datos-estado-opcion option:contains('"+response.results[0].address_components[5].long_name+"')").val();
-                
                 cambio_municipio(estado_id, function(){
                 	jQuery(".km-datos-municipio-opcion option:contains('"+response.results[0].address_components[4].long_name+"')").prop('selected', true);
                 });
-
                 jQuery("#rc_direccion").val( response.results[0].formatted_address );
-
                 jQuery("#rc_direccion").focus();
-                
 				var myLatLng = {lat: LAT, lng: LNG};
                 map.setCenter(myLatLng);
 	            marker.setPosition(myLatLng);
@@ -265,20 +256,15 @@ var LNG = 0;
 
 jQuery(document).on("click", '[data-target="#popup-registro-cuidador1"]' ,function(e){
 	e.preventDefault();
-
 	jQuery("#vlz_form_nuevo_cuidador input").val('');
-
 	jQuery("#popup-registro-cuidador1 .modal-content > div").hide();
 	jQuery(".popup-registro-cuidador-paso1").hide();
 	jQuery(".popup-registro-cuidador-paso2").hide();
 	jQuery(".popup-registro-cuidador-paso3").hide();
 	jQuery(".popup-registro-cuidador-correo").hide();
 	jQuery(".popup-registro-exitoso-final").hide();
-
 	jQuery(".popup-registro-cuidador").fadeIn("fast");
-
 	jQuery( jQuery(this).data('target') ).modal('show');
-
 	jQuery('[name="rc_num_mascota"]').val(1);
 });
 
@@ -303,7 +289,6 @@ jQuery("#cr_minus").on('click', function(e){
 			input.val( valor );
 			input.attr( "value", valor );
 		}
-
 		if ( span.html() <= 1 ) {
 			el.addClass("disabled");			
 		}
@@ -313,7 +298,6 @@ jQuery("#cr_minus").on('click', function(e){
 jQuery("#cr_plus").on('click', function(e){
 	e.preventDefault();
 	var el = jQuery(this);
-
 	if( !el.hasClass('disabled') ){
 		var div = el.parent();
 		var span = jQuery(".km-number", div);
@@ -325,7 +309,6 @@ jQuery("#cr_plus").on('click', function(e){
 			input.val( valor );
 			input.attr( "value", valor );
 		}
-
 		if ( span.html() >= 6) {
 			el.addClass("disabled");
 			span.html( 6 );
