@@ -9,36 +9,33 @@ jQuery(document).ready(function() {
  
     jQuery("#form").on("submit", function(e){
 		e.preventDefault();
-
 		// console.log("Hola");
-
 		if( !jQuery("#submit").hasClass("disable") ){
-    		// jQuery("#submit").addClass("disable");
-			// var confirmed = confirm("Esta seguro de enviar el correo.?");
-	    	// if (confirmed == true) {
+    		jQuery("#submit").addClass("disable");
+			var confirmed = confirm("Esta seguro de enviar el correo.?");
+	    	if (confirmed == true) {
 				
 				jQuery.post(
 					TEMA+'/admin/backend/'+MODULO+'/ajax/enviar.php',
 					jQuery(this).serialize(),
 					function(data){
-						console.log( data );
 
-						jQuery(".modal > div > div").html( data.html );
-						jQuery(".modal").css("display", "block");
+						// jQuery(".modal > div > div").html( data.html );
+						// jQuery(".modal").css("display", "block");
 
 						if( data.error == "" ){
-							// alert( data.respuesta );
+							alert( data.respuesta );
 						}else{
-							// alert( data.error );
+							alert( data.error );
 						}
 
 						jQuery("#submit").removeClass("disable");
 					}, 'json'
 				);
 
-			// }else{
-				// jQuery("#submit").removeClass("disable");
-			// }
+			}else{
+				jQuery("#submit").removeClass("disable");
+			}
 		}
     });
 

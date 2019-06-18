@@ -119,7 +119,7 @@
             "POST" => $_POST,
             "INFORMACION" => $INFORMACION,
             */
-            "html" => $mensaje,
+            // "html" => $mensaje,
         ]); die();
     }
 ?>
