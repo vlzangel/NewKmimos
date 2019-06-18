@@ -466,7 +466,7 @@
 
 					<aside class="text-left col-sm-10 col-sm-offset-1">
 						<p style="font-size: 18px;">1. En el transcurso del día, te enviaremos un correo con la liga de las pruebas de conocimientos y psicometría, es necesario que las contestes para poder continuar con el proceso.</p>
-						<p style="font-size: 18px;">2. El equipo de certificación Kmimos te contactará en breve para acompañarte y resolver tus dudas, también puedes contactarnos a través de Whatsapp al (55) 4621 8027.</p>
+						<p style="font-size: 18px;">2. El equipo de certificación Kmimos te contactará en breve para acompañarte y resolver tus dudas, también puedes contactarnos a través de Whatsapp al +52 1 55 7850 7572.</p>
 						<p style="font-size: 18px;">Te recordamos tus credenciales para tu perfil de Kmimos:</p>
 						<!--
 						<p style="font-size: 18px;">1. Da click en el botón CONTINUAR (mostrado abajo), serás redirigido de inmediato a las pruebas de Conocimientos Veterinarios.</p>
