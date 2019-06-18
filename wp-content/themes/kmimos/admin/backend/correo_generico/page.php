@@ -19,10 +19,10 @@
             <input type="text" id="titulo" name="titulo" class="input" required />
 
             <label>Cliente (Correo)</label>
-            <input type="email" id="correo" name="correo" class="input" value="soporte.kmimos@gmail.com" required />
+            <input type="email" id="correo" name="correo" class="input" value="" required />
 
             <label>Parrafo 1</label>
-            <textarea id="parrafos[]" name="parrafos[]" class="input" required>Parrafo 1</textarea>
+            <textarea id="parrafos[]" name="parrafos[]" class="input" required></textarea>
 
             <label>Parrafo 2 (Opcional)</label>
             <textarea id="parrafos[]" name="parrafos[]" class="input"></textarea>
