@@ -15,6 +15,9 @@
 
         <form id="form" method="POST">
 
+            <label>Titulo Correo</label>
+            <input type="text" id="titulo" name="titulo" class="input" required />
+
             <label>Cliente (Correo)</label>
             <input type="email" id="correo" name="correo" class="input" value="soporte.kmimos@gmail.com" required />
 
@@ -31,7 +34,7 @@
             <select id="sugerencias" name="sugerencias" class="input">
                 <option value="0">Sin sugerencias</option>
                 <option value="2">2 sugerencias</option>
-                <option value="3">3 sugerencias</option>
+                <option value="4">4 sugerencias</option>
             </select>
 
             <div class='botones_container confirmaciones'>
@@ -42,7 +45,6 @@
     </div>
 
 </div>
- 
 
 <style type="text/css">
 
