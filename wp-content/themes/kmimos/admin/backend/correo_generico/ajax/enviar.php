@@ -60,8 +60,10 @@
                         cuidadores
                     WHERE
                         activo = 1 AND
+                        rating > 0 AND
+                        valoraciones > 0 AND
                         user_id != 8631
-                    ORDER BY rating DESC, valoraciones DESC
+                    ORDER BY RAND()
                     LIMIT 0, ".($sugerencias+0)."
                 ";
 
