@@ -27,7 +27,7 @@ function subir_fotos(){
 
 var fotos_array = []; var indices = 0;
 jQuery( document ).ready(function() {
-	
+
 	jQuery("#fotos").on("change", function(e){
 
 		console.log( "Inicio: "+fotos_array.length );
@@ -278,6 +278,8 @@ jQuery(document).on("click", '[data-target="#popup-registro-cuidador1"]' ,functi
 	jQuery(".popup-registro-cuidador").fadeIn("fast");
 
 	jQuery( jQuery(this).data('target') ).modal('show');
+
+	jQuery('[name="rc_num_mascota"]').val(1);
 });
 
 jQuery(document).on("click", '.popup-registro-cuidador .km-btn-popup-registro-cuidador', function ( e ) {
@@ -475,32 +477,43 @@ jQuery(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-regis
 	var obj = jQuery(this);
 		obj.html('Enviando datos');
 
-	jQuery('input').css('border-bottom', '#ccc');
+	// jQuery('input').css('border-bottom', '#ccc');
 	jQuery('[data-error]').css('visibility', 'hidden');
+	jQuery('[data-error]').removeClass('tiene_error');
+	jQuery('[data-error]').html('');
 
-	var list = ['rc_num_mascota'];
-	var valid = km_cuidador_validar(list);
+	// var list = ['rc_num_mascota'];
+	// var valid = km_cuidador_validar(list);
 
-	if( valid ){
-		jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
-			data = eval(data);
-			if( data['error'] == "SI" ){
-				
-				if( data['fields'].length > 0 ){
-					jQuery.each(data['fields'], function(id, val){
-						mensaje( val['name'],val['msg']  );
-					});
+	// if( valid ){
+		jQuery.post( 
+			a, 
+			jQuery("#vlz_form_nuevo_cuidador").serialize(), 
+			function( info ) {
+
+				console.log( info );
+
+				if( info.error == "SI" ){
+					if( info.fields.length > 0 ){
+						jQuery.each(info.fields, function(id, val){
+							mensaje( val['name'], val['msg']  );
+						});
+					}
+					obj.html('SIGUIENTE');
+				}else{
+					
+					jQuery('[data-id="ilernus-user"]').html( jQuery('[name="rc_email"]').val() );
+					jQuery('[data-id="ilernus-pass"]').html( jQuery('[name="rc_clave"]').val() );
+
+					jQuery(".popup-registro-cuidador-paso3").hide();
+					jQuery(".popup-registro-exitoso-final").fadeIn("fast");
+					
 				}
-				obj.html('SIGUIENTE');
-			}else{
-				jQuery('[data-id="ilernus-user"]').html( jQuery('[name="rc_email"]').val() );
-				jQuery('[data-id="ilernus-pass"]').html( jQuery('[name="rc_clave"]').val() );
-
-				jQuery(".popup-registro-cuidador-paso3").hide();
-				jQuery(".popup-registro-exitoso-final").fadeIn("fast");
-			}
-		});
-	}
+				
+			},
+			'json'
+		);
+	// }
 });
 
 jQuery(document).on('click', '#finalizar-registro-cuidador', function(){

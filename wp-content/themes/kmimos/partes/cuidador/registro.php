@@ -414,19 +414,43 @@
 							<div class="km-content-step">
 								<div class="km-content-new-pet">
 									<div class="km-quantity">
-
 										<a href="#" id="cr_minus" class="cr_minus disabled">-</a>
 										<span class="km-number">1</span>
 										<a href="#" id="cr_plus" class="cr_minus">+</a>
-
-										<input data-target="help"  type="text" name="rc_num_mascota" value="1" 
-												style="display:none;">
- 
+										<input data-target="help"  type="text" name="rc_num_mascota" value="1" style="display:none;">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<h3 style="margin: 20px 0px;">Precios de Hospedaje</h5>
+					<div class="precios_registro">
+						<div class="km-block-1">
+							<p>Mascota Pequeña</p>
+						</div>
+						<div class="km-block-2">
+							<p> <input type="number" name="precios[pequenos]" /> </p>
+						</div>
+						<div class="km-block-1">
+							<p>Mascota Mediana</p>
+						</div>
+						<div class="km-block-2">
+							<p> <input type="number" name="precios[medianos]" /> </p>
+						</div>
+						<div class="km-block-1">
+							<p>Mascota Grande</p>
+						</div>
+						<div class="km-block-2">
+							<p> <input type="number" name="precios[grandes]" /> </p>
+						</div>
+						<div class="km-block-1">
+							<p>Mascota Gigante</p>
+						</div>
+						<div class="km-block-2">
+							<p> <input type="number" name="precios[gigantes]" /> </p>
+						</div>
+					</div>
+					<small data-error="rc_precios" style="visibility: hidden;"></small>
 				</div>
 				<hr>
 				<a href="#" class="km-btn-correo km-btn-popup-registro-cuidador-paso3">SIGUIENTE</a>

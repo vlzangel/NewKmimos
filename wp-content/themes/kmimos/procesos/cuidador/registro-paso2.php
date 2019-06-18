@@ -14,6 +14,31 @@
     }
     extract($_POST);
 
+    function hay_precios($precios){
+        foreach ($precios as $key => $value) {
+            if( $value+0 > 0 ){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    if( !hay_precios($precios) ){
+        $error = array(
+            "error" => "SI",
+            "msg" => "Debes ingresar el precio del al menos un tamaño de mascota",
+            "fields" => [
+                [
+                    "name" => 'rc_precios',
+                    "msg" => 'Debes ingresar el precio del al menos un tamaño de mascota'
+                ]
+            ],
+            "POST" => $_POST
+        );
+        echo json_encode( $error );
+        exit();
+    }
+
     $email = $rc_email;
     $estado = $rc_estado;
     $municipio = $rc_municipio;
@@ -81,6 +106,9 @@
                 $direccion = utf8_decode( $direccion );
                 $descripcion = utf8_decode( $descripcion );
 
+                $hospedaje = serialize($precios);
+                $adicionales = serialize([ "hospedaje" => $precios ]);
+
                 $cuidador_update = "
                     UPDATE cuidadores 
                     SET 
@@ -91,6 +119,9 @@
                         latitud = '{$latitud}',
                         longitud = '{$longitud}',
                         portada = {$foto},
+
+                        hospedaje = '{$hospedaje}',
+                        adicionales = '{$adicionales}'
 
                         estados = '={$estado}=',
                         municipios = '={$municipio}='
