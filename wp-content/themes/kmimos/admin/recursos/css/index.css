@@ -177,3 +177,7 @@ a:focus, a:focus .media-icon img {
     border-radius: 50%;
     cursor: pointer;
 }
+
+#wpbody-content {
+    padding-bottom: 10px !important;
+}
