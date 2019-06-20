@@ -73,16 +73,16 @@ function abrir_link(e){
 }
 
 function buscar( campo ){
+	jQuery(".cargando_list").css("display", "block");
 	jQuery.post(
 		HOME+"/procesos/busqueda/buscar.php",
 		jQuery("#form").serialize(),
 		function(respuesta){
-			console.log( respuesta );
+			// console.log( respuesta );
 			if( respuesta != false ){
 				TOTAL_PAGE = Math.ceil(respuesta.length/10);
 			}
 			PAGE = 0;
-			jQuery(".cargando_list").css("display", "block");
 			jQuery(".cuidadores_list").scrollTop(0);
 			show_results();
 		}, 'json'
