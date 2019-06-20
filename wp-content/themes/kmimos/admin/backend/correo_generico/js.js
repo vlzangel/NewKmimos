@@ -1,4 +1,5 @@
 var table; var fotos_array = []; var indices = 0;
+var path_anexos = [];
 jQuery(document).ready(function() {
 
 	jQuery("#fotos").on("change", function(e){
@@ -42,39 +43,44 @@ jQuery(document).ready(function() {
 			var confirmed = confirm("Esta seguro de enviar el correo.?");
 	    	if (confirmed == true) {
 
-	    		var ANEXOS = '';
-	    		jQuery.each(fotos_array, function(i, d){
-	    			ANEXOS += '<input type="hidden" name="anexos[]" value="'+d[1]+'" />';
+	    		jQuery("#submit").val("Enviando...");
+
+	    		subir_fotos(function(){
+
+		    		var ANEXOS = '';
+		    		jQuery.each(path_anexos, function(i, d){
+		    			ANEXOS += '<input type="hidden" name="anexos[]" value="'+d+'" />';
+		    		});
+		    		jQuery("#imagenes_anexos").html( ANEXOS );
+					
+					jQuery.post(
+						TEMA+'/admin/backend/'+MODULO+'/ajax/enviar.php',
+						jQuery("#form").serialize(),
+						function(data){
+							// console.log( data );
+
+							/*
+							jQuery(".modal > div > div").html( data.html );
+							jQuery(".modal").css("display", "block");
+							*/
+
+							if( data.error == "" ){
+								alert( data.respuesta );
+							}else{
+								alert( data.error );
+							}
+							
+							jQuery("#submit").removeClass("disable");
+							jQuery("#submit").val("Enviar solicitud");
+						}, 'json'
+					);
 	    		});
-	    		jQuery("#imagenes_anexos").html( ANEXOS );
-				
-				jQuery.post(
-					TEMA+'/admin/backend/'+MODULO+'/ajax/enviar.php',
-					jQuery(this).serialize(),
-					function(data){
-
-						// console.log( data );
-
-						/*
-						jQuery(".modal > div > div").html( data.html );
-						jQuery(".modal").css("display", "block");
-						*/
-
-						
-						if( data.error == "" ){
-							alert( data.respuesta );
-						}else{
-							alert( data.error );
-						}
-												
-
-						jQuery("#submit").removeClass("disable");
-					}, 'json'
-				);
 
 			}else{
 				jQuery("#submit").removeClass("disable");
 			}
+		}else{
+			alert("Ya lo solicitud esta en proceso");
 		}
     });
 
@@ -107,22 +113,29 @@ function removeFoto(_this){
 			jQuery("#foto_"+index).remove();
 		}
 	});
-
 	fotos_array = new_array;
 }
 
-function subir_fotos(){
-	jQuery.post(
-		HOME+"/procesos/cuidador/subir_fotos.php",
-		{
-			"email": jQuery('[name="rc_email"]').val(),
-			"fotos": fotos_array
-		},
-		function(data){
-			console.log(data);
-			console.log("Imágenes subidas");
-		}, 'json'
-	);	
+function subir_fotos(CB){
+	if( fotos_array.length == 0 ){
+		CB();
+	}else{
+		jQuery.post(
+			TEMA+'/admin/backend/'+MODULO+'/ajax/subir_anexos.php',
+			{
+				"anexos": fotos_array,
+				"pre_anexos": path_anexos,
+			},
+			function(data){
+				path_anexos = data;
+				CB();
+				/*
+				console.log(data);
+				console.log("Imágenes subidas");
+				*/
+			}, 'json'
+		);	
+	}
 }
 
 function abrir_link(e){
@@ -155,7 +168,6 @@ function buscar( campo ){
 
 var PAGE = 0;
 var TOTAL_PAGE = 0;
-
 function show_results(){
 	jQuery.post(
 		HOME+"/NEW/resultados_admin.php",
@@ -180,7 +192,6 @@ var sugerencias = [];
 var sugerencias_names = [];
 
 function seleccionar_sugerencia(_this){
-	console.log( _this.prop("checked") );
 	if( _this.prop("checked") !== true ){
 		quitar_sugerencia( _this.data("id") );
 		jQuery("#sugerencias").val( sugerencias.join(",") );
@@ -189,9 +200,6 @@ function seleccionar_sugerencia(_this){
 		if( sugerencias.length < 4 ){
 			sugerencias.push( _this.data("id") );
 			sugerencias_names.push( _this.data("name") );
-
-			console.log( sugerencias.join(",") );
-
 			jQuery("#sugerencias_ids").val( sugerencias.join(",") );
 			jQuery("#sugerencias_txt").val( sugerencias_names.join(" - ") );
 		}else{
@@ -210,7 +218,6 @@ function quitar_sugerencia(id){
 			temp_2.push( sugerencias_names[i] );
 		}
 	});
-
 	sugerencias = temp_1;
 	sugerencias_names = temp_2;
 }

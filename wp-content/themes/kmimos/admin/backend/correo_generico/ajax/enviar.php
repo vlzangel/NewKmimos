@@ -100,7 +100,7 @@
         $ANEXOS = '';
         foreach ($anexos as $key => $value) {
            // $value = explode(",", $value);
-            $ANEXOS .= '<img src="'.($value).'" style="    margin: 0px auto 15px; height: 350px; display: block; max-width: 100%;" />';
+            $ANEXOS .= '<img src="'.get_template_directory_uri()."/admin/backend/correo_generico/anexos/".($value).'" style="margin: 0px auto 15px; height: 350px; display: block; max-width: 100%;" />';
         }
         $INFORMACION["ANEXOS"] = $ANEXOS;
     }else{
@@ -112,7 +112,7 @@
         $INFORMACION
     );
 
-    wp_mail( $email, $titulo, $mensaje);
+    // wp_mail( $email, $titulo, $mensaje);
 
     echo json_encode([
         "error" => "",
@@ -121,7 +121,7 @@
         // "POST" => $_POST,
         // "INFORMACION" => $INFORMACION,
         
-        // "html" => $mensaje,
+        "html" => $mensaje,
     ]); die();
 ?>
 
