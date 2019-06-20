@@ -112,7 +112,15 @@
         $INFORMACION
     );
 
-    wp_mail( $email, $titulo, $mensaje);
+    $header = [];
+    if( $ocultas != "" ){
+        $ocultas = explode(",", $ocultas);
+        foreach ($ocultas as $key => $value) {
+            $header[] = 'BCC: '.trim($value);
+        }
+    }
+
+    wp_mail( $email, $titulo, $mensaje, $header);
 
     echo json_encode([
         "error" => "",

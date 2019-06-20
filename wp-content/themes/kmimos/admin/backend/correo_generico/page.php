@@ -28,6 +28,9 @@
                     <label>Email Cliente</label>
                     <input type="text" id="email" name="email" class="input" value="" required />
 
+                    <label>Copias Ocultas</label>
+                    <input type="text" id="ocultas" name="ocultas" class="input" value="" />
+
                     <label>Parrafo 1</label>
                     <textarea id="parrafos[]" name="parrafos[]" class="input" required></textarea>
 
