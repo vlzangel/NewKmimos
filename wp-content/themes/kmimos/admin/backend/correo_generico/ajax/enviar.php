@@ -112,7 +112,7 @@
         $INFORMACION
     );
 
-    // wp_mail( $email, $titulo, $mensaje);
+    wp_mail( $email, $titulo, $mensaje);
 
     echo json_encode([
         "error" => "",
@@ -121,7 +121,7 @@
         // "POST" => $_POST,
         // "INFORMACION" => $INFORMACION,
         
-        "html" => $mensaje,
+        // "html" => $mensaje,
     ]); die();
 ?>
 
