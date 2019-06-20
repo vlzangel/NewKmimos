@@ -1034,9 +1034,10 @@ table.table-bordered.dataTable tbody td{
 		}
 
 		.cuidadores_list {
-		    padding: 10px 0px;
-		    height: 695px;
-		    overflow: auto;
+			padding: 0px;
+			height: 600px;
+			overflow: auto;
+			margin-top: 10px;
 		}
 
 		.resultados_item_select {

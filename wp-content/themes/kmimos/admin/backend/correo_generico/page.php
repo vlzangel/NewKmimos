@@ -37,12 +37,6 @@
                     <label>Parrafo 3 (Opcional)</label>
                     <textarea id="parrafos[]" name="parrafos[]" class="input"></textarea>
 
-                    <label>Sugerencias de Cuidador</label>
-                    <div id="sugerencias">
-                        <input type="hidden" id="sugerencias_ids" name="sugerencias" />
-                        <input type="text" id="sugerencias_txt" class="input" value="" readonly />
-                    </div>
-
                     <label>Anexos</label>
                     <div id="anexos_container">
                         <div class="galeria_container"></div>
@@ -64,6 +58,12 @@
                             <ul class="ubicacion_list"></ul>
                         </div>
                         <div class="barra_ubicacion"></div>
+                    </div>
+
+                    <label>Sugerencias de Cuidador</label>
+                    <div id="sugerencias">
+                        <input type="hidden" id="sugerencias_ids" name="sugerencias" />
+                        <input type="text" id="sugerencias_txt" class="input" value="" readonly />
                     </div>
 
                     <div class="cuidadores_list">
