@@ -47,16 +47,14 @@ jQuery(document).ready(function() {
 	    var hTotal = parseInt( jQuery(".cuidadores_list > div").height() );
 	    var scrollPosition =  parseInt( jQuery(".cuidadores_list").height() ) + parseInt( jQuery(".cuidadores_list").scrollTop() );
 
-		console.log( hTotal+" - "+scrollPosition );
-	    
 	    if ( ( hTotal <= scrollPosition ) && CARGAR_RESULTADOS ) {
     		CARGAR_RESULTADOS = false;
 	        if( TOTAL_PAGE > (PAGE+1) ){
 	        	PAGE = PAGE + 1;
 	        	show_results();
-	        	jQuery(".cargando_mas_resultados").css("display", "block");
+	        	jQuery(".cargando_list").css("display", "block");
 	        }else{
-	        	jQuery(".cargando_mas_resultados").css("display", "none");
+	        	jQuery(".cargando_list").css("display", "none");
 	        }
 	    }
 	});
@@ -84,6 +82,7 @@ function buscar( campo ){
 				TOTAL_PAGE = Math.ceil(respuesta.length/10);
 			}
 			PAGE = 0;
+			jQuery(".cargando_list").css("display", "block");
 			jQuery(".cuidadores_list").scrollTop(0);
 			show_results();
 		}, 'json'
@@ -108,6 +107,7 @@ function show_results(){
 			}
 			jQuery('html, body').animate({ scrollTop: 0 }, 1000);
 			CARGAR_RESULTADOS = true;
+			jQuery(".cargando_list").css("display", "none");
 		}
 	);
 }

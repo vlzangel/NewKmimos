@@ -36,7 +36,7 @@
 
                     <label>Sugerencias de Cuidador</label>
                     <div id="sugerencias">
-                        <input type="text" id="sugerencias_ids" name="sugerencias" />
+                        <input type="hidden" id="sugerencias_ids" name="sugerencias" />
                         <input type="text" id="sugerencias_txt" class="input" value="" readonly />
                     </div>
                 </div>
@@ -55,6 +55,9 @@
 
                     <div class="cuidadores_list">
                         <div></div>
+                        <p class="cargando_list">
+                            <i class="fa fa-spinner fa-spin"></i>
+                        </p>
                     </div>
                 </div>
             </div>
