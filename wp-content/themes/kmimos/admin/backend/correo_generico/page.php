@@ -8,7 +8,7 @@
 <div class="container_listados">
 
     <div class='titulos'>
-        <h2>Correo de confirmación</h2>
+        <h2 style="font-size: 20px !important;">Correo Generíco</h2>
         <hr>
     </div>
     <div class="clear"></div>
