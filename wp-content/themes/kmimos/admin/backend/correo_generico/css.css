@@ -169,7 +169,8 @@ table.table-bordered.dataTable tbody td{
     #form label {
         display: inline-block !important;
         font-weight: 600;
-        margin: 10px 0px 3px !important;
+        margin: 0px 0px 3px !important;
+        font-size: 12px;
     }
 
     #form .input {
@@ -177,11 +178,12 @@ table.table-bordered.dataTable tbody td{
         width: 100%;
         box-sizing: border-box;
         margin: 0px;
+        font-size: 12px;
     }
 
     #form textarea.input {
         resize: none;
-        height: 150px;
+        height: 100px;
     }
 
     .botones_container {    
@@ -1039,7 +1041,7 @@ table.table-bordered.dataTable tbody td{
 
 		.resultados_item_select {
 		    position: absolute;
-		    top: -20px;
+		    top: -11px;
 		    right: -11px;
 		    font-size: 14px;
 		    font-weight: 600;

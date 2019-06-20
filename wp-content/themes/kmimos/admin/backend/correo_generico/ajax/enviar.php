@@ -12,6 +12,12 @@
 
     extract( $_POST );
 
+    /*
+    echo json_encode([
+        "POST" => $_POST,
+    ]); die();
+    */
+
     $cliente_name = $cliente;
 
     $INFORMACION = [
@@ -88,6 +94,17 @@
             $plantilla_sugeridos = str_replace("[CUIDADORES]", $str_sugeridos, $plantilla_sugeridos);
 
         $INFORMACION["SUGERENCIA"] = $plantilla_sugeridos;
+    }
+
+    if( count($anexos) > 0 ){
+        $ANEXOS = '';
+        foreach ($anexos as $key => $value) {
+           // $value = explode(",", $value);
+            $ANEXOS .= '<img src="'.($value).'" style="    margin: 0px auto 15px; height: 350px; display: block; max-width: 100%;" />';
+        }
+        $INFORMACION["ANEXOS"] = $ANEXOS;
+    }else{
+        $INFORMACION["ANEXOS"] = "";
     }
 
     $mensaje = buildEmailTemplate(

@@ -1,5 +1,35 @@
-var table; 
+var table; var fotos_array = []; var indices = 0;
 jQuery(document).ready(function() {
+
+	jQuery("#fotos").on("change", function(e){
+		// if( fotos_array.length < 6 ){
+			jQuery.each(e.target.files, function(i, d){
+				getRealMime(d).then(function(MIME){
+			        if( MIME.match("image.*") ){
+			            var reader = new FileReader();
+			            reader.onload = (function(theFile) {
+			                return function(e) {
+			                    redimencionar(e.target.result, function(img_reducida){
+			                    	// if( fotos_array.length < 6 ){
+			                    		var HTML = '<div id="foto_'+indices+'" style="background-image: url('+img_reducida+');"> <i class="fa fa-times" onclick="removeFoto(jQuery(this))" data-index="'+indices+'" ></i> </div>';
+			                    		jQuery(".galeria_container").append( HTML );
+			                    		fotos_array.push( [indices, img_reducida] );
+			                    		indices++;
+			                    	// }
+			                    	// jQuery(".galeria_container").css("display", "block");
+			                    });      
+			                };
+			           })(d);
+			           reader.readAsDataURL(d);
+			        }else{
+			            alert("Solo se permiten imagenes");
+			        }
+			    }).catch(function(error){
+			        alert("Solo se permiten imagenes");
+			    });  	
+			});
+		// }
+	});
 
     jQuery("#close_modal").on("click", function(e){
         cerrar(e);
@@ -7,26 +37,36 @@ jQuery(document).ready(function() {
  
     jQuery("#form").on("submit", function(e){
 		e.preventDefault();
-		// console.log("Hola");
 		if( !jQuery("#submit").hasClass("disable") ){
     		jQuery("#submit").addClass("disable");
 			var confirmed = confirm("Esta seguro de enviar el correo.?");
 	    	if (confirmed == true) {
+
+	    		var ANEXOS = '';
+	    		jQuery.each(fotos_array, function(i, d){
+	    			ANEXOS += '<input type="hidden" name="anexos[]" value="'+d[1]+'" />';
+	    		});
+	    		jQuery("#imagenes_anexos").html( ANEXOS );
 				
 				jQuery.post(
 					TEMA+'/admin/backend/'+MODULO+'/ajax/enviar.php',
 					jQuery(this).serialize(),
 					function(data){
+
+						// console.log( data );
+
 						/*
 						jQuery(".modal > div > div").html( data.html );
 						jQuery(".modal").css("display", "block");
 						*/
+
+						
 						if( data.error == "" ){
 							alert( data.respuesta );
 						}else{
 							alert( data.error );
 						}
-						
+												
 
 						jQuery("#submit").removeClass("disable");
 					}, 'json'
@@ -39,14 +79,11 @@ jQuery(document).ready(function() {
     });
 
 	jQuery(".cuidadores_list").on("scroll", function() {
-
 		var margen = 
 			parseInt( jQuery("#lab_sug").height() ) +
 			parseInt( jQuery("#camp_sug").height() );
-
 	    var hTotal = parseInt( jQuery(".cuidadores_list > div").height() );
 	    var scrollPosition =  parseInt( jQuery(".cuidadores_list").height() ) + parseInt( jQuery(".cuidadores_list").scrollTop() );
-
 	    if ( ( hTotal <= scrollPosition ) && CARGAR_RESULTADOS ) {
     		CARGAR_RESULTADOS = false;
 	        if( TOTAL_PAGE > (PAGE+1) ){
@@ -60,6 +97,33 @@ jQuery(document).ready(function() {
 	});
 
 });
+
+function removeFoto(_this){
+	var index = _this.data("index");
+	var new_array = [];
+	jQuery.each(fotos_array, function(i, d){
+		if(d[0] != index){
+			new_array.push( d );
+			jQuery("#foto_"+index).remove();
+		}
+	});
+
+	fotos_array = new_array;
+}
+
+function subir_fotos(){
+	jQuery.post(
+		HOME+"/procesos/cuidador/subir_fotos.php",
+		{
+			"email": jQuery('[name="rc_email"]').val(),
+			"fotos": fotos_array
+		},
+		function(data){
+			console.log(data);
+			console.log("Imágenes subidas");
+		}, 'json'
+	);	
+}
 
 function abrir_link(e){
 	init_modal({

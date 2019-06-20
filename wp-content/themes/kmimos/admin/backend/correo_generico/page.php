@@ -42,6 +42,16 @@
                         <input type="hidden" id="sugerencias_ids" name="sugerencias" />
                         <input type="text" id="sugerencias_txt" class="input" value="" readonly />
                     </div>
+
+                    <label>Anexos</label>
+                    <div id="anexos_container">
+                        <div class="galeria_container"></div>
+                        <div id="imagenes_anexos"></div>
+                        <div class="fotos_btn">
+                            Cargar anexos
+                            <input type="file" id="fotos" name="rc_fotos" accept="image/*" multiple />
+                        </div>
+                    </div>
                 </div>
 
                 <div class='col-md-6'>
