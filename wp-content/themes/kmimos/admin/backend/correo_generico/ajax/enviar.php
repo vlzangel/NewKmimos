@@ -23,29 +23,28 @@
 
     }else{
 
-        $metas = get_user_meta($cliente_id);
-
-        $cliente_name = $metas["first_name"][0]." ".$metas["last_name"][0];
+        $cliente_name = $cliente;
 
         $INFORMACION = [
             "CLIENTE" => $cliente_name,
         ];
+
         $cont = 0;
         $INFORMACION["PARRAFOS"] = [];
         foreach ($parrafos as $key => $parrafo) {
             if( $parrafo != "" ){
                 if( $cont == 0 ){
-                    $INFORMACION["CONTENIDO_0"] = $parrafo;
+                    $INFORMACION["CONTENIDO_0"] = str_replace("\n", "<br>", trim($parrafo) );
                 }else{
                     $INFORMACION["PARRAFOS"]["correo_generico/parrafo_".$cont] = [
-                        "CONTENIDO_".$key => $parrafo
+                        "CONTENIDO_".$key => str_replace("\n", "<br>", trim($parrafo) )
                     ];
                 }
                 $cont++;
             }
         }
 
-        if( $sugerencias+0 == 0 ){
+        if( $sugerencias == "" ){
             $INFORMACION["SUGERENCIA"] = "";
         }else{
 
@@ -59,12 +58,7 @@
                     FROM 
                         cuidadores
                     WHERE
-                        activo = 1 AND
-                        rating > 0 AND
-                        valoraciones > 0 AND
-                        user_id != 8631
-                    ORDER BY RAND()
-                    LIMIT 0, ".($sugerencias+0)."
+                        id IN ({$sugerencias})
                 ";
 
                 $sugeridos = $wpdb->get_results($sql);
@@ -117,10 +111,10 @@
         echo json_encode([
             "error" => "",
             "respuesta" => "Correo Enviado Exitosamente!",
-            /*
-            "POST" => $_POST,
-            "INFORMACION" => $INFORMACION,
-            */
+            
+            // "POST" => $_POST,
+            // "INFORMACION" => $INFORMACION,
+            
             // "html" => $mensaje,
         ]); die();
     }

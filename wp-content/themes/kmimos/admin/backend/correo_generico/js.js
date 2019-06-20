@@ -20,14 +20,17 @@ jQuery(document).ready(function() {
 					jQuery(this).serialize(),
 					function(data){
 
-						// jQuery(".modal > div > div").html( data.html );
-						// jQuery(".modal").css("display", "block");
-
+						/*
+						jQuery(".modal > div > div").html( data.html );
+						jQuery(".modal").css("display", "block");
+						*/
+						
 						if( data.error == "" ){
 							alert( data.respuesta );
 						}else{
 							alert( data.error );
 						}
+						
 
 						jQuery("#submit").removeClass("disable");
 					}, 'json'
@@ -39,63 +42,30 @@ jQuery(document).ready(function() {
 		}
     });
 
-    jQuery("#btn-search").on("click", function(e){
-		loadTabla();
+	jQuery(".cuidadores_list").on("scroll", function() {
+
+		var margen = 
+			parseInt( jQuery("#lab_sug").height() ) +
+			parseInt( jQuery("#camp_sug").height() );
+
+	    var hTotal = parseInt( jQuery(".cuidadores_list > div").height() );
+	    var scrollPosition =  parseInt( jQuery(".cuidadores_list").height() ) + parseInt( jQuery(".cuidadores_list").scrollTop() );
+
+		console.log( hTotal+" - "+scrollPosition );
+	    
+	    if ( ( hTotal <= scrollPosition ) && CARGAR_RESULTADOS ) {
+    		CARGAR_RESULTADOS = false;
+	        if( TOTAL_PAGE > (PAGE+1) ){
+	        	PAGE = PAGE + 1;
+	        	show_results();
+	        	jQuery(".cargando_mas_resultados").css("display", "block");
+	        }else{
+	        	jQuery(".cargando_mas_resultados").css("display", "none");
+	        }
+	    }
 	});
 
 });
-
-function loadTabla(){
- 	/*
-	table = jQuery('#example').DataTable();
-	table.destroy();
-
-    table = jQuery('#example').DataTable({
-    	"language": {
-			"emptyTable":			"No hay datos disponibles en la tabla.",
-			"info":		   			"Del _START_ al _END_ de _TOTAL_ ",
-			"infoEmpty":			"Mostrando 0 registros de un total de 0.",
-			"infoFiltered":			"(filtrados de un total de _MAX_ registros)",
-			"infoPostFix":			" (actualizados)",
-			"lengthMenu":			"Mostrar _MENU_ registros",
-			"loadingRecords":		"Cargando...",
-			"processing":			"Procesando...",
-			"search":				"Buscar:",
-			"searchPlaceholder":	"Dato para buscar",
-			"zeroRecords":			"No se han encontrado coincidencias.",
-			"paginate": {
-				"first":			"Primera",
-				"last":				"Última",
-				"next":				"Siguiente",
-				"previous":			"Anterior"
-			},
-			"aria": {
-				"sortAscending":	"Ordenación ascendente",
-				"sortDescending":	"Ordenación descendente"
-			}
-		},
-		"dom": '<B><f><t>ip',
-		"buttons": [
-			{
-			  extend: "csv",
-			  className: "btn-sm"
-			},
-			{
-			  extend: "excelHtml5",
-			  className: "btn-sm"
-			},
-        ],
-		 
-        "scrollX": true,
-        "ajax": {
-            "url": TEMA+'/admin/backend/seguimiento/ajax/list.php',
-            "data": { 'desde': jQuery('[name="ini"]').val(), "hasta":jQuery('[name="fin"]').val() },
-            "type": "POST"
-        }
-	});
-	*/
- 
-}
 
 function abrir_link(e){
 	init_modal({
@@ -108,7 +78,82 @@ function abrir_link(e){
 	});
 }
 
- 
+function buscar( campo ){
+	jQuery.post(
+		HOME+"/procesos/busqueda/buscar.php",
+		jQuery("#form").serialize(),
+		function(respuesta){
+			console.log( respuesta );
+			if( respuesta != false ){
+				TOTAL_PAGE = Math.ceil(respuesta.length/10);
+			}
+			PAGE = 0;
+			jQuery(".cuidadores_list").scrollTop(0);
+			show_results();
+		}, 'json'
+	);
+}
+
+var PAGE = 0;
+var TOTAL_PAGE = 0;
+
+function show_results(){
+	jQuery.post(
+		HOME+"/NEW/resultados_admin.php",
+		{ 
+			page: PAGE,
+			sugerencias: jQuery("#sugerencias").val()
+		},
+		function(html){
+			if( PAGE == 0 ){
+				jQuery(".cuidadores_list > div").html( html );
+			}else{
+				jQuery(".cuidadores_list > div").append( html );
+			}
+			jQuery('html, body').animate({ scrollTop: 0 }, 1000);
+			CARGAR_RESULTADOS = true;
+		}
+	);
+}
+
+var sugerencias = [];
+var sugerencias_names = [];
+
+function seleccionar_sugerencia(_this){
+	console.log( _this.prop("checked") );
+	if( _this.prop("checked") !== true ){
+		quitar_sugerencia( _this.data("id") );
+		jQuery("#sugerencias").val( sugerencias.join(",") );
+		jQuery("#sugerencias_txt").val( sugerencias_names.join(" - ") );
+	}else{
+		if( sugerencias.length < 4 ){
+			sugerencias.push( _this.data("id") );
+			sugerencias_names.push( _this.data("name") );
+
+			console.log( sugerencias.join(",") );
+
+			jQuery("#sugerencias_ids").val( sugerencias.join(",") );
+			jQuery("#sugerencias_txt").val( sugerencias_names.join(" - ") );
+		}else{
+			_this.prop("checked", false);
+			alert("Solo se permite un máximo de 4 sugerencias");
+		}
+	}
+}
+
+function quitar_sugerencia(id){
+	var temp_1 = [];
+	var temp_2 = [];
+	jQuery.each(sugerencias, function(i, d){
+		if( d != id ){
+			temp_1.push( sugerencias[i] );
+			temp_2.push( sugerencias_names[i] );
+		}
+	});
+
+	sugerencias = temp_1;
+	sugerencias_names = temp_2;
+}
 
 
 

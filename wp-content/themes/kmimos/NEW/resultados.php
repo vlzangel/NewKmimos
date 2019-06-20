@@ -4,8 +4,10 @@
 	extract($_POST);
 	echo get_resultados_new($page*10);
 
+	/*
 	echo "<pre>";
 		print_r( $_SESSION['sql'] );
 	echo "</pre>";
+	*/
 ?>
 
