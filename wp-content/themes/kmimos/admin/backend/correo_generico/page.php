@@ -25,6 +25,9 @@
                     <label>Nombre Cliente</label>
                     <input type="text" id="cliente" name="cliente" class="input" value="" required />
 
+                    <label>Email Cliente</label>
+                    <input type="text" id="email" name="email" class="input" value="" required />
+
                     <label>Parrafo 1</label>
                     <textarea id="parrafos[]" name="parrafos[]" class="input" required></textarea>
 
