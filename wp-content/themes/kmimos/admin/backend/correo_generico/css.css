@@ -353,6 +353,7 @@ table.table-bordered.dataTable tbody td{
 			margin: 0px 24px 15px;
 			box-sizing: border-box;
 			box-shadow: 1px 1px 1px #CCC;
+			background: #FFF;
 		}
 
 		.resultado_item .resultados_hover {
@@ -1034,10 +1035,11 @@ table.table-bordered.dataTable tbody td{
 		}
 
 		.cuidadores_list {
-			padding: 0px;
+			padding: 10px 0px;
 			height: 600px;
 			overflow: auto;
 			margin-top: 10px;
+			background: #EEE;
 		}
 
 		.resultados_item_select {
