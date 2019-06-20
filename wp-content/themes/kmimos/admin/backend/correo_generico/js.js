@@ -1,8 +1,6 @@
 var table; 
 jQuery(document).ready(function() {
 
-	// loadTabla();
-
     jQuery("#close_modal").on("click", function(e){
         cerrar(e);
     });
@@ -19,12 +17,10 @@ jQuery(document).ready(function() {
 					TEMA+'/admin/backend/'+MODULO+'/ajax/enviar.php',
 					jQuery(this).serialize(),
 					function(data){
-
 						/*
 						jQuery(".modal > div > div").html( data.html );
 						jQuery(".modal").css("display", "block");
 						*/
-						
 						if( data.error == "" ){
 							alert( data.respuesta );
 						}else{

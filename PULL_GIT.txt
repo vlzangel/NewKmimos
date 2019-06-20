@@ -1,0 +1,1 @@
+git add . & git commit -m "Act" & git push & "C:\Program Files (x86)\GnuWin32\bin\wget.exe" --no-cache --spider http://kmimos.com.mx/QA2/git/pull.php
