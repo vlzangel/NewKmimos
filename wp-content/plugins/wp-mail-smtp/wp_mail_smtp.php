@@ -81,6 +81,7 @@ function wp_mail_smtp_whitelist_options($whitelist_options) {
 }
 endif;
 
+
 // To avoid any (very unlikely) clashes, check if the function alredy exists
 if (!function_exists('phpmailer_init_smtp')) :
 // This code is copied, from wp-includes/pluggable.php as at version 2.2.2
@@ -137,6 +138,8 @@ function phpmailer_init_smtp($phpmailer) {
 			// Set the other options
 			$phpmailer->Host = get_option('smtp_host');
 			$phpmailer->Port = get_option('smtp_port');
+
+
 			
 			// If we're using smtp auth, set the username & password
 			if( $_POST["CORREO_OPENPAY"] == "YES" ){
@@ -144,10 +147,22 @@ function phpmailer_init_smtp($phpmailer) {
 				$phpmailer->Username = "desarrollokmimos@gmail.com";
 				$phpmailer->Password = "Kmimos2017";
 			}else{
+
+				if ( function_exists('phpmailer_init_vlz') ) {
+					$accesos = phpmailer_init_vlz();
+					$phpmailer->From = $accesos["From"];
+					$phpmailer->FromName = $accesos["FromName"];
+				}else{
+					$accesos = [
+			            "email" => get_option('smtp_user'),
+			            "clave" => get_option('smtp_pass'),
+			        ];
+				}
+
 				if (get_option('smtp_auth') == "true") {
 					$phpmailer->SMTPAuth = TRUE;
-					$phpmailer->Username = get_option('smtp_user');
-					$phpmailer->Password = get_option('smtp_pass');
+					$phpmailer->Username = $accesos["email"];
+					$phpmailer->Password = $accesos["clave"];
 				}
 			}
 			/*
