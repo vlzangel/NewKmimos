@@ -1,6 +1,4 @@
 <?php    
-    
-    $NO_INIT = "YES";
 
     session_start();
     function phpmailer_init_vlz() {
@@ -11,15 +9,6 @@
             "From" => "reservacionesmx@kmimos.la",
             "FromName" => "Kmimos México",
         ];
-        
-        /*
-        return [
-            "email" => "a.veloz@kmimos.la",
-            "clave" => "vlz271191",
-            "From" => "a.veloz@kmimos.la",
-            "FromName" => "Kmimos México",
-        ];
-        */
     }
 
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
@@ -121,6 +110,10 @@
     echo json_encode([
         "error" => "",
         "respuesta" => "Correo Enviado Exitosamente!",
+
+        "info" => [
+            $email, $titulo, $mensaje, $header
+        ]
         
         // "POST" => $_POST,
         // "INFORMACION" => $INFORMACION,

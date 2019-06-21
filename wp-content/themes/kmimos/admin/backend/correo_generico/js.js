@@ -194,7 +194,7 @@ var sugerencias_names = [];
 function seleccionar_sugerencia(_this){
 	if( _this.prop("checked") !== true ){
 		quitar_sugerencia( _this.data("id") );
-		jQuery("#sugerencias").val( sugerencias.join(",") );
+		jQuery("#sugerencias_ids").val( sugerencias.join(",") );
 		jQuery("#sugerencias_txt").val( sugerencias_names.join(" - ") );
 	}else{
 		if( sugerencias.length < 4 ){

@@ -289,8 +289,8 @@
             }
                 
             $opciones_menu_reporte[] = array(
-                'title'         =>  __('Correo'),
-                'short-title'   =>  __('Correo'),
+                'title'         =>  __('Correo Disponibilidad'),
+                'short-title'   =>  __('Correo Disponibilidad'),
                 'parent'        =>  'reporte_fotos',
                 'slug'          =>  'confirmacion_disponibilidad',
                 'access'        =>  'manage_options',

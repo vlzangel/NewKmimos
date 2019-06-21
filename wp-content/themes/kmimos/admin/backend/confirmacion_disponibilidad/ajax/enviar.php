@@ -1,6 +1,16 @@
 <?php    
 
     session_start();
+    
+    function phpmailer_init_vlz() {
+        
+        return [
+            "email" => "reservacionesmx@kmimos.la",
+            "clave" => "Roberto2019",
+            "From" => "reservacionesmx@kmimos.la",
+            "FromName" => "Kmimos México",
+        ];
+    }
 
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
     include($raiz.'/wp-load.php');
