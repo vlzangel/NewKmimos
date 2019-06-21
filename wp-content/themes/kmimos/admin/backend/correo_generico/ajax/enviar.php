@@ -4,12 +4,22 @@
 
     session_start();
     function phpmailer_init_vlz() {
+        
         return [
-            "email" => "reservaciones@kmimos.la",
+            "email" => "reservacionesmx@kmimos.la",
             "clave" => "Roberto2019",
-            "From" => "reservaciones@kmimos.la",
+            "From" => "reservacionesmx@kmimos.la",
             "FromName" => "Kmimos México",
         ];
+        
+        /*
+        return [
+            "email" => "a.veloz@kmimos.la",
+            "clave" => "vlz271191",
+            "From" => "a.veloz@kmimos.la",
+            "FromName" => "Kmimos México",
+        ];
+        */
     }
 
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
