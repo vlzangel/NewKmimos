@@ -286,6 +286,16 @@
                     'page'          =>  'reporte_requerimientos',
                 );
             
+                
+                $opciones_menu_reporte[] = array(
+                    'title'         =>  __('Kmibot'),
+                    'short-title'   =>  __('Kmibot'),
+                    'parent'        =>  'reporte_fotos',
+                    'slug'          =>  'reporte_kmibot',
+                    'access'        =>  'manage_options',
+                    'page'          =>  'reporte_kmibot',
+                );
+            
             }
                 
             $opciones_menu_reporte[] = array(
@@ -514,5 +524,13 @@
             include_once(dirname(__DIR__).'/recursos/importador.php');
             include_once(dirname(__DIR__).'/recursos/importador-botones.php');
             include_once(dirname(__DIR__).'/backend/requerimientos/page.php');
+        }
+    }
+
+    if(!function_exists('reporte_kmibot')){
+        function reporte_kmibot(){
+            include_once(dirname(__DIR__).'/recursos/importador.php');
+            include_once(dirname(__DIR__).'/recursos/importador-botones.php');
+            include_once(dirname(__DIR__).'/backend/kmibot/page.php');
         }
     }
