@@ -199,16 +199,23 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 	  					    }
   					    }
 
-  					    $comportamientos_aceptados = '';
+  					    $comportamientos_aceptados = [];
   					    $comportamientos_aceptados_t = unserialize( $row['comportamientos_aceptados']);
-  					    if( is_array($comportamientos_aceptados_t) ){
-	  					    foreach($comportamientos_aceptados_t as $key => $val){
-	  					    	if( $val > 0 ){
-		  					    	$comportamientos_aceptados .= ( $comportamientos_aceptados != '' )? ', ': '' ;
-		  					    	$comportamientos_aceptados .= $key;
+  					    foreach($comportamientos_aceptados_t as $key => $val){
+  					    	if( is_array($val) ){
+  					    		if( $key == "perros" ){
+	  					    		foreach ($val as $key_2 => $value_2) {
+	  					    			$comportamientos_aceptados[] = str_replace("_", " ", $key_2);
+	  					    		}
+  					    		}
+  					    	}else{
+  					    		if( $val > 0 ){
+		  					    	// $comportamientos_aceptados .= ( $comportamientos_aceptados != '' )? ', ': '' ;
+		  					    	$comportamientos_aceptados[] = str_replace("_", " ", $key);
 		  						}
-	  					    }
+  					    	}
   					    }
+  					    $comportamientos_aceptados = implode(", ", $comportamientos_aceptados);
 
   					    $adicionales_t = unserialize( $row['adicionales']);
   					    $Hospedaje_t =  unserialize( $row['hospedaje']);

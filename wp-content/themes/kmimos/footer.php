@@ -13,7 +13,6 @@
         "busqueda",
         "petsitters",
         "paseos",
-        "pagar",
         "testimonios",
         "product",
         "page-perfil.php",
