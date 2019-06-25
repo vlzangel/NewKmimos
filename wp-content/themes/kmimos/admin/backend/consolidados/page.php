@@ -9,6 +9,14 @@
     }else{
         $msg = '<button id="mostrar_confirmadas" class="button button-secundary button-large">Quitar Confirmadas</button>';
     }
+
+    $desde = $_SESSION[ "desde_".$modulo ];
+    $hasta = $_SESSION[ "hasta_".$modulo ];
+
+    if( $desde == "" || $hasta == "" ){
+        $desde = date("Y-m")."-01";
+        $hasta = date("Y-m-d");
+    }
 ?>
 <link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/consolidados/css.css?v=<?= time() ?>'>
 <script src='<?php echo getTema(); ?>/admin/backend/consolidados/js.js?v=<?= time() ?>'></script>
@@ -29,11 +37,11 @@
             <form id="filtros" class="form-inline" method="POST">
                 <div class="">
                     <label class="">Desde</label>
-                    <input type="date" class="form-control" id="desde" name="desde" value="<?php echo $_SESSION[ "desde_".$modulo]; ?>">
+                    <input type="date" class="form-control" id="desde" name="desde" value="<?php echo $desde; ?>">
                 </div>
                 <div class="">
                     <label class="">Hasta</label>
-                    <input type="date" class="form-control" id="hasta" name="hasta" value="<?php echo $_SESSION[ "hasta_".$modulo] ?>">
+                    <input type="date" class="form-control" id="hasta" name="hasta" value="<?php echo $hasta; ?>">
                 </div>
                 <div class="">
                     <button id="submit" type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>
