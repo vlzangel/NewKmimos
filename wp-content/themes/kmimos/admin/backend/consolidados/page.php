@@ -2,6 +2,8 @@
     error_reporting( 0 );
     session_start();
 
+    $modulo = "consolidado";
+
     if( $_SESSION["MOSTRAR_CONFIRMADAS"] != true ){
         $msg = '<button id="mostrar_confirmadas" class="button button-primary button-large">Mostrar Confirmadas</button>';
     }else{
@@ -20,6 +22,24 @@
             <button id="actualizar_list" class="button button-primary button-large">Actualizar</button>
         </div>
         <hr style="margin: 10px 0px;">
+    </div>
+
+    <div class="row text-left"> 
+        <div class="col-sm-12">
+            <form id="filtros" class="form-inline" method="POST">
+                <div class="">
+                    <label class="">Desde</label>
+                    <input type="date" class="form-control" id="desde" name="desde" value="<?php echo $_SESSION[ "desde_".$modulo]; ?>">
+                </div>
+                <div class="">
+                    <label class="">Hasta</label>
+                    <input type="date" class="form-control" id="hasta" name="hasta" value="<?php echo $_SESSION[ "hasta_".$modulo] ?>">
+                </div>
+                <div class="">
+                    <button id="submit" type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;" >

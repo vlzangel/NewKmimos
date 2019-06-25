@@ -7,7 +7,17 @@
 
     $_desde = ""; $_hasta = "";
 
-    $reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new ORDER BY reserva_id DESC"); // WHERE fecha_reservacion >= '{$_desde}' AND fecha_reservacion <= '{$_hasta}' 
+    $modulo = "consolidado";
+
+    $desde = $_SESSION[ "desde_".$modulo ];
+    $hasta = $_SESSION[ "hasta_".$modulo ];
+
+    if( $desde == "" || $hasta == "" ){
+        $desde = date("Y-m")."-01";
+        $hasta = date("Y-m-d");
+    }
+
+    $reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '{$desde}' AND fecha_reservacion <= '{$hasta}' ORDER BY reserva_id DESC"); // WHERE fecha_reservacion >= '{$_desde}' AND fecha_reservacion <= '{$_hasta}' 
 
     $editores = [
         0 => "Seleccione...",

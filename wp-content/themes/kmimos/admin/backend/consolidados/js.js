@@ -61,6 +61,29 @@ jQuery(document).ready(function() {
     jQuery("#mostrar_confirmadas").on("click", function(e){
         confirmadas_handler(); 
     });
+
+    jQuery("#filtros").submit(function(e){
+        e.preventDefault();
+        var val = jQuery(this).val();
+
+        jQuery("#submit").html('<i class="fa fa-spinner fa-spin"></i> Buscando...');
+        jQuery("#submit").prop("disabled", true);
+
+        jQuery.post(
+            TEMA+'/admin/backend/consolidados/ajax/setData.php',
+            { 
+                desde_consolidado: jQuery("#desde").val(), 
+                hasta_consolidado: jQuery("#hasta").val() 
+            },
+            function(data){
+                table.ajax.reload(function(r){
+                    jQuery("#submit").html('<i class="fa fa-search"></i> Buscar');
+                    jQuery("#submit").prop("disabled", false);
+                }, true);
+            }
+        );
+
+    });
 } );
 
 function confirmadas_handler(){

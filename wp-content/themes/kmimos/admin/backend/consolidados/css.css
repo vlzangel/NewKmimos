@@ -42,3 +42,39 @@ td.dataTables_empty {
     padding: 10px;
     text-align: left !important;
 }
+
+form#filtros {
+    text-align: left;
+    width: 100%;
+    display: block;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin: 10px 15px 25px;
+}
+
+form#filtros > div {
+    display: inline-block;
+    width: 155px;
+    text-align: center;
+}
+
+form#filtros > div input {
+    width: 100%;
+    font-size: 13px;
+}
+
+form#filtros > div label {
+    text-align: left;
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+form#filtros .btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    width: 100%;
+    height: 33px;
+    padding: 0px;
+}
