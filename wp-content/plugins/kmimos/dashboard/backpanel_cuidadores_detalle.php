@@ -135,6 +135,7 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 			      <th>Tamaños Aceptados</th>
 			      <th>Edades Aceptadas</th>
 			      <th>Comportamientos Aceptados</th>
+			      <th>¿Acepta Gatos?</th>
 
 				  <th>Hospedaje</th>
 				  <th>Guarderia</th>
@@ -201,19 +202,21 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 
   					    $comportamientos_aceptados = [];
   					    $comportamientos_aceptados_t = unserialize( $row['comportamientos_aceptados']);
-  					    foreach($comportamientos_aceptados_t as $key => $val){
-  					    	if( is_array($val) ){
-  					    		if( $key == "perros" ){
-	  					    		foreach ($val as $key_2 => $value_2) {
-	  					    			$comportamientos_aceptados[] = str_replace("_", " ", $key_2);
+  					    if( !empty($comportamientos_aceptados_t) ){
+	  					    foreach($comportamientos_aceptados_t as $key => $val){
+	  					    	if( is_array($val) ){
+	  					    		if( $key == "perros" ){
+		  					    		foreach ($val as $key_2 => $value_2) {
+		  					    			$comportamientos_aceptados[] = str_replace("_", " ", $key_2);
+		  					    		}
 	  					    		}
-  					    		}
-  					    	}else{
-  					    		if( $val > 0 ){
-		  					    	// $comportamientos_aceptados .= ( $comportamientos_aceptados != '' )? ', ': '' ;
-		  					    	$comportamientos_aceptados[] = str_replace("_", " ", $key);
-		  						}
-  					    	}
+	  					    	}else{
+	  					    		if( $val > 0 ){
+			  					    	// $comportamientos_aceptados .= ( $comportamientos_aceptados != '' )? ', ': '' ;
+			  					    	$comportamientos_aceptados[] = str_replace("_", " ", $key);
+			  						}
+	  					    	}
+	  					    }
   					    }
   					    $comportamientos_aceptados = implode(", ", $comportamientos_aceptados);
 
@@ -223,6 +226,8 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 
 					  	$atributos = $wpdb->get_var("SELECT atributos FROM cuidadores WHERE user_id = ".$row['ID']);
 					  	$atributos = unserialize($atributos);
+
+					  	$atributos["gatos"] = ( $atributos["gatos"] == "" ) ? "No" : $atributos["gatos"];
 
 					  	$flash = "";
 						if( $atributos['flash'] == 1 ){
@@ -269,6 +274,7 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 						<th><?php echo $tamanos_aceptados; ?></th>
 				        <th><?php echo $edades_aceptadas; ?></th>
 						<th><?php echo $comportamientos_aceptados; ?></th>
+						<th><?php echo $atributos["gatos"]; ?></th>
 						<th>
 							<?php echo ( isset($Hospedaje_t['pequenos']) )? 'Pequeño: <span style="font-size:14px!important">$ '.$Hospedaje_t['pequenos'].'</span>,' : ''; ?>
 							<?php echo ( isset($Hospedaje_t['medianos']) )? 'Mediano: <span style="font-size:14px!important">$ '.$Hospedaje_t['medianos'].'</span>,' : ''; ?>
