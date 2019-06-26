@@ -369,10 +369,6 @@
 							</small>
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
 						</div>
-
-						<!-- <input data-target="help" type="hidden" id="latitud" name="latitud" />
-						<input data-target="help" type="hidden" id="longitud" name="longitud" /> -->
-
 					</div>
 
 					<div class="inputs_containers row_3" style="padding-bottom: 10px;"> 
