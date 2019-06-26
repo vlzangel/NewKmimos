@@ -30,7 +30,7 @@
 
     $items = '';
     $info_banner = [
-    	['_Cuidadores_4.jpg', false, get_home_url().'/busqueda'],
+    	['_Cuidadores_4.jpg', false, get_home_url().'/personalizada'],
     	['_CPF.jpg', true, get_home_url().'/club-patitas-felices'],
     	['_GPS.jpg',true,  get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos'],
     	['_Paseos.jpg', true, get_home_url().'/paseos'],
@@ -581,7 +581,7 @@
 	$SERVICIOS_PRINCIPALES = [
 		[
 			'Banner-CPF.jpg',
-			'Club de las patittas felices',
+			'Club de las patitas felices',
 			'Consigue recompensas',
 			'¡Cada amigo que complete una reservación gana $150 y tú $150 más!',
 			'cpf',

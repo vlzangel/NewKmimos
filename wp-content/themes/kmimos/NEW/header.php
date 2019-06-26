@@ -427,7 +427,6 @@
 				<li> 
 					<div class="club_container mensajes_container">
 						Mensajes <span class="new_mensaje"></span>
-						Mensajes <span class="new_mensaje"></span>
 						<ul>
 							<li class="titulo_menu_club">Notificaciones ('.$notificacion.')</li>
 							<li> <a href="'.get_home_url().'/club-patitas-felices/compartir/"> Invita a un amigo y consigue recompensas </a> </li>
