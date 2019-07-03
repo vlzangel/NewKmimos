@@ -459,6 +459,25 @@
 */
 	
 	include(__DIR__."/admin/generales/funciones.php");
+	include(__DIR__."/admin/generales/vlz_cpt_functions.php");
+
+
+	function vlz_incluir($carpeta){
+		$path_functions = dirname(__FILE__)."/".$carpeta."/";
+		$directorio = opendir( $path_functions );
+		while ($archivo = readdir($directorio)) {
+		    if( file_exists( $path_functions.'/'.$archivo."/modulo.php" ) ){
+		    	include $path_functions.'/'.$archivo."/modulo.php";
+		    }
+		}
+	}
+
+	$vlz_globals = [
+		"base" => get_template_directory_uri()."/admin_2/"
+	];
+
+	vlz_incluir( "admin_2" );
+
 	include(dirname(dirname(dirname(__DIR__)))."/monitor/conf/menu.php");
 
 

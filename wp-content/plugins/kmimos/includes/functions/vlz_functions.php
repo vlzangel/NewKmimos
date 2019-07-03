@@ -66,6 +66,7 @@
 
             $deposito = unserialize( $items['_wc_deposit_meta'] );
             $saldo = 0;
+            $pago = 0;
             
             if( $deposito['enable'] == 'yes' ){
                 $saldo = $deposito['deposit'];
@@ -73,11 +74,14 @@
                 $saldo = $items['_line_subtotal'];
                 $saldo -= $metas_orden['_cart_discount'][0];
             }
+            $pago = $saldo;
         
             $descuento = 0;
             $order_item_id = $wpdb->get_var("SELECT order_item_id FROM wp_woocommerce_order_items WHERE order_id = '{$id_orden}' AND order_item_type = 'coupon' AND order_item_name LIKE '%saldo-%'"); 
             if( $order_item_id != '' ){
-                $descuento = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$order_item_id}' AND meta_key = 'discount_amount' ");
+                $saldo_a_favor = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$order_item_id}' AND meta_key = 'discount_amount' ");
+                $pago += $saldo_a_favor;
+                $descuento += $saldo_a_favor;
             }
 
             $otros_cupones = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$id_orden}' AND order_item_type = 'coupon' AND order_item_name NOT LIKE '%saldo-%'");
@@ -88,6 +92,7 @@
 
             if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'tienda'){
                 $saldo = $descuento; 
+                $pago = $descuento;
             }else{
                 if( $status != 'wc-pending' ){
                     $saldo += $descuento;  
@@ -107,7 +112,7 @@
             
             $cfdi = false;
             if($penalizar){
-                $comision = $total_reserva-($total_reserva/getComision());
+                $comision = $pago-($pago/getComision());
                 $saldo -= $comision;
                 update_post_meta($id_reserva, "penalizado", "YES");
                 $cfdi = factura_penalizacion( $id_cliente, $id_orden, $id_reserva, $comision );
