@@ -21,7 +21,7 @@
 					foreach ($temp as $email) {
 						if( !in_array('BCC: '.$email, $destinatarios) ){
 							$destinatarios[] = 'BCC: '.$email;
-							wp_mail($email, $d->titulo, $d->plantilla);
+							wp_mail($email, $d->asunto, $d->plantilla);
 						}
 					}
 				}
