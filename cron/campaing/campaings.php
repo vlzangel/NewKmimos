@@ -1,5 +1,5 @@
 <?php
-	/*
+	
 	include dirname(dirname(__DIR__)).'/wp-load.php';
     date_default_timezone_set('America/Mexico_City');
 	global $wpdb;
@@ -16,24 +16,28 @@
 			$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 			if( !empty($_listas) ){
 				foreach ($_listas as $lista) {
-					$_d = json_decode($campaing->data);
+					$_d = json_decode($lista->data);
 					$temp = explode(",", $_d->data->suscriptores);
 					foreach ($temp as $email) {
 						if( !in_array('BCC: '.$email, $destinatarios) ){
 							$destinatarios[] = 'BCC: '.$email;
+							wp_mail($email, $d->titulo, $d->plantilla);
 						}
 					}
 				}
 			}
-			wp_mail("a.veloz@kmimos.la", $d->asunto, $d->plantilla, $destinatarios);
 
 			$d->plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $d->plantilla);
+			$d->plantilla = str_replace('"', '\"', $d->plantilla);
+			$d->plantilla = str_replace("'", '', $d->plantilla);
+			$d->plantilla = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>', '', $d->plantilla);
 
 			$data->data = $d;
-			$data = json_encode($data);
+			$data = json_encode($data, JSON_UNESCAPED_UNICODE);
 			$sql = "UPDATE vlz_campaing SET data = '{$data}' WHERE id = ".$campaing->id;
+
 			$wpdb->query( $sql );
 		}
 	}
-	*/
+	
 ?>
