@@ -28,6 +28,8 @@
 			// wp_mail("a.veloz@kmimos.la", $d->asunto, $d->plantilla, $destinatarios);
 
 			$d->plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $d->plantilla);
+			$d->plantilla = str_replace('"', '\"', $d->plantilla);
+			$d->plantilla = str_replace("'", '', $d->plantilla);
 
 			$data->data = $d;
 			$data = json_encode($data);

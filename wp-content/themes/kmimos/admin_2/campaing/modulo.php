@@ -223,8 +223,8 @@
 		$titulo = $data["titulo"];
 		$existe = $wpdb->get_var("SELECT id FROM vlz_campaing WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
 		if( empty($existe) ){
-			$data = json_encode($_POST);
 			$_POST["data"]["plantilla"] = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
+			$data = json_encode($_POST);
 			$wpdb->query("INSERT INTO vlz_campaing VALUES (NULL, '{$data}', NOW())");
 			echo json_encode([
 				"error" => "",
