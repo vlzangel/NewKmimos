@@ -16,7 +16,7 @@
 			$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 			if( !empty($_listas) ){
 				foreach ($_listas as $lista) {
-					$_d = json_decode($campaing->data);
+					$_d = json_decode($lista->data);
 					$temp = explode(",", $_d->data->suscriptores);
 					foreach ($temp as $email) {
 						if( !in_array('BCC: '.$email, $destinatarios) ){
