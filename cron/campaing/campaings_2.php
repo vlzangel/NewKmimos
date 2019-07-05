@@ -21,15 +21,18 @@
 					foreach ($temp as $email) {
 						if( !in_array('BCC: '.$email, $destinatarios) ){
 							$destinatarios[] = 'BCC: '.$email;
+							wp_mail($email, $d->titulo, $d->plantilla);
 						}
 					}
 				}
 			}
-			wp_mail("a.veloz@kmimos.la", $d->titulo, $d->plantilla, $destinatarios);
+			// wp_mail("a.veloz@kmimos.la", $d->titulo, $d->plantilla, $destinatarios);
 
+			/*
 			echo "<pre>";
 				print_r( $destinatarios );
 			echo "</pre>";
+			*/
 
 			$d->plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $d->plantilla);
 			$d->plantilla = str_replace('"', '\"', $d->plantilla);
