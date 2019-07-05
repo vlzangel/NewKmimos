@@ -27,6 +27,10 @@
 			}
 			// wp_mail("a.veloz@kmimos.la", $d->asunto, $d->plantilla, $destinatarios);
 
+			echo "<pre>";
+				print_r( $destinatarios );
+			echo "</pre>";
+
 			$d->plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $d->plantilla);
 			$d->plantilla = str_replace('"', '\"', $d->plantilla);
 			$d->plantilla = str_replace("'", '', $d->plantilla);
