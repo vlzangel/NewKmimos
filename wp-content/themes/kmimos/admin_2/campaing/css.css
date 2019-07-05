@@ -13,3 +13,7 @@
 .fr-wrapper > div > a {
 	display: none !important;
 }
+
+.second-toolbar .logo {
+	display: none !important;
+}
