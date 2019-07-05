@@ -120,7 +120,7 @@
 	            var editor = new FroalaEditor("#contenido", {
 	                heightMin: 200,
 	                heightMax: 200,
-	                imageUploadURL: ADMIN_AJAX+"?action=vlz_campaing_uploads_list",
+	                imageUploadURL: ADMIN_AJAX+"?action=vlz_campaing_uploads",
 	                imageUploadParams: {
 	                    id: "contenido"
 	                },
@@ -160,10 +160,25 @@
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_campaing_uploads_list', function() {
+	add_action( 'wp_ajax_vlz_campaing_uploads', function() {
 		extract($_POST);
 		global $wpdb;
 
+		$fileTmpPath = $_FILES['file']['tmp_name'];
+		$fileName = $_FILES['file']['name'];
+		$fileSize = $_FILES['file']['size'];
+		$fileType = $_FILES['file']['type'];
+		$fileNameCmps = explode(".", $fileName);
+		$fileExtension = strtolower(end($fileNameCmps));
+
+		$uploadFileDir = __DIR__.'/files/';
+		$dest_path = $uploadFileDir.$newFileName;
+
+		if(move_uploaded_file($fileTmpPath, $dest_path)){
+		$message ='File is successfully uploaded.';
+		} else {
+			$message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
+		}
 
 		echo json_encode([
 			"POST" => $_POST,
