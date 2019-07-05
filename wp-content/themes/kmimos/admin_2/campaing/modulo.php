@@ -100,13 +100,13 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="fecha">Fecha</label>
-							<input type="date" id="fecha" name="data[fecha]" class="form-control" >
+							<input type="date" id="fecha" name="data[fecha]" class="form-control" value="'.$data->fecha.'" >
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="hora">Hora</label>
-							<input type="time" id="hora" name="data[hora]" class="form-control" >
+							<input type="time" id="hora" name="data[hora]" class="form-control" value="'.$data->hora.'" >
 						</div>
 					</div>
 				</div>
