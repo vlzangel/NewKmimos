@@ -96,6 +96,20 @@
 						'.$listas.'
 					</select>
 				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="fecha">Fecha</label>
+							<input type="date" id="fecha" name="data[fecha]" class="form-control" >
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="hora">Hora</label>
+							<input type="time" id="hora" name="data[hora]" class="form-control" >
+						</div>
+					</div>
+				</div>
 				<div class="text-right">
 					<button id="btn_submit_modal" type="submit" class="btn btn-primary">'.$btn.'</button>
 				</div>
@@ -106,7 +120,7 @@
 	            var editor = new FroalaEditor("#contenido", {
 	                heightMin: 200,
 	                heightMax: 200,
-	                imageUploadURL: ADMIN_AJAX+"?action=vlz_uploads_list",
+	                imageUploadURL: ADMIN_AJAX+"?action=vlz_campaing_uploads_list",
 	                imageUploadParams: {
 	                    id: "contenido"
 	                }
@@ -119,6 +133,18 @@
 		extract($_POST);
 		global $wpdb;
 		get_campaing_form([]);
+	   	die();
+	} );
+
+	add_action( 'wp_ajax_vlz_campaing_uploads_list', function() {
+		extract($_POST);
+		global $wpdb;
+
+
+		echo json_encode([
+			"POST" => $_POST,
+			"FILES" => $_FILES,
+		]);
 	   	die();
 	} );
 
