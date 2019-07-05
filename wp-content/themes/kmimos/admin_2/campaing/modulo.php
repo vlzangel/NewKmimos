@@ -84,11 +84,11 @@
 				'.$input_id.'
 				<div class="form-group">
 					<label for="titulo">Nombre de la Campaña</label>
-					<input type="text" class="form-control" id="titulo" name="data[titulo]" placeholder="Titulo de la Campaña" value="'.$data->titulo.'" />
+					<input type="text" class="form-control" id="titulo" name="data[titulo]" placeholder="Titulo de la Campaña" value="'.$data->titulo.'" required />
 				</div>
 				<div class="form-group">
 					<label for="asunto">Asunto del Email</label>
-					<input type="text" class="form-control" id="asunto" name="data[asunto]" placeholder="Asunto del Email" value="'.$data->asunto.'" />
+					<input type="text" class="form-control" id="asunto" name="data[asunto]" placeholder="Asunto del Email" value="'.$data->asunto.'" required />
 				</div>
 				<div class="form-group">
 					<label for="plantilla">Plantilla</label>
@@ -96,7 +96,7 @@
 				</div>
 				<div class="form-group">
 					<label for="listas">Listas</label>
-					<select id="listas" name="data_listas[]" multiple class="form-control">
+					<select id="listas" name="data_listas[]" multiple class="form-control" required >
 						'.$listas.'
 					</select>
 				</div>
@@ -104,13 +104,13 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="fecha">Fecha</label>
-							<input type="date" id="fecha" name="data[fecha]" class="form-control" value="'.$data->fecha.'" >
+							<input type="date" id="fecha" name="data[fecha]" class="form-control" value="'.$data->fecha.'" required >
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="hora">Hora</label>
-							<input type="time" id="hora" name="data[hora]" class="form-control" value="'.$data->hora.'" >
+							<input type="time" id="hora" name="data[hora]" class="form-control" value="'.$data->hora.'" required >
 						</div>
 					</div>
 				</div>
