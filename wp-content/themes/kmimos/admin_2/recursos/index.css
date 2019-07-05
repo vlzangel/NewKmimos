@@ -1,0 +1,66 @@
+.container_listados {
+    padding: 15px 0px 0px;
+}
+
+.btn-s {
+    padding: 3px 10px;
+    border-radius: 0px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.form-control {
+	padding: 5px;
+    font-size: 12px;
+    border-radius: 0px;
+    outline: none !important;
+    box-shadow: 0px 0px 0px #000 !important;
+}
+
+textarea.form-control {
+    resize: none;
+    height: 150px;
+}
+
+button.btn {
+    border-radius: 0px;
+    padding: 3px 15px 5px;
+}
+
+.modal > div > p {
+    display: none;
+}
+
+.modal > div > p.error {
+    display: block;
+    border: solid 1px red;
+    margin-top: 10px;
+    padding: 3px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #ff00001a;
+    color: #777;
+}
+
+.modal > div > p.sucess {
+    display: block;
+    border: solid 1px green;
+    margin-top: 10px;
+    padding: 3px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #00FF001a;
+    color: #777;
+}
+
+.modal > div {
+    max-width: 800px !important;
+}
+
+.modal label {
+    font-weight: 600;
+}
+
+.fr-modal {
+    z-index: 214748364099 !important;
+}

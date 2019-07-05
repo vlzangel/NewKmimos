@@ -13,13 +13,18 @@
 		$medios .= '<option value="'.$value.'">'.$value.'</option>';
 	}
 
-	$_status = [
-		'No interesado',
-		'Sin Respuesta',
-		'Solicito Informacion',
-		'Atendido por otro medio',
-		'Solicito perfiles de cuidadores (Requerimiento)'
-	];
+    $_status = [
+        'Reservado',
+        'Cancelado',
+        'Sugerencias Enviadas',
+        'Cliente Sin Whatsapp',
+        'No interesado',
+        'Sin Respuesta',
+        'Solicito información',
+        'Atendido por otro medio',
+        'Solicito perfiles de cuidadores (Requerimiento)'
+    ];
+
 	$status = '';
 	foreach ($_status as $key => $value) {
 		$status .= '<option value="'.$value.'">'.$value.'</option>';

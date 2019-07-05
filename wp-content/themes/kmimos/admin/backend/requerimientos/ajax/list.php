@@ -21,9 +21,11 @@
     ];
 
     $_status = [
+        'Reservado',
         'Pendiente - Por enviar sugerencias',
         'Pendiente - Sugerencias enviadas',
         'Pendiente - Cliente quiere ver más sugerencias',
+        'Pendiente - Cliente comento que realizará la Reserva',
         'Cancelada - Sin respuesta del cliente',
         'Cancelada - Cliente no ocupara el servicio',
         'Cancelada - Cliente dejará la mascota con un familiar',

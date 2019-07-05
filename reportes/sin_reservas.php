@@ -1,10 +1,10 @@
 <?php
 	include dirname(__DIR__)."/wp-load.php";
 
-	$name = "reservaron_".substr(md5( time() ), -10, -1).".xls";
+	$name = "sin_reservaron_".substr(md5( time() ), -10, -1).".xls";
 
-	header('Content-type: application/vnd.ms-excel; charset=utf-8' );
-	header(sprintf( 'Content-Disposition: attachment; filename=%s', $name ) );
+	// header('Content-type: application/vnd.ms-excel; charset=utf-8' );
+	// header(sprintf( 'Content-Disposition: attachment; filename=%s', $name ) );
 
 	global $wpdb;
 
@@ -46,51 +46,35 @@
 
 	$data = $wpdb->get_results("
 		SELECT 
-			p.ID, p.post_status, p.post_author AS autor,
-			ini.meta_value AS ini, 
-			fin.meta_value AS fin
+			p.ID, p.post_status, p.post_author AS autor
 		FROM wp_posts AS p
-		INNER JOIN wp_postmeta AS ini ON (p.ID = ini.post_id AND ini.meta_key = '_booking_start' )
-		INNER JOIN wp_postmeta AS fin ON (p.ID = fin.post_id AND fin.meta_key = '_booking_end' )
-		WHERE p.post_type = 'wc_booking' AND p.post_status = 'confirmed' AND p.post_date >= '2018-12-01'
+		WHERE p.post_type = 'wc_booking' AND p.post_status = 'confirmed' AND p.post_date >= '2019-01-01'
 	");
 
 	$reservaron_hasta_ahora = [];
-	$reservaron_J_A = [];
-	$no_reservaron_J_A = [];
-
-	// $diciembre = strtotime("2018-12-01");
-
-	$julio = strtotime("2019-07-01");
-	$agosto = strtotime("2019-08-31");
 
 	foreach ($data as $key => $reserva) {
-		$ini = strtotime( $reserva->ini );
-		$fin = strtotime( $reserva->fin );
-
-		if( 
-			( $julio <= $ini && $ini <= $agosto ) ||
-			( $julio <= $fin && $fin <= $agosto )
-		){
-			if( !in_array($reserva->autor, $reservaron_J_A) ){
-				$reservaron_J_A[] = $reserva->autor;
-			}
-		}
-
 		if( !in_array($reserva->autor, $reservaron_hasta_ahora) ){
 			$reservaron_hasta_ahora[] = $reserva->autor;
 		}
 	}
 
-	foreach ($reservaron_hasta_ahora as $key => $value) {
-		if( !in_array($value, $reservaron_J_A)){
-			$no_reservaron_J_A[] = $value;
+	$no_reservaron = [];
+	foreach ($users as $user_id => $user) {
+		if( !in_array($user_id, $reservaron_hasta_ahora)){
+			$no_reservaron[] = $value;
 		}
 	}
 
+	echo "<pre>";
+		print_r( $reservaron_hasta_ahora );
+	echo "</pre>";
+
+	exit();
+
 	$HTML = '<table border="1" cellpadding="2" cellspacing="0" width="100%">
-	<caption> <strong> Han reservado </strong> </caption>';
-	foreach ($reservaron_J_A as $key => $value) {
+	<caption> <strong> No han reservado desde Enero </strong> </caption>';
+	foreach ($reservaron_hasta_ahora as $key => $value) {
 		$us = $users[ $value ];
 		if( $us[0] != "" ){
 			$HTML .= '<tr>';
@@ -106,5 +90,4 @@
 	$HTML .= '</table>';
 
 	echo utf8_decode($HTML);
-
 ?>

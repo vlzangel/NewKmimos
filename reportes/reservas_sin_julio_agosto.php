@@ -27,10 +27,10 @@
 
 		$telf = [];
 		if( $value->movil != "" ){
-			$telf[] = $value->movil;
+			$telf[] = "52".$value->movil;
 		}
 		if( $value->telf != "" ){
-			$telf[] = $value->telf;
+			$telf[] = "52".$value->telf;
 		}
 
 		if( !array_key_exists($value->ID, $users) ){
@@ -38,7 +38,8 @@
 				$value->nombre,
 				$value->apellido,
 				$value->user_email,
-				implode(", ", $telf)
+				$telf[0],
+				$telf[1]
 			];
 		}
 	}
@@ -98,23 +99,11 @@
 				$HTML .= '<td>'.$us[1].'</td>';
 				$HTML .= '<td>'.$us[2].'</td>';
 				$HTML .= '<td>'.$us[3].'</td>';
+				$HTML .= '<td>'.$us[4].'</td>';
 			$HTML .= '</tr>';
 		}
 	}
 	$HTML .= '</table>';
 
 	echo utf8_decode($HTML);
-
-	/*
-	echo "<pre>";
-		// print_r($data);
-		echo "Han reservado:<br><div style='padding: 20px;'>";
-			print_r($reservaron_J_A);
-		echo "</div>";
-		echo "No han reservado:<br><div style='padding: 20px;'>";
-			print_r($no_reservaron_J_A);
-		echo "</div>";
-		//print_r($reservaron_hasta_ahora);
-	echo "</pre>";
-	*/
 ?>

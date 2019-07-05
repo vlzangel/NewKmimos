@@ -461,7 +461,8 @@
 	include(__DIR__."/admin/generales/funciones.php");
 	include(__DIR__."/admin/generales/vlz_cpt_functions.php");
 
-
+	$MODULOS_ADMIN_2 = [];
+	
 	function vlz_incluir($carpeta){
 		$path_functions = dirname(__FILE__)."/".$carpeta."/";
 		$directorio = opendir( $path_functions );
@@ -475,8 +476,9 @@
 	$vlz_globals = [
 		"base" => get_template_directory_uri()."/admin_2/"
 	];
-
 	vlz_incluir( "admin_2" );
+	
+	include( dirname(__FILE__)."/admin_2/init_modulos.php");
 
 	include(dirname(dirname(dirname(__DIR__)))."/monitor/conf/menu.php");
 

@@ -21,6 +21,10 @@
     ];
 
     $_status = [
+        'Reservado',
+        'Cancelado',
+        'Sugerencias Enviadas',
+        'Cliente Sin Whatsapp',
         'No interesado',
         'Sin Respuesta',
         'Solicito información',

@@ -1,4 +1,269 @@
 <?php
+	global $MODULOS_ADMIN_2;
+
+	$MODULOS_ADMIN_2[] = array(
+        'parent'        =>  '',
+        'title'         =>  __('Campaing'),
+        'short-title'   =>  __('Campaing'),
+        'access'        =>  'manage_options',
+        'slug'          =>  'campaing',
+        'modulo'        =>  function(){
+        	init_page( 'campaing' );
+        },
+        'icon'          =>  '',
+        'position'      =>  4,
+    );
+
+	add_action( 'wp_ajax_vlz_campaing_list', function() {
+		extract($_POST);
+		global $wpdb;
+		
+		$data["data"] = [];
+		
+		$info = $wpdb->get_results("SELECT * FROM vlz_campaing ORDER BY creada DESC");
+
+		$_listas = $wpdb->get_results("SELECT * FROM vlz_listas ORDER BY creada DESC");
+		$listas = [];
+		foreach ($_listas as $key => $lista) {
+			$d = json_decode($lista->data);
+			$listas[ $lista->id ] = $d->data->titulo;
+		}
+		
+		foreach ($info as $key => $value) {
+			$d = json_decode($value->data);
+
+			$temp = [];
+			foreach ($d->data_listas as $_key => $_value) {
+				$temp[] = $listas[ $_value ];
+			}
+
+			$data["data"][] = [
+				$value->id,
+				$d->data->titulo,
+				implode("<br>", $temp),
+				'
+					<span class="btn btn-primary btn-s" onclick="_edit( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_edit" data-titulo="Editar Campaña" >Editar</span> &nbsp;
+					<span class="btn btn-danger btn-s" onclick="_del_form( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_del_form" data-titulo="Eliminar Campaña" >Eliminar</span>
+				'
+			];
+		}
+
+		echo json_encode($data);
+
+	   	die();
+	} );
+
+    function get_campaing_form($info, $action = 'insert'){
+		global $wpdb;
+		$btn = 'Crear';
+		if( $action == 'update' ){
+			$input_id = '<input type="hidden" name="id" value="'.$info->id.'" />';
+			$info = (array)  json_decode($info->data);
+			extract($info);
+			$btn = 'Actualizar';
+		}
+
+		$_listas = $wpdb->get_results("SELECT * FROM vlz_listas ORDER BY creada DESC");
+		$listas = '';
+		foreach ($_listas as $key => $lista) {
+			$d = json_decode($lista->data);
+			if( $action == 'update' ){
+				$selected = ( in_array($lista->id, $data_listas) ) ? 'selected' : '';
+			}else{
+				$selected = '';
+			}
+			$listas .= '<option value="'.$lista->id.'" '.$selected.' >'.$d->data->titulo.'</option>';
+		}
+		/*
+		echo "<pre>";
+			print_r($info);
+		echo "</pre>";
+		*/
+		echo '
+			<form id="campaing_form" data-modulo="campaing" >
+				'.$input_id.'
+				<div class="form-group">
+					<label for="titulo">Nombre de la Campaña</label>
+					<input type="text" class="form-control" id="titulo" name="data[titulo]" placeholder="Titulo de la Campaña" value="'.$data->titulo.'" />
+				</div>
+				<div class="form-group">
+					<label for="plantilla">Plantilla</label>
+					<textarea id="contenido" name="data[plantilla]" class="form-control" placeholder="Contenido de Email">'.$data->plantilla.'</textarea>
+				</div>
+				<div class="form-group">
+					<label for="listas">Listas</label>
+					<select id="listas" name="data_listas[]" multiple class="form-control">
+						'.$listas.'
+					</select>
+				</div>
+				<div class="text-right">
+					<button id="btn_submit_modal" type="submit" class="btn btn-primary">'.$btn.'</button>
+				</div>
+			</form>
+			<script>
+				_'.$action.'("campaing_form");
+				if (editor) { editor.destroy(); }
+	            var editor = new FroalaEditor("#contenido", {
+	                heightMin: 200,
+	                heightMax: 200,
+	                imageUploadURL: ADMIN_AJAX+"?action=vlz_uploads_list",
+	                imageUploadParams: {
+	                    id: "contenido"
+	                }
+	            });
+			</script>
+		';
+    }
+
+	add_action( 'wp_ajax_vlz_campaing_new', function() {
+		extract($_POST);
+		global $wpdb;
+		get_campaing_form([]);
+	   	die();
+	} );
+
+	add_action( 'wp_ajax_vlz_campaing_edit', function() {
+		extract($_POST);
+		global $wpdb;
+		$data = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$ID);
+		get_campaing_form($data, 'update');
+	   	die();
+	} );
+
+	add_action( 'wp_ajax_vlz_campaing_del_form', function() {
+		extract($_POST);
+		global $wpdb;
+		$data = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$ID);
+		$data = (array)  json_decode($data->data);
+		extract($data);
+		echo '
+			<form id="campaing_form" data-modulo="campaing" >
+				<input type="hidden" name="id" value="'.$ID.'" />
+				<div class="form-group">
+					<label for="titulo">¿Esta seguro de eliminar esta Campaña?</label>
+					<input type="text" class="form-control" id="titulo" value="'.$data->titulo.'" readonly />
+				</div>
+				<div class="text-right">
+					<button id="btn_submit_modal" type="submit" class="btn btn-primary">Eliminar</button>
+				</div>
+			</form>
+			<script>_delete("campaing_form");</script>
+		';
+	   	die();
+	} );
+
+	add_action( 'wp_ajax_vlz_campaing_insert', function() {
+		extract($_POST);
+		global $wpdb;
+		$titulo = $data["titulo"];
+		$existe = $wpdb->get_var("SELECT id FROM vlz_campaing WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
+		if( empty($existe) ){
+			$data = json_encode($_POST);
+			$_POST["data"]["plantilla"] = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
+			$wpdb->query("INSERT INTO vlz_campaing VALUES (NULL, '{$data}', NOW())");
+			echo json_encode([
+				"error" => "",
+				"msg" => "Campaña Creada Exitosamente",
+			]);
+		}else{
+			echo json_encode([
+				"error" => "Ya existe una campaña con este nombre",
+			]);
+		}
+	   	die();
+	} );
+
+	add_action( 'wp_ajax_vlz_campaing_update', function() {
+		extract($_POST);
+		global $wpdb;
+		$titulo = $data["titulo"];
+		$existe = $wpdb->get_var("SELECT id FROM vlz_campaing WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' AND id != ".$id);
+		if( empty($existe) ){
+			$_POST["data"]["plantilla"] = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
+			
+			$data = json_encode($_POST);
+			$sql = "UPDATE vlz_campaing SET data = '{$data}' WHERE id = ".$id;
+			$wpdb->query( $sql );
+			echo json_encode([
+				"error" => "",
+				"msg" => "Campaña Actualizada Exitosamente",
+			]);
+		}else{
+			echo json_encode([
+				"error" => "Ya existe una campaña con este nombre",
+				"msg" => "",
+			]);
+		}
+	   	die();
+	} );
+
+	add_action( 'wp_ajax_vlz_campaing_delete', function() {
+		extract($_POST);
+		global $wpdb;
+		$wpdb->query("DELETE FROM vlz_campaing WHERE id = ".$id);
+		echo json_encode([
+			"error" => "",
+			"msg" => "Campaña Eliminada Exitosamente",
+		]);
+	   	die();
+	} );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	add_action( 'wp_ajax_vlz_campaing_test_email', function() {
+		extract($_POST);
+		global $wpdb;
+
+		$data = [];
+		foreach ($info as $key => $value) {
+			$data[ $value[0] ] = $value[1];
+		}
+		
+		
+		$post = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = ".$data[ "ID" ]);
+
+		$email_html = "<div style='font-family: Verdana; width: 600px; margin: 0px auto;'>".$post->post_content."</div>";
+		
+		wp_mail( $data[ "vlz_email_test" ], $post->post_title, $email_html );
+		
+
+	    echo json_encode([
+	    	"_POST" => $_POST,
+	    	"data" => $data,
+	    ]);
+	    
+	   	die();
+	} );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
 
 	add_action( 'init', function() {
 	    register_post_type( 
@@ -94,5 +359,6 @@
 	    
 	   	die();
 	} );
+	*/
 	
 ?>

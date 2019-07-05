@@ -33,18 +33,20 @@
 		$medios .= '<option value="'.$value.'">'.$value.'</option>';
 	}
 
-	$_status = [
-		'Pendiente - Por enviar sugerencias',
-		'Pendiente - Sugerencias enviadas',
-		'Pendiente - Cliente quiere ver más sugerencias',
-		'Cancelada - Sin respuesta del cliente',
-		'Cancelada - Cliente no ocupara el servicio',
-		'Cancelada - Cliente dejará la mascota con un familiar',
-		'Cancelada - Cliente viajará con la mascota',
-		'Cancelada - Cliente no le agradaron las sugerencias',
-		'Cancelada por motivo de salud de la mascota',
-		'Cancelada por falta de cuidadores en la localidad',
-	];
+    $_status = [
+        'Reservado',
+        'Pendiente - Por enviar sugerencias',
+        'Pendiente - Sugerencias enviadas',
+        'Pendiente - Cliente quiere ver más sugerencias',
+        'Pendiente - Cliente comento que realizará la Reserva',
+        'Cancelada - Sin respuesta del cliente',
+        'Cancelada - Cliente no ocupara el servicio',
+        'Cancelada - Cliente dejará la mascota con un familiar',
+        'Cancelada - Cliente viajará con la mascota',
+        'Cancelada - Cliente no le agradaron las sugerencias',
+        'Cancelada por motivo de salud de la mascota',
+        'Cancelada por falta de cuidadores en la localidad',
+    ];
 	$status = '';
 	foreach ($_status as $key => $value) {
 		$status .= '<option value="'.$value.'">'.$value.'</option>';
