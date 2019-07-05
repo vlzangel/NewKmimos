@@ -30,6 +30,7 @@
 			$d->plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $d->plantilla);
 			$d->plantilla = str_replace('"', '\"', $d->plantilla);
 			$d->plantilla = str_replace("'", '', $d->plantilla);
+			$d->plantilla = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>', '', $d->plantilla);
 
 			$data->data = $d;
 			$data = json_encode($data);
