@@ -1,5 +1,6 @@
 var intervalo = 0;
 var cant = 0;
+var vlz_primer_item_localidad = '';
 
 jQuery(document).ready(function(){
 
@@ -28,15 +29,31 @@ jQuery(document).ready(function(){
 
     jQuery(".ubicacion_txt").on("keyup", function ( e ) {
         var txt = String(jQuery(this).val()).toLowerCase();
-        if( txt.trim() != "" ){
-            buscarLocacion(txt, jQuery(this));
+        var code = e.which;
+
+        if( code == 13 ){
+
+            jQuery(".ubicacion_txt").val( vlz_primer_item_localidad.html() );
+            jQuery(".ubicacion").val( vlz_primer_item_localidad.attr("value") );
+            jQuery(".ubicacion").attr( "data-value", vlz_primer_item_localidad.attr("data-value") );
+            jQuery(".ubicacion").attr( "data-txt", vlz_primer_item_localidad.html() );
+            jQuery( ".cerrar_list_box" ).css("display", "none");
+            jQuery(".latitud").val( "" );
+            jQuery(".longitud").val( "" );
+            
+            buscar("ubicacion");
+        
         }else{
-            if(typeof buscar === 'function') {
-                jQuery(".ubicacion_txt").val( "" );
-                jQuery(".ubicacion").val( "" );
-                jQuery(".latitud").val( "" );
-                jQuery(".longitud").val( "" );
-                buscar("ubicacion");
+            if( txt.trim() != "" ){
+                buscarLocacion(txt, jQuery(this));
+            }else{
+                if(typeof buscar === 'function') {
+                    jQuery(".ubicacion_txt").val( "" );
+                    jQuery(".ubicacion").val( "" );
+                    jQuery(".latitud").val( "" );
+                    jQuery(".longitud").val( "" );
+                    buscar("ubicacion");
+                }
             }
         }
     });
@@ -63,6 +80,19 @@ jQuery(document).ready(function(){
 
     jQuery(".ubicacion_txt").on("blur", function ( e ) { 
         jQuery(this).attr("placeholder", "UBICACIÓN, ESTADO, MUNICIPIO");
+
+        // vlz_primer_item_localidad.attr("value")
+
+        jQuery(".ubicacion_txt").val( vlz_primer_item_localidad.html() );
+        jQuery(".ubicacion").val( vlz_primer_item_localidad.attr("value") );
+        jQuery(".ubicacion").attr( "data-value", vlz_primer_item_localidad.attr("data-value") );
+        jQuery(".ubicacion").attr( "data-txt", vlz_primer_item_localidad.html() );
+        jQuery( ".cerrar_list_box" ).css("display", "none");
+        jQuery(".latitud").val( "" );
+        jQuery(".longitud").val( "" );
+        
+        buscar("ubicacion");
+
     });
 
     jQuery(".ubicacion_txt").on("change", function ( e ) {    
@@ -96,6 +126,9 @@ jQuery(document).ready(function(){
                 _this.parent().find(".ubicacion_list li").each(function( index ) {
                     if( String(jQuery( this ).attr("data-value")).toLowerCase().search(buscar_1) != -1 ){
                         jQuery( this ).css("display", "block");
+                        if( cant == 0 ){
+                            vlz_primer_item_localidad = jQuery( this );
+                        }
                         cant++;
                     }
                 });
