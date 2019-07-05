@@ -40,7 +40,7 @@
 			$d->plantilla = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>', '', $d->plantilla);
 
 			$data->data = $d;
-			$data = json_encode($data);
+			$data = json_encode($data, JSON_UNESCAPED_UNICODE);
 			$sql = "UPDATE vlz_campaing SET data = '{$data}' WHERE id = ".$campaing->id;
 
 			// echo $sql;
