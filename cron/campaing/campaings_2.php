@@ -9,7 +9,7 @@
 		$data = json_decode($campaing->data);
 		$d = $data->data;
 		$fecha = strtotime( $d->fecha." ".$d->hora );
-		if( $fecha <= time() ){
+		// if( $fecha <= time() ){
 			$_listas = $data->data_listas;
 			$d->ENVIADO = "SI";
 			$destinatarios = [];
@@ -36,7 +36,7 @@
 			echo $sql;
 
 			// $wpdb->query( $sql );
-		}
+		// }
 	}
 	
 ?>
