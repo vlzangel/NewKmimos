@@ -1,4 +1,5 @@
 <?php
+	/*
 	include dirname(dirname(__DIR__)).'/wp-load.php';
     date_default_timezone_set('America/Mexico_City');
 	global $wpdb;
@@ -8,7 +9,7 @@
 		$data = json_decode($campaing->data);
 		$d = $data->data;
 		$fecha = strtotime( $d->fecha." ".$d->hora );
-		if( $fecha >= time() ){
+		if( $fecha <= time() ){
 			$_listas = $data->data_listas;
 			$d->ENVIADO = "SI";
 			$destinatarios = [];
@@ -25,10 +26,14 @@
 				}
 			}
 			wp_mail("a.veloz@kmimos.la", $d->asunto, $d->plantilla, $destinatarios);
+
+			$d->plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $d->plantilla);
+
 			$data->data = $d;
 			$data = json_encode($data);
 			$sql = "UPDATE vlz_campaing SET data = '{$data}' WHERE id = ".$campaing->id;
 			$wpdb->query( $sql );
 		}
 	}
+	*/
 ?>
