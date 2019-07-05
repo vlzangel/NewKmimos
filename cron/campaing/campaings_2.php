@@ -36,9 +36,9 @@
 			$data = json_encode($data);
 			$sql = "UPDATE vlz_campaing SET data = '{$data}' WHERE id = ".$campaing->id;
 
-			echo $sql;
+			// echo $sql;
 
-			// $wpdb->query( $sql );
+			$wpdb->query( $sql );
 		// }
 	}
 	
