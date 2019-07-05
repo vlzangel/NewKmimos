@@ -224,6 +224,7 @@
 		$existe = $wpdb->get_var("SELECT id FROM vlz_campaing WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
 		if( empty($existe) ){
 			$_POST["data"]["plantilla"] = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
+			$_POST["data"]["plantilla"] = str_replace("Froala Editor", "", $_POST["data"]["plantilla"]);
 			$data = json_encode($_POST);
 			$wpdb->query("INSERT INTO vlz_campaing VALUES (NULL, '{$data}', NOW())");
 			echo json_encode([
@@ -245,6 +246,7 @@
 		$existe = $wpdb->get_var("SELECT id FROM vlz_campaing WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' AND id != ".$id);
 		if( empty($existe) ){
 			$_POST["data"]["plantilla"] = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
+			$_POST["data"]["plantilla"] = str_replace("Froala Editor", "", $_POST["data"]["plantilla"]);
 			
 			$data = json_encode($_POST);
 			$sql = "UPDATE vlz_campaing SET data = '{$data}' WHERE id = ".$id;
