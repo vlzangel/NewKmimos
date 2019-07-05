@@ -25,7 +25,7 @@
 					}
 				}
 			}
-			// wp_mail("a.veloz@kmimos.la", $d->asunto, $d->plantilla, $destinatarios);
+			wp_mail("a.veloz@kmimos.la", $d->titulo, $d->plantilla, $destinatarios);
 
 			echo "<pre>";
 				print_r( $destinatarios );
