@@ -9,3 +9,7 @@
 .wp-admin select[multiple] {
     height: 100px !important;
 }
+
+.fr-wrapper > div > a {
+	display: none !important;
+}
