@@ -87,6 +87,10 @@
 					<input type="text" class="form-control" id="titulo" name="data[titulo]" placeholder="Titulo de la Campaña" value="'.$data->titulo.'" />
 				</div>
 				<div class="form-group">
+					<label for="asunto">Asunto del Email</label>
+					<input type="text" class="form-control" id="asunto" name="data[asunto]" placeholder="Asunto del Email" value="'.$data->asunto.'" />
+				</div>
+				<div class="form-group">
 					<label for="plantilla">Plantilla</label>
 					<textarea id="contenido" name="data[plantilla]" class="form-control" placeholder="Contenido de Email">'.$data->plantilla.'</textarea>
 				</div>
