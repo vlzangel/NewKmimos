@@ -1,7 +1,4 @@
 <?php
-    
-    // include __DIR__.'/recursos/lib/froala/lib/FroalaEditor.php';
-
 	function init_page($modulo){
 		echo '<script> 
 			var MODULO_ACTUAL = "'.$modulo.'"; 

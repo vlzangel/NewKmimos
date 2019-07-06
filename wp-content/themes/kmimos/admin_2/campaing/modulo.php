@@ -125,6 +125,8 @@
 	                heightMin: 200,
 	                heightMax: 200,
 	                imageManagerLoadURL: ADMIN_AJAX+"?action=vlz_campaing_image_manager",
+	                imageManagerDeleteURL: ADMIN_AJAX+"?action=vlz_campaing_image_delete",
+	                imageManagerDeleteMethod: "POST",
 	                imageUploadURL: ADMIN_AJAX+"?action=vlz_campaing_uploads",
 	                imageUploadParams: {
 	                    id: "contenido"
@@ -166,19 +168,13 @@
 	} );
 	
 	add_action( 'wp_ajax_vlz_campaing_image_manager', function() {
-
 		extract($_POST);
 		global $wpdb;
-
 		$_directorio = [];
-
 		$uploadFileDir = __DIR__.'/files/';
-
 		$directorio = opendir( $uploadFileDir );
 		while ($archivo = readdir($directorio)) {
-		    if (is_dir($archivo)) {
-		        // echo "[".$archivo . "]<br />";
-		    } else {
+		    if (is_dir($archivo)) { } else {
 		        if( $archivo != "mini" ){
 			        $_directorio[] = [
 					    "url" => getTema()."/admin_2/campaing/files/".$archivo,
@@ -188,9 +184,28 @@
 		        }
 		    }
 		}
-
 		echo json_encode( $_directorio );
+	   	die();
+	} );
+	
+	add_action( 'wp_ajax_vlz_campaing_image_delete', function() {
+		extract($_POST);
+		global $wpdb;
 
+		$url = getTema()."/admin_2/campaing/files/mini/";
+		$url = str_replace("/", "%2F", $url);
+		$url = str_replace(":", "%3A", $url);
+
+		$_POST["src"] = str_replace($url, "", $_POST["src"]);
+
+		extract( $_POST );
+
+		$path = __DIR__.'/files/';
+
+		unlink( $path.$src );
+		unlink( $path."mini/".$src );
+
+		echo json_encode( $_POST );
 	   	die();
 	} );
 	
