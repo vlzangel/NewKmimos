@@ -124,6 +124,7 @@
 	            var editor = new FroalaEditor("#contenido", {
 	                heightMin: 200,
 	                heightMax: 200,
+	                imageManagerLoadURL: ADMIN_AJAX+"?action=vlz_campaing_image_manager",
 	                imageUploadURL: ADMIN_AJAX+"?action=vlz_campaing_uploads",
 	                imageUploadParams: {
 	                    id: "contenido"
@@ -163,10 +164,41 @@
 		get_campaing_form([]);
 	   	die();
 	} );
+	
+	add_action( 'wp_ajax_vlz_campaing_image_manager', function() {
 
-	add_action( 'wp_ajax_vlz_campaing_uploads', function() {
 		extract($_POST);
 		global $wpdb;
+
+		$_directorio = [];
+
+		$uploadFileDir = __DIR__.'/files/';
+
+		$directorio = opendir( $uploadFileDir );
+		while ($archivo = readdir($directorio)) {
+		    if (is_dir($archivo)) {
+		        // echo "[".$archivo . "]<br />";
+		    } else {
+		        if( $archivo != "mini" ){
+			        $_directorio[] = [
+					    "url" => getTema()."/admin_2/campaing/files/".$archivo,
+					    "thumb" => getTema()."/admin_2/campaing/files/mini/".$archivo,
+					    "tag" => ''
+			        ];
+		        }
+		    }
+		}
+
+		echo json_encode( $_directorio );
+
+	   	die();
+	} );
+	
+	add_action( 'wp_ajax_vlz_campaing_uploads', function() {
+
+		extract($_POST);
+		global $wpdb;
+
 
 		$fileTmpPath = $_FILES['file']['tmp_name'];
 		$fileName = $_FILES['file']['name'];
@@ -175,19 +207,59 @@
 		$fileNameCmps = explode(".", $fileName);
 		$fileExtension = strtolower(end($fileNameCmps));
 
+		$newFileName = md5( $fileName ).".".$fileExtension;
+
 		$uploadFileDir = __DIR__.'/files/';
 		$dest_path = $uploadFileDir.$newFileName;
+		$dest_path_thumb = $uploadFileDir."mini/".$newFileName;
 
 		if(move_uploaded_file($fileTmpPath, $dest_path)){
-		$message ='File is successfully uploaded.';
+
+			$sExt = @mime_content_type( $dest_path );
+		    switch( $sExt ) {
+		        case 'image/jpeg':
+		            $aImage = @imageCreateFromJpeg( $dest_path );
+		        break;
+		        case 'image/gif':
+		            $aImage = @imageCreateFromGif( $dest_path );
+		        break;
+		        case 'image/png':
+		            $aImage = @imageCreateFromPng( $dest_path );
+		        break;
+		        case 'image/wbmp':
+		            $aImage = @imageCreateFromWbmp( $dest_path );
+		        break;
+		    }
+		    $nWidth  = 400;
+		    $nHeight = 300;
+		    $aSize = @getImageSize( $dest_path );
+		    if( $aSize[0] > $aSize[1] ){
+		        $nHeight = round( ( $aSize[1] * $nWidth ) / $aSize[0] );
+		    }else{
+		        $nWidth = round( ( $aSize[0] * $nHeight ) / $aSize[1] );
+		    }
+		    $aThumb = @imageCreateTrueColor( $nWidth, $nHeight );
+		    @imageCopyResampled( 
+		        $aThumb, $aImage, 
+		        0, 0, 
+		        0, 0, 
+		        $nWidth, $nHeight, 
+		        $aSize[0], $aSize[1] 
+		    );
+
+		    @imagejpeg( $aThumb, $dest_path_thumb );
+		    @imageDestroy( $aImage ); 
+		    @imageDestroy( $aThumb );
+
+			echo json_encode([
+				"link" => getTema()."/admin_2/campaing/files/".$newFileName,
+			]);
 		} else {
-			$message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
+			echo json_encode([
+				"error" => "Error subiendo la imagen",
+			]);
 		}
 
-		echo json_encode([
-			"POST" => $_POST,
-			"FILES" => $_FILES,
-		]);
 	   	die();
 	} );
 
