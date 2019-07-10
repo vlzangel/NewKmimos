@@ -21,8 +21,6 @@
         "gigantes" => "Gigantes",
     );
 
-
-
     $mascotas = array(
 		"pequenos" => "Peque&ntilde;as",
 		"medianos" => "Medianas",
@@ -30,12 +28,45 @@
 		"gigantes" => "Gigantes",
 	);
 
-    $preciosSugeridos = array(
-        "pequenos" => "Te sugerimos un precio entre $120 a $180 pesos.",
-        "medianos" => "Te sugerimos un precio entre $180 a $220 Pesos.",
-        "grandes"  => "Te sugerimos un precio entre $220 a $250 pesos.",
-        "gigantes" => "Te sugerimos un precio entre $250 a $350 pesos"
-    );
+
+    $preciosSugeridos = [
+        "hospedaje" => array(
+            "pequenos" => "Te sugerimos un precio de $160 pesos.",
+            "medianos" => "Te sugerimos un precio de $200 Pesos.",
+            "grandes"  => "Te sugerimos un precio de $240 pesos.",
+            "gigantes" => "Te sugerimos un precio de $280 pesos."
+        ),
+        "guarderia" => array(
+            "pequenos" => "Te sugerimos un precio de $120 pesos.",
+            "medianos" => "Te sugerimos un precio de $160 Pesos.",
+            "grandes"  => "Te sugerimos un precio de $200 pesos.",
+            "gigantes" => "Te sugerimos un precio de $240 pesos."
+        ),
+        "paseos" => array(
+            "pequenos" => "Te sugerimos un precio de $80 pesos.",
+            "medianos" => "Te sugerimos un precio de $80 Pesos.",
+            "grandes"  => "Te sugerimos un precio de $100 pesos.",
+            "gigantes" => "Te sugerimos un precio de $120 pesos."
+        ),
+        "adiestramiento_basico" => array(
+            "pequenos" => "Ingrese el precio del servicio",
+            "medianos" => "Ingrese el precio del servicio",
+            "grandes"  => "Ingrese el precio del servicio",
+            "gigantes" => "Ingrese el precio del servicio"
+        ),
+        "adiestramiento_intermedio" => array(
+            "pequenos" => "Ingrese el precio del servicio",
+            "medianos" => "Ingrese el precio del servicio",
+            "grandes"  => "Ingrese el precio del servicio",
+            "gigantes" => "Ingrese el precio del servicio"
+        ),
+        "adiestramiento_avanzado" => array(
+            "pequenos" => "Ingrese el precio del servicio",
+            "medianos" => "Ingrese el precio del servicio",
+            "grandes"  => "Ingrese el precio del servicio",
+            "gigantes" => "Ingrese el precio del servicio"
+        ),
+    ];
 
     global $wpdb;
 
@@ -69,7 +100,7 @@
                     name='hospedaje_".$key."' 
                     value='".$precios_hospedaje[$key]."' 
                     data-toggle='tooltip' 
-                    data-title='".$preciosSugeridos[ $key ]."' 
+                    data-title='".$preciosSugeridos["hospedaje"][ $key ]."' 
                 />
             </div>
         ";
@@ -111,7 +142,18 @@
                 $temp .= "
                     <div class='vlz_celda_25'>
                         <label>".$value2."</label>
-                        <input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num' class='vlz_input' id='".$key."_".$key2."' name='".$key."_".$key2."' value='".$precio."' data-toggle='tooltip' data-title='Ingresa el precio de {$value} para mascotas ".($mascotas[ $key2 ])."' />
+                        <input 
+                        type='number' 
+                        step='0.01' 
+                        min=0 
+                        data-minvalue=0 
+                        data-charset='num' 
+                        class='vlz_input' 
+                        id='".$key."_".$key2."' 
+                        name='".$key."_".$key2."' 
+                        value='".$precio."' 
+                        data-toggle='tooltip' 
+                        data-title='".($preciosSugeridos[ $key ][ $key2 ])."' />
                     </div>
                 ";
             }
@@ -150,10 +192,11 @@
     $adicionales_extra_str = "";
     foreach ($adicionales_extra as $key => $value) {
     	if( $adicionales[$key]+0 == 0 ){ $adicionales[$key] = 0; }
+        $sugerencia = ( $key == 'bano' ) ? 'Precio sugerido para '.$value.', $160 pesos' : 'Ingresa el precio para el servicio de '.$value;
     	$adicionales_extra_str .= "
     		<div class='vlz_celda_20'>
     			<label>".$value."</label>
-    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num'  class='vlz_input' id='adicional_".$key."' name='adicional_".$key."' value='".$adicionales[$key]."' data-toggle='tooltip' data-title='Ingresa el precio para el servicio de {$value}' />
+    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num'  class='vlz_input' id='adicional_".$key."' name='adicional_".$key."' value='".$adicionales[$key]."' data-toggle='tooltip' data-title='".$sugerencia."' />
 			</div>
     	";
     }
@@ -164,13 +207,38 @@
         "largo" => "Largas"
     );
 
+    $precios_sugeridos = [
+        "sencillo" => [
+            "corto" => 160,
+            "medio" => 200,
+            "largo" => 240
+        ],
+        "redondo" => [
+            "corto" => 280,
+            "medio" => 320,
+            "largo" => 360
+        ]
+    ];
+
     $transporte_sencillo_str = "";
 	$temp = "";
 	foreach ($rutas as $slug => $valor) {
+        $_valor = $precios_sugeridos["sencillo"][$slug];
 		$temp .= "
     		<div class='vlz_celda_33'>
     			<label>".$valor."</label>
-    			<input type='number' step='0.01' min=0 data-minvalue=0 data-charset='num'  class='vlz_input' id='transportacion_sencilla_".$slug."' name='transportacion_sencilla_".$slug."' value='".$adicionales['transportacion_sencilla'][$slug]."' data-toggle='tooltip' data-title='Ingresa el precio para transporte sencillo en rutas {$valor}' />
+    			<input 
+                type='number' 
+                step='0.01' 
+                min=0 
+                data-minvalue=0 
+                data-charset='num'  
+                class='vlz_input' 
+                id='transportacion_sencilla_".$slug."' 
+                name='transportacion_sencilla_".$slug."' 
+                value='".$adicionales['transportacion_sencilla'][$slug]."' 
+                data-toggle='tooltip' 
+                data-title='Te sugerimos un precio de $".$_valor." pesos.' />
 			</div>
 		";
 	}
@@ -186,12 +254,24 @@
     $transporte_redondo_str = "";
 	$temp = "";
 	foreach ($rutas as $slug => $valor) {
-		$temp .= "
-    		<div class='vlz_celda_33'>
-    			<label>".$valor."</label>
-    			<input type='number' step='0.01' class='vlz_input' min=0 data-minvalue=0 data-charset='num'  id='transportacion_redonda_".$slug."' name='transportacion_redonda_".$slug."' value='".$adicionales['transportacion_redonda'][$slug]."' data-toggle='tooltip' data-title='Ingresa el precio para transporte redondo en rutas {$valor}' />
-			</div>
-		";
+        $_valor = $precios_sugeridos["redondo"][$slug];
+        $temp .= "
+            <div class='vlz_celda_33'>
+                <label>".$valor."</label>
+                <input 
+                type='number' 
+                step='0.01' 
+                min=0 
+                data-minvalue=0 
+                data-charset='num'  
+                class='vlz_input' 
+                id='transportacion_redonda_".$slug."' 
+                name='transportacion_redonda_".$slug."' 
+                value='".$adicionales['transportacion_redonda'][$slug]."' 
+                data-toggle='tooltip' 
+                data-title='Te sugerimos un precio de $".$_valor." pesos.' />
+            </div>
+        ";
 	}
 	$transporte_redondo_str .= "
 		<div class='vlz_celda_50'>
