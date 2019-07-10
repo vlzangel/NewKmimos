@@ -133,9 +133,11 @@ small[data-error="rc_vlz_img_perfil"]{
 }
 
 .box_info_modal {
+    /*
     border-bottom: solid 1px #dadada;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    */
 }
 
 .tam_pc{

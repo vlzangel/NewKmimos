@@ -427,17 +427,17 @@
 							</div>
 						</div>
 					</div>
-					<h3 style="margin: 20px 0px;">Precios de Hospedaje</h5>
+					<h3 style="font-size: 18px; margin: 20px 0px; border-top: solid 1px #dadada; padding-top: 25px; margin-top: 25px;">Precios de Hospedaje</h5>
 					<div class="box_info_modal">
 						<p style="text-align: justify; font-size: 13px !important;">
 							En Kmimos siempre podrás colocar el precio que mejor se acomode, la decisión es tuya. Sin embargo quisiéramos recomendarte el rango de precios mostrados abajo, el cual esta creado basado en las tendencias de precios existentes en el mercado actual
 						</p>
 						<div style="text-align: center;">
 							<table class="tam_pc" border="0" cellpadding="0" cellspacing="0" style="text-align: justify;">
-								<tr><td><strong>Tamaño pequeño</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 160 pesos por noches </td></tr>
-								<tr><td><strong>Tamaño mediano</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 200 pesos por noches </td></tr>
-								<tr><td><strong>Tamaño grande</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 240 pesos por noches </td> </tr>
-								<tr><td><strong>Tamaño gigante</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 280 pesos por noches </td></tr>
+								<tr><td><strong>Tamaño pequeño</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 160 pesos por noche </td></tr>
+								<tr><td><strong>Tamaño mediano</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 200 pesos por noche </td></tr>
+								<tr><td><strong>Tamaño grande</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 240 pesos por noche </td> </tr>
+								<tr><td><strong>Tamaño gigante</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 280 pesos por noche </td></tr>
 							</table>
 
 
