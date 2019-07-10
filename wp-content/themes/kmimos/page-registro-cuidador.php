@@ -73,10 +73,10 @@
 									En Kmimos siempre podrás colocar el precio que mejor se acomode, la decisión es tuya. Sin embargo quisiéramos recomendarte el rango de precios mostrados abajo, el cual esta creado basado en las tendencias de precios existentes en el mercado actual
 								</p>
 								<ul class="list-unstyled">
-									<li><p><strong>Tamaño pequeño:</strong> 120 pesos por noches</p></li>
-									<li><p><strong>Tamaño mediano:</strong> 180 pesos por noches</p></li>
-									<li><p><strong>Tamaño grande:</strong> 220 pesos por noches</p> </li>
-									<li><p><strong>Tamaño gigante:</strong> 250 pesos por noches</p></li>
+									<li><p><strong>Tamaño pequeño:</strong> 160 pesos por noches</p></li> <!-- 120 -->
+									<li><p><strong>Tamaño mediano:</strong> 200 pesos por noches</p></li> <!-- 180 -->
+									<li><p><strong>Tamaño grande:</strong> 240 pesos por noches</p> </li> <!-- 220 -->
+									<li><p><strong>Tamaño gigante:</strong> 280 pesos por noches</p></li> <!-- 250 -->
 								</ul>
 							</div>
 						</div>
