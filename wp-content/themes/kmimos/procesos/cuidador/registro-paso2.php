@@ -47,6 +47,9 @@
     $descripcion = $rc_descripcion;
     $num_mascota = $rc_num_mascota; 
 
+    $colonia = $rc_colonia; 
+    $postal = $rc_postal; 
+
     $hoy = date("Y-m-d H:i:s");
 
     if ($conn->connect_error) {
@@ -109,6 +112,13 @@
                 $hospedaje = serialize($precios);
                 $adicionales = serialize([ "hospedaje" => $precios ]);
 
+                $atributos = unserialize($cuidador->atributos);
+
+                $atributos["colonia"] = $colonia;
+                $atributos["postal"] = $postal;
+
+                $atributos = serialize($atributos);
+
                 $cuidador_update = "
                     UPDATE cuidadores 
                     SET 
@@ -124,7 +134,9 @@
                         adicionales = '{$adicionales}',
 
                         estados = '={$estado}=',
-                        municipios = '={$municipio}='
+                        municipios = '={$municipio}=',
+
+                        atributos = '{$atributos}'
                         
                     WHERE email = '{$email}'
                 ";

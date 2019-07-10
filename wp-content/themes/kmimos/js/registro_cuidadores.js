@@ -743,6 +743,13 @@ jQuery(document).ready(function(){
 	jQuery('[name="rc_municipio"]').on("change", function(){
 		codeAddress(12);
 	});
+	
+	jQuery('[name="rc_colonia"]').on("change", function(){
+		codeAddress(16);
+	});
+	jQuery('[name="rc_postal"]').on("change", function(){
+		codeAddress(17);
+	});
 
     jQuery('#rc_direccion').on("keypress", function(e){
         /*console.log( e );*/
@@ -788,9 +795,11 @@ function codeAddress(zoom) {
 	}
     var estado = jQuery('[name="rc_estado"] option:selected').text();
     var delegacion = jQuery('[name="rc_municipio"] option:selected').text();
-    var address = document.getElementById("rc_direccion").value;
+    var colonia = document.getElementById("rc_colonia").value;
+    var postal = document.getElementById("rc_postal").value;
+    var address = ""; // document.getElementById("rc_direccion").value;
     
-    address = estado+"+"+delegacion+"+"+address;
+    address = estado+"+"+delegacion+"+"+colonia+"+"+postal+"+"+address;
 
     console.log( address );
 
@@ -807,7 +816,7 @@ function codeAddress(zoom) {
             alert("No podemos encontrar la dirección\nPero no te preocupes, puedes ubicarla directamente en el mapa moviendo el pin.");
         }
     });
-  }
+}
    
 function updatePosition(latLng) {
    jQuery('#lat').val(latLng.lat());

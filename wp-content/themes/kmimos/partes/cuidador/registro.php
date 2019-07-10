@@ -354,20 +354,28 @@
 							<small data-error="rc_municipio" style="visibility: hidden;"></small>
 						</div>
 						<div class="label-placeholder">
+							<label>Colonia</label>
+							<input data-target="help" type="text" id="rc_colonia" name="rc_colonia" value="" class="input-label-placeholder">
+							<small class="text-help" data-help="rc_colonia">
+								Ingresa la colonia que aparece en tu comprobante de domicilio.
+							</small>							
+							<small data-error="rc_colonia" style="visibility: hidden;"></small>
+						</div>
+						<div class="label-placeholder">
 							<label>Dirección</label>
-							<input data-target="help" 
-								type="text" 
-								id="rc_direccion" 
-								name="rc_direccion" 
-								value="" 
-								class="input-label-placeholder"
-								data-toggle="tooltip"
-								title="Escribe la dirección que aparece en tu comprobante de domicilio."
-							>
+							<input data-target="help" type="text" id="rc_direccion" name="rc_direccion" value="" class="input-label-placeholder">
 							<small class="text-help" data-help="rc_direccion">
-								Escribe la dirección que aparece en tu comprobante de domicilio.
-							</small>
+								Ingresa la dirección que aparece en tu comprobante de domicilio.
+							</small>							
 							<small data-error="rc_direccion" style="visibility: hidden;"></small>
+						</div>
+						<div class="label-placeholder">
+							<label>Código Postal</label>
+							<input data-target="help" type="text" id="rc_postal" name="rc_postal" value="" class="input-label-placeholder">
+							<small class="text-help" data-help="rc_postal">
+								Ingresa el código postal de tu ubicación
+							</small>							
+							<small data-error="rc_postal" style="visibility: hidden;"></small>
 						</div>
 					</div>
 
