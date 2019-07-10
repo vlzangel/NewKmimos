@@ -288,8 +288,8 @@
 					Cargar las fotos de mi galería
             		<input type="file" id="fotos" name="rc_fotos" accept="image/*" multiple />
 				</div>
-
 				<div class="galeria_container"></div>
+				<small data-error="vlz_galeria" style="visibility: hidden;"></small>
 				<small class="text-help" data-help="rc_descripcion">
 					Solo se permiten 6 imágenes maximo
 				</small>
@@ -420,6 +420,27 @@
 						</div>
 					</div>
 					<h3 style="margin: 20px 0px;">Precios de Hospedaje</h5>
+					<div class="box_info_modal">
+						<p style="text-align: justify; font-size: 13px !important;">
+							En Kmimos siempre podrás colocar el precio que mejor se acomode, la decisión es tuya. Sin embargo quisiéramos recomendarte el rango de precios mostrados abajo, el cual esta creado basado en las tendencias de precios existentes en el mercado actual
+						</p>
+						<div style="text-align: center;">
+							<table class="tam_pc" border="0" cellpadding="0" cellspacing="0" style="text-align: justify;">
+								<tr><td><strong>Tamaño pequeño</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 160 pesos por noches </td></tr>
+								<tr><td><strong>Tamaño mediano</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 200 pesos por noches </td></tr>
+								<tr><td><strong>Tamaño grande</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 240 pesos por noches </td> </tr>
+								<tr><td><strong>Tamaño gigante</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 280 pesos por noches </td></tr>
+							</table>
+
+
+							<table class="tam_movil" border="0" cellpadding="0" cellspacing="0" style="text-align: justify;">
+								<tr><td><strong>Tam. pequeño</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 160 pesos/noche</td></tr>
+								<tr><td><strong>Tam. mediano</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 200 pesos/noche </td></tr>
+								<tr><td><strong>Tam. grande</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 240 pesos/noche </span> </td> </tr>
+								<tr><td><strong>Tam. gigante</strong> &nbsp;&nbsp;</td><td style="text-align: right;"> 280 pesos/noche </td></tr>
+							</table>
+						</div>
+					</div>
 					<div class="precios_registro">
 						<div class="km-block-1">
 							<p>Mascota Pequeña</p>

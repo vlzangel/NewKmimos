@@ -132,11 +132,34 @@ small[data-error="rc_vlz_img_perfil"]{
     padding: 2px 5px 0px;
 }
 
+.box_info_modal {
+    border-bottom: solid 1px #dadada;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.tam_pc{
+    display: inline-block;
+}
+
+.tam_movil{
+    display: none;
+}
 
 
 @media ( max-width: 600px ){
     .popup-registro-exitoso-text aside p {
         font-size: 15px !important;
+    }
+    .tam_pc{
+        display: none;
+    }
+    .tam_movil{
+        display: inline-block;
+    }
+
+    .precios_registro input {
+        width: 100%;
     }
 }
 

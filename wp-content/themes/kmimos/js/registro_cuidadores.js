@@ -436,10 +436,13 @@ jQuery(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-regis
 	};
 	var valid = km_cuidador_validar(list, err);
 	if( valid ){
-		jQuery(".popup-registro-cuidador-paso1").hide();
-		jQuery(".popup-registro-cuidador-paso2").fadeIn("fast");	
-
-		subir_fotos();
+		if( fotos_array.length > 0 ){
+			jQuery(".popup-registro-cuidador-paso1").hide();
+			jQuery(".popup-registro-cuidador-paso2").fadeIn("fast");	
+			subir_fotos();
+		}else{
+			mensaje("vlz_galeria", "Debe cargar al menos una foto", false);
+		}
 	}
 });
 
@@ -468,7 +471,16 @@ jQuery(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-regis
 	// var list = ['rc_num_mascota'];
 	// var valid = km_cuidador_validar(list);
 
-	// if( valid ){
+	var montados = 0;
+	jQuery(".precios_registro input").each(function(i, v){
+		if( jQuery(this).val() != "" ){
+			montados++;
+		}
+	});
+
+	if( montados == 0 ){
+		mensaje("rc_precios", "Debe ingresar el precio de al menos un tamaño de mascota", false);
+	}else{
 		jQuery.post( 
 			a, 
 			jQuery("#vlz_form_nuevo_cuidador").serialize(), 
@@ -496,7 +508,7 @@ jQuery(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-regis
 			},
 			'json'
 		);
-	// }
+	}
 });
 
 jQuery(document).on('click', '#finalizar-registro-cuidador', function(){

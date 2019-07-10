@@ -122,8 +122,8 @@
 				_'.$action.'("campaing_form");
 				if (editor) { editor.destroy(); }
 	            var editor = new FroalaEditor("#contenido", {
-	                heightMin: 200,
-	                heightMax: 200,
+	                heightMin: 400,
+	                heightMax: 410,
 	                imageManagerLoadURL: ADMIN_AJAX+"?action=vlz_campaing_image_manager",
 	                imageManagerDeleteURL: ADMIN_AJAX+"?action=vlz_campaing_image_delete",
 	                imageManagerDeleteMethod: "POST",
@@ -131,30 +131,9 @@
 	                imageUploadParams: {
 	                    id: "contenido"
 	                },
-
 					imageUploadMethod: "POST",
 					imageMaxSize: 5 * 1024 * 1024,
-					imageAllowedTypes: ["jpeg", "jpg", "png"],
-
-					events: {
-						"image.beforeUpload": function (images) {
-						},
-						"image.uploaded": function (response) {
-						},
-						"image.inserted": function ($img, response) {
-						},
-						"image.replaced": function ($img, response) {
-						},
-						"image.error": function (error, response) {
-						if (error.code == 1) {  }
-						else if (error.code == 2) {  }
-						else if (error.code == 3) {  }
-						else if (error.code == 4) {  }
-						else if (error.code == 5) {  }
-						else if (error.code == 6) {  }
-						else if (error.code == 7) {  }
-						}
-					}
+					imageAllowedTypes: ["jpeg", "jpg", "png", "gif"]
 	            });
 			</script>
 		';
