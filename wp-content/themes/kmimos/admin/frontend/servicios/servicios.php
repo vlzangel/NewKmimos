@@ -31,22 +31,22 @@
 
     $preciosSugeridos = [
         "hospedaje" => array(
-            "pequenos" => "Te sugerimos un precio de $160 pesos.",
-            "medianos" => "Te sugerimos un precio de $200 Pesos.",
-            "grandes"  => "Te sugerimos un precio de $240 pesos.",
-            "gigantes" => "Te sugerimos un precio de $280 pesos."
+            "pequenos" => "Precio sugerido: $160 pesos.",
+            "medianos" => "Precio sugerido: $200 Pesos.",
+            "grandes"  => "Precio sugerido: $240 pesos.",
+            "gigantes" => "Precio sugerido: $280 pesos."
         ),
         "guarderia" => array(
-            "pequenos" => "Te sugerimos un precio de $120 pesos.",
-            "medianos" => "Te sugerimos un precio de $160 Pesos.",
-            "grandes"  => "Te sugerimos un precio de $200 pesos.",
-            "gigantes" => "Te sugerimos un precio de $240 pesos."
+            "pequenos" => "Precio sugerido: $120 pesos.",
+            "medianos" => "Precio sugerido: $160 Pesos.",
+            "grandes"  => "Precio sugerido: $200 pesos.",
+            "gigantes" => "Precio sugerido: $240 pesos."
         ),
         "paseos" => array(
-            "pequenos" => "Te sugerimos un precio de $80 pesos.",
-            "medianos" => "Te sugerimos un precio de $80 Pesos.",
-            "grandes"  => "Te sugerimos un precio de $100 pesos.",
-            "gigantes" => "Te sugerimos un precio de $120 pesos."
+            "pequenos" => "Precio sugerido: $80 pesos.",
+            "medianos" => "Precio sugerido: $80 Pesos.",
+            "grandes"  => "Precio sugerido: $100 pesos.",
+            "gigantes" => "Precio sugerido: $120 pesos."
         ),
         "adiestramiento_basico" => array(
             "pequenos" => "Ingrese el precio del servicio",
@@ -238,7 +238,7 @@
                 name='transportacion_sencilla_".$slug."' 
                 value='".$adicionales['transportacion_sencilla'][$slug]."' 
                 data-toggle='tooltip' 
-                data-title='Te sugerimos un precio de $".$_valor." pesos.' />
+                data-title='Precio sugerido: $".$_valor." pesos.' />
 			</div>
 		";
 	}
@@ -269,7 +269,7 @@
                 name='transportacion_redonda_".$slug."' 
                 value='".$adicionales['transportacion_redonda'][$slug]."' 
                 data-toggle='tooltip' 
-                data-title='Te sugerimos un precio de $".$_valor." pesos.' />
+                data-title='Precio sugerido: $".$_valor." pesos.' />
             </div>
         ";
 	}
