@@ -448,7 +448,7 @@ jQuery(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-regis
 
 jQuery(document).on("click", '.popup-registro-cuidador-paso2 .km-btn-popup-registro-cuidador-paso2', function ( e ) {
 	e.preventDefault();
-	var list = ['rc_estado','rc_direccion', 'rc_municipio'];
+	var list = ['rc_estado','rc_direccion', 'rc_municipio', 'rc_colonia'];
 	var valid = km_cuidador_validar(list);
 	if( valid ){
 		jQuery(".popup-registro-cuidador-paso2").hide();
