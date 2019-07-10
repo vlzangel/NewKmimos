@@ -95,7 +95,6 @@ function confirmadas_handler(){
         jQuery("#mostrar_confirmadas").removeClass("button-primary");
         jQuery("#mostrar_confirmadas").html("Ocultar Confirmadas");
     }else{
-        console.log( "Entro" );
         jQuery.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
                 return jQuery(table.row(dataIndex).node()).find("td")[3].innerHTML != "Confirmado";

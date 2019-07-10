@@ -63,7 +63,7 @@
                 case 'correo_cliente': 
                 case 'telf_cliente': 
                 case 'noches_total': 
-                    $item[] = '<input onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="'.$key.'" type="text" value="'.$info.'" />';
+                    $item[] = '<span style="display: none;">'.$info.'</span><input onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="'.$key.'" type="text" value="'.$info.'" />';
                 break;
 
                 case 'status': 
@@ -71,7 +71,7 @@
                     foreach ($_status as $k => $v) {
                         $lista .= '<option value="'.$v.'" '.selected($v, $info, false).'>'.$v.'</option>';
                     }
-                    $lista .= '</select>';
+                    $lista .= '</select><span style="display: none;">_status_'.$info.'</span>';
                     $item[] = $lista;
                 break;
 
@@ -80,23 +80,23 @@
                     foreach ($_medios as $k => $v) {
                         $lista .= '<option value="'.$v.'" '.selected($v, $info, false).'>'.$v.'</option>';
                     }
-                    $lista .= '</select>';
+                    $lista .= '</select><span style="display: none;">'.$info.'</span>';
                     $item[] = $lista;
                 break;
 
                 case 'descripcion':
-                    $item[] = '<textarea class="comentarios" onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="descripcion">'.$info.'</textarea>';
+                    $item[] = '<textarea class="comentarios" onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="descripcion">'.$info.'</textarea><span style="display: none;">'.$info.'</span>';
                 break;
 
                 case 'observaciones':
-                    $item[] = '<textarea class="comentarios" onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="observaciones">'.$info.'</textarea>';
+                    $item[] = '<textarea class="comentarios" onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="observaciones">'.$info.'</textarea><span style="display: none;">'.$info.'</span>';
                 break;
 
                 case 'checkin':
                 case 'checkout':
                 case 'ult_contacto':
                     $fecha = ( $info == NULL ) ? '' : date("Y-m-d", strtotime($info) ) ;
-                    $item[] = '<input onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="'.$key.'" type="date" value="'.$fecha.'" />';
+                    $item[] = '<span style="display: none;">'.$fecha.'</span><input onchange="updateInfo( jQuery(this) )" data-id="'.$id_actual.'" data-type="'.$key.'" type="date" value="'.$fecha.'" />';
                 break;
 
                 case 'atendido_por':
@@ -104,7 +104,7 @@
                     foreach ($editores as $key => $value) {
                         $lista .= '<option value="'.$key.'" '.selected($key, $info, false).'>'.$value.'</option>';
                     }
-                    $lista .= '</select>';
+                    $lista .= '</select><span style="display: none;">'.$fecha.'</span>';
                     $item[] = $lista;
                 break;
 

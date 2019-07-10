@@ -1,3 +1,13 @@
+<?php
+    error_reporting( 0 );
+    session_start();
+
+    if( $_SESSION["MOSTRAR_CONFIRMADAS"] != true ){
+        $msg = '<button id="mostrar_confirmadas" class="button button-primary button-large">Mostrar Todos</button>';
+    }else{
+        $msg = '<button id="mostrar_confirmadas" class="button button-secundary button-large">Solo Pendientes</button>';
+    }
+?>
 <link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/requerimientos/css.css?v=<?= time() ?>'>
 <script src='<?php echo getTema(); ?>/admin/backend/requerimientos/js.js?v=<?= time() ?>'></script>
 
@@ -7,6 +17,7 @@
         <h2>Requerimientos</h2>
         <div style="position: absolute; top: 10px; right: 15px; text-align: right;">
             <button id="nuevo" class="button button-primary button-large">Nuevo Requerimiento</button>
+            <?= $msg ?>
             <button id="actualizar_list" class="button button-primary button-large">Actualizar</button>
         </div>
         <hr style="margin: 10px 0px;">

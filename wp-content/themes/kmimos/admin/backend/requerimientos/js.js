@@ -29,7 +29,11 @@ jQuery(document).ready(function() {
             "url": TEMA+'/admin/backend/requerimientos/ajax/list.php',
             "type": "POST"
         },
-        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]]
+        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]],
+
+        "initComplete": function(settings, json) {
+            confirmadas_handler();
+        }
 	});
 
     jQuery("#close_modal").on("click", function(e){
@@ -56,6 +60,10 @@ jQuery(document).ready(function() {
 			}
 		});
     });
+    
+    jQuery("#mostrar_confirmadas").on("click", function(e){
+        confirmadas_handler(); 
+    });
 
 } );
 
@@ -72,4 +80,29 @@ function updateInfo(_this){
         }, 'json'
     );
 
+}
+
+function confirmadas_handler(){
+    if( jQuery("#mostrar_confirmadas").attr("data-mostrar") == "true" ){
+        jQuery.fn.dataTable.ext.search.pop();
+        table.draw();
+        jQuery("#mostrar_confirmadas").attr("data-mostrar", "false");
+        jQuery("#mostrar_confirmadas").addClass("button-secundary");
+        jQuery("#mostrar_confirmadas").removeClass("button-primary");
+        jQuery("#mostrar_confirmadas").html("Solo Pendientes");
+    }else{
+        jQuery.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+            	var n = String(jQuery(table.row(dataIndex).node()).find("td")[9].innerHTML).indexOf("status_Pendiente");
+            	// console.log( jQuery(table.row(dataIndex).node()).find("td")[9].innerHTML );
+            	// console.log( n );
+                return (n != -1);
+            }
+        );
+        table.draw();
+        jQuery("#mostrar_confirmadas").attr("data-mostrar", "true");
+        jQuery("#mostrar_confirmadas").removeClass("button-secundary");
+        jQuery("#mostrar_confirmadas").addClass("button-primary");
+        jQuery("#mostrar_confirmadas").html("Mostrar Todos");
+    }
 }
