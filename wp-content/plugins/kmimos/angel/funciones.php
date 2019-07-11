@@ -153,7 +153,7 @@
                         reserva.post_status NOT LIKE '%unpaid%' 
                     ) AND  (
                         startmeta.meta_value >= '{$actual}' OR
-                        endmeta.meta_value >= '{$actual}' OR
+                        endmeta.meta_value >= '{$actual}'
                     ) AND
                     relacion.term_taxonomy_id != 28 AND 
                     servicio_id.meta_value = '{$servicio}'
