@@ -100,8 +100,6 @@
 
             // $accion => No usado
 
-            echo "Hola<br>";
-
             if( is_array($data) ){
                 extract($data);
             }else{
@@ -161,12 +159,6 @@
 
             $resultados = $db->get_results($sql);
 
-            /*
-            echo "<pre>";
-                print_r($resultados);
-            echo "</pre>";
-            */
-
             $data_cupos = [];
             foreach ($resultados as $key => $reserva) {
                 $mascotas = 0;
@@ -180,12 +172,6 @@
                     $data_cupos[ $reserva->servicio_id ][ date("Y-m-d", $i) ] += $mascotas;
                 }
             }
-
-            /*
-            echo "<pre>";
-                print_r($data_cupos);
-            echo "</pre>";
-            */
 
             $db->query("UPDATE cupos SET cupos = 0 WHERE servicio = ".$servicio);
 
@@ -201,21 +187,41 @@
                 print_r($temp_cupos);
             echo "</pre>";
 
-            $sql = '';
             foreach ($temp_cupos as $cupos => $servicios) {
-                $_servicios = [];
-                $_fechas = [];
 
-                $sql = "UPDATE cupos SET cupos = '{$cupos}' WHERE ";
-                $subgrupos = [];
-                foreach ($servicios as $servicio => $fechas) {
-                    $subgrupos[] = "( servicio = '{$servicio}' AND fecha IN ('".implode("', '", $fechas)."') )";
+                foreach ($servicios as $servicio => $fechas ) {
+                    
+                    foreach ($fechas as $fecha) {
+
+                        $existe = $db->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
+                        if( $existe !== null ){
+                            $db->query("UPDATE cupos SET cupos = {$cupos} WHERE servicio = '{$servicio}' AND fecha = '{$fecha}' ");
+                        }else{
+                            $producto = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '{$servicio}'");
+                            $tipo = explode("-", $producto->post_name); $tipo = $tipo[0];
+                            $autor_user_id = $producto->post_author;
+                            $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_qty'");
+                            $sql = "
+                                INSERT INTO cupos VALUES (
+                                    NULL,
+                                    '{$autor_user_id}',
+                                    '{$servicio}',
+                                    '{$tipo}',
+                                    '{$fecha}',
+                                    '{$cupos}',
+                                    '{$acepta}',
+                                    '0',        
+                                    '0'        
+                                );
+                            ";
+                            $db->query($sql);
+                        }
+
+                    }
+
                 }
-                $sql .= implode(" OR ", $subgrupos).";";
-                $wpdb->query( $sql );
-            }
 
-            $wpdb->query( $sql );
+            }
 
             $wpdb->query("UPDATE cupos SET full = 1 WHERE cupos >= acepta");
             $wpdb->query("UPDATE cupos SET full = 0 WHERE cupos < acepta");
