@@ -100,6 +100,8 @@
 
             // $accion => No usado
 
+            echo "Hola<br>";
+
             if( is_array($data) ){
                 extract($data);
             }else{
