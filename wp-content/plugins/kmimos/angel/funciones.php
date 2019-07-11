@@ -159,10 +159,6 @@
                     servicio_id.meta_value = '{$servicio}'
             ";
 
-            echo "<pre>";
-                print_r($sql);
-            echo "</pre>";
-
             $resultados = $db->get_results($sql);
 
             echo "<pre>";
@@ -182,6 +178,10 @@
                     $data_cupos[ $reserva->servicio_id ][ date("Y-m-d", $i) ] += $mascotas;
                 }
             }
+
+            echo "<pre>";
+                print_r($data_cupos);
+            echo "</pre>";
 
             $db->query("UPDATE cupos SET cupos = 0 WHERE servicio = ".$servicio);
 
