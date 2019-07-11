@@ -180,6 +180,10 @@
                 }
             }
 
+            echo "<pre>";
+                print_r($temp_cupos);
+            echo "</pre>";
+
             $sql = '';
             foreach ($temp_cupos as $cupos => $servicios) {
                 $_servicios = [];
