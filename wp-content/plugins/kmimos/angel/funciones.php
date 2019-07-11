@@ -157,8 +157,8 @@
                     relacion.term_taxonomy_id != 28 AND 
                     servicio_id.meta_value = '{$servicio}' AND 
                     (
-                        DATE_FORMAT(startmeta.meta_value,'%d-%m-%Y') > '{$hoy}' OR
-                        DATE_FORMAT(endmeta.meta_value,'%d-%m-%Y') > '{$hoy}'
+                        DATE_FORMAT(startmeta.meta_value,'%d-%m-%Y') >= '{$hoy}' OR
+                        DATE_FORMAT(endmeta.meta_value,'%d-%m-%Y') >= '{$hoy}'
                     )
             ";
 
