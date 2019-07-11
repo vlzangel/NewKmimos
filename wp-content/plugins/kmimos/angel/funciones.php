@@ -108,6 +108,7 @@
                 $id_orden = $data;
                 $reserva = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_parent = '".$id_orden."'");
                 $id_reserva = $reserva->ID;
+                $metas_reserva = get_post_meta( $id_reserva );
                 $servicio = $metas_reserva['_booking_product_id'][0];
             }
 
