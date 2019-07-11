@@ -161,9 +161,11 @@
 
             $resultados = $db->get_results($sql);
 
+            /*
             echo "<pre>";
                 print_r($resultados);
             echo "</pre>";
+            */
 
             $data_cupos = [];
             foreach ($resultados as $key => $reserva) {
@@ -179,9 +181,11 @@
                 }
             }
 
+            /*
             echo "<pre>";
                 print_r($data_cupos);
             echo "</pre>";
+            */
 
             $db->query("UPDATE cupos SET cupos = 0 WHERE servicio = ".$servicio);
 
@@ -194,7 +198,6 @@
             }
 
             echo "<pre>";
-                print_r($sql);
                 print_r($temp_cupos);
             echo "</pre>";
 
