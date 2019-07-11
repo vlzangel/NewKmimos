@@ -6,7 +6,7 @@
 
 		function get_recomendaciones_homa_2(){
 			global $wpdb;
-			$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores WHERE activo = 1 ORDER BY valoraciones DESC LIMIT 0, 10");
+			$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores WHERE activo = 1 AND user_id NOT IN ( 5556 ) ORDER BY valoraciones DESC LIMIT 0, 10");
 
 			$resultado = [];
 			foreach ($cuidadores as $key => $cuidador) {
