@@ -163,9 +163,7 @@
             foreach ($resultados as $key => $reserva) {
                 $mascotas = 0;
                 $temp = unserialize( $reserva->mascotas);
-                foreach ($temp as $cant) {
-                    $mascotas += $cant;
-                }
+                foreach ($temp as $cant) { $mascotas += $cant; }
                 $ini = strtotime( $reserva->inicio );
                 $fin = strtotime( $reserva->fin );
                 for ($i=$ini; $i < $fin; $i += 86400 ) { 
@@ -183,9 +181,11 @@
                 }
             }
 
+            /*
             echo "<pre>";
                 print_r($temp_cupos);
             echo "</pre>";
+            */
 
             foreach ($temp_cupos as $cupos => $servicios) {
 
