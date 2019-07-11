@@ -172,7 +172,7 @@
                 }
             }
 
-            // $db->query("UPDATE cupos SET cupos = 0");
+            $db->query("UPDATE cupos SET cupos = 0 WHERE servicio = ".$servicio);
 
             $sql = '';
             $temp_cupos = [];
