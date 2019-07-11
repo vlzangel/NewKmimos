@@ -181,6 +181,7 @@
             }
 
             echo "<pre>";
+                print_r($sql);
                 print_r($temp_cupos);
             echo "</pre>";
 
