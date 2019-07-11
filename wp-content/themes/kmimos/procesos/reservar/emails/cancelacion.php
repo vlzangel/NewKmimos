@@ -20,9 +20,11 @@
     }else{
         $cfdi = kmimos_set_kmisaldo($cliente["id"], $id, $servicio["id_reserva"], $usu);
     }
-    update_cupos( $id, "-");
+    
     $wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = $id;");
     $wpdb->query("UPDATE wp_posts SET post_status = 'cancelled' WHERE ID = '{$servicio["id_reserva"]}';");
+
+    update_cupos( $id, "-");
 
 	$cuidador_info = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$cuidador["id"]);
 
