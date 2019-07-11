@@ -157,7 +157,16 @@
                     servicio_id.meta_key = '{$servicio}'
             ";
 
+            echo "<pre>";
+                print_r($sql);
+            echo "</pre>";
+
             $resultados = $db->get_results($sql);
+
+            echo "<pre>";
+                print_r($resultados);
+            echo "</pre>";
+
             $data_cupos = [];
             foreach ($resultados as $key => $reserva) {
                 $mascotas = 0;
