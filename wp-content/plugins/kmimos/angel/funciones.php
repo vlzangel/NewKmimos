@@ -151,13 +151,12 @@
                         reserva.post_status NOT LIKE '%cart%'       AND
                         reserva.post_status NOT LIKE '%modified%'   AND
                         reserva.post_status NOT LIKE '%unpaid%' 
+                    ) AND  (
+                        startmeta.meta_value >= '{$actual}' OR
+                        endmeta.meta_value >= '{$actual}' OR
                     ) AND
                     relacion.term_taxonomy_id != 28 AND 
-                    servicio_id.meta_value = '{$servicio}' AND 
-                    (
-                        DATE_FORMAT(startmeta.meta_value,'%d-%m-%Y') >= '{$hoy}' OR
-                        DATE_FORMAT(endmeta.meta_value,'%d-%m-%Y') >= '{$hoy}'
-                    )
+                    servicio_id.meta_value = '{$servicio}'
             ";
 
             echo "<pre>";
