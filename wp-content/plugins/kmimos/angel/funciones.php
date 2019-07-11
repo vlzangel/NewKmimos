@@ -151,8 +151,6 @@
                         reserva.post_status NOT LIKE '%cart%'       AND
                         reserva.post_status NOT LIKE '%modified%'   AND
                         reserva.post_status NOT LIKE '%unpaid%' 
-                    ) AND  (
-                        endmeta.meta_value >= '{$actual}'
                     ) AND
                     relacion.term_taxonomy_id != 28 AND 
                     servicio_id.meta_value = '{$servicio}' AND 
