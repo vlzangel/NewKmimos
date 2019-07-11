@@ -163,10 +163,8 @@
                 foreach ($temp as $cant) {
                     $mascotas += $cant;
                 }
-
                 $ini = strtotime( $reserva->inicio );
                 $fin = strtotime( $reserva->fin );
-
                 for ($i=$ini; $i < $fin; $i += 86400 ) { 
                     $data_cupos[ $reserva->servicio_id ][ date("Y-m-d", $i) ] += $mascotas;
                 }

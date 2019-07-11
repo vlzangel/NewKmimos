@@ -43,6 +43,8 @@
 								
 								update_post_meta($id_orden, '_ya_pago', "listo");
 
+								update_cupos( $id_orden );
+
 								header( 'location:'.get_home_url().'/finalizar/'.$id_orden );
 							}
 							
