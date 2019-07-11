@@ -346,39 +346,30 @@
 
     $old_reserva = 0;
 	$id_session = 'MR_'.$pagar->servicio."_".md5($pagar->cliente);
-
 	if( ( $pagar->reconstruir && $pagar->id_fallida != 0) || ( $pagar->id_fallida == 0 ) ){
-		
 		$reservar = new Reservas($db, $data_reserva);
 	    $id_orden = $reservar->new_reserva();
-
 	    if( $pagar->fee > 0 ){
 	    	quitar_cupos_conocer( $pagar->cliente );
 	    }
-
 	    set_uso_banner([
     		"user_id" => $pagar->cliente,
     		"type" => "reserva",
     		"reserva_id" => $reservar->data["id_reserva"]
     	]);
-
 	    $temp_masc = $cantidades;
 	    unset($temp_masc->cantidad);
-
 	    $reservar->aplicarCupones([
 	    	"order" => $id_orden,
 		    "cupones" => $cupones,
 		    "duracion" => $duracion,
 		    "mascotas" => $temp_masc,
 		]);
-
 	    if( isset($_SESSION[$id_session] ) ){
 			$new_reserva = $reservar->data["id_reserva"];
 			$old_reserva = $_SESSION[$id_session]["reserva"];
-
 			$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$new_reserva}, 'modificacion_de', '{$old_reserva}');");
 			$db->query("INSERT INTO wp_postmeta VALUES (NULL, {$old_reserva}, 'reserva_modificada', '{$new_reserva}');");
-
 			$old_order = $db->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$old_reserva}' ");
 			$db->query("UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$old_reserva}', '{$old_order}' );");
 		}
@@ -398,31 +389,18 @@
 
 			update_post_meta( $id_orden, 'CARRITO', serialize($parametros) );
 
-			update_cupos( array(
-		    	"servicio" => $parametros["pagar"]->servicio,
-		    	"tipo" => $parametros["pagar"]->tipo_servicio,
-		    	"autor" => $parametros["pagar"]->cuidador,
-		    	"inicio" => strtotime($parametros["fechas"]->inicio),
-		    	"fin" => strtotime($parametros["fechas"]->fin),
-		    	"cantidad" => $cupos_a_decrementar
-		    ), "+");
-
-			if( isset($_SESSION[$id_session] ) ){
-		    	update_cupos( array(
-			    	"servicio" => $_SESSION[$id_session]["servicio"],
-			    	"tipo" => $parametros["pagar"]->tipo_servicio,
-		    		"autor" => $parametros["pagar"]->cuidador,
-			    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-			    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-			    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-			    ), "-");
-				$_SESSION[$id_session] = "";
-				unset($_SESSION[$id_session]);
-			}
-
 			echo json_encode(array(
 				"order_id" => $id_orden,
 			));
+
+			update_cupos( array(
+		    	"servicio" => $_SESSION[$id_session]["servicio"],
+		    	"tipo" => $parametros["pagar"]->tipo_servicio,
+	    		"autor" => $parametros["pagar"]->cuidador,
+		    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
+		    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
+		    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
+		    ));
 
 			include(__DIR__."/emails/index.php");
 			exit;
@@ -435,27 +413,19 @@
 				"order_id" => $id_orden
 			));
 
-			update_cupos( array(
-		    	"servicio" => $parametros["pagar"]->servicio,
-		    	"tipo" => $parametros["pagar"]->tipo_servicio,
-		    	"autor" => $parametros["pagar"]->cuidador,
-		    	"inicio" => strtotime($parametros["fechas"]->inicio),
-		    	"fin" => strtotime($parametros["fechas"]->fin),
-		    	"cantidad" => $cupos_a_decrementar
-		    ), "+");
-
 			if( isset($_SESSION[$id_session] ) ){
-		    	update_cupos( array(
-			    	"servicio" => $_SESSION[$id_session]["servicio"],
-			    	"tipo" => $parametros["pagar"]->tipo_servicio,
-		    		"autor" => $parametros["pagar"]->cuidador,
-			    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-			    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-			    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-			    ), "-");
 				$_SESSION[$id_session] = "";
 				unset($_SESSION[$id_session]);
 			}
+
+			update_cupos( array(
+		    	"servicio" => $_SESSION[$id_session]["servicio"],
+		    	"tipo" => $parametros["pagar"]->tipo_servicio,
+	    		"autor" => $parametros["pagar"]->cuidador,
+		    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
+		    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
+		    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
+		    ));
 		    
 			include(__DIR__."/emails/index.php");
 			exit;
@@ -581,26 +551,7 @@
 				            echo json_encode(array(
 								"order_id" => $id_orden
 							));
-						    if( isset($_SESSION[$id_session] ) ){
-						    	update_cupos( array(
-							    	"servicio" => $_SESSION[$id_session]["servicio"],
-							    	"tipo" => $parametros["pagar"]->tipo_servicio,
-						    		"autor" => $parametros["pagar"]->cuidador,
-							    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-							    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-							    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-							    ), "-");
-								$_SESSION[$id_session] = "";
-								unset($_SESSION[$id_session]);
-							}
-							update_cupos( array(
-						    	"servicio" => $parametros["pagar"]->servicio,
-						    	"tipo" => $parametros["pagar"]->tipo_servicio,
-						    	"autor" => $parametros["pagar"]->cuidador,
-						    	"inicio" => strtotime($parametros["fechas"]->inicio),
-						    	"fin" => strtotime($parametros["fechas"]->fin),
-						    	"cantidad" => $cupos_a_decrementar
-						    ), "+");
+						    
 							include(__DIR__."/emails/index.php");
 				        }else{
 							unset($_SESSION["pagando"]);
@@ -654,26 +605,6 @@
 							"barcode_url"  => $charge->payment_method->barcode_url,
 							"order_id" => $id_orden
 						));
-					    if( isset($_SESSION[$id_session] ) ){
-					    	update_cupos( array(
-						    	"servicio" => $_SESSION[$id_session]["servicio"],
-						    	"tipo" => $parametros["pagar"]->tipo_servicio,
-					    		"autor" => $parametros["pagar"]->cuidador,
-						    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-						    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-						    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-						    ), "-");
-							$_SESSION[$id_session] = "";
-							unset($_SESSION[$id_session]);
-						}
-						update_cupos( array(
-					    	"servicio" => $parametros["pagar"]->servicio,
-					    	"tipo" => $parametros["pagar"]->tipo_servicio,
-					    	"autor" => $parametros["pagar"]->cuidador,
-					    	"inicio" => strtotime($parametros["fechas"]->inicio),
-					    	"fin" => strtotime($parametros["fechas"]->fin),
-					    	"cantidad" => $cupos_a_decrementar
-					    ), "+");
 						sleep(1);
 						include(__DIR__."/emails/index.php");
 					}else{
@@ -722,26 +653,6 @@
 						"url_pago" => $url_paypal,
 					));
 					
-				    if( isset($_SESSION[$id_session] ) ){
-				    	update_cupos( array(
-					    	"servicio" => $_SESSION[$id_session]["servicio"],
-					    	"tipo" => $parametros["pagar"]->tipo_servicio,
-				    		"autor" => $parametros["pagar"]->cuidador,
-					    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-					    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-					    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-					    ), "-");
-						$_SESSION[$id_session] = "";
-						unset($_SESSION[$id_session]);
-					}
-					update_cupos( array(
-				    	"servicio" => $parametros["pagar"]->servicio,
-				    	"tipo" => $parametros["pagar"]->tipo_servicio,
-				    	"autor" => $parametros["pagar"]->cuidador,
-				    	"inicio" => strtotime($parametros["fechas"]->inicio),
-				    	"fin" => strtotime($parametros["fechas"]->fin),
-				    	"cantidad" => $cupos_a_decrementar
-				    ), "+");
 	   			break;
 
 	   			case 'mercadopago':
@@ -759,7 +670,6 @@
 					include(__DIR__."/emails/index.php");
 
 		   			// $id_mercado_pago = $res;
-
 					// include(__DIR__."/emails/index.php");
 
 	   				echo json_encode(array(
@@ -769,30 +679,17 @@
 						"url_pago" => $res["links"],
 					));
 			    
-				    if( isset($_SESSION[$id_session] ) ){
-				    	update_cupos( array(
-					    	"servicio" => $_SESSION[$id_session]["servicio"],
-					    	"tipo" => $parametros["pagar"]->tipo_servicio,
-				    		"autor" => $parametros["pagar"]->cuidador,
-					    	"inicio" => strtotime($_SESSION[$id_session]["fechas"]["inicio"]),
-					    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
-					    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
-					    ), "-");
-						$_SESSION[$id_session] = "";
-						unset($_SESSION[$id_session]);
-					}
-
-					update_cupos( array(
-				    	"servicio" => $parametros["pagar"]->servicio,
-				    	"tipo" => $parametros["pagar"]->tipo_servicio,
-				    	"autor" => $parametros["pagar"]->cuidador,
-				    	"inicio" => strtotime($parametros["fechas"]->inicio),
-				    	"fin" => strtotime($parametros["fechas"]->fin),
-				    	"cantidad" => $cupos_a_decrementar
-				    ), "+");
- 
 	   			break;
 		   	}
+
+		   	update_cupos( array(
+		    	"servicio" => $parametros["pagar"]->servicio,
+		    	"tipo" => $parametros["pagar"]->tipo_servicio,
+		    	"autor" => $parametros["pagar"]->cuidador,
+		    	"inicio" => strtotime($parametros["fechas"]->inicio),
+		    	"fin" => strtotime($parametros["fechas"]->fin),
+		    	"cantidad" => $cupos_a_decrementar
+		    ));
 
 		}else{
 			unset($_SESSION["pagando"]);

@@ -94,10 +94,114 @@
     }
 
     if(!function_exists('update_cupos')){
-        function update_cupos($data, $accion){
+        function update_cupos($data, $accion = ''){
             global $wpdb;
             $db = $wpdb;
 
+            // $accion => No usado
+
+            if( is_array($data) ){
+                extract($data);
+            }else{
+                $id_orden = $data;
+                $reserva = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_parent = '".$id_orden."'");
+                $id_reserva = $reserva->ID;
+                $servicio = $metas_reserva['_booking_product_id'][0];
+            }
+
+            $actual = date( 'YmdHis', time() );
+            $hoy = date( 'Y-m-d', time() );
+
+            $sql = "
+                SELECT 
+                    reserva.ID               AS id, 
+                    servicio.post_author     AS autor, 
+                    servicio.ID              AS servicio_id, 
+                    tipo.slug                AS servicio_tipo, 
+                    servicio.post_name       AS servicio, 
+                    DATE_FORMAT(startmeta.meta_value,'%d-%m-%Y') AS inicio, 
+                    DATE_FORMAT(endmeta.meta_value,'%d-%m-%Y') AS fin,
+                    acepta.meta_value        AS acepta,
+                    mascotas.meta_value      AS mascotas,
+                    reserva.post_status      AS status
+
+                FROM wp_posts AS reserva
+
+                LEFT JOIN wp_postmeta as startmeta     ON ( reserva.ID      = startmeta.post_id         )
+                LEFT JOIN wp_postmeta as endmeta       ON ( reserva.ID      = endmeta.post_id           )
+                LEFT JOIN wp_postmeta as mascotas      ON ( reserva.ID      = mascotas.post_id          )
+                LEFT JOIN wp_postmeta as servicio_id   ON ( reserva.ID      = servicio_id.post_id       )
+                LEFT JOIN wp_posts    as servicio      ON ( servicio.ID     = servicio_id.meta_value    )
+                LEFT JOIN wp_postmeta as acepta        ON ( acepta.post_id  = servicio.ID               )
+                LEFT JOIN wp_term_relationships as relacion ON ( relacion.object_id = servicio.ID )
+                LEFT JOIN wp_terms as tipo ON ( tipo.term_id = relacion.term_taxonomy_id )
+
+                WHERE 
+                    reserva.post_type       = 'wc_booking'              AND 
+                    startmeta.meta_key      = '_booking_start'          AND 
+                    endmeta.meta_key        = '_booking_end'            AND 
+                    servicio_id.meta_key    = '_booking_product_id'     AND 
+                    acepta.meta_key         = '_wc_booking_qty'         AND 
+                    mascotas.meta_key       = '_booking_persons'        AND 
+                    (
+                        reserva.post_status NOT LIKE '%cancelled%'  AND
+                        reserva.post_status NOT LIKE '%cart%'       AND
+                        reserva.post_status NOT LIKE '%modified%'   AND
+                        reserva.post_status NOT LIKE '%unpaid%' 
+                    ) AND  (
+                        endmeta.meta_value >= '{$actual}'
+                    ) AND
+                    relacion.term_taxonomy_id != 28 AND 
+                    servicio_id.meta_key = '{$servicio}'
+            ";
+
+            $resultados = $db->get_results($sql);
+            $data_cupos = [];
+            foreach ($resultados as $key => $reserva) {
+                $mascotas = 0;
+                $temp = unserialize( $reserva->mascotas);
+                foreach ($temp as $cant) {
+                    $mascotas += $cant;
+                }
+
+                $ini = strtotime( $reserva->inicio );
+                $fin = strtotime( $reserva->fin );
+
+                for ($i=$ini; $i < $fin; $i += 86400 ) { 
+                    $data_cupos[ $reserva->servicio_id ][ date("Y-m-d", $i) ] += $mascotas;
+                }
+            }
+
+            // $db->query("UPDATE cupos SET cupos = 0");
+
+            $sql = '';
+            $temp_cupos = [];
+            foreach ($data_cupos as $key => $fechas) {
+                foreach ($fechas as $fecha => $cupos) {
+                    $temp_cupos[ $cupos ][ $key ][] = $fecha;
+                }
+            }
+
+            $sql = '';
+            foreach ($temp_cupos as $cupos => $servicios) {
+                $_servicios = [];
+                $_fechas = [];
+
+                $sql = "UPDATE cupos SET cupos = '{$cupos}' WHERE ";
+                $subgrupos = [];
+                foreach ($servicios as $servicio => $fechas) {
+                    $subgrupos[] = "( servicio = '{$servicio}' AND fecha IN ('".implode("', '", $fechas)."') )";
+                }
+                $sql .= implode(" OR ", $subgrupos).";";
+                $wpdb->query( $sql );
+            }
+
+            $wpdb->query( $sql );
+
+            $wpdb->query("UPDATE cupos SET full = 1 WHERE cupos >= acepta");
+            $wpdb->query("UPDATE cupos SET full = 0 WHERE cupos < acepta");
+
+            /*
             if( is_array($data) ){
                 extract($data);
             }else{
@@ -153,7 +257,7 @@
 
                     $db->query($sql);
                 }
-            }
+            }*/
         }
     }
 

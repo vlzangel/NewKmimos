@@ -67,9 +67,7 @@
 
 
 	$resultados = $db->get_results($sql);
-
 	$data_cupos = [];
-
 	foreach ($resultados as $key => $reserva) {
 		$mascotas = 0;
 		$temp = unserialize( $reserva->mascotas);
@@ -84,14 +82,7 @@
 			$data_cupos[ $reserva->servicio_id ][ date("Y-m-d", $i) ] += $mascotas;
 		}
 	}
-	
-	/*
-	echo "<pre>";
-		print_r($data_cupos);
-	echo "</pre>";
-	*/
-
-	// $db->query("UPDATE cupos SET cupos = 0");
+	$db->query("UPDATE cupos SET cupos = 0");
 
 	$sql = '';
 	$temp_cupos = [];
@@ -116,20 +107,8 @@
 
 	$db->multi_query( $sql );
 
-	$db->query("UPDATE cupos SET cupos = 0");
-
-
 	$db->query("UPDATE cupos SET full = 1 WHERE cupos >= acepta");
 	$db->query("UPDATE cupos SET full = 0 WHERE cupos < acepta");
 	
-	// echo $sql;
-
-	/*
-	echo "<pre>";
-		print_r($temp_cupos);
-	echo "</pre>";
-	*/
-	
-
 	exit();
 ?>
