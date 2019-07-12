@@ -11,7 +11,11 @@
 	// v=2
 	// e=italococchini@gmail.com
 	// r=4 [ opcional: ID encuestas clientes / Reserva ]
-//print_r($_GET);
+	//print_r($_GET);
+
+	if( $o == 'c51ce410c124a10e0db5e4b97fc2af39' ){
+		$o = '6512bd43d9caa6e02c990b0a82652dca';
+	}
 
     $show_mensaje = 'hidden';
     $show_encuesta= '';
