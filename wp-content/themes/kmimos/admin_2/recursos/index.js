@@ -1,4 +1,5 @@
 var table; 
+var table_modal; 
 jQuery(document).ready(function() {
     loadTabla();
     jQuery("#close_modal").on("click", function(e){
@@ -9,10 +10,13 @@ jQuery(document).ready(function() {
     });
 });
 
-function loadTabla(){
-    table = jQuery('#example').DataTable();
-    table.destroy();
-    table = jQuery('#example').DataTable({
+function loadTabla(tabla, accion){
+    if( tabla == undefined ){ tabla = 'example'; }
+    if( accion == undefined ){ accion = 'list'; }
+
+    var _table = jQuery('#'+tabla).DataTable();
+    _table.destroy();
+    _table = jQuery('#'+tabla).DataTable({
         "language": {
             "emptyTable":           "No hay datos disponibles en la tabla.",
             "info":                 "Del _START_ al _END_ de _TOTAL_ ",
@@ -38,10 +42,16 @@ function loadTabla(){
         },
         "scrollX": true,
         "ajax": {
-            "url": ADMIN_AJAX+'?action=vlz_'+MODULO_ACTUAL+'_list',
+            "url": ADMIN_AJAX+'?action=vlz_'+MODULO_ACTUAL+'_'+accion,
             "type": "POST"
         }
     });
+
+    if( tabla == 'example' ){
+        table = _table;
+    }else{
+        table_modal = _table;
+    }
 }
 
 function init_modal_2(data){
@@ -113,6 +123,9 @@ function _insert(id) {
             function(data){
                 console.log( data );
                 table.ajax.reload();
+                if( table_modal != "" ){
+                    table_modal.ajax.reload();
+                }
                 jQuery("#btn_submit_modal").html(btn_txt);
                 jQuery("#btn_submit_modal").prop("disabled", false);
 
@@ -138,6 +151,9 @@ function _update(id) {
             function(data){
                 console.log( data );
                 table.ajax.reload();
+                if( table_modal != "" ){
+                    table_modal.ajax.reload();
+                }
                 jQuery("#btn_submit_modal").html(btn_txt);
                 jQuery("#btn_submit_modal").prop("disabled", false);
 
@@ -163,6 +179,9 @@ function _delete(id) {
             function(data){
                 console.log( data );
                 table.ajax.reload();
+                if( table_modal != "" ){
+                    table_modal.ajax.reload();
+                }
                 jQuery("#btn_submit_modal").html(btn_txt);
                 jQuery("#btn_submit_modal").prop("disabled", false);
 

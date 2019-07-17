@@ -8,7 +8,7 @@
     );
 
     include_once(dirname(__DIR__).'/lib/nps.php');
-    $encuestas = $nps->get_encuesta_byId( $_POST['id'] );
+    $encuestas = $nps->get_encuesta_byId( 11 );
 
     $tipo = [
         'promoters' => 'success',

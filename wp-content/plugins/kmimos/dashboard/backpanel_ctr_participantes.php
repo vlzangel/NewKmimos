@@ -1,4 +1,8 @@
-<?php  if ( ! defined( 'ABSPATH' ) ) { exit; } 
+<?php  
+	if ( ! defined( 'ABSPATH' ) ) { 
+		header("location: https://www.kmimos.com.mx/");
+		exit; 
+	} 
 // Subscribe 
 require_once('core/ControllerCtrParticipantes.php');
 // Parametros: Filtro por fecha
