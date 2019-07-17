@@ -1,10 +1,12 @@
 <?php
     $kmimos_load = dirname(dirname(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))))).'/wp-load.php';
-    error_reporting(0);
+    
     if(file_exists($kmimos_load)){
         include_once($kmimos_load);
     }
     date_default_timezone_set('America/Mexico_City');
+
+    error_reporting(0);
 
     global $wpdb;
     $wlabel = $_wlabel_user->wlabel;
@@ -13,7 +15,6 @@
     $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
     $_wlabel_user->wlabel_Export('monitor','Funnel de Conversión','table'); ?>
 
-    <?= strtotime("2018/09/01") ?>
     <div class="module_title">
         Funnel de Conversión
     </div>

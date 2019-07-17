@@ -11,6 +11,8 @@ function number_round($number){
     return $number;
 }
 
+error_reporting(0);
+
 global $wpdb;
 $wlabel=$_wlabel_user->wlabel;
 $WLresult=$_wlabel_user->wlabel_result;
