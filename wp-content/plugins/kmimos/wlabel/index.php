@@ -54,7 +54,7 @@
         <div id="panel">
             <?php
                 echo "<pre>";
-                    print_r($_wlabel_user);
+                    print_r($_wlabel_user->login);
                 echo "</pre>";
                 if( $_wlabel_user->login ){
                     include_once('backend/panel.php');
