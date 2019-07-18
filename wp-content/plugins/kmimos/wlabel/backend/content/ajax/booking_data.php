@@ -17,7 +17,7 @@ function number_round($number){
 $wlabel=$_wlabel_user->wlabel;
 $WLcommission=$_wlabel_user->wlabel_Commission();
 
-$reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '2018-09-01' ");
+$reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '2018-09-01' AND donde_nos_conocio LIKE '{$wlabel}' ");
 
 $_reservas["data"] = []; $i = 1;
 foreach ($reservas as $key => $reserva) {
