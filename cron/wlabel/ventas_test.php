@@ -15,7 +15,7 @@
             <div class="section">
                 <div class="table_container">
                     <div class="table_titles tables">
-                        <table>
+                        <table cellspacing="0" cellpadding="0">
                             <thead>
                                 <tr><th>Titulo</th></tr>
                                 <tr><th>Monto total de reservas Confirmadas, Canceladas y Completadas</th></tr>

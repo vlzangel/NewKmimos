@@ -50,7 +50,7 @@ label {margin-bottom: 0px;vertical-align: middle;}
 
 .tables table{position:relative; border-radius:5px; background:#FFF;}
 .tables table thead{color:#000; background:transparent;}
-.tables table thead th{padding:8px 10px !important; color: #212529;}
+.tables table thead th{padding:8px 10px !important; color: #212529;text-align: left;}
 .tables table .title{text-align:left; min-width: 250px;}
 .tables table .number{text-align:right;}
 .tables table th,
