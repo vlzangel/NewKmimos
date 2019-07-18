@@ -18,11 +18,11 @@ $wlabel=$_wlabel_user->wlabel;
 $WLcommission=$_wlabel_user->wlabel_Commission();
 
 $reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '2018-09-01' AND donde_nos_conocio LIKE '%{$wlabel}%' ");
-echo "SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '2018-09-01' AND donde_nos_conocio LIKE '%{$wlabel}%' ";
+// echo "SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '2018-09-01' AND donde_nos_conocio LIKE '%{$wlabel}%' ";
 $_reservas["data"] = []; $i = 1;
-foreach ($reservas as $key => $reserva) {
-    $eventos = $wpdb->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$reserva->cliente_id} AND post_type = 'wc_booking' AND post_date >= '2018-09-01 00:00:00' ");
-
+foreach ($reservas as $key => $value) {
+    // $eventos = $wpdb->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$value->cliente_id} AND post_type = 'wc_booking' AND post_date >= '2018-09-01 00:00:00' ");
+    $cliente_id = 367;
     $_reservas["data"][] = [
         $i,
         $value->reserva_id,
@@ -37,8 +37,8 @@ foreach ($reservas as $key => $reserva) {
         $value->cliente,
         $value->correo_cliente,
         $value->telefono_cliente,
-        $eventos,
-        '<div id="'.$reserva->cliente_id.'" class="mostrarInfo" onclick="mostrarEvento('.$reserva->cliente_id.')">Mostrar</div>',
+        "Eventos",
+        '<div id="'.$cliente_id.'" class="mostrarInfo" onclick="mostrarEvento('.$cliente_id.')">Mostrar</div>',
         $value->recompra_1_mes,
         $value->recompra_3_meses,
         $value->recompra_6_meses,
