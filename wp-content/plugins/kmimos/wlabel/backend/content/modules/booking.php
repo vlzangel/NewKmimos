@@ -29,7 +29,7 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
     Reservas
 </div>
 
-<div class="module_botones">
+<div class="module_botones" style="display: none;">
     <table>
         <tr>
             <td><strong>Desde:</strong></td>
