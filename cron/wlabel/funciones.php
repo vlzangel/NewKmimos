@@ -69,7 +69,7 @@
 	            }
 	            if( time() > $day-84600 ){
 	            	$data[] = [ 
-	            		date('d-m-Y', $day)
+	            		date('d-m-Y', $day),
 	            		$amount_day
 	            	];
 	            }
