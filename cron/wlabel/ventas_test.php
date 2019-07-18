@@ -93,3 +93,16 @@
         ';
     }
 ?>
+
+<style type="text/css">
+    .table_titles {
+        width: 432px;
+    }
+    .table_rows {
+        max-width: calc( 100% - 432px );
+        margin-left: 430px;
+    }
+    .tables table th, .tables table td {
+        padding: 8px 10px !important;
+    }
+</style> 
