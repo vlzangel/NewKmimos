@@ -62,7 +62,7 @@ class Class_WhiteLabel_User{
                     $_SESSION['label']=$this->wlabel_result;
                     $this->SESSION = $_SESSION;
 
-                    return 'Usuario Confirmado<script>location.reload();</script>';
+                    return 'Usuario Confirmado<script> /* location.reload(); */ </script>';
                 }else{
                     return 'Usuario o Clave Incorrecto';
                 }
