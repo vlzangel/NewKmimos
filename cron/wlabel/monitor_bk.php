@@ -127,4 +127,174 @@
     echo "<pre>";
     	print_r($data);
     echo "</pre>";
+
+/*
+    // Usuarios Totales Registrados (White Label + Kmimos)
+    $amount_day=0; $amount_month=0; $amount_year=0; $amount_total=0;
+    $anio = date("Y", $day_init);
+    for($day = $day_init; $day <= $day_last; $day+=$day_more){
+        $anio_act = date("Y", $day);
+        if( $anio_act != $anio ){
+            $amount_day=0; $amount_month=0; $amount_year=0; $amount_total=0;
+            $anio = $anio_act;
+        }
+        $print = true;
+        if( date('d/m/Y',$day) == "28/10/2018" ){
+            if($_28){ $_28 = false; }else{ $print = false; }
+        }
+        if( $print ){
+            foreach($users as $user){
+                $metas = get_user_meta($user->ID);
+                $rol = strrpos($metas["wp_capabilities"][0], "subscriber");
+                if( $rol !== false ){
+                    $fecha = strtotime( date('m/d/Y', strtotime($user->date) ) );
+                    $hoy = strtotime(date('m/d/Y', $day));
+                    if( $fecha == $hoy ){
+                        $amount_user = 1; $amount_day += 1; $amount_month += 1; $amount_year += 1; $amount_total += 1;
+                    }
+                }
+            }
+            if( time() > $day-84600 ){
+                $data["usuarios_registrados"][ date('d-m-Y',$day) ] = $amount_day;
+            }
+            $amount_day=0;
+            if(date('t',$day)==date('d',$day) || $day_last==$day){
+                $data["usuarios_registrados"][ date('m-Y',$day) ] = $amount_month;
+                $amount_month=0;
+                if(date('m',$day)=='12' || $day_last==$day){
+                    $data["usuarios_registrados"][ date('Y',$day) ] = $amount_year;
+                    $amount_year=0;
+                }
+            }
+        }
+    }
+    $data["usuarios_registrados"]["total"] = $amount_total;
+
+
+    // Usuarios Totales Reservando (White Label + Kmimos)
+    $amount_day=0; $amount_month=0; $amount_year=0; $amount_total=0;
+    $_28 = true;
+
+    $anio = date("Y", $day_init);
+
+    for($day = $day_init; $day <= $day_last; $day+=$day_more){
+        $anio_act = date("Y", $day);
+        if( $anio_act != $anio ){
+            $amount_day=0; $amount_month=0; $amount_year=0; $amount_total=0;
+            $anio = $anio_act;
+        }
+        $print = true;
+        if( date('d/m/Y',$day) == "28/10/2018" ){
+            if($_28){ $_28 = false; }else{ $print = false; }
+        }
+        if( $print ){
+            foreach($_reservas_clientes as $reserva){
+                $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                $hoy = strtotime(date('m/d/Y', $day));
+                if( $fecha == $hoy ){
+                    $amount_user = 1;
+                    $amount_user = 1; $amount_day += 1; $amount_month += 1; $amount_year += 1; $amount_total += 1;
+                }
+            }
+            if( time() > $day-84600 ){
+                $data["usuarios_reservando"][ date('d-m-Y',$day) ] = $amount_day;
+            }
+            $amount_day=0;
+            if(date('t',$day)==date('d',$day) || $day_last==$day){
+                $data["usuarios_reservando"][ date('m-Y',$day) ] = $amount_month;
+                $amount_month=0;
+                if(date('m',$day)=='12' || $day_last==$day){
+                    $data["usuarios_reservando"][ date('Y',$day) ] = $amount_year;
+                    $amount_year=0;
+                }
+            }
+        }
+    }
+    $data["usuarios_reservando"]["total"] = $amount_total;
+
+
+    // Total Eventos de Reserva
+    $amount_day=0; $amount_month=0; $amount_year=0; $amount_total=0;
+    $_28 = true;
+    $anio = date("Y", $day_init);
+    for($day = $day_init; $day <= $day_last; $day+=$day_more){
+        $anio_act = date("Y", $day);
+        if( $anio_act != $anio ){
+            $amount_day=0; $amount_month=0; $amount_year=0; $amount_total=0;
+            $anio = $anio_act;
+        }
+        $print = true;
+        if( date('d/m/Y',$day) == "28/10/2018" ){
+            if($_28){ $_28 = false; }else{ $print = false; }
+        }
+        if( $print ){
+            foreach($_reservas as $reserva){
+                $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                $hoy = strtotime(date('m/d/Y', $day));
+                if( $fecha == $hoy ){
+                    $amount_user = 1;
+                    $amount_day += 1; $amount_month += 1; $amount_year += 1; $amount_total += 1;
+                }
+            }
+            if( time() > $day-84600 ){
+                $data["eventos_reserva"][ date('d-m-Y',$day) ] = $amount_day;
+            }
+            $amount_day=0;
+            if(date('t',$day)==date('d',$day) || $day_last==$day){
+                $data["eventos_reserva"][ date('m-Y',$day) ] = $amount_month;
+                $amount_month=0;
+                if(date('m',$day)=='12' || $day_last==$day){
+                    $data["eventos_reserva"][ date('Y',$day) ] = $amount_year;
+                    $amount_year=0;
+                }
+            }
+        }
+    }
+    $data["eventos_reserva"]["total"] = $amount_total;
+
+    // Total de Noches Reservadas y Confirmadas
+    $amount_day=0; $amount_month=0; $amount_year=0; $amount_total=0;
+    $_28 = true;
+    $anio = date("Y", $day_init);
+
+    for($day = $day_init; $day <= $day_last; $day+=$day_more){
+        $anio_act = date("Y", $day);
+        if( $anio_act != $anio ){
+            $amount_day=0; $amount_month=0; $amount_year=0; $amount_total=0;
+            $anio = $anio_act;
+        }
+        $print = true;
+        if( date('d/m/Y',$day) == "28/10/2018" ){
+            if($_28){ $_28 = false; }else{ $print = false; }
+        }
+        if( $print ){
+            foreach($reservas as $reserva){
+                $fecha = strtotime( date('m/d/Y', strtotime($reserva->date) ) );
+                $hoy = strtotime(date('m/d/Y', $day));
+                if( $fecha == $hoy ){
+                    $amount_day += $reserva->noches; $amount_month += $reserva->noches; $amount_year += $reserva->noches; $amount_total += $reserva->noches;
+                }
+            }
+            if( time() > $day-84600 ){
+                $data["noches_reservadas"][ date('d-m-Y',$day) ] = $amount_day;
+            }
+            $amount_day=0;
+            if(date('t',$day)==date('d',$day) || $day_last==$day){
+                $data["noches_reservadas"][ date('m-Y',$day) ] = $amount_month;
+                $amount_month=0;
+                if(date('m',$day)=='12' || $day_last==$day){
+                    $data["noches_reservadas"][ date('Y',$day) ] = $amount_year;
+                    $amount_year=0;
+                }
+            }
+        }
+    }
+    $data["noches_reservadas"]["total"] = $amount_total;
+
+    echo "<pre>";
+        print_r($data);
+    echo "</pre>";
+
+    exit();
+*/
 ?>

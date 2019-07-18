@@ -68,7 +68,7 @@
 	                }
 	            }
 	            if( time() > $day-84600 ){
-	            	// $data[ date('d-m-Y', $day) ] = $amount_day;
+	            	$data[ date('d-m-Y', $day) ] = $amount_day;
 	            }
 	            $amount_day = 0;
 	            if(date('t',$day) == date('d',$day) || $day_last == $day){
