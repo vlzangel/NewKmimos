@@ -32,7 +32,7 @@
             $value->cliente,
             $value->correo_cliente,
             $value->telefono_cliente,
-            "Eventos",
+            $eventos,
             '<div id="'.$cliente_id.'" class="mostrarInfo" onclick="mostrarEvento('.$cliente_id.')">Mostrar</div>',
             $value->recompra_1_mes,
             $value->recompra_3_meses,
