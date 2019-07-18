@@ -127,9 +127,14 @@
         $data["eventos_reserva"] = loop($_reservas, $inits, "eventos");
         $data["noches_reservadas"] = loop($reservas, $inits, "noches");
 
+        $json = json_encode($data);
+        $wpdb->query("UPDATE wlabel_monitor SET data = '{$json}' WHERE id = ".$_wlabel->id);
+        
+        /*
         echo "<pre>";
         	print_r($data);
         echo "</pre>";
+        */
     }
 
     $fin = time();
