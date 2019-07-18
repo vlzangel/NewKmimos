@@ -68,20 +68,23 @@
 	                }
 	            }
 	            if( time() > $day-84600 ){
-	            	$data[ date('d-m-Y', $day) ] = $amount_day;
+	            	$data[] = [ 
+	            		date('d-m-Y', $day)
+	            		$amount_day
+	            	];
 	            }
 	            $amount_day = 0;
 	            if(date('t',$day) == date('d',$day) || $day_last == $day){
-	            	$data[ date('m-Y',$day) ] = $amount_month;
+	            	$data[] = [ date('m-Y',$day), $amount_month];
 	                $amount_month = 0;
 	                if(date('m',$day) == '12' || $day_last == $day){
-	            		$data[ date('Y',$day) ] = $amount_year;
+	            		$data[] = [ date('Y',$day), $amount_year ];
 	                    $amount_year = 0;
 	                }
 	            }
 	        }
 	    }
-	    $data["total"] = $amount_total;
+	    $data[] = ["total", $amount_total];
 
 	    return $data;
 	}
