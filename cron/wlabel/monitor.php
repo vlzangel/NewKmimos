@@ -128,8 +128,8 @@
         $data["noches_reservadas"] = loop($reservas, $inits, "noches");
 
         $json = json_encode($data);
-        $wpdb->query("UPDATE wlabel_monitor SET data = '{$json}' WHERE id = ".$_wlabel->id);
-        
+        $wpdb->query("UPDATE wlabel_monitor SET data = '{$json}', actualizado = NOW() WHERE id = ".$_wlabel->id);
+
         /*
         echo "<pre>";
         	print_r($data);
