@@ -381,31 +381,21 @@ $_wlabel_user->wlabel_Export('detail','DETALLE DE MONTOS','table');
 
                         $_BUILDbookings = array();
                         foreach($bookings as $key => $booking){
-                            //var_dump($booking);
                             $ID=$booking->ID;
                             $date=strtotime($booking->post_date);
                             $customer=$booking->post_author;
                             $status=$booking->post_status;
                             $order=$booking->post_parent;
                             $status_name=$status;
-
                             $_metas_booking = get_post_meta($ID);
                             $_metas_order = get_post_meta($order);
-
                             $IDproduct=$_metas_booking['_booking_product_id'][0];
                             $IDcustomer=$_metas_booking['_booking_customer_id'][0];
                             $IDorder_item=$_metas_booking['_booking_order_item_id'][0];
-
                             $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_subtotal');
-                            
-                            //CUSTOMER
                             $_metas_customer = get_user_meta($customer);
                             $_customer_name = $_metas_customer['first_name'][0] . " " . $_metas_customer['last_name'][0];
-
                             $product = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID ='$IDproduct'");
-
-                // if( $_SESSION["test"] == "Si" ){ echo "<pre>"; print_r( $_metas_order ); echo "</pre>";}
-                            
                             $_BUILDbookings[$ID] = array();
                             $_BUILDbookings[$ID]['booking'] = $ID;
                             $_BUILDbookings[$ID]['order'] = $order;

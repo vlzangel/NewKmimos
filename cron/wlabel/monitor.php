@@ -10,10 +10,11 @@
     foreach ($wlabels as $key => $_wlabel) {
 
     	$wlabel = $_wlabel->wlabel;
+        $inicio_wlabel = $_wlabel->inicio_wlabel;
 
     	$condicion_referido = "( usermeta.meta_value = '{$wlabel}' OR usermeta_2.meta_value LIKE '%{$wlabel}%' )";
                             
-        $sql = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$wlabel}' AND time >= '2018-09-01 00:00:00' ";
+        $sql = "SELECT * FROM `wp_kmimos_subscribe` WHERE source = '{$wlabel}' AND time >= '{$inicio_wlabel} 00:00:00' ";
         $leads = $wpdb->get_results($sql);
 
         $sql = "
@@ -29,7 +30,7 @@
                 LEFT JOIN wp_usermeta AS usermeta_2 ON (usermeta_2.user_id=users.ID AND usermeta_2.meta_key='user_referred')
             WHERE
                 {$condicion_referido} AND
-                users.user_registered >= '2018-09-01 00:00:00'
+                users.user_registered >= '{$inicio_wlabel} 00:00:00'
             ORDER BY
                 users.ID DESC
         ";
@@ -69,7 +70,7 @@
                     wlabel_reserva.meta_value LIKE '%{$wlabel}%'
                 )
                 and cl.ID > 0 AND
-                reservas.post_date >= '2018-09-01 00:00:00'
+                reservas.post_date >= '{$inicio_wlabel} 00:00:00'
             ORDER BY
                 reservas.ID DESC
         ";
@@ -111,7 +112,7 @@
         	"noches_reservadas" => [],
         ];
 
-        $day_init = strtotime(date('m/d/Y',  strtotime("2019-01-01") ));
+        $day_init = strtotime(date('m/d/Y',  strtotime($inicio_wlabel) ));
         $day_last=strtotime( date("Y")."-".(date('m')+1)."-01" );
         $day_more = (24*60*60);
 
