@@ -55,9 +55,9 @@
 
             $value->forma_de_pago,
             $value->tipo_de_pago,
-            $value->total_a_pagar,
-            $value->monto_pagado,
-            $value->monto_remanente,
+            number_round($value->total_a_pagar),
+            number_round($value->monto_pagado),
+            number_round($value->monto_remanente),
             $value->pedido,
             $value->observacion              
         ];
