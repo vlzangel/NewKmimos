@@ -19,7 +19,16 @@
 					foreach ($temp as $email) {
 						if( !in_array('BCC: '.$email, $destinatarios) ){
 							$destinatarios[] = 'BCC: '.$email;
-							wp_mail( trim($email) , $d->asunto, $d->plantilla);
+
+							$info_validacion = base64_encode( json_encode( [
+								"id" => $campaing->id,
+								"type" => "img",
+								"format" => "png",
+								"email" => $email
+							] ) );
+
+							$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'" />';
+							wp_mail( trim($email) , $d->asunto, $mensaje);
 						}
 					}
 				}

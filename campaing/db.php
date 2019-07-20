@@ -3,7 +3,7 @@
 
 		private $conn;
 
-		function db($con){
+		function __construct($con){
 			$this->conn = $con;
 		}
 
