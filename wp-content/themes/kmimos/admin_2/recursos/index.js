@@ -1,5 +1,5 @@
-var table; 
-var table_modal; 
+var table = ""; 
+var table_modal = ""; 
 jQuery(document).ready(function() {
     loadTabla();
     jQuery("#close_modal").on("click", function(e){

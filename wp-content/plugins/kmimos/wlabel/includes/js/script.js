@@ -170,7 +170,6 @@ function modules_filter_trdate(element, type, table){
     }else if(month !=''){
         table.find('tbody tr.trshow[data-month="'+month+'"]').removeClass('noshow');
     }else{
-
         table.find('tbody tr.trshow').removeClass('noshow');
     }
     modules_table_count(element);

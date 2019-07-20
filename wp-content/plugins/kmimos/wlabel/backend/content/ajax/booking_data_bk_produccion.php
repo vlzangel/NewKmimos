@@ -18,7 +18,6 @@
         $cliente_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$value->correo_cliente}' ");
         $_wlabel = get_user_meta($cliente_id, "_wlabel", true);
         $conocio = strtolower($value->donde_nos_conocio);
-
         if( strpos("_".$conocio, $wlabel) !== false || $_wlabel == $wlabel ){
             $eventos = $wpdb->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$cliente_id} AND post_type = 'wc_booking' AND post_date >= '2018-09-01 00:00:00' ");
             $_reservas["data"][] = [
@@ -34,6 +33,7 @@
                 $value->num_noches_totales,
                 $value->cliente,
                 $value->correo_cliente,
+                /*
                 $value->telefono_cliente,
                 $eventos,
                 '<div id="'.$cliente_id.'" class="mostrarInfo" onclick="mostrarEvento('.$cliente_id.')">Mostrar</div>',
@@ -41,7 +41,9 @@
                 $value->recompra_3_meses,
                 $value->recompra_6_meses,
                 $value->recompra_12_meses,
+                */
                 $value->donde_nos_conocio,
+                /*
                 $value->mascotas,
                 $value->razas,
                 $value->edad,
@@ -58,6 +60,7 @@
 
                 $value->forma_de_pago,
                 $value->tipo_de_pago,
+                */
                 number_round($value->total_a_pagar),
                 number_round($value->monto_pagado),
                 number_round($value->monto_remanente),

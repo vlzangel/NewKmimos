@@ -26,7 +26,7 @@
 		$listas = [];
 		foreach ($_listas as $key => $lista) {
 			$d = json_decode($lista->data);
-			$listas[ $lista->id ] = $d->data->titulo;
+			$listas[ $lista->id ] = $d->titulo;
 		}
 		
 		foreach ($info as $key => $value) {
@@ -53,18 +53,26 @@
 	   	die();
 	} );
 
+	function get_despues(){
+		return [
+			0 => "No hacer nada",
+			1 => "Enviar otra campaña",
+		];
+	}
+
     function get_campaing_form($info, $action = 'insert'){
 		global $wpdb;
 		$btn = 'Crear';
 		if( $action == 'update' ){
 			$input_id = '<input type="hidden" name="id" value="'.$info->id.'" />';
-			$info = (array)  json_decode($info->data);
+			$info = (array) json_decode($info->data);
 			extract($info);
 			$btn = 'Actualizar';
 		}
 
 		$_listas = $wpdb->get_results("SELECT * FROM vlz_listas ORDER BY creada DESC");
 		$listas = '';
+		$listas_despues = '';
 		foreach ($_listas as $key => $lista) {
 			$d = json_decode($lista->data);
 			if( $action == 'update' ){
@@ -72,16 +80,33 @@
 			}else{
 				$selected = '';
 			}
-			$listas .= '<option value="'.$lista->id.'" '.$selected.' >'.$d->data->titulo.'</option>';
+			$listas .= '<option value="'.$lista->id.'" '.$selected.' >'.$d->titulo.'</option>';
 		}
-		/*
-		echo "<pre>";
-			print_r($info);
-		echo "</pre>";
-		*/
+		$despues = ( !isset($despues) ) ? 0 : $despues;
+		$opciones = get_despues();
+		$_despues = '';
+		foreach ($opciones as $key => $opcion) {
+			$_despues .= '<option value="'.$key.'" '.selected($key, $despues, false).'>'.$opcion.'</option>';
+		}
+
+		$_campaings = $wpdb->get_results("SELECT * FROM vlz_campaing ORDER BY creada DESC");
+		$_campaings_options = '<option value="" >No enviar nada</option>';
+		$_campaings_options_no = '<option value="" >No enviar nada</option>';
+		foreach ($_campaings as $key => $cam) {
+			$d = json_decode($cam->data);
+			$selected_despues = ( $cam->id == $info["campaing_despues"] ) ? 'selected' : '';
+			$selected_despues_no = ( $cam->id == $info["campaing_despues_no_abre"] ) ? 'selected' : '';
+			$_campaings_options .= '<option value="'.$cam->id.'" '.$selected_despues.' >'.$d->data->titulo.'</option>';
+			$_campaings_options_no .= '<option value="'.$cam->id.'" '.$selected_despues_no.' >'.$d->data->titulo.'</option>';
+		}
+
+		$enviar_otra = ( $info["despues"]+0 == 1 ) ? '' : 'campaing_despues_hidden' ;
+
 		echo '
 			<form id="campaing_form" data-modulo="campaing" >
 				'.$input_id.'
+
+
 				<div class="form-group">
 					<label for="titulo">Nombre de la Campaña</label>
 					<input type="text" class="form-control" id="titulo" name="data[titulo]" placeholder="Titulo de la Campaña" value="'.$data->titulo.'" required />
@@ -101,19 +126,77 @@
 					</select>
 				</div>
 				<div class="row">
+					<div class="col-md-12">
+						<label>Desde</label>
+					</div>
+				</div>
+				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="fecha">Fecha</label>
 							<input type="date" id="fecha" name="data[fecha]" class="form-control" value="'.$data->fecha.'" required >
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="hora">Hora</label>
 							<input type="time" id="hora" name="data[hora]" class="form-control" value="'.$data->hora.'" required >
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<label>Hasta</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="date" id="fecha_fin" name="data[fecha_fin]" class="form-control" value="'.$data->fecha_fin.'" >
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="time" id="hora_fin" name="data[hora_fin]" class="form-control" value="'.$data->hora_fin.'" >
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="despues">Despues hacer:</label>
+							<select id="despues" name="despues" class="form-control" onchange="_despues( jQuery(this) )" required >
+								'.$_despues.'
+							</select>
+						</div>
+					</div>
+					<div id="campaing_despues_div" class="col-md-12 '.$enviar_otra.'">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="campaing_despues_delay">Esperar cuantos días:</label>
+									<input type="number" id="campaing_despues_delay" name="campaing_despues_delay" class="form-control" value="'.$info["campaing_despues_delay"].'" />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="campaing_despues">Campaña (Si abre el correo):</label>
+									<select id="campaing_despues" name="campaing_despues" class="form-control" >
+										'.$_campaings_options.'
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="campaing_despues_no_abre">Campaña (Si NO abre el correo):</label>
+									<select id="campaing_despues_no_abre" name="campaing_despues_no_abre" class="form-control" >
+										'.$_campaings_options_no.'
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="text-right">
 					<button id="btn_submit_modal" type="submit" class="btn btn-primary">'.$btn.'</button>
 				</div>

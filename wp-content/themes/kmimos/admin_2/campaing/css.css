@@ -17,3 +17,19 @@
 .second-toolbar #logo {
 	display: none !important;
 }
+
+.campaing_despues_hidden{
+	display: none;
+}
+
+.campaing_despues_show{
+	display: block;
+}
+
+#campaing_despues_div{
+	padding: 0px 30px;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: 30px !important;
+}
