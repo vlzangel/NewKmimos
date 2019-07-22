@@ -104,6 +104,8 @@
         }
 
         $sql .= "
+                (NULL, {$user_id}, 'registrado_desde',    'pagina'),
+
                 (NULL, {$user_id}, 'user_pass',           '{$password}'),
                 (NULL, {$user_id}, 'user_mobile',         '{$movil}'),
                 (NULL, {$user_id}, 'user_phone',          '{$movil}'),

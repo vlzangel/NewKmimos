@@ -57,7 +57,8 @@
 				update_user_meta( $user_id, 'last_name', $apellido );
 				update_user_meta( $user_id, 'user_referred', 'Amigo/Familiar' );
 				update_user_meta( $user_id, 'user_mobile', '' );
-				update_user_meta( $user_id, "landing-club-patitas", date('Y-m-d H:i:s') ); 		
+				update_user_meta( $user_id, "landing-club-patitas", date('Y-m-d H:i:s') ); 	
+				update_user_meta( $user_id, 'registrado_desde', "pagina" );	
 
 			    $user = new WP_User( $user_id );
 			    $user->set_role( 'subscriber' );

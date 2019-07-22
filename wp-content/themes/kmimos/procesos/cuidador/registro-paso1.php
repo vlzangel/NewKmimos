@@ -297,6 +297,7 @@
                 $sql = "
                     INSERT INTO wp_usermeta VALUES
                          (NULL, ".$user_id.", 'user_favorites',      '')
+                        ,(NULL, ".$user_id.", 'registrado_desde',    'pagina')
                         ,(NULL, ".$user_id.", 'user_pass',           '".$clave."')
                         ,(NULL, ".$user_id.", 'user_phone',          '".$telefono."')
                         ,(NULL, ".$user_id.", 'user_mobile',         '".$telefono."')
