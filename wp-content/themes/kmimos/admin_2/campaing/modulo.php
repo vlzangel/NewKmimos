@@ -17,39 +17,39 @@
 	add_action( 'wp_ajax_vlz_campaing_list', function() {
 		extract($_POST);
 		global $wpdb;
-		
 		$data["data"] = [];
-		
 		$info = $wpdb->get_results("SELECT * FROM vlz_campaing ORDER BY creada DESC");
-
 		$_listas = $wpdb->get_results("SELECT * FROM vlz_listas ORDER BY creada DESC");
 		$listas = [];
 		foreach ($_listas as $key => $lista) {
 			$d = json_decode($lista->data);
 			$listas[ $lista->id ] = $d->titulo;
 		}
-		
 		foreach ($info as $key => $value) {
 			$d = json_decode($value->data);
-
-			$temp = [];
-			foreach ($d->data_listas as $_key => $_value) {
-				$temp[] = $listas[ $_value ];
+			if( isset($d->data_listas) ){
+				$temp = [];
+				foreach ($d->data_listas as $_key => $_value) {
+					$temp[] = $listas[ $_value ];
+				}
+				$temp = implode("<br>", $temp);
+			}else{
+				$cam = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$d->campaing_anterior);
+				$_d = json_decode($cam->data);
+				$se_abre = ( $d->campaing_despues_no_abre == 'si' ) ? 'Se abre el correo' : 'No se abre el correo';
+				$temp = "Enviar después de la campaña: <b>[ {$_d->data->titulo} ]</b> en <b>[ {$d->campaing_despues_delay} ]</b> días si <b>[ {$se_abre} ]</b>";
 			}
-
 			$data["data"][] = [
 				$value->id,
 				$d->data->titulo,
-				implode("<br>", $temp),
+				$temp,
 				'
 					<span class="btn btn-primary btn-s" onclick="_edit( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_edit" data-titulo="Editar Campaña" >Editar</span> &nbsp;
 					<span class="btn btn-danger btn-s" onclick="_del_form( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_del_form" data-titulo="Eliminar Campaña" >Eliminar</span>
 				'
 			];
 		}
-
 		echo json_encode($data);
-
 	   	die();
 	} );
 
@@ -60,47 +60,58 @@
 		];
 	}
 
+	function get_hacer_despues(){
+		return [
+			0 => "Campaña padre (Inicio de Flujo)",
+			1 => "Enviar después de otra campaña",
+		];
+	}
+
     function get_campaing_form($info, $action = 'insert'){
 		global $wpdb;
-		$btn = 'Crear';
+		$btn = 'Crear'; $ID = 0;
 		if( $action == 'update' ){
+			$ID = $info->id;
 			$input_id = '<input type="hidden" name="id" value="'.$info->id.'" />';
 			$info = (array) json_decode($info->data);
 			extract($info);
 			$btn = 'Actualizar';
 		}
-
 		$_listas = $wpdb->get_results("SELECT * FROM vlz_listas ORDER BY creada DESC");
 		$listas = '';
 		$listas_despues = '';
-		foreach ($_listas as $key => $lista) {
-			$d = json_decode($lista->data);
-			if( $action == 'update' ){
-				$selected = ( in_array($lista->id, $data_listas) ) ? 'selected' : '';
-			}else{
-				$selected = '';
+		if( isset($data_listas) ){
+			foreach ($_listas as $key => $lista) {
+				$d = json_decode($lista->data);
+				if( $action == 'update' ){
+					$selected = ( in_array($lista->id, $data_listas) ) ? 'selected' : '';
+				}else{
+					$selected = '';
+				}
+				$listas .= '<option value="'.$lista->id.'" '.$selected.' >'.$d->titulo.'</option>';
 			}
-			$listas .= '<option value="'.$lista->id.'" '.$selected.' >'.$d->titulo.'</option>';
 		}
-		$despues = ( !isset($despues) ) ? 0 : $despues;
-		$opciones = get_despues();
-		$_despues = '';
-		foreach ($opciones as $key => $opcion) {
-			$_despues .= '<option value="'.$key.'" '.selected($key, $despues, false).'>'.$opcion.'</option>';
-		}
+
 
 		$_campaings = $wpdb->get_results("SELECT * FROM vlz_campaing ORDER BY creada DESC");
 		$_campaings_options = '<option value="" >No enviar nada</option>';
-		$_campaings_options_no = '<option value="" >No enviar nada</option>';
 		foreach ($_campaings as $key => $cam) {
 			$d = json_decode($cam->data);
-			$selected_despues = ( $cam->id == $info["campaing_despues"] ) ? 'selected' : '';
-			$selected_despues_no = ( $cam->id == $info["campaing_despues_no_abre"] ) ? 'selected' : '';
-			$_campaings_options .= '<option value="'.$cam->id.'" '.$selected_despues.' >'.$d->data->titulo.'</option>';
-			$_campaings_options_no .= '<option value="'.$cam->id.'" '.$selected_despues_no.' >'.$d->data->titulo.'</option>';
+			$selected_despues = ( $cam->id == $info["campaing_anterior"] ) ? 'selected' : '';
+			if( $action == 'update' && $cam->id == $ID ){}else{
+				$_campaings_options .= '<option value="'.$cam->id.'" '.$selected_despues.' >'.$d->data->titulo.'</option>';
+			}
 		}
 
-		$enviar_otra = ( $info["despues"]+0 == 1 ) ? '' : 'campaing_despues_hidden' ;
+		$enviar_otra = ( $info["hacer_despues"]+0 == 1 ) ? '' : 'campaing_despues_hidden' ;
+		$show_listas = ( $info["hacer_despues"]+0 == 1 ) ? 'campaing_despues_hidden' : '' ;
+		
+		$hacer_despues = ( !isset($hacer_despues) ) ? 0 : $hacer_despues;
+		$opciones = get_hacer_despues();
+		$_hacer_despues = '';
+		foreach ($opciones as $key => $opcion) {
+			$_hacer_despues .= '<option value="'.$key.'" '.selected($key, $hacer_despues, false).'>'.$opcion.'</option>';
+		}
 
 		echo '
 			<form id="campaing_form" data-modulo="campaing" >
@@ -119,48 +130,122 @@
 					<label for="plantilla">Plantilla</label>
 					<textarea id="contenido" name="data[plantilla]" class="form-control" placeholder="Contenido de Email">'.$data->plantilla.'</textarea>
 				</div>
-				<div class="form-group">
-					<label for="listas">Listas</label>
-					<select id="listas" name="data_listas[]" multiple class="form-control" required >
-						'.$listas.'
-					</select>
-				</div>
+
+
+
+
 				<div class="row">
 					<div class="col-md-12">
-						<label>Desde</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
 						<div class="form-group">
-							<input type="date" id="fecha" name="data[fecha]" class="form-control" value="'.$data->fecha.'" required >
+							<label for="hacer_despues">Hacer después de:</label>
+							<select id="hacer_despues" name="hacer_despues" class="form-control" onchange="_hacer_despues( jQuery(this) )" required >
+								'.$_hacer_despues.'
+							</select>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<input type="time" id="hora" name="data[hora]" class="form-control" value="'.$data->hora.'" required >
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<label>Hasta</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<input type="date" id="fecha_fin" name="data[fecha_fin]" class="form-control" value="'.$data->fecha_fin.'" >
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<input type="time" id="hora_fin" name="data[hora_fin]" class="form-control" value="'.$data->hora_fin.'" >
+					<div id="campaing_hacer_despues_div" class="col-md-12 '.$enviar_otra.'">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="campaing_anterior">Campaña:</label>
+									<select id="campaing_anterior" name="campaing_anterior" class="form-control" >
+										'.$_campaings_options.'
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="campaing_despues_delay">Esperar cuantos días:</label>
+									<input type="number" id="campaing_despues_delay" name="campaing_despues_delay" class="form-control" value="'.$info["campaing_despues_delay"].'" />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="campaing_despues_no_abre">Enviar si:</label>
+									<select id="campaing_despues_no_abre" name="campaing_despues_no_abre" class="form-control" >
+										<option value="" '.selected('', $info["campaing_despues_no_abre"], false).'>No hacer nada</option>
+										<option value="si" '.selected('si', $info["campaing_despues_no_abre"], false).'>Se abre la campaña anterior</option>
+										<option value="no" '.selected('no', $info["campaing_despues_no_abre"], false).'>NO  se abre la campaña anterior</option>
+									</select>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="row">
+				<div id="listas_div" class="'.$show_listas.'">
+
+					<div class="form-group">
+						<label for="listas">Listas</label>
+						<select id="listas" name="data_listas[]" data-name="data_listas[]" data-required="true" multiple class="form-control" required >
+							'.$listas.'
+						</select>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<label>Desde</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="date" id="fecha" name="data[fecha]" data-name="data[fecha]" data-required="true" class="form-control" value="'.$data->fecha.'" required >
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="time" id="hora" name="data[hora]" data-name="data[hora]" data-required="true" class="form-control" value="'.$data->hora.'" required >
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Hasta</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="date" id="fecha_fin" name="data[fecha_fin]" data-name="data[fecha_fin]" data-required="false" class="form-control" value="'.$data->fecha_fin.'" >
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="time" id="hora_fin" name="data[hora_fin]" data-name="data[hora_fin]" data-required="false" class="form-control" value="'.$data->hora_fin.'" >
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="text-right">
+					<button id="btn_submit_modal" type="submit" class="btn btn-primary">'.$btn.'</button>
+				</div>
+			</form>
+			<script>
+				_'.$action.'("campaing_form");
+				if (editor) { editor.destroy(); }
+	            var editor = new FroalaEditor("#contenido", {
+	                heightMin: 400,
+	                heightMax: 410,
+	                imageManagerLoadURL: ADMIN_AJAX+"?action=vlz_campaing_image_manager",
+	                imageManagerDeleteURL: ADMIN_AJAX+"?action=vlz_campaing_image_delete",
+	                imageManagerDeleteMethod: "POST",
+	                imageUploadURL: ADMIN_AJAX+"?action=vlz_campaing_uploads",
+	                imageUploadParams: {
+	                    id: "contenido"
+	                },
+					imageUploadMethod: "POST",
+					imageMaxSize: 5 * 1024 * 1024,
+					imageAllowedTypes: ["jpeg", "jpg", "png", "gif"]
+	            });
+	            _verificar_names();
+			</script>
+		';
+
+		/*
+				<div class="row" style="display: none;">
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="despues">Despues hacer:</label>
@@ -196,30 +281,7 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="text-right">
-					<button id="btn_submit_modal" type="submit" class="btn btn-primary">'.$btn.'</button>
-				</div>
-			</form>
-			<script>
-				_'.$action.'("campaing_form");
-				if (editor) { editor.destroy(); }
-	            var editor = new FroalaEditor("#contenido", {
-	                heightMin: 400,
-	                heightMax: 410,
-	                imageManagerLoadURL: ADMIN_AJAX+"?action=vlz_campaing_image_manager",
-	                imageManagerDeleteURL: ADMIN_AJAX+"?action=vlz_campaing_image_delete",
-	                imageManagerDeleteMethod: "POST",
-	                imageUploadURL: ADMIN_AJAX+"?action=vlz_campaing_uploads",
-	                imageUploadParams: {
-	                    id: "contenido"
-	                },
-					imageUploadMethod: "POST",
-					imageMaxSize: 5 * 1024 * 1024,
-					imageAllowedTypes: ["jpeg", "jpg", "png", "gif"]
-	            });
-			</script>
-		';
+		*/
     }
 
 	add_action( 'wp_ajax_vlz_campaing_new', function() {
