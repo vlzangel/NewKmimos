@@ -70,6 +70,7 @@
     function get_campaing_form($info, $action = 'insert'){
 		global $wpdb;
 		$btn = 'Crear'; $ID = 0;
+		$data_listas = [];
 		if( $action == 'update' ){
 			$ID = $info->id;
 			$input_id = '<input type="hidden" name="id" value="'.$info->id.'" />';
