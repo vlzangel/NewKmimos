@@ -44,8 +44,9 @@
 				$d->data->titulo,
 				$temp,
 				'
-					<span class="btn btn-primary btn-s" onclick="_edit( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_edit" data-titulo="Editar Campaña" >Editar</span> &nbsp;
-					<span class="btn btn-danger btn-s" onclick="_del_form( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_del_form" data-titulo="Eliminar Campaña" >Eliminar</span>
+					<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_test" data-titulo="Envio de Prueba" >Test</span> &nbsp;
+					<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_edit" data-titulo="Editar Campaña" >Editar</span> &nbsp;
+					<span class="btn btn-danger  btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_del_form" data-titulo="Eliminar Campaña" >Eliminar</span>
 				'
 			];
 		}
@@ -66,6 +67,52 @@
 			1 => "Enviar después de otra campaña",
 		];
 	}
+
+	add_action( 'wp_ajax_vlz_campaing_test', function() {
+		extract($_POST);
+		global $wpdb;
+		
+		echo '
+			<form id="listas_form" data-modulo="campaing" >
+				<input type="hidden" name="form" value="modal" />
+				<input type="hidden" name="id" value="'.$ID.'" />
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="text" class="form-control" id="email" name="email" />
+				</div>
+				<div class="text-right">
+					<button id="btn_submit_modal" type="submit" class="btn btn-primary">Enviar</button>
+				</div>
+			</form>
+			<script>_test("listas_form");</script>
+		';
+	   	die();
+	} );
+
+	add_action( 'wp_ajax_vlz_campaing_test_send', function() {
+		extract($_POST);
+		global $wpdb;
+		$campaing = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$id);
+		$d = json_decode($campaing->data);
+		
+		$info_validacion = base64_encode( json_encode( [
+			"id" => $campaing->id,
+			"type" => "img",
+			"format" => "png",
+			"email" => $email
+		] ) );
+
+		$d->data->plantilla = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title=""></a></p>', '', $d->data->plantilla);
+		$mensaje = $d->data->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
+		wp_mail( trim($email) , $d->data->asunto, $mensaje);
+
+		echo json_encode([
+			"error" => "",
+			"msg" => "Mensaje Enviado Exitosamente!",
+		]);
+
+	   	die();
+	} );
 
     function get_campaing_form($info, $action = 'insert'){
 		global $wpdb;

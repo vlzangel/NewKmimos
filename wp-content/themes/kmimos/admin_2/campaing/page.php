@@ -21,7 +21,7 @@
                     <th width="30">#</th>
                     <th>Nombre</th>
                     <th>Listas</th>
-                    <th width="120">Acciones</th>
+                    <th width="150">Acciones</th>
                 </tr>
             </thead>
             <tbody></tbody>

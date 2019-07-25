@@ -78,27 +78,7 @@ function init_modal_2(data){
     });
 }
 
-function _new(e) {
-    init_modal_2({
-        "titulo": e.attr("data-titulo"),
-        "modal": e.attr("data-modal"),
-        "info": {
-            "ID": e.attr("data-id")
-        }
-    });
-}
-
-function _edit(e) {
-    init_modal_2({
-        "titulo": e.attr("data-titulo"),
-        "modal": e.attr("data-modal"),
-        "info": {
-            "ID": e.attr("data-id")
-        }
-    });
-}
-
-function _del_form(e) {
+function _modal(e){
     init_modal_2({
         "titulo": e.attr("data-titulo"),
         "modal": e.attr("data-modal"),
@@ -109,14 +89,11 @@ function _del_form(e) {
 }
 
 function _insert(id) {
-
     jQuery("#"+id).unbind("submit").bind("submit", function(e){
         e.preventDefault();
-    
         var btn_txt = jQuery("#btn_submit_modal").html();
         jQuery("#btn_submit_modal").html("Procesando...");
         jQuery("#btn_submit_modal").prop("disabled", true);
-
         jQuery.post(
             ADMIN_AJAX+'?action=vlz_'+jQuery(this).attr("data-modulo")+"_insert",
             jQuery(this).serialize(),
@@ -128,7 +105,6 @@ function _insert(id) {
                 }
                 jQuery("#btn_submit_modal").html(btn_txt);
                 jQuery("#btn_submit_modal").prop("disabled", false);
-
                 show_msg(data);
             },
             'json'
@@ -140,11 +116,9 @@ function _update(id) {
 
     jQuery("#"+id).unbind("submit").bind("submit", function(e){
         e.preventDefault();
-    
         var btn_txt = jQuery("#btn_submit_modal").html();
         jQuery("#btn_submit_modal").html("Procesando...");
         jQuery("#btn_submit_modal").prop("disabled", true);
-
         jQuery.post(
             ADMIN_AJAX+'?action=vlz_'+jQuery(this).attr("data-modulo")+"_update",
             jQuery(this).serialize(),
@@ -156,7 +130,6 @@ function _update(id) {
                 }
                 jQuery("#btn_submit_modal").html(btn_txt);
                 jQuery("#btn_submit_modal").prop("disabled", false);
-
                 show_msg(data);
             },
             'json'

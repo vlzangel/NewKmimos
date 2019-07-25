@@ -88,8 +88,8 @@
 					$suscriptor[0],
 					$suscriptor[1],
 					'<div style="text-align: center;"> 
-						<span class="btn btn-primary btn-s" onclick="_edit( jQuery(this) )" data-id="'.$ID."|".$suscriptor[1].'" data-modal="listas_edit_cliente" data-titulo="Editar Cliente" >Editar</span> &nbsp;
-						<span class="btn btn-danger btn-s" onclick="_del_form( jQuery(this) )" data-id="'.$ID."|".base64_encode($suscriptor[0])."|".$suscriptor[1].'" data-modal="listas_del_modal" data-titulo="Eliminar Cliente" >Eliminar</span>
+						<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$ID."|".$suscriptor[1].'" data-modal="listas_edit_cliente" data-titulo="Editar Cliente" >Editar</span> &nbsp;
+						<span class="btn btn-danger  btn-s" onclick="_modal( jQuery(this) )" data-id="'.$ID."|".base64_encode($suscriptor[0])."|".$suscriptor[1].'" data-modal="listas_del_modal" data-titulo="Eliminar Cliente" >Eliminar</span>
 					</div>'
 				];
 			}
@@ -226,7 +226,6 @@
 			</form>
 			<script>_delete("listas_form");</script>
 		';
-
 	   	die();
 	} );
 

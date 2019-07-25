@@ -41,3 +41,30 @@ function _verificar_names(){
 		break;
 	}
 }
+
+function _test(id) {
+    jQuery("#"+id).unbind("submit").bind("submit", function(e){
+        e.preventDefault();
+
+        var btn_txt = jQuery("#btn_submit_modal").html();
+        jQuery("#btn_submit_modal").html("Procesando...");
+        jQuery("#btn_submit_modal").prop("disabled", true);
+
+        jQuery.post(
+            ADMIN_AJAX+'?action=vlz_'+jQuery(this).attr("data-modulo")+"_test_send",
+            jQuery(this).serialize(),
+            function(data){
+                console.log( data );
+                
+                jQuery("#btn_submit_modal").html(btn_txt);
+                jQuery("#btn_submit_modal").prop("disabled", false);
+
+                jQuery(".modal > div > p").addClass('sucess');
+                setTimeout(function(){
+	                hide_modal();
+	            }, 1500);
+            },
+            'json'
+        );
+    });
+}
