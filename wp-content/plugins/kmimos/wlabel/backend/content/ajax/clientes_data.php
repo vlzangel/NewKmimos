@@ -70,9 +70,14 @@
 					$color = "#67e661";
 				}
 			}
+
+		    $registrado_desde = get_user_meta($usuario->ID, 'registrado_desde', true);
+		    $registrado_desde = ( empty($registrado_desde) ) ? 'App' : 'Página';
+
 	        $_data["data"][] = [
 	            $usuario->ID,  
 	            ( date("Y-m-d", strtotime( $usuario->user_registered ) ) ),
+	            $registrado_desde,
 	            $metas["first_name"][0]." ".$metas["last_name"][0],
 	            $usuario->user_email,
 	            $metas["user_mobile"][0],

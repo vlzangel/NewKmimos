@@ -46,6 +46,7 @@
 								<th>ID</th>
 								<th>Flash</th>
 								<th>Fecha Registro</th>
+								<th>Registrado desde</th>
 								<th>Fecha de Nacimiento</th>
 								<th>Nombre y Apellido</th>
 								<th>Nombre</th>

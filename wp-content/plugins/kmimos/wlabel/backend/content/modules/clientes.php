@@ -27,6 +27,7 @@
         <tr>
             <th width="40">ID</th>
             <th>Fecha Registro</th>
+            <th>Registrado desde</th>
             <th>Nombre y Apellido</th>
             <th>Email</th>
             <th>Teléfono</th>

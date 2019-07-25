@@ -46,9 +46,13 @@
 		    $r->primera_solicitud = ( $r->primera_solicitud == "" ) ? "-" : $r->primera_solicitud;
 		    $r->primera_reserva = ( $r->primera_reserva == "" ) ? "-" : $r->primera_reserva;
 
+		    $registrado_desde = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = '{$r->user_id}' AND meta_key = 'registrado_desde' ");
+		    $registrado_desde = ( $registrado_desde === false ) ? 'App' : 'Página';
+
 		    $data["data"][] = [
 		    	$r->user_id,
 		    	date('Y-m-d', strtotime($r->registro)),
+				$registrado_desde,
 				utf8_encode( $r->nombre ),
 				utf8_encode( $r->apellido ),
 				utf8_encode( '<a href="'.$_GET['home']."/?i=".$link_login.'"> '.$r->email.' </a>'),

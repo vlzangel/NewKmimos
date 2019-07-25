@@ -51,6 +51,7 @@
 						    <tr>
 						      	<th>#</th>
 						      	<th>Fecha Registro</th>
+								<th>Registrado desde</th>
 						      	<th>Nombre</th>
 						      	<th>Apellido</th>
 						      	<th>Email</th>

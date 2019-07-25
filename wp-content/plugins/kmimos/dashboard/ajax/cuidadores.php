@@ -36,10 +36,14 @@
 		    	$_status = '<span id="user_'.$r->user_id.'" class="enlace" onclick="change_status( jQuery(this) )" data-id="'.$r->user_id.'" data-status="activo">Activar</span>';
 		    } 
 
+		    $registrado_desde = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = '{$r->user_id}' AND meta_key = 'registrado_desde' ");
+		    $registrado_desde = ( $registrado_desde === false ) ? 'App' : 'Página';
+
 		    $data["data"][] = [
 		    	$r->user_id,
 		    	$r->flash,
 		    	date('Y-m-d', strtotime($r->registro)),
+				$registrado_desde,
 		    	$r->nacimiento,
 				utf8_encode( $r->full_name ),
 				utf8_encode( $r->nombre ),
