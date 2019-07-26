@@ -3,11 +3,15 @@
 	include dirname(__DIR__).'/campaing/db.php';
 	$info = (array) json_decode(base64_decode( $_GET['info']));
 	extract($info);
-	/*
+
+	
 	echo "<pre>";
 		print_r( $info );
 	echo "</pre>";
-	*/
+	
+
+	exit();
+
 	$campaing = $db->get_row("SELECT * FROM vlz_campaing WHERE id = {$id}");
 	$d = (array) json_decode($campaing->data);
 	if( is_array($d['vistos']) ){
