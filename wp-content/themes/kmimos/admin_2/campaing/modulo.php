@@ -475,7 +475,7 @@
 
 			// $_POST["vistos"] = str_replace("[", "{", $_POST["vistos"]);
 			// $_POST["vistos"] = str_replace("]", "}", $_POST["vistos"]);
-			$_POST["vistos"] = json_decode( $_POST["vistos"] );
+			$_POST["vistos"] = ( $_POST["vistos"] );
 
 			$_POST["data"]["plantilla"] = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
 			$_POST["data"]["plantilla"] = str_replace("Froala Editor", "", $_POST["data"]["plantilla"]);
