@@ -9,8 +9,10 @@
 
 	if( is_array($d['vistos']) ){
 		$vistos = [];
-		foreach ($d['vistos'] as $key => $value) { $vistos[] = $value['email']; }
-		if( !in_array($email, $vistos) ){ $d['vistos'][] = [ "fecha" => time(), "email" => $email ]; }
+		foreach ($d['vistos'] as $key => $value) { $vistos[] = $value->email; }
+		if( !in_array($email, $vistos) ){ 
+			$d['vistos'][] = [ "fecha" => time(), "email" => $email ]; 
+		}
 	}else{
 		$d['vistos'] = [ [ "fecha" => time(), "email" => $email ] ];
 	}
