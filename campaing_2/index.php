@@ -21,12 +21,6 @@
 	$sql = "UPDATE vlz_campaing SET data = '{$_data}' WHERE id = ".$id;
 	$db->query( $sql );	
 
-	echo "<pre>";
-		print_r( $sql );
-	echo "</pre>";
-	
-	exit();
-
 	header("Content-Type: image/png");
 	echo file_get_contents("img.png");
 ?>
