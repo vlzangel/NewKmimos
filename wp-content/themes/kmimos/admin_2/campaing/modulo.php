@@ -161,10 +161,14 @@
 			$_hacer_despues .= '<option value="'.$key.'" '.selected($key, $hacer_despues, false).'>'.$opcion.'</option>';
 		}
 
+		$_vistos = json_encode($vistos);
+		$_vistos = ( $_vistos == null ) ? '' : $_vistos;
+
 		echo '
 			<form id="campaing_form" data-modulo="campaing" >
 				'.$input_id.'
 
+				<input type="hidden" id="vistos" name="vistos" value="'.$_vistos.'" />
 
 				<div class="form-group">
 					<label for="titulo">Nombre de la Campaña</label>
@@ -178,9 +182,6 @@
 					<label for="plantilla">Plantilla</label>
 					<textarea id="contenido" name="data[plantilla]" class="form-control" placeholder="Contenido de Email">'.$data->plantilla.'</textarea>
 				</div>
-
-
-
 
 				<div class="row">
 					<div class="col-md-12">
@@ -291,45 +292,6 @@
 	            _verificar_names();
 			</script>
 		';
-
-		/*
-				<div class="row" style="display: none;">
-					<div class="col-md-12">
-						<div class="form-group">
-							<label for="despues">Despues hacer:</label>
-							<select id="despues" name="despues" class="form-control" onchange="_despues( jQuery(this) )" required >
-								'.$_despues.'
-							</select>
-						</div>
-					</div>
-					<div id="campaing_despues_div" class="col-md-12 '.$enviar_otra.'">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="campaing_despues_delay">Esperar cuantos días:</label>
-									<input type="number" id="campaing_despues_delay" name="campaing_despues_delay" class="form-control" value="'.$info["campaing_despues_delay"].'" />
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="campaing_despues">Campaña (Si abre el correo):</label>
-									<select id="campaing_despues" name="campaing_despues" class="form-control" >
-										'.$_campaings_options.'
-									</select>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="campaing_despues_no_abre">Campaña (Si NO abre el correo):</label>
-									<select id="campaing_despues_no_abre" name="campaing_despues_no_abre" class="form-control" >
-										'.$_campaings_options_no.'
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-		*/
     }
 
 	add_action( 'wp_ajax_vlz_campaing_new', function() {
