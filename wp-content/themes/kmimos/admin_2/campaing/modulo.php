@@ -163,6 +163,8 @@
 
 		$_vistos = ( empty($vistos) ) ? '{}' : json_encode($vistos, JSON_UNESCAPED_UNICODE);
 
+		$_vistos = str_replace('"', '\"', $_vistos);
+
 		echo '
 			<form id="campaing_form" data-modulo="campaing" >
 				'.$input_id.'
@@ -471,10 +473,10 @@
 		$existe = $wpdb->get_var("SELECT id FROM vlz_campaing WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' AND id != ".$id);
 		if( empty($existe) ){
 
-			$_POST["vistos"] = str_replace("[", "{", $_POST["vistos"]);
-			$_POST["vistos"] = str_replace("]", "}", $_POST["vistos"]);
+			// $_POST["vistos"] = str_replace("[", "{", $_POST["vistos"]);
+			// $_POST["vistos"] = str_replace("]", "}", $_POST["vistos"]);
 			$_POST["vistos"] = json_decode( $_POST["vistos"] );
-			
+
 			$_POST["data"]["plantilla"] = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
 			$_POST["data"]["plantilla"] = str_replace("Froala Editor", "", $_POST["data"]["plantilla"]);
 
