@@ -168,7 +168,7 @@
 			<form id="campaing_form" data-modulo="campaing" >
 				'.$input_id.'
 
-				<input type="hidden" id="vistos" name="vistos" value="'.$_vistos.'" />
+				<input type="hidden" id="vistos" name="vistos" value=\''.$_vistos.'\' />
 
 				<div class="form-group">
 					<label for="titulo">Nombre de la Campaña</label>
