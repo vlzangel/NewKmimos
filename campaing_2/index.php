@@ -13,7 +13,7 @@
 		$d['vistos'] = [ [ "fecha" => time(), "email" => $email ] ];
 	}
 
-	$_data = json_encode($d, JSON_UNESCAPED_UNICODE);
+	$_data = utf8_encode( json_encode($d, JSON_UNESCAPED_UNICODE) );
 	// $_data = str_replace('<p data-f-id=\"pbf\" style=\"text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;\">Powered by <a href=\"https:\/\/www.froala.com\/wysiwyg-editor?pb=1\" title=\"\"><\/a><\/p>', '', $data);
 
 	$sql = "UPDATE vlz_campaing SET data = '{$_data}' WHERE id = ".$id;
