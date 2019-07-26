@@ -161,8 +161,7 @@
 			$_hacer_despues .= '<option value="'.$key.'" '.selected($key, $hacer_despues, false).'>'.$opcion.'</option>';
 		}
 
-		$_vistos = json_encode($vistos);
-		$_vistos = ( $_vistos == null ) ? '' : $_vistos;
+		$_vistos = ( empty($_vistos) ) ? '{}' : json_encode($vistos);
 
 		echo '
 			<form id="campaing_form" data-modulo="campaing" >
@@ -448,6 +447,7 @@
 		$titulo = $data["titulo"];
 		$existe = $wpdb->get_var("SELECT id FROM vlz_campaing WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
 		if( empty($existe) ){
+			$_POST["vistos"] = json_decode( $_POST["vistos"] );
 			$_POST["data"]["plantilla"] = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
 			$_POST["data"]["plantilla"] = str_replace("Froala Editor", "", $_POST["data"]["plantilla"]);
 			$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
