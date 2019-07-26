@@ -161,7 +161,7 @@
 			$_hacer_despues .= '<option value="'.$key.'" '.selected($key, $hacer_despues, false).'>'.$opcion.'</option>';
 		}
 
-		$_vistos = ( empty($_vistos) ) ? '{}' : json_encode($vistos);
+		$_vistos = ( empty($vistos) ) ? '{}' : json_encode($vistos);
 
 		echo '
 			<form id="campaing_form" data-modulo="campaing" >
