@@ -13,19 +13,18 @@
 		$d['vistos'] = [ [ "fecha" => time(), "email" => $email ] ];
 	}
 
-	$data = json_encode($d, JSON_UNESCAPED_UNICODE);
-	$data = str_replace('<p data-f-id=\"pbf\" style=\"text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;\">Powered by <a href=\"https:\/\/www.froala.com\/wysiwyg-editor?pb=1\" title=\"\"><\/a><\/p>', '', $data);
-	
+	$_data = json_encode($d, JSON_UNESCAPED_UNICODE);
+	$_data = str_replace('<p data-f-id=\"pbf\" style=\"text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;\">Powered by <a href=\"https:\/\/www.froala.com\/wysiwyg-editor?pb=1\" title=\"\"><\/a><\/p>', '', $data);
 
-	
+	$sql = "UPDATE vlz_campaing SET data = '{$_data}' WHERE id = ".$id;
+	$db->query( $sql );	
+
 	echo "<pre>";
-		print_r( $data );
+		print_r( $_data );
 	echo "</pre>";
 	
 	exit();
-
-	$sql = "UPDATE vlz_campaing SET data = '{$data}' WHERE id = ".$id;
-	$db->query( $sql );
+	
 	header("Content-Type: image/png");
 	echo file_get_contents("img.png");
 ?>
