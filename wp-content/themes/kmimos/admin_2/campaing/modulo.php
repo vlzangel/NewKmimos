@@ -163,8 +163,6 @@
 
 		$_vistos = ( empty($vistos) ) ? '{}' : json_encode($vistos, JSON_UNESCAPED_UNICODE);
 
-		// $_vistos = str_replace('"', '\"', $_vistos);
-
 		echo '
 			<form id="campaing_form" data-modulo="campaing" >
 				'.$input_id.'
