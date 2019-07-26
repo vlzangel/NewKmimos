@@ -8,7 +8,9 @@
 	$d = (array) json_decode( utf8_encode($campaing->data) );
 
 	if( is_array($d['vistos']) ){
-		if( !in_array($email, $d['vistos']) ){ $d['vistos'][] = [ "fecha" => time(), "email" => $email ]; }
+		$vistos = [];
+		foreach ($d['vistos'] as $key => $value) { $vistos[] = $value['email']; }
+		if( !in_array($email, $vistos) ){ $d['vistos'][] = [ "fecha" => time(), "email" => $email ]; }
 	}else{
 		$d['vistos'] = [ [ "fecha" => time(), "email" => $email ] ];
 	}
