@@ -5,7 +5,7 @@
 	extract($info);
 
 	$campaing = $db->get_row("SELECT * FROM vlz_campaing WHERE id = {$id}");
-	$d = (array) json_decode($campaing->data);
+	$d = (array) json_decode( utf8_encode($campaing->data) );
 
 	
 	echo "<pre>";
