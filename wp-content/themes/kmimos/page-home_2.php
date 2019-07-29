@@ -798,8 +798,7 @@
 
 	$HTML .= '
 	<!-- CONECTATE -->
-
-	<div class="conectate_container" style="display: none;" >
+	<div class="conectate_container">
 		<h2>Conéctate de donde quieras</h2>
 		<img src="'.get_recurso("img").'HOME/PNG/Moviles.png" />
 		<span>Disponible en la web, y en dispositivos iOS y Android</span>
