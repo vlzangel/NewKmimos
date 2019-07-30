@@ -1,0 +1,27 @@
+#example_wrapper th,
+#example_wrapper label,
+#example_wrapper .dataTables_info,
+.pagination a,
+#form-search input
+{
+    font-size: 10px;
+}
+
+#form-search label {
+    font-size: 11px;
+    padding: 6px 5px 0px;
+    display: inline-block;
+    margin: 0px;
+}
+
+#example_wrapper td {
+    font-size: 11px;
+    padding: 5px 10px !important;
+    vertical-align: middle !important;
+}
+
+.btn {
+    display: inline-block;
+    padding: 2px 12px;
+    font-size: 12px;
+}

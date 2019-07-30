@@ -210,7 +210,7 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 	   
 	$(document).ready(function() {
 		if( jQuery("#_table").html() == undefined ){
-			init_DataTables();	
+			// init_DataTables();	
 		}
 	});	
 	

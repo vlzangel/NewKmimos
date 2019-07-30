@@ -5,6 +5,11 @@ require_once(__DIR__.'/GlobalFunction.php');
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
+
+function num_for($monto){
+	return number_format($monto, 2, ".", ",");
+}
+
 function getRazaDescripcion($id, $razas){
 	$nombre = "[{$id}]";
 	if($id > 0){
@@ -40,6 +45,8 @@ function get_cupones_reserva( $reserva_id ){
         $detalle[ 'cuidador_num' ] = 0;
         $detalle[ 'total' ] = 0;
 
+        $detalle[ 'info' ] = [];
+
         foreach ($cupones as $cupon) {
             if( $cupon->monto > 0 ){
 
@@ -55,6 +62,8 @@ function get_cupones_reserva( $reserva_id ){
                 $es_saldo=false;
                 if( strpos($cupon->name, 'saldo-') !== false ){
 
+					$detalle[ 'info' ]['saldo'] = num_for($cupon->monto);
+
 	                $es_saldo=true;
                     $info = " [ ".$cupon->name .": $ " .$cupon->monto . " Tipo: Saldo a favor ] ";
 				    $tooltip = (!empty($info))? 'data-toggle="tooltip" data-placement="top" title="'.$info.'"' : '' ;
@@ -63,7 +72,7 @@ function get_cupones_reserva( $reserva_id ){
 				            <label style="margin-bottom: 0px;">
 				                    <strong>Saldo a favor </strong>
 				                    <span class="badge" style="margin-left: 10px;">
-				                        $ '.number_format($cupon->monto, 2, ",", ".").'
+				                        $ '.num_for($cupon->monto, 2, ",", ".").'
 				                    </span>
 				            </label>
 				        </small>
@@ -73,6 +82,7 @@ function get_cupones_reserva( $reserva_id ){
 
                 // Cupones a Kmimos
                 if( ($tipo == 'compartido' ||  $tipo == 'kmimos') || ( empty($tipo) && !$es_saldo ) ) {
+
                 	$monto_kmimos = $cupon->monto;	                
 	                if( $tipo == 'compartido' ){
 		                $percent_kmimos = $wpdb->get_var("SELECT m.meta_value 
@@ -91,12 +101,15 @@ function get_cupones_reserva( $reserva_id ){
 				            <label style="margin-bottom: 0px;">
 				                    <strong>'.$cupon->name .'</strong>
 				                    <span class="badge" style="margin-left: 10px;">
-				                        $ '.number_format($monto_kmimos, 2, ",", ".").'
+				                        $ '.num_for($monto_kmimos, 2, ",", ".").'
 				                    </span>
 				            </label>
 				        </small>
 				    ';
 				    $detalle[ 'kmimos_num' ] += number_format($monto_kmimos, 2);
+
+                	$detalle[ 'info' ]['promo']['kmimos']['cupones'][] = $cupon->name;
+                	$detalle[ 'info' ]['promo']['kmimos']['total'] += $monto_kmimos;
                 }
 
                 // Cupones a cuidador
@@ -119,12 +132,15 @@ function get_cupones_reserva( $reserva_id ){
 				            <label style="margin-bottom: 0px;">
 				                    <strong>'.$cupon->name .'</strong>
 				                    <span class="badge" style="margin-left: 10px;">
-				                        $ '.number_format($monto_cuidador, 2, ",", ".").'
+				                        $ '.num_for($monto_cuidador, 2, ",", ".").'
 				                    </span>
 				            </label>
 				        </small>
 				    ';
-				    $detalle[ 'cuidador_num' ] += number_format($monto_cuidador, 2);				    
+				    $detalle[ 'cuidador_num' ] += num_for($monto_cuidador, 2);		
+
+                	$detalle[ 'info' ]['promo']['cuidador']['cupones'][] = $cupon->name;
+                	$detalle[ 'info' ]['promo']['cuidador']['total'] += $monto_kmimos;	    
                 }
 
 
@@ -135,6 +151,21 @@ function get_cupones_reserva( $reserva_id ){
     return $detalle;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 function __calculo_pago_cuidador( $reserva_id, $total ){

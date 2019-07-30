@@ -73,12 +73,14 @@ function date_convert( $str_date, $format = 'd-m-Y H:i:s', $totime=true ){
 }
 
 function currency_format( $str, $signo="$ ", $miles=",", $decimal="." ){
+	/*
 	if(!empty($str)){
 		$str = $signo.number_format($str, 2, $decimal, $miles);
 	}else{
 		$str = $signo."0";
 	}
-	return $str;
+	*/
+	return number_format($str, 2, '.', ',');
 }
 
 function get_metaPost($post_id=0, $condicion=''){
