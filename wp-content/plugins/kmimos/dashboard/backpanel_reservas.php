@@ -1,3 +1,13 @@
+<?php 
+    if ( ! defined( 'ABSPATH' ) ) { exit; } 
+    extract($_GET);
+    if( !isset($_SESSION)){ session_start(); }
+    $_SESSION["reservas_ini"] = ( isset($ini) ) ? $ini : date("Y-m")."-01";
+    $_SESSION["reservas_fin"] = ( isset($fin) ) ? $fin : date("Y-m-d");
+
+    $ini = $_SESSION["reservas_ini"];
+    $fin = $_SESSION["reservas_fin"];
+?>
 <script type="text/javascript"> var ADMIN_AJAX = "<?= plugin_dir_url(__FILE__).'/core/NEW/reservas/php.php' ?>"; </script>
 <link rel='stylesheet' type='text/css' href='<?php echo plugin_dir_url(__FILE__) ?>/core/NEW/reservas/css.css?v=<?= time() ?>'>
 <script src='<?php echo plugin_dir_url(__FILE__) ?>/core/NEW/reservas/js.js?v=<?= time() ?>'></script>
@@ -12,10 +22,14 @@
     <div class='col-md-12'>
         <div class='row'>
             <div class="col-sm-12 col-md-12 container-search text-right">
-                <form id="form-search" name="search">
-                    <span><label class="fecha">Desde: </label><input type="date" name="ini" value="<?php echo $fecha['ini']; ?>"></span>
-                    <span><label class="fecha">Hasta: <input type="date" name="fin" 
-                        value="<?php echo $fecha['fin']; ?>"></label></span> 
+                <form id="form-search" name="search" action="<?php get_home_url(); ?>/wp-admin/admin.php">
+                    <input type="hidden" name="page" value="bp_reservas">
+                    <span>
+                        <label class="fecha">Desde: </label><input type="date" name="ini" value="<?php echo $ini; ?>">
+                    </span>
+                    <span>
+                        <label class="fecha">Hasta: <input type="date" name="fin" value="<?php echo $fin; ?>"></label>
+                    </span> 
                     <button class="btn btn-defaut" id="btn-search"><i class="fa fa-search"></i> Buscar</button>
                 </form>
             </div>

@@ -2,6 +2,11 @@
 	include dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))))).'/wp-load.php';
 
 	include __DIR__.'/funciones.php';
+
+	if( !isset($_SESSION)){ session_start(); }
+	
+    $ini = $_SESSION["reservas_ini"];
+    $fin = $_SESSION["reservas_fin"];
 	
 	global $wpdb;
 	extract($_GET);
@@ -9,7 +14,7 @@
 	switch ( $action ) {
 		case 'list':
 			
-			$reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new ORDER BY reserva_id DESC LIMIT 0, 10");
+			$reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '{$ini}' AND fecha_reservacion <= '{$fin}' ORDER BY reserva_id DESC");
 
 			$data['data'] = [];
 			foreach ($reservas as $key => $reserva) {
