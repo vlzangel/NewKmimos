@@ -245,6 +245,20 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 								></i> Flash
 							';
 						}
+
+						$direccion = [];
+
+						if( isset($atributos['colonia'])){
+							$direccion[] = $atributos['colonia'];
+						}
+
+						if( isset($row['direccion'])){
+							$direccion[] = $row['direccion'];
+						}
+
+						if( isset($atributos['postal'])){
+							$direccion[] = $atributos['postal'];
+						}
 			  		?>
 				    <tr>
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
@@ -263,7 +277,7 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 						</th>
 						<th><?php echo $ubicacion['estado']; ?></th>
 						<th><?php echo $ubicacion['municipio']; ?></th>						
-						<th><?php echo utf8_encode($row['direccion']); ?></th>						
+						<th><?php echo utf8_encode( implode(", ", $direccion) ); ?></th>						
 						<th><?php echo $usermeta['phone']; ?></th>
 						<th><?php echo $row['num_mascotas']; ?></th>
 						<th><?php echo $row['mascotas_permitidas']; ?></th>
