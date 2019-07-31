@@ -52,7 +52,7 @@
 			$video_youtube = $matches[1][0];
 		}
 	}
-	/*
+/*
 	$atributos = array(
 		'yard'	  		=> $yard,
 		'green'		  	=> $green,
@@ -61,11 +61,10 @@
 		'emergencia' 	=> $emergencia,
 		'video_youtube' => $video_youtube,
 		'nacimiento'	=> $fecha,
-		'tipo_doc'		=> $tipo_doc,
 		'gatos'		=> $gatos
 	);
 	$atributos = serialize($atributos);
-	*/
+*/
 
 	$atributos = (array) unserialize( $cuidador->atributos );
 
@@ -79,6 +78,9 @@
 	$atributos["tipo_doc"] = $tipo_doc;
 	$atributos["gatos"] = $gatos;
 
+	$atributos["colonia"] = $colonia;
+	$atributos["postal"] = $postal;
+
 	$atributos = serialize($atributos);
 
 	$latitud  = $lat;
@@ -90,32 +92,14 @@
 	$atributos = str_replace('"', '\"', $atributos);
 	$comportamientos_aceptados = str_replace('"', '\"', $comportamientos_aceptados);
 
-	switch ( $tipo_doc ) {
-        case 'IFE / INE':
-
-            if( $dni+0 == 0 ){ $dni = "0000000000000"; }
-			if( strlen($dni) > 13 ){
-				$dni = substr($dni, 0, 13);
-			}else{
-				$dni = str_pad($dni, 13, "0", STR_PAD_LEFT);
-			}
-            
-        break;
-        case 'Pasaporte':
-
-        	if( strlen($dni) > 28 ){
-				$dni = substr($dni, 0, 28);
-			}
-            $ife = $dni;
-
-        break;
-    }
-
-	$ubicacion = $db->get_row("SELECT * FROM ubicaciones WHERE cuidador = {$cuidador_id}; ");
-	if( $ubicacion === false ){
-		$db->query( "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '={$estado}=', '={$delegacion}=');" );
+	if( $dni+0 == 0 ){ $dni = "0000000000000"; }
+	if( strlen($dni) > 13 ){
+		$dni = substr($dni, 0, 13);
+	}else{
+		$dni = str_pad($dni, 13, "0", STR_PAD_LEFT);
 	}
 
+	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
 	$db->query("UPDATE cupos SET acepta = '{$acepto_hasta}' WHERE cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ");
     $db->query("UPDATE cupos SET full = 1 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos >= acepta ) ");
     $db->query("UPDATE cupos SET full = 0 WHERE ( cuidador = {$user_id} OR cuidador = {$cuidador->id_post} ) AND ( cupos < acepta ) ");
