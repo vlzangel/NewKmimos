@@ -121,9 +121,12 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 			      <th>Apellido</th>
 			      <th>Cuidador</th>
 			      <th>Email</th>
+
 			      <th>Estado</th>
 			      <th>Municipio</th>
+			      <th>Colonia</th>
 			      <th>Direcci&oacute;n</th>
+			      <th>C&oacute;digo Postal</th>
 			      <th>Teléfono</th>
 
 			      <th>Nro. Mascotas</th>
@@ -277,7 +280,9 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 						</th>
 						<th><?php echo $ubicacion['estado']; ?></th>
 						<th><?php echo $ubicacion['municipio']; ?></th>						
-						<th><?php echo utf8_encode( implode(", ", $direccion) ); ?></th>						
+						<th><?php echo utf8_encode( $atributos['colonia'] ); ?></th>						
+						<th><?php echo utf8_encode( $row['direccion'] ); ?></th>						
+						<th><?php echo utf8_encode( $atributos['postal'] ); ?></th>						
 						<th><?php echo $usermeta['phone']; ?></th>
 						<th><?php echo $row['num_mascotas']; ?></th>
 						<th><?php echo $row['mascotas_permitidas']; ?></th>

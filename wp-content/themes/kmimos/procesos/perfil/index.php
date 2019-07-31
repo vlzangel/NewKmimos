@@ -12,6 +12,8 @@
 	}else{
 		include_once("../funciones/generales.php");
 	}
+
+	error_reporting(0);
 	
 	include_once($raiz."/vlz_config.php");
 	include_once("../funciones/db.php");
