@@ -48,6 +48,7 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Origen</th>
                     <th># Reserva</th>
                     <th>Flash</th>
                     <th>Estatus</th>

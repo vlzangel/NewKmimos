@@ -15,11 +15,11 @@
 		case 'list':
 			
 			$reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '{$ini}' AND fecha_reservacion <= '{$fin}' ORDER BY reserva_id DESC");
-			$origen = ( empty( get_post_meta($reserva->pedido, 'verification_code', true) ) ) ? 'Página' : 'App';
-
+			
 			$data['data'] = [];
 			foreach ($reservas as $key => $reserva) {
 				$cupones = get_cupones_reserva( $reserva->reserva_id );
+				$origen = ( empty( get_post_meta($reserva->pedido, 'verification_code', true) ) ) ? 'Página' : 'App';
 				$data['data'][] = [
 					$reserva->id,
 					$origen,

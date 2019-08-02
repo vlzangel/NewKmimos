@@ -21,8 +21,10 @@
 
         if( strpos("_".$conocio, $wlabel) !== false || $_wlabel == $wlabel ){
             $eventos = $wpdb->get_var("SELECT COUNT(*) FROM wp_posts WHERE post_author = {$cliente_id} AND post_type = 'wc_booking' AND post_date >= '2018-09-01 00:00:00' ");
+            $origen = ( empty( get_post_meta($reserva->pedido, 'verification_code', true) ) ) ? 'Página' : 'App';
             $_reservas["data"][] = [
                 $i,
+                $origen,
                 $value->reserva_id,
                 $value->flash,
                 $value->status,
