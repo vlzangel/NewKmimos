@@ -16,7 +16,7 @@ wp-content/index.php
 imgs/Temp/
 
 apk/
-app/
+/app/
 movil/
 
 /.htaccess
