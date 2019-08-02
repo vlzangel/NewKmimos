@@ -29,7 +29,7 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
     Reservas
 </div>
 
-<div class="module_botones" style="display: none;">
+<div class="module_botones">
     <table>
         <tr>
             <td><strong>Desde:</strong></td>
@@ -139,6 +139,9 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
 
     /* Tabla y Filtros de Fechas */
 
+        var _json = '';
+        var table = '';
+
         jQuery(document).ready(function() {
             table = jQuery('#_example_').DataTable({
                 "language": {
@@ -173,8 +176,9 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
                     "url": "<?= get_home_url(); ?>/wp-content/plugins/kmimos/wlabel/backend/content/ajax/booking_data.php",
                     "type": "POST",
                     "dataSrc":  function ( json ) {
+                        _json = json;
                         if(typeof postCargaTable === 'function') {
-                            json = postCargaTable(json, 4);
+                            json = postCargaTable(json, 5);
                         }
                         return json.data;
                     } 
@@ -183,11 +187,47 @@ $wlabel = $_SESSION["label"]->wlabel; ?>
         } );
 
         jQuery("#desde").on("change", function(e){ 
-            table.ajax.reload();
+            LoadCurrentReport();
         });
         jQuery("#hasta").on("change", function(e){ 
-            table.ajax.reload();
+            LoadCurrentReport();
         });
+
+        function LoadCurrentReport() {
+            table.destroy();
+            var json = postCargaTable(_json, 5);
+            table = jQuery('#_example_').DataTable ({
+                "language": {
+                    "emptyTable":           "No hay datos disponibles en la tabla.",
+                    "info":                 "Del _START_ al _END_ de _TOTAL_ ",
+                    "infoEmpty":            "Mostrando 0 registros de un total de 0.",
+                    "infoFiltered":         "(filtrados de un total de _MAX_ registros)",
+                    "infoPostFix":          " (actualizados)",
+                    "lengthMenu":           "Mostrar _MENU_ registros",
+                    "loadingRecords":       "Cargando...",
+                    "processing":           "Procesando...",
+                    "search":               "Buscar:",
+                    "searchPlaceholder":    "Dato para buscar",
+                    "zeroRecords":          "No se han encontrado coincidencias.",
+                    "paginate": {
+                        "first":            "Primera",
+                        "last":             "Última",
+                        "next":             "Siguiente",
+                        "previous":         "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending":    "Ordenación ascendente",
+                        "sortDescending":   "Ordenación descendente"
+                    }
+                },
+                dom: '<"top"l>Bfrtip',
+                buttons: [
+                    'csv', 'excel'
+                ],
+                "scrollX": true,
+                data : json.data,
+            });
+        }
 
     /* Fin Tabla y Filtros de Fechas */
 

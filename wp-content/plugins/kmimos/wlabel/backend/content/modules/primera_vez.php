@@ -32,6 +32,7 @@
             <th>Donde nos conocio?</th>
 
             <th>Primera Reserva</th>
+                <th>Origen</th>
                 <th>Creada</th>
                 <th>Inicio</th>
                 <th>Fin</th>
@@ -42,6 +43,7 @@
                 <th>Status</th>
             <th>¿Cancel&oacute;?</th>
             <th>Siguiente Reserva</th>
+                <th>Origen</th>
                 <th>Creada</th>
                 <th>Inicio</th>
                 <th>Fin</th>
@@ -52,6 +54,7 @@
                 <th>Status</th>
 
             <th>Reserva Ult. 3 Meses</th>
+                <th>Origen</th>
                 <th>Creada</th>
                 <th>Inicio</th>
                 <th>Fin</th>
@@ -62,6 +65,7 @@
                 <th>Status</th>
             <th>¿Cancel&oacute;?</th>
             <th>Siguiente Reserva</th>
+                <th>Origen</th>
                 <th>Creada</th>
                 <th>Inicio</th>
                 <th>Fin</th>

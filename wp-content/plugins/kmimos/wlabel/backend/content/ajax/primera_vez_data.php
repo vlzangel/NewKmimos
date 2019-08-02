@@ -14,6 +14,8 @@
 		if( $id != "" && $id != NULL ){
 			$reserva = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = {$id}");
 
+			$origen = ( empty( get_post_meta($reserva->post_parent, 'verification_code', true) ) ) ? 'Pagina' : 'App';
+
 			$metas = get_post_meta($id);
 
 			$_mascotas = unserialize($metas["_booking_persons"][0]);
@@ -40,7 +42,8 @@
 				"monto" => "MXN $".number_format( $metas["_booking_cost"][0], 2, ",", "." ),
 				"cuidador" => $info[1],
 				"servicio" => $info[0],
-				"status" => $status[ $reserva->post_status ]
+				"status" => $status[ $reserva->post_status ],
+				"origen" => $origen
 			];
 
 			return $r;
@@ -88,6 +91,7 @@
 				$info = getDataReserva($usuario->primera_reserva);
 
 				$_info[] = $info['id'];
+				$_info[] = $info['origen'];
 				$_info[] = $info['fecha'];
 				$_info[] = $info['checkin'];
 				$_info[] = $info['checkout'];
@@ -107,6 +111,7 @@
 						$info = getDataReserva($_nueva_reserva);
 						
 						$_info[] = $info['id'];
+						$_info[] = $info['origen'];
 						$_info[] = $info['fecha'];
 						$_info[] = $info['checkin'];
 						$_info[] = $info['checkout'];
@@ -128,9 +133,11 @@
 						$_info[] = "-";
 						$_info[] = "-";
 						$_info[] = "-";
+						$_info[] = "-";
 					}
 				}else{
 
+						$_info[] = "-";
 						$_info[] = "-";
 						$_info[] = "-";
 						$_info[] = "-";
@@ -154,7 +161,11 @@
 				$_info[] = "-";
 				$_info[] = "-";
 				$_info[] = "-";
+				$_info[] = "-";
+				
+				$_info[] = "-";
 
+				$_info[] = "-";
 				$_info[] = "-";
 				$_info[] = "-";
 				$_info[] = "-";
@@ -171,6 +182,7 @@
 				$info = getDataReserva($usuario->reserva_ult_3_meses);
 
 				$_info[] = $info['id'];
+				$_info[] = $info['origen'];
 				$_info[] = $info['fecha'];
 				$_info[] = $info['checkin'];
 				$_info[] = $info['checkout'];
@@ -189,6 +201,7 @@
 					if( $_nueva_reserva != null){
 						$info = getDataReserva($_nueva_reserva);
 						$_info[] = $info['id'];
+						$_info[] = $info['origen'];
 						$_info[] = $info['fecha'];
 						$_info[] = $info['checkin'];
 						$_info[] = $info['checkout'];
@@ -207,8 +220,10 @@
 						$_info[] = "-";
 						$_info[] = "-";
 						$_info[] = "-";
+						$_info[] = "-";
 					}
 				}else{
+					$_info[] = "-";
 					$_info[] = "-";
 					$_info[] = "-";
 					$_info[] = "-";
@@ -231,7 +246,11 @@
 				$_info[] = "-";
 				$_info[] = "-";
 				$_info[] = "-";
+				$_info[] = "-";
+				
+				$_info[] = "-";
 
+				$_info[] = "-";
 				$_info[] = "-";
 				$_info[] = "-";
 				$_info[] = "-";
@@ -252,12 +271,12 @@
 		}
 	}
 	
-	if( $_SESSION["CLIENTE_IP"] != '201.243.255.159' ){
+	if( $_SESSION["CLIENTE_IP"] != '186.90.21.105' ){
 		echo json_encode($data);
 	}else{
-		/* echo "<pre>";
+		/*echo "<pre>";
 			print_r( $data );
-		echo "</pre>"; */
+		echo "</pre>";*/
 		echo json_encode($data);
 	}
 ?>
