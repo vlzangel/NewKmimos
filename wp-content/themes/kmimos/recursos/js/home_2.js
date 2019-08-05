@@ -96,10 +96,26 @@ var url_app = {
     "android_wlabel" : "https://play.google.com/store/apps/details?id=com.it.kmimos&utm_source=WebID-Kmimos-App-Banner-WL_PETCO-Playstore&utm_medium=WebBanner-Landing_Kmimos_WL-PETCO&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Playstore&utm_term=Descargar%20_para_Playstore-ANDROID&utm_content=Banner_descarga_ANDROID-Kmimos_app-PETCO",
 };
 
+function getMobileOperatingSystem() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (/windows phone/i.test(userAgent)) {
+        return "windows";
+    }
+    if (/android/i.test(userAgent)) {
+        return "android";
+    }
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "apple";
+    }
+    return "desconocido";
+}
+
 jQuery( document ).ready(function() {
 
-    if ( isMobile.apple.device != undefined )   { isMovil = 'apple';   }
-    if ( isMobile.android.device != undefined ) { isMovil = 'android'; }
+    // if ( isMobile.apple.device != undefined )   { isMovil = 'apple';   }
+    // if ( isMobile.android.device != undefined ) { isMovil = 'android'; }
+
+    isMovil = getMobileOperatingSystem();
 
     if( wlabel == "petco" ){
         isMovil = isMovil+"_wlabel";
