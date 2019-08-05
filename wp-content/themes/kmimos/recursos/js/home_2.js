@@ -98,8 +98,8 @@ var url_app = {
 
 jQuery( document ).ready(function() {
 
-    if (isMobile.apple.device)   { isMovil = 'apple';   }
-    if (isMobile.android.device) { isMovil = 'android'; }
+    if ( isMobile.apple.device != undefined )   { isMovil = 'apple';   }
+    if ( isMobile.android.device != undefined ) { isMovil = 'android'; }
 
     if( wlabel == "petco" ){
         isMovil = isMovil+"_wlabel";
