@@ -34,7 +34,7 @@
 		return $no_abiertos;
 	}
 
-	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing WHERE data NOT LIKE '%\"ENVIADO\":\"SI\"%' ");
+	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing"); // WHERE data NOT LIKE '%\"ENVIADO\":\"SI\"%'
 	foreach ($campaings as $key => $campaing) {
 		$data = json_decode($campaing->data);
 		$d = $data->data;
@@ -45,7 +45,7 @@
 		echo "</pre>";
 		echo $campaing->id.": ".($data->hacer_despues+0)."<br>";
 		*/
-		
+
 		switch ( $data->hacer_despues+0 ) {
 			case 0:
 
@@ -55,7 +55,7 @@
 					if( $fecha_fin >= time() ){
 
 						$_listas = $data->data_listas;
-						$d->ENVIADO = "SI";
+						// $d->ENVIADO = "SI";
 						$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
@@ -80,8 +80,6 @@
 								}
 							}
 						}
-						$data->enviados = $enviados;
-						//update_campaing($campaing, $data, $d);
 					}
 				}
 
@@ -92,7 +90,7 @@
 				$anterior = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$data->campaing_anterior);
 				$data_anterior = json_decode($anterior->data);
 
-				$enviados = ( isset($data_anterior->enviados) ) ? $data_anterior->enviados : [];
+				$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
 
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
@@ -140,6 +138,9 @@
 
 			break;
 		}
+
+		$data->enviados = $enviados;
+		update_campaing($campaing, $data, $d);
 		
 	}
 	
