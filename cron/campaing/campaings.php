@@ -25,6 +25,7 @@
 		$no_abiertos = [];
 		$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
 		echo "<pre>";
+			print_r( $vistos );
 			print_r( $enviados );
 		echo "</pre>";
 		foreach ($enviados as $email => $enviado_date) {
