@@ -39,8 +39,11 @@
 		$data = json_decode($campaing->data);
 		$d = $data->data;
 		
-		echo $campaing->id.": ".($d->hacer_despues+0)."<br>";
-		
+		echo "<pre>";
+			print_r( $data );
+		echo "</pre>";
+		echo $campaing->id.": ".($data->hacer_despues+0)."<br>";
+
 		switch ( $d->hacer_despues+0 ) {
 			case 0:
 
