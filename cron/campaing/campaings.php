@@ -38,13 +38,13 @@
 	foreach ($campaings as $key => $campaing) {
 		$data = json_decode($campaing->data);
 		$d = $data->data;
-
-		echo "<pre>";
-			print_r( $data );
-		echo "</pre>";
 		
 		switch ( $d->hacer_despues+0 ) {
 			case 0:
+
+				echo "<pre>";
+					print_r( $data );
+				echo "</pre>";
 
 				$fecha = strtotime( $d->fecha." ".$d->hora );
 				if( $fecha <= time() ){
@@ -52,7 +52,7 @@
 					if( $fecha_fin >= time() ){
 
 						$_listas = $data->data_listas;
-						$d->ENVIADO = "SI";
+						// $d->ENVIADO = "SI";
 						$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
