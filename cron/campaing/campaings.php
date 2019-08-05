@@ -85,7 +85,7 @@
 
 			break;
 			case 1:
-		
+
 				$un_dia = 60; // Prueba en minutos 60 segundos, en producción colocar: 1 dia > 86400 segundos;
 				$esperar = $data->campaing_despues_delay*$un_dia;
 				$anterior = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$data->campaing_anterior);
@@ -96,13 +96,16 @@
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
+						/*
 						echo "<pre>";
 							print_r( $vistos );
 							print_r( $enviados );
 						echo "</pre>";
+						*/
 						foreach ($vistos as $key => $cliente) {
 							$enviado_date = $cliente[0];
 							$email = $cliente[1];
+							echo (time()-$enviado_date)." >= ".$esperar."<br>";
 							if( (time()-$enviado_date) >= $esperar ){
 								if( !array_key_exists($email, $enviados) ){ 
 									$enviados[ $email ] = time();
