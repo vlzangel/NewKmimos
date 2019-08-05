@@ -48,17 +48,12 @@
 					if( $fecha_fin >= time() ){
 
 						$_listas = $data->data_listas;
-						// $d->ENVIADO = "SI";
+						$d->ENVIADO = "SI";
 						$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
-									echo "<pre>";
-										print_r( $enviados );
-									echo "</pre>";
-
 							foreach ($_listas as $lista) {
 								$_d = json_decode($lista->data);
-								$temp = explode(",", $_d->suscriptores);
 								foreach ($_d->suscriptores as $cliente) {
 									$email = $cliente[1];
 
@@ -77,12 +72,9 @@
 									}
 								}
 							}
-									echo "<pre>";
-										print_r( $enviados );
-									echo "</pre>";
 						}
 						$data->enviados = $enviados;
-						// update_campaing($campaing, $data, $d);
+						update_campaing($campaing, $data, $d);
 					}
 				}
 
