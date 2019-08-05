@@ -98,10 +98,10 @@ var url_app = {
 };
 */
 var url_app = {
-    "apple_kmimos" : RAIZ+"al/?utm_source=WebID-Kmimos-App-Banner-AppleStore&utm_medium=WebBanner-Landing_Kmimos&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Applestore&utm_term=Descargar%20_para_iphone&utm_content=Banner_descarga_IPHONE-Kmimos_app ",
-    "apple_wlabel" : RAIZ+"al/?utm_source=WebID-Kmimos-App-Banner-AppleStore&utm_medium=WebBanner-Landing_Kmimos_WL-PETCO&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Applestore&utm_term=Descargar%20_para_iphone_WL-PETCO&utm_content=Banner_descarga_IPHONE-Kmimos_app-petco",
-    "android_kmimos" : RAIZ+"al/?id=com.it.kmimos&utm_source=WebID-Kmimos-App-Banner-Playstore&utm_medium=WebBanner-Landing_Kmimos&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Playstore&utm_term=Descargar%20_para_Playstore-ANDROID&utm_content=Banner_descarga_ANDROID-Kmimos_app",
-    "android_wlabel" : RAIZ+"al/?id=com.it.kmimos&utm_source=WebID-Kmimos-App-Banner-WL_PETCO-Playstore&utm_medium=WebBanner-Landing_Kmimos_WL-PETCO&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Playstore&utm_term=Descargar%20_para_Playstore-ANDROID&utm_content=Banner_descarga_ANDROID-Kmimos_app-PETCO",
+    "apple_kmimos" : RAIZ+"al/?t=apple_kmimos&utm_source=WebID-Kmimos-App-Banner-AppleStore&utm_medium=WebBanner-Landing_Kmimos&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Applestore&utm_term=Descargar%20_para_iphone&utm_content=Banner_descarga_IPHONE-Kmimos_app ",
+    "apple_wlabel" : RAIZ+"al/?t=apple_wlabel&utm_source=WebID-Kmimos-App-Banner-AppleStore&utm_medium=WebBanner-Landing_Kmimos_WL-PETCO&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Applestore&utm_term=Descargar%20_para_iphone_WL-PETCO&utm_content=Banner_descarga_IPHONE-Kmimos_app-petco",
+    "android_kmimos" : RAIZ+"al/?t=android_kmimos&id=com.it.kmimos&utm_source=WebID-Kmimos-App-Banner-Playstore&utm_medium=WebBanner-Landing_Kmimos&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Playstore&utm_term=Descargar%20_para_Playstore-ANDROID&utm_content=Banner_descarga_ANDROID-Kmimos_app",
+    "android_wlabel" : RAIZ+"al/?t=android_wlabel&id=com.it.kmimos&utm_source=WebID-Kmimos-App-Banner-WL_PETCO-Playstore&utm_medium=WebBanner-Landing_Kmimos_WL-PETCO&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Playstore&utm_term=Descargar%20_para_Playstore-ANDROID&utm_content=Banner_descarga_ANDROID-Kmimos_app-PETCO",
 };
 
 function getMobileOperatingSystem() {
