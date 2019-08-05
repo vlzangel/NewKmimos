@@ -8,7 +8,7 @@
 		break;
 		case 'android_kmimos':
 		case 'android_wlabel':
-			echo '< meta http-equiv="refresh" content="2;URL=https://play.google.com/store/apps/details" >';
+			echo '< meta http-equiv="refresh" content="2;URL=https://play.google.com/store/apps/details?id=com.it.kmimos" >';
 		break;
 	}
 ?>
