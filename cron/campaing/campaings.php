@@ -59,8 +59,9 @@
 								echo "<pre>";
 									print_r( $_d );
 								echo "</pre>";
-								foreach ($temp as $email) {
-
+								foreach ($_d->suscriptores as $cliente) {
+									$email = $cliente[1];
+									
 									echo "<pre>";
 										print_r( $email );
 									echo "</pre>";
