@@ -44,7 +44,7 @@
 			print_r( $data );
 		echo "</pre>"; */
 		
-		echo $campaing->id.": ".($data->hacer_despues+0)."<br>";
+		// echo $campaing->id.": ".($data->hacer_despues+0)."<br>";
 		
 
 		switch ( $data->hacer_despues+0 ) {
@@ -86,6 +86,10 @@
 
 			break;
 			case 1:
+
+				echo "<pre>";
+					print_r( $data );
+				echo "</pre>";
 
 				$un_dia = 60; // Prueba en minutos 60 segundos, en producción colocar: 1 dia > 86400 segundos;
 				$esperar = $data->campaing_despues_delay*$un_dia;
