@@ -52,19 +52,15 @@
 						$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
+									echo "<pre>";
+										print_r( $enviados );
+									echo "</pre>";
 
 							foreach ($_listas as $lista) {
 								$_d = json_decode($lista->data);
 								$temp = explode(",", $_d->suscriptores);
-								echo "<pre>";
-									print_r( $_d );
-								echo "</pre>";
 								foreach ($_d->suscriptores as $cliente) {
 									$email = $cliente[1];
-									
-									echo "<pre>";
-										print_r( $email );
-									echo "</pre>";
 
 									if( !array_key_exists($email, $enviados) ){ 
 										$enviados[ $email ] = time();
@@ -81,9 +77,12 @@
 									}
 								}
 							}
+									echo "<pre>";
+										print_r( $enviados );
+									echo "</pre>";
 						}
 						$data->enviados = $enviados;
-						update_campaing($campaing, $data, $d);
+						// update_campaing($campaing, $data, $d);
 					}
 				}
 
