@@ -85,6 +85,10 @@
 
 			break;
 			case 1:
+				echo "<pre>";
+					print_r( $data );
+				echo "</pre>";
+		
 				$un_dia = 60; // Prueba en minutos 60 segundos, en producción colocar: 1 dia > 86400 segundos;
 				$esperar = $data->campaing_despues_delay*$un_dia;
 				$anterior = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$data->campaing_anterior);
