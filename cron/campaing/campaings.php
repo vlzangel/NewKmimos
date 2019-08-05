@@ -42,10 +42,6 @@
 		switch ( $d->hacer_despues+0 ) {
 			case 0:
 
-				echo "<pre>";
-					print_r( $data );
-				echo "</pre>";
-
 				$fecha = strtotime( $d->fecha." ".$d->hora );
 				if( $fecha <= time() ){
 					$fecha_fin = strtotime( $d->fecha_fin." ".$d->hora_fin );
@@ -56,6 +52,10 @@
 						$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
+
+							echo "<pre>";
+								print_r( $data );
+							echo "</pre>";
 							foreach ($_listas as $lista) {
 								$_d = json_decode($lista->data);
 								$temp = explode(",", $_d->suscriptores);
