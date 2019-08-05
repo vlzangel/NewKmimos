@@ -3,7 +3,7 @@
 <script src='<?= getTema(); ?>/admin_2/<?= $modulo ?>/js.js?v=<?= time() ?>'></script>
 <div class="container_listados">
     <div class='titulos'>
-        <h2>Campañas</h2>
+        <h2>Listas</h2>
         <hr>
         <div class="clear"></div>
         <div class="botones_container">

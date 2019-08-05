@@ -110,8 +110,8 @@
 				$value->id,
 				$d->titulo,
 				$count,'
-				<span class="btn btn-primary btn-s" onclick="_edit( jQuery(this) )" data-id="'.$value->id.'" data-modal="listas_edit" data-titulo="Editar Lista" >Editar</span> &nbsp;
-				<span class="btn btn-danger btn-s" onclick="_del_form( jQuery(this) )" data-id="'.$value->id.'" data-modal="listas_del_form" data-titulo="Eliminar Lista" >Eliminar</span>'
+				<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="listas_edit" data-titulo="Editar Lista" >Editar</span> &nbsp;
+				<span class="btn btn-danger btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="listas_del_form" data-titulo="Eliminar Lista" >Eliminar</span>'
 			];
 		}
 		echo json_encode($data);
