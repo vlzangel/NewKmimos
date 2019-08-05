@@ -18,7 +18,7 @@
 
 	function get_email_no_abiertos($data, $espera){
 		$vistos = [];
-		$_vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
+		$_vistos = ( isset($data->vistos) ) ? $data->vistos : [];
 		foreach ($_vistos as $key => $cliente) {
 			$vistos[] = $cliente->email;
 		}
