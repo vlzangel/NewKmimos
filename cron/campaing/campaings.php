@@ -39,12 +39,14 @@
 		$data = json_decode($campaing->data);
 		$d = $data->data;
 		
+		/*
 		echo "<pre>";
 			print_r( $data );
 		echo "</pre>";
 		echo $campaing->id.": ".($data->hacer_despues+0)."<br>";
-
-		switch ( $d->hacer_despues+0 ) {
+		*/
+		
+		switch ( $data->hacer_despues+0 ) {
 			case 0:
 
 				$fecha = strtotime( $d->fecha." ".$d->hora );
