@@ -85,9 +85,6 @@
 
 			break;
 			case 1:
-				echo "<pre>";
-					print_r( $data );
-				echo "</pre>";
 		
 				$un_dia = 60; // Prueba en minutos 60 segundos, en producción colocar: 1 dia > 86400 segundos;
 				$esperar = $data->campaing_despues_delay*$un_dia;
@@ -99,6 +96,9 @@
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
+						echo "<pre>";
+							print_r( $vistos );
+						echo "</pre>";
 						foreach ($vistos as $key => $cliente) {
 							$enviado_date = $cliente[0];
 							$email = $cliente[1];
