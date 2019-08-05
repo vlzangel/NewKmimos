@@ -98,6 +98,7 @@
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
 						echo "<pre>";
 							print_r( $vistos );
+							print_r( $enviados );
 						echo "</pre>";
 						foreach ($vistos as $key => $cliente) {
 							$enviado_date = $cliente[0];
