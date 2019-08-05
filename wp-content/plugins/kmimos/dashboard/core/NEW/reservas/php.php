@@ -20,54 +20,57 @@
 			foreach ($reservas as $key => $reserva) {
 				$cupones = get_cupones_reserva( $reserva->reserva_id );
 				$origen = ( empty( get_post_meta($reserva->pedido, 'verification_code', true) ) ) ? 'Página' : 'App';
-				$data['data'][] = [
-					$reserva->id,
-					$origen,
-					$reserva->reserva_id,
-					$reserva->flash,
-					$reserva->status,
-					$reserva->fecha_reservacion,
-					$reserva->check_in,
-					$reserva->check_out,
-					$reserva->noches,
-					$reserva->num_mascotas,
-					$reserva->num_noches_totales,
-					$reserva->cliente,
-					$reserva->correo_cliente,
-					$reserva->telefono_cliente,
-					$reserva->recompra_1_mes,
-					$reserva->recompra_3_meses,
-					$reserva->recompra_6_meses,
-					$reserva->recompra_12_meses,
-					$reserva->donde_nos_conocio,
-					$reserva->mascotas,
-					$reserva->razas,
-					$reserva->edad,
-					$reserva->cuidador,
-					$reserva->correo_cuidador,
-					$reserva->telefono_cuidador,
-					$reserva->servicio_principal,
-					$reserva->servicios_especiales,
-					$reserva->estado,
-					$reserva->municipio,
-					$reserva->forma_de_pago,
-					$reserva->tipo_de_pago,
-					number_format($reserva->total_a_pagar, 2, '.', ','),
-					number_format($reserva->monto_pagado, 2, '.', ','),
-					number_format($reserva->monto_remanente, 2, '.', ','),
-					
+				if( $reserva->status == 'Pendiente' && $reserva->forma_de_pago != 'Tienda' ){
 
-					num_for( $cupones[ 'info' ]['saldo']+0 ),
+				}else{
+					$data['data'][] = [
+						$reserva->id,
+						$origen,
+						$reserva->reserva_id,
+						$reserva->flash,
+						$reserva->status,
+						$reserva->fecha_reservacion,
+						$reserva->check_in,
+						$reserva->check_out,
+						$reserva->noches,
+						$reserva->num_mascotas,
+						$reserva->num_noches_totales,
+						$reserva->cliente,
+						$reserva->correo_cliente,
+						$reserva->telefono_cliente,
+						$reserva->recompra_1_mes,
+						$reserva->recompra_3_meses,
+						$reserva->recompra_6_meses,
+						$reserva->recompra_12_meses,
+						$reserva->donde_nos_conocio,
+						$reserva->mascotas,
+						$reserva->razas,
+						$reserva->edad,
+						$reserva->cuidador,
+						$reserva->correo_cuidador,
+						$reserva->telefono_cuidador,
+						$reserva->servicio_principal,
+						$reserva->servicios_especiales,
+						$reserva->estado,
+						$reserva->municipio,
+						$reserva->forma_de_pago,
+						$reserva->tipo_de_pago,
+						number_format($reserva->total_a_pagar, 2, '.', ','),
+						number_format($reserva->monto_pagado, 2, '.', ','),
+						number_format($reserva->monto_remanente, 2, '.', ','),
+						
+						num_for( $cupones[ 'info' ]['saldo']+0 ),
 
-					( is_array($cupones[ 'info' ]['promo']['kmimos']['cupones']) && count($cupones[ 'info' ]['promo']['kmimos']['cupones']) > 0 ) ? implode(', ', $cupones[ 'info' ]['promo']['kmimos']['cupones']) : '-',
-					num_for( $cupones[ 'info' ]['promo']['kmimos']['total'] ),
+						( is_array($cupones[ 'info' ]['promo']['kmimos']['cupones']) && count($cupones[ 'info' ]['promo']['kmimos']['cupones']) > 0 ) ? implode(', ', $cupones[ 'info' ]['promo']['kmimos']['cupones']) : '-',
+						num_for( $cupones[ 'info' ]['promo']['kmimos']['total'] ),
 
-					( is_array($cupones[ 'info' ]['promo']['cuidador']['cupones']) && count($cupones[ 'info' ]['promo']['cuidador']['cupones']) > 0 ) ? implode(', ', $cupones[ 'info' ]['promo']['cuidador']['cupones']) : '-',
-					num_for( $cupones[ 'info' ]['promo']['cuidador']['total'] ),
+						( is_array($cupones[ 'info' ]['promo']['cuidador']['cupones']) && count($cupones[ 'info' ]['promo']['cuidador']['cupones']) > 0 ) ? implode(', ', $cupones[ 'info' ]['promo']['cuidador']['cupones']) : '-',
+						num_for( $cupones[ 'info' ]['promo']['cuidador']['total'] ),
 
-					$reserva->pedido,
-					$reserva->observacion,
-				];
+						$reserva->pedido,
+						$reserva->observacion,
+					];
+				}
 			}
 
 			echo json_encode($data);

@@ -38,18 +38,8 @@
 	foreach ($campaings as $key => $campaing) {
 		$data = json_decode($campaing->data);
 		$d = $data->data;
-		
-		/*
-		echo "<pre>";
-			print_r( $data );
-		echo "</pre>"; */
-		
-		// echo $campaing->id.": ".($data->hacer_despues+0)."<br>";
-		
-
 		switch ( $data->hacer_despues+0 ) {
 			case 0:
-
 				$fecha = strtotime( $d->fecha." ".$d->hora );
 				if( $fecha <= time() ){
 					$fecha_fin = strtotime( $d->fecha_fin." ".$d->hora_fin );
@@ -91,9 +81,7 @@
 				$esperar = $data->campaing_despues_delay*$un_dia;
 				$anterior = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$data->campaing_anterior);
 				$data_anterior = json_decode($anterior->data);
-
 				$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
-
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
@@ -117,29 +105,21 @@
 					break;
 					case 'no':
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar);
-							
 						foreach ($no_abiertos as $key => $email) {
-							echo "<pre>";
-								print_r( $email );
-							echo "</pre>";
 							if( !array_key_exists($email, $enviados) ){ 
 								$enviados[ $email ] = time();
-
 								$info_validacion = base64_encode( json_encode( [
 									"id" => $campaing->id,
 									"type" => "img",
 									"format" => "png",
 									"email" => $email
 								] ) );
-
 								$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
 								wp_mail( trim($email) , $d->asunto, $mensaje);
 							}
 						}
-						
 					break;
 				}
-
 			break;
 		}
 

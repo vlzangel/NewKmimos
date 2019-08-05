@@ -3,16 +3,16 @@
 
 	$MODULOS_ADMIN_2[] = array(
         'parent'        =>  'campaing',
-        'title'         =>  __('Listas'),
-        'short-title'   =>  __('Listas'),
+        'title'         =>  __('Flujos'),
+        'short-title'   =>  __('Flujos'),
         'access'        =>  'manage_options',
-        'slug'          =>  'listas',
+        'slug'          =>  'flujos',
         'modulo'        =>  function(){
-        	init_page( 'listas' );
+        	init_page( 'flujos' );
         }
     );
 
-    function get_listas_form($data, $action = 'insert'){
+    function get_flujos_form($data, $action = 'insert'){
 		global $wpdb;
 		$btn = 'Crear';
 		if( $action == 'update' ){
@@ -27,7 +27,7 @@
 			$FORM = '
 				<div class="form-group">
 					<label for="suscriptores">Suscriptores</label>
-					<table id="table_listas" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
+					<table id="table_flujos" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
 			            <thead>
 			                <tr>
 			                    <th>#</th>
@@ -43,7 +43,7 @@
 		}
 
 		echo '
-			<form id="listas_form" data-modulo="listas" >
+			<form id="flujos_form" data-modulo="flujos" >
 				'.$input_id.'
 				<input type="hidden" name="form" value="lista" />
 				<div class="form-group">
@@ -61,8 +61,8 @@
 				</div>
 			</form>
 			<script>
-				_'.$action.'("listas_form");
-				loadTabla("table_listas", "list_form&ID='.$ID.'");
+				_'.$action.'("flujos_form");
+				loadTabla("table_flujos", "list_form&ID='.$ID.'");
 
 				jQuery(document).ready(function() {
 				    importar_csv( jQuery("#importar") );
@@ -72,12 +72,12 @@
 		';
     }
 
-	add_action( 'wp_ajax_vlz_listas_list_form', function() {
+	add_action( 'wp_ajax_vlz_flujos_list_form', function() {
 		extract($_POST);
 		extract($_GET);
 		global $wpdb;
 		$_data["data"] = [];
-		$info = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$ID);
+		$info = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$ID);
 		if( !empty($info) ){
 			$data = json_decode($info->data);
 			$temp_suscriptores = $data->suscriptores;
@@ -88,8 +88,8 @@
 					$suscriptor[0],
 					$suscriptor[1],
 					'<div style="text-align: center;"> 
-						<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$ID."|".$suscriptor[1].'" data-modal="listas_edit_cliente" data-titulo="Editar Cliente" >Editar</span> &nbsp;
-						<span class="btn btn-danger  btn-s" onclick="_modal( jQuery(this) )" data-id="'.$ID."|".base64_encode($suscriptor[0])."|".$suscriptor[1].'" data-modal="listas_del_modal" data-titulo="Eliminar Cliente" >Eliminar</span>
+						<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$ID."|".$suscriptor[1].'" data-modal="flujos_edit_cliente" data-titulo="Editar Cliente" >Editar</span> &nbsp;
+						<span class="btn btn-danger  btn-s" onclick="_modal( jQuery(this) )" data-id="'.$ID."|".base64_encode($suscriptor[0])."|".$suscriptor[1].'" data-modal="flujos_del_modal" data-titulo="Eliminar Cliente" >Eliminar</span>
 					</div>'
 				];
 			}
@@ -98,42 +98,43 @@
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_listas_list', function() {
+	add_action( 'wp_ajax_vlz_flujos_list', function() {
 		extract($_POST);
 		global $wpdb;
 		$data["data"] = [];
-		$info = $wpdb->get_results("SELECT * FROM vlz_listas ORDER BY creada DESC");
+		$info = $wpdb->get_results("SELECT * FROM vlz_campaing WHERE data LIKE '%hacer_despues\":\"0%' ORDER BY creada DESC");
 		foreach ($info as $key => $value) {
 			$d = json_decode($value->data);
-			$count = count($d->suscriptores);
+			$hijos = $wpdb->get_results("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"".$value->id."%' ");
+			$count = count($hijos);
 			$data["data"][] = [
 				$value->id,
-				$d->titulo,
+				$d->data->titulo,
 				$count,'
-				<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="listas_edit" data-titulo="Editar Lista" >Editar</span> &nbsp;
-				<span class="btn btn-danger btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="listas_del_form" data-titulo="Eliminar Lista" >Eliminar</span>'
+				<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="flujos_edit" data-titulo="Editar Lista" >Editar</span> &nbsp;
+				<span class="btn btn-danger btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="flujos_del_form" data-titulo="Eliminar Lista" >Eliminar</span>'
 			];
 		}
 		echo json_encode($data);
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_listas_new', function() {
+	add_action( 'wp_ajax_vlz_flujos_new', function() {
 		extract($_POST);
 		global $wpdb;
-		get_listas_form([]);
+		get_flujos_form([]);
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_listas_edit', function() {
+	add_action( 'wp_ajax_vlz_flujos_edit', function() {
 		extract($_POST);
 		global $wpdb;
-		$data = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$ID);
-		get_listas_form($data, 'update');
+		$data = $wpdb->get_row("SELECT * FROM vlz_flujos WHERE id = ".$ID);
+		get_flujos_form($data, 'update');
 	   	die();
 	} );
 
-	function get_listas_form_cliente($data, $action = 'update'){
+	function get_flujos_form_cliente($data, $action = 'update'){
 		global $wpdb;
 		$input_id = '<input type="hidden" name="id" value="'.$data->id.'" />';
 		$email = $data->correo;
@@ -150,7 +151,7 @@
 		}
 		$btn = 'Actualizar';
 		echo '
-			<form id="listas_form_cliente" data-modulo="listas" >
+			<form id="flujos_form_cliente" data-modulo="flujos" >
 				'.$input_id.'
 				<input type="hidden" name="form" value="cliente" />
 				<input type="hidden" name="email_old" value="'.$email.'" />
@@ -167,30 +168,30 @@
 				</div>
 			</form>
 			<script>
-				_'.$action.'("listas_form_cliente");
+				_'.$action.'("flujos_form_cliente");
 			</script>
 		';
 	}
 
-	add_action( 'wp_ajax_vlz_listas_edit_cliente', function() {
+	add_action( 'wp_ajax_vlz_flujos_edit_cliente', function() {
 		extract($_POST);
 		global $wpdb;
 		$ID = explode("|", $ID);
-		$data = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$ID[0]);
+		$data = $wpdb->get_row("SELECT * FROM vlz_flujos WHERE id = ".$ID[0]);
 		$data->correo = $ID[1];
-		get_listas_form_cliente($data, 'update');
+		get_flujos_form_cliente($data, 'update');
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_listas_del_form', function() {
+	add_action( 'wp_ajax_vlz_flujos_del_form', function() {
 		extract($_POST);
 		global $wpdb;
-		$data = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$ID);
+		$data = $wpdb->get_row("SELECT * FROM vlz_flujos WHERE id = ".$ID);
 		$data = (array)  json_decode($data->data);
 		extract($data);
 
 		echo '
-			<form id="listas_form" data-modulo="listas" >
+			<form id="flujos_form" data-modulo="flujos" >
 				<input type="hidden" name="id" value="'.$ID.'" />
 				<div class="form-group">
 					<label for="titulo">¿Esta seguro de eliminar esta Lista?</label>
@@ -200,20 +201,20 @@
 					<button id="btn_submit_modal" type="submit" class="btn btn-primary">Eliminar</button>
 				</div>
 			</form>
-			<script>_delete("listas_form");</script>
+			<script>_delete("flujos_form");</script>
 		';
 
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_listas_del_modal', function() {
+	add_action( 'wp_ajax_vlz_flujos_del_modal', function() {
 		extract($_POST);
 		global $wpdb;
 		$_ID = explode("|", $ID);
-		$data = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$_ID[0]);
+		$data = $wpdb->get_row("SELECT * FROM vlz_flujos WHERE id = ".$_ID[0]);
 		
 		echo '
-			<form id="listas_form" data-modulo="listas" >
+			<form id="flujos_form" data-modulo="flujos" >
 				<input type="hidden" name="form" value="modal" />
 				<input type="hidden" name="id" value="'.$ID.'" />
 				<div class="form-group">
@@ -224,16 +225,16 @@
 					<button id="btn_submit_modal" type="submit" class="btn btn-primary">Eliminar</button>
 				</div>
 			</form>
-			<script>_delete("listas_form");</script>
+			<script>_delete("flujos_form");</script>
 		';
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_listas_insert', function() {
+	add_action( 'wp_ajax_vlz_flujos_insert', function() {
 		extract($_POST);
 		global $wpdb;
 		$titulo = $data["titulo"];
-		$existe = $wpdb->get_var("SELECT id FROM vlz_listas WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
+		$existe = $wpdb->get_var("SELECT id FROM vlz_flujos WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
 		if( empty($existe) ){
 			$suscriptores = [];
 			$suscriptores_no_repeat = [];
@@ -258,25 +259,25 @@
 			unset($_POST["form"]);
 
 			$data = json_encode($_POST);
-			$wpdb->query("INSERT INTO vlz_listas VALUES (NULL, '{$data}', NOW())");
+			$wpdb->query("INSERT INTO vlz_flujos VALUES (NULL, '{$data}', NOW())");
 			echo json_encode([
 				"error" => "",
 				"msg" => "Lista Creada Exitosamente",
 			]);
 		}else{
 			echo json_encode([
-				"error" => "Ya existe una listas con este nombre",
+				"error" => "Ya existe una flujos con este nombre",
 				"msg" => "",
 			]);
 		}
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_listas_update', function() {
+	add_action( 'wp_ajax_vlz_flujos_update', function() {
 		extract($_POST);
 		global $wpdb;
 		if( $form == "cliente" ){
-			$lista = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$id);
+			$lista = $wpdb->get_row("SELECT * FROM vlz_flujos WHERE id = ".$id);
 			$info = json_decode($lista->data);
 			$temp_suscriptores = $info->suscriptores;
 			$suscriptores = [];
@@ -299,7 +300,7 @@
 			}
 			$info->suscriptores = $suscriptores;
 			$data = json_encode($info);
-			$sql = "UPDATE vlz_listas SET data = '{$data}' WHERE id = ".$id;
+			$sql = "UPDATE vlz_flujos SET data = '{$data}' WHERE id = ".$id;
 			$wpdb->query( $sql );
 			echo json_encode([
 				"error" => "",
@@ -307,10 +308,10 @@
 			]);
 		}else{
 			$titulo = $data["titulo"];
-			$existe = $wpdb->get_var("SELECT id FROM vlz_listas WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' AND id != ".$id);
+			$existe = $wpdb->get_var("SELECT id FROM vlz_flujos WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' AND id != ".$id);
 			if( empty($existe) ){
 
-				$lista = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$id);
+				$lista = $wpdb->get_row("SELECT * FROM vlz_flujos WHERE id = ".$id);
 				$info = json_decode($lista->data);
 
 				$_POST["suscriptores"] = preg_replace("/[\r\n|\n|\r]+/", ",", $_POST["suscriptores"]);
@@ -341,11 +342,11 @@
 					}
 				}
 				unset($_POST["importaciones"]);
-				unset($_POST["table_listas_length"]);
+				unset($_POST["table_flujos_length"]);
 				unset($_POST["form"]);
 				$_POST["suscriptores"] = $suscriptores;
 				$data = json_encode($_POST);
-				$sql = "UPDATE vlz_listas SET data = '{$data}' WHERE id = ".$id;
+				$sql = "UPDATE vlz_flujos SET data = '{$data}' WHERE id = ".$id;
 				$wpdb->query( $sql );
 				echo json_encode([
 					"error" => "",
@@ -353,7 +354,7 @@
 				]);
 			}else{
 				echo json_encode([
-					"error" => "Ya existe una listas con este nombre",
+					"error" => "Ya existe una flujos con este nombre",
 					"msg" => "",
 				]);
 			}
@@ -361,12 +362,12 @@
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_listas_delete', function() {
+	add_action( 'wp_ajax_vlz_flujos_delete', function() {
 		extract($_POST);
 		global $wpdb;
 		if( $form == "modal" ){
 			$_ID = explode("|", $id);
-			$lista = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$_ID[0]);
+			$lista = $wpdb->get_row("SELECT * FROM vlz_flujos WHERE id = ".$_ID[0]);
 			$info = json_decode($lista->data);
 
 			$suscriptores = [];
@@ -377,7 +378,7 @@
 			}
 			$info->suscriptores = $suscriptores;
 			$data = json_encode($info);
-			$sql = "UPDATE vlz_listas SET data = '{$data}' WHERE id = ".$_ID[0];
+			$sql = "UPDATE vlz_flujos SET data = '{$data}' WHERE id = ".$_ID[0];
 			$wpdb->query($sql);
 			
 			echo json_encode([
@@ -385,7 +386,7 @@
 				"msg" => "Cliente Eliminado Exitosamente",
 			]);
 		}else{
-			$wpdb->query("DELETE FROM vlz_listas WHERE id = ".$id);
+			$wpdb->query("DELETE FROM vlz_flujos WHERE id = ".$id);
 			echo json_encode([
 				"error" => "",
 				"msg" => "Lista Eliminada Exitosamente",
