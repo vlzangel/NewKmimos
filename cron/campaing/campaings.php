@@ -38,6 +38,10 @@
 	foreach ($campaings as $key => $campaing) {
 		$data = json_decode($campaing->data);
 		$d = $data->data;
+
+		echo "<pre>";
+			print_r( $data );
+		echo "</pre>";
 		
 		switch ( $d->hacer_despues+0 ) {
 			case 0:
