@@ -88,6 +88,10 @@ function _modal(e){
     });
 }
 
+function _new(e){
+    _modal(e);
+}
+
 function _insert(id) {
     jQuery("#"+id).unbind("submit").bind("submit", function(e){
         e.preventDefault();
