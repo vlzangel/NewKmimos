@@ -24,6 +24,8 @@
 			'.modal p a { font-family: arial, sans-serif !important; color: #333 !important; } '.
 			'pre { position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 99999999; display: none !important; }'.
 		'</style>';
+	$HTML .= ' <script src="'.getTema().'/js/isMobile.js"></script>';
+
 
 	/*
 	$HTML .= "

@@ -79,19 +79,45 @@ var TX1 = 0;
 var TX2 = 0;
 
 function ajustar_carrusel_servicios_movil(){
-
     if( parseInt( jQuery("body").width() ) < 768 ){
         var h = parseInt( jQuery(this).find(".banner_box").attr("data-h_movil") );
         var paso = parseInt( jQuery(this).find(".banner_box").attr("data-paso-movil") );
         var d = 55+(paso*h);
         jQuery(this).find(".banner_box").animate({left: (-1*d)+"%"}, 1000);
     }
-
 }
 
 var animacion_banner = "";
+var isMovil = "";
+var url_app = {
+    "apple_kmimos" : "https://apps.apple.com/mx/app/kmimos/id1247272074?utm_source=WebID-Kmimos-App-Banner-AppleStore&utm_medium=WebBanner-Landing_Kmimos&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Applestore&utm_term=Descargar%20_para_iphone&utm_content=Banner_descarga_IPHONE-Kmimos_app ",
+    "apple_wlabel" : "https://apps.apple.com/mx/app/kmimos/id1247272074?utm_source=WebID-Kmimos-App-Banner-AppleStore&utm_medium=WebBanner-Landing_Kmimos_WL-PETCO&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Applestore&utm_term=Descargar%20_para_iphone_WL-PETCO&utm_content=Banner_descarga_IPHONE-Kmimos_app-petco",
+    "android_kmimos" : "https://play.google.com/store/apps/details?id=com.it.kmimos&utm_source=WebID-Kmimos-App-Banner-Playstore&utm_medium=WebBanner-Landing_Kmimos&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Playstore&utm_term=Descargar%20_para_Playstore-ANDROID&utm_content=Banner_descarga_ANDROID-Kmimos_app",
+    "android_wlabel" : "https://play.google.com/store/apps/details?id=com.it.kmimos&utm_source=WebID-Kmimos-App-Banner-WL_PETCO-Playstore&utm_medium=WebBanner-Landing_Kmimos_WL-PETCO&utm_campaign=Banner_Invitacion-Descarga_la_app_Kmimos_Playstore&utm_term=Descargar%20_para_Playstore-ANDROID&utm_content=Banner_descarga_ANDROID-Kmimos_app-PETCO",
+};
 
 jQuery( document ).ready(function() {
+
+    if (isMobile.apple.device)   { isMovil = 'apple';   }
+    if (isMobile.android.device) { isMovil = 'android'; }
+
+    if( wlabel == "petco" ){
+        isMovil = isMovil+"_wlabel";
+    }else{
+        isMovil = isMovil+"_kmimos";
+    }
+
+    switch( isMovil ){
+        case "apple_kmimos":
+        case "apple_wlabel":
+        case "android_kmimos":
+        case "android_wlabel":
+            jQuery("#banner_app").attr("href", url_app[ isMovil ] );
+        break;
+        default:
+            jQuery("#banner_app").attr("href", "" );
+        break;
+    }
 
     jQuery(".carrusel_servicios_3 .carrusel_servicios_principales_item").on('click', function(e){
         jQuery(".ubicacion").val( jQuery(this).data('id') );
