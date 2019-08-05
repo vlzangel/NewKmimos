@@ -117,11 +117,11 @@
 					break;
 					case 'no':
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar);
-						
-						echo "<pre>";
-							print_r( $enviados );
-						echo "</pre>";
+							
 						foreach ($no_abiertos as $key => $email) {
+							echo "<pre>";
+								print_r( $email );
+							echo "</pre>";
 							if( !array_key_exists($email, $enviados) ){ 
 								$enviados[ $email ] = time();
 
