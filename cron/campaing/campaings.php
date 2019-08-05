@@ -53,6 +53,10 @@
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
 
+
+							echo "<pre>";
+								print_r( $_listas );
+							echo "</pre>";
 							foreach ($_listas as $lista) {
 								$_d = json_decode($lista->data);
 								$temp = explode(",", $_d->suscriptores);
