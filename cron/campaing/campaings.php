@@ -42,9 +42,10 @@
 		/*
 		echo "<pre>";
 			print_r( $data );
-		echo "</pre>";
+		echo "</pre>"; */
+		
 		echo $campaing->id.": ".($data->hacer_despues+0)."<br>";
-		*/
+		
 
 		switch ( $data->hacer_despues+0 ) {
 			case 0:
@@ -96,27 +97,18 @@
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
-						
-						echo "<pre>";
-							print_r( $vistos );
-							// print_r( $enviados );
-						echo "</pre>";
-						
 						foreach ($vistos as $key => $cliente) {
 							$enviado_date = $cliente->fecha;
 							$email = $cliente->email;
-							echo (time()-$enviado_date)." >= ".$esperar."<br>";
 							if( (time()-$enviado_date) >= $esperar ){
 								if( !array_key_exists($email, $enviados) ){ 
 									$enviados[ $email ] = time();
-
 									$info_validacion = base64_encode( json_encode( [
 										"id" => $campaing->id,
 										"type" => "img",
 										"format" => "png",
 										"email" => $email
 									] ) );
-
 									$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
 									wp_mail( trim($email) , $d->asunto, $mensaje);
 								}
