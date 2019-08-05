@@ -4,11 +4,11 @@
 	switch ( $t ) {
 		case 'apple_kmimos':
 		case 'apple_wlabel':
-			echo '<meta http-equiv="refresh" content="2;URL=https://apps.apple.com/mx/app/kmimos/id1247272074">';
+			echo '< meta http-equiv="refresh" content="2;URL=https://apps.apple.com/mx/app/kmimos/id1247272074" >';
 		break;
 		case 'android_kmimos':
 		case 'android_wlabel':
-			echo '<meta http-equiv="refresh" content="2;URL=https://play.google.com/store/apps/details">';
+			echo '< meta http-equiv="refresh" content="2;URL=https://play.google.com/store/apps/details" >';
 		break;
 	}
 ?>
