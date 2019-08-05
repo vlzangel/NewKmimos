@@ -24,6 +24,9 @@
 		}
 		$no_abiertos = [];
 		$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
+		echo "<pre>";
+			print_r( $enviados );
+		echo "</pre>";
 		foreach ($enviados as $email => $enviado_date) {
 			if( !in_array($email, $vistos) ){
 				if( (time()-$enviado_date) >= $espera ){
@@ -121,9 +124,9 @@
 						echo "<pre>";
 							print_r( $no_abiertos );
 						echo "</pre>";
-						
-						foreach ($no_abiertos as $key => $cliente) {
-							$email = $cliente->email;
+
+						/*
+						foreach ($no_abiertos as $key => $email) {
 							if( !array_key_exists($email, $enviados) ){ 
 								$enviados[ $email ] = time();
 
@@ -138,6 +141,7 @@
 								wp_mail( trim($email) , $d->asunto, $mensaje);
 							}
 						}
+						*/
 					break;
 				}
 
