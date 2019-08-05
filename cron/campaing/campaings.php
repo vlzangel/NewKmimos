@@ -20,7 +20,7 @@
 		$vistos = [];
 		$_vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
 		foreach ($_vistos as $key => $cliente) {
-			$vistos[] = $cliente["email"];
+			$vistos[] = $cliente->email;
 		}
 		$no_abiertos = [];
 		$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
@@ -103,8 +103,8 @@
 						echo "</pre>";
 						
 						foreach ($vistos as $key => $cliente) {
-							$enviado_date = $cliente["fecha"];
-							$email = $cliente["email"];
+							$enviado_date = $cliente->fecha;
+							$email = $cliente->email;
 							echo (time()-$enviado_date)." >= ".$esperar."<br>";
 							if( (time()-$enviado_date) >= $esperar ){
 								if( !array_key_exists($email, $enviados) ){ 
@@ -126,7 +126,7 @@
 					case 'no':
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar);
 						foreach ($no_abiertos as $key => $cliente) {
-							$email = $cliente["email"];
+							$email = $cliente->email;
 							if( !array_key_exists($email, $enviados) ){ 
 								$enviados[ $email ] = time();
 
