@@ -1,0 +1,55 @@
+Newsletter Home. Cuando el usuario deja su correo en el popup.
+
+Este es el flujo que se debería seguir para éstos tres correos listados abajo: https://kmimos.createsend.com/automation/workflowbuilder#/51633C2E5039B6DF
+ 
+
+1.- envío de cupón de descuento 
+ https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=16340ED742628AA2&temp=False&tx=0
+
+2.- Completar registro 
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=352DBB74FBA62CE0&temp=False&tx=0  
+
+3.- Publicidad sobre beneficios kmimos.
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=7EC98F881D76A542&temp=False&tx=0  
+
+
+
+
+
+Newsletter Home WL PETCO. Cuando usuarios Petco dejan su correo en el popup.
+Flujo: https://kmimos.createsend.com/automation/workflowbuilder#/8A693C6280E54226 
+
+1.- Envío de descuento
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=31DAC6FB5E1F78B7&temp=False&tx=0  
+
+2.- Completa tu regístro
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=0CD50985AFDEE2C2&temp=False&tx=0 
+
+3.-  Publicidad beneficios
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=0CD50985AFDEE2C2&temp=False&tx=0  
+
+
+Signup Kmimos Regulares. Cuando el usuario se registra en la plataforma.
+Flujo: https://kmimos.createsend.com/automation/workflowbuilder#/FED6D416EF11F256 
+
+1.- Bienvenida.
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=D40308B45CA10A2F&temp=False&tx=0
+
+2.- Publicidad servicios.
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=13DF1E68DA57E486&temp=False&tx=0 
+
+3.-  Publicidad Beneficios 
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=C3B6F17DA33EC679&temp=False&tx=0  
+
+
+Signup Kmimos WL PETCO. Cuando un usuario Petco se registra en la plataforma.
+Flujo: https://kmimos.createsend.com/automation/workflowbuilder#/1595574103BCA34B 
+
+1.- Bienvenida.
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=1FF5E57230E637A2&temp=False&tx=0  
+
+2.- Publicidad servicios 
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=D74EC453B54AA02A&temp=False&tx=0
+
+3.- Publicidad Beneficios 
+https://kmimos.createsend.com/automation/reports/viewCampaign.aspx?d=j&c=D6E768EBE808EE28&ID=DFB73FBB9A084ACF&temp=False&tx=0
