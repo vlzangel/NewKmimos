@@ -27,7 +27,8 @@
 				$data = json_decode($campaing->data);
 				$flujos[ $campaing->id ] = [
 					$data->data->titulo,
-					$data->campaing_anterior
+					$data->campaing_anterior,
+					$data->campaing_despues_no_abre,
 				];
 			}
 		}
@@ -36,7 +37,11 @@
 			if( count($data) == 1 ){
 				$grafo .= '{ key: '.$key.', text: "'.$data[0].'", fill: "#ccc", stroke: "#4d90fe" },';
 			}else{
-				$grafo .= '{ key: '.$key.', text: "'.$data[0].'", fill: "#ccc", stroke: "#4d90fe", parent: '.$data[1].' },';
+				if( $data[0] == "si" ){
+					$grafo .= '{ key: '.$key.', text: "SI\n'.$data[0].'", fill: "#ccc", stroke: "#4d90fe", parent: '.$data[1].' },';
+				}else{
+					$grafo .= '{ key: '.$key.', text: "NO\n'.$data[0].'", fill: "#ccc", stroke: "#4d90fe", parent: '.$data[1].' },';
+				}
 			}
 		}
 

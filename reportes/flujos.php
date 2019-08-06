@@ -15,8 +15,13 @@
 			$data = json_decode($campaing->data);
 			$flujos[ $campaing->id ] = [
 				$data->data->titulo,
-				$data->campaing_anterior
+				$data->campaing_anterior,
+				$data->campaing_despues_no_abre,
 			];
 		}
 	}
+
+	echo "<pre>";
+		print_r($flujos);
+	echo "</pre>";
 ?>
