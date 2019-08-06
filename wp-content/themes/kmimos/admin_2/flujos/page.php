@@ -1,6 +1,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 <link rel='stylesheet' type='text/css' href='<?= getTema() ?>/admin_2/<?= $modulo ?>/css.css?v=<?= time() ?>'>
 <script src='<?= getTema(); ?>/admin_2/<?= $modulo ?>/js.js?v=<?= time() ?>'></script>
+
+<script src='<?= getTema(); ?>/admin_2/recursos/arbol/go.js'></script>
+
 <div class="container_listados">
     <div class='titulos'>
         <h2>Flujos</h2>

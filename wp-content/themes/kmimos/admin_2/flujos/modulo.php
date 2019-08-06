@@ -14,89 +14,122 @@
 
     function get_flujos_form($data, $action = 'insert'){
 		global $wpdb;
-		$btn = 'Crear';
-		if( $action == 'update' ){
-			$input_id = '<input type="hidden" name="id" value="'.$data->id.'" />';
-			$ID = $data->id;
-			$data = json_decode($data->data);
-			$btn = 'Actualizar';
-		}
 
-		$FORM = '';
-		if( $action != 'insert' ){
-			$FORM = '
-				<div class="form-group">
-					<label for="suscriptores">Suscriptores</label>
-					<table id="table_flujos" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
-			            <thead>
-			                <tr>
-			                    <th>#</th>
-			                    <th>Nombre</th>
-			                    <th>Correo</th>
-			                    <th>Acciones</th>
-			                </tr>
-			            </thead>
-			            <tbody></tbody>
-			        </table>
-				</div>
-			';
-		}
-
-		echo '
-			<form id="flujos_form" data-modulo="flujos" >
-				'.$input_id.'
-				<input type="hidden" name="form" value="lista" />
-				<div class="form-group">
-					<label for="titulo">Nombre de la lista</label>
-					<input type="text" class="form-control" id="titulo" name="titulo" value="'.$data->titulo.'" placeholder="Titulo de la Campaña">
-				</div>
-				<div class="form-group">
-					<label for="importar">Importar Clientes</label>
-					<input type="file" class="form-control" id="importar" name="importar" accept=".csv" />
-					<input type="hidden" id="importaciones" name="importaciones" />
-				</div>
-				'.$FORM.'
-				<div class="text-right">
-					<button id="btn_submit_modal" type="submit" class="btn btn-primary">'.$btn.'</button>
-				</div>
-			</form>
-			<script>
-				_'.$action.'("flujos_form");
-				loadTabla("table_flujos", "list_form&ID='.$ID.'");
-
-				jQuery(document).ready(function() {
-				    importar_csv( jQuery("#importar") );
-				});
-
-			</script>
-		';
-    }
-
-	add_action( 'wp_ajax_vlz_flujos_list_form', function() {
-		extract($_POST);
-		extract($_GET);
-		global $wpdb;
-		$_data["data"] = [];
-		$info = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$ID);
-		if( !empty($info) ){
-			$data = json_decode($info->data);
-			$temp_suscriptores = $data->suscriptores;
-			$suscriptores = '';
-			foreach ($temp_suscriptores as $key => $suscriptor) {
-				$_data["data"][] = [
-					$key+1,
-					$suscriptor[0],
-					$suscriptor[1],
-					'<div style="text-align: center;"> 
-						<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$ID."|".$suscriptor[1].'" data-modal="flujos_edit_cliente" data-titulo="Editar Cliente" >Editar</span> &nbsp;
-						<span class="btn btn-danger  btn-s" onclick="_modal( jQuery(this) )" data-id="'.$ID."|".base64_encode($suscriptor[0])."|".$suscriptor[1].'" data-modal="flujos_del_modal" data-titulo="Eliminar Cliente" >Eliminar</span>
-					</div>'
+		$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing ORDER BY creada ASC");
+		$flujos = [];
+		foreach ($campaings as $key => $campaing) {
+			$data = json_decode($campaing->data);
+			if( $data->hacer_despues+0 == 0 ){
+				$flujos[ $campaing->id ] = [
+					$data->data->titulo
+				];
+			}else{
+				$data = json_decode($campaing->data);
+				$flujos[ $campaing->id ] = [
+					$data->data->titulo,
+					$data->campaing_anterior
 				];
 			}
 		}
-		echo json_encode($_data);
-	   	die();
-	} );
+		$grafo = '';
+		foreach ($flujos as $key => $data) {
+			if( count($data) == 1 ){
+				$grafo .= '{ key: '.$key.', text: "'.$data[0].'", fill: "#ccc", stroke: "#4d90fe" },';
+			}else{
+				$grafo .= '{ key: '.$key.', text: "'.$data[0].'", fill: "#ccc", stroke: "#4d90fe", parent: '.$data[1].' },';
+			}
+		}
+
+		echo '
+			<div id="myDiagramDiv" style="border: solid 1px black; width:100%; height:500px"></div>
+			<script id="code">
+				function init() {
+					if (window.goSamples) goSamples();
+					var $ = go.GraphObject.make;
+					myDiagram =
+					$(go.Diagram, "myDiagramDiv",
+						{
+							allowCopy: false,
+							allowDelete: false,
+							allowMove: false,
+							initialAutoScale: go.Diagram.Uniform,
+							layout:
+							$(FlatTreeLayout,
+								{
+									angle: 90,
+									compaction: go.TreeLayout.CompactionNone
+								}
+							),
+							"undoManager.isEnabled": false
+						}
+					);
+
+					myDiagram.nodeTemplate =
+					$(
+						go.Node, 
+						"Vertical",
+						{ selectionObjectName: "BODY" },
+						$(go.Panel, "Auto", { name: "BODY" },
+						$(
+							go.Shape, 
+							"RoundedRectangle",
+							new go.Binding("fill"),
+							new go.Binding("stroke")
+						),
+						$(
+							go.TextBlock,
+							{ font: "bold 12pt Arial, sans-serif", margin: new go.Margin(4, 2, 2, 2) },
+							new go.Binding("text"))
+						),
+						$(
+							go.Panel,
+							{ height: 17 },
+							$("TreeExpanderButton")
+						)
+					);
+
+					myDiagram.linkTemplate =
+					$(
+						go.Link,
+						$( go.Shape, { strokeWidth: 1.5 } )
+					);
+
+					var nodeDataArray = [
+						'.$grafo.'
+					];
+
+					myDiagram.model = $(go.TreeModel, { nodeDataArray: nodeDataArray }); 
+				}
+
+				function FlatTreeLayout() {
+					go.TreeLayout.call(this);
+				}
+				go.Diagram.inherit(FlatTreeLayout, go.TreeLayout);
+
+				FlatTreeLayout.prototype.commitLayout = function() {
+					go.TreeLayout.prototype.commitLayout.call(this);
+					var y = -Infinity;
+					this.network.vertexes.each(function(v) {
+						y = Math.max(y, v.node.position.y);
+					});
+					this.network.vertexes.each(function(v) {
+						if (v.destinationEdges.count === 0) {
+							v.node.position = new go.Point(v.node.position.x, y);
+							v.node.toEndSegmentLength = Math.abs(v.centerY - y);
+						} else {
+							v.node.toEndSegmentLength = 10;
+						}
+					});
+				};
+			</script>
+			<script>
+				jQuery(document).ready(function() {
+				    _flujo( '.$data->id.' );
+				    init();
+				});
+			</script>
+		';
+    }
 
 	add_action( 'wp_ajax_vlz_flujos_list', function() {
 		extract($_POST);
@@ -111,8 +144,7 @@
 				$value->id,
 				$d->data->titulo,
 				$count,'
-				<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="flujos_edit" data-titulo="Editar Lista" >Editar</span> &nbsp;
-				<span class="btn btn-danger btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="flujos_del_form" data-titulo="Eliminar Lista" >Eliminar</span>'
+				<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="flujos_edit" data-titulo="Ver Flujo" >Ver Flujo</span>'
 			];
 		}
 		echo json_encode($data);

@@ -3,29 +3,20 @@
 
 	global $wpdb;
 
-	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing ORDER BY creada ASC"); //  WHERE data LIKE '%hacer_despues\":\"0%'
-
+	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing ORDER BY creada ASC");
 	$flujos = [];
-	/*
-		$flujos[10] = [];
-		$flujos[10][11] = [];
-		$flujos[10][11][13] = [];
-		$flujos[10][11][14] = [];
-		$flujos[10][12] = [];
-		$flujos[10][12][15] = [];
-	*/
-
 	foreach ($campaings as $key => $campaing) {
 		$data = json_decode($campaing->data);
 		if( $data->hacer_despues+0 == 0 ){
-			$flujos[ $campaing->id ] = null;
+			$flujos[ $campaing->id ] = [
+				$data->data->titulo
+			];
 		}else{
 			$data = json_decode($campaing->data);
-			$flujos[ $campaing->id ] = $data->campaing_anterior;
+			$flujos[ $campaing->id ] = [
+				$data->data->titulo,
+				$data->campaing_anterior
+			];
 		}
 	}
-
-	echo "<pre>";
-		print_r($flujos);
-	echo "</pre>";
 ?>

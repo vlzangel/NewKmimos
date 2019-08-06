@@ -24,3 +24,7 @@ function importar_csv(_this){
 
 	});
 }
+
+function _flujo(id){
+
+}
