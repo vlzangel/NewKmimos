@@ -18,7 +18,7 @@
             if( $value["parent"] == "" ){
                 $parents[] = $value;
             }else{
-                $no_parents[] = $value;
+                $no_parents[ $value["level"] ] = $value;
             }
         }
 
@@ -33,6 +33,8 @@
                 $opcion['position']
             );
         }
+
+        ksort($no_parents);
 
         foreach($no_parents as $opcion){
             add_submenu_page(

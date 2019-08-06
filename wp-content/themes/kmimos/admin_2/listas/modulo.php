@@ -9,7 +9,8 @@
         'slug'          =>  'listas',
         'modulo'        =>  function(){
         	init_page( 'listas' );
-        }
+        },
+        'level' => 2
     );
 
     function get_listas_form($data, $action = 'insert'){

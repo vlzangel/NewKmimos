@@ -9,7 +9,8 @@
         'slug'          =>  'flujos',
         'modulo'        =>  function(){
         	init_page( 'flujos' );
-        }
+        },
+        'level' => 3
     );
 
     function get_flujos_form($data, $action = 'insert'){
