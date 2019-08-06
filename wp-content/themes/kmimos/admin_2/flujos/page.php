@@ -39,6 +39,19 @@
     }
 ?>
 <div id="myDiagramDiv" style="border: 1px solid black; width: calc( 100% - 20px ); height: calc( 100vh - 70px ); position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); cursor: auto; margin: 20px 0px 0px;"></div>
+<div class="mask"></div>
+<style type="text/css">
+    .mask {
+        position: fixed;
+        top: 53px;
+        left: 181px;
+        display: inline-block;
+        width: 200px;
+        height: 70px;
+        background-color: #FFF;
+        z-index: 999;
+    }
+</style>
 <script id="code">
     function init() {
         if (window.goSamples) goSamples();
