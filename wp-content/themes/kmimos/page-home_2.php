@@ -142,7 +142,7 @@
 		<div>
 			<div class="banner_rotativo">
 				<a id="banner_app" href="#" style="display: block;">
-					<img src="'.get_recurso("img").'BANNERS/APP/b2.png" style="width: 100%;" class="solo_movil" />
+					<img src="'.get_recurso("img").'BANNERS/APP/b3.png" style="width: 100%;" class="solo_movil" />
 				</a>
 				<div class="banner_rotativo_container">
 					<div class="banner_rotativo_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="100" data-h_movil="100" data-t="1500">
