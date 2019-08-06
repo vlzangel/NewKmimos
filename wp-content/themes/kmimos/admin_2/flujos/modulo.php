@@ -143,13 +143,10 @@
 		$info = $wpdb->get_results("SELECT * FROM vlz_campaing WHERE data LIKE '%hacer_despues\":\"0%' ORDER BY creada DESC");
 		foreach ($info as $key => $value) {
 			$d = json_decode($value->data);
-			$hijos = $wpdb->get_results("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"".$value->id."%' ");
-			$count = count($hijos);
 			$data["data"][] = [
 				$value->id,
 				$d->data->titulo,
-				$count,'
-				<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="flujos_edit" data-titulo="Ver Flujo" >Ver Flujo</span>'
+				'<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="flujos_edit" data-titulo="Ver Flujo" >Ver Flujo</span>'
 			];
 		}
 		echo json_encode($data);
