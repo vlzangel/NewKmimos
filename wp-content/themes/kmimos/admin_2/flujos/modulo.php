@@ -37,7 +37,7 @@
 			if( count($data) == 1 ){
 				$grafo .= '{ key: '.$key.', text: "'.$data[0].'", fill: "#ccc", stroke: "#4d90fe" },';
 			}else{
-				if( $data[0] == "si" ){
+				if( $data[2] == "si" ){
 					$grafo .= '{ key: '.$key.', text: "SI\n'.$data[0].'", fill: "#ccc", stroke: "#4d90fe", parent: '.$data[1].' },';
 				}else{
 					$grafo .= '{ key: '.$key.', text: "NO\n'.$data[0].'", fill: "#ccc", stroke: "#4d90fe", parent: '.$data[1].' },';
