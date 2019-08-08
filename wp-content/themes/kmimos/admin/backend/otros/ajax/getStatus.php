@@ -1,20 +1,23 @@
 <?php
-    date_default_timezone_set('America/Mexico_City');
+	error_reporting(0);
+    
+	extract($_POST);
     $raiz = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))));
-    include_once($raiz."/wp-load.php");
-    global $wpdb;
+    include_once($raiz."/vlz_config.php");
 
-    extract($_POST);
+    $tema = (dirname(dirname(dirname(dirname(__DIR__)))));
+    include_once($tema."/procesos/funciones/db.php");
+    include_once($tema."/procesos/funciones/generales.php");
+
+    $db = new db( new mysqli($host, $user, $pass, $db) );
 
     $saldo += 0;
-    echo $raiz."<br>";
-    echo "SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' <br>";
 
-    $_reserva = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' ");
-    if( $_reserva == null ){
-        echo "El ID no pertenece a una reserva - {$reserva} -";
+    $reserva = $db->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' ");
+    if( $reserva == null ){
+        echo "El ID no pertenece a una reserva";
     }else{
-        $orden = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$_reserva->post_parent}'");
+        $orden = $db->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva->post_parent}'");
         $_saldo += 0;
         echo "
             <input type='hidden' id='orden' name='orden' value='{$reserva->post_parent}' />
