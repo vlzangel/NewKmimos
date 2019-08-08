@@ -22,7 +22,7 @@
     <div class='col-md-12'>
         <div class='row'>
             <div class="col-sm-12 col-md-12 container-search text-right">
-                <form id="form-search" name="search" action="<?php get_home_url(); ?>/wp-admin/admin.php">
+                <form id="form-search" name="search" action="<?= get_home_url(); ?>/wp-admin/admin.php">
                     <input type="hidden" name="page" value="bp_reservas">
                     <span>
                         <label class="fecha">Desde: </label><input type="date" name="ini" value="<?php echo $ini; ?>">
