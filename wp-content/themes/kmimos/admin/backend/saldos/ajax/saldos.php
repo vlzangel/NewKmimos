@@ -8,9 +8,12 @@
     foreach ($registros as $registro) {
         $metas_cliente = get_user_meta($registro->cliente);
         $metas_admin = get_user_meta($registro->admin);
+
+        $correo_cliente = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$registro->cliente);
+
         $data["data"][] = [
             $registro->id,
-            ($metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0]),
+            ($metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0])." (".$correo_cliente.")",
             "$".number_format($registro->saldo_anterior, 2, ',', '.'),
             "$".number_format($registro->saldo_siguiente, 2, ',', '.'),
             ($metas_admin["first_name"][0]." ".$metas_admin["last_name"][0]),
