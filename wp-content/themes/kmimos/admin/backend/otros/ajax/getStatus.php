@@ -8,11 +8,11 @@
 
     $saldo += 0;
 
-    $reserva = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' ");
-    if( $reserva == null ){
+    $_reserva = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' ");
+    if( $_reserva == null ){
         echo "El ID no pertenece a una reserva - {$reserva} -";
     }else{
-        $orden = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva->post_parent}'");
+        $orden = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$_reserva->post_parent}'");
         $_saldo += 0;
         echo "
             <input type='hidden' id='orden' name='orden' value='{$reserva->post_parent}' />
