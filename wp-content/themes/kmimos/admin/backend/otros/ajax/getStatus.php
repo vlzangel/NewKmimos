@@ -7,8 +7,9 @@
     extract($_POST);
 
     $saldo += 0;
-    echo "SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' ";
-    
+    echo $raiz."<br>";
+    echo "SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' <br>";
+
     $_reserva = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' ");
     if( $_reserva == null ){
         echo "El ID no pertenece a una reserva - {$reserva} -";
