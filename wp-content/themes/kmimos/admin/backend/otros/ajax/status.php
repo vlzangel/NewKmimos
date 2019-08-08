@@ -6,7 +6,7 @@
     $data["data"] = [];
     $registros = $wpdb->get_results("SELECT post_id, meta_value FROM wp_postmeta WHERE meta_key = 'status_change' ORDER BY post_id DESC");
     foreach ($registros as $registro) {
-        $meta_reserva = get_user_meta( $registro->post_id );
+        $meta_reserva = get_post_meta( $registro->post_id );
         $info = json_decode( $registro->meta_value );
             
         $cliente_id = $meta_reserva["_booking_customer_id"][0];
