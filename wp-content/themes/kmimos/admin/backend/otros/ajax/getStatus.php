@@ -15,7 +15,7 @@
 
     $reserva = $db->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' ");
     if( $reserva == null ){
-        echo "El ID no pertenece a una reserva";
+        echo "El ID no pertenece a una reserva - {$reserva}";
     }else{
         $orden = $db->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva->post_parent}'");
         $_saldo += 0;
