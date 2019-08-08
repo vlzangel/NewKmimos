@@ -20,7 +20,6 @@
     ];
 
     $solicitud = $db->get_row("SELECT * FROM cuidadores_pagos WHERE md5(id) = '{$code}'" );
-
     if( isset($solicitud->estatus) && !empty($solicitud) ){
         if( empty($solicitud->openpay_id) && !in_array( $solicitud->estatus, $estatus_bloqueados) ){
             $db->query( "DELETE FROM cuidadores_pagos WHERE md5(id) = '{$code}'" );
