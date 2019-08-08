@@ -4,6 +4,8 @@
     include_once($raiz."/wp-load.php");
     global $wpdb;
 
+    extract($_POST);
+
     $saldo += 0;
 
     $reserva = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva}' AND post_type='wc_booking' ");
