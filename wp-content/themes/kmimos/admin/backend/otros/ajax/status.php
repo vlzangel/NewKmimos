@@ -16,7 +16,7 @@
         $correo_cliente = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$cliente_id);
 
         $data["data"][] = [
-            $registro->id,
+            $registro->post_id,
             ($metas_cliente["first_name"][0]." ".$metas_cliente["last_name"][0])." (".$correo_cliente.")",
             $info->status_a,
             $info->status_n,
