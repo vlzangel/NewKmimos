@@ -34,7 +34,6 @@ jQuery(document).ready(function() {
     jQuery("#close_modal").on("click", function(e){
         cerrar(e);
     });
-
 } );
 
 function abrir_link(e){

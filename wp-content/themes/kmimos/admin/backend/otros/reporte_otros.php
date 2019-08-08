@@ -7,6 +7,31 @@
         <h2>Ajuste  de Estatus de Reservas</h2>
         <hr>
     </div>
+    
+    <?php
+        $current_user = wp_get_current_user();
+        $admin_user_id = $current_user->ID;
+
+        if( $admin_user_id == 367){ ?>
+            <div class="container_listados">
+                <div class='col-md-12'>
+                    <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">
+                        <thead>
+                            <tr>
+                                <th width="20">#</th>
+                                <th>Cliente</th>
+                                <th>Saldo Anterior</th>
+                                <th>Saldo Nuevo</th>
+                                <th>Administrador</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div> <?php 
+        }
+    ?>
 
     <form id="form" action="" method="POST">
 
