@@ -24,7 +24,7 @@
 
 				}else{
 
-					$r = $wpdb->get_row("SELECT post_date AS pago, post_date_gmt AS creacion FROM wp_posts WHERE ID = ".$reserva->id);
+					$r = $wpdb->get_row("SELECT post_date AS pago, post_date_gmt AS creacion FROM wp_posts WHERE ID = ".$reserva->reserva_id);
 
 					$data['data'][] = [
 						$reserva->id,
@@ -57,8 +57,8 @@
 						$reserva->estado,
 						$reserva->municipio,
 
-						"- ".$r->creacion, /* date("d/m/Y h:i:s a", strtotime($r->creacion) ) */
-						"- ".$r->pago, /* date("d/m/Y h:i:s a", strtotime($r->pago) ) */
+						date("d/m/Y h:i:s a", strtotime($r->creacion) ),
+						date("d/m/Y h:i:s a", strtotime($r->pago) ),
 
 						$reserva->forma_de_pago,
 						$reserva->tipo_de_pago,
