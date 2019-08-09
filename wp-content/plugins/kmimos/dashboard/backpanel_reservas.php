@@ -72,16 +72,22 @@
                     <th>Servicios Especiales</th>
                     <th>Estado</th>
                     <th>Municipio</th>
+
+                    <th>Fecha Creación</th>
+                    <th>Fecha Pago</th>
+                    
                     <th>Forma de Pago</th>
                     <th>Tipo de Pago</th>
                     <th>Total a pagar ($)</th>
                     <th>Monto Pagado ($)</th>
                     <th>Monto Remanente ($)</th>
+
                     <th>Saldo a favor</th>
                     <th>Promoción</th>
                     <th>Monto promoción</th>
                     <th>Promoción cuidador</th>
                     <th>Monto promo cuidador</th>
+
                     <th># Pedido</th>
                     <th>Observaci&oacute;n</th>
                 </tr>

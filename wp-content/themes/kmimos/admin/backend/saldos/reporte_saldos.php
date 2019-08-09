@@ -9,8 +9,11 @@
     <?php
         $current_user = wp_get_current_user();
         $admin_user_id = $current_user->ID;
-
-        if( $admin_user_id == 367){ ?>
+        $permitidos = [
+            367,
+            8966
+        ];
+        if( in_array($admin_user_id, $permitidos) ){ ?>
             <div class="container_listados">
                 <div class='col-md-12'>
                     <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" style="min-width: 100%;">

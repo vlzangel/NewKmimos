@@ -23,6 +23,9 @@
 				if( $reserva->status == 'Pendiente' && $reserva->forma_de_pago != 'Tienda' ){
 
 				}else{
+
+					$r = $wpdb->get_row("SELECT post_date AS pago, post_date_gmt AS creacion FROM wp_posts WHERE ID = ".$reserva->id);
+
 					$data['data'][] = [
 						$reserva->id,
 						$origen,
@@ -53,8 +56,13 @@
 						$reserva->servicios_especiales,
 						$reserva->estado,
 						$reserva->municipio,
+
+						date("d/m/Y h:i:s a", strtotime($r->creacion) ),
+						date("d/m/Y h:i:s a", strtotime($r->pago) ),
+
 						$reserva->forma_de_pago,
 						$reserva->tipo_de_pago,
+
 						number_format($reserva->total_a_pagar, 2, '.', ','),
 						number_format($reserva->monto_pagado, 2, '.', ','),
 						number_format($reserva->monto_remanente, 2, '.', ','),
