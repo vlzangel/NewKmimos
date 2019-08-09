@@ -26,6 +26,8 @@
 
 					$r = $wpdb->get_row("SELECT post_date AS pago, post_date_gmt AS creacion FROM wp_posts WHERE ID = ".$reserva->reserva_id);
 
+					$pago = ( $reserva->status == 'Pendiente' ) ? '---' : date("d/m/Y h:i:s a", strtotime($r->pago) );
+
 					$data['data'][] = [
 						$reserva->id,
 						$origen,
@@ -58,7 +60,7 @@
 						$reserva->municipio,
 
 						date("d/m/Y h:i:s a", strtotime($r->creacion) ),
-						date("d/m/Y h:i:s a", strtotime($r->pago) ),
+						$pago,
 
 						$reserva->forma_de_pago,
 						$reserva->tipo_de_pago,
