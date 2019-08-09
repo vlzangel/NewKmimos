@@ -57,8 +57,8 @@
 						$reserva->estado,
 						$reserva->municipio,
 
-						date("d/m/Y h:i:s a", strtotime($r->creacion) ),
-						date("d/m/Y h:i:s a", strtotime($r->pago) ),
+						$r->creacion, /* date("d/m/Y h:i:s a", strtotime($r->creacion) ) */,
+						$r->pago, /* date("d/m/Y h:i:s a", strtotime($r->pago) ) */,
 
 						$reserva->forma_de_pago,
 						$reserva->tipo_de_pago,
