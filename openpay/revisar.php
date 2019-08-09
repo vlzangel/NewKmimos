@@ -92,6 +92,9 @@
 								
 						update_post_meta($id_orden, '_ya_pago', "listo");
 
+						$hoy = date("Y-m-d H:i:s");
+						update_post_meta($id_orden, '_booking_pago', $hoy);
+
                 		include( "../wp-content/themes/kmimos/procesos/reservar/emails/index.php");
 
 					break;

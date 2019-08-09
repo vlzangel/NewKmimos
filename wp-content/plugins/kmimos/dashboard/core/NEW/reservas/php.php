@@ -24,62 +24,77 @@
 
 				}else{
 
-					$r = $wpdb->get_row("SELECT post_date AS pago, post_date_gmt AS creacion FROM wp_posts WHERE ID = ".$reserva->reserva_id);
+					$r = $wpdb->get_row("SELECT * FROM wp_posts WHERE ID = ".$reserva->reserva_id);
 
-					$pago = ( $reserva->status == 'Pendiente' ) ? '---' : date("d/m/Y h:i:s a", strtotime($r->pago) );
+					$creacion = get_post_meta($reserva->pedido, '_booking_creacion', true);
+					if( empty($creacion) ){
+						$creacion = $r->post_date_gmt;
+					}
 
-					$data['data'][] = [
-						$reserva->id,
-						$origen,
-						$reserva->reserva_id,
-						$reserva->flash,
-						$reserva->status,
-						$reserva->fecha_reservacion,
-						$reserva->check_in,
-						$reserva->check_out,
-						$reserva->noches,
-						$reserva->num_mascotas,
-						$reserva->num_noches_totales,
-						$reserva->cliente,
-						$reserva->correo_cliente,
-						$reserva->telefono_cliente,
-						$reserva->recompra_1_mes,
-						$reserva->recompra_3_meses,
-						$reserva->recompra_6_meses,
-						$reserva->recompra_12_meses,
-						$reserva->donde_nos_conocio,
-						$reserva->mascotas,
-						$reserva->razas,
-						$reserva->edad,
-						$reserva->cuidador,
-						$reserva->correo_cuidador,
-						$reserva->telefono_cuidador,
-						$reserva->servicio_principal,
-						$reserva->servicios_especiales,
-						$reserva->estado,
-						$reserva->municipio,
+					$pago = get_post_meta($reserva->pedido, '_booking_pago', true);
+					if( empty($pago) ){
+						$pago = $r->post_date;
+					}
 
-						date("d/m/Y h:i:s a", strtotime($r->creacion) ),
-						$pago,
+					$pago = date("d/m/Y h:i:s a", strtotime($pago) );
 
-						$reserva->forma_de_pago,
-						$reserva->tipo_de_pago,
+					$pago = ( $reserva->status == 'Pendiente' ) ? '---' : $pago;
 
-						number_format($reserva->total_a_pagar, 2, '.', ','),
-						number_format($reserva->monto_pagado, 2, '.', ','),
-						number_format($reserva->monto_remanente, 2, '.', ','),
-						
-						num_for( $cupones[ 'info' ]['saldo']+0 ),
+					if( !empty($r) ){
 
-						( is_array($cupones[ 'info' ]['promo']['kmimos']['cupones']) && count($cupones[ 'info' ]['promo']['kmimos']['cupones']) > 0 ) ? implode(', ', $cupones[ 'info' ]['promo']['kmimos']['cupones']) : '-',
-						num_for( $cupones[ 'info' ]['promo']['kmimos']['total'] ),
+						$data['data'][] = [
+							$reserva->id,
+							$origen,
+							$reserva->reserva_id,
+							$reserva->flash,
+							$reserva->status,
+							$reserva->fecha_reservacion,
+							$reserva->check_in,
+							$reserva->check_out,
+							$reserva->noches,
+							$reserva->num_mascotas,
+							$reserva->num_noches_totales,
+							$reserva->cliente,
+							$reserva->correo_cliente,
+							$reserva->telefono_cliente,
+							$reserva->recompra_1_mes,
+							$reserva->recompra_3_meses,
+							$reserva->recompra_6_meses,
+							$reserva->recompra_12_meses,
+							$reserva->donde_nos_conocio,
+							$reserva->mascotas,
+							$reserva->razas,
+							$reserva->edad,
+							$reserva->cuidador,
+							$reserva->correo_cuidador,
+							$reserva->telefono_cuidador,
+							$reserva->servicio_principal,
+							$reserva->servicios_especiales,
+							$reserva->estado,
+							$reserva->municipio,
 
-						( is_array($cupones[ 'info' ]['promo']['cuidador']['cupones']) && count($cupones[ 'info' ]['promo']['cuidador']['cupones']) > 0 ) ? implode(', ', $cupones[ 'info' ]['promo']['cuidador']['cupones']) : '-',
-						num_for( $cupones[ 'info' ]['promo']['cuidador']['total'] ),
+							date("d/m/Y h:i:s a", strtotime($creacion) ),
+							$pago,
 
-						$reserva->pedido,
-						$reserva->observacion,
-					];
+							$reserva->forma_de_pago,
+							$reserva->tipo_de_pago,
+
+							number_format($reserva->total_a_pagar, 2, '.', ','),
+							number_format($reserva->monto_pagado, 2, '.', ','),
+							number_format($reserva->monto_remanente, 2, '.', ','),
+							
+							num_for( $cupones[ 'info' ]['saldo']+0 ),
+
+							( is_array($cupones[ 'info' ]['promo']['kmimos']['cupones']) && count($cupones[ 'info' ]['promo']['kmimos']['cupones']) > 0 ) ? implode(', ', $cupones[ 'info' ]['promo']['kmimos']['cupones']) : '-',
+							num_for( $cupones[ 'info' ]['promo']['kmimos']['total'] ),
+
+							( is_array($cupones[ 'info' ]['promo']['cuidador']['cupones']) && count($cupones[ 'info' ]['promo']['cuidador']['cupones']) > 0 ) ? implode(', ', $cupones[ 'info' ]['promo']['cuidador']['cupones']) : '-',
+							num_for( $cupones[ 'info' ]['promo']['cuidador']['total'] ),
+
+							$reserva->pedido,
+							$reserva->observacion,
+						];
+					}
 				}
 			}
 

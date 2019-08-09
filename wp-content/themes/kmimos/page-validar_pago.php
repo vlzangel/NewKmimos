@@ -45,6 +45,9 @@
 
 								update_cupos( $id_orden );
 
+								$hoy = date("Y-m-d H:i:s");
+								update_post_meta($id_orden, '_booking_pago', $hoy);
+
 								header( 'location:'.get_home_url().'/finalizar/'.$id_orden );
 							}
 							

@@ -377,6 +377,7 @@
 	}
 
 	
+	$hoy = date("Y-m-d H:i:s");
 
 	if( $_SESSION["pagando"] == ""){
 		$_SESSION["pagando"] = "YES";
@@ -426,6 +427,8 @@
 		    	"fin" => strtotime($_SESSION[$id_session]["fechas"]["fin"]),
 		    	"cantidad" => $_SESSION[$id_session]["variaciones"]["cupos"]
 		    ));
+
+		    update_post_meta($id_orden, '_booking_pago', $hoy);
 		    
 			include(__DIR__."/emails/index.php");
 			exit;
@@ -542,6 +545,9 @@
 								$db->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
 								$db->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
 							}
+
+							update_post_meta($id_orden, '_booking_pago', $hoy);
+							
 							$para_buscar = array(
 								"cliente" => $customer->id,
 								"transaccion_id" => $charge->id

@@ -172,10 +172,15 @@ class Reservas {
         $otros_metas = '';
         if( isset($_SESSION['id_admin']) ){ $otros_metas .= "(NULL, '{$id_order}', '_id_admin', '".$_SESSION['id_admin']."'),"; }
 
+        $hoy = date("Y-m-d H:i:s");
+        
         $sql = "
             INSERT INTO wp_postmeta VALUES
             {$remanente}
             {$otros_metas}
+
+            (NULL, '{$id_order}', '_booking_creacion',                      '{$hoy}' ),
+            (NULL, '{$id_order}', '_booking_pago',                          ''       ),
 
             (NULL, '{$id_order}', '_customer_user',                         '{$cliente}'),
             
