@@ -35,17 +35,26 @@
 	}
 
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing"); // WHERE data NOT LIKE '%\"ENVIADO\":\"SI\"%'
-
+	
+	/*
 		echo "<pre>";
 			print_r($campaings);
 		echo "</pre>";
+	*/
+
 	foreach ($campaings as $key => $campaing) {
+
+		echo "<pre>";
+			print_r($campaing);
+		echo "</pre>";
+
 		$data = json_decode($campaing->data);
 		$d = $data->data;
 
+		/*
 		echo "<pre>";
-			print_r($data);
-		echo "</pre>";
+			print_r($data
+		*/
 
 		switch ( $data->hacer_despues+0 ) {
 			case 0:
