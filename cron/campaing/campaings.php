@@ -35,7 +35,7 @@
 	}
 
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing"); // WHERE data NOT LIKE '%\"ENVIADO\":\"SI\"%'
-	
+
 	/*
 		echo "<pre>";
 			print_r($campaings);
@@ -107,11 +107,14 @@
 				echo "</pre>";
 
 				$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
-				if( !isset($enviados[$padre_id]) ){ 
-					$enviados[$padre_id] = []; 
+
+				/*
+				if( !isset($enviados->$padre_id) ){ 
+					$enviados->$padre_id = []; 
 				}else{
-					$enviados = (array) $enviados;
+					$enviados = $enviados;
 				}
+				*/
 
 				echo "<pre>";
 					print_r($enviados);
@@ -124,8 +127,8 @@
 							$enviado_date = $cliente->fecha;
 							$email = $cliente->email;
 							if( (time()-$enviado_date) >= $esperar ){
-								if( !array_key_exists($email, $enviados[$padre_id]) ){ 
-									$enviados[$padre_id][ $email ] = time();
+								if( !array_key_exists($email, $enviados->$padre_id) ){ 
+									$enviados->$padre_id[ $email ] = time();
 									$info_validacion = base64_encode( json_encode( [
 										"id" => $campaing->id,
 										"type" => "img",
@@ -141,8 +144,8 @@
 					case 'no':
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar);
 						foreach ($no_abiertos as $key => $email) {
-							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
-								$enviados[$padre_id][ $email ] = time();
+							if( !array_key_exists($email, $enviados->$padre_id) ){ 
+								$enviados->$padre_id[ $email ] = time();
 								$info_validacion = base64_encode( json_encode( [
 									"id" => $campaing->id,
 									"type" => "img",
