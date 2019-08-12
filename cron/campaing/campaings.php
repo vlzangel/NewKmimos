@@ -92,7 +92,7 @@
 				$data_anterior = json_decode($anterior->data);
 
 				$padre_id = "padre_".$data->campaing_anterior;
-				$enviados = ( isset($data->enviados) ) ? $data->enviados : {};
+				$enviados = ( isset($data->enviados) ) ? $data->enviados : (object) [];
 
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
