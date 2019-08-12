@@ -110,7 +110,7 @@
 										"email" => $email
 									] ) );
 									$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
-									wp_mail( trim($email) , $d->asunto, $mensaje);
+									// wp_mail( trim($email) , $d->asunto, $mensaje);
 								}
 							}
 						}
@@ -127,13 +127,18 @@
 									"email" => $email
 								] ) );
 								$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
-								wp_mail( trim($email) , $d->asunto, $mensaje);
+								// wp_mail( trim($email) , $d->asunto, $mensaje);
 							}
 						}
 					break;
 				}
+				
+				echo "<pre>";
+					print_r( $enviados );
+				echo "</pre>";
 			break;
 		}
+
 
 		$data->enviados = $enviados;
 		update_campaing($campaing, $data, $d);
