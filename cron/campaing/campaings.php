@@ -95,7 +95,7 @@
 				$_enviados = ( isset($data->enviados) ) ? (array) $data->enviados : [];
 
 				$enviados = [];
-				foreach ($_enviados as $key => $value) {
+				foreach ($_enviados[ $padre_id ] as $key => $value) {
 					$enviados[ $padre_id ][ $key ] = $value;
 				}
 
