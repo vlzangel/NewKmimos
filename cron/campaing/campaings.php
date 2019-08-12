@@ -109,6 +109,10 @@
 					$enviados = (array) $enviados;
 				}
 
+				echo "<pre>";
+					print_r($enviados);
+				echo "</pre>";
+
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
