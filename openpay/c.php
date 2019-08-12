@@ -14,8 +14,8 @@
 	Openpay::setProductionMode( true );
 
 	$findDataRequest = array(
-    	'creation[gte]' => '2019-12-01',
-    	'creation[lte]' => '2019-12-31',
+    	'creation[gte]' => '2019-07-01',
+    	'creation[lte]' => '2019-09-01',
     	'limit' => 1000
     );
 	
