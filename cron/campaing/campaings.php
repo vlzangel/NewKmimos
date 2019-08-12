@@ -45,7 +45,7 @@
 	foreach ($campaings as $key => $campaing) {
 
 		echo "<pre>";
-			print_r($campaing);
+			print_r($key);
 		echo "</pre>";
 
 		$data = json_decode($campaing->data);
