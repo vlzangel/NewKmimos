@@ -44,17 +44,8 @@
 
 	foreach ($campaings as $key => $campaing) {
 
-		echo "<pre>";
-			print_r($key);
-		echo "</pre>";
-
 		$data = json_decode($campaing->data);
 		$d = $data->data;
-
-		/*
-		echo "<pre>";
-			print_r($data
-		*/
 
 		switch ( $data->hacer_despues+0 ) {
 			case 0:
@@ -101,24 +92,7 @@
 				$data_anterior = json_decode($anterior->data);
 
 				$padre_id = "padre_".$data->campaing_anterior;
-
-				echo "<pre>";
-					print_r($data_anterior);
-				echo "</pre>";
-
 				$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
-
-				/*
-				if( !isset($enviados->$padre_id) ){ 
-					$enviados->$padre_id = []; 
-				}else{
-					$enviados = $enviados;
-				}
-				*/
-
-				echo "<pre>";
-					print_r($enviados);
-				echo "</pre>";
 
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
@@ -158,10 +132,6 @@
 						}
 					break;
 				}
-
-				echo "<pre>";
-					print_r($enviados);
-				echo "</pre>";
 			break;
 		}
 
