@@ -102,6 +102,10 @@
 
 				$padre_id = "padre_".$data->campaing_anterior;
 
+				echo "<pre>";
+					print_r($data_anterior);
+				echo "</pre>";
+
 				$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
 				if( !isset($enviados[$padre_id]) ){ 
 					$enviados[$padre_id] = []; 
