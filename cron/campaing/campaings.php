@@ -92,7 +92,12 @@
 				$data_anterior = json_decode($anterior->data);
 
 				$padre_id = "padre_".$data->campaing_anterior;
-				$enviados = ( isset($data->enviados) ) ? (array) $data->enviados : [];
+				$_enviados = ( isset($data->enviados) ) ? (array) $data->enviados : [];
+
+				$enviados = [];
+				foreach ($_enviados as $key => $value) {
+					$enviados[ $padre_id ][ $key ] = $value;
+				}
 
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
