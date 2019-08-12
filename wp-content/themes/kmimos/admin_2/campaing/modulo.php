@@ -94,23 +94,19 @@
 		global $wpdb;
 		$campaing = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$id);
 		$d = json_decode($campaing->data);
-		
 		$info_validacion = base64_encode( json_encode( [
 			"id" => $campaing->id,
 			"type" => "img",
 			"format" => "png",
 			"email" => $email
 		] ) );
-
 		$d->data->plantilla = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title=""></a></p>', '', $d->data->plantilla);
 		$mensaje = $d->data->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
 		wp_mail( trim($email) , $d->data->asunto, $mensaje);
-
 		echo json_encode([
 			"error" => "",
 			"msg" => "Mensaje Enviado Exitosamente!",
 		]);
-
 	   	die();
 	} );
 
@@ -139,8 +135,6 @@
 				$listas .= '<option value="'.$lista->id.'" '.$selected.' >'.$d->titulo.'</option>';
 			}
 		}
-
-
 		$_campaings = $wpdb->get_results("SELECT * FROM vlz_campaing ORDER BY creada DESC");
 		$_campaings_options = '<option value="" >No enviar nada</option>';
 		foreach ($_campaings as $key => $cam) {
@@ -150,25 +144,19 @@
 				$_campaings_options .= '<option value="'.$cam->id.'" '.$selected_despues.' >'.$d->data->titulo.'</option>';
 			}
 		}
-
 		$enviar_otra = ( $info["hacer_despues"]+0 == 1 ) ? '' : 'campaing_despues_hidden' ;
 		$show_listas = ( $info["hacer_despues"]+0 == 1 ) ? 'campaing_despues_hidden' : '' ;
-		
 		$hacer_despues = ( !isset($hacer_despues) ) ? 0 : $hacer_despues;
 		$opciones = get_hacer_despues();
 		$_hacer_despues = '';
 		foreach ($opciones as $key => $opcion) {
 			$_hacer_despues .= '<option value="'.$key.'" '.selected($key, $hacer_despues, false).'>'.$opcion.'</option>';
 		}
-
 		$_vistos = ( empty($vistos) ) ? '{}' : json_encode($vistos, JSON_UNESCAPED_UNICODE);
-
 		echo '
 			<form id="campaing_form" data-modulo="campaing" >
 				'.$input_id.'
-
 				<input type="hidden" id="vistos" name="vistos" value=\''.$_vistos.'\' />
-
 				<div class="form-group">
 					<label for="titulo">Nombre de la Campaña</label>
 					<input type="text" class="form-control" id="titulo" name="data[titulo]" placeholder="Titulo de la Campaña" value="'.$data->titulo.'" required />
@@ -181,7 +169,6 @@
 					<label for="plantilla">Plantilla</label>
 					<textarea id="contenido" name="data[plantilla]" class="form-control" placeholder="Contenido de Email">'.$data->plantilla.'</textarea>
 				</div>
-
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
@@ -220,16 +207,13 @@
 						</div>
 					</div>
 				</div>
-
 				<div id="listas_div" class="'.$show_listas.'">
-
 					<div class="form-group">
 						<label for="listas">Listas</label>
 						<select id="listas" name="data_listas[]" data-name="data_listas[]" data-required="true" multiple class="form-control" required >
 							'.$listas.'
 						</select>
 					</div>
-
 					<div class="row">
 						<div class="col-md-12">
 							<label>Desde</label>
@@ -264,9 +248,10 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div id="envios_div" class="'.$show_envios.'">
 
 				</div>
-
 				<div class="text-right">
 					<button id="btn_submit_modal" type="submit" class="btn btn-primary">'.$btn.'</button>
 				</div>

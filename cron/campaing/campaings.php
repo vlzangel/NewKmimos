@@ -81,7 +81,11 @@
 				$esperar = $data->campaing_despues_delay*$un_dia;
 				$anterior = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$data->campaing_anterior);
 				$data_anterior = json_decode($anterior->data);
+
+				$padre_id = "padre_".$data->campaing_anterior;
+
 				$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
+				if( !isset($enviados[$padre_id]) ){ $enviados[$padre_id] = []; }
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
@@ -89,8 +93,8 @@
 							$enviado_date = $cliente->fecha;
 							$email = $cliente->email;
 							if( (time()-$enviado_date) >= $esperar ){
-								if( !array_key_exists($email, $enviados) ){ 
-									$enviados[ $email ] = time();
+								if( !array_key_exists($email, $enviados[$padre_id]) ){ 
+									$enviados[$padre_id][ $email ] = time();
 									$info_validacion = base64_encode( json_encode( [
 										"id" => $campaing->id,
 										"type" => "img",
@@ -106,8 +110,8 @@
 					case 'no':
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar);
 						foreach ($no_abiertos as $key => $email) {
-							if( !array_key_exists($email, $enviados) ){ 
-								$enviados[ $email ] = time();
+							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
+								$enviados[$padre_id][ $email ] = time();
 								$info_validacion = base64_encode( json_encode( [
 									"id" => $campaing->id,
 									"type" => "img",

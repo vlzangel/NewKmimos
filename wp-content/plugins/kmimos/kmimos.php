@@ -15,6 +15,50 @@
      * License:     GPL2
      */
 
+    function remove_menus() {
+        global $current_user;
+        if( $current_user->ID == 23617 ){
+
+            $page = strtolower( $_GET["page"] );
+            $partes = explode("-", $page);
+            if( !in_array("pushnotifications", $partes ) ){
+                @header( 'location: https://www.kmimos.com.mx/wp-admin/admin.php?page=all-Pushnotifications-wp' );
+            }
+
+            remove_menu_page( 'index.php' );
+            remove_menu_page( 'jetpack' );
+            remove_menu_page( 'edit.php' );
+            remove_menu_page( 'upload.php' );
+            remove_menu_page( 'edit.php?post_type=page' );
+            remove_menu_page( 'edit-comments.php' );
+            remove_menu_page( 'themes.php' );
+            remove_menu_page( 'plugins.php' );
+            remove_menu_page( 'users.php' );
+            remove_menu_page( 'tools.php' );
+            remove_menu_page( 'options-general.php' );
+
+            remove_menu_page( 'edit.php?post_type=wc_booking' );
+            remove_menu_page( 'edit.php?post_type=product' );
+            remove_menu_page( 'woocommerce' );
+            remove_menu_page( 'reporte_facturas' );
+            remove_menu_page( 'reporte_clientes' );
+            remove_menu_page( 'reporte_fotos' );
+            remove_menu_page( 'reporte_pagos_cuidador' );
+            remove_menu_page( 'kmimos' );
+            remove_menu_page( 'valoraciones' );
+            remove_menu_page( 'vlz-bootstrap-campaing' );
+            remove_menu_page( 'nps_preguntas' );
+            remove_menu_page( 'resumen' );
+            remove_menu_page( 'edit.php?post_type=faq' );
+            
+            remove_menu_page( 'theme_editor_theme' );
+            remove_menu_page( 'wp_file_manager' );
+            remove_menu_page( 'zopim_account_config' );
+        }
+    }
+    add_action( 'admin_menu', 'remove_menus', 999 );
+
+
     include_once('angel.php');
     include_once('carlos.php');
     include_once('italo.php');
