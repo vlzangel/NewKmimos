@@ -30,6 +30,7 @@
 
 	$total = 0;
 	echo $ORDER = get_user_meta(367, 'ORDER', true);
+	
 
 	echo "<pre>";
 		foreach ($customerList as $key => $customer) {
@@ -46,7 +47,10 @@
 				    'description' => 'Cobro de Comisión',
 				    'order_id' => 'ORDEN-'.$order_id
 				);
-				$fee = $openpay->fees->create($feeDataRequest);
+
+				print_r( $feeDataRequest );
+				echo "<br><br>";
+				// $fee = $openpay->fees->create($feeDataRequest);
 
 				$ORDER++;
 				
@@ -55,7 +59,7 @@
 
 		// $_SESSION["ORDER"] = $ORDER;
 
-		update_user_meta(367, 'ORDER', $ORDER);
+		// update_user_meta(367, 'ORDER', $ORDER);
 
 		echo "Total: ".$total;
 	echo "</pre>";
