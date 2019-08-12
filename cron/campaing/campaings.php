@@ -92,7 +92,7 @@
 				$data_anterior = json_decode($anterior->data);
 
 				$padre_id = "padre_".$data->campaing_anterior;
-				$enviados = ( isset($data->enviados) ) ? $data->enviados : (object) [];
+				$enviados = ( isset($data->enviados) ) ? (array) $data->enviados : [];
 
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
@@ -101,8 +101,8 @@
 							$enviado_date = $cliente->fecha;
 							$email = $cliente->email;
 							if( (time()-$enviado_date) >= $esperar ){
-								if( !array_key_exists($email, $enviados->$padre_id) ){ 
-									$enviados->$padre_id[ $email ] = time();
+								if( !array_key_exists($email, $enviados[$padre_id]) ){ 
+									$enviados[$padre_id][ $email ] = time();
 									$info_validacion = base64_encode( json_encode( [
 										"id" => $campaing->id,
 										"type" => "img",
@@ -119,7 +119,7 @@
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar);
 						foreach ($no_abiertos as $key => $email) {
 							if( !array_key_exists($email, $enviados->$padre_id) ){ 
-								$enviados->$padre_id[ $email ] = time();
+								$enviados[$padre_id][ $email ] = time();
 								$info_validacion = base64_encode( json_encode( [
 									"id" => $campaing->id,
 									"type" => "img",
