@@ -85,7 +85,12 @@
 				$padre_id = "padre_".$data->campaing_anterior;
 
 				$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
-				if( !isset($enviados[$padre_id]) ){ $enviados[$padre_id] = []; }
+				if( !isset($enviados[$padre_id]) ){ 
+					$enviados[$padre_id] = []; 
+				}else{
+					$enviados = (array) $enviados;
+				}
+
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
