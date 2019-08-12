@@ -132,6 +132,10 @@
 			break;
 		}
 
+		echo "<pre>";
+			print_r($enviados);
+		echo "</pre>";
+
 		$data->enviados = $enviados;
 		update_campaing($campaing, $data, $d);
 		
