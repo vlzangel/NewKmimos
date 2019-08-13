@@ -47,7 +47,7 @@
         "error" => "Error",
     ];
 
-//print_r($pagos_lists);
+    // print_r($pagos_lists);
 
     $_SESSION['pago_cuidador'] = [];
 

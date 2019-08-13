@@ -13,6 +13,7 @@ function getRangoFechas(){
 }
 
 function getPagoCuidador($desde, $hasta){
+	global $wpdb;
 	$reservas = getReservas($desde, $hasta);
 	$pagos = [];
 	$detalle = [];
@@ -27,6 +28,11 @@ function getPagoCuidador($desde, $hasta){
 		// Calculo por reserva
 		$monto = calculo_pago_cuidador( $row->total, $row->total_pago, $row->remanente );
 
+		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$row->cuidador_id);
+		$ciudad = $cuidador->municipios;
+        if( strpos("_".$ciudad, "=32=") !== false ){
+            $monto = $row->total;
+        }
 		
 		if( $count == 4 ){
 			$separador = '<br><br>';

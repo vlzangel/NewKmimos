@@ -15,8 +15,6 @@ if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
 //$razas = get_razas();
 // Buscar Reservas
 $reservas = getReservas($desde, $hasta);
-
-
 ?>
 
 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -165,6 +163,12 @@ $reservas = getReservas($desde, $hasta);
 							$meta_Pedido['_wc_deposits_remaining'],
 							$method_payment
 						);
+
+						$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$reserva->cuidador_id);
+						$ciudad = $cuidador->municipios;
+				        if( strpos("_".$ciudad, "=32=") !== false ){
+				            $pago_cuidador = $meta_reserva['_booking_cost'];
+				        }
 						
 				  	?>
 				    <tr>

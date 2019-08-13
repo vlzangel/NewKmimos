@@ -13,12 +13,14 @@ function getRangoFechas(){
 }
 
 function getPagoCuidador($desde, $hasta){
+	global $wpdb;
+
 	$reservas = getReservas($desde, $hasta);
 	$pagos = [];
 	$detalle = [];
 	$count = 1;
 
-$dev = [];
+	$dev = [];
 
 	foreach ($reservas as $row) {
 		$total = 0;
@@ -53,6 +55,12 @@ $dev = [];
 			$method_payment
 
 		);
+
+		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$row->cuidador_id);
+		$ciudad = $cuidador->municipios;
+        if( strpos("_".$ciudad, "=32=") !== false ){
+            $monto = $row->total;
+        }
 
 		$dev2[] = [
 			$row->reserva_id,
@@ -112,10 +120,6 @@ $dev = [];
 
 	}
 	
-
-	echo '<pre style="display:none; data-italo">';
-	print_r( $dev2 );
-	echo '</pre>';
 	return $pagos;
 }
 

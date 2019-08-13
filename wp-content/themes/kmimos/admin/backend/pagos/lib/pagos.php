@@ -104,6 +104,11 @@ class Pagos {
 							$row->total
 						);
 
+						$ciudad = $cuidador->municipios;
+			            if( strpos("_".$ciudad, "=32=") !== false ){
+			                $monto = $row->total;
+			            }
+
 					// Pago realizado anteriormente
 						$reserva_modificada = 0;
 						$sql_modificado = "
@@ -306,46 +311,7 @@ class Pagos {
 		}else{
 			return [];
 		}
-		
-// SQL Original
-/*
-		$sql = "
-			SELECT 
-				us.user_id as cuidador_id,
-	 			us.nombre,
-				us.apellido,
-				r.ID as reserva_id,
-				r.post_parent as pedido_id,
 
-				( IFNULL(rm_cost.meta_value,0) ) as total,
-				( IFNULL(pm_total.meta_value,0) - IFNULL(pm_disco.meta_value,0) ) as total_pago,
-				( IFNULL(pm_remain.meta_value,0) ) as remanente,
-				rm_start.meta_value as booking_start
-			FROM wp_posts as r
-				LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
-				LEFT JOIN wp_postmeta as rm_cost ON rm_cost.post_id = r.ID and rm_cost.meta_key = '_booking_cost'
-				LEFT JOIN wp_postmeta as rm_start ON rm_start.post_id = r.ID and rm_start.meta_key = '_booking_start'
-
-				LEFT JOIN wp_posts as p ON p.ID = r.post_parent
-				LEFT JOIN wp_postmeta as pm_remain ON pm_remain.post_id = p.ID and pm_remain.meta_key = '_wc_deposits_remaining'
-				LEFT JOIN wp_postmeta as pm_total  ON pm_total.post_id = p.ID and pm_total.meta_key = '_order_total'
-				LEFT JOIN wp_postmeta as pm_disco  ON pm_disco.post_id = p.ID and pm_disco.meta_key = '_cart_discount'
-
-				LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')
-				LEFT JOIN wp_posts as pr ON pr.ID = pri.meta_value
-				LEFT JOIN cuidadores as us ON us.user_id = pr.post_author
-				LEFT JOIN wp_users as cl ON cl.ID = r.post_author
-			WHERE r.post_type = 'wc_booking' 
-				and not r.post_status like '%cart%' 
-				and cl.ID > 0 
-				and p.ID > 0
-				and us.user_id > 0
-				and r.post_status = 'confirmed' 
-				{$filtro_adicional}
-			;";
-*/			
-
-// SQL Nuevo
 		$sql = "
 			SELECT 
 				pr.post_author as cuidador_id,
