@@ -101,10 +101,13 @@
 	';
 
 	if( is_front_page() || $plantilla == 'page-paseos.php' || ( isset($_GET["g"]) && $plantilla == 'page-busqueda.php' ) ) {
-		if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
-	     	include_once( dirname(__DIR__).'/partes/footer/SubscribeSite.php' );
-	     	$_SESSION["POPUP_HOME"] = "YES"; 
-	     	wp_enqueue_style( 'banner_suscribir_css', get_recurso("css")."responsive/banner_suscribir.css", array(), "1.0.0" );
+		if( !isset($_SESSION[ "abrir_popup" ]) ){
+			if( $_SERVER["HTTP_REFERER"] != "https://www.kmimos.com.mx/google-adwords/" && $_SERVER["HTTP_REFERER"] != "https://kmimos.com.mx/google-adwords/" ){
+		     	include_once( dirname(__DIR__).'/partes/footer/SubscribeSite.php' );
+		     	$_SESSION["POPUP_HOME"] = "YES"; 
+		     	wp_enqueue_style( 'banner_suscribir_css', get_recurso("css")."responsive/banner_suscribir.css", array(), "1.0.0" );
+		     	$_SESSION[ "abrir_popup" ] = "YES";
+		    }
 	    }
     }
 
