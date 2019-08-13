@@ -1420,6 +1420,15 @@
 
             $diferencia = kmimos_calculo_pago_cuidador( $reserva->ID, $pago );
 
+
+
+            $ciudad = $cuidador->municipios;
+            if( strpos("_".$ciudad, "=32=") !== false ){
+                $diferencia = $total;
+            }
+            
+
+
             $desglose['total'] = $pago;
             
             if( $metas_orden['_payment_method_title'][0] != "" ){

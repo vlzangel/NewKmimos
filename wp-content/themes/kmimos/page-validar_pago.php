@@ -85,14 +85,18 @@
 				include_once(__DIR__."/procesos/reservar/emails/index.php");
 				ob_end_clean();
 
+				update_cupos( $id_orden );
+				$hoy = date("Y-m-d H:i:s");
+				update_post_meta($id_orden, '_booking_pago', $hoy);
+
 				header( 'location:'.get_home_url().'/finalizar/'.$_GET['external_reference'] );
 			}else if( strtolower($_GET['collection_status']) == 'pending' ){
 				header( 'location:'.get_home_url().'/finalizar/'.$_GET['external_reference'] );
 			}else{
 				$wpdb->query( "UPDATE wp_postmeta SET meta_value = '".json_encode($_GET)."' 
 					WHERE meta_key = '_mercadopago_data' AND post_id = {$id_orden}  )");
-				$wpdb->query("UPDATE wp_posts SET post_status = 'canceled' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
-				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+				$wpdb->query("UPDATE wp_posts SET post_status = 'cancelled' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = {$id_orden};");
 				header( 'location:'.get_home_url() .'/busqueda' );
 			}
 
