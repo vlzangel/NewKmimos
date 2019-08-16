@@ -47,7 +47,7 @@
     $descripcion = $rc_descripcion;
     $num_mascota = $rc_num_mascota; 
 
-    $colonia = $rc_colonia; 
+    $colonia = $rc_colonia+0; 
     $postal = $rc_postal; 
 
     $hoy = date("Y-m-d H:i:s");
