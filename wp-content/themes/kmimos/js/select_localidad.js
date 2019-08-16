@@ -58,8 +58,10 @@ jQuery(document).ready(function(){
 
                             clearInterval(intervalo_blur);
 
+                            console.log(jQuery(this).attr("data-id"));
+
                             jQuery(".ubicacion_txt").val( jQuery(this).html() );
-                            jQuery(".ubicacion").val( jQuery(this).attr("value") );
+                            jQuery(".ubicacion").val( jQuery(this).attr("data-id") );
                             jQuery(".ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
                             jQuery(".ubicacion").attr( "data-txt", jQuery(this).html() );
                             jQuery( ".cerrar_list_box" ).css("display", "none");
@@ -87,6 +89,8 @@ jQuery(document).ready(function(){
     jQuery(".cerrar_list").on("click", function(e){
         jQuery(this).parent().css("display", "none");
     });
+
+    /*
 
     jQuery(".ubicacion_txt").on("blur", function ( e ) { 
         clearInterval(intervalo_blur);

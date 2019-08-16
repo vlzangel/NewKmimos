@@ -49,9 +49,9 @@
         $posicion = comparar($s, $_value);
         if( $posicion !== false ){
             if( $posicion[1] == 'completo' ){
-                $r_completo[ $posicion[2] ][ $posicion[0] ][] = "<li value='".$_id."' data-value='".$_value."'>".$_txt."</li>";
+                $r_completo[ $posicion[2] ][ $posicion[0] ][] = "<li data-id='".$_id."' data-value='".$_value."'>".$_txt."</li>";
             }else{
-                $r_parsial[ $posicion[2] ][ $posicion[0] ][] = "<li value='".$_id."' data-value='".$_value."'>".$_txt."</li>";
+                $r_parsial[ $posicion[2] ][ $posicion[0] ][] = "<li data-id='".$_id."' data-value='".$_value."'>".$_txt."</li>";
             }
         }
     }

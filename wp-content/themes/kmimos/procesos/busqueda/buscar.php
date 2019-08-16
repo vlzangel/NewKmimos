@@ -418,36 +418,44 @@
     	$ubicacion = explode("_", $ubicacion);
     	$estados = (count($ubicacion)>0)? $ubicacion[0] : '';
     	$municipios = (count($ubicacion)>1)? $ubicacion[1]: '';
+    	$colonia = (count($ubicacion)>2)? $ubicacion[2]: '';
 	    
-	    if( $estados != "" && $municipios != "" ){
-            // $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-            $ubicaciones_inner = "";
-            $ubicaciones_filtro = "AND ( estados LIKE '%=".$estados."=%' AND municipios LIKE '%=".$municipios."=%'  )";   
-            $_SESSION['km5'] = "No"; 
-            $FILTRO_UBICACION = "";
-	    }else{ 
-	        if( $estados != "" ){
-	            // $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
+	    if( $estados != "" && $municipios != "" && $colonia != "" ){
+
+	        $ubicaciones_filtro = "AND ( estados LIKE '%=".$estados."=%' AND municipios LIKE '%=".$municipios."=%' AND atributos LIKE '%colonia\";i:".$colonia."%'  )";  
+
+	    }else{
+
+		    if( $estados != "" && $municipios != "" ){
 	            $ubicaciones_inner = "";
-	            $ubicaciones_filtro = "AND ( estados LIKE '%=".$estados."=%' )";
-	            $_SESSION['km5'] = "No";
+	            $ubicaciones_filtro = "AND ( estados LIKE '%=".$estados."=%' AND municipios LIKE '%=".$municipios."=%'  )";   
+	            $_SESSION['km5'] = "No"; 
 	            $FILTRO_UBICACION = "";
-	        }else{
-	            if( $latitud != "" && $longitud != "" && $km5 != "No" ){
-	       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
-	                $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
-	               	$FILTRO_UBICACION = "HAVING DISTANCIA < 10";
+		    }else{ 
+		        if( $estados != "" ){
+		            $ubicaciones_inner = "";
+		            $ubicaciones_filtro = "AND ( estados LIKE '%=".$estados."=%' )";
+		            $_SESSION['km5'] = "No";
+		            $FILTRO_UBICACION = "";
+		        }else{
+		            if( $latitud != "" && $longitud != "" && $km5 != "No" ){
+		       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
+		                $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
+		               	$FILTRO_UBICACION = "HAVING DISTANCIA < 10";
 
-	                $_SESSION['km5'] = "Yes";
+		                $_SESSION['km5'] = "Yes";
 
-	                if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
-	            }else{
-	                $DISTANCIA = "";
-	                $FILTRO_UBICACION = "";
-	                $_SESSION['km5'] = "No";
-	            }
-	        }
+		                if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
+		            }else{
+		                $DISTANCIA = "";
+		                $FILTRO_UBICACION = "";
+		                $_SESSION['km5'] = "No";
+		            }
+		        }
+		    }
+
 	    }
+
     /* Fin Filtro de busqueda */
 
     /* Filtro predeterminado */

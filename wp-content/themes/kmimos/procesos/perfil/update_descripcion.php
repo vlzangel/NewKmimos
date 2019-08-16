@@ -78,7 +78,7 @@
 	$atributos["tipo_doc"] = $tipo_doc;
 	$atributos["gatos"] = $gatos;
 
-	$atributos["colonia"] = $colonia;
+	$atributos["colonia"] = $colonia+0;
 	$atributos["postal"] = $postal;
 
 	$atributos = serialize($atributos);

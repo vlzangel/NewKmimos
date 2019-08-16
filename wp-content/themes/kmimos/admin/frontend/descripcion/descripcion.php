@@ -115,6 +115,22 @@
         $estados .= "<option value='".$estado->id."' $sel>".$estado->name."</option>";
     } 
 
+
+    $mi_colonia = $atributos["colonia"];
+
+    if( $mi_estado != "" AND $mi_delegacion != "" ){
+        $colonias_array = $wpdb->get_results("SELECT * FROM colonias WHERE estado = '{$mi_estado}' AND municipio = '{$mi_delegacion}' ORDER BY name ASC");
+        $colonias = "<option value=''>Seleccione una Colonia</option>";
+        foreach($colonias_array as $colonia) { 
+            if( $mi_colonia == $colonia->id ){ 
+                $sel = "selected"; 
+            }else{ $sel = ""; }
+            $colonias .= "<option value='".$colonia->id."' $sel>".$colonia->name."</option>";
+        } 
+    }else{
+
+    }
+
     $estados = utf8_decode($estados);
     if($mi_delegacion != ""){
         $municipios_array = $wpdb->get_results("SELECT * FROM locations WHERE state_id = {$mi_estado} ORDER BY name ASC");
@@ -127,6 +143,7 @@
     }else{
         $muni = "<option value='' selected>Seleccione una localidad</option>";
     }
+
 
     if( !isset($_SESSION)){ session_start(); }
     if(  $_SESSION['admin_sub_login'] == 'YES' ){
@@ -391,7 +408,9 @@
         <section> 
             <label for="ages_accepted" class="lbl-text">'.esc_html__('Colonia','kmimos').':</label>
             <label class="lbl-ui">
-              <input  type="text" id="colonia" name="colonia" class="input" value="'.$atributos["colonia"].'" required />
+                <select id="colonia" name="colonia" class="input" required >
+                    '.$colonias.'
+                </select>
             </label> 
         </section>
 

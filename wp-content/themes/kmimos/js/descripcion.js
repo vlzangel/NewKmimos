@@ -40,7 +40,49 @@ jQuery( document ).ready(function() {
                 }
             );
         }
+    });
 
+    jQuery("#delegacion").on("change", function(e){
+        var estado_id = jQuery("#estado").val();       
+        var delegacion = jQuery("#delegacion").val();       
+        if( estado_id != "" ){
+            jQuery.get(
+                HOME+"procesos/generales/municipios.php", 
+                {
+                    estado: estado_id,
+                    municipio: delegacion
+                }, function(data){
+                    console.log( data );
+                    var html = "<option value=''>Seleccione una colonia</option>";
+                    jQuery.each(data, function(i, val) {
+                        html += "<option value="+val.id+">"+val.name+"</option>";
+                    });
+                    jQuery("#colonia").html(html);
+                }, 'json'
+            );
+            /*
+            jQuery.getJSON( 
+                HOME+"procesos/generales/municipios.php", 
+                {
+                    estado: estado_id,
+                    municipio: delegacion
+                } 
+            ).done(
+                function( data, textStatus, jqXHR ) {
+                    console.log( data );
+                    var html = "<option value=''>Seleccione una colonia</option>";
+                    jQuery.each(data, function(i, val) {
+                        html += "<option value="+val.id+">"+val.name+"</option>";
+                    });
+                    jQuery("#colonia").html(html);
+                }
+            ).fail(
+                function( jqXHR, textStatus, errorThrown ) {
+                    console.log( "Error: " +  errorThrown );
+                }
+            );
+            */
+        }
     });
 
     postJSON( 
