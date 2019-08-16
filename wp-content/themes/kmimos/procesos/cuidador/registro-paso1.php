@@ -190,8 +190,6 @@
                     )
                 )
             );
-            
-            // Registro en iLernus
             $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
             $atributos = array(

@@ -132,7 +132,7 @@
 									"email" => $email
 								] ) );
 								$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
-								wp_mail( trim($email) , $d->asunto, $mensaje);
+								// wp_mail( trim($email) , $d->asunto, $mensaje);
 							}
 						}
 					break;
