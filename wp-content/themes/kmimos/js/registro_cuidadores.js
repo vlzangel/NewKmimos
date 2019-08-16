@@ -13,12 +13,10 @@ function removeFoto(_this){
 
 function subir_fotos(){
 	jQuery.post(
-		HOME+"/procesos/cuidador/subir_fotos.php",
-		{
+		HOME+"/procesos/cuidador/subir_fotos.php", {
 			"email": jQuery('[name="rc_email"]').val(),
 			"fotos": fotos_array
-		},
-		function(data){
+		}, function(data){
 			console.log(data);
 			console.log("Imágenes subidas");
 		}, 'json'
@@ -63,6 +61,28 @@ jQuery( document ).ready(function() {
 			});
 		}
 	});
+
+
+
+    jQuery("#rc_municipio").on("change", function(e){
+        var estado_id = jQuery("#rc_estado").val();
+        var delegacion = jQuery("#rc_municipio").val();
+        if( estado_id != "" ){
+            jQuery.get(
+                HOME+"procesos/generales/municipios.php", 
+                {
+                    estado: estado_id,
+                    municipio: delegacion
+                }, function(data){
+                    var html = "<option value=''>Seleccione una colonia</option>";
+                    jQuery.each(data, function(i, val) {
+                        html += "<option value="+val.id+">"+val.name+"</option>";
+                    });
+                    jQuery("#rc_colonia").html(html);
+                }, 'json'
+            );
+        }
+    });
 
 	var maxDatePets = new Date();
 	jQuery('#fecha').datepick({

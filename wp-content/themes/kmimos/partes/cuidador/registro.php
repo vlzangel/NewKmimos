@@ -325,7 +325,7 @@
 					<div class="content-placeholder">
 						<div class="label-placeholder">
 							<label>Estado</label>
-							<select data-target="help" class="km-datos-estado-opcion km-select-custom" name="rc_estado">
+							<select data-target="help" class="km-datos-estado-opcion km-select-custom" id="rc_estado" name="rc_estado">
 								<option value="">Selección de Estado</option>
 								<?php
 									global $wpdb;
@@ -345,7 +345,7 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Municipio</label>
-							<select data-target="help" class="km-datos-municipio-opcion km-select-custom" name="rc_municipio">
+							<select data-target="help" class="km-datos-municipio-opcion km-select-custom" id="rc_municipio" name="rc_municipio">
 								<option value="">Selección de Municipio</option>
 							</select>
 							<small class="text-help" data-help="rc_municipio">
@@ -355,7 +355,9 @@
 						</div>
 						<div class="label-placeholder">
 							<label>Colonia</label>
-							<input data-target="help" type="text" id="rc_colonia" name="rc_colonia" value="" class="input-label-placeholder">
+							<select class="km-datos-municipio-opcion km-select-custom" data-target="help" id="rc_colonia" name="rc_colonia">
+								<option value="">Selecciona una Colonia</option>
+							</select>
 							<small class="text-help" data-help="rc_colonia">
 								Ingresa la colonia que aparece en tu comprobante de domicilio.
 							</small>							
