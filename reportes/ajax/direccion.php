@@ -21,8 +21,8 @@
 	echo "</pre>";
 	echo "SELECT * FROM colonias WHERE estado = '".$estado[1]."' AND municipio = '".$municipio[1]."' ORDER BY name ASC";
 	*/
-
-	$colonias = $wpdb->get_results("SELECT * FROM colonias WHERE estado = '".$estado[1]."' AND municipio = '".$municipio[1]."' ORDER BY name ASC");
+	echo $sql_co = "SELECT * FROM colonias WHERE estado = '".$estado[1]."' AND municipio = '".$municipio[1]."' ORDER BY name ASC";
+	$colonias = $wpdb->get_results($sql_co);
 
 	$select_colonias = '<select name="colonia" >';
 	$select_colonias .= '<option value="">Seleccione la colonia correspondiente</option>';
