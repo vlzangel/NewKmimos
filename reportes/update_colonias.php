@@ -48,7 +48,7 @@
 		jQuery("#cuidador").on('change', function(e){
 
 			jQuery.post(
-				'http://kmimos.git/reportes/ajax/direccion.php',
+				'<?= get_home_url() ?>/reportes/ajax/direccion.php',
 				{
 					id: jQuery(this).val()
 				},
