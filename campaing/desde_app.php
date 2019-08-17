@@ -38,22 +38,6 @@
 		}
 	}
 
-	/*	
-	$credenciales = json_decode($credenciales);
-	$lists = (array) $credenciales->lists;
-	$lists['singup'] = 'bf1e0f3fe94e8d9c6d95e50ecd56df34';
-	$credenciales->lists = $lists;
-	$credenciales = json_encode($credenciales);
-	$wpdb->query("UPDATE campaing SET data = '{$credenciales}' WHERE id = 1");
-	$credenciales = json_decode($credenciales);
-	echo "<pre>";
-		print_r($registros);
-		echo "<br>";
-		print_r( ($credenciales) );
-	echo "</pre>";
-	exit();
-	*/
-
 	$list = 'singup';
 
 	require_once __DIR__.'/campaing/csrest_campaigns.php';
@@ -63,23 +47,27 @@
 	$auth = (array) $credenciales->auth;
 	$lists = (array) $credenciales->lists;
 
-	echo "<pre>";
-		print_r($registros);
-		echo "<br>";
-		print_r( $lists[ $list ] );
-	echo "</pre>";
-
 	if( isset($lists[ $list ]) ){
 		require_once __DIR__.'/campaing/csrest_subscribers.php';
 		$sc = new CS_REST_Subscribers($lists[ $list ], $auth);
-		foreach ($registros as $user_id => $email) {
-			$r = $sc->add([
-				"EmailAddress" => $email,
-			    "Resubscribe" => true,
-			    "RestartSubscriptionBasedAutoresponders" => true,
-			    "ConsentToTrack" => "Yes"
-			]);
-			update_user_meta($user_id, 'suscrito_singup', 'YES');
+
+		$test = $sc->get_history("test_16_08_19@mail.com");
+		if( $test->http_status_code != 200){
+
+			$mensaje  = "Error: ".$test->response->Message."<br>";
+			$mensaje .= "Para refrescar el token click <a href='https://www.kmimos.com.mx/campaing/ac.php'>aquí</a> <br>";
+			
+			wp_mail('a.veloz@kmimos.la', 'Token Campaing Vencido', $mensaje, array('BCC: y.chaudary@kmimos.la', 'BCC: vlzangel91@gmail.com'));
+		}else{
+			foreach ($registros as $user_id => $email) {
+				$r = $sc->add([
+					"EmailAddress" => $email,
+				    "Resubscribe" => true,
+				    "RestartSubscriptionBasedAutoresponders" => true,
+				    "ConsentToTrack" => "Yes"
+				]);
+				update_user_meta($user_id, 'suscrito_singup', 'YES');
+			}
 		}
 	}
 
