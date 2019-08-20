@@ -17,7 +17,6 @@
 	$order_id   = $wpdb->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$reserva_id}' ");
 
 	if( $order_id+0 > 0 ){
-		echo "<br><br><br><br><br><br>Order_id: $order_id<br>"; 
 		update_cupos($order_id);
 	}
 
