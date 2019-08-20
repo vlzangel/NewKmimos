@@ -181,12 +181,6 @@
                 }
             }
 
-            /*
-            echo "<pre>";
-                print_r($temp_cupos);
-            echo "</pre>";
-            */
-
             foreach ($temp_cupos as $cupos => $servicios) {
 
                 foreach ($servicios as $servicio => $fechas ) {
@@ -226,63 +220,6 @@
             $wpdb->query("UPDATE cupos SET full = 1 WHERE cupos >= acepta");
             $wpdb->query("UPDATE cupos SET full = 0 WHERE cupos < acepta");
 
-            /*
-            if( is_array($data) ){
-                extract($data);
-            }else{
-                $id_orden = $data;
-
-                $reserva = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_parent = '".$id_orden."'");
-                $id_reserva = $reserva->ID;
-
-                $metas_orden = get_post_meta($id_orden);
-                $metas_reserva = get_post_meta( $id_reserva );
-
-                $servicio = $metas_reserva['_booking_product_id'][0];
-
-                $inicio = strtotime($metas_reserva['_booking_start'][0]);
-                $fin    = strtotime($metas_reserva['_booking_end'][0]);
-
-                $producto = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_reserva['_booking_product_id'][0]."'");
-                $tipo = explode("-", $producto->post_title);
-                $tipo = $tipo[0];
-
-                $cantidad = 0; $variaciones = unserialize( $metas_reserva["_booking_persons"][0] );
-                foreach ($variaciones as $key => $variacion) {
-                    $cantidad += $variacion;
-                }
-            }
-
-            $autor_user_id = $wpdb->get_var("SELECT post_author FROM $wpdb->posts WHERE ID = '".$servicio."'");
-
-            for ($i=$inicio; $i < ($fin-86399); $i+=86400) { 
-                $fecha = date("Y-m-d", $i);
-                $full = 0;
-                $existe = $db->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
-                if( $existe !== null ){
-                    $db->query("UPDATE cupos SET cupos = cupos {$accion} {$cantidad} WHERE servicio = '{$servicio}' AND fecha = '{$fecha}' ");
-                    $db->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos >= acepta )");
-                    $db->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos < acepta )");
-                }else{
-                    $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_qty'");
-                    if( $cantidad >= $acepta ){ $full = 1; }
-                    $sql = "
-                        INSERT INTO cupos VALUES (
-                            NULL,
-                            '{$autor_user_id}',
-                            '{$servicio}',
-                            '{$tipo}',
-                            '{$fecha}',
-                            '{$cantidad}',
-                            '{$acepta}',
-                            '{$full}',        
-                            '0'        
-                        );
-                    ";
-
-                    $db->query($sql);
-                }
-            }*/
         }
     }
 

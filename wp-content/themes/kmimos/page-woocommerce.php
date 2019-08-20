@@ -13,6 +13,14 @@
 
 	global $wpdb;
 
+	$reserva_id = $wpdb->get_var("SELECT post_id FROM wp_postmeta WHERE meta_key = '_booking_product_id' AND meta_value = '{$servicio_id}' LIMIT 0, 1");
+	$order_id   = $wpdb->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$reserva_id}' ");
+
+	if( $order_id+0 > 0 ){
+		echo "<br><br><br><br><br><br>Order_id: $order_id<br>"; 
+		update_cupos($order_id);
+	}
+
 	/* Cuidador */
 		$author = $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = ".$servicio_id);
 		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = ".$author);
