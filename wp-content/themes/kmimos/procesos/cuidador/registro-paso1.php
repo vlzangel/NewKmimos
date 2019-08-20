@@ -350,6 +350,34 @@
                 ";
                 $conn->query( utf8_decode( $sql_post_cuidador ) );
                 $id_post = $conn->insert_id;
+
+                $sql_producto = " INSERT INTO wp_posts VALUES (
+                    NULL,
+                    '".$user_id."',
+                    '".$hoy."',
+                    '".$hoy."',
+                    '',
+                    'hospedaje-".$nom."',
+                    'Cuidado día y noche de tu mascota.<br><br><small>* Precio final (incluye cobertura veterinaria y gastos administrativos; no incluye servicios adicionales)</small>',
+                    'unpublish',
+                    'closed',
+                    'closed',
+                    '',
+                    'hospedaje-".$id_post."',
+                    '',
+                    '',
+                    '".$hoy."',
+                    '".$hoy."',
+                    '',
+                    '".$id_post."',
+                    '/producto/hospedaje-".$id_post."/',
+                    '0',
+                    'product',
+                    '',
+                    '0'
+                ); ";
+
+                $conn->query( $sql_producto );
                 
                 // Update POST_ID en cuidadores  
                 $conn->query( "UPDATE cuidadores SET id_post = '".$id_post."' WHERE id = ".$cuidador_id);
