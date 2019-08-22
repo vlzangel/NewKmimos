@@ -34,6 +34,23 @@
 		return $no_abiertos;
 	}
 
+	function add_seguimiento($mensaje, $info){
+		$mensaje = preg_replace("/[\r\n|\n|\r]+/", " ", $mensaje);
+		preg_match_all("#href=\"http(.*?)\"#i", $mensaje, $matches);
+		$url_base = get_home_url().'/campaing_2';
+		foreach ($matches[1] as $key => $url) {
+			$old_url = "http".substr($url, 0, -1);
+			$data = base64_encode( json_encode( [
+				"id" => $info["campaing"],
+				"email" => $info["email"],
+				"url" => $old_url,
+			] ) );
+			$new_url = $url_base.'/'.$data.'/redi';
+			$mensaje = str_replace($old_url, $new_url, $mensaje);
+		}
+		return $mensaje;
+	}
+
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing"); // WHERE data NOT LIKE '%\"ENVIADO\":\"SI\"%'
 
 	/*
@@ -75,6 +92,12 @@
 										] ) );
 
 										$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
+										
+										$mensaje = add_seguimiento($mensaje, [
+											"campaing" => $campaing->id,
+											"email" => trim($email),
+										]);
+
 										wp_mail( trim($email) , $d->asunto, $mensaje);
 									}
 								}
@@ -115,6 +138,12 @@
 										"email" => $email
 									] ) );
 									$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
+									
+									$mensaje = add_seguimiento($mensaje, [
+										"campaing" => $campaing->id,
+										"email" => trim($email),
+									]);
+
 									wp_mail( trim($email) , $d->asunto, $mensaje);
 								}
 							}
@@ -132,7 +161,13 @@
 									"email" => $email
 								] ) );
 								$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
-								// wp_mail( trim($email) , $d->asunto, $mensaje);
+								
+								$mensaje = add_seguimiento($mensaje, [
+									"campaing" => $campaing->id,
+									"email" => trim($email),
+								]);
+
+								wp_mail( trim($email) , $d->asunto, $mensaje);
 							}
 						}
 					break;

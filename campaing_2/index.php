@@ -3,6 +3,12 @@
 	include dirname(__DIR__).'/campaing/db.php';
 	$info = (array) json_decode(base64_decode( $_GET['info']));
 	extract($info);
+	
+	echo "<pre>2<br>";
+		print_r( $info );
+	echo "</pre>";
+
+	/*
 	$campaing = $db->get_row("SELECT * FROM vlz_campaing WHERE id = {$id}");
 	$d = (array) json_decode( utf8_encode($campaing->data) );
 	if( is_array($d['vistos']) ){
@@ -19,4 +25,5 @@
 	$db->query( $sql );	
 	header("Content-Type: image/png");
 	echo file_get_contents("img.png");
+	*/
 ?>

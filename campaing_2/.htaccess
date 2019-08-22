@@ -1,9 +1,11 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	RewriteBase /QA2/campaing_2/
+	RewriteBase /campaing_2/
 	RewriteRule ^index\.php$ - [L]
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteRule ^([0-9|a-z|A-Z|=]+)/redi/?$ redi.php?info=$1
 	
 	RewriteRule ^([0-9|a-z|A-Z|=]+)/(.*?)$ index.php?info=$1&name=$2
 
