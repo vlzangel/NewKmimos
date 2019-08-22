@@ -154,14 +154,18 @@ function CargarGaleria(){
 		galeria_txt += "</div>";
 	});
 
-	jQuery(".km-galeria-cuidador-slider").html(galeria_txt);
+	console.log( galeria_txt );
 
+	// jQuery(".km-galeria-cuidador-slider").html(galeria_txt);
+
+	/*
 	jQuery('.km-galeria-cuidador-slider').bxSlider({
 	    slideWidth: 200,
 	    minSlides: 1,
 	    maxSlides: 3,
 	    slideMargin: 10
 	});
+	*/
 
 	jQuery(".ver_img").on("dblclick", function(e){
 		console.log(e);

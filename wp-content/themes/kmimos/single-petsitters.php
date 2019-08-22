@@ -100,20 +100,6 @@
 		}
 	} 
 
-	$_galeria = get_galeria($cuidador->id);
-	/*echo "<pre>";
-		print_r($galeria);
-	echo "</pre>";*/
-	if( is_array($_galeria[1]) ){
-		foreach ($_galeria[1] as $key => $value) {
-			$galeria .=
-			"<div class='pc_galeria_item' data-img='".get_home_url()."/wp-content/uploads/cuidadores/galerias/".$value."'>".
-				"<div class='pc_galeria_img' style='background-image: url(".get_home_url()."/wp-content/uploads/cuidadores/galerias/".$value.");'></div>".
-			"</div>";
-		}
-	}
-	$ocultar_siguiente_img = ( is_array($_cuidador->galeria_normales) && count($_cuidador->galeria_normales) > 1 ) ? '': 'Ocultar_Flecha';
-
     $foto = kmimos_get_foto($cuidador->user_id);
 
     $desc = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
@@ -310,9 +296,6 @@
 	}
     include ('partes/cuidador/conocelo.php');
 
-    $_galeria = $galeria;
-    $galeria = '';
-
     if( $cuidador->mascotas_permitidas > 6 ){
     	$cuidador->mascotas_permitidas = 6;
     }
@@ -352,12 +335,14 @@
 	$est = htmlentities( utf8_decode($est) );
 	$ubicacion = $est.', '. ucfirst( strtolower( $mun ) );
 
+	$_galeria = get_galeria($cuidador->id);
+
  	$HTML .= '
  		<script> 
 			var lat = "'.$cuidador->latitud.'";
 			var lng = "'.$cuidador->longitud.'";
  			var SERVICIO_ID = "'.$cuidador->id_post.'"; 
- 			var GALERIA = "'.$_galeria.'";
+ 			var GALERIA = JSON.parse( \''.json_encode($_galeria[1]).'\' );
  		</script>
 
  		<div class="pc_seccion_0" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
@@ -366,7 +351,7 @@
 
 		<div class="solo_movil info_movil_1">
 
-			<div style="position: relative;" data-total="'.(count($_cuidador->galeria)).'" data-actual="0" data-paso="4">
+			<div style="position: relative;" data-total="'.count($_galeria[1]).'" data-actual="0" data-paso="4">
 				<div class="pc_galeria_container_interno">
 					<div class="pc_galeria_box">
 						<div class="perfil_cuidador_cargando">
@@ -452,7 +437,7 @@
 					</div>
 				</div>
 				<div class="pc_galeria_container">
-					<div style="position: relative; max-width: 390px; display: inline-block; width: 100%;" data-total="'.(count($_cuidador->galeria)).'" data-actual="0" data-paso="5">
+					<div style="position: relative; max-width: 390px; display: inline-block; width: 100%;" data-total="'.count($_galeria[1]).'" data-actual="0" data-paso="5">
 						<div class="pc_galeria_container_interno">
 							<div class="pc_galeria_box">
 								<div class="perfil_cuidador_cargando">
@@ -621,7 +606,7 @@
 
 		<div class="galeria_container_fixed">
 			<div class="galeria_celda">
-				<img src="http://localhost/kmimos/wp-content/uploads/cuidadores/galerias//611/1.jpg">
+				<img src="">
 				<span id="cerrar_galeria" class="cerrar">×</span>
 			</div>
 		</div>

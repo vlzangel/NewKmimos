@@ -60,6 +60,8 @@ jQuery( document ).ready(function() {
     });
 
     window.onload = function(){
+    	CargarGaleria();
+    	/*
 		jQuery(".pc_galeria_box").html(GALERIA);
 		jQuery(".pc_galeria_item").on("click", function(e){
 			if( jQuery(this).hasClass("selected") ){
@@ -70,6 +72,7 @@ jQuery( document ).ready(function() {
 				showImgGaleria( jQuery(this) );
 			}
 		});
+		*/
     }
 
     jQuery(".ver_mas").on("click", function(e){
@@ -85,6 +88,19 @@ jQuery( document ).ready(function() {
 });
 
 /* GALERIA */
+
+	function CargarGaleria(){
+		var galeria_txt = "";
+		jQuery.each(GALERIA, function( indice, foto ) {
+			galeria_txt += "<div class='pc_galeria_item' data-img='"+RAIZ+"/wp-content/uploads/cuidadores/galerias"+foto+"'>";
+			galeria_txt += 	"<div class='pc_galeria_img' style='background-image: url("+RAIZ+'/wp-content/uploads/cuidadores/galerias'+foto+");'></div>";
+			galeria_txt += "</div>";
+		});
+		jQuery(".pc_galeria_box").html(galeria_txt);
+		jQuery(".pc_galeria_item").unbind("click").bind("click", function(e){
+			showImgGaleria( jQuery(this) );
+		});
+	}
 	
 	function showImgGaleria( _this ){
 		var img = _this.attr("data-img");
