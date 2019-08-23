@@ -301,6 +301,16 @@ function abrir_link(e){
 	});
 }
 
+
+function load_saldo(){
+	jQuery.post(
+		TEMA+'/admin/backend/pagos/ajax/get_saldo.php',
+		{},
+		function(saldo){
+			jQuery('#saldo_actual').html(saldo);
+		}
+	);
+}
  
 
 
