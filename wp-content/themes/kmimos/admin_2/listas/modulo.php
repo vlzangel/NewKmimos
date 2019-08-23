@@ -15,6 +15,19 @@
 
     function get_listas_form($data, $action = 'insert'){
 		global $wpdb;
+
+		$listas_news = '';
+		$news = $wpdb->get_results("SELECT DISTINCT source FROM wp_kmimos_subscribe ORDER BY source ASC");
+		foreach ($news as $key => $value) {
+			$listas_news .= '<option value="'.$value->source.'">'.ucfirst($value->source).'</option>';
+		}
+
+		$wlabes = '';
+		$news = $wpdb->get_results("SELECT * FROM wp_kmimos_wlabel ORDER BY wlabel ASC");
+		foreach ($news as $key => $value) {
+			$wlabes .= '<option value="'.$value->wlabel.'">'.ucfirst($value->title).'</option>';
+		}
+
 		$btn = 'Crear';
 		if( $action == 'update' ){
 			$input_id = '<input type="hidden" name="id" value="'.$data->id.'" />';
@@ -49,12 +62,48 @@
 				<input type="hidden" name="form" value="lista" />
 				<div class="form-group">
 					<label for="titulo">Nombre de la lista</label>
-					<input type="text" class="form-control" id="titulo" name="titulo" value="'.$data->titulo.'" placeholder="Titulo de la Campaña">
+					<input type="text" class="form-control" id="titulo" name="titulo" value="'.$data->titulo.'" placeholder="Titulo de la Lista">
 				</div>
 				<div class="form-group">
 					<label for="importar">Importar Clientes</label>
 					<input type="file" class="form-control" id="importar" name="importar" accept=".csv" />
 					<input type="hidden" id="importaciones" name="importaciones" />
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="titulo">Listas Newsletter</label>
+							<select id="newsletter" name="newsletter" class="form-control" >
+								<option value="">Seleccione...</option>
+								'.$listas_news.'
+							</select>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="titulo">Wlabels</label>
+							<select id="wlabel" name="wlabel" class="form-control" >
+								<option value="">Seleccione...</option>
+								<option value="kmimos">Kmimos</option>
+								'.$wlabes.'
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="titulo">Desde</label>
+							<input type="date" name="desde" class="form-control" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="titulo">Hasta</label>
+							<input type="date" name="hasta" class="form-control" />
+						</div>
+					</div>
 				</div>
 				'.$FORM.'
 				<div class="text-right">
@@ -72,6 +121,128 @@
 			</script>
 		';
     }
+
+	add_action( 'wp_ajax_vlz_listas_insert', function() {
+		extract($_POST);
+		global $wpdb;
+
+		$desde = ( $desde != "" ) ? date("Y-m-d", strtotime( str_replace("/", "-", $desde) ) ) : '';
+		$hasta = ( $hasta != "" ) ? date("Y-m-d", strtotime( str_replace("/", "-", $hasta) ) ) : '';
+
+		$existe = $wpdb->get_var("SELECT id FROM vlz_listas WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
+		if( empty($existe) ){
+			$suscriptores = [];
+			$suscriptores_no_repeat = [];
+			if( !empty($importaciones) ){
+				$importaciones = preg_replace("/[\r\n|\n|\r]+/", "|", $importaciones);
+				$importaciones = explode("|", $importaciones);
+				foreach ($importaciones as $key => $value) {
+					$suscriptor = explode(",", $value);
+					if( !in_array($suscriptor[1], $suscriptores_no_repeat)){
+						if(false !== filter_var($suscriptor[1], FILTER_VALIDATE_EMAIL)){
+							$suscriptores[] = [
+								$suscriptor[0],
+								$suscriptor[1]
+							];
+							$suscriptores_no_repeat[] = $suscriptor[1];
+						}
+					}
+				}
+			}
+
+			if( $newsletter != "" ){
+
+				$fechas = ( $desde != "" && $hasta != "" ) ? " AND ( time >= '{$desde}' AND time <= '{$hasta}' ) " : '';
+				$suscritos = $wpdb->get_results("SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ");
+				foreach ($suscritos as $key => $suscrito) {
+					$suscriptores[] = [
+						$suscrito->email,
+						$suscrito->email
+					];
+				}
+
+			}
+
+			if( $wlabel != "" ){
+
+				if( $wlabel == 'kmimos' ){
+					$fechas = ""; 
+					if( $desde != "" && $hasta != "" ) {
+						$fechas = " AND ( u.user_registered >= '{$desde}' AND u.user_registered <= '{$hasta}' ) ";
+					}
+
+					$sql =  "
+					SELECT DISTINCT (u.user_email), u.ID
+					FROM wp_usermeta AS m 
+					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
+					WHERE NOT EXISTS
+					    (
+					        SELECT  null 
+					        FROM wp_usermeta AS w
+					        WHERE w.user_id = u.ID AND w.meta_key = '_wlabel'
+					    ) {$fechas}";
+
+					$suscritos = $wpdb->get_results($sql);
+					$cont = 0;
+					foreach ($suscritos as $key => $suscrito) {
+						$cont++;
+						// if( $cont >= 8850 && $cont <= 8860 ){
+							$first = get_user_meta($suscrito->ID, 'first_name', true);
+							$first = str_replace('"', '', $first);
+
+							$suscriptores[] = [
+								$first,
+								$suscrito->user_email
+							];
+						// }
+					}
+
+				}else{
+					$fechas = ""; 
+					if( $desde != "" && $hasta != "" ) {
+						$fechas = " AND ( u.user_registered >= '{$desde}' AND u.user_registered <= '{$hasta}' ) ";
+					}
+
+					$sql =  "
+					SELECT u.user_email AS email, n.meta_value AS name 
+					FROM wp_usermeta AS m 
+					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
+					INNER JOIN wp_usermeta AS n ON ( u.ID = n.user_id AND n.meta_key = 'first_name' )
+					WHERE  (  m.meta_key = '_wlabel' OR  m.meta_key = 'user_referred' ) AND m.meta_value LIKE '%{$wlabel}%' {$fechas}";
+
+					$suscritos = $wpdb->get_results($sql);
+
+					foreach ($suscritos as $key => $suscrito) {
+						$suscriptores[] = [
+							$suscrito->name,
+							$suscrito->email
+						];
+					}
+				}
+
+			}
+
+			$info = [
+				"titulo" => $titulo,
+				"suscriptores" => $suscriptores,
+			];
+			$data = json_encode($info, JSON_UNESCAPED_UNICODE);
+
+			$wpdb->query("INSERT INTO vlz_listas VALUES (NULL, '{$data}', NOW())");
+			echo json_encode([
+				"error" => "",
+				"msg" => "Lista Creada Exitosamente",
+			]);
+		}else{
+			echo json_encode([
+				"error" => "Ya existe una listas con este nombre",
+				"msg" => "",
+			]);
+		}
+	   	die();
+	} );
+
+
 
 	add_action( 'wp_ajax_vlz_listas_list_form', function() {
 		extract($_POST);
@@ -195,7 +366,7 @@
 				<input type="hidden" name="id" value="'.$ID.'" />
 				<div class="form-group">
 					<label for="titulo">¿Esta seguro de eliminar esta Lista?</label>
-					<input type="text" class="form-control" id="titulo" value="'.$data->titulo.'" readonly />
+					<input type="text" class="form-control" id="titulo" value="'.$titulo.'" readonly />
 				</div>
 				<div class="text-right">
 					<button id="btn_submit_modal" type="submit" class="btn btn-primary">Eliminar</button>
@@ -230,45 +401,43 @@
 	   	die();
 	} );
 
-	add_action( 'wp_ajax_vlz_listas_insert', function() {
+
+	add_action( 'wp_ajax_vlz_listas_crear', function() {
 		extract($_POST);
 		global $wpdb;
-		$titulo = $data["titulo"];
+
+		$desde = ( $desde != "" ) ? date("Y-m-d", strtotime( str_replace("/", "-", $desde) ) ) : '';
+		$hasta = ( $hasta != "" ) ? date("Y-m-d", strtotime( str_replace("/", "-", $hasta) ) ) : '';
+
 		$existe = $wpdb->get_var("SELECT id FROM vlz_listas WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
 		if( empty($existe) ){
 			$suscriptores = [];
-			$suscriptores_no_repeat = [];
-			if( !empty($importaciones) ){
-				$importaciones = preg_replace("/[\r\n|\n|\r]+/", "|", $importaciones);
-				$importaciones = explode("|", $importaciones);
-				foreach ($importaciones as $key => $value) {
-					$suscriptor = explode(",", $value);
-					if( !in_array($suscriptor[1], $suscriptores_no_repeat)){
-						if(false !== filter_var($suscriptor[1], FILTER_VALIDATE_EMAIL)){
-							$suscriptores[] = [
-								$suscriptor[0],
-								$suscriptor[1]
-							];
-							$suscriptores_no_repeat[] = $suscriptor[1];
-						}
-					}
-				}
-			}
-			$_POST["suscriptores"] = $suscriptores;
-			unset($_POST["importaciones"]);
-			unset($_POST["form"]);
+			
+			// Busqueda de emails
 
-			$data = json_encode($_POST);
-			$wpdb->query("INSERT INTO vlz_listas VALUES (NULL, '{$data}', NOW())");
-			echo json_encode([
-				"error" => "",
-				"msg" => "Lista Creada Exitosamente",
-			]);
+			if( $newsletter != "" ){
+
+				$fechas = ( $desde != "" && $hasta != "" ) ? " AND ( time >= '{$desde}' AND time <= '{$hasta}' ) " : '';
+				$suscritos = $wpdb->get_results("SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ");
+				foreach ($suscritos as $key => $suscrito) {
+					$suscriptores[] = [
+						$suscrito->email,
+						$suscrito->email
+					];
+				}
+
+			}
+
+			$info = [
+				"titulo" => $titulo,
+				"suscriptores" => $suscriptores,
+			];
+			$info = json_encode($info);
+			$wpdb->query("INSERT INTO vlz_listas VALUES (NULL, '{$info}', NOW())");
+
+			echo json_encode([ "error" => "", "msg" => "Lista Creada Exitosamente" ]);
 		}else{
-			echo json_encode([
-				"error" => "Ya existe una listas con este nombre",
-				"msg" => "",
-			]);
+			echo json_encode([ "error" => "Ya existe una listas con este nombre", "msg" => "" ]);
 		}
 	   	die();
 	} );

@@ -92,6 +92,31 @@ function _new(e){
     _modal(e);
 }
 
+function _generico(id) {
+    jQuery("#"+id).unbind("submit").bind("submit", function(e){
+        e.preventDefault();
+        var btn_txt = jQuery("#btn_submit_modal").html();
+        jQuery("#btn_submit_modal").html("Procesando...");
+        jQuery("#btn_submit_modal").prop("disabled", true);
+        jQuery.post(
+            ADMIN_AJAX+'?action=vlz_'+jQuery(this).data("modulo")+"_"+jQuery(this).data("accion"),
+            jQuery(this).serialize(),
+            function(data){
+                console.log( data );
+                table.ajax.reload();
+                if( table_modal != "" ){
+                    table_modal.ajax.reload();
+                }
+                jQuery("#btn_submit_modal").html(btn_txt);
+                jQuery("#btn_submit_modal").prop("disabled", false);
+                show_msg(data);
+            },
+            'json'
+        );
+    });
+}
+
+
 function _insert(id) {
     jQuery("#"+id).unbind("submit").bind("submit", function(e){
         e.preventDefault();
