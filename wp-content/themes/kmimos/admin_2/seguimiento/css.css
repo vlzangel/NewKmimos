@@ -1,0 +1,15 @@
+.btn_container {
+	overflow: hidden;
+}
+
+.btn-right {
+	float: right;
+}
+
+#listas_form .row .col-sm-12.col-md-6 {
+	display: none;
+}
+
+#listas_form .row .col-sm-12 {
+	padding: 0px;
+}

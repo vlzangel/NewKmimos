@@ -4,12 +4,6 @@
 	$info = (array) json_decode(base64_decode( $_GET['info']));
 	extract($info);
 
-	/*
-	echo "<pre>";
-		print_r( $info );
-	echo "</pre>";
-	*/
-
 	$link = $db->get_row("SELECT * FROM vlz_seguimiento_links WHERE campaing = '{$info['id']}' AND email = '{$info['email']}' AND link = '{$info['url']}' ");
 	if( $link !== false ){
 		$_metas = json_decode($link->metadata);
@@ -35,6 +29,13 @@
 			NOW()
 		);");
 	}
+
+	/*
+	echo "<pre>";
+		print_r( $info );
+		print_r( $link );
+	echo "</pre>";
+	*/
 	
 	header("location: ".$info['url']);
 ?>

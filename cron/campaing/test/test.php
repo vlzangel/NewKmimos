@@ -22,7 +22,7 @@
 	<p>Esto es una <a href="https://www.kmimos.com.mx/">prueba</a> de <a href="https://www.google.co.ve/">links</a></p>
 	<img src="https://www.img.com/">';
 	echo add_seguimiento($test, [
-		"campaing" => 20,
+		"campaing" => 14,
 		"email" => "x@x.x",
 	]);
 ?>
