@@ -25,8 +25,8 @@
 		$payoutRequest = array(
 		    'method' => 'bank_account',
 		    'bank_account' => array(
-		        'clabe' => '012298026516924616',
-		        'holder_name' => 'Mi empresa'
+		        'clabe' => '012180001085050555',
+		        'holder_name' => 'Kmimos S.A.P.I. de C.V.'
 		    ),
 		    'amount' => number_format($monto, 2, '.', ''),
 		    'description' => 'Retiro de saldo',
