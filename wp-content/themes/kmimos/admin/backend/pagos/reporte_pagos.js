@@ -304,13 +304,27 @@ function abrir_link(e){
 	});
 }
 
-
+var SALDO_ACTUAL = 0;
 function load_saldo(){
 	jQuery.post(
 		TEMA+'/admin/backend/pagos/ajax/get_saldo.php',
 		{},
 		function(saldo){
-			jQuery('#saldo_actual').html(saldo);
+			SALDO_ACTUAL = saldo[0];
+			jQuery('#saldo_actual').html(saldo[1]);
+		}, 'json'
+	);
+}
+
+function retiro(){
+	jQuery.post(
+		TEMA+'/admin/backend/pagos/ajax/retirar.php',
+		{
+			"monto" : SALDO_ACTUAL
+		},
+		function(saldo){
+			console.log(data);
+			alert( data.respuesta );
 		}
 	);
 }
