@@ -178,6 +178,8 @@ jQuery(document).ready(function() {
 		);
 	});
 
+	load_saldo();
+
 });
 
 function sumarDias(fecha, dias){
@@ -228,6 +230,7 @@ function generar_solicitud( users, accion ){
 		function(data){
 			jQuery('#pagosNuevos-tab span').html('$ 0');
 			loadTabla( _tipo, _hiddenColumns );	
+			load_saldo();
 			cerrar();
 		}
 	);

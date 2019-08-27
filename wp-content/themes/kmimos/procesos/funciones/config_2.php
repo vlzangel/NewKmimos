@@ -4,8 +4,14 @@
 	$OPENPAY_URL = ( $OPENPAY_PRUEBAS == 1 ) ? "https://sandbox-dashboard.openpay.mx" : "https://dashboard.openpay.mx";
 	
 	$MERCHANT_ID = "mbagfbv0xahlop5kxrui";
+	  
+	/*
 	$OPENPAY_KEY_SECRET = "sk_b485a174f8d34df3b52e05c7a9d8cb22";
 	$OPENPAY_KEY_PUBLIC = "pk_dacadd3820984bf494e0f5c08f361022";
+	*/
+
+	$OPENPAY_KEY_SECRET = "sk_a9156e2892354be09d7693320b257523";
+	$OPENPAY_KEY_PUBLIC = "pk_0e86300a4a014f15bc145eee19ffdb09";
 	
 	if( $OPENPAY_PRUEBAS == 1 ){
 		$MERCHANT_ID = "mej4n9f1fsisxcpiyfsz";

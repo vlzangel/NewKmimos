@@ -46,7 +46,7 @@
     <div class="row">
 
         <div class="col-md-4">
-            <strong>Saldo de dispersión: </strong> <span id="saldo_actual">$3.056,50</span>
+            <strong>Saldo de dispersión: </strong> <span id="saldo_actual">$ 0,00</span>
         </div>
 
         <div class='col-md-8'>
