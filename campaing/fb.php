@@ -62,6 +62,8 @@
 			        $wpdb->query( ( $new_user ) );
 			        $user_id = $wpdb->insert_id;
 
+			        update_user_meta($user_id, 'registrado_desde', "pagina");
+			        update_user_meta($user_id, 'registrado_con', "FacebookSB");
 			        update_user_meta($user_id, 'nickname', $datos[5]);
 			        update_user_meta($user_id, 'first_name', $datos[2]);
 			        update_user_meta($user_id, 'last_name', $datos[3]);
@@ -80,7 +82,7 @@
 			        update_user_meta($user_id, 'user_referred', 'FacebookSB');
 			        update_user_meta($user_id, 'show_admin_bar_front', 'false');
 
-					$wpdb->query("INSERT INTO wp_usermeta VALUES (NULL, {$user_id}, 'wp_capabilities', 'a:1:{s:10:\"subscriber\";b:1;}');");
+				$wpdb->query("INSERT INTO wp_usermeta VALUES (NULL, {$user_id}, 'wp_capabilities', 'a:1:{s:10:\"subscriber\";b:1;}');");
 
 			        $mensaje = buildEmailTemplate(
 			            'registro', 
@@ -144,7 +146,7 @@
 				$auth = (array) $credenciales->auth;
 				$lists = (array) $credenciales->lists;
 				require_once __DIR__.'/campaing/csrest_subscribers.php';
-				$list = new CS_REST_Subscribers("c345b9c7af8fee459597d485db92559a", $auth);
+				$list = new CS_REST_Subscribers("0409899d192bff86e74d2cc8473b60fb", $auth);
 				foreach ($correos as $key => $email) {
 					$r = $list->add([
 						"EmailAddress" => $email,
