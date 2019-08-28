@@ -10,9 +10,6 @@
 			break;
 		}
 	}else{
-	/*	echo "<pre>";
-			print_r($path);
-		echo "</pre>";*/
 
 		if( $path[0] == 'petsitters' ) {
 			$slug = explode("-", $path[1]);

@@ -11,11 +11,11 @@
 	
 	$raiz_tema = dirname(dirname(dirname(dirname(__DIR__))));
 
-	include( $raiz_tema."/lib/openpay2/Openpay.php");
+	include( $raiz_tema."/lib/openpay/Openpay.php");
 	include( $raiz_tema."/procesos/funciones/config.php");
 
 	$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
-	Openpay::setProductionMode( false );
+	Openpay::setProductionMode( $OPENPAY_PRUEBAS == 0 );
 
 	$retiro_id = $wpdb->get_var("SELECT id FROM retiros_openpay ORDER BY id DESC LIMIT 0, 1");
 	$retiro_id = ( empty($retiro_id) ) ? 1 : $retiro_id+1;

@@ -180,6 +180,13 @@ jQuery(document).ready(function() {
 
 	load_saldo();
 
+	jQuery("#vlz_retiro").on('click', function(e){
+		var confirmed = confirm("Esta seguro de realizar el retiro.?");
+    	if (confirmed == true) {
+			retiro();
+		}
+	});
+
 });
 
 function sumarDias(fecha, dias){
@@ -310,22 +317,33 @@ function load_saldo(){
 		TEMA+'/admin/backend/pagos/ajax/get_saldo.php',
 		{},
 		function(saldo){
-			SALDO_ACTUAL = saldo[0];
-			jQuery('#saldo_actual').html(saldo[1]);
+			if( saldo.status == 'ok' ){
+				SALDO_ACTUAL = saldo['saldo'];
+				jQuery('#saldo_actual').html(saldo['saldo_txt']);
+			}else{
+				alert( saldo['respuesta'] );
+			}
 		}, 'json'
 	);
 }
 
 function retiro(){
+	var btn_txt = jQuery("#vlz_retiro").html();
+	jQuery("#vlz_retiro").html("PROCESANDO...");
 	jQuery.post(
 		TEMA+'/admin/backend/pagos/ajax/retirar.php',
 		{
 			"monto" : SALDO_ACTUAL
 		},
-		function(saldo){
+		function(data){
 			console.log(data);
-			alert( data.respuesta );
-		}
+			if( data.status == 'error' ){
+				alert( data.respuesta[3] );
+			}else{
+				alert( data.respuesta );
+			}
+			jQuery("#vlz_retiro").html( btn_txt );
+		}, 'json'
 	);
 }
  

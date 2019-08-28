@@ -49,10 +49,6 @@
 
 	$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= NOW()");
 
-/*	echo "<pre>";
-		print_r();
-	echo "</pre>";*/
-
 	$tipo = $wpdb->get_var("
         SELECT
             tipo_servicio.slug AS slug
@@ -82,9 +78,9 @@
 	$transporte = getTransporte($adicionales);
 	if( $transporte != "" ){
 		$transporte = '
-			<div class="km-service-title"> TRANSPORTACI&Oacute;N </div>
+			<div class="km-service-title"> TRANSPORTACIÓN </div>
 			<div class="km-services">
-				<select id="transporte" name="transporte" class="km-input-custom"><option value="">Seleccione una opci&oacute;n</option>'.$transporte.'</select>
+				<select id="transporte" name="transporte" class="km-input-custom"><option value="">Seleccione una opción</option>'.$transporte.'</select>
 			</div>
 		';
 	}
@@ -201,7 +197,7 @@
 							<span class="label-resume">FECHA</span>
 							<span class="value-resume">
 								<span id="fecha_ini"></span>
-								&nbsp; &gt; &nbsp;
+								  >  
 								<span id="fecha_fin"></span>
 							</span>
 						</div>
@@ -304,7 +300,7 @@
 								<span class="label-resume">FECHA</span>
 								<span class="value-resume">
 									24/07/2017
-									&nbsp; &gt; &nbsp;
+									  >  
 									26/07/2017
 								</span>
 							</div>

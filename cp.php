@@ -19,22 +19,5 @@
 	echo "<pre>";
 		print_r( count($cantidad) );
 	echo "</pre>";
-
-	/*
-		Kmimos México
-
-			14.776 Perros
-			   333 Gatos
-
-		Kmimos Colombia
-
-			210 Perros
-			 34 Gatos
-
-		Kmimos Perú
-
-			363 Perros
-			  9 Gatos
-	*/
 ?>
 

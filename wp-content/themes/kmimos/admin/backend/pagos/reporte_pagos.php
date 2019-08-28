@@ -12,7 +12,7 @@
         fin:'<?php echo $fecha['fin']; ?>'
     };    
 </script>
-<link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/pagos/reporte_pagos.css'>
+<link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/pagos/reporte_pagos.css?v=<?= time() ?>'>
 <script src='<?php echo getTema(); ?>/admin/backend/pagos/reporte_pagos.js'></script>
 
 <div class="container_listados">
@@ -47,6 +47,7 @@
 
         <div class="col-md-4">
             <strong>Saldo de dispersión: </strong> <span id="saldo_actual">$ 0,00</span>
+            <button id="vlz_retiro">Retirar Saldo de dispersión</button>
         </div>
 
         <div class='col-md-8'>
