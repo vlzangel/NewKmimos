@@ -19,7 +19,7 @@
 	        	btn.prop('disabled', true);
 
 			jQuery.post( 
-		        HOME+"/procesos/login/login.php", 
+		        HOME+"procesos/login/login.php", 
 		        {
 		            usu: jQuery("#form_login #usuario").val(),
 		            clv: jQuery("#form_login #clave").val(),
