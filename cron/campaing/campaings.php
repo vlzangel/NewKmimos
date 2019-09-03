@@ -152,7 +152,7 @@
 					case 'no':
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar);
 						foreach ($no_abiertos as $key => $email) {
-							if( !array_key_exists($email, $enviados->$padre_id) ){ 
+							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
 								$enviados[$padre_id][ $email ] = time();
 								$info_validacion = base64_encode( json_encode( [
 									"id" => $campaing->id,
