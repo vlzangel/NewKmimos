@@ -14,8 +14,9 @@
 		jQuery("#form_login").on("submit", function(e){
 			e.preventDefault();
 			
-			var btn = jQuery('#login_submit');
-	        	btn.html('PROCESANDO...');
+			var btn = jQuery('#enviar');
+	        	btn.val('PROCESANDO...');
+	        	btn.prop('disabled', true);
 
 			jQuery.post( 
 		        HOME+"/procesos/login/login.php", 
@@ -25,13 +26,10 @@
 		            proceso: jQuery("#form_login #proceso").val()
 		        },
 		        function( data ) {
-
 		            console.log( data );
-
 		            location.href = ADMIN;
-
-		            btn.html('INICIAR SESIÓN AHORA');
-
+		            btn.val('INICIAR SESIÓN AHORA');
+	        		btn.prop('disabled', false);
 		        },
 		        "json"
 		    );	
