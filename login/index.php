@@ -2,13 +2,13 @@
 	include dirname(__DIR__).'/wp-load.php';
 
 	if( is_user_logged_in()  ){
-		header("location: ".get_home_url()."/wp-admin/admin.php?page=reporte_cupones" );
+		header("location: ".get_home_url()."/wp-admin/admin.php?page=vlz-bootstrap-campaing" );
 	}
 ?>
 <script type="text/javascript" src="<?= getTema().'/js/jquery.min.js' ?>"></script>
 <script type="text/javascript">
 	var HOME = '<?= getTema().'/' ?>';
-	var ADMIN = '<?= get_home_url().'/wp-admin/admin.php?page=reporte_cupones' ?>';
+	var ADMIN = '<?= get_home_url().'/wp-admin/admin.php?page=vlz-bootstrap-campaing' ?>';
 	jQuery( document ).ready(function() {
 
 		jQuery("#form_login").on("submit", function(e){
