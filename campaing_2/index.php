@@ -5,20 +5,23 @@
 	extract($info);
 	
 	$campaing = $db->get_row("SELECT * FROM vlz_campaing WHERE id = {$id}");
-	$d = (array) json_decode( utf8_encode($campaing->data) );
-	if( is_array($d['vistos']) ){
+	$d = json_decode( utf8_encode($campaing->data) );
+	if( is_array($d->vistos) ){
 		$vistos = [];
-		foreach ($d['vistos'] as $key => $value) { $vistos[] = $value->email; }
+		foreach ($d->vistos as $key => $value) { $vistos[] = $value->email; }
 		if( !in_array($email, $vistos) ){ 
-			$d['vistos'][] = [ "fecha" => time(), "email" => $email ]; 
+			$d->vistos[] = [ "fecha" => time(), "email" => $email ]; 
 		}
 	}else{
-		$d['vistos'] = [ [ "fecha" => time(), "email" => $email ] ];
+		$d->vistos = [ [ "fecha" => time(), "email" => $email ] ];
 	}
+
 	$_data = utf8_decode( json_encode($d, JSON_UNESCAPED_UNICODE) );
+	$_data = str_replace('\\"', '\\\\"', $_data);
+
 	$sql = "UPDATE vlz_campaing SET data = '{$_data}' WHERE id = ".$id;
 	$db->query( $sql );	
+	
 	header("Content-Type: image/png");
 	echo file_get_contents("img.png");
-	
 ?>

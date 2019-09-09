@@ -73,7 +73,7 @@
 
 						$_listas = $data->data_listas;
 						// $d->ENVIADO = "SI";
-						$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
+						$enviados = ( isset($data->enviados) ) ? (array) $data->enviados : [];
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
 							foreach ($_listas as $lista) {

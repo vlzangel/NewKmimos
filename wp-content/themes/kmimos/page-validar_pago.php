@@ -13,6 +13,8 @@
 			require_once( 'procesos/reservar/pasarelas/paypal/validar.php' );
 			$paypal_order = new Order();
 			
+			$error_pago = false;
+
 			try{
 				if( isset($_GET['token']) && !empty($_GET['token']) ){
 					if( $paypal_order->validar( $_GET['token'] ) ){
@@ -53,19 +55,31 @@
 							
 						}else{
 							echo "Error en el punto: [4]";
+							$error_pago = true;
 							include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 						}
 					}else{
 						echo "Error en el punto: [3]";
+						$error_pago = true;
 						include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 					}
 				}else{
 					echo "Error en el punto: [2]";
+					$error_pago = true;
 					include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
 				}
 			}catch( Exception $e){
 				echo "Error en el punto: [1]";
+				$error_pago = true;
 				include_once( 'procesos/reservar/pasarelas/paypal/mensaje_error.php' );
+			}
+
+			if( $error_pago ){
+
+				$wpdb->query("UPDATE wp_posts SET post_status = 'cancelled' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+				$wpdb->query("UPDATE wp_posts SET post_status = 'wc-cancelled' WHERE ID = {$id_orden};");
+				update_cupos( $id_orden );
+
 			}
 			
 		break;
