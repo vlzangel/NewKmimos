@@ -39,7 +39,7 @@
 		preg_match_all("#href=\"http(.*?)\"#i", $mensaje, $matches);
 		$url_base = get_home_url().'/campaing_2';
 		foreach ($matches[1] as $key => $url) {
-			$old_url = "http".substr($url, 0);
+			$old_url = "http".$url;
 			$data = base64_encode( json_encode( [
 				"id" => $info["campaing"],
 				"email" => $info["email"],
