@@ -433,10 +433,11 @@
 		$existe = $wpdb->get_var("SELECT id FROM vlz_campaing WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
 		if( empty($existe) ){
 			$_POST["vistos"] = json_decode( $_POST["vistos"] );
-			$_POST["data"]["plantilla"] = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
-			$_POST["data"]["plantilla"] = preg_replace('#<p data(.*?)/p>#', '', $_POST["data"]["plantilla"]);
+			$plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
+			$plantilla = preg_replace('#<p data(.*?)/p>#', '', $plantilla);
+			unset($_POST["data"]["plantilla"]);
 			$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
-			$wpdb->query("INSERT INTO vlz_campaing VALUES (NULL, '{$data}', NOW())");
+			$wpdb->query("INSERT INTO vlz_campaing VALUES (NULL, '{$plantilla}', {$data}', NOW())");
 			echo json_encode([
 				"error" => "",
 				"msg" => "Campaña Creada Exitosamente",
@@ -463,9 +464,12 @@
 			$_POST["data"]["plantilla"] = str_replace("Froala Editor", "", $_POST["data"]["plantilla"]);
 
 			$_POST["data"]["plantilla"] = preg_replace('#<p data(.*?)/p>#', '', $_POST["data"]["plantilla"]);
+
+			$plantilla = $_POST["data"]["plantilla"];
+			unset($_POST["data"]["plantilla"]);
 			
 			$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
-			$sql = "UPDATE vlz_campaing SET data = '{$data}' WHERE id = ".$id;
+			$sql = "UPDATE vlz_campaing SET data = '{$data}', plantilla = '{$plantilla}' WHERE id = ".$id;
 			$wpdb->query( $sql );
 			echo json_encode([
 				"error" => "",
