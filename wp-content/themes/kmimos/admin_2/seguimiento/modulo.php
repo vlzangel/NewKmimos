@@ -102,7 +102,7 @@
 			}
 
 			$data["data"][] = [
-				$cont,
+				$campaing,
 				$campaings[ $campaing ],
 				$links,
 				$clicks,'
