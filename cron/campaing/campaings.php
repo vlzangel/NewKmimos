@@ -39,7 +39,7 @@
 		preg_match_all("#href=\"http(.*?)\"#i", $mensaje, $matches);
 		$url_base = get_home_url().'/campaing_2';
 		foreach ($matches[1] as $key => $url) {
-			$old_url = "http".substr($url, 0, -1);
+			$old_url = "http".substr($url, 0);
 			$data = base64_encode( json_encode( [
 				"id" => $info["campaing"],
 				"email" => $info["email"],
@@ -91,7 +91,7 @@
 											"email" => $email
 										] ) );
 
-										$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
+										$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
 										
 										$mensaje = add_seguimiento($mensaje, [
 											"campaing" => $campaing->id,
@@ -137,7 +137,7 @@
 										"format" => "png",
 										"email" => $email
 									] ) );
-									$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
+									$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
 									
 									$mensaje = add_seguimiento($mensaje, [
 										"campaing" => $campaing->id,
@@ -160,7 +160,7 @@
 									"format" => "png",
 									"email" => $email
 								] ) );
-								$mensaje = $d->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
+								$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
 								
 								$mensaje = add_seguimiento($mensaje, [
 									"campaing" => $campaing->id,

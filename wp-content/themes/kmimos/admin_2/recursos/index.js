@@ -210,7 +210,7 @@ function show_msg(data){
         case 'sucess':
             jQuery(".modal > div > p").addClass('sucess');
             setTimeout(function(){
-                jQuery(".modal").css("display", "none");
+                // jQuery(".modal").css("display", "none");
             }, 1500);
         break;
     }

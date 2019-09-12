@@ -89,6 +89,23 @@
 	   	die();
 	} );
 
+	function add_seguimiento_($mensaje, $info){
+		$mensaje = preg_replace("/[\r\n|\n|\r]+/", " ", $mensaje);
+		preg_match_all("#href=\"http(.*?)\"#i", $mensaje, $matches);
+		$url_base = get_home_url().'/campaing_2';
+		foreach ($matches[1] as $key => $url) {
+			$old_url = "http".substr($url, 0);
+			$data = base64_encode( json_encode( [
+				"id" => $info["campaing"],
+				"email" => $info["email"],
+				"url" => $old_url,
+			] ) );
+			$new_url = $url_base.'/'.$data.'/redi';
+			$mensaje = str_replace($old_url, $new_url, $mensaje);
+		}
+		return $mensaje;
+	}
+
 	add_action( 'wp_ajax_vlz_campaing_test_send', function() {
 		extract($_POST);
 		global $wpdb;
@@ -100,9 +117,16 @@
 			"format" => "png",
 			"email" => $email
 		] ) );
-		$d->data->plantilla = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title=""></a></p>', '', $d->data->plantilla);
-		$mensaje = $d->data->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
+		$campaing->plantilla = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title=""></a></p>', '', $campaing->plantilla);
+		$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
+
+		$mensaje = add_seguimiento_($mensaje, [
+			"campaing" => $campaing->id,
+			"email" => trim($email),
+		]);
+
 		wp_mail( trim($email) , $d->data->asunto, $mensaje);
+
 		echo json_encode([
 			"error" => "",
 			"msg" => "Mensaje Enviado Exitosamente!",
@@ -116,6 +140,7 @@
 		$data_listas = [];
 		if( $action == 'update' ){
 			$ID = $info->id;
+			$plantilla = $info->plantilla;
 			$input_id = '<input type="hidden" name="id" value="'.$info->id.'" />';
 			$info = (array) json_decode($info->data);
 			extract($info);
@@ -167,7 +192,7 @@
 				</div>
 				<div class="form-group">
 					<label for="plantilla">Plantilla</label>
-					<textarea id="contenido" name="data[plantilla]" class="form-control" placeholder="Contenido de Email">'.$data->plantilla.'</textarea>
+					<textarea id="contenido" name="data[plantilla]" class="form-control" placeholder="Contenido de Email">'.$plantilla.'</textarea>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -437,7 +462,8 @@
 			$plantilla = preg_replace('#<p data(.*?)/p>#', '', $plantilla);
 			unset($_POST["data"]["plantilla"]);
 			$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
-			$wpdb->query("INSERT INTO vlz_campaing VALUES (NULL, '{$plantilla}', {$data}', NOW())");
+			$sql = "INSERT INTO vlz_campaing VALUES (NULL, '{$plantilla}', '{$data}', NOW())";
+			$wpdb->query( $sql );
 			echo json_encode([
 				"error" => "",
 				"msg" => "Campaña Creada Exitosamente",
