@@ -17,6 +17,11 @@
 			$reservas = $wpdb->get_results("SELECT * FROM reporte_reserva_new WHERE fecha_reservacion >= '{$ini}' AND fecha_reservacion <= '{$fin}' ORDER BY reserva_id DESC");
 			
 			$data['data'] = [];
+			$result = $wpdb->get_results("SELECT * FROM razas");
+			$razas = [];
+			foreach ($result as $raza) {
+				$razas[$raza->id] = $raza->nombre;
+			}
 			foreach ($reservas as $key => $reserva) {
 				$cupones = get_cupones_reserva( $reserva->reserva_id );
 				$origen = ( empty( get_post_meta($reserva->pedido, 'verification_code', true) ) ) ? 'Página' : 'App';
@@ -39,6 +44,13 @@
 					$pago = date("d/m/Y h:i:s a", strtotime($pago) );
 
 					$pago = ( $reserva->status == 'Pendiente' ) ? '---' : $pago;
+
+					$user_id = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$reserva->correo_cliente}' ");
+					$mascotas_cliente = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = '{$user_id}' AND post_type='pets' AND post_status = 'publish'");
+				    $mascotas = array();
+				    foreach ($mascotas_cliente as $key => $mascota) {
+				        $mascotas[] = $razas[ get_post_meta($mascota->ID, "breed_pet", true) ];
+				    }
 
 					if( !empty($r) ){
 
@@ -63,7 +75,7 @@
 							$reserva->recompra_12_meses,
 							$reserva->donde_nos_conocio,
 							$reserva->mascotas,
-							$reserva->razas,
+							implode("<br>", $mascotas),
 							$reserva->edad,
 							$reserva->cuidador,
 							$reserva->correo_cuidador,

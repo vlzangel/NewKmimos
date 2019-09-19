@@ -16,16 +16,22 @@
     function get_listas_form($data, $action = 'insert'){
 		global $wpdb;
 
+		$config = json_decode($data->config);
+
+		extract($config);
+
 		$listas_news = '';
 		$news = $wpdb->get_results("SELECT DISTINCT source FROM wp_kmimos_subscribe ORDER BY source ASC");
 		foreach ($news as $key => $value) {
-			$listas_news .= '<option value="'.$value->source.'">'.ucfirst($value->source).'</option>';
+			$listas_news .= '<option value="'.$value->source.'" '.selected($value->source, $config->newsletter, false).'>'.ucfirst($value->source).'</option>';
 		}
 
 		$wlabes = '';
+		$wlabes_cuidadores = '';
 		$news = $wpdb->get_results("SELECT * FROM wp_kmimos_wlabel ORDER BY wlabel ASC");
 		foreach ($news as $key => $value) {
-			$wlabes .= '<option value="'.$value->wlabel.'">'.ucfirst($value->title).'</option>';
+			$wlabes .= '<option value="'.$value->wlabel.'" '.selected($value->wlabel, $config->wlabel, false).'>'.ucfirst($value->title).'</option>';
+			$wlabes_cuidadores .= '<option value="'.$value->wlabel.'" '.selected($value->wlabel, $config->cuidadores, false).'>'.ucfirst($value->title).'</option>';
 		}
 
 		$btn = 'Crear';
@@ -70,7 +76,7 @@
 					<input type="hidden" id="importaciones" name="importaciones" />
 				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<div class="form-group">
 							<label for="titulo">Listas Newsletter</label>
 							<select id="newsletter" name="newsletter" class="form-control" >
@@ -79,13 +85,23 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<div class="form-group">
-							<label for="titulo">Wlabels</label>
+							<label for="titulo">Clientes Registrados</label>
 							<select id="wlabel" name="wlabel" class="form-control" >
 								<option value="">Seleccione...</option>
 								<option value="kmimos">Kmimos</option>
 								'.$wlabes.'
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="titulo">Cuidadores Registrados</label>
+							<select id="cuidadores" name="cuidadores" class="form-control" >
+								<option value="">Seleccione...</option>
+								<option value="kmimos">Kmimos</option>
+								'.$wlabes_cuidadores.'
 							</select>
 						</div>
 					</div>
@@ -95,13 +111,13 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="titulo">Desde</label>
-							<input type="date" name="desde" class="form-control" />
+							<input type="date" name="desde" value="'.$config->desde.'" class="form-control" />
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="titulo">Hasta</label>
-							<input type="date" name="hasta" class="form-control" />
+							<input type="date" name="hasta" value="'.$config->hasta.'" class="form-control" />
 						</div>
 					</div>
 				</div>
@@ -132,6 +148,7 @@
 		$existe = $wpdb->get_var("SELECT id FROM vlz_listas WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' ");
 		if( empty($existe) ){
 			$suscriptores = [];
+			$suscriptores_manuales = [];
 			$suscriptores_no_repeat = [];
 			if( !empty($importaciones) ){
 				$importaciones = preg_replace("/[\r\n|\n|\r]+/", "|", $importaciones);
@@ -149,6 +166,8 @@
 					}
 				}
 			}
+
+			$suscriptores_manuales = json_encode($suscriptores);
 
 			if( $newsletter != "" ){
 
@@ -175,12 +194,15 @@
 					SELECT DISTINCT (u.user_email), u.ID
 					FROM wp_usermeta AS m 
 					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
+					INNER JOIN wp_usermeta AS c ON ( u.ID = c.user_id AND c.meta_key = 'wp_capabilities' )
 					WHERE NOT EXISTS
 					    (
 					        SELECT  null 
 					        FROM wp_usermeta AS w
 					        WHERE w.user_id = u.ID AND w.meta_key = '_wlabel'
-					    ) {$fechas}";
+					    ) 
+					    AND c.meta_value LIKE '%subscriber%'
+					    {$fechas}";
 
 					$suscritos = $wpdb->get_results($sql);
 					$cont = 0;
@@ -208,7 +230,8 @@
 					FROM wp_usermeta AS m 
 					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
 					INNER JOIN wp_usermeta AS n ON ( u.ID = n.user_id AND n.meta_key = 'first_name' )
-					WHERE  (  m.meta_key = '_wlabel' OR  m.meta_key = 'user_referred' ) AND m.meta_value LIKE '%{$wlabel}%' {$fechas}";
+					INNER JOIN wp_usermeta AS c ON ( u.ID = c.user_id AND c.meta_key = 'wp_capabilities' )
+					WHERE  (  m.meta_key = '_wlabel' OR  m.meta_key = 'user_referred' ) AND m.meta_value LIKE '%{$wlabel}%' AND c.meta_value LIKE '%subscriber%' {$fechas}";
 
 					$suscritos = $wpdb->get_results($sql);
 
@@ -222,13 +245,84 @@
 
 			}
 
+			if( $cuidadores != "" ){
+
+				if( $cuidadores == 'kmimos' ){
+					$fechas = ""; 
+					if( $desde != "" && $hasta != "" ) {
+						$fechas = " AND ( u.user_registered >= '{$desde}' AND u.user_registered <= '{$hasta}' ) ";
+					}
+
+					$sql =  "
+					SELECT DISTINCT (u.user_email), u.ID
+					FROM wp_usermeta AS m 
+					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
+					INNER JOIN wp_usermeta AS c ON ( u.ID = c.user_id AND c.meta_key = 'wp_capabilities' )
+					WHERE NOT EXISTS
+					    (
+					        SELECT  null 
+					        FROM wp_usermeta AS w
+					        WHERE w.user_id = u.ID AND w.meta_key = '_wlabel'
+					    ) 
+					    AND c.meta_value LIKE '%vendor%'
+					    {$fechas}";
+
+					$suscritos = $wpdb->get_results($sql);
+					$cont = 0;
+					foreach ($suscritos as $key => $suscrito) {
+						$cont++;
+						// if( $cont >= 8850 && $cont <= 8860 ){
+							$first = get_user_meta($suscrito->ID, 'first_name', true);
+							$first = str_replace('"', '', $first);
+
+							$suscriptores[] = [
+								$first,
+								$suscrito->user_email
+							];
+						// }
+					}
+
+				}else{
+					$fechas = ""; 
+					if( $desde != "" && $hasta != "" ) {
+						$fechas = " AND ( u.user_registered >= '{$desde}' AND u.user_registered <= '{$hasta}' ) ";
+					}
+
+					$sql =  "
+					SELECT u.user_email AS email, n.meta_value AS name 
+					FROM wp_usermeta AS m 
+					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
+					INNER JOIN wp_usermeta AS n ON ( u.ID = n.user_id AND n.meta_key = 'first_name' )
+					INNER JOIN wp_usermeta AS c ON ( u.ID = c.user_id AND c.meta_key = 'wp_capabilities' )
+					WHERE  (  m.meta_key = '_wlabel' OR  m.meta_key = 'user_referred' ) AND m.meta_value LIKE '%{$cuidadores}%' AND c.meta_value LIKE '%vendor%' {$fechas}";
+
+					$suscritos = $wpdb->get_results($sql);
+
+					foreach ($suscritos as $key => $suscrito) {
+						$suscriptores[] = [
+							$suscrito->name,
+							$suscrito->email
+						];
+					}
+				}
+			}
+
 			$info = [
 				"titulo" => $titulo,
 				"suscriptores" => $suscriptores,
 			];
 			$data = json_encode($info, JSON_UNESCAPED_UNICODE);
 
-			$wpdb->query("INSERT INTO vlz_listas VALUES (NULL, '{$data}', NOW())");
+			$config = [
+				"newsletter" => $newsletter,
+				"wlabel" => $wlabel,
+				"cuidadores" => $cuidadores,
+				"desde" => $desde,
+				"hasta" => $hasta
+			];
+			$config = json_encode($config, JSON_UNESCAPED_UNICODE);
+
+			$wpdb->query("INSERT INTO vlz_listas VALUES (NULL, '{$data}', '{$config}', '{$suscriptores_manuales}', NOW())");
 			echo json_encode([
 				"error" => "",
 				"msg" => "Lista Creada Exitosamente",
