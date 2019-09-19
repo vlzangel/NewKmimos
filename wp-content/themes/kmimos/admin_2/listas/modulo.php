@@ -171,7 +171,8 @@
 
 			if( $newsletter != "" ){
 
-				$fechas = ( $desde != "" && $hasta != "" ) ? " AND ( time >= '{$desde}' AND time <= '{$hasta}' ) " : '';
+				$fechas = ( $desde != "" ) ? " AND time >= '{$desde}' " : '';
+				$fechas .= ( $hasta != "" ) ? " AND time <= '{$hasta}' " : '';
 				$suscritos = $wpdb->get_results("SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ");
 				foreach ($suscritos as $key => $suscrito) {
 					$suscriptores[] = [
@@ -587,8 +588,10 @@
 
 			if( $newsletter != "" ){
 
-				$fechas = ( $desde != "" && $hasta != "" ) ? " AND ( time >= '{$desde}' AND time <= '{$hasta}' ) " : '';
-				$suscritos = $wpdb->get_results("SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ");
+				$fechas = ( $desde != "" ) ? " AND time >= '{$desde}' " : '';
+				$fechas .= ( $hasta != "" ) ? " AND time <= '{$hasta}' " : '';
+				$sql_nl = "SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ";
+				$suscritos = $wpdb->get_results($sql_nl);
 				foreach ($suscritos as $key => $suscrito) {
 					$suscriptores[] = [
 						$suscrito->email,
@@ -753,7 +756,7 @@
 			echo json_encode([
 				"error" => "",
 				"msg" => "Lista Actualizada Exitosamente",
-				"suscriptores_manuales" => $suscriptores_manuales,
+				"sql_nl" => $sql_nl,
 			]);
 		}else{
 			echo json_encode([
