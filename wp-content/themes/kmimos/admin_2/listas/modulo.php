@@ -186,8 +186,11 @@
 
 				if( $wlabel == 'kmimos' ){
 					$fechas = ""; 
-					if( $desde != "" && $hasta != "" ) {
-						$fechas = " AND ( u.user_registered >= '{$desde}' AND u.user_registered <= '{$hasta}' ) ";
+					if( $desde != "" ) {
+						$fechas = " AND u.user_registered >= '{$desde}' ";
+					}
+					if( $hasta != "" ) {
+						$fechas = " AND u.user_registered <= '{$hasta}' ";
 					}
 
 					$sql =  "
@@ -208,21 +211,22 @@
 					$cont = 0;
 					foreach ($suscritos as $key => $suscrito) {
 						$cont++;
-						// if( $cont >= 8850 && $cont <= 8860 ){
-							$first = get_user_meta($suscrito->ID, 'first_name', true);
-							$first = str_replace('"', '', $first);
+						$first = get_user_meta($suscrito->ID, 'first_name', true);
+						$first = str_replace('"', '', $first);
 
-							$suscriptores[] = [
-								$first,
-								$suscrito->user_email
-							];
-						// }
+						$suscriptores[] = [
+							$first,
+							$suscrito->user_email
+						];
 					}
 
 				}else{
 					$fechas = ""; 
-					if( $desde != "" && $hasta != "" ) {
-						$fechas = " AND ( u.user_registered >= '{$desde}' AND u.user_registered <= '{$hasta}' ) ";
+					if( $desde != "" ) {
+						$fechas = " AND u.user_registered >= '{$desde}' ";
+					}
+					if( $hasta != "" ) {
+						$fechas = " AND u.user_registered <= '{$hasta}' ";
 					}
 
 					$sql =  "
@@ -249,8 +253,11 @@
 
 				if( $cuidadores == 'kmimos' ){
 					$fechas = ""; 
-					if( $desde != "" && $hasta != "" ) {
-						$fechas = " AND ( u.user_registered >= '{$desde}' AND u.user_registered <= '{$hasta}' ) ";
+					if( $desde != "" ) {
+						$fechas = " AND u.user_registered >= '{$desde}' ";
+					}
+					if( $hasta != "" ) {
+						$fechas = " AND u.user_registered <= '{$hasta}' ";
 					}
 
 					$sql =  "
@@ -271,21 +278,22 @@
 					$cont = 0;
 					foreach ($suscritos as $key => $suscrito) {
 						$cont++;
-						// if( $cont >= 8850 && $cont <= 8860 ){
-							$first = get_user_meta($suscrito->ID, 'first_name', true);
-							$first = str_replace('"', '', $first);
+						$first = get_user_meta($suscrito->ID, 'first_name', true);
+						$first = str_replace('"', '', $first);
 
-							$suscriptores[] = [
-								$first,
-								$suscrito->user_email
-							];
-						// }
+						$suscriptores[] = [
+							$first,
+							$suscrito->user_email
+						];
 					}
 
 				}else{
 					$fechas = ""; 
-					if( $desde != "" && $hasta != "" ) {
-						$fechas = " AND ( u.user_registered >= '{$desde}' AND u.user_registered <= '{$hasta}' ) ";
+					if( $desde != "" ) {
+						$fechas = " AND u.user_registered >= '{$desde}' ";
+					}
+					if( $hasta != "" ) {
+						$fechas = " AND u.user_registered <= '{$hasta}' ";
 					}
 
 					$sql =  "
@@ -495,7 +503,7 @@
 	   	die();
 	} );
 
-
+	/*
 	add_action( 'wp_ajax_vlz_listas_crear', function() {
 		extract($_POST);
 		global $wpdb;
@@ -527,7 +535,7 @@
 				"suscriptores" => $suscriptores,
 			];
 			$info = json_encode($info);
-			$wpdb->query("INSERT INTO vlz_listas VALUES (NULL, '{$info}', NOW())");
+			$wpdb->query("INSERT INTO vlz_listas VALUES (NULL, '{$info}', '{}', '{}', NOW())");
 
 			echo json_encode([ "error" => "", "msg" => "Lista Creada Exitosamente" ]);
 		}else{
@@ -535,93 +543,225 @@
 		}
 	   	die();
 	} );
+	*/
 
 	add_action( 'wp_ajax_vlz_listas_update', function() {
+
 		extract($_POST);
 		global $wpdb;
-		if( $form == "cliente" ){
-			$lista = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$id);
-			$info = json_decode($lista->data);
-			$temp_suscriptores = $info->suscriptores;
-			$suscriptores = [];
-			$email_old = $_POST["email_old"];
-			$email = $_POST["data"]["email"];
-			$nombre = $_POST["data"]["titulo"];
-			foreach ($temp_suscriptores as $key => $suscriptor) {
-				if( !is_array($suscriptor) ){
-					$_nombre = "";
-					$_email = $suscriptor;
-				}else{
-					$_nombre = $suscriptor[0];
-					$_email = $suscriptor[1];
-				}
-				if( $email_old == $_email ){
-					$_email = $email;
-					$_nombre = $nombre;
-				}
-				$suscriptores[] = [ $_nombre, $_email ];
+
+		$desde = ( $desde != "" ) ? date("Y-m-d", strtotime( str_replace("/", "-", $desde) ) ) : '';
+		$hasta = ( $hasta != "" ) ? date("Y-m-d", strtotime( str_replace("/", "-", $hasta) ) ) : '';
+
+		$existe = $wpdb->get_var("SELECT id FROM vlz_listas WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' AND id != '{$id}' ");
+		if( empty($existe) ){
+
+			$campaing = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = '{$id}' ");
+
+			$suscriptores = json_decode($campaing->manuales);
+			$suscriptores_manuales = $suscriptores;
+
+			$suscriptores_no_repeat = [];
+			foreach ($suscriptores as $key => $suscriptor) {
+				$suscriptores_no_repeat[] = $suscriptor[1];
 			}
-			$info->suscriptores = $suscriptores;
-			$data = json_encode($info);
-			$sql = "UPDATE vlz_listas SET data = '{$data}' WHERE id = ".$id;
-			$wpdb->query( $sql );
-			echo json_encode([
-				"error" => "",
-				"msg" => "Cliente Actualizado Exitosamente",
-			]);
-		}else{
-			$titulo = $data["titulo"];
-			$existe = $wpdb->get_var("SELECT id FROM vlz_listas WHERE data LIKE '%\"titulo\":\"{$titulo}\"%' AND id != ".$id);
-			if( empty($existe) ){
 
-				$lista = $wpdb->get_row("SELECT * FROM vlz_listas WHERE id = ".$id);
-				$info = json_decode($lista->data);
-
-				$_POST["suscriptores"] = preg_replace("/[\r\n|\n|\r]+/", ",", $_POST["suscriptores"]);
-				$_temp = explode(",", $_POST["suscriptores"]);
-				
-				$suscriptores = [];
-				$suscriptores_no_repeat = [];
-
-				foreach ($info->suscriptores as $key => $value) {
-					$suscriptores_no_repeat[] = $value[1];
-					$suscriptores[] = $value;
-				}
-
-				if( !empty($importaciones) ){
-					$importaciones = preg_replace("/[\r\n|\n|\r]+/", "|", $importaciones);
-					$importaciones = explode("|", $importaciones);
-					foreach ($importaciones as $key => $value) {
-						$suscriptor = explode(",", $value);
-						if( !in_array($suscriptor[1], $suscriptores_no_repeat)){
-							if(false !== filter_var($suscriptor[1], FILTER_VALIDATE_EMAIL)){
-								$suscriptores[] = [
-									$suscriptor[0],
-									$suscriptor[1]
-								];
-								$suscriptores_no_repeat[] = $suscriptor[1];
-							}
+			if( !empty($importaciones) ){
+				$importaciones = preg_replace("/[\r\n|\n|\r]+/", "|", $importaciones);
+				$importaciones = explode("|", $importaciones);
+				foreach ($importaciones as $key => $value) {
+					$suscriptor = explode(",", $value);
+					if( !in_array($suscriptor[1], $suscriptores_no_repeat)){
+						if(false !== filter_var($suscriptor[1], FILTER_VALIDATE_EMAIL)){
+							$suscriptores[] = [
+								$suscriptor[0],
+								$suscriptor[1]
+							];
+							$suscriptores_no_repeat[] = $suscriptor[1];
 						}
 					}
 				}
-				unset($_POST["importaciones"]);
-				unset($_POST["table_listas_length"]);
-				unset($_POST["form"]);
-				$_POST["suscriptores"] = $suscriptores;
-				$data = json_encode($_POST);
-				$sql = "UPDATE vlz_listas SET data = '{$data}' WHERE id = ".$id;
-				$wpdb->query( $sql );
-				echo json_encode([
-					"error" => "",
-					"msg" => "Lista Actualizada Exitosamente",
-				]);
-			}else{
-				echo json_encode([
-					"error" => "Ya existe una listas con este nombre",
-					"msg" => "",
-				]);
 			}
+
+			$suscriptores_manuales = json_encode($suscriptores);
+
+			if( $newsletter != "" ){
+
+				$fechas = ( $desde != "" && $hasta != "" ) ? " AND ( time >= '{$desde}' AND time <= '{$hasta}' ) " : '';
+				$suscritos = $wpdb->get_results("SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ");
+				foreach ($suscritos as $key => $suscrito) {
+					$suscriptores[] = [
+						$suscrito->email,
+						$suscrito->email
+					];
+				}
+
+			}
+
+			if( $wlabel != "" ){
+
+				if( $wlabel == 'kmimos' ){
+					$fechas = ""; 
+					if( $desde != "" ) {
+						$fechas = " AND u.user_registered >= '{$desde}' ";
+					}
+					if( $hasta != "" ) {
+						$fechas = " AND u.user_registered <= '{$hasta}' ";
+					}
+
+					$sql =  "
+					SELECT DISTINCT (u.user_email), u.ID
+					FROM wp_usermeta AS m 
+					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
+					INNER JOIN wp_usermeta AS c ON ( u.ID = c.user_id AND c.meta_key = 'wp_capabilities' )
+					WHERE NOT EXISTS
+					    (
+					        SELECT  null 
+					        FROM wp_usermeta AS w
+					        WHERE w.user_id = u.ID AND w.meta_key = '_wlabel'
+					    ) 
+					    AND c.meta_value LIKE '%subscriber%'
+					    {$fechas}";
+
+					$suscritos = $wpdb->get_results($sql);
+					$cont = 0;
+					foreach ($suscritos as $key => $suscrito) {
+						$cont++;
+						// if( $cont >= 8850 && $cont <= 8860 ){
+							$first = get_user_meta($suscrito->ID, 'first_name', true);
+							$first = str_replace('"', '', $first);
+
+							$suscriptores[] = [
+								$first,
+								$suscrito->user_email
+							];
+						// }
+					}
+
+				}else{
+					$fechas = ""; 
+					if( $desde != "" ) {
+						$fechas = " AND u.user_registered >= '{$desde}' ";
+					}
+					if( $hasta != "" ) {
+						$fechas = " AND u.user_registered <= '{$hasta}' ";
+					}
+
+					$sql =  "
+					SELECT u.user_email AS email, n.meta_value AS name 
+					FROM wp_usermeta AS m 
+					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
+					INNER JOIN wp_usermeta AS n ON ( u.ID = n.user_id AND n.meta_key = 'first_name' )
+					INNER JOIN wp_usermeta AS c ON ( u.ID = c.user_id AND c.meta_key = 'wp_capabilities' )
+					WHERE  (  m.meta_key = '_wlabel' OR  m.meta_key = 'user_referred' ) AND m.meta_value LIKE '%{$wlabel}%' AND c.meta_value LIKE '%subscriber%' {$fechas}";
+
+					$suscritos = $wpdb->get_results($sql);
+
+					foreach ($suscritos as $key => $suscrito) {
+						$suscriptores[] = [
+							$suscrito->name,
+							$suscrito->email
+						];
+					}
+				}
+
+			}
+
+			if( $cuidadores != "" ){
+
+				if( $cuidadores == 'kmimos' ){
+					$fechas = ""; 
+					if( $desde != "" ) {
+						$fechas = " AND u.user_registered >= '{$desde}' ";
+					}
+					if( $hasta != "" ) {
+						$fechas = " AND u.user_registered <= '{$hasta}' ";
+					}
+
+					$sql =  "
+					SELECT DISTINCT (u.user_email), u.ID
+					FROM wp_usermeta AS m 
+					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
+					INNER JOIN wp_usermeta AS c ON ( u.ID = c.user_id AND c.meta_key = 'wp_capabilities' )
+					WHERE NOT EXISTS
+					    (
+					        SELECT  null 
+					        FROM wp_usermeta AS w
+					        WHERE w.user_id = u.ID AND w.meta_key = '_wlabel'
+					    ) 
+					    AND c.meta_value LIKE '%vendor%'
+					    {$fechas}";
+
+					$suscritos = $wpdb->get_results($sql);
+					$cont = 0;
+					foreach ($suscritos as $key => $suscrito) {
+						$cont++;
+						$first = get_user_meta($suscrito->ID, 'first_name', true);
+						$first = str_replace('"', '', $first);
+
+						$suscriptores[] = [
+							$first,
+							$suscrito->user_email
+						];
+					}
+
+				}else{
+					$fechas = ""; 
+					if( $desde != "" ) {
+						$fechas = " AND u.user_registered >= '{$desde}' ";
+					}
+					if( $hasta != "" ) {
+						$fechas = " AND u.user_registered <= '{$hasta}' ";
+					}
+
+					$sql =  "
+					SELECT u.user_email AS email, n.meta_value AS name 
+					FROM wp_usermeta AS m 
+					INNER JOIN wp_users AS u ON ( u.ID = m.user_id ) 
+					INNER JOIN wp_usermeta AS n ON ( u.ID = n.user_id AND n.meta_key = 'first_name' )
+					INNER JOIN wp_usermeta AS c ON ( u.ID = c.user_id AND c.meta_key = 'wp_capabilities' )
+					WHERE  (  m.meta_key = '_wlabel' OR  m.meta_key = 'user_referred' ) AND m.meta_value LIKE '%{$cuidadores}%' AND c.meta_value LIKE '%vendor%' {$fechas}";
+
+					$suscritos = $wpdb->get_results($sql);
+
+					foreach ($suscritos as $key => $suscrito) {
+						$suscriptores[] = [
+							$suscrito->name,
+							$suscrito->email
+						];
+					}
+				}
+			}
+
+			$info = [
+				"titulo" => $titulo,
+				"suscriptores" => $suscriptores,
+			];
+			$data = json_encode($info, JSON_UNESCAPED_UNICODE);
+
+			$config = [
+				"newsletter" => $newsletter,
+				"wlabel" => $wlabel,
+				"cuidadores" => $cuidadores,
+				"desde" => $desde,
+				"hasta" => $hasta
+			];
+			$config = json_encode($config, JSON_UNESCAPED_UNICODE);
+
+			$sql = "UPDATE vlz_listas SET data = '{$data}', config = '{$config}', manuales = '{$suscriptores_manuales}' WHERE id = ".$id;
+			$wpdb->query( $sql );
+			echo json_encode([
+				"error" => "",
+				"msg" => "Lista Actualizada Exitosamente",
+				"suscriptores_manuales" => $suscriptores_manuales,
+			]);
+		}else{
+			echo json_encode([
+				"error" => "Ya existe una listas con este nombre",
+				"msg" => "",
+			]);
 		}
+
 	   	die();
 	} );
 
