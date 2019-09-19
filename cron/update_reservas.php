@@ -6,7 +6,7 @@
 
     date_default_timezone_set('America/Mexico_City');
     
-    $_desde = date("Y-m-d", strtotime("-30 day") );
+    $_desde = date("Y-m-d", strtotime("-30 day", time()) );
 	$_hasta = date("Y-m-d");
 
     $reservas = getReservas($_desde, $_hasta);

@@ -96,11 +96,8 @@
 		$cont = 1;
 		foreach ($_data as $campaing => $_links) {
 			$links = count($_links);
-			$clicks = 0;
-			foreach ($_links as $key => $_link) {
-				$clicks += $_link;
-			}
-
+			$metas = json_decode($_links->metadata);
+			$clicks = $metas->clicks;
 			$data["data"][] = [
 				$campaing,
 				$campaings[ $campaing ],

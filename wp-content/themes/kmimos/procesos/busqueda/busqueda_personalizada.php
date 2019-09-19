@@ -407,6 +407,7 @@
 	    	$DESCUENTO_CONDICION
 	        {$ubicaciones_filtro} 
 	        {$FILTRO_UBICACION} 
+	        AND cuidadores.user_id != 5556
 	    ORDER BY {$orderby}
 	    LIMIT 0, 3";
 

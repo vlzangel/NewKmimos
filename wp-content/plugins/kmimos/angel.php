@@ -109,6 +109,16 @@
                 </style>
             ";
 
+            if( $current_user->ID+0 == 8966 ){
+                echo "
+                    <style>
+                        li#toplevel_page_nps_preguntas {
+                            display: block !important;
+                        }
+                    </style>
+                ";
+            }
+
 	    }
 	}
 
