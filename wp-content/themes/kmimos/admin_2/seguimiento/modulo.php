@@ -19,13 +19,11 @@
 		$links = $wpdb->get_results("SELECT * FROM vlz_seguimiento_links WHERE campaing = ".$data["id"]);
 		$_data = [];
 		foreach ($links as $value) {
-			if( isset($_data[ $value->link ]) ){
-				$_data[ $value->link ] = 1;
-			}else{
-				$_data[ $value->link ] += 1;
-			}
+			$metas = json_decode($value->metadata);
+			$clicks = $metas->clicks;
+			$_data[ $value->link ] += $clicks;
 		}
-
+		
 		echo '<table id="links" class="table table-striped table-bordered nowrap" style="margin-top: 15px;">
 				<thead><tr>
 					<th>Link</th>
@@ -73,31 +71,27 @@
 	add_action( 'wp_ajax_vlz_seguimiento_list', function() {
 		extract($_POST);
 		global $wpdb;
-
 		$_campaings = $wpdb->get_results("SELECT * FROM vlz_campaing");
 		$campaings = [];
 		foreach ($_campaings as $campaing) {
 			$d = json_decode($campaing->data);
 			$campaings[ $campaing->id ] = $d->data->titulo;
 		}
-
 		$data["data"] = [];
 		$links = $wpdb->get_results("SELECT * FROM vlz_seguimiento_links ORDER BY creacion DESC");
 		$_data = [];
 		foreach ($links as $value) {
-			if( isset($_data[ $value->campaing ][ $value->link ]) ){
-				$_data[ $value->campaing ][ $value->link ] = 1;
-			}else{
-				$_data[ $value->campaing ][ $value->link ] += 1;
-			}
+			$metas = json_decode($value->metadata);
+			$clicks = $metas->clicks;
+			$_data[ $value->campaing ][ $value->link ] += $clicks;
 		}
-		
-		
 		$cont = 1;
 		foreach ($_data as $campaing => $_links) {
 			$links = count($_links);
-			$metas = json_decode($_links->metadata);
-			$clicks = $metas->clicks;
+			$clicks = 0;
+			foreach ($_links as $key => $_link) {
+				$clicks += $_link;
+			}
 			$data["data"][] = [
 				$campaing,
 				$campaings[ $campaing ],
@@ -107,7 +101,6 @@
 			];
 			$cont++;
 		}
-		
 		echo json_encode($data);
 	   	die();
 	} );
