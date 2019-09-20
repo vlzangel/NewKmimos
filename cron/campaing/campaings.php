@@ -4,7 +4,7 @@
     date_default_timezone_set('America/Mexico_City');
 	global $wpdb;
 
-	function update_campaing($campaing, $data, $d) {
+	function update_campaing($campaing, $data, $d, $enviados) {
 		global $wpdb;
 		$d->plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $d->plantilla);
 		$d->plantilla = str_replace('"', '\"', $d->plantilla);
@@ -12,7 +12,8 @@
 		$d->plantilla = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>', '', $d->plantilla);
 		$data->data = $d;
 		$data = json_encode($data, JSON_UNESCAPED_UNICODE);
-		$sql = "UPDATE vlz_campaing SET data = '{$data}' WHERE id = ".$campaing->id;
+		$enviados = json_encode($enviados, JSON_UNESCAPED_UNICODE);
+		$sql = "UPDATE vlz_campaing SET data = '{$data}', enviados = '{$enviados}' WHERE id = ".$campaing->id;
 		$wpdb->query( $sql );
 	}
 
@@ -183,13 +184,13 @@
 				}
 				$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
 				$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
-				$wpdb->query( $sql );
+				// $wpdb->query( $sql );
 				wp_mail('vlzangel91@gmail.com', 'SQL', $sql );
 			break;
 		}
 		
-		$data->enviados = $enviados;
-		update_campaing($campaing, $data, $d);
+		// $data->enviados = $enviados;
+		update_campaing($campaing, $data, $d, $enviados);
 		
 	}
 	
