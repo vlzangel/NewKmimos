@@ -185,7 +185,8 @@
 				$data_otros->enviados = $enviados_otro;
 				$data_otros = json_encode($data_otros, JSON_UNESCAPED_UNICODE);
 				$sql = "UPDATE vlz_campaing SET data = '{$data_otros}' WHERE id = ".$otro_flujo->id;
-				$wpdb->query( $sql );
+				// $wpdb->query( $sql );
+				wp_mail('vlzangel91@gmail.com', 'SQL', $sql );
 			break;
 		}
 		
