@@ -181,8 +181,7 @@
 						$enviados_otro[$padre_id][ $email ] = time();
 					}
 				}
-				$data_otros->enviados = $enviados_otro;
-				$data_otros = json_encode($data_otros, JSON_UNESCAPED_UNICODE);
+				$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
 				$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
 				$wpdb->query( $sql );
 				wp_mail('vlzangel91@gmail.com', 'SQL', $sql );
