@@ -23,6 +23,10 @@
 			case 1:
 
 				$enviados = (array) json_decode($enviados);
+				
+				echo "<pre>";
+					print_r($enviados);
+				echo "</pre><br><br>";
 
 				if( count($enviados) > 0 ){
 					$padre_id_solo = $data->campaing_anterior;
