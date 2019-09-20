@@ -167,6 +167,11 @@
 					break;
 					case 'no':
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar);
+
+						echo "<pre>";
+							print_r($no_abiertos);
+						echo "</pre><br><br>";
+						
 						foreach ($no_abiertos as $key => $email) {
 							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
 								$enviados[$padre_id][ $email ] = time();
@@ -188,10 +193,6 @@
 						}
 					break;
 				}
-
-				echo "<pre>";
-					print_r($enviados);
-				echo "</pre><br><br>";
 
 				/*
 				$padre_id_solo = $data->campaing_anterior;
