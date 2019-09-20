@@ -22,17 +22,20 @@
 		switch ( $data->hacer_despues+0 ) {
 			case 1:
 
-				$padre_id_solo = $data->campaing_anterior;
-				$padre_id = "padre_".$padre_id_solo;
-				$otro_flujo = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"{$padre_id_solo}%' AND id != {$campaing->id} ");
-				$enviados_otro = ( $otro_flujo->enviados != '' ) ? (array) json_decode($otro_flujo->enviados) : [];
-				foreach ($enviados[$padre_id] as $key => $email) {
-					if( !array_key_exists($email, $enviados_otro[$padre_id]) ){ 
-						$enviados_otro[$padre_id][ $email ] = time();
+				if( count($enviados) > 0 ){
+					$padre_id_solo = $data->campaing_anterior;
+					$padre_id = "padre_".$padre_id_solo;
+					$otro_flujo = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"{$padre_id_solo}%' AND id != {$campaing->id} ");
+					$enviados_otro = ( $otro_flujo->enviados != '' ) ? (array) json_decode($otro_flujo->enviados) : [];
+					foreach ($enviados[$padre_id] as $key => $email) {
+						if( !array_key_exists($email, $enviados_otro[$padre_id]) ){ 
+							$enviados_otro[$padre_id][ $email ] = time();
+						}
 					}
+					$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
+					$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
+					echo $sql."<br>";
 				}
-				$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
-				echo $sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
 
 			break;
 		}
