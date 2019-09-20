@@ -35,16 +35,9 @@
 						}
 					}
 
-					/*
-					echo "<pre>";
-						print_r($enviados_otro);
-					echo "</pre><br><br>";
-					*/
-
 					$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
 					$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
 					$wpdb->query( $sql );
-					echo $sql."<br>";
 				}
 
 			break;
