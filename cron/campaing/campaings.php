@@ -154,7 +154,7 @@
 						}
 					break;
 					case 'no':
-						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar, json_decode($campaing->enviados));
+						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar, json_decode($anterior->enviados));
 						foreach ($no_abiertos as $key => $email) {
 							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
 								$enviados[$padre_id][ $email ] = time();
