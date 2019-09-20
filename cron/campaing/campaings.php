@@ -175,8 +175,8 @@
 
 				$padre_id_solo = $data->campaing_anterior;
 				$otro_flujo = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"{$padre_id_solo}%' AND id != {$campaing->id} ");
-				$data_otro = json_decode($otro_flujo->data);
-				$enviados_otro = ( isset($data_otro->enviados) ) ? (array) $data_otro->enviados : [];
+				$data_otros = json_decode($otro_flujo->data);
+				$enviados_otro = ( isset($data_otros->enviados) ) ? (array) $data_otros->enviados : [];
 				foreach ($enviados[$padre_id] as $key => $email) {
 					if( !array_key_exists($email, $enviados_otro[$padre_id]) ){ 
 						$enviados_otro[$padre_id][ $email ] = time();
