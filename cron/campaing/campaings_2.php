@@ -131,6 +131,9 @@
 									}
 								}
 							}
+							if( count($enviados) > 0 ){
+								update_campaing($campaing, $data, $d, $enviados);
+							}
 						}
 					}
 				}
@@ -174,6 +177,9 @@
 								}
 							}
 						}
+						if( count($enviados) > 0 ){
+							update_campaing($campaing, $data, $d, $enviados);
+						}
 					break;
 					case 'no':
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar, json_decode($anterior->enviados));
@@ -197,13 +203,14 @@
 								wp_mail( trim($email) , $d->asunto, $mensaje);
 							}
 						}
+						if( count($enviados) > 0 ){
+							update_campaing($campaing, $data, $d, $enviados);
+						}
 					break;
 				}
 
 			break;
 		}
-		
-		update_campaing($campaing, $data, $d, $enviados);
 		
 	}
 	
