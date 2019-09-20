@@ -173,7 +173,8 @@
 					break;
 				}
 
-				$otro_flujo = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"{$padre_id}%' AND id != {$campaing->id} ");
+				$padre_id_solo = $data->campaing_anterior;
+				$otro_flujo = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"{$padre_id_solo}%' AND id != {$campaing->id} ");
 				$data_otro = json_decode($otro_flujo->data);
 				$enviados_otro = ( isset($data_otro->enviados) ) ? (array) $data_otro->enviados : [];
 				foreach ($enviados[$padre_id] as $key => $email) {
