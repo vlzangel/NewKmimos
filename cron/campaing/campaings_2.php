@@ -41,14 +41,13 @@
 		}
 	}
 
-	function get_email_no_abiertos($data, $espera){
+	function get_email_no_abiertos($data, $espera, $enviados){
 		$vistos = [];
 		$_vistos = ( isset($data->vistos) ) ? $data->vistos : [];
 		foreach ($_vistos as $key => $cliente) {
 			$vistos[] = $cliente->email;
 		}
 		$no_abiertos = [];
-		$enviados = ( isset($data->enviados) ) ? $data->enviados : [];
 		foreach ($enviados as $email => $enviado_date) {
 			if( !in_array($email, $vistos) ){
 				if( (time()-$enviado_date) >= $espera ){
@@ -166,12 +165,12 @@
 						}
 					break;
 					case 'no':
-						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar);
+						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar, json_decode($anterior->enviados));
 
 						echo "<pre>";
 							print_r($no_abiertos);
 						echo "</pre><br><br>";
-						
+
 						foreach ($no_abiertos as $key => $email) {
 							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
 								$enviados[$padre_id][ $email ] = time();
