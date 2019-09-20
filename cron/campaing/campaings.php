@@ -108,7 +108,7 @@
 											"email" => trim($email),
 										]);
 
-										wp_mail( trim($email) , $d->asunto, $mensaje);
+										// wp_mail( trim($email) , $d->asunto, $mensaje);
 									}
 								}
 							}
