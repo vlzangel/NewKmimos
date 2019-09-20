@@ -73,7 +73,7 @@
 
 						$_listas = $data->data_listas;
 						// $d->ENVIADO = "SI";
-						$enviados = ( isset($data->enviados) ) ? (array) $data->enviados : [];
+						$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
 							foreach ($_listas as $lista) {
@@ -115,7 +115,7 @@
 				$data_anterior = json_decode($anterior->data);
 
 				$padre_id = "padre_".$data->campaing_anterior;
-				$_enviados = ( isset($data->enviados) ) ? (array) $data->enviados : [];
+				$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 
 				$enviados = [];
 				foreach ($_enviados[ $padre_id ] as $key => $value) {
@@ -175,8 +175,7 @@
 
 				$padre_id_solo = $data->campaing_anterior;
 				$otro_flujo = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"{$padre_id_solo}%' AND id != {$campaing->id} ");
-				$data_otros = json_decode($otro_flujo->data);
-				$enviados_otro = ( isset($data_otros->enviados) ) ? (array) $data_otros->enviados : [];
+				$enviados_otro = ( $otro_flujo->enviados != '' ) ? (array) json_decode($otro_flujo->enviados) : [];
 				foreach ($enviados[$padre_id] as $key => $email) {
 					if( !array_key_exists($email, $enviados_otro[$padre_id]) ){ 
 						$enviados_otro[$padre_id][ $email ] = time();
@@ -184,8 +183,8 @@
 				}
 				$data_otros->enviados = $enviados_otro;
 				$data_otros = json_encode($data_otros, JSON_UNESCAPED_UNICODE);
-				$sql = "UPDATE vlz_campaing SET data = '{$data_otros}' WHERE id = ".$otro_flujo->id;
-				// $wpdb->query( $sql );
+				$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
+				$wpdb->query( $sql );
 				wp_mail('vlzangel91@gmail.com', 'SQL', $sql );
 			break;
 		}

@@ -462,7 +462,7 @@
 			$plantilla = preg_replace('#<p data(.*?)/p>#', '', $plantilla);
 			unset($_POST["data"]["plantilla"]);
 			$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
-			$sql = "INSERT INTO vlz_campaing VALUES (NULL, '{$plantilla}', '{$data}', NOW())";
+			$sql = "INSERT INTO vlz_campaing VALUES (NULL, '{$plantilla}', '{$data}', '', NOW())";
 			$wpdb->query( $sql );
 			echo json_encode([
 				"error" => "",
