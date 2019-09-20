@@ -136,11 +136,11 @@
 				$padre_id = "padre_".$data->campaing_anterior;
 				$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 
-				/*
+				
 				echo "<pre>";
 					print_r($enviados);
 				echo "</pre><br><br>";
-				*/
+				
 
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
