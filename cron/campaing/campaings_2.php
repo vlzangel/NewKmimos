@@ -14,15 +14,12 @@
 		$data = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$enviados = json_encode($enviados, JSON_UNESCAPED_UNICODE);
 		$sql = "UPDATE vlz_campaing SET data = '{$data}', enviados = '{$enviados}' WHERE id = ".$campaing->id;
+		echo $sql." == 1<br>";
 		$wpdb->query( $sql );
 
 		$data = json_decode($campaing->data);
 		$d = $data->data;
 				
-				echo "<pre>";
-					print_r($campaing);
-				echo "</pre><br><br>";
-
 		switch ( $data->hacer_despues+0 ) {
 			case 1:
 
@@ -39,16 +36,16 @@
 						}
 					}
 
-					
+					/*
 					echo "<pre>";
 						print_r($enviados_otro);
 					echo "</pre><br><br>";
-					
+					*/
 
 					$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
 					$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
 					$wpdb->query( $sql );
-					echo $sql."<br>";
+					echo $sql." == 2<br>";
 				}
 
 			break;
