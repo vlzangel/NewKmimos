@@ -127,11 +127,6 @@
 				$padre_id = "padre_".$data->campaing_anterior;
 				$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 
-				$enviados = [];
-				foreach ($_enviados[ $padre_id ] as $key => $value) {
-					$enviados[ $padre_id ][ $key ] = $value;
-				}
-
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];

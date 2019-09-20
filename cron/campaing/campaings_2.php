@@ -127,11 +127,6 @@
 				$padre_id = "padre_".$data->campaing_anterior;
 				$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 
-				$enviados = [];
-				foreach ($_enviados[ $padre_id ] as $key => $value) {
-					$enviados[ $padre_id ][ $key ] = $value;
-				}
-
 				echo "<pre>";
 					print_r($enviados);
 				echo "</pre><br><br>";
