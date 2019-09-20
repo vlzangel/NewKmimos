@@ -22,8 +22,8 @@
 		switch ( $data->hacer_despues+0 ) {
 			case 1:
 
-				$enviados = json_decode($enviados);
-				
+				$enviados = (array) json_decode($enviados);
+
 				echo "<pre>";
 					print_r($enviados);
 				echo "</pre><br><br>";
