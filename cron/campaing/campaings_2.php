@@ -14,7 +14,7 @@
 		$data = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$enviados = json_encode($enviados, JSON_UNESCAPED_UNICODE);
 		$sql = "UPDATE vlz_campaing SET data = '{$data}', enviados = '{$enviados}' WHERE id = ".$campaing->id;
-		echo $sql." == 1<br>";
+		echo $sql." == 1<br><br>";
 		$wpdb->query( $sql );
 
 		$data = json_decode($campaing->data);
@@ -45,7 +45,7 @@
 					$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
 					$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
 					$wpdb->query( $sql );
-					echo $sql." == 2<br>";
+					echo $sql." == 2<br><br>";
 				}
 
 			break;
