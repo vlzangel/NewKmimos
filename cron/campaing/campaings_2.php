@@ -189,8 +189,6 @@
 					break;
 				}
 
-				
-				
 				echo "<pre>";
 					print_r($enviados);
 				echo "</pre><br><br>";
