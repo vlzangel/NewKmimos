@@ -15,6 +15,15 @@
 		$enviados = json_encode($enviados, JSON_UNESCAPED_UNICODE);
 		$sql = "UPDATE vlz_campaing SET data = '{$data}', enviados = '{$enviados}' WHERE id = ".$campaing->id;
 		$wpdb->query( $sql );
+
+		$data = json_decode($campaing->data);
+		$d = $data->data;
+
+		switch ( $data->hacer_despues+0 ) {
+			case 1:
+
+			break;
+		}
 	}
 
 	function get_email_no_abiertos($data, $espera){
@@ -168,7 +177,7 @@
 									"email" => trim($email),
 								]);
 
-								wp_mail( trim($email) , $d->asunto, $mensaje);
+								// wp_mail( trim($email) , $d->asunto, $mensaje);
 							}
 						}
 					break;
