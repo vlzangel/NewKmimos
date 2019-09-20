@@ -21,6 +21,9 @@
 
 		switch ( $data->hacer_despues+0 ) {
 			case 1:
+				echo "<pre>";
+					print_r($enviados);
+				echo "</pre><br><br>";
 
 				if( count($enviados) > 0 ){
 					$padre_id_solo = $data->campaing_anterior;
@@ -166,10 +169,6 @@
 					break;
 					case 'no':
 						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar, json_decode($anterior->enviados));
-
-						echo "<pre>";
-							print_r($no_abiertos);
-						echo "</pre><br><br>";
 
 						foreach ($no_abiertos as $key => $email) {
 							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
