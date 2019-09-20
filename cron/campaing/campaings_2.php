@@ -35,14 +35,16 @@
 						}
 					}
 
-
+					/*
 					echo "<pre>";
 						print_r($enviados_otro);
 					echo "</pre><br><br>";
+					*/
 
 					$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
 					$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
-					echo $sql."<br>";
+					// echo $sql."<br>";
+					$wpdb->query( $sql );
 				}
 
 			break;
@@ -197,25 +199,9 @@
 					break;
 				}
 
-				/*
-				$padre_id_solo = $data->campaing_anterior;
-				$otro_flujo = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"{$padre_id_solo}%' AND id != {$campaing->id} ");
-				$enviados_otro = ( $otro_flujo->enviados != '' ) ? (array) json_decode($otro_flujo->enviados) : [];
-				foreach ($enviados[$padre_id] as $key => $email) {
-					if( !array_key_exists($email, $enviados_otro[$padre_id]) ){ 
-						$enviados_otro[$padre_id][ $email ] = time();
-					}
-				}
-				$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
-				$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
-				// $wpdb->query( $sql );
-				// wp_mail('vlzangel91@gmail.com', 'SQL', $sql );
-				*/
 			break;
 		}
 		
-		// $data->enviados = $enviados;
-
 		update_campaing($campaing, $data, $d, $enviados);
 		
 	}
