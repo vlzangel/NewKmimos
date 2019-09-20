@@ -63,12 +63,6 @@
 
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing"); // WHERE data NOT LIKE '%\"ENVIADO\":\"SI\"%'
 
-	/*
-		echo "<pre>";
-			print_r($campaings);
-		echo "</pre>";
-	*/
-
 	foreach ($campaings as $key => $campaing) {
 
 		$data = json_decode($campaing->data);
@@ -108,7 +102,7 @@
 											"email" => trim($email),
 										]);
 
-										// wp_mail( trim($email) , $d->asunto, $mensaje);
+										wp_mail( trim($email) , $d->asunto, $mensaje);
 									}
 								}
 							}
