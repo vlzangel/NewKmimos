@@ -172,6 +172,19 @@
 						}
 					break;
 				}
+
+				$otro_flujo = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE data LIKE '%campaing_anterior\":\"{$padre_id}%' AND id != {$campaing->id} ");
+				$data_otro = json_decode($otro_flujo->data);
+				$enviados_otro = ( isset($data_otro->enviados) ) ? (array) $data_otro->enviados : [];
+				foreach ($enviados[$padre_id] as $key => $email) {
+					if( !array_key_exists($email, $enviados_otro[$padre_id]) ){ 
+						$enviados_otro[$padre_id][ $email ] = time();
+					}
+				}
+				$data_otros->enviados = $enviados_otro;
+				$data_otros = json_encode($data_otros, JSON_UNESCAPED_UNICODE);
+				$sql = "UPDATE vlz_campaing SET data = '{$data_otros}' WHERE id = ".$otro_flujo->id;
+				$wpdb->query( $sql );
 			break;
 		}
 		
