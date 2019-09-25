@@ -68,3 +68,19 @@ function _test(id) {
         );
     });
 }
+
+function _show_emojis(){
+	jQuery(".emojis_container").css("display", "block");
+}
+
+function _copy(_this){
+	var aux = document.createElement("div");
+	aux.setAttribute("contentEditable", true);
+	aux.innerHTML = _this.html();
+	aux.setAttribute("onfocus", "document.execCommand('selectAll',false,null)"); 
+	document.body.appendChild(aux);
+	aux.focus();
+	document.execCommand("copy");
+	document.body.removeChild(aux);
+	jQuery(".emojis_container").css("display", "none");
+}
