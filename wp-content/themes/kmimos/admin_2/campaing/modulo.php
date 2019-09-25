@@ -283,8 +283,10 @@
 			</form>
 			<script>
 				_'.$action.'("campaing_form");
-				if (editor) { editor.destroy(); }
-	            var editor = new FroalaEditor("#contenido", {
+				if (jQuery("#contenido").data("froala.editor")) {
+					jQuery("#contenido").froalaEditor("destroy");
+				}
+	            var editor = jQuery("#contenido").froalaEditor({
 	                heightMin: 400,
 	                heightMax: 410,
 	                imageManagerLoadURL: ADMIN_AJAX+"?action=vlz_campaing_image_manager",
@@ -296,9 +298,24 @@
 	                },
 					imageUploadMethod: "POST",
 					imageMaxSize: 5 * 1024 * 1024,
-					imageAllowedTypes: ["jpeg", "jpg", "png", "gif"]
+					imageAllowedTypes: ["jpeg", "jpg", "png", "gif"],
+					emoticonsUseImage: false,
+					toolbarButtons: [
+						"bold", "italic", "underline", "strikeThrough", "subscript", "superscript", "fontFamily", "fontSize", "color", "inlineClass", "inlineStyle", "paragraphStyle", "paragraphFormat", "insertLink", "insertImage", "embedly", "insertTable", "-", 
+						"align", "formatOL", "formatUL", "outdent", "indent", "undo", "redo", "emoticons", "specialCharacters", "clearFormatting", "html"
+					],
+					imageInsertButtons: ["imageBack", "|", "imageUpload", "imageByURL", "imageManager"],
+					toolbarSticky: false
 	            });
 	            _verificar_names();
+	            setTimeout(function(e){
+	            	jQuery(".fr-box.fr-basic.fr-top div").each(function(i, v){
+	            		if( jQuery(v).attr("class") == undefined ){
+	            			jQuery(v).css("display", "none");
+	            			jQuery(v).addClass("vlz_hidden");
+	            		}
+	            	});
+	            }, 500);
 			</script>
 		';
     }
@@ -460,6 +477,7 @@
 			$_POST["vistos"] = json_decode( $_POST["vistos"] );
 			$plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $_POST["data"]["plantilla"]);
 			$plantilla = preg_replace('#<p data(.*?)/p>#', '', $plantilla);
+			$plantilla = utf8_encode($plantilla);
 			unset($_POST["data"]["plantilla"]);
 			$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
 			$sql = "INSERT INTO vlz_campaing VALUES (NULL, '{$plantilla}', '{$data}', '[]', NOW())";

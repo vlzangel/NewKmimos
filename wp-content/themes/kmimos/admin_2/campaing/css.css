@@ -33,3 +33,11 @@
 select.form-control:not([size]):not([multiple]) {
     height: 30px !important;
 }
+
+.fr-box.fr-basic.fr-top > div:not([class]) {
+    display: none !important;
+}
+
+.fr-sticky-off, .fr-sticky-on {
+    position: relative !important;
+}
