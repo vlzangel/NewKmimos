@@ -7,7 +7,7 @@
     var ID = <?php echo (isset($_GET['campana_id']))? $_GET['campana_id'] : 0 ; ?>
 </script>
 
-<link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/nps/feedback/style.css'>
+<link rel='stylesheet' type='text/css' href='<?php echo getTema() ?>/admin/backend/nps/feedback/style.css?v=<?= time() ?>'>
 <script src='<?php echo getTema(); ?>/admin/backend/nps/feedback/script.js'></script>
 
 <div class="container_listados">
@@ -62,9 +62,9 @@
                 <hr>
                 <div id="comentarios">
                     <div class="media alert alert-warning">
-                      <div class="media-body">
-                        Selecciona un usuario para cargar los comentarios
-                      </div>
+                        <div class="media-body">
+                            Selecciona un usuario para cargar los comentarios
+                        </div>
                     </div>
                 </div>
                 <br>

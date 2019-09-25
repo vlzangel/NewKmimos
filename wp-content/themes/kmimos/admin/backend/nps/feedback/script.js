@@ -120,3 +120,15 @@ function loadTabla( ){
 	});
 }
 
+function _valorar(_this){
+	jQuery.post(
+		TEMA+"/admin/backend/nps/feedback/ajax/valorar.php",
+		{
+			respuesta_id: _this.data('id')
+		},
+		function(data){
+			// console.log( data );
+			alert(data.respuesta);
+		}, 'json'
+	);
+}

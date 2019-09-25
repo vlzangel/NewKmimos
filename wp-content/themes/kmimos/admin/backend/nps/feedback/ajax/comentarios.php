@@ -5,6 +5,8 @@
     include_once(dirname(__DIR__).'/lib/nps.php');
     $encuestas = $nps->get_comentarios_byCode( $_POST['code'] );
 
+    if( !isset($_SESSION) ){ session_start(); }
+
     $comentarios = '';
     $email = '';
     $respuesta_id = 0;
@@ -40,14 +42,22 @@
                     $encuesta_email = '';
                 }
 
+                $btn_valorar = '';
+                if( $_SESSION['btn_valorar_visible'] == 'SI' ){
+                    $btn_valorar = '<span data-id="'.$respuesta->id.'" class="btn btn-primary vlz_btn_send_valoracion" onclick="_valorar(jQuery(this))" >Enviar Valoración</span>';
+                }
+
                 $comentarios .= '
                 <div class="media alert alert-'.$color[$encuesta->tipo].' '.$align.'">
-                  <div class="media-body">
-                    <h5 style="font-size:16px;" class="media-heading">'.utf8_encode($titulo).'</h5>
-                    <small style="font-size: 10px;font-style:italic;">'.date('Y-m-d H:i:s', strtotime($encuesta->fecha)).'</small> '.$encuesta_email.' 
-                    <hr>
-                    <p>'.utf8_encode($encuesta->comentario).'</p>
-                  </div>
+                    <div class="media-body">
+                        <h5 style="font-size:16px;" class="media-heading">
+                            '.utf8_encode($titulo).' 
+                            '.$btn_valorar.'
+                        </h5>
+                        <small style="font-size: 10px;font-style:italic;">'.date('Y-m-d H:i:s', strtotime($encuesta->fecha)).'</small> '.$encuesta_email.' 
+                        <hr>
+                        <p>'.utf8_encode($encuesta->comentario).'</p>
+                    </div>
                 </div>';
             }
         }

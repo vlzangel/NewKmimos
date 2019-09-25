@@ -2,7 +2,6 @@
     session_start();
     date_default_timezone_set('America/Mexico_City');
 
-
     $data = array(
         "data" => array()
     );

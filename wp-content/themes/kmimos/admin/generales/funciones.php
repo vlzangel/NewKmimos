@@ -2,6 +2,8 @@
     if(!function_exists('kmimos_menu_reportes')){
         function kmimos_menu_reportes(){
 
+            if( !isset($_SESSION) ){ session_start(); }
+
             $opciones_menu_reporte = array(
                 array(
                     'title'         =>  'Reportes',
@@ -109,6 +111,8 @@
 
             $current_user = wp_get_current_user();
             $user_id = $current_user->ID;
+
+            $_SESSION['btn_valorar_visible'] = ( $user_id == 367 || $user_id == 8966) ? 'SI' : '';
 
             $permitidos = array(
                 367, // Kmimos

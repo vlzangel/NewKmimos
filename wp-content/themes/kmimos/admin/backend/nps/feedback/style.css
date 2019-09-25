@@ -534,6 +534,17 @@ ul.scale li:after {
     right: 0px;
 }
 
+.media-heading{
+    position: relative;
+}
+
+.vlz_btn_send_valoracion {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    cursor: pointer;
+}
+
 @media (max-width: 500px){
     .container-search label{
         width: 100%!important;
