@@ -83,6 +83,7 @@
 				<div class="text-right">
 					<button id="btn_submit_modal" type="submit" class="btn btn-primary">Enviar</button>
 				</div>
+				<div id="test_container"></div>
 			</form>
 			<script>_test("listas_form");</script>
 		';
@@ -125,11 +126,18 @@
 			"email" => trim($email),
 		]);
 
-		wp_mail( trim($email) , $d->data->asunto, $mensaje);
+		$info_desuscribir = base64_encode( json_encode( [
+			"campaing_id" => $campaing->id,
+			"email" => $email
+		] ) );
+		$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
+
+		// wp_mail( trim($email) , $d->data->asunto, $mensaje);
 
 		echo json_encode([
 			"error" => "",
 			"msg" => "Mensaje Enviado Exitosamente!",
+			"html" => $mensaje,
 		]);
 	   	die();
 	} );
