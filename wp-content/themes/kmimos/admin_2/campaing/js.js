@@ -84,3 +84,7 @@ function _copy(_this){
 	document.body.removeChild(aux);
 	jQuery(".emojis_container").css("display", "none");
 }
+
+function _cerrar_emijins(){
+	jQuery(".emojis_container").css("display", "none");
+}

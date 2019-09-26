@@ -183,6 +183,9 @@
 				'.$input_id.'
 				<span class="btn_emojis" onclick="_show_emojis()">&#128578;</span>
 				<div class="emojis_container">
+					<div>
+						Click para copiar el emoticón <i onclick="_cerrar_emijins()">x</i>
+					</div>
 					<span onClick="_copy(jQuery(this))">&#128512;</span>
 					<span onClick="_copy(jQuery(this))">&#128513;</span>
 					<span onClick="_copy(jQuery(this))">&#128514;</span>
@@ -390,7 +393,7 @@
 					emoticonsUseImage: false,
 					toolbarButtons: [
 						"bold", "italic", "underline", "strikeThrough", "subscript", "superscript", "fontFamily", "fontSize", "color", "inlineClass", "inlineStyle", "paragraphStyle", "paragraphFormat", "insertLink", "insertImage", "embedly", "insertTable", "-", 
-						"align", "formatOL", "formatUL", "outdent", "indent", "undo", "redo", "emoticons", "specialCharacters", "clearFormatting", "html"
+						"align", "formatOL", "formatUL", "outdent", "indent", "undo", "redo", "specialCharacters", "clearFormatting", "html"
 					],
 					imageInsertButtons: ["imageBack", "|", "imageUpload", "imageByURL", "imageManager"],
 					toolbarSticky: false
