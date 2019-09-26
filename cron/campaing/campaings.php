@@ -72,6 +72,12 @@
 		return $mensaje;
 	}
 
+	function _desuscrito($email){
+		global $wpdb;
+		$existe = $wpdb->get_row("SELECT * FROM vlz_desuscritos WHERE email = '{$email}' ");
+		return ( !empty($existe) );
+	}
+
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing"); // WHERE data NOT LIKE '%\"ENVIADO\":\"SI\"%'
 
 	foreach ($campaings as $key => $campaing) {
@@ -119,8 +125,9 @@
 										] ) );
 										$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
-
-										wp_mail( trim($email) , $d->asunto, $mensaje);
+										if( _desuscrito($email) ){
+											wp_mail( trim($email) , $d->asunto, $mensaje);
+										}
 									}
 								}
 							}
@@ -141,8 +148,6 @@
 
 				$padre_id = "padre_".$data->campaing_anterior;
 				$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
-
-				
 
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
@@ -172,7 +177,9 @@
 									] ) );
 									$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
-									wp_mail( trim($email) , $d->asunto, $mensaje);
+									if( _desuscrito($email) ){
+										wp_mail( trim($email) , $d->asunto, $mensaje);
+									}
 								}
 							}
 						}
@@ -205,7 +212,9 @@
 								] ) );
 								$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
-								wp_mail( trim($email) , $d->asunto, $mensaje);
+								if( _desuscrito($email) ){
+									wp_mail( trim($email) , $d->asunto, $mensaje);
+								}
 							}
 						}
 						if( count($enviados) > 0 ){
