@@ -92,3 +92,15 @@ function _copy(_this){
 function _cerrar_emijins(){
 	jQuery(".emojis_container").css("display", "none");
 }
+
+function _habilitar(_this){
+	if( jQuery(".fr-view img.fr-dib").css("display") == "block" ){
+		jQuery(".fr-view img.fr-dib").css("margin", "5px");
+		jQuery(".fr-view img.fr-dib").css("display", "inline-block");
+		_this.html("Sin estilos");
+	}else{
+		jQuery(".fr-view img.fr-dib").css("margin", "5px auto");
+		jQuery(".fr-view img.fr-dib").css("display", "block");
+		_this.html("Con estilos");
+	}
+}

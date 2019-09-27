@@ -132,7 +132,7 @@
 		] ) );
 		$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
-		wp_mail( trim($email) , $d->data->asunto, $mensaje);
+		wp_mail( trim($email) , $d->data->asunto, "<div style='width: 100%; text-align: center;'>".$mensaje."</div>");
 
 		echo json_encode([
 			"error" => "",
@@ -289,7 +289,10 @@
 					<input type="text" class="form-control" id="asunto" name="data[asunto]" placeholder="Asunto del Email" value="'.$data->asunto.'" required />
 				</div>
 				<div class="form-group">
-					<label for="plantilla">Plantilla</label>
+					<label for="plantilla">
+						Plantilla
+						<span id="vlz_estilos" onclick="_habilitar(jQuery(this))">Con estilos</span>
+					</label>
 					<textarea id="contenido" name="data[plantilla]" class="form-control" placeholder="Contenido de Email">'.$plantilla.'</textarea>
 				</div>
 				<div class="row">
@@ -385,8 +388,8 @@
 					jQuery("#contenido").froalaEditor("destroy");
 				}
 	            var editor = jQuery("#contenido").froalaEditor({
-	                heightMin: 400,
-	                heightMax: 410,
+	                heightMin: 600,
+	                heightMax: 610,
 	                imageManagerLoadURL: ADMIN_AJAX+"?action=vlz_campaing_image_manager",
 	                imageManagerDeleteURL: ADMIN_AJAX+"?action=vlz_campaing_image_delete",
 	                imageManagerDeleteMethod: "POST",
