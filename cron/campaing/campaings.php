@@ -4,6 +4,9 @@
     date_default_timezone_set('America/Mexico_City');
 	global $wpdb;
 
+	//ini_set('display_errors', 'On');
+        //error_reporting(E_ALL);
+
 	function update_campaing($campaing, $data, $d, $enviados) {
 		global $wpdb;
 		$d->plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $d->plantilla);
@@ -27,7 +30,7 @@
 					$enviados_otro = ( $otro_flujo->enviados != '' ) ? (array) json_decode($otro_flujo->enviados) : [];
 					foreach ($enviados[$padre_id] as $email => $time) {
 						if( !array_key_exists($email, $enviados_otro[$padre_id]) ){ 
-							$enviados_otro[$padre_id][ $email ] = time();
+							$enviados_otro[$padre_id]->$email = time();
 						}
 					}
 					$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
@@ -75,10 +78,10 @@
 	function _desuscrito($email){
 		global $wpdb;
 		$existe = $wpdb->get_row("SELECT * FROM vlz_desuscritos WHERE email = '{$email}' ");
-		return ( !empty($existe) );
+		return ( $existe === false );
 	}
 
-	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing"); // WHERE data NOT LIKE '%\"ENVIADO\":\"SI\"%'
+	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing");
 
 	foreach ($campaings as $key => $campaing) {
 
@@ -87,6 +90,7 @@
 
 		switch ( $data->hacer_despues+0 ) {
 			case 0:
+
 				$fecha = strtotime( $d->fecha." ".$d->hora );
 				if( $fecha <= time() ){
 					$fecha_fin = strtotime( $d->fecha_fin." ".$d->hora_fin );
@@ -157,7 +161,7 @@
 							$email = $cliente->email;
 							if( (time()-$enviado_date) >= $esperar ){
 								if( !array_key_exists($email, $enviados[$padre_id]) ){ 
-									$enviados[$padre_id][ $email ] = time();
+									$enviados[$padre_id]->$email = time();
 									$info_validacion = base64_encode( json_encode( [
 										"id" => $campaing->id,
 										"type" => "img",
@@ -192,7 +196,7 @@
 
 						foreach ($no_abiertos as $key => $email) {
 							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
-								$enviados[$padre_id][ $email ] = time();
+								$enviados[$padre_id]->$email = time();
 								$info_validacion = base64_encode( json_encode( [
 									"id" => $campaing->id,
 									"type" => "img",

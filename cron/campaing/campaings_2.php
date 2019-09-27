@@ -4,6 +4,9 @@
     date_default_timezone_set('America/Mexico_City');
 	global $wpdb;
 
+	//ini_set('display_errors', 'On');
+        //error_reporting(E_ALL);
+
 	function update_campaing($campaing, $data, $d, $enviados) {
 		global $wpdb;
 		$d->plantilla = preg_replace("/[\r\n|\n|\r]+/", " ", $d->plantilla);
@@ -14,17 +17,12 @@
 		$data = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$enviados = json_encode($enviados, JSON_UNESCAPED_UNICODE);
 		$sql = "UPDATE vlz_campaing SET data = '{$data}', enviados = '{$enviados}' WHERE id = ".$campaing->id;
-		echo $sql." == 1<br><br>";
 		$wpdb->query( $sql );
-
 		$data = json_decode($campaing->data);
 		$d = $data->data;
-				
 		switch ( $data->hacer_despues+0 ) {
 			case 1:
-
 				$enviados = (array) json_decode($enviados);
-
 				if( count($enviados) > 0 ){
 					$padre_id_solo = $data->campaing_anterior;
 					$padre_id = "padre_".$padre_id_solo;
@@ -32,22 +30,13 @@
 					$enviados_otro = ( $otro_flujo->enviados != '' ) ? (array) json_decode($otro_flujo->enviados) : [];
 					foreach ($enviados[$padre_id] as $email => $time) {
 						if( !array_key_exists($email, $enviados_otro[$padre_id]) ){ 
-							$enviados_otro[$padre_id][ $email ] = time();
+							$enviados_otro[$padre_id]->$email = time();
 						}
 					}
-
-					/*
-					echo "<pre>";
-						print_r($enviados_otro);
-					echo "</pre><br><br>";
-					*/
-
 					$data_otros = json_encode($enviados_otro, JSON_UNESCAPED_UNICODE);
 					$sql = "UPDATE vlz_campaing SET enviados = '{$data_otros}' WHERE id = ".$otro_flujo->id;
 					$wpdb->query( $sql );
-					echo $sql." == 2<br><br>";
 				}
-
 			break;
 		}
 	}
@@ -86,7 +75,13 @@
 		return $mensaje;
 	}
 
-	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing"); // WHERE data NOT LIKE '%\"ENVIADO\":\"SI\"%'
+	function _desuscrito($email){
+		global $wpdb;
+		$existe = $wpdb->get_row("SELECT * FROM vlz_desuscritos WHERE email = '{$email}' ");
+		return ( $existe === false );
+	}
+
+	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing");
 
 	foreach ($campaings as $key => $campaing) {
 
@@ -95,6 +90,7 @@
 
 		switch ( $data->hacer_despues+0 ) {
 			case 0:
+
 				$fecha = strtotime( $d->fecha." ".$d->hora );
 				if( $fecha <= time() ){
 					$fecha_fin = strtotime( $d->fecha_fin." ".$d->hora_fin );
@@ -127,7 +123,15 @@
 											"email" => trim($email),
 										]);
 
-										wp_mail( trim($email) , $d->asunto, $mensaje);
+										$info_desuscribir = base64_encode( json_encode( [
+											"campaing_id" => $campaing->id,
+											"email" => $email
+										] ) );
+										$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
+
+										if( _desuscrito($email) ){
+											wp_mail( trim($email) , $d->asunto, $mensaje);
+										}
 									}
 								}
 							}
@@ -149,8 +153,6 @@
 				$padre_id = "padre_".$data->campaing_anterior;
 				$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 
-				
-
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
@@ -159,7 +161,7 @@
 							$email = $cliente->email;
 							if( (time()-$enviado_date) >= $esperar ){
 								if( !array_key_exists($email, $enviados[$padre_id]) ){ 
-									$enviados[$padre_id][ $email ] = time();
+									$enviados[$padre_id]->$email = time();
 									$info_validacion = base64_encode( json_encode( [
 										"id" => $campaing->id,
 										"type" => "img",
@@ -173,7 +175,15 @@
 										"email" => trim($email),
 									]);
 
-									wp_mail( trim($email) , $d->asunto, $mensaje);
+									$info_desuscribir = base64_encode( json_encode( [
+										"campaing_id" => $campaing->id,
+										"email" => $email
+									] ) );
+									$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
+
+									if( _desuscrito($email) ){
+										wp_mail( trim($email) , $d->asunto, $mensaje);
+									}
 								}
 							}
 						}
@@ -186,7 +196,7 @@
 
 						foreach ($no_abiertos as $key => $email) {
 							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
-								$enviados[$padre_id][ $email ] = time();
+								$enviados[$padre_id]->$email = time();
 								$info_validacion = base64_encode( json_encode( [
 									"id" => $campaing->id,
 									"type" => "img",
@@ -200,7 +210,15 @@
 									"email" => trim($email),
 								]);
 
-								wp_mail( trim($email) , $d->asunto, $mensaje);
+								$info_desuscribir = base64_encode( json_encode( [
+									"campaing_id" => $campaing->id,
+									"email" => $email
+								] ) );
+								$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
+
+								if( _desuscrito($email) ){
+									wp_mail( trim($email) , $d->asunto, $mensaje);
+								}
 							}
 						}
 						if( count($enviados) > 0 ){
