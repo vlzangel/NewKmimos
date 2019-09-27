@@ -88,3 +88,8 @@ select.form-control:not([size]):not([multiple]) {
     font-size: 25px;
     cursor: pointer;
 }
+
+.fr-view img.fr-dib {
+    margin: 5px;
+    display: inline-block;
+}

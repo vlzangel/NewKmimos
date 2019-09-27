@@ -132,12 +132,11 @@
 		] ) );
 		$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
-		// wp_mail( trim($email) , $d->data->asunto, $mensaje);
+		wp_mail( trim($email) , $d->data->asunto, $mensaje);
 
 		echo json_encode([
 			"error" => "",
 			"msg" => "Mensaje Enviado Exitosamente!",
-			"html" => $mensaje,
 		]);
 	   	die();
 	} );
