@@ -28,7 +28,30 @@
 
 	$data = kmimos_desglose_reserva_data($id, true);
 
+
+	// $_SERVER;
+
 	extract($data);
+
+
+
+	$inf_seguimiento = [
+		$_SERVER,
+		$data
+	];
+	$inf_seguimiento = json_encode($inf_seguimiento, JSON_UNESCAPED_UNICODE);
+
+	$SQL_SEGUIMIENTO = "
+		INSERT INTO vlz_seguimiento_reservas VALUES(
+			NULL,
+			'{$servicio["id_reserva"]}',
+			'{$id}',
+			'{$inf_seguimiento}',
+			NOW()
+		)
+	";
+
+
 
 	if( 
 		$servicio["id_reserva"] == "" || 
