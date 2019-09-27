@@ -403,7 +403,7 @@
 					emoticonsUseImage: false,
 					toolbarButtons: [
 						"bold", "italic", "underline", "strikeThrough", "subscript", "superscript", "fontFamily", "fontSize", "color", "inlineClass", "inlineStyle", "paragraphStyle", "paragraphFormat", "insertLink", "insertImage", "embedly", "insertTable", "-", 
-						"align", "formatOL", "formatUL", "outdent", "indent", "undo", "redo", "specialCharacters", "clearFormatting", "html"
+						"align", "formatOL", "formatUL", "outdent", "indent", "undo", "redo", "specialCharacters", "clearFormatting", "selectAll", "html"
 					],
 					imageInsertButtons: ["imageBack", "|", "imageUpload", "imageByURL", "imageManager"],
 					toolbarSticky: false
