@@ -55,6 +55,7 @@
 						      	<th>Nombre</th>
 						      	<th>Apellido</th>
 						      	<th>Email</th>
+						      	<th>Usuario APP</th>
 						      	<th>Teléfono</th>
 						      	<th>Nos conocio?</th>
 						      	<th>Sexo</th>

@@ -49,6 +49,8 @@
 		    $registrado_desde = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = '{$r->user_id}' AND meta_key = 'registrado_desde' ");
 		    $registrado_desde = ( $registrado_desde === false ) ? 'App' : 'Página';
 
+		    $user_nicename = $db->get_var("SELECT user_nicename FROM wp_users WHERE ID = '{$r->user_id}' ");
+
 		    $data["data"][] = [
 		    	$r->user_id,
 		    	date('Y-m-d', strtotime($r->registro)),
@@ -56,6 +58,7 @@
 				utf8_encode( $r->nombre ),
 				utf8_encode( $r->apellido ),
 				utf8_encode( '<a href="'.$_GET['home']."/?i=".$link_login.'"> '.$r->email.' </a>'),
+				$user_nicename,
 				utf8_encode( $r->telefono ),
 				utf8_encode( $r->donde_nos_conocio),
 				$r->sexo,

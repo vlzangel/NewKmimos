@@ -4,6 +4,7 @@
     */
 
     $HOME = 2;
+	$_wlabel = ( !empty($_SESSION["wlabel"]) ) ? '_'.$_SESSION["wlabel"] : '';
 
 	date_default_timezone_set('America/Mexico_City');
 
@@ -30,15 +31,16 @@
 
     $items = '';
     $info_banner = [
-    	['_Cuidadores_4.jpg', false, get_home_url().'/personalizada'],
-    	['_CPF.jpg', true, get_home_url().'/club-patitas-felices'],
-    	['_GPS.jpg',true,  get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos'],
-    	['_Paseos.jpg', true, get_home_url().'/paseos'],
+    	['_Cuidadores_4.jpg', false, get_home_url().'/personalizada', 'Cuidadores'],
+    	['_CPF.jpg', true, get_home_url().'/club-patitas-felices', 'CPF'],
+    	['_GPS.jpg',true,  get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos', 'GPS'],
+    	['_Paseos.jpg', true, get_home_url().'/paseos', 'Paseos'],
     ];
     foreach ($info_banner as $key => $url) {
-    	$link = ( $url[1] ) ? $url[2].'" target="_blank' : $url[2];
-    	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/NEW/Carrusel'.$url[0].');"><a href="'.$link.'"></a></div>';
-    	$items .= '<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url[0].'" /><a href="'.$link.'"></a></div>';
+    	$link = $url[2];
+    	$target = ( $url[1] ) ? ' target="_blank" ' : '';
+    	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'HOME_2/NEW/Carrusel'.$url[0].');"><a href="'.get_home_url().'/seg/?banner='.$url[3].$_wlabel.'&url='.base64_encode($link).'" '.$target.'></a></div>';
+    	$items .= '<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url[0].'" /><a href="'.get_home_url().'/seg/?banner='.$url[3].$_wlabel.'&url='.base64_encode($link).'" '.$target.'></a></div>';
     }
 
     $items_count = count($info_banner);
@@ -588,7 +590,8 @@
 			'Consigue recompensas',
 			'¡Cada amigo que complete una reservación gana $150 y tú $150 más!',
 			'cpf',
-			get_home_url().'/club-patitas-felices'
+			get_home_url().'/club-patitas-felices',
+			'lo_nuevo_CPF'
 		],
 		[
 			'Banner-GPS.jpg',
@@ -604,15 +607,17 @@
 			'¿Gana dinero con tu hobbie favorito?',
 			'¡Kmimos necesita Doglovers como tú! Gana hasta $30.000 mensuales cuidando mascotas en tu hogar',
 			'conviertete',
-			get_home_url().'/quiero-ser-cuidador-certificado-de-perros'
+			get_home_url().'/quiero-ser-cuidador-certificado-de-perros',
+			'lo_nuevo_Conviertete'
 		]
 	];
 
 	$items = '';
 	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
+		$seguimiento = ( isset($servicio[6]) ) ? get_home_url().'seg/?banner='.$servicio[6].$_wlabel.'&url='.base64_encode($servicio[5]) : $servicio[5];
 		$items .= 
 		'<label class="carrusel_servicios_principales_item" for="'.$servicio[3].'_2">'.
-			'<a href="'.$servicio[5].'" target="_blank"></a>'.
+			'<a href="'.$seguimiento.'" target="_blank"></a>'.
 			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/NEW/'.$servicio[0].');"></div>'.
 			'<div class="carrusel_servicios_principales_data">'.
 				'<label>'.($servicio[1]).'</label>'.
@@ -689,8 +694,10 @@
 
 	$items = '';
 	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
+		$evento = explode(".", $servicio[0]);
+		$evento = "ciudad_".$evento[0].$_wlabel;
 		$items .= 
-		'<label class="carrusel_servicios_principales_item" data-id="'.$servicio[1].'" data-nombre="'.$servicio[2].'">'.
+		'<label class="carrusel_servicios_principales_item" data-id="'.$servicio[1].'" data-nombre="'.$servicio[2].'" data-evento="'.$evento.'">'.
 			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/NEW/'.$servicio[0].');"></div>'.
 			'<div class="carrusel_servicios_principales_data">'.
 				'<div class="carrusel_capa"></div>'.
@@ -799,7 +806,10 @@
 
 	</div>';
 
-	$HTML .= '
+	$link_APP_STORE = "https://apps.apple.com/mx/app/kmimos/id1247272074";
+    $link_GOOGLE_PLAY = "https://play.google.com/store/apps/details?id=com.it.kmimos";
+
+	$HTML .= '	
 	<!-- CONECTATE -->
 	<div class="conectate_container">
 		<h2>Conéctate de donde quieras</h2>
@@ -809,8 +819,8 @@
 			<span>Baja nuestra <strong>app</strong>, y conéctate desde donde quieras</span>
 		</div>
 		<div class="conectate_botones_tabla">
-			<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/APP_STORE.svg" /></div>
-			<div class="conectate_botones_celda"><img src="'.get_recurso("img").'HOME/SVG/GOOGLE_PLAY.svg" /></div>
+			<div class="conectate_botones_celda"> <a style="display: inline-block; width: 135px; height: 40px;" href="'.get_home_url().'/seg/?banner=APP_STORE'.$_wlabel.'&url='.base64_encode($link_APP_STORE).'" target="_blank"> <img src="'.get_recurso("img").'HOME/SVG/APP_STORE.svg" /> </a> </div>
+			<div class="conectate_botones_celda"> <a style="display: inline-block; width: 135px; height: 40px;" href="'.get_home_url().'/seg/?banner=GOOGLE_PLAY'.$_wlabel.'&url='.base64_encode($link_GOOGLE_PLAY).'" target="_blank"> <img src="'.get_recurso("img").'HOME/SVG/GOOGLE_PLAY.svg" /> </a> </div>
 		</div>
 	</div>';
 	

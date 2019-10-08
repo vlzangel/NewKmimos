@@ -18,6 +18,10 @@
 
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");
 
+	if( $cuidador->status+0 == 0 ){
+		header("location: ".get_home_url());
+	}
+
 	// if( !isset($_SESSION["CUIDADORES_USER_ID"][ $post->post_author ]) ){
 		pre_carga_data_cuidadores([
 			$cuidador->id

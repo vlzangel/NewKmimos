@@ -48,19 +48,7 @@
 
 	  	$flash = "";
 		if( $atributos['flash'] == 1 ){
-			$flash = '
-				<i 
-					class="fa fa-bolt" 
-					aria-hidden="true"
-					style="
-						padding: 2px 4px;
-					    border-radius: 50%;
-					    background: #00c500;
-					    color: #FFF;
-					    margin-right: 2px;
-					"
-				></i> Flash
-			';
+			$flash = '<i class="fa fa-bolt" style=" padding: 2px 4px; border-radius: 50%; background: #00c500; color: #FFF; margin-right: 2px; " ></i> Flash';
 		}
 
 

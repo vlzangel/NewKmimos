@@ -53,6 +53,7 @@
 								<th>Apellido</th>
 								<th>Cuidador</th>
 								<th>Email</th>
+						      	<th>Usuario APP</th>
 								<th>Estado</th>
 								<th>Municipio</th>
 								<th>Direcci&oacute;n</th>
