@@ -18,7 +18,7 @@
 
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$post->post_author} ");
 
-	if( $cuidador->status+0 == 0 ){
+	if( $cuidador->activo+0 == 0 ){
 		header("location: ".get_home_url());
 	}
 
