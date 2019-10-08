@@ -64,6 +64,15 @@ function getStatus(){
 
 	            jQuery("#consultar").removeClass("disable");
 	            jQuery("#consultar").val("Actualizar");
+
+	            jQuery("#status").unbind('change').bind('change', function(e){
+	            	if( jQuery(this).val() == 'pagado_email' ){
+	            		jQuery("#ENVIO_DOBLE_container").css("display", "block");
+	            	}else{
+	            		jQuery("#ENVIO_DOBLE_container").css("display", "none");
+	            		jQuery("#ENVIO_DOBLE option[value=NO]").attr("selected",true);
+	            	}
+	            });
 	        }
 	    ); 
 	}
@@ -79,7 +88,8 @@ function updateStatus(){
 				TEMA+"/admin/backend/otros/ajax/updateStatus.php",
 				{
 					ORDEN_ID: jQuery("#orden").val(),
-					status: jQuery("#status").val()
+					status: jQuery("#status").val(),
+					ENVIO_DOBLE: jQuery("#ENVIO_DOBLE").val(),
 				},
 				function(HTML){
 

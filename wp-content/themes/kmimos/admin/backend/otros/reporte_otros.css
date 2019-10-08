@@ -47,3 +47,7 @@
 #info_user > div > span {
 	float: right;
 }
+
+#ENVIO_DOBLE_container{
+	display: none;
+}

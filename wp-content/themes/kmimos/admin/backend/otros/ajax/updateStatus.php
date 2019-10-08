@@ -60,6 +60,8 @@
 
         case 'pagado_email':
 
+            $CONFIRMACION_ENVIO_DOBLE == $ENVIO_DOBLE;
+
             $new_status = "Pagado con env&iacute;o de correo";
 
             $id_reserva = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = {$id_orden} AND post_type LIKE 'wc_booking'");

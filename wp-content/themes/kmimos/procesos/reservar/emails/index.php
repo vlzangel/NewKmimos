@@ -340,20 +340,38 @@
 			exit();
 		}
 
-
 		if( $acc == "" || $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
 			if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_orden == "wc-on-hold"  ){
 				include(__DIR__."/tienda.php");
 			}else{
-				if( $status_orden == "wc-on-hold"  ){
-					include(__DIR__."/nuevos.php");
+				$pago_completado = get_post_meta($servicio["id_reserva"], '_pago_completado', true);
+
+				$continuar_proceso = false;
+				if( $pago_completado === false ){
+					$continuar_proceso = true;
+					$pago_completado = 1;
 				}else{
-					$pre_reserva = get_post_meta($servicio["id_orden"], '_pre_reserva', true);
-					if( $status_orden == "wc-por-pagar" && $pre_reserva == 'Si'  ){
-						include(__DIR__."/pre_reserva.php");
-					}else{
-						include(__DIR__."/otro.php");
+					if( $CONFIRMACION_ENVIO_DOBLE == "YES" ){
+						$continuar_proceso = true;
+						$pago_completado += 1;
 					}
+				}
+				
+				if( $continuar_proceso ){
+
+					if( $status_orden == "wc-on-hold"  ){
+						include(__DIR__."/nuevos.php");
+					}else{
+						$pre_reserva = get_post_meta($servicio["id_orden"], '_pre_reserva', true);
+						if( $status_orden == "wc-por-pagar" && $pre_reserva == 'Si'  ){
+							include(__DIR__."/pre_reserva.php");
+						}else{
+							include(__DIR__."/otro.php");
+						}
+					}
+
+					update_post_meta($servicio["id_reserva"], '_pago_completado', $pago_completado);
+
 				}
 			}
 		}
@@ -437,11 +455,11 @@
 					$pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
 					if( $pre_change_status == null ){
 						$confirmado_por = "";
-						if( isset($_GET["u"]) ){
+						if( isset($usu) ){
 							if( $superAdmin != "YES" ){
-						        $confirmado_por = $_GET["u"];
+						        $confirmado_por = $usu;
 						    }else{
-						        $confirmado_por = $_GET["u"]."_super_admin";
+						        $confirmado_por = $usu."_super_admin";
 						    }
 						}
 						$data = [

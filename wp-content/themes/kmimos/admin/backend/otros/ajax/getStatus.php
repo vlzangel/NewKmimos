@@ -19,6 +19,18 @@
     }else{
         $orden = $db->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva->post_parent}'");
         $_saldo += 0;
+        $REENVIO = '';
+        $pago_completado = get_post_meta($reserva->ID, '_pago_completado', true);
+        if( $pago_completado !== false ){
+            $REENVIO = "
+                <span id='ENVIO_DOBLE_container'>
+                    <select id='ENVIO_DOBLE' name='ENVIO_DOBLE' >
+                        <option value='NO'>NO</option>
+                        <option value='SI'>SI</option>
+                    </select>
+                </span>
+            ";
+        }
         echo "
             <input type='hidden' id='orden' name='orden' value='{$reserva->post_parent}' />
             <div><label class='info_label'>Reserva: </label> <span>{$reserva->post_status}</span></div>
@@ -36,6 +48,7 @@
                         <option value='cancelado_email'>Cancelado y enviar email</option>
                     </select>
                 </span>
+                ".$REENVIO."
             </div>
         ";
     }
