@@ -507,6 +507,7 @@
 							}
 						}
 					}else{
+						$CORRECTO = true;
 						if( $acc == "CFM" ){
 							$CONTENIDO .= "<div class='msg_acciones'><strong>¡Todo esta listo!</strong><br> La reserva #".$servicio["id_reserva"].", ha sido confirmada pronto recibiras los correos de confirmación.</div>";
 						}else{
