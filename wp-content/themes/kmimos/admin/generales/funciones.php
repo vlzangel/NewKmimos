@@ -149,8 +149,8 @@
                 );
 
                 $opciones_menu_reporte[] = array(
-                    'title'         =>  __('Otros'),
-                    'short-title'   =>  __('Otros'),
+                    'title'         =>  __('Status Reserva'),
+                    'short-title'   =>  __('Status Reserva'),
                     'parent'        =>  'reporte_fotos',
                     'slug'          =>  'reporte_otros',
                     'access'        =>  'manage_options',
