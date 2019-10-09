@@ -9,6 +9,9 @@
     include_once($tema."/procesos/funciones/db.php");
     include_once($tema."/procesos/funciones/generales.php");
 
+    ini_set('display_errors', 'On');
+    error_reporting(E_ALL);
+
     $db = new db( new mysqli($host, $user, $pass, $db) );
 
     $saldo += 0;

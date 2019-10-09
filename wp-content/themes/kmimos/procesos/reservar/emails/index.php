@@ -28,12 +28,9 @@
 
 	$data = kmimos_desglose_reserva_data($id, true);
 
-
 	// $_SERVER;
 
 	extract($data);
-
-
 
 	$inf_seguimiento = [
 		$_SERVER,
@@ -50,6 +47,8 @@
 			NOW()
 		)
 	";
+
+	$wpdb->query( $SQL_SEGUIMIENTO );
 
 
 
@@ -347,7 +346,7 @@
 				$pago_completado = get_post_meta($servicio["id_reserva"], '_pago_completado', true);
 
 				$continuar_proceso = false;
-				if( $pago_completado === false ){
+				if( empty($pago_completado) ){
 					$continuar_proceso = true;
 					$pago_completado = 1;
 				}else{
