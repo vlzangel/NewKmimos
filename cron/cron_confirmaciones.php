@@ -43,6 +43,8 @@
                         $_GET["CONFIRMACION"] = "YES";
                         $id_orden = $request->ID;
                         include( dirname(__DIR__)."/wp-content/themes/kmimos/procesos/reservar/emails/index.php" );
+
+                        delete_post_meta($reserva_id, 'pre_change_status'); 
                     }
                 }
 
