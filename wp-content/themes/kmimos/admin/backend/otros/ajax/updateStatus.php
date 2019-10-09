@@ -60,7 +60,7 @@
 
         case 'pagado_email':
 
-            $CONFIRMACION_ENVIO_DOBLE == $ENVIO_DOBLE;
+            $CONFIRMACION_ENVIO_DOBLE = $ENVIO_DOBLE;
 
             $new_status = "Pagado con env&iacute;o de correo";
 
