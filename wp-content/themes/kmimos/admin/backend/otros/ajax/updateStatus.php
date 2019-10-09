@@ -195,8 +195,8 @@
         
         $mensaje = get_email_html($mensaje);
 
-        // wp_mail( "a.veloz@kmimos.la", "Actualización de Status", $mensaje);
-        // wp_mail( "chaudaryy@gmail.com", "Actualización de Status", $mensaje);
+        wp_mail( "a.veloz@kmimos.la", "Actualización de Status", $mensaje);
+        wp_mail( "chaudaryy@gmail.com", "Actualización de Status", $mensaje);
     }
 
 	exit;
