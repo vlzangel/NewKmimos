@@ -343,6 +343,7 @@
 			if( strtolower($servicio["metodo_pago"]) == "tienda" && $status_orden == "wc-on-hold"  ){
 				include(__DIR__."/tienda.php");
 			}else{
+				/*
 				$pago_completado = get_post_meta($servicio["id_reserva"], '_pago_completado', true);
 
 				$continuar_proceso = false;
@@ -357,7 +358,7 @@
 				}
 				
 				if( $continuar_proceso ){
-
+				*/
 					if( $status_orden == "wc-on-hold"  ){
 						include(__DIR__."/nuevos.php");
 					}else{
@@ -368,10 +369,11 @@
 							include(__DIR__."/otro.php");
 						}
 					}
-
+				/*
 					update_post_meta($servicio["id_reserva"], '_pago_completado', $pago_completado);
 
 				}
+				*/
 			}
 		}
 
