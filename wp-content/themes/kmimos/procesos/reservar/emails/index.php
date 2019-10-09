@@ -523,9 +523,11 @@
 					}
 
 					if( $CORRECTO ){
-
-						delete_post_meta($servicio["id_reserva"], 'pre_change_status');
-						update_post_meta($servicio["id_reserva"], 'pre_change_status_log_'.time(), $pre_change_status);
+						
+						if( !empty($pre_change_status) ){
+							delete_post_meta($servicio["id_reserva"], 'pre_change_status');
+							update_post_meta($servicio["id_reserva"], 'pre_change_status_log_'.time(), $pre_change_status);
+						}
 
 						if( $acc == "CFM" ){
 							$continuar_accion = true;
