@@ -508,6 +508,12 @@
 						}
 					}else{
 						$CORRECTO = true;
+						$_data = [
+							"acc" => $acc,
+							"desde" => 'Backpanel',
+							"hora" => time()
+						];
+						update_post_meta($servicio["id_reserva"], 'pre_change_status_log_'.time(), $_data);
 						if( $acc == "CFM" ){
 							$CONTENIDO .= "<div class='msg_acciones'><strong>¡Todo esta listo!</strong><br> La reserva #".$servicio["id_reserva"].", ha sido confirmada pronto recibiras los correos de confirmación.</div>";
 						}else{
