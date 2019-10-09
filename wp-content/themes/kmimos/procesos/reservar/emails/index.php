@@ -508,6 +508,9 @@
 
 					if( $CORRECTO ){
 
+						delete_post_meta($servicio["id_reserva"], 'pre_change_status');
+						update_post_meta($servicio["id_reserva"], 'pre_change_status_log_'.time(), $pre_change_status);
+
 						if( $acc == "CFM" ){
 							$continuar_accion = true;
 							$time_cancelado = get_post_meta($servicio["id_reserva"], 'cancelado_a', true);
