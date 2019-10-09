@@ -56,6 +56,8 @@
                 $wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE ID = '$id_reserva';");
             }
 
+            delete_post_meta($id_reserva, 'pre_change_status'); 
+
         break;
 
         case 'pagado_email':
@@ -84,6 +86,8 @@
             }
 
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
+
+            delete_post_meta($id_reserva, 'pre_change_status'); 
 
         break;
 
