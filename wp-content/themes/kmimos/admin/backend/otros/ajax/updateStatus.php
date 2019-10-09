@@ -106,14 +106,14 @@
         case 'cancelado':
             $new_status = "Cancelado";
             $acc = "CCL"; $usu = "CUI"; $NO_ENVIAR = "YES";
-            $_GET['CONFIRMACION'] = 'YES';
+            $_GET['CONFIRMACION_BACK'] = 'YES';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
 
         case 'cancelado_email':
             $new_status = "Cancelado con env&iacute;o de correo";
             $acc = "CCL"; $usu = "CUI";
-            $_GET['CONFIRMACION'] = 'YES';
+            $_GET['CONFIRMACION_BACK'] = 'YES';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
     
