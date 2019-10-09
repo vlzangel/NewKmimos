@@ -9,8 +9,8 @@
     include_once($tema."/procesos/funciones/db.php");
     include_once($tema."/procesos/funciones/generales.php");
 
-    ini_set('display_errors', 'On');
-    error_reporting(E_ALL);
+    // ini_set('display_errors', 'On');
+    // error_reporting(E_ALL);
 
     $db = new db( new mysqli($host, $user, $pass, $db) );
 
@@ -23,7 +23,7 @@
         $orden = $db->get_row("SELECT * FROM wp_posts WHERE ID = '{$reserva->post_parent}'");
         $_saldo += 0;
         $REENVIO = '';
-        $pago_completado = get_post_meta($reserva->ID, '_pago_completado', true);
+        $pago_completado = kmimos_get_post_meta($reserva->ID, '_pago_completado');
         if( $pago_completado !== false ){
             $REENVIO = "
                 <span id='ENVIO_DOBLE_container'>
