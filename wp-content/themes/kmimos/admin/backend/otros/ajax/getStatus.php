@@ -29,7 +29,7 @@
                 <span id='ENVIO_DOBLE_container'>
                     <select id='ENVIO_DOBLE' name='ENVIO_DOBLE' >
                         <option value='NO'>NO</option>
-                        <option value='SI'>SI</option>
+                        <option value='YES'>SI</option>
                     </select>
                 </span>
             ";
