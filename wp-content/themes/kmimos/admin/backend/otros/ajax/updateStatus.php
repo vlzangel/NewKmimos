@@ -91,7 +91,7 @@
             $new_status = "Confirmado";
             $acc = "CFM"; $usu = "CUI"; $NO_ENVIAR = "YES";
             $_GET['u'] = 'sistema_cambio_status';
-            $_GET['CONFIRMACION'] = 'YES';
+            $_GET['CONFIRMACION_BACK'] = 'YES';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
 
@@ -99,7 +99,7 @@
             $new_status = "Confirmado con env&iacute;o de correo";
             $acc = "CFM"; $usu = "CUI";
             $_GET['u'] = 'sistema_cambio_status';
-            $_GET['CONFIRMACION'] = 'YES';
+            $_GET['CONFIRMACION_BACK'] = 'YES';
             include( $raiz."/wp-content/themes/kmimos/procesos/reservar/emails/index.php");
         break;
 

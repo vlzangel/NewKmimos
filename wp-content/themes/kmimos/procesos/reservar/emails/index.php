@@ -453,57 +453,65 @@
 			if( $continuar ){
 				$CORRECTO = false;
 				if( $acc == "CFM" || $acc == "CCL" ){
-					$pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
-					if( $pre_change_status == null ){
-						$confirmado_por = "";
-						if( isset($usu) ){
-							if( $superAdmin != "YES" ){
-						        $confirmado_por = $usu;
-						    }else{
-						        $confirmado_por = $usu."_super_admin";
-						    }
-						}
-						$data = [
-							"acc" => $acc,
-							"usu" => $usu,
-							"hora" => $time_ahora,
-							"confirmado_por" => $confirmado_por
-						];
-						$data = json_encode($data);
-						update_post_meta($servicio["id_reserva"], 'pre_change_status', $data );	
-						$wpdb->query( "UPDATE wp_posts SET ping_status = '{$acc}' WHERE ID = ".$servicio["id_orden"] );	
-						if( $acc == "CFM" ){
-							$CONTENIDO .= "<div class='msg_acciones'><strong>¡Todo esta listo!</strong><br>La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.</div>";
-						}else{
-							$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">Te notificamos que la reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada exitosamente.</div></h1>';
-						}			
-					}else{
-						$pre_change_status = json_decode( $pre_change_status );
-						if( $pre_change_status->acc != $acc ){
-							delete_post_meta($servicio["id_reserva"], 'pre_change_status');		
-							$_data = [
-								"antes" => $acc,
-								"ahora" => $pre_change_status->acc,
-								"hora" => time()
+					if( $_GET['CONFIRMACION_BACK'] == "" ){
+						$pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
+						if( $pre_change_status == null ){
+							$confirmado_por = "";
+							if( isset($usu) ){
+								if( $superAdmin != "YES" ){
+							        $confirmado_por = $usu;
+							    }else{
+							        $confirmado_por = $usu."_super_admin";
+							    }
+							}
+							$data = [
+								"acc" => $acc,
+								"usu" => $usu,
+								"hora" => $time_ahora,
+								"confirmado_por" => $confirmado_por
 							];
-							$_data = json_encode($_data);
-							update_post_meta( $servicio["id_reserva"], 'eliminacion_de_pre_change', $_data );	
+							$data = json_encode($data);
+							update_post_meta($servicio["id_reserva"], 'pre_change_status', $data );	
+							$wpdb->query( "UPDATE wp_posts SET ping_status = '{$acc}' WHERE ID = ".$servicio["id_orden"] );	
 							if( $acc == "CFM" ){
-								$CONTENIDO .= "<div class='msg_acciones'>La reserva #".$servicio["id_reserva"].", recibió una solicitud de cancelación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para confirmarla. </div>";
+								$CONTENIDO .= "<div class='msg_acciones'><strong>¡Todo esta listo!</strong><br>La reserva #".$servicio["id_reserva"].", ha sido confirmada exitosamente de acuerdo a tu petición.</div>";
 							}else{
-								$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">La reserva #".$servicio["id_reserva"].", recibió una solicitud de confirmación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para cancelarla. </div></h1>';
-							}	
+								$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">Te notificamos que la reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada exitosamente.</div></h1>';
+							}			
 						}else{
-							if( time() > ($pre_change_status->hora+60) ){
-								$CORRECTO = true;
-							}else{
+							$pre_change_status = json_decode( $pre_change_status );
+							if( $pre_change_status->acc != $acc ){
+								delete_post_meta($servicio["id_reserva"], 'pre_change_status');		
+								$_data = [
+									"antes" => $acc,
+									"ahora" => $pre_change_status->acc,
+									"hora" => time()
+								];
+								$_data = json_encode($_data);
+								update_post_meta( $servicio["id_reserva"], 'eliminacion_de_pre_change', $_data );	
 								if( $acc == "CFM" ){
-									$CONTENIDO .= "<div class='msg_acciones'><strong>¡Todo esta listo!</strong><br> La reserva #".$servicio["id_reserva"].", ha sido confirmada pronto recibiras los correos de confirmación.</div>";
+									$CONTENIDO .= "<div class='msg_acciones'>La reserva #".$servicio["id_reserva"].", recibió una solicitud de cancelación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para confirmarla. </div>";
 								}else{
-									$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">La reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada pronto recibiras los correos de cancelación.</div></h1>';
+									$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">La reserva #".$servicio["id_reserva"].", recibió una solicitud de confirmación hace menos de 60 seg, por medidas de seguridad debe esperar al menos 2 min para cancelarla. </div></h1>';
 								}	
+							}else{
+								if( time() > ($pre_change_status->hora+60) ){
+									$CORRECTO = true;
+								}else{
+									if( $acc == "CFM" ){
+										$CONTENIDO .= "<div class='msg_acciones'><strong>¡Todo esta listo!</strong><br> La reserva #".$servicio["id_reserva"].", ha sido confirmada pronto recibiras los correos de confirmación.</div>";
+									}else{
+										$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">La reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada pronto recibiras los correos de cancelación.</div></h1>';
+									}	
+								}
 							}
 						}
+					}else{
+						if( $acc == "CFM" ){
+							$CONTENIDO .= "<div class='msg_acciones'><strong>¡Todo esta listo!</strong><br> La reserva #".$servicio["id_reserva"].", ha sido confirmada pronto recibiras los correos de confirmación.</div>";
+						}else{
+							$CONTENIDO .= '<h1 style="margin: 10px 0px 5px 0px; padding: 0px; text-align:left;"><div class="'.$style.'">La reserva <strong>#'.$servicio["id_reserva"].'</strong>, ha sido cancelada pronto recibiras los correos de cancelación.</div></h1>';
+						}	
 					}
 
 					if( $CORRECTO ){
@@ -513,6 +521,7 @@
 
 						if( $acc == "CFM" ){
 							$continuar_accion = true;
+							/*
 							$time_cancelado = get_post_meta($servicio["id_reserva"], 'cancelado_a', true);
 							if( $time_cancelado != false && $time_cancelado > 0 ){
 								$time_cancelado = $time_cancelado - time();
@@ -520,6 +529,7 @@
 									$continuar_accion = false;
 								}
 							}
+							*/
 
 							if( $continuar_accion ){
 
@@ -669,6 +679,7 @@
 						if( $acc == "CCL" ){
 							
 							$continuar_accion = true;
+							/*
 							$time_cancelado = get_post_meta($servicio["id_reserva"], 'confirmado_a', true);
 							if( $time_cancelado != false && $time_cancelado > 0 ){
 								$time_cancelado = $time_cancelado - time();
@@ -676,6 +687,7 @@
 									$continuar_accion = false;
 								}
 							}
+							*/
 
 							if( $continuar_accion ){
 
