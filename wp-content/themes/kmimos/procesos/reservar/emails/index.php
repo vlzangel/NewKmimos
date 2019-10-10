@@ -221,27 +221,27 @@
 	    	$status_reserva = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = ".$servicio["id_orden"]);
 	    	if ( strtolower($servicio["metodo_pago"]) == "tienda" && $status_reserva != "wc-on-hold" ){
 		    	$acc = "CFM";
-		    	$CONFIRMACION = "YES";
+		    	$CONFIRMACION_INMEDIATA = "YES";
 		    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
 	    	}
 	    	if ( strtolower($servicio["metodo_pago"]) == "tarjeta" && $status_reserva != "pending" ){
 		    	$acc = "CFM";
-		    	$CONFIRMACION = "YES";
+		    	$CONFIRMACION_INMEDIATA = "YES";
 		    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
 	    	}
 	    	if ( strtolower($servicio["metodo_pago"]) == "saldo y/o descuentos" && $status_reserva != "pending" ){
 		    	$acc = "CFM";
-		    	$CONFIRMACION = "YES";
+		    	$CONFIRMACION_INMEDIATA = "YES";
 		    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
 	    	}
 	    	if ( strtolower($servicio["metodo_pago"]) == "paypal" && $status_reserva != "pending" ){
 		    	$acc = "CFM";
-		    	$CONFIRMACION = "YES";
+		    	$CONFIRMACION_INMEDIATA = "YES";
 		    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
 	    	}
 	    	if ( strtolower($servicio["metodo_pago"]) == "mercadopago" && $status_reserva != "pending" ){
 		    	$acc = "CFM";
-		    	$CONFIRMACION = "YES";
+		    	$CONFIRMACION_INMEDIATA = "YES";
 		    	$confirmacion_titulo = "Confirmación de Reserva Inmediata";
 	    	}
 	    }
@@ -453,7 +453,7 @@
 			if( $continuar ){
 				$CORRECTO = false;
 				if( $acc == "CFM" || $acc == "CCL" ){
-					if( $_GET['CONFIRMACION_BACK'] == "" ){
+					if( $_GET['CONFIRMACION_BACK'] == "" && $CONFIRMACION_INMEDIATA == "" ){
 						$pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
 						if( $pre_change_status == null ){
 							$confirmado_por = "";

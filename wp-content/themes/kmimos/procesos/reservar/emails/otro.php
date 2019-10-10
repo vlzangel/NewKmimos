@@ -4,7 +4,10 @@
 
     $inmediata = "";
 
-    if( $confirmacion_titulo == "Confirmación de Reserva" ){
+    if( $confirmacion_titulo == "Confirmación de Reserva Inmediata" ){
+    }else{
+        $inmediata = "Inmediata";
+    }
 
 	   /* Correo CLIENTE */
 
@@ -52,10 +55,6 @@
                 wp_mail( $cuidador["email"], 'Nueva Reserva - '.$servicio["tipo"].' por: '.$cliente["nombre"], $mensaje);
             }
 
-    }else{
-        $totales_plantilla = str_replace('[REEMBOLSAR]', $reembolsar_plantilla, $totales_plantilla);
-        $inmediata = "Inmediata";
-    }
 
     /* Correo ADMINISTRADOR */
 
