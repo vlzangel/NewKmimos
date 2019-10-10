@@ -71,6 +71,8 @@
         }
 
         if( $valor->experiencia > 1900 ){
+            $valor->experiencia = $valor->experiencia;
+        }else{
             $valor->experiencia = date("Y")-$valor->experiencia;
         }
 
