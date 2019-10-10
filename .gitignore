@@ -24,6 +24,8 @@ apk/
 /app/
 movil/
 
+kmimos_api
+
 /.htaccess
 /license.txt
 /readme.html
