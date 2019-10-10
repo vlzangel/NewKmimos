@@ -453,7 +453,7 @@
 			if( $continuar ){
 				$CORRECTO = false;
 				if( $acc == "CFM" || $acc == "CCL" ){
-					if( $_GET['CONFIRMACION_BACK'] == "" && $CONFIRMACION_INMEDIATA == "" ){
+					if( $_GET['CONFIRMACION_BACK'] == "" ){
 						$pre_change_status = get_post_meta($servicio["id_reserva"], 'pre_change_status', true);
 						if( $pre_change_status == null ){
 							$confirmado_por = "";
