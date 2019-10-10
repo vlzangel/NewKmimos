@@ -22,8 +22,7 @@
 				DESDE MXN$ 
 				<span style='font-family: Arial; font-size: 18px;'>
 					[MONTO]
-				</span>, 
-				[MONTO_DECIMALES]
+				</span>[MONTO_DECIMALES]
 			</span>
 		</div>
 	</div>
