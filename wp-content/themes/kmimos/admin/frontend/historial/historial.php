@@ -148,21 +148,38 @@
 				//RESERVAS CONFIRMADAS
 			}else if($reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0])>time()){
 				
-				$reservas_array["confirmadas"]["reservas"][] = array(
-					'id' => $reserva->ID, 
-					'servicio_id' => $servicio->ID, 
-					'servicio' => $servicio->post_title, 
-					'inicio' => date('d/m/Y', $inicio), 
-					'fin' => date('d/m/Y', $fin), 
-					'foto' => $foto,
-					'acciones' => array(
-						"ver" => $ver,
-						"modificar" => $modificar,
-						"cancelar" => $cancelar,
-						"noFacturar" => 'info_facturacion',
-					),
-					"desglose" => $desglose
-				);
+				if( strtotime($_metas_reserva['_booking_start'][0]) >= time() ){
+					$reservas_array["confirmadas"]["reservas"][] = array(
+						'id' => $reserva->ID, 
+						'servicio_id' => $servicio->ID, 
+						'servicio' => $servicio->post_title, 
+						'inicio' => date('d/m/Y', $inicio), 
+						'fin' => date('d/m/Y', $fin), 
+						'foto' => $foto,
+						'acciones' => array(
+							"ver" => $ver,
+							"cancelar" => $cancelar,
+							"noFacturar" => 'info_facturacion',
+						),
+						"desglose" => $desglose
+					);
+				}else{
+					$reservas_array["confirmadas"]["reservas"][] = array(
+						'id' => $reserva->ID, 
+						'servicio_id' => $servicio->ID, 
+						'servicio' => $servicio->post_title, 
+						'inicio' => date('d/m/Y', $inicio), 
+						'fin' => date('d/m/Y', $fin), 
+						'foto' => $foto,
+						'acciones' => array(
+							"ver" => $ver,
+							"modificar" => $modificar,
+							"cancelar" => $cancelar,
+							"noFacturar" => 'info_facturacion',
+						),
+						"desglose" => $desglose
+					);
+				}
 
 				//RESERVAS COMPLETADAS
 			}else if($reserva->post_status=='complete' || ($reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0])<time())){
