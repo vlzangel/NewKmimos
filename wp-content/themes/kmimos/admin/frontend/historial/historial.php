@@ -306,7 +306,7 @@
  
 		//BUILD TABLE
 		$CONTENIDO .= '
-			<h1>Mis Reservas</h1>
+			<h1>Mis Reservas - Hola</h1>
 			
 			<div>
 			
