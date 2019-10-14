@@ -148,7 +148,7 @@
 				//RESERVAS CONFIRMADAS
 			}else if($reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0])>time()){
 				
-				if( strtotime($_metas_reserva['_booking_start'][0]) >= time() ){
+				if( strtotime($_metas_reserva['_booking_start'][0]) >= time() && $_SESSION['admin_sub_login'] != 'YES' ){
 					$reservas_array["confirmadas"]["reservas"][] = array(
 						'id' => $reserva->ID, 
 						'servicio_id' => $servicio->ID, 
