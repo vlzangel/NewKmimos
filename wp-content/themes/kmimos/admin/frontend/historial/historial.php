@@ -148,7 +148,7 @@
 				//RESERVAS CONFIRMADAS
 			}else if($reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0])>time()){
 				
-				if( strtotime($_metas_reserva['_booking_start'][0]) >= time() && $_SESSION['admin_sub_login'] != 'YES' ){
+				if( strtotime($_metas_reserva['_booking_start'][0]) <= time() && $_SESSION['admin_sub_login'] != 'YES' ){
 					$reservas_array["confirmadas"]["reservas"][] = array(
 						'id' => $reserva->ID, 
 						'servicio_id' => $servicio->ID, 
@@ -252,23 +252,42 @@
 					}
 				}
 
-				$reservas_array["pendientes_confirmar"]["reservas"][] = array(
-					'id' => $reserva->ID, 
-					'servicio_id' => $servicio->ID, 
-					'servicio' => $servicio->post_title, 
-					'inicio' => date('d/m/Y', $inicio), 
-					'fin' => date('d/m/Y', $fin), 
-					'conocer' => $_metas_reserva['_booking_test_conocer'][0], 
-					'data_conocer' => $data_conocer, 
-					'foto' => $foto,
-					'acciones' => array(
-						"ver" => $ver,
-						"modificar" => $modificar,
-						"cancelar" => $cancelar,
-						"noFacturar" => 'info_facturacion',						
-					),
-					"desglose" => $desglose
-				);
+				if( strtotime($_metas_reserva['_booking_start'][0]) <= time() && $_SESSION['admin_sub_login'] != 'YES' ){
+					$reservas_array["pendientes_confirmar"]["reservas"][] = array(
+						'id' => $reserva->ID, 
+						'servicio_id' => $servicio->ID, 
+						'servicio' => $servicio->post_title, 
+						'inicio' => date('d/m/Y', $inicio), 
+						'fin' => date('d/m/Y', $fin), 
+						'conocer' => $_metas_reserva['_booking_test_conocer'][0], 
+						'data_conocer' => $data_conocer, 
+						'foto' => $foto,
+						'acciones' => array(
+							"ver" => $ver,
+							"cancelar" => $cancelar,
+							"noFacturar" => 'info_facturacion',						
+						),
+						"desglose" => $desglose
+					);
+				}else{
+					$reservas_array["pendientes_confirmar"]["reservas"][] = array(
+						'id' => $reserva->ID, 
+						'servicio_id' => $servicio->ID, 
+						'servicio' => $servicio->post_title, 
+						'inicio' => date('d/m/Y', $inicio), 
+						'fin' => date('d/m/Y', $fin), 
+						'conocer' => $_metas_reserva['_booking_test_conocer'][0], 
+						'data_conocer' => $data_conocer, 
+						'foto' => $foto,
+						'acciones' => array(
+							"ver" => $ver,
+							"modificar" => $modificar,
+							"cancelar" => $cancelar,
+							"noFacturar" => 'info_facturacion',						
+						),
+						"desglose" => $desglose
+					);
+				}
 
 			}else{
 
