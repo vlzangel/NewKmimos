@@ -29,6 +29,10 @@
 		$wlabes = '';
 		$wlabes_cuidadores = '';
 		$news = $wpdb->get_results("SELECT * FROM wp_kmimos_wlabel ORDER BY wlabel ASC");
+
+		$wlabes .= '<option value="kmimos" '.selected("kmimos", $config->wlabel, false).'>Kmimos</option>';
+		$wlabes_cuidadores .= '<option value="kmimos" '.selected("kmimos", $config->cuidadores, false).'>Kmimos</option>';
+
 		foreach ($news as $key => $value) {
 			$wlabes .= '<option value="'.$value->wlabel.'" '.selected($value->wlabel, $config->wlabel, false).'>'.ucfirst($value->title).'</option>';
 			$wlabes_cuidadores .= '<option value="'.$value->wlabel.'" '.selected($value->wlabel, $config->cuidadores, false).'>'.ucfirst($value->title).'</option>';
@@ -90,7 +94,6 @@
 							<label for="titulo">Clientes Registrados</label>
 							<select id="wlabel" name="wlabel" class="form-control" >
 								<option value="">Seleccione...</option>
-								<option value="kmimos">Kmimos</option>
 								'.$wlabes.'
 							</select>
 						</div>
@@ -100,7 +103,6 @@
 							<label for="titulo">Cuidadores Registrados</label>
 							<select id="cuidadores" name="cuidadores" class="form-control" >
 								<option value="">Seleccione...</option>
-								<option value="kmimos">Kmimos</option>
 								'.$wlabes_cuidadores.'
 							</select>
 						</div>
