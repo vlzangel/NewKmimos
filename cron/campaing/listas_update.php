@@ -2,6 +2,9 @@
 	
 	include dirname(dirname(__DIR__)).'/wp-load.php';
     date_default_timezone_set('America/Mexico_City');
+
+    include dirname(dirname(__DIR__)).'/test/list_campaing.php';
+
 	global $wpdb;
 
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_listas");
@@ -23,10 +26,12 @@
 			$fechas .= ( $hasta != "" ) ? " AND time <= '{$hasta}' " : '';
 			$suscritos = $wpdb->get_results("SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ");
 			foreach ($suscritos as $key => $suscrito) {
-				$suscriptores[] = [
-					$suscrito->email,
-					$suscrito->email
-				];
+				if( in_array($suscrito->email, $emails_validos) ){
+					$suscriptores[] = [
+						$suscrito->email,
+						$suscrito->email
+					];
+				}
 			}
 		}
 
@@ -57,10 +62,12 @@
 					$first = get_user_meta($suscrito->ID, 'first_name', true);
 					$first = str_replace('"', '', $first);
 
-					$suscriptores[] = [
-						$first,
-						$suscrito->user_email
-					];
+					if( in_array($suscrito->email, $emails_validos) ){
+						$suscriptores[] = [
+							$first,
+							$suscrito->user_email
+						];
+					}
 				}
 
 			}else{
@@ -79,11 +86,14 @@
 				$suscritos = $wpdb->get_results($sql);
 
 				foreach ($suscritos as $key => $suscrito) {
-					$suscriptores[] = [
-						$suscrito->name,
-						$suscrito->email
-					];
+					if( in_array($suscrito->email, $emails_validos) ){
+						$suscriptores[] = [
+							$suscrito->name,
+							$suscrito->email
+						];
+					}
 				}
+
 			}
 
 		}
@@ -117,10 +127,12 @@
 					$first = get_user_meta($suscrito->ID, 'first_name', true);
 					$first = str_replace('"', '', $first);
 
-					$suscriptores[] = [
-						$first,
-						$suscrito->user_email
-					];
+					if( in_array($suscrito->email, $emails_validos) ){
+						$suscriptores[] = [
+							$first,
+							$suscrito->user_email
+						];
+					}
 				}
 
 			}else{
@@ -139,10 +151,12 @@
 				$suscritos = $wpdb->get_results($sql);
 
 				foreach ($suscritos as $key => $suscrito) {
-					$suscriptores[] = [
-						$suscrito->name,
-						$suscrito->email
-					];
+					if( in_array($suscrito->email, $emails_validos) ){
+						$suscriptores[] = [
+							$suscrito->name,
+							$suscrito->email
+						];
+					}
 				}
 			}
 		}

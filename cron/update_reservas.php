@@ -264,6 +264,11 @@
 						reporte_reserva_new 
 					SET 
 						status = '{$estatus['sts_corto']}',
+						noches = '".($nro_noches . $Day)."',
+						num_mascotas = '".($reserva->nro_mascotas)."',
+						num_noches_totales = '".($nro_noches * $reserva->nro_mascotas)."',
+
+
 						observacion = '{$estatus['sts_largo']}',
 
 						cupones_kmimos = '{$cupones['kmimos']}',
