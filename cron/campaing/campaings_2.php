@@ -129,9 +129,9 @@
 										] ) );
 										$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
-										if( _desuscrito($email) ){
+										// if( _desuscrito($email) ){
 											wp_mail( trim($email) , $d->asunto, $mensaje);
-										}
+										// }
 									}
 								}
 							}
