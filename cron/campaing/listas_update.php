@@ -64,8 +64,7 @@
 					$first = get_user_meta($suscrito->ID, 'first_name', true);
 					$first = str_replace('"', '', $first);
 
-					echo $suscrito->email."<br>";
-					if( in_array($suscrito->email, $emails_validos) ){
+					if( in_array($suscrito->user_email, $emails_validos) ){
 						$suscriptores[] = [
 							$first,
 							$suscrito->user_email
