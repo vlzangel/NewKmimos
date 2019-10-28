@@ -78,7 +78,7 @@
 	function _desuscrito($email){
 		global $wpdb;
 		$existe = $wpdb->get_row("SELECT * FROM vlz_desuscritos WHERE email = '{$email}' ");
-		return ( $existe === false );
+		return ( empty($existe) );
 	}
 
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing");
