@@ -5,6 +5,8 @@
 
     include dirname(dirname(__DIR__)).'/test/list_campaing.php';
 
+    global $emails_validos;
+
 	global $wpdb;
 
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_listas");
@@ -62,6 +64,7 @@
 					$first = get_user_meta($suscrito->ID, 'first_name', true);
 					$first = str_replace('"', '', $first);
 
+					echo $suscrito->email."<br>";
 					if( in_array($suscrito->email, $emails_validos) ){
 						$suscriptores[] = [
 							$first,
