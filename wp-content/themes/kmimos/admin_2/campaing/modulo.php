@@ -185,6 +185,11 @@
 			$_hacer_despues .= '<option value="'.$key.'" '.selected($key, $hacer_despues, false).'>'.$opcion.'</option>';
 		}
 		$_vistos = ( empty($vistos) ) ? '{}' : json_encode($vistos, JSON_UNESCAPED_UNICODE);
+
+		$animales = '';
+		for ($i=128000; $i <= 128060; $i++) { 
+			$animales .= '<span onClick="_copy(jQuery(this))">&#'.$i.';</span>';
+		}
 		echo '
 			<form id="campaing_form" data-modulo="campaing" >
 				'.$input_id.'
@@ -193,90 +198,81 @@
 					<div>
 						Click para copiar el emoticón <i onclick="_cerrar_emijins()">x</i>
 					</div>
-					<span onClick="_copy(jQuery(this))">&#128512;</span>
-					<span onClick="_copy(jQuery(this))">&#128513;</span>
-					<span onClick="_copy(jQuery(this))">&#128514;</span>
-					<span onClick="_copy(jQuery(this))">&#128515;</span>
-					<span onClick="_copy(jQuery(this))">&#128516;</span>
-					<span onClick="_copy(jQuery(this))">&#128517;</span>
-					<span onClick="_copy(jQuery(this))">&#128518;</span>
-					<span onClick="_copy(jQuery(this))">&#128519;</span>
-					<span onClick="_copy(jQuery(this))">&#128520;</span>
-					<span onClick="_copy(jQuery(this))">&#128521;</span>
-					<span onClick="_copy(jQuery(this))">&#128522;</span>
-					<span onClick="_copy(jQuery(this))">&#128523;</span>
-					<span onClick="_copy(jQuery(this))">&#128524;</span>
-					<span onClick="_copy(jQuery(this))">&#128525;</span>
-					<span onClick="_copy(jQuery(this))">&#128526;</span>
-					<span onClick="_copy(jQuery(this))">&#128527;</span>
-					<span onClick="_copy(jQuery(this))">&#128528;</span>
-					<span onClick="_copy(jQuery(this))">&#128529;</span>
-					<span onClick="_copy(jQuery(this))">&#128530;</span>
-					<span onClick="_copy(jQuery(this))">&#128531;</span>
-					<span onClick="_copy(jQuery(this))">&#128532;</span>
-					<span onClick="_copy(jQuery(this))">&#128533;</span>
-					<span onClick="_copy(jQuery(this))">&#128534;</span>
-					<span onClick="_copy(jQuery(this))">&#128535;</span>
-					<span onClick="_copy(jQuery(this))">&#128536;</span>
-					<span onClick="_copy(jQuery(this))">&#128537;</span>
-					<span onClick="_copy(jQuery(this))">&#128538;</span>
-					<span onClick="_copy(jQuery(this))">&#128539;</span>
-					<span onClick="_copy(jQuery(this))">&#128540;</span>
-					<span onClick="_copy(jQuery(this))">&#128541;</span>
-					<span onClick="_copy(jQuery(this))">&#128542;</span>
-					<span onClick="_copy(jQuery(this))">&#128543;</span>
-					<span onClick="_copy(jQuery(this))">&#128544;</span>
-					<span onClick="_copy(jQuery(this))">&#128545;</span>
-					<span onClick="_copy(jQuery(this))">&#128546;</span>
-					<span onClick="_copy(jQuery(this))">&#128547;</span>
-					<span onClick="_copy(jQuery(this))">&#128548;</span>
-					<span onClick="_copy(jQuery(this))">&#128549;</span>
-					<span onClick="_copy(jQuery(this))">&#128550;</span>
-					<span onClick="_copy(jQuery(this))">&#128551;</span>
-					<span onClick="_copy(jQuery(this))">&#128552;</span>
-					<span onClick="_copy(jQuery(this))">&#128553;</span>
-					<span onClick="_copy(jQuery(this))">&#128554;</span>
-					<span onClick="_copy(jQuery(this))">&#128555;</span>
-					<span onClick="_copy(jQuery(this))">&#128556;</span>
-					<span onClick="_copy(jQuery(this))">&#128557;</span>
-					<span onClick="_copy(jQuery(this))">&#128558;</span>
-					<span onClick="_copy(jQuery(this))">&#128559;</span>
-					<span onClick="_copy(jQuery(this))">&#128560;</span>
-					<span onClick="_copy(jQuery(this))">&#128561;</span>
-					<span onClick="_copy(jQuery(this))">&#128562;</span>
-					<span onClick="_copy(jQuery(this))">&#128563;</span>
-					<span onClick="_copy(jQuery(this))">&#128564;</span>
-					<span onClick="_copy(jQuery(this))">&#128565;</span>
-					<span onClick="_copy(jQuery(this))">&#128566;</span>
-					<span onClick="_copy(jQuery(this))">&#128567;</span>
-					<span onClick="_copy(jQuery(this))">&#128577;</span>
-					<span onClick="_copy(jQuery(this))">&#128578;</span>
-					<span onClick="_copy(jQuery(this))">&#128579;</span>
-					<span onClick="_copy(jQuery(this))">&#128580;</span>
-					<span onClick="_copy(jQuery(this))">&#129296;</span>
-					<span onClick="_copy(jQuery(this))">&#129297;</span>
-					<span onClick="_copy(jQuery(this))">&#129298;</span>
-					<span onClick="_copy(jQuery(this))">&#129299;</span>
-					<span onClick="_copy(jQuery(this))">&#129300;</span>
-					<span onClick="_copy(jQuery(this))">&#129301;</span>
-					<!--
-						<span onClick="_copy(jQuery(this))">&#129312;</span>
-						<span onClick="_copy(jQuery(this))">&#129313;</span>
-						<span onClick="_copy(jQuery(this))">&#129314;</span>
-						<span onClick="_copy(jQuery(this))">&#129315;</span>
-						<span onClick="_copy(jQuery(this))">&#129316;</span>
-						<span onClick="_copy(jQuery(this))">&#129317;</span>
-						<span onClick="_copy(jQuery(this))">&#129319;</span>
-						<span onClick="_copy(jQuery(this))">&#129320;</span>
-						<span onClick="_copy(jQuery(this))">&#129321;</span>
-						<span onClick="_copy(jQuery(this))">&#129322;</span>
-						<span onClick="_copy(jQuery(this))">&#129323;</span>
-						<span onClick="_copy(jQuery(this))">&#129324;</span>
-						<span onClick="_copy(jQuery(this))">&#129325;</span>
-						<span onClick="_copy(jQuery(this))">&#129326;</span>
-						<span onClick="_copy(jQuery(this))">&#129327;</span>
-						<span onClick="_copy(jQuery(this))">&#129488;</span>
-					-->
+					
+					<div>Caritas</div>
+					<div class="container_caritas">
+						<span onClick="_copy(jQuery(this))">&#128513;</span>
+						<span onClick="_copy(jQuery(this))">&#128514;</span>
+						<span onClick="_copy(jQuery(this))">&#128515;</span>
+						<span onClick="_copy(jQuery(this))">&#128516;</span>
+						<span onClick="_copy(jQuery(this))">&#128517;</span>
+						<span onClick="_copy(jQuery(this))">&#128518;</span>
+						<span onClick="_copy(jQuery(this))">&#128519;</span>
+						<span onClick="_copy(jQuery(this))">&#128520;</span>
+						<span onClick="_copy(jQuery(this))">&#128521;</span>
+						<span onClick="_copy(jQuery(this))">&#128522;</span>
+						<span onClick="_copy(jQuery(this))">&#128523;</span>
+						<span onClick="_copy(jQuery(this))">&#128524;</span>
+						<span onClick="_copy(jQuery(this))">&#128525;</span>
+						<span onClick="_copy(jQuery(this))">&#128526;</span>
+						<span onClick="_copy(jQuery(this))">&#128527;</span>
+						<span onClick="_copy(jQuery(this))">&#128528;</span>
+						<span onClick="_copy(jQuery(this))">&#128529;</span>
+						<span onClick="_copy(jQuery(this))">&#128530;</span>
+						<span onClick="_copy(jQuery(this))">&#128531;</span>
+						<span onClick="_copy(jQuery(this))">&#128532;</span>
+						<span onClick="_copy(jQuery(this))">&#128533;</span>
+						<span onClick="_copy(jQuery(this))">&#128534;</span>
+						<span onClick="_copy(jQuery(this))">&#128535;</span>
+						<span onClick="_copy(jQuery(this))">&#128536;</span>
+						<span onClick="_copy(jQuery(this))">&#128537;</span>
+						<span onClick="_copy(jQuery(this))">&#128538;</span>
+						<span onClick="_copy(jQuery(this))">&#128539;</span>
+						<span onClick="_copy(jQuery(this))">&#128540;</span>
+						<span onClick="_copy(jQuery(this))">&#128541;</span>
+						<span onClick="_copy(jQuery(this))">&#128542;</span>
+						<span onClick="_copy(jQuery(this))">&#128543;</span>
+						<span onClick="_copy(jQuery(this))">&#128544;</span>
+						<span onClick="_copy(jQuery(this))">&#128545;</span>
+						<span onClick="_copy(jQuery(this))">&#128546;</span>
+						<span onClick="_copy(jQuery(this))">&#128547;</span>
+						<span onClick="_copy(jQuery(this))">&#128548;</span>
+						<span onClick="_copy(jQuery(this))">&#128549;</span>
+						<span onClick="_copy(jQuery(this))">&#128550;</span>
+						<span onClick="_copy(jQuery(this))">&#128551;</span>
+						<span onClick="_copy(jQuery(this))">&#128552;</span>
+						<span onClick="_copy(jQuery(this))">&#128553;</span>
+						<span onClick="_copy(jQuery(this))">&#128554;</span>
+						<span onClick="_copy(jQuery(this))">&#128555;</span>
+						<span onClick="_copy(jQuery(this))">&#128556;</span>
+						<span onClick="_copy(jQuery(this))">&#128557;</span>
+						<span onClick="_copy(jQuery(this))">&#128558;</span>
+						<span onClick="_copy(jQuery(this))">&#128559;</span>
+						<span onClick="_copy(jQuery(this))">&#128560;</span>
+						<span onClick="_copy(jQuery(this))">&#128561;</span>
+						<span onClick="_copy(jQuery(this))">&#128562;</span>
+						<span onClick="_copy(jQuery(this))">&#128563;</span>
+						<span onClick="_copy(jQuery(this))">&#128564;</span>
+						<span onClick="_copy(jQuery(this))">&#128565;</span>
+						<span onClick="_copy(jQuery(this))">&#128566;</span>
+						<span onClick="_copy(jQuery(this))">&#128567;</span>
+						<span onClick="_copy(jQuery(this))">&#128577;</span>
+						<span onClick="_copy(jQuery(this))">&#128578;</span>
+						<span onClick="_copy(jQuery(this))">&#128579;</span>
+						<span onClick="_copy(jQuery(this))">&#128580;</span>
+						<span onClick="_copy(jQuery(this))">&#129296;</span>
+						<span onClick="_copy(jQuery(this))">&#129297;</span>
+						<span onClick="_copy(jQuery(this))">&#129298;</span>
+						<span onClick="_copy(jQuery(this))">&#129299;</span>
+						<span onClick="_copy(jQuery(this))">&#129300;</span>
+						<span onClick="_copy(jQuery(this))">&#129301;</span>
+					</div>
+
+					<div>Animales</div>
+
+					<div class="container_animales">
+						'.$animales.'
+					</div>
 				</div>
 				</div>
 				<input type="hidden" id="vistos" name="vistos" value=\''.$_vistos.'\' />
