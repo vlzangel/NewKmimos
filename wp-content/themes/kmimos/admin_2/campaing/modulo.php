@@ -106,6 +106,12 @@
 		}
 		return $mensaje;
 	}
+	
+	function vlz_enviar_campaing($email, $asunto, $mensaje){
+		// wp_mail( "vlzangel91@gmail.com", "Campaña enviada", "Campaña ".trim($asunto)." enviada a ".trim($email) );
+		wp_mail( trim($email) , trim($asunto), "<div style='width: 100%; max-width: 700px; text-align: left; margin: 0px auto;'>".$mensaje."</div>");
+	}
+	
 
 	add_action( 'wp_ajax_vlz_campaing_test_send', function() {
 		extract($_POST);
@@ -132,10 +138,13 @@
 		] ) );
 		$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
-		wp_mail( trim($email) , $d->data->asunto, "<div style='width: 100%; text-align: center;'>".$mensaje."</div>");
+		// wp_mail( trim($email) , $d->data->asunto, "<div style='width: 100%; max-width: 700px; text-align: left; margin: 0px auto; max-width: 100% !important;'>".$mensaje."</div>");
+
+		// vlz_enviar_campaing($email, $d->data->asunto, $mensaje);
 
 		echo json_encode([
 			"error" => "",
+			"html" => $mensaje,
 			"msg" => "Mensaje Enviado Exitosamente!",
 		]);
 	   	die();
@@ -164,7 +173,9 @@
 				}else{
 					$selected = '';
 				}
-				$listas .= '<option value="'.$lista->id.'" '.$selected.' >'.$d->titulo.'</option>';
+				if( $d->titulo != '' ){
+					$listas .= '<option value="'.$lista->id.'" '.$selected.' >'.$d->titulo.'</option>';
+				}
 			}
 		}
 		$_campaings = $wpdb->get_results("SELECT * FROM vlz_campaing ORDER BY creada DESC");
@@ -319,10 +330,9 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="campaing_despues_no_abre">Enviar si:</label>
-									<select id="campaing_despues_no_abre" name="campaing_despues_no_abre" class="form-control" >
-										<option value="" '.selected('', $info["campaing_despues_no_abre"], false).'>No hacer nada</option>
+									<select id="campaing_despues_no_abre" name="campaing_despues_no_abre" class="form-control">
 										<option value="si" '.selected('si', $info["campaing_despues_no_abre"], false).'>Se abre la campaña anterior</option>
-										<option value="no" '.selected('no', $info["campaing_despues_no_abre"], false).'>NO  se abre la campaña anterior</option>
+										<option value="no" '.selected('no', $info["campaing_despues_no_abre"], false).'>NO se abre la campaña anterior</option>
 									</select>
 								</div>
 							</div>

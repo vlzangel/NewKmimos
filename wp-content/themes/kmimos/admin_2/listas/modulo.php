@@ -23,7 +23,9 @@
 		$listas_news = '';
 		$news = $wpdb->get_results("SELECT DISTINCT source FROM wp_kmimos_subscribe ORDER BY source ASC");
 		foreach ($news as $key => $value) {
-			$listas_news .= '<option value="'.$value->source.'" '.selected($value->source, $config->newsletter, false).'>'.ucfirst($value->source).'</option>';
+			if( ucfirst($value->source) != '' ){
+				$listas_news .= '<option value="'.$value->source.'" '.selected($value->source, $config->newsletter, false).'>'.ucfirst($value->source).'</option>';
+			}
 		}
 
 		$wlabes = '';
@@ -34,8 +36,10 @@
 		$wlabes_cuidadores .= '<option value="kmimos" '.selected("kmimos", $config->cuidadores, false).'>Kmimos</option>';
 
 		foreach ($news as $key => $value) {
-			$wlabes .= '<option value="'.$value->wlabel.'" '.selected($value->wlabel, $config->wlabel, false).'>'.ucfirst($value->title).'</option>';
-			$wlabes_cuidadores .= '<option value="'.$value->wlabel.'" '.selected($value->wlabel, $config->cuidadores, false).'>'.ucfirst($value->title).'</option>';
+			if( trim($value->title) != '' ){
+				$wlabes .= '<option value="'.$value->wlabel.'" '.selected($value->wlabel, $config->wlabel, false).'>'.ucfirst($value->title).'</option>';
+				$wlabes_cuidadores .= '<option value="'.$value->wlabel.'" '.selected($value->wlabel, $config->cuidadores, false).'>'.ucfirst($value->title).'</option>';
+			}
 		}
 
 		$btn = 'Crear';

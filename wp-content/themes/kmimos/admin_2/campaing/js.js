@@ -59,12 +59,12 @@ function _test(id) {
                 jQuery("#btn_submit_modal").html(btn_txt);
                 jQuery("#btn_submit_modal").prop("disabled", false);
 
-                // jQuery("#test_container").html( data.html );
+                jQuery("#test_container").html( data.html );
 
                 
                 jQuery(".modal > div > p").addClass('sucess');
                 setTimeout(function(){
-	                hide_modal();
+	                // hide_modal();
 	            }, 1500);
 	            
             },

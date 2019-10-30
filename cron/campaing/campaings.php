@@ -58,23 +58,6 @@
 		return $no_abiertos;
 	}
 
-	function add_seguimiento_($mensaje, $info){
-		$mensaje = preg_replace("/[\r\n|\n|\r]+/", " ", $mensaje);
-		preg_match_all("#href=\"http(.*?)\"#i", $mensaje, $matches);
-		$url_base = get_home_url().'/campaing_2';
-		foreach ($matches[1] as $key => $url) {
-			$old_url = "href=\"http".substr($url, 0);
-			$data = base64_encode( json_encode( [
-				"id" => $info["campaing"],
-				"email" => $info["email"],
-				"url" => $old_url,
-			] ) );
-			$new_url = "href=\"".$url_base.'/'.$data.'/redi';
-			$mensaje = str_replace($old_url, $new_url, $mensaje);
-		}
-		return $mensaje;
-	}
-
 	function _desuscrito($email){
 		global $wpdb;
 		$existe = $wpdb->get_row("SELECT * FROM vlz_desuscritos WHERE email = '{$email}' ");
@@ -87,7 +70,6 @@
 
 		$data = json_decode($campaing->data);
 		$d = $data->data;
-
 		switch ( $data->hacer_despues+0 ) {
 			case 0:
 
@@ -97,16 +79,19 @@
 					if( $fecha_fin >= time() ){
 
 						$_listas = $data->data_listas;
+
 						// $d->ENVIADO = "SI";
 						$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
 							foreach ($_listas as $lista) {
 								$_d = json_decode($lista->data);
+
 								foreach ($_d->suscriptores as $cliente) {
 									$email = $cliente[1];
 
 									if( !array_key_exists($email, $enviados) ){ 
+
 										$enviados[ $email ] = time();
 
 										$info_validacion = base64_encode( json_encode( [
@@ -118,7 +103,7 @@
 
 										$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
 										
-										$mensaje = add_seguimiento($mensaje, [
+										$mensaje = add_seguimiento_($mensaje, [
 											"campaing" => $campaing->id,
 											"email" => trim($email),
 										]);
@@ -130,7 +115,8 @@
 										$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
 										if( _desuscrito($email) ){
-											wp_mail( trim($email) , $d->asunto, $mensaje);
+
+											vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
 										}
 									}
 								}
@@ -154,6 +140,7 @@
 				$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 
 				switch ( $data->campaing_despues_no_abre ) {
+
 					case 'si':
 						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
 						foreach ($vistos as $key => $cliente) {
@@ -170,7 +157,7 @@
 									] ) );
 									$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
 									
-									$mensaje = add_seguimiento($mensaje, [
+									$mensaje = add_seguimiento_($mensaje, [
 										"campaing" => $campaing->id,
 										"email" => trim($email),
 									]);
@@ -182,7 +169,7 @@
 									$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
 									if( _desuscrito($email) ){
-										wp_mail( trim($email) , $d->asunto, $mensaje);
+										vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
 									}
 								}
 							}
@@ -205,7 +192,7 @@
 								] ) );
 								$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
 								
-								$mensaje = add_seguimiento($mensaje, [
+								$mensaje = add_seguimiento_($mensaje, [
 									"campaing" => $campaing->id,
 									"email" => trim($email),
 								]);
@@ -217,7 +204,7 @@
 								$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
 								if( _desuscrito($email) ){
-									wp_mail( trim($email) , $d->asunto, $mensaje);
+									vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
 								}
 							}
 						}
