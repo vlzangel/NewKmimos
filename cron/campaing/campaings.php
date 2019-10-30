@@ -58,18 +58,18 @@
 		return $no_abiertos;
 	}
 
-	function add_seguimiento($mensaje, $info){
+	function add_seguimiento_($mensaje, $info){
 		$mensaje = preg_replace("/[\r\n|\n|\r]+/", " ", $mensaje);
 		preg_match_all("#href=\"http(.*?)\"#i", $mensaje, $matches);
 		$url_base = get_home_url().'/campaing_2';
 		foreach ($matches[1] as $key => $url) {
-			$old_url = "http".$url;
+			$old_url = "href=\"http".substr($url, 0);
 			$data = base64_encode( json_encode( [
 				"id" => $info["campaing"],
 				"email" => $info["email"],
 				"url" => $old_url,
 			] ) );
-			$new_url = $url_base.'/'.$data.'/redi';
+			$new_url = "href=\"".$url_base.'/'.$data.'/redi';
 			$mensaje = str_replace($old_url, $new_url, $mensaje);
 		}
 		return $mensaje;
