@@ -162,10 +162,10 @@ $users = getUsers($param, $desde, $hasta, $disp_desde, $disp_hasta);
 			  			$usermeta = getmetaUser( $row['ID'] );
 			  			$link_login = "/?i=".md5($row['ID']);
 
-			  			$name = $usermeta['first_name'];
-			  			$lastname = $usermeta['last_name'];
+			  			$name = utf8_decode( $usermeta['first_name'] );
+			  			$lastname = utf8_decode( $usermeta['last_name'] );
 			  			if(empty($name)){
-			  				$name = $usermeta['nickname'];
+			  				$name = utf8_decode( $usermeta['nickname'] );
 			  			}
 
 			  			$ubicacion = getEstadoMunicipio($row['estados'], $row['municipios']);

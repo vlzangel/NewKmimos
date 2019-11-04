@@ -1,11 +1,21 @@
 <?php
 	
+	function phpmailer_init_vlz() {
+        return [
+            "email" => "promociones@kmimos.la",
+            "clave" => "Kmimos2019",
+            "From" => "promociones@kmimos.la",
+            "FromName" => "Promaciones Kmimos",
+        ];
+    }
+
+
 	include dirname(dirname(__DIR__)).'/wp-load.php';
     date_default_timezone_set('America/Mexico_City');
 	global $wpdb;
 
 	//ini_set('display_errors', 'On');
-        //error_reporting(E_ALL);
+    //error_reporting(E_ALL);
 
 	function update_campaing($campaing, $data, $d, $enviados) {
 		global $wpdb;
@@ -131,7 +141,7 @@
 			break;
 			case 1:
 
-				$un_dia = 60; // Prueba en minutos 60 segundos, en producción colocar: 1 dia > 86400 segundos;
+				$un_dia = 86400; // Prueba en minutos 60 segundos, en producción colocar: 1 dia > 86400 segundos;
 				$esperar = $data->campaing_despues_delay*$un_dia;
 				$anterior = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$data->campaing_anterior);
 				$data_anterior = json_decode($anterior->data);

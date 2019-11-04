@@ -6,12 +6,12 @@
 
     require_once('../wp-content/plugins/kmimos/dashboard/core/ControllerClientes.php');
 
-	$_registros = $wpdb->get_results("SELECT email FROM clientes_bp");
+	$_registros = $wpdb->get_results("SELECT user_id FROM clientes_bp");
 	$registros = [];
 
 	if( is_array($_registros) && count($_registros) > 0 ){
 		foreach ($_registros as $key => $value) {
-			$registros[] = $value->email;
+			$registros[] = $value->user_id;
 		}
 	}
 
@@ -118,8 +118,6 @@
 
 		$referido_por = (!empty($usermeta['user_referred'])) ? $usermeta['user_referred'] : 'Otros' ;
 
-		$existe = ( in_array($row['user_email'], $registros) ) ? true : false;
-
 		$data[] = [
 	    	$row['ID'],
 			date_convert($row['user_registered'], 'Y-m-d'),
@@ -132,13 +130,12 @@
 			$usermeta['user_age'],
 			$conocer_15,
 			$reserva_15,
-			$_status,
-			$existe
+			$_status
 		];
 	}
 
 	foreach ($data as $key => $cliente) {
-		if( $cliente[12] ){
+		if( in_array($cliente[0], $registros ){
 			$sql = "
 				UPDATE 
 					clientes_bp
@@ -153,7 +150,7 @@
 					primera_reserva = '{$cliente[10]}',
 					status = '{$cliente[11]}'
 				WHERE
-					email = '{$cliente[4]}'
+					user_id = '{$cliente[0]}'
 			";
 		}else{
 			$sql = "
@@ -181,5 +178,4 @@
 		$wpdb->query($sql);
 	}
 
-	echo "Listo";
 ?>

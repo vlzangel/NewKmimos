@@ -148,7 +148,7 @@
 		extract($_POST);
 		global $wpdb;
 
-    	include dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/test/list_campaing.php';
+    	// include dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/test/list_campaing.php';
 
 		$desde = ( $desde != "" ) ? date("Y-m-d", strtotime( str_replace("/", "-", $desde) ) ) : '';
 		$hasta = ( $hasta != "" ) ? date("Y-m-d", strtotime( str_replace("/", "-", $hasta) ) ) : '';
@@ -165,12 +165,12 @@
 					$suscriptor = explode(",", $value);
 					if( !in_array($suscriptor[1], $suscriptores_no_repeat)){
 						if(false !== filter_var($suscriptor[1], FILTER_VALIDATE_EMAIL)){
-							if( in_array($suscriptor[1], $emails_validos) ){
+							// if( in_array($suscriptor[1], $emails_validos) ){
 								$suscriptores[] = [
 									$suscriptor[0],
 									$suscriptor[1]
 								];
-							}
+							// }
 							$suscriptores_no_repeat[] = $suscriptor[1];
 						}
 					}
@@ -185,12 +185,12 @@
 				$fechas .= ( $hasta != "" ) ? " AND time <= '{$hasta}' " : '';
 				$suscritos = $wpdb->get_results("SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ");
 				foreach ($suscritos as $key => $suscrito) {
-					if( in_array($suscrito->email, $emails_validos) ){
+					// if( in_array($suscrito->email, $emails_validos) ){
 						$suscriptores[] = [
 							$suscrito->email,
 							$suscrito->email
 						];
-					}
+					// }
 				}
 
 			}
@@ -227,12 +227,12 @@
 						$first = get_user_meta($suscrito->ID, 'first_name', true);
 						$first = str_replace('"', '', $first);
 
-						if( in_array($suscrito->user_email, $emails_validos) ){
+						// if( in_array($suscrito->user_email, $emails_validos) ){
 							$suscriptores[] = [
 								$first,
 								$suscrito->user_email
 							];
-						}
+						// }
 					}
 
 				}else{
@@ -255,12 +255,12 @@
 					$suscritos = $wpdb->get_results($sql);
 
 					foreach ($suscritos as $key => $suscrito) {
-						if( in_array($suscrito->email, $emails_validos) ){
+						// if( in_array($suscrito->email, $emails_validos) ){
 							$suscriptores[] = [
 								$suscrito->name,
 								$suscrito->email
 							];
-						}
+						// }
 					}
 				}
 
@@ -298,12 +298,12 @@
 						$first = get_user_meta($suscrito->ID, 'first_name', true);
 						$first = str_replace('"', '', $first);
 
-						if( in_array($suscrito->user_email, $emails_validos) ){
+						// if( in_array($suscrito->user_email, $emails_validos) ){
 							$suscriptores[] = [
 								$first,
 								$suscrito->user_email
 							];
-						}
+						// }
 					}
 
 				}else{
@@ -326,12 +326,12 @@
 					$suscritos = $wpdb->get_results($sql);
 
 					foreach ($suscritos as $key => $suscrito) {
-						if( in_array($suscrito->email, $emails_validos) ){
+						// if( in_array($suscrito->email, $emails_validos) ){
 							$suscriptores[] = [
 								$suscrito->name,
 								$suscrito->email
 							];
-						}
+						// }
 					}
 				}
 			}
@@ -568,7 +568,7 @@
 
 	add_action( 'wp_ajax_vlz_listas_update', function() {
 
-    	include dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/test/list_campaing.php';
+    	// include dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/test/list_campaing.php';
 
 		extract($_POST);
 		global $wpdb;
@@ -596,12 +596,12 @@
 					$suscriptor = explode(",", $value);
 					if( !in_array($suscriptor[1], $suscriptores_no_repeat)){
 						if(false !== filter_var($suscriptor[1], FILTER_VALIDATE_EMAIL)){
-							if( in_array($suscriptor[1], $emails_validos) ){
+							// if( in_array($suscriptor[1], $emails_validos) ){
 								$suscriptores[] = [
 									$suscriptor[0],
 									$suscriptor[1]
 								];
-							}
+							// }
 							$suscriptores_no_repeat[] = $suscriptor[1];
 						}
 					}
@@ -617,12 +617,12 @@
 				$sql_nl = "SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ";
 				$suscritos = $wpdb->get_results($sql_nl);
 				foreach ($suscritos as $key => $suscrito) {
-					if( in_array($suscrito->email, $emails_validos) ){
+					// if( in_array($suscrito->email, $emails_validos) ){
 						$suscriptores[] = [
 							$suscrito->email,
 							$suscrito->email
 						];
-					}
+					// }
 				}
 
 			}
@@ -659,12 +659,12 @@
 						$first = get_user_meta($suscrito->ID, 'first_name', true);
 						$first = str_replace('"', '', $first);
 
-						if( in_array($suscrito->user_email, $emails_validos) ){
+						// if( in_array($suscrito->user_email, $emails_validos) ){
 							$suscriptores[] = [
 								$first,
 								$suscrito->user_email
 							];
-						}
+						// }
 					}
 
 				}else{
@@ -687,12 +687,12 @@
 					$suscritos = $wpdb->get_results($sql);
 
 					foreach ($suscritos as $key => $suscrito) {
-						if( in_array($suscrito->email, $emails_validos) ){
+						// if( in_array($suscrito->email, $emails_validos) ){
 							$suscriptores[] = [
 								$suscrito->name,
 								$suscrito->email
 							];
-						}
+						// }
 					}
 				}
 
@@ -730,12 +730,12 @@
 						$first = get_user_meta($suscrito->ID, 'first_name', true);
 						$first = str_replace('"', '', $first);
 
-						if( in_array($suscrito->user_email, $emails_validos) ){
+						// if( in_array($suscrito->user_email, $emails_validos) ){
 							$suscriptores[] = [
 								$first,
 								$suscrito->user_email
 							];
-						}
+						// }
 					}
 
 				}else{
@@ -758,12 +758,12 @@
 					$suscritos = $wpdb->get_results($sql);
 
 					foreach ($suscritos as $key => $suscrito) {
-						if( in_array($suscrito->email, $emails_validos) ){
+						// if( in_array($suscrito->email, $emails_validos) ){
 							$suscriptores[] = [
 								$suscrito->name,
 								$suscrito->email
 							];
-						}
+						// }
 					}
 				}
 			}

@@ -28,20 +28,20 @@
 			$fechas .= ( $hasta != "" ) ? " AND time <= '{$hasta}' " : '';
 			$suscritos = $wpdb->get_results("SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ");
 			foreach ($suscritos as $key => $suscrito) {
-				if( in_array($suscrito->email, $emails_validos) ){
+				// if( in_array($suscrito->email, $emails_validos) ){
 					$suscriptores[] = [
 						$suscrito->email,
 						$suscrito->email
 					];
-				}
+				// }
 			}
 		}
 
 		if( $wlabel != "" ){
 			if( $wlabel == 'kmimos' ){
 				$fechas = ""; 
-				if( $desde != "" ) { $fechas = " AND u.user_registered >= '{$desde}' "; }
-				if( $hasta != "" ) { $fechas = " AND u.user_registered <= '{$hasta}' "; }
+				if( $desde != "" ) { $fechas .= " AND u.user_registered >= '{$desde}' "; }
+				if( $hasta != "" ) { $fechas .= " AND u.user_registered <= '{$hasta}' "; }
 
 				$sql =  "
 					SELECT DISTINCT (u.user_email), u.ID
@@ -64,18 +64,18 @@
 					$first = get_user_meta($suscrito->ID, 'first_name', true);
 					$first = str_replace('"', '', $first);
 
-					if( in_array($suscrito->user_email, $emails_validos) ){
+					// if( in_array($suscrito->user_email, $emails_validos) ){
 						$suscriptores[] = [
 							$first,
 							$suscrito->user_email
 						];
-					}
+					// }
 				}
 
 			}else{
 				$fechas = ""; 
-				if( $desde != "" ) { $fechas = " AND u.user_registered >= '{$desde}' "; }
-				if( $hasta != "" ) { $fechas = " AND u.user_registered <= '{$hasta}' "; }
+				if( $desde != "" ) { $fechas .= " AND u.user_registered >= '{$desde}' "; }
+				if( $hasta != "" ) { $fechas .= " AND u.user_registered <= '{$hasta}' "; }
 
 				$sql =  "
 				SELECT u.user_email AS email, n.meta_value AS name 
@@ -88,12 +88,12 @@
 				$suscritos = $wpdb->get_results($sql);
 
 				foreach ($suscritos as $key => $suscrito) {
-					if( in_array($suscrito->email, $emails_validos) ){
+					//if( in_array($suscrito->email, $emails_validos) ){
 						$suscriptores[] = [
 							$suscrito->name,
 							$suscrito->email
 						];
-					}
+					//}
 				}
 
 			}
@@ -104,8 +104,8 @@
 
 			if( $cuidadores == 'kmimos' ){
 				$fechas = ""; 
-				if( $desde != "" ) { $fechas = " AND u.user_registered >= '{$desde}' "; }
-				if( $hasta != "" ) { $fechas = " AND u.user_registered <= '{$hasta}' "; }
+				if( $desde != "" ) { $fechas .= " AND u.user_registered >= '{$desde}' "; }
+				if( $hasta != "" ) { $fechas .= " AND u.user_registered <= '{$hasta}' "; }
 
 				$sql =  "
 					SELECT DISTINCT (u.user_email), u.ID
@@ -129,18 +129,18 @@
 					$first = get_user_meta($suscrito->ID, 'first_name', true);
 					$first = str_replace('"', '', $first);
 
-					if( in_array($suscrito->user_email, $emails_validos) ){
+					//if( in_array($suscrito->user_email, $emails_validos) ){
 						$suscriptores[] = [
 							$first,
 							$suscrito->user_email
 						];
-					}
+					//}
 				}
 
 			}else{
 				$fechas = ""; 
-				if( $desde != "" ) { $fechas = " AND u.user_registered >= '{$desde}' "; }
-				if( $hasta != "" ) { $fechas = " AND u.user_registered <= '{$hasta}' "; }
+				if( $desde != "" ) { $fechas .= " AND u.user_registered >= '{$desde}' "; }
+				if( $hasta != "" ) { $fechas .= " AND u.user_registered <= '{$hasta}' "; }
 
 				$sql =  "
 				SELECT u.user_email AS email, n.meta_value AS name 
@@ -153,12 +153,12 @@
 				$suscritos = $wpdb->get_results($sql);
 
 				foreach ($suscritos as $key => $suscrito) {
-					if( in_array($suscrito->email, $emails_validos) ){
+					//if( in_array($suscrito->email, $emails_validos) ){
 						$suscriptores[] = [
 							$suscrito->name,
 							$suscrito->email
 						];
-					}
+					//}
 				}
 			}
 		}
