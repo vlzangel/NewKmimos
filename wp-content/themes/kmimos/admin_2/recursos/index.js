@@ -44,7 +44,9 @@ function loadTabla(tabla, accion){
         "ajax": {
             "url": ADMIN_AJAX+'?action=vlz_'+MODULO_ACTUAL+'_'+accion,
             "type": "POST"
-        }
+        },
+        "order": [[ 0, "desc" ]]
+
     });
 
     if( tabla == 'example' ){

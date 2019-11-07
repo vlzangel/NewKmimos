@@ -73,6 +73,21 @@ function _test(id) {
     });
 }
 
+function _clonar(_this) {
+	var id = _this.data('id');
+    jQuery.post(
+        ADMIN_AJAX+'?action=vlz_'+_this.attr("data-modulo")+"_clonar",
+        {
+        	id: _this.attr("data-id")
+        },
+        function(data){
+            alert("Clonación completada exitosamente");
+            table.ajax.reload();
+        },
+        'json'
+    );
+}
+
 function _show_emojis(){
 	jQuery(".emojis_container").css("display", "block");
 }

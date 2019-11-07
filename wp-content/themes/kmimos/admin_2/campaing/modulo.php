@@ -45,6 +45,7 @@
 				$temp,
 				'
 					<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_test" data-titulo="Envio de Prueba" >Test</span> &nbsp;
+					<span class="btn btn-primary btn-s" onclick="_clonar( jQuery(this) )" data-id="'.$value->id.'" data-modulo="campaing" >Clonar</span> &nbsp;
 					<span class="btn btn-primary btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_edit" data-titulo="Editar Campaña" >Editar</span> &nbsp;
 					<span class="btn btn-danger  btn-s" onclick="_modal( jQuery(this) )" data-id="'.$value->id.'" data-modal="campaing_del_form" data-titulo="Eliminar Campaña" >Eliminar</span>
 				'
@@ -87,6 +88,30 @@
 			</form>
 			<script>_test("listas_form");</script>
 		';
+	   	die();
+	} );
+
+	add_action( 'wp_ajax_vlz_campaing_clonar', function() {
+		extract($_POST);
+		global $wpdb;
+
+		$info = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$id);
+		$data = json_decode($info->data);
+
+		unset( $data->id );
+		$data->vistos = [];
+		$data->data->fecha = date("Y-m-d", strtotime("+ 1 day") );
+		$data->data->titulo = $data->data->titulo." [ CLON ]";
+
+		$data = json_encode($data);
+
+		$sql = "INSERT INTO vlz_campaing VALUES (NULL, '".$info->plantilla."', '".$data."', '[]', NOW())";
+		$wpdb->query( $sql );
+		echo json_encode([
+			"error" => "",
+			"msg" => "Campaña Creada Exitosamente",
+		]);
+		
 	   	die();
 	} );
 
