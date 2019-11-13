@@ -74,6 +74,48 @@
 		return ( empty($existe) );
 	}
 
+	function update_envios( $info ){
+		global $wpdb;
+		$envios = $wpdb->get_row("SELECT * FROM vlz_envios WHERE campaing = '{$info['campaing']}' ");
+		if( $envios == null ){
+			$emails = json_encode( $info['emails'] );
+			$wpdb->query("
+				INSERT INTO
+					vlz_envios
+				VALUES (
+					NULL,
+					'{$info['campaing']}',
+					'{$emails}',
+					'[]',
+					NOW()
+				)
+			");
+		}else{
+
+			$por_enviar = (array) json_decode( $envios->por_enviar );
+			$enviados = (array) json_decode( $envios->enviados );
+
+			$nuevos = [];
+
+			foreach ( $info['emails'] as $email ) {
+				if( !in_array($email, $por_enviar) && !in_array($email, $enviados) ){
+					$por_enviar[] = $email;
+				}
+			}
+
+			$por_enviar_new = json_encode($por_enviar);
+
+			$wpdb->query("
+				UPDATE
+					vlz_envios
+				SET
+					por_enviar = '{$por_enviar_new}'
+				WHERE 
+					id = {$envios->id}
+			");
+		}
+	}
+
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing");
 
 	foreach ($campaings as $key => $campaing) {
@@ -92,6 +134,13 @@
 
 						// $d->ENVIADO = "SI";
 						$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
+
+						$enviar_correo = [
+							"asunto" => $d->asunto, 
+							"campaing" => $campaing->id,
+							"emails" => []
+						];
+
 						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
 						if( !empty($_listas) ){
 							foreach ($_listas as $lista) {
@@ -126,7 +175,9 @@
 
 										if( _desuscrito($email) ){
 
-											vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
+											// vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
+
+											$enviar_correo['emails'][] = $email;
 										}
 									}
 								}
@@ -134,6 +185,8 @@
 							if( count($enviados) > 0 ){
 								update_campaing($campaing, $data, $d, $enviados);
 							}
+
+							update_envios( $enviar_correo );
 						}
 					}
 				}

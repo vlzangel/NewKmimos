@@ -102,6 +102,9 @@
 			<div>
 				<form id="buscador" method="POST" >
 
+				<input type="hidden" id="checkin" name="checkin" value="'.$_SESSION['busqueda']['checkin'].'" />
+				<input type="hidden" id="checkout" name="checkout" value="'.$_SESSION['busqueda']['checkout'].'" />
+
 					<i class="solo_movil fa fa-times" aria-hidden="true"></i>
 
 					<div class="solo_movil cada_vez">

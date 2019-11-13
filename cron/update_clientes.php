@@ -135,7 +135,7 @@
 	}
 
 	foreach ($data as $key => $cliente) {
-		if( in_array($cliente[0], $registros ){
+		if( in_array($cliente[0], $registros ) ){
 			$sql = "
 				UPDATE 
 					clientes_bp

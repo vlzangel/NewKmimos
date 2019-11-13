@@ -400,14 +400,16 @@
 	    FROM 
 	        cuidadores
 	    WHERE 
+	    
 	        activo = '1' 
 	        {$condiciones} 
 	        {$FILTRO_ESPECIA}
 	    	{$GATOS_CONDICION}
 	    	$DESCUENTO_CONDICION
 	        {$ubicaciones_filtro} 
-	        {$FILTRO_UBICACION} 
 	        AND cuidadores.user_id != 5556
+
+	        {$FILTRO_UBICACION} 
 	    ORDER BY {$orderby}
 	    LIMIT 0, 3";
 
