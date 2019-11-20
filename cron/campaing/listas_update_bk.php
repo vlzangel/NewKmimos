@@ -11,9 +11,7 @@
 
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_listas");
 	foreach ($campaings as $key => $campaing) {
-
-		$agregados = [];
-
+		
 		$data = json_decode($campaing->data);
 		$titulo = $data->titulo;
 
@@ -25,22 +23,17 @@
 
 		$suscriptores = json_decode($campaing->manuales);
 
-		foreach ($suscriptores as $key => $value) {
-			$agregados[] = $value[1];
-		}
-
 		if( $newsletter != "" ){
 			$fechas = ( $desde != "" ) ? " AND time >= '{$desde}' " : '';
 			$fechas .= ( $hasta != "" ) ? " AND time <= '{$hasta}' " : '';
 			$suscritos = $wpdb->get_results("SELECT * FROM wp_kmimos_subscribe WHERE source = '{$newsletter}' {$fechas} ");
 			foreach ($suscritos as $key => $suscrito) {
-				if( !in_array($suscrito->email, $agregados) ){
-					$agregados[] = $suscrito->email;
+				// if( in_array($suscrito->email, $emails_validos) ){
 					$suscriptores[] = [
 						$suscrito->email,
 						$suscrito->email
 					];
-				}
+				// }
 			}
 		}
 
@@ -71,13 +64,12 @@
 					$first = get_user_meta($suscrito->ID, 'first_name', true);
 					$first = str_replace('"', '', $first);
 
-					if( !in_array($suscrito->user_email, $agregados) ){
-						$agregados[] = $suscrito->user_email;
+					// if( in_array($suscrito->user_email, $emails_validos) ){
 						$suscriptores[] = [
 							$first,
 							$suscrito->user_email
 						];
-					}
+					// }
 				}
 
 			}else{
@@ -96,13 +88,12 @@
 				$suscritos = $wpdb->get_results($sql);
 
 				foreach ($suscritos as $key => $suscrito) {
-					if( !in_array($suscrito->email, $agregados) ){
-						$agregados[] = $suscrito->email;
+					//if( in_array($suscrito->email, $emails_validos) ){
 						$suscriptores[] = [
 							$suscrito->name,
 							$suscrito->email
 						];
-					}
+					//}
 				}
 
 			}
@@ -138,13 +129,12 @@
 					$first = get_user_meta($suscrito->ID, 'first_name', true);
 					$first = str_replace('"', '', $first);
 
-					if( !in_array($suscrito->user_email, $agregados) ){
-						$agregados[] = $suscrito->user_email;
+					//if( in_array($suscrito->user_email, $emails_validos) ){
 						$suscriptores[] = [
 							$first,
 							$suscrito->user_email
 						];
-					}
+					//}
 				}
 
 			}else{
@@ -163,13 +153,12 @@
 				$suscritos = $wpdb->get_results($sql);
 
 				foreach ($suscritos as $key => $suscrito) {
-					if( !in_array($suscrito->email, $agregados) ){
-						$agregados[] = $suscrito->email;
+					//if( in_array($suscrito->email, $emails_validos) ){
 						$suscriptores[] = [
 							$suscrito->name,
 							$suscrito->email
 						];
-					}
+					//}
 				}
 			}
 		}

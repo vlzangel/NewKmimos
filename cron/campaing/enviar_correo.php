@@ -12,7 +12,7 @@
 	}
 
 	include dirname(dirname(__DIR__)).'/wp-load.php';
-    date_default_timezone_set('America/Mexico_City');
+        date_default_timezone_set('America/Mexico_City');
 	global $wpdb;
 
 
@@ -23,9 +23,7 @@
 		return ( empty($existe) );
 	}
 
-
-	
-	$para_enviar = $wpdb->get_results("SELECT * FROM vlz_envios");
+	$para_enviar = $wpdb->get_results("SELECT * FROM vlz_envios WHERE por_enviar != '[]' ORDER BY rand() LIMIT 1C");
 
 	foreach ($para_enviar as $key => $envios) {
 		$por_enviar = (array) json_decode( $envios->por_enviar );
@@ -41,26 +39,28 @@
 			$por_enviar_new = [];
 			foreach ($por_enviar as $key => $email) {
 				$contador++;
-				if( $contador >= 10 ){
+				if( $contador > 2 ){
 					$por_enviar_new[] = $email;
 				}else{
-					$enviados[] = $email;
-					$info_validacion = base64_encode( json_encode( [
-						"id" => $campaing->id,
-						"type" => "img",
-						"format" => "png",
-						"email" => $email
-					] ) );
-					$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
-					$mensaje = add_seguimiento_($mensaje, [
-						"campaing" => $campaing->id,
-						"email" => trim($email),
-					]);
-					$info_desuscribir = base64_encode( json_encode( [
-						"campaing_id" => $campaing->id,
-						"email" => $email
-					] ) );
-					$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
+					if( !in_array($email, haystack) ){
+						$enviados[] = $email;
+						$info_validacion = base64_encode( json_encode( [
+							"id" => $campaing->id,
+							"type" => "img",
+							"format" => "png",
+							"email" => $email
+						] ) );
+						$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
+						$mensaje = add_seguimiento_($mensaje, [
+							"campaing" => $campaing->id,
+							"email" => trim($email),
+						]);
+						$info_desuscribir = base64_encode( json_encode( [
+							"campaing_id" => $campaing->id,
+							"email" => $email
+						] ) );
+						$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
+					}
 					vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
 				}
 
@@ -85,7 +85,8 @@
 					enviados = '{$enviados}'
 				WHERE 
 					id = {$envios->id}
-			");
+			"); 
+			
 
 		}
 	}
@@ -93,5 +94,5 @@
 	$time_end = microtime(true);
 	$time = $time_end - $time_start;
 
-	echo "No se hizo nada en $time segundos\n";
+	//echo "No se hizo nada en $time segundos\n";
 ?>

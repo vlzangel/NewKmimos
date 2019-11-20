@@ -218,6 +218,7 @@
 			break;
 			case 1:
 
+
 				$un_dia = 86400; // Prueba en minutos 60 segundos, en producción colocar: 1 dia > 86400 segundos;
 				$esperar = $data->campaing_despues_delay*$un_dia;
 				$anterior = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$data->campaing_anterior);
@@ -231,6 +232,12 @@
 					print_r($data);
 				echo "</pre>";
 				*/
+
+				$enviar_correo = [
+					"asunto" => $d->asunto, 
+					"campaing" => $campaing->id,
+					"emails" => []
+				];
 
 				switch ( $data->campaing_despues_no_abre ) {
 					case 'si':
@@ -261,7 +268,10 @@
 									$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
 									if( _desuscrito($email) ){
-										vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
+										// vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
+										if( !in_array($email) ){
+											$enviar_correo['emails'][] = $email;
+										}
 									}
 								}
 							}
@@ -296,7 +306,10 @@
 								$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
 
 								if( _desuscrito($email) ){
-									vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
+									// vlz_enviar_campaing( trim($email) , $d->asunto, $mensaje);
+									if( !in_array($email) ){
+										$enviar_correo['emails'][] = $email;
+									}
 								}
 							}
 						}
@@ -306,6 +319,8 @@
 					break;
 				}
 
+				update_envios( $enviar_correo );
+				
 			break;
 		}
 		

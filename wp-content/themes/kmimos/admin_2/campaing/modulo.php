@@ -118,6 +118,7 @@
 	function add_seguimiento_($mensaje, $info){
 		$mensaje = preg_replace("/[\r\n|\n|\r]+/", " ", $mensaje);
 		preg_match_all("#href=\"http(.*?)\"#i", $mensaje, $matches);
+
 		$url_base = get_home_url().'/campaing_2';
 		foreach ($matches[1] as $key => $url) {
 			$old_url = "http".substr($url, 0);
@@ -126,8 +127,12 @@
 				"email" => $info["email"],
 				"url" => $old_url,
 			] ) );
-			$old_url = "href=\"".substr($url, 0);
-			$new_url = "href=\"".$url_base.'/'.$data.'/redi';
+			$old_url = "href=\"http".substr($url, 0).'"';
+			$new_url = "href=\"".$url_base.'/'.$data.'/redi"';
+
+			echo 'Old: '.$old_url.'<br>'.
+				 'New '.$new_url.'<br><br><br>';
+
 			$mensaje = str_replace($old_url, $new_url, $mensaje);
 		}
 		return $mensaje;

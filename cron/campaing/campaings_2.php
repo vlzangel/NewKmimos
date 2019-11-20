@@ -1,5 +1,15 @@
 <?php
 	
+	function phpmailer_init_vlz() {
+       		return [
+            		"email" => "promociones@kmimos.la",
+            		"clave" => "Kmimos2019",
+            		"From" => "promociones@kmimos.la",
+            		"FromName" => "Promociones Kmimos",
+        	];
+    	}
+
+	
 	include dirname(dirname(__DIR__)).'/wp-load.php';
     date_default_timezone_set('America/Mexico_City');
 	global $wpdb;
@@ -58,176 +68,141 @@
 		return $no_abiertos;
 	}
 
-	function add_seguimiento($mensaje, $info){
-		$mensaje = preg_replace("/[\r\n|\n|\r]+/", " ", $mensaje);
-		preg_match_all("#href=\"http(.*?)\"#i", $mensaje, $matches);
-		$url_base = get_home_url().'/campaing_2';
-		foreach ($matches[1] as $key => $url) {
-			$old_url = "http".$url;
-			$data = base64_encode( json_encode( [
-				"id" => $info["campaing"],
-				"email" => $info["email"],
-				"url" => $old_url,
-			] ) );
-			$new_url = $url_base.'/'.$data.'/redi';
-			$mensaje = str_replace($old_url, $new_url, $mensaje);
-		}
-		return $mensaje;
-	}
-
 	function _desuscrito($email){
 		global $wpdb;
 		$existe = $wpdb->get_row("SELECT * FROM vlz_desuscritos WHERE email = '{$email}' ");
 		return ( empty($existe) );
 	}
 
+
+
+
+
+
+
+	function update_envios( $info ){
+
+		/*
+		echo "<pre>";
+			print_r($info);
+		echo "</pre>";
+		*/
+		
+		global $wpdb;
+		$envios = $wpdb->get_row("SELECT * FROM vlz_envios WHERE campaing = '{$info['campaing']}' ");
+		if( $envios == null ){
+			$emails = json_encode( $info['emails'] );
+			$wpdb->query("
+				INSERT INTO
+					vlz_envios
+				VALUES (
+					NULL,
+					'{$info['campaing']}',
+					'{$emails}',
+					'[]',
+					NOW()
+				)
+			");
+		}else{
+
+			$por_enviar = (array) json_decode( $envios->por_enviar );
+			$enviados = (array) json_decode( $envios->enviados );
+
+			$nuevos = [];
+
+			foreach ( $info['emails'] as $email ) {
+				if( !in_array($email, $por_enviar) && !in_array($email, $enviados) ){
+					$por_enviar[] = $email;
+				}
+			}
+
+			$por_enviar_new = json_encode($por_enviar);
+
+			$wpdb->query("
+				UPDATE
+					vlz_envios
+				SET
+					por_enviar = '{$por_enviar_new}'
+				WHERE 
+					id = {$envios->id}
+			");
+		}
+	}
+
+
+
+
+
+
 	$campaings = $wpdb->get_results("SELECT * FROM vlz_campaing");
 
 	foreach ($campaings as $key => $campaing) {
 
-		$data = json_decode($campaing->data);
-		$d = $data->data;
+		if( $campaing->id == 28 ){
 
-		switch ( $data->hacer_despues+0 ) {
-			case 0:
+			$data = json_decode($campaing->data);
+			$d = $data->data;
+			switch ( $data->hacer_despues+0 ) {
+				case 0:
 
-				$fecha = strtotime( $d->fecha." ".$d->hora );
-				if( $fecha <= time() ){
-					$fecha_fin = strtotime( $d->fecha_fin." ".$d->hora_fin );
-					if( $fecha_fin >= time() ){
+					$fecha = strtotime( $d->fecha." ".$d->hora );
+					if( $fecha <= time() ){
+						$fecha_fin = strtotime( $d->fecha_fin." ".$d->hora_fin );
+						if( $fecha_fin >= time() ){
 
-						$_listas = $data->data_listas;
-						// $d->ENVIADO = "SI";
-						$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
-						$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
-						if( !empty($_listas) ){
-							foreach ($_listas as $lista) {
-								$_d = json_decode($lista->data);
-								foreach ($_d->suscriptores as $cliente) {
-									$email = $cliente[1];
+							$_listas = $data->data_listas;
 
-									if( !array_key_exists($email, $enviados) ){ 
-										$enviados[ $email ] = time();
+							// $d->ENVIADO = "SI";
+							$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 
-										$info_validacion = base64_encode( json_encode( [
-											"id" => $campaing->id,
-											"type" => "img",
-											"format" => "png",
-											"email" => $email
-										] ) );
+							$enviar_correo = [
+								"asunto" => $d->asunto, 
+								"campaing" => $campaing->id,
+								"emails" => []
+							];
 
-										$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
-										
-										$mensaje = add_seguimiento($mensaje, [
-											"campaing" => $campaing->id,
-											"email" => trim($email),
-										]);
+							$_listas = $wpdb->get_results("SELECT * FROM vlz_listas WHERE id IN ( ".implode(",", $_listas)." ) ");
+							if( !empty($_listas) ){
+								foreach ($_listas as $lista) {
+									$_d = json_decode($lista->data);
 
-										$info_desuscribir = base64_encode( json_encode( [
-											"campaing_id" => $campaing->id,
-											"email" => $email
-										] ) );
-										$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
+									foreach ($_d->suscriptores as $cliente) {
+										$email = $cliente[1];
 
-										// if( _desuscrito($email) ){
-											wp_mail( trim($email) , $d->asunto, $mensaje);
-										// }
+										if( !array_key_exists($email, $enviados) ){ 
+
+											$enviados[ $email ] = time();
+
+											if( _desuscrito($email) ){
+												$excl = [
+													'facruras.abrahm.nava.ru00edos@gmail.com',
+													'Maru00eda.acosta.ingles@gmail.com',
+												];
+												if( !in_array($email) ){
+													$enviar_correo['emails'][] = $email;
+												}
+											}
+										}
 									}
 								}
-							}
-							if( count($enviados) > 0 ){
-								update_campaing($campaing, $data, $d, $enviados);
+
+								if( count($enviados) > 0 ){
+									update_campaing($campaing, $data, $d, $enviados);
+								}
+								update_envios( $enviar_correo );
+
 							}
 						}
 					}
-				}
 
-			break;
-			case 1:
+				break;
+			}
 
-				$un_dia = 60; // Prueba en minutos 60 segundos, en producción colocar: 1 dia > 86400 segundos;
-				$esperar = $data->campaing_despues_delay*$un_dia;
-				$anterior = $wpdb->get_row("SELECT * FROM vlz_campaing WHERE id = ".$data->campaing_anterior);
-				$data_anterior = json_decode($anterior->data);
+			echo "<pre>";
+				print_r( $enviados );
+			echo "</pre>";
 
-				$padre_id = "padre_".$data->campaing_anterior;
-				$enviados = ( $campaing->enviados != '' ) ? (array) json_decode($campaing->enviados) : [];
 
-				switch ( $data->campaing_despues_no_abre ) {
-					case 'si':
-						$vistos = ( isset($data_anterior->vistos) ) ? $data_anterior->vistos : [];
-						foreach ($vistos as $key => $cliente) {
-							$enviado_date = $cliente->fecha;
-							$email = $cliente->email;
-							if( (time()-$enviado_date) >= $esperar ){
-								if( !array_key_exists($email, $enviados[$padre_id]) ){ 
-									$enviados[$padre_id]->$email = time();
-									$info_validacion = base64_encode( json_encode( [
-										"id" => $campaing->id,
-										"type" => "img",
-										"format" => "png",
-										"email" => $email
-									] ) );
-									$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
-									
-									$mensaje = add_seguimiento($mensaje, [
-										"campaing" => $campaing->id,
-										"email" => trim($email),
-									]);
-
-									$info_desuscribir = base64_encode( json_encode( [
-										"campaing_id" => $campaing->id,
-										"email" => $email
-									] ) );
-									$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
-
-									if( _desuscrito($email) ){
-										wp_mail( trim($email) , $d->asunto, $mensaje);
-									}
-								}
-							}
-						}
-						if( count($enviados) > 0 ){
-							update_campaing($campaing, $data, $d, $enviados);
-						}
-					break;
-					case 'no':
-						$no_abiertos = get_email_no_abiertos($data_anterior, $esperar, json_decode($anterior->enviados));
-
-						foreach ($no_abiertos as $key => $email) {
-							if( !array_key_exists($email, $enviados[$padre_id]) ){ 
-								$enviados[$padre_id]->$email = time();
-								$info_validacion = base64_encode( json_encode( [
-									"id" => $campaing->id,
-									"type" => "img",
-									"format" => "png",
-									"email" => $email
-								] ) );
-								$mensaje = $campaing->plantilla.'<img src="'.get_home_url().'/campaing_2/'.$info_validacion.'/'.md5($info_validacion).'.png" />';
-								
-								$mensaje = add_seguimiento($mensaje, [
-									"campaing" => $campaing->id,
-									"email" => trim($email),
-								]);
-
-								$info_desuscribir = base64_encode( json_encode( [
-									"campaing_id" => $campaing->id,
-									"email" => $email
-								] ) );
-								$mensaje = str_replace("#FIN_SUSCRIPCION#", get_home_url().'/campaing_2/'.$info_desuscribir.'/end', $mensaje);
-
-								if( _desuscrito($email) ){
-									wp_mail( trim($email) , $d->asunto, $mensaje);
-								}
-							}
-						}
-						if( count($enviados) > 0 ){
-							update_campaing($campaing, $data, $d, $enviados);
-						}
-					break;
-				}
-
-			break;
 		}
 		
 	}
