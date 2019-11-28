@@ -51,6 +51,25 @@
 
     			<div class="medico_ficha_no_select_container">
     				<img src="<?= get_recurso("img").'MEDICOS/logo_mediqo.png' ?>" />
+    				<!-- <div class="lds-roller">
+    					<div></div>
+    					<div></div>
+    					<div></div>
+    					<div></div>
+    					<div></div>
+    					<div></div>
+    					<div></div>
+    					<div></div>
+    				</div> -->
+    				<!-- <div>
+	    				<div class="lds-ripple">
+	    					<div></div>
+	    					<div></div>
+	    				</div>
+    				</div> -->
+					<div>
+    					<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    				</div>
     			</div>
 
     			<div class="medico_ficha_img_container">
