@@ -28,11 +28,16 @@ function buscar( CB ){
 			});
 			jQuery(".medicos_list").html( HTML );
 			jQuery(".medico_item").unbind('click').bind('click', (e) => {
+
+				jQuery(".medicos_container").removeClass("medico_ficha_no_select");
+				jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
+				
 				var id = e.currentTarget.dataset.id;
 				cargar( id );
 			});
 
 			jQuery(".medicos_container").removeClass("medico_ficha_no_select");
+			jQuery(".medicos_container").removeClass("medico_ficha_si_cargada");
 			jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
 
 			jQuery(".medicos_list > .medico_item:first-child").click();
