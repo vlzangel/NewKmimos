@@ -172,7 +172,16 @@ jQuery( document ).ready(function() {
     jQuery("#boton_buscar").on("click", function(e){
 
         if( jQuery("#veterinario").prop("checked") ){
-            jQuery("#buscador").submit();
+            // jQuery("#buscador").submit();
+
+            jQuery.post(
+                HOME+"procesos/medicos/setParams.php",
+                jQuery("#buscador").serialize(),
+                ( data ) => {
+                    location.href = RAIZ+"mediqo"
+                }
+            );
+
         }else{
             evento_google_kmimos("buscar_home");
             evento_fbq_kmimos('buscar_home');

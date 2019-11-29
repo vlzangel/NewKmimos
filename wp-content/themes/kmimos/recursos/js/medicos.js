@@ -3,6 +3,14 @@ jQuery( document ).ready(function() {
 		buscar();
 	});
 	buscar();
+
+	jQuery(".pre-btn").on('click', (e) => {
+		if( jQuery(".pre").css("display") == "none" ){
+			jQuery(".pre").css("display", "block");
+		}else{
+			jQuery(".pre").css("display", "none");
+		}
+	});
 } );
 
 function buscar( CB ){

@@ -5,6 +5,30 @@
 	--kmimos-gris: #CCC;
 }
 
+
+.pre {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: calc( 100vw - 20px );
+    height: calc( 100vh - 20px );
+    z-index: 99999999999999;
+    display: none;
+    overflow: auto;
+}
+
+.pre pre {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.pre-btn {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    z-index: 99999999999999999;
+}
+
 .navbar-brand>img {
     position: relative;
     top: 8px !important;
@@ -153,10 +177,20 @@ pre {
 /* Listado */
 
 .medico_item {
+	position: relative;
     display: flex;
     flex-direction: row;
     width: 100%;
     cursor: pointer;
+}
+
+.medico_item:after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    right: 50px;
+    border-bottom: solid 1px var( --kmimos-gris );
+    width: calc( 100% - 140px );
 }
 
 .medico_img_container {
@@ -192,10 +226,11 @@ pre {
 }
 
 .medico_precio {
-    font-size: 20px;
-    color: #00d2c6;
+    font-size: 18px;
+    color: var( --kmimos-azul );
     font-weight: 600;
-    text-align: left;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-top: 2px;
 }
 
 /* Ficha Medico */
