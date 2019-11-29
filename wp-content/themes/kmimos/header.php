@@ -121,6 +121,8 @@
     /* Recordatorio a cuidador para completar datos bancarios */
 	wp_enqueue_style( 'style', getTema()."/css/popup-datos-bancarios.css", array(), "1.0.0" );
 
+	echo "<script> var KEY_MAPS = '".KEY_MAPS."'; </script>";
+
     if( true ){
 
 		if( is_front_page() || in_array($post->post_name, $pages_new) || in_array($post->post_type, $pages_new)  || in_array($plantilla, $pages_new) ){

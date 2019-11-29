@@ -354,7 +354,7 @@ jQuery( document ).ready(function() {
     map = d.createElement(s), e = d.getElementsByTagName(s)[0];
     map.async=!0;
     map.setAttribute("charset","utf-8");
-    map.src="//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8";
+    map.src="//maps.googleapis.com/maps/api/js?v=3&key="+KEY_MAPS;
     map.type="text/javascript";
     e.parentNode.insertBefore(map, e);
 })(document,"script");
