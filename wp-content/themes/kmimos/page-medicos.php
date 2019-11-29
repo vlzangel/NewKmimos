@@ -17,6 +17,7 @@
 
     <div class="medicos_container medico_ficha_no_select">
 		<form>
+            <input type="hidden" value="" />
 			<div class="form_container">
 				<div class="medicos_control">
 					<select id="especialidad">

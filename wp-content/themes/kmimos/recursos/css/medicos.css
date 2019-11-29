@@ -29,7 +29,7 @@
     z-index: 99999999999999999;
 }
 
-.navbar-brand>img {
+.navbar-brand > img {
     position: relative;
     top: 8px !important;
     height: 45px;
@@ -39,6 +39,14 @@
     padding-top: 0px !important;
     z-index: 100;
     background-color: var( --kmimos-azul ) !important;
+}
+
+.nav-login {
+    top: 22px !important;
+}
+
+ul.nav.navbar-nav.navbar-right {
+    display: none !important;
 }
 
 footer {
