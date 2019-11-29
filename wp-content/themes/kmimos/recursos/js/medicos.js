@@ -15,12 +15,19 @@ jQuery( document ).ready(function() {
 
 function buscar( CB ){
 	jQuery(".medicos_list").html('<span>Cargando...</span>');
+
+	var lat = jQuery("#latitud").val();
+	var lng = jQuery("#longitud").val();
+
+	lat = ( lat == '' ) ? 19.44907719008248 : parseFloat(lat);	
+	lng = ( lng == '' ) ? -99.21679135411978 : parseFloat(lng);
+
 	jQuery.post(
 		HOME+'/procesos/medicos/buscar.php',
 		{
 			specialty: jQuery("#especialidad").val(),
-			lat: 19.44907719008248,
-			lng: -99.21679135411978
+			lat: lat,
+			lng: lng
 		},
 		( data ) => {
 			var HTML = '';
