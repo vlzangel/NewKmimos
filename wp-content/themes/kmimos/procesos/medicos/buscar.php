@@ -14,7 +14,7 @@
 		$medicos = $medicos->objects;
 		$_medicos = [];
 		foreach ($medicos as $key => $medico) {
-			$img = ( isset( $medico->profilePic ) != "" ) ? $medico->profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png';
+			$img = ( ( $medico->profilePic ) != "" ) ? $medico->profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png';
 			$uni = ( isset($medico->medicInfo->university) ) ? $medico->medicInfo->university : '';
 			$_medicos[] = [
 				"id" => $medico->id,

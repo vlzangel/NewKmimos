@@ -127,7 +127,7 @@
 
 				<div class="tamanios_container">
 
-					<textarea id="motivo" type="text" placeholder="Motivo de la consulta" ></textarea>
+					<textarea id="motivo" name="motivo" type="text" placeholder="Motivo de la consulta" ></textarea>
 
 					<label class="input_check_box" for="pequenos">
 						<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos"  />
