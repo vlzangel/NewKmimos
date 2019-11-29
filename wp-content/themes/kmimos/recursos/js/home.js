@@ -85,6 +85,35 @@ var TX2 = 0;
 
 jQuery( document ).ready(function() {
 
+    jQuery("#veterinario").on('change', (e) => {
+
+        if( jQuery("#veterinario").prop("checked") ){
+            // console.log("MediQo");
+            jQuery("#buscador").attr("action", RAIZ+"mediqo");
+            jQuery(".servicios_principales_box > label").css({ "opacity": "0.6", });
+            jQuery("#check_veterinario").css({ "opacity": "1", });
+            jQuery(".tipo_mascota_container").css({ "width": "calc( 65% - 20px )", "text-align": "right", "margin-right": "0px", });
+            jQuery(".tipo_mascota_container .input_check_box").css({ "width": "calc( 33.3333334% - 15px )", });
+            jQuery(".fechas_container").css("display", "none");
+            jQuery("#motivo").css("display", "block");
+            jQuery(".tamanios_container > label").css("display", "none");
+            jQuery("#label_otro").css({ "display": "inline-block", "width": "33.3333334%", });
+            jQuery("#boton_buscar").val("Buscar Médico");
+        }else{
+            // console.log("Kmimos");
+            jQuery("#buscador").attr("action", RAIZ+"procesos/busqueda/buscar.php");
+            jQuery(".servicios_principales_box > label").css({ "opacity": "1", });
+            jQuery(".tipo_mascota_container").css({ "width": "30%", "text-align": "center", "margin-right": "19px", });
+            jQuery(".tipo_mascota_container .input_check_box").css({ "width": "calc( 50% - 15px )", });
+            jQuery("#label_otro").css("display", "none");
+            jQuery(".fechas_container").css("display", "inline-block");
+            jQuery("#motivo").css("display", "none");
+            jQuery(".tamanios_container > label").css("display", "inline-block");
+            jQuery("#boton_buscar").val("Buscar Cuidador");
+        }
+
+    });
+
     jQuery(".destacados_container").on('touchstart', function(e){
         if( parseInt( jQuery("body").width() ) < 768 ){
             var ev = e.originalEvent;
@@ -102,10 +131,8 @@ jQuery( document ).ready(function() {
             if (ev.targetTouches.length == 1) { 
                 var touch = ev.targetTouches[0]; 
                 TX2 = touch.pageX;
-
                 var h = parseInt( jQuery(".destacados_box").attr("data-h_movil") );
                 var paso = parseInt( jQuery(".destacados_box").attr("data-paso") );
-
                 var d = TX1-TX2;
                 if( Math.abs( d ) < 30 ){
                     d = (paso*h)+(d*0.2);
@@ -144,28 +171,32 @@ jQuery( document ).ready(function() {
 
     jQuery("#boton_buscar").on("click", function(e){
 
-        evento_google_kmimos("buscar_home");
-        evento_fbq_kmimos('buscar_home');
+        if( jQuery("#veterinario").prop("checked") ){
+            jQuery("#buscador").submit();
+        }else{
+            evento_google_kmimos("buscar_home");
+            evento_fbq_kmimos('buscar_home');
 
-        var errores = 0;
-        if( jQuery("#checkin").val() != "" && jQuery("#checkout").val() != "" ){
-            jQuery(".fechas_container").removeClass("error_fecha");
-        }else{
-            errores++;
-            jQuery(".fechas_container").addClass("error_fecha");
-        }
-        var seleccionados = 0;
-        jQuery(".servicios_principales_box input").each(function(i, v){
-            if( jQuery(this).prop("checked") ){ seleccionados++; }
-        });
-        if( seleccionados == 0 ){
-            errores++;
-            jQuery(".error_principales").css("display", "block");
-        }else{
-            jQuery(".error_principales").css("display", "none");
-        }
-        if( errores == 0 ){
-            jQuery('#popup-servicios-new').modal('show');
+            var errores = 0;
+            if( jQuery("#checkin").val() != "" && jQuery("#checkout").val() != "" ){
+                jQuery(".fechas_container").removeClass("error_fecha");
+            }else{
+                errores++;
+                jQuery(".fechas_container").addClass("error_fecha");
+            }
+            var seleccionados = 0;
+            jQuery(".servicios_principales_box input").each(function(i, v){
+                if( jQuery(this).prop("checked") ){ seleccionados++; }
+            });
+            if( seleccionados == 0 ){
+                errores++;
+                jQuery(".error_principales").css("display", "block");
+            }else{
+                jQuery(".error_principales").css("display", "none");
+            }
+            if( errores == 0 ){
+                jQuery('#popup-servicios-new').modal('show');
+            }
         }
         e.preventDefault();
     });

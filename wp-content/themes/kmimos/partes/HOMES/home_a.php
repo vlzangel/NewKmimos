@@ -34,6 +34,13 @@
 								<span>Hospedaje</span>
 								<div class="top_check"></div>
 							</label>
+							<label id="check_veterinario" class="input_check_box" for="veterinario">
+								<input type="checkbox" id="veterinario" name="servicios[]" value="veterinario"  />
+								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/veterinario.svg" />
+								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Hospedaje.png" />
+								<span>Veterinario</span>
+								<div class="top_check"></div>
+							</label>
 
 							<label class="input_check_box" for="guarderia" onclick="evento_google(\'guarderia\'); evento_fbq("track", "traking_code_boton_guarderia");">
 								<input type="checkbox" id="guarderia" name="servicios[]" value="guarderia" '.$check_guarderia.' />
@@ -51,7 +58,7 @@
 								<div class="top_check"></div>
 							</label>
 
-							<label class="input_check_box" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
+							<label class="input_check_box" id="label_adiestramiento" for="adiestramiento" onclick="evento_google(\'entrenamiento\'); evento_fbq("track", "traking_code_boton_entrenamiento"); ">
 								<input type="checkbox" id="adiestramiento" name="servicios[]" value="adiestramiento"  />
 								<img class="solo_pc" src="'.get_recurso("img").'HOME/SVG/Entrenamiento.svg" />
 								<img class="solo_movil" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Entrenamiento.png" />
@@ -97,6 +104,11 @@
 							<span>Gato</span>
 							<div class="top_check"></div>
 						</label>
+						<label id="label_otro" class="input_check_box" for="gato">
+							<input type="checkbox" id="otro" name="mascotas[]" value="otro"  />
+							<input type="text" id="input_otro" name="otro" placeholder="Otro ¿Cual?" />
+							<div class="top_check"></div>
+						</label>
 					</div>
 					<div class="fechas_container">
 						<div id="desde_container">
@@ -114,6 +126,9 @@
 				</div>
 
 				<div class="tamanios_container">
+
+					<textarea id="motivo" type="text" placeholder="Motivo de la consulta" ></textarea>
+
 					<label class="input_check_box" for="pequenos">
 						<input type="checkbox" id="pequenos" name="tamanos[]" value="pequenos"  />
 						<img class="icon_fecha" src="'.get_recurso("img").'HOME/RESPONSIVE/SVG/Pequenio.svg" />
