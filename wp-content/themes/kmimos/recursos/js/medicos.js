@@ -69,7 +69,7 @@ function cargar( id ){
 			id: id
 		}, (data) => {
 
-			console.log( data );
+			// console.log( data );
 
 			var img = ( data.profilePic != undefined ) ? data.profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png' ;
 			jQuery(".medicos_details .medico_ficha_img").css("background-image", "url("+img+")");
@@ -104,19 +104,34 @@ function cargar( id ){
 			jQuery(".medicos_details .medico_ficha_info_name > label").html( data.firstName+' '+data.lastName );
 			jQuery(".medicos_details .medico_ficha_info_name > div").html( NF(data.distance)+' km de tu ubicación' );
 
-			var HORARIO = '';
+			var HORARIO = ''; 
+			var MODAL = '';
+			if( USER_ID == '0' ){
+				MODAL = ' data-target="#popup-iniciar-sesion" role="button" data-toggle="modal" ';
+			}else{
+				MODAL = ' class="reservar_btn" ';
+			}
 			jQuery.each(data.agenda, (i, v) => {
 				HORARIO += '<div>';
 				HORARIO += 		'<label>'+v.fecha+'</label>';
 				HORARIO += 		'<div>';
 							jQuery.each(v.items, (i2, v2) => {
-								HORARIO +='<span data-date="'+v2[1]+'">'+v2[0]+'</span>';
+								HORARIO +='<span '+MODAL+' data-date="'+v2[1]+'">'+v2[0]+'</span>';
 							});
 				HORARIO += 		'</div>';
 				HORARIO += '</div>';
 			});
 
 			jQuery(".medico_ficha_horario_container > div").html( HORARIO );
+
+			jQuery(".reservar_btn").unbind("click").bind("click", (e) => {
+				// var id = e.currentTarget.dataset.id;
+				console.log( e.currentTarget.dataset );
+
+
+				jQuery('#reservar_medico').modal('show');
+
+			});
 
 			jQuery(".medicos_container").removeClass("medico_ficha_no_cargada");
 			jQuery(".medicos_container").addClass("medico_ficha_si_cargada");

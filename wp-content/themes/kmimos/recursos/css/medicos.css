@@ -5,6 +5,16 @@
 	--kmimos-gris: #CCC;
 }
 
+.btn-primary {
+    background-color: var(--kmimos-azul) !important;
+    border-color: var(--kmimos-azul) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--kmimos-azul) !important;
+    border-color: var(--kmimos-azul) !important;
+    opacity: .8;
+}
 
 .pre {
     position: fixed;
@@ -29,9 +39,13 @@
     z-index: 99999999999999999;
 }
 
+.navbar-brand {
+    height: 60px !important;
+}
+
 .navbar-brand > img {
     position: relative;
-    top: 8px !important;
+    top: 12px !important;
     height: 45px;
 }
 
@@ -42,11 +56,17 @@
 }
 
 .nav-login {
-    top: 22px !important;
+    top: 30px !important;
 }
 
 ul.nav.navbar-nav.navbar-right {
     display: none !important;
+}
+
+ul.nav.navbar-nav.navbar-right.is_login {
+    display: block !important;
+    top: 3px;
+    position: relative;
 }
 
 footer {
@@ -548,7 +568,6 @@ pre {
   }
 }
 
-
 /*
 
 .lds-ripple {
@@ -672,3 +691,217 @@ pre {
 }
 
 */
+
+/* Modal Reserva */
+
+#reservar_medico .modal-title {
+    text-transform: uppercase;
+}
+
+.modal_container {
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-gap: 10px;
+
+}
+
+.modal_img_container {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.modal_img {
+    background-image: url(https://com-healonsite-mediqo.s3.amazonaws.com/profile_pics/Dra._Dulce.jpg);
+    width: 120px;
+    height: 120px;
+    margin: 0px auto;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.modal_info {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.modal_pago {
+    grid-column: 1 / 3;
+    grid-row: 2;
+}
+
+.modal_info > div {
+    margin: 0px 10px 15px 0px;
+}
+
+.modal h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0px 0px 15px;
+    font-weight: 600;
+    border-bottom: solid 1px var( --kmimos-gris );
+    padding-bottom: 10px;
+}
+
+.modal_info > div > div,
+.modal_info > div > label {
+    overflow: hidden;
+    padding-top: 5px;
+    margin-left: 10px;
+    position: relative;
+}
+
+.modal_info > div > div {
+    height: 30px;
+}
+
+.modal_info > div > div > span {
+    float: right;
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    z-index: 0;
+}
+
+.modal_info label {
+    display: block;
+    font-weight: 400;
+    position: relative;
+    z-index: 100;
+}
+
+.cont_tipos {
+
+}
+
+.modal_pago label {
+    display: inline-block;
+    font-weight: 400;
+    position: relative;
+    z-index: 100;
+    border: solid 1px #CCC;
+    padding: 10px;
+    border-radius: 4px;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: 12px;
+    width: calc( 50% - 5px );
+    margin-right: 3px;
+}
+
+.modal_pago label:last-child {
+    width: calc( 50% - 2px );
+    margin-right: 0px;
+}
+
+.modal_pago input[type=checkbox], .modal_pago input[type=radio] {
+    margin: 0px;
+    margin-top: 1px\9;
+    line-height: normal;
+    vertical-align: middle;
+}
+
+.modal_pago h3 {
+    margin: 0px 0px 10px;
+}
+
+.check_container input[type=checkbox] + label {
+    display: block;
+    margin: 0px;
+    cursor: pointer;
+    padding: 0px;
+    width: 18px;
+}
+
+.check_container input[type=checkbox] {
+    display: none;
+}
+
+.check_container input[type=checkbox] + label:before {
+    content: "\2714";
+    border: 1px solid #000;
+    border-radius: 3px;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    padding-left: 3px;
+    padding-bottom: 10px;
+    margin-right: -14px;
+    vertical-align: bottom;
+    color: transparent;
+    transition: .2s;
+}
+
+.check_container input[type=checkbox] + label:active:before {
+  transform: scale(0);
+}
+
+.check_container input[type=checkbox]:checked + label:before {
+  background-color: var( --kmimos-azul );
+  border-color: var( --kmimos-azul );
+  color: #fff;
+}
+
+.check_container input[type=checkbox]:disabled + label:before {
+  transform: scale(1);
+  border-color: #aaa;
+}
+
+.check_container input[type=checkbox]:checked:disabled + label:before {
+  transform: scale(1);
+  background-color: #bfb;
+  border-color: #bfb;
+}
+
+.form_tarjeta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-top: 10px;
+}
+
+.form_tarjeta .cont_nombre {
+    grid-column: 1;
+}
+
+.form_tarjeta .cont_apellido {
+    grid-column: 2;
+}
+
+.form_tarjeta .cont_tarjeta {
+    grid-column: 1 / 3;
+}
+
+.form_tarjeta .cont_datos {
+    grid-column: 1 / 3;
+    display: flex;
+    flex-direction: row;
+}
+
+.form_tarjeta .cont_datos > div {
+    margin: 5px 10px 5px 0px;
+    width: 100%;
+}
+
+.form_tarjeta .cont_datos > div.cont_cvv {
+    margin-right: 0px;
+}
+
+.form_tarjeta input {
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
+    border: solid 1px var(--kmimos-gris);
+}
+
+.modal input, .modal select {
+    line-height: 1 !important;
+    font-size: 13px !important;
+}
+
+.modal_precio {
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--kmimos-azul);
+}

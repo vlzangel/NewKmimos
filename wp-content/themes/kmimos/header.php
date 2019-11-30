@@ -511,7 +511,7 @@
 										<img data-wlabel="logo" id="logo-black" src="'.getTema().'/images/new/km-logos/km-logo-negro'.$wlabel.'.png" style="display:none;" height="60px">
 									</a>
 								</div>
-								<ul class="nav navbar-nav navbar-right hidden-xs">
+								<ul class="nav navbar-nav navbar-right hidden-xs is_login">
 									<li class="dropdown" data-obj="avatar">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 											<img src="'.$avatar.'" width="60px" height="60px" class="img-circle"> 
