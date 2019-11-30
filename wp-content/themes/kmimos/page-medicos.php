@@ -47,22 +47,6 @@
     		<div class="medico_ficha">
     			<div class="medico_ficha_no_select_container">
     				<img src="<?= get_recurso("img").'MEDICOS/logo_mediqo.png' ?>" />
-    				<!-- <div class="lds-roller">
-    					<div></div>
-    					<div></div>
-    					<div></div>
-    					<div></div>
-    					<div></div>
-    					<div></div>
-    					<div></div>
-    					<div></div>
-    				</div> -->
-    				<!-- <div>
-	    				<div class="lds-ripple">
-	    					<div></div>
-	    					<div></div>
-	    				</div>
-    				</div> -->
 					<div>
     					<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     				</div>
@@ -72,6 +56,7 @@
     				<div class="medico_ficha_info_name">
     					<label></label>
     					<div></div>
+                        <span></span>
     				</div>
     				<div class="medico_ficha_info_certificaciones">
     					<label>CERTIFICACIONES:</label>
@@ -115,6 +100,8 @@
 
     wp_enqueue_script('buscar_home', get_recurso("js")."medicos.js?v=".time(), array(), '1.0.0');
 
+    $mascota_tipo = ( $_SESSION['medicos_serch']['otro'] != '' ) ? $_SESSION['medicos_serch']['otro'] : $_SESSION['medicos_serch']['mascotas'][0];
+
     echo '
     <div id="reservar_medico" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -144,8 +131,8 @@
                             
                             <div>
                                 <h3>Dirección y Horario</h3>
-                                <div>Jalisco</div>
-                                <div>20 de Diciembre de 2019 a las 10:00 AM</div>
+                                <div>'.$_SESSION['medicos_serch']['ubicacion_txt'].'</div>
+                                <div class="modal_fecha">20 de Diciembre de 2019 a las 10:00 AM</div>
                             </div>
                             
                             <div>
@@ -166,41 +153,48 @@
 
                         <div class="modal_pago">
 
-                            <div>
+                            <form>
+
+                                <input type="hidden" name="cita_latitud" value="'.$_SESSION['medicos_serch']['latitud'].'" />
+                                <input type="hidden" name="cita_longitud" value="'.$_SESSION['medicos_serch']['longitud'].'" />
+                                <input type="hidden" name="cita_mascota_tipo" value="'.$mascota_tipo.'" />
+                                <input type="hidden" name="cita_motivo" value="'.$_SESSION['medicos_serch']['motivo'].'" />
+
                                 <h3>Método de Pago</h3>
                                 <div class="cont_tipos">
                                     <label for="tipo_tarjeta">
-                                        <input type="radio" id="tipo_tarjeta" name="tipo_pago" value="tarjeta" checked />
+                                        <input type="radio" id="tipo_tarjeta" name="cita_tipo_pago" value="tarjeta" checked />
                                         Pago con tarjeta
                                     </label>
                                     <label for="tipo_efectivo">
-                                        <input type="radio" id="tipo_efectivo" name="tipo_pago" value="efectivo" />
+                                        <input type="radio" id="tipo_efectivo" name="cita_tipo_pago" value="efectivo" />
                                         Pago en Efectivo
                                     </label>
                                 </div>
                                 <div class="form_tarjeta">
+                                    <input type="hidden" id="input_modal_precio" name="cita_precio" />
                                     <div class="cont_nombre">
-                                        <input type="text" name="nombre" placeholder="Nombre" />
+                                        <input type="text" name="cita_nombre" placeholder="Nombre" />
                                     </div>
                                     <div class="cont_apellido">
-                                        <input type="text" name="apellido" placeholder="Apellido" />
+                                        <input type="text" name="cita_apellido" placeholder="Apellido" />
                                     </div>
                                     <div class="cont_tarjeta">
-                                        <input type="text" name="tarjeta" placeholder="Numero de tarjeta" />
+                                        <input type="text" name="cita_tarjeta" placeholder="Numero de tarjeta" />
                                     </div>
                                     <div class="cont_datos">
                                         <div class="cont_mes">
-                                            <input type="text" name="mes" placeholder="Mes (MM)" />
+                                            <input type="text" name="cita_mes" placeholder="Mes (MM)" />
                                         </div>
                                         <div class="cont_anio">
-                                            <input type="text" name="anio" placeholder="Año (AA)" />
+                                            <input type="text" name="cita_anio" placeholder="Año (AA)" />
                                         </div>
                                         <div class="cont_cvv">
-                                            <input type="text" name="cvv" placeholder="CVV" />
+                                            <input type="text" name="cita_cvv" placeholder="CVV" />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
 
                         </div>
 

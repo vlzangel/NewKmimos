@@ -11,6 +11,19 @@ jQuery( document ).ready(function() {
 			jQuery(".pre").css("display", "none");
 		}
 	});
+
+	jQuery("#tipo_tarjeta").on("change", (e) => {
+		if( jQuery("#tipo_tarjeta").prop("checked") === true ){
+			jQuery(".form_tarjeta").css("display", "grid");
+		}
+	});
+
+	jQuery("#tipo_efectivo").on("change", (e) => {
+		if( jQuery("#tipo_efectivo").prop("checked") === true ){
+			jQuery(".form_tarjeta").css("display", "none");
+		}
+	});
+
 } );
 
 function buscar( CB ){
@@ -69,7 +82,7 @@ function cargar( id ){
 			id: id
 		}, (data) => {
 
-			// console.log( data );
+			console.log( data );
 
 			var img = ( data.profilePic != undefined ) ? data.profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png' ;
 			jQuery(".medicos_details .medico_ficha_img").css("background-image", "url("+img+")");
@@ -103,6 +116,8 @@ function cargar( id ){
 
 			jQuery(".medicos_details .medico_ficha_info_name > label").html( data.firstName+' '+data.lastName );
 			jQuery(".medicos_details .medico_ficha_info_name > div").html( NF(data.distance)+' km de tu ubicación' );
+			jQuery(".medicos_details .medico_ficha_info_name > span").html( '$'+NF(data.price) );
+			jQuery("#input_modal_precio").val( parseFloat(data.price) );
 
 			var HORARIO = ''; 
 			var MODAL = '';
@@ -128,6 +143,11 @@ function cargar( id ){
 				// var id = e.currentTarget.dataset.id;
 				console.log( e.currentTarget.dataset );
 
+				jQuery(".modal_img").css( "background-image", jQuery(".medicos_details .medico_ficha_img").css("background-image") );
+				jQuery(".modal_fecha").html( e.currentTarget.dataset.date );
+
+				jQuery(".modal_info h2").html( jQuery(".medicos_details .medico_ficha_info_name > label").html() );
+				jQuery(".modal_precio").html( jQuery(".medicos_details .medico_ficha_info_name > span").html() );
 
 				jQuery('#reservar_medico').modal('show');
 
