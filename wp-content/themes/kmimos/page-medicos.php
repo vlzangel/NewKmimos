@@ -113,31 +113,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
                     <div class="modal_container">
-
                         <div class="modal_img_container">
-
                             <div class="modal_img"></div>
                             <span>Médico General</span>
-
                         </div>
-
                         <div class="modal_info">
-                            
                             <div>
-                                <h2>DULCE ROCIO RIOS PARADÁ</h2>
+                                <h2></h2>
                             </div>
-                            
                             <div>
                                 <h3>Dirección y Horario</h3>
                                 <div>'.$_SESSION['medicos_serch']['ubicacion_txt'].'</div>
-                                <div class="modal_fecha">20 de Diciembre de 2019 a las 10:00 AM</div>
+                                <div class="modal_fecha"></div>
                             </div>
                             
                             <div>
                                 <h3>Información de Consulta</h3>
-                                <div>Precio <span class="modal_precio">$520</span></div>
+                                <div class="modal_precio_container">Precio <span class="modal_precio">$520</span></div>
                                 <div>
                                     <label for="para_alguien_mas">
                                         ¿La cita es para alguien más? 
