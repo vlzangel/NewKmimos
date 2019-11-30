@@ -132,14 +132,14 @@
                         <div class="modal_img_container">
 
                             <div class="modal_img"></div>
+                            <span>Médico General</span>
 
                         </div>
 
                         <div class="modal_info">
                             
                             <div>
-                                <h3>DULCE ROCIO RIOS PARADÁ</h3>
-                                <div>A 2.012 km de tu ubicación</div>
+                                <h2>DULCE ROCIO RIOS PARADÁ</h2>
                             </div>
                             
                             <div>
