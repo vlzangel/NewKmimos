@@ -126,7 +126,7 @@
 			</div>
 			<div>
 				<div>
-					<div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/item_1.png );"></div>
+					<div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_1.png );"></div>
 				</div>
 				<div>
 					Profecionales de la salud disponibles 24/7
@@ -137,7 +137,7 @@
 			</div>
 			<div>
 				<div>
-					<div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/item_2.png );"></div>
+					<div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_2.png );"></div>
 				</div>
 				<div>
 					No más salas de espera
@@ -148,7 +148,7 @@
 			</div>
 			<div>
 				<div>
-					<div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/item_3.png );"></div>
+					<div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_3.png );"></div>
 				</div>
 				<div>
 					Pagos seguros con tarjetas
