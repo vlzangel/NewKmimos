@@ -223,6 +223,80 @@
 		</div>
 	';
 
+	
+
+
+	$SERVICIOS_PRINCIPALES = [
+		[
+			'Hospedaje.jpg',
+			'Hospedaje',
+			'¿Te vas de viaje? Tu mejor amigo será huesped en el propio hogar de uno de nuestros cuidadores',
+			'hospedaje'
+		],
+		[
+			'Guarderia.jpg',
+			'Guardería',
+			'Uno de nuestros cuidadores lo apapachará y jugará con el durante el día',
+			'guarderia'
+		],
+		[
+			'Paseos.jpg',
+			'Paseos',
+			'¿Sabías que un paseo de al menos dos horas para tu peludo baja sus niveles de estrés?',
+			'paseos'
+		],
+		[
+			'Entrenamiento.jpg',
+			'Entrenamiento',
+			'Encuentra especialistas para cualquier tipo de comportamiento',
+			'adiestramiento'
+		],
+	];
+
+	$items = '';
+	foreach ($SERVICIOS_PRINCIPALES as $key => $servicio) {
+		$items .= 
+		'<label class="carrusel_servicios_principales_item" for="'.$servicio[3].'_2">'.
+			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/'.$servicio[0].');"></div>'.
+			'<div class="carrusel_servicios_principales_data">'.
+				'<label>'.strtoupper($servicio[1]).'</label>'.
+				'<p>'.$servicio[2].'</p>'.
+			'</div>'.
+		'</label>';
+	}
+
+    $items_count = count($SERVICIOS_PRINCIPALES);
+	$final_pc = $items_count-3;
+	$final_movil = ($items_count)-1;
+
+	$HTML .= '
+		<div class="carrusel_servicios carrusel_servicios_1">
+			<h2 class="solo_pc">También puede interesarte estos servicios <span>></span> </h2>
+			<h2 class="solo_movil">O busca cuidadores por servicio > </h2>
+
+			<div class="carrusel_servicios_principales_container">
+				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-paso-movil="7" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="33.333334" data-h_movil="70" data-t="1000">
+					'.$items.''.$items.''.$items.''.$items.''.$items.'
+				</div>
+			</div>
+			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+			<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
+		</div>
+		<form id="buscador_2" method="POST" action="'.getTema().'/procesos/busqueda/buscar.php" >
+			<input type="hidden" name="personalizada" value="1" />  
+			<input type="hidden" name="redireccionar" value="1" />
+			<input type="hidden" name="USER_ID" value="'.$user_id.'" />
+			<input type="radio" id="hospedaje_2" name="servicios[]" value="hospedaje"  />
+			<input type="radio" id="guarderia_2" name="servicios[]" value="guarderia"  />
+			<input type="radio" id="paseos_2" name="servicios[]" value="paseos"  />
+			<input type="radio" id="adiestramiento_2" name="servicios[]" value="adiestramiento"  />
+		</form>
+	';
+
+
+
+
+
 
 	$SERVICIOS_PRINCIPALES = [
 		[
@@ -274,20 +348,22 @@
 	$final_movil = ($items_count)-1;
 
 	$HTML .= '
-		<div class="carrusel_servicios carrusel_servicios_2">
+		<div class="lo_nuevo_container">
+			<div class="carrusel_servicios carrusel_servicios_2">
 
-			<a id="ancla_ciudades" style="position: absolute; top: 150px;"></a>
-			<h2 class="solo_pc">Lo nuevo de Kmimos <span>></span> </h2>
-			<h2 class="solo_movil">Lo nuevo de Kmimos > </h2>
+				<a id="ancla_ciudades" style="position: absolute; top: 150px;"></a>
+				<h2 class="solo_pc">Lo nuevo de Kmimos <span>></span> </h2>
+				<h2 class="solo_movil">Lo nuevo de Kmimos > </h2>
 
-			<div class="carrusel_servicios_principales_container">
-				<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="0" data-h_movil="100" data-t="800">
-					'.$items.'
+				<div class="carrusel_servicios_principales_container">
+					<div class="carrusel_servicios_principales_box banner_box" data-paso="0" data-final_pc="'.($final_pc).'" data-final_movil="'.($final_movil).'" data-h_pc="0" data-h_movil="100" data-t="800">
+						'.$items.'
+					</div>
 				</div>
-			</div>
 
-			<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
-			<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
+				<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
+				<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
+			</div>
 		</div>
 	';
 

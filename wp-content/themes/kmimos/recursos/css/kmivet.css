@@ -133,3 +133,10 @@ input#input_otro {
 .carrusel_servicios_principales_img {
     border-radius: 3px;
 }
+
+.lo_nuevo_container {
+    padding-bottom: 70px;
+    border-bottom: solid 1px #CCC;
+    box-shadow: 0px 4px 4px #CCC;
+    margin-bottom: 30px;
+}
