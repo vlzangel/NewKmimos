@@ -121,40 +121,59 @@
 
 	$HTML .= '
 		<div class="vlz_info">
+			<div> Busca los mejores especialistas o servicios médicos, elige un horario adecuado y reserve al instante con unos pocos clics. </div>
 			<div>
-				Busca los mejores especialistas o servicios médicos, elige un horario adecuado y reserve al instante con unos pocos clics.
+				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_1.png );"></div> </div>
+				<div> Profecionales de la salud disponibles 24/7 </div>
+				<div> Elije el horario más conveniente para tu consulta y reserva con un solo clic. </div>
 			</div>
 			<div>
-				<div>
-					<div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_1.png );"></div>
-				</div>
-				<div>
-					Profecionales de la salud disponibles 24/7
-				</div>
-				<div>
-					Elije el horario más conveniente para tu consulta y reserva con un solo clic.
-				</div>
+				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_2.png );"></div> </div>
+				<div> No más salas de espera </div>
+				<div> Ahorra tiempo, espera comodamente desde tu casa y evita trasladarte </div>
 			</div>
 			<div>
-				<div>
-					<div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_2.png );"></div>
-				</div>
-				<div>
-					No más salas de espera
-				</div>
-				<div>
-					Ahorra tiempo, espera comodamente de desde tu casa y evita trasladarte
-				</div>
+				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_3.png );"></div> </div>
+				<div> Pagos seguros con tarjetas </div>
+				<div> Paga mediante la plataforma de forma segura y fácil </div>
 			</div>
-			<div>
-				<div>
-					<div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_3.png );"></div>
+		</div>
+	';
+
+	$_SERVICIOS = [
+		'Veterinario a domicilio',
+		'Asesoria virtual',
+		'Servicio de ambulancia',
+		'Kmivet lnn',
+		'Enfermería',
+		'Farmacia',
+	];
+
+	$_items = '';
+	foreach ($_SERVICIOS as $key => $value) {
+		$active = ( $key == 0 ) ? ' class="active" ' : '';
+		$_items .= '
+		<div '.$active.' data-item="'.($key+1).'" >
+			<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/'.($key+1).'.png );"></div> </div>
+			<div> '.$value.' </div>
+		</div>';
+	}
+
+	$HTML .= '
+		<div class="vlz_info_servicios">
+			<div> Conoce los servicios que ofrece kmivet </div>
+			<div class="vlz_info_items"> '.$_items.' </div>
+			<div class="vlz_info_servicios_box">
+				<div class="" style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/IMGs/1.png );">
+
 				</div>
-				<div>
-					Pagos seguros con tarjetas
-				</div>
-				<div>
-					Paga mediante la plataforma de forma segura y fácil
+				<div class="">
+					<div>Veterinario a domicilio</div>
+					<p>
+						Gracias a las consultas a domicilio puedes esperar comodamente
+						desde tu casa y recibir una evaluación, diagnostico o tratamiento
+						que requieran un examen físico.
+					</p>
 				</div>
 			</div>
 		</div>
