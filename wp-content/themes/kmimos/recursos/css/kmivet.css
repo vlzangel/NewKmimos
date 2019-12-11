@@ -88,3 +88,48 @@ input#input_otro {
     border: solid 1px #CCC;
     height: 45px;
 }
+
+.vlz_info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 1140px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.vlz_info > div:first-child {
+    font-family: 'Gotham-Pro-Medium', arial, sans-serif;
+    grid-column: 1 / 4;
+    text-transform: uppercase;
+    font-size: 14px;
+    max-width: 785px;
+    margin: 10px auto;
+    line-height: 2;
+}
+
+.vlz_info > div > div > div:first-child {
+	height: 150px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.vlz_info > div > div:nth-child(2) {
+    font-weight: 600;
+    font-size: 13px;
+    padding: 0px 80px;
+    min-height: 35px;
+}
+
+.vlz_info > div > div:nth-child(3) {
+    padding: 5px 50px;
+}
+
+.carrusel_servicios_2 .carrusel_servicios_principales_data p {
+    font-weight: 400;
+}
+
+.carrusel_servicios_principales_img {
+    border-radius: 3px;
+}
