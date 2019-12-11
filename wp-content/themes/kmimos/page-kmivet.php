@@ -226,12 +226,12 @@
 
 	$SERVICIOS_PRINCIPALES = [
 		[
-			'Banner-Conviertete.jpg',
+			'Domicilio.png',
 			'¡Veterinario a domicilio!',
 			'Consulta con el médico de tu preferencia',
 			'Solicita que un veterinario vaya hasta tu casa, o realiza consultas de forma virtual',
-			'conviertete',
-			get_home_url().'/quiero-ser-cuidador-certificado-de-perros',
+			'domicilio',
+			get_home_url().'/mediqo',
 			'lo_nuevo_Conviertete'
 		],
 		[
@@ -259,7 +259,7 @@
 		$items .= 
 		'<label class="carrusel_servicios_principales_item" for="'.$servicio[3].'_2">'.
 			'<a href="'.$seguimiento.'" target="_blank"></a>'.
-			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'HOME_2/NEW/'.$servicio[0].');"></div>'.
+			'<div class="carrusel_servicios_principales_img" style="background-image: url('.get_recurso('img').'KMIVET/LO_NUEVO/'.$servicio[0].');"></div>'.
 			'<div class="carrusel_servicios_principales_data">'.
 				'<label>'.($servicio[1]).'</label>'.
 				'<label class="label_2">'.($servicio[2]).'</label>'.
