@@ -119,6 +119,10 @@ function cargar( id ){
 			jQuery(".medicos_details .medico_ficha_info_name > span").html( '$'+NF(data.price) );
 			jQuery("#input_modal_precio").val( parseFloat(data.price) );
 
+			jQuery(".medico_ficha_titulo > div").html( data.firstName+' '+data.lastName );
+			jQuery(".medico_ficha_titulo > span").html( NF(data.distance)+' km de tu ubicación' );
+			jQuery(".medico_ficha_titulo > strong").html( '$'+NF(data.price) );
+
 			var HORARIO = ''; 
 			var MODAL = '';
 			if( USER_ID == '0' ){

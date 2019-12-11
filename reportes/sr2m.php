@@ -15,6 +15,8 @@
 	$file = 'excels/'.$name;
 	$file_path = dirname(__FILE__)."/".$file;
 
+	$fecha = date("Y-m-d", strtotime("- 2 month"));
+
 	$data = $wpdb->get_results("
 		SELECT 
 			u.ID AS id,
@@ -27,6 +29,7 @@
 		INNER JOIN wp_users AS u ON ( u.ID = m.user_id )
 		INNER JOIN wp_usermeta AS n ON ( u.ID = n.user_id )
 		INNER JOIN wp_usermeta AS a ON ( u.ID = a.user_id )
+		INNER JOIN wp_posts AS r ON ( r.post_author = a.user_id AND r.post_status LIKE '%confirmed%' AND post_type = 'wc_booking' AND post_date > '{$fecha}' )
 		WHERE 
 			n.meta_key = 'first_name' AND
 			a.meta_key = 'last_name' AND
@@ -55,7 +58,7 @@
 	$HTML .= '</table>';
 
 	echo $HTML;
-	
+
 	$handle = fopen($file_path,'w+');
 		fwrite($handle, utf8_decode($HTML) );
 	fclose($handle);

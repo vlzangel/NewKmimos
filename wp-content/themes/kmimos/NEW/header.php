@@ -1,4 +1,7 @@
 <?php
+	
+	global $HEADER;
+
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'fontello', getTema()."/css/fontello.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'old_generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
@@ -47,11 +50,20 @@
 		$menus_normal =  $MENU["body"].$MENU["footer"];
 	}
 
+	$quiero_ser = 'Quiero ser Cuidador';
+	$buscar_ = 'Buscar Cuidador';
+	$logo = 'HOME/PNG/logo-verde.png';
+	if( $HEADER == 'kmivet' ){
+		$quiero_ser = 'Quiero ser Kmiveterinario';
+		$buscar_ = 'Buscar Veterinario';
+		$logo = 'KMIVET/logo.png';
+	}
+
 	// Avatar default
 	$avatar = getTema().'/images/new/km-navbar-mobile.svg';
 	$avatar_circle = '';
 	if( !is_user_logged_in() ){
-		$btn_quiero = '<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" id="quiero_ser_menu" class="boton boton_morado"> <img src="'.get_recurso("img").'HOME/PNG/Ser_cuidador.png" /> Quiero ser Cuidador</a>';
+		$btn_quiero = '<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" id="quiero_ser_menu" class="boton boton_morado"> <img src="'.get_recurso("img").'HOME/PNG/Ser_cuidador.png" /> '.$quiero_ser.'</a>';
 		wp_enqueue_script('modales', getTema()."/js/registro_cliente.js", array("jquery"), '1.0.0');
 	}else{
 		$current_user = wp_get_current_user();
@@ -86,13 +98,13 @@
 					<form class="barra_buscar_movil" method="POST" action="'.get_home_url().'/wp-content/themes/kmimos/procesos/busqueda/buscar.php">
 						<i class="fa fa-search"></i>
 						<input type="hidden" name="redireccionar" value="1" />
-						<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
+						<input type="text" id="txt_buscar" placeholder="'.$buscar_.'" name="nombre"  />
 					</form>
 
 					<ul class="nav navbar-nav">
 						<li><a href="#" data-target="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">Iniciar sesión</a></li>
 						<li><a href="#" data-target="#popup-registrarte" class="km-nav-link" role="button" >Registrarme</a></li>
-						<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-nav-link">Quiero ser cuidador</a></li>
+						<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-nav-link">'.$quiero_ser.'</a></li>
 						<!-- <li style="border-top:1px solid #e8e8e8;"><a href="'.get_home_url().'/ayuda" class="pd-tb11 menu-link"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Ayuda</a></li> -->
 			    	</ul>
 			    </div>
@@ -123,7 +135,7 @@
 							<i class="fa fa-search"></i>
 							<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 							<input type="hidden" name="redireccionar" value="1" />
-							<input type="text" id="txt_buscar" placeholder="Buscar cuidador" name="nombre"  />
+							<input type="text" id="txt_buscar" placeholder="'.$buscar_.'" name="nombre"  />
 						</form>
 						<ul class="nav navbar-nav">
 							'.$menus_normal.'
@@ -450,12 +462,12 @@
 							<a id="link_home" href="'.$link_home.'">
 								<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo.png" />
 								<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-negro.png" />
-								<img class="logo logo_verde" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />
+								<img class="logo logo_verde" src="'.get_recurso("img").$logo.'" />
 							</a>
 							<a href="'.get_home_url().'#buscar" id="buscar_cuidador_btn_nav" onclick="ancla_form()" class="boton">
 								<img class="lupa" src="'.get_recurso("img").'HOME/PNG/Buscar.png" /> 
 								<img class="lupa_negra" src="'.get_recurso("img").'HOME/PNG/Buscar_negro.png" /> 
-								<span>Buscar Cuidador</span>
+								<span>'.$buscar_.'</span>
 							</a>
 							'.$btn_quiero.'
 						</td>

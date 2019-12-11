@@ -1,0 +1,90 @@
+.navbar-right {
+    padding: 10px 0px;
+}
+
+.vlz_top {
+    display: grid;
+    grid-template-columns: 385px 1fr;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ubicacion_container {
+    width: 100%;
+}
+
+.tipo_mascota_container { 
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+#motivo {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: solid 1px #CCC;
+    border-radius: 5px;
+    resize: none;
+}
+
+.tamanios_container {
+    display: inline-block;
+    width: calc( 100% - 450px );
+    height: 50px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    padding-left: 6px;
+    overflow: hidden;
+    float: left;
+    position: relative;
+}
+
+.ubicacion_container .barra_ubicacion {
+    position: absolute;
+    right: 40px;
+    border-left: solid 1px #CCC;
+    top: 0px;
+    height: calc( 100% - 5px );
+    width: 0px;
+}
+
+.tipo_mascota_container .input_check_box {
+    width: calc( 25% - 15px );
+    height: 45px;
+    vertical-align: middle;
+    padding: 0px;
+}
+
+label#label_otro {
+    width: 95px;
+    text-align: left !important;
+    padding: 12px 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #777;
+}
+
+label#label_otro input {
+    display: inline-block !important;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-top: -2px;
+    margin-right: 5px;
+}
+
+label#label_input {
+    width: calc( 100% - 450px );
+}
+
+input#input_otro {
+    width: 100%;
+    padding: 12px;
+    border-radius: 3px;
+    border: solid 1px #CCC;
+    height: 45px;
+}

@@ -332,6 +332,7 @@ pre {
 
 
 .medico_ficha_titulo {
+    position: relative;
     grid-column: 1 / 5;
     grid-row: 1;
     margin-bottom: 10px;
@@ -347,6 +348,16 @@ pre {
 .medico_ficha_titulo > span {
 	font-size: 13px;
 	font-weight: 400;
+}
+
+.medico_ficha_titulo > strong {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    color: var(--kmimos-azul);
+    font-weight: 600;
+    font-size: 35px;
+    font-family: sans-serif;
 }
 
 .medico_ficha_info_container {
@@ -586,8 +597,11 @@ pre {
 }
 
 .modal_info > div > h2 {
-    font-size: 20px;
+    font-size: 16px;
     color: var(--kmimos-azul);
+    font-family: 'Gotham-Pro-Medium', arial, sans-serif;
+    letter-spacing: -1px;
+    margin-bottom: 0px;
 }
 
 .modal_img_container span {
@@ -630,7 +644,7 @@ pre {
 }
 
 .modal_info > div {
-    margin: 0px 10px 15px 0px;
+    margin: 0px 10px 10px 0px;
 }
 
 .modal h3 {

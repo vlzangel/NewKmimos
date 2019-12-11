@@ -113,7 +113,7 @@
         ];
 
         $day_init = strtotime(date('m/d/Y',  strtotime($inicio_wlabel) ));
-        $day_last=strtotime( date("Y")."-".(date('m')+1)."-01" );
+        $day_last = strtotime( "+1 month", strtotime( date("Y-m")."-01") );
         $day_more = (24*60*60);
 
         $inits = [

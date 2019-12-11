@@ -41,8 +41,9 @@
     	<div class="medicos_list"></div>
     	<div class="medicos_details">
 			<div class="medico_ficha_titulo">
-				<div>ELIGE A TU MÉDICO</div>
-				<span>*Los precios varían por hora y distancia</span>
+				<div></div>
+				<span></span>
+                <strong></strong>
 			</div>
     		<div class="medico_ficha">
     			<div class="medico_ficha_no_select_container">
@@ -79,9 +80,7 @@
     			</div>
     			<div class="medico_ficha_horario_container">
     				<label>Horario</label>
-    				<div>
-    					
-    				</div>
+    				<div></div>
     			</div>
     		</div>
     	</div>
@@ -127,7 +126,6 @@
                                 <div>'.$_SESSION['medicos_serch']['ubicacion_txt'].'</div>
                                 <div class="modal_fecha"></div>
                             </div>
-                            
                             <div>
                                 <h3>Información de Consulta</h3>
                                 <div class="modal_precio_container">Precio <span class="modal_precio">$520</span></div>
@@ -141,18 +139,13 @@
                                     </span> 
                                 </div>
                             </div>
-
                         </div>
-
                         <div class="modal_pago">
-
                             <form>
-
                                 <input type="hidden" name="cita_latitud" value="'.$_SESSION['medicos_serch']['latitud'].'" />
                                 <input type="hidden" name="cita_longitud" value="'.$_SESSION['medicos_serch']['longitud'].'" />
                                 <input type="hidden" name="cita_mascota_tipo" value="'.$mascota_tipo.'" />
                                 <input type="hidden" name="cita_motivo" value="'.$_SESSION['medicos_serch']['motivo'].'" />
-
                                 <h3>Método de Pago</h3>
                                 <div class="cont_tipos">
                                     <label for="tipo_tarjeta">
@@ -173,7 +166,7 @@
                                         <input type="text" name="cita_apellido" placeholder="Apellido" />
                                     </div>
                                     <div class="cont_tarjeta">
-                                        <input type="text" name="cita_tarjeta" placeholder="Numero de tarjeta" />
+                                        <input type="text" name="cita_tarjeta" placeholder="Número de tarjeta" />
                                     </div>
                                     <div class="cont_datos">
                                         <div class="cont_mes">
@@ -188,11 +181,8 @@
                                     </div>
                                 </div>
                             </form>
-
                         </div>
-
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">Confirmar Cita</button>

@@ -11,7 +11,6 @@
     global $wpdb;
     $wlabel = $_wlabel_user->wlabel;
     $WLresult = $_wlabel_user->wlabel_result;
-    // $_wlabel_user->wlabel_Options('client');
     $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
     $_wlabel_user->wlabel_Export('monitor','Funnel de Conversión','table'); ?>
 
@@ -39,9 +38,7 @@
                 <table cellspacing="0" cellpadding="0">
                     <thead>
                         <tr><?php
-
                             $day_init = strtotime(date('m/d/Y',$WLresult->time));
-                            // $day_last=strtotime( "01/01/".( date('Y', time())+1 ) );
                             $day_last=strtotime( date("Y")."-".(date('m')+1)."-01" );
                             $day_more = (24*60*60);
 
@@ -67,7 +64,6 @@
                                     }
                                 }
                             }
-                            
                             echo '<th class="total" >Acumulado '.(date('Y', time() )).'</th>'; ?>
                         </tr>
                     </thead>
@@ -145,7 +141,12 @@
                             ORDER BY
                                 reservas.ID DESC
                         ";
+
                         $reservas = $wpdb->get_results($sql);
+
+                        echo '<pre>';
+                            print_r($reservas);
+                        echo '</pre>';
 
                         $total_noches = 0;
                         $_reservas = [];

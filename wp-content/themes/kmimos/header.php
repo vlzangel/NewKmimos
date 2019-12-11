@@ -112,6 +112,7 @@
         "page-registro-cuidador.php",
         "page-personalizada.php",
         "page-home_2.php",
+        "page-kmivet.php",
         'page-validar_pago.php'
 
     ];
