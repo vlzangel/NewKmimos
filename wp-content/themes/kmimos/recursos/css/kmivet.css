@@ -99,13 +99,13 @@ input#input_otro {
 }
 
 .vlz_info > div:first-child {
-    font-family: 'Gotham-Pro-Medium', arial, sans-serif;
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
     grid-column: 1 / 4;
     text-transform: uppercase;
-    font-size: 14px;
-    max-width: 785px;
+    font-size: 18px;
+    max-width: 1010px;
     margin: 10px auto;
-    line-height: 2;
+    line-height: 1.6;
 }
 
 .vlz_info > div > div > div:first-child {
