@@ -113,6 +113,7 @@
         "page-personalizada.php",
         "page-home_2.php",
         "page-kmivet.php",
+        "page-medicos.php",
         'page-validar_pago.php'
 
     ];

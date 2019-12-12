@@ -1,4 +1,5 @@
 jQuery( document ).ready(function() {
+
 	jQuery("#especialidad").on('change', (e) => {
 		buscar();
 	});
@@ -23,6 +24,8 @@ jQuery( document ).ready(function() {
 			jQuery(".form_tarjeta").css("display", "none");
 		}
 	});
+
+	jQuery("nav").addClass("nav_white");
 
 } );
 

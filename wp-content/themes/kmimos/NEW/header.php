@@ -52,11 +52,14 @@
 
 	$quiero_ser = 'Quiero ser Cuidador';
 	$buscar_ = 'Buscar Cuidador';
-	$logo = 'HOME/PNG/logo-verde.png';
+	$logo = '
+		<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo.png" />
+		<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-negro.png" />
+		<img class="logo logo_verde" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />';
 	if( $HEADER == 'kmivet' ){
 		$quiero_ser = 'Quiero ser Kmiveterinario';
 		$buscar_ = 'Buscar Veterinario';
-		$logo = 'KMIVET/logo.png';
+		$logo = '<img class="logo" src="'.get_recurso("img").'KMIVET/logo.png" />';
 	}
 
 	// Avatar default
@@ -147,12 +150,13 @@
 	}
 
 	$pages_white = [
-		"busqueda"
+		"busqueda",
+		"mediqo",
 	];
 
 	$clase_white = "";
-	if( in_array($post->post_name, $pages_white) ){
-		$clase_white = "nav_white";
+	if( in_array(trim($post->post_name), $pages_white) ){
+		$clase_white = "nav_mediqo";
 	}
 
 	$wlabel = add_wlabel();
@@ -460,9 +464,7 @@
 					<tr>
 						<td class="nav_left">
 							<a id="link_home" href="'.$link_home.'">
-								<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo.png" />
-								<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-negro.png" />
-								<img class="logo logo_verde" src="'.get_recurso("img").$logo.'" />
+								'.$logo.'
 							</a>
 							<a href="'.get_home_url().'#buscar" id="buscar_cuidador_btn_nav" onclick="ancla_form()" class="boton">
 								<img class="lupa" src="'.get_recurso("img").'HOME/PNG/Buscar.png" /> 

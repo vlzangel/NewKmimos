@@ -3,7 +3,15 @@
         Template Name: Médicos
     */
 
+    $HEADER = 'kmivet';
+    $NAV = 'kmivet';
+
 	date_default_timezone_set('America/Mexico_City');
+    
+    wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
+    wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
+    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
     wp_enqueue_style('home_kmimos', get_recurso("css")."medicos.css", array('kmimos_style'), '1.0.0');
     wp_enqueue_style('home_responsive', get_recurso("css")."responsive/medicos.css", array(), '1.0.0');
