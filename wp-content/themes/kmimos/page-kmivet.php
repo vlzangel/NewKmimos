@@ -120,17 +120,17 @@
 		<div class="vlz_info">
 			<div> Busca los mejores especialistas o servicios médicos, elige un horario adecuado y reserve al instante con unos pocos clics. </div>
 			<div>
-				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_1.png );"></div> </div>
+				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_1.svg );"></div> </div>
 				<div> Profecionales de la salud disponibles 24/7 </div>
 				<div> Elije el horario más conveniente para tu consulta y reserva con un solo clic. </div>
 			</div>
 			<div>
-				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_2.png );"></div> </div>
+				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_2.svg );"></div> </div>
 				<div> No más salas de espera </div>
 				<div> Ahorra tiempo, espera comodamente desde tu casa y evita trasladarte </div>
 			</div>
 			<div>
-				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_3.png );"></div> </div>
+				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_3.svg );"></div> </div>
 				<div> Pagos seguros con tarjetas </div>
 				<div> Paga mediante la plataforma de forma segura y fácil </div>
 			</div>
@@ -151,7 +151,7 @@
 		$active = ( $key == 0 ) ? ' class="active" ' : '';
 		$_items .= '
 		<div '.$active.' data-item="'.($key+1).'" >
-			<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/'.($key+1).'.png );"></div> </div>
+			<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/'.($key+1).'.svg );"></div> </div>
 			<div> '.$value.' </div>
 		</div>';
 	}
@@ -161,7 +161,7 @@
 			<div> Conoce los servicios que ofrece kmivet </div>
 			<div class="vlz_info_items"> '.$_items.' </div>
 			<div class="vlz_info_servicios_box">
-				<div class="" style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/IMGs/1.png );">
+				<div class="" style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/IMGs/1.jpg );">
 
 				</div>
 				<div class="">
@@ -408,7 +408,7 @@
 			<div class="pasos_reserva_row">
 				<div class="pasos_reserva_celda">
 					<div class="pasos_celda_top">
-						<img src="'.get_recurso("img").'HOME/SVG/Paso_1.svg" />
+						<img src="'.get_recurso("img").'KMIVET/IMPORTA/1.svg" />
 					</div>
 					<div class="pasos_celda_bottom">
 						<h3>Haz tu búsqueda</h3>
@@ -417,7 +417,7 @@
 				</div>
 				<div class="pasos_reserva_celda">
 					<div class="pasos_celda_top">
-						<img src="'.get_recurso("img").'HOME/SVG/Paso_2.svg" />
+						<img src="'.get_recurso("img").'KMIVET/IMPORTA/2.svg" />
 					</div>
 					<div class="pasos_celda_bottom">
 						<h3>Agenda y haz el pago</h3>
@@ -426,7 +426,7 @@
 				</div>
 				<div class="pasos_reserva_celda">
 					<div class="pasos_celda_top">
-						<img src="'.get_recurso("img").'HOME/SVG/Paso_3.svg" />
+						<img src="'.get_recurso("img").'KMIVET/IMPORTA/3.svg" />
 					</div>
 					<div class="pasos_celda_bottom">
 						<h3>Tu mascota sana y feliz</h3>

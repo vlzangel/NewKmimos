@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.731 87.393">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #572a99;
+        stroke-linecap: round;
+        stroke-width: 4px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #7d40dd;
+      }
+
+      .cls-3 {
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <title>Servicios - enfermería_1</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <polyline class="cls-1" points="52.083 11.458 59.412 14.672 55.027 33.84"/>
+        <polyline class="cls-1" points="6.395 33.84 3.98 14.063 30.935 2.185 40.279 6.282"/>
+        <path class="cls-2" d="M52.153,44.825V55.079a21.219,21.219,0,0,1-42.438,0V44.825H2V77.949a7.427,7.427,0,0,0,8.075,7.414c6.423-.588,13.4-.95,20.862-.942,7.284.008,14.1.366,20.4.942a7.427,7.427,0,0,0,8.079-7.413V44.825Z"/>
+        <path class="cls-2" d="M59.412,44.825A15.941,15.941,0,0,0,45.467,28.99a119.34,119.34,0,0,0-29.5,0A15.951,15.951,0,0,0,2,44.825H59.412Z"/>
+        <line class="cls-3" x1="30.935" y1="12.088" x2="30.935" y2="21.225"/>
+        <line class="cls-3" x1="35.503" y1="16.656" x2="26.366" y2="16.656"/>
+      </g>
+    </g>
+  </g>
+</svg>

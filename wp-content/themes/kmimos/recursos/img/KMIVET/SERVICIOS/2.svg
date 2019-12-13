@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.956 90.652">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #7d40dd;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #572a99;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <title>Servicios - Asesoria</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <circle class="cls-1" cx="29.869" cy="32.965" r="9.645"/>
+        <path class="cls-1" d="M20.63,50.834H37.991a6.6,6.6,0,0,1,6.6,6.6V71.139a0,0,0,0,1,0,0H14.031a0,0,0,0,1,0,0V57.433A6.6,6.6,0,0,1,20.63,50.834Z"/>
+        <path class="cls-2" d="M10.528,2h39.9a8.528,8.528,0,0,1,8.528,8.528V71.139a0,0,0,0,1,0,0H2a0,0,0,0,1,0,0V10.528A8.528,8.528,0,0,1,10.528,2Z"/>
+        <path class="cls-2" d="M2,71.139H58.956a0,0,0,0,1,0,0v8.985a8.528,8.528,0,0,1-8.528,8.528h-39.9A8.528,8.528,0,0,1,2,80.124V71.139A0,0,0,0,1,2,71.139Z"/>
+        <line class="cls-2" x1="19.513" y1="11.29" x2="31.848" y2="11.29"/>
+        <line class="cls-2" x1="35.96" y1="11.29" x2="39.514" y2="11.29"/>
+        <line class="cls-2" x1="28.041" y1="79.895" x2="32.914" y2="79.895"/>
+      </g>
+    </g>
+  </g>
+</svg>

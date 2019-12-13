@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76.489 89.992">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #7d40dd;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #572a99;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <title>Servicios - Farmacia</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <path class="cls-1" d="M47.229,33.473A27.205,27.205,0,0,0,37.94,35.1V65.352a17.95,17.95,0,0,1-9.025,15.571,27.259,27.259,0,1,0,18.315-47.45Z"/>
+        <line class="cls-2" x1="35.554" y1="72.814" x2="58.905" y2="49.463"/>
+        <path class="cls-2" d="M37.94,32.661v32.69a17.97,17.97,0,0,1-17.97,17.97h0A17.97,17.97,0,0,1,2,65.352V19.97A17.97,17.97,0,0,1,19.97,2h0A17.97,17.97,0,0,1,37.94,19.97"/>
+        <line class="cls-2" x1="12.66" y1="42.661" x2="27.28" y2="42.661"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -113,10 +113,11 @@ input#input_otro {
 }
 
 .vlz_info > div > div > div:first-child {
-	height: 150px;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
+    height: 125px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 25px;
 }
 
 .vlz_info > div > div:nth-child(2) {
@@ -175,7 +176,7 @@ input#input_otro {
 }
 
 .vlz_info_items > div.active {
-    border: solid 2px #00d2c6;
+    border: solid 2px #969696;
 }
 
 .vlz_info_items > div > div > div:first-child {
@@ -224,4 +225,37 @@ input#input_otro {
     line-height: 1.8;
     padding-right: 50px;
     font-weight: 400;
+}
+
+.pasos_reserva_celda img {
+    height: 90px;
+    margin: 40px 0px 10px;
+}
+
+.pasos_reserva_celda span {
+    border: solid 2px #7d40dd;
+    padding: 3px 0px;
+    border-radius: 50%;
+    font-size: 22px;
+    color: #7d40dd;
+    font-weight: 600;
+    width: 43px;
+    display: inline-block;
+}
+
+.pasos_reserva_container #paso_1:after,
+.pasos_reserva_container #paso_2:after,
+.pasos_reserva_container #paso_2:before,
+.pasos_reserva_container #paso_3:before {
+    top: 20px;
+}
+
+.boton_buscar_container .boton_buscar {
+    border: 1px #572a99;
+    background-color: #572a99;
+}
+
+.boton_buscar_container .boton_buscar:hover {
+    border: 1px #572a99AA;
+    background-color: #572a99AA;
 }
