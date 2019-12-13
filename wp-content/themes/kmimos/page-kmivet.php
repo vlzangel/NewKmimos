@@ -107,7 +107,7 @@
 					<textarea id="motivo" name="motivo" type="text" placeholder="Motivo de la consulta" ></textarea>
 				</div>
 				<div class="boton_buscar_container">
-					<input type="submit" id="boton_buscar" class="boton_buscar boton_verde" value="Buscar cuidador">
+					<input type="submit" id="boton_buscar" class="boton_buscar boton_verde" value="Buscar veterinario">
 				</div>
 				<div style="clear: both;"></div>
 			</form>
