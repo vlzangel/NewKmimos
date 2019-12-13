@@ -177,7 +177,7 @@
 					Consigue <strong>médicos veterinarios por tu área.</strong>
 				</div>
 				<div>
-					<input type="button" class="boton_buscar" value="Buscar Veterinario">
+					<a href="#banner_home" class="boton_buscar">Buscar Veterinario</a>
 				</div>
 			</div>
 		</div>

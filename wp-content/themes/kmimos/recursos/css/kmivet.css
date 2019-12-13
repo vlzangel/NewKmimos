@@ -300,7 +300,7 @@ input#input_otro {
     font-family: 'Gotham-Pro-Bold', arial, sans-serif;
 }
 
-.vlz_info_msg > div:last-child input {
+.vlz_info_msg > div:last-child a {
     background-color: var(--kmimos-morado);
     border: 0px;
     padding: 13px;
@@ -309,5 +309,7 @@ input#input_otro {
     color: #FFF;
     font-weight: 500;
     font-size: 15px;
+    text-align: center;
+    text-decoration: none;
 }
 
