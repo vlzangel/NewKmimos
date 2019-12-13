@@ -59,7 +59,8 @@
 		$agenda[ $fi ]['fecha'] = $ff;
 		$agenda[ $fi ]['items'][] = [
 			$hi,
-			$ff
+			$ff,
+			date('Y-m-d H:i:s', $start)
 		];
 	}
 	$info["agenda"] = $agenda;

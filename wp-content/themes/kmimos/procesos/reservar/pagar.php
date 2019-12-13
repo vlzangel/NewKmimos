@@ -1,10 +1,7 @@
 <?php
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
-
 	include_once($raiz."/wp-load.php");
-
 	date_default_timezone_set('America/Mexico_City');
-
 	if( !isset($_SESSION)){ session_start(); }
 
 	include_once($raiz."/vlz_config.php");

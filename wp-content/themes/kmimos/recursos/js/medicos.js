@@ -1,3 +1,35 @@
+var __FORM_PAGO__ = 'reserva_form';
+var __CB_PAGO_OK__ = function(){
+	// debug('Ok');
+
+	jQuery("#btn_reservar").html("Procesando...");
+
+	jQuery.post(
+		HOME+'/procesos/medicos/pagar.php',
+		jQuery("#"+__FORM_PAGO__).serialize(),
+		function(res){
+			debug(res);
+			if( res.errores.length == 0 ){
+				alert("Consulta Reservada Exitosamente, su id es "+res.cid);
+
+				jQuery('#reservar_medico').modal('hide');
+				jQuery("#btn_reservar").html("Solicitar Cunsulta");
+				jQuery("#btn_reservar").prop("disabled", false);
+
+				jQuery(".vlz_limpiar").val('');
+			}else{
+				jQuery("#btn_reservar").html("Solicitar Cunsulta");
+				jQuery("#btn_reservar").prop("disabled", false);
+			}
+		}, 
+		'json'
+	);
+}
+
+var __CB_PAGO_KO__ = function(){
+	debug('Error');
+}
+
 jQuery( document ).ready(function() {
 
 	jQuery("#especialidad").on('change', function(e) {
@@ -47,7 +79,17 @@ jQuery( document ).ready(function() {
 		});
 	});
 
+	jQuery("#btn_reservar").on("click", function(e){
+		jQuery("#btn_reservar").html("Validando...");
+		jQuery("#btn_reservar").prop("disabled", true);
+		OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
+	});
+
 } );
+
+function debug( txt ){
+	console.log( txt );
+}
 
 function buscar( CB ){
 	jQuery(".medicos_list").html('<span>Cargando...</span>');
@@ -66,7 +108,9 @@ function buscar( CB ){
 			lng: lng
 		},
 		( data ) => {
-			console.log( data );
+			
+			debug( data );
+
 			var HTML = '';
 			jQuery.each(data, (i, v) => {
 				HTML += '<div class="medico_item" data-id="'+v.id+'" data-slug="'+v.slug+'">';
@@ -111,7 +155,7 @@ function cargar( id ){
 			id: id
 		}, (data) => {
 
-			console.log( data );
+			debug( data );
 
 			item_actual = data;
 
@@ -165,8 +209,7 @@ function cargar( id ){
 			jQuery(".modal_img").css("background-image", "url("+img+")");
 			jQuery(".modal_info h2").html( data.firstName+' '+data.lastName );
 			jQuery(".modal_img_container .ranking").html( data.rating );
-
-
+			jQuery("#medico_id").val( id );
 
 			jQuery(".medico_ficha_titulo > div").html( data.firstName+' '+data.lastName );
 			jQuery(".medico_ficha_titulo > span").html( NF(data.distance)+' km de tu ubicación' );
@@ -187,7 +230,7 @@ function cargar( id ){
 				}
 				HORARIO += 		'<div><div class="horario_box" data-actual=0 data-lenght="'+(v.items.length-9)+'" >';
 					jQuery.each(v.items, (i2, v2) => {
-						HORARIO +='<span '+MODAL+' data-date="'+v2[1]+'">'+v2[0]+'</span>';
+						HORARIO +='<span '+MODAL+' data-date_full="'+v2[1]+'" data-date="'+v2[2]+'">'+v2[0]+'</span>';
 					});
 				HORARIO += 		'</div></div>';
 				if( v.items.length > 9 ){
@@ -199,7 +242,8 @@ function cargar( id ){
 			jQuery(".medico_ficha_horario_container > div").html( HORARIO );
 
 			jQuery(".reservar_btn").unbind("click").bind("click", (e) => {
-				jQuery(".modal_fecha").html( e.currentTarget.dataset.date );
+				jQuery(".modal_fecha").html( e.currentTarget.dataset.date_full );
+				jQuery("#cita_fecha").val( e.currentTarget.dataset.date );
 				jQuery(".modal_precio").html( 'MXN$ '+item_actual.price );
 				jQuery('#reservar_medico').modal('show');
 			});

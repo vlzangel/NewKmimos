@@ -1094,3 +1094,16 @@ h5.modal-title img {
 #reservar_medico form h3{
     margin-bottom: 5px;
 }
+
+.errores_box {
+    display: none;
+    border-top: solid 2px orange;
+    border-bottom: solid 2px orange;
+    padding: 5px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 0px;
+    margin-top: 15px;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+}

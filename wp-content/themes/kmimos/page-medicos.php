@@ -160,9 +160,22 @@
 
     <?php
 
-    wp_enqueue_script('buscar_home', get_recurso("js")."medicos.js?v=".time(), array(), '1.0.0');
+    wp_enqueue_script('openpay-v1', getTema()."/js/openpay.v1.min.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('openpay-data', getTema()."/js/openpay-data.v1.min.js", array("jquery", "openpay-v1"), '1.0.0');
+
+    wp_enqueue_script('medico_js', get_recurso("js")."medicos.js?v=".time(), array(), '1.0.0');
+    wp_enqueue_script('openpay_lib', get_recurso("js")."openpay_lib.js?v=".time(), array('medico_js'), '1.0.0');
 
     $mascota_tipo = ( $_SESSION['medicos_serch']['otro'] != '' ) ? $_SESSION['medicos_serch']['otro'] : $_SESSION['medicos_serch']['mascotas'][0];
+
+    include( dirname(__FILE__)."/procesos/funciones/config.php" );
+
+    echo "
+    <script> 
+        var OPENPAY_TOKEN = '".$MERCHANT_ID."';
+        var OPENPAY_PK = '".$OPENPAY_KEY_PUBLIC."';
+        var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
+    </script>";
 
     echo '
     <div id="reservar_medico" class="modal" tabindex="-1" role="dialog">
@@ -201,7 +214,9 @@
                                     </label>
                                 </div>
 
-                                <form>
+                                <form id="reserva_form">
+                                    <input type="hidden" name="cita_latitud" />
+
                                     <input type="hidden" name="cita_latitud" value="'.$_SESSION['medicos_serch']['latitud'].'" />
                                     <input type="hidden" name="cita_longitud" value="'.$_SESSION['medicos_serch']['longitud'].'" />
                                     <input type="hidden" name="cita_mascota_tipo" value="'.$mascota_tipo.'" />
@@ -227,38 +242,41 @@
                                     </div>
                                     <div class="form_tarjeta">
                                         <input type="hidden" id="input_modal_precio" name="cita_precio" />
+                                        <input type="hidden" name="user_id" value="'.$user_id.'" />
+                                        <input type="hidden" id="medico_id" name="medico_id" />
+                                        <input type="hidden" id="cita_fecha" name="cita_fecha" />
                                         <div class="cont_tarjeta">
-                                            <input type="text" name="cita_tarjeta" placeholder="Número de tarjeta" />
+                                            <input type="text" class="vlz_limpiar" name="cita_tarjeta" placeholder="Número de tarjeta" data-openpay-card="card_number" />
                                         </div>
                                         <div class="cont_datos">
                                             <div class="cont_mes">
-                                                <input type="text" name="cita_mes" placeholder="Mes (MM)" />
+                                                <input type="text" class="vlz_limpiar" name="cita_mes" placeholder="Mes (MM)" data-openpay-card="expiration_month" />
                                             </div>
                                             <div class="cont_anio">
-                                                <input type="text" name="cita_anio" placeholder="Año (AA)" />
+                                                <input type="text" class="vlz_limpiar" name="cita_anio" placeholder="Año (AA)" data-openpay-card="expiration_year" />
                                             </div>
                                             <div class="cont_cvv">
-                                                <input type="text" name="cita_cvv" placeholder="CVV" />
+                                                <input type="text" class="vlz_limpiar" name="cita_cvv" placeholder="CVV" data-openpay-card="cvv2" />
                                             </div>
                                         </div>
                                         <div class="cont_nombre">
-                                            <input type="text" name="cita_nombre" placeholder="Nombre" />
+                                            <input type="text" class="vlz_limpiar" name="cita_nombre" placeholder="Nombre" data-openpay-card="holder_name" />
                                         </div>
                                         <div class="cont_apellido">
-                                            <input type="text" name="cita_apellido" placeholder="Apellido" />
+                                            <input type="text" class="vlz_limpiar" name="cita_apellido" placeholder="Apellido" />
                                         </div>
+                                    </div>
+                                    <div class="errores_box">
+                                        Datos de la tarjeta invalidos
                                     </div>
                                 </form>
                             </div>
-                        </div>
-                        <div class="modal_pago">
-                            
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Solicitar Cunsulta</button>
+                    <button id="btn_reservar" type="button" class="btn btn-primary">Solicitar Cunsulta</button>
                 </div>
             </div>
         </div>
