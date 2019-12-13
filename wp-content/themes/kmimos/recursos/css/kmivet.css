@@ -1,3 +1,12 @@
+:root {
+    --kmimos-azul: #00d2c6;
+    --kmimos-azul-mediqo: #008bf2;
+    --kmimos-gris: #CCC;
+    --kmimos-gris-claro: #DDD;
+    --kmimos-morado: #7c189f;
+    --kmimos-morado-hover: #7c189fAA;
+}
+
 .logo_kmivet {
     display: inline-block !important;
 }
@@ -251,11 +260,15 @@ input#input_otro {
 }
 
 .boton_buscar_container .boton_buscar {
-    border: 1px #572a99;
-    background-color: #572a99;
+    border: 1px var(--kmimos-morado);
+    background-color: var(--kmimos-morado);
 }
 
 .boton_buscar_container .boton_buscar:hover {
-    border: 1px #572a99AA;
-    background-color: #572a99AA;
+    border: 1px var(--kmimos-morado-hover);
+    background-color: var(--kmimos-morado-hover);
+}
+
+.conectate_container > span {
+    color: var(--kmimos-morado);
 }
