@@ -194,7 +194,7 @@ function cargar( id ){
 				jQuery('#reservar_medico').modal('show');
 			});
 
-			jQuery(".horario_flecha_left").unbind("click").bind("click", function(e) {
+			jQuery(".horario_flecha_right").unbind("click").bind("click", function(e) {
 				var parent = jQuery(this).parent();
 				var box = parent.find(".horario_box");
 				var actual = parseInt(box.attr('data-actual'));
@@ -209,7 +209,7 @@ function cargar( id ){
 				box.attr('data-actual', actual);
 			});
 
-			jQuery(".horario_flecha_right").unbind("click").bind("click", function(e) {
+			jQuery(".horario_flecha_left").unbind("click").bind("click", function(e) {
 				var parent = jQuery(this).parent();
 				var box = parent.find(".horario_box");
 				var actual = parseInt(box.attr('data-actual'));
