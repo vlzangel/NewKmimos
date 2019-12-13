@@ -169,29 +169,31 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Confirmar Cita</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title">
+                        <img src="'.get_recurso("img").'MEDICOS/atras.png" data-dismiss="modal" aria-label="Close" />
+                        Confirmar Cita
+                    </h5>
                 </div>
                 <div class="modal-body">
                     <div class="modal_container">
                         <div class="modal_img_container">
                             <div class="modal_img"></div>
                             <span>Médico General</span>
+                            <div class="medico_ranking ranking"></div>
                         </div>
                         <div class="modal_info">
-                            <div>
+                            <!-- <div>
                                 <h2></h2>
-                            </div>
+                            </div> -->
                             <div>
-                                <h3>Dirección y Horario</h3>
-                                <div>'.$_SESSION['medicos_serch']['ubicacion_txt'].'</div>
+                                <h3>Dirección y horario</h3>
+                                <!-- <div>'.$_SESSION['medicos_serch']['ubicacion_txt'].'</div> -->
                                 <div class="modal_fecha"></div>
                             </div>
                             <div>
-                                <h3>Información de Consulta</h3>
-                                <div class="modal_precio_container">Precio <span class="modal_precio">$520</span></div>
+                                <h3>Información de consulta</h3>
+                                <div class="modal_precio_container">Precio: <span class="modal_precio"></span></div>
+                                <!--
                                 <div>
                                     <label for="para_alguien_mas">
                                         ¿La cita es para alguien más? 
@@ -201,54 +203,66 @@
                                         <label></label>
                                     </span> 
                                 </div>
+                                -->
+
+                                <form>
+                                    <input type="hidden" name="cita_latitud" value="'.$_SESSION['medicos_serch']['latitud'].'" />
+                                    <input type="hidden" name="cita_longitud" value="'.$_SESSION['medicos_serch']['longitud'].'" />
+                                    <input type="hidden" name="cita_mascota_tipo" value="'.$mascota_tipo.'" />
+                                    <input type="hidden" name="cita_motivo" value="'.$_SESSION['medicos_serch']['motivo'].'" />
+                                    <h3>Método de Pago</h3>
+                                    <div class="cont_tipos">
+                                        <label for="tipo_tarjeta">
+                                            <div class="check_container">
+                                                <input type="radio" id="tipo_tarjeta" name="cita_tipo_pago" value="tarjeta" checked />
+                                                <img class="check_on" src="'.get_recurso('img').'MEDICOS/check_on.png" />
+                                                <img class="check_off" src="'.get_recurso('img').'MEDICOS/check_off.png" />
+                                            </div>
+                                            <span>Pago con tarjeta</span>
+                                        </label>
+                                        <label for="tipo_efectivo">
+                                            <div class="check_container">
+                                                <input type="radio" id="tipo_efectivo" name="cita_tipo_pago" value="efectivo" />
+                                                <img class="check_on" src="'.get_recurso('img').'MEDICOS/check_on.png" />
+                                                <img class="check_off" src="'.get_recurso('img').'MEDICOS/check_off.png" />
+                                            </div>
+                                            <span>Pago en Efectivo</span>
+                                        </label>
+                                    </div>
+                                    <div class="form_tarjeta">
+                                        <input type="hidden" id="input_modal_precio" name="cita_precio" />
+                                        <div class="cont_tarjeta">
+                                            <input type="text" name="cita_tarjeta" placeholder="Número de tarjeta" />
+                                        </div>
+                                        <div class="cont_datos">
+                                            <div class="cont_mes">
+                                                <input type="text" name="cita_mes" placeholder="Mes (MM)" />
+                                            </div>
+                                            <div class="cont_anio">
+                                                <input type="text" name="cita_anio" placeholder="Año (AA)" />
+                                            </div>
+                                            <div class="cont_cvv">
+                                                <input type="text" name="cita_cvv" placeholder="CVV" />
+                                            </div>
+                                        </div>
+                                        <div class="cont_nombre">
+                                            <input type="text" name="cita_nombre" placeholder="Nombre" />
+                                        </div>
+                                        <div class="cont_apellido">
+                                            <input type="text" name="cita_apellido" placeholder="Apellido" />
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="modal_pago">
-                            <form>
-                                <input type="hidden" name="cita_latitud" value="'.$_SESSION['medicos_serch']['latitud'].'" />
-                                <input type="hidden" name="cita_longitud" value="'.$_SESSION['medicos_serch']['longitud'].'" />
-                                <input type="hidden" name="cita_mascota_tipo" value="'.$mascota_tipo.'" />
-                                <input type="hidden" name="cita_motivo" value="'.$_SESSION['medicos_serch']['motivo'].'" />
-                                <h3>Método de Pago</h3>
-                                <div class="cont_tipos">
-                                    <label for="tipo_tarjeta">
-                                        <input type="radio" id="tipo_tarjeta" name="cita_tipo_pago" value="tarjeta" checked />
-                                        Pago con tarjeta
-                                    </label>
-                                    <label for="tipo_efectivo">
-                                        <input type="radio" id="tipo_efectivo" name="cita_tipo_pago" value="efectivo" />
-                                        Pago en Efectivo
-                                    </label>
-                                </div>
-                                <div class="form_tarjeta">
-                                    <input type="hidden" id="input_modal_precio" name="cita_precio" />
-                                    <div class="cont_nombre">
-                                        <input type="text" name="cita_nombre" placeholder="Nombre" />
-                                    </div>
-                                    <div class="cont_apellido">
-                                        <input type="text" name="cita_apellido" placeholder="Apellido" />
-                                    </div>
-                                    <div class="cont_tarjeta">
-                                        <input type="text" name="cita_tarjeta" placeholder="Número de tarjeta" />
-                                    </div>
-                                    <div class="cont_datos">
-                                        <div class="cont_mes">
-                                            <input type="text" name="cita_mes" placeholder="Mes (MM)" />
-                                        </div>
-                                        <div class="cont_anio">
-                                            <input type="text" name="cita_anio" placeholder="Año (AA)" />
-                                        </div>
-                                        <div class="cont_cvv">
-                                            <input type="text" name="cita_cvv" placeholder="CVV" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Confirmar Cita</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Solicitar Cunsulta</button>
                 </div>
             </div>
         </div>

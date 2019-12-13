@@ -41,6 +41,20 @@ nav .logo_negro, nav .logo.logo_verde {
 	display: none;
 }
 
+.home_2 .logo,
+.home_2 .nav_white .logo {
+	display: none;
+}
+
+.home_2 .logo_verde,
+.home_2 .nav_white .logo_verde {
+	display: inline-block;
+}
+
+.logo_kmivet {
+	display: inline-block !important;
+}
+
 nav .nav_table {
 	width: 100%;
 	margin: 15px auto;

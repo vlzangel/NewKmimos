@@ -10,6 +10,16 @@
         return strtolower($cadena);
 	}
 
+	function set_format_ranking($ranking){
+		$ranking += 0;
+		if( $ranking > 5 ){ $ranking = 5; }
+		if( $ranking < 1 ){ $ranking = 1; }
+		$_ranking = '';
+		for ($i=1; $i <= $ranking; $i++) {  $_ranking .= '<span class="active"></span>'; }
+		if( $ranking < 5 ){ for ($i=$ranking; $i < 5; $i++) {  $_ranking .= '<span></span>'; } }
+		return $_ranking;
+	}
+
 	$info = [];
 	foreach ($_infos[ $id ] as $key => $value) {
 		$info[ $key ] = $value;
@@ -55,6 +65,8 @@
 	$info["agenda"] = $agenda;
 	$info["firstName"] = set_format_name($info["firstName"]);
 	$info["lastName"] = set_format_name($info["lastName"]);
+	$info["rating"] = set_format_ranking($info["rating"]);
+	$info["price"] = number_format($info["price"], 2, ',', ',');
 	echo json_encode( $info );
 	die();
 ?>

@@ -56,10 +56,12 @@
 		<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo.png" />
 		<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-negro.png" />
 		<img class="logo logo_verde" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />';
+	$link_buscar = get_home_url().'#buscar';
 	if( $HEADER == 'kmivet' ){
 		$quiero_ser = 'Quiero ser Kmiveterinario';
 		$buscar_ = 'Buscar Veterinario';
-		$logo = '<img class="logo" src="'.get_recurso("img").'KMIVET/logo.png" />';
+		$logo = '<img class="logo logo_kmivet" src="'.get_recurso("img").'KMIVET/logo.png" />';
+		$link_buscar = get_home_url().'/mediqo/';
 	}
 
 	// Avatar default
@@ -430,6 +432,10 @@
 
 	$link_home = ( $_SESSION['landing_paseos'] == 'yes' ) ? get_home_url().'/paseos' : get_home_url();
 
+	if( trim($post->post_name) == "mediqo" ){
+		$link_home = get_home_url().'/kmivet';
+	}
+
 	$menu_home_2 = '';
 	if( $HOME == "2" && is_user_logged_in() ){
 		$notificacion = 0;
@@ -466,7 +472,7 @@
 							<a id="link_home" href="'.$link_home.'">
 								'.$logo.'
 							</a>
-							<a href="'.get_home_url().'#buscar" id="buscar_cuidador_btn_nav" onclick="ancla_form()" class="boton">
+							<a href="'.$link_buscar.'" id="buscar_cuidador_btn_nav" onclick="ancla_form()" class="boton">
 								<img class="lupa" src="'.get_recurso("img").'HOME/PNG/Buscar.png" /> 
 								<img class="lupa_negra" src="'.get_recurso("img").'HOME/PNG/Buscar_negro.png" /> 
 								<span>'.$buscar_.'</span>

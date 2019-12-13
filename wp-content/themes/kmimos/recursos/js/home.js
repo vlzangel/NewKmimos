@@ -90,6 +90,7 @@ jQuery( document ).ready(function() {
         if( jQuery("#veterinario").prop("checked") ){
             // console.log("MediQo");
             jQuery("#buscador").attr("action", RAIZ+"mediqo");
+            /*
             jQuery(".servicios_principales_box > label").css({ "opacity": "0.6", });
             jQuery("#check_veterinario").css({ "opacity": "1", });
             jQuery(".tipo_mascota_container").css({ "width": "calc( 65% - 20px )", "text-align": "right", "margin-right": "0px", });
@@ -99,9 +100,11 @@ jQuery( document ).ready(function() {
             jQuery(".tamanios_container > label").css("display", "none");
             jQuery("#label_otro").css({ "display": "inline-block", "width": "33.3333334%", });
             jQuery("#boton_buscar").val("Buscar Médico");
+            */
         }else{
             // console.log("Kmimos");
             jQuery("#buscador").attr("action", RAIZ+"procesos/busqueda/buscar.php");
+            /*
             jQuery(".servicios_principales_box > label").css({ "opacity": "1", });
             jQuery(".tipo_mascota_container").css({ "width": "30%", "text-align": "center", "margin-right": "19px", });
             jQuery(".tipo_mascota_container .input_check_box").css({ "width": "calc( 50% - 15px )", });
@@ -110,6 +113,7 @@ jQuery( document ).ready(function() {
             jQuery("#motivo").css("display", "none");
             jQuery(".tamanios_container > label").css("display", "inline-block");
             jQuery("#boton_buscar").val("Buscar Cuidador");
+            */
         }
 
     });

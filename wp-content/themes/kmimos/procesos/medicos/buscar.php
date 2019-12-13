@@ -10,7 +10,6 @@
         foreach ($originales as $key => $value) {
         	$cadena = str_replace($value, $modificadas[ $key ], $cadena);
         }
-        // $cadena = strtr($cadena, $originales, $modificadas);
         return strtolower($cadena);
 	}
 

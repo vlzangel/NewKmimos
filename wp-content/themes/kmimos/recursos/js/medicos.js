@@ -100,6 +100,8 @@ function buscar( CB ){
 	);
 }
 
+var item_actual = '';
+
 function cargar( id ){
 
 	jQuery.post(
@@ -110,10 +112,13 @@ function cargar( id ){
 
 			console.log( data );
 
+			item_actual = data;
+
 			var first_item = '';
 
 			var img = ( data.profilePic != undefined && data.profilePic != "" ) ? data.profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png' ;
 			jQuery(".medicos_details .medico_ficha_img").css("background-image", "url("+img+")");
+
 			if( data.certifications != undefined ){
 				jQuery(".medicos_details .medico_ficha_info_certificaciones > div").html( data.certifications );
 				jQuery(".medicos_details .medico_ficha_info_certificaciones").css( 'display', 'block' );
@@ -153,6 +158,13 @@ function cargar( id ){
 			jQuery(".medicos_details .medico_ficha_info_name > span").html( '$'+NF(data.price) );
 			jQuery("#input_modal_precio").val( parseFloat(data.price) );
 
+
+			jQuery(".modal_img").css("background-image", "url("+img+")");
+			jQuery(".modal_info h2").html( data.firstName+' '+data.lastName );
+			jQuery(".modal_img_container .ranking").html( data.rating );
+
+
+
 			jQuery(".medico_ficha_titulo > div").html( data.firstName+' '+data.lastName );
 			jQuery(".medico_ficha_titulo > span").html( NF(data.distance)+' km de tu ubicación' );
 			jQuery(".medico_ficha_titulo > strong").html( '$'+NF(data.price) );
@@ -171,7 +183,6 @@ function cargar( id ){
 					HORARIO += '<img class="horario_flecha horario_flecha_left" src="'+HOME+'/recursos/img/MEDICOS/left.png" />';
 				}
 				HORARIO += 		'<div><div class="horario_box" data-actual=0 data-lenght="'+(v.items.length-9)+'" >';
-					// console.log( v.items );
 					jQuery.each(v.items, (i2, v2) => {
 						HORARIO +='<span '+MODAL+' data-date="'+v2[1]+'">'+v2[0]+'</span>';
 					});
@@ -185,12 +196,8 @@ function cargar( id ){
 			jQuery(".medico_ficha_horario_container > div").html( HORARIO );
 
 			jQuery(".reservar_btn").unbind("click").bind("click", (e) => {
-				// var id = e.currentTarget.dataset.id;
-				// console.log( e.currentTarget.dataset );
-				jQuery(".modal_img").css( "background-image", jQuery(".medicos_details .medico_ficha_img").css("background-image") );
 				jQuery(".modal_fecha").html( e.currentTarget.dataset.date );
-				jQuery(".modal_info h2").html( jQuery(".medicos_details .medico_ficha_info_name > label").html() );
-				jQuery(".modal_precio").html( jQuery(".medicos_details .medico_ficha_info_name > span").html() );
+				jQuery(".modal_precio").html( 'MXN$ '+item_actual.price );
 				jQuery('#reservar_medico').modal('show');
 			});
 

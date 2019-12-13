@@ -1574,16 +1574,6 @@ body{
 	    background: rgb(255, 255, 255);
 	}
 	
-	.home_2 .logo,
-	.home_2 .nav_white .logo {
-		display: none !important;
-	}
-	
-	.home_2 .logo_verde,
-	.home_2 .nav_white .logo_verde {
-		display: inline-block !important;
-	}
-
 	.home_2 nav .nav_table a {
 	    color: #000 !important;
 	}

@@ -4,16 +4,26 @@
 	--kmimos-azul: #00d2c6;
     --kmimos-azul-mediqo: #008bf2;
 	--kmimos-gris: #CCC;
+    --kmimos-gris-claro: #DDD;
+    --kmimos-morado: #7c189f;
+}
+
+::-webkit-input-placeholder { color: var( --kmimos-gris-claro ); }
+:-ms-input-placeholder { color: var( --kmimos-gris-claro ); }
+::placeholder { color: var( --kmimos-gris-claro ); }
+
+.logo_kmivet {
+    display: inline-block !important;
 }
 
 .btn-primary {
-    background-color: var(--kmimos-azul) !important;
-    border-color: var(--kmimos-azul) !important;
+    background-color: var(--kmimos-morado) !important;
+    border-color: var(--kmimos-morado) !important;
 }
 
 .btn-primary:hover {
-    background-color: var(--kmimos-azul) !important;
-    border-color: var(--kmimos-azul) !important;
+    background-color: var(--kmimos-morado) !important;
+    border-color: var(--kmimos-morado) !important;
     opacity: .8;
 }
 
@@ -94,7 +104,12 @@ nav .nav_table {
 }
 
 ul.nav.navbar-nav.navbar-right {
-    display: none !important;
+    #display: none !important;
+}
+
+.nav>li>a>img {
+    height: 50px;
+    width: 50px;
 }
 
 ul.nav.navbar-nav.navbar-right.is_login {
@@ -717,41 +732,56 @@ form input, form select {
 /* Modal Reserva */
 
 #reservar_medico .modal-title {
-    text-transform: uppercase;
+    font-size: 18px;
 }
 
 .modal_info > div > h2 {
-    font-size: 16px;
-    color: var(--kmimos-azul);
+    font-size: 18px;
+    color: var(--kmimos-azul-mediqo);
     font-family: 'Gotham-Pro-Medium', arial, sans-serif;
     letter-spacing: -1px;
     margin-bottom: 0px;
+    text-transform: capitalize;
 }
 
-.modal_img_container span {
+.modal_img_container > span {
     text-align: center;
     display: block;
     padding: 8px 0px;
 }
 
+.medico_ranking.ranking {
+    text-align: center;
+}
+
 .modal_container {
     display: grid;
-    grid-template-columns: 150px auto;
-    grid-gap: 10px;
-
+    grid-template-columns: 170px auto;
+    grid-gap: 0px 25px;
 }
 
 .modal_img_container {
+    position: relative;
     grid-column: 1;
     grid-row: 1;
+}
+
+.modal_img_container:after {
+    content: ' ';
+    position: absolute;
+    top: -15px;
+    right: 0px;
+    width: 1px;
+    height: calc( 100% + 89px );
+    border-right: solid 1px var(--kmimos-gris);
 }
 
 .modal_img {
     background-image: url(https://com-healonsite-mediqo.s3.amazonaws.com/profile_pics/Dra._Dulce.jpg);
     width: 120px;
-    height: 120px;
-    margin: 0px auto;
-    border-radius: 50%;
+    height: 140px;
+    margin: 0px auto 10px;
+    border-radius: 0px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -760,6 +790,7 @@ form input, form select {
 .modal_info {
     grid-column: 2;
     grid-row: 1;
+    padding-right: 10px;
 }
 
 .modal_pago {
@@ -768,33 +799,28 @@ form input, form select {
 }
 
 .modal_info > div {
-    margin: 0px 10px 10px 0px;
+    margin: 0px;
 }
 
 .modal h3 {
-    font-size: 12px;
-    text-transform: uppercase;
-    margin: 0px 0px 5px;
+    font-size: 16px;
+    margin: 0px;
     font-weight: 600;
-    border-bottom: solid 1px var( --kmimos-gris );
-    padding-bottom: 10px;
+    padding: 10px 0px;
+    color: var(--kmimos-azul-mediqo);
 }
 
-.modal_info > div > div,
-.modal_info > div > label {
+.modal_info > div > div, .modal_info > div > label {
     overflow: hidden;
-    padding-top: 5px;
-    margin-left: 10px;
+    padding-top: 0px;
+    margin-left: 0px;
     position: relative;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+    font-size: 13px;
+    margin: 15px 0px !important;
 }
-
-
 
 .modal_info > div > div > span {
-    float: right;
-    position: absolute;
-    top: 5px;
-    right: 0px;
     z-index: 0;
 }
 
@@ -891,7 +917,7 @@ form input, form select {
 .form_tarjeta {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 5px 10px;
     margin-top: 10px;
 }
 
@@ -926,12 +952,13 @@ form input, form select {
     padding: 10px;
     width: 100%;
     border-radius: 3px;
-    border: solid 1px var(--kmimos-gris);
+    border: solid 1px var(--kmimos-gris-claro);
 }
 
 .modal input, .modal select {
     line-height: 1 !important;
     font-size: 13px !important;
+    margin: 0px;
 }
 
 .modal_precio_container {
@@ -940,8 +967,10 @@ form input, form select {
 
 .modal_precio {
     font-weight: 400;
-    font-size: 20px;
-    color: var(--kmimos-azul);
+    font-size: 16px;
+    color: var(--kmimos-morado);
+    /* font-family: Arial; */
+    font-family: 'Gotham-Pro-Medium', arial, sans-serif;
 }
 
 select#especialidad {
@@ -961,4 +990,81 @@ select#especialidad {
 
 .horario_flecha_right{
     right: -5px;
+}
+
+/* Modal New */
+
+h5.modal-title img {
+    width: 16px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.modal-content {
+    border-radius: 0px !important;
+}
+
+.modal-header {
+    padding: 25px 20px !important;
+    border-bottom: 1px solid var(--kmimos-gris) !important;
+}
+
+.modal_precio_container {
+    font-size: 15px !important;
+}
+
+.cont_tipos input {
+    display: none;
+}
+
+.cont_tipos label {
+    display: inline-block;
+    width: calc( 50% - 10px );
+    padding-left: 0px;
+}
+
+.check_container {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.check_container img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.check_container input ~ img.check_off { display: block; }
+.check_container input:checked ~ img.check_off { display: none; }
+
+.check_container input ~ img.check_on { display: none; }
+.check_container input:checked ~ img.check_on { display: block; }
+
+.cont_tipos {
+    position: relative;
+}
+
+.cont_tipos > label > span {
+    display: inline-block;
+    position: absolute;
+    top: 2px;
+    left: 25px;
+}
+
+#reservar_medico .modal-footer {
+    border-top: 0px !important;
+    padding-right: 25px;
+    padding-top: 5px;
+}
+
+#reservar_medico .modal-footer button {
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 10px 40px;
+    font-weight: 800;
 }
