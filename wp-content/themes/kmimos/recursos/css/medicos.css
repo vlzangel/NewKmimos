@@ -594,7 +594,7 @@ form input, form select {
 
 .medico_ficha_no_select .medicos_details {
     grid-column: 1 / 3;
-    grid-row: 3;
+    grid-row: 2;
     display: block !important;
 }
 
