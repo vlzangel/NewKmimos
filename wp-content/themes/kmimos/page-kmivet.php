@@ -161,9 +161,7 @@
 			<div> Conoce los servicios que ofrece kmivet </div>
 			<div class="vlz_info_items"> '.$_items.' </div>
 			<div class="vlz_info_servicios_box">
-				<div class="" style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/IMGs/1.jpg );">
-
-				</div>
+				<div class="" style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/IMGs/1.jpg );"></div>
 				<div class="">
 					<div>Veterinario a domicilio</div>
 					<p>
@@ -171,6 +169,15 @@
 						desde tu casa y recibir una evaluación, diagnostico o tratamiento
 						que requieran un examen físico.
 					</p>
+				</div>
+			</div>
+			<div class="vlz_info_msg">
+				<div>
+					No pierdas más tiempo yendo al veterinario, con Kmivet <strong>¡Un profesional va hasta tí!</strong><br>
+					Consigue <strong>médicos veterinarios por tu área.</strong>
+				</div>
+				<div>
+					<input type="button" class="boton_buscar" value="Buscar Veterinario">
 				</div>
 			</div>
 		</div>

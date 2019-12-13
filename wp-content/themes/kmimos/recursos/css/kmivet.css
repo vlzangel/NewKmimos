@@ -47,7 +47,7 @@
 .tamanios_container {
     display: inline-block;
     width: calc( 100% - 450px );
-    height: 50px;
+    height: 49px;
     box-sizing: border-box;
     margin-right: 10px;
     padding-left: 6px;
@@ -154,6 +154,11 @@ input#input_otro {
     box-shadow: 0px 4px 4px #CCC;
     padding-bottom: 70px;
     margin-bottom: 30px;
+}
+
+.vlz_info_servicios {
+    background: #EEE;
+    padding: 35px 0px 35px;
 }
 
 .vlz_info_servicios > div:first-child {
@@ -272,3 +277,37 @@ input#input_otro {
 .conectate_container > span {
     color: var(--kmimos-morado);
 }
+
+.input_check_box .top_check {
+    border: solid 2px var(--kmimos-morado);
+}
+
+.vlz_info_msg {
+    max-width: 1140px;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    grid-gap: 10px;
+}
+
+.vlz_info_msg > div:first-child {
+    font-size: 18px;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+    text-align: center;
+}
+
+.vlz_info_msg > div:first-child strong {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+}
+
+.vlz_info_msg > div:last-child input {
+    background-color: var(--kmimos-morado);
+    border: 0px;
+    padding: 13px;
+    width: 100%;
+    border-radius: 5px;
+    color: #FFF;
+    font-weight: 500;
+    font-size: 15px;
+}
+
