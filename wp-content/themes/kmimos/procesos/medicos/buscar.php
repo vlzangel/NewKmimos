@@ -14,10 +14,12 @@
 	}
 
 	function set_format_name($cadena){
-		$originales = 'ÁÉÍÓÚÑ';
-        $modificadas = 'áéíóúñ';
-        $cadena = strtr($cadena, ($originales), $modificadas);
-        return strtolower($cadena);
+		$originales = [ 'Á','É','Í','Ó','Ú', 'Ñ' ];
+        $modificadas = [ '&aacute;','&eacute;','&iacute;','&oacute;','&uacute;','&ntilde;' ];
+        foreach ($originales as $key => $value) {
+        	$cadena = str_replace($value, $modificadas[ $key ], $cadena);
+        }
+        return mb_strtolower($cadena, 'UTF-8');
 	}
 
 	function set_format_precio($price){
@@ -49,9 +51,7 @@
 		foreach ($medicos as $key => $medico) {
 			$img = ( ( $medico->profilePic ) != "" ) ? $medico->profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png';
 			$uni = ( isset($medico->medicInfo->university) ) ? $medico->medicInfo->university : '';
-
-			$nombre = set_format_name( $medico->firstName.' '.$medico->lastName );
-
+			$nombre = set_format_name( $medico->firstName.' '.$medico->lastName);
 			$_medicos[] = [
 				"id" => $medico->id,
 				"name" => $nombre,
@@ -63,13 +63,15 @@
 
 				"slug" => set_format_slug( $medico->firstName.' '.$medico->lastName ),
 			];
+			$medico->firstName = set_format_name($medico->firstName);
+			$medico->lastName = set_format_name($medico->lastName);
 			$_infos[ $medico->id ] = $medico;
 		}
 		$res = json_encode( $_medicos );
 		$_SESSION[ $hash ] = $res;
 		$_SESSION[ 'medicos_info' ] = $_infos;
 	}
-	// echo ( "https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}" );
-	echo ( $res );
+	//echo ( "https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}" );
+	print_r( $res );
 	die();
 ?>

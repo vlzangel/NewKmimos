@@ -8,7 +8,11 @@
 
     var sucess_callbak = function(response) {
         var token_id = response.data.id;
-        jQuery("#"+__FORM_PAGO__).append( jQuery("<input />").attr('type', 'hidden').attr('name', 'token').val(token_id) );
+        if( jQuery("[name='token']").val() == undefined ){
+            jQuery("#"+__FORM_PAGO__).append( jQuery("<input />").attr('type', 'hidden').attr('name', 'token').attr('value', token_id) );
+        }else{
+            jQuery("[name='token']").attr('value', token_id);
+        }
         jQuery(".errores_box").css("display", "none");
         __CB_PAGO_OK__(token_id);
     };

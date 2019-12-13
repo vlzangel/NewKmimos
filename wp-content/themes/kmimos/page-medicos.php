@@ -207,12 +207,14 @@
                                 <h3>Información de consulta</h3>
                                 <div class="modal_precio_container">Precio: <span class="modal_precio"></span></div>
                                 
+                                <!--
                                 <div class="para_alguien_mas_container">
                                     <input type="checkbox" id="para_alguien_mas" name="para_alguien_mas" /> 
                                     <label for="para_alguien_mas">
                                         ¿La cita es para alguien más? 
                                     </label>
                                 </div>
+                                -->
 
                                 <form id="reserva_form">
                                     <input type="hidden" name="cita_latitud" />
@@ -244,6 +246,7 @@
                                         <input type="hidden" id="input_modal_precio" name="cita_precio" />
                                         <input type="hidden" name="user_id" value="'.$user_id.'" />
                                         <input type="hidden" id="medico_id" name="medico_id" />
+                                        <input type="hidden" id="specialty_id" name="specialty_id" />
                                         <input type="hidden" id="cita_fecha" name="cita_fecha" />
                                         <div class="cont_tarjeta">
                                             <input type="text" class="vlz_limpiar" name="cita_tarjeta" placeholder="Número de tarjeta" data-openpay-card="card_number" />

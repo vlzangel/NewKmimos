@@ -9,6 +9,7 @@ var __CB_PAGO_OK__ = function(){
 		jQuery("#"+__FORM_PAGO__).serialize(),
 		function(res){
 			debug(res);
+			
 			if( res.errores.length == 0 ){
 				alert("Consulta Reservada Exitosamente, su id es "+res.cid);
 
@@ -21,6 +22,7 @@ var __CB_PAGO_OK__ = function(){
 				jQuery("#btn_reservar").html("Solicitar Cunsulta");
 				jQuery("#btn_reservar").prop("disabled", false);
 			}
+			
 		}, 
 		'json'
 	);
@@ -156,6 +158,8 @@ function cargar( id ){
 		}, (data) => {
 
 			debug( data );
+
+			jQuery("#specialty_id").val( jQuery("#especialidad").val() );
 
 			item_actual = data;
 

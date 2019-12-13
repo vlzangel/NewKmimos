@@ -1,5 +1,5 @@
 <?php
-
+    
     if(!function_exists('is_petsitters')){
         function is_petsitters( $user_id ){
             global $db;

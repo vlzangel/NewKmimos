@@ -60,7 +60,7 @@
 		$agenda[ $fi ]['items'][] = [
 			$hi,
 			$ff,
-			date('Y-m-d H:i:s', $start)
+			date('Y-m-d H:i', $start)
 		];
 	}
 	$info["agenda"] = $agenda;
@@ -68,6 +68,11 @@
 	$info["lastName"] = set_format_name($info["lastName"]);
 	$info["rating"] = set_format_ranking($info["rating"]);
 	$info["price"] = number_format($info["price"], 2, ',', ',');
-	echo json_encode( $info );
+
+
+	echo json_encode($info);
+
+	// print_r($info);
+
 	die();
 ?>

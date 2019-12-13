@@ -1,30 +1,20 @@
 <?php
 
-	function get_data_user($user_id){
-		global $wpdb;
-		$data_cliente = array();
-	    $xdata_cliente = $wpdb->get_results("
-		SELECT 
-			meta_key, meta_value 
-		FROM 
-			wp_usermeta 
-		WHERE
-			user_id = {$user_id} AND (
-				meta_key = 'first_name' OR
-				meta_key = 'last_name'  OR
-				meta_key = '_openpay_customer_id'
-			)"
-	    );
-
-	    foreach ($xdata_cliente as $key => $value) {
-	    	$data_cliente[ $value->meta_key ] = ($value->meta_value);
-	    }
-
-	    $data_cliente[ 'email' ] = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = '{$user_id}' ");
-
-	    return $data_cliente;
-	}
-
+    function get_data_user($user_id){
+        global $wpdb;
+        $data_cliente = array();
+        $xdata_cliente = $wpdb->get_results("
+            SELECT meta_key, meta_value 
+            FROM wp_usermeta 
+            WHERE user_id = {$user_id}
+        ");
+        foreach ($xdata_cliente as $key => $value) {
+            $data_cliente[ $value->meta_key ] = ($value->meta_value);
+        }
+        $data_cliente[ 'email' ] = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = '{$user_id}' ");
+        return $data_cliente;
+    }
+    
 	function get_openpay_customer($user_id, $openpay){
 		$customer = '';
 		$data_cliente = get_data_user($user_id);
