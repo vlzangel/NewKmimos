@@ -27,6 +27,25 @@ jQuery( document ).ready(function() {
 
 	jQuery("nav").addClass("nav_white");
 
+	jQuery(".medico_ficha_info_container > div > label").on('click', function(e){
+		var parent = jQuery(this).parent();
+		jQuery(".medico_ficha_info_container > div").removeClass('active');
+		parent.addClass('active');
+		jQuery(".medico_ficha_info_box").html( parent.find('div').html() );
+	});
+
+	jQuery("#medico_nombre").on("keyup", function(e){
+		var txt = jQuery(this).val();
+		jQuery(".medico_item").each(function(i, v){
+			var slug = String(jQuery(this).data("slug")).trim();
+			if( slug.search(txt) == -1 ){
+				jQuery(this).css("display", "none");
+			}else{
+				jQuery(this).css("display", "flex");
+			}
+		});
+	});
+
 } );
 
 function buscar( CB ){
@@ -46,23 +65,27 @@ function buscar( CB ){
 			lng: lng
 		},
 		( data ) => {
+			console.log( data );
 			var HTML = '';
 			jQuery.each(data, (i, v) => {
-				HTML += '<div class="medico_item" data-id="'+v.id+'">';
+				HTML += '<div class="medico_item" data-id="'+v.id+'" data-slug="'+v.slug+'">';
 		    	HTML += '	<div class="medico_img_container"> <div class="medico_img" style="background-image: url( '+v.img+' )"></div> </div>';
 		    	HTML += '	<div class="medico_info">';
 		    	HTML += '		<div class="medico_nombre">'+v.name+'</div>';
-		    	HTML += '		<div class="medico_universidad">'+v.univ+'</div>';
-		    	HTML += '		<div class="medico_precio">'+v.price+'$</div>';
+		    	HTML += '		<div class="medico_ranking">'+v.ranking+'</div>';
+		    	HTML += '		<div class="medico_precio">';
+		    	HTML += '			<div>Servicios desde</div>';
+		    	HTML += '			<span>'+v.price+'</span>';
+		    	HTML += '		</div>';
 		    	HTML += '	</div>';
 		    	HTML += '</div>';
 			});
 			jQuery(".medicos_list").html( HTML );
-			jQuery(".medico_item").unbind('click').bind('click', (e) => {
-
+			jQuery(".medico_item").unbind('click').bind('click', function(e){
+				jQuery(".medico_item").removeClass("active");
+				jQuery(this).addClass("active");
 				jQuery(".medicos_container").removeClass("medico_ficha_no_select");
 				jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
-				
 				var id = e.currentTarget.dataset.id;
 				cargar( id );
 			});
@@ -87,11 +110,14 @@ function cargar( id ){
 
 			console.log( data );
 
-			var img = ( data.profilePic != undefined ) ? data.profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png' ;
+			var first_item = '';
+
+			var img = ( data.profilePic != undefined && data.profilePic != "" ) ? data.profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png' ;
 			jQuery(".medicos_details .medico_ficha_img").css("background-image", "url("+img+")");
 			if( data.certifications != undefined ){
 				jQuery(".medicos_details .medico_ficha_info_certificaciones > div").html( data.certifications );
 				jQuery(".medicos_details .medico_ficha_info_certificaciones").css( 'display', 'block' );
+				first_item = 'medico_ficha_info_certificaciones';
 			}else{
 				jQuery(".medicos_details .medico_ficha_info_certificaciones").css( 'display', 'none' );
 			}
@@ -99,6 +125,7 @@ function cargar( id ){
 			if( data.medicInfo.courses != undefined ){
 				jQuery(".medicos_details .medico_ficha_info_cursos > div").html( data.medicInfo.courses );
 				jQuery(".medicos_details .medico_ficha_info_cursos").css( 'display', 'block' );
+				if( first_item == '' ){ first_item = 'medico_ficha_info_cursos'; }
 			}else{
 				jQuery(".medicos_details .medico_ficha_info_cursos").css( 'display', 'none' );
 			}
@@ -106,6 +133,7 @@ function cargar( id ){
 			if( data.medicInfo.courses != undefined ){
 				jQuery(".medicos_details .medico_ficha_info_experiencia > div").html( data.medicInfo.formerExperience );
 				jQuery(".medicos_details .medico_ficha_info_experiencia").css( 'display', 'block' );
+				if( first_item == '' ){ first_item = 'medico_ficha_info_experiencia'; }
 			}else{
 				jQuery(".medicos_details .medico_ficha_info_experiencia").css( 'display', 'none' );
 			}
@@ -113,9 +141,12 @@ function cargar( id ){
 			if( data.medicInfo.courses != undefined ){
 				jQuery(".medicos_details .medico_ficha_info_otros > div").html( data.medicInfo.otherStudies );
 				jQuery(".medicos_details .medico_ficha_info_otros").css( 'display', 'block' );
+				if( first_item == '' ){ first_item = 'medico_ficha_info_otros'; }
 			}else{
 				jQuery(".medicos_details .medico_ficha_info_otros").css( 'display', 'none' );
 			}
+
+			jQuery("."+first_item+" > label").click();
 
 			jQuery(".medicos_details .medico_ficha_info_name > label").html( data.firstName+' '+data.lastName );
 			jQuery(".medicos_details .medico_ficha_info_name > div").html( NF(data.distance)+' km de tu ubicación' );
@@ -136,11 +167,18 @@ function cargar( id ){
 			jQuery.each(data.agenda, (i, v) => {
 				HORARIO += '<div>';
 				HORARIO += 		'<label>'+v.fecha+'</label>';
-				HORARIO += 		'<div>';
-							jQuery.each(v.items, (i2, v2) => {
-								HORARIO +='<span '+MODAL+' data-date="'+v2[1]+'">'+v2[0]+'</span>';
-							});
-				HORARIO += 		'</div>';
+				if( v.items.length > 9 ){
+					HORARIO += '<img class="horario_flecha horario_flecha_left" src="'+HOME+'/recursos/img/MEDICOS/left.png" />';
+				}
+				HORARIO += 		'<div><div class="horario_box" data-actual=0 data-lenght="'+(v.items.length-9)+'" >';
+					// console.log( v.items );
+					jQuery.each(v.items, (i2, v2) => {
+						HORARIO +='<span '+MODAL+' data-date="'+v2[1]+'">'+v2[0]+'</span>';
+					});
+				HORARIO += 		'</div></div>';
+				if( v.items.length > 9 ){
+					HORARIO += '<img class="horario_flecha horario_flecha_right" src="'+HOME+'/recursos/img/MEDICOS/right.png" />';
+				}
 				HORARIO += '</div>';
 			});
 
@@ -148,16 +186,42 @@ function cargar( id ){
 
 			jQuery(".reservar_btn").unbind("click").bind("click", (e) => {
 				// var id = e.currentTarget.dataset.id;
-				console.log( e.currentTarget.dataset );
-
+				// console.log( e.currentTarget.dataset );
 				jQuery(".modal_img").css( "background-image", jQuery(".medicos_details .medico_ficha_img").css("background-image") );
 				jQuery(".modal_fecha").html( e.currentTarget.dataset.date );
-
 				jQuery(".modal_info h2").html( jQuery(".medicos_details .medico_ficha_info_name > label").html() );
 				jQuery(".modal_precio").html( jQuery(".medicos_details .medico_ficha_info_name > span").html() );
-
 				jQuery('#reservar_medico').modal('show');
+			});
 
+			jQuery(".horario_flecha_left").unbind("click").bind("click", function(e) {
+				var parent = jQuery(this).parent();
+				var box = parent.find(".horario_box");
+				var actual = parseInt(box.attr('data-actual'));
+				var lenght = parseInt(box.attr('data-lenght'));
+				if( actual < lenght ){
+					actual += 1;
+					box.attr('data-actual', actual);
+				}
+				parent.find(".horario_box").animate({
+					left: "-"+(actual*11)+"%"
+				}, 500);
+				box.attr('data-actual', actual);
+			});
+
+			jQuery(".horario_flecha_right").unbind("click").bind("click", function(e) {
+				var parent = jQuery(this).parent();
+				var box = parent.find(".horario_box");
+				var actual = parseInt(box.attr('data-actual'));
+				var lenght = parseInt(box.attr('data-lenght'));
+				if( actual > 0 ){
+					actual -= 1;
+					box.attr('data-actual', actual);
+				}
+				parent.find(".horario_box").animate({
+					left: "-"+(actual*11)+"%"
+				}, 500);
+				
 			});
 
 			jQuery(".medicos_container").removeClass("medico_ficha_no_cargada");

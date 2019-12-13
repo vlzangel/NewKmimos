@@ -3,6 +3,13 @@
 	extract( $_POST );
 	$_infos = $_SESSION['medicos_info'];
 
+	function set_format_name($cadena){
+		$originales = 'ÁÉÍÓÚÑ';
+        $modificadas = 'áéíóúñ';
+        $cadena = strtr($cadena, ($originales), $modificadas);
+        return strtolower($cadena);
+	}
+
 	$info = [];
 	foreach ($_infos[ $id ] as $key => $value) {
 		$info[ $key ] = $value;
@@ -33,7 +40,6 @@
 		"Noviembre",
 		"Diciembre",
 	];
-
 	$agenda = [];
 	foreach ($info["agenda"] as $key => $item) {
 		$start = strtotime( str_replace("Z", "", $item->start));
@@ -46,9 +52,9 @@
 			$ff
 		];
 	}
-
 	$info["agenda"] = $agenda;
-	
+	$info["firstName"] = set_format_name($info["firstName"]);
+	$info["lastName"] = set_format_name($info["lastName"]);
 	echo json_encode( $info );
 	die();
 ?>

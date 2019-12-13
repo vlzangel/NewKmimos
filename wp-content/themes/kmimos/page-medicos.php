@@ -24,34 +24,81 @@
     $user_id = get_current_user_id(); ?>
     <script type="text/javascript"> var USER_ID = "<?= $user_id ?>"; </script>
     <div class="medicos_container medico_ficha_no_select">
-		<form>
-            <input type="hidden" value="" />
-			<div class="form_container">
-				<div class="medicos_control">
-					<select id="especialidad">
-						<?php
-							foreach ($especialidades->objects as $key => $especialidad) {
-								echo '<option value="'.$especialidad->id.'">'.$especialidad->name.'</option>';
-							}
-						?>
-					</select>
-				</div>
-				<div class="medicos_control">
-					<input type="text" name="" placeholder="Buscar tu dirección" value="<?= $_SESSION['medicos_serch']['ubicacion_txt'] ?>" />
+
+    	<div class="medicos_list_container">
+                
+            <form class="medicos_list_form">
+                <div class="medicos_control">
+                    <label>Especialidad</label>
+                    <select id="especialidad">
+                        <?php
+                            foreach ($especialidades->objects as $key => $especialidad) {
+                                echo '<option value="'.$especialidad->id.'">'.$especialidad->name.'</option>';
+                            }
+                        ?>
+                    </select>
+                </div>
+                <input type="hidden" id="latitud" name="latitud" value="<?= $_SESSION['medicos_serch']['latitud'] ?>" />
+                <input type="hidden" id="longitud" name="longitud" value="<?= $_SESSION['medicos_serch']['longitud'] ?>" />
+                <!-- <div class="medicos_control">
+                    <input type="text" name="" placeholder="Buscar tu dirección" value="<?= $_SESSION['medicos_serch']['ubicacion_txt'] ?>" />
                     <input type="hidden" id="latitud" name="latitud" value="<?= $_SESSION['medicos_serch']['latitud'] ?>" />
                     <input type="hidden" id="longitud" name="longitud" value="<?= $_SESSION['medicos_serch']['longitud'] ?>" />
-				</div>
-				<div class="medicos_control">
-					<input type="text" name="" placeholder="Buscar por Nombre" />
-				</div>
-			</div>
-		</form>
-    	<div class="medicos_list"></div>
+                </div> -->
+                <div class="medicos_control">
+                    <label>Busca un médico por nombre</label>
+                    <input type="text" id="medico_nombre" name="nombre" placeholder="Buscar por Nombre" />
+                    <label>Elije a tu especialista de preferencia:</label>
+                </div>
+                
+
+            </form>
+
+            <div class="medicos_list">
+
+                <!-- <div class="medico_item" data-id="id">
+                   <div class="medico_img_container"> <div class="medico_img" style="background-image: url( http://tusimagenesde.com/wp-content/uploads/2017/09/fotos-de-perfil-para-facebook-4.jpg )"></div> </div>
+                   <div class="medico_info">
+                       <div class="medico_nombre">
+                            <?= strtolower("FABIANA PATRICIA ORTEGA HERNÁNDEZ") ?>
+                        </div>
+                        <div class="medico_ranking"></div>
+                       <div class="medico_precio">
+                            <div>Servicios desde</div>
+                            <span> <span>MXN$</span> <strong>520,</strong><span>00</span> </span>
+                        </div>
+                   </div>
+                </div>
+
+                <div class="medico_item active" data-id="id">
+                   <div class="medico_img_container"> <div class="medico_img" style="background-image: url( http://tusimagenesde.com/wp-content/uploads/2017/09/fotos-de-perfil-para-facebook-4.jpg )"></div> </div>
+                   <div class="medico_info">
+                       <div class="medico_nombre">
+                            <?= strtolower("FABIANA PATRICIA ORTEGA HERNÁNDEZ") ?>
+                        </div>
+                        <div class="medico_ranking">
+                            <span class="active"></span>
+                            <span class="active"></span>
+                            <span class="active"></span>
+                            <span class="active"></span>
+                            <span></span>
+                        </div>
+                       <div class="medico_precio">
+                            <div>Servicios desde</div>
+                            <span> <span>MXN$</span> <strong>520,</strong><span>00</span> </span>
+                        </div>
+                   </div>
+                </div> -->
+
+            </div>
+
+        </div>
+
     	<div class="medicos_details">
 			<div class="medico_ficha_titulo">
-				<div></div>
+				<!-- <div></div>
 				<span></span>
-                <strong></strong>
+                <strong></strong> -->
 			</div>
     		<div class="medico_ficha">
     			<div class="medico_ficha_no_select_container">
@@ -60,36 +107,44 @@
     					<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     				</div>
     			</div>
+
     			<div class="medico_ficha_img_container">
     				<div class="medico_ficha_img"></div>
-    				<div class="medico_ficha_info_name">
-    					<label></label>
-    					<div></div>
-                        <span></span>
-    				</div>
-    				<div class="medico_ficha_info_certificaciones">
-    					<label>CERTIFICACIONES:</label>
-    					<div></div>
-    				</div>
-    				<div class="medico_ficha_info_cursos">
-    					<label>CURSOS:</label>
-    					<div></div>
-    				</div>
     			</div>
+
     			<div class="medico_ficha_info_container">
+                    <div class="medico_ficha_info_name">
+                        <label></label>
+                        <!-- <div></div>
+                        <span></span> -->
+                    </div>
+                    <div class="medico_ficha_info_certificaciones">
+                        <label for="certificaciones">Certificaciones</label>
+                        <div></div>
+                    </div>
+                    <div class="medico_ficha_info_cursos">
+                        <label for="cursos">Cursos realizados</label>
+                        <div></div>
+                    </div>
     				<div class="medico_ficha_info_experiencia">
-    					<label>EXPERIENCIA:</label>
+    					<label for="experiencia">Experiencia</label>
     					<div></div>
     				</div>
     				<div class="medico_ficha_info_otros">
-    					<label>OTROS ESTUDIOS:</label>
+    					<label for="otros">Otros estudios</label>
     					<div></div>
     				</div>
     			</div>
-    			<div class="medico_ficha_horario_container">
-    				<label>Horario</label>
+
+    			<div class="medico_ficha_info_box">
     				<div></div>
     			</div>
+
+                <div class="medico_ficha_horario_container">
+                    <label>Horario</label>
+                    <div></div>
+                </div>
+
     		</div>
     	</div>
     </div>
