@@ -193,17 +193,13 @@
                             <div>
                                 <h3>Información de consulta</h3>
                                 <div class="modal_precio_container">Precio: <span class="modal_precio"></span></div>
-                                <!--
-                                <div>
+                                
+                                <div class="para_alguien_mas_container">
+                                    <input type="checkbox" id="para_alguien_mas" name="para_alguien_mas" /> 
                                     <label for="para_alguien_mas">
                                         ¿La cita es para alguien más? 
                                     </label>
-                                    <span class="check_container"> 
-                                        <input type="checkbox" id="para_alguien_mas" name="para_alguien_mas" /> 
-                                        <label></label>
-                                    </span> 
                                 </div>
-                                -->
 
                                 <form>
                                     <input type="hidden" name="cita_latitud" value="'.$_SESSION['medicos_serch']['latitud'].'" />

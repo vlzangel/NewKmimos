@@ -1,6 +1,7 @@
 jQuery( document ).ready(function() {
 
-	jQuery("#especialidad").on('change', (e) => {
+	jQuery("#especialidad").on('change', function(e) {
+		jQuery(".modal_img_container > span").html( jQuery("#especialidad option:selected").text() );
 		buscar();
 	});
 	buscar();
@@ -151,7 +152,9 @@ function cargar( id ){
 				jQuery(".medicos_details .medico_ficha_info_otros").css( 'display', 'none' );
 			}
 
-			jQuery("."+first_item+" > label").click();
+			if( first_item != '' ){
+				jQuery("."+first_item+" > label").click();
+			}
 
 			jQuery(".medicos_details .medico_ficha_info_name > label").html( data.firstName+' '+data.lastName );
 			jQuery(".medicos_details .medico_ficha_info_name > div").html( NF(data.distance)+' km de tu ubicación' );
