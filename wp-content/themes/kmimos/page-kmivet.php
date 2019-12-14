@@ -138,21 +138,31 @@
 	';
 
 	$_SERVICIOS = [
-		'Veterinario a domicilio',
-		'Asesoria virtual',
+		[
+			'Veterinario a domicilio',
+			get_recurso("img").'KMIVET/SERVICIOS/IMGs/1.jpg',
+			'Gracias a las consultas a domicilio puedes esperar comodamente desde tu casa y recibir una evaluación, diagnostico o tratamiento que requieran un examen físico.'
+		],
+		[
+			'Asesoria virtual',
+			get_recurso("img").'KMIVET/SERVICIOS/IMGs/2.jpg',
+			'Al igual que una visita en persona, el veterinario toma su historial y síntomas, realiza un examen y puede recomendar un tratamiento, que incluye receta y análisis de laboratorio.'
+		],
+		/*
 		'Servicio de ambulancia',
 		'Kmivet lnn',
 		'Enfermería',
 		'Farmacia',
+		*/
 	];
 
 	$_items = '';
 	foreach ($_SERVICIOS as $key => $value) {
-		$active = ( $key == 0 ) ? ' class="active" ' : '';
+		$active = ( $key == 0 ) ? ' active ' : '';
 		$_items .= '
-		<div '.$active.' data-item="'.($key+1).'" >
+		<div class="vlz_item_servicios '.$active.'" data-item="'.($key+1).'" data-tit="'.$value[0].'" data-img="'.$value[1].'" data-desc="'.$value[2].'" >
 			<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/'.($key+1).'.svg );"></div> </div>
-			<div> '.$value.' </div>
+			<div> '.$value[0].' </div>
 		</div>';
 	}
 
@@ -161,8 +171,8 @@
 			<div> Conoce los servicios que ofrece kmivet </div>
 			<div class="vlz_info_items"> '.$_items.' </div>
 			<div class="vlz_info_servicios_box">
-				<div class="" style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/IMGs/1.jpg );"></div>
-				<div class="">
+				<div class="vlz_info_servicios_img" style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/IMGs/1.jpg );"></div>
+				<div class="vlz_info_servicios_data">
 					<div>Veterinario a domicilio</div>
 					<p>
 						Gracias a las consultas a domicilio puedes esperar comodamente
