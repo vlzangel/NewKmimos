@@ -9,15 +9,18 @@ var __CB_PAGO_OK__ = function(){
 		jQuery("#"+__FORM_PAGO__).serialize(),
 		function(res){
 			debug(res);
-			
-			if( res.errores.length == 0 ){
-				alert("Consulta Reservada Exitosamente, su id es "+res.cid);
 
-				jQuery('#reservar_medico').modal('hide');
+			if( res.errores.length == 0 ){
+				jQuery("#reservar_medico .modal-title span").html("Cita Creada Exitosamente!");
+				jQuery("#btn_reservar").css("display", "none");
+
 				jQuery("#btn_reservar").html("Solicitar Cunsulta");
 				jQuery("#btn_reservar").prop("disabled", false);
 
 				jQuery(".vlz_limpiar").val('');
+
+				jQuery("#modal_step_1").css('display', 'none');
+				jQuery("#modal_step_2").css('display', 'block');
 			}else{
 				jQuery("#btn_reservar").html("Solicitar Cunsulta");
 				jQuery("#btn_reservar").prop("disabled", false);
@@ -33,6 +36,16 @@ var __CB_PAGO_KO__ = function(){
 }
 
 jQuery( document ).ready(function() {
+
+	jQuery('#reservar_medico').on('hidden.bs.modal', function (e) {
+		jQuery("#modal_step_1").css('display', 'grid');
+		jQuery("#modal_step_2").css('display', 'none');
+	});
+
+	jQuery("#cita_tipo_pago").on('change', function(e){
+		jQuery("#modal_final_metodo").html( jQuery(this).val() );
+	});
+	jQuery("#modal_final_metodo").html( jQuery("#tipo_tarjeta").val() );
 
 	jQuery("#especialidad").on('change', function(e) {
 		jQuery(".modal_img_container > span").html( jQuery("#especialidad option:selected").text() );
@@ -205,6 +218,7 @@ function cargar( id ){
 			}
 
 			jQuery(".medicos_details .medico_ficha_info_name > label").html( data.firstName+' '+data.lastName );
+			jQuery("#modal_final_medico").html( data.firstName+' '+data.lastName );
 			jQuery(".medicos_details .medico_ficha_info_name > div").html( NF(data.distance)+' km de tu ubicación' );
 			jQuery(".medicos_details .medico_ficha_info_name > span").html( '$'+NF(data.price) );
 			jQuery("#input_modal_precio").val( parseFloat(data.price) );
@@ -249,7 +263,10 @@ function cargar( id ){
 				jQuery(".modal_fecha").html( e.currentTarget.dataset.date_full );
 				jQuery("#cita_fecha").val( e.currentTarget.dataset.date );
 				jQuery(".modal_precio").html( 'MXN$ '+item_actual.price );
+				jQuery("#modal_final_costo").html( 'MXN$ '+item_actual.price );
 				jQuery('#reservar_medico').modal('show');
+
+				jQuery("#modal_final_horario").html( e.currentTarget.dataset.date_full );
 			});
 
 			jQuery(".horario_flecha_right").unbind("click").bind("click", function(e) {

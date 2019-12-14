@@ -1107,3 +1107,44 @@ h5.modal-title img {
     margin-top: 15px;
     font-family: 'Gotham-Pro-Light', arial, sans-serif;
 }
+
+#modal_step_1 {
+    
+}
+
+#modal_step_2 {
+    display: none;
+}
+
+div#modal_step_2 h2 {
+    font-size: 22px;
+    text-align: left;
+    color: var(--kmimos-morado);
+    padding: 0px;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+td#modal_final_costo {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    color: var(--kmimos-morado);
+    font-size: 13px;
+}
+
+#modal_step_2 td {
+    padding: 0px 10px 10px;
+}
+
+#modal_step_2 th {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    padding: 0px 0px 10px;
+}
+
+td#modal_final_medico {
+    text-transform: capitalize;
+    font-weight: 800;
+}
+
+td#modal_final_metodo {
+    text-transform: capitalize;
+}

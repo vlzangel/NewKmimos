@@ -184,11 +184,22 @@
                 <div class="modal-header">
                     <h5 class="modal-title">
                         <img src="'.get_recurso("img").'MEDICOS/atras.png" data-dismiss="modal" aria-label="Close" />
-                        Confirmar Cita
+                        <span>Confirmar Cita</span>
                     </h5>
                 </div>
                 <div class="modal-body">
-                    <div class="modal_container">
+
+                    <div id="modal_step_2" class="modal_container">
+                        <h2>Felicidades, tu cita ha sido creada exitosamente!</h2>
+                        <table>
+                            <tr> <th>Médico:</th> <td id="modal_final_medico"></td> </tr>
+                            <tr> <th>Horario:</th> <td id="modal_final_horario"></td> </tr>
+                            <tr> <th>Método de pago:</th> <td id="modal_final_metodo">tarjeta</td> </tr>
+                            <tr> <th>Costo:</th> <td id="modal_final_costo"></td> </tr>
+                        </table>
+                    </div>
+
+                    <div id="modal_step_1" class="modal_container">
                         <div class="modal_img_container">
                             <div class="modal_img"></div>
                             <span>Médico General</span>
@@ -269,9 +280,7 @@
                                             <input type="text" class="vlz_limpiar" name="cita_apellido" placeholder="Apellido" />
                                         </div>
                                     </div>
-                                    <div class="errores_box">
-                                        Datos de la tarjeta invalidos
-                                    </div>
+                                    <div class="errores_box"></div>
                                 </form>
                             </div>
                         </div>
