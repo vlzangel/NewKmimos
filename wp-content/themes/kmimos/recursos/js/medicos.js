@@ -267,6 +267,8 @@ function cargar( id ){
 				jQuery('#reservar_medico').modal('show');
 
 				jQuery("#modal_final_horario").html( e.currentTarget.dataset.date_full );
+
+				jQuery("#btn_reservar").css("display", "inline-block");
 			});
 
 			jQuery(".horario_flecha_right").unbind("click").bind("click", function(e) {
