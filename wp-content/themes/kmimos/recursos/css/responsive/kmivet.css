@@ -1,0 +1,168 @@
+@media (max-width: 992px){
+	
+}
+
+@media (max-width: 768px){
+	.vlz_top {
+	    grid-template-columns: 1fr;
+	    grid-gap: 0px;
+	    margin-bottom: 10px;
+	    padding: 0px 10px;
+	}
+
+	.banner_rotativo {
+	    height: 180px;
+	    margin-top: 40px;
+	}
+
+	.ubicacion_container {
+	    margin-bottom: 10px;
+	}
+
+	.tipo_mascota_container {
+	    margin-bottom: 0px;
+	}
+
+	.tipo_mascota_container .input_check_box {
+	    width: calc( 25% - 15px );
+	    height: 35px;
+	}
+
+	.tipo_mascota_container .input_check_box img {
+	    margin: 7px 5px 11px 0px;
+	    height: 18px;
+	}
+
+	.tipo_mascota_container .input_check_box span {
+ 	   font-size: 11px;
+	}
+
+	.tipo_mascota_container {
+	    padding-left: 3px;
+	}
+
+	label#label_otro {
+	    width: 75px;
+	    text-align: left !important;
+	    padding: 10px 10px 0px;
+	    font-size: 12px;
+	    font-weight: 400;
+	    color: #777;
+	    height: 30px;
+	}
+
+	label#label_input {
+	    width: calc( 100% - 239px );
+	    height: 35px;
+	}
+
+	input#input_otro {
+	    height: 100%;
+	}
+
+	.tamanios_container {
+	    width: calc( 100% - 0px );
+	    height: 49px;
+	    padding: 0px 13px;
+	}
+
+	#motivo {
+	    position: relative;
+	    left: auto;
+	    top: auto;
+	}
+
+	.vlz_info {
+	    grid-template-columns: 1fr;
+	    width: 100%;
+	    margin: 30px auto;
+	}
+
+	.vlz_info > div:first-child {
+	    grid-column: 1;
+	    font-size: 14px;
+	    max-width: 90%;
+	    line-height: 1.4;
+	}
+
+	.vlz_info > div > div > div:first-child {
+	    height: 100px;
+	    margin: 10px;
+	}
+
+	.vlz_info > div > div:nth-child(2) {
+	    font-weight: 600;
+	    font-size: 12px;
+	    padding: 0px 80px;
+	    min-height: 0px;
+	}
+
+	.vlz_info > div > div:nth-child(3) {
+	    padding: 10px 50px;
+	    font-size: 12px;
+	}
+
+	.vlz_info_servicios > div:first-child {
+	    font-size: 20px;
+	    padding: 0px 10px;
+	}
+
+	.vlz_info_servicios_box {
+	    grid-template-columns: 1fr;
+	    grid-gap: 10px;
+	    margin: 30px auto;
+	}
+
+	.vlz_info_servicios_box > div:first-child {
+	    height: 200px;
+	}
+
+	.vlz_info_servicios_box {
+	    grid-template-columns: 1fr;
+	    grid-gap: 10px;
+	    margin: 30px auto 0px;
+	    padding: 0px 20px;
+	}
+
+	.vlz_info_servicios_box > div:last-child {
+	    padding: 10px 0px;
+	}
+
+	.vlz_info_servicios_box > div:last-child > div {
+	    font-size: 16px;
+	    text-align: center;
+	    margin-bottom: 10px;
+	}
+
+	.vlz_info_servicios_box > div:last-child > p {
+	    font-size: 14px;
+	    padding-right: 0px;
+	    font-weight: 400;
+	}
+
+	.vlz_info_msg {
+	    grid-template-columns: 1fr;
+	}
+
+	.vlz_info_msg > div:first-child {
+	    font-size: 13px;
+	    padding: 0px 10px 10px;
+	}
+
+	.vlz_info_msg > div:first-child > br {
+	    display: none;
+	}
+
+	.carrusel_servicios_principales_box {
+	    height: 220px;
+	}
+
+	.lo_nuevo_container .carrusel_servicios_principales_box.banner_box {
+	    height: 340px;
+	}	
+
+	.lo_nuevo_container {
+	    padding-bottom: 25px;
+	    margin-bottom: 25px;
+	}
+}

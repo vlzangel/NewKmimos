@@ -22,14 +22,13 @@
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
     wp_enqueue_style('kmivet', get_recurso("css")."kmivet.css?v=".time(), array(), '1.0.0');
+    wp_enqueue_style('kmivet_responsive', get_recurso("css")."responsive/kmivet.css?v=".time(), array(), '1.0.0');
 
     wp_enqueue_script('select_localidad', getTema()."/js/select_localidad.js", array(), '1.0.0');
     wp_enqueue_script('check_in_out', getTema()."/js/fecha_check_in_out.js", array(), '1.0.0');
 
 	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0');
-
-
-            
+      
     get_header();
 
     $user_id = get_current_user_id();
@@ -42,7 +41,7 @@
     	$link = $url[2];
     	$target = ( $url[1] ) ? ' target="_blank" ' : '';
     	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'KMIVET/BANNER/'.$url[0].');"><a href="'.get_home_url().'/seg/?banner='.$url[3].$_wlabel.'&url='.base64_encode($link).'" '.$target.'></a></div>';
-    	// $items .= '<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'HOME_2/RESPONSIVE/Muestra'.$url[0].'" /><a href="'.get_home_url().'/seg/?banner='.$url[3].$_wlabel.'&url='.base64_encode($link).'" '.$target.'></a></div>';
+    	$items .= '<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'KMIVET/BANNER/RESPONSIVE/'.$url[0].'" /><a href="'.get_home_url().'/seg/?banner='.$url[3].$_wlabel.'&url='.base64_encode($link).'" '.$target.'></a></div>';
     }
 
     $items_count = count($info_banner);
