@@ -1152,3 +1152,7 @@ td#modal_final_metodo {
 .atras_ficha {
     display: none;
 }
+
+label[for="tipo_efectivo"] {
+    display: none !important;
+}
