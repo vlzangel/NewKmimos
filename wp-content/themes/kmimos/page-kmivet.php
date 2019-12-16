@@ -41,7 +41,7 @@
     	$link = $url[2];
     	$target = ( $url[1] ) ? ' target="_blank" ' : '';
     	$items .= '<div class="banner_rotativo_item solo_pc_banner" style="background-image: url('.get_recurso('img').'KMIVET/BANNER/'.$url[0].');"><a href="'.get_home_url().'/seg/?banner='.$url[3].$_wlabel.'&url='.base64_encode($link).'" '.$target.'></a></div>';
-    	$items .= '<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'KMIVET/BANNER/RESPONSIVE/'.$url[0].'" /><a href="'.get_home_url().'/seg/?banner='.$url[3].$_wlabel.'&url='.base64_encode($link).'" '.$target.'></a></div>';
+    	$items .= '<div class="banner_rotativo_item solo_movil_banner"> <img src="'.get_recurso('img').'KMIVET/BANNER/responsive/'.$url[0].'" /><a href="'.get_home_url().'/seg/?banner='.$url[3].$_wlabel.'&url='.base64_encode($link).'" '.$target.'></a></div>';
     }
 
     $items_count = count($info_banner);
