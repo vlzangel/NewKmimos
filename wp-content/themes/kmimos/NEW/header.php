@@ -492,8 +492,7 @@
 					<tr>
 						<td class="nav_left">
 							<a href="'.get_home_url().'">
-								<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />
-								<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />
+								'.$logo.'
 							</a>
 						</td>
 						<td class="nav_right">
