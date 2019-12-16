@@ -134,17 +134,23 @@ pre {
 /* Listado */
 
 .medicos_container {
-    display: block;
-    position: fixed;
-    top: 80px;
-    left: 0px;
-    width: 100vw;
-    height: calc( 100vh - 80px );
-    z-index: 0;
+	display: grid;
+	grid-template-columns: 350px 1fr;
+	grid-template-rows: 70px 1fr;
+	grid-gap: 10px;
+
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100vw;
+	height: 100vh;
+	z-index: 0;
 }
 
 .medicos_container > form {
     position: relative;
+    grid-column: 1 / 3;
+    grid-row: 3;
     padding: 10px;
     text-align: center;
 }
@@ -192,10 +198,9 @@ form input, form select {
 }
 
 .medicos_list_container {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 350px;
+    position: relative;
+    grid-column: 1;
+    grid-row: 2;
     height: calc( 100% - 10px );
     overflow: auto;
     padding-right: 10px;
@@ -230,19 +235,19 @@ form input, form select {
 }
 
 .medicos_list span {
-
+/*    display: block;
+    padding: 20px;
+    font-size: 15px;*/
 }
 
 
 .medicos_details {
-    position: absolute;
+    grid-column: 2;
+    grid-row: 2;
     height: calc( 100% - 10px );
     overflow: hidden;
     padding-right: 10px;
     margin-right: 10px;
-    top: 0px;
-    left: 350px;
-    width: calc( 100vw - 350px );
 }
 
 .medico_ficha::-webkit-scrollbar-track {
@@ -434,7 +439,6 @@ form input, form select {
     margin-bottom: 0px !important;
     text-transform: capitalize;
     font-family: 'Gotham-Pro-Bold', arial, sans-serif;
-    border-bottom: 0px !important;
 }
 
 .medico_ficha_titulo {
