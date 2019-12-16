@@ -42,9 +42,9 @@
 
 	$url = "https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}&tz=America/Mexico_City";
 	$hash = md5( $url );
-/*	if( isset($_SESSION[ $hash ]) ){
+	if( isset($_SESSION[ $hash ]) ){
 		$res = $_SESSION[ $hash ];
-	}else{*/
+	}else{
 		$medicos = json_decode( file_get_contents("https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}") );
 		$medicos = $medicos->objects;
 		$_medicos = [];
@@ -70,7 +70,7 @@
 		$res = json_encode( $_medicos );
 		$_SESSION[ $hash ] = $res;
 		$_SESSION[ 'medicos_info' ] = $_infos;
-	// }
+	}
 	//echo ( "https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}" );
 	print_r( $res );
 	die();
