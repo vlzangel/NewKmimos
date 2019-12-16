@@ -1156,3 +1156,8 @@ td#modal_final_metodo {
 label[for="tipo_efectivo"] {
     display: none !important;
 }
+
+div#popup-registrarte {
+    overflow: auto !important;
+    overflow-x: hidden !important;
+}
