@@ -322,3 +322,7 @@ input#input_otro {
     text-decoration: none;
 }
 
+.vlz_info_msg > div:last-child {
+    padding: 0px 15px 0px;
+}
+
