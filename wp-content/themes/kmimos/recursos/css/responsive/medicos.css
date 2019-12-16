@@ -1,0 +1,105 @@
+@media (max-width: 768px){
+	.medicos_container {
+	    grid-template-columns: 1fr;
+	    grid-template-rows: 55px 1fr;
+	}
+
+	.medicos_list_container {
+	    height: calc( 100% - 10px );
+	    border-right: 0px;
+	}
+
+	.medico_ficha_no_cargada .medicos_details {
+	    display: none !important;
+	}
+	
+	.medico_ficha_si_cargada .medicos_details {
+	    display: block !important;
+	    position: fixed;
+	    background: #FFF;
+	    top: 55px;
+	    left: 0px;
+	    width: 100vw;
+	    height: calc( 100% - 55px );
+	}
+
+	.medico_ficha {
+	    position: relative;
+	    display: grid;
+	    grid-template-columns: 1fr;
+	    grid-gap: 10px;
+	    height: calc( 100% - 25px );
+	    overflow: auto;
+    	overflow-x: hidden;
+	    margin-top: 20px;
+	}
+
+	.medico_ficha_info_box {
+	    grid-row: 3;
+	    grid-column: 1;
+	    padding: 0px 10px 10px;
+	}
+
+	.medico_ficha_horario_container {
+	    grid-column: 1;
+	    padding: 5px;
+	    max-width: calc( 100vw - 20px );
+	}
+
+	.medico_ficha_info_container {
+	    padding: 15px 15px 0px;
+	}
+
+	.medico_ficha_info_container > div > label {
+	    border-bottom: solid 2px #b6b6b6;
+	}
+
+	.medico_ficha_horario_container > div > div > div > div > span {
+	    width: calc( ( 100% / 4 ) - 10px );
+	}
+
+	.medico_ficha_info_container > div.medico_ficha_info_name > label {
+	    border-bottom: solid 2px #FFF !important;
+	}
+
+	.medico_ficha_info_container > div {
+	    display: inline-block !important;
+	    width: 44vw;
+	}
+
+	.medico_ficha_info_container > div > label {
+	    display: block;
+	    margin-right: 15px;
+	}
+
+	.medico_ficha_info_container > div:first-child, .medico_ficha_info_container > div:first-child label {
+	    display: block !important;
+	    width: 100%;
+	}
+
+	.atras_ficha {
+    	display: inline-block;
+	    position: absolute;
+	    top: 0px;
+	    left: 15px;
+	    width: 20px;
+	}
+
+	.medico_ficha_horario_container > label {
+	    padding: 10px;
+	}
+
+	.horario_flecha {
+	    top: 41px;
+	    width: 10px;
+	    display: none;
+	}
+
+	.horario_flecha_left {
+	    left: 0px;
+	}
+
+	.horario_flecha_right {
+	    right: -10px;
+	}
+}

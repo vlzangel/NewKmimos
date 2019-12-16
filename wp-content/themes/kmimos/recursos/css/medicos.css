@@ -1148,3 +1148,7 @@ td#modal_final_medico {
 td#modal_final_metodo {
     text-transform: capitalize;
 }
+
+.atras_ficha {
+    display: none;
+}

@@ -13,6 +13,8 @@
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
+    wp_enqueue_script('touchSwipe', getTema()."/lib/jquery.touchSwipe.min.js", array("jquery"), '1.0.0');
+
     wp_enqueue_style('home_kmimos', get_recurso("css")."medicos.css", array('kmimos_style'), '1.0.0');
     wp_enqueue_style('home_responsive', get_recurso("css")."responsive/medicos.css", array(), '1.0.0');
 
@@ -54,53 +56,16 @@
 
             </form>
 
-            <div class="medicos_list">
-
-                <!-- <div class="medico_item" data-id="id">
-                   <div class="medico_img_container"> <div class="medico_img" style="background-image: url( http://tusimagenesde.com/wp-content/uploads/2017/09/fotos-de-perfil-para-facebook-4.jpg )"></div> </div>
-                   <div class="medico_info">
-                       <div class="medico_nombre">
-                            <?= strtolower("FABIANA PATRICIA ORTEGA HERNÁNDEZ") ?>
-                        </div>
-                        <div class="medico_ranking"></div>
-                       <div class="medico_precio">
-                            <div>Servicios desde</div>
-                            <span> <span>MXN$</span> <strong>520,</strong><span>00</span> </span>
-                        </div>
-                   </div>
-                </div>
-
-                <div class="medico_item active" data-id="id">
-                   <div class="medico_img_container"> <div class="medico_img" style="background-image: url( http://tusimagenesde.com/wp-content/uploads/2017/09/fotos-de-perfil-para-facebook-4.jpg )"></div> </div>
-                   <div class="medico_info">
-                       <div class="medico_nombre">
-                            <?= strtolower("FABIANA PATRICIA ORTEGA HERNÁNDEZ") ?>
-                        </div>
-                        <div class="medico_ranking">
-                            <span class="active"></span>
-                            <span class="active"></span>
-                            <span class="active"></span>
-                            <span class="active"></span>
-                            <span></span>
-                        </div>
-                       <div class="medico_precio">
-                            <div>Servicios desde</div>
-                            <span> <span>MXN$</span> <strong>520,</strong><span>00</span> </span>
-                        </div>
-                   </div>
-                </div> -->
-
-            </div>
+            <div class="medicos_list"> </div>
 
         </div>
 
     	<div class="medicos_details">
-			<div class="medico_ficha_titulo">
-				<!-- <div></div>
-				<span></span>
-                <strong></strong> -->
-			</div>
+			<div class="medico_ficha_titulo"> </div>
     		<div class="medico_ficha">
+                
+                <img class="atras_ficha" src="<?= get_recurso("img").'MEDICOS/atras.png' ?>" />
+
     			<div class="medico_ficha_no_select_container">
     				<img src="<?= get_recurso("img").'MEDICOS/logo_mediqo.png' ?>" />
 					<div>
@@ -292,8 +257,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    ';
+    </div>';
 
     get_footer(); 
 ?>

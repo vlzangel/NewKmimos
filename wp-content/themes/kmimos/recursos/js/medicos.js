@@ -100,6 +100,11 @@ jQuery( document ).ready(function() {
 		OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
 	});
 
+	jQuery(".atras_ficha").on('click', function(e){
+		jQuery(".medicos_container").removeClass('medico_ficha_si_cargada');
+		jQuery(".medicos_container").addClass('medico_ficha_no_cargada');
+	});
+
 } );
 
 function debug( txt ){
@@ -154,7 +159,9 @@ function buscar( CB ){
 			jQuery(".medicos_container").removeClass("medico_ficha_si_cargada");
 			jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
 
-			jQuery(".medicos_list > .medico_item:first-child").click();
+			if( parseInt( jQuery("body").width() ) > 768 ){
+				jQuery(".medicos_list > .medico_item:first-child").click();
+			}
 		} ,
 		'json'
 	);
@@ -240,24 +247,43 @@ function cargar( id ){
 			}else{
 				MODAL = ' class="reservar_btn" ';
 			}
+
+			var SHOW_ITEMS = 9; var PASO = 11;
+			if( parseInt( jQuery("body").width() ) < 768 ){
+				SHOW_ITEMS = 4; PASO = 24;
+			}
+
 			jQuery.each(data.agenda, (i, v) => {
 				HORARIO += '<div>';
 				HORARIO += 		'<label>'+v.fecha+'</label>';
-				if( v.items.length > 9 ){
+				if( v.items.length > SHOW_ITEMS ){
 					HORARIO += '<img class="horario_flecha horario_flecha_left" src="'+HOME+'/recursos/img/MEDICOS/left.png" />';
 				}
-				HORARIO += 		'<div><div class="horario_box" data-actual=0 data-lenght="'+(v.items.length-9)+'" >';
+				HORARIO += 		'<div><div class="horario_box" data-actual=0 data-paso='+PASO+' data-lenght="'+(v.items.length-SHOW_ITEMS)+'" >';
 					jQuery.each(v.items, (i2, v2) => {
 						HORARIO +='<span '+MODAL+' data-date_full="'+v2[1]+'" data-date="'+v2[2]+'">'+v2[0]+'</span>';
 					});
 				HORARIO += 		'</div></div>';
-				if( v.items.length > 9 ){
+				if( v.items.length > SHOW_ITEMS ){
 					HORARIO += '<img class="horario_flecha horario_flecha_right" src="'+HOME+'/recursos/img/MEDICOS/right.png" />';
 				}
 				HORARIO += '</div>';
 			});
 
 			jQuery(".medico_ficha_horario_container > div").html( HORARIO );
+
+			jQuery(".medico_ficha_horario_container > div > div > div").swipe( {
+		 		swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+					if( jQuery(window).width() <= 768 ){
+						debug( direction );
+			 			if( direction == 'right' ){
+			 				jQuery(this).parent().find('.horario_flecha_left').click();
+			 			}else{
+			 				jQuery(this).parent().find('.horario_flecha_right').click();
+			 			}
+		 			}
+		  		}
+			});
 
 			jQuery(".reservar_btn").unbind("click").bind("click", (e) => {
 				jQuery(".modal_fecha").html( e.currentTarget.dataset.date_full );
@@ -276,12 +302,14 @@ function cargar( id ){
 				var box = parent.find(".horario_box");
 				var actual = parseInt(box.attr('data-actual'));
 				var lenght = parseInt(box.attr('data-lenght'));
+				var paso = parseInt(box.attr('data-paso'));
+				debug( paso );
 				if( actual < lenght ){
 					actual += 1;
 					box.attr('data-actual', actual);
 				}
 				parent.find(".horario_box").animate({
-					left: "-"+(actual*11)+"%"
+					left: "-"+(actual*paso)+"%"
 				}, 500);
 				box.attr('data-actual', actual);
 			});
@@ -291,12 +319,13 @@ function cargar( id ){
 				var box = parent.find(".horario_box");
 				var actual = parseInt(box.attr('data-actual'));
 				var lenght = parseInt(box.attr('data-lenght'));
+				var paso = parseInt(box.attr('data-paso'));
 				if( actual > 0 ){
 					actual -= 1;
 					box.attr('data-actual', actual);
 				}
 				parent.find(".horario_box").animate({
-					left: "-"+(actual*11)+"%"
+					left: "-"+(actual*paso)+"%"
 				}, 500);
 				
 			});
