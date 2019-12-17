@@ -63,7 +63,7 @@
 					    'method' 			=> 'card',
 					    'source_id' 		=> $token,
 					    'amount' 			=> (float) $cita_precio,
-					    'order_id' 			=> $cita_id,
+					    'order_id' 			=> $ENTORNO.'_'.$cita_id,
 					    'description' 		=> "Tarjeta",
 					   //  'use_card_points'	=> $tarjeta->puntos,
 					    'device_session_id' => $deviceIdHiddenFieldName
