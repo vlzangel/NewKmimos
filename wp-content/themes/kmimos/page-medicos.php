@@ -142,6 +142,12 @@
         var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
     </script>";
 
+    global $wpdb;
+    $_estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY `order` ASC, name ASC");
+    $estados = '';
+    foreach ($_estados as $key => $estado) {
+        $estados .= '<option value="'.$estado->id.'" >'.utf8_decode($estado->name).'</option>';
+    }
     echo '
     <div id="reservar_medico" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -153,6 +159,36 @@
                     </h5>
                 </div>
                 <div class="modal-body">
+
+                    <div id="modal_step_0" class="modal_container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Estado</label>
+                                <select name="state">
+                                    <option value="">Seleccione...</option>
+                                    '.$estados.'
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Provincia</label>
+                                <select name="provincia">
+                                    <option>Seleccione...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Colonia</label>
+                                <select name="colonia">
+                                    <option>Seleccione...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Dirección</label>
+                                <input type="text"  />
+                            </div>
+                        </div>
+                    </div>
 
                     <div id="modal_step_2" class="modal_container">
                         <h2>Felicidades, tu cita ha sido creada exitosamente!</h2>

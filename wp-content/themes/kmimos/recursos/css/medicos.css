@@ -1104,8 +1104,31 @@ h5.modal-title img {
     font-family: 'Gotham-Pro-Light', arial, sans-serif;
 }
 
+#modal_step_0 {
+    display: block;
+}
+
+#modal_step_0 input[type="text"],
+#modal_step_0 select
+{
+    display: block;
+    width: 100%;
+    padding: 7px 10px;
+    border: solid 1px var(--kmimos-gris-claro);
+}
+
+#modal_step_0 label{
+    display: block;
+    width: 100%;
+    padding-bottom: 3px;
+}
+
+#modal_step_0 .col-md-6 {
+    padding-bottom: 8px;
+}
+
 #modal_step_1 {
-    
+    display: none;
 }
 
 #modal_step_2 {

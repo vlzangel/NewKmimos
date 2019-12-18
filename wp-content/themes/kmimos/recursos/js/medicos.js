@@ -8,7 +8,7 @@ var __CB_PAGO_OK__ = function(){
 		HOME+'/procesos/medicos/pagar.php',
 		jQuery("#"+__FORM_PAGO__).serialize(),
 		function(res){
-			debug(res);
+			// debug(res);
 
 			if( res.errores.length == 0 ){
 				jQuery("#reservar_medico .modal-title span").html("Cita Creada Exitosamente!");
@@ -35,7 +35,61 @@ var __CB_PAGO_KO__ = function(){
 	debug('Error');
 }
 
+function get_coordenadas(){
+	var state = jQuery('[name="state"] option:selected').html();
+	var provincia = jQuery('[name="provincia"] option:selected').html();
+	var colonia = jQuery('[name="colonia"] option:selected').html();
+	if( state != "" &&  provincia != "" ){
+
+		var address = ( colonia != '' ) ? colonia+', ' : '';
+		address += provincia+', '+state+', México';
+
+		debug( address );
+
+		jQuery.post(
+			HOME+'/procesos/medicos/coordenadas.php',
+			{
+				address: address
+			},
+			function(coordenadas){
+				debug( coordenadas );
+				// jQuery('[name="provincia"]').html(provincias);
+			}
+		);
+	}
+}
+
 jQuery( document ).ready(function() {
+
+	jQuery('[name="state"]').on("change", function(e){
+		jQuery.post(
+			HOME+'/procesos/medicos/provincias.php',
+			{
+				state: jQuery('[name="state"]').val()
+			},
+			function(provincias){
+				jQuery('[name="provincia"]').html(provincias);
+			}
+		);
+	});
+
+	jQuery('[name="provincia"]').on("change", function(e){
+		jQuery.post(
+			HOME+'/procesos/medicos/colonias.php',
+			{
+				state: jQuery('[name="state"]').val(),
+				provincia: jQuery('[name="provincia"]').val()
+			},
+			function(colonias){
+				jQuery('[name="colonia"]').html(colonias);
+				get_coordenadas();
+			}
+		);
+	});
+
+	jQuery('[name="colonia"]').on("change", function(e){
+		get_coordenadas();
+	});
 
 	jQuery('#reservar_medico').on('hidden.bs.modal', function (e) {
 		jQuery("#modal_step_1").css('display', 'grid');
@@ -129,7 +183,7 @@ function buscar( CB ){
 		},
 		( data ) => {
 			
-			debug( data );
+			// debug( data );
 
 			var HTML = '';
 			jQuery.each(data, (i, v) => {
@@ -177,7 +231,7 @@ function cargar( id ){
 			id: id
 		}, (data) => {
 
-			debug( data );
+			// debug( data );
 
 			jQuery("#specialty_id").val( jQuery("#especialidad").val() );
 
