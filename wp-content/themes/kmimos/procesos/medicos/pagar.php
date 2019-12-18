@@ -87,7 +87,7 @@
 								'paymentType' => 0,
 								'appointmentType' => 1,
 								'isCash' => true,
-								'extraPatient' => $cita_direccion
+								'address' => $cita_direccion
 								//'paymentType' => ( $cita_tipo_pago == 'tarjeta') ? 0 : 1
 							];
 
