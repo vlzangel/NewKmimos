@@ -207,7 +207,7 @@ jQuery( document ).ready(function() {
 		var longitud = jQuery('[name="cita_longitud"]').val();
 		var direccion = jQuery('[name="cita_direccion"]').val();
 
-		if( latitud != "" || longitud != "" || direccion != "" ){
+		if( latitud == "" || longitud == "" || direccion == "" ){
 			alert("Para tener acceso al servicio es necesario poder obtener su ubicación actual, por favor pícale en Permiter.");
 			get_ubicacion();
 		}else{
