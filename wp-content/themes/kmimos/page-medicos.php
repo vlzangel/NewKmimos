@@ -291,7 +291,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cerrar</button>
-                    <button id="btn_reservar" type="button" class="btn btn-primary">Solicitar Cunsulta</button>
+                    <button id="btn_reservar" type="button" class="btn btn-primary">Solicitar Consulta</button>
                 </div>
             </div>
         </div>

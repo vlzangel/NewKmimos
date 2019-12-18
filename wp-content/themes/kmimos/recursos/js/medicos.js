@@ -208,7 +208,7 @@ jQuery( document ).ready(function() {
 		var direccion = jQuery('[name="cita_direccion"]').val();
 
 		if( latitud == "" || longitud == "" || direccion == "" ){
-			alert("Para tener acceso al servicio es necesario poder obtener su ubicación actual, por favor pícale en Permiter.");
+			alert("Para tener acceso al servicio es necesario poder obtener su ubicación actual, por favor pícale en Permitir.");
 			get_ubicacion();
 		}else{
 			jQuery("#btn_reservar").html("Validando...");
