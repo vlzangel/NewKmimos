@@ -1105,7 +1105,7 @@ h5.modal-title img {
 }
 
 #modal_step_0 {
-    display: block;
+    display: none;
 }
 
 #modal_step_0 input[type="text"],
@@ -1128,7 +1128,18 @@ h5.modal-title img {
 }
 
 #modal_step_1 {
-    display: none;
+    display: grid;
+}
+
+.cont_direccion {
+    grid-column: 1 / 3;
+    border-top: solid 2px #7c189f;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.cont_direccion > label {
+    font-weight: 600;
 }
 
 #modal_step_2 {

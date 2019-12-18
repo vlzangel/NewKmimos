@@ -229,8 +229,6 @@
                                 -->
 
                                 <form id="reserva_form">
-                                    <input type="hidden" name="cita_latitud" />
-
                                     <input type="hidden" name="cita_latitud" value="'.$_SESSION['medicos_serch']['latitud'].'" />
                                     <input type="hidden" name="cita_longitud" value="'.$_SESSION['medicos_serch']['longitud'].'" />
                                     <input type="hidden" name="cita_mascota_tipo" value="'.$mascota_tipo.'" />
@@ -279,6 +277,10 @@
                                         </div>
                                         <div class="cont_apellido">
                                             <input type="text" class="vlz_limpiar" name="cita_apellido" placeholder="Apellido" />
+                                        </div>
+                                        <div class="cont_direccion">
+                                            <label>Dirección</label>
+                                            <input type="text" name="cita_direccion" placeholder="Dirección" />
                                         </div>
                                     </div>
                                     <div class="errores_box"></div>

@@ -39,6 +39,7 @@ var geocoder;
 var map;
 function initialize() {
 	geocoder = new google.maps.Geocoder();
+	get_ubicacion();
 	/*
 	var latlng = new google.maps.LatLng(-34.397, 150.644);
 	var mapOptions = {
@@ -55,8 +56,8 @@ function get_coordenadas() {
 	var colonia = jQuery('[name="colonia"] option:selected').html();
 	if( state != "" &&  provincia != "" ){
 
-		var address = ( colonia != '' && colonia != 'Seleccione...' ) ? colonia+', ' : '';
-		address += provincia+', '+state+', México';
+		var address = ( colonia != '' && colonia != 'Seleccione...' ) ? colonia+'+' : '';
+		address += state+'+Mexico';
 
 		debug( address );
 
@@ -76,7 +77,40 @@ function get_coordenadas() {
 		});
 	}
 
-  }
+}
+
+function get_ubicacion(){
+	navigator.geolocation.getCurrentPosition( function(pos) {
+        crd = pos.coords;
+        jQuery('[name="cita_latitud"]').val( crd.latitude );
+        jQuery('[name="cita_longitud"]').val( crd.longitude );
+
+        var geocoder = new google.maps.Geocoder();
+        var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                debug( results[0]['formatted_address'] );
+                debug( results );
+
+                jQuery('[name="cita_direccion"]').val( results[0]['formatted_address'] );
+            }
+        });
+    }, 
+    function error(err) {
+        /*jQuery(".icon_left").removeClass("fa-spinner fa-spin");
+        jQuery(".icon_left").addClass("fa-crosshairs");*/
+        if( err.message == 'User denied Geolocation' ){
+            alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmivet en la configuración de ubicación de su dispositivo.");
+        }else{
+            alert(err.message);
+        }
+    },
+    {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    });
+}
 
 jQuery( document ).ready(function() {
 
@@ -168,9 +202,20 @@ jQuery( document ).ready(function() {
 	});
 
 	jQuery("#btn_reservar").on("click", function(e){
-		jQuery("#btn_reservar").html("Validando...");
-		jQuery("#btn_reservar").prop("disabled", true);
-		OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
+
+		var latitud = jQuery('[name="cita_latitud"]').val();
+		var longitud = jQuery('[name="cita_longitud"]').val();
+		var direccion = jQuery('[name="cita_direccion"]').val();
+
+		if( latitud != "" || longitud != "" || direccion != "" ){
+			alert("Para tener acceso al servicio es necesario poder obtener su ubicación actual, por favor pícale en Permiter.");
+			get_ubicacion();
+		}else{
+			jQuery("#btn_reservar").html("Validando...");
+			jQuery("#btn_reservar").prop("disabled", true);
+			OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
+		}
+
 	});
 
 	jQuery(".atras_ficha").on('click', function(e){
