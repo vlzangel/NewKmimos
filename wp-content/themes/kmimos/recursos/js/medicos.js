@@ -35,29 +35,48 @@ var __CB_PAGO_KO__ = function(){
 	debug('Error');
 }
 
-function get_coordenadas(){
+var geocoder;
+var map;
+function initialize() {
+	geocoder = new google.maps.Geocoder();
+	/*
+	var latlng = new google.maps.LatLng(-34.397, 150.644);
+	var mapOptions = {
+	  zoom: 8,
+	  center: latlng
+	}
+	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	*/
+}
+
+function get_coordenadas() {
 	var state = jQuery('[name="state"] option:selected').html();
 	var provincia = jQuery('[name="provincia"] option:selected').html();
 	var colonia = jQuery('[name="colonia"] option:selected').html();
 	if( state != "" &&  provincia != "" ){
 
-		var address = ( colonia != '' ) ? colonia+', ' : '';
+		var address = ( colonia != '' && colonia != 'Seleccione...' ) ? colonia+', ' : '';
 		address += provincia+', '+state+', México';
 
 		debug( address );
 
-		jQuery.post(
-			HOME+'/procesos/medicos/coordenadas.php',
-			{
-				address: address
-			},
-			function(coordenadas){
-				debug( coordenadas );
-				// jQuery('[name="provincia"]').html(provincias);
+		geocoder.geocode( { 'address': address}, function(results, status) {
+			if (status == 'OK') {
+				debug( results[0].geometry.location );
+				/*
+				map.setCenter(results[0].geometry.location);
+				var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location
+				});
+				*/
+			} else {
+				alert('Geocode was not successful for the following reason: ' + status);
 			}
-		);
+		});
 	}
-}
+
+  }
 
 jQuery( document ).ready(function() {
 
@@ -396,3 +415,12 @@ function cargar( id ){
 function NF(numero){
 	return new Intl.NumberFormat("de-DE").format(numero);
 }
+
+(function(d, s){
+    map = d.createElement(s), e = d.getElementsByTagName(s)[0];
+    map.async=!0;
+    map.setAttribute("charset","utf-8");
+    map.src="//maps.googleapis.com/maps/api/js?v=3&key="+KEY_MAPS+'&callback=initialize';
+    map.type="text/javascript";
+    e.parentNode.insertBefore(map, e);
+})(document,"script");

@@ -172,13 +172,13 @@
                             <div class="col-md-4">
                                 <label>Provincia</label>
                                 <select name="provincia">
-                                    <option>Seleccione...</option>
+                                    <option value="">Seleccione...</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label>Colonia</label>
                                 <select name="colonia">
-                                    <option>Seleccione...</option>
+                                    <option value="">Seleccione...</option>
                                 </select>
                             </div>
                         </div>
