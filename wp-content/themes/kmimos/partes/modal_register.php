@@ -443,6 +443,16 @@ if( time() >= strtotime("2018-12-25 00:00:00") && $HEADER == '' ){
 	';
 }
 
+if( $HEADER == 'kmivet' ){
+	$nuevo_banner = '
+	<div class="popup-registrarte-final" style="padding-bottom: 15px;">
+		<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
+		<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
+		<a href="javascript:;" onclick="cerrar_modal()" id="btn_iniciar_sesion" data-url="'.get_home_url().'/#buscar" class="km-btn-correo" data-dismiss="modal">INICIAR SESIÓN</a>
+	</div>';
+}
+
+
 $HTML .='
 	<!-- POPUPS DESCUENTO -->
 	<div id="popup-registrarte-2" class="modal modal_descuento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding: 40px 0px !important;">
