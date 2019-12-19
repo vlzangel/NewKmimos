@@ -120,7 +120,7 @@
 			<div> Busca los mejores especialistas o servicios médicos, elige un horario adecuado y reserve al instante con unos pocos clics. </div>
 			<div>
 				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_1.svg );"></div> </div>
-				<div> Profecionales de la salud disponibles 24/7 </div>
+				<div> Profesionales de la salud disponibles 24/7 </div>
 				<div> Elije el horario más conveniente para tu consulta y reserva con un solo clic. </div>
 			</div>
 			<div>
