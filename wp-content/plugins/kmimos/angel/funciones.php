@@ -802,15 +802,26 @@
 
                         $resaltar = ( $_SERVER["REQUEST_URI"] == $value["url"]."/" ) ? 'vlz_resaltar': '';
 
-                        $url = ( $value["img"] == "Cerrar_sesion.svg" ) ? $value["url"] : get_home_url().$value["url"];
+                        if( $value["img"] == "Cerrar_sesion.svg" ) {
+                            $MENU["body"] .=
+                            '<li class="'.$resaltar.'">
+                                <a href="#" class="pd-tb11 menu-link btn_salir" data-url="'.$value["url"].'">
+                                    '.$icono.'
+                                    '.$value["name"].'
+                                </a>
+                            </li>';
+                        }else{ 
+
+                            $url = get_home_url().$value["url"];
                         
-                        $MENU["body"] .=
+                            $MENU["body"] .=
                             '<li class="'.$resaltar.'">
                                 <a href="'.$url.'" class="pd-tb11 menu-link">
                                     '.$icono.'
                                     '.$value["name"].'
                                 </a>
                             </li>';
+                        }
                     }
                 }
 

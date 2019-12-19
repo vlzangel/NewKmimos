@@ -1051,7 +1051,6 @@ function finalizar_proceso(){
 			'email' : jQuery("#email_1").val(),
 		}, 
 		function(_result){
-
 			switch( HEADER ){
 				case 'kmivet':
 	    			location.reload();

@@ -1,6 +1,16 @@
 var isMovil = '';
 jQuery( document ).ready(function() {
 
+    jQuery(".btn_salir").on('click', function(e){
+        jQuery.get(
+            jQuery(this).data('url'),
+            {},
+            function(e){
+                location.reload();
+            }
+        );
+    });
+
     String.prototype.replaceAll = function(search, replacement) {
         var target = this;
         return target.replace(new RegExp(search, 'g'), replacement);
