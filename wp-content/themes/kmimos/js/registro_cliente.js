@@ -19,31 +19,24 @@ function iniciar_cronometro(){
 		var minutos = (hora/60);
 		var m = parseInt(minutos);
 		var s = parseInt( hora-(m*60) );
-
 		m = ( m < 10 ) ? "0"+m : m; 
 		s = ( s < 10 ) ? "0"+s : s; 
-
 		jQuery(".cronometro_m").html(m);
 		jQuery(".cronometro_s").html(s);
 	}, 1000);
 }
 
 jQuery( document ).ready( function(){
-
 	jQuery("#btn_registrar_mascota").on("click", function(){
 		CERRAR_MODAL = false;
-
 		jQuery("#popup-registrarte-2").modal("hide");
 		jQuery("#popup-registrarte").modal("show");
-
 		CERRAR_MODAL = true;
-
 		jQuery(".popup-registrarte-1").css("display", "none");
 		jQuery(".popup-condiciones").css("display", "none");
 		jQuery(".popup-registrarte-datos-mascota").css("display", "block");
 	});
 	jQuery(".terminos_container").load(HOME+"/terminos_HTML.php");
-
 });
 
 function cerrar_modal(){
@@ -1058,6 +1051,15 @@ function finalizar_proceso(){
 			'email' : jQuery("#email_1").val(),
 		}, 
 		function(_result){
-	    location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
-	});
+
+			switch( HEADER ){
+				case 'kmivet':
+	    			location.reload();
+				break;
+				case '':
+	    			location.href = jQuery("#btn_iniciar_sesion").attr("data-url");
+				break;
+			}
+		}
+	);
 }

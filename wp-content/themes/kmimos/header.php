@@ -61,26 +61,13 @@
 
 	echo comprimir( $HTML );
 
-
 	if( isset($_GET['test_conocer']) ){
 		$_SESSION['test_conocer'] = $_GET['test_conocer'];
-
-		$HTML = "
-			<script>
-		        var test_conocer = '".$_GET['test_conocer']."';
-	        </script>
-		";
-
+		$HTML = "<script> var test_conocer = '".$_GET['test_conocer']."'; </script>";
 		echo comprimir( $HTML );
 	}else{
 		$_SESSION['test_conocer'] = "b";
-
-		$HTML = "
-			<script>
-		        var test_conocer = 'b';
-	        </script>
-		";
-
+		$HTML = "<script> var test_conocer = 'b';</script>";
 		echo comprimir( $HTML );
 	}
 
@@ -123,7 +110,14 @@
     /* Recordatorio a cuidador para completar datos bancarios */
 	wp_enqueue_style( 'style', getTema()."/css/popup-datos-bancarios.css", array(), "1.0.0" );
 
-	echo "<script> var KEY_MAPS = '".KEY_MAPS."'; </script>";
+	global $HEADER;
+
+	echo "
+		<script> 
+			var KEY_MAPS = '".KEY_MAPS."';
+			var HEADER = '".$HEADER."';
+		</script>
+	";
 
     if( true ){
 
