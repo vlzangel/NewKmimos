@@ -203,6 +203,7 @@
                 $comentarios .= '<br>'.$pago->observaciones;
 
             $data["data"][] = array(
+                $pago->id,
                 $checkbox,
                 date('Y-m-d',strtotime($pago->fecha_creacion)),
                 strtoupper("<strong>".$estatus[$pago->estatus]."</strong>"),
