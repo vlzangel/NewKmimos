@@ -97,6 +97,7 @@
         "page-perfil.php",
         "page-recargar.php",
         "page-registro-cuidador.php",
+        "page-registro-veterinarios.php",
         "page-personalizada.php",
         "page-home_2.php",
         "page-kmivet.php",
