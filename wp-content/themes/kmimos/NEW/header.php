@@ -51,6 +51,7 @@
 	}
 
 	$quiero_ser = 'Quiero ser Cuidador';
+	$quiero_ser_link = 'quiero-ser-cuidador-certificado-de-perros';
 	$buscar_ = 'Buscar Cuidador';
 	$logo = '
 		<img class="logo" src="'.get_recurso("img").'HOME/PNG/logo.png" />
@@ -59,6 +60,7 @@
 	$link_buscar = get_home_url().'#buscar';
 	if( $HEADER == 'kmivet' ){
 		$quiero_ser = 'Quiero ser Kmiveterinario';
+		$quiero_ser_link = 'quiero-ser-veterinario';
 		$buscar_ = 'Buscar Veterinario';
 		$logo = '<img class="logo logo_kmivet" src="'.get_recurso("img").'KMIVET/logo.png" />';
 		$link_buscar = get_home_url().'/mediqo/';
@@ -68,7 +70,7 @@
 	$avatar = getTema().'/images/new/km-navbar-mobile.svg';
 	$avatar_circle = '';
 	if( !is_user_logged_in() ){
-		$btn_quiero = '<a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" id="quiero_ser_menu" class="boton boton_morado"> <img src="'.get_recurso("img").'HOME/PNG/Ser_cuidador.png" /> '.$quiero_ser.'</a>';
+		$btn_quiero = '<a href="'.get_home_url().'/'.$quiero_ser_link.'" id="quiero_ser_menu" class="boton boton_morado"> <img src="'.get_recurso("img").'HOME/PNG/Ser_cuidador.png" /> '.$quiero_ser.'</a>';
 		wp_enqueue_script('modales', getTema()."/js/registro_cliente.js", array("jquery"), '1.0.0');
 	}else{
 		$current_user = wp_get_current_user();
@@ -77,7 +79,6 @@
 		$salir = wp_logout_url( home_url() );
 		$HTML .= '<script> var AVATAR = "'.$avatar.'"; </script>';
 		$avatar_circle = 'img-circle';
-		
 	}
 
 	if($avatar== get_home_url()."/wp-content/themes/kmimos/images/noimg.png"){
@@ -154,6 +155,7 @@
 	$pages_white = [
 		"busqueda",
 		"mediqo",
+		"quiero-ser-veterinario",
 	];
 
 	$clase_white = "";

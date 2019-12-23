@@ -124,6 +124,31 @@ nav .lupa_negra{
 	nav.nav_white .boton_morado{
 		color: #FFF !important;
 	}
+/* Kmivet */
+
+nav.nav_mediqo {
+    background: #FFF;
+    border-bottom: solid 1px #CCC;
+    box-shadow: 0px 4px 4px #CCC;
+    padding: 0px 20px;
+    margin-bottom: 0px;
+}
+
+nav.nav_mediqo td > a {
+    color: #000 !important;
+}
+
+nav.nav_mediqo td > a.boton_morado {
+    color: #FFF !important;
+}
+
+nav.nav_mediqo .lupa {
+    display: none;
+}
+
+nav.nav_mediqo .lupa_negra {
+    display: inline-block;
+}
 
 .logo{
     height: 50px;

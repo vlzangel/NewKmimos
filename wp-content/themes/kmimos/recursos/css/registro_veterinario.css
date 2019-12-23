@@ -1,0 +1,191 @@
+:root {
+	--kv-gris: #CCC;
+	--kv-morado: #7c169e;
+}
+
+.banner-top {
+	margin-top: 60px;
+	width: 100%;
+	cursor: pointer;
+}
+
+.text-rigth {
+    text-align: right;
+}
+
+.boton.boton_morado {
+	color: #FFF !important;
+}
+
+.landing_btn_crea {
+    padding: 15px 0px !important;
+    min-width: 300px;
+    text-align: center;
+    text-decoration: none !important;
+}
+
+section {
+    text-align: center;
+    padding: 60px 0 0px;
+}
+
+.section-banner-bottom {
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+.section-banner-bottom img {
+	cursor: pointer;
+}
+
+.vlz_info_servicios {
+    background: #EEE;
+    padding: 35px 0px 35px;
+}
+
+.vlz_info_servicios > div:first-child {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    max-width: 1010px;
+    margin: 10px auto;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/*.vlz_info_items {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    width: 1140px;
+    margin: 50px auto 20px;
+    text-align: center;
+}*/
+
+.vlz_info_items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    width: 380px;
+    margin: 50px auto 20px;
+    text-align: center;
+}
+
+.vlz_info_items > div {
+    text-align: center;
+    margin: 0px 20px;
+    border: solid 1px #CCC;
+    padding: 20px 0px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.vlz_info_items > div.active {
+    border: solid 2px #969696;
+}
+
+.vlz_info_items > div > div > div:first-child {
+    height: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.vlz_info_items > div > div:last-child {
+    padding: 25px 0px 0px;
+    font-size: 15px;
+}
+
+.vlz_info_servicios_box {
+    display: grid;
+    grid-template-columns: 50% 1fr;
+    grid-gap: 20px;
+    max-width: 1090px;
+    margin: 50px auto;
+}
+
+.vlz_info_servicios_box > div:first-child {
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.vlz_info_servicios_box > div:last-child {
+    padding: 30px;
+}
+
+.vlz_info_servicios_box > div:last-child > div {
+    font-size: 25px;
+    color: #7c169e;
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.vlz_info_servicios_box > div:last-child > p {
+    font-family: 'Gotham-Pro-Ligth', arial, sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    line-height: 1.8;
+    padding-right: 50px;
+    font-weight: 400;
+}
+
+.section-preguntas {
+	padding: 0px;
+}
+
+.section-preguntas .titulo {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    max-width: 1010px;
+    margin: 10px auto;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.preguntas_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px 40px;
+    max-width: 1140px;
+    margin: 30px auto 0px;
+}
+
+.preguntas_container > div {
+    
+}
+
+.preguntas_container > div > div {
+	position: relative;
+    padding: 15px 0px;
+    border-bottom: solid 1px var(--kv-gris);
+    cursor: pointer;
+}
+
+.preguntas_container > div > div:after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    width: 25px;
+    height: 15px;
+    background-image: url(../img/VETERINARIO/REGISTRO/flecha_abajo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.preguntas_container > div > div > div {
+    text-align: left;
+    font-size: 14px;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+}
+
+.preguntas_container > div > div > p {
+    text-align: justify;
+    display: none;
+    font-size: 12px !important;
+    padding-top: 15px;
+}
