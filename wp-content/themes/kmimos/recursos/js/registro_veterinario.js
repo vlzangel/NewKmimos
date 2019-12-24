@@ -14,28 +14,28 @@ jQuery( document ).ready(function() {
     });
 
     jQuery("#kv_btn_registro").on('click', function(e){
-        var current = parseInt( jQuery(this).parent().attr("data-step-current") );
+        var current = parseInt( jQuery(this).parent().attr("data-step-show") );
         if( current < 5 ){
             current += 1;
-            change_step(current, true);
+            change_step(current);
             
         }
     });
 
     jQuery("#kv_btn_registro_atras").on('click', function(e){
-        var current = parseInt( jQuery(this).parent().attr("data-step-current") );
+        var current = parseInt( jQuery(this).parent().attr("data-step-show") );
         if( current > 1 ){
             current -= 1;
-            change_step(current, false);
+            change_step(current);
             jQuery("#kv_btn_registro").html("Continuar");
         }
     });
 
     jQuery(".kv-registro-nav > div").on('click', function(e){
         var id = parseInt( jQuery(this).data("id") );
-        var current = parseInt( jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-current") );
-        if( id <= current ){
-            change_step(id, false);
+        var current = parseInt( jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-show") );
+        if( jQuery(this).hasClass('active') ){
+            change_step(id);
         }
     });
 
@@ -65,7 +65,9 @@ jQuery( document ).ready(function() {
 });
 
 
-function change_step(current, change_active, change_current){
+function change_step(current){
+
+    var actual = parseInt( jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-current") );
     
     jQuery(".kv-registro-nav > div").removeClass("step_current");
     jQuery("#tab_step_"+current).addClass("step_current");
@@ -76,19 +78,20 @@ function change_step(current, change_active, change_current){
 
     if( current > 1 ){
         jQuery("#kv_btn_registro_atras").css("display", "inline-block");
-    }
-    if( current == 5 ){
-        jQuery("#kv_btn_registro").html("Finalizar");
-    }
-    if( current == 1 ){
+    }else{
         jQuery("#kv_btn_registro_atras").css("display", "none");
     }
 
-    if( change_current ){
-        jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-current", current);
+    if( current == 5 ){
+        jQuery("#kv_btn_registro").html("Finalizar");
+    }else{
+        jQuery("#kv_btn_registro").html("Continuar");
     }
 
-    if( change_active ){
+    jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-show", current);
+
+    if( actual > current ){
+        jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-current", current);
         jQuery(".kv-registro-nav > div").removeClass("active");
         jQuery(".kv-registro-nav > div").each(function(i, v){
             var id = jQuery(this).data("id");

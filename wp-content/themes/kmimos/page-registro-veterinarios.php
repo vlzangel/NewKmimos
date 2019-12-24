@@ -290,7 +290,7 @@
 							}
 						?>
 					</div>
-					<div class="modal-footer" data-step-current=1 >
+					<div class="modal-footer" data-step-current=1 data-step-show=1 >
 						<button id="kv_btn_registro_atras" type="button" class="btn btn-primary">Regresar</button>
 						<button id="kv_btn_registro" type="button" class="btn btn-primary">Continuar</button>
 					</div>
