@@ -264,13 +264,37 @@
 		
 		<!-- POPUPS TIPS  -->
 		<div id="popup-registro-veterinario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<div class="km-registro-tip1">
-						SDSD
+			<div class="modal-dialog modal-lg">
+				<form class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Registro de Veterinario</h5>
 					</div>
-				</div>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<div class="modal-body">
+						<div class="kv-registro-nav">
+							<div id="tab_step_1" class="active"> <span>1</span> <div>Información Personal</div> </div>
+							<div id="tab_step_2" > <span>2</span> <div>Datos de Contacto</div> </div>
+							<div id="tab_step_3" > <span>3</span> <div>Información Profesional</div> </div>
+							<div id="tab_step_4" > <span>4</span> <div>Información Particular</div> </div>
+							<div id="tab_step_5" > <span>5</span> <div>Referencias Medicas</div> </div>
+						</div>
+						<?php
+							for ($i=1; $i <= 5; $i++) { 
+								$path = __DIR__.'/partes/VETERINARIO/REGISTRO/paso-'.$i.'.php';
+								if( file_exists($path) ){
+									$active = ( $i == 1 ) ? ' step_active ' : '';
+									echo '<div id="step_'.$i.'" class="step step_'.$i.' '.$active.'" >';
+										include $path;
+									echo '</div>';
+								}
+							}
+						?>
+					</div>
+					<div class="modal-footer" data-step-current=1 >
+						<button id="kv_btn_registro_atras" type="button" class="btn btn-primary">Regresar</button>
+						<button id="kv_btn_registro" type="button" class="btn btn-primary">Continuar</button>
+					</div>
+				</form>
 			</div>
 		</div>
 		
