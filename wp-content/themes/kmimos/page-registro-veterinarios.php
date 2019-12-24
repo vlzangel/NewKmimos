@@ -62,7 +62,7 @@
 					<div class="box_col_left">
 						<div class="box_item">
 							<div class="box_icon">
-								<img src="<?php echo getTema(); ?>/images/new/km-cuidador/Ganancias.svg">
+								<img src="<?= get_recurso("img").'VETERINARIO/REGISTRO/beneficio_1.png' ?>">
 							</div>
 							<div class="box_info">
 								<h3>Aumenta tus ingresos</h3>
@@ -74,7 +74,7 @@
 						</div>
 						<div class="box_item">
 							<div class="box_icon">
-								<img src="<?php echo getTema(); ?>/images/new/km-cuidador/Tiempo.svg">
+								<img src="<?= get_recurso("img").'VETERINARIO/REGISTRO/beneficio_2.png' ?>">
 							</div>
 							<div class="box_info">
 								<h3>Cerca de ti</h3>
@@ -85,7 +85,7 @@
 						</div> 
 						<div class="box_item">
 							<div class="box_icon">
-								<img src="<?php echo getTema(); ?>/images/new/km-cuidador/Tiempo.svg">
+								<img src="<?= get_recurso("img").'VETERINARIO/REGISTRO/beneficio_3.png' ?>">
 							</div>
 							<div class="box_info">
 								<h3>¡Tu eliges!</h3>
@@ -104,7 +104,7 @@
 							<ul class="item-list">
 								<li>
 									<div style="width: 14%;">
-										<img src="<?php echo getTema(); ?>/images/new/km-cuidador/1.jpg" align="left">
+										<img src="<?= get_recurso("img").'VETERINARIO/REGISTRO/numero_1.png' ?>" align="left">
 									</div>
 									<div style="width: 75%">
 										<strong>Registrate en la página aquí</strong>
@@ -113,7 +113,7 @@
 								</li>
 								<li>
 									<div style="width: 14%;">
-										<img src="<?php echo getTema(); ?>/images/new/km-cuidador/2.jpg" align="left">
+										<img src="<?= get_recurso("img").'VETERINARIO/REGISTRO/numero_2.png' ?>" align="left">
 									</div>
 									<div style="width: 75%">
 										<strong>Capacítate</strong>
@@ -122,7 +122,7 @@
 								</li>
 								<li>
 									<div style="width: 14%;">
-										<img src="<?php echo getTema(); ?>/images/new/km-cuidador/3.jpg" align="left">
+										<img src="<?= get_recurso("img").'VETERINARIO/REGISTRO/numero_3.png' ?>" align="left">
 									</div>
 									<div style="width: 75%">
 										<strong>Comienza a atender mascotas</strong>

@@ -5,6 +5,12 @@
     --kv-error: #e43f3f;
 }
 
+.box .item-list img {
+    margin-right: 30px;
+    margin-top: 20px;
+    height: 40px;
+}
+
 .banner-top {
 	margin-top: 60px;
 	width: 100%;
