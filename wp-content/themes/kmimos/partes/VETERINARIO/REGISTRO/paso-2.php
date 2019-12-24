@@ -12,8 +12,14 @@
 	<label>Estado</label>
 	<select name="kv_delegacion">
 		<option value="">Seleccione</option>
-		<option>Hombre</option>
-		<option>Mujer</option>
+		<?php
+			global $wpdb;
+		    $_estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY `order` ASC, name ASC");
+		    $estados = '';
+		    foreach ($_estados as $key => $estado) {
+		        echo '<option value="'.$estado->id.'" >'.utf8_decode($estado->name).'</option>';
+		    }
+		?>
 	</select>
 </div>
 

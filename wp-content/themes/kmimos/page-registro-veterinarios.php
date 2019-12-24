@@ -272,11 +272,11 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<div class="modal-body">
 						<div class="kv-registro-nav">
-							<div id="tab_step_1" class="active"> <span>1</span> <div>Información Personal</div> </div>
-							<div id="tab_step_2" > <span>2</span> <div>Datos de Contacto</div> </div>
-							<div id="tab_step_3" > <span>3</span> <div>Información Profesional</div> </div>
-							<div id="tab_step_4" > <span>4</span> <div>Información Particular</div> </div>
-							<div id="tab_step_5" > <span>5</span> <div>Referencias Medicas</div> </div>
+							<div id="tab_step_1" data-id=1 class="active step_current"> <span>1</span> <div>Información Personal</div> </div>
+							<div id="tab_step_2" data-id=2 > <span>2</span> <div>Datos de Contacto</div> </div>
+							<div id="tab_step_3" data-id=3 > <span>3</span> <div>Información Profesional</div> </div>
+							<div id="tab_step_4" data-id=4 > <span>4</span> <div>Información Particular</div> </div>
+							<div id="tab_step_5" data-id=5 > <span>5</span> <div>Referencias Medicas</div> </div>
 						</div>
 						<?php
 							for ($i=1; $i <= 5; $i++) { 
