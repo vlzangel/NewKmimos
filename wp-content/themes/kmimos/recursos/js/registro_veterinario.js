@@ -15,10 +15,12 @@ jQuery( document ).ready(function() {
 
     jQuery("#kv_btn_registro").on('click', function(e){
         var current = parseInt( jQuery(this).parent().attr("data-step-show") );
-        if( current < 5 ){
-            current += 1;
-            change_step(current);
-            
+        var validacion = kv_validar(current);
+        if( validacion.length == 0 ){
+            if( current < 5 ){
+                current += 1;
+                change_step(current);
+            }
         }
     });
 
@@ -35,7 +37,10 @@ jQuery( document ).ready(function() {
         var id = parseInt( jQuery(this).data("id") );
         var current = parseInt( jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-show") );
         if( jQuery(this).hasClass('active') ){
-            change_step(id);
+            var validacion = kv_validar(current);
+            if( validacion.length == 0 ){
+                change_step(id);
+            }
         }
     });
 
@@ -64,32 +69,65 @@ jQuery( document ).ready(function() {
     });
 });
 
+function kv_validar(step){
+    var errores = [];
+    jQuery("#step_"+step+" .validar").each(function(i, v){
+        var valid = jQuery(this).attr('valid');
+        if( valid != undefined ){
+            var validaciones = valid.split("|");
+            for (var i = 0; i < validaciones.length; i++) {
+                switch( validaciones[ i ] ){
+                    case 'required':
+                        var parent = jQuery(this).parent();
+                        parent.find('.kv_error').remove();
+                        if( String(jQuery(this).val()).trim() == '' ){
+                            errores.push( jQuery(this).attr('name') );
+                            parent.append('<span class="kv_error">El campo es requerido</span>');
+                            i = validaciones.length;
+                        }
+                    break;
+                    case 'checked':
+                        var parent = jQuery(this).parent();
+                        parent.find('.kv_error').remove();
+                        if( jQuery(this).prop('checked') ){
+                            errores.push( jQuery(this).attr('name') );
+                            parent.append('<span class="kv_error">Debes marcar esta casilla</span>');
+                            i = validaciones.length;
+                        }
+                    break;
+                    case 'email':
+                        var parent = jQuery(this).parent();
+                        parent.find('.kv_error').remove();
+                        if( !/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test( String(jQuery(this).val()).trim() ) ){
+                            errores.push( jQuery(this).attr('name') );
+                            parent.append('<span class="kv_error">El formato del correo es incorrecto</span>');
+                        }
+                    break;
+                }
+            }
+        }
+    });
+    return errores;
+}
 
 function change_step(current){
-
     var actual = parseInt( jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-current") );
-    
     jQuery(".kv-registro-nav > div").removeClass("step_current");
     jQuery("#tab_step_"+current).addClass("step_current");
-
     jQuery(".step").removeClass("step_active");
     jQuery("#step_"+current).addClass("step_active");
     jQuery("#tab_step_"+current).addClass("active");
-
     if( current > 1 ){
         jQuery("#kv_btn_registro_atras").css("display", "inline-block");
     }else{
         jQuery("#kv_btn_registro_atras").css("display", "none");
     }
-
     if( current == 5 ){
         jQuery("#kv_btn_registro").html("Finalizar");
     }else{
         jQuery("#kv_btn_registro").html("Continuar");
     }
-
     jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-show", current);
-
     if( actual > current ){
         jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-current", current);
         jQuery(".kv-registro-nav > div").removeClass("active");

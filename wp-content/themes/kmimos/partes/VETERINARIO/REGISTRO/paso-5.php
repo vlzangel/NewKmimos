@@ -2,15 +2,15 @@
 	<label>* Primera Referencia</label>
 	<div>
 		<label>Nombre</label>
-		<input type="text" name="kv_primera_ref_nombre" />
+		<input type="text" name="kv_primera_ref_nombre" valid="required" class="validar" />
 	</div>
 	<div>
 		<label>Teléfono</label>
-		<input type="text" name="kv_primera_ref_telefono" />
+		<input type="text" name="kv_primera_ref_telefono" valid="required" class="validar" />
 	</div>
 	<div>
 		<label>Correo Electrónico</label>
-		<input type="text" name="kv_primera_ref_email" />
+		<input type="text" name="kv_primera_ref_email" valid="required" class="validar" />
 	</div>
 </div>
 
@@ -49,7 +49,7 @@
 <div class="terminos">
 	<label>
 		<div>
-			<input type="checkbox" id="kv_terminos" name="kv_terminos" />
+			<input type="checkbox" id="kv_terminos" name="kv_terminos" valid="checked" class="validar" />
 			Acepto el <a href="#">Aviso de Privacidad</a>
 		</div>
 	</label>

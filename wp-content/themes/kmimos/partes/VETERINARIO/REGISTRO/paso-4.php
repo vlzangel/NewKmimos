@@ -1,6 +1,6 @@
 <div>
 	<label>¿Cuenta con auto particular?</label>
-	<select name="kv_tiene_auto">
+	<select name="kv_tiene_auto" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Si</option>
 		<option>No</option>
@@ -9,7 +9,7 @@
 
 <div>
 	<label>¿Cuenta con licencia de manejo?</label>
-	<select name="kv_tiene_licencia">
+	<select name="kv_tiene_licencia" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Si</option>
 		<option>No</option>
@@ -18,7 +18,7 @@
 
 <div>
 	<label>¿Tiene disponibilidad de horarios?</label>
-	<select name="kv_tiene_disponibilidad">
+	<select name="kv_tiene_disponibilidad" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Si</option>
 		<option>No</option>
@@ -27,7 +27,7 @@
 
 <div>
 	<label>¿Tiene seguro de Responsabilidad Civil Médica?</label>
-	<select name="kv_seguro_responsabilidad">
+	<select name="kv_seguro_responsabilidad" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Si</option>
 		<option>No</option>

@@ -1,16 +1,16 @@
 <div>
 	<label>Calle y Número</label>
-	<input type="text" name="kv_calle" />
+	<input type="text" name="kv_calle" valid="required" class="validar" />
 </div>
 
 <div>
 	<label>Interior</label>
-	<input type="text" name="kv_interior" />
+	<input type="text" name="kv_interior" valid="required" class="validar" />
 </div>
 
 <div>
 	<label>Estado</label>
-	<select name="kv_delegacion">
+	<select name="kv_delegacion" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<?php
 			global $wpdb;
@@ -25,7 +25,7 @@
 
 <div>
 	<label>Delegación o Municipio</label>
-	<select name="kv_delegacion">
+	<select name="kv_delegacion" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Hombre</option>
 		<option>Mujer</option>
@@ -34,7 +34,7 @@
 
 <div>
 	<label>Colonia</label>
-	<select name="kv_colonia">
+	<select name="kv_colonia" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Hombre</option>
 		<option>Mujer</option>
@@ -43,15 +43,15 @@
 
 <div>
 	<label>Código postal</label>
-	<input type="number" name="kv_postal" />
+	<input type="number" name="kv_postal" valid="required" class="validar" />
 </div>
 
 <div>
 	<label>Teléfono Fijo</label>
-	<input type="text" name="kv_telf_fijo" />
+	<input type="text" name="kv_telf_fijo" valid="required" class="validar" />
 </div>
 
 <div>
 	<label>Teléfono Movil</label>
-	<input type="text" name="kv_telf_movil" />
+	<input type="text" name="kv_telf_movil" valid="required" class="validar" />
 </div>

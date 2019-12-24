@@ -2,6 +2,7 @@
 	--kv-gris: #cecece;
 	--kv-morado: #7c169e;
 	--kv-azul: #008bf2;
+    --kv-error: #e43f3f;
 }
 
 .banner-top {
@@ -243,9 +244,25 @@ section {
     padding: 10px !important;
 }
 
+.modal-body {
+    padding: 15px 15px 25px;
+}
+
 #kv_btn_registro_atras {
 	display: none;
 	float: left;
+}
+
+.step > div {
+    position: relative;
+}
+
+span.kv_error {
+    position: absolute;
+    font-size: 10px;
+    right: 5px;
+    bottom: -16px;
+    color: var(--kv-error);
 }
 
 .step > div > label {

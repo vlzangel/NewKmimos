@@ -1,21 +1,21 @@
 <div>
 	<label>Nombre Completo</label>
-	<input type="text" name="kv_nombre" />
+	<input type="text" name="kv_nombre" valid="required" class="validar" />
 </div>
 
 <div>
 	<label>Correo Electrónico</label>
-	<input type="text" name="kv_email" />
+	<input type="text" name="kv_email" valid="required|email" class="validar" />
 </div>
 
 <div>
 	<label>Fecha de nacimiento</label>
-	<input type="date" name="kv_fecha" />
+	<input type="date" name="kv_fecha" valid="required" class="validar" />
 </div>
 
 <div>
 	<label>Genero</label>
-	<select name="kv_genero">
+	<select name="kv_genero" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Hombre</option>
 		<option>Mujer</option>
@@ -24,22 +24,22 @@
 
 <div>
 	<label>Documento de ID</label>
-	<input type="text" name="kv_dni" />
+	<input type="number" name="kv_dni" valid="required" class="validar" />
 </div>
 
 <div>
 	<label>RFC</label>
-	<input type="text" name="kv_rfc" />
+	<input type="text" name="kv_rfc" valid="required" class="validar" />
 </div>
 
 <div>
 	<label>Código de referencia</label>
-	<input type="text" name="kv_referencia" />
+	<input type="text" name="kv_referencia" valid="required" class="validar" />
 </div>
 
 <div>
 	<label>¿Comó te enteraste de nosotros?</label>
-	<select name="kv_referido">
+	<select name="kv_referido" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Facebook</option>
 		<option>Twitter</option>
