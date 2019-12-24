@@ -256,9 +256,7 @@
 		<section class="section-banner-bottom">
 			<img class="banner-top" src="<?= get_recurso('img') ?>VETERINARIO/REGISTRO/banner-bottom.png" <?= $link_registro ?>  />
 		</section>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup-registro-veterinario">
-  Launch demo modal
-</button>
+
 		<?php // Modal Registro Cuidador ?>
 		<?php // include_once( 'partes/veterinario/registro.php' ); ?>
 		
