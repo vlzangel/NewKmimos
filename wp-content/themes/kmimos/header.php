@@ -102,7 +102,8 @@
         "page-home_2.php",
         "page-kmivet.php",
         "page-medicos.php",
-        'page-validar_pago.php'
+        'page-validar_pago.php',
+        'page-perfil-kmivet.php'
 
     ];
 

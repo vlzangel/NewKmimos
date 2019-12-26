@@ -24,6 +24,7 @@
         "page-kmivet.php",
         "page-medicos.php",
         'page-validar_pago.php',
+        'page-perfil-kmivet.php'
     ];
 
     $plantilla = get_post_meta($post->ID, '_wp_page_template', true);
