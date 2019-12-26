@@ -297,6 +297,7 @@
 		</div>
 		
 <?php 
-	wp_enqueue_script('registro_veterinario', get_recurso('js')."registro_veterinario.js", array("jquery"), '1.0.0');
+	wp_enqueue_script('registro_veterinario', getTema()."/lib/kmivet/validacion.js", array("jquery"), '1.0.0');
+	wp_enqueue_script('kmivet_validacion_lib', get_recurso('js')."registro_veterinario.js", array("jquery"), '1.0.0');
 	get_footer(); 
 ?>

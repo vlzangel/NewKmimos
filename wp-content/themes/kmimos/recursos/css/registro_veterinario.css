@@ -364,7 +364,7 @@ span.kv_error {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 0px 10px;
     border-bottom: solid 1px var(--kv-gris);
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .step_5 > div > label {
@@ -379,6 +379,10 @@ span.kv_error {
 
 .terminos > label {
     text-align: center !important;
+}
+
+.step_5 > div > div {
+    position: relative;
 }
 
 .step_5 > div > label > div {
@@ -402,4 +406,8 @@ span.kv_error {
     color: var(--kv-azul);
     vertical-align: middle;
     text-decoration: none;
+}
+
+.validar_existe {
+    display: none;
 }

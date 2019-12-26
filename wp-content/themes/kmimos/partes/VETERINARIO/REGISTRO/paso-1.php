@@ -6,6 +6,7 @@
 <div>
 	<label>Correo Electrónico</label>
 	<input type="text" name="kv_email" valid="required|email" class="validar" />
+	<input type="checkbox" name="kv_email_no_usado" class="validar_existe" />
 </div>
 
 <div>

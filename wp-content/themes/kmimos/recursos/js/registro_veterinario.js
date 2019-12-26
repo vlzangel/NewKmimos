@@ -1,5 +1,48 @@
 jQuery( document ).ready(function() {
 
+    jQuery("[name='kv_email']").on('change', function(e){
+        jQuery.post(
+            HOME+'/procesos/medicos/existe_registro.php',
+            {
+                email: jQuery("[name='kv_email']").val()
+            },
+            function( res ){
+                if ( res.status === false ) {
+                    jQuery("[name='kv_email_no_usado']").prop('checked', true);
+                }else{
+                    jQuery("[name='kv_email_no_usado']").removeAttr('checked');
+                }
+            },
+            'json'
+        );
+    });
+
+    jQuery('[name="kv_estado"]').on("change", function(e){
+        jQuery.post(
+            HOME+'/procesos/medicos/provincias.php',
+            {
+                state: jQuery('[name="kv_estado"]').val()
+            },
+            function(provincias){
+                jQuery('[name="kv_delegacion"]').html(provincias);
+                jQuery('[name="kv_colonia"]').html("<option value=''>Seleccione...</option>");
+            }
+        );
+    });
+
+    jQuery('[name="kv_delegacion"]').on("change", function(e){
+        jQuery.post(
+            HOME+'/procesos/medicos/colonias.php',
+            {
+                state: jQuery('[name="kv_estado"]').val(),
+                provincia: jQuery('[name="kv_delegacion"]').val()
+            },
+            function(colonias){
+                jQuery('[name="kv_colonia"]').html(colonias);
+            }
+        );
+    });
+
     jQuery(".vlz_item_servicios").on('click', function(e){
         jQuery(".vlz_item_servicios").removeClass('active');
         jQuery(this).addClass('active');
@@ -15,11 +58,16 @@ jQuery( document ).ready(function() {
 
     jQuery("#kv_btn_registro").on('click', function(e){
         var current = parseInt( jQuery(this).parent().attr("data-step-show") );
-        var validacion = kv_validar(current);
-        if( validacion.length == 0 ){
-            if( current < 5 ){
-                current += 1;
-                change_step(current);
+        if( current < 5 ){
+            current += 1;
+            change_step(current);
+        }else{
+            var validacion = kv_validar(current);
+            if( validacion.length == 0 ){
+                if( current < 5 ){
+                    current += 1;
+                    change_step(current);
+                }
             }
         }
     });
@@ -68,47 +116,6 @@ jQuery( document ).ready(function() {
         }
     });
 });
-
-function kv_validar(step){
-    var errores = [];
-    jQuery("#step_"+step+" .validar").each(function(i, v){
-        var valid = jQuery(this).attr('valid');
-        if( valid != undefined ){
-            var validaciones = valid.split("|");
-            for (var i = 0; i < validaciones.length; i++) {
-                switch( validaciones[ i ] ){
-                    case 'required':
-                        var parent = jQuery(this).parent();
-                        parent.find('.kv_error').remove();
-                        if( String(jQuery(this).val()).trim() == '' ){
-                            errores.push( jQuery(this).attr('name') );
-                            parent.append('<span class="kv_error">El campo es requerido</span>');
-                            i = validaciones.length;
-                        }
-                    break;
-                    case 'checked':
-                        var parent = jQuery(this).parent();
-                        parent.find('.kv_error').remove();
-                        if( jQuery(this).prop('checked') ){
-                            errores.push( jQuery(this).attr('name') );
-                            parent.append('<span class="kv_error">Debes marcar esta casilla</span>');
-                            i = validaciones.length;
-                        }
-                    break;
-                    case 'email':
-                        var parent = jQuery(this).parent();
-                        parent.find('.kv_error').remove();
-                        if( !/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test( String(jQuery(this).val()).trim() ) ){
-                            errores.push( jQuery(this).attr('name') );
-                            parent.append('<span class="kv_error">El formato del correo es incorrecto</span>');
-                        }
-                    break;
-                }
-            }
-        }
-    });
-    return errores;
-}
 
 function change_step(current){
     var actual = parseInt( jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-current") );

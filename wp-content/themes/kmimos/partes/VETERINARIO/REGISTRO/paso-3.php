@@ -45,26 +45,24 @@
 
 <div>
 	<label>¿Pertenece a una red de seguros?</label>
-	<select name="kv_red_seguro" valid="required" class="validar">
-		<option value="">Seleccione</option>
-		<option>Si</option>
+	<select name="kv_red_seguro">
 		<option>No</option>
+		<option>Si</option>
 	</select>
 </div>
 
 <div class="kv_red_seguros">
 	<div>
 		<label>Red de Seguros</label>
-		<input type="text" name="kv_red_seguros" valid="required" class="validar" />
+		<input type="text" name="kv_red_seguros" />
 	</div>
 </div>
 
 <div>
 	<label>¿Cuenta con alguna especialidad?</label>
-	<select name="kv_tiene_otra_especialidad" valid="required" class="validar">
-		<option value="">Seleccione</option>
-		<option>Si</option>
+	<select name="kv_tiene_otra_especialidad">
 		<option>No</option>
+		<option>Si</option>
 	</select>
 </div>
 

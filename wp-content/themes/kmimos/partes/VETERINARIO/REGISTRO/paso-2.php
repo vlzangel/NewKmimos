@@ -10,7 +10,7 @@
 
 <div>
 	<label>Estado</label>
-	<select name="kv_delegacion" valid="required" class="validar">
+	<select name="kv_estado" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<?php
 			global $wpdb;
