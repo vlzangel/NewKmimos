@@ -58,18 +58,20 @@ jQuery( document ).ready(function() {
 
     jQuery("#kv_btn_registro").on('click', function(e){
         var current = parseInt( jQuery(this).parent().attr("data-step-show") );
-        if( current < 5 ){
+        /*if( current < 5 ){
             current += 1;
             change_step(current);
-        }else{
+        }else{*/
             var validacion = kv_validar(current);
             if( validacion.length == 0 ){
                 if( current < 5 ){
                     current += 1;
                     change_step(current);
+                }else{
+                    completar_registro();
                 }
             }
-        }
+        // }
     });
 
     jQuery("#kv_btn_registro_atras").on('click', function(e){
@@ -116,6 +118,25 @@ jQuery( document ).ready(function() {
         }
     });
 });
+
+function completar_registro(){
+    jQuery.post(
+        HOME+'/procesos/medicos/registro.php',
+        jQuery("#popup-registro-veterinario form").serialize(),
+        function(res){
+            // res
+            if( res.status ){
+                jQuery(".kv-registro-nav").css("display", "none");
+                jQuery(".modal-footer").css("display", "none");
+                change_step(6);
+            }else{
+                jQuery(".kv-registro-nav").css("display", "flex");
+            }
+        },
+        'json'
+    );
+
+}
 
 function change_step(current){
     var actual = parseInt( jQuery("#popup-registro-veterinario .modal-footer").attr("data-step-current") );

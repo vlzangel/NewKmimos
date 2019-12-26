@@ -277,7 +277,7 @@
 							<div id="tab_step_5" data-id=5 > <span>5</span> <div>Referencias Medicas</div> </div>
 						</div>
 						<?php
-							for ($i=1; $i <= 5; $i++) { 
+							for ($i=1; $i <= 6; $i++) { 
 								$path = __DIR__.'/partes/VETERINARIO/REGISTRO/paso-'.$i.'.php';
 								if( file_exists($path) ){
 									$active = ( $i == 1 ) ? ' step_active ' : '';
