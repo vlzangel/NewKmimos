@@ -131,6 +131,23 @@
 								$wpdb->query("UPDATE wp_kmivet_reservas SET cita_id = '{$data}' WHERE id = '{$cita_id}' ");
 							}
 
+							$mensaje = buildEmailTemplate(
+					            'KMIVET/reservas/nueva', 
+					            [
+					            	"EMAIL"   => $kv_email,
+					            	"NOMBRE"  => $kv_nombre,
+					            	"CLAVE"   => $random_password,
+					            	"URL" 	  => get_home_url().'/kmivet/',
+					            ]
+					        );
+
+						    $header = [
+						    	'BCC: a.veloz@kmimos.la',
+						    	'BCC: y.chaudary@kmimos.la',
+						    ];
+
+					        wp_mail($kv_email, 'Kmivet - Gracias por registrarte como veterinario!', $mensaje, $header);
+
 						}else{
 							$error[] = [
 				        		"code" => 0,

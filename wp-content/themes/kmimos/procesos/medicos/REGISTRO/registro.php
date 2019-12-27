@@ -44,12 +44,13 @@
 	    wp_set_auth_cookie($user_signon->ID, true);
 
 	    $mensaje = buildEmailTemplate(
-            'KMIVET/medico/registro', 
+            'KMIVET/registro/nuevo', 
             [
-            	"EMAIL"   => $kv_email,
-            	"NOMBRE"  => $kv_nombre,
-            	"CLAVE"   => $random_password,
-            	"URL" 	  => get_home_url().'/kmivet/',
+            	"KV_URL_IMGS"   => getTema().'/KMIVET/img',
+            	"EMAIL"   		=> $kv_email,
+            	"NOMBRE"  		=> $kv_nombre,
+            	"CLAVE"   		=> $random_password,
+            	"URL" 	  		=> get_home_url().'/kmivet/',
             ]
         );
 

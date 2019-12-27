@@ -2,12 +2,13 @@
 	include dirname(__DIR__).'/wp-load.php';
 
 	$mensaje = buildEmailTemplate(
-        'KMIVET/medico/registro', 
+        'KMIVET/registro/nuevo', 
         [
-        	"EMAIL" => 'a.veloz@kmimos.la',
-        	"NOMBRE" => 'Angel Veloz',
-        	"CLAVE" => 'sdfs5f1',
-        	"URL" => get_home_url().'/kmivet/',
+        	"KV_URL_IMGS"   => getTema().'/KMIVET/img',
+        	"EMAIL" 		=> 'a.veloz@kmimos.la',
+        	"NOMBRE" 		=> 'Angel Veloz',
+        	"CLAVE" 		=> 'sdfs5f1',
+        	"URL" 			=> get_home_url().'/kmivet/',
         ]
     );
 
