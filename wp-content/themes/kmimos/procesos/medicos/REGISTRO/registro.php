@@ -1,5 +1,5 @@
 <?php
-	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+	$raiz = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
 	ob_start();
 		include_once($raiz."/wp-load.php");
 		$load = ob_get_contents();
@@ -27,8 +27,15 @@
 
 	$user_id = username_exists( $kv_email );
 	if ( ! $user_id && false == email_exists( $kv_email ) ) {
-	    $random_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+	    $random_password = wp_generate_password( $length = 5, $include_standard_special_chars = false );
 	    $user_id = wp_create_user( $kv_email, $random_password, $kv_email );
+
+	    update_user_meta($user_id, 'first_name', $kv_nombre);
+	    update_user_meta($user_id, 'user_mobile', $kv_telf_movil);
+	    update_user_meta($user_id, 'user_phone', $kv_telf_fijo);
+	    update_user_meta($user_id, 'clave_temp', $random_password);
+	    update_user_meta($user_id, 'user_referred', 'kmivet');
+
 	    $info = array();
 	    $info['user_login']     = sanitize_user($kv_email, true);
 	    $info['user_password']  = sanitize_text_field($random_password);

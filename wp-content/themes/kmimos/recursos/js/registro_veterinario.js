@@ -2,7 +2,7 @@ jQuery( document ).ready(function() {
 
     jQuery("[name='kv_email']").on('change', function(e){
         jQuery.post(
-            HOME+'/procesos/medicos/existe_registro.php',
+            HOME+'/procesos/medicos/REGISTRO/existe_registro.php',
             {
                 email: jQuery("[name='kv_email']").val()
             },
@@ -19,7 +19,7 @@ jQuery( document ).ready(function() {
 
     jQuery('[name="kv_estado"]').on("change", function(e){
         jQuery.post(
-            HOME+'/procesos/medicos/provincias.php',
+            HOME+'/procesos/medicos/GENERALES/provincias.php',
             {
                 state: jQuery('[name="kv_estado"]').val()
             },
@@ -32,7 +32,7 @@ jQuery( document ).ready(function() {
 
     jQuery('[name="kv_delegacion"]').on("change", function(e){
         jQuery.post(
-            HOME+'/procesos/medicos/colonias.php',
+            HOME+'/procesos/medicos/GENERALES/colonias.php',
             {
                 state: jQuery('[name="kv_estado"]').val(),
                 provincia: jQuery('[name="kv_delegacion"]').val()
@@ -125,7 +125,7 @@ jQuery( document ).ready(function() {
 
 function completar_registro(){
     jQuery.post(
-        HOME+'/procesos/medicos/registro.php',
+        HOME+'/procesos/medicos/REGISTRO/registro.php',
         jQuery("#popup-registro-veterinario form").serialize(),
         function(res){
             // res

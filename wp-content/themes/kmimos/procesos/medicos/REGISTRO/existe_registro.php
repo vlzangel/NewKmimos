@@ -1,5 +1,5 @@
 <?php
-	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+	$raiz = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
 	ob_start();
 		include_once($raiz."/wp-load.php");
 		$load = ob_get_contents();
