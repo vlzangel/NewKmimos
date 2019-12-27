@@ -47,26 +47,6 @@
 	}
 
 	function add_appointments($params){
-		/*
-			{
-			    "payment": {
-			        "number": "4111111111111111",
-			        "firstName": "A",
-			        "lastName": "J",
-			        "token": "tok_2mRhVv96mLWiUp3cY"
-			    },
-			    "medic": "4794a05285f74bd0980b88243782ab5d",
-			    "patient": "9ab288447ce846359a56f8300559b3d0",
-			    "specialty": "4076b2429a17427692085abb38c6ff1d",
-			    "dueTo": "2019-12-17 18:30",
-			    "lat": 19.449481,
-			    "lng": -99.165957, 
-			    "extraPatient": "Extra patient",
-			    "extraPatientAge": 22,
-			    "extraPatientGender": 1
-			}
-		*/
-
 		$resultado = mediqo_request('appointments/', $params);
 		$resultado = json_decode($resultado);
 		$cita_id = $resultado->object->id;
