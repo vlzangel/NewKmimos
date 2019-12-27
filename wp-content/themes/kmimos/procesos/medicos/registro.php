@@ -22,8 +22,7 @@
 	$wpdb->query("INSERT INTO wp_kmivet_data_medicos VALUES(
 		NULL,
 		'{$medico_id}',
-		'{$data}',
-		NOW()
+		'{$data}'
 	)");
 
 	$user_id = username_exists( $kv_email );
