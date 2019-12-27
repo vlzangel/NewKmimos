@@ -1,0 +1,126 @@
+@media ( max-width: 768px ){
+
+	header .btn-kmimos-cuidador {
+	    font-size: 13px!important;
+	    margin: 40px 0px 0px;
+	}
+
+	section {
+	    text-align: center;
+	    padding: 30px 15px 20px !important;
+	    margin: 0px;
+	}
+
+	section h2 {
+	    font-size: 14px!important;
+	    line-height: 1.4;
+	}
+
+	.box_icon img {
+	    width: 80%;
+	}
+
+	.h3, h3 {
+	    font-size: 15px !important;
+	}
+
+	.box_item {
+	    padding-bottom: 10px;
+	}
+
+	.box .titulo {
+	    font-size: 15px;
+	    text-align: center;
+	}
+
+	.box .item-list img {
+	    height: 30px;
+	}
+
+	.box .item-list > li > div {
+	    padding: 0px 0px 0px 10px!important;
+	}
+
+	.box .item-list > li > div > strong {
+	    font-size: 13px;
+	    padding-bottom: 2px !important;
+	    display: inline-block;
+	}
+
+	.vlz_info_servicios > div:first-child {
+	    font-size: 20px;
+	    padding: 0px 10px;
+	}
+
+	.vlz_info_servicios_box {
+	    grid-template-columns: 1fr;
+	    grid-gap: 10px;
+	    margin: 30px auto;
+	}
+
+	.vlz_info_servicios_box > div:first-child {
+	    height: 200px;
+	}
+
+	.vlz_info_servicios_box {
+	    grid-template-columns: 1fr;
+	    grid-gap: 10px;
+	    margin: 30px auto 0px;
+	    padding: 0px 20px;
+	}
+
+	.vlz_info_servicios_box > div:last-child {
+	    padding: 10px 0px;
+	}
+
+	.vlz_info_servicios_box > div:last-child > div {
+	    font-size: 16px;
+	    text-align: center;
+	    margin-bottom: 10px;
+	}
+
+	.vlz_info_servicios_box > div:last-child > p {
+	    font-size: 14px;
+	    padding-right: 0px;
+	    font-weight: 400;
+	}
+
+	#seccion_servicios {
+		padding: 30px 0px 20px !important;
+	}
+
+	.vlz_info_items {
+	    display: grid;
+	    grid-template-columns: repeat(2, 1fr);
+	    grid-gap: 0px;
+	    width: 100%;
+	    margin: 30px auto 20px;
+	    text-align: center;
+	}
+
+	.vlz_info_items > div {
+	    margin: 0px 10px;
+	}
+
+	.vlz_info_items > div > div:last-child {
+	    padding: 15px 0px 0px;
+	    font-size: 13px;
+	}
+
+	.preguntas_container {
+	    grid-template-columns: repeat(1, 1fr);
+	}
+
+	.preguntas_container > div > div {
+	    padding-right: 30px;
+	}
+
+	.preguntas_container > div > div > div {
+	    font-size: 13px;
+	}
+
+	.preguntas_container > div > div > p {
+	    line-height: 1.6 !important;
+	}
+
+}

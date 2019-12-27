@@ -35,9 +35,9 @@
 				</div>
 				<header>
 					<div class="container text-center">
-						<a class="btn btn-kmimos-cuidador" <?php echo $config_link_registro; ?> >¡Crea tu perfil de cuidador aqu&iacute;!</a>
-						<h2 class="titulo-principal">Kmimos necesita doglovers como tú</h2>
-						<p class="titulo-secundario">Cada mascota llega como un huésped y consigue a un nuevo amigo. Convierte tu hobbie en dinero extra, con kmimos te ayudamos a alcanzarlo.</p>
+						<a class="btn btn-kmimos-cuidador" <?php echo $config_link_registro; ?> >¡Crea tu perfil de veterinario aqu&iacute;!</a>
+						<!-- <h2 class="titulo-principal">Kmimos necesita doglovers como tú</h2>
+						<p class="titulo-secundario">Cada mascota llega como un huésped y consigue a un nuevo amigo. Convierte tu hobbie en dinero extra, con kmimos te ayudamos a alcanzarlo.</p> -->
 					</div>
 				</header>
 			</div>
@@ -142,7 +142,7 @@
 			</div>
 		</section>
 
-		<section class=""> <?php
+		<section id="seccion_servicios"> <?php
 			$_SERVICIOS = [
 				[
 					'Veterinario a domicilio',
