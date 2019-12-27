@@ -116,31 +116,50 @@
 							}
 
 							$cliente = get_user_meta($user_id, 'first_name', true).' '.get_user_meta($user_id, 'last_name', true);
+							$cliente_email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$user_id);
 
-							$mensaje = buildEmailTemplate(
-						        'KMIVET/reservas/nueva', 
-						        [
-						        	"KV_URL_IMGS"   		=> getTema().'/KMIVET/img',
-						        	"CONSULTA_ID"   		=> $cita_id,
-						        	"NOMBRE_CLIENTE" 		=> $cliente,
+						    $header = kv_get_emails_admin();
 
-						        	"NOMBRE_VETERINARIO" 	=> $_medico['firstName'].' '.$_medico['lastName'],
-						        	"TELEFONOS_CUIDADOR" 	=> $_medico['phone'],
-						        	"CORREO_CUIDADOR" 		=> $_medico['email'],
+						    /* EMAIL al CLIENTE */
+								$mensaje = buildEmailTemplate(
+							        'KMIVET/reservas/nueva_cliente', 
+							        [
+							        	"KV_URL_IMGS"   		=> getTema().'/KMIVET/img',
+							        	"CONSULTA_ID"   		=> $cita_id,
+							        	"NOMBRE_CLIENTE" 		=> $cliente,
+							        	"NOMBRE_VETERINARIO" 	=> $_medico['firstName'].' '.$_medico['lastName'],
+							        	"TELEFONOS_CUIDADOR" 	=> $_medico['phone'],
+							        	"CORREO_CUIDADOR" 		=> $_medico['email'],
+							        	"FECHA" 				=> $cita_fecha,
+							        	"PRECIO" 				=> $cita_precio,
+							        ]
+							    );
+								$mensaje = kv_get_email_html($mensaje);
+						        wp_mail($kv_email, 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $header);
 
-						        	"FECHA" 				=> $cita_fecha,
-						        	"PRECIO" 				=> $cita_precio,
-						        ]
-						    );
 
-							$mensaje = kv_get_email_html($mensaje);
+						    /* EMAIL al CUIDADOR */
+						        $mensaje = buildEmailTemplate(
+							        'KMIVET/reservas/nueva_cuidador', 
+							        [
+							        	"KV_URL_IMGS"   		=> getTema().'/KMIVET/img',
+							        	"CONSULTA_ID"   		=> $cita_id,
+							        	"NOMBRE_CLIENTE" 		=> $cliente,
+							        	"NOMBRE_VETERINARIO" 	=> $_medico['firstName'].' '.$_medico['lastName'],
 
-						    $header = [
-						    	'BCC: a.veloz@kmimos.la',
-						    	'BCC: y.chaudary@kmimos.la',
-						    ];
+							        	"TELEFONOS_CLIENTE" 	=> get_user_meta($user_id, 'user_mobile', true),
+							        	"CORREO_CLIENTE" 		=> $cliente_email,
 
-					        wp_mail($kv_email, 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $header);
+							        	"FECHA" 				=> $cita_fecha,
+							        	"PRECIO" 				=> $cita_precio,
+
+							        	"ACEPTAR" 				=> get_home_url().'/kmivet/consultas/?cid='.md5($cita_id).'&a=1',
+							        	"RECHAZAR" 				=> get_home_url().'/kmivet/consultas/?cid='.md5($cita_id).'&a=0',
+							        ]
+							    );
+								$mensaje = kv_get_email_html($mensaje);
+
+						        wp_mail($kv_email, 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $header);
 
 						}else{
 							$error[] = [

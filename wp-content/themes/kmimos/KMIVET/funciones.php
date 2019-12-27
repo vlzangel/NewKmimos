@@ -1,4 +1,11 @@
 <?php
+    
+    function kv_get_emails_admin(){
+        return [
+            'BCC: a.veloz@kmimos.la',
+            // 'BCC: y.chaudary@kmimos.la',
+        ];
+    }
 
 	function kv_get_email_html($content, $params = []){
 		extract($params);

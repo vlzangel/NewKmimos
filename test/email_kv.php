@@ -2,17 +2,16 @@
 	include dirname(__DIR__).'/wp-load.php';
 
 	$mensaje = buildEmailTemplate(
-        'KMIVET/reservas/nueva', 
+        'KMIVET/reservas/nueva_cuidador', 
         [
         	"KV_URL_IMGS"   		=> getTema().'/KMIVET/img',
         	"CONSULTA_ID"   		=> 120,
         	"EMAIL" 				=> 'a.veloz@kmimos.la',
-        	"NOMBRE_CLIENTE" 		=> 'angel veloz',
+        	"NOMBRE_VETERINARIO"	=> 'angel veloz',
 
-        	"AVATAR_VETERINARIO" 	=> getTema().'/KMIVET/img/noimg.png',
-        	"NOMBRE_VETERINARIO" 	=> 'angel veloz',
-        	"TELEFONOS_CUIDADOR" 	=> '1234567985',
-        	"CORREO_CUIDADOR" 		=> 'correo@mail.com',
+        	"NOMBRE_CLIENTE" 		=> 'angel veloz',
+        	"TELEFONOS_CLIENTE" 	=> '1234567985',
+        	"CORREO_CLIENTE" 		=> 'correo@mail.com',
 
 
         	"FECHA" 				=> '27/12/2019 18:30',
