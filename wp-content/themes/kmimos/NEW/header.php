@@ -58,12 +58,14 @@
 		<img class="logo logo_negro" src="'.get_recurso("img").'HOME/PNG/logo-negro.png" />
 		<img class="logo logo_verde" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />';
 	$link_buscar = get_home_url().'#buscar';
+	$ico_perfil = get_recurso("img").'HOME/SVG/Perfil.svg';
 	if( $HEADER == 'kmivet' ){
 		$quiero_ser = 'Quiero ser Kmiveterinario';
 		$quiero_ser_link = 'quiero-ser-veterinario';
 		$buscar_ = 'Buscar Veterinario';
 		$logo = '<img class="logo logo_kmivet" src="'.get_recurso("img").'KMIVET/logo.png" />';
 		$link_buscar = get_home_url().'/mediqo/';
+		$ico_perfil = get_recurso("img").'KMIVET/GENERALES/Perfil.svg';
 	}
 
 	// Avatar default
@@ -93,7 +95,7 @@
 		';
 		$menu_movil_str = '
 			<a href="#" role="button" data-target="#popup-registrarte"> Registrarme </a>
-			<img class="icono" src="'.get_recurso("img").'HOME/SVG/Perfil.svg" id="login" href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal" />
+			<img class="icono" src="'.$ico_perfil.'" id="login" href="#" data-target="#popup-iniciar-sesion" role="button" data-toggle="modal" />
 			<img class="icono" src="'.get_recurso("img").'HOME/RESPONSIVE/PNG/Menu.png" id="ver_menu" />
 			<div id="menu_movil" class="hidden-sm hidden-md hidden-lg">
 			<div class="menu_movil_interno">
@@ -110,7 +112,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="#" data-target="#popup-iniciar-sesion" class="km-nav-link" role="button" data-toggle="modal">Iniciar sesión</a></li>
 						<li><a href="#" data-target="#popup-registrarte" class="km-nav-link" role="button" >Registrarme</a></li>
-						<li><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros" class="km-nav-link">'.$quiero_ser.'</a></li>
+						<li><a href="'.get_home_url().'/'.$quiero_ser_link.'" class="km-nav-link">'.$quiero_ser.'</a></li>
 						<!-- <li style="border-top:1px solid #e8e8e8;"><a href="'.get_home_url().'/ayuda" class="pd-tb11 menu-link"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Ayuda</a></li> -->
 			    	</ul>
 			    </div>
