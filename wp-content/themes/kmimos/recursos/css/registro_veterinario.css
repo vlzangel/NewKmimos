@@ -315,7 +315,7 @@ span.kv_error {
 
 .kv_red_seguros,
 .kv_red_otra_especialidad {
-	visibility: hidden;
+	#visibility: hidden;
 	grid-column: 2 / 4;
 }
 
@@ -438,4 +438,12 @@ a#registro_completo {
 div#step_6 p {
     padding: 10px 0px;
     font-size: 20px !important;
+}
+
+.kv_visibility {
+    visibility: visible;
+}
+
+.kv_visibility_hidden {
+    visibility: hidden;
 }

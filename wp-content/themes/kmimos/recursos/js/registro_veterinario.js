@@ -96,17 +96,21 @@ jQuery( document ).ready(function() {
 
     jQuery("[name='kv_tiene_otra_especialidad']").on('change', function(e){
         if( jQuery(this).val() == 'Si' ){
-            jQuery(".kv_red_otra_especialidad").css('visibility', 'visible');
+            jQuery(".kv_red_otra_especialidad").addClass('kv_visibility');
+            jQuery(".kv_red_otra_especialidad").removeClass('kv_visibility_hidden');
         }else{
-            jQuery(".kv_red_otra_especialidad").css('visibility', 'hidden');
+            jQuery(".kv_red_otra_especialidad").addClass('kv_visibility_hidden');
+            jQuery(".kv_red_otra_especialidad").removeClass('kv_visibility');
         }
     });
 
     jQuery("[name='kv_red_seguro']").on('change', function(e){
         if( jQuery(this).val() == 'Si' ){
-            jQuery(".kv_red_seguros").css('visibility', 'visible');
+            jQuery(".kv_red_seguros").addClass('kv_visibility');
+            jQuery(".kv_red_seguros").removeClass('kv_visibility_hidden');
         }else{
-            jQuery(".kv_red_seguros").css('visibility', 'hidden');
+            jQuery(".kv_red_seguros").addClass('kv_visibility_hidden');
+            jQuery(".kv_red_seguros").removeClass('kv_visibility');
         }
     });
 

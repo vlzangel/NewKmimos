@@ -51,7 +51,7 @@
 	</select>
 </div>
 
-<div class="kv_red_seguros">
+<div class="kv_red_seguros kv_visibility_hidden">
 	<div>
 		<label>Red de Seguros</label>
 		<input type="text" name="kv_red_seguros" />
@@ -66,7 +66,7 @@
 	</select>
 </div>
 
-<div class="kv_red_otra_especialidad">
+<div class="kv_red_otra_especialidad kv_visibility_hidden">
 	<div>
 		<label>Especialidad</label>
 		<input type="text" name="kv_red_otra_especialidad" />
