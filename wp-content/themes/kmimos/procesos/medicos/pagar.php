@@ -96,28 +96,6 @@
 								$params['lng'] = $cita_longitud;
 							}
 
-							/*
-							if( $cita_tipo_pago == 'tarjeta' ){
-								$params['payment'] = [
-									'number' => $cita_tarjeta,
-									'firstName' => $cita_nombre,
-									'lastName' => $cita_apellido,
-									'token' => $token
-								];
-							}
-
-							[
-								{
-									"medic":"4794a05285f74bd0980b88243782ab5d",
-									"patient":"b153904e054440b5a4a47e96595a8dd0",
-									"specialty":"e41ed3d30309496a845c611dfd8f2e3d",
-									"dueTo":"2019-12-15 00:45",
-									"paymentType":0,
-									"appointmentType":1
-								}
-								,{"status":"ko","info":{"code":"Metodo de pago invalido","datetime":"2019-12-13 22:18:27Z","message":"No se selecciono efectivo, no hay fondos suficientes o la ifnormacion de pago es incorecta","status":"FAIL"}}]
-							*/
-
 							$appointment_id = add_appointments($params);
 
 							$data = json_encode([
@@ -131,22 +109,38 @@
 								$wpdb->query("UPDATE wp_kmivet_reservas SET cita_id = '{$data}' WHERE id = '{$cita_id}' ");
 							}
 
+							$_infos  = $_SESSION['medicos_info'];
+							$_medico = [];
+							foreach ($_infos[ $id ] as $key => $value) {
+								$_medico[ $key ] = $value;
+							}
+
+							$cliente = get_user_meta($user_id, 'first_name', true).' '.get_user_meta($user_id, 'last_name', true);
+
 							$mensaje = buildEmailTemplate(
-					            'KMIVET/reservas/nueva', 
-					            [
-					            	"EMAIL"   => $kv_email,
-					            	"NOMBRE"  => $kv_nombre,
-					            	"CLAVE"   => $random_password,
-					            	"URL" 	  => get_home_url().'/kmivet/',
-					            ]
-					        );
+						        'KMIVET/reservas/nueva', 
+						        [
+						        	"KV_URL_IMGS"   		=> getTema().'/KMIVET/img',
+						        	"CONSULTA_ID"   		=> $cita_id,
+						        	"NOMBRE_CLIENTE" 		=> $cliente,
+
+						        	"NOMBRE_VETERINARIO" 	=> $_medico['firstName'].' '.$_medico['lastName'],
+						        	"TELEFONOS_CUIDADOR" 	=> $_medico['phone'],
+						        	"CORREO_CUIDADOR" 		=> $_medico['email'],
+
+						        	"FECHA" 				=> $cita_fecha,
+						        	"PRECIO" 				=> $cita_precio,
+						        ]
+						    );
+
+							$mensaje = kv_get_email_html($mensaje);
 
 						    $header = [
 						    	'BCC: a.veloz@kmimos.la',
 						    	'BCC: y.chaudary@kmimos.la',
 						    ];
 
-					        wp_mail($kv_email, 'Kmivet - Gracias por registrarte como veterinario!', $mensaje, $header);
+					        wp_mail($kv_email, 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $header);
 
 						}else{
 							$error[] = [

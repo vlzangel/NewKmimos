@@ -304,7 +304,7 @@ function cargar( id ){
 			id: id
 		}, (data) => {
 
-			// debug( data );
+			debug( data );
 
 			jQuery("#specialty_id").val( jQuery("#especialidad").val() );
 
