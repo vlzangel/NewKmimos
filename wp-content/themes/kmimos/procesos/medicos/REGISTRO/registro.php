@@ -43,27 +43,28 @@
 	    $user_signon = wp_signon( $info, true );
 	    wp_set_auth_cookie($user_signon->ID, true);
 
-        $mensaje = kv_get_email_html('KMIVET/registro/nuevo', 
-            [
-            	"KV_URL_IMGS"   => getTema().'/KMIVET/img',
-            	"EMAIL"   		=> $kv_email,
-            	"NOMBRE"  		=> $kv_nombre,
-            	"CLAVE"   		=> $random_password,
-            	"URL" 	  		=> get_home_url().'/kmivet/',
-            ]
-        );
-
-	    $header = [
-	    	'BCC: a.veloz@kmimos.la',
-	    	'BCC: y.chaudary@kmimos.la',
-	    ];
-
-        wp_mail($kv_email, 'Kmivet - Gracias por registrarte como veterinario!', $mensaje, $header);
-
 	    $usuario = 'si';
 	} else {
+		$random_password = "La misma clave de tu usuario de kmimos.";
 	    $usuario = 'no';
 	}
+
+	$mensaje = kv_get_email_html('KMIVET/registro/nuevo', 
+        [
+        	"KV_URL_IMGS"   => getTema().'/KMIVET/img',
+        	"EMAIL"   		=> $kv_email,
+        	"NOMBRE"  		=> $kv_nombre,
+        	"CLAVE"   		=> $random_password,
+        	"URL" 	  		=> get_home_url().'/kmivet/',
+        ]
+    );
+
+    $header = [
+    	'BCC: a.veloz@kmimos.la',
+    	'BCC: y.chaudary@kmimos.la',
+    ];
+
+    wp_mail($kv_email, 'Kmivet - Gracias por registrarte como veterinario!', $mensaje, $header);
 
 	echo json_encode([
 		"status" => true,
