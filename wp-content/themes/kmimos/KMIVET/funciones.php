@@ -8,6 +8,12 @@
     }
 
 	function kv_get_email_html($content, $params = []){
+
+        $content = buildEmailTemplate(
+            $content,
+            $params
+        );
+
 		extract($params);
 		$telf  = '01 (55) 8526 1162';
 		$What  = '+52 1 (33) 1261 41 86';

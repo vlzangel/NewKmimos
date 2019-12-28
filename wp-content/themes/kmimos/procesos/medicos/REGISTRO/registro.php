@@ -43,8 +43,7 @@
 	    $user_signon = wp_signon( $info, true );
 	    wp_set_auth_cookie($user_signon->ID, true);
 
-	    $mensaje = buildEmailTemplate(
-            'KMIVET/registro/nuevo', 
+        $mensaje = kv_get_email_html('KMIVET/registro/nuevo', 
             [
             	"KV_URL_IMGS"   => getTema().'/KMIVET/img',
             	"EMAIL"   		=> $kv_email,

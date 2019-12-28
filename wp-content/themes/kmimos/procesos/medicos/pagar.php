@@ -139,7 +139,7 @@
 
 
 						    /* EMAIL al CUIDADOR */
-						        $mensaje = buildEmailTemplate(
+						        $mensaje = kv_get_email_html(
 							        'KMIVET/reservas/nueva_cuidador', 
 							        [
 							        	"KV_URL_IMGS"   		=> getTema().'/KMIVET/img',
@@ -157,7 +157,6 @@
 							        	"RECHAZAR" 				=> get_home_url().'/kmivet/consultas/?cid='.md5($cita_id).'&a=0',
 							        ]
 							    );
-								$mensaje = kv_get_email_html($mensaje);
 
 						        wp_mail($kv_email, 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $header);
 
