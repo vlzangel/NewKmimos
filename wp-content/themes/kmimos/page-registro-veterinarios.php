@@ -190,7 +190,7 @@
 
 		?></section>
 
-		<section class="section-preguntas">
+		<section class="section-preguntas" style="display: none;">
 
 			<div class="titulo">
 				Preguntas frecuentes

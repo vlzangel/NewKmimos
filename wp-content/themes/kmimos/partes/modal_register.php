@@ -1,4 +1,11 @@
 <?php
+
+$SITIO = 'Kmimos';
+global $HEADER;
+if( $HEADER == 'kmivet' ){
+	$SITIO = 'Kmivet';
+}
+
 $datos = kmimos_get_info_syte();
 $referidos = get_referred_list_options();
 $referidos_options = ""; $pixel_petco = "";
@@ -97,7 +104,7 @@ $HTML .='
 				</a>
 
 
-				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
+				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de '.$SITIO.'.</p>
 
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
@@ -217,7 +224,7 @@ $HTML .='
 							
 				<a href="#" id="siguiente" class="km-btn-correo km-btn-popup-registrarte-nuevo-correo">SIGUIENTE</a>
 
-				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
+				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de '.$SITIO.'.</p>
 				
 				<div class="row">
 					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">  +52 (33) 1261 4186</p></div>
@@ -394,7 +401,7 @@ $HTML .='
 
 				</form>						
 				<a href="#" class="km-btn-correo km-btn-popup-registrarte-datos-mascota">REGISTRARME</a>
-				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de Kmimos.</p>
+				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de '.$SITIO.'.</p>
 				<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp '.$datos["whatsapp"].'</p>
 			</div>
 			<div class="popuphide popup-registrarte-final-0">
