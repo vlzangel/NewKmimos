@@ -44,7 +44,7 @@
 	<input type="text" name="kv_no_poliza" />
 </div>
 
-<div class="kv_opciones">
+<!-- <div class="kv_opciones">
 	<label>Es importante que cuentes con uno. MediQó te acerca ciertas alternativas.</label>
 	<a href="#">Chubb Elite / BNI</a>
-</div>
+</div> -->

@@ -211,7 +211,7 @@
                                 <h2></h2>
                             </div> -->
                             <div>
-                                <h3>Dirección y horario</h3>
+                                <h3>Horario de consulta</h3>
                                 <!-- <div>'.$_SESSION['medicos_serch']['ubicacion_txt'].'</div> -->
                                 <div class="modal_fecha"></div>
                             </div>
@@ -279,8 +279,8 @@
                                             <input type="text" class="vlz_limpiar" name="cita_apellido" placeholder="Apellido" />
                                         </div>
                                         <div class="cont_direccion">
-                                            <label>Dirección</label>
-                                            <input type="text" name="cita_direccion" placeholder="Dirección" />
+                                            <label>Dirección del paciente</label>
+                                            <input type="text" name="cita_direccion" placeholder="Dirección del paciente" />
                                         </div>
                                     </div>
                                     <div class="errores_box"></div>

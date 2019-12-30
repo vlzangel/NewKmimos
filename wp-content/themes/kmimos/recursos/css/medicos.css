@@ -5,12 +5,26 @@
     --kmimos-azul-mediqo: #008bf2;
 	--kmimos-gris: #CCC;
     --kmimos-gris-claro: #DDD;
-    --kmimos-morado: #7c189f;
+    --kmimos-morado: #6B169B;
 }
 
 ::-webkit-input-placeholder { color: var( --kmimos-gris-claro ); }
 :-ms-input-placeholder { color: var( --kmimos-gris-claro ); }
 ::placeholder { color: var( --kmimos-gris-claro ); }
+
+.boton_morado {
+    background-color: var(--kmimos-morado) !important;
+}
+
+.km-btn-basic,
+.km-btn-correo,
+.km-checkbox label {
+    background-color: var(--kmimos-morado) !important;
+}
+
+.km-checkbox {
+    background: var(--kmimos-morado-hover) !important;
+}
 
 .logo_kmivet {
     display: inline-block !important;

@@ -15,7 +15,7 @@
 </div>
 
 <div>
-	<label>Genero</label>
+	<label>Género</label>
 	<select name="kv_genero" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Hombre</option>
@@ -39,7 +39,7 @@
 </div>
 
 <div>
-	<label>¿Comó te enteraste de nosotros?</label>
+	<label>¿Cómo te enteraste de nosotros?</label>
 	<select name="kv_referido" valid="required" class="validar">
 		<option value="">Seleccione</option>
 		<option>Facebook</option>

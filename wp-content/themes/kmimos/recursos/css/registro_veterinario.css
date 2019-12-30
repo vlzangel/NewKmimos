@@ -1,8 +1,23 @@
 :root {
 	--kv-gris: #cecece;
-	--kv-morado: #7c169e;
+    --kv-morado: #6B169B;
+    --kv-morado-hover: #7c189fAA;
 	--kv-azul: #008bf2;
     --kv-error: #e43f3f;
+}
+
+.boton_morado {
+    background-color: var(--kv-morado) !important;
+}
+
+.km-btn-basic,
+.km-btn-correo,
+.km-checkbox label {
+    background-color: var(--kv-morado) !important;
+}
+
+.km-checkbox {
+    background: var(--kv-morado-hover) !important;
 }
 
 .box .item-list img {
@@ -255,8 +270,12 @@ section {
 }
 
 #kv_btn_registro_atras {
-	display: none;
-	float: left;
+    display: none;
+    float: left;
+    border: solid 1px #888 !important;
+    min-width: 145px;
+    color: #5d5d5d;
+    background-color: transparent !important;
 }
 
 .step > div {

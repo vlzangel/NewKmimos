@@ -3,8 +3,26 @@
     --kmimos-azul-mediqo: #008bf2;
     --kmimos-gris: #CCC;
     --kmimos-gris-claro: #DDD;
-    --kmimos-morado: #7c189f;
+    --kmimos-morado: #6B169B;
     --kmimos-morado-hover: #7c189fAA;
+}
+
+.boton_morado {
+    background-color: var(--kmimos-morado) !important;
+}
+
+.km-btn-basic,
+.km-btn-correo,
+.km-checkbox label {
+    background-color: var(--kmimos-morado) !important;
+}
+
+.km-checkbox {
+    background: var(--kmimos-morado-hover) !important;
+}
+
+.km-datos-foto {
+    background-image: url(../../images/popups/registro-veterinario-foto.png);
 }
 
 .logo_kmivet {

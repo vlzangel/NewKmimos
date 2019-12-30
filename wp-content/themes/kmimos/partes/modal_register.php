@@ -132,7 +132,7 @@ $HTML .='
 								class="social_google_id " value="">
 
 							<div class="img_registro_cliente" style="position: relative">
-								<div class="km-datos-foto vlz_rotar" id="km-datos-foto-profile" style="background-image: url('.getTema().'/images/popups/registro-cuidador-foto.png);">
+								<div class="km-datos-foto vlz_rotar" id="km-datos-foto-profile">
 									<div id="loading-perfil" style="width:100%;line-height: 100%;display:none" class="vlz_cargando">
 										<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
 									</div>
@@ -447,7 +447,7 @@ if( $HEADER == 'kmivet' ){
 	$nuevo_banner = '
 	<div class="popup-registrarte-final" style="padding-bottom: 15px;">
 		<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
-		<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
+		<img src="'.getTema().'/images/popups/km-registro-exitoso-veterinario.png">
 		<a href="javascript:;" onclick="cerrar_modal()" id="btn_iniciar_sesion" data-url="'.get_home_url().'/#buscar" class="km-btn-correo" data-dismiss="modal">INICIAR SESIÓN</a>
 	</div>';
 }
