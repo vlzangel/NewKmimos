@@ -11,7 +11,7 @@
 	}
 
 	.banner_rotativo {
-	    height: 180px;
+	    height: 155px;
 	    margin-top: 40px;
 	}
 
@@ -29,8 +29,10 @@
 	}
 
 	.tipo_mascota_container .input_check_box img {
-	    margin: 7px 5px 11px 0px;
-	    height: 18px;
+	    margin:  4px auto -1px;
+	    height:  15px;
+	    display: block;
+	    width: 	 20px;
 	}
 
 	.tipo_mascota_container .input_check_box span {
@@ -52,7 +54,7 @@
 	}
 
 	label#label_input {
-	    width: calc( 100% - 239px );
+	    width: calc( 100% - 212px );
 	    height: 35px;
 	}
 
@@ -140,6 +142,28 @@
 	    font-weight: 400;
 	}
 
+	#seccion_servicios {
+		padding: 30px 0px 20px !important;
+	}
+
+	.vlz_info_items {
+	    display: grid;
+	    grid-template-columns: repeat(2, 1fr);
+	    grid-gap: 0px;
+	    width: 100%;
+	    margin: 30px auto 20px;
+	    text-align: center;
+	}
+
+	.vlz_info_items > div {
+	    margin: 0px 10px;
+	}
+
+	.vlz_info_items > div > div:last-child {
+	    padding: 15px 0px 0px;
+	    font-size: 13px;
+	}
+
 	.vlz_info_msg {
 	    grid-template-columns: 1fr;
 	}
@@ -164,5 +188,10 @@
 	.lo_nuevo_container {
 	    padding-bottom: 25px;
 	    margin-bottom: 25px;
+	}
+
+	.pasos_reserva_celda img {
+	    height: 60px;
+	    margin: 25px 0px 10px;
 	}
 }
