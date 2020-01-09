@@ -31,7 +31,7 @@ var __CB_PAGO_OK__ = function(){
 				jQuery(".errores_box").html( errs );
 				jQuery(".errores_box").css("display", "block");
 
-				jQuery("#btn_reservar").html("Solicitar Cunsulta");
+				jQuery("#btn_reservar").html("Solicitar Consulta");
 				jQuery("#btn_reservar").prop("disabled", false);
 			}
 			

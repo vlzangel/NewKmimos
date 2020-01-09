@@ -19,7 +19,7 @@
 
 	$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
 
-	$wpdb->query("INSERT INTO wp_kmivet_data_medicos VALUES(
+	$wpdb->query("INSERT INTO wp_kmivet_data_medicos VALUES (
 		NULL,
 		'{$medico_id}',
 		'{$data}'
