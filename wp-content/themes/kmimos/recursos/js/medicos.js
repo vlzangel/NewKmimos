@@ -25,7 +25,7 @@ var __CB_PAGO_OK__ = function(){
 
 				var errs = '';
 				jQuery.each(res.errores, function(i, v){
-					errs += "<div>"+v+"</div>";
+					errs += "<div>"+v.msg+"</div>";
 				});
 
 				jQuery(".errores_box").html( errs );
