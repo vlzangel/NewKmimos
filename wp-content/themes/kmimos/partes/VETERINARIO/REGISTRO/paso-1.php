@@ -18,8 +18,8 @@
 	<label>Género</label>
 	<select name="kv_genero" valid="required" class="validar">
 		<option value="">Seleccione</option>
-		<option>Hombre</option>
-		<option>Mujer</option>
+		<option value="0">Hombre</option>
+		<option value="1">Mujer</option>
 	</select>
 </div>
 

@@ -25,20 +25,12 @@
 
 <div>
 	<label>Delegación o Municipio</label>
-	<select name="kv_delegacion" valid="required" class="validar">
-		<option value="">Seleccione</option>
-		<option>Hombre</option>
-		<option>Mujer</option>
-	</select>
+	<select name="kv_delegacion" valid="required" class="validar"></select>
 </div>
 
 <div>
 	<label>Colonia</label>
-	<select name="kv_colonia" valid="required" class="validar">
-		<option value="">Seleccione</option>
-		<option>Hombre</option>
-		<option>Mujer</option>
-	</select>
+	<select name="kv_colonia" valid="required" class="validar"></select>
 </div>
 
 <div>

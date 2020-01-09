@@ -65,4 +65,21 @@
 			'id' => $cita_id
 		];
 	}
+
+	function create_medic($params){
+		$resultado = mediqo_request('registration/api/medic_registration/', $params);
+		$resultado = json_decode($resultado);
+		$id = $resultado->object->id;
+		if( $cita_id == null ){
+		    return [
+				'status' => 'ko',
+				'info' => $resultado
+			];
+		}
+	    return [
+			'status' => 'ok',
+			'id' => $id,
+			'res' => $resultado,
+		];
+	}
 ?>

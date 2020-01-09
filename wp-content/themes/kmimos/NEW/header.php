@@ -50,6 +50,9 @@
 		$menus_normal =  $MENU["body"].$MENU["footer"];
 	}
 
+
+	$link_home = ( $_SESSION['landing_paseos'] == 'yes' ) ? get_home_url().'/paseos' : get_home_url();
+
 	$quiero_ser = 'Quiero ser Cuidador';
 	$quiero_ser_link = 'quiero-ser-cuidador-certificado-de-perros';
 	$buscar_ = 'Buscar Cuidador';
@@ -59,7 +62,9 @@
 		<img class="logo logo_verde" src="'.get_recurso("img").'HOME/PNG/logo-verde.png" />';
 	$link_buscar = get_home_url().'#buscar';
 	$ico_perfil = get_recurso("img").'HOME/SVG/Perfil.svg';
+
 	if( $HEADER == 'kmivet' ){
+		$link_home = get_home_url().'/kmivet/';
 		$quiero_ser = 'Unirme como Veterinario';
 		$quiero_ser_link = 'quiero-ser-veterinario';
 		$buscar_ = 'Buscar Veterinario';
@@ -434,12 +439,6 @@
 		*/
 	}
 
-	$link_home = ( $_SESSION['landing_paseos'] == 'yes' ) ? get_home_url().'/paseos' : get_home_url();
-
-	if( trim($post->post_name) == "mediqo" ){
-		$link_home = get_home_url().'/kmivet';
-	}
-
 	$menu_home_2 = '';
 	if( $HOME == "2" && is_user_logged_in() ){
 		$notificacion = 0;
@@ -495,7 +494,7 @@
 				<table class="nav_table">
 					<tr>
 						<td class="nav_left">
-							<a href="'.get_home_url().'">
+							<a href="'.$link_home.'">
 								'.$logo.'
 							</a>
 						</td>

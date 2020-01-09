@@ -128,6 +128,8 @@ function completar_registro(){
         HOME+'/procesos/medicos/REGISTRO/registro.php',
         jQuery("#popup-registro-veterinario form").serialize(),
         function(res){
+            console.log( res );
+            /*
             // res
             if( res.status ){
                 jQuery(".kv-registro-nav").css("display", "none");
@@ -136,6 +138,7 @@ function completar_registro(){
             }else{
                 jQuery(".kv-registro-nav").css("display", "flex");
             }
+            */
         },
         'json'
     );

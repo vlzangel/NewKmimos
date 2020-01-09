@@ -16,7 +16,6 @@
 	)");
 
 	$medico_id = $wpdb->insert_id;
-
 	$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
 
 	$wpdb->query("INSERT INTO wp_kmivet_data_medicos VALUES (
@@ -47,6 +46,72 @@
 	} else {
 		$random_password = "La misma clave de tu usuario de kmimos.";
 	    $usuario = 'no';
+	}
+
+	// registration/api/medic_registration
+
+	$kv_estado = $wpdb->get_var("SELECT name FROM states WHERE id = ".$kv_estado);
+	$kv_delegacion = $wpdb->get_var("SELECT name FROM locations WHERE id = ".$kv_delegacion);
+	$kv_colonia = $wpdb->get_var("SELECT name FROM colonias WHERE id = ".$kv_colonia);
+
+	$param = [
+		'name' => $kv_nombre,
+		'birthdate' => $kv_fecha,
+		'gender' => $kv_genero,
+		'documentId' => $kv_dni,
+		'referenceCode' => $kv_referencia,
+		'street' => $kv_calle,
+		'interior' => $kv_interior,
+		'colony' => $kv_colonia,
+		'municipality' => $kv_delegacion,
+		'addressState' => $kv_estado,
+		'cp' => $kv_postal,
+		'landline' => $kv_telf_fijo,
+		'mobile' => $kv_telf_movil,
+		'degree' => $kv_titulo,
+		'licenseNumber' => $kv_cedula,
+		'university' => $kv_universidad,
+		'internship' => $kv_internado,
+		'socialService' => $kv_servicio_social,
+		'extraCurricular' => $kv_cursos_realizados,
+		'otherStudies' => $kv_otros_estudios,
+		'workBio' => $kv_trabajos,
+		'hasInsuranceNetwork' => ( $kv_red_seguro == 'Si' ),
+		'insuranceNetwork' => $kv_red_seguros,
+		'hasSpecialty' => ( $kv_tiene_otra_especialidad == 'Si' ),
+		'specialtyName' => $kv_red_otra_especialidad,
+		'specialtyLicense' => $kv_red_otra_cedula,
+		'specialtyUniversity' => $kv_red_otra_universidad,
+		'hasCar' => ( $kv_tiene_auto == 'Si' ),
+		'hasDriverLicense' => ( $kv_tiene_licencia == 'Si' ),
+		'hasScheduleDisponibility' => ( $kv_tiene_disponibilidad == 'Si' ),
+		'hasInsurance' => ( $kv_seguro_responsabilidad == 'Si' ),
+		'insuranceCompany' => $kv_seguro_empresa,
+		'insuranceNumber' => $kv_no_poliza,
+		'firstReferenceName' => $kv_primera_ref_nombre,
+		'firstReferencePhone' => $kv_primera_ref_telefono,
+		'firstReferenceMail' => $kv_primera_ref_email,
+		'rfc' => $kv_rfc,
+		'languages' => $kv_idiomas
+	];
+
+	if( $kv_segunda_ref_nombre != '' ){
+		$param['secondReferenceName'] = $kv_segunda_ref_nombre;
+		$param['secondReferencePhone'] = $kv_segunda_ref_telefono;
+		$param['secondReferenceMail'] = $kv_segunda_ref_email;
+	}
+
+	if( $kv_tercera_ref_nombre != '' ){
+		$param['thirdReferenceName'] = $kv_tercera_ref_nombre;
+		$param['thirdReferencePhone'] = $kv_tercera_ref_telefono;
+		$param['thirdReferenceMail'] = $kv_tercera_ref_email;
+	}
+
+	$res = create_medic($param);
+	if( $res['status'] == 'ok' ){
+		update_user_meta($user_id, '_mediqo_medic_id', $res['id']);
+	}else{
+		update_user_meta($user_id, '_mediqo_medic_id', 'No creado');
 	}
 
 	$mensaje = kv_get_email_html('KMIVET/registro/nuevo', 
