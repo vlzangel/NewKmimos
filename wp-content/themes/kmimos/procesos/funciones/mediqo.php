@@ -35,7 +35,9 @@
 			}else{
 			    return [
 					'status' => 'ko',
-					'info' => $resultado->message
+					'info' => $resultado,
+					'res' => $data_cliente,
+					'user_id' => $user_id
 				];
 			}
 		}else{
