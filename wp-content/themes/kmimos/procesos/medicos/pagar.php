@@ -45,7 +45,8 @@
 	if( $mediqo_id['status'] == 'ko' ){
 		$error[] = [
     		"code" => 0,
-    		"msg"  => 'No podemos obtener acceso a su cuenta de Mediqo, por favor contacte al equipo de soporte de Kmimos para brindarle la asistencia correspondiente.'
+    		"msg"  => 'No podemos obtener acceso a su cuenta de Mediqo, por favor contacte al equipo de soporte de Kmimos para brindarle la asistencia correspondiente.',
+    		"res"  => $mediqo_id
     	];
 	}else{
 		$mediqo_id = $mediqo_id['id'];

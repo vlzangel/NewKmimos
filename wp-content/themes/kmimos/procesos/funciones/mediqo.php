@@ -43,7 +43,8 @@
 		}
 	    return [
 			'status' => 'ok',
-			'id' => $mediqo_id
+			'id'  => $mediqo_id,
+			'res' => $data_cliente
 		];
 	}
 
