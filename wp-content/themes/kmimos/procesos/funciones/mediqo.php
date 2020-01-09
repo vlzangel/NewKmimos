@@ -1,6 +1,7 @@
 <?php
 	function mediqo_request($url, $params){
-		$url = 'https://api.mediqo.mx/'.$url;
+		// $url = 'https://api.mediqo.mx/'.$url;
+		$url = 'https://13.59.244.182/'.$url;
 		$ch = curl_init($url);
 		$payload = json_encode($params);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
