@@ -213,4 +213,36 @@
 	    font-size: 30px !important;
 	}
 
+	nav.nav_mediqo {
+	    background: transparent !important;
+	    border-bottom: 0px !important;
+	    box-shadow: 0px 0px 0px #CCC !important;
+	}
+
+	nav.nav_mediqo.nav_white {
+	    background: #FFF !important;
+	    border-bottom: solid 1px #CCC !important;
+	    box-shadow: 0px 4px 4px #CCC !important;
+	}
+
+	header {
+	    top: -50px !important;
+	}
+
+	.km-hero-bg {
+	    height: 245px !important;
+	}
+
+	header .titulo-principal {
+	    color: #000 !important;
+	    font-size: 28px !important;
+	    padding: 50px 20px 0px !important;
+	    font-family: "Gotham-Pro-Black" !important;
+	    text-transform: none;
+	}
+
+	header .titulo-principal span{
+	    color: #fe196b !important;
+	}
+
 }

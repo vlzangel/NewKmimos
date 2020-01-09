@@ -30,14 +30,11 @@
 
 			<!-- solo para movil -->
 			<div class="hidden-md hidden-lg">			
-				<div class="km-hero-bg" style="background-image:url(<?php echo getTema(); ?>/images/new/km-cuidador/head-responsive.jpg);">
-					<div class="overlay"></div>
-				</div>
+				<div class="km-hero-bg" style="background-image:url(<?= get_recurso('img') ?>VETERINARIO/REGISTRO/RESPONSIVE/banner.png);"></div>
 				<header>
 					<div class="container text-center">
+						<h2 class="titulo-principal"><span>¿Eres veterinario</span> y te interesa<br>un ingreso extra?</h2>
 						<a class="btn btn-kmimos-cuidador" <?php echo $link_registro; ?> >¡Crea tu perfil de veterinario aqu&iacute;!</a>
-						<!-- <h2 class="titulo-principal">Kmimos necesita doglovers como tú</h2>
-						<p class="titulo-secundario">Cada mascota llega como un huésped y consigue a un nuevo amigo. Convierte tu hobbie en dinero extra, con kmimos te ayudamos a alcanzarlo.</p> -->
 					</div>
 				</header>
 			</div>

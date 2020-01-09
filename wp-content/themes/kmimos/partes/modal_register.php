@@ -454,7 +454,7 @@ if( $HEADER == 'kmivet' ){
 	$nuevo_banner = '
 	<div class="popup-registrarte-final" style="padding-bottom: 15px;">
 		<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
-		<img src="'.getTema().'/images/popups/km-registro-exitoso-veterinario.png">
+		<img src="'.get_recurso('img').'VETERINARIO/REGISTRO/RESPONSIVE/exitoso.svg">
 		<a href="javascript:;" onclick="cerrar_modal()" id="btn_iniciar_sesion" data-url="'.get_home_url().'/#buscar" class="km-btn-correo" data-dismiss="modal">INICIAR SESIÓN</a>
 	</div>';
 }

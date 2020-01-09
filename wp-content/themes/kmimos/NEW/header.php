@@ -60,10 +60,10 @@
 	$link_buscar = get_home_url().'#buscar';
 	$ico_perfil = get_recurso("img").'HOME/SVG/Perfil.svg';
 	if( $HEADER == 'kmivet' ){
-		$quiero_ser = 'Quiero ser Kmiveterinario';
+		$quiero_ser = 'Unirme como Veterinario';
 		$quiero_ser_link = 'quiero-ser-veterinario';
 		$buscar_ = 'Buscar Veterinario';
-		$logo = '<img class="logo logo_kmivet" src="'.get_recurso("img").'KMIVET/logo.png" />';
+		$logo = '<img class="logo logo_kmivet" src="'.get_recurso("img").'KMIVET/logo_2.png" />';
 		$link_buscar = get_home_url().'/mediqo/';
 		$ico_perfil = get_recurso("img").'KMIVET/GENERALES/Perfil.svg';
 	}
