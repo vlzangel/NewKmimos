@@ -42,6 +42,8 @@ var __CB_PAGO_OK__ = function(){
 
 var __CB_PAGO_KO__ = function(){
 	debug('Error');
+	jQuery("#btn_reservar").html("Solicitar Consulta");
+	jQuery("#btn_reservar").prop("disabled", false);
 }
 
 var geocoder;
