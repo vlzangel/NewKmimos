@@ -1,0 +1,633 @@
+/* COMMON STYLES */
+
+.item-slide,
+.item-slide:hover,
+.slide-content,
+.slide-content:hover{
+    cursor: pointer!important;
+}
+
+.modal input,
+.modal select
+{
+	line-height: 42px!important;
+	font-size: 15px!important;
+}
+
+
+body {
+	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
+	font-size: 13px;
+}
+@font-face {
+	font-family: 'Poetsen';
+	src: url(../fonts/poetsen_one/PoetsenOne-Regular.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Gotham-Pro-Light';
+	src: url(../fonts/gotham_pro/gotham-pro-light.otf) format('opentype');
+}
+@font-face {
+	font-family: 'Gotham-Pro-Regular';
+	src: url(../fonts/gotham_pro/gotham-pro-regular.otf) format('opentype');
+}
+@font-face {
+	font-family: 'Gotham-Pro-Medium';
+	src: url(../fonts/gotham_pro/gotham-pro-medium.otf) format('opentype');
+}
+@font-face {
+	font-family: 'Gotham-Pro-Bold';
+	src: url(../fonts/gotham_pro/gotham-pro-bold.otf) format('opentype');
+}
+@font-face {
+	font-family: 'Gotham-Pro-Black';
+	src: url(../fonts/gotham_pro/gotham-pro-black.otf) format('opentype');
+}
+:focus {
+	outline: 0!important;
+}
+img {
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+b {
+	font-family: 'Gotham-Pro-Medium',arial,sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+.popup-tit {
+    font-size: 22px;
+    font-family: 'Gotham-Pro-Bold';
+    margin-bottom: 20px;
+    line-height: 24px;
+}
+
+.km-box-form .label-placeholder input {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border: none;
+	color:#555 !important;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    background: transparent;
+    font-family: "Gotham-Pro-Regular", Arial, serif;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.km-box-form .label-placeholder {
+    position: relative;
+    padding-top: 20px;
+    text-align: left;
+}
+
+.km-box-form .content-placeholder .label-placeholder {
+    width: 100%;
+}
+
+.km-btn-basic {
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    display: block;
+    padding: 20px 0;
+    line-height: 100%;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+
+.km-checkbox {
+    width: 40px;
+    height: 10px;
+    position: relative;
+    border-radius: 50px;
+}
+
+.km-checkbox input[type=checkbox] {
+    visibility: hidden;
+}
+
+.km-checkbox label {
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    cursor: pointer;
+    background: #33E1BE;
+    border-radius: 50px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.km-checkbox input[type=checkbox]:checked + label {
+    left: 30px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+a.km-btn-basic:focus, a.km-btn-basic:hover, a.km-btn-correo:hover {
+    color: #FFF;
+}
+
+.km-checkbox:after {
+    content: 'RECORDARME';
+    position: absolute;
+    left: 54px;
+    top: -1px;
+}
+
+.popuphide {
+    display: none;
+}
+
+button.close {
+    position: absolute;
+    right: -40px;
+    top: 0;
+    font-size: 40px;
+    color: white;
+    opacity: 1;
+}
+
+.close:focus, .close:hover {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+.km-btn-correo img {
+    width: 14px;
+    position: relative;
+    top: -1px;
+    left: -5px;
+}
+
+.km-box-form .label-placeholder label {
+    left: 0;
+    top: 30px;
+    z-index: 0;
+    font-size: 15px;
+    font-weight: 300;
+    position: absolute;
+    font-family: Gotham-Pro-Regular, Arial, serif;
+    color: #979797;
+    transition: all .15s ease-in;
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+.km-box-form .label-placeholder input {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border: none;
+    color: #555 !important;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    background: transparent;
+    font-family: "Gotham-Pro-Regular", Arial, serif;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.modal input, .modal select {
+    line-height: 42px!important;
+    font-size: 15px!important;
+}
+
+.km-box-form .label-placeholder {
+    position: relative;
+    padding-top: 20px;
+    text-align: left;
+}
+
+.km-box-form .content-placeholder .label-placeholder {
+    width: 100%;
+}
+
+
+.km-datos-mascota select {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border: none;
+    color: #555 !important;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .2px;
+    margin-top: 15px;
+    font-family: Gotham-Pro-Regular, Arial, serif;
+    border-bottom: 1px solid #ccc;
+}
+
+.km-box-form .label-placeholder.focus label, .km-box-form .label-placeholder.focused label {
+    top: 12px;
+    font-size: 11px;
+}
+
+/* Perfil */
+
+.km-ficha-bg {
+    width: 100%;
+    height: 80px;
+}
+
+.mensaje {
+    background-color: var(--kmimos-morado);
+    border-radius: 15px;
+    color: #ffffff;
+    position: relative;
+    padding: 12px 24px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Gotham-Pro-Bold',arial,sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    width: 100%;
+    float: right;
+    cursor: pointer;
+}
+
+.mensaje i {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    font-size: 18px;
+    color: #FFF;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* POPUPS REGISTRO */
+.popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3, .popup-iniciar-sesion-1, .popup-registrarte-1, .popup-registrarte-nuevo-correo, .popup-olvidaste-contrasena, .popup-registrarte-datos-mascota, .popup-registrarte-final, .popup-registrarte-final-0,
+.popup-conocemas-cuidador {
+    padding: 40px 20px;
+}
+
+.popup-content-cuidador{
+    display: none;
+}
+
+.popup-content-cuidador.active{
+    display: block;
+}
+
+.form-registro {
+    text-align: left;
+    margin-bottom: 30px;
+}
+.form-registro fieldset {
+  position: relative;
+  border: none;
+}
+
+.form-registro label {
+  position: absolute;
+  top: 30px;
+  color: rgba(0, 0, 0, 0.3);
+  -webkit-transform-origin: left;
+  -moz-transform-origin: left;
+  transform-origin: left;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+}
+
+.form-registro input:focus ~ label {
+  color: var(--kmimos-morado);
+}
+
+.form-registro input:focus ~ label, .form-registro input:valid ~ label {
+    top: 15px;
+    -webkit-transform: scale(0.7, 0.7);
+    -moz-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+}
+
+.form-registro input {
+  font-size: 15px;
+  width: 100%;
+  border: none;
+  margin-top: 30px;
+}
+
+.form-registro input:focus {
+  outline: none;
+}
+
+.form-registro .after {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--kmimos-morado) 50%, transparent 50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: all 0.6s ease;
+}
+
+.form-registro input:focus ~ .after {
+  background-position: 0 0;
+}
+
+.km-box-form {
+    margin-bottom: 20px;
+}
+
+
+.km-box-form .content-placeholder::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-box-form .content-placeholder .label-placeholder{
+    width: 100%;
+}
+
+.km-registro-checkbox {
+    margin-top: 30px;
+}
+.km-registro-checkbox-opcion {
+    width: 48%;
+    display: inline-block;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+.km-registro-checkbox .km-registro-checkbox-opcion:first-child {
+    margin-right: 15px;
+}
+.km-registro-checkbox-opcion p { 
+    font-size: 15px;
+    font-family: "Gotham-Pro-Regular", Arial, serif;
+    color: #979797;
+}
+.km-registro-checkbox-opcion p, .km-registro-checkbox-opcion .roundedOne {
+    display: inline-block;
+}
+
+.popup-registro-exitoso, .popup-registro-exitoso-final {
+    background: url(../images/new/km-registro/registro-exitoso.jpg) no-repeat;
+    height: 650px;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+.popup-registro-exitoso-text {
+    z-index: 3;
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 200px 10px 0;
+}
+.popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3 {
+    text-align: center;
+    position: relative;
+}
+.popup-registro-cuidador-paso1 a img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30PX;
+}
+.popup-registro-cuidador-paso1 textarea {
+    width: 100%;
+    height: 200px;
+    margin: 20px 0;
+    resize: none;
+}
+.km-registro-tip {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    bottom: 150px;
+    right: 30px;
+    border-radius: 45px;
+    background: url(../images/new/icon/icon-tip.svg) no-repeat center center;
+    background-size: 32px;
+}
+.km-recordatorio {
+    margin: 20px 0;
+}
+.km-cantidad {
+    background-color: transparent!important;
+}
+.km-cantidad .disabled {
+    cursor: default;
+    color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.cr_minus,
+.cr_plus,.km-cantidad .km-minus, .km-cantidad .km-plus{
+    width: 20px;
+    color: #33E1BE;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #33E1BE;
+    text-decoration: none;
+}
+.km-cantidad .km-content-step .km-content-new-pet {
+    border: none!important;
+    padding: 0!important;
+}
+.km-cantidad .km-content-step {
+    padding: 0!important;
+}
+.km-block {
+    width: 100%;
+    margin-top: 30px;
+}
+.km-block .km-block-1, .km-block .km-block-2 {
+    width: 48%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.km-block .km-block-1 p {
+    margin: 0;
+    text-align: left;
+}
+.km-block .km-block-2 {
+    text-align: right;
+}
+
+textarea.popup-conoce-textarea {
+    width: 100%;
+    height: 100px;
+    margin: 20px 0;
+    resize: none;
+}
+
+/* FIN POPUPS REGISTRO */
+/* FIN PÁGINA QUIERO SER CUIDADOR */
+
+/*POPUPS REGISTRO CLIENTE*/
+
+.popup-registrarte-final, .popup-registrarte-final-0 {
+    text-align: center;
+} 
+.popup-registrarte-final img, .popup-registrarte-final-0 img {
+    margin: 20px;
+    width: 150px;
+}
+
+textarea.vlz_input {
+    resize: none;
+    height: 103px;
+}
+
+.vlz_input {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #6F7272;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+@media (max-width: 992px){
+	.jj_desc {
+		height: 120px!important;
+	}
+}
+
+@media (max-width: 992px){
+	.vlz_input {
+		height: 50px!important;
+		/* padding: 1px 1px 0px 0px!important; */
+		font-size: 14px!important;
+	}
+}
+
+@media (max-width: 768px){
+	a.km-nav-link {
+		color: #555 !important;
+	}
+}
+
+/*DatePicker*/
+.datepick-popup{
+	z-index: 2000 !important;
+}
+
+.message-especial{
+	background-color: var(--kmimos-morado);
+	color: #6b1c9b;
+	border-radius:10px;
+	margin-top:5px;
+	font-family: Gotham-Pro-Bold;
+	padding: 10px 25px;
+	display:none;
+}
+
+/* Modal Subscribe - HOME */
+#PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}
+#PageSubscribe .exit{float: right; cursor: pointer;font-size: 26px; color: red;}
+#PageSubscribe .section{ width: 50%; padding: 10px; float: left; font-size: 17px; text-align: left;}
+#PageSubscribe .section.section1{font-size: 20px;}
+#PageSubscribe .section.section1 span{font-size: 25px;}
+#PageSubscribe .section.section1 .images{padding:10px 0; text-align: center;}
+#PageSubscribe .section.section3{width: 100%; font-size: 17px; font-weight: bold; text-align: center;}
+#PageSubscribe .section.section2{}
+#PageSubscribe .section.section2 .message{font-size: 15px; border: none; background: none; opacity:0; visible: hidden; transition: all .3s;}
+#PageSubscribe .section.section2 .message.show{opacity:1; visible:visible;}
+#PageSubscribe .section.section2 .icon{width: 30px; padding: 5px 0;}
+#PageSubscribe .section.section2 .subscribe {margin: 20px 0;  }
+#PageSubscribe .section.section2 form{margin: 0; display:flex;}
+#PageSubscribe .section.section2 input,
+#PageSubscribe .section.section2 button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #000; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+#PageSubscribe .section.section2 button {padding: 10px;  width: 40px;}
+
+@media screen and (max-width:480px), screen and (max-device-width:480px) {
+    #PageSubscribe { top: 15px;}
+    #PageSubscribe .section{ width: 100%; padding: 10px 0; font-size: 12px;}
+    #PageSubscribe .section.section1 {font-size: 15px;}
+    #PageSubscribe .section.section1 span {font-size: 20px;}
+    #PageSubscribe .section.section3 {font-size: 12px;}
+}
+
+
+/*.popuphide {
+    display: block !important;
+}*/
+
+.km-btn-secondary {
+    background-color: #7c169e !important;
+    border-bottom: 3px solid #7c169e !important;
+}
+
+.km-box-form .label-placeholder-2 {
+    position: relative;
+}
+
+.km-box-form .label-placeholder-2 label {
+    left: 0;
+    z-index: 0;
+    font-weight: 300;
+    position: absolute;
+    font-family: Gotham-Pro-Regular, Arial, serif;
+    color: #979797;
+    transition: all .15s ease-in;
+    margin-bottom: 0;
+    font-weight: 700;
+    top: 12px;
+    font-size: 11px;
+}
+
+.label_iOS{
+	display: none;
+}

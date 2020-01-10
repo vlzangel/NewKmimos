@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.148 90.063">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+        stroke-linejoin: round;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #572a99;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-linecap: round;
+        stroke-width: 4px;
+      }
+
+      .cls-2 {
+        fill: #7d40dd;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        stroke: #fff;
+      }
+    </style>
+  </defs>
+  <title>Servicios - vet</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <path class="cls-1" d="M54.035,66.954l6.979-9.486a33.574,33.574,0,1,0-50.882,0h-.008L30.906,85.7a5.794,5.794,0,0,0,9.334,0l3.4-4.624"/>
+        <circle class="cls-2" cx="35.574" cy="36.23" r="17.848"/>
+        <line class="cls-3" x1="35.574" y1="28.895" x2="35.574" y2="45.031"/>
+        <line class="cls-3" x1="43.642" y1="36.963" x2="27.505" y2="36.963"/>
+      </g>
+    </g>
+  </g>
+</svg>

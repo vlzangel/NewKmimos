@@ -1,0 +1,502 @@
+@media screen and ( min-width: 768px ){
+	div#banner_home {
+	    display: block !important;
+	}
+}
+
+@media screen and ( max-width: 768px ){
+
+	#buscador i.fa.fa-times {
+	    position: absolute;
+	    top: 6px;
+	    right: 6px;
+	    font-size: 20px;
+	}
+
+	.botones_movil{
+		display: block;
+	}
+
+	.seccion_destacados {
+	    padding: 60px 0px 0px;
+	    border-bottom: solid 0px #CCC;
+	    box-shadow: 0px 0px 0px #CCC;
+	}
+
+	.seccion_destacados h2 {
+	    text-align: left;
+	    margin: 0px;
+	    padding: 0px 10px 15px;
+	    font-size: 16px !important;
+	    font-family: Gotham-Pro-Black !important;
+	}
+
+	.seccion_destacados h2 span {
+	    display: block;
+	}
+
+	.seccion_destacados h2 span img {
+	   	width: 70px;
+	}
+
+	.seccion_destacados_subtitulo {
+	    margin: 0px auto 30px;
+	    max-width: 1200px;
+	    font-size: 11px;
+	    padding: 0px 10px;
+	    text-align: justify;
+	}
+
+	/* DESTACADOS */
+	
+	.destacados_container{
+		display: block;
+	    width: 90%;
+	    height: auto;
+	    overflow: auto;
+	}
+
+	.destacados_box{
+		display: block;
+		width: 100%;
+	}
+
+	.destacados_item{
+		width: 100%;
+	    padding: 0px 5px;
+        margin-bottom: 15px;
+	}
+
+	.destacados_item > a {
+	    /* display: none; */
+	    width: 90%;
+	    position: absolute;
+	    left: 5px;
+	    top: -10px;
+	    border-radius: 0px;
+	    width: 100%;
+	    height: 100%;
+	    background: transparent;
+	}
+
+	.destacados_item > a span {
+	    display: none;
+	}
+
+	.seccion_destacados_flechas {
+		display: none;
+
+	    width: 40px;
+	    top: calc( 50% - 80px );
+	}
+
+	.seccion_destacados_izq {
+	    left: -45px;
+	}
+
+	.seccion_destacados_der {
+	    right: -45px;
+	}
+
+	.img_destacado {
+	    height: 100px;
+	    width: 50%;
+    	float: left;
+	    height: 125px;
+	}
+
+	.avatar_destacado {
+	    height: 23px;
+    	width: 23px;
+	    position: absolute;
+	    left: 1px;
+	    top: 11px;
+	}
+
+	.datos_destacado_containder {
+	    border-radius: 0px 10px 10px 0px;
+	    padding: 5px 5px 0px;
+
+	    width: 50%;
+    	float: right;
+    	position: relative;
+    	border-top: solid 1px #7abab7;
+    	border-left: 0px; 
+	    height: 125px;
+	}
+
+	.nombre_destacado a {
+	    font-size: 10px;
+	}
+
+	.nombre_destacado span {
+	    font-size: 6px;
+	    line-height: 1;
+	    padding: 2px 0px 0px;
+	}
+
+	.km-ranking a {
+		width: 16px !important;
+		height: 10px !important;
+		background-size: 16px 8px !important;
+	}
+
+	.ranking_destacado {
+		padding-top: 0px;
+		padding-left: 29px;
+    	float: left;
+	}
+
+	.nombre_destacado {
+	    float: left;
+	    padding: 4px 0px 0px 30px;
+	}
+
+	.destacados_box > div > div {
+	    white-space: normal;
+	}
+
+	.img_destacado img.img_destacado_2 {
+	    position: absolute;
+	    left: 10px;
+	    top: 0px;
+	    width: 35px;
+	}
+
+	.img_destacado img.img_patitas {
+	    position: absolute;
+	    right: 10px;
+	    top: 5px;
+	    width: 25px;
+	}
+
+	.datos_bottom_destacado_container > div {
+	    font-size: 9px;
+	}
+
+	.datos_bottom_destacado_container > div strong {
+	    font-size: 16px;
+	}
+
+	.datos_bottom_destacado_container > span {
+	    font-size: 9px;
+	}
+
+	.datos_bottom_destacado_container > div strong span {
+	    font-size: 9px;
+	}
+
+	.datos_top_destacado_containder .ubicacion {
+	    position: relative;
+	    top: auto;
+	    right: auto;
+	    font-weight: 600;
+	    font-size: 9px;
+	    text-align: right;
+	    padding-right: 5px;
+	    float: right;
+    	padding-top: 0px;
+	}
+
+	.datos_top_destacado_containder {
+	    padding: 5px 0px 0px;
+	}
+
+	.datos_bottom_destacado_container > span:last-child {
+	    top: -4px;
+	    position: relative;
+	}
+
+
+	/* Filtros */
+
+		.barra_right{
+			border-right: 0px;
+		}
+
+		#banner_home{
+			display: none;
+		}
+
+		.botones_movil{
+			padding: 0px 0px 20px;
+		}
+
+		.botones_movil > a {
+			margin: 5px auto 10px !important;
+		    width: 220px;
+		    padding: 10px 0px !important;
+		    font-size: 11px;
+		    font-weight: 800;
+		}
+
+		.botones_movil > span {
+			text-align: center;
+			display: block;
+			font-size: 10px;
+		    font-family: Gotham-Pro-Bold;
+		}
+
+		#banner_home table, #banner_home tbody, #banner_home tr, #banner_home td {
+			display: block;
+		}
+
+		#banner_home {
+		   display: none;
+		    position: fixed;
+		    top: 0px;
+		    left: 0px;
+		    width: 100%;
+		    height: 100%;
+		    z-index: 99999999999;
+		    overflow: auto;
+
+		    background-color: #0004;
+		}
+
+		#banner_home #buscador {
+		    margin: 0px;
+		    width: calc( 100% - 20px );
+		    margin: 10px auto;
+		    border-radius: 0px;
+		    background: #FFF;
+		    box-shadow: 2px 2px 10px #000;
+
+		    position: relative;
+		    top: -100%;
+		}
+
+		.cada_vez {
+		    font-size: 8px;
+		    margin: 15px 3px;
+		}
+
+		.cada_vez > div > span {
+		    color: #e5cc00;
+		    font-family: Gotham-Pro-Black;
+		}
+
+		.cada_vez > span {
+		    display: none;
+		}
+
+		.titulo_form {
+		    font-size: 11px;
+		    margin-bottom: 8px;
+		}
+
+		.celda_1 {
+		    width: 100%;
+		    padding-right: 0px;
+		}
+
+		.ubicacion_container input {
+		    height: 40px;
+    		font-size: 9px !important;
+		}
+
+		.ubicacion_container .ubicacion_localizacion,
+		img.mi_ubicacion {
+		    top: 10px;
+		}
+
+		.ubicacion_container .ubicacion_gps {
+		    padding: 10px 11px;
+		}
+
+		.celda_1 .titulo_form br,
+		.celda_3 .titulo_form br {
+			display: none;
+		}
+
+		.tipo_mascota_container {
+		    padding-left: 0px;
+		}
+
+		.tipo_mascota_container .input_check_box {
+		    width: calc( 50% - 2px );
+		}
+
+		.input_check_box img {
+		    height: 14px;
+		}
+
+		.tipo_mascota_container .input_check_box span {
+		    font-size: 8px;
+		}
+
+		.input_check_box {
+		    height: 45px;
+		    margin-right: 0px;
+		}
+
+		.tam_label_movil {
+		    font-size: 8px;
+		}
+
+		.input_check_box .small, 
+		.input_check_box small {
+		    font-size: 6px;
+		}
+
+		.tamanios_container .input_check_box {
+	        width: calc( 25% - 3px );
+    		margin-right: 0px;
+		}
+
+		.tipo_mascota_container {
+		    width: 100%;
+		}
+
+		.tamanios_container {
+		    width: 100%;
+	        text-align: center;
+            padding-right: 0px;
+		}
+
+		.ubicacion_container {
+		    margin-bottom: 10px;
+		}
+
+		.celda_3 {
+		    width: 100%;
+		}
+
+		.servicios_principales_box .input_check_box {
+		    width: calc( 25% - 3px );
+		    margin: 0px;
+	        margin-right: 4px;
+		}
+
+		.servicios_principales_box label:nth-child(4) {
+			margin-right: 0px;
+		}
+
+		.servicios_principales_box .input_check_box span{
+		    font-size: 8px;
+		    margin-top: 2px;
+		}
+
+		.servicios_principales_box .input_check_box img {
+		    height: 18px;
+		}
+
+		.servicios_principales_box {
+		    text-align: left;
+		    overflow: hidden;
+		}
+
+		.servicios_principales_box > label {
+		    float: left;
+		}
+
+		td.personaliza_title {
+		    padding: 15px 0px;
+		    font-size: 11px;
+		}
+
+		.check_container {
+		    padding-bottom: 5px;
+		}
+
+		.checkes_bottom {
+		    width: 100%;
+		    padding: 0px;
+		}
+
+		.check_container label {
+		    font-size: 9px;
+		    padding-right: 90px;
+		    padding: 12px 90px 0px 0px;
+		}
+
+		.check_container label > br {
+		    display: none;
+		}
+
+		.check_icon_2 {
+		    height: 25px;
+		    background-repeat: no-repeat;
+		    background-position: center;
+		    background-size: contain;
+		    margin: 10px 0px 5px;
+		    display: inline-block;
+		    width: 25px;
+		}
+
+		.check_container span {
+		    width: 20%;
+		    padding-right: 0px;
+		    text-align: center;
+		}
+
+		.omitir_btn{
+			
+		}
+
+		.omitir_btn a.solo_movil.boton.boton_verde {
+		    width: 65%;
+		    font-size: 10px;
+		    border-radius: 0px;
+		    padding: 12px 0px !important;
+		    margin: 0px auto 10px !important;
+		}
+
+		.celda_2 label.titulo_form br {
+		    display: none;
+		}
+
+	.seccion_destacados span span {
+		display: none;
+	}
+
+	.modifica {
+	    font-size: 11px;
+	}
+
+	.importante {
+	    font-size: 11px;
+	    padding-top: 10px;
+	}
+
+	.importante strong {
+	    font-weight: bold;
+        font-size: 12px;
+	}
+
+	.importante span {
+	    display: none;
+	}
+
+	#aplicar_btn{
+		display: none !important;
+	}
+
+}
+
+@media screen and (max-width: 350px){
+	.tamanios_container .input_check_box span {
+	    padding: 8px 0px;
+	    line-height: 1.3;
+	}
+
+	.tam_label_movil {
+	    font-size: 9px;
+	}
+
+	.input_check_box .small, .input_check_box small {
+	    font-size: 8px;
+	}
+
+	.tipo_mascota_container .input_check_box span {
+	    font-size: 9px;
+	}
+
+	.input_check_box img {
+	    height: 15px;
+	}
+
+	.servicios_principales_box .input_check_box span {
+	    font-size: 7px;
+	}
+}

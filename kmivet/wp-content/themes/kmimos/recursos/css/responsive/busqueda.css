@@ -1,0 +1,805 @@
+@media (min-width: 1400px){
+	.destacados_container {
+	    height: 320px;
+	}
+
+	.destacados_item .desacado_img {
+	    height: 135px;
+	}
+
+	.destacados_item .desacado_img_normal {
+	    height: 125px;
+	}
+}
+
+@media (min-width: 768px){
+	.principales_container:hover .principales_box {
+	    display: block;
+	    opacity: 1;
+	    transition: all .3s ease-in-out;
+	}
+
+	.resultados_item_bottom .boton:hover,
+	.km-opciones.maps .boton:hover,
+	.km-opciones.maps .boton:hover,
+	.modal button.btn.boton.boton_verde:hover {
+	    background: #49eada !important;
+	}
+
+}
+
+@media (min-width: 1375px){
+	.huesitos_container{
+		display: inline-block;
+	}
+}
+
+@media (max-width: 768px){
+
+	.show_msg_descuento span {
+		font-size: 10px !important;
+	}
+
+	nav.open_filtros {
+	    top: -42px;
+	}
+
+	.show_princ .principales_box{
+	    display: block;
+	    opacity: 1;
+	    transition: all .3s ease-in-out;
+	}
+
+	footer.show_footer{
+		display: block !important;
+	}
+
+	.paginacion_container{
+		display: block !important;
+	}
+
+	.cargando_mas_resultados{
+		display: none !important;
+	}
+
+	.filtros_botones{
+		display: block;
+	}
+
+	.filtros_generales_container .check_icon {
+		width: 40px;
+	    background-size: 24px;
+	}
+
+	.filtros_generales_container .filtro_check > div {
+	    font-size: 13px;
+	}
+
+	/* Barra */
+	
+		.resultados_container::-webkit-scrollbar-track{
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+			border-radius: 5px;
+			background-color: #F5F5F5;
+		}
+
+		.resultados_container::-webkit-scrollbar{
+			width: 3px;
+			background-color: #F5F5F5;
+		}
+
+		.resultados_container::-webkit-scrollbar-thumb{
+			border-radius: 5px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			background-color: #33E1BE;
+		}
+
+	/* FILTROS */
+	
+		.cerrar_filtros_movil {
+		    display: inline-block;
+		    position: absolute;
+		    top: 0px;
+		    right: 0px;
+		    background-color: #FFF;
+		    padding: 10px 20px;
+		    font-size: 25px;
+		    cursor: pointer;
+		    border-right: solid 2px #CCC;
+		    border-bottom: solid 2px #CCC;
+		    border-radius: 0px 0px 3px 0px;
+		}
+
+		.filtos_container.open_filtros{
+			left: 0px;
+		    transition: all .3s ease-in-out;
+	        overflow: auto;
+	        z-index: 999999999999999999999999999;
+		}
+
+		.filtos_container {
+		    position: fixed;
+		    top: 0px;
+		    height: 100%;
+		    width: calc( 100% - 40px );
+		    left: -100%;
+		    overflow: unset;
+		    overflow-x: unset;
+		    max-width: 350px;
+	        padding: 5px;
+		}
+
+		.filtos_container.open_filtros .cerrar_filtros_movil{		
+			right: -57px;
+		}
+
+		.tamanios_container_derecho{
+			text-align: right;
+		}
+
+		.tamanios_container {
+		    display: inline-block;
+		    width: calc( 50% - 2px );
+		}
+
+		.tamanios_container .input_check_box {
+	        margin-right: 5px;
+		}
+
+		.tamanios_container_derecho .input_check_box{
+			margin-right: 0px;
+			margin-left: 5px;
+		}
+
+		.tamanios_container .input_check_box img {
+		    height: 20px;
+		}
+		
+		form#buscar_2 {
+			display: block;
+		    padding: 20px 15px 5px;
+		}
+		
+		form#buscar_2 .filtros_movil_table {
+		   	display: table;
+		   	width: 100%;
+		}
+
+		form#buscar_2 .filtros_movil_cell {
+		    display: table-cell;
+		    width: 50%;
+		    vertical-align: top;
+		}
+
+		.filtos_container form {
+		    height: 100%;
+		    overflow: unset;
+		}
+
+	/* MAPA */
+	
+		.cerrar_mapa_movil {
+		    display: inline-block;
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    background-color: #FFF;
+		    padding: 10px 20px;
+		    font-size: 25px;
+		    cursor: pointer;
+		    border-left: solid 2px #CCC;
+		    border-bottom: solid 2px #CCC;
+		    border-radius: 0px 0px 0px 3px;
+		}
+
+		.mapa_container {
+		    position: fixed;
+		    top: 40px;
+		    right: -100%;
+		    width: 350px;
+		    height: calc( 100vh - 40px );
+		    transition: all .3s ease-in-out;
+		}
+
+		.mapa_container.open_mapa{
+			top: 0px;
+		    right: 0px;
+		    transition: all .3s ease-in-out;
+		    z-index: 99999999999999;
+		    height: 100%;
+		}
+
+		.mapa_container.open_mapa .cerrar_mapa_movil{
+			left: -45px;
+		}
+
+		#mapa {
+		    position: absolute;
+		    background: #BBB;
+		    top: auto;
+		    right: 0px;
+		    width: calc( 100% - 1px );
+		    height: calc( 100% - 60px );
+		    bottom: 0px;
+		}
+
+	/* RESULTADOS */
+
+		.resultados_item_info_img_container img.favorito {
+			display: block;
+		}
+
+		.disponibilidad_MOVIl {
+		    display: block !important;
+		}
+
+		.mesaje_reserva_inmediata_container{
+			display: none;
+		}
+
+		.resultados_container {
+		    left: 0px;
+		    width: 100%;
+		}
+
+		div#seccion_destacados {
+	        margin: 0px 0px 15px;
+    		border-bottom: solid 1px #33e1be;
+		}
+
+		.destacados_container {
+		    padding: 10px 0px;
+		    margin: 0px 15px;
+		    overflow-x: auto;
+		    width: auto;
+		    height: 290px;
+		}
+
+		.destacados_item {
+		    width: calc( 50% + 2px );
+		}
+
+		#buscar_2 .ubicacion_container input {
+		    height: 40px;
+		    font-size: 13px;
+		    font-family: 'Lato', sans-serif;
+		}
+
+		#buscar_2 .ubicacion_container .ubicacion_localizacion {
+		    top: 10px;
+		}
+
+		#buscar_2 .ubicacion_container .ubicacion_gps {
+		    padding: 10px 12px;
+		}
+
+		.cantidad_resultados_container.cantidad_resultados_fixed {
+			top: 35px;
+		    left: 0px;
+		    width: calc( 100% - 10px );
+		    z-index: 100;
+		    box-shadow: -3px 0px 4px #CCC;
+	        padding: 8px 15px 5px;
+		}
+
+		.resultados_box {
+		    margin-top: 0px;
+		}
+
+		.resultado_item {
+		    position: relative;
+		    margin: 0px 0px 0px 0px;
+		    width: calc( 50% - 2px );
+		    display: inline-block;
+		    vertical-align: top;
+		    padding: 0px;
+		    border: 0px;
+    		box-shadow: 0px 0px 0px;
+		}
+
+		.resultado_item.full_width {
+		    padding: 0px 20px;
+		    width: 100%;
+		}
+
+		.resultado_item.full_width .resultados_item_info_img_container {
+		    height: 160px;
+		}
+
+		.resultado_item.full_width .resultados_item_bottom .boton {
+		    min-width: 110px;
+		    font-size: 10px;
+		    margin: 0px 5px;
+		}
+
+		.resultados_item_info_container {
+		    display: block;
+		    width: 100%;
+		}
+
+		.resultados_item_info_img_container {
+		    height: 130px;
+		    width: 100%;
+		    display: block;
+		    vertical-align: top;
+		}
+
+		.resultados_box_interno {
+		    padding: 0px 5px;
+		}
+
+		.resultados_item_info_img_container .resultados_item_info_img_box .resultados_item_info_img {
+		    border-radius: 3px;
+		}
+
+		.resultados_item_titulo span {
+		    display: none;
+		}
+
+		.resultado_item:hover .resultados_hover {
+		    display: none;
+		}
+
+		.resultados_item_info {
+		    padding-left: 0px;
+		    display: block;
+		}
+
+		.resultados_item_titulo {
+		    font-size: 15px;
+		    font-weight: 800;
+		    padding-top: 5px;
+		    padding: 5px 3px 0px;
+		}
+
+		.resultados_item_subtitulo,
+		.resultados_item_direccion,
+		.resultados_item_servicios,
+		.por_noche,
+		.resultados_item_comentario_img,
+		.resultados_item_comentario_contenido
+		{
+		    display: none;
+		}
+
+		.resultados_item_precio_container {
+		    position: relative;
+		    top: auto;
+		    right: auto;
+		    text-align: left;
+		    padding-top: 2px;
+	        font-weight: 700;
+            font-size: 12px;
+            padding: 2px 3px 0px;
+		}
+
+		.resultados_item_precio_container > span,
+		.resultados_item_precio_container,
+		.resultados_item_precio_container > div {
+		    color: #000000;
+		}
+
+		.resultados_item_precio_container > div strong {
+		    font-size: inherit;
+		}
+
+		.resultados_item_precio_container > div,
+		.resultados_item_ranking_movil{
+			display: inline-block;
+		}
+
+		.resultados_item_experiencia{
+			display: block;
+			font-size: 12px;
+			font-weight: 700;
+			padding: 2px 3px 0px;
+		}
+
+		.resultados_item_ranking_movil .km-ranking a {
+		    background-image: url(../../img/BUSQUEDA/SVG/Huesito_gris.svg) !important;
+		}
+
+		.resultados_item_ranking_movil .km-ranking a.active {
+		    background-image: url(../../img/BUSQUEDA/SVG/Huesito_azul.svg) !important;
+		}
+
+		.resultados_item_valoraciones {
+		    font-size: 11px;
+		    font-weight: 700;
+		    padding: 2px 3px 0px;
+		}
+
+		.boton_conocer_PC,
+		.disponibilidad_PC {
+			display: none;
+		}
+
+		.boton_conocer_MOVIl,
+		.disponibilidad_MOVIl {
+			display: block;
+		}
+
+		.resultados_item_bottom {
+		    text-align: center;
+	        margin-top: 5px;
+	    }
+
+		.resultados_item_bottom .boton {
+		    padding: 5px 0px;
+		    min-width: 75px;
+		    text-align: center;
+		    font-size: 11px;
+		    text-decoration: none !important;
+		    margin: 0px;
+		    display: inline-block;
+		}
+
+		.resultados_item_bottom .boton_verde {
+		    padding: 7px 0px;
+		}
+
+		.resultados_item_icono span {
+		    display: block;
+		    border: solid 1px #CCC;
+		    border-radius: 3px;
+		    background-color: #EEE;
+		    padding: 4px 4px 5px 0px;
+		    box-sizing: border-box;
+		}
+
+		.icono_disponibilidad span {
+		    background-position: 7px center;
+		    background-repeat: no-repeat;
+		    background-size: 12px;
+	        padding-left: 25px;
+	        font-size: 10px;
+		}
+
+		.icono_flash, .icono_descuento, .icono_geo {
+		    width: 30px;
+		}
+
+		.icono_flash span, .icono_descuento span, .icono_geo span {
+		    height: 25px;
+		}
+
+		span.disponibilidad_PC {
+		    display: none;
+		}
+
+		.resultados_item_iconos_container {
+		    margin-bottom: 5px;
+		}
+
+		.resultados_item_iconos_container.ocultar_flash_descuento {
+		    display: table;
+		    visibility: hidden;
+		}
+
+		.resultados_item_info_img_container img.Flechas {
+			display: none;
+		}
+
+		#seccion_destacados.sin_destacados{
+			display: none;
+		}
+
+		.boton_border_gris {
+		    border: solid 1px #969696 !important;
+		}
+
+		.cantidad_resultados_container {
+		    padding: 10px 10px 5px;
+		    font-size: 13px;
+		}
+
+		.busqueda_container {
+		    top: 40px;
+		    height: calc( 100vh - 40px );
+		}
+
+		#seccion_destacados .Flecha_Izquierda, #seccion_destacados .Flecha_Derecha {
+		    top: 65px;
+		    padding: 8px;
+		}
+
+		#seccion_destacados .Flecha_Derecha img, #seccion_destacados .Flecha_Izquierda img {
+		    width: 15px;
+		    height: 15px;
+		}
+
+		.mesaje_reserva_inmediata_container {
+		    padding: 5px;
+		}
+
+		.mesaje_reserva_inmediata_izq {
+		    width: 45px;
+		    height: 35px;
+		    background-size: 75%;
+		}
+
+		.mesaje_reserva_inmediata_der {
+		    padding: 0px 5px;
+		    font-size: 11px;
+		}
+
+		.busqueda_container {
+		    position: relative;
+		    top: auto;
+		    z-index: 0;
+		    width: 100vw;
+		    height: auto;
+		    box-sizing: border-box;
+		    padding-top: 40px;
+		}
+
+		.resultados_container {
+		    position: relative;
+		    left: auto;
+		    top: auto;
+		    width: 100%;
+		    height: auto;
+		    overflow: initial;
+	        padding-bottom: 25px;
+		}
+
+		.cargando_mas_resultados {
+		    display: none;
+		}
+
+		.resultados_item_comentario_favorito span {
+		    position: absolute;
+		    top: -124px;
+		    right: 8px;
+	        border: 0px;
+		}
+
+		.resultados_item_comentario_favorito span .favorito {
+		    background-image: url(../../img/BUSQUEDA/SVG/iconos/Corazon.svg);
+		}
+
+		.tipo_mascota_container .input_check_box {
+		    height: auto;
+		}
+
+		.tipo_mascota_container .input_check_box span {
+		    padding: 8px 0px 2px;
+		}
+
+	.cerrar_filtros_movil {
+	    display: block;
+	    position: relative;
+	    text-align: right;
+	    padding: 10px;
+	    font-size: 20px;
+	    border-right: 0px;
+	    border-bottom: 0px;
+	}
+
+	.mapa_container {
+        width: 100%;
+	}
+
+	.cerrar_mapa_movil {
+	    padding: 0px 15px;
+	    font-size: 30px;
+        border-left: 0px;
+   		border-bottom: 0px;
+	}
+
+	.filtos_container.open_filtros .cerrar_filtros_movil {
+	    right: auto;
+	    
+        right: 0px !important;
+	}
+
+	.mapa_container.open_mapa .cerrar_mapa_movil {
+	    left: 0px;
+	}
+
+	.mapa_container label {
+	    top: 7px;
+	    padding-right: 30px;
+	    font-size: 11px;
+	}
+
+	.mapa_container input {
+	    top: -3px;
+	    height: 16px;
+	    width: 14px;
+	}
+
+	#mapa {
+	    top: 40px;
+	    right: 0px;
+	    width: calc( 100% - 1px );
+	    height: calc( 100% - 40px );
+	}
+
+	.filtos_container.open_filtros ~ .cerrar_filtros_movil_panel{
+	    position: absolute;
+	    top: 0px;
+	    right: 0px;
+	    width: calc( 100% - 350px );
+	    height: 100%;
+	    background: #000A;
+	    z-index: 999999999999999999999999999;
+	}
+
+
+
+	.iOS .filtos_container {
+	    top: 0px;
+	    height: 100%;
+	    width: 100%;
+	    padding: 5px;
+	    overflow: auto;
+	    z-index: 999999999999999999999999999;
+	}
+
+	.iOS .filtos_container form {
+	    overflow: unset !important;
+        height: auto !important;
+	}
+
+	.resultados_item_subtitulo {
+	    font-size: 9px;
+	    font-weight: 400;
+	    padding: 0px 3px 3px;
+	    display: block !important;
+	}
+
+}
+
+@media (max-width: 400px){
+
+	.filtos_container.open_filtros ~ .cerrar_filtros_movil_panel{
+	    width: calc( 100% - 350px );
+	}
+
+	.paginacion_container span {
+	    width: 22px;
+	    font-size: 12px;
+	}
+
+	.resultados_item_bottom .boton {
+	    min-width: 65px;
+	    font-size: 10px;
+	    margin: 0px 1px;
+	}
+
+	.tipo_mascota_container .input_check_box {
+	    height: auto;
+	}
+
+	.tipo_mascota_container .input_check_box span {
+	    font-size: 13px;
+	}
+
+	.fechas_container input {
+	    height: 40px;
+	    font-size: 11px;
+	}
+
+	.fechas_container .icon_fecha {
+	    top: 12px;
+	}
+
+	.ubicacion_container input {
+	    height: 40px;
+	    font-size: 11px;
+	}
+
+	.ubicacion_container .ubicacion_localizacion {
+	    top: 10px;
+	}
+
+	.ubicacion_container .ubicacion_gps {
+	    padding: 11px 12px;
+	}
+
+	.filtro_check > div {
+	    font-size: 13px;
+	}
+
+	.check_control {
+		width: 26px;
+		background-size: 52px 13px;
+		background-position: 0px center;
+	}
+
+	.check_descuento input:checked ~ .check_control,
+	.check_disponibilidad input:checked ~ .check_control,
+	.check_geo input:checked ~ .check_control{
+		background-position: -26px center;
+	}
+
+	.filtro_check {
+	    height: 25px;
+	}
+
+	.filtros_generales_container .check_control {
+		width: 30px;
+		background-size: 60px 15px;
+		background-position: 0px center;
+	}
+
+	.filtros_generales_container .check_descuento input:checked ~ .check_control,
+	.filtros_generales_container .check_disponibilidad input:checked ~ .check_control,
+	.filtros_generales_container .check_geo input:checked ~ .check_control{
+		background-position: -30px center;
+	}
+
+	.filtros_generales_container .filtro_check {
+	    height: 30px;
+	}
+
+	.cantidad_resultados_container {
+	    font-size: 11px;
+	}
+
+	.resultados_item_titulo {
+	    font-size: 12px;
+	}
+
+	.resultados_item_experiencia {
+	    font-size: 11px;
+	}
+
+	.resultados_item_precio_container {
+	    font-size: 11px;
+	}
+
+	.resultados_item_precio_container > span {
+	    font-size: inherit;
+	}
+
+	.resultados_item_precio_container > div strong span {
+	    font-size: inherit;
+	}
+
+	.km-ranking a {
+	    width: 17px;
+	}
+}
+
+
+@media (max-width: 360px){
+	.filtro_check > div {
+	    font-size: 10px;
+	}
+
+	.filtos_container {
+	    padding: 0px 5px 15px;
+	    width: 100%;
+	    z-index: 999999999999;
+	}
+
+	.input_check_box span small {
+	    font-size: 9px;
+	}
+
+	.cerrar_filtros_movil_panel {
+		display: none !important;
+	}
+
+	.filtros_generales_container {
+	    width: calc( 100% - 30px );
+	}
+
+	.cerrar_filtros_movil {
+	    display: inline-block;
+	    position: absolute; 
+	    padding: 10px;
+	    font-size: 20px;
+	    border: solid 1px #CCC;
+	    border-right: 0px;
+	    border-top: 0px;
+	    border-radius: 0px 0px 0px 4px;
+	    z-index: 1000;
+	}
+
+	.iOS .cerrar_filtros_movil {
+	    right: 0px !important;
+	}
+}

@@ -1,0 +1,184 @@
+ 
+    section h2{
+        font-size: 17px;
+        font-weight: bold;
+        font-family: "Gotham-Pro-Bold";
+        color:#000;
+    }
+    p{
+        font-size: 15px!important;
+        font-weight: lighter;
+        line-height:1.7;
+        font-family: "Gotham-Pro-Light";
+    }
+    p > strong{
+        font-family: "Gotham-Pro-Regular";
+        font-weight: bold;
+    }
+    p.title{
+        font-size: 17px!important;
+        font-weight: lighter;
+        font-family: "Gotham-Pro-Light";
+    }
+    .container section{
+        padding: 30px 10px;
+    }
+
+    .btn-kmimos-cuidador:hover{
+        color: #fff;
+        text-decoration: none;
+    }
+    .btn-kmimos-cuidador{
+        background: #33e1be;
+        border: 2px solid #33e1be;
+        color: #fff!important;
+        font-size: 18px!important;
+        font-weight: bold;
+        margin-top:50px;
+        padding: 15px 30px!important;
+    }
+    .km-titular-cuidador{
+        top: 210px;
+    }
+
+    /* ************************************* */
+    header .titulo-principal{
+        font-family: "Gotham-Pro-Bold"!important;
+        font-size: 41px;
+        color:#fff;
+        text-transform: uppercase;
+    }
+    header .titulo-secundario{
+        font-size: 15px;
+    }
+
+
+    .box-contenedor{
+        padding: 20px 0px;
+        display: table;
+        width: 100%;
+    }
+    .box-contenedor h2 {
+        text-transform: uppercase;
+        color: #313131;
+        display: table-caption;
+        padding-bottom: 20px;
+        font-size: 22px;        
+    }
+
+
+    .box-contenedor .tbl {
+        display: table-row;
+    }
+    .box-contenedor .tbl > div {
+        display: table-cell;
+        vertical-align: top;
+        width: 50%;
+    }
+
+
+    .box_item{
+        overflow: hidden;
+        width: 90%;
+        padding-bottom: 20px;
+    }
+    .box_icon{
+        float: left;
+        width: 30%;
+        text-align: center;
+    }
+    .box_icon img{
+        width: 50%;
+        margin: 10px 0px;
+    }
+    .box_info{
+        float: left;
+        width: 70%;
+        text-align: left;
+    }
+    .box_info h3 {
+        color: #5d5d5d;
+        font-family: Gotham-Pro-Bold,arial,sans-serif;
+        font-size: 16px;
+    }
+    .box_info p {
+        font-size: 13px;
+        color: #636363;
+    }
+
+
+    .box{
+        border: solid 1px #e6e6e6;
+        border-radius: 5px;
+    }
+    .box .titulo{
+        border-bottom: solid 1px #e6e6e6;
+        background-color: #f0f0f0;
+        padding: 10px;
+        color: #818181;
+        font-size: 16px;
+    }
+    .box .item-list {
+        list-style: none;
+    }
+    .box .item-list li {
+        text-align: left;
+        padding: 5px 0px;
+    }
+    .box .item-list li > div {
+        display: inline-block;
+        padding: 5px 0px;
+    }
+    .box .item-list li > div {
+        vertical-align: top;
+    }
+    .box .item-list > li:first-child > div:last-child {
+        padding: 15px 0px; 
+    }
+    .box .item-list img {
+        margin-right: 30px;
+        vertical-align: middle;
+    }
+    .box .item-list p {
+        padding: 0px 0px 5px;
+        margin: 0px;
+        vertical-align: top;
+        color: #636363;
+        font-size: 13px;
+    }
+    .box .item-list strong {
+        font-size: 16px;
+        color: #5d5d5d;
+    }
+
+
+    .title-purpura{
+        color: #7c169e;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: "Gotham-Pro-Bold";
+    }
+
+    
+    .section-banner{
+        color:#fff!important; 
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-top: 60px; 
+        text-align: left;
+        padding-left: 0px; 
+        padding-right: 0px; 
+    }
+    .section-banner div h2{
+        font-size: 50px;
+        font-weight: bold;
+        font-family: "Gotham-Pro-Bold"!important;
+        color:#fff;
+    }
+    .section-banner div h3{
+        color: #fff;
+    }    
+    .section-banner .btn-kmimos-cuidador{
+        margin-top: 10px;
+    }

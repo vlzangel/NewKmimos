@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.354 18.618">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #666;
+        stroke: #666;
+        stroke-miterlimit: 10;
+        stroke-width: 0.5px;
+      }
+    </style>
+  </defs>
+  <title>Fecha</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <rect class="cls-1" x="4.397" y="8.785" width="1.189" height="2.378" transform="translate(14.966 4.982) rotate(90)"/>
+        <rect class="cls-1" x="9.153" y="8.785" width="1.189" height="2.378" transform="translate(19.722 0.227) rotate(90)"/>
+        <rect class="cls-1" x="13.767" y="8.785" width="1.189" height="2.378" transform="translate(24.336 -4.388) rotate(90)"/>
+        <rect class="cls-1" x="4.397" y="12.89" width="1.189" height="2.378" transform="translate(19.071 9.087) rotate(90)"/>
+        <rect class="cls-1" x="9.153" y="12.89" width="1.189" height="2.378" transform="translate(23.826 4.331) rotate(90)"/>
+        <rect class="cls-1" x="13.767" y="12.89" width="1.189" height="2.378" transform="translate(28.441 -0.283) rotate(90)"/>
+        <path class="cls-1" d="M13.432,1.722V.25H12.243V1.722H7.016V.25H5.827V1.722H.25V18.368H19.1V1.722Zm4.822,15.683H1.156V6.648h17.1Zm0-11.89H1.156V2.628H5.827v.906H7.016V2.628h5.228v.906h1.189V2.628h4.822Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

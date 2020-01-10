@@ -1,0 +1,248 @@
+@media ( max-width: 768px ){
+
+	header .btn-kmimos-cuidador {
+	    font-size: 13px!important;
+	    margin: 40px 0px 0px;
+	}
+
+	section {
+	    text-align: center;
+	    padding: 30px 15px 20px !important;
+	    margin: 0px;
+	}
+
+	section h2 {
+	    font-size: 14px!important;
+	    line-height: 1.4;
+	}
+
+	.box_icon img {
+	    width: 80%;
+	}
+
+	.h3, h3 {
+	    font-size: 15px !important;
+	}
+
+	.box_item {
+	    padding-bottom: 10px;
+	}
+
+	.box .titulo {
+	    font-size: 15px;
+	    text-align: center;
+	}
+
+	.box .item-list img {
+	    height: 30px;
+	}
+
+	.box .item-list > li > div {
+	    padding: 0px 0px 0px 10px!important;
+	}
+
+	.box .item-list > li > div > strong {
+	    font-size: 13px;
+	    padding-bottom: 2px !important;
+	    display: inline-block;
+	}
+
+	.vlz_info_servicios > div:first-child {
+	    font-size: 20px;
+	    padding: 0px 10px;
+	}
+
+	.vlz_info_servicios_box {
+	    grid-template-columns: 1fr;
+	    grid-gap: 10px;
+	    margin: 30px auto;
+	}
+
+	.vlz_info_servicios_box > div:first-child {
+	    height: 200px;
+	}
+
+	.vlz_info_servicios_box {
+	    grid-template-columns: 1fr;
+	    grid-gap: 10px;
+	    margin: 30px auto 0px;
+	    padding: 0px 20px;
+	}
+
+	.vlz_info_servicios_box > div:last-child {
+	    padding: 10px 0px;
+	}
+
+	.vlz_info_servicios_box > div:last-child > div {
+	    font-size: 16px;
+	    text-align: center;
+	    margin-bottom: 10px;
+	}
+
+	.vlz_info_servicios_box > div:last-child > p {
+	    font-size: 14px;
+	    padding-right: 0px;
+	    font-weight: 400;
+	}
+
+	#seccion_servicios {
+		padding: 30px 0px 20px !important;
+	}
+
+	.vlz_info_items {
+	    display: grid;
+	    grid-template-columns: repeat(2, 1fr);
+	    grid-gap: 0px;
+	    width: 100%;
+	    margin: 30px auto 20px;
+	    text-align: center;
+	}
+
+	.vlz_info_items > div {
+	    margin: 0px 10px;
+	}
+
+	.vlz_info_items > div > div:last-child {
+	    padding: 15px 0px 0px;
+	    font-size: 13px;
+	}
+
+	.preguntas_container {
+	    grid-template-columns: repeat(1, 1fr);
+	}
+
+	.preguntas_container > div > div {
+	    padding-right: 30px;
+	}
+
+	.preguntas_container > div > div > div {
+	    font-size: 13px;
+	}
+
+	.preguntas_container > div > div > p {
+	    line-height: 1.6 !important;
+	}
+
+	.btn-kmimos-cuidador {
+	    background: var(--kv-morado);
+	    border: 2px solid var(--kv-morado);
+	}
+
+	.landing_btn_crea {
+	    min-width: 90%;
+	    text-decoration: none !important;
+	    display: block !important;
+	}
+
+	#popup-registro-veterinario .modal-title {
+		font-size: 12px;
+	}
+
+	#popup-registro-veterinario .modal-body {
+	    padding: 15px 15px 25px;
+	}
+
+	.kv-registro-nav > div {
+	    padding: 0px;
+	}
+
+	.kv-registro-nav > div > div {
+		display: none;
+	}
+
+	.step {
+	    grid-template-columns: repeat(1, 1fr) !important;
+	    grid-gap: 20px 0px;
+	}
+
+	.modal-footer .btn-primary, .modal-footer .btn-primary:hover, .modal-footer .btn-primary:focus {
+	    font-size: 10px;
+	    min-width: 120px;
+	    padding: 10px 0px !important;
+	}
+
+	.kv_red_seguros, .kv_red_otra_especialidad {
+	    grid-column: 1;
+	    display: none;
+	}
+
+	.kv_red_otra_especialidad {
+	    grid-template-columns: repeat(1, 1fr);
+	}
+
+	.kv_visibility {
+	    visibility: visible;
+	    display: block !important;
+	}
+
+	.kv_red_otra_especialidad > div {
+	    width: 100%;
+	    padding-top: 10px;
+	}
+
+	.kv_opciones {
+	    grid-column: 1;
+	}
+
+	.step_5 > div {
+	    grid-column: 1;
+	    grid-template-columns: repeat(1, 1fr);
+	}
+
+	.step_5 > div > label {
+	    grid-column: 1;
+	}
+
+	.step_5 > div > div {
+	    position: relative;
+	    padding-bottom: 5px;
+	}
+
+	div#step_6 > div {
+	    grid-column: 1;
+	    padding: 25px 0px;
+	}
+
+	div#step_6 p {
+	    padding: 10px 0px;
+	    font-size: 18px !important;
+	    line-height: 1.2 !important;
+	}
+
+	div#step_6 h2 {
+	    font-size: 30px !important;
+	}
+
+	nav.nav_mediqo {
+	    background: transparent !important;
+	    border-bottom: 0px !important;
+	    box-shadow: 0px 0px 0px #CCC !important;
+	}
+
+	nav.nav_mediqo.nav_white {
+	    background: #FFF !important;
+	    border-bottom: solid 1px #CCC !important;
+	    box-shadow: 0px 4px 4px #CCC !important;
+	}
+
+	header {
+	    top: -50px !important;
+	}
+
+	.km-hero-bg {
+	    height: 245px !important;
+	}
+
+	header .titulo-principal {
+	    color: #000 !important;
+	    font-size: 28px !important;
+	    padding: 50px 20px 0px !important;
+	    font-family: "Gotham-Pro-Black" !important;
+	    text-transform: none;
+	}
+
+	header .titulo-principal span{
+	    color: #fe196b !important;
+	}
+
+}

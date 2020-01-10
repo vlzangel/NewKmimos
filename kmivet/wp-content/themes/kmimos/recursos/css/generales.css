@@ -1,0 +1,391 @@
+body{
+	margin: 0px;
+	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
+    /* overflow-x: hidden; */
+}
+
+::placeholder { color: #000; opacity: 1; }
+:-ms-input-placeholder { color: #000; }
+::-ms-input-placeholder { color: #000; }
+
+a{
+	text-decoration: none;
+	display: inline-block;
+}
+
+h2{
+	letter-spacing: 0px;
+}
+
+nav{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: auto;
+	background: rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: all .3s ease-in-out;
+}
+
+.navbar-right {
+    margin-right: 0px !important;
+}
+
+nav td > a{
+	color: #FFF !important;
+}
+
+nav .logo_negro, nav .logo.logo_verde {
+	display: none;
+}
+
+.nav > li > a > img {
+    max-width: none;
+    width: 45px;
+    height: 45px;
+}
+
+.navbar-right {
+    padding: 0px;
+}
+
+.home_2 .logo,
+.home_2 .nav_white .logo {
+	display: none;
+}
+
+.home_2 .logo_verde,
+.home_2 .nav_white .logo_verde {
+	display: inline-block;
+}
+
+.logo_kmivet {
+	display: inline-block !important;
+}
+
+nav .nav_table {
+    width: 100%;
+    margin: 5px auto;
+    max-width: 1140px;
+    box-sizing: border-box;
+    padding: 0px 50px;
+}
+
+nav .nav_table * {
+	vertical-align: middle;
+}
+
+nav .nav_left{
+	text-align: left;
+}
+nav .nav_right{
+	text-align: right;
+	color: #FFF;
+}
+
+.solo_movil {
+    display: none !important;
+}
+
+.solo_pc {
+    display: block !important;
+}
+
+.boton img{
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 5px;
+    height: 20px;
+}
+
+nav .lupa_negra{
+	display: none;
+}
+
+/* MENU BLANCO */
+
+	nav.nav_white .logo,
+	nav.nav_white .lupa{
+		display: none;
+	}
+
+	nav.nav_white .logo_negro,
+	nav.nav_white .lupa_negra{
+		display: inline-block;
+	}
+
+	nav.nav_white{
+		background-color: #FFF;
+		box-shadow: 1px 0px 2px #CCC;
+    	transition: all .3s ease-in-out;
+	}
+
+	nav.nav_white .nav_table {
+		margin: 3px auto;
+	}
+
+	nav.nav_white .boton,
+	nav.nav_white .nav_right > a{
+		color: #000 !important;
+	}
+
+	nav.nav_white .boton_morado{
+		color: #FFF !important;
+	}
+/* Kmivet */
+
+nav.nav_mediqo {
+    background: #FFF;
+    border-bottom: solid 1px #CCC;
+    box-shadow: 0px 4px 4px #CCC;
+    padding: 0px 20px;
+    margin-bottom: 0px;
+}
+
+nav.nav_mediqo td > a {
+    color: #000 !important;
+}
+
+nav.nav_mediqo td > a.boton_morado {
+    color: #FFF !important;
+}
+
+nav.nav_mediqo .lupa {
+    display: none;
+}
+
+nav.nav_mediqo .lupa_negra {
+    display: inline-block;
+}
+
+.logo{
+    height: 50px;
+    padding: 5px 0px;
+}
+
+.boton{
+	vertical-align: middle;
+	display: inline-block;
+	margin: 0px 10px;
+	padding: 10px;
+	border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton_morado{
+	background-color: #7c169e;
+	color: #FFF;
+}
+
+.boton_verde{
+	background-color: #00d2c6;
+	color: #FFF;
+}
+
+.boton_border_gris{
+	color: #000;
+	font-weight: 600;
+	border: solid 2px #969696 !important;
+}
+
+.boton_border_morado{
+	border: solid 2px #7c169e;
+}
+
+.boton_border_verde{
+	border: solid 2px #00d2c6;
+}
+
+.nav_right > a {
+	font-weight: 500;
+    letter-spacing: 1px;
+    margin: 0px 10px;
+}
+
+a#quiero_ser_menu {
+    color: #FFF !important;
+    padding: 6px 10px;
+    font-size: 11px;
+    border-radius: 5px;
+    text-decoration: none !important;
+}
+
+.celda_70{
+	width: 70%;
+}
+.celda_30{
+	width: 30%;
+}
+
+.solo_PC {
+
+}
+
+.solo_MOVIl {
+	display: none;
+}
+
+/* FOOTER */
+
+	footer{
+	    background: #f0f0f0;
+	    padding: 50px 50px 30px;
+	    color: #565656;
+	}
+
+	footer a {
+	    color: #000;
+	}
+
+	footer h2 {
+	    text-transform: uppercase;
+	    font-size: 16px !important;
+	    color: #000;
+	    margin-bottom: 10px;
+	    font-weight: 600;
+	    font-family: Gotham-Pro-Bold;
+	}
+
+	footer ul {
+	    list-style: none;
+	    margin: 0px 0px 10px;
+	    padding: 0px;
+	}
+
+	footer ul li {
+	    line-height: 1.5;
+	}
+
+	.footer_alto{
+		display: table;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.footer_alto > div {
+		display: table-row;
+	}
+
+	.footer_alto > div > div {
+		display: table-cell;
+		width: 20%;
+		box-sizing: border-box;
+	    padding: 0px 10px;
+	}
+
+	.footer_alto_col_1{
+		width: 30% !important;
+	}
+
+	.footer_alto form {
+		position: relative;
+		overflow: hidden;
+	    padding-bottom: 15px;
+	}
+
+	.footer_alto form input[type='email'] {
+	    float: left;
+	    width: 60%;
+	    border: solid 1px #CCC;
+	    height: auto;
+	    border-right: 0px;
+	    outline: none;
+	    padding: 10px;
+	    box-sizing: border-box;
+	    border-radius: 3px 0px 0px 3px;
+	    background: #FFF !important;
+        line-height: 1 !important;
+	}
+
+	.footer_alto form input[type='submit'] {
+		position: absolute;
+		right: 0px;
+	    width: 40%;
+	    border: solid 1px #00d2c6;
+	    height: 37px;
+	    background: #00d2c6 !important;
+	    color: #FFF;
+	    border-left: 0px;
+	    font-weight: 500;
+	    font-family: 'Gotham-Pro-Regular', arial, sans-serif;
+	    border-radius: 0px 3px 3px 0px;
+        font-size: 11px !important;
+	}
+
+	.footer_alto .siguenos_alto{
+		padding-top: 25px;
+	}
+
+	.footer_medio {
+		display: none;
+		margin-bottom: 10px;
+	    padding: 0px 10px;
+	}
+
+	.footer_medio span,
+	.footer_alto span {
+		display: inline-block;
+		margin-bottom: 3px;
+	}
+
+	.footer_medio img,
+	.footer_alto img {
+		width: 35px;
+	    margin-right: 20px;
+	}
+
+	.footer_bajo{
+		text-align: center;
+		padding-top: 40px;
+	}
+
+	.footer_bajo a {
+		color: #00d2c6;
+	}
+
+	.siguenos_bajo{
+		display: none !important;
+		padding: 37px 0px;
+	}
+
+	.siguenos_bajo img{
+	    margin-right: 10px;
+	}
+
+	.info_contacto li i {
+		display: none;
+	}
+
+	.info_contacto a {
+	    padding-bottom: 5px;
+	}
+
+#suscribirse .message-especial {
+    background-color: #00d2c6 !important;
+    color: #ffffff !important;
+    border-radius: 3px !important;
+    margin-top: 45px !important;
+    font-family: Gotham-Pro-Bold !important;
+    padding: 10px 25px !important;
+    display: none;
+}
+
+#suscribirse .message-especial i {
+    margin-right: 10px;
+}
+
+.menu_movil_interno .vlz_resaltar {
+	background-color: #FFF;
+}
+
+.menu_movil_interno .vlz_resaltar a {
+	color: #000 !important;
+}
+
+.msg_pago {
+    text-align: center;
+    font-size: 20px;
+    color: #33e1be;
+    font-family: Gotham-Pro-Bold;
+}

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00d2c6;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 5px;
+      }
+    </style>
+  </defs>
+  <title>BOTON</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <circle class="cls-1" cx="60" cy="60" r="60"/>
+      <line class="cls-2" x1="59.998" y1="84.197" x2="59.998" y2="35.803"/>
+      <line class="cls-2" x1="35.796" y1="60" x2="84.191" y2="60"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,209 @@
+#popup-conoce-cuidador p {
+    text-align: center !important;
+}
+
+#popup-conoce-cuidador .modal-content {
+    padding: 40px 20px 20px;
+}
+
+.mensaje_1{
+    font-weight: 600; 
+    color: #74cd80; 
+    font-size: 16px; 
+    text-align: center;
+    font-family: Gotham-Pro-Light;
+}
+
+.mensaje_2{
+    font-weight: 400; 
+    color: #333; 
+    font-size: 17px; 
+    text-align: center;
+    font-family: Gotham-Pro-Light;
+    padding: 0px 50px;
+}
+
+#conoce_cuidador .km-datos-mascota {
+    line-height: 12px !important;
+}
+
+#conoce_cuidador small{
+    padding: 5px 0px 0px;
+}
+
+.popup-iniciar-sesion-2 {
+    text-align: center;
+    padding: 10px;
+}
+
+.popup-iniciar-sesion-2 img {
+    max-width: 100%;
+}
+
+.popup-iniciar-sesion-2 h2 {
+    padding: 25px 20px 20px;
+    margin: 0px;
+    color: #000;
+    font-size: 29px;
+}
+
+.btn_fin_reserva {
+    background: #7dd1c4;
+    color: #6b1c9b;
+    display: block;
+    font-weight: 700;
+    font-size: 17px;
+    text-align: center;
+    line-height: 55px;
+    margin-top: 30px;
+    max-width: 500px;
+    margin: 0px auto 10px;
+}
+
+.km-btn-basic,
+.btn_fin_reserva {
+    text-decoration: none !important;
+}
+.disabled {
+    cursor: default;
+    background: rgba(0, 0, 0, .2) !important;
+}
+
+.boton_pdf_conocer{
+    color: blue !important;
+    border: solid 1px blue;
+    padding: 5px 10px 2px;
+    border-radius: 3px;
+    text-decoration: none !important;
+}
+
+.boton_pdf_conocer:hover {
+    background: #EEE;
+}
+
+.btn_otra_solicitud {
+    background: #7dd1c4;
+    color: #6b1c9b;
+    display: block;
+    font-weight: 700;
+    font-size: 17px;
+    text-align: center;
+    line-height: 55px;
+    margin-top: 30px;
+    max-width: 500px;
+    margin: 30px auto 40px;
+    text-decoration: none;
+}
+
+button.cerrar_conocer_b {
+    position: absolute !important;
+    right: 0px !important;
+    top: 0px !important;
+    font-size: 25px !important;
+    color: #000 !important;
+    opacity: 1 !important;
+    padding: 5px 10px 1px !important;
+    border-radius: 0px 5px 0px 0px !important;
+}
+
+a#btn_enviar_conocer {
+    max-width: 300px;
+    padding: 13px 0px;
+    display: block;
+    margin: 0px auto;
+    text-transform: none;
+    margin-bottom: 0px !important;
+    font-family: Gotham-Pro-Regular;
+}
+
+span#modal-name-cuidador {
+    font-family: Gotham-Pro-Black;
+}
+
+#popup-conoce-cuidador p {
+    text-align: center !important;
+    font-size: 20px !important;
+}
+
+#popup-conoce-cuidador .km-calendario label {
+    text-align: left!important;
+    font-size: 12px;
+    line-height: 18px;
+    float: left;
+    width: 100%;
+}
+
+.desde_hasta {
+    overflow: hidden;
+}
+
+.desde_hasta > div {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.desde_hasta > div > div {
+    position: relative;
+    text-align: center;
+    border: solid 1px #CCC;
+    padding: 15px;
+    padding-left: 50px;
+    line-height: 0.7;
+    border-radius: 5px;
+    font-family: Gotham-Pro-Bold;
+    font-size: 13px;
+}
+
+.dia_anterior div {
+    position: relative;
+    padding: 5px;
+    padding-left: 35px;
+    display: inline-block;
+}
+
+.icon_calendario {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    background-image: url(../img/TEST_CONOCER/B/calendario.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+}
+
+.dia_anterior div .icon_calendario {
+    top: 3px;
+    left: 2px;
+}
+
+span#txt_da {
+    font-family: Gotham-Pro-Bold;
+    font-size: 13px;
+    color: #000;
+}
+
+.popup-iniciar-sesion-1.popup_conocer_b {
+    padding: 0px 20px !important;
+}
+
+#popup-conoce-cuidador .popup-iniciar-sesion-2 p {
+    text-align: justify !important;
+    font-size: 14px !important;
+}
+
+#te_quedan{
+    display: none !important;
+}
+
+.ver_conocer_init b {
+    color: #000 !important;
+}
+
+.btn_otra_solicitud{
+    display: none;
+}

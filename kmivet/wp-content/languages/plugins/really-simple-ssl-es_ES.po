@@ -1,0 +1,353 @@
+# Translation of Plugins - Really Simple SSL - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - Really Simple SSL - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-08-26 23:20:41+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - Really Simple SSL - Stable (latest release)\n"
+
+#: class-admin.php:267
+msgid "You can check your certificate on "
+msgstr "Puedes comprobar tu certificado en"
+
+#: class-admin.php:1661
+msgid "View settings page"
+msgstr "Ver la página de ajustes"
+
+#: class-admin.php:304
+msgid "You can also let the automatic scan of the pro version handle this for you, and get premium support and increased security with HSTS included"
+msgstr "También puedes dejar que el escaneo automático de la versión pro haga esto por ti, y obtener soporte premium y mayor seguridad con HSTS incluido."
+
+#: class-admin.php:2485
+msgid "Premium Support"
+msgstr "Soporte Premium"
+
+#: class-admin.php:2475
+msgid "Docs"
+msgstr "Documentos"
+
+#: class-admin.php:2271
+msgid "Still having issues with mixed content? Check out Premium, which includes an extensive scan and premium support. "
+msgstr "¿Aún tienes problemas de contenido mixto? Prueba la versión premium, que incluye un escaneo intenso y soporte premium."
+
+#: class-admin.php:2268
+msgid "If you want to be sure you're ready to migrate to SSL, get Premium, which includes an extensive scan and premium support."
+msgstr "Si quieres asegurarte de que estás listo para migrar a SSL obtén la versión Premium, que incluye un escaneo extenso y soporte premium."
+
+#: class-admin.php:2253
+msgid "get Premium"
+msgstr "obtener la versión Premium"
+
+#: class-admin.php:2251
+msgid "To enable, "
+msgstr "Para activarlo, "
+
+#: class-admin.php:2251
+msgid "<a href=\"https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security\" target=\"_blank\">HTTP Strict Transport Security</a> was not set in your .htaccess."
+msgstr "<a href=\"https://es.wikipedia.org/wiki/HTTP_Strict_Transport_Security\" target=\"_blank\">HTTP Strict Transport Security</a> no se ha definido en tu .htaccess."
+
+#: class-admin.php:304
+msgid "check out Really Simple SSL Premium"
+msgstr "echa un vistazo a Really Simple SSL Premium"
+
+#: class-admin.php:290
+msgid "Go ahead, activate SSL!"
+msgstr "¡Adelante, activa SSL!"
+
+#: class-admin.php:2054
+msgid "Instructions"
+msgstr "﻿Instrucciones"
+
+#: class-admin.php:2052
+msgid "The mixed content fixer is activated, but was not detected on the frontpage. Please follow these steps to check if the mixed content fixer is working."
+msgstr "El solucionador de contenido mixto está activo pero no se ha detectado en la portada. Por favor, sigue estos pasos para comprobar si el solucionador de contenido mixto está funcionando."
+
+#: class-admin.php:2034
+msgid "SSL iss not enabled yet"
+msgstr "SSL aún no está activo."
+
+#: class-admin.php:2032
+msgid "SSL is enabled on your site."
+msgstr "SSL está activo en tu sitio."
+
+#: class-admin.php:1720
+msgid "SSL activated!"
+msgstr "¡SSL activado!"
+
+#: class-admin.php:1704
+msgid "To enable .htaccess redirection, activate SSL networkwide. To ignore this message, just dismiss it."
+msgstr "Para activar la redirección de .htaccess activa SSL en toda la red. Para ignorar este mensaje simplemente ocúltalo."
+
+#: class-admin.php:1660
+msgid "Your .htaccess does not contain the Really Simple SSL redirect to https, and could not be written, so a javascript redirect is currently added. For SEO purposes it is advisable to use .htaccess redirects. Set the .htaccess file to writable and visit the settings page to write it again, or copy the code lines from the settings page."
+msgstr "Tu .htaccess no contiene la redirección a https de Really Simple SSL y podría no haberse incluido, así que se ha añadido de momento una redirección por javascript. Por cuestiones de SEO es recomendable usar las redirecciones de .htaccess. Haz que se pueda escribir en el archivo .htaccess y visita de nuevo la página de ajustes para escribir las reglas de nuevo, o copia las líneas de código de la página de ajustes."
+
+#: class-admin.php:1629
+msgid "Because your server does not pass a variable with which Wordpress can detect SSL, Wordpress may create redirect loops on SSL."
+msgstr "Debido a que tu servidor no pasa una variable por la que WordPress pueda detectar SSL WordPress no puede crear redirecciones a SSL."
+
+#: class-admin.php:1623
+msgid "Or set your wp-config.php to writable and reload this page."
+msgstr "O haz que tu wp-config.php tenga permisos de escritura y recarga esta página."
+
+#: class-admin.php:1613
+msgid "Because your site is behind a loadbalancer and is_ssl() returns false, you should add the following line of code to your wp-config.php."
+msgstr "Debido a que tu sitio está detrás de un balanceador de carga y is_ssl() devuelve un error deberías añadir la siguiente línea de código a tu wp-config.php."
+
+#: class-admin.php:1612
+msgid "Your wp-config.php has to be edited, but is not writable."
+msgstr "Hay que modificar tu wp-config.php pero no tiene permisos de escritura. "
+
+#: class-admin.php:1609 class-admin.php:1630
+msgid "Set your wp-config.php to writable and reload this page."
+msgstr "Haz que tu wp-config.php tenga permisos de escritura y recarga esta página."
+
+#: class-admin.php:1607
+msgid "A definition of a siteurl or homeurl was detected in your wp-config.php, but the file is not writable."
+msgstr "Se ha detectado la definición de una siteurl o homeurl en tu wp-config.php pero el archivo no tiene permisos de escritura."
+
+#: class-admin.php:1603
+msgid "System detection encountered issues"
+msgstr "La detección del sistema encontró problemas"
+
+#: class-admin.php:280
+msgid "Images, stylesheets or scripts from a domain without an ssl certificate: remove them or move to your own server."
+msgstr "Imágenes, hojas de estilo o scripts de un dominio sin certificado ssl: quítalos o muévelos a tu propio servidor."
+
+#: class-admin.php:279
+msgid "Http references in your .css and .js files: change any http:// into //"
+msgstr "Referencias http en tu .css y archivos .js: cambia cualquier http:// a //"
+
+#: class-admin.php:276
+msgid "Some things can't be done automatically. Before you migrate, please check for: "
+msgstr "Hay algunas cosas que no se pueden hacer automáticamente. Antes de migrar, por favor, revisa esto: "
+
+#: class-admin.php:274
+msgid "Almost ready to migrate to SSL!"
+msgstr "¡Ya casi hemos migrado a SSL!"
+
+#: class-admin.php:266
+msgid "No SSL was detected. If you do have an ssl certificate, try to change your current url in the browser address bar to https."
+msgstr "No se ha detectado ningún SSL. Si tienes un certificado ssl trata de cambiar la url actual en el navegador a https."
+
+#: class-admin.php:246
+msgid "Networkwide activation does not check if a site has an SSL certificate. It just migrates all sites to SSL."
+msgstr "La activación en toda la red no revisa si un sitio tiene certificado SSL. Simplemente migra todos los sitios a SSL."
+
+#: class-admin.php:242
+msgid "Activate SSL per site"
+msgstr "Activar SSL por sitio"
+
+#: class-admin.php:241
+msgid "Activate SSL networkwide"
+msgstr "Activar SSL en toda la red"
+
+#: class-admin.php:237
+msgid "Choose your preferred setup"
+msgstr "Elige tu configuración favorita"
+
+#: class-admin.php:59 class-cache.php:10 class-front-end.php:15
+#: class-url.php:16
+msgid "%s is a singleton class and you cannot create a second instance."
+msgstr "%s es una clase singleton y no puedes crear una segunda instancia."
+
+#: class-admin.php:2446
+msgid ".htaccess is currently not writable."
+msgstr ".htaccess no tiene permisos de escritura en este momento."
+
+#: class-admin.php:2049
+msgid "The mixed content is activated, but the frontpage could not be loaded for verification. The following error was returned: "
+msgstr "El contenido mixtos está activo pero la portada no puede cargarse para verificarlo. Ha devuelto el siguiente error: "
+
+#: class-admin.php:2047
+msgid "Mixed content fixer was successfully detected on the front-end"
+msgstr "El solucionador de contenido mixto se ha detectado con éxito en la portada"
+
+#: class-admin.php:1972
+msgid "On <a href='https://www.really-simple-ssl.com'>www.really-simple-ssl.com</a> you can find a lot of articles and documentation about installing this plugin, and installing SSL in general."
+msgstr "En <a href='https://www.really-simple-ssl.com'>www.really-simple-ssl.com</a> puedes encontrar un montón de artículos y documentación acerca de cómo instalar este plugin e instalar SSL en general."
+
+#: class-admin.php:1971
+msgid "Documentation"
+msgstr "Documentación"
+
+#: class-admin.php:2296
+msgid "Enable javascript redirection to ssl"
+msgstr "Activar redirección javascript a ssl"
+
+#: class-admin.php:2065
+msgid "Failed activating SSL"
+msgstr "Fallo al activar SSL"
+
+#. Author URI of the plugin/theme
+msgid "https://www.rogierlankhorst.com"
+msgstr "https://www.rogierlankhorst.com"
+
+#. Author of the plugin/theme
+msgid "Rogier Lankhorst"
+msgstr "Rogier Lankhorst"
+
+#. Description of the plugin/theme
+msgid "Lightweight plugin without any setup to make your site ssl proof"
+msgstr "Plugin ligero sin configuraciones que hace que tu sitio cargue con ssl"
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.really-simple-ssl.com"
+msgstr "https://www.really-simple-ssl.com"
+
+#. Plugin Name of the plugin/theme
+msgid "Really Simple SSL"
+msgstr "Really Simple SSL"
+
+#: class-admin.php:2431
+msgid "Are you sure you have an SSL certifcate? Forcing ssl on a non-ssl site can break your site."
+msgstr "¿Estás seguro de tener un certificado SSL? Forzar ssl en un sitio sin ssl puede romper tu sitio."
+
+#: class-admin.php:2323
+msgid "The force ssl without detection option can be used when the ssl was not detected, but you are sure you have ssl."
+msgstr "La opción de forzar ssl sin detección puede utilizarse cuando no se detecta el ssl, pero tú está seguro de que tienes ssl."
+
+#: class-admin.php:2321
+msgid "By unchecking the 'auto replace mixed content' checkbox you can test if your site can run without this extra functionality. Uncheck, empty your cache when you use one, and go to the front end of your site. You should then check if you have mixed content errors, by clicking on the lock icon in the addres bar."
+msgstr "Al desmarcar la casilla de 'reemplazar automáticamente el contenido mixto' puedes comprobar si tu sitio funciona sin esta funcionalidad extra. Desmárcala, vacía tu cache si la usas y ve a la portada de tu sitio. Deberías entonces comprobar si tienes errores de contenido mixto haciendo clic en el icono del candado de la barra de direcciones."
+
+#: class-admin.php:2301
+msgid "Force SSL without detection"
+msgstr "Forzar SSL sin detección"
+
+#: class-admin.php:2295
+msgid "Auto replace mixed content"
+msgstr "Reemplaza automáticamente el contenido mixto"
+
+#: class-admin.php:2291
+msgid "Stop editing the .htaccess file"
+msgstr "Dejar de modificar el archivo .htaccess"
+
+#: class-admin.php:2158
+msgid "To view results here, enable the debug option in the settings tab."
+msgstr "Para ver aquí los resultados activa la opción de depuración en la pestaña de ajustes."
+
+#: class-admin.php:2149
+msgid "Send me a copy of these lines if you have any issues. The log will be erased when debug is set to false"
+msgstr "Envíame una copia de estas líneas si tienes algún problema. El registro se borrará cuando establezcas debug a false."
+
+#: class-admin.php:2148
+msgid "Log for debugging purposes"
+msgstr "Registro para depuración de fallos"
+
+#: class-admin.php:2135
+msgid "Save"
+msgstr "Grabar"
+
+#: class-admin.php:2249
+msgid "HTTP Strict Transport Security was set in the .htaccess"
+msgstr "Se ha definido HTTP Strict Transport Security en el archivo .htaccess."
+
+#: class-admin.php:2104
+msgid "Try to add these rules above the wordpress lines in your .htaccess. If it doesn't work, just remove them again."
+msgstr "Prueba a añadir estas reglas por encima de las líneas de WordPress en tu .htaccess. Si no funciona simplemente bórralas."
+
+#: class-admin.php:2095
+msgid "Https redirect was set in javascript because the htaccess redirect rule could not be verified. Set manually if you want to redirect in .htaccess."
+msgstr "Se ha definido la redirección https por javascript debido a que no se pudo verificar la regla de redirección en .htaccess. Defínelo manualmente si quieres redirigir desde .htaccess."
+
+#: class-admin.php:2093
+msgid "Https redirect was set in javascript because you have activated per site on a multiste subfolder install. Install networkwide to set the .htaccess redirect."
+msgstr "Se ha definido una redirección https por javascript debido a que has realizado la activación por sitio en una instalación de multisitio en subcarpetas. Instálalo en toda la red para definir la redirección en .htaccess."
+
+#: class-admin.php:2091
+msgid "Https redirect was set in javascript because the .htaccess was not writable. Set manually if you want to redirect in .htaccess."
+msgstr "Se ha establecido una redirección https por javascript debido a que el .htaccess no tiene permisos de escritura. Configúralo manualmente si quieres la redirección en .htaccess."
+
+#: class-admin.php:2088
+msgid "Editing of .htaccess is blocked in Really Simple ssl settings, so you're in control of the .htaccess file."
+msgstr "La modificación de .htaccess está bloqueada en los ajustes de Really Simple SSL así que tienes el control del archivo .htaccess."
+
+#: class-admin.php:2086
+msgid "https redirect set in .htaccess"
+msgstr "Redirección https establecida en .htaccess"
+
+#: class-admin.php:2073
+msgid "An SSL certificate was detected on your site. "
+msgstr "Se ha detectado un certificado SSL en tu sitio."
+
+#: class-admin.php:2070
+msgid "No SSL detected, but SSL is forced."
+msgstr "Ningún SSL detectado, pero se ha forzado SSL."
+
+#: class-admin.php:2068
+msgid "No SSL detected."
+msgstr "Ningún SSL detectado."
+
+#: class-admin.php:1989 class-admin.php:2304
+msgid "Debug"
+msgstr "Depuración"
+
+#: class-admin.php:1988 class-admin.php:2290 class-admin.php:2472
+msgid "Settings"
+msgstr "Ajustes"
+
+#: class-admin.php:1987
+msgid "Configuration"
+msgstr "Configuración"
+
+#: class-admin.php:2024
+msgid "Detected setup"
+msgstr "Configuración detectada"
+
+#: class-admin.php:1947
+msgid "SSL"
+msgstr "SSL"
+
+#: class-admin.php:1946
+msgid "SSL settings"
+msgstr "Ajustes SSL"
+
+#: class-admin.php:1734
+msgid "The force http after leaving checkout in Woocommerce will create a redirect loop."
+msgstr "Forzar http después del pago en WooCommerce creará una redirección infinita."
+
+#: class-admin.php:1735 class-admin.php:1746
+msgid "Show me this setting"
+msgstr "Muéstrame este ajuste"
+
+#: class-admin.php:1745
+msgid "The force rewrite titles option in Yoast SEO prevents Really Simple SSL plugin from fixing mixed content."
+msgstr "La opción de forzar la reescritura de títulos en Yoast SEO evita que el plugin Really Simple SSL solucione el contenido mixto."
+
+#: class-admin.php:1733 class-admin.php:1744
+msgid "Really Simple SSL has a conflict with another plugin."
+msgstr "Really Simple SSL tiene un conflicto con otro plugin."
+
+#: class-admin.php:1703
+msgid "You run a Multisite installation with subfolders, which prevents this plugin from handling the .htaccess."
+msgstr "Tienes una instalación de multisitio en subcarpetas, que impide que este plugin modifique el .htaccess."
+
+#: class-admin.php:1693
+msgid "Activate networkwide to fix this."
+msgstr "Activa en toda la red para solucionar esto."
+
+#: class-admin.php:1692
+msgid "Because the $_SERVER[\"HTTPS\"] variable is not set, your website may experience redirect loops."
+msgstr "Al no estar definida la variable $_SERVER[\"HTTPS\"] tu web puede experimentar redirecciones infinitas."
+
+#: class-admin.php:1691
+msgid "You run a Multisite installation with subfolders, which prevents this plugin from fixing your missing server variable in the wp-config.php."
+msgstr "Estás ejecutando una instalación multisitio en subcarpetas, lo que impide que este plugin solucione variables del servidor en el archivo wp-config.php."
+
+#: class-admin.php:1676
+msgid "Check again"
+msgstr "Comprobar de nuevo"
+
+#: class-admin.php:1674
+msgid "The 'force-deactivate.php' file has to be renamed to .txt. Otherwise your ssl can be deactived by anyone on the internet."
+msgstr "El archivo 'force-deactivate.php' se ha renombrado a .txt. De otro modo tu ssl podría desactivarlo cualquiera."
+
+#: class-admin.php:1671
+msgid "Major security issue!"
+msgstr "¡Importante problema de seguridad!"

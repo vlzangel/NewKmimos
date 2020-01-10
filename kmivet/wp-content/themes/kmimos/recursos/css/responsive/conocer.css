@@ -1,0 +1,88 @@
+
+@media (max-width: 768px){
+
+	.servicio_desde {
+    	display: none;
+	}
+
+	.ver_conocer_init b {
+	    display: none;
+	}
+
+	a.ver_conocer_init.boton.boton_border_gris {
+	    padding: 5px 12px;
+	}
+
+	.popup-iniciar-sesion-1.popup_conocer_b {
+	    padding: 0px !important;
+	}
+
+	.desde_hasta > div {
+	    float: left;
+	    width: 100%;
+	    box-sizing: border-box;
+	    padding: 5px 0px;
+	}
+
+	.desde_hasta > div > div {
+	    padding: 15px;
+	}
+
+	#popup-conoce-cuidador p {
+	    font-size: 17px !important;
+	}
+
+	p.popup-tit > span {
+	    font-size: 17px;
+	}
+
+	.mensaje_1 {
+	    font-size: 10px !important;
+	    padding-top: 15px;
+	}
+
+}
+
+@media (max-width: 480px){
+
+	.popup-iniciar-sesion-2 h2 {
+    	font-size: 25px !important;
+	}
+
+	.btn_fin_reserva {
+	    font-size: 15px;
+	}
+
+	.popup-iniciar-sesion-2 img {
+	    padding: 0px 30px;
+	}
+
+	#popup-conoce-cuidador *{    
+		font-size: 10px;
+	}
+
+	.pre_requisitos *{
+		font-size: 8px !important;
+	}
+
+	.popup-tit {
+	    margin-bottom: 0px !important;
+	}
+
+	.pre_requisitos p{
+		margin: 0px !important; 
+	}
+
+	.close{
+		font-size: 40px !important;
+	}
+
+}
+
+@media (max-width: 350px){
+
+	.popup-iniciar-sesion-2 h2 {
+    	font-size: 20px !important;
+	}
+
+}

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33 33">
+  <defs>
+    <style>
+      .cls-1 {
+        isolation: isolate;
+      }
+
+      .cls-2 {
+        opacity: 0.25;
+        mix-blend-mode: multiply;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 5px;
+      }
+    </style>
+  </defs>
+  <title>Equis</title>
+  <g class="cls-1">
+    <g id="Capa_2" data-name="Capa 2">
+      <g id="Capa_1-2" data-name="Capa 1">
+        <g>
+          <image class="cls-2" width="33" height="33" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAACXBIWXMAAAsSAAALEgHS3X78AAADYElEQVRYR82XT0gUcRTHn7u6mSn2h1YNQaQ0SbNSIoKiQwUa6aUUD3kRKiKLAgsPBuGhDoFpBSZ0qEviocRIDx1KDYKsjahMEyGIoDzpoSC6bN/X76tO0+zMsG7m4cOPefPed968936/nZVoNCr/G0+HxcDbQSTJipe/U4xXnJdQAARBMgnS5ihqiVHfFAvJrnEeQstAGsggabT9IWqLSQXpYCVYxTWddsdkYiWQwgeuBjkgj+TQlkafgC1mBVgDcsEGsJFrrj3OLQmrWJgCZWAXKQcFIEvM24XEvF2I12ovBDvAPlAB9oLt1FrLRDQm6a8kxLxRkE7qXAT2gFpwjNRRtASsA5liEs7k9WawH9SDs+A8OM243WC9mBZpSwNOSWgVQhTMF/PmKtYC2sE10AqOg0qwVeZblMfrA+AEuAxugdvgBmgGh8VUVf31RfWFk5yS0OHRKhSDKnAOdIE+MAB6QBs4BarBTrCNazXtV8E98Bg8AfcZc1TMi2nCOuRzLbEmoZktB9kUrgEXQTd4CiLgmZiEroMmcAQc4tpE+wPwHLwBL0E/6BDTTs8k7JXQN9My3gFD4B0YAy8orOW+BC5w1esBPngcvBeTtFZP26hzoYOts+PaDutM6CA1gCugF4xQfAK8BoNiqtLDdZB2vf9BTLJq11boHOlA687SrRpzMK27Q7fnJjFb7KSYcj4U05JJ8JEPewtecZ2gfZI29ddhbhQzyLqjssRti9rOCd3zOsWl4CA4AzrBIzAKPoMp8BV84TpF+yj9Ohmn8Vuoly4+DqvZ00/bosOjJ532UbeXbtW7YtryCUyDb+A712naR+jXwrhy6mRQ1/3YtrVF+6b90xNQTz8t600wLKbsM+AH+Ml1hvZh+jUyrlDm52BuGJd2ErIU2iH/bjBLxc9gSmK3aIT+HYyvoF5YbAeVPYlEHlbj9O9lfAP18qn/uy2xkljosd3P+2P0H2J8M/WKqZ8aK4lE/YD10S/CuG7q1FA3m88J+qlEvD/lbfQbYFwXdarERyUS8VFTyfut9G9nfD31PGciEZ93JbxfZ4mppU6RzH9jOu8OSzUW+qFbQL/ZmDLqhKnr+wcs3k9+3zExk7AlEu+fH18xrkk4JBPP30DfMa5J2ITn8PKPJ8ZTcDH4BTq4mZeEcXCdAAAAAElFTkSuQmCC"/>
+          <g>
+            <line class="cls-3" x1="22.779" y1="23.05" x2="6.388" y2="6.659"/>
+            <line class="cls-3" x1="6.387" y1="23.051" x2="22.777" y2="6.661"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,1213 @@
+/* Generales */
+
+:root {
+	--kmimos-azul: #00d2c6;
+    --kmimos-azul-mediqo: #008bf2;
+	--kmimos-gris: #CCC;
+    --kmimos-gris-claro: #DDD;
+    --kmimos-morado: #6B169B;
+}
+
+::-webkit-input-placeholder { color: var( --kmimos-gris-claro ); }
+:-ms-input-placeholder { color: var( --kmimos-gris-claro ); }
+::placeholder { color: var( --kmimos-gris-claro ); }
+
+.boton_morado {
+    background-color: var(--kmimos-morado) !important;
+}
+
+.km-btn-basic,
+.km-btn-correo,
+.km-checkbox label {
+    background-color: var(--kmimos-morado) !important;
+}
+
+.km-checkbox {
+    background: var(--kmimos-morado-hover) !important;
+}
+
+.logo_kmivet {
+    display: inline-block !important;
+}
+
+.btn-primary {
+    background-color: var(--kmimos-morado) !important;
+    border-color: var(--kmimos-morado) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--kmimos-morado) !important;
+    border-color: var(--kmimos-morado) !important;
+    opacity: .8;
+}
+
+.pre {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: calc( 100vw - 20px );
+    height: calc( 100vh - 20px );
+    z-index: 99999999999999;
+    display: none;
+    overflow: auto;
+}
+
+.pre pre {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.pre-btn {
+    display: none;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    z-index: 99999999999999999;
+}
+
+nav.nav_mediqo {
+    background: #FFF;
+    border-bottom: solid 1px #CCC;
+    box-shadow: 0px 4px 4px #CCC;
+    padding: 0px 20px;
+    margin-bottom: 0px;
+}
+
+nav.nav_mediqo td > a {
+    color: #000 !important;
+}
+
+nav.nav_mediqo .lupa {
+    display: none;
+}
+
+nav.nav_mediqo .lupa_negra {
+    display: inline-block;
+}
+
+nav .nav_table {
+    max-width: 1140px !important;
+}
+
+.navbar-brand {
+    height: 60px !important;
+}
+
+.navbar-brand > img {
+    position: relative;
+    top: 12px !important;
+    height: 45px;
+}
+
+.navbar {
+    padding-top: 0px !important;
+    z-index: 100;
+    background-color: #FFF !important;
+}
+
+.nav-login {
+    top: 30px !important;
+}
+
+ul.nav.navbar-nav.navbar-right {
+    #display: none !important;
+}
+
+.nav>li>a>img {
+    height: 50px;
+    width: 50px;
+}
+
+ul.nav.navbar-nav.navbar-right.is_login {
+    display: block !important;
+    top: 3px;
+    position: relative;
+}
+
+footer {
+	display: none !important;
+}
+
+pre {
+    display: block !important;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: calc( 100vw - 370px );
+    height: calc( 100vh - 155px );
+}
+
+/* Listado */
+
+.medicos_container {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0px;
+    width: 100vw;
+    height: calc( 100vh - 80px );
+    z-index: 0;
+}
+
+.medicos_container > form {
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+
+.medicos_container > form .form_container {
+    width: 80%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    margin: 0px auto;
+}
+
+.medicos_container > form:after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    border-bottom: solid 3px var( --kmimos-azul );
+}
+
+form .medicos_control {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    text-align: left;
+}
+
+form label {
+    display: block;
+    font-weight: 300;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 2px 10px;
+    height: 35px;
+    border-radius: 3px;
+    border: solid 1px var( --kmimos-gris );
+    margin-bottom: 8px;
+    font-weight: 300;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+    font-size: 11px;
+}
+
+.medicos_list_container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 350px;
+    height: calc( 100% - 10px );
+    overflow: auto;
+    padding-right: 10px;
+    border-right: solid 1px #CCC;
+}
+
+.medicos_list {
+    position: absolute;
+    bottom: 0px;
+    width: calc( 100% - 10px);
+    height: calc( 100% - 160px );
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.medicos_list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
+    border-radius: 0px !important;
+    background-color: var( --kmimos-gris ) !important;
+}
+
+.medicos_list::-webkit-scrollbar {
+    width: 5px !important;
+    background-color: var( --kmimos-gris ) !important;
+}
+
+.medicos_list::-webkit-scrollbar-thumb {
+    border-radius: 0px !important;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3) !important;
+    background-color: var( --kmimos-azul ) !important;
+}
+
+.medicos_list span {
+
+}
+
+
+.medicos_details {
+    position: absolute;
+    height: calc( 100% - 10px );
+    overflow: hidden;
+    padding-right: 10px;
+    margin-right: 10px;
+    top: 0px;
+    left: 350px;
+    width: calc( 100vw - 350px );
+}
+
+.medico_ficha::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
+    border-radius: 0px !important;
+    background-color: var( --kmimos-gris ) !important;
+}
+
+.medico_ficha::-webkit-scrollbar {
+    width: 5px !important;
+    background-color: var( --kmimos-gris ) !important;
+}
+
+.medico_ficha::-webkit-scrollbar-thumb {
+    border-radius: 0px !important;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3) !important;
+    background-color: var( --kmimos-azul ) !important;
+}
+
+/* Listado */
+
+.medico_item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    cursor: pointer;
+    border: solid 1px #CCC;
+    margin-bottom: 12px;
+}
+
+.medico_item.active:after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var( --kmimos-azul-mediqo);
+    width: 6px;
+    height: 100%;
+}
+
+.medico_img_container {
+    
+}
+
+.medico_img {
+    border-radius: 0px;
+    width: 100px;
+    height: 110px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 10px 15px 10px 15px;
+}
+
+.medico_info {
+    width: 100%;
+    padding: 10px 0px 0px;
+}
+
+.medico_nombre {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #000;
+    margin-bottom: 5px;
+    padding-right: 10px;
+}
+
+.medico_universidad {
+    font-size: 9px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 5px 0px 0px;
+}
+
+.medico_precio {
+    font-size: 12px;
+    color: var( --kmimos-azul-mediqo );
+    margin-top: 2px;
+    text-align: right;
+    padding: 0px 15px;
+}
+
+.medico_precio > div {
+    font-size: 10px;
+    color: #CCC;
+    font-weight: 300;
+    line-height: 1;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+}
+
+.medico_precio strong {
+    display: inline-block;
+    font-size: 25px;
+}
+
+.medico_precio span {
+    display: inline-block;
+    font-size: 12px;
+}
+
+.medico_precio span:first-child {
+    font-weight: 300;
+}
+
+.medico_precio span:last-child {
+    font-weight: 600;
+}
+
+.medico_ranking > span {
+    background-image: url( ../img/MEDICOS/hueso_off.png );
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.medico_ranking > span.active {
+    background-image: url( ../img/MEDICOS/hueso_on.png );
+}
+
+/* Ficha Medico */
+
+.medico_ficha {
+    position: relative;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-gap: 10px;
+    height: calc( 100% - 25px );
+    overflow: auto;
+    margin-top: 20px;
+}
+
+.medico_ficha_titulo {
+	grid-column: 1 / 3;
+	grid-row: 1;
+}
+
+.medico_ficha_img_container {
+    padding: 0px 10px;
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.medico_ficha_img {
+    width: 180px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    margin: 0px auto;
+    border: solid 1px var(--kmimos-gris);
+}
+
+.medico_ficha_img_container > div > label {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.medico_ficha_img_container > div > div {
+    font-weight: 400;
+    font-size: 10px;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+
+
+
+.medico_ficha_info_name {
+    color: #000 !important;
+    text-align: left;
+    margin: 0px 0px 15px;
+}
+
+.medico_ficha_info_name label {
+    font-size: 24px !important;
+    color: #000 !important;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+    text-transform: capitalize;
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    border-bottom: 0px !important;
+}
+
+.medico_ficha_titulo {
+    position: relative;
+    grid-column: 1 / 5;
+    grid-row: 1;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px var( --kmimos-gris);
+
+    display: none;
+}
+
+.medico_ficha_titulo > div {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.medico_ficha_titulo > span {
+	font-size: 13px;
+	font-weight: 400;
+}
+
+.medico_ficha_titulo > strong {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    color: var(--kmimos-azul);
+    font-weight: 600;
+    font-size: 35px;
+    font-family: sans-serif;
+}
+
+.medico_ficha_info_container {
+    padding-right: 35px;
+}
+
+.medico_ficha_info_container > div > label {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: var(--kmimos-azul-mediqo);
+    cursor: pointer;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: solid 2px #FFF;
+}
+
+.medico_ficha_info_container > div.active label {
+    border-bottom: solid 2px var(--kmimos-azul-mediqo);
+}
+
+.medico_ficha_info_container > div > div {
+    font-weight: 400;
+    font-size: 10px;
+    margin-bottom: 10px;
+    text-align: justify;
+    display: none;
+}
+
+.medico_ficha_info_box {
+    grid-row: 2;
+    grid-column: 1 / 3;
+    padding: 10px 35px 10px;
+    text-align: justify;
+    font-size: 12px;
+}
+
+.medico_ficha_horario_container {
+    grid-column: 1 / 3;
+    padding: 0px 35px;
+}
+
+.medico_ficha_horario_container > label {
+    position: relative;
+    display: block;
+    padding-bottom: 10px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: var(--kmimos-azul-mediqo);
+}
+
+.medico_ficha_horario_container > label:after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    border-bottom: solid 1px var( --kmimos-gris );
+}
+
+.medico_ficha_horario_container > div > div {
+    margin-bottom: 0px;
+    padding: 5px 10px 2px;
+    margin-right: 12px;
+    position: relative;
+}
+
+.medico_ficha_horario_container > div > div > label {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: #555;
+    padding: 0px 3px;
+}
+
+.medico_ficha_horario_container > div > div > div {
+    position: relative;
+    overflow: hidden;
+}
+
+.medico_ficha_horario_container > div > div > div > div {
+    position: relative;
+    height: 42px;
+    #overflow: hidden;
+    white-space: nowrap;
+    padding: 5px;
+    border-radius: 0px;
+}
+
+.medico_ficha_horario_container > div > div > div > div > span {
+    border: solid 1px var( --kmimos-gris );
+    border-radius: 3px;
+    line-height: 1;
+    width: calc( ( 100% / 9 ) - 9px );
+    font-size: 11px;
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+    padding: 7px 0px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color .1s ease-in-out;
+    #box-shadow: -1px 2px 1px var(--kmimos-gris )
+    background-color: #FFF;
+}
+
+.medico_ficha_horario_container > div > div > div > span:hover {
+    #background-color: #EEE;
+    border: solid 1px var(--kmimos-azul);
+    transition: background-color .1s ease-in-out;
+}
+
+
+
+
+/* No seleccionado */
+
+.medico_ficha_no_select > div,
+.medico_ficha_no_select .medicos_details > div,
+.medico_ficha_no_select .medicos_details .medico_ficha > div
+{
+	display: none;
+}
+
+.medico_ficha.medico_ficha_no_select {
+    height: 100%;
+    align-content: center;
+}
+
+.medico_ficha_no_select .medicos_details .medico_ficha .medico_ficha_no_select_container
+ {
+	display: block !important;
+}
+
+.medico_ficha_no_select .medicos_details {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    display: block !important;
+}
+
+.medico_ficha_no_select .medicos_details .medico_ficha {
+    display: grid !important;
+    align-content: center;
+    height: 100%;
+}
+
+.medico_ficha_no_select_container {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    text-align: center;
+}
+
+/* No cargado */
+
+.medico_ficha_no_cargada .medicos_details > div,
+.medico_ficha_no_cargada .medicos_details .medico_ficha > div
+{
+	display: none;
+}
+
+.medico_ficha.medico_ficha_no_cargada {
+    height: 100%;
+    align-content: center;
+}
+
+.medico_ficha_no_cargada .medicos_details .medico_ficha .medico_ficha_no_select_container
+ {
+	display: block !important;
+}
+
+.medico_ficha_no_cargada .medicos_details {
+    grid-column: 2;
+    grid-row: 2;
+    display: block !important;
+}
+
+.medico_ficha_no_cargada .medicos_details .medico_ficha {
+    display: grid !important;
+    align-content: center;
+    height: 100%;
+}
+
+.medico_ficha_no_select_container {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    text-align: center;
+}
+
+/* Si cargada */
+
+.medico_ficha_si_cargada .medico_ficha_no_select_container {
+	display: none !important;
+}
+
+/* Animacion Loading */
+
+.medico_ficha_no_select_container > div {
+    margin-top: -10px;
+    margin-left: 20px;
+}
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var( --kmimos-azul );
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+/* Modal Reserva */
+
+#reservar_medico .modal-title {
+    font-size: 18px;
+}
+
+.modal_info > div > h2 {
+    font-size: 18px;
+    color: var(--kmimos-azul-mediqo);
+    font-family: 'Gotham-Pro-Medium', arial, sans-serif;
+    letter-spacing: -1px;
+    margin-bottom: 0px;
+    text-transform: capitalize;
+}
+
+.modal_img_container > span {
+    text-align: center;
+    display: block;
+    padding: 8px 0px;
+}
+
+.medico_ranking.ranking {
+    text-align: center;
+}
+
+.modal_container {
+    display: grid;
+    grid-template-columns: 170px auto;
+    grid-gap: 0px 25px;
+}
+
+.modal_img_container {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.modal_img_container:after {
+    content: ' ';
+    position: absolute;
+    top: -15px;
+    right: 0px;
+    width: 1px;
+    height: calc( 100% + 89px );
+    border-right: solid 1px var(--kmimos-gris);
+}
+
+.modal_img {
+    background-image: url(https://com-healonsite-mediqo.s3.amazonaws.com/profile_pics/Dra._Dulce.jpg);
+    width: 120px;
+    height: 140px;
+    margin: 0px auto 10px;
+    border-radius: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.modal_info {
+    grid-column: 2;
+    grid-row: 1;
+    padding-right: 10px;
+}
+
+.modal_pago {
+    grid-column: 1 / 3;
+    grid-row: 2;
+}
+
+.modal_info > div {
+    margin: 0px;
+}
+
+.modal h3 {
+    font-size: 16px;
+    margin: 0px;
+    font-weight: 600;
+    padding: 5px 0px;
+    color: var(--kmimos-azul-mediqo);
+}
+
+.modal_info > div > div, .modal_info > div > label {
+    overflow: hidden;
+    padding-top: 0px;
+    margin-left: 0px;
+    position: relative;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+    font-size: 13px;
+    margin: 5px 0px !important;
+}
+
+.modal_info > div > div > span {
+    z-index: 0;
+}
+
+.modal_info label {
+    display: block;
+    font-weight: 400;
+    position: relative;
+    z-index: 100;
+}
+
+.cont_tipos {
+
+}
+
+.modal_pago label {
+    display: inline-block;
+    font-weight: 400;
+    position: relative;
+    z-index: 100;
+    border: solid 1px #CCC;
+    padding: 10px;
+    border-radius: 4px;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: 12px;
+    width: calc( 50% - 5px );
+    margin-right: 3px;
+}
+
+.modal_pago label:last-child {
+    width: calc( 50% - 2px );
+    margin-right: 0px;
+}
+
+.modal_pago input[type=checkbox], .modal_pago input[type=radio] {
+    margin: 0px;
+    margin-top: 1px\9;
+    line-height: normal;
+    vertical-align: middle;
+}
+
+.modal_pago h3 {
+    margin: 0px 0px 10px;
+}
+
+.check_container input[type=checkbox] + label {
+    display: block;
+    margin: 0px;
+    cursor: pointer;
+    padding: 0px;
+    width: 18px;
+}
+
+.check_container input[type=checkbox] {
+    display: none;
+}
+
+.check_container input[type=checkbox] + label:before {
+    content: "\2714";
+    border: 1px solid #000;
+    border-radius: 3px;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    padding-left: 3px;
+    padding-bottom: 10px;
+    margin-right: -14px;
+    vertical-align: bottom;
+    color: transparent;
+    transition: .2s;
+}
+
+.check_container input[type=checkbox] + label:active:before {
+  transform: scale(0);
+}
+
+.check_container input[type=checkbox]:checked + label:before {
+  background-color: var( --kmimos-azul );
+  border-color: var( --kmimos-azul );
+  color: #fff;
+}
+
+.check_container input[type=checkbox]:disabled + label:before {
+  transform: scale(1);
+  border-color: #aaa;
+}
+
+.check_container input[type=checkbox]:checked:disabled + label:before {
+  transform: scale(1);
+  background-color: #bfb;
+  border-color: #bfb;
+}
+
+.form_tarjeta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px 10px;
+    margin-top: 10px;
+}
+
+.form_tarjeta .cont_nombre {
+    grid-column: 1;
+}
+
+.form_tarjeta .cont_apellido {
+    grid-column: 2;
+}
+
+.form_tarjeta .cont_tarjeta {
+    grid-column: 1 / 3;
+}
+
+.form_tarjeta .cont_datos {
+    grid-column: 1 / 3;
+    display: flex;
+    flex-direction: row;
+}
+
+.form_tarjeta .cont_datos > div {
+    margin: 5px 10px 5px 0px;
+    width: 100%;
+}
+
+.form_tarjeta .cont_datos > div.cont_cvv {
+    margin-right: 0px;
+}
+
+.form_tarjeta input {
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
+    border: solid 1px var(--kmimos-gris-claro);
+}
+
+.modal input, .modal select {
+    line-height: 1 !important;
+    font-size: 13px !important;
+    margin: 0px;
+}
+
+.modal_precio_container {
+    height: 30px;
+}
+
+.modal_precio {
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--kmimos-morado);
+    /* font-family: Arial; */
+    font-family: 'Gotham-Pro-Medium', arial, sans-serif;
+}
+
+select#especialidad {
+    width: auto;
+}
+
+.horario_flecha {
+    position: absolute;
+    top: 43px;
+    width: 8px;
+    cursor: pointer;
+}
+
+.horario_flecha_left{
+    left: -5px;
+}
+
+.horario_flecha_right{
+    right: -5px;
+}
+
+/* Modal New */
+
+h5.modal-title img {
+    width: 16px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.modal-content {
+    border-radius: 0px !important;
+}
+
+.modal-header {
+    padding: 25px 20px !important;
+    border-bottom: 1px solid var(--kmimos-gris) !important;
+}
+
+.modal_precio_container {
+    font-size: 15px !important;
+}
+
+.cont_tipos input {
+    display: none;
+}
+
+.cont_tipos label {
+    display: inline-block;
+    width: calc( 50% - 10px );
+    padding-left: 0px;
+}
+
+.check_container {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.check_container img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.check_container input ~ img.check_off { display: block; }
+.check_container input:checked ~ img.check_off { display: none; }
+
+.check_container input ~ img.check_on { display: none; }
+.check_container input:checked ~ img.check_on { display: block; }
+
+.cont_tipos {
+    position: relative;
+}
+
+.cont_tipos > label > span {
+    display: inline-block;
+    position: absolute;
+    top: 2px;
+    left: 25px;
+}
+
+#reservar_medico .modal-footer {
+    border-top: 0px !important;
+    padding-right: 25px;
+    padding-top: 5px;
+}
+
+#reservar_medico .modal-footer button {
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 10px 40px;
+    font-weight: 800;
+}
+
+.para_alguien_mas_container {
+
+}
+
+.para_alguien_mas_container input {
+    display: none;
+}
+
+.para_alguien_mas_container > label {
+    border: solid 2px var(--kmimos-gris);
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.para_alguien_mas_container > input:checked ~ label {
+    border: solid 2px var(--kmimos-morado);
+}
+
+#reservar_medico form {
+    margin-top: 10px;
+}
+
+#reservar_medico form h3{
+    margin-bottom: 5px;
+}
+
+.errores_box {
+    display: none;
+    border-top: solid 2px orange;
+    border-bottom: solid 2px orange;
+    padding: 5px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 0px;
+    margin-top: 15px;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+}
+
+#modal_step_0 {
+    display: none;
+}
+
+#modal_step_0 input[type="text"],
+#modal_step_0 select
+{
+    display: block;
+    width: 100%;
+    padding: 7px 10px;
+    border: solid 1px var(--kmimos-gris-claro);
+}
+
+#modal_step_0 label{
+    display: block;
+    width: 100%;
+    padding-bottom: 3px;
+}
+
+#modal_step_0 .col-md-6 {
+    padding-bottom: 8px;
+}
+
+#modal_step_1 {
+    display: grid;
+}
+
+.cont_direccion {
+    grid-column: 1 / 3;
+    border-top: solid 2px #7c189f;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.cont_direccion > label {
+    font-weight: 600;
+}
+
+#modal_step_2 {
+    display: none;
+}
+
+div#modal_step_2 h2 {
+    font-size: 22px;
+    text-align: left;
+    color: var(--kmimos-morado);
+    padding: 0px;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+td#modal_final_costo {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    color: var(--kmimos-morado);
+    font-size: 13px;
+}
+
+#modal_step_2 td {
+    padding: 0px 10px 10px;
+}
+
+#modal_step_2 th {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    padding: 0px 0px 10px;
+}
+
+td#modal_final_medico {
+    text-transform: capitalize;
+    font-weight: 800;
+}
+
+td#modal_final_metodo {
+    text-transform: capitalize;
+}
+
+.atras_ficha {
+    display: none;
+}
+
+label[for="tipo_efectivo"] {
+    display: none !important;
+}
+
+div#popup-registrarte {
+    overflow: auto !important;
+    overflow-x: hidden !important;
+}
+
+/*
+.medico_ficha {
+    position: absolute;
+    top: 60px;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-gap: 10px;
+    height: calc( 100% - 90px );
+    overflow: auto;
+    margin-top: 20px;
+    width: calc( 100% - 370px );
+}
+*/

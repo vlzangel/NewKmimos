@@ -1,0 +1,167 @@
+.text-help{
+    background: #33e1be57;
+    border-radius: 0px 0px 5px 5px;
+    display: none;
+    font-size: 9px!important;
+    padding: 3px 10px;
+    width: 100%;
+}
+#perfil-img-a{
+	display: inline-block;
+	width: 150px;
+    height: 150px;
+    margin-bottom: 0px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img_registro_cliente #rotar_i {
+    left: -15px !important;
+}
+
+.img_registro_cliente #rotar_d {
+    right: -15px !important;
+}
+
+.img_registro_cliente .btn_rotar {
+    top: 110px !important;
+}
+
+.img_registro_cliente .btn_aplicar_rotar {
+    margin: 5px 0px 10px !important;
+}
+
+div#quitar_foto {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+#loading-perfil{
+	display: none;
+}
+
+#loading-perfil,
+#loading-perfil img
+{
+	width:100%; 
+	height: 100%;
+}
+
+button.close {
+    z-index: 9999999;
+}
+
+.fecha_placeholder label {
+    top: 12px !important;
+    font-size: 11px !important;
+}
+
+.select_tipo_doc {
+    width: 100%;
+    margin-top: 10px;
+    border: 0px;
+    border-bottom: solid 1px #e5e5e5;
+    padding: 0px 5px;
+    border-radius: 0px;
+}
+
+.popup-registro-exitoso, .popup-registro-exitoso-final {
+    background: url(../images/new/km-registro/registro-exitoso.jpg) no-repeat;
+    height: auto;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.popup-registro-exitoso-text {
+    padding: 0px 10px 0px;
+}
+
+.popup-registro-exitoso-text p {
+    line-height: 100% !important;
+
+}
+
+.info_map{
+    text-align: left;
+    padding: 5px 0px;
+    line-height: 15px;
+    color: purple;
+    font-weight: 600;
+}
+
+.modal-content {
+    width: 100% !important;
+}
+
+small[data-error="rc_vlz_img_perfil"]{
+    visibility: visible;
+    color: red;
+    padding: 5px 20px;
+    border: 1px solid;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.small, small {
+    font-size: 100% !important;
+    padding: 5px 0px 0px;
+    display: block;
+}
+
+.precios_registro input {
+    padding: 5px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    border: solid 1px #CCC;
+}
+
+.tiene_error {
+    visibility: visible;
+    border: solid 1px red;
+    margin-top: 15px;
+    padding: 2px 5px 0px;
+}
+
+.box_info_modal {
+    /*
+    border-bottom: solid 1px #dadada;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    */
+}
+
+.tam_pc{
+    display: inline-block;
+}
+
+.tam_movil{
+    display: none;
+}
+
+
+@media ( max-width: 600px ){
+    .popup-registro-exitoso-text aside p {
+        font-size: 15px !important;
+    }
+    .tam_pc{
+        display: none;
+    }
+    .tam_movil{
+        display: inline-block;
+    }
+
+    .precios_registro input {
+        width: 100%;
+    }
+}
+

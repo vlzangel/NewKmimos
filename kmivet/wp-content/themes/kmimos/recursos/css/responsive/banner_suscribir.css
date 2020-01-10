@@ -1,0 +1,352 @@
+@media (min-width: 600px){
+	/* POPUP */
+
+		#PageSubscribe_NEW {
+		    position: relative;
+		    max-width: 700px;
+		    margin: 0 auto;
+		    padding: 0px;
+		    top: auto;
+		    border-radius: 10px;
+		    background: #ffffff;
+		    overflow: hidden;
+		    border: solid 1px #777;
+		    height: 280px;
+		}
+
+		#PageSubscribe_NEW .section_1 {
+			margin-bottom: 35px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			z-index: 100;
+			background: #FFF;
+			margin: 0px;
+			height: 100%;
+			width: 70%;
+		}
+		
+		#PageSubscribe_NEW i.exit.fa.fa-times {
+		    position: absolute;
+		    top: 0px;
+		    right: 0px;
+		    font-size: 20px;
+		    color: #a1a1a1;
+		    padding: 8px;
+		    background: #EEE;
+		    cursor: pointer;
+		    z-index: 10;
+		}
+		
+		#PageSubscribe_NEW h2 {
+		    color: #444;
+		    text-align: left;
+		    text-transform: uppercase;
+		    font-family: Gotham-Pro-Bold;
+		    font-weight: 800;
+		    padding: 25px 25px 0px;
+		    font-size: 30px !important;
+		}
+		
+		#PageSubscribe_NEW p {
+		    color: #000;
+		    text-align: left;
+		    font-size: 20px;
+		    margin: 0px 25px 15px;
+		}
+		
+		#PageSubscribe_NEW p.p_1 {
+			color: #555;
+		}
+		
+		#PageSubscribe_NEW p.p_2 {
+			font-size: 11px;
+	    	color: #777;
+	    	margin: 0px 25px 0px;
+		}
+		
+		#PageSubscribe_NEW .section_2 {
+		    position: absolute;
+		    bottom: 55px;
+		    left: 0px;
+		    width: 70%;
+		    z-index: 999999;
+		}
+		
+		#PageSubscribe_NEW .section_2 > div.img_banner {
+			display: none;
+		}
+		
+		#PageSubscribe_NEW .section_2 .msg_footer {
+			text-align: center;
+			color: #000;
+		}
+		
+		#PageSubscribe_NEW div.img_banner_pc {
+			position: absolute;
+			top: 0px;
+			right: -1px;
+			width: 30%;
+		   	height: 100%;
+		   	background-repeat: no-repeat;
+		   	background-size: cover;
+		   	background-position: center;
+		}
+		
+		#PageSubscribe_NEW .section_3 {
+			text-align: center;
+			color: #333;
+			font-weight: 600;
+			position: absolute;
+			width: 70%;
+			box-sizing: border-box;
+			padding: 15px;
+			bottom: 5px;
+			background: #FFF;
+			z-index: 1000;
+		}
+		
+		#PageSubscribe_NEW form {
+		    margin: 0px 25px;
+		    position: relative;
+		    top: auto;
+		}
+		
+		#PageSubscribe_NEW input#mail_suscripcion {
+		    width: 60%;
+		    padding: 10px;
+		    border: solid 1px #CCC;
+		    border-right: 0px;
+		    border-radius: 3px 0px 0px 3px;
+		    color: #000;
+		    display: inline-block;
+		}
+		
+		#PageSubscribe_NEW button {
+		    width: 39%;
+		    padding: 10px;
+		    border: solid 1px #00d2c6;
+		    border-left: 0px;
+		    border-radius: 0px 3px 3px 0px;
+		    background: #00d2c6;
+		    display: inline-block;
+		    position: relative;
+	    	right: 2px;
+		}
+			
+		#PageSubscribe_NEW img {
+		    width: 100%;
+		}
+
+		#message.Msubscribe {
+	        height: 100vh; !important;
+		    overflow: auto !important;
+		}
+
+		#message.Msubscribe .contain {
+			display: table;
+			width: 100%;
+			height: 100%;
+		}
+
+		#message.Msubscribe .contain > div {
+		    display: table-cell;
+		    vertical-align: middle;
+		}
+
+		#PageSubscribe_NEW .message {
+		    text-shadow: 0px 0px 1px #000;
+		    background: #00000099;
+		    border-radius: 2px;
+		    margin-top: 3px;
+		    padding: 4px;
+		    transition: all .5s ease-in-out;
+		    position: absolute;
+		    font-size: 12px;
+		    opacity: 0;
+		}
+
+		#PageSubscribe_NEW .message.show {
+		    opacity: 1;
+		}
+
+}
+
+@media (min-width: 768px){
+	#PageSubscribe_NEW button:hover {
+	    background: #49eada;
+	    text-decoration: none;
+	    color: #FFF !important;
+	}
+}
+
+@media (max-width: 600px){
+
+/* POPUP */
+	
+	#message.Msubscribe .contain {
+	    width: 90%;
+	}
+
+	#PageSubscribe_NEW {
+	    position: relative;
+	    max-width: 300px;
+	    margin: 0 auto;
+	    padding: 0px;
+	    top: auto;
+	    border-radius: 10px;
+	    background: #ffffff;
+	    overflow: hidden;
+	    border: solid 1px #777;
+	}
+	
+	#PageSubscribe_NEW i.exit.fa.fa-times {
+	    position: absolute;
+	    top: 0px;
+	    right: 0px;
+	    font-size: 20px;
+	    color: #a1a1a1;
+	    padding: 8px;
+	    background: #EEE;
+	    cursor: pointer;
+	}
+	
+	#PageSubscribe_NEW h2 {
+	    color: #444;
+	    text-align: center;
+	    text-transform: uppercase;
+	    font-family: Gotham-Pro-Black;
+	    font-weight: 800;
+	    padding: 25px 35px 15px;
+	    font-size: 25px !important;
+	}
+	
+	#PageSubscribe_NEW p {
+		color: #444;
+		text-align: center;
+		font-size: 15px;
+		margin: 0px 22px 25px;
+	}
+	
+	#PageSubscribe_NEW .section_1 {
+	    margin-bottom: 35px;
+	}
+	
+	#PageSubscribe_NEW .section_2 {
+	    position: relative;
+	}
+	
+	#PageSubscribe_NEW .section_2 > div.img_banner {
+	   	background-repeat: no-repeat;
+	   	background-size: cover;
+	   	background-position: center;
+	   	height: 200px;
+	}
+	
+	#PageSubscribe_NEW .section_3 {
+	    text-align: center;
+	    background: #000;
+	    font-size: 15px;
+	    padding: 12px;
+	}
+	
+	#PageSubscribe_NEW form {
+	    margin: 0px 50px;
+	    position: absolute;
+	    top: -20px;
+	}
+	
+	#PageSubscribe_NEW input#mail_suscripcion {
+	    width: 100%;
+	    padding: 7px;
+	    border: solid 1px #CCC;
+	    border-bottom: 0px;
+	    border-radius: 3px 3px 0px 0px;
+	    color: #000;
+	}
+	
+	#PageSubscribe_NEW button {
+	    width: 100%;
+	    padding: 7px;
+	    border: solid 1px #00d2c6;
+	    border-top: 0px;
+	    border-radius: 0px 0px 3px 3px;
+	    background: #00d2c6;
+	    text-transform: uppercase;
+    	font-weight: 800;
+	}
+	
+	#PageSubscribe_NEW img {
+	    width: 100%;
+	}
+
+	#message.Msubscribe {
+        height: 100vh; !important;
+	    overflow: auto !important;
+	}
+
+	#message.Msubscribe .contain {
+		display: table;
+		width: 100%;
+		height: 100%;
+	}
+
+	#message.Msubscribe .contain > div {
+	    display: table-cell;
+	    vertical-align: middle;
+	}
+
+	#PageSubscribe_NEW .message {
+	    text-shadow: 0px 0px 1px #000;
+	    background: #00000099;
+	    border-radius: 3px;
+	    margin-top: 7px;
+	    padding: 6px;
+	    opacity: 0;
+	    transition: all .5s ease-in-out;
+	}
+
+	#PageSubscribe_NEW .message.show {
+	    opacity: 1;
+	}
+}
+
+@media (max-width: 350px){
+
+	#PageSubscribe_NEW h2 {
+	    padding: 25px 34px 0px;
+	    font-size: 25px !important;
+	    text-align: center;
+	}
+
+	#PageSubscribe_NEW p {
+	    text-align: center;
+	    font-size: 14px;
+	}
+
+	p.p_1 {
+        font-size: 16px !important;
+	}
+
+	#PageSubscribe_NEW .section_3 {
+	    font-size: 13px;
+        font-family: Gotham-Pro-Bold;
+	}
+
+	#PageSubscribe_NEW .section_2 > div.img_banner {
+	    height: 180px;
+	}
+
+	#message.Msubscribe .contain {
+	    width: 90%;
+	}
+
+	#PageSubscribe_NEW input#mail_suscripcion {
+	    font-size: 12px;
+	}
+
+	#PageSubscribe_NEW button {
+	    font-size: 12px;
+	}
+
+}

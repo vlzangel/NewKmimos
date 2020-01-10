@@ -1,0 +1,228 @@
+.pc_seccion_0 {
+    width: 100%;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: -1;
+}
+h1 {
+	padding: 50px 30px;
+	text-align: center;
+	font-family: Gotham-Pro-Bold;
+	text-transform: uppercase;
+	font-size: 22px;
+}
+h3 {
+	padding: 15px;
+	text-align: left;
+	font-family: Gotham-Pro-Bold;
+	vertical-align: middle;
+	font-size: 16px;
+}
+h3 img {
+	width: 20px;
+	vertical-align: middle;
+    padding-bottom: 5px;
+    margin-right: 10px;
+}
+
+.componente_container{
+	display: block;
+	max-width: 1360px;
+	margin: 0px auto;
+    padding: 0px 30px;
+}
+
+.componente{
+	position: relative;
+	display: table;
+}
+
+.componente_izq, .componente_der{
+	display: table-cell;
+	width: 50%;
+	vertical-align: middle;
+}
+
+.componente_der{
+    text-align: right;
+}
+
+.txt_top {
+    padding: 35px 35px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.txt_middle {
+    padding: 35px;
+    text-align: center;
+    font-size: 17px;
+    background: #7c169e;
+    color: #FFF;
+}
+
+.txt_bottom {
+    padding: 35px 30px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.componente_box{
+	position: absolute;
+    right: 0px;
+    top: 0px;
+    max-width: 45%;
+}
+
+.componente_box img {
+	width: 100%
+}
+
+img.solo_PC.img_comp_1 {
+    position: absolute;
+    right: 60px;
+    top: 40px;
+    z-index: 30;
+    width: 90%;
+    height: 90%;
+    opacity: 1;
+    box-shadow: 0px 0px 8px #0005;
+}
+
+img.solo_PC.img_comp_2 {
+    position: absolute;
+    right: -70px;
+    top: 250px;
+    z-index: 20;
+    width: 55%;
+    opacity: 0.5;
+    box-shadow: 0px 0px 8px #0005;
+}
+
+img.solo_PC.img_comp_3 {
+	position: absolute;
+    right: -50px;
+    top: 15px;
+    z-index: 20;
+    width: 50%;
+    opacity: 0.5;
+    box-shadow: 0px 0px 8px #0005;
+}
+
+.container{
+	display: table;
+	width: 100%;
+    max-width: 1360px;
+    margin: 120px auto 60px;
+    padding: 0px 50px;
+}
+
+.izq, .der{
+	display: table-cell;
+}
+
+.izq {
+	width: calc( 100% - 250px );
+	text-align: justify;
+	font-size: 14px;
+}
+
+.izq a {
+	color: #008bf3 !important;
+}
+
+.der {
+	width: 350px;
+	padding: 0px 0px 0px 35px;
+	vertical-align: top;
+}
+
+.der a {
+	display: block;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+#testimonios .boton {
+	border-radius: 3px;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+#testimonios .boton_morado {
+	color: #FFF !important;
+	padding: 15px 50px;
+	display: inline-block;
+	text-align: center;
+	margin: 0px auto 90px;
+	text-transform: none !important;
+	text-decoration: none !important;
+	font-family: Gotham-Pro-Bold;
+}
+
+.banner_cuidador{
+	width: 100%;
+}
+
+.promesa{
+	text-align: center;
+	font-family: Gotham-Pro-Bold;
+	font-size: 18px;
+}
+
+.promesa span {
+	color: #7c169e;
+}
+
+.img_footer {
+	position: relative; 
+	padding: 50px;
+}
+
+.img_footer img {
+	width: 100%;
+}
+
+.btns_container{
+	position: absolute;
+	left: 0px;
+	bottom: 50px;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 25px 50px;
+	text-align: center;
+}
+
+.btns_container .boton {
+	width: 250px;
+	padding: 15px 0px;
+	text-decoration: none !important;
+	font-family: Gotham-Pro-Bold;
+	font-size: 16px;
+}
+
+.btns_container a.boton.boton_border_gris {
+	background: #FFF;
+}
+
+.ir_home{
+	text-align: center;
+	font-family: Gotham-Pro-Bold;
+	font-size: 16px;
+	margin: 10px 0px 60px;
+}
+
+.ir_home a {
+	color: #00d2c6;
+	text-decoration: underline !important;
+}
+
+.ver_mas_PC{
+	display: inline-block;
+}
+
+.ver_mas_movil{
+	display: none;
+}

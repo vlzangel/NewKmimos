@@ -1,0 +1,342 @@
+:root {
+    --kmimos-azul: #00d2c6;
+    --kmimos-azul-mediqo: #008bf2;
+    --kmimos-gris: #CCC;
+    --kmimos-gris-claro: #DDD;
+    --kmimos-morado: #6B169B;
+    --kmimos-morado-hover: #7c189fAA;
+}
+
+.boton_morado {
+    background-color: var(--kmimos-morado) !important;
+}
+
+.km-btn-basic,
+.km-btn-correo,
+.km-checkbox label {
+    background-color: var(--kmimos-morado) !important;
+}
+
+.km-checkbox {
+    background: var(--kmimos-morado-hover) !important;
+}
+
+.km-datos-foto {
+    background-image: url(../../images/popups/registro-veterinario-foto.png);
+}
+
+.logo_kmivet {
+    display: inline-block !important;
+}
+
+.vlz_top {
+    display: grid;
+    grid-template-columns: 385px 1fr;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ubicacion_container {
+    width: 100%;
+}
+
+.tipo_mascota_container { 
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+#motivo {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: solid 1px #CCC;
+    border-radius: 5px;
+    resize: none;
+}
+
+.tamanios_container {
+    display: inline-block;
+    width: calc( 100% - 450px );
+    height: 49px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    padding-left: 6px;
+    overflow: hidden;
+    float: left;
+    position: relative;
+}
+
+.ubicacion_container .barra_ubicacion {
+    position: absolute;
+    right: 40px;
+    border-left: solid 1px #CCC;
+    top: 0px;
+    height: calc( 100% - 5px );
+    width: 0px;
+}
+
+.tipo_mascota_container .input_check_box {
+    width: calc( 25% - 15px );
+    height: 45px;
+    vertical-align: middle;
+    padding: 0px;
+}
+
+label#label_otro {
+    width: 95px;
+    text-align: left !important;
+    padding: 12px 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #777;
+}
+
+label#label_otro input {
+    display: inline-block !important;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-top: -2px;
+    margin-right: 5px;
+}
+
+label#label_input {
+    width: calc( 100% - 450px );
+}
+
+input#input_otro {
+    width: 100%;
+    padding: 12px;
+    border-radius: 3px;
+    border: solid 1px #CCC;
+    height: 45px;
+}
+
+.vlz_info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 1140px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.vlz_info > div:first-child {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    grid-column: 1 / 4;
+    text-transform: uppercase;
+    font-size: 18px;
+    max-width: 1010px;
+    margin: 10px auto;
+    line-height: 1.6;
+}
+
+.vlz_info > div > div > div:first-child {
+    height: 125px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 25px;
+}
+
+.vlz_info > div > div:nth-child(2) {
+    font-weight: 600;
+    font-size: 15px;
+    padding: 0px 80px;
+    min-height: 35px;
+}
+
+.vlz_info > div > div:nth-child(3) {
+    padding: 10px 50px;
+    font-size: 14px;
+}
+
+.carrusel_servicios_2 .carrusel_servicios_principales_data p {
+    font-weight: 400;
+}
+
+.carrusel_servicios_principales_img {
+    border-radius: 3px;
+}
+
+.lo_nuevo_container {
+    border-bottom: solid 1px #CCC;
+    box-shadow: 0px 4px 4px #CCC;
+    padding-bottom: 70px;
+    margin-bottom: 30px;
+}
+
+.vlz_info_servicios {
+    background: #EEE;
+    padding: 35px 0px 35px;
+}
+
+.vlz_info_servicios > div:first-child {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    max-width: 1010px;
+    margin: 10px auto;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/*.vlz_info_items {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    width: 1140px;
+    margin: 50px auto 20px;
+    text-align: center;
+}*/
+
+.vlz_info_items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    width: 380px;
+    margin: 50px auto 20px;
+    text-align: center;
+}
+
+.vlz_info_items > div {
+    text-align: center;
+    margin: 0px 20px;
+    border: solid 1px #CCC;
+    padding: 20px 0px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.vlz_info_items > div.active {
+    border: solid 2px #969696;
+}
+
+.vlz_info_items > div > div > div:first-child {
+    height: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.vlz_info_items > div > div:last-child {
+    padding: 25px 0px 0px;
+    font-size: 15px;
+}
+
+.vlz_info_servicios_box {
+    display: grid;
+    grid-template-columns: 50% 1fr;
+    grid-gap: 20px;
+    max-width: 1090px;
+    margin: 50px auto;
+}
+
+.vlz_info_servicios_box > div:first-child {
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.vlz_info_servicios_box > div:last-child {
+    padding: 30px;
+}
+
+.vlz_info_servicios_box > div:last-child > div {
+    font-size: 25px;
+    color: #7c169e;
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.vlz_info_servicios_box > div:last-child > p {
+    font-family: 'Gotham-Pro-Ligth', arial, sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    line-height: 1.8;
+    padding-right: 50px;
+    font-weight: 400;
+}
+
+.pasos_reserva_celda img {
+    height: 90px;
+    margin: 40px 0px 10px;
+}
+
+.pasos_reserva_celda span {
+    border: solid 2px #7d40dd;
+    padding: 3px 0px;
+    border-radius: 50%;
+    font-size: 22px;
+    color: #7d40dd;
+    font-weight: 600;
+    width: 43px;
+    display: inline-block;
+}
+
+.pasos_reserva_container #paso_1:after,
+.pasos_reserva_container #paso_2:after,
+.pasos_reserva_container #paso_2:before,
+.pasos_reserva_container #paso_3:before {
+    top: 20px;
+}
+
+.boton_buscar_container .boton_buscar {
+    border: 1px var(--kmimos-morado);
+    background-color: var(--kmimos-morado);
+}
+
+.boton_buscar_container .boton_buscar:hover {
+    border: 1px var(--kmimos-morado-hover);
+    background-color: var(--kmimos-morado-hover);
+}
+
+.conectate_container > span {
+    color: var(--kmimos-morado);
+}
+
+.input_check_box .top_check {
+    border: solid 2px var(--kmimos-morado);
+}
+
+.vlz_info_msg {
+    max-width: 1140px;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    grid-gap: 10px;
+}
+
+.vlz_info_msg > div:first-child {
+    font-size: 18px;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
+    text-align: center;
+}
+
+.vlz_info_msg > div:first-child strong {
+    font-family: 'Gotham-Pro-Bold', arial, sans-serif;
+}
+
+.vlz_info_msg > div:last-child a {
+    background-color: var(--kmimos-morado);
+    border: 0px;
+    padding: 13px;
+    width: 100%;
+    border-radius: 5px;
+    color: #FFF;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.vlz_info_msg > div:last-child {
+    padding: 0px 15px 0px;
+}
+

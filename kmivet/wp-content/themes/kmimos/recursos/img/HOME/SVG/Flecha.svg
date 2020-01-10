@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.36 9.189">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #666;
+      }
+    </style>
+  </defs>
+  <title>Flecha</title>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <rect class="cls-1" y="3.859" width="19.333" height="1.472"/>
+        <rect class="cls-1" x="14.291" y="2.083" width="6.5" height="1.472" transform="translate(7.131 -11.578) rotate(45)"/>
+        <rect class="cls-1" x="14.291" y="5.635" width="6.5" height="1.472" transform="translate(34.45 -1.528) rotate(135)"/>
+      </g>
+    </g>
+  </g>
+</svg>

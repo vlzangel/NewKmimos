@@ -1,0 +1,88 @@
+@media (max-width: 992px){
+
+}
+
+@media (max-width: 768px){
+	form#form_perfil > div {
+	    padding: 20px 0px;
+	}
+
+	form h1 {
+	    text-align: center;
+	}
+
+	.menu_perfil {
+	    width: 100%;
+	    padding: 20px 5px 10px;
+	    top: 0px;
+	}
+
+	.menu_perfil ul {
+	    display: none;
+	}
+	.main {
+	    width: 100%;
+        padding: 5px 5px 10px;
+	}
+	.vlz_img_portada_perfil {
+	    height: 300px;
+	}
+
+	.main .mascotas_item .vlz_img_portada_perfil {
+	    height: calc( 100% - 15px );
+	}
+
+	.km-ficha-bg {
+        background-image: url(../../recursos/img/PERFILES/Banner-responsive.jpg) !important;
+        border-radius: 0px 0px 30px 30px;
+	}
+
+	.vlz_img_portada_perfil {
+	    height: 100%;
+	}
+
+	.btn_aplicar_rotar {
+	    width: auto;
+	    padding: 5px;
+	    font-size: 11px;
+	    z-index: 99999999999999;
+	    position: absolute;
+	    top: 5px;
+	    right: 5px;
+	}
+
+	.container_btn img {
+		width: 45px;
+	    right: 10px;
+	    bottom: 10px;
+	}
+
+	.mascotas_item a.mascotas_content {
+	    height: 100% !important;
+	}
+
+}
+
+@media (max-width: 480px){
+    .inputs_containers section {
+	    width: 100%;
+	}
+	.vlz_cambiar_portada {
+	    font-size: 20px !important;
+	    padding: 5px 10px !important;
+	}
+	.main .vlz_cambiar_portada {
+	    font-size: 11px !important;
+	    padding: 5px 10px !important;
+	}
+
+	.btn_rotar{
+	    font-size: 11px;
+	}
+}
+
+@media (max-width: 350px){
+	.main .vlz_img_portada_perfil {
+	    height: 250px;
+	}
+}
