@@ -100,6 +100,7 @@ b {
 }
 
 .km-btn-basic {
+    background-color: var(--kmimos-morado);
     cursor: pointer;
     border-radius: 5px;
     color: white;
@@ -131,7 +132,7 @@ b {
     top: -3px;
     left: -3px;
     cursor: pointer;
-    background: #33E1BE;
+    background: var(--kmimos-morado);
     border-radius: 50px;
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
@@ -463,13 +464,13 @@ button.close {
 .cr_minus,
 .cr_plus,.km-cantidad .km-minus, .km-cantidad .km-plus{
     width: 20px;
-    color: #33E1BE;
+    color: var(--kmimos-morado);
     font-size: 16px;
     line-height: 20px;
     font-weight: bold;
     text-align: center;
     border-radius: 50%;
-    border: 1px solid #33E1BE;
+    border: 1px solid var(--kmimos-morado);
     text-decoration: none;
 }
 .km-cantidad .km-content-step .km-content-new-pet {
