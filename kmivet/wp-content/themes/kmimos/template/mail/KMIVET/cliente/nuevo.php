@@ -1,4 +1,4 @@
-<div style='text-align:center; margin-bottom: 34px;'>
+<div style='text-align:center; margin-bottom: 0px;'>
     <img src='[KV_URL_IMGS]/CLIENTE/NUEVO/HEADER.png' style='width: 100%;' >
 </div>
 <div style='margin-bottom: 0px; font-size: 14px; line-height: 1.07; letter-spacing: 0.3px; color: #000000; position: relative;'>

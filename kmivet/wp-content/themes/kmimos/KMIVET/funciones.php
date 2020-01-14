@@ -41,13 +41,13 @@
                         ".$header."
                         ".$content."
                         <div style='text-align: center;'>
-                            <img style='width: 100%; margin: 20px 0px;' src='".getTema()."/KMIVET/img/CLIENTE/NUEVO/img_2.png' />
+                            <img style='width: 100%; margin: 20px 0px;' src='".getTema()."/KMIVET/img/img_2.png' />
                         </div>
                         <div style='text-align: center;'>
-                            <img style='width: 50%; margin: 20px 0px;' src='".getTema()."/KMIVET/img/CLIENTE/NUEVO/img_3.png' />
+                            <img style='width: 50%; margin: 20px 0px;' src='".getTema()."/KMIVET/img/img_3.png' />
                         </div>
                         <div style='text-align: center;'>
-                            <a href='".get_home_url()."'> <img style='width: 50%; margin: 0px;' src='".getTema()."/KMIVET/img/CLIENTE/NUEVO/img_4.png' /> </a>
+                            <a href='".get_home_url()."'> <img style='width: 50%; margin: 0px;' src='".getTema()."/KMIVET/img/img_4.png' /> </a>
                         </div>
                     </div>      
                 </div>
