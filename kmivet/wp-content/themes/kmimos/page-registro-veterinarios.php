@@ -96,7 +96,7 @@
 					<div class="box_col_right">
 						<div class="box">
 							<div class="titulo">
-								¿Cómo me convierto en kmiveterinario?
+								¿Cómo formo parte de la kmivet?
 							</div>
 							<ul class="item-list">
 								<li>
@@ -171,7 +171,7 @@
 
 			echo '
 				<div class="vlz_info_servicios">
-					<div> Qué servicios puedes ofrece </div>
+					<div> Qué servicios puedes ofrecer </div>
 					<div class="vlz_info_items"> '.$_items.' </div>
 					<div class="vlz_info_servicios_box">
 						<div class="vlz_info_servicios_img" style="background-image: url( '.get_recurso("img").'KMIVET/SERVICIOS/IMGs/1.jpg );"></div>
@@ -252,6 +252,7 @@
 
 		<section class="section-banner-bottom">
 			<img class="banner-top" src="<?= get_recurso('img') ?>VETERINARIO/REGISTRO/banner-bottom.png" <?= $link_registro ?>  />
+			<img class="banner-top-responsive" src="<?= get_recurso('img') ?>VETERINARIO/REGISTRO/RESPONSIVE/banner_bottom.jpg" <?= $link_registro ?>  />
 		</section>
 
 		<?php // Modal Registro Cuidador ?>

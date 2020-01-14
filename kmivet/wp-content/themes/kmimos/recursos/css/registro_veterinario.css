@@ -32,6 +32,10 @@
 	cursor: pointer;
 }
 
+.banner-top-responsive {
+    display: none;
+}
+
 .text-rigth {
     text-align: right;
 }
