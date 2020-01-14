@@ -11,11 +11,6 @@
     date_default_timezone_set('America/Mexico_City');
     extract($_POST);
 
-    /*
-        echo 367;
-        exit();
-    */
-
     if( preg_match("/[\+]{1,}/", $email) || !filter_var($email, FILTER_VALIDATE_EMAIL) ){
         $fields = [ 'name'=>'email', 'msg'=>"Formato de E-mail invalido"];
         echo "Formato de E-mail invalido";
@@ -56,25 +51,6 @@
             session_start();
         }
 
-        if(array_key_exists('wlabel',$_SESSION) || $referido=='Volaris' || $referido=='Vintermex'){
-            $wlabel='';
-
-            if(array_key_exists('wlabel',$_SESSION)){
-                $wlabel=$_SESSION['wlabel'];
-
-            }else if($referido=='Volaris'){
-                $wlabel='volaris';
-
-            }else if($referido=='Vintermex'){
-                $wlabel='viajesintermex';
-            }
-
-            if ($wlabel!=''){
-                $query_wlabel = "INSERT INTO wp_usermeta VALUES (NULL, '".$user_id."', '_wlabel', '".$wlabel."');";
-                $db->query( utf8_decode( $query_wlabel ) );
-            }
-        }
-
         $name_photo = "";
         $user_photo = 0;
         if( $img_profile != "" ){
@@ -95,60 +71,51 @@
 
         $sql = " INSERT INTO wp_usermeta VALUES ";
 
-        if( $social_facebook_id != '' ){
-            $sql .= "(NULL, {$user_id}, 'facebook_auth_id', '{$social_facebook_id}'),";
-        }
-
-        if( $social_google_id != '' ){
-            $sql .= "(NULL, {$user_id}, 'google_auth_id', '{$social_google_id}'  ),";
-        }
-
         $sql .= "
-                (NULL, {$user_id}, 'registrado_desde',    'pagina'),
+                (NULL, {$user_id}, 'registrado_desde',     'pagina'),
 
-                (NULL, {$user_id}, 'user_pass',           '{$password}'),
-                (NULL, {$user_id}, 'user_mobile',         '{$movil}'),
-                (NULL, {$user_id}, 'user_phone',          '{$movil}'),
-                (NULL, {$user_id}, 'user_gender',         '{$gender}'),
-                (NULL, {$user_id}, 'user_country',        'México'),
+                (NULL, {$user_id}, 'user_pass',            '{$password}'),
+                (NULL, {$user_id}, 'user_mobile',          '{$movil}'),
+                (NULL, {$user_id}, 'user_phone',           '{$movil}'),
+                (NULL, {$user_id}, 'user_gender',          '{$gender}'),
+                (NULL, {$user_id}, 'user_country',         'México'),
 
-                (NULL, {$user_id}, 'user_photo',          '{$user_photo}'),
-                (NULL, {$user_id}, 'name_photo',          '{$name_photo}'),
+                (NULL, {$user_id}, 'user_photo',           '{$user_photo}'),
+                (NULL, {$user_id}, 'name_photo',           '{$name_photo}'),
 
                 (NULL, {$user_id}, 'description',          ''),
 
-                (NULL, {$user_id}, 'nickname',            '{$email}'),
-                (NULL, {$user_id}, 'first_name',          '{$name}'),
-                (NULL, {$user_id}, 'last_name',           '{$lastname}'),
-                (NULL, {$user_id}, 'user_age',           '{$age}'),
-                (NULL, {$user_id}, 'user_smoker',           '{$smoker}'),
-                (NULL, {$user_id}, 'user_referred',       '{$referido}'),
-                (NULL, {$user_id}, 'rich_editing',        'true'),
-                (NULL, {$user_id}, 'comment_shortcuts',   'false'),
-                (NULL, {$user_id}, 'admin_color',         'fresh'),
-                (NULL, {$user_id}, 'use_ssl',             '0'),
+                (NULL, {$user_id}, 'nickname',             '{$email}'),
+                (NULL, {$user_id}, 'first_name',           '{$name}'),
+                (NULL, {$user_id}, 'last_name',            '{$lastname}'),
+                (NULL, {$user_id}, 'user_age',             '{$age}'),
+                (NULL, {$user_id}, 'user_smoker',          '{$smoker}'),
+                (NULL, {$user_id}, 'user_referred',        '{$referido}'),
+                (NULL, {$user_id}, 'rich_editing',         'true'),
+                (NULL, {$user_id}, 'comment_shortcuts',    'false'),
+                (NULL, {$user_id}, 'admin_color',          'fresh'),
+                (NULL, {$user_id}, 'use_ssl',              '0'),
                 (NULL, {$user_id}, 'show_admin_bar_front', 'false'),
-                (NULL, {$user_id}, 'wp_capabilities',     'a:1:{s:10:\"subscriber\";b:1;}'),
-                (NULL, {$user_id}, 'wp_user_level',       '0');
+                (NULL, {$user_id}, 'wp_capabilities',      'a:1:{s:10:\"subscriber\";b:1;}'),
+                (NULL, {$user_id}, 'wp_user_level',        '0');
         ";
         $db->multi_query( utf8_decode( $sql ) );
 
         if (!isset($_SESSION)) { session_start(); }
         $_SESSION["nuevo_registro"] = "YES";
 
-        //MESSAGE
-        $mail_file = realpath('../../template/mail/registro.php');
+        $mensaje = kv_get_email_html(
+            'KMIVET/cliente/nuevo', 
+            [
+                "KV_URL_IMGS"   => getTema().'/KMIVET/img',
+                "URL"           => get_home_url(),
+                "NAME"          => 'Angel Veloz',
+                "EMAIL"         => 'angel@mail.com',
+                "PASS"          => 'Clave',
+            ]
+        );
 
-        $message_mail = file_get_contents($mail_file);
-
-        $message_mail = str_replace('[name]', $name.' '.$lastname, $message_mail);
-        $message_mail = str_replace('[email]', $email, $message_mail);
-        $message_mail = str_replace('[pass]', $password, $message_mail);
-        $message_mail = str_replace('[url]', site_url(), $message_mail);
-        $message_mail = str_replace('[URL_IMGS]', get_home_url()."/wp-content/themes/kmimos/images/emails", $message_mail);
-
-        $message = get_email_html($message_mail, false, true, $user_id);
-        wp_mail( $email, "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message);
+        wp_mail( $email, "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $mensaje);
 
         //USER LOGIN
         $user = get_user_by( 'id', $user_id );
