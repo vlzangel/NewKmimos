@@ -3,6 +3,7 @@
 	include __DIR__.'/NEW/funciones.php';
 	include __DIR__.'/NEW/funciones_plugin.php';
 	include __DIR__.'/KMIVET/funciones.php';
+	include __DIR__.'/procesos/funciones/mediqo.php';
 	
 	/* Comentarios */
 

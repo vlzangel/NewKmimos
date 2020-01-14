@@ -470,3 +470,14 @@ div#step_6 p {
 .kv_visibility_hidden {
     visibility: hidden;
 }
+
+#step_6 h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0px 0px 10px;
+}
+
+#step_6 ol {
+    text-align: left;
+    line-height: 2;
+}

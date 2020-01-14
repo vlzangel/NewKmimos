@@ -3,9 +3,7 @@ jQuery( document ).ready(function() {
     jQuery("[name='kv_email']").on('change', function(e){
         jQuery.post(
             HOME+'/procesos/medicos/REGISTRO/existe_registro.php',
-            {
-                email: jQuery("[name='kv_email']").val()
-            },
+            { email: jQuery("[name='kv_email']").val() },
             function( res ){
                 if ( res.status === false ) {
                     jQuery("[name='kv_email_no_usado']").prop('checked', true);
@@ -20,9 +18,7 @@ jQuery( document ).ready(function() {
     jQuery('[name="kv_estado"]').on("change", function(e){
         jQuery.post(
             HOME+'/procesos/medicos/GENERALES/provincias.php',
-            {
-                state: jQuery('[name="kv_estado"]').val()
-            },
+            { state: jQuery('[name="kv_estado"]').val() },
             function(provincias){
                 jQuery('[name="kv_delegacion"]').html(provincias);
                 jQuery('[name="kv_colonia"]').html("<option value=''>Seleccione...</option>");
@@ -128,9 +124,6 @@ function completar_registro(){
         HOME+'/procesos/medicos/REGISTRO/registro.php',
         jQuery("#popup-registro-veterinario form").serialize(),
         function(res){
-            console.log( res );
-            /*
-            // res
             if( res.status ){
                 jQuery(".kv-registro-nav").css("display", "none");
                 jQuery(".modal-footer").css("display", "none");
@@ -138,7 +131,6 @@ function completar_registro(){
             }else{
                 jQuery(".kv-registro-nav").css("display", "flex");
             }
-            */
         },
         'json'
     );
