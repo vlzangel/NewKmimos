@@ -111,8 +111,10 @@
 
 	$res = create_medic($param);
 	if( $res['status'] == 'ok' ){
+		update_user_meta($user_id, '_mediqo_resp', 'ok');
 		update_user_meta($user_id, '_mediqo_medic_id', $res['id']);
 	}else{
+		update_user_meta($user_id, '_mediqo_resp', 'ko');
 		update_user_meta($user_id, '_mediqo_medic_id', 'No creado');
 	}
 
