@@ -47,21 +47,21 @@
                     <div>
                         <h2>Servicios</h2>
                         <ul>
-                            <p><a href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros">Quiero ser cuidador</a></p>
-                            <p><a href="'.get_home_url().'/busqueda">Buscar cuidador certificado</a></p>
+                            <p><a href="'.get_home_url().'/quiero-ser-veterinario/">Quiero ser cuidador</a></p>
+                            <p><a href="'.get_home_url().'/mediqo">Buscar veterinario certificado</a></p>
                             <p><a target="blank" href="https://kmimos.com.mx/blog">Blog</a></p>
                         </ul>
                     </div>
                     <div>
                         <h2>Navega</h2>
                         <ul>
-                            <p><a href="'.get_home_url().'">Nosotros</a></p>
+                            <p><a href="https://kmimos.com.mx/">Nosotros</a></p>
                             <p><a href="javascript:;">Preguntas y Respuestas</a></p>
-                            <p><a href="'.get_home_url().'/coberturas-de-servicios-veterinarios/">Cobertura Veterinaria</a></p>
-                            <p><a href="'.get_home_url().'">Comunicados de prensa</a></p>
-                            <p><a href="'.get_home_url().'/terminos-y-condiciones/">Términos y Condiciones</a></p>
+                            <p><a href="https://kmimos.com.mx/coberturas-de-servicios-veterinarios/">Cobertura Veterinaria</a></p>
+                            <p><a href="https://kmimos.com.mx">Comunicados de prensa</a></p>
+                            <p><a href="https://kmimos.com.mx/terminos-y-condiciones/">Términos y Condiciones</a></p>
                             <p><a href="javascript:;">Nuestros Aliados</a></p>
-                            <p><a href="'.get_home_url().'/contacta-con-nosotros/">Contáctanos</a></p> 
+                            <p><a href="https://kmimos.com.mx/contacta-con-nosotros/">Contáctanos</a></p> 
                         </ul>
                     </div>
                     <div>
