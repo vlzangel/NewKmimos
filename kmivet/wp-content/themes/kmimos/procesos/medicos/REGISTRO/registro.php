@@ -34,6 +34,7 @@
 	    update_user_meta($user_id, 'user_phone', $kv_telf_fijo);
 	    update_user_meta($user_id, 'clave_temp', $random_password);
 	    update_user_meta($user_id, 'user_referred', 'kmivet');
+	    update_user_meta($user_id, 'user_type', 'veterinario');
 
 	    $info = array();
 	    $info['user_login']     = sanitize_user($kv_email, true);
