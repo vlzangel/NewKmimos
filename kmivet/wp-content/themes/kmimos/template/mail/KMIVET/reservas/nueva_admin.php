@@ -26,7 +26,7 @@
             text-align: left;
             text-transform: capitalize;
         '>
-            ¡Gracias [NAME_CLIENTE]!
+            ¡Hola Administrador!
         </div>  
 
         <div style='
@@ -53,6 +53,70 @@
         margin-bottom: 30px;
     '>
         C&oacute;digo de cita #[CONSULTA_ID]
+    </div>
+
+
+    <div style='
+        padding: 20px 30px; 
+        font-size: 17px; 
+        line-height: 1.07; 
+        letter-spacing: 0.3px; 
+        color: #FFF; 
+        background-color: #008bf2;
+        font-weight: 600;
+    '>
+        DATOS DEL CLIENTE
+    </div>
+    
+    <div style="
+        width: 100%;
+        background-color: #efefee;
+        padding: 10px;
+        box-sizing: border-box;
+    ">
+        <div style="
+            background-color: #FFF;
+            padding: 20px;
+        ">
+
+            <div style="
+                font-size: 17px;
+                font-weight: 600;
+                padding: 0px;
+                text-transform: capitalize;
+            ">
+                [NAME_CLIENTE]
+            </div>
+
+            <div style="
+                font-weight: 400;
+                padding: 5px;
+            ">
+                <table width="100%" style='
+                    padding: 0px;
+                    font-size: 13px;
+                '>
+                    <tr>
+                        <td style="width: 30px; text-align: left;">
+                            <img style="width: 20px; padding: 7px 0px;" src="[KV_URL_IMGS]/CONSULTA/NUEVA/Icon-Phone.png" />
+                        </td>
+                        <td>
+                            [TELEFONOS_CLIENTE]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 30px; text-align: left;">
+                            <img style="width: 20px; padding: 7px 0px;" src="[KV_URL_IMGS]/CONSULTA/NUEVA/Icon-Mail.png" />
+                        </td>
+                        <td>
+                            [CORREO_CLIENTE]
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+
+        </div>
     </div>
 
     <div style='

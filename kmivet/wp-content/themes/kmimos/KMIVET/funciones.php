@@ -41,9 +41,6 @@
                         ".$header."
                         ".$content."
                         <div style='text-align: center;'>
-                            <img style='width: 100%; margin: 20px 0px;' src='".getTema()."/KMIVET/img/img_2.png' />
-                        </div>
-                        <div style='text-align: center;'>
                             <img style='width: 50%; margin: 20px 0px;' src='".getTema()."/KMIVET/img/img_3.png' />
                         </div>
                         <div style='text-align: center;'>

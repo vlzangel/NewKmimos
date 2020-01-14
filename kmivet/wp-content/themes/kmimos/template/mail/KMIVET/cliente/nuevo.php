@@ -28,3 +28,6 @@
         <a href="[URL]" style="color: #000; text-decoration: none;"> <img style="width: 60%;" src='[KV_URL_IMGS]/CLIENTE/NUEVO/btn_1.png' > </a>
     </div>
 </div>
+<div style='text-align: center;'>
+    <img style='width: 100%; margin: 20px 0px;' src='[KV_URL_IMGS]/CLIENTE/NUEVO/img_2.png' />
+</div>

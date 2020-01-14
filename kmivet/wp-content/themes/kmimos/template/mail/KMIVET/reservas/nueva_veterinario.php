@@ -1,5 +1,11 @@
-<div style='width: 100%;'>
-	<img src='[KV_URL_IMGS]/CONSULTA/NUEVA/header.png' style='width: 100%;' >
+<div style='text-align:center; margin-bottom: 0px;'>
+    <img src='[KV_URL_IMGS]/CONSULTA/NUEVA/HEADER.jpg' style='width: 100%;' >
+</div>
+<div style='text-align: right; margin: 0px 45px;'>
+    <img src='[KV_URL_IMGS]/CONSULTA/NUEVA/DATE.jpg' style='width: 90px; margin-top: -50px;' >
+</div>
+<div style='text-align:center; margin: 20px 0px 10px;'>
+    <img src='[KV_URL_IMGS]/CONSULTA/NUEVA/TITULO.jpg' style='width: 100%;' >
 </div>
 
 <div style='font-family: Verdana; width: 100%'>
@@ -12,89 +18,41 @@
         color: #000000;
     '>
         <div style='
-            font-size: 26px; 
+            font-size: 22px; 
             font-weight: bold; 
             letter-spacing: 0.4px; 
-            color: #940d99; 
+            color: #6B169B; 
             padding-bottom: 30px; 
             text-align: left;
             text-transform: capitalize;
         '>
-            ¡Hola [NOMBRE_VETERINARIO]!
+            ¡Hola [NAME_VETERINARIO]!
         </div>  
 
         <div style='
-            font-size: 17px; 
+            font-size: 15px; 
             line-height: 1.07; 
             letter-spacing: 0.3px; 
             color: #000000; 
             text-align: left; 
         '>
-            El cliente <strong style="color: #940d99;">[NOMBRE_CLIENTE]</strong> te ha enviado una solicitud de consulta.
+            La cita <strong style="color: #6B169B; text-transform: capitalize;">#[CONSULTA_ID]</strong> ha sido <strong style="color: #6B169B; text-transform: capitalize;">CONFIRMADA</strong> exitosamente.
         </div>
 
     </div>
 
     <div style='
-        font-size: 17px; 
+        font-size: 15px; 
         font-weight: 600;
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #000000; 
-        padding: 15px 0px;
+        padding: 25px 0px;
         text-align: center;
         background-color: #e3e3e3;
+        margin-bottom: 30px;
     '>
-        Consulta #: <strong>[CONSULTA_ID]</strong>
-    </div>
-           
-    <div style="padding: 30px 0px; text-align: center;">
-
-        <div style='
-            font-size: 17px; 
-            color: #000; 
-            margin-bottom: 20px;
-        '>
-            ¿Aceptas la solicitud?
-        </div>
-        
-        <div style="text-align: center;">
-            <a href='[ACEPTAR]?u=cui' style='
-                max-width: 250px;
-                width: 100%;
-                padding: 10px;
-                background-color: #940d99;
-                color: #FFF;
-                font-weight: 600;
-                margin: 0px 0px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 13px;
-            '>
-                ¡ACEPTAR!
-            </a>
-        </div>
-
-        <div style="text-align: center;">
-            <a href='[RECHAZAR]?u=cui' style='
-                max-width: 250px;
-                width: 100%;
-                padding: 10px;
-                background-color: #FFF;
-                color: #000;
-                border: solid 2px #000;
-                font-weight: 600;
-                margin: 0px 0px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 13px;
-            '>
-                AHORA NO PUEDO, RECHAZAR
-            </a>
-        </div>
-
+        C&oacute;digo de cita #[CONSULTA_ID]
     </div>
 
     <div style='
@@ -103,7 +61,7 @@
         line-height: 1.07; 
         letter-spacing: 0.3px; 
         color: #FFF; 
-        background-color: #940d99;
+        background-color: #6B169B;
         font-weight: 600;
     '>
         DATOS DEL CLIENTE
@@ -124,10 +82,10 @@
             <div style="
                 font-size: 17px;
                 font-weight: 600;
-                padding: 20px 0px 0px;
+                padding: 0px;
                 text-transform: capitalize;
             ">
-                [NOMBRE_CLIENTE]
+                [NAME_CLIENTE]
             </div>
 
             <div style="
@@ -136,7 +94,7 @@
             ">
                 <table width="100%" style='
                     padding: 0px;
-                    font-size: 10px;
+                    font-size: 13px;
                 '>
                     <tr>
                         <td style="width: 30px; text-align: left;">
@@ -166,7 +124,7 @@
 <div style='
     font-family: Verdana;
     width: 100%;
-    padding: 0px 10px 0px; 
+    padding: 20px 10px 0px; 
     box-sizing: border-box;
 '>
 
@@ -177,31 +135,45 @@
         margin-bottom: 5px;
         padding-bottom: 5px;
         border-bottom: solid 1px #BBB;
-        margin-top: 15px;
     '>
         DETALLE DEL SERVICIO
     </div>
 
+    <div style="padding: 10px 0px 0px; font-size: 14px;">
+        <strong style="color: #6B169B;">SERVICIO:</strong> [TIPO_SERVICIO]
+    </div>
+
     <table cellpadding="0" cellspacing="0" style='padding: 15px 0px 20px; overflow: hidden; font-family: Arial; font-size: 12px; letter-spacing: 0.3px; color: #000000;'>
-        
         <tr style=''>
-            <td style='height: 20px; text-align: left; vertical-align: middle; font-weight: 600; padding-right: 15px;'>
-                FECHA
+            <td style='height: 20px; text-align: center; vertical-align: middle; width: 60px;'>
+              <img style="padding: 3px 0px;" src='[KV_URL_IMGS]/CONSULTA/NUEVA/min_calendar.png'  > 
             </td>
-            <td style='height: 20px; vertical-align: middle; font-size: 17px;'> 
+            <td style='height: 20px; vertical-align: middle; font-size: 16px;'> 
                 [FECHA]
             </td>
         </tr>
         
         <tr style=''>
-            <td style='height: 20px; text-align: left; vertical-align: middle; font-weight: 600; padding-right: 15px;'>
-                PRECIO
+            <td style='height: 20px; text-align: center; vertical-align: middle;'>
+              <img style="padding: 3px 0px;" src='[KV_URL_IMGS]/CONSULTA/NUEVA/min_clock.png'  > 
             </td>
-            <td style='height: 20px; vertical-align: middle; font-size: 17px;'> 
-                [PRECIO]<small>$</small>
+            <td style='height: 20px; vertical-align: middle; font-size: 16px;'> 
+                [HORA]
             </td>
-        </tr>
-                                                        
+        </tr>                               
     </table>
 
+    <table style="width: 100%; background-color: #e3e3e3;">
+        <tr>
+            <td style="text-align: left; padding: 10px 15px;">PAGO</td>
+            <td style="text-align: right; padding: 10px 15px;"><strong>$ [TOTAL]</strong></td>
+        </tr>
+    </table>
+
+</div>
+
+<div style='text-align: center;'>
+    <a href='[URL]'> 
+        <img style='width: 100%; margin: 50px 0px 20px;' src='[KV_URL_IMGS]/CONSULTA/NUEVA/BTN_KMIVET.jpg' />
+    </a>
 </div>
