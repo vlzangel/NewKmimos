@@ -57,6 +57,7 @@
 
 	$param = [
 		'name' => $kv_nombre,
+        'email' => $kv_email,
 		'birthdate' => $kv_fecha,
 		'gender' => $kv_genero,
 		'documentId' => $kv_dni,

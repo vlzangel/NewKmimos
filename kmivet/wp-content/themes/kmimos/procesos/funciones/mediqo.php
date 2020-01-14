@@ -1,7 +1,7 @@
 <?php
 	function mediqo_request($url, $params){
-		// $url = 'https://api.mediqo.mx/'.$url;
-		$url = 'https://13.59.244.182/'.$url;
+		$url = 'https://api.mediqo.mx/'.$url;
+		// $url = '13.59.244.182/'.$url;
 		$ch = curl_init($url);
 		$payload = json_encode($params);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
@@ -67,13 +67,13 @@
 	}
 
 	function create_medic($params){
-		$resultado = mediqo_request('registration/api/medic_registration/', $params);
+		$resultado = mediqo_request('registration/api/medic_registration', $params);
 		$resultado = json_decode($resultado);
 		$id = $resultado->object->id;
-		if( $cita_id == null ){
+		if( $resultado->status != 'OK' ){
 		    return [
 				'status' => 'ko',
-				'info' => $resultado
+				'info' => $resultado,
 			];
 		}
 	    return [
