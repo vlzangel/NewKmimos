@@ -114,13 +114,14 @@
 		update_user_meta($user_id, '_mediqo_medic_id', 'No creado');
 	}
 
-	$mensaje = kv_get_email_html('KMIVET/registro/nuevo', 
+    $mensaje = kv_get_email_html(
+        'KMIVET/veterinario/nuevo', 
         [
-        	"KV_URL_IMGS"   => getTema().'/KMIVET/img',
-        	"EMAIL"   		=> $kv_email,
-        	"NOMBRE"  		=> $kv_nombre,
-        	"CLAVE"   		=> $random_password,
-        	"URL" 	  		=> get_home_url().'/kmivet/',
+            "KV_URL_IMGS" => getTema().'/KMIVET/img',
+            "URL"         => get_home_url(),
+            "NAME"        => $kv_nombre,
+            "EMAIL"       => $kv_email,
+            "PASS"        => $random_password,
         ]
     );
 
