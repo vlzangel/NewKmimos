@@ -1,11 +1,5 @@
 <div style='text-align:center; margin-bottom: 0px;'>
-    <img src='[KV_URL_IMGS]/CONSULTA/NUEVA/HEADER.jpg' style='width: 100%;' >
-</div>
-<div style='text-align: right; margin: 0px 45px;'>
-    <img src='[KV_URL_IMGS]/CONSULTA/NUEVA/DATE.jpg' style='width: 90px; margin-top: -50px;' >
-</div>
-<div style='text-align:center; margin: 20px 0px 10px;'>
-    <img src='[KV_URL_IMGS]/CONSULTA/NUEVA/TITULO.jpg' style='width: 100%;' >
+    <img src='[KV_URL_IMGS]/CONSULTA/NUEVA/HEADER_ADMIN.jpg' style='width: 100%;' >
 </div>
 
 <div style='font-family: Verdana; width: 100%'>
