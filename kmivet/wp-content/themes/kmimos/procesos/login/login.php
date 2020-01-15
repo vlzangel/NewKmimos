@@ -1,27 +1,21 @@
 <?php
-	ob_start();
-		include_once($raiz."/wp-load.php");
-		$load = ob_get_contents();
-	ob_end_clean();
-
-	ini_set('display_errors', 'On');
-	error_reporting( E_ALL );
+	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+	include($raiz."/wp-load.php");
 
 	extract($_POST);
-
 	date_default_timezone_set('America/Mexico_City');
 
 	global $wpdb;
 
 	if( !isset($_SESSION) ){ session_start(); }
- 
+ 	
 	$user = get_user_by( 'email', $usu );
     if ( isset( $user, $user->user_login, $user->user_status ) && 0 == (int) $user->user_status ){
         $usu = $user->user_login;
     }else{
         $usu = sanitize_user($usu, true);
     }
-    
+   
     $info = array();
     $info['user_login']     = sanitize_user($usu, true);
     $info['user_password']  = sanitize_text_field($clv);
@@ -36,23 +30,27 @@
 	if ( is_wp_error( $user_signon )) {
 
 		$user = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}users WHERE user_login = '".$info['user_login']."' ");
-		if( $user->ID+0 > 0 ){
+		if( $user !== null ){
 			$tipo = get_user_meta($user->ID, "user_type", true);
 
 			switch ( $tipo ) {
 				case "veterinario":
-					$res = validar_medico([
-						"email" : $user->user_email,
-						"password" : $info['user_password']
-					]);
-					$_INFO_ADICIONAL = $res;
-					if( $res['status'] == 'ok' ){
-						wp_set_current_user( $user->ID, $user->user_login );
-						$valido = 1;
-					    $_USER_ID = $user->ID;
-					    update_user_meta($_USER_ID, '_mediqo_medic_id', $res['id']);
-					    update_user_meta($_USER_ID, '_mediqo_active', time() );
+					$is_active = get_user_meta($user->ID, "_mediqo_active", true);
+					if( $is_active === false ){
+						$res = validar_medico([
+							"email" => $user->user_email,
+							"password" => $info['user_password']
+						]);
+						$_INFO_ADICIONAL = $res;
+						if( $res['status'] == 'ok' ){
+							wp_set_current_user( $user->ID, $user->user_login );
+							$valido = 1;
+						    $_USER_ID = $user->ID;
+						    update_user_meta($_USER_ID, '_mediqo_medic_id', $res['id']);
+							update_user_meta($_USER_ID, '_mediqo_active', time() );
+						}
 					}
+					
 				break;
 			}
 
@@ -62,7 +60,6 @@
 		$valido = 1;
 		$_USER_ID = $user_signon->ID;
 	}
-
 
 	if( $valido == 1 ){
 		$status_user = get_user_meta($user_signon->ID, 'status_user', true);
@@ -103,5 +100,5 @@
 
 	}
 
-	exit;
+	exit();
 ?>

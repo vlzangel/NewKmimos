@@ -1,5 +1,12 @@
 <?php
 
+    if(!function_exists('vlz_get_page')){
+        function vlz_get_page(){
+            $valores = explode("/", $_SERVER['REDIRECT_URL']);
+            return $valores[ count($valores)-2 ]+0;
+        }
+    }
+
     if(!function_exists('kmimos_get_info_syte')){
         function kmimos_get_info_syte(){
             return array(

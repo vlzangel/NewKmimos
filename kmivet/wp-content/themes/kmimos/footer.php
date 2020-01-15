@@ -105,11 +105,14 @@
         ";
     }
 
+    $current_user = wp_get_current_user();
+    $user_id = $current_user->ID;
     $user_tipo = get_user_meta($user_id, "user_type", true);
+
     switch ( $user_tipo ) {
         case 'veterinario':
             $activo = get_user_meta($user_id, "_mediqo_active", true);
-            // if( $activo+60 > time()  ){
+            if( $activo+60 > time()  ){
                 echo '
                     <div id="activado" class="modal" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
@@ -122,7 +125,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="kmivet_msg">
-                                        La contraseña usada en este inicio de sesión solo es requerida para la activación de su perfil en KMIVET<br>
+                                        Felicidades, ya hemos <strong>activado</strong> su cuenta <span>Kmivet</span><br>
                                         Para los próximos inicios de sesión podrá seguir usando su contraseña actual.
                                     </div>
                                 </div>
@@ -133,10 +136,10 @@
                         </div>
                     </div>
                     <script type="text/javascript">
-                        jquery("#activado").modal("show");
+                        jQuery("#activado").modal("show");
                     </script>
                 ';
-            // }
+            }
         break;
     }
 

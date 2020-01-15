@@ -47,9 +47,21 @@
 
         print_r($user_id);
 
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+        if (!isset($_SESSION)) { session_start(); }
+
+        $resultado = mediqo_request('patients/', [
+            'network' => 3,
+            'socialId' => $email,
+            'firstName' => $name,
+            'lastName' => $lastname,
+            'email' => $email,
+            'phone' => $movil,
+            'birthday' => date("Y-m-d", strtotime("- 25 year")),
+            'password' => $password
+        ]);
+
+        $resultado = json_decode($resultado);
+        $mediqo_id = $resultado->object->id;
 
         $name_photo = "";
         $user_photo = 0;
@@ -75,6 +87,7 @@
                 (NULL, {$user_id}, 'registrado_desde',     'pagina'),
 
                 (NULL, {$user_id}, 'user_pass',            '{$password}'),
+                (NULL, {$user_id}, '_mediqo_customer_id',  '{$mediqo_id}'),
                 (NULL, {$user_id}, 'user_mobile',          '{$movil}'),
                 (NULL, {$user_id}, 'user_phone',           '{$movil}'),
                 (NULL, {$user_id}, 'user_gender',          '{$gender}'),

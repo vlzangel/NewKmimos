@@ -24,10 +24,6 @@ jQuery( document ).ready(function() {
         jQuery(".vlz_modal").css("display", "none");
     });
 
-	jQuery("#btn_modal_subir_tarde").on("click", function(e){
-        jQuery(".vlz_modal").css("display", "none");
-    });
-
     jQuery("#login").on("click", function(e){
         show_login_modal("login");
     });
@@ -137,9 +133,6 @@ jQuery( document ).ready(function() {
         }
     });
 
-    jQuery(".km-contenedor-favorito").on("click", function(e){
-        e.preventDefault();
-    });
 });
 
 jQuery(window).on('resize', function(){
@@ -172,59 +165,12 @@ jQuery(document).on("focusin", '[data-target="help"]', function(e){
     mostrarAyuda( jQuery(this) );
 });
 
-function mostrarAyuda( objID ){
-    jQuery('[data-help]').css('display', 'none');
-    jQuery('[data-help="'+jQuery(objID).attr('name')+'"]').css('display', 'inline-block');
-}
-
-function download( archivos ){
-    jQuery.post(HOME+"procesos/generales/download_zip.php", {'fact_selected': archivos}, function(e){
-        e = JSON.parse(e);
-        if( e['estatus'] == "listo" ){
-            location.href = e['url'];
-        }
-    });
-}
-
 function block_scroll_body( block=true ){
     jQuery('body').css('overflow', 'auto');
     if( !block ){
         jQuery('body').css('overflow', 'hidden');
     }
 }
-
-function visible_boton_mapa( display=true){
-    if( !display ){
-        jQuery('.btnOpenPopupMap').css('display', 'none');
-        jQuery('.btnOpenPopupMap').css('display', 'none');  
-    }else{
-        jQuery('.btnOpenPopupMap').css('display', 'block');
-        jQuery('.btnOpenPopupMap').css('display', 'block');
-    }
-}
-
-
-function social_auth( f ){
-    jQuery.get(HOME+"/procesos/login/login_social_id.php?init="+f, function(e){
-        e = JSON.parse(e);
-        jQuery('[data-error="auth"]').fadeOut("fast");
-        if( e['status'] == 'true' ){
-            console.log("as");
-            location.reload();
-        }else{
-            jQuery('[data-error="auth"]').html(e['msg']);
-            jQuery('[data-error="auth"]').fadeIn("fast");
-            setTimeout(function() {
-                jQuery('[data-error="auth"]').fadeOut(1500);
-            },3000);
-        }
-    });
-}
-
-function social_verificar( social_network, id, email ){
-
-}
-
 
 function validar_login( fields = ['usuario', 'clave'] ){
     jQuery('[data-id="alert_login"]').remove();
@@ -244,7 +190,7 @@ function logear(){
         btn.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> INICIANDO SESI&Oacute;N');
     var is_cpf = jQuery("#form_login #is_cpf").val();
     if( validar_login() ){
-
+        
         jQuery.post( 
             HOME+"/procesos/login/login.php", 
             {
@@ -253,41 +199,20 @@ function logear(){
                 proceso: jQuery("#form_login #proceso").val()
             },
             function( data ) {
-
                 console.log( data );
-
-                if( is_cpf == 1 ){
-                    if( data.CPF == 1 && data.login ){
-                        setTimeout(function() {
-                            location.reload();
-                        },1000); 
-                    }else{
-                        if( data.CPF == 0 ){
-                            data.mes = 'Las credenciales no están registradas en el club';
-                        }else{
-                            data.mes = 'Credenciales invalidas';
-                        }
-                        jQuery('#login_submit').before('<div data-id="alert_login" class="alert alert-danger"><strong>'+data.mes+'</strong></div>');
-                        setTimeout(function() {
-                            jQuery('[data-id="alert_login"]').remove();
-                        },3000);                        
-                    }
+                if( data.login ){
+                    location.reload();
                 }else{
-                    if( data.login ){
-                        setTimeout(function() {
-                            location.reload();
-                        },1000); 
-                    }else{
-                        jQuery('#login_submit').before('<div data-id="alert_login" class="alert alert-danger"><strong>'+data.mes+'</strong></div>');
-                        setTimeout(function() {
-                            jQuery('[data-id="alert_login"]').remove();
-                        },3000);
-                    }
+                    jQuery('#login_submit').before('<div data-id="alert_login" class="alert alert-danger"><strong>'+data.mes+'</strong></div>');
+                    setTimeout(function() {
+                        jQuery('[data-id="alert_login"]').remove();
+                    },3000); 
+                    btn.html('INICIAR SESIÓN AHORA');
                 }
                 btn.html('INICIAR SESIÓN AHORA');
 
             },
-            "json"
+            'json'
         );
     }else{
         btn.html('INICIAR SESIÓN AHORA');
