@@ -172,15 +172,23 @@
 
 </div>
 
+<div style='
+    text-align: center;
+    font-size: 15px;
+    margin: 30px auto 0px;
+'>
+    En caso de no poder atender la cita, puede cancelar con el siguente botón
+</div>
+
 <div style='text-align: center;'>
     <a href='[URL_CANCELAR]' style="    
         display: block;
         width: 90%;
         text-align: center;
-        margin: 20px auto;
+        margin: 30px auto 0px;
         padding: 10px;
-        border: solid 3px #CCC;
-        color: #595959;
+        border: solid 3px #000;
+        color: #000;
         text-transform: uppercase;
         text-decoration: none;
         font-weight: 600;
@@ -192,6 +200,6 @@
 
 <div style='text-align: center;'>
     <a href='[URL]'> 
-        <img style='width: 100%; margin: 50px 0px 20px;' src='[KV_URL_IMGS]/CONSULTA/NUEVA/BTN_KMIVET.jpg' />
+        <img style='width: 100%; margin: 30px 0px 20px;' src='[KV_URL_IMGS]/CONSULTA/NUEVA/BTN_KMIVET.jpg' />
     </a>
 </div>

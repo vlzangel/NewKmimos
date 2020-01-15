@@ -161,6 +161,7 @@
 							        [
 							        	"KV_URL_IMGS" 		 => getTema().'/KMIVET/img',
 							        	"URL" 				 => get_home_url(),
+							        	"URL" 				 => get_home_url().'/cita/cancelar/'.$cita_id,
 
 							        	"CONSULTA_ID" 		 => $cita_id,
 
