@@ -45,33 +45,13 @@
 
         save_user_accept_terms ($user_id, $db);
 
-        print_r($user_id);
-
-        if (!isset($_SESSION)) { session_start(); }
-
-        $resultado = mediqo_request('patients/', [
-            'network' => 3,
-            'socialId' => $email,
-            'firstName' => $name,
-            'lastName' => $lastname,
-            'email' => $email,
-            'phone' => $movil,
-            'birthday' => date("Y-m-d", strtotime("- 25 year")),
-            'password' => $password
-        ]);
-
-        $resultado = json_decode($resultado);
-        $mediqo_id = $resultado->object->id;
-
         $name_photo = "";
         $user_photo = 0;
         if( $img_profile != "" ){
             $user_photo = 1;
             $name_photo = $img_profile;
-
             $dir = "../../../../uploads/avatares_clientes/".$user_id."/";
             @mkdir($dir);
-
             $path_origen = "../../../../../imgs/Temp/".$img_profile;
             $path_destino = $dir.$img_profile;
             if( file_exists($path_origen) ){
@@ -82,22 +62,16 @@
         }
 
         $sql = " INSERT INTO wp_usermeta VALUES ";
-
         $sql .= "
                 (NULL, {$user_id}, 'registrado_desde',     'pagina'),
-
                 (NULL, {$user_id}, 'user_pass',            '{$password}'),
-                (NULL, {$user_id}, '_mediqo_customer_id',  '{$mediqo_id}'),
                 (NULL, {$user_id}, 'user_mobile',          '{$movil}'),
                 (NULL, {$user_id}, 'user_phone',           '{$movil}'),
                 (NULL, {$user_id}, 'user_gender',          '{$gender}'),
                 (NULL, {$user_id}, 'user_country',         'México'),
-
                 (NULL, {$user_id}, 'user_photo',           '{$user_photo}'),
                 (NULL, {$user_id}, 'name_photo',           '{$name_photo}'),
-
                 (NULL, {$user_id}, 'description',          ''),
-
                 (NULL, {$user_id}, 'nickname',             '{$email}'),
                 (NULL, {$user_id}, 'first_name',           '{$name}'),
                 (NULL, {$user_id}, 'last_name',            '{$lastname}'),
@@ -114,8 +88,15 @@
         ";
         $db->multi_query( utf8_decode( $sql ) );
 
-        if (!isset($_SESSION)) { session_start(); }
-        $_SESSION["nuevo_registro"] = "YES";
+        if( !validar_paciente($user_id, $email) ){
+            crear_paciente($user_id, [
+                'email'     => $email,
+                'firstName' => $name,
+                'lastName'  => $lastname,
+                'phone'     => $movil,
+                'password'  => $password
+            ]);
+        }
 
         $mensaje = kv_get_email_html(
             'KMIVET/cliente/nuevo', 
@@ -128,13 +109,14 @@
             ]
         );
 
-        wp_mail( $email, "Kmimos México Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $mensaje);
+        wp_mail( $email, "Kmivet - Gracias por registrarte!", $mensaje);
 
         //USER LOGIN
-        $user = get_user_by( 'id', $user_id );
+        $user = get_user_by('id', $user_id );
         wp_set_current_user($user_id, $user->user_login);
         wp_set_auth_cookie($user_id);
 
+        echo $user_id;
     }
 
     exit;

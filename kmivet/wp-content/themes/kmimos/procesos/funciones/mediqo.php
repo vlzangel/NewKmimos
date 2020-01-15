@@ -13,6 +13,8 @@
 		return $result;
 	}
 
+	/* Pacientes */
+
 	function get_mediqo_customer($user_id){
 		$customer = '';
 		$data_cliente = get_data_user($user_id);
@@ -50,6 +52,44 @@
 		];
 	}
 
+	function validar_paciente($user_id, $email){
+		$params['network'] = 3;
+		$params['socialId'] = $email;
+		$resultado = mediqo_request('patients/look_up', $params);
+		$resultado = json_decode($resultado);
+		if( $resultado->status == 'FAIL' ){
+			return false;
+		}else{
+			update_user_meta($user_id, "_mediqo_customer_id", $resultado->object->id);
+			return $resultado->object->id;
+		}
+	}
+
+	function crear_paciente($user_id, $params){
+
+		$params['network'] = 3;
+		$params['socialId'] = $params['email'];
+		$params['phone'] = ( $params['phone'] == '' ) ? '5551234567' : $params['phone'];
+		$params['birthday'] = ( $params['birthday'] == '' ) ? date("Y-m-d", strtotime("- 25 year")) : $params['birthday'];
+
+		$resultado = mediqo_request('patients/', $params);
+		$resultado = json_decode($resultado);
+		$mediqo_id = $resultado->object->id;
+
+		if( $mediqo_id != null ){
+			update_user_meta($user_id, "_mediqo_customer_id", $mediqo_id);
+			return true;
+		}else{
+			update_user_meta($user_id, "_mediqo_error_creando_cliente", json_encode([
+				'info' => $resultado,
+				'res' => $data_cliente
+			]));
+			return false;
+		}
+	}
+
+	/* Consultas */
+
 	function add_appointments($params){
 		$resultado = mediqo_request('appointments/', $params);
 		$resultado = json_decode($resultado);
@@ -66,6 +106,7 @@
 		];
 	}
 
+	/* Medicos */
 	function create_medic($params){
 		$resultado = mediqo_request('registration/api/medic_registration', $params);
 		$resultado = json_decode($resultado);
