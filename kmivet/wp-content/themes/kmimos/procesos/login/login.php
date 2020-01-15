@@ -3,7 +3,10 @@
 		include_once($raiz."/wp-load.php");
 		$load = ob_get_contents();
 	ob_end_clean();
-	
+
+	ini_set('display_errors', 'On');
+	error_reporting( E_ALL );
+
 	extract($_POST);
 
 	date_default_timezone_set('America/Mexico_City');
