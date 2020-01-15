@@ -69,7 +69,7 @@
 			}
 
 		/* Creamos consulta en mediqo */
-		
+
 			$appointment = add_appointments($params);
 			$data = json_encode([ $params, $appointment ]);
 			if( $appointment['status'] == 'ok' ){
@@ -122,7 +122,7 @@
 								$cliente = get_user_meta($user_id, 'first_name', true).' '.get_user_meta($user_id, 'last_name', true);
 								$cliente_email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$user_id);
 								$telefono_cliente = get_user_meta($user_id, 'user_mobile', true).' / '.get_user_meta($user_id, 'user_phone', true);
-							    $header = kv_get_emails_admin();
+							    
 						    	$fecha_cita = date("d/m", strtotime($cita_fecha));
 						    	$hora_cita  = date("h:ia", strtotime($cita_fecha));
 
@@ -167,6 +167,7 @@
 								        'KMIVET/reservas/nueva_admin', 
 								        $INFORMACION
 								    );
+								    $header = kv_get_emails_admin();
 							        wp_mail('soporte.kmimos@gmail.com', 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $header);
 
 							    die(json_encode([
