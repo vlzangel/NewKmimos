@@ -60,7 +60,7 @@
 				<img class="seccion_destacados_flechas seccion_destacados_izq" data-dir="izq" src="'.get_recurso('img').'HOME_2/SVG/boton_anterior.svg" />
 				<img class="seccion_destacados_flechas seccion_destacados_der" data-dir="der" src="'.get_recurso('img').'HOME_2/SVG/boton_siguiente.svg" />
 			</div>
-			<form id="buscador" method="GET" action="'.get_home_url().'/mediqo" >
+			<form id="buscador" method="GET" action="'.get_home_url().'/busqueda" >
 				<div class="titulo_banner_top">Selecciona los filtros para búsqueda avanzada</div>
 				<input type="hidden" name="USER_ID" value="'.$user_id.'" />
 				<input type="hidden" id="latitud" name="latitud" />
