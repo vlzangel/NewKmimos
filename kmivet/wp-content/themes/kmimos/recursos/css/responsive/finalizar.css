@@ -16,7 +16,7 @@
 	}
 
 	.finalizar_sub_titulo {
-	    font-size: 20px;
+	    font-size: 16px;
 	}
 
 	.info_mail > div,
@@ -44,6 +44,21 @@
 	.izq img:first-child {
 	    width: 80%;
 	    padding: 30px 20px 40px;
+	}
+
+	.desglose_box > div.item {
+	    margin: 10px 0px 10px 15px;
+	}
+
+	.sub_titulo,
+	.desglose_box strong {
+	    font-size: 12px;
+	}
+
+	.que_debo_hacer ul {
+	    margin: 10px 0px;
+	    padding: 0px;
+	    padding-left: 20px;
 	}
 
 }

@@ -173,6 +173,24 @@
 </div>
 
 <div style='text-align: center;'>
+    <a href='[URL_CANCELAR]' style="    
+        display: block;
+        width: 90%;
+        text-align: center;
+        margin: 20px auto;
+        padding: 10px;
+        border: solid 3px #CCC;
+        color: #595959;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13px;
+    "> 
+        Cancelar
+    </a>
+</div>
+
+<div style='text-align: center;'>
     <a href='[URL]'> 
         <img style='width: 100%; margin: 50px 0px 20px;' src='[KV_URL_IMGS]/CONSULTA/NUEVA/BTN_KMIVET.jpg' />
     </a>
