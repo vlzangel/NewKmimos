@@ -1,9 +1,13 @@
 <?php
-
+	
+	/* Functions old */
 	include __DIR__.'/NEW/funciones.php';
 	include __DIR__.'/NEW/funciones_plugin.php';
 	include __DIR__.'/KMIVET/funciones.php';
+
+	/* Functions new */
 	include __DIR__.'/procesos/funciones/mediqo.php';
+	include __DIR__.'/procesos/funciones/kmivet.php';
 	
 	/* Comentarios */
 

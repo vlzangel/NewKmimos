@@ -45,6 +45,7 @@
 		}else{
 			$mediqo_id = $data_cliente['_mediqo_customer_id'];
 		}
+		
 	    return [
 			'status' => 'ok',
 			'id'  => $mediqo_id,
