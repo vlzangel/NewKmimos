@@ -3,7 +3,6 @@
 }
 
 @media (max-width: 768px){
-
 	.solo_PC{
 	    display: none !important;
 	}
@@ -40,6 +39,11 @@
 
 	.desglose_box.totales .item {
 	    padding-right: 0px;
+	}
+
+	.izq img:first-child {
+	    width: 80%;
+	    padding: 30px 20px 40px;
 	}
 
 }

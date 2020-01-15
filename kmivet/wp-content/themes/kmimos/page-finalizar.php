@@ -38,7 +38,7 @@
 
 					<a class="banner_inferior" href="'.get_home_url().'/quiero-ser-cuidador-certificado-de-perros">
 						<img class="solo_PC" src="'.get_recurso('img').'FINALIZAR/banner_inferior.png" />
-						<img class="solo_movil" src="'.get_recurso('img').'FINALIZAR/banner_inferior.png" />
+						<img class="solo_movil" src="'.get_recurso('img').'FINALIZAR/banner_inferior_resp.jpg" />
 					</a>
 				</div>
 				<div class="der">
