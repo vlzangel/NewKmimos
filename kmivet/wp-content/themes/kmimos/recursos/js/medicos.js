@@ -8,10 +8,13 @@ var __CB_PAGO_OK__ = function(){
 		HOME+'/procesos/medicos/pagar.php',
 		jQuery("#"+__FORM_PAGO__).serialize(),
 		function(res){
-			// debug(res);
+			debug(res);
 
 			if( res.errores.length == 0 ){
-				jQuery("#reservar_medico .modal-title span").html("Cita Creada Exitosamente!");
+
+				location.href = RAIZ+"/finalizar/"+res.cid;
+
+				/*jQuery("#reservar_medico .modal-title span").html("Cita Creada Exitosamente!");
 				jQuery("#btn_reservar").css("display", "none");
 
 				jQuery("#btn_reservar").html("Solicitar Cunsulta");
@@ -19,8 +22,9 @@ var __CB_PAGO_OK__ = function(){
 
 				jQuery(".vlz_limpiar").val('');
 
+				jQuery("#btn_reservar").css("display", "none");
 				jQuery("#modal_step_1").css('display', 'none');
-				jQuery("#modal_step_2").css('display', 'block');
+				jQuery("#modal_step_2").css('display', 'block');*/
 			}else{
 
 				var errs = '';
