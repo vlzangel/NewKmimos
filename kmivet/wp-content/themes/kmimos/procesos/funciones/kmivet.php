@@ -8,12 +8,15 @@
         $sql = "INSERT INTO wp_kmivet_reservas VALUES(
             NULL,
             '{$user_id}',
-            '',
+            NULL,
             '{$data}',
             'Pendiente',
             NOW()
         )";
-        $wpdb->query( $sql );
-        return $wpdb->insert_id;
+        if( $wpdb->query( $sql ) ){
+            return $wpdb->insert_id;
+        }else{
+            return 0;
+        }
     }
 ?>

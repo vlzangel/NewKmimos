@@ -1,9 +1,10 @@
 <?php
 	session_start();
-	
+
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
 	include_once($raiz."/wp-load.php");
 	date_default_timezone_set('America/Mexico_City');
+	
 	if( !isset($_SESSION)){ session_start(); }
 
 	include_once(dirname(__DIR__)."/funciones/config.php");
@@ -118,7 +119,7 @@
 								
 								$_infos  = $_SESSION['medicos_info'];
 								$_medico = [];
-								foreach ($_infos[ $id ] as $key => $value) {
+								foreach ($_infos[ $medico_id ] as $key => $value) {
 									$_medico[ $key ] = $value;
 								}
 								$cliente = get_user_meta($user_id, 'first_name', true).' '.get_user_meta($user_id, 'last_name', true);
