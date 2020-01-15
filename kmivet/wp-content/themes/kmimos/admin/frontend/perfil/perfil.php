@@ -3,26 +3,6 @@
 
     $userdata = get_user_meta($user_id);
 
-    $_banco = $wpdb->get_var("select banco from cuidadores where user_id = ".$user_id);
-    if( !empty($_banco) ){
-        $datos_banco = unserialize($_banco);
-    }else{
-        $datos_banco = [
-            'banco' => '',
-            'titular' => '',
-            'cuenta' => '',
-        ];
-    }
-    $array_bancos = ['BBVA BANCOMER','BANAMEX','SANTANDER','SCOTIABANK','BANCO DEL BAJIO','BANORTE','BANCO HSBC','BANCO INBURSA','BANCO AZTECA','BANCA MIFEL','BANCA AFIRME','BANSI','BANK OF AMERICA','BANREGIO','BANJERCITO','BANCO INTERACCIONES','AMERICAN EXPRESS','BANCO INVEX','BANCO VE POR MAS','ING BANCO','COMPARTAMOS','BANCO MULTIVA','BANCOPPEL','AHORRO FAMSA','AUTOFIN','MONEX','JP MORGAN','PRUDENTIAL BANK','BANCO VOLKSWAGEN','BANCO DE MEXICO','ABC CAPITAL','ACTINVER','BANCO BASE','BANCO CREDIT SUISSE','BANCO FINTERRA','BANCO FORJADORES','BANCO INMOBILIARIO MEXICANO','BANCO PAGATODO','UNIÓN PROGRESO','BANCO SABADELL','BANCREA','BANK OF CHINA MEXICO','BANK OF TOKYO MITSUBISHI','BANKAOOL','BARCLAYS BANK MEXICO','CIBANCO','CONSUBANCO','DEUTSCHE BANK MEXICO','FUNDACION DONDE BANCO','ICBC MEXICO','INTERCAM BANCO','INVESTA BANCO','MIZUHO BANCO','SHINHAN BANCO','UBS BANCO MEXICO','IXE BANCO'];
-
-    foreach ($array_bancos as $banco) {
-        $select='';
-        if( $banco == $datos_banco['banco'] ){
-            $select = 'selected';
-        }
-        $bancos_option .= '<option value="'.$banco.'" '.$select.'>'.$banco.'</option>';
-    }
-
     $referred = $userdata['user_referred'][0];
 
     $opciones = get_referred_list_options(); $ref_str = "";
@@ -45,17 +25,6 @@
         $recibir_fotos .= '<option value="'.$key.'"'.$selected.'>'.$value.'</option>';
     }
 
-    if (!isset($_SESSION)) { session_start(); }
-    if( $_SESSION["nuevo_registro"] == "YES" ){
-        $pixel = "
-            <script> fbq ('track','CompleteRegistration'); </script>
-        ";
-        $_SESSION["nuevo_registro"] = "";
-        unset($_SESSION["nuevo_registro"]);
-    }else{
-        $pixel = "";
-    }
-
     $tipoUsuario = unserialize($userdata['wp_capabilities'][0]);
 
     $validacionesDescripcion = '';
@@ -76,27 +45,7 @@
 
         <h1>Mi Perfil</h1>';
 
-        /*
-        <section>
-            <div class="vlz_img_portada_perfil">
-                <div class="vlz_img_portada_fondo vlz_rotar" style="background-image: url('.$avatar.');"></div>
-                <div class="vlz_img_portada_normal vlz_rotar" style="background-image: url('.$avatar.');"></div>
-                <div class="vlz_img_portada_cargando vlz_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
-                <div class="vlz_cambiar_portada">
-                    <i class="fa fa-camera" aria-hidden="true"></i>
-                    Cargar Foto
-                    <input type="file" id="portada" name="xportada" accept="image/*" />
-                </div>
-                <div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
-                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
-            </div>
-            <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" name="portada" data-valid="requerid" />
-
-            <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
-        </section>
-        */
-
-$CONTENIDO .=  $pixel.'
+$CONTENIDO .= '
         <div class="inputs_containers">
 
             <section>
@@ -140,16 +89,6 @@ $CONTENIDO .=  $pixel.'
                     <select id="referred" name="referred" data-valid="requerid" >
                         <option value="">Por favor seleccione</option>
                         '.$ref_str.'
-                    </select>
-                </label>
-            </section>
-
-            <section>
-                <label for="user_recibir_fotos" class="lbl-text">'.esc_html__('¿Deseas recibir fotos durante tus reservas?','kmimos').':</label>
-                <label class="lbl-ui">
-                    <select id="user_recibir_fotos" name="user_recibir_fotos" data-valid="requerid" >
-                        <option value="">Por favor seleccione</option>
-                        '.$recibir_fotos.'
                     </select>
                 </label>
             </section>

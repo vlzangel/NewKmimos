@@ -24,7 +24,7 @@ b, strong {
 .km-step-end {
     text-align: center;
     font-size: 30px;
-    margin-top: 85px !important;
+    margin-top: 60px !important;
 }
 
 .km-content {
@@ -39,7 +39,7 @@ b, strong {
 
 .izq img {
     width: 360px;
-    padding: 50px 20px 20px;
+    padding: 50px 20px 40px;
 }
 
 .bg-white-secondary{
@@ -156,8 +156,9 @@ b, strong {
 }
 
 .desglose_box > div {
-    overflow: hidden;    
-    padding: 0px;
+    overflow: hidden;
+    padding: 0px 0px 10px;
+    font-family: 'Gotham-Pro-Light', arial, sans-serif;
 }
 
 .desglose_box > div.item {
@@ -176,6 +177,7 @@ b, strong {
     text-transform: uppercase;
     font-size: 20px;
     font-family: Gotham-Pro-Bold;
+    color: #000;
 }
 
 .item.total > span {
@@ -251,17 +253,35 @@ b, strong {
     text-decoration: none !important;
 }
 
-.que_debo_hacer{
-    font-size: 12px;
+.info_mail {
+    font-size: 13px;
     font-weight: 400;
     text-align: left;
-    margin: 20px 50px;
+    margin: 20px 10px;
     text-align: center;
 }
 
-.que_debo_hacer div{
-    color: #777;
+.info_mail > div {
+    color: #000;
     font-weight: 400;
+    text-align: center;
+}
+
+.info_mail > span {
+    color: red;
+}
+
+.que_debo_hacer {
+    font-size: 12px;
+    font-weight: 400;
+    text-align: left;
+    margin: 20px 10px;
+    text-align: center;
+}
+
+.que_debo_hacer div {
+    color: #000;
+    font-weight: 600;
     text-align: center;
     font-size: 14px;
 }
@@ -276,7 +296,7 @@ b, strong {
 }
 
 .que_debo_hacer ul {
-    margin: 10px 25px;
+    margin: 10px 0px;
 }
 
 .que_debo_hacer li{
@@ -290,13 +310,14 @@ b, strong {
 
 .que_debo_hacer li span{
     color: #888;
+    font-size: 13px;
 }
 
 .finalizar_titulo{
     font-family: Gotham-Pro-Bold;
     text-transform: uppercase;
     font-size: 20px;
-    color: #1bd3c6;
+    color: var(--kmimos-morado);
 }
 
 .finalizar_sub_titulo{
@@ -305,7 +326,7 @@ b, strong {
     font-size: 25px;
 }
 
-.boton{
+.km-content .boton{
     vertical-align: middle;
     display: inline-block;
     margin: 0px 10px;
@@ -314,15 +335,16 @@ b, strong {
     cursor: pointer;
     border: solid 2px;
     font-size: 14px;
+    text-decoration: none !important;
 }
 
-.boton_verde{
-    background-color: #00d2c6;
+.km-content .boton_verde {
+    background-color: var(--kmimos-morado);
     color: #FFF;
-    border: solid 2px #00d2c6 !important;
+    border: solid 2px var(--kmimos-morado) !important;
 }
 
-.boton_border_gris{
+.km-content .boton_border_gris{
     color: #000;
     font-weight: 600;
     border: solid 2px #969696 !important;
@@ -331,7 +353,7 @@ b, strong {
 
 .banner_inferior img {
     width: 100%;
-    padding: 50px 65px 20px;
+    padding: 50px 0px 20px;
 }
 
 footer {

@@ -4,6 +4,40 @@
 
 @media (max-width: 768px){
 
+	.solo_PC{
+	    display: none !important;
+	}
+
+	.solo_movil{
+	    display: block !important;
+	}
+
+	.km-content.km-step-end {
+	    grid-template-columns: 1fr;
+	}
+
+	.finalizar_sub_titulo {
+	    font-size: 20px;
+	}
+
+	.info_mail > div,
+	.info_mail > span {
+	    font-size: 14px;
+	}
+
+	.desglose_box {
+	    padding-right: 0px;
+	}
+
+	.der {
+	    display: none;
+	}
+
+	.banner_inferior img {
+	    width: 100%;
+	    padding: 50px 0px 0px;
+	}
+
 }
 
 @media (max-width: 500px){
