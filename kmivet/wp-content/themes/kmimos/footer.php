@@ -105,7 +105,44 @@
         ";
     }
 
+    $user_tipo = get_user_meta($user_id, "user_type", true);
+    switch ( $user_tipo ) {
+        case 'veterinario':
+            $activo = get_user_meta($user_id, "_mediqo_active", true);
+            // if( $activo+60 > time()  ){
+                echo '
+                    <div id="activado" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Usuario Activado Exitosamente!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="kmivet_msg">
+                                        La contraseña usada en este inicio de sesión solo es requerida para la activación de su perfil en KMIVET<br>
+                                        Para los próximos inicios de sesión podrá seguir usando su contraseña actual.
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        jquery("#activado").modal("show");
+                    </script>
+                ';
+            // }
+        break;
+    }
+
     echo comprimir($HTML);
 
     echo  "</body></html>";
 ?>
+
+                    

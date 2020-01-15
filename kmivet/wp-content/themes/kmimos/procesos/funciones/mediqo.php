@@ -82,4 +82,21 @@
 			'res' => $resultado,
 		];
 	}
+
+	function validar_medico($params){
+		$resultado = mediqo_request('medics/validate', $params);
+		$resultado = json_decode($resultado);
+		$id = $resultado->object->id;
+		if( $resultado->status != 'OK' ){
+		    return [
+				'status' => 'ko',
+				'info' => $resultado,
+			];
+		}
+	    return [
+			'status' => 'ok',
+			'id' => $id,
+			'res' => $resultado,
+		];
+	}
 ?>
