@@ -1,4 +1,6 @@
 <?php
+	session_start();
+	
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
 	include_once($raiz."/wp-load.php");
 	date_default_timezone_set('America/Mexico_City');
@@ -81,7 +83,7 @@
 		if( $appointment['status'] == 'ko' ){
 			die(json_encode([
 	    		"error" => true,
-	    		"msg"  => $appointment['info']['message']
+	    		"msg"  => $appointment['info']->message
 	    	]));
 		}else{
 

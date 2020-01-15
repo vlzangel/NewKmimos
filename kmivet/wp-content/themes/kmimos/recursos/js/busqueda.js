@@ -1,44 +1,21 @@
 var __FORM_PAGO__ = 'reserva_form';
 var __CB_PAGO_OK__ = function(){
 	// debug('Ok');
-
 	jQuery("#btn_reservar").html("Procesando...");
-
 	jQuery.post(
 		HOME+'/procesos/medicos/pagar.php',
 		jQuery("#"+__FORM_PAGO__).serialize(),
 		function(res){
 			debug(res);
-
-			if( res.errores.length == 0 ){
-
+			if( res.error == false ){
 				location.href = RAIZ+"/finalizar/"+res.cid;
-
-				/*jQuery("#reservar_medico .modal-title span").html("Cita Creada Exitosamente!");
-				jQuery("#btn_reservar").css("display", "none");
-
-				jQuery("#btn_reservar").html("Solicitar Cunsulta");
-				jQuery("#btn_reservar").prop("disabled", false);
-
-				jQuery(".vlz_limpiar").val('');
-
-				jQuery("#btn_reservar").css("display", "none");
-				jQuery("#modal_step_1").css('display', 'none');
-				jQuery("#modal_step_2").css('display', 'block');*/
 			}else{
-
-				var errs = '';
-				jQuery.each(res.errores, function(i, v){
-					errs += "<div>"+v.msg+"</div>";
-				});
-
-				jQuery(".errores_box").html( errs );
+				jQuery(".errores_box").html( res.msg );
 				jQuery(".errores_box").css("display", "block");
 
 				jQuery("#btn_reservar").html("Solicitar Consulta");
 				jQuery("#btn_reservar").prop("disabled", false);
 			}
-			
 		}, 
 		'json'
 	);
@@ -55,14 +32,6 @@ var map;
 function initialize() {
 	geocoder = new google.maps.Geocoder();
 	get_ubicacion();
-	/*
-	var latlng = new google.maps.LatLng(-34.397, 150.644);
-	var mapOptions = {
-	  zoom: 8,
-	  center: latlng
-	}
-	map = new google.maps.Map(document.getElementById('map'), mapOptions);
-	*/
 }
 
 function get_coordenadas() {

@@ -3,9 +3,6 @@
         Template Name: Médicos
     */
 
-    $HEADER = 'kmivet';
-    $NAV = 'kmivet';
-
 	date_default_timezone_set('America/Mexico_City');
     
     wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
@@ -128,7 +125,7 @@
     wp_enqueue_script('openpay-v1', getTema()."/js/openpay.v1.min.js", array("jquery"), '1.0.0');
     wp_enqueue_script('openpay-data', getTema()."/js/openpay-data.v1.min.js", array("jquery", "openpay-v1"), '1.0.0');
 
-    wp_enqueue_script('medico_js', get_recurso("js")."medicos.js?v=".time(), array(), '1.0.0');
+    wp_enqueue_script('medico_js', get_recurso("js")."busqueda.js?v=".time(), array(), '1.0.0');
     wp_enqueue_script('openpay_lib', get_recurso("js")."openpay_lib.js?v=".time(), array('medico_js'), '1.0.0');
 
     $mascota_tipo = ( $_SESSION['medicos_serch']['otro'] != '' ) ? $_SESSION['medicos_serch']['otro'] : $_SESSION['medicos_serch']['mascotas'][0];
