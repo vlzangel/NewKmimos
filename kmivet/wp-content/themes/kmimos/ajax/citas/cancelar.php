@@ -94,7 +94,7 @@
 		        wp_mail('soporte.kmimos@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
 
 
-			die( json_encode([ 'status' => true ]) );
+			die( json_encode([ 'status' => true, 'extra' => $INFORMACION ]) );
 		}else{
 			die( json_encode([ 'status' => $res, 'error' => 'Error cambiando el estatus en el API' ]) );
 		}

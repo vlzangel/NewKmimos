@@ -26,7 +26,7 @@ jQuery( document ).ready(function() {
 					jQuery(".kv_msg").attr("class", "kv_msg success");
 
 					setTimeout(function(e){
-						location.href = RAIZ;
+						// location.href = RAIZ;
 					}, 1500);
 					
 				}else{
