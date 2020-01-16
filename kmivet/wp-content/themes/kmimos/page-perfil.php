@@ -46,9 +46,13 @@
 			case 'perfil-usuario':
 				include("admin/frontend/perfil/perfil.php");
 			break;
+			case 'historial':
+				$mostrar_btn = false;
+				include("admin/frontend/perfil/historial.php");
+			break;
 		}
 
-		$HTML_BTN = '';
+		/*$HTML_BTN = '';
 		if( $mostrar_btn ){
 			$type_btn = ( $btn_txt == '+' ) ? '<img src="'.get_recurso('img/PERFILES').'BOTON.svg" onclick="press_btn(jQuery(this))" data-id="#btn_actualizar" /> <input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'" style="display: none;">' : '<input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'">';
 			$HTML_BTN = '
@@ -56,7 +60,7 @@
 				'.$type_btn.'
 				<div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div>
 			</div>';
-		}
+		}*/
 
 		$tipo = 'avatares_clientes/'.$user_id;
 
@@ -80,7 +84,6 @@
 			                <div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
 			                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>
 			            </div>
-			            <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" name="portada" data-valid="requerid" />
 			            <div class="btn_aplicar_rotar" style="display: none;"> Aplicar Cambio </div>
 					</div>
 					<ul>
@@ -88,10 +91,7 @@
 					</ul>
 				</div>
 				<div class="main" >
-					<form id="form_perfil" autocomplete="off" enctype="multipart/form-data">
-						'.$CONTENIDO.'
-						'.$HTML_BTN.'
-					</form>
+					'.$CONTENIDO.'
 				</div>
 	    	</div>
 		';

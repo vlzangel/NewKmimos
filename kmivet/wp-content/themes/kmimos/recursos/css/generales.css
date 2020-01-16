@@ -402,3 +402,30 @@ footer ul li {
     font-size: 15px;
     font-weight: 700;
 }
+
+/* Shortcodes */
+
+.container_shortcode {
+    margin: 120px 0px 80px !important;
+}
+
+.kv_msg {
+    display: none;
+    padding: 10px;
+    background-color: var(--kmimos-gris-claro);
+    margin-top: 20px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.kv_msg.success {
+    display: block;
+    background-color: var(--kmimos-ok);
+    color: #FFF;
+}
+
+.kv_msg.error {
+    display: block;
+    background-color: var(--kmimos-ko);
+    color: #FFF;
+}

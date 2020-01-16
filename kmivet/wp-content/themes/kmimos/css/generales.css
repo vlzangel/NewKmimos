@@ -5,6 +5,9 @@
     --kmimos-gris-claro: #DDD;
     --kmimos-morado: #6B169B;
     --kmimos-morado-hover: #7c189fAA;
+
+    --kmimos-ok: #00b54a;
+    --kmimos-ko: #f44336;
 }
 
 /* COMMON STYLES */

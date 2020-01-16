@@ -76,7 +76,7 @@
 			$appointment = add_appointments($params);
 			$data = json_encode([ $params, $appointment ]);
 			if( $appointment['status'] == 'ok' ){
-				$wpdb->query("UPDATE wp_kmivet_reservas SET cita_id = '{$appointment['id']}' WHERE id = '{$cita_id}' ");
+				$wpdb->query("UPDATE wp_kmivet_reservas SET cita_id = '{$appointment['id']}', status = 1 WHERE id = '{$cita_id}' ");
 			}else{
 				$wpdb->query("UPDATE wp_kmivet_reservas SET cita_id = '{$data}' WHERE id = '{$cita_id}' ");
 			}
@@ -115,7 +115,7 @@
 					        		"msg"  => 'procesando el pago'
 					        	]));
 							}else{
-								$wpdb->query("UPDATE wp_kmivet_reservas SET status = 'Pagado' WHERE id = '{$cita_id}' ");
+								$wpdb->query("UPDATE wp_kmivet_reservas SET pago = 1 WHERE id = '{$cita_id}' ");
 								
 								$_infos  = $_SESSION['medicos_info'];
 								$_medico = [];
@@ -132,7 +132,7 @@
 							    $INFORMACION = [
 						        	"KV_URL_IMGS" 		 => getTema().'/KMIVET/img',
 						        	"URL" 				 => get_home_url(),
-						        	"URL_CANCELAR"		 => get_home_url().'/cita/cancelar/mail/'.$cita_id,
+						        	"URL_CANCELAR"		 => get_home_url().'/citas/cancelar/'.$cita_id,
 
 						        	"NAME_VETERINARIO" 	 	=> $_medico['firstName'].' '.$_medico['lastName'],
 						        	"TELEFONOS_VETERINARIO" => $_medico['phone'],

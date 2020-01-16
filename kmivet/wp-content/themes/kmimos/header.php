@@ -23,7 +23,12 @@
 
 	include_once("funciones.php");
 
-	echo "<script> var KEY_MAPS = '".KEY_MAPS."'; var HEADER = 'kmivet'; </script>";
+	echo "
+		<script> 
+			var KEY_MAPS = '".KEY_MAPS."'; 
+			var HEADER = 'kmivet'; 
+			var AJAX = '".admin_url("admin-ajax.php")."'; 
+		</script>";
 
 	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
 

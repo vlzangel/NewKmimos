@@ -10,7 +10,9 @@
             '{$user_id}',
             NULL,
             '{$data}',
-            'Pendiente',
+            0,
+            0,
+            '',
             NOW()
         )";
         if( $wpdb->query( $sql ) ){

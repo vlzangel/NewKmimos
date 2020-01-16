@@ -8,7 +8,38 @@
 	/* Functions new */
 	include __DIR__.'/procesos/funciones/mediqo.php';
 	include __DIR__.'/procesos/funciones/kmivet.php';
-	
+
+	add_shortcode( "kv", function( $atts ) {
+		extract($atts);
+		if( $sc != '' ){
+			$path = __DIR__.'/shortcodes/'.$sc;
+			if( file_exists( $path.'/init.php' ) ){
+				global $wpdb;
+				if( file_exists( $path.'/css.css' ) ){
+					wp_enqueue_style( $sc.'_css', getTema()."/shortcodes/{$sc}/css.css", array(), "1.0.0" );
+				}
+				echo "<div class='container_shortcode'>";
+					include $path.'/init.php';
+				echo "</div>";
+				if( file_exists( $path.'/js.js' ) ){
+					wp_enqueue_script($sc.'_js', getTema()."/shortcodes/{$sc}/js.js", array("jquery"), '1.0.0');
+				}
+			}
+		}
+	} );
+
+	add_action( "wp_ajax_kv", function(){ ajax_kv(); } );
+	add_action( "wp_ajax_nopriv_kv", function(){ ajax_kv(); } );
+	function ajax_kv(){
+		extract($_GET);
+		extract($_POST);
+		if( $m != '' && $a != '' ){
+			$path = __DIR__.'/ajax/'.$m.'/'.$a.'.php';
+			if( file_exists( $path ) ){ global $wpdb; include $path; }
+		}
+		die();
+	}
+
 	/* Comentarios */
 
 		function parseNameClient($clent_id){

@@ -107,7 +107,25 @@
 		];
 	}
 
+	function change_status($id, $params){
+		$params['source'] = 1;
+		$resultado = mediqo_request('appointments/'.$id.'/status', $params);
+		$resultado = json_decode($resultado);
+		$cita_id = $resultado->object->id;
+		if( $cita_id == null ){
+		    return [
+				'status' => 'ko',
+				'info' => $resultado
+			];
+		}
+	    return [
+			'status' => 'ok',
+			'id' => $cita_id
+		];
+	}
+
 	/* Medicos */
+
 	function create_medic($params){
 		$resultado = mediqo_request('registration/api/medic_registration', $params);
 		$resultado = json_decode($resultado);

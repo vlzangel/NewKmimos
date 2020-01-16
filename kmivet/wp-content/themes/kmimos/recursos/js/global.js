@@ -45,3 +45,25 @@ function fixedHeader() {
         }
     }
 }
+
+function _post(url, data, CB){
+    jQuery.post(
+        url,
+        data,
+        function(r){
+            CB(r);
+        }, 
+        'json'
+    );
+}
+
+function _get(url, data, CB){
+    jQuery.post(
+        url,
+        data,
+        function(r){
+            CB(r);
+        }, 
+        'json'
+    );
+}

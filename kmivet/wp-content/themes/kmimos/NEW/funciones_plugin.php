@@ -404,10 +404,11 @@
                 $user_id = $current_user->ID;
                 $user = new WP_User( $user_id );
                 $salir = wp_logout_url( home_url() );
-                $tipo_usuario = get_usermeta( $user_id, "tipo_usuario", true );
+                
+                $tipo_usuario = strtolower( get_usermeta( $user_id, "tipo_usuario", true ) );
 
                 $MENUS = array(
-                    "vendor" => array(
+                    "veterinario" => array(
                         array("name"  => "Mi Perfil",
                             "url"   => "/perfil-usuario/",
                             "icono" => "460",
@@ -420,12 +421,18 @@
                             "img" => "Cerrar_sesion.svg",
                         ),
                     ),
-                    "subscriber" => array(
+                    "paciente" => array(
                         array(
                             "url"   => "/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460",
                             "img" => "Perfil.svg",
+                        ),
+                        array(
+                            "url"   => "/perfil-usuario/historial",
+                            "name"  => "Mis Citas",
+                            "icono" => "33",
+                            "img" => "Reservas.svg",
                         ),
                         array(
                             "url"   => $salir,
@@ -434,12 +441,18 @@
                             "img" => "Cerrar_sesion.svg",
                         )
                     ),
-                    "administrator" => array(
+                    "administrador" => array(
                         array(
                             "url"   => "/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460",
                             "img" => "Perfil.svg",
+                        ),
+                        array(
+                            "url"   => "/perfil-usuario/historial",
+                            "name"  => "Mis Citas",
+                            "icono" => "33",
+                            "img" => "Reservas.svg",
                         ),
                         array(
                             "url"   => "/wp-admin/",
@@ -474,7 +487,7 @@
                 $MENU["head_movil"] = '<li><a href="#" class="km-nav-link"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
                 $MENU["body"] = "";
 
-                $role = ( strtolower($tipo_usuario) == 'inversor' )? strtolower($tipo_usuario) : $user->roles[0] ;
+                $role = ( strtolower($tipo_usuario) == 'inversor' )? strtolower($tipo_usuario) : $tipo_usuario;
                 if( $MENUS[ $role ] != "" ){
                     foreach ($MENUS[ $role ] as $key => $value) {
                         $sts = "";

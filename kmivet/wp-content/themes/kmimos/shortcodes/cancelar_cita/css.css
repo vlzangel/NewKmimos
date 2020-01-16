@@ -1,0 +1,50 @@
+#cancelar_cita {
+	display: block;
+	width: 600px;
+	max-width: 100%;
+	margin: 0px auto;
+}
+
+#cancelar_cita label {
+    display: block;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+#cancelar_cita input,
+#cancelar_cita select,
+#cancelar_cita textarea {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+	border: solid 1px var( --kmimos-gris );
+}
+
+#cancelar_cita textarea {
+	resize: none;
+	height: 100px;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #f44336;
+    color: #FFF;
+    font-size: 15px;
+    font-weight: 700;
+    border: 0px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+#otro_motivo {
+	display: none;
+}
+
+#otro_motivo.show {
+	display: block;
+}
