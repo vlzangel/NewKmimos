@@ -45,7 +45,7 @@
 
 			    global $wpdb;
 
-			    $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE id = '{$cita_id}' ");
+			    $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE cita_id = '{$cita_id}' ");
 			    $INFORMACION = (array) json_decode( $info_email );
 
 			    $medicos = get_medics(
