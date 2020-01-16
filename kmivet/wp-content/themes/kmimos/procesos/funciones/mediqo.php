@@ -1,14 +1,19 @@
 <?php
-	function mediqo_request($url, $params){
+	function mediqo_request($url, $params, $type = 'POST'){
 		$url = 'https://api.mediqo.mx/'.$url;
 		// $url = '13.59.244.182/'.$url;
-		$ch = curl_init($url);
-		$payload = json_encode($params);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$result = curl_exec($ch);
-		curl_close($ch);
+		
+		if( $type == 'POST' ){
+			$ch = curl_init($url);
+			$payload = json_encode($params);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$result = curl_exec($ch);
+			curl_close($ch);
+		}else{
+			$result = file_get_contents($url);
+		}
 
 		return $result;
 	}
@@ -145,6 +150,40 @@
 
 	function validar_medico($params){
 		$resultado = mediqo_request('medics/validate', $params);
+		$resultado = json_decode($resultado);
+		$id = $resultado->object->id;
+		if( $resultado->status != 'OK' ){
+		    return [
+				'status' => 'ko',
+				'info' => $resultado,
+			];
+		}
+	    return [
+			'status' => 'ok',
+			'id' => $id,
+			'res' => $resultado,
+		];
+	}
+
+	function get_medic($mediqo_id){
+		$resultado = mediqo_request('medics/'.$mediqo_id, []);
+		$resultado = json_decode($resultado);
+		$id = $resultado->object->id;
+		if( $resultado->status != 'OK' ){
+		    return [
+				'status' => 'ko',
+				'info' => $resultado,
+			];
+		}
+	    return [
+			'status' => 'ok',
+			'id' => $id,
+			'res' => $resultado,
+		];
+	}
+
+	function get_medics($specialty, $lat, $lng){
+		$resultado = mediqo_request('medics/?specialty='.$specialty.'&lat='.$lat.'&lng='.$lng, [], 'GET');
 		$resultado = json_decode($resultado);
 		$id = $resultado->object->id;
 		if( $resultado->status != 'OK' ){

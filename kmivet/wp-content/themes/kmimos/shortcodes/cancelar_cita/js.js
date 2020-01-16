@@ -13,11 +13,14 @@ jQuery( document ).ready(function() {
 	jQuery("#cancelar_cita").on("submit", function(e){
 		e.preventDefault();
 
+		jQuery('[type="submit"]').html('Procesando...');
+		jQuery('[type="submit"]').prop('disabled', true);
+
 		_post(
 			AJAX+'?action=kv&m=citas&a=cancelar',
 			jQuery("#cancelar_cita").serialize(),
 			function(r){
-				// console.log( r );
+				console.log( r );
 				if( r.status ){
 					jQuery(".kv_msg").html("Estatus Cambiado Exitosamente!");
 					jQuery(".kv_msg").attr("class", "kv_msg success");
@@ -27,6 +30,8 @@ jQuery( document ).ready(function() {
 					}, 1500);
 					
 				}else{
+					jQuery('[type="submit"]').html('Cancelar');
+					jQuery('[type="submit"]').prop('disabled', false);
 					jQuery(".kv_msg").html(r.error);
 					jQuery(".kv_msg").attr("class", "kv_msg error");
 				}

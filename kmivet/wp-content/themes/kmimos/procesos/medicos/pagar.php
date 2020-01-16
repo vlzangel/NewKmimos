@@ -148,6 +148,10 @@
 						        	"HORA" 	 			=> $hora_cita,
 						        	"TIPO_PAGO" 		=> 'Pago por Tarjeta',
 						        	"TOTAL" 			=> number_format($cita_precio, 2, ',', '.'),
+
+						        	"LAT_MEDIC" 		=> $_medico["lat"],
+						        	"LNG_MEDIC" 		=> $_medico["lng"],
+						        	"SPE_MEDIC" 		=> $specialty_id
 						        ];
 
 						        $info_email = json_encode($INFORMACION, JSON_UNESCAPED_UNICODE);

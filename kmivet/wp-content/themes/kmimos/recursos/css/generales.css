@@ -410,6 +410,7 @@ footer ul li {
 }
 
 .kv_msg {
+    position: relative;
     display: none;
     padding: 10px;
     background-color: var(--kmimos-gris-claro);

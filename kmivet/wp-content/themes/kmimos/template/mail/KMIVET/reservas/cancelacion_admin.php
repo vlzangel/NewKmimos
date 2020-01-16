@@ -58,8 +58,7 @@
         text-align: justify;
         margin-bottom: 30px;
     '>
-        <span style="color: #6B169B; font-weight: 700;">PERO...</span> te sugerimos estos perfiles con <strong>características similares</strong> a los que buscas que creemos pueden interesarte.
-        <span style="color: #6B169B;">Solo da click sobre ellos y te llevaran directamente a sus perfiles</span>
+        Estas son las recomendaciones enviadas al cliente:
     </div>
 
     [RECOMENDACIONES]

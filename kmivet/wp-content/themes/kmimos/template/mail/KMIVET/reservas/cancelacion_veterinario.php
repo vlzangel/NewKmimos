@@ -30,7 +30,7 @@
             color: #000000; 
             text-align: left; 
         '>
-            La cita <strong style="color: #6B169B; text-transform: capitalize;">#[CONSULTA_ID]</strong> ha sido <strong style="color: #6B169B; text-transform: capitalize;">CANCELADA</strong> por el médico veterinario.
+            La cita <strong style="color: #6B169B; text-transform: capitalize;">#[CONSULTA_ID]</strong> ha sido <strong style="color: #6B169B; text-transform: capitalize;">CANCELADA</strong> de acuerdo a tu petición.
         </div>
 
     </div>
@@ -48,21 +48,6 @@
     '>
         C&oacute;digo de cita #[CONSULTA_ID]
     </div>
-
-    <div style='
-        font-size: 15px;
-        line-height: 1.4;
-        letter-spacing: 0.3px;
-        color: #000000;
-        padding: 0px;
-        text-align: justify;
-        margin-bottom: 30px;
-    '>
-        <span style="color: #6B169B; font-weight: 700;">PERO...</span> te sugerimos estos perfiles con <strong>características similares</strong> a los que buscas que creemos pueden interesarte.
-        <span style="color: #6B169B;">Solo da click sobre ellos y te llevaran directamente a sus perfiles</span>
-    </div>
-
-    [RECOMENDACIONES]
 
 </div>
 
