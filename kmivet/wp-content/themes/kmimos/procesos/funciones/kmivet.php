@@ -4,7 +4,7 @@
         extract( $_POST_ );
         $user_id = $_POST_['user_id'];
         unset( $_POST_['user_id'] );
-        $data = json_encode($_POST_);
+        $data = json_encode($_POST_, JSON_UNESCAPED_UNICODE);
         $sql = "INSERT INTO wp_kmivet_reservas VALUES(
             NULL,
             '{$user_id}',
@@ -12,6 +12,7 @@
             '{$data}',
             0,
             0,
+            '',
             '',
             NOW()
         )";

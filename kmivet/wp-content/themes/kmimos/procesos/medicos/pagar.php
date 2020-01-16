@@ -150,6 +150,10 @@
 						        	"TOTAL" 			=> number_format($cita_precio, 2, ',', '.'),
 						        ];
 
+						        $info_email = json_encode($INFORMACION, JSON_UNESCAPED_UNICODE);
+
+						        $wpdb->query("UPDATE wp_kmivet_reservas SET info_email = '{$info_email}' WHERE id = '{$cita_id}' ");
+
 							    /* EMAIL al CLIENTE */
 							    	$mensaje = kv_get_email_html(
 								        'KMIVET/reservas/nueva_cliente', 

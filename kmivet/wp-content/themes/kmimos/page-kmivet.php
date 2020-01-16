@@ -487,7 +487,6 @@
     
     wp_enqueue_script('isMobile', get_recurso("js")."isMobile.js", array(), '1.0.0');
     wp_enqueue_script('buscar_home', get_recurso("js")."kmivet.js", array('isMobile'), '1.0.0');
-    wp_enqueue_script('club_patitas', get_recurso("js")."club_patitas.js", array(), '1.0.0');
 
     get_footer(); 
 ?>
