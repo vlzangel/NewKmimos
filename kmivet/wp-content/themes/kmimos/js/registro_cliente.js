@@ -186,9 +186,6 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				jQuery( "#btn_si_acepto" ).addClass("btn_disable");
 				jQuery( "#btn_si_acepto" ).addClass("btn_disable_2");
 
-				jQuery(".popup-condiciones").css("display", "none");
-				jQuery(".popup-registrarte-final").css("display", "block");
-
 				jQuery("#btn_cerrar").on("click", function(e){
 					finalizar_proceso();
 				});
@@ -232,23 +229,9 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 						jQuery("#img_pet").val( "" );
 						jQuery("body").scrollTop(0);
 
-						evento_google("nuevo_registro_cliente");
-						evento_fbq("track", "traking_code_nuevo_registro_cliente"); 
+						jQuery(".popup-condiciones").css("display", "none");
+						jQuery(".popup-registrarte-final").css("display", "block");
 
-						if( wlabel == "petco" ){
-							window.adf&&adf.ClickTrack(this,1453019,'MX_Kmimos_RegistoTYP_180907',{});
-							//registro campaing monitor
-							jQuery.post( 
-			                    RAIZ+"campaing/suscribir.php",{
-			                        "email": datos['email'],
-			                        "list": 'petco_registro'
-			                    }, 
-			                    function( data ) {
-			                        console.log( data );
-			                        console.log("Suscripción enviadas");
-			                    }
-			                );
-						}
 					}
 					jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
 				});

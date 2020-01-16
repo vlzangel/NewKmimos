@@ -7,6 +7,9 @@
 		$rcs = change_status($cita_id, [ "status" => 4, "description" => $motivo ]);
 
 		if( $rcs['status'] == 'ok' ){
+
+			// TODO: Enviar correo de cancelación
+
 			die( json_encode([ 'status' => true ]) );
 		}else{
 			die( json_encode([ 'status' => $res, 'error' => 'Error cambiando el estatus en el API' ]) );
