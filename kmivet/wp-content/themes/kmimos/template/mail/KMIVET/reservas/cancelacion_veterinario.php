@@ -1,5 +1,5 @@
 <div style='text-align:center; margin-bottom: 0px;'>
-    <img src='[KV_URL_IMGS]/CONSULTA/CANCELACION/HEADER.png' style='width: 100%;' >
+    <img src='[KV_URL_IMGS]/CONSULTA/CANCELACION/header.png' style='width: 100%;' >
 </div>
 
 <div style='font-family: Verdana; width: 100%'>
