@@ -24,6 +24,10 @@
 	    height: 25px;
 	}
 
+	.menu_movil_interno .navbar-nav {
+	    padding-top: 20px;
+	}
+
 	.footer_alto form input[type='submit'] {
 	    height: 33px;
 	}
