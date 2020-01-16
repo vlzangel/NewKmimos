@@ -43,8 +43,6 @@
 			        return $_ranking;
 			    }
 
-			    $cita_id = 68;
-
 			    global $wpdb;
 
 			    $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE id = '{$cita_id}' ");
