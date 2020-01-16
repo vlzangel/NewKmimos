@@ -1,5 +1,5 @@
 ﻿:root {
-    --kmimos-azul: #00d2c6;
+    --kmimos-azul: var(--kmimos-morado);
     --kmimos-azul-mediqo: #008bf2;
     --kmimos-gris: #CCC;
     --kmimos-gris-claro: #DDD;
@@ -746,7 +746,7 @@ section .left{
         .menu_movil_interno {
             position: relative;
             left: 0;
-            background: #00d2c6;
+            background: var(--kmimos-morado);
             width: 100%;
             max-width: 300px;
             padding: 15px 15px 15px 15px;
