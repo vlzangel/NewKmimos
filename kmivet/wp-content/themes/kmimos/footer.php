@@ -73,6 +73,7 @@
                                 <li> <a href="whatsapp://send/?phone=+5213312614186" > <i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (33) 12614186 </a> </li>
                                 <li> <a href="whatsapp://send/?phone=+5215568922182" > <i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (55) 68922182 </a> </li>
                             -->
+                            <li> <a href="whatsapp://send/?phone=+5215578507572" > <i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (55) 78507572 </a> </li>
                             <li> <a href="whatsapp://send/?phone=+5215531374829" > <i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (55) 31374829 </a> </li>
                             <li> <a href="mailto:contactomex@kmimos.la" > <i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email:</span> contactomex@kmimos.la </a> </li>
                         </ul>
