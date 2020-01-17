@@ -30,7 +30,7 @@
                 <strong>CLIENTE</strong>  
                 <div class="item">  
                     <div>Nombre</div>  
-                    <span>'.$metas['first_name'][0].'</span> 
+                    <span>'.$info->NAME_CLIENTE.'</span> 
                 </div>
                 <div class="item">
                     <div>Email</div>  

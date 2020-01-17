@@ -244,7 +244,7 @@
     font-size: 13px;
     margin: 30px auto 0px;
 '>
-    En caso de que el veterinario no poda atender la cita y requiera que la cancelen por él, puede hacerlo mediante el siguente botón
+    En caso de que el veterinario no pueda atender la cita y requiera que la cancelen por él, puede hacerlo mediante el siguente botón
 </div>
 
 <div style='text-align: center;'>

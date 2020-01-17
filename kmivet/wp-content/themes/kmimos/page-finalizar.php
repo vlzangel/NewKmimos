@@ -3,7 +3,14 @@
         Template Name: Finalizar
     */
 
-	if( !isset($_SESSION)){ session_start(); } unset($_SESSION["pagando"]);
+	if( !isset($_SESSION)){ session_start(); }
+
+	global $wpdb;
+
+	$cid = vlz_get_page();
+	$cita = $wpdb->get_row("SELECT * FROM wp_kmivet_reservas WHERE id = ".$cid);
+
+	$info = json_decode($cita->info_email);
 
     wp_enqueue_style('finalizar', get_recurso('css')."finalizar.css", array(), '1.0.0');
 	wp_enqueue_style('finalizar_responsive', get_recurso('css')."responsive/finalizar.css", array(), '1.0.0');
@@ -19,7 +26,7 @@
 				<div class="izq">
 					<img src="'.get_recurso("img").'FINALIZAR/img_superior.svg" />
 					<div class="finalizar_titulo">
-						¡Genial '.get_user_meta($data_reserva["cliente"]["id"], "first_name", true).' '.get_user_meta($data_reserva["cliente"]["id"], "last_name", true).'!
+						¡Genial '.$info->NAME_CLIENTE.'!
 					</div>
 					<div class="finalizar_sub_titulo">
 						Reservaste Exitosamente

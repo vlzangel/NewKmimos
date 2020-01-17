@@ -8,7 +8,7 @@
     <div style='font-family: Arial; font-size: 30px; font-weight: bold; letter-spacing: 0.4px; color: #6B169B; padding-bottom: 15px;'>
         [NAME]
     </div> 
-    <div style='width: 100%; font-size: 16px; line-height: 1.5;'>Te entregamos tus credenciales para que tengas acceso a Kmimos: </div>
+    <div style='width: 100%; font-size: 16px; line-height: 1.5;'>Te entregamos tus credenciales para que tengas acceso a Kmivet: </div>
 </div>
 
 <div style='text-align: center;'>
