@@ -69,8 +69,10 @@
                         <ul class="info_contacto">
                             <li> <a href="tel:018009564667" > <i class="fa fa-phone" aria-hidden="true"></i> <span>Teléfono:</span> 01 (800) 9 564667 </a> </li>
                             <li> <a href="tel:+52015585261162" > <i class="fa fa-phone" aria-hidden="true"></i> <span>Telef. Local:</span> 01 (55) 85261162 </a> </li>
-                            <li> <a href="whatsapp://send/?phone=+5213312614186" > <i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (33) 12614186 </a> </li>
-                            <li> <a href="whatsapp://send/?phone=+5215568922182" > <i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (55) 68922182 </a> </li>
+                            <!--
+                                <li> <a href="whatsapp://send/?phone=+5213312614186" > <i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (33) 12614186 </a> </li>
+                                <li> <a href="whatsapp://send/?phone=+5215568922182" > <i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (55) 68922182 </a> </li>
+                            -->
                             <li> <a href="whatsapp://send/?phone=+5215531374829" > <i class="fa fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp:</span> +52 1 (55) 31374829 </a> </li>
                             <li> <a href="mailto:contactomex@kmimos.la" > <i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email:</span> contactomex@kmimos.la </a> </li>
                         </ul>
