@@ -1,0 +1,13 @@
+#wp-admin-bar-updates,
+#wp-admin-bar-comments,
+#wp-admin-bar-new-content,
+[for="dashboard_right_now-hide"],
+[for="dashboard_activity-hide"],
+[for="dashboard_quick_press-hide"],
+[for="dashboard_primary-hide"],
+[for="wp_welcome_panel-hide"],
+#wpfooter
+{
+	display: none !important;
+}
+

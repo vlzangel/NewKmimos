@@ -25,23 +25,17 @@
     }else{
         $hoy = date("Y-m-d H:i:s");
 
-        $new_user = "
-            INSERT INTO wp_users VALUES (
-                NULL,
-                '".$email."',
-                '".md5($password)."',
-                '".$email."',
-                '".$email."',
-                '',
-                '".$hoy."',
-                '',
-                0,
-                '".$name." ".$lastname."'
-            );
-        ";
+        $userdata = array(
+            'user_pass'             => $password,
+            'user_login'            => $email,
+            'user_nicename'         => $name,
+            'user_email'            => $email,
+            'first_name'            => $name,
+            'last_name'             => $lastname,
+            'show_admin_bar_front'  => false
+        );
 
-        $db->query( utf8_decode( $new_user ) );
-        $user_id = $db->insert_id();
+        $user_id = wp_insert_user( $userdata );
 
         save_user_accept_terms ($user_id, $db);
 
@@ -50,7 +44,7 @@
         if( $img_profile != "" ){
             $user_photo = 1;
             $name_photo = $img_profile;
-            $dir = "../../../../uploads/avatares_clientes/".$user_id."/";
+            $dir = "../../../../uploads/avatares/".$user_id."/";
             @mkdir($dir);
             $path_origen = "../../../../../imgs/Temp/".$img_profile;
             $path_destino = $dir.$img_profile;
@@ -61,36 +55,31 @@
             }                  
         }
 
-        $sql = " INSERT INTO wp_usermeta VALUES ";
-        $sql .= "
-                (NULL, {$user_id}, 'registrado_desde',     'pagina'),
-                (NULL, {$user_id}, 'tipo_usuario',         'paciente'),
-                (NULL, {$user_id}, 'user_pass',            '{$password}'),
-                (NULL, {$user_id}, 'user_mobile',          '{$movil}'),
-                (NULL, {$user_id}, 'user_phone',           '{$movil}'),
-                (NULL, {$user_id}, 'user_gender',          '{$gender}'),
-                (NULL, {$user_id}, 'user_country',         'México'),
-                (NULL, {$user_id}, 'user_photo',           '{$user_photo}'),
-                (NULL, {$user_id}, 'name_photo',           '{$name_photo}'),
-                (NULL, {$user_id}, 'description',          ''),
-                (NULL, {$user_id}, 'nickname',             '{$email}'),
-                (NULL, {$user_id}, 'first_name',           '{$name}'),
-                (NULL, {$user_id}, 'last_name',            '{$lastname}'),
-                (NULL, {$user_id}, 'user_age',             '{$age}'),
-                (NULL, {$user_id}, 'user_smoker',          '{$smoker}'),
-                (NULL, {$user_id}, 'user_referred',        '{$referido}'),
-                (NULL, {$user_id}, 'rich_editing',         'true'),
-                (NULL, {$user_id}, 'comment_shortcuts',    'false'),
-                (NULL, {$user_id}, 'admin_color',          'fresh'),
-                (NULL, {$user_id}, 'use_ssl',              '0'),
-                (NULL, {$user_id}, 'show_admin_bar_front', 'false'),
-                (NULL, {$user_id}, 'wp_capabilities',      'a:1:{s:10:\"subscriber\";b:1;}'),
-                (NULL, {$user_id}, 'wp_user_level',        '0');
-        ";
-        $db->multi_query( utf8_decode( $sql ) );
+        $METAS = [
+            'first_name' => $name,
+            'last_name' => $lastname,
+            'user_country' => 'México',
+            'registrado_desde' => 'Pagina',
+            'tipo_usuario' => 'paciente',
+            'user_pass' => $password,
+            'user_mobile' => $movil,
+            'user_phone' => $movil,
+            'user_gender' => $gender,
+            'user_photo' => $user_photo,
+            'name_photo' => $name_photo,
+            'user_age' => $age,
+            'user_referred' => $referido,
+            'user_email' => $email,
+        ];
+
+        foreach ($METAS as $key => $value) {
+            update_user_meta($user_id, $key, $value);
+        }
 
         if( !validar_paciente($user_id, $email) ){
-            crear_paciente($user_id, [
+            // Se registra el paciente en mediqo.
+            // El id se agrega en el meta _mediqo_customer_id desde el mismo meta
+            $id = crear_paciente($user_id, [
                 'email'     => $email,
                 'firstName' => $name,
                 'lastName'  => $lastname,
@@ -98,6 +87,10 @@
                 'password'  => $password
             ]);
         }
+
+        $METAS['_mediqo_customer_id'] = get_user_meta($user_id, '_mediqo_customer_id', true);
+
+        new_paciente($user_id, $METAS);
 
         $mensaje = kv_get_email_html(
             'KMIVET/cliente/nuevo', 

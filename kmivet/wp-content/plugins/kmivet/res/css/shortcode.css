@@ -1,0 +1,16 @@
+:root{
+    --masa-orange: #ff4c01;
+    --masa-gris: #CCC;
+    --masa-gris-claro: #dee2e6;
+}
+
+#footer-bottom {
+    padding: 150px 0 5px;
+    background-color: #FFF;
+    border-top: solid 3px rgba(0, 0, 0, .32);
+}
+
+form#evento_inscribir {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}

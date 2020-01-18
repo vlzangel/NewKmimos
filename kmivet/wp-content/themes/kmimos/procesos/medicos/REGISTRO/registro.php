@@ -8,22 +8,6 @@
 	global $wpdb;
 	extract($_POST);
 
-	$wpdb->query("INSERT INTO wp_kmivet_medicos VALUES(
-		NULL,
-		'{$kv_email}',
-		'{$kv_dni}',
-		NOW()
-	)");
-
-	$medico_id = $wpdb->insert_id;
-	$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
-
-	$wpdb->query("INSERT INTO wp_kmivet_data_medicos VALUES (
-		NULL,
-		'{$medico_id}',
-		'{$data}'
-	)");
-
 	$user_id = username_exists( $kv_email );
 	if ( ! $user_id && false == email_exists( $kv_email ) ) {
 	    $random_password = wp_generate_password( $length = 5, $include_standard_special_chars = false );
@@ -48,6 +32,16 @@
 		$random_password = "La misma clave de tu usuario de kmimos.";
 	    $usuario = 'no';
 	}
+
+	$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
+	$wpdb->query("INSERT INTO wp_kmivet_veterinarios VALUES (
+		NULL,
+		'{$user_id}',
+		'{$kv_email}',
+		'{$kv_dni}',
+		'{$data}'
+	)");
+	$medico_id = $wpdb->insert_id;
 
 	// registration/api/medic_registration
 

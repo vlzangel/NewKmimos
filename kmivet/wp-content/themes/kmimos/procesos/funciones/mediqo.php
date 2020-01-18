@@ -72,16 +72,13 @@
 	}
 
 	function crear_paciente($user_id, $params){
-
 		$params['network'] = 3;
 		$params['socialId'] = $params['email'];
 		$params['phone'] = ( $params['phone'] == '' ) ? '5551234567' : $params['phone'];
 		$params['birthday'] = ( $params['birthday'] == '' ) ? date("Y-m-d", strtotime("- 25 year")) : $params['birthday'];
-
 		$resultado = mediqo_request('patients/', $params);
 		$resultado = json_decode($resultado);
 		$mediqo_id = $resultado->object->id;
-
 		if( $mediqo_id != null ){
 			update_user_meta($user_id, "_mediqo_customer_id", $mediqo_id);
 			return true;

@@ -1,4 +1,5 @@
 <?php
+    /* CITAS */
     function new_cita($_POST_) {
         global $wpdb;
         extract( $_POST_ );
@@ -14,6 +15,24 @@
             0,
             '',
             '',
+            NOW()
+        )";
+        if( $wpdb->query( $sql ) ){
+            return $wpdb->insert_id;
+        }else{
+            return 0;
+        }
+    }
+
+    /* PACIENTES */
+
+    function new_paciente($user_id, $METAS) {
+        global $wpdb;
+        $data = json_encode($METAS, JSON_UNESCAPED_UNICODE);
+        $sql = "INSERT INTO wp_kmivet_pacientes VALUES (
+            NULL,
+            '{$user_id}',
+            '{$data}',
             NOW()
         )";
         if( $wpdb->query( $sql ) ){
