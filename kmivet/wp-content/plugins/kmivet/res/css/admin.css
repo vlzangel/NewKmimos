@@ -624,3 +624,8 @@ input[type="checkbox"]:checked::before {
     position: relative;
     overflow: hidden;
 }
+
+ul.dtr-details li {
+    margin: 0px !important;
+    line-height: 1 !important;
+}

@@ -26,11 +26,11 @@
 			',
 			$status,
 			$fecha,
+			$info->cita_direccion,
+
 			'<div style="text-transform: capitalize;">'.$i->first_name.' '.$i->last_name.'</div>',
 			$i->user_email,
 			$i->user_mobile.' / '.$i->user_phone,
-
-
 
 			"-",
 			"-",

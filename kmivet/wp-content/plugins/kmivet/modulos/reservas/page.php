@@ -3,6 +3,8 @@
 		'cls' => [
 			['t' => 'Estatus'],
 			['t' => 'Fecha'],
+			['t' => 'Dirección'],
+
 			['t' => 'Cli. - Nombre'],
 			['t' => 'Cli. - Email'],
 			['t' => 'Cli. - Teléfonos'],
