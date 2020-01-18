@@ -39,7 +39,8 @@
 		'{$user_id}',
 		'{$kv_email}',
 		'{$kv_dni}',
-		'{$data}'
+		'{$data}',
+		0
 	)");
 	$medico_id = $wpdb->insert_id;
 

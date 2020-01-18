@@ -5,7 +5,7 @@
 		$info = json_decode($item->data);
 
 		$data['data'][] = [
-			$item->id,
+			'<div class="align_right">'.$item->id.'</div>',
 			'
 				<div class="align_center">
 					<!-- <span class="vlz_boton" > <i class="far fa-eye" onclick="_ver('.$item->id.')"></i> </span> -->

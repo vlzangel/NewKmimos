@@ -35,9 +35,13 @@
 		initMenu( [
 			[
 				'tit' => 'Reportes', 
-				'mod' => 'pacientes', 
+				'mod' => 'reservas', 
 				'ico' => 'dashicons-menu',
 				'sub' => [
+					[
+						'tit' => 'Reservas', 
+						'mod' => 'reservas'
+					],
 					[
 						'tit' => 'Pacientes', 
 						'mod' => 'pacientes'

@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
         order_dir = 'desc';
     }
 
-    table = jQuery('#example').DataTable( {
+    table = jQuery('#example').DataTable( {/*
         responsive: {
             details: {
                 display: jQuery.fn.dataTable.Responsive.display.modal( {
@@ -22,7 +22,8 @@ jQuery(document).ready(function() {
                 } ),
                 renderer: jQuery.fn.dataTable.Responsive.renderer.tableAll()
             }
-        },
+        },*/
+        "responsive": true,
         "language": {
             "emptyTable":           "No hay datos disponibles en la tabla.",
             "info":                 "Del _START_ al _END_ de _TOTAL_ ",
