@@ -16,6 +16,9 @@
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
+
+    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+
 	$btn_txt = "Actualizar";
 
 	echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';
@@ -47,20 +50,13 @@
 				include("admin/frontend/perfil/perfil.php");
 			break;
 			case 'historial':
-				$mostrar_btn = false;
-				include("admin/frontend/perfil/historial.php");
+				ob_start();
+					do_shortcode('[kv sc="perfil/historial" user_id="'.$user_id.'" ]');
+					$CONTENIDO = ob_get_contents();
+				ob_end_clean();
 			break;
 		}
 
-		/*$HTML_BTN = '';
-		if( $mostrar_btn ){
-			$type_btn = ( $btn_txt == '+' ) ? '<img src="'.get_recurso('img/PERFILES').'BOTON.svg" onclick="press_btn(jQuery(this))" data-id="#btn_actualizar" /> <input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'" style="display: none;">' : '<input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'">';
-			$HTML_BTN = '
-			<div class="container_btn">
-				'.$type_btn.'
-				<div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div>
-			</div>';
-		}*/
 
 		$tipo = 'avatares_clientes/'.$user_id;
 

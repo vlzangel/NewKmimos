@@ -2,7 +2,7 @@
 <html lang="es-ES" class="no-js"><head>
 	<title>Kmivet</title>
 	<meta charset="UTF-8">
-	<link rel="icon" href="favicon.ico" type="image/x-icon" /><?php 
+	<link rel="icon" href="<?= get_home_url() ?>/favicon.ico" type="image/x-icon" /><?php 
 	$HTML = '';	
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
 		header('X-UA-Compatible: IE=edge,chrome=1');
@@ -34,15 +34,20 @@
 
 	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
 
-	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
+	echo "<script src='https://kit.fontawesome.com/9e9cd60cbd.js' crossorigin='anonymous'></script>";
+
 	wp_enqueue_style( 'fontello', getTema()."/css/fontello.min.css", array(), "1.0.0" );
+
 	wp_enqueue_style( 'old_generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
 	wp_enqueue_style( 'old_generales_responsive_css', getTema()."/css/responsive/generales_responsive.css", array(), "1.0.0" );
 
+	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), '1.0.0');
 	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.min.css", array(), '1.0.0');
 
 	wp_enqueue_style( 'generales_css', get_recurso("css")."generales.css", array(), "1.0.0" );
 	wp_enqueue_style( 'generales_responsive_css', get_recurso("css")."responsive/generales.css", array(), "1.0.0" );
+
+	// wp_enqueue_style( 'bootstrap_css', "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css", array(), "1.0.0" );
 
 	wp_head();
 
@@ -65,7 +70,7 @@
 	$quiero_ser_link = 'quiero-ser-veterinario';
 	$buscar_ = 'Buscar Veterinario';
 	$logo = '<img class="logo logo_kmivet" src="'.get_recurso("img").'KMIVET/logo_2.png" />';
-	$link_buscar = get_home_url().'/mediqo/';
+	$link_buscar = get_home_url().'/busqueda/';
 	$ico_perfil = get_recurso("img").'KMIVET/GENERALES/Perfil.svg';
 
 	// Avatar default

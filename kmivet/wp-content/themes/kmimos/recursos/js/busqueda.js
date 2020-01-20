@@ -1,14 +1,16 @@
 var __FORM_PAGO__ = 'reserva_form';
 var __CB_PAGO_OK__ = function(){
-	// debug('Ok');
 	jQuery("#btn_reservar").html("Procesando...");
 	jQuery.post(
-		HOME+'/procesos/medicos/pagar.php',
+		HOME+'/procesos/medicos/RESERVA/pagar.php',
 		jQuery("#"+__FORM_PAGO__).serialize(),
 		function(res){
 			debug(res);
 			if( res.error == false ){
 				location.href = RAIZ+"/finalizar/"+res.cid;
+
+				// jQuery("#btn_reservar").html("Solicitar Consulta");
+				// jQuery("#btn_reservar").prop("disabled", false);
 			}else{
 				jQuery(".errores_box").html( res.msg );
 				jQuery(".errores_box").css("display", "block");
@@ -22,7 +24,6 @@ var __CB_PAGO_OK__ = function(){
 }
 
 var __CB_PAGO_KO__ = function(){
-	// debug('Error');
 	jQuery("#btn_reservar").html("Solicitar Consulta");
 	jQuery("#btn_reservar").prop("disabled", false);
 }
@@ -39,22 +40,10 @@ function get_coordenadas() {
 	var provincia = jQuery('[name="provincia"] option:selected').html();
 	var colonia = jQuery('[name="colonia"] option:selected').html();
 	if( state != "" &&  provincia != "" ){
-
 		var address = ( colonia != '' && colonia != 'Seleccione...' ) ? colonia+'+' : '';
 		address += state+'+Mexico';
-
-		// debug( address );
-
 		geocoder.geocode( { 'address': address}, function(results, status) {
 			if (status == 'OK') {
-				// debug( results[0].geometry.location );
-				/*
-				map.setCenter(results[0].geometry.location);
-				var marker = new google.maps.Marker({
-				map: map,
-				position: results[0].geometry.location
-				});
-				*/
 			} else {
 				alert('Geocode was not successful for the following reason: ' + status);
 			}
@@ -73,16 +62,11 @@ function get_ubicacion(){
         var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
         geocoder.geocode({'location': latlng}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-                // debug( results[0]['formatted_address'] );
-                // debug( results );
-
                 jQuery('[name="cita_direccion"]').val( results[0]['formatted_address'] );
             }
         });
     }, 
     function error(err) {
-        /*jQuery(".icon_left").removeClass("fa-spinner fa-spin");
-        jQuery(".icon_left").addClass("fa-crosshairs");*/
         if( err.message == 'User denied Geolocation' ){
             alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmivet en la configuración de ubicación de su dispositivo.");
         }else{
@@ -98,35 +82,36 @@ function get_ubicacion(){
 
 jQuery( document ).ready(function() {
 
-	jQuery('[name="state"]').on("change", function(e){
-		jQuery.post(
-			HOME+'/procesos/medicos/provincias.php',
-			{
-				state: jQuery('[name="state"]').val()
-			},
-			function(provincias){
-				jQuery('[name="provincia"]').html(provincias);
-			}
-		);
-	});
+	/* Sin uso por los momentos */
+		jQuery('[name="state"]').on("change", function(e){
+			jQuery.post(
+				HOME+'/procesos/medicos/provincias.php',
+				{ state: jQuery('[name="state"]').val() },
+				function(provincias){
+					jQuery('[name="provincia"]').html(provincias);
+				}
+			);
+		});
 
-	jQuery('[name="provincia"]').on("change", function(e){
-		jQuery.post(
-			HOME+'/procesos/medicos/colonias.php',
-			{
-				state: jQuery('[name="state"]').val(),
-				provincia: jQuery('[name="provincia"]').val()
-			},
-			function(colonias){
-				jQuery('[name="colonia"]').html(colonias);
-				get_coordenadas();
-			}
-		);
-	});
+		jQuery('[name="provincia"]').on("change", function(e){
+			jQuery.post(
+				HOME+'/procesos/medicos/colonias.php',
+				{
+					state: jQuery('[name="state"]').val(),
+					provincia: jQuery('[name="provincia"]').val()
+				},
+				function(colonias){
+					jQuery('[name="colonia"]').html(colonias);
+					get_coordenadas();
+				}
+			);
+		});
 
-	jQuery('[name="colonia"]').on("change", function(e){
-		get_coordenadas();
-	});
+		jQuery('[name="colonia"]').on("change", function(e){
+			get_coordenadas();
+		});
+
+	/* ================================================================= */
 
 	jQuery('#reservar_medico').on('hidden.bs.modal', function (e) {
 		jQuery("#modal_step_1").css('display', 'grid');
@@ -186,11 +171,9 @@ jQuery( document ).ready(function() {
 	});
 
 	jQuery("#btn_reservar").on("click", function(e){
-
 		var latitud = jQuery('[name="cita_latitud"]').val();
 		var longitud = jQuery('[name="cita_longitud"]').val();
 		var direccion = jQuery('[name="cita_direccion"]').val();
-
 		if( latitud == "" || longitud == "" || direccion == "" ){
 			alert("Para tener acceso al servicio es necesario poder obtener su ubicación actual, por favor pícale en Permitir.");
 			get_ubicacion();
@@ -199,7 +182,6 @@ jQuery( document ).ready(function() {
 			jQuery("#btn_reservar").prop("disabled", true);
 			OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
 		}
-
 	});
 
 	jQuery(".atras_ficha").on('click', function(e){
@@ -223,7 +205,7 @@ function buscar( CB ){
 	lng = ( lng == '' ) ? -99.21679135411978 : parseFloat(lng);
 
 	jQuery.post(
-		HOME+'/procesos/medicos/buscar.php',
+		HOME+'/procesos/medicos/BUSQUEDA/buscar.php',
 		{
 			specialty: jQuery("#especialidad").val(),
 			lat: lat,
@@ -274,12 +256,12 @@ var item_actual = '';
 function cargar( id ){
 
 	jQuery.post(
-		HOME+'/procesos/medicos/info.php',
-		{
-			id: id
-		}, (data) => {
+		HOME+'/procesos/medicos/BUSQUEDA/info.php',
+		{ id: id }, (data) => {
 
-			// debug( data );
+			debug( data );
+
+			data = data[0];
 
 			jQuery("#specialty_id").val( jQuery("#especialidad").val() );
 

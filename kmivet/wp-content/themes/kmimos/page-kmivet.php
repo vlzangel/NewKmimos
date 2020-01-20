@@ -457,6 +457,7 @@
 	$link_APP_STORE = "https://apps.apple.com/mx/app/kmimos/id1247272074";
     $link_GOOGLE_PLAY = "https://play.google.com/store/apps/details?id=com.it.kmimos";
 
+    /*
 	$HTML .= '	
 	<!-- CONECTATE -->
 	<div class="conectate_container">
@@ -471,6 +472,7 @@
 			<div class="conectate_botones_celda"> <a style="display: inline-block; width: 135px; height: 40px;" href="'.get_home_url().'/seg/?banner=GOOGLE_PLAY'.$_wlabel.'&url='.base64_encode($link_GOOGLE_PLAY).'" target="_blank"> <img src="'.get_recurso("img").'HOME/SVG/GOOGLE_PLAY.svg" /> </a> </div>
 		</div>
 	</div>';
+	*/
 	
 	$HTML .= '
 	<!-- ALIADOS -->

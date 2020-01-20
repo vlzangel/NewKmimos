@@ -112,18 +112,8 @@ jQuery(document).ready(function() {
 } );
 
 function init_table(id){
-    jQuery(id).DataTable( {
-        responsive: {
-            details: {
-                display: jQuery.fn.dataTable.Responsive.display.modal( {
-                    header: function ( row ) {
-                        var data = row.data();
-                        return SIN+': '+data[0]+' '+data[1];
-                    }
-                } ),
-                renderer: jQuery.fn.dataTable.Responsive.renderer.tableAll()
-            }
-        },
+    var t = jQuery(id).DataTable( {
+        responsive: true,
         "language": {
             "emptyTable":           "No hay datos disponibles en la tabla.",
             "info":                 "Del _START_ al _END_ de _TOTAL_ ",
@@ -138,13 +128,12 @@ function init_table(id){
             "zeroRecords":          "No se han encontrado coincidencias.",
             "paginate": { "first": "Primera", "last": "Última", "next": "Siguiente", "previous": "Anterior" },
             "aria": { "sortAscending":    "Ordenación ascendente", "sortDescending":   "Ordenación descendente" }
-        }, /*
-        dom: 'lBfrtip',
-        buttons: [ 'excelHtml5', 'pdfHtml5', ], */
+        },
         "ordering": false,
-        "lengthMenu": [[5], [5]] // ,
-        //"order": [[ 0, "desc" ]],
+        "lengthMenu": [[5], [5]]
     } );
+
+    return t;
 }
 
 function cerrarModal(id){

@@ -135,6 +135,33 @@ jQuery( document ).ready(function() {
 
 });
 
+function init_table(id, m, a){
+    jQuery(id).DataTable( {
+        responsive: true,
+        "language": {
+            "emptyTable":           "No hay datos disponibles en la tabla.",
+            "info":                 "Del _START_ al _END_ de _TOTAL_ ",
+            "infoEmpty":            "Mostrando 0 registros de un total de 0.",
+            "infoFiltered":         "(filtrados de un total de _MAX_ registros)",
+            "infoPostFix":          " (actualizados)",
+            "lengthMenu":           "Mostrar _MENU_ registros",
+            "loadingRecords":       "Cargando...",
+            "processing":           "Procesando...",
+            "search":               "Buscar:",
+            "searchPlaceholder":    "Dato para buscar",
+            "zeroRecords":          "No se han encontrado coincidencias.",
+            "paginate": { "first": "Primera", "last": "Última", "next": "Siguiente", "previous": "Anterior" },
+            "aria": { "sortAscending":    "Ordenación ascendente", "sortDescending":   "Ordenación descendente" }
+        },
+        "ajax": { "url": AJAX+"?action=kv&m="+m+"&a="+a, "type": "POST" }, /*
+        dom: 'lBfrtip',
+        buttons: [ 'excelHtml5', 'pdfHtml5', ], */
+        "ordering": false,
+        "lengthMenu": [[5], [5]] // ,
+        //"order": [[ 0, "desc" ]],
+    } );
+}
+
 jQuery(window).on('resize', function(){
     var w = jQuery(window).width();
     if( w < 768 ){

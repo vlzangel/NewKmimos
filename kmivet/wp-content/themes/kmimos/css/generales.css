@@ -82,6 +82,11 @@ p {
     line-height: 18px;
 }
 
+.body.container.km-content-reservation {
+    overflow: hidden;
+    padding-top: 20px;
+}
+
 /*  Publicidades    */
 
     .publicidad_solo_pc{

@@ -64,7 +64,6 @@ form#form_perfil > section {
 .menu_perfil ul li a i:before{
 	margin-right: 5px;
     font-style: normal;
-    font-weight: normal;
     speak: none;
     display: inline-block;
     text-decoration: inherit;
@@ -269,4 +268,157 @@ li.vlz_resaltar {
 
 h4 {
     color: #000 !important;
+}
+
+/* Listas */
+
+/* Table */
+
+.dataTables_wrapper label {
+    font-weight: 600;
+    font-family: Arial;
+    font-size: 13px;
+    margin-bottom: 5px !important;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    padding-top: 5px !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0px  !important;
+}
+
+.dataTable * {
+	font-size: 13px;
+}
+
+.dataTable td img {
+    height: 50px;
+}
+
+.dataTable select {
+    padding: 1px 25px 1px 10px !important;
+    font-size: 11px;
+    min-width: 50px;
+    min-height: 1px;
+}
+
+.dataTable tbody tr td:first-child,
+.dataTable thead tr th:first-child,
+.dataTable thead tr th:last-child,
+.dataTable tbody tr td:last-child
+{
+	#text-align: center;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 5px 10px;
+}
+
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting:after {
+    content: "" !important;
+}
+
+table.dataTable th,
+.dataTables_length *
+ {
+    font-size: 11px !important;
+    outline: none !important;
+    box-shadow: 0px 0px 0px #000 !important;
+}
+
+.page-link:focus {
+    box-shadow: 0px 0px 0px #000 !important;
+}
+
+.dataTables_filter *
+ {
+    font-size: 12px !important;
+}
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+    font-size: 11px !important;
+}
+.table thead th {
+    border-bottom: 1px solid #e9ecef !important;
+}
+
+.dataTables_info,
+.pagination * {
+    font-size: 11px !important;
+}
+
+.dataTables_info {
+    font-size: 12px !important;
+    float: left;
+}
+
+.container_listados {
+	padding: 0px;
+}
+
+.table th, .table td {
+    padding: 8px;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 0px !important;
+}
+
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting {
+    background-image: none !important;
+}
+
+.pagination > li {
+    display: inline-block;
+}
+
+.table td {
+    padding: 8px 0.75rem !important;
+}
+
+.btns_container > span {
+    padding: 3px 10px;
+    font-size: 14px;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 0px;
+}
+
+.table-bordered th {
+    border-top: 0px !important;
+}
+
+.dataTables_length {
+	display: none;
+}
+
+.dt-buttons {
+    float: left;
+}
+
+button.dt-button {
+    border: 1px solid var( --vlz-azul ) !important;
+    background-color: var( --vlz-azul );
+    color: #FFF;
+    padding: 5px 20px;
+    font-size: 13px;
+    line-height: 1;
+    margin-top: 7px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none !important;
+}
+
+h1.titulo_perfil {
+    font-size: 20px;
+    border-bottom: solid 2px #dcdcdc;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+table small {
+    font-size: 11px !important;
 }

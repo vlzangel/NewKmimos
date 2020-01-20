@@ -4,9 +4,8 @@
 			['t' => 'Nombre'],
 			['t' => 'Email'],
 			['t' => 'Teléfonos'],
-			['t' => 'Genero'],
 			['t' => 'Edad'],
-			['t' => 'Referido'],
+			['t' => 'Costo Servicio'],
 		],
 		'hide_bts' => true
 	];

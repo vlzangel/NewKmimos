@@ -28,6 +28,15 @@ nav{
     transition: all .3s ease-in-out;
 }
 
+.fas.fa-sync-alt {
+    padding: 10px;
+    border: solid 1px #CCC;
+    border-radius: 3px;
+    color: #868686;
+    cursor: pointer;
+    float: left;
+}
+
 .navbar-right {
     margin-right: 0px !important;
 }
@@ -181,7 +190,7 @@ nav.nav_mediqo .lupa_negra {
 }
 
 .boton_verde{
-	background-color: #00d2c6;
+	background-color: var(--kmimos-morado);
 	color: #FFF;
 }
 
@@ -196,7 +205,7 @@ nav.nav_mediqo .lupa_negra {
 }
 
 .boton_border_verde{
-	border: solid 2px #00d2c6;
+	border: solid 2px var(--kmimos-morado);
 }
 
 .nav_right > a {
@@ -304,9 +313,9 @@ footer ul li {
 	position: absolute;
 	right: 0px;
     width: 40%;
-    border: solid 1px #00d2c6;
+    border: solid 1px var(--kmimos-morado);
     height: 37px;
-    background: #00d2c6 !important;
+    background: var(--kmimos-morado) !important;
     color: #FFF;
     border-left: 0px;
     font-weight: 500;
@@ -343,7 +352,7 @@ footer ul li {
 }
 
 .footer_bajo a {
-	color: #00d2c6;
+	color: var(--kmimos-morado);
 }
 
 .siguenos_bajo{
@@ -364,7 +373,7 @@ footer ul li {
 }
 
 #suscribirse .message-especial {
-    background-color: #00d2c6 !important;
+    background-color: var(--kmimos-morado) !important;
     color: #ffffff !important;
     border-radius: 3px !important;
     margin-top: 45px !important;
@@ -404,10 +413,6 @@ footer ul li {
 }
 
 /* Shortcodes */
-
-.container_shortcode {
-    margin: 120px 0px 80px !important;
-}
 
 .kv_msg {
     position: relative;

@@ -1,16 +1,16 @@
 <?php
 	session_start();
 
-	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+	$raiz = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
 	include_once($raiz."/wp-load.php");
 	date_default_timezone_set('America/Mexico_City');
 	
 	if( !isset($_SESSION)){ session_start(); }
 
-	include_once(dirname(__DIR__)."/funciones/config.php");
-	include_once(dirname(__DIR__)."/funciones/openpay.php");
-	include_once(dirname(__DIR__)."/funciones/mediqo.php");
-	include_once(dirname(dirname(__DIR__))."/lib/openpay2/Openpay.php");
+	include_once(dirname(dirname(__DIR__))."/funciones/config.php");
+	include_once(dirname(dirname(__DIR__))."/funciones/openpay.php");
+	include_once(dirname(dirname(__DIR__))."/funciones/mediqo.php");
+	include_once(dirname(dirname(dirname(__DIR__)))."/lib/openpay2/Openpay.php");
 
 	// ini_set('display_errors', 'On');
 	// error_reporting(E_ALL);

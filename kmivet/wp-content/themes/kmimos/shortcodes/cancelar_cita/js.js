@@ -20,7 +20,6 @@ jQuery( document ).ready(function() {
 			AJAX+'?action=kv&m=citas&a=cancelar',
 			jQuery("#cancelar_cita").serialize(),
 			function(r){
-				console.log( r );
 				if( r.status ){
 					jQuery(".kv_msg").html("Estatus Cambiado Exitosamente!");
 					jQuery(".kv_msg").attr("class", "kv_msg success");

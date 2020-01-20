@@ -8,43 +8,21 @@
 	global $wpdb;
 	extract($_POST);
 
-	$user_id = username_exists( $kv_email );
-	if ( ! $user_id && false == email_exists( $kv_email ) ) {
-	    $random_password = wp_generate_password( $length = 5, $include_standard_special_chars = false );
-	    $user_id = wp_create_user( $kv_email, $random_password, $kv_email );
+	$r = new_veterinario([
+		'kv_email' => $kv_email,
+		'kv_nombre' => $kv_nombre,
+		'kv_telf_movil' => $kv_telf_movil,
+		'kv_telf_fijo' => $kv_telf_fijo
+	], [] );
 
-	    update_user_meta($user_id, 'first_name', $kv_nombre);
-	    update_user_meta($user_id, 'user_mobile', $kv_telf_movil);
-	    update_user_meta($user_id, 'user_phone', $kv_telf_fijo);
-	    update_user_meta($user_id, 'clave_temp', $random_password);
-	    update_user_meta($user_id, 'user_referred', 'kmivet');
-	    update_user_meta($user_id, 'tipo_usuario', 'veterinario');
-
-	    $info = array();
-	    $info['user_login']     = sanitize_user($kv_email, true);
-	    $info['user_password']  = sanitize_text_field($random_password);
-	    $info['remember']  		= true;
-	    $user_signon = wp_signon( $info, true );
-	    wp_set_auth_cookie($user_signon->ID, true);
-
-	    $usuario = 'si';
-	} else {
-		$random_password = "La misma clave de tu usuario de kmimos.";
-	    $usuario = 'no';
+	if( !$r['status'] ){
+		die( json_encode([
+			"status" => false,
+			"error" => $r['error'],
+		]) );
 	}
 
-	$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
-	$wpdb->query("INSERT INTO wp_kmivet_veterinarios VALUES (
-		NULL,
-		'{$user_id}',
-		'{$kv_email}',
-		'{$kv_dni}',
-		'{$data}',
-		0
-	)");
-	$medico_id = $wpdb->insert_id;
-
-	// registration/api/medic_registration
+	extract($r);
 
 	$kv_estado = $wpdb->get_var("SELECT name FROM states WHERE id = ".$kv_estado);
 	$kv_delegacion = $wpdb->get_var("SELECT name FROM locations WHERE id = ".$kv_delegacion);

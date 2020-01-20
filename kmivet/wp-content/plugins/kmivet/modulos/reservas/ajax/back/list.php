@@ -11,9 +11,12 @@
 
 		$status = get_status_reserva($item->status);
 
-		if( $item->status ){
+		if( $item->status == 4 ){
 			$status .= " ({$item->observaciones})";
 		}
+
+		$medico = $wpdb->get_row( "SELECT * FROM {$pf}veterinarios WHERE veterinario_id = '{$item->veterinario_id}' " );
+		$info_vete = json_decode($medico->api);
 
 		$data['data'][] = [
 			'<div class="align_right">'.$item->id.'</div>',
@@ -28,13 +31,13 @@
 			$fecha,
 			$info->cita_direccion,
 
-			'<div style="text-transform: capitalize;">'.$i->first_name.' '.$i->last_name.'</div>',
+			ucfirst($i->first_name.' '.$i->last_name),
 			$i->user_email,
 			$i->user_mobile.' / '.$i->user_phone,
 
-			"-",
-			"-",
-			"-"
+			ucfirst($info_vete->firstName.' '.$info_vete->lastName),
+			$info_vete->email,
+			$info_vete->phone
 		];
 	}
 	echo json_encode( $data );

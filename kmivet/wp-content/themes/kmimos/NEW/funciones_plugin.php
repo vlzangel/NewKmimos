@@ -412,13 +412,13 @@
                         array("name"  => "Mi Perfil",
                             "url"   => "/perfil-usuario/",
                             "icono" => "460",
-                            "img" => "Perfil.svg",
+                            "img" => '<i class="far fa-user"></i>',
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
                             "icono" => "476",
-                            "img" => "Cerrar_sesion.svg",
+                            "img" =>  '<i class="fas fa-sign-out-alt"></i>',
                         ),
                     ),
                     "paciente" => array(
@@ -426,19 +426,19 @@
                             "url"   => "/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460",
-                            "img" => "Perfil.svg",
+                            "img" => '<i class="far fa-user"></i>',
                         ),
                         array(
                             "url"   => "/perfil-usuario/historial",
                             "name"  => "Mis Citas",
                             "icono" => "33",
-                            "img" => "Reservas.svg",
+                            "img" =>  '<i class="far fa-calendar-alt"></i>',
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
                             "icono" => "476",
-                            "img" => "Cerrar_sesion.svg",
+                            "img" =>  '<i class="fas fa-sign-out-alt"></i>',
                         )
                     ),
                     "administrador" => array(
@@ -446,25 +446,25 @@
                             "url"   => "/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460",
-                            "img" => "Perfil.svg",
+                            "img" => '<i class="far fa-user"></i>',
                         ),
                         array(
                             "url"   => "/perfil-usuario/historial",
                             "name"  => "Mis Citas",
                             "icono" => "33",
-                            "img" => "Reservas.svg",
+                            "img" =>  '<i class="far fa-calendar-alt"></i>',
                         ),
                         array(
                             "url"   => "/wp-admin/",
                             "name"  => "Panel de Control",
                             "icono" => "421",
-                            "img" => "Panel_de_control.svg",
+                            "img" =>  '<i class="fas fa-tachometer-alt"></i>',
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
                             "icono" => "476",
-                            "img" => "Cerrar_sesion.svg",
+                            "img" =>  '<i class="fas fa-sign-out-alt"></i>',
                         )
                     ),
                     "inversor" => array(
@@ -472,13 +472,13 @@
                             "url"   => "/wp-admin/",
                             "name"  => "Panel de Control",
                             "icono" => "421",
-                            "img" => "Panel_de_control.svg",
+                            "img" =>  '<i class="fas fa-tachometer-alt"></i>',
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
                             "icono" => "476",
-                            "img" => "Cerrar_sesion.svg",
+                            "img" =>  '<i class="fas fa-sign-out-alt"></i>',
                         )
                     ),
                 );
@@ -503,11 +503,11 @@
                         
                         if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
                         if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
-                        if( isset($value["img"]) ){ $icono = '<img src="'.get_recurso('img/PERFILES').$value["img"].'"></i> '; }
+                        if( isset($value["img"]) ){ $icono = $value["img"]; }
 
                         $resaltar = ( $_SERVER["REQUEST_URI"] == $value["url"]."/" ) ? 'vlz_resaltar': '';
 
-                        if( $value["img"] == "Cerrar_sesion.svg" ) {
+                        if( $value["img"] ==  '<i class="fas fa-sign-out-alt"></i>' ) {
                             $MENU["body"] .=
                             '<li class="'.$resaltar.'">
                                 <a href="#" class="pd-tb11 menu-link btn_salir" data-url="'.$value["url"].'">

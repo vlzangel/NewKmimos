@@ -5,19 +5,19 @@
 				return 'No pagada';
 			break;
 			case 1:
-				return 'Cita confirmada';
+				return 'Confirmada';
 			break;
 			case 2:
 				return 'Arribo al domicilio';
 			break;
 			case 3:
-				return 'Finalización de la cita';
+				return 'Finalizada';
 			break;
 			case 4:
-				return 'Cita cancelada';
+				return 'Cancelada';
 			break;
 			case 5:
-				return 'Cita finalizada con Calificación';
+				return 'Finalizada con Calificación';
 			break;
 			
 			default:

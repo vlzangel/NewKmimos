@@ -1,0 +1,7 @@
+div#historial_wrapper > div:first-child {
+    float: right;
+}
+
+div#historial_wrapper > div:first-child > div:nth-child(2) {
+    width: 222px;
+}

@@ -1,3 +1,7 @@
+.container_shortcode {
+    margin: 120px 0px 80px !important;
+}
+
 #cancelar_cita {
 	display: block;
 	width: 600px;

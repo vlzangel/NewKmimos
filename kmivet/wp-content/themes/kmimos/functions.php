@@ -15,6 +15,9 @@
 			$path = __DIR__.'/shortcodes/'.$sc;
 			if( file_exists( $path.'/init.php' ) ){
 				global $wpdb;
+				global $vlz; extract($vlz);
+				$current_user = wp_get_current_user();
+				$user_id = $current_user->ID;
 				if( file_exists( $path.'/css.css' ) ){
 					wp_enqueue_style( $sc.'_css', getTema()."/shortcodes/{$sc}/css.css", array(), "1.0.0" );
 				}
@@ -33,6 +36,10 @@
 	function ajax_kv(){
 		extract($_GET);
 		extract($_POST);
+		global $wpdb; global $vlz; 
+		extract($vlz);
+		$current_user = wp_get_current_user();
+		$user_id = $current_user->ID;
 		if( $m != '' && $a != '' ){
 			$path = __DIR__.'/ajax/'.$m.'/'.$a.'.php';
 			if( file_exists( $path ) ){ global $wpdb; include $path; }

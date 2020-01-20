@@ -27,6 +27,12 @@ jQuery( document ).ready(function() {
     if( !isMobile.mobilecheck() && window.devicePixelRatio != 1 ){
         // alert("Hemos detectado que tienes zoom en tu navegador. Para ver la página correctamente ajústalo al 100%.");
     }
+
+    jQuery(".fas.fa-sync-alt").on('click', function(e){
+        if( _table != '' ){
+            _table.ajax.reload();
+        }
+    });
 });
 
 function fixedHeader() {
