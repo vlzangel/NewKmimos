@@ -19,7 +19,7 @@
             <input type="hidden" id="sub_path" name="sub_path" value="'.$img_perfil["sub_path"].'" />
             <input type="hidden" class="vlz_img_portada_valor vlz_rotar_valor" name="portada" data-valid="requerid" />
 
-            <h1>Mi Perfil</h1>
+            <h1 class="titulo_perfil">Perfil</h1>
     
             <div class="inputs_containers">
 
