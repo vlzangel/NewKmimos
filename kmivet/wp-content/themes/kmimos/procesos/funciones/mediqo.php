@@ -1,8 +1,8 @@
 <?php
 	function mediqo_request($url, $params, $type = 'POST'){
-		// $url = 'https://api.mediqo.mx/'.$url;
+		$url = 'https://api.mediqo.mx/'.$url;
 		// $url = '13.59.244.182/'.$url;
-		$url = '3.86.249.47/'.$url;
+		// $url = '3.86.249.47/'.$url;
 		
 		if( $type == 'POST' ){
 			$ch = curl_init($url);
@@ -196,4 +196,12 @@
 			'res' => $resultado,
 		];
 	}
+
+	/* Especialidades */
+
+	function get_specialties(){
+		$resultado = mediqo_request('medics/specialty/', [], 'GET');
+		return json_decode($resultado);
+	}
+
 ?>
