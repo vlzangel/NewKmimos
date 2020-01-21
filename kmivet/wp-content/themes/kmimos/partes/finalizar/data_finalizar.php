@@ -77,7 +77,7 @@
 		<div style='text-align: left;'>¿QUÉ DEBO HACER AHORA?</div>
 		<ul>
 			<li><span>El médico veterinario seleccionado y/o Atención al Cliente de Kmivet se pondrá en contacto contigo para alinear la logística.</span></li>
-			<li><span>En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono 01 (55) 8526 1162, Whatsapp +52 1 (33) 1261 41 86, o al correo contactomex@kmimos.la</span></li>
+			<li><span>En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente a los teléfonos +52 1 (55) 78507572, Whatsapp +52 1 (55) 31374829, o al correo contactomex@kmimos.la</span></li>
 		</ul>
 	</div>";
 
@@ -90,8 +90,7 @@
 				<li><span>Recuerda que tienes 48 horas para hacer el pago.</span></li>
 				<li><span><strong>El Cuidador que seleccionaste no recibirá tu solicitud de Reserva sino hasta que hayas hecho el pago en la tienda.</strong></span></li>
 				<li><span>Una vez que pagues en la Tienda de Conveniencia, el cuidador seleccionado y/o Atención al Cliente de Kmimos se pondrán en contacto contigo dentro de las siguientes 1 a 4 horas para alinear la logística de entrega.</span></li>
-				<li><span>En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente al teléfono 01 (55) 8526 1162, Whatsapp +52 1 (33) 1261 41 86, o al correo contactomex@kmimos.la</span></li>
-
+				<li><span>En caso de dudas, puedes contactarte con nuestro equipo de atención al cliente a los teléfonos +52 1 (55) 78507572, Whatsapp +52 1 (55) 31374829 o al correo contactomex@kmimos.la</span></li>
 			</ul>
 		</div>";
     }
