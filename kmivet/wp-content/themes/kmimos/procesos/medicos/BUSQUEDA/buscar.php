@@ -16,6 +16,7 @@
 		$res = $_SESSION[ $hash ];
 	}else{ */
 		$medicos = json_decode( file_get_contents("https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}") );
+		// $medicos = json_decode( file_get_contents("3.86.249.47/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}") );
 		$medicos = $medicos->objects;
 		$_medicos = [];
 		foreach ($medicos as $key => $medico) {

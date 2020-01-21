@@ -17,7 +17,8 @@
 
 	wp_enqueue_style( 'fontawesome4', getTema()."/css/font-awesome.css", array(), '1.0.0');
 
-	$especialidades = json_decode( file_get_contents("https://api.mediqo.mx/medics/specialty/") );
+	// $especialidades = json_decode( file_get_contents("https://api.mediqo.mx/medics/specialty/") );
+    $especialidades = json_decode( file_get_contents("3.86.249.47/medics/specialty/") );
             
     get_header();
     $user_id = get_current_user_id(); ?>
