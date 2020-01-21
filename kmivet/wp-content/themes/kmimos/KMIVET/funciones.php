@@ -58,23 +58,6 @@
 
     /* BUSQUEDA */
 
-/*    function set_format_name($cadena){
-        $originales = 'ÁÉÍÓÚÑ';
-        $modificadas = 'áéíóúñ';
-        $cadena = strtr($cadena, ($originales), $modificadas);
-        return strtolower($cadena);
-    }
-
-    function set_format_ranking($ranking){
-        $ranking += 0;
-        if( $ranking > 5 ){ $ranking = 5; }
-        if( $ranking < 1 ){ $ranking = 1; }
-        $_ranking = '';
-        for ($i=1; $i <= $ranking; $i++) {  $_ranking .= '<span class="active"></span>'; }
-        if( $ranking < 5 ){ for ($i=$ranking; $i < 5; $i++) {  $_ranking .= '<span></span>'; } }
-        return $_ranking;
-    }*/
-    
     function set_format_slug($cadena){
         // $cadena = utf8_encode( $cadena );
         $originales = [ 'Á','É','Í','Ó','Ú' ];
@@ -110,37 +93,36 @@
         return $_ranking;
     }
 
-
     function get_dias_meses(){
-        $dias = [
-            "Lunes",
-            "Martes",
-            "Miércoles",
-            "Jueves",
-            "Viernes",
-            "Sábado",
-            "Domingo"
-        ];
+        $dias  = [     "Lunes", "Martes",  "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" ];
+        $meses = [ "", "Enero", "Febrero", "Marzo",     "Abril",  "Mayo",    "Junio",  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ];
+        return [ 'dias' => $dias, 'meses' => $meses ];
+    }
 
-        $meses = [
-            "",
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Septiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre",
-        ];
+    /* GENERALES */
 
-        return [
-            'dias' => $dias,
-            'meses' => $meses
-        ];
+    function get_modal($id){
+        echo '
+        <div id="'.$id.'" class="modal fade modal_interno" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <form class="modal-content">
+
+                    <input type="hidden" name="m" />
+                    <input type="hidden" name="a" />
+                    <input type="hidden" name="id" />
+
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"></button>
+                    </div>
+                </form>
+            </div>
+        </div>';
     }
 ?>

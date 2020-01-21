@@ -20,6 +20,8 @@
 	<tbody></tbody>
 </table>
 
+<?= get_modal('historial_modal') ?>
+
 <?php
     wp_enqueue_script('popper.js', "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.dataTables.js', "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js", array("jquery"), '1.0.0');

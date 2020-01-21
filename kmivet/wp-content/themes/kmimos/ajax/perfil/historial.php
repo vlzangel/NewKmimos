@@ -2,11 +2,11 @@
 	$data['data'] = [];
 
 	/*
-	1.	Cita confirmada
-2.	Arribo al domicilio
-3.	Finalización de la cita
-4.	Cita cancelada
-5.	Cita finalizada con Calificación
+		1.	Cita confirmada
+		2.	Arribo al domicilio
+		3.	Finalización de la cita
+		4.	Cita cancelada
+		5.	Cita finalizada con Calificación
 	*/
 
 	$tipo = strtolower( get_usermeta( $user_id, "tipo_usuario", true ) );

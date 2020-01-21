@@ -4,11 +4,42 @@ jQuery( document ).ready(function() {
 
 });
 
+function initModal(id, CB){
+    jQuery("#"+id+" form").on('submit', function(e){
+    	e.preventDefault();
+    	jQuery.post(
+			AJAX+"?action=kv",
+			jQuery(this).serialize(),
+			function(data){
+				CB(data);
+				if( _table != undefined ){
+					_table.ajax.reload();
+				}
+			}, 'json'
+		);
+    });
+}
+
+function openModal(modalId, title, btn, m, a, id){
+	jQuery("#"+modalId+" .modal-title").html(title);
+	jQuery("#"+modalId+" .modal-footer .btn-primary").html(btn);
+	jQuery("#"+modalId+" [name='m']").val(m);
+	jQuery("#"+modalId+" [name='a']").val(a);
+	jQuery("#"+modalId+" [name='id']").val( id );
+
+	jQuery.post(
+		AJAX+"?action=kv&m="+m+"&a="+a+"_form",
+		{},
+		function(HTML){
+			jQuery("#"+modalId+" .modal-body").html(HTML);
+			jQuery("#"+modalId).modal('show');
+		}
+	);
+}
+
 function CB_perfil(URL){
 	// console.log("CallBack");
-
 	jQuery(".img-circle").attr("src", RAIZ+"imgs/Temp/"+URL);
-
 	jQuery.post(
 		RAIZ+"imgs/perfil.php",
 		{
