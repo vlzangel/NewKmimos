@@ -79,8 +79,6 @@
     			<div class="medico_ficha_info_container">
                     <div class="medico_ficha_info_name">
                         <label></label>
-                        <!-- <div></div>
-                        <span></span> -->
                     </div>
                     <div class="medico_ficha_info_certificaciones">
                         <label for="certificaciones">Certificaciones</label>
@@ -114,13 +112,13 @@
     </div>
 
     <div class="pre">
-        <pre>
-            <?php
+        <?php
+            /*echo '<pre>';
                 print_r( $_SESSION['medicos_serch'] );
-            ?>
-        </pre>
+            echo '</pre>';*/
+        ?>
     </div>
-    <button class="pre-btn">PRE</button>
+    <!-- <button class="pre-btn">PRE</button> -->
 
     <?php
 
@@ -141,12 +139,15 @@
         var OPENPAY_PRUEBAS = ".$OPENPAY_PRUEBAS.";
     </script>";
 
-    global $wpdb;
+    /*global $wpdb;
     $_estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY `order` ASC, name ASC");
     $estados = '';
     foreach ($_estados as $key => $estado) {
         $estados .= '<option value="'.$estado->id.'" >'.utf8_decode($estado->name).'</option>';
-    }
+    }*/
+
+    $estados = '';
+
     echo '
     <div id="reservar_medico" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">

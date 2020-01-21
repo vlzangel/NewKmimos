@@ -406,11 +406,13 @@
                 $salir = wp_logout_url( home_url() );
                 
                 $tipo_usuario = strtolower( get_usermeta( $user_id, "tipo_usuario", true ) );
+                $H = get_home_url();
+                $M = get_query_var('modulo');
 
                 $MENUS = array(
                     "veterinario" => array(
                         array("name"  => "Mi Perfil",
-                            "url"   => "/perfil-usuario/",
+                            "url"   => $H."/veterinario/",
                             "icono" => "460",
                             "img" => '<i class="far fa-user"></i>',
                         ),
@@ -423,13 +425,13 @@
                     ),
                     "paciente" => array(
                         array(
-                            "url"   => "/perfil-usuario/",
+                            "url"   => $H."/paciente/",
                             "name"  => "Mi Perfil",
                             "icono" => "460",
                             "img" => '<i class="far fa-user"></i>',
                         ),
                         array(
-                            "url"   => "/perfil-usuario/historial",
+                            "url"   => $H."/paciente/historial",
                             "name"  => "Mis Citas",
                             "icono" => "33",
                             "img" =>  '<i class="far fa-calendar-alt"></i>',
@@ -443,19 +445,19 @@
                     ),
                     "administrador" => array(
                         array(
-                            "url"   => "/perfil-usuario/",
+                            "url"   => $H."/administrador/perfil",
                             "name"  => "Mi Perfil",
                             "icono" => "460",
                             "img" => '<i class="far fa-user"></i>',
                         ),
                         array(
-                            "url"   => "/perfil-usuario/historial",
+                            "url"   => $H."/administrador/historial",
                             "name"  => "Mis Citas",
                             "icono" => "33",
                             "img" =>  '<i class="far fa-calendar-alt"></i>',
                         ),
                         array(
-                            "url"   => "/wp-admin/",
+                            "url"   => $H."/wp-admin/",
                             "name"  => "Panel de Control",
                             "icono" => "421",
                             "img" =>  '<i class="fas fa-tachometer-alt"></i>',
@@ -490,47 +492,15 @@
                 $role = ( strtolower($tipo_usuario) == 'inversor' )? strtolower($tipo_usuario) : $tipo_usuario;
                 if( $MENUS[ $role ] != "" ){
                     foreach ($MENUS[ $role ] as $key => $value) {
-                        $sts = "";
-                        if( $menu_principal ){
-                            if( array_key_exists('ocultar_menu_principal', $value) ){
-                                $sts = "vlz_ocultar";
-                            }
-                        }else{
-                            if( array_key_exists('resaltar', $value) ){
-                                //$sts = "vlz_resaltar";
-                            }
-                        }
-                        
-                        if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
-                        if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
-                        if( isset($value["img"]) ){ $icono = $value["img"]; }
-
-                        $resaltar = ( $_SERVER["REQUEST_URI"] == $value["url"]."/" ) ? 'vlz_resaltar': '';
-
-                        if( $value["img"] ==  '<i class="fas fa-sign-out-alt"></i>' ) {
-                            $MENU["body"] .=
-                            '<li class="'.$resaltar.'">
-                                <a href="#" class="pd-tb11 menu-link btn_salir" data-url="'.$value["url"].'">
-                                    '.$icono.'
-                                    '.$value["name"].'
-                                </a>
-                            </li>';
-                        }else{ 
-
-                            $url = get_home_url().$value["url"];
-                        
-                            $MENU["body"] .=
-                            '<li class="'.$resaltar.'">
-                                <a href="'.$url.'" class="pd-tb11 menu-link">
-                                    '.$icono.'
-                                    '.$value["name"].'
-                                </a>
-                            </li>';
-                        }
+                        $MENU["body"] .=
+                        '<li>
+                            <a href="'.$value["url"].'" class="pd-tb11 menu-link">
+                                '.$value["img"].'
+                                '.$value["name"].'
+                            </a>
+                        </li>';
                     }
                 }
-
-                $MENU["footer"] = '';
 
             }else{
                 $MENU["body"] = 

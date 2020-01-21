@@ -122,7 +122,6 @@ jQuery( document ).ready(function() {
 
                         if( padre.attr("data-id") == "perfil" ){
                             CB_perfil( url );
-
                             console.log( url );
                         }
                     },
@@ -165,11 +164,9 @@ function init_table(id, m, a){
 jQuery(window).on('resize', function(){
     var w = jQuery(window).width();
     if( w < 768 ){
-
         if( jQuery(".km-map-content").hasClass('showMap') ){
             jQuery(".km-map-content").addClass("showMap");
         }
-
         var show = jQuery('#menu_movil').css('left');
         if( show == '0px' ){
             block_scroll_body(false);
@@ -211,13 +208,12 @@ function validar_login( fields = ['usuario', 'clave'] ){
     });
     return sts;
 }
-function logear(){
 
+function logear(){
     var btn = jQuery('#login_submit');
         btn.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i> INICIANDO SESI&Oacute;N');
     var is_cpf = jQuery("#form_login #is_cpf").val();
     if( validar_login() ){
-        
         jQuery.post( 
             HOME+"/procesos/login/login.php", 
             {
@@ -226,7 +222,6 @@ function logear(){
                 proceso: jQuery("#form_login #proceso").val()
             },
             function( data ) {
-                console.log( data );
                 if( data.login ){
                     location.reload();
                 }else{
@@ -237,7 +232,6 @@ function logear(){
                     btn.html('INICIAR SESIÓN AHORA');
                 }
                 btn.html('INICIAR SESIÓN AHORA');
-
             },
             'json'
         );

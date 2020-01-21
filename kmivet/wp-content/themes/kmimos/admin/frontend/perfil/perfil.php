@@ -11,7 +11,7 @@
         $ref_str .= '<option value="'.$key.'"'.$selected.'>'.$value.'</option>';
     }
 
-    $CONTENIDO = '
+    echo '
         <form id="form_perfil" autocomplete="off" enctype="multipart/form-data">
             <input type="hidden" name="accion" value="perfil" />
             <input type="hidden" name="user_id" value="'.$user_id.'" />
@@ -129,7 +129,7 @@
             </div>
 
             <div class="container_btn">
-                <input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'">
+                <input type="submit" id="btn_actualizar" class="km-btn-primary" value="Actualizar">
                 <div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div>
             </div>
         </form>

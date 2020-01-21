@@ -16,47 +16,47 @@
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
+	$MODULO = get_query_var('modulo');
 
-    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
+	$current_user = wp_get_current_user();
+	$user_id = $current_user->ID;
 
-	$btn_txt = "Actualizar";
-
-	echo '<script> var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; </script>';
-
-	$mostrar_btn = true;
-	switch ( $post->post_name ) {
-		case 'perfil-usuario':
-			wp_enqueue_script('perfil', getTema()."/js/perfil.js", array(), '1.0.0');
-		break;
+	if( $MODULO == '' ){
+		$TIPO = get_user_meta($user_id, 'tipo_usuario', true);
+		header( "location: ".get_home_url().'/'.$TIPO.'/perfil' );
 	}
+
+	echo '
+		<script> 
+			var URL_PROCESOS_PERFIL = "'.getTema().'/procesos/perfil/"; 
+			var MODULO_PERFIL = "'.$MODULO.'"; 
+		</script>
+	';
+
+	wp_enqueue_script('perfil', getTema()."/js/perfil.js", array(), '1.0.0');
 
 	get_header();
 
-		global $post;
-		global $wpdb;
+		global $post; global $wpdb;
 
 		$MENU = get_menu_header();
-
-		$current_user = wp_get_current_user();
-		$user_id = $current_user->ID;
 
 		$img_perfil = kmimos_get_foto($user_id, true);
 		$avatar = $img_perfil["img"];
 
 		include( "procesos/funciones/funciones_perfil.php");
 
-		switch ( $post->post_name ) {
-			case 'perfil-usuario':
-				include("admin/frontend/perfil/perfil.php");
-			break;
-			case 'historial':
-				ob_start();
+		ob_start();
+			switch ( $MODULO ) {
+				case 'historial':
 					do_shortcode('[kv sc="perfil/historial" user_id="'.$user_id.'" ]');
-					$CONTENIDO = ob_get_contents();
-				ob_end_clean();
-			break;
-		}
-
+				break;
+				default:
+					include("admin/frontend/perfil/perfil.php");
+				break;
+			}
+			$CONTENIDO = ob_get_contents();
+		ob_end_clean();
 
 		$tipo = 'avatares_clientes/'.$user_id;
 

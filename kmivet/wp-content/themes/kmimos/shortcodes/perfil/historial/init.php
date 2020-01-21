@@ -1,6 +1,8 @@
 <?php
 	wp_enqueue_style( 'bootstrap4_css', "https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'responsive_bootstrap4_css', "https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css", array(), "1.0.0" );
+
+	$current_user = wp_get_current_user();
 ?>
 
 <h1 class="titulo_perfil">Mis Citas</h1>

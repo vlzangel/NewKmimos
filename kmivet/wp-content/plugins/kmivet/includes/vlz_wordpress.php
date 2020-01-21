@@ -1,5 +1,27 @@
 <?php
 	
+	add_action('init', function() {
+		$tipos = [
+			'paciente',
+			'veterinario',
+			'administrador'
+		];
+		foreach ($tipos as $key => $tipo) {
+		    add_rewrite_rule( '^'.$tipo.'/([^/]+)/([^/]+)/([^/]+)/?$', 'index.php?pagename=perfil-usuario&modulo=$matches[1]&accion=$matches[2]&id=$matches[2]', 'top' );
+		    add_rewrite_rule( '^'.$tipo.'/([^/]+)/?$', 'index.php?pagename=perfil-usuario&modulo=$matches[1]', 'top' );
+		}
+	    flush_rewrite_rules();
+	});
+
+	add_filter( 'query_vars', function ( $vars ) {
+	    $vars[] = 'modulo';
+	    $vars[] = 'accion';
+	    $vars[] = 'id';
+	    return $vars;
+	} );
+
+
+
 	add_action( 'admin_init', function() {
 	    global $wp_filter;
 	 

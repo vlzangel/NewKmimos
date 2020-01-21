@@ -25,11 +25,15 @@
 
 	include_once("funciones.php");
 
+	$current_user = wp_get_current_user();
+	$user_id = $current_user->ID;
+
 	echo "
 		<script> 
 			var KEY_MAPS = '".KEY_MAPS."'; 
 			var HEADER = 'kmivet'; 
 			var AJAX = '".admin_url("admin-ajax.php")."'; 
+			var UID = '".$user_id."'; 
 		</script>";
 
 	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
