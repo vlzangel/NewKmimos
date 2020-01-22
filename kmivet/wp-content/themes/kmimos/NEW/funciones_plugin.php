@@ -412,74 +412,68 @@
                 $MENUS = array(
                     "veterinario" => array(
                         array("name"  => "Mi Perfil",
-                            "url"   => $H."/veterinario/",
-                            "icono" => "460",
+                            "url"   => "/perfil/",
                             "img" => '<i class="far fa-user"></i>',
+                        ),
+                        array(
+                            "url"   => "/historial/",
+                            "name"  => "Mis Citas",
+                            "img" =>  '<i class="far fa-calendar-alt"></i>',
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
-                            "icono" => "476",
                             "img" =>  '<i class="fas fa-sign-out-alt"></i>',
                         ),
                     ),
                     "paciente" => array(
                         array(
-                            "url"   => $H."/paciente/",
+                            "url"   => "/perfil/",
                             "name"  => "Mi Perfil",
-                            "icono" => "460",
                             "img" => '<i class="far fa-user"></i>',
                         ),
                         array(
-                            "url"   => $H."/paciente/historial",
+                            "url"   => "/historial/",
                             "name"  => "Mis Citas",
-                            "icono" => "33",
                             "img" =>  '<i class="far fa-calendar-alt"></i>',
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
-                            "icono" => "476",
                             "img" =>  '<i class="fas fa-sign-out-alt"></i>',
                         )
                     ),
                     "administrador" => array(
                         array(
-                            "url"   => $H."/administrador/perfil",
+                            "url"   => "/perfil/",
                             "name"  => "Mi Perfil",
-                            "icono" => "460",
                             "img" => '<i class="far fa-user"></i>',
                         ),
                         array(
-                            "url"   => $H."/administrador/historial",
+                            "url"   => "/historial/",
                             "name"  => "Mis Citas",
-                            "icono" => "33",
                             "img" =>  '<i class="far fa-calendar-alt"></i>',
                         ),
                         array(
                             "url"   => $H."/wp-admin/",
                             "name"  => "Panel de Control",
-                            "icono" => "421",
                             "img" =>  '<i class="fas fa-tachometer-alt"></i>',
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
-                            "icono" => "476",
                             "img" =>  '<i class="fas fa-sign-out-alt"></i>',
                         )
                     ),
                     "inversor" => array(
                         array(
-                            "url"   => "/wp-admin/",
+                            "url"   => $H."/wp-admin/",
                             "name"  => "Panel de Control",
-                            "icono" => "421",
                             "img" =>  '<i class="fas fa-tachometer-alt"></i>',
                         ),
                         array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
-                            "icono" => "476",
                             "img" =>  '<i class="fas fa-sign-out-alt"></i>',
                         )
                     ),
@@ -489,12 +483,12 @@
                 $MENU["head_movil"] = '<li><a href="#" class="km-nav-link"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
                 $MENU["body"] = "";
 
-                $role = ( strtolower($tipo_usuario) == 'inversor' )? strtolower($tipo_usuario) : $tipo_usuario;
+                $role = strtolower($tipo_usuario);
                 if( $MENUS[ $role ] != "" ){
                     foreach ($MENUS[ $role ] as $key => $value) {
                         $MENU["body"] .=
                         '<li>
-                            <a href="'.$value["url"].'" class="pd-tb11 menu-link">
+                            <a href="'.( ( substr($value["url"], 0, 4) == 'http' ) ? $value["url"] : $H.'/'.$role.$value["url"] ).'" class="pd-tb11 menu-link">
                                 '.$value["img"].'
                                 '.$value["name"].'
                             </a>

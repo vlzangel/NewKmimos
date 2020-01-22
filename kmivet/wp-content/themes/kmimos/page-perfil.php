@@ -20,9 +20,10 @@
 
 	$current_user = wp_get_current_user();
 	$user_id = $current_user->ID;
+	
+	$TIPO = get_user_meta($user_id, 'tipo_usuario', true);
 
 	if( $MODULO == '' ){
-		$TIPO = get_user_meta($user_id, 'tipo_usuario', true);
 		header( "location: ".get_home_url().'/'.$TIPO.'/perfil' );
 	}
 
@@ -47,9 +48,13 @@
 		include( "procesos/funciones/funciones_perfil.php");
 
 		ob_start();
-			switch ( $MODULO ) {
-				case 'historial':
-					do_shortcode('[kv sc="perfil/historial" user_id="'.$user_id.'" ]');
+			switch ( $TIPO."_".$MODULO ) {
+				case 'administrador_historial':
+				case 'paciente_historial':
+					do_shortcode('[kv sc="paciente/historial" user_id="'.$user_id.'" ]');
+				break;
+				case 'veterinario_historial':
+					do_shortcode('[kv sc="veterinario/historial" user_id="'.$user_id.'" ]');
 				break;
 				default:
 					include("admin/frontend/perfil/perfil.php");
@@ -58,12 +63,12 @@
 			$CONTENIDO = ob_get_contents();
 		ob_end_clean();
 
-		$tipo = 'avatares_clientes/'.$user_id;
+		$_tipo = 'avatares_clientes/'.$user_id;
 
 		$HTML = '
 			<script> 
 				var USER_ID = "'.$user_id.'";
-				var TIPO_USER = "'.$tipo.'";
+				var TIPO_USER = "'.$_tipo.'";
 			</script>
 	 		<div class="km-ficha-bg"></div>
 			<div class="body container km-content-reservation">

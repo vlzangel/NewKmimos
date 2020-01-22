@@ -424,22 +424,29 @@ table.dataTable small {
     font-size: 11px !important;
 }
 
+table.dataTable .btn_table {
+    border: solid 1px var(--kmimos-morado);
+    border-radius: 3px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
 table.dataTable i {
     font-size: 15px !important;
     padding: 5px 0px;
-    border: solid 1px;
-    border-radius: 3px;
     cursor: pointer;
     min-width: 25px;
     text-align: center;
     color: var(--kmimos-morado);
-    border-color: var(--kmimos-morado);
-    margin-right: 5px;
 }
 
-table.dataTable i.fa-trash-alt {
+table.dataTable .btn_cancelar {
     color: red;
     border-color: red;
+}
+
+table.dataTable .btn_cancelar i {
+    color: red;
 }
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {

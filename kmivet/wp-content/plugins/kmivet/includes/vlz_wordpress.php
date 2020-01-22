@@ -9,6 +9,7 @@
 		foreach ($tipos as $key => $tipo) {
 		    add_rewrite_rule( '^'.$tipo.'/([^/]+)/([^/]+)/([^/]+)/?$', 'index.php?pagename=perfil-usuario&modulo=$matches[1]&accion=$matches[2]&id=$matches[2]', 'top' );
 		    add_rewrite_rule( '^'.$tipo.'/([^/]+)/?$', 'index.php?pagename=perfil-usuario&modulo=$matches[1]', 'top' );
+		    add_rewrite_rule( '^'.$tipo.'/?$', 'index.php?pagename=perfil-usuario&modulo=perfil', 'top' );
 		}
 	    flush_rewrite_rules();
 	});

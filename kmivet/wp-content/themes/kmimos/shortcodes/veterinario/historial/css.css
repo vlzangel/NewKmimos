@@ -1,0 +1,19 @@
+div#historial_wrapper > div:first-child {
+    float: right;
+}
+
+div#historial_wrapper > div:first-child > div:nth-child(2) {
+    width: 222px;
+}
+
+.modal-body textarea {
+    height: 100px;
+}
+
+#otro_motivo {
+	display: none;
+}
+
+#otro_motivo.show {
+	display: block;
+}

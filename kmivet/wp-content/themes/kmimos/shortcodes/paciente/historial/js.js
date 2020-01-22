@@ -1,6 +1,6 @@
 var _table = '';
 jQuery( document ).ready(function() {
-	init_table("#historial", "perfil", "historial");
+	init_table("#historial", "paciente", "historial");
 	_table = jQuery("#historial").DataTable();
 
 	initModal("historial_modal", function(data){
@@ -18,7 +18,7 @@ function _cancelar(_this){
 	var confirmed = confirm("¿Esta Seguro de cancelar esta cita?");
     if (confirmed == true) {
 		jQuery.post(
-			AJAX+"?action=kv&m=perfil&a=cancelar_paciente",
+			AJAX+"?action=kv&m=paciente&a=cancelar",
 			{ id: _this.data('id') },
 			function(data){
 				if( data.status ){
@@ -37,7 +37,7 @@ function _valorar(_this){
 		"historial_modal", 
 		'Valorar', 
 		'Valorar', 
-		'perfil', 
+		'paciente', 
 		'valorar', 
 		_this.data('id')
 	);

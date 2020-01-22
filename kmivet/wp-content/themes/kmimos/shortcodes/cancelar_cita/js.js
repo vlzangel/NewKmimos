@@ -12,10 +12,8 @@ jQuery( document ).ready(function() {
 
 	jQuery("#cancelar_cita").on("submit", function(e){
 		e.preventDefault();
-
 		jQuery('[type="submit"]').html('Procesando...');
 		jQuery('[type="submit"]').prop('disabled', true);
-
 		_post(
 			AJAX+'?action=kv&m=citas&a=cancelar',
 			jQuery("#cancelar_cita").serialize(),
@@ -36,7 +34,6 @@ jQuery( document ).ready(function() {
 				}
 			}
 		);
-
 	});
 
 });

@@ -1,14 +1,6 @@
 <?php
 	$data['data'] = [];
 
-	/*
-		1.	Cita confirmada
-		2.	Arribo al domicilio
-		3.	Finalización de la cita
-		4.	Cita cancelada
-		5.	Cita finalizada con Calificación
-	*/
-
 	$tipo = strtolower( get_usermeta( $user_id, "tipo_usuario", true ) );
 
 	$reservas = $wpdb->get_results( "SELECT * FROM {$pf}reservas WHERE user_id = '{$user_id}' ORDER BY id DESC" );
@@ -20,28 +12,20 @@
 
 		$fecha = date("d/m/Y", strtotime($i->cita_fecha) ).' a las '.date("h:ia", strtotime($i->cita_fecha) );
 
-		$acciones = '
-			<i onclick="_ver( jQuery(this) )" class="far fa-eye" data-accion="ver" data-id="'.$reserva->id.'" title="Ver" ></i>
-		';
+		$acciones = '<span class="btn_table"> <i onclick="_ver( jQuery(this) )" class="far fa-eye" data-accion="ver" data-id="'.$reserva->id.'" title="Ver" ></i> </span>';
 
 		switch ( $reserva->status ) {
 			case 1:
-				$acciones .= '
-					<i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i>
-				';
+				$acciones .= '<span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->cita_id.'" title="Cancelar" ></i> </span>';
 			break;
 			case 2:
-				$acciones .= '
-					<i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i>
-				';
+				$acciones .= '<span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->cita_id.'" title="Cancelar" ></i> </span>';
 			break;
 			case 3:
-				$acciones .= '
-					<i onclick="_valorar( jQuery(this) )" class="fas fa-clipboard-check" data-accion="calificar" data-id="'.$reserva->id.'" title="Calificar"></i>
-				';
+				$acciones .= '<span class="btn_table"> <i onclick="_valorar( jQuery(this) )" class="fas fa-clipboard-check" data-accion="calificar" data-id="'.$reserva->id.'" title="Calificar"></i> </span>';
 			break;
 			case 4:
-				// $acciones = '-';
+				
 			break;
 		}
 

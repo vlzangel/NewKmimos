@@ -1,5 +1,5 @@
 <?php
-    
+
     function kv_get_emails_admin(){
         return [
             'BCC: a.veloz@kmimos.la',
@@ -54,6 +54,40 @@
             $html = str_replace(get_home_url(), "https://kmimos.com.mx/QA2", $html);
         }
         return $html;
+    }
+    
+    function email_set_format_slug($cadena){
+        $originales = [ 'Á','É','Í','Ó','Ú' ];
+        $modificadas = [ 'a','e','i','o','u' ];
+        foreach ($originales as $key => $value) {
+            $cadena = str_replace($value, $modificadas[ $key ], $cadena);
+        }
+        return strtolower($cadena);
+    }
+
+    function email_set_format_name($cadena){
+        $originales = [ 'Á','É','Í','Ó','Ú', 'Ñ' ];
+        $modificadas = [ '&aacute;','&eacute;','&iacute;','&oacute;','&uacute;','&ntilde;' ];
+        foreach ($originales as $key => $value) {
+            $cadena = str_replace($value, $modificadas[ $key ], $cadena);
+        }
+        return mb_strtolower($cadena, 'UTF-8');
+    }
+
+    function email_set_format_precio($price){
+        $temp = explode('.', $price);
+        if( !isset($temp[1]) ){ $temp[1] = '00'; }
+        return '<span>MXN$</span> <strong style="font-size: 25px;">'.$temp[0].',</strong><span>'.$temp[1].'</span>';
+    }
+
+    function email_set_format_ranking($img, $ranking){
+        $ranking += 0;
+        if( $ranking > 5 ){ $ranking = 5; }
+        if( $ranking < 1 ){ $ranking = 1; }
+        $_ranking = '';
+        for ($i=1; $i <= $ranking; $i++) {  $_ranking .= '<img src="'.$img.'/CONSULTA/CANCELACION/hueso_full.png" style="width: 20px; margin-right: 5px;" />'; }
+        if( $ranking < 5 ){ for ($i=$ranking; $i < 5; $i++) {  $_ranking .= '<img src="'.$img.'/CONSULTA/CANCELACION/hueso_vacio.png" style="width: 20px; margin-right: 5px;" />'; } }
+        return $_ranking;
     }
 
     /* BUSQUEDA */
