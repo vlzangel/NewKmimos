@@ -262,11 +262,8 @@ function cargar( id ){
 			debug( data );
 
 			data = data[0];
-
 			jQuery("#specialty_id").val( jQuery("#especialidad").val() );
-
 			item_actual = data;
-
 			var first_item = '';
 
 			var img = ( data.profilePic != undefined && data.profilePic != "" ) ? data.profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png' ;
@@ -280,27 +277,33 @@ function cargar( id ){
 				jQuery(".medicos_details .medico_ficha_info_certificaciones").css( 'display', 'none' );
 			}
 
-			if( data.medicInfo.courses != undefined ){
-				jQuery(".medicos_details .medico_ficha_info_cursos > div").html( data.medicInfo.courses );
-				jQuery(".medicos_details .medico_ficha_info_cursos").css( 'display', 'block' );
-				if( first_item == '' ){ first_item = 'medico_ficha_info_cursos'; }
+			if( data.medicInfo != undefined ){
+				if( data.medicInfo.courses != undefined ){
+					jQuery(".medicos_details .medico_ficha_info_cursos > div").html( data.medicInfo.courses );
+					jQuery(".medicos_details .medico_ficha_info_cursos").css( 'display', 'block' );
+					if( first_item == '' ){ first_item = 'medico_ficha_info_cursos'; }
+				}else{
+					jQuery(".medicos_details .medico_ficha_info_cursos").css( 'display', 'none' );
+				}
+
+				if( data.medicInfo.formerExperience != undefined ){
+					jQuery(".medicos_details .medico_ficha_info_experiencia > div").html( data.medicInfo.formerExperience );
+					jQuery(".medicos_details .medico_ficha_info_experiencia").css( 'display', 'block' );
+					if( first_item == '' ){ first_item = 'medico_ficha_info_experiencia'; }
+				}else{
+					jQuery(".medicos_details .medico_ficha_info_experiencia").css( 'display', 'none' );
+				}
+
+				if( data.medicInfo.otherStudies != undefined ){
+					jQuery(".medicos_details .medico_ficha_info_otros > div").html( data.medicInfo.otherStudies );
+					jQuery(".medicos_details .medico_ficha_info_otros").css( 'display', 'block' );
+					if( first_item == '' ){ first_item = 'medico_ficha_info_otros'; }
+				}else{
+					jQuery(".medicos_details .medico_ficha_info_otros").css( 'display', 'none' );
+				}
 			}else{
 				jQuery(".medicos_details .medico_ficha_info_cursos").css( 'display', 'none' );
-			}
-
-			if( data.medicInfo.courses != undefined ){
-				jQuery(".medicos_details .medico_ficha_info_experiencia > div").html( data.medicInfo.formerExperience );
-				jQuery(".medicos_details .medico_ficha_info_experiencia").css( 'display', 'block' );
-				if( first_item == '' ){ first_item = 'medico_ficha_info_experiencia'; }
-			}else{
 				jQuery(".medicos_details .medico_ficha_info_experiencia").css( 'display', 'none' );
-			}
-
-			if( data.medicInfo.courses != undefined ){
-				jQuery(".medicos_details .medico_ficha_info_otros > div").html( data.medicInfo.otherStudies );
-				jQuery(".medicos_details .medico_ficha_info_otros").css( 'display', 'block' );
-				if( first_item == '' ){ first_item = 'medico_ficha_info_otros'; }
-			}else{
 				jQuery(".medicos_details .medico_ficha_info_otros").css( 'display', 'none' );
 			}
 
