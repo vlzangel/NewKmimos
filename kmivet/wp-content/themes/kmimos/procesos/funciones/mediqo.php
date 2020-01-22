@@ -1,8 +1,8 @@
 <?php
 	function mediqo_request($url, $params, $type = 'POST'){
-		// $url = 'https://api.mediqo.mx/'.$url;
+		$url = 'https://api.mediqo.mx/'.$url;
 		// $url = '13.59.244.182/'.$url;
-		$url = 'http://3.86.249.47/'.$url;
+		// $url = 'http://3.86.249.47/'.$url;
 		
 		if( $type == 'POST' ){
 			$ch = curl_init($url);

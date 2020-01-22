@@ -14,7 +14,12 @@ jQuery(document).ready(function() {
 		});
 	});
 
-	deshabilitaRetroceso();
+	// deshabilitaRetroceso();
+
+	window.onpopstate = function() {
+		alert("no regreses...");
+		return false;
+	}
 
 });
 

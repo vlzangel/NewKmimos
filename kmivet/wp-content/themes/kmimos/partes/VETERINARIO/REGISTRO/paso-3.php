@@ -13,10 +13,10 @@
 	<input type="text" name="kv_universidad" valid="required" class="validar" />
 </div>
 
-<div>
+<!-- <div>
 	<label>Internado</label>
 	<textarea name="kv_internado" valid="required" class="validar"></textarea>
-</div>
+</div> -->
 
 <div>
 	<label>Servicio Social</label>
@@ -43,7 +43,7 @@
 	<textarea name="kv_idiomas" valid="required" class="validar"></textarea>
 </div>
 
-<div>
+<!-- <div>
 	<label>¿Pertenece a una red de seguros?</label>
 	<select name="kv_red_seguro">
 		<option>No</option>
@@ -56,7 +56,7 @@
 		<label>Red de Seguros</label>
 		<input type="text" name="kv_red_seguros" />
 	</div>
-</div>
+</div> -->
 
 <div>
 	<label>¿Cuenta con alguna especialidad?</label>

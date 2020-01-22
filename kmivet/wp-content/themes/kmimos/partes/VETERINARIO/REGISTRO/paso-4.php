@@ -25,7 +25,7 @@
 	</select>
 </div>
 
-<div>
+<!-- <div>
 	<label>¿Tiene seguro de Responsabilidad Civil Médica?</label>
 	<select name="kv_seguro_responsabilidad" valid="required" class="validar">
 		<option value="">Seleccione</option>
@@ -42,7 +42,7 @@
 <div class="kv_datos_seguro_civil">
 	<label>No. de Poliza</label>
 	<input type="text" name="kv_no_poliza" />
-</div>
+</div> -->
 
 <!-- <div class="kv_opciones">
 	<label>Es importante que cuentes con uno. MediQó te acerca ciertas alternativas.</label>
