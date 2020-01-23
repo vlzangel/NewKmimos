@@ -1198,6 +1198,10 @@ div#popup-registrarte {
     overflow-x: hidden !important;
 }
 
+.check_container > input {
+    display: none;
+}
+
 /*
 .medico_ficha {
     position: absolute;
