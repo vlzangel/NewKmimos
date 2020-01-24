@@ -9,14 +9,14 @@
 
 	$_infos = $_SESSION['medicos_info'];
 
-	$url = "https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}&tz=America/Mexico_City";
-	$hash = md5( $url );
+	// $url = "https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}&tz=America/Mexico_City";
+	// $hash = md5( $url );
 	/*
 	if( isset($_SESSION[ $hash ]) ){
 		$res = $_SESSION[ $hash ];
 	}else{ */
-		$medicos = json_decode( file_get_contents("https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}") );
-		// $medicos = json_decode( file_get_contents("3.86.249.47/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}") );
+		// $medicos = json_decode( file_get_contents("https://api.mediqo.mx/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}") );
+		$medicos = json_decode( file_get_contents("http://3.86.249.47/medics/?specialty={$specialty}&lat={$lat}&lng={$lng}") );
 		$medicos = $medicos->objects;
 		$_medicos = [];
 		foreach ($medicos as $key => $medico) {
