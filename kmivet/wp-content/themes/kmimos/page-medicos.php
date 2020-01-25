@@ -10,6 +10,8 @@
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
+    wp_enqueue_script('conekta', "https://cdn.conekta.io/js/latest/conekta.js", array("jquery"), '1.0.0');
+
     wp_enqueue_script('touchSwipe', getTema()."/lib/jquery.touchSwipe.min.js", array("jquery"), '1.0.0');
 
     wp_enqueue_style('home_kmimos', get_recurso("css")."medicos.css", array(), '1.0.0');
@@ -23,7 +25,10 @@
             
     get_header();
     $user_id = get_current_user_id(); ?>
-    <script type="text/javascript"> var USER_ID = "<?= $user_id ?>"; </script>
+    <script type="text/javascript"> 
+        var USER_ID = "<?= $user_id ?>"; 
+        var KEY_CONEKTA = "<?= KEY_CONEKTA ?>"; 
+    </script>
     <div class="medicos_container medico_ficha_no_select">
 
     	<div class="medicos_list_container">
@@ -219,15 +224,6 @@
                                 <h3>Información de consulta</h3>
                                 <div class="modal_precio_container">Precio: <span class="modal_precio"></span></div>
                                 
-                                <!--
-                                <div class="para_alguien_mas_container">
-                                    <input type="checkbox" id="para_alguien_mas" name="para_alguien_mas" /> 
-                                    <label for="para_alguien_mas">
-                                        ¿La cita es para alguien más? 
-                                    </label>
-                                </div>
-                                -->
-
                                 <form id="reserva_form">
                                     <input type="hidden" name="cita_latitud" value="'.$_SESSION['medicos_serch']['latitud'].'" />
                                     <input type="hidden" name="cita_longitud" value="'.$_SESSION['medicos_serch']['longitud'].'" />
@@ -258,30 +254,34 @@
                                         <input type="hidden" id="medico_id" name="medico_id" />
                                         <input type="hidden" id="specialty_id" name="specialty_id" />
                                         <input type="hidden" id="cita_fecha" name="cita_fecha" />
-                                        <div class="cont_tarjeta">
-                                            <input type="text" class="vlz_limpiar" name="cita_tarjeta" placeholder="Número de tarjeta" data-openpay-card="card_number" />
+
+                                        <input type="hidden" id="cita_token" name="cita_token" />
+
+                                        <div class="cont_nombre">
+                                            <input type="text" class="vlz_limpiar" name="cita_nombre" placeholder="Nombre" data-openpay-card="holder_name" data-conekta="card[name]" />
                                         </div>
+
+                                        <div class="cont_tarjeta">
+                                            <input type="text" class="vlz_limpiar" name="cita_tarjeta" placeholder="Número de tarjeta" data-openpay-card="card_number" data-conekta="card[number]" />
+                                        </div>
+
                                         <div class="cont_datos">
                                             <div class="cont_mes">
-                                                <input type="text" class="vlz_limpiar" name="cita_mes" placeholder="Mes (MM)" data-openpay-card="expiration_month" />
+                                                <input type="text" class="vlz_limpiar" name="cita_mes" placeholder="Mes (MM)" data-openpay-card="expiration_month" data-conekta="card[exp_month]" />
                                             </div>
                                             <div class="cont_anio">
-                                                <input type="text" class="vlz_limpiar" name="cita_anio" placeholder="Año (AA)" data-openpay-card="expiration_year" />
+                                                <input type="text" class="vlz_limpiar" name="cita_anio" placeholder="Año (AA)" data-openpay-card="expiration_year" data-conekta="card[exp_year]" />
                                             </div>
                                             <div class="cont_cvv">
-                                                <input type="text" class="vlz_limpiar" name="cita_cvv" placeholder="CVV" data-openpay-card="cvv2" />
+                                                <input type="text" class="vlz_limpiar" name="cita_cvv" placeholder="CVV" data-openpay-card="cvv2" data-conekta="card[cvc]" />
                                             </div>
                                         </div>
-                                        <div class="cont_nombre">
-                                            <input type="text" class="vlz_limpiar" name="cita_nombre" placeholder="Nombre" data-openpay-card="holder_name" />
-                                        </div>
-                                        <div class="cont_apellido">
-                                            <input type="text" class="vlz_limpiar" name="cita_apellido" placeholder="Apellido" />
-                                        </div>
+
                                         <div class="cont_direccion">
                                             <label>Dirección del paciente</label>
                                             <input type="text" name="cita_direccion" placeholder="Dirección del paciente" />
                                         </div>
+
                                     </div>
                                     <div class="errores_box"></div>
                                 </form>

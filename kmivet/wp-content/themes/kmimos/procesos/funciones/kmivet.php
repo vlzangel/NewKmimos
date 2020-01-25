@@ -6,35 +6,24 @@
             $user_id = $_POST_['user_id'];
             unset( $_POST_['user_id'] );
             $data = json_encode($_POST_, JSON_UNESCAPED_UNICODE);
-            $sql = "INSERT INTO wp_kmivet_reservas VALUES(
-                NULL,
-                '{$user_id}',
-                '{$medico_id}',
-                NULL,
-                '{$cita_fecha}',
-                '{$data}',
-                0,
-                0,
-                NULL,
-                0,
-                '',
-                '',
-                NOW()
-            )";
+            $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$data}', 1, NULL, 0, '', '', NOW() )";
             if( $wpdb->query( $sql ) ){
-                return $wpdb->insert_id;
+                return [
+                    'status' => true,
+                    'id' => $wpdb->insert_id
+                ];
             }else{
-                return 0;
+                return [
+                    'status' => false,
+                    'info' => $sql
+                ];
             }
         }
 
         function cancelar_cita($params){
             global $wpdb;
-
             extract($params);
-
             if( $motivo == 'otro' ){ $motivo = $otro_motivo; }
-
             $res = $wpdb->query("UPDATE wp_kmivet_reservas SET status = 4, observaciones = '{$motivo}', cancelado_por = '{$cancelado_por}' WHERE cita_id = '{$cita_id}' ");
 
             if( $res != false ){

@@ -1,9 +1,8 @@
 <?php
 	function mediqo_request($url, $params, $type = 'POST'){
 		// $url = 'https://api.mediqo.mx/'.$url;
-		// $url = '13.59.244.182/'.$url;
-		$url = 'http://3.86.249.47/'.$url;
-		
+		// $url = 'http://3.86.249.47/'.$url;
+		$url = 'http://pruebas.kmimos.com.mx/'.$url;
 		if( $type == 'POST' ){
 			$ch = curl_init($url);
 			$payload = json_encode($params);
@@ -23,39 +22,15 @@
 
 	function get_mediqo_customer($user_id){
 		$customer = '';
-		$data_cliente = get_data_user($user_id);
-		if( $data_cliente['_mediqo_customer_id'] == '' ){
-			$password = substr(md5(time()), 0, 8);
-			$resultado = mediqo_request('patients/', [
-				'network' => 3,
-				'socialId' => $data_cliente['email'],
-				'firstName' => $data_cliente[ 'first_name' ],
-				'lastName' => $data_cliente[ 'last_name' ],
-				'email' => $data_cliente['email'],
-				'phone' => '5551234567',
-				'birthday' => date("Y-m-d", strtotime("- 25 year")),
-				'password' => $password
-			]);
-			$resultado = json_decode($resultado);
-			$mediqo_id = $resultado->object->id;
-			if( $mediqo_id != null ){
-				update_user_meta($user_id, "_mediqo_customer_id", $mediqo_id);
-			}else{
-			    return [
-					'status' => 'ko',
-					'info' => $resultado,
-					'res' => $data_cliente,
-					'user_id' => $user_id
-				];
-			}
-		}else{
-			$mediqo_id = $data_cliente['_mediqo_customer_id'];
+		$_mediqo_customer_id = get_user_meta($user_id, '_mediqo_customer_id', true);
+		if( $_mediqo_customer_id == '' ){
+			return [
+				'status' => 'ko'
+			];
 		}
-		
 	    return [
 			'status' => 'ok',
-			'id'  => $mediqo_id,
-			'res' => $data_cliente
+			'id'  => $_mediqo_customer_id
 		];
 	}
 
@@ -94,14 +69,36 @@
 
 	/* Consultas */
 
+	// Parametros para crear consulta en mediqo //
+	/*
+		{
+			"payment": {
+				"number": "4111111111111111",
+				"firstName": "A",
+				"lastName": "J",
+				"token": "tok_2mRhVv96mLWiUp3cY"
+			},
+			"medic": "4794a05285f74bd0980b88243782ab5d",
+			"patient": "9ab288447ce846359a56f8300559b3d0",
+			"specialty": "4076b2429a17427692085abb38c6ff1d",
+			"dueTo": "2019-10-17 18:30",
+			"lat": 19.449481,
+			"lng": -99.165957,
+			"extraPatient": "Extra patient",
+			"extraPatientAge": 22,
+			"extraPatientGender": 1
+		}
+	*/
+
 	function add_appointments($params){
-		$resultado = mediqo_request('appointments/', $params);
-		$resultado = json_decode($resultado);
+		$_resultado = mediqo_request('appointments/', $params);
+		$resultado = json_decode($_resultado);
 		$cita_id = $resultado->object->id;
 		if( $cita_id == null ){
 		    return [
 				'status' => 'ko',
-				'info' => $resultado
+				'info' => $resultado,
+				'resultado' => $_resultado,
 			];
 		}
 	    return [
@@ -164,7 +161,7 @@
 	}
 
 	function get_medic($mediqo_id){
-		$resultado = mediqo_request('medics/'.$mediqo_id, []);
+		$resultado = mediqo_request('medics/'.$mediqo_id, [], 'GET');
 		$resultado = json_decode($resultado);
 		$id = $resultado->object->id;
 		if( $resultado->status != 'OK' ){
@@ -182,6 +179,7 @@
 
 	function get_medics($specialty, $lat, $lng){
 		$resultado = mediqo_request('medics/?specialty='.$specialty.'&lat='.$lat.'&lng='.$lng, [], 'GET');
+		// echo $resultado;
 		$resultado = json_decode($resultado);
 		$id = $resultado->object->id;
 		if( $resultado->status != 'OK' ){

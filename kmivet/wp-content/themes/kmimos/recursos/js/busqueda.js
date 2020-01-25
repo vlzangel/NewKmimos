@@ -1,3 +1,4 @@
+/* // Proceso Openpay
 var __FORM_PAGO__ = 'reserva_form';
 var __CB_PAGO_OK__ = function(){
 	jQuery("#btn_reservar").html("Procesando...");
@@ -8,9 +9,6 @@ var __CB_PAGO_OK__ = function(){
 			debug(res);
 			if( res.error == false ){
 				location.href = RAIZ+"/finalizar/"+res.cid;
-
-				// jQuery("#btn_reservar").html("Solicitar Consulta");
-				// jQuery("#btn_reservar").prop("disabled", false);
 			}else{
 				jQuery(".errores_box").html( res.msg );
 				jQuery(".errores_box").css("display", "block");
@@ -24,6 +22,37 @@ var __CB_PAGO_OK__ = function(){
 }
 
 var __CB_PAGO_KO__ = function(){
+	jQuery("#btn_reservar").html("Solicitar Consulta");
+	jQuery("#btn_reservar").prop("disabled", false);
+} */
+
+/* // Proceso Conekta */
+var __FORM_PAGO__ = 'reserva_form';
+var __CB_PAGO_OK__ = function(token){
+	console.log(token);
+	jQuery("#cita_token").val( token.id );
+	jQuery("#btn_reservar").html("Procesando...");
+	jQuery.post(
+		HOME+'/procesos/medicos/RESERVA/pagar.php',
+		jQuery("#"+__FORM_PAGO__).serialize(),
+		function(res){
+			debug(res);
+			if( res.error == false ){
+				location.href = RAIZ+"/finalizar/"+res.cid;
+			}else{
+				jQuery(".errores_box").html( res.msg );
+				jQuery(".errores_box").css("display", "block");
+
+				jQuery("#btn_reservar").html("Solicitar Consulta");
+				jQuery("#btn_reservar").prop("disabled", false);
+			}
+		}, 
+		'json'
+	);
+}
+
+var __CB_PAGO_KO__ = function(error){
+	console.log(error);
 	jQuery("#btn_reservar").html("Solicitar Consulta");
 	jQuery("#btn_reservar").prop("disabled", false);
 }
@@ -45,11 +74,10 @@ function get_coordenadas() {
 		geocoder.geocode( { 'address': address}, function(results, status) {
 			if (status == 'OK') {
 			} else {
-				alert('Geocode was not successful for the following reason: ' + status);
+				alert('Geocode was not successful for the following reason: '+status);
 			}
 		});
 	}
-
 }
 
 function get_ubicacion(){
@@ -57,7 +85,6 @@ function get_ubicacion(){
         crd = pos.coords;
         jQuery('[name="cita_latitud"]').val( crd.latitude );
         jQuery('[name="cita_longitud"]').val( crd.longitude );
-
         var geocoder = new google.maps.Geocoder();
         var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
         geocoder.geocode({'location': latlng}, function(results, status) {
@@ -72,8 +99,7 @@ function get_ubicacion(){
         }else{
             alert(err.message);
         }
-    },
-    {
+    },{
         enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0
@@ -170,24 +196,34 @@ jQuery( document ).ready(function() {
 		});
 	});
 
-	jQuery("#btn_reservar").on("click", function(e){
-		var latitud = jQuery('[name="cita_latitud"]').val();
-		var longitud = jQuery('[name="cita_longitud"]').val();
-		var direccion = jQuery('[name="cita_direccion"]').val();
-		if( latitud == "" || longitud == "" || direccion == "" ){
-			alert("Para tener acceso al servicio es necesario poder obtener su ubicación actual, por favor pícale en Permitir.");
-			get_ubicacion();
-		}else{
-			jQuery("#btn_reservar").html("Validando...");
-			jQuery("#btn_reservar").prop("disabled", true);
-			OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
-		}
-	});
-
 	jQuery(".atras_ficha").on('click', function(e){
 		jQuery(".medicos_container").removeClass('medico_ficha_si_cargada');
 		jQuery(".medicos_container").addClass('medico_ficha_no_cargada');
 	});
+
+
+	/*  Proceso pago */
+		
+		jQuery("#btn_reservar").on("click", function(e){
+			var latitud = jQuery('[name="cita_latitud"]').val();
+			var longitud = jQuery('[name="cita_longitud"]').val();
+			var direccion = jQuery('[name="cita_direccion"]').val();
+			if( latitud == "" || longitud == "" || direccion == "" ){
+				alert("Para tener acceso al servicio es necesario poder obtener su ubicación actual, por favor pícale en Permitir.");
+				get_ubicacion();
+			}else{
+				jQuery("#btn_reservar").html("Validando...");
+				jQuery("#btn_reservar").prop("disabled", true);
+				// OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
+
+				// __CB_PAGO_OK__
+				// __CB_PAGO_KO__
+
+				Conekta.setPublicKey( KEY_CONEKTA );
+				Conekta.setLanguage("es");
+				Conekta.Token.create(jQuery("#reserva_form"), __CB_PAGO_OK__, __CB_PAGO_KO__);
+			}
+		});
 
 } );
 
