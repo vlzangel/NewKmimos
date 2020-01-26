@@ -1172,3 +1172,29 @@ a.km-btn-correo.km-btn-popup-registro-cuidador-paso1 {
     margin-bottom: 10px;
     resize: none;
 }
+
+.modal .modal-body input, .modal .modal-body select {
+    line-height: 1!important;
+}
+
+.kv_col_2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.kv_col_3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.kv_col_4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+i.far.fa-trash-alt {
+    color: var(--kmimos-ko);
+}

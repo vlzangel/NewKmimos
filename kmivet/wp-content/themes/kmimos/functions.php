@@ -9,6 +9,20 @@
 	include __DIR__.'/procesos/funciones/mediqo.php';
 	include __DIR__.'/procesos/funciones/kmivet.php';
 
+	$h = get_home_url();
+	$t = get_template_directory_uri();
+	$p = plugin_dir_url( dirname(dirname(__DIR__))."/plugins/kmivet/init.php" );
+
+    $vlz = [
+        "h" => $h,
+        "t" => $t,
+        "p" => $p,
+        "i" => $p.'res/img',
+        "c" => $p.'res/css',
+        "j" => $p.'res/js',
+        "pf" => $wpdb->prefix.'kmivet_',
+    ];
+
 	add_shortcode( "kv", function( $atts ) {
 		extract($atts);
 		if( $sc != '' ){
@@ -40,9 +54,18 @@
 		extract($vlz);
 		$current_user = wp_get_current_user();
 		$user_id = $current_user->ID;
+		$path = '';
 		if( $m != '' && $a != '' ){
 			$path = __DIR__.'/ajax/'.$m.'/'.$a.'.php';
 			if( file_exists( $path ) ){ global $wpdb; include $path; }
+		}
+		if( substr($a, -4) != 'form' ){
+			die(json_encode([
+				'status' => false,
+				'error' => 'Error inesperado',
+				'extra' => $_POST,
+				'path' => $path,
+			]));
 		}
 		die();
 	}

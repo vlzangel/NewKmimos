@@ -1,4 +1,4 @@
-/* // Proceso Openpay
+// Proceso Openpay
 var __FORM_PAGO__ = 'reserva_form';
 var __CB_PAGO_OK__ = function(){
 	jQuery("#btn_reservar").html("Procesando...");
@@ -24,10 +24,10 @@ var __CB_PAGO_OK__ = function(){
 var __CB_PAGO_KO__ = function(){
 	jQuery("#btn_reservar").html("Solicitar Consulta");
 	jQuery("#btn_reservar").prop("disabled", false);
-} */
+} 
 
-/* // Proceso Conekta */
-var __FORM_PAGO__ = 'reserva_form';
+// // Proceso Conekta //
+/*var __FORM_PAGO__ = 'reserva_form';
 var __CB_PAGO_OK__ = function(token){
 	console.log(token);
 	jQuery("#cita_token").val( token.id );
@@ -55,7 +55,7 @@ var __CB_PAGO_KO__ = function(error){
 	console.log(error);
 	jQuery("#btn_reservar").html("Solicitar Consulta");
 	jQuery("#btn_reservar").prop("disabled", false);
-}
+}*/
 
 var geocoder;
 var map;
@@ -214,14 +214,14 @@ jQuery( document ).ready(function() {
 			}else{
 				jQuery("#btn_reservar").html("Validando...");
 				jQuery("#btn_reservar").prop("disabled", true);
-				// OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
+				
+				OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
 
-				// __CB_PAGO_OK__
-				// __CB_PAGO_KO__
-
+				/*
 				Conekta.setPublicKey( KEY_CONEKTA );
 				Conekta.setLanguage("es");
 				Conekta.Token.create(jQuery("#reserva_form"), __CB_PAGO_OK__, __CB_PAGO_KO__);
+				*/
 			}
 		});
 
@@ -302,7 +302,7 @@ function cargar( id ){
 			item_actual = data;
 			var first_item = '';
 
-			var img = ( data.profilePic != undefined && data.profilePic != "" ) ? data.profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png' ;
+			var img = ( data.profilePic != undefined && data.profilePic != "" ) ? data.profilePic : HOME+'images/image.png' ;
 			jQuery(".medicos_details .medico_ficha_img").css("background-image", "url("+img+")");
 
 			if( data.certifications != undefined ){
@@ -347,8 +347,8 @@ function cargar( id ){
 				jQuery("."+first_item+" > label").click();
 			}
 
-			jQuery(".medicos_details .medico_ficha_info_name > label").html( data.firstName+' '+data.lastName );
-			jQuery("#modal_final_medico").html( data.firstName+' '+data.lastName );
+			jQuery(".medicos_details .medico_ficha_info_name > label").html( data.firstName ); // +' '+data.lastName
+			jQuery("#modal_final_medico").html( data.firstName ); // +' '+data.lastName
 			jQuery(".medicos_details .medico_ficha_info_name > div").html( NF(data.distance)+' km de tu ubicación' );
 			jQuery(".medicos_details .medico_ficha_info_name > span").html( '$'+NF(data.price) );
 			jQuery("#input_modal_precio").val( parseFloat(data.price) );

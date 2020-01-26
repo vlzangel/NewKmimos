@@ -129,8 +129,47 @@
 
     function get_dias_meses(){
         $dias  = [     "Lunes", "Martes",  "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" ];
-        $meses = [ "", "Enero", "Febrero", "Marzo",     "Abril",  "Mayo",    "Junio",  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ];
-        return [ 'dias' => $dias, 'meses' => $meses ];
+        $dias_slug  = [ 
+            "lunes" => "Lunes", 
+            "martes" => "Martes",  
+            "miercoles" => "Miércoles", 
+            "jueves" => "Jueves", 
+            "viernes" => "Viernes", 
+            "sabado" => "Sábado", 
+            "domingo" => "Domingo" 
+        ];
+        $_dias  = [ 
+            [ "lunes", "Lunes"          ], 
+            [ "martes", "Martes"        ],  
+            [ "miercoles", "Miércoles"  ], 
+            [ "jueves", "Jueves"        ], 
+            [ "viernes", "Viernes"      ], 
+            [ "sabado", "Sábado"        ], 
+            [ "domingo", "Domingo"      ] 
+        ];
+
+        $meses = [ "", "Enero", "Febrero", "Marzo", "Abril",  "Mayo", "Junio",  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ];
+        $meses_slug = [ 
+            "", 
+            "enero" => "Enero", 
+            "febrero" => "Febrero", 
+            "marzo" => "Marzo", 
+            "abril" => "Abril",  
+            "mayo" => "Mayo", 
+            "junio" => "Junio",  
+            "julio" => "Julio", 
+            "agosto" => "Agosto", 
+            "septiembre" => "Septiembre", 
+            "octubre" => "Octubre", 
+            "noviembre" => "Noviembre",
+            "diciembre" => "Diciembre"
+        ];        
+
+        return [ 
+            'dias' => $dias, 'meses' => $meses,
+            '_dias' => $_dias,
+            'dias_slug' => $dias_slug, 'meses_slug' => $meses_slug
+        ];
     }
 
     /* GENERALES */

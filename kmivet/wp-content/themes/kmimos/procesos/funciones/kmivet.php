@@ -6,7 +6,7 @@
             $user_id = $_POST_['user_id'];
             unset( $_POST_['user_id'] );
             $data = json_encode($_POST_, JSON_UNESCAPED_UNICODE);
-            $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$data}', 1, NULL, 0, '', '', NOW() )";
+            $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$data}', 0, NULL, 0, '', '', NOW() )";
             if( $wpdb->query( $sql ) ){
                 return [
                     'status' => true,
@@ -215,6 +215,13 @@
             ];
         $existe = $wpdb->get_row("SELECT * FROM wp_kmivet_veterinarios WHERE email = '{$kv_email}' ");
         if( $existe !== false ){
+
+            foreach ($DATA as $key => $value) {
+                $temp = preg_replace("/[\r\n|\n|\r]+/", "<br>", $value);
+                $temp = str_replace('"', '', $temp);
+                $DATA[$key] = $temp;
+            }
+
             $data = json_encode($DATA, JSON_UNESCAPED_UNICODE);
             $api = json_encode($DATA_API, JSON_UNESCAPED_UNICODE);
             $sql = "INSERT INTO wp_kmivet_veterinarios VALUES (
@@ -223,6 +230,13 @@
                 NULL,
                 '{$kv_email}',
                 '{$kv_dni}',
+                '{$kv_estado}',
+                '{$kv_delegacion}',
+                '{$kv_colonia}',
+                '{$lat}',
+                '{$lng}',
+                0,
+                0,
                 '{$data}',
                 '{$api}',
                 NULL,

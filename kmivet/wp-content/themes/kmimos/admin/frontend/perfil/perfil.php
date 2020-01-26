@@ -128,7 +128,7 @@
 
             </div>
 
-            <div class="container_btn">
+            <div class="container_btn" style="margin: 0px 15px;">
                 <input type="submit" id="btn_actualizar" class="km-btn-primary" value="Actualizar">
                 <div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div>
             </div>

@@ -9,14 +9,14 @@
 		5.	Cita finalizada con Calificación
 	*/
 
-	$veterinario_id = $wpdb->get_var("SELECT veterinario_id FROM {$pf}veterinarios WHERE user_id = '{$user_id}'");
+	$veterinario_id = $wpdb->get_var("SELECT id FROM {$pf}veterinarios WHERE user_id = '{$user_id}'");
 
 	$reservas = $wpdb->get_results( "SELECT * FROM {$pf}reservas WHERE veterinario_id = '{$veterinario_id}' ORDER BY id DESC" );
 	foreach ($reservas as $key => $reserva) {
 		$i = json_decode($reserva->data);
 
-		$medico = $wpdb->get_row( "SELECT * FROM {$pf}veterinarios WHERE veterinario_id = '{$reserva->veterinario_id}' " );
-		$info_vete = json_decode($medico->api);
+		$paciente = $wpdb->get_row( "SELECT * FROM {$pf}pacientes WHERE user_id = '{$reserva->user_id}' " );
+		$info_vete = json_decode($paciente->data);
 
 		$fecha = date("d/m/Y", strtotime($i->cita_fecha) ).' a las '.date("h:ia", strtotime($i->cita_fecha) );
 
@@ -47,15 +47,15 @@
 
 		$data['data'][] = [
 			$reserva->id,
-			'<div style="text-transform: capitalize;">'.$info_vete->firstName.' '.$info_vete->lastName.'</div>'.
-			'<div><small>'.$info_vete->email.'</small></div>'.
-			'<div><small>'.$info_vete->phone.'</small></div>',
+			'<div style="text-transform: capitalize;">'.$info_vete->first_name.' '.$info_vete->last_name.'</div>'.
+			'<div><small>'.$info_vete->user_email.'</small></div>'.
+			'<div><small>'.$info_vete->user_phone.' / '.$info_vete->user_mobile.'</small></div>',
 			$fecha,
 			get_status_reserva( $reserva->status ),
 			$acciones
 		];
 	}
-	echo json_encode($data);
+	die( json_encode($data) );
 
 	// fas fa-circle-notch
 ?>

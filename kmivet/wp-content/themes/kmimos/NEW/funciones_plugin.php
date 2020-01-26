@@ -400,6 +400,10 @@
 
             if( is_user_logged_in() ){
 
+                global $wpdb;
+                global $vlz;
+                extract($vlz);
+
                 $current_user = wp_get_current_user();
                 $user_id = $current_user->ID;
                 $user = new WP_User( $user_id );
@@ -409,75 +413,101 @@
                 $H = get_home_url();
                 $M = get_query_var('modulo');
 
-                $MENUS = array(
-                    "veterinario" => array(
-                        array("name"  => "Mi Perfil",
-                            "url"   => "/perfil/",
-                            "img" => '<i class="far fa-user"></i>',
-                        ),
-                        array(
-                            "url"   => "/historial/",
-                            "name"  => "Mis Citas",
-                            "img" =>  '<i class="far fa-calendar-alt"></i>',
-                        ),
-                        array(
-                            "url"   => $salir,
-                            "name"  => "Cerrar Sesión",
-                            "img" =>  '<i class="fas fa-sign-out-alt"></i>',
-                        ),
-                    ),
-                    "paciente" => array(
-                        array(
-                            "url"   => "/perfil/",
-                            "name"  => "Mi Perfil",
-                            "img" => '<i class="far fa-user"></i>',
-                        ),
-                        array(
-                            "url"   => "/historial/",
-                            "name"  => "Mis Citas",
-                            "img" =>  '<i class="far fa-calendar-alt"></i>',
-                        ),
-                        array(
-                            "url"   => $salir,
-                            "name"  => "Cerrar Sesión",
-                            "img" =>  '<i class="fas fa-sign-out-alt"></i>',
-                        )
-                    ),
-                    "administrador" => array(
-                        array(
-                            "url"   => "/perfil/",
-                            "name"  => "Mi Perfil",
-                            "img" => '<i class="far fa-user"></i>',
-                        ),
-                        array(
-                            "url"   => "/historial/",
-                            "name"  => "Mis Citas",
-                            "img" =>  '<i class="far fa-calendar-alt"></i>',
-                        ),
-                        array(
+                /* VETERINARIOS */
+
+                    $MENUS["veterinario"][] = array("name"  => "Mi Perfil",
+                        "url"   => "/perfil/",
+                        "img" => '<i class="far fa-user"></i>',
+                    );
+
+                    $MENUS["veterinario"][] = array(
+                        "url"   => "/historial/",
+                        "name"  => "Mis Citas",
+                        "img" =>  '<i class="far fa-list-alt"></i>',
+                    );
+
+                    if( $tipo_usuario == "veterinario"){
+                        $status = $wpdb->get_var("SELECT status FROM {$pf}veterinarios WHERE user_id = '{$user_id}' ");
+                        if( $status ){
+                            $MENUS["veterinario"][] = array(
+                                "url"   => "/ajustes/",
+                                "name"  => "Ajustes",
+                                "img" =>  '<i class="fas fa-sliders-h"></i>',
+                            );
+                            $MENUS["veterinario"][] = array(
+                                "url"   => "/horarios/",
+                                "name"  => "Horarios",
+                                "img" =>  '<i class="far fa-calendar-alt"></i>',
+                            );
+                        }
+                    }
+                    
+                    $MENUS["veterinario"][] = array(
+                        "url"   => $salir,
+                        "name"  => "Cerrar Sesión",
+                        "img" =>  '<i class="fas fa-sign-out-alt"></i>',
+                    );
+
+
+                /* PACIENTES */
+                    $MENUS["paciente"][] = array(
+                        "url"   => "/perfil/",
+                        "name"  => "Mi Perfil",
+                        "img" => '<i class="far fa-user"></i>',
+                    );
+
+                    $MENUS["paciente"][] =  array(
+                        "url"   => "/historial/",
+                        "name"  => "Mis Citas",
+                        "img" =>  '<i class="far fa-calendar-alt"></i>',
+                    );
+
+                    $MENUS["paciente"][] = array(
+                        "url"   => $salir,
+                        "name"  => "Cerrar Sesión",
+                        "img" =>  '<i class="fas fa-sign-out-alt"></i>',
+                    );
+
+                /* ADMINISTRADOR */
+
+                    $MENUS["administrador"][] = array(
+                        "url"   => "/perfil/",
+                        "name"  => "Mi Perfil",
+                        "img" => '<i class="far fa-user"></i>',
+                    );
+
+                    $MENUS["administrador"][] = array(
+                        "url"   => "/historial/",
+                        "name"  => "Mis Citas",
+                        "img" =>  '<i class="far fa-calendar-alt"></i>',
+                    );
+
+                    $MENUS["administrador"][] = array(
                             "url"   => $H."/wp-admin/",
-                            "name"  => "Panel de Control",
-                            "img" =>  '<i class="fas fa-tachometer-alt"></i>',
-                        ),
-                        array(
-                            "url"   => $salir,
-                            "name"  => "Cerrar Sesión",
-                            "img" =>  '<i class="fas fa-sign-out-alt"></i>',
-                        )
-                    ),
-                    "inversor" => array(
-                        array(
+                        "name"  => "Panel de Control",
+                        "img" =>  '<i class="fas fa-tachometer-alt"></i>',
+                    );
+
+                    $MENUS["administrador"][] = array(
+                        "url"   => $salir,
+                        "name"  => "Cerrar Sesión",
+                        "img" =>  '<i class="fas fa-sign-out-alt"></i>',
+                    );
+
+                /* INVERSOR */
+
+                    $MENUS["inversor"][] = array(
                             "url"   => $H."/wp-admin/",
-                            "name"  => "Panel de Control",
-                            "img" =>  '<i class="fas fa-tachometer-alt"></i>',
-                        ),
-                        array(
-                            "url"   => $salir,
-                            "name"  => "Cerrar Sesión",
-                            "img" =>  '<i class="fas fa-sign-out-alt"></i>',
-                        )
-                    ),
-                );
+                        "name"  => "Panel de Control",
+                        "img" =>  '<i class="fas fa-tachometer-alt"></i>',
+                    );
+
+                    $MENUS["inversor"][] = array(
+                        "url"   => $salir,
+                        "name"  => "Cerrar Sesión",
+                        "img" =>  '<i class="fas fa-sign-out-alt"></i>',
+                    );
+
 
                 $MENU["head"] = '<li><a href="#" class="km-nav-link"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
                 $MENU["head_movil"] = '<li><a href="#" class="km-nav-link"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';

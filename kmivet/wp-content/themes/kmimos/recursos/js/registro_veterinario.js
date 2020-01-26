@@ -117,6 +117,8 @@ jQuery( document ).ready(function() {
             jQuery(".kv_datos_seguro_civil").css('display', 'none');
         }
     });
+
+    get_ubicacion();
 });
 
 function completar_registro(){
@@ -134,7 +136,25 @@ function completar_registro(){
         },
         'json'
     );
+}
 
+function get_ubicacion(){
+    navigator.geolocation.getCurrentPosition( function(pos) {
+        crd = pos.coords;
+        jQuery('[name="lat"]').val( crd.latitude );
+        jQuery('[name="lng"]').val( crd.longitude );
+    }, 
+    function error(err) {
+        if( err.message == 'User denied Geolocation' ){
+            alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmivet en la configuración de ubicación de su dispositivo.");
+        }else{
+            alert(err.message);
+        }
+    },{
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    });
 }
 
 function change_step(current){

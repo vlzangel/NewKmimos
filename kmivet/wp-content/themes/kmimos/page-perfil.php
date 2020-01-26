@@ -54,7 +54,13 @@
 					do_shortcode('[kv sc="paciente/historial" user_id="'.$user_id.'" ]');
 				break;
 				case 'veterinario_historial':
-					do_shortcode('[kv sc="veterinario/historial" user_id="'.$user_id.'" ]');
+					do_shortcode('[kv sc="'.$TIPO.'/'.$MODULO.'" user_id="'.$user_id.'" ]');
+				break;
+				case 'veterinario_ajustes':
+					do_shortcode('[kv sc="'.$TIPO.'/'.$MODULO.'" user_id="'.$user_id.'" ]');
+				break;
+				case 'veterinario_horarios':
+					do_shortcode('[kv sc="'.$TIPO.'/'.$MODULO.'" user_id="'.$user_id.'" ]');
 				break;
 				default:
 					include("admin/frontend/perfil/perfil.php");

@@ -12,14 +12,10 @@
     wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
-	wp_enqueue_style('registro_cuidador', get_recurso("css")."registro_cuidador.css", array(), '1.0.0');
-
 
 	wp_enqueue_style('OLD_registro_cuidador', getTema()."/css/registro_cuidador.css", array("kmimos_style"), '1.0.0');
 	wp_enqueue_style('OLD_registro_cuidador_responsive', getTema()."/css/responsive/registro_cuidador_responsive.css", array("kmimos_style"), '1.0.0');
 	wp_enqueue_style( 'OLD_datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
-
-	wp_enqueue_style('registro_cuidador_responsive', get_recurso("css")."responsive/registro_cuidador.css", array(), '1.0.0');
 
 	wp_enqueue_style('registro_veterinario', get_recurso("css")."registro_veterinario.css?v=".time(), array(), '1.0.0');
 	wp_enqueue_style('registro_veterinario_responsive', get_recurso("css")."responsive/registro_veterinario.css?v=".time(), array(), '1.0.0');
@@ -267,6 +263,8 @@
 					</div>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<div class="modal-body">
+						<input type="hidden" name="lat" />
+						<input type="hidden" name="lng" />
 						<div class="kv-registro-nav">
 							<div id="tab_step_1" data-id=1 class="active step_current"> <span>1</span> <div>Información Personal</div> </div>
 							<div id="tab_step_2" data-id=2 > <span>2</span> <div>Datos de Contacto</div> </div>

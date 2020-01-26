@@ -508,11 +508,16 @@ form input, form select {
     padding: 10px 35px 10px;
     text-align: justify;
     font-size: 12px;
+    /*=================================*/
+    height: 80px;
+    overflow: auto;
 }
 
 .medico_ficha_horario_container {
     grid-column: 1 / 3;
     padding: 0px 35px;
+    /*=================================*/
+    min-height: calc( 100vh - 435px);
 }
 
 .medico_ficha_horario_container > label {

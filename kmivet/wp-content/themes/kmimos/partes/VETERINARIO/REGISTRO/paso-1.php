@@ -35,7 +35,7 @@
 
 <div>
 	<label>Código de referencia</label>
-	<input type="text" name="kv_referencia" valid="required" class="validar" />
+	<input type="text" name="kv_referencia" />
 </div>
 
 <div>

@@ -117,7 +117,7 @@ li.vlz_resaltar {
 
 	.inputs_containers{
 		display: block;
-	    padding: 30px 30px 15px;
+	    padding: 0px 0px 15px;
 	}
 
 	.inputs_containers section{
@@ -184,8 +184,9 @@ li.vlz_resaltar {
 
 	.container_btn {
 	    overflow: hidden;
-	    padding: 0px 0px 30px !important;
-	    margin: 0px 15px;
+	    padding: 20px 0px 30px !important;
+	    margin: 0px;
+	    border-top: solid 2px #dcdcdc;
 	}
 
 	.container_btn input{
