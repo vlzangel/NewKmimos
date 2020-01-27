@@ -23,7 +23,7 @@
 		$acciones = '
 			<span class="btn_table"> <i onclick="_ver( jQuery(this) )" class="far fa-eye" data-accion="ver" data-id="'.$reserva->id.'" title="Ver" ></i> </span>
 		';
-
+		$acciones =  '';
 		switch ( $reserva->status ) {
 			case 1: // 
 				$acciones .= '
