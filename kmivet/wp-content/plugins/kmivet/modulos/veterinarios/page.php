@@ -1,6 +1,7 @@
 <?php
 	$config = [
 		'cls' => [
+			['t' => 'Estatus'],
 			['t' => 'Nombre'],
 			['t' => 'Email'],
 			['t' => 'Teléfonos'],
