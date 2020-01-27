@@ -120,11 +120,9 @@
 							}else{
 								$wpdb->query("UPDATE wp_kmivet_reservas SET status = 1 WHERE id = '{$cita_id}' ");
 								
-								$_infos  = $_SESSION['medicos_info'];
-								$_medico = [];
-								foreach ($_infos[ $medico_id ] as $key => $value) {
-									$_medico[ $key ] = $value;
-								}
+								$veterinario = $wpdb->get_row("SELECT * FROM wp_kmivet_veterinarios WHERE id = '{$medico_id}' ");
+								$info_vete = json_decode($veterinario->data);
+
 								$cliente = get_user_meta($user_id, 'first_name', true).' '.get_user_meta($user_id, 'last_name', true);
 								$cliente_email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$user_id);
 								$telefono_cliente = get_user_meta($user_id, 'user_mobile', true).' / '.get_user_meta($user_id, 'user_phone', true);
@@ -137,9 +135,9 @@
 						        	"URL" 				 => get_home_url(),
 						        	"URL_CANCELAR"		 => get_home_url().'/citas/cancelar/'.$cita_id,
 
-						        	"NAME_VETERINARIO" 	 	=> $_medico['firstName'].' '.$_medico['lastName'],
-						        	"TELEFONOS_VETERINARIO" => $_medico['phone'],
-						        	"CORREO_VETERINARIO" 	=> $_medico['email'],
+						        	"NAME_VETERINARIO" 	 	=> $info_vete->kv_nombre,
+						        	"TELEFONOS_VETERINARIO" => $info_vete->kv_telf_fijo.' / '.$info_vete->kv_telf_movil,
+						        	"CORREO_VETERINARIO" 	=> $info_vete->kv_email,
 
 						        	"NAME_CLIENTE" 		 => $cliente,
 						        	"TELEFONOS_CLIENTE"  => $telefono_cliente,
