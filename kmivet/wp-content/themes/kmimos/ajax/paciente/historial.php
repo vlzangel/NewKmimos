@@ -39,5 +39,5 @@
 			$acciones
 		];
 	}
-	echo json_encode($data);
+	die( json_encode($data) );
 ?>
