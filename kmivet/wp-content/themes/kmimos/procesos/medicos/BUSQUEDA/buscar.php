@@ -48,7 +48,7 @@
 		$no_incluirme = " AND user_id != '{$user_id}' ";
 	}
 
-	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 AND precio > 0 AND agenda != NULL {$no_incluirme}");
+	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 AND precio > 0 AND agenda != '' {$no_incluirme}");
 	$res = [];
 	foreach ($veterinarios as $medico) {
 		$info = json_decode($medico->data);
