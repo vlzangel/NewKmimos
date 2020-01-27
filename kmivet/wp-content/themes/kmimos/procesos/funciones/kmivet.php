@@ -34,6 +34,7 @@
                         $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE cita_id = '{$cita_id}' ");
                         $INFORMACION = (array) json_decode( $info_email );
 
+
                         $medicos = get_medics(
                             // $INFORMACION['SPE_MEDIC'],
                             'e41ed3d30309496a845c611dfd8f2e3d',
@@ -55,6 +56,7 @@
                                 break;
                             }
                         }
+                        
 
                         $INFORMACION['RECOMENDACIONES'] = $RECOMENDACIONES;
                         $INFORMACION['KV_URL_IMGS'] = getTema().'/KMIVET/img';

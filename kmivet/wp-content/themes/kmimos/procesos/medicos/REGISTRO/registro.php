@@ -110,7 +110,7 @@
     	'BCC: y.chaudary@kmimos.la',
     ];
 
-    // wp_mail($kv_email, 'Kmivet - Gracias por registrarte como veterinario!', $mensaje, $header);
+    wp_mail($kv_email, 'Kmivet - Gracias por registrarte como veterinario!', $mensaje, $header);
 
 	echo json_encode([
 		"status" => true,
