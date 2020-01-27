@@ -31,7 +31,7 @@
 
 		$data['data'][] = [
 			$reserva->id,
-			'<div style="text-transform: capitalize;">'.$info_vete->kv_nombres.'</div>'.
+			'<div style="text-transform: capitalize;">'.$info_vete->kv_nombre.'</div>'.
 			'<div><small>'.$info_vete->kv_email.'</small></div>'.
 			'<div><small>'.$info_vete->kv_telf_fijo.' / '.$info_vete->kv_telf_movil.'</small></div>',
 			$fecha,
