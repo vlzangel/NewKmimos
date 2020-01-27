@@ -7,7 +7,7 @@
 	foreach ($reservas as $key => $reserva) {
 		$i = json_decode($reserva->data);
 
-		$medico = $wpdb->get_row( "SELECT * FROM {$pf}veterinarios WHERE veterinario_id = '{$reserva->veterinario_id}' " );
+		$medico = $wpdb->get_row( "SELECT * FROM {$pf}veterinarios WHERE id = '{$reserva->veterinario_id}' " );
 		$info_vete = json_decode($medico->data);
 
 		$fecha = date("d/m/Y", strtotime($i->cita_fecha) ).' a las '.date("h:ia", strtotime($i->cita_fecha) );
