@@ -4,18 +4,6 @@ jQuery( document ).ready(function() {
 	_table = jQuery("#historial").DataTable();
 
 	initModal("historial_modal", function(data){
-
-		console.log( data );
-
-		/*
-		switch( data.tipo ){
-			case 'cancelar':
-
-
-
-			break;
-		}
-
 		if( data.status ){
 			alert("Valoración enviada exitosamente!");
 			jQuery("#historial_modal").modal('hide');
@@ -23,7 +11,6 @@ jQuery( document ).ready(function() {
 		}else{
 			alert("Error valorando el servicio");
 		}
-		*/
 	});
 
 	jQuery("[name='motivo']").on('change', function(e){
@@ -59,24 +46,6 @@ function _cancelar(_this){
 		'cancelar', 
 		_this.data('id')
 	);
-}
-
-function _cancelar_(_this){
-	var confirmed = confirm("¿Esta Seguro de cancelar esta cita?");
-    if (confirmed == true) {
-		jQuery.post(
-			AJAX+"?action=kv&m=veterinario&a=cancelar_paciente",
-			{ id: _this.data('id') },
-			function(data){
-				if( data.status ){
-					alert("Cita cancelada exitosamente");
-				}else{
-					alert("Error: "+data.error);
-				}
-				_table.ajax.reload();
-			}, 'json'
-		);
-	}
 }
 
 function _arribar(_this){
