@@ -5,35 +5,11 @@
 
 	$id_user = get_current_user_id();
 	if( $id_user != "" ){
-		header("location: ".get_home_url()."/perfil-usuario/?ua=profile");
+		// header("location: ".get_home_url()."/");
 	}
 
-	if( isset( $_GET['r'] ) ){
-        $xuser = $wpdb->get_row("SELECT * FROM wp_users WHERE md5(ID) = '{$_GET['r']}'");
-
-        $pos = strpos($xuser->user_pass, "$");
-        $tipo = "viejo";
-		$tipo = "nuevo";
-		if ($pos === false) {
-		    $tipo = "nuevo";
-		}
-
-        $_SESSION['kmimos_recuperar'] = array( $xuser->ID, $xuser->user_email, $tipo);
-        header("location: ".get_home_url()."/restablecer/");
-    }
-
-    if( $_SESSION['kmimos_recuperar'] == "" ){
-        header("location: ".get_home_url());
-    }
-
-	get_header();
-
-		if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} ?>
-		<div class="header-search" style="background-image:url(<?php echo site_url(); ?>/wp-content/themes/kmimos/images/new/km-fondo-buscador.gif);">
-			<div class="overlay"></div>
-		</div>
+	get_header(); ?>
  
-		<div class="pf-blogpage-spacing pfb-top"></div>
 		<section role="main" class="blog-full-width" style="overflow: hidden;">
 			<div class="pf-container">
 				<div class="pf-row">
@@ -41,9 +17,10 @@
 							<form id="vlz_form_recuperar" class="km-box-form" enctype="multipart/form-data" method="POST" onsubmit="return false;">
 
 								<?php
-									$datos = $_SESSION['kmimos_recuperar'];
-						            echo "<input type='hidden' name='user_id' value='{$datos[0]}' />";
-						            echo "<input type='hidden' name='user_email' value='{$datos[0]}' />";
+									global $wpdb;
+									$usuario = $wpdb->get_row("SELECT * FROM wp_users WHERE md5(ID) = '{$_GET['r']}' ");
+						            echo "<input type='hidden' name='user_id' value='{$usuario->ID}' />";
+						            echo "<input type='hidden' name='user_email' value='{$usuario->user_email}' />";
 								?>
 								<div class="vlz_modal" id="terminos_y_condiciones" style="display: none;">
 									<div class="vlz_modal_interno">
@@ -59,13 +36,13 @@
 									</div>
 								</div>
 
-								<article style="max-width: 600px; display: block; margin: 0px auto;">
+								<article style="max-width: 600px; display: block; margin: 80px auto 0px;">
 									<div class="vlz_parte">
 										<div class="popup-tit">Recuperar Contraseña</div>
 
 										<div class="vlz_seccion">
 
-											<h2 class="vlz_titulo_interno" style="font-size: 20px;">Email: <?php echo $datos[1]; ?></h2>
+											<h2 class="vlz_titulo_interno" style="font-size: 20px;">Email: <?php echo $usuario->user_email; ?></h2>
 
 											<div class="label-placeholder verify">
 												<div class="vlz_cell50">
