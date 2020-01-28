@@ -1,26 +1,28 @@
 <?php
 	if( $motivo == 'otro' ){ $motivo = $otro_motivo; }
 
-	$res = $wpdb->query("UPDATE wp_kmivet_reservas SET status = 4, observaciones = '{$motivo}' WHERE cita_id = '{$cita_id}' ");
+	$res = $wpdb->query("UPDATE wp_kmivet_reservas SET status = 4, observaciones = '{$motivo}' WHERE id = '{$cita_id}' ");
 
 	if( $res != false ){
-		$rcs = change_status($cita_id, [ "status" => 4, "description" => $motivo ]);
+		// $rcs = change_status($cita_id, [ "status" => 4, "description" => $motivo ]);
 
-		if( $rcs['status'] == 'ok' ){
+		// if( $rcs['status'] == 'ok' ){
 
 			    global $wpdb;
 
-			    $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE cita_id = '{$cita_id}' ");
+			    $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE id = '{$cita_id}' ");
 			    $INFORMACION = (array) json_decode( $info_email );
 
+			    /*
 			    $medicos = get_medics(
 			        // $INFORMACION['SPE_MEDIC'],
 			        'e41ed3d30309496a845c611dfd8f2e3d',
 			        $INFORMACION['LAT_MEDIC'],
 			        $INFORMACION['LNG_MEDIC']
 			    );
+			    */
 
-			    $RECOMENDACIONES = ''; $cont = 0;
+			    $RECOMENDACIONES = ''; $cont = 0; /*
 			    foreach ($medicos["res"]->objects as $key => $medico) {
 			        $img = ( ( $medico->profilePic ) != "" ) ? $medico->profilePic : 'http://www.psi-software.com/wp-content/uploads/2015/07/silhouette-250x250.png';
 			        $RECOMENDACIONES .= buildEmailTemplate('KMIVET/partes/recomendacion', [
@@ -33,7 +35,7 @@
 			        if( $cont > 2 ){
 			            break;
 			        }
-			    }
+			    } */
 
 			    $INFORMACION['RECOMENDACIONES'] = $RECOMENDACIONES;
 			    $INFORMACION['KV_URL_IMGS'] = getTema().'/KMIVET/img';
@@ -58,9 +60,9 @@
 
 
 			die( json_encode([ 'status' => true, 'extra' => $INFORMACION ]) );
-		}else{
+		/* }else{
 			die( json_encode([ 'status' => $res, 'error' => 'Error cambiando el estatus en el API' ]) );
-		}
+		} */
 	
 	}else{
 		die( json_encode([ 'status' => false, 'error' => 'Error cambiando el estatus en kmivet', 'extra' => $res, 'x' => "UPDATE wp_kmivet_reservas SET status = 4, observaciones = '{$motivo}' WHERE cita_id = '{$cita_id}' " ]) );
