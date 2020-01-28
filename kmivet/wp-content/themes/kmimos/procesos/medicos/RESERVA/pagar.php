@@ -172,7 +172,7 @@
 								        'KMIVET/reservas/nueva_veterinario', 
 								        $INFORMACION
 								    );
-							        wp_mail($_medico['email'], 'Kmivet - Nueva Solicitud de Consulta', $mensaje);
+							        wp_mail($info_vete->kv_email, 'Kmivet - Nueva Solicitud de Consulta', $mensaje);
 
 							    /* EMAIL al ADMINISTRADOR */
 							    	$mensaje = kv_get_email_html(
