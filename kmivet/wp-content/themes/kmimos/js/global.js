@@ -1,6 +1,13 @@
 var isMovil = '';
 jQuery( document ).ready(function() {
 
+    jQuery("#registrar_desde_login").on('click', function(e){
+        jQuery("#popup-iniciar-sesion").modal('hide');
+        setTimeout(function(e){
+            jQuery("#popup-registrarte").modal('show');
+        }, 500);
+    });
+
     jQuery(".btn_salir").on('click', function(e){
         jQuery.get(
             jQuery(this).data('url'),
