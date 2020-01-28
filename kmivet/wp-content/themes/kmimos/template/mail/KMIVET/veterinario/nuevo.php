@@ -68,7 +68,7 @@
 
             <strong>Dar click en evaluación</strong>
             la cual consta de breves preguntas y unos casos clínicos muy sencillos.
-            <a hre="http://registration.kmimos.com.mx/" style="
+            <a href="http://registration.kmimos.com.mx/" style="
                 display: block;
                 width: 200px;
                 margin: 15px auto 20px;
