@@ -15,24 +15,16 @@
 
     }else{
         $keyKmimos = md5($USER->ID);
-
         $url_activate = $home."restablecer/?r=".$keyKmimos;
-
-        //MESSAGE
-
-            $user_login = 
-
-            $mail_file = realpath('../../template/mail/recuperar.php');
-            $message_mail = file_get_contents($mail_file);
-            $message_mail = str_replace('[name]', get_user_meta($USER->ID, "first_name", true), $message_mail);
-            $message_mail = str_replace('[url]', $url_activate, $message_mail);
-            $message_mail = str_replace('[URL_IMGS]', $home."/wp-content/themes/kmimos/images/emails", $message_mail);
-
-        //MAIL
-        $subjet = 'Cambiar contraseña en Kmimos';
-        $message = get_email_html($message_mail);
-        wp_mail($USER->user_email,  $subjet, $message);
-
+        $mensaje = kv_get_email_html(
+            'recuperar', 
+            [
+                "URL_IMGS" => $home."/wp-content/themes/kmimos/images/emails",
+                "url"         => $url_activate,
+                "name"        => get_user_meta($USER->ID, "first_name", true)
+            ]
+        );
+        wp_mail($USER->user_email,  'Cambiar contraseña en Kmimos', $mensaje);
         $response['sts'] = 1;
         $response['msg'] = 'Hemos enviado los pasos para restablecer la contraseña a tu correo.';
         echo json_encode($response);
