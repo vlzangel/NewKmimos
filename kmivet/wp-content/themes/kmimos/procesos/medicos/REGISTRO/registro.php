@@ -101,7 +101,7 @@
             "URL"         => get_home_url(),
             "NAME"        => $kv_nombre,
             "EMAIL"       => $kv_email,
-            "PASS"        => $random_password,
+            "PASS"        => $r['random_password'],
         ]
     );
 

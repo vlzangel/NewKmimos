@@ -118,7 +118,7 @@
     </div>
 </div>
 
-<div style='display: block; max-width: 400px; width: 100%; margin: 0px auto; margin-bottom: 10px;'>
+<div style='display: none; max-width: 400px; width: 100%; margin: 0px auto; margin-bottom: 10px;'>
     <div style='display: block; text-align: center; margin-bottom: 31px;'>
         <div style='display: block;'>
             <div style='font-size: 18px; font-weight: bold; letter-spacing: -0.1px; color: #0d7ad9; margin-bottom: 2px;'>E-mail</div>                   
@@ -131,6 +131,7 @@
         <a href="[URL]" style="color: #000; text-decoration: none;"> <img style="width: 60%;" src='[KV_URL_IMGS]/VETERINARIO/NUEVO/btn_1.png' > </a>
     </div>
 </div>
+
 <div style='text-align: center;'>
     <img style='width: 100%; margin: 20px 0px;' src='[KV_URL_IMGS]/VETERINARIO/NUEVO/img_2.png' />
 </div>

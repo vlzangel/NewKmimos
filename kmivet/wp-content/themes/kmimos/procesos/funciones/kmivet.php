@@ -248,7 +248,8 @@
                 return [
                     'status' => true,
                     'user_id' => $user_id,
-                    'veterinario_id' => $wpdb->insert_id
+                    'veterinario_id' => $wpdb->insert_id,
+                    'random_password' => $random_password
                 ];
             }else{
                 return [
