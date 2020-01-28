@@ -50,6 +50,19 @@
 							update_user_meta($_USER_ID, '_mediqo_active', time() );
 
 							$wpdb->quer("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user->ID}'");
+
+							$mensaje = kv_get_email_html(
+					            'KMIVET/veterinario/activado', 
+					            [
+					                "KV_URL_IMGS" => getTema().'/KMIVET/img',
+					                "URL"         => get_home_url(),
+					                "NAME"        => $name.' '.$lastname,
+					                "EMAIL"       => $email,
+					                "PASS"        => $password
+					            ]
+					        );
+
+					        wp_mail( $email, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
 						}
 					}
 					
