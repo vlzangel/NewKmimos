@@ -19,9 +19,9 @@
         $mensaje = kv_get_email_html(
             'recuperar', 
             [
-                "URL_IMGS" => $home."/wp-content/themes/kmimos/images",
-                "url"         => $url_activate,
-                "name"        => get_user_meta($USER->ID, "first_name", true)
+                "URL_IMGS" => get_home_url()."/wp-content/themes/kmimos/images",
+                "url"      => $url_activate,
+                "name"     => get_user_meta($USER->ID, "first_name", true)
             ]
         );
         wp_mail($USER->user_email,  'Cambiar contraseña en Kmivet', $mensaje);

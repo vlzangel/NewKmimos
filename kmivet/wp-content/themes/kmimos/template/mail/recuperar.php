@@ -6,13 +6,25 @@
         ¡No te preocupes, puedes cambiarla!
     </p>    
     <p style='padding-bottom: 15px;'>¡Hola <strong>[name]</strong>!</p>
-    <p style='max-width: 518px; width: 100%;'>Hemos recibido tu solicitud para reestablecer tu contraseña en Kmimos. Solo necesitamos que confirmes la veracidad de esta solicitud.</p>
+    <p style='max-width: 518px; width: 100%;'>Hemos recibido tu solicitud para reestablecer tu contraseña en Kmivet. Solo necesitamos que confirmes la veracidad de esta solicitud.</p>
 </div>
 <div style='text-align:center;'>
 
     <p style='font-family: Arial; font-size: 15px; font-weight: bold; letter-spacing: 0.3px; text-align: center; margin-bottom: 16px;'>¿Deseas cambiar tu contrase&ntilde;a?</p>
 
-    <a  target="_blank" href="[url]"><img style='margin-bottom: 11px; cursor: pointer; max-width: 252px; width: 100%;' src='[URL_IMGS]/btn_aceptar.png' > </a>
+    <a  target="_blank" href="[url]" style="background-color: #fe196b;
+    min-width: 70%;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 10px;
+    color: #FFF;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;">
+        Aceptar
+    </a>
 
     <p style='font-family: Arial; font-size: 12px; line-height: 1.21; letter-spacing: 0.3px;margin-bottom: 30px;'>
         NO SOLICITÉ EL CAMBIO, IGNORAR
