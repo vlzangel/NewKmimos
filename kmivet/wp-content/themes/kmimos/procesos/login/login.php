@@ -56,9 +56,9 @@
 					            [
 					                "KV_URL_IMGS" => getTema().'/KMIVET/img',
 					                "URL"         => get_home_url(),
-					                "NAME"        => $name.' '.$lastname,
-					                "EMAIL"       => $email,
-					                "PASS"        => $password
+					                "NAME"        => get_user_meta($user->ID, "first_name", true).' '.get_user_meta($user->ID, "last_name", true),
+					                "EMAIL"       => $user->user_email,
+					                "PASS"        => $info['user_password']
 					            ]
 					        );
 
