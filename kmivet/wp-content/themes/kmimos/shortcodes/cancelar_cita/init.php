@@ -5,7 +5,7 @@
 		echo '<h1>La reserva que intenta cancelar no existe</h1>';
 	}else{ ?>
 		<form id="cancelar_cita">
-			<input type="hidden" name="cita_id" value="<?= $reserva->cita_id ?>" />
+			<input type="hidden" name="cita_id" value="<?= $reserva->id ?>" />
 			<label>Motivo de la cancelación de la cita</label>
 			<select name="motivo">
 				<option>No estoy disponible</option>
