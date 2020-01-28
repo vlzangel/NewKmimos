@@ -65,19 +65,19 @@
                             'KMIVET/reservas/cancelacion_cliente', 
                             $INFORMACION
                         );
-                        wp_mail($INFORMACION['CORREO_CLIENTE'], 'Kmivet - Consulta Cancelada', $mensaje);
+                        // wp_mail($INFORMACION['CORREO_CLIENTE'], 'Kmivet - Consulta Cancelada', $mensaje);
 
                         $mensaje = kv_get_email_html(
                             'KMIVET/reservas/cancelacion_veterinario', 
                             $INFORMACION
                         );
-                        wp_mail($INFORMACION['CORREO_VETERINARIO'], 'Kmivet - Consulta Cancelada', $mensaje);
+                        // wp_mail($INFORMACION['CORREO_VETERINARIO'], 'Kmivet - Consulta Cancelada', $mensaje);
 
                         $mensaje = kv_get_email_html(
                             'KMIVET/reservas/cancelacion_admin', 
                             $INFORMACION
                         );
-                        wp_mail('soporte.kmimos@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
+                        // wp_mail('soporte.kmimos@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
 
 
                     return ( [ 'status' => true, 'extra' => $INFORMACION ] );
