@@ -48,6 +48,8 @@
 						    $_USER_ID = $user->ID;
 						    update_user_meta($_USER_ID, '_mediqo_medic_id', $res['id']);
 							update_user_meta($_USER_ID, '_mediqo_active', time() );
+
+							$wpdb->quer("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user->ID}'");
 						}
 					}
 					
