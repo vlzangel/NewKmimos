@@ -4,12 +4,14 @@ jQuery( document ).ready(function() {
 	_table = jQuery("#historial").DataTable();
 
 	initModal("historial_modal", function(data){
+
+		console.log( data );
 		if( data.status ){
-			alert("Valoración enviada exitosamente!");
+			alert("Cita cancelada exitosamente!");
 			jQuery("#historial_modal").modal('hide');
 			jQuery("#historial_modal .modal-body").html();
 		}else{
-			alert("Error valorando el servicio");
+			alert("Error cancelando el servicio");
 		}
 	});
 
