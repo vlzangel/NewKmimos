@@ -545,42 +545,10 @@
     }
 
     if(!function_exists('kmimos_get_foto')){
-        function kmimos_get_foto($user_id, $get_sub_path = false){
+        function kmimos_get_foto($user_id){
             global $wpdb;
-
-            $user = new WP_User( $user_id );
-            if( $user->roles[0] == "vendor" ){
-                $id = $wpdb->get_var("SELECT id FROM cuidadores WHERE user_id = {$user_id}");
-                $sub_path = "cuidadores/avatares/{$id}/";
-            }else{
-                $sub_path = "avatares_clientes/{$user_id}/";
-            }
-
-            $name_photo = get_user_meta($user_id, "name_photo", true);
-            if( empty($name_photo)  ){ $name_photo = "0.jpg"; }
-            
-            if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= ".jpg"; }
-            
-            $base = path_base();
-            if( file_exists($base."/wp-content/uploads/{$sub_path}{$name_photo}") ){
-                $aSize = getImageSize( $base."/wp-content/uploads/{$sub_path}/{$name_photo}" );
-                if( $aSize[0] > 0 ){
-                    $img = get_home_url()."/wp-content/uploads/{$sub_path}{$name_photo}";
-                }else{
-                    $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
-                }
-            }else{
-                $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
-            }
-
-            if($get_sub_path){
-                return array(
-                    "img" => $img,
-                    "sub_path" => $sub_path
-                );
-            }else{
-                return $img;
-            }
+            $img = get_user_meta($user_id, 'name_photo', true);
+            return get_home_url().'/wp-content/uploads/avatares/'.$user_id.'/'.$img;
         }
     }
 

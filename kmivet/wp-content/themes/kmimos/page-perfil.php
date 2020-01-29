@@ -42,8 +42,7 @@
 
 		$MENU = get_menu_header();
 
-		$img_perfil = kmimos_get_foto($user_id, true);
-		$avatar = $img_perfil["img"];
+		$avatar = kmimos_get_foto($user_id, true);
 
 		include( "procesos/funciones/funciones_perfil.php");
 
