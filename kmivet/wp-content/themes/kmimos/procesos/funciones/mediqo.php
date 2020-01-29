@@ -128,6 +128,9 @@
 
 	function create_medic($params){
 		$resultado = mediqo_request('registration/api/medic_registration', $params);
+
+		add_user_meta(367, 'registro_vet', $resultado);
+
 		$resultado = json_decode($resultado);
 		$id = $resultado->object->id;
 		if( $resultado->status != 'OK' ){
