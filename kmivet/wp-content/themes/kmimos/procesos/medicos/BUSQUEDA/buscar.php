@@ -66,6 +66,10 @@
 
 		$precio = ( isset( $_medicos[ $medico->email ] ) ) ? $_medicos[ $medico->email ] : 300;
 
+		if( $medico->precio > 0 ){
+			$precio = $medico->precio;
+		}
+
 		$img = $t.'/images/image.png';
 		$res[] = [
 			"id" => $medico->id,
