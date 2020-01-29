@@ -57,7 +57,6 @@
                             }
                         }
                         
-
                         $INFORMACION['RECOMENDACIONES'] = $RECOMENDACIONES;
                         $INFORMACION['KV_URL_IMGS'] = getTema().'/KMIVET/img';
 

@@ -25,7 +25,13 @@
 
 <div>
 	<label>Documento de ID</label>
-	<input type="number" name="kv_dni" valid="required" class="validar" />
+	<!-- <input type="number" name="kv_dni" valid="required" class="validar" /> -->
+	<select name="kv_dni" valid="required" class="validar">
+		<option>INE</option>
+		<option>Pasaporte</option>
+		<option>Cedula</option>
+		<option>Licencia de Conducir</option>
+	</select>
 </div>
 
 <div>

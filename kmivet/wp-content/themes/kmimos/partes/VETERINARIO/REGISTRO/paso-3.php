@@ -25,17 +25,17 @@
 
 <div>
 	<label>Cursos Realizados</label>
-	<textarea name="kv_cursos_realizados" valid="required" class="validar"></textarea>
+	<textarea name="kv_cursos_realizados"></textarea>
 </div>
 
 <div>
 	<label>Otros Estudios</label>
-	<textarea name="kv_otros_estudios" valid="required" class="validar"></textarea>
+	<textarea name="kv_otros_estudios"></textarea>
 </div>
 
 <div>
 	<label>Trabajos Anteriores y Actuales</label>
-	<textarea name="kv_trabajos" valid="required" class="validar"></textarea>
+	<textarea name="kv_trabajos"></textarea>
 </div>
 
 <div>
