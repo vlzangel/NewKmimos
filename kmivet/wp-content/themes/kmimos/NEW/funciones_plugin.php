@@ -548,7 +548,12 @@
         function kmimos_get_foto($user_id){
             global $wpdb;
             $img = get_user_meta($user_id, 'name_photo', true);
-            return get_home_url().'/wp-content/uploads/avatares/'.$user_id.'/'.$img;
+            if( $img != '' ){
+                $img = get_home_url().'/wp-content/uploads/avatares/'.$user_id.'/'.$img;
+            }else{
+                $img = get_home_url().'/wp-content/themes/kmimos/images/image.png';
+            }
+            return $img;
         }
     }
 
