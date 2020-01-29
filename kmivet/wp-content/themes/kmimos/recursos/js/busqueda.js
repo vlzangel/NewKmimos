@@ -249,7 +249,9 @@ function buscar( CB ){
 		},
 		( data ) => {
 			
-			// debug( data );
+			debug( data );
+
+			data = data[0];
 
 			var HTML = '';
 			jQuery.each(data, (i, v) => {

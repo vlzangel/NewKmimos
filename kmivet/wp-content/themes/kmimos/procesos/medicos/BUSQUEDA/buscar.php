@@ -55,7 +55,11 @@
 		$no_incluirme = " AND user_id != '{$user_id}' ";
 	}
 
-	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 AND agenda != '' {$no_incluirme}"); // AND precio > 0
+	extract(get_dias_meses());
+
+	$hoy = $_dias[ date("N")-1 ][0];
+	
+	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 AND ( agenda != '' && agenda LIKE '%{$hoy}%' ) {$no_incluirme}"); // AND precio > 0
 	$res = [];
 	foreach ($veterinarios as $medico) {
 		$info = json_decode($medico->data);
@@ -72,8 +76,13 @@
 			"ranking" => set_format_ranking($medico->rating),
 			"price" => set_format_precio($precio),
 			"slug" => set_format_slug( $info->kv_nombre ),
+			"hoy" => $hoy,
 		];
 	}
 
-	die( json_encode($res) );
+	die( json_encode(
+		[
+			$res,
+		]
+	) );
 ?>
