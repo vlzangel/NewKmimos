@@ -27,10 +27,12 @@
 		$kv_delegacion = $wpdb->get_var("SELECT name FROM locations WHERE id = ".$kv_delegacion);
 		$kv_colonia = $wpdb->get_var("SELECT name FROM colonias WHERE id = ".$kv_colonia);
 
+		$fecha =  date("d-m-Y", strtotime( str_replace("/", "-", $kv_fecha) ));
+
 		$param = [
 			'name' => $kv_nombre,
 	        'email' => $kv_email,
-			'birthdate' => $kv_fecha,
+			'birthdate' => $fecha,
 			'gender' => $kv_genero,
 			'documentId' => $kv_dni,
 			'referenceCode' => $kv_referencia,
