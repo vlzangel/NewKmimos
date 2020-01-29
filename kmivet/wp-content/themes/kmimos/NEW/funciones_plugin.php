@@ -429,11 +429,11 @@
                     if( $tipo_usuario == "veterinario"){
                         $status = $wpdb->get_var("SELECT status FROM {$pf}veterinarios WHERE user_id = '{$user_id}' ");
                         if( $status ){
-                            $MENUS["veterinario"][] = array(
+                            /*$MENUS["veterinario"][] = array(
                                 "url"   => "/ajustes/",
                                 "name"  => "Ajustes",
                                 "img" =>  '<i class="fas fa-sliders-h"></i>',
-                            );
+                            );*/
                             $MENUS["veterinario"][] = array(
                                 "url"   => "/horarios/",
                                 "name"  => "Horarios",

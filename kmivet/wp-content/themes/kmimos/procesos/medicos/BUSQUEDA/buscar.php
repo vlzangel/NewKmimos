@@ -35,6 +35,13 @@
 	$_SESSION[ 'medicos_info' ] = $_infos;
 	*/
 
+	$medicos = get_medics($specialty, $lat, $lng);
+	$medicos = $medicos['res']->objects;
+	$_medicos = [];
+	foreach ($medicos as $key => $medico) {
+		$_medicos[ $medico->email ] = $medico->price;
+	}
+
 	global $wpdb;
 	global $vlz;
 	extract($vlz);
@@ -48,19 +55,22 @@
 		$no_incluirme = " AND user_id != '{$user_id}' ";
 	}
 
-	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 AND precio > 0 AND agenda != '' {$no_incluirme}");
+	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 AND agenda != '' {$no_incluirme}"); // AND precio > 0
 	$res = [];
 	foreach ($veterinarios as $medico) {
 		$info = json_decode($medico->data);
+
+		$precio = ( isset( $_medicos[ $medico->email ] ) ) ? $_medicos[ $medico->email ] : 300;
+
 		$img = $t.'/images/image.png';
 		$res[] = [
 			"id" => $medico->id,
 			"name" => $info->kv_nombre,
 			"img" => $img,
 			"univ" => $info->kv_universidad,
-			"price" => $medico->precio,
+			"price" => $precio,
 			"ranking" => set_format_ranking($medico->rating),
-			"price" => set_format_precio($medico->precio),
+			"price" => set_format_precio($precio),
 			"slug" => set_format_slug( $info->kv_nombre ),
 		];
 	}
