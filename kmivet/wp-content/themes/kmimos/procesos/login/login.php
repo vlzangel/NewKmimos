@@ -62,7 +62,7 @@
 					            ]
 					        );
 
-					        wp_mail( $email, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
+					        // wp_mail( $email, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
 						}
 					}
 					

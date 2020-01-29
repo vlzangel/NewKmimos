@@ -309,7 +309,6 @@ function subirImg(evt){
     var padre = jQuery(this).parent().parent();
     getRealMime(this.files[0]).then(function(MIME){
         if( MIME.match("image.*") ){
-
             padre.children('.vlz_img_portada_cargando').css("display", "block");
             var reader = new FileReader();
             reader.onload = (function(theFile) {
@@ -317,18 +316,14 @@ function subirImg(evt){
                     redimencionar(e.target.result, function(img_reducida){
                         var img_pre = jQuery(".vlz_rotar_valor").attr("value");
                         jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: img_pre}, function( url ) {
-                            padre.children('.vlz_img_portada_fondo').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
-                            padre.children('.vlz_img_portada_normal').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
+                            padre.children('.vlz_img_portada_fondo').css("background-image",  "url("+RAIZ+"/wp-content/uploads/"+url+")");
+                            padre.children('.vlz_img_portada_normal').css("background-image", "url("+RAIZ+"/wp-content/uploads/"+url+")");
                             padre.children('.vlz_img_portada_cargando').css("display", "none");
                             padre.siblings('.vlz_img_portada_valor').val(url);
                             padre.children('.vlz_cambiar_portada').children('input').val("");
-
                             jQuery(".btn_rotar").css("display", "block");
-
                             if( padre.attr("data-id") == "perfil" ){
-                                CB_perfil( url );
-
-                                console.log( url );
+                                CB_perfil(url); console.log(url);
                             }
                         });
                     });      

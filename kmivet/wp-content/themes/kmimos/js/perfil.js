@@ -12,11 +12,14 @@ jQuery( document ).ready(function() {
      	function( data ) {
             data = eval( "("+data+")");
             jQuery(".clv").val("");
+
+            /*
             if( jQuery(".vlz_img_portada_valor").val() != "" ){
                 jQuery(".menu_perfil .vlz_img_portada_fondo").css("background-image", "url("+RAIZ+"/wp-content/uploads/"+jQuery("#sub_path").val()+"/"+jQuery(".main .vlz_img_portada_valor").val()+")");
                 jQuery(".menu_perfil .vlz_img_portada_normal").css("background-image", "url("+RAIZ+"/wp-content/uploads/"+jQuery("#sub_path").val()+"/"+jQuery(".main .vlz_img_portada_valor").val()+")");
             }
      		jQuery(".vlz_img_portada_valor").val("");
+            */
   			jQuery("#btn_actualizar").val("Actualizar");
   			jQuery("#btn_actualizar").attr("disabled", false);
             jQuery(".perfil_cargando").css("display", "none");
