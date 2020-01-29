@@ -547,8 +547,9 @@
     if(!function_exists('kmimos_get_foto')){
         function kmimos_get_foto($user_id){
             global $wpdb;
+            $base = path_base();
             $img = get_user_meta($user_id, 'name_photo', true);
-            if( $img != '' ){
+            if( $img != '' && file_exists( $base.'/uploads/avatares/'.$user_id.'/'.$img ) ){
                 $img = get_home_url().'/wp-content/uploads/avatares/'.$user_id.'/'.$img;
             }else{
                 $img = get_home_url().'/wp-content/themes/kmimos/images/image.png';
