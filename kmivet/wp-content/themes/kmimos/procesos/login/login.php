@@ -16,7 +16,7 @@
         $usu = sanitize_user($usu, true);
     }
 
-    $wpdb->quer("UPDATE {$wpdb->prefix}users SET user_pass = '".md5($clv)."' WHERE ID = '{$user->ID}'");
+    $wpdb->quer("UPDATE {$wpdb->prefix}users SET user_pass = '".md5($clv)."' WHERE user_email = '{$usu}'");
    
     $info = array();
     $info['user_login']     = sanitize_user($usu, true);
