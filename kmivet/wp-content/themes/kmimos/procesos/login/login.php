@@ -103,47 +103,6 @@
 		$valido = 1;
 		$_USER_ID = $user_signon->ID;
 
-		$params = [
-							"email" => $usu,
-							"password" => $clv
-						];
-						$res = validar_medico($params);
-						$_INFO_ADICIONAL = $res;
-						if( $res['status'] == 'ok' ){
-							wp_set_current_user( $user->ID, $user->user_login );
-							$valido = 1;
-						    $_USER_ID = $user->ID;
-						    update_user_meta($_USER_ID, '_mediqo_medic_id', $res['id']);
-							update_user_meta($_USER_ID, '_mediqo_active', time() );
-
-							$wpdb->query("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user->ID}'");
-
-							$mensaje = kv_get_email_html(
-					            'KMIVET/veterinario/activado', 
-					            [
-					                "KV_URL_IMGS" => getTema().'/KMIVET/img',
-					                "URL"         => get_home_url(),
-					                "NAME"        => get_user_meta($user->ID, "first_name", true).' '.get_user_meta($user->ID, "last_name", true),
-					                "EMAIL"       => $user->user_email,
-					                "PASS"        => $info['user_password']
-					            ]
-					        );
-
-					        // wp_mail( $email, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
-						}else{
-							$res['status'] = 'ko';
-							$valido = 3;	
-
-							$_INFO_ADICIONAL = [
-								'params' => $params,
-								'res' => $res,
-							];				
-						}
-
-						$_INFO_ADICIONAL = [
-							'params' => $params,
-							'res' => $res,
-						];	
 	}
 
 	/*
@@ -158,6 +117,49 @@
 	*/
 
 
+		$params = [
+			"email" => $usu,
+			"password" => $clv
+		];
+		$res = validar_medico($params);
+		$_INFO_ADICIONAL = $res;
+		if( $res['status'] == 'ok' ){
+			wp_set_current_user( $user_signon->ID, $user_signon->user_login );
+			$valido = 1;
+		    $_USER_ID = $user_signon->ID;
+		    update_user_meta($_USER_ID, '_mediqo_medic_id', $res['id']);
+			update_user_meta($_USER_ID, '_mediqo_active', time() );
+
+			$wpdb->query("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user_signon->ID}'");
+
+			$mensaje = kv_get_email_html(
+	            'KMIVET/veterinario/activado', 
+	            [
+	                "KV_URL_IMGS" => getTema().'/KMIVET/img',
+	                "URL"         => get_home_url(),
+	                "NAME"        => get_user_meta($user_signon->ID, "first_name", true).' '.get_user_meta($user_signon->ID, "last_name", true),
+	                "EMAIL"       => $user_signon->user_email,
+	                "PASS"        => $info['user_password']
+	            ]
+	        );
+
+	        // wp_mail( $email, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
+		}else{
+			$res['status'] = 'ko';
+			$valido = 3;	
+
+			$_INFO_ADICIONAL = [
+				'params' => $params,
+				'res' => $res,
+			];				
+		}
+
+		$_INFO_ADICIONAL = [
+			'params' => $params,
+			'res' => $res,
+		];	
+
+		
 	switch ( $valido ) {
 
 		case 1:
