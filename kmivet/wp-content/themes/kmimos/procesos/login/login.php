@@ -27,7 +27,7 @@
     $_USER_ID = 0;
     $_INFO_ADICIONAL = '';
 
-	if ( is_wp_error( $user_signon )) {
+	// if ( is_wp_error( $user_signon )) {
 
 		$user = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}users WHERE user_login = '".$info['user_login']."' ");
 		if( $user !== null ){
@@ -81,10 +81,10 @@
 
 		update_user_meta($user->ID, 'RESPUESTA', json_encode($res) );
 
-	} else {
-		$valido = 1;
-		$_USER_ID = $user_signon->ID;
-	}
+	// } else {
+	// 	$valido = 1;
+	// 	$_USER_ID = $user_signon->ID;
+	// }
 
 	/*
 	if( $valido == 1 ){
