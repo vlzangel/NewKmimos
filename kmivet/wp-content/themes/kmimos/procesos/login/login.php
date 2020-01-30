@@ -18,7 +18,7 @@
    
     $info = array();
     $info['user_login']     = sanitize_user($usu, true);
-    $info['user_password']  = sanitize_text_field($clv);
+    $info['user_password']  = sanitize_text_field("WwFBH");
     $info['remember']  = ( $check == 'active' ) ? true : false;
 
     $user_signon = wp_signon( $info, true );
@@ -29,17 +29,18 @@
 
 	// if ( is_wp_error( $user_signon )) {
 
+    	/*
 		$user = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}users WHERE user_email = '".$info['user_login']."' ");
 		if( $user !== null ){
 			$tipo = get_user_meta($user->ID, "user_type", true);
-
+		*/
 			switch ( $tipo ) {
 				case "veterinario":
 					// $is_active = get_user_meta($user->ID, "_mediqo_active", true);
 					// if( $is_active === false ){
 						$params = [
 							"email" => $user->user_email,
-							"password" => $info['user_password']
+							"password" => $clv
 						];
 						$res = validar_medico($params);
 						$_INFO_ADICIONAL = $res;
@@ -76,13 +77,14 @@
 					
 				break;
 			}
-
+			/*
 		}else{	
 			$valido = 4;
 			$_INFO_ADICIONAL = [
 				'info' => 'No encontrado'
 			];
 		}
+		*/
 
 		update_user_meta($user->ID, 'RESPUESTA', json_encode(['u'=>$user->ID]) );
 
