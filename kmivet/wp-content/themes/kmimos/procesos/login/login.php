@@ -35,12 +35,13 @@
 
 			switch ( $tipo ) {
 				case "veterinario":
-					$is_active = get_user_meta($user->ID, "_mediqo_active", true);
-					if( $is_active === false ){
-						$res = validar_medico([
+					// $is_active = get_user_meta($user->ID, "_mediqo_active", true);
+					// if( $is_active === false ){
+						$params = [
 							"email" => $user->user_email,
 							"password" => $info['user_password']
-						]);
+						];
+						$res = validar_medico($params);
 						$_INFO_ADICIONAL = $res;
 						if( $res['status'] == 'ok' ){
 							wp_set_current_user( $user->ID, $user->user_login );
@@ -63,13 +64,17 @@
 					        );
 
 					        // wp_mail( $email, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
-						}
-					}
+						}else{
+							$res['status'] = 'ko';
+							$res['params'] = $params;						}
+					// }
 					
 				break;
 			}
 
 		}
+
+		update_user_meta($user->ID, 'RESPUESTA', json_encode($res) );
 
 	} else {
 		$valido = 1;

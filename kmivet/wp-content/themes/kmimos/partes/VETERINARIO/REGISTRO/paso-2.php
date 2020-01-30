@@ -5,7 +5,7 @@
 
 <div>
 	<label>Interior</label>
-	<input type="text" name="kv_interior" valid="required" class="validar" />
+	<input type="text" name="kv_interior" />
 </div>
 
 <div>
