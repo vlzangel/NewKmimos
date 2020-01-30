@@ -18,7 +18,7 @@
    
     $info = array();
     $info['user_login']     = sanitize_user($usu, true);
-    $info['user_password']  = sanitize_text_field("WwFBH");
+    $info['user_password']  = sanitize_text_field($clv);
     $info['remember']  = ( $check == 'active' ) ? true : false;
 
     $user_signon = wp_signon( $info, true );
@@ -27,7 +27,7 @@
     $_USER_ID = 0;
     $_INFO_ADICIONAL = '';
 
-	// if ( is_wp_error( $user_signon )) {
+	if ( is_wp_error( $user_signon )) {
 
     	/*
 		$user = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}users WHERE user_email = '".$info['user_login']."' ");
@@ -88,10 +88,10 @@
 
 		update_user_meta($user->ID, 'RESPUESTA', json_encode(['u'=>$user->ID]) );
 
-	// } else {
-	// 	$valido = 1;
-	// 	$_USER_ID = $user_signon->ID;
-	// }
+	} else {
+		$valido = 1;
+		$_USER_ID = $user_signon->ID;
+	}
 
 	/*
 	if( $valido == 1 ){
