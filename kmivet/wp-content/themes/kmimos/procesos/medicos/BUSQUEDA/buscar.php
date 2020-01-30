@@ -7,6 +7,12 @@
 
 	extract( $_POST );
 
+	$_SESSION['search'] = [
+		"specialty" => $specialty, 
+		"lat" => $lat, 
+		"lng" => $lng
+	];
+
 	/*
 	$_infos = $_SESSION['medicos_info'];
 	$medicos = get_medics($specialty, $lat, $lng);
@@ -59,20 +65,24 @@
 
 	$hoy = $_dias[ date("N")-1 ][0];
 	
+	$_veterinarios = [];
 	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 AND ( agenda != '' && agenda LIKE '%{$hoy}%' ) {$no_incluirme}"); // AND precio > 0
 	$res = [];
 	foreach ($veterinarios as $medico) {
 		$info = json_decode($medico->data);
 
+		$_veterinarios[] = $medico->email;
+
 		$precio = ( isset( $_medicos[ $medico->email ] ) ) ? $_medicos[ $medico->email ] : 300;
 
 		if( $medico->precio > 0 ){
-			$precio = $medico->precio;
+			// $precio = $medico->precio;
 		}
 
-		$img = $t.'/images/image.png';
+		$img = kmimos_get_foto($medico->user_id);
+
 		$res[] = [
-			"id" => $medico->id,
+			"id" => $medico->veterinario_id,
 			"name" => $info->kv_nombre,
 			"img" => $img,
 			"univ" => $info->kv_universidad,
@@ -87,6 +97,9 @@
 	die( json_encode(
 		[
 			$res,
+			$_medicos,
+			$_veterinarios,
+			$medicos
 		]
 	) );
 ?>

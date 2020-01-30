@@ -8,56 +8,7 @@
 	extract( $_POST );
 
 	/*
-	$_infos = $_SESSION['medicos_info'];
-	$info = [];
-	foreach ($_infos[ $id ] as $key => $value) {
-		switch ( $key ) {
-			case 'medicInfo':
-				$temp = [];
-				foreach ($value as $key2 => $value2) {
-					$value2 = preg_replace("/[\r\n|\n|\r]+/", " ", $value2);
-	    			$value2 = str_replace('"', '', $value2);
-					$temp[$key2] = $value2;
-				}
-				$info[ $key ] = $temp;
-			break;
-			case 'certifications':
-				$value = preg_replace("/[\r\n|\n|\r]+/", " ", $value);
-	    		$value = str_replace('"', '', $value);
-				$info[ $key ] = $temp;
-			break;
-			default:
-				$info[ $key ] = $value;
-			break;
-		}
-	}
-
-	$user_id = existe_veterinario($info["email"]);
-	if( $user_id == null ){
-		$creacion_veterinario = new_veterinario([
-			'kv_email' => $info['email'],
-			'kv_nombre' => $info['firstName'].' '.$info['lastName'],
-			'kv_telf_movil' => $info['phone'],
-			'kv_telf_fijo' => $info['phone']
-		], $info);
-
-		if( $creacion_veterinario['status'] ){
-			$user_id = $creacion_veterinario['user_id'];
-			$update_id = update_veterinario($user_id, [
-				"veterinario_id" => $info["id"]
-			]);
-		}
-	}
-
-	if( $user_id+0 > 0 ){
-		$update_agenda = update_veterinario($user_id, [
-			"agenda" => $info["agenda"],
-			"api" => $info
-		]);
-	}
-
 	extract( get_dias_meses() );
-
 	$agenda = [];
 	foreach ($info["agenda"] as $key => $item) {
 		$start = strtotime( str_replace("Z", "", $item->start));
@@ -89,43 +40,38 @@
 
 	extract(get_dias_meses());
 
-	$hoy = $_dias[ date('N')-1 ][0];
-	$agenda = [];
-	$_agenda = (array) json_decode($veterinario->agenda);
-
-	$actuales = [];
-	if( isset($_agenda[ $hoy ]) ){
-		foreach ($_agenda[ $hoy ] as $key => $item) {
-			for ($_i=0; $_i < 5; $_i++) { 
-				$actual = ( $_i == 0 ) ? time() : strtotime ('+'.$_i.' days');
-				$actuales[] = $actual;
-				$ini = strtotime( date("Y-m-d", $actual).' '.$item->ini );
-				$fin = strtotime( date("Y-m-d", $actual).' '.$item->fin );
-				for ($i=$ini; $i < $fin; $i+=2700) { 
-					if( time() <= $i ){
-						$start = $i;
-						$fi = date('d/m/Y', $start);
-						$ff = $dias[ date('N', $start)-1 ].', '.date('d', $start).' de '.$meses[ date('n', $start) ].' de '.date('Y', $start).' a las '.date('h:i a', $start);
-						$hi = date('h:i a', $start);
-						$agenda[ $fi ]['fecha'] = $ff;
-						$agenda[ $fi ]['items'][] = [
-							$hi,
-							$ff,
-							date('Y-m-d H:i', $start)
-						];
-					}
-				}
-			}
+	$medicos = get_medics($_SESSION['search']['specialty'], $_SESSION['search']['lat'], $_SESSION['search']['lng']);
+	$medicos = $medicos['res']->objects;
+	$_agenda = "";
+	foreach ($medicos as $key => $medico) {
+		$_medicos[ $medico->email ] = $medico->price;
+		if( $veterinario->email == $medico->email ){
+			$_agenda = $medico->agenda;
 		}
 	}
-	$info["actuales"] = $actuales;
+	
+	$agenda = [];
+	foreach ($_agenda as $key => $item) {
+		$start = strtotime( str_replace("Z", "", $item->start));
+		$fi = date('d/m/Y', $start);
+		$ff = $dias[ date('w', $start) ].', '.date('d', $start).' de '.$meses[ date('n', $start) ].' de '.date('Y', $start).' a las '.date('h:i a', $start);
+		$hi = date('h:i a', $start);
+		$agenda[ $fi ]['fecha'] = $ff;
+		$agenda[ $fi ]['items'][] = [
+			$hi,
+			$ff,
+			date('Y-m-d H:i', $start)
+		];
+	}
+	$info["email"] = $veterinario->email;
+
 	$info["agenda"] = $agenda;
 
+	$info["profilePic"] = kmimos_get_foto($veterinario->user_id);;
+
 	$info["firstName"] = set_format_name($data->kv_nombre);
-	// $info["lastName"] = set_format_name($info["lastName"]);
 	$info["rating"] = set_format_ranking($veterinario->rating);
 	$info["price"] = number_format($veterinario->precio, 2, ',', ',');
-	// $info["agenda"] = [];
 
 	if( $data->kv_cursos_realizados != '' ){
 		$info['medicInfo']['courses'] = $data->kv_cursos_realizados;
@@ -141,7 +87,8 @@
 
 
 	echo json_encode([
-		$info
+		$info,
+		// $medicos
 	]);
 	
 	die();

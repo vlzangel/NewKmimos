@@ -8,15 +8,16 @@
 		$status = 'Activo';
 		if( $item->status == 0 ){
 			$status = 'Inactivo';
-			$accion = '<a href="#" onclick="_activar('.$item->user_id.')" title="Activar Veterinario">Activar</a>';
+			$accion = '<a class="btn btn-primary" href="#" onclick="_activar('.$item->user_id.')" title="Activar Veterinario">Activar</a>';
 		}else{
-			$accion = '<a href="#" onclick="_desactivar('.$item->user_id.')" title="Desactivar Veterinario">Desactivar </a>';			
+			$accion = '<a class="btn btn-primary" href="#" onclick="_desactivar('.$item->user_id.')" title="Desactivar Veterinario">Desactivar </a>';			
 		}
 
 		$data['data'][] = [
 			$item->id,
 			'
 				<div class="align_center">
+					<a class="btn btn-primary" href="'.get_home_url().'?i='.md5($item->user_id).'" target="_blank" title="Acceder al perfil">Acceder</a>
 					'.$accion.'
 					<!-- <span class="vlz_boton vlz_boton_delete" > <i class="far fa-trash-alt" onclick="_delete('.$item->id.')"></i> </span> -->
 				</div>

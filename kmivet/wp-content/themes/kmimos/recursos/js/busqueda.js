@@ -1,3 +1,4 @@
+/*
 // Proceso Openpay
 var __FORM_PAGO__ = 'reserva_form';
 var __CB_PAGO_OK__ = function(){
@@ -25,9 +26,10 @@ var __CB_PAGO_KO__ = function(){
 	jQuery("#btn_reservar").html("Solicitar Consulta");
 	jQuery("#btn_reservar").prop("disabled", false);
 } 
+*/
 
 // // Proceso Conekta //
-/*var __FORM_PAGO__ = 'reserva_form';
+var __FORM_PAGO__ = 'reserva_form';
 var __CB_PAGO_OK__ = function(token){
 	console.log(token);
 	jQuery("#cita_token").val( token.id );
@@ -55,7 +57,7 @@ var __CB_PAGO_KO__ = function(error){
 	console.log(error);
 	jQuery("#btn_reservar").html("Solicitar Consulta");
 	jQuery("#btn_reservar").prop("disabled", false);
-}*/
+}
 
 var geocoder;
 var map;
@@ -215,13 +217,13 @@ jQuery( document ).ready(function() {
 				jQuery("#btn_reservar").html("Validando...");
 				jQuery("#btn_reservar").prop("disabled", true);
 				
-				OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
+				// OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
 
-				/*
+				
 				Conekta.setPublicKey( KEY_CONEKTA );
 				Conekta.setLanguage("es");
 				Conekta.Token.create(jQuery("#reserva_form"), __CB_PAGO_OK__, __CB_PAGO_KO__);
-				*/
+				
 			}
 		});
 
