@@ -107,20 +107,6 @@
 		$valido = 1;
 		$_USER_ID = $user_signon->ID;
 
-	}
-
-	/*
-	if( $valido == 1 ){
-		$status_user = get_user_meta($user_signon->ID, 'status_user', true);
-		if( $status_user == 'inactivo' ){
-		  	$valido = 2;
-		}else{
-			$valido = 1;
-		}
-	}
-	*/
-
-
 		$params = [
 			"email" => $usu,
 			"password" => $clv
@@ -166,7 +152,18 @@
 			'params' => $params,
 			'res' => $res,
 		];	
+	}
 
+	/*
+	if( $valido == 1 ){
+		$status_user = get_user_meta($user_signon->ID, 'status_user', true);
+		if( $status_user == 'inactivo' ){
+		  	$valido = 2;
+		}else{
+			$valido = 1;
+		}
+	}
+	*/
 
 	switch ( $valido ) {
 
