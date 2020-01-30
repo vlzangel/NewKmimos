@@ -66,8 +66,11 @@
 		'isCash' => true,
 	];
 	if( $cita_latitud != '' ){
-		$params['lat'] = $cita_latitud;
-		$params['lng'] = $cita_longitud;
+		// $params['lat'] = $cita_latitud;
+		// $params['lng'] = $cita_longitud;
+
+		$params['lat'] = "20.667033";
+		$params['lng'] = "-103.335986";
 	}
 
 	// Creamos consulta en mediqo //
