@@ -73,7 +73,7 @@
 
 		$_veterinarios[] = $medico->email;
 
-		$precio = ( isset( $_medicos[ $medico->email ] ) ) ? $_medicos[ $medico->email ] : 300;
+		$precio = ( isset( $_medicos[ $medico->email ] ) ) ? $_medicos[ $medico->email ] : -1;
 
 		if( $medico->precio > 0 ){
 			// $precio = $medico->precio;
@@ -81,18 +81,20 @@
 
 		$img = kmimos_get_foto($medico->user_id);
 
-		$res[] = [
-			"id" => $medico->id,
-			"veterinario_id" => $medico->veterinario_id,
-			"name" => $info->kv_nombre,
-			"img" => $img,
-			"univ" => $info->kv_universidad,
-			"price" => $precio,
-			"ranking" => set_format_ranking($medico->rating),
-			"price" => set_format_precio($precio),
-			"slug" => set_format_slug( $info->kv_nombre ),
-			"hoy" => $hoy,
-		];
+		if( $precio > 0 ){
+			$res[] = [
+				"id" => $medico->id,
+				"veterinario_id" => $medico->veterinario_id,
+				"name" => $info->kv_nombre,
+				"img" => $img,
+				"univ" => $info->kv_universidad,
+				"price" => $precio,
+				"ranking" => set_format_ranking($medico->rating),
+				"price" => set_format_precio($precio),
+				"slug" => set_format_slug( $info->kv_nombre ),
+				"hoy" => $hoy,
+			];
+		}
 	}
 
 	die( json_encode(
