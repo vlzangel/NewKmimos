@@ -62,7 +62,7 @@
 
         </div>
 
-    	<div class="medicos_details">
+    	<div class="medicos_details" style="display: none;">
 			<div class="medico_ficha_titulo"> </div>
     		<div class="medico_ficha">
                 
@@ -112,6 +112,18 @@
 
     		</div>
     	</div>
+    </div>
+
+    <div>
+        <table width="100%" height="100%">
+            <tr>
+                <td style="vertical-align: middle;">
+                    
+                    
+                    
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="pre">

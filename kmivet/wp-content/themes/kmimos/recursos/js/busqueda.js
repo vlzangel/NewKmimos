@@ -87,6 +87,10 @@ function get_ubicacion(){
         crd = pos.coords;
         jQuery('[name="cita_latitud"]').val( crd.latitude );
         jQuery('[name="cita_longitud"]').val( crd.longitude );
+
+        jQuery('#latitud').val( crd.latitude );
+        jQuery('#longitud').val( crd.longitude );
+
         var geocoder = new google.maps.Geocoder();
         var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
         geocoder.geocode({'location': latlng}, function(results, status) {
@@ -239,8 +243,8 @@ function buscar( CB ){
 	var lat = jQuery("#latitud").val();
 	var lng = jQuery("#longitud").val();
 
-	lat = ( lat == '' ) ? 19.44907719008248 : parseFloat(lat);	
-	lng = ( lng == '' ) ? -99.21679135411978 : parseFloat(lng);
+	lat = ( lat == '' ) ? 19.40886 : parseFloat(lat);	
+	lng = ( lng == '' ) ? -99.14092 : parseFloat(lng);
 
 	jQuery.post(
 		HOME+'/procesos/medicos/BUSQUEDA/buscar.php',
@@ -255,37 +259,52 @@ function buscar( CB ){
 
 			data = data[0];
 
-			var HTML = '';
-			jQuery.each(data, (i, v) => {
-				HTML += '<div class="medico_item" data-id="'+v.id+'" data-veterinario_id="'+v.veterinario_id+'" data-slug="'+v.slug+'">';
-		    	HTML += '	<div class="medico_img_container"> <div class="medico_img" style="background-image: url( '+v.img+' )"></div> </div>';
-		    	HTML += '	<div class="medico_info">';
-		    	HTML += '		<div class="medico_nombre">'+v.name+'</div>';
-		    	HTML += '		<div class="medico_ranking">'+v.ranking+'</div>';
-		    	HTML += '		<div class="medico_precio">';
-		    	HTML += '			<div>Servicios desde</div>';
-		    	HTML += '			<span>'+v.price+'</span>';
-		    	HTML += '		</div>';
-		    	HTML += '	</div>';
-		    	HTML += '</div>';
-			});
-			jQuery(".medicos_list").html( HTML );
-			jQuery(".medico_item").unbind('click').bind('click', function(e){
-				jQuery(".medico_item").removeClass("active");
-				jQuery(this).addClass("active");
+			if( data.length == 0 ){
+				var HTML = '<div class="sin_resultados">No hay veterinarios disponibles en tu zona</div>';
+				jQuery(".medicos_list").html( HTML );
+
 				jQuery(".medicos_container").removeClass("medico_ficha_no_select");
+				jQuery(".medicos_container").removeClass("medico_ficha_si_cargada");
 				jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
-				var id = e.currentTarget.dataset.id;
-				var veterinario_id = e.currentTarget.dataset.veterinario_id;
-				cargar( id, veterinario_id );
-			});
 
-			jQuery(".medicos_container").removeClass("medico_ficha_no_select");
-			jQuery(".medicos_container").removeClass("medico_ficha_si_cargada");
-			jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
+				jQuery(".lds-ellipsis").css("display", "none");
+			}else{
 
-			if( parseInt( jQuery("body").width() ) > 768 ){
-				jQuery(".medicos_list > .medico_item:first-child").click();
+				jQuery(".lds-ellipsis").css("display", "block");
+
+				var HTML = '';
+				jQuery.each(data, (i, v) => {
+					HTML += '<div class="medico_item" data-id="'+v.id+'" data-veterinario_id="'+v.veterinario_id+'" data-slug="'+v.slug+'">';
+			    	HTML += '	<div class="medico_img_container"> <div class="medico_img" style="background-image: url( '+v.img+' )"></div> </div>';
+			    	HTML += '	<div class="medico_info">';
+			    	HTML += '		<div class="medico_nombre">'+v.name+'</div>';
+			    	HTML += '		<div class="medico_ranking">'+v.ranking+'</div>';
+			    	HTML += '		<div class="medico_precio">';
+			    	HTML += '			<div>Servicios desde</div>';
+			    	HTML += '			<span>'+v.price+'</span>';
+			    	HTML += '		</div>';
+			    	HTML += '	</div>';
+			    	HTML += '</div>';
+				});
+				jQuery(".medicos_list").html( HTML );
+				jQuery(".medico_item").unbind('click').bind('click', function(e){
+					jQuery(".medico_item").removeClass("active");
+					jQuery(this).addClass("active");
+					jQuery(".medicos_container").removeClass("medico_ficha_no_select");
+					jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
+					var id = e.currentTarget.dataset.id;
+					var veterinario_id = e.currentTarget.dataset.veterinario_id;
+					cargar( id, veterinario_id );
+				});
+
+				jQuery(".medicos_container").removeClass("medico_ficha_no_select");
+				jQuery(".medicos_container").removeClass("medico_ficha_si_cargada");
+				jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
+
+				if( parseInt( jQuery("body").width() ) > 768 ){
+					jQuery(".medicos_list > .medico_item:first-child").click();
+				}
+
 			}
 		} ,
 		'json'

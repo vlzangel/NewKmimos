@@ -216,6 +216,7 @@ form input, form select {
     overflow: auto;
     padding-left: 10px;
     padding-right: 10px;
+    border-top: solid 1px #e7e7e7;
 }
 
 .medicos_list::-webkit-scrollbar-track {
@@ -1205,6 +1206,13 @@ div#popup-registrarte {
 
 .check_container > input {
     display: none !important;
+}
+
+.sin_resultados {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 15px;
+    text-align: center;
 }
 
 /*

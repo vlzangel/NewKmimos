@@ -42,6 +42,13 @@
 	*/
 
 	$medicos = get_medics($specialty, $lat, $lng);
+
+	$_params = [
+		"specialty" => $specialty, 
+		"lat" => $lat, 
+		"lng" => $lng
+	];
+
 	$medicos = $medicos['res']->objects;
 	$_medicos = [];
 	foreach ($medicos as $key => $medico) {
@@ -100,9 +107,7 @@
 	die( json_encode(
 		[
 			$res,
-			$_medicos,
-			$_veterinarios,
-			$medicos
+			$_params
 		]
 	) );
 ?>
