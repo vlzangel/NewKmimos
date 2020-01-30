@@ -128,6 +128,7 @@
 			$valido = 1;
 		    $_USER_ID = $user_signon->ID;
 		    update_user_meta($_USER_ID, '_mediqo_medic_id', $res['id']);
+		    update_user_meta($_USER_ID, '_mediqo_active', time() );
 
 			$wpdb->query("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user_signon->ID}'");
 
@@ -144,8 +145,8 @@
 
 			$is_active = get_user_meta($user->ID, "_mediqo_active", true);
 			if( $is_active === false ){
-				update_user_meta($_USER_ID, '_mediqo_active', time() );
-	        	wp_mail( $usu, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
+				// update_user_meta($_USER_ID, '_mediqo_active', time() );
+	        	// wp_mail( $usu, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
 	        }
 		}else{
 			$res['status'] = 'ko';

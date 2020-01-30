@@ -68,7 +68,22 @@
 
             <strong>Dar click en evaluación</strong>
             la cual consta de breves preguntas y unos casos clínicos muy sencillos.
-            <a href="http://registration.kmimos.com.mx/?id=[EMAIL]" style="
+            <!-- <a href="http://registration.kmimos.com.mx/?id=[EMAIL]" style="
+                display: block;
+                width: 200px;
+                margin: 15px auto 20px;
+                text-align: center;
+                padding: 8px 0px;
+                background-color: #fe196b;
+                color: #FFF;
+                border-radius: 5px;
+                font-weight: 600;
+                cursor: pointer;
+                text-decoration: none;
+            ">
+                Ir a Evaluacion
+            </a> -->
+            <a href="http://pruebas.kmimos.com.mx/registration/medic_test?id=[EMAIL]" style="
                 display: block;
                 width: 200px;
                 margin: 15px auto 20px;
