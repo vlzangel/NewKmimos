@@ -66,7 +66,12 @@
 					        // wp_mail( $email, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
 						}else{
 							$res['status'] = 'ko';
-							$res['params'] = $params;						}
+							$valido = 3;	
+
+							$_INFO_ADICIONAL = [
+								'params' => $params
+							];				
+						}
 					// }
 					
 				break;
@@ -81,6 +86,7 @@
 		$_USER_ID = $user_signon->ID;
 	}
 
+	/*
 	if( $valido == 1 ){
 		$status_user = get_user_meta($user_signon->ID, 'status_user', true);
 		if( $status_user == 'inactivo' ){
@@ -89,6 +95,7 @@
 			$valido = 1;
 		}
 	}
+	*/
 
 
 	switch ( $valido ) {
@@ -106,6 +113,14 @@
 			echo json_encode(array( 
 	  			'login' => false, 
 	  			'mes'   => "Su usuario se encuentra inhabilitado",
+	  			"extra" => $_INFO_ADICIONAL
+		  	));
+		break;
+
+		case 3:
+			echo json_encode(array( 
+	  			'login' => false, 
+	  			'mes'   => "Error conectando al API",
 	  			"extra" => $_INFO_ADICIONAL
 		  	));
 		break;
