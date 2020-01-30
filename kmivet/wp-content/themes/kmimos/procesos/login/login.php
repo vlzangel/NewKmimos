@@ -124,7 +124,7 @@
 		$res = validar_medico($params);
 		$_INFO_ADICIONAL = $res;
 		if( $res['status'] == 'ok' ){
-			wp_set_current_user( $user_signon->ID, $user_signon->user_login );
+			wp_set_current_user( $user_signon->ID, $usu );
 			$valido = 1;
 		    $_USER_ID = $user_signon->ID;
 		    update_user_meta($_USER_ID, '_mediqo_medic_id', $res['id']);
@@ -138,12 +138,12 @@
 	                "KV_URL_IMGS" => getTema().'/KMIVET/img',
 	                "URL"         => get_home_url(),
 	                "NAME"        => get_user_meta($user_signon->ID, "first_name", true).' '.get_user_meta($user_signon->ID, "last_name", true),
-	                "EMAIL"       => $user_signon->user_email,
+	                "EMAIL"       => $usu,
 	                "PASS"        => $info['user_password']
 	            ]
 	        );
 
-	        // wp_mail( $email, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
+	        wp_mail( $email, "Felicidades ya puedes realizar consultas en Kmivet!", $mensaje);
 		}else{
 			$res['status'] = 'ko';
 			$valido = 3;	
@@ -159,7 +159,7 @@
 			'res' => $res,
 		];	
 
-		
+
 	switch ( $valido ) {
 
 		case 1:
