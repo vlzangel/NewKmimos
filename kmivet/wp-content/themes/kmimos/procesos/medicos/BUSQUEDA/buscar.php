@@ -109,6 +109,7 @@
 	die( json_encode(
 		[
 			$res,
+			$_params
 			/*
 			$_medicos,
 			$_veterinarios
