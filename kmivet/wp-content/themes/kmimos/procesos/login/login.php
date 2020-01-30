@@ -16,7 +16,7 @@
         $usu = sanitize_user($usu, true);
     }
 
-    $wpdb->quer("UPDATE {$wpdb->prefix}users SET user_pass = '".md5($clv)."' WHERE user_email = '{$usu}'");
+    $wpdb->query("UPDATE {$wpdb->prefix}users SET user_pass = '".md5($clv)."' WHERE user_email = '{$usu}'");
    
     $info = array();
     $info['user_login']     = sanitize_user($usu, true);
@@ -43,6 +43,8 @@
 				*/
 					// $is_active = get_user_meta($user->ID, "_mediqo_active", true);
 					// if( $is_active === false ){
+
+				/*
 						$params = [
 							"email" => $usu,
 							"password" => $clv
@@ -56,7 +58,7 @@
 						    update_user_meta($_USER_ID, '_mediqo_medic_id', $res['id']);
 							update_user_meta($_USER_ID, '_mediqo_active', time() );
 
-							$wpdb->quer("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user->ID}'");
+							$wpdb->query("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user->ID}'");
 
 							$mensaje = kv_get_email_html(
 					            'KMIVET/veterinario/activado', 
