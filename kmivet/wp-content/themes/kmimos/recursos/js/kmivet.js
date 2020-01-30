@@ -105,7 +105,7 @@ function getMobileOperatingSystem() {
 jQuery( document ).ready(function() {
 
     jQuery("#buscador").on("submit", function(e){
-        e.preventDefault();
+        // e.preventDefault();
 
         console.log("Hola");
     });
