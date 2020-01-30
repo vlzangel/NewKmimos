@@ -9,5 +9,6 @@
 		<li>Una vez validados los documentos, te enviaremos tu contrato a firmar </li>
 		<li>Ya firmado el contrato, estarás disponible en la plataforma para atender clientes!! </li>
 	</ol>
-	<a id="registro_completo" href="<?= get_home_url().'/veterinario/perfil/' ?>">Editar Datos</a>
+	<!-- <a id="registro_completo" href="<?= get_home_url().'/veterinario/perfil/' ?>">Editar Datos</a> -->
+	<a id="registro_completo" href="<?= get_home_url().'/' ?>">Finalizar</a>
 </div>

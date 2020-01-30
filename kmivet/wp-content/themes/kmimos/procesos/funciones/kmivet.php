@@ -195,12 +195,14 @@
             update_user_meta($user_id, 'clave_temp', $random_password);
             update_user_meta($user_id, 'user_referred', 'kmivet');
             update_user_meta($user_id, 'tipo_usuario', 'veterinario');
+            /*
             $info = array();
             $info['user_login']     = sanitize_user($kv_email, true);
             $info['user_password']  = sanitize_text_field($random_password);
             $info['remember']       = true;
             $user_signon = wp_signon( $info, true );
             wp_set_auth_cookie($user_signon->ID, true);
+            */
             $usuario = 'si';
         } else {
             $random_password = "La misma clave de tu usuario de kmivet.";
