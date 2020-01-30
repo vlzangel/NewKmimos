@@ -94,7 +94,7 @@
 
 		$img = kmimos_get_foto($_medico->user_id);
 
-		if( $precio > 0 ){
+		if( $_medicos[ $_medico->email ]['price']+0 > 0 ){
 			$res[] = [
 				"id" => $_medico->id,
 				"veterinario_id" => $_medico->veterinario_id,
@@ -112,10 +112,7 @@
 	die( json_encode(
 		[
 			$res,
-			$_params,
-			$_medicos,
-			$veterinarios,
-			$_veterinarios,
+			$_medicos
 		]
 	) );
 ?>
