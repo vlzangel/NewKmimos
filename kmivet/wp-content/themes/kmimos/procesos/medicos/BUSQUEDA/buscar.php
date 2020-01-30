@@ -89,7 +89,7 @@
 
 		$precio = ( isset( $_medicos[ $_medico->email ] ) ) ? $_medicos[ $_medico->email ]['price'] : -1;
 
-		// $img = kmimos_get_foto($_medico->user_id);
+		$img = kmimos_get_foto($_medico->user_id);
 
 		if( $_medicos[ $_medico->email ]['rating'] != '' ){
 			$res[] = [
