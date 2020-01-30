@@ -69,7 +69,7 @@
                 <img class="atras_ficha" src="<?= get_recurso("img").'MEDICOS/atras.png' ?>" />
 
     			<div class="medico_ficha_no_select_container">
-    				<img src="<?= get_recurso("img").'MEDICOS/logo_mediqo.png' ?>" />
+    				<img src="<?= get_recurso("img").'KMIVET/logo_2.png' ?>" />
 					<div>
     					<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     				</div>
