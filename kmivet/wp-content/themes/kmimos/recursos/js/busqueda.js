@@ -264,8 +264,8 @@ function buscar( CB ){
 
 	// 20.667033
 
-	lat = ( lat == '' ) ? 20.667033 : parseFloat(lat);	
-	lng = ( lng == '' ) ? -103.335986 : parseFloat(lng);
+	lat = 20.667033;	
+	lng = -103.335986;
 
 	jQuery.post(
 		HOME+'/procesos/medicos/BUSQUEDA/buscar.php',
