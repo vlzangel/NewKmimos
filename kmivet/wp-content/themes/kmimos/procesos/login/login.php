@@ -78,7 +78,7 @@
 			}
 
 		}else{	
-
+			$valido = 4;
 			$_INFO_ADICIONAL = [
 				'info' => 'No encontrado'
 			];
@@ -126,6 +126,14 @@
 			echo json_encode(array( 
 	  			'login' => false, 
 	  			'mes'   => "Error conectando al API",
+	  			"extra" => $_INFO_ADICIONAL
+		  	));
+		break;
+
+		case 4:
+			echo json_encode(array( 
+	  			'login' => false, 
+	  			'mes'   => "No encontrado",
 	  			"extra" => $_INFO_ADICIONAL
 		  	));
 		break;
