@@ -29,11 +29,11 @@
 
 	if ( is_wp_error( $user_signon )) {
 
-    	/*
+    	
 		$user = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}users WHERE user_email = '".$info['user_login']."' ");
 		if( $user !== null ){
 			$tipo = get_user_meta($user->ID, "user_type", true);
-		*/
+		
 			switch ( $tipo ) {
 				case "veterinario":
 					// $is_active = get_user_meta($user->ID, "_mediqo_active", true);
@@ -77,16 +77,16 @@
 					
 				break;
 			}
-			/*
+			
 		}else{	
 			$valido = 4;
 			$_INFO_ADICIONAL = [
 				'info' => 'No encontrado'
 			];
 		}
-		*/
+		
 
-		update_user_meta($user->ID, 'RESPUESTA', json_encode(['u'=>$user->ID]) );
+		
 
 	} else {
 		$valido = 1;
