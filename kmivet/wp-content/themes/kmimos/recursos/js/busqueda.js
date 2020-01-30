@@ -276,6 +276,7 @@ function buscar( CB ){
 				jQuery(".medicos_container").removeClass("medico_ficha_no_select");
 				jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
 				var id = e.currentTarget.dataset.id;
+				var veterinario_id = e.currentTarget.dataset.veterinario_id;
 				cargar( id, veterinario_id );
 			});
 
@@ -361,7 +362,7 @@ function cargar( id, veterinario_id ){
 			jQuery(".modal_img").css("background-image", "url("+img+")");
 			jQuery(".modal_info h2").html( data.firstName+' '+data.lastName );
 			jQuery(".modal_img_container .ranking").html( data.rating );
-			jQuery("#medico_id").val( veterinario_id );
+			jQuery("#medico_id").val( data.veterinario_id );
 
 			jQuery(".medico_ficha_titulo > div").html( data.firstName+' '+data.lastName );
 			jQuery(".medico_ficha_titulo > span").html( NF(data.distance)+' km de tu ubicación' );

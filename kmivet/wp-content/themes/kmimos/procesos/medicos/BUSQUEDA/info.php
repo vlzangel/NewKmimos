@@ -66,6 +66,7 @@
 	$info["email"] = $veterinario->email;
 
 	$info["agenda"] = $agenda;
+	$info["veterinario_id"] = $veterinario->veterinario_id;
 
 	$info["profilePic"] = kmimos_get_foto($veterinario->user_id);;
 
