@@ -52,6 +52,7 @@
 	$medicos = $medicos['res']->objects;
 	$_medicos = [];
 	foreach ($medicos as $key => $medico) {
+		$_veterinarios[] = md5( $medico->email );
 		$_medicos[ $medico->email ] = [
 			'price' => $medico->price,
 			'name' => $medico->firstName.' '.$medico->lastName,
@@ -88,13 +89,9 @@
 
 		$precio = ( isset( $_medicos[ $_medico->email ] ) ) ? $_medicos[ $_medico->email ]['price'] : -1;
 
-		if( $medico->precio > 0 ){
-			// $precio = $medico->precio;
-		}
+		// $img = kmimos_get_foto($_medico->user_id);
 
-		$img = kmimos_get_foto($_medico->user_id);
-
-		if( $_medicos[ $_medico->email ]['price']+0 > 0 ){
+		if( $_medicos[ $_medico->email ]['rating'] != '' ){
 			$res[] = [
 				"id" => $_medico->id,
 				"veterinario_id" => $_medico->veterinario_id,
@@ -112,7 +109,8 @@
 	die( json_encode(
 		[
 			$res,
-			$_medicos
+			$_medicos,
+			$_veterinarios
 		]
 	) );
 ?>
