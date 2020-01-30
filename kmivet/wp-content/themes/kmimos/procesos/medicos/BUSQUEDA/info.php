@@ -43,10 +43,12 @@
 	$medicos = get_medics($_SESSION['search']['specialty'], $_SESSION['search']['lat'], $_SESSION['search']['lng']);
 	$medicos = $medicos['res']->objects;
 	$_agenda = "";
+	$_medico_actual = '';
 	foreach ($medicos as $key => $medico) {
 		$_medicos[ $medico->email ] = $medico->price;
 		if( $veterinario->email == $medico->email ){
 			$_agenda = $medico->agenda;
+			$_medico_actual = $medico;
 		}
 	}
 	
@@ -69,9 +71,14 @@
 	$info["veterinario_id"] = $veterinario->veterinario_id;
 
 	$info["profilePic"] = kmimos_get_foto($veterinario->user_id);;
-
+	/*
 	$info["firstName"] = set_format_name($data->kv_nombre);
 	$info["rating"] = set_format_ranking($veterinario->rating);
+	*/
+
+	$info["firstName"] = set_format_name($_medico_actual->firstName).' '.set_format_name($_medico_actual->lastName);
+	$info["rating"] = set_format_ranking($_medico_actual->rating);
+
 	$info["price"] = number_format( $_medicos[ $veterinario->email ] , 2, ',', ',');
 
 	if( $data->kv_cursos_realizados != '' ){
@@ -89,7 +96,7 @@
 
 	echo json_encode([
 		$info,
-		// $medicos
+		$_medico_actual
 	]);
 	
 	die();

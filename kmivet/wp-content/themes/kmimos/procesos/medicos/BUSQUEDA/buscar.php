@@ -52,7 +52,13 @@
 	$medicos = $medicos['res']->objects;
 	$_medicos = [];
 	foreach ($medicos as $key => $medico) {
-		$_medicos[ $medico->email ] = $medico->price;
+		$_medicos[ $medico->email ] = [
+			'price' => $medico->price,
+			'name' => $medico->firstName.' '.$medico->lastName,
+			"rating" => set_format_ranking($medico->rating),
+			"price" => set_format_precio($medico->price),
+			"university" => $medico->medicInfo->university,
+		];
 	}
 
 	global $wpdb;
@@ -75,39 +81,41 @@
 	$_veterinarios = [];
 	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 AND ( agenda != '' && agenda LIKE '%{$hoy}%' ) {$no_incluirme}"); // AND precio > 0
 	$res = [];
-	foreach ($veterinarios as $medico) {
-		$info = json_decode($medico->data);
+	foreach ($veterinarios as $_medico) {
+		$info = json_decode($_medico->data);
 
-		$_veterinarios[] = $medico->email;
+		$_veterinarios[] = $_medico->email;
 
-		$precio = ( isset( $_medicos[ $medico->email ] ) ) ? $_medicos[ $medico->email ] : -1;
+		// $precio = ( isset( $_medicos[ $_medico->email ] ) ) ? $_medicos[ $_medico->email ]['price'] : -1;
 
 		if( $medico->precio > 0 ){
 			// $precio = $medico->precio;
 		}
 
-		$img = kmimos_get_foto($medico->user_id);
+		$img = kmimos_get_foto($_medico->user_id);
 
-		if( $precio > 0 ){
+		// if( $precio > 0 ){
 			$res[] = [
-				"id" => $medico->id,
-				"veterinario_id" => $medico->veterinario_id,
-				"name" => $info->kv_nombre,
+				"id" => $_medico->id,
+				"veterinario_id" => $_medico->veterinario_id,
+				"name" => $_medicos[ $_medico->email ]['name'],
 				"img" => $img,
-				"univ" => $info->kv_universidad,
-				"price" => $precio,
-				"ranking" => set_format_ranking($medico->rating),
-				"price" => set_format_precio($precio),
+				"univ" => $_medicos[ $_medico->email ]['university'],
+				"ranking" => $_medicos[ $_medico->email ]['rating'],
+				"price" => $_medicos[ $_medico->email ]['price'],
 				"slug" => set_format_slug( $info->kv_nombre ),
 				"hoy" => $hoy,
 			];
-		}
+		// }
 	}
 
 	die( json_encode(
 		[
 			$res,
-			$_params
+			$_params,
+			$_medicos,
+			$veterinarios,
+			$_veterinarios,
 		]
 	) );
 ?>
