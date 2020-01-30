@@ -104,6 +104,8 @@
 		
 
 	} else {
+
+		/*
 		$valido = 1;
 		$_USER_ID = $user_signon->ID;
 
@@ -152,7 +154,10 @@
 			'params' => $params,
 			'res' => $res,
 		];	
+		*/
 	}
+
+	wp_set_current_user( $user_signon->ID, $usu );
 
 	/*
 	if( $valido == 1 ){
