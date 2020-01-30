@@ -29,7 +29,7 @@ jQuery( document ).ready(function() {
 		console.log( data );
 
 		if( data.status ){
-			alert("Nuevo horario agregado exxitosamente!");
+			alert("Nuevo horario agregado exitosamente!");
 			jQuery("#historial_modal").modal('hide');
 			jQuery("#historial_modal .modal-body").html();
 		}else{
