@@ -286,7 +286,7 @@ function buscar( CB ){
 				jQuery(".lds-ellipsis").css("display", "none");
 			}else{
 
-				jQuery(".lds-ellipsis").css("display", "block");
+				jQuery(".lds-ellipsis").css("display", "inline-block");
 
 				var HTML = '';
 				jQuery.each(data, (i, v) => {

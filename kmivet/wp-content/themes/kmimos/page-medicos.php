@@ -62,7 +62,7 @@
 
         </div>
 
-    	<div class="medicos_details" style="display: none;">
+    	<div class="medicos_details">
 			<div class="medico_ficha_titulo"> </div>
     		<div class="medico_ficha">
                 
