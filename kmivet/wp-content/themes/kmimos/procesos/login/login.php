@@ -29,7 +29,7 @@
 
 	// if ( is_wp_error( $user_signon )) {
 
-		$user = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}users WHERE user_login = '".$info['user_login']."' ");
+		$user = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}users WHERE user_email = '".$info['user_login']."' ");
 		if( $user !== null ){
 			$tipo = get_user_meta($user->ID, "user_type", true);
 
@@ -77,6 +77,11 @@
 				break;
 			}
 
+		}else{	
+
+			$_INFO_ADICIONAL = [
+				'info' => 'No encontrado'
+			];
 		}
 
 		update_user_meta($user->ID, 'RESPUESTA', json_encode($res) );
