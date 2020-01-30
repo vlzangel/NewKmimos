@@ -72,7 +72,7 @@
 
 	$info["firstName"] = set_format_name($data->kv_nombre);
 	$info["rating"] = set_format_ranking($veterinario->rating);
-	$info["price"] = number_format($veterinario->precio, 2, ',', ',');
+	$info["price"] = number_format( $_medicos[ $veterinario->email ] , 2, ',', ',');
 
 	if( $data->kv_cursos_realizados != '' ){
 		$info['medicInfo']['courses'] = $data->kv_cursos_realizados;
