@@ -84,7 +84,7 @@
 			];
 		}
 
-		update_user_meta($user->ID, 'RESPUESTA', json_encode($res) );
+		update_user_meta($user->ID, 'RESPUESTA', json_encode(['u'=>$user->ID]) );
 
 	// } else {
 	// 	$valido = 1;
