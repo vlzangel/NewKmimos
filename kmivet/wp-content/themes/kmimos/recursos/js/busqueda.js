@@ -91,6 +91,8 @@ function get_ubicacion(){
         jQuery('#latitud').val( crd.latitude );
         jQuery('#longitud').val( crd.longitude );
 
+        buscar();
+
         var geocoder = new google.maps.Geocoder();
         var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
         geocoder.geocode({'location': latlng}, function(results, status) {
@@ -101,10 +103,12 @@ function get_ubicacion(){
     }, 
     function error(err) {
         if( err.message == 'User denied Geolocation' ){
-            alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmivet en la configuración de ubicación de su dispositivo.");
+            // alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmivet en la configuración de ubicación de su dispositivo.");
         }else{
-            alert(err.message);
+            // alert(err.message);
         }
+
+        buscar();
     },{
         enableHighAccuracy: true,
         timeout: 5000,
@@ -159,7 +163,18 @@ jQuery( document ).ready(function() {
 		jQuery(".modal_img_container > span").html( jQuery("#especialidad option:selected").text() );
 		buscar();
 	});
-	buscar();
+
+	var lat = jQuery("#latitud").val();
+	var lng = jQuery("#longitud").val();
+
+	lat = lat;	
+	lng = lng;
+
+	if( lat == "" && lng == "" ){
+
+	}else{
+		buscar();
+	}
 
 	jQuery(".pre-btn").on('click', (e) => {
 		if( jQuery(".pre").css("display") == "none" ){
