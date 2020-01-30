@@ -29,17 +29,20 @@
 
 	if ( is_wp_error( $user_signon )) {
 
-    	
+    	/*
 		$user = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}users WHERE user_email = '".$info['user_login']."' ");
 		if( $user !== null ){
 			$tipo = get_user_meta($user->ID, "user_type", true);
-		
+			
+			$valido = 3;
+
 			switch ( $tipo ) {
 				case "veterinario":
+				*/
 					// $is_active = get_user_meta($user->ID, "_mediqo_active", true);
 					// if( $is_active === false ){
 						$params = [
-							"email" => $user->user_email,
+							"email" => $usu,
 							"password" => $clv
 						];
 						$res = validar_medico($params);
@@ -70,11 +73,12 @@
 							$valido = 3;	
 
 							$_INFO_ADICIONAL = [
-								'params' => $params
+								'params' => $params,
+								'res' => $res,
 							];				
 						}
 					// }
-					
+					/*
 				break;
 			}
 			
@@ -84,7 +88,7 @@
 				'info' => 'No encontrado'
 			];
 		}
-		
+		*/
 
 		
 
