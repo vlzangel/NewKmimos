@@ -51,19 +51,19 @@
 
 	$params = [
 		"payment" => [
-			"number" => "4111111111111111",
-			"firstName" => "A",
-			"lastName" => "J",
+			"number" => $cita_tarjeta,
+			"firstName" => $cita_nombre,
+			"lastName" => $cita_nombre,
 			"token" => $cita_token
 		],
 		'medic' => $medico_id,
 		'patient' => $paciente_id,
 		'specialty' => $specialty_id,
 		'dueTo' => $cita_fecha,
-		/*'paymentType' => 0,
-		'appointmentType' => 1,
-		'isCash' => true,*/
 		'address' => $cita_direccion,
+		'paymentType' => 0,
+		'appointmentType' => 1,
+		'isCash' => true,
 	];
 	if( $cita_latitud != '' ){
 		$params['lat'] = $cita_latitud;
