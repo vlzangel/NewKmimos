@@ -257,7 +257,7 @@ function buscar( CB ){
 
 			var HTML = '';
 			jQuery.each(data, (i, v) => {
-				HTML += '<div class="medico_item" data-id="'+v.id+'" data-slug="'+v.slug+'">';
+				HTML += '<div class="medico_item" data-id="'+v.id+'" data-veterinario_id="'+v.veterinario_id+'" data-slug="'+v.slug+'">';
 		    	HTML += '	<div class="medico_img_container"> <div class="medico_img" style="background-image: url( '+v.img+' )"></div> </div>';
 		    	HTML += '	<div class="medico_info">';
 		    	HTML += '		<div class="medico_nombre">'+v.name+'</div>';
@@ -276,7 +276,7 @@ function buscar( CB ){
 				jQuery(".medicos_container").removeClass("medico_ficha_no_select");
 				jQuery(".medicos_container").addClass("medico_ficha_no_cargada");
 				var id = e.currentTarget.dataset.id;
-				cargar( id );
+				cargar( id, veterinario_id );
 			});
 
 			jQuery(".medicos_container").removeClass("medico_ficha_no_select");
@@ -293,11 +293,11 @@ function buscar( CB ){
 
 var item_actual = '';
 
-function cargar( id ){
+function cargar( id, veterinario_id ){
 
 	jQuery.post(
 		HOME+'/procesos/medicos/BUSQUEDA/info.php',
-		{ id: id }, (data) => {
+		{ id: id, veterinario_id: veterinario_id }, (data) => {
 
 			debug( data );
 
@@ -361,7 +361,7 @@ function cargar( id ){
 			jQuery(".modal_img").css("background-image", "url("+img+")");
 			jQuery(".modal_info h2").html( data.firstName+' '+data.lastName );
 			jQuery(".modal_img_container .ranking").html( data.rating );
-			jQuery("#medico_id").val( id );
+			jQuery("#medico_id").val( veterinario_id );
 
 			jQuery(".medico_ficha_titulo > div").html( data.firstName+' '+data.lastName );
 			jQuery(".medico_ficha_titulo > span").html( NF(data.distance)+' km de tu ubicación' );

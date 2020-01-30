@@ -82,7 +82,8 @@
 		$img = kmimos_get_foto($medico->user_id);
 
 		$res[] = [
-			"id" => $medico->veterinario_id,
+			"id" => $medico->id,
+			"veterinario_id" => $medico->veterinario_id,
 			"name" => $info->kv_nombre,
 			"img" => $img,
 			"univ" => $info->kv_universidad,
