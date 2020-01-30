@@ -114,18 +114,6 @@
     	</div>
     </div>
 
-    <div>
-        <table width="100%" height="100%">
-            <tr>
-                <td style="vertical-align: middle;">
-                    
-                    
-                    
-                </td>
-            </tr>
-        </table>
-    </div>
-
     <div class="pre">
         <?php
             /*echo '<pre>';

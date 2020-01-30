@@ -63,7 +63,7 @@ var geocoder;
 var map;
 function initialize() {
 	geocoder = new google.maps.Geocoder();
-	get_ubicacion();
+	// get_ubicacion();
 }
 
 function get_coordenadas() {
@@ -171,7 +171,8 @@ jQuery( document ).ready(function() {
 	lng = lng;
 
 	if( lat == "" && lng == "" ){
-
+		// get_ubicacion();
+		buscar();
 	}else{
 		buscar();
 	}

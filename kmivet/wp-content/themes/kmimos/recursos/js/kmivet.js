@@ -104,6 +104,12 @@ function getMobileOperatingSystem() {
 
 jQuery( document ).ready(function() {
 
+    jQuery("#buscador").on("submit", function(e){
+        e.preventDefault();
+
+        console.log("Hola");
+    });
+
     jQuery("#otro").on('change', function(e){
         if( jQuery(this).prop('checked') ){
             jQuery("#input_otro").removeAttr('disabled');
