@@ -11,7 +11,7 @@
 		// $info_vete = json_decode($medico->data);
 
 		$vet = get_medic($medico->veterinario_id);
-		$vet = $vet['res'];
+		// $vet = $vet['res'];
 
 		$fecha = date("d/m/Y", strtotime($i->cita_fecha) ).' a las '.date("h:ia", strtotime($i->cita_fecha) );
 
