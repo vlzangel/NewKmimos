@@ -39,7 +39,7 @@
 	switch ( $valido ) {
 
 		case 1:
-			wp_set_auth_cookie($_USER_ID, $info['remember']);
+			wp_set_auth_cookie($user_signon->ID, $info['remember']);
 		  	echo json_encode( array( 
 	  			'login' => true, 
 	  			'mes'   => "Login Exitoso!",
