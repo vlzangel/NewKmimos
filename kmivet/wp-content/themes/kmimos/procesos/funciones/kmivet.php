@@ -60,6 +60,7 @@
                         $INFORMACION['RECOMENDACIONES'] = $RECOMENDACIONES;
                         $INFORMACION['KV_URL_IMGS'] = getTema().'/KMIVET/img';
 
+                        /*
                         $mensaje = kv_get_email_html(
                             'KMIVET/reservas/cancelacion_cliente', 
                             $INFORMACION
@@ -77,7 +78,7 @@
                             $INFORMACION
                         );
                         wp_mail('soporte.kmimos@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
-
+                        */
 
                     return ( [ 'status' => true, 'extra' => $INFORMACION ] );
                 /*
