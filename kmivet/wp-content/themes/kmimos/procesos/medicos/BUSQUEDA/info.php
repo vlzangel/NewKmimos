@@ -81,15 +81,15 @@
 
 	$info["price"] = number_format( $_medicos[ $veterinario->email ] , 2, ',', ',');
 
-	if( $data->kv_cursos_realizados != '' ){
+	if( $_medico_actual->medicInfo->courses != '' ){
 		$info['medicInfo']['courses'] = $_medico_actual->medicInfo->courses; //$data->kv_cursos_realizados;
 	}
 
-	if( $data->kv_trabajos != '' ){
+	if( $_medico_actual->medicInfo->formerExperience != '' ){
 		$info['medicInfo']['formerExperience'] = $_medico_actual->medicInfo->formerExperience; //$data->kv_trabajos;
 	}
 
-	if( $data->kv_otros_estudios != '' ){
+	if( $_medico_actual->medicInfo->otherStudies != '' ){
 		$info['medicInfo']['otherStudies'] = $_medico_actual->medicInfo->otherStudies; //$data->kv_otros_estudios;
 	}
 
