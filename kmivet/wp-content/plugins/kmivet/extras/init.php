@@ -2,7 +2,7 @@
 	function get_status_reserva($status) {
 		switch ( $status ) {
 			case 0:
-				return 'No pagada';
+				return 'Asignada';
 			break;
 			case 1:
 				return 'Confirmada';
