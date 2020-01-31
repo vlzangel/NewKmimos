@@ -27,17 +27,16 @@
             $res = $wpdb->query("UPDATE wp_kmivet_reservas SET status = 4, observaciones = '{$motivo}', cancelado_por = '{$cancelado_por}' WHERE id = '{$cita_id}' ");
 
             if( $res != false ){
-                // $rcs = change_status($cita_id, [ "status" => 4, "description" => $motivo ]);
+                $rcs = change_status($cita_id, [ "status" => 4, "description" => $motivo ]);
 
-                // if( $rcs['status'] == 'ok' ){                        
+                if( $rcs['status'] == 'ok' ){                        
 
                         $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE id = '{$cita_id}' ");
                         $INFORMACION = (array) json_decode( $info_email );
 
 
                         $medicos = get_medics(
-                            // $INFORMACION['SPE_MEDIC'],
-                            'e41ed3d30309496a845c611dfd8f2e3d',
+                            $INFORMACION['SPE_MEDIC'],
                             $INFORMACION['LAT_MEDIC'],
                             $INFORMACION['LNG_MEDIC']
                         );
@@ -60,7 +59,7 @@
                         $INFORMACION['RECOMENDACIONES'] = $RECOMENDACIONES;
                         $INFORMACION['KV_URL_IMGS'] = getTema().'/KMIVET/img';
 
-                        /*
+                        
                         $mensaje = kv_get_email_html(
                             'KMIVET/reservas/cancelacion_cliente', 
                             $INFORMACION
@@ -78,14 +77,14 @@
                             $INFORMACION
                         );
                         wp_mail('soporte.kmimos@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
-                        */
+                        
 
                     return ( [ 'status' => true, 'extra' => $INFORMACION ] );
-                /*
+                
                 }else{
                     return ( ([ 'status' => $res, 'error' => 'Error cambiando el estatus en el API' ]) );
                 }
-                */
+                
             
             }else{
                 return ( ([ 'status' => false, 'error' => 'Error cambiando el estatus en kmivet', 'extra' => $res, 'x' => "UPDATE wp_kmivet_reservas SET status = 4, observaciones = '{$motivo}' WHERE id = '{$cita_id}' " ]) );
