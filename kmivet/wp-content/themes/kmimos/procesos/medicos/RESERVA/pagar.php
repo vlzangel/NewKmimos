@@ -20,7 +20,7 @@
 	if( $paciente['status'] == 'ko' ){
 		die(json_encode([
     		"error" => true,
-    		"msg"  => 'No podemos obtener acceso a su cuenta de Mediqo, por favor contacte al equipo de soporte de Kmivet para brindarle la asistencia correspondiente.',
+    		"msg"  => 'No podemos obtener acceso a su cuenta de Kmivet, por favor contacte al equipo de soporte de Kmivet para brindarle la asistencia correspondiente.',
     		"res"  => $paciente
     	]));
 	}else{
@@ -47,8 +47,7 @@
 		}
 	*/
 
-	$veterinario_id = 
-
+	/*
 	$params = [
 		"payment" => [
 			"number" => $cita_tarjeta,
@@ -65,6 +64,22 @@
 		'appointmentType' => 1,
 		'isCash' => true,
 	];
+	*/
+
+	$params = [
+		"nieghborhood" => $cita_direccion,
+		"medic" => $medico_id,
+		"patient" => $paciente_id,
+		"specialty" => $specialty_id,
+		"dueTo" => $cita_fecha,
+		"lat" => 20.667033,
+		"lng" => -103.335986,
+		"address" => $cita_direccion,
+		"payment" => 0,
+		"appointmentType" => 1
+	];
+
+
 	if( $cita_latitud != '' ){
 		// $params['lat'] = $cita_latitud;
 		// $params['lng'] = $cita_longitud;
