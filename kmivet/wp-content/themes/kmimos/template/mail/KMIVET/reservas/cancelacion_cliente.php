@@ -30,7 +30,7 @@
             color: #000000; 
             text-align: left; 
         '>
-            La cita <strong style="color: #6B169B; text-transform: capitalize;">#[CONSULTA_ID]</strong> ha sido <strong style="color: #6B169B; text-transform: capitalize;">CANCELADA</strong> por el médico veterinario.
+            La cita <strong style="color: #6B169B; text-transform: capitalize;">#[CONSULTA_ID]</strong> ha sido <strong style="color: #6B169B; text-transform: capitalize;">CANCELADA</strong> de acuerdo a tu petición.
         </div>
 
     </div>
