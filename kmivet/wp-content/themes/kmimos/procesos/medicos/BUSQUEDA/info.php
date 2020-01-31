@@ -56,7 +56,7 @@
 	foreach ($_agenda as $key => $item) {
 		$start = strtotime( str_replace("Z", "", $item->start));
 		$fi = date('d/m/Y', $start);
-		$ff = $dias[ date('w', $start) ].', '.date('d', $start).' de '.$meses[ date('n', $start) ].' de '.date('Y', $start).' a las '.date('h:i a', $start);
+		$ff = $dias[ date('w', $start)-1 ].', '.date('d', $start).' de '.$meses[ date('n', $start) ].' de '.date('Y', $start).' a las '.date('h:i a', $start);
 		$hi = date('h:i a', $start);
 		$agenda[ $fi ]['fecha'] = $ff;
 		$agenda[ $fi ]['items'][] = [
