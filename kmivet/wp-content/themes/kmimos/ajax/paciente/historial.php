@@ -34,12 +34,12 @@
 
 		$data['data'][] = [
 			$reserva->id,
-			'<div style="text-transform: capitalize;">'.$vet->firstName.'</div>'.
-			'<div><small>'.$info_vete->kv_email.'</small></div>'.
-			'<div><small>'.$info_vete->kv_telf_fijo.' / '.$info_vete->kv_telf_movil.'</small></div>',
+			'<div style="text-transform: capitalize;">'.$vet->firstName.' '.$vet->lastName.'</div>'.
+			'<div><small>'.$vet->email.'</small></div>'.
+			'<div><small>'.$vet->phone.'</small></div>',
 			$fecha,
 			get_status_reserva( $reserva->status ),
-			json_encode($vet)
+			$acciones
 		];
 	}
 	die( json_encode($data) );
