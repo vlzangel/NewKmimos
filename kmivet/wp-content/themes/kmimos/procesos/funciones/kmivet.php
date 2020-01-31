@@ -24,14 +24,14 @@
             global $wpdb;
             extract($params);
             if( $motivo == 'otro' ){ $motivo = $otro_motivo; }
-            $res = $wpdb->query("UPDATE wp_kmivet_reservas SET status = 4, observaciones = '{$motivo}', cancelado_por = '{$cancelado_por}' WHERE id = '{$cita_id}' ");
+            $res = $wpdb->query("UPDATE wp_kmivet_reservas SET status = 4, observaciones = '{$motivo}', cancelado_por = '{$cancelado_por}' WHERE cita_id = '{$cita_id}' ");
 
             if( $res != false ){
                 $rcs = change_status($cita_id, [ "status" => 4, "description" => $motivo ]);
 
                 if( $rcs['status'] == 'ok' ){                        
 
-                        $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE id = '{$cita_id}' ");
+                        $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE cita_id = '{$cita_id}' ");
                         $INFORMACION = (array) json_decode( $info_email );
 
 
