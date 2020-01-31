@@ -34,7 +34,7 @@
 
 		$data['data'][] = [
 			$reserva->id,
-			'<div style="text-transform: capitalize;">'.$vet->firstName.' '.$vet->lastName.'</div>'.
+			'<div style="text-transform: capitalize;">'.$vet->firstName.' '.$vet->lastName.'</div>'
 			/* '<div><small>'.$vet->email.'</small></div>'.
 			'<div><small>'.$vet->phone.'</small></div>' */,
 			$fecha,
