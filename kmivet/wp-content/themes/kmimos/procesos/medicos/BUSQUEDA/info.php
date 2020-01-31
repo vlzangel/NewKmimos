@@ -86,11 +86,11 @@
 	}
 
 	if( $data->kv_trabajos != '' ){
-		// $info['medicInfo']['formerExperience'] = ''; //$data->kv_trabajos;
+		$info['medicInfo']['formerExperience'] = $_medico_actual->medicInfo->formerExperience; //$data->kv_trabajos;
 	}
 
 	if( $data->kv_otros_estudios != '' ){
-		// $info['medicInfo']['otherStudies'] = ''; //$data->kv_otros_estudios;
+		$info['medicInfo']['otherStudies'] = $_medico_actual->medicInfo->otherStudies; //$data->kv_otros_estudios;
 	}
 
 
