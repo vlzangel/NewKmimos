@@ -8,7 +8,9 @@
 		$i = json_decode($reserva->data);
 
 		$medico = $wpdb->get_row( "SELECT * FROM {$pf}veterinarios WHERE id = '{$reserva->veterinario_id}' " );
-		$info_vete = json_decode($medico->data);
+		// $info_vete = json_decode($medico->data);
+
+		$vet = get_medic($medico->veterinario_id);
 
 		$fecha = date("d/m/Y", strtotime($i->cita_fecha) ).' a las '.date("h:ia", strtotime($i->cita_fecha) );
 
@@ -31,7 +33,7 @@
 
 		$data['data'][] = [
 			$reserva->id,
-			'<div style="text-transform: capitalize;">'.$info_vete->kv_nombre.'</div>'.
+			'<div style="text-transform: capitalize;">'.$vet->firstName.'</div>'.
 			'<div><small>'.$info_vete->kv_email.'</small></div>'.
 			'<div><small>'.$info_vete->kv_telf_fijo.' / '.$info_vete->kv_telf_movil.'</small></div>',
 			$fecha,
