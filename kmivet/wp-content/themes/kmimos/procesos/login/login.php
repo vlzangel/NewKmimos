@@ -32,6 +32,7 @@
 	if ( is_wp_error( $user_signon )) {
 
 	} else {
+		$valido = 1;
 		wp_set_current_user( $user_signon->ID, $usu );
 	}
 
