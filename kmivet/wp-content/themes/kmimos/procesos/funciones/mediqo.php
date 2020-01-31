@@ -176,7 +176,7 @@
 	    return [
 			'status' => 'ok',
 			'id' => $id,
-			'res' => $resultado,
+			'res' => $resultado->objects
 		];
 	}
 

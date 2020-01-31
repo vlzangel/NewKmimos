@@ -11,6 +11,7 @@
 		// $info_vete = json_decode($medico->data);
 
 		$vet = get_medic($medico->veterinario_id);
+		$vet = $vet['res'];
 
 		$fecha = date("d/m/Y", strtotime($i->cita_fecha) ).' a las '.date("h:ia", strtotime($i->cita_fecha) );
 
@@ -38,7 +39,7 @@
 			'<div><small>'.$info_vete->kv_telf_fijo.' / '.$info_vete->kv_telf_movil.'</small></div>',
 			$fecha,
 			get_status_reserva( $reserva->status ),
-			$acciones
+			json_encode($vet)
 		];
 	}
 	die( json_encode($data) );
