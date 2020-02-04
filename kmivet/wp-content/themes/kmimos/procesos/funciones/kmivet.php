@@ -182,7 +182,8 @@
         extract($DATA);
         $user_id = username_exists( $kv_email );
         if ( ! $user_id && false == email_exists( $kv_email ) ) {
-            $random_password = wp_generate_password( $length = 5, $include_standard_special_chars = false );
+            // $random_password = wp_generate_password( $length = 5, $include_standard_special_chars = false );
+            $random_password = "kmimos";
             $user_id = wp_create_user( 
                 $kv_email, 
                 $random_password, 
@@ -250,8 +251,7 @@
                 return [
                     'status' => true,
                     'user_id' => $user_id,
-                    'veterinario_id' => $wpdb->insert_id,
-                    'random_password' => $random_password
+                    'veterinario_id' => $wpdb->insert_id
                 ];
             }else{
                 return [
