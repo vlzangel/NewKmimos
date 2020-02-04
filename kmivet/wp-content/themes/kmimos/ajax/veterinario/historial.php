@@ -34,9 +34,10 @@
 			case 2: // <i class="fas fa-check"></i>
 				$acciones .= '
 					<span class="btn_table"> <i onclick="_finalizar( jQuery(this) )" class="fas fa-check" data-accion="finalizar" data-id="'.$reserva->id.'" title="Finalizar cita" ></i> </span>
-					<span class="btn_table"> <i onclick="_examen(jQuery(this))" class="fas fa-list" data-id="'.$reserva->cita_id.'" title="Cargar Examen" ></i> </span>
+					
 					<span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i> </span>
 				';
+				// <span class="btn_table"> <i onclick="_examen(jQuery(this))" class="fas fa-list" data-id="'.$reserva->cita_id.'" title="Cargar Examen" ></i> </span>
 			break;
 			case 3:
 				// $acciones .= '-';
