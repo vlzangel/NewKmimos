@@ -5,6 +5,7 @@ jQuery( document ).ready(function() {
 
 	initModal("historial_modal", function(data){
 
+		/*
 		console.log( data );
 		if( data.status ){
 			alert("Cita cancelada exitosamente!");
@@ -13,6 +14,7 @@ jQuery( document ).ready(function() {
 		}else{
 			alert("Error cancelando el servicio");
 		}
+		*/
 	});
 
 	jQuery("[name='motivo']").on('change', function(e){
@@ -27,6 +29,28 @@ jQuery( document ).ready(function() {
 });
 
 
+
+function _examen(_this){
+	openModal(
+		"historial_modal", 
+		'Cargar Examen', 
+		'Cargar', 
+		'veterinario', 
+		'cargar_examen', 
+		_this.data('id')
+	);
+}
+
+function _diagnostico(_this){
+	openModal(
+		"historial_modal", 
+		'Cargar Diagnóstico', 
+		'Cargar', 
+		'veterinario', 
+		'cargar_diagnostico', 
+		_this.data('id')
+	);
+}
 
 function _ver(_this){
 	openModal(

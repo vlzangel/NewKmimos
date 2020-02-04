@@ -43,7 +43,9 @@ function openModal(modalId, title, btn, m, a, id){
 
 	jQuery.post(
 		AJAX+"?action=kv&m="+m+"&a="+a+"_form",
-		{},
+		{
+			id: id
+		},
 		function(HTML){
 			jQuery("#"+modalId+" .modal-body").html(HTML);
 			jQuery("#"+modalId).modal('show');

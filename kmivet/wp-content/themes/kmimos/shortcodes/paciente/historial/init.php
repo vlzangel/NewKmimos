@@ -15,6 +15,7 @@
 		<th>Veterinario</th>
 		<th>Fecha</th>
 		<th>Estatus</th>
+		<th>Diagnostico</th>
 		<th>Acciones</th>
 	</thead>
 	<tbody></tbody>

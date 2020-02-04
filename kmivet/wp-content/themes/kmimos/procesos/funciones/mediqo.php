@@ -124,6 +124,20 @@
 		];
 	}
 
+	function get_answers($id){
+		$params['source'] = 1;
+		$resultado = mediqo_request('appointments/'.$id.'/answers', [], 'GET');
+		$resultado = json_decode($resultado);
+	    return $resultado->objects;
+	}
+
+	function put_answers($id, $params){
+		$params['source'] = 1;
+		$resultado = mediqo_request('appointments/'.$id.'/answers', $params);
+		$resultado = json_decode($resultado);
+	    return $resultado->objects;
+	}
+
 	/* Medicos */
 
 	function create_medic($params){

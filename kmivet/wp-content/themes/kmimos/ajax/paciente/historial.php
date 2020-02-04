@@ -39,6 +39,7 @@
 			'<div><small>'.$vet->phone.'</small></div>' */,
 			$fecha,
 			get_status_reserva( $reserva->status ),
+			'',
 			$acciones
 		];
 	}
