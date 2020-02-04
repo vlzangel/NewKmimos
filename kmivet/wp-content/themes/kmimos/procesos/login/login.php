@@ -71,8 +71,8 @@
 
 				die(
 					json_encode( array( 
-			  			'login' => false, 
-			  			'mes'   => "Todo bien",
+			  			'login' => true, 
+			  			'mes'   => "Login Exitoso!",
 			  			'user'   => $user
 				  	) )
 				);
