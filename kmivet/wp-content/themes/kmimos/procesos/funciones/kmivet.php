@@ -6,7 +6,7 @@
             $user_id = $_POST_['user_id'];
             unset( $_POST_['user_id'] );
             $data = json_encode($_POST_, JSON_UNESCAPED_UNICODE);
-            $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$data}', 0, NULL, 0, '', '', NOW() )";
+            $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$data}', 1, NULL, 0, '', '', NOW() )";
             if( $wpdb->query( $sql ) ){
                 return [
                     'status' => true,
@@ -60,19 +60,19 @@
                         $INFORMACION['KV_URL_IMGS'] = getTema().'/KMIVET/img';
                         
                         $mensaje = kv_get_email_html(
-                            'KMIVET/reservas/cancelacion_cliente', 
+                            'KMIVET/reservas/'.$cancelado_por.'/cancelacion_cliente', 
                             $INFORMACION
                         );
                         wp_mail($INFORMACION['CORREO_CLIENTE'], 'Kmivet - Consulta Cancelada', $mensaje);
 
                         $mensaje = kv_get_email_html(
-                            'KMIVET/reservas/cancelacion_veterinario', 
+                            'KMIVET/reservas/'.$cancelado_por.'/cancelacion_veterinario', 
                             $INFORMACION
                         );
                         wp_mail($INFORMACION['CORREO_VETERINARIO'], 'Kmivet - Consulta Cancelada', $mensaje);
 
                         $mensaje = kv_get_email_html(
-                            'KMIVET/reservas/cancelacion_admin', 
+                            'KMIVET/reservas/'.$cancelado_por.'/cancelacion_admin', 
                             $INFORMACION
                         );
                         wp_mail('soporte.kmimos@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
