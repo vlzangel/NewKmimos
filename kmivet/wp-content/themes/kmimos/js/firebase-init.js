@@ -106,6 +106,10 @@ firebase.messaging().requestPermission()
     console.log('No se ha obtenido permiso', err);
 });
 
+
+const messaging = firebase.messaging();
+messaging.usePublicVapidKey('BOKyoDDTOLAKPbgvzdg0k55N2X3866lwyRYhpPgjGmTjo561hp-fpdwp-WU1BN4FvaMDB6IsYiiJJLYRz2IQte0');
+
 messaging.onMessage(function(payload) {
     console.log("Notificación recibida ", payload);
 });
