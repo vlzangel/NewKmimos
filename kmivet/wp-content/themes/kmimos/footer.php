@@ -125,6 +125,7 @@
                 <a href="'.get_home_url().'">Kmivet</a> - Todos los derechos reservados.
             </div>
         </footer>
+        <div id="messages"></div>
     ';
 
     wp_footer();
