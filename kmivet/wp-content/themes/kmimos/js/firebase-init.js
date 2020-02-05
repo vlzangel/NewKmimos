@@ -54,29 +54,29 @@ messaging.usePublicVapidKey('BOKyoDDTOLAKPbgvzdg0k55N2X3866lwyRYhpPgjGmTjo561hp-
 // subsequent calls to getToken will return from cache.
 messaging.getToken().then((currentToken) => {
     if (currentToken) {
-        sendTokenToServer(currentToken);
-        updateUIForPushEnabled(currentToken);
+        // sendTokenToServer(currentToken);
+        // updateUIForPushEnabled(currentToken);
     } else {
         // Show permission request.
         console.log('No Instance ID token available. Request permission to generate one.');
         // Show permission UI.
-        updateUIForPushPermissionRequired();
-        setTokenSentToServer(false);
+        // updateUIForPushPermissionRequired();
+        // setTokenSentToServer(false);
     }
 }).catch((err) => {
     console.log('An error occurred while retrieving token. ', err);
-    showToken('Error retrieving Instance ID token. ', err);
-    setTokenSentToServer(false);
+    // showToken('Error retrieving Instance ID token. ', err);
+    // setTokenSentToServer(false);
 });
 
 messaging.onTokenRefresh(() => {
     messaging.getToken().then((refreshedToken) => {
         console.log('Token refreshed.');
-        setTokenSentToServer(false);
-        sendTokenToServer(refreshedToken);
+        // setTokenSentToServer(false);
+        // sendTokenToServer(refreshedToken);
     }).catch((err) => {
         console.log('Unable to retrieve refreshed token ', err);
-        showToken('Unable to retrieve refreshed token ', err);
+        // showToken('Unable to retrieve refreshed token ', err);
     });
 });
 
