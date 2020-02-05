@@ -38,49 +38,48 @@ function send_uid(email, uid){
     );
 }
 
-firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').catch(function(error) {
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  console.log(error);
-});
+firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').then(function(user){
 
+    const messaging = firebase.messaging();
 
-const messaging = firebase.messaging();
-
-messaging.usePublicVapidKey('BOKyoDDTOLAKPbgvzdg0k55N2X3866lwyRYhpPgjGmTjo561hp-fpdwp-WU1BN4FvaMDB6IsYiiJJLYRz2IQte0');
-
-
-// Get Instance ID token. Initially this makes a network call, once retrieved
-// subsequent calls to getToken will return from cache.
-messaging.getToken().then((currentToken) => {
-    if (currentToken) {
-        // sendTokenToServer(currentToken);
-        // updateUIForPushEnabled(currentToken);
-    } else {
-        // Show permission request.
-        console.log('No Instance ID token available. Request permission to generate one.');
-        // Show permission UI.
-        // updateUIForPushPermissionRequired();
-        // setTokenSentToServer(false);
-    }
-}).catch((err) => {
-    console.log('An error occurred while retrieving token. ', err);
-    // showToken('Error retrieving Instance ID token. ', err);
-    // setTokenSentToServer(false);
-});
-
-messaging.onTokenRefresh(() => {
-    messaging.getToken().then((refreshedToken) => {
-        console.log('Token refreshed.');
-        // setTokenSentToServer(false);
-        // sendTokenToServer(refreshedToken);
+    messaging.usePublicVapidKey('BOKyoDDTOLAKPbgvzdg0k55N2X3866lwyRYhpPgjGmTjo561hp-fpdwp-WU1BN4FvaMDB6IsYiiJJLYRz2IQte0');
+    messaging.getToken().then((currentToken) => {
+        if (currentToken) {
+            // sendTokenToServer(currentToken);
+            // updateUIForPushEnabled(currentToken);
+        } else {
+            // Show permission request.
+            console.log('No Instance ID token available. Request permission to generate one.');
+            // Show permission UI.
+            // updateUIForPushPermissionRequired();
+            // setTokenSentToServer(false);
+        }
     }).catch((err) => {
-        console.log('Unable to retrieve refreshed token ', err);
-        // showToken('Unable to retrieve refreshed token ', err);
+        console.log('An error occurred while retrieving token. ', err);
+        // showToken('Error retrieving Instance ID token. ', err);
+        // setTokenSentToServer(false);
     });
+
+    messaging.onTokenRefresh(() => {
+        messaging.getToken().then((refreshedToken) => {
+            console.log('Token refreshed.');
+            // setTokenSentToServer(false);
+            // sendTokenToServer(refreshedToken);
+        }).catch((err) => {
+            console.log('Unable to retrieve refreshed token ', err);
+            // showToken('Unable to retrieve refreshed token ', err);
+        });
+    });
+
+    messaging.onMessage((payload) => {
+      console.log('Message received. ', payload);
+    });
+
+}).catch(function(error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(error);
 });
 
-messaging.onMessage((payload) => {
-  console.log('Message received. ', payload);
-  // ...
-});
+
+    
