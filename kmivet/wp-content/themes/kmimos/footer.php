@@ -13,6 +13,41 @@
     wp_enqueue_script('global_new_js', get_recurso("js")."global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
 
+    /*
+        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
+        <script>
+            var firebaseConfig = {
+                apiKey: "AIzaSyCJ3U368AbKjfn7qRZxBt5b9tWO_0yL-_M",
+                authDomain: "kmivet.firebaseapp.com",
+                databaseURL: "https://kmivet.firebaseio.com",
+                projectId: "kmivet",
+                storageBucket: "kmivet.appspot.com",
+                messagingSenderId: "816587933523",
+                appId: "1:816587933523:web:b6b5ef64997209f2f443a6",
+                measurementId: "G-WGCS06RXVE"
+            };
+            firebase.initializeApp(firebaseConfig);
+            function registrar(email){
+                firebase.auth().createUserWithEmailAndPassword(email, "123456").then(function(user){
+                    console.log(user.user);
+                    console.log(user.user.uid);
+                    console.log(user.user.email);
+                }).catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                });
+            }
+            registrar("jose3@mail.com");
+        </script>
+    */ 
+
+    wp_enqueue_script('firebase-app.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js", array("jquery"), '1.0.0'); 
+    wp_enqueue_script('firebase-auth.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js", array("jquery"), '1.0.0'); 
+    wp_enqueue_script('firebase-database.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js", array("jquery"), '1.0.0'); 
+    wp_enqueue_script('firebase-init.js', getTema()."/js/firebase-init.js", array("jquery"), '1.0.0'); 
+
     $HTML = '
         <footer>
             <div class="footer_alto">

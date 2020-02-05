@@ -3,20 +3,64 @@
 		// $url = 'https://api.mediqo.mx/'.$url;
 		// $url = 'http://3.86.249.47/'.$url;
 		$url = 'http://pruebas.kmimos.com.mx/'.$url;
-		if( $type == 'POST' ){
-			$ch = curl_init($url);
-			$payload = json_encode($params);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$result = curl_exec($ch);
-			curl_close($ch);
-		}else{
-			$result = file_get_contents($url);
+
+		switch ( $type ) {
+			case 'GET':
+				$result = file_get_contents($url);
+			break;
+
+			case 'POST':
+				$ch = curl_init($url);
+				$payload = json_encode($params);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				$result = curl_exec($ch);
+				curl_close($ch);
+			break;
+
+			case 'PUT':
+				$ch = curl_init($url);
+				$payload = json_encode($params);
+				// curl_setopt($ch, CURLOPT_PUT, true);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_HTTPGET, FALSE);
+				$result = curl_exec($ch);
+				curl_close($ch);
+			break;
+			
+			default:
+				return false;
+			break;
 		}
 
 		return $result;
 	}
+
+	/* Auth */
+
+	function send_token_paciente($paciente_id, $token){
+		$r = mediqo_request('patients/'.$paciente_id.'/notification_token', ['notificationToken' => $token], 'PUT');
+		$r = json_decode($r);
+		if( $r->status == 'OK' ){
+			return ['status' => 'ok', "r" => $r];
+		}
+	    return ['status' => 'ko', "r" => $r];
+	}
+
+	function send_token_veterinario($paciente_id, $token){
+		$r = mediqo_request('medics/'.$paciente_id.'/notification_token', ['notificationToken' => $token], 'PUT');
+		$r = json_decode($r);
+		if( $r->status == 'OK' ){
+			return ['status' => 'ok'];
+		}
+	    return ['status' => 'ko'];
+	}
+
+
 
 	/* Pacientes */
 
@@ -59,6 +103,9 @@
 			update_user_meta($user_id, "_mediqo_customer_id", $mediqo_id);
 			return true;
 		}else{
+			if( !validar_paciente($user_id, $params['email']) ) {
+				return true;
+			}
 			update_user_meta($user_id, "_mediqo_error_creando_cliente", json_encode([
 				'info' => $resultado,
 				'res' => $data_cliente

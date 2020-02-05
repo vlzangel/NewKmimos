@@ -53,6 +53,8 @@
 
 	// wp_enqueue_style( 'bootstrap_css', "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css", array(), "1.0.0" );
 
+	
+
 	wp_head();
 
 	$HTML = '';

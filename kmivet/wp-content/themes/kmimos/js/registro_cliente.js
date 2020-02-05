@@ -234,6 +234,8 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 							jQuery(".popup-condiciones").css("display", "none");
 							jQuery(".popup-registrarte-final").css("display", "block");
 
+							generar_token( jQuery("#email_1").val() );
+
 						}
 						jQuery('.km-btn-popup-registrarte-nuevo-correo').html('SIGUIENTE');
 					}

@@ -3,8 +3,11 @@
     <head>
         <title></title>
 
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
         <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
         <script>
             var firebaseConfig = {
                 apiKey: "AIzaSyCJ3U368AbKjfn7qRZxBt5b9tWO_0yL-_M",
@@ -17,7 +20,17 @@
                 measurementId: "G-WGCS06RXVE"
             };
             firebase.initializeApp(firebaseConfig);
-            firebase.analytics();
+            function registrar(email){
+                firebase.auth().createUserWithEmailAndPassword(email, "123456").then(function(user){
+                    console.log(user.user);
+                    console.log(user.user.uid);
+                    console.log(user.user.email);
+                }).catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                });
+            }
+            registrar("jose3@mail.com");
         </script>
 
     </head>
