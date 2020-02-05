@@ -1,6 +1,20 @@
 var isMovil = '';
 jQuery( document ).ready(function() {
 
+     function show_notification(msg) {
+        if (!("Notification" in window)) {
+            alert("Este navegador no soporta las notificaciones del sistema");
+        } else if (Notification.permission === "granted") {
+            var notification = new Notification( msg );
+        } else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                if (permission === "granted") {
+                    var notification = new Notification( msg );
+                }
+            });
+        }
+    }
+    
     jQuery("#registrar_desde_login").on('click', function(e){
         jQuery("#popup-iniciar-sesion").modal('hide');
         setTimeout(function(e){
