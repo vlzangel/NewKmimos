@@ -38,6 +38,12 @@ function send_uid(email, uid){
     );
 }
 
+firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').catch(function(error) {
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  console.log(error);
+});
+
 
 const messaging = firebase.messaging();
 
