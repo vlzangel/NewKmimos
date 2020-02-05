@@ -245,6 +245,7 @@ function logear(){
             },
             function( data ) {
                 if( data.login ){
+                    Cookies.set( 'userEmail', jQuery("#form_login #usuario").val() );
                     location.reload();
                 }else{
                     jQuery('#login_submit').before('<div data-id="alert_login" class="alert alert-danger"><strong>'+data.mes+'</strong></div>');

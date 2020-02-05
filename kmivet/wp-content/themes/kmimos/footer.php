@@ -43,9 +43,10 @@
         </script>
     */ 
 
-    wp_enqueue_script('firebase-app.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js", array("jquery"), '1.0.0'); 
-    wp_enqueue_script('firebase-auth.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js", array("jquery"), '1.0.0'); 
-    wp_enqueue_script('firebase-messaging.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-messaging.js", array("jquery"), '1.0.0'); 
+    wp_enqueue_script('firebase-app.js', "https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js", array("jquery"), '1.0.0'); 
+    wp_enqueue_script('firebase-auth.js', "https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js", array("jquery"), '1.0.0'); 
+    wp_enqueue_script('firebase-messaging.js', "https://www.gstatic.com/firebasejs/6.3.4/firebase-messaging.js", array("jquery"), '1.0.0'); 
+    wp_enqueue_script('js.cookie', getTema()."/js/js.cookie.js", array("jquery"), '1.0.0'); 
     wp_enqueue_script('firebase-init.js', getTema()."/js/firebase-init.js", array("jquery"), '1.0.0'); 
 
     $HTML = '

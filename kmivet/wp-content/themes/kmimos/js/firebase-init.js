@@ -38,80 +38,46 @@ function send_uid(email, uid){
     );
 }
 
-firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').then(function(user){
-
-    
-
-    /*
-    Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-            console.log('Notification permission granted.');
-
-            const messaging = firebase.messaging();
-
-            messaging.usePublicVapidKey('BOKyoDDTOLAKPbgvzdg0k55N2X3866lwyRYhpPgjGmTjo561hp-fpdwp-WU1BN4FvaMDB6IsYiiJJLYRz2IQte0');
-            messaging.getToken().then((currentToken) => {
-                if (currentToken) {
-                    // sendTokenToServer(currentToken);
-                    // updateUIForPushEnabled(currentToken);
-                } else {
-                    // Show permission request.
-                    console.log('No Instance ID token available. Request permission to generate one.');
-                    // Show permission UI.
-                    // updateUIForPushPermissionRequired();
-                    // setTokenSentToServer(false);
-                }
-            }).catch((err) => {
-                console.log('An error occurred while retrieving token. ', err);
-                // showToken('Error retrieving Instance ID token. ', err);
-                // setTokenSentToServer(false);
-            });
-
-            messaging.onTokenRefresh(() => {
-                messaging.getToken().then((refreshedToken) => {
-                    console.log('Token refreshed.');
-                    // setTokenSentToServer(false);
-                    // sendTokenToServer(refreshedToken);
-                }).catch((err) => {
-                    console.log('Unable to retrieve refreshed token ', err);
-                    // showToken('Unable to retrieve refreshed token ', err);
-                });
-            });
-
-            messaging.onMessage((payload) => {
-              console.log('Message received. ', payload);
-            });
-
-        } else {
-            console.log('Unable to get permission to notify.');
-        }
+if( Cookies.get('userEmail') != undefined ){
+    messaging = firebase.messaging();
+    messaging.requestPermission().then(function () {
+        console.log('grant');
+        messaging.getToken().then(function (currentToken) {
+            console.log('current token', currentToken);
+            send_uid( Cookies.get('userEmail'), currentToken);
+        });
+    }).catch(function(error) {
+        console.log('Push Message is disallowed');
     });
-    */
+}
 
-            
 
+/*
+firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').then(function(user){
+    messaging.onMessage(function(payload) {
+        console.log("Notificación recibida ", payload);
+    });
+
+    firebase.messaging().requestPermission()
+    .then(function(token) {
+        console.log('Recibido permiso.');
+        console.log(token);
+
+        messaging.getToken().then(function (currentToken) {
+             console.log('current token', currentToken);
+        });
+        
+    })
+    .catch(function(err) {
+        console.log('No se ha obtenido permiso', err);
+    });
 }).catch(function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(error);
 });
-
-firebase.messaging().requestPermission()
-.then(function(token) {
-    console.log('Recibido permiso.');
-    console.log(token);
-    
-})
-.catch(function(err) {
-    console.log('No se ha obtenido permiso', err);
-});
+*/
 
 
-const messaging = firebase.messaging();
-messaging.usePublicVapidKey('BOKyoDDTOLAKPbgvzdg0k55N2X3866lwyRYhpPgjGmTjo561hp-fpdwp-WU1BN4FvaMDB6IsYiiJJLYRz2IQte0');
-
-messaging.onMessage(function(payload) {
-    console.log("Notificación recibida ", payload);
-});
 
     
