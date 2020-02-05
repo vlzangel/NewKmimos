@@ -45,7 +45,7 @@
 
     wp_enqueue_script('firebase-app.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js", array("jquery"), '1.0.0'); 
     wp_enqueue_script('firebase-auth.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js", array("jquery"), '1.0.0'); 
-    wp_enqueue_script('firebase-database.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js", array("jquery"), '1.0.0'); 
+    wp_enqueue_script('firebase-database.js', "https://www.gstatic.com/firebasejs/7.8.0/firebase-messaging.js", array("jquery"), '1.0.0'); 
     wp_enqueue_script('firebase-init.js', getTema()."/js/firebase-init.js", array("jquery"), '1.0.0'); 
 
     $HTML = '
