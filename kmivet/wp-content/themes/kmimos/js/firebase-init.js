@@ -40,6 +40,16 @@ function send_uid(email, uid){
 
 firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').then(function(user){
 
+    Notification.requestPermission().then((permission) => {
+  if (permission === 'granted') {
+    console.log('Notification permission granted.');
+    // TODO(developer): Retrieve an Instance ID token for use with FCM.
+    // ...
+  } else {
+    console.log('Unable to get permission to notify.');
+  }
+});
+    
     const messaging = firebase.messaging();
 
     messaging.usePublicVapidKey('BOKyoDDTOLAKPbgvzdg0k55N2X3866lwyRYhpPgjGmTjo561hp-fpdwp-WU1BN4FvaMDB6IsYiiJJLYRz2IQte0');
