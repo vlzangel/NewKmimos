@@ -40,6 +40,9 @@ function send_uid(email, uid){
 
 firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').then(function(user){
 
+    
+
+    /*
     Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
             console.log('Notification permission granted.');
@@ -78,11 +81,12 @@ firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').then
             messaging.onMessage((payload) => {
               console.log('Message received. ', payload);
             });
-            
+
         } else {
             console.log('Unable to get permission to notify.');
         }
     });
+    */
 
             
 
@@ -92,5 +96,18 @@ firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').then
     console.log(error);
 });
 
+firebase.messaging().requestPermission()
+.then(function(token) {
+    console.log('Recibido permiso.');
+    console.log(token);
+    
+})
+.catch(function(err) {
+    console.log('No se ha obtenido permiso', err);
+});
+
+messaging.onMessage(function(payload) {
+    console.log("Notificación recibida ", payload);
+});
 
     
