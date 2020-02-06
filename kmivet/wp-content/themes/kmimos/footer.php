@@ -13,35 +13,6 @@
     wp_enqueue_script('global_new_js', get_recurso("js")."global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
 
-    /*
-        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
-        <script>
-            var firebaseConfig = {
-                apiKey: "AIzaSyCJ3U368AbKjfn7qRZxBt5b9tWO_0yL-_M",
-                authDomain: "kmivet.firebaseapp.com",
-                databaseURL: "https://kmivet.firebaseio.com",
-                projectId: "kmivet",
-                storageBucket: "kmivet.appspot.com",
-                messagingSenderId: "816587933523",
-                appId: "1:816587933523:web:b6b5ef64997209f2f443a6",
-                measurementId: "G-WGCS06RXVE"
-            };
-            firebase.initializeApp(firebaseConfig);
-            function registrar(email){
-                firebase.auth().createUserWithEmailAndPassword(email, "123456").then(function(user){
-                    console.log(user.user);
-                    console.log(user.user.uid);
-                    console.log(user.user.email);
-                }).catch(function(error) {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                });
-            }
-            registrar("jose3@mail.com");
-        </script>
-    */ 
 
     wp_enqueue_script('firebase-app.js', "https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js", array("jquery"), '1.0.0'); 
     wp_enqueue_script('firebase-auth.js', "https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js", array("jquery"), '1.0.0'); 
@@ -58,7 +29,6 @@
                         <ul>
                             <li style="font-size: 13px;">¡Inscribete a nuestro blog y conócelas!</li>
                         </ul>
-                    
                         <form id="suscribirse" onsubmit="form_subscribe(this); return false;" class="subscribe" data-subscribe="'.get_home_url().'/wp-content/plugins/kmimos">
                             <input type="hidden" name="section" value="'.$seccion.'" class="form-control" placeholder="Ingresa tu correo">
                             <input type="hidden" id="wlabelSubscribeFooter" name="wlabelSubscribeFooter" value="'.$_SESSION["wlabel"].'" class="form-control" placeholder="Ingresa tu correo">

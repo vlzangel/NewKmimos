@@ -15,9 +15,7 @@ function generar_token(email){
         console.log(user.user);
         console.log(user.user.uid);
         console.log(user.user.email);
-
         send_uid(user.user.email, user.user.uid);
-
     }).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -41,9 +39,9 @@ function send_uid(email, uid){
 if( Cookies.get('userEmail') != undefined ){
     messaging = firebase.messaging();
     messaging.requestPermission().then(function () {
-        console.log('grant');
+        // console.log('grant');
         messaging.getToken().then(function (currentToken) {
-            console.log('current token', currentToken);
+            // console.log('current token', currentToken);
             send_uid( Cookies.get('userEmail'), currentToken);
         });
     }).catch(function(error) {
@@ -51,18 +49,15 @@ if( Cookies.get('userEmail') != undefined ){
     });
 }
 
-
 /*
 firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').then(function(user){
     messaging.onMessage(function(payload) {
         console.log("Notificación recibida ", payload);
     });
-
     firebase.messaging().requestPermission()
     .then(function(token) {
         console.log('Recibido permiso.');
         console.log(token);
-
         messaging.getToken().then(function (currentToken) {
              console.log('current token', currentToken);
         });
@@ -77,7 +72,3 @@ firebase.auth().signInWithEmailAndPassword("kmivettres@mail.com", '123456').then
     console.log(error);
 });
 */
-
-
-
-    
