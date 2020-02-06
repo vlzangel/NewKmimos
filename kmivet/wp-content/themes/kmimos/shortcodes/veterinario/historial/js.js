@@ -5,6 +5,8 @@ jQuery( document ).ready(function() {
 
 	initModal("historial_modal", function(data){
 
+		jQuery("#historial_modal").modal('hide');
+		
 		/*
 		console.log( data );
 		if( data.status ){
