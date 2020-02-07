@@ -43,6 +43,17 @@ function _examen(_this){
 	);
 }
 
+function _examen_ver(_this){
+	openModal(
+		"historial_modal", 
+		'Ver Examen', 
+		'', 
+		'veterinario', 
+		'ver_examen', 
+		_this.data('id')
+	);
+}
+
 function _diagnostico(_this){
 	openModal(
 		"historial_modal", 
