@@ -13,7 +13,7 @@
 		] );
 
 		if( $rcv['status'] == 'ok' ){
-			$r = $wpdb->query("UPDATE {$pf}reservas SET status = 5, calificacion = '{$valor}', observaciones = '{$mensaje}' WHERE id = '{$id}' ");
+			$r = $wpdb->query("UPDATE {$pf}reservas SET status = 5, calificacion = '{$valor}', observaciones = '{$mensaje}' WHERE cita_id = '{$cita_id}' ");
 			if( $r ){
 				die( json_encode([
 					'status' => true
