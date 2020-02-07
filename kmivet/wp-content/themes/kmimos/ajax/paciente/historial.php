@@ -31,7 +31,7 @@
 			break;
 			case 5:
 				$acciones .= '
-					<span class="btn_table"> <i onclick="_examen_ver(jQuery(this))" class="far fa-eye" data-id="'.$reserva->cita_id.'" title="Ver Examen" ></i> </span>
+					<span class="btn_table"> <i onclick="_examen_ver(jQuery(this))" class="far fa-eye" data-id="'.$reserva->cita_id.'" title="Ver Resumen" ></i> </span>
 				';
 			break;
 		}
