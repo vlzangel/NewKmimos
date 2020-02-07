@@ -28,7 +28,9 @@
 				$acciones .= '<span class="btn_table"> <i onclick="_valorar( jQuery(this) )" class="fas fa-clipboard-check" data-accion="calificar" data-id="'.$reserva->cita_id.'" title="Calificar"></i> </span>';
 			break;
 			case 4:
-				
+				$acciones .= '
+					<span class="btn_table"> <i onclick="_examen_ver(jQuery(this))" class="far fa-eye" data-id="'.$reserva->cita_id.'" title="Ver Examen" ></i> </span>
+				';
 			break;
 		}
 

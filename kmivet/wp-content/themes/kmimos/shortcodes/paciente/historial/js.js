@@ -14,6 +14,17 @@ jQuery( document ).ready(function() {
 	});
 });
 
+function _examen_ver(_this){
+	openModal(
+		"historial_modal", 
+		'Ver Resumen', 
+		'', 
+		'veterinario', 
+		'ver_examen', 
+		_this.data('id')
+	);
+}
+
 function _cancelar(_this){
 	var confirmed = confirm("¿Esta Seguro de cancelar esta cita?");
     if (confirmed == true) {
