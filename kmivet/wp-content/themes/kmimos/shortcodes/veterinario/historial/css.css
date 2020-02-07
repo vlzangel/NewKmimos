@@ -43,7 +43,8 @@ div#historial_wrapper > div:first-child > div:nth-child(2) {
 
 .contenedor_examen_ver label {
     font-size: 12px;
-    border-bottom: solid 2px #CCC;
+    border-bottom: solid 1px #CCC;
+    padding-bottom: 5px;
 }
 
 .modal-body textarea {
