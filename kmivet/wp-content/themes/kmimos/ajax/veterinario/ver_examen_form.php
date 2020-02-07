@@ -1,4 +1,4 @@
-<div class="contenedor_examen">
+<div class="contenedor_examen_ver">
 	<?php
 		$preguntas = get_answers($id);
 		
