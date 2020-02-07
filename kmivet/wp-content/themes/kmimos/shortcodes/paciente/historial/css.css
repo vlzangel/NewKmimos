@@ -43,11 +43,11 @@ div#historial_wrapper > div:first-child > div:nth-child(2) {
 
 .contenedor_examen_ver label {
     font-size: 12px;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
 }
 
 .contenedor_examen_ver p {    
-	border: solid 1px #CCC;
+	border: solid 1px #e0e0e0;
     padding: 10px;
 }
 
