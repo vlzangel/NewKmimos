@@ -1,5 +1,5 @@
 <?php
-	$rcs = change_status($cita_id, [ "status" => 2, "description" => "Veterinario llegando al domicilio" ]);
+	$rcs = change_status($cita_id, [ "status" => 2, "description" => "Veterinario llegando al domicilio", "source" => "1" ]);
 	if( $rcs['status'] == 'ok' ){ 
 		$r = $wpdb->query("UPDATE {$pf}reservas SET status = 2 WHERE cita_id = '{$cita_id}' ");
 		if( $r ){
