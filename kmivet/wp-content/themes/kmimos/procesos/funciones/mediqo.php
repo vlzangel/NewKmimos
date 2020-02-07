@@ -171,6 +171,21 @@
 		];
 	}
 
+	function calificar_veterinario($veterinario_id, $params){
+		$params['source'] = 1;
+		$resultado = mediqo_request('medics/'.$veterinario_id.'/rate', $params);
+		$resultado = json_decode($resultado);
+		if( $resultado->status != 'OK' ){
+		    return [
+				'status' => 'ko',
+				'info' => $resultado
+			];
+		}
+	    return [
+			'status' => 'ok'
+		];
+	}
+
 	function get_answers($id){
 		$params['source'] = 1;
 		$resultado = mediqo_request('appointments/'.$id.'/answers', [], 'GET');
