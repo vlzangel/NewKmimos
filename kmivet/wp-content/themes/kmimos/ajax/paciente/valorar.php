@@ -1,4 +1,5 @@
 <?php
+	$cita_id = $id;
 	$rcs = change_status($cita_id, [ "status" => 5, "description" => $mensaje, "source" => "1" ]);
 	if( $rcs['status'] == 'ok' ){ 
 		$r = $wpdb->query("UPDATE {$pf}reservas SET status = 5, calificacion = '{$valor}', observaciones = '{$mensaje}' WHERE id = '{$id}' ");

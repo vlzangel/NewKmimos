@@ -25,7 +25,7 @@
 				$acciones .= '<span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->cita_id.'" title="Cancelar" ></i> </span>';
 			break;
 			case 3:
-				$acciones .= '<span class="btn_table"> <i onclick="_valorar( jQuery(this) )" class="fas fa-clipboard-check" data-accion="calificar" data-id="'.$reserva->id.'" title="Calificar"></i> </span>';
+				$acciones .= '<span class="btn_table"> <i onclick="_valorar( jQuery(this) )" class="fas fa-clipboard-check" data-accion="calificar" data-id="'.$reserva->cita_id.'" title="Calificar"></i> </span>';
 			break;
 			case 4:
 				
