@@ -9,3 +9,47 @@ div#historial_wrapper > div:first-child > div:nth-child(2) {
 .modal-body textarea {
     height: 100px;
 }
+
+#otro_motivo {
+	display: none;
+}
+
+#otro_motivo.show {
+	display: block;
+}
+
+.btn_cargar {
+	padding: 2px 10px;
+	cursor: pointer;
+	font-size: 12px;
+	color: var(--kmimos-morado);
+}
+
+.contenedor_examen {
+	display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px 15px;
+}
+
+.contenedor_examen_ver {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px 15px;
+}
+
+.contenedor_examen label {
+    font-size: 12px;
+}
+
+.contenedor_examen_ver label {
+    font-size: 12px;
+    border-bottom: solid 1px #CCC;
+    padding-bottom: 5px;
+}
+
+.modal-body textarea {
+    height: 80px;
+    font-size: 10px;
+    padding: 3px 5px;
+    border-radius: 0px;
+}
