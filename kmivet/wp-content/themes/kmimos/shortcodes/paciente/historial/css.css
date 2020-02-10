@@ -57,3 +57,137 @@ div#historial_wrapper > div:first-child > div:nth-child(2) {
     padding: 3px 5px;
     border-radius: 0px;
 }
+
+
+div#historial_wrapper > div:first-child {
+    float: right;
+}
+
+div#historial_wrapper > div:first-child > div:nth-child(2) {
+    width: 222px;
+}
+
+.modal-body textarea {
+    height: 100px;
+}
+
+#otro_motivo {
+    display: none;
+}
+
+#otro_motivo.show {
+    display: block;
+}
+
+.btn_cargar {
+    padding: 2px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--kmimos-morado);
+}
+
+.contenedor_examen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px 15px;
+}
+
+.contenedor_examen_ver {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px 15px;
+    margin-bottom: 10px;
+}
+
+.contenedor_examen label {
+    font-size: 12px;
+}
+
+.contenedor_examen_ver label {
+    font-size: 12px;
+    margin-bottom: 0px;
+    border-bottom: solid 1px #CCC;
+    padding: 5px;
+    background-color: #EEE;
+}
+
+.contenedor_examen_ver p {
+    padding: 5px 10px 0px;
+    margin: 0px;
+}
+
+.modal-body textarea {
+    height: 80px;
+    font-size: 10px;
+    padding: 3px 5px;
+    border-radius: 0px;
+}
+
+.search_medicamento {
+    position: relative;
+}
+
+.search_medicamento .search_list {
+    position: absolute;
+    top: 57px;
+    left: 0px;
+    width: 100%;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    font-size: 11px;
+    z-index: 99999;
+    background: #FFF;
+    border: solid 1px #CCC;
+    border-radius: 0px 0px 5px 5px;
+    overflow: hidden;
+
+    display: none;
+}
+
+.search_medicamento .search_list li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.search_medicamento .search_list li:hover {
+    background-color: #EEE;
+}
+
+.search_medicamento_campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+textarea#notas {
+    font-size: 13px;
+}
+
+div#historial_modal select {
+    font-size: 13px !important;
+}
+
+h4 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.contenedor_examen_ver > div {
+    border: solid 1px #CCC;
+    padding-bottom: 5px;
+}
+
+.medicamento_item {
+    font-size: 11px;
+    padding: 5px 10px 0px;
+}
+
+.medicamento_item strong {
+    font-size: 11px;
+}
+
+.diagnostico_container {
+    font-size: 12px;
+    padding: 10px;
+}

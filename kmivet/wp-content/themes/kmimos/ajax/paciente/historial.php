@@ -25,7 +25,10 @@
 				$acciones .= '<span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->cita_id.'" title="Cancelar" ></i> </span>';
 			break;
 			case 3:
-				$acciones .= '<span class="btn_table"> <i onclick="_valorar( jQuery(this) )" class="fas fa-clipboard-check" data-accion="calificar" data-id="'.$reserva->cita_id.'" title="Calificar"></i> </span>';
+				$acciones .= '
+					<span class="btn_table"> <i onclick="_valorar( jQuery(this) )" class="fas fa-clipboard-check" data-accion="calificar" data-id="'.$reserva->cita_id.'" title="Calificar"></i> </span>
+					<span class="btn_table"> <i onclick="_examen_ver(jQuery(this))" class="far fa-eye" data-id="'.$reserva->cita_id.'" title="Ver Resumen" ></i> </span>
+				';
 			break;
 			case 4:
 			break;
@@ -38,12 +41,9 @@
 
 		$data['data'][] = [
 			$reserva->id,
-			'<div style="text-transform: capitalize;">'.$vet->firstName.' '.$vet->lastName.'</div>'
-			/* '<div><small>'.$vet->email.'</small></div>'.
-			'<div><small>'.$vet->phone.'</small></div>' */,
+			'<div style="text-transform: capitalize;">'.$vet->firstName.' '.$vet->lastName.'</div>',
 			$fecha,
 			get_status_reserva( $reserva->status ),
-			'',
 			$acciones
 		];
 	}

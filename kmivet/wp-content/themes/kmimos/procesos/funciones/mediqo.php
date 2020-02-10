@@ -61,7 +61,6 @@
 	}
 
 
-
 	/* Pacientes */
 
 	function get_mediqo_customer($user_id){
@@ -154,6 +153,15 @@
 		];
 	}
 
+	function get_appointment($appointment_id){
+		$resultado = mediqo_request('appointments/'.$appointment_id.'/full', [], 'GET');
+	    return [
+	    	"result" => json_decode($resultado)->object,
+	    	"d" => $resultado,
+	    	"u" => 'appointments/'.$appointment_id.'/full'
+	    ];
+	}
+
 	function change_status($id, $params){
 		$params['source'] = 1;
 		$resultado = mediqo_request('appointments/'.$id.'/status', $params);
@@ -193,11 +201,69 @@
 	    return $resultado->objects;
 	}
 
+	function search_medicine($query){
+		$params['source'] = 1;
+		$resultado = mediqo_request('prescriptions/?q='.$query, [], 'GET');
+		$resultado = json_decode($resultado);
+	    return $resultado->objects;
+	}
+
+	function add_medicine($appointment_id, $medicine_id, $indications){
+		$resultado = mediqo_request('appointments/'.$appointment_id.'/prescriptions', [
+			'medicines' => [
+				[
+					"id" => $medicine_id,
+					"indication" =>  $indications
+				]
+			],
+			'appointment' => $appointment_id
+		]);
+	    return [
+	    	"r" => json_decode($resultado),
+	    	"p" => [
+	    		'url' => 'appointments/'.$appointment_id.'/prescriptions',
+	    		'method' => 'PUT',
+	    		'params' => [
+					'medicines' => [
+						[
+							"id" => $medicine_id,
+							"indication" =>  $indications
+						]
+					],
+					'appointment' => $appointment_id
+				]
+	    	]
+	    ];
+	}
+
+	function get_medicines($appointment_id){
+		$resultado = mediqo_request('appointments/'.$appointment_id.'/prescriptions', [], 'GET');
+	    return [
+	    	"r" => json_decode($resultado)->objects
+	    ];
+	}
+
 	function put_answers($id, $params){
 		$params['source'] = 1;
 		$resultado = mediqo_request('appointments/'.$id.'/answers', $params);
 		$resultado = json_decode($resultado);
 	    return $resultado->objects;
+	}
+
+	function get_list_diagnostic($id, $level){
+		$resultado = mediqo_request('diagnostics?level='.$level.'&parent='.$id, [], 'GET');
+	    return [
+	    	"result" => json_decode($resultado)->objects,
+	    	"x" => $resultado,
+	    	"u" => 'diagnostics?level='.$level.'&id='.$id,
+	    ];
+	}
+
+	function update_diagnostics($id, $params){
+		$params['source'] = 1;
+		$resultado = mediqo_request('appointments/'.$id.'/diagnostics', $params);
+		$resultado = json_decode($resultado);
+	    return $resultado;
 	}
 
 	/* Medicos */

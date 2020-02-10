@@ -19,7 +19,7 @@ function _examen_ver(_this){
 		"historial_modal", 
 		'Ver Resumen', 
 		'', 
-		'veterinario', 
+		'paciente', 
 		'ver_examen', 
 		_this.data('id')
 	);

@@ -3,20 +3,26 @@ jQuery( document ).ready(function() {
 	init_table("#historial", "veterinario", "historial");
 	_table = jQuery("#historial").DataTable();
 
-	initModal("historial_modal", function(data){
+	initModal("historial_modal", function(r){
+		console.log( r );
 
-		jQuery("#historial_modal").modal('hide');
-		
-		/*
-		console.log( data );
-		if( data.status ){
-			alert("Cita cancelada exitosamente!");
-			jQuery("#historial_modal").modal('hide');
-			jQuery("#historial_modal .modal-body").html();
-		}else{
-			alert("Error cancelando el servicio");
+		switch( r.seccion ){
+			case 'examen':
+				alert("Examen Cargado Exitosamente!");
+				_table.ajax.reload();
+				jQuery("#historial_modal").modal('hide');
+			break;
+			case 'recipe':
+				_table.ajax.reload();
+				recipe_get();
+			break;
+			case 'diagnostico':
+				alert("Diagnóstico Cargado Exitosamente!");
+				_table.ajax.reload();
+				jQuery("#historial_modal").modal('hide');
+			break;
 		}
-		*/
+		
 	});
 
 	jQuery("[name='motivo']").on('change', function(e){
@@ -30,8 +36,55 @@ jQuery( document ).ready(function() {
 	});
 });
 
+function get_list_diagnostic(id, level, lista_id){
+	jQuery.post(
+		AJAX+"?action=kv&m=veterinario&a=get_list_diagnostic",
+		{
+			id: id,
+			level: level
+		},
+		function(r){
+			var HTML = '<option>Seleccione...</option>';
+			jQuery.each(r.result, function(i, v){
+				HTML += '<option value="'+v.id+'">'+v.title+'</option>';
+			});
+			jQuery("#"+lista_id).html(HTML);
+		},
+		'json'
+	);
+}
 
+function recipe_get(){
+	jQuery.post(
+		AJAX+"?action=kv&m=veterinario&a=recipe_get",
+		{ appointment_id: jQuery("#appointment_id").val() },
+		function(r){
+			// console.log(r);
+			jQuery("#search_medicamento_input").val("");
+			jQuery("#indications").val("");
+			jQuery("#medicine_id").val("");
+			if( r.status ){
+				var HTML = '';
+				jQuery.each(r.lista.r, function(i, v){
+					HTML += '<tr><td>'+v.medicine.name+' ('+v.medicine.presentation+')</td><td>'+v.indication+'</td></tr>';
+				});
+				jQuery("#search_medicamento_agregados tbody").html(HTML);
+			}
+		},
+		'json'
+	);
+}
 
+function _recipe(_this){
+	openModal(
+		"historial_modal", 
+		'Recetar Medicamentos', 
+		'Agregar / Actualizar', 
+		'veterinario', 
+		'recipe_examen', 
+		_this.data('id')
+	);
+}
 function _examen(_this){
 	openModal(
 		"historial_modal", 
@@ -46,7 +99,7 @@ function _examen(_this){
 function _examen_ver(_this){
 	openModal(
 		"historial_modal", 
-		'Ver Examen', 
+		'Ver Resumen', 
 		'', 
 		'veterinario', 
 		'ver_examen', 
@@ -58,7 +111,7 @@ function _diagnostico(_this){
 	openModal(
 		"historial_modal", 
 		'Cargar Diagnóstico', 
-		'Cargar', 
+		'Actualizar Diagnóstico', 
 		'veterinario', 
 		'cargar_diagnostico', 
 		_this.data('id')
