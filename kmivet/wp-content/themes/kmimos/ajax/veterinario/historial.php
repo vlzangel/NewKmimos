@@ -52,7 +52,7 @@
 						$acciones .= '
 							<span class="btn_table"> <i onclick="_examen(jQuery(this))" class="fas fa-list" data-id="'.$reserva->cita_id.'" title="Cargar Examen" ></i> </span>
 							<span class="btn_table"> <i onclick="_recipe(jQuery(this))" class="fas fa-capsules" data-id="'.$reserva->cita_id.'" title="Recetar Medicamentos" ></i> </span>
-							<span class="btn_table"> <i onclick="_diagnostico(jQuery(this))" class="fas fa-file-invoice" data-id="'.$reserva->cita_id.'" title="Cargar Diagnostico" ></i> </span>
+							
 							<span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i> </span>
 						';
 					}else{
