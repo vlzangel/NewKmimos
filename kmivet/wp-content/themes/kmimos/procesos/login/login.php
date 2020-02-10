@@ -86,7 +86,7 @@
 					die(
 						json_encode( array( 
 				  			'login' => false, 
-				  			'mes'   => "Email y contraseña invalidos en el API",
+				  			'mes'   => "Email o contraseña invalido",
 				  			'params'   => $params,
 					  	) )
 					);			
