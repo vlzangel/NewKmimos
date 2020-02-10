@@ -1,5 +1,7 @@
 <?php
+	$res_trata = add_tratamiento($appointment_id, $tratamiento);
 	$res = add_medicine($appointment_id, $medicine_id, $indications);
+
 
 	$cita_id = $appointment_id;
 
@@ -20,6 +22,6 @@
 		"status" => true,
 		"seccion" => "recipe",
 		"msg" => "Medicamento agregado exitosamente!",
-		"extra" => $res
+		"extra" => $res_trata
 	]) );
 ?>

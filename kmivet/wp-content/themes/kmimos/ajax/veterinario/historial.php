@@ -11,7 +11,7 @@
 
 	$veterinario_id = $wpdb->get_var("SELECT veterinario_id FROM {$pf}veterinarios WHERE user_id = '{$user_id}'");
 
-	$reservas = $wpdb->get_results( "SELECT * FROM {$pf}reservas WHERE veterinario_id = '{$veterinario_id}' ORDER BY id DESC" );
+	$reservas = $wpdb->get_results( "SELECT * FROM {$pf}reservas WHERE veterinario_id = '{$veterinario_id}' AND status != -1 ORDER BY id DESC" );
 	foreach ($reservas as $key => $reserva) {
 		$i = json_decode($reserva->data);
 

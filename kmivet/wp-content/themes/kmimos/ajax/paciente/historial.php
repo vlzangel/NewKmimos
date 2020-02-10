@@ -3,7 +3,7 @@
 
 	$tipo = strtolower( get_usermeta( $user_id, "tipo_usuario", true ) );
 
-	$reservas = $wpdb->get_results( "SELECT * FROM {$pf}reservas WHERE user_id = '{$user_id}' ORDER BY id DESC" );
+	$reservas = $wpdb->get_results( "SELECT * FROM {$pf}reservas WHERE user_id = '{$user_id}' AND status != -1 ORDER BY id DESC" );
 	foreach ($reservas as $key => $reserva) {
 		$i = json_decode($reserva->data);
 

@@ -236,6 +236,28 @@
 	    ];
 	}
 
+	function add_tratamiento($appointment_id, $tratamiento){
+		$resultado = mediqo_request('appointments/'.$appointment_id.'/treatment', [
+			'treatment' => $tratamiento
+		]);
+	    return [
+	    	"r" => json_decode($resultado),
+	    	"p" => [
+	    		'url' => 'appointments/'.$appointment_id.'/prescriptions',
+	    		'method' => 'PUT',
+	    		'params' => [
+					'medicines' => [
+						[
+							"id" => $medicine_id,
+							"indication" =>  $indications
+						]
+					],
+					'appointment' => $appointment_id
+				]
+	    	]
+	    ];
+	}
+
 	function get_medicines($appointment_id){
 		$resultado = mediqo_request('appointments/'.$appointment_id.'/prescriptions', [], 'GET');
 	    return [

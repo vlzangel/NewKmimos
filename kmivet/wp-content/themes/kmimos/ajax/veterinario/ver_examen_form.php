@@ -24,6 +24,17 @@
 </div>
 
 <div class="contenedor_examen_ver">
+	<div>
+		<label>Tratamiento</label>
+		<div class="diagnostico_container">
+			<?php
+				echo $info["result"]->treatment;
+			?>
+		</div>
+	</div>
+</div>
+
+<div class="contenedor_examen_ver">
 	<?php
 		$preguntas = get_answers($id);
 		foreach ($preguntas as $key => $pregunta) {

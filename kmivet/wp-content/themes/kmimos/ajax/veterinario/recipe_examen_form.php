@@ -32,6 +32,11 @@
 			</tbody>
 		</table>
 	</div>
+
+	<div>
+		<label>Tratamiento</label>
+		<textarea id="tratamiento" name="tratamiento" required></textarea>
+	</div>
 </div>
 
 <script type="text/javascript">
