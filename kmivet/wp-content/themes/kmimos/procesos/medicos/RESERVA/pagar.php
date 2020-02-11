@@ -10,8 +10,8 @@
 	include_once(dirname(dirname(__DIR__))."/funciones/openpay.php");
 	include_once(dirname(dirname(__DIR__))."/funciones/mediqo.php");
 
-	ini_set('display_errors', 'On');
-	error_reporting(E_ALL);
+	// ini_set('display_errors', 'On');
+	// error_reporting(E_ALL);
 
 	global $wpdb;
 	extract($_POST);
