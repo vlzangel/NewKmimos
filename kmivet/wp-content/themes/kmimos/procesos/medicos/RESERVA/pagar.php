@@ -67,26 +67,33 @@
 	*/
 
 	$params = [
-		"nieghborhood" => $cita_direccion,
-		"medic" => $medico_id,
-		"patient" => $paciente_id,
-		"specialty" => $specialty_id,
-		"dueTo" => $cita_fecha,
-		"lat" => 20.667033,
-		"lng" => -103.335986,
-		"address" => $cita_direccion,
-		"payment" => 0,
-		"appointmentType" => 1
+		"payment" => [
+			"number" => $cita_tarjeta,
+			"firstName" => $cita_nombre,
+			"lastName" => $cita_nombre,
+			"token" => $cita_token
+		],
+		'medic' => $medico_id,
+		'patient' => $paciente_id,
+		'specialty' => $specialty_id,
+		'dueTo' => $cita_fecha,
+		'address' => $cita_direccion,
+		'isCash' => false,
+		"extraPatient": "Extra patient",
+		"extraPatientAge": 22,
+		"extraPatientGender": 1,
+		"lat": "20.667033",
+		"lng": "-103.335986"
 	];
 
-
+	/*
 	if( $cita_latitud != '' ){
 		// $params['lat'] = $cita_latitud;
 		// $params['lng'] = $cita_longitud;
-
 		$params['lat'] = "20.667033";
 		$params['lng'] = "-103.335986";
 	}
+	*/
 
 	// Creamos consulta en mediqo //
 	$appointment = add_appointments($params);
