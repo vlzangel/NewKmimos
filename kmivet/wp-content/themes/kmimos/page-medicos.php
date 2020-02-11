@@ -107,7 +107,7 @@
 
                 <div class="medico_ficha_horario_container">
                     <label>Horario</label>
-                    <div></div>
+                    <div style="width: calc( 100vw - 435px );"></div>
                 </div>
 
     		</div>
