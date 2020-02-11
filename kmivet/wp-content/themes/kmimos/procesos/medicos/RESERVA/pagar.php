@@ -79,11 +79,11 @@
 		'dueTo' => $cita_fecha,
 		'address' => $cita_direccion,
 		'isCash' => false,
-		"extraPatient": "Extra patient",
-		"extraPatientAge": 22,
-		"extraPatientGender": 1,
-		"lat": "20.667033",
-		"lng": "-103.335986"
+		"extraPatient" => "Extra patient",
+		"extraPatientAge" => 22,
+		"extraPatientGender" => 1,
+		"lat" => "20.667033",
+		"lng" => "-103.335986"
 	];
 
 	/*
