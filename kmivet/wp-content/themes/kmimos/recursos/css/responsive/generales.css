@@ -14,8 +14,28 @@
 
 @media (max-width: 768px){
 
+	table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child {
+	   	padding-left: 35px !important;
+	}
+
+	div#historial_wrapper > div:first-child > div:nth-child(2) {
+	    width: 255px !important;
+	    z-index: 999!important;
+	}
+
+	.dataTables_info {
+	    font-size: 12px !important;
+	    padding: 10px 0px;
+	    float: none;
+	}
+
+	div#historial_paginate {
+	    float: none;
+	    width: 100%;
+	}
+
 	.container_shortcode {
-	    margin: 80px 15px 35px !important;
+	    margin: 10px 15px 35px !important;
 	}
 	
 	.km-ficha-bg {
