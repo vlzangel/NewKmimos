@@ -128,7 +128,7 @@
         </li>
     </ol>
 
-    <div style='width: 100%; font-size: 16px; line-height: 1.5; text-align: justify;'>
+    <div style='display: none; width: 100%; font-size: 16px; line-height: 1.5; text-align: justify;'>
         A continuación te compartimos tus <strong>credenciales</strong> para que tengas acceso a <strong style="color: #fe196b;">Kmivet</strong> y puedas <strong>editar</strong> la información suministrada en caso de necesitarlo:
     </div>
 </div>
