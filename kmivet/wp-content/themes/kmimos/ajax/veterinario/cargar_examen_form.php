@@ -6,7 +6,7 @@
 			echo '
 				<div>
 					<label>'.$pregunta->question->content.'</label>
-					<textarea name="preg_'.$pregunta->id.'" required>'.$pregunta->content.'</textarea>
+					<input type="text" name="preg_'.$pregunta->id.'" value="'.$pregunta->content.'" required />
 				</div>
 			';
 		}

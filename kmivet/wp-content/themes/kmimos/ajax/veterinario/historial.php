@@ -45,16 +45,16 @@
 				if( !$cargas['examen'] ){
 					$acciones .= '
 						<span class="btn_table"> <i onclick="_examen(jQuery(this))" class="fas fa-list" data-id="'.$reserva->cita_id.'" title="Cargar Examen" ></i> </span>
-						<span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i> </span>
 					';
+						// <span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i> </span>
 				}else{ // <i class="fas fa-capsules"></i>
 					if( !$cargas['recipe'] ){
 						$acciones .= '
 							<span class="btn_table"> <i onclick="_examen(jQuery(this))" class="fas fa-list" data-id="'.$reserva->cita_id.'" title="Cargar Examen" ></i> </span>
 							<span class="btn_table"> <i onclick="_recipe(jQuery(this))" class="fas fa-capsules" data-id="'.$reserva->cita_id.'" title="Recetar Medicamentos" ></i> </span>
 							
-							<span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i> </span>
 						';
+							// <span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i> </span>
 					}else{
 						if( !$cargas['diagnostico'] ){
 							$acciones .= '
@@ -66,12 +66,12 @@
 							';
 						}else{
 							$acciones .= '
-								<span class="btn_table"> <i onclick="_finalizar( jQuery(this) )" class="fas fa-check" data-accion="finalizar" data-id="'.$reserva->cita_id.'" title="Finalizar cita" ></i> </span>
 								<span class="btn_table"> <i onclick="_examen(jQuery(this))" class="fas fa-list" data-id="'.$reserva->cita_id.'" title="Cargar Examen" ></i> </span>
 								<span class="btn_table"> <i onclick="_recipe(jQuery(this))" class="fas fa-capsules" data-id="'.$reserva->cita_id.'" title="Recetar Medicamentos" ></i> </span>
 								<span class="btn_table"> <i onclick="_diagnostico(jQuery(this))" class="fas fa-file-invoice" data-id="'.$reserva->cita_id.'" title="Cargar Diagnostico" ></i> </span>
-								<span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i> </span>
+								<span class="btn_table"> <i onclick="_finalizar( jQuery(this) )" class="fas fa-check" data-accion="finalizar" data-id="'.$reserva->cita_id.'" title="Finalizar cita" ></i> </span>
 							';
+								// <span class="btn_table btn_cancelar"> <i onclick="_cancelar( jQuery(this) )" class="far fa-trash-alt" data-accion="cancelar" data-id="'.$reserva->id.'" title="Cancelar" ></i> </span>
 						}
 					}
 				}

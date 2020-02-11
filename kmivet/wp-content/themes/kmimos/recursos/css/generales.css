@@ -35,7 +35,9 @@ nav{
     color: #868686;
     cursor: pointer;
     float: left;
-}
+    z-index: 999 !important;
+    position: relative;
+}   
 
 .navbar-right {
     margin-right: 0px !important;
