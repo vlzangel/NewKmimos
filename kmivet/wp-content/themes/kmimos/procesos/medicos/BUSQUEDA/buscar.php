@@ -51,7 +51,7 @@
 
 	$hoy = $_dias[ date("N")-1 ][0];
 	
-	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 AND ( agenda != '' && agenda LIKE '%{$hoy}%' ) {$no_incluirme}"); // AND precio > 0
+	$veterinarios = $wpdb->get_results("SELECT * FROM {$pf}veterinarios WHERE status = 1 {$no_incluirme}"); // AND precio > 0 // AND ( agenda != '' && agenda LIKE '%{$hoy}%' )
 	$res = [];
 	foreach ($veterinarios as $_medico) {
 
