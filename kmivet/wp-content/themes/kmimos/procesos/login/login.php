@@ -122,13 +122,13 @@
 	die(
 		json_encode(array( 
   			'login' => false, 
-  			'mes'   => "Test",
+  			'mes'   => "Email y contraseña no encontrados",
   			'user'   => $user,
   			'tipo'   => $tipo,
 	  	))
 	);
 
-
+	/*
 	$user = get_user_by( 'email', $usu );
     if ( isset( $user, $user->user_login, $user->user_status ) && 0 == (int) $user->user_status ){
         $usu = $user->user_login;
@@ -200,6 +200,6 @@
 		break;
 
 	}
-
+	*/
 	exit();
 ?>
