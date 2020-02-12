@@ -59,6 +59,9 @@
 
 		    $tipo = get_user_meta($user->ID, '_mediqo_active', true);
 			if( $tipo+0 == 0){
+
+		    	// Deberia entrar por aqui solo para la activacion
+
 				$params = [ "email" => $usu, "password" => $clv ];
 				$res = validar_medico($params);
 				$_INFO_ADICIONAL = $res;
@@ -70,10 +73,12 @@
 						$wpdb->query("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user->ID}'");
 					}
 
-					set_location($res['id'], [
+					$res = set_location($res['id'], [
 						"lat" => $lat,
 						"lng" => $lng
 					]);
+
+					update_user_meta($user->ID, '_mediqo_medic_clv', $clv);
 
 					$user = get_user_by( 'id', $user->ID ); 
 					if( $user ) {
@@ -84,7 +89,8 @@
 						json_encode( array( 
 				  			'login' => true, 
 				  			'mes'   => "Login Exitoso!",
-				  			'user'   => $user
+				  			'user'   => $user,
+				  			'extra'   => $res,
 					  	) )
 					);
 				}else{
@@ -101,6 +107,9 @@
 
 		    $user_signon = wp_signon( $info, true );
 		    if ( is_wp_error( $user_signon )) {
+
+		    	// Deberia entrar por aqui siempre el veterinario
+
 		    	$params = [ "email" => $usu, "password" => $clv ];
 				$res = validar_medico($params);
 				$_INFO_ADICIONAL = $res;
@@ -116,11 +125,18 @@
 					    wp_set_current_user( $user->ID, $user->user_login );
 					    wp_set_auth_cookie( $user->ID );
 					}
+
+					update_user_meta($user->ID, '_mediqo_medic_clv', $clv);
+
+					$res = set_location($res['id'], [
+						"lat" => $lat,
+						"lng" => $lng
+					]);
+
 					die(
 						json_encode( array( 
 				  			'login' => true, 
 				  			'mes'   => "Login Exitoso!",
-				  			'user'   => $user
 					  	) )
 					);
 				}else{
@@ -133,10 +149,12 @@
 					  	) )
 					);			
 				}
+
+
 		    }else{
 
-		    	$veterinario_id = $wpdb->get_var("SELECT veterinario_id FROM {$wpdb->prefix}kmivet_veterinarios WHERE user_id = '{$user->ID}'");
-		    	set_location($veterinario_id, [
+		    	$veterinario_id = get_user_meta($user->ID, "_mediqo_medic_id", true);
+		    	$res = set_location($veterinario_id, [
 					"lat" => $lat,
 					"lng" => $lng
 				]);
@@ -144,8 +162,9 @@
 		    	wp_set_current_user( $user_signon->ID, $usu );
 		    	die(
 					json_encode( array( 
-			  			'login' => true, 
+			  			'login' => false, 
 			  			'mes'   => "Login Exitoso!",
+			  			"extra" => $res
 				  	) )
 				);
 		    }

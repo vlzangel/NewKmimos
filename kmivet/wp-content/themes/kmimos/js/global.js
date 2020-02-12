@@ -243,7 +243,9 @@ function logear(){
             {
                 usu: jQuery("#form_login #usuario").val(),
                 clv: jQuery("#form_login #clave").val(),
-                proceso: jQuery("#form_login #proceso").val()
+                proceso: jQuery("#form_login #proceso").val(),
+                lat: jQuery("#form_login [name='lat']").val(),
+                lng: jQuery("#form_login [name='lng']").val()
             },
             function( data ) {
                 if( data.login ){
