@@ -341,7 +341,7 @@ function cargar( id, veterinario_id ){
 		HOME+'/procesos/medicos/BUSQUEDA/info.php',
 		{ id: id, veterinario_id: veterinario_id }, (data) => {
 
-			debug( data );
+			// debug( data );
 
 			data = data[0];
 			jQuery("#specialty_id").val( jQuery("#especialidad").val() );
