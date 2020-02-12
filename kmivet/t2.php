@@ -17,9 +17,5 @@
     	'BCC: y.chaudary@kmimos.la',
     ];
 
-    if( $_GET['show'] == 1 ){
-    	echo $mensaje;
-    }else{
-    	wp_mail("anahi.kmimos@gmail.com", 'Kmivet - Gracias por registrarte como veterinario!', $mensaje, $header);
-    }
+    echo $mensaje;
 ?>

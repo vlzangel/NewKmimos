@@ -106,7 +106,7 @@
          
         <li style="margin-bottom: 8px;">
             Recaba toda tu documentación de los documentos que estamos solicitando.
-            <a hre="[URL]/doc/documentos.pdf" style="
+            <a href="[URL]/doc/documentos.pdf" style="
                 display: block;
                 width: 200px;
                 margin: 15px auto 20px;
