@@ -117,7 +117,7 @@
 
 	$HTML .= '
 		<div class="vlz_info">
-			<div>Busca los mejores veterinarío, elige un horario adecuado y reserve al instante con unos pocos clics.</div>
+			<div>Busca los mejores veterinaríos, elige un horario adecuado y reserve al instante con unos pocos clics.</div>
 			<div>
 				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_1.svg );"></div> </div>
 				<div> Profesionales de la salud disponibles 24/7 </div>
