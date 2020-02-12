@@ -344,6 +344,23 @@
 		];
 	}
 
+	function set_location($mediqo_id, $params){
+		$resultado = mediqo_request('medics/'.$mediqo_id, $params, 'PUT');
+		$resultado = json_decode($resultado);
+		$id = $resultado->object->id;
+		if( $resultado->status != 'OK' ){
+		    return [
+				'status' => 'ko',
+				'info' => $resultado,
+			];
+		}
+	    return [
+			'status' => 'ok',
+			'id' => $id,
+			'res' => $resultado,
+		];
+	}
+
 	function get_medics($specialty, $lat, $lng){
 		$resultado = mediqo_request('medics/?specialty='.$specialty.'&lat='.$lat.'&lng='.$lng, [], 'GET');
 		// echo $resultado;

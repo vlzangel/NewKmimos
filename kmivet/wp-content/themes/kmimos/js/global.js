@@ -139,6 +139,8 @@ jQuery( document ).ready(function() {
         }
     });
 
+    update_coordenadas();
+
 });
 
 
@@ -637,4 +639,25 @@ function validarAll(Form){
         jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-130 }, 2000);
     }
     return submit;
+}
+
+// Cookies.set( 'userEmail' 
+
+function update_coordenadas() {
+    navigator.geolocation.getCurrentPosition( function(pos) {
+        crd = pos.coords;
+        jQuery('[name="lat"]').val( crd.latitude );
+        jQuery('[name="lng"]').val( crd.longitude );
+    }, 
+    function error(err) {
+        if( err.message == 'User denied Geolocation' ){
+            // alert("Estimado usuario, para poder acceder a esta función, es necesario desbloquear a kmivet en la configuración de ubicación de su dispositivo.");
+        }else{
+            // alert(err.message);
+        }
+    },{
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    });    
 }

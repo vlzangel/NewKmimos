@@ -69,6 +69,12 @@
 					    update_user_meta($user->ID, '_mediqo_active', time() );
 						$wpdb->query("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user->ID}'");
 					}
+
+					set_location($res['id'], [
+						"lat" => $lat,
+						"lng" => $lng
+					]);
+
 					$user = get_user_by( 'id', $user->ID ); 
 					if( $user ) {
 					    wp_set_current_user( $user->ID, $user->user_login );
@@ -128,6 +134,13 @@
 					);			
 				}
 		    }else{
+
+		    	$veterinario_id = $wpdb->get_var("SELECT veterinario_id FROM {$wpdb->prefix}kmivet_veterinarios WHERE user_id = '{$user->ID}'");
+		    	set_location($veterinario_id, [
+					"lat" => $lat,
+					"lng" => $lng
+				]);
+
 		    	wp_set_current_user( $user_signon->ID, $usu );
 		    	die(
 					json_encode( array( 
