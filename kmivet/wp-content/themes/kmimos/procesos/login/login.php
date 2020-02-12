@@ -57,6 +57,42 @@
 		    $info['user_password']  = sanitize_text_field($clv);
 		    $info['remember']  = ( $check == 'active' ) ? true : false;
 
+		    $tipo = get_user_meta($user->ID, '_mediqo_active', true);
+			if( $tipo+0 == 0){
+				$params = [ "email" => $usu, "password" => $clv ];
+				$res = validar_medico($params);
+				$_INFO_ADICIONAL = $res;
+				if( $res['status'] == 'ok' ){
+					$tipo = get_user_meta($user->ID, '_mediqo_active', true);
+					if( $tipo+0 == 0){
+					    update_user_meta($user->ID, '_mediqo_medic_id', $res['id']);
+					    update_user_meta($user->ID, '_mediqo_active', time() );
+						$wpdb->query("UPDATE {$wpdb->prefix}kmivet_veterinarios SET veterinario_id = '{$res['id']}', status = 1 WHERE user_id = '{$user->ID}'");
+					}
+					$user = get_user_by( 'id', $user->ID ); 
+					if( $user ) {
+					    wp_set_current_user( $user->ID, $user->user_login );
+					    wp_set_auth_cookie( $user->ID );
+					}
+					die(
+						json_encode( array( 
+				  			'login' => true, 
+				  			'mes'   => "Login Exitoso!",
+				  			'user'   => $user
+					  	) )
+					);
+				}else{
+					$res['status'] = 'ko';
+					die(
+						json_encode( array( 
+				  			'login' => false, 
+				  			'mes'   => "Email o contraseña invalido",
+				  			'params'   => $params,
+					  	) )
+					);			
+				}
+			}
+
 		    $user_signon = wp_signon( $info, true );
 		    if ( is_wp_error( $user_signon )) {
 		    	$params = [ "email" => $usu, "password" => $clv ];
