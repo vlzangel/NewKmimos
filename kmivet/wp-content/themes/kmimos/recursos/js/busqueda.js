@@ -91,7 +91,7 @@ function get_ubicacion(){
         jQuery('#latitud').val( crd.latitude );
         jQuery('#longitud').val( crd.longitude );
 
-        // buscar();
+        buscar();
 
         var geocoder = new google.maps.Geocoder();
         var latlng = {lat: parseFloat(crd.latitude), lng: parseFloat(crd.longitude)};
@@ -172,7 +172,7 @@ jQuery( document ).ready(function() {
 
 	if( lat == "" && lng == "" ){
 		// get_ubicacion();
-		buscar();
+		// buscar();
 	}else{
 		buscar();
 	}
@@ -259,13 +259,14 @@ function buscar( CB ){
 	var lat = jQuery("#latitud").val();
 	var lng = jQuery("#longitud").val();
 
-	/*lat = ( lat == '' ) ? 20.666421 : parseFloat(lat);	
-	lng = ( lng == '' ) ? -103.3455227 : parseFloat(lng);*/
+	// lat = ( lat == '' ) ? 20.666421 : parseFloat(lat);	
+	// lng = ( lng == '' ) ? -103.3455227 : parseFloat(lng);
 
-	// 20.667033
+	lat = parseFloat(lat);	
+	lng = parseFloat(lng);
 
-	lat = 20.667033;	
-	lng = -103.335986;
+	// lat = 20.667033;	
+	// lng = -103.335986;
 
 	jQuery.post(
 		HOME+'/procesos/medicos/BUSQUEDA/buscar.php',
