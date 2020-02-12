@@ -91,7 +91,6 @@ $HTML .='
 					<div class="bg-line"></div>
 				</div>
 
-
 				<a 	href="javascript: '.$pixel_petco.';" 
 					class="km-btn-correo km-btn-popup-registrarte-1" 
 					data-target="social-next-step">
@@ -99,13 +98,12 @@ $HTML .='
 					REGISTRARME POR CORREO ELECTRÓNICO
 				</a>
 
-
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de '.$SITIO.'.</p>
 
 				<p><b>Dudas escríbenos</b></p>
 				<div class="row">
-					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg"> +52 (33) 1261 4186</p></div>
-					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada : 01 (55) 8526 1162</p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">+52 1 (55) 3137 4829</p></div>
+					<div class="col-xs-12 col-sm-8"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">+52 1 (55) 7850 7572</p></div>
 				</div>
 
 				<hr>
@@ -216,8 +214,8 @@ $HTML .='
 				<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de '.$SITIO.'.</p>
 				
 				<div class="row">
-					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">  +52 (33) 1261 4186</p></div>
-					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-cel.svg"> Llamada: 01 (55) 8526 1162</p></div>
+					<div class="col-xs-12 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">+52 1 (55) 3137 4829</p></div>
+					<div class="col-xs-12 col-sm-8"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">+52 1 (55) 7850 7572</p></div>
 				</div>
 
 				<hr>

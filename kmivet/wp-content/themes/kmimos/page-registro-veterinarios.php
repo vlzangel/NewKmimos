@@ -143,7 +143,7 @@
 					'Los pacientes agendan en línea, el veterinario los ve en su ubicación, y todo el seguimiento es digital, tratamiento, recetas.'
 				],
 				[
-					'Asesoria virtual',
+					'Asesoría virtual',
 					get_recurso("img").'KMIVET/SERVICIOS/IMGs/2.jpg',
 					'Al igual que una visita en persona, el veterinario toma su historial y síntomas, realiza un examen y puede recomendar un tratamiento, que incluye receta y análisis de laboratorio.'
 				],

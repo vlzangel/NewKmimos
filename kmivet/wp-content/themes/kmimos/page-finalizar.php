@@ -29,7 +29,7 @@
 						¡Genial '.$info->NAME_CLIENTE.'!
 					</div>
 					<div class="finalizar_sub_titulo">
-						Reservaste Exitosamente
+						LA CITA CON TU VETERINARIO ESTA LISTA
 					</div>
 					<div class="info_mail">
 						<div> Te acabamos de enviar un correo a tu dirección registrada con ésta información. </div>

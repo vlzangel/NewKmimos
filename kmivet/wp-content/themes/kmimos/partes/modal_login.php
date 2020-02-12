@@ -69,7 +69,7 @@ $datos = kmimos_get_info_syte();
 						</a>
 						
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las <a style="color: blue;" target="_blank" href="'.site_url().'/terminos-y-condiciones/">condiciones del servicio y la Política de privacidad</a> de kmivet.</p>
-						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 (33) 1261 4186</p>
+						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/new/icon/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp +52 1 (55) 3137 4829</p>
 						<hr>
 						<div class="row">
 							<div class="col-xs-12 col-sm-5">

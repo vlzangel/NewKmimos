@@ -117,7 +117,7 @@
 
 	$HTML .= '
 		<div class="vlz_info">
-			<div> Busca los mejores especialistas o servicios médicos, elige un horario adecuado y reserve al instante con unos pocos clics. </div>
+			<div>Busca los mejores veterinarío, elige un horario adecuado y reserve al instante con unos pocos clics.</div>
 			<div>
 				<div> <div style="background-image: url( '.get_recurso("img").'KMIVET/INFO/ITEM_1.svg );"></div> </div>
 				<div> Profesionales de la salud disponibles 24/7 </div>
@@ -143,7 +143,7 @@
 			'Gracias a las consultas a domicilio puedes esperar comodamente desde tu casa y recibir una evaluación, diagnostico o tratamiento que requieran un examen físico.'
 		],
 		[
-			'Asesoria virtual',
+			'Asesoría virtual',
 			get_recurso("img").'KMIVET/SERVICIOS/IMGs/2.jpg',
 			'Al igual que una visita en persona, el veterinario toma su historial y síntomas, realiza un examen y puede recomendar un tratamiento, que incluye receta y análisis de laboratorio.'
 		],
