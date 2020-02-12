@@ -27,45 +27,6 @@
 		$paciente_id = $paciente['id'];
 	}
 
-	/*
-		{
-			"payment": {
-				"number": "4111111111111111",
-				"firstName": "A",
-				"lastName": "J",
-				"token": "tok_2mRhVv96mLWiUp3cY"
-			},
-			"medic": "4794a05285f74bd0980b88243782ab5d",
-			"patient": "9ab288447ce846359a56f8300559b3d0",
-			"specialty": "4076b2429a17427692085abb38c6ff1d",
-			"dueTo": "2019-10-17 18:30",
-			"lat": 19.449481,
-			"lng": -99.165957,
-			"extraPatient": "Extra patient",
-			"extraPatientAge": 22,
-			"extraPatientGender": 1
-		}
-	*/
-
-	/*
-	$params = [
-		"payment" => [
-			"number" => $cita_tarjeta,
-			"firstName" => $cita_nombre,
-			"lastName" => $cita_nombre,
-			"token" => $cita_token
-		],
-		'medic' => $medico_id,
-		'patient' => $paciente_id,
-		'specialty' => $specialty_id,
-		'dueTo' => $cita_fecha,
-		'address' => $cita_direccion,
-		'paymentType' => 0,
-		'appointmentType' => 1,
-		'isCash' => true,
-	];
-	*/
-
 	$params = [
 		"payment" => [
 			"number" => $cita_tarjeta,
@@ -82,18 +43,9 @@
 		"extraPatient" => "Extra patient",
 		"extraPatientAge" => 22,
 		"extraPatientGender" => 1,
-		"lat" => "20.667033",
-		"lng" => "-103.335986"
+		"lat" => 20.667033,
+		"lng" => -103.335986
 	];
-
-	/*
-	if( $cita_latitud != '' ){
-		// $params['lat'] = $cita_latitud;
-		// $params['lng'] = $cita_longitud;
-		$params['lat'] = "20.667033";
-		$params['lng'] = "-103.335986";
-	}
-	*/
 
 	// Creamos consulta en mediqo //
 	$appointment = add_appointments($params);
@@ -156,7 +108,6 @@
 
         $wpdb->query("UPDATE wp_kmivet_reservas SET info_email = '{$info_email}' WHERE id = '{$cita_id}' ");
 
-		/*
 	    // EMAIL al CLIENTE //
 	    	$mensaje = kv_get_email_html(
 		        'KMIVET/reservas/nueva_cliente', 
@@ -179,7 +130,6 @@
 		    );
 		    $header = kv_get_emails_admin();
 	        wp_mail('soporte.kmimos@gmail.com', 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $header);
-	    */
 
 	    die(json_encode([
 			"msg" => "Pago realizado exitosamente",
