@@ -23,7 +23,7 @@
  	
 	$tipo = get_user_meta($user->ID, 'tipo_usuario', true);
 
-	switch ( $tipo ) {
+	switch ( strtolower($tipo) ) {
     	case 'administrador':
     	case 'paciente':
     		$info = array();
