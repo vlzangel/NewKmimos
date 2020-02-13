@@ -64,6 +64,52 @@
     );
     wp_mail('mary.garciag@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
 
+
+
+
+    $cancelado_por = "veterinario";
+
+    $mensaje = kv_get_email_html(
+        'KMIVET/reservas/'.$cancelado_por.'/cancelacion_cliente', 
+        $INFORMACION
+    );
+    wp_mail('mary.garciag@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
+
+    $mensaje = kv_get_email_html(
+        'KMIVET/reservas/'.$cancelado_por.'/cancelacion_veterinario', 
+        $INFORMACION
+    );
+    wp_mail('mary.garciag@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
+
+    $mensaje = kv_get_email_html(
+        'KMIVET/reservas/'.$cancelado_por.'/cancelacion_admin', 
+        $INFORMACION
+    );
+    wp_mail('mary.garciag@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
+
+
+
+
+    $cancelado_por = "admin";
+
+    $mensaje = kv_get_email_html(
+        'KMIVET/reservas/'.$cancelado_por.'/cancelacion_cliente', 
+        $INFORMACION
+    );
+    wp_mail('mary.garciag@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
+
+    $mensaje = kv_get_email_html(
+        'KMIVET/reservas/'.$cancelado_por.'/cancelacion_veterinario', 
+        $INFORMACION
+    );
+    wp_mail('mary.garciag@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
+
+    $mensaje = kv_get_email_html(
+        'KMIVET/reservas/'.$cancelado_por.'/cancelacion_admin', 
+        $INFORMACION
+    );
+    wp_mail('mary.garciag@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
+
     /*
         $mensaje = kv_get_email_html(
             'KMIVET/reservas/nueva_cliente', 
