@@ -97,9 +97,10 @@
 					$res['status'] = 'ko';
 					die(
 						json_encode( array( 
-				  			'login' => false, 
-				  			'mes'   => "Email o contraseña invalido",
-				  			'params'   => $params,
+				  			'login'  => false, 
+				  			'mes'    => "Email o contraseña invalido",
+				  			'params' => $params,
+				  			'res'    => $res,
 					  	) )
 					);			
 				}
