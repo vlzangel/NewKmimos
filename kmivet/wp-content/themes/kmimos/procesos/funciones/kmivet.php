@@ -12,7 +12,7 @@
                 "recipe" => false
             ];
             $cargas = json_encode($cargas, JSON_UNESCAPED_UNICODE);
-            $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$data}', 1, '{$cargas}', NULL, 0, '', '', NOW() )";
+            $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$cita_precio}', {$data}', 1, '{$cargas}', NULL, 0, '', '', NOW() )";
             if( $wpdb->query( $sql ) ){
                 return [
                     'status' => true,
@@ -39,7 +39,6 @@
 
                         $info_email = $wpdb->get_var("SELECT info_email FROM wp_kmivet_reservas WHERE cita_id = '{$cita_id}' ");
                         $INFORMACION = (array) json_decode( $info_email );
-
 
                         $medicos = get_medics(
                             $INFORMACION['SPE_MEDIC'],

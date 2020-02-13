@@ -73,13 +73,9 @@
 		}
 		$cita_id = $cita['id'];
 		
-		$_infos  = $_SESSION['medicos_info'];
-		$_medico = [];
-		foreach ($_infos[ $medico_id ] as $key => $value) { $_medico[ $key ] = $value; }
-		$cliente = get_user_meta($user_id, 'first_name', true).' '.get_user_meta($user_id, 'last_name', true);
-		$cliente_email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$user_id);
-		$telefono_cliente = get_user_meta($user_id, 'user_mobile', true).' / '.get_user_meta($user_id, 'user_phone', true);
-	    
+
+		$veterinario = get_medic($medico_id);
+
     	$fecha_cita = date("d/m", strtotime($cita_fecha));
     	$hora_cita  = date("h:ia", strtotime($cita_fecha));
 
@@ -87,9 +83,9 @@
         	"KV_URL_IMGS" 		 => getTema().'/KMIVET/img',
         	"URL" 				 => get_home_url(),
         	"URL_CANCELAR"		 => get_home_url().'/citas/cancelar/'.$cita_id,
-        	"NAME_VETERINARIO" 	 	=> $_medico['firstName'].' '.$_medico['lastName'],
-        	"TELEFONOS_VETERINARIO" => $_medico['phone'],
-        	"CORREO_VETERINARIO" 	=> $_medico['email'],
+        	"NAME_VETERINARIO" 	 	=> $veterinario->firstName.' '.$veterinario->lastName,
+        	"TELEFONOS_VETERINARIO" => $veterinario->phone,
+        	"CORREO_VETERINARIO" 	=> $veterinario->emai,
         	"NAME_CLIENTE" 		 => $cliente,
         	"TELEFONOS_CLIENTE"  => $telefono_cliente,
         	"CORREO_CLIENTE" 	 => $cliente_email,

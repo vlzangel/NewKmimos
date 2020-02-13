@@ -21,6 +21,7 @@
         "TOTAL"             => number_format(350, 2, ',', '.')
     ];
 
+    /*
     $medicos = get_medics(
         'edcd1f3119674477b70b4304000ffa30',
         19.440658,
@@ -44,8 +45,8 @@
 
     $INFORMACION['RECOMENDACIONES'] = $RECOMENDACIONES;
 
-    $cancelado_por = "cliente";
 
+    $cancelado_por = "cliente";
     $mensaje = kv_get_email_html(
         'KMIVET/reservas/'.$cancelado_por.'/cancelacion_cliente', 
         $INFORMACION
@@ -68,7 +69,6 @@
 
 
     $cancelado_por = "veterinario";
-
     $mensaje = kv_get_email_html(
         'KMIVET/reservas/'.$cancelado_por.'/cancelacion_cliente', 
         $INFORMACION
@@ -91,7 +91,6 @@
 
 
     $cancelado_por = "admin";
-
     $mensaje = kv_get_email_html(
         'KMIVET/reservas/'.$cancelado_por.'/cancelacion_cliente', 
         $INFORMACION
@@ -109,6 +108,10 @@
         $INFORMACION
     );
     wp_mail('mary.garciag@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
+    
+
+    */
+
 
     /*
         $mensaje = kv_get_email_html(
