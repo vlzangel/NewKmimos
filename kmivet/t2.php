@@ -44,6 +44,8 @@
 
     $INFORMACION['RECOMENDACIONES'] = $RECOMENDACIONES;
 
+    $cancelado_por = "cliente";
+
     $mensaje = kv_get_email_html(
         'KMIVET/reservas/'.$cancelado_por.'/cancelacion_cliente', 
         $INFORMACION
