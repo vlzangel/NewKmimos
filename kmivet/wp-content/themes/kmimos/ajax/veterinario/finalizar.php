@@ -35,7 +35,7 @@
 	        'KMIVET/reservas/confirmacion_cliente', 
 	        $INFORMACION
 	    );
-	    $admins  get_admins();
+	    $admins = get_admins();
 	    wp_mail($admins['admin'], 'Kmivet - Consulta Completada', $mensaje, $admins['otros']);
 
 

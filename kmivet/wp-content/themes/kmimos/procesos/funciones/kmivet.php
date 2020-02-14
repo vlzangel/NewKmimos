@@ -80,7 +80,7 @@
                             'KMIVET/reservas/'.$cancelado_por.'/cancelacion_admin', 
                             $INFORMACION
                         );
-                        $admins  get_admins();
+                        $admins = get_admins();
                         wp_mail($admins['admin'], 'Kmivet - Consulta Cancelada', $mensaje, $admins['otros']);
                         
                     return ( [ 'status' => true, 'extra' => $INFORMACION ] );

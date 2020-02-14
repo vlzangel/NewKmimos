@@ -124,7 +124,7 @@
 		        'KMIVET/reservas/nueva_admin', 
 		        $INFORMACION
 		    );
-            $admins  get_admins();
+            $admins = get_admins();
             wp_mail($admins['admin'], 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $admins['otros']);
 
 	    die(json_encode([
