@@ -48,6 +48,7 @@
 	];
 
 	// Creamos consulta en mediqo //
+	/*
 	$appointment = add_appointments($params);
 	$data = json_encode([ $params, $appointment ]);
 
@@ -61,7 +62,7 @@
 	}else{
 
 		$_POST['appointment_id'] = $appointment['id'];
-		$_POST['paciente_id'] = $appointment['id'];
+		*/
 
 		$cita = new_cita($_POST); // Creación de cita en status pendiente
 		if( !$cita['status'] ){
@@ -133,7 +134,7 @@
 			"error" => false,
 		]));
 
-	}
+	// }
 
 	die( json_encode([
 		"error" => 6,
