@@ -124,8 +124,8 @@
 		        'KMIVET/reservas/nueva_admin', 
 		        $INFORMACION
 		    );
-		    $header = kv_get_emails_admin();
-	        wp_mail('soporte.kmimos@gmail.com', 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $header);
+            $admins  get_admins();
+            wp_mail($admins['admin'], 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $admins['otros']);
 
 	    die(json_encode([
 			"msg" => "Pago realizado exitosamente",

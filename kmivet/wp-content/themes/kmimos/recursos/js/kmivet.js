@@ -271,15 +271,9 @@ jQuery( document ).ready(function() {
     show_hiden_arrow();
 
     jQuery("#boton_buscar").on("click", function(e){
-
-        /*
-        evento_google_kmimos("buscar_home");
-        evento_fbq_kmimos('buscar_home');
-        */
-
-        jQuery("#buscador").submit();
-        
+        // jQuery("#buscador").submit();
         e.preventDefault();
+        location.href = RAIZ+"/busqueda/";
     });
 
     jQuery("#agregar_servicios").on("click", function(e){

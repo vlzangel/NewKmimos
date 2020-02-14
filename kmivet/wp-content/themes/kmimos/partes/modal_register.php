@@ -133,11 +133,13 @@ $HTML .='
 								class="social_google_id " value="">
 
 							<div class="img_registro_cliente" style="position: relative">
+								<!--
 								<div class="km-datos-foto vlz_rotar" id="km-datos-foto-profile" style="background-image: url('.getTema().'/images/popups/registro-veterinario-foto.png)">
 									<div id="loading-perfil" style="width:100%;line-height: 100%;display:none" class="vlz_cargando">
 										<img src="'.getTema().'/images/new/bx_loader.gif" class="img-responsive">
 									</div>
 								</div>
+								-->
 
 								<div id="rotar_i" class="btn_rotar" style="display: none;" data-orientacion="left"> <i class="fa fa-undo" aria-hidden="true"></i> </div>
 				                <div id="rotar_d" class="btn_rotar" style="display: none;" data-orientacion="right"> <i class="fa fa-repeat" aria-hidden="true"></i> </div>

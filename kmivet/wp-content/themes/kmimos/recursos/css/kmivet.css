@@ -22,7 +22,7 @@
 }
 
 .km-datos-foto {
-    background-image: url(../../images/popups/registro-veterinario-foto.png);
+    #background-image: url(../../images/popups/registro-veterinario-foto.png);
 }
 
 .logo_kmivet {

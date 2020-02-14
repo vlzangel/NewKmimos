@@ -21,6 +21,16 @@
         "TOTAL"             => number_format(350, 2, ',', '.')
     ];
 
+    $INFORMACION["AVATAR_URL"] = "http://localhost/kmimos/kmivet/wp-content/themes/kmimos/images/image.png";
+    $INFORMACION["DIAGNOSTICO"] = "Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.";
+    $INFORMACION["TRATAMIENTO"] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at erat ornare, euismod neque id, gravida metus. Vivamus accumsan quam eget fermentum lacinia. Aenean porttitor scelerisque arcu id scelerisque.";
+
+    echo $mensaje = kv_get_email_html(
+        'KMIVET/reservas/confirmacion_cliente', 
+        $INFORMACION
+    );
+    // wp_mail('mary.garciag@gmail.com', 'Kmivet - Consulta Cancelada', $mensaje);
+
     /*
     $medicos = get_medics(
         'edcd1f3119674477b70b4304000ffa30',
