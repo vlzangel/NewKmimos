@@ -91,7 +91,7 @@ $HTML .='
 					<div class="bg-line"></div>
 				</div>
 
-				<a 	href="javascript: '.$pixel_petco.';" 
+				<a 	href="#" 
 					class="km-btn-correo km-btn-popup-registrarte-1" 
 					data-target="social-next-step">
 					<img src="'.getTema().'/images/new/icon/km-redes/icon-mail-blanco.svg">
@@ -244,6 +244,9 @@ $HTML .='
 			<div class="popuphide popup-registrarte-final" style="padding-bottom: 15px;">
 				<h3 style="margin: 0; text-align: center;">¡FELICIDADES,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
 				<img src="'.get_recurso('img').'VETERINARIO/REGISTRO/RESPONSIVE/exitoso.svg">
+				<p>
+					<strong>NOTA IMPORTANTE: </strong> Es imprescindible que permitas las notificaciones al momento de entrar a nuestra página, para que puedas enterarte de las actualizaciones acerca de tus citas
+				</p>
 				<a href="javascript:;" onclick="cerrar_modal()" id="btn_iniciar_sesion" data-url="'.get_home_url().'/#buscar" class="km-btn-correo" data-dismiss="modal">INICIAR SESIÓN</a>
 			</div>
 
