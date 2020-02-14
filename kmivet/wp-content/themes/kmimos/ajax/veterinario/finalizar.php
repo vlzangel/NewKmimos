@@ -13,11 +13,9 @@
 		$appointment = get_appointment($cita_id);
 
 		$INFORMACION["AVATAR_URL"] = kmimos_get_foto($veterinario->user_id);
-    	$INFORMACION["DIAGNOSTICO"] = $appointment->diagnostic->diagnostic->title;
-    	$INFORMACION["DIAGNOSTICO_NOTA"] = $appointment->diagnostic->notes;
-    	$INFORMACION["TRATAMIENTO"] = $appointment->treatment;
-
-
+    	$INFORMACION["DIAGNOSTICO"] = $appointment['result']->diagnostic->diagnostic->title;
+	    $INFORMACION["DIAGNOSTICO_NOTA"] = $appointment['result']->diagnostic->notes;
+	    $INFORMACION["TRATAMIENTO"] = $appointment['result']->treatment;
 
 		$mensaje = kv_get_email_html(
 	        'KMIVET/reservas/confirmacion_cliente', 

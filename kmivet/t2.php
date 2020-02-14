@@ -1,8 +1,22 @@
 <?php
 	include 'wp-load.php';
 
-    $cita_id = 114;
+    $cita_id = '78c9689f6d4f412b851f56e50fcfb53b';
 
+    $appointment = get_appointment($cita_id);
+
+    // $INFORMACION["AVATAR_URL"] = kmimos_get_foto($veterinario->user_id);
+    $INFORMACION["DIAGNOSTICO"] = $appointment['result']->diagnostic->diagnostic->title;
+    $INFORMACION["DIAGNOSTICO_NOTA"] = $appointment['result']->diagnostic->notes;
+    $INFORMACION["TRATAMIENTO"] = $appointment['result']->treatment;
+
+
+    echo '<pre>';
+        print_r( $INFORMACION );
+        print_r( $appointment );
+    echo '</pre>';
+
+    /*
     $INFORMACION = [
         "KV_URL_IMGS"        => getTema().'/KMIVET/img',
         "URL"                => get_home_url(),
