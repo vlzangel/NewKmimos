@@ -51,6 +51,8 @@
 	wp_enqueue_style( 'generales_css', get_recurso("css")."generales.css", array(), "1.0.0" );
 	wp_enqueue_style( 'generales_responsive_css', get_recurso("css")."responsive/generales.css", array(), "1.0.0" );
 
+	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
+
 	// wp_enqueue_style( 'bootstrap_css', "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css", array(), "1.0.0" );
 
 	

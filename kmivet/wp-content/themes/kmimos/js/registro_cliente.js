@@ -12,8 +12,21 @@ function modal_show(element){
     jQuery(modal).modal("show");
 }
 
+var fecha = new Date();
 jQuery( document ).ready( function(){
 	jQuery(".terminos_container").load(HOME+"/terminos_HTML.php");
+
+	jQuery("#nacimiento").datepick({
+        dateFormat: 'dd/mm/yyyy',
+        maxDate: fecha,
+        onSelect: function(xdate) {
+            
+        },
+        yearRange: (fecha.getFullYear()-80)+':'+parseInt(fecha.getFullYear()),
+        firstDay: 1,
+        onmonthsToShow: [1, 1]
+    });
+
 });
 
 function cerrar_modal(){
@@ -200,12 +213,12 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 				 	pass = jQuery("#pass").val(), 
 				 	movil = jQuery("#movil").val(), 
 				 	genero = jQuery("#genero").val(), 
-				 	edad = jQuery("#edad").val(), 
+				 	nacimiento = jQuery("#nacimiento").val(), 
 				 	fumador = jQuery("#fumador").val(),
 					referido = jQuery("#referido").val(),
 					img_profile = jQuery("#img_profile").val();
 
-			 	var campos = [nombre,apellido,"",email,pass,movil,genero,edad,fumador,referido,img_profile];
+			 	var campos = [nombre,apellido,"",email,pass,movil,genero,nacimiento,fumador,referido,img_profile];
 
 				var datos = {
 					'name': campos[0],
@@ -214,7 +227,7 @@ jQuery("#popup-registrarte-datos-mascota").ready(function(){
 					'password': campos[4],
 					'movil': campos[5],
 					'gender': campos[6],
-					'age': campos[7],
+					'nacimiento': campos[7],
 					'smoker': campos[8],
 					'referido': campos[9],
 					'img_profile': campos[10]

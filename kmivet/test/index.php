@@ -1,58 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
+<?php
+    require_once __DIR__.'/dompdf/lib/html5lib/Parser.php';
+    require_once __DIR__.'/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+    require_once __DIR__.'/dompdf/lib/php-svg-lib/src/autoload.php';
+    require_once __DIR__.'/dompdf/src/Autoloader.php';
 
-        <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    Dompdf\Autoloader::register();
+    use Dompdf\Dompdf;
+    $dompdf = new Dompdf();
+    ob_start();
+        require_once ( __DIR__.'/template/recipe.php');
+    $html = ob_get_clean();
 
-        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
-        <script>
-            var firebaseConfig = {
-                apiKey: "AIzaSyCJ3U368AbKjfn7qRZxBt5b9tWO_0yL-_M",
-                authDomain: "kmivet.firebaseapp.com",
-                databaseURL: "https://kmivet.firebaseio.com",
-                projectId: "kmivet",
-                storageBucket: "kmivet.appspot.com",
-                messagingSenderId: "816587933523",
-                appId: "1:816587933523:web:b6b5ef64997209f2f443a6",
-                measurementId: "G-WGCS06RXVE"
-            };
-            firebase.initializeApp(firebaseConfig);
-            function registrar(email){
-                firebase.auth().createUserWithEmailAndPassword(email, "123456").then(function(user){
-                    console.log(user.user);
-                    console.log(user.user.uid);
-                    console.log(user.user.email);
-                }).catch(function(error) {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                });
-            }
-            registrar("jose3@mail.com");
-        </script> -->
+    $INFORMACION = [
+        "VETERINARIO" => "CESAR ALEJANDRO DE LA ROSA VELAZQUEZ",
+        "CEDULA" => "11076555",
+        "PACIENTE" => "Rob Cuevas",
+        "EDAD" => "41",
+        "TRATAMIENTO" => "Tylex flu una cada 8 hrs por 5 días Celestamine ns una cada 12 hrs por 5 días Naproxeno 250 mg una cada 12 hrs por 5 días",
+    ];
 
-        <script type="text/javascript">
-            function show_notification(msg) {
-                if (!("Notification" in window)) {
-                    alert("Este navegador no soporta las notificaciones del sistema");
-                } else if (Notification.permission === "granted") {
-                    var notification = new Notification( msg );
-                } else if (Notification.permission !== 'denied') {
-                    Notification.requestPermission(function (permission) {
-                        if (permission === "granted") {
-                            var notification = new Notification( msg );
-                        }
-                    });
-                }
-            }
-        </script>
+    foreach ($INFORMACION as $key => $value) {
+        $html = str_replace('['.$key.']', $value, $html);
+    }
 
-    </head>
-    <body>
-
-    </body>
-</html>
-
-        
+    $dompdf->loadHtml( $html );
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+    $output = $dompdf->output();
+    file_put_contents('mipdf.pdf', $output);
+?>

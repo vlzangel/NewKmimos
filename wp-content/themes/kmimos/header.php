@@ -144,6 +144,7 @@
 			}
 
 			wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
+
 			wp_enqueue_style( 'generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
 			wp_enqueue_style( 'generales_responsive_css', getTema()."/css/responsive/generales_responsive.css", array(), "1.0.0" );
 

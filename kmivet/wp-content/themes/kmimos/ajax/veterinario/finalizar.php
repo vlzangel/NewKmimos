@@ -17,6 +17,36 @@
 	    $INFORMACION["DIAGNOSTICO_NOTA"] = $appointment['result']->diagnostic->notes;
 	    $INFORMACION["TRATAMIENTO"] = $appointment['result']->treatment;
 
+        require_once dirname(dirname(__DIR__)).'/lib/dompdf/lib/html5lib/Parser.php';
+	    require_once dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+	    require_once dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-svg-lib/src/autoload.php';
+	    require_once dirname(dirname(__DIR__)).'/lib/dompdf/src/Autoloader.php';
+
+	    Dompdf\Autoloader::register();
+	    use Dompdf\Dompdf;
+	    $dompdf = new Dompdf();
+	    ob_start();
+	        require_once ( __DIR__.'/template/recipe.php');
+	    $html = ob_get_clean();
+
+	    $_INFORMACION = [
+	        "VETERINARIO" => $INFORMACION["NAME_VETERINARIO"],
+	        "CEDULA" => $INFORMACION["CEDULA_VETERINARIO"],
+	        "PACIENTE" => $INFORMACION["NAME_CLIENTE"],
+	        "EDAD" => $INFORMACION["EDAD_CLIENTE"],
+	        "TRATAMIENTO" => $INFORMACION["TRATAMIENTO"],
+	    ];
+
+	    foreach ($_INFORMACION as $key => $value) {
+	        $html = str_replace('['.$key.']', $value, $html);
+	    }
+
+	    $dompdf->loadHtml( $html );
+	    $dompdf->setPaper('A4', 'portrait');
+	    $dompdf->render();
+	    $output = $dompdf->output();
+	    file_put_contents('mipdf.pdf', $output);
+
 		$mensaje = kv_get_email_html(
 	        'KMIVET/reservas/confirmacion_cliente', 
 	        $INFORMACION

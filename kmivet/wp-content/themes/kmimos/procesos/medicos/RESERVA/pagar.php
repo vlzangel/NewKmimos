@@ -72,8 +72,13 @@
 	    	]));
 		}
 		$cita_id = $cita['id'];
-		
 
+
+		$cliente = get_user_meta($user_id, 'first_name', true).' '.get_user_meta($user_id, 'last_name', true);
+		$cliente_email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$user_id);
+		$telefono_cliente = get_user_meta($user_id, 'user_mobile', true).' / '.get_user_meta($user_id, 'user_phone', true);
+		$edad_cliente = get_user_meta($user_id, 'user_birthday', true);
+		
 		$veterinario = get_medic($medico_id);
 
     	$fecha_cita = date("d/m", strtotime($cita_fecha));
@@ -85,7 +90,8 @@
         	"URL_CANCELAR"		 => get_home_url().'/citas/cancelar/'.$cita_id,
         	"NAME_VETERINARIO" 	 	=> $veterinario->firstName.' '.$veterinario->lastName,
         	"TELEFONOS_VETERINARIO" => $veterinario->phone,
-        	"CORREO_VETERINARIO" 	=> $veterinario->emai,
+        	"CORREO_VETERINARIO" 	=> $veterinario->email,
+        	"CEDULA_VETERINARIO" 	=> $veterinario->medicInfo->professionalLicenceNumber,
         	"NAME_CLIENTE" 		 => $cliente,
         	"TELEFONOS_CLIENTE"  => $telefono_cliente,
         	"CORREO_CLIENTE" 	 => $cliente_email,

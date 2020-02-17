@@ -187,13 +187,8 @@ $HTML .='
 									<option value="mujer">Femenino</option>
 								</select>
 							</div>
-							<div class="km-datos-mascota">
-								<select class="km-datos-mascota-opcion bg-select-custom" name="edad" id="edad">
-									<option value="">Edad</option>
-									<option value="18-25">18-25 años</option>
-									<option value="25-35">26-35 años</option>
-									<option value="Mayor a 36">Mayor 36 años</option>
-								</select>
+							<div class="label-placeholder">
+								<input type="text" name="nacimiento" id="nacimiento" class="input-label-placeholder" placeholder="Fecha de nacimiento" readonly />
 							</div>
 							<div class="km-datos-mascota hidden">
 								<select class="km-datos-mascota-opcion bg-select-custom" name="fumador" id="fumador">

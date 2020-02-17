@@ -1,33 +1,3 @@
-/*
-// Proceso Openpay
-var __FORM_PAGO__ = 'reserva_form';
-var __CB_PAGO_OK__ = function(){
-	jQuery("#btn_reservar").html("Procesando...");
-	jQuery.post(
-		HOME+'/procesos/medicos/RESERVA/pagar.php',
-		jQuery("#"+__FORM_PAGO__).serialize(),
-		function(res){
-			debug(res);
-			if( res.error == false ){
-				location.href = RAIZ+"/finalizar/"+res.cid;
-			}else{
-				jQuery(".errores_box").html( res.msg );
-				jQuery(".errores_box").css("display", "block");
-
-				jQuery("#btn_reservar").html("Solicitar Consulta");
-				jQuery("#btn_reservar").prop("disabled", false);
-			}
-		}, 
-		'json'
-	);
-}
-
-var __CB_PAGO_KO__ = function(){
-	jQuery("#btn_reservar").html("Solicitar Consulta");
-	jQuery("#btn_reservar").prop("disabled", false);
-} 
-*/
-
 // // Proceso Conekta //
 var __FORM_PAGO__ = 'reserva_form';
 var __CB_PAGO_OK__ = function(token){
@@ -236,9 +206,6 @@ jQuery( document ).ready(function() {
 			}else{
 				jQuery("#btn_reservar").html("Validando...");
 				jQuery("#btn_reservar").prop("disabled", true);
-				
-				// OpenPay.token.extractFormAndCreate(__FORM_PAGO__, sucess_callbak, error_callbak);
-
 				
 				Conekta.setPublicKey( KEY_CONEKTA );
 				Conekta.setLanguage("es");

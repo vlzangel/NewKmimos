@@ -25,6 +25,8 @@
     }else{
         $hoy = date("Y-m-d H:i:s");
 
+        $nacimiento = date("Y-m-d", strtotime( str_replace("/", "-", $nacimiento) ) );
+
         $userdata = array(
             'user_pass'             => $password,
             'user_login'            => $email,
@@ -68,6 +70,7 @@
             'user_photo' => $user_photo,
             'name_photo' => $name_photo,
             'user_age' => $age,
+            'user_birthday' => $nacimiento,
             'user_referred' => $referido,
             'user_email' => $email,
         ];
@@ -84,7 +87,8 @@
                 'firstName' => $name,
                 'lastName'  => $lastname,
                 'phone'     => $movil,
-                'password'  => $password
+                'password'  => $password,
+                'birthday'  => $nacimiento
             ]);
         }
 

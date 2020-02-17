@@ -13,6 +13,8 @@
     wp_enqueue_script('global_new_js', get_recurso("js")."global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('boostrap.min.js', getTema()."/js/bootstrap.min.js", array("jquery"), '1.0.0');
 
+    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
 
     wp_enqueue_script('firebase-app.js', "https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js", array("jquery"), '1.0.0'); 
     wp_enqueue_script('firebase-auth.js', "https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js", array("jquery"), '1.0.0'); 
