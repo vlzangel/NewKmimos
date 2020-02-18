@@ -19,8 +19,8 @@
 	    include dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
         include dirname(dirname(__DIR__)).'/lib/dompdf/lib/html5lib/Parser.php';
 
+	    use Dompdf\Dompdf;
 	    Dompdf\Autoloader::register();
-	    // use Dompdf\Dompdf;
 	    $dompdf = new Dompdf\Dompdf();
 	    ob_start();
 	        require_once ( __DIR__.'/template/recipe.php');
