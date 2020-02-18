@@ -147,8 +147,6 @@
     </div>
 </div>
 
-
-
 <div style='text-align: center;'>
     <a href='[PDF]' style="    
         display: block;
@@ -166,7 +164,6 @@
         DESCARGAR RECIPE
     </a>
 </div>
-
 
 <div style='
     font-family: Verdana;

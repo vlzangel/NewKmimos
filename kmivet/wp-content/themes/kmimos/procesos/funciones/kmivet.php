@@ -6,13 +6,22 @@
             $user_id = $_POST_['user_id'];
             unset( $_POST_['user_id'] );
             $data = json_encode($_POST_, JSON_UNESCAPED_UNICODE);
+
             $cargas = [
                 "examen" => false,
                 "diagnostico" => false,
                 "recipe" => false
             ];
             $cargas = json_encode($cargas, JSON_UNESCAPED_UNICODE);
-            $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$cita_precio}', '{$data}', 1, '{$cargas}', NULL, 0, '', '', NOW() )";
+
+            $extras = [
+                "diagnostico" => "",
+                "tratamiento" => "",
+                "medicamentos" => ""
+            ];
+            $extras = json_encode($extras, JSON_UNESCAPED_UNICODE);
+
+            $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$cita_precio}', '{$data}', 1, '{$cargas}', NULL, 0, '', '', '{$extras}', NOW() )";
             if( $wpdb->query( $sql ) ){
                 return [
                     'status' => true,
