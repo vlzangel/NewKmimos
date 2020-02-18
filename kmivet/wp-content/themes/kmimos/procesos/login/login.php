@@ -163,7 +163,7 @@
 		    	wp_set_current_user( $user_signon->ID, $usu );
 		    	die(
 					json_encode( array( 
-			  			'login' => false, 
+			  			'login' => true, 
 			  			'mes'   => "Login Exitoso!",
 			  			"extra" => $res
 				  	) )
