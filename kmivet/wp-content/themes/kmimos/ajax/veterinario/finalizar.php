@@ -4,7 +4,8 @@
 	if( $rcs['status'] == 'ok' ){ 
 		// $r = $wpdb->query("UPDATE {$pf}reservas SET status = 3 WHERE cita_id = '{$cita_id}' ");
 
-		$res = file_get_contents( get_home_url().'/test/?cita_id='.$cita_id );
+		$url = get_home_url().'/test/?cita_id='.$cita_id;
+		$res = file_get_contents( $url );
 
 		/*
 		$reserva = $wpdb->get_row("SELECT * FROM {$pf}reservas WHERE cita_id = '{$cita_id}' ");
@@ -84,7 +85,8 @@
 			die( json_encode([
 				'status' => false,
 				'error' => 'Error cambiando el estatus en kmivet',
-				'pdf' => $res
+				'pdf' => $res,
+				'url' => $url,
 			] ) );
 		}
 	}else{
