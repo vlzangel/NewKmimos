@@ -2,14 +2,11 @@
 	$cita_id = $id;
 	$rcs = change_status($cita_id, [ "status" => 3, "description" => "Cita finalizada" ]);
 	if( $rcs['status'] == 'ok' ){ 
-		$r = $wpdb->query("UPDATE {$pf}reservas SET status = 3 WHERE cita_id = '{$cita_id}' ");
+		// $r = $wpdb->query("UPDATE {$pf}reservas SET status = 3 WHERE cita_id = '{$cita_id}' ");
 
 		$reserva = $wpdb->get_row("SELECT * FROM {$pf}reservas WHERE cita_id = '{$cita_id}' ");
-
 		$veterinario = $wpdb->get_row("SELECT * FROM {$pf}veterinarios WHERE veterinario_id = '{$reserva->veterinario_id}' ");
-
 		$INFORMACION = (array) json_decode( $reserva->info_email );
-
 		$appointment = get_appointment($cita_id);
 
 		$INFORMACION["AVATAR_URL"] = kmimos_get_foto($veterinario->user_id);
@@ -54,6 +51,7 @@
 
 	    $INFORMACION["PDF"] = get_home_url().'/wp-content/uploads/recipes/'.$cita_id.'/recipe.pdf';
 
+	    /*
 		$mensaje = kv_get_email_html(
 	        'KMIVET/reservas/confirmacion_cliente', 
 	        $INFORMACION
@@ -72,7 +70,7 @@
 	    );
 	    $admins = get_admins();
 	    wp_mail($admins['admin'], 'Kmivet - Consulta Completada', $mensaje, $admins['otros']);
-
+		*/
 
 		if( $r ){
 			die( json_encode([
