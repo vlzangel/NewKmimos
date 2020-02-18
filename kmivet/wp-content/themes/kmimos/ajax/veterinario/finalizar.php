@@ -4,6 +4,9 @@
 	if( $rcs['status'] == 'ok' ){ 
 		// $r = $wpdb->query("UPDATE {$pf}reservas SET status = 3 WHERE cita_id = '{$cita_id}' ");
 
+		file_get_contents( get_home_url().'/test/?cita_id='.$cita_id );
+
+		/*
 		$reserva = $wpdb->get_row("SELECT * FROM {$pf}reservas WHERE cita_id = '{$cita_id}' ");
 		$veterinario = $wpdb->get_row("SELECT * FROM {$pf}veterinarios WHERE veterinario_id = '{$reserva->veterinario_id}' ");
 		$INFORMACION = (array) json_decode( $reserva->info_email );
@@ -14,6 +17,7 @@
 	    $INFORMACION["DIAGNOSTICO_NOTA"] = $appointment['result']->diagnostic->notes;
 	    $INFORMACION["TRATAMIENTO"] = $appointment['result']->treatment;
 
+	    /*
 	    include dirname(dirname(__DIR__)).'/lib/dompdf/src/Autoloader.php';
 	    include dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-svg-lib/src/autoload.php';
 	    include dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
