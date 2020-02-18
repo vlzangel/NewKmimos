@@ -147,6 +147,27 @@
     </div>
 </div>
 
+
+
+<div style='text-align: center;'>
+    <a href='[PDF]' style="    
+        display: block;
+        width: 90%;
+        text-align: center;
+        margin: 30px auto 0px;
+        padding: 10px;
+        border: solid 3px #000;
+        color: #000;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13px;
+    "> 
+        DESCARGAR RECIPE
+    </a>
+</div>
+
+
 <div style='
     font-family: Verdana;
     width: 100%;

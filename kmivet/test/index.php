@@ -27,5 +27,5 @@
     $dompdf->setPaper('A4', 'portrait');
     $dompdf->render();
     $output = $dompdf->output();
-    file_put_contents('mipdf.pdf', $output);
+    file_put_contents( dirname(__DIR__)."/wp-content/uploads/recipes/".time().".pdf" , $output);
 ?>

@@ -41,11 +41,18 @@
 	        $html = str_replace('['.$key.']', $value, $html);
 	    }
 
+	    $path = dirname(dirname(dirname(dirname(__DIR__))))."/uploads/recipes/".$cita_id;
+	    if( !file_exists($path) ){
+	    	mkdir( $path );
+	    }
+
 	    $dompdf->loadHtml( $html );
 	    $dompdf->setPaper('A4', 'portrait');
 	    $dompdf->render();
 	    $output = $dompdf->output();
-	    file_put_contents('mipdf.pdf', $output);
+	    file_put_contents( $path.'/recipe.pdf', $output);
+
+	    $INFORMACION["PDF"] = get_home_url().'/wp-content/uploads/recipes/'.$cita_id.'/recipe.pdf';
 
 		$mensaje = kv_get_email_html(
 	        'KMIVET/reservas/confirmacion_cliente', 
