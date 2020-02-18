@@ -46,7 +46,10 @@
                 }
             }
             $_cargas = json_encode($_cargas, JSON_UNESCAPED_UNICODE);
-            return $wpdb->query("UPDATE {$pf}reservas SET cargas = '{$_cargas}', extras = '{$_extras}' WHERE cita_id = '{$cita_id}' ");
+            return [
+                "res" => $wpdb->query("UPDATE {$pf}reservas SET cargas = '{$_cargas}', extras = '{$_extras}' WHERE cita_id = '{$cita_id}' "),
+                "sql" => "UPDATE {$pf}reservas SET cargas = '{$_cargas}', extras = '{$_extras}' WHERE cita_id = '{$cita_id}' ",
+            ];
         }
 
         function cancelar_cita($params){
