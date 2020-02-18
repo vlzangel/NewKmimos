@@ -39,11 +39,11 @@
         $html = str_replace('['.$key.']', $value, $html);
     }
 
-    $path = dirname(__DIR__)."/wp-content/uploads/recipes/". $cita_id;
+    echo $path = dirname(__DIR__)."/wp-content/uploads/recipes/". $cita_id;
 
-    if( !file_exists($path) ){
+    // if( !file_exists($path) ){
         mkdir( $path );
-    }
+    // }
 
     $dompdf->loadHtml( $html );
     $dompdf->setPaper('A4', 'portrait');
