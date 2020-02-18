@@ -30,6 +30,8 @@
         }
 
         function update_data_reserva($cita_id, $cargas, $extras){
+            global $vlz;
+            extract( $vlz );
             global $wpdb;
             $reserva = $wpdb->get_row("SELECT * FROM {$pf}reservas WHERE cita_id = '{$cita_id}' ");
             $_extras = (array) json_decode($reserva->extras);
