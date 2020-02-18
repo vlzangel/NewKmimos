@@ -29,7 +29,7 @@ jQuery(document).ready(function() {
 		},
         "scrollX": true,
         "ajax": {
-            "url": ADMIN_AJAX+"?action=list",
+            "url": ADMIN_AJAX+"?action=list&ini="+INI+"&fin="+FIN,
             "type": "POST"
         },
         dom: '<"col-md-6"B><"col-md-6"f><"#tblreserva"t>ip',

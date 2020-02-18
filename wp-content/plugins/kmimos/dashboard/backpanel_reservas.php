@@ -1,13 +1,14 @@
 <?php 
     if ( ! defined( 'ABSPATH' ) ) { exit; } 
     extract($_GET);
-    if( !isset($_SESSION)){ session_start(); }
-    $_SESSION["reservas_ini"] = ( isset($ini) ) ? $ini : date("Y-m")."-01";
-    $_SESSION["reservas_fin"] = ( isset($fin) ) ? $fin : date("Y-m-d");
-
-    $ini = $_SESSION["reservas_ini"];
-    $fin = $_SESSION["reservas_fin"];
+    session_start();
+    $ini = ( isset($ini) && strlen($ini) > 0 ) ? $ini : date("Y-m")."-01";
+    $fin = ( isset($fin) && strlen($fin) > 0 ) ? $fin : date("Y-m-d");
 ?>
+<script type="text/javascript">
+    var INI = "<?= $ini ?>";
+    var FIN = "<?= $fin ?>";
+</script>
 <script type="text/javascript"> var ADMIN_AJAX = "<?= plugin_dir_url(__FILE__).'/core/NEW/reservas/php.php' ?>"; </script>
 <link rel='stylesheet' type='text/css' href='<?php echo plugin_dir_url(__FILE__) ?>/core/NEW/reservas/css.css?v=<?= time() ?>'>
 <script src='<?php echo plugin_dir_url(__FILE__) ?>/core/NEW/reservas/js.js?v=<?= time() ?>'></script>

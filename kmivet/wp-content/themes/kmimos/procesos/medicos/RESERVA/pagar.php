@@ -7,7 +7,7 @@
 	
 	if( !isset($_SESSION)){ session_start(); }
 
-	include_once(dirname(dirname(__DIR__))."/funciones/openpay.php");
+	// include_once(dirname(dirname(__DIR__))."/funciones/openpay.php");
 	include_once(dirname(dirname(__DIR__))."/funciones/mediqo.php");
 
 	// ini_set('display_errors', 'On');
@@ -78,6 +78,7 @@
 		$cliente_email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = ".$user_id);
 		$telefono_cliente = get_user_meta($user_id, 'user_mobile', true).' / '.get_user_meta($user_id, 'user_phone', true);
 		$edad_cliente = get_user_meta($user_id, 'user_birthday', true);
+		$edad_cliente = ( empty($edad_cliente) ) ? date("Y-m-d", strtotime("- 25 year") ) : $edad_cliente;
 		
 		$veterinario = get_medic($medico_id);
 
@@ -95,6 +96,7 @@
         	"NAME_CLIENTE" 		 => $cliente,
         	"TELEFONOS_CLIENTE"  => $telefono_cliente,
         	"CORREO_CLIENTE" 	 => $cliente_email,
+        	"EDAD_CLIENTE" 	 	 => CalculaEdad($edad_cliente),
         	"CONSULTA_ID" 		 => $cita_id,
         	"TIPO_SERVICIO" 	 => 'CONSULTA A DOMICILIO',
         	"FECHA" 	 		=> $fecha_cita,
@@ -111,27 +113,27 @@
         $wpdb->query("UPDATE wp_kmivet_reservas SET info_email = '{$info_email}' WHERE id = '{$cita_id}' ");
 
 	    // EMAIL al CLIENTE //
-	    	$mensaje = kv_get_email_html(
-		        'KMIVET/reservas/nueva_cliente', 
-		        $INFORMACION
-		    );
-	        wp_mail($cliente_email, 'Kmivet - Nueva Solicitud de Consulta', $mensaje);
+    	$mensaje = kv_get_email_html(
+	        'KMIVET/reservas/nueva_cliente', 
+	        $INFORMACION
+	    );
+        wp_mail($cliente_email, 'Kmivet - Nueva Solicitud de Consulta', $mensaje);
 
 
 	    // EMAIL al CUIDADOR //
-	    	$mensaje = kv_get_email_html(
-		        'KMIVET/reservas/nueva_veterinario', 
-		        $INFORMACION
-		    );
-	        wp_mail($_medico['email'], 'Kmivet - Nueva Solicitud de Consulta', $mensaje);
+    	$mensaje = kv_get_email_html(
+	        'KMIVET/reservas/nueva_veterinario', 
+	        $INFORMACION
+	    );
+        wp_mail($_medico['email'], 'Kmivet - Nueva Solicitud de Consulta', $mensaje);
 
 	    // EMAIL al ADMINISTRADOR //
-	    	$mensaje = kv_get_email_html(
-		        'KMIVET/reservas/nueva_admin', 
-		        $INFORMACION
-		    );
-            $admins = get_admins();
-            wp_mail($admins['admin'], 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $admins['otros']);
+    	$mensaje = kv_get_email_html(
+	        'KMIVET/reservas/nueva_admin', 
+	        $INFORMACION
+	    );
+        $admins = get_admins();
+        wp_mail($admins['admin'], 'Kmivet - Nueva Solicitud de Consulta', $mensaje, $admins['otros']);
 
 	    die(json_encode([
 			"msg" => "Pago realizado exitosamente",
