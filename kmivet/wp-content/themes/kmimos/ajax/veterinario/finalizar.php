@@ -23,8 +23,8 @@
 	    require_once dirname(dirname(__DIR__)).'/lib/dompdf/src/Autoloader.php';
 
 	    Dompdf\Autoloader::register();
-	    use Dompdf\Dompdf;
-	    $dompdf = new Dompdf();
+	    // use Dompdf\Dompdf;
+	    $dompdf = new Dompdf\Dompdf();
 	    ob_start();
 	        require_once ( __DIR__.'/template/recipe.php');
 	    $html = ob_get_clean();
