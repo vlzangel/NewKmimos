@@ -12,9 +12,9 @@
     $html = ob_get_clean();
 
     $INFORMACION = [
-        "VETERINARIO" => "CESAR ALEJANDRO DE LA ROSA VELAZQUEZ",
-        "CEDULA" => "11076555",
-        "PACIENTE" => "Rob Cuevas",
+        "VETERINARIO" => "Medico Medico Prueba Kmivet",
+        "CEDULA" => "4363749922",
+        "PACIENTE" => "Paciente Cuatro",
         "EDAD" => "41",
         "TRATAMIENTO" => "Tylex flu una cada 8 hrs por 5 días Celestamine ns una cada 12 hrs por 5 días Naproxeno 250 mg una cada 12 hrs por 5 días",
     ];

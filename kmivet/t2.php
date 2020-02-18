@@ -24,6 +24,8 @@
     $INFORMACION["DIAGNOSTICO_NOTA"] = "Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.";
     $INFORMACION["TRATAMIENTO"] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at erat ornare, euismod neque id, gravida metus. Vivamus accumsan quam eget fermentum lacinia. Aenean porttitor scelerisque arcu id scelerisque.";
 
+    $INFORMACION["PDF"] = get_home_url().'/wp-content/uploads/recipes/'.$cita_id.'/recipe.pdf';
+    
     echo $mensaje = kv_get_email_html(
         'KMIVET/reservas/confirmacion_cliente', 
         $INFORMACION
