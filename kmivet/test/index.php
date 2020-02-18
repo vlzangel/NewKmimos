@@ -11,6 +11,7 @@
         require_once ( __DIR__.'/template/recipe.php');
     $html = ob_get_clean();
 
+    /*
     include dirname(__DIR__).'/wp-load.php';
 
     global $wpdb;
