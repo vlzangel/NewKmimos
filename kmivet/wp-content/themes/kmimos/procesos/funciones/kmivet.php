@@ -15,24 +15,38 @@
             $cargas = json_encode($cargas, JSON_UNESCAPED_UNICODE);
 
             $extras = [
-                "diagnostico" => "",
-                "tratamiento" => "",
+                "diagnostico"  => "",
+                "tratamiento"  => "",
                 "medicamentos" => ""
             ];
             $extras = json_encode($extras, JSON_UNESCAPED_UNICODE);
 
             $sql = "INSERT INTO wp_kmivet_reservas VALUES ( NULL, '{$user_id}', '{$medico_id}', '{$paciente_id}', '{$appointment_id}', '{$cita_fecha}', '{$cita_precio}', '{$data}', 1, '{$cargas}', NULL, 0, '', '', '{$extras}', NOW() )";
             if( $wpdb->query( $sql ) ){
-                return [
-                    'status' => true,
-                    'id' => $wpdb->insert_id
-                ];
+                return [ 'status' => true, 'id' => $wpdb->insert_id ];
             }else{
-                return [
-                    'status' => false,
-                    'info' => $sql
-                ];
+                return [ 'status' => false ];
             }
+        }
+
+        function update_data_reserva($cita_id, $cargas, $extras){
+            global $wpdb;
+            $reserva = $wpdb->get_row("SELECT * FROM {$pf}reservas WHERE cita_id = '{$cita_id}' ");
+            $_extras = (array) json_decode($reserva->extras);
+            foreach ($_extras as $key => $value) {
+                if( $extras[$key] != '' ){
+                    $_extras[ $key ] = $extras[ $key ];
+                }
+            }
+            $_extras = json_encode($_extras, JSON_UNESCAPED_UNICODE);
+            $_cargas = (array) json_decode($reserva->cargas);
+            foreach ($_cargas as $key => $value) {
+                if( $cargas[$key] != '' ){
+                    $_cargas[ $key ] = $cargas[ $key ];
+                }
+            }
+            $_cargas = json_encode($_cargas, JSON_UNESCAPED_UNICODE);
+            return $wpdb->query("UPDATE {$pf}reservas SET cargas = '{$_cargas}', extras = '{$_extras}' WHERE cita_id = '{$cita_id}' ");
         }
 
         function cancelar_cita($params){
