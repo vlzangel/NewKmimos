@@ -26,7 +26,6 @@
 
 	    $res = update_data_reserva($cita_id, [], [ "recipe" => $INFORMACION["PDF"] ]);
 
-	    /*
 		$mensaje = kv_get_email_html(
 	        'KMIVET/reservas/confirmacion_cliente', 
 	        $INFORMACION
@@ -38,7 +37,6 @@
 	        $INFORMACION
 	    );
 	    wp_mail($INFORMACION['CORREO_VETERINARIO'], 'Kmivet - Consulta Completada', $mensaje);
-	    */
 
 		$mensaje = kv_get_email_html(
 	        'KMIVET/reservas/confirmacion_cliente', 
