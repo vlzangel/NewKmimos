@@ -11,7 +11,6 @@
         require_once ( __DIR__.'/template/recipe.php');
     $html = ob_get_clean();
 
-    /*
     include dirname(__DIR__).'/wp-load.php';
 
     global $wpdb;
@@ -45,12 +44,10 @@
     if( !file_exists($path) ){
         mkdir( $path );
     }
-
-    /*
+    
     $dompdf->loadHtml( $html );
     $dompdf->setPaper('A4', 'portrait');
     $dompdf->render();
     $output = $dompdf->output();
     file_put_contents(  $path.'/recipe.pdf' , $output);
-    */
 ?>
