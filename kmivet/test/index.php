@@ -11,28 +11,28 @@
         require_once ( __DIR__.'/template/recipe.php');
     $html = ob_get_clean();
 
-    include dirname(__DIR__).'/wp-load.php';
+    include dirname(__DIR__).'/vlz_config.php';
+    include dirname(__DIR__).'/wp-content/themes/kmimos/procesos/funciones/db.php';
+    include dirname(__DIR__).'/wp-content/themes/kmimos/procesos/funciones/mediqo.php';
 
-    global $wpdb;
+    function CalculaEdad( $fecha ) {
+        list($Y,$m,$d) = explode("-",$fecha);
+        return( date("md") < $m.$d ? date("Y")-$Y-1 : date("Y")-$Y );
+    }
+
+    $wpdb = new db( new mysqli($host, $user, $pass, $db) );
 
     $cita_id = $_GET['cita_id'];
+    $pf = 'wp_kmivet_';
 
-    $reserva = $wpdb->get_row("SELECT * FROM {$pf}reservas WHERE cita_id = '{$cita_id}' ");
-    $veterinario = $wpdb->get_row("SELECT * FROM {$pf}veterinarios WHERE veterinario_id = '{$reserva->veterinario_id}' ");
-    $INFORMACION = (array) json_decode( $reserva->info_email );
     $appointment = get_appointment($cita_id);
 
-    $INFORMACION["AVATAR_URL"] = kmimos_get_foto($veterinario->user_id);
-    $INFORMACION["DIAGNOSTICO"] = $appointment['result']->diagnostic->diagnostic->title;
-    $INFORMACION["DIAGNOSTICO_NOTA"] = $appointment['result']->diagnostic->notes;
-    $INFORMACION["TRATAMIENTO"] = $appointment['result']->treatment;
-
     $INFORMACION = [
-        "VETERINARIO" => "Medico Medico Prueba Kmivet",
-        "CEDULA" => "4363749922",
-        "PACIENTE" => "Paciente Cuatro",
-        "EDAD" => "41",
-        "TRATAMIENTO" => "Tylex flu una cada 8 hrs por 5 días Celestamine ns una cada 12 hrs por 5 días Naproxeno 250 mg una cada 12 hrs por 5 días",
+        "VETERINARIO" => $appointment['result']->medic->firstName.' '.$appointment['result']->medic->lastName,
+        "CEDULA" =>  $appointment['result']->medic->medicInfo->professionalLicenceNumber,
+        "PACIENTE" => $appointment['result']->patient->firstName.' '.$appointment['result']->patient->lastName,
+        "EDAD" => CalculaEdad( $appointment['result']->patient->birthday ),
+        "TRATAMIENTO" => $appointment['result']->treatment,
     ];
 
     foreach ($INFORMACION as $key => $value) {
@@ -41,9 +41,7 @@
 
     $path = dirname(__DIR__)."/wp-content/uploads/recipes/". $cita_id;
 
-    if( !file_exists($path) ){
-        mkdir( $path );
-    }
+    if( !file_exists($path) ){ mkdir( $path ); }
 
     $dompdf->loadHtml( $html );
     $dompdf->setPaper('A4', 'portrait');
