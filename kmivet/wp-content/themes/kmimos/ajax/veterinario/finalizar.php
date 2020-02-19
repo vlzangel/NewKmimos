@@ -9,10 +9,16 @@
 	    $INFORMACION = (array) json_decode( $reserva->info_email );
 	    $appointment = get_appointment($cita_id);
 
+	    $medicamentos = "";
+	    foreach ($appointment['result']->prescription as $key => $medicamento) {
+	        $medicamentos .= $medicamento->medicine->name."(".$medicamento->medicine->presentation.") ".$medicamento->indication."<br>";
+	    }
+	    $medicamentos .= $appointment['result']->treatment;
+
 	    $INFORMACION["AVATAR_URL"] = kmimos_get_foto($veterinario->user_id);
 	    $INFORMACION["DIAGNOSTICO"] = $appointment['result']->diagnostic->diagnostic->title;
 	    $INFORMACION["DIAGNOSTICO_NOTA"] = $appointment['result']->diagnostic->notes;
-	    $INFORMACION["TRATAMIENTO"] = $appointment['result']->treatment;
+	    $INFORMACION["TRATAMIENTO"] = $medicamentos;
 
 	    file_get_contents( get_home_url().'/test/?cita_id='.$cita_id );
 
