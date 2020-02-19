@@ -14,11 +14,11 @@
 	    $INFORMACION["DIAGNOSTICO_NOTA"] = $appointment['result']->diagnostic->notes;
 	    $INFORMACION["TRATAMIENTO"] = $appointment['result']->treatment;
 
-	    $PDF = file_get_contents( get_home_url().'/test/?cita_id='.$cita_id );
+	    file_get_contents( get_home_url().'/test/?cita_id='.$cita_id );
 
-	    $INFORMACION["PDF"] = $PDF;
+	    $INFORMACION["PDF"] = get_home_url()."/wp-content/uploads/recipes/".$cita_id.'/recipe.pdf';
 
-	    $res = update_data_reserva($cita_id, [], [ "recipe" => $PDF ]);
+	    $res = update_data_reserva($cita_id, [], [ "recipe" => $INFORMACION["PDF"] ]);
 
 	    /*
 		$mensaje = kv_get_email_html(
@@ -46,7 +46,9 @@
 		
 		if( $r ){
 			die( json_encode([
-				'status' => true
+				'status' => true,
+				$PDF,
+				$res
 			] ) );
 		}else{
 			die( json_encode([
