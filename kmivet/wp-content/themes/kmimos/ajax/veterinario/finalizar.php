@@ -20,6 +20,7 @@
 
 	    $res = update_data_reserva($cita_id, [], [ "recipe" => $PDF ]);
 
+	    /*
 		$mensaje = kv_get_email_html(
 	        'KMIVET/reservas/confirmacion_cliente', 
 	        $INFORMACION
@@ -31,13 +32,17 @@
 	        $INFORMACION
 	    );
 	    wp_mail($INFORMACION['CORREO_VETERINARIO'], 'Kmivet - Consulta Completada', $mensaje);
-	    
+	    */
+
 		$mensaje = kv_get_email_html(
 	        'KMIVET/reservas/confirmacion_cliente', 
 	        $INFORMACION
 	    );
 	    $admins = get_admins();
+	    /*
 	    wp_mail($admins['admin'], 'Kmivet - Consulta Completada', $mensaje, $admins['otros']);
+	    */
+	    wp_mail($admins['admin'], 'Kmivet - Consulta Completada', $mensaje);
 		
 		if( $r ){
 			die( json_encode([
