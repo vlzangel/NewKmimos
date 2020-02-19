@@ -4,20 +4,20 @@
 	if( $rcs['status'] == 'ok' ){ 
 		// $r = $wpdb->query("UPDATE {$pf}reservas SET status = 3 WHERE cita_id = '{$cita_id}' ");
 
+	    $res = file_get_contents( get_home_url().'/test/?cita_id='.$cita_id );
+
+		/*
 		$reserva = $wpdb->get_row("SELECT * FROM {$pf}reservas WHERE cita_id = '{$cita_id}' ");
-
 		$veterinario = $wpdb->get_row("SELECT * FROM {$pf}veterinarios WHERE veterinario_id = '{$reserva->veterinario_id}' ");
-
 		$INFORMACION = (array) json_decode( $reserva->info_email );
-
 		$appointment = get_appointment($cita_id);
-
 		$INFORMACION["AVATAR_URL"] = kmimos_get_foto($veterinario->user_id);
     	$INFORMACION["DIAGNOSTICO"] = $appointment['result']->diagnostic->diagnostic->title;
 	    $INFORMACION["DIAGNOSTICO_NOTA"] = $appointment['result']->diagnostic->notes;
 	    $INFORMACION["TRATAMIENTO"] = $appointment['result']->treatment;
 
-	    
+
+	    /*
         include dirname(dirname(__DIR__)).'/lib/dompdf/lib/html5lib/Parser.php';
 	    include dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
 	    include dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-svg-lib/src/autoload.php';
@@ -52,6 +52,7 @@
 	    $dompdf->render();
 	    $output = $dompdf->output();
 	    file_put_contents( $path.'/recipe.pdf', $output);
+	    */
 
 	    $INFORMACION["PDF"] = get_home_url().'/wp-content/uploads/recipes/'.$cita_id.'/recipe.pdf';
 
@@ -83,7 +84,8 @@
 		}else{
 			die( json_encode([
 				'status' => false,
-				'error' => 'Error cambiando el estatus en kmivet' 
+				'error' => 'Error cambiando el estatus en kmivet',
+				'pdf' => $res,
 			] ) );
 		}
 	}else{
