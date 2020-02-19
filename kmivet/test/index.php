@@ -51,5 +51,5 @@
     $output = $dompdf->output();
     file_put_contents(  $path.'/recipe.pdf' , $output);
 
-    echo $path.'/recipe.pdf';
+    echo get_home_url()."/wp-content/uploads/recipes/".$cita_id.'/recipe.pdf';
 ?>

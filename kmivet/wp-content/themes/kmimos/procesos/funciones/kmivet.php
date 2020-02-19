@@ -17,7 +17,8 @@
             $extras = [
                 "diagnostico"  => "",
                 "tratamiento"  => "",
-                "medicamentos" => ""
+                "medicamentos" => "",
+                "recipe"       => "",
             ];
             $extras = json_encode($extras, JSON_UNESCAPED_UNICODE);
 
