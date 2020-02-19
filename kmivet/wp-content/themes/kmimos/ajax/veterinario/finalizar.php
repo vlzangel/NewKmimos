@@ -17,10 +17,11 @@
 	    $INFORMACION["DIAGNOSTICO_NOTA"] = $appointment['result']->diagnostic->notes;
 	    $INFORMACION["TRATAMIENTO"] = $appointment['result']->treatment;
 
-	    include dirname(dirname(__DIR__)).'/lib/dompdf/src/Autoloader.php';
-	    include dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-svg-lib/src/autoload.php';
-	    include dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+	    
         include dirname(dirname(__DIR__)).'/lib/dompdf/lib/html5lib/Parser.php';
+	    include dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+	    include dirname(dirname(__DIR__)).'/lib/dompdf/lib/php-svg-lib/src/autoload.php';
+	    include dirname(dirname(__DIR__)).'/lib/dompdf/src/Autoloader.php';
 
 	    Dompdf\Autoloader::register();
 	    use Dompdf\Dompdf;
