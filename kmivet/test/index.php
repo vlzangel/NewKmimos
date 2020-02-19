@@ -27,12 +27,19 @@
 
     $appointment = get_appointment($cita_id);
 
+    $medicamentos = "";
+    foreach ($appointment['result']->prescription as $key => $medicamento) {
+        $medicamentos .= $medicamento->medicine->name."(".$medicamento->medicine->presentation.") > ".$medicamento->indication."\n";
+    }
+
+    $medicamentos .= $appointment['result']->treatment;
+
     $INFORMACION = [
         "VETERINARIO" => $appointment['result']->medic->firstName.' '.$appointment['result']->medic->lastName,
         "CEDULA" =>  $appointment['result']->medic->medicInfo->professionalLicenceNumber,
         "PACIENTE" => $appointment['result']->patient->firstName.' '.$appointment['result']->patient->lastName,
         "EDAD" => CalculaEdad( $appointment['result']->patient->birthday ),
-        "TRATAMIENTO" => $appointment['result']->treatment,
+        "TRATAMIENTO" => $medicamentos
     ];
 
     foreach ($INFORMACION as $key => $value) {
