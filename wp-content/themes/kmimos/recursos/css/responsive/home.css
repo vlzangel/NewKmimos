@@ -361,7 +361,7 @@
 	}
 
 	.tipo_mascota_container .input_check_box {
-	    width: calc( 50% - 10px );
+	    width: calc( 50% - 12px );
 	    height: auto;
 	}
 
@@ -382,6 +382,7 @@
 	    padding-left: 10px;
 	    overflow: hidden;
 	    margin-bottom: 15px;
+        height: 72px;
 	}
 
 	.controles_mitad_container {

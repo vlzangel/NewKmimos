@@ -277,7 +277,6 @@
 		<a  
 			target="_blanck" href="'.get_home_url().'/kmivet/" style="display: block;">
 			<img src="'.get_recurso("img").'BANNERS/kmivet/pc.jpg" width="100%" class="solo_pc" />
-			<img src="'.get_recurso("img").'BANNERS/kmivet/movil.png" width="100%" class="solo_movil" />
 		</a>
 	';
 
@@ -399,13 +398,19 @@
 	
 	</div>';
 
+	$HTML .= '
+		<a  
+			target="_blanck" href="'.get_home_url().'/kmivet/" style="display: block; margin-top: 25px;">
+			<img src="'.get_recurso("img").'BANNERS/kmivet/movil.png" width="100%" class="solo_movil" />
+		</a>
+	';
+
 	if( time() > strtotime("2018-11-16 00:00:00") && $cuidadores_destacados == '' ){
 		$HTML .= '
 			<a 
 				onclick="evento_google_kmimos(\'banner\'); evento_fbq_kmimos(\'banner\');" 
 				target="_blanck" href="'.get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos" style="display: block;">
 				<img src="'.get_recurso("img").'BANNERS/banner_rotativo/pc/4.jpg" width="100%" class="solo_pc" />
-				<img src="'.get_recurso("img").'BANNERS/banner_rotativo/movil/4.jpg" width="100%" class="solo_movil" />
 			</a>
 		';
 	}
