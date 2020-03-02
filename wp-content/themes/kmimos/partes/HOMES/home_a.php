@@ -273,6 +273,14 @@
 		</div>	
 	</div>';
 
+	$HTML .= '
+		<a  
+			target="_blanck" href="'.get_home_url().'/kmivet/" style="display: block;">
+			<img src="'.get_recurso("img").'BANNERS/kmivet/pc.jpg" width="100%" class="solo_pc" />
+			<img src="'.get_recurso("img").'BANNERS/kmivet/movil.png" width="100%" class="solo_movil" />
+		</a>
+	';
+
 	if( time() > strtotime("2018-11-16 00:00:00") && $cuidadores_destacados == '' ){
 		$HTML .= '
 			<a 
