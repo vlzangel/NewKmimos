@@ -43,12 +43,12 @@ nav .logo_negro, nav .logo.logo_verde {
 
 .home_2 .logo,
 .home_2 .nav_white .logo {
-	display: none;
+	display: none !important;
 }
 
 .home_2 .logo_verde,
 .home_2 .nav_white .logo_verde {
-	display: inline-block;
+	display: inline-block !important;
 }
 
 .logo_kmivet {

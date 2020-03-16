@@ -32,6 +32,7 @@
     $items = '';
     $info_banner = [
     	['_Cuidadores_4.jpg', false, get_home_url().'/personalizada', 'Cuidadores'],
+    	['_kmivet.jpg', true, get_home_url().'/kmivet', 'kmivet'],
     	['_CPF.jpg', true, get_home_url().'/club-patitas-felices', 'CPF'],
     	['_GPS.jpg',true,  get_home_url().'/redireccion/?utm_source=homepage&utm_medium=banner&utm_campaign=nomadas_kmimos&url=https://www.nomadas.life/?publicmap=kmimos', 'GPS'],
     	['_Paseos.jpg', true, get_home_url().'/paseos', 'Paseos'],
@@ -331,6 +332,14 @@
 
 		</div>	
 	</div>';
+
+	$HTML .= '
+		<a  
+			target="_blanck" href="'.get_home_url().'/kmivet/" style="display: block;">
+			<img src="'.get_recurso('img').'HOME_2/NEW/Carrusel_kmivet.jpg" width="100%" class="solo_pc" />
+			<img src="'.get_recurso('img').'HOME_2/RESPONSIVE/Muestra_kmivet.jpg" width="100%" class="solo_movil" />
+		</a>
+	';
 
 	/*
 	$SERVICIOS_PRINCIPALES = [
